@@ -1,170 +1,138 @@
-Return-Path: <devicetree+bounces-50928-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50929-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54FD887DB4E
-	for <lists+devicetree@lfdr.de>; Sat, 16 Mar 2024 20:30:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81DE587DB62
+	for <lists+devicetree@lfdr.de>; Sat, 16 Mar 2024 21:07:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2575281C60
-	for <lists+devicetree@lfdr.de>; Sat, 16 Mar 2024 19:30:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DAB91281E6B
+	for <lists+devicetree@lfdr.de>; Sat, 16 Mar 2024 20:07:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8E4B1B963;
-	Sat, 16 Mar 2024 19:30:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4A401BF2F;
+	Sat, 16 Mar 2024 20:07:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Z+986IKr"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="shsp9n5R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 311521843
-	for <devicetree@vger.kernel.org>; Sat, 16 Mar 2024 19:30:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAD361C280;
+	Sat, 16 Mar 2024 20:07:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710617433; cv=none; b=sEuBuMJnFQqzadvfHuu3o73ZeRgFEnds1Q5yBw9RwBZIC/iOoXDhLBND+55tYs2cgY2HUuu44/ag0ZAA99kJLOwUVL1o6Ly4a1P95mfT0XCsPlBpNUthznmb7tF9X1Pc7B10lbKJnLsmzTcXqUdKuezRGX59gnpmQ9N2OL1YVr0=
+	t=1710619630; cv=none; b=eWovkaGTznJDNbXU5FKZHoa0JxXprALroOxXPBKGGrBKU3IobFoWGG6OI+fv4Vqvxg/roAlEl5vWz21LYKqQLXzLHloV4o6RkqR8OpT1bENwD2ts/Wzj6HWzUooe5q5x+n3LIZW38fDtbqj12u0x8uH9pZVM9Waaz3uK9vTctBY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710617433; c=relaxed/simple;
-	bh=Z/Ado4D8W5tuGgm5CS0KEQsRgjzkEvtmsRP5h6Ech2U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=bJe4OBlY5pA1t5eYAktKMU+vm+yWfY8s1xFWSb36JJds0a0PiQXzRtsXGVwbdqerWxeBWGphrhJJgXaLJs6RqjVcmXK5RgXiSzLAxpGj2V0hD1TJ1XM5RTqL0GW19Q5tT3SfSTwbU0wsjZSa0HiQs1x53H1Zha/BZwnb3zqtF3c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Z+986IKr; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42GJUIBS023008;
-	Sat, 16 Mar 2024 19:30:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=/3LlxFr+n5rCRJ7tAnNAyM7rghFjCBvyq78RJg6G1GA=; b=Z+
-	986IKrkifz1ESGidH+DOn7IboE/QhTrrbcwk8dmL9z03/gNM0b2sTmdKt415Dmt5
-	+IqClTw7Qi9nefrobjwMeFfsXJhd27OWYUn545VrxIQHduPs1bxb1dKvvdSj3B/u
-	cUVIY9sb1V0UpS1GREsq+CCb9Z7wKdCz3kAqsQC5i7LlmO6hQ1ehpd/pOcj7/Fzu
-	jSiiaUpUJSnb6QZZk9qC2fmYht02h5yzA3uFdmSdw4dJdUxndImkaGIlohu06/R2
-	x+cmo3tzZTydSxY6enlwJD5ssdAoyvYLvZ8x/PgQVHBriyUyFuYc0iYMdFFPEaTA
-	Ug5f7epTg3yk6ZU5LIDQ==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ww3150wy6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 16 Mar 2024 19:30:18 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42GJUGbR017580
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 16 Mar 2024 19:30:16 GMT
-Received: from [10.110.96.96] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sat, 16 Mar
- 2024 12:30:15 -0700
-Message-ID: <0411f99d-231a-af4b-d681-7f7748361aa3@quicinc.com>
-Date: Sat, 16 Mar 2024 15:30:13 -0400
+	s=arc-20240116; t=1710619630; c=relaxed/simple;
+	bh=n8VYe7pPPXPaYaXKPPOW9Bb0UqIlFA7DZeGD5dCwJHM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kuxmmM7Qyhl4VusJztWu2Gcs3Tg6T9LEJLEqp/BdYJ2QP2fU7T9SgW7IzMu0SPX3kBL551/LxfZXwTNgiMMQpGuB+blV/rNEeMSdwN5hSjrPItG3OjaJkFQPSfeNxN35+jCs2uwPWcdKFbyACgQs/Mc27NRXLjVjbQyAdWj7Log=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=shsp9n5R; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0837A5AA;
+	Sat, 16 Mar 2024 21:06:34 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1710619595;
+	bh=n8VYe7pPPXPaYaXKPPOW9Bb0UqIlFA7DZeGD5dCwJHM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=shsp9n5RmnQtnklDw/OSh+YTXJFjns2rDCniHiiw/EDrwwh8Zhw6p6I+j2MS6xGSy
+	 V96wHUn1qUtVSwtYAy5e1wDYh0zM6CIlYI3pGw/Ef1p3Lvax2gdA8kaKKPhjVxsSj0
+	 gqKkO4YhVpnGEYskNRkcke/PHHLVydoZU76MHCP4=
+Date: Sat, 16 Mar 2024 22:06:57 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: linux-media@vger.kernel.org,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	David Plowman <david.plowman@raspberrypi.com>,
+	Jean-Michel Hautbois <jeanmichel.hautbois@yoseli.org>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Naushir Patuck <naush@raspberrypi.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	kernel-list@raspberrypi.com, linux-rpi-kernel@lists.infradead.org,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	bcm-kernel-feedback-list@broadcom.com,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+	Stefan Wahren <stefan.wahren@i2se.com>
+Subject: Re: [PATCH 00/15] media: Add driver for the Raspberry Pi <5 CSI-2
+ receiver
+Message-ID: <20240316200657.GB9082@pendragon.ideasonboard.com>
+References: <20240301213231.10340-1-laurent.pinchart@ideasonboard.com>
+ <20240301213840.GC25826@pendragon.ideasonboard.com>
+ <51510f4f-67aa-4f7a-bf6d-c09f8bddb85d@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: DT Query on "New Compatible vs New Property"
-To: Sudeep Holla <sudeep.holla@arm.com>, Nikunj Kela <quic_nkela@quicinc.com>
-CC: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Ulf Hansson
-	<ulf.hansson@linaro.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>,
-        Manivannan Sadhasivam
-	<manivannan.sadhasivam@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>, <robh+dt@kernel.org>,
-        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        "Prasad Sodagudi (QUIC)"
-	<quic_psodagud@quicinc.com>
-References: <20240228160925.fcitj2yz7hisidsl@bogus>
- <CAPDyKFqEDu1KRsT2YWv7MhoosCSj_bgV4xE=-2hDaS1ZP7AkvQ@mail.gmail.com>
- <2b0a11f4-f54e-461c-91e7-8f313d91abe8@linaro.org>
- <CAPDyKFoo+-2AF096Sbn8EHP1H4Zw2+2sFnSyuq65sWGmMmXU0A@mail.gmail.com>
- <ZeWp_UjYfWsnEB-K@bogus> <321069a8-2c46-4871-b85a-5e9cbdda5b5d@quicinc.com>
- <ZfGIPfHH-3r8pWMf@bogus> <3e8e7c8c-c14a-452c-a861-e2a07994119a@linaro.org>
- <ZfLXsCaeycRlQg3I@bogus> <487f91af-722f-44eb-a1a2-61dec586d686@quicinc.com>
- <ZfMZ9ATxuvONcGpz@bogus>
-Content-Language: en-US
-From: Trilok Soni <quic_tsoni@quicinc.com>
-In-Reply-To: <ZfMZ9ATxuvONcGpz@bogus>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: zHH1S8ndh03Tnf5XxcuXSpOo8XnWjrkx
-X-Proofpoint-ORIG-GUID: zHH1S8ndh03Tnf5XxcuXSpOo8XnWjrkx
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-16_17,2024-03-15_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
- spamscore=0 impostorscore=0 phishscore=0 malwarescore=0 suspectscore=0
- mlxlogscore=762 clxscore=1015 lowpriorityscore=0 mlxscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2403140001 definitions=main-2403160154
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <51510f4f-67aa-4f7a-bf6d-c09f8bddb85d@broadcom.com>
 
-On 3/14/2024 11:38 AM, Sudeep Holla wrote:
-> On Thu, Mar 14, 2024 at 05:35:23AM -0700, Nikunj Kela wrote:
->>
->> On 3/14/2024 3:55 AM, Sudeep Holla wrote:
->>>>
->>> Nope, the point was will the presence of (available) scmi/rpmi device
->>> node suffice if we are thinking of single board level property or
->>> compatible. I was not mixing the discussion of whether adding such
->>> a property to each needed device node in this discussion to keep it
->>> simple. I have already expressed my opinion on that.
->>>
->>> I am sure qcom will go and do what they want which may work fine for
->>> qcom specific drivers but it will not work for a generic IP driver
->>> used by many vendors. Not sure if Qcom SoCs are just bundle of Qcom
->>> specific IPs or they do have some generic non-Qcom IPs. Lets us take
->>> SMMU as example. If the SCMI/RPMI controls the power to it, would you
->>> go and add this new compatible in the generic SMMU bindings and add
->>> support in the driver for that ? That is big NO as the driver would
->>> just need to use std framework interface(doesn't matter Runtime PM/Clock/
->>> Reset/genpd/PM OPP). That means they don't need any specific bindings
->>> to inform SMMU driver that the power is f/w managed.
->>
->> For SMMU, we dont need to make any changes in the existing driver. Simple
->> power-domain over SCMI will suffice since we don't need to do clock scaling
->> etc. for SMMU. We will use this new property in Qualcomm emac, UFS, USB,
->> QUPs(i2c,spi,uart) drivers.
-> 
-> Sure, as I mentioned in the beginning itself, it is all in the Qcom
-> specific drivers, well you can hack it in any ugly way you want to get
-> things working even in the upstream.
-> 
-> But just stop and think for a moment how would you solve this problem
-> if you had few Synopsys Designware IPs instead of all those Qcom specific
-> IPs. Will your suggested solution work or if it works will that even scale ?
-> 
-> As I said I will shut up and you can do whatever in your drivers, but I
-> just don't want this to set bad example for other vendors who may not have
-> all their own IPs and may use some generic ones which means they will now
-> follow your solution and go and change those drivers now.
-> 
-> The main point I am trying to make is the provide blocks/nodes should
-> have the information that it is firmware managed. The consumer nodes
-> have no business to know that information.
-> 
-> I will leave it to you now as I can't stop what you define as Qcom specific
-> and what changes you can make in those Qcom specific drivers.
+Hi Florian,
 
-I agree with what Sudeep has brought up for the SMMU and USB is another example
-where we can have 3rd party phy / Synopsys IPs on the QC devices.
+On Fri, Mar 15, 2024 at 07:02:38AM -0700, Florian Fainelli wrote:
+> On 3/1/2024 1:38 PM, Laurent Pinchart wrote:
+> > The subject line should obviously have read 'PATCH v6', and I should
+> > have updated Jean-Michel's e-mail address instead of blindly relying on
+> > get-maintainer.pl. Maybe sending patches on a Friday evening isn't he
+> > best idea after all. Sorry about that.
+> > 
+> > On Fri, Mar 01, 2024 at 11:32:15PM +0200, Laurent Pinchart wrote:
+> >> Hello everybody,
+> >>
+> >> This patch series adds a new driver for the BCM2835 (and derivative)
+> >> CCP2/CSI2 camera interface named Unicam. This IP core is found in the
+> >> VC4-based Raspberry Pi, namely the Pi Zero, Pi 3 and Pi 4.
+> >>
+> >> Camera support for Raspberry Pi 4 currently relies on a downstream
+> >> Unicam driver that live in the Raspberry Pi kernel tree ([1]). The
+> >> driver uses the V4L2 API, but works around the lack of features in V4L2
+> >> to properly support sensor embedded data. Since the Unicam driver
+> >> development by Raspberry Pi, some of those features have been merged in
+> >> the kernel (namely the V4L2 streams API) or are being developed (namely
+> >> generic metadata formats and subdev internal pads), with patches posted
+> >> for review on the linux-media mailing list ([2]).
+> >>
+> >> This new upstream driver is based on the downstream code, extensively
+> >> reworked to use the new V4L2 APIs.
+> >>
+> >> The series is based on top of a merge of
+> >>
+> >> - v7 of the generic metadata and internal pads, rebased on v6.8-rc5 ([3])
+> >> - the downstream ISP driver ported to mainline ([4])
+> >>
+> >> For convenience, it can be found in [5]. Note that the ISP driver is
+> >> getting upstreamed separately.
+> >>
+> >> The series starts with five patches that add support for streams and
+> >> embedded data to the imx219 driver (01/15 to 05/15). Patches 06/15 to
+> >> 09/15 then add the Unicam driver, with new V4L2 pixel formats (06/15 and
+> >> 07/15) and DT bindings (08/15) The remaining patches cover DT
+> >> integration (10/15 to 14/15) with a sample DT overlay for the IMX219
+> >> camera module (15/15).
+> 
+> I am really keen on taking the DTS patches now so you know those are 
+> taken care of, make it to linux-next shortly and then we can focus on 
+> the drivers/media aspects. Stefan, does that work for you?
 
-From the QCOM side my concern is that I don't want to have QC specific hacks,
-because today's on-SOC IP can be tomorrow's discrete IP attached over
-PCIe or USB. Think of NPU or Video IP attached to third party
-Application processor (though it may not exist today but we never know).
+10/15 and 11/15 should be fine to merge already, although 11/15 depends
+on the DT bindings in 08/15. Even if the unicam driver needs a respin, I
+think the bindings are safe to merge already. Do you plan to take them
+in your tree with the corresponding DTS patches ?
 
+For 12/15 (the pinctrl-based I2C multiplexing), I'd really like an ack
+from Dave. 13/15 is pretty straightforward but depends on 12/15. 14/15
+is independent from all the other patches and can safely be merged I
+think.
 
 -- 
----Trilok Soni
+Regards,
 
+Laurent Pinchart
 
