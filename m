@@ -1,138 +1,122 @@
-Return-Path: <devicetree+bounces-50929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81DE587DB62
-	for <lists+devicetree@lfdr.de>; Sat, 16 Mar 2024 21:07:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E77B87DB67
+	for <lists+devicetree@lfdr.de>; Sat, 16 Mar 2024 21:16:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DAB91281E6B
-	for <lists+devicetree@lfdr.de>; Sat, 16 Mar 2024 20:07:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 492D9281E89
+	for <lists+devicetree@lfdr.de>; Sat, 16 Mar 2024 20:15:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4A401BF2F;
-	Sat, 16 Mar 2024 20:07:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="shsp9n5R"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD0101BC43;
+	Sat, 16 Mar 2024 20:14:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from fgw21-7.mail.saunalahti.fi (fgw21-7.mail.saunalahti.fi [62.142.5.82])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAD361C280;
-	Sat, 16 Mar 2024 20:07:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2148A1C687
+	for <devicetree@vger.kernel.org>; Sat, 16 Mar 2024 20:14:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.142.5.82
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710619630; cv=none; b=eWovkaGTznJDNbXU5FKZHoa0JxXprALroOxXPBKGGrBKU3IobFoWGG6OI+fv4Vqvxg/roAlEl5vWz21LYKqQLXzLHloV4o6RkqR8OpT1bENwD2ts/Wzj6HWzUooe5q5x+n3LIZW38fDtbqj12u0x8uH9pZVM9Waaz3uK9vTctBY=
+	t=1710620085; cv=none; b=afD0F1wYj/rZqrMGiBSUf7790PBDyE3osaQgww0uiSY3fTm6mssJw8QoePjBo/fyox8tmqxupGSUGMettEX4OB4hHrLUIFZYYqZKkyJJkDmMBSOmI9DgC2i+3YTS7q/EUjj3w7TBT5wfQUZC+WL/k3Ds9gqs1uq1paLKUI5Ax9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710619630; c=relaxed/simple;
-	bh=n8VYe7pPPXPaYaXKPPOW9Bb0UqIlFA7DZeGD5dCwJHM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kuxmmM7Qyhl4VusJztWu2Gcs3Tg6T9LEJLEqp/BdYJ2QP2fU7T9SgW7IzMu0SPX3kBL551/LxfZXwTNgiMMQpGuB+blV/rNEeMSdwN5hSjrPItG3OjaJkFQPSfeNxN35+jCs2uwPWcdKFbyACgQs/Mc27NRXLjVjbQyAdWj7Log=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=shsp9n5R; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0837A5AA;
-	Sat, 16 Mar 2024 21:06:34 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1710619595;
-	bh=n8VYe7pPPXPaYaXKPPOW9Bb0UqIlFA7DZeGD5dCwJHM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=shsp9n5RmnQtnklDw/OSh+YTXJFjns2rDCniHiiw/EDrwwh8Zhw6p6I+j2MS6xGSy
-	 V96wHUn1qUtVSwtYAy5e1wDYh0zM6CIlYI3pGw/Ef1p3Lvax2gdA8kaKKPhjVxsSj0
-	 gqKkO4YhVpnGEYskNRkcke/PHHLVydoZU76MHCP4=
-Date: Sat, 16 Mar 2024 22:06:57 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: linux-media@vger.kernel.org,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	David Plowman <david.plowman@raspberrypi.com>,
-	Jean-Michel Hautbois <jeanmichel.hautbois@yoseli.org>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Naushir Patuck <naush@raspberrypi.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	kernel-list@raspberrypi.com, linux-rpi-kernel@lists.infradead.org,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	bcm-kernel-feedback-list@broadcom.com,
-	Conor Dooley <conor+dt@kernel.org>,
+	s=arc-20240116; t=1710620085; c=relaxed/simple;
+	bh=RauXkEzmN7SZO4F1m+jEV8VKhQgNgAvhOgY28JNq/wk=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lolIYPyTIMPCRhMv8H5uQX3IwKak4edWY3Gh+PA06vMXergGnmcMWdRAwFu85b0OGCd2FLA9CHmmbg4Q/NZAEazAxp3NNb7jUjhkLwIT7LP55PiglbQyLBqUT9ywEaDqKFceWtJd1kKUyd1w4zV0xbp9i+WkN1NqI3giMifcSI8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=62.142.5.82
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
+Received: from localhost (88-113-26-217.elisa-laajakaista.fi [88.113.26.217])
+	by fgw21.mail.saunalahti.fi (Halon) with ESMTP
+	id cf37add6-e3d1-11ee-abf4-005056bdd08f;
+	Sat, 16 Mar 2024 22:14:36 +0200 (EET)
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Sat, 16 Mar 2024 22:14:35 +0200
+To: Dominique Martinet <dominique.martinet@atmark-techno.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Syunya Ohshio <syunya.ohshio@atmark-techno.com>,
+	Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-	Stefan Wahren <stefan.wahren@i2se.com>
-Subject: Re: [PATCH 00/15] media: Add driver for the Raspberry Pi <5 CSI-2
- receiver
-Message-ID: <20240316200657.GB9082@pendragon.ideasonboard.com>
-References: <20240301213231.10340-1-laurent.pinchart@ideasonboard.com>
- <20240301213840.GC25826@pendragon.ideasonboard.com>
- <51510f4f-67aa-4f7a-bf6d-c09f8bddb85d@broadcom.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] iio: industrialio-core: look for aliases to request
+ device index
+Message-ID: <ZfX9qyFUPwARjCVT@surfacebook.localdomain>
+References: <20240228051254.3988329-1-dominique.martinet@atmark-techno.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <51510f4f-67aa-4f7a-bf6d-c09f8bddb85d@broadcom.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240228051254.3988329-1-dominique.martinet@atmark-techno.com>
 
-Hi Florian,
-
-On Fri, Mar 15, 2024 at 07:02:38AM -0700, Florian Fainelli wrote:
-> On 3/1/2024 1:38 PM, Laurent Pinchart wrote:
-> > The subject line should obviously have read 'PATCH v6', and I should
-> > have updated Jean-Michel's e-mail address instead of blindly relying on
-> > get-maintainer.pl. Maybe sending patches on a Friday evening isn't he
-> > best idea after all. Sorry about that.
-> > 
-> > On Fri, Mar 01, 2024 at 11:32:15PM +0200, Laurent Pinchart wrote:
-> >> Hello everybody,
-> >>
-> >> This patch series adds a new driver for the BCM2835 (and derivative)
-> >> CCP2/CSI2 camera interface named Unicam. This IP core is found in the
-> >> VC4-based Raspberry Pi, namely the Pi Zero, Pi 3 and Pi 4.
-> >>
-> >> Camera support for Raspberry Pi 4 currently relies on a downstream
-> >> Unicam driver that live in the Raspberry Pi kernel tree ([1]). The
-> >> driver uses the V4L2 API, but works around the lack of features in V4L2
-> >> to properly support sensor embedded data. Since the Unicam driver
-> >> development by Raspberry Pi, some of those features have been merged in
-> >> the kernel (namely the V4L2 streams API) or are being developed (namely
-> >> generic metadata formats and subdev internal pads), with patches posted
-> >> for review on the linux-media mailing list ([2]).
-> >>
-> >> This new upstream driver is based on the downstream code, extensively
-> >> reworked to use the new V4L2 APIs.
-> >>
-> >> The series is based on top of a merge of
-> >>
-> >> - v7 of the generic metadata and internal pads, rebased on v6.8-rc5 ([3])
-> >> - the downstream ISP driver ported to mainline ([4])
-> >>
-> >> For convenience, it can be found in [5]. Note that the ISP driver is
-> >> getting upstreamed separately.
-> >>
-> >> The series starts with five patches that add support for streams and
-> >> embedded data to the imx219 driver (01/15 to 05/15). Patches 06/15 to
-> >> 09/15 then add the Unicam driver, with new V4L2 pixel formats (06/15 and
-> >> 07/15) and DT bindings (08/15) The remaining patches cover DT
-> >> integration (10/15 to 14/15) with a sample DT overlay for the IMX219
-> >> camera module (15/15).
+Wed, Feb 28, 2024 at 02:12:54PM +0900, Dominique Martinet kirjoitti:
+> From: Syunya Ohshio <syunya.ohshio@atmark-techno.com>
 > 
-> I am really keen on taking the DTS patches now so you know those are 
-> taken care of, make it to linux-next shortly and then we can focus on 
-> the drivers/media aspects. Stefan, does that work for you?
+> When using dtb overlays it can be difficult to predict which iio device
 
-10/15 and 11/15 should be fine to merge already, although 11/15 depends
-on the DT bindings in 08/15. Even if the unicam driver needs a respin, I
-think the bindings are safe to merge already. Do you plan to take them
-in your tree with the corresponding DTS patches ?
+DTB
+IIO
 
-For 12/15 (the pinctrl-based I2C multiplexing), I'd really like an ack
-from Dave. 13/15 is pretty straightforward but depends on 12/15. 14/15
-is independent from all the other patches and can safely be merged I
-think.
+> will get assigned what index, and there is no easy way to create
+> symlinks for /sys nodes through udev so to simplify userspace code make
+> it possible to request fixed indices for iio devices in device tree.
+
+IIO
+
+> 
+> For platforms without device trees of_alias_get_id will just fail and
+
+We refer to functions as func():
+of_alias_get_id()
+
+> ida_alloc_range will behave as ida_alloc currently does.
+
+Ditto.
+
+> For platforms with device trees, they can not set an alias, for example
+> this would try to get 10 from the ida for the device corresponding to
+> adc2:
+> aliases {
+>   iio10 = &adc2
+> };
+
+> To: Jonathan Cameron <jic23@kernel.org>
+> Cc: Guido Günther <agx@sigxcpu.org>
+> Cc: Lars-Peter Clausen <lars@metafoo.de>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: linux-iio@vger.kernel.org
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+
+Please, make sure you don't pollute commit message with these.
+Either use specific --to and --cc when formating patch or move
+them into comment block (after '---' line below).
+
+> Signed-off-by: Syunya Ohshio <syunya.ohshio@atmark-techno.com>
+> Signed-off-by: Dominique Martinet <dominique.martinet@atmark-techno.com>
+
+...
+
+> +#include <linux/of.h>
+
+What about ACPI?
+Please try avoid hard to use OF-specific code for the new features.
 
 -- 
-Regards,
+With Best Regards,
+Andy Shevchenko
 
-Laurent Pinchart
+
 
