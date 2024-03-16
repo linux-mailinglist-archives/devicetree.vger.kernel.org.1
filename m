@@ -1,173 +1,157 @@
-Return-Path: <devicetree+bounces-50918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BE0287DA5C
-	for <lists+devicetree@lfdr.de>; Sat, 16 Mar 2024 15:03:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93C4487DA63
+	for <lists+devicetree@lfdr.de>; Sat, 16 Mar 2024 15:05:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 234691C20929
-	for <lists+devicetree@lfdr.de>; Sat, 16 Mar 2024 14:03:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49944281F16
+	for <lists+devicetree@lfdr.de>; Sat, 16 Mar 2024 14:05:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA11918E1D;
-	Sat, 16 Mar 2024 14:03:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25AA018E1D;
+	Sat, 16 Mar 2024 14:05:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=risingedge.co.za header.i=@risingedge.co.za header.b="Eb1yFjOR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GTyPkDiW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from outgoing6.flk.host-h.net (outgoing6.flk.host-h.net [188.40.0.77])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF20CEAEB;
-	Sat, 16 Mar 2024 14:03:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.0.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E873F2F4A;
+	Sat, 16 Mar 2024 14:05:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710597800; cv=none; b=WRCs3lQLUXkT530uYWyq0HU6igcxmaCEvdSrf5QBfc+D7AL8x92ndkPdlpwcONAm2DvTaCSlB/gnqpIRLOzyTnEg+CQsI4JmsBpXOPhbnfnqZ1xC4F7y7903b46Msmq4Ecw8xqpAJJYtUEZ1ldOVr1cGAIN0CJzeS1Tuo+RpZDQ=
+	t=1710597905; cv=none; b=uStQ8IzkykXSDfoWbR+Uq+N9iLCgGJJ5HDuZB7rD5c4Ukr+cqMQBdoI9b4qEu9lyN+fQgdQfNIdbsf1VvkPginGsSyt67rAF38Q/xlBZWeUrU2Qo5je3bPtWqcWu+2F99FK8vh8rgbCtu7wEoJC03DlDntiKRk5/NG1Y/CxQyEQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710597800; c=relaxed/simple;
-	bh=BS1PK3qoqrGZE+ZA9VsKpv7aoKhXMXaTQxyTFJtX1BE=;
-	h=MIME-Version:Content-Type:Date:From:To:Cc:Subject:In-Reply-To:
-	 References:Message-ID; b=X9reCVYtAGbQR/bfu2TdLhuSOSjgQ/bBsZK4OaHKPg/IcAN9/PINS8dkqsaeUXx09scEU4Ugk5yDA0G5EQXpgdfMFbk8vt2/NgDWLd9rVRDEy1ZOClSvEIkxjizi9LBrjBMy4uwQVO5NR6RqkoyTtqHouYFqnP9roP9To8xREWc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=risingedge.co.za; spf=pass smtp.mailfrom=risingedge.co.za; dkim=pass (2048-bit key) header.d=risingedge.co.za header.i=@risingedge.co.za header.b=Eb1yFjOR; arc=none smtp.client-ip=188.40.0.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=risingedge.co.za
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=risingedge.co.za
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=risingedge.co.za; s=xneelo; h=Message-ID:References:In-Reply-To:Subject:Cc:
-	To:From:Date:Content-Transfer-Encoding:Content-Type:MIME-Version:reply-to:
-	sender:bcc; bh=gmrczaOhlAucHh9+mNoIwUjFZ3eZSylCEeQeqB6Qn/4=; b=Eb1yFjOROSkwGC
-	lAyQ3yEs0n+Argh8f6bIBP19P4LQUksFRM1Nb1Eoo+dhXVoY2vKXhnWygt9EFwXZY45q7pLmg433d
-	LQbng8aMKrGbbiMpFiWzbSdpvn2IuiVzrhKxVOTB+dXe1fGl6o1RsgbWPxCkL5ujRb8i0TXxY0YTs
-	BY70wP+cY5G2oPDdeley6F3OGVhQ2hJPIrLUVKl+aaxGFi/FBiebuYYDpos08wX12tshqr+1I1YU9
-	PTRogQrm5TWW89/ldvXbtEZ3ljRJDlflg7p2wJebsJJP2U7ywdlAyxqTFqyPzV0MKCnAPuzOpwFGC
-	fUXp7px69M9DTbWuvTTA==;
-Received: from www31.flk1.host-h.net ([188.40.1.173])
-	by antispam2-flk1.host-h.net with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <justin.swartz@risingedge.co.za>)
-	id 1rlUco-001TB0-6N; Sat, 16 Mar 2024 16:03:05 +0200
-Received: from roundcubeweb1.flk1.host-h.net ([138.201.244.33] helo=webmail9.konsoleh.co.za)
-	by www31.flk1.host-h.net with esmtpa (Exim 4.92)
-	(envelope-from <justin.swartz@risingedge.co.za>)
-	id 1rlUcm-0001sp-OC; Sat, 16 Mar 2024 16:03:00 +0200
+	s=arc-20240116; t=1710597905; c=relaxed/simple;
+	bh=amixzluleKA1HX6A3tMriG6xxpkzudzpXqwqjiZetbE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fzrKl8pt4Qbulha7BFCjfE8t59vqV/SDD49JTJYpu72hsVM8luu3kNL53NGfA90Wh9RA92eSPpBGWSd9PEvyDqIlKaO5ONmDwUNIkyT+NY9DYucrH1FGcH3GTYxUL4hHetB/PHzDqJV2TGF8qA/1C/HfZ9FF1es+ZogwdP8Te/8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GTyPkDiW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 892C4C433C7;
+	Sat, 16 Mar 2024 14:05:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710597904;
+	bh=amixzluleKA1HX6A3tMriG6xxpkzudzpXqwqjiZetbE=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=GTyPkDiW/xjYqiebMrtBr69ygwNafwO79gbrZq92gRVVyR6Dv03Pnbt0ieH2o49NR
+	 w089NssxcGEbE3r9gaOWw0DXw9p3NvmvUZOO8p4vCFqwXj3iqVkR0otg4m1YhLexBu
+	 D3B+J8Wasf5Ivde5izXuVcAiEhkF9ELVWdatXJbRed5l6Tk1bvbqu/hcHNAsfHK3sb
+	 Ma44B2bmeeLghltTp1ZBjJS+WxwcaxlIcr+MNxvcrLYI+Be3ggpbmKhnwt8V/qFhWK
+	 Mmk8KO3vFMBK0sOZX2Bgr+5y4WRR1S1CJ+eB+3IDHt44Y/cMCg/u7EYnXpSBk9FwXT
+	 rqwDgO4+EhheA==
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a46805cd977so252048766b.0;
+        Sat, 16 Mar 2024 07:05:04 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWSUYPPrDcV/Yy3Ar41kt86gPYqZxprz+yntBG84anrMDbiyAd6jK3dR33pLAtxsJqFz7jplWQ0lXTxyYjKRVt+ZhTKxtPmbj9jJJlY7vWMM9vx/d2zyh2wjlpR7jIZOHZBtTltt3WQr/jxA1Z07VYR6azZa0v6oVMOj7GAaMFeGYawak1O4KTBkViYD69fJ4uATMLfMP8IuIRWUhnh1CU=
+X-Gm-Message-State: AOJu0Yy2bcggv+4NgHGK1WbtXilpLpMvv05mg4JL10NpqXR2YrtdW5Go
+	GlczByJR8bd8DA6Gbs41aVQT4DvV0Odhm4TLuhUnFhDJiAp4YTkHbDfX2yRb4ZO9avLBii7x7Z5
+	+q+o9fiJVQY4jBh6gYnwX9UZ7WsE=
+X-Google-Smtp-Source: AGHT+IEKrLynn+1R7Lwe8ZlP5ZBJbdrQdC8AxTeaSG9WCvKWqEifH6WOwfvgxH0I3TH4jaUEoyd3OYA49aWSb25FVeA=
+X-Received: by 2002:a17:906:11d6:b0:a45:1850:e6ed with SMTP id
+ o22-20020a17090611d600b00a451850e6edmr3653615eja.6.1710597903023; Sat, 16 Mar
+ 2024 07:05:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Date: Sat, 16 Mar 2024 16:03:00 +0200
-From: Justin Swartz <justin.swartz@risingedge.co.za>
-To: =?UTF-8?Q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>
-Cc: Sergio Paracuellos <sergio.paracuellos@gmail.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Matthias Brugger
- <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, linux-mips@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 00/14] mips: dts: ralink: mt7621: improve DTS style
-In-Reply-To: <31b3d00f-6cf4-4bf8-ad78-a8354d57c518@arinc9.com>
-References: <20240316045442.31469-1-justin.swartz@risingedge.co.za>
- <31b3d00f-6cf4-4bf8-ad78-a8354d57c518@arinc9.com>
-Message-ID: <c7eb79ee77542db3a539d8bb7719dba9@risingedge.co.za>
-X-Sender: justin.swartz@risingedge.co.za
-User-Agent: Roundcube Webmail/1.3.17
-X-Authenticated-Sender: justin.swartz@risingedge.co.za
-X-Virus-Scanned: Clear
-X-SpamExperts-Domain: risingedge.co.za
-X-SpamExperts-Username: 
-Authentication-Results: host-h.net; auth=pass (login) smtp.auth=@risingedge.co.za
-X-SpamExperts-Outgoing-Class: ham
-X-SpamExperts-Outgoing-Evidence: Combined (0.01)
-X-Recommended-Action: accept
-X-Filter-ID: Pt3MvcO5N4iKaDQ5O6lkdGlMVN6RH8bjRMzItlySaT9i+OtSoA78SfwGCJVi3LtnPUtbdvnXkggZ
- 3YnVId/Y5jcf0yeVQAvfjHznO7+bT5wCPRB8bAzJcv2cv+UqiTTc2+CpNcmBnO4XM3Sck4bwNogU
- WCl1nkLBzZX0KuJ9bXiS85Z42w/+2OBolTNFbPomXFWCX8oNdggW7HE9XDTdSejrkEpbuUvwMvHx
- 3T+KSG//gbuP7hnUK8NQdLwsVWKIFDZRrTGv3rxiw9tFrqFSCFNiLZt/QXQnOBRD+jq1HsKsDh/6
- Srgk2K3gr1VBfJbChkYH6fbrypLNrde+UooQVNLReLErukdelEOHUIpaBbp5GdnsN8+UvimwMinK
- 0+Txhz2u9qvrL2PODYgMZQApJXOjDLkqunZ9NcY2bHZn7CfFscMZZf3sCkN20I5vMh4akiObI7Kj
- vK7X04QEin24qbfMFd8eGjnYW8aSH5qj4ujh/13psIvqSqJFa1CcANErDW/w69saM9prk3jNnHtn
- nuEt/J9wDZeQfiNOYsLDFBdwYt2XtlLzy7G7T4kla0JNnAWQx3FS11bhwUa9HCIwKB+TroNcRY33
- oNmH4nRQzHQazgY7lmveanvOdQzf6IMJ3345q/s6ySNrGnXycmhg3FOty77OmI9XlaAJpX2qfax0
- xYCHwzEoZpUBagq+YQPMLtBcNrQxKZYuPe8bdCyw79zlPbqLQkZr26Lcxdvj8cqI+CogZdOhX7v3
- ClXzrmMENhJLl6MBfhzHVBR0wHQZxzIUka7Uq615Mik1qzcz30/jNv+A51L2swh0gYW0eVWShle6
- F/kpBdN+oWjoATjEFDwcaiz0R34rhTN+GTbl4uS+pZovX9cex7Ac4fawcerGI7TrGXpM/B/M0BZd
- PfIU1BX7pZc1sE3vsz58auH/srM2fgZ9JmgLbj7sqoEiwv7LCxIiAE5ODMnmwjvj2589zjbyZCiM
- WpBpW8YvoIIqmZcWhL/r/eFjMjJnMHeiAPOVAT1rE1/vP68Bb4z3v3h3gCdXrv2+9GnNX30LKqXb
- fwFKgm/rnYBl+Mj5KqOl6Jzub/f3QhLRbOgisvi5VU9eNBtgo6zjiatjNO/pnMCjuIvXs/AyV/Ns
- URB/R+FlEHyAzksgfaRvdgw0WK34QWnzHHMcN6qoXPjenLhIOF1oeRYbjF1Hp647mOWoQlc3hL3c
- AHYPcQ0eIL+UT9voGXmPy4gA6hyxsNfrkhMdzrtm39J4u/m4iBmYb1/LCV4/EuVHup06w3Vwxf9C
- F7D6LKKRTfdjzQ6YC7Heg3Xf7O1TOd6RcY/MXB8eEq3bCN2QohZvyS03iBmgsz450Kmjd3fGV9tc
- xZF8I+FDjZqH3AmOvbgLx2C4ory8kLqkdy3XI1++Ibtf63VNbf0lrvssY+k7AHGi1NevGWTo2+h8
- Lhk4HCeZR7ymlGVRtthBJ2y8A5arx6JItKpFaUNPGMMlvbMX0nyK1NiAJ0y2Qvvn6ds6mor35w4f
- SfHzQbABJfgy21HclcZkPRq7NhoxyMwqi8Q23Rgadfh5T5n5D4OHHpbEIgsllZKWnzc5M5WlNtVJ
- qo05MS+4ayUpOtEhdxekWDmK9g==
-X-Report-Abuse-To: spam@antispamquarantine.host-h.net
+References: <20240316-loongson1-dma-v6-0-90de2c3cc928@gmail.com>
+In-Reply-To: <20240316-loongson1-dma-v6-0-90de2c3cc928@gmail.com>
+From: Huacai Chen <chenhuacai@kernel.org>
+Date: Sat, 16 Mar 2024 22:04:50 +0800
+X-Gmail-Original-Message-ID: <CAAhV-H6aGS6VXGzkqWTyxL7bGw=KdjmnRZj7SpwrV5hT6XQcpg@mail.gmail.com>
+Message-ID: <CAAhV-H6aGS6VXGzkqWTyxL7bGw=KdjmnRZj7SpwrV5hT6XQcpg@mail.gmail.com>
+Subject: Re: [PATCH v6 0/2] Add support for Loongson1 DMA
+To: keguang.zhang@gmail.com
+Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-mips@vger.kernel.org, dmaengine@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 2024-03-16 11:24, Arınç ÜNAL wrote:
-> On 16.03.2024 07:54, Justin Swartz wrote:
->> This set of patches was created with the intention of cleaning up
->> arch/mips/boot/dts/ralink/mt7621.dtsi so that it is aligned with
->> the Devicetree Sources (DTS) Coding Style [1] [2] guide.
->> 
->> [1] Documentation/devicetree/bindings/dts-coding-style.rst
->> 
->> [2] https://docs.kernel.org/devicetree/bindings/dts-coding-style.html
->> 
->> Justin Swartz (14):
->>    mips: dts: ralink: mt7621: reorder cpu node attributes
->>    mips: dts: ralink: mt7621: reorder cpuintc node attributes
->>    mips: dts: ralink: mt7621: reorder mmc regulator attributes
->>    mips: dts: ralink: mt7621: reorder sysc node attributes
->>    mips: dts: ralink: mt7621: reorder gpio node attributes
->>    mips: dts: ralink: mt7621: reorder i2c node attributes
->>    mips: dts: ralink: mt7621: reorder spi0 node attributes
->>    mips: dts: ralink: mt7621: move pinctrl and sort its children
->>    mips: dts: ralink: mt7621: reorder mmc node attributes
->>    mips: dts: ralink: mt7621: reorder gic node attributes
->>    mips: dts: ralink: mt7621: reorder ethernet node attributes and 
->> kids
->>    mips: dts: ralink: mt7621: reorder pcie node attributes and 
->> children
->>    mips: dts: ralink: mt7621: reorder pci?_phy attributes
->>    mips: dts: ralink: mt7621: reorder the attributes of the root node
->> 
->>   arch/mips/boot/dts/ralink/mt7621.dtsi | 430 
->> ++++++++++++++------------
->>   1 file changed, 239 insertions(+), 191 deletions(-)
-> 
-> A well done patch series. Thank you very much for doing this!
-> 
-> Arınç
+Hi, Keguang,
 
-++ for reviewing them all.
+Sorry for the late reply, there is already a ls2x-apb-dma driver, I'm
+not sure but can they share the same code base? If not, can rename
+this driver to ls1x-apb-dma for consistency?
 
-As you have at least one board that features an MT7621 SoC,
-please may you (and anyone else willing) take a look at a
-patch [1] that I've submitted for spi-mt7621.c which allows
-GPIO chip select lines to be used as well as the native chip
-selects.
+Huacai
 
-There's already been some back and forth with Mark Brown about
-the initial version of the patch (the linked patch is v2) and,
-of course I messed up how I send v2, as you'll read in the thread.
-
-It seems you weren't included because I rely on [2] to determine
-which people to address as maintainers when sending patches.
-
-Is there a better approach for populating git send's --to argument?
-
-Regards
-Justin
-
-
-[1] 
-https://lore.kernel.org/linux-mediatek/20240316010302.20776-1-justin.swartz@risingedge.co.za/
-
-[2] scripts/get_maintainer.pl --nogit --nogit-fallback --norolestats 
---nol
+On Sat, Mar 16, 2024 at 7:34=E2=80=AFPM Keguang Zhang via B4 Relay
+<devnull+keguang.zhang.gmail.com@kernel.org> wrote:
+>
+> Add the driver and dt-binding document for Loongson1 DMA.
+>
+> Changelog
+> V5 -> V6:
+>    Change the compatible to the fallback
+>    Implement .device_prep_dma_cyclic for Loongson1 sound driver,
+>    as well as .device_pause and .device_resume.
+>    Set the limitation LS1X_DMA_MAX_DESC and put all descriptors
+>    into one page to save memory
+>    Move dma_pool_zalloc() into ls1x_dma_alloc_desc()
+>    Drop dma_slave_config structure
+>    Use .remove_new instead of .remove
+>    Use KBUILD_MODNAME for the driver name
+>    Improve the debug information
+>    Some minor fixes
+> V4 -> V5:
+>    Add the dt-binding document
+>    Add DT support
+>    Use DT information instead of platform data
+>    Use chan_id of struct dma_chan instead of own id
+>    Use of_dma_xlate_by_chan_id() instead of ls1x_dma_filter()
+>    Update the author information to my official name
+> V3 -> V4:
+>    Use dma_slave_map to find the proper channel.
+>    Explicitly call devm_request_irq() and tasklet_kill().
+>    Fix namespace issue.
+>    Some minor fixes and cleanups.
+> V2 -> V3:
+>    Rename ls1x_dma_filter_fn to ls1x_dma_filter.
+> V1 -> V2:
+>    Change the config from 'DMA_LOONGSON1' to 'LOONGSON1_DMA',
+>    and rearrange it in alphabetical order in Kconfig and Makefile.
+>    Fix comment style.
+>
+> Keguang Zhang (2):
+>   dt-bindings: dma: Add Loongson-1 DMA
+>   dmaengine: Loongson1: Add Loongson1 dmaengine driver
+>
+>  .../bindings/dma/loongson,ls1x-dma.yaml       |  64 +++
+>  drivers/dma/Kconfig                           |   9 +
+>  drivers/dma/Makefile                          |   1 +
+>  drivers/dma/loongson1-dma.c                   | 492 ++++++++++++++++++
+>  4 files changed, 566 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/dma/loongson,ls1x-d=
+ma.yaml
+>  create mode 100644 drivers/dma/loongson1-dma.c
+>
+> --
+> 2.39.2
+>
+> base-commit: 719136e5c24768ebdf80b9daa53facebbdd377c3
+> ---
+> Keguang Zhang (2):
+>       dt-bindings: dma: Add Loongson-1 DMA
+>       dmaengine: Loongson1: Add Loongson1 dmaengine driver
+>
+>  .../devicetree/bindings/dma/loongson,ls1x-dma.yaml |  66 ++
+>  drivers/dma/Kconfig                                |   9 +
+>  drivers/dma/Makefile                               |   1 +
+>  drivers/dma/loongson1-dma.c                        | 665 +++++++++++++++=
+++++++
+>  4 files changed, 741 insertions(+)
+> ---
+> base-commit: a1e7655b77e3391b58ac28256789ea45b1685abb
+> change-id: 20231120-loongson1-dma-163afe5708b9
+>
+> Best regards,
+> --
+> Keguang Zhang <keguang.zhang@gmail.com>
+>
+>
 
