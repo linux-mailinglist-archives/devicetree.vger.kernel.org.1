@@ -1,360 +1,170 @@
-Return-Path: <devicetree+bounces-50927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EBF987DB2E
-	for <lists+devicetree@lfdr.de>; Sat, 16 Mar 2024 19:07:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54FD887DB4E
+	for <lists+devicetree@lfdr.de>; Sat, 16 Mar 2024 20:30:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E06D6B210D8
-	for <lists+devicetree@lfdr.de>; Sat, 16 Mar 2024 18:07:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2575281C60
+	for <lists+devicetree@lfdr.de>; Sat, 16 Mar 2024 19:30:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E7A71BF20;
-	Sat, 16 Mar 2024 18:06:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8E4B1B963;
+	Sat, 16 Mar 2024 19:30:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k3DyflbR"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Z+986IKr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B18CA1BC58;
-	Sat, 16 Mar 2024 18:06:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 311521843
+	for <devicetree@vger.kernel.org>; Sat, 16 Mar 2024 19:30:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710612417; cv=none; b=fYBuNFNjWUHm9aZYq1Dff5ZrKgj9S7nYM6ln5eUbAMU3KQQKkmMtZrevTSDkEdUfVnuiR9KDhQIKOFp2r6YIyW1LDpp1FMIWa6fcIdafjlFlCpLeU/HD4I7N9oWp/Uz44TmlqkNXuNdkpPHuRHduYvdowycScpVmj7UEXAycmNc=
+	t=1710617433; cv=none; b=sEuBuMJnFQqzadvfHuu3o73ZeRgFEnds1Q5yBw9RwBZIC/iOoXDhLBND+55tYs2cgY2HUuu44/ag0ZAA99kJLOwUVL1o6Ly4a1P95mfT0XCsPlBpNUthznmb7tF9X1Pc7B10lbKJnLsmzTcXqUdKuezRGX59gnpmQ9N2OL1YVr0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710612417; c=relaxed/simple;
-	bh=delWo0oqBSbnhRxxlbFP9+D2zHCWYl3h/XBpmVNOOtk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bUYTlXUFzSLNivrUK9SNKpTMmMVf0DTzqJlLTLvq/YJBAzI/LvQmCEz8i02ZvTJKGIGnWoIpWnRfNyijEVDxJ1mk69NwUqqNZt+2w8Ow9364Yw9PVCOcCHayXKp/VNwC+f6jKk08qlHM939/5+zK8tbyuKu6cqqEc9clhnJ3Yro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k3DyflbR; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-41409fa3dc5so1783175e9.2;
-        Sat, 16 Mar 2024 11:06:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710612414; x=1711217214; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nkXOvUv3CSNMR4S1kVhCPDF0jvEWGHLqB/wYYzvRGeA=;
-        b=k3DyflbRZRQ6js+r6LBN5bFNkfUwT3tuMdIWaNAV4FYkwc85Dbf1o5Bo2NDnHPF9x0
-         6z+obVgpa/W9Mn9Ri5A5cwRa6zKZ/VVT4KnaeOWThIEMvWoIOajD6hegq/edPuJg5uft
-         6ZCiT8fNhWmpkjck7ZZyYjuzDlz0aJzbckcPkkGQ+R+uR/6KDdtIzW7bzw8mUXb1VRmB
-         HdvNx9aJjmYI3nOhG32op3gVMCgrdfu9BM6HyyMChwbRmq8YEPCaUnpmVGBYIoVZbM+D
-         Z5mMDNyBuHuwWaGwZ5poGVoeSRy5zWVer6OqqYAlaldIWDS8ekkw8bXMXFh27j4naoVJ
-         OCcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710612414; x=1711217214;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nkXOvUv3CSNMR4S1kVhCPDF0jvEWGHLqB/wYYzvRGeA=;
-        b=CW3qAT6muzEk754v+U/Pirr6dJPx8hXpwuAr12yK+FjDXtCIU12tvIAYnkcoK4PLyO
-         0n/JE7Tr26rTjM0/Tk7D0iP+B/oQjOuQyzp8b/LB/lpUoM4yfcW1rfv1t7nE52briU96
-         fFgrvTjMHYptkR5+yKPP44JgjAIC0K2n3IMGH2uDQ26Zx6g9iX9JihcyuieNEPYBuaoP
-         ovEGkGZosrUnf8oBfEThKw4/gyJ28/S0Dzd11f6RobfAhmWsvPrXZEHVlwEID/kpNtB9
-         SyMjGJwymGa8fUwMLBHe7lFlg3tjYHXJsnijtXllfISCZMfbcDbBc+G8Ka5i4AI+9mwY
-         tTvQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV7VczoBD6v7ExrVuGtIQhxK3+bVrJ1AcbPbwVUReMTZDuveC2bOqW9GXg+onUtBw0icb65lXQfwYIfCUGCdXIz4iOHuo+oUVFH/ma0FQHWCAhtta3iGhiQsWy60k3uhElJ7sxXU2dwNw==
-X-Gm-Message-State: AOJu0YzguFescODNT5sWW7SN9hjm8lrX6TVeFHy6o17TZGt+tfZZXLRl
-	g6jt9ZTpjxK8sSqGFVBYDJNK6lGlgXwv5IB6MwW3I28Rk251rY9s
-X-Google-Smtp-Source: AGHT+IGSc8+4gLqhuW2+RC7eeLKzM/1sXFmJ44RO3jrxC607yA6pvzIwN0uty2HMBlnpP8E4Y5aOXQ==
-X-Received: by 2002:a5d:5412:0:b0:33e:c539:977d with SMTP id g18-20020a5d5412000000b0033ec539977dmr4764352wrv.22.1710612413685;
-        Sat, 16 Mar 2024 11:06:53 -0700 (PDT)
-Received: from jernej-laptop.localnet ([188.159.248.16])
-        by smtp.gmail.com with ESMTPSA id r15-20020a5d694f000000b0033ec6a1b37esm5911643wrw.8.2024.03.16.11.06.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 16 Mar 2024 11:06:53 -0700 (PDT)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Denis Burkov <hitechshell@mail.ru>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- Denis Burkov <hitechshell@mail.ru>
-Subject: Re: [PATCH v2] ARM: dts: sun5i: Add PocketBook 614 Plus support
-Date: Sat, 16 Mar 2024 19:06:51 +0100
-Message-ID: <4874817.GXAFRqVoOG@jernej-laptop>
-In-Reply-To: <20240316144429.12529-1-hitechshell@mail.ru>
-References:
- <4203654.1IzOArtZ34@jernej-laptop>
- <20240316144429.12529-1-hitechshell@mail.ru>
+	s=arc-20240116; t=1710617433; c=relaxed/simple;
+	bh=Z/Ado4D8W5tuGgm5CS0KEQsRgjzkEvtmsRP5h6Ech2U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=bJe4OBlY5pA1t5eYAktKMU+vm+yWfY8s1xFWSb36JJds0a0PiQXzRtsXGVwbdqerWxeBWGphrhJJgXaLJs6RqjVcmXK5RgXiSzLAxpGj2V0hD1TJ1XM5RTqL0GW19Q5tT3SfSTwbU0wsjZSa0HiQs1x53H1Zha/BZwnb3zqtF3c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Z+986IKr; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42GJUIBS023008;
+	Sat, 16 Mar 2024 19:30:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=/3LlxFr+n5rCRJ7tAnNAyM7rghFjCBvyq78RJg6G1GA=; b=Z+
+	986IKrkifz1ESGidH+DOn7IboE/QhTrrbcwk8dmL9z03/gNM0b2sTmdKt415Dmt5
+	+IqClTw7Qi9nefrobjwMeFfsXJhd27OWYUn545VrxIQHduPs1bxb1dKvvdSj3B/u
+	cUVIY9sb1V0UpS1GREsq+CCb9Z7wKdCz3kAqsQC5i7LlmO6hQ1ehpd/pOcj7/Fzu
+	jSiiaUpUJSnb6QZZk9qC2fmYht02h5yzA3uFdmSdw4dJdUxndImkaGIlohu06/R2
+	x+cmo3tzZTydSxY6enlwJD5ssdAoyvYLvZ8x/PgQVHBriyUyFuYc0iYMdFFPEaTA
+	Ug5f7epTg3yk6ZU5LIDQ==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ww3150wy6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 16 Mar 2024 19:30:18 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42GJUGbR017580
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 16 Mar 2024 19:30:16 GMT
+Received: from [10.110.96.96] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sat, 16 Mar
+ 2024 12:30:15 -0700
+Message-ID: <0411f99d-231a-af4b-d681-7f7748361aa3@quicinc.com>
+Date: Sat, 16 Mar 2024 15:30:13 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: DT Query on "New Compatible vs New Property"
+To: Sudeep Holla <sudeep.holla@arm.com>, Nikunj Kela <quic_nkela@quicinc.com>
+CC: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Ulf Hansson
+	<ulf.hansson@linaro.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>,
+        Manivannan Sadhasivam
+	<manivannan.sadhasivam@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>, <robh+dt@kernel.org>,
+        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        "Prasad Sodagudi (QUIC)"
+	<quic_psodagud@quicinc.com>
+References: <20240228160925.fcitj2yz7hisidsl@bogus>
+ <CAPDyKFqEDu1KRsT2YWv7MhoosCSj_bgV4xE=-2hDaS1ZP7AkvQ@mail.gmail.com>
+ <2b0a11f4-f54e-461c-91e7-8f313d91abe8@linaro.org>
+ <CAPDyKFoo+-2AF096Sbn8EHP1H4Zw2+2sFnSyuq65sWGmMmXU0A@mail.gmail.com>
+ <ZeWp_UjYfWsnEB-K@bogus> <321069a8-2c46-4871-b85a-5e9cbdda5b5d@quicinc.com>
+ <ZfGIPfHH-3r8pWMf@bogus> <3e8e7c8c-c14a-452c-a861-e2a07994119a@linaro.org>
+ <ZfLXsCaeycRlQg3I@bogus> <487f91af-722f-44eb-a1a2-61dec586d686@quicinc.com>
+ <ZfMZ9ATxuvONcGpz@bogus>
+Content-Language: en-US
+From: Trilok Soni <quic_tsoni@quicinc.com>
+In-Reply-To: <ZfMZ9ATxuvONcGpz@bogus>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: zHH1S8ndh03Tnf5XxcuXSpOo8XnWjrkx
+X-Proofpoint-ORIG-GUID: zHH1S8ndh03Tnf5XxcuXSpOo8XnWjrkx
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-16_17,2024-03-15_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
+ spamscore=0 impostorscore=0 phishscore=0 malwarescore=0 suspectscore=0
+ mlxlogscore=762 clxscore=1015 lowpriorityscore=0 mlxscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2403140001 definitions=main-2403160154
 
-Hi Denis!
-
-Before I review, please resend this series properly. It shouldn't be sent as
-response to old series, but as a new thread. Also, it has to be complete, in
-this case with first patch, with review/ack tags where applicable.
-
-Best regards,
-Jernej
-
-Dne sobota, 16. marec 2024 ob 15:39:18 CET je Denis Burkov napisal(a):
-> What works:
+On 3/14/2024 11:38 AM, Sudeep Holla wrote:
+> On Thu, Mar 14, 2024 at 05:35:23AM -0700, Nikunj Kela wrote:
+>>
+>> On 3/14/2024 3:55 AM, Sudeep Holla wrote:
+>>>>
+>>> Nope, the point was will the presence of (available) scmi/rpmi device
+>>> node suffice if we are thinking of single board level property or
+>>> compatible. I was not mixing the discussion of whether adding such
+>>> a property to each needed device node in this discussion to keep it
+>>> simple. I have already expressed my opinion on that.
+>>>
+>>> I am sure qcom will go and do what they want which may work fine for
+>>> qcom specific drivers but it will not work for a generic IP driver
+>>> used by many vendors. Not sure if Qcom SoCs are just bundle of Qcom
+>>> specific IPs or they do have some generic non-Qcom IPs. Lets us take
+>>> SMMU as example. If the SCMI/RPMI controls the power to it, would you
+>>> go and add this new compatible in the generic SMMU bindings and add
+>>> support in the driver for that ? That is big NO as the driver would
+>>> just need to use std framework interface(doesn't matter Runtime PM/Clock/
+>>> Reset/genpd/PM OPP). That means they don't need any specific bindings
+>>> to inform SMMU driver that the power is f/w managed.
+>>
+>> For SMMU, we dont need to make any changes in the existing driver. Simple
+>> power-domain over SCMI will suffice since we don't need to do clock scaling
+>> etc. for SMMU. We will use this new property in Qualcomm emac, UFS, USB,
+>> QUPs(i2c,spi,uart) drivers.
 > 
-> - Serial console
-> - mmc0, mmc2 (both microSD card slots on the board)
-> - All buttons (gpio and lradc based)
-> - Power LED
-> - PMIC
-> - RTC
-> - USB OTG/gadgets mode
+> Sure, as I mentioned in the beginning itself, it is all in the Qcom
+> specific drivers, well you can hack it in any ugly way you want to get
+> things working even in the upstream.
 > 
-> Signed-off-by: Denis Burkov <hitechshell@mail.ru>
-> ---
->  arch/arm/boot/dts/allwinner/Makefile          |   1 +
->  .../sun5i-a13-pocketbook-614-plus.dts         | 215 ++++++++++++++++++
->  2 files changed, 216 insertions(+)
->  create mode 100644 arch/arm/boot/dts/allwinner/sun5i-a13-pocketbook-614-plus.dts
+> But just stop and think for a moment how would you solve this problem
+> if you had few Synopsys Designware IPs instead of all those Qcom specific
+> IPs. Will your suggested solution work or if it works will that even scale ?
 > 
-> diff --git a/arch/arm/boot/dts/allwinner/Makefile b/arch/arm/boot/dts/allwinner/Makefile
-> index 5fbb44ddacd0..6209243ad975 100644
-> --- a/arch/arm/boot/dts/allwinner/Makefile
-> +++ b/arch/arm/boot/dts/allwinner/Makefile
-> @@ -61,6 +61,7 @@ dtb-$(CONFIG_MACH_SUN5I) += \
->  	sun5i-a13-olinuxino.dtb \
->  	sun5i-a13-olinuxino-micro.dtb \
->  	sun5i-a13-pocketbook-touch-lux-3.dtb \
-> +	sun5i-a13-pocketbook-614-plus.dtb \
->  	sun5i-a13-q8-tablet.dtb \
->  	sun5i-a13-utoo-p66.dtb \
->  	sun5i-gr8-chip-pro.dtb \
-> diff --git a/arch/arm/boot/dts/allwinner/sun5i-a13-pocketbook-614-plus.dts b/arch/arm/boot/dts/allwinner/sun5i-a13-pocketbook-614-plus.dts
-> new file mode 100644
-> index 000000000000..b5449301789a
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/allwinner/sun5i-a13-pocketbook-614-plus.dts
-> @@ -0,0 +1,215 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright 2024 Denis Burkov <hitechshell@mail.ru>
-> + */
-> +
-> +/dts-v1/;
-> +#include "sun5i-a13.dtsi"
-> +#include "sunxi-common-regulators.dtsi"
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +/ {
-> +	model = "PocketBook 614 Plus";
-> +	compatible = "pocketbook,614-plus", "allwinner,sun5i-a13";
-> +
-> +	aliases {
-> +		serial0 = &uart1;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		led {
-> +			gpios = <&pio 4 8 GPIO_ACTIVE_LOW>; /* PE8 */
-> +			default-state = "on";
-> +		};
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		key-right {
-> +			label = "Right";
-> +			linux,code = <KEY_NEXT>;
-> +			gpios = <&pio 6 9 GPIO_ACTIVE_LOW>; /* PG9 */
-> +		};
-> +
-> +		key-left {
-> +			label = "Left";
-> +			linux,code = <KEY_PREVIOUS>;
-> +			gpios = <&pio 6 10 GPIO_ACTIVE_LOW>; /* PG10 */
-> +		};
-> +	};
-> +
-> +	reg_3v3_mmc0: regulator-mmc0 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vdd-mmc0";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		gpio = <&pio 4 4 GPIO_ACTIVE_LOW>; /* PE4 */
-> +		vin-supply = <&reg_vcc3v3>;
-> +	};
-> +};
-> +
-> +&cpu0 {
-> +	cpu-supply = <&reg_dcdc2>;
-> +};
-> +
-> +&ehci0 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c0 {
-> +	status = "okay";
-> +
-> +	axp209: pmic@34 {
-> +		compatible = "x-powers,axp209";
-> +		reg = <0x34>;
-> +		interrupts = <0>;
-> +	};
-> +};
-> +
-> +#include "axp209.dtsi"
-> +
-> +&i2c1 {
-> +	status = "okay";
-> +
-> +	pcf8563: rtc@51 {
-> +		compatible = "nxp,pcf8563";
-> +		reg = <0x51>;
-> +		#clock-cells = <0>;
-> +	};
-> +};
-> +
-> +&lradc {
-> +	vref-supply = <&reg_ldo2>;
-> +	status = "okay";
-> +
-> +	button-300 {
-> +		label = "Down";
-> +		linux,code = <KEY_DOWN>;
-> +		channel = <0>;
-> +		voltage = <300000>;
-> +	};
-> +
-> +	button-700 {
-> +		label = "Up";
-> +		linux,code = <KEY_UP>;
-> +		channel = <0>;
-> +		voltage = <700000>;
-> +	};
-> +
-> +	button-1000 {
-> +		label = "Left";
-> +		linux,code = <KEY_LEFT>;
-> +		channel = <0>;
-> +		voltage = <1000000>;
-> +	};
-> +
-> +	button-1200 {
-> +		label = "Menu";
-> +		linux,code = <KEY_MENU>;
-> +		channel = <0>;
-> +		voltage = <1200000>;
-> +	};
-> +
-> +	button-1500 {
-> +		label = "Right";
-> +		linux,code = <KEY_RIGHT>;
-> +		channel = <0>;
-> +		voltage = <1500000>;
-> +	};
-> +};
-> +
-> +&mmc0 {
-> +	vmmc-supply = <&reg_3v3_mmc0>;
-> +	bus-width = <4>;
-> +	cd-gpios = <&pio 6 0 GPIO_ACTIVE_LOW>; /* PG0 */
-> +	status = "okay";
-> +};
-> +
-> +&mmc2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mmc2_4bit_pc_pins>;
-> +	vmmc-supply = <&reg_vcc3v3>;
-> +	bus-width = <4>;
-> +	non-removable;
-> +	status = "okay";
-> +};
-> +
-> +&ohci0 {
-> +	status = "okay";
-> +};
-> +
-> +&otg_sram {
-> +	status = "okay";
-> +};
-> +
-> +&reg_dcdc2 {
-> +	regulator-always-on;
-> +	regulator-min-microvolt = <1000000>;
-> +	regulator-max-microvolt = <1500000>;
-> +	regulator-name = "vdd-cpu";
-> +};
-> +
-> +&reg_dcdc3 {
-> +	regulator-always-on;
-> +	regulator-min-microvolt = <1000000>;
-> +	regulator-max-microvolt = <1400000>;
-> +	regulator-name = "vdd-int-dll";
-> +};
-> +
-> +&reg_ldo1 {
-> +	regulator-name = "vdd-rtc";
-> +};
-> +
-> +&reg_ldo2 {
-> +	regulator-always-on;
-> +	regulator-min-microvolt = <3000000>;
-> +	regulator-max-microvolt = <3000000>;
-> +	regulator-name = "avcc";
-> +};
-> +
-> +&reg_usb0_vbus {
-> +	status = "okay";
-> +	gpio = <&pio 6 12 GPIO_ACTIVE_HIGH>; /* PG12 */
-> +};
-> +
-> +&reg_usb1_vbus {
-> +	gpio = <&pio 6 11 GPIO_ACTIVE_HIGH>; /* PG11 */
-> +	status = "okay";
-> +};
-> +
-> +&uart1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&uart1_pg_pins>;
-> +	status = "okay";
-> +};
-> +
-> +&usb_otg {
-> +	dr_mode = "otg";
-> +	status = "okay";
-> +};
-> +
-> +&usb_power_supply {
-> +	status = "okay";
-> +};
-> +
-> +&battery_power_supply {
-> +	status = "okay";
-> +};
-> +
-> +&usbphy {
-> +	usb0_id_det-gpios = <&pio 6 2 GPIO_ACTIVE_HIGH>; /* PG2 */
-> +	usb0_vbus_det-gpios = <&axp_gpio 1 GPIO_ACTIVE_HIGH>;
-> +	usb0_vbus-supply = <&reg_usb0_vbus>;
-> +	usb1_vbus-supply = <&reg_usb1_vbus>;
-> +	status = "okay";
-> +};
+> As I said I will shut up and you can do whatever in your drivers, but I
+> just don't want this to set bad example for other vendors who may not have
+> all their own IPs and may use some generic ones which means they will now
+> follow your solution and go and change those drivers now.
 > 
+> The main point I am trying to make is the provide blocks/nodes should
+> have the information that it is firmware managed. The consumer nodes
+> have no business to know that information.
+> 
+> I will leave it to you now as I can't stop what you define as Qcom specific
+> and what changes you can make in those Qcom specific drivers.
+
+I agree with what Sudeep has brought up for the SMMU and USB is another example
+where we can have 3rd party phy / Synopsys IPs on the QC devices.
+
+From the QCOM side my concern is that I don't want to have QC specific hacks,
+because today's on-SOC IP can be tomorrow's discrete IP attached over
+PCIe or USB. Think of NPU or Video IP attached to third party
+Application processor (though it may not exist today but we never know).
 
 
-
+-- 
+---Trilok Soni
 
 
