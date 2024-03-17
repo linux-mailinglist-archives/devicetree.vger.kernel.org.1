@@ -1,116 +1,117 @@
-Return-Path: <devicetree+bounces-50944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50945-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7B4D87DD1F
-	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 13:18:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 21B2287DD2C
+	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 13:38:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6FBE41F21248
-	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 12:18:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A62551F212F7
+	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 12:38:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10DF91AACA;
-	Sun, 17 Mar 2024 12:18:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24303179AE;
+	Sun, 17 Mar 2024 12:38:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GuqaPIwd"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="ay5j6jZ+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 923401B7E9;
-	Sun, 17 Mar 2024 12:18:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA199101F2;
+	Sun, 17 Mar 2024 12:38:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710677904; cv=none; b=eooMrw6z6B9140tyhhdsQPxmpVm9gF+zjDiNZN9vQDBZEBnF3HCnO9dK29mJVogC/DgeKnKluyhrINNPNffkY/blHWXzP9AmKTLa+pDG5jMFkevoH1cGhs/ebNczAAvO7DRdzZ9oltw4cEV/2k4Y+9Ri4oiGEJkwFyH7TOyZtX0=
+	t=1710679129; cv=none; b=S1APLIXKEliOZ1v/8ICPz9Lki3HdUXKmJI7s4+mWwqOl1IuMCvrxiYsk7xHDe7pTP6P1B+w1yBqVk3yhlNrmyjEggiQrsQVMIrneaL/XYGuBwdnvxrkfSZ2hAoGdQ/gyg4nfM/iD7tUsRqX5FIdJQI9OmtX9nacNoOrxOjIKyi0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710677904; c=relaxed/simple;
-	bh=eoUX5ow+3C+/zgtIqy7nF/N9uBFFU5sFHI2z9migN3c=;
-	h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-	 In-Reply-To:Content-Type; b=usnpIEvFutLFCIVyWlmZlO5sKNnRQ3Qd/3XgPilyr6Qig/Lu0/dLdz1AOkocE50uLEZvYrS9f33oTn1B/hVkZIjDCaAqeC6zLvpC3e6RtcsJqGWX69y7aolMTf9qL/WOAETnSye4PX9shLc/d5b//k/M8bACckn753ik41/wPIo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GuqaPIwd; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-513d23be0b6so3455411e87.0;
-        Sun, 17 Mar 2024 05:18:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710677899; x=1711282699; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WhDUfnD6jhndJUK8KTDqkeCeoMfn6ZnAs+c0KRbmtc0=;
-        b=GuqaPIwdnOaCw5qQTuxzli+TpFffCuL5WYSQ7+vquVT9AgeGxwcGnQOiDCoEME1tVH
-         iCQZ68S2bopcL2mgLj2jgKTezXtlz/X02dnA4e8hYv6wxAlZpVw9G+NtRLZfs+cx/qLz
-         rh0UuUUgtzVrfPKSf1tNRwl+jfeN7jv+hgGOJfUBgR9VNxo+XMs6/ukxM9P0TTOgc9Ao
-         Wmr7KJvUVVcy+tCmL/EHYCmen8jfmAZMewPQWFww1gmyDFKZPurn8dHgWxko0HZHJ+9N
-         8RnvfxDWnb2UHyRDKUAR7nFAwvLIdhFf6SfqvXpjdJSZiFwLdE5Z0a1UPOs4UTJGHD0J
-         r4Hw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710677899; x=1711282699;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WhDUfnD6jhndJUK8KTDqkeCeoMfn6ZnAs+c0KRbmtc0=;
-        b=d+kMfvo7rbybWQJCkLxCYSvJOBEpLR7ENeu68mVhe1FmmwwLPQmKJK1Ev8OhP/yiUO
-         jitnNibQI9oiA3GNAazMleAHmo87C8yMv/JY1pTlMrugsxk4BjXBSjt2a/yLNG2e6HAn
-         Nc0+xHljZ+QWpbcm8fx3X/CT19C7MedsVAP64KFiWa5FN9fWIXH62qxTaoMIO0jP5RjJ
-         qzvh5Pe4CVVyt77lC+eM32bXhRlVmLTez2qxCnCDfrb7//Mk6kzd+POLch2KUgWXD0+2
-         BTbbYYFGjCDqCAAc7FWyoPQc54cNtfaje66tZ55LVSVph0mDVUVm+X1gYG80GwRJDBK7
-         zrJw==
-X-Forwarded-Encrypted: i=1; AJvYcCWvXaBqLRDswjvWNqE+Re3YXc/eDas11FxiGzzqPzO0c+Etom9V436w6CyWg0wBq7fI97Y41Oaq6CtEx3D7eU6e8YOWZ/+c7Zn7X8iZT8f+KaRpGtARWlG87Kosb9S1hFOrjJhtp6UCO1s+Qvk3B8bfowurk5lTXZOpZv+FWn2WLUF1uiKH6uBokmyhhP/vF/V0wsKiPLiMbDoPW5YoDA==
-X-Gm-Message-State: AOJu0YxCo8uXSdfG95x683SyFhpDn8YM4hwFH7deiI2VI6DdDbl0aHal
-	f0SnrQq5s4cnjGVMmj3bmENsnQSCelkdWV5SPN1i+TtcRl2Se9UOqdEtarh4
-X-Google-Smtp-Source: AGHT+IHtyGHn/hPRpeLBJ9CG4gmpZoe+TIR3oxz3H3IJtfVbpmTBJwJGBzaKCrvmEm+khwdC/47XhA==
-X-Received: by 2002:ac2:5bce:0:b0:513:b90d:aa5e with SMTP id u14-20020ac25bce000000b00513b90daa5emr7293415lfn.8.1710677899355;
-        Sun, 17 Mar 2024 05:18:19 -0700 (PDT)
-Received: from [192.168.1.105] ([178.176.72.130])
-        by smtp.gmail.com with ESMTPSA id n5-20020a05651203e500b00513ad31a00csm1237787lfq.69.2024.03.17.05.18.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 17 Mar 2024 05:18:18 -0700 (PDT)
-Subject: Re: [PATCH v5 3/5] usb: gadget: udc: add Renesas RZ/N1 USBF
- controller support
-To: Herve Codina <herve.codina@bootlin.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Magnus Damm <magnus.damm@gmail.com>,
- Gareth Williams <gareth.williams.jx@renesas.com>
-Cc: linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-usb@vger.kernel.org, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>
-References: <20230105152257.310642-1-herve.codina@bootlin.com>
- <20230105152257.310642-4-herve.codina@bootlin.com>
-From: Sergei Shtylyov <sergei.shtylyov@gmail.com>
-Message-ID: <260e0089-0817-cf12-dfcd-c28263808518@gmail.com>
-Date: Sun, 17 Mar 2024 15:18:16 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+	s=arc-20240116; t=1710679129; c=relaxed/simple;
+	bh=iSBPOsdjtX7UbRvVNMVGHDzbS7W5NKYFCaEOK/NTW3s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LtEBXj3sFjo7p4od8yZeaCWfi+i9odJPZjnsgtH5ZkoTxNq52yUzrxMei2dc9+hBAjxJ1zXAw9flC5zqnGryycqrSmsAYfvjwO5dwtj92eNCzULw/OuN9dIdnUkbpB9PgR0fnYE7hCbFmo0MGAOHJCTOzCU2Cbp07X4o/J2MXtU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=ay5j6jZ+; arc=none smtp.client-ip=212.227.17.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1710679106; x=1711283906; i=wahrenst@gmx.net;
+	bh=zfe3aPmvxcJ7/kLQ88HcrCYxkLZiaMT4IF+coNia9Mk=;
+	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
+	 In-Reply-To;
+	b=ay5j6jZ+HPqaVK8ONwzbm/BT5XzKbP7cPO0zB8OU6HwnWypPNWOgihganLfHmcnh
+	 BRxwwvn5DHwwMk9SEMXiUtiPL5Z4lfLyjncMyh9HktR0UVA16Gc2wCFZvVrSuEXFJ
+	 H6mDNYzLFT943OaAh5sfTfUrxGFHX9PWQ5Hv3ncA/qbUW3pjbqYyW+CvG6PJbqn89
+	 +nP+DY+G8gDE+mkjVnEGcdXId7v2dRIl4qyExmwDPkMnMXIlIYm/n8hQL9pKxPScC
+	 Bz2Tc+4qaIQ1S5clTGtOcC4u4i/dIvIAZOOVdORqktVjGcb3CDYVfsM5A6zRT4ajW
+	 ZUm1HrwZIOvzn8W4bw==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.167] ([37.4.248.43]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MzQgC-1qqRuM2JAe-00vNaw; Sun, 17
+ Mar 2024 13:38:26 +0100
+Message-ID: <82eb2b49-639d-48ca-a035-c3d250c251c4@gmx.net>
+Date: Sun, 17 Mar 2024 13:38:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20230105152257.310642-4-herve.codina@bootlin.com>
-Content-Type: text/plain; charset=utf-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 14/15] dmaengine: bcm2835: Add BCM2711 40-bit DMA
+ support
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+To: Andrea della Porta <andrea.porta@suse.com>, Vinod Koul
+ <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
+ <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Saenz Julienne <nsaenz@kernel.org>,
+ dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, dave.stevenson@raspberrypi.com
+Cc: Phil Elwell <phil@raspberrypi.org>, Maxime Ripard <maxime@cerno.tech>,
+ Dom Cobley <popcornmix@gmail.com>
+References: <cover.1710226514.git.andrea.porta@suse.com>
+ <8e4dceada017ea4804d7dac16c2a4974807a2c01.1710226514.git.andrea.porta@suse.com>
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <8e4dceada017ea4804d7dac16c2a4974807a2c01.1710226514.git.andrea.porta@suse.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:0mueHzFAPCkdqgs2qk2n8y4iViR+SDKNxy1sUQ8kq8+HlPXpAoQ
+ QU3NjkcwjxzoG4h7kKj9/LW4v+9Qzkw+gxCK1G5LZpZCTAnGJl60QNJr3piZzK8qDBIiiOP
+ T5FQkWyp1KeO2pwsY7NTahQQwkd3lbyeD5ULaC1dowFuQsG9uQ3HPonkrHIONCCcWIgaa9L
+ lPoIOBw0CHKVaZ/h3baTw==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:ZQ0qbhhdjmU=;I5bO9d7ISGYLSnxOrvhHBCLrWyH
+ IehRiPd8+jXNtMtVAL0SoKublmvY8g3Qjs/+rnXxmECWAhgrvr8R2L0Z9ap/t87FTmB+KOz9R
+ H9FufJOMmxTc1oYSIsTrcqhBM9MHbyl4m+W0aAmtIduH/1kJd0vWDtCO6y/PSd1A07AiU22OO
+ 9ecxlAxEZmlyGY9PXELL+QikGxrLouLbhANVzELC2RHoh99AA6E9NE6ZsVaYjfmxhqUK3ZUqv
+ mlVwUQqrS0iBiNUuvV89LnPfo5n0opxEEoVUP9y5KTe7hsL+2HQ/H2hUJOlUMX+jWLQUGR4bh
+ uQTXDN752ccdUQ/EMJ+W9xz2hNtKpi5Wvmz/We9hBvxSPp6H14x18yc6iLfWK8dHfiB3Fjdwy
+ wZZRDIUL5HfDhk1Ufz7QGmSOs/CeyzRw5zT34pknbFkA8BxcVywad3PL5+vNwM2odJ1NR+/o3
+ VbI+7pS3H+l68TQjJpmoPMOENcofkSutm/crCEtp3prElBtN+ffUCFdnXoTBUzH3wRBJKXho0
+ 6csneHQrEtzNuNCXRIZiluDc86dipdKkCNFbtmWKREyn0DOwKOMfePcVvIWYJhb1dNZ0VWV+O
+ lhQMobE0b2FtT/n5doxAHnMLZ6L8hbrMDJlH/+j/ViydJ0sNOXrh/Dcdf6gQ1UOjh8YMA8zin
+ xnuOQazvNFeqSDZPsLmq7Avmt1OUk9L1Py0uhz8+iSSe2Uv2tsJftPEReDmFGkjZqDkSU9Isp
+ f4TbfWQdGu5SYVyJjDxnAF6uBy3ymPCEnEE/Ffcdr5ppMaHqGos/xPghXyLrSwjKUtl4Ej3Rz
+ +yx8NWYqfiMB/lPTZkhlIatgXKj9acUbSDlWvXvi00/Uo=
 
-On 1/5/23 6:22 PM, Herve Codina wrote:
+Hi Andrea,
 
-> Add support for the Renesas USBF controller.
-> This controller is an USB2.0 UDC controller available in the
-> Renesas r9a06g032 SoC (RZ/N1 family).
+Am 13.03.24 um 15:08 schrieb Andrea della Porta:
+> BCM2711 has 4 DMA channels with a 40-bit address range, allowing them
+> to access the full 4GB of memory on a Pi 4. Assume every channel is capa=
+ble
+> of 40-bit address range.
+>
+> Originally-by: Phil Elwell <phil@raspberrypi.org>
+> Originally-by: Maxime Ripard <maxime@cerno.tech>
+> Originally-by: Stefan Wahren <stefan.wahren@i2se.com>
+> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> ---
+>   drivers/dma/bcm2835-dma.c | 553 ++++++++++++++++++++++++++++++++------
+>   1 file changed, 466 insertions(+), 87 deletions(-)
 
-   I think I've done the NEC EC-4255 USBF driver for Robert Bosch
-Car Multimedia, too bad it's never hit upstream... :-)
-
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-
-[...]
-
-MBR, Sergey
+this patch contains a lot of changes (including style fixes). It would
+be better to split this more for a better understanding.
 
