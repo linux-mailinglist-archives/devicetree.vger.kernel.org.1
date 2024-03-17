@@ -1,196 +1,125 @@
-Return-Path: <devicetree+bounces-50979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50980-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BEA987DE0F
-	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 16:43:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2219087DE19
+	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 16:49:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88CC01C20FC5
-	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 15:43:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 810ED2820EB
+	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 15:49:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5ED21C6BB;
-	Sun, 17 Mar 2024 15:43:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE8CF1CA84;
+	Sun, 17 Mar 2024 15:49:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=risingedge.co.za header.i=@risingedge.co.za header.b="EbezBHPP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YM5e5iqM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from outgoing4.flk.host-h.net (outgoing4.flk.host-h.net [188.40.0.90])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 987BE1C2A3;
-	Sun, 17 Mar 2024 15:43:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.0.90
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71C171367;
+	Sun, 17 Mar 2024 15:49:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710690220; cv=none; b=NHjZjnOoMBEWqV3FVZZdHHmbORR8HxDTlJj2XxqoICEqbsXQIVwFdU+ibFXQbhOKfsz68ngYk4kyfOLoT3eRr27CvJdil5PtGBGM1dBqTm+2P+TJVf2SeRqOaf5X3hk6uS8BUWkJeRwLlNblpo6aMU18lsBjO+y3gkx+tJ1pf0s=
+	t=1710690556; cv=none; b=rYGK8X7aI5txe26rs+/+jPXjsiQ21V4l71ECaz3bmQEa5UZ8xkLOeYTj+pIz4JV10t27ixNkiDR9mHkD3x03Qj0KrScbbGsqWwolptfiIYhJ1zQEIhNZFWyA+WKQfll42vYH1cOz6XO1n69OTz5L33Gvp6NUCLVB3e37QoLOEn0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710690220; c=relaxed/simple;
-	bh=pDL0kN1MqTcIYGSEVsbX6PmsDPUpwUOu1jMe9oaJ5EY=;
-	h=MIME-Version:Content-Type:Date:From:To:Cc:Subject:In-Reply-To:
-	 References:Message-ID; b=KebcF0QbgNGd8F9RicA3gVYh1IirDUloFHTwphdG+7jJdRhw37fdXaA2tJKLBuRNFOs2N3jUAd1tTxCRcIC5ZTEAg8YhTbXWqPfpTlQ4YYqhyIdotfLjpUqeEfWu6R0q5eFaoCUKLYY0WhQUC2kX6/d+TuJtYYkrVXIDUBwZ16g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=risingedge.co.za; spf=pass smtp.mailfrom=risingedge.co.za; dkim=pass (2048-bit key) header.d=risingedge.co.za header.i=@risingedge.co.za header.b=EbezBHPP; arc=none smtp.client-ip=188.40.0.90
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=risingedge.co.za
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=risingedge.co.za
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=risingedge.co.za; s=xneelo; h=Message-ID:References:In-Reply-To:Subject:Cc:
-	To:From:Date:Content-Transfer-Encoding:Content-Type:MIME-Version:reply-to:
-	sender:bcc; bh=uuS8h13Dfisu/E9ZFdgp8Y9Wd2KPlZ+Qi/VX5ONUtms=; b=EbezBHPPuxqbvr
-	67XQnoC/gP3StxqjxtZFsZEl0ttg5DCI8M05eWwMrr0JPnTENKlxaXhGQGLRZLuBcNSnShW8UwTQn
-	N+ZofsgQfIgY79RXKthSU182nEp843rLvPF5ivkD18JFI+oOke4CIwMjuJKD30TBy8DUQ7ZoubfFr
-	iW/jomBleoH32cTN5jCa6ziZhMUkx+SDTHjl1w1oKYw4/pIowEzH34Z34q2IknxHzsG4ZxOQjfO7N
-	VlyNJt7zffCD0MSh5UNDG9OrxLSkEXDTeIvejvRWbBd1SLo/uiAT2Zu+LHsWXLnUrxwoiwMjad1e4
-	Ua/nJsgmMzEh1V9D05jg==;
-Received: from www31.flk1.host-h.net ([188.40.1.173])
-	by antispam1-flk1.host-h.net with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <justin.swartz@risingedge.co.za>)
-	id 1rlsfY-008pEm-J4; Sun, 17 Mar 2024 17:43:30 +0200
-Received: from roundcubeweb1.flk1.host-h.net ([138.201.244.33] helo=webmail9.konsoleh.co.za)
-	by www31.flk1.host-h.net with esmtpa (Exim 4.92)
-	(envelope-from <justin.swartz@risingedge.co.za>)
-	id 1rlsfX-0003B1-FI; Sun, 17 Mar 2024 17:43:27 +0200
+	s=arc-20240116; t=1710690556; c=relaxed/simple;
+	bh=LdpyYbYNuF+OR1AOEmZnwLSBboDczWS8oE9fk1CQDW4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BFOzA6ZMjJv2EJjl+QJE7e3Od0oOWpz8gkLN182qJ73cMtUfEW89xqSLzgHVB1m3AyPcytVylTYiBXumly/iyoi6nAz0uV6ptZDQ+C1a+d6gVGav+1SL9LFBwFHhrCjGEdbRyzQrGTUESaOpIB6B3wRfhQ2TG8aeh4mG8X0ZGRA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YM5e5iqM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 526C8C433C7;
+	Sun, 17 Mar 2024 15:49:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710690555;
+	bh=LdpyYbYNuF+OR1AOEmZnwLSBboDczWS8oE9fk1CQDW4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YM5e5iqMYeGrO8qd2LMXW8BhqELysmFBchVgtsfMhj2NE8pVuMHqqEO9m7aKxRr7C
+	 OCbrDamxynIRmGjtM/D2N/nmC/lozcrdJpFwQ5JZ22liB0JFyNwvypjyGVT6PpeZJv
+	 5Mr31Tm4M41Bop/EtYgd2YWmxjHBQ37qz5+TgVQhblTu22xfmbbzKqEK51Olct7itg
+	 UUL9djWjS4WPb19OLVup7vX5qNBPrKAhcEtQkNYzw1nSvO9lyTKpOqXrJQCG8SrUXD
+	 Ds2GIIogOIJzvACwLekK+XzT6Tmn/zj2WBQr6s7vPY51q+IZsapauvZyxHNKSQW4eU
+	 Q+xJir/xsO0Kw==
+Date: Sun, 17 Mar 2024 15:49:11 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: clock: samsung,s3c6400-clock: convert to DT
+ Schema
+Message-ID: <20240317-jersey-trolling-d4678546e87d@spud>
+References: <20240312185035.720491-1-krzysztof.kozlowski@linaro.org>
+ <20240317-curator-smoky-99568f9308bc@spud>
+ <60039f49-a20d-49b9-8a3d-2ded499435a4@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Date: Sun, 17 Mar 2024 17:43:27 +0200
-From: Justin Swartz <justin.swartz@risingedge.co.za>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Sergio Paracuellos <sergio.paracuellos@gmail.com>, =?UTF-8?Q?Ar=C4=B1?=
- =?UTF-8?Q?n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Matthias Brugger
- <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, linux-mips@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 00/14] mips: dts: ralink: mt7621: improve DTS style
-In-Reply-To: <adefc3ff-86a5-4af7-8276-73d0e0108901@linaro.org>
-References: <20240316045442.31469-1-justin.swartz@risingedge.co.za>
- <CAMhs-H9ZO-sitsrASuvsEd+ddwVyHH35gj7yAABTqFNfOCGYYw@mail.gmail.com>
- <60512ae2-dd73-4cb6-9514-145f946300fc@linaro.org>
- <5d6c36cb9dd9afda1efb69aa34058517@risingedge.co.za>
- <adefc3ff-86a5-4af7-8276-73d0e0108901@linaro.org>
-Message-ID: <26633d73360e43b2c548f49e544472ea@risingedge.co.za>
-X-Sender: justin.swartz@risingedge.co.za
-User-Agent: Roundcube Webmail/1.3.17
-X-Authenticated-Sender: justin.swartz@risingedge.co.za
-X-Virus-Scanned: Clear
-X-SpamExperts-Domain: risingedge.co.za
-X-SpamExperts-Username: 
-Authentication-Results: host-h.net; auth=pass (login) smtp.auth=@risingedge.co.za
-X-SpamExperts-Outgoing-Class: ham
-X-SpamExperts-Outgoing-Evidence: Combined (0.03)
-X-Recommended-Action: accept
-X-Filter-ID: Pt3MvcO5N4iKaDQ5O6lkdGlMVN6RH8bjRMzItlySaT/3wXUGaFkOxFHAOpxTyCzVPUtbdvnXkggZ
- 3YnVId/Y5jcf0yeVQAvfjHznO7+bT5wCPRB8bAzJcv2cv+UqiTTc2+CpNcmBnO4XM3Sck4bwNogU
- WCl1nkLBzZX0KuJ9bXiS85Z42w/+2OBolTNFbPomXFWCX8oNdggW7HE9XDTdSejrkEpbuUvwMvHx
- 3T+KSG//gbuP7hnUK8NQdLwsVWKIFDZRrTGv3rxiw9tFrqFSCFNiLZt/QXQnOBRD+jq1HsKsDh/6
- Srgk2K3gr1VBfJbChkYH6fbrypLNrde+UooQVNLReLErukdelEOHUIpaBbp5GdnsN8+UvimwMinK
- 0+Txhz2u9qvrL2PODYgMZQApJXOjDLkqunZ9NcY2bHZn7CfFscMZZf3sCkN20I5vMh4akiObI7Kj
- vK7X04QEin24qbfMFd8eGjnYW8aSH5qj4ujh/13psIvqSqJFa1CcANErDW/w69saM9prk3jNnHtn
- nuEt/J9wDZeQfiNOYsLDFBdwYt2XtlLzy7G7T4kla0JNMwpa8J6LDEGB71xpBP9rMN3suOKfn8Hl
- koyhyj7ioi1H+3FR74FPtCVqefSOps3DjBaEzxvm/wSPAqUO1+xOWSBZB5ABM5ibrJKBc41fzX2f
- c4dPBW7pWChw4uEjGhn8NxWJwjYpP3+Q3/7iG2wtXn9V0g81PkbicsmIyKXNwOrgo+5B/jmqOvZj
- iTeRCozF+pjfbFrzHCaFHgNTrYhVbBAqR8ZRvY88PgTw/yJlftBcHX6tS8NW54gm54VAvfk9VDzu
- 2DWvs648c5Z9erCJvcji+JcS2GUvCK1BsRI8tTKkBVM18TehOmSn2kZRt3z8CHTZnKdQqcB0QMMU
- IPF3mL0sZmYqDqSi6Ubx7BN0H0IaZOsZnP36dPZwQWhvr8FGGENbqE9x654AXkUfGHPAHnWD1MEm
- 8zNnsSuSxjl6RVTXva2Jl4AHe5oTGEWuK7wQuHiJKcf5Sqd6P3zHxU4Ham35bIM7+pzQRR2+p5za
- 8H1gUaDJZGpg6c2oigrh+YcF3SeOS5epce2vBFQn8BLQG4wdJz5OZPl/85ViK8Ea0fe5iniRDU9a
- IkFLX1Ne1hGTitUHsPftyxriH1hAvmSO1crrLwiF2BozUnkjKLcelPzx2oqVYjg7pBU6N7n2Xnf9
- ORWrllgKtBSNx6xUC0rhukb6/HI5FFTbPOoZF9qxZ4vEB++mMxBCD3fThxO9W05FZS/TmgHUSTFx
- Dx7z8+wRG3cXutruHTpS87YkskBoFo6eZ5Uv5yUh4sH+KRvQOJ2675fcuW/3lDmDZZ7XgBhunFdj
- VYxKH3qWyoySMt2NXQeSeCQL64BFVPTx/kcAi/Bxzkn9uvVmO4JooE34GlwX5DwPyzXOCFYHd3xS
- 6yFkloFy2DNwOgV373pfDhBQ21Od8BCsodKtWDQizmRHoSVjKnexcCkQ+p5zWKzxeWKxLCyS8776
- l4RSwc4z5cqDb97hdiFVwaP90eVaqnDphEW4xEWnj3iKGpP30awjRzKpQ4kPl+3D1YhNMZlGTB68
- YWMe6VM9RYQVmV8q7nN/oibcn491jt+pt12gBHaGoo19huz2OKHH5lr9xXvSM4nM3avg
-X-Report-Abuse-To: spam@antispamquarantine.host-h.net
-
-On 2024-03-17 17:29, Krzysztof Kozlowski wrote:
-> On 17/03/2024 16:22, Justin Swartz wrote:
->> On 2024-03-17 17:10, Krzysztof Kozlowski wrote:
->>> On 16/03/2024 16:49, Sergio Paracuellos wrote:
->>>> On Sat, Mar 16, 2024 at 5:54 AM Justin Swartz
->>>> <justin.swartz@risingedge.co.za> wrote:
->>>>> 
->>>>> This set of patches was created with the intention of cleaning up
->>>>> arch/mips/boot/dts/ralink/mt7621.dtsi so that it is aligned with
->>>>> the Devicetree Sources (DTS) Coding Style [1] [2] guide.
->>>>> 
->>>>> [1] Documentation/devicetree/bindings/dts-coding-style.rst
->>>>> 
->>>>> [2] 
->>>>> https://docs.kernel.org/devicetree/bindings/dts-coding-style.html
->>>>> 
->>>>> Justin Swartz (14):
->>>>>   mips: dts: ralink: mt7621: reorder cpu node attributes
->>>>>   mips: dts: ralink: mt7621: reorder cpuintc node attributes
->>>>>   mips: dts: ralink: mt7621: reorder mmc regulator attributes
->>>>>   mips: dts: ralink: mt7621: reorder sysc node attributes
->>>>>   mips: dts: ralink: mt7621: reorder gpio node attributes
->>>>>   mips: dts: ralink: mt7621: reorder i2c node attributes
->>>>>   mips: dts: ralink: mt7621: reorder spi0 node attributes
->>>>>   mips: dts: ralink: mt7621: move pinctrl and sort its children
->>>>>   mips: dts: ralink: mt7621: reorder mmc node attributes
->>>>>   mips: dts: ralink: mt7621: reorder gic node attributes
->>>>>   mips: dts: ralink: mt7621: reorder ethernet node attributes and
->>>>> kids
->>>>>   mips: dts: ralink: mt7621: reorder pcie node attributes and
->>>>> children
->>>>>   mips: dts: ralink: mt7621: reorder pci?_phy attributes
->>> 
->>> These are all simple cleanups for the same file. It's one patch, not
->>> 15.
->> 
->> I agree these are all simple cleanups.
->> 
->> Even though the cleanup pattern was the same, or very similar,
->> for each node affected, the intention was to isolate each change
->> to a single node (or a grouping of nodes of that seemed logical
->> to me) so that if anyone had any objections, the discussion would
->> be easier to follow in subthreads identifiable by patch names (and
-> 
-> Objections to what? Coding style? Coding style is defined so you either
-> implement it or not... and even if someone disagrees with one line 
-> swap,
-> why it cannot be done like for every contribution: inline?
-
-I had been asked to include empty lines when I had left them out when
-I had contributed a patch regarding the serial nodes, which resulted in
-a second version of that patch.
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Kk6uFwGcxqpNcnbw"
+Content-Disposition: inline
+In-Reply-To: <60039f49-a20d-49b9-8a3d-2ded499435a4@linaro.org>
 
 
-> Organize your patches how described in submitting patches: one per
-> logical change. Logical change is to reorder all properties in one 
-> file,
-> without functional impact.
+--Kk6uFwGcxqpNcnbw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-If I had accidentally deleted or modified an attribute in the process
-of cleanup, this could have had a functional impact. It's easier to
-notice this sort of omission when the wall of text you're confronted
-with is as small as possible, and not multiple pages long.
+On Sun, Mar 17, 2024 at 04:26:55PM +0100, Krzysztof Kozlowski wrote:
+> On 17/03/2024 16:23, Conor Dooley wrote:
+> > On Tue, Mar 12, 2024 at 07:50:35PM +0100, Krzysztof Kozlowski wrote:
+> >> Convert Samsung S3C6400/S3C6410 SoC clock controller bindings to DT
+> >> schema.
+> >=20
+> >> +description: |
+> >> +  There are several clocks that are generated outside the SoC. It is =
+expected
+> >> +  that they are defined using standard clock bindings with following
+> >> +  clock-output-names:
+> >> +   - "fin_pll" - PLL input clock (xtal/extclk) - required,
+> >> +   - "xusbxti" - USB xtal - required,
+> >> +   - "iiscdclk0" - I2S0 codec clock - optional,
+> >> +   - "iiscdclk1" - I2S1 codec clock - optional,
+> >> +   - "iiscdclk2" - I2S2 codec clock - optional,
+> >> +   - "pcmcdclk0" - PCM0 codec clock - optional,
+> >> +   - "pcmcdclk1" - PCM1 codec clock - optional, only S3C6410.
+> >=20
+> > I know you've only transfered this from the text binding, but what is
+> > the relevance of this to the binding for this clock controller? This
+> > seems to be describing some ?fixed? clocks that must be provided in
+> > addition to this controller. I guess there's probably no other suitable
+> > place to mention these?
+>=20
+> To make it correct, these should be made clock inputs to the clock
+> controller, even if the driver does not take them, however that's
+> obsolete platform which might be removed from kernel this or next year,
+> so I don't want to spend time on it.
 
+I think the comment should probably mention that these are the expected
+inputs, part of me thought that that was what you were getting at but I
+wasn't sure if instead they were inputs to some other IP on the SoC.
 
->> But if there're no objections and it lessens the burden on
->> maintainers upstream to have less patches to apply, then I have no
->> problem combining them into a single patch.
->> 
-> 
-> Yeah, one review response instead of 14 responses... One commit in the
-> history instead of 14.
+--Kk6uFwGcxqpNcnbw
+Content-Type: application/pgp-signature; name="signature.asc"
 
-I agree that 1 commit vs 14 is better.
+-----BEGIN PGP SIGNATURE-----
 
-But for future reference: is it not enough for the Reviewed-by: trailer
-to be sent in response to the cover letter of a patch set if a reviewer
-has looked at the entire set?
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZfcQ9wAKCRB4tDGHoIJi
+0jbjAP0el+zfqXU/1GH/ci5i68AFLqupDHz+2uX0i/EiXkqgwgD9FSPzzbqPkxlg
+rMx2MTgf2+caqhXEviVOR/fol7xARgk=
+=QuI7
+-----END PGP SIGNATURE-----
 
-Regards
-Justin
+--Kk6uFwGcxqpNcnbw--
 
