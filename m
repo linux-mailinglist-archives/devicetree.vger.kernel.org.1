@@ -1,105 +1,109 @@
-Return-Path: <devicetree+bounces-51015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F328087DF6E
-	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 19:57:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D23F287DF70
+	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 19:59:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F24F2814F6
-	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 18:57:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 124591C2090E
+	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 18:59:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A80171D545;
-	Sun, 17 Mar 2024 18:57:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1D681D54F;
+	Sun, 17 Mar 2024 18:59:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="ILifDoXk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Sheg7rOY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC8811D543
-	for <devicetree@vger.kernel.org>; Sun, 17 Mar 2024 18:57:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74B661D537;
+	Sun, 17 Mar 2024 18:59:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710701848; cv=none; b=O/wm6bvNNRsqZNJJ4AzpInbuRyrEwWhSgeTzPNwnVBmf8zNu5XLfVKFJGAWvnE7+7I30DaroeaJPgL0wHB9TnVuCnb1j9uP2JDz+M4JtRiod9dp3xkuFZ3iTFQ3olwE/TdhYU1UGYDx7nHphavpd6aJR5UWRH+E6hn2HBWzpnDs=
+	t=1710701991; cv=none; b=n9t2Bcd4ggROHK0DSm6swryyJSGHe6iquz/Q70cupYOwmIYogpsYOAtS2l2mZzMoqXQviWfUXpYpCJhOY4tgLRJVX+kh7JttquL4uyEEKo4wi9P8IpVPwy+UQbYeVqkPZfO/HnM+H680MZ1bEJKPQeFNJ6xZPZl5eL5YLKhvSeg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710701848; c=relaxed/simple;
-	bh=cDYCiCx7FpAXGD2XWaONu3BTMkgg0DGFlVS5Q73yTf0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gLq/nLUdloUVYqUjP4u5n2k9Ginqi2+XJCR83IDbKwS33YXxA8bWNb1PBOU2Yns30vAeHxPwyrzx8vdtH7HMQ6XKeoiiaZx0l9P9Ng5Gxs3EYe5gqRsmINGA4WtDeI6G97F4GAeRLbW+82vtNCqtXJgFP+5p1wVnXpFyZRBmGAY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=ILifDoXk; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6BFA863C;
-	Sun, 17 Mar 2024 19:56:59 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1710701819;
-	bh=cDYCiCx7FpAXGD2XWaONu3BTMkgg0DGFlVS5Q73yTf0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ILifDoXkFbj96Ka3bjtwYHUxepfxzzvP8G8KYWsl67+qlCtqNAg6fbFCJTNCd4gRx
-	 wIc/Yv1LF8cSJuceZVPCNF7R37xLCDAKXI+6Ti61c/Ewut+uOKwVz1j4XR9v8CCDBv
-	 wl+fZH8kUMx0nJ1Ntr7+8WpOghlKlu9ZFK2GQQYI=
-Date: Sun, 17 Mar 2024 20:57:22 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: linux-arm-kernel@lists.infradead.org, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, imx@lists.linux.dev,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/5] arm64: dts: freescale: Add device tree for
- Compulab UCM-iMX8M-Plus
-Message-ID: <20240317185722.GA24220@pendragon.ideasonboard.com>
-References: <20240317164850.32708-1-laurent.pinchart@ideasonboard.com>
- <20240317164850.32708-3-laurent.pinchart@ideasonboard.com>
- <c5f5fd07-99e3-4a43-a92e-9e622932ea1b@lunn.ch>
+	s=arc-20240116; t=1710701991; c=relaxed/simple;
+	bh=eEcx4nr4CbIEDZ73FBW/lYmpnu9poaFi2q+u8EJ46Mw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QW+h1kQBRFUPKvUNzCWbL+fPFgT4Fo8p1hraL0u/eegs2IZ62d7KJbk0JsyGoBroTxHgbXc/9XZwbeilVvnVd332zGBABVJ1CRvzGJNkuskJjQTiBbEBDiUzq+MEWvJ2S74faNKVGYCqgsBX/x36BsszpSRieJ3Gabp6aoRTGFw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Sheg7rOY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E437EC433C7;
+	Sun, 17 Mar 2024 18:59:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710701990;
+	bh=eEcx4nr4CbIEDZ73FBW/lYmpnu9poaFi2q+u8EJ46Mw=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=Sheg7rOY9AEl8f4aS2T0JVYyUEpqqH9nTpoX9BJO7YYOu2waGvraye1vG+jcZUbcA
+	 VOwTAcbOBfcF0rWhZ01QdWC6cr/ACmwSQrPHSxe/Yas7z5Z9dFHyj5xDUMorX8halN
+	 HBVpfpkyB5PdWKMtbdDofNcMGNJFWAplRDVoodh8BXdS3zcEwNJEZli75dXi4r2dkb
+	 e3va0MPyjeJlkdeIrs2q66sgWxbnIxxtnFn5che0pcK+mHm71+myTnwgknLPGc/KBn
+	 6Py88dFNYXg5o0fPJUpDCS5dpl6zSgRV9SIECLLfuauR7Y9zzuJPTOnuvxuAuRUkKc
+	 hH5knxTWCoZ5Q==
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a46805cd977so333523466b.0;
+        Sun, 17 Mar 2024 11:59:50 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWFUZADsWeH7t46u2EVf6DY6d6aH+OMW7ZrOofAFdLDGEMuirrLAq4nYtK7LlM3l7WPJzy3cxThgk3uRoyXvo3I/OsM5wWEDiHiDe7uk8DmUcLlsvZQ+v8e5hMbzUw/2hSxh4D6Wv1RCYarDmVkUTXVf9nDuE5Gb2ormmGRgyzQLfxsi7xp
+X-Gm-Message-State: AOJu0Yxr+LO2gg5Dqedlydsaqf3oYPRMSYzbkt1Cyq6+TRSJxgyKcjQa
+	e61I6uayPGLudmwN7tUlYK/mpq2cdYsHn76zYHNG7z+a/NUU+Mt8NmN2jmBY/VovYCHCUedQS0/
+	JNnIBXT6aW4J8wN80cHteSVq7nA==
+X-Google-Smtp-Source: AGHT+IHXmDQcoBpEG7P/jd72N8SjRsw/4nVttA2xS0/VB/Czg98Z6kMH1XdW6JGvB1L6zB1PG/og5ahKug3PnUqqfnM=
+X-Received: by 2002:a05:6512:606:b0:513:cd77:4a88 with SMTP id
+ b6-20020a056512060600b00513cd774a88mr6175517lfe.29.1710701969239; Sun, 17 Mar
+ 2024 11:59:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <c5f5fd07-99e3-4a43-a92e-9e622932ea1b@lunn.ch>
+References: <20240313110147.1267793-1-angelogioacchino.delregno@collabora.com> <20240313110147.1267793-20-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20240313110147.1267793-20-angelogioacchino.delregno@collabora.com>
+From: Rob Herring <robh@kernel.org>
+Date: Sun, 17 Mar 2024 12:58:58 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+zDc3vwAJHgWwSvauXr2-1NMbbznbj3v1PyMv+9UA5wA@mail.gmail.com>
+Message-ID: <CAL_Jsq+zDc3vwAJHgWwSvauXr2-1NMbbznbj3v1PyMv+9UA5wA@mail.gmail.com>
+Subject: Re: [PATCH v3 19/22] ASoC: dt-bindings: mt8192: Document
+ audio-routing and dai-link subnode
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: broonie@kernel.org, wenst@chromium.org, lgirdwood@gmail.com, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	matthias.bgg@gmail.com, perex@perex.cz, tiwai@suse.com, 
+	trevor.wu@mediatek.com, maso.huang@mediatek.com, 
+	xiazhengqiao@huaqin.corp-partner.google.com, arnd@arndb.de, 
+	kuninori.morimoto.gx@renesas.com, shraash@google.com, amergnat@baylibre.com, 
+	nicolas.ferre@microchip.com, u.kleine-koenig@pengutronix.de, 
+	dianders@chromium.org, frank.li@vivo.com, allen-kh.cheng@mediatek.com, 
+	eugen.hristev@collabora.com, claudiu.beznea@tuxon.dev, 
+	jarkko.nikula@bitmer.com, jiaxin.yu@mediatek.com, alpernebiyasak@gmail.com, 
+	ckeepax@opensource.cirrus.com, zhourui@huaqin.corp-partner.google.com, 
+	nfraprado@collabora.com, alsa-devel@alsa-project.org, 
+	shane.chien@mediatek.com, linux-sound@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, Mar 17, 2024 at 06:17:17PM +0100, Andrew Lunn wrote:
-> > +&eqos {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_eqos>;
-> > +	phy-mode = "rgmii-id";
-> > +	phy-handle = <&ethphy0>;
-> > +
-> > +	mdio {
-> > +		compatible = "snps,dwmac-mdio";
-> > +		#address-cells = <1>;
-> > +		#size-cells = <0>;
-> > +
-> > +		/* Atheros AR8033 on v1.0, Realtek RTL8211E on v1.1 */
-> > +		ethphy0: ethernet-phy@0 {
-> > +			compatible = "ethernet-phy-ieee802.3-c22";
-> > +			reg = <0>;
-> > +			eee-broken-1000t;
-> > +		};
-> 
-> Hi Laurent
-> 
-> Do you happen to know what is broken with respect to EEE? It seems
-> like a lot of IMX boards have this, so i suspect it is the MAC. Maybe
-> we should be keying off the MAC compatible and disabling this in the
-> ethernet driver rather than have every .dts file needing it?
+On Wed, Mar 13, 2024 at 5:02=E2=80=AFAM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Document the dai-link subnodes and the audio-routing property, allowing
+> to describe machine specific audio hardware and links in device tree.
+>
+> While at it, also deprecate the old properties which were previously
+> used with the driver's partially hardcoded configuration.
+>
+> Also, since describing machine specific audio hardware and links replaces
+> the now deprecated old logic doing the same in a driver hardcoded fashion=
+,
+> it is not allowed to have both the old and new properties together.
+>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
+> ---
+>  .../sound/mt8192-mt6359-rt1015-rt5682.yaml    | 139 ++++++++++++++++--
+>  1 file changed, 129 insertions(+), 10 deletions(-)
 
-I wonder if this could be cargo-cult. To be honest, I've copied it from
-the BSP and haven't investigated it. I've tried dropping that and
-haven't noticed any difference, but I'm not sure how I should test it
-properly.
-
--- 
-Regards,
-
-Laurent Pinchart
+Reviewed-by: Rob Herring <robh@kernel.org>
 
