@@ -1,99 +1,105 @@
-Return-Path: <devicetree+bounces-51014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72FC087DF6B
-	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 19:57:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F328087DF6E
+	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 19:57:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 25D121F2123A
-	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 18:57:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F24F2814F6
+	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 18:57:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25DEE1D543;
-	Sun, 17 Mar 2024 18:56:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A80171D545;
+	Sun, 17 Mar 2024 18:57:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L5HhIvuv"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="ILifDoXk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5E8C1CD1F;
-	Sun, 17 Mar 2024 18:56:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC8811D543
+	for <devicetree@vger.kernel.org>; Sun, 17 Mar 2024 18:57:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710701814; cv=none; b=gXqleUvuPtnDvyN0U9GGyEgnAVmF8kgCkgSWZ4RA0RmBrOuLcSrh2aJUzhzgIbcTkdojCK6B4nWx++am2ASWnA20BXIu7TQME33bBeRMXIJ1jNxdGsB63hStu3iqs/MTy5ikuAInee9rl5MRk9H7MpYxN4YjS7SoB5wzw2S/s84=
+	t=1710701848; cv=none; b=O/wm6bvNNRsqZNJJ4AzpInbuRyrEwWhSgeTzPNwnVBmf8zNu5XLfVKFJGAWvnE7+7I30DaroeaJPgL0wHB9TnVuCnb1j9uP2JDz+M4JtRiod9dp3xkuFZ3iTFQ3olwE/TdhYU1UGYDx7nHphavpd6aJR5UWRH+E6hn2HBWzpnDs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710701814; c=relaxed/simple;
-	bh=C1Qhz7RVqLKa7aHBWi3LhaNuIEVA6aUWA51sPBVTAu0=;
+	s=arc-20240116; t=1710701848; c=relaxed/simple;
+	bh=cDYCiCx7FpAXGD2XWaONu3BTMkgg0DGFlVS5Q73yTf0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DR4VgQkG5Y+n4merscvACpphZn8dxBrGES+Q6X2TZOndIK64ekEouH4pfbwqs9b4A+CyQ04lBmCNJ0ZjSl/imscXKLaKoUjSTCQvy0paDtp6TCTh0DqB11o3HBmmj0Ogz351NLhbQFM8bIEogaHtizfBM2I6325EDY8SRDyvD58=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L5HhIvuv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5428C433F1;
-	Sun, 17 Mar 2024 18:56:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710701813;
-	bh=C1Qhz7RVqLKa7aHBWi3LhaNuIEVA6aUWA51sPBVTAu0=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=gLq/nLUdloUVYqUjP4u5n2k9Ginqi2+XJCR83IDbKwS33YXxA8bWNb1PBOU2Yns30vAeHxPwyrzx8vdtH7HMQ6XKeoiiaZx0l9P9Ng5Gxs3EYe5gqRsmINGA4WtDeI6G97F4GAeRLbW+82vtNCqtXJgFP+5p1wVnXpFyZRBmGAY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=ILifDoXk; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6BFA863C;
+	Sun, 17 Mar 2024 19:56:59 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1710701819;
+	bh=cDYCiCx7FpAXGD2XWaONu3BTMkgg0DGFlVS5Q73yTf0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=L5HhIvuvC0Xd2nB2Rr2eXkrHIHAgMhFoOvCNUMOpvinqWDDpj6mnggSOFGku9EPup
-	 6Qtd95gN3+9SoABc4z+wH3nBE+2f1pj5yhyJMKydaia7qcbD4NHBy4EUxtc7y/0c6i
-	 0NpEi5e6pE5aoPkv8dy5P+A5vb6wgplbits4tFi0ewLe5lj8H8E7w67Pxb7E3Ea1Z0
-	 EpIWZ2XRY7BZ2knGzqNrTJ6TAzBGF4q9AqNKVyRHtrI4XYdO4RfRYxpDpOtgV8DQSf
-	 p8vK/0GAAo6N/VHP2GKg3Lb0ro8nnEjixcx5Jbz4wqns5olFR/Ez4Nq1tKqDCo1TV7
-	 hz7tPsdQFoHnA==
-Date: Sun, 17 Mar 2024 12:56:50 -0600
-From: Rob Herring <robh@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: zhourui@huaqin.corp-partner.google.com, amergnat@baylibre.com,
-	allen-kh.cheng@mediatek.com, trevor.wu@mediatek.com,
-	wenst@chromium.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, u.kleine-koenig@pengutronix.de,
-	shane.chien@mediatek.com, claudiu.beznea@tuxon.dev,
-	ckeepax@opensource.cirrus.com, arnd@arndb.de, dianders@chromium.org,
-	maso.huang@mediatek.com, linux-kernel@vger.kernel.org,
-	broonie@kernel.org, matthias.bgg@gmail.com,
-	kuninori.morimoto.gx@renesas.com, perex@perex.cz, frank.li@vivo.com,
-	nicolas.ferre@microchip.com, eugen.hristev@collabora.com,
-	linux-sound@vger.kernel.org, kernel@collabora.com,
-	jiaxin.yu@mediatek.com, alsa-devel@alsa-project.org,
-	xiazhengqiao@huaqin.corp-partner.google.com, conor+dt@kernel.org,
-	shraash@google.com, krzysztof.kozlowski+dt@linaro.org,
-	jarkko.nikula@bitmer.com, tiwai@suse.com,
-	devicetree@vger.kernel.org, nfraprado@collabora.com,
-	lgirdwood@gmail.com, alpernebiyasak@gmail.com
-Subject: Re: [PATCH v3 18/22] ASoC: dt-bindings: mt8195: Document
- audio-routing and dai-link subnode
-Message-ID: <171070180968.2064436.13730344505165818889.robh@kernel.org>
-References: <20240313110147.1267793-1-angelogioacchino.delregno@collabora.com>
- <20240313110147.1267793-19-angelogioacchino.delregno@collabora.com>
+	b=ILifDoXkFbj96Ka3bjtwYHUxepfxzzvP8G8KYWsl67+qlCtqNAg6fbFCJTNCd4gRx
+	 wIc/Yv1LF8cSJuceZVPCNF7R37xLCDAKXI+6Ti61c/Ewut+uOKwVz1j4XR9v8CCDBv
+	 wl+fZH8kUMx0nJ1Ntr7+8WpOghlKlu9ZFK2GQQYI=
+Date: Sun, 17 Mar 2024 20:57:22 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: linux-arm-kernel@lists.infradead.org, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, imx@lists.linux.dev,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/5] arm64: dts: freescale: Add device tree for
+ Compulab UCM-iMX8M-Plus
+Message-ID: <20240317185722.GA24220@pendragon.ideasonboard.com>
+References: <20240317164850.32708-1-laurent.pinchart@ideasonboard.com>
+ <20240317164850.32708-3-laurent.pinchart@ideasonboard.com>
+ <c5f5fd07-99e3-4a43-a92e-9e622932ea1b@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240313110147.1267793-19-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <c5f5fd07-99e3-4a43-a92e-9e622932ea1b@lunn.ch>
 
+On Sun, Mar 17, 2024 at 06:17:17PM +0100, Andrew Lunn wrote:
+> > +&eqos {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&pinctrl_eqos>;
+> > +	phy-mode = "rgmii-id";
+> > +	phy-handle = <&ethphy0>;
+> > +
+> > +	mdio {
+> > +		compatible = "snps,dwmac-mdio";
+> > +		#address-cells = <1>;
+> > +		#size-cells = <0>;
+> > +
+> > +		/* Atheros AR8033 on v1.0, Realtek RTL8211E on v1.1 */
+> > +		ethphy0: ethernet-phy@0 {
+> > +			compatible = "ethernet-phy-ieee802.3-c22";
+> > +			reg = <0>;
+> > +			eee-broken-1000t;
+> > +		};
+> 
+> Hi Laurent
+> 
+> Do you happen to know what is broken with respect to EEE? It seems
+> like a lot of IMX boards have this, so i suspect it is the MAC. Maybe
+> we should be keying off the MAC compatible and disabling this in the
+> ethernet driver rather than have every .dts file needing it?
 
-On Wed, 13 Mar 2024 12:01:43 +0100, AngeloGioacchino Del Regno wrote:
-> Document the dai-link subnodes and the audio-routing property, allowing
-> to describe machine specific audio hardware and links in device tree.
-> 
-> While at it, also deprecate the old properties which were previously
-> used with driver hardcoded configuration.
-> 
-> Also, since describing machine specific audio hardware and links replaces
-> the now deprecated old logic doing the same in a driver hardcoded fashion,
-> it is not allowed to have both the old and new properties together.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  .../bindings/sound/mt8195-mt6359.yaml         | 134 ++++++++++++++++++
->  1 file changed, 134 insertions(+)
-> 
+I wonder if this could be cargo-cult. To be honest, I've copied it from
+the BSP and haven't investigated it. I've tried dropping that and
+haven't noticed any difference, but I'm not sure how I should test it
+properly.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+-- 
+Regards,
 
+Laurent Pinchart
 
