@@ -1,92 +1,93 @@
-Return-Path: <devicetree+bounces-51050-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51051-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01B6487E09A
-	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 23:12:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32D7C87E0AE
+	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 23:32:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B44D1C2163C
-	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 22:12:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98DC61F2141D
+	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 22:32:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54D39210E4;
-	Sun, 17 Mar 2024 22:11:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FB7F1E529;
+	Sun, 17 Mar 2024 22:32:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hSYzbwQD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FNg9+o1W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88B8D22F11;
-	Sun, 17 Mar 2024 22:11:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65A2B1CAAD;
+	Sun, 17 Mar 2024 22:32:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710713504; cv=none; b=m8bMuM6SqPKaXZkqxNArYar7gZ/NcYv9GMed04LqvyFbqDQPcciveeroz8K9UiEUYz9W2ThYaxebQnykPWzC+dp8hzAACvl0SIutotbVRG2bd4QzMxW5CXkDxZV91XTONmQ3SKruJykz7Hatx4potGBNTop7UnVdovBKGXyRug0=
+	t=1710714738; cv=none; b=MKWehoX7XKtU0JPX02T5rSzxBvP4EGJn13mRfXs9ygJiXiK9Ch1Y3wOw34gppKE01+sOD2L/n+ZnM7TIQ2JIunw+d1gXnBlp3XXyC2hFaeUyNnqx60KoPsak87TfwpkKGTdGiriQHWj5GhmPROHK4C2gWoP/u6efMcWiFGJKnsg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710713504; c=relaxed/simple;
-	bh=rA96/nspktoNNPtsNQNV0mE1u3PyrWtLRI4fge9NXZo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mvYsNCK5PUn5L59ZWA2I0jbE+DHWirzlppEOuyU0WKnTtiCM23VKLvdwxgWI/I1pq6Ao+I+57w5h0ZMSOzT7W2o66d+qJEhlrW9sZ6TA2Kl3f9iaHVce6O5fORuzYF7qu93ryOHYVjsR3kElw/BGHbhhrn5t013NvIDhHGdDqu4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hSYzbwQD; arc=none smtp.client-ip=209.85.167.42
+	s=arc-20240116; t=1710714738; c=relaxed/simple;
+	bh=c0OZTON+IyLGK8jH+PJEy7n9q6DXqULXWIdoEBe68IY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=uG75L1YFaZewfHQXPlEJe6N4YS3eMREAybfEkKAR45x2qg66rhhh6anP5kLf3QVrstc7SvRw8QoI+bNTE6qVdgBzdVWb48ZyMa4/s+NaoLWQy1Ckt/SRyhf4Tdu6+MsQyvniWbfVMh69pqF12U7pqqJtfnOiEZ8Jdlp4B9ARHVg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FNg9+o1W; arc=none smtp.client-ip=209.85.167.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-512b3b04995so3359380e87.3;
-        Sun, 17 Mar 2024 15:11:42 -0700 (PDT)
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-513a08f2263so3960512e87.3;
+        Sun, 17 Mar 2024 15:32:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710713501; x=1711318301; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mqwAYXgZcepvHlePhp28/MtjgzY7DKHyuuJEXxpcBH4=;
-        b=hSYzbwQDr8rVgLGpEjjnYeBoc0Y7d7GeE9Lq3YnMGCIVT1k2/1wT8PtZcWNHTRN8wu
-         cscgAppcPmpRn/xpQfi8LenYE41VQ0WPvL9QDz69CFuQqHAUndPtd9n5GadVKopSQTjK
-         nVgEVISI8S5XdCcWe2Lpk954pU6HOV+Qi4wfjolRuhrsAztEFuI2AxBYwufwVKL7M/e4
-         Wox3uVP3gcniJlmFE9oVZSOmuvVKXc1mIw7mpAEofn8a+GSmlh4Lx1t3Bz9EDH55aADV
-         TUVJUc6w4uopvl7zFPRJtfCPGROF2CfD8tM1TR2SmnYevXEk9iuyztRbMa+0/RZslR6a
-         IOqA==
+        d=gmail.com; s=20230601; t=1710714734; x=1711319534; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=oKqhZPN7QFsjLPpu788l1fzAnbgMEFuSuh/7MopxlUQ=;
+        b=FNg9+o1WMDGtDmxYpHfR5WYEqfg9vebjWMwiLbaCaAw+4jjaScpOHJ4V71yn+oXne9
+         gQLHw4D7HR5TQF2+mR37b0s+w/1co+3596jtHM0Wdu0/5si5IB4NPswz9Vb/HkfMbPMH
+         xIgVzxMlCJ/vFBzYKPxRffV82S76HmPFmgG8gZ7/nXosKE+WS2EzwckQwEZoravcdisw
+         0XEKA6AvG54PqOiU6hUIeLB+9s4xaYHa0hyBqcI9FZdOCWYcvuhd+D8fT8u2YX1Sqh2P
+         drqaLrwSOAHZT1P6rufMQVPELHr4s0bpLtQuAelvQMXO4Q18lGlBhikC4NZU0wPJI8Lg
+         O02w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710713501; x=1711318301;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mqwAYXgZcepvHlePhp28/MtjgzY7DKHyuuJEXxpcBH4=;
-        b=lV+we30zx0zsywhnLLiKcUEvQWy8V2Nu5oPi6roP2ypD4TJ7piE75yUokONu+rVhrY
-         2oS8EmCZeoElVaaUVO9Cl3Z7Zfm4rZ6dCRBT1cjPNKPpcASY6URw8D7y+P2SNaEXG2BA
-         8AL0PJfUUL61y9E1nfdQUJS2gkz6TyGnwJ9mcEpkCyGozCwy2mB8uRfd6IoF8/OYmKi2
-         LdqqVu8+p5bTRys5gcfhI9BvcAOnlgyKF5404wLTKEnnS320+uAIRASPkZmXIIVZADqo
-         am3shVCNaAa+kn6yDfwYThssR5EiiUp4oerk8cWHZ3IqZbiVHCw4HHAoNEWjy9bG/1UN
-         kGsA==
-X-Forwarded-Encrypted: i=1; AJvYcCXXS16MYuKB95KlgGwGi/CFfTPiJRFxr7yjqEct7gb0HiSMhnibD8NdDgA23H2jt7zruVUrbtxZalFxqJni7mi51U1ogpCWaJHNP8nlocQcJlhCyRxfxVgeLny7lqXgKXiYbbS/6JGBOA==
-X-Gm-Message-State: AOJu0Yw/JViQTb5lpTAZ+34TZv8jxHJlEM32e2W+DBTknwdbWd3nWIu0
-	98dYH5Fx7IDRErNZRKz71YbMI5HjheVl/Pa7xlURjk+CxP3vZ/t8
-X-Google-Smtp-Source: AGHT+IHPS5hTFALXlpvYUPk63ag5W1eoin3JPAlIpLno70ePcqta80cRb8eG7XXorItWH+2r4mheVQ==
-X-Received: by 2002:a05:6512:3134:b0:513:ca36:83a6 with SMTP id p20-20020a056512313400b00513ca3683a6mr6323979lfd.23.1710713500673;
-        Sun, 17 Mar 2024 15:11:40 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1710714734; x=1711319534;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oKqhZPN7QFsjLPpu788l1fzAnbgMEFuSuh/7MopxlUQ=;
+        b=HASsu3nIcbZhy4iTVo5Ldrsk52sN0cbt9LYtBV0gkh0Q/x2OThnPWQAhbduqHR+aCx
+         LEtM8ExApGdJY/oiVWPxVIcNeL85K26fVI+RJ+MdLipb8Z72mZg6paxQDe3li8ghb2/g
+         MjQ948YH15Ufkhl/B3EsTreKchasAGOkul/Jrfn69ZytDHq9yfSMQNq2dqOdnT5AS8Yn
+         Mh7fTyxiKTxEYzopooDXXoxPVOk3XYO8145s7DvcNK6QcwMcQ/28DVKfjyWtRGoVWRZH
+         LfbmiU7B58EXS9tjhi8VJfPoIEIE7Od65+TTFoTOHrKi9ccGZ4JMxP3lGwzqWAefOzqr
+         In+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUu3bUzN2i1SHy9PZUUkXLFLhKB1HSkGnEARCVAhufPlch9Tv0j3/GWoQK7tSfWhsyzNM8g7IWzyIqBLNiBqviPmDhbz1wTMLmm/iy9001bmQnpa1ShTENMbfCv2sR0c8OwNh/FF97Uaw==
+X-Gm-Message-State: AOJu0YxO7HPkpuRUEDPSRfE29Jxp+ZjNWWt0E9YC2EdawOAvqRDNnaiX
+	GTndgSQtatX41VUsf55hg4jY4rbOJ6/AiYK+rSdZvK+kXZv9cQs1
+X-Google-Smtp-Source: AGHT+IGvZEXFQaZKOHgdv2XVxCJllpvk4dkQNQ0UD5UIfOjg4y1XaxXieT6UplycgUuKdWjVFnhkcA==
+X-Received: by 2002:a19:3850:0:b0:513:c757:33d9 with SMTP id d16-20020a193850000000b00513c75733d9mr7114305lfj.53.1710714734438;
+        Sun, 17 Mar 2024 15:32:14 -0700 (PDT)
 Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id y16-20020a197510000000b00513d8e5a088sm973049lfe.140.2024.03.17.15.11.39
+        by smtp.gmail.com with ESMTPSA id x5-20020ac259c5000000b0051322c11100sm1366981lfn.221.2024.03.17.15.32.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 17 Mar 2024 15:11:40 -0700 (PDT)
+        Sun, 17 Mar 2024 15:32:13 -0700 (PDT)
 From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
 To: Matthias Brugger <matthias.bgg@gmail.com>,
 	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>
-Cc: Sean Wang <sean.wang@mediatek.com>,
-	Felix Fietkau <nbd@nbd.name>,
-	"David S . Miller" <davem@davemloft.net>,
+Cc: Chen-Yu Tsai <wenst@chromium.org>,
+	Hsin-Yi Wang <hsinyi@chromium.org>,
+	=?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= <nfraprado@collabora.com>,
+	Heiko Stuebner <heiko.stuebner@cherry.de>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Sean Wang <sean.wang@mediatek.com>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V2 4/4] arm64: dts: mediatek: mt7622: drop "reset-names" from thermal block
-Date: Sun, 17 Mar 2024 23:10:50 +0100
-Message-Id: <20240317221050.18595-5-zajec5@gmail.com>
+Subject: [PATCH V3 0/4] dts: mediatek: add Cudy WR3000 V1 wireless router
+Date: Sun, 17 Mar 2024 23:32:02 +0100
+Message-Id: <20240317223206.22033-1-zajec5@gmail.com>
 X-Mailer: git-send-email 2.35.3
-In-Reply-To: <20240317221050.18595-1-zajec5@gmail.com>
-References: <20240317221050.18595-1-zajec5@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,31 +99,24 @@ Content-Transfer-Encoding: 8bit
 
 From: Rafał Miłecki <rafal@milecki.pl>
 
-Binding doesn't specify "reset-names" property and Linux driver also
-doesn't use it.
+Cudy WR3000 V1 is a MediaTek Filogic 820 based 802.11ax wireless router.
 
-Fix following validation error:
-arch/arm64/boot/dts/mediatek/mt7622-rfb1.dtb: thermal@1100b000: Unevaluated properties are not allowed ('reset-names' was unexpected)
-        from schema $id: http://devicetree.org/schemas/thermal/mediatek,thermal.yaml#
+https://www.cudy.com/productinfo/1637722.html
 
-Fixes: ae457b7679c4 ("arm64: dts: mt7622: add SoC and peripheral related device nodes")
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- arch/arm64/boot/dts/mediatek/mt7622.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+Rafał Miłecki (4):
+  dt-bindings: vendor-prefixes: add Cudy
+  dt-bindings: arm64: dts: mediatek: Add Cudy WR3000 V1 router
+  arm64: dts: mediatek: mt7981: add pinctrl
+  arm64: dts: mediatek: Add Cudy WR3000 V1
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7622.dtsi b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-index 8e46480b5364..917fa39a74f8 100644
---- a/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-@@ -513,7 +513,6 @@ thermal: thermal@1100b000 {
- 			 <&pericfg CLK_PERI_AUXADC_PD>;
- 		clock-names = "therm", "auxadc";
- 		resets = <&pericfg MT7622_PERI_THERM_SW_RST>;
--		reset-names = "therm";
- 		mediatek,auxadc = <&auxadc>;
- 		mediatek,apmixedsys = <&apmixedsys>;
- 		nvmem-cells = <&thermal_calibration>;
+ .../devicetree/bindings/arm/mediatek.yaml     |  1 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+ arch/arm64/boot/dts/mediatek/Makefile         |  1 +
+ .../dts/mediatek/mt7981b-cudy-wr3000-v1.dts   | 74 +++++++++++++++++++
+ arch/arm64/boot/dts/mediatek/mt7981b.dtsi     | 22 ++++++
+ 5 files changed, 100 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt7981b-cudy-wr3000-v1.dts
+
 -- 
 2.35.3
 
