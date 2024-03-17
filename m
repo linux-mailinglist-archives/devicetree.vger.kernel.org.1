@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-50966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50967-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4786987DDB5
-	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 16:03:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5162187DDBB
+	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 16:04:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DCCDD281388
-	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 15:03:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 070141F21321
+	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 15:04:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 915E21C288;
-	Sun, 17 Mar 2024 15:03:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E0271C2A5;
+	Sun, 17 Mar 2024 15:04:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HMGvCfT3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PvgYHoZe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65DA5634;
-	Sun, 17 Mar 2024 15:03:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56E041C28F;
+	Sun, 17 Mar 2024 15:04:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710687814; cv=none; b=nkwm2qDq8Bf7GGoChT6ziUGYrZBAOY+po6vfQbO+3qujbyGdiEU3boYDTli+g2Oj0cORteVp4hyj74XO2QF4eYLzrVvvxIfxYGD6FiPLj7NPQdUE1RTSvsB6d+k8WqAF9DEta34qnapMDNSHSkErUXqrHp6FNeMMbyO36V5h0kU=
+	t=1710687897; cv=none; b=XIMvaMoRAWb9T1meI+es7evCKInwDf870yh/vmQQUMiYRwbgAr5Jyc/Hp95hrNq60iAmHVU7p7EKPPIQ1C5iDsguGK/A8DOafK2YRXz/fA9Q1InkXmvWjTc0N01pFdnxApUygJhN1FL106uNP82U9JyTbu4tKjC58BAOGfDNOsQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710687814; c=relaxed/simple;
-	bh=hIzJScsStQ+qJgZV4R5d8h/hjo3IdmTMTwiG5arFAf8=;
+	s=arc-20240116; t=1710687897; c=relaxed/simple;
+	bh=2ACXqSM+oORIh17fNVnxm9lOfm84HdVokhO3Uq3s6/Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MRStXy/GOq8QvSbwef8MjXj9OPL8GmdtNMolfrrKEkeeSmAbweK2JU22RinElyjBOJQpayVmpruAGIu+o0F9r0sN9E9YUHvt7cFXHXIk9Y4fiej16uju7JPE9BeGHMlcpfmtor9PYlirdrgBaG9mgQuPaSfzTXXwzsyG94WnsBM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HMGvCfT3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14ED2C433F1;
-	Sun, 17 Mar 2024 15:03:30 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=K6hQoHjrUie/smmjLfQWpo8Us33VNzNe1KmyCJbbgYBq2KUn763QyCa2A5ec6eYyTzB98J14m6hMneQBt/X+H5hiNXKlAwHBRxIbrP95Ykr35/q6TABHiP1aoz39Qa1TYb9nhzC9+d3YitDhGQXunayHvw4V9Knil1RKBL2wvNY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PvgYHoZe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EC70C433F1;
+	Sun, 17 Mar 2024 15:04:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710687813;
-	bh=hIzJScsStQ+qJgZV4R5d8h/hjo3IdmTMTwiG5arFAf8=;
+	s=k20201202; t=1710687896;
+	bh=2ACXqSM+oORIh17fNVnxm9lOfm84HdVokhO3Uq3s6/Y=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HMGvCfT3uMv96iUBmejFXTRPsELK29trzxNOdfB5GD8T67Mb1qwnf3fxHOwAMs9kP
-	 M59q9OJWDbBNtDnJD4zFDGRxIHT/GoYsR+6FoPzbsB1JTpvMHHhXJPcQZOS5msdseD
-	 sl3Y49++8QOqFvhqetf7EuodPKUufgurthfBxqw78BIs30qCPwhth08E0VMgX3nFgd
-	 iVz/OQKPmxxyrUku8SwI7FeUKIbXm0fuwbiHvNTW12tOwb2DD9sMh+Y2IUJMt9DWsk
-	 27XWKycLSLreLb3GlKhj0+rKCTYDCoUct4+lrLeZaPOg4CoS/KXsNNQS7R2o5f/jcO
-	 OPEiuLWK6u8XA==
-Date: Sun, 17 Mar 2024 15:03:28 +0000
+	b=PvgYHoZeAUgL7baYLe8VFCYHkij2cmqS3IK210s4biuHcborS1d9cCZ1JDVUg0wA2
+	 dMiYrA13I2YJWRANuKZ7yLQnkt4D78yLbQlCjSN/rVPQ9Y3QqpAll+cIaS0omoiuU0
+	 w+uX8PBsLJUANfIJ2TImi7K70Z2xQppmqXl2kCXT+P3gOBoHWfcGuRaGiFy/ga/wb2
+	 oUXCtdLpXRyWuIWUGiZ83fmqmbioNJ2TCHzXn1l8oIWy2gfD5B9Bs7TFbHvybTXRQu
+	 g6phtAsyrA+x997zzrHoVMjyBwYWiFOqKpYDtAiy4BXgBCoYtow8S2DXycW/Gp8neN
+	 vMbiSmAO2qPYg==
+Date: Sun, 17 Mar 2024 15:04:50 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Marek Vasut <marex@denx.de>
-Cc: linux-bluetooth@vger.kernel.org,
-	"David S. Miller" <davem@davemloft.net>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-	Marcel Holtmann <marcel@holtmann.org>,
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: net: broadcom-bluetooth: Add CYW43439
- DT binding
-Message-ID: <20240317-spotter-imminent-1a29a152648b@spud>
-References: <20240309031609.270308-1-marex@denx.de>
+To: Samuel Holland <samuel.holland@sifive.com>
+Cc: Joshua Yeong <joshua.yeong@starfivetech.com>,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, geert+renesas@glider.be,
+	prabhakar.mahadev-lad.rj@bp.renesas.com, conor.dooley@microchip.com,
+	alexghiti@rivosinc.com, evan@rivosinc.com, ajones@ventanamicro.com,
+	heiko@sntech.de, guoren@kernel.org, uwu@icenowy.me,
+	jszhang@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	leyfoon.tan@starfivetech.com, jeeheng.sia@starfivetech.com
+Subject: Re: [PATCH 2/4] riscv: errata: Add StarFive alternative ports
+Message-ID: <20240317-tighten-outskirts-de8c44f36853@spud>
+References: <20240314061205.26143-1-joshua.yeong@starfivetech.com>
+ <20240314061205.26143-3-joshua.yeong@starfivetech.com>
+ <b662bb30-d5e2-4bf0-a156-ac38461fcea2@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,73 +66,38 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="S9kGg1ZUWkfhKrRo"
+	protocol="application/pgp-signature"; boundary="JsseNBDqmI6dnw3W"
 Content-Disposition: inline
-In-Reply-To: <20240309031609.270308-1-marex@denx.de>
+In-Reply-To: <b662bb30-d5e2-4bf0-a156-ac38461fcea2@sifive.com>
 
 
---S9kGg1ZUWkfhKrRo
+--JsseNBDqmI6dnw3W
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Mar 09, 2024 at 04:15:12AM +0100, Marek Vasut wrote:
-> CYW43439 is a Wi-Fi + Bluetooth combo device from Infineon.
-> The Bluetooth part is capable of Bluetooth 5.2 BR/EDR/LE .
-> This chip is present e.g. on muRata 1YN module. Extend the
-> binding with its DT compatible.
-
-How come there's no fallback here? Looking at the binding patch there's
-no device-specific handling done, what's incompatibly different between
-this device and some of the other ones supported by the hci_bcm driver?
-
+On Fri, Mar 15, 2024 at 06:13:34PM -0500, Samuel Holland wrote:
+> > +	riscv_cbom_block_size =3D STARFIVE_JH8100_L3;
+> > +	riscv_noncoherent_supported();
 >=20
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: "David S. Miller" <davem@davemloft.net>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Eric Dumazet <edumazet@google.com>
-> Cc: Jakub Kicinski <kuba@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Luiz Augusto von Dentz <luiz.dentz@gmail.com>
-> Cc: Marcel Holtmann <marcel@holtmann.org>
-> Cc: Paolo Abeni <pabeni@redhat.com>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-bluetooth@vger.kernel.org
-> Cc: netdev@vger.kernel.org
-> ---
->  Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/broadcom-bluetooth.yam=
-l b/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
-> index cc70b00c6ce57..670bff0078ed7 100644
-> --- a/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
-> +++ b/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
-> @@ -27,6 +27,7 @@ properties:
->        - brcm,bcm4335a0
->        - brcm,bcm4349-bt
->        - cypress,cyw4373a0-bt
-> +      - infineon,cyw43439-bt
->        - infineon,cyw55572-bt
-> =20
->    shutdown-gpios:
-> --=20
-> 2.43.0
->=20
+> This patch doesn't add any alternatives, so you don't need to use the err=
+ata
+> framework. Please move these two lines to the cache driver -- see
+> drivers/cache/sifive_ccache.c -- and then you can drop this patch.
 
---S9kGg1ZUWkfhKrRo
+And drop the patch adding the vendor ID too I guess, since that'll no
+longer be used.
+
+--JsseNBDqmI6dnw3W
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZfcGQAAKCRB4tDGHoIJi
-0j+LAQCS1wtlfo5rzqLE7nDIU4mQ0wG38sXHJHmisXx4EXiNaAD/TSPL/iLN22d9
-ZrLgiLyNz4mxN0entxh7hbzgniN4sgc=
-=T/ZU
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZfcGkgAKCRB4tDGHoIJi
+0pDeAQDgdfT+icPw5jmJ78Y/pSrT5mWSE7Hy7N6+WitU8s1GIQEA/+eOnCRCllnP
+bQBprzlW1VcvJbKHuRNXPc9l69MaXwg=
+=JUfr
 -----END PGP SIGNATURE-----
 
---S9kGg1ZUWkfhKrRo--
+--JsseNBDqmI6dnw3W--
 
