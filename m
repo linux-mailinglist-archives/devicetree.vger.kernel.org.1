@@ -1,163 +1,131 @@
-Return-Path: <devicetree+bounces-50946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A28DA87DD38
-	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 13:56:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E49FA87DD48
+	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 14:30:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6FAC1C2095A
-	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 12:56:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1514C1C20884
+	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 13:30:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75E7E1AAD7;
-	Sun, 17 Mar 2024 12:55:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBDB31BC40;
+	Sun, 17 Mar 2024 13:30:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="PN0199Zw"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TSY4JoHa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B67C136A;
-	Sun, 17 Mar 2024 12:55:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 224AE1BC3E;
+	Sun, 17 Mar 2024 13:30:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710680156; cv=none; b=pwRlXr06Kiq+rcaOdc8H4f9QQONA6Sc1x1kV9Dd/nQdygftcQYFCo9GCKezB18cho4YhyrTfL26wltQzCYIULbi5GdjRZ53o6Zwaq3ACnOFf3JQWSplrv9IAsohdfJYS5X3H8lCofzQ+5q51P+5DrB3lDpuu0ZD0D7tas3R33Mo=
+	t=1710682227; cv=none; b=gemsM9FPEJOeIp4WljCmYrr0jMCGh3gYhYCq/95dEGU9v+NDo9wSNeUxqEirDFShugyPr9dt7/PC83CtWwsbN05NvpjVh/qYqTKl/W2jhXOc3GI7ttFdqH89u42TEMhnVY9YlRRNP6EzkOhPcLd9iU2q0qCecfphNCZ5bTmJAhI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710680156; c=relaxed/simple;
-	bh=xwrmrE8IcvQB6scD2/O+jg7MyJ4j0/Sl++hhinClxKw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IKNXMsRdfLGuRwoUCum+sSMQ2UjKuLfP8nTqsDiYgnP5CRCpYQWKfStS0e2YlG2t820mCYWvasRv6x+RUfQMttRvLBInhkLzxZE/h8Q9ZLgsDqBd05VlvPzelsqC1wiC3A+BQszaLQUhLdeXP7tPog2NSZkgmGWSdgzP+jDJCeU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=PN0199Zw; arc=none smtp.client-ip=212.227.17.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1710680134; x=1711284934; i=wahrenst@gmx.net;
-	bh=3eOlEoN6SfpTcqL+Nb/fFWrFrYcV/qmikqb4ystGr/4=;
-	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
-	 In-Reply-To;
-	b=PN0199ZwKmpeUW8FGzs8yhLcUD3TeOi1qkkqcuo4Bc28tWp+qPI28ajvp0H5+qv/
-	 rlb37+dP6JTcV1aAeZKu/uFSBPeVmXhIRm5mHqNlaOagFtsb515NdHN52Mx9om+S9
-	 GMnhn3pOd/cKu1mHtQdddIBBReGvAsD7yZIwvVn/SgB4KP8ps43pc4dYAYCGnhXPF
-	 AQ5fTuxPJ7uv++s4P+6ODf+2r/8YcPqiRB6DpWoGtVBMlgsJa3Jr3+4pjd9f164el
-	 6GGEclAVW8JwmSiMYUzeWyDkL4EwomOTCoq45tTaaJemyKLXhHAUf8lCWTNo+HXSq
-	 9AQTsIUxX1rvmxYo9A==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.167] ([37.4.248.43]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MEV3C-1raGXk1cNO-00Fycb; Sun, 17
- Mar 2024 13:55:34 +0100
-Message-ID: <dd29bcb5-f737-4e89-b296-db54e13df9ee@gmx.net>
-Date: Sun, 17 Mar 2024 13:55:32 +0100
+	s=arc-20240116; t=1710682227; c=relaxed/simple;
+	bh=2gdq8EBgY1LmHd9w6DjX1eMIdhBWiKxla81oO9Irugs=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=FVUZ0tuvC5ph7PuxWvPA9JMGowWw7qDLs4On0dBu+qL+R31fUcPxfWuMUFowFjdNPzMZxEmzDsUOXC5p7QzgMv4Zb6cfGyjVsU7RYnYAJKvbd7ay1HFc5gyJxSSu7wCAu2cxBe8DnbIX6W4ueVw7sTIaCgtmE0vzROBxKTnLKDo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TSY4JoHa; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42HDQ1im023310;
+	Sun, 17 Mar 2024 13:30:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=6bxKWY+
+	uxQwNgwJMAYt+WRedxst3xgEotcSyVl8ra58=; b=TSY4JoHafJGdOgCTUJS8P/C
+	qRfyZj08/uJUYY0hlhKC3eZfldPihINnzYzh0dCR0BiPaMt7ctRplC46pF70x86X
+	9uWKgi3vvEtOo5jlKpdruTguWCJrUy4URhs2VIdqzjJwcn/fpaKpVMDP6xXQrNxN
+	pIIOOn8alCWbV8DPOKy+FcUi5yLB8vXp3iaCP0ziqPvbVe3S8Jfy8uh7lktvYvXN
+	+BR2wQW0Pj8dRpUMFFH4IJEHaAXynmU4bWXe554/TzKSMj4F5sebWpn4HEsOnvCj
+	9HGNjjuQn7Vw0AYS/8uunPqUKxtpAcuJoIkbiKg+u3+x9onb7ycB2zqNGdSnr3Q=
+	=
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wwxtb04u0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 17 Mar 2024 13:30:09 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42HDU8Pe022340
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 17 Mar 2024 13:30:08 GMT
+Received: from hu-rjendra-blr.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Sun, 17 Mar 2024 06:30:04 -0700
+From: Rajendra Nayak <quic_rjendra@quicinc.com>
+To: <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <abel.vesa@linaro.org>, <quic_sibis@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>
+Subject: [PATCH v2] arm64: dts: qcom: x1e80100: Fix the compatible for cluster idle states
+Date: Sun, 17 Mar 2024 18:59:18 +0530
+Message-ID: <20240317132918.1068817-1-quic_rjendra@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 02/15] dmaengine: bcm2835: Add support for per-channel
- flags
-Content-Language: en-US
-To: Andrea della Porta <andrea.porta@suse.com>, Vinod Koul
- <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
- <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Saenz Julienne <nsaenz@kernel.org>,
- dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
- linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, dave.stevenson@raspberrypi.com
-Cc: Phil Elwell <phil@raspberrypi.org>, Maxime Ripard <maxime@cerno.tech>,
- Dom Cobley <popcornmix@gmail.com>
-References: <cover.1710226514.git.andrea.porta@suse.com>
- <da598378f733a8d45a35ed77f9626cc082262b1a.1710226514.git.andrea.porta@suse.com>
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <da598378f733a8d45a35ed77f9626cc082262b1a.1710226514.git.andrea.porta@suse.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:jub8QDgSnZ8AbSgBVMW8uke/xMwe9dhFq6FVCojQ8aQHsYD5xYe
- 57cmu43IYbWzOV29/Z70p0cFAl1m0UJhGxktZFocGeazwdn5/qoXVRNxT/gMA3YYJMBbutd
- Yiz68XaOVZACJ1WA216mIwJDnGJXJAF7j0OEVYLlooR1Iioj3GLQolceZ4jPPIN6qx7zcol
- QDgqRuRxVGBgwpCQQcf0w==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:TIF9uqa/PxY=;6PRj0Lq0EZp9bJwDP99uvSFDlZM
- SV13KTGpVXH7plqQz1K1PxEhcvGYUk9dFFaA9rhtE8ThE2BL21RrBB9eGHlhaF1ufG5h7SuIb
- A73Bkhg8wBm+OkBbu8kTy2gY5op83w8KOuyO9pRjEN+FWHj28GLzFoLzUe71Y57knzfwd+ziN
- De32tMBj5/liKY4VJZhYQHnUsp7RFKc6E5lQJRxYNH0hXIeq4SbmwllAnHQWW3vbCK7VoxWMt
- bhSttjcB+cHB+871Ka3U1HVl5GDEsenHxWHnkej69mWS5RcpuCIDoIhdn/pGntlZvpr0lantT
- z6/No3yXtXZZDVF0B/iWMRfnybdzglpjNhaLimHYkWxeY45uLhPJxWcpj8vhC7BfCn7EY9paL
- EMb42osDcjDa6bT96UwBgnB55jun21yDt8WXGhNYUFuFWJ+Ekx39D823PdpC9AIURdzKRtS4D
- Dg60kkGrvGcmQYS3zLqH9ocU3DXRw6Gk0F/ei99rA4QxVYWI0qVT6qqpwTF0hR3Hy6kOpHafS
- 7bigysWVk7iC8WsjP5eANJxtFNJgi1jZfCLsXlJqLEVoeeRU8YObYTZsMcYbmLgMnVpVSZnFh
- 54gfdUD4U7RHtXtGZsyYrnCnpl6bWXVy2OC5pQuNhZMnaxC9zOw3c4DmR8QHMOsa3zmdVets8
- JKGyFpU3u0D5MKBpIjImOGGTuLeY7dXGWNqr5PVaQue8hvceObdLCdWY/s5TAeIdgEOQ6lfkU
- yPAjiGOCIuoOvPKPSoK99RUfv1kqCUEPHwelDv35Ha5SS4WJ5iDj+Nesn+3gO+2QKQyOOc9CL
- 1qYxP0gw4PzhpbQSfoq/SJ+umz3zkmvnwMqUNWaiXVbFE=
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: s34K_ikphXzrQSQftGafd5ZdFJ9pKEHz
+X-Proofpoint-ORIG-GUID: s34K_ikphXzrQSQftGafd5ZdFJ9pKEHz
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-17_09,2024-03-15_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
+ adultscore=0 lowpriorityscore=0 clxscore=1015 phishscore=0 mlxlogscore=769
+ impostorscore=0 bulkscore=0 spamscore=0 suspectscore=0 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2403140001
+ definitions=main-2403170106
 
-Hi Andrea,
+The compatible's for the cluster/domain idle states of x1e80100
+are wrong, fix it.
 
-Am 13.03.24 um 15:08 schrieb Andrea della Porta:
-> From: Phil Elwell <phil@raspberrypi.org>
->
-> Add the ability to interpret the high bits of the dreq specifier as
-> flags to be included in the DMA_CS register. The motivation for this
-> change is the ability to set the DISDEBUG flag for SD card transfers
-> to avoid corruption when using the VPU debugger.
+Fixes: af16b00578a7 ("arm64: dts: qcom: Add base X1E80100 dtsi and the QCP dts")
+Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+v2:
+Updated the subject to include 'qcom: x1e80100'
 
-AFAIK this and the following 2 patches also requires modification on the
-DT side. So either they must be included in the series or we better
-leave them out completely. I'm not sure which one are really necessary
-for 40 bit support.
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Regards
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+index 8e517f76189e..6b40082bac68 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+@@ -284,7 +284,7 @@ CLUSTER_C4: cpu-sleep-0 {
+ 
+ 		domain-idle-states {
+ 			CLUSTER_CL4: cluster-sleep-0 {
+-				compatible = "arm,idle-state";
++				compatible = "domain-idle-state";
+ 				idle-state-name = "l2-ret";
+ 				arm,psci-suspend-param = <0x01000044>;
+ 				entry-latency-us = <350>;
+@@ -293,7 +293,7 @@ CLUSTER_CL4: cluster-sleep-0 {
+ 			};
+ 
+ 			CLUSTER_CL5: cluster-sleep-1 {
+-				compatible = "arm,idle-state";
++				compatible = "domain-idle-state";
+ 				idle-state-name = "ret-pll-off";
+ 				arm,psci-suspend-param = <0x01000054>;
+ 				entry-latency-us = <2200>;
+-- 
+2.34.1
 
->
-> Signed-off-by: Phil Elwell <phil@raspberrypi.org>
-> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> ---
->   drivers/dma/bcm2835-dma.c | 10 ++++++++--
->   1 file changed, 8 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/dma/bcm2835-dma.c b/drivers/dma/bcm2835-dma.c
-> index 428253b468ac..3d9973dd041d 100644
-> --- a/drivers/dma/bcm2835-dma.c
-> +++ b/drivers/dma/bcm2835-dma.c
-> @@ -137,6 +137,10 @@ struct bcm2835_desc {
->   #define BCM2835_DMA_S_DREQ	BIT(10) /* enable SREQ for source */
->   #define BCM2835_DMA_S_IGNORE	BIT(11) /* ignore source reads - read 0 *=
-/
->   #define BCM2835_DMA_BURST_LENGTH(x) (((x) & 15) << 12)
-> +#define BCM2835_DMA_CS_FLAGS(x) ((x) & (BCM2835_DMA_PRIORITY(15) | \
-> +				      BCM2835_DMA_PANIC_PRIORITY(15) | \
-> +				      BCM2835_DMA_WAIT_FOR_WRITES | \
-> +				      BCM2835_DMA_DIS_DEBUG))
->   #define BCM2835_DMA_PER_MAP(x)	(((x) & 31) << 16) /* REQ source */
->   #define BCM2835_DMA_WAIT(x)	(((x) & 31) << 21) /* add DMA-wait cycles =
-*/
->   #define BCM2835_DMA_NO_WIDE_BURSTS BIT(26) /* no 2 beat write bursts *=
-/
-> @@ -449,7 +453,8 @@ static void bcm2835_dma_start_desc(struct bcm2835_ch=
-an *c)
->   	c->desc =3D to_bcm2835_dma_desc(&vd->tx);
->
->   	writel(c->desc->cb_list[0].paddr, c->chan_base + BCM2835_DMA_ADDR);
-> -	writel(BCM2835_DMA_ACTIVE, c->chan_base + BCM2835_DMA_CS);
-> +	writel(BCM2835_DMA_ACTIVE | BCM2835_DMA_CS_FLAGS(c->dreq),
-> +	       c->chan_base + BCM2835_DMA_CS);
->   }
->
->   static irqreturn_t bcm2835_dma_callback(int irq, void *data)
-> @@ -476,7 +481,8 @@ static irqreturn_t bcm2835_dma_callback(int irq, voi=
-d *data)
->   	 * if this IRQ handler is threaded.) If the channel is finished, it
->   	 * will remain idle despite the ACTIVE flag being set.
->   	 */
-> -	writel(BCM2835_DMA_INT | BCM2835_DMA_ACTIVE,
-> +	writel(BCM2835_DMA_INT | BCM2835_DMA_ACTIVE |
-> +	       BCM2835_DMA_CS_FLAGS(c->dreq),
->   	       c->chan_base + BCM2835_DMA_CS);
->
->   	d =3D c->desc;
 
