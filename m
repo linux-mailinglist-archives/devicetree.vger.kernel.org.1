@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-51009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0829387DF4D
-	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 19:43:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0377287DF56
+	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 19:47:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 278421C209D3
-	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 18:43:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AD0AF2813AA
+	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 18:47:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B83EB1CD30;
-	Sun, 17 Mar 2024 18:42:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE66B1CFBE;
+	Sun, 17 Mar 2024 18:47:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uBLvtkBE"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EZN0PhV3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E35771CFA8
-	for <devicetree@vger.kernel.org>; Sun, 17 Mar 2024 18:42:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C201E1D53C
+	for <devicetree@vger.kernel.org>; Sun, 17 Mar 2024 18:47:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710700976; cv=none; b=IwjHqzJp6E2SE4dGUvDRrZbweXmK0oSbMVrZeeqmqkkSNpNkaLRzjpLRHma7nWsIsjAVtDbPKIXV6Y+LhnJlMztglRDHppoaSu+LMt0gNDOT6zPsCHsSqh3WF7EjNNTMOgetC/NB1aUfLXipwisCSfC53eXtZQ0dkeBATm2QVXY=
+	t=1710701264; cv=none; b=Ki1Wjh9YLCzJCCHZdHAtVqrNjXM8robWdRCZGYbM8vwehQD10M6/XAGQCUHWaRfiBQ6OEj6wxpwLrs5BDsBU7MgcKNEjUSyIH5sRdhAmtC83OZxqNti8L7FvCVicE6JT5hDNz49iVIBSKlSxKqZPM+J4RP1ozCwBhSfGukO5dpc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710700976; c=relaxed/simple;
-	bh=uXMBPh2jNkBAD7II086a8oKLtlzF9gVyUxJyFEzIBO4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=L+XTR2nhIQfIULrOqh3Y6VscS9SIBGmNHcvOEkBOmLDOlIfD97uNCo1dlSS4e5493fsNTSnUK9Ib9vz1Fo+o5NKFtuXn/bQ88bvo+Zybsuv6185B0gKIGI6MyVSd4Wjsm7moIgGymBkeiMgNj2L44E+bMSl+OHBBSflARdo+cD0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uBLvtkBE; arc=none smtp.client-ip=209.85.208.51
+	s=arc-20240116; t=1710701264; c=relaxed/simple;
+	bh=K6foNgXqrQlpy86n2/27eq3A66OjDosqj5w+ijEj7m8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AzpPgdx05dVhFd2EgsJYcQo1RT5MlAna8aA2PCo3+jFRoWVDBO6UPSkL0aZL/m9jfVYhCaXZBhliPOuwneBoUCV2u3PBfNY0xMPONWKTlrKBb4xRY/Ym7Whj8xTe9UDsWQeYrZWwVf+bJOqWZDG6zKuhwHoVrUgFmp3OCFvuK4I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EZN0PhV3; arc=none smtp.client-ip=209.85.208.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-568c51f44e5so1094416a12.0
-        for <devicetree@vger.kernel.org>; Sun, 17 Mar 2024 11:42:54 -0700 (PDT)
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2d476d7972aso53001271fa.1
+        for <devicetree@vger.kernel.org>; Sun, 17 Mar 2024 11:47:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710700973; x=1711305773; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1710701261; x=1711306061; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=AeAnS05iR56BqCk2mLe/ziDDqg7gXHRKyb67zn/8C5c=;
-        b=uBLvtkBEsWoK1ahr4EAj0wZJtxA6SHsL/6nxW8yQSMiU7FB9/GGC1B0BNQpQJiCCSd
-         v6o94+p0hpgOwE13TvRi1YJemJgGK6txxdap1l4A2Nc14HVc9z0ZX7UJk+pQzgwGoTNN
-         cHTXIgNrZgQxP7228GNBeRiurEUV23yGKgEbzG2TEX0cRIvOPyfIGG5c4jcYNwzfxz4J
-         zBNp4C8kgJwhQYAM6iC88hOWCbSxf1e1ZP4gcU7b+CTG7wX61/XMRdtSh1Z3OF1qKkHe
-         jWWHcj8pfOk6i4x7nhtAAeiizw8O5hxfL3LYAutKRGoNY8qnOlQws7OWi9MXra4cz1M2
-         79OA==
+        bh=VKXtvsqImemBiWCLBIvLrfhzInPoUFOQ1xHfm3l91So=;
+        b=EZN0PhV3JVPkfDXe2kgjOdntbWzZvwjSVMeeyTa6Kdv2S6jJ70nZEmYclNWAhQoh/o
+         eb/wRpQo3DJVvATfGCQlJ7+wX5qzQLmSs1sP5BhrpxAATom4jGS0KjT8K2fw9YQCZNky
+         Uz4YSSXb9MnuEWJyR4ZkXV2B9h9IntucrQ9dTX0A0Ertp8UqD9dVBaqnQ9cJGKuS+jv1
+         fXL3LhliA62VLeZ7at7pCqO5rgoEbSdJPV1Qf07kfx55LS8IaDdeVN6fooC6cJfTr5hB
+         wXVtKx5nSuKk7s4n3I35s/9jXxKmZni3ore3pukGW7VdoAXVZCoILnfSVqSZ9ZpKH81h
+         jMag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710700973; x=1711305773;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1710701261; x=1711306061;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AeAnS05iR56BqCk2mLe/ziDDqg7gXHRKyb67zn/8C5c=;
-        b=KU7dzTEgJEzlGmT5A4R2BTzua6AMokNK2N92h7mOXW3hU7+8FKPA6kJfXfTP+X5cNZ
-         oGIZ1BOsxWyS8pthby3frukivXE/YRnIsnd3KrwjeKKLGub8R6lHsGGi57gmhLZ3B6mC
-         OntUTSJ1Mmb3aba8ZMJOP39L41J5yctxJu9WyyLALyvbngKdci1QSvzPLvSZAlvH2uTx
-         yUcg4nNkCSrxisBZAhDd2WBEaBxwd8rByLBX3GZM82EP8RRjsmBdrpKwownps9k8kaqo
-         QIe56KiTvaFirtZFQQx1QHz/7xMKV12o3uFtYNiLAZLXd4Hx8GUV/JhWi3Yd9T7nPtmc
-         gO9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU+KhDoQ8UMgOnjA3+EWqT2natruwEb0pYpI10JMAxfL34/Xeiw2O/N29f3lrnXofSzkpk9K3U4V8kMt2s5qAPSAfcEHMvz1azerA==
-X-Gm-Message-State: AOJu0YyhV3FRploOGFy9kuKm/ApzK+vLlRQfLEcGvwosArfB404TzCtM
-	KSKImHPhnPOplW8NFStCzkbuViNgD+AmdPkyjmARHahMkuoTZoyJ9N7oNqc/sKI=
-X-Google-Smtp-Source: AGHT+IFobU4wMS+qUDfhLs1TQvvGd3190wmhAXTmGyjl4ZKrg/kPyYM9HfYQFCWVVaNnnhl32CH80Q==
-X-Received: by 2002:a05:6402:1946:b0:568:b471:e583 with SMTP id f6-20020a056402194600b00568b471e583mr5337291edz.33.1710700973271;
-        Sun, 17 Mar 2024 11:42:53 -0700 (PDT)
+        bh=VKXtvsqImemBiWCLBIvLrfhzInPoUFOQ1xHfm3l91So=;
+        b=VjTnzakLmKsaqXs8iffQ4ugdMuXl4dH5LwxLlc1agoOcR1yofdGEj++h6LSHfGz8EL
+         6xJfBZK/D+q2/gto6iHsKVADtk6T+ljgwKne+UoZNpRtM1443CaVGwEi7YWr8EDOg0Jt
+         8R1wFlKguDvFzzaHwKyqUXuqL9SqfWH5qp4gox8fdlQWIxmilAKcj9yvLW2XyqSa8NoU
+         IJcq6TXId31SYpcIqQZSEo/Mgu/5oKjWio3Jc9URYTsSyyOUWuDLCT7+LCNlGDih8Whe
+         fUlXjzbOvI9YanPz/idcFtUv+TCPZ+xymRRoiC4lrjIezIq1ZA8i5uyjVfuR3Fiku5l1
+         FLiQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWYNMUHteUmBeXBm4md3t604yslcChlZRVI4ewV18x8OSRqaZmdMqVAkGx7dmZlhy+j+p1M6kuhujfTqcosjpHwVbIS4HJidT68VA==
+X-Gm-Message-State: AOJu0YzTB6McwPO7d7JoevgBG8nGGqJTBc+LIRzWYhASoezj8HkP1WpQ
+	zaV7zT1KsqWzq/uH7E4mvj0wKrt/ysRh4JMa7fMraShaOo93zTfiwYyTAKmSJAI=
+X-Google-Smtp-Source: AGHT+IFAr2DXYl74fsplXyGANfFVV8qAO45Bw7D5ro4+K13W9zhcg2/Fy+WhYhdLgVgkdDbqjyL+6A==
+X-Received: by 2002:a2e:91d4:0:b0:2d4:5d3e:9666 with SMTP id u20-20020a2e91d4000000b002d45d3e9666mr5923485ljg.45.1710701260560;
+        Sun, 17 Mar 2024 11:47:40 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id l24-20020aa7cad8000000b005697d77570dsm408643edt.66.2024.03.17.11.42.52
+        by smtp.gmail.com with ESMTPSA id p7-20020a056402500700b0056882aa15b9sm3829135eda.95.2024.03.17.11.47.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 17 Mar 2024 11:42:52 -0700 (PDT)
-Message-ID: <41dcd736-5e58-4b71-ba82-961cd2863a62@linaro.org>
-Date: Sun, 17 Mar 2024 19:42:51 +0100
+        Sun, 17 Mar 2024 11:47:40 -0700 (PDT)
+Message-ID: <3ce9cf8e-f8d0-4de5-b5b7-1060f77321eb@linaro.org>
+Date: Sun, 17 Mar 2024 19:47:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,19 +76,42 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: allwinner: Orange Pi: delete node by
- phandle
+Subject: Re: [EXT] [PATCH 2/3] net: stmmac: Add NXP S32 SoC family support
 Content-Language: en-US
-To: Rob Herring <robh@kernel.org>,
+To: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>,
+ Wadim Mueller <wafgo01@gmail.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Corentin Labbe <clabbe@baylibre.com>,
- Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org
-References: <20240317184130.157695-1-krzysztof.kozlowski@linaro.org>
- <20240317184130.157695-3-krzysztof.kozlowski@linaro.org>
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, dl-linux-imx <linux-imx@nxp.com>,
+ Chester Lin <chester62515@gmail.com>, =?UTF-8?Q?Andreas_F=C3=A4rber?=
+ <afaerber@suse.de>, Matthias Brugger <mbrugger@suse.com>,
+ dl-S32 <S32@nxp.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Jose Abreu <joabreu@synopsys.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Richard Cochran <richardcochran@gmail.com>,
+ Andrew Halaney <ahalaney@redhat.com>, Simon Horman <horms@kernel.org>,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+ Johannes Zink <j.zink@pengutronix.de>, Shenwei Wang <shenwei.wang@nxp.com>,
+ "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+ Swee Leong Ching <leong.ching.swee@intel.com>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-stm32@st-md-mailman.stormreply.com"
+ <linux-stm32@st-md-mailman.stormreply.com>,
+ "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
+References: <20240315222754.22366-1-wafgo01@gmail.com>
+ <20240315222754.22366-3-wafgo01@gmail.com>
+ <AM9PR04MB8506244076FBC931101B2205E22E2@AM9PR04MB8506.eurprd04.prod.outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -134,22 +157,33 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240317184130.157695-3-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <AM9PR04MB8506244076FBC931101B2205E22E2@AM9PR04MB8506.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17/03/2024 19:41, Krzysztof Kozlowski wrote:
-> Delete node via phandle, not via full node path, to avoid easy mistakes
-> - if original node name changes, such deletion would be ineffective and
-> not reported by the dtc as error.
+On 17/03/2024 19:26, Jan Petrous (OSS) wrote:
+>> Add support for NXP S32 SoC family's GMAC to the stmmac network driver.
+>> This driver implementation is based on the patchset originally contributed by
+>> Chester Lin [1], which itself draws heavily from NXP's downstream
+>> implementation [2]. The patchset was never merged.
+>>
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  arch/arm/boot/dts/allwinner/sun8i-h2-plus-orangepi-r1.dts | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+> Hi Wadim,
 > 
+> Thank you for your upstreaming activities, but I would like to note that
+> the old NXP S32CC  stmmac glue was rewritten lately and will be part of next
+> NXP BSP Linux release planned for April.
+> 
+> The rework was done mainly to allow simpler upstreaming process, so I would recommend
+> to postpone your current work.
 
-Eh, copy-paste, the subject prefix should be "ARM:".
+I suggest you working with upstream first instead of claiming that
+upstream contributions should align with your downstream work. To be
+clear: your downstream NXP BSP does not matter.
+
+If you think this submission needs any particular changes, then please
+comment on specifics, but such broad statement that community should
+wait till NXP will be so kind to allow upstream work is just not acceptable.
 
 Best regards,
 Krzysztof
