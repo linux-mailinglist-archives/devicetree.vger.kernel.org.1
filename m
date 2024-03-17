@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-51043-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51044-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40CDC87E02D
-	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 22:13:07 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A955E87E034
+	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 22:15:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F01A7281701
-	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 21:13:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 392E4B216E2
+	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 21:15:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 455511EB36;
-	Sun, 17 Mar 2024 21:13:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F04F11EF0D;
+	Sun, 17 Mar 2024 21:14:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PC1CMNaM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F7tBEoEd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DB6C210E4;
-	Sun, 17 Mar 2024 21:13:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA77A21A06
+	for <devicetree@vger.kernel.org>; Sun, 17 Mar 2024 21:14:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710709981; cv=none; b=IZS6B1WeZCpJuO5K8y5DxXW0ZM2kqXVfnA0MeQAlbebThA98DRK/4yRnIlGg1dt0mHMnSIydkPcCkFgEB0Kra6pvHIyE4y14vuDmTwwxDjmMV3oI5D5RJhv0XSz1AWRGq59LzlFMm9K1v/2GANG9mWnE9MMZdl1T3nk9B1zDi5U=
+	t=1710710098; cv=none; b=YfzsyIMmCZwSe95M00R/+HvEJROGdb0Ydw1I7tqYVteb7Z4JOwrOr2zeyEive+0fbK+6J1+thyDu5ZV3KIsFs7QYc2gMkx4ZpSzaQis70csVvKRKzxIlL6aDtfJXUtiRrRt0lRr5phteC7cudbuYc0JykFj36cw8lPjtJ8OSJKc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710709981; c=relaxed/simple;
-	bh=PmiuLK52hkrWz7/HAWcs7jLAFh7vCyOGueeN7Ihy9Bs=;
+	s=arc-20240116; t=1710710098; c=relaxed/simple;
+	bh=nwlvfWIiZZrwsODtnjPTrwvwT3eKt6Da7MTY2x+lvVk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rTE1FaIahz/ASZjMp+Gd/uEerv2shwOgi0l5X7Is3tAFMtmu7hED5lKxbHaSFXoMr2eGnOVcC33vPpO1SjafUE/DFPROjftbhLAYp+5QyKA6GQtZEKTZ3SfGjqFRzRKJt5cVhuu7pPAiMqIxnsCQaxVqreaK3kcGuQLt8OTwOSc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PC1CMNaM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2E28C433F1;
-	Sun, 17 Mar 2024 21:13:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=UrYe3WDRSbKGIqx/OVgTGNe+8vYatlmb/0mz96Hs4ivYUaBIenMB53dbytA6WADZXYlz8A8Mv6TxO6ecDuHN/IXpM278zDo38E6/hhMC7LGCWkokZbI+Qd0yjk/G7wAvZYeZOBw4uDnO7BT6m1CsfJ7uBcWSWNiSWFpm3ilTQnk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F7tBEoEd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42890C433C7;
+	Sun, 17 Mar 2024 21:14:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710709981;
-	bh=PmiuLK52hkrWz7/HAWcs7jLAFh7vCyOGueeN7Ihy9Bs=;
+	s=k20201202; t=1710710098;
+	bh=nwlvfWIiZZrwsODtnjPTrwvwT3eKt6Da7MTY2x+lvVk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PC1CMNaM+18KSODnFSThZHmgW19sWb0XICnEQfIYWTy4KG3KnHWa66y7V7l5NhsM+
-	 uIxMQXqFPC+MYzQLamCJhKMgAizKJxSnDuIw8jRDUVTVf0gthwrsYdRS/dOBXczi/U
-	 x1GnJ4n8a1B6L15CM4S02TcspajTQzeixPSTvZsCxv/KH5S7jeEqKVWpOk5OXQifnG
-	 iv/VUJrwJunvA5krHAGYrGXXomAkyYjk2x1vhI6NxWIjVAf0Y9YtKpdKP4yYuFsZ8b
-	 EbxOXWhvCNQb8JWM1mKy/q9Gbo2Wok9xcDTawrPPQcgeyu2sWSNkaoMajycvJuzSu4
-	 g6HDsWqthgabQ==
-Date: Sun, 17 Mar 2024 16:12:57 -0500
+	b=F7tBEoEdWQvvtEHdUHM8jNS7xcYThmcCGJkO5GzbZKQADDLdICjzW1C8bw4Hr7vjP
+	 RYz6nHcdS4mD03HxX9VyFl++38tXX3hyU0diAmbrRDgwIdvjI/rDFheX6nWPud8Dd6
+	 A8bCRtWHOGM3vUl+ylI+m1TomnxrF5u4JXqB4lftvwTs2I4xWxmEofysvVivapmnK0
+	 f7bP6YNdX0zrkixeCcS60vrCMLK9USGH+0r1UvzCD8Nb1PJXgFRudlfjb+lt+jmakI
+	 vwU1cNVPuoOm8bNLewV4XYuVGdbz/2b1CMU/60KdMdDo1ocjergIqHzn685mSrgeH2
+	 XQ0WnU0/t6uxA==
+Date: Sun, 17 Mar 2024 16:14:55 -0500
 From: Rob Herring <robh@kernel.org>
-To: Sean Anderson <sean.anderson@linux.dev>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Richard Alpe <richard@bit42.se>, linux-kernel@vger.kernel.org,
-	Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund@ragnatech.se>,
-	Michael Walle <michael@walle.cc>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Conor Dooley <conor+dt@kernel.org>,
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Sam Ravnborg <sam@ravnborg.org>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: nvmem: Remove fsl,t1023-sfp in favor of
- fsl,layerscape-sfp
-Message-ID: <20240317211257.GA2317294-robh@kernel.org>
-References: <20240316002026.1808336-1-sean.anderson@linux.dev>
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: ili9881c: Add Startek
+ KD050HDFIA020-C020A support
+Message-ID: <171071009452.2391266.6225826463039032160.robh@kernel.org>
+References: <20240317155746.23034-1-laurent.pinchart@ideasonboard.com>
+ <20240317155746.23034-2-laurent.pinchart@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,25 +63,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240316002026.1808336-1-sean.anderson@linux.dev>
+In-Reply-To: <20240317155746.23034-2-laurent.pinchart@ideasonboard.com>
 
-On Fri, Mar 15, 2024 at 08:20:25PM -0400, Sean Anderson wrote:
-> These bindings document the same hardware (just different minor
-> revisions). Remove the newer fsl,t1023-sfp.
+
+On Sun, 17 Mar 2024 17:57:45 +0200, Laurent Pinchart wrote:
+> Document the compatible value for Startek KD050HDFIA020-C020A panels.
 > 
-> Fixes: aa1ed6047107 ("dt-bindings: nvmem: Add t1023-sfp efuse support")
-
-I don't think Fixes is appropriate here. What was broken?
-
-> Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > ---
+>  .../devicetree/bindings/display/panel/ilitek,ili9881c.yaml       | 1 +
+>  1 file changed, 1 insertion(+)
 > 
->  .../bindings/nvmem/fsl,layerscape-sfp.yaml    | 21 ++++++++++-
->  .../bindings/nvmem/fsl,t1023-sfp.yaml         | 37 -------------------
->  2 files changed, 19 insertions(+), 39 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/nvmem/fsl,t1023-sfp.yaml
 
-Otherwise,
+Acked-by: Rob Herring <robh@kernel.org>
 
-Reviewed-by: Rob Herring <robh@kernel.org>
 
