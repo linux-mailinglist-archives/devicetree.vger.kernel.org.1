@@ -1,91 +1,95 @@
-Return-Path: <devicetree+bounces-50952-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C664287DD78
-	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 15:42:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92C4287DD7E
+	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 15:45:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 294C4B20C5B
-	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 14:42:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB09D2812EA
+	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 14:45:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71AAA1370;
-	Sun, 17 Mar 2024 14:42:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A796D304;
+	Sun, 17 Mar 2024 14:44:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="alCHLXnX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m531+jw2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2A7FEAE5;
-	Sun, 17 Mar 2024 14:41:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FDEA1BDE2;
+	Sun, 17 Mar 2024 14:44:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710686521; cv=none; b=rF3mt2lUMmcM9ca7f3hcABEkWkYTAtVBrEtolGJYLn7xOrQcK2ATYJRYEjZc5g/n9kCIHa0KWGTy5upf2SC4e6fLG20ky+gxgffuuqlv/QNXp4dVlMQb0rr96Vr/O6FPJcf+g8U4wb+5yW7p2M/IzuBAhUlxEG+P8+TnYKofmzE=
+	t=1710686698; cv=none; b=oSzKH3MwbY0glAr3KMvGrXe9x9cQKw7TXwL2Eqb+yzQ8lXei8fRchye3RUPPJivQoENU82B3k3bep6eaMctDGw7xZK9dclDTNf1dZx4ZuBoxVmUPuJcw1RiQN2p/bI30JdTKVNhvmzEVbgNlqi+WZsJyMbgo7eCaLCGu9yf9HFg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710686521; c=relaxed/simple;
-	bh=akYMkoSZX1Qalm6t91YPfWIgthzaMLlI0SS1RHfyzE0=;
+	s=arc-20240116; t=1710686698; c=relaxed/simple;
+	bh=040ClMnMOubXuR/GfXC2GDP6Mg4LDxBRovgnDWRi93o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XrhWVZxewP9pdnWsrP051+uynr0ZhP5oCuxCLloS6j8+WHQSNZc2s/m0Ze0H79kYRidS1/Y5KRhvweNfLofoqGxpkt1YQUQAZdTaEREdrmpVyZPn3YTv2P6VvFJjSvuJFnaAkX4aEqWhG92XwJ/zJ872zF3rr6Ip83jjvsHLLZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=alCHLXnX; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=nFaY47Y/DXxkjFbRQx1XtsLzmqfV/DOsE2eb/gKgyLw=; b=alCHLXnXhxvDpn11JZsvx5Uaxq
-	dT4XcGlS14H0VQkoKpBSwWGxx1s3wOyeA5xKUyYI3IExpOEYiU1inILgxyJa0Reb4d6roXjWByRUT
-	c/xN/HER0g/vorEWEKbx2i2lBFS26dBtbvnJGDPcrsX0G6CEbgIhhDGpn7ponT2xs4Bg=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rlrhd-00AXxp-4q; Sun, 17 Mar 2024 15:41:33 +0100
-Date: Sun, 17 Mar 2024 15:41:33 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Ayush Singh <ayushdevel1325@gmail.com>
-Cc: Vaishnav M A <vaishnav@beagleboard.org>, linux-kernel@vger.kernel.org,
-	jkridner@beagleboard.org, robertcnelson@beagleboard.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Jiri Slaby <jirislaby@kernel.org>,
-	Johan Hovold <johan@kernel.org>, Alex Elder <elder@kernel.org>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-spi@vger.kernel.org, linux-serial@vger.kernel.org,
-	greybus-dev@lists.linaro.org
-Subject: Re: [PATCH v3 0/8] misc: Add mikroBUS driver
-Message-ID: <0a0a6e14-ac7b-48fd-89d3-68f351e893c9@lunn.ch>
-References: <20240315184908.500352-1-ayushdevel1325@gmail.com>
- <CALudOK5v_uCUffxHGKS-jA-DKLNV7xwmKkxJwjHaMWWgDdPDqA@mail.gmail.com>
- <656ca446-9e56-4879-bb42-cd29063e0a82@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=L+CB+Ok0dfL9titSrdGeOkTSDm9Lj+T12snEB3ACoTadGZiO5ESkkEoZVe/RLQ5Y/wedxGiXlAUoylO4kRmbbQXmCRW9jq2b0dk/PiAT1GsIFPN2b+MB2X4z/KofvHgY+KPe7FTIoBXMhwucXI791dJPH1L+1XCyc6hpcqCr9GM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m531+jw2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E017EC433C7;
+	Sun, 17 Mar 2024 14:44:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710686697;
+	bh=040ClMnMOubXuR/GfXC2GDP6Mg4LDxBRovgnDWRi93o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=m531+jw2JyDjNyV7Jhoj1LbSb9OTrwNHSA7NgGOMYZG4iO1QzxsBIygE4z4HHasVa
+	 PRyNcJ4YVQqFXE9cDmN1pGNSicuOdg4EycAQK9zmTgLpTItyNzYpafXWqftlbFWcbj
+	 7dlbIGrUAt97rjgcGMMzDHuBhs6/rCAEB51u/i/NnIoLmuP4su0fomoplcQEooqBY/
+	 ELzp6bPJtDWd4PlImi1X54nTPIoB6vm7J5wh4WXJp5d/fQJhunId3uAqbEi+GmHjlS
+	 eJ5RQWaDp2DScnEHPZ8RJxjQrv6wYTWuRi6bSjub54KlSZ0ANnlSYL0fU7PLSTc3kH
+	 qKqmbhPbnoFAQ==
+Date: Sun, 17 Mar 2024 14:44:52 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Jianfeng Liu <liujianfeng1994@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	heiko@sntech.de, ezequiel@vanguardiasur.com.ar,
+	p.zabel@pengutronix.de, mchehab@kernel.org, sfr@canb.auug.org.au
+Subject: Re: [PATCH v4 2/2] dt-bindings: media: rockchip-vpu: Add rk3588
+ vdpu121 compatible string
+Message-ID: <20240317-writing-retention-c8a57e758737@spud>
+References: <20240316071100.2419369-1-liujianfeng1994@gmail.com>
+ <20240316071100.2419369-3-liujianfeng1994@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="3/L/mig3SrrmSlrg"
+Content-Disposition: inline
+In-Reply-To: <20240316071100.2419369-3-liujianfeng1994@gmail.com>
+
+
+--3/L/mig3SrrmSlrg
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <656ca446-9e56-4879-bb42-cd29063e0a82@gmail.com>
+Content-Transfer-Encoding: quoted-printable
 
-> Yes, I will add Co-author and Co-developed tags. I think I should use your
-> ti email? I would have preferred to keep you as the author in the git commit
-> but I could not get the patches applied cleanly back when I tried it.
+On Sat, Mar 16, 2024 at 03:11:00PM +0800, Jianfeng Liu wrote:
+> Add Hantro G1 VPU compatible string for RK3588.
+> RK3588 has the same Hantro G1 ip as RK3568, which are both
+> known as VDPU121 in TRM of RK3568 and RK3588.
+>=20
+> Signed-off-by: Jianfeng Liu <liujianfeng1994@gmail.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Probably not required now, but
+--3/L/mig3SrrmSlrg
+Content-Type: application/pgp-signature; name="signature.asc"
 
-git commit --amend --author A U Thor <author@example.com>
+-----BEGIN PGP SIGNATURE-----
 
-allows you to change the author of a patch in git.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZfcB5AAKCRB4tDGHoIJi
+0lriAPwKRJpwfToOLfnybP9HSIVLYqpIOXUjdvkZuRIveQdYbAD+PUwBltLI0VFW
+cH/YWdogBRxbQ5iNczKu1CNd8Lpdzgo=
+=4u7o
+-----END PGP SIGNATURE-----
 
-       Andrew
+--3/L/mig3SrrmSlrg--
 
