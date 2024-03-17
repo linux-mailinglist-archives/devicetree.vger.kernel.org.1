@@ -1,138 +1,336 @@
-Return-Path: <devicetree+bounces-50971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1228887DDD0
-	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 16:12:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FAA187DDDC
+	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 16:18:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B6BC28144B
-	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 15:12:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 191471C203F8
+	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 15:18:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5933B1C695;
-	Sun, 17 Mar 2024 15:12:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0440F1C697;
+	Sun, 17 Mar 2024 15:18:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="i3G//zfv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aohLG6+H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6506B1BC3E;
-	Sun, 17 Mar 2024 15:12:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD5A41C680;
+	Sun, 17 Mar 2024 15:18:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710688351; cv=none; b=W/6zoCGGw6GO0s7KOEgWt1M9ursHudw3QPv5mqbj++E6eBUumXd4JL/AidZQxG85EBkSrd4yTOzi6ufV1f0jsca+C23c3PTOOOSuCW+8RFEC2BbGiML8j/0QdTSSbCr+7/UehwCFZpY93H79j9/lW/+MR7GzWfMCztx6FW7F0mQ=
+	t=1710688729; cv=none; b=UwEE9rhf9k8Zvd0swacxUBQ9E+I6dH6le4McAhw0vwnvOi2X83qu0H2Guak4PsAu+b3eQxZ3zXy6ZqHWWZBd2NvLYeA/r1N3LJTlxbXrX1wogIyngVAGHx58v9doF+WmgzK9a1Z3zUKCeP1U3qYB2RL+feZN3lzUwUN67JGhnK0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710688351; c=relaxed/simple;
-	bh=7D6rUs7oxFVkKkNiFleJBun4VT034Uea7yEgWMsWmlw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Mq4FYHKQTqVPGlAi5FNwfSua9Gjer3QQFrgSrrRV8uIpIAfnAMdpno3ZgPOMXaj/fttWyED8+D7GGAqirz8zAlLMdi2Cdh0SSeRB4nn4TWZQY77XGZ4b3nTObxPbM1UJs0WKpFjit6e9xIQcezlKiKEu1zMhphFa3cAZ2pdkGjM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=sberdevices.ru; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=i3G//zfv; arc=none smtp.client-ip=45.89.224.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sberdevices.ru
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id CD12E120006;
-	Sun, 17 Mar 2024 18:12:23 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru CD12E120006
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1710688343;
-	bh=vuhFTgRx08IRoav35YN/UioWYf2u92NjCnQaH1ojeG8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-	b=i3G//zfvC8D25R7CeiPqgfTYLeC1qWFZb4cP+lom1aRx85YIxRzgmxU3gi1fDQbCC
-	 FEWDKcilb3Q85z+4Mw5WaWRNsztDe1af8+3dhhpqnBxsTVOSPymdOH6yq1g5Zxjy6a
-	 GN33MnDQpD9srrr1P5ZmWs+zVitGL0ZLyVh684TnWlOs0Ml7K0lcAsPNBm5SGB5tH5
-	 rRYc7EssYUt+6JUSq5ei4AZWv9iJ1eoGkzqUc7cpgI2IfJZUk4Y7Drr/yIMc4fDtiH
-	 8+ONekataCh0QleERya7UP7hwSWekqrJFjvMUWJkyF9yOrxgLvLfDs8WAyXZciHY4U
-	 GHsupLqGtGiMw==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Sun, 17 Mar 2024 18:12:23 +0300 (MSK)
-Received: from [172.28.160.49] (100.64.160.123) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Sun, 17 Mar 2024 18:12:23 +0300
-Message-ID: <5ca8e65f-9e65-45d2-9bb5-10be3eea2e0b@salutedevices.com>
-Date: Sun, 17 Mar 2024 18:11:40 +0300
+	s=arc-20240116; t=1710688729; c=relaxed/simple;
+	bh=7pTYg4neY3p4a4Eucf5XUJ2jnY24udS5Z7ZaC2XMr5g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ODfwZbmrbpINOPtKz8JLssoBmM84NG1+CeVbsH+zdjGyd897sP848aF9epEQ6TkoEFk7snJhKJ8to+xYkii9Fs38nAyoZ6T3E2RBT38giqY1nslClV07RhTUzTay4OKo1xIu0y2BasHo9fbCiK5CKqhD4VtRkpBGmCALttAbtvA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aohLG6+H; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9280AC433C7;
+	Sun, 17 Mar 2024 15:18:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710688729;
+	bh=7pTYg4neY3p4a4Eucf5XUJ2jnY24udS5Z7ZaC2XMr5g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=aohLG6+HBu84r95klNM5SxVDvXwgCrhGVslsuhs4tJMW+oMEL7KaqVBwqSTU/frnb
+	 QIhzVRbH6nSZ1Okc2ThoBAXWXrNx8gjWOdfX6MDFd2CWK8ohrt70QknEzIc9Cx2ACI
+	 NyfIXCSyJhlTCi3Ne4u+c7rbXsyPprPWNPp9JTNJtZd0AOKL9j4abuvxK1kfYO0BcS
+	 Skal6AJOwuO5bQJZqgEEkPku/VbZdB5t56+7ALRR37fhZW7uklRd6XnV3AkH/G00Et
+	 66lMhqxAXmQO1Q8SXG4GNNt0hTC+5WvlTjMZmOnJnxo3ZM62YHtogZziJN4KJsrXBn
+	 GgElVk0YpPs6w==
+Date: Sun, 17 Mar 2024 15:18:45 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Julien Massot <julien.massot@collabora.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	kernel@collabora.com, linux-kernel@vger.kernel.org,
+	mchehab@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	sakari.ailus@iki.fi
+Subject: Re: [PATCH v5 2/4] dt-bindings: media: add Maxim MAX96714 GMSL2
+ Deserializer
+Message-ID: <20240317-petty-backache-b10d0fde62cf@spud>
+References: <20240313094922.311743-1-julien.massot@collabora.com>
+ <20240313094922.311743-3-julien.massot@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 08/25] ASoC: dt-bindings: meson: g12a-toacodec: add
- support for A1 SoC family
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Neil Armstrong
-	<neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, Michael
- Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Liam Girdwood
-	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Linus Walleij
-	<linus.walleij@linaro.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
-	<tiwai@suse.com>, <linux-amlogic@lists.infradead.org>,
-	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<alsa-devel@alsa-project.org>, <linux-sound@vger.kernel.org>,
-	<linux-gpio@vger.kernel.org>
-CC: <kernel@salutedevices.com>
-References: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
- <20240314232201.2102178-9-jan.dakinevich@salutedevices.com>
- <f91ea77c-8170-4ae6-850f-3d5715d83855@linaro.org>
- <5a541ea3-ac4b-4606-9b6a-b103084b30b5@salutedevices.com>
- <83c5f475-6cc5-4084-a54e-1ed7c71735a0@linaro.org>
-From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-In-Reply-To: <83c5f475-6cc5-4084-a54e-1ed7c71735a0@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 183875 [Feb 29 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.3
-X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Tracking_smtp_not_equal_from}, {Tracking_arrow_text}, {Tracking_from_domain_doesnt_match_to}, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/02/29 19:21:00 #23899999
-X-KSMG-AntiVirus-Status: Clean, skipped
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="V1m849K/NnwfOyE3"
+Content-Disposition: inline
+In-Reply-To: <20240313094922.311743-3-julien.massot@collabora.com>
 
 
+--V1m849K/NnwfOyE3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 3/17/24 17:46, Krzysztof Kozlowski wrote:
-> On 17/03/2024 15:29, Jan Dakinevich wrote:
->> I mean the following... This commit adds new defines to
->> meson-g12a-toacodec.h header. These defines are used in the following way:
->>
->> sound-dai = <&toacodec TOACODEC_IN_A>;
->> sound-dai = <&toacodec TOACODEC_CAPTURE_OUT_A>;
->>
->> So, can you make an advise how to call something like "&toacodec" to
->> which I declare new parameters.
-> 
-> &toacodec is phandle but it is not really relevant here. You should
-> explain what these defines are. DAI ids?
-> 
+On Wed, Mar 13, 2024 at 10:49:20AM +0100, Julien Massot wrote:
+> Add DT bindings for Maxim MAX96714 GMSL2 Deserializer.
+>=20
+> Signed-off-by: Julien Massot <julien.massot@collabora.com>
+> ---
+> Change since v4:
+>  - Add compatible for MAX96714 and use it as a fallback for MAX96714F
+>  - Remove extra '|' for decriptions
+>  - Reference 'i2c-gate' instead of 'i2c-controller'
+>=20
+> Change since v3:
+>  - Renamed file to maxim,max96714.yaml dropped the 'f' suffix
+>  - Removed mention to C-PHY since it's not supported by MAX96714 deserial=
+izers
+>  - Removed bus-type requirement on CSI endpoint since the device only sup=
+port D-PHY
+>  - Removed the clock-lanes property in the dt example
+>=20
+> Change since v2:
+>  - remove reg description
+>  - rename enable gpio to powerdown
+>  - use generic node name: i2c, serializer, deserializer
+> ---
+>  .../bindings/media/i2c/maxim,max96714.yaml    | 176 ++++++++++++++++++
+>  1 file changed, 176 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/maxim,max=
+96714.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max96714.y=
+aml b/Documentation/devicetree/bindings/media/i2c/maxim,max96714.yaml
+> new file mode 100644
+> index 000000000000..59b116092834
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max96714.yaml
+> @@ -0,0 +1,176 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2024 Collabora Ltd.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/maxim,max96714.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Maxim MAX96714 GMSL2 to CSI-2 Deserializer
+> +
+> +maintainers:
+> +  - Julien Massot <julien.massot@collabora.com>
+> +
+> +description:
+> +  The MAX96714 deserializer converts GMSL2 serial inputs into MIPI
+> +  CSI-2 D-PHY formatted output. The device allows the GMSL2 link to
+> +  simultaneously transmit bidirectional control-channel data while forwa=
+rd
+> +  video transmissions are in progress. The MAX96714 can connect to one
+> +  remotely located serializer using industry-standard coax or STP
+> +  interconnects. The device cans operate in pixel or tunnel mode. In pix=
+el mode
+> +  the MAX96714 can select individual video stream, while the tunnel mode=
+ forward all
+> +  the MIPI data received by the serializer.
+> +
+> +  The GMSL2 serial link operates at a fixed rate of 3Gbps or 6Gbps in the
+> +  forward direction and 187.5Mbps in the reverse direction.
+> +  MAX96714F only supports a fixed rate of 3Gbps in the forward direction.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - maxim,max96714
 
-Yes, these are DAI ids. Ok, I'll write it in next version.
+There's only once device here, make it const rather than enum.
 
-> Best regards,
-> Krzysztof
-> 
+> +      - items:
+> +          - enum:
+> +              - maxim,max96714f
+> +          - const: maxim,max96714 # fallback for 'f' variant
 
--- 
-Best regards
-Jan Dakinevich
+Drop the comment btw, it doesn't make sense given you have an enum that
+will allow for more devices and it being a fallback is obvious. That
+said, given what you told me on the last version
+| Yes there are a few differences visible to the software, for example the=
+=20
+| GMSL
+| link rate since MAX96714 support 6 and 3 Gbps, while MAX96714F only=20
+| supports 3Gbps.
+| the registers map is the same, but a few values are not possible with=20
+| the 'f' version.
+I don't think your ordering here is correct. The 96714 should fall back
+to the 96714f, not the opposite that you have here, as the f is the
+version which supports fewer features.
+
+I think this should be:
+
+oneOf:
+  - const: maxim,max96714f
+  - items:
+      - enum:
+          - maxim,max96714
+      - const: maxim,max96714f
+
+Cheers,
+Conor.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  powerdown-gpios:
+> +    maxItems: 1
+> +    description:
+> +      Specifier for the GPIO connected to the PWDNB pin.
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        unevaluatedProperties: false
+> +        description: GMSL Input
+> +        properties:
+> +          endpoint:
+> +            $ref: /schemas/media/video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +            description:
+> +              Endpoint for GMSL2-Link port.
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description: CSI-2 Output port
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: /schemas/media/video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              data-lanes:
+> +                minItems: 1
+> +                maxItems: 4
+> +
+> +              lane-polarities:
+> +                minItems: 1
+> +                maxItems: 5
+> +
+> +              link-frequencies:
+> +                maxItems: 1
+> +
+> +            required:
+> +              - data-lanes
+> +
+> +    required:
+> +      - port@1
+> +
+> +  i2c-gate:
+> +    $ref: /schemas/i2c/i2c-gate.yaml
+> +    unevaluatedProperties: false
+> +    description:
+> +      The MAX96714 will pass through and forward the I2C requests from t=
+he
+> +      incoming I2C bus over the GMSL2 link. Therefore it supports an i2c=
+-gate
+> +      subnode to configure a serializer.
+> +
+> +  port0-poc-supply:
+> +    description: Regulator providing Power over Coax for the GMSL port
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/media/video-interfaces.h>
+> +
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        deserializer@28 {
+> +            compatible =3D "maxim,max96714f", "maxim,max96714";
+> +            reg =3D <0x28>;
+> +            powerdown-gpios =3D <&main_gpio0 37 GPIO_ACTIVE_LOW>;
+> +
+> +            ports {
+> +                #address-cells =3D <1>;
+> +                #size-cells =3D <0>;
+> +                port@0 {
+> +                    reg =3D <0>;
+> +                    max96714_gmsl_in: endpoint {
+> +                        remote-endpoint =3D <&max96917f_gmsl_out>;
+> +                    };
+> +                };
+> +
+> +                port@1 {
+> +                    reg =3D <1>;
+> +                    max96714_csi_out: endpoint {
+> +                        data-lanes =3D <1 2 3 4>;
+> +                        link-frequencies =3D /bits/ 64 <400000000>;
+> +                        remote-endpoint =3D <&csi_in>;
+> +                    };
+> +                };
+> +            };
+> +
+> +            i2c-gate {
+> +                #address-cells =3D <1>;
+> +                #size-cells =3D <0>;
+> +
+> +                serializer@40 {
+> +                    compatible =3D "maxim,max96717f", "maxim,max96717";
+> +                    reg =3D <0x40>;
+> +                    gpio-controller;
+> +                    #gpio-cells =3D <2>;
+> +                    #clock-cells =3D <0>;
+> +
+> +                    ports {
+> +                        #address-cells =3D <1>;
+> +                        #size-cells =3D <0>;
+> +
+> +                        port@0 {
+> +                            reg =3D <0>;
+> +                            max96717f_csi_in: endpoint {
+> +                                bus-type =3D <MEDIA_BUS_TYPE_CSI2_DPHY>;
+> +                                data-lanes =3D <1 2>;
+> +                                lane-polarities =3D <1 0 1>;
+> +                                remote-endpoint =3D <&sensor_out>;
+> +                            };
+> +                        };
+> +
+> +                        port@1 {
+> +                            reg =3D <1>;
+> +                            max96917f_gmsl_out: endpoint {
+> +                                remote-endpoint =3D <&max96714_gmsl_in>;
+> +                            };
+> +                        };
+> +                    };
+> +                };
+> +            };
+> +        };
+> +    };
+> +...
+> --=20
+> 2.44.0
+>=20
+
+--V1m849K/NnwfOyE3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZfcJ1QAKCRB4tDGHoIJi
+0sDBAP9GEUPIFsPY6//epmj9GOulmny5jElBVcYVxjogXV215QD+MwDcMQOYPQfM
+NU6k9TMsTfO8dx/JMAgXdL1rLXJQDw4=
+=HOwF
+-----END PGP SIGNATURE-----
+
+--V1m849K/NnwfOyE3--
 
