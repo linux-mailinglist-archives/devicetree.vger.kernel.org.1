@@ -1,238 +1,151 @@
-Return-Path: <devicetree+bounces-51057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A53A87E113
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 00:26:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62EB087E11D
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 00:40:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A81D51F215D9
-	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 23:26:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92B2728117B
+	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 23:40:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED0CC2135A;
-	Sun, 17 Mar 2024 23:26:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69BB8219ED;
+	Sun, 17 Mar 2024 23:39:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bkbr5BVt"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="d2g4D0qY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E9D5208CA;
-	Sun, 17 Mar 2024 23:26:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C8B31E488;
+	Sun, 17 Mar 2024 23:39:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710717981; cv=none; b=X/NTi3dF3FYfi2uSeCJcANKb0/SOQnhFacxPt7hlkFpG6DzcS9PrKjdRQI/mksOUAc20Vu8rgEHVwa4BtlSvWnrQy1PvolYEwOc8vUCP3UiDZ9hC1C4gCmfTRPh3lPcL3UCVOPDZYH4wWL2kwFBJwslQKnfgGqHnMUlxZs/R7uc=
+	t=1710718795; cv=none; b=ZiR20CvJkrZZhohM817t17Hlzr5PKhM+DxW4biv7PPVGMuIuVVJSeRSEkbxHSYvMjQJ8fS1zxqJpRH6aRwSMSTPHiR+i/+va8uHS3SSRbYTH99x5I96rAwnqG7dFVN5K9YgvjhIntuXbprBBOgEcUfAbW25viGw7pB5eUJgwkLo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710717981; c=relaxed/simple;
-	bh=yJbmtDuAqP/lli7wRxiNr9XN4EGDnOPNt8BBCEgtbtA=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A4Q5s27IDEKbQ9cu6GHbwkQDwdnnp2E7DYPuUimJL8vE65hYUfC1R5WHHope9McxyWXKXt3kyZqHmMX1TcHvg+SfrSmrb1mMpTN/uP+7HyuzDKvPf1zZx+io/bWMvZ/8skuxYvK4qnbwaWVy7ovj5XxeFcjMETo+EfneSDN8UuU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bkbr5BVt; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a466a27d30aso479601666b.1;
-        Sun, 17 Mar 2024 16:26:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710717978; x=1711322778; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=7+6mkHILiQfAFfw53RlDGTHQc/Jh7baPT9IsykWK7bc=;
-        b=Bkbr5BVtJfLbhkU5pBNorwSWYGPuNFi9znWrqQNa9GyopBMkPEpFSeDPJ1eyGdHZvf
-         1lyEn/mkic/dCVIMWNDLXWwBwa6JY/P3KY2mdk3wVard/pyjiX3jP52+pteJrKjvZOlF
-         jim0WkHDnhIQslDuqXulfmAHR+CBHbwv3EuzTndnT1so1gekXe0YDvGPvwbU7yopdOt3
-         083CM/Uclg3cq6tYEY//UBxdT1vjL1SVGDiJm2McJKlUC5S785dxYezRegfuvtayg87V
-         U45l4j28YES8L2aQqvHYR8SP5t0GBd+i+TFQUvi0snbK46HPwBaTtJ2ZgH4LMy4yFhdz
-         gsQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710717978; x=1711322778;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7+6mkHILiQfAFfw53RlDGTHQc/Jh7baPT9IsykWK7bc=;
-        b=qrUEaLij/5e+Z6c4ICCXz+W6ilyT2bFti5Yup7fBJATbJ972zAFcIqiLaruQ9GJkPh
-         oA6IIbXuxdOdk9TdRkdwZq2Ef1urX8bTljuvu0z4e0GrdRDWwanKW577rjJQloWnNh5X
-         zJYvi86r9zNE1Fgk1c242jH8pe4PZLPcSJlYz4675blc2zGGLsWrYOz0oSPCwF40E78f
-         9bGJ+RxV8fABpAKEhBZoy45MGcdr7DBQlLJ5BhwOqFBEiPRZ4a212vcjoOv8h/37c81U
-         b/FlW6dRzZ/fhckbrD+tH/PUdPtOXotXvsKxLsxqIJy+IKUFvI6r6WO3nuzEC1aS44R3
-         x2tg==
-X-Forwarded-Encrypted: i=1; AJvYcCXG9SF7lDUqFOQg25mf+tTQi9wh5fxByegW0TynsCUT1BNkylBKSqR9tMT88h4a1pCgqJw6sdmBMCvdh8nLsgEbY/Cnq8eb0ablSeDdG7X1SOicjeU3kfdpIM0Bmpid/7zURz1qu8hKCv1kiYtHzt+oQj9cpwdX+rXLBavRNIhW0O4AjmIDfFt5t8vYkiMNT555Ks5mGEGr0YQHCw==
-X-Gm-Message-State: AOJu0Yzbaa4ZQfNswcflBN1mg/i4xbIfjDR7X0sKDamIfgh9FaA2Ey2I
-	J/SFZkW1faBm8tWoTvTN/1ICsxmEXAK53QlklisrMSBL4V45Qk95
-X-Google-Smtp-Source: AGHT+IHyDJ6+V3tdElVtInMQ550m0MOes+J8YEpEEg6j7ceeQZvmwyhF5Zm0A4bO+BPTsaryLFJ/Jw==
-X-Received: by 2002:a17:906:ecb2:b0:a46:b028:7dd2 with SMTP id qh18-20020a170906ecb200b00a46b0287dd2mr1869705ejb.48.1710717978225;
-        Sun, 17 Mar 2024 16:26:18 -0700 (PDT)
-Received: from bhlegrsu.conti.de ([2a02:908:2525:6ea0::f845])
-        by smtp.gmail.com with ESMTPSA id p20-20020a1709060dd400b00a46a3e4ef11sm2123968eji.92.2024.03.17.16.26.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 17 Mar 2024 16:26:17 -0700 (PDT)
-From: Wadim Mueller <wafgo01@gmail.com>
-X-Google-Original-From: Wadim Mueller <wadim.mueller@continental.com>
-Date: Mon, 18 Mar 2024 00:26:15 +0100
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Wadim Mueller <wafgo01@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Chester Lin <chester62515@gmail.com>,
-	Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-	Matthias Brugger <mbrugger@suse.com>,
-	NXP S32 Linux Team <s32@nxp.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Andrew Halaney <ahalaney@redhat.com>,
-	Simon Horman <horms@kernel.org>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Johannes Zink <j.zink@pengutronix.de>,
-	Shenwei Wang <shenwei.wang@nxp.com>,
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-	Swee Leong Ching <leong.ching.swee@intel.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com, linux-clk@vger.kernel.org
-Subject: Re: [PATCH 2/3] net: stmmac: Add NXP S32 SoC family support
-Message-ID: <20240317232615.GB22886@bhlegrsu.conti.de>
-References: <20240315222754.22366-1-wafgo01@gmail.com>
- <20240315222754.22366-3-wafgo01@gmail.com>
- <2316e61d-ad7d-46fb-9f55-67964552855a@linaro.org>
+	s=arc-20240116; t=1710718795; c=relaxed/simple;
+	bh=xrdrLONqXUisegUxaeWCoF7p1xx5KhI42epdweRiOW8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=hAqgqqbLtml7S+B7+dLryJ8IE8D2vBzc6rANBvbEwWUhdsnQQ30f6ByjhtfOFuMjWOgvt7qRwen4zshGPc5S1P5quNUgXeaHacdYccximOmGEoqNJC2Hjmgh2Q4qVr4iEkHx2y4tK0O+OZm4GK2unTBuW/FhwsU+8iSvljxwsB4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=sberdevices.ru; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=d2g4D0qY; arc=none smtp.client-ip=45.89.224.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sberdevices.ru
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 7A96D120002;
+	Mon, 18 Mar 2024 02:39:47 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 7A96D120002
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1710718787;
+	bh=bKsdI1eMZNCKrRBjX4TwkOfAmnVx5pDlExnmUyzw5I0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=d2g4D0qYg7zCodKeZgunyPQ2KHFeWySByW3jsDIdDJPoZ45ddkegxgysUiOXg4C4V
+	 dKCzGIMi9BrjxQg67RAkFBWIN4xHn8l6Uzhd1hn2Xqy2zDM7RyVemTuTVMJu1a/ww/
+	 BmlnccNSzsyV3U6K4jD9fCGzBve5aCH7TNmBFhdfYFDj803QgXT743kOJdiMWYg+v5
+	 1itPRU/yii51uY2BbU2auMmX4qV8ZkTEIqANPaliE4gJ1R+RdMRgGOmDib81FFzL0i
+	 ETOVXcFgC+4fVWh/MtRgHAdAfBm8HZtpKBkt5p+NQSWWhxf/tC8zXByk80AicK4rgg
+	 RAAcvadico93g==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Mon, 18 Mar 2024 02:39:47 +0300 (MSK)
+Received: from [172.28.160.49] (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Mon, 18 Mar 2024 02:39:46 +0300
+Message-ID: <7d61700d-bfb5-46c6-bd45-a18aecf06a5b@salutedevices.com>
+Date: Mon, 18 Mar 2024 02:39:03 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2316e61d-ad7d-46fb-9f55-67964552855a@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 11/25] ASoC: dt-bindings: meson: t9015: add support for A1
+ SoC family
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>
+CC: Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet
+	<jbrunet@baylibre.com>, Michael Turquette <mturquette@baylibre.com>, Stephen
+ Boyd <sboyd@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>, Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Liam Girdwood
+	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Linus Walleij
+	<linus.walleij@linaro.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
+	<tiwai@suse.com>, <linux-amlogic@lists.infradead.org>,
+	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<alsa-devel@alsa-project.org>, <linux-sound@vger.kernel.org>,
+	<linux-gpio@vger.kernel.org>, <kernel@salutedevices.com>
+References: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
+ <20240314232201.2102178-12-jan.dakinevich@salutedevices.com>
+ <20240317190316.GA2071139-robh@kernel.org>
+From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+In-Reply-To: <20240317190316.GA2071139-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 183875 [Feb 29 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.3
+X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Tracking_smtp_not_equal_from}, {Tracking_from_domain_doesnt_match_to}, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/02/29 19:21:00 #23899999
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-On Sun, Mar 17, 2024 at 03:53:19PM +0100, Krzysztof Kozlowski wrote:
-> On 15/03/2024 23:27, Wadim Mueller wrote:
-> > Add support for NXP S32 SoC family's GMAC to the stmmac network driver. This driver implementation is based on the patchset originally contributed by Chester Lin [1], which itself draws heavily from NXP's downstream implementation [2]. The patchset was never merged.
-> > 
-> > The S32G2/3 SoCs feature multiple Ethernet interfaces (PFE0, PFE1, PFE2, and GMAC) which can be routed through a SerDes Subsystem, supporting various interfaces such as SGMII and RGMII. However, the current Glue Code lacks support for SerDes routing and pinctrl handling, relying solely on correct settings in U-Boot. Clock settings for this SoC are managed by the ATF Firmware.
-> 
-> 
-> Please run scripts/checkpatch.pl and fix reported warnings. Some
-> warnings can be ignored, but the code here looks like it needs a fix.
-> Feel free to get in touch if the warning is not clear.
-> 
-> Read how commit msg should be wrapped.
-> 
-> Please wrap commit message according to Linux coding style / submission
-> process (neither too early nor over the limit):
-> https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
-> 
-> > 
-> > Changes made compared to [1]:
-> > 
-> >     Rebased onto Linux 6.8-rc7
-> >     Consolidated into a single commit
-> >     Minor adjustments in naming and usage of dev_err()/dev_info()
-> > 
-> > Test Environment:
-> > The driver has been successfully tested on the official S32G-VNP-RDB3 Reference Design Board from NXP, utilizing an S32G3 SoC. The firmware and U-Boot used were from the BSP39 Release. The official BSP39 Ubuntu 22.04 Release was successfully booted. A network stress test using iperf [3] was also executed without issues.
-> > 
-> > [1] https://patchwork.kernel.org/project/netdevbpf/patch/20221031101052.14956-6-clin@suse.com/#25068228
-> > [2] https://github.com/nxp-auto-linux/linux/blob/release/bsp39.0-5.15.129-rt/drivers/net/ethernet/stmicro/stmmac/dwmac-s32cc.c
-> > [3] https://linux.die.net/man/1/iperf
-> > [4] https://github.com/nxp-auto-linux/u-boot
-> > [5] https://github.com/nxp-auto-linux/arm-trusted-firmware
-> > 
-> > Signed-off-by: Wadim Mueller <wafgo01@gmail.com>
-> > ---
-> >  drivers/net/ethernet/stmicro/stmmac/Kconfig   |  12 +
-> >  drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
-> 
-> That's totally unrelated to DTS. Do not mix independent work in one
-> patchset. This targets net-next, not SoC, so please send it as separate
-> patchset when net-next reopens, so after merge window.
->
 
-Let me try to explain why I was thinking that both should be part of the
-same patchset. 
 
-The DTS file patch [1/3] is refering to a NIC for which there is no
-upstream driver (or lets call it better glue code for the real driver) available. 
+On 3/17/24 22:03, Rob Herring wrote:
+> On Fri, Mar 15, 2024 at 02:21:47AM +0300, Jan Dakinevich wrote:
+>> Add "amlogic,t9015-a1" compatible string.
+> 
+> That's obvious from the diff. Perhaps what does 'a1' mean? What the 
+> difference from the existing compatible?
+> 
 
-This patch here is supposed to add support for this driver. So without this part the DT
-node named "gmac0" of [1/3] is not of much use. Thats why I was thinking they
-should be part of one patchset.
+a1 means A1 SoC family. The difference is described in next commit where
+this compatible string is added to driver. Should I duplicate here the
+explanation from that commit?
 
-But your statement also totally makes sense to me.
+>>
+>> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+>> ---
+>>  Documentation/devicetree/bindings/sound/amlogic,t9015.yaml | 4 +++-
+>>  1 file changed, 3 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml b/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml
+>> index 5f5cccdbeb34..ee8bd57dbcf9 100644
+>> --- a/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml
+>> +++ b/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml
+>> @@ -21,7 +21,9 @@ properties:
+>>  
+>>    compatible:
+>>      items:
+>> -      - const: amlogic,t9015
+>> +      - enum:
+>> +          - amlogic,t9015
+>> +          - amlogic,t9015-a1
+>>  
+>>    clocks:
+>>      items:
+>> -- 
+>> 2.34.1
+>>
 
-Thanks for the feedback!
-
-> >  drivers/net/ethernet/stmicro/stmmac/common.h  |   3 +
-> >  .../net/ethernet/stmicro/stmmac/dwmac-s32.c   | 313 ++++++++++++++++++
-> >  .../net/ethernet/stmicro/stmmac/dwmac4_dma.c  |   9 +
-> >  .../net/ethernet/stmicro/stmmac/dwmac4_dma.h  |   3 +
-> >  drivers/net/ethernet/stmicro/stmmac/hwif.h    |   5 +
-> >  .../net/ethernet/stmicro/stmmac/stmmac_main.c |   7 +
-> >  include/linux/stmmac.h                        |   9 +
-> >  9 files changed, 362 insertions(+)
-> >  create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
-> > 
-> > diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> > index 85dcda51df05..1cdf2da0251c 100644
-> > --- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> > +++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> > @@ -142,6 +142,18 @@ config DWMAC_ROCKCHIP
-> >  	  This selects the Rockchip RK3288 SoC glue layer support for
-> >  	  the stmmac device drive
-> 
-> 
-> ...
-> 
-> > +
-> > +	plat_dat->safety_feat_cfg->tsoee = 1;
-> > +	plat_dat->safety_feat_cfg->mrxpee = 1;
-> > +	plat_dat->safety_feat_cfg->mestee = 1;
-> > +	plat_dat->safety_feat_cfg->mrxee = 1;
-> > +	plat_dat->safety_feat_cfg->mtxee = 1;
-> > +	plat_dat->safety_feat_cfg->epsi = 1;
-> > +	plat_dat->safety_feat_cfg->edpp = 1;
-> > +	plat_dat->safety_feat_cfg->prtyen = 1;
-> > +	plat_dat->safety_feat_cfg->tmouten = 1;
-> > +
-> > +	ret = stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
-> > +	if (ret)
-> > +		goto err_gmac_exit;
-> > +
-> > +	return 0;
-> > +
-> > +err_gmac_exit:
-> > +	s32_gmac_exit(pdev, plat_dat->bsp_priv);
-> > +	return ret;
-> > +}
-> > +
-> > +static const struct of_device_id s32_dwmac_match[] = {
-> > +	{ .compatible = "nxp,s32-dwmac" },
-> 
-> 
-> Missing bindings.
-> 
-> Please run scripts/checkpatch.pl and fix reported warnings. Some
-> warnings can be ignored, but the code here looks like it needs a fix.
-> Feel free to get in touch if the warning is not clear.
-> 
-> > +	{}
-> > +};
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+-- 
+Best regards
+Jan Dakinevich
 
