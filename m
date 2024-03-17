@@ -1,155 +1,87 @@
-Return-Path: <devicetree+bounces-50983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50984-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E694487DE27
-	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 16:56:51 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 852D187DE2F
+	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 16:57:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 109751F210B9
-	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 15:56:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9803CB211C8
+	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 15:57:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DDAD1CA96;
-	Sun, 17 Mar 2024 15:56:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AC131CA89;
+	Sun, 17 Mar 2024 15:57:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="Zn4i5CUG"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="ECof+i1S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0438D1C68F;
-	Sun, 17 Mar 2024 15:56:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E9391C68F
+	for <devicetree@vger.kernel.org>; Sun, 17 Mar 2024 15:57:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710691006; cv=none; b=tijDRold05HFw2+wUwCiNXM2xzqu3+pzOABoTweebDs7XlLDZrXXIe0C7w7TlQHxbq+SRphfzAbCFt4HF97VHX1ERIUpEyr+W4O6opj2HkULqCg55ffX48rccSW48wLuqstv1DiwzIhlovZc7Wh5LOXd5N5JFjamUUVwfh9TIx8=
+	t=1710691072; cv=none; b=pRLXxGhktA5pr0Dpyd6ruQ5mmFca/sUPlaBa0uW/rkFN4M8ivAz+Jj3rEIs4AwhFAX/E/eQ5zf5r/Z+YpJJyOSENTNgkflbaAovmZn56ljvntA1Bz01Tepj652SOCK1QwVITaZA1NNc+c18D8kMB7dwx/Gnq4udIbiab9tk8T7E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710691006; c=relaxed/simple;
-	bh=LOpDTryQU9TB276fSdpuc7hzwIz6lRjRgZpEEbygp3A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=RCIhiT20W4MyJd4XQ+hBLnq2GSpkdJr4UwYdE2y6C4BNysJzopJorjavJuQqJYUzpDchcDW9radxR+fm1Z/j7WWSaMKodTFmLqtn2JNCCKstTtt1C1AN0obTqPCOim+eT7MEENYp6uyIZd3n2MhJr8qe8L3OVTOzP5B0XqpCkCs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=sberdevices.ru; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=Zn4i5CUG; arc=none smtp.client-ip=37.18.73.165
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sberdevices.ru
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id DF8FA100004;
-	Sun, 17 Mar 2024 18:56:40 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru DF8FA100004
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1710691000;
-	bh=Cfmvtd8+RWjDHdplGc7y/19DFlRbIEeWUqLQYoQINEc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-	b=Zn4i5CUG1rPcaaBktZp5q4tiGyqYkTpX9uyN9C9GryTrFOVtH+MG1VhRCoV+rEOEs
-	 fAg+L62GHJ977FjWkckAtdno5kHjtFyisRNEuYQPFdjwon/kdkrBKmsKlth+3NNUN/
-	 MRV89kKCp3EtotqGmP98txRu/b12yEjgZX7ZVq3hNx28eHWiRF/AyQqd+a2dETp9NP
-	 IKdwbVCZGRtzgXQvm9Phx5fHovnL2QBjoblSNtuKMvyneuR77JOvhgysMrQHBV+Orb
-	 y5GVgzZPqE9IeS/sVC+9E1aw2jlfaB8pHxfuTdGtU81C/7WHpIp+jY86YpImq9xgx3
-	 sZHQAgm4ifuPQ==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Sun, 17 Mar 2024 18:56:40 +0300 (MSK)
-Received: from [172.28.160.49] (100.64.160.123) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Sun, 17 Mar 2024 18:56:40 +0300
-Message-ID: <827c4f17-043e-4e09-aea6-0fee22d1b234@salutedevices.com>
-Date: Sun, 17 Mar 2024 18:55:57 +0300
+	s=arc-20240116; t=1710691072; c=relaxed/simple;
+	bh=25i5J1kFlZfTTly5Ul2J+vToXqh5dRGaBYCuadqfxts=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=EaWBxWxOlWmc6MRcnylIGKSEWOFUouASPL50aBnMf+1+cn6obgW87nWFDyjXj92qIqI6J9fuc850R8Msj9QPnp6vMXRsH5n/jHrJiD4yYRlxY1HQgbC/RTnyBhH44ounaw2ZkDNsiFMOYg3jBnrAE5Uw0OPJOrb2aKQaGnRU+a4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=ECof+i1S; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0A8D1D01;
+	Sun, 17 Mar 2024 16:57:22 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1710691043;
+	bh=25i5J1kFlZfTTly5Ul2J+vToXqh5dRGaBYCuadqfxts=;
+	h=From:To:Cc:Subject:Date:From;
+	b=ECof+i1SV7j9dDYv3YPTZhiOsBLLbtOKxV/LUlbxFhzMxB6ArZox9moy29j0uv+Fa
+	 ZC+oaUHSN9WyFNSFr5LcaW2p4MtP3u7EIcyMwxIv4WmJRzn2RCx8rvDWlm6zWhxLLD
+	 QeZ3ZhignCmuO0IT/grqOUK2KUE+zJPHeutHIMFo=
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: [PATCH 0/2] drm/panel: Add Startek KD050HDFIA020-C020A support
+Date: Sun, 17 Mar 2024 17:57:44 +0200
+Message-ID: <20240317155746.23034-1-laurent.pinchart@ideasonboard.com>
+X-Mailer: git-send-email 2.43.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 13/25] ASoC: dt-bindings: meson: axg-pdm: document
- 'sysrate' property
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Neil Armstrong
-	<neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, Michael
- Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Liam Girdwood
-	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Linus Walleij
-	<linus.walleij@linaro.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
-	<tiwai@suse.com>, <linux-amlogic@lists.infradead.org>,
-	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<alsa-devel@alsa-project.org>, <linux-sound@vger.kernel.org>,
-	<linux-gpio@vger.kernel.org>
-CC: <kernel@salutedevices.com>
-References: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
- <20240314232201.2102178-14-jan.dakinevich@salutedevices.com>
- <ca80caab-2664-4797-a222-e14537eea440@linaro.org>
-From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-In-Reply-To: <ca80caab-2664-4797-a222-e14537eea440@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 183875 [Feb 29 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.3
-X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Tracking_smtp_not_equal_from}, {Tracking_from_domain_doesnt_match_to}, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/02/29 19:21:00 #23899999
-X-KSMG-AntiVirus-Status: Clean, skipped
+Content-Transfer-Encoding: 8bit
 
+Hello,
 
+This small series adds support for the Startek KD050HDFIA020-C020A panel
+to the ilitek-ili9881c driver. There's not much special here, patch 1/2
+addresses the DT binding and patch 2/2 the driver. Please see individual
+patches for details.
 
-On 3/15/24 13:00, Krzysztof Kozlowski wrote:
-> On 15/03/2024 00:21, Jan Dakinevich wrote:
->> This option allow to redefine the rate of DSP system clock.
-> 
-> And why is it suitable for bindings? Describe the hardware, not what you
-> want to do in the driver.
-> 
+The series has been tested witha Compulab SB-UCM-iMX8MPLUS carrier
+board.
 
-What do you mean? I am adding some new property and should describe it
-in dt-bindinds. Isn't it?
+Laurent Pinchart (2):
+  dt-bindings: ili9881c: Add Startek KD050HDFIA020-C020A support
+  drm/panel: ilitek-ili9881c: Add Startek KD050HDFIA020-C020A support
 
->>
->> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
->> ---
->>  Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml | 4 ++++
->>  1 file changed, 4 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml b/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml
->> index df21dd72fc65..d2f23a59a6b6 100644
->> --- a/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml
->> +++ b/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml
->> @@ -40,6 +40,10 @@ properties:
->>    resets:
->>      maxItems: 1
->>  
->> +  sysrate:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description: redefine rate of DSP system clock
-> 
-> No vendor prefix, so is it a generic property? Also, missing unit
-> suffix, but more importantly I don't understand why this is a property
-> of hardware.
-> 
-
-Answered in next message.
-
-> Best regards,
-> Krzysztof
-> 
+ .../display/panel/ilitek,ili9881c.yaml        |   1 +
+ drivers/gpu/drm/panel/panel-ilitek-ili9881c.c | 222 ++++++++++++++++++
+ 2 files changed, 223 insertions(+)
 
 -- 
-Best regards
-Jan Dakinevich
+Regards,
+
+Laurent Pinchart
+
 
