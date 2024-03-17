@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-50976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B48F87DDEE
-	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 16:27:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C791987DDF4
+	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 16:29:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8069B1F21292
-	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 15:27:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1EB8228178E
+	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 15:29:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AEFE1C6B2;
-	Sun, 17 Mar 2024 15:27:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2A331C6B9;
+	Sun, 17 Mar 2024 15:29:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rzdmrdE8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aGCEqa+M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE28E1C6A1
-	for <devicetree@vger.kernel.org>; Sun, 17 Mar 2024 15:26:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0B9D1C6A4
+	for <devicetree@vger.kernel.org>; Sun, 17 Mar 2024 15:29:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710689221; cv=none; b=XlL9iFvvA8gohSn2tqXZpLgQ4ZTjA8H/UxjYfS6qADqOwjYJPFZpITLDLb8RQcbXvxTHdTviBhpVoFsOKu38JFe1tNKLVljrN9KSbw2WQFVJt79ICB1SfUiHWlfHOdtNP1x4p4D0odbOvmLb+Ay9vPIFivhze6OUyUozPt0JkQY=
+	t=1710689380; cv=none; b=RqZvlnPBtTWVaQIMjk9CngkPa4G91UA6sr8LY0R5cKrYVb8tzXCjFEg1ZrdHmVw/gYqzxQLbxvCbf3ntCZpU6DYRKlzbR7qe2dWDHCKd7P1jTTy6VyHhf4DiYzLVbDNdo7oSKADC5B1SUsPpQdkC0Nkt5Akz+S80owIaFQyD0Zg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710689221; c=relaxed/simple;
-	bh=xjlalaPHr7PCM/uCvvlBxJnzyT7VMSZjEnPEIkSNxVU=;
+	s=arc-20240116; t=1710689380; c=relaxed/simple;
+	bh=Phu7nPTCfTt91JBs+SuYy6aiueQt1WUZjJAWb+jpCaI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Db0ZhRTKSrN3i1J6TrrNbRip8VThAF9sUleFJWAG0iFhL+Qn1qrqcteB67bfEFafXorSKm59T9igsrnahq/P8iSvx97JkruDn5oqv5tRu4+QvUKAaPBBFoXbbWVyxs/VSV3ww7qbPtR8Fr1+wlMjKjASK+ykJg+v5cmXXnOV5sg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rzdmrdE8; arc=none smtp.client-ip=209.85.208.42
+	 In-Reply-To:Content-Type; b=DygoicqakVGT4zjhOzy5I9RqKHmVzaSrdDmQg2+3E+5ulb7Rj2hQJ/oWOSqP/ZqxAnoTrArOC9umk0+VqJh0UJ22CjjpcVYovi6VwbqpZyLPB7414rXx73eUtz8sfs9S+KaJocvnxwjCEL9J5EfW7tc6bd+AMQjWWn977qfECkI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aGCEqa+M; arc=none smtp.client-ip=209.85.167.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-568107a9ff2so4156192a12.3
-        for <devicetree@vger.kernel.org>; Sun, 17 Mar 2024 08:26:59 -0700 (PDT)
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-513e134f73aso789667e87.2
+        for <devicetree@vger.kernel.org>; Sun, 17 Mar 2024 08:29:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710689218; x=1711294018; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1710689377; x=1711294177; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Y1GydW8fho2xm28D1MjHoIdz14a0vow/iDN2ooGgdYY=;
-        b=rzdmrdE8dI5+vMYBusVRIQKics/o82bjbdj3Wi479f+ntnMI6Lh3bjPOXiJd4/ldVi
-         G0x9kp+ViDHbBCsOK93uXbjuMCKOyD5Yfpo+uI2Io3UZN7k12qJSFBHqVZZ+GWhA1JFa
-         hRwqNCyvH7TI1LObf9t4hOzYT6pvEFcx0zGvyj7nkHh7gPyu8kNXtmkBisTp7cluGE/r
-         +lLVK77SVq5UTYSqUGlmsYcKSdw8dCkx1t/F33mjbZtCEjtSjSlmqkqeev217+t8zRxj
-         iMJ3NQuBv603UvB1dv9lHYUh/QV4VXDGXth/HHNP9UTmcl1oXt/Er4HVDi906NfO3kug
-         qgNw==
+        bh=A8WcCyd8vgz263xa9NPZybhQi9kVqK0YmFh146T5x90=;
+        b=aGCEqa+M2UHDd2t55lOiupRFgfLoDZl5TFNbjYzdz7Z8gN5rO/nUJ7Jo8Kv3eiJPra
+         FWQ2JnoyIVaNCL44z4B/90TE+AGeVe10/0r1LSiu3PUgr02f5ivrIEwCYsnbhuZdAhKt
+         itelHuYDSDeTundLtX2L/X2nQQRdki1dwgn4DJFm5f0bh4CosV1sXPWHb3g/wZRkFT/W
+         PrDdiWErYKDGTbz5uvvifj5aN2I1puNv/XNFiJKl5RZUIr0kX9xci0eWDxHOM4omALhp
+         wk0AJH9ecK5gWTeH1CUe6NWx4LrCZ+qzdyqno07D58uTFiBelp3mUawTKMUIqWuAoSaz
+         uR6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710689218; x=1711294018;
+        d=1e100.net; s=20230601; t=1710689377; x=1711294177;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y1GydW8fho2xm28D1MjHoIdz14a0vow/iDN2ooGgdYY=;
-        b=kX0K3BW4/WycZSHjm1Lf+AzRDuyhxeBl8179e6f04YGB/IYkf2qojrZM+pdY40FpgQ
-         WYgOuWOR2wStruh0xASdPZnCa17ZAAUmu1Z+e78gkrvJ/lBJwwFtmhdhmfGob2t3wjcZ
-         xbhUFpyCCJZPl1NNozO340wCTgfjIAIOSbgN6dJWaoU3hplkboEYixJ2Tp9F2FeIBO4Q
-         eMhCsl3p3RfXrt6NbTeGXR7NbVveSgCDt8fVAeZDkbYb96Z8lLXOu2lMTqXl78MYdGW0
-         MEQ4jst+qqWXghaeEw9BT34r7B1BijJrEnkSiVQ1A8mJPYvIMz0Y7mS4rQACBBHZwA7l
-         dEhw==
-X-Forwarded-Encrypted: i=1; AJvYcCWRFqilRC0XP3qRfFDC/4nplCHb2lXmTejBBQn86pe48gvn9pMcCjrO3uRL6MUQXiyXBdzc1mTMHZqwbjhE5Z08VKNJen9SJWhJ3g==
-X-Gm-Message-State: AOJu0Ywz1iAywANKzzhCsJU2hju0HDM138cYUHQTtjKLL2nmI85Tw61r
-	GbVQuDZc2NQKuWWqHUJm6J63FfcV0XZxo1wfB4cfvvxzywv+mKTQnLPigvqVzlw=
-X-Google-Smtp-Source: AGHT+IFA3/Sm/GC71EC8oPWqKbhJbUqKKvrW+w59Rcn01ddOTCghb/OiDZ1WaQH624MBuDOh2J4ijA==
-X-Received: by 2002:a17:906:1309:b0:a46:acdf:5a20 with SMTP id w9-20020a170906130900b00a46acdf5a20mr1670196ejb.37.1710689218075;
-        Sun, 17 Mar 2024 08:26:58 -0700 (PDT)
+        bh=A8WcCyd8vgz263xa9NPZybhQi9kVqK0YmFh146T5x90=;
+        b=R7AK8TIMJySazeHNtQgqghfJlo/nRIim2wMDEVBswf4S1eW/3FixSNeLSpt+EHKHNd
+         cJF41dmesOJg9dxD76ZtVGlWvZiuDM/2Qdg7SAL07Ovnc1rsn0AE1yJuwTLjQkT8kC0C
+         d+pWviXlkEoM1XfYjACjfg+dYXYO4ZrHYlIHCzkJ8jNLyna+8uHEy6B3t8HVc+B5y+YE
+         bdXYUNMqCwzLR7acHjERO6MoHBzsFCyacgdRcpGEih4LiJyzOMuxDtjR5/kHG4w1Z/Z8
+         CNB2gZzKz6vYTXt6MgHFdp0WEr70rdN6Ubg/3e82zsTZFp1PGiBbd5j9KBAL7iHu8It0
+         fDiQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXkY4A95U1KwH49OnQtowunR4+uBFdSN76gAG/oxshVV/LFBwQCxlerH/bfiCsahfIpSxQMJQEhiJ7eeKOhTdiRic5t5jEaJptLZw==
+X-Gm-Message-State: AOJu0Yzsls5l0lH4TmgtTEAXPTXmzWnFv5/BgWGcpq2rPHQIcyu6WJgG
+	xj9uuJfUOJ7mvipbRqOT3HBn9lt6tb1V67Smq/33yY+s3ptV7kZCBM4Q2N4R2lw=
+X-Google-Smtp-Source: AGHT+IGgfgH03LvKICjbZS2cDme7K6TcagY32JX5GkRBXMsxFk4N9eETQx3WDI3Zqf+qcERZN+nN1w==
+X-Received: by 2002:a05:6512:3a93:b0:513:e7ff:15af with SMTP id q19-20020a0565123a9300b00513e7ff15afmr1090150lfu.64.1710689376859;
+        Sun, 17 Mar 2024 08:29:36 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id ho16-20020a1709070e9000b00a4672fb2a03sm3756177ejc.10.2024.03.17.08.26.56
+        by smtp.gmail.com with ESMTPSA id sd9-20020a170906ce2900b00a4628cacad4sm3859452ejb.195.2024.03.17.08.29.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 17 Mar 2024 08:26:57 -0700 (PDT)
-Message-ID: <60039f49-a20d-49b9-8a3d-2ded499435a4@linaro.org>
-Date: Sun, 17 Mar 2024 16:26:55 +0100
+        Sun, 17 Mar 2024 08:29:36 -0700 (PDT)
+Message-ID: <adefc3ff-86a5-4af7-8276-73d0e0108901@linaro.org>
+Date: Sun, 17 Mar 2024 16:29:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,19 +76,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: clock: samsung,s3c6400-clock: convert to DT
- Schema
+Subject: Re: [PATCH 00/14] mips: dts: ralink: mt7621: improve DTS style
 Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>
-Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-samsung-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20240312185035.720491-1-krzysztof.kozlowski@linaro.org>
- <20240317-curator-smoky-99568f9308bc@spud>
+To: Justin Swartz <justin.swartz@risingedge.co.za>
+Cc: Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+ =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20240316045442.31469-1-justin.swartz@risingedge.co.za>
+ <CAMhs-H9ZO-sitsrASuvsEd+ddwVyHH35gj7yAABTqFNfOCGYYw@mail.gmail.com>
+ <60512ae2-dd73-4cb6-9514-145f946300fc@linaro.org>
+ <5d6c36cb9dd9afda1efb69aa34058517@risingedge.co.za>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -134,37 +139,69 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240317-curator-smoky-99568f9308bc@spud>
+In-Reply-To: <5d6c36cb9dd9afda1efb69aa34058517@risingedge.co.za>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 17/03/2024 16:23, Conor Dooley wrote:
-> On Tue, Mar 12, 2024 at 07:50:35PM +0100, Krzysztof Kozlowski wrote:
->> Convert Samsung S3C6400/S3C6410 SoC clock controller bindings to DT
->> schema.
+On 17/03/2024 16:22, Justin Swartz wrote:
+> On 2024-03-17 17:10, Krzysztof Kozlowski wrote:
+>> On 16/03/2024 16:49, Sergio Paracuellos wrote:
+>>> On Sat, Mar 16, 2024 at 5:54 AM Justin Swartz
+>>> <justin.swartz@risingedge.co.za> wrote:
+>>>>
+>>>> This set of patches was created with the intention of cleaning up
+>>>> arch/mips/boot/dts/ralink/mt7621.dtsi so that it is aligned with
+>>>> the Devicetree Sources (DTS) Coding Style [1] [2] guide.
+>>>>
+>>>> [1] Documentation/devicetree/bindings/dts-coding-style.rst
+>>>>
+>>>> [2] https://docs.kernel.org/devicetree/bindings/dts-coding-style.html
+>>>>
+>>>> Justin Swartz (14):
+>>>>   mips: dts: ralink: mt7621: reorder cpu node attributes
+>>>>   mips: dts: ralink: mt7621: reorder cpuintc node attributes
+>>>>   mips: dts: ralink: mt7621: reorder mmc regulator attributes
+>>>>   mips: dts: ralink: mt7621: reorder sysc node attributes
+>>>>   mips: dts: ralink: mt7621: reorder gpio node attributes
+>>>>   mips: dts: ralink: mt7621: reorder i2c node attributes
+>>>>   mips: dts: ralink: mt7621: reorder spi0 node attributes
+>>>>   mips: dts: ralink: mt7621: move pinctrl and sort its children
+>>>>   mips: dts: ralink: mt7621: reorder mmc node attributes
+>>>>   mips: dts: ralink: mt7621: reorder gic node attributes
+>>>>   mips: dts: ralink: mt7621: reorder ethernet node attributes and 
+>>>> kids
+>>>>   mips: dts: ralink: mt7621: reorder pcie node attributes and 
+>>>> children
+>>>>   mips: dts: ralink: mt7621: reorder pci?_phy attributes
+>>
+>> These are all simple cleanups for the same file. It's one patch, not 
+>> 15.
 > 
->> +description: |
->> +  There are several clocks that are generated outside the SoC. It is expected
->> +  that they are defined using standard clock bindings with following
->> +  clock-output-names:
->> +   - "fin_pll" - PLL input clock (xtal/extclk) - required,
->> +   - "xusbxti" - USB xtal - required,
->> +   - "iiscdclk0" - I2S0 codec clock - optional,
->> +   - "iiscdclk1" - I2S1 codec clock - optional,
->> +   - "iiscdclk2" - I2S2 codec clock - optional,
->> +   - "pcmcdclk0" - PCM0 codec clock - optional,
->> +   - "pcmcdclk1" - PCM1 codec clock - optional, only S3C6410.
+> I agree these are all simple cleanups.
 > 
-> I know you've only transfered this from the text binding, but what is
-> the relevance of this to the binding for this clock controller? This
-> seems to be describing some ?fixed? clocks that must be provided in
-> addition to this controller. I guess there's probably no other suitable
-> place to mention these?
+> Even though the cleanup pattern was the same, or very similar,
+> for each node affected, the intention was to isolate each change
+> to a single node (or a grouping of nodes of that seemed logical
+> to me) so that if anyone had any objections, the discussion would
+> be easier to follow in subthreads identifiable by patch names (and
 
-To make it correct, these should be made clock inputs to the clock
-controller, even if the driver does not take them, however that's
-obsolete platform which might be removed from kernel this or next year,
-so I don't want to spend time on it.
+Objections to what? Coding style? Coding style is defined so you either
+implement it or not... and even if someone disagrees with one line swap,
+why it cannot be done like for every contribution: inline?
+
+Organize your patches how described in submitting patches: one per
+logical change. Logical change is to reorder all properties in one file,
+without functional impact.
+
+> thus subject lines) that clearly indicate the context.
+> 
+> But if there're no objections and it lessens the burden on
+> maintainers upstream to have less patches to apply, then I have no
+> problem combining them into a single patch.
+> 
+
+Yeah, one review response instead of 14 responses... One commit in the
+history instead of 14.
 
 Best regards,
 Krzysztof
