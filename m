@@ -1,131 +1,177 @@
-Return-Path: <devicetree+bounces-50947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E49FA87DD48
-	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 14:30:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54D5787DD60
+	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 15:18:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1514C1C20884
-	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 13:30:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD9801F21184
+	for <lists+devicetree@lfdr.de>; Sun, 17 Mar 2024 14:18:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBDB31BC40;
-	Sun, 17 Mar 2024 13:30:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A32E51BDC4;
+	Sun, 17 Mar 2024 14:18:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TSY4JoHa"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="uv7Lm/X9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 224AE1BC3E;
-	Sun, 17 Mar 2024 13:30:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE4B91BF27;
+	Sun, 17 Mar 2024 14:18:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710682227; cv=none; b=gemsM9FPEJOeIp4WljCmYrr0jMCGh3gYhYCq/95dEGU9v+NDo9wSNeUxqEirDFShugyPr9dt7/PC83CtWwsbN05NvpjVh/qYqTKl/W2jhXOc3GI7ttFdqH89u42TEMhnVY9YlRRNP6EzkOhPcLd9iU2q0qCecfphNCZ5bTmJAhI=
+	t=1710685092; cv=none; b=qRSrAz/v19tiLpNTLCaaDa3nq/uLKnxvqZqzoAQRPeH3g8a5jLgs8aLtKHkqLGz9aO7SKKsBu/DswgPqIZRd6I3LbjsPEoAW91VeSY7R40DjLmF6G7KAt8o66k8+lUzSRPeOtshfNCtNSji8pUkKsczRTmrGH3TFurvmsWwkLvw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710682227; c=relaxed/simple;
-	bh=2gdq8EBgY1LmHd9w6DjX1eMIdhBWiKxla81oO9Irugs=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=FVUZ0tuvC5ph7PuxWvPA9JMGowWw7qDLs4On0dBu+qL+R31fUcPxfWuMUFowFjdNPzMZxEmzDsUOXC5p7QzgMv4Zb6cfGyjVsU7RYnYAJKvbd7ay1HFc5gyJxSSu7wCAu2cxBe8DnbIX6W4ueVw7sTIaCgtmE0vzROBxKTnLKDo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TSY4JoHa; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42HDQ1im023310;
-	Sun, 17 Mar 2024 13:30:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding:content-type; s=qcppdkim1; bh=6bxKWY+
-	uxQwNgwJMAYt+WRedxst3xgEotcSyVl8ra58=; b=TSY4JoHafJGdOgCTUJS8P/C
-	qRfyZj08/uJUYY0hlhKC3eZfldPihINnzYzh0dCR0BiPaMt7ctRplC46pF70x86X
-	9uWKgi3vvEtOo5jlKpdruTguWCJrUy4URhs2VIdqzjJwcn/fpaKpVMDP6xXQrNxN
-	pIIOOn8alCWbV8DPOKy+FcUi5yLB8vXp3iaCP0ziqPvbVe3S8Jfy8uh7lktvYvXN
-	+BR2wQW0Pj8dRpUMFFH4IJEHaAXynmU4bWXe554/TzKSMj4F5sebWpn4HEsOnvCj
-	9HGNjjuQn7Vw0AYS/8uunPqUKxtpAcuJoIkbiKg+u3+x9onb7ycB2zqNGdSnr3Q=
-	=
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wwxtb04u0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 17 Mar 2024 13:30:09 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42HDU8Pe022340
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 17 Mar 2024 13:30:08 GMT
-Received: from hu-rjendra-blr.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+	s=arc-20240116; t=1710685092; c=relaxed/simple;
+	bh=xAVsxMnJoqTUvzQY5QFOBDRP+AQP097SoH7H4Z6KpPk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=OSTOA+nVJx/x1Ks3Z825/odkZ7II9bqpcZPYAeOGA1m0/rTpX+Ut2CfdmZrpC0UsA7jNpDp4ZojueO6yskepSgmKioC0HgdaSYeruFlNxPGzswl/JJYBZ0C4Y/rOIEcPopKtZOqQpu5uTGdNbjztKQmdPyvKOJ2H0Kyvw3Ri2Fs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=sberdevices.ru; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=uv7Lm/X9; arc=none smtp.client-ip=37.18.73.165
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sberdevices.ru
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id EEF53100004;
+	Sun, 17 Mar 2024 17:17:55 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru EEF53100004
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1710685075;
+	bh=SQRSKK7y7FzIxWfxLiQrXC7XGIdk++wvMoC5iAR3Cb4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=uv7Lm/X9X5z1ZUSUWfoS0ttfd/72rpm6SUnpRRaNa24NwI+up88M2sXcGcvi9f9YN
+	 Jig10wMsHnHwV3wanec2UWaKwWicjrcIw9dzuHtmOHhcc7uYxFsB3ysm6RbjCzKe6y
+	 jFKr94t1wofL3qvT2jXHDt0cZ9TG2LvhthtFoXo8mnq8bJQBPmuOH+d043V2q04tZW
+	 98zrHAAMKuh6hEZvYg4S/n02z1WyFyc8uh7Y4DQZO2og/ahv9LdqCGSLBmonIYf9hv
+	 V9kuUDEqBFP9SD9NKttW20YDJR+hHD4daPmB+e6xNuANLo3Bwgo7cs0+9iYR4UQ95k
+	 jIktZ299+OK9Q==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Sun, 17 Mar 2024 17:17:55 +0300 (MSK)
+Received: from [172.28.160.49] (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Sun, 17 Mar 2024 06:30:04 -0700
-From: Rajendra Nayak <quic_rjendra@quicinc.com>
-To: <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <abel.vesa@linaro.org>, <quic_sibis@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>
-Subject: [PATCH v2] arm64: dts: qcom: x1e80100: Fix the compatible for cluster idle states
-Date: Sun, 17 Mar 2024 18:59:18 +0530
-Message-ID: <20240317132918.1068817-1-quic_rjendra@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+ 15.2.1118.40; Sun, 17 Mar 2024 17:17:55 +0300
+Message-ID: <cbfd9c66-cca5-49f5-9468-43710c48518e@salutedevices.com>
+Date: Sun, 17 Mar 2024 17:17:12 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: s34K_ikphXzrQSQftGafd5ZdFJ9pKEHz
-X-Proofpoint-ORIG-GUID: s34K_ikphXzrQSQftGafd5ZdFJ9pKEHz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-17_09,2024-03-15_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
- adultscore=0 lowpriorityscore=0 clxscore=1015 phishscore=0 mlxlogscore=769
- impostorscore=0 bulkscore=0 spamscore=0 suspectscore=0 priorityscore=1501
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2403140001
- definitions=main-2403170106
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 01/25] clk: meson: a1: restrict an amount of 'hifi_pll'
+ params
+Content-Language: en-US
+To: Jerome Brunet <jbrunet@baylibre.com>
+CC: Neil Armstrong <neil.armstrong@linaro.org>, Michael Turquette
+	<mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+	Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>, Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <alsa-devel@alsa-project.org>,
+	<linux-sound@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+	<kernel@salutedevices.com>
+References: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
+ <20240314232201.2102178-2-jan.dakinevich@salutedevices.com>
+ <1j8r2jj24k.fsf@starbuckisacylon.baylibre.com>
+From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+In-Reply-To: <1j8r2jj24k.fsf@starbuckisacylon.baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 183875 [Feb 29 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.3
+X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Tracking_smtp_not_equal_from}, {Tracking_from_domain_doesnt_match_to}, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/02/29 19:21:00 #23899999
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-The compatible's for the cluster/domain idle states of x1e80100
-are wrong, fix it.
 
-Fixes: af16b00578a7 ("arm64: dts: qcom: Add base X1E80100 dtsi and the QCP dts")
-Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
-Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
-v2:
-Updated the subject to include 'qcom: x1e80100'
 
- arch/arm64/boot/dts/qcom/x1e80100.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+On 3/15/24 11:58, Jerome Brunet wrote:
+> 
+> On Fri 15 Mar 2024 at 02:21, Jan Dakinevich <jan.dakinevich@salutedevices.com> wrote:
+> 
+>> Existing values were insufficient to produce accurate clock for audio
+>> devices. New values are safe and most suitable to produce 48000Hz sample
+>> rate.
+> 
+> The hifi pll is not about 48k only. I see no reason to restrict the PLL
+> to a single setting.
+> > You've provided no justification why the PLL driver can't reach the same
+> setting for 48k. The setting below is just the crude part. the fine
+> tuning is done done with the frac parameter so I doubt this provides a
+> more accurate rate.
+> 
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-index 8e517f76189e..6b40082bac68 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-@@ -284,7 +284,7 @@ CLUSTER_C4: cpu-sleep-0 {
- 
- 		domain-idle-states {
- 			CLUSTER_CL4: cluster-sleep-0 {
--				compatible = "arm,idle-state";
-+				compatible = "domain-idle-state";
- 				idle-state-name = "l2-ret";
- 				arm,psci-suspend-param = <0x01000044>;
- 				entry-latency-us = <350>;
-@@ -293,7 +293,7 @@ CLUSTER_CL4: cluster-sleep-0 {
- 			};
- 
- 			CLUSTER_CL5: cluster-sleep-1 {
--				compatible = "arm,idle-state";
-+				compatible = "domain-idle-state";
- 				idle-state-name = "ret-pll-off";
- 				arm,psci-suspend-param = <0x01000054>;
- 				entry-latency-us = <2200>;
+You are right, it is not about 48k only. However, there are two issues.
+
+First, indeed, I could just extend the range of multipliers to 1..255.
+But I am unsure if hifi_pll is able to handle whole range of
+mulptipliers. The value 128 is taken from Amlogic's branch, and I am
+pretty sure that it works.
+
+Second, unfortunately frac parameter currently doesn't work. When frac
+is used enabling of hifi_pll fails in meson_clk_pll_wait_lock(). I see
+it when try to use 44100Hz and multipliers' range is set to 1..255. So,
+support of other rates than 48k requires extra effort.
+
+>>
+>> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+>> ---
+>>  drivers/clk/meson/a1-pll.c | 8 ++++----
+>>  1 file changed, 4 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/clk/meson/a1-pll.c b/drivers/clk/meson/a1-pll.c
+>> index 4325e8a6a3ef..00e06d03445b 100644
+>> --- a/drivers/clk/meson/a1-pll.c
+>> +++ b/drivers/clk/meson/a1-pll.c
+>> @@ -74,9 +74,9 @@ static struct clk_regmap fixed_pll = {
+>>  	},
+>>  };
+>>  
+>> -static const struct pll_mult_range hifi_pll_mult_range = {
+>> -	.min = 32,
+>> -	.max = 64,
+>> +static const struct pll_params_table hifi_pll_params_table[] = {
+>> +	PLL_PARAMS(128, 5),
+>> +	{ },
+>>  };
+>>  
+>>  static const struct reg_sequence hifi_init_regs[] = {
+>> @@ -124,7 +124,7 @@ static struct clk_regmap hifi_pll = {
+>>  			.shift   = 6,
+>>  			.width   = 1,
+>>  		},
+>> -		.range = &hifi_pll_mult_range,
+>> +		.table = hifi_pll_params_table,
+>>  		.init_regs = hifi_init_regs,
+>>  		.init_count = ARRAY_SIZE(hifi_init_regs),
+>>  	},
+> 
+> 
+
 -- 
-2.34.1
-
+Best regards
+Jan Dakinevich
 
