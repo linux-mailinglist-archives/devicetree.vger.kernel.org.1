@@ -1,246 +1,189 @@
-Return-Path: <devicetree+bounces-51221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A051B87E7B2
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 11:52:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEC4187E7C8
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 11:56:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 165E1B2259A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 10:52:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 078CE1C2132E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 10:56:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 813312E652;
-	Mon, 18 Mar 2024 10:52:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 994C42E85B;
+	Mon, 18 Mar 2024 10:56:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="VBm3UaES"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83CE71E527;
-	Mon, 18 Mar 2024 10:51:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B30402E65B
+	for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 10:56:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710759122; cv=none; b=oBqLL9N0xkg5xK3f+V498SQfZ5Z3BFRJQRyI6heUbvHvRS4WpTezEwNZ2ATjFfO4Zv+cbCfnC7B13jdOxkzFZ+09k11lp5X5B1ZZRmX0g9MWoSG3lYVgFageeK+TXVqpQ2rirwPTSDX5GrWxW0Atpadd1JfttfnOvSci1s/M5CA=
+	t=1710759386; cv=none; b=QoT+63vbeuP/sDzDa+cEdeDWC537xjM0xdB1fDvRVpOfydAo9A3Rg7hvk9tely/AwjX/RjPm9INY99OrZIXnxJPybaP0A9i4vnSn34idSkwsq9u+sQOyqUapCsj6ia+lUrleYtyjN9x2ZeozfgNlyCsBe9m28HojkYinuaYPisk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710759122; c=relaxed/simple;
-	bh=/JWCp5q2+nXWg7kGQTCue5qLlqIwKCcMXWzyiqkjiPo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=j31Q9tr8smgGRVIr9LDCke7sg4yy60cBo38u1BvUy3YZCnaFwkhreGcweWslMNsiNKdRO6xvdcasVhdQsEJcBTNyiP5O1Iy/xBRupJRuO/p8rnLKKlSsG/YFR0nG4yqjOQq/+nm9H/fVLerrIwNsK5agH64zAnl87lPz/oEZeeg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6C3F1DA7;
-	Mon, 18 Mar 2024 03:52:33 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 297173F762;
-	Mon, 18 Mar 2024 03:51:56 -0700 (PDT)
-Date: Mon, 18 Mar 2024 10:51:53 +0000
-From: Andre Przywara <andre.przywara@arm.com>
-To: Amit Singh Tomar <amitsinght@marvell.com>
-Cc: Yangtao Li <tiny.windzz@gmail.com>, Viresh Kumar <vireshk@kernel.org>,
- Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, "Rafael J . Wysocki"
- <rafael@kernel.org>, "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-sunxi@lists.linux.dev" <linux-sunxi@lists.linux.dev>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>, Brandon Cheo Fusi
- <fusibrandon13@gmail.com>, Martin Botka <martin.botka@somainline.org>,
- Martin Botka <martin.botka1@gmail.com>
-Subject: Re: [PATCH v2 8/8] arm64: dts: allwinner: h616: enable DVFS for all
- boards
-Message-ID: <20240318105153.2c666647@donnerap.manchester.arm.com>
-In-Reply-To: <MW4PR18MB5084E8C6D673B73FC208190BC62D2@MW4PR18MB5084.namprd18.prod.outlook.com>
-References: <MW4PR18MB5084E8C6D673B73FC208190BC62D2@MW4PR18MB5084.namprd18.prod.outlook.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1710759386; c=relaxed/simple;
+	bh=ktqhDBsasebif64PIWUFmzzdHaGOsLDzz8vPPDymlSQ=;
+	h=References:From:To:Cc:Subject:Date:In-reply-to:Message-ID:
+	 MIME-Version:Content-Type; b=HZSfUBHAnL45PtynQaJpVqiBRbBMgRdQ+oxVUQJ5F3E3Xi07oH+bW4QGLiehoVl5M9TbdkmGPLXdQEqnb2RPx64QEiBUHiH/G9L026Kklj2btETtSVsppf00Lv536AF0aafJDg0Od1ktqBt/JsOScHKEDJ3iphKpP1ZdHGjQp+4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=VBm3UaES; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-513cf9bacf1so5242431e87.0
+        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 03:56:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1710759383; x=1711364183; darn=vger.kernel.org;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=F3i97oXHe0eAhEUjD88GKSO+6DE7eLwPQSdXhNfZFbQ=;
+        b=VBm3UaESKKWDtqxB13mfadCGf6zYds154Uy2mVCfgBykHOzG3/r/bmkb0KV/dsks7S
+         5MCO9IxlTDS74OpXloNO/nsDVtVMiqHRFFuTB1CCPXXko9xIkekIqijDy2Iswiolz3oV
+         fr2DrlSfzQmA71cXmfvMezTY8fB6go2IgecSw+WWiljZ0ndQ3X7qm9RSZuhc3g88rkuH
+         JsxQH537CH8+bHBFZrAwwiXhJvkv+zhlyMH8Z42Ny88iFOlAFhuYx3NH9yXH5dHM+kiZ
+         q77IsGBwQ9iTVHqo64PBbj4H5SSy9AZcFVbHp72jbbQMIRDcfxAdbM9iCk1l1Rea9q49
+         4axA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710759383; x=1711364183;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=F3i97oXHe0eAhEUjD88GKSO+6DE7eLwPQSdXhNfZFbQ=;
+        b=tIUVK6G4dxXohp0y9VVTVqZ4akNweIIu6XBRueB9NPnGOK7R6ZKPFO2teMTRVI/RXu
+         aLDcB87Bki10bFQJPfN20LybuaHz1cZZv/OA0wQMG8rEja025G2mEJXZ0WC7NwIFeOGK
+         IDH6nKLRFmkUOV7W7MOs8PP/HQ4S+8BrfGO+fiEhy3D68h6zpGdRpfn69+gaxThWRDA1
+         wG6sJsRoJnmo1vIUtHCFrgRUAudwAAYP4JOkRBnLEU55i0nKm1BTVX056Tc/KpU9Vv8+
+         YsWc9DbnmRcvYKOrFDLpwCAhDTqa+12vLWS/1XlRm5VwMMYVpBOd5wfbBQvlhwQeLVsH
+         7uTA==
+X-Forwarded-Encrypted: i=1; AJvYcCVqcvIVPZvFsTLxMoAlyW6mQ8ClPlxnIizXfXWDwFSSalVCqyLBbESZM7Oas3+AAHdxFAO7gQrEex683t66dPdKfWgyB0Ca2P8P4Q==
+X-Gm-Message-State: AOJu0YzHyQdMrmGdRRSCpJ4rBoqPzLkxtT/W2N/Hqv6dNfX60l8c+zL9
+	QzHlwS6OvQnwL6wd9N7d0qoqoo/n631l4GoBCJaR32i+Z6Nsz4Ar67lEPwHjzTQ=
+X-Google-Smtp-Source: AGHT+IF2t1NObGaOQ+IPe7s03JmYlEbsyaNF+u7Gb3UFP+mZEEcwim7+2sDBYhdUxYtGEoaRHjxYsg==
+X-Received: by 2002:a19:8c0f:0:b0:513:9da7:3792 with SMTP id o15-20020a198c0f000000b005139da73792mr7100240lfd.19.1710759382830;
+        Mon, 18 Mar 2024 03:56:22 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:e4d5:78c0:18b:ad85])
+        by smtp.gmail.com with ESMTPSA id n18-20020a05600c3b9200b0041407100b3csm7809350wms.30.2024.03.18.03.56.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Mar 2024 03:56:22 -0700 (PDT)
+References: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
+ <20240314232201.2102178-14-jan.dakinevich@salutedevices.com>
+ <ca80caab-2664-4797-a222-e14537eea440@linaro.org>
+ <1jil1nhjwd.fsf@starbuckisacylon.baylibre.com>
+ <6feba9ff-8bbf-4494-93f0-732679bc4032@salutedevices.com>
+User-agent: mu4e 1.10.8; emacs 29.2
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Kevin
+ Hilman <khilman@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
+ linux-sound@vger.kernel.org, linux-gpio@vger.kernel.org,
+ kernel@salutedevices.com
+Subject: Re: [PATCH 13/25] ASoC: dt-bindings: meson: axg-pdm: document
+ 'sysrate' property
+Date: Mon, 18 Mar 2024 11:55:35 +0100
+In-reply-to: <6feba9ff-8bbf-4494-93f0-732679bc4032@salutedevices.com>
+Message-ID: <1j1q87hkq2.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 
-On Mon, 18 Mar 2024 04:39:46 +0000
-Amit Singh Tomar <amitsinght@marvell.com> wrote:
 
-Hi Amit,
+On Sun 17 Mar 2024 at 18:52, Jan Dakinevich <jan.dakinevich@salutedevices.com> wrote:
 
-can you please try to reply using the standard quoted line prefix ('>'),
-and cut the header? I almost missed your question in here.
+> On 3/15/24 13:22, Jerome Brunet wrote:
+>> 
+>> On Fri 15 Mar 2024 at 11:00, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+>> 
+>>> On 15/03/2024 00:21, Jan Dakinevich wrote:
+>>>> This option allow to redefine the rate of DSP system clock.
+>>>
+>>> And why is it suitable for bindings? Describe the hardware, not what you
+>>> want to do in the driver.
+>>>
+>>>>
+>>>> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+>>>> ---
+>>>>  Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml | 4 ++++
+>>>>  1 file changed, 4 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml b/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml
+>>>> index df21dd72fc65..d2f23a59a6b6 100644
+>>>> --- a/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml
+>>>> +++ b/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml
+>>>> @@ -40,6 +40,10 @@ properties:
+>>>>    resets:
+>>>>      maxItems: 1
+>>>>  
+>>>> +  sysrate:
+>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>> +    description: redefine rate of DSP system clock
+>>>
+>>> No vendor prefix, so is it a generic property? Also, missing unit
+>>> suffix, but more importantly I don't understand why this is a property
+>>> of hardware.
+>> 
+>> +1.
+>> 
+>> The appropriate way to set rate of the clock before the driver take over
+>> is 'assigned-rate', if you need to customize this for different
+>> platform.
+>> 
+>
+> It would be great, but it doesn't work. Below, is what I want to see:
+>
+> 	assigned-clocks =
+> 		<&clkc_audio AUD2_CLKID_PDM_SYSCLK_SEL>,
+> 		<&clkc_audio AUD2_CLKID_PDM_SYSCLK_DIV>;
+> 	assigned-clock-parents =
+> 		<&clkc_pll CLKID_FCLK_DIV3>,
+> 		<0>;
+> 	assigned-clock-rates =
+> 		<0>,
+> 		<256000000>;
+>
+> But regardles of this declaration, PDM's driver unconditionally sets
+> sysclk'rate to 250MHz and throws away everything that was configured
+> before, reparents audio2_pdm_sysclk_mux to hifi_pll and changes
+> hifi_pll's rate.
+>
+> This value 250MHz is declared here:
+>
+> static const struct axg_pdm_cfg axg_pdm_config = {
+> 	.filters = &axg_default_filters,
+> 	.sys_rate = 250000000,
+> };
+>
+> The property 'sysrate' is intended to redefine hardcoded 'sys_rate'
+> value in 'axg_pdm_config'.
 
-> Hi,
-> 
-> -----Original Message-----
-> From: linux-arm-kernel <linux-arm-kernel-bounces@lists.infradead.org> On Behalf Of Andre Przywara
-> Sent: Monday, March 18, 2024 6:42 AM
-> To: Yangtao Li <tiny.windzz@gmail.com>; Viresh Kumar <vireshk@kernel.org>; Nishanth Menon <nm@ti.com>; Stephen Boyd <sboyd@kernel.org>; Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley <conor+dt@kernel.org>; Chen-Yu Tsai <wens@csie.org>; Jernej Skrabec <jernej.skrabec@gmail.com>; Samuel Holland <samuel@sholland.org>; Rafael J . Wysocki <rafael@kernel.org>
-> Cc: linux-pm@vger.kernel.org; devicetree@vger.kernel.org; linux-sunxi@lists.linux.dev; linux-arm-kernel@lists.infradead.org; Brandon Cheo Fusi <fusibrandon13@gmail.com>; Martin Botka <martin.botka@somainline.org>; Martin Botka <martin.botka1@gmail.com>
-> Subject: [EXTERNAL] [PATCH v2 8/8] arm64: dts: allwinner: h616: enable DVFS for all boards
-> 
-> 
-> With the DT bindings now describing the format of the CPU OPP tables, we can include the OPP table in each board's .dts file, and specify the CPU power supply.
-> This allows to enable DVFS, and get up to 50% of performance benefit in the highest OPP, or up to 60% power savings in the lowest OPP, compared to the fixed 1GHz @ 1.0V OPP we are running in by default
-> at the moment.
-> [Amit] Could you please elaborate, what test were run to see 50 % performance benefits?
+What is stopping you from removing that from the driver and adding
+assigned-rate to 250M is the existing platform ?
 
-Currently all H616 boards running mainline firmware and kernels run at a
-fixed 1GHz CPU clock frequency. If you happen to have a good SoC (bin 1 or
-3), this patchset will allow you to run at 1.5 GHz, which is 50% faster.
-So anything that scales with CPU frequency should run much quicker.
+>
+>> Then you don't have to deal with it in the device driver.
+>> 
+>>>
+>>> Best regards,
+>>> Krzysztof
+>> 
+>> 
 
-Cheers,
-Andre
 
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> ---
->  .../boot/dts/allwinner/sun50i-h616-bigtreetech-cb1.dtsi      | 5 +++++
->  arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts | 5 +++++
->  arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts       | 5 +++++
->  .../arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts | 5 +++++  arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts | 5 +++++
->  .../boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts     | 5 +++++
->  6 files changed, 30 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1.dtsi
-> index 1fed2b46cfe87..86e58d1ed23ea 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1.dtsi
-> @@ -6,6 +6,7 @@
->  /dts-v1/;
->  
->  #include "sun50i-h616.dtsi"
-> +#include "sun50i-h616-cpu-opp.dtsi"
->  
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> @@ -62,6 +63,10 @@ wifi_pwrseq: wifi-pwrseq {
->  	};
->  };
->  
-> +&cpu0 {
-> +	cpu-supply = <&reg_dcdc2>;
-> +};
-> +
->  &mmc0 {
->  	vmmc-supply = <&reg_dldo1>;
->  	/* Card detection pin is not connected */ diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
-> index b5d713926a341..a360d8567f955 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
-> @@ -6,12 +6,17 @@
->  /dts-v1/;
->  
->  #include "sun50i-h616-orangepi-zero.dtsi"
-> +#include "sun50i-h616-cpu-opp.dtsi"
->  
->  / {
->  	model = "OrangePi Zero2";
->  	compatible = "xunlong,orangepi-zero2", "allwinner,sun50i-h616";  };
->  
-> +&cpu0 {
-> +	cpu-supply = <&reg_dcdca>;
-> +};
-> +
->  &emac0 {
->  	allwinner,rx-delay-ps = <3100>;
->  	allwinner,tx-delay-ps = <700>;
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-> index 959b6fd18483b..26d25b5b59e0f 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-> @@ -6,6 +6,7 @@
->  /dts-v1/;
->  
->  #include "sun50i-h616.dtsi"
-> +#include "sun50i-h616-cpu-opp.dtsi"
->  
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> @@ -32,6 +33,10 @@ reg_vcc5v: vcc5v {
->  	};
->  };
->  
-> +&cpu0 {
-> +	cpu-supply = <&reg_dcdca>;
-> +};
-> +
->  &ehci0 {
->  	status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts
-> index 21ca1977055d9..6a4f0da972330 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts
-> @@ -6,6 +6,7 @@
->  /dts-v1/;
->  
->  #include "sun50i-h616.dtsi"
-> +#include "sun50i-h616-cpu-opp.dtsi"
->  
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> @@ -53,6 +54,10 @@ reg_vcc3v3: vcc3v3 {
->  	};
->  };
->  
-> +&cpu0 {
-> +	cpu-supply = <&reg_dcdc2>;
-> +};
-> +
->  &ehci1 {
->  	status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
-> index b3b1b8692125f..e1cd7572a14ce 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
-> @@ -6,12 +6,17 @@
->  /dts-v1/;
->  
->  #include "sun50i-h616-orangepi-zero.dtsi"
-> +#include "sun50i-h616-cpu-opp.dtsi"
->  
->  / {
->  	model = "OrangePi Zero3";
->  	compatible = "xunlong,orangepi-zero3", "allwinner,sun50i-h618";  };
->  
-> +&cpu0 {
-> +	cpu-supply = <&reg_dcdc2>;
-> +};
-> +
->  &emac0 {
->  	allwinner,tx-delay-ps = <700>;
->  	phy-mode = "rgmii-rxid";
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
-> index 8ea1fd41aebaa..2dd178a164fbe 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
-> @@ -6,6 +6,7 @@
->  /dts-v1/;
->  
->  #include "sun50i-h616.dtsi"
-> +#include "sun50i-h616-cpu-opp.dtsi"
->  
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> @@ -41,6 +42,10 @@ reg_vcc3v3: vcc3v3 {
->  	};
->  };
->  
-> +&cpu0 {
-> +	cpu-supply = <&reg_dcdc2>;
-> +};
-> +
->  &ehci0 {
->  	status = "okay";
->  };
-> --
-> 2.35.8
-> 
-> 
-
+-- 
+Jerome
 
