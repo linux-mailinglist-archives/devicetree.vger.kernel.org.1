@@ -1,147 +1,176 @@
-Return-Path: <devicetree+bounces-51335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51337-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 315BC87EEB5
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 18:23:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 630CF87EEEA
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 18:35:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6212D1C212A0
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 17:23:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E2AF11F2223B
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 17:35:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E279A5646B;
-	Mon, 18 Mar 2024 17:22:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCA0855E7C;
+	Mon, 18 Mar 2024 17:33:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TqI1GgKz"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Kts358Mh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 171C955E7A;
-	Mon, 18 Mar 2024 17:22:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 834C455E67;
+	Mon, 18 Mar 2024 17:33:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710782560; cv=none; b=bWlaKGVfd5Oc0JYF3RsZQJNmHidSA2gWJ3r+q+VY8wLXyB0pURShZNIwDifQwzfOj7FKBCR+ypRT2TnV90B63t7WYmevuu8crZgjzPy/tLFxX4FmAu0U2LbFPwYdxU73B3dEfALwvAN2RGXqNVj3LnEsdENEjLd1Jrszn110x10=
+	t=1710783196; cv=none; b=oXqF5lM1w6B2nJTWBr1FThUV3hH9bGSP6EHmJoM+nlu3r/sdufp4DCbFYsl6s0OPfcuScugR5TuQ9FvYQoFhFs9hXJzUkLD7/BkQReoMtgY3Nm+81ObI7ZUM2Fmyzd3tfQ2wEFinqMXMOEiPzDksnR9K73a66Kt//Q6M1gtxIEs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710782560; c=relaxed/simple;
-	bh=d9QlQ3LmOITKy+7UaQgBMxtlKEfegHfOQNyg6pP5+qQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=AD1pHe9ruTKTULWgs/dDrDRkjhpPwiTg5BEK7ArLscsHuwOSOEApUPuR+XX/YyJ5piU7yhqUyifKB2e+Qpr2FW6DWlyYwkl1j6gWELKvBW0BQ5guB5EE/KjrYhmf2+tzeMHfsZKybw8T7KS0Jz9sNigIRWzVyA/QXat2Vmf7Wxs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TqI1GgKz; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-513d3746950so5590217e87.1;
-        Mon, 18 Mar 2024 10:22:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710782557; x=1711387357; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TVCv5MO0HlKhbS+d3hf8UIAQYrD8eX3xs/eYmEYQzI0=;
-        b=TqI1GgKzTpOgGP5igxK9kP13B8ZsUrT2DMl5FD68kW6+p94TkTv3jKRi4boKU4DFh3
-         s289NQG7pm6VJDcTlO/3ugCmN+F8LP/9UwmRTh7w+BcY/VQ7cNXdTUtyEOXZoqT/5qmj
-         Rk94swGzuPPsix0rYhVCV80iGJ4Kxny0ReFFl9agG7yZn7qjH1VtG+Bv8and2V0XOd0E
-         RF6OjI6sXY2kTx/plI1uad2eVT+HE3Br4pEoRXYr8NFw1tY+4hWlIEOVbFpT2dT92isi
-         Nsyop41T6ftI80FLN9Uc6fLodIlZMGSMnUW7Vp/DlUQuBJxN3OlWeac9O57A9LELtYuq
-         m3OQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710782557; x=1711387357;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TVCv5MO0HlKhbS+d3hf8UIAQYrD8eX3xs/eYmEYQzI0=;
-        b=JDKB7n6jolUgZkb/YruzQ31kJVo0kL5+/WuoDkUxT/cQyZ6jpn9OWf/jguJMckFe3P
-         biHbfRlxKVgcV+4bxzz17kQM9/BrxbbZJy19G/c90pdCEg41MqTY2RpaoaXHmYaFCfed
-         jhBwAROhaxjET4ux7S+qL+n5CILFp8jh1e+nc0Au3KrEIo2k6yMXNDkXzbp5wIq3xbZI
-         aJZDJoKGVfe3JMe1YQ+6XGFJSC/yPitqXK367hhfwJ962toCBbbWY1jfDLB/EUFcMbKH
-         kMWTUcBVb0zTHwyDAxOSDdyvNLWifbjEzy/B30wDyk70SZIqWfc9mYUOl+M5+utSWVXQ
-         HDVg==
-X-Forwarded-Encrypted: i=1; AJvYcCXW4jxtiurjd5fonss9rFB27aANlbizuEDsxCAfb8qcQHgwpe59dFdn3CwkVy1dpfzZZdQouNcR2GxpfomJ2Z6X7rluHCrmoM0mTDA1hSQd9pnw9csJcSEYdxrc+OuiLPgSqdLOPJFjsOQbDLw4oOZdJ/QMjodMq+55c2DpXtMxuMSroNPMsZvJJWy/
-X-Gm-Message-State: AOJu0Yxk0AxMjJLN6owUYMogWHvg5cWZjxzHMobuvziM1HyHj/VH7aG6
-	G4Gpca/30I9xK0jLnhP5JBNNuwfLByo/uwn9iQmvzf+S3R2bnr+e
-X-Google-Smtp-Source: AGHT+IFLZD9aDd6er/E29kcIwyxVtdJbv+F4efOZQg0CdYfzysDvkBTztnDCZ5XsxpnjJfQxIrwuZQ==
-X-Received: by 2002:ac2:498e:0:b0:513:ca99:5908 with SMTP id f14-20020ac2498e000000b00513ca995908mr8625770lfl.26.1710782556915;
-        Mon, 18 Mar 2024 10:22:36 -0700 (PDT)
-Received: from prasmi.home ([2a00:23c8:2500:a01:c23f:76ae:8149:291])
-        by smtp.gmail.com with ESMTPSA id bv30-20020a0560001f1e00b0034180898569sm1140769wrb.72.2024.03.18.10.22.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Mar 2024 10:22:36 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
+	s=arc-20240116; t=1710783196; c=relaxed/simple;
+	bh=1hmrVQaRTbW0zKlfKJKDoA4Vhe70kFEXF9wECjSBBb8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XoEgLhVhOXogJxrCh9bokuXx52kjNg0/mb02qd7Of1TjOVnvjqF9niiy9HMUnnT9qt0yJ/TdstVP4cEbLS1IbsQgJljJZclDBzWqMvq71I9/x/Mjt9C2FnsqEkMtJwPBYvp3hJTAOWKVDKuw3jS2zIbQoVV8x5tqYNw1zxod3aQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Kts358Mh; arc=none smtp.client-ip=198.175.65.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1710783194; x=1742319194;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=1hmrVQaRTbW0zKlfKJKDoA4Vhe70kFEXF9wECjSBBb8=;
+  b=Kts358Mh+MXtpqqwFfiFCEXsd9WHXzr1XBOhfEge+kDRvWVGNyfcHGnm
+   +wbInuOCvElY4m/DGNEq+A6xxC2V63X69e4tTCXPgh8QxB5JdRf/WK50/
+   mjNIe8o3SFBn72ZZROfutDiI/8UCvew95dUgsY7rIdWy+tKM7k4w37gUg
+   V1fsk/Uo2Knfxnum86v/1TVKumNlVEV1OfSRDKwui9YyEpceU+ghbIuZ/
+   sZTLYrXLPgJANg+TTpfHGupWC6UasmElGJ6Mmj7wQ/iBMjyPgsUPPqgZy
+   GJTgPMWH1zoUpUZxB50vFn3no6GQwz7Gy5LS0mQmPgem214BrT+dhW/xo
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11017"; a="5741750"
+X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; 
+   d="scan'208";a="5741750"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Mar 2024 10:33:13 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; 
+   d="scan'208";a="13501548"
+Received: from lkp-server01.sh.intel.com (HELO b21307750695) ([10.239.97.150])
+  by fmviesa007.fm.intel.com with ESMTP; 18 Mar 2024 10:33:09 -0700
+Received: from kbuild by b21307750695 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rmGrC-000H8N-1L;
+	Mon, 18 Mar 2024 17:33:06 +0000
+Date: Tue, 19 Mar 2024 01:32:34 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andy Chiu <andy.chiu@sifive.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Vincent Chen <vincent.chen@sifive.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Conor Dooley <conor.dooley@microchip.com>,
 	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v3 4/4] serial: sh-sci: Add support for RZ/V2H(P) SoC
-Date: Mon, 18 Mar 2024 17:21:02 +0000
-Message-Id: <20240318172102.45549-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240318172102.45549-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20240318172102.45549-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>
+Cc: oe-kbuild-all@lists.linux.dev, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Greentime Hu <greentime.hu@sifive.com>, Guo Ren <guoren@kernel.org>,
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+	Joel Granados <j.granados@samsung.com>
+Subject: Re: [PATCH v3 7/7] riscv: vector: adjust minimum Vector requirement
+ to ZVE32X
+Message-ID: <202403190142.8MfCnioh-lkp@intel.com>
+References: <20240318-zve-detection-v3-7-e12d42107fa8@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240318-zve-detection-v3-7-e12d42107fa8@sifive.com>
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Hi Andy,
 
-Add serial support for RZ/V2H(P) SoC with earlycon.
+kernel test robot noticed the following build errors:
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-v2 - > v3
-- new patch
----
- drivers/tty/serial/sh-sci.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+[auto build test ERROR on 099dbac6e90c620d8ce0bbf75bbdc94da1feb4fb]
 
-diff --git a/drivers/tty/serial/sh-sci.c b/drivers/tty/serial/sh-sci.c
-index a85e7b9a2e49..4a60d77257d6 100644
---- a/drivers/tty/serial/sh-sci.c
-+++ b/drivers/tty/serial/sh-sci.c
-@@ -290,7 +290,7 @@ static const struct sci_port_params sci_port_params[SCIx_NR_REGTYPES] = {
- 	},
- 
- 	/*
--	 * The "SCIFA" that is in RZ/A2, RZ/G2L and RZ/T.
-+	 * The "SCIFA" that is in RZ/A2, RZ/G2L, RZ/T and RZ/V2H.
- 	 * It looks like a normal SCIF with FIFO data, but with a
- 	 * compressed address space. Also, the break out of interrupts
- 	 * are different: ERI/BRI, RXI, TXI, TEI, DRI.
-@@ -3224,6 +3224,10 @@ static const struct of_device_id of_sci_match[] __maybe_unused = {
- 		.compatible = "renesas,scif-r9a07g044",
- 		.data = SCI_OF_DATA(PORT_SCIF, SCIx_RZ_SCIFA_REGTYPE),
- 	},
-+	{
-+		.compatible = "renesas,scif-r9a09g057",
-+		.data = SCI_OF_DATA(PORT_SCIF, SCIx_RZ_SCIFA_REGTYPE),
-+	},
- 	/* Family-specific types */
- 	{
- 		.compatible = "renesas,rcar-gen1-scif",
-@@ -3554,6 +3558,7 @@ OF_EARLYCON_DECLARE(sci, "renesas,sci", sci_early_console_setup);
- OF_EARLYCON_DECLARE(scif, "renesas,scif", scif_early_console_setup);
- OF_EARLYCON_DECLARE(scif, "renesas,scif-r7s9210", rzscifa_early_console_setup);
- OF_EARLYCON_DECLARE(scif, "renesas,scif-r9a07g044", rzscifa_early_console_setup);
-+OF_EARLYCON_DECLARE(scif, "renesas,scif-r9a09g057", rzscifa_early_console_setup);
- OF_EARLYCON_DECLARE(scifa, "renesas,scifa", scifa_early_console_setup);
- OF_EARLYCON_DECLARE(scifb, "renesas,scifb", scifb_early_console_setup);
- OF_EARLYCON_DECLARE(hscif, "renesas,hscif", hscif_early_console_setup);
+url:    https://github.com/intel-lab-lkp/linux/commits/Andy-Chiu/riscv-vector-add-a-comment-when-calling-riscv_setup_vsize/20240318-184348
+base:   099dbac6e90c620d8ce0bbf75bbdc94da1feb4fb
+patch link:    https://lore.kernel.org/r/20240318-zve-detection-v3-7-e12d42107fa8%40sifive.com
+patch subject: [PATCH v3 7/7] riscv: vector: adjust minimum Vector requirement to ZVE32X
+config: riscv-allnoconfig (https://download.01.org/0day-ci/archive/20240319/202403190142.8MfCnioh-lkp@intel.com/config)
+compiler: riscv64-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240319/202403190142.8MfCnioh-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202403190142.8MfCnioh-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   arch/riscv/kernel/process.c: In function 'arch_release_task_struct':
+>> arch/riscv/kernel/process.c:181:24: error: 'ZVE32X' undeclared (first use in this function)
+     181 |         if (has_vector(ZVE32X))
+         |                        ^~~~~~
+   arch/riscv/kernel/process.c:181:24: note: each undeclared identifier is reported only once for each function it appears in
+   arch/riscv/kernel/process.c: In function 'copy_thread':
+   arch/riscv/kernel/process.c:228:24: error: 'ZVE32X' undeclared (first use in this function)
+     228 |         if (has_vector(ZVE32X))
+         |                        ^~~~~~
+--
+   arch/riscv/kernel/signal.c: In function 'restore_sigcontext':
+>> arch/riscv/kernel/signal.c:191:41: error: 'ZVE32X' undeclared (first use in this function)
+     191 |                         if (!has_vector(ZVE32X) || !riscv_v_vstate_query(regs) ||
+         |                                         ^~~~~~
+   arch/riscv/kernel/signal.c:191:41: note: each undeclared identifier is reported only once for each function it appears in
+   arch/riscv/kernel/signal.c: In function 'get_rt_frame_size':
+   arch/riscv/kernel/signal.c:213:24: error: 'ZVE32X' undeclared (first use in this function)
+     213 |         if (has_vector(ZVE32X)) {
+         |                        ^~~~~~
+   arch/riscv/kernel/signal.c: In function 'setup_sigcontext':
+   arch/riscv/kernel/signal.c:286:24: error: 'ZVE32X' undeclared (first use in this function)
+     286 |         if (has_vector(ZVE32X) && riscv_v_vstate_query(regs))
+         |                        ^~~~~~
+--
+   arch/riscv/kernel/sys_hwprobe.c: In function 'hwprobe_isa_ext0':
+>> arch/riscv/kernel/sys_hwprobe.c:72:24: error: 'v' undeclared (first use in this function)
+      72 |         if (has_vector(v))
+         |                        ^
+   arch/riscv/kernel/sys_hwprobe.c:72:24: note: each undeclared identifier is reported only once for each function it appears in
+>> arch/riscv/kernel/sys_hwprobe.c:119:32: error: 'ZVE32X' undeclared (first use in this function)
+     119 |                 if (has_vector(ZVE32X)) {
+         |                                ^~~~~~
+--
+   In file included from kernel/sched/core.c:78:
+   kernel/sched/core.c: In function 'context_switch':
+>> arch/riscv/include/asm/switch_to.h:81:24: error: 'ZVE32X' undeclared (first use in this function)
+      81 |         if (has_vector(ZVE32X))                 \
+         |                        ^~~~~~
+   kernel/sched/core.c:5400:9: note: in expansion of macro 'switch_to'
+    5400 |         switch_to(prev, next, prev);
+         |         ^~~~~~~~~
+   arch/riscv/include/asm/switch_to.h:81:24: note: each undeclared identifier is reported only once for each function it appears in
+      81 |         if (has_vector(ZVE32X))                 \
+         |                        ^~~~~~
+   kernel/sched/core.c:5400:9: note: in expansion of macro 'switch_to'
+    5400 |         switch_to(prev, next, prev);
+         |         ^~~~~~~~~
+
+
+vim +/ZVE32X +181 arch/riscv/kernel/process.c
+
+   177	
+   178	void arch_release_task_struct(struct task_struct *tsk)
+   179	{
+   180		/* Free the vector context of datap. */
+ > 181		if (has_vector(ZVE32X))
+   182			riscv_v_thread_free(tsk);
+   183	}
+   184	
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
