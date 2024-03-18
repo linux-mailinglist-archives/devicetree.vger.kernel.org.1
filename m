@@ -1,52 +1,76 @@
-Return-Path: <devicetree+bounces-51291-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51294-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 787D387EC1F
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 16:27:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DAB287EC2F
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 16:30:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E14C1F21787
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 15:27:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 99E2A1F21771
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 15:30:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CA294F1FA;
-	Mon, 18 Mar 2024 15:27:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EA8D4F200;
+	Mon, 18 Mar 2024 15:30:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b="MyINwp7E"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cLXsB8H4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2EAD1CD3B;
-	Mon, 18 Mar 2024 15:27:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B648B4F1FC
+	for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 15:30:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710775633; cv=none; b=gvRqLfK4eeDEgs01mYycI2UW7wG8ycXzYxGeV1xuDqZAQRN6nQgF6Tc2reIa1hhgdd52I1BcO55jza5V7JoZge3NscV5tUDvxqEybjKXfGNqqDFQGYj6H1E62sFAx3tyzBigUKI7Am/TY7Yk2736m2EecCXyIMwfo0Y3pNaonvM=
+	t=1710775829; cv=none; b=oINuuQL8ZljMF4NpqmLVh7xEeqZsc1F26kbO8cyp/H7W+rQ5l4BTwk2SepOAEWL/GCMxrxxWkw+2O25wk7D2amxIaPdTddH/kQKZLHgSdVUc4+c/zbz0lWsAiQEkW92t9pBcKCReZ6aX7xwSHaJlzQk/WvU6MTE4ARILSPIqNlM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710775633; c=relaxed/simple;
-	bh=fLIQpA93/RWx/LRVsLgeh4566t3sLcfQCF2ZxBgVlv4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PxVe2V6lCWNQz81gF5elX3yyh90yU+2tnK5Layx+Xrf1cltj2dsIJ3KSHEkamPlJwKiKgb2dI3THzkOMaEBDO/OKqnDVpSpw1j/tK/5G/LbEct3MPrvvf4KHN8IFqP42arnYrZ0lBobzfRi9Ne1StbO9Hey07pT2ElW8+XjimV4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com; spf=pass smtp.mailfrom=arinc9.com; dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b=MyINwp7E; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arinc9.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 3ACA2FF80A;
-	Mon, 18 Mar 2024 15:27:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
-	t=1710775628;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Y5AbgyVonlLMB35g+E/KeAJdiy5cyi8OYzUmtkvQfc8=;
-	b=MyINwp7ETbUp2gIk0pEzRSJRoX64jUgNICaW3pa+XutPVCEFxABm6gSZ/TQJqDfM/CG8Cf
-	zdVog4IN2JGgAJmGpOmSe5l2fx+ZAoht1m+cWWvbL3hhqnXJvmwpvRsiO3pyvi2+avoDcj
-	dy17X07nyLTps5p/d4a0TDfI9ADDzABCLTOnoLw81ErsHSFZ2LwzOEBCJmH1y7prFjXaYh
-	+2IuGNSYLC/TeE+d3AjXtQwwHxQIvNN9RDhAMVG6jB/lrzT72uIDCb44daRMJ7+c1giMh/
-	1HkPWK4nU0esHb1AsXi6OybJaAj/RDHceZub/tc2fUGxFnCiNVYRuJF/8PGxbw==
-Message-ID: <7d1ad037-d8ac-4b9a-b6d2-ab683e52a898@arinc9.com>
-Date: Mon, 18 Mar 2024 18:26:48 +0300
+	s=arc-20240116; t=1710775829; c=relaxed/simple;
+	bh=9ttNpHLNHVB5SH+295amwQekMvFSDrUFuqdRogaB4hU=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=FBtx/7WDK7ftUOME+5ISB9szR7yM3JyHp7/gInI0yzAZmvGdcPEhfLEwMCR7IMShICq0PzH3yUmrtMOrLIuI5PD6Fwt9Ptsv2FfRrVC5Z4rcgekKrA4irFxPxbrVNl/segzvUoqgnJ7zz314vb/3/At67tW0hZkdtG6VW90BXnw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cLXsB8H4; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-414006a0115so33510805e9.3
+        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 08:30:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1710775826; x=1711380626; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hvkZMpuU/BxP5fokIc7kS/rTPDyW8R0hs8/rMgw1XDM=;
+        b=cLXsB8H4xIao+yQZ0sbt+6KpiTGehUnVD1XZ2D310ImvBV8sCq9KoNlckKbZkyHJOS
+         jMTFL3EIekzlaq9nHyNg5Q8nGLhmvT4ov/l2t7ZATyoqlXgmv521JNCMR1YGOotVfUp+
+         urHT87XXsrcrcUwhthQM5/bFuuIDELQrv0dkHcLpYylSdZ64uTQ/8Q1rafr53VF/UyXC
+         pXulnsvoT1WUOZsYo5Z5R8fhxefzUzmzxsbdm2BFThCLWs884xEy+b1Z+IwCYMVbTFsV
+         2LYdWzkRK0+N/2seshMDuEVx+2dszn2GwAJxpxhX4qJGw+tLruk/LUt3Dw1xlYBUV+Y0
+         l57g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710775826; x=1711380626;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=hvkZMpuU/BxP5fokIc7kS/rTPDyW8R0hs8/rMgw1XDM=;
+        b=GpQeGrK1vGGkzydkpzFijKKPRJt2gOMJql6rrKTIU7KQGFENmavBYJTRMYSKVBmDrh
+         5tetEOKvy5gQGzZQOHPaHU7tJS+BrmbKVhQ/XGpIeqM81clK8sFpxWXczIS+x2uQ3eFu
+         Qklo0FrRpakZBYAN/e4BgKvPL6++VhxhpYX2rH+dRCqgNtQTmoz9FT3oC1lHhAW3Zec+
+         XtNAfzFiRGpHlBNSmF3QFV/XMahBGoMYdDkZAHwSftorGU1oNn92QFPksIJTS7gxxKZ3
+         +lMiZqATsNrGesZqYWpNBhRIKPaKIwcguopIM/uQmlsY4wO3lECmRcyTu4rFYtLJeJn7
+         ZlXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVN3UTQCfQxQnDjnnbpgG+RG4mejubSQoxIV1ZgVb69zb4glitv0QqUAUQzE4Kg6RBIhMcx6MNy5r1RE4eJJ5z6eTweiw7BeWlKLQ==
+X-Gm-Message-State: AOJu0Ywz96ZHN66kXVdKxtH7eTIYj34JWhiqCk3nP9HixKyJ5tuCplq1
+	2BAMiRXvNi6H5OONP8tzo1ga6MnP4qeL65vFaysG6ai0c8ZN7pOUXjP5YUeg934=
+X-Google-Smtp-Source: AGHT+IG65Iiy+t7CKXPc9JmLj5cwjFxDw7a7LwVVfZZIKCacwhyyxjQIoSpC43mpT0Ju+4J6mdd9DA==
+X-Received: by 2002:a05:600c:3556:b0:412:beee:36b3 with SMTP id i22-20020a05600c355600b00412beee36b3mr7825440wmq.7.1710775825906;
+        Mon, 18 Mar 2024 08:30:25 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:ad2b:a316:59d9:3dbc? ([2a01:e0a:982:cbb0:ad2b:a316:59d9:3dbc])
+        by smtp.gmail.com with ESMTPSA id t6-20020a05600c450600b004133365bbc6sm18280915wmo.19.2024.03.18.08.30.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Mar 2024 08:30:25 -0700 (PDT)
+Message-ID: <11cecb76-dbbe-417c-824b-85cff556f304@linaro.org>
+Date: Mon, 18 Mar 2024 16:30:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,51 +78,168 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: mediatek: mt7622: set PHY address of
- MT7531 switch to 0x1f
-Content-Language: en-US
-To: Florian Fainelli <f.fainelli@gmail.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: mithat.guner@xeront.com, erkin.bozoglu@xeront.com,
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: sm8650: add support for the
+ SM8650-HDK board
+Content-Language: en-US, fr
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20240314-for-mediatek-mt7531-phy-address-v1-0-52f58db01acd@arinc9.com>
- <20240314-for-mediatek-mt7531-phy-address-v1-1-52f58db01acd@arinc9.com>
- <94e3d09a-e6a4-4808-bc29-3f494b65e170@gmail.com>
- <62d128f1-11ac-4669-90ff-e9cdd0ec5bd9@arinc9.com>
- <71dd200a-0306-4baa-abab-6e6906aeef2a@gmail.com>
-From: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <71dd200a-0306-4baa-abab-6e6906aeef2a@gmail.com>
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+References: <20240318-topic-sm8650-upstream-hdk-v2-0-b63a5d45a784@linaro.org>
+ <20240318-topic-sm8650-upstream-hdk-v2-2-b63a5d45a784@linaro.org>
+ <aylnxuyqkf2ikotqwqylpvuojiwkkxgnjrjx3d2ocoo6vqngih@bfpkmov5cdg6>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <aylnxuyqkf2ikotqwqylpvuojiwkkxgnjrjx3d2ocoo6vqngih@bfpkmov5cdg6>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Flag: yes
-X-Spam-Level: **************************
-X-GND-Spam-Score: 400
-X-GND-Status: SPAM
-X-GND-Sasl: arinc.unal@arinc9.com
+Content-Transfer-Encoding: 7bit
 
-On 18.03.2024 16:02, Florian Fainelli wrote:
->>> Can we call it a pseudo PHY to use a similar terminology as what is done through drivers/net/dsa/{bcm_sf2,b53}*?
->>>
->>> This is not a real PHY as in it has no actual transceiver/digital signal processing logic, this is a piece of logic that snoops for MDIO transactions at that specific address and lets you access the switch's internal register as if it was a MDIO device.
->>
->> I can get behind calling the switch a psuedo-PHY in the context of MDIO.
->> However, as described on "22.2.4.5.5 PHYAD (PHY Address)" of "22.2.4.5
->> Management frame structure" of the active standard IEEE Std 802.3™‐2022,
->> the field is called "PHY Address". The patch log doesn't give an identifier
->> as to what a switch is in the context of MDIO. Only that it listens on a
->> certain PHY address which the term complies with IEEE Std 802.3™‐2022.
->>
->> So I don't see an improvement to be made on the patch log. Feel free to
->> elaborate further.
+On 18/03/2024 15:43, Bjorn Andersson wrote:
+> On Mon, Mar 18, 2024 at 10:51:54AM +0100, Neil Armstrong wrote:
+> [..]
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
+> [..]
+>> +	vph_pwr: vph-pwr-regulator {
+>> +		compatible = "regulator-fixed";
+>> +
+>> +		regulator-name = "vph_pwr";
+>> +		regulator-min-microvolt = <3700000>;
+>> +		regulator-max-microvolt = <3700000>;
+>> +
+>> +		regulator-always-on;
+>> +		regulator-boot-on;
+>> +	};
+>> +
+>> +	vreg_bob_3v3: regulator-vreg-bob-3v3 {
 > 
-> I would just s/PHY/MDIO bus address/ since that is simply more generic, but if it is not written as-is in the spec, then I won't fight it much more than I already did.
+> It would be nice if these nodes where sorted alphabetically.
 
-I'm not sure what you're referring to by spec. Are you asking how specific
-the name of the PHYAD field is described on the standard?
+damn, ok
 
-Arınç
+> 
+>> +		compatible = "regulator-fixed";
+>> +
+>> +		regulator-name = "VREG_BOB_3P3";
+>> +		regulator-min-microvolt = <3300000>;
+>> +		regulator-max-microvolt = <3300000>;
+>> +
+>> +		vin-supply = <&vph_pwr>;
+>> +	};
+>> +
+>> +	wcd939x: audio-codec {
+>> +		compatible = "qcom,wcd9395-codec", "qcom,wcd9390-codec";
+>> +
+>> +		pinctrl-0 = <&wcd_default>;
+>> +		pinctrl-names = "default";
+>> +
+>> +		qcom,micbias1-microvolt = <1800000>;
+>> +		qcom,micbias2-microvolt = <1800000>;
+>> +		qcom,micbias3-microvolt = <1800000>;
+>> +		qcom,micbias4-microvolt = <1800000>;
+>> +		qcom,mbhc-buttons-vthreshold-microvolt = <75000 150000 237000 500000 500000 500000 500000 500000>;
+>> +		qcom,mbhc-headset-vthreshold-microvolt = <1700000>;
+>> +		qcom,mbhc-headphone-vthreshold-microvolt = <50000>;
+>> +		qcom,rx-device = <&wcd_rx>;
+>> +		qcom,tx-device = <&wcd_tx>;
+>> +
+>> +		reset-gpios = <&tlmm 107 GPIO_ACTIVE_LOW>;
+>> +
+>> +		vdd-buck-supply = <&vreg_l15b_1p8>;
+>> +		vdd-rxtx-supply = <&vreg_l15b_1p8>;
+>> +		vdd-io-supply = <&vreg_l15b_1p8>;
+>> +		vdd-mic-bias-supply = <&vreg_bob1>;
+>> +
+>> +		#sound-dai-cells = <1>;
+>> +	};
+>> +};
+> [..]
+>> +&mdss_mdp {
+>> +	status = "okay";
+> 
+> On other platforms we left status = okay on the mdp child node, as it's
+> pretty rare that you want mdss okay, but mdp disabled...
+
+Sure, but this is quite unrelated to HDK
+
+> 
+>> +};
+>> +
+>> +&pcie0 {
+>> +	wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
+>> +	perst-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
+>> +
+>> +	pinctrl-0 = <&pcie0_default_state>;
+>> +	pinctrl-names = "default";
+>> +
+>> +	status = "okay";
+>> +};
+>> +
+>> +&pcie0_phy {
+>> +	vdda-phy-supply = <&vreg_l1i_0p88>;
+>> +	vdda-pll-supply = <&vreg_l3i_1p2>;
+>> +
+>> +	status = "okay";
+>> +};
+>> +
+>> +&pcie1 {
+>> +	wake-gpios = <&tlmm 99 GPIO_ACTIVE_HIGH>;
+>> +	perst-gpios = <&tlmm 97 GPIO_ACTIVE_LOW>;
+>> +
+>> +	pinctrl-0 = <&pcie1_default_state>;
+>> +	pinctrl-names = "default";
+>> +
+>> +	status = "okay";
+>> +};
+>> +
+>> +&pcie1_phy {
+>> +	vdda-phy-supply = <&vreg_l3e_0p9>;
+>> +	vdda-pll-supply = <&vreg_l3i_1p2>;
+>> +	vdda-qref-supply = <&vreg_l1i_0p88>;
+>> +
+>> +	status = "okay";
+>> +};
+>> +
+>> +&pcie_1_phy_aux_clk {
+>> +	clock-frequency = <1000>;
+> 
+> Is that so?
+
+This is how the pcie_1_phy_aux_clk was documented on SM8550 and SM8650
+and downstream uses the same clock-frequency.
+
+Neil
+> 
+>> +};
+>> +
+> 
+> Regards,
+> Bjorn
+
 
