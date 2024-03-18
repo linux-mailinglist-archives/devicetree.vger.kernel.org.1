@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-51134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A69BE87E45C
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 08:52:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92AF287E45F
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 08:53:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 306F91F2125C
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 07:52:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4BDAA28159F
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 07:53:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDABC23763;
-	Mon, 18 Mar 2024 07:52:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34B3723767;
+	Mon, 18 Mar 2024 07:53:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="J7ibRxRA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qUBu3m4o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 321F52263E
-	for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 07:52:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BCFE2263E
+	for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 07:53:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710748354; cv=none; b=I1yM8r9tHHeP4x+8NN/whnN7IhsU3R44i6GH226snUOBcQ+22/sNj9h2p+hcnJOjWK3YtqxP/PCsV0hV7MeXlYTPkltnZRDauQjMI5HDhRj7u6bUgoMha8MqvnMaCeLyE2iuhKwuuNM2FqHBMeuMSILZ0aMNBHx6FY/pAl76yQM=
+	t=1710748425; cv=none; b=mlvIJhFfLe9lXeZ/nVVXujOuS4YCxw8uEQ6/pCVHpSR+0rgBQq3D5YPP2/IaOjAaU/KZIYOo/CtaCL77jobR4/PVB2XUCdbfxI+n1sYbJSCkwYdmyaTAr1t93JMxSLQMzMXazycRBgwPVyAh9+WDzB2btqgeFC4eUUZY9FQ4S/4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710748354; c=relaxed/simple;
-	bh=zazXv//651U0T29J9fq1XJCUh/RsIfvPuDOTFp3e0KM=;
+	s=arc-20240116; t=1710748425; c=relaxed/simple;
+	bh=4406YlOOoqMJFlmBHKTrEkcegdVQGJqLq1ZyjMiNk1w=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rWYFaSyosvU0L8JIuIBl0uwaK5FangeKm5HSR3d4I6hX8FuXq9khMLUw5EOxyXaax6pwKAVak93jWPi2k/rK0I7axn+Zzhe439H40Myx+8a7hDBe1RBLKPl8vkRmRO8Ulx/BDsVdoCaPUEvZTMETIsmoudV9SVgEk1ebzUEscKw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=J7ibRxRA; arc=none smtp.client-ip=209.85.161.46
+	 In-Reply-To:Content-Type; b=Sk/NcSmST/85/0wmEM5M9Tm37MYAf5pGza8aicxmiIOGZuyapHmWm+cdeF2EJimmgta4R0baF8A4N9ymV/TwC3/huXW2+671UOqWxRDc3JB6Gy37Q5CRbVYU1ElqFhWQgvy+IEtoFj1MdhtGgfZi4P9mE531gg9CDDBhSBRgi78=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qUBu3m4o; arc=none smtp.client-ip=209.85.210.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oo1-f46.google.com with SMTP id 006d021491bc7-5a492093073so946046eaf.0
-        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 00:52:33 -0700 (PDT)
+Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-6e674136ba4so2544939a34.2
+        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 00:53:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710748352; x=1711353152; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1710748423; x=1711353223; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=83R8Uatj6wulmVq12wkZ3nV2dVHPq9qw5PjOyeqFuWE=;
-        b=J7ibRxRAE8RuxFO4tVubat96bpx3j9NvZeTGiubeo1z1zUlw7kSa8AnCzPa2SLVIrW
-         Wgw5wmn1nWLLPrTskoCmsKExTTfd0YcayaMJg0K+cGbV6QsCbEuzoCG7rTeMA+SDz625
-         Y14bw8o5sTPmSqzkHZpt7ClN9x9mBP0GnHdYdBzMiamK0lr5QmfcVAYIp0JfF0Wk3/o1
-         WWioruxBhay6526c1yuMVBO7V3TiyPjFokfTrC9XCN1gpNkkKTXP0TP0xbQvftCpRK2+
-         BWFY7U3ixy/TiKH3dqTWDFB2m6VZyitECaps0QCRethJuN1SyiojN3ckPv1Azo1vXrz9
-         iffg==
+        bh=78xuEZixh6YXZzdYttVQztiMQZq1QaY4/FDiGMTYlh0=;
+        b=qUBu3m4ofdI83Ogzw0Z/Tb2Puj0V/fCmDxLh2H+W7javSYO8SA47wWDbUtwpOxqoHS
+         q83h+TAena1NOfYKY4R1tCUMsnH7K3c6qaWIT2ZJMOKdj4tE/FzkDVhtkUlPeXxJaOmd
+         zhoZVzgK+rVV67LZJw+uA+AppjZu5AC69/mG0To5ouns1HrWSRHr417ldn/FK4uYJvhP
+         AZ5efk/lSIjDGVF1bZq0xPr0UfmSPfGENX446ew8xqe7gYl6r1H0UMJakwQei+Jv46Tg
+         nDvhaEhYM5HijhBTqH8ZRTX/2HZvpvSOVQAtROULQpO622b4mDeZFssgiEX+27lBVaaC
+         QiSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710748352; x=1711353152;
+        d=1e100.net; s=20230601; t=1710748423; x=1711353223;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=83R8Uatj6wulmVq12wkZ3nV2dVHPq9qw5PjOyeqFuWE=;
-        b=OMjvfhw6V4umNs0pJDEtw0pyj8eKWInvwGE2iOlFQwT/RLyZUhoU0ACaMQ1EgOoQ1N
-         5tTbENVgpvKsSNslXclSTe/yYqzL+S9MBi2C1jS01MSXvb/GgNkvFbUCS0z1Xf6RhXOo
-         cydjTg5CPHQCDfeJK9i9Ry/PWcr5oYRbR6xm3qEWufD7YcSj7UX+e+BxFiA4Myoi+DpZ
-         2Z4HURaGtF2tGK7OxIH/EmAvdTlKNTu0g95fLTU4AlJm4y++L4sX/7kiwWMdtSP50jdX
-         FrRku+hm8NX8Ayec79q2rBoLZSIapbeIZIC3C6UECIh+XYj4YkF6EWv4GxcOl1J8KaMH
-         QhcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVzfk4WjVBkmCUO1ihv7+kA6CEtJbqHJ7IHySrj+bH7L7tiioZug65QiRCI6kj0tcWQJpeKG1nhbRKTl/Y88dT+Os3a4Hm+wO2ZiA==
-X-Gm-Message-State: AOJu0Yz1MWHk6Z8gmMlhr+N7yMxfYkNzhE8p2/SOyLcPv7i9TMLfMj0U
-	UjjkkbXBn8thXE7vH+0BphZveV2h/7dPPVmFcHIs0ad4vCVujo79iwg1/Hp0YKA=
-X-Google-Smtp-Source: AGHT+IEKZIbODLoRtVMADPoPw6Avy24Us2j1ETMhuvDnqTaZz1xeROrm1/nBBrjbMVOmsYoqiP2tHg==
-X-Received: by 2002:a05:6820:626:b0:5a1:2b0e:39dc with SMTP id e38-20020a056820062600b005a12b0e39dcmr5754430oow.1.1710748352403;
-        Mon, 18 Mar 2024 00:52:32 -0700 (PDT)
+        bh=78xuEZixh6YXZzdYttVQztiMQZq1QaY4/FDiGMTYlh0=;
+        b=AFS31XNwpPXWyn4leAi9s0sLs5hzAttWQZfOJGJ/PNMvf58L/2/llQ6xjP/CFs73Ye
+         4E9nVBCz3egjKS51TOQgJPvnHqaTuynLD7KgY9QMiQa/6VHQtHaR5LMsPBriOOdNdiF/
+         Qmg4SsBzBVpvKe4jMqYVtFxo3BZQF1BUDthZZL56g/lEPNpDPXVG9PdMbANBzoQvuVuQ
+         2RmEZg3xVX2ju9K9NVqVcc3dzlKRYjSfJOWKd64YOzKzmFxyps0vXJFzZ6zQI7Qen+ZN
+         GPJgwQMtWQTeS0lif+8swQzV7HPF5BMk5JiEa6Ock9zjKsNnY8k+WuRjBio2WqpUHJNQ
+         pauQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXhy2/yO9gVTfb1vVHlFBzekWLTFxOjwSQ4ISDyOC0uw8YcZqmixi2A1YyRmbkMVutmzsz9CBlCaaX/2Dciok5oUrKC8n+AS4rcjw==
+X-Gm-Message-State: AOJu0YyIHkS9km+/CAkZ/d4yQYdf2scVYWgBXyDACaAXoNRyyJ3BdcVT
+	06CMqHBhaiQY18QnTuC1xNdNZuQjlRkUD7IlJOkeiMY5z6OP2hQIRnbGdIR+cHw=
+X-Google-Smtp-Source: AGHT+IFlR1tBiVEjB4y+3B4hs1obhRZhGWXhwDpwagS/kR6y4JaQQyACLJP9Q/Tpq96c3o4Eql7Myw==
+X-Received: by 2002:a4a:754a:0:b0:5a1:262e:c872 with SMTP id g10-20020a4a754a000000b005a1262ec872mr7937887oof.2.1710748422787;
+        Mon, 18 Mar 2024 00:53:42 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id bm8-20020a056820188800b005a4b2172e48sm420608oob.41.2024.03.18.00.52.29
+        by smtp.gmail.com with ESMTPSA id bm8-20020a056820188800b005a4b2172e48sm420608oob.41.2024.03.18.00.53.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Mar 2024 00:52:31 -0700 (PDT)
-Message-ID: <97e4e9e6-76e3-4f26-8482-7641e5169549@linaro.org>
-Date: Mon, 18 Mar 2024 08:52:28 +0100
+        Mon, 18 Mar 2024 00:53:42 -0700 (PDT)
+Message-ID: <3293d565-ceb6-44f1-8a47-d18e9d0083a5@linaro.org>
+Date: Mon, 18 Mar 2024 08:53:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,8 +76,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/8] clk: qcom: lpassaudiocc-sc7280: Fix the regmap
- conflict warning
+Subject: Re: [PATCH v2 4/8] clk: qcom: sc7280: Update the transition delay for
+ GDSC
 Content-Language: en-US
 To: Taniya Das <quic_tdas@quicinc.com>, Stephen Boyd <sboyd@kernel.org>,
  Michael Turquette <mturquette@baylibre.com>,
@@ -88,7 +88,7 @@ To: Taniya Das <quic_tdas@quicinc.com>, Stephen Boyd <sboyd@kernel.org>,
 Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org
 References: <20240318053555.20405-1-quic_tdas@quicinc.com>
- <20240318053555.20405-4-quic_tdas@quicinc.com>
+ <20240318053555.20405-5-quic_tdas@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -134,46 +134,28 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240318053555.20405-4-quic_tdas@quicinc.com>
+In-Reply-To: <20240318053555.20405-5-quic_tdas@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 18/03/2024 06:35, Taniya Das wrote:
-> Update the lpassaudio_cc_reset regmap name and max register details
-> to handle the regmap conflict warning between lpassaudio_cc_reset
-> and lpassaudio_cc.
+> Update the GDSC default values of GDSC transition delay to avoid the
+> issues in the GDSC FSM state.
 
-What conflict? How does this bug affect users? Explain this in commit msg.
+What issues?
 
 > 
-> Fixes: a9dd26639d05 ("clk: qcom: lpass: Add support for LPASS clock controller for SC7280")
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> ---
->  drivers/clk/qcom/lpassaudiocc-sc7280.c | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/drivers/clk/qcom/lpassaudiocc-sc7280.c b/drivers/clk/qcom/lpassaudiocc-sc7280.c
-> index d68139762a80..3f1e756a6e71 100644
-> --- a/drivers/clk/qcom/lpassaudiocc-sc7280.c
-> +++ b/drivers/clk/qcom/lpassaudiocc-sc7280.c
-> @@ -755,6 +755,9 @@ static int lpass_audio_cc_sc7280_probe(struct platform_device *pdev)
->  	int ret;
-> 
->  	if (of_device_is_compatible(pdev->dev.of_node, "qcom,qcm6490-lpassaudiocc")) {
-> +		lpass_audio_cc_sc7280_regmap_config.name = "lpassaudio_cc_reset";
-> +		lpass_audio_cc_sc7280_regmap_config.max_register = 0xc8;
-> +
->  		ret = qcom_cc_probe_by_index(pdev, 1, &lpass_audio_cc_reset_sc7280_desc);
->  		if (ret)
->  			dev_err(&pdev->dev, "Failed to register LPASS AUDIO CC Resets\n");
-> @@ -787,6 +790,9 @@ static int lpass_audio_cc_sc7280_probe(struct platform_device *pdev)
->  		goto exit;
->  	}
-> 
-> +	lpass_audio_cc_sc7280_regmap_config.name = "lpassaudio_cc_reset";
-> +	lpass_audio_cc_sc7280_regmap_config.max_register = 0xc8;
 
-Why do you have it in two places?
+Why none of your so called "fixes" are marked as Cc-stable? If they are
+real fixes, they should be.
+
+> Fixes: fae7617bb142 ("clk: qcom: Add video clock controller driver for SC7280")
+> Fixes: 1daec8cfebc2 ("clk: qcom: camcc: Add camera clock controller driver for SC7280")
+> Fixes: a3cc092196ef ("clk: qcom: Add Global Clock controller (GCC) driver for SC7280")
+> Fixes: 3e0f01d6c7e7 ("clk: qcom: Add graphics clock controller driver for SC7280")
+
+No, don't combine separate fixes into one commit.
+
 
 
 Best regards,
