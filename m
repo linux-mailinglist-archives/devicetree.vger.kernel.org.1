@@ -1,288 +1,135 @@
-Return-Path: <devicetree+bounces-51292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51290-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1C8987EC21
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 16:27:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D619787EC19
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 16:26:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 65E74280F2A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 15:27:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90F36281373
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 15:26:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C74444F88E;
-	Mon, 18 Mar 2024 15:27:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72AD44F200;
+	Mon, 18 Mar 2024 15:26:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="Gj3Eqcni"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="ho4NZNqm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 101404F5E6;
-	Mon, 18 Mar 2024 15:27:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4E284F1F2
+	for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 15:26:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710775637; cv=none; b=QXICkWNPBZi6ZGQgaIeAbCF3E9niYFc68sUuAThC0FiTKHl/7Vvuian0isl0jz++TNJNJz6klIQU8eN1gRuVM4WyxQufSjMkAt4H8hQOwdqlnm2wPbgxma54f1CD9dL98mt+b9n9hVNH3Oi4Hlj1GB1CzhKI8WS8XcxLB6gSryw=
+	t=1710775605; cv=none; b=Rzw+fIukXKlaf2LOA9c8ptwYe8F0TAZpyARhlUMeprn7RWN1yisVzLAWfDjYIY1UHcfcYZ1OW834BTEBNMwsvsfT19x4GPV/RUo3o1QkNNH/u2B59IM3u6K7lnuAWKCgf65IJySt3IjaK+KC6X7nAkmGOfLIpuwxb+WpOEOnrMM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710775637; c=relaxed/simple;
-	bh=8x1tNzzp/u+SI8Kal4XZHseYtX/YOwbSpyoMtF/G+aY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ajMVg9BS/eTUG+Y4u2b6gpX1HTpuaRr3mQpzAqNkiAk2Y7eu6JB2ZAQ3VuMBMarm54TTGY9srK97v8bSvQL0gSShC+iZcjHRUOewbMNE15JRIwNad0yPvR9t2FhSXnFeGIY1DnxfYPFUiIwjvgJ8p+OaWkvNqMhFYev1SbKQxs0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=Gj3Eqcni; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42ICqJaH004853;
-	Mon, 18 Mar 2024 16:26:13 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	selector1; bh=ioXYV7nSmic/A8DNcGqb4yQzdQ+evXpT4y9Sn9JtMKg=; b=Gj
-	3EqcnitK2twB1KBM1r09Eorqna/sz3nqUkM+xf2ukpczWumVnvguCsfvfD3Bf/EB
-	s4slSXOzHeHqK/K/e/iWTYycjpgNPoDZofRqRwFzLWxDAEJMps+pLBrS6gXxiN7Y
-	KG06HC1pIt9oIvMzqJg6ta7RRtI/XcbRHNzWKWuXD4MO799ZR5h6NjPhXoSxeTKc
-	IlMAlyxxos3cyYoJ8Xd+AFnImdpWxfSMoefNxfTlfKuFIOcWBOXMkFNXirqvR9Jk
-	BsfFhy0sARruVC+HTf8/gk/6xn5BJMNo5bclWssahwec2dG9S7X4fL2qxVK0WiA1
-	T/umamlj1mIDODpjKnkg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ww3n2g34y-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 18 Mar 2024 16:25:48 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id AD48940044;
-	Mon, 18 Mar 2024 16:24:07 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 309D62656CF;
-	Mon, 18 Mar 2024 16:23:02 +0100 (CET)
-Received: from [10.201.22.9] (10.201.22.9) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 18 Mar
- 2024 16:23:01 +0100
-Message-ID: <abd6274c-d6c1-41de-b5a7-3ed3a1de162c@foss.st.com>
-Date: Mon, 18 Mar 2024 16:22:59 +0100
+	s=arc-20240116; t=1710775605; c=relaxed/simple;
+	bh=PhWdZeNBOqRnQlySupzqWY3j6i3+Ipt/UkCpMfvZd/U=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XxSewKYbmE21k0Kq8VvGDRTxeUzF4Mr3N3mL0UlgbBY4P6nhTCpplpcS8nF9Z82eZUCfvrjWEsxwyLDo4AjPIK1QvgyI4gKchOJdlcH8xTFGdBFFa2vZ6AjBKeUlt+iI5SohddPr/SAM6ohxq6t65qgfYiTOi2JrTU4UXcy9kXE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=ho4NZNqm; arc=none smtp.client-ip=209.85.160.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-430d3fcc511so195531cf.1
+        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 08:26:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1710775603; x=1711380403; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1Hv/QWr8M8ls7knB1wZCVGtf2AvJWRUgL6rtvFRG9dk=;
+        b=ho4NZNqmCiLQ7HWHlsIjzcX9Rm4CtT9YQXvjax3No5poNUDL7DxYEj3uJoeKgEp4/v
+         viaCB3yR2Yvn5HTvnyG2jD3hT5mSxVMWSlLjDij2cOq3o34GqT1CAPvK8WcqFo9KGKDV
+         lSPDmxWPcYYjYqZF4r6bmExQzO5UTTHyKVFNhegw7SOjWLKge5zKe5rP7MS3Z0r3oRu0
+         JVdHJGjFg5vdkt6W63StUs59IFgJq0+deUbOzBicebrndoD+eyHFuIJE5QFnv/RnFjzd
+         fP26FtT/fVvcliQfLZEDIrNR+ioGVA6UnobnNi4LTf9zpyjmSrrgRJQct69FUTjv13vs
+         nEyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710775603; x=1711380403;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1Hv/QWr8M8ls7knB1wZCVGtf2AvJWRUgL6rtvFRG9dk=;
+        b=HSgpavEKYjxe95SCqCk8pD61GFNU3DAVDyK2zUYGHZ6JSJElMoEX0CKV2miODMAMZM
+         BYJxbkcHbGGSJ5DdVz8sjPgtxnqYXtb0JkHmDVudT8l1uGDsHdnt4zmYT8GTXl5lVeSB
+         wj6zfubbpGajL2upvGrcC9H0/5yQHOfMuVLK+1P+8k6m4uydlZdfqzagh76hZ2ZCzH2I
+         1jPgoX9+UF8FdotjQ9A4YkGIKvRILSnRVbx3sLSk6BQQLfpx1CSZ/LDVkkE7CESCmZnd
+         TrkIzspkcQxhwUk6DoiqbHqEKBHq2EVDBeDHAcdq9yeT9lVcb/MeA9mcOlAdt4JrJp9u
+         Xh1w==
+X-Forwarded-Encrypted: i=1; AJvYcCVVEGUoHi9zQxeMcCvIYLB8Adm1Wy0NknqRd+kwt5pkT0RUkDt28bSHXNT9cbMvVUZHKQEtBKJPmXdorzr+ro4AlPhmc8tqrL9TpQ==
+X-Gm-Message-State: AOJu0YxliCLlINwYWtoGBgXm/z9vOqW58jNlWxMXX8NR1iYWgU+pA1wM
+	GT3D7RcN8C3jVTOC9m1xBWHsDZ3VS6s0mFBYvJVfXkJrb5+RwxrIqpQEfqZKCgNYRLabwgKNJLK
+	I0uw5dvGKOikrX7xB6u+jmCaMEnG6ZXybLm+o
+X-Google-Smtp-Source: AGHT+IElNKMYwCi4pjlGQPSRb/mYiqxHrQTnrkhZuM+F1WRWvuGL2GBfnxd8OlBNdyC8AcvWl00mmRDtzrqltlVm71w=
+X-Received: by 2002:a05:622a:18a8:b0:42e:b6df:819d with SMTP id
+ v40-20020a05622a18a800b0042eb6df819dmr333517qtc.24.1710775602553; Mon, 18 Mar
+ 2024 08:26:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/3] dt-bindings: display: add STM32 LVDS device
-Content-Language: en-US
-To: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
-        David Airlie
-	<airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre
- Torgue <alexandre.torgue@foss.st.com>,
-        Philippe Cornu
-	<philippe.cornu@foss.st.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        Conor
- Dooley <conor.dooley@microchip.com>
-References: <20240226-lvds-v6-0-15e3463fbe70@foss.st.com>
- <20240226-lvds-v6-1-15e3463fbe70@foss.st.com>
-From: Yannick FERTRE <yannick.fertre@foss.st.com>
-In-Reply-To: <20240226-lvds-v6-1-15e3463fbe70@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-18_12,2024-03-18_01,2023-05-22_02
+References: <20240318110855.31954-1-johan+linaro@kernel.org>
+ <20240318110855.31954-2-johan+linaro@kernel.org> <CAA8EJprywWbdoyfAbys=0WzEdAkp0UK1fzzCPzxKRjyk9DrC6Q@mail.gmail.com>
+ <Zfg--2_NMPSPTxK-@hovoldconsulting.com> <20240318144806.GA3963554-robh@kernel.org>
+ <ZfhZffrZXwtKgZ13@hovoldconsulting.com>
+In-Reply-To: <ZfhZffrZXwtKgZ13@hovoldconsulting.com>
+From: Doug Anderson <dianders@google.com>
+Date: Mon, 18 Mar 2024 08:26:26 -0700
+Message-ID: <CAD=FV=UpuD7Lq0DxSZAGpL4Mi2uxy9HNt3V3FZq7Y3p--gbMrg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: bluetooth: add new wcn3991 compatible
+ to fix bd_addr
+To: Johan Hovold <johan@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	Johan Hovold <johan+linaro@kernel.org>, Marcel Holtmann <marcel@holtmann.org>, 
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Johan Hedberg <johan.hedberg@gmail.com>, Matthias Kaehlcke <mka@chromium.org>, 
+	Bjorn Andersson <quic_bjorande@quicinc.com>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	linux-bluetooth@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Raphael,
+Hi,
 
-thanks for the patch.
-Acked-by: Yannick Fertre <yannick.fertre@foss.st.com>
+On Mon, Mar 18, 2024 at 8:10=E2=80=AFAM Johan Hovold <johan@kernel.org> wro=
+te:
+>
+> > > I wanted to avoid doing this, but if we have to support Google's brok=
+en
+> > > boot firmware for these devices, then this is how it needs to be done=
+.
+> >
+> > Don't Chromebooks update everything together. So maybe we don't care in
+> > this case?
+>
+> That was my hope, but Matthias seemed to suggest that we need to
+> continue supporting the current (broken) binding because doing such a
+> coordinated update may be easier said than done:
+>
+>         https://lore.kernel.org/lkml/ZcuQ2qRX0zsLSVRL@google.com/
 
-Best regards
+Chromebooks update kernel and devicetree together, but not firmware.
+Firmware is relatively hard to get updated trying to have kernel and
+firmware updates coordinated at the exact same time has challenges.
+This would further be complicated by the fact that firmware
+qualification for each variant happens on its own timeline.
 
-On 2/26/24 11:48, Raphael Gallais-Pou wrote:
-> Add "st,stm32mp25-lvds" compatible.
->
-> Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
-> Depends on: "dt-bindings: stm32: add clocks and reset binding for
-> 	    stm32mp25 platform" by Gabriel Fernandez
->
-> Changes in v6:
-> 	- Added Conor's Reviewed-by
->
-> Changes in v5:
-> 	- Fixed path in MAINTAINERS
->
-> Changes in v4:
-> 	- Align filename to compatible
-> 	- Fix compatible in the example
-> 	- Remove redundant word in the subject
->
-> Changes in v3:
-> 	- Clarify commit dependency
-> 	- Fix includes in the example
-> 	- Fix YAML
-> 	- Add "clock-cells" description
-> 	- s/regroups/is composed of/
-> 	- Changed compatible to show SoC specificity
->
-> Changes in v2:
-> 	- Switch compatible and clock-cells related areas
-> 	- Remove faulty #include in the example.
-> 	- Add entry in MAINTAINERS
-> ---
->   .../bindings/display/st,stm32mp25-lvds.yaml        | 119 +++++++++++++++++++++
->   MAINTAINERS                                        |   1 +
->   2 files changed, 120 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/display/st,stm32mp25-lvds.yaml b/Documentation/devicetree/bindings/display/st,stm32mp25-lvds.yaml
-> new file mode 100644
-> index 000000000000..6736f93256b5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/st,stm32mp25-lvds.yaml
-> @@ -0,0 +1,119 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/st,stm32mp25-lvds.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: STMicroelectronics STM32 LVDS Display Interface Transmitter
-> +
-> +maintainers:
-> +  - Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-> +  - Yannick Fertre <yannick.fertre@foss.st.com>
-> +
-> +description: |
-> +  The STMicroelectronics STM32 LVDS Display Interface Transmitter handles the
-> +  LVDS protocol: it maps the pixels received from the upstream Pixel-DMA (LTDC)
-> +  onto the LVDS PHY.
-> +
-> +  It is composed of three sub blocks:
-> +    - LVDS host: handles the LVDS protocol (FPD / OpenLDI) and maps its input
-> +      pixels onto the data lanes of the PHY
-> +    - LVDS PHY: parallelize the data and drives the LVDS data lanes
-> +    - LVDS wrapper: handles top-level settings
-> +
-> +  The LVDS controller driver supports the following high-level features:
-> +    - FDP-Link-I and OpenLDI (v0.95) protocols
-> +    - Single-Link or Dual-Link operation
-> +    - Single-Display or Double-Display (with the same content duplicated on both)
-> +    - Flexible Bit-Mapping, including JEIDA and VESA
-> +    - RGB888 or RGB666 output
-> +    - Synchronous design, with one input pixel per clock cycle
-> +
-> +properties:
-> +  compatible:
-> +    const: st,stm32mp25-lvds
-> +
-> +  "#clock-cells":
-> +    const: 0
-> +    description:
-> +      Provides the internal LVDS PHY clock to the framework.
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: APB peripheral clock
-> +      - description: Reference clock for the internal PLL
-> +
-> +  clock-names:
-> +    items:
-> +      - const: pclk
-> +      - const: ref
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          LVDS input port node, connected to the LTDC RGB output port.
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          LVDS output port node, connected to a panel or bridge input port.
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
-> +required:
-> +  - compatible
-> +  - "#clock-cells"
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/st,stm32mp25-rcc.h>
-> +    #include <dt-bindings/reset/st,stm32mp25-rcc.h>
-> +
-> +    lvds: lvds@48060000 {
-> +        compatible = "st,stm32mp25-lvds";
-> +        reg = <0x48060000 0x2000>;
-> +        #clock-cells = <0>;
-> +        clocks = <&rcc CK_BUS_LVDS>, <&rcc CK_KER_LVDSPHY>;
-> +        clock-names = "pclk", "ref";
-> +        resets = <&rcc LVDS_R>;
-> +
-> +        ports {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            port@0 {
-> +                reg = <0>;
-> +                lvds_in: endpoint {
-> +                   remote-endpoint = <&ltdc_ep1_out>;
-> +                };
-> +            };
-> +
-> +            port@1 {
-> +                reg = <1>;
-> +                lvds_out0: endpoint {
-> +                   remote-endpoint = <&lvds_panel_in>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 3527a2ece6cd..ff5c945f206e 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -7240,6 +7240,7 @@ L:	dri-devel@lists.freedesktop.org
->   S:	Maintained
->   T:	git git://anongit.freedesktop.org/drm/drm-misc
->   F:	Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml
-> +F:	Documentation/devicetree/bindings/display/st,stm32mp25-lvds.yaml
->   F:	drivers/gpu/drm/stm
->   
->   DRM DRIVERS FOR TI KEYSTONE
->
+
+> A new compatible string (or one-off property) would allow them do make a
+> change when they are ready (e.g. by only updating the devicetrees after
+> all boot firmware has been patched and pushed out).
+
+I have no real opinion about the exact way this is solved so happy to
+let DT folks decide on how they want this. I will note, however, that
+device trees are never shipped separately and thus we have no
+intrinsic need for DT backward compatbility here. It would be OK from
+a ChromeOS perspective to add a property or compatible string for the
+broken case.
+
+-Doug
 
