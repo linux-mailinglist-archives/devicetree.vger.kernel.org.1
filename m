@@ -1,161 +1,138 @@
-Return-Path: <devicetree+bounces-51280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51281-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3611787EB7C
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 15:57:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A35FF87EB8C
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 16:00:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E411728231A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 14:57:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 423221F219FD
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 15:00:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43CEB4EB39;
-	Mon, 18 Mar 2024 14:57:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="LBWbdg7R"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0095D4EB43;
+	Mon, 18 Mar 2024 15:00:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE3024EB32
-	for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 14:57:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A6E74EB30;
+	Mon, 18 Mar 2024 15:00:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710773833; cv=none; b=JW94bYIwOtGCkchWghoN3cFrM873sqbLSo0/aqlsaLjTogbtuFiU//Mn3M57QxsDtvCKSUDWBZ3kza9mnnWZchTW2nMxjBfBVl+9b+/6pGdLvEquPFEC7yJ+Hfh67fAWtV8pGwtYqu0nRy7z3OK7DHXcEJ6DZLhLEz8auGW9KME=
+	t=1710774033; cv=none; b=cXHwezUdp+qHDJlMwk6wTF1CMTOQOfrWOLaXUndvMQYj0lZWWgnKnqB3jpPsx73Bqkz60Sq4w3Llp0Ar5PNFKS8DAyTi/umV0r1A4MhKw4NZyFJJ/5rPlKLnH2F687i7N8DB/m9SjRaniEFAxuZ4MQyWhrB72hZ3bR79RCz1wBw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710773833; c=relaxed/simple;
-	bh=aqkSeiNbaBa/hffN1QtsyUDdszzapf+0lbAovHQToIA=;
+	s=arc-20240116; t=1710774033; c=relaxed/simple;
+	bh=XDxXBRDjarTtKROiMq/2wlgwNHkBLP7nSY+Gzs5Go28=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fl47Ukh1VfSnm9EFNLIQqzumQxzYRxBxwNvIqz2/NIqZX1n5Nc6AqurYSYV52ODVeuJh5vT9IlHIoQTIV6iI/G3R8K1TUHTGgDydeIvDYaud+UlNdzm2B/r8kf2qRXKALWU5ORpdiHL6CyTN9hF3+QX1S2UT8Lfe4FModwfUQec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=LBWbdg7R; arc=none smtp.client-ip=209.85.219.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raspberrypi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-dc74e33fe1bso3628084276.0
-        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 07:57:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1710773830; x=1711378630; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0GXVk/R89vNIXPbvaLrsF3w7BXuAR03eMrFTrEPGNw4=;
-        b=LBWbdg7RQI0ax3avqpOJU5l+eC7JBR8FWEiNwu1wlXXoP1apf1g1Crx6iiz0vp+NJe
-         yXg+Hq46hADZu8IL538EpclNtP1T+gqr7e6ZmyIsYOky+jMwEa2zJeIl2uxov3HWOgZz
-         zzDNCjO84SgK/gsplpeUM91wsGrK4gHo0GUmaN7CdyYAQBwPmqVGvHrCNvEAA0Q8ci56
-         XGpTEba2Bwbk9tQj/dheHMJpQwfK+oRQnW4xE2hTAYSFEQ9ZuWfizZgUlhLMj3XXvTvW
-         0cwOHiUn0xl6FeZdqSPsiotNJtPg2pJXVoEEuUTW6PpDOI/08lMR8sAxCFoxaN/HrJ1J
-         41DQ==
+	 To:Cc:Content-Type; b=VNmqSHPuKr/7LdhaFXnr4wRG6wttJFM0/ldmVBa04S7ICbEhBjrJllSO6s4IDOmgSIcmqTF8D6XNRpU8+dpHi0bY4uyM+RdjkU8iRBpgqyXohl21mj7FogusmbQ8PdD/cj/DyPIUbtXJViYdDVIXmy4Xk3qvYjEH9nCrPYkQ5Bc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-609ff069a40so52247937b3.1;
+        Mon, 18 Mar 2024 08:00:32 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710773830; x=1711378630;
+        d=1e100.net; s=20230601; t=1710774031; x=1711378831;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0GXVk/R89vNIXPbvaLrsF3w7BXuAR03eMrFTrEPGNw4=;
-        b=uRdE+wYkBiiZ+31aoGUXpCN2rscx/O61jAByVT7s3XVs7nTv5IAzHo6H/NzXqbloeH
-         PoaD93vpPnnLl8QRPQnR1p9c+7oeJBOOS/UHyVR66MYfaPK45Ef/ut/OvmuMFM/YyhVD
-         iKBTeH2Xjk7Ycch6wG/dTRw4xJwL/aIA07n1+L3x+9vJZaSTN6L7BVTVmbQ0NdQrD9Ko
-         R9rQR5rIKweJ016F5lHBN9eoOJiWIM8SCywOGUfXn8CfN0SWhQHV/Na3VNua1BRHkcAj
-         qqz3V6CDgfYZyng5AZ9ao1isfZLWqk+7ynMWuR8S5NWl/KaWgK2hJ10h/yQ7SUfjo9o0
-         V9vA==
-X-Forwarded-Encrypted: i=1; AJvYcCUlHvFoXY4tlYJA8QcrXGIA5yBa0jvjHjwJP/AHC6RCc5wd0FxL0NvkaiMRXM6hPm0b5gVGUHQb3Gwayeo28DBwdjYj1T7C3IbtcA==
-X-Gm-Message-State: AOJu0YzYefJsLoMeya/G0bPXJrz+L8zRVPpghKc9Hg+AmZ8jXRukOnRJ
-	4c4dpc8Nw3bs5pYoZcQxGUh9oMZ+ilj7r6gmDDWvdhqRlv635YrQi/Q/cSgxtJTqlo4kq2lv2Zt
-	WV0bH20tPln+HPxXc1Bpzgsbyu61Wm9mQ3NpC/A==
-X-Google-Smtp-Source: AGHT+IEp48gLWDwrHpqJRLvZRWympTh8tSaF9+n6pHvpcSzAPqxUKjFJLnucvzJ6+Pd7HR5O1tTBBqSnQUpKp61xs9c=
-X-Received: by 2002:a25:5:0:b0:dbd:8f9:a71 with SMTP id 5-20020a250005000000b00dbd08f90a71mr9261659yba.28.1710773830603;
- Mon, 18 Mar 2024 07:57:10 -0700 (PDT)
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hXPz6+0togvKFnM43qr9sOSa8N0BWel3JsRydDrzDrc=;
+        b=O34M3QeH9TFBpo/TjX3MS+ie6SBsI9c4uSAR8lLd70ju0GJ5fVL8velkeFbkI2umbo
+         DvHEKjE8QNKm2hi0PVLxzkKdimXhKTWtQBw67eTY0lkGL32/qdO7tOi0QqsGvMi8gFCB
+         FSwitXBDseyN1s5voKoKNAHE9IIoM9ntcZgZDGsmBE6vRXrNFQWEb7EpXsy8S/Q5h7Cv
+         YKLbV8Rg/HGOIaaOa0nduy9twSm4HXGqn9rWGwDuzvhvwy/5myOQWbLoWNJCdVl2y41P
+         B2Yj/51i9A3d+01dK140TMitmtcg+RTlDfVpddUAaO4QE51ef5SLBKyJ9npFjGOR8Kfm
+         VeBA==
+X-Forwarded-Encrypted: i=1; AJvYcCUH/2fwGL5EnVDbsxkHtaJh0CyUU5ZT5zNkwLHa2UfCqz2Pc5EBvA2Yp0ez3bwuuv4OCgm5QwCJu17kdXuiLbJ2UZoQsOH85xdfxK3MuHdy2lo89liX4IIoGrPVNHJb5S9skBEfBcqZcw3IJwDXLH2pIxTiyDta8ZrmL2KnWhAJk1yntw==
+X-Gm-Message-State: AOJu0YwjbwKYiJuXzBWwMVwvggm55KIa3vFdGuDCX/7iw9xdb25so9xg
+	OFVdCq/sS9ii4y3GThgY0RqYHWvE7Ex/DQevOAvEPe4v+M8C1IQM4QPcJ6o5i95oyg==
+X-Google-Smtp-Source: AGHT+IHnJGFNqw3PdslviMvot3zB8cExfLW0Ine1evxhnZTs4rkG/kG+ucQCciHkDgPMgBaHTpBRjw==
+X-Received: by 2002:a05:6902:82:b0:dc2:2041:fc49 with SMTP id h2-20020a056902008200b00dc22041fc49mr7165193ybs.5.1710774031052;
+        Mon, 18 Mar 2024 08:00:31 -0700 (PDT)
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
+        by smtp.gmail.com with ESMTPSA id b11-20020a252e4b000000b00dc7622402b9sm1773830ybn.43.2024.03.18.08.00.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Mar 2024 08:00:30 -0700 (PDT)
+Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-dcc71031680so3878237276.2;
+        Mon, 18 Mar 2024 08:00:30 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWY1WP4nlk5BPBQVxtjsQcu9T+CnrqCY5HV53PlA7gs/s9x/rdc5qxF14nQQRVoasBmjMiyJgWrK1Gs7fGhCSLLi/lyxeujLBUhzj3LJxORFZ5bKJAsdv3E3e3gA4oesxudl1MRzMb3LphCYxCctGHYHsRPOe5VdiAv/IsSBh1U1oaOtg==
+X-Received: by 2002:a05:6902:389:b0:dc7:4b43:db3f with SMTP id
+ f9-20020a056902038900b00dc74b43db3fmr7205706ybs.21.1710774029683; Mon, 18 Mar
+ 2024 08:00:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240301213231.10340-1-laurent.pinchart@ideasonboard.com> <20240301213231.10340-14-laurent.pinchart@ideasonboard.com>
-In-Reply-To: <20240301213231.10340-14-laurent.pinchart@ideasonboard.com>
-From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Mon, 18 Mar 2024 14:56:53 +0000
-Message-ID: <CAPY8ntA+PSTfee=B8kZ0MkndCQ2iDErSPdm54bzgQAJ2RnwfcA@mail.gmail.com>
-Subject: Re: [PATCH v6 13/15] ARM: dts: bcm2711-rpi-cm4-io: Add RTC on I2C0
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, David Plowman <david.plowman@raspberrypi.com>, 
-	Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>, 
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>, Naushir Patuck <naush@raspberrypi.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, kernel-list@raspberrypi.com, 
-	linux-rpi-kernel@lists.infradead.org, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui <rjui@broadcom.com>, 
-	Scott Branden <sbranden@broadcom.com>, bcm-kernel-feedback-list@broadcom.com, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <uwe@kleine-koenig.org>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	devicetree@vger.kernel.org
+References: <20240318114346.112935-1-tanure@linux.com> <20240318114346.112935-2-tanure@linux.com>
+ <20240318145423.GA3993342-robh@kernel.org>
+In-Reply-To: <20240318145423.GA3993342-robh@kernel.org>
+Reply-To: tanure@linux.com
+From: Lucas Tanure <tanure@linux.com>
+Date: Mon, 18 Mar 2024 15:00:17 +0000
+X-Gmail-Original-Message-ID: <CAJX_Q+26Of3uwKMufDrngj5ciioqt0ne8gXD-jdmEdWTs4Ag+g@mail.gmail.com>
+Message-ID: <CAJX_Q+26Of3uwKMufDrngj5ciioqt0ne8gXD-jdmEdWTs4Ag+g@mail.gmail.com>
+Subject: Re: [RFC][PATCH 1/2] clk: meson: T7: add support for Amlogic T7 SoC
+ PLL clock driver
+To: Rob Herring <robh@kernel.org>
+Cc: Xianwei Zhao <xianwei.zhao@amlogic.com>, Yu Tu <yu.tu@amlogic.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Stephen Boyd <sboyd@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, 1 Mar 2024 at 21:32, Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
+On Mon, Mar 18, 2024 at 2:54=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
 >
-> From: Uwe Kleine-K=C3=B6nig <uwe@kleine-koenig.org>
+> On Mon, Mar 18, 2024 at 11:43:45AM +0000, Lucas Tanure wrote:
+> > Add the T7 PLL clock controller driver in the T7 SoC family.
+> >
+> > This is RFC patch that enables SDCard, Ethernet and Clocking
+> > for Amlogic T7 soc.
+> > In this current state the patch doesn't work and gives a kernel
+> > panic when probing the meson-axg-mmc for the SDCard.
+> > DO NOT MERGE.
+> >
+> > Signed-off-by: Lucas Tanure <tanure@linux.com>
+> > ---
+> >  drivers/clk/meson/Kconfig                     |   25 +
+> >  drivers/clk/meson/Makefile                    |    2 +
+> >  drivers/clk/meson/t7-peripherals.c            | 6368 +++++++++++++++++
+> >  drivers/clk/meson/t7-peripherals.h            |  131 +
+> >  drivers/clk/meson/t7-pll.c                    | 1543 ++++
+> >  drivers/clk/meson/t7-pll.h                    |   83 +
+> >  .../clock/amlogic,t7-peripherals-clkc.h       |  410 ++
+> >  .../dt-bindings/clock/amlogic,t7-pll-clkc.h   |   69 +
+> >  8 files changed, 8631 insertions(+)
+> >  create mode 100644 drivers/clk/meson/t7-peripherals.c
+> >  create mode 100644 drivers/clk/meson/t7-peripherals.h
+> >  create mode 100644 drivers/clk/meson/t7-pll.c
+> >  create mode 100644 drivers/clk/meson/t7-pll.h
 >
-> The cm4-io board comes with a PCF85063 on I2C0, connected to the GPIO44
-> and GPIO45 pins. Add it to the device tree.
+> >  create mode 100644 include/dt-bindings/clock/amlogic,t7-peripherals-cl=
+kc.h
+> >  create mode 100644 include/dt-bindings/clock/amlogic,t7-pll-clkc.h
 >
-> Signed-off-by: Uwe Kleine-K=C3=B6nig <uwe@kleine-koenig.org>
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
-> Changes since v4:
+> I'm assuming since this is an RFC you know these go in a separate patch
+> with the DT binding schema which is missing.
 >
-> - Use the right part number in the compatible string
-> - Add the quartz-load-femtofarads property
->
-> Changes since v3:
->
-> - Separate addition of the RTC to a patch of its own
-> ---
->  .../boot/dts/broadcom/bcm2711-rpi-cm4-io.dts    | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/broadcom/bcm2711-rpi-cm4-io.dts b/arch/arm=
-/boot/dts/broadcom/bcm2711-rpi-cm4-io.dts
-> index d7ba02f586d3..d5ebb535afd2 100644
-> --- a/arch/arm/boot/dts/broadcom/bcm2711-rpi-cm4-io.dts
-> +++ b/arch/arm/boot/dts/broadcom/bcm2711-rpi-cm4-io.dts
-> @@ -101,6 +101,23 @@ &genet {
->         status =3D "okay";
->  };
->
-> +&i2c0 {
-> +       status =3D "okay";
-> +};
+> Rob
 
-This is already the default from bcm2835-rpi.dtsi
+Yes, This would be a few patches at least. The thing right now is to
+get it to work.
+I think some obscure thing is missing when setting up these clocks,
+and only Amlogic knows.
 
-> +
-> +&i2c0_1 {
-> +       rtc@51 {
-> +               /* Attention: An alarm resets the machine */
-> +               compatible =3D "nxp,pcf85063a";
-> +               reg =3D <0x51>;
-> +               quartz-load-femtofarads =3D <7000>;
-> +       };
-> +};
-> +
-> +&i2c0mux {
-> +       status =3D "okay";
+After I have a working driver, I will submit a proper patch series
+with documentation for the drivers and device trees.
 
-Default status queried on patch 12/15.
-
-With those clarified:
-
-Acked-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-
-> +};
-> +
->  &led_act {
->         gpios =3D <&gpio 42 GPIO_ACTIVE_HIGH>;
->  };
-> --
-> Regards,
->
-> Laurent Pinchart
->
+Thanks
+Lucas Tanure
 
