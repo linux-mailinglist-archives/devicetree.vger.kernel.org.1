@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-51135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92AF287E45F
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 08:53:50 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C8E587E476
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 08:55:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4BDAA28159F
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 07:53:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6EFCBB20DC2
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 07:55:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34B3723767;
-	Mon, 18 Mar 2024 07:53:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40CAB2376A;
+	Mon, 18 Mar 2024 07:54:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qUBu3m4o"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TomYdB1P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
+Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BCFE2263E
-	for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 07:53:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94E8824B28
+	for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 07:54:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710748425; cv=none; b=mlvIJhFfLe9lXeZ/nVVXujOuS4YCxw8uEQ6/pCVHpSR+0rgBQq3D5YPP2/IaOjAaU/KZIYOo/CtaCL77jobR4/PVB2XUCdbfxI+n1sYbJSCkwYdmyaTAr1t93JMxSLQMzMXazycRBgwPVyAh9+WDzB2btqgeFC4eUUZY9FQ4S/4=
+	t=1710748499; cv=none; b=pjBz4Bf3kHPfpqJVxLm02KO8OS655eJcdiDFqtwvj9qI4LiVbwdIBXtbZNxFMXlKmqYifWKZGJ8cgpMXb+4fDrAUuqEfq/1dsj4e+7c0Vp/Zjq+SBFgUHYV1ARUnFnDn6ZTR2K0C9p06YB9+JaHWAKo0NwGG3kq9ROQEg6q1G2o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710748425; c=relaxed/simple;
-	bh=4406YlOOoqMJFlmBHKTrEkcegdVQGJqLq1ZyjMiNk1w=;
+	s=arc-20240116; t=1710748499; c=relaxed/simple;
+	bh=tV/9c5WX/jZlj7YRfM5Sh5A3g2kgoLfJIXSA40BN0DU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Sk/NcSmST/85/0wmEM5M9Tm37MYAf5pGza8aicxmiIOGZuyapHmWm+cdeF2EJimmgta4R0baF8A4N9ymV/TwC3/huXW2+671UOqWxRDc3JB6Gy37Q5CRbVYU1ElqFhWQgvy+IEtoFj1MdhtGgfZi4P9mE531gg9CDDBhSBRgi78=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qUBu3m4o; arc=none smtp.client-ip=209.85.210.54
+	 In-Reply-To:Content-Type; b=E6r2HwHisCowHtvOfDJY6jZU/aaPVhXPfE1rnrjPGxTyTgH7Vd5GBI9kIN6L0c8/C/dMlvVuxV+uwVm+uUL4xKdHwNha0EhaW8bVhYgCUvXf4HDE3QI1UcP2+LesA3HWCgTkNr1MHS0D+16Hc7a+WY1M4m3IBPAKwfU6X8KCcmU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TomYdB1P; arc=none smtp.client-ip=209.85.161.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-6e674136ba4so2544939a34.2
-        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 00:53:43 -0700 (PDT)
+Received: by mail-oo1-f51.google.com with SMTP id 006d021491bc7-5a4a2d99598so552072eaf.2
+        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 00:54:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710748423; x=1711353223; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1710748496; x=1711353296; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=78xuEZixh6YXZzdYttVQztiMQZq1QaY4/FDiGMTYlh0=;
-        b=qUBu3m4ofdI83Ogzw0Z/Tb2Puj0V/fCmDxLh2H+W7javSYO8SA47wWDbUtwpOxqoHS
-         q83h+TAena1NOfYKY4R1tCUMsnH7K3c6qaWIT2ZJMOKdj4tE/FzkDVhtkUlPeXxJaOmd
-         zhoZVzgK+rVV67LZJw+uA+AppjZu5AC69/mG0To5ouns1HrWSRHr417ldn/FK4uYJvhP
-         AZ5efk/lSIjDGVF1bZq0xPr0UfmSPfGENX446ew8xqe7gYl6r1H0UMJakwQei+Jv46Tg
-         nDvhaEhYM5HijhBTqH8ZRTX/2HZvpvSOVQAtROULQpO622b4mDeZFssgiEX+27lBVaaC
-         QiSQ==
+        bh=Act/RINO34oo1a2ZYlSnoHp6gUrMy0RrgNQ5BWRiL9w=;
+        b=TomYdB1PlbfyuKVdIdtseySo/gC8Xi8wC6oFrIsEWXUpyZrJDxJFLeUA8orJkzrTH1
+         IywZbw81w6VQXr46N07OJbSgpcvSHPwLZea7FtH7FatVcEXBjYwov6+bpdt2ikKfrsYT
+         32cX4bbhKE8Km2FgQkrPHH/A+esf05c2DdiTF5QKGgI4YJkbz6BW/xpVgAILTYJz871R
+         wvnFrv87aW0PeT6ue9ECayhnYf48itjjmSiZidn7l50O8YRMLPqGFAQTO0oAVBirW6Mt
+         HV+wTRvF9e6uHq6d5+GlaZM3jS3FpIG1u6NUSf3+3+O376L/w4y/5dj9Ajgat/MenN51
+         DcNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710748423; x=1711353223;
+        d=1e100.net; s=20230601; t=1710748496; x=1711353296;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=78xuEZixh6YXZzdYttVQztiMQZq1QaY4/FDiGMTYlh0=;
-        b=AFS31XNwpPXWyn4leAi9s0sLs5hzAttWQZfOJGJ/PNMvf58L/2/llQ6xjP/CFs73Ye
-         4E9nVBCz3egjKS51TOQgJPvnHqaTuynLD7KgY9QMiQa/6VHQtHaR5LMsPBriOOdNdiF/
-         Qmg4SsBzBVpvKe4jMqYVtFxo3BZQF1BUDthZZL56g/lEPNpDPXVG9PdMbANBzoQvuVuQ
-         2RmEZg3xVX2ju9K9NVqVcc3dzlKRYjSfJOWKd64YOzKzmFxyps0vXJFzZ6zQI7Qen+ZN
-         GPJgwQMtWQTeS0lif+8swQzV7HPF5BMk5JiEa6Ock9zjKsNnY8k+WuRjBio2WqpUHJNQ
-         pauQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXhy2/yO9gVTfb1vVHlFBzekWLTFxOjwSQ4ISDyOC0uw8YcZqmixi2A1YyRmbkMVutmzsz9CBlCaaX/2Dciok5oUrKC8n+AS4rcjw==
-X-Gm-Message-State: AOJu0YyIHkS9km+/CAkZ/d4yQYdf2scVYWgBXyDACaAXoNRyyJ3BdcVT
-	06CMqHBhaiQY18QnTuC1xNdNZuQjlRkUD7IlJOkeiMY5z6OP2hQIRnbGdIR+cHw=
-X-Google-Smtp-Source: AGHT+IFlR1tBiVEjB4y+3B4hs1obhRZhGWXhwDpwagS/kR6y4JaQQyACLJP9Q/Tpq96c3o4Eql7Myw==
-X-Received: by 2002:a4a:754a:0:b0:5a1:262e:c872 with SMTP id g10-20020a4a754a000000b005a1262ec872mr7937887oof.2.1710748422787;
-        Mon, 18 Mar 2024 00:53:42 -0700 (PDT)
+        bh=Act/RINO34oo1a2ZYlSnoHp6gUrMy0RrgNQ5BWRiL9w=;
+        b=Zp33426yXKGW2M4sxcLbQa8mmqksPF8OPA/qCmGhOYmMGSHNrbVnDK9/haue6UGw/O
+         BdjVe35/px9g8HxTg+S5eeoN8ZsnaJP8ZUuEJFADiFCs5jL0mkSQI9P9MRG3UvVacpkg
+         yiaYwJpSt28axLA54pC+qEI+AnCGYuza6Ql5we7plapB6McB1qGKONeTesDrac3hl4xo
+         IpOIcQzXFPYoCGDP2+UIfPqlWjaO4PZ9uGbE04mH5jFqGRNIrOF2x2EoLEMTcpi0w4oZ
+         S9Z7UC5AoqsZRRCS0+/+FF+lm0f4vTmYe5IdEv5is9zWr9Z1Q4xLHz/ALN4proSCsSay
+         LuOw==
+X-Forwarded-Encrypted: i=1; AJvYcCXxqmlLMUfWaU2tSYHwp72TU4G0sIXDREafCH1M4rFueeOEeypr2C9Kav8HqlT1smTGLt355Igar3QXblfBjDlfWxu9mYxy3V0Tjw==
+X-Gm-Message-State: AOJu0YyGntXLEQsJQDK8p6uSsndNwGDNwAYLRapHNh+VcaBjhgP1Lcy4
+	9T+r2bO8Kf8paSnNfWpFoOJf/+5s4u3py0r56QV+NYD82dDp34VzBfdrtcFfz78=
+X-Google-Smtp-Source: AGHT+IFJT1kTMCQOaeLHAvs2Mly7OkfK0p2nnsO6JWIjXLivOe/Zv8EHgZPUrmTtcWW4G1eAypcFSQ==
+X-Received: by 2002:a4a:7518:0:b0:5a4:55f5:e30d with SMTP id j24-20020a4a7518000000b005a455f5e30dmr7634114ooc.3.1710748495685;
+        Mon, 18 Mar 2024 00:54:55 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id bm8-20020a056820188800b005a4b2172e48sm420608oob.41.2024.03.18.00.53.39
+        by smtp.gmail.com with ESMTPSA id bm8-20020a056820188800b005a4b2172e48sm420608oob.41.2024.03.18.00.54.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Mar 2024 00:53:42 -0700 (PDT)
-Message-ID: <3293d565-ceb6-44f1-8a47-d18e9d0083a5@linaro.org>
-Date: Mon, 18 Mar 2024 08:53:39 +0100
+        Mon, 18 Mar 2024 00:54:55 -0700 (PDT)
+Message-ID: <06c08855-3965-4d57-8bec-fba8544dee7d@linaro.org>
+Date: Mon, 18 Mar 2024 08:54:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,8 +76,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/8] clk: qcom: sc7280: Update the transition delay for
- GDSC
+Subject: Re: [PATCH v2 7/8] arm64: dts: qcom: qcm6490-idp: Update protected
+ clocks list
 Content-Language: en-US
 To: Taniya Das <quic_tdas@quicinc.com>, Stephen Boyd <sboyd@kernel.org>,
  Michael Turquette <mturquette@baylibre.com>,
@@ -88,7 +88,7 @@ To: Taniya Das <quic_tdas@quicinc.com>, Stephen Boyd <sboyd@kernel.org>,
 Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org
 References: <20240318053555.20405-1-quic_tdas@quicinc.com>
- <20240318053555.20405-5-quic_tdas@quicinc.com>
+ <20240318053555.20405-8-quic_tdas@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -134,29 +134,45 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240318053555.20405-5-quic_tdas@quicinc.com>
+In-Reply-To: <20240318053555.20405-8-quic_tdas@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 18/03/2024 06:35, Taniya Das wrote:
-> Update the GDSC default values of GDSC transition delay to avoid the
-> issues in the GDSC FSM state.
-
-What issues?
+> Certain clocks are not accessible on QCM6490-IDP board,
+> thus mark them as protected. Update the lpassaudio node to
+> support the new compatible.
+> 
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> ---
 
 > 
+> +&gcc {
+> +	protected-clocks = <GCC_AGGRE_NOC_PCIE_1_AXI_CLK> ,<GCC_PCIE_1_AUX_CLK>,
+> +			<GCC_PCIE_1_AUX_CLK_SRC>, <GCC_PCIE_1_CFG_AHB_CLK>,
+> +			<GCC_PCIE_1_MSTR_AXI_CLK>, <GCC_PCIE_1_PHY_RCHNG_CLK_SRC>,
+> +			<GCC_PCIE_1_PIPE_CLK>, <GCC_PCIE_1_PIPE_CLK_SRC>,
+> +			<GCC_PCIE_1_SLV_AXI_CLK>, <GCC_PCIE_1_SLV_Q2A_AXI_CLK>,
+> +			<GCC_QSPI_CNOC_PERIPH_AHB_CLK>, <GCC_QSPI_CORE_CLK>,
+> +			<GCC_QSPI_CORE_CLK_SRC>,<GCC_USB30_SEC_MASTER_CLK>,
+> +			<GCC_USB30_SEC_MASTER_CLK_SRC>, <GCC_USB30_SEC_MOCK_UTMI_CLK>,
+> +			<GCC_USB30_SEC_MOCK_UTMI_CLK_SRC>,
+> +			<GCC_USB30_SEC_MOCK_UTMI_POSTDIV_CLK_SRC>, <GCC_USB30_SEC_SLEEP_CLK>,
+> +			<GCC_USB3_SEC_PHY_AUX_CLK>, <GCC_USB3_SEC_PHY_AUX_CLK_SRC>,
+> +			<GCC_USB3_SEC_PHY_COM_AUX_CLK>, <GCC_USB3_SEC_PHY_PIPE_CLK>,
+> +			<GCC_USB3_SEC_PHY_PIPE_CLK_SRC>, <GCC_CFG_NOC_LPASS_CLK>,
+> +			<GCC_MSS_GPLL0_MAIN_DIV_CLK_SRC>, <GCC_MSS_CFG_AHB_CLK>,
+> +			<GCC_MSS_OFFLINE_AXI_CLK>, <GCC_MSS_SNOC_AXI_CLK>,
+> +			<GCC_MSS_Q6_MEMNOC_AXI_CLK>, <GCC_MSS_Q6SS_BOOT_CLK_SRC>,
+> +			<GCC_SEC_CTRL_CLK_SRC>, <GCC_WPSS_AHB_CLK>,
+> +			<GCC_WPSS_AHB_BDG_MST_CLK>, <GCC_WPSS_RSCP_CLK>;
+> +};
+> +
+> +&lpass_audiocc {
+> +	compatible = "qcom,qcm6490-lpassaudiocc";
 
-Why none of your so called "fixes" are marked as Cc-stable? If they are
-real fixes, they should be.
-
-> Fixes: fae7617bb142 ("clk: qcom: Add video clock controller driver for SC7280")
-> Fixes: 1daec8cfebc2 ("clk: qcom: camcc: Add camera clock controller driver for SC7280")
-> Fixes: a3cc092196ef ("clk: qcom: Add Global Clock controller (GCC) driver for SC7280")
-> Fixes: 3e0f01d6c7e7 ("clk: qcom: Add graphics clock controller driver for SC7280")
-
-No, don't combine separate fixes into one commit.
-
-
+What? Why do you override compatible for given board? This is a SoC
+block, not board!
 
 Best regards,
 Krzysztof
