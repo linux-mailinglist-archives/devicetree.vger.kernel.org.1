@@ -1,99 +1,127 @@
-Return-Path: <devicetree+bounces-51285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0057A87EBB4
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 16:09:43 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6873187EBC0
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 16:10:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 946D51F21D85
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 15:09:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 09ACAB22517
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 15:10:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C591D4EB54;
-	Mon, 18 Mar 2024 15:09:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D0D74EB5D;
+	Mon, 18 Mar 2024 15:10:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SPH0kgji"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rmi688oO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 591894EB3D;
-	Mon, 18 Mar 2024 15:09:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 432E74EB3D;
+	Mon, 18 Mar 2024 15:10:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710774578; cv=none; b=cAvAT256DpislrBH9fbOUHF1bGkCDTu1ijkHHJM5tHRbLdvWcDeqvmh0D6glfI31ZBRx4i4MMV5YhAFtC28dzPaJ+Opk5bnRyYNOr6OmYNhQf0+8g0eQlJanORfsOYCdMNg/6El84PXYk9Bs/51fkxp0rV5KJWeacxM/JEPi4ck=
+	t=1710774649; cv=none; b=OGlAhCU31iqC0sMAZv0/jul4jcv3cOhI73qAwHAC1wPwhkAUsXOituiojj/WJ5j1Kmz9RZrWynU6Q22hRGjikVynVl2WuabIK4pahGV9RjqK4O9aKIJpAYZrEqq0cEtcGMIqMPYTcP5dtGJBKZpacVg+qCVBGod0pjI/jQX0Y8I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710774578; c=relaxed/simple;
-	bh=RVZ6WcRCz0GZsj3KPodHOeWYk9mSNq77l8mgUMPuTLE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rXXPgpEO0+7yT57PXznX8aAxDh4HaFCaNSPczli8wbjqZjU4ab4Wj9S+nbddOXivITBVcKTpvVzrjLVJNumsW8b76Anve5Tu9o4egEmMSQtlCV4J/VrAk0i3Z2FQSyBKyF+10DR8gkgYkx1VqOzElzx+RUsXdbHgWdIcS/Kesk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SPH0kgji; arc=none smtp.client-ip=209.85.160.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-221822a7dc7so2579280fac.3;
-        Mon, 18 Mar 2024 08:09:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710774576; x=1711379376; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RVZ6WcRCz0GZsj3KPodHOeWYk9mSNq77l8mgUMPuTLE=;
-        b=SPH0kgjijJSHtfENI+H3AJRQozJrQgCBfIf5FdR60PlMmGKxamdTuxPzhvEQr4RYyQ
-         TD/UhN2H5feOEskxsfpDe6x5oUh+SaY+S03LolP+urXfGYZMdekmC7+jy+cHxYB7vtp6
-         GlSSg2vca4/nc1i/Mq0na77FvH4VgbuxjUvCccF8FgkvrIoGuog1VF8oAA4Q35zXc9fB
-         rLMz/Z85MOvq3wZBZFr2/qSDHc8VtlugDV4INWZU6MPPJ1hFv7untk2p2LL1WsvgKi0H
-         7M724iiGQNqEzjhnlQTzJI4/upQOfyM9lwJq/6GnI+I6AE8ITpIsca7zpKA+ryWHqcle
-         d2VA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710774576; x=1711379376;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RVZ6WcRCz0GZsj3KPodHOeWYk9mSNq77l8mgUMPuTLE=;
-        b=LyBTWTGccwYRZom4pLlgf6xhIZWAilQ+P0KoRZPkeC9uSGw/dGCzpP8VG2hE8BHeOu
-         0XIYeHEMeIfktbuxzDOOIPBhMEhh2PUgH/eGRnmcPFCoI8HRj0fdUsQXblRP8G+1QX3j
-         zB2So2jGuFAZOvl0u2Xai/Nu5ZLjikBNRPGkzwlnVeK1rsZGv45NP/WJlL1NDeG+Byt5
-         N5Tsy+nn0wZft5xCnwonX7Ow1fV56LFCJa+iDKuMTjcTnIyiYYZEZqR3fOvLvrM8hAFK
-         cXk6PXmcQ+aivqt1Tlm+NExud0CrIZnJdW631rDknFZ23HRo+e+VRdGztUxzdNGS7suW
-         /Nlg==
-X-Forwarded-Encrypted: i=1; AJvYcCUmpQbwXcGkVTVUvLjrCjz0Bix6Otbg/iL2X2Lw7vBo6jHuP1bldxaTHSOYW5aqQgu6I+lWqrfMOa8Tr0JMg1auAt9ZDIWGau7nHfRIrWcldjQRh4Q0slJcAhOIik4SfKC38i6lgBDDDzn0jC9H2+LC/jy1505rIEgrC71DPgMYdwfZ3g==
-X-Gm-Message-State: AOJu0YxpcjX/aZFnMjJfb75wUpqt6FWtkMczaqRHXndENfTkf5PTzSwH
-	kSvdIGwHVBubYNYS815BoO3KKKO18h9I/Ufq7oWab0uJq3DyBm7GDLrXYyZ4UHdX5pwl2qFe+kq
-	aUsBgQ03vJQqU2qKyWje6/yVkwrM=
-X-Google-Smtp-Source: AGHT+IFWRfZFllmVa+XahwIMCXQBAwA5XNnRHBjx6aEbdcdugUpjtP3x63gtCLCMbnyfk3UsJK8JAPQX47E46Yh3rSg=
-X-Received: by 2002:a05:6870:3281:b0:221:b4a5:e732 with SMTP id
- q1-20020a056870328100b00221b4a5e732mr14572704oac.34.1710774576287; Mon, 18
- Mar 2024 08:09:36 -0700 (PDT)
+	s=arc-20240116; t=1710774649; c=relaxed/simple;
+	bh=fH+FYiniWHx5rmlrXtlHSdr1Cwr9tIkFEC+J1fMVSjc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LoMlG5v+NOMdosKjpIv/Z2eENIbdHLBfdtXaL1EXbddk0YKKuU1yOFYX6p5fM7Gi8SpEsnNzu59I5gInNDC1tVWnIWpPw6KNmwXLaFDv4CgwYUiEdFGWG92+c8qpVudSkQS/FGlpAe7Tov7UtkG2jQU3llY83BS8sSnuwMwK3wM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rmi688oO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B450DC433C7;
+	Mon, 18 Mar 2024 15:10:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710774648;
+	bh=fH+FYiniWHx5rmlrXtlHSdr1Cwr9tIkFEC+J1fMVSjc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Rmi688oOG4+pYCoMikOks7rpgzB0dDwAOCBbcgM61JlGKzFAsgEfLLi7LP5gwap7I
+	 rHNOymOVlw8I3sn6yaduBTJruXER9LnV/zubbnRMVyYxT+dHkZD8oOsEUtrIxNpwvS
+	 9uYvrPmGeqXoDf4huBQVBBrLjGFmM/wpGR+0mFJrKhjlLUYDUbwSD8xW02fPyfetLy
+	 D/S+FLMpQPmK+4i9DssiN6CxDQEnQ0vddnJ7yxIVwGYv//CuVaSpHeXwp7bzsVyYcE
+	 IwJ4dVLKzp7VELuXD6nejfqJ5h+lHoB1zrWwZC2B1Lkmm01ygwyuwEK/AL99ogjo9Z
+	 4NjGn9muE5DIA==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1rmEdZ-0000000035w-3rpp;
+	Mon, 18 Mar 2024 16:10:54 +0100
+Date: Mon, 18 Mar 2024 16:10:53 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Marcel Holtmann <marcel@holtmann.org>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Johan Hedberg <johan.hedberg@gmail.com>,
+	Matthias Kaehlcke <mka@chromium.org>,
+	Doug Anderson <dianders@google.com>,
+	Bjorn Andersson <quic_bjorande@quicinc.com>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	linux-bluetooth@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: bluetooth: add new wcn3991
+ compatible to fix bd_addr
+Message-ID: <ZfhZffrZXwtKgZ13@hovoldconsulting.com>
+References: <20240318110855.31954-1-johan+linaro@kernel.org>
+ <20240318110855.31954-2-johan+linaro@kernel.org>
+ <CAA8EJprywWbdoyfAbys=0WzEdAkp0UK1fzzCPzxKRjyk9DrC6Q@mail.gmail.com>
+ <Zfg--2_NMPSPTxK-@hovoldconsulting.com>
+ <20240318144806.GA3963554-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240318091911.13426-1-animeshagarwal28@gmail.com> <20240318142324.GA3960676-robh@kernel.org>
-In-Reply-To: <20240318142324.GA3960676-robh@kernel.org>
-From: Animesh Agarwal <animeshagarwal28@gmail.com>
-Date: Mon, 18 Mar 2024 20:39:25 +0530
-Message-ID: <CAE3Oz81ez-d_yL4xQRS-Y707ok--3vFK5FD56m3r+PGZuUMFmw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: nxp,i2c-pnx: Convert to dtschema
-To: Rob Herring <robh@kernel.org>
-Cc: Vladimir Zapolskiy <vz@mleia.com>, Andi Shyti <andi.shyti@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240318144806.GA3963554-robh@kernel.org>
 
-On Mon, Mar 18, 2024 at 7:53=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
-:
-> Doesn't quite match the compatible string.
-Will change the file name to nxp,pnx-i2c.yaml
-> These 2 are defined in i2c-controller.yaml, so drop.
-> Drop unused labels.
+On Mon, Mar 18, 2024 at 09:48:06AM -0500, Rob Herring wrote:
+> On Mon, Mar 18, 2024 at 02:17:47PM +0100, Johan Hovold wrote:
+> > On Mon, Mar 18, 2024 at 03:00:40PM +0200, Dmitry Baryshkov wrote:
+> > > On Mon, 18 Mar 2024 at 13:09, Johan Hovold <johan+linaro@kernel.org> wrote:
 
-Making these fixes in v2.
+> > > > The only device out there that should be affected by this is the WCN3991
+> > > > used in some Chromebooks. To maintain backwards compatibility, mark the
+> > > > current compatible string as deprecated and add a new
+> > > > 'qcom,wcn3991-bt-bdaddr-le' for firmware which conforms with the
+> > > > binding.
+> > 
+> > > This compatible doesn't describe new hardware kind. As such, I think,
+> > > the better way would be to continue using qcom,wcn3991-bt compatible
+> > > string + add some kind of qcom,bt-addr-le property.
+> > 
+> > No, you can't handle backwards compatibility by *adding* a property.
+> 
+> But you could add a property for the not broken case. That's a bit odd, 
+> but so is your compatible.
 
-Thanks,
-Animesh
+Sure, we could have a property that we only add for wcn3991-bt going
+forward.
+
+But we can't go back in time and add this property to all devicetrees
+and say that 'local-bd-address' is big endian unless that property is
+present (as that would leave all the non-wcn3991 devicetrees broken).
+
+> > I wanted to avoid doing this, but if we have to support Google's broken
+> > boot firmware for these devices, then this is how it needs to be done.
+> 
+> Don't Chromebooks update everything together. So maybe we don't care in 
+> this case?
+
+That was my hope, but Matthias seemed to suggest that we need to
+continue supporting the current (broken) binding because doing such a
+coordinated update may be easier said than done:
+
+	https://lore.kernel.org/lkml/ZcuQ2qRX0zsLSVRL@google.com/
+
+A new compatible string (or one-off property) would allow them do make a
+change when they are ready (e.g. by only updating the devicetrees after
+all boot firmware has been patched and pushed out).
+
+Johan
 
