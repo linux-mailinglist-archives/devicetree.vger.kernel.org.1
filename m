@@ -1,175 +1,125 @@
-Return-Path: <devicetree+bounces-51227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E12CB87E812
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 12:07:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 084E487E824
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 12:09:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E864B1C2114B
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 11:07:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 37FAF1C214D5
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 11:09:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 382DC3611D;
-	Mon, 18 Mar 2024 11:06:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96410364B4;
+	Mon, 18 Mar 2024 11:08:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=risingedge.co.za header.i=@risingedge.co.za header.b="F2SDco8b"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gi7e7brN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from outgoing4.flk.host-h.net (outgoing4.flk.host-h.net [188.40.0.90])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C447D38DCC;
-	Mon, 18 Mar 2024 11:06:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.0.90
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6086B36114;
+	Mon, 18 Mar 2024 11:08:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710759986; cv=none; b=O/KWavonI3qi2pXlyymk8Y7bFJjEQVK/ZkLSgl41pLwwmlymROoSThW+0iUNtfT3aDrNIoryEwfexef23rsV3invoM/fQJjBUiAlRI9B3akEu6iHf9v0SxR77CX4VPO7/ir3e4qcU2Zoh/b8rpiShh6dHHK0oOa+o/jn147ID3E=
+	t=1710760139; cv=none; b=lPvXuQRmjA20J5j9QuJKvopDni8PE88KGISic82vc73M1ElJscwYfKC7JTdFjEf79BZt9v3G2lniF9BC7nkKh8t921fmev4FqhmlmYqrJ8+IM2xR5KkSdwC9OMzaUBSA1DeJxCR2hB8zwcyP3Z9C2fo8Dh6G/wDDw5CNVnW6UU0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710759986; c=relaxed/simple;
-	bh=4JcGj1iOgsRaooMehHy5+Ymz3mBcNGp3rkPG+AXYqmM=;
-	h=MIME-Version:Content-Type:Date:From:To:Cc:Subject:In-Reply-To:
-	 References:Message-ID; b=n2L5pOKKeZ+a22M1tmk5ZTaMJ5QlIWS8LnGnn2ispffbuwXqJhmZ7kT77nkAeVqY5OwbdwUxmqudd7mNatlBPiqDWU50lBV9zBqipPhD0unvKbiJG/61APMnSVOypsOscQusfQbAPMr0wPYcim1HyUcGK4tRyAHIF7XWJ4BaztU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=risingedge.co.za; spf=pass smtp.mailfrom=risingedge.co.za; dkim=pass (2048-bit key) header.d=risingedge.co.za header.i=@risingedge.co.za header.b=F2SDco8b; arc=none smtp.client-ip=188.40.0.90
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=risingedge.co.za
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=risingedge.co.za
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=risingedge.co.za; s=xneelo; h=Message-ID:References:In-Reply-To:Subject:Cc:
-	To:From:Date:Content-Transfer-Encoding:Content-Type:MIME-Version:reply-to:
-	sender:bcc; bh=EZ+RYzhu8nBC4S05v34LDNcR3a55K37vUqtB/c+7Oe4=; b=F2SDco8bqCuJDS
-	51aCTXUIPJAzBSqpbMN4hOWcAlyYEJHrL0pKmkDZKa3V4LJnjldmghjtFN+iebqGmbeZmDpNYrCEM
-	Nj4EncB7XuqvluXFJJYorRoJguyv57CsEiTnUXPkAmjdTjtO1qWS44Y48E6D9GYrhYQ2QZA5laNgv
-	bQjBLH8M8voenO4In7wZGCi9zUESuPDccOqsN7E0aW10GXhFV+VZepU3cu+ahKEqsR1fUHiJFvNit
-	F0/IQQPfi+Hv660VyooLaFBZl1L02sKwgjx52kr+VpEAe13ogNBWmRJnKCgWgVOUll/D5fiF9wATm
-	iBY7zq4B0psRuGYHo+Ow==;
-Received: from www31.flk1.host-h.net ([188.40.1.173])
-	by antispam1-flk1.host-h.net with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <justin.swartz@risingedge.co.za>)
-	id 1rmAoq-000rcU-CS; Mon, 18 Mar 2024 13:06:19 +0200
-Received: from roundcubeweb1.flk1.host-h.net ([138.201.244.33] helo=webmail9.konsoleh.co.za)
-	by www31.flk1.host-h.net with esmtpa (Exim 4.92)
-	(envelope-from <justin.swartz@risingedge.co.za>)
-	id 1rmAop-00049G-Bn; Mon, 18 Mar 2024 13:06:15 +0200
+	s=arc-20240116; t=1710760139; c=relaxed/simple;
+	bh=mhjPnTXDAKyCh4F3clJIfOplQLZbUUDvGVo1tP8zjxM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=PiV43lYB57KoBRkfwqCpv0dH6SC+zY+W+uxV6zINAdUMGEXclJOEv72lGPuJfHovpbDBDTCGUDAMM6PMk7zUX2aq1SBk3L7quTzGRXyM7g/xn55IJXuCm4YhUAIKeCDkZR5VMkJa6hd/Ioz6Gg5doubve14wnjdDcWAw7tCxX1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gi7e7brN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30265C43394;
+	Mon, 18 Mar 2024 11:08:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710760139;
+	bh=mhjPnTXDAKyCh4F3clJIfOplQLZbUUDvGVo1tP8zjxM=;
+	h=From:To:Cc:Subject:Date:From;
+	b=gi7e7brNpeEEiGqha31+CSP1NEQEc9QkpM03FLGL30p4CLY/jWtCpbp4zmN25K2ZO
+	 vJtMTj6pycCbkJqhK7bsS0OXjhaqH3E2GqBx5f2fbjLwKJ9S+lw+E+cPOrGqNswjV8
+	 8B0jcTsJ3UHdq742LkN+2z+dh0xZwlNmctsFr7UQ8mUbkCf8DUyK0TGq2cX17+u1H2
+	 2PC/hbjbF2uT4d5EzO1mggLZjoRmywPN3xhwen8Jfonrj3Rlh72i9iDqY/sM0Px5TZ
+	 VBNus7xmewN+a+aO20Pdlb8cZqZ6GLxLKZ+07HzwYW5akc08VrQn9WarniSS7kbN/5
+	 SNAeCcZX8c3kA==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan+linaro@kernel.org>)
+	id 1rmArX-000000008Jj-3tpk;
+	Mon, 18 Mar 2024 12:09:04 +0100
+From: Johan Hovold <johan+linaro@kernel.org>
+To: Marcel Holtmann <marcel@holtmann.org>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Johan Hedberg <johan.hedberg@gmail.com>,
+	Matthias Kaehlcke <mka@chromium.org>,
+	Doug Anderson <dianders@google.com>,
+	Bjorn Andersson <quic_bjorande@quicinc.com>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	linux-bluetooth@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH v2 0/4] Bluetooth: qca: fix device-address endianness
+Date: Mon, 18 Mar 2024 12:08:51 +0100
+Message-ID: <20240318110855.31954-1-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.43.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date: Mon, 18 Mar 2024 13:06:15 +0200
-From: Justin Swartz <justin.swartz@risingedge.co.za>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Sergio Paracuellos <sergio.paracuellos@gmail.com>, =?UTF-8?Q?Ar=C4=B1?=
- =?UTF-8?Q?n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Matthias Brugger
- <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, linux-mips@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 00/14] mips: dts: ralink: mt7621: improve DTS style
-In-Reply-To: <18327bbe-10ad-4b39-ab70-2f74f0d4fb08@linaro.org>
-References: <20240316045442.31469-1-justin.swartz@risingedge.co.za>
- <CAMhs-H9ZO-sitsrASuvsEd+ddwVyHH35gj7yAABTqFNfOCGYYw@mail.gmail.com>
- <60512ae2-dd73-4cb6-9514-145f946300fc@linaro.org>
- <5d6c36cb9dd9afda1efb69aa34058517@risingedge.co.za>
- <adefc3ff-86a5-4af7-8276-73d0e0108901@linaro.org>
- <26633d73360e43b2c548f49e544472ea@risingedge.co.za>
- <18327bbe-10ad-4b39-ab70-2f74f0d4fb08@linaro.org>
-Message-ID: <8614589cbeb5ca9bd28bb3a34378734d@risingedge.co.za>
-X-Sender: justin.swartz@risingedge.co.za
-User-Agent: Roundcube Webmail/1.3.17
-X-Authenticated-Sender: justin.swartz@risingedge.co.za
-X-Virus-Scanned: Clear
-X-SpamExperts-Domain: risingedge.co.za
-X-SpamExperts-Username: 
-Authentication-Results: host-h.net; auth=pass (login) smtp.auth=@risingedge.co.za
-X-SpamExperts-Outgoing-Class: ham
-X-SpamExperts-Outgoing-Evidence: Combined (0.11)
-X-Recommended-Action: accept
-X-Filter-ID: Pt3MvcO5N4iKaDQ5O6lkdGlMVN6RH8bjRMzItlySaT+2Mbgfkvmv2eJybW3R3E6yPUtbdvnXkggZ
- 3YnVId/Y5jcf0yeVQAvfjHznO7+bT5wCPRB8bAzJcv2cv+UqiTTc2+CpNcmBnO4XM3Sck4bwNogU
- WCl1nkLBzZX0KuJ9bXiS85Z42w/+2OBolTNFbPomXFWCX8oNdggW7HE9XDTdSejrkEpbuUvwMvHx
- 3T+KSG//gbuP7hnUK8NQdLwsVWKIFDZRrTGv3rxiw9tFrqFSCFNiLZt/QXQnOBRD+jq1HsKsDh/6
- Srgk2K3gr1VBfJbChkYH6fbrypLNrde+UooQVNLReLErukdelEOHUIpaBbp5GdnsN8+UvimwMinK
- 0+Txhz2u9qvrL2PODYgMZQApJXOjDLkqunZ9NcY2bHZn7CfFscMZZf3sCkN20I5vMh4akiObI7Kj
- vK7X04QEin24qbfMFd8eGjnYW8aSH5qj4ujh/13psIvqSqJFa1CcANErDW/w69saM9prk3jNnHtn
- nuEt/J9wDZeQfiNOYsLDFBdwYt2XtlLzy7G7T4kla0JNMwpa8J6LDEGB71xpBP9rMN3suOKfn8Hl
- koyhyj7ioi1H+3FR74FPtCVqefSOps3DjBaEzxvm/wSPAqUO1+xOWSBZB5ABM5ibrJKBc41fzX2f
- c4dPBW7pWChw4uEjGhn8NxWJwjYpP3+Q3/7iG2wtXlC2P5rB47V4b9UQ2zWgw8rgo+5B/jmqOvZj
- iTeRCozF+pjfbFrzHCaFHgNTrYhVbBAqR8ZRvY88PgTw/yJlftBcHX6tS8NW54gm54VAvfk9VDzu
- 2DWvs648c5Z9erCJvcji+JcS2GUvCK1BsRI8tTKkBVM18TehOmSn2kZRt3z8CHTZnKdQqcB0QMMU
- IPF3mL0sZmYqDqSi6Ubx7BN0H0IaZOsZnP36dPZwQWhvr8FGGENbqE9x654AXkUfGHPAHnWD1MEm
- 8zNnsSuSxjl6RVTXva2Jl4AHe5oTGEWuK7wQuHiJKcf5Sqd6P3zHxU4Ham35bIM7+pzQRR2+p5za
- 8H1gUaDJZGpg6c2oigrh+YcF3SeOS5epce2vBFQn8BLQG4wdJz5OZPl/85ViK8Ea0fe5iniRDU9a
- IkFLX1Ne1hGTitUHsPftyxriH1hAvmSO1crrLwiF2BozUnkjKLcelPzx2oqVYjg7pBU6N7n2Xnf9
- ORWrllgKtBSNx6xUC0rhukb6/HI5FFTbPOoZF9qxZ4vEB++mMxBCD3fThxO9W05Fm9+rv3zsXbI1
- Zx6qHvQb2XcXutruHTpS87YkskBoFo6eZ5Uv5yUh4sH+KRvQOJ2675fcuW/3lDmDZZ7XgBhunFdj
- VYxKH3qWyoySMt2NXQeSeCQL64BFVPTx/kcAi/BxyOiyAGbikZ2msyovPMmZjc4llXfxglzPppq8
- fnAVuB1y2DNwOgV373pfDhBQ21Od8BCsodKtWDQizmRHoSVjKnexcCkQ+p5zWKzxeWKxLCyS8776
- l4RSwc4z5cqDb97hdiFVwaP90eVaqnDphEW4xEWnj3iKGpP30awjRzKpQ4kPl+3D1YhNMZlGTB68
- YWMe6VM9RYQVmV8q7nN/oibcn491jt+pt12gBHaGoo19huz2OKHH5lr9xXvSM4nM3avg
-X-Report-Abuse-To: spam@antispamquarantine.host-h.net
+Content-Transfer-Encoding: 8bit
 
-On 2024-03-18 11:23, Krzysztof Kozlowski wrote:
-> On 17/03/2024 16:43, Justin Swartz wrote:
->> On 2024-03-17 17:29, Krzysztof Kozlowski wrote:
->>> Objections to what? Coding style? Coding style is defined so you 
->>> either
->>> implement it or not... and even if someone disagrees with one line
->>> swap,
->>> why it cannot be done like for every contribution: inline?
->> 
->> I had been asked to include empty lines when I had left them out when
->> I had contributed a patch regarding the serial nodes, which resulted 
->> in
->> a second version of that patch.
-> 
-> I don't understand why would that matter. It's expected Linux
-> development process to receive comments inline in the patch.
+The Qualcomm Bluetooth driver is configuring the device address in
+reverse order for none-ROME devices, which breaks user space tools like
+btmgmt and the 'local-bd-address' devicetree property.
+
+As these Qualcomm controllers lack persistent storage for the device
+address, boot firmware can use the 'local-bd-address' devicetree
+property to provide a valid address. The property should specify the
+address in little endian order, but instead some boot firmware has been
+reversing the address to match the buggy Qualcomm driver.
+
+This specifically affects some Chromebook devices for which we now need
+to maintain compatibility by deprecating the affected compatible string,
+marking the corresponding devicetree properties as broken, and reversing
+the addresses after parsing them. Fortunately, only 'qcom,wcn3991-bt' is
+impacted and needs to be deprecated this way according to the Chromium
+team [1].
+
+Note that this series depends on the following revert:
+
+	https://lore.kernel.org/lkml/20240314084412.1127-1-johan+linaro@kernel.org/
+
+Johan
 
 
->>> Organize your patches how described in submitting patches: one per
->>> logical change. Logical change is to reorder all properties in one
->>> file,
->>> without functional impact.
->> 
->> If I had accidentally deleted or modified an attribute in the process
->> of cleanup, this could have had a functional impact. It's easier to
-> 
-> How is it relevant? But you did not and splitting simple cleanup
-> one-line-per-patch is not affecting this. Just because you could make
-> mistake it does not affect patch readability at all.
-> 
-> Nothing improved with your patch split.
+[1] https://lore.kernel.org/lkml/ZcuWQkmYK4Ax9kam@google.com/
 
 
->> notice this sort of omission when the wall of text you're confronted
->> with is as small as possible, and not multiple pages long.
-> 
-> We are used to handle some length of patches. Multiple scrolls for
-> obvious cleanups are not problems. Why aren't you applying this 
-> approach
-> to everything? Add a new driver with one function per patch and then
-> finally Makefile? It would be bisectable and "easy to read" plus
-> absolutely unmanageable.
+Changes in v2
+ - add quirk to handle deprecated devicetree compatibles that expect
+   broken address properties
+ - deprecate 'qcom,wcn3991-bt' and mark it as broken
 
 
->> But for future reference: is it not enough for the Reviewed-by: 
->> trailer
->> to be sent in response to the cover letter of a patch set if a 
->> reviewer
->> has looked at the entire set?
-> 
-> Sure, one can. I still need to open and download 14 patches.
+Johan Hovold (4):
+  dt-bindings: bluetooth: add new wcn3991 compatible to fix bd_addr
+  Bluetooth: add quirk for broken address properties
+  Bluetooth: qca: fix device-address endianness
+  Bluetooth: qca: fix wcn3991 'local-bd-address' endianness
 
-Thanks for your input.
+ .../net/bluetooth/qualcomm-bluetooth.yaml     | 29 +++++++++++--------
+ drivers/bluetooth/btqca.c                     |  8 +++--
+ drivers/bluetooth/hci_qca.c                   | 11 +++++++
+ include/net/bluetooth/hci.h                   | 10 +++++++
+ net/bluetooth/hci_sync.c                      |  5 +++-
+ 5 files changed, 48 insertions(+), 15 deletions(-)
 
-I can imagine how these sets of very minor changes might greatly reduce
-your signal-to-noise ratio as an upstream maintainer.
+-- 
+2.43.2
 
-I'll try your suggested approach next time.
 
