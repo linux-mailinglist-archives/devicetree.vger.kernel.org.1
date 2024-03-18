@@ -1,171 +1,112 @@
-Return-Path: <devicetree+bounces-51376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51383-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5B4987F1F0
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 22:21:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2AE287F20A
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 22:25:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53B55282856
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 21:21:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6EFA42818EC
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 21:25:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDE9858211;
-	Mon, 18 Mar 2024 21:21:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 269CF59B60;
+	Mon, 18 Mar 2024 21:24:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bvhR7yZk"
+	dkim=pass (1024-bit key) header.d=pobox.com header.i=@pobox.com header.b="GFPz1DB5";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=fluxnic.net header.i=@fluxnic.net header.b="sP5Qt6UG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from pb-smtp20.pobox.com (pb-smtp20.pobox.com [173.228.157.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2C8058138;
-	Mon, 18 Mar 2024 21:21:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 985195821B;
+	Mon, 18 Mar 2024 21:24:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=173.228.157.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710796908; cv=none; b=OlD/GRfIo/J0UKlIYCX4xDpTkYmlFM5/b3yYQIU68dspoKT7GEf3bgZOLhf8OU49vx/XO532V8VO7KTuNyPWzWFv45nSz1kgSWDjGP7kP0tOuBrOtwsYJr+LGiw8I94u52a1ZzXqXa3FR/q+bmR2AzSQPOmpCbrxMcj7CTojVYQ=
+	t=1710797098; cv=none; b=mTzWW10655PgcJL1m77ueNesr/Hwzoc9ik2I5b9kx1x2SWMKgQn9YdtX/1X4YOlsWKvJs6Qgd4d3nLf2OXdiz1D1ypjXOebtDhHyhHDpXJAroNROGJakXLdsdfWJnElylwBaznsM+ZqsJ0nIOwJXe5rxB7RHraXg3EciB67LsXE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710796908; c=relaxed/simple;
-	bh=lEknxI1GdXy+gBGc1kGW2Plc51SdqHm0NHmyrg2s0AU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=CK4RL7my4cuO7r3AEpWKDut02cVOjt4NNa4KERs4Dtgh5WUwXokQryX7pbK6GFh1N+BNv2UHZ68NhHacOzCYHz1TmHWTlp2cNHZKkvq51jT/pwF1A5jdBRYvPcevOoErWzuZnWs512YlQ7neRHBgx2cljemMALdxBAcBaHwSYts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=bvhR7yZk; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42IJt2GS009316;
-	Mon, 18 Mar 2024 21:21:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=oFYfnk2O3YStsV4mePQQV328nUghUPgKz5O4fwliaZI=; b=bv
-	hR7yZki+rdmcH1i0csdYxqW6YCkO1QYneIn+DYy8N9tZ6cmd0eYjO1Bdh+LhDwFb
-	vo0aUzAysOEVKXeYL/P5HsauVoe+49K67kdPUszMhCIXTAigMA5qc+UOE7pm14dI
-	1J59V+jYfYkCaq86yF/U25RnFFFaLcYV2KCAup7COqb0yB8kEA3jhZGz7z2yU9qt
-	7aIMOvXz8U6m8rsxg6F1E7N4fofI+bKZ/qJLf8Y8IHL8lhyAG8oH9gnBdurL9S+E
-	0Z42qS+Q2IPjB4q680s6dsQ3PuMm0qkgrgymbN5oTQte88SzrDbmVVO18Ul9lCGr
-	utxES1eGpkBBWVLAnzuA==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wxjt4shng-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 18 Mar 2024 21:21:27 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42ILLPNF003847
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 18 Mar 2024 21:21:25 GMT
-Received: from [10.110.31.51] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 18 Mar
- 2024 14:21:24 -0700
-Message-ID: <4a69382c-5fb2-4703-8176-f1833eeffcc1@quicinc.com>
-Date: Mon, 18 Mar 2024 14:21:12 -0700
+	s=arc-20240116; t=1710797098; c=relaxed/simple;
+	bh=xwC5o7BEiXf9FRl2hIxykD7yqDyuhrPupfBToOJJlTg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=tguVCIpHlDt8I5vyUFbGkUelAEYRph3Ws7U2qJlTC2McoVK4aU7688+0no9iDE9A0HalxuTT5LpAp8AyCpAxmB/JdTwqD/vPRhlzgKdDUzBZBa/VsNbflbzVAjm5KXe5IETKMoVVgG+b5Cx3Y7dQMmOTkHwJQL+Whly8e57sAa0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fluxnic.net; spf=pass smtp.mailfrom=fluxnic.net; dkim=pass (1024-bit key) header.d=pobox.com header.i=@pobox.com header.b=GFPz1DB5; dkim=fail (1024-bit key) header.d=fluxnic.net header.i=@fluxnic.net header.b=sP5Qt6UG reason="signature verification failed"; arc=none smtp.client-ip=173.228.157.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fluxnic.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fluxnic.net
+Received: from pb-smtp20.pobox.com (unknown [127.0.0.1])
+	by pb-smtp20.pobox.com (Postfix) with ESMTP id 262F6234DE;
+	Mon, 18 Mar 2024 17:24:56 -0400 (EDT)
+	(envelope-from nico@fluxnic.net)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=pobox.com; h=from:to:cc
+	:subject:date:message-id:mime-version:content-transfer-encoding;
+	 s=sasl; bh=xwC5o7BEiXf9FRl2hIxykD7yqDyuhrPupfBToOJJlTg=; b=GFPz
+	1DB5P8iYSvs8eQpZaspEU981FKnl5eFfb8OqT7owVB6XWFlQsBDto4LRQ5C0CUxb
+	myQY7MmnDEI14kn5r233oNvotzAXQ/nqJmSBPs9jsSFrTbe8rm6RQZCwz17zStC9
+	BuILDtODNhKNGo7tGXbzX9Q5/NM06AROkEAug4U=
+Received: from pb-smtp20.sea.icgroup.com (unknown [127.0.0.1])
+	by pb-smtp20.pobox.com (Postfix) with ESMTP id 1E6CD234DD;
+	Mon, 18 Mar 2024 17:24:56 -0400 (EDT)
+	(envelope-from nico@fluxnic.net)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=fluxnic.net;
+ h=from:to:cc:subject:date:message-id:mime-version:content-transfer-encoding;
+ s=2016-12.pbsmtp; bh=xwC5o7BEiXf9FRl2hIxykD7yqDyuhrPupfBToOJJlTg=;
+ b=sP5Qt6UGC/+x2zgsfN1c23WYC5W8Bwqnr+vrInzMhV35sxHqu0cMMPRbm11nMfW48XH5Mb4Hd7OyCZXsRIHAaFfURKNB4XKs3KsIDreIL72vP+NKAMzyw+dY0wKlmtnPOytUnAKxPctpTR1LfwSonpECK0thbxhcYFmpD2XxXhM=
+Received: from yoda.fluxnic.net (unknown [24.201.101.36])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by pb-smtp20.pobox.com (Postfix) with ESMTPSA id EB0FA234D9;
+	Mon, 18 Mar 2024 17:24:51 -0400 (EDT)
+	(envelope-from nico@fluxnic.net)
+Received: from xanadu.lan (OpenWrt.lan [192.168.1.1])
+	by yoda.fluxnic.net (Postfix) with ESMTPSA id AD6A1BE2B9E;
+	Mon, 18 Mar 2024 17:24:49 -0400 (EDT)
+From: Nicolas Pitre <nico@fluxnic.net>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>,
+	linux-pm@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	devicetree@vger.kernel.org
+Cc: Nicolas Pitre <npitre@baylibre.com>
+Subject: [PATCH v2 0/13] Mediatek thermal sensor driver support for MT8186 and MT8188
+Date: Mon, 18 Mar 2024 17:22:02 -0400
+Message-ID: <20240318212428.3843952-1-nico@fluxnic.net>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/panel: simple: Add POWERTIP PH128800T006-ZHC01
- panel entry
-To: Nathan Morrisson <nmorrisson@phytec.com>, <neil.armstrong@linaro.org>,
-        <sam@ravnborg.org>, <maarten.lankhorst@linux.intel.com>,
-        <mripard@kernel.org>, <tzimmermann@suse.de>, <airlied@gmail.com>,
-        <daniel@ffwll.ch>, <robh@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <thierry.reding@gmail.com>
-CC: <w.egorov@phytec.de>, <dri-devel@lists.freedesktop.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <upstream@lists.phytec.de>
-References: <20240318161708.1415484-1-nmorrisson@phytec.com>
- <20240318161708.1415484-3-nmorrisson@phytec.com>
-Content-Language: en-US
-From: Jessica Zhang <quic_jesszhan@quicinc.com>
-In-Reply-To: <20240318161708.1415484-3-nmorrisson@phytec.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: tFW9EyK9fLbzGgYliH7Z-zohIbyfg0cz
-X-Proofpoint-ORIG-GUID: tFW9EyK9fLbzGgYliH7Z-zohIbyfg0cz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-18_12,2024-03-18_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- adultscore=0 malwarescore=0 clxscore=1011 phishscore=0 priorityscore=1501
- suspectscore=0 mlxscore=0 impostorscore=0 mlxlogscore=999 bulkscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2403140001 definitions=main-2403180161
+X-Pobox-Relay-ID:
+ F501C348-E56D-11EE-A2FF-F515D2CDFF5E-78420484!pb-smtp20.pobox.com
+Content-Transfer-Encoding: quoted-printable
 
+This is a bunch of patches to support the MT8186 and MT8188 thermal
+sensor configurations. Several changes are needed to cope with oddities
+these SOCs implement.
 
+All values (calibration data offsets, etc.) were lifted and adapted from
+the vendor driver source code.
 
-On 3/18/2024 9:17 AM, Nathan Morrisson wrote:
-> Add support for the POWERTIP PH128800T006-ZHC01 10.1" (1280x800)
-> LCD-TFT panel.
-> 
-> Signed-off-by: Nathan Morrisson <nmorrisson@phytec.com>
+Version 1 can be found here:
 
-Hi Nathan,
+ https://lore.kernel.org/all/20240111223020.3593558-1-nico@fluxnic.net/T/
 
-Acked-by: Jessica Zhang <quic_jesszhan@quicinc.com>
+Changes from v1:
 
-Thanks,
+ - renamed CPU cluster thermal zones in DT
+ - fixed logic to cope with empty controller slots at the beginning
+ - isolated bindings to their own patches
+ - added MT8188 default thermal zones
 
-Jessica Zhang
+diffstat:
 
-> ---
->   drivers/gpu/drm/panel/panel-simple.c | 29 ++++++++++++++++++++++++++++
->   1 file changed, 29 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-> index 20e3df1c59d4..02d238123753 100644
-> --- a/drivers/gpu/drm/panel/panel-simple.c
-> +++ b/drivers/gpu/drm/panel/panel-simple.c
-> @@ -3465,6 +3465,32 @@ static const struct panel_desc pda_91_00156_a0  = {
->   	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
->   };
->   
-> +static const struct drm_display_mode powertip_ph128800t006_zhc01_mode = {
-> +	.clock = 66500,
-> +	.hdisplay = 1280,
-> +	.hsync_start = 1280 + 12,
-> +	.hsync_end = 1280 + 12 + 20,
-> +	.htotal = 1280 + 12 + 20 + 56,
-> +	.vdisplay = 800,
-> +	.vsync_start = 800 + 1,
-> +	.vsync_end = 800 + 1 + 3,
-> +	.vtotal = 800 + 1 + 3 + 20,
-> +	.flags = DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC,
-> +};
-> +
-> +static const struct panel_desc powertip_ph128800t006_zhc01 = {
-> +	.modes = &powertip_ph128800t006_zhc01_mode,
-> +	.num_modes = 1,
-> +	.bpc = 8,
-> +	.size = {
-> +		.width = 216,
-> +		.height = 135,
-> +	},
-> +	.bus_format = MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,
-> +	.bus_flags = DRM_BUS_FLAG_DE_HIGH,
-> +	.connector_type = DRM_MODE_CONNECTOR_LVDS,
-> +};
-> +
->   static const struct drm_display_mode powertip_ph800480t013_idf02_mode = {
->   	.clock = 24750,
->   	.hdisplay = 800,
-> @@ -4639,6 +4665,9 @@ static const struct of_device_id platform_of_match[] = {
->   	}, {
->   		.compatible = "pda,91-00156-a0",
->   		.data = &pda_91_00156_a0,
-> +	}, {
-> +		.compatible = "powertip,ph128800t006-zhc01",
-> +		.data = &powertip_ph128800t006_zhc01,
->   	}, {
->   		.compatible = "powertip,ph800480t013-idf02",
->   		.data = &powertip_ph800480t013_idf02,
-> -- 
-> 2.25.1
-> 
+ .../thermal/mediatek,lvts-thermal.yaml        |   6 +
+ arch/arm64/boot/dts/mediatek/mt8186.dtsi      | 256 ++++++++++++
+ drivers/thermal/mediatek/lvts_thermal.c       | 375 ++++++++++++++----
+ .../thermal/mediatek,lvts-thermal.h           |  26 ++
+ 4 files changed, 585 insertions(+), 78 deletions(-)
+ .../thermal/mediatek,lvts-thermal.yaml        |   6 +
+ arch/arm64/boot/dts/mediatek/mt8186.dtsi      | 256 +++++++++++
+ arch/arm64/boot/dts/mediatek/mt8188.dtsi      | 383 ++++++++++++++++
+ drivers/thermal/mediatek/lvts_thermal.c       | 425 ++++++++++++++----
+ .../thermal/mediatek,lvts-thermal.h           |  26 ++
+ 5 files changed, 997 insertions(+), 99 deletions(-)
 
