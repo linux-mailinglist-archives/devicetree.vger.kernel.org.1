@@ -1,117 +1,177 @@
-Return-Path: <devicetree+bounces-51345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51346-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE00987EF7E
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 19:12:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0DB987EF87
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 19:16:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE30A1C216A3
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 18:12:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D16FB1C21C2A
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 18:16:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 144EF55E54;
-	Mon, 18 Mar 2024 18:12:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="DtiAJ4mL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB6CB55E67;
+	Mon, 18 Mar 2024 18:16:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [212.227.17.11])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C0DC55C14;
-	Mon, 18 Mar 2024 18:12:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AD6554F9C
+	for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 18:16:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710785568; cv=none; b=A+iqydobbMD5cA3i3Cn1I3zYXgomo1EkDM9ZpLo3CBSIWYWCdEA8llhm9wMiQwAiFk/w3AgFTgzKHGU6mdG7+JloF3Pxp3utvMTMPmUN4V50qUKXzuxHWgU4yY6S10ctIpV5klJNhgg2uolVIwWhUeeawXYU9EcwBmNinuIVV5w=
+	t=1710785783; cv=none; b=u75S3ITuGaGA/cM0vKrVO7Bjb43gieIf8nMZQbXS0P3dZHr+a/19eMk8Qg/nkN+a7NakZUyNVbkYbWCk7Lr1o9WuyZa1hegJ9MjVVuaJ3PsfrabN+RIELAtrmRNtHTPD9VU9x4rKfjjciKv8V1odAXDTzKRuwosjAODUoDMwWmc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710785568; c=relaxed/simple;
-	bh=Lac3YRJkU4gFApnJTCBqCe0z/9YKT7CxPuYov4fasoY=;
-	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
-	 In-Reply-To:Content-Type; b=cPKskl7HAkYWRR0OJdJcfNH+UsXHj958GpqsQx9l6zGILeZwi9/pYoO9rNcQpk7uiar7NoUnDwaxyh7DpuC3DkN1tz6WerLRM9ryMtuiFhXID0z//Nwm/tvorPuvyVPJxR53Rl1CGWmYVN04dpYOFnHqOUzBffssAwMFxcroygY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=DtiAJ4mL; arc=none smtp.client-ip=212.227.17.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1710785542; x=1711390342; i=markus.elfring@web.de;
-	bh=Lac3YRJkU4gFApnJTCBqCe0z/9YKT7CxPuYov4fasoY=;
-	h=X-UI-Sender-Class:Date:To:Cc:References:Subject:From:
-	 In-Reply-To;
-	b=DtiAJ4mL+fiMEmlLYNE+iHg/3zZ03m+na+DnFX9rNp0X8vC3m1YzzzfbqIbNUz4M
-	 Dt/DoYRZ0bTHZMXQhjGQI5H+aW5q/a5zWyI2OiPdDqCrEIY13lTnnTv64UmgOhJlP
-	 AdP1de9DaQxLPmVPhHjOMruAxmUu8IjvBxqgt1t6o6/JqA2aLA8ttQPPqZgEPNpVd
-	 nnPPPOBzYznZLns/h1E7VD70fWADr5hWWCz4+RfWiMZaxts+7fOHzhLOJi0dCa8xQ
-	 1WhA2QoKteLDviVFmPYk2hYl3ekUd1OQ3YXoY7bsM5TWPGLkVHKXgzMZZteTc6bIV
-	 SZWCtywFzYFN47nToA==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.21] ([94.31.90.95]) by smtp.web.de (mrweb105
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1MqIFF-1r0cvV1ZHH-00nKIM; Mon, 18
- Mar 2024 19:12:22 +0100
-Message-ID: <d5efc400-8dbc-4aee-9fb5-2993e6830e2c@web.de>
-Date: Mon, 18 Mar 2024 19:12:21 +0100
+	s=arc-20240116; t=1710785783; c=relaxed/simple;
+	bh=OMoSLdVOhugL9CaocEM0BFlIYi0g7blZ2jo89hV4xCc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YZ3rQBDI86AFL2cEQkfu5S0521DugoYlJL7CzIdDMv2/wwyLtIDLYEMXfjThzfNwCVynhJ7FAwmeAi4MCNIiLkaBw+ppF6/iy9tG2TNwowDN8VAURMNFDjJHebxmIvqv0t21Y+s30m6FGEzdc2EBeXL8MxbwJuin+mn8c5Zmwis=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rmHWy-0007zD-DD; Mon, 18 Mar 2024 19:16:16 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rmHWw-0077xD-MN; Mon, 18 Mar 2024 19:16:14 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rmHWw-00872I-1u;
+	Mon, 18 Mar 2024 19:16:14 +0100
+Date: Mon, 18 Mar 2024 19:16:14 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Nylon Chen <nylon.chen@sifive.com>
+Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, conor@kernel.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com, paul.walmsley@sifive.com, 
+	aou@eecs.berkeley.edu, thierry.reding@gmail.com, vincent.chen@sifive.com, 
+	zong.li@sifive.com, nylon7717@gmail.com
+Subject: Re: [PATCH v9 2/3] pwm: sifive: change the PWM algorithm
+Message-ID: <f5ukvah2ujko2iht3pd5jxq5kaukbs5z3pn5s7qwcnx4aqr3yv@mwtbwkcfa44a>
+References: <20240222081231.213406-1-nylon.chen@sifive.com>
+ <20240222081231.213406-3-nylon.chen@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: Ayush Singh <ayushdevel1325@gmail.com>,
- Vaishnav M A <vaishnav@beagleboard.org>, devicetree@vger.kernel.org,
- kernel-janitors@vger.kernel.org, linux-spi@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, lorforlinux@beagleboard.org,
- greybus-dev@lists.linaro.org
-Cc: LKML <linux-kernel@vger.kernel.org>, Alex Elder <elder@kernel.org>,
- Arnd Bergmann <arnd@arndb.de>, Conor Dooley <conor+dt@kernel.org>,
- Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic
- <dragan.cvetic@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jason Kridner <jkridner@beagleboard.org>, Johan Hovold <johan@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Mark Brown <broonie@kernel.org>, Nishanth Menon <nm@ti.com>,
- Rob Herring <robh@kernel.org>, Robert Nelson
- <robertcnelson@beagleboard.org>, Tero Kristo <kristo@kernel.org>,
- Vaishnav M A <vaishnav.a@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
-References: <20240317193714.403132-5-ayushdevel1325@gmail.com>
-Subject: Re: [PATCH v4 4/5] mikrobus: Add mikroBUS driver
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20240317193714.403132-5-ayushdevel1325@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="sht7baa5xh6fhhdu"
+Content-Disposition: inline
+In-Reply-To: <20240222081231.213406-3-nylon.chen@sifive.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+
+
+--sht7baa5xh6fhhdu
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:d3rsWjua/euVmCusMEdf9EWPGyz5EyJVackRp6jiopEEya/axKM
- 7KtTisuDqOjT7g+BpfBqQUwvkJdzBesfLFecqA+eroXI5usXRM1yMhefzveu38JXth+ok/K
- 9memp43OQwwmFTM+1S32xqzmjH/zYdRag8frGqdD+AMSRfF6t28WhqRCmDHj5Qt7AtzUka7
- 533VbMOvhlXUEbK3I4QyQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:FOAv7gLOqbk=;LIFw7TE+o2L/aes12HD1LR9Y1I0
- VDIjhJs70jys6vXqjVzsgrWtqrEk9pchL9A+mGrUuU99U2rzuYEvJe3Tp0/WZpfS7FCgkZt6n
- wf4MuB3QnaDd3jyAg6wfQFcWpPpzY2mJUXIsFtteJWmXX8LxUf84i6opANHArV6uPrTgW1Bt8
- ye49vSH5h8mLrS5Egj+E7vN+eTIpzd3pr0XqiOjpEvUeXtGjj/AD53pnNayTJy8s8PsfW9/+Q
- 8amXd2uh1sYJX6GK1MqiJHlaRy33xCM69nyFSCNOqHzFCbrR1BqGddY7yKRALti7PUmdUTe7p
- 5Q5I2FcCXUoI6HQburx4jGu1ftlbnqcpp/0FdKovJI95vXuxYf7RIuDad8S5vz0Yyt84Rb8Wr
- G/tGX7Qvs6dgatLzJlUQLjfJ3jd/wzjfB1j3QFpAiIuef8TUmvokOgPESnwR96E7H2c/Ul6j+
- q7BB1qJD1+B+GF4520sj1KEIsePWDJrlvGb/DRgyYkHBxAFHmIfEPfxR8YVHQMw+U3FvWMLcv
- mnxV4xtKtb/7cklHsq3MY09j55UNMdKEhngLtNn8Ua1Ion3GAWEqv4tA1+bL07hm6nCfinpeU
- tIA/Z3AFQMJ/LM+kKDJZQd8PmaZCY52VMv5YnxybipwTuwOK3E3DuJHYQH9btP8v7746qxjuH
- 2C/xWUSp6SGrPueZ+BvTReM5nrolHLfNQUl9cMU9gCl9buwICLJYiuQtu+jDn6QKiBDkyrife
- Lj0OzKfxvNPeK8h2fp+zxep8H/B417sLSJpY4Fy1zJIr+jNxaiAsSgLeoOjgpFRQZHylw4n6o
- e1HDP836GHMfIfjaEKUq9QklADBV+IztnZKY+buyRd+Bs=
 
-=E2=80=A6
-> +++ b/drivers/misc/mikrobus/mikrobus_core.h
-=E2=80=A6
-> +#ifndef __MIKROBUS_H
-> +#define __MIKROBUS_H
-=E2=80=A6
+On Thu, Feb 22, 2024 at 04:12:30PM +0800, Nylon Chen wrote:
+> The `frac` variable represents the pulse inactive time, and the result
+> of this algorithm is the pulse active time.
+> Therefore, we must reverse the result.
+>=20
+> The reference is SiFive FU740-C000 Manual[0]
+>=20
+> Link: https://sifive.cdn.prismic.io/sifive/1a82e600-1f93-4f41-b2d8-86ed8b=
+16acba_fu740-c000-manual-v1p6.pdf [0]
+>=20
+> Co-developed-by: Zong Li <zong.li@sifive.com>
+> Signed-off-by: Zong Li <zong.li@sifive.com>
+> Co-developed-by: Vincent Chen <vincent.chen@sifive.com>
+> Signed-off-by: Vincent Chen <vincent.chen@sifive.com>
+> Signed-off-by: Nylon Chen <nylon.chen@sifive.com>
+> ---
+>  drivers/pwm/pwm-sifive.c | 10 ++++++----
+>  1 file changed, 6 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/drivers/pwm/pwm-sifive.c b/drivers/pwm/pwm-sifive.c
+> index eabddb7c7820..a586cfe4191b 100644
+> --- a/drivers/pwm/pwm-sifive.c
+> +++ b/drivers/pwm/pwm-sifive.c
+> @@ -110,9 +110,10 @@ static int pwm_sifive_get_state(struct pwm_chip *chi=
+p, struct pwm_device *pwm,
+>  				struct pwm_state *state)
+>  {
+>  	struct pwm_sifive_ddata *ddata =3D pwm_sifive_chip_to_ddata(chip);
+> -	u32 duty, val;
+> +	u32 duty, val, inactive;
+> =20
+> -	duty =3D readl(ddata->regs + PWM_SIFIVE_PWMCMP(pwm->hwpwm));
+> +	inactive =3D readl(ddata->regs + PWM_SIFIVE_PWMCMP(pwm->hwpwm));
+> +	duty =3D (1U << PWM_SIFIVE_CMPWIDTH) - 1 - inactive;
+> =20
+>  	state->enabled =3D duty > 0;
+> =20
+> @@ -123,7 +124,7 @@ static int pwm_sifive_get_state(struct pwm_chip *chip=
+, struct pwm_device *pwm,
+>  	state->period =3D ddata->real_period;
+>  	state->duty_cycle =3D
+>  		(u64)duty * ddata->real_period >> PWM_SIFIVE_CMPWIDTH;
+> -	state->polarity =3D PWM_POLARITY_INVERSED;
+> +	state->polarity =3D PWM_POLARITY_NORMAL;
+> =20
+>  	return 0;
+>  }
+> @@ -139,7 +140,7 @@ static int pwm_sifive_apply(struct pwm_chip *chip, st=
+ruct pwm_device *pwm,
+>  	int ret =3D 0;
+>  	u32 frac;
+> =20
+> -	if (state->polarity !=3D PWM_POLARITY_INVERSED)
+> +	if (state->polarity !=3D PWM_POLARITY_NORMAL)
+>  		return -EINVAL;
+> =20
+>  	cur_state =3D pwm->state;
+> @@ -159,6 +160,7 @@ static int pwm_sifive_apply(struct pwm_chip *chip, st=
+ruct pwm_device *pwm,
+>  	frac =3D DIV64_U64_ROUND_CLOSEST(num, state->period);
+>  	/* The hardware cannot generate a 100% duty cycle */
 
-I suggest to avoid the specification of leading underscores for include gu=
-ards.
+Is this still true now that we know that PWM_SIFIVE_PWMCMP is the
+inactive time in a period? If you fix that, the same claim in the header
+of the driver needs adaption, too.
 
-See also:
-https://wiki.sei.cmu.edu/confluence/display/c/DCL37-C.+Do+not+declare+or+d=
-efine+a+reserved+identifier#DCL37C.Donotdeclareordefineareservedidentifier=
--NoncompliantCodeExample%28IncludeGuard%29
+>  	frac =3D min(frac, (1U << PWM_SIFIVE_CMPWIDTH) - 1);
+> +	frac =3D (1U << PWM_SIFIVE_CMPWIDTH) - 1 - frac;
 
+I like the additional variable in pwm_sifive_get_state(). Can you please
+add one here, too?
 
-Regards,
-Markus
+>  	mutex_lock(&ddata->lock);
+>  	if (state->period !=3D ddata->approx_period) {
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--sht7baa5xh6fhhdu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmX4hO0ACgkQj4D7WH0S
+/k5I7Af/anilkuBk6OcjkFY2IstjOdldOJ1UOGE/SIMZvUFUkjlFsQ1Lx9KpG5dY
+kIGEQ6h7q9iYUnvK5QwPHm1lj7KReDWg//hJZw0KkbrO7v22cGdcHmA/RS4wGs9u
+o0nbvSLnJszi/akI8CbQqiuebkMRzcIaSP3+3mjnxMWeT+74L9jMs17quPen1Jo7
+36aLy03/Gd5p+NkUlC9r+6z6s5qWdTzC2c2RpwtRdsujiUJ35TJ70gS/+nCH+dyd
+//eyVjdPJRDVx0EYF+mcBjWyGe+Q+3+oh1Mj+LvYtyJY8PFieAceNA8E8hU39pAC
+dWsfG3vp+3zxsicL0snmhFPcMqw3+Q==
+=LMZN
+-----END PGP SIGNATURE-----
+
+--sht7baa5xh6fhhdu--
 
