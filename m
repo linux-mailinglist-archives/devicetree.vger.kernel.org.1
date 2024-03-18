@@ -1,127 +1,148 @@
-Return-Path: <devicetree+bounces-51263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD93987EAB3
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 15:17:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C979987EAD6
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 15:24:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6C7091F20F44
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 14:17:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A4B81F21AF0
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 14:24:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 922EC4D5A3;
-	Mon, 18 Mar 2024 14:17:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC3444AEFB;
+	Mon, 18 Mar 2024 14:23:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vWIN4beV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FRjjCllk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D03FA4B5C1
-	for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 14:17:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F9D14D9E2;
+	Mon, 18 Mar 2024 14:23:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710771458; cv=none; b=UTbiW5Lu1X23kPr5dpKiqww9iOyGCaYOFRPUQ1wzDdFeycBmSQB5+JYyScS0cXYbuYsmH23rUf7BqCexB0NU6GcFD0gS4PKiI/3pedNprL4oWBoQo7tsqHo35dl1EAThUI2fG9A5LIDh7yf1y+eWBlEAqFcwcBzbhC1IXokXjj4=
+	t=1710771807; cv=none; b=EGlPxOnkGpC8CxHyWVtTg6GgJsftjQZMACmpPqHOmlYDPHuGqHpF9Vck8SbHHWmJ7dd+XeNpMhYlgoA/RSkCPMpmNUxHn2M23WdNt9rmoQ23Ft480IvElpcK8bI87By8IFOuKFVRULIkbIfh2fIjayhLaZxBcUgIiTf2RAkxMgw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710771458; c=relaxed/simple;
-	bh=ikAlB86gpifveSTewS4ZULYqijKVqVlt49o5eZKo3y0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qTh/YlIkdrt7Uh1xw0KeZesnhPqTaOmwxgDTQkrJ5pSPIg4muVt254rHdVWQNy5QPSBOjeGWki1fCZOPgwpyYc0HtV7ksMKm3+V2I+80UoS3avsGuFivtPNPDCeuXqCDic1hhbhS3R4tT2YRSczowdOq+bAXqE38AX4n66ERkfE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vWIN4beV; arc=none smtp.client-ip=209.85.219.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-dc6d8bd618eso4021533276.3
-        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 07:17:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710771456; x=1711376256; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=TzlwcHj9rzlTdK+4b+F6n+PcRBRh+2MYpTcgzzeZa60=;
-        b=vWIN4beVKFs+72BEslEjqeLxlIPWUsFeKXJQjR8FFYh7UkfVka3EzjU1yhq9K9Vbha
-         r3A4c8oAAGABlOwDTzcTN4locc7oa214sPPPOd5SXmeu7eGPgQp3d/RTE0O/0IelPNE7
-         MawCkYxLVSOkHuPsJvjF0fqr5FiO+WQ9RdPd35gknoRAoW6BEiHU4viyP1x7tI5qS54U
-         OrLtvnyJHcQxB530COO/MnjjVdZDdxrx2xtSlARayxqlmszcs8m+m1HC4ve5QKZ3k8r3
-         69mU74w1Svrv/2R0SjnYv/LlZWCdJC2MNU+jn85hf6fx+nMsNhVke04flBFg3HjjLnWL
-         a4wA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710771456; x=1711376256;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TzlwcHj9rzlTdK+4b+F6n+PcRBRh+2MYpTcgzzeZa60=;
-        b=Su37QnEAS4kTWf3wHrWZ36agsBAGf7jVLn1mEgbS2tcgeaBRDBwv0/Qc39hHosgYeV
-         Ld4tweoI8yMQcuu6DgTV2GrtTozhn6Jj0ettMtvczkCAC+SqwlrGMt+Q84i58iOZrGWk
-         b7iyYMn5fZ1LZxP8xodKxayPM7M7i4kC7tlVbnUF8Wb1yorJl5cMj6KEJgpLYj4vQHN4
-         g1JokAPpUucmsi6p127WsR/4xaU7wdvIsfoUUIt3qqnApxARqv3k/T7YdS06hd8ZjDAx
-         o5guiQevQaJOdLF1FCFTBUHrR+NbmXnGAaaYLj3lzwpWgCNvxKKeHqpPtv7DitHYq006
-         6UKg==
-X-Forwarded-Encrypted: i=1; AJvYcCUVqGyCsdsvQHa+qBQDqcTRtFTdTO4ulbS9JRenbFLpwBeYoBD93uQ38NEXH+KRuDzU7FjP9OKKhwy4PVEvUB4OcRvqR1dy3H4/4g==
-X-Gm-Message-State: AOJu0YxEehkolm8zEIp4khIRCSAsXuKxzYtljV0b6LxNd3qLpoTthKnf
-	v6QUCIRU8POOvuGbnrTo7Na5rrxPo/c/htfWxuwNtvM1rbJXOeXF7JJK26I+fyGaCaf9DbXxnHM
-	nIInK2/SQAoh3pkx2XCuHw53r4UA8UY5De2dGvg==
-X-Google-Smtp-Source: AGHT+IEg0K4vqskZLdSXL1XoDTQnXJtUP7LU4A0/ukD+ZZv5YFEKOUiK5+NKtoU9LiEirCb1HWMQxLx8ot6J6toV9gk=
-X-Received: by 2002:a25:a02a:0:b0:dcb:f7b0:4788 with SMTP id
- x39-20020a25a02a000000b00dcbf7b04788mr9079471ybh.60.1710771455547; Mon, 18
- Mar 2024 07:17:35 -0700 (PDT)
+	s=arc-20240116; t=1710771807; c=relaxed/simple;
+	bh=1S454b/v1LRtIQfIbFgwbzDLfDonxj8EstN2d0gsixY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sQO+KNgtu4Wo4H2eFS0PquaO1y6W+SFc9/M6elSdMBG6g4kXY8eS9hUcI2ZYDvxtaKmMapTPqiDmpV6U4lihRYiAdyGVpubmQ2y0xJ4k7U0/0rHk+GISSvMT0p6JBvG7XjpfSpRxFvTgCp5H6asGbTDTdKOAODBNjVMXzOCIz40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FRjjCllk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1790EC433C7;
+	Mon, 18 Mar 2024 14:23:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710771807;
+	bh=1S454b/v1LRtIQfIbFgwbzDLfDonxj8EstN2d0gsixY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FRjjCllkJF/Wv2VJFeMOgua0k3foxFu1rAkgxNaiK6duS2rfNjSyJUbX91BjB8LK8
+	 0GTeTUvJ6cz1xoLFcOdlvPwsod0NODf4luGzWPqpXmUqcjY3BKD63wCo46YvJE2STX
+	 oY660GJb3ciqp/61rk43/Eq2Fhj9baNgTaI9SRWp1JcGZxmDCREkw71DrnqGjIk3ux
+	 FyBNFSAK/o/ZzXP4PakhaBgsEGbOMae71xiHBl8A1nb7XDc46CG6IYhob0UrjNGTVS
+	 DiRx/kVj+cD4tQ+EJEQXQ7hV2zGxfiMs3oAnb0WBNolL+4UGEvPN/0vNdS/OpauY0p
+	 sN5eqGv1qiEHQ==
+Date: Mon, 18 Mar 2024 09:23:24 -0500
+From: Rob Herring <robh@kernel.org>
+To: Animesh Agarwal <animeshagarwal28@gmail.com>
+Cc: Vladimir Zapolskiy <vz@mleia.com>, Andi Shyti <andi.shyti@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: nxp,i2c-pnx: Convert to dtschema
+Message-ID: <20240318142324.GA3960676-robh@kernel.org>
+References: <20240318091911.13426-1-animeshagarwal28@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240318110855.31954-1-johan+linaro@kernel.org>
- <20240318110855.31954-2-johan+linaro@kernel.org> <CAA8EJprywWbdoyfAbys=0WzEdAkp0UK1fzzCPzxKRjyk9DrC6Q@mail.gmail.com>
- <Zfg--2_NMPSPTxK-@hovoldconsulting.com>
-In-Reply-To: <Zfg--2_NMPSPTxK-@hovoldconsulting.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 18 Mar 2024 16:17:24 +0200
-Message-ID: <CAA8EJpoxq6__DMcsuAEsnxBfPrrQBuu4ZgfULkok4KWSYVxuHQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: bluetooth: add new wcn3991 compatible
- to fix bd_addr
-To: Johan Hovold <johan@kernel.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>, Marcel Holtmann <marcel@holtmann.org>, 
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Johan Hedberg <johan.hedberg@gmail.com>, Matthias Kaehlcke <mka@chromium.org>, 
-	Doug Anderson <dianders@google.com>, Bjorn Andersson <quic_bjorande@quicinc.com>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, linux-bluetooth@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240318091911.13426-1-animeshagarwal28@gmail.com>
 
-On Mon, 18 Mar 2024 at 15:17, Johan Hovold <johan@kernel.org> wrote:
->
-> On Mon, Mar 18, 2024 at 03:00:40PM +0200, Dmitry Baryshkov wrote:
-> > On Mon, 18 Mar 2024 at 13:09, Johan Hovold <johan+linaro@kernel.org> wrote:
-> > >
-> > > Several Qualcomm Bluetooth controllers lack persistent storage for the
-> > > device address and instead one can be provided by the boot firmware
-> > > using the 'local-bd-address' devicetree property.
-> > >
-> > > The Bluetooth bindings clearly says that the address should be specified
-> > > in little-endian order, but due to a long-standing bug in the Qualcomm
-> > > driver which reversed the address some bootloaders have been providing
-> > > the address in big-endian order instead.
-> > >
-> > > The only device out there that should be affected by this is the WCN3991
-> > > used in some Chromebooks. To maintain backwards compatibility, mark the
-> > > current compatible string as deprecated and add a new
-> > > 'qcom,wcn3991-bt-bdaddr-le' for firmware which conforms with the
-> > > binding.
->
-> > This compatible doesn't describe new hardware kind. As such, I think,
-> > the better way would be to continue using qcom,wcn3991-bt compatible
-> > string + add some kind of qcom,bt-addr-le property.
->
-> No, you can't handle backwards compatibility by *adding* a property.
->
-> I wanted to avoid doing this, but if we have to support Google's broken
-> boot firmware for these devices, then this is how it needs to be done.
+On Mon, Mar 18, 2024 at 02:49:05PM +0530, Animesh Agarwal wrote:
+> Convert the NXP PNX I2C Controller bindings to DT schema.
+> Keep only one example in DT schema to remove redundancy.
+> 
+> Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
+> ---
+>  .../devicetree/bindings/i2c/i2c-pnx.txt       | 34 ------------
+>  .../devicetree/bindings/i2c/nxp,i2c-pnx.yaml  | 52 +++++++++++++++++++
+>  2 files changed, 52 insertions(+), 34 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-pnx.txt
+>  create mode 100644 Documentation/devicetree/bindings/i2c/nxp,i2c-pnx.yaml
 
-One hardware compat string per hardware type.
+> diff --git a/Documentation/devicetree/bindings/i2c/nxp,i2c-pnx.yaml b/Documentation/devicetree/bindings/i2c/nxp,i2c-pnx.yaml
+> new file mode 100644
+> index 000000000000..b44e4f995b73
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i2c/nxp,i2c-pnx.yaml
 
--- 
-With best wishes
-Dmitry
+Doesn't quite match the compatible string.
+
+> @@ -0,0 +1,52 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/i2c/nxp,i2c-pnx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP PNX I2C Controller
+> +
+> +maintainers:
+> +  - Animesh Agarwal<animeshagarwal28@gmail.com>
+> +
+> +allOf:
+> +  - $ref: /schemas/i2c/i2c-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: nxp,pnx-i2c
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+
+These 2 are defined in i2c-controller.yaml, so drop.
+
+> +
+> +  clock-frequency:
+> +    default: 100000
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c1: i2c@400a0000 {
+
+Drop unused labels.
+
+> +        compatible = "nxp,pnx-i2c";
+> +        reg = <0x400a0000 0x100>;
+> +        interrupt-parent = <&mic>;
+> +        interrupts = <51 0>;
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +    };
+> -- 
+> 2.44.0
+> 
 
