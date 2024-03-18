@@ -1,109 +1,110 @@
-Return-Path: <devicetree+bounces-51255-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51256-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B69D87E9F0
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 14:17:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD91D87EA13
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 14:28:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA427280EEC
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 13:17:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DDBA21C211D3
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 13:28:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 384DC38DE9;
-	Mon, 18 Mar 2024 13:17:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8296D47A7D;
+	Mon, 18 Mar 2024 13:28:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jfn6yFY5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KPwx81na"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F174D383B0;
-	Mon, 18 Mar 2024 13:17:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5726547F50;
+	Mon, 18 Mar 2024 13:28:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710767863; cv=none; b=XA3q2EpYx9oPr0tl/EbGJ06pywOjyh8MJ4ouFFGNcl9PEfmq60SwCeg6pF+8sIpcma2L4PVJOySigIctoNhL5aoKuOQXP6LVkZ5U9DMw2NPSCx13RrR/NzqjaQH7ylZx/UMblLovwLl7XC2W69mE3SsTm4DXPbCZborhf8JMcWA=
+	t=1710768533; cv=none; b=AFL/XfWCmI/o6+DjxtA/9hx+nYqN1D0MhXd4IHVTm+Vg2PLgOdIPNCVJizwLE+YMTCORykEkFHuXacEmOvhg0qiIkijmRGxdLdUfD2DA4XLugl+RI88msoyqKiOJutWkY8O5F/TTYD2JxCxXfQE7NnkSqiSgQHBWam/2rrEj67g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710767863; c=relaxed/simple;
-	bh=TBxlNbJ1kz+1mgc5LCV7B1yVqyid6pknsBQioHE+wvk=;
+	s=arc-20240116; t=1710768533; c=relaxed/simple;
+	bh=H4T7GRxUc7yBWQ/u7+eX/MPNWtS9olwvn5w3951JJzo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TCYke6JmP4QUlVkMsyJ9r4S0CTsDxryJJ0kP1u8xf6hau/7lBm4AyBHhi6/mQTJN750RnxCqu9EYec5EJjyfE+9yFz4BovuYla+LLBlAHaUaAXReTBajKX3p1qtZB9RiA3rgRstm5X6GSI4jbUv6yKjVd2cQPDFphM4sGRS9bSs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jfn6yFY5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65B23C433C7;
-	Mon, 18 Mar 2024 13:17:42 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=tTSlN6IwMW/ovnS5iKPhMUAyqqSXJRlYWdzfHR46b4m9RH/8XV+xN3mKAZNQxQ2AZ5nen9YjVqaYTbrZqTDTZDATVUia99aYK8in2NVT3FPHVLaa4XX8afVYYxuLk/olykt7c0xo7CcxE1u3JP/P3mvllZtzo+FtAr2UtQ0/H6E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KPwx81na; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FDDAC433F1;
+	Mon, 18 Mar 2024 13:28:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710767862;
-	bh=TBxlNbJ1kz+1mgc5LCV7B1yVqyid6pknsBQioHE+wvk=;
+	s=k20201202; t=1710768532;
+	bh=H4T7GRxUc7yBWQ/u7+eX/MPNWtS9olwvn5w3951JJzo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Jfn6yFY5x4ioM/28bhoexwqqED+kx78C7906yUeW8Z/8QSUgq6RolopQ5eyEINwNM
-	 xzj5LQtBaqipMQ59yVEF6WL6G3XDksaViLZglkF4ECw2itY4cy0T6MRo+1sK4in3ON
-	 d2ucQ4ZTUuSaZgx67vgbUhTVE0nnKtqGDPPhzZsFCXFFZ1dO3AK/e/vcpHia0wMHJo
-	 RmzPD/XdSIDdvNQ8ra7bF3Wo03gdf+YltOu840+d3/180ohoqCDb6hDEKgDH8BELTv
-	 7tvOEnAsZ36LpQVzqhCLUiFIsC8gGyJnvpnKi0iLica0joad0fiwH76tgOYGpz+4h+
-	 hCP/rvpR1PB/w==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1rmCs7-000000000L7-46cK;
-	Mon, 18 Mar 2024 14:17:48 +0100
-Date: Mon, 18 Mar 2024 14:17:47 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>,
-	Marcel Holtmann <marcel@holtmann.org>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	b=KPwx81naHa13NzOUadChg3ZXXlM4Sfuiu0hyjqME8CSu7bbn6dPXX9fM3Av51MWwp
+	 lC6BjSjjKXisOf6Kvo0k30BSGCQfHKEVSPAMVo8LAwdYWGTUZUMS5aHHFpJ390HQE+
+	 KystrWwhb03wJgV+GuBOFmbQN4WUyAEUbeJhFnSroQKxi7YHBnKb5X335rck3OiuZ9
+	 ORW1KLzz9YcbC7cPhtj5UZHvZ5wZYTZeVlMIjuTMINnEH3fjFVqS6Fc1MYzCQHwGpv
+	 wfrxRv5tLvclqRosigeSDxi4ltoMjD44u15AGBfr1C1z9WAHE4aRdcLrAEkwvokDGa
+	 apDTwQGa95aFg==
+Date: Mon, 18 Mar 2024 13:28:44 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Bastien Curutchet <bastien.curutchet@bootlin.com>
+Cc: Herve Codina <herve.codina@bootlin.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Johan Hedberg <johan.hedberg@gmail.com>,
-	Matthias Kaehlcke <mka@chromium.org>,
-	Doug Anderson <dianders@google.com>,
-	Bjorn Andersson <quic_bjorande@quicinc.com>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	linux-bluetooth@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: bluetooth: add new wcn3991
- compatible to fix bd_addr
-Message-ID: <Zfg--2_NMPSPTxK-@hovoldconsulting.com>
-References: <20240318110855.31954-1-johan+linaro@kernel.org>
- <20240318110855.31954-2-johan+linaro@kernel.org>
- <CAA8EJprywWbdoyfAbys=0WzEdAkp0UK1fzzCPzxKRjyk9DrC6Q@mail.gmail.com>
+	Peter Ujfalusi <peter.ujfalusi@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	christophercordahi@nanometrics.ca
+Subject: Re: [PATCH 04/13] ASoC: ti: davinci-i2s: Replace dev_err with
+ dev_err_probe
+Message-ID: <0ee075c8-7c74-444b-9024-ad5440c36789@sirena.org.uk>
+References: <20240315112745.63230-1-bastien.curutchet@bootlin.com>
+ <20240315112745.63230-5-bastien.curutchet@bootlin.com>
+ <6102130b-b496-4e75-9b9f-f960484848fb@sirena.org.uk>
+ <20240315152332.57c8fdc4@bootlin.com>
+ <2f58922d-8964-4693-ab8a-612eb2f427e1@sirena.org.uk>
+ <622b8b7e-7bd1-4e88-b705-79f7077b754a@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="sdrGDqd8KEdxafwD"
+Content-Disposition: inline
+In-Reply-To: <622b8b7e-7bd1-4e88-b705-79f7077b754a@bootlin.com>
+X-Cookie: Alaska:
+
+
+--sdrGDqd8KEdxafwD
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAA8EJprywWbdoyfAbys=0WzEdAkp0UK1fzzCPzxKRjyk9DrC6Q@mail.gmail.com>
 
-On Mon, Mar 18, 2024 at 03:00:40PM +0200, Dmitry Baryshkov wrote:
-> On Mon, 18 Mar 2024 at 13:09, Johan Hovold <johan+linaro@kernel.org> wrote:
-> >
-> > Several Qualcomm Bluetooth controllers lack persistent storage for the
-> > device address and instead one can be provided by the boot firmware
-> > using the 'local-bd-address' devicetree property.
-> >
-> > The Bluetooth bindings clearly says that the address should be specified
-> > in little-endian order, but due to a long-standing bug in the Qualcomm
-> > driver which reversed the address some bootloaders have been providing
-> > the address in big-endian order instead.
-> >
-> > The only device out there that should be affected by this is the WCN3991
-> > used in some Chromebooks. To maintain backwards compatibility, mark the
-> > current compatible string as deprecated and add a new
-> > 'qcom,wcn3991-bt-bdaddr-le' for firmware which conforms with the
-> > binding.
+On Mon, Mar 18, 2024 at 08:40:24AM +0100, Bastien Curutchet wrote:
+> On 3/15/24 15:40, Mark Brown wrote:
 
-> This compatible doesn't describe new hardware kind. As such, I think,
-> the better way would be to continue using qcom,wcn3991-bt compatible
-> string + add some kind of qcom,bt-addr-le property.
+> > I'm not convinced TBH, the fixed error code smells pretty bad.
 
-No, you can't handle backwards compatibility by *adding* a property.
+> Ok. I'll keep the dev_err() for the fixed errors then, and use the
+> dev_err_probe() for the others, would that be ok ?
 
-I wanted to avoid doing this, but if we have to support Google's broken
-boot firmware for these devices, then this is how it needs to be done.
+Yes, when we can get a deferral it's the right thing.
 
-Johan
+--sdrGDqd8KEdxafwD
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmX4QYsACgkQJNaLcl1U
+h9DEsgf+Ny9qlyRP+/by6BPfHGXB+skGcS3TPXz/GIAnirpIiVrZg4hPTC/uSxWF
+kuUx+m7UnPWUrUm7rBjDOhBNBpF16YY06MguCTLpBoOJ1f79tVB6Pn/8afzpGWS5
+GjmCKVR8riUNwbh+/WvWF6t9FPMnjRWYPqudsy8w/Bw2zgkDzFCYUhKzdfhii7bp
+TxBsaLFP8c+OT4plH/ofuW/RJNidJwn/f2cC2PWF5pv3uv2s3Jy4IAl/KvKRaYzl
+Q+H3bGkfGslxduSxefjqGmB5WW0eFmOfefTZ0OVckvp5GdORBWPp8uGLq+Ge+sh0
+poWhOCiuHaeY5JEeyFx2YXhxaFrCLw==
+=wK3n
+-----END PGP SIGNATURE-----
+
+--sdrGDqd8KEdxafwD--
 
