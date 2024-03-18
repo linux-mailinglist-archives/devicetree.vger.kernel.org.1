@@ -1,126 +1,126 @@
-Return-Path: <devicetree+bounces-51340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A830487EEFD
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 18:36:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0277787EF04
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 18:36:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 41CCC1F223E7
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 17:36:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 16DAF1C220BB
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 17:36:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECD375731C;
-	Mon, 18 Mar 2024 17:33:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5978D55C34;
+	Mon, 18 Mar 2024 17:35:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="JogwiI17"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BBF655C07;
-	Mon, 18 Mar 2024 17:33:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from mout.web.de (mout.web.de [212.227.17.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1ECC55780;
+	Mon, 18 Mar 2024 17:35:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710783234; cv=none; b=SSQlZr2XDzJXFEtZ+oS+ggjJNTX51PklK619VwKie2C6jHIooQPXna1V736OmZx5dXsG1g/6i+u4egCTVsYsrY5DawPHPy+iKsFMJ8bmvZsnFxPX2/Z+Vt2kSqDhLvxQLb05vr4yCmo3eTvCVBzojJOu1c5Z841S4CK94dlZK9o=
+	t=1710783334; cv=none; b=uSAp/L+X2LXIgdxAT2Gi0kLJlteqomXB1xcuOZfzrIbq8Xkp7yibdOIIWtU5wqJkdnGLRDq5X/5KkyNJpYCEKrMHcEzl0lw1vjcbHmX58ZtqCLCURSFX8tIk1HE6J9RGPDLqGPL9jR6eFryZvcBKsxrTirJ0e5V85ts/K7o6siU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710783234; c=relaxed/simple;
-	bh=v+kFPD1o/7JlH619W/a+IWjV8Zeo7sPxpghzeO94iTM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=gqBZjSB+tlV7Oy5CxUXwa5bt+Wc3jkICYI+poxkIYtmodxv1J8I+sAzkpBrpaj6eeyQAlaswWEJC20a75zbADRUg6cY7BM9+CXEywZUL1+wEHfggbLdEmuh3L5VO5AKMSV2JrBso59ekkKAc8WpgA+rgTFV/lLNHuJ0QC0dMxuA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-IronPort-AV: E=Sophos;i="6.07,134,1708354800"; 
-   d="scan'208";a="198216111"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 19 Mar 2024 02:33:51 +0900
-Received: from localhost.localdomain (unknown [10.226.93.20])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id BB79340359E9;
-	Tue, 19 Mar 2024 02:33:48 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v4 6/6] arm64: dts: renesas: r9a07g0{43,44,54}: Update RZ/G2L family compatible
-Date: Mon, 18 Mar 2024 17:33:19 +0000
-Message-Id: <20240318173319.201799-7-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240318173319.201799-1-biju.das.jz@bp.renesas.com>
-References: <20240318173319.201799-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1710783334; c=relaxed/simple;
+	bh=XoJNQUUFayCUG3xRrAmVCwbMxRg8KixIWe/vEYZcOPQ=;
+	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
+	 In-Reply-To:Content-Type; b=dVR6nTDi4hQOKrzpLnGlrnNuV/TbKF7BK8o9R1ajht5KcOdjWshnkhQmzzwg9fZibLtODPmEtukOysyiadLp5wFe+EaanY5HBefm2gUkdHtOBxS9jVfx1fPFEo3fnnnY1nDA45rlP5b3zAH10D1qhQrl3RH954mqG7HoBOurxow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=JogwiI17; arc=none smtp.client-ip=212.227.17.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1710783296; x=1711388096; i=markus.elfring@web.de;
+	bh=zL2UFIO2avZuf4cHRjFFmzwc7ks5q6OVftTUkucV4BQ=;
+	h=X-UI-Sender-Class:Date:To:Cc:References:Subject:From:
+	 In-Reply-To;
+	b=JogwiI17BOi49/yQuCytE7MPZ/qIpHhWfyoqhHAd1TiqdebvHZReeoEAEJSrIeEN
+	 DX3zIUxRV8l7Bx7gh0YwFqKSx1gKdlhHNX1961842Z2I6fbVA2Qk+6VDWB76T92n0
+	 F2v1Z+ULfkSf/50Zf0cCOiTaNmG7vzwMFcFjQhFGduQl6nnd9CocAGpnT/hY0pZgk
+	 mKBXG4pRtCuoMQPwCwy8UmhLKG29gzFTUJIQ77MJ3llLubG0VDuNz2d93DZMhyk8p
+	 keSdAdQ5byNbGHds15H2XdG5kOeOEfWCHr4jJu8WsJVf5XsQPOp8NM93EXwNwQj/Q
+	 vSNz9+PuUCu6RYyE1g==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.21] ([94.31.90.95]) by smtp.web.de (mrweb105
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1MzkSZ-1qrOwA3vX7-00vVE0; Mon, 18
+ Mar 2024 18:34:56 +0100
+Message-ID: <7d834747-0004-4556-b260-c747074a5df6@web.de>
+Date: Mon, 18 Mar 2024 18:34:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+To: Ayush Singh <ayushdevel1325@gmail.com>,
+ Vaishnav M A <vaishnav@beagleboard.org>, devicetree@vger.kernel.org,
+ kernel-janitors@vger.kernel.org, linux-spi@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, lorforlinux@beagleboard.org,
+ greybus-dev@lists.linaro.org
+Cc: LKML <linux-kernel@vger.kernel.org>, Alex Elder <elder@kernel.org>,
+ Arnd Bergmann <arnd@arndb.de>, Conor Dooley <conor+dt@kernel.org>,
+ Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic
+ <dragan.cvetic@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jason Kridner <jkridner@beagleboard.org>, Johan Hovold <johan@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Mark Brown <broonie@kernel.org>, Nishanth Menon <nm@ti.com>,
+ Rob Herring <robh@kernel.org>, Robert Nelson
+ <robertcnelson@beagleboard.org>, Tero Kristo <kristo@kernel.org>,
+ Vaishnav M A <vaishnav.a@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
+References: <20240317193714.403132-5-ayushdevel1325@gmail.com>
+Subject: Re: [PATCH v4 4/5] mikrobus: Add mikroBUS driver
+Content-Language: en-GB
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <20240317193714.403132-5-ayushdevel1325@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:rGQO4fDn0vNN389tBnKe7onogTvUErLvvTXduyGL6pWKFdmDEqy
+ MCYn5pkmCHDACrPUJoNy2C7GvGm1hYCvBujMK+WsDmVllQ2MYfQf5+4qeUPkILbJYGTHjoy
+ cMNmBfhajyMkcoBbxdstbnNIoU6tToHIwCqiARcUKBEdM5V/z5GbrKM5TGJjdtTWsSdEl7J
+ mBvYGlMAiI8JvT71ryP2A==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:7zD/DEBSM+I=;jR8jlBRRX3dOz59O2ZMyBlQGtol
+ u0BPn49w8vjSOeOdVkdxwlyYABexe3OvWICT6qmI9Apqsf9MKaxT8EIV5+CV04pIdjvwBE896
+ 1ueen8J87DYHuiI3PzZnN+2NoQbCptvE68Jp6AymKTBzPe1vw2VjsReQIqjUJJiKlsQ2jAePP
+ Yi/m9dWJ1XlzlQBGURVqOHxAn4n9S+bWzqs6W3pULZkbgnMH8BIU/XqkCnCxReW/TiGzEii/G
+ EFpvohWYchriay7ZZv4oP+nPZ633qrUYakf2SIlL69r/Rrvi3Kzze5ppl5HJAmnYB5Wvy0IkZ
+ 5SLUhpV/0DsR4+SLaUn4EEFq2rjOdWZWriQKIBXcw8/FhoEUQq8tHOeaaxy/AF+wsSUp+15q+
+ k10dFxBhHnOfJ2jBWXmNfsIqj1iGGquEu8QzAV69obc26noD1e9qnKhVzWZm8mil9YyHiLYSl
+ sDcXCAaccEogysA0PlBqbwcWC38hnHB2qAU89hV63umMfwr/VqD3P30E6/haT6MScpodO0tz0
+ rTIaj1KNEQp2qe2SYILnp1syn1GTieirb/cnkJmoFoITI/Y66OX+CAVdyeHaJYDMStfLSljUE
+ NnEzzX0PWIkut/Rkg3FOEcPeovfKjha0PoMGYm/x3QDpmDXnMkuunqrxn37M1Hxh5CkcozJzO
+ wrXAIyT4AoPvF55AwkS19hbVqbV9J8V5cXn6l0OYdxyjXn+HZZKcaXedRBYmazomRlXQa7dX/
+ jFczj4w8pDvlGGnOeRqD3awYga8yynVb2zhc9y2ELKVi6jiWv1GLaNSm87XUSpL2l6Nc/Rc3T
+ kES1V8VyySJ69k0OKaP1TK1gG/zBpZ9dRvmKLmTiF3McI=
 
-The number of pipe buffers on RZ/G2L family SoCs is 10, whereas on RZ/A2M
-it is 16. Replace 'renesas,rza2m-usbhs->renesas,rzg2l-usbhs' as family SoC
-compatible to handle this difference and use the SoC specific compatible
-in driver to avoid the ABI breakage with older DTB.
+=E2=80=A6
+> +++ b/drivers/misc/mikrobus/mikrobus_core.c
+=E2=80=A6
+> +static int mikrobus_pinctrl_select(struct mikrobus_port *port,
+> +				   const char *pinctrl_selected)
+> +{
+> +	struct pinctrl_state *state;
+> +	int ret;
+> +
+> +	state =3D pinctrl_lookup_state(port->pinctrl, pinctrl_selected);
+> +	if (IS_ERR(state)) {
+> +		return dev_err_probe(&port->dev, PTR_ERR(state),
+> +				     "failed to find state %s",
+> +				     pinctrl_selected);
+> +	}
+=E2=80=A6
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Acked-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v3->v4:
- * No change.
-v2->v3:
- * Added tags from Geert.
-v1->v2:
- * Updated commit description about ABI breakage.
- * Updated commit header as it is RZ/G2L specific.
----
- arch/arm64/boot/dts/renesas/r9a07g043.dtsi | 2 +-
- arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 2 +-
- arch/arm64/boot/dts/renesas/r9a07g054.dtsi | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+I suggest to reconsider the need for extra curly brackets here.
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g043.dtsi b/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
-index 8721f4c9fa0f..766c54b91acc 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
-@@ -812,7 +812,7 @@ usb2_phy1: usb-phy@11c70200 {
- 
- 		hsusb: usb@11c60000 {
- 			compatible = "renesas,usbhs-r9a07g043",
--				     "renesas,rza2-usbhs";
-+				     "renesas,rzg2l-usbhs";
- 			reg = <0 0x11c60000 0 0x10000>;
- 			interrupts = <SOC_PERIPHERAL_IRQ(100) IRQ_TYPE_EDGE_RISING>,
- 				     <SOC_PERIPHERAL_IRQ(101) IRQ_TYPE_LEVEL_HIGH>,
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-index 9f00b75d2bd0..88634ae43287 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-@@ -1217,7 +1217,7 @@ usb2_phy1: usb-phy@11c70200 {
- 
- 		hsusb: usb@11c60000 {
- 			compatible = "renesas,usbhs-r9a07g044",
--				     "renesas,rza2-usbhs";
-+				     "renesas,rzg2l-usbhs";
- 			reg = <0 0x11c60000 0 0x10000>;
- 			interrupts = <GIC_SPI 100 IRQ_TYPE_EDGE_RISING>,
- 				     <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g054.dtsi b/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
-index 53d8905f367a..e89bfe4085f5 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
-@@ -1225,7 +1225,7 @@ usb2_phy1: usb-phy@11c70200 {
- 
- 		hsusb: usb@11c60000 {
- 			compatible = "renesas,usbhs-r9a07g054",
--				     "renesas,rza2-usbhs";
-+				     "renesas,rzg2l-usbhs";
- 			reg = <0 0x11c60000 0 0x10000>;
- 			interrupts = <GIC_SPI 100 IRQ_TYPE_EDGE_RISING>,
- 				     <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
--- 
-2.25.1
+See also:
+Section =E2=80=9C3) Placing Braces and Spaces=E2=80=9D
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Do=
+cumentation/process/coding-style.rst?h=3Dv6.8#n197
 
+
+Regards,
+Markus
 
