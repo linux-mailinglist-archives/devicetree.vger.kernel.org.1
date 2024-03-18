@@ -1,216 +1,129 @@
-Return-Path: <devicetree+bounces-51362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51363-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1531887F063
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 20:25:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D184087F066
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 20:26:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4535D1C20CB8
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 19:25:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D7421C20EE3
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 19:26:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6A7456762;
-	Mon, 18 Mar 2024 19:25:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FB0956762;
+	Mon, 18 Mar 2024 19:26:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="hlhv1fsw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W4cfOkSy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97E9E55C16;
-	Mon, 18 Mar 2024 19:25:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65F7355C16;
+	Mon, 18 Mar 2024 19:26:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710789913; cv=none; b=IuqK0wwOoPrT9ohHBigg3NCBFWatQ0jAZEwZnhjymqikzYuf+/9igNdcWhG45TO31h8/gfAc96asijQe3Dw1ugJ5Sqd30KuqhNSkk58wFfzoF4NlbqmdrGf1v9ckQcFoCidQWHxGslgvs5p6eu2vpKmqOxEk89Q7Sz3ipVR4z7s=
+	t=1710789976; cv=none; b=sKlCS1lWCTGQW5RnroUUSz0s04e8kVzb9vRrwdIHUAbgfsIpxnYF2cCWAubecA70GQ+7RHn4+eUgjNUFxeQBIJp6zMLfzo0A/D6/kwgfgdza9c5KfFbqSxm79vXxW93AtLAbp5FkPqjnlpzx6k/6JASTlmDpLBl4NC7FlGC7WUs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710789913; c=relaxed/simple;
-	bh=OjrMC/xpq2oOnHAkNpVlozVOw4Jyoq81prV1dU1asjQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PWmZ2DwwgIbKSuAmy1UF5W86b7OYZCoGAx8IO4qOnDsE+640DPb29JR2b/voMzmfePIw8nmxeJPAYqTZe+nE2+nn2XPz2CebiBtRvL2xM0+hlBHq7tiip9S3n9zYtnkpGFGYBTrAejXWri9aHhkSTngkLvMieY1tG7dCSpMog5E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=hlhv1fsw; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id B127F2A5;
-	Mon, 18 Mar 2024 20:24:43 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1710789883;
-	bh=OjrMC/xpq2oOnHAkNpVlozVOw4Jyoq81prV1dU1asjQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hlhv1fswZJMjtYjQYZwhs2VjysxK2IiLmNAF+va8xikdyx0Wp7cMVaiw9iWMeaX1a
-	 dOuLnswSOlbEkCb8sx6shkMPsmVykSJhpyHi5uBXwix93E3P9ewXOZTDFygkXYIaqO
-	 fUZad0zyUWRzVQwR9AJNWVRJ1VmxV2OWw8N4eKuA=
-Date: Mon, 18 Mar 2024 21:25:07 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc: linux-media@vger.kernel.org,
-	David Plowman <david.plowman@raspberrypi.com>,
-	Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Naushir Patuck <naush@raspberrypi.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	kernel-list@raspberrypi.com, linux-rpi-kernel@lists.infradead.org,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	bcm-kernel-feedback-list@broadcom.com,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 12/15] ARM: dts: bcm2711-rpi: Add pinctrl-based
- multiplexing for I2C0
-Message-ID: <20240318192507.GQ13682@pendragon.ideasonboard.com>
-References: <20240301213231.10340-1-laurent.pinchart@ideasonboard.com>
- <20240301213231.10340-13-laurent.pinchart@ideasonboard.com>
- <CAPY8ntAYbb8oBOww5yR+7u8UA-V=zemJMkZ7SWySH3C2bqmFMA@mail.gmail.com>
+	s=arc-20240116; t=1710789976; c=relaxed/simple;
+	bh=B9cHjklwp//90eTgPE4lPF1npWGSNbsYf3Z3cSRgIoA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=X5telI1MR5GKRDrTf4Cv8ctN7P1UqplFpG4JTxQ6rpVkGewHNUJVVrbh6fGHr+cB2t/GOjRxh8lWtglDhO+zNJND2UAjzgERJu0qS2c0EhADBBTku8m5wZ6nbwECFguOTMSaSIpG22hXYwEtalLfvaZkoHX4d1TLFsGgtgAYdTo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W4cfOkSy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42BAEC43390;
+	Mon, 18 Mar 2024 19:26:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710789976;
+	bh=B9cHjklwp//90eTgPE4lPF1npWGSNbsYf3Z3cSRgIoA=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=W4cfOkSy7U2v6dpwFPLE99cM8xBNgqMF7rA6sHAkOEmNzgKM+Z1sLYuNZOzzzU4VX
+	 ztB29OcNzVeO54jqWQYFTVeHQJp/ub5KN6SOuIVN8SSwNhxo8xF2nJf9yG4x4IJz+V
+	 XNk8Sg8sGsANsEdTdAMDuik2IxG5l1j+Tu5cwIHdOTAzOeAIiNMwKg1jRi+Ww4qbOT
+	 AFivVosj4ybOJjTc1Eji72XrbEsleLIEYnzpDqH/NxM80UQfreP+cyu5ji0JFST1x6
+	 1ZcfvM4ZMSPSihx2kouP0reYMyKSi/8eAmzJPCJ7L7of4AK6zm3qK8tjFF6yMS3Wfa
+	 QJhhZfyZW5WBQ==
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-513dc9d6938so3784050e87.2;
+        Mon, 18 Mar 2024 12:26:16 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUuLCNGBbEDh9bUF6xL2lSjQFN99FgZHCUSU9a2quvSrfFOhAX4CrZFYzziwDj9njG8eMLnZxlclUaYilgkkGLbJT8yfp/vA7c22usdhztLTUpYOo5iPeVj1Ad6htoLClDJc9WP3urP4w==
+X-Gm-Message-State: AOJu0Yxh1ePYG6typV74xeTmeI3AdGAHay+DEiXGWqBKK4ngYwmCOrFS
+	AtOBY8CP/Z2oLyX8V+AvWwcHdNS8EYW1ORVqZCR1ixGwoF6gxwJmqxIT/+WXlunhXj5sJt9wICO
+	sVmzicCB/IYVDK/mghObYt4JELA==
+X-Google-Smtp-Source: AGHT+IGj+OI0YXoPBlpOkSTh1OagxpY9ZORVr9LEgdvaU7YSx4uoUDyg9uWzIjYFZhWE5JBvS/EQbnIWbMp2xoT3/xo=
+X-Received: by 2002:a05:6512:28c:b0:513:cadf:ef0c with SMTP id
+ j12-20020a056512028c00b00513cadfef0cmr8747490lfp.18.1710789974630; Mon, 18
+ Mar 2024 12:26:14 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAPY8ntAYbb8oBOww5yR+7u8UA-V=zemJMkZ7SWySH3C2bqmFMA@mail.gmail.com>
+References: <20230317053415.2254616-1-frowand.list@gmail.com>
+ <20230317053415.2254616-2-frowand.list@gmail.com> <886049ed-4f5f-4e17-86f4-1245024ade3a@roeck-us.net>
+In-Reply-To: <886049ed-4f5f-4e17-86f4-1245024ade3a@roeck-us.net>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Mon, 18 Mar 2024 14:26:00 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKsF53v7d7uZ3XT4kPFy-2FBWHfvKNSFdTx2oZhmSZkDA@mail.gmail.com>
+Message-ID: <CAL_JsqKsF53v7d7uZ3XT4kPFy-2FBWHfvKNSFdTx2oZhmSZkDA@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] of: create of_root if no dtb provided
+To: Guenter Roeck <linux@roeck-us.net>, Stephen Boyd <sboyd@kernel.org>
+Cc: Frank Rowand <frowand.list@gmail.com>, =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Lizhi Hou <lizhi.hou@xilinx.com>, Allan Nielsen <allan.nielsen@microchip.com>, 
+	Horatiu Vultur <horatiu.vultur@microchip.com>, 
+	Steen Hegelund <steen.hegelund@microchip.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Dave,
++Stephen
 
-On Mon, Mar 18, 2024 at 02:56:33PM +0000, Dave Stevenson wrote:
-> On Fri, 1 Mar 2024 at 21:32, Laurent Pinchart wrote:
+On Mon, Mar 18, 2024 at 12:09=E2=80=AFPM Guenter Roeck <linux@roeck-us.net>=
+ wrote:
+>
+> Hi,
+>
+> On Fri, Mar 17, 2023 at 12:34:14AM -0500, Frank Rowand wrote:
+> > When enabling CONFIG_OF on a platform where of_root is not populated by
+> > firmware, we end up without a root node. In order to apply overlays and
+> > create subnodes of the root node, we need one. Create this root node
+> > by unflattening an empty builtin dtb.
 > >
-> > From: Uwe Kleine-König <uwe@kleine-koenig.org>
+> > If firmware provides a flattened device tree (FDT) then the FDT is
+> > unflattened via setup_arch().  Otherwise setup_of(), which is called
+> > immediately after setup_arch(), will create the default root node
+> > if it does not exist.
 > >
-> > BCM2711-based Raspberry Pi boards (4B, CM4 and 400) multiplex the I2C0
-> > controller over two sets of pins, GPIO0+1 and GPIO44+45. The former is
-> > exposed on the 40-pin header, while the latter is used for the CSI and
-> > DSI connectors.
-> 
-> It's true for all Pis that I2C0 is exposed over 2 sets of gpios.
-> Seeing as we want to support cameras on Pi0-3, is there a reason not
-> to include the mux on those?
+> > Signed-off-by: Frank Rowand <frowand.list@gmail.com>
+>
+> This patch results in a crash on nios2.
 
-Simplicity :-) I got lost in the maze of differences in .dtsi files
-between the upstream and downstream kernels. Given that not all Pi's
-have device trees upstream, I decided to start simple(r).
+This patch was never applied. I assume you meant a later version of it
+that did get applied.
 
-> Looking back I had started this way back in [1] with all the variants.
-> I thought I'd posted the v2 follow up, but can't find it.
-> The original Pi 1 models A & B were the annoyances. The rev1 put the
-> camera on i2c1 GPIOs 2&3, with the rev2 on i2c0 with GPIOs 0&1.
-> 
-> Whilst it would be nice to have support for all platforms, this
-> doesn't stop us moving the mux into bcm283x-rpi.dtsi at a later date
-> to add support for the other devices.
-> I'm happy enough having the first step of getting Pi4 working, with
-> others being done later.
+>
+> Building nios2:10m50-ghrd:10m50_defconfig:10m50_devboard.dts ... running =
+...R failed (crashed)
 
-Thanks :-) I would also be happy for other boards to get I2C0 mux
-support later.
+Booting with DT?
 
-> [1] https://linux-rpi-kernel.infradead.narkive.com/lmzYlT3c/rfc-arm-dts-add-i2cmux-pinctrl-config-to-raspberry-pi-i2c-0
-> 
-> > Add a pinctrl-based I2C bus multiplexer to bcm2711-rpi.dtsi to model
-> > this multiplexing. The two child buses are named i2c0_0 and i2c0_1.
-> >
-> > Note that if you modified the dts before to add devices to the i2c bus
-> > appearing on pins gpio0 + gpio1 (either directly in the dts or using an
-> > overlay), you have to put these into the i2c0_0 node introduced here
-> > now.
-> >
-> > Signed-off-by: Uwe Kleine-König <uwe@kleine-koenig.org>
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > ---
-> > Changes since v3:
-> >
-> > - Split addition of the RTC to a separate patch
-> > - Move the mux to bcm2711-rpi.dtsi
-> > ---
-> >  arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi | 31 +++++++++++++++++++++
-> >  1 file changed, 31 insertions(+)
-> >
-> > diff --git a/arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi b/arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi
-> > index 86188eabeb24..826ed6efa9ff 100644
-> > --- a/arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi
-> > +++ b/arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi
-> > @@ -17,6 +17,32 @@ aliases {
-> >                 pcie0 = &pcie0;
-> >                 blconfig = &blconfig;
-> >         };
-> > +
-> > +       i2c0mux: i2c0mux {
-> > +               compatible = "i2c-mux-pinctrl";
-> > +               #address-cells = <1>;
-> > +               #size-cells = <0>;
-> > +
-> > +               i2c-parent = <&i2c0>;
-> > +
-> > +               pinctrl-names = "i2c0", "i2c0-vc";
-> > +               pinctrl-0 = <&i2c0_gpio0>;
-> > +               pinctrl-1 = <&i2c0_gpio44>;
-> > +
-> > +               status = "disabled";
-> 
-> Why defaulting to disabled?
-> 
-> The current mainline DT defaults to i2c0 being enabled on GPIOs 0&1
-> (done via bcm2835-rpi.dtsi).
-> If the mux is disabled, then this change has left i2c0 being enabled
-> but with no pinctrl property, so it's not connected to the outside
-> world.
-> GPIOs 44&45 have never had any other user, therefore claiming them for
-> the mux isn't a regression in my view.
+> ------------
+> qemu log:
+> earlycon: uart8250 at MMIO32 0x18001600 (options '')
+> printk: legacy bootconsole [uart8250] enabled
+> Linux version 6.8.0-11409-gf6cef5f8c37f (groeck@desktop) (nios2-linux-gcc=
+ (GCC) 11.4.0, GNU ld (GNU Binutils) 2.40) #1 Sun Mar 17 23:38:59 PDT 2024
+> Kernel panic - not syncing: early_init_dt_alloc_memory_arch: Failed to al=
+locate 72 bytes align=3D0x40
+> ---[ end Kernel panic - not syncing: early_init_dt_alloc_memory_arch: Fai=
+led to allocate 72 bytes align=3D0x40 ]---
 
-I don't recall why I disabled it. Your explanation makes sense, I'll
-drop the status property.
+nios2 looks utterly broken to me. This change should be a nop unless
+initial_boot_params is NULL. It looks like it is possible for r6 (dtb
+address) to be 0 depending on kconfig options, but that would have
+skipped copying and unflattening which would then panic in
+setup_cpuinfo(). If initial_boot_params is not NULL, then the same
+early_init_dt_alloc_memory_arch() calls should fail when copying the
+DT. So I don't see how nios2 booting with DT ever worked.
 
-> As long as we can enable the other platforms later, and with the minor
-> caveat over being enabled or not:
-> 
-> Acked-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-
-Thank you. I'll send a new version of the series soon, Florian wanted to
-pick the DT integration sooner than later.
-
-> Minor point that CONFIG_I2C_MUX_PINCTRL appears not to be in the arm64
-> defconfig. I don't know what the policy is there, but there seem to be
-> many other SoCs throwing modules in there for their configurations.
-> It is in arm/multi_v7_defconfig.
-
-Good question.
-
-> > +
-> > +               i2c0_0: i2c@0 {
-> > +                       reg = <0>;
-> > +                       #address-cells = <1>;
-> > +                       #size-cells = <0>;
-> > +               };
-> > +
-> > +               i2c0_1: i2c@1 {
-> > +                       reg = <1>;
-> > +                       #address-cells = <1>;
-> > +                       #size-cells = <0>;
-> > +               };
-> > +       };
-> >  };
-> >
-> >  &firmware {
-> > @@ -49,6 +75,11 @@ &hvs {
-> >         clocks = <&firmware_clocks 4>;
-> >  };
-> >
-> > +&i2c0 {
-> > +       /delete-property/ pinctrl-names;
-> > +       /delete-property/ pinctrl-0;
-> > +};
-> > +
-> >  &rmem {
-> >         /*
-> >          * RPi4's co-processor will copy the board's bootloader configuration
-
--- 
-Regards,
-
-Laurent Pinchart
+Rob
 
