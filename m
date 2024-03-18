@@ -1,136 +1,127 @@
-Return-Path: <devicetree+bounces-51232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19CC787E82F
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 12:09:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 197E387E8B8
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 12:36:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C38961F243B2
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 11:09:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5B65282639
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 11:36:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8DC3374F1;
-	Mon, 18 Mar 2024 11:08:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAED2364CD;
+	Mon, 18 Mar 2024 11:36:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cR/ElfzX"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="AWvY+op5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2026364BF;
-	Mon, 18 Mar 2024 11:08:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAC252EAE0;
+	Mon, 18 Mar 2024 11:36:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710760139; cv=none; b=nlSiremQ48t3lxbKb1+lkEB/V+hWuE9iLIMInBiQP4CPtCx4CrE76OxFf+aJy1kSKNtIx8fHCTepNMzyPSGrxWoeu23wHww/obCtWZV0qKOyd1JaSWC7ogr2qfm+e37ZuuF0TXAwkyLnPwmfVJCmdZ/rQmHvnfUoRfbiYdoALsc=
+	t=1710761778; cv=none; b=a7ZYVJz5PhFfxOVymglJcfkxtUxoqyyS9xvhBQChMDVttXpyqq/TcPHVFrmhQ8rCNm/oF0AY2QoQcXHkrIoH6UTpW3BVeZOLT/0HfIxrTrqSkIO/ueDR2JFfwhEgMA83nU1g7UC28PrcSPT94u+yoDNxGPIrKp/qH+LfjLBEy3U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710760139; c=relaxed/simple;
-	bh=vFYxI/evLVZ5xnjJcv/HxjQrEpYkbG+SjslgqJGSw9Q=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=XmMfZGRdFYBrGaUndz0SUDzQCfOj2wjqlsl/VMFVEkPWemKAiHZ3BUwaa4tWgyZHeyb4loJ3ZjWhsnedLGD06wARgO/e0JZtMp/+c6W+Crpu3wSd93fdTTzq0oAENMe1DKu0WmRi/bm0msK6c99sT/ANhLs7T9f/SmxOQF/Ln/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cR/ElfzX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D12BC433B1;
-	Mon, 18 Mar 2024 11:08:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710760139;
-	bh=vFYxI/evLVZ5xnjJcv/HxjQrEpYkbG+SjslgqJGSw9Q=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=cR/ElfzXeQ5RfhRBRufwn/QdOag6NRNsRSMmdvp4OsBMEkQg194NAMaR2m0mPHUDs
-	 wJkU0TxY95DRJ+IY7QKwzqchYsoXp5vVatMtvmOJfXw4VH7nB7V0z9RQv1RPPTmrQO
-	 ftPgFbYGUIqzOVD6oIO0E8d4wdB0eyc59HM4pnhU5dqlfk9ZXpJ8Mw0luUmOHTJhLa
-	 51ht3JXKgZXCEbsNTmtwBpR6Bq/eOILukrNVKEZe154dBlA5YwxpLHyzIhICsoHFq+
-	 G0cPna4EHmvl6BcJbCn7fZUUzdzNdlMuIdJvgMrjDldD4BCb41QICj9y2yO2jhEuWc
-	 fRqVfXQYGD68w==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan+linaro@kernel.org>)
-	id 1rmArY-000000008Jr-45VI;
-	Mon, 18 Mar 2024 12:09:05 +0100
-From: Johan Hovold <johan+linaro@kernel.org>
-To: Marcel Holtmann <marcel@holtmann.org>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Johan Hedberg <johan.hedberg@gmail.com>,
-	Matthias Kaehlcke <mka@chromium.org>,
-	Doug Anderson <dianders@google.com>,
-	Bjorn Andersson <quic_bjorande@quicinc.com>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	linux-bluetooth@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Johan Hovold <johan+linaro@kernel.org>,
-	stable@vger.kernel.org,
-	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>
-Subject: [PATCH v2 4/4] Bluetooth: qca: fix wcn3991 'local-bd-address' endianness
-Date: Mon, 18 Mar 2024 12:08:55 +0100
-Message-ID: <20240318110855.31954-5-johan+linaro@kernel.org>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240318110855.31954-1-johan+linaro@kernel.org>
-References: <20240318110855.31954-1-johan+linaro@kernel.org>
+	s=arc-20240116; t=1710761778; c=relaxed/simple;
+	bh=E37YPtRMQLajq0y7J+0i5Qyxqy8cnmFB2WeJKMX7wOA=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=EUoREGcXXuO9F1NsJBgPMLq82hs0g1kR4JnC1Dt0cv31joDSGRTrWbzJZYDkC003azo185IkNy3ImVKK18CicLW5tbnSEK9Z0m/xD0lmPo9NltFdRMDkGw+jajo/+d0z/asTHCjrUpJhfNqwmpMJKVGbIkpCDNvq/fR110dBEDs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=AWvY+op5; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42IAjrru010689;
+	Mon, 18 Mar 2024 07:23:06 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=
+	from:to:subject:date:message-id:mime-version:content-type
+	:content-transfer-encoding; s=DKIM; bh=dwNsCIszrSUBJV4E/OUlM450N
+	4H1ANqdvohbTLT71w0=; b=AWvY+op5ZUqSaHXwI8yVQKY6dwnv5VZZc2x81OF88
+	55K3BPZnYe2KAF8DMO3kA6EKGeSo4hqHCq/5iUCgeWO0JFm6cPD8GRhBYtPbwzKj
+	QcQpml/mIFwxUIjYdUXmG8IFuQ0CsQU0Aw0BBtMnjWovzNhcww5U8FNNeUXZhoMs
+	0j/fg46TAIns6CSPkOt//TyApo4+OetHL3rHcbht8FY5QXIaJHhwuXs9mK3QqUb1
+	bMxOxdsUxDXnudw+yug7wvlSJi4MvEg7Tzo8mk1FimjIIZYys9VK7KHAa/krdTjG
+	GxAg/3n+DFpydArKczY3roTz603Tt6+O7nfMwAaiQ1bnw==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 3wxecys6uq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 18 Mar 2024 07:23:06 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 42IBN50P024981
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 18 Mar 2024 07:23:05 -0400
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Mon, 18 Mar 2024 07:23:04 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Mon, 18 Mar 2024 07:23:04 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Mon, 18 Mar 2024 07:23:04 -0400
+Received: from radu.ad.analog.com ([10.48.65.243])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 42IBMkMc030326;
+	Mon, 18 Mar 2024 07:22:48 -0400
+From: Radu Sabau <radu.sabau@analog.com>
+To: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+        "Rob
+ Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+        Delphine CC Chiu
+	<Delphine_CC_Chiu@Wiwynn.com>,
+        Radu Sabau <radu.sabau@analog.com>, <linux-hwmon@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <linux-i2c@vger.kernel.org>
+Subject: [PATCH 0/2] Add ADP1050 support
+Date: Mon, 18 Mar 2024 13:21:33 +0200
+Message-ID: <20240318112140.385244-1-radu.sabau@analog.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: sGQqd6QPndlgI_Ih23rwr4VEPoTV4TVR
+X-Proofpoint-GUID: sGQqd6QPndlgI_Ih23rwr4VEPoTV4TVR
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-18_02,2024-03-18_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 suspectscore=0
+ mlxlogscore=876 spamscore=0 malwarescore=0 priorityscore=1501
+ clxscore=1011 lowpriorityscore=0 impostorscore=0 mlxscore=0 bulkscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2403140001 definitions=main-2403180085
 
-Due to a long-standing bug in the Qualcomm Bluetooth driver, the device
-address has so far been reversed when configuring the controller.
+The ADP1050 is an advanced digital controller with a PMBus™
+interface targeting high density, high efficiency dc-to-dc power 
+conversion which can measure input/output voltages, input currents
+and temperature.
 
-This has led to one vendor reversing the address provided by the
-boot firmware using the 'local-bd-address' devicetree property.
+Radu Sabau (2):
+  dt-bindings: hwmon: pmbus: adp1050 : add bindings
+  hwmon: pmbus: adp1050 : Add driver support
 
-The only device affected by this should be the WCN3991 used in some
-Chromebooks. The corresponding compatible string has now been deprecated
-so that the underlying driver bug can be fixed without breaking
-backwards compatibility.
+ .../bindings/hwmon/pmbus/adi,adp1050.yaml     |  65 ++++++++++
+ Documentation/hwmon/adp1050.rst               |  69 +++++++++++
+ Documentation/hwmon/index.rst                 |   1 +
+ MAINTAINERS                                   |   8 ++
+ drivers/hwmon/pmbus/Kconfig                   |  10 ++
+ drivers/hwmon/pmbus/Makefile                  |   1 +
+ drivers/hwmon/pmbus/adp1050.c                 | 111 ++++++++++++++++++
+ 7 files changed, 265 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml
+ create mode 100644 Documentation/hwmon/adp1050.rst
+ create mode 100644 drivers/hwmon/pmbus/adp1050.c
 
-Set the HCI_QUIRK_BDADDR_PROPERTY_BROKEN quirk for the deprecated
-compatible string and add the new 'qcom,wcn3991-bt-bdaddr-le' string to
-the match table for boot firmware that conforms with the binding.
-
-Fixes: 7d250a062f75 ("Bluetooth: hci_qca: Add support for Qualcomm Bluetooth SoC WCN3991")
-Cc: stable@vger.kernel.org      # 5.10
-Cc: Balakrishna Godavarthi <quic_bgodavar@quicinc.com>
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
----
- drivers/bluetooth/hci_qca.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
-
-diff --git a/drivers/bluetooth/hci_qca.c b/drivers/bluetooth/hci_qca.c
-index f989c05f8177..346274fe66d8 100644
---- a/drivers/bluetooth/hci_qca.c
-+++ b/drivers/bluetooth/hci_qca.c
-@@ -1904,6 +1904,16 @@ static int qca_setup(struct hci_uart *hu)
- 	case QCA_WCN6855:
- 	case QCA_WCN7850:
- 		set_bit(HCI_QUIRK_USE_BDADDR_PROPERTY, &hdev->quirks);
-+
-+		if (soc_type == QCA_WCN3991) {
-+			struct device *dev = GET_HCIDEV_DEV(hdev);
-+
-+			if (device_is_compatible(dev, "qcom,wcn3991-bt")) {
-+				set_bit(HCI_QUIRK_BDADDR_PROPERTY_BROKEN,
-+						&hdev->quirks);
-+			}
-+		}
-+
- 		hci_set_aosp_capable(hdev);
- 
- 		ret = qca_read_soc_version(hdev, &ver, soc_type);
-@@ -2597,6 +2607,7 @@ static const struct of_device_id qca_bluetooth_of_match[] = {
- 	{ .compatible = "qcom,wcn3988-bt", .data = &qca_soc_data_wcn3988},
- 	{ .compatible = "qcom,wcn3990-bt", .data = &qca_soc_data_wcn3990},
- 	{ .compatible = "qcom,wcn3991-bt", .data = &qca_soc_data_wcn3991},
-+	{ .compatible = "qcom,wcn3991-bt-bdaddr-le", .data = &qca_soc_data_wcn3991},
- 	{ .compatible = "qcom,wcn3998-bt", .data = &qca_soc_data_wcn3998},
- 	{ .compatible = "qcom,wcn6750-bt", .data = &qca_soc_data_wcn6750},
- 	{ .compatible = "qcom,wcn6855-bt", .data = &qca_soc_data_wcn6855},
 -- 
-2.43.2
+2.34.1
 
 
