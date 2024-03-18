@@ -1,177 +1,120 @@
-Return-Path: <devicetree+bounces-51155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51156-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ADC587E547
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 09:53:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD6AE87E54C
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 09:56:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF70B280EAD
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 08:53:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D9BA71C2112C
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 08:56:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02E7828DC3;
-	Mon, 18 Mar 2024 08:53:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uLTpZaC6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6253A28DB3;
+	Mon, 18 Mar 2024 08:55:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8530228DB3
-	for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 08:53:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94B812C180
+	for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 08:55:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710752008; cv=none; b=JAjEZ718ntbQ2pLY4ZsvsIVkwCV9U8e0cKOlAOfHfcpgwVOq+X6ePaaYi+NFlXF5oRrltZbBmHMqWKr7Z6At5A0+6oVFHDFk/uPy8RHIuUEOaPpVFZt+zQBq+gZOaNaYm1DzMb2+19YUZ+WL9IvFnlsEbLz+35WFX+7h9RbK+6Q=
+	t=1710752158; cv=none; b=RlbIoOT59xyOkOHKBeptVckhEXItUhd8HzqYGQyNOTsua7QpuGkWAPNFv9DGak1v6uDIOtDWxqxO2Lpy8o2vrsK+yijYACpYI6QOnJj7YU5aiG3M+zAz1CTcvNShRk8Uh3GHsLuJd2vY5kOZtDxHAmZG/MqU4yrf46kevweFM9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710752008; c=relaxed/simple;
-	bh=IeCriGnHDiuzZ2xp1Qd2CEgIuo6HCVCELGtRINMfM9A=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=OXrRNVx/SPL2iOAisVr4A+skOaZEYO/phjCmUre8TQKL91o/nJN9AHu0VDv6Q/prDoymUI5j2xx+Oq/Rg1MNOG48ddiAs698DJkKWwpcxv3iOaaWonVHb5cdrlkQBi2GJdcWlDNydw0yOkw/c7Mx6Hosjzob75yk+KnJ2wPzaLU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uLTpZaC6; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-33fd12a06fdso809186f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 01:53:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710752005; x=1711356805; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=e6RdvrF1nwywjuutN1RSGDtUcsbQUwWLcTgjf0q2ePc=;
-        b=uLTpZaC6ja1nZmz8u3qTBVX7lpZFvZ7ZqVN0VkCq9Sw3pM8A74O1yOZEIERDXHPVDs
-         skGxZngwC8YaJniQ7i3HsyPriwe6P7abKtWdBs0QE5yStDWwc8AmpTlKTtf+cYe1Rvkq
-         esJRGtSWyLEoqil0Ircr0YF7ChC3EzZ2PIqgGdK+PmuDIqMrlJOkMUv53xMmBoHPl567
-         H2EU9T4fGOSyzV17E1kH3AkKSm/r8ayxlBSBUYV7+NMFI3wzCyKGxFLxjyjBdYcRbswP
-         xHslEX/32nCwtR8hIbI8CSFT6AQJlOfSpOdkC8D+vIjs89+Towh5BPxMSH6jF2t/Qn+h
-         XbTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710752005; x=1711356805;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=e6RdvrF1nwywjuutN1RSGDtUcsbQUwWLcTgjf0q2ePc=;
-        b=WdlLJLHpUxiTOfSipteID7d9F7v+riumXV9kMqpEtG8vOBxVgiSQFc03H+c0xkEavl
-         hufa2ptzGdt9XGD+PJrq/nkypKtTVeSLByNFPPIjcv+/E7HB3n4S0Hs1AZoMBV1kuPww
-         gUGHZmswQiB7ztb5EXh7GmLUhNCzKWJ9kbfmtjhF5P6U45rtBNPu5TAUgPLevsHqH+kJ
-         4tPI7tDvwxiicKy0N4NtzMVXHvhcyGamBcgujM0vS3kd1SOsG47cIjFVBj8PCFJOW1RB
-         /IR4gBVgGSX21Hxss5w+AhB8HhaFnMp3ZrAkVDtQkRWpnuTTHMy5WlMN0jAiG0+/zwlw
-         QSiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXIzkZ11eYtPTns+9rN99res1YBSUMvxpx7qhCkriCM/7Krdv04GAwtT+Q4l+KDYtMCwGK1khsCRfR5ZHnyjLgw29LP7a9EN3244A==
-X-Gm-Message-State: AOJu0YxrHUYs9hBemVmr368TyzDo4r7DaG6w5HtE8Ijq6kYTLM3/m0QJ
-	TPBBYdvgZ53xKqOKlPxq7QbL+JspVfOxr5Y3/BdS3PrihYcVH9PShyllbMAYiuA=
-X-Google-Smtp-Source: AGHT+IFyeUI9pEaKgrAe5AfLGyKBZp3wyBmL6tQdtyQDCA7M/hfOqekkyKVCMKleXVorbC5ec8IeXg==
-X-Received: by 2002:adf:fe0d:0:b0:33e:96c1:3da6 with SMTP id n13-20020adffe0d000000b0033e96c13da6mr7099752wrr.65.1710752004926;
-        Mon, 18 Mar 2024 01:53:24 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:ad2b:a316:59d9:3dbc? ([2a01:e0a:982:cbb0:ad2b:a316:59d9:3dbc])
-        by smtp.gmail.com with ESMTPSA id i7-20020a5d5587000000b0033ec68dd3c3sm9289562wrv.96.2024.03.18.01.53.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Mar 2024 01:53:24 -0700 (PDT)
-Message-ID: <eb78a288-e67a-45bf-8995-4e9f755575b1@linaro.org>
-Date: Mon, 18 Mar 2024 09:53:24 +0100
+	s=arc-20240116; t=1710752158; c=relaxed/simple;
+	bh=KgiID1u9b6jsTKcZdyTtZYCrP4qZRlwO+wPt5NLQZ6I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YwLHD3xx+GdM9hW4JsgrkjTd9ZCUFT4Putui+6/iVyAfFqVNL2Nb+/+N0kMQwkPX3pf2uNvVO4EKNz8+U+91r0qmmWkkVP3lawMuxfyEVi5jrA6S6UowIays8Ht32cTQNIAWHCir52h08jgoYsNmF6QE8Y+5ul3vOrMxvIGNdcM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rm8mR-000807-Ap; Mon, 18 Mar 2024 09:55:39 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rm8mO-0072eN-6X; Mon, 18 Mar 2024 09:55:36 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rm8mO-007ozV-0L;
+	Mon, 18 Mar 2024 09:55:36 +0100
+Date: Mon, 18 Mar 2024 09:55:36 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Varshini Rajendran <varshini.rajendran@microchip.com>
+Cc: claudiu.beznea@tuxon.dev, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, nicolas.ferre@microchip.com, 
+	alexandre.belloni@bootlin.com, linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 14/39] dt-bindings: pwm: at91: Add sam9x7 compatible
+ strings list
+Message-ID: <3kqufnvhnmelm7brtuutt7db7himhnb62pi5huq6jhc37n6jww@7emwacpgt6tp>
+References: <20240223171342.669133-1-varshini.rajendran@microchip.com>
+ <20240223172619.672262-1-varshini.rajendran@microchip.com>
+ <igmm3npqcnjuhhncfd22pjhjuzbtsl25jfzbpcsyx5bu2xbbto@ynp7psnpldxr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 1/3] arm64: dts: qcom: sm8450: Fix the msi-map entries
-Content-Language: en-US, fr
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-References: <20240318-pci-bdf-sid-fix-v1-0-acca6c5d9cf1@linaro.org>
- <20240318-pci-bdf-sid-fix-v1-1-acca6c5d9cf1@linaro.org>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20240318-pci-bdf-sid-fix-v1-1-acca6c5d9cf1@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="llk2bc7ap25wcrcr"
+Content-Disposition: inline
+In-Reply-To: <igmm3npqcnjuhhncfd22pjhjuzbtsl25jfzbpcsyx5bu2xbbto@ynp7psnpldxr>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 18/03/2024 08:19, Manivannan Sadhasivam wrote:
-> While adding the GIC ITS MSI support, it was found that the msi-map entries
-> needed to be swapped to receive MSIs from the endpoint.
-> 
-> But later it was identified that the swapping was needed due to a bug in
-> the Qualcomm PCIe controller driver. And since the bug is now fixed with
-> commit bf79e33cdd89 ("PCI: qcom: Enable BDF to SID translation properly"),
-> let's fix the msi-map entries also to reflect the actual mapping in the
-> hardware.
-> 
-> Cc: <stable@vger.kernel.org> # 6.3: bf79e33cdd89 ("PCI: qcom: Enable BDF to SID translation properly")
-> Fixes: ff384ab56f16 ("arm64: dts: qcom: sm8450: Use GIC-ITS for PCIe0 and PCIe1")
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/sm8450.dtsi | 16 ++++------------
->   1 file changed, 4 insertions(+), 12 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> index b86be34a912b..024d2653cc30 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> @@ -1777,12 +1777,8 @@ pcie0: pcie@1c00000 {
->   			ranges = <0x01000000 0x0 0x00000000 0x0 0x60200000 0x0 0x100000>,
->   				 <0x02000000 0x0 0x60300000 0x0 0x60300000 0x0 0x3d00000>;
->   
-> -			/*
-> -			 * MSIs for BDF (1:0.0) only works with Device ID 0x5980.
-> -			 * Hence, the IDs are swapped.
-> -			 */
-> -			msi-map = <0x0 &gic_its 0x5981 0x1>,
-> -				  <0x100 &gic_its 0x5980 0x1>;
-> +			msi-map = <0x0 &gic_its 0x5980 0x1>,
-> +				  <0x100 &gic_its 0x5981 0x1>;
->   			msi-map-mask = <0xff00>;
->   			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>,
->   				     <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
-> @@ -1900,12 +1896,8 @@ pcie1: pcie@1c08000 {
->   			ranges = <0x01000000 0x0 0x00000000 0x0 0x40200000 0x0 0x100000>,
->   				 <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x1fd00000>;
->   
-> -			/*
-> -			 * MSIs for BDF (1:0.0) only works with Device ID 0x5a00.
-> -			 * Hence, the IDs are swapped.
-> -			 */
-> -			msi-map = <0x0 &gic_its 0x5a01 0x1>,
-> -				  <0x100 &gic_its 0x5a00 0x1>;
-> +			msi-map = <0x0 &gic_its 0x5a00 0x1>,
-> +				  <0x100 &gic_its 0x5a01 0x1>;
->   			msi-map-mask = <0xff00>;
->   			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
->   				     <GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>,
-> 
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+--llk2bc7ap25wcrcr
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+On Fri, Feb 23, 2024 at 11:42:57PM +0100, Uwe Kleine-K=F6nig wrote:
+> What is the merge plan for this series? I'd expect it to go in
+> completely via arm-soc. If you want me to pick up this patch, please
+> tell me.
+
+Other maintainers picked some patches from this thread and I didn't get
+an answer to my question. To be able to close this thread on my side I
+applied this patch now to my for-nexxt branch
+
+	https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git for-nex=
+xt
+
+=2E This is expected to be rebased once v6.9-rc1 is available, but it
+won't get lost this way.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--llk2bc7ap25wcrcr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmX4AYcACgkQj4D7WH0S
+/k55HAf/THdprVTV+CtYTdSymvUxL+vo9ng4B3Wg4714vu5TgVXfbXzRaGWpVp/g
+wC8YSmArkKvoQNC33j8nZLTYncGvMWfoT0Jhy08XtPJ/tzkqBSrAz1kVzDS251g0
+zoWgLrohzAMnJUvZqiBuLufx363NdCAG1tN3n2A6eSAgFIZq/qCZ9ghnHSpgmvmj
+AnwQyeaBYGp0KE2ngoZTFVloQfptvsgE+ybX0P6WcN6dgqrHo+VqeP/0KNzwc46S
+5ujRvo4kZSh+j/jLtQsfSe9KxRBw4sSW/AZ9O8eA4gRS5HC9v/Cn/af5qyMRfZi7
+/yrvNNfQaApZg6v0Y66uyooQKW/83g==
+=En9w
+-----END PGP SIGNATURE-----
+
+--llk2bc7ap25wcrcr--
 
