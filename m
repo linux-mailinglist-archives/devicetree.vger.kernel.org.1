@@ -1,239 +1,157 @@
-Return-Path: <devicetree+bounces-51316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51317-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9ED2187ED22
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 17:12:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0058587ED3A
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 17:17:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 525502819A4
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 16:12:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A9701281E9F
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 16:17:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B39C52F6D;
-	Mon, 18 Mar 2024 16:12:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0266452F98;
+	Mon, 18 Mar 2024 16:17:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RA8YGDjO"
+	dkim=pass (1024-bit key) header.d=phytec.com header.i=@phytec.com header.b="UZDROOE8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (mail-bn1nam02on2109.outbound.protection.outlook.com [40.107.212.109])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74604537E5
-	for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 16:12:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710778363; cv=none; b=UISpk3dmXVr6zGsA4HD83WkINUBOtjNhKAhcJOHL2RCBQkxrRzZuBHh/JIm37+1Gewf284bvieGmG0u45HNhf+Lcw8u8UztEiKkb35khBHPkIf+pxRDF2CbjeDmLY1+YW6kSbZIbqApb7ygJt0YzpVnriIpgeXgKb5uMVg6x0w4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710778363; c=relaxed/simple;
-	bh=qWIWRdlhHxM2YpAOK/CdrCJzY7erfxdMa6eYTRm+3dw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=aYzd0kEQeOyZPhtt1RFGdrPy4fs6uM/OErVighx/Wu8E0R84f06ZVMrgTRPwPXVHQ6z7Lb3dR/tXBcrhD31+b3H2xi2Ac1zRSs2JkhNylMbsxrlzsYP/V9RS1IuudwSBimm0tT3wJBqCERTlUtO9InGBc0YiGI4nKUcmNZ7H6RQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RA8YGDjO; arc=none smtp.client-ip=209.85.208.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2d4a901e284so24454321fa.1
-        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 09:12:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710778360; x=1711383160; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=G9oKEy66iQx7fLJGG39Ko2q9eHHj3gCyG5CIVLyLT/E=;
-        b=RA8YGDjOJMIoNz4+OUKFaBLtLr8J8Ocy3rMUGM9RIPCwSeVxIrXz8ESllrm9zZnKZv
-         jUaKcL/KWDI1tcahpkZAivgU5Lnb5TKWVO4UEJBYS4UwujTq5EUmOkp1U4YnAeGLOV3x
-         IdH6xjopRgehIVTIF1ScHzIxeCFj4ydMoRIcMdqUTgdNSxuKut6Sq42HW19sigZJyX2m
-         6PW8nn3nzX1HFZjei1Ph5BacvvozHDkiG6yvljnzKlpPBKyjK3cTjZJc/h32DaxZ68r7
-         n6Lfd5EKULExqCx5yGzQBdG4XXYDljJ4VOZUUugssf51tG3vXHzEGq13zssSGuyNagda
-         9MWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710778360; x=1711383160;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=G9oKEy66iQx7fLJGG39Ko2q9eHHj3gCyG5CIVLyLT/E=;
-        b=K0MNUWdHTlMbLsEAICPtJaaRiPL5NKsTt9Z3UBfH9/8N9mRUROkO5QSrLwqr5ZLQJv
-         zRfNSTZ+hukOSMXFxGYpnl3vO5yfCELyX6YHxnRIgVl95vxy+sXoTfQWWeM9K/AmHE+7
-         im4giBn5Fuvh9mOMIiZhnffwBkRzNruhnl8dv7FvbhXMW/LG4nKELt/Zx2y8nnWeaJ6E
-         u7TxNvh2b+zzIY9GYUkiFqaYA28160Rln2HhjGVXJDjvrje0PUHe2MbIcuvsNbiO1xNb
-         arGwncpTaODEdpJlUO3biolsbMUMuWi+w7zwld8lPMrF+ulEuMrXvrf27wR1mNS3gP5M
-         CJag==
-X-Forwarded-Encrypted: i=1; AJvYcCXEIL35/oTt++GfQ7kRMCKVfAaWi5VHNj/X6KCegVpUGBPb0pdga+7hA5ibxWQDhGvCAc8r2DIlZgqzCOO9B7Rtv0xrIGIWhUui+g==
-X-Gm-Message-State: AOJu0YzQmdeZTXosECCGeoQr2n2EiySuoCBj3nakwps8+SHK/gmASykD
-	VxsFj6q4lHnW20MrwFl1Np3oyYa7Fj504LchOnxfuNGzSZMlZHdo1oDTJyg32Zk=
-X-Google-Smtp-Source: AGHT+IHR94yES1pCaCbXUjgif8jE41k55vx1ZSsmjTkcDG0R6oz5GBnNbcczlwrVj1NsdRYJt7/t2w==
-X-Received: by 2002:a05:651c:337:b0:2d4:513d:7b34 with SMTP id b23-20020a05651c033700b002d4513d7b34mr4857648ljp.17.1710778359619;
-        Mon, 18 Mar 2024 09:12:39 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id e25-20020a170906845900b00a4652efd795sm5016635ejy.83.2024.03.18.09.12.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Mar 2024 09:12:39 -0700 (PDT)
-Message-ID: <04b39945-e4e1-43bd-83bf-0d7eb3730352@linaro.org>
-Date: Mon, 18 Mar 2024 17:12:37 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1E715339A;
+	Mon, 18 Mar 2024 16:17:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.212.109
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710778648; cv=fail; b=jT/R/79bGe4iX7RHT05Xg8SU34QpIjOV3WBB+zG878ikLWgQ54lXbYZ+ncTbMDAaeP8cPqSM0l+DPRn5qQiX+c+TEbl8wkJkj6fix/OgpHzJzu7XwNg2ceF7sGH+82HPuLOjfPtzgUTBnpQBZyLTrGtRveNjcsY0CBzEOBRvRh4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710778648; c=relaxed/simple;
+	bh=+yuGRzT9NTglghbHEFSKTuPeCUKx8BKmNZmK0OH+xOg=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=p3m+/phQC3/jDP0NpWKVtC7SpMSDBCLhr9HyDUYQRV106q4W2+RcO6oCZ+ZxCwjNvGB0T43uO6IN7/xUa6bi1Adnbalzin7MZ2N+sDj37ydjfHDNinByl8FaexLbFU7OOyY0+BDRNUZuZPhbDMDCIPk4CKlxYUIBcO8PNrcrMeE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.com; spf=pass smtp.mailfrom=phytec.com; dkim=pass (1024-bit key) header.d=phytec.com header.i=@phytec.com header.b=UZDROOE8; arc=fail smtp.client-ip=40.107.212.109
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fRVsj/jFS3B4gzL21Xiw1qiKbjmjcc7WhyBdZGSmAwNReWZ1AHUech1s9AwbbINSIn9IRq66bC44RSMTQeSbkFJvDn0JnttQKFOzmrBfkX1gPt5HwxSODUtULsvB/NSpUgn4poPJJ7bfqlG0x0q4HrK9aBHibT4frDFmCHXfX23f5nBcq6KZn5pYKlK9DL+8cNqx+a+E4BSv7MTJl9frg5ERbVQLjxh/tbF8jK/Sq8DoV5euELFO2Jzk0GDIcjgWlpJITA1Vfik0FhOn4sCKTwr6EjY8c1//WO+A8cHUfJTkKRKCIGzcYoTm0ZSQPMQB/SKzEvKa+V7FR83laLTjkA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=mJ42JRc1ZYJcMhGdgyZ6tCHc2Yn+0aiyyZgddRpoGrE=;
+ b=ax2lcnLDvpB3WvV1OoDGpEde656gEXeVoyiPLalIq4l/xZLNAt7nfxvayEAj37Zi0rqb5DlQ4voabYdUuEdgYHuTgHTVaESURPd6T9NjJ9inJguGn75g3YXRV4hqcXpETTYD8V9NugpXroZAbMMFdyCBXPnb9hvqYpY8CCDlIroPFloTAQjkXQfC2qIgFgVh95bT4YqbqZGJaqLMt9giMrrRctU1rqFlCUkFZzRVo5fxK5YxXs7rSdHDeQxmSMiOgH9GGEG+0MnWqkGBvN8vR2yt/H9Y3bRITCZ/6mEUaNhxIqkUMDIUs8YQD1OB35SKn4XhpZp64LqaepsmFDrAXA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=phytec.com; dmarc=pass action=none header.from=phytec.com;
+ dkim=pass header.d=phytec.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mJ42JRc1ZYJcMhGdgyZ6tCHc2Yn+0aiyyZgddRpoGrE=;
+ b=UZDROOE8bUm9tueNI9Mi96utDu3sJ/2zMdm5EftcvvYHfhv4I/1E04yjqOuVFENWohX60bTuabxwVXUdbHiBYrX0UE4B7EtBO2HCigHI+EkM2eILxiu/yN0m3RKa7LgA5DNHsshlW9I23/n0WyHNsvjXzSa6C4r/SJcg2UNVDx0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=phytec.com;
+Received: from SA1PR22MB5636.namprd22.prod.outlook.com (2603:10b6:806:3e2::15)
+ by MW4PR22MB3715.namprd22.prod.outlook.com (2603:10b6:303:1be::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.27; Mon, 18 Mar
+ 2024 16:17:22 +0000
+Received: from SA1PR22MB5636.namprd22.prod.outlook.com
+ ([fe80::e6c9:dbd4:f002:212f]) by SA1PR22MB5636.namprd22.prod.outlook.com
+ ([fe80::e6c9:dbd4:f002:212f%7]) with mapi id 15.20.7386.025; Mon, 18 Mar 2024
+ 16:17:22 +0000
+From: Nathan Morrisson <nmorrisson@phytec.com>
+To: neil.armstrong@linaro.org,
+	quic_jesszhan@quicinc.com,
+	sam@ravnborg.org,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	daniel@ffwll.ch,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	thierry.reding@gmail.com
+Cc: w.egorov@phytec.de,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	upstream@lists.phytec.de
+Subject: [PATCH 0/2] Add POWERTIP PH128800T006-ZHC01 panel
+Date: Mon, 18 Mar 2024 09:17:06 -0700
+Message-Id: <20240318161708.1415484-1-nmorrisson@phytec.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: CH0PR03CA0279.namprd03.prod.outlook.com
+ (2603:10b6:610:e6::14) To SA1PR22MB5636.namprd22.prod.outlook.com
+ (2603:10b6:806:3e2::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] hwmon: pmbus: adp1050 : Add driver support
-Content-Language: en-US
-To: Radu Sabau <radu.sabau@analog.com>, Jean Delvare <jdelvare@suse.com>,
- Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>, linux-hwmon@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-i2c@vger.kernel.org
-References: <20240318112140.385244-1-radu.sabau@analog.com>
- <20240318112140.385244-3-radu.sabau@analog.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240318112140.385244-3-radu.sabau@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA1PR22MB5636:EE_|MW4PR22MB3715:EE_
+X-MS-Office365-Filtering-Correlation-Id: abe7dc9a-73c6-42b8-7fe5-08dc4766e47a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	U9hWc4cGSj4JP8g23Y1es3oMPZuzkc7G42ISFIUmaP4VQ0BXOO1FlHC+MVnIcV3CP8eFvIUwH7Mi+1XKz3BFGyYl2YQvUDmS6h/Kiku3Zo3hf6D3jzIb8gKUxT38dZxFXXbwKK9Zz6ipQyNHOdHgLzo52bUAb1Y2x4VuaEH6C96cgZFI2iDlhMRad1JcTwVqWK+dzbgagykQPXXVVl1NFD69m5f+WpeEKw/Mc9bfxl2pefBBom6QYiXQdV4xh8MqCxG8W4qbYNJirTx8E0XZ9Ebgx6R/8c4FoQKPaaSDEhboOZARCsHfausllF6MAoKmafCZci7SHspp99Ls1eHKTAmUS6w3bNgPVJeKGk2ZdxD75/MBS/gOo7LqCAU06+1xk/lM0rLmCk1al1pyGRY6OYPB+G0qau4gtuIAm/67350oCIPzZGiSmBPpGRI9i5XRfkPXvfG2oZcDbTOQUJnxVwFwFSK0qe8/UAdBpPZqEy3pBIMLRMoIBriL0B/TDoYTatMnf1SKEIc6uO1JI3WzUqwVJZa7ou5Noy3FPtQnOsRncAcqll5w721+/EjjK3db43BwFI9tINDINpHhq6SYichV9Oq3lfPKT82H3dWEGg6/EgSzjpB5dJ+ylwym0oxE9xWGcBFBZACwn49Egk/wRdXZMuIquBEcRaSYmI6q/yX7bk6wFhCn3M8pCJqnzyHNHYyCxTNzW/f9HkK99nwx2zZruv4U8hnUvjUfSPMV/XE=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA1PR22MB5636.namprd22.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(376005)(7416005)(52116005)(1800799015)(38350700005)(921011);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?+XYM3M/E6XMC2x2mPrwO8Z9vUsEp5fUVPrJN099bhcjVcei5XOytbCfH/Iv2?=
+ =?us-ascii?Q?0NyGNK4Ahzu/+R9jLch7le9uCn+j7YIMuCPiG2qMIGwPAgQMEkoGdBJnzOa6?=
+ =?us-ascii?Q?MI2SApcCsO+jGkJjQ5F9er9SQKYwJfuQpFGhdwPCVAfYYDFWpdwDBM8h0GvO?=
+ =?us-ascii?Q?o9YdPUGKpl9kmXHw81Bwnyva43fDgeMRvz/K4iZkAfe3bDXgi3/ymjDEtkNg?=
+ =?us-ascii?Q?quseJB3MQeITM7AuwOWLCHTF/ZSXV5isflIIZJkPoxuznWJCP/aPF9lwvJex?=
+ =?us-ascii?Q?rZXKpeNZ9wEKvZvK64m91uwDLcyR5zNGjJQi0fnWpXm3hy7YZsMU8Qo3ihrO?=
+ =?us-ascii?Q?925blju4L1es8CtaG0o3JYG4lXwhs1ksdmwIkQgiZcCJTAsLze0ER2ddp9LH?=
+ =?us-ascii?Q?OwDFbkVsJXOGfoXollmXswjT7dJCrPM3JHj2ct+GiMep1MFm9vU8egLj3dkH?=
+ =?us-ascii?Q?pO/Vj0rwRMlQtTTkkcS6ArYCPpH7SecFQWgCG1xFYQ+nYjRiNCz+lcZoGzjE?=
+ =?us-ascii?Q?UjrEM/YB57E1Y0ZwF4jOM7KH5Puaiq/0tXH5OY0iM2chSiL/KsryTMd/5T5H?=
+ =?us-ascii?Q?g0PmIttrFjykLfACcVHoA9PTStN5fsFnPsK+yw+k080+AMR/kTGi1XKFlq3O?=
+ =?us-ascii?Q?gp8zlYCMXEjT+xz5VvUq6eX12yqhVzDqhKa0JlMP3iJ9aSC3FKIEUfJej9ju?=
+ =?us-ascii?Q?ZqtKVwdGiSvfEXS/j+Y7VmChuW2eMsmHrsmqt2EcRgsG+/I0TiRYo2MAKLHd?=
+ =?us-ascii?Q?pqR29iFL7qm0POifW2gzZqxDNLQAlQmjJe6B+O7Rnz08EUiMYxvdGcUIswBy?=
+ =?us-ascii?Q?+bWVtyCOqcGCZYGviW7rdzRHw/9HiuwZQwT6DvvHrL2sNgkgco25EK8sI0b4?=
+ =?us-ascii?Q?RdZ4WqhxCc5NDU4fNN/+X6ixQsrQvG6B7X0nbZu0IWPBdrKZe2zgmNUL3ovj?=
+ =?us-ascii?Q?HYP7I5TGNZyKhcwsTBZRJ4dHuL+EIrVDIk6YBf3mUHixTBARerZOkJcVBHwF?=
+ =?us-ascii?Q?jYEM15vfk93NiGcji9t1CWOrZOqSPZpEWkt5NR16dqXAEswD97IReGpvTv2P?=
+ =?us-ascii?Q?FxKx7PDGBW8WKmngsJQkV1Z0cGaeQFlmq0iysEq+QGsm2gK0aXVyYYf5I4e2?=
+ =?us-ascii?Q?k1YMol43QX6uGyccYZTcKrrRJxbqnfbLI/6DNBWRa3aYBx13FUB/9K4YpH7I?=
+ =?us-ascii?Q?7A3P7gr3e63Od1f3TFa87TsKoJHDv64UNX34RF2hva5sAEXHmkSkGSfWt0M/?=
+ =?us-ascii?Q?zhtzjsUZ/ZoLx9ViEx865RYE22pGMCoJnS6Pxx/yO1iSF/kQT5nFshgbHb+D?=
+ =?us-ascii?Q?SAXbJanhAm98Jmb14/Xro5BpRMB85CSK9UBuLjb4iTWMdph8DD3J3fsLzzcY?=
+ =?us-ascii?Q?xnWHER3D0ZuPsr4dud4QsC4fo1hPcaSnOo6ccpZWSrymeS4WBzGDA6kohRO8?=
+ =?us-ascii?Q?0olfwFot3XDUTm3NWw9CPNOwe6a+1qtYonG3xQBMJ6vl1BixIRB4MXP1vP//?=
+ =?us-ascii?Q?gub16JITss5bFtiA1+/1OOVJeSGtu3LUH+M8JPVY5NeAV+23WbgVHJvZl//y?=
+ =?us-ascii?Q?2uudU1TeoSK8YY3ZmF2J2i1985d8kXOBK/1zhPQv?=
+X-OriginatorOrg: phytec.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: abe7dc9a-73c6-42b8-7fe5-08dc4766e47a
+X-MS-Exchange-CrossTenant-AuthSource: SA1PR22MB5636.namprd22.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2024 16:17:22.7274
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 67bcab1a-5db0-4ee8-86f4-1533d0b4b5c7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Fo3Cuo3LmvTQF+sKuz42chpIi6kqscdcfBSMd4rC3S4PksXXXuiRXEDdELmuhkEWmv4HyGJ0gmM7dI3J5m6UUw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR22MB3715
 
-On 18/03/2024 12:21, Radu Sabau wrote:
-> Add support for ADP1050 Digital Controller for Isolated Power Supplies
-> with PMBus interface Voltage, Current and Temperature Monitor.
-> 
+Add the device tree bindings, timings, and compatible string for the
+POWERTIP PH128800T006-ZHC01 panel.
 
-...
+Nathan Morrisson (2):
+  dt-bindings: display: simple: Add POWERTIP PH128800T-006-ZHC01 panel
+  drm/panel: simple: Add POWERTIP PH128800T006-ZHC01 panel entry
 
-> +static int adp1050_probe(struct i2c_client *client)
-> +{
-> +	u32 vin_scale_monitor, iin_scale_monitor;
-> +	int ret;
-> +
-> +	if (!i2c_check_functionality(client->adapter,
-> +				     I2C_FUNC_SMBUS_WRITE_WORD_DATA))
-> +		return -ENODEV;
-> +
-> +	/* Unlock CHIP's password in order to be able to read/write to it's
-> +	 * VIN_SCALE and IIN_SCALE registers.
-> +	*/
-> +	ret = i2c_smbus_write_word_data(client, ADP1050_CHIP_PASSWORD, 0xFFFF);
-> +	if (ret < 0) {
-> +		dev_err_probe(&client->dev, "Device can't be unlocked.\n");
+ .../bindings/display/panel/panel-simple.yaml  |  2 ++
+ drivers/gpu/drm/panel/panel-simple.c          | 29 +++++++++++++++++++
+ 2 files changed, 31 insertions(+)
 
-Syntax is: return dev_err_probe(). Same in other places.
-
-> +		return ret;
-> +	}
-> +
-> +	ret = i2c_smbus_write_word_data(client, ADP1050_CHIP_PASSWORD, 0xFFFF);
-> +	if (ret < 0) {
-> +		dev_err_probe(&client->dev, "Device couldn't be unlocked.\n");
-> +		return ret;
-> +	}
-> +
-> +	/* If adi,vin-scale-monitor isn't set or is set to 0 means that the
-> +	 * VIN monitor isn't used, therefore 0 is used as scale in order
-> +	 * for the readings to return 0.
-> +	*/
-
-Please use Linux coding style comments. /* and aligned */.
-
-
-> +	if (device_property_read_u32(&client->dev, "adi,vin-scale-monitor",
-> +				     &vin_scale_monitor))
-> +		vin_scale_monitor = 0;
-> +
-> +	/* If adi,iin-scale-monitor isn't set or is set to 0 means that the
-> +	 * IIN monitor isn't used, therefore 0 is used as scale in order
-> +	 * for the readings to return 0.
-> +	*/
-> +	if (device_property_read_u32(&client->dev, "adi,iin-scale-monitor",
-> +				     &iin_scale_monitor))
-> +		iin_scale_monitor = 0;
-> +
-> +	ret = i2c_smbus_write_word_data(client, ADP1050_VIN_SCALE_MONITOR,
-> +					vin_scale_monitor);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = i2c_smbus_write_word_data(client, ADP1050_IIN_SCALE_MONITOR,
-> +					iin_scale_monitor);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return pmbus_do_probe(client, &adp1050_info);
-> +}
-> +
-> +static const struct i2c_device_id adp1050_id[] = {
-> +	{"adp1050", 0},
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(i2c, adp1050_id);
-> +
-> +static const struct of_device_id adp1050_of_match[] = {
-> +	{ .compatible = "adi,adp1050"},
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, adp1050_of_match);
-> +
-> +static struct i2c_driver adp1050_driver = {
-> +	.driver = {
-> +		.name = "adp1050",
-> +		.of_match_table = of_match_ptr(adp1050_of_match),
-
-Drop of_match_ptr, you will have here warnings.
-
-> +	},
-> +	.probe = adp1050_probe,
-> +	.id_table = adp1050_id,
-> +};
-> +module_i2c_driver(adp1050_driver);
-> +
-> +MODULE_AUTHOR("Radu Sabau <radu.sabau@analog.com>");
-> +MODULE_DESCRIPTION("Analog Devices ADP1050 HWMON PMBus Driver");
-> +MODULE_LICENSE("GPL");
-> +MODULE_IMPORT_NS(PMBUS);
-
-Best regards,
-Krzysztof
+-- 
+2.25.1
 
 
