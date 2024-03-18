@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-51315-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51316-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB30387ED0F
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 17:11:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9ED2187ED22
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 17:12:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 736EC28171F
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 16:11:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 525502819A4
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 16:12:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4976E53377;
-	Mon, 18 Mar 2024 16:10:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B39C52F6D;
+	Mon, 18 Mar 2024 16:12:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZB+5VaPa"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RA8YGDjO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 403EC52F79
-	for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 16:10:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74604537E5
+	for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 16:12:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710778257; cv=none; b=iCCgx+McdlDJHksNkn50cZPS8I/oqXDWROyo/LeCogpcY+Xi5rcPoEZjKlgel/nRFiPh3LXpJCBHQZEFTciJVulTn7jKjmFZr5ioadci0dXA023nJjk7bWC5PkooRjOnTbYeIG80/M7n94rgblLKH65GteCUN97FxaxyyLGoo4M=
+	t=1710778363; cv=none; b=UISpk3dmXVr6zGsA4HD83WkINUBOtjNhKAhcJOHL2RCBQkxrRzZuBHh/JIm37+1Gewf284bvieGmG0u45HNhf+Lcw8u8UztEiKkb35khBHPkIf+pxRDF2CbjeDmLY1+YW6kSbZIbqApb7ygJt0YzpVnriIpgeXgKb5uMVg6x0w4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710778257; c=relaxed/simple;
-	bh=AYb2lq5LX/8aweRNC/57Ae4xwsA/O52DROdPAT9dQkA=;
+	s=arc-20240116; t=1710778363; c=relaxed/simple;
+	bh=qWIWRdlhHxM2YpAOK/CdrCJzY7erfxdMa6eYTRm+3dw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=Api/0awS8nuMlEv6dBpf1DFMQobIk7SD0O6CUmRvegAoDaJvTmA255Ew/BEYlUxREzHgIQ5b2D8gowheeIt9rK+aCZRIzfhoN+bDshhbTzyDrpUilJARMswkDAsYP54ZDlcbGjz02K/dTwJFF89enplfsB4f45wo3APLQfQ1nj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZB+5VaPa; arc=none smtp.client-ip=209.85.208.173
+	 In-Reply-To:Content-Type; b=aYzd0kEQeOyZPhtt1RFGdrPy4fs6uM/OErVighx/Wu8E0R84f06ZVMrgTRPwPXVHQ6z7Lb3dR/tXBcrhD31+b3H2xi2Ac1zRSs2JkhNylMbsxrlzsYP/V9RS1IuudwSBimm0tT3wJBqCERTlUtO9InGBc0YiGI4nKUcmNZ7H6RQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RA8YGDjO; arc=none smtp.client-ip=209.85.208.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2d46dd5f222so50229951fa.1
-        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 09:10:55 -0700 (PDT)
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2d4a901e284so24454321fa.1
+        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 09:12:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710778253; x=1711383053; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1710778360; x=1711383160; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=y8dUXbiRvTaXe7jzoN2uhqGgGMYVk6uFqv8HZ26Pr0E=;
-        b=ZB+5VaPagLf7RjhtFg+mN9KkrbdMengYnzor4Qcv1vBgax5gTPcjoLHG9qbnBuGuLX
-         5MtEqrB/EVSMtyRqjyYIkTkBP5+Uz0LB/Bo9DYwvxQB0V8scYimvDdW9u9ACb6hH5Dia
-         0ARzMBXwrhfpdmwUQ+1Fft/E7wfc6X65dl7BAOZgIxfLzxggqjcMAPuQmlMBhoUujF5N
-         7ACEhPht+fRF+1MSqJ+AsWXwkoBsFd2qKoVL+AVYc9x6kGhezo0MG48Zn1seQglQDAtd
-         U64ChimJQ1kfBohXUKFfjElOAVQfUZJ4HigG2OBvPTP4yNAPDQUwFtDqDDa13A4hV2wW
-         qL4g==
+        bh=G9oKEy66iQx7fLJGG39Ko2q9eHHj3gCyG5CIVLyLT/E=;
+        b=RA8YGDjOJMIoNz4+OUKFaBLtLr8J8Ocy3rMUGM9RIPCwSeVxIrXz8ESllrm9zZnKZv
+         jUaKcL/KWDI1tcahpkZAivgU5Lnb5TKWVO4UEJBYS4UwujTq5EUmOkp1U4YnAeGLOV3x
+         IdH6xjopRgehIVTIF1ScHzIxeCFj4ydMoRIcMdqUTgdNSxuKut6Sq42HW19sigZJyX2m
+         6PW8nn3nzX1HFZjei1Ph5BacvvozHDkiG6yvljnzKlpPBKyjK3cTjZJc/h32DaxZ68r7
+         n6Lfd5EKULExqCx5yGzQBdG4XXYDljJ4VOZUUugssf51tG3vXHzEGq13zssSGuyNagda
+         9MWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710778253; x=1711383053;
+        d=1e100.net; s=20230601; t=1710778360; x=1711383160;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=y8dUXbiRvTaXe7jzoN2uhqGgGMYVk6uFqv8HZ26Pr0E=;
-        b=dF+kpu8oKt2jmx2Py//HUvx1S0AerrfOR9OiLwK4RuHYfwA38OoYcih6lxGoXHUPC5
-         oFqNwOZjBO+xIQLKvoWTJih7kEZ1+AFVuHXIhPGEZ1sLO/yRAvllQDzfdPF+3E1iC+nO
-         Wyk0Jx320+4uHtK9wNqTUTFeYBWE68OPC72VJBOBCBDVhcT4PCc/nB0rzjWRzgcOCKrX
-         K4zV8L1m7Ujv9KhDSyqiueCz06oEAPb8Ucse0QILWsXrssrcJfenqB5ZD/x8GlZ3fAe/
-         rjaglrtF0QG5WXF44k3+LnINfz0GCeZuWye6jWs5l+/DeAE+C7bEH8bGroM8y3MJrSwE
-         pZuw==
-X-Forwarded-Encrypted: i=1; AJvYcCVnwxaM23GmtWuZcZ/+e+BR6+pAGc/vPZ4ozPl7YliM+TzIJouq+magfvbbxCXzuFIA//xb7E6qtgqZf4kb/qUZUX6BHTt6wFSijQ==
-X-Gm-Message-State: AOJu0YwCXRGICHUXzWX9SmCFRIpMNl+jRgwuu/BHbVYM3sUfp0CZzyq1
-	/ImJven4jYrRw9u5oKYv+LgAqTAhBzonlLRuUhxR1VVN0J1De5um0LNpJRpbwLc=
-X-Google-Smtp-Source: AGHT+IHcNGWovNAwvG6xUZmGi1jrBAezgz96CrnlpJRoFjgy2DseL1o729ovzMBt0OfE9BGKqw4wUA==
-X-Received: by 2002:a05:651c:204c:b0:2d3:1c52:7ae5 with SMTP id t12-20020a05651c204c00b002d31c527ae5mr7962218ljo.46.1710778253392;
-        Mon, 18 Mar 2024 09:10:53 -0700 (PDT)
+        bh=G9oKEy66iQx7fLJGG39Ko2q9eHHj3gCyG5CIVLyLT/E=;
+        b=K0MNUWdHTlMbLsEAICPtJaaRiPL5NKsTt9Z3UBfH9/8N9mRUROkO5QSrLwqr5ZLQJv
+         zRfNSTZ+hukOSMXFxGYpnl3vO5yfCELyX6YHxnRIgVl95vxy+sXoTfQWWeM9K/AmHE+7
+         im4giBn5Fuvh9mOMIiZhnffwBkRzNruhnl8dv7FvbhXMW/LG4nKELt/Zx2y8nnWeaJ6E
+         u7TxNvh2b+zzIY9GYUkiFqaYA28160Rln2HhjGVXJDjvrje0PUHe2MbIcuvsNbiO1xNb
+         arGwncpTaODEdpJlUO3biolsbMUMuWi+w7zwld8lPMrF+ulEuMrXvrf27wR1mNS3gP5M
+         CJag==
+X-Forwarded-Encrypted: i=1; AJvYcCXEIL35/oTt++GfQ7kRMCKVfAaWi5VHNj/X6KCegVpUGBPb0pdga+7hA5ibxWQDhGvCAc8r2DIlZgqzCOO9B7Rtv0xrIGIWhUui+g==
+X-Gm-Message-State: AOJu0YzQmdeZTXosECCGeoQr2n2EiySuoCBj3nakwps8+SHK/gmASykD
+	VxsFj6q4lHnW20MrwFl1Np3oyYa7Fj504LchOnxfuNGzSZMlZHdo1oDTJyg32Zk=
+X-Google-Smtp-Source: AGHT+IHR94yES1pCaCbXUjgif8jE41k55vx1ZSsmjTkcDG0R6oz5GBnNbcczlwrVj1NsdRYJt7/t2w==
+X-Received: by 2002:a05:651c:337:b0:2d4:513d:7b34 with SMTP id b23-20020a05651c033700b002d4513d7b34mr4857648ljp.17.1710778359619;
+        Mon, 18 Mar 2024 09:12:39 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id g18-20020a056402091200b00568b6f73491sm3321676edz.14.2024.03.18.09.10.51
+        by smtp.gmail.com with ESMTPSA id e25-20020a170906845900b00a4652efd795sm5016635ejy.83.2024.03.18.09.12.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Mar 2024 09:10:52 -0700 (PDT)
-Message-ID: <ce082596-b468-463e-95d6-89776a1ef30f@linaro.org>
-Date: Mon, 18 Mar 2024 17:10:51 +0100
+        Mon, 18 Mar 2024 09:12:39 -0700 (PDT)
+Message-ID: <04b39945-e4e1-43bd-83bf-0d7eb3730352@linaro.org>
+Date: Mon, 18 Mar 2024 17:12:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,7 +76,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: pmbus: adp1050 : add bindings
+Subject: Re: [PATCH 2/2] hwmon: pmbus: adp1050 : Add driver support
 Content-Language: en-US
 To: Radu Sabau <radu.sabau@analog.com>, Jean Delvare <jdelvare@suse.com>,
  Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>,
@@ -86,7 +86,7 @@ To: Radu Sabau <radu.sabau@analog.com>, Jean Delvare <jdelvare@suse.com>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-doc@vger.kernel.org, linux-i2c@vger.kernel.org
 References: <20240318112140.385244-1-radu.sabau@analog.com>
- <20240318112140.385244-2-radu.sabau@analog.com>
+ <20240318112140.385244-3-radu.sabau@analog.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -132,136 +132,106 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240318112140.385244-2-radu.sabau@analog.com>
+In-Reply-To: <20240318112140.385244-3-radu.sabau@analog.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 18/03/2024 12:21, Radu Sabau wrote:
-> Add dt-bindings for adp1050 digital controller for isolated power supply
-> with pmbus interface voltage, current and temperature monitor.
+> Add support for ADP1050 Digital Controller for Isolated Power Supplies
+> with PMBus interface Voltage, Current and Temperature Monitor.
 > 
-> Signed-off-by: Radu Sabau <radu.sabau@analog.com>
 
-Subject: drop space before ':'
+...
 
-> ---
->  .../bindings/hwmon/pmbus/adi,adp1050.yaml     | 65 +++++++++++++++++++
->  MAINTAINERS                                   |  8 +++
->  2 files changed, 73 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml
-> new file mode 100644
-> index 000000000000..e3162d0df0e2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml
-> @@ -0,0 +1,65 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
+> +static int adp1050_probe(struct i2c_client *client)
+> +{
+> +	u32 vin_scale_monitor, iin_scale_monitor;
+> +	int ret;
 > +
-
-Drop
-
-> +$id: htpps://devicetree.org/schemas/hwmon/pmbus/adi,adp1050.yaml#
-> +$schema: htpps://devicetree.org/meta-schemes/core.yaml#
+> +	if (!i2c_check_functionality(client->adapter,
+> +				     I2C_FUNC_SMBUS_WRITE_WORD_DATA))
+> +		return -ENODEV;
 > +
-> +title: Analog Devices ADP1050 digital controller with PMBus interface
+> +	/* Unlock CHIP's password in order to be able to read/write to it's
+> +	 * VIN_SCALE and IIN_SCALE registers.
+> +	*/
+> +	ret = i2c_smbus_write_word_data(client, ADP1050_CHIP_PASSWORD, 0xFFFF);
+> +	if (ret < 0) {
+> +		dev_err_probe(&client->dev, "Device can't be unlocked.\n");
+
+Syntax is: return dev_err_probe(). Same in other places.
+
+> +		return ret;
+> +	}
 > +
-> +maintainers:
-> +  - Radu Sabau <radu.sabau@analog.com>
+> +	ret = i2c_smbus_write_word_data(client, ADP1050_CHIP_PASSWORD, 0xFFFF);
+> +	if (ret < 0) {
+> +		dev_err_probe(&client->dev, "Device couldn't be unlocked.\n");
+> +		return ret;
+> +	}
 > +
-> +description: |
-> +   The ADP1050 is used to monitor system voltages, currents and temperatures.
-> +   Through the PMBus interface, the ADP1050 targets isolated power supplies
-> +   and has four individual monitors for input/output voltage, input current
-> +   and temperature.
-> +   Datasheet:
-> +     https://www.analog.com/en/products/adp1050.html
+> +	/* If adi,vin-scale-monitor isn't set or is set to 0 means that the
+> +	 * VIN monitor isn't used, therefore 0 is used as scale in order
+> +	 * for the readings to return 0.
+> +	*/
 
-Missing blank line
+Please use Linux coding style comments. /* and aligned */.
 
-> +properties:
-> +  compatbile:
 
-Typo. And you did not test it...
-
-> +    const: adi,adp1050
+> +	if (device_property_read_u32(&client->dev, "adi,vin-scale-monitor",
+> +				     &vin_scale_monitor))
+> +		vin_scale_monitor = 0;
 > +
-> +  reg:
-> +    maxItems: 1
+> +	/* If adi,iin-scale-monitor isn't set or is set to 0 means that the
+> +	 * IIN monitor isn't used, therefore 0 is used as scale in order
+> +	 * for the readings to return 0.
+> +	*/
+> +	if (device_property_read_u32(&client->dev, "adi,iin-scale-monitor",
+> +				     &iin_scale_monitor))
+> +		iin_scale_monitor = 0;
 > +
-> +  vcc-supply: true
+> +	ret = i2c_smbus_write_word_data(client, ADP1050_VIN_SCALE_MONITOR,
+> +					vin_scale_monitor);
+> +	if (ret < 0)
+> +		return ret;
 > +
-> +  adi,vin-scale-monitor:
-> +    description:
-> +      The value of the input voltage scale used by the internal ADP1050 ADC in
-> +      order to read correct voltage values.
-> +    $ref: /schemas/typees.yaml#/definitions/uint16
-
-Missing blank line.
-
-> +  adi,iin-scale-monitor:
-> +    description:
-> +      The value of the input current scale used by the internal ADP1050 ADC in
-> +      order to read carrect current values.
-> +    $ref: /schemas/typees.yaml#/definitions/uint16
+> +	ret = i2c_smbus_write_word_data(client, ADP1050_IIN_SCALE_MONITOR,
+> +					iin_scale_monitor);
+> +	if (ret < 0)
+> +		return ret;
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - vcc-supply
-> +  - adi,vin-scale-monitor
-> +  - adi,iin-scale-monitor
+> +	return pmbus_do_probe(client, &adp1050_info);
+> +}
 > +
-> +additionalProperties: false
+> +static const struct i2c_device_id adp1050_id[] = {
+> +	{"adp1050", 0},
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(i2c, adp1050_id);
 > +
-> +examples:
-> +  - |
-> +    i2c {
-> +             #adress-cells = <1>;
-
-Totally messed indentation.
-Use 4 spaces for example indentation.
-
-> +             #size-cells = <0>;
-> +             clock-frequency = <100000>;
-> +            adp1050@70 {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-
-> +                   #adress-cells = <1>;
-> +                   #size-cells = <0>;
-> +                   compatible = "adi,adp1050";
-> +                   reg = <0x70>;
-> +                   adi,vin-scale-monitor = <0xB030>;
-> +                   adi,iin-scale-monitor = <0x1>;
-> +                   vcc-supply = <&vcc>;
-> +          };
-> +...
+> +static const struct of_device_id adp1050_of_match[] = {
+> +	{ .compatible = "adi,adp1050"},
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, adp1050_of_match);
 > +
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index f4d7f7cb7577..c90140859988 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -479,6 +479,14 @@ L:	linux-wireless@vger.kernel.org
->  S:	Orphan
->  F:	drivers/net/wireless/admtek/adm8211.*
->  
-> +ADP1050 HARDWARE MONITOR DRIVER
-> +M:	Radu Sabau <radu.sabau@analog.com>
-> +L:	linux-hwmon@vger.kernel.org
-> +S:	Supported
-> +W:	https://ez.analog.com/linux-software-drivers
-> +F:	Dcumentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml
-> +F:	drivers/hwmon/pmbus/adp1050.c
+> +static struct i2c_driver adp1050_driver = {
+> +	.driver = {
+> +		.name = "adp1050",
+> +		.of_match_table = of_match_ptr(adp1050_of_match),
 
-There is no such file...
+Drop of_match_ptr, you will have here warnings.
 
-
+> +	},
+> +	.probe = adp1050_probe,
+> +	.id_table = adp1050_id,
+> +};
+> +module_i2c_driver(adp1050_driver);
+> +
+> +MODULE_AUTHOR("Radu Sabau <radu.sabau@analog.com>");
+> +MODULE_DESCRIPTION("Analog Devices ADP1050 HWMON PMBus Driver");
+> +MODULE_LICENSE("GPL");
+> +MODULE_IMPORT_NS(PMBUS);
 
 Best regards,
 Krzysztof
