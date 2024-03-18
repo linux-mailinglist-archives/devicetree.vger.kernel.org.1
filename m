@@ -1,236 +1,187 @@
-Return-Path: <devicetree+bounces-51107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51109-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7076587E35F
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 06:52:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D53CA87E3A9
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 07:19:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26B8B2811E3
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 05:52:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF5FF281765
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 06:19:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED07421A1C;
-	Mon, 18 Mar 2024 05:52:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AF0D2209B;
+	Mon, 18 Mar 2024 06:19:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ssq9KoyX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YWRVEGTe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 653E5219E4;
-	Mon, 18 Mar 2024 05:52:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E38322F0E;
+	Mon, 18 Mar 2024 06:19:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710741147; cv=none; b=nV4GbPX4AQDkBG0NIdk/KWBJNi86xz0TCu0eVLqsQ77lFMbJFfxPIOACkxUSK+O+rKOWYbLbq79+y5MY9dnACCEEhZ989WhN/xH/Ei8TWXzb4UkSr/pAzlbY8gmDeecEfDgL/g5oF7IvJFNkfxgfcWzykMgVn+tk1/TQUpDc2ik=
+	t=1710742748; cv=none; b=qRFDMblqd73d16YKQ2AmlWAjYY9YJtkLCigrIA5V3XfTqi8qB3UUi4lTYi4xvrGIQ8QdnsTS8Ana+u83sK+oh8N179EmqOnoQQeaQB2GOzjC+YE+XFgz13gqKzn3Iw6mbKKeJi5ZaSJ6xg2xipMj+j7k7fPcvpQtj5EXAmtxflY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710741147; c=relaxed/simple;
-	bh=kVtWJwmgGzGWFvVb5ZU5qxatxchEdFKYX19+Ui8XHf8=;
-	h=From:To:Subject:Date:Message-Id:MIME-Version; b=fmWRUarBsM6jwRLYhwKcpshxRccp9rYF9dMiNJZUnT986t0Dlyh7teOa//vfi6vn/9ys5GvTdSqld8LY6JogzbfCZBeoabCpnmjpgg+TPttwd/NF7f1OyxSIIdlYiTJtLKQ1VAJolJBoXD9o7b4K4S6co5arWVXpvQAfJn10COM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ssq9KoyX; arc=none smtp.client-ip=209.85.214.179
+	s=arc-20240116; t=1710742748; c=relaxed/simple;
+	bh=3UOolR8JHoqKDwxkh3gJR0lNhSxsx84z8zqGpiIaiuo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pxd9UzASns0T3RPFAodAGs2n+dngATTmUohmUONXzXxj/nvO3CCoEwiXJp0FPo1uTaHJObpoy3Ih+TxEGureEYZ7cVx4FVccrAB4i0/Lwy2B8jVngLsskmh3q7TpOWZxY5/HjZ/N7QV+henOQGiJnGfKq0XJ2OlBo+Gh3KiQgP8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YWRVEGTe; arc=none smtp.client-ip=209.85.208.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-1deefb08b9eso13489335ad.3;
-        Sun, 17 Mar 2024 22:52:26 -0700 (PDT)
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-56a9f5694dcso338162a12.1;
+        Sun, 17 Mar 2024 23:19:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710741145; x=1711345945; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=90ypWIse8KDEw4JedjK1HuYEeI8yW2/WFlhRVCHxDPE=;
-        b=Ssq9KoyXvSNwFSNBZvq3TNUjNZ20FHtZe0n0Yl31PW3giYPWC0pCNjysxf+GOB6QOQ
-         EEC7mOa10jMilQ/nr6KyQ6kcl4sxwP3x3PlDLZKwHmdMxWxbQWTqse5etFzMDKB/aFwi
-         OGmk5JmLEG6Ob2ljR72ELBwbwkYGxuJidgFIsL/OLyTpoNtpoN1X2G/HrLGt4ZPQOAEc
-         yHYvML9yvJg6OPJ0qJS7YgPcuhSm0ZOu6fp7c9nQBOCEl6tWq7zolR5aEjcg9+mPCpg7
-         g3zvLNEUted+sd3JZvOLTfzAinRRNvPBcEMXnSIqEPCXbkcBP5yJ6ZaJbZL3qq3RvY6S
-         Odfw==
+        d=gmail.com; s=20230601; t=1710742745; x=1711347545; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1ucpTK5ikX0YK4SSOnWQlhYk2l25hLLVmLN0L3ZgMDk=;
+        b=YWRVEGTeBuRaRas8cWKaokjXBPLecmqD7D2ORlzfoLew9qo209NHq30BGII4JH4tGg
+         dWAOG0r8an90AkIfLImccY94cBUnFduLh9AypbB85Hl7rSSWd8ZVV8+yUH5axJNDSSRO
+         BniLy13CuXrDpynhv9EQ1Fa9CKNklyiAY8QMbzvXzNpeGnhCLuaQdm8bmsL4CQmIZEu8
+         Vz8oLqReOAX7SmM0w+OCSJLHtn4ST8AXXMgmOQ7NPMhYDJakZOfTBuRSjVAj9XI/PyRg
+         P/QOjN7yPWEA3PaD7/cpFAYAgCENXUP1aZwS9mBaN5/xdCbNv9OMkUwEroHVcH0+7D+F
+         8jyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710741145; x=1711345945;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=90ypWIse8KDEw4JedjK1HuYEeI8yW2/WFlhRVCHxDPE=;
-        b=I5O5l6NnOHhDZDKgyYPCq5LrxVoq0CA95I61cWxihHzgiGAtzOzln+5WQIGhCPCCqz
-         9Xd9wyQ316LscHs/15XePIDu+1n79E2QFNh3ScU0BORjxUEPp2x8qHrgckWtFMiVdRYF
-         bJQBHYDLO2rcyizoxSigCbyzf6EBP08PUCZWuLXTxs2sDQxgxt1ZiWB4H1+AHXoXgSQI
-         5BiVOfnvI0gSHbMdPhSBJa1ZUUDgbsj85ntcuTriZn+giUp5Md//BChxXSmGk9AZr52T
-         SpJ0Q9X9bZwdpGTO7BJiWaF21Z/4EGvgcXYs+RyJauPgJvvzswi6+WSVy22sXiZ69vZN
-         EB9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVIH5d1h69IWRFZ2WK6n2CYbT58pCPD2vyQb0mU+cnvMvjGgWMCxoiJML/P1/YwxfuT2MhZ909GSiB5w+fDE0mOwglSelfgB+BXifjeNIaKNSnhPFOYS3S+X+2Fiw19o9/3p4UNrdHIg9qjtY60YYbf9CiINFVG8HpgkyuOtp6nSCEjFMV4ij8n
-X-Gm-Message-State: AOJu0YzGL2qCDBLlDLOsVaZc55ILflfXncGTqRepUXjn+tEZV45tcUOQ
-	FeHyhxPX+3okXXSVdVRj7ZdBhMrbailRY5eJnNCa8lWWo9HBRD4VLBFFZd0j
-X-Google-Smtp-Source: AGHT+IEzjVGGcpD2wdQdh4nNr8UA/bFIGmLYxCfglYwg6FzxomdZCRU5LfqgjRQaFqyKaDckZNH2Sg==
-X-Received: by 2002:a17:902:c412:b0:1dd:76f0:4455 with SMTP id k18-20020a170902c41200b001dd76f04455mr13656970plk.49.1710741145494;
-        Sun, 17 Mar 2024 22:52:25 -0700 (PDT)
-Received: from peter-bmc.dhcpserver.bu9bmc.local (2001-b400-e454-a466-01a3-78b9-4898-3442.emome-ip6.hinet.net. [2001:b400:e454:a466:1a3:78b9:4898:3442])
-        by smtp.gmail.com with ESMTPSA id j9-20020a170902da8900b001dd6c0800b4sm3975907plx.188.2024.03.17.22.52.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 17 Mar 2024 22:52:25 -0700 (PDT)
-From: Peter Yin <peteryin.openbmc@gmail.com>
-To: patrick@stwcx.xyz,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org,
-	linux-watchdog@vger.kernel.org
-Subject: [PATCH v2] drivers: watchdog: ast2600 support bootstatus
-Date: Mon, 18 Mar 2024 13:52:19 +0800
-Message-Id: <20240318055219.3460121-1-peteryin.openbmc@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        d=1e100.net; s=20230601; t=1710742745; x=1711347545;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1ucpTK5ikX0YK4SSOnWQlhYk2l25hLLVmLN0L3ZgMDk=;
+        b=GIgJAAFnhNLGXe1JzZ0N+9dHVB9S3WKyPR1DS1EO4cEfy7HwpfyxBr47xjWqY3TjW0
+         m0pDUrcam1Tyf1WUSpVq6JeMAfl7/qgUlS6KPx/AaEsSN27NNRcgjkOeF3YGjCAhyX4b
+         DfJER2a64JI3p/gE3hmS+h6xGRRAXGgvQSeU1WICp+BTX4OuJx7S2+1Qr+Z6yPaxXjJg
+         MIRcebpdmIF126drNstYdQNB/t/95WsXdwMfYuM5/FgC/CY/mfZFkcAo+nLkD63kUUr0
+         YWG3eH2pBZnRfQ34kT1f7yb220K5B4pn5ZXMwPAHVG47RfKJqKvFQWpVfhf7w+RiBTgF
+         TB0A==
+X-Forwarded-Encrypted: i=1; AJvYcCVs2Yrr7KchQCKLoko/Eo8eRsUwACPQC+iPnPbpJAMvG9kDZLLMHBZBRq9Ioe5MZ1n+tlmqVZARiZ/+2qALSIj5S1eOkp3khWXYHpDUvw78ikgHeOKc/3MwLK1RM5k4tRvb6LkFABpveHp+02tZAtu2h4rUXc1W3Y3xJDIvKVLYBHIvQ7FhV1pK13qJZtTCqgJFb15qSlnSSz9Xp9XUMq4=
+X-Gm-Message-State: AOJu0YwBASIg5p/N0KJ99hcPXJj4B1o1IDcIfGYSL3skjJAL3GF8Fmv9
+	pq1J6Oec0VFsQGS5F25zYDJuuf47htGb1FO1KlZXmcM8TPm4rl6hTnNKUVXRRuyDheCAbiCkagA
+	jlbYdJxJVqIEDo7RuKAi5GtgTqvc=
+X-Google-Smtp-Source: AGHT+IGFZlEfND0/QEzYxEFBqsH8cbQPNzEwsHVBGJzBi3UPQPHMyjSKJX6kHW5eCvCzP4I8Ci/M3MkVq0y3iCfhWW4=
+X-Received: by 2002:a05:6402:528a:b0:569:a0e9:3409 with SMTP id
+ en10-20020a056402528a00b00569a0e93409mr981538edb.41.1710742744931; Sun, 17
+ Mar 2024 23:19:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240316-loongson1-dma-v6-0-90de2c3cc928@gmail.com>
+ <20240316-loongson1-dma-v6-1-90de2c3cc928@gmail.com> <20240317-exorcist-spectator-90f5acb3fe2a@spud>
+In-Reply-To: <20240317-exorcist-spectator-90f5acb3fe2a@spud>
+From: Keguang Zhang <keguang.zhang@gmail.com>
+Date: Mon, 18 Mar 2024 14:18:27 +0800
+Message-ID: <CAJhJPsWOUZsWFvreRrPqQHAjYW7uRT31THHi7CRDN46+nHpL9g@mail.gmail.com>
+Subject: Re: [PATCH v6 1/2] dt-bindings: dma: Add Loongson-1 DMA
+To: Conor Dooley <conor@kernel.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-mips@vger.kernel.org, dmaengine@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add WDIOF_EXTERN1 and WDIOF_CARDRESET bootstatus in ast2600
+On Sun, Mar 17, 2024 at 10:40=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
+ote:
+>
+> On Sat, Mar 16, 2024 at 07:33:53PM +0800, Keguang Zhang via B4 Relay wrot=
+e:
+> > From: Keguang Zhang <keguang.zhang@gmail.com>
+> >
+> > Add devicetree binding document for Loongson-1 DMA.
+> >
+> > Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+> > ---
+> > V5 -> V6:
+> >    Change the compatible to the fallback
+> >    Some minor fixes
+> > V4 -> V5:
+> >    A newly added patch
+> > ---
+> >  .../devicetree/bindings/dma/loongson,ls1x-dma.yaml | 66 ++++++++++++++=
+++++++++
+> >  1 file changed, 66 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/dma/loongson,ls1x-dma.ya=
+ml b/Documentation/devicetree/bindings/dma/loongson,ls1x-dma.yaml
+> > new file mode 100644
+> > index 000000000000..06358df725c6
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/dma/loongson,ls1x-dma.yaml
+> > @@ -0,0 +1,66 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/dma/loongson,ls1x-dma.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Loongson-1 DMA Controller
+> > +
+> > +maintainers:
+> > +  - Keguang Zhang <keguang.zhang@gmail.com>
+> > +
+> > +description:
+> > +  Loongson-1 DMA controller provides 3 independent channels for
+> > +  peripherals such as NAND and AC97.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - const: loongson,ls1b-dma
+> > +      - items:
+> > +          - enum:
+> > +              - loongson,ls1c-dma
+> > +          - const: loongson,ls1b-dma
+>
+> Aren't there several more devices in this family? Do they not have DMA
+> controllers?
+>
+You are right. Loongson1 is a SoC family.
+However, only 1A/1B/1C have DMA controller.
 
-Regarding the AST2600 specification, the WDTn Timeout Status Register
-(WDT10) has bit 1 reserved. To verify the second boot source,
-we need to check SEC14 bit 12 and bit 13.
-The bits 8-23 in the WDTn Timeout Status Register are the Watchdog
-Event Count, which we can use to verify WDIOF_EXTERN1.
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    description: Each channel has a dedicated interrupt line.
+> > +    minItems: 1
+> > +    maxItems: 3
+>
+> Is this number not fixed for each SoC?
+>
+Yes. Actually, it's fixed for the whole family.
 
-Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
----
-Change log:
+> > +  interrupt-names:
+> > +    minItems: 1
+> > +    items:
+> > +      - pattern: ch0
+> > +      - pattern: ch1
+> > +      - pattern: ch2
+>
+> Why have you made these a pattern? There's no regex being used here at
+> all.
+>
+Will change items to the following regex.
+  interrupt-names:
+    minItems: 1
+    items:
+      - pattern: "^ch[0-2]$"
 
-v1 -> v2
-  - Add comment and support WDIOF_CARDRESET in ast2600
+Thanks!
 
-v1
-  - Patch 0001 - Add WDIOF_EXTERN1 bootstatus
----
- arch/arm/boot/dts/aspeed/aspeed-g6.dtsi |  8 ++---
- drivers/watchdog/aspeed_wdt.c           | 45 ++++++++++++++++++++++---
- 2 files changed, 44 insertions(+), 9 deletions(-)
+> Cheers,
+> Cono4.
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
-index e0b44498269f..23ae7f0430e9 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
-+++ b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
-@@ -556,24 +556,24 @@ uart5: serial@1e784000 {
- 
- 			wdt1: watchdog@1e785000 {
- 				compatible = "aspeed,ast2600-wdt";
--				reg = <0x1e785000 0x40>;
-+				reg = <0x1e785000 0x40>, <0x1e6f2000 0x20>;
- 			};
- 
- 			wdt2: watchdog@1e785040 {
- 				compatible = "aspeed,ast2600-wdt";
--				reg = <0x1e785040 0x40>;
-+				reg = <0x1e785040 0x40>, <0x1e6f2000 0x020>;
- 				status = "disabled";
- 			};
- 
- 			wdt3: watchdog@1e785080 {
- 				compatible = "aspeed,ast2600-wdt";
--				reg = <0x1e785080 0x40>;
-+				reg = <0x1e785080 0x40>, <0x1e6f2000 0x020>;
- 				status = "disabled";
- 			};
- 
- 			wdt4: watchdog@1e7850c0 {
- 				compatible = "aspeed,ast2600-wdt";
--				reg = <0x1e7850C0 0x40>;
-+				reg = <0x1e7850C0 0x40>, <0x1e6f2000 0x020>;
- 				status = "disabled";
- 			};
- 
-diff --git a/drivers/watchdog/aspeed_wdt.c b/drivers/watchdog/aspeed_wdt.c
-index b4773a6aaf8c..65118e461130 100644
---- a/drivers/watchdog/aspeed_wdt.c
-+++ b/drivers/watchdog/aspeed_wdt.c
-@@ -33,6 +33,7 @@ struct aspeed_wdt {
- 	void __iomem		*base;
- 	u32			ctrl;
- 	const struct aspeed_wdt_config *cfg;
-+	void __iomem		*sec_base;
- };
- 
- static const struct aspeed_wdt_config ast2400_config = {
-@@ -82,6 +83,15 @@ MODULE_DEVICE_TABLE(of, aspeed_wdt_of_table);
- #define WDT_RESET_MASK1		0x1c
- #define WDT_RESET_MASK2		0x20
- 
-+/*
-+ * Only Ast2600 support
-+ */
-+#define   WDT_EVENT_COUNTER_MASK	(0xFFF << 8)
-+#define   WDT_SECURE_ENGINE_STATUS	(0x14)
-+#define   ABR_IMAGE_SOURCE		BIT(12)
-+#define   ABR_IMAGE_SOURCE_SPI		BIT(13)
-+#define   SECOND_BOOT_ENABLE		BIT(14)
-+
- /*
-  * WDT_RESET_WIDTH controls the characteristics of the external pulse (if
-  * enabled), specifically:
-@@ -313,6 +323,7 @@ static int aspeed_wdt_probe(struct platform_device *pdev)
- 	const char *reset_type;
- 	u32 duration;
- 	u32 status;
-+	u32 sec_st;
- 	int ret;
- 
- 	wdt = devm_kzalloc(dev, sizeof(*wdt), GFP_KERNEL);
-@@ -330,6 +341,12 @@ static int aspeed_wdt_probe(struct platform_device *pdev)
- 	if (IS_ERR(wdt->base))
- 		return PTR_ERR(wdt->base);
- 
-+	if (of_device_is_compatible(np, "aspeed,ast2600-wdt")) {
-+		wdt->sec_base = devm_platform_ioremap_resource(pdev, 1);
-+		if (IS_ERR(wdt->sec_base))
-+			return PTR_ERR(wdt->sec_base);
-+	}
-+
- 	wdt->wdd.info = &aspeed_wdt_info;
- 
- 	if (wdt->cfg->irq_mask) {
-@@ -459,12 +476,30 @@ static int aspeed_wdt_probe(struct platform_device *pdev)
- 	}
- 
- 	status = readl(wdt->base + WDT_TIMEOUT_STATUS);
--	if (status & WDT_TIMEOUT_STATUS_BOOT_SECONDARY) {
--		wdt->wdd.bootstatus = WDIOF_CARDRESET;
- 
--		if (of_device_is_compatible(np, "aspeed,ast2400-wdt") ||
--		    of_device_is_compatible(np, "aspeed,ast2500-wdt"))
--			wdt->wdd.groups = bswitch_groups;
-+	if (of_device_is_compatible(np, "aspeed,ast2600-wdt")) {
-+		/*
-+		 * The WDTn Timeout Status Register bit 1 is reserved.
-+		 * To verify the second boot source,
-+		 * we need to check SEC14 bit 12 and bit 13.
-+		 */
-+		sec_st = readl(wdt->sec_base + WDT_SECURE_ENGINE_STATUS);
-+		if( sec_st & SECOND_BOOT_ENABLE)
-+			if (sec_st & ABR_IMAGE_SOURCE ||
-+			    sec_st & ABR_IMAGE_SOURCE_SPI)
-+				wdt->wdd.bootstatus |= WDIOF_CARDRESET;
-+
-+		/*
-+		 * To check Watchdog Event Count for WDIOF_EXTERN1
-+		 */
-+		if (status & WDT_EVENT_COUNTER_MASK) {
-+			wdt->wdd.bootstatus |= WDIOF_EXTERN1;
-+		}
-+	} else {
-+		wdt->wdd.groups = bswitch_groups;
-+
-+		if (status & WDT_TIMEOUT_STATUS_BOOT_SECONDARY)
-+			wdt->wdd.bootstatus = WDIOF_CARDRESET;
- 	}
- 
- 	dev_set_drvdata(dev, wdt);
--- 
-2.25.1
 
+
+--=20
+Best regards,
+
+Keguang Zhang
 
