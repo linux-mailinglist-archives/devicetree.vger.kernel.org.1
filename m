@@ -1,186 +1,229 @@
-Return-Path: <devicetree+bounces-51366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D69087F0C0
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 21:03:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FED187F0F6
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 21:12:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B6CD5280601
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 20:03:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F9FA284520
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 20:12:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1682657884;
-	Mon, 18 Mar 2024 20:02:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E67875733D;
+	Mon, 18 Mar 2024 20:12:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="UR4BTesF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SxxrF5Ug"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2090.outbound.protection.outlook.com [40.107.21.90])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11C5657879;
-	Mon, 18 Mar 2024 20:02:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.90
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710792171; cv=fail; b=mkod9/qpVhNbz4VGbf8CtEvdtGAE2WlFuwdUGOJtOP7U1yx6GHVqUvcYQbxOMOeCmOjbvyiKZvpZNAT3CTxhF6e8N6s0BnIf7RVxUsukORiqifSlgg1i/JKTwI6MZh64DchhbXMyBw9Lf3b+hS/X5QsYpn9F8u5ssEyas13b8H4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710792171; c=relaxed/simple;
-	bh=JTojZFCK65KDJqbhTqasg1kl3O41gBUBv+kaprN9iww=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=Qeo89Q6kbQUj6705JTt8kSBVlLARTF3hvCQQkbE6My2Afc5mMc4Qx80a72sF8nDjaXr3Igl4RN6zC7X8ZtsAAsVN37Y1+HmK9f6rhTEFw00ihbJuWHYPIHS3CHLihg/iRBYWI4d2Un5kSwPxc5Fvof3WbB7WSNWnynwlaOZIHAw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=UR4BTesF; arc=fail smtp.client-ip=40.107.21.90
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=X/SsSkMD5ezqa9IjhBw+4ktXuhQEs7lIKplejQbZD2jaky5bjxQIQR3HHBfn0XSIU+JQioWtY9uWtNDcUGw+k7NFDNxapWhSMiBL5/87F4v+EBGk9MyJ+/9ndk5A2++WMMbcdj+pAO8Vl7xFZutjoGOMphUtkT4si+2hHMIMGVzMQPfHa5s7wdW2Me/V85LwWaYHeJ687Nb3se2hkdpOip7fu/MIZqq+lPmvadZRM+A863xv1gWWWWTR/AqIOLFqGGA2cuffLWRB3UhSw3WmdkTKecQSf4vTOE33r5sB2E6hLx6osryYdZx+0DpJ1JNjd+/IGWIK06d1ecVuMzanHw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=L6Dt2mWJHL534nYeNRMUGwAviyOijujLkez0rZUPmnU=;
- b=aIFbSdQA2h/H5JEEYUdxZ9q3xt2f3t1oM0G6hNydMzT4uORxolV/Jke3PGVL4BipreGKAl2vzodnS8vW2xcsRrSX+VYAl0THbdbY3WzYc5nVDwwhAx1lJQYrev9HybIjIsXZi0wenWseMK4/EgaXa0neKIhgVQAKSOFC7bzFjkAg7mNpyuIrks42Ib9tvZtaOvGVSbEHdnTQ6ZfCnQZ2qBjuBlb/d7f2gx2emHrwUIrT4GTf4LFd9+VhHnr4W8JWD9QqXu6rwchlQ0BsOwbl7e7zOpybb+9lwkEZxkWdaWWhII7odI8lXnrtMBG9PZBtrXmHM2LgKj+xHVwcIdIT9w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=L6Dt2mWJHL534nYeNRMUGwAviyOijujLkez0rZUPmnU=;
- b=UR4BTesFrP1GdrKevynfP8YICZbAXWiHyOFMji7POQIfI65HRNEiQLKgPjYvVFA+Mjc5SZBn5eFNmHqri0NmwKw+k1rXsHqrSwcfuWjcH4oBvmDmozBt07rsVqU9Dy8f39caAL0NIYq+9WB4PQX9MWhCLZ27GDtPbRqRaQRFX5M=
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by DU2PR04MB8790.eurprd04.prod.outlook.com (2603:10a6:10:2e1::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.25; Mon, 18 Mar
- 2024 20:02:46 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::3168:91:27c6:edf6]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::3168:91:27c6:edf6%3]) with mapi id 15.20.7386.025; Mon, 18 Mar 2024
- 20:02:45 +0000
-Date: Mon, 18 Mar 2024 16:02:36 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Joy Zou <joy.zou@nxp.com>, ping.bai@nxp.com, lgirdwood@gmail.com,
-	broonie@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev
-Subject: Re: [PATCH v5 3/3] arm64: dts: imx93-11x11-evk: add pca9451a support
-Message-ID: <Zfid3D7JW5HGIZVc@lizhi-Precision-Tower-5810>
-References: <20240318095633.4079027-1-joy.zou@nxp.com>
- <20240318095633.4079027-4-joy.zou@nxp.com>
- <7f601f5e-98af-4a78-a3eb-04d814669973@linaro.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7f601f5e-98af-4a78-a3eb-04d814669973@linaro.org>
-X-ClientProxiedBy: SJ0PR03CA0076.namprd03.prod.outlook.com
- (2603:10b6:a03:331::21) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D98B57326;
+	Mon, 18 Mar 2024 20:12:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710792738; cv=none; b=Oc0TM3vQQG4KoxqDyqabL9lYrNPEhbHgpXs3wy7LODCFy7aswwtrTZaKL4bGYfHDUrLuB0mGnimEXOrDLMcQ9L0PN9n4yKG+TBdlNN0bhXkhdCQFlLrIunZXbq5oXQgKkEuxTXmn9KIhtoLFGwp09JJb3jYHWKIus7dRS/qFYwQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710792738; c=relaxed/simple;
+	bh=A1hMBuNoMYPdTjyIiblF224rpNHmRnKAd9sG7OtUI+0=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=QQ+Aw1giZ9mriV/w0YX5mDZHkQpzFQepKMxexP1j1SeqMqTTtyqLncmMBoVoxmFSlov09lMi11eBn6IXFHUoFiqBP0CmgNb5vR2xaBgqoSjQQIF0Dc86vvZ23slkL1pPB/QoJE+O91yBJxgMQnqyxd/ghLTJys0aRtcdsXmtZO0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SxxrF5Ug; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-41409fd8b6eso21946555e9.2;
+        Mon, 18 Mar 2024 13:12:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1710792735; x=1711397535; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+Fd9d/Eddk/+SyVZ2Xzut4rMW89ulLr6HF4jWb5kzWg=;
+        b=SxxrF5Ugz0rWX9+1eqaoysuyHD+CqWrQNE0MNVoTWLkZmTnsRMArAMEnID5nj6SMTA
+         U7p3VSOmEOptuGRHngGOjqEpbRn10h9drC5p/Ife2LEpcm2AipywVaheWEW9xjQGeZmi
+         CmBX0h2VIFcTiYhkURqdhN9dHf/+/TiKfpJC2/KRpmEJipy5p9KIHfJOEfOnaJY5fCHD
+         lM5i6/UQZIG31gbCsPvZyo7HgMA+8wKw/513ioo8koCKslY6EUnWzkPMOF/sDYilIJWu
+         IUYFyNMckqMAZiod3e5cXGsFrgHutNAZtblDNRSJ6Lbln4uN9exVGZflsYJKwjHkxquS
+         xGhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710792735; x=1711397535;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+Fd9d/Eddk/+SyVZ2Xzut4rMW89ulLr6HF4jWb5kzWg=;
+        b=AiAG3lFyB7vn3BMuigxA0gh3PUsa2D0Oe7QUe8XFTPmYCjhQcw0hAqT8yGrzAGcTRj
+         FpaPay2OE+WHRdfN3GB3315xQrqgsZ4RgRpKwwuisp3u02SG9rsmvHMQicvJbpSs3t4m
+         26WmI3QCVTpXF/TJ3I/EL2+W2LBPuvhHwnZi2I55K2+Fx2L/2zQ1+caoDL1N5Y5Fs3iq
+         j4ZoNgR7BR2fmE+ijASSm/9DMMAnI9RjPOCV+80zr/6yFVcS21hZzSJlEE1Vl5WvV/wl
+         oLY0r840L0nTwHcXbwVo1XkieSgQmvm+0OEcvaN7AIZKaOnuKm5GRAqW2D6EXCDtLK95
+         1a+g==
+X-Forwarded-Encrypted: i=1; AJvYcCWC0jwPZlQLiDGlstiF+tQTTe7CZDotsZ6GSS+gzoORTJeayH80hoBnBtk1MaSYpIfZvXTD34jaD6QQ48qYF4xHsecFxfBcKwp2n6c55V8h05f40RJHHPAsY571y90pgAEUFWmnyUWPjA==
+X-Gm-Message-State: AOJu0Yz++Es8Z9dxibZqkmYxMgQaMn4X4hHs3S+fHa6+o/jExiEm7q5T
+	zg6kY3NJ+xsTYDB5fTrVA4tnEt3pefS5n7oSjTkjnFzgSIVfiE+X
+X-Google-Smtp-Source: AGHT+IFmlNOA+miA3dz3A9/3mRjChUg1L2C0SXf2p05e4b3/0CcPqAhCWD4DaDcTLvpqUMxkAz4LQg==
+X-Received: by 2002:a05:600c:4f0d:b0:413:e19:337f with SMTP id l13-20020a05600c4f0d00b004130e19337fmr6139675wmq.22.1710792735351;
+        Mon, 18 Mar 2024 13:12:15 -0700 (PDT)
+Received: from [127.0.1.1] (2a02-8389-41cf-e200-1df2-69df-52dd-8b59.cable.dynamic.v6.surfer.at. [2a02:8389:41cf:e200:1df2:69df:52dd:8b59])
+        by smtp.gmail.com with ESMTPSA id n20-20020a05600c4f9400b00414610d9223sm1230492wmq.14.2024.03.18.13.12.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Mar 2024 13:12:14 -0700 (PDT)
+From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Date: Mon, 18 Mar 2024 21:12:06 +0100
+Subject: [PATCH] dt-bindings: hwmon: adc128d818: convert to dtschema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DU2PR04MB8790:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	6nJ81cethsgohCUVjy68MD+oksYFyng8ZpT1sQODdpCQ80ZB0eyB+CVnsFymjl3Vf1vVPIR6FNO5hglX2XFH7mPP4d2geuU4HsRm9hR6nAo7XanI4c424vbj1aDITCsNIGYxAbVZnpXOZftPdGao8Z1T9qP7v5Nnib5deuez0vJQuGESY9IASFYAVxstaZHrZ6QcdwTp0q0/MJaugq41zvqwG+WTyvsc2EC1plN4MU2RbWk+OcKHlPUxtukb/k3uYSzv2lZQeyY1melKatGZD5XlTnEEUkmkOvUj09zzu974FGNapNTw84aYwBOYj4a6wHY6hT2MPEUoM7Gknpb5JWEpK1Kin6LIad+qRHWKBZGR+qKrGVZCmzRkLH1VUdFBrb4Q94jT8z/jiWDZYB9N0IBbgmY4T+fvHvuDDRf6vUbsTlZ/ny1P0bYQxxgWRrVqJTmnWWdCWi2folb6eEx5nQB6a8uWhvxDKprEKxZV8gIC1YxXk4HU8MWaGIHB5XRsD2eUy1wylNVt+uQGNy5vJoM6Lq2cc1+BGQYRZIMVTelNnw16Oz5WeMgE3BckBH475zYQNE/eUK2pr52B+3kWZe5nvSCCw0c4m6wc+jIDvx4Yi7aEY1yzSwYNkjV4WhYMF7ZlfB/5qcYIElt3WXN/MoPPO2mHLLzrG5GpQkg8Z520Kp/ZY52BAqXgEGVs/iCtofbVnfZMQhrxg5pLAalx0Q==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(52116005)(7416005)(376005)(366007)(38350700005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?MX3VQIPFP9nE1WXWiVE+M6oZ+is7mYStT1JkZ9BBiNyndl+xSjMAlzTy5vi5?=
- =?us-ascii?Q?r/A0j1ovJ4CjUFuBKmg1crqJxhIGlUb4W4/fgX902GhPg6RlslFKjANNk1W6?=
- =?us-ascii?Q?0PNIBuAMQj1RhjK2FWDtD6whDt7RhtuzipZOud8WmNQkZHPFPVjUgNRIieM/?=
- =?us-ascii?Q?EGAqV1+wTA8u+ObI2PDPJqtTHRYLhIDaA8OtoIBF5NUcaQfXzsfDJ8Vwa5fE?=
- =?us-ascii?Q?Ww1kDiS7wjljskw2vM1AyD8JNd7BsY68pcdmTzSLJWjNF/ckDfyS+i7BBXmd?=
- =?us-ascii?Q?yz/cHw5fCHuy8b0YJ8LtYcn3B91NOoemcG/eNX+szFsdSeb4tXMrPtoryzRZ?=
- =?us-ascii?Q?qe2s7baivw4rDo8vxaZsgwJu0+qa3lvs1BMK4TlBdwcwomjFb/UJnAqwKqmp?=
- =?us-ascii?Q?mmMxdvpaP/Qm2YaoEID1gtYitJv28uju4nybn9p5YtuLJrbhi/kf1rsDuFYb?=
- =?us-ascii?Q?NIxu2c/S/HdEMeHrkx1m9ywCZ8E9fpfwczGxlrvR+0qGHPDFowhfQJ3a1xvd?=
- =?us-ascii?Q?Pkavauug7GYj/jkIasvfwrqKgcf//F/FSNcpl0k0BSSjsNRFwUWlA2gjrkM1?=
- =?us-ascii?Q?OdjXuKOoa5jgnlhgYPNwis9fkR8C0poDf6w28KXZOngyrg0Qdy23v+cRL361?=
- =?us-ascii?Q?eQsYJkA3qfvBZ3m1C6yy3ZowqV2rV1Lr4mMvkMpAl/i5NOq1xICfXVmr03mu?=
- =?us-ascii?Q?z0YDozv6q4+NBEG8swqX98mxYrAfvYzcmF9oHjkEB9dGG58QEKgbIk2T5/kG?=
- =?us-ascii?Q?eoZyQ9uOlCxlRCQ2+6ZRkozDCASLtw2pwO0+ID1ysm9lcc9gLFVr0W24xNiC?=
- =?us-ascii?Q?GEj+B7PvGRo4FWtuwfz1hFn/Xvl5YtfbaX2on54/4ljkKzoEpP+yNu8osnxJ?=
- =?us-ascii?Q?CsERaoUUSHg0Ew4+5ZZxrpBpEAcaV+WswMtWE0+mmayeccWmUbz3N1id5CY6?=
- =?us-ascii?Q?UPtf+SXGomGalF9fuuLuYuxzWY8Lr80g9aM4IqYAg71CA9UxMGAihSi+j25Z?=
- =?us-ascii?Q?/WRLFdhvKCfPZwulZjIyE0mXTG4F2w2H1q7p3x7gP7WfcNAmokc58o3GhQXF?=
- =?us-ascii?Q?J6znBNMMNA8tmCIJi/hACuyEfo/eg8YgGmSzmirGkvUP8rV1zqlt5mEq2nOE?=
- =?us-ascii?Q?UJQ/ZRhqeqj07Z7C/Gmu8WwPoYTTonuJTi+6pvv1Usq9LX1aGLIRRq56R3sx?=
- =?us-ascii?Q?ahbA5LUkJk6tFMHsfWb5/2YVJAJi00I42NpkgOzWBHXv20atyvMV7OLAfxex?=
- =?us-ascii?Q?CvH3jrzUXKE9hbCRH4uirsOpJq8mR9LLW54Gyp6RDHtcIKKOJ0eHQwRaGgnS?=
- =?us-ascii?Q?ApHL39cfbBdgay51WyHo0GHQrbx9FKBdYpjr7dn2DZqG1PIrTu0xDzW+tGGM?=
- =?us-ascii?Q?k+CyZ7szRUAZBBhIBtQ3KhgJefv9s26kIK35CIqCHOHNVB3iVpT18kqb2mEV?=
- =?us-ascii?Q?+waq3aoOTiovLr3dc+X/kXgeEY9mdnFldJ9LUe+WRwSTSgqpB6nq1PIChoRq?=
- =?us-ascii?Q?KmOs0C3ENi58A4dlXMWiiMT3IU6ciVGQ6GhQMLQbJwpFRHS/mbsYQiU1J4Xx?=
- =?us-ascii?Q?pla6k716m5MUJH8PFv06wkQwbxQt03CGy094IFLB?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 94b4e32a-e396-4e47-0593-08dc478660f6
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2024 20:02:45.8554
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AR9220nBBlENoXlNgeZaFaRQrydHpRNbVNYZ0iJEE7M3VdZ7xUjO1uehCtdbyqNWZR9djcoIs/fZgkLcpaxqfg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8790
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240318-adc128d818_dtschema-v1-1-d0af2caef145@gmail.com>
+X-B4-Tracking: v=1; b=H4sIABWg+GUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDY0ML3cSUZEMjixQLQ4v4lJLi5IzU3ERdA6Mkc4u0ZCOzNDNTJaDOgqL
+ UtMwKsKnRsbW1ACr7T5BlAAAA
+To: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
+ Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>
+X-Mailer: b4 0.14-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1710792734; l=4059;
+ i=javier.carrasco.cruz@gmail.com; s=20240312; h=from:subject:message-id;
+ bh=A1hMBuNoMYPdTjyIiblF224rpNHmRnKAd9sG7OtUI+0=;
+ b=oNAo8Pt+avXQVgB511Qmr+Mzmpm20yXdBgz8puWabhcxvWftFlM6OYIk6h+YshWaIrneKjmK9
+ TpUiiMp76VeDizq/quYx2SjOmCyLmjbpLc2PvESVlzZJ+hMw35xPH+R
+X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
+ pk=lzSIvIzMz0JhJrzLXI0HAdPwsNPSSmEn6RbS+PTS9aQ=
 
-On Mon, Mar 18, 2024 at 07:50:51PM +0100, Krzysztof Kozlowski wrote:
-> On 18/03/2024 10:56, Joy Zou wrote:
-> > Support pca9451a on imx93-11x11-evk.
-> > 
-> > Signed-off-by: Joy Zou <joy.zou@nxp.com>
-> > ---
-> > Changes in v5:
-> > 1.adjust gpio@22 to the front of pmic@25.
-> > 
-> > Changes in v4:
-> > 1. modify the comment for uSDHC but not i2c.
-> > 
-> > Changes in v3:
-> > 1. modify the voltages constraints according to the imx93 datasheet.
-> > ---
-> >  .../boot/dts/freescale/imx93-11x11-evk.dts    | 111 ++++++++++++++++++
-> >  1 file changed, 111 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-> > index 9921ea13ab48..478a134d4416 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-> > +++ b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-> > @@ -183,6 +183,104 @@ &wdog3 {
-> >  	status = "okay";
-> >  };
-> >  
-> > +&lpi2c2 {
-> > +	#address-cells = <1>;
-> > +	#size-cells = <0>;
-> > +	clock-frequency = <400000>;
-> > +	pinctrl-names = "default", "sleep";
-> > +	pinctrl-0 = <&pinctrl_lpi2c2>;
-> > +	pinctrl-1 = <&pinctrl_lpi2c2>;
-> > +	status = "okay";
-> > +
-> > +	pcal6524: gpio@22 {
-> > +		compatible = "nxp,pcal6524";
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pinctrl_pcal6524>;
-> > +		reg = <0x22>;
-> 
-> reg is the second property. Please do not introduce some other coding style.
+Convert adc128d818 bindings to dtschema to support validation.
 
-Yes, Do you know if there are any tools to check it? If no, which tools
-should be good to add such check. I may add it if have free time.
+Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+---
+ .../devicetree/bindings/hwmon/adc128d818.txt       | 38 -------------
+ .../devicetree/bindings/hwmon/ti,adc128d818.yaml   | 63 ++++++++++++++++++++++
+ 2 files changed, 63 insertions(+), 38 deletions(-)
 
-Frank Li
+diff --git a/Documentation/devicetree/bindings/hwmon/adc128d818.txt b/Documentation/devicetree/bindings/hwmon/adc128d818.txt
+deleted file mode 100644
+index d0ae46d7bac3..000000000000
+--- a/Documentation/devicetree/bindings/hwmon/adc128d818.txt
++++ /dev/null
+@@ -1,38 +0,0 @@
+-TI ADC128D818 ADC System Monitor With Temperature Sensor
+---------------------------------------------------------
+-
+-Operation modes:
+-
+- - Mode 0:  7 single-ended voltage readings (IN0-IN6),
+-            1 temperature reading (internal)
+- - Mode 1:  8 single-ended voltage readings (IN0-IN7),
+-            no temperature
+- - Mode 2:  4 pseudo-differential voltage readings
+-              (IN0-IN1, IN3-IN2, IN4-IN5, IN7-IN6),
+-            1 temperature reading (internal)
+- - Mode 3:  4 single-ended voltage readings (IN0-IN3),
+-            2 pseudo-differential voltage readings
+-              (IN4-IN5, IN7-IN6),
+-            1 temperature reading (internal)
+-
+-If no operation mode is configured via device tree, the driver keeps the
+-currently active chip operation mode (default is mode 0).
+-
+-
+-Required node properties:
+-
+- - compatible:  must be set to "ti,adc128d818"
+- - reg:         I2C address of the device
+-
+-Optional node properties:
+-
+- - ti,mode:     Operation mode (u8) (see above).
+-
+-
+-Example (operation mode 2):
+-
+-	adc128d818@1d {
+-		compatible = "ti,adc128d818";
+-		reg = <0x1d>;
+-		ti,mode = /bits/ 8 <2>;
+-	};
+diff --git a/Documentation/devicetree/bindings/hwmon/ti,adc128d818.yaml b/Documentation/devicetree/bindings/hwmon/ti,adc128d818.yaml
+new file mode 100644
+index 000000000000..b48a9841600e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/ti,adc128d818.yaml
+@@ -0,0 +1,63 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++
++$id: http://devicetree.org/schemas/hwmon/ti,adc128d818.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments ADC128D818 ADC System Monitor With Temperature Sensor
++
++maintainers:
++  - Javier Carrasco <javier.carrasco.cruz@gmail.com>
++
++description: |
++  The ADC128D818 is a 12-Bit, 8-Channel Analog to Digital Converter (ADC)
++  with a temperature sensor and an I2C interface.
++
++  Datasheets:
++    https://www.ti.com/product/ADC128D818
++
++properties:
++  compatible:
++    const: ti,adc128d818
++
++  reg:
++    maxItems: 1
++
++  ti,mode:
++    $ref: /schemas/types.yaml#/definitions/uint8
++    description:
++      Operation mode.
++      Mode 0  - 7 single-ended voltage readings (IN0-IN6), 1 temperature
++      reading (internal).
++      Mode 1 - 8 single-ended voltage readings (IN0-IN7), no temperature.
++      Mode 2 - 4 pseudo-differential voltage readings
++      (IN0-IN1, IN3-IN2, IN4-IN5, IN7-IN6), 1 temperature reading (internal).
++      Mode 3 - 4 single-ended voltage readings (IN0-IN3), 2 pseudo-differential
++      voltage readings (IN4-IN5, IN7-IN6), 1 temperature reading (internal).
++    default: 0
++
++  vref-supply:
++    description:
++      The regulator to use as an external reference. If it does not exist, the
++      internal reference will be used.
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        adc@1d {
++            compatible = "ti,adc128d818";
++            reg = <0x1d>;
++            vref-supply = <&vref>;
++            ti,mode = /bits/ 8 <2>;
++        };
++    };
 
-> 
-> Best regards,
-> Krzysztof
-> 
+---
+base-commit: bf3a69c6861ff4dc7892d895c87074af7bc1c400
+change-id: 20240318-adc128d818_dtschema-02b78fc26f65
+
+Best regards,
+-- 
+Javier Carrasco <javier.carrasco.cruz@gmail.com>
+
 
