@@ -1,202 +1,175 @@
-Return-Path: <devicetree+bounces-51209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6247A87E756
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 11:28:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A09087E774
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 11:40:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E47A3B21F01
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 10:28:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E8A5528357A
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 10:40:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 422D52E645;
-	Mon, 18 Mar 2024 10:28:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAC8C2E647;
+	Mon, 18 Mar 2024 10:40:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="24sDEon6"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="Cie3cON9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 634132E633;
-	Mon, 18 Mar 2024 10:28:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C340C29D05
+	for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 10:40:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710757697; cv=none; b=DjdpAjdbJA70yzNVQwqHEj7dHpyac4hVd/UkAG3I6j9mUITNp2hu0ceN7oAoJMCAiRcpVs8/tLmdTlJneVO90SPFpIWcCKCk/qHzeQ7vafRZqSAy4MI3TkL83miq3epPk3nMRp5BYgLUCzQqNlXfIJDavMW2FJmFXprmdBwepP8=
+	t=1710758405; cv=none; b=HZ+akwY9DZ4aMV/IVnj67fJKls9jTjLFAgB4IxjCCVvI2C4rjJhwzRSQAUQkcM0yIcNUxoYxCEcJN0Bzobbnu/xe3Pzv97M8hHilYM5HuWFNL1/LHvz6LjvpLLdxDBSKjscgIxnCddpP4VdYOAsT6qpZhodjN9/Q8VaNK0k5t9A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710757697; c=relaxed/simple;
-	bh=Hlz3vIo/SAFLMtB571JA+dfQmkfGK4xIdjyWOHWeuq8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nrTuMy/IpJCGdp6S0myd08oz0w2pYTC7ms8J7ZuC8spY6eifpSdVVav6hToI65B0/udrm7rQq2mtUEWPBDO2aWulfFPYD0gB6AneTHBUS1EPtp5aiyyuFU/1tRwRx44QVeCcQxE/1rS1jVlARIUkHbedU55tM40l43EfDDXWqAI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=24sDEon6; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1710757693;
-	bh=Hlz3vIo/SAFLMtB571JA+dfQmkfGK4xIdjyWOHWeuq8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=24sDEon6VorXmZGTHRWyKcU6khdFzGNQ9Wxx/TS1W7GjC605djkugTTSNj4ZYl9Gs
-	 KsQG/eKYuCDXq2cE72oHiGRwVZstqtGaXYBpRmSFrYuDZzvf/1XS9vjJBjpdUwAeLF
-	 UTslBj1c+TSvDHG8IqzCFOF2ntB/evSCvYDhfofd+rGbppz5WJT4cG2hf21DgDQSLX
-	 9kAJZ8t//mUo7UQiuY3cFEIDDz8vE7Asnchtl1syRJMgCKyUOyjoKbESwhytnCCNeQ
-	 WXuyK8Nt6KK8lSjUxm7YlOcdXKkuFE2OmOuEw5i0w2vv/kWOajdOfTIYpXZC5rppuj
-	 XOnrn5Cl6M1aw==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 2CF0C37813EA;
-	Mon, 18 Mar 2024 10:28:12 +0000 (UTC)
-Message-ID: <fb9ae93f-9531-468a-b6c8-044b91b62712@collabora.com>
-Date: Mon, 18 Mar 2024 11:28:11 +0100
+	s=arc-20240116; t=1710758405; c=relaxed/simple;
+	bh=fnpFiMr3sDJw+gw4JYAit/P3p7arQxre0TOz9l1njew=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=EY3XIqa7ZKrGtgYUsGLqTtF/LcyA4nAJd6MJwpmoTfuo4Cu7gJAhS/Zj9TYenmiWdJ0U9AluaZbMWWqI+w0a0okgPDTkb3f+jNlJNfxtVHXtQ/lLU605rACHne+hcZ+MlRc3hSctkntgGKLAio2aTz84GwEkdLcuI8wZAHWdfKc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=Cie3cON9; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-6e704078860so1509967b3a.0
+        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 03:40:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1710758402; x=1711363202; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5ID0p7f2CL6yvEozBjg6sfwc1IPzOU4d80fq7ceZnco=;
+        b=Cie3cON9EkDvk1UHE/UhHLme4zCMPo5foyD2MREZ9uBznohKfYfWY58EA9rsCx5jSo
+         A7jjOetoejSemzXc6DGy8Al6HIRFTG0t6bxRQu1vaJGa7WDCJOO6HXTsALiL2B2CA04x
+         vnowsIevg0ju4DKHqVsSYAVZ6T3f3XqjVHCJkJoIBRz912Hsyn5dMjkrTvRS3Ba9V6hc
+         HQ7yZI3NcnNVzUuE5xBRXlYTCvTAxqPlqX/veVRIR/sRsTJWdkjRFxQLqJ3g9BfOf331
+         YrvqM4zPTvFiLHi1PhzGXUG6W9ni1tBwpCf44J9GKg6plCWQAmKx41+CMHjDo1LKJzJI
+         LtSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710758402; x=1711363202;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5ID0p7f2CL6yvEozBjg6sfwc1IPzOU4d80fq7ceZnco=;
+        b=F2e+/vvYODjqYSOhdYF/0Rp1WBlMOq9qp/lP9FCJ5FL9kEYKQ5epeZH9gx/0Rx/yOq
+         Ehtazmnb/S+ed1GE+iYonLBlabTaxwj81zZOsCQrHHndawE2sQbVhYEel5LNfKoKw7ho
+         sqkoTn33Beq4zaySM+LxSmY6vq1BCNMvQNHR5etcWoeR7cPvX4m6ZOzLWyTwjDGm1Y5r
+         oGWP65K5LCUQprl8Qz338wD4CA50OXO1Z0DjQCZjAq+BCCBY2/dBRFzpN5zQH/oXjREM
+         hXK2/Z25AQ/6/X9BNe6LY90NrV/1gssFuo7uxHEv/W97D36tPBR+Kq7XUzgoR+NseHP8
+         sgtQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU1T8CKnSt9UvZfdJjjpaaVaPLXHjcxh8KHq08FRqyb5xZUlKBTtU31aH3BpZrzPzCr+qsTAIHYc+WSkBYr/25ec86iwdoWLbmuig==
+X-Gm-Message-State: AOJu0Yw5wZP9nnY80PDg44JcrqmpbgHTCapb0RScunz6QgFid4B51EHt
+	uX75w2j3ctNJl2W+PzoUp8XjeiQ36XBnK54GREEVFj4LtRPWhitdJY3v9aT5p4A=
+X-Google-Smtp-Source: AGHT+IFybbfcMxdPeEklAEm0VGt4DQEXS5sWv1NO8Ih8hC+93i804/jYj2EHmREofX0BM04dNDwUXA==
+X-Received: by 2002:a05:6a00:23d2:b0:6e6:9cea:69e7 with SMTP id g18-20020a056a0023d200b006e69cea69e7mr12433497pfc.29.1710758401876;
+        Mon, 18 Mar 2024 03:40:01 -0700 (PDT)
+Received: from [127.0.1.1] (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
+        by smtp.gmail.com with ESMTPSA id c11-20020a056a00008b00b006e647716b6esm7838969pfj.149.2024.03.18.03.39.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Mar 2024 03:40:01 -0700 (PDT)
+From: Andy Chiu <andy.chiu@sifive.com>
+Subject: [PATCH v3 0/7] Support Zve32[xf] and Zve64[xfd] Vector
+ subextensions
+Date: Mon, 18 Mar 2024 18:39:53 +0800
+Message-Id: <20240318-zve-detection-v3-0-e12d42107fa8@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 4/4] arm64: dts: mediatek: Add Cudy WR3000 V1
-Content-Language: en-US
-To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Chen-Yu Tsai <wenst@chromium.org>, Hsin-Yi Wang <hsinyi@chromium.org>,
- =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>,
- Heiko Stuebner <heiko.stuebner@cherry.de>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Chris Morgan <macromorgan@hotmail.com>,
- Linus Walleij <linus.walleij@linaro.org>, Sean Wang
- <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-kernel@vger.kernel.org, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>
-References: <20240317223206.22033-1-zajec5@gmail.com>
- <20240317223206.22033-5-zajec5@gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20240317223206.22033-5-zajec5@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPkZ+GUC/03MQQ6CMBCF4auQWTtNO7QirryHcdG0g8wCMG0lK
+ uHuNq5cfsl7/waZk3CGc7NB4lWyLHNFe2ggjH6+M0qsBtJkdWtO+FkZIxcOpS7RaaOPkaJ31EH
+ 9PBIP8vr1rrfqIS0TljGx/69YY8lZUqbvXYcG/RzfKozyvGQZZGUVlgn2/Qs5CNDYnQAAAA==
+To: Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Andy Chiu <andy.chiu@sifive.com>, Vincent Chen <vincent.chen@sifive.com>, 
+ Heiko Stuebner <heiko@sntech.de>, Conor Dooley <conor.dooley@microchip.com>, 
+ Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Jonathan Corbet <corbet@lwn.net>
+Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Palmer Dabbelt <palmer@rivosinc.com>, 
+ Greentime Hu <greentime.hu@sifive.com>, Guo Ren <guoren@kernel.org>, 
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
+ =?utf-8?q?Cl=C3=A9ment_L=C3=A9ger?= <cleger@rivosinc.com>, 
+ Joel Granados <j.granados@samsung.com>
+X-Mailer: b4 0.13-dev-a684c
 
-Il 17/03/24 23:32, Rafał Miłecki ha scritto:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> Cudy WR3000 V1 is an MT7981B (AKA Filogic 820) based wireless router. It
-> has 256 MiB of RAM, some LEDs & buttons and (not described yet) 4
-> Ethernet ports.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+The series composes of two parts. The first part provides a quick fix for
+the issue on a recent thread[1]. The issue happens when a platform has
+ununified vector register length across multiple cores. Specifically,
+patch 1 adds a comment at a callsite of riscv_setup_vsize to clarify how
+vlenb is observed by the system. Patch 2 fixes the issue by failing the
+boot process of a secondary core if vlenb mismatches.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+The second part of the series provide a finer grain view of the Vector
+extension. Patch 3 give the obsolete ISA parser the ability to expand
+ISA extensions for sigle letter extensions. Patch 3, 4 introduces Zve32x,
+Zve32f, Zve64x, Zve64f, Zve64d for isa parsing and hwprobe. Patch 5
+updates all callsites such that Vector subextensions are maximumly
+supported by the kernel.
 
-> ---
-> V2: Reorder properties
->      Describe online LED
-> V3: Use LED_FUNCTION_WAN_ONLINE (present in torvalds/linux.git)
+Two parts of the series are sent together to ease the effort of picking
+dependency patches. The first part can be merged independent of the
+second one if necessary.
 
-I'm really happy that you managed to get that WAN_ONLINE definition in the common
-leds binding, btw! :-)
+The series is tested on a QEMU and verified that booting, Vector
+programs context-switch, signal, ptrace, prctl(sysctl knob) interfaces
+works when we only report partial V from the ISA.
 
-> 
->   arch/arm64/boot/dts/mediatek/Makefile         |  1 +
->   .../dts/mediatek/mt7981b-cudy-wr3000-v1.dts   | 74 +++++++++++++++++++
->   2 files changed, 75 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt7981b-cudy-wr3000-v1.dts
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-> index 37b4ca3a87c9..96da4ad640aa 100644
-> --- a/arch/arm64/boot/dts/mediatek/Makefile
-> +++ b/arch/arm64/boot/dts/mediatek/Makefile
-> @@ -8,6 +8,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-evb.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-x20-dev.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-rfb1.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-bananapi-bpi-r64.dtb
-> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt7981b-cudy-wr3000-v1.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7981b-xiaomi-ax3000t.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-acelink-ew-7886cax.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3.dtb
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7981b-cudy-wr3000-v1.dts b/arch/arm64/boot/dts/mediatek/mt7981b-cudy-wr3000-v1.dts
-> new file mode 100644
-> index 000000000000..54101cc08a25
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt7981b-cudy-wr3000-v1.dts
-> @@ -0,0 +1,74 @@
-> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
-> +
-> +/dts-v1/;
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/leds/common.h>
-> +
-> +#include "mt7981b.dtsi"
-> +
-> +/ {
-> +	compatible = "cudy,wr3000-v1", "mediatek,mt7981b";
-> +	model = "Cudy WR3000 V1";
-> +
-> +	memory@40000000 {
-> +		reg = <0 0x40000000 0 0x10000000>;
-> +		device_type = "memory";
-> +	};
-> +
-> +	keys {
-> +		compatible = "gpio-keys";
-> +
-> +		key-wps {
-> +			label = "WPS";
-> +			gpios = <&pio 0 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_WPS_BUTTON>;
-> +		};
-> +
-> +		key-reset {
-> +			label = "RESET";
-> +			gpios = <&pio 1 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_RESTART>;
-> +		};
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		led-0 {
-> +			color = <LED_COLOR_ID_BLUE>;
-> +			function = LED_FUNCTION_WAN;
-> +			gpios = <&pio 5 GPIO_ACTIVE_LOW>;
-> +		};
-> +
-> +		led-1 {
-> +			color = <LED_COLOR_ID_BLUE>;
-> +			function = LED_FUNCTION_WLAN_2GHZ;
-> +			gpios = <&pio 6 GPIO_ACTIVE_LOW>;
-> +		};
-> +
-> +		led-2 {
-> +			color = <LED_COLOR_ID_BLUE>;
-> +			function = LED_FUNCTION_WLAN_5GHZ;
-> +			gpios = <&pio 7 GPIO_ACTIVE_LOW>;
-> +		};
-> +
-> +		led-3 {
-> +			color = <LED_COLOR_ID_BLUE>;
-> +			function = LED_FUNCTION_LAN;
-> +			gpios = <&pio 9 GPIO_ACTIVE_LOW>;
-> +		};
-> +
-> +		led-4 {
-> +			color = <LED_COLOR_ID_BLUE>;
-> +			function = LED_FUNCTION_STATUS;
-> +			gpios = <&pio 10 GPIO_ACTIVE_LOW>;
-> +		};
-> +
-> +		led-5 {
-> +			color = <LED_COLOR_ID_BLUE>;
-> +			function = LED_FUNCTION_WAN_ONLINE;
-> +			gpios = <&pio 11 GPIO_ACTIVE_LOW>;
-> +		};
-> +	};
-> +};
+This patch should be able to apply on risc-v for-next branch on top of
+the commit 099dbac6e90c ("Merge patch series "riscv: Use Kconfig to set unaligned access speed"")
 
+[1]: https://lore.kernel.org/all/20240228-vicinity-cornstalk-4b8eb5fe5730@spud/T/#u
+
+v2 of this series can be found at: https://lore.kernel.org/all/20240314142542.19957-1-andy.chiu@sifive.com/
+
+Changelog v3:
+ - Include correct maintainers and mailing list into CC.
+ - Cleanup isa string parser code (3)
+ - Adjust extensions order and name (4, 5)
+ - Refine commit message (6)
+
+Changelog v2:
+ - Update comments and commit messages (1, 2, 7)
+ - Refine isa_exts[] lists for zve extensions (4)
+ - Add a patch for dt-binding (5)
+ - Make ZVE* extensions depend on has_vector(ZVE32X) (6, 7)
+
+---
+Andy Chiu (7):
+      riscv: vector: add a comment when calling riscv_setup_vsize()
+      riscv: smp: fail booting up smp if inconsistent vlen is detected
+      riscv: cpufeature: call match_isa_ext() for single-letter extensions
+      riscv: cpufeature: add zve32[xf] and zve64[xfd] isa detection
+      dt-bindings: riscv: add Zve32[xf] Zve64[xfd] ISA extension description
+      riscv: hwprobe: add zve Vector subextensions into hwprobe interface
+      riscv: vector: adjust minimum Vector requirement to ZVE32X
+
+ Documentation/arch/riscv/hwprobe.rst               | 15 ++++++
+ .../devicetree/bindings/riscv/extensions.yaml      | 30 ++++++++++++
+ arch/riscv/include/asm/hwcap.h                     |  5 ++
+ arch/riscv/include/asm/switch_to.h                 |  2 +-
+ arch/riscv/include/asm/vector.h                    | 21 +++++---
+ arch/riscv/include/asm/xor.h                       |  2 +-
+ arch/riscv/include/uapi/asm/hwprobe.h              |  5 ++
+ arch/riscv/kernel/cpufeature.c                     | 56 ++++++++++++++++++----
+ arch/riscv/kernel/head.S                           | 14 +++---
+ arch/riscv/kernel/kernel_mode_vector.c             |  4 +-
+ arch/riscv/kernel/process.c                        |  4 +-
+ arch/riscv/kernel/signal.c                         |  6 +--
+ arch/riscv/kernel/smpboot.c                        | 14 ++++--
+ arch/riscv/kernel/sys_hwprobe.c                    | 13 ++++-
+ arch/riscv/kernel/vector.c                         | 15 +++---
+ arch/riscv/lib/uaccess.S                           |  2 +-
+ 16 files changed, 163 insertions(+), 45 deletions(-)
+---
+base-commit: 099dbac6e90c620d8ce0bbf75bbdc94da1feb4fb
+change-id: 20240318-zve-detection-50106d2da527
+
+Best regards,
+-- 
+Andy Chiu <andy.chiu@sifive.com>
 
 
