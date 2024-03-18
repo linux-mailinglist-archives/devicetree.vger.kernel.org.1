@@ -1,156 +1,222 @@
-Return-Path: <devicetree+bounces-51080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51081-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 559D387E236
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 03:43:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E8C587E242
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 03:47:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA773283037
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 02:43:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C92411F21E79
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 02:47:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64F681BF3F;
-	Mon, 18 Mar 2024 02:43:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4750D1DA53;
+	Mon, 18 Mar 2024 02:47:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XGPD4UwM"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="a8vzg9mn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2084.outbound.protection.outlook.com [40.107.22.84])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36BCF1E864;
-	Mon, 18 Mar 2024 02:43:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710729810; cv=none; b=HOWRZwGsCmR6jVBT9KLX1Jkm+Za9HMsGCnz4FLEWg//Jg6ldFONBop+rlpoDFWKTboIkzrlWwE4Er5I2FepAOqpCYjeSb1WefzIGkD9P5115Cyhs8HOKpEZ1dled9jO6jZBB6lbqD7FYaMP7hxsKaauO+q6RQ/+ExC5lRZbmxoc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710729810; c=relaxed/simple;
-	bh=xuHFwmysitBPRtnk/N2gUnHljyju/ctC2IDtugOQZ/U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IPh6t1AdqXUvcpR44d6P8AKJM1fpeH0xNtJI2bt2Ceu1SjDVFYGQs65em0zX7anzxCZ5CiMJonnWn2/QY5NAOa+38Fc+lxT15toQWfn+/agQdKJtL+TrRLitVAIOnywreNQR9PB/ciTh3euFmNpvO+A/R1xjcbNUfCE8VvIwzBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XGPD4UwM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1351AC433C7;
-	Mon, 18 Mar 2024 02:43:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710729809;
-	bh=xuHFwmysitBPRtnk/N2gUnHljyju/ctC2IDtugOQZ/U=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XGPD4UwMiwPDNsVIniys+T0NTKxPpNIlhguRaLSthnvfyLi3vqpUFLyW/1/8uRzIM
-	 XYlJNVP50V9QmHk1dUzGYbLzkCGWk8V+Hz8/ahUZUtw9RhiCwpTt5IK9T0geD/pI2r
-	 5pTOV5PfbMs9/T2H+BOT3GAoiG8ZkXboA/HtHwRjo8qtCXjr6ONgD+B37/YkzKsW4Q
-	 3injwpcLD4ez3WGV4pxUNynitKgahTQk6zjLHCX4zKkLZ/B7vfuuy5XUujOGgFOwhU
-	 OVjm/+tzqqvgpJFAKhkn1OJhA9nViwKq7BjjhxTu0BJ4zH4BbOVpROq23hFFMfPZfn
-	 oMQ6vNRB3DRhw==
-Date: Sun, 17 Mar 2024 21:43:27 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Anton Bambura <jenneron@postmarketos.org>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/6] arm64: dts: qcom: sc8180x-lenovo-flex-5g: enable
- touchscreen
-Message-ID: <2tq6m75m3skcu5wlvrwpwnn53kay3pzo2aeecofxpfnll7mwqn@whtnrabrrivw>
-References: <20240203191200.99185-1-jenneron@postmarketos.org>
- <20240203191200.99185-5-jenneron@postmarketos.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E10F61C10;
+	Mon, 18 Mar 2024 02:47:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.84
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710730033; cv=fail; b=CXwQ4H+YsXDX8vJ6t96R81j5aD0PRsp/CwnMmUCwXRmYY8mK7aVtwAsV+vpGo7DanM7/bMuB9ZxbChLpYHGB+vrHq2F9yRK3WurKei7fXz4HXBCWKIYl24ipr9JtH/Tmtxsrq58SPMhFBihPnxmsd6/7NHjXDkwUIrP3Zai0YWQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710730033; c=relaxed/simple;
+	bh=sDtglPoaFEw22QeN6AUMzWOHVCLVXTxqMGal0ezbY1g=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=MSXTGv1jk+7tTfWMFCnPjyIC8KuXa+LS6s/256gW7UipOnZlqFlMjV3MajDbujZG/bvxbFsjyb3YJZjgzW7LQbfeuLcLSekjVeXH3/dQhxVIMa+4y0my0To9ybZKY4/lJXrEKCWJbhbDI5S+yNBAhhfNgZ/CCHqV+Ev2WI15yDE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=a8vzg9mn; arc=fail smtp.client-ip=40.107.22.84
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=X51YIvENz08vk9uhF/NLq9kdnbHcgGh64MqJn9+3c9+5jNHvMNEmwQxw7bkJizpLk7vACjt6ru3DEPd9ULih9N7EbC1Z2USO0AvNZMojV/AsKQ9mrWEHYTdx6PfTxydZzLoV7dclWKRa4n3aDj/PIJXLnWrkMsW2LFPJMHtvO1t0wci7FtORHxLmk6QilB5jq5tZZm7Ygq3oIyTLRyZeATo8L5I/ZJKD2CI8JVudBQg1jYyf2UbqVfZNSGSFfXy0PFP18PylK+hqHkQfLAuPksBW5NB1bh4vE+ZzVTfBZb6EnQcD7Ea0I1kPikR54WmJm+oFDZEYBHFxN4oQNiPYJw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sDtglPoaFEw22QeN6AUMzWOHVCLVXTxqMGal0ezbY1g=;
+ b=FozA9TAv2tOamxOb/XyNxor7aiQKuboiD+OYsWNeh6WLI3f1lvW15eIdNvaq+3WZyLiTjKCMBHyBgHhc5kzErxoIGoUK9YVcAplr6fdaXoaEaEHVsgH6JeNRQTFGF39ovzY4B7Utg5ORuWvq+SzRX+aCK222mBHoNghVEBcFrtEDmjKZV8kW0zWVrpNTamM/VzDw99IHzdlw0PEmaw1GI7ydfuaJFycv9neVnFKKX63HT571SnkPZv6b8mGxJXAeAHmR+ogFcx4aUM7QGkzO/k0mendOO75CLFr0R8xEsPj3sI2t08i+TGmncSEQn4JQPRtOwfSG4L/+1ONkcpPXqA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sDtglPoaFEw22QeN6AUMzWOHVCLVXTxqMGal0ezbY1g=;
+ b=a8vzg9mnb/7rOvrI2AFYP2+aNAmwRiQkkvUje9i2J8VdI4a3l7JUfoiYB0zcxxm6mYJD6/OTwYrJQmuiCBw+pzxm6+c318LtHNo2nTTLuDTNegqV6fzuhas2abrPrn9liIuNCTU9twUTXK2cNFdqsjf3NHkpqO78G8ikupn30Xw=
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by VI1PR04MB7088.eurprd04.prod.outlook.com (2603:10a6:800:11d::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.26; Mon, 18 Mar
+ 2024 02:47:06 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::d30b:44e7:e78e:662d]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::d30b:44e7:e78e:662d%4]) with mapi id 15.20.7386.017; Mon, 18 Mar 2024
+ 02:47:06 +0000
+From: Peng Fan <peng.fan@nxp.com>
+To: Cristian Marussi <cristian.marussi@arm.com>
+CC: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Sudeep Holla
+	<sudeep.holla@arm.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Oleksii Moisieiev <oleksii_moisieiev@epam.com>, Linus Walleij
+	<linus.walleij@linaro.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+	<s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, dl-linux-imx <linux-imx@nxp.com>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-gpio@vger.kernel.org"
+	<linux-gpio@vger.kernel.org>, AKASHI Takahiro <takahiro.akashi@linaro.org>,
+	Rob Herring <robh@kernel.org>
+Subject: RE: [PATCH v5 0/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
+ protocol basic support
+Thread-Topic: [PATCH v5 0/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
+ protocol basic support
+Thread-Index: AQHadhNQAq3ztPnC+06ZIaeZ1qof0rE3crUAgACA3vCAARLLAIADylFg
+Date: Mon, 18 Mar 2024 02:47:06 +0000
+Message-ID:
+ <DU0PR04MB94176621F225DA0316E2734B882D2@DU0PR04MB9417.eurprd04.prod.outlook.com>
+References: <20240314-pinctrl-scmi-v5-0-b19576e557f2@nxp.com>
+ <ZfMqWP-t39SCvkA2@pluto>
+ <DU0PR04MB9417056FD84405898F1B007B88282@DU0PR04MB9417.eurprd04.prod.outlook.com>
+ <ZfR89rdzRymY1Ovx@pluto>
+In-Reply-To: <ZfR89rdzRymY1Ovx@pluto>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|VI1PR04MB7088:EE_
+x-ms-office365-filtering-correlation-id: 94f92e92-9533-4631-209b-08dc46f5b30e
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ 3Q/kuJAGVO51Kp4SWp0N3E3tKiahce3QM4sZLtFVl4RbKF1MxWdSvtvOwl7p4k5rh3vA4qvHrabCYVJLa1huD8gZiraHQ0Aw5l804vMSaqAKPBo/k6AypouLCTNMMu8TpB2v0TDrGLYg/nPYAe6vW6XaHNfH9xAqbuh4+E0ZxTgUCubFJ88bCTH+aIiGIoJHSHO/h9yFv2nMyPXXMDpHMME/iWv+bCbCQbUobjtvix6iB3xL6BK+hOzMhQaNOwnpLKb0qrO3IFcJMiwWhWQVjtNF1PKkee178O/y+s5tlvDZSsbMSO4YK7OxiK9BoGL9Nga4hWhwMQxMceGa+GUH3rqQqTGrkaU1vYCjvmZkkYK0L4SndE/bAvPzmhaEAFAJss2rDskBVVTiCfVkMgDpwfdz/a0hlhobE3kLNZoIiPhYWISJM5KecGpto6w2hOLTs/lmLSoHgIIe8KIfrOGsqRRMLcWpvqfyGs8zQyv0DS4u6/t2hCDm7gdu4SqGmU50jsYDLW142LSBPIzIg8AxvcnQXbJRh6C3ZEaL4rQOo1QyVCLgqJh9of9EFMdesDXojvAwOtj+7dJpkLRDbzVyr4HURnnB/GlIiiXWTUzDAlm1i1jNUMBB9dDZHOFfacTFFjr6vYCIuoGr0u19uY7PRB1dBdpV/9SMdm3Yd4KhxUBj+MXev7PCnZACPJjuk4lwcA0YSwgA+V3CrgBeBMeogQ==
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(7416005)(366007)(1800799015)(38070700009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?PNUKpYaTTyWEQzHufsmIay6ouM/BktSNzmXOkrMabVfZ9A/fSORAJTw229Al?=
+ =?us-ascii?Q?yzSbU25TBOnlzfkbaiTkMEe2bL0Y85tVa7YyZSzv2ewcBmlI5He08Sucx2T0?=
+ =?us-ascii?Q?701Z0bNdFOAOELLaYBJ4cqDWmkWTbaoJmoPllSS8RAW8GVmL4KbLm1SM3nwU?=
+ =?us-ascii?Q?PdWEf1LQAK1tMngJLC60tJU+kdvv2fNvTKpHzMMB1c6LmnVZRrkmQhrk6LXg?=
+ =?us-ascii?Q?SOhUIYtghoZFQFbAjluelXnmVepcAniyshGB4rjkD/MOJRqb1cm712S0MKOE?=
+ =?us-ascii?Q?sO9I7SXWPXUqN+CIovWOiIhv1MuWw+JoAN5q0S6+PPyWBSYdTLGFT7lK3Kfc?=
+ =?us-ascii?Q?o/uuLVSv8q3tK/FL4Ur0gK0qaj57rx37ejrwAqZN5BOkNMuL+PAazCr6yHOw?=
+ =?us-ascii?Q?29p6e3IL089iD/CWRVgqCax2HWtR0OxvupDZeEfH+dq/Bc1gGmI3Lp+I2g7g?=
+ =?us-ascii?Q?hin/tw1gJXLMkOwgOtdSsGvFVCSonu24dVJu5OHqOiwfxRC53QUXi9N2ZFLT?=
+ =?us-ascii?Q?th3vNanrCIwD+tIc30m1h7kF8V489H/aynY/Pkvn+vTK0Rrd7Qzs9vhTS0Er?=
+ =?us-ascii?Q?9c1oTje2L08rv72qr/9PYwObbHBaPptan/tdbfhS6Nyok4SSFDdprpzZBr8a?=
+ =?us-ascii?Q?YFnd261KQ/66Kif1Kfr0dLJ/Z9plZ0BBW54l2P2zN72ZWq4nakw1F3Dwj4G3?=
+ =?us-ascii?Q?QiyuiOLEa/nEf+CID0uqWRu42CCXcGp3DjsQ/2+Di++oxQCX7B77BrOoC0Oz?=
+ =?us-ascii?Q?y1HDKM2zDngNp2V9T+G+IVl5VVdUt3zBJls1HlP0iPFUkG5vCL386MleP8rq?=
+ =?us-ascii?Q?cUIDvP50GcAM/AlldTeDiry5MhivIHloUEp8yMRkZXhvo496TPXJ7cLsqfS0?=
+ =?us-ascii?Q?TSWAIksdPtU75kwoN9liNiEY2r4jUFRaXZMHNd0jNSAKJes78TrTVjsqyqJp?=
+ =?us-ascii?Q?X3cZA9dZ5sVBBIL8Ylt6kszRBuFu7qTvcgV+9AYy3a7fi4fy8gmVv7ALEs/O?=
+ =?us-ascii?Q?hQZTAAaiDfSUbakh9ZNi9dSl0ZlejNMyV/1BbeH6MjzLwmEiLjCdQCHwg7Fg?=
+ =?us-ascii?Q?mzOOisFIUZUh4KGwPXyyzU/jZooTEZ15nMGv1r9lWdhKtCyDKoqqTtEVkAO6?=
+ =?us-ascii?Q?yLV1bqDQhWWW7dxKlYnf7MnheUDT8mQrZi8KzxpKsML0i4YgTxDbJvqDzBRu?=
+ =?us-ascii?Q?J9bXT8Ou44lbqy8IMgALuO0Z+7Be8r0ovqg6io8nzD0QadRcFSFlGYsgQinI?=
+ =?us-ascii?Q?qnHTMPy2OjKuw4Gke0OWZU/BKKxoe9i1Q9uJ457f/qxVXxl6W1wk7vyWWjcH?=
+ =?us-ascii?Q?Fr/Ch3ILcELl9Hiejq5FBgubzjztIdY2a+gDa+Qa6ClKYd/3yNxYKp+O4h3/?=
+ =?us-ascii?Q?NTWV/e5gRyMmBgJt7ad+T5nB2S/556fXjIo/91hIhBaHhAfQhpatI3WUuxqn?=
+ =?us-ascii?Q?9PYcjfkUmfT/38VOwi0emGuUb3Fn7iYWO+rdSRLbx4S3M5LDmFYggX7+TRLO?=
+ =?us-ascii?Q?0J9HbiaMVeK/WwC4e5oFeXaMaSfMoCBgktLFUAaiB09rShxasv+5QLzSapEu?=
+ =?us-ascii?Q?bQ3KqtSu0w4KHcOqI1o=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240203191200.99185-5-jenneron@postmarketos.org>
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 94f92e92-9533-4631-209b-08dc46f5b30e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Mar 2024 02:47:06.4259
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: orwncCbPk70BI+qWM3bQxxw+HzVHP/ZEKCnyU3MPaZNfuFU+9ypM+/0aBYcadjgL7sI/jjvDrVZYWdX7PZVtqw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB7088
 
-On Sat, Feb 03, 2024 at 09:11:58PM +0200, Anton Bambura wrote:
-> Set regulators, reset gpio and delays according to ACPI tables.
-> 
-> Signed-off-by: Anton Bambura <jenneron@postmarketos.org>
-> ---
->  .../boot/dts/qcom/sc8180x-lenovo-flex-5g.dts  | 30 ++++++++++++++++++-
->  1 file changed, 29 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts b/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
-> index 6ae6cb030b70..5bf6285f905f 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
-> @@ -271,6 +271,12 @@ vreg_l3c_1p2: ldo3 {
->  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->  		};
->  
-> +		vreg_l4c_3p3: ldo4 {
-> +			regulator-min-microvolt = <3296000>;
-> +			regulator-max-microvolt = <3304000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
->  		vreg_l10c_3p3: ldo10 {
->  			regulator-min-microvolt = <3000000>;
->  			regulator-max-microvolt = <3312000>;
-> @@ -337,6 +343,12 @@ vreg_l10e_2p9: ldo10 {
->  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->  		};
->  
-> +		vreg_l12e_1p8: ldo12 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
->  		vreg_l16e_3p0: ldo16 {
->  			regulator-min-microvolt = <3072000>;
->  			regulator-max-microvolt = <3072000>;
-> @@ -365,11 +377,19 @@ &i2c1 {
->  	touchscreen@10 {
->  		compatible = "hid-over-i2c";
->  		reg = <0x10>;
-> +
->  		hid-descr-addr = <0x1>;
-> +		reset-gpios = <&tlmm 54 GPIO_ACTIVE_LOW>;
-> +
-> +		vdd-supply = <&vreg_l4c_3p3>;
-> +		vddl-supply = <&vreg_l12e_1p8>;
-> +
-> +		post-power-on-delay-ms = <3>;
-> +		post-reset-deassert-delay-ms = <200>;
+> Subject: Re: [PATCH v5 0/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
+> protocol basic support
+>=20
+> On Fri, Mar 15, 2024 at 12:31:51AM +0000, Peng Fan wrote:
+> > > Subject: Re: [PATCH v5 0/4] firmware: arm_scmi: Add SCMI v3.2
+> > > pincontrol protocol basic support
+> > >
+> > > On Thu, Mar 14, 2024 at 09:35:17PM +0800, Peng Fan (OSS) wrote:
+> > > > Since SCMI 3.2 Spec is released, and this patchset has got
+> > > > R-b/T-b, is it ok to land this patchset?
+> > > >
+> > >
+> > > I'll have a look at this last version and a spin on my test setup.
+> > >
+> > > ...but has this V5 change at all since the Reviewed-by tags due to
+> > > the latest spec changes ?
+> >
+> > The tags are same as V4. I only did a rebase, no more changes.
+> > >
+>=20
+> Ok.
+>=20
+> > > ...IOW does this V5 include the latest small bits spec-changes or
+> > > those latest gpio-related spec-changes are just not needed at the
+> > > level of the Linux pinctrl support as of now and can be added later
+> > > on when a Linux gpio driver will be built on top of this ?
+> >
+> > In my current test, I no need the gpio related changes, so I would add
+> > that later if you are ok.
+> >
+>=20
+> I COULD have agreed with this, since AFAIK there is currently an effort t=
+o add
+> support for GPIO on top of SCMI Pinctrl BUT not in Linux, so no reason to
+> block this series for gpio-related missing features, that should only be
+> additions not breaking backward compatibility...
+>=20
+> ....BUT, I've just wrapped my head again around the latest public release=
+ of
+> v3.2 spec (which has gone through so many changes and additions that I ha=
+d
+> lost track O_o) AND beside the above mentioned GPIO changes there are
+> indeed also BREAKING changes around the commands
+> PINCTRL_SETTINGS_GET and PINCTRL_SETTINGS_CONFIGURE (which were
+> the old PINCTRL_CONFIG_GET/SET), that now also get/set the selected
+> function: so that, at the end the payload itself of those commands/replie=
+s has
+> also changed IN SIZE, so the driver needs definitely to be updated (and
+> whatever you use to test on the backend server too, if you want to test t=
+his...)
 
-As I ran into with the X13s, post-reset-deassert-delay-ms is not an
-accepted property for hid-over-i2c. I think the desired path forward is
-to extend elan,ekth6915.yaml and i2c-hid-of-elan.c and hard code these
-values there instead.
+Ok, I see, there are indeed some changes, I will update the driver.
 
-But I suspect you, like me, are unaware of the actual name of the
-device? Perhaps it's acceptable to make something up based on the
-reported product id?
+>=20
+> I think these changes (which I forgot being there) were in since last mon=
+th, so
+> already V4 was broken in these regards (which I have not looked at)
 
-Regards,
-Bjorn
+I may need to drop the R-b/T-b?
 
->  
->  		interrupts-extended = <&tlmm 122 IRQ_TYPE_LEVEL_LOW>;
->  
-> -		pinctrl-0 = <&ts_int_default>;
-> +		pinctrl-0 = <&ts_int_default>, <&ts_reset_default>;
->  		pinctrl-names = "default";
->  	};
->  };
-> @@ -735,6 +755,14 @@ ts_int_default: ts-int-default-state {
->  		drive-strength = <2>;
->  	};
->  
-> +	ts_reset_default: ts-reset-default-state {
-> +		pins = "gpio54";
-> +		function = "gpio";
-> +
-> +		bias-disable;
-> +		drive-strength = <16>;
-> +	};
-> +
->  	usbprim_sbu_default: usbprim-sbu-state {
->  		oe-n-pins {
->  			pins = "gpio152";
-> -- 
-> 2.42.0
-> 
+>=20
+> I'll leave some comments along the series and test all of this again next=
+ week...
+> ...since too many things has changed and I want to re-verify all on my si=
+de.
+
+Thanks,
+Peng.
+>=20
+> Thanks,
+> Cristian
+
 
