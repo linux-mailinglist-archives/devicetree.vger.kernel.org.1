@@ -1,109 +1,115 @@
-Return-Path: <devicetree+bounces-51242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51243-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C9BD87E8E6
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 12:50:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDDD287E8F9
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 12:54:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 517981F2291F
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 11:50:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E6B31F23558
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 11:54:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB86D374DD;
-	Mon, 18 Mar 2024 11:50:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95423376F4;
+	Mon, 18 Mar 2024 11:54:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="eb5NZg+L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17C6937162;
-	Mon, 18 Mar 2024 11:50:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7F9A374DD;
+	Mon, 18 Mar 2024 11:54:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710762629; cv=none; b=vFp800VCWvQ6qfl5nAChadqwJcgNsJbqvGdwxcLHRP13/rskvlpWgPFkdUvhUxLfRaUKHaLPRT2UKcpECH90yqJc130D4qDkeRopcX9opNL8viYtCK/y+6JTOka2OqJlq0pi+6lHm56d7g2b9O2jPPT0iY3m9lmZl+Wf5BmZbV8=
+	t=1710762847; cv=none; b=JpxgdRuhhbTLawLG9KZzN1JG2m8+42xYGlNOSDQP46GsWwn1MbZACQpLT8lTvn9LPFKj4pRx8XDes4zmGrKde6kK4WdL7xL2imRouiY/PDCUHHH55GwXUtn2WL/vEwTs5sAcqb/NTcjSBtiZ+65HJZqlhztE2Bb4veNPEg7MQos=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710762629; c=relaxed/simple;
-	bh=jTDdMudVhYB9Z0ObVnYky7+BLMrmLovdUgzxDbvmYMI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hQdqaVs/BIeB1TbOZM8Wl9qmWC8yGaVKI1E2XhABYbn1RPLLM8hw352NRJObUitV0wSWgfbpkyON0BrPPIqv4edvkkR9KfHXhlce/iLMejD9a/kcdoK+arjNLyIHtsMdMM0fmndPURER/njwmW0oEHk7m0zA14K4Q/XZNaS+tmI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8163BDA7;
-	Mon, 18 Mar 2024 04:51:02 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 066463F762;
-	Mon, 18 Mar 2024 04:50:25 -0700 (PDT)
-Date: Mon, 18 Mar 2024 11:50:23 +0000
-From: Andre Przywara <andre.przywara@arm.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Corentin Labbe <clabbe@baylibre.com>,
- Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/4] arm64: dts: allwinner: Pine H64: correctly remove
- reg_gmac_3v3
-Message-ID: <20240318115023.59e368f2@donnerap.manchester.arm.com>
-In-Reply-To: <20240317184130.157695-1-krzysztof.kozlowski@linaro.org>
-References: <20240317184130.157695-1-krzysztof.kozlowski@linaro.org>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1710762847; c=relaxed/simple;
+	bh=JA/KRWB1iWsUGT53W2XAqwsBspnF3Fn6EQ5RKr36NmY=;
+	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=AlNVKQAq/kU8haXIZ0Jw2Jhpq7+WHdUV4LndzJ0qDBcdHaWZxBjkQy0i6tStNN2fJKOfsAP3R5iPzys4s87wdNa2IjnndfK1/4OtU17VW7V0wb5IXrtH5VJQuSTvzJoU7u25X2RLc4OrIEVHCQrrNI0rf6QQqJ8VFLpcNcyiRSE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=eb5NZg+L; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1710762846; x=1742298846;
+  h=from:date:to:cc:subject:in-reply-to:message-id:
+   references:mime-version:content-id;
+  bh=JA/KRWB1iWsUGT53W2XAqwsBspnF3Fn6EQ5RKr36NmY=;
+  b=eb5NZg+LYnEn7CKFrX9FI+Zg55awTvJYagQwm9tGhfpexOAk9we8/jMw
+   3H9G/jiGShw2znpt6c+0uThoh9Hv2gFt5Myk8r+WgUCiKQGfGBGc41izP
+   okfRlvKMoCVUxclM9vEq2UImSPLLMhQwuLRl6GX80cFuPzG2H2V8cJ5ZR
+   u8B4QTKsUJ9ZaqbCl8vPUB7L4ZExEBFcbOyc0+C07YlVzZcKaz8pGvKqL
+   2m0cVtfdhNyY3/F1SSYDdgGmPtEm07ojn4oV6Ygf9lYA0W2/0EdwrR8Tx
+   O3lg0PVgK0AElJvxGP8jOqPpY9bfKZbfReEcEc6MKMrzDTCJ7ktPKaJB9
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11016"; a="5403765"
+X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; 
+   d="scan'208";a="5403765"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Mar 2024 04:54:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; 
+   d="scan'208";a="13831209"
+Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost) ([10.245.247.11])
+  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Mar 2024 04:53:59 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Mon, 18 Mar 2024 13:53:53 +0200 (EET)
+To: Nikita Travkin <nikita@trvn.ru>
+cc: Hans de Goede <hdegoede@redhat.com>, Sebastian Reichel <sre@kernel.org>, 
+    Rob Herring <robh+dt@kernel.org>, 
+    Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+    Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
+    Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+    Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+    Bryan O'Donoghue <bryan.odonoghue@linaro.org>, devicetree@vger.kernel.org, 
+    LKML <linux-kernel@vger.kernel.org>, linux-arm-msm@vger.kernel.org, 
+    platform-driver-x86@vger.kernel.org
+Subject: Re: [PATCH v5 3/4] platform: arm64: Add Acer Aspire 1 embedded
+ controller driver
+In-Reply-To: <20240315-aspire1-ec-v5-3-f93381deff39@trvn.ru>
+Message-ID: <f68150a6-62bd-f99f-ad24-f2a018a67d2e@linux.intel.com>
+References: <20240315-aspire1-ec-v5-0-f93381deff39@trvn.ru> <20240315-aspire1-ec-v5-3-f93381deff39@trvn.ru>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; BOUNDARY="8323328-685438645-1710762824=:1041"
+Content-ID: <8d9d18f0-5a11-8f08-3681-a84e27267c21@linux.intel.com>
 
-On Sun, 17 Mar 2024 19:41:27 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-Hi Krzysztof,
+--8323328-685438645-1710762824=:1041
+Content-Type: text/plain; CHARSET=ISO-8859-15
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-ID: <64e59465-3e35-8c82-5b41-6fd74dbb49db@linux.intel.com>
 
-> There is no "reg_gmac_3v3" device node in sun50i-h6-pine-h64.dts,
-> although there is "gmac-3v3" with "reg_gmac_3v3" label, so let's assume
-> author wanted to remove that node.  Delete node via phandle, not via
-> full node path, to fix this.
+On Fri, 15 Mar 2024, Nikita Travkin wrote:
 
-Ah, that's a good catch! Indeed that regulator node is still in the DTB
-right now.
+> Acer Aspire 1 is a Snapdragon 7c based laptop. It uses an embedded
+> controller to perform a set of various functions, such as:
+>=20
+> - Battery and charger monitoring;
+> - Keyboard layout control (i.e. fn_lock settings);
+> - USB Type-C DP alt mode HPD notifications;
+> - Laptop lid status.
+>=20
+> Unfortunately, while all this functionality is implemented in ACPI, it's
+> currently not possible to use ACPI to boot Linux on such Qualcomm
+> devices. To allow Linux to still support the features provided by EC,
+> this driver reimplments the relevant ACPI parts. This allows us to boot
+> the laptop with Device Tree and retain all the features.
+>=20
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
 
-> Fixes: f33a91175029 ("arm64: dts: allwinner: add pineh64 model B")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Ilpo J=E4rvinen <ilpo.jarvinen@linux.intel.com>
 
-Successfully compiled the DTB and can confirm that the node is gone now.
-
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-
-Cheers,
-Andre
-
-> ---
->  arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-model-b.dts | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-model-b.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-model-b.dts
-> index b710f1a0f53a..1b6e5595ac6e 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-model-b.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-model-b.dts
-> @@ -5,12 +5,12 @@
->  
->  #include "sun50i-h6-pine-h64.dts"
->  
-> +/delete-node/ &reg_gmac_3v3;
-> +
->  / {
->  	model = "Pine H64 model B";
->  	compatible = "pine64,pine-h64-model-b", "allwinner,sun50i-h6";
->  
-> -	/delete-node/ reg_gmac_3v3;
-> -
->  	wifi_pwrseq: wifi_pwrseq {
->  		compatible = "mmc-pwrseq-simple";
->  		reset-gpios = <&r_pio 1 3 GPIO_ACTIVE_LOW>; /* PM3 */
-
+--=20
+ i.
+--8323328-685438645-1710762824=:1041--
 
