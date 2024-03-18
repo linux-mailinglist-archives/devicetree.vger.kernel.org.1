@@ -1,265 +1,275 @@
-Return-Path: <devicetree+bounces-51184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51185-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2CC187E68E
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 11:00:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A988A87E692
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 11:00:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F0CDF1C203D7
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 10:00:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 601ED1F20FA1
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 10:00:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0BC42CCD6;
-	Mon, 18 Mar 2024 10:00:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 924A82C694;
+	Mon, 18 Mar 2024 10:00:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="A1Mj8GX5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDC5C2C85D
-	for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 10:00:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B66492DF73
+	for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 10:00:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710756018; cv=none; b=XZAcifOftEn+HUrI0OMWBBYQ6LuZP+1BA+hRc4RA6hU4fs4mEloSf2zdT6U+o5zSC6kebS7EyEPzh5SX+jS+Blb4p1wnPaJCjKl4VJ/TlLxjLa6SE9sM+1mhEBiMvhAKke5blmoCLXEgFvZpj7msIgwCADn+C1ksgaaasJeSuNw=
+	t=1710756045; cv=none; b=igiUaae9hGX9ZAE+0CrbB4jp5k4ZqCboyWDaaW4zET9K7qXD2dFtRFvEwqTzddv+8B5QIDBbWL7dKzYx8nnqKLKugjK658Dc4LdemmjvicBu+8YpzWysskf5+GxTnRDqXqtA/fmp0oko9iAkX+TLsBT4jvFWKyYGUltrysUTwi8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710756018; c=relaxed/simple;
-	bh=oHGAUUZInETu3uSOrSDkqyU5Ef2ZqZXmkK2RBU59St4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RYpwuyvc2CFiOEuIqOQQ2bpw29hfboCki0nj76nNaTZDKqpNrVooSUtRL1sgX49RrIM5itWeyzNu+pkfTi5Y1P4G8DrhFF2sxLFtzD61aBOZw6dumieeuJ1X4Yq1P+KQC59MCPz0IUWLUSE79GUw5x9o6zaI4Fdn1Kh/68QeU+0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1rm9mi-0003u1-8j; Mon, 18 Mar 2024 11:00:00 +0100
-Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1rm9mh-0073CL-KT; Mon, 18 Mar 2024 10:59:59 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1rm9mh-005SXP-1h;
-	Mon, 18 Mar 2024 10:59:59 +0100
-Date: Mon, 18 Mar 2024 10:59:59 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Peng Fan <peng.fan@nxp.com>
-Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-	Abel Vesa <abelvesa@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v4 0/6] Add support i.MX95 BLK CTL module clock features
-Message-ID: <20240318095959.v5d7qeoci5v2dtkq@pengutronix.de>
-References: <20240314-imx95-blk-ctl-v4-0-d23de23b6ff2@nxp.com>
- <20240317155911.pdc32nsyxcdhs2t7@pengutronix.de>
- <DU0PR04MB941725052D5E3EF78F67A1C5882D2@DU0PR04MB9417.eurprd04.prod.outlook.com>
+	s=arc-20240116; t=1710756045; c=relaxed/simple;
+	bh=Y3KPjryeBk6WAZvX4AF/DKF7icODeEyu5eeTcBvHdYI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TAsFFJhEVrr1UcvBRcAhEE8JCoazFrPECI0MGsj2dJF0QBf2S+/1XrOCsldeecnvpBJ5F+nFtbqb5l5QzBmqPOr7lWUg/7p2YcJWaoJR6owJKK9WDiRFbw5qBV8s7pUKDsP1tSNVR82dyZwkU+wM4GeC3RSVaeUE5OPO5M508oE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=A1Mj8GX5; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a46c35dfb5aso66774666b.2
+        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 03:00:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1710756042; x=1711360842; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nOpVJMHZinNvbP1S4eRDyzZwVy4BvWSLo+7riRjQi6Y=;
+        b=A1Mj8GX5OMJJFuZyvq85dhWGYORsXWwLF+CJLYUwpwUbRFnYzyxvuXg4iJoVbRweI3
+         KIyyY+4mJO3igUaECeztD5K+LDWHi2v4KKyAp1FH0CwGm+aSch6Lec6zpzU5cg91ymrB
+         Ep8Z6tf74eKQEOIgkvWRPj1qMwr6YCTi/H3sBg0kuLbw654fTz6brLat3n1ia6YSPFXV
+         zgdRIKxwr5YgO595vCM2rI4h7JT+U0CASvZG5VQkcmZztiqmoWjTBb/ZVWfTyt3dYO9L
+         JhypenwJ3pDV/7bF8etn6qzMSIIKo3wk/02qG09uAOtonfJG1zgKLth7Vh0GeLyl6I7+
+         mHqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710756042; x=1711360842;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nOpVJMHZinNvbP1S4eRDyzZwVy4BvWSLo+7riRjQi6Y=;
+        b=rWajyccaWx5IDC3VoHMJ4V/AuTNppe4xG/0OGRysnMZmNJepXq23omAm3xMgpEyzno
+         bQclBxHa6g7fgvj4s8rbbxO0quELW3u0QsfJDJM47xInK9Jy1nBGwTwF5Hf5xPToH2ow
+         6UwSmnu8nvLrBcygHLrBDDcGzGYs3o/bqkINreDCBxTSyFypbBRd6YWmh9jpzGpyP6lE
+         w4t2p3XeM3g1OQfBrlE9cVSPuU0GPjG+xa4U61cG8CyezgQyTHfH89FKIi8rCtBc4DsQ
+         EHL2PuHpNO/fAFmDAdYRtdcL/j9ugfCDqonnVeBka71wgwKL1ljA/BMRNVe6vkFftrsl
+         4UQQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWG9E78JwHPQbprN56s/BNFbZIue7vt3KeYeon06VoDtpAC3urdITQiEw13cosaj/7wHzv5gY+nQ+UW4jDJ+l2iHNaWsYKk0fr2qw==
+X-Gm-Message-State: AOJu0YyMZra38qIEu638nIAJcWAl4EeJbr/WdYr7IlLtl1Jul97XCmc0
+	BSDyuio5HJYJvEy6VOfCppq9jZQlwSUZFVubrq38jrpLVNarWwmwTF3ojAGjNfE=
+X-Google-Smtp-Source: AGHT+IFNSsbnlgNB4ccb54kO8I+YBeQgxLGEB38rT+5118DAl6YF6HVXQRJYq8D8/zj+uJJ1X1jUmg==
+X-Received: by 2002:a17:907:1ca4:b0:a46:9e3c:9e62 with SMTP id nb36-20020a1709071ca400b00a469e3c9e62mr5312174ejc.13.1710756042103;
+        Mon, 18 Mar 2024 03:00:42 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id dl5-20020a170907944500b00a46ada81f1bsm1971486ejc.124.2024.03.18.03.00.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Mar 2024 03:00:41 -0700 (PDT)
+Message-ID: <a224e752-d99b-45d3-b5db-761a698c347e@linaro.org>
+Date: Mon, 18 Mar 2024 11:00:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <DU0PR04MB941725052D5E3EF78F67A1C5882D2@DU0PR04MB9417.eurprd04.prod.outlook.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: hwmon: Add maxim max31790 driver
+ bindings
+Content-Language: en-US
+To: Chanh Nguyen <chanh@amperemail.onmicrosoft.com>,
+ Chanh Nguyen <chanh@os.amperecomputing.com>, Jean Delvare
+ <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Justin Ledford
+ <justinledford@google.com>, devicetree@vger.kernel.org,
+ linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+ OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+ Open Source Submission <patches@amperecomputing.com>
+Cc: Phong Vo <phong@os.amperecomputing.com>,
+ Thang Nguyen <thang@os.amperecomputing.com>,
+ Quan Nguyen <quan@os.amperecomputing.com>
+References: <20240311111347.23067-1-chanh@os.amperecomputing.com>
+ <20240311111347.23067-2-chanh@os.amperecomputing.com>
+ <6fb70adb-aa85-4b9c-b093-afa4ec7ed056@linaro.org>
+ <ab8b45c5-2ef0-4a87-87bf-f797954b4574@amperemail.onmicrosoft.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <ab8b45c5-2ef0-4a87-87bf-f797954b4574@amperemail.onmicrosoft.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 24-03-18, Peng Fan wrote:
-> Hi Marco,
+On 18/03/2024 10:51, Chanh Nguyen wrote:
 > 
-> > Subject: Re: [PATCH v4 0/6] Add support i.MX95 BLK CTL module clock
-> > features
-> > 
-> > Hi Peng,
-> > 
-> > thank for the patchset.
-> > 
-> > On 24-03-14, Peng Fan (OSS) wrote:
-> > > i.MX95's several MIXes has BLK CTL module which could be used for clk
-> > > settings, QoS settings, Misc settings for a MIX. This patchset is to
-> > > add the clk feature support, including dt-bindings
-> > 
-> > I have to ask since there is almost no public documentation available yet. The
-> > i.MX95 does have an system-controller for managing pinmux settings and
-> > power-domains, right? 
+>> It does not look like you tested the bindings, at least after quick
+>> look. Please run `make dt_binding_check` (see
+>> Documentation/devicetree/bindings/writing-schema.rst for instructions).
+>> Maybe you need to update your dtschema and yamllint.
+>>
 > 
-> Yes. 
 > 
-> If this is the case, why not making use of it via the
-> > standard scmi_pm_domain.c driver?
+> I tested the binding, I didn't see any warning/error log. Please review 
+> my logs as below
+
+Hm, I don't remember what brought my attention to possible error. Maybe
+I mistyped my template.
+
 > 
-> The SCMI firmware not handle the BLK CTL stuff, but blk ctl stuff is
-> a mix of clk, qos, module specific things. It is not good for SCMI firmare
-> to handle it.
-
-Currently most of the blk-ctrl users do use the blk-ctrl as power-domain
-consumer, except for the isi and the audio part. So as I said above the
-scmi_pm_domain.c should be able to supply this. The audio blk-ctrl could
-be abstracted via the clk-scmi.c driver. The ISI is another topic.
-
-What you're are going to do here is to put pinctrl etc into SCMI
-firmware and power-control into Linux, which sound to me like an 50/50
-approach and IMHO is rather sub-optimal. To quote your online available
-fact sheet:
-
-8<----------------------------------------------------------
-ENERGY FLEX ARCHITECTURE
-
-The i,MX 95 family is designed to be configurable and
-scalable, with multiple heterogenous processing domains.
-This includes an application domain with up to 6 Arm
-Cortex A55 cores, a high-performance real-time domain
-with Arm Cortex M7, and low-power/safety domain with
-Arm Cortex M33, each able to access interfaces including
-CAN-FD, 10GbE networking, PCIe Gen 3 x1 interfaces,
-and accelerators such as V2X, ISP, and VPU.
-8<----------------------------------------------------------
-
-8<----------------------------------------------------------
-HIGH-PERFORMANCE COMPUTE
-The i.MX 95 family capabilities include a multi-core
-application domain with up to six Arm Cortex®-A55 cores,
-as well as two independent real-time domains for
-safety/low-power, and high-performance real-time use,
-consisting of high-performance Arm Cortex-M7 and
-Arm Cortex-M33 CPUs, combining low-power, real-time,
-and high-performance processing. The i.MX 95 family is
-designed to enable ISO 26262 ASIL-B and SIL-2 IEC 61508
-compliant platforms, with the safety domain serving as
-a critical capability for many automotive and industrial
-applications.
-...
-8<----------------------------------------------------------
-
-To me this sound like we can turn of the power/clock of an hardware
-block which was assigned to a core running SIL-2 certified software from
-an non-critical core running Linux if we follow that approach. Also the
-SIL-2 software requires the non-critical software to turn on the power
-of these hardware blocks. Is this correct?
-
-Regards,
-  Marco
-
-> Regards,
-> Peng.
+> => make dt_binding_check DT_SCHEMA_FILES=/hwmon/max31790.yaml
+> make[1]: Entering directory '/DISK4T/work/community/linux/out'
+>    DTEX    Documentation/devicetree/bindings/hwmon/max31790.example.dts
+>    DTC_CHK Documentation/devicetree/bindings/hwmon/max31790.example.dtb
+> make[1]: Leaving directory '/DISK4T/work/community/linux/out'
 > 
-> > 
-> > Regards,
-> >   Marco
-> > 
-> > 
-> > 
-> > >
-> > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> > > ---
-> > > Changes in v4:
-> > > - Separate binding doc for each modules, I still keep the syscon as
-> > > node name, because the module is not just for clock
-> > > - Pass dt-schema check
-> > > - Update node compatibles
-> > > - Link to v3:
-> > > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore
-> > > .kernel.org%2Fr%2F20240228-imx95-blk-ctl-v3-0-
-> > 40ceba01a211%40nxp.com&d
-> > >
-> > ata=05%7C02%7Cpeng.fan%40nxp.com%7Caad977d7e4f94c750de408dc469
-> > b3952%7C
-> > >
-> > 686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C63846287969085566
-> > 1%7CUnknow
-> > >
-> > n%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1ha
-> > WwiLC
-> > >
-> > JXVCI6Mn0%3D%7C0%7C%7C%7C&sdata=M%2B3lDY9BKvW0nHv4mtvi82RA
-> > 9IvYyz72TCbL
-> > > UpiYcG0%3D&reserved=0
-> > >
-> > > Changes in v3:
-> > > - Correct example node compatible string
-> > > - Pass "make ARCH=arm64 DT_CHECKER_FLAGS=-m -j32 dt_binding_check"
-> > > - Link to v2:
-> > > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore
-> > > .kernel.org%2Fr%2F20240228-imx95-blk-ctl-v2-0-
-> > ffb7eefb6dcd%40nxp.com&d
-> > >
-> > ata=05%7C02%7Cpeng.fan%40nxp.com%7Caad977d7e4f94c750de408dc469
-> > b3952%7C
-> > >
-> > 686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C63846287969086560
-> > 2%7CUnknow
-> > >
-> > n%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1ha
-> > WwiLC
-> > >
-> > JXVCI6Mn0%3D%7C0%7C%7C%7C&sdata=4leg49tKhwUMzvD5wlnvgVc7is%2
-> > FGMNvpYr6A
-> > > %2FAf3OU4%3D&reserved=0
-> > >
-> > > Changes in v2:
-> > > - Correct example node compatible string
-> > > - Link to v1:
-> > > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore
-> > > .kernel.org%2Fr%2F20240228-imx95-blk-ctl-v1-0-
-> > 9b5ae3c14d83%40nxp.com&d
-> > >
-> > ata=05%7C02%7Cpeng.fan%40nxp.com%7Caad977d7e4f94c750de408dc469
-> > b3952%7C
-> > >
-> > 686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C63846287969087217
-> > 2%7CUnknow
-> > >
-> > n%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1ha
-> > WwiLC
-> > >
-> > JXVCI6Mn0%3D%7C0%7C%7C%7C&sdata=UuD5MVPFgBqwftuXCIXB7SeGyu0
-> > NWPbwY%2Bvy
-> > > ChFLyVA%3D&reserved=0
-> > >
-> > > ---
-> > > Peng Fan (6):
-> > >       dt-bindindgs: clock: nxp: support i.MX95 VPU CSR module
-> > >       dt-bindindgs: clock: nxp: support i.MX95 Camera CSR module
-> > >       dt-bindindgs: clock: nxp: support i.MX95 Display Master CSR module
-> > >       dt-bindindgs: clock: nxp: support i.MX95 LVDS CSR module
-> > >       dt-bindindgs: clock: nxp: support i.MX95 Display CSR module
-> > >       clk: imx: add i.MX95 BLK CTL clk driver
-> > >
-> > >  .../bindings/clock/nxp,imx95-camera-csr.yaml       |  50 +++
-> > >  .../bindings/clock/nxp,imx95-display-csr.yaml      |  50 +++
-> > >  .../clock/nxp,imx95-display-master-csr.yaml        |  62 +++
-> > >  .../bindings/clock/nxp,imx95-lvds-csr.yaml         |  50 +++
-> > >  .../bindings/clock/nxp,imx95-vpu-csr.yaml          |  50 +++
-> > >  drivers/clk/imx/Kconfig                            |   7 +
-> > >  drivers/clk/imx/Makefile                           |   1 +
-> > >  drivers/clk/imx/clk-imx95-blk-ctl.c                | 438 +++++++++++++++++++++
-> > >  include/dt-bindings/clock/nxp,imx95-clock.h        |  32 ++
-> > >  9 files changed, 740 insertions(+)
-> > > ---
-> > > base-commit: c9c32620af65fee2b1ac8390fe1349b33f9d0888
-> > > change-id: 20240228-imx95-blk-ctl-9ef8c1fc4c22
-> > >
-> > > Best regards,
-> > > --
-> > > Peng Fan <peng.fan@nxp.com>
-> > >
-> > >
-> > >
+>>>
+>>> Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
+>>> ---
+>>>   .../devicetree/bindings/hwmon/max31790.yaml   | 44 +++++++++++++++++++
+>>>   1 file changed, 44 insertions(+)
+>>>   create mode 100644 Documentation/devicetree/bindings/hwmon/max31790.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/hwmon/max31790.yaml b/Documentation/devicetree/bindings/hwmon/max31790.yaml
+>>> new file mode 100644
+>>> index 000000000000..5a93e6bdebda
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/hwmon/max31790.yaml
+>>
+>> Filename like compatible.
 > 
+> Yes, I'll update that in v2
+> 
+>>
+>>> @@ -0,0 +1,44 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/hwmon/max31790.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: The Maxim MAX31790 Fan Controller
+>>> +
+>>> +maintainers:
+>>> +  - Jean Delvare <jdelvare@suse.com>
+>>> +  - Guenter Roeck <linux@roeck-us.net>
+>>
+>> You should have here someone responsible for hardware, not subsystem
+>> maintainers.
+>>
+> 
+> Hi Krzysztof,
+> I checked the history of the drivers/hwmon/max31790.c and see Guenter 
+> Roeck <linux@roeck-us.net> as an important maintainer. I saw many 
+> commits from him. So, I add him to maintainer list.
+
+OK
+
+> 
+>>> +
+>>> +description: >
+>>> +  The MAX31790 controls the speeds of up to six fans using six
+>>> +  independent PWM outputs. The desired fan speeds (or PWM duty cycles)
+>>> +  are written through the I2C interface.
+>>> +
+>>> +  Datasheets:
+>>> +    https://datasheets.maximintegrated.com/en/ds/MAX31790.pdf
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: maxim,max31790
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>
+>> That's weirdly empty.
+>>
+> 
+> Hi Krzysztof,
+> I have not yet understood your comment here. Please help give more 
+> details for my missing! Thank Krzysztof!
+
+I expect many more properties of a fan controller. Resources (clocks,
+PWMs, supplies) and FAN specific properties.
+
+
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +
+>>
+>> You miss allOf: with $ref to fan controller schema.
+>>
+> 
+> Thank Krzysztof,
+> I'll add the allOf at v2.
+> 
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    i2c {
+>>> +      #address-cells = <1>;
+>>> +      #size-cells = <0>;
+>>> +
+>>> +      max31790@20 {
+>>
+>> Node names should be generic. See also an explanation and list of
+>> examples (not exhaustive) in DT specification:
+>> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+>>
+> 
+> I suggest some node names, such as "i2c-fan" or "fan-controller" . Can 
+> you please share your ideas with me!
+
+Look at recent commits and patches for similar type of a device.
+
+Best regards,
+Krzysztof
+
 
