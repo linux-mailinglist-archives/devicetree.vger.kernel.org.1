@@ -1,281 +1,134 @@
-Return-Path: <devicetree+bounces-51116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51117-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5439187E3EB
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 08:15:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15DFA87E3F8
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 08:19:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02536280FF3
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 07:15:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 991041F216F1
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 07:19:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB9B12233E;
-	Mon, 18 Mar 2024 07:15:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58913225AE;
+	Mon, 18 Mar 2024 07:19:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="hgw+0b+g"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jlUP2Qce"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2084.outbound.protection.outlook.com [40.107.21.84])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5945422EE5;
-	Mon, 18 Mar 2024 07:15:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.84
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710746140; cv=fail; b=rsnNHfptuTVVrJ/qhJLs579DtioYwGbHZrY6p2q0Oh8pCjldAFpEnocGIH7gTLBFgofYFmJu8aa1VHiWZX1737N4vf2NxxSUQJlDWCQU1Le/fb2Q4aDeETu49IEo7GRdqRBqMz0o0y93C+uPTZUZ8SxssU9DT4tIe5OoZ5jgENg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710746140; c=relaxed/simple;
-	bh=QZzUE8Ni0EL5kQMH93CTY03XQefB+z62J6+2s5MqRSk=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=mA73LlKlQr607ZGGNhY9KrZ/4JlBYIePCJmWSqOuiY1CVi8MxVikvcfNPZP/57cqUiu5Lcu5qN5IxKymmDi3o6qAyIpUWyi7BMGoUTKqbbpfOQwjZ8/wEbhEMf2uVTnmPRMDTms2MPLS+XuBUoOZe3HBAeZi6yCWLzx+XsZbqlA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=hgw+0b+g; arc=fail smtp.client-ip=40.107.21.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SeaWxIISRLzx5pzxxdoSv+E7aKq7GpXX65xtzPv9CrX1zPvvwrxid18c9fG0+TTRGji0c4XqQP0qBFw80XR5mLR/7WwTbwfH/98izR0iRY5iICndMzU+DipEedcHLOzbCorW7D4CeVNq8psnci9r3JWZwjLYS0jPj7hgES93/eYqy0CF61udhe6XFIFCka5AU2gmAQzMqDuMN6+bsA6pouWuNK1ObfzEZ4o1/N4+VjdHEE+LfEFsZR4jjfRag3WUM4/6hymC7eOg8p4pYxTWpJJA1NdQ1l+Q7CXDhc6FytGfyTOulgy6Ao3o1mRonTy8ny3cp2A4HGtvgG3Zc9wCNQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EPkHsDEUCwfA0ZE3vx2En+FIAsicT8aeR3ImO4Tig7Q=;
- b=XqnEDJfDoFwqoaLjMkwvKX1Vj7eG8SPOch98BBm6kZ37iGVr0paW80RZektUjFTW9LKQ9IsaEUy3R8KWr2foP+Nzec8OpDnRukcuF6zGPwoy21eMEjo5S68Ji2c1ghbnaJZ0vU5L/6SOV7ieBRl7WtLd0DuAWLy2f9UF/0XncExlg/45EvyBeoo26eoWCEQZcdqlD2U7ZyOcZNyYeg/nj1DMzlMkJzzmn1CzWYimAxQkXdJPCNpxOw3/UJvoi6+r8UAwms9E41rbrfzV9BAP1t4oXaGUDAGrcO6qDWiW6NtcF0TzBCGasj0ySWhdaD396FLK/iqgDhY+QiBvqKpW6w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EPkHsDEUCwfA0ZE3vx2En+FIAsicT8aeR3ImO4Tig7Q=;
- b=hgw+0b+g+JYUmRaHMKdwiYAoTwj3zSVXKdnAGKbni80RrwUolwc+DFoefNhANgg35jTVf4BVC2RY3q6f7XBR2ey2d0Ym0rZmA1YisbdGmq3DDbznLmVtmbc0Q7sIgveEsYbiE6KtQgXpBukfU51c6QOT6asXPqZt7Pyw/sXe08M=
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by AS8PR04MB8022.eurprd04.prod.outlook.com (2603:10a6:20b:28a::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.26; Mon, 18 Mar
- 2024 07:15:35 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::d30b:44e7:e78e:662d]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::d30b:44e7:e78e:662d%4]) with mapi id 15.20.7386.017; Mon, 18 Mar 2024
- 07:15:35 +0000
-From: Peng Fan <peng.fan@nxp.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, "Peng Fan (OSS)"
-	<peng.fan@oss.nxp.com>, Abel Vesa <abelvesa@kernel.org>, Michael Turquette
-	<mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
- Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
-	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>
-CC: "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v4 1/6] dt-bindindgs: clock: nxp: support i.MX95 VPU CSR
- module
-Thread-Topic: [PATCH v4 1/6] dt-bindindgs: clock: nxp: support i.MX95 VPU CSR
- module
-Thread-Index: AQHadhH4UE3MbiZEYkaA9C+JsAj7gbE5R/qAgAPTvsA=
-Date: Mon, 18 Mar 2024 07:15:35 +0000
-Message-ID:
- <DU0PR04MB9417BA412243B8E3FEC0A46D882D2@DU0PR04MB9417.eurprd04.prod.outlook.com>
-References: <20240314-imx95-blk-ctl-v4-0-d23de23b6ff2@nxp.com>
- <20240314-imx95-blk-ctl-v4-1-d23de23b6ff2@nxp.com>
- <99b72931-0007-4ab5-87fb-9b4c3021c1c2@linaro.org>
-In-Reply-To: <99b72931-0007-4ab5-87fb-9b4c3021c1c2@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|AS8PR04MB8022:EE_
-x-ms-office365-filtering-correlation-id: 13a51504-fa48-4bc1-5c5a-08dc471b34b5
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- ntKutNczlzqaJdHNzuYic6DbeqKp2a8B7CUPlcE98ErGfP9hdpRs6nmC9kPWNCOjMnXjdelvGc//cTzF6USzusgEYBYeINWJpk9m3eiPp3+mc4cjPtw7B4omcaEOaPAOZ3Z/ILdeOOOD20l7NFm+rqdUbAUoBhdyvkXBPMb4yaMNG1sABmu3jOYNbbfWq5gF8AhD6lUpEkwa/2v3AylgpCE8tBsyzOqikJYNj6zAWv8ntC3asD7Rmjn/MOn1zivC3z8cYwsbkjYuC79F+9myzAKd+ZT4yTXd2lKGFRHN9EBnyO2ZnXYaJt3j0/LOrCeWQQ86rWrnYKhGCvTkk/85yBsT1q61RiE1IIJjk3GPQkcHN7pV5I8o4V1Fyuj2nSvl41FBdXBNdMwTgX5vgKCoXc7JhvRCk3DchIKFn0xjV4Z8h82RblG1qho66hHZdjykenu1EPvYM2XGRWDlE37QEsGVtnpKxD062sjnZgPF5AxzkMaQnn/u9octTHedgly+QQK6RHSqgLn37V2/9Sg4Pb0mxi8zdUqjwrsNXTy8DLAW4qkiDQmqP37jVx5osfbS4Y5erWssNhZVNqnVsQqUcsNupEG45ApyQ3ExONjRxYrtJxYcgmPjZZghGShAaZde5r6xKEDByinEpApLnkxN9rA1KMmFVUf7bmfTAbB9Iu/SW5LjvRH5rbLzW1wFAME+gOdpuRzJtnqfKaio8+zOI1OPHN518lpja9CIQ9FRqq4=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(376005)(366007)(1800799015)(921011)(38070700009);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?MrH8/MBOfS2EOqaQZEZl18bNxqUur6tXKNcK+pU3v0h0fjFLIPszTdtldPXa?=
- =?us-ascii?Q?JA2sxG064cf1sc+gOmgsBy19hzwNTZJAPDi89Ow8OE9YZpCA4lJa2nU9QwYS?=
- =?us-ascii?Q?Wodr+SbHuimrzVGhC4WGy/d270gdoJ5BaszkXv7EftrxfBiW9/hrjlo1rcwF?=
- =?us-ascii?Q?lftPLXxIweZdRPHmVxyThs4MzIrDGJNiR18NrSsdo+17Q8DC+8AupWJTIOxN?=
- =?us-ascii?Q?+fZeolrWC6HJqrCyaqHPpQun0z24pFPDa22NHzupl+1KNy32hIlDG6uP1Don?=
- =?us-ascii?Q?xKgh+o46M6KzN8i9HuZFoR31KByoicTDvy2/HnpHtdAixmQ8hu0ghF+UQ327?=
- =?us-ascii?Q?bcKA5MZ4dGZL4cteHxzhHpbu0ObZo2CUYDuSD4OKDT9nOf6lEV9M5z9Zh1Ey?=
- =?us-ascii?Q?ZJHpUSeoG5GqeEUA9Kex+VlcXD0P7LyZhUnz9A/jNJ8Lb9cfpWn2JoESfIEw?=
- =?us-ascii?Q?vtOexBOz9B/pHWAMb4i0F6qvQIN0DJ/KUwBBPf2RUeFKIeUN9AJqG9sq/qCB?=
- =?us-ascii?Q?meFZU5ZVn+qvxatQgv9Lfg2VD9+Y31vVQmN/npQLtnCuOrLs0yfg5OA6iidw?=
- =?us-ascii?Q?bcjiAsj0BInbsFAZQ2RKu0B9/IUEM06fZ3ruCTGFnUh3lfcM2OCwie+j/21V?=
- =?us-ascii?Q?tC2t36ViZVnm8UXuqQupfe/Sqm5ORsePYgDZyvcDjfqq5mZf45fn4vVVFART?=
- =?us-ascii?Q?Xir4ruzWF4umO7DTXZVPM4dEcjKbhmcyoHHMbd80b0M6dWsqnaKEqYSlk68d?=
- =?us-ascii?Q?pTiCrLfhrqN7bIYR+N9Sn7u70eocRuFxRMa2MN/t+ssA3RS7HyPta4kQ0nqN?=
- =?us-ascii?Q?YAGYjEOE4sgdiPDbzCgnqhXRdmf9lMVi6evcCAd2ZVouAAHN3BuHZShlpdXu?=
- =?us-ascii?Q?kjcTNZCx9QO8B8pWz0hXK8IHd7fqi0TlOGYx6HYSACAWKcxxn/TWzLcfKf6B?=
- =?us-ascii?Q?48wV8onERTrcqVNYhAmcBf2BvnnV8zdxPBbmhCf+4aBBmSaOBqJfZpM8tHxa?=
- =?us-ascii?Q?9szuUbBtG8GOMUGbxU0XDJUH9u7hlk1pEYMwQWZVmQaBXHOyn+YYgtyY40Es?=
- =?us-ascii?Q?hhv9I4Lhfa/yTICUEhLcOfquyW4al9gnOHWydiKxSeEQx268fxT9roZkxNMY?=
- =?us-ascii?Q?kTUKuboOE8WIY7cxasW/9Qx+wfMOKOABpgee5XaO5SBKydeElac+NzMr2KX1?=
- =?us-ascii?Q?qvE9dIlrNdJCMj5eSFtHTYMgvKf/FNzL8D4P3c3zUcia6uVRw7UWlIoFC/OJ?=
- =?us-ascii?Q?qu4urnuw94HsX/tI7l880VYwuEY3b8uA7SWE+qCrEayaP9NxDC3Tm9Rpaxo/?=
- =?us-ascii?Q?ZD1VuaaRsOy/BJNzyM7L0InGnMU/FOUKGz8QjhYOkg25WCfA3Z2no48TM8kO?=
- =?us-ascii?Q?uxtd6LhoK/8is30ex+6dIONQJoLAVondJjmyVayShF31FB/6R5VIT0RDHrVG?=
- =?us-ascii?Q?0ccv99GxqqcT15rEeA15Etzs4nKzWvhJcCQB2iK+XA/8nSl4DwbpI9RlFhBr?=
- =?us-ascii?Q?5DRvuS/UweSqJVf/4knZbKFSyxtf2cbBi3CLDjuLnPA1lgFUpTNhlOgh5H4E?=
- =?us-ascii?Q?juqYi1MYVFC8b4SKWFI=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C91F7224DA
+	for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 07:19:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710746352; cv=none; b=F7KdAQCvfsWJYQ7hLV7EN1uIqqjhLnA5We2DMMPSk0DC0g2sJ2An9ZsZYPrKUmGI+Ke7nEFFjuKmhaaaH62DqhW+hL5ACW3Q63GChPlY9AyUlO1j95xoPsQhSROc9dmFfhP3BiMBP8z1b82LVlPikCnyYjRk0hNUF65K0pBuPuU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710746352; c=relaxed/simple;
+	bh=MGKj7wfCZYrQYF+80ADiEhQgQu9TbZEdPZchw3ECvw4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=MWKA+R0vRr1oVqq//Tphl57ZPJtu4Pf/rk6tGgTaW4+AUI5tFqhw/EGTtqdhghvrXs+JOx583JoJqtTKbn/kRD/Yk2yxvngk2UQMPaktq+dgb/TjGxVWXZSqxzGsyYsLxOc2EwUF2mxFbzHqRlgyJaM/CYy2dFg1EJBh3S6x/tM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jlUP2Qce; arc=none smtp.client-ip=209.85.210.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-6e6cb0f782bso3368930b3a.1
+        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 00:19:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1710746350; x=1711351150; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=K8MF9dapfHmZ2V5BiMJetVYLE0Od+bScCXk1FZ6cnoU=;
+        b=jlUP2QceIy6LFaoyMCF2oD/Wsu+VsT/Iya81aPtefnUv0YqVPMwEZgtJEewGzF5UG9
+         xrLDArdcjoIGPw3yaKhOuSOIexyuszMVrgIPYZIfZcLPGhnz4rUrxLUJtAulQJpz79YB
+         eeys4TRTKUDFhJO53Gob3MdMW37wuOujd4PhojAHxapbNV0i0ZN3qHvclsqOmAzoEsyz
+         ZzZ1NJvlEDzr87Uh4UCoGdgiIpmSN7yZafLDp209/+bNQDlLn0cEM4G19nvI+PSG7UJh
+         ygkf/QD3GnxLMyiuMikawNxyDTOTOCwYMGxSjRanLlfGh588s/tCfa/6DKYO5PrmYDy9
+         BJ0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710746350; x=1711351150;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=K8MF9dapfHmZ2V5BiMJetVYLE0Od+bScCXk1FZ6cnoU=;
+        b=in9RyAkYKmaCcSBndNCyG5EPEitJNk2ULKnqKM4L7AM8S2IS/gPSim4H8w+drGzfNe
+         +pbyyeSeUdhB6YOGQSmra5G8SX044oyUwq4s1uX++zduV50zBl1LzUmdtcWm9RVUtB4j
+         bv4Ep+kGczeaYxfL1oScRKI7l8Jes9DHBHUzO2cVYlcaSRAJKg1tfukkhBSaZq5wW+kB
+         7OhR+cYRq608kcf9rOg1f2ABCE9qs7pwyZtzxRsprMqpC435RbiaBagbf6qOfnCA8RQA
+         xDiTOSFavymNcP/JEuWQFQpStuCar4DIltB7Z4FtDBlB+LfYiDZohxpkiNs9V3rQ9bgK
+         hzhA==
+X-Forwarded-Encrypted: i=1; AJvYcCXWR/PwXu1GNPWFVD28ZanbFawefWkkQsIM/XV3L2E82867RisJlhAl7ts7OWUWxjfyqaWkThUzKMpoWT1pjKavaVs/9Bt4bgJT6w==
+X-Gm-Message-State: AOJu0Ywq0ONXHniure+rwxgPhRSymcaaRqj1oO5NxySmGeZyX0ipXSFo
+	zK9R6EKFijXOq3lxOgVTpOzO6qsLQUvi7bRsbNPwPgBctmbuv4Lc9fiZXnZODA==
+X-Google-Smtp-Source: AGHT+IG4ogUXkkIdRJE0UqbBhl4ZxAdr/6N2ZPQB39XoxYTKMhoqLyMJOM387SRmTYKkYbQkFAznlg==
+X-Received: by 2002:a05:6a00:a0c:b0:6e6:6a80:aced with SMTP id p12-20020a056a000a0c00b006e66a80acedmr13604149pfh.32.1710746349647;
+        Mon, 18 Mar 2024 00:19:09 -0700 (PDT)
+Received: from [127.0.1.1] ([103.246.195.160])
+        by smtp.gmail.com with ESMTPSA id x16-20020aa784d0000000b006e66c9bb00dsm7387515pfn.179.2024.03.18.00.19.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Mar 2024 00:19:09 -0700 (PDT)
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH 0/3] arm64: dts: qcom: Fix the msi-map entries
+Date: Mon, 18 Mar 2024 12:49:02 +0530
+Message-Id: <20240318-pci-bdf-sid-fix-v1-0-acca6c5d9cf1@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 13a51504-fa48-4bc1-5c5a-08dc471b34b5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Mar 2024 07:15:35.3689
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: bfjR1g41aUNFkfo79TnSBR6QV+V1hJmND/+57V5/9U7x0HHF+urK5zVlJpwih2lxx3BOStj2gzRNSHfHoJ6QfA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8022
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAObq92UC/x2MQQqAMAzAvjJ6tqCdqPgV8eDWTntRWUEE8e8Oj
+ wkkD5hkFYPRPZDlUtNjL9BUDuK27KugcmGgmtraNwOeUTFwQlPGpDeS9By6JC35AUp1Zin6P07
+ z+375dlGKYQAAAA==
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+ stable@vger.kernel.org
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1139;
+ i=manivannan.sadhasivam@linaro.org; h=from:subject:message-id;
+ bh=MGKj7wfCZYrQYF+80ADiEhQgQu9TbZEdPZchw3ECvw4=;
+ b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBl9+rpidY7MorJCAakm7kCMRgJx+vEy6/C+ry7j
+ IAX5jVti66JATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCZffq6QAKCRBVnxHm/pHO
+ 9ZLGB/4if0xAmKUHlupcIOqq5E0+gOO/dXyUteUvSYXVDbuYgLXvB6c8LQREdy0rKkZHruPGE3g
+ NLxWtiLuOYGKVnUN/rzHyL88d/0AULU8uPQUqURZkeM0agOmhjO/N+e6/3ylDsOYffX/Yxs4JgJ
+ vas+IH1zL1awTpRZKjL1muqr3P716Q3CQSFDvQS30Ikr9siT27K27BhVLqoHIsFVIdHfITuFILZ
+ Z9P28bT9kqe86W5ee2JjhUbCX16aN220ghmdZ8r67XI0rBrJ4LZ819eTqYQ/UL8wg5uwcG/5RW9
+ GH1E+ON/QwxZfZLe02HpeuXcA0BcoulOxSpjSGI5tbfUEP7D
+X-Developer-Key: i=manivannan.sadhasivam@linaro.org; a=openpgp;
+ fpr=C668AEC3C3188E4C611465E7488550E901166008
 
-> Subject: Re: [PATCH v4 1/6] dt-bindindgs: clock: nxp: support i.MX95 VPU
-> CSR module
->=20
-> On 14/03/2024 14:25, Peng Fan (OSS) wrote:
-> > From: Peng Fan <peng.fan@nxp.com>
-> >
-> > The i.MX95 VPU_CSR contains control and status registers for VPU
-> > status, pending transaction status, and clock gating controls.
-> >
-> > This patch is to add clock features for VPU CSR.
->=20
-> Fix the subject prefix. You mess with people's filters.
+While adding the GIC ITS MSI support, it was found that the msi-map entries
+needed to be swapped to receive MSIs from the endpoint.
 
-Sorry, a typo error. Will fix it.
->=20
-> >
-> > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> > ---
-> >  .../bindings/clock/nxp,imx95-vpu-csr.yaml          | 50
-> ++++++++++++++++++++++
-> >  include/dt-bindings/clock/nxp,imx95-clock.h        | 14 ++++++
-> >  2 files changed, 64 insertions(+)
-> >
-> > diff --git
-> > a/Documentation/devicetree/bindings/clock/nxp,imx95-vpu-csr.yaml
-> > b/Documentation/devicetree/bindings/clock/nxp,imx95-vpu-csr.yaml
-> > new file mode 100644
-> > index 000000000000..4a1c6dcfe3f8
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/clock/nxp,imx95-vpu-csr.yaml
-> > @@ -0,0 +1,50 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
-> > +---
-> > +$id:
-> > +https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fdev=
-i
-> > +cetree.org%2Fschemas%2Fclock%2Fnxp%2Cimx95-vpu-
-> csr.yaml%23&data=3D05%7C
-> >
-> +02%7Cpeng.fan%40nxp.com%7Cbd64d1b5d1784bdb6df508dc453133ca%7
-> C686ea1d3
-> >
-> +bc2b4c6fa92cd99c5c301635%7C0%7C0%7C638461324818682648%7CUnk
-> nown%7CTWF
-> >
-> +pbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJX
-> VCI6
-> >
-> +Mn0%3D%7C0%7C%7C%7C&sdata=3DPtStE2Y%2BnS4HpesF9wE66t8bh0Qmg
-> 3s3y4aERwhSr
-> > +Mo%3D&reserved=3D0
-> > +$schema:
-> > +https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fdev=
-i
-> > +cetree.org%2Fmeta-
-> schemas%2Fcore.yaml%23&data=3D05%7C02%7Cpeng.fan%40nx
-> >
-> +p.com%7Cbd64d1b5d1784bdb6df508dc453133ca%7C686ea1d3bc2b4c6fa
-> 92cd99c5c
-> >
-> +301635%7C0%7C0%7C638461324818692719%7CUnknown%7CTWFpbGZs
-> b3d8eyJWIjoiM
-> >
-> +C4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7
-> C%7C%7
-> >
-> +C&sdata=3DzWKRFnTPTwLZvtOvOrFUo%2FNlqPKRqRIEYCrztlfhzAU%3D&reserv
-> ed=3D0
-> > +
-> > +title: NXP i.MX95 VPUMIX Block Control
-> > +
-> > +maintainers:
-> > +  - Peng Fan <peng.fan@nxp.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - const: nxp,imx95-vpu-csr
-> > +      - const: syscon
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  '#clock-cells':
-> > +    const: 1
-> > +    description:
-> > +      The clock consumer should specify the desired clock by having th=
-e
-> clock
-> > +      ID in its "clocks" phandle cell. See
-> > +      include/dt-bindings/clock/nxp,imx95-clock.h
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - '#clock-cells'
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    syscon@4c410000 {
-> > +      compatible =3D "nxp,imx95-vpu-csr", "syscon";
-> > +      reg =3D <0x4c410000 0x10000>;
-> > +      #clock-cells =3D <1>;
-> > +      clocks =3D <&scmi_clk 114>;
-> > +      power-domains =3D <&scmi_devpd 21>;
-> > +    };
-> > +...
-> > diff --git a/include/dt-bindings/clock/nxp,imx95-clock.h
-> > b/include/dt-bindings/clock/nxp,imx95-clock.h
-> > new file mode 100644
-> > index 000000000000..9d8f0a6d12d0
-> > --- /dev/null
-> > +++ b/include/dt-bindings/clock/nxp,imx95-clock.h
->=20
-> If the header is only for clock IDs for this binding, then keep the same
-> filename as binding filename.
+But later it was identified that the swapping was needed due to a bug in
+the Qualcomm PCIe controller driver. And since the bug is now fixed with
+commit bf79e33cdd89 ("PCI: qcom: Enable BDF to SID translation properly"),
+let's fix the msi-map entries also to reflect the actual mapping in the
+hardware.
 
-No, this file will also include other IDs in following patches.
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+---
+Manivannan Sadhasivam (3):
+      arm64: dts: qcom: sm8450: Fix the msi-map entries
+      arm64: dts: qcom: sm8550: Fix the msi-map entries
+      arm64: dts: qcom: sm8650: Fix the msi-map entries
 
-Thanks,
-Peng.
+ arch/arm64/boot/dts/qcom/sm8450.dtsi | 16 ++++------------
+ arch/arm64/boot/dts/qcom/sm8550.dtsi | 10 ++++------
+ arch/arm64/boot/dts/qcom/sm8650.dtsi | 10 ++++------
+ 3 files changed, 12 insertions(+), 24 deletions(-)
+---
+base-commit: f6cef5f8c37f58a3bc95b3754c3ae98e086631ca
+change-id: 20240318-pci-bdf-sid-fix-2e7db6fe4238
 
->=20
-> Best regards,
-> Krzysztof
+Best regards,
+-- 
+Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
 
