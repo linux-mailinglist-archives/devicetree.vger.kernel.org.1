@@ -1,230 +1,206 @@
-Return-Path: <devicetree+bounces-51388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC02F87F220
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 22:29:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2039C87F22E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 22:31:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D9C2F1C21008
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 21:29:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4001C1C20D9C
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 21:31:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6FBA58ABE;
-	Mon, 18 Mar 2024 21:29:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3664658ABE;
+	Mon, 18 Mar 2024 21:31:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="apKMhkWh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QDPMC3NM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA1FF58239;
-	Mon, 18 Mar 2024 21:29:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CFBE535B9;
+	Mon, 18 Mar 2024 21:31:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710797360; cv=none; b=oK3kJmx/ghIS81fsk+5LtD2g9ahADoMyYag+3SUKcRi5XziYQWYRfG3yZSb8IyUHitP1dtVyVWa9symXIuYv8us8RNenuE5ZapL3AyD50qbEVS5bmDWaGTHLnQsek17UczlscwK6HxqKawAqXRJ4DIPs14YIZFirI2bSZLA8Bwg=
+	t=1710797495; cv=none; b=cy0tlUwP9EQuLJY0wSX3koSJ//KCc/1VeD4YgCSkexNAb3UThFbHcy4vt0pycJjfQhWvwaXusyRO2aRzrZQFnDab/HHjJMg4J6tEmf4z/PRntoUFWT3xjhiWpXFg1XVpteBDYze1Zq4vhtvrSwYemLA48sqOOwGhG4mWDXj5ojA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710797360; c=relaxed/simple;
-	bh=gcIdQLeaNhnFtWxkw1Wh/QfYZrOV3Xkp/tjnkxtLVnQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V9mp7eDy1lbIzXngqo+oxuQh4BRJFCuKj7wdjokIdI8P5mpm+S1GrcptUoHtmcyuX/vnvDlu2/eEDApjSBIVLIXnD97GiZJPOH1L1ETJSwtSwyEf6X4yNq1fkZ6ggyLqnfuKX5IdRCAj+LUSyTp9qC72RBajkr2RIkQF97QK+UQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=apKMhkWh; arc=none smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1710797358; x=1742333358;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=gcIdQLeaNhnFtWxkw1Wh/QfYZrOV3Xkp/tjnkxtLVnQ=;
-  b=apKMhkWhm5KPfgL0aEBaT1IJ0pzksQ2B85QimnwIeyfDpvyIvYQPAk3T
-   ROHS/d6mDGdKtewaKiq4uDs/HVaoSTHgT67ITcnvaQZrTm+/vyLZtKgia
-   tangrg6RxXKhw5zEr4w4HnLhnWxq/1Em4EJ+FNXm0ni6FbjEP0RkIo5m3
-   dZlLPYzE7weMhwlBe2deVSh8a2qHB0WWcZUa6JAU72boj0Hj2Y59FzuTz
-   RToU+y8x39czkJOF7U9POMYtqnDx6u/U9yZvQD+XgWiux5k7QJjejNZp+
-   aG28bODWz+KzLTWdA9fmrk3568jQQta9RmE5FM1fPzNhbp0fUx/WmRF5Q
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11017"; a="9463214"
-X-IronPort-AV: E=Sophos;i="6.07,135,1708416000"; 
-   d="scan'208";a="9463214"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Mar 2024 14:29:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,135,1708416000"; 
-   d="scan'208";a="13623636"
-Received: from lkp-server01.sh.intel.com (HELO b21307750695) ([10.239.97.150])
-  by orviesa009.jf.intel.com with ESMTP; 18 Mar 2024 14:29:15 -0700
-Received: from kbuild by b21307750695 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rmKXg-000HFj-0V;
-	Mon, 18 Mar 2024 21:29:12 +0000
-Date: Tue, 19 Mar 2024 05:28:37 +0800
-From: kernel test robot <lkp@intel.com>
-To: Radu Sabau <radu.sabau@analog.com>, Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-i2c@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH 2/2] hwmon: pmbus: adp1050 : Add driver support
-Message-ID: <202403190552.U4RHYvqc-lkp@intel.com>
-References: <20240318112140.385244-3-radu.sabau@analog.com>
+	s=arc-20240116; t=1710797495; c=relaxed/simple;
+	bh=1JyeMjUA8d7HJk9QHCRuaBu/MXSCSJLIkySvL+Q/ysE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CENLmpw9HP6erjGLKDeKY+tatir6Fk39veYp72yawJpOyIhU6CPMS9C6+uVc/I9F5fSWCW7VCmAQwPzW+sv5OfGxpUAh1GvEsqszVyjgmaum1Mz7AJ8iECO7y/89btsDCgG8SUyJL48XBQXd+kEZXQ1w4ojjDLaHk4AEKERwrwg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QDPMC3NM; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-1e01c38f98cso9001005ad.3;
+        Mon, 18 Mar 2024 14:31:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1710797493; x=1711402293; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=k17Ymy3BBRZPLRNinHJQ9XlD/PfAWI/tIIOZeywRuEA=;
+        b=QDPMC3NM52233P5aWWFl/ERLtgsT/YUJ4Yf4LGz1XqHXCWWk/kn34wRG4RHFpxurx2
+         NWfRzCnHBOP+pysFZYmj0vQdUUp6EteWk9YIrw4hkRu1ObO8OFU/9VVXm0OiLuUTY9jH
+         f8JWq2EE/bEZCAuVfctuSyiJUCmbIwbt2nfVRbP9lFnuMoMEjyABxSNLFAhyMsijfonL
+         kV8BcXouvFtY46ptC6j5VdSSQKhc4bGuMX8LQu9ueAzdxdcS1vsAc7Y5OODooSpm2PoT
+         4wBl2nHQMdR3YNct9qM0/K73eA0eU3G0g32Tn/Ff9ubPhHoxdPmrSQUqRxy9W0xcrpHE
+         HLKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710797493; x=1711402293;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=k17Ymy3BBRZPLRNinHJQ9XlD/PfAWI/tIIOZeywRuEA=;
+        b=pwd6KdDTw6Xt8rdu6YYPwjQvRbVvlLDDfwjnWy8FQHCmEehQCLhEhnTD0FUHbb02uF
+         mgusRe9B43+1BLT6clPSQMZPCLggNd2njeBCQXJJQqLifEWktf8sQZIoc8aeCuxYPjIL
+         Y+6GZVDsuvGS9iFs2OSHeNWxWR1NImLZQRFYiY98oF1UZMMlOnOxCPC3AfU68QQXCyzV
+         hDGaIWvQ+A3hIAdZ00G7YzlOGTnKOaEBbzTsyDddmFBylCw9RT/ykpRCWH/c7Mc3QvqO
+         oVFr8bsdBQMt7wKVmxHi0riVTee8lZ3zmHxGGei/odkAn1zZNR+JUdusMmZWFbl741/u
+         nTrw==
+X-Forwarded-Encrypted: i=1; AJvYcCV1T8xfLfwbSldRAc+vqqVZnBbPBG9WCLzzscaN+MI6auShB+SYNWNlmjrWQqUX25t8Q2zFVH6IXJIw3pzqlpzSIBomA2dZQFtMAiOEHW9w/qCo5xH5mahxxrmxrbICPHcsyCdRtrUCtg==
+X-Gm-Message-State: AOJu0Yxwl1ULdfCRY8QdOMltoVrWwZPTHtzZzYlskaEwaOylBH9ZaD6Y
+	KnWGzWBugj3oo/wZx9Zu/APamhTAgn3B6GHEl9sYXDQty5mMbFjU
+X-Google-Smtp-Source: AGHT+IHTLXkYmY+nSEyY6Djr0op+GQPqJETexDxcp4Gg+f4xBxlO+kYhX1FURHPRuG3PFfmg1JdetQ==
+X-Received: by 2002:a17:903:22cd:b0:1dd:a7a7:4bc1 with SMTP id y13-20020a17090322cd00b001dda7a74bc1mr16058795plg.5.1710797492685;
+        Mon, 18 Mar 2024 14:31:32 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id c8-20020a170903234800b001c407fac227sm9778228plh.41.2024.03.18.14.31.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Mar 2024 14:31:31 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <66409df9-6f5f-4fbe-ae7f-47b86665c113@roeck-us.net>
+Date: Mon, 18 Mar 2024 14:31:30 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240318112140.385244-3-radu.sabau@analog.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/2] of: create of_root if no dtb provided
+Content-Language: en-US
+To: Rob Herring <robh+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>
+Cc: Frank Rowand <frowand.list@gmail.com>,
+ =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Lizhi Hou <lizhi.hou@xilinx.com>, Allan Nielsen
+ <allan.nielsen@microchip.com>, Horatiu Vultur
+ <horatiu.vultur@microchip.com>, Steen Hegelund
+ <steen.hegelund@microchip.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20230317053415.2254616-1-frowand.list@gmail.com>
+ <20230317053415.2254616-2-frowand.list@gmail.com>
+ <886049ed-4f5f-4e17-86f4-1245024ade3a@roeck-us.net>
+ <CAL_JsqKsF53v7d7uZ3XT4kPFy-2FBWHfvKNSFdTx2oZhmSZkDA@mail.gmail.com>
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <CAL_JsqKsF53v7d7uZ3XT4kPFy-2FBWHfvKNSFdTx2oZhmSZkDA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Radu,
+On 3/18/24 12:26, Rob Herring wrote:
+> +Stephen
+> 
+> On Mon, Mar 18, 2024 at 12:09 PM Guenter Roeck <linux@roeck-us.net> wrote:
+>>
+>> Hi,
+>>
+>> On Fri, Mar 17, 2023 at 12:34:14AM -0500, Frank Rowand wrote:
+>>> When enabling CONFIG_OF on a platform where of_root is not populated by
+>>> firmware, we end up without a root node. In order to apply overlays and
+>>> create subnodes of the root node, we need one. Create this root node
+>>> by unflattening an empty builtin dtb.
+>>>
+>>> If firmware provides a flattened device tree (FDT) then the FDT is
+>>> unflattened via setup_arch().  Otherwise setup_of(), which is called
+>>> immediately after setup_arch(), will create the default root node
+>>> if it does not exist.
+>>>
+>>> Signed-off-by: Frank Rowand <frowand.list@gmail.com>
+>>
+>> This patch results in a crash on nios2.
+> 
+> This patch was never applied. I assume you meant a later version of it
+> that did get applied.
+> 
+>>
+>> Building nios2:10m50-ghrd:10m50_defconfig:10m50_devboard.dts ... running ...R failed (crashed)
+> 
+> Booting with DT?
+> 
+>> ------------
+>> qemu log:
+>> earlycon: uart8250 at MMIO32 0x18001600 (options '')
+>> printk: legacy bootconsole [uart8250] enabled
+>> Linux version 6.8.0-11409-gf6cef5f8c37f (groeck@desktop) (nios2-linux-gcc (GCC) 11.4.0, GNU ld (GNU Binutils) 2.40) #1 Sun Mar 17 23:38:59 PDT 2024
+>> Kernel panic - not syncing: early_init_dt_alloc_memory_arch: Failed to allocate 72 bytes align=0x40
+>> ---[ end Kernel panic - not syncing: early_init_dt_alloc_memory_arch: Failed to allocate 72 bytes align=0x40 ]---
+> 
+> nios2 looks utterly broken to me. This change should be a nop unless
+> initial_boot_params is NULL. It looks like it is possible for r6 (dtb
+> address) to be 0 depending on kconfig options, but that would have
+> skipped copying and unflattening which would then panic in
+> setup_cpuinfo(). If initial_boot_params is not NULL, then the same
+> early_init_dt_alloc_memory_arch() calls should fail when copying the
+> DT. So I don't see how nios2 booting with DT ever worked.
+> 
 
-kernel test robot noticed the following build errors:
+For nios2, in early_init_devtree():
 
-[auto build test ERROR on groeck-staging/hwmon-next]
-[also build test ERROR on robh/for-next linus/master v6.8 next-20240318]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+void __init early_init_devtree(void *params)
+{
+         __be32 *dtb = (u32 *)__dtb_start;
+	...
+         if (be32_to_cpu((__be32) *dtb) == OF_DT_HEADER)
+                 params = (void *)__dtb_start;
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Radu-Sabau/dt-bindings-hwmon-pmbus-adp1050-add-bindings/20240318-202619
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
-patch link:    https://lore.kernel.org/r/20240318112140.385244-3-radu.sabau%40analog.com
-patch subject: [PATCH 2/2] hwmon: pmbus: adp1050 : Add driver support
-config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20240319/202403190552.U4RHYvqc-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240319/202403190552.U4RHYvqc-lkp@intel.com/reproduce)
+That worked fine until this patch. Starting with this patch, __dtb_start
+always points to a valid empty devicetree blob, which overrides the
+devicetree blob passed to early_init_devtree(). This causes the problem.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202403190552.U4RHYvqc-lkp@intel.com/
+Guenter
 
-All error/warnings (new ones prefixed by >>):
-
-   drivers/hwmon/pmbus/adp1050.c: In function 'adp1050_probe':
->> drivers/hwmon/pmbus/adp1050.c:47:45: warning: passing argument 2 of 'dev_err_probe' makes integer from pointer without a cast [-Wint-conversion]
-      47 |                 dev_err_probe(&client->dev, "Device can't be unlocked.\n");
-         |                                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-         |                                             |
-         |                                             char *
-   In file included from include/linux/device.h:15,
-                    from include/linux/acpi.h:14,
-                    from include/linux/i2c.h:13,
-                    from drivers/hwmon/pmbus/adp1050.c:9:
-   include/linux/dev_printk.h:277:64: note: expected 'int' but argument is of type 'char *'
-     277 | __printf(3, 4) int dev_err_probe(const struct device *dev, int err, const char *fmt, ...);
-         |                                                            ~~~~^~~
->> drivers/hwmon/pmbus/adp1050.c:47:17: error: too few arguments to function 'dev_err_probe'
-      47 |                 dev_err_probe(&client->dev, "Device can't be unlocked.\n");
-         |                 ^~~~~~~~~~~~~
-   include/linux/dev_printk.h:277:20: note: declared here
-     277 | __printf(3, 4) int dev_err_probe(const struct device *dev, int err, const char *fmt, ...);
-         |                    ^~~~~~~~~~~~~
-   drivers/hwmon/pmbus/adp1050.c:53:45: warning: passing argument 2 of 'dev_err_probe' makes integer from pointer without a cast [-Wint-conversion]
-      53 |                 dev_err_probe(&client->dev, "Device couldn't be unlocked.\n");
-         |                                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-         |                                             |
-         |                                             char *
-   include/linux/dev_printk.h:277:64: note: expected 'int' but argument is of type 'char *'
-     277 | __printf(3, 4) int dev_err_probe(const struct device *dev, int err, const char *fmt, ...);
-         |                                                            ~~~~^~~
-   drivers/hwmon/pmbus/adp1050.c:53:17: error: too few arguments to function 'dev_err_probe'
-      53 |                 dev_err_probe(&client->dev, "Device couldn't be unlocked.\n");
-         |                 ^~~~~~~~~~~~~
-   include/linux/dev_printk.h:277:20: note: declared here
-     277 | __printf(3, 4) int dev_err_probe(const struct device *dev, int err, const char *fmt, ...);
-         |                    ^~~~~~~~~~~~~
-
-
-vim +/dev_err_probe +47 drivers/hwmon/pmbus/adp1050.c
-
-   > 9	#include <linux/i2c.h>
-    10	#include <linux/init.h>
-    11	#include <linux/kernel.h>
-    12	#include <linux/module.h>
-    13	#include <linux/of.h>
-    14	#include "pmbus.h"
-    15	
-    16	#define ADP1050_CHIP_PASSWORD		0xD7
-    17	
-    18	#define ADP1050_VIN_SCALE_MONITOR	0xD8
-    19	#define ADP1050_IIN_SCALE_MONITOR	0xD9
-    20	
-    21	static struct pmbus_driver_info adp1050_info = {
-    22		.pages = 1,
-    23		.format[PSC_VOLTAGE_IN] = linear,
-    24		.format[PSC_VOLTAGE_OUT] = linear,
-    25		.format[PSC_CURRENT_IN] = linear,
-    26		.format[PSC_TEMPERATURE] = linear,
-    27		.func[0] = PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT
-    28			| PMBUS_HAVE_VIN | PMBUS_HAVE_STATUS_INPUT
-    29			| PMBUS_HAVE_IIN | PMBUS_HAVE_TEMP
-    30			| PMBUS_HAVE_STATUS_TEMP,
-    31	};
-    32	
-    33	static int adp1050_probe(struct i2c_client *client)
-    34	{
-    35		u32 vin_scale_monitor, iin_scale_monitor;
-    36		int ret;
-    37	
-    38		if (!i2c_check_functionality(client->adapter,
-    39					     I2C_FUNC_SMBUS_WRITE_WORD_DATA))
-    40			return -ENODEV;
-    41	
-    42		/* Unlock CHIP's password in order to be able to read/write to it's
-    43		 * VIN_SCALE and IIN_SCALE registers.
-    44		*/
-    45		ret = i2c_smbus_write_word_data(client, ADP1050_CHIP_PASSWORD, 0xFFFF);
-    46		if (ret < 0) {
-  > 47			dev_err_probe(&client->dev, "Device can't be unlocked.\n");
-    48			return ret;
-    49		}
-    50	
-    51		ret = i2c_smbus_write_word_data(client, ADP1050_CHIP_PASSWORD, 0xFFFF);
-    52		if (ret < 0) {
-    53			dev_err_probe(&client->dev, "Device couldn't be unlocked.\n");
-    54			return ret;
-    55		}
-    56	
-    57		/* If adi,vin-scale-monitor isn't set or is set to 0 means that the
-    58		 * VIN monitor isn't used, therefore 0 is used as scale in order
-    59		 * for the readings to return 0.
-    60		*/
-    61		if (device_property_read_u32(&client->dev, "adi,vin-scale-monitor",
-    62					     &vin_scale_monitor))
-    63			vin_scale_monitor = 0;
-    64	
-    65		/* If adi,iin-scale-monitor isn't set or is set to 0 means that the
-    66		 * IIN monitor isn't used, therefore 0 is used as scale in order
-    67		 * for the readings to return 0.
-    68		*/
-    69		if (device_property_read_u32(&client->dev, "adi,iin-scale-monitor",
-    70					     &iin_scale_monitor))
-    71			iin_scale_monitor = 0;
-    72	
-    73		ret = i2c_smbus_write_word_data(client, ADP1050_VIN_SCALE_MONITOR,
-    74						vin_scale_monitor);
-    75		if (ret < 0)
-    76			return ret;
-    77	
-    78		ret = i2c_smbus_write_word_data(client, ADP1050_IIN_SCALE_MONITOR,
-    79						iin_scale_monitor);
-    80		if (ret < 0)
-    81			return ret;
-    82	
-    83		return pmbus_do_probe(client, &adp1050_info);
-    84	}
-    85	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
