@@ -1,105 +1,119 @@
-Return-Path: <devicetree+bounces-51265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA9A787EAE9
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 15:27:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C8AF87EB3B
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 15:43:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA9531C211A4
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 14:27:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EEF281F2264B
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 14:43:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2714B4C619;
-	Mon, 18 Mar 2024 14:27:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCFF64E1BA;
+	Mon, 18 Mar 2024 14:43:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EByKinSA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g1YxgD98"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E89A5208CA;
-	Mon, 18 Mar 2024 14:27:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 256E54EB20;
+	Mon, 18 Mar 2024 14:43:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710772025; cv=none; b=f775+6g+OIuRhsD+N57RO69zZe5SSlyq++PwRRe3pkwRvPL06ybzACIlQuXWArreM4oqPhfOtK5BXNC9KLpQMfpVFRCdYQGddZlPUbeDaCday6mfq8YA9Q9fPXMOruwz/8QooBGStijZH+QsKE6k+PYrP4gc/TFS3xtS/8r70Mk=
+	t=1710772985; cv=none; b=jhpwEHsgKQo42oCxyCHbxZLqEYfIrepovHN2q4ZUZO3X00MZYcLbStrvMQ1GD0MDcr8oUcmTgzXq+DwCkeT7Fqfi3ssfEez3+qnn7YKYF0kJaTQoFDaeybyEo3GVSf7xMRasADB/CTILZYCuQPjns3kzh+WfT4kesC0Csx7ASjI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710772025; c=relaxed/simple;
-	bh=b2cyyjzKnYUICayyPbXTaKZuyUfiyf8ysQ9CaUjaECc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SOsz1+99/+FvNuvYiQmFdaXH1JDG1I2kIlpU59PxI7AF8z3HwceAp9JOb+zLkgaJ8+ZB9cUUqq8sI3X1WqCHO/Btjmeym4FA3g95Jsxk8H/5kgFZnVnDpoU9vAiwTvXDfTeHL+bwqz2OFN1Yeaull3XdVxRhZj5wI21a2OM9Axk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EByKinSA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B89DC43399;
-	Mon, 18 Mar 2024 14:27:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710772024;
-	bh=b2cyyjzKnYUICayyPbXTaKZuyUfiyf8ysQ9CaUjaECc=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=EByKinSAHudiZFzVPsQfkQG4g1BQDVoN8aPTmx/CWtZlk7KDCLv2BU3Rqh5O1KX88
-	 5MNkC4DwXc6SisaZfWusPNS9rZP3k6ZHtPlrXj8oBNJ+0EVPz7jRZZDM0GjFrtVo7p
-	 b/uVxCl7Go99xF7KqJStxDEb72D4GanbYRbIV5MKUMjE6gdhiq2y8PGmv4Y99Kns4O
-	 qybxW03jiZrKrHO3j+TnoA8X+m3XUZdeQT79i1evy99FpKNp6Oi3lpPQFoN/J8s3I0
-	 4jXeORKrhP4YQib7O6F6OLnMhtLHcpjVGWNvhr8XgCyUiL0zEzg1pf7jSrMoiggFS0
-	 GALP/l1O3U15w==
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-568aa282ccdso4165525a12.3;
-        Mon, 18 Mar 2024 07:27:04 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUUC+0W2bIl/KUj5+cB4Am/4tAdORbqvyVZxGNOOzQrVLnlvhKlsR2BtGW/SLGTBoqS3lo8wvEaFItxN2tegwaDlNdvOMaRU32ildBEDpG5jA4ksU1SxgEFmxLdR2C/riox8+Z7yekbDT5vCEQDPQpTHM91KiQqoC0U0euUdc8tfyzh8rJe2CpWWTo4dowNcQcW2t+U5DYTo/SsM+OzJF4=
-X-Gm-Message-State: AOJu0YznEZwP0UCWTL2r1CcqQPL8rKGF9VnO65+2I4DfBobyMN2gnfBQ
-	g9af1L2dQZcjvdJKuug5LP1F8M6AT+d41bA2yYCb/kbRX2EHSprO6X0qQaEfqu50TE1uqDxVIX9
-	ipRcV196M6WF/0/Rd7qDcvfoZM/0=
-X-Google-Smtp-Source: AGHT+IHuf+qXAqqeJl2FpM9uElseUPhxl+nzd9pZnr71oH/rIuv35FharL5lu8UxXyLjwaXp90V4xKHfcbd1QWlZy0E=
-X-Received: by 2002:a17:906:ecfc:b0:a46:6557:716f with SMTP id
- qt28-20020a170906ecfc00b00a466557716fmr7444525ejb.20.1710772022975; Mon, 18
- Mar 2024 07:27:02 -0700 (PDT)
+	s=arc-20240116; t=1710772985; c=relaxed/simple;
+	bh=8XRZKFmhwG03J49V6ap/MmSlr5bTXR1c8ykaNN3EyUM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=tvN9soys/21a61RXPbNOSdZ5WusMnTQ+N4MhfpLo9gEGr5apc4Gt1jRxoU0hoL5sjJxMlpyxwI7/WxJXhJig6vYFzJGi2Om0wgFS1EHI9YPtXjDe5rTvkM/L+Ix1KObcHfPmNiLZN3tL/B3NxXsVyyWXDE3XOi8sKLR+dHmby4A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g1YxgD98; arc=none smtp.client-ip=209.85.208.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2d4886a1cb4so48812691fa.0;
+        Mon, 18 Mar 2024 07:43:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1710772982; x=1711377782; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=D+l8ZhyeqD/9OLSlImJx3OI1bct+f0EYpDd6giz/+Wg=;
+        b=g1YxgD98CnRrob371nI16zno4BsJo1owCMffOSFp5nBWy1zWbNY6BpNN4PzMvs5KMp
+         8onFnIwzJC2cm8XQHWcQQ04eH0bR+09k3GdrvEgRyi4ci7ZzMSyn1cqKjUiFQ2mmc69O
+         sac5yy1ATXhdCnWoqSWpsg9GQfcFfZ+uEBMVJwYy1qt+PwIgQwfQtPtNnx66pcQY48YP
+         tQ5/TmXwH33Z2DPRmKdHuRYAIzEDCkLkBq5ws14SKvaXIpnXbjg35EXGqqcMiRqJULv8
+         XNSbOFy5L1Q/oFvXdEzsQUYy5Nt5+jSwo906Bh0p9MDb/DOkIAiBRzvKRiQ9St4nNdsg
+         cSNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710772982; x=1711377782;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=D+l8ZhyeqD/9OLSlImJx3OI1bct+f0EYpDd6giz/+Wg=;
+        b=nMukcXCNyfJkPqcDG37TN21nHgqOpx2p7V0M3BYRnt8BIVSYUPn7DM+hHNdrowsZrQ
+         /lr5i2Tz+8pfzSnA0zusIaUOfnILUFEpb/mUM+BxRNdkumxUZ/GpBFxOcZuEX0rHAGXL
+         qRAuXQgdXtFfLgkrvvPF86Znzp/y2N4lEn1fnSPkFJg0iZxeW+8H78cHfyDOD4c3Daei
+         s/jJM9Vk2ab0c6q6wwn0TytaqugGWYtwYSisLIfaVynxpH5S3NjhzFp7cu8SRYWNC0zS
+         vVS2tNEQ657eQM8ocTxVibl/29kHHCLURie5GVzuhyiulocy6zT+bh79A/uM4WumMDgt
+         gwGQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU5DvPfbIDiK/il2shRiuE8w7lL7x/W7eRiH8W2wYB6IvFZxsh9xk9MYVpRU+0Hc8AtdEhWgSIO17zjPb3LwqhhVlejllm9U05BwjhHDBeBmaX699AYApNs8b3szawDik89Z8UMzerpxpN7iyQKw4NVYPS3TsCpuVWaIDH73LJDUHTOj38x
+X-Gm-Message-State: AOJu0YyO3LR9kaX4PEX7dB6kmITrPAJjTsZ9zJa5fblwOxD9yVaBP3Da
+	pFx3zlgeH1+IgMPsbvZ9LE4Lk6vVw2KOAnpBJvYBGI3rlKzK6HtW
+X-Google-Smtp-Source: AGHT+IEeK7CDPkehkXCOgtE1aicKlzl25lZb5Aw/miJHV0DZu1X1wA8KDViLzWgcMud0pbrJtQjEFw==
+X-Received: by 2002:a2e:9ccf:0:b0:2d4:49d2:a3d1 with SMTP id g15-20020a2e9ccf000000b002d449d2a3d1mr9002287ljj.1.1710772981978;
+        Mon, 18 Mar 2024 07:43:01 -0700 (PDT)
+Received: from localhost.localdomain ([178.70.43.28])
+        by smtp.gmail.com with ESMTPSA id t9-20020a2e9c49000000b002d476327311sm1527486ljj.18.2024.03.18.07.43.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Mar 2024 07:43:01 -0700 (PDT)
+From: Ivan Bornyakov <brnkv.i1@gmail.com>
+To: Nas Chung <nas.chung@chipsnmedia.com>,
+	Jackson Lee <jackson.lee@chipsnmedia.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: Ivan Bornyakov <brnkv.i1@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH 0/6] Wave515 decoder IP support
+Date: Mon, 18 Mar 2024 17:42:15 +0300
+Message-ID: <20240318144225.30835-1-brnkv.i1@gmail.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240316-loongson1-dma-v6-0-90de2c3cc928@gmail.com>
- <CAAhV-H6aGS6VXGzkqWTyxL7bGw=KdjmnRZj7SpwrV5hT6XQcpg@mail.gmail.com>
- <CAJhJPsVSM-8VA604p2Vr58QJEp+Tg72YTTntnip64Ejz=0aQng@mail.gmail.com>
- <CAAhV-H5TR=y_AmbF6QMJmoS0BhfB=K7forMg0-b2YWm7trktjA@mail.gmail.com> <20240318-average-likely-6a55c18db7bb@spud>
-In-Reply-To: <20240318-average-likely-6a55c18db7bb@spud>
-From: Huacai Chen <chenhuacai@kernel.org>
-Date: Mon, 18 Mar 2024 22:26:51 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H4oMoPt7WwWc7wbxy-ShNQ8dPkuTAuvSEGAPBKvkkn24w@mail.gmail.com>
-Message-ID: <CAAhV-H4oMoPt7WwWc7wbxy-ShNQ8dPkuTAuvSEGAPBKvkkn24w@mail.gmail.com>
-Subject: Re: [PATCH v6 0/2] Add support for Loongson1 DMA
-To: Conor Dooley <conor@kernel.org>
-Cc: Keguang Zhang <keguang.zhang@gmail.com>, Vinod Koul <vkoul@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-mips@vger.kernel.org, dmaengine@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi, Conor,
+Initial support for Wave515 multi-decoder IP among other refinements.
+This was tested on FPGA prototype, so wave5_dt_ids[] was not expanded.
 
-On Mon, Mar 18, 2024 at 7:28=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
-te:
->
-> On Mon, Mar 18, 2024 at 03:31:59PM +0800, Huacai Chen wrote:
-> > On Mon, Mar 18, 2024 at 10:08=E2=80=AFAM Keguang Zhang <keguang.zhang@g=
-mail.com> wrote:
-> > >
-> > > Hi Huacai,
-> > >
-> > > > Hi, Keguang,
-> > > >
-> > > > Sorry for the late reply, there is already a ls2x-apb-dma driver, I=
-'m
-> > > > not sure but can they share the same code base? If not, can rename
-> > > > this driver to ls1x-apb-dma for consistency?
-> > >
-> > > There are some differences between ls1x DMA and ls2x DMA, such as
-> > > registers and DMA descriptors.
-> > > I will rename it to ls1x-apb-dma.
-> > OK, please also rename the yaml file to keep consistency.
->
-> No, the yaml file needs to match the (one of the) compatible strings.
-OK, then I think we can also rename the compatible strings, if possible.
+Ivan Bornyakov (6):
+  media: chips-media: wave5: support decoding higher bit-depth profiles
+  media: chips-media: wave5: support reset lines
+  dt-bindings: media: cnm,wave521c: drop resets restriction
+  media: chips-media: wave5: separate irq setup routine
+  media: chips-media: wave5: refine SRAM usage
+  media: chips-media: wave5: support Wave515 decoder
 
-Huacai
+ .../bindings/media/cnm,wave521c.yaml          |   3 +-
+ .../platform/chips-media/wave5/wave5-helper.c |   3 -
+ .../platform/chips-media/wave5/wave5-hw.c     | 293 +++++++++++++-----
+ .../chips-media/wave5/wave5-regdefine.h       |   5 +
+ .../platform/chips-media/wave5/wave5-vdi.c    |  27 +-
+ .../chips-media/wave5/wave5-vpu-dec.c         |  17 +-
+ .../chips-media/wave5/wave5-vpu-enc.c         |   2 -
+ .../platform/chips-media/wave5/wave5-vpu.c    |  33 +-
+ .../platform/chips-media/wave5/wave5-vpuapi.h |   3 +-
+ .../chips-media/wave5/wave5-vpuconfig.h       |   9 +-
+ .../media/platform/chips-media/wave5/wave5.h  |   1 +
+ 11 files changed, 272 insertions(+), 124 deletions(-)
+
+-- 
+2.44.0
+
 
