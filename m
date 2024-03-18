@@ -1,105 +1,126 @@
-Return-Path: <devicetree+bounces-51277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C20A87EB6E
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 15:54:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6538987EB74
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 15:55:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 21C8C1F21564
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 14:54:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19E711F2168C
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 14:55:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C87154EB20;
-	Mon, 18 Mar 2024 14:54:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8EBF4EB2B;
+	Mon, 18 Mar 2024 14:55:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CdxMXb2i"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="tvSHEkUh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9870D2C6B7;
-	Mon, 18 Mar 2024 14:54:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3D3B433D2
+	for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 14:55:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710773666; cv=none; b=JD4DmvmcD6jMjHs2RpUbqT/xAp1P73pUjSLoxRoHUDNJP7FSYHRs57+gPNTsGLXfgmVAbZf70/J80R0+N/MiLKDDvxu5fjjx0Qxh525W76GHoX+8hP+iPhWnjis09lcNbfBdNPMLRxKCmJDsAwVFfgfBKqjL4Q7ee7JWjUyjpr8=
+	t=1710773733; cv=none; b=Dh4ripVGgd3Bw//CTTTKfkU2N+elmQIDJgok9NBtWZLMKG8V4kmdnltJUYqwuX0OA/GP1FNPRw8Fa6b8VKhv289n6xzwzfL7xICvYD5fRIyJrGQez+CiAJF//oR47FH6MoZmqPZAbcYxk86ar9CeaXtufEYZhUPuLp8q3BRKKtk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710773666; c=relaxed/simple;
-	bh=ywjXIx6HmklPsjIr1i1IzyaHa8odZGdCDM27OSINcmM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ctbxpUvm2bAH26FndHjEHPLkPr4hk4NWsdzmYdAT1cGutYQM7P9FyIkiNFzS+DGvqqOUvB61OO4qE/44u6eZQ3RAZu4K4GsSKlu+IiXhC7jsChOCD6E1kd0lpkiTWkIv/iDbSRRF1a5eE1sv52zIHfOF6ByEvLybqj1PV+G0kvE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CdxMXb2i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D660CC433F1;
-	Mon, 18 Mar 2024 14:54:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710773666;
-	bh=ywjXIx6HmklPsjIr1i1IzyaHa8odZGdCDM27OSINcmM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CdxMXb2iz+7JsM/SUAYZYz1a0za5xAhxZOCC3lmz+q98zXps0G46eAz43LPzBoHsn
-	 67j2U2E6WOpFWw9gsmMa4RPICEsQH7XpodOIBhZfCOPZRDZQrlL4oFPQatyssd2sPw
-	 BH/mzt6eQXw1JFkZzOkzubzdLiWh2/M7CM+Ka8ye+662wrxuwr8SCxxrygrKl4Gsg1
-	 /G3P/Ru1sNH+HD/YJe0O9YGY2xeuCbVL8NqM/64UstD292013btVgoFU+JyBbJQyZB
-	 HorS0tvkqpI3CtDmcIzAMY3ZbVd907Gnr7iPnj4t/Cq6r+usfMMJRdpoVPAfltgbVS
-	 cQDML6T2f56HA==
-Date: Mon, 18 Mar 2024 09:54:23 -0500
-From: Rob Herring <robh@kernel.org>
-To: Lucas Tanure <tanure@linux.com>
-Cc: Xianwei Zhao <xianwei.zhao@amlogic.com>, Yu Tu <yu.tu@amlogic.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [RFC][PATCH 1/2] clk: meson: T7: add support for Amlogic T7 SoC
- PLL clock driver
-Message-ID: <20240318145423.GA3993342-robh@kernel.org>
-References: <20240318114346.112935-1-tanure@linux.com>
- <20240318114346.112935-2-tanure@linux.com>
+	s=arc-20240116; t=1710773733; c=relaxed/simple;
+	bh=7nofET7OQ03Sq7cIC4DoYn+Bc4Y8IIymjcxEXaOPJXo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rGDFkb1QL3MlQ8z5u8DNKGz2uLF8PfxYmrjq7/0twAMswGfp5VKCPm6QF7bLTa5knlWaKjw/YHQtYKY3Cr6sXO6OBWp/hnD1CP7tO0Wr3K6BOiI8oPClBJNkIgpRA1dsPYJeBeoLDWIXI3TPZkkql7imIq+iKZXlH+K1lan9VAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=tvSHEkUh; arc=none smtp.client-ip=209.85.208.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2d485886545so70917771fa.2
+        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 07:55:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1710773730; x=1711378530; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7nofET7OQ03Sq7cIC4DoYn+Bc4Y8IIymjcxEXaOPJXo=;
+        b=tvSHEkUhmDpqpwsrcoPrJZBss81bgCmCIj3q3vnxXjplKGxthK6N4rDJzjQ35lb/Nk
+         St5RHp0/BrzSCEvQtgr4uInNJv7r8tFWmC77VMV2phjdJ8dr9rQZXVB/rGAr6lVXLkkE
+         ebrJVmKsPa8Yo/AgQO66c6XouccmUMRGDoxPvsz/ePcu7G8QHOfFhC2ad573qjDFipov
+         tZKJzaXAWI0AEDO6r7fzThAcmZwbzcjk87Xlyq1k8uH/zbsioP7NTAI9Lbd6Kn1OXKAr
+         XQdUWQDjz40GAp65SRSac0kkuSz9ITOeepzUaFL9l9SxxfdhEM1VXBaT7wQrmABm3MWW
+         3H8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710773730; x=1711378530;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7nofET7OQ03Sq7cIC4DoYn+Bc4Y8IIymjcxEXaOPJXo=;
+        b=IesWCYUyzF3Fhe+SIjHzubdK9TaLSa2N8681JKLteqPcmV3aoAK4yPfTIrao9jkaR5
+         Ak8+LdUmmto4JIwYKN/5vOfcDT0aXuA2rO0+fkUkxlOIatzPYYuGuzaTMdFXvfQPFtNz
+         SM9An/7qVdJRg+AR1qezcp7O3uek5VDQ2iqwRVxnaScYRBU5kf6qE6WCCkpDqwk5thty
+         h9GsU+96/bmEUPMhfvevot1XCwmZAeEL5SugHJYJoo70zLDWGLXKiiJMAp9TBq8bv2g/
+         s5uBevyhp8vfl+ggKT1o1QqBdVLepa3dn4AQkNx4KyVud58O+Ck1a6fzn01l/KfNUx9i
+         xaPw==
+X-Forwarded-Encrypted: i=1; AJvYcCWGGgNxYgC1kaUkXibLia0OCyPE45ZmZbedqBXPmG0UkqaGHRBCzs3oce7xrBjnm7S307mdp8NIoRrHFasnr+QAkCDBXdG7EXmrHA==
+X-Gm-Message-State: AOJu0YzyeMDpril19iGJFl3ylnoPVNvHYnwWqmByB2WiNTzD0Jo9FMAp
+	05FyAblg4SmM4FylQ7RhJhgoEInYMc/e4AttbnihnTvItuBHlWmSXclq5BlmtpCdqBDVJlJpQSr
+	P1gw1lu6FWEVDwKGFYRD0G1Hk0nemN5+4UrXFlQ==
+X-Google-Smtp-Source: AGHT+IEv+eYCy5ghVxZ36mlwbWIcp/u04B6R1KZ1C++5boY7huigSjs+Bx5vZUUBldatlWRtSLbpYO90M7txRtasPcU=
+X-Received: by 2002:a2e:311:0:b0:2d4:9647:a01d with SMTP id
+ 17-20020a2e0311000000b002d49647a01dmr5901266ljd.0.1710773729931; Mon, 18 Mar
+ 2024 07:55:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240318114346.112935-2-tanure@linux.com>
+References: <20240228051254.3988329-1-dominique.martinet@atmark-techno.com>
+ <7f03bb12-0976-4cb7-9ca9-4e4e28170bdd@linaro.org> <Zd7hSOw3_zosyrn3@atmark-techno.com>
+ <daed8ada-9e01-41ad-82af-5da5cbbc865c@linaro.org> <Zd7qz1Qte8HWieF_@atmark-techno.com>
+ <20240228142441.00002a79@Huawei.com> <Zd_zB_ymxkx0HB3q@atmark-techno.com>
+ <ZfPg-nMANUtBlr6S@atmark-techno.com> <CAMknhBG_kJx8JPvTBQo7zpy3mFAkUjZpRY3DLBfXt+39nRJWiA@mail.gmail.com>
+ <ZfejyEvPIncygKJ9@atmark-techno.com>
+In-Reply-To: <ZfejyEvPIncygKJ9@atmark-techno.com>
+From: David Lechner <dlechner@baylibre.com>
+Date: Mon, 18 Mar 2024 09:55:18 -0500
+Message-ID: <CAMknhBHwVHOS742aVL-pmHzpheicb2=6Hi2Lgz0DvTcXcMoeCg@mail.gmail.com>
+Subject: Re: [PATCH] iio: industrialio-core: look for aliases to request
+ device index
+To: Dominique Martinet <dominique.martinet@atmark-techno.com>
+Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Jonathan Cameron <jic23@kernel.org>, 
+	Syunya Ohshio <syunya.ohshio@atmark-techno.com>, =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Mar 18, 2024 at 11:43:45AM +0000, Lucas Tanure wrote:
-> Add the T7 PLL clock controller driver in the T7 SoC family.
-> 
-> This is RFC patch that enables SDCard, Ethernet and Clocking
-> for Amlogic T7 soc.
-> In this current state the patch doesn't work and gives a kernel
-> panic when probing the meson-axg-mmc for the SDCard.
-> DO NOT MERGE.
-> 
-> Signed-off-by: Lucas Tanure <tanure@linux.com>
-> ---
->  drivers/clk/meson/Kconfig                     |   25 +
->  drivers/clk/meson/Makefile                    |    2 +
->  drivers/clk/meson/t7-peripherals.c            | 6368 +++++++++++++++++
->  drivers/clk/meson/t7-peripherals.h            |  131 +
->  drivers/clk/meson/t7-pll.c                    | 1543 ++++
->  drivers/clk/meson/t7-pll.h                    |   83 +
->  .../clock/amlogic,t7-peripherals-clkc.h       |  410 ++
->  .../dt-bindings/clock/amlogic,t7-pll-clkc.h   |   69 +
->  8 files changed, 8631 insertions(+)
->  create mode 100644 drivers/clk/meson/t7-peripherals.c
->  create mode 100644 drivers/clk/meson/t7-peripherals.h
->  create mode 100644 drivers/clk/meson/t7-pll.c
->  create mode 100644 drivers/clk/meson/t7-pll.h
+On Sun, Mar 17, 2024 at 9:15=E2=80=AFPM Dominique Martinet
+<dominique.martinet@atmark-techno.com> wrote:
+>
+> David Lechner wrote on Fri, Mar 15, 2024 at 10:53:36AM -0500:
+> > How about using udev rules to create symlinks for each device based on
+> > the label attribute? No changes to the kernel are needed.
+>
+> Right, it's definitely possible to make symlinks for each "device" -- my
+> patch comment links to such an udev script "solution":
+> https://git.toradex.com/cgit/meta-toradex-bsp-common.git/tree/recipes-cor=
+e/udev/files/verdin-imx8mm/toradex-adc.sh?h=3Dkirkstone-6.x.y
+> (the script is launched by udev here:
+> https://git.toradex.com/cgit/meta-toradex-bsp-common.git/tree/recipes-cor=
+e/udev/files/verdin-imx8mm/99-toradex.rules
+> )
+>
+> My conceptual problem with this is that this makes symlinks in /dev to
+> files in /sys and it feels like we're crossing boundaries.
+> As far as I can tell there is no way for userspace to create arbitrary
+> symlinks in /sys, so I think we could have an interface more
+> user-friendly by allowing paths to be static for users with multiple
+> devices.
 
->  create mode 100644 include/dt-bindings/clock/amlogic,t7-peripherals-clkc.h
->  create mode 100644 include/dt-bindings/clock/amlogic,t7-pll-clkc.h
-
-I'm assuming since this is an RFC you know these go in a separate patch 
-with the DT binding schema which is missing.
-
-Rob
+How about this: Use udev to create one symlink from /dev/frendly-name
+to /dev/iio:deviceX. Then in your application, look up the device by
+/dev/friendly-name. Then resolve the symlink to translate
+friendly-name to iio:deviceX. Now your app has the correct iio:deviceX
+and can use /sys/bus/iio/devices/iio:deviceX/ directly instead of
+making any symlinks to sysfs.
 
