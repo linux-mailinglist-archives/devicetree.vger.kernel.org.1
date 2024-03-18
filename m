@@ -1,95 +1,177 @@
-Return-Path: <devicetree+bounces-51303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2231887EC82
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 16:48:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D12387EC9F
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 16:51:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 399751C20B95
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 15:48:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DBC351F213D8
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 15:51:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9102B524CE;
-	Mon, 18 Mar 2024 15:48:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C428E52F94;
+	Mon, 18 Mar 2024 15:51:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="HDIOWmN9"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="wQaAlgF7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-176.mta0.migadu.com (out-176.mta0.migadu.com [91.218.175.176])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C79D94F5F8
-	for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 15:48:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E16D7524D1;
+	Mon, 18 Mar 2024 15:51:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710776894; cv=none; b=TjTPE0KAilLoL/wy5Pr13CqAEUYbLM08+eq8KPF6uFaoXa1h/HQ3y33mRuRfZRhM1NBNIpM/l+sD/dYLUT82RL945A0+7KszflbEEhgwwvtyotFVERfmO+h52kAA3wIlLFwENHjgHvhXXUkRXs8IDSsb84vTegkd3IDvssGoKUk=
+	t=1710777072; cv=none; b=qN0IkzWACVl05251TD9jX9DfflAa4ELWeLSO3VnYLFIFzPwBog/i/yiLneeXsKF9cin1OVnnqVaQDyedNxAbOkgsLpqE6G+TMaNDty2ewD3PQX7ZExzP/iO/zLaCCw6SmjEFNvZ7jqydCwwpVIlv+4TECswiQRzy6P438IQkUoI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710776894; c=relaxed/simple;
-	bh=DpYz0hySlKxEHAOQmWqMeZkwyJg+LhqeQY2mrmV/0cc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rdSpJIzH1kFdAAtl5v8aueqRxy4QFsz91Bt/KW0zfOF/f8R5ljsB6euDjaxF9aHAzqPs15U+6WIqCjc83HBQXIFaVoQ1TwgCQgsrFxH2i9cyOnrVUkKGNL2I1ihE4/O1N52xIGQ75xW1nNK1a+Pr6K4SV6+1UM2rrVf/BnFI2R4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=HDIOWmN9; arc=none smtp.client-ip=91.218.175.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <fa047914-da03-4234-b48f-eebdf350795e@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1710776891;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Bad6F74F9fm5QOGUdbjG96YKjkLK+JYj8KXYElcQaw8=;
-	b=HDIOWmN98GCxTIBHZkDR4L2R1YYSH4ojjz6vVh2nYaXg5czvF/hU6MMYVwYzuEdzCEefgT
-	hbe14o3GOvFshvKX08m5PbF20mU2qQqAOIn/bWXSApW8P9pxU0QBhzlGxh9c26pxqfhCg3
-	0L6+8ygQ/QC+NUOb+IuM7ZbCFHJmFho=
-Date: Mon, 18 Mar 2024 11:48:06 -0400
+	s=arc-20240116; t=1710777072; c=relaxed/simple;
+	bh=ey41zW7cilaZHFny2QLte4eGi7mCyvfDTnx7ZAEyFhE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=A5ptLWfE2LPe64nt6TQ8ZHEtNY9T+ioVIIPDaxTXMBOxRWz9rfacJIzMq8O9RxD29gJFJagoOvGhuGfL4Jck+yLYIGZs7xB2G7UWP5R7+uoLEQDkt/FI/jEyvBr041+JdcITgWHvmPHSWbCKDrcZsXeMczuSojf7WzVZJ3VqYJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=wQaAlgF7; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [127.0.1.1] (91-154-34-181.elisa-laajakaista.fi [91.154.34.181])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id DB39A2A5;
+	Mon, 18 Mar 2024 16:50:39 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1710777040;
+	bh=ey41zW7cilaZHFny2QLte4eGi7mCyvfDTnx7ZAEyFhE=;
+	h=From:Subject:Date:To:Cc:From;
+	b=wQaAlgF7cY0I9zK93ZQa4Rktbs7LfywXjXsKlDwydEnjKpoDkMIOdNMeK/oZh8wds
+	 0VwZOil91ypK/Tpmv0bKrjm9I3BOSKonnijJVP+eePH2k6xzD52+WOdBU9c2UoKCxg
+	 ueCntxev0sd6yWydjKbPq2SSAQymG1Ftf5LrC/uQ=
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Subject: [PATCH 0/4] media: raspberrypi: Support RPi5's CFE
+Date: Mon, 18 Mar 2024 17:49:55 +0200
+Message-Id: <20240318-rp1-cfe-v1-0-ac6d960ff22d@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/2] dt-bindings: nvmem: Remove fsl,t1023-sfp in favor of
- fsl,layerscape-sfp
-Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Richard Alpe <richard@bit42.se>, linux-kernel@vger.kernel.org,
- =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
- Michael Walle <michael@walle.cc>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-References: <20240316002026.1808336-1-sean.anderson@linux.dev>
- <20240317-starved-pager-7a81c5045cfc@spud>
- <9daf9c8f-6606-4ff6-8065-6a32fa0d152c@linux.dev>
- <20240318-scarf-startup-64088b1d8d35@spud>
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Sean Anderson <sean.anderson@linux.dev>
-In-Reply-To: <20240318-scarf-startup-64088b1d8d35@spud>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
+X-B4-Tracking: v=1; b=H4sIAKRi+GUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDY0MT3aICQ93ktFRdQxOjJDMjiyRzI0MTJaDqgqLUtMwKsEnRsbW1AEf
+ iHdVZAAAA
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Naushir Patuck <naush@raspberrypi.com>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, 
+ Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
+ Kieran Bingham <kieran.bingham@ideasonboard.com>, 
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3886;
+ i=tomi.valkeinen@ideasonboard.com; h=from:subject:message-id;
+ bh=ey41zW7cilaZHFny2QLte4eGi7mCyvfDTnx7ZAEyFhE=;
+ b=owEBbQKS/ZANAwAIAfo9qoy8lh71AcsmYgBl+GLkN3N05QSjcuydlBFJSye5DaOwL1ujsQmNl
+ 8VxrTRncxuJAjMEAAEIAB0WIQTEOAw+ll79gQef86f6PaqMvJYe9QUCZfhi5AAKCRD6PaqMvJYe
+ 9UMGD/9u9kAGm9u2EwcGdtyVt+G+RrFu7OcujX8GwWlJ5BM2U3ocWxaIlW7E/hU5MIJ2UuCk1RV
+ gbEGLaRubgXTd1iUhIDdvrhRK9u3twOM5jC6VERSSPCI87a20UIsdjnGuy/1lUni2hnyz3wuXWR
+ TJoVJgCT7nxQvfmB2iuKSXUH06ai4HH8G1jiZbuUVtwDjwHdi2RNziiQpF2WzQcIhQZrHn2bTHS
+ E0e4kyNCxTT8/iHB7cWNO2L0XYkQ3cpkLwDBwvw1fi4dRy14n6vPB34xjTn0uhrjSBF8gQx7oMT
+ LS8BmM95F4f4jE56eiRmnK8QxoEaRIjgFPCKzHAXl5IeWhUPjbPOms7BL6pOFNbzI0x4fmn91sI
+ c6G+ruQ0I7JXf2EGBmh03fbwGLAoUsBXQPRgDWdyyWaRIxvlQJqgzXm5XYaFcBYWLWfD7lEvner
+ ngwmOJcQHkwqiTL4DFGgLtQ2/b9vnwDuQPOOScgL7U0GgX88/BlpB+eVuDB5BiCJZmPfOk4d19e
+ sBFLnBLHu9FEIKUfvDESMS0jLhbh1IFU4MIS0PSONbW1zsHzvDO2M0I6X95m0hhDO8Rqvkz3Zl8
+ QhjOkr2BNlQOifXACNetze/3xhXFgiEo/GSnmTNynB+z+uz+3V/6/tdqy0wHgmWv+WXHX6CFbls
+ F7F2oLAPYBwdIKA==
+X-Developer-Key: i=tomi.valkeinen@ideasonboard.com; a=openpgp;
+ fpr=C4380C3E965EFD81079FF3A7FA3DAA8CBC961EF5
 
-On 3/18/24 11:40, Conor Dooley wrote:
-> On Mon, Mar 18, 2024 at 11:08:00AM -0400, Sean Anderson wrote:
->> On 3/17/24 11:10, Conor Dooley wrote:
-> 
->> > Additionally, should
->> > they fall back to t1023-sfp? I see that there's already some dts files
->> > with these compatibles in them but seemingly no driver support as there
->> > is for the t1023-sfp.
->> 
->> I checked the reference manuals for these processors, and all of them use TA 2.0.
-> 
-> Sounds like a fallback is suitable then, although that will require
-> updating the various dts files.
+This series adds support to the CFE hardware block on RaspberryPi 5. The
+CFE (Camera Front End) contains a CSI-2 receiver and Front End, a small
+ISP.
 
-Yes, a fallback (like what is done for the T-series) would be suitable,
-but given that these devicetrees have been in-tree for eight years I
-think it would be preferable to support the existing bindings for
-compatibility purposes.
+This series is currently based on multiple other serieses:
 
---Sean
+- Sakari's "[PATCH v8 00/38] Generic line based metadata support, internal
+  pads" for metadata support
+- Laurent's "[PATCH 00/15] media: Add driver for the Raspberry Pi <5
+  CSI-2 receiver" for a few new pixel formats and imx219 (for testing).
+- Jacopo's "[PATCH v5 0/9] media: raspberrypi: Add support for PiSP Back
+  End" for some shared uapi headers.
+
+And to run this, one of course needs the basic RPi5 kernel support plus
+relevant dts changes to enable the cfe and camera.
+
+So at the moment we cannot merge this driver, but hopefully the
+dependencies will get merged before the reviews on this one are done.
+
+A few notes about the patches:
+
+- The original work was done by RaspberryPi, mostly by Naushir Patuck.
+- The second video node only sets V4L2_CAP_META_CAPTURE instead of both
+  V4L2_CAP_META_CAPTURE and V4L2_CAP_META_CAPTURE like the other nodes.
+  This is a temporary workaround for userspace (libcamera), and
+  hopefully can be removed soon.
+- The compatible string is set to "raspberrypi,rpi5-rp1-cfe". I added
+  the "rpi5" part as versioning, as there's no clear CFE hardware
+  version defined. I'm open to other suggestions on the versioning
+  scheme.
+
+I have tested this with:
+- A single IMX219 sensor connected to the RPi5's CSI-2 port
+- Arducam's UB960 FPD-Link board with four imx219 sensors connected
+
+I have pushed my branch, with all the dependencies and everything needed
+to run this, to:
+
+git://git.kernel.org/pub/scm/linux/kernel/git/tomba/linux.git rp1-cfe
+
+ Tomi
+
+Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+---
+Tomi Valkeinen (4):
+      media: uapi: Add meta formats for PiSP FE config and stats
+      dt-bindings: media: Add bindings for raspberrypi,rp1-cfe
+      media: raspberrypi: Add support for RP1-CFE
+      media: admin-guide: Document the Raspberry Pi CFE (rp1-cfe)
+
+ .../admin-guide/media/raspberrypi-rp1-cfe.dot      |   27 +
+ .../admin-guide/media/raspberrypi-rp1-cfe.rst      |   78 +
+ Documentation/admin-guide/media/v4l-drivers.rst    |    1 +
+ .../bindings/media/raspberrypi,rp1-cfe.yaml        |  103 +
+ .../userspace-api/media/v4l/meta-formats.rst       |    1 +
+ .../userspace-api/media/v4l/metafmt-pisp-fe.rst    |   39 +
+ MAINTAINERS                                        |    8 +
+ drivers/media/platform/raspberrypi/Kconfig         |    1 +
+ drivers/media/platform/raspberrypi/Makefile        |    1 +
+ drivers/media/platform/raspberrypi/rp1-cfe/Kconfig |   14 +
+ .../media/platform/raspberrypi/rp1-cfe/Makefile    |    6 +
+ .../media/platform/raspberrypi/rp1-cfe/cfe-fmts.h  |  330 +++
+ .../media/platform/raspberrypi/rp1-cfe/cfe-trace.h |  196 ++
+ drivers/media/platform/raspberrypi/rp1-cfe/cfe.c   | 2526 ++++++++++++++++++++
+ drivers/media/platform/raspberrypi/rp1-cfe/cfe.h   |   43 +
+ drivers/media/platform/raspberrypi/rp1-cfe/csi2.c  |  579 +++++
+ drivers/media/platform/raspberrypi/rp1-cfe/csi2.h  |   89 +
+ drivers/media/platform/raspberrypi/rp1-cfe/dphy.c  |  175 ++
+ drivers/media/platform/raspberrypi/rp1-cfe/dphy.h  |   27 +
+ .../media/platform/raspberrypi/rp1-cfe/pisp-fe.c   |  581 +++++
+ .../media/platform/raspberrypi/rp1-cfe/pisp-fe.h   |   53 +
+ drivers/media/v4l2-core/v4l2-ioctl.c               |    2 +
+ .../uapi/linux/media/raspberrypi/pisp_fe_config.h  |  273 +++
+ .../linux/media/raspberrypi/pisp_fe_statistics.h   |   64 +
+ include/uapi/linux/videodev2.h                     |    2 +
+ 25 files changed, 5219 insertions(+)
+---
+base-commit: d87156e95652bc6463f86b25149f75cc3b8742eb
+change-id: 20240314-rp1-cfe-142b628b7214
+
+Best regards,
+-- 
+Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+
 
