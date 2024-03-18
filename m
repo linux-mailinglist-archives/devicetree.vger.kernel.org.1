@@ -1,126 +1,181 @@
-Return-Path: <devicetree+bounces-51341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51342-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0277787EF04
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 18:36:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FD4F87EF22
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 18:44:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 16DAF1C220BB
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 17:36:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF8DB1C21F9A
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 17:44:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5978D55C34;
-	Mon, 18 Mar 2024 17:35:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7249C55C0E;
+	Mon, 18 Mar 2024 17:44:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="JogwiI17"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lDlxi31b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [212.227.17.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1ECC55780;
-	Mon, 18 Mar 2024 17:35:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D62A55780;
+	Mon, 18 Mar 2024 17:44:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710783334; cv=none; b=uSAp/L+X2LXIgdxAT2Gi0kLJlteqomXB1xcuOZfzrIbq8Xkp7yibdOIIWtU5wqJkdnGLRDq5X/5KkyNJpYCEKrMHcEzl0lw1vjcbHmX58ZtqCLCURSFX8tIk1HE6J9RGPDLqGPL9jR6eFryZvcBKsxrTirJ0e5V85ts/K7o6siU=
+	t=1710783890; cv=none; b=DQ2Vl+XCIG83L1Wgq4Q47iKD9YTgiNCu+a6WemdIdFXPQoBFHfKOq/Gei0CiUUNHxc/QNtCLb+klnVVxgO9to4ygHxnarUwltURZcjtdWRI9CQucakmRo9vo/TAqNIS2IFZkgTdNw+IxsqL6xwAmBSOHPPeMQtwun9f/5nX18Oc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710783334; c=relaxed/simple;
-	bh=XoJNQUUFayCUG3xRrAmVCwbMxRg8KixIWe/vEYZcOPQ=;
-	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
-	 In-Reply-To:Content-Type; b=dVR6nTDi4hQOKrzpLnGlrnNuV/TbKF7BK8o9R1ajht5KcOdjWshnkhQmzzwg9fZibLtODPmEtukOysyiadLp5wFe+EaanY5HBefm2gUkdHtOBxS9jVfx1fPFEo3fnnnY1nDA45rlP5b3zAH10D1qhQrl3RH954mqG7HoBOurxow=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=JogwiI17; arc=none smtp.client-ip=212.227.17.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1710783296; x=1711388096; i=markus.elfring@web.de;
-	bh=zL2UFIO2avZuf4cHRjFFmzwc7ks5q6OVftTUkucV4BQ=;
-	h=X-UI-Sender-Class:Date:To:Cc:References:Subject:From:
-	 In-Reply-To;
-	b=JogwiI17BOi49/yQuCytE7MPZ/qIpHhWfyoqhHAd1TiqdebvHZReeoEAEJSrIeEN
-	 DX3zIUxRV8l7Bx7gh0YwFqKSx1gKdlhHNX1961842Z2I6fbVA2Qk+6VDWB76T92n0
-	 F2v1Z+ULfkSf/50Zf0cCOiTaNmG7vzwMFcFjQhFGduQl6nnd9CocAGpnT/hY0pZgk
-	 mKBXG4pRtCuoMQPwCwy8UmhLKG29gzFTUJIQ77MJ3llLubG0VDuNz2d93DZMhyk8p
-	 keSdAdQ5byNbGHds15H2XdG5kOeOEfWCHr4jJu8WsJVf5XsQPOp8NM93EXwNwQj/Q
-	 vSNz9+PuUCu6RYyE1g==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.21] ([94.31.90.95]) by smtp.web.de (mrweb105
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1MzkSZ-1qrOwA3vX7-00vVE0; Mon, 18
- Mar 2024 18:34:56 +0100
-Message-ID: <7d834747-0004-4556-b260-c747074a5df6@web.de>
-Date: Mon, 18 Mar 2024 18:34:47 +0100
+	s=arc-20240116; t=1710783890; c=relaxed/simple;
+	bh=qfKaM5LBkZKQTIItZKKvgOoaUbhM+c7eSygjt0v+vqQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=cV0mwPWi3rcfvbFSX5AfDA7MMY4exjSulIwNENmK/eEnrZNJC3nFdYkw1NEfpVvmhmVR8OaqWdLLPwnLtT0l+rBkx4XlNGqXBCbdEWO49REa/Nu4kFcctn5NAG6q8CXxA+gin/QWz7YOHJ6xFYdCcOwuE0oQJUDe/2ydV3vH+zU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lDlxi31b; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-513d599dbabso5106146e87.1;
+        Mon, 18 Mar 2024 10:44:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1710783887; x=1711388687; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=6k38GrEZImqBDaAsrtBm+TtkuYBS+WSHMTIZNXDlWsM=;
+        b=lDlxi31b1Uw0EZ3i7Sqp5RfGErhfDWMp/n1Ite7Z1z9fcYBBZly3V0jdWKl4XSg/v7
+         oo1QMUZNDTsuDkwwdx+GnT7gWl8Cxzw9i9oJST46rRJWeHLRXikQA+hBW6o7sZlz6WC/
+         NvQ8jH9UjW92bNhCTdBR5ZJ7mAQcZKE6F6wHpGobnoGbSfOlIp4dsTmU+NPzXVToXGkw
+         fDsxfe+0Fc2zlb3x9yKZkTu2XXmmeK2LqoA/RDTbIclM47YHZgJG8vCaSwvKyWs4w5Lm
+         e9TI/Qmjw61tF2ZJ0FwBlres5mRyCFKsDMYAkbDpYyiKCdB6IOfNp9b0+eT48vpb0lsD
+         hi+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710783887; x=1711388687;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6k38GrEZImqBDaAsrtBm+TtkuYBS+WSHMTIZNXDlWsM=;
+        b=YBTDRi9jUY2OteNnRwS6NdU5fHsL5Taq3SkkNlU1XsiCTGC2V3iU3S0GmsuFLDS5NX
+         B+k5S2Yf5l5aU3iwj6mCpx7qJXni2d/xZQWP4EVUq2vKE6aIuyPmigN4TZC+AYbT6uDL
+         I7r54gQnWnJczB15WKnJsa0KqNbeHSy4ZbnxcJpmkCoHWPrzAgsKuOgj/zb+DpUysPuM
+         shNVlay/q9ukMqNckP+1wq4UPuJvo9efUUYKsQPI2Lfh2DVa/O8K6cuWdhthqGjpJxcL
+         veNhs0p6atKXUiCWZmiBxBKana6fp6NzS40Dw8iAD7KMZ2Q4y+HF1Jq8PqwkMARz9Fsv
+         4uaw==
+X-Forwarded-Encrypted: i=1; AJvYcCXb+Hi0lYhAFpHYKJDVwO6OoF3WBKV7MI1C91LFXrKMuTSoEiORt7bX9TsMZ54//TOdoUayaKpTyKSPBXLYZ+vj2ZY4ayKCX1w5gBg+q8Nmb68GzqGowCxFFE45ejv7hlx8vWh2PghtfV3S4a58
+X-Gm-Message-State: AOJu0Yz8XPIqMVcgLMH+6SN+usIbIvwp7iy0SIA04opSpm1mASi2H9Gj
+	1nKUUUXCRSFuqBuip3IZGeMj6YP2i8D9DYP3i8HH8edBNY3YAMa0
+X-Google-Smtp-Source: AGHT+IEkUiXLyxU5UPRstO9MUMp5QcKxm7rDr3KID4QPK+LYjmiPv0g1RPmMqWb8AsO3TXBOvAdSLA==
+X-Received: by 2002:ac2:442e:0:b0:513:db34:7caf with SMTP id w14-20020ac2442e000000b00513db347cafmr146224lfl.17.1710783886410;
+        Mon, 18 Mar 2024 10:44:46 -0700 (PDT)
+Received: from prasmi.home ([2a00:23c8:2500:a01:c23f:76ae:8149:291])
+        by smtp.gmail.com with ESMTPSA id n20-20020a05600c501400b00414112a6159sm3433274wmr.44.2024.03.18.10.44.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Mar 2024 10:44:45 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH] ARM: dts: renesas: r7s72100: Add 'interrupt-names' property in SCIF nodes
+Date: Mon, 18 Mar 2024 17:43:45 +0000
+Message-Id: <20240318174345.46824-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: Ayush Singh <ayushdevel1325@gmail.com>,
- Vaishnav M A <vaishnav@beagleboard.org>, devicetree@vger.kernel.org,
- kernel-janitors@vger.kernel.org, linux-spi@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, lorforlinux@beagleboard.org,
- greybus-dev@lists.linaro.org
-Cc: LKML <linux-kernel@vger.kernel.org>, Alex Elder <elder@kernel.org>,
- Arnd Bergmann <arnd@arndb.de>, Conor Dooley <conor+dt@kernel.org>,
- Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic
- <dragan.cvetic@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jason Kridner <jkridner@beagleboard.org>, Johan Hovold <johan@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Mark Brown <broonie@kernel.org>, Nishanth Menon <nm@ti.com>,
- Rob Herring <robh@kernel.org>, Robert Nelson
- <robertcnelson@beagleboard.org>, Tero Kristo <kristo@kernel.org>,
- Vaishnav M A <vaishnav.a@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
-References: <20240317193714.403132-5-ayushdevel1325@gmail.com>
-Subject: Re: [PATCH v4 4/5] mikrobus: Add mikroBUS driver
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20240317193714.403132-5-ayushdevel1325@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:rGQO4fDn0vNN389tBnKe7onogTvUErLvvTXduyGL6pWKFdmDEqy
- MCYn5pkmCHDACrPUJoNy2C7GvGm1hYCvBujMK+WsDmVllQ2MYfQf5+4qeUPkILbJYGTHjoy
- cMNmBfhajyMkcoBbxdstbnNIoU6tToHIwCqiARcUKBEdM5V/z5GbrKM5TGJjdtTWsSdEl7J
- mBvYGlMAiI8JvT71ryP2A==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:7zD/DEBSM+I=;jR8jlBRRX3dOz59O2ZMyBlQGtol
- u0BPn49w8vjSOeOdVkdxwlyYABexe3OvWICT6qmI9Apqsf9MKaxT8EIV5+CV04pIdjvwBE896
- 1ueen8J87DYHuiI3PzZnN+2NoQbCptvE68Jp6AymKTBzPe1vw2VjsReQIqjUJJiKlsQ2jAePP
- Yi/m9dWJ1XlzlQBGURVqOHxAn4n9S+bWzqs6W3pULZkbgnMH8BIU/XqkCnCxReW/TiGzEii/G
- EFpvohWYchriay7ZZv4oP+nPZ633qrUYakf2SIlL69r/Rrvi3Kzze5ppl5HJAmnYB5Wvy0IkZ
- 5SLUhpV/0DsR4+SLaUn4EEFq2rjOdWZWriQKIBXcw8/FhoEUQq8tHOeaaxy/AF+wsSUp+15q+
- k10dFxBhHnOfJ2jBWXmNfsIqj1iGGquEu8QzAV69obc26noD1e9qnKhVzWZm8mil9YyHiLYSl
- sDcXCAaccEogysA0PlBqbwcWC38hnHB2qAU89hV63umMfwr/VqD3P30E6/haT6MScpodO0tz0
- rTIaj1KNEQp2qe2SYILnp1syn1GTieirb/cnkJmoFoITI/Y66OX+CAVdyeHaJYDMStfLSljUE
- NnEzzX0PWIkut/Rkg3FOEcPeovfKjha0PoMGYm/x3QDpmDXnMkuunqrxn37M1Hxh5CkcozJzO
- wrXAIyT4AoPvF55AwkS19hbVqbV9J8V5cXn6l0OYdxyjXn+HZZKcaXedRBYmazomRlXQa7dX/
- jFczj4w8pDvlGGnOeRqD3awYga8yynVb2zhc9y2ELKVi6jiWv1GLaNSm87XUSpL2l6Nc/Rc3T
- kES1V8VyySJ69k0OKaP1TK1gG/zBpZ9dRvmKLmTiF3McI=
+Content-Transfer-Encoding: 8bit
 
-=E2=80=A6
-> +++ b/drivers/misc/mikrobus/mikrobus_core.c
-=E2=80=A6
-> +static int mikrobus_pinctrl_select(struct mikrobus_port *port,
-> +				   const char *pinctrl_selected)
-> +{
-> +	struct pinctrl_state *state;
-> +	int ret;
-> +
-> +	state =3D pinctrl_lookup_state(port->pinctrl, pinctrl_selected);
-> +	if (IS_ERR(state)) {
-> +		return dev_err_probe(&port->dev, PTR_ERR(state),
-> +				     "failed to find state %s",
-> +				     pinctrl_selected);
-> +	}
-=E2=80=A6
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-I suggest to reconsider the need for extra curly brackets here.
+Add 'interrupt-names' property into SCIF nodes for clarity.
 
-See also:
-Section =E2=80=9C3) Placing Braces and Spaces=E2=80=9D
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Do=
-cumentation/process/coding-style.rst?h=3Dv6.8#n197
+This allows us to update the DT binding to mark 'interrupt-names' property
+as required for all the SoCs which have multiple interrupts and also allow
+us to validate the DT binding doc using dtbs_check.
 
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+---
+Note, all the SoCs with multiple interrupts using renesas,scif.yaml already have
+interrupt-names property apart from this SoC. This change allows us to validate the
+DT.
+---
+ arch/arm/boot/dts/renesas/r7s72100.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-Regards,
-Markus
+diff --git a/arch/arm/boot/dts/renesas/r7s72100.dtsi b/arch/arm/boot/dts/renesas/r7s72100.dtsi
+index e6d8da6faffb..08ea4c551ed0 100644
+--- a/arch/arm/boot/dts/renesas/r7s72100.dtsi
++++ b/arch/arm/boot/dts/renesas/r7s72100.dtsi
+@@ -125,6 +125,7 @@ scif0: serial@e8007000 {
+ 				     <GIC_SPI 191 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 192 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "eri", "rxi", "txi", "bri";
+ 			clocks = <&mstp4_clks R7S72100_CLK_SCIF0>;
+ 			clock-names = "fck";
+ 			power-domains = <&cpg_clocks>;
+@@ -138,6 +139,7 @@ scif1: serial@e8007800 {
+ 				     <GIC_SPI 195 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 196 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 193 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "eri", "rxi", "txi", "bri";
+ 			clocks = <&mstp4_clks R7S72100_CLK_SCIF1>;
+ 			clock-names = "fck";
+ 			power-domains = <&cpg_clocks>;
+@@ -151,6 +153,7 @@ scif2: serial@e8008000 {
+ 				     <GIC_SPI 199 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 200 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 197 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "eri", "rxi", "txi", "bri";
+ 			clocks = <&mstp4_clks R7S72100_CLK_SCIF2>;
+ 			clock-names = "fck";
+ 			power-domains = <&cpg_clocks>;
+@@ -164,6 +167,7 @@ scif3: serial@e8008800 {
+ 				     <GIC_SPI 203 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 204 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 201 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "eri", "rxi", "txi", "bri";
+ 			clocks = <&mstp4_clks R7S72100_CLK_SCIF3>;
+ 			clock-names = "fck";
+ 			power-domains = <&cpg_clocks>;
+@@ -177,6 +181,7 @@ scif4: serial@e8009000 {
+ 				     <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 205 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "eri", "rxi", "txi", "bri";
+ 			clocks = <&mstp4_clks R7S72100_CLK_SCIF4>;
+ 			clock-names = "fck";
+ 			power-domains = <&cpg_clocks>;
+@@ -190,6 +195,7 @@ scif5: serial@e8009800 {
+ 				     <GIC_SPI 211 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 212 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 209 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "eri", "rxi", "txi", "bri";
+ 			clocks = <&mstp4_clks R7S72100_CLK_SCIF5>;
+ 			clock-names = "fck";
+ 			power-domains = <&cpg_clocks>;
+@@ -203,6 +209,7 @@ scif6: serial@e800a000 {
+ 				     <GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 216 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 213 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "eri", "rxi", "txi", "bri";
+ 			clocks = <&mstp4_clks R7S72100_CLK_SCIF6>;
+ 			clock-names = "fck";
+ 			power-domains = <&cpg_clocks>;
+@@ -216,6 +223,7 @@ scif7: serial@e800a800 {
+ 				     <GIC_SPI 219 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 220 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 217 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "eri", "rxi", "txi", "bri";
+ 			clocks = <&mstp4_clks R7S72100_CLK_SCIF7>;
+ 			clock-names = "fck";
+ 			power-domains = <&cpg_clocks>;
+-- 
+2.34.1
+
 
