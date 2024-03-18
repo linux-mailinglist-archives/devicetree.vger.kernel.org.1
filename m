@@ -1,140 +1,111 @@
-Return-Path: <devicetree+bounces-51397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4B0487F337
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 23:44:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BE2387F3C2
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 00:04:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23E4D282C2C
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 22:44:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 22E1C1F21F65
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 23:04:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 315645A795;
-	Mon, 18 Mar 2024 22:44:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="WlS06RNI"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 781765BAE1;
+	Mon, 18 Mar 2024 23:04:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 859BC5A4DC;
-	Mon, 18 Mar 2024 22:44:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FACA5A7B6;
+	Mon, 18 Mar 2024 23:04:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710801852; cv=none; b=gMgSEuORreUXnaAIlZwHheSaIHb2+QLc6JVHAYTsHaZUMj684hyYvYOsovVCAzkLAtmJFnAzs93nlwGIrsiOAUDQX3YdzTCzlInBnTYo/B7hlElQBLBWNLPdBMdhG0gWjU62ipIfKNho8oNNOgBevFLnwiWONrSyua0ODx6X3mk=
+	t=1710803046; cv=none; b=ZueQLPCVHB1lA46YkVHCHfsFAuetPxyu+wa4RNEJScFMB8Qil6SuICItHSMlB/faZWaihLhLry9B5pTxD0S6YN/w4kb/osYPLJXWbtJYUdgk0v+t1c5J2tTqza3iGdL4bdPiaRYxaOpnlgA+CTm/6wmvId/yYTbKmO9B4a9rdXc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710801852; c=relaxed/simple;
-	bh=QVvPe8HqF/hEu0sn46LH7OPfrbqHYTjl9rmwiW8KbI4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=uVj9PvVewUhPaDmvkI0QIke/avWTZcwWYjgWRG6tZtJiPwuWgDjmVNY3HfddwnXRugqqMUnmLS3SLvfJYuShWVgmFmaJZUOraSJdPfgXmxntiimbHjt+St+0JRv+TZoGqraxuZQQp8napN8vJ8eXRN61hmEQcMjmac9CVrOuY/4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=sberdevices.ru; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=WlS06RNI; arc=none smtp.client-ip=37.18.73.165
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sberdevices.ru
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 6A2F1100011;
-	Tue, 19 Mar 2024 01:44:06 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 6A2F1100011
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1710801846;
-	bh=pa+89jrrCMIW8EjfG4aAgry+/vfLF62TIUqpulm7Y9A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-	b=WlS06RNIBTg0cU271+LYNhxdIVW8REnQkfL0Eq7bHWiEE2NaTUtuoRzgcod99PVOu
-	 90XcrVazKIOpMrrn2Lj5waYPR3pBMpoyE/svDsna6Hn/ncEAfIi4zZg45J34L38rKP
-	 lVo4tRAfocFgZCrdouhaItZsCLKbBfZq89MVAWFQJgD6s6aIvAf1uPVna8WJxugmor
-	 mr6LDxYqk7REZoeeNrR4tv0MyJNkhX43aJ/+u2MHK2TfgTH/luXpJhpJbSgoUEi8Ou
-	 ViJNVVN54rulbLvS7z84IQ4pLJeCbFV/tkIbru90+UwDb6C7lz+ie/jrcPfO/9lnvd
-	 wZ99a9nIdhl9w==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue, 19 Mar 2024 01:44:06 +0300 (MSK)
-Received: from [172.28.64.112] (100.64.160.123) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Tue, 19 Mar 2024 01:44:05 +0300
-Message-ID: <bafa1669-e98f-4d45-b5cc-0c707df5ed52@salutedevices.com>
-Date: Tue, 19 Mar 2024 01:43:20 +0300
+	s=arc-20240116; t=1710803046; c=relaxed/simple;
+	bh=dEnUrdYzB2esJ0bP5FqG8zL7R+wdwRz0lvaq+6mDJp8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=kOQWso/1yX67NYmWZi2Z7VZiCSJHgMVD9xo+hRGvvj+uALzqtCJBkPAQat934QOcSuCg89RM/TqamdY4iyKKOkYYdbwvrLyxftaK75/nKgWX94VyU1gyWmwPRCD3dlqfu785uGsN7hMghgtbFRDdDXyiWhyYwJ9UU1wnEyWMpj8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8ADA9DA7;
+	Mon, 18 Mar 2024 16:04:32 -0700 (PDT)
+Received: from minigeek.lan (unknown [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 392793F64C;
+	Mon, 18 Mar 2024 16:03:55 -0700 (PDT)
+Date: Mon, 18 Mar 2024 23:03:33 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Amit Singh Tomar <amitsinght@marvell.com>
+Cc: Yangtao Li <tiny.windzz@gmail.com>, Viresh Kumar <vireshk@kernel.org>,
+ Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, "Rafael J . Wysocki"
+ <rafael@kernel.org>, "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-sunxi@lists.linux.dev" <linux-sunxi@lists.linux.dev>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, Brandon Cheo Fusi
+ <fusibrandon13@gmail.com>, Martin Botka <martin.botka@somainline.org>,
+ Martin Botka <martin.botka1@gmail.com>
+Subject: Re: [EXTERNAL] Re: [PATCH v2 8/8] arm64: dts: allwinner: h616:
+ enable DVFS for all boards
+Message-ID: <20240318230333.72c1b6ed@minigeek.lan>
+In-Reply-To: <8425a1a2-8453-b705-2c14-a846fa05ae21@marvell.com>
+References: <MW4PR18MB5084E8C6D673B73FC208190BC62D2@MW4PR18MB5084.namprd18.prod.outlook.com>
+	<20240318105153.2c666647@donnerap.manchester.arm.com>
+	<8425a1a2-8453-b705-2c14-a846fa05ae21@marvell.com>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 12/25] ASoC: meson: t9015: add support for A1 SoC family
-Content-Language: en-US
-To: Mark Brown <broonie@kernel.org>
-CC: Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet
-	<jbrunet@baylibre.com>, Michael Turquette <mturquette@baylibre.com>, Stephen
- Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Liam Girdwood
-	<lgirdwood@gmail.com>, Linus Walleij <linus.walleij@linaro.org>, Jaroslav
- Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <alsa-devel@alsa-project.org>,
-	<linux-sound@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-	<kernel@salutedevices.com>
-References: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
- <20240314232201.2102178-13-jan.dakinevich@salutedevices.com>
- <5f8e8cd2-f9c4-4961-a85d-a0f3217294e6@sirena.org.uk>
- <c4c0e3a3-eaa8-42c6-bbd3-e5c6993dc63b@salutedevices.com>
- <30dadd4c-de10-43a7-baf8-8ddd49f5c80e@sirena.org.uk>
-From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-In-Reply-To: <30dadd4c-de10-43a7-baf8-8ddd49f5c80e@sirena.org.uk>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 184250 [Mar 18 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 10 0.3.10 53c821b925e16276b831986eabc71d60ab82ee60, {Tracking_smtp_not_equal_from}, {Tracking_arrow_text}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;sberdevices.ru:7.1.1,5.0.1;smtp.sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/03/18 20:02:00 #24276844
-X-KSMG-AntiVirus-Status: Clean, skipped
 
+On Tue, 19 Mar 2024 00:41:33 +0530
+Amit Singh Tomar <amitsinght@marvell.com> wrote:
 
+Hi,
 
-On 3/18/24 16:48, Mark Brown wrote:
-> On Sun, Mar 17, 2024 at 07:27:14PM +0300, Jan Dakinevich wrote:
-> 
->> Both mic bias and ADC's input mode depends on schematics and should be
->> configurable. What is the better way to give access to these parameters?
->> Device tree?
-> 
-> Yes.
-> 
->>>> +	SOC_SINGLE("ADC Mic Bias Switch", LINEIN_CFG, MICBIAS_EN, 1, 0),
->>>> +	SOC_ENUM("ADC Mic Bias Level", a1_adc_mic_bias_level),
-> 
->>> Why would micbias be user controlled rather than a DAPM widget as
->>> normal?
-> 
->> Yes, I could use SND_SOC_DAPM_SUPPLY, but it supports only raw values,
->> and doesn't supports enums. Here, I want to use enum to restrict
->> possible values, because only these values mentioned in the
->> documentation that I have.
-> 
-> A supply is an on/off switch not an enum.  Users should not be selecting
-> values at all.
+> >>
+> >> With the DT bindings now describing the format of the CPU OPP tables, we can include the OPP table in each board's .dts file, and specify the CPU power supply.
+> >> This allows to enable DVFS, and get up to 50% of performance benefit in the highest OPP, or up to 60% power savings in the lowest OPP, compared to the fixed 1GHz @ 1.0V OPP we are running in by default
+> >> at the moment.
+> >> [Amit] Could you please elaborate, what test were run to see 50 % performance benefits?  
+> > 
+> > Currently all H616 boards running mainline firmware and kernels run at a
+> > fixed 1GHz CPU clock frequency. If you happen to have a good SoC (bin 1 or
+> > 3), this patchset will allow you to run at 1.5 GHz, which is 50% faster.
+> > So anything that scales with CPU frequency should run much quicker.
+> >   
+> Okay, it would be interesting to see results of some benchmark here.
 
-Ok. For me it is great if I am free to move these kcontrols to device tree.
+But why? This is not a performance optimisation, it's adding a missing
+feature, because the CPU was locked to 1 GHz before, for safety
+reasons, due to missing thermal and DVFS capability. Now it's able to
+run at up to 1.5 GHz, as specified.
+If you are upset about the bold claim, I can just remove it from the
+commit message, it was just a heads up that we were leaving a lot of
+performance on the table at the moment.
 
--- 
-Best regards
-Jan Dakinevich
+Posting absolute performance numbers is a tricky subject, legally, so
+please run your own: http://www.netlib.org/benchmark/linpackc.new
+$ musl-gcc -s -static -Ofast -o linpack linpack.c -lm -march=native -fno-math-errno -funsafe-math-optimizations
+$ gcc --version
+gcc (Debian 12.2.0-14) 12.2.0
+# echo userspace > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
+# echo 1008000 > /sys/devices/system/cpu/cpufreq/policy0/scaling_setspeed
+$ ./linpack
+# echo performance > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
+$ ./linpack
+$ dc -e '3k $high $low /p'
+1.498
+
+Cheers,
+Andre
 
