@@ -1,85 +1,80 @@
-Return-Path: <devicetree+bounces-51365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCEAB87F0A7
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 20:58:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D69087F0C0
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 21:03:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9CA40B20A1D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 19:58:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B6CD5280601
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 20:03:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9880C56B90;
-	Mon, 18 Mar 2024 19:58:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1682657884;
+	Mon, 18 Mar 2024 20:02:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="qqreoRis"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="UR4BTesF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2091.outbound.protection.outlook.com [40.107.20.91])
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2090.outbound.protection.outlook.com [40.107.21.90])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B5FB56464;
-	Mon, 18 Mar 2024 19:58:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11C5657879;
+	Mon, 18 Mar 2024 20:02:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.90
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710791884; cv=fail; b=Pom+QZuqVtvI5WaYHpAEt/0S7cgFjKD6cUN9vvGL/+K6I0Uq9RR8pnl9p1cxeVoSWSrhejwEMVoiY+5PSh/eGoHIxz8GogOAUj318GLyzLcyoPz5MFY/wchVLElmcxOQ+8q5YVMxk8hER/aM7p66k/dgCevQQm/3uHMssSL5p30=
+	t=1710792171; cv=fail; b=mkod9/qpVhNbz4VGbf8CtEvdtGAE2WlFuwdUGOJtOP7U1yx6GHVqUvcYQbxOMOeCmOjbvyiKZvpZNAT3CTxhF6e8N6s0BnIf7RVxUsukORiqifSlgg1i/JKTwI6MZh64DchhbXMyBw9Lf3b+hS/X5QsYpn9F8u5ssEyas13b8H4=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710791884; c=relaxed/simple;
-	bh=DXajepVRN0ssYVNpFw80MeW7n6vRGa2+Xg+aXfj0a6E=;
+	s=arc-20240116; t=1710792171; c=relaxed/simple;
+	bh=JTojZFCK65KDJqbhTqasg1kl3O41gBUBv+kaprN9iww=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=bFlyvVKWOOGNq86ROg+NKvE9Za6Ldcf6848VVqyoybYkWR+DSj4z5xj4x3o1T7Vhw2HnpH+/nLkqiZtJ+5ZWaDfY9Xz/TGgJqR68I+qZDRHBNJwtt5qR4ZRrR3HI+pHNuBTAgee0d/dZjckknQNl950iqKsoqAhcLfjj7OUihGI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=qqreoRis; arc=fail smtp.client-ip=40.107.20.91
+	 Content-Disposition:In-Reply-To:MIME-Version; b=Qeo89Q6kbQUj6705JTt8kSBVlLARTF3hvCQQkbE6My2Afc5mMc4Qx80a72sF8nDjaXr3Igl4RN6zC7X8ZtsAAsVN37Y1+HmK9f6rhTEFw00ihbJuWHYPIHS3CHLihg/iRBYWI4d2Un5kSwPxc5Fvof3WbB7WSNWnynwlaOZIHAw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=UR4BTesF; arc=fail smtp.client-ip=40.107.21.90
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Cn394pOx/wD0AJElJsTV9t8rVi2LhRClIos26EGZGHJ0Gq2uDEyC6SEHmkey2VhPetjSrYYYmogpmGprOAvn+ugR/zHIrnsuQ4IT4ZiCSEkczM7f2jGBK9E/vScFS2bQR/lfWZzQVjCumOioQ8gfzyeZpboMln+VHViMLBpZiyYfnXVGWjKn5TN9ZbxyLyFHd5KyDCGOU1HjFpGzvTT835Jt/c6bT1BnpwpMEqrq1tlG05JclHutuAQmE2dUeqgyPhwE8/fUSj9hLF56I37HvoC+9sydNPuQXl96jCp/+ag0CviCJKiGs0ju6TcF7ylMyh8pcwvCC8OyMN4Ki/7vkg==
+ b=X/SsSkMD5ezqa9IjhBw+4ktXuhQEs7lIKplejQbZD2jaky5bjxQIQR3HHBfn0XSIU+JQioWtY9uWtNDcUGw+k7NFDNxapWhSMiBL5/87F4v+EBGk9MyJ+/9ndk5A2++WMMbcdj+pAO8Vl7xFZutjoGOMphUtkT4si+2hHMIMGVzMQPfHa5s7wdW2Me/V85LwWaYHeJ687Nb3se2hkdpOip7fu/MIZqq+lPmvadZRM+A863xv1gWWWWTR/AqIOLFqGGA2cuffLWRB3UhSw3WmdkTKecQSf4vTOE33r5sB2E6hLx6osryYdZx+0DpJ1JNjd+/IGWIK06d1ecVuMzanHw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nPkMmm5KXGDKYGZ7GBIWYH7bNRztwon/Vx852+eL1+w=;
- b=HlHPkn536RcKeUxuQORhe8Jse4qcG6cv/Q67JTJ6bTsatxVIyUT4uKGJswvOFmlYWsuHGxgel5I4ZtTi9d1jb81G/ZCtbUv5c+fQSUDg/iAAjH/lQiR50QQsgOPU2Fx3ssCdp6gTJs7FD8p31W0qWBZl6qWpqtAgCQs6z2e8nKf/BpXrZ74HlZp3jKOf1x8wJOsya57mdGKDCBas81fkdxAfYWf3QTu8MZPig8yxrXW9tAs1jgNRNp6Jz6Lg87hwJuwuSu3Nn3O7F53Sd3vzEQMH8EgGBc8ryU05X0W1bkmo91ypeXTL+fnEZVtL8eK6z5wZB74Quz630LQ1fQvk7w==
+ bh=L6Dt2mWJHL534nYeNRMUGwAviyOijujLkez0rZUPmnU=;
+ b=aIFbSdQA2h/H5JEEYUdxZ9q3xt2f3t1oM0G6hNydMzT4uORxolV/Jke3PGVL4BipreGKAl2vzodnS8vW2xcsRrSX+VYAl0THbdbY3WzYc5nVDwwhAx1lJQYrev9HybIjIsXZi0wenWseMK4/EgaXa0neKIhgVQAKSOFC7bzFjkAg7mNpyuIrks42Ib9tvZtaOvGVSbEHdnTQ6ZfCnQZ2qBjuBlb/d7f2gx2emHrwUIrT4GTf4LFd9+VhHnr4W8JWD9QqXu6rwchlQ0BsOwbl7e7zOpybb+9lwkEZxkWdaWWhII7odI8lXnrtMBG9PZBtrXmHM2LgKj+xHVwcIdIT9w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nPkMmm5KXGDKYGZ7GBIWYH7bNRztwon/Vx852+eL1+w=;
- b=qqreoRisChzvvS4Z4ZH0E4xm+dVIUKFl8Pm+3AjzG0/AUSBJJaHHisMeX2ef6Q94jArblzrekAaNFksxKKeWDNfPaat15o7YQziNqRxmd1dCAWbeZXyM8zbQwfYKlwp0dfbC/NHM3TRS/vsoUoJRnr2oEvkzdmg9FrMZJ8LJEqc=
+ bh=L6Dt2mWJHL534nYeNRMUGwAviyOijujLkez0rZUPmnU=;
+ b=UR4BTesFrP1GdrKevynfP8YICZbAXWiHyOFMji7POQIfI65HRNEiQLKgPjYvVFA+Mjc5SZBn5eFNmHqri0NmwKw+k1rXsHqrSwcfuWjcH4oBvmDmozBt07rsVqU9Dy8f39caAL0NIYq+9WB4PQX9MWhCLZ27GDtPbRqRaQRFX5M=
 Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AS8PR04MB8086.eurprd04.prod.outlook.com (2603:10a6:20b:3f6::22) with
+ by DU2PR04MB8790.eurprd04.prod.outlook.com (2603:10a6:10:2e1::23) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.26; Mon, 18 Mar
- 2024 19:57:58 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.25; Mon, 18 Mar
+ 2024 20:02:46 +0000
 Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
  ([fe80::3168:91:27c6:edf6]) by PAXPR04MB9642.eurprd04.prod.outlook.com
  ([fe80::3168:91:27c6:edf6%3]) with mapi id 15.20.7386.025; Mon, 18 Mar 2024
- 19:57:58 +0000
-Date: Mon, 18 Mar 2024 15:57:50 -0400
+ 20:02:45 +0000
+Date: Mon, 18 Mar 2024 16:02:36 -0400
 From: Frank Li <Frank.li@nxp.com>
-To: Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
-	Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev
-Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-	Serge Semin <fancer.lancer@gmail.com>
-Subject: Re: [PATCH v4 0/5] PCI: dwc: Add common pme_turn_off message by
- using outbound iATU
-Message-ID: <ZficvkryqzdwJIEd@lizhi-Precision-Tower-5810>
-References: <20240213-pme_msg-v4-0-e2acd4d7a292@nxp.com>
- <ZdNwxAi2KH/P07bi@lizhi-Precision-Tower-5810>
- <ZdzJMtgcaCPpJNNW@lizhi-Precision-Tower-5810>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Joy Zou <joy.zou@nxp.com>, ping.bai@nxp.com, lgirdwood@gmail.com,
+	broonie@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev
+Subject: Re: [PATCH v5 3/3] arm64: dts: imx93-11x11-evk: add pca9451a support
+Message-ID: <Zfid3D7JW5HGIZVc@lizhi-Precision-Tower-5810>
+References: <20240318095633.4079027-1-joy.zou@nxp.com>
+ <20240318095633.4079027-4-joy.zou@nxp.com>
+ <7f601f5e-98af-4a78-a3eb-04d814669973@linaro.org>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZdzJMtgcaCPpJNNW@lizhi-Precision-Tower-5810>
-X-ClientProxiedBy: BY5PR17CA0060.namprd17.prod.outlook.com
- (2603:10b6:a03:167::37) To DB9PR04MB9626.eurprd04.prod.outlook.com
- (2603:10a6:10:309::18)
+In-Reply-To: <7f601f5e-98af-4a78-a3eb-04d814669973@linaro.org>
+X-ClientProxiedBy: SJ0PR03CA0076.namprd03.prod.outlook.com
+ (2603:10b6:a03:331::21) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,162 +82,105 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS8PR04MB8086:EE_
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DU2PR04MB8790:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info:
-	zsmNPBqhRLZGv6mpqdLKtRbppQIfU2g1FBHETYwkcEcRXeQAXheA720bNthPPiT1QCgN/Ksm1R5m0JxV3/326Ewx6t/V/JtYYKYoBHlFTSo2Zp78AK2g7dCJSuIDSs3Le2riNg8XF5rfWlMCM0V8xgMTXPjIYtFs/rvbdaZSd+hWRyP9DWT0b2S1H1DkD33K6dPMKJWiU4jrjB8O6XTKm6SvSY49wfVBs4dB5gdbX+7DgekhAriHefuvKHialJ3Ct2fIxDL6BhhRtcF9aqw6jUrwmILXRioMISg4JteoZken+ZdfQW1hpPHZMcmRrJx9npro8Cg98hcQIvK9Rqjbmz0gtDeFi+jARhPHApkAZ0PjfMm/NPfeRygWtpD45CwNtDzvLj6EeBrW85flyXPEY2nvhS2TU5AYirm5gzJ270N3WqLJz1Q302YJOUiRfGhZpWUN0VEFzTq/ZPgqIWtjrCnu92r/hfYvVmV5f0Ln4BMLJxKSCapGUSDZjaOxtwF1nLiufBDNM4uS02kwrNJtlvO0c8imA9mXgW8vvKcCm1NY3nW4i1I2nRBqYEHKiz5x5ti0Zcb3ZFWH47iCJq6vYfKNctG771hZ6P3YDAiq78DvODMLZvzr0FyAg5ocVPFLfwVOPUVnRzAAgeJCVAlU2q5MGO9UxHWI+Wq6Rks07Mc=
+	6nJ81cethsgohCUVjy68MD+oksYFyng8ZpT1sQODdpCQ80ZB0eyB+CVnsFymjl3Vf1vVPIR6FNO5hglX2XFH7mPP4d2geuU4HsRm9hR6nAo7XanI4c424vbj1aDITCsNIGYxAbVZnpXOZftPdGao8Z1T9qP7v5Nnib5deuez0vJQuGESY9IASFYAVxstaZHrZ6QcdwTp0q0/MJaugq41zvqwG+WTyvsc2EC1plN4MU2RbWk+OcKHlPUxtukb/k3uYSzv2lZQeyY1melKatGZD5XlTnEEUkmkOvUj09zzu974FGNapNTw84aYwBOYj4a6wHY6hT2MPEUoM7Gknpb5JWEpK1Kin6LIad+qRHWKBZGR+qKrGVZCmzRkLH1VUdFBrb4Q94jT8z/jiWDZYB9N0IBbgmY4T+fvHvuDDRf6vUbsTlZ/ny1P0bYQxxgWRrVqJTmnWWdCWi2folb6eEx5nQB6a8uWhvxDKprEKxZV8gIC1YxXk4HU8MWaGIHB5XRsD2eUy1wylNVt+uQGNy5vJoM6Lq2cc1+BGQYRZIMVTelNnw16Oz5WeMgE3BckBH475zYQNE/eUK2pr52B+3kWZe5nvSCCw0c4m6wc+jIDvx4Yi7aEY1yzSwYNkjV4WhYMF7ZlfB/5qcYIElt3WXN/MoPPO2mHLLzrG5GpQkg8Z520Kp/ZY52BAqXgEGVs/iCtofbVnfZMQhrxg5pLAalx0Q==
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(7416005)(52116005)(1800799015)(376005)(921011)(38350700005);DIR:OUT;SFP:1102;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(52116005)(7416005)(376005)(366007)(38350700005);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?FZh8AXNYjaCOkbOm3yk1i7IELJlCEpcnLBGWS18o25OVTPspeZKlpyxLsq1W?=
- =?us-ascii?Q?sPaD53pHNZDU5ifkbikwIMAG55cLUcA/Hm66da+BFO3mGrG8GFWyCyeTbzUg?=
- =?us-ascii?Q?IhRwzpXdPtayiYpBCUwdAn9ZNyqMq0VZlaZJW2YI1Qnm8GAxj1GqdrUIuJu6?=
- =?us-ascii?Q?L8HkEiNqQm7QcipqjAO0L6DtZsDklUWtA715bqXgoJUatMByjIhxA702Eyd+?=
- =?us-ascii?Q?kTJVCgRKwdAt5c0EspM3xwcBAmKFKtNZR+7yKAQp/difsleD43NKvHMHqnXJ?=
- =?us-ascii?Q?ebiO1Da9tK4Tx/LPnJNdijMI2ZXAAdsOftcbSOc1BvLFNdq4sbqXOFAFCDwJ?=
- =?us-ascii?Q?7/9Otap/sxYKfKNZED/Ebi/gS5b/FB/q1/8BDy7BFOg8YbBMZEdyq0vBpvuP?=
- =?us-ascii?Q?E2SXNjqbS6Z6tTTL1rF+gnVP1sd8+mFtE0m0I4u3+oQEm8b2//NvhQen5yem?=
- =?us-ascii?Q?75O4nTokZxKgn8gGRXGZ9HGJ24ZowsATMDOovgIqNTdvIjkw4E5Zy0id12XR?=
- =?us-ascii?Q?Th9U1kK8ABFCbLikEyHrCoLQp9leRv3fLb1NMPR3S6hXkHdSYH/A8365wq7j?=
- =?us-ascii?Q?z47dFRj+33QobzhkrEjrUCgHtvkEp38FUwt4hCKtOQ1GTLh/IyN/3iMmbCbQ?=
- =?us-ascii?Q?1+Y04u24u25VgXdUaAh+5UtoJ/alKk02LCJNd8MElVGP5wkWjQetnuFYrrXh?=
- =?us-ascii?Q?HhSl3YaGamoDyxI1qHx96UzgBTJVSMat722rQoqm2TUp60IoA5HWw+GorBJ9?=
- =?us-ascii?Q?7qduP/EfUquYyIa7hWUuuE9q+S7LxuT38+CCYHV+GdYe5FXJzyhuSyWt+yPs?=
- =?us-ascii?Q?R6I4h5SVsVzozkT0DxmdOgR21/8gMJiV7nmpGxUZfxILIRyQvw2CglEAqeFu?=
- =?us-ascii?Q?skWQPllSKuH0uq8UcfkS+BP6NMl1qHoAHOdrc1oi7DM2kqJwTryaW4LcMu1W?=
- =?us-ascii?Q?Pt2k4zVMex6/ry75xF9v5FoSBJ5pQbnNtZDOS9snIxN7Ti4yPf3T2chfyzfl?=
- =?us-ascii?Q?ZUw7Dlnt/i+Vf/cBarMjmn1XiUwDyAZyFidZm93ZTGllzU7cHWE6YehOsq+G?=
- =?us-ascii?Q?Es37ftAOBX0En7++p3n0u6IBmkMbcNEciEpdlwm30e1VmVKu/NMVnj9eCTlj?=
- =?us-ascii?Q?uT+wfu6YKSItGcZwcVAohbtYkKDjTRCeC9no1CBIw0cxITYbl0cAVzAL4/bE?=
- =?us-ascii?Q?vIWxJhuyRq5/R13RfgbQFmiuylxwZloFE5Fm4bK68wlM4Dxrfeg9Yzx1C+rO?=
- =?us-ascii?Q?QG5Ap3jibJZT06i32RbUJ/XB8LKnK1ZQXvIfsdGzdnpzC2Ya2unhdLe+H25A?=
- =?us-ascii?Q?uDq4m+R8HVPCBEaQw2IZ9cvL+WN2CWFckcYlAcx4ZIu8PB6NYdRiDRbtWTcY?=
- =?us-ascii?Q?e0Gu/v/7y3BAHuGrKyhYkRusLGyzm2gvMTs8Emuqb+dBlGpNAqRXNL+9B2Ko?=
- =?us-ascii?Q?6JjhMmLuPeAvRKRWIM4YHeh5Q6lQpBfiS46JxCBR9H4I9+EuU2DmKp33FEbC?=
- =?us-ascii?Q?rUHjGQ2VakNt3VeeuwldhqJw55cERsiNbzkkkERSkTroWYGlu+1Ycn1gJ4SD?=
- =?us-ascii?Q?yV7b2XY5eoJWV7yshYSr05FTlRAwHno7/CeGfwgK?=
+	=?us-ascii?Q?MX3VQIPFP9nE1WXWiVE+M6oZ+is7mYStT1JkZ9BBiNyndl+xSjMAlzTy5vi5?=
+ =?us-ascii?Q?r/A0j1ovJ4CjUFuBKmg1crqJxhIGlUb4W4/fgX902GhPg6RlslFKjANNk1W6?=
+ =?us-ascii?Q?0PNIBuAMQj1RhjK2FWDtD6whDt7RhtuzipZOud8WmNQkZHPFPVjUgNRIieM/?=
+ =?us-ascii?Q?EGAqV1+wTA8u+ObI2PDPJqtTHRYLhIDaA8OtoIBF5NUcaQfXzsfDJ8Vwa5fE?=
+ =?us-ascii?Q?Ww1kDiS7wjljskw2vM1AyD8JNd7BsY68pcdmTzSLJWjNF/ckDfyS+i7BBXmd?=
+ =?us-ascii?Q?yz/cHw5fCHuy8b0YJ8LtYcn3B91NOoemcG/eNX+szFsdSeb4tXMrPtoryzRZ?=
+ =?us-ascii?Q?qe2s7baivw4rDo8vxaZsgwJu0+qa3lvs1BMK4TlBdwcwomjFb/UJnAqwKqmp?=
+ =?us-ascii?Q?mmMxdvpaP/Qm2YaoEID1gtYitJv28uju4nybn9p5YtuLJrbhi/kf1rsDuFYb?=
+ =?us-ascii?Q?NIxu2c/S/HdEMeHrkx1m9ywCZ8E9fpfwczGxlrvR+0qGHPDFowhfQJ3a1xvd?=
+ =?us-ascii?Q?Pkavauug7GYj/jkIasvfwrqKgcf//F/FSNcpl0k0BSSjsNRFwUWlA2gjrkM1?=
+ =?us-ascii?Q?OdjXuKOoa5jgnlhgYPNwis9fkR8C0poDf6w28KXZOngyrg0Qdy23v+cRL361?=
+ =?us-ascii?Q?eQsYJkA3qfvBZ3m1C6yy3ZowqV2rV1Lr4mMvkMpAl/i5NOq1xICfXVmr03mu?=
+ =?us-ascii?Q?z0YDozv6q4+NBEG8swqX98mxYrAfvYzcmF9oHjkEB9dGG58QEKgbIk2T5/kG?=
+ =?us-ascii?Q?eoZyQ9uOlCxlRCQ2+6ZRkozDCASLtw2pwO0+ID1ysm9lcc9gLFVr0W24xNiC?=
+ =?us-ascii?Q?GEj+B7PvGRo4FWtuwfz1hFn/Xvl5YtfbaX2on54/4ljkKzoEpP+yNu8osnxJ?=
+ =?us-ascii?Q?CsERaoUUSHg0Ew4+5ZZxrpBpEAcaV+WswMtWE0+mmayeccWmUbz3N1id5CY6?=
+ =?us-ascii?Q?UPtf+SXGomGalF9fuuLuYuxzWY8Lr80g9aM4IqYAg71CA9UxMGAihSi+j25Z?=
+ =?us-ascii?Q?/WRLFdhvKCfPZwulZjIyE0mXTG4F2w2H1q7p3x7gP7WfcNAmokc58o3GhQXF?=
+ =?us-ascii?Q?J6znBNMMNA8tmCIJi/hACuyEfo/eg8YgGmSzmirGkvUP8rV1zqlt5mEq2nOE?=
+ =?us-ascii?Q?UJQ/ZRhqeqj07Z7C/Gmu8WwPoYTTonuJTi+6pvv1Usq9LX1aGLIRRq56R3sx?=
+ =?us-ascii?Q?ahbA5LUkJk6tFMHsfWb5/2YVJAJi00I42NpkgOzWBHXv20atyvMV7OLAfxex?=
+ =?us-ascii?Q?CvH3jrzUXKE9hbCRH4uirsOpJq8mR9LLW54Gyp6RDHtcIKKOJ0eHQwRaGgnS?=
+ =?us-ascii?Q?ApHL39cfbBdgay51WyHo0GHQrbx9FKBdYpjr7dn2DZqG1PIrTu0xDzW+tGGM?=
+ =?us-ascii?Q?k+CyZ7szRUAZBBhIBtQ3KhgJefv9s26kIK35CIqCHOHNVB3iVpT18kqb2mEV?=
+ =?us-ascii?Q?+waq3aoOTiovLr3dc+X/kXgeEY9mdnFldJ9LUe+WRwSTSgqpB6nq1PIChoRq?=
+ =?us-ascii?Q?KmOs0C3ENi58A4dlXMWiiMT3IU6ciVGQ6GhQMLQbJwpFRHS/mbsYQiU1J4Xx?=
+ =?us-ascii?Q?pla6k716m5MUJH8PFv06wkQwbxQt03CGy094IFLB?=
 X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5f52a7dc-721d-4a29-6924-08dc4785b581
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9626.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 94b4e32a-e396-4e47-0593-08dc478660f6
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2024 19:57:58.5816
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2024 20:02:45.8554
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rT2pnvqEBhNVAMmw+UywZ1PjFrJW0Nq5mwro8Jrh4UQYf6WHkua6Wyd10xT+h7xM35Yw4epvvzQUhqPafrHiIg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8086
+X-MS-Exchange-CrossTenant-UserPrincipalName: AR9220nBBlENoXlNgeZaFaRQrydHpRNbVNYZ0iJEE7M3VdZ7xUjO1uehCtdbyqNWZR9djcoIs/fZgkLcpaxqfg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8790
 
-On Mon, Feb 26, 2024 at 12:24:02PM -0500, Frank Li wrote:
-> On Mon, Feb 19, 2024 at 10:16:20AM -0500, Frank Li wrote:
-> > On Tue, Feb 13, 2024 at 04:50:21PM -0500, Frank Li wrote:
-> > > Involve an new and common mathod to send pme_turn_off() message. Previously
-> > > pme_turn_off() implement by platform related special register to trigge    
-> > > it.                                                                        
+On Mon, Mar 18, 2024 at 07:50:51PM +0100, Krzysztof Kozlowski wrote:
+> On 18/03/2024 10:56, Joy Zou wrote:
+> > Support pca9451a on imx93-11x11-evk.
 > > 
-> > @mani:l
+> > Signed-off-by: Joy Zou <joy.zou@nxp.com>
+> > ---
+> > Changes in v5:
+> > 1.adjust gpio@22 to the front of pmic@25.
 > > 
-> > 	Do you have chance look this patches. Actually other patches
-> > already reviewed. Only missed
+> > Changes in v4:
+> > 1. modify the comment for uSDHC but not i2c.
 > > 
-> > 	PCI: dwc: Add common send PME_Turn_Off message method
-> > 	PCI: Add PCIE_MSG_CODE_PME_TURN_OFF message macro
+> > Changes in v3:
+> > 1. modify the voltages constraints according to the imx93 datasheet.
+> > ---
+> >  .../boot/dts/freescale/imx93-11x11-evk.dts    | 111 ++++++++++++++++++
+> >  1 file changed, 111 insertions(+)
 > > 
-> > 	This patch will reduce customer's PME_Turn_off method. Many code
-> > can be cleaned after this.
+> > diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
+> > index 9921ea13ab48..478a134d4416 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
+> > +++ b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
+> > @@ -183,6 +183,104 @@ &wdog3 {
+> >  	status = "okay";
+> >  };
+> >  
+> > +&lpi2c2 {
+> > +	#address-cells = <1>;
+> > +	#size-cells = <0>;
+> > +	clock-frequency = <400000>;
+> > +	pinctrl-names = "default", "sleep";
+> > +	pinctrl-0 = <&pinctrl_lpi2c2>;
+> > +	pinctrl-1 = <&pinctrl_lpi2c2>;
+> > +	status = "okay";
+> > +
+> > +	pcal6524: gpio@22 {
+> > +		compatible = "nxp,pcal6524";
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pinctrl_pcal6524>;
+> > +		reg = <0x22>;
 > 
-> @mani and @lpieralisi
-> 
-> 	Do you have chance to look these?
+> reg is the second property. Please do not introduce some other coding style.
 
-@mani, @lpieralisi and @Bjorn
+Yes, Do you know if there are any tools to check it? If no, which tools
+should be good to add such check. I may add it if have free time.
 
-Any comments? It will benefit for all dwc platform. If this method
-accepted, we can remove all customized PME send function at difference
-platform.
-
-Frank
-
+Frank Li
 
 > 
-> Frank
+> Best regards,
+> Krzysztof
 > 
-> > 
-> > Frank Li
-> > 
-> > >                                                                            
-> > > But Yoshihiro give good idea by using iATU to send out message. Previously 
-> > > Yoshihiro provide patches to raise INTx message by dummy write to outbound 
-> > > iATU.                                                                      
-> > >                                                                            
-> > > Use similar mathod to send out pme_turn_off message.                       
-> > >                                                                            
-> > > Previous two patches is picked from Yoshihiro' big patch serialise.        
-> > >  PCI: dwc: Change arguments of dw_pcie_prog_outbound_atu()                 
-> > >  PCI: Add INTx Mechanism Messages macros                                   
-> > >                                                                            
-> > > PCI: Add PME_TURN_OFF message macro                                        
-> > > dt-bindings: PCI: dwc: Add 'msg" register region, Add "msg" region to use  
-> > > to map PCI msg.                                                            
-> > >                                                                            
-> > > PCI: dwc: Add common pme_turn_off message method                           
-> > > Using common pme_turn_off() message if platform have not define their.
-> > > 
-> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > ---
-> > > Changes in v4:
-> > > - Remove dt-binding patch. Needn't change any dts file and binding doc.
-> > >   Reserve a region at end of first IORESOURCE_MEM window by call
-> > >   request_resource(). So PCIe stack will not use this reserve region to any
-> > > PCIe devices.
-> > >   I tested it by reserve at begin of IORESOURCE_MEM window. PCIe stack
-> > > will skip it as expection.
-> > > 
-> > >   Fixed a issue, forget set iATU index when sent PME_turn_off.
-> > > 
-> > > - Link to v3: https://lore.kernel.org/r/20240202-pme_msg-v3-0-ff2af57a02ad@nxp.com
-> > > 
-> > > Changes in v3:
-> > > - fix 'MSG"
-> > > - Add pcie spec ref in head file
-> > > - using function name dw_pci_pme_turn_off()
-> > > - Using PCIE_ prefix macro
-> > > - Link to v2: https://lore.kernel.org/r/20240201-pme_msg-v2-0-6767052fe6a4@nxp.com
-> > > 
-> > > Changes in v2:
-> > >   - Add my sign off at PCI: dwc: Add outbound MSG TLPs support
-> > >   - Add Bjorn review tag at  Add INTx Mechanism Messages macros
-> > >   - using PME_Turn_Off match PCIe spec
-> > >   - ref to pcie spec v6.1
-> > >   - using section number.
-> > > 
-> > > - Link to v1: https://lore.kernel.org/r/20240130-pme_msg-v1-0-d52b0add5c7c@nxp.com
-> > > 
-> > > ---
-> > > Frank Li (2):
-> > >       PCI: Add PCIE_MSG_CODE_PME_TURN_OFF message macro
-> > >       PCI: dwc: Add common send PME_Turn_Off message method
-> > > 
-> > > Yoshihiro Shimoda (3):
-> > >       PCI: Add INTx Mechanism Messages macros
-> > >       PCI: dwc: Consolidate args of dw_pcie_prog_outbound_atu() into a structure
-> > >       PCI: dwc: Add outbound MSG TLPs support
-> > > 
-> > >  drivers/pci/controller/dwc/pcie-designware-ep.c   |  21 ++--
-> > >  drivers/pci/controller/dwc/pcie-designware-host.c | 145 +++++++++++++++++++---
-> > >  drivers/pci/controller/dwc/pcie-designware.c      |  54 ++++----
-> > >  drivers/pci/controller/dwc/pcie-designware.h      |  21 +++-
-> > >  drivers/pci/pci.h                                 |  20 +++
-> > >  5 files changed, 197 insertions(+), 64 deletions(-)
-> > > ---
-> > > base-commit: e08fc59eee9991afa467d406d684d46d543299a9
-> > > change-id: 20240130-pme_msg-dd2d81ee9886
-> > > 
-> > > Best regards,
-> > > -- 
-> > > Frank Li <Frank.Li@nxp.com>
-> > > 
 
