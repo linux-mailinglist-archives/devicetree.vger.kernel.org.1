@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-51138-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51139-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F3BF87E47C
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 08:56:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7BE787E483
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 08:58:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7E2A51C2048C
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 07:56:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76136281B2C
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 07:58:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1885C249ED;
-	Mon, 18 Mar 2024 07:55:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95F40249ED;
+	Mon, 18 Mar 2024 07:58:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jyX6yYh/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GsJEdQr4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80DF0249E5
-	for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 07:55:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9697241E1
+	for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 07:58:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710748557; cv=none; b=Dck2par4mM8UxG22kgDfY1jvgNbFKEYSzq34B3HsdtrQWJIyuNHrqv9x8s30qtyb3phuyTAY+nNWntFeRCT+C00V+4zxkwirXvkEEYVAxo5TEK/K3kA2OMWn59CpBocWaBcnObd/BgXF+0yoDbZbLmbbdQveL9Rco/kqj7Drq4E=
+	t=1710748710; cv=none; b=gcfrCKJtC2GuKRvh958F/fKFVo21h4TaE4XJkRdXW5+2DSCzhsWqHN9TT0bBN/Ng5HTWWbthlF6sfBJv9/FrlEzB7SM+CAFoyrbjhGujFjgM+b56Br26DasQ0tUxKvEu8obcikKdDw25zG9gGf+4jHHOCpmMFGeuCt0KD65MsiU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710748557; c=relaxed/simple;
-	bh=aDZnBBneiWHtvV04ZlUZq0+6FYjUW1DNvppSIAkiUGo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CyLsocygn+TQe92p01v+KtRCZSpfqurDfe7Peed3ukwJ+oW7tHEb3pE0BvkjbjAzaEmYjMMvofKUKPUajm3yEwXJI0vEYykp9bmsJAESpDC4xmSKJPOsnQ8wjXDH18GuwQjhEfrVKA3rEA+TFqdZIfjvNbov3Zg+Kz92UWPDtAw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jyX6yYh/; arc=none smtp.client-ip=209.85.161.41
+	s=arc-20240116; t=1710748710; c=relaxed/simple;
+	bh=Fst39intlKRDb/8ggxNIhAICJfqxINb4emMiCTbBLds=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=Vg2OG44rUHqUEhilPrhHYgz1WnkTDB89Clj0lN7Xk7icui7yldTtColZR+90TVVJ9xDQLd7IhGg8tOM1co/mr+G/gI1ESN4C02ylSWg2SR3EWuterBLvwYK1ZGN9j6gXMR4WBGyMPzGyVuaLAE1YD8wAoBxKgod8otY0YWPKMg4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GsJEdQr4; arc=none smtp.client-ip=209.85.208.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oo1-f41.google.com with SMTP id 006d021491bc7-5a492093073so947019eaf.0
-        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 00:55:55 -0700 (PDT)
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-565c6cf4819so8696857a12.1
+        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 00:58:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710748554; x=1711353354; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1710748707; x=1711353507; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ztrWy7AuOAQ+IL99ftGb5Cg4rREAV9eGD+VoH9bdgno=;
-        b=jyX6yYh/poxxK6MmmW8JMdLjGWFIup2fRdedIb1pfUziHt5pYC+T3LvgQPFbXxZ9Nn
-         kVG2s4ydvpr1lYkGyUWS4BlGfwHw2Uh/TCWuXuFNBPvrCAtConpbf92xlwF1gMBtUDWT
-         Ip7zEOQau2cypaMh7GuhgqDsCzUQLs8Np7szMzjqOCjbX5+Nv9hdmIhA7FBl6k5m5Dza
-         YWnTvzoi0MW2tRf+s2bp/VIwQ33hm97WE5ZtMK2AqGYKcxlQDJijHFvlEE45H5Tv13Cf
-         KXFJfqSYrJwzmwCmT9JAje+q8FwMBNowXzCpMOjyHTGwyFSgRDmTNtIcMRDv0QqRhogI
-         lDfg==
+        bh=QFGE95RVCnIMXh4rzBbheQjJCqPcx4uOp3c9aQsSW7U=;
+        b=GsJEdQr4pKSPUuMOlGATSqcAlohQXnjQkW5DYFwKGpdU3TJ9iyz1ji6RdkTSchhfsS
+         HO/+034C6HtKofXuq+w9LeROKzScenFuZGGlibOl8flfH8ykMcnda61D//kdPBR9eOfq
+         IqmtzRHCJkJpwgwylTgsqtde/TZz/WnvYC9KVmM6ve5xPBX+pF+BoSXFvL0upeN01n7l
+         a4U06OpxLa67YRTeAR6SWawgoRIBoPeTDj2ildHVUsAH+CNGE3Vbr9NTfUDcJ3nqTMrd
+         qRaoqqbGLQFjdZNVw0U6aAmc3tq0MKp7P27DPQwapjeYL3XsHoDowHby1WznImFpmOSV
+         p3nA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710748554; x=1711353354;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1710748707; x=1711353507;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ztrWy7AuOAQ+IL99ftGb5Cg4rREAV9eGD+VoH9bdgno=;
-        b=dlWG6tOFTwX/FQ9fDqoz9ok/oDNiEIq6qiSuMMCoWHoiuPap6MzXjWa1R6Y95DSJDU
-         5NwBq/NYp6OpxDvpLhd7vOFDoMLw85y2nidSu1k0dkhpcMe7AvxgXk5vF7QJbGN+13tH
-         cYCQa8qf4GXJaK+iW72q3YAge6CzJF4lb70VcS64I0Bl20evYIhjO7amTBmU038mu0he
-         kFROxWpX7wm6z5WpBJXxDCaHHVEVjw1P/1p3r6H1M18PlwhoyBud67bWjm9j+z2iq+ef
-         utjuCr9nBN9MqBWjFlqNpbSUf4CRKaqL3FRJpmR4Z/Rr3gsR7LDnXgzRi54lmUtC6LXr
-         9nRw==
-X-Forwarded-Encrypted: i=1; AJvYcCXYp0vpwMtcDJtNWtXV0Lxgfs0TksAD/3n5Zr9E1EYxZ53M5MRAVNOoVLcW96t1XADKtr0WPc+0SPZx/xqIQo1jjeKqvM9G6eBamA==
-X-Gm-Message-State: AOJu0YyezmYzY4vdGi2LUD0lH4nae5hgyluMCKwrSnfn9sFgwRd8xTyp
-	XKC/ulUaj0LDPOFPcfcyqEqw36nFiDGJHQUmapA9whpuwGR0CcFk7kAB0fFKCl8=
-X-Google-Smtp-Source: AGHT+IG14pt+bpF47yyhiej5bFRvCVgC9NsbiUMotPSg9NX9tGXGNQ5p13LEqZMjZwWHowHorMlZmg==
-X-Received: by 2002:a05:6820:b08:b0:5a4:8680:7c96 with SMTP id df8-20020a0568200b0800b005a486807c96mr2568092oob.1.1710748554424;
-        Mon, 18 Mar 2024 00:55:54 -0700 (PDT)
+        bh=QFGE95RVCnIMXh4rzBbheQjJCqPcx4uOp3c9aQsSW7U=;
+        b=hfscQT3qByqBpDkMC2YNLf4MYE9kKm3VTVXXnvOAt5UBVouxXzBO9g71GWfwVAaH/l
+         +VFw7TwDauoC1pGzKOzm7j6YBCY/p4yBbhy9dSBNFIaOHbaw2PmE36aBw69yf3E4X0UY
+         mZRmMKPchrngjAwNZlG+lxvnmjRHIfX0M2cVWD6ItI2VoR3QEPKOQbxpvwqsWrGuf9Gf
+         v4wgwi11U+mE3wgOy7w2i9Ue6xMDgYzREn/yWw9vw4K0rlkhUyIwoTaofkMX9i2IN6YX
+         iVPaJdF1RRPY3L+LY3dZUjYUvwco0NdDruyghcc0jCSAPEZFXm/SlR/QkHDAhUCdNIwG
+         35ew==
+X-Forwarded-Encrypted: i=1; AJvYcCXrTWzyMFsyGTwyX0DEbBISXec7x1y0bDmlmlkByGUUTiOzu5JzLJV5sqmo0YlEPyDdLVf1bWTXtAYkXxMmNUEro7OS09v3r9mYtQ==
+X-Gm-Message-State: AOJu0YxpJm7YIhSCDubxYuxXFCk8rYNSJmkW3Z/5P1rKk24awJuORqxQ
+	1R8jJEaUyNc6cf9hk357fcKmzWjlLGYoc523CjEPZLM/pDegr0IruCH9Dnwal7Q=
+X-Google-Smtp-Source: AGHT+IGWsAI8IE05B16HXMG4BE0mLPO5bP9vn+BWp97d0rV7EEb40TJsYMYSTg3wKa+JjrRBguKLGA==
+X-Received: by 2002:a50:cccd:0:b0:568:b71a:5954 with SMTP id b13-20020a50cccd000000b00568b71a5954mr1822684edj.10.1710748707006;
+        Mon, 18 Mar 2024 00:58:27 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id bm8-20020a056820188800b005a4b2172e48sm420608oob.41.2024.03.18.00.55.51
+        by smtp.gmail.com with ESMTPSA id co24-20020a0564020c1800b00568c613570dsm1911155edb.79.2024.03.18.00.58.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Mar 2024 00:55:54 -0700 (PDT)
-Message-ID: <231b373d-82e7-46da-ab24-96aea6857225@linaro.org>
-Date: Mon, 18 Mar 2024 08:55:51 +0100
+        Mon, 18 Mar 2024 00:58:26 -0700 (PDT)
+Message-ID: <d94a4833-3fe2-4dfa-be88-9508971d12bd@linaro.org>
+Date: Mon, 18 Mar 2024 08:58:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,19 +76,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 8/8] arm64: dts: qcom: qcs6490-rb3gen2: Update the
- LPASS audio node
+Subject: Re: [PATCH v2] drivers: watchdog: ast2600 support bootstatus
 Content-Language: en-US
-To: Taniya Das <quic_tdas@quicinc.com>, Stephen Boyd <sboyd@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+To: Peter Yin <peteryin.openbmc@gmail.com>, patrick@stwcx.xyz,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240318053555.20405-1-quic_tdas@quicinc.com>
- <20240318053555.20405-9-quic_tdas@quicinc.com>
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
+ <linux@roeck-us.net>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
+References: <20240318055219.3460121-1-peteryin.openbmc@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -134,43 +133,121 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240318053555.20405-9-quic_tdas@quicinc.com>
+In-Reply-To: <20240318055219.3460121-1-peteryin.openbmc@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/03/2024 06:35, Taniya Das wrote:
-> Update the lpassaudio node to support the new compatible.
-
-Why? The most important information and you ignore it... What is easily
-visible from the diff.
-
+On 18/03/2024 06:52, Peter Yin wrote:
+> Add WDIOF_EXTERN1 and WDIOF_CARDRESET bootstatus in ast2600
 > 
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> Regarding the AST2600 specification, the WDTn Timeout Status Register
+> (WDT10) has bit 1 reserved. To verify the second boot source,
+> we need to check SEC14 bit 12 and bit 13.
+> The bits 8-23 in the WDTn Timeout Status Register are the Watchdog
+> Event Count, which we can use to verify WDIOF_EXTERN1.
+> 
+> Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
 > ---
->  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
+> Change log:
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> index 97824c769ba3..dc7edea7f7c8 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> @@ -1,6 +1,6 @@
->  // SPDX-License-Identifier: BSD-3-Clause
->  /*
-> - * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
->   */
+> v1 -> v2
+>   - Add comment and support WDIOF_CARDRESET in ast2600
 > 
->  /dts-v1/;
-> @@ -430,6 +430,11 @@
->  			   <GCC_WPSS_RSCP_CLK>;
->  };
-> 
-> +&lpass_audiocc {
-> +	compatible = "qcom,qcm6490-lpassaudiocc";
+> v1
+>   - Patch 0001 - Add WDIOF_EXTERN1 bootstatus
+> ---
+>  arch/arm/boot/dts/aspeed/aspeed-g6.dtsi |  8 ++---
 
-No, you are creating some spaghetti DTS. Boards do not change SoC
-compatibles.
+No, DTS is always separate patchset.
+
+>  drivers/watchdog/aspeed_wdt.c           | 45 ++++++++++++++++++++++---
+>  2 files changed, 44 insertions(+), 9 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
+> index e0b44498269f..23ae7f0430e9 100644
+> --- a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
+> @@ -556,24 +556,24 @@ uart5: serial@1e784000 {
+>  
+>  			wdt1: watchdog@1e785000 {
+>  				compatible = "aspeed,ast2600-wdt";
+> -				reg = <0x1e785000 0x40>;
+> +				reg = <0x1e785000 0x40>, <0x1e6f2000 0x20>;
+
+And how does it pass dtbs_check? Where did you update the bindings?
+
+>  			};
+>  
+>  			wdt2: watchdog@1e785040 {
+>  				compatible = "aspeed,ast2600-wdt";
+> -				reg = <0x1e785040 0x40>;
+> +				reg = <0x1e785040 0x40>, <0x1e6f2000 0x020>;
+>  				status = "disabled";
+>  			};
+>  
+>  			wdt3: watchdog@1e785080 {
+>  				compatible = "aspeed,ast2600-wdt";
+> -				reg = <0x1e785080 0x40>;
+> +				reg = <0x1e785080 0x40>, <0x1e6f2000 0x020>;
+>  				status = "disabled";
+>  			};
+>  
+>  			wdt4: watchdog@1e7850c0 {
+>  				compatible = "aspeed,ast2600-wdt";
+> -				reg = <0x1e7850C0 0x40>;
+> +				reg = <0x1e7850C0 0x40>, <0x1e6f2000 0x020>;
+>  				status = "disabled";
+>  			};
+>  
+> diff --git a/drivers/watchdog/aspeed_wdt.c b/drivers/watchdog/aspeed_wdt.c
+> index b4773a6aaf8c..65118e461130 100644
+> --- a/drivers/watchdog/aspeed_wdt.c
+> +++ b/drivers/watchdog/aspeed_wdt.c
+> @@ -33,6 +33,7 @@ struct aspeed_wdt {
+>  	void __iomem		*base;
+>  	u32			ctrl;
+>  	const struct aspeed_wdt_config *cfg;
+> +	void __iomem		*sec_base;
+>  };
+>  
+>  static const struct aspeed_wdt_config ast2400_config = {
+> @@ -82,6 +83,15 @@ MODULE_DEVICE_TABLE(of, aspeed_wdt_of_table);
+>  #define WDT_RESET_MASK1		0x1c
+>  #define WDT_RESET_MASK2		0x20
+>  
+> +/*
+> + * Only Ast2600 support
+> + */
+> +#define   WDT_EVENT_COUNTER_MASK	(0xFFF << 8)
+> +#define   WDT_SECURE_ENGINE_STATUS	(0x14)
+> +#define   ABR_IMAGE_SOURCE		BIT(12)
+> +#define   ABR_IMAGE_SOURCE_SPI		BIT(13)
+> +#define   SECOND_BOOT_ENABLE		BIT(14)
+> +
+>  /*
+>   * WDT_RESET_WIDTH controls the characteristics of the external pulse (if
+>   * enabled), specifically:
+> @@ -313,6 +323,7 @@ static int aspeed_wdt_probe(struct platform_device *pdev)
+>  	const char *reset_type;
+>  	u32 duration;
+>  	u32 status;
+> +	u32 sec_st;
+>  	int ret;
+>  
+>  	wdt = devm_kzalloc(dev, sizeof(*wdt), GFP_KERNEL);
+> @@ -330,6 +341,12 @@ static int aspeed_wdt_probe(struct platform_device *pdev)
+>  	if (IS_ERR(wdt->base))
+>  		return PTR_ERR(wdt->base);
+>  
+> +	if (of_device_is_compatible(np, "aspeed,ast2600-wdt")) {
+
+
+> +		wdt->sec_base = devm_platform_ioremap_resource(pdev, 1);
+> +		if (IS_ERR(wdt->sec_base))
+> +			return PTR_ERR(wdt->sec_base);
+> +	}
+
+NAK, ABI break without clear reason.
 
 Best regards,
 Krzysztof
