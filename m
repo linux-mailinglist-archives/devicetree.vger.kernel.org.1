@@ -1,203 +1,422 @@
-Return-Path: <devicetree+bounces-51174-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51175-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 975AF87E648
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 10:50:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D554987E658
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 10:52:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0EE1AB20DDC
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 09:50:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 61E7B1F22621
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 09:52:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B814636138;
-	Mon, 18 Mar 2024 09:49:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C097B2D61A;
+	Mon, 18 Mar 2024 09:51:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=amperemail.onmicrosoft.com header.i=@amperemail.onmicrosoft.com header.b="enolJEeJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fVOqI6G4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2100.outbound.protection.outlook.com [40.107.236.100])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com [209.85.217.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB0BC33CF1;
-	Mon, 18 Mar 2024 09:49:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.236.100
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710755345; cv=fail; b=fzuGa3fqe83mfw1tmplu2WHToo7G+CIHihJg2xEbEfGtLpeIjGWV58fmHncgE8POrK74zdDo+w6tIIEHNEq57IJkV82XPlYbm3C0u7giok/TqgP7cw2bhhcAEyrmyWB1/E5VxxNQjVWBVi7vmLQx5w+OBbI3h3RJEZwCNFnQU20=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710755345; c=relaxed/simple;
-	bh=BEii7rs/hFdOmv1bHDkx4YKg9Ap1bBoAkk07Ilv9swg=;
-	h=Message-ID:Date:From:Subject:To:Cc:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=CQfYMujZYZbTeI4mADWOY8tJfih9XQEG8D4RxnWU2RWOeD/T7qZikC3kkWdxmZUdFZolEt8G4+JSiUzVBv+x45Gw9T9/xmbuenaB2v3am+zgCrcdhMdWMsLSx6Zyu81+mjXWgtd5hB9SHlJyWuCRemoX8KRmmn3krvLOy7u88po=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=amperemail.onmicrosoft.com; spf=pass smtp.mailfrom=os.amperecomputing.com; dkim=fail (0-bit key) header.d=amperemail.onmicrosoft.com header.i=@amperemail.onmicrosoft.com header.b=enolJEeJ reason="key not found in DNS"; arc=fail smtp.client-ip=40.107.236.100
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=amperemail.onmicrosoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=os.amperecomputing.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SeKCnQSphmP3j04LH0Ogs+EM58morR3VJ3W8g3WwF+T3JQXlsFmzW+84dCLuo0z15AJU7t/XkBWphBNquAALVDa+25wuitEkV3leL9r8x1B6y1dWB5TQC/MSYOjF4FI34Xq2/JI/75/3aMwEnK+GF9NYUjiblz/Reu6JbsRrL1wL3Gh2S0xb3yiMg8jbUeHU2jyVfpofdmuHogxa/4VFeTtRh1YmffoYdFUTBdtXz32aWqljOPgGSgdwhQ3wrWXCRdvlPVfcktRkh0FudzFJEv0pxPOPxqVrJWs0ZguTCGN/twmCr3Hs8AeLdrzJIB2QuhHXedufQPC4RsR7IBxQvw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=q3/ycp74okAofij7yXh03gofzuR0e/9TCUsnpW8gfwk=;
- b=NmMg3sO3Ify2op9QjAmcTf+Uv/liiQqlINj4ChcCWrxnlHk3t6DVNjA+igQZXos3bUqqHT8S9bFAmDl80vIk2Xc7BclFSOGnk11sXPBoAnXrr4/QjvivFEcKf4hHtb1o1wUSAuaVFv/Mp3i6Wc+1Yy/unQ67+ryCXQyKeavK0MdrAy+PooQWGSlHbpMGS3iYNSdXHzoQ3emnfxT2Bm9VexrmORaqsc3l/F/1E57axn0YqOAp0acGbulLIt5Yh8lBKj94n6Zja7INRGrk110MHZQeLyYX25BLRpauV5NZqA8l74cD/hwKcvzgg2ICspc4rSEO0J3gXrtUK63UhwOwRg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
- header.from=amperemail.onmicrosoft.com; dkim=pass
- header.d=amperemail.onmicrosoft.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1C7B2D045
+	for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 09:50:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.47
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710755460; cv=none; b=XrBYFTt1NQ5m+1gu2xCiXtAIbCk4oc9JpFFEEb1n1YGL+pUQoQPpF04aj6e54coi7eVZpFaiClgCjttwUGTI0fehDotqAzavm4qZfyjTBX4++FBS4+9SkaKK3+Bm72s5vHMpp6W2ILcXgRkkd4asQL6oyywtNgVZLVB9zFegN2U=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710755460; c=relaxed/simple;
+	bh=auVUFwgCBmyVxTxFiH+lRCLpkk+F+vVWKfEeldpx/lk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pdsZZz6Tdl1HWKs4FP0OlBIv6nj1E8HOUG2BGqclwJFeoWku38Mxmq8XJ2kSGGfNDqd/ILWK8vNVitzVqJJ2FjgXZ7RGucY1YOxRvTHmPCiL7/uXgx69QLikM+nc79r5cDom3vnJWZ56tDhWxZyLM1EaDbCFpQaA583NtpQai8M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fVOqI6G4; arc=none smtp.client-ip=209.85.217.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-476665f067fso1243274137.1
+        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 02:50:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amperemail.onmicrosoft.com; s=selector1-amperemail-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=q3/ycp74okAofij7yXh03gofzuR0e/9TCUsnpW8gfwk=;
- b=enolJEeJo5l6AM4S/rGbQIDcqp30g6shhPMqRA5nBcAYOluq2bWrrDUn348A2qmTMhBnIVE7TXIkzN4jEHOMElXQ4xgVeROSrFvV4A9b36d7Lm72FD0wzRX9Byv4PTim0PgqBrAvY/IIi+DH1viwkUvSDlWQVAo3DGmuPvoATNA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amperemail.onmicrosoft.com;
-Received: from DM6PR01MB5947.prod.exchangelabs.com (2603:10b6:5:1dd::12) by
- SN4PR01MB7407.prod.exchangelabs.com (2603:10b6:806:1ea::8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7386.26; Mon, 18 Mar 2024 09:48:59 +0000
-Received: from DM6PR01MB5947.prod.exchangelabs.com
- ([fe80::b557:13cd:8a29:ae08]) by DM6PR01MB5947.prod.exchangelabs.com
- ([fe80::b557:13cd:8a29:ae08%4]) with mapi id 15.20.7386.025; Mon, 18 Mar 2024
- 09:48:59 +0000
-Message-ID: <f281d2b1-54ff-4e5a-83b9-5b05f18c40fb@amperemail.onmicrosoft.com>
-Date: Mon, 18 Mar 2024 16:48:46 +0700
-User-Agent: Mozilla Thunderbird
-From: Chanh Nguyen <chanh@amperemail.onmicrosoft.com>
-Subject: Re: [PATCH 3/3] dt-bindings: hwmon: max31790: Add
- pwmout-pin-as-tach-input property
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Chanh Nguyen <chanh@os.amperecomputing.com>, Jean Delvare
- <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Justin Ledford
- <justinledford@google.com>, devicetree@vger.kernel.org,
- linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
- OpenBMC Maillist <openbmc@lists.ozlabs.org>,
- Open Source Submission <patches@amperecomputing.com>
-Cc: Phong Vo <phong@os.amperecomputing.com>,
- Thang Nguyen <thang@os.amperecomputing.com>,
- Quan Nguyen <quan@os.amperecomputing.com>
-References: <20240311111347.23067-1-chanh@os.amperecomputing.com>
- <20240311111347.23067-4-chanh@os.amperecomputing.com>
- <9d1207f1-4941-4f2a-99d6-371f5b4709f5@linaro.org>
-Content-Language: en-US
-In-Reply-To: <9d1207f1-4941-4f2a-99d6-371f5b4709f5@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SG2PR02CA0117.apcprd02.prod.outlook.com
- (2603:1096:4:92::33) To DM6PR01MB5947.prod.exchangelabs.com
- (2603:10b6:5:1dd::12)
+        d=linaro.org; s=google; t=1710755458; x=1711360258; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Jfd2BbpInLFXO/gl5I1K9j+aMpVjnkifvVf9+3n/epo=;
+        b=fVOqI6G4nj9LuRdNTqc6L/wwnGtnAwG4I04uiDnYi2u55yR9iDUEYjuH/f6WseCFji
+         NPUFiPzkyIU+QBghK/lHRgakVNmiRWtRltgiI2SVY8KgRBkH/PAjUrHS99I66QqySowA
+         X+oY84q37ncPq1GaxMfbwL4amx3gmt8NjT2HFY/IrAw8jfJjL4yGiyAj6Fzz45689zvq
+         KbaHNvqfckNz9l0X4D6Qt8Vv8NiXCfNv6oD4WI+Y+MhJHu4+XfUuszFJcwGEteFfZyAX
+         WDKTbSN380r1cAN8wFjiINnLObcN1pAFca1tqFPlo2V+jW/0VNXdHjrQAKGj8sLufoyU
+         I+ZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710755458; x=1711360258;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Jfd2BbpInLFXO/gl5I1K9j+aMpVjnkifvVf9+3n/epo=;
+        b=sLfQrNmiV2ilwvXC07a4yQhCTnsfSiiB0hWyDDCdd1dG8Tm2NiS6KMJsuWEBxGxWsV
+         L1w0GALrXMIIRP7J6VwFYgZC59BEPSfXZmwp8Jr5yTumxSl7FONkvVact4EOnYOfKJ/r
+         QMFaMuWD612GOTy2NfTI/kfvRAtNGGpYjP4ECzOkv1IicwZzcgra29l3TLwPzLF6Yp4A
+         zFbRvOpIIZZBFfLF8LIH50Nx8iuQxehINuyEvkg8D3zJl/fexy+NANah4TqM5w4diibI
+         fokNuSEs+ceGe9InMLAoLXWAHnlDonlybQC2sFI7gXqykI7Pz4h2tl8sd0wVQiTyvJI4
+         lm5A==
+X-Forwarded-Encrypted: i=1; AJvYcCXLejG2YDzob3jno5P2X9g27izYYKFrjzcYlwHIRkket5zvqiaAcMeLQMUcJM8qAfF/ltxQO39DqRZQJH6xNSisuTbcP4i/cqPtqA==
+X-Gm-Message-State: AOJu0YyHzopiaYQrBDDaPiZf3yEx4p3HtaFOy3bIXtOg5IDxZxtMNEYE
+	8qqrTf6DVF1MWTgnS9KQV/8DIgKLgiraebPD6S2xwoQFCEx7zCctPnRJIWTRVEpVIrEnEuH8RD3
+	ehne6h++FSXJ4y/G6iYAp7Mj5NqFASWyr/Ticsw==
+X-Google-Smtp-Source: AGHT+IH4FyFv1D8F2gZISrZTTPRuc+B0sE92LhX8lYAkMKHcHpV2oQ5xGlf9diPhxK2wW1KsYreKGIW8bDmby41ZNIQ=
+X-Received: by 2002:a67:fe4b:0:b0:473:148c:805d with SMTP id
+ m11-20020a67fe4b000000b00473148c805dmr8854213vsr.11.1710755457728; Mon, 18
+ Mar 2024 02:50:57 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6PR01MB5947:EE_|SN4PR01MB7407:EE_
-X-MS-Office365-Filtering-Correlation-Id: 99582fba-3ef5-44ac-a003-08dc4730a225
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	UWSjllHDCtwzXRXyFxSxoCLT6DRVI9Rm7ikjENfq5yhE5lCYaCHbkb5/A0UIqK9GRgLQOMpv5S38XQ+TsSGw9ysyerX8Aq9nWYfON4QKVe8i3EVh4ZVKewTQU29K7aVdaQUMFHSeuauw1K81bxLI6NNC+CHHXZ3+uvq6hY48TIbUSYb0PHHQsm0rbAB2gIoZCJWO08hQomm2m5GhOWEGYXzAuPhUF76Lek+/bytpkLiY99wCDpsAjy1NSREcuGLZe936sk2AX/80ncW8FuTC1yx5uFg0/PdFgF6rLjvntxxo0tue69ZjcuoeRS+GTK0JCup/Lbj8ykPCQ6e9bK28XXkYFtZLcExo+rn9dOz08CbZ0YSIWd8AwznDc4nInqLbHsAW3fEH3+p8Pl2FxathY1s/BPIJ7cL9IJx+cv1CgGVy3G59UVn08hWWT7tnQUqqdw2w73+nMS1/wzqvnNjs38vHi0HDbcHY8Nlph66rPN/YrPVqLKoba81zTulZVX/DldgiT+TAv1VPMg3KmJt57obo375dDo4iPh12n0QSthY1AcMt2zzigQXAxcX9y0qDT9vZt46RRoUeUcJGUs6c/WY0BlTvH8880O//aXRBce1NrQBWuVo07ZcWrEB0Cg4+/xVWBcRKmHqnwwI8OHmgczcNKny9hnDsiHvAfbj05Iex6h/UxejIFirC6PYA5MYXJvnimxyKvWDax7EM+ur4iQ==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR01MB5947.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(7416005)(1800799015)(366007)(921011);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?bHVOSThKeDh0bVk5dWM3RGtNM0x4Sk9XbmgrdWg2V2o5WmU2a2dIZ0kzdFRL?=
- =?utf-8?B?aW5MZmczZU85ZHlFSktIOXA1ckRHcWhrYm1rMW5kd0dmUnVnRGdQb1V4cjNo?=
- =?utf-8?B?QS91c2ViWUVQMzdVem9QamZnU05BVi9yWW45TlQxR3dCbGJFblp4VCtROW1R?=
- =?utf-8?B?NVIyMHF5NXZwWnI2amV6RExYRUFZM29neW1DRTZrNTlyZGlrUHY1b2o3elQ3?=
- =?utf-8?B?WWlXdU02Y1BTRTNDb0luWWZUUEI0QmNmcVE5aUtvZE11VzA5a0ZHajJRa0pW?=
- =?utf-8?B?WDZiZlY5d0l4SjE5alYybjdwckhaZDFSak5qVkpKRGdtckY4NWU5V0owNlNM?=
- =?utf-8?B?VjJuK1RJTDdRL0hPbXhsY1lSRVpvSFIvODJDSzVyeEpoblJsdENHT2RJdlNO?=
- =?utf-8?B?Nk1weFhwQ2cxa0VZWVFnQ0VlR1plUU0zOWl4VUZSUS8xR0pyRjJpK21XZDRF?=
- =?utf-8?B?dWRiSDBBNlFlYnNyekhEbzJnM3VtaWJTQTBqSFRWWVh5a1ZuOVZJWFJKT1Ba?=
- =?utf-8?B?YTJqd2U2SmdML0Z2Tmh5Q0oxUk9NbEZuVEN4bzZ6TUNLbk5KaFNaRTRFWGtz?=
- =?utf-8?B?THZ1bEpwdHJUTlovM21zSHVTMFk0RU9ONHhYU1gyRVJzWmM1cVp6azJ4MHBo?=
- =?utf-8?B?cDBxOExteDdsWElOQlZKOUc5d1dySk05OTJkWWZTbHBWSDRXYmkzenBiV0E1?=
- =?utf-8?B?MTY4dFVyN3h2MkR6c3plVGwxVWFZNngvSWtMTE5GaVRydnZNM1hqVHd0cTBz?=
- =?utf-8?B?WDROWXFSZTNVMWpYdFExZFRaT0pFTnllTmFWU3BxQnpYWGhxQ2RwTVNiYllY?=
- =?utf-8?B?bU9OL0RHRlJwWTdaRFRCbXVaNiszY0FteWgrUXZPZFpDZ2VFK2VVR0EvdWUr?=
- =?utf-8?B?NysvM0t5NnduNndsMnRaY1ZUV0tWYlFoWXNDYWxkWGttc0l1NnBYdEFOK1RN?=
- =?utf-8?B?dG85S0RKZXltS09SYWFLWkpjb1hnYlVsOTRzZXh6RlJhdDBKS3JLZmJrRXZz?=
- =?utf-8?B?djN3Q2hsdG5seW02ME8vWmM5dHcrOUY2NThLME43SjZJcmtMa1pscnZFL015?=
- =?utf-8?B?U0daM1YwUDgrNE9IVlBRWDdFTWVhK0dTa2pJVHJBK3FZTFpGaWtqSm00czhz?=
- =?utf-8?B?Mk5uVG9HUVlISjhiZ3ZBU05UOUV1bGpCdnFWUG5FdVMxbURFeGZaWWVGOUdT?=
- =?utf-8?B?dG8wcE5nZFFPdUVicHl3WWt2YmFXSDlTUXd3V2NoUGVDYjRESWlvOHdiMXla?=
- =?utf-8?B?NEo4UWNFUHBjcjJHb2FBS2hzN0pYc2JxblZEMGhCclUxeHV1cHM0SVhIQU9J?=
- =?utf-8?B?YXBMS1pEN01kT0hHVHVjTW1wUmZCbmhMb2ZmSGRRa3JVTUJUYkJHMFhlekdj?=
- =?utf-8?B?VnFEeG5uRTFRcG9hSmRwT21JU0xGT1dJVEVWK1E1MS96bW15R0huaWNkZnln?=
- =?utf-8?B?QVdQMDZiM0s4enpwc0Vlcm9RWkxMTUNqT3I3cC90UGF2MmM5TzZST05uMGly?=
- =?utf-8?B?L3VMNnNyM012bXBhcE1JaUh1ajVjM0xJZFl4MGZITHNpR1BKRTFuOHRIMEsw?=
- =?utf-8?B?SUtYRm1ldU1xQjB3UTlEZmZXTVR6K3hPT3ErQ2swN1hWQzdYUFpkV3Z0U21Q?=
- =?utf-8?B?NHJUYW82N3pKVWVPU2hpMDNZSmFBbG9yWmFma1I4SkJrbTFaTEhFNWNkUUZy?=
- =?utf-8?B?dGNVM1lTSnV0ekZ0SnI2SmplTitoYWU2a0krOUcxZzFZc1RuQ1BnRThnUE9N?=
- =?utf-8?B?UzBBbUFtOXFQWVI3WTljUU1zSG1KMTc5UEk3NmxROU5BN3lQYjlxRmZzV0Fa?=
- =?utf-8?B?SEQwZTdOMCtvU1Jyc0RKNkJ2SFFXOHR2ZCt0aFB6Ym0vTE5DSVNzZjMwZ1Jw?=
- =?utf-8?B?bmd4QW83OWdPaG5pV1hHQ3AwRnBpT3pOL3NQeEVPck9jMk5FMG9TVjZReXJ2?=
- =?utf-8?B?eStwTlBObzYza3B5TWNScE1LOVR4U2V3b1ZMUEExclVNTFFvVjFUTGF2eWEv?=
- =?utf-8?B?cDZFZUdaYkdtMWNRTk9xdUZKZTdCVFN0QUxzSmx2RHVKZyswcTJjblBTbldY?=
- =?utf-8?B?TEhzR3hxaUF2eC9obWRoN1JRTk5PU1pyTlYxVGZxSTdWcldtNFVCd2sxSXZO?=
- =?utf-8?B?N1RIcDFXQjUwTFpWbFpYd1p5bDlVYlFZZDJoT1NtWTlKMTlENVRRUVl4RStU?=
- =?utf-8?Q?rYOJmvAfx0wUr80TebAXXyI=3D?=
-X-OriginatorOrg: amperemail.onmicrosoft.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 99582fba-3ef5-44ac-a003-08dc4730a225
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR01MB5947.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2024 09:48:58.9454
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fKq1kesf5lQkC+A/FgCKxwvRw51bv1/d6++JWK5Uc3Vj/8M5zVAxb1wgS/AEv4bMVXHJic+qhoXCoJi809sKBQ9XBlbI4A/5BbvCWsNGFsSWumoRaqctJhjX3w1/BDL2
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN4PR01MB7407
+References: <20240315060707.471248-1-sumit.garg@linaro.org>
+ <20240315060707.471248-4-sumit.garg@linaro.org> <ZfRlYnEQUKvwGQ65@gerhold.net>
+In-Reply-To: <ZfRlYnEQUKvwGQ65@gerhold.net>
+From: Sumit Garg <sumit.garg@linaro.org>
+Date: Mon, 18 Mar 2024 15:20:46 +0530
+Message-ID: <CAFA6WYMucNzLNm+oHNd-Jb65oigpNphU=mFGM1cD8A-mK-BFDw@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: apq8016: Add Schneider HMIBSC
+ board DTS
+To: Stephan Gerhold <stephan@gerhold.net>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	caleb.connolly@linaro.org, neil.armstrong@linaro.org, 
+	dmitry.baryshkov@linaro.org, laetitia.mariottini@se.com, 
+	pascal.eberhard@se.com, abdou.saker@se.com, jimmy.lalande@se.com, 
+	benjamin.missey@non.se.com, daniel.thompson@linaro.org, 
+	linux-kernel@vger.kernel.org, Jagdish Gediya <jagdish.gediya@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 
+On Fri, 15 Mar 2024 at 20:43, Stephan Gerhold <stephan@gerhold.net> wrote:
+>
+> On Fri, Mar 15, 2024 at 11:37:07AM +0530, Sumit Garg wrote:
+> > Add Schneider Electric HMIBSC board DTS. The HMIBSC board is an IIoT Edge
+> > Box Core board based on the Qualcomm APQ8016E SoC.
+> >
+> > Support for Schneider Electric HMIBSC. Features:
+> > - Qualcomm Snapdragon 410C SoC - APQ8016 (4xCortex A53, Adreno 306)
+> > - 1GiB RAM
+> > - 8GiB eMMC, SD slot
+> > - WiFi and Bluetooth
+> > - 2x Host, 1x Device USB port
+> > - HDMI
+> > - Discrete TPM2 chip over SPI
+> > - USB ethernet adaptors (soldered)
+> >
+> > Co-developed-by: Jagdish Gediya <jagdish.gediya@linaro.org>
+> > Signed-off-by: Jagdish Gediya <jagdish.gediya@linaro.org>
+> > Reviewed-by: Caleb Connolly <caleb.connolly@linaro.org>
+> > Signed-off-by: Sumit Garg <sumit.garg@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+> >  .../dts/qcom/apq8016-schneider-hmibsc.dts     | 510 ++++++++++++++++++
+> >  2 files changed, 511 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> > index 39889d5f8e12..ad55e52e950b 100644
+> > --- a/arch/arm64/boot/dts/qcom/Makefile
+> > +++ b/arch/arm64/boot/dts/qcom/Makefile
+> > @@ -5,6 +5,7 @@ apq8016-sbc-usb-host-dtbs     := apq8016-sbc.dtb apq8016-sbc-usb-host.dtbo
+> >
+> >  dtb-$(CONFIG_ARCH_QCOM)      += apq8016-sbc-usb-host.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)      += apq8016-sbc-d3-camera-mezzanine.dtb
+> > +dtb-$(CONFIG_ARCH_QCOM)      += apq8016-schneider-hmibsc.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)      += apq8039-t2.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)      += apq8094-sony-xperia-kitakami-karin_windy.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)      += apq8096-db820c.dtb
+> > diff --git a/arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts b/arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts
+> > new file mode 100644
+> > index 000000000000..9c79a31a04db
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts
+> > @@ -0,0 +1,510 @@
+> > [...]
+> > +&blsp_uart1 {
+> > +     label = "UART0";
+> > +     status = "okay";
+> > +};
+> > +
+> > +&blsp_uart2 {
+> > +     label = "UART1";
+> > +     status = "okay";
+> > +};
+> > +
+> > +/* Enable CoreSight */
+> > +&cti0 { status = "okay"; };
+> > +&cti1 { status = "okay"; };
+> > +&cti12 { status = "okay"; };
+> > +&cti13 { status = "okay"; };
+> > +&cti14 { status = "okay"; };
+> > +&cti15 { status = "okay"; };
+> > +&debug0 { status = "okay"; };
+> > +&debug1 { status = "okay"; };
+> > +&debug2 { status = "okay"; };
+> > +&debug3 { status = "okay"; };
+> > +&etf { status = "okay"; };
+> > +&etm0 { status = "okay"; };
+> > +&etm1 { status = "okay"; };
+> > +&etm2 { status = "okay"; };
+> > +&etm3 { status = "okay"; };
+> > +&etr { status = "okay"; };
+> > +&funnel0 { status = "okay"; };
+> > +&funnel1 { status = "okay"; };
+> > +&replicator { status = "okay"; };
+> > +&stm { status = "okay"; };
+> > +&tpiu { status = "okay"; };
+>
+> Nitpick: The &cti0 is in the correct alphabetically ordered place, but
+> &replicator, &stm and &tpiu are not.
+>
+> I know you changed this based on the review comments but I personally
+> think it was clearer having this separated as condensed block towards
+> the end of the file (where it was before).
+>
+> The other option would be to put each element individually at the
+> correctly ordered position in the file. However, having a single "Enable
+> CoreSight" comment for the entire block would then not work anymore
+> since all the lines would be interspersed throughout the file.
 
+IMO, having it as a condensed block is a bit more clear such that
+people are able to locate overrides easily given their function.
+However, there aren't any guidelines for such block orders. So let me
+wait to hear back from platform maintainers if they would like
+anything to be changed here.
 
-On 11/03/2024 23:56, Krzysztof Kozlowski wrote:
-> On 11/03/2024 12:13, Chanh Nguyen wrote:
->> Add pwmout-pin-as-tach-input property.
-> 
-> Why is this split from original binding? This does not make much
-> sense... Add complete hardware description.
-> 
+>
+> > [...]
+> > +&pm8916_codec {
+> > +     qcom,mbhc-vthreshold-low = <75 150 237 450 500>;
+> > +     qcom,mbhc-vthreshold-high = <75 150 237 450 500>;
+> > +     status = "okay";
+> > +};
+> > +
+> > +&pm8916_gpios {
+> > +     gpio-line-names =
+> > +             "USB_HUB_RESET_N_PM",
+> > +             "USB_SW_SEL_PM",
+> > +             "NC",
+> > +             "NC";
+> > +
+> > +     usb_hub_reset_pm: usb-hub-reset-pm-state {
+> > +             pins = "gpio1";
+> > +             function = PMIC_GPIO_FUNC_NORMAL;
+> > +
+> > +             input-disable;
+> > +             output-high;
+> > +     };
+> > +
+> > +     usb_hub_reset_pm_device: usb-hub-reset-pm-device-state {
+> > +             pins = "gpio1";
+> > +             function = PMIC_GPIO_FUNC_NORMAL;
+> > +
+> > +             output-low;
+> > +     };
+> > +
+> > +     usb_sw_sel_pm: usb-sw-sel-pm-state {
+> > +             pins = "gpio2";
+> > +             function = PMIC_GPIO_FUNC_NORMAL;
+> > +
+> > +             power-source = <PM8916_GPIO_VPH>;
+> > +             input-disable;
+> > +             output-high;
+> > +     };
+> > +
+> > +     usb_sw_sel_pm_device: usb-sw-sel-pm-device-state {
+> > +             pins = "gpio2";
+> > +             function = PMIC_GPIO_FUNC_NORMAL;
+> > +
+> > +             power-source = <PM8916_GPIO_VPH>;
+> > +             input-disable;
+> > +             output-low;
+> > +     };
+> > +};
+> > +
+> > +&pm8916_mpps {
+> > +     gpio-line-names =
+> > +             "NC",
+> > +             "WLAN_LED_CTRL",
+> > +             "BT_LED_CTRL",
+> > +             "NC";
+> > +
+> > +     pm8916_mpps_leds: pm8916-mpps-state {
+> > +             pins = "mpp2", "mpp3";
+> > +             function = "digital";
+> > +
+> > +             output-low;
+> > +     };
+> > +};
+> > +
+> > +&pm8916_resin {
+> > +     interrupts = <0x0 0x8 1 IRQ_TYPE_EDGE_FALLING>;
+>
+> What is the goal of overriding the interrupt here? It looks like you are
+> changing the interrupt type from IRQ_TYPE_EDGE_BOTH to FALLING. This
+> sounds a bit like you want the driver to receive just button release
+> events (or just press events, not sure about the polarity). I'm not sure
+> if the driver will handle this correctly.
 
-Ok Krzysztof, I will merg the "[PATCH 1/3] dt-bindings: hwmon: Add maxim 
-max31790 driver bindings" commit and "[PATCH 3/3] dt-bindings: hwmon: 
-max31790: Add pwmout-pin-as-tach-input property" commit.
+The use-case here is to just act upon button release events and the
+driver handles this appropriately. Final use-case of the reset button:
 
->>
->> Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
->> ---
->>   Documentation/devicetree/bindings/hwmon/max31790.yaml | 11 +++++++++++
->>   1 file changed, 11 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/hwmon/max31790.yaml b/Documentation/devicetree/bindings/hwmon/max31790.yaml
->> index 5a93e6bdebda..447cac17053a 100644
->> --- a/Documentation/devicetree/bindings/hwmon/max31790.yaml
->> +++ b/Documentation/devicetree/bindings/hwmon/max31790.yaml
->> @@ -25,6 +25,16 @@ properties:
->>     reg:
->>       maxItems: 1
->>   
->> +  pwmout-pin-as-tach-input:
->> +    description: |
->> +      An array of six integers responds to six PWM channels for
->> +      configuring the pwm to tach mode.
->> +      When set to 0, the associated PWMOUT produces a PWM waveform for
->> +      control of fan speed. When set to 1, PWMOUT becomes a TACH input
-> 
-> No vendor prefix, so generic property... but where is it defined?
-> 
+- Short press and release leads to normal Linux reboot.
+- Long press for more than 10 sec or so leads to a hard reset.
 
-Thank Krzysztof! It is not generic property, I'll add the vendor prefix.
+With IRQ_TYPE_EDGE_BOTH, that's not achievable because just a simple
+press leads to Linux reboot.
 
-I'll update the "pwmout-pin-as-tach-input" to 
-"maxim,pwmout-pin-as-tach-input" at v2.
+>
+> > +     linux,code = <KEY_POWER>;
+> > +     status = "okay";
+> > +};
+> > +
+> > +&pm8916_rpm_regulators {
+> > +     pm8916_l17: l17 {
+> > +             regulator-min-microvolt = <3300000>;
+> > +             regulator-max-microvolt = <3300000>;
+> > +     };
+> > +};
+> > +
+> > +&sdhc_1 {
+> > +     status = "okay";
+> > +};
+> > +
+> > +&sdhc_2 {
+> > +     pinctrl-0 = <&sdc2_default &sdc2_cd_default>;
+> > +     pinctrl-1 = <&sdc2_sleep &sdc2_cd_default>;
+> > +     pinctrl-names = "default", "sleep";
+> > +
+> > +     cd-gpios = <&tlmm 38 GPIO_ACTIVE_LOW>;
+> > +     status = "okay";
+> > +};
+> > +
+> > +&sound {
+> > +     pinctrl-0 = <&cdc_pdm_default &sec_mi2s_default>;
+> > +     pinctrl-1 = <&cdc_pdm_sleep &sec_mi2s_sleep>;
+> > +     pinctrl-names = "default", "sleep";
+> > +     model = "HMIBSC";
+> > +     audio-routing =
+> > +             "AMIC2", "MIC BIAS Internal2",
+> > +             "AMIC3", "MIC BIAS External1";
+> > +     status = "okay";
+> > +
+> > +     quaternary-dai-link {
+> > +             link-name = "ADV7533";
+> > +             cpu {
+> > +                     sound-dai = <&lpass MI2S_QUATERNARY>;
+> > +             };
+> > +             codec {
+> > +                     sound-dai = <&adv_bridge 0>;
+> > +             };
+> > +     };
+> > +
+> > +     primary-dai-link {
+> > +             link-name = "WCD";
+> > +             cpu {
+> > +                     sound-dai = <&lpass MI2S_PRIMARY>;
+> > +             };
+> > +             codec {
+> > +                     sound-dai = <&lpass_codec 0>, <&pm8916_codec 0>;
+> > +             };
+> > +     };
+> > +
+> > +     tertiary-dai-link {
+> > +             link-name = "WCD-Capture";
+> > +             cpu {
+> > +                     sound-dai = <&lpass MI2S_TERTIARY>;
+> > +             };
+> > +             codec {
+> > +                     sound-dai = <&lpass_codec 1>, <&pm8916_codec 1>;
+> > +             };
+> > +     };
+> > +};
+> > +
+> > +&tlmm {
+> > +     pinctrl-0 = <&uart1_mux0_rs232_high &uart1_mux1_rs232_low>;
+> > +     pinctrl-names = "default";
+> > +
+> > +     adv7533_int_active: adv533-int-active-state {
+> > +             pins = "gpio31";
+> > +             function = "gpio";
+> > +
+> > +             drive-strength = <16>;
+> > +             bias-disable;
+> > +     };
+> > +
+> > +     adv7533_int_suspend: adv7533-int-suspend-state {
+> > +             pins = "gpio31";
+> > +             function = "gpio";
+> > +
+> > +             drive-strength = <2>;
+> > +             bias-disable;
+> > +     };
+> > +
+> > +     adv7533_switch_active: adv7533-switch-active-state {
+> > +             pins = "gpio32";
+> > +             function = "gpio";
+> > +
+> > +             drive-strength = <16>;
+> > +             bias-disable;
+> > +     };
+> > +
+> > +     adv7533_switch_suspend: adv7533-switch-suspend-state {
+> > +             pins = "gpio32";
+> > +             function = "gpio";
+> > +
+> > +             drive-strength = <2>;
+> > +             bias-disable;
+> > +     };
+> > +
+> > +     msm_key_volp_n_default: msm-key-volp-n-default-state {
+> > +             pins = "gpio107";
+> > +             function = "gpio";
+> > +
+> > +             drive-strength = <8>;
+> > +             bias-pull-up;
+> > +     };
+> > +
+> > +     sdc2_cd_default: sdc2-cd-default-state {
+> > +             pins = "gpio38";
+> > +             function = "gpio";
+> > +             drive-strength = <2>;
+> > +             bias-disable;
+> > +     };
+>
+> Nitpick: It would look a bit cleaner to have the empty lines consistent
+> in all pinctrl nodes, i.e. either always having an empty line between
+> function and drive-strength or never. I think Konrad prefers the more
+> compact version without empty line (sadly I'm not sure if this is
+> clearly documented anywhere). Same for &pm8916_gpios and mpps.
+>
 
-> 
-> Best regards,
-> Krzysztof
-> 
+Sure I can remove the empty lines to be consistent with msm8916.dtsi.
+
+> > +
+> > +     /*
+> > +      * UART1 being the debug console supports various modes of
+> > +      * operation (RS-232/485/422) controlled via GPIOs configured
+> > +      * mux as follows:
+> > +      *
+> > +      *   gpio100    gpio99    UART mode
+> > +      *   0          0         loopback
+> > +      *   0          1         RS-232
+> > +      *   1          0         RS-485
+> > +      *   1          1         RS-422
+> > +      *
+> > +      * The default mode configured here is RS-232 mode.
+> > +      */
+>
+> :D
+>
+> Thanks a lot for making this clear using the table. And also for all the
+> other cleanup changes!
+
+Thanks for your review.
+
+-Sumit
+
+>
+> Stephan
 
