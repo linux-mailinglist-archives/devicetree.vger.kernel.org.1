@@ -1,79 +1,85 @@
-Return-Path: <devicetree+bounces-51364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A949F87F085
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 20:46:02 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCEAB87F0A7
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 20:58:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FDCE284285
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 19:46:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9CA40B20A1D
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 19:58:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B48AB56B60;
-	Mon, 18 Mar 2024 19:45:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9880C56B90;
+	Mon, 18 Mar 2024 19:58:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="WAZxgrQ3"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="qqreoRis"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2060.outbound.protection.outlook.com [40.107.20.60])
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2091.outbound.protection.outlook.com [40.107.20.91])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39DA756774;
-	Mon, 18 Mar 2024 19:45:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.60
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B5FB56464;
+	Mon, 18 Mar 2024 19:58:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.91
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710791158; cv=fail; b=O/41ziY5p7wWgQ3h6otVkBzU4weGwVxdun6x/2DCMwc5zp4I4itEt/6rxZ+bEm29iw197Y19e3sWEhUW25veMbHALH4p0fJjw4WAOeQSqQsF+YlOU0KrB01I2/raPuV36/eFp0UJDcncfY4lKVEBNOnQmgM1t98TnaeeGEjBpWE=
+	t=1710791884; cv=fail; b=Pom+QZuqVtvI5WaYHpAEt/0S7cgFjKD6cUN9vvGL/+K6I0Uq9RR8pnl9p1cxeVoSWSrhejwEMVoiY+5PSh/eGoHIxz8GogOAUj318GLyzLcyoPz5MFY/wchVLElmcxOQ+8q5YVMxk8hER/aM7p66k/dgCevQQm/3uHMssSL5p30=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710791158; c=relaxed/simple;
-	bh=yc002MT+GmM1P/BpkAN/5VXoouYa5bMeN//BQnawdkE=;
-	h=From:To:Subject:Date:Message-Id:Content-Type:MIME-Version; b=c7gqVmIbEFfRIp80Jb1+3YwDpztMYRjRhc/clOJyX5ePdLBzCYXHL27bUMLSXQbf9fvzwu5g9NmHQuqVj9n7AIzGrnHLgKRpW7hqqkNAm7FJUM1XGFb2q6A1OVrqwkJ2/IzT2rhrQhqK3ObUbVowSD01GGuNSrK6jp4REEPCAfk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=WAZxgrQ3; arc=fail smtp.client-ip=40.107.20.60
+	s=arc-20240116; t=1710791884; c=relaxed/simple;
+	bh=DXajepVRN0ssYVNpFw80MeW7n6vRGa2+Xg+aXfj0a6E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=bFlyvVKWOOGNq86ROg+NKvE9Za6Ldcf6848VVqyoybYkWR+DSj4z5xj4x3o1T7Vhw2HnpH+/nLkqiZtJ+5ZWaDfY9Xz/TGgJqR68I+qZDRHBNJwtt5qR4ZRrR3HI+pHNuBTAgee0d/dZjckknQNl950iqKsoqAhcLfjj7OUihGI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=qqreoRis; arc=fail smtp.client-ip=40.107.20.91
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=N9nUp+OzKhZjsDnAOEQCMxw5M2bZFXXeyKhRWHGqbfqoEngdkonw5t0/utZokzhZpEcOtnYh3aqCqY/9ZjH1TYoeW8kH+nvojPbEzYM4g1PRbnZ+f5kZLNH9ETIaxhwezjmpqY3Z22o78WXXbfPd6TKX7BwquiP45gqOlMR/tATIYjyeVCPFt4LsP9UDh+dsu4KAKRXrmzmQwwRn9jUN3ewA8ZE3Xydf/iicRPH/CaPw1AoR7Arxv6X/4lOOs/t0EjkKHMv9Sv0cQ4oVZgegc85aJp6zvm61XbH7wzTrpaQNnpYQsvV4AU+o2F+7BUPgNH7rDCvpGxyMzRrh/HXMBA==
+ b=Cn394pOx/wD0AJElJsTV9t8rVi2LhRClIos26EGZGHJ0Gq2uDEyC6SEHmkey2VhPetjSrYYYmogpmGprOAvn+ugR/zHIrnsuQ4IT4ZiCSEkczM7f2jGBK9E/vScFS2bQR/lfWZzQVjCumOioQ8gfzyeZpboMln+VHViMLBpZiyYfnXVGWjKn5TN9ZbxyLyFHd5KyDCGOU1HjFpGzvTT835Jt/c6bT1BnpwpMEqrq1tlG05JclHutuAQmE2dUeqgyPhwE8/fUSj9hLF56I37HvoC+9sydNPuQXl96jCp/+ag0CviCJKiGs0ju6TcF7ylMyh8pcwvCC8OyMN4Ki/7vkg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Grbht3TEkgdPqmEHjTaA9g92TVDNr5Jc7ivj0I1oX+s=;
- b=KOix8LjI2cIsJ4zrrzRB56K+dQmczmx6ucKL+I81HIFbR6XBEcPxN8FuF2B/5IhljAlrMtv3DRxkmvOuqwAqKhEGRPIgKKzc85J7xOW5y4oli/xFWiNz8775480AxIROaJcqftlFaMifZQlp4T1BN2/ZoDLViacugjv5GJUIdTg3mb0jvm2nvz1LQY34QAcSdTjD5inc0Asd/ye4i3aHP0W3AxDf4lVdEx6bP/UgdRr80+WSHFFGa/y/fw/a/0atVD3UtOqD+unuBoNdrkNiS0vyBw2J7R1CWHUn73cvayQ2jguQsXX3Vv0LYEfX9m3WIUKbseQE84y1dNXHwX1OoQ==
+ bh=nPkMmm5KXGDKYGZ7GBIWYH7bNRztwon/Vx852+eL1+w=;
+ b=HlHPkn536RcKeUxuQORhe8Jse4qcG6cv/Q67JTJ6bTsatxVIyUT4uKGJswvOFmlYWsuHGxgel5I4ZtTi9d1jb81G/ZCtbUv5c+fQSUDg/iAAjH/lQiR50QQsgOPU2Fx3ssCdp6gTJs7FD8p31W0qWBZl6qWpqtAgCQs6z2e8nKf/BpXrZ74HlZp3jKOf1x8wJOsya57mdGKDCBas81fkdxAfYWf3QTu8MZPig8yxrXW9tAs1jgNRNp6Jz6Lg87hwJuwuSu3Nn3O7F53Sd3vzEQMH8EgGBc8ryU05X0W1bkmo91ypeXTL+fnEZVtL8eK6z5wZB74Quz630LQ1fQvk7w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Grbht3TEkgdPqmEHjTaA9g92TVDNr5Jc7ivj0I1oX+s=;
- b=WAZxgrQ3WsZHRBTtgPezdQVBFgjHE0aKRNYM6I6YrPnuGs9vLeEhtoQtnJ9H5sWmP8kBtv0/UpiLRz3tTKKX+gDETq8lRNs58nqheoLnRHGLNBcKa/ramXg+9ueGxmL5Q5u02SaT4U2t1naLhgZTALv1WqeaeOZ9sYfXH/42svU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
+ bh=nPkMmm5KXGDKYGZ7GBIWYH7bNRztwon/Vx852+eL1+w=;
+ b=qqreoRisChzvvS4Z4ZH0E4xm+dVIUKFl8Pm+3AjzG0/AUSBJJaHHisMeX2ef6Q94jArblzrekAaNFksxKKeWDNfPaat15o7YQziNqRxmd1dCAWbeZXyM8zbQwfYKlwp0dfbC/NHM3TRS/vsoUoJRnr2oEvkzdmg9FrMZJ8LJEqc=
 Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AS1PR04MB9429.eurprd04.prod.outlook.com (2603:10a6:20b:4db::9) with
+ by AS8PR04MB8086.eurprd04.prod.outlook.com (2603:10a6:20b:3f6::22) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.36; Mon, 18 Mar
- 2024 19:45:53 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.26; Mon, 18 Mar
+ 2024 19:57:58 +0000
 Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
  ([fe80::3168:91:27c6:edf6]) by PAXPR04MB9642.eurprd04.prod.outlook.com
  ([fe80::3168:91:27c6:edf6%3]) with mapi id 15.20.7386.025; Mon, 18 Mar 2024
- 19:45:53 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
+ 19:57:58 +0000
+Date: Mon, 18 Mar 2024 15:57:50 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
+	Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>,
-	linux-sound@vger.kernel.org (open list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM...),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH 1/1] ASoC: dt-bindings: fsl-esai: Convert fsl,esai.txt to yaml
-Date: Mon, 18 Mar 2024 15:45:34 -0400
-Message-Id: <20240318194535.2274543-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR05CA0203.namprd05.prod.outlook.com
- (2603:10b6:a03:330::28) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev
+Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	Serge Semin <fancer.lancer@gmail.com>
+Subject: Re: [PATCH v4 0/5] PCI: dwc: Add common pme_turn_off message by
+ using outbound iATU
+Message-ID: <ZficvkryqzdwJIEd@lizhi-Precision-Tower-5810>
+References: <20240213-pme_msg-v4-0-e2acd4d7a292@nxp.com>
+ <ZdNwxAi2KH/P07bi@lizhi-Precision-Tower-5810>
+ <ZdzJMtgcaCPpJNNW@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZdzJMtgcaCPpJNNW@lizhi-Precision-Tower-5810>
+X-ClientProxiedBy: BY5PR17CA0060.namprd17.prod.outlook.com
+ (2603:10b6:a03:167::37) To DB9PR04MB9626.eurprd04.prod.outlook.com
+ (2603:10a6:10:309::18)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,271 +87,162 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS1PR04MB9429:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9f6d4c5d-36e4-41bc-17df-08dc4784052c
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS8PR04MB8086:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info:
-	Fzk5bWO88mm8aY8Jy8PRwPPI3k7+Evf6ePGud5c6ngrCzO44f8uo8W4MWXlepM9zJIjBgNiumYCdX/K0s+Woz5BA5bQ0mzvjJ8DjLmwjAE51DoX+iHlSA8FVq+aOE0vjHz9igBVjXUvFkmG3I3+RQmyRe4m4tlIUF6mhVwoVodfWphksUSRTMexShsuIDMGeN53nC+OPRO6woAUa3qLRsSS4/pM2e0f20IylMF/WC8udhFG01pxck/u3QCz0cXQrirkGj/voNBVdan0TAm5DdQonRFuhm4dcKma5wRNB594otKZsHLdiRVwWQNpwVvLvanQP5kAFirSrnOHMuoVv90L2G9+fDSPFfIqA2c+TioSrrMfWlBNJupFOUOShu/ZlUqceXOND2BXuBOI92tHoDNEXEYF54vwZqgxK1TY9HfimkrruWXaa1EgNdlRCxn35zyk8Z8dco+up3VIvr5/xY4BxmupcTHScw5S4kvGkZpdl+cd4eoIV+ZTO6nNJPfevDC8eDApfEEXMKMQSH8o2t2UN7UIr+mJ5RLboAz3euBVGC3HHp99oolvLd+20F8qJZO1U7bHrhPT62WfRPlw7FN9uG08x3T+VQ3AJaR6KRMW0EBDSVheSlFruA+8oU3y7Mx6M7y1kDKU35KIysJQT458cG1YmCVjVOZh1c57Hi4M=
+	zsmNPBqhRLZGv6mpqdLKtRbppQIfU2g1FBHETYwkcEcRXeQAXheA720bNthPPiT1QCgN/Ksm1R5m0JxV3/326Ewx6t/V/JtYYKYoBHlFTSo2Zp78AK2g7dCJSuIDSs3Le2riNg8XF5rfWlMCM0V8xgMTXPjIYtFs/rvbdaZSd+hWRyP9DWT0b2S1H1DkD33K6dPMKJWiU4jrjB8O6XTKm6SvSY49wfVBs4dB5gdbX+7DgekhAriHefuvKHialJ3Ct2fIxDL6BhhRtcF9aqw6jUrwmILXRioMISg4JteoZken+ZdfQW1hpPHZMcmRrJx9npro8Cg98hcQIvK9Rqjbmz0gtDeFi+jARhPHApkAZ0PjfMm/NPfeRygWtpD45CwNtDzvLj6EeBrW85flyXPEY2nvhS2TU5AYirm5gzJ270N3WqLJz1Q302YJOUiRfGhZpWUN0VEFzTq/ZPgqIWtjrCnu92r/hfYvVmV5f0Ln4BMLJxKSCapGUSDZjaOxtwF1nLiufBDNM4uS02kwrNJtlvO0c8imA9mXgW8vvKcCm1NY3nW4i1I2nRBqYEHKiz5x5ti0Zcb3ZFWH47iCJq6vYfKNctG771hZ6P3YDAiq78DvODMLZvzr0FyAg5ocVPFLfwVOPUVnRzAAgeJCVAlU2q5MGO9UxHWI+Wq6Rks07Mc=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(1800799015)(52116005)(366007)(38350700005);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(7416005)(52116005)(1800799015)(376005)(921011)(38350700005);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?0dZEQSAMWFYD4Qq13RTF0dMXSInn47gOJOm4i1RtTJhcIdt7QQuBq/voMdDO?=
- =?us-ascii?Q?a69HSZflA0vd+XsdtQg4b/whWUT2hWBb4eQoDTBFZLWrkbbk+M16+BmgUjsO?=
- =?us-ascii?Q?cMlL5qN/G+yR7TqWH8YHLSvqA3Sl9gcccaYdcYoSc5n7VBcImU+R+0+zvf88?=
- =?us-ascii?Q?GmczL8fO5Y9AL19RXKm9WFLTRuuOxLLTv0BFtwh1SrS4jQCEavtoKmubzB1l?=
- =?us-ascii?Q?B+GvU1+rQ0jFgh5ep/1t0hzp1FdNeFzBqJc3mTLmmX35Z9GEqeZ1Pnpydj3B?=
- =?us-ascii?Q?yPowzSMexIMP2qkAtM3ChtA1RnGXQLJ75LsRkHIl8Ymd1rjfuId+gNF415j6?=
- =?us-ascii?Q?/xxK3+6filWwQF+WVn6FlQzNw1QAbrEPQ2J/UsJ3DlCN19bdrqYYL8/ezAsZ?=
- =?us-ascii?Q?x7NaYwRXtFNynHwRHKOG2Al/46zoJMWIEC+4ds3mfncjUIFHn2FbGu0lTJc2?=
- =?us-ascii?Q?NgePgl0oBfKOtPV9PfnBGRks7+XM0XTfFVj41EjLaQbJH4f7kre67MRq76vG?=
- =?us-ascii?Q?/kQcpvNmo8ponj2MUJ1F9tLJrSO4vxIhVzOnn/BqAXDKxoyzxUIn6i2BUZ88?=
- =?us-ascii?Q?6ZtR3Sg3uce/3ZYxTW1z07mQ9eTcIPLXDtbuTebyarRM8CX8GU2aCMI4Xkpf?=
- =?us-ascii?Q?4++BehKjhx4DQszYBan4eDHAYm4MohCu0AIK7zVwwMKwiTgAig/cG86nbxNj?=
- =?us-ascii?Q?kqT3QJWmZcjQrFErd+EvC2UbQCWWDEecYmyWm+HlsN8nz/CvCNBBbd8yco19?=
- =?us-ascii?Q?LvCBr7LKTaTQ6OmW1gf/Uowsk24v2axXDl2ZWDC/3MVNJhiwmFpW9mlcCDb7?=
- =?us-ascii?Q?RMT8OeIjtavBylc6mN3Bfi7QIhKKW+36Al/LCfXDbFANbcTeowX+pv9NGOR5?=
- =?us-ascii?Q?R/VVEoayRpPS2aWSNfA1w64u8obiCY8kP8UGHiwcze8O7CuKIThY7I2svRjE?=
- =?us-ascii?Q?1CvNEgwTJ6E5dXrchNUeE4H/093Rpuy1inaUwyDQM944U0y+1/0yfRuWcfBp?=
- =?us-ascii?Q?4KLPsVWs2/v92hEKF56e/PV3FZ0q5z+8Up196vIEOc9cTYM1ZixioKJ+8i4c?=
- =?us-ascii?Q?ms/ki+SmihjuOodNV2Sp8vqkWMNxTDPbzpf0UWuaGOqKCsjTKrmvdcz6SgMK?=
- =?us-ascii?Q?d59HT7nBTzcpY8HVTLRmyMDChBOHJY6FTwpVtPw7IQYTfIRq7PqpHkGRbEe/?=
- =?us-ascii?Q?mShf46wnUWoJzIyNJJqJilMkDXE7QeSu82FMs/o3fgA8jcN5HKG7OnEwjTsU?=
- =?us-ascii?Q?NKfLdxskrtuxYcW+ULzV2H+9y2l1ON1tX9NivEISXroona+dtuLw0yv09+Fr?=
- =?us-ascii?Q?IYHaER4gY7AcMV/X6bhu5UoApyasLLYJh1y6tA088bq8h30CaS5afv55k1cA?=
- =?us-ascii?Q?FZsV8yHJ2Ufhdb68qEmCmM/lxScrR6PYlRiOsIBzrnI24LDnqjWh4UI6Z8wA?=
- =?us-ascii?Q?Zxnf8p/7ZUXKYiNG9QwmypES3TM4J5F2qL/qDnl+SSX8dJtPWr5dggwdRB5f?=
- =?us-ascii?Q?u1dWb2S8NkCsBjSekyZwCl5BG5bx2J5eZ8LbO17/GKeWGmbn0ZAxv2BTX4Kl?=
- =?us-ascii?Q?ldok2VltxuvnL9X9+hC12mxjbHoh+832BYzP2Z6m?=
+	=?us-ascii?Q?FZh8AXNYjaCOkbOm3yk1i7IELJlCEpcnLBGWS18o25OVTPspeZKlpyxLsq1W?=
+ =?us-ascii?Q?sPaD53pHNZDU5ifkbikwIMAG55cLUcA/Hm66da+BFO3mGrG8GFWyCyeTbzUg?=
+ =?us-ascii?Q?IhRwzpXdPtayiYpBCUwdAn9ZNyqMq0VZlaZJW2YI1Qnm8GAxj1GqdrUIuJu6?=
+ =?us-ascii?Q?L8HkEiNqQm7QcipqjAO0L6DtZsDklUWtA715bqXgoJUatMByjIhxA702Eyd+?=
+ =?us-ascii?Q?kTJVCgRKwdAt5c0EspM3xwcBAmKFKtNZR+7yKAQp/difsleD43NKvHMHqnXJ?=
+ =?us-ascii?Q?ebiO1Da9tK4Tx/LPnJNdijMI2ZXAAdsOftcbSOc1BvLFNdq4sbqXOFAFCDwJ?=
+ =?us-ascii?Q?7/9Otap/sxYKfKNZED/Ebi/gS5b/FB/q1/8BDy7BFOg8YbBMZEdyq0vBpvuP?=
+ =?us-ascii?Q?E2SXNjqbS6Z6tTTL1rF+gnVP1sd8+mFtE0m0I4u3+oQEm8b2//NvhQen5yem?=
+ =?us-ascii?Q?75O4nTokZxKgn8gGRXGZ9HGJ24ZowsATMDOovgIqNTdvIjkw4E5Zy0id12XR?=
+ =?us-ascii?Q?Th9U1kK8ABFCbLikEyHrCoLQp9leRv3fLb1NMPR3S6hXkHdSYH/A8365wq7j?=
+ =?us-ascii?Q?z47dFRj+33QobzhkrEjrUCgHtvkEp38FUwt4hCKtOQ1GTLh/IyN/3iMmbCbQ?=
+ =?us-ascii?Q?1+Y04u24u25VgXdUaAh+5UtoJ/alKk02LCJNd8MElVGP5wkWjQetnuFYrrXh?=
+ =?us-ascii?Q?HhSl3YaGamoDyxI1qHx96UzgBTJVSMat722rQoqm2TUp60IoA5HWw+GorBJ9?=
+ =?us-ascii?Q?7qduP/EfUquYyIa7hWUuuE9q+S7LxuT38+CCYHV+GdYe5FXJzyhuSyWt+yPs?=
+ =?us-ascii?Q?R6I4h5SVsVzozkT0DxmdOgR21/8gMJiV7nmpGxUZfxILIRyQvw2CglEAqeFu?=
+ =?us-ascii?Q?skWQPllSKuH0uq8UcfkS+BP6NMl1qHoAHOdrc1oi7DM2kqJwTryaW4LcMu1W?=
+ =?us-ascii?Q?Pt2k4zVMex6/ry75xF9v5FoSBJ5pQbnNtZDOS9snIxN7Ti4yPf3T2chfyzfl?=
+ =?us-ascii?Q?ZUw7Dlnt/i+Vf/cBarMjmn1XiUwDyAZyFidZm93ZTGllzU7cHWE6YehOsq+G?=
+ =?us-ascii?Q?Es37ftAOBX0En7++p3n0u6IBmkMbcNEciEpdlwm30e1VmVKu/NMVnj9eCTlj?=
+ =?us-ascii?Q?uT+wfu6YKSItGcZwcVAohbtYkKDjTRCeC9no1CBIw0cxITYbl0cAVzAL4/bE?=
+ =?us-ascii?Q?vIWxJhuyRq5/R13RfgbQFmiuylxwZloFE5Fm4bK68wlM4Dxrfeg9Yzx1C+rO?=
+ =?us-ascii?Q?QG5Ap3jibJZT06i32RbUJ/XB8LKnK1ZQXvIfsdGzdnpzC2Ya2unhdLe+H25A?=
+ =?us-ascii?Q?uDq4m+R8HVPCBEaQw2IZ9cvL+WN2CWFckcYlAcx4ZIu8PB6NYdRiDRbtWTcY?=
+ =?us-ascii?Q?e0Gu/v/7y3BAHuGrKyhYkRusLGyzm2gvMTs8Emuqb+dBlGpNAqRXNL+9B2Ko?=
+ =?us-ascii?Q?6JjhMmLuPeAvRKRWIM4YHeh5Q6lQpBfiS46JxCBR9H4I9+EuU2DmKp33FEbC?=
+ =?us-ascii?Q?rUHjGQ2VakNt3VeeuwldhqJw55cERsiNbzkkkERSkTroWYGlu+1Ycn1gJ4SD?=
+ =?us-ascii?Q?yV7b2XY5eoJWV7yshYSr05FTlRAwHno7/CeGfwgK?=
 X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9f6d4c5d-36e4-41bc-17df-08dc4784052c
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5f52a7dc-721d-4a29-6924-08dc4785b581
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9626.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2024 19:45:52.9322
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2024 19:57:58.5816
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: iDo9JWCxHhwHc1HkkdiOqlI0aee6Dri6Eq8Rkt1MRsT7pd2RuAPREwtAh7seEBTixTPso6RlJ+VEhsl3wDh9+Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9429
+X-MS-Exchange-CrossTenant-UserPrincipalName: rT2pnvqEBhNVAMmw+UywZ1PjFrJW0Nq5mwro8Jrh4UQYf6WHkua6Wyd10xT+h7xM35Yw4epvvzQUhqPafrHiIg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8086
 
-Convert fsl,esai.txt to yaml. So DTB_CHECK tools can verify dts file about
-esai part.
+On Mon, Feb 26, 2024 at 12:24:02PM -0500, Frank Li wrote:
+> On Mon, Feb 19, 2024 at 10:16:20AM -0500, Frank Li wrote:
+> > On Tue, Feb 13, 2024 at 04:50:21PM -0500, Frank Li wrote:
+> > > Involve an new and common mathod to send pme_turn_off() message. Previously
+> > > pme_turn_off() implement by platform related special register to trigge    
+> > > it.                                                                        
+> > 
+> > @mani:l
+> > 
+> > 	Do you have chance look this patches. Actually other patches
+> > already reviewed. Only missed
+> > 
+> > 	PCI: dwc: Add common send PME_Turn_Off message method
+> > 	PCI: Add PCIE_MSG_CODE_PME_TURN_OFF message macro
+> > 
+> > 	This patch will reduce customer's PME_Turn_off method. Many code
+> > can be cleaned after this.
+> 
+> @mani and @lpieralisi
+> 
+> 	Do you have chance to look these?
 
-clock-names 'spba' is optional according to description. So minItems of
-clocks and clock-names is 3.
+@mani, @lpieralisi and @Bjorn
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
+Any comments? It will benefit for all dwc platform. If this method
+accepted, we can remove all customized PME send function at difference
+platform.
 
-Notes:
-    Pass dt_binding check
-     make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j8  dt_binding_check DT_SCHEMA_FILES=fsl,esai.yaml
-      DTEX    Documentation/devicetree/bindings/sound/fsl,esai.example.dts
-      LINT    Documentation/devicetree/bindings
-      CHKDT   Documentation/devicetree/bindings/processed-schema.json
-      SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-      DTC_CHK Documentation/devicetree/bindings/sound/fsl,esai.example.dtb
+Frank
 
- .../devicetree/bindings/sound/fsl,esai.txt    |  68 -----------
- .../devicetree/bindings/sound/fsl,esai.yaml   | 110 ++++++++++++++++++
- 2 files changed, 110 insertions(+), 68 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/fsl,esai.txt
- create mode 100644 Documentation/devicetree/bindings/sound/fsl,esai.yaml
 
-diff --git a/Documentation/devicetree/bindings/sound/fsl,esai.txt b/Documentation/devicetree/bindings/sound/fsl,esai.txt
-deleted file mode 100644
-index 90112ca1ff423..0000000000000
---- a/Documentation/devicetree/bindings/sound/fsl,esai.txt
-+++ /dev/null
-@@ -1,68 +0,0 @@
--Freescale Enhanced Serial Audio Interface (ESAI) Controller
--
--The Enhanced Serial Audio Interface (ESAI) provides a full-duplex serial port
--for serial communication with a variety of serial devices, including industry
--standard codecs, Sony/Phillips Digital Interface (S/PDIF) transceivers, and
--other DSPs. It has up to six transmitters and four receivers.
--
--Required properties:
--
--  - compatible		: Compatible list, should contain one of the following
--			  compatibles:
--			  "fsl,imx35-esai",
--			  "fsl,vf610-esai",
--			  "fsl,imx6ull-esai",
--			  "fsl,imx8qm-esai",
--
--  - reg			: Offset and length of the register set for the device.
--
--  - interrupts		: Contains the spdif interrupt.
--
--  - dmas		: Generic dma devicetree binding as described in
--			  Documentation/devicetree/bindings/dma/dma.txt.
--
--  - dma-names		: Two dmas have to be defined, "tx" and "rx".
--
--  - clocks		: Contains an entry for each entry in clock-names.
--
--  - clock-names		: Includes the following entries:
--	"core"		  The core clock used to access registers
--	"extal"		  The esai baud clock for esai controller used to
--			  derive HCK, SCK and FS.
--	"fsys"		  The system clock derived from ahb clock used to
--			  derive HCK, SCK and FS.
--	"spba"		  The spba clock is required when ESAI is placed as a
--			  bus slave of the Shared Peripheral Bus and when two
--			  or more bus masters (CPU, DMA or DSP) try to access
--			  it. This property is optional depending on the SoC
--			  design.
--
--  - fsl,fifo-depth	: The number of elements in the transmit and receive
--			  FIFOs. This number is the maximum allowed value for
--			  TFCR[TFWM] or RFCR[RFWM].
--
--  - fsl,esai-synchronous: This is a boolean property. If present, indicating
--			  that ESAI would work in the synchronous mode, which
--			  means all the settings for Receiving would be
--			  duplicated from Transmission related registers.
--
--Optional properties:
--
--  - big-endian		: If this property is absent, the native endian mode
--			  will be in use as default, or the big endian mode
--			  will be in use for all the device registers.
--
--Example:
--
--esai: esai@2024000 {
--	compatible = "fsl,imx35-esai";
--	reg = <0x02024000 0x4000>;
--	interrupts = <0 51 0x04>;
--	clocks = <&clks 208>, <&clks 118>, <&clks 208>;
--	clock-names = "core", "extal", "fsys";
--	dmas = <&sdma 23 21 0>, <&sdma 24 21 0>;
--	dma-names = "rx", "tx";
--	fsl,fifo-depth = <128>;
--	fsl,esai-synchronous;
--	big-endian;
--};
-diff --git a/Documentation/devicetree/bindings/sound/fsl,esai.yaml b/Documentation/devicetree/bindings/sound/fsl,esai.yaml
-new file mode 100644
-index 0000000000000..9e31283933d1b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/fsl,esai.yaml
-@@ -0,0 +1,110 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/fsl,esai.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale Enhanced Serial Audio Interface (ESAI) Controller
-+
-+maintainers:
-+  - Shengjiu Wang <shengjiu.wang@nxp.com>
-+  - Frank Li <Frank.Li@nxp.com>
-+
-+description:
-+  The Enhanced Serial Audio Interface (ESAI) provides a full-duplex serial port
-+  for serial communication with a variety of serial devices, including industry
-+  standard codecs, Sony/Phillips Digital Interface (S/PDIF) transceivers, and
-+  other DSPs. It has up to six transmitters and four receivers.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - fsl,imx35-esai
-+      - fsl,vf610-esai
-+      - fsl,imx6ull-esai
-+      - fsl,imx8qm-esai
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 3
-+    maxItems: 4
-+
-+  clock-names:
-+    minItems: 3
-+    description: |
-+      core:   The core clock used to access registers.
-+      extal:  The esai baud clock for esai controller used to
-+              derive HCK, SCK and FS.
-+      fsys:   The system clock derived from ahb clock used to
-+              derive HCK, SCK and FS.
-+      spba:   The spba clock is required when ESAI is placed as a
-+              bus slave of the Shared Peripheral Bus and when two
-+              or more bus masters (CPU, DMA or DSP) try to access
-+              it. This property is optional depending on the SoC
-+              design.
-+    items:
-+      - const: core
-+      - const: extal
-+      - const: fsys
-+      - const: spba
-+
-+  dmas:
-+    minItems: 2
-+    maxItems: 2
-+
-+  dma-names:
-+    items:
-+      - const: rx
-+      - const: tx
-+
-+  fsl,fifo-depth:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: The number of elements in the transmit and receive
-+                 FIFOs. This number is the maximum allowed value for
-+                 TFCR[TFWM] or RFCR[RFWM].
-+
-+  fsl,esai-synchronous:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: This is a boolean property. If present, indicating
-+                 that ESAI would work in the synchronous mode, which
-+                 means all the settings for Receiving would be
-+                 duplicated from Transmission related registers.
-+
-+  big-endian:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: If this property is absent, the native endian mode
-+                 will be in use as default, or the big endian mode
-+                 will be in use for all the device registers.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - dmas
-+  - dma-names
-+  - fsl,fifo-depth
-+  - fsl,esai-synchronous
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    esai@2024000 {
-+      compatible = "fsl,imx35-esai";
-+      reg = <0x02024000 0x4000>;
-+      interrupts = <0 51 0x04>;
-+      clocks = <&clks 208>, <&clks 118>, <&clks 208>;
-+      clock-names = "core", "extal", "fsys";
-+      dmas = <&sdma 23 21 0>, <&sdma 24 21 0>;
-+      dma-names = "rx", "tx";
-+      fsl,fifo-depth = <128>;
-+      fsl,esai-synchronous;
-+      big-endian;
-+    };
--- 
-2.34.1
-
+> 
+> Frank
+> 
+> > 
+> > Frank Li
+> > 
+> > >                                                                            
+> > > But Yoshihiro give good idea by using iATU to send out message. Previously 
+> > > Yoshihiro provide patches to raise INTx message by dummy write to outbound 
+> > > iATU.                                                                      
+> > >                                                                            
+> > > Use similar mathod to send out pme_turn_off message.                       
+> > >                                                                            
+> > > Previous two patches is picked from Yoshihiro' big patch serialise.        
+> > >  PCI: dwc: Change arguments of dw_pcie_prog_outbound_atu()                 
+> > >  PCI: Add INTx Mechanism Messages macros                                   
+> > >                                                                            
+> > > PCI: Add PME_TURN_OFF message macro                                        
+> > > dt-bindings: PCI: dwc: Add 'msg" register region, Add "msg" region to use  
+> > > to map PCI msg.                                                            
+> > >                                                                            
+> > > PCI: dwc: Add common pme_turn_off message method                           
+> > > Using common pme_turn_off() message if platform have not define their.
+> > > 
+> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > ---
+> > > Changes in v4:
+> > > - Remove dt-binding patch. Needn't change any dts file and binding doc.
+> > >   Reserve a region at end of first IORESOURCE_MEM window by call
+> > >   request_resource(). So PCIe stack will not use this reserve region to any
+> > > PCIe devices.
+> > >   I tested it by reserve at begin of IORESOURCE_MEM window. PCIe stack
+> > > will skip it as expection.
+> > > 
+> > >   Fixed a issue, forget set iATU index when sent PME_turn_off.
+> > > 
+> > > - Link to v3: https://lore.kernel.org/r/20240202-pme_msg-v3-0-ff2af57a02ad@nxp.com
+> > > 
+> > > Changes in v3:
+> > > - fix 'MSG"
+> > > - Add pcie spec ref in head file
+> > > - using function name dw_pci_pme_turn_off()
+> > > - Using PCIE_ prefix macro
+> > > - Link to v2: https://lore.kernel.org/r/20240201-pme_msg-v2-0-6767052fe6a4@nxp.com
+> > > 
+> > > Changes in v2:
+> > >   - Add my sign off at PCI: dwc: Add outbound MSG TLPs support
+> > >   - Add Bjorn review tag at  Add INTx Mechanism Messages macros
+> > >   - using PME_Turn_Off match PCIe spec
+> > >   - ref to pcie spec v6.1
+> > >   - using section number.
+> > > 
+> > > - Link to v1: https://lore.kernel.org/r/20240130-pme_msg-v1-0-d52b0add5c7c@nxp.com
+> > > 
+> > > ---
+> > > Frank Li (2):
+> > >       PCI: Add PCIE_MSG_CODE_PME_TURN_OFF message macro
+> > >       PCI: dwc: Add common send PME_Turn_Off message method
+> > > 
+> > > Yoshihiro Shimoda (3):
+> > >       PCI: Add INTx Mechanism Messages macros
+> > >       PCI: dwc: Consolidate args of dw_pcie_prog_outbound_atu() into a structure
+> > >       PCI: dwc: Add outbound MSG TLPs support
+> > > 
+> > >  drivers/pci/controller/dwc/pcie-designware-ep.c   |  21 ++--
+> > >  drivers/pci/controller/dwc/pcie-designware-host.c | 145 +++++++++++++++++++---
+> > >  drivers/pci/controller/dwc/pcie-designware.c      |  54 ++++----
+> > >  drivers/pci/controller/dwc/pcie-designware.h      |  21 +++-
+> > >  drivers/pci/pci.h                                 |  20 +++
+> > >  5 files changed, 197 insertions(+), 64 deletions(-)
+> > > ---
+> > > base-commit: e08fc59eee9991afa467d406d684d46d543299a9
+> > > change-id: 20240130-pme_msg-dd2d81ee9886
+> > > 
+> > > Best regards,
+> > > -- 
+> > > Frank Li <Frank.Li@nxp.com>
+> > > 
 
