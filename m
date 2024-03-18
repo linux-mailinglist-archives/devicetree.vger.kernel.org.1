@@ -1,403 +1,144 @@
-Return-Path: <devicetree+bounces-51401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51402-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AE4C87F3FD
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 00:28:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E018487F452
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 00:59:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96716281C1D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 23:28:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C7161C20E0F
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 23:59:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F99C5F56C;
-	Mon, 18 Mar 2024 23:28:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76E5E5F873;
+	Mon, 18 Mar 2024 23:59:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g+3Bza5M"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C1AdiFvA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E330B5EE67;
-	Mon, 18 Mar 2024 23:28:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 446415F86E;
+	Mon, 18 Mar 2024 23:59:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710804530; cv=none; b=UOUaJHaLv+Wxqukq5wonHjl4gh0FEEe+1NlH6LYlM7jAwhKnnE1FHAQZP7YwDVVWMC/Xwd5FQdj1PKlsK+ChnGT7t8bYwcmlLsoTe9oeSU1TI9sim2nm2BM+XVA8LInz3ThnQy5M0G1lsGssM3Y2OMg+JEHyEZ7n81EPt55SoGY=
+	t=1710806373; cv=none; b=rZE8+C7TVCzBorLteqQBVk124GjktHCTd7DjyfPVuFkzZcs8QD4t9K19HloHZ/F+kpRejtSyo/wEuUIPq2goP7ewTJ7m3/KJ3GW3Yuzt6DMiAsFdHdVlk4pFolMtOEWHRlixrctYvbs9Aqse5PSjfo8PNmYmxnDHG9XuTmQN0b8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710804530; c=relaxed/simple;
-	bh=YpUt/4ImvuWAnLJ6H8L3Om3/A77U7GJ9Sw9foL6S6HI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=h0N6sLNIhPJvicWfBc9om6W5LsATVp+/BMtiTOyve+BhbgnJrsRYjQqtmfxb415OsCAazvbB3V0rmAJ4UPIEbLqWCa+NHeBtA7thMuyKAaViWTMQVeTlQk8w3ccKYOtM+hzVcPXfByCyIxFA4pcAyscV7B+FEB4UgUBfEn/m4KI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g+3Bza5M; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4140a9f25adso15765195e9.2;
-        Mon, 18 Mar 2024 16:28:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710804526; x=1711409326; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Je+QHKggTjRYZ872OZO73N9y5goT8Xf/6jT0hRsCT4o=;
-        b=g+3Bza5Mbp4w7nsE8YzcyEkY9NBVHLWpqcq9Z83gEWbpRfbOColhQb5DugfjbsDHw0
-         4UUSoHj7dtw/Xejx8tFtc3lBzlEiK29P/1XwH9+LZ3uXywa2XbuegVq4hw9nefmJnNqu
-         02VblCAPV6euXpAMN2/13QyB4V+uN57TBv76IdxfRe9QO9ae57zmIY5iMG+Y8aENdvDj
-         m2maOaa3y2FpFksdKYtFs8mkpyIoW8B2Fh9jumalaMTV/clOgxXvlQi42rh2MR7LRKbF
-         nROVk+cKoMafvo6WRd+21TM630bkXbfi1wrHwj3NENG3b/hjF+Hd96V2U3Qk5aheB6VJ
-         LKpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710804526; x=1711409326;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Je+QHKggTjRYZ872OZO73N9y5goT8Xf/6jT0hRsCT4o=;
-        b=LSlN/h8cQt8e/lg/pDwcOzF2G61xfDYZsvsa6kJJQ1c+PCEFx4k7ul88kZlA9DsPIs
-         re0ddP3Y81FS3B/QzRfIrJWlaWj8LoKwBK8uzy4GAlH4RzrluGkyUhk4amq1ff8zwAix
-         NKAaC1+v1DtFIKqHFj9bU86MMQ4LJIlGIZfyACJhtJzuCBq90C71XdS+/LrFODWGl8P2
-         EJTfXGCRrsIYxZbPh+iv2CTAz0tfnUcisWFvTqaylvz4WDUwz2PFumVPty50GzTMmEAn
-         h8DqrATyNm4DKlzewsumIsmeG429uHBkNn9Xeh/NI6FABhXB1dl1ikqBZE5HSKETZwbu
-         62aw==
-X-Forwarded-Encrypted: i=1; AJvYcCVmtAEVIuWMZCpmNrD3N3uNYSAr64ahrK0BwJvBlhaNC8OKAB+Pfr0FOCmFD+bSzNJyPs3GOyBmzLcNT7v0CHFNVU6X4szMAwu/XCqvLseP0RhKWQo5hKSS5BaEdsOFEjk1nwfAqLtC5g==
-X-Gm-Message-State: AOJu0YyyECYnZ/cpUAvpfv2OLc80V6piddyUPRWZxChEvZOY4cvFuRIX
-	yxTIhxSEXwAGkRXLivF2kMFeOp1X6xi4g16YaP5FTiqbXFK3JLLN
-X-Google-Smtp-Source: AGHT+IFlqZHrRZvHmS9yQjhpImZ/zyxNI2T5dWJHSjNy+cI0ouMUsI93wgzihsv9I6CZENXpz65YcQ==
-X-Received: by 2002:a05:6000:932:b0:33e:c593:c03d with SMTP id cx18-20020a056000093200b0033ec593c03dmr8394069wrb.27.1710804525880;
-        Mon, 18 Mar 2024 16:28:45 -0700 (PDT)
-Received: from [192.168.100.117] (89-76-44-138.dynamic.chello.pl. [89.76.44.138])
-        by smtp.gmail.com with ESMTPSA id m24-20020aa7d358000000b0056729e902f7sm5066592edr.56.2024.03.18.16.28.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Mar 2024 16:28:45 -0700 (PDT)
-Message-ID: <6ed87122-22ff-4d71-a6e6-06b578212f00@gmail.com>
-Date: Tue, 19 Mar 2024 00:28:43 +0100
+	s=arc-20240116; t=1710806373; c=relaxed/simple;
+	bh=/cuO+2prC5+m8EiBqi7dT0cOyOlyonzfiRrZm1oPk7o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BReKhBkHYMUKzzifm/fILz6kmZkQuCJBD4sgvK8kyItU3/RDGQxvCOIxkviy2XqQTfw9sLE8IiBDOwRLDc+6F1RO+qnj5KAZd1DXdbXNCeqlzeOP/fShrQGAw2UmLE89HduqpBJPoAxGkld4mjnHYJx67gLW+y9RaFoHk+hk3RE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C1AdiFvA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F906C433C7;
+	Mon, 18 Mar 2024 23:59:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710806372;
+	bh=/cuO+2prC5+m8EiBqi7dT0cOyOlyonzfiRrZm1oPk7o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=C1AdiFvAp5GBUxAns2H0MMAN9yTybi5z6O17Afr1xOowOuzOjbiQmOXLsX1anKBLE
+	 ekuU64TRkO34e0BQBu7aabyDQG2sab2rSYLeZaY1509JycooK2lwRbysy0jPUfvXss
+	 ZRCF8DJJX02IUQkm1/E1tAUjhprfG0K9DFFFIuIyH+8Pt2mMW0mjy6g9YOtZDzEl//
+	 vXvyhqPPectG1Zd3rdKITre0iOJNGzLglOg7oAZq6oXMXE25yfVzzwGLC+WhuuyUz3
+	 1caAiqVqEZBiePx3A8nkfPjnmZNHqtNaEsG2uvZdBwwNRX10XivuZ6IDrtK5JMSXqO
+	 vTJEHG9cUEnpw==
+Date: Mon, 18 Mar 2024 23:59:28 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: clock: samsung,s3c6400-clock: convert to DT
+ Schema
+Message-ID: <20240318-mummify-helmet-91a1f970a07d@spud>
+References: <20240312185035.720491-1-krzysztof.kozlowski@linaro.org>
+ <20240317-curator-smoky-99568f9308bc@spud>
+ <60039f49-a20d-49b9-8a3d-2ded499435a4@linaro.org>
+ <20240317-jersey-trolling-d4678546e87d@spud>
+ <c456f575-570f-40d6-9960-634da314e1d6@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] arm64: dts: allwinner: h616: add support for T95
- tv boxes
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-References: <20240317-add-t95-axp313-support-v3-0-0d63f7c23d37@gmail.com>
- <20240317-add-t95-axp313-support-v3-3-0d63f7c23d37@gmail.com>
- <20240318114257.46667aef@donnerap.manchester.arm.com>
-Content-Language: pl, en-GB
-From: Kamil Kasperski <ressetkk@gmail.com>
-In-Reply-To: <20240318114257.46667aef@donnerap.manchester.arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="phI+MIIf734WzXdq"
+Content-Disposition: inline
+In-Reply-To: <c456f575-570f-40d6-9960-634da314e1d6@linaro.org>
 
-W dniu 18.03.2024 o 12:42, Andre Przywara pisze:
-> On Sun, 17 Mar 2024 20:44:51 +0100
-> Kamil Kasperski <ressetkk@gmail.com> wrote:
->
-> Hi Kamil,
->
-> thanks a lot for putting together those patches and sending them
-> for upstream inclusion!
->
->> Add dtsi file for T95 tv boxes and add initial support for T95 5G AXP313A
->> variant with a board name H616-T95MAX-AXP313A-v3.0 Internal storage is not
->> accessible due to lack of support for H616 NAND controller.
-> Them using raw NAND is really unfortunate. I think the original T95 box
-> used eMMC?
 
-I'm not sure. I don't have access to the other revision of this box.
+--phI+MIIf734WzXdq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->
->> Signed-off-by: Kamil Kasperski <ressetkk@gmail.com>
->> ---
->>  arch/arm64/boot/dts/allwinner/Makefile             |   1 +
->>  arch/arm64/boot/dts/allwinner/sun50i-h616-t95.dtsi | 109 +++++++++++++++++++++
->>  .../dts/allwinner/sun50i-h616-t95max-axp313.dts    |  85 ++++++++++++++++
->>  3 files changed, 195 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
->> index 21149b346a60..294921f12b73 100644
->> --- a/arch/arm64/boot/dts/allwinner/Makefile
->> +++ b/arch/arm64/boot/dts/allwinner/Makefile
->> @@ -42,6 +42,7 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
->>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-bigtreetech-cb1-manta.dtb
->>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-bigtreetech-pi.dtb
->>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
->> +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-t95max-axp313.dtb
->>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
->>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-longanpi-3h.dtb
->>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero2w.dtb
->> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-t95.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616-t95.dtsi
->> new file mode 100644
->> index 000000000000..815cf2dac24b
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-t95.dtsi
->> @@ -0,0 +1,109 @@
->> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> +/*
->> + * Copyright (C) 2024 Kamil Kasperski <ressetkk@gmail.com>
->> + *
->> + * Common DT nodes for H616-based T95 TV boxes
->> + * There are two versions reported with different PMIC variants.
->> + */
->> +
->> +#include "sun50i-h616.dtsi"
->> +
->> +#include <dt-bindings/gpio/gpio.h>
->> +#include <dt-bindings/interrupt-controller/arm-gic.h>
->> +
->> +/ {
->> +	aliases {
->> +		ethernet1 = &sdio_wifi;
->> +		serial0 = &uart0;
->> +	};
->> +
->> +	chosen {
->> +		stdout-path = "serial0:115200n8";
->> +	};
->> +
->> +	reg_vcc5v: vcc5v {
->> +		/* board wide 5V supply directly from the DC input */
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "vcc-5v";
->> +		regulator-min-microvolt = <5000000>;
->> +		regulator-max-microvolt = <5000000>;
->> +		regulator-always-on;
->> +	};
->> +
->> +	reg_vcc3v3: vcc3v3 {
->> +		/* discrete 3.3V regulator */
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "vcc-3v3";
->> +		regulator-min-microvolt = <3300000>;
->> +		regulator-max-microvolt = <3300000>;
->> +		regulator-always-on;
->> +	};
->> +
->> +	wifi_pwrseq: wifi-pwrseq {
-> Krzysztof recently sent a patch to just use "pwrseq" as the node name,
-> so can you do the same here?
->
-> https://lore.kernel.org/linux-sunxi/20240317184130.157695-2-krzysztof.kozlowski@linaro.org/T/#u
+On Mon, Mar 18, 2024 at 05:20:50PM +0100, Krzysztof Kozlowski wrote:
+> On 17/03/2024 16:49, Conor Dooley wrote:
+> > On Sun, Mar 17, 2024 at 04:26:55PM +0100, Krzysztof Kozlowski wrote:
+> >> On 17/03/2024 16:23, Conor Dooley wrote:
+> >>> On Tue, Mar 12, 2024 at 07:50:35PM +0100, Krzysztof Kozlowski wrote:
+> >>>> Convert Samsung S3C6400/S3C6410 SoC clock controller bindings to DT
+> >>>> schema.
+> >>>
+> >>>> +description: |
+> >>>> +  There are several clocks that are generated outside the SoC. It i=
+s expected
+> >>>> +  that they are defined using standard clock bindings with following
+> >>>> +  clock-output-names:
+> >>>> +   - "fin_pll" - PLL input clock (xtal/extclk) - required,
+> >>>> +   - "xusbxti" - USB xtal - required,
+> >>>> +   - "iiscdclk0" - I2S0 codec clock - optional,
+> >>>> +   - "iiscdclk1" - I2S1 codec clock - optional,
+> >>>> +   - "iiscdclk2" - I2S2 codec clock - optional,
+> >>>> +   - "pcmcdclk0" - PCM0 codec clock - optional,
+> >>>> +   - "pcmcdclk1" - PCM1 codec clock - optional, only S3C6410.
+> >>>
+> >>> I know you've only transfered this from the text binding, but what is
+> >>> the relevance of this to the binding for this clock controller? This
+> >>> seems to be describing some ?fixed? clocks that must be provided in
+> >>> addition to this controller. I guess there's probably no other suitab=
+le
+> >>> place to mention these?
+> >>
+> >> To make it correct, these should be made clock inputs to the clock
+> >> controller, even if the driver does not take them, however that's
+> >> obsolete platform which might be removed from kernel this or next year,
+> >> so I don't want to spend time on it.
+> >=20
+> > I think the comment should probably mention that these are the expected
+> > inputs, part of me thought that that was what you were getting at but I
+> > wasn't sure if instead they were inputs to some other IP on the SoC.
+>=20
+> I can change it, but just to emphasize: in half a year or next year we
+> will probably remove entire platform, thus also this binding.
 
-Sure. I'll send v4.
+I know, I saw that. I don't really care what you do given the platform
+is being deleted and it is unlikely that anyone is actually going to be
+assembling a from-scratch dtsi for this SoC. On the other hand, if
+you're doing a conversion, even in this scenario, I think it should be
+clear.=20
+I didn't ack the patch cos I figured you were taking the patch via the
+samsung tree (and on to Stephen) yourself, but here:
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
->
->> +		compatible = "mmc-pwrseq-simple";
->> +		clocks = <&rtc CLK_OSC32K_FANOUT>;
->> +		clock-names = "ext_clock";
->> +		pinctrl-0 = <&x32clk_fanout_pin>;
->> +		pinctrl-names = "default";
->> +		reset-gpios = <&pio 6 18 GPIO_ACTIVE_LOW>; /* PG18 */
->> +	};
->> +};
->> +
->> +&ehci0 {
->> +	status = "okay";
->> +};
->> +
->> +&ehci2 {
->> +	status = "okay";
->> +};
->> +
->> +&ir {
->> +	status = "okay";
->> +};
->> +
->> +&mmc0 {
->> +	cd-gpios = <&pio 8 16 GPIO_ACTIVE_LOW>;	/* PI16 */
->> +	bus-width = <4>;
->> +	status = "okay";
->> +};
->> +
->> +&mmc1 {
->> +	mmc-pwrseq = <&wifi_pwrseq>;
->> +	bus-width = <4>;
->> +	non-removable;
->> +	status = "okay";
->> +
->> +	sdio_wifi: wifi@1 {
->> +		reg = <1>;
->> +	};
-> So does the WiFi work with mainline drivers? IIUC the BCM43342 is not
-> supported by the existing Broadcom drivers?
+I'd rather argue about the definition of erratum instead of this :)
 
-It's actually BCM43342/1 It System doesn't detect this chip by default.
-The most relevant message from dmesg is:
-[   14.042035] kernel: brcmfmac: brcmf_fw_alloc_request: Unknown chip BCM43342/1
-I believe that it's only a matter of missing module. I don't think it is
-supported in mainline ATM. I left it to have a wi-fi node accessible
-and detectable by kernel. If you think that it's better to remove the
-node if it's not supported I can do it.
+--phI+MIIf734WzXdq
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Somebody actually extracted modified precompiled module from custom
-5.15.16 rockchip kernel, which implements support for this card. There's no
-patch for it that could be submitted to mainline unfortunately ATM.
+-----BEGIN PGP SIGNATURE-----
 
-I've found a patch that adds chip id strings to brcmfmac, but I would like to
-test it beforehand.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZfjVXwAKCRB4tDGHoIJi
+0oZhAQD+pmOY+P/bz4THs5Dh9jBUlSFieYOnAX0+K/xeZPaoigEAtpb48qbPfE/w
+ORq53TSn9+qiVqYzXqWjizxmSyWJRgw=
+=BACD
+-----END PGP SIGNATURE-----
 
->
->> +};
->> +
->> +&ohci0 {
->> +	status = "okay";
->> +};
->> +
->> +&ohci2 {
->> +	status = "okay";
->> +};
->> +
->> +&uart0 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&uart0_ph_pins>;
->> +	status = "okay";
->> +};
->> +
->> +&uart1 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
->> +	uart-has-rtscts;
->> +	status = "okay";
-> Similar question here, what is the Bluetooth situation in mainline? I
-> guess it's not supported, since you didn't put a BT node in here?
-
-I haven't tested that yet. It's partially due to lack of experience with
-DTS. I would like to figure out mainline support eventually, but for now
-I would like to just have a working foundation for these TVB.
-
-If that's also not really a wanted option to leave those nodes, I can
-remove them for now.
-
->
->> +};
->> +
->> +&usbotg {
->> +	dr_mode = "host";	/* USB A type receptable */
->> +	status = "okay";
->> +};
->> +
->> +&usbphy {
->> +	status = "okay";
->> +};
->> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-t95max-axp313.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-t95max-axp313.dts
->> new file mode 100644
->> index 000000000000..c8650aca2407
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-t95max-axp313.dts
->> @@ -0,0 +1,85 @@
->> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> +/*
->> + * Copyright (C) 2024 Kamil Kasperski <ressetkk@gmail.com>
->> + *
->> + * Configuration for T95 TV box with board label H616-T95MAX-AXP313A-v3.0
->> + */
->> +
->> +/dts-v1/;
->> +
->> +#include "sun50i-h616-t95.dtsi"
->> +
->> +/ {
->> +	model = "T95 5G (AXP313)";
->> +	compatible = "t95,t95max-axp313", "allwinner,sun50i-h616";
->> +};
->> +
->> +&mmc0 {
->> +	vmmc-supply = <&reg_dldo1>;
->> +};
->> +
->> +&mmc1 {
->> +	vmmc-supply = <&reg_dldo1>;
->> +	vqmmc-supply = <&reg_aldo1>;
->> +};
->> +
->> +&r_i2c {
->> +	status = "okay";
->> +
->> +	axp313: pmic@36 {
->> +		compatible = "x-powers,axp313a";
->> +		reg = <0x36>;
->> +		#interrupt-cells = <1>;
->> +		interrupt-controller;
->> +		interrupt-parent = <&pio>;
-> I don't think you need interrupt-parent unless you also actually specify
-> an interrupt line.
-> (But please keep #interrupt-cells and interrupt-controller.)
-
-I think you may be right. I based this part off of OPiZ3 dts, rather than
-transpeed. Will update in the v4.
-
->
->> +
->> +		vin1-supply = <&reg_vcc5v>;
->> +		vin2-supply = <&reg_vcc5v>;
->> +		vin3-supply = <&reg_vcc5v>;
->> +
->> +		regulators {
->> +			reg_aldo1: aldo1 {
->> +				regulator-always-on;
->> +				regulator-min-microvolt = <1800000>;
->> +				regulator-max-microvolt = <1800000>;
->> +				regulator-name = "vcc1v8";
->> +			};
->> +
->> +			reg_dldo1: dldo1 {
->> +				regulator-always-on;
->> +				regulator-min-microvolt = <3300000>;
->> +				regulator-max-microvolt = <3300000>;
->> +				regulator-name = "vcc3v3";
->> +			};
->> +
->> +			reg_dcdc1: dcdc1 {
->> +				regulator-always-on;
->> +				regulator-min-microvolt = <810000>;
->> +				regulator-max-microvolt = <990000>;
->> +				regulator-name = "vdd-gpu-sys";
->> +			};
->> +
->> +			reg_dcdc2: dcdc2 {
->> +				regulator-always-on;
->> +				regulator-min-microvolt = <810000>;
->> +				regulator-max-microvolt = <1100000>;
->> +				regulator-name = "vdd-cpu";
->> +			};
->> +
->> +			reg_dcdc3: dcdc3 {
->> +				regulator-always-on;
->> +				regulator-min-microvolt = <1500000>;
->> +				regulator-max-microvolt = <1500000>;
->> +				regulator-name = "vdd-dram";
->> +			};
->> +		};
->> +	};
->> +};
->> +
->> +&pio {
->> +	vcc-pc-supply = <&reg_aldo1>;
->> +	vcc-pf-supply = <&reg_dldo1>;
->> +	vcc-pg-supply = <&reg_dldo1>;
-> So if vqmmc-supply for MMC1 is at the 1.8V from ALDO1, that must mean that
-> the whole of PortG is at 1.8V, right? So I think this would need to be
-> reg_aldo1 here.
->
-> Apart from those minor things it looks good to me.
->
-> Cheers,
-> Andre
-
-Good catch. Will update in v4.
-
-Cheers,
-Kamil
-
->> +	vcc-ph-supply = <&reg_dldo1>;
->> +	vcc-pi-supply = <&reg_dldo1>;
->> +};
->>
-
+--phI+MIIf734WzXdq--
 
