@@ -1,225 +1,127 @@
-Return-Path: <devicetree+bounces-51071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A08587E18D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 02:13:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0783C87E191
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 02:22:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BB8B61F213A6
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 01:13:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 86DEC1F2146A
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 01:22:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C31C179AE;
-	Mon, 18 Mar 2024 01:13:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53E801643D;
+	Mon, 18 Mar 2024 01:22:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="diESgmM4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDCB317BB5;
-	Mon, 18 Mar 2024 01:13:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22C6A168B7;
+	Mon, 18 Mar 2024 01:22:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710724401; cv=none; b=nRItD5rqcWhseEQSE7s+YDAGyxkac5yldRaEYEIp/kt1L5KmMASlO6nA3KbWBnmIIvf59r8HyZhaBXtw42wvjg1VSVFO4pA6RndwDafVEBJffQUJyTcW4+HVSTxKEm6e4Csn2ymvVRaKtFY4RyLsr0YgRuNEjS5vW0T32UfrnaY=
+	t=1710724921; cv=none; b=YdsC+vYz5bZWxmaX5CXVanU7tqxpvKAXb9pkvO/hX7gntvLpOzjU88j/KhbSHYRFBdmE8Cxx/W1If0T/YXJ6G2CGBqwI+ruKVgDX62mquHU+OVkJcSZnzM4YEsubqjZ4X3Hn2umO7YjLj70JRRbZVLsuORNfH9w76Ugqnr1ajX8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710724401; c=relaxed/simple;
-	bh=619S+KcGJ541E+/5aorK4RSY0/TukOhsG16mtYDhb9c=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=YBnJxDjz49ldrA/8BtsMJH+w94t/EpoZAdm5Ow7qcvc3WG8HlpPaOMNEk7eXwv1HgdYTGNZf6G4SOlrGbbEr63ZcJ+cWc9Gaxa0ddn+qqvpRpDoYYc/YwJ+4KmTrNnQ8hH0zdliDgS2mWWGRxP8wZ1H8nzJhyGircCaceif7WCs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1481312FC;
-	Sun, 17 Mar 2024 18:13:53 -0700 (PDT)
-Received: from localhost.localdomain (unknown [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E388D3F23F;
-	Sun, 17 Mar 2024 18:13:15 -0700 (PDT)
-From: Andre Przywara <andre.przywara@arm.com>
-To: Yangtao Li <tiny.windzz@gmail.com>,
-	Viresh Kumar <vireshk@kernel.org>,
-	Nishanth Menon <nm@ti.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	"Rafael J . Wysocki" <rafael@kernel.org>
-Cc: linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-sunxi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Brandon Cheo Fusi <fusibrandon13@gmail.com>,
-	Martin Botka <martin.botka@somainline.org>,
-	Martin Botka <martin.botka1@gmail.com>
-Subject: [PATCH v2 8/8] arm64: dts: allwinner: h616: enable DVFS for all boards
-Date: Mon, 18 Mar 2024 01:12:28 +0000
-Message-Id: <20240318011228.2626-9-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.35.8
-In-Reply-To: <20240318011228.2626-1-andre.przywara@arm.com>
-References: <20240318011228.2626-1-andre.przywara@arm.com>
+	s=arc-20240116; t=1710724921; c=relaxed/simple;
+	bh=A3qUIU4IJh6pUUkc9Ktbk9dFPj1Z12U4SirVZRl0r50=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OkY5yFOj6ajdYyRat6DKkeI/j9pHZj9RVF5AhQpVB4hz3QHr+U0kSC3rUFFnoCjvpSbKDvyqESd64CLbjDWXAtySa/jw0GT9ela20wDkp5FALCCUY6lV88+DKANz3yH8UqYrWmvkOKbvmQWzCfVDmxXaq16c/FY5JU2tGf+91tE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=diESgmM4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFAF4C433F1;
+	Mon, 18 Mar 2024 01:21:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710724920;
+	bh=A3qUIU4IJh6pUUkc9Ktbk9dFPj1Z12U4SirVZRl0r50=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=diESgmM48596jTkyDf+MInkJK2vspnYwouovuMgtyXGWptRYplLWdkpVaIObbDyy1
+	 bYEduc/wWJP5k2VR0w3KtmEv3OIENTS3bepfK6kiJ3v1zzGJWnHUX2+VXWAgSEQTpq
+	 ZTPoo+g+Qc4zPULCw+RCwHdP+T5SS+AvpTX4cy7Lu4KbT1UYOMYKCnlHHpAs4cTFtQ
+	 op12cnbg2KL65XLMjuoLhdxvf5sW3JMolFO4wN78FF7EpfCQFxyZ0l8A9IPpiCLZWd
+	 vsUEvw1NS4v0ylNEW5D2/kk43aP8ckBulBjSCz3JN2TlscClkXoVNcJXmAWbKKJQhg
+	 MkA1QcbD+BG/A==
+Date: Sun, 17 Mar 2024 20:21:58 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Mukesh Ojha <quic_mojha@quicinc.com>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, robh@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: sm8450: Add qfprom node
+Message-ID: <gxi4klvxzwwyrwb2b4h7kmii5dx5mxdypxowwz3kyllvq6grss@6lahaospwtsh>
+References: <1709727995-19821-1-git-send-email-quic_mojha@quicinc.com>
+ <1709727995-19821-2-git-send-email-quic_mojha@quicinc.com>
+ <45fcf8fb-9d9b-4e6a-a7c5-9bfb96875e64@linaro.org>
+ <69a8c14c-109a-103a-b8dc-d8e303c0f0d5@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <69a8c14c-109a-103a-b8dc-d8e303c0f0d5@quicinc.com>
 
-With the DT bindings now describing the format of the CPU OPP tables, we
-can include the OPP table in each board's .dts file, and specify the CPU
-power supply.
-This allows to enable DVFS, and get up to 50% of performance benefit in
-the highest OPP, or up to 60% power savings in the lowest OPP, compared
-to the fixed 1GHz @ 1.0V OPP we are running in by default at the moment.
+On Thu, Mar 14, 2024 at 10:13:59PM +0530, Mukesh Ojha wrote:
+> Sorry for the late reply, was on vacation.
+> 
+> On 3/6/2024 9:24 PM, Konrad Dybcio wrote:
+> > 
+> > 
+> > On 3/6/24 13:26, Mukesh Ojha wrote:
+> > > Add the qfprom node for sm8450 SoC.
+> > > 
+> > > Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+> > > ---
+> > >   arch/arm64/boot/dts/qcom/sm8450.dtsi | 7 +++++++
+> > >   1 file changed, 7 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> > > b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> > > index b86be34a912b..02089a388d03 100644
+> > > --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> > > +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> > > @@ -4575,6 +4575,13 @@
+> > >               };
+> > >           };
+> > > +        qfprom: efuse@221c8000 {
+> > > +            compatible = "qcom,sm8450-qfprom", "qcom,qfprom";
+> > > +            reg = <0 0x221c8000 0 0x1000>;
+> > 
+> > Is is really only 0x1000-long? Also, is the base you put
+> > here the ECC-corrected part (if that still exists)?
+> 
+> No, its not.
+> 
+> Entire fuse space is this.
+> 0x221C0000-0x221Cbfff
+> 
+> ECC corrected range is this 0x221C2000-0x221C3fff and High level OS
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
----
- .../boot/dts/allwinner/sun50i-h616-bigtreetech-cb1.dtsi      | 5 +++++
- arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts | 5 +++++
- arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts       | 5 +++++
- .../arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts | 5 +++++
- arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts | 5 +++++
- .../boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts     | 5 +++++
- 6 files changed, 30 insertions(+)
+That's 0x2000. Does this then also imply that the ECC-corrected values
+are no longer mapped 1:1 with non-corrected, or why do they differ in
+size?
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1.dtsi
-index 1fed2b46cfe87..86e58d1ed23ea 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1.dtsi
-@@ -6,6 +6,7 @@
- /dts-v1/;
- 
- #include "sun50i-h616.dtsi"
-+#include "sun50i-h616-cpu-opp.dtsi"
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-@@ -62,6 +63,10 @@ wifi_pwrseq: wifi-pwrseq {
- 	};
- };
- 
-+&cpu0 {
-+	cpu-supply = <&reg_dcdc2>;
-+};
-+
- &mmc0 {
- 	vmmc-supply = <&reg_dldo1>;
- 	/* Card detection pin is not connected */
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
-index b5d713926a341..a360d8567f955 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
-@@ -6,12 +6,17 @@
- /dts-v1/;
- 
- #include "sun50i-h616-orangepi-zero.dtsi"
-+#include "sun50i-h616-cpu-opp.dtsi"
- 
- / {
- 	model = "OrangePi Zero2";
- 	compatible = "xunlong,orangepi-zero2", "allwinner,sun50i-h616";
- };
- 
-+&cpu0 {
-+	cpu-supply = <&reg_dcdca>;
-+};
-+
- &emac0 {
- 	allwinner,rx-delay-ps = <3100>;
- 	allwinner,tx-delay-ps = <700>;
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-index 959b6fd18483b..26d25b5b59e0f 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-@@ -6,6 +6,7 @@
- /dts-v1/;
- 
- #include "sun50i-h616.dtsi"
-+#include "sun50i-h616-cpu-opp.dtsi"
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-@@ -32,6 +33,10 @@ reg_vcc5v: vcc5v {
- 	};
- };
- 
-+&cpu0 {
-+	cpu-supply = <&reg_dcdca>;
-+};
-+
- &ehci0 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts
-index 21ca1977055d9..6a4f0da972330 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts
-@@ -6,6 +6,7 @@
- /dts-v1/;
- 
- #include "sun50i-h616.dtsi"
-+#include "sun50i-h616-cpu-opp.dtsi"
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-@@ -53,6 +54,10 @@ reg_vcc3v3: vcc3v3 {
- 	};
- };
- 
-+&cpu0 {
-+	cpu-supply = <&reg_dcdc2>;
-+};
-+
- &ehci1 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
-index b3b1b8692125f..e1cd7572a14ce 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
-@@ -6,12 +6,17 @@
- /dts-v1/;
- 
- #include "sun50i-h616-orangepi-zero.dtsi"
-+#include "sun50i-h616-cpu-opp.dtsi"
- 
- / {
- 	model = "OrangePi Zero3";
- 	compatible = "xunlong,orangepi-zero3", "allwinner,sun50i-h618";
- };
- 
-+&cpu0 {
-+	cpu-supply = <&reg_dcdc2>;
-+};
-+
- &emac0 {
- 	allwinner,tx-delay-ps = <700>;
- 	phy-mode = "rgmii-rxid";
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
-index 8ea1fd41aebaa..2dd178a164fbe 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
-@@ -6,6 +6,7 @@
- /dts-v1/;
- 
- #include "sun50i-h616.dtsi"
-+#include "sun50i-h616-cpu-opp.dtsi"
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-@@ -41,6 +42,10 @@ reg_vcc3v3: vcc3v3 {
- 	};
- };
- 
-+&cpu0 {
-+	cpu-supply = <&reg_dcdc2>;
-+};
-+
- &ehci0 {
- 	status = "okay";
- };
--- 
-2.35.8
+> does have a access to ECC range however, they are not recommended for
+> SW usage.
+> 
+> Above mentioned SW range(4) in the patch is  one and only accessible range
+> available out of 0-7 SW ranges(0x221C4000-0x221Cbfff with each
+> size 0x1000) and does not have ECC fuses.
+> 
 
+So you're saying that in contrast to other platforms, the 4th software
+range, dedicated for HLOS, does not have a matching ECC-corrected
+shadow? If that's the case, then "not recommended for SW usage" sounds
+wrong.
+
+> All the downstream use cases are getting fulfilled with this.
+> 
+
+You only need ECC if you're unlucky...
+
+Regards,
+Bjorn
 
