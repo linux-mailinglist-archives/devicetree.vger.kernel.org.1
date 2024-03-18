@@ -1,222 +1,246 @@
-Return-Path: <devicetree+bounces-51081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E8C587E242
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 03:47:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B2BC87E27C
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 04:22:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C92411F21E79
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 02:47:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 308D2282456
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 03:22:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4750D1DA53;
-	Mon, 18 Mar 2024 02:47:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="a8vzg9mn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3E5D1EB39;
+	Mon, 18 Mar 2024 03:21:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2084.outbound.protection.outlook.com [40.107.22.84])
+Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2092.outbound.protection.partner.outlook.cn [139.219.146.92])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E10F61C10;
-	Mon, 18 Mar 2024 02:47:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.84
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89F681E533;
+	Mon, 18 Mar 2024 03:21:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.92
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710730033; cv=fail; b=CXwQ4H+YsXDX8vJ6t96R81j5aD0PRsp/CwnMmUCwXRmYY8mK7aVtwAsV+vpGo7DanM7/bMuB9ZxbChLpYHGB+vrHq2F9yRK3WurKei7fXz4HXBCWKIYl24ipr9JtH/Tmtxsrq58SPMhFBihPnxmsd6/7NHjXDkwUIrP3Zai0YWQ=
+	t=1710732118; cv=fail; b=qhgcvwNgWQAgPIyeK7ZTulp48A3RFmP88cehf9nLaZIAWi+aWlNDEDKE0LI0dcdGq7W9vietdQOCFYymxYL+8Xv6yVNrR5ScD6+v+6giMVKoR11i09xkwaaYhct9ROR6JOCHsn0FhssMpljnTOr+aQD3GbmWq4HJkpGKrtbCgRQ=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710730033; c=relaxed/simple;
-	bh=sDtglPoaFEw22QeN6AUMzWOHVCLVXTxqMGal0ezbY1g=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=MSXTGv1jk+7tTfWMFCnPjyIC8KuXa+LS6s/256gW7UipOnZlqFlMjV3MajDbujZG/bvxbFsjyb3YJZjgzW7LQbfeuLcLSekjVeXH3/dQhxVIMa+4y0my0To9ybZKY4/lJXrEKCWJbhbDI5S+yNBAhhfNgZ/CCHqV+Ev2WI15yDE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=a8vzg9mn; arc=fail smtp.client-ip=40.107.22.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+	s=arc-20240116; t=1710732118; c=relaxed/simple;
+	bh=GDmzuyemaNl2X+PBQww46ALDo/1u2wyCEPcGCgGLjX8=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=VWqPe2y56pKYaGoCw04xs4rRNKjhalnFcyiaACwAyLdNuhMX377k/LPqAhTvQy1rWGD949TmhbhgOkRAN0Zbwj/kHiFwJ6F7/J6wlH0PgWEiD80ZSq4RVQ4hW3ke4VzUDopugO5EdalD5A0Uzv0RrCJIN6c1QVbvjiTYvX8iPJI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.92
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=X51YIvENz08vk9uhF/NLq9kdnbHcgGh64MqJn9+3c9+5jNHvMNEmwQxw7bkJizpLk7vACjt6ru3DEPd9ULih9N7EbC1Z2USO0AvNZMojV/AsKQ9mrWEHYTdx6PfTxydZzLoV7dclWKRa4n3aDj/PIJXLnWrkMsW2LFPJMHtvO1t0wci7FtORHxLmk6QilB5jq5tZZm7Ygq3oIyTLRyZeATo8L5I/ZJKD2CI8JVudBQg1jYyf2UbqVfZNSGSFfXy0PFP18PylK+hqHkQfLAuPksBW5NB1bh4vE+ZzVTfBZb6EnQcD7Ea0I1kPikR54WmJm+oFDZEYBHFxN4oQNiPYJw==
+ b=IwfLP3p0ltYKXzin3sUL/ZXTX42F+0wMieiBeZQy2dztkFJL0Yry9cMO6WJyFTkV5ndb64Cv4kJoSmE7twzh47iK5JcLO6p24bOSZ9uTHX4cIHa1c/2YylmN5c3/HUAN7PDA8gBEqqoPIys8EZPawZRY8cNqjLKxuMXAWNiRiO0jS+QVhDdHQBXXF/LFykr4zhfVNnMqjg6d7hc1pMvNqLDJ4tBO0HfoJ4k4562KD9PKFapOqGJM2n0PjzZzHTJ/TytckCxI/Q/BRUGXRdVAH4hHbgQf9t4CiQO5hsXgw5+bJZk74Fl4LvhCtXzBupoR8Nm5CZgbU0SkiFooFrFryQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sDtglPoaFEw22QeN6AUMzWOHVCLVXTxqMGal0ezbY1g=;
- b=FozA9TAv2tOamxOb/XyNxor7aiQKuboiD+OYsWNeh6WLI3f1lvW15eIdNvaq+3WZyLiTjKCMBHyBgHhc5kzErxoIGoUK9YVcAplr6fdaXoaEaEHVsgH6JeNRQTFGF39ovzY4B7Utg5ORuWvq+SzRX+aCK222mBHoNghVEBcFrtEDmjKZV8kW0zWVrpNTamM/VzDw99IHzdlw0PEmaw1GI7ydfuaJFycv9neVnFKKX63HT571SnkPZv6b8mGxJXAeAHmR+ogFcx4aUM7QGkzO/k0mendOO75CLFr0R8xEsPj3sI2t08i+TGmncSEQn4JQPRtOwfSG4L/+1ONkcpPXqA==
+ bh=swPeyA+PKTAiWrzqgwY3vv7/xM9a+gOEIvhedCiaNFQ=;
+ b=iYLbzyunAViSCCUPZQMng6jBFxAMBc0+f9CxlePSQPkFH/Z0Dz3Y6dwfV5W3c/DtGNfL1D/ItuXBKwyygoIiZFnHFNWp+dX6+XIFfucMcK/9yeLfRzL9AP+nw4mjSBF7yN2a/1y7cshef0J6OpwKYBvJGcH+vnGhGX9U9da+viNyXtgb/PVxpT0CEKZHUYQ5jlyLUKWm0ZenQf7rEcmEWywpB96HQ8ZgWuv+vXVCCdVEDq58hyoLWtYJ81HSbglgShnzb6p+0ogac3kTc5EliVpA5vfUTPzeAsmEixX6ef+wD2mrx+iQ3N1306UiSCmUkanrhcLOgVypEL7fyD0Ypw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sDtglPoaFEw22QeN6AUMzWOHVCLVXTxqMGal0ezbY1g=;
- b=a8vzg9mnb/7rOvrI2AFYP2+aNAmwRiQkkvUje9i2J8VdI4a3l7JUfoiYB0zcxxm6mYJD6/OTwYrJQmuiCBw+pzxm6+c318LtHNo2nTTLuDTNegqV6fzuhas2abrPrn9liIuNCTU9twUTXK2cNFdqsjf3NHkpqO78G8ikupn30Xw=
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by VI1PR04MB7088.eurprd04.prod.outlook.com (2603:10a6:800:11d::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.26; Mon, 18 Mar
- 2024 02:47:06 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::d30b:44e7:e78e:662d]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::d30b:44e7:e78e:662d%4]) with mapi id 15.20.7386.017; Mon, 18 Mar 2024
- 02:47:06 +0000
-From: Peng Fan <peng.fan@nxp.com>
-To: Cristian Marussi <cristian.marussi@arm.com>
-CC: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Sudeep Holla
-	<sudeep.holla@arm.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Oleksii Moisieiev <oleksii_moisieiev@epam.com>, Linus Walleij
-	<linus.walleij@linaro.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
-	<s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, dl-linux-imx <linux-imx@nxp.com>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-gpio@vger.kernel.org"
-	<linux-gpio@vger.kernel.org>, AKASHI Takahiro <takahiro.akashi@linaro.org>,
-	Rob Herring <robh@kernel.org>
-Subject: RE: [PATCH v5 0/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
- protocol basic support
-Thread-Topic: [PATCH v5 0/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
- protocol basic support
-Thread-Index: AQHadhNQAq3ztPnC+06ZIaeZ1qof0rE3crUAgACA3vCAARLLAIADylFg
-Date: Mon, 18 Mar 2024 02:47:06 +0000
-Message-ID:
- <DU0PR04MB94176621F225DA0316E2734B882D2@DU0PR04MB9417.eurprd04.prod.outlook.com>
-References: <20240314-pinctrl-scmi-v5-0-b19576e557f2@nxp.com>
- <ZfMqWP-t39SCvkA2@pluto>
- <DU0PR04MB9417056FD84405898F1B007B88282@DU0PR04MB9417.eurprd04.prod.outlook.com>
- <ZfR89rdzRymY1Ovx@pluto>
-In-Reply-To: <ZfR89rdzRymY1Ovx@pluto>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|VI1PR04MB7088:EE_
-x-ms-office365-filtering-correlation-id: 94f92e92-9533-4631-209b-08dc46f5b30e
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- 3Q/kuJAGVO51Kp4SWp0N3E3tKiahce3QM4sZLtFVl4RbKF1MxWdSvtvOwl7p4k5rh3vA4qvHrabCYVJLa1huD8gZiraHQ0Aw5l804vMSaqAKPBo/k6AypouLCTNMMu8TpB2v0TDrGLYg/nPYAe6vW6XaHNfH9xAqbuh4+E0ZxTgUCubFJ88bCTH+aIiGIoJHSHO/h9yFv2nMyPXXMDpHMME/iWv+bCbCQbUobjtvix6iB3xL6BK+hOzMhQaNOwnpLKb0qrO3IFcJMiwWhWQVjtNF1PKkee178O/y+s5tlvDZSsbMSO4YK7OxiK9BoGL9Nga4hWhwMQxMceGa+GUH3rqQqTGrkaU1vYCjvmZkkYK0L4SndE/bAvPzmhaEAFAJss2rDskBVVTiCfVkMgDpwfdz/a0hlhobE3kLNZoIiPhYWISJM5KecGpto6w2hOLTs/lmLSoHgIIe8KIfrOGsqRRMLcWpvqfyGs8zQyv0DS4u6/t2hCDm7gdu4SqGmU50jsYDLW142LSBPIzIg8AxvcnQXbJRh6C3ZEaL4rQOo1QyVCLgqJh9of9EFMdesDXojvAwOtj+7dJpkLRDbzVyr4HURnnB/GlIiiXWTUzDAlm1i1jNUMBB9dDZHOFfacTFFjr6vYCIuoGr0u19uY7PRB1dBdpV/9SMdm3Yd4KhxUBj+MXev7PCnZACPJjuk4lwcA0YSwgA+V3CrgBeBMeogQ==
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(7416005)(366007)(1800799015)(38070700009);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?PNUKpYaTTyWEQzHufsmIay6ouM/BktSNzmXOkrMabVfZ9A/fSORAJTw229Al?=
- =?us-ascii?Q?yzSbU25TBOnlzfkbaiTkMEe2bL0Y85tVa7YyZSzv2ewcBmlI5He08Sucx2T0?=
- =?us-ascii?Q?701Z0bNdFOAOELLaYBJ4cqDWmkWTbaoJmoPllSS8RAW8GVmL4KbLm1SM3nwU?=
- =?us-ascii?Q?PdWEf1LQAK1tMngJLC60tJU+kdvv2fNvTKpHzMMB1c6LmnVZRrkmQhrk6LXg?=
- =?us-ascii?Q?SOhUIYtghoZFQFbAjluelXnmVepcAniyshGB4rjkD/MOJRqb1cm712S0MKOE?=
- =?us-ascii?Q?sO9I7SXWPXUqN+CIovWOiIhv1MuWw+JoAN5q0S6+PPyWBSYdTLGFT7lK3Kfc?=
- =?us-ascii?Q?o/uuLVSv8q3tK/FL4Ur0gK0qaj57rx37ejrwAqZN5BOkNMuL+PAazCr6yHOw?=
- =?us-ascii?Q?29p6e3IL089iD/CWRVgqCax2HWtR0OxvupDZeEfH+dq/Bc1gGmI3Lp+I2g7g?=
- =?us-ascii?Q?hin/tw1gJXLMkOwgOtdSsGvFVCSonu24dVJu5OHqOiwfxRC53QUXi9N2ZFLT?=
- =?us-ascii?Q?th3vNanrCIwD+tIc30m1h7kF8V489H/aynY/Pkvn+vTK0Rrd7Qzs9vhTS0Er?=
- =?us-ascii?Q?9c1oTje2L08rv72qr/9PYwObbHBaPptan/tdbfhS6Nyok4SSFDdprpzZBr8a?=
- =?us-ascii?Q?YFnd261KQ/66Kif1Kfr0dLJ/Z9plZ0BBW54l2P2zN72ZWq4nakw1F3Dwj4G3?=
- =?us-ascii?Q?QiyuiOLEa/nEf+CID0uqWRu42CCXcGp3DjsQ/2+Di++oxQCX7B77BrOoC0Oz?=
- =?us-ascii?Q?y1HDKM2zDngNp2V9T+G+IVl5VVdUt3zBJls1HlP0iPFUkG5vCL386MleP8rq?=
- =?us-ascii?Q?cUIDvP50GcAM/AlldTeDiry5MhivIHloUEp8yMRkZXhvo496TPXJ7cLsqfS0?=
- =?us-ascii?Q?TSWAIksdPtU75kwoN9liNiEY2r4jUFRaXZMHNd0jNSAKJes78TrTVjsqyqJp?=
- =?us-ascii?Q?X3cZA9dZ5sVBBIL8Ylt6kszRBuFu7qTvcgV+9AYy3a7fi4fy8gmVv7ALEs/O?=
- =?us-ascii?Q?hQZTAAaiDfSUbakh9ZNi9dSl0ZlejNMyV/1BbeH6MjzLwmEiLjCdQCHwg7Fg?=
- =?us-ascii?Q?mzOOisFIUZUh4KGwPXyyzU/jZooTEZ15nMGv1r9lWdhKtCyDKoqqTtEVkAO6?=
- =?us-ascii?Q?yLV1bqDQhWWW7dxKlYnf7MnheUDT8mQrZi8KzxpKsML0i4YgTxDbJvqDzBRu?=
- =?us-ascii?Q?J9bXT8Ou44lbqy8IMgALuO0Z+7Be8r0ovqg6io8nzD0QadRcFSFlGYsgQinI?=
- =?us-ascii?Q?qnHTMPy2OjKuw4Gke0OWZU/BKKxoe9i1Q9uJ457f/qxVXxl6W1wk7vyWWjcH?=
- =?us-ascii?Q?Fr/Ch3ILcELl9Hiejq5FBgubzjztIdY2a+gDa+Qa6ClKYd/3yNxYKp+O4h3/?=
- =?us-ascii?Q?NTWV/e5gRyMmBgJt7ad+T5nB2S/556fXjIo/91hIhBaHhAfQhpatI3WUuxqn?=
- =?us-ascii?Q?9PYcjfkUmfT/38VOwi0emGuUb3Fn7iYWO+rdSRLbx4S3M5LDmFYggX7+TRLO?=
- =?us-ascii?Q?0J9HbiaMVeK/WwC4e5oFeXaMaSfMoCBgktLFUAaiB09rShxasv+5QLzSapEu?=
- =?us-ascii?Q?bQ3KqtSu0w4KHcOqI1o=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+Received: from NTZPR01MB0986.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510:b::14) by NTZPR01MB1018.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510:b::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.21; Mon, 18 Mar
+ 2024 03:06:55 +0000
+Received: from NTZPR01MB0986.CHNPR01.prod.partner.outlook.cn
+ ([fe80::6011:feb9:5761:3880]) by
+ NTZPR01MB0986.CHNPR01.prod.partner.outlook.cn ([fe80::6011:feb9:5761:3880%6])
+ with mapi id 15.20.7386.016; Mon, 18 Mar 2024 03:06:55 +0000
+From: Ziv Xu <ziv.xu@starfivetech.com>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc: linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Walker Chen <walker.chen@starfivetech.com>,
+	Xingyu Wu <xingyu.wu@starfivetech.com>,
+	linux-kernel@vger.kernel.org,
+	Conor Dooley <conor@kernel.org>
+Subject: [PATCH v9 0/3] Add timer driver for StarFive JH7110 RISC-V SoC
+Date: Mon, 18 Mar 2024 11:06:46 +0800
+Message-Id: <20240318030649.10413-1-ziv.xu@starfivetech.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-ClientProxiedBy: NT0PR01CA0018.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510::11) To NTZPR01MB0986.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510:b::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: NTZPR01MB0986:EE_|NTZPR01MB1018:EE_
+X-MS-Office365-Filtering-Correlation-Id: dc63e279-3889-4c33-2a4a-08dc46f877ea
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	WiJ4x3ZFQJA/xSXsRCrmA0Xbya+3ZCUxkh5HCNpVCKQP1htckOCEDsmDpqiizrB/pxIlqETe/jwJb3SdXyq0s32Oy9yWfkJN5yIe9op0K9IEsNybNTRGUIzZ7GeggneJ0iszYU+eob3quOHV020m9TpDxPeq8/dQnl1lmW5uWrPEQ/h/Gxl7mHou6p5Q1ST0V1cIF1qlUcD1Ly02sx/GfJGjxir3kRaVQy1WQ2epmjmwLs8eBfg9v5YxBTQ8Flclwal/s6MpOU32tYRyqQV9vOWaNv5mbXep60RRTndTQEu8JNACkW8XEMN3628Df3oxQDD9rSuYlu8LyCa/3slmFKo92Phd8CkCCAxseoAR6OIXobbk0FoD2lpweJdG6SXMxAnps5vkBbbcOxfY6hGcONy0G7Hba4UYRu/0vglsvZxjbc/sZ2AG58G3/1B107Czs0gUXtTcNFIuzG39hol7ASkY3Bk739iVo7/6MVGMxcU4EkRSwQ12oQJblOPNisJSlQNJ0J28yXPeUc2/yRwdpc8rQxUog5R6CYoDA67VRnCE1E9NhoY5gf0PYrtL11udQ+nVaKd0gapHc6rNOwnpm7QfgvgXHHJj/fj4cP5Kt9I9aK8ZpQoe21vrxL9WbUlP
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:NTZPR01MB0986.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(366007)(52116005)(7416005)(1800799015)(41320700004)(38350700005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?sftG1pJs++jYcSg1x+XIm++XK6TjhxGxCh5Y4QnnH1VYHzMEI5cA55vyKpqe?=
+ =?us-ascii?Q?5WcAWzj50NrxZcyAjw2NNfNuS3bPZsWHca5HQo3kofR/hQQ1zqyKGe/2wl6D?=
+ =?us-ascii?Q?w59xfgQ/G+5/1tOEVymXgXaMsUERsZKYPCKoDXXxrB+yfUxP7m7NCKlk09LK?=
+ =?us-ascii?Q?YhJC69+N38Lfl0k4F0pWqT4peI8oOvWgxLvVr2GMeukXbHhWUQms6f+GkTJ6?=
+ =?us-ascii?Q?mbShddA7qEbfSoFYqMaDXYLmSj6rxjJda9c1pioIvkxj7tA9B5CSjrzqubGz?=
+ =?us-ascii?Q?w9cqBXYe+vGKqzNTF0k7OLR2VlGAS2S2mkmC6LnqMVYawhcG4EMey2ee1xks?=
+ =?us-ascii?Q?lJD+haCeL55eG0y787JUM4NHHS7jg5HcWzBAZqLJSaAzhMWDuwrEtIZHnbOS?=
+ =?us-ascii?Q?hkPQ5LU8GURA2N0alAKScHhQjec6jAQGK4bk3LlE32X7RulNnQ4alsUZ7nsg?=
+ =?us-ascii?Q?il8+UCCzjW684tXQ3mirqz4T/H3GIBJeshtdIdDLG5JWA3Ka/f9iBvjHEByS?=
+ =?us-ascii?Q?IWA0o69ZJZF4uRY312GgcAs8EhYxvixQ6HK9GAXw1Da/vegq2VCatoBcYxbH?=
+ =?us-ascii?Q?RBKIbTyP7DtE7hSPcyiXyXZQn9PtzXFema9or+HNQhUGT+vpamYszPWgs8VZ?=
+ =?us-ascii?Q?ttxiTrDWuJi2EJliiGPXWo377ZULICP7fW6N/7fCMd522AUhebpziJwTH6V5?=
+ =?us-ascii?Q?csQxaaOHVe62dTu2Ajva1wfyi4+m9f3WkGgmCTVIrKUen82Pf/oxaxV/r8s+?=
+ =?us-ascii?Q?NDbbhuzLUjMxJN/BPCHBqYb50fLtLvHBRb4osFUeMUhwwxCWJxXcitSt2wAz?=
+ =?us-ascii?Q?qtZue5OEpwgCK9/3Q/cM0he/ziOid4icdqCwU7scGdFB5bxJgeo2Ovi78euL?=
+ =?us-ascii?Q?kHm7k0YP9C0xfWD6aSw9cfidJAGk8R39Colz8dC+XqKpXU+JbrYsH8WERc40?=
+ =?us-ascii?Q?eOmcNqFfcDp44jHzkjN8yQ1Id7XTER6u+tkbp5zz862EU5ZwZBLPSAAEIKRf?=
+ =?us-ascii?Q?n+gjTcxL8OCgoMBvyaZ2Cxxkdj3qTHVkuFNl+r0h/dt7VIFLdV8oYHmyH7n3?=
+ =?us-ascii?Q?YhrBR+QbolrxZY/yo21hMmKkoJAHDRDV3erqetKwA/yV4PCRQC3SsxKvnYn7?=
+ =?us-ascii?Q?Mb/MV47RfcYN8g1mL07J9h1n2oOtSuUGvzHb1DsSXDO4iCshJGwwc4yA67zg?=
+ =?us-ascii?Q?bhxwKEmxikbSccEfjYPY0V/3NfW4JNresy4ckPqwFdUmFvyVuVqk1l+wLl3j?=
+ =?us-ascii?Q?EP51t71/pbD0I9dhzmGG9b4EL115XmOrsxxjj5O8O7p7GIQ13Q14/BXOSMtd?=
+ =?us-ascii?Q?vabdZ5gYS9/bmROj/0Zp7W1YGXOynvMFGEyeEM5o5Sc3wRyaEPXoqU7sRII9?=
+ =?us-ascii?Q?yP7grGF6LarnfHSXTlJp+laYRCMAHAJEc/WG4ZarQQuLjuWECiEGYVDAHxWt?=
+ =?us-ascii?Q?CobNglxeg/1haK4sBE4m7JrRqn2sxKCITr7Wa41DvS50f918yT6ZkZuluE32?=
+ =?us-ascii?Q?A02okfh6l+ICLh6TMMKQ0TjuHUdJIJeNYewqrWvaBs4e6USsT/jldGUFfzdA?=
+ =?us-ascii?Q?JSumAuUG13riEgvroTgLcBmYEibtJt+m7pRLFDBn?=
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: dc63e279-3889-4c33-2a4a-08dc46f877ea
+X-MS-Exchange-CrossTenant-AuthSource: NTZPR01MB0986.CHNPR01.prod.partner.outlook.cn
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 94f92e92-9533-4631-209b-08dc46f5b30e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Mar 2024 02:47:06.4259
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2024 03:06:55.8455
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: orwncCbPk70BI+qWM3bQxxw+HzVHP/ZEKCnyU3MPaZNfuFU+9ypM+/0aBYcadjgL7sI/jjvDrVZYWdX7PZVtqw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB7088
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: js3fz5fKyKklulkES/nI6ixRbpUKbiqTSwvsu84R/fSRigNn6IBrw9AI/9Wplrzhk2tPyd/Aa+znjvjo5eK3GA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: NTZPR01MB1018
 
-> Subject: Re: [PATCH v5 0/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
-> protocol basic support
->=20
-> On Fri, Mar 15, 2024 at 12:31:51AM +0000, Peng Fan wrote:
-> > > Subject: Re: [PATCH v5 0/4] firmware: arm_scmi: Add SCMI v3.2
-> > > pincontrol protocol basic support
-> > >
-> > > On Thu, Mar 14, 2024 at 09:35:17PM +0800, Peng Fan (OSS) wrote:
-> > > > Since SCMI 3.2 Spec is released, and this patchset has got
-> > > > R-b/T-b, is it ok to land this patchset?
-> > > >
-> > >
-> > > I'll have a look at this last version and a spin on my test setup.
-> > >
-> > > ...but has this V5 change at all since the Reviewed-by tags due to
-> > > the latest spec changes ?
-> >
-> > The tags are same as V4. I only did a rebase, no more changes.
-> > >
->=20
-> Ok.
->=20
-> > > ...IOW does this V5 include the latest small bits spec-changes or
-> > > those latest gpio-related spec-changes are just not needed at the
-> > > level of the Linux pinctrl support as of now and can be added later
-> > > on when a Linux gpio driver will be built on top of this ?
-> >
-> > In my current test, I no need the gpio related changes, so I would add
-> > that later if you are ok.
-> >
->=20
-> I COULD have agreed with this, since AFAIK there is currently an effort t=
-o add
-> support for GPIO on top of SCMI Pinctrl BUT not in Linux, so no reason to
-> block this series for gpio-related missing features, that should only be
-> additions not breaking backward compatibility...
->=20
-> ....BUT, I've just wrapped my head again around the latest public release=
- of
-> v3.2 spec (which has gone through so many changes and additions that I ha=
-d
-> lost track O_o) AND beside the above mentioned GPIO changes there are
-> indeed also BREAKING changes around the commands
-> PINCTRL_SETTINGS_GET and PINCTRL_SETTINGS_CONFIGURE (which were
-> the old PINCTRL_CONFIG_GET/SET), that now also get/set the selected
-> function: so that, at the end the payload itself of those commands/replie=
-s has
-> also changed IN SIZE, so the driver needs definitely to be updated (and
-> whatever you use to test on the backend server too, if you want to test t=
-his...)
+This patch serises are to add timer driver for the StarFive JH7110
+RISC-V SoC. The first patch adds documentation to describe device
+tree bindings. The subsequent patch adds timer driver and support
+JH7110 SoC. The last patch adds device node about timer in JH7110
+dts.
 
-Ok, I see, there are indeed some changes, I will update the driver.
+This timer has four free-running 32 bit counters and runs in 24MHz
+clock on StarFive JH7110 SoC. And each channel(counter) triggers
+an interrupt when timeout. They support one-shot mode and 
+continuous-run mode.
 
->=20
-> I think these changes (which I forgot being there) were in since last mon=
-th, so
-> already V4 was broken in these regards (which I have not looked at)
+This timer is used as global timer and register clockevent for each
+CPU core after riscv-timer registration on the StarFive JH7110 SoC.
 
-I may need to drop the R-b/T-b?
+Changes since v8:
+- Rebased on 6.8
+- Improved the cpu hot swap startup process of the timer.
+- Modified irq request timing to prevent sleep.
+- Deleted clockevent suspend and resume function and these 
+  operations are included in cpu hot swap operations.
+- Formated data structures.
 
->=20
-> I'll leave some comments along the series and test all of this again next=
- week...
-> ...since too many things has changed and I want to re-verify all on my si=
-de.
+v8: https://lore.kernel.org/all/20231219145402.7879-1-xingyu.wu@starfivetech.com/
 
-Thanks,
-Peng.
->=20
-> Thanks,
-> Cristian
+Changes since v7:
+- Rebased on 6.7-rc6.
+- Modified the Kconfig file and added selection in SOC_STARFIVE.
+- Used the timer as a global timer and registered as clockevent
+  for each CPU core.
+- Dropped the timeout function in the interrupt handler callback.
+- Changed the way in the functions of jh7110_timer_tick_resume() and
+  jh7110_timer_resume().
+- Dropped the registration of clocksource in the probe.
+
+v7: https://lore.kernel.org/all/20231019053501.46899-1-xingyu.wu@starfivetech.com/
+
+Changes since v6: 
+- Rebased on 6.6-rc6.
+- Used sizeof() instead of the numbers of characters about names.
+- Added devm_add_action_or_reset() to release the resets and 
+  clocksources in the case of remove or error in the probe.
+- Added flags to check each clocksource is suceessfully registered and 
+  used in the release function.
+- Dropped the variable of irq in the jh7110_clkevt struct.
+- Dropped the wrappers and used enum definitions and writel() calls
+  directly.
+
+v6: https://lore.kernel.org/all/20231012081015.33121-1-xingyu.wu@starfivetech.com/
+
+Changes since v5: 
+- Rebased on 6.6-rc5.
+- Changed the number about characters of name.
+- Made the clkevt->periodic to a local variable.
+- Dropped the variables of device and base.
+- Used clkevt->evt.irq directly and dropped the extra copy of irq.
+
+V5: https://lore.kernel.org/all/20230907053742.250444-1-xingyu.wu@starfivetech.com/
+
+Changes since v4: 
+- Rebased on 6.5.
+- Dropped the useless enum and used value directly when writing
+  registers.
+- Modified the description in Kconfig.
+- Add the reviewed tag in patch 3.
+
+v4: https://lore.kernel.org/all/20230814101603.166951-1-xingyu.wu@starfivetech.com/
+
+Changes since v3: 
+- Rebased on 6.5-rc6
+- Dropped the useless enum names like 'JH7110_TIMER_CH_0'.
+- Dropped the platform data about JH7110 and used the register offsets
+  directly.
+- Drroped the useless functions of clk_disable_unprepare().
+
+v3: https://lore.kernel.org/all/20230627055313.252519-1-xingyu.wu@starfivetech.com/
+
+Changes since v2: 
+- Rebased on 6.4-rc7.
+- Merged the header file into the c file.
+- Renamed the functions from 'starfive_' to 'jh7110_'
+- Used function 'clocksource_register_hz' instead of
+  'clocksource_mmio_init'.
+
+v2: https://lore.kernel.org/all/20230320135433.144832-1-xingyu.wu@starfivetech.com/
+
+Changes since v1:
+- Added description about timer and modified properties' description
+  in dt-bindings.
+- Dropped the 'interrupt-names' and 'clock-frequency' in dt-bindings.
+- Renamed the functions and added 'starfive_'
+- Modified that the driver probe by platform bus.
+
+v1: https://lore.kernel.org/all/20221223094801.181315-1-xingyu.wu@starfivetech.com/
+
+Xingyu Wu (3):
+  dt-bindings: timer: Add timer for StarFive JH7110 SoC
+  clocksource: Add JH7110 timer driver
+  riscv: dts: jh7110: starfive: Add timer node
+
+ .../bindings/timer/starfive,jh7110-timer.yaml |  96 +++++
+ MAINTAINERS                                   |   7 +
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |  20 +
+ drivers/clocksource/Kconfig                   |  11 +
+ drivers/clocksource/Makefile                  |   1 +
+ drivers/clocksource/timer-jh7110.c            | 345 ++++++++++++++++++
+ include/linux/cpuhotplug.h                    |   1 +
+ 7 files changed, 481 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/timer/starfive,jh7110-timer.yaml
+ create mode 100644 drivers/clocksource/timer-jh7110.c
+
+-- 
+2.17.1
 
 
