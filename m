@@ -1,155 +1,134 @@
-Return-Path: <devicetree+bounces-51295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51296-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89DDC87EC38
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 16:31:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36CDA87EC49
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 16:39:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F37571F218B1
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 15:31:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 178D3281C65
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 15:39:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ABDF50A63;
-	Mon, 18 Mar 2024 15:31:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B83D0524A7;
+	Mon, 18 Mar 2024 15:39:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="oW+ds6Wx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RUjMLaty"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B2684F898
-	for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 15:31:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B2814EB50;
+	Mon, 18 Mar 2024 15:39:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710775888; cv=none; b=o/X9s/JMS6nFR2DCTM0CBazHVGHIIL52DKHVAvXTedB2FwBGMiad5JZPfCvUfbWceRHiM6tt9El1GyJJFPpM50E8OYW+Y6OP5+4wm58NZAWAK3jI/PnoVUydfkJ6RtJ2yaRbO6L6M6+Rfht+66k2malqh9lXbFDsAWpJ2vI5mN8=
+	t=1710776341; cv=none; b=gQVpSA/XxB6kmmJPNMXUm6QBkVZC3NWpd4V8BwZc68awfmfzEB501g6q+evSjEK/oN0v4zvxygOiiI85ioXU8Ukaiiff9sjs6K4ACifg+nqC8Q5iF0wWdZrDAjyEKQBOgq0MLHZPynkW+bHVkgbqoDV8MP/plndcC/NUGBI0h8g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710775888; c=relaxed/simple;
-	bh=m4+I6MBoUeUHGxnrD5vzjttWojTZkPCJQ14dx3myEDk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BFHrWrH+U1X6UjQzPd9zGoKyUlZMI9W3GiQTDoOq26Gb9fL9Yiq/RFEwNzIP0YoJ2lRS03E7avINkbIUhd4jXiKFAPnP0d53O3E17TKD8TJ2wycc13TIFabQ7jfMRC448qWKpp9I8dx54AKhTX6FGiqgkLhBevek7JvsgPh14uI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=oW+ds6Wx; arc=none smtp.client-ip=209.85.160.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-430d3fcc511so196991cf.1
-        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 08:31:26 -0700 (PDT)
+	s=arc-20240116; t=1710776341; c=relaxed/simple;
+	bh=L9H8t7HnEPj3Hdh09oZeSwbBId8Zl9XEQCxkOP7thxk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sZzwap6f/wiYk4wqXCATMzPr08QrPiLwlEjuYqjUr48ZgNbCGCmaa74pdnRpuE0MapP7vR8C8socsFPlX6OYABwd0A0ObRwxy45PG0J8zIFnbtOpB5K9wvqdDnaPrMdRBrwdQ1zDJ/uHW5mwzMfyKwcelFhDHCcupMBZoAZoVIk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RUjMLaty; arc=none smtp.client-ip=209.85.216.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-29de4e12d12so3100108a91.3;
+        Mon, 18 Mar 2024 08:39:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1710775885; x=1711380685; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VA9/NiX8/E19WUiHKA9tr52IADuhSxANcPtKQ97R1nM=;
-        b=oW+ds6WxOpW/jRhOjraBRnZ9oYYtUDIgqGcTiI85U7K+Cpj8UktYnD9iWkB0J6OnGZ
-         c2TNHu9EpLVqHrKYgQayqEAY3RLhQc/B/mf6fNManTAVjNN/zEA02701EyoSgQukjHYM
-         MK8S3x0j44jgkZun13lguylavxOPYCsWEuvLSIZWcu5xr6C4OSoEkTFuRA8xmBXR1y+V
-         /uFIY9300VbpIrFPs3Cn9cgtXjwkjtF8K0urRG+6KKl03MF7V9SiUMRrgtTpp5pVEK2j
-         2jdwfKzWkL27aaIzCGKLYVXkz9qR7WzfeJ3IUoTfFSAyt8Iq5U5oTaodMnrlwV0ffY1G
-         3Zyw==
+        d=gmail.com; s=20230601; t=1710776339; x=1711381139; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=R0wJSLY+Uv+yhR8IopuqKPTo2o4yVaHIVNr68XVgUWs=;
+        b=RUjMLatyURRVThPbi5nXe09ujDCROHTGCKcGucX/x+qmupP9yJxLl5Ai064V/PEw1J
+         iBqlZyzhhhWkRT6L3rDN+DG3ytlKtQYGohhnVoJOLQBZgc3TzY+OeuZkrxgie4YlMSHU
+         J2vTOXup51D8Ztl2mevXkG9aRbBodhrtxKn7dovoPdlWU6GKqfnQkXaxN6n1MPqpVJG9
+         YuP6LXGiqr5p3msaaZFJT+bZNhhEFBwMFGJP+/riwCyFMQXjT11Sw3SvlKsJRS0J/C47
+         PVtsAhpLdseb60KwU4mwMmASYADrYqG1ZmUqfCe4YTJC9dKVd7suoppEkUnETiDSCMrO
+         36fA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710775885; x=1711380685;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VA9/NiX8/E19WUiHKA9tr52IADuhSxANcPtKQ97R1nM=;
-        b=FmRk9kp3KXaeDKIucFxDgpSttMqjxvtsPZILZDMLbBvaMF8rIldSXtJsfVu+6fzzSC
-         b5a062gKPiISXgSgZ1KGBaAs1DmJrR6Oo6HzDfDkh54McR5FVdx93/VDdRzmVuYG5NhW
-         ECzgc2vmJPMpu4hawDeUQjRUyd9tDNOQMdqDPwSYPXHz1EgD2fGmH2JXTvpS6bVkvWHM
-         rFXtHt0O5GqmT023pIwN5ZaiRLqW1R4jmQxAvayWawGbzy8uTwxTTXtXXCYihzou8gc1
-         zlOOKuy5j4rbUylB6QpZPliuE1jyYw+4OaY4rquBGxhZyfbKbCPshfw5++v90kULh5pq
-         m5Dw==
-X-Forwarded-Encrypted: i=1; AJvYcCWcI1UGVqpk+PBEOtcImBKq/Wevtjl848qgLtHBL0XiJnRAh5tanfHkHoC/1rDWFB/F0OOMk3avlMvqGnXi1GZMgBHZ+QnE6I5OZw==
-X-Gm-Message-State: AOJu0Yyh/0iP6P0KES0jDPyvppGdDQPuRwLYbsqfr0cwxoDc/Cg0wkZu
-	c00+9bKOLFh6djLoh0pzH+GBRYv0zgI3jmHm944/9jTR5yDzDK/ie5ob7RdlidjQHGSaan4qNsW
-	gu39lYz0HPlbdV8AZbdU5w2kHzteT5djE6a/s
-X-Google-Smtp-Source: AGHT+IGzWqUIOUu5I0duuZgvPFrMrMabv8H/NdN0jk0nuFo5i4muxUfa/my0tZITK0IRu5y8Tg7eEzkZ4UvjvZQkd6c=
-X-Received: by 2002:ac8:5913:0:b0:430:a5df:a3af with SMTP id
- 19-20020ac85913000000b00430a5dfa3afmr367264qty.5.1710775885132; Mon, 18 Mar
- 2024 08:31:25 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1710776339; x=1711381139;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=R0wJSLY+Uv+yhR8IopuqKPTo2o4yVaHIVNr68XVgUWs=;
+        b=IYFnpe07iDknWNGiWjr8wBi8v9UeUzXTPvN26DfenWfoC73haolMMbH6yDFxrxWhv9
+         6cfFdjfdnfItahDwbNOF27uV3txkFmb1nQPYT50liVNjJyNlOH8IcAxtXSX2iy72F8Ab
+         5ejSrJqnqjRiCE9mF4d2K/zdQlVVyRmol9AHLgTsZP/B8W9migibl8W937+2FvprW2x7
+         w3yvCcONUlRHnvPKs3fVfpWG/kXnhusex9rP9/lp2gR3956E+aRLKm7mkpOt4B2YfMr/
+         Ac2vRKWh7gFyXqJPxvcEOzc1QMu4JnGW5yx4rNLcJzN4ANjMkXGYeSKATJg/vqCAHGy4
+         uQqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW1GYfP0ZRP8PY1jiKv0yDXjQIy0P33D/cleT25TnejHTcG1Z3zPQL7VSt/dUXNAt7n+zMaDvve45nrcPqPUM1MMxsUDkd9+xsUWAQbOaYaWz1GuHCgOHYwQPR37+yyEMBo9SZQSuxuWw==
+X-Gm-Message-State: AOJu0YxRcy9lwAhh0Bt4djSe2OTC8/QgNqA1dSOml6s3NmDSgc3buzwV
+	tIoUiQZA655AZRvVIjldatJpZIAMRRnoCzk7QxGUNSQLpSJ9Km09
+X-Google-Smtp-Source: AGHT+IFwwuU1jLlDgfi84MjIw2c0Tg2DpHNv23NVq4KsqnYYpEH/YjvrfH11kVR4gY7v9ExA1ahxjA==
+X-Received: by 2002:a17:90a:1fc4:b0:29b:c17c:5fa6 with SMTP id z4-20020a17090a1fc400b0029bc17c5fa6mr7890253pjz.33.1710776339539;
+        Mon, 18 Mar 2024 08:38:59 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id q98-20020a17090a17eb00b0029e077a9fe6sm5870067pja.27.2024.03.18.08.38.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Mar 2024 08:38:58 -0700 (PDT)
+Message-ID: <23f4c9b1-5c6b-4f3c-9290-41d195650368@gmail.com>
+Date: Mon, 18 Mar 2024 08:38:57 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240318110855.31954-1-johan+linaro@kernel.org>
- <20240318110855.31954-2-johan+linaro@kernel.org> <CAA8EJprywWbdoyfAbys=0WzEdAkp0UK1fzzCPzxKRjyk9DrC6Q@mail.gmail.com>
- <Zfg--2_NMPSPTxK-@hovoldconsulting.com> <20240318144806.GA3963554-robh@kernel.org>
- <ZfhZffrZXwtKgZ13@hovoldconsulting.com> <CAD=FV=UpuD7Lq0DxSZAGpL4Mi2uxy9HNt3V3FZq7Y3p--gbMrg@mail.gmail.com>
-In-Reply-To: <CAD=FV=UpuD7Lq0DxSZAGpL4Mi2uxy9HNt3V3FZq7Y3p--gbMrg@mail.gmail.com>
-From: Doug Anderson <dianders@google.com>
-Date: Mon, 18 Mar 2024 08:31:09 -0700
-Message-ID: <CAD=FV=WCzrh926mkiyBnKRG_+KGuOkGN6v0DgPiXhQCD3PSQ9w@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: bluetooth: add new wcn3991 compatible
- to fix bd_addr
-To: Johan Hovold <johan@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-	Johan Hovold <johan+linaro@kernel.org>, Marcel Holtmann <marcel@holtmann.org>, 
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Johan Hedberg <johan.hedberg@gmail.com>, Matthias Kaehlcke <mka@chromium.org>, 
-	Bjorn Andersson <quic_bjorande@quicinc.com>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	linux-bluetooth@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] arm64: dts: mediatek: mt7622: set PHY address of
+ MT7531 switch to 0x1f
+Content-Language: en-US
+To: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: mithat.guner@xeront.com, erkin.bozoglu@xeront.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20240314-for-mediatek-mt7531-phy-address-v1-0-52f58db01acd@arinc9.com>
+ <20240314-for-mediatek-mt7531-phy-address-v1-1-52f58db01acd@arinc9.com>
+ <94e3d09a-e6a4-4808-bc29-3f494b65e170@gmail.com>
+ <62d128f1-11ac-4669-90ff-e9cdd0ec5bd9@arinc9.com>
+ <71dd200a-0306-4baa-abab-6e6906aeef2a@gmail.com>
+ <7d1ad037-d8ac-4b9a-b6d2-ab683e52a898@arinc9.com>
+From: Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <7d1ad037-d8ac-4b9a-b6d2-ab683e52a898@arinc9.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi,
+On 3/18/24 08:26, Arınç ÜNAL wrote:
+> On 18.03.2024 16:02, Florian Fainelli wrote:
+>>>> Can we call it a pseudo PHY to use a similar terminology as what is 
+>>>> done through drivers/net/dsa/{bcm_sf2,b53}*?
+>>>>
+>>>> This is not a real PHY as in it has no actual transceiver/digital 
+>>>> signal processing logic, this is a piece of logic that snoops for 
+>>>> MDIO transactions at that specific address and lets you access the 
+>>>> switch's internal register as if it was a MDIO device.
+>>>
+>>> I can get behind calling the switch a psuedo-PHY in the context of MDIO.
+>>> However, as described on "22.2.4.5.5 PHYAD (PHY Address)" of "22.2.4.5
+>>> Management frame structure" of the active standard IEEE Std 802.3™‐2022,
+>>> the field is called "PHY Address". The patch log doesn't give an 
+>>> identifier
+>>> as to what a switch is in the context of MDIO. Only that it listens on a
+>>> certain PHY address which the term complies with IEEE Std 802.3™‐2022.
+>>>
+>>> So I don't see an improvement to be made on the patch log. Feel free to
+>>> elaborate further.
+>>
+>> I would just s/PHY/MDIO bus address/ since that is simply more 
+>> generic, but if it is not written as-is in the spec, then I won't 
+>> fight it much more than I already did.
+> 
+> I'm not sure what you're referring to by spec. Are you asking how specific
+> the name of the PHYAD field is described on the standard?
 
-On Mon, Mar 18, 2024 at 8:26=E2=80=AFAM Doug Anderson <dianders@google.com>=
- wrote:
->
-> Hi,
->
-> On Mon, Mar 18, 2024 at 8:10=E2=80=AFAM Johan Hovold <johan@kernel.org> w=
-rote:
-> >
-> > > > I wanted to avoid doing this, but if we have to support Google's br=
-oken
-> > > > boot firmware for these devices, then this is how it needs to be do=
-ne.
-> > >
-> > > Don't Chromebooks update everything together. So maybe we don't care =
-in
-> > > this case?
-> >
-> > That was my hope, but Matthias seemed to suggest that we need to
-> > continue supporting the current (broken) binding because doing such a
-> > coordinated update may be easier said than done:
-> >
-> >         https://lore.kernel.org/lkml/ZcuQ2qRX0zsLSVRL@google.com/
->
-> Chromebooks update kernel and devicetree together, but not firmware.
-> Firmware is relatively hard to get updated trying to have kernel and
-> firmware updates coordinated at the exact same time has challenges.
-> This would further be complicated by the fact that firmware
-> qualification for each variant happens on its own timeline.
->
->
-> > A new compatible string (or one-off property) would allow them do make =
-a
-> > change when they are ready (e.g. by only updating the devicetrees after
-> > all boot firmware has been patched and pushed out).
->
-> I have no real opinion about the exact way this is solved so happy to
-> let DT folks decide on how they want this. I will note, however, that
-> device trees are never shipped separately and thus we have no
-> intrinsic need for DT backward compatbility here. It would be OK from
-> a ChromeOS perspective to add a property or compatible string for the
-> broken case.
+Spec = IEEE Std 802.3-2022 standard, aka the document you are quoting.
+-- 
+Florian
 
-Actually, I should probably say more about this to make it clear how it wor=
-ks.
-
-Chromebooks ship the kernel as a FIT image which bundles the kernel
-and device trees together. The firmware looks at all the bundled
-device trees and picks the proper one based on the board name,
-revision, and SKU ID. The firmware then looks for the bluetooth node
-(I believe it finds it from the "aliases" section) and adds the MAC
-address there.
-
-...so we could update the DT to add a property (if that's desired)
-even if we don't update the firmware.
-
--Doug
 
