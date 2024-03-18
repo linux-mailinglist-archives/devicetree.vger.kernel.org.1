@@ -1,290 +1,171 @@
-Return-Path: <devicetree+bounces-51375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06F6E87F194
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 21:51:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5B4987F1F0
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 22:21:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 725BDB2272A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 20:51:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53B55282856
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 21:21:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D62256763;
-	Mon, 18 Mar 2024 20:51:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDE9858211;
+	Mon, 18 Mar 2024 21:21:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="JvelUiUl"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bvhR7yZk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED62752F98;
-	Mon, 18 Mar 2024 20:50:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2C8058138;
+	Mon, 18 Mar 2024 21:21:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710795061; cv=none; b=izcC2TUfxexC9sNb6b8P+MKZAguysix7oi53QyAhHjrPpnWirNYwEvc28c65T03P94BgdrVLktwts3/6XmjXUQv0Kow4kIKpezzCsbj5Dx7dlSLkziE6ByMtOPcY15F9roWJHpQxeje4hhFY81RT1fbQ61afymfQfvaYR2qg40I=
+	t=1710796908; cv=none; b=OlD/GRfIo/J0UKlIYCX4xDpTkYmlFM5/b3yYQIU68dspoKT7GEf3bgZOLhf8OU49vx/XO532V8VO7KTuNyPWzWFv45nSz1kgSWDjGP7kP0tOuBrOtwsYJr+LGiw8I94u52a1ZzXqXa3FR/q+bmR2AzSQPOmpCbrxMcj7CTojVYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710795061; c=relaxed/simple;
-	bh=DQyXwkGCVcqn03gGGgc5pF7UkvAlzUUsxkvBry9vhTc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=adU97unXwiV/wIFkCb6d3cU16o08/iGaDXLlyWFsdMgA4JV2TE7C20+UHzyRb4V/6L3jX1CY0hARm48CvUYQbWKm2s+4b9WtINLYw6iwFEySoIRKARFDxyr7gr40e4nkrv3ops3l0fucdPo8ZG+kChuoB/TjmTnaqe4lel69hpw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=JvelUiUl; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=V7hiweKCShqTkZVjRoBbzPoSakFvSACyYI9eRdobDaY=; b=JvelUiUlEPlnNSozIDXO9xVl79
-	Vs4SbJuFviGCjY4V59jwpJctAAgl/bbxuvkCTt8bNjpAbrnA/aZIbPTJEfgE0AA9FpnamA7sF7sJt
-	j4SWEbsy5Vwie22bOlRsk92UlWylNrCgyTskccbnJYgCIhiTjBaXOW7fIAbhCA3TxMgU=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rmJw1-00Adr6-5R; Mon, 18 Mar 2024 21:50:17 +0100
-Date: Mon, 18 Mar 2024 21:50:17 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Wadim Mueller <wafgo01@gmail.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Chester Lin <chester62515@gmail.com>,
-	Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-	Matthias Brugger <mbrugger@suse.com>,
-	NXP S32 Linux Team <s32@nxp.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Andrew Halaney <ahalaney@redhat.com>,
-	Simon Horman <horms@kernel.org>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Johannes Zink <j.zink@pengutronix.de>,
-	Shenwei Wang <shenwei.wang@nxp.com>,
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-	Swee Leong Ching <leong.ching.swee@intel.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com, linux-clk@vger.kernel.org
-Subject: Re: [PATCH 2/3] net: stmmac: Add NXP S32 SoC family support
-Message-ID: <ddf5c4e2-16c2-4399-ae34-57114b8d4d21@lunn.ch>
-References: <20240315222754.22366-1-wafgo01@gmail.com>
- <20240315222754.22366-3-wafgo01@gmail.com>
+	s=arc-20240116; t=1710796908; c=relaxed/simple;
+	bh=lEknxI1GdXy+gBGc1kGW2Plc51SdqHm0NHmyrg2s0AU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=CK4RL7my4cuO7r3AEpWKDut02cVOjt4NNa4KERs4Dtgh5WUwXokQryX7pbK6GFh1N+BNv2UHZ68NhHacOzCYHz1TmHWTlp2cNHZKkvq51jT/pwF1A5jdBRYvPcevOoErWzuZnWs512YlQ7neRHBgx2cljemMALdxBAcBaHwSYts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=bvhR7yZk; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42IJt2GS009316;
+	Mon, 18 Mar 2024 21:21:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=oFYfnk2O3YStsV4mePQQV328nUghUPgKz5O4fwliaZI=; b=bv
+	hR7yZki+rdmcH1i0csdYxqW6YCkO1QYneIn+DYy8N9tZ6cmd0eYjO1Bdh+LhDwFb
+	vo0aUzAysOEVKXeYL/P5HsauVoe+49K67kdPUszMhCIXTAigMA5qc+UOE7pm14dI
+	1J59V+jYfYkCaq86yF/U25RnFFFaLcYV2KCAup7COqb0yB8kEA3jhZGz7z2yU9qt
+	7aIMOvXz8U6m8rsxg6F1E7N4fofI+bKZ/qJLf8Y8IHL8lhyAG8oH9gnBdurL9S+E
+	0Z42qS+Q2IPjB4q680s6dsQ3PuMm0qkgrgymbN5oTQte88SzrDbmVVO18Ul9lCGr
+	utxES1eGpkBBWVLAnzuA==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wxjt4shng-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 18 Mar 2024 21:21:27 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42ILLPNF003847
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 18 Mar 2024 21:21:25 GMT
+Received: from [10.110.31.51] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 18 Mar
+ 2024 14:21:24 -0700
+Message-ID: <4a69382c-5fb2-4703-8176-f1833eeffcc1@quicinc.com>
+Date: Mon, 18 Mar 2024 14:21:12 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240315222754.22366-3-wafgo01@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] drm/panel: simple: Add POWERTIP PH128800T006-ZHC01
+ panel entry
+To: Nathan Morrisson <nmorrisson@phytec.com>, <neil.armstrong@linaro.org>,
+        <sam@ravnborg.org>, <maarten.lankhorst@linux.intel.com>,
+        <mripard@kernel.org>, <tzimmermann@suse.de>, <airlied@gmail.com>,
+        <daniel@ffwll.ch>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <thierry.reding@gmail.com>
+CC: <w.egorov@phytec.de>, <dri-devel@lists.freedesktop.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <upstream@lists.phytec.de>
+References: <20240318161708.1415484-1-nmorrisson@phytec.com>
+ <20240318161708.1415484-3-nmorrisson@phytec.com>
+Content-Language: en-US
+From: Jessica Zhang <quic_jesszhan@quicinc.com>
+In-Reply-To: <20240318161708.1415484-3-nmorrisson@phytec.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: tFW9EyK9fLbzGgYliH7Z-zohIbyfg0cz
+X-Proofpoint-ORIG-GUID: tFW9EyK9fLbzGgYliH7Z-zohIbyfg0cz
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-18_12,2024-03-18_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ adultscore=0 malwarescore=0 clxscore=1011 phishscore=0 priorityscore=1501
+ suspectscore=0 mlxscore=0 impostorscore=0 mlxlogscore=999 bulkscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2403140001 definitions=main-2403180161
 
-On Fri, Mar 15, 2024 at 11:27:48PM +0100, Wadim Mueller wrote:
-> Add support for NXP S32 SoC family's GMAC to the stmmac network driver. This driver implementation is based on the patchset originally contributed by Chester Lin [1], which itself draws heavily from NXP's downstream implementation [2]. The patchset was never merged.
 
-Please wrap you commit message.
 
- 
-> +#include <linux/device.h>
-> +#include <linux/ethtool.h>
+On 3/18/2024 9:17 AM, Nathan Morrisson wrote:
+> Add support for the POWERTIP PH128800T006-ZHC01 10.1" (1280x800)
+> LCD-TFT panel.
+> 
+> Signed-off-by: Nathan Morrisson <nmorrisson@phytec.com>
 
-Is this one needed?
+Hi Nathan,
 
-> +static int s32_gmac_init(struct platform_device *pdev, void *priv)
-> +{
-> +	struct s32_priv_data *gmac = priv;
-> +	u32 intf_sel;
-> +	int ret;
-> +
-> +	if (gmac->tx_clk) {
-> +		ret = clk_prepare_enable(gmac->tx_clk);
-> +		if (ret) {
-> +			dev_err(&pdev->dev, "Can't set tx clock\n");
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	if (gmac->rx_clk) {
-> +		ret = clk_prepare_enable(gmac->rx_clk);
-> +		if (ret) {
-> +			dev_err(&pdev->dev, "Can't set rx clock\n");
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	/* set interface mode */
-> +	if (gmac->ctrl_sts) {
-> +		switch (gmac->intf_mode) {
-> +		default:
-> +			dev_info(
-> +				&pdev->dev,
-> +				"unsupported mode %u, set the default phy mode.\n",
-> +				gmac->intf_mode);
-> +			fallthrough;
+Acked-by: Jessica Zhang <quic_jesszhan@quicinc.com>
 
-I would actually return -EINVAL. There is no backwards compatibility
-needed here, so force that the mode is always specified.
+Thanks,
 
-> +		case PHY_INTERFACE_MODE_SGMII:
-> +			dev_info(&pdev->dev, "phy mode set to SGMII\n");
+Jessica Zhang
 
-Please don't spam the kernel log. dev_dbg(). 
-
-> +static void s32_fix_speed(void *priv, unsigned int speed, unsigned int mode)
-> +{
-> +	struct s32_priv_data *gmac = priv;
+> ---
+>   drivers/gpu/drm/panel/panel-simple.c | 29 ++++++++++++++++++++++++++++
+>   1 file changed, 29 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+> index 20e3df1c59d4..02d238123753 100644
+> --- a/drivers/gpu/drm/panel/panel-simple.c
+> +++ b/drivers/gpu/drm/panel/panel-simple.c
+> @@ -3465,6 +3465,32 @@ static const struct panel_desc pda_91_00156_a0  = {
+>   	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
+>   };
+>   
+> +static const struct drm_display_mode powertip_ph128800t006_zhc01_mode = {
+> +	.clock = 66500,
+> +	.hdisplay = 1280,
+> +	.hsync_start = 1280 + 12,
+> +	.hsync_end = 1280 + 12 + 20,
+> +	.htotal = 1280 + 12 + 20 + 56,
+> +	.vdisplay = 800,
+> +	.vsync_start = 800 + 1,
+> +	.vsync_end = 800 + 1 + 3,
+> +	.vtotal = 800 + 1 + 3 + 20,
+> +	.flags = DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC,
+> +};
 > +
-> +	if (!gmac->tx_clk || !gmac->rx_clk)
-> +		return;
+> +static const struct panel_desc powertip_ph128800t006_zhc01 = {
+> +	.modes = &powertip_ph128800t006_zhc01_mode,
+> +	.num_modes = 1,
+> +	.bpc = 8,
+> +	.size = {
+> +		.width = 216,
+> +		.height = 135,
+> +	},
+> +	.bus_format = MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,
+> +	.bus_flags = DRM_BUS_FLAG_DE_HIGH,
+> +	.connector_type = DRM_MODE_CONNECTOR_LVDS,
+> +};
 > +
-> +	/* SGMII mode doesn't support the clock reconfiguration */
-> +	if (gmac->intf_mode == PHY_INTERFACE_MODE_SGMII)
-> +		return;
-> +
-> +	switch (speed) {
-> +	case SPEED_1000:
-> +		dev_info(gmac->dev, "Set TX clock to 125M\n");
-
-more dev_dbg(). A driver should generally be silent, unless something
-goes wrong. It is also questionable if dev_dbg() should be used. Once
-the driver actually works, you can throw away a lot of debug
-prints. Do you expect problems here in the future?
-
-> +static int s32_config_cache_coherency(struct platform_device *pdev,
-> +				      struct plat_stmmacenet_data *plat_dat)
-> +{
-> +	plat_dat->axi4_ace_ctrl = devm_kzalloc(
-> +		&pdev->dev, sizeof(struct stmmac_axi4_ace_ctrl), GFP_KERNEL);
-> +
-> +	if (!plat_dat->axi4_ace_ctrl)
-> +		return -ENOMEM;
-> +
-> +	plat_dat->axi4_ace_ctrl->tx_ar_reg = (ACE_CONTROL_SIGNALS << 16) |
-> +					     (ACE_CONTROL_SIGNALS << 8) |
-> +					     ACE_CONTROL_SIGNALS;
-> +
-> +	plat_dat->axi4_ace_ctrl->rx_aw_reg =
-> +		(ACE_CONTROL_SIGNALS << 24) | (ACE_CONTROL_SIGNALS << 16) |
-> +		(ACE_CONTROL_SIGNALS << 8) | ACE_CONTROL_SIGNALS;
-> +
-> +	plat_dat->axi4_ace_ctrl->txrx_awar_reg =
-> +		(ACE_PROTECTION << 20) | (ACE_PROTECTION << 16) |
-> +		(ACE_CONTROL_SIGNALS << 8) | ACE_CONTROL_SIGNALS;
-
-This looks like magic. Can the various shifts be replaced my #defines?
-Comments added? This makes changes in some of the core code. So it
-might be better to have a prerequisite patch adding cache coherency
-control, with a good commit message explaining it.
-
-> +
-> +	return 0;
-> +}
-> +
-> +static int s32_dwmac_probe(struct platform_device *pdev)
-> +{
-> +	struct plat_stmmacenet_data *plat_dat;
-> +	struct stmmac_resources stmmac_res;
-> +	struct s32_priv_data *gmac;
-> +	struct resource *res;
-> +	const char *tx_clk, *rx_clk;
-> +	int ret;
-> +
-> +	ret = stmmac_get_platform_resources(pdev, &stmmac_res);
-> +	if (ret)
-> +		return ret;
-> +
-> +	gmac = devm_kzalloc(&pdev->dev, sizeof(*gmac), GFP_KERNEL);
-> +	if (!gmac)
-> +		return PTR_ERR(gmac);
-> +
-> +	gmac->dev = &pdev->dev;
-> +
-> +	/* S32G control reg */
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
-> +	gmac->ctrl_sts = devm_ioremap_resource(&pdev->dev, res);
-> +	if (IS_ERR_OR_NULL(gmac->ctrl_sts)) {
-> +		dev_err(&pdev->dev, "S32G config region is missing\n");
-> +		return PTR_ERR(gmac->ctrl_sts);
-> +	}
-> +
-> +	plat_dat = devm_stmmac_probe_config_dt(pdev, stmmac_res.mac);
-> +	if (IS_ERR(plat_dat))
-> +		return PTR_ERR(plat_dat);
-> +
-> +	plat_dat->bsp_priv = gmac;
-> +
-> +	switch (plat_dat->phy_interface) {
-> +	case PHY_INTERFACE_MODE_SGMII:
-> +		tx_clk = "tx_sgmii";
-> +		rx_clk = "rx_sgmii";
-> +		break;
-> +	case PHY_INTERFACE_MODE_RGMII:
-> +	case PHY_INTERFACE_MODE_RGMII_ID:
-> +	case PHY_INTERFACE_MODE_RGMII_TXID:
-> +	case PHY_INTERFACE_MODE_RGMII_RXID:
-> +		tx_clk = "tx_rgmii";
-> +		rx_clk = "rx_rgmii";
-> +		break;
-> +	case PHY_INTERFACE_MODE_RMII:
-> +		tx_clk = "tx_rmii";
-> +		rx_clk = "rx_rmii";
-> +		break;
-> +	case PHY_INTERFACE_MODE_MII:
-> +		tx_clk = "tx_mii";
-> +		rx_clk = "rx_mii";
-> +		break;
-> +	default:
-> +		dev_err(&pdev->dev, "Not supported phy interface mode: [%s]\n",
-> +			phy_modes(plat_dat->phy_interface));
-> +		return -EINVAL;
-> +	};
-> +
-> +	gmac->intf_mode = plat_dat->phy_interface;
-> +
-> +	/* DMA cache coherency settings */
-> +	if (of_dma_is_coherent(pdev->dev.of_node)) {
-> +		ret = s32_config_cache_coherency(pdev, plat_dat);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	/* tx clock */
-> +	gmac->tx_clk = devm_clk_get(&pdev->dev, tx_clk);
-> +	if (IS_ERR(gmac->tx_clk)) {
-> +		dev_info(&pdev->dev, "tx clock not found\n");
-> +		gmac->tx_clk = NULL;
-
-Is the clock really optional?
-
-I would also print the name of the clock which is missing.
-
-> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> @@ -324,6 +324,10 @@ static void stmmac_clk_csr_set(struct stmmac_priv *priv)
->  			priv->clk_csr = STMMAC_CSR_150_250M;
->  		else if ((clk_rate >= CSR_F_250M) && (clk_rate <= CSR_F_300M))
->  			priv->clk_csr = STMMAC_CSR_250_300M;
-> +		else if ((clk_rate >= CSR_F_300M) && (clk_rate < CSR_F_500M))
-> +			priv->clk_csr = STMMAC_CSR_300_500M;
-> +		else if ((clk_rate >= CSR_F_500M) && (clk_rate < CSR_F_800M))
-> +			priv->clk_csr = STMMAC_CSR_500_800M;
-
-Also seems like something which could be a patch of its own. Ideally
-you want lots of small patches which are obviously correct. Part of
-being obviously correct is the commit message, which is easier to
-write when the patch is small and only does one thing.
-
-      Andrew
-
+>   static const struct drm_display_mode powertip_ph800480t013_idf02_mode = {
+>   	.clock = 24750,
+>   	.hdisplay = 800,
+> @@ -4639,6 +4665,9 @@ static const struct of_device_id platform_of_match[] = {
+>   	}, {
+>   		.compatible = "pda,91-00156-a0",
+>   		.data = &pda_91_00156_a0,
+> +	}, {
+> +		.compatible = "powertip,ph128800t006-zhc01",
+> +		.data = &powertip_ph128800t006_zhc01,
+>   	}, {
+>   		.compatible = "powertip,ph800480t013-idf02",
+>   		.data = &powertip_ph800480t013_idf02,
+> -- 
+> 2.25.1
+> 
 
