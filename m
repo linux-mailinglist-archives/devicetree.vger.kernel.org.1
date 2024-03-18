@@ -1,357 +1,269 @@
-Return-Path: <devicetree+bounces-51314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AC3A87ED0C
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 17:10:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB30387ED0F
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 17:11:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BAF61C20EFB
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 16:10:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 736EC28171F
+	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 16:11:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 605D552F8E;
-	Mon, 18 Mar 2024 16:10:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4976E53377;
+	Mon, 18 Mar 2024 16:10:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="y4HZMoCw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZB+5VaPa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5638E52F79
-	for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 16:10:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 403EC52F79
+	for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 16:10:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710778221; cv=none; b=XYdwl4fGIA15Fad6TDHWtU5w4+jyHTEdYIqpOomsRW193FzWrXCHLMj+Y7nEXTApL+1Fe2air3H4vH2Oc/lH0RuKlZoj3SKQ+LfVD1eEBSg+9OLpTEX+H9/p/LeadaUahNc4iz+MTZkLV5KwH7Vk2ai23u/XbYbqOo8fHLMD9xI=
+	t=1710778257; cv=none; b=iCCgx+McdlDJHksNkn50cZPS8I/oqXDWROyo/LeCogpcY+Xi5rcPoEZjKlgel/nRFiPh3LXpJCBHQZEFTciJVulTn7jKjmFZr5ioadci0dXA023nJjk7bWC5PkooRjOnTbYeIG80/M7n94rgblLKH65GteCUN97FxaxyyLGoo4M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710778221; c=relaxed/simple;
-	bh=SKunnvtrngfLtfxRd3kKbk0M1jkTXkCiGkpDdCLc5Es=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eaflzQjv46vtmCA/z9VeYn0Y/YnIK2DRuI8VawTRhdL1+zG2RPFroWcaEY1Y28GX1GTDYkBZ47NRTTTzzezgmavq7IyxNAmgjDT45bq1uYNaJbdQHJKneO/F1L9JydvEENSMXethWmwt0rTPtYt73hDWKCh/Hfeju1L/yY2+0LM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=y4HZMoCw; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4140870914fso15625485e9.1
-        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 09:10:18 -0700 (PDT)
+	s=arc-20240116; t=1710778257; c=relaxed/simple;
+	bh=AYb2lq5LX/8aweRNC/57Ae4xwsA/O52DROdPAT9dQkA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=Api/0awS8nuMlEv6dBpf1DFMQobIk7SD0O6CUmRvegAoDaJvTmA255Ew/BEYlUxREzHgIQ5b2D8gowheeIt9rK+aCZRIzfhoN+bDshhbTzyDrpUilJARMswkDAsYP54ZDlcbGjz02K/dTwJFF89enplfsB4f45wo3APLQfQ1nj4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZB+5VaPa; arc=none smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2d46dd5f222so50229951fa.1
+        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 09:10:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1710778217; x=1711383017; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=soH3KE771lRwWEp1ze0NtNy6bQltyj2q2VGoO5MFFy8=;
-        b=y4HZMoCwB15HAAjBbcys35UNqoCf085cxxN8ZMMgN416mDWfEmhFdB+2yBGZbbf4gM
-         axCS/RAbECpac7VSnjiLT+1rVKAQ7L59yJA+7qjWKup+vR2KGbiiojmU7Q/CdbYgv6k3
-         Vbpcf1ne6drgzP3u3/Uyg2cfs4r3yxfBz+zcxkreFd/Qno1a6VvjoOClbsJYBAwpKFui
-         qm39sXuNVGZcyl4YSP9oDzEtaeIOGkoJTqwcc355ESJV9sohWEACJzWNfGU0YMXubq6Z
-         UJB6LsamTjlH3B3wf/EzMWr2+A+tLBkmVhHwbR8GQGGgBqB4XrqvzXFD0p/ewsxKdDUX
-         nnaw==
+        d=linaro.org; s=google; t=1710778253; x=1711383053; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=y8dUXbiRvTaXe7jzoN2uhqGgGMYVk6uFqv8HZ26Pr0E=;
+        b=ZB+5VaPagLf7RjhtFg+mN9KkrbdMengYnzor4Qcv1vBgax5gTPcjoLHG9qbnBuGuLX
+         5MtEqrB/EVSMtyRqjyYIkTkBP5+Uz0LB/Bo9DYwvxQB0V8scYimvDdW9u9ACb6hH5Dia
+         0ARzMBXwrhfpdmwUQ+1Fft/E7wfc6X65dl7BAOZgIxfLzxggqjcMAPuQmlMBhoUujF5N
+         7ACEhPht+fRF+1MSqJ+AsWXwkoBsFd2qKoVL+AVYc9x6kGhezo0MG48Zn1seQglQDAtd
+         U64ChimJQ1kfBohXUKFfjElOAVQfUZJ4HigG2OBvPTP4yNAPDQUwFtDqDDa13A4hV2wW
+         qL4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710778217; x=1711383017;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=soH3KE771lRwWEp1ze0NtNy6bQltyj2q2VGoO5MFFy8=;
-        b=QoJSWq4WGLzXjZsL9h9W70BsHxdc16HJCWNR2Q6RynlgKt9asc7EJF3QdtYJ9K/ZP5
-         hEUbYA0GJhMGkGj/coWSvtYER5830BmK3DxzU+Nex8rD6B8tDMN0No8fCzVOFwMRivrw
-         WVXgiGK21TlS0WXJ0h7qcjXtqTDV+3T4m1Iv6TnrgEwQMFvulEG5Q7gpNWK1HIbGnc8r
-         A3qFuDdaHgdCDVp1mYbU8h8/g10gGgPj0Gl16VgUiVJoae4f1PA4ExQSsOtssNkpKVxK
-         SytGtK++VCyiGIbJUgV+JCyw5/bn5niNkmSWrZztp8PyZp1csJj79HQEXn1IByJluHKX
-         f38g==
-X-Forwarded-Encrypted: i=1; AJvYcCWEeta2VmwZ6QcYpegSv+DntT06F06/y6nXGpbGTJRldxjoz5hZgvncUyXxx1SY6Ykwbm81uiP0GqoV0jWO3pZvzC/TENcBcK6D5g==
-X-Gm-Message-State: AOJu0YzdVW/kNKw0/igQIxrK9aya6x6A8f39AOHWmOYbjmwvs4vuwkHc
-	zCuhDl505R+J7t7Wc5DHh/ZI3ObHxm1zuJ4vOcZaerkPUMHUF68OpGj00+halsw=
-X-Google-Smtp-Source: AGHT+IEHvkUqiBY5s3cQ4I2L9v9mBNK3Y1+XkKMaEtHFzr+NwWnPLPQ5pNAccZrYWbEhe61qVhgsaw==
-X-Received: by 2002:a05:600c:46d1:b0:413:3906:d906 with SMTP id q17-20020a05600c46d100b004133906d906mr9920964wmo.17.1710778216043;
-        Mon, 18 Mar 2024 09:10:16 -0700 (PDT)
-Received: from blmsp ([2001:4091:a246:821e:6f3b:6b50:4762:8343])
-        by smtp.gmail.com with ESMTPSA id bu9-20020a056000078900b0034082c782c0sm5491917wrb.0.2024.03.18.09.10.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Mar 2024 09:10:15 -0700 (PDT)
-Date: Mon, 18 Mar 2024 17:10:14 +0100
-From: Markus Schneider-Pargmann <msp@baylibre.com>
-To: Andrew Davis <afd@ti.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Nishanth Menon <nm@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Santosh Shilimkar <ssantosh@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/4] dt-bindings: hwinfo: ti,k3-socinfo: Add nvmem-cells
-Message-ID: <5chxjwybmsxq73pagtlw4zr2asbtxov7ezrpn5j37cr77bmepa@fejdlxomfgae>
-References: <20240206184305.GA1875492-robh@kernel.org>
- <z56fiu2jpokp57sjvnrdcbfy7brpq2ag4yxpektqlhtidecx4n@vc7dsurhxorb>
- <cb75c098-521e-4eed-bc3e-7237f8a6498f@linaro.org>
- <ut63wrhsewkpfdgaatd6hqmj5upvyamjhf2rsecju2v2o3hdod@kyi5sezcggl7>
- <48902771-5d3b-448a-8a74-ac18fb4f1a86@linaro.org>
- <sowpixx2u4d5alj4udzr3qt47zevylukhpwkw3pfwnogqjse5w@xrxcozzvog6v>
- <620a2dca-1901-43d4-8b2b-7ae823705a6e@linaro.org>
- <1fe44306-b507-4017-8f47-598a76d9dbee@ti.com>
- <44c5d664-e738-44b4-bafe-06f2e1fc1fe7@linaro.org>
- <e7114cb4-e24f-4e78-a89f-4e2e2e704b8a@ti.com>
+        d=1e100.net; s=20230601; t=1710778253; x=1711383053;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=y8dUXbiRvTaXe7jzoN2uhqGgGMYVk6uFqv8HZ26Pr0E=;
+        b=dF+kpu8oKt2jmx2Py//HUvx1S0AerrfOR9OiLwK4RuHYfwA38OoYcih6lxGoXHUPC5
+         oFqNwOZjBO+xIQLKvoWTJih7kEZ1+AFVuHXIhPGEZ1sLO/yRAvllQDzfdPF+3E1iC+nO
+         Wyk0Jx320+4uHtK9wNqTUTFeYBWE68OPC72VJBOBCBDVhcT4PCc/nB0rzjWRzgcOCKrX
+         K4zV8L1m7Ujv9KhDSyqiueCz06oEAPb8Ucse0QILWsXrssrcJfenqB5ZD/x8GlZ3fAe/
+         rjaglrtF0QG5WXF44k3+LnINfz0GCeZuWye6jWs5l+/DeAE+C7bEH8bGroM8y3MJrSwE
+         pZuw==
+X-Forwarded-Encrypted: i=1; AJvYcCVnwxaM23GmtWuZcZ/+e+BR6+pAGc/vPZ4ozPl7YliM+TzIJouq+magfvbbxCXzuFIA//xb7E6qtgqZf4kb/qUZUX6BHTt6wFSijQ==
+X-Gm-Message-State: AOJu0YwCXRGICHUXzWX9SmCFRIpMNl+jRgwuu/BHbVYM3sUfp0CZzyq1
+	/ImJven4jYrRw9u5oKYv+LgAqTAhBzonlLRuUhxR1VVN0J1De5um0LNpJRpbwLc=
+X-Google-Smtp-Source: AGHT+IHcNGWovNAwvG6xUZmGi1jrBAezgz96CrnlpJRoFjgy2DseL1o729ovzMBt0OfE9BGKqw4wUA==
+X-Received: by 2002:a05:651c:204c:b0:2d3:1c52:7ae5 with SMTP id t12-20020a05651c204c00b002d31c527ae5mr7962218ljo.46.1710778253392;
+        Mon, 18 Mar 2024 09:10:53 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id g18-20020a056402091200b00568b6f73491sm3321676edz.14.2024.03.18.09.10.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Mar 2024 09:10:52 -0700 (PDT)
+Message-ID: <ce082596-b468-463e-95d6-89776a1ef30f@linaro.org>
+Date: Mon, 18 Mar 2024 17:10:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <e7114cb4-e24f-4e78-a89f-4e2e2e704b8a@ti.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: pmbus: adp1050 : add bindings
+Content-Language: en-US
+To: Radu Sabau <radu.sabau@analog.com>, Jean Delvare <jdelvare@suse.com>,
+ Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>, linux-hwmon@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-i2c@vger.kernel.org
+References: <20240318112140.385244-1-radu.sabau@analog.com>
+ <20240318112140.385244-2-radu.sabau@analog.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240318112140.385244-2-radu.sabau@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Mar 05, 2024 at 11:41:31AM -0600, Andrew Davis wrote:
-> On 3/5/24 11:01 AM, Krzysztof Kozlowski wrote:
-> > On 05/03/2024 15:42, Andrew Davis wrote:
-> > > On 3/5/24 8:11 AM, Krzysztof Kozlowski wrote:
-> > > > On 05/03/2024 12:17, Markus Schneider-Pargmann wrote:
-> > > > > Hi Krzysztof,
-> > > > > 
-> > > > > On Tue, Mar 05, 2024 at 08:43:03AM +0100, Krzysztof Kozlowski wrote:
-> > > > > > On 04/03/2024 11:36, Markus Schneider-Pargmann wrote:
-> > > > > > > Hi,
-> > > > > > > 
-> > > > > > > On Sat, Feb 17, 2024 at 03:25:30PM +0100, Krzysztof Kozlowski wrote:
-> > > > > > > > On 14/02/2024 10:31, Markus Schneider-Pargmann wrote:
-> > > > > > > > > Hi Rob,
-> > > > > > > > > 
-> > > > > > > > > On Tue, Feb 06, 2024 at 06:43:05PM +0000, Rob Herring wrote:
-> > > > > > > > > > On Tue, Feb 06, 2024 at 03:37:09PM +0100, Markus Schneider-Pargmann wrote:
-> > > > > > > > > > > The information k3-socinfo requires is stored in an efuse area. This
-> > > > > > > > > > > area is required by other devices/drivers as well, so using nvmem-cells
-> > > > > > > > > > > can be a cleaner way to describe which information are used.
-> > > > > > > > > > > 
-> > > > > > > > > > > If nvmem-cells are supplied, the address range is not required.
-> > > > > > > > > > > Cells chipvariant, chippartno and chipmanufacturer are introduced to
-> > > > > > > > > > > cover all required information.
-> > > > > > > > > > > 
-> > > > > > > > > > > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > > > > > > > > > > Reviewed-by: Andrew Davis <afd@ti.com>
-> > > > > > > > > > > ---
-> > > > > > > > > > >    .../bindings/hwinfo/ti,k3-socinfo.yaml        | 23 ++++++++++++++++++-
-> > > > > > > > > > >    1 file changed, 22 insertions(+), 1 deletion(-)
-> > > > > > > > > > > 
-> > > > > > > > > > > diff --git a/Documentation/devicetree/bindings/hwinfo/ti,k3-socinfo.yaml b/Documentation/devicetree/bindings/hwinfo/ti,k3-socinfo.yaml
-> > > > > > > > > > > index dada28b47ea0..f085b7275b7d 100644
-> > > > > > > > > > > --- a/Documentation/devicetree/bindings/hwinfo/ti,k3-socinfo.yaml
-> > > > > > > > > > > +++ b/Documentation/devicetree/bindings/hwinfo/ti,k3-socinfo.yaml
-> > > > > > > > > > > @@ -26,9 +26,24 @@ properties:
-> > > > > > > > > > >      reg:
-> > > > > > > > > > >        maxItems: 1
-> > > > > > > > > > > +  nvmem-cells:
-> > > > > > > > > > > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > > > > > > > > > > +
-> > > > > > > > > > > +  nvmem-cell-names:
-> > > > > > > > > > > +    items:
-> > > > > > > > > > > +      - const: chipvariant
-> > > > > > > > > > > +      - const: chippartno
-> > > > > > > > > > > +      - const: chipmanufacturer
-> > > > > > > > > > > +
-> > > > > > > > > > >    required:
-> > > > > > > > > > >      - compatible
-> > > > > > > > > > > -  - reg
-> > > > > > > > > > > +
-> > > > > > > > > > > +oneOf:
-> > > > > > > > > > > +  - required:
-> > > > > > > > > > > +      - reg
-> > > > > > > > > > > +  - required:
-> > > > > > > > > > > +      - nvmem-cells
-> > > > > > > > > > > +      - nvmem-cell-names
-> > > > > > > > > > >    additionalProperties: false
-> > > > > > > > > > > @@ -38,3 +53,9 @@ examples:
-> > > > > > > > > > >            compatible = "ti,am654-chipid";
-> > > > > > > > > > >            reg = <0x43000014 0x4>;
-> > > > > > > > > > >        };
-> > > > > > > > > > > +  - |
-> > > > > > > > > > > +    chipid: chipid@14 {
-> > > > > > > > > > > +        compatible = "ti,am654-chipid";
-> > > > > > > > > > 
-> > > > > > > > > > This isn't compatible if you have a completely different way to access
-> > > > > > > > > > it.
-> > > > > > > > > 
-> > > > > > > > > Thanks, it is not entirely clear to me how I could go forward with this?
-> > > > > > > > > Are you suggesting to use a different compatible? Or is it something
-> > > > > > > > > else I could do to proceed with this conversion?
-> > > > > > > > 
-> > > > > > > > What you claim now, is that you have one device with entirely different
-> > > > > > > > interfaces and programming model. So either this is not the same device
-> > > > > > > > or you just wrote bindings to whatever you have in driver.
-> > > > > > > > 
-> > > > > > > > Nothing in commit msg explains this.
-> > > > > > > > 
-> > > > > > > > What you should do? Depends. If you just write bindings for driver, then
-> > > > > > > > stop. It's a NAK. Instead write bindings for hardware.
-> > > > > > > > 
-> > > > > > > > If the first choice, just the hardware is somehow like this, then
-> > > > > > > > explain in commit msg and device description, how this device can be
-> > > > > > > > connected over other bus, not MMIO. You can draw some schematics in
-> > > > > > > > commit msg explaining architecture etc.
-> > > > > > > 
-> > > > > > > Sorry the information provided in the commit message is not very clear.
-> > > > > > > 
-> > > > > > > The basic access to the registes is still MMIO. nvmem is used to have a
-> > > > > > > better abstraction and cleaner description of the hardware.
-> > > > > > > 
-> > > > > > > Currently most of the data is exported using the parent syscon device.
-> > > > > > > The relevant data is read-only and contained in a single register with
-> > > > > > > offset 0x14:
-> > > > > > >     - Chip variant
-> > > > > > >     - Chip part number
-> > > > > > >     - Chip manufacturer
-> > > > > > > 
-> > > > > > > There are more read-only registers in this section of address space.
-> > > > > > > These are relevant to other components as they define the operating
-> > > > > > > points for example. For the OPP table relevant are chip variant and chip
-> > > > > > > speed (which is in a different register).
-> > > > > > > 
-> > > > > > > Instead of devices refering to this whole register range of 0x20000 in
-> > > > > > 
-> > > > > > Whaaaaat?
-> > > > > > 
-> > > > > > > size, I would like to introduce this nvmem abstraction in between that
-> > > > > > > describes the information and can directly be referenced by the devices
-> > > > > > > that depend on it. In this case the above mentioned register with offset
-> > > > > > > 0x14 is instead described as nvmem-layout like this:
-> > > > > > > 
-> > > > > > > 	nvmem-layout {
-> > > > > > > 		compatible = "fixed-layout";
-> > > > > > > 		#address-cells = <1>;
-> > > > > > > 		#size-cells = <1>;
-> > > > > > > 
-> > > > > > > 		chip_manufacturer: jtagidmfg@14 {
-> > > > > > > 			reg = <0x14 0x2>;
-> > > > > > > 			bits = <1 11>;
-> > > > > > > 		};
-> > > > > > > 
-> > > > > > > 		chip_partno: jtagidpartno@15 {
-> > > > > > > 			reg = <0x15 0x3>;
-> > > > > > > 			bits = <4 16>;
-> > > > > > > 		};
-> > > > > > > 
-> > > > > > > 		chip_variant: jtagidvariant@17 {
-> > > > > > > 			reg = <0x17 0x1>;
-> > > > > > > 			bits = <4 4>;
-> > > > > > > 		};
-> > > > > > > 
-> > > > > > > 		chip_speed: jtaguseridspeed@18 {
-> > > > > > > 			reg = <0x18 0x4>;
-> > > > > > > 			bits = <6 5>;
-> > > > > > > 		};
-> > > > > > > 
-> > > > > > > The underlying registers are still the same but they are not hidden
-> > > > > > > by the syscon phandles anymore.
-> > > > > > > 
-> > > > > > > The device that consumes this data would now use
-> > > > > > > 
-> > > > > > > 	nvmem-cells = <&chip_variant>, <&chip_speed>;
-> > > > > > > 	nvmem-cell-names = "chipvariant", "chipspeed";
-> > > > > > > 
-> > > > > > > instead of
-> > > > > > > 
-> > > > > > > 	syscon = <&wkup_conf>;
-> > > > > > 
-> > > > > > syscon allows you this as well - via phandle arguments.
-> > > > > > 
-> > > > > > nvmem is for non-volatile memory, like OCOTP and eFUSE. This is not for
-> > > > > > accessing regular MMIO registers of system-controller, regardless
-> > > > > > whether they are read-only or not (regmap handles this nicely, BTW).
-> > > > > > Although probably Apple efuses and few others can confuse here. It still
-> > > > > > looks like you convert regular system-controller block into nvmem,
-> > > > > > because you prefer that Linux driver abstraction...
-> > > > > 
-> > > > > The above mentioned data is set in the factory. There is other
-> > > > > non-volatile data, like device feature registers, in the same address
-> > > > > region, as well as OTP data like MAC and USB IDs. But it is not a pure
-> > > > > non-volatile memory region. The data is copied into these registers by
-> > > > > the ROM at boot.
-> > > > 
-> > > > Still entire block is MMIO IP in your SoC, not a efuse/OTP hardware.
-> > > > nvmem is not for regular MMIO registers which are sometimes R, sometimes RW.
-> > > 
-> > > Most eFuse/OTP hardware is accessed via MMIO, not sure what that changes.
-> > 
-> > Just check exiting NVMEM drivers, except Apple I think most if not all
-> > are not syscon blocks.
-> > 
+On 18/03/2024 12:21, Radu Sabau wrote:
+> Add dt-bindings for adp1050 digital controller for isolated power supply
+> with pmbus interface voltage, current and temperature monitor.
 > 
-> We don't want it to be a syscon block either. Syscon is just another Linux
-> interface for accessing MMIO areas that found its way in to DT. NVMEM
-> is another way, which as a DT construct is more "correct" as the area
-> we are describing here *is* a non-volatile memory. Not a "syscon"?? whatever
-> that is.
-> 
-> > Following such approach, each hardware block, even USB or PCI, which
-> > exposes a read-only register with some fused value, e.g. version, should
-> > be nvmem?
-> > 
-> 
-> If those fused values are grouped into a region then yes, why not. Wouldn't
-> that be more correct to describe them as they actually are instead of
-> hiding them behind a "syscon" block?
-> 
-> > > 
-> > > This "block" is a whole bunch of smaller logical chunks of registers,
-> > > some are actually mapped to eFuses like our MAC addresses. Regions
-> > > like factory fused MAC addresses are exactly what nvmem does well[0].
-> > > 
-> > > Yes, we *could* just have this whole area be one massive blanked syscon
-> > > region that every driver just manually pokes into with syscon phandles
-> > > everywhere. But that is hacky and hides details, it is not how DT normally
-> > > looks. We would like to correctly model our device now with nodes for each
-> > > "reg" region. We took the syscon shortcut before, and we want to correct
-> > > that mistake.
-> > 
-> > Wait, you now mix up hardware description with Linux interface.
-> > Describing each register as nvmem field is not a better way of
-> > describing hardware. It is unnecessarily too granular and results in
-> > huge and unmaintainable DTS. It is however convenient because it is nice
-> > API for other devices.
-> 
-> It is not convenient. How we have it currently as a blanket syscon node
-> that each driver can simply poke whatever address it wants is much easier.
-> We are now trying to do the more difficult (but more correct) thing here by
-> modeling our non-volatile memory areas as they are as nvmem nodes.
-> 
-> > But claiming that MMIO register block is better
-> > represented as nvmem is not correct. It is still MMIO block with
-> > registers, like everywhere else in every other device.
-> > 
-> 
-> Everything is MMIO on these SoCs, we don't have any sideband band
-> IO ports. Following that to its logical conclusion we should just
-> make the entire memory space reg = <0x0 0xffffffff> one big syscon node
-> then have all other driver phandle into that for their MMIO access.
-> 
-> > > 
-> > > So what are our options? Is the objection here that this is a new nvmem
-> > > way of modeling this region changes the compatible "ti,am654-chipid"? If
-> > > so then would you be open to us adding a new compatible that uses the
-> > > nvmem nodes? We could then convert over one by one and keeping full
-> > > backwards compatibility while we do it.
-> > 
-> > Switching from MMIO to nvmem for chipid is a different interface, so as
-> > Rob pointed out devices are not really compatible. You claim that
-> > devices are compatible, because there is *NO REAL NVMEM* but MMIO
-> > wrapped in nvmem. So do you see the logic here?
-> > 
-> 
-> If the interface changing means it is not compatible then that is
-> fine, we would use a different compatible string to identify the
-> interface to be used.
+> Signed-off-by: Radu Sabau <radu.sabau@analog.com>
 
-So what is the acceptable approach here?
+Subject: drop space before ':'
 
-Best,
-Markus
+> ---
+>  .../bindings/hwmon/pmbus/adi,adp1050.yaml     | 65 +++++++++++++++++++
+>  MAINTAINERS                                   |  8 +++
+>  2 files changed, 73 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml
+> new file mode 100644
+> index 000000000000..e3162d0df0e2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml
+> @@ -0,0 +1,65 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +
 
-> 
-> This is not uncommon, the example that comes to my mind is "gpio-leds".
-> We used to just have named GPIO pins for our LEDs, now we can
-> put "gpio-leds" on top to better represent what is going on in HW.
-> Even though physically nothing changed, we just now have a better way
-> to model that HW in DT.
-> 
-> Andrew
-> 
-> > Best regards,
-> > Krzysztof
-> > 
-> > 
+Drop
+
+> +$id: htpps://devicetree.org/schemas/hwmon/pmbus/adi,adp1050.yaml#
+> +$schema: htpps://devicetree.org/meta-schemes/core.yaml#
+> +
+> +title: Analog Devices ADP1050 digital controller with PMBus interface
+> +
+> +maintainers:
+> +  - Radu Sabau <radu.sabau@analog.com>
+> +
+> +description: |
+> +   The ADP1050 is used to monitor system voltages, currents and temperatures.
+> +   Through the PMBus interface, the ADP1050 targets isolated power supplies
+> +   and has four individual monitors for input/output voltage, input current
+> +   and temperature.
+> +   Datasheet:
+> +     https://www.analog.com/en/products/adp1050.html
+
+Missing blank line
+
+> +properties:
+> +  compatbile:
+
+Typo. And you did not test it...
+
+> +    const: adi,adp1050
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vcc-supply: true
+> +
+> +  adi,vin-scale-monitor:
+> +    description:
+> +      The value of the input voltage scale used by the internal ADP1050 ADC in
+> +      order to read correct voltage values.
+> +    $ref: /schemas/typees.yaml#/definitions/uint16
+
+Missing blank line.
+
+> +  adi,iin-scale-monitor:
+> +    description:
+> +      The value of the input current scale used by the internal ADP1050 ADC in
+> +      order to read carrect current values.
+> +    $ref: /schemas/typees.yaml#/definitions/uint16
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vcc-supply
+> +  - adi,vin-scale-monitor
+> +  - adi,iin-scale-monitor
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +             #adress-cells = <1>;
+
+Totally messed indentation.
+Use 4 spaces for example indentation.
+
+> +             #size-cells = <0>;
+> +             clock-frequency = <100000>;
+> +            adp1050@70 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+> +                   #adress-cells = <1>;
+> +                   #size-cells = <0>;
+> +                   compatible = "adi,adp1050";
+> +                   reg = <0x70>;
+> +                   adi,vin-scale-monitor = <0xB030>;
+> +                   adi,iin-scale-monitor = <0x1>;
+> +                   vcc-supply = <&vcc>;
+> +          };
+> +...
+> +
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index f4d7f7cb7577..c90140859988 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -479,6 +479,14 @@ L:	linux-wireless@vger.kernel.org
+>  S:	Orphan
+>  F:	drivers/net/wireless/admtek/adm8211.*
+>  
+> +ADP1050 HARDWARE MONITOR DRIVER
+> +M:	Radu Sabau <radu.sabau@analog.com>
+> +L:	linux-hwmon@vger.kernel.org
+> +S:	Supported
+> +W:	https://ez.analog.com/linux-software-drivers
+> +F:	Dcumentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml
+> +F:	drivers/hwmon/pmbus/adp1050.c
+
+There is no such file...
+
+
+
+Best regards,
+Krzysztof
+
 
