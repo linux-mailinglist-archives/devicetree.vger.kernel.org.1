@@ -1,179 +1,132 @@
-Return-Path: <devicetree+bounces-51586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96AD987FC31
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 11:51:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8752687FC36
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 11:54:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A8B62876CD
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 10:51:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9D4A1C21CA0
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 10:54:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C0EB7CF03;
-	Tue, 19 Mar 2024 10:51:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XUOq0NVT"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82B3C5787B;
+	Tue, 19 Mar 2024 10:54:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AF0932C84
-	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 10:51:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 586CF2A8D7;
+	Tue, 19 Mar 2024 10:54:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710845464; cv=none; b=vFaf95UAbwboMvlrrPuqI8MbU7pQ8JVgnhraY/noFSvbniveNDl4oh1vflVfuwpay/mKdQL0YuJAr6zTqI5f8FJtOBDwebAGck2bDVxEvnJsDQ/YlwUnFpF9vJjs6nUrxQhqwmw40JFa7ZTDc7MYaI+P7tRhWube+F6X+E5buUk=
+	t=1710845653; cv=none; b=any4BqAbN6ul4ihV+ElChnopn9pTY+7YFRdxJfJ5bPPn0GYXY5O8RppGfNBRh66J8O/Ao6DA1DZtUuhp1BEFq6LHZWHNzust25ALkDHTlG+XsDECDQo3unSLa7wUHv67Rr4penejgoI3DKS9CbCArcgT1QPCR3rbOF9fMQSPfrw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710845464; c=relaxed/simple;
-	bh=/DOvHVSOVMluK8I+tpm1539f+hV2X5lomXUGnvZ9uu0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JqYjazxhVw4cpxdu9FoRrVhx46auz2x0S7C5Hoy+/XcOnaf2khLfwLjpxa2pIEGBaKTz0Ct5xezqpmAxZj1mfvxa49kjEqHJBaECK7mB5yhz0q8cy8InmSpu9rUDphJydjuOL0pJ+74oLcbtEcGykENVuwKyCsfPOyTB/YyYur0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XUOq0NVT; arc=none smtp.client-ip=209.85.128.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-60a057b6601so53177357b3.2
-        for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 03:51:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710845460; x=1711450260; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=wzawuu8hFKU1RvK4lgLUgZN5WdTja0Pdn2+gmpJF2Io=;
-        b=XUOq0NVT7sxqdnc8vDFqwCoXAbINKu0LltQ9LSBOOEgH39u88SYKm9jzYTMkJvYv49
-         eXJeTeQAfJOht3oZTsLva+DSvp7h/6lofFti8Q0KJ5rxjtWYoakSknrhyHK2DCWzF1Kq
-         QyZWZU6S/kBt/ih5sv6kMuM25dxAq5u0v9WIO+TOl4ZVUSx1Zf1IPsEJsjQyQleqsjbf
-         K6vHZaG9YRgblKkVpuM+OGlTavotwFM4O7id5kLO5KKX3wtaO+q0Jz917wZhYAKYH2HU
-         aBA/v011a011ZmIDiPx04ftdzlIY/PeOzPDax8U4U6PaIRxb9NLlUGBjNmZ/kY1ZCbAo
-         umTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710845460; x=1711450260;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wzawuu8hFKU1RvK4lgLUgZN5WdTja0Pdn2+gmpJF2Io=;
-        b=GGOgAm5KMrK68P+LEo1aY3LhAt/2TkKRXI4BRhO3ImST/DbtHbmH/rZnJHamT3UVOP
-         GKh1CDwZKjeum2PAG5b784UEfaZOWxUPydFp1wCsvDY779ac6wGszPcIfjK1ef/R9lVY
-         hUnFyyTaL+uYd20sowdg84/xhyMP/YQwL5ONI9FuTQyHVEgjrhXMENAD94wUyktihH5Y
-         TQ/5N9SKTJh0hfxD8f5xv2wOQrgEJ7aBTotg8/EeOAqCcwGT9AZcMGbJpCMntfJmvmnp
-         xAsOi8C0sb2UdFWx9mJcH89geQrbrQVpM8foc0vHd0aNGMsXigX6zlwNNmVhNpq2ZRCv
-         t7Lg==
-X-Forwarded-Encrypted: i=1; AJvYcCWjuQD8DAtfuvFzQponV/rPYbLtylzcW95Bhnjih5HOc4syAT3cddwHAmoqWgOiP2C1TKiLxrwLwIMWh9SvbmyXwKWPssvWgMwIOg==
-X-Gm-Message-State: AOJu0YxTr4vzo2UPAxPg3FuZV3gNw9M8PbuamHRtHBrqOS/YBfO2zG6C
-	NX1hfMJf60zkOOlRdEXMdK/RQh2+ZQJoRJdlGA5YzyJM3wJxDPo3dMxBzJ6+KtSEG9YPKoy3gPO
-	4B1BoTPMcE1H5W3RfQAx+fCpV67aFOzEBLLjXDw==
-X-Google-Smtp-Source: AGHT+IF6/EuqMBnZAX9r4gMKX9xc56hM2A2d3pzv6I0+nw/q8t6zrphceVRoZ2/ZcznRqKX1df24xMZiYzkbloy8K6Y=
-X-Received: by 2002:a81:4702:0:b0:60a:3e2:2a35 with SMTP id
- u2-20020a814702000000b0060a03e22a35mr2384855ywa.37.1710845460142; Tue, 19 Mar
- 2024 03:51:00 -0700 (PDT)
+	s=arc-20240116; t=1710845653; c=relaxed/simple;
+	bh=ZS5nhtTtRPjj1W3fF3ceyO7tg6di5jiVNSnWrHN7yLg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=sIeQ5Ln6P5UzSCOiCOEv72xM2TMdsMXGDBSWbwteu9WCxVJHKSpqZM6dhp8gs94YHmPC/hqFw/X4wgq2qEUXrMg8Xjehkxes04qwnkZM7t3exPZkxpk7vOAWVb2yFqK2uJ2aj+b9uu6tyeAF7EUbOaRm6nKIT9DgX9irtymXE9s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-IronPort-AV: E=Sophos;i="6.07,136,1708354800"; 
+   d="scan'208";a="202296486"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 19 Mar 2024 19:54:02 +0900
+Received: from localhost.localdomain (unknown [10.226.92.214])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 08CAF4006DFB;
+	Tue, 19 Mar 2024 19:53:58 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v5 0/6] Fix USB pipe configuration for RZ/G2L
+Date: Tue, 19 Mar 2024 10:53:50 +0000
+Message-Id: <20240319105356.87287-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240319-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v1-0-926d7a4ccd80@linaro.org>
- <20240319-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v1-2-926d7a4ccd80@linaro.org>
-In-Reply-To: <20240319-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v1-2-926d7a4ccd80@linaro.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 19 Mar 2024 12:50:48 +0200
-Message-ID: <CAA8EJpqbhc_Y+EBTdz1WTnAnZN=vkTUAzc6feH4NYgbdR-ZibQ@mail.gmail.com>
-Subject: Re: [PATCH 2/7] phy: qcom: qmp-pcie: refactor clock register code
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Tue, 19 Mar 2024 at 12:45, Neil Armstrong <neil.armstrong@linaro.org> wrote:
->
-> The PCIe Gen4x2 PHY found in the SM8[456]50 SoCs have a second clock,
-> in order to expose it, split the current clock registering in two parts:
-> - CCF clock registering
-> - DT clock registering
->
-> Also switch to devm_of_clk_add_hw_provider().
->
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 27 +++++++++++----------------
->  1 file changed, 11 insertions(+), 16 deletions(-)
->
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-> index 8836bb1ff0cc..079b3e306489 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-> @@ -3635,11 +3635,6 @@ static int qmp_pcie_clk_init(struct qmp_pcie *qmp)
->         return devm_clk_bulk_get_optional(dev, num, qmp->clks);
->  }
->
-> -static void phy_clk_release_provider(void *res)
-> -{
-> -       of_clk_del_provider(res);
-> -}
-> -
->  /*
->   * Register a fixed rate pipe clock.
->   *
-> @@ -3664,7 +3659,7 @@ static int phy_pipe_clk_register(struct qmp_pcie *qmp, struct device_node *np)
->         struct clk_init_data init = { };
->         int ret;
->
-> -       ret = of_property_read_string(np, "clock-output-names", &init.name);
-> +       ret = of_property_read_string_index(np, "clock-output-names", 0, &init.name);
->         if (ret) {
->                 dev_err(qmp->dev, "%pOFn: No clock-output-names\n", np);
->                 return ret;
-> @@ -3683,19 +3678,19 @@ static int phy_pipe_clk_register(struct qmp_pcie *qmp, struct device_node *np)
->
->         fixed->hw.init = &init;
->
-> -       ret = devm_clk_hw_register(qmp->dev, &fixed->hw);
-> -       if (ret)
-> -               return ret;
-> +       return devm_clk_hw_register(qmp->dev, &fixed->hw);
-> +}
->
-> -       ret = of_clk_add_hw_provider(np, of_clk_hw_simple_get, &fixed->hw);
-> +static int qmp_pcie_register_clocks(struct qmp_pcie *qmp, struct device_node *np)
-> +{
-> +       int ret;
-> +
-> +       ret = phy_pipe_clk_register(qmp, np);
->         if (ret)
->                 return ret;
->
-> -       /*
-> -        * Roll a devm action because the clock provider is the child node, but
-> -        * the child node is not actually a device.
-> -        */
-> -       return devm_add_action_or_reset(qmp->dev, phy_clk_release_provider, np);
-> +       return devm_of_clk_add_hw_provider(qmp->dev, of_clk_hw_simple_get,
-> +                                          &qmp->pipe_clk_fixed.hw);
+The USBHS IP found on RZ/G2L SoCs only has 10 pipe buffers compared
+to 16 pipe buffers on RZ/A2M. Document renesas,rzg2l-usbhs family
+compatible to handle this difference for RZ/G2L family SoCs.
 
-No. The driver has to register a clock provider at the np rather than
-at dev->of_node. Otherwise legacy DT will be broken.
+This patch series aims to fix the USB pipe configuration for RZ/G2L
+family SoCs.
 
->  }
->
->  static int qmp_pcie_parse_dt_legacy(struct qmp_pcie *qmp, struct device_node *np)
-> @@ -3899,7 +3894,7 @@ static int qmp_pcie_probe(struct platform_device *pdev)
->         if (ret)
->                 goto err_node_put;
->
-> -       ret = phy_pipe_clk_register(qmp, np);
-> +       ret = qmp_pcie_register_clocks(qmp, np);
->         if (ret)
->                 goto err_node_put;
->
->
-> --
-> 2.34.1
->
->
+For the backward compatibility SoC specific compatible is used
+and will be removed the same after few kernel releases.
 
+As the DTS update has a hard dependency on the driver fix, Got ack
+from Geert for patch#6 to apply the DTS update together with the driver
+fix.
+
+v4->v5:
+ * Restored the else path for has_new_pipe_configs check in usbhs_probe().
+v3->v4:
+ * Added Rbtag from Geert for patch#3.
+ * Dropped patch#4
+ * Credit  Huy Nguyen's work in the commit message for patch#4 and dropped
+   his name from Signed-off-by tag.
+ * Selection of usbhsc_rzg2l_default_pipe[] by setting the variable
+   has_new_pipe_configs to zero.
+ * Updated commit description for patch#4.
+ * Dropped the check 'priv->dparam.pipe_configs' as it is same as
+   checking !has_new_pipe_configs.
+v2->v3:
+ * Added Rb tag from Geert for patch#1,#2 and #7
+ * Added Ack tag from Geert for patch#7.
+ * Added patch#3 for improving usbhsc_default_pipe[] for isochronous
+   transfers
+ * Added patch#4 for dropping has_new_pipe_configs from struct
+   renesas_usbhs_driver_param
+ * Updated commit description for patch#5
+ * Dropped usbhsc_rzg2l_pipe[] and reusing the default_pipe[].
+v1->v2:
+ * Added Ack from Krzysztof Kozlowski for patch#1.
+ * Added patch#2 for simplify obtaining device data.
+ * Dropped using of_device_is_compatible() in probe.
+ * Added usbhs_rzg2l_plat_info and replaced the device data for RZ/G2L
+   from usbhs_rza2_plat_info->usbhs_rzg2l_plat_info.
+ * Moved usbhsc_rzg2l_pipe table near to the user.
+ * Updated commit description in patch#3
+ * Added Rb tag from Geert for patch#4.
+ * Updated commit description about ABI breakage in patch#5.
+ * Updated commit header in patch#5 as it is RZ/G2L specific.
+
+Biju Das (6):
+  dt-bindings: usb: renesas,usbhs: Document RZ/G2L family compatible
+  usb: renesas_usbhs: Simplify obtaining device data
+  usb: renesas_usbhs: Improve usbhsc_default_pipe[] for isochronous
+    transfers
+  usb: renesas_usbhs: Update usbhs pipe configuration for RZ/G2L family
+  usb: renesas_usbhs: Remove trailing comma in the terminator entry for
+    OF table
+  arm64: dts: renesas: r9a07g0{43,44,54}: Update RZ/G2L family
+    compatible
+
+ .../bindings/usb/renesas,usbhs.yaml           |  6 ++-
+ arch/arm64/boot/dts/renesas/r9a07g043.dtsi    |  2 +-
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi    |  2 +-
+ arch/arm64/boot/dts/renesas/r9a07g054.dtsi    |  2 +-
+ drivers/usb/renesas_usbhs/common.c            | 41 ++++++++++++-------
+ drivers/usb/renesas_usbhs/rza.h               |  1 +
+ drivers/usb/renesas_usbhs/rza2.c              | 13 ++++++
+ 7 files changed, 48 insertions(+), 19 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.25.1
+
 
