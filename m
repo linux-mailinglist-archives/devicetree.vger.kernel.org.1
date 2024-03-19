@@ -1,179 +1,160 @@
-Return-Path: <devicetree+bounces-51614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7870887FD5F
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 13:08:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48D6F87FD66
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 13:14:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 023801F22F97
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 12:08:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7ADA71C21C78
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 12:14:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1E5E7F48D;
-	Tue, 19 Mar 2024 12:08:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B097C7F494;
+	Tue, 19 Mar 2024 12:14:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S/6qC1AN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dunT1Jo0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84E197F486;
-	Tue, 19 Mar 2024 12:08:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D43677CF03
+	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 12:14:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710850121; cv=none; b=TXsO3dkkdWqsM7OJSMT+DXa9Iu6J5WJp5+D8IX2cfC/SCZG6Slj7zbf/Lt6FOELln7y81k53hHje5nVztDPnouIOtblTjmTGGlK5L3jraobRh9sqHkhqgFq+v7sqWTQrH8Xl9Jqdt3c3ZzaGxCdoGpOEaMQ7J0euf3PTxntmyac=
+	t=1710850482; cv=none; b=RHQfjOoMhS2+Eyu2ARal36P6MdN/vaTjdK5LP0mkuXvpZs3+7xDU2yPISNSJ3yjIQK/jyqKaEl7gRi6tKPqoOuPcenGJYBPnwUKAd3qokWaAz87bjItosAp49lpNxkN0zCYwuwSRMzfsLH9YhstZSga0wDN9MZhb62oYLEXoX7g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710850121; c=relaxed/simple;
-	bh=hnSVsLiLejS2+H2QkSYnP/1VC+dBGjS25lGVUBroTNM=;
-	h=Content-Type:Date:Message-Id:Subject:Cc:From:To:References:
-	 In-Reply-To; b=Jn1OSnbl2ewGkFOupkk44HNM/dvIvOEJOMb89mcDnkCRv1uiXHbzrpIRa4AeAupzAfvIH9/BntqyLRVZPspFDtaY6T16NLn5FbQbbloe4fIwSS+p6Dt2guVBW/txnqoWxMDad0dgwmkjXz0Y1E3QepMHl1aOYGaIx6ULQD5kvOU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S/6qC1AN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF96AC433C7;
-	Tue, 19 Mar 2024 12:08:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710850121;
-	bh=hnSVsLiLejS2+H2QkSYnP/1VC+dBGjS25lGVUBroTNM=;
-	h=Date:Subject:Cc:From:To:References:In-Reply-To:From;
-	b=S/6qC1ANHMIvVNMlBpY/FEIfzg21ybAe6BjNnNSWe8VX2Vi9A9XudWvAdNx8j3uzE
-	 03fdkU/dTxYfY0WC10r3RaK90sK8IRwKczX5EcXA6TkbvCdm0ZyVrnCBtVmzF5/l1N
-	 OFYILoRBkXVG3NdZP7iKDcLTKEX1q/32L1nNVy+0adleyZttizwpNd6uemATz4pUgw
-	 72rca3a2DSz5SzoAiDwOKYbSd/+ukCpCNZVRdudSoUIznilfrnizhX8RXqAJRvChP6
-	 M7S4iIIqDRjikI/KpbcctbztXR6V+Fxo23LkHwnyRJilvGAZ1nYFph1dBYdlirp6ZX
-	 UqHT4RLzgE+hQ==
-Content-Type: multipart/signed;
- boundary=c332393a90d01da165088274218ef3aba6b575ac7f9169419f630293fb78;
- micalg=pgp-sha256; protocol="application/pgp-signature"
-Date: Tue, 19 Mar 2024 13:08:33 +0100
-Message-Id: <CZXPQZY8PUGE.QZM8XSOUNMT4@kernel.org>
-Subject: Re: [PATCH v4 1/5] dt-bindings: misc: Add mikrobus-connector
-Cc: <jkridner@beagleboard.org>, <robertcnelson@beagleboard.org>,
- <lorforlinux@beagleboard.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Nishanth Menon" <nm@ti.com>, "Vignesh Raghavendra"
- <vigneshr@ti.com>, "Tero Kristo" <kristo@kernel.org>, "Derek Kiernan"
- <derek.kiernan@amd.com>, "Dragan Cvetic" <dragan.cvetic@amd.com>, "Arnd
- Bergmann" <arnd@arndb.de>, "Greg Kroah-Hartman"
- <gregkh@linuxfoundation.org>, "Vaishnav M A" <vaishnav.a@ti.com>, "Mark
- Brown" <broonie@kernel.org>, "Johan Hovold" <johan@kernel.org>, "Alex
- Elder" <elder@kernel.org>, "open list:OPEN FIRMWARE AND FLATTENED DEVICE
- TREE BINDINGS" <devicetree@vger.kernel.org>, "moderated list:ARM/TEXAS
- INSTRUMENTS K3 ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, "open
- list:SPI SUBSYSTEM" <linux-spi@vger.kernel.org>, "moderated list:GREYBUS
- SUBSYSTEM" <greybus-dev@lists.linaro.org>, "Vaishnav M A"
- <vaishnav@beagleboard.org>
-From: "Michael Walle" <mwalle@kernel.org>
-To: "Ayush Singh" <ayushdevel1325@gmail.com>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski@linaro.org>, "open list"
- <linux-kernel@vger.kernel.org>
-X-Mailer: aerc 0.16.0
-References: <20240317193714.403132-1-ayushdevel1325@gmail.com>
- <20240317193714.403132-2-ayushdevel1325@gmail.com>
- <CZWVF90JJO98.2M7ARQ9WMGC94@kernel.org>
- <d4dc4d94-d323-4158-8c08-b7d37d8750d3@gmail.com>
- <0f3f56d4-3381-44f1-91bc-c126f3ced085@linaro.org>
- <c8031e17-5ae8-4794-8b8c-1736be6452d3@gmail.com>
- <CZXMK3W52AFO.1APK080GVJESK@kernel.org>
- <5a9b1cd9-05ec-4606-92b6-eadbc7af6202@gmail.com>
-In-Reply-To: <5a9b1cd9-05ec-4606-92b6-eadbc7af6202@gmail.com>
+	s=arc-20240116; t=1710850482; c=relaxed/simple;
+	bh=DTrJtl818Nj+9httlh6hfIBWoQDfBYmTo/eH9+osq+4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=QbyoWftVEgtJ+SZM+yJeT7DqjmglOCYqCGp1XgiyZX59AqOiU/l2AwPrUV94uFxPijLV8AOTdjsmER7fRRy7E1S8HZd/IWbnD79v4LLkDLkJ5k7BX28FF0kYu82jyAFUgJRTZchjhDiZzM6D2kU+zbUSLgkJquICtCGmPHAC2aU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dunT1Jo0; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2d28051376eso89656121fa.0
+        for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 05:14:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1710850479; x=1711455279; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=7nd5Y7izLBJDldTbb35fwj9cRl9SKfVhUGmU2MJJYt0=;
+        b=dunT1Jo0s8zlHYaFINTxJeAZOjJldYEDWNbe0raH5nnGDLgUwNbO2QJ4FK1BXTHLP4
+         ucTp0Fr8jYOtSz+0ucrYWYi9Iv1GQts+IIZSFWqHw+4/KY5Bd7YWNVZBFpa1ChuPmhl0
+         TykXVjw35yp6NFV09DLXLbAG5tWxAtl5FiJD7PZJCXkZ85+1Mwj3ROgLF6hujTgSdkuw
+         JQ9IFH3R90HVV3TJvd45Rf5ol6sALgfhRsAhjPu8uP3TeHAW3TeV3T4XqXFpe4TmHPyi
+         w6BczGdDAAHrOcjcP9gYaF2VI7mbGSXIoznCh6LBncPQGnW8iQZPidOZsSuJZ8kX/lQ2
+         uJ5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710850479; x=1711455279;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7nd5Y7izLBJDldTbb35fwj9cRl9SKfVhUGmU2MJJYt0=;
+        b=n+AsTttQknRY5rBHoJhHzETuYMeLtviLZHH7SBDODFDfw8JgwaBmACkrRvCFFswukB
+         8Ba80khr6u/QpDsQg9B/GEUijsx6yw5RnuQsO/1EUlTY0mcz0dBKPZnqjVkGm2o1WXM8
+         wkEiJTdmt+YyTahXB6kuWMjIO1IZOcLH29zI5y0frF1xxojHrib+25kUI1g1wSb3fmsM
+         ucYJkTiuZS9zNZqKBPELWARaeoK15JG/U2EG/Lg11gebfhszmT6qEfHb9Kbq3kl07E7Z
+         YpLynj+mmllQBnjWi+HYi+tCll1w325xygotdRE0Z8ykbOKYHCan+MKCYKfz3eY1BTYu
+         /DHQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWm2K2LWWQLc9xN+D0/J1mVzUs6x/FCyASJaMmL2y7EKSlmv6ZmeJC5MroeNAnP3tAnrgbKtq/p71F5eLrVes5d32Sd/Dan7kXe9A==
+X-Gm-Message-State: AOJu0YwE8AI5oJgaYS4tikJ9ERVY1rYHg8KJFq5yFfsyzerfg17H+sSO
+	tHFzcV/o+ocTP4fB4rjLn71SRceTTMEyYDLtFX99Hp/QZu0z1/j77uNVuO++6jFBgD+I/BZdEvT
+	O
+X-Google-Smtp-Source: AGHT+IELk8Z2Bi8mSbcZKQcK+ydAdCVwO1okne69LFng7T4+m8O/xPDrv9wK34LfOd0VxSWnKCsS8g==
+X-Received: by 2002:a2e:be91:0:b0:2d4:6bd6:b145 with SMTP id a17-20020a2ebe91000000b002d46bd6b145mr8570602ljr.51.1710850478973;
+        Tue, 19 Mar 2024 05:14:38 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id x25-20020a1709065ad900b00a466af74ef2sm6020849ejs.2.2024.03.19.05.14.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Mar 2024 05:14:38 -0700 (PDT)
+Message-ID: <35acf78b-1a0d-49d4-b9a2-4b946508f32b@linaro.org>
+Date: Tue, 19 Mar 2024 13:14:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-
---c332393a90d01da165088274218ef3aba6b575ac7f9169419f630293fb78
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: pmbus: adp1050 : add bindings
+To: Radu Sabau <radu.sabau@analog.com>, Jean Delvare <jdelvare@suse.com>,
+ Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>, linux-hwmon@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-i2c@vger.kernel.org
+References: <20240319113213.19083-1-radu.sabau@analog.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240319113213.19083-1-radu.sabau@analog.com>
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue Mar 19, 2024 at 12:36 PM CET, Ayush Singh wrote:
-> >> Regardless, this patch actually does not contain any code for EEPROM
-> >> support I have just mentioned it to give more context on why mikroBUS
-> >> manifest is the focus of this patch instead of DT overlay or something
-> >> else.
-> > Right, and I think this is the crux here. Why can't you use DT
-> > overlays? The manifest files, seem to be yet another hardware
-> > description (method) and we already have DT. Can't we have some kind
-> > of userspace helper that could translate them to DT overlays? That
-> > way, you could also handle the EEPROM vs non-EEPROM case, or have
-> > some other kind of method to load a DT overlay.
-> >
-> > Admittedly, I've never worked with in-kernel overlays, but AFAIK
-> > they work with some subsystems.
-> >
-> > -michael
->
->
-> So let me 1st go over 3 cases that the driver needs to support:
->
-> 1. Non EEPROM boards:
->
-> Using overlays should be pretty similar to current solution. If the=20
-> manifest is converted to overlay in userspace, then we do not even need=
-=20
-> to do manifest parsing, setting up spi, i2c etc in the kernel driver.
->
->
-> 2. EEPROM boards
->
-> How do you propose handling these. If you are proposing storing dt=20
-> overlay in EEPROM, then this raises some questions regarding support=20
-> outside of Linux.
->
-> The other option would be generating overlay from manifest in the kernel=
-=20
-> driver, which I'm not sure is significantly better than registering the=
-=20
-> i2c, spi, etc. interfaces separately using standard kernel APIs.
+On 19/03/2024 12:32, Radu Sabau wrote:
+> Add dt-bindings for adp1050 digital controller for isolated power supply
+> with pmbus interface voltage, current and temperature monitor.
+> 
+> Signed-off-by: Radu Sabau <radu.sabau@analog.com>
 
-You did answer that yourself in (1): you could use a user space
-helper to translate it to a DT overlay, I don't think this has to be
-done in the kernel. Also how do you know whether there is an EEPROM
-or not?
+This is a friendly reminder during the review process.
 
-> 3. Over Greybus
->
-> It is quite important to have mikroBUS over greybus for BeagleConnect.=20
-> This is one of the major reasons why greybus manifest was chosen for the=
-=20
-> manifest format.
->
-> Also, it is important to note that mikroBUS manifest is being used since=
-=20
-> 2020 now and thus manifests for a lot of boards (both supporting clickID=
-=20
-> and not supporting it exist). So I would prefer using it, unless of=20
-> course there are strong reasons not to.
+Nothing changed, absolutely nothing.
 
-And also here, I'm not really familiar with greybus. Could you give
-a more complex example? My concern is that some driver might need
-additional properties from DT (or software nodes) to function
-properly. It might not only be a node with a compatible string but
-also more advanced bindings. How would that play together with this?
-My gut feeling is that you can handle any missing properties
-easier/better (eg. for existing modules) in user space. But maybe
-that is already solved in/with greybus?
+It seems my or other reviewer's previous comments were not fully
+addressed. Maybe the feedback got lost between the quotes, maybe you
+just forgot to apply it. Please go back to the previous discussion and
+either implement all requested changes or keep discussing them.
 
-Here's a random one: the manifest [1] just lists the compatible
-string apparently, but the actual DT binding has also reset-gpios,
-some -supply and interrupt properties.
+Thank you.
 
--michael
+Best regards,
+Krzysztof
 
-[1] https://github.com/MikroElektronika/click_id/blob/main/manifests/WEATHE=
-R-CLICK.mnfs
-
---c332393a90d01da165088274218ef3aba6b575ac7f9169419f630293fb78
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iIgEABYIADAWIQQCnWSOYTtih6UXaxvNyh2jtWxG+wUCZfmAQRIcbXdhbGxlQGtl
-cm5lbC5vcmcACgkQzcodo7VsRvssqgEA04NYkPfPrSqNNIGZGNCkWoEFhm0cSpD1
-0kMsQQMcLz8BAMO9O7XV3ER/VGUaI2mQh9OOZ4XJDT0M2vanXUGYPBMA
-=d2XY
------END PGP SIGNATURE-----
-
---c332393a90d01da165088274218ef3aba6b575ac7f9169419f630293fb78--
 
