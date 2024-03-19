@@ -1,253 +1,177 @@
-Return-Path: <devicetree+bounces-51570-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51571-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9576787FB90
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 11:13:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2273187FB9A
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 11:14:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DBCB1B2122D
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 10:13:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C855E28320F
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 10:14:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B67DA7D411;
-	Tue, 19 Mar 2024 10:11:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0906A7E0F3;
+	Tue, 19 Mar 2024 10:14:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="2L4okBV/"
+	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="qW8K8sdw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2105.outbound.protection.outlook.com [40.107.22.105])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A0357E576
-	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 10:11:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710843100; cv=none; b=OkLWjy/GQP9kmuDwlAny1vG+jbfWiHYVTXV3wrYO/9O1zmvb6iuNzhEe6f8RS19u62hN39GEapHq6lMorB8kMd1srkxs19ogq/7bEwOS7Eha9kbgeUesRNQSZn8Yi///pm4EV6S4QmzuLn08cAvTNXG27hjFjnyz1s+TGpdXWlY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710843100; c=relaxed/simple;
-	bh=5drMRkc6cdhxzEXRuiFUG+ZazTN83pcjQOdgWR2Qpu8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=FtOIEViSwI1fNtM46RngZ8xXI80Px6sThoS3YblvqMQRYiX8e2Eviubl4BBXenoAcJT3bDroe07O0okinX28k1/n3DntBWC2imxOhh9SfuEkKuepr0nxSkgrD4L6Psyytv0sSjnHu1l+fX6DekExcUrXoKeX0ulfYPy0TVOCrRg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=2L4okBV/; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-41468993f93so222385e9.3
-        for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 03:11:38 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20D487D41C;
+	Tue, 19 Mar 2024 10:14:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.105
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710843242; cv=fail; b=pn0ubVyxQNpbtDjAEDBRoEyTa8kWXYOevmg15gUpCZh5Tp/oylzZJJinW8yS6ztMuVTB0E2yh8fOM6FkNrFOrqXCCQt/2OH+sA3/YqGJUIoQ/+sC+nqGCmt15wH4Ab1i4H4jyCgzbtwhmooInmn47yJ7os8PwPdnjaV7/OfzO4w=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710843242; c=relaxed/simple;
+	bh=u7Wy8RChhMZ+pUiLcvlwssGg9LgsO1g3gmZIRth4nAw=;
+	h=From:Date:Subject:Content-Type:Message-Id:To:Cc:MIME-Version; b=LvNyFNXpxhhd3ovmMFSfVc3yu6KVUhwYt2RNCKjKR70XOHI1nxRj91k7U0CKw7MET5BgJBss8/LWBQX4q11xe5pQfoNKHGj5Qg12jskKFJyIicuFdl4TCbwlWkHHXlYkfzBu7hMKgG5EofWP5XTly3T6EdWt8U+tyfOycQPH8cA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com; spf=pass smtp.mailfrom=solid-run.com; dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b=qW8K8sdw; arc=fail smtp.client-ip=40.107.22.105
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=solid-run.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JGcwd97YsVHzrbMGwvtPG6VVt7eGkmvuvxifk0VGySY+xM/wfmOhj5td9uCX1RuvRN3zK6C3ERP4gagk9kP4k7dmiKEl889pzz/FrPsY7ykAcIAnnjBnduUf9gfM0Pzx1AwLVM1MfIg12prjGShFe2knazd4iixtzqwdueysVxMEKYSwEPtkpkUx4fxblY5c4WD1/5zQBQMOaHbaUz8+NtJLyHs7olYesutFmgCwbR2EC5bEW0/SmQU9JwjX6malf+aFf/qK2pL1qSQrECNH7dguC0BnhZQh8tTihit9LMXH/v1j5D0+enViNfNodWh0drOL9ZBSvzVBMKmevAfKtQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/sbTNcvCr8Dr2LqaXtapBDZTZFsHoMnLxXl44XWO3e0=;
+ b=NmIhVkycS13n7kGVSvee+gq1gsZcLt9cTeauoDcxP8mOdyrR856w5XjlBfriH3/hdyOzY16VHh8CFj7WKTaOcC5Ha5XWXwav8VPO0UmdIqGbz3/9ViSyi0B5i78T9AkyadKZJQ99BEmZ+Nyd2F9SRSMriKA5hFVEqODaJtJ0a5iTStE2vWFT/9QG9MmGKk/hERZIXxqKzhuXP98X9XLugbJCIGCuSWSLIZbli4MRNj+Wl5DZtCZOFSrN9W3+huyP6qeuNEVZdZJgSSXeRy3yw+Hi2JGaX5J4agomm0NcUwm3kYBxSwQHtxtmuu7X5/Vkq+RKiNdSOpadYpG5k4/tIQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=solid-run.com; dmarc=pass action=none
+ header.from=solid-run.com; dkim=pass header.d=solid-run.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1710843097; x=1711447897; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=SsfyZur1R0UqZb6MbuekND4ciUEpi+pLkRiJrw0UfQA=;
-        b=2L4okBV/HIMmYWOzGu8ss2pJ7eJ+J2QloEQbKLF4wmQSnyswQh/cf9XQdFFZ2ZQcPA
-         C7PFmfA2d2PMZTXk/mxmjH646sdPDEC39JuAmPFttqJdI2/z0b0Dir6iD4ryhYtbTz5f
-         NAUw/TIea+CM22yns/KEx095+vvlG/ug8WgD4aXjmAUpae8Rx0a4PF9uiuPJ1tfA1+il
-         Qd0d+DsVL+vvQ/RT1etfmi5ZM4QXrX9esVA0CM4xCcDeqG9LJIcs3mQj1EUZDWfV/o5Z
-         DxcMEWXMHPSUl88NqrF6O9QAnpVInQCQCnYdGFTJlHGnje5GFw/JmXUwWyWKaQIu6yU+
-         158A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710843097; x=1711447897;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SsfyZur1R0UqZb6MbuekND4ciUEpi+pLkRiJrw0UfQA=;
-        b=ekKGcpk8mlTfDHbORWwl4c94DKJuLQZI5vF+jEWnuTMQES4/ShFBrX3ZWW3L6BOqYU
-         WWsn/qoYRounVCezRh3SOK4ZDXt+KHXK+8avLXb6EBbGbYuc3WijFqeJvP1g/Mqm3gA1
-         Ri1vKxidKwI4S1XwNbDpX7UcCWUnxR9StQxqu0VWjfiKzuPae1tpwUhMnR+GngJVh1DC
-         PzUdqLJ5AiUkhO0yJJhERsDVD6dCfyH4mdQKog4g5J4S1Ig32Pblr2cd6tmHkHQNJotV
-         E0SRHLMt19O/Sel3Tse4KzJsyM1JW/jVihir3AJw1RgDL7yQzW/LZNFL292zLxMpH3y5
-         vZxw==
-X-Forwarded-Encrypted: i=1; AJvYcCX2jyV9JqAV7/IWWkLplHVjJuUJ4iK0zffEzZ4k7FeWOAeGC00cCirbh2+7EF2KHGE/LYnXaat1HSfH21vSSHtoMRTPlSLuvLYhLw==
-X-Gm-Message-State: AOJu0YysRaVzaL8gVPEvlez0sd1aaiDAm1Nw1IBX+ldLG9KiEs7kxceR
-	Ct1DY8dBLYXpwmBiYeJa5VTw2Bz9r13W1SPhvRsYUHvfmGRj7UzGTswXm8OZOAMFAjB/ToEDRaG
-	24zc=
-X-Google-Smtp-Source: AGHT+IF36snA4qnITyiGndP/BqdVSGXnj6d0Gh72zGhEtdGy2zSoCJle1eukie7uxkg5AhI3BS2RBA==
-X-Received: by 2002:a05:600c:1395:b0:413:38c6:2c7a with SMTP id u21-20020a05600c139500b0041338c62c7amr1328419wmf.22.1710843096914;
-        Tue, 19 Mar 2024 03:11:36 -0700 (PDT)
-Received: from [192.168.1.63] ([2a02:842a:d52e:6101:6fd0:6c4:5d68:f0a5])
-        by smtp.gmail.com with ESMTPSA id je2-20020a05600c1f8200b004133072017csm21096384wmb.42.2024.03.19.03.11.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Mar 2024 03:11:36 -0700 (PDT)
-From: Julien Stephan <jstephan@baylibre.com>
-Date: Tue, 19 Mar 2024 11:11:28 +0100
-Subject: [PATCH v5 7/7] iio: adc: ad7380: add support for ad738x-4 4
- channels variants
+ d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/sbTNcvCr8Dr2LqaXtapBDZTZFsHoMnLxXl44XWO3e0=;
+ b=qW8K8sdwmbe8h010Cg1vzmumdj7BVzyAqyIMhqgBfOmgk0PqDgQ7MzBBhBOHKvnAbWX4TQp01kiO03904a26W5gf+UFDjAexjdNFdu+EhT128RAuujD54LMNBD86gQjs4yMFxnTcUMpIcTJKE/8wQkN/wU83PkEDaiCorf6H00w=
+Received: from AM9PR04MB7586.eurprd04.prod.outlook.com (2603:10a6:20b:2d5::17)
+ by DU2PR04MB8872.eurprd04.prod.outlook.com (2603:10a6:10:2e3::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.25; Tue, 19 Mar
+ 2024 10:13:57 +0000
+Received: from AM9PR04MB7586.eurprd04.prod.outlook.com
+ ([fe80::57e1:e1cb:74e2:2e9d]) by AM9PR04MB7586.eurprd04.prod.outlook.com
+ ([fe80::57e1:e1cb:74e2:2e9d%5]) with mapi id 15.20.7386.025; Tue, 19 Mar 2024
+ 10:13:57 +0000
+From: Josua Mayer <josua@solid-run.com>
+Date: Tue, 19 Mar 2024 11:13:25 +0100
+Subject: [PATCH] dt-bindings: net: rfkill-gpio: add reset-gpio property
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240319-rfkill-reset-gpio-binding-v1-1-a0e3f1767c87@solid-run.com>
+X-B4-Tracking: v=1; b=H4sIAERl+WUC/x3MwQqCQBSF4VeRu+6Cmhb2KtGi0XOnQzLKHYlAf
+ PeGlt/i/3fJcCLLrdrF8WHmkgqaUyXj65kilFOxtHXb1edmULc351kdGZvGlYsGpokpao8hGCz
+ 0dr1I6VeH8ft/3x/H8QOZbK/6awAAAA==
+To: "David S. Miller" <davem@davemloft.net>, 
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Johannes Berg <johannes@sipsolutions.net>, 
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Josua Mayer <josua@solid-run.com>
+X-Mailer: b4 0.12.4
+X-ClientProxiedBy: FR3P281CA0021.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:1c::11) To AM9PR04MB7586.eurprd04.prod.outlook.com
+ (2603:10a6:20b:2d5::17)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240319-adding-new-ad738x-driver-v5-7-ce7df004ceb3@baylibre.com>
-References: <20240319-adding-new-ad738x-driver-v5-0-ce7df004ceb3@baylibre.com>
-In-Reply-To: <20240319-adding-new-ad738x-driver-v5-0-ce7df004ceb3@baylibre.com>
-To: Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- David Lechner <dlechner@baylibre.com>, Jonathan Cameron <jic23@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
- Mark Brown <broonie@kernel.org>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, kernel test robot <lkp@intel.com>, 
- Julien Stephan <jstephan@baylibre.com>
-X-Mailer: b4 0.13.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM9PR04MB7586:EE_|DU2PR04MB8872:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	CeNYm5tcp2PaBNAY7E0Is43VCvh+mXz8JNfMQtanYRbN/C4x1GyH+jnmstQQZyw7AAQ/VhWXnYJcZ8qJvSxRJdsvX6gSqr7eYZXWoFkjdWXLKDfXXfG6pPjULMnGijMep/OsEnS/jwte3wf5YBiTLE3to9nBv61l9qwBw8xLgwy/akqYapmaT5HaIupZar/uIoB+mwAq+SmE7Lu9KEuxwXNZeUmEmKDwaA7Zzh58dMtHFNJCT5z9jMnPmMeC2ikQpQis+hTDCQZ3UtPnRxtPwvm+YwK8JTawzrdJmmvBqCI2ybp36kBN2XS9NSlVhuJTHVx4WfMSFfM+M0InveBf/6nLh805HaXWqtK1sUS2stMGCXXm8DrIVPYFKSanq2lSNfwYwUQAk0zN0Z4bw69meK5H8o2UpC8qOAZbYEY4tF/iZEIizBq1IbFp4UcwQ5Csf5fvS0oPegPs4b1UwDI7SdQI8xQ507O51OYcG085tBpUrPKs5ZXJv8/4hXkprphXFCcVhPhrNCOknmRAbu7+KdHzA0l5bXU3+YgRmd2LcWcezVhREVhBfiPlJe2PFg9VghaHWtkpo6oXdypWef9azr+xJomtMwjRTuOh3y/OakBs6dDr0yPIoVFUA1ufIKZn8td2amFjR9FSkj0Of2g5YxfcYtBk6TL+hvatNbD7y7xM9KFO9EfOCeeSKucI8TnZanTDxgtU16u963XnguASFwQ8zX9Twkgt2SdsyjrA1zQ=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB7586.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(52116005)(1800799015)(366007)(7416005)(38350700005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?STZuS3ZIdnZzMzFZWjNGb2U4ZlFyZC8yMWllRWRBUWZBNWtGWExRUGkwRnFU?=
+ =?utf-8?B?T1d1MDZEZFNWTHl2bUFIWG4xSW9GbjlVVXFxY1VVTno2VWI2azkyRUZkM3dH?=
+ =?utf-8?B?TkVCcHRmSjc3b25GR3JYd2ZWdVVEbFJlU204cThpT3NZTDFvRmNwQi85WGdN?=
+ =?utf-8?B?U3hNT1NCbWloSjBQMkt3M0FqejNtYjAxNXZBU3BFWklHcUlvQkNHZSs2K2la?=
+ =?utf-8?B?em1nMzBzRnRFV3RwbzVNMUY1a29qU1RmUHVMdnZiUm12YUtVNkU2M0ZvbDM2?=
+ =?utf-8?B?S25hRW5mZU1tQ2x6S2FFalRacFB6b2IwbldFZmI1Nk51SHdFT0pIME16TXky?=
+ =?utf-8?B?SUZFaGlQbnFvajJEKzhrUFBpSjNqYlpvVjNmc1ZjaHAyMDNvTHJ3aW1JTDMr?=
+ =?utf-8?B?dnV5cjV5Z2wybjI4RitjV3U3N0tMcElGSXpDZ2R3dmExOWlDQW5lVkRpNEhR?=
+ =?utf-8?B?WEVSWk15dGZ4ZXhsOXJKbHR5bnJlaGNWM1piMEpZRHd5WWJhQlRJM1ovZEhh?=
+ =?utf-8?B?TjgvWklGWHAybjNlQ3JXWTNCc2t1UmtNaDcxNEpEQTVoR0k0TWVaZUdPbTA3?=
+ =?utf-8?B?bVo1cE4zSk5XS0doeXl4Zkl4Q2p6Ym11QjVGdDBxZTQ0SkhZQ1hReVd0bDAx?=
+ =?utf-8?B?SlpwZ2hzcDBaS2dQMlRpc0p4a3B3KzZpSWNrcEpHTmdZQ0lycnRDbDN6RUhR?=
+ =?utf-8?B?YWRURTF3eG9TR051M2wyTEw4bUJGbmlxdnZaZzRYMEZWWnJpMTQxalYyVGhJ?=
+ =?utf-8?B?VTJxeGQ3NlZXNDBVOFd3QmplV29PT2NaaEE4NXU5ZVJSTTBTcitIekxMWnRv?=
+ =?utf-8?B?UUlMb05meFRaQ2NQODE4d0U3MWphNThDNzVFSyt3cExXQm5VUk1IeHpvUjRQ?=
+ =?utf-8?B?YTN6SHRhRWhmbWh6RmFxTWZwdFREUERYbTQ3eG5RaUlXS3NMNEV0d0ZOZk55?=
+ =?utf-8?B?cTN3UWxFems0aUlhM2x4aW1zYjlFZXdiVVBGa0M0MzZDSUpUemo5VFpTSGxE?=
+ =?utf-8?B?ZkdkM0kvaFN2YWZSSmVDb25Sb01KYjFXMHYxT2pINllrMTY2Q1E5MThaM2Vr?=
+ =?utf-8?B?bGNqWW5DMzNKQlU1L3UzRDd3WXg2QWJoZW9rS1JqMnF0NEJSWVAwOUVRNXRs?=
+ =?utf-8?B?T2J5ZHJ0K0xmL3J1bEtHaU8xQnRuUlhvZERsV2tDbDI2aVNBL01BajhxN2dP?=
+ =?utf-8?B?RWNPZC8wRlhBZHBwOXROcjV1U0pucW1DNDNyOElvb1piM1pWQjUwd1k3eU9k?=
+ =?utf-8?B?b0R6cFU5UUVyOVdsbkloV0JDMU1WdlF2VE9vTXowUi9FaVdCc3lJZVJzQmdK?=
+ =?utf-8?B?VUNEbmxpVXNNaFJobXZoU1ZFdGFVbXNoOGVDMm5FVnZOUWlBNlo1TFVsc3ps?=
+ =?utf-8?B?SmRsbDFiWkJxbmM4MjduYkpkc0JDS29aNk4yVExlOHZkRTA2RU1MdHpuc1g4?=
+ =?utf-8?B?TUpIT3N0bWZWamtqWkF3SDVaOG9mOVpBcndUS1JZdlhDZ2cwQ0xnTnVNRDdw?=
+ =?utf-8?B?NlVwS2pCcUFXcCtpR3NPN3UrUHJaZHZTNjB5T0twZ24wKzNMY0lTSEZVT1Iy?=
+ =?utf-8?B?VVBlYWdWMWdLMXFVOGxxYnhFUys3R2lyQlJCZVNsV3hPaXNjUUJwL1luNW5K?=
+ =?utf-8?B?VnhQVjNUWk82RG5aM01SWWJ1cFBtYTRhLy8rTzR3OGJpV0p1UEs2SkNPTWV4?=
+ =?utf-8?B?aU52a0w0ZVpqMHd3K1k1M1VnSlBsNVVzcVdIbGJhSVpMWlBtZUZOQnJhYmdr?=
+ =?utf-8?B?SGIxekIreUwvRUVXdERhVHRSRzZoaTIwb0lQY1hCb2d0d0MvdmxMNnV5NEJo?=
+ =?utf-8?B?QmoxU2pCblUwd3JMZ0VIU3VKcVBLV2M2N25IUkJTT2phZXdIT0tQSDZTM29s?=
+ =?utf-8?B?Qkd3bUE4WThNdlp4YkducUFZQkZPenRObTQwM0ZMTmV3a2laS3pTNldUT3VK?=
+ =?utf-8?B?SU9Db2ZTelBadmlhem43NGNFRGoycEd5WnlscHAvTWpsSlArZ0Rpb2VwRUdj?=
+ =?utf-8?B?OGlwMStjQzJIS2lORUNaZ09YM2k0NTlSSngwZlRpVU5qa0pFOXZGdWdHbUpF?=
+ =?utf-8?B?azVnbWRIdWxONUxlVDBtUkRBL1Bub3lkcC9YdlVXSU5IZkZQdWwzTUVnWFlj?=
+ =?utf-8?Q?LH5nUVrSnYaMvCBS+mqPnP8MJ?=
+X-OriginatorOrg: solid-run.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 510f1c5b-63f7-4c72-1a69-08dc47fd4a28
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB7586.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2024 10:13:57.7433
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: a4a8aaf3-fd27-4e27-add2-604707ce5b82
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7owavezGzSHhwz76tsSl98sN0Q51XYISPVjGUOvXF/3KNEWo8jGUnoqgZPEEqbKEXnduK0LuJcV79XQEExU/sw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8872
 
-Add support for ad7380/1/2/3-4 parts which are 4 channels
-variants from ad7380/1/2/3
+rfkill-gpio driver supports management of two gpios: reset, shutdown.
+Reset seems to have been missed when bindings were added.
 
-Signed-off-by: Julien Stephan <jstephan@baylibre.com>
+Add binding for the supported reset-gpios property.
+
+Signed-off-by: Josua Mayer <josua@solid-run.com>
 ---
- drivers/iio/adc/ad7380.c | 75 +++++++++++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 74 insertions(+), 1 deletion(-)
+ Documentation/devicetree/bindings/net/rfkill-gpio.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/iio/adc/ad7380.c b/drivers/iio/adc/ad7380.c
-index 3aca41ce9a14..cf9d2ace5f20 100644
---- a/drivers/iio/adc/ad7380.c
-+++ b/drivers/iio/adc/ad7380.c
-@@ -8,6 +8,9 @@
-  * Datasheets of supported parts:
-  * ad7380/1 : https://www.analog.com/media/en/technical-documentation/data-sheets/AD7380-7381.pdf
-  * ad7383/4 : https://www.analog.com/media/en/technical-documentation/data-sheets/ad7383-7384.pdf
-+ * ad7380-4 : https://www.analog.com/media/en/technical-documentation/data-sheets/ad7380-4.pdf
-+ * ad7381-4 : https://www.analog.com/media/en/technical-documentation/data-sheets/ad7381-4.pdf
-+ * ad7383/4-4 : https://www.analog.com/media/en/technical-documentation/data-sheets/ad7383-4-ad7384-4.pdf
-  */
+diff --git a/Documentation/devicetree/bindings/net/rfkill-gpio.yaml b/Documentation/devicetree/bindings/net/rfkill-gpio.yaml
+index 9630c8466fac..d01cefef6115 100644
+--- a/Documentation/devicetree/bindings/net/rfkill-gpio.yaml
++++ b/Documentation/devicetree/bindings/net/rfkill-gpio.yaml
+@@ -29,6 +29,9 @@ properties:
+       - wlan
+       - wwan
  
- #include <linux/bitfield.h>
-@@ -29,7 +32,7 @@
- #include <linux/iio/trigger_consumer.h>
- #include <linux/iio/triggered_buffer.h>
- 
--#define MAX_NUM_CHANNELS		2
-+#define MAX_NUM_CHANNELS		4
- /* 2.5V internal reference voltage */
- #define AD7380_INTERNAL_REF_MV		2500
- 
-@@ -106,27 +109,53 @@ static const struct iio_chan_spec name[] = {		\
- 	IIO_CHAN_SOFT_TIMESTAMP(2),			\
- }
- 
-+#define DEFINE_AD7380_4_CHANNEL(name, bits, diff)	\
-+static const struct iio_chan_spec name[] = {		\
-+	AD7380_CHANNEL(0, bits, diff),			\
-+	AD7380_CHANNEL(1, bits, diff),			\
-+	AD7380_CHANNEL(2, bits, diff),			\
-+	AD7380_CHANNEL(3, bits, diff),			\
-+	IIO_CHAN_SOFT_TIMESTAMP(4),			\
-+}
++  reset-gpios:
++    maxItems: 1
 +
- /* fully differential */
- DEFINE_AD7380_2_CHANNEL(ad7380_channels, 16, 1);
- DEFINE_AD7380_2_CHANNEL(ad7381_channels, 14, 1);
-+DEFINE_AD7380_4_CHANNEL(ad7380_4_channels, 16, 1);
-+DEFINE_AD7380_4_CHANNEL(ad7381_4_channels, 14, 1);
- /* pseudo differential */
- DEFINE_AD7380_2_CHANNEL(ad7383_channels, 16, 0);
- DEFINE_AD7380_2_CHANNEL(ad7384_channels, 14, 0);
-+DEFINE_AD7380_4_CHANNEL(ad7383_4_channels, 16, 0);
-+DEFINE_AD7380_4_CHANNEL(ad7384_4_channels, 14, 0);
+   shutdown-gpios:
+     maxItems: 1
  
- static const char * const ad7380_2_channel_vcm_supplies[] = {
- 	"aina", "ainb",
- };
- 
-+static const char * const ad7380_4_channel_vcm_supplies[] = {
-+	"aina", "ainb", "ainc", "aind",
-+};
-+
- /* Since this is simultaneous sampling, we don't allow individual channels. */
- static const unsigned long ad7380_2_channel_scan_masks[] = {
- 	GENMASK(1, 0),
- 	0
- };
- 
-+static const unsigned long ad7380_4_channel_scan_masks[] = {
-+	GENMASK(3, 0),
-+	0
-+};
-+
- static const struct ad7380_timing_specs ad7380_timing = {
- 	.t_csh_ns = 10,
- };
- 
-+static const struct ad7380_timing_specs ad7380_4_timing = {
-+	.t_csh_ns = 20,
-+};
-+
- static const struct ad7380_chip_info ad7380_chip_info = {
- 	.name = "ad7380",
- 	.channels = ad7380_channels,
-@@ -163,6 +192,42 @@ static const struct ad7380_chip_info ad7384_chip_info = {
- 	.timing_specs = &ad7380_timing,
- };
- 
-+static const struct ad7380_chip_info ad7380_4_chip_info = {
-+	.name = "ad7380-4",
-+	.channels = ad7380_4_channels,
-+	.num_channels = ARRAY_SIZE(ad7380_4_channels),
-+	.available_scan_masks = ad7380_4_channel_scan_masks,
-+	.timing_specs = &ad7380_4_timing,
-+};
-+
-+static const struct ad7380_chip_info ad7381_4_chip_info = {
-+	.name = "ad7381-4",
-+	.channels = ad7381_4_channels,
-+	.num_channels = ARRAY_SIZE(ad7381_4_channels),
-+	.available_scan_masks = ad7380_4_channel_scan_masks,
-+	.timing_specs = &ad7380_4_timing,
-+};
-+
-+static const struct ad7380_chip_info ad7383_4_chip_info = {
-+	.name = "ad7383-4",
-+	.channels = ad7383_4_channels,
-+	.num_channels = ARRAY_SIZE(ad7383_4_channels),
-+	.vcm_supplies = ad7380_4_channel_vcm_supplies,
-+	.num_vcm_supplies = ARRAY_SIZE(ad7380_4_channel_vcm_supplies),
-+	.available_scan_masks = ad7380_4_channel_scan_masks,
-+	.timing_specs = &ad7380_4_timing,
-+};
-+
-+static const struct ad7380_chip_info ad7384_4_chip_info = {
-+	.name = "ad7384-4",
-+	.channels = ad7384_4_channels,
-+	.num_channels = ARRAY_SIZE(ad7384_4_channels),
-+	.vcm_supplies = ad7380_4_channel_vcm_supplies,
-+	.num_vcm_supplies = ARRAY_SIZE(ad7380_4_channel_vcm_supplies),
-+	.available_scan_masks = ad7380_4_channel_scan_masks,
-+	.timing_specs = &ad7380_4_timing,
-+};
-+
- struct ad7380_state {
- 	const struct ad7380_chip_info *chip_info;
- 	struct spi_device *spi;
-@@ -514,6 +579,10 @@ static const struct of_device_id ad7380_of_match_table[] = {
- 	{ .compatible = "adi,ad7381", .data = &ad7381_chip_info },
- 	{ .compatible = "adi,ad7383", .data = &ad7383_chip_info },
- 	{ .compatible = "adi,ad7384", .data = &ad7384_chip_info },
-+	{ .compatible = "adi,ad7380-4", .data = &ad7380_4_chip_info },
-+	{ .compatible = "adi,ad7381-4", .data = &ad7381_4_chip_info },
-+	{ .compatible = "adi,ad7383-4", .data = &ad7383_4_chip_info },
-+	{ .compatible = "adi,ad7384-4", .data = &ad7384_4_chip_info },
- 	{ }
- };
- 
-@@ -522,6 +591,10 @@ static const struct spi_device_id ad7380_id_table[] = {
- 	{ "ad7381", (kernel_ulong_t)&ad7381_chip_info },
- 	{ "ad7383", (kernel_ulong_t)&ad7383_chip_info },
- 	{ "ad7384", (kernel_ulong_t)&ad7384_chip_info },
-+	{ "ad7380-4", (kernel_ulong_t)&ad7380_4_chip_info },
-+	{ "ad7381-4", (kernel_ulong_t)&ad7381_4_chip_info },
-+	{ "ad7383-4", (kernel_ulong_t)&ad7383_4_chip_info },
-+	{ "ad7384-4", (kernel_ulong_t)&ad7384_4_chip_info },
- 	{ }
- };
- MODULE_DEVICE_TABLE(spi, ad7380_id_table);
 
+---
+base-commit: e8f897f4afef0031fe618a8e94127a0934896aba
+change-id: 20240319-rfkill-reset-gpio-binding-5e9bfefb5f76
+
+Sincerely,
 -- 
-2.44.0
+Josua Mayer <josua@solid-run.com>
 
 
