@@ -1,164 +1,112 @@
-Return-Path: <devicetree+bounces-51799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51800-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C95B880738
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 23:18:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0430288074D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 23:31:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5985283CA2
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 22:18:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 992291F2353D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 22:31:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB2385FDB5;
-	Tue, 19 Mar 2024 22:17:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JCTKrsZK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E94BDF9E0;
+	Tue, 19 Mar 2024 22:31:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lithops.sigma-star.at (lithops.sigma-star.at [195.201.40.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36FD05FBB7;
-	Tue, 19 Mar 2024 22:17:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A16D9ED8;
+	Tue, 19 Mar 2024 22:31:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.201.40.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710886655; cv=none; b=s662XMxvTn0Tpc/Cf2wXJpFr4v2IabOU+I+nN5HPxQQkaSScUSXLQ/SUnFbCRxrr3oBQimI4ohSoJi3yDvzgdDe8E9ZchfVx8OyHTeflzNQNHWgJWiC7TZFtc32G8c+ed8CHOOoPoYb89heoCuOvqpvLdKBDbStVq1cR4u9i6yg=
+	t=1710887484; cv=none; b=jNoDDUhn8j+rvh/DNxkxV9Q09lszRTtsB4ONW4eBt6iyfpcE7MSnTchcz/K6/cfqPZFXFzjNZVg6mdNgO9mosxS47MZA8mZLRHDe6iv6z0Fzw5wwc4w/JmSYCJE6P+hn1j593Qd9hSbESBBu68q+MorEsBfcACXWlaI7/SGIPPA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710886655; c=relaxed/simple;
-	bh=MSyuiyO4jmisLWsBYvLWyrUhMbTgIpdQwkeBbREycr0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Eum64JkXaq5g/EOqjr1/qk2x9amoGW34+Jy47kuW3sDb67BEqAsFbKAuA2CIyF1/XOBVEHWd1VpAYtD5oNnESPgnmRGHg9+5bGX1x0DLPL/NyfEk0pVNhk42sZCmxaBkqF22SEYqVVW1w+axFvZXReAnxzifz8Ui3VXehopAhDU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JCTKrsZK; arc=none smtp.client-ip=209.85.208.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-56ba6c83805so736489a12.0;
-        Tue, 19 Mar 2024 15:17:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710886652; x=1711491452; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5Glc2nUqM/BurNgNXCvp8j1tF0pWkjpc6BBQBi0GM1U=;
-        b=JCTKrsZKUW3P76nz1XVi7Glq7qO116IxI96LHuDz0N5tu/0swH6eR52SOfBnQbYuIZ
-         EDbSNqm8E1qNCdYvFsbv3gZ+H/76zcxYhKcUYbZ0CWh5MpbDSEy/OmJDrac2KsdzQ4qy
-         bl2UjrNy6aeQmNUN1db60p44TYRTN6cZV+ClxGOrfiJgVDjHlrXCv6EH6+fxbWR3sSbL
-         2j3cIfWSYFc3wLljxUPmdSSLAqIi5LJpzfdOH3uoo0/SP7PTol4bf0DYG50RrCHKW9fp
-         RSpKCDokm2Hj4aagcA+cTquIpRkGgDFGNhaHNk+22mQPrvh1Xmqfl0DlYjTLOgrjarL8
-         XOBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710886652; x=1711491452;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5Glc2nUqM/BurNgNXCvp8j1tF0pWkjpc6BBQBi0GM1U=;
-        b=u9pDjS7xcc54vzH/36eEfSttPgxSg19bmn4Qjnru74hIq2i3NKM7SlRT6EwwpBJWIh
-         hxOtLdDyODkF6F28kDB6MFOzNDUSyt++a68o4nA1aD685Cf7Ez+UT+gLhlNbBgP4rcZq
-         GuF0ytM06UxtYVbIAW5DZyA6WaI8X2ks4S1D5iXqNl+PfRgejDpsW0oOq/E/ehPHQgGX
-         2ulVoeOJv147OtSKroqA72XM0VJA3yUkK1GjTuUOXpWanGJyobOTsZp7/zsJL0b5yYi8
-         ZUlhV2jDx+I2AI7P19tlKzYbTSOSwbJ2zNKHipYe4ye6aAmUtsvlih4L8CksIb6aRJDz
-         fVCA==
-X-Forwarded-Encrypted: i=1; AJvYcCXxCNMyO1xfR7PswtMhL94PO1rJHxwqMO2U1xMvGGkhzwV2QAlxgO+yz2vilwbpqgxTr7Uoq3Q5oKFYof6F0yao9oDz5xw7riHHFwki98yIbeb6piGnVUJGiC/qhuwaskjZYOVUwebHD6zAotdjvIr1q504GGAXRZnUb5jGSIQ/TK3yeGX16w==
-X-Gm-Message-State: AOJu0Ywj7AfR/Sc3qJ30h1cQ0e3t/MtlCZl5MDBiEvdnDmzCCIO7AS4L
-	uprqIirbYVfSXKMYSgZ0ycAaOZxDC8A1ykNdjUBrpjFNEM4ha3nV
-X-Google-Smtp-Source: AGHT+IEPQjrvDT+CC4URF2EPJejTjlUefXMm1fTxdH71dVxYAWNGE7W7xRjizfT2T9gpX4uUsGr5cA==
-X-Received: by 2002:a05:6402:378f:b0:565:dd87:9811 with SMTP id et15-20020a056402378f00b00565dd879811mr11940867edb.5.1710886652527;
-        Tue, 19 Mar 2024 15:17:32 -0700 (PDT)
-Received: from bhlegrsu.conti.de ([2a02:908:2525:6ea0::11c2])
-        by smtp.googlemail.com with ESMTPSA id n13-20020a05640204cd00b00569aed32c32sm2761182edw.75.2024.03.19.15.17.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Mar 2024 15:17:32 -0700 (PDT)
-From: Wadim Mueller <wafgo01@gmail.com>
-To: 
-Cc: Wadim Mueller <wafgo01@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Chester Lin <chester62515@gmail.com>,
-	=?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
-	Matthias Brugger <mbrugger@suse.com>,
-	NXP S32 Linux Team <s32@nxp.com>,
-	Tim Harvey <tharvey@gateworks.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
-	Marek Vasut <marex@denx.de>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
-	Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-	Marco Felsch <m.felsch@pengutronix.de>,
-	Matthias Schiffer <matthias.schiffer@tq-group.com>,
-	Stefan Wahren <stefan.wahren@chargebyte.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Josua Mayer <josua@solid-run.com>,
-	Philippe Schenker <philippe.schenker@toradex.com>,
-	Li Yang <leoyang.li@nxp.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 2/2] dt-bindings: arm: fsl: Document missing s32g3 board
-Date: Tue, 19 Mar 2024 23:16:10 +0100
-Message-Id: <20240319221614.56652-3-wafgo01@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240319221614.56652-1-wafgo01@gmail.com>
-References: <20240319221614.56652-1-wafgo01@gmail.com>
+	s=arc-20240116; t=1710887484; c=relaxed/simple;
+	bh=A34E+yxv1ovafAWAJetRKKG1Vwoa2cf9CTfz+kxC8Sg=;
+	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
+	 MIME-Version:Content-Type; b=GzoqjWVit0kaV43LxtW5sIauezl0twJlHIf/aUkpNPjI76JSiManYiGgNRTK6o25SBzqpii1jtOmoqRcCNQyd69X/S4+QjVDvAsW/GFp8Ndh48qPyQb6re+NNkEHZ4O2bhBPuzTsD0MFbh13/1jND2ndbgRPrDu6buyGo2x+1I8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nod.at; spf=fail smtp.mailfrom=nod.at; arc=none smtp.client-ip=195.201.40.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nod.at
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nod.at
+Received: from localhost (localhost [127.0.0.1])
+	by lithops.sigma-star.at (Postfix) with ESMTP id 5CB9D62E1A81;
+	Tue, 19 Mar 2024 23:31:19 +0100 (CET)
+Received: from lithops.sigma-star.at ([127.0.0.1])
+	by localhost (lithops.sigma-star.at [127.0.0.1]) (amavisd-new, port 10032)
+	with ESMTP id buCitthY5iPP; Tue, 19 Mar 2024 23:31:18 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by lithops.sigma-star.at (Postfix) with ESMTP id A8F1762348AD;
+	Tue, 19 Mar 2024 23:31:18 +0100 (CET)
+Received: from lithops.sigma-star.at ([127.0.0.1])
+	by localhost (lithops.sigma-star.at [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id qcuwPV9gpYre; Tue, 19 Mar 2024 23:31:18 +0100 (CET)
+Received: from lithops.sigma-star.at (lithops.sigma-star.at [195.201.40.130])
+	by lithops.sigma-star.at (Postfix) with ESMTP id 7BE7E6450958;
+	Tue, 19 Mar 2024 23:31:18 +0100 (CET)
+Date: Tue, 19 Mar 2024 23:31:18 +0100 (CET)
+From: Richard Weinberger <richard@nod.at>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, 
+	linux-mtd <linux-mtd@lists.infradead.org>, 
+	devicetree <devicetree@vger.kernel.org>, 
+	linux-kernel <linux-kernel@vger.kernel.org>, 
+	david oberhollenzer <david.oberhollenzer@sigma-star.at>
+Message-ID: <1196553263.78350.1710887478387.JavaMail.zimbra@nod.at>
+In-Reply-To: <Ze5uUyUuEDBM3p43@makrotopia.org>
+References: <cover.1702952891.git.daniel@makrotopia.org> <82ceb13954f7e701bf47c112333e7b15a57fc360.1702952891.git.daniel@makrotopia.org> <20240219120156.383a1427@xps-13> <1209094181.98490.1708899174329.JavaMail.zimbra@nod.at> <ZdvV1KABu_UCSL7B@makrotopia.org> <1754825522.38834.1710105437883.JavaMail.zimbra@nod.at> <Ze5uUyUuEDBM3p43@makrotopia.org>
+Subject: Re: [PATCH v7 7/7] mtd: ubi: provide NVMEM layer over UBI volumes
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Zimbra 8.8.12_GA_3807 (ZimbraWebClient - FF97 (Linux)/8.8.12_GA_3809)
+Thread-Topic: provide NVMEM layer over UBI volumes
+Thread-Index: ULk91lSCNuYw1pJMwwbTh6ecFyLSEA==
 
-The nxp, s32g399a-rdb3 board is not documented.
+----- Urspr=C3=BCngliche Mail -----
+> Von: "Daniel Golle" <daniel@makrotopia.org>
+>> BTW: Is there a nice way to test this with nandsim in qemu?
+>> I'd love being able to test all ubi attach code paths on my test setup.
+>=20
+> From what I can tell 'nandsim' doesn't have a way to be defined in
+> Device Tree, making it unsuitable to test the attachment of UBI in
+> this way.
+>=20
+> However, QEMU does support emulating TI OMAP's OneNAND controller, eg.
+> as part of the Nokia N810 hardware supported by qemu-system-arm, see
+>=20
+> https://www.qemu.org/docs/master/system/arm/nseries.html
+>=20
+> So we could use that and modify the device tree in Linux to have a MTD
+> partition for UBI and 'compatible =3D "linux,ubi";' set therein:
+>=20
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/a=
+rch/arm/boot/dts/ti/omap/omap2420-n8x0-common.dtsi#n84
+>=20
+> If you like I can prepare such a test setup.
 
- * Add entry for S32G3 based boards with nxp,s32g399a-rdb3 item
- * Add nxp,s32g3-linflexuart documentation
+This would be great!
 
-Signed-off-by: Wadim Mueller <wafgo01@gmail.com>
----
- Documentation/devicetree/bindings/arm/fsl.yaml              | 6 ++++++
- .../devicetree/bindings/serial/fsl,s32-linflexuart.yaml     | 3 +++
- 2 files changed, 9 insertions(+)
+> Is there a repository for MTD/UBI tests to be run on QEMU which I should
+> contribute this to?
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index 228dcc5c7d6f..23bf1d7f95b1 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -1503,6 +1503,12 @@ properties:
-               - nxp,s32g274a-rdb2
-           - const: nxp,s32g2
- 
-+      - description: S32G3 based Boards
-+        items:
-+          - enum:
-+              - nxp,s32g399a-rdb3
-+          - const: nxp,s32g3
-+
-       - description: S32V234 based Boards
-         items:
-           - enum:
-diff --git a/Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.yaml b/Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.yaml
-index 7a105551fa6a..f8eb92c9a8d9 100644
---- a/Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.yaml
-+++ b/Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.yaml
-@@ -25,6 +25,9 @@ properties:
-       - items:
-           - const: nxp,s32g2-linflexuart
-           - const: fsl,s32v234-linflexuart
-+      - items:
-+          - const: nxp,s32g3-linflexuart
-+          - const: fsl,s32v234-linflexuart
- 
-   reg:
-     maxItems: 1
--- 
-2.25.1
+UBI tests reside in the mtd-utils repository.
+http://git.infradead.org/?p=3Dmtd-utils.git;a=3Dtree;f=3Dtests/ubi-tests;h=
+=3D20fd6a043eeb96a81736dd07885f74e4e0bb0cc0;hb=3DHEAD
 
+Maybe you can provide a small shell script which configures qemu?
+It doesn't have to be fancy, just something David or I can use as staring p=
+oint.
+
+Thanks,
+//richard
 
