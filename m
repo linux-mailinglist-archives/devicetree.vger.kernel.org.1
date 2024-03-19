@@ -1,338 +1,297 @@
-Return-Path: <devicetree+bounces-51457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BDD487F660
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 05:25:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97AAB87F667
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 05:27:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 398DB1C21EE0
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 04:25:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E9B04B217DC
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 04:27:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F9D27C09A;
-	Tue, 19 Mar 2024 04:25:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D93077C08E;
+	Tue, 19 Mar 2024 04:27:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YXFZAbBP"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="EG1dHoQu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E9831EB4A
-	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 04:25:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 062F21EB4A
+	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 04:27:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710822328; cv=none; b=u7GcoDfl06AgA4LMGmk67GX7NgZp6ndgr5gwyFYBpZ3mtnjaL1B7Xgcn4swck+vrGmo0EpRJ2eeZc3dfQSJGNiTJ9v9Zpabeh8uj1ghooadXEbzhEMLp4rRh3yzdv1X+OuJTZDqDd1A4y6H5dNn6q0+hgCmnmMyNctIFVLlCaP8=
+	t=1710822462; cv=none; b=ocbiGaKSAdxk1Y8rWo5+V8b0Pi82Ty/oaetdXACx9BsR+FAZJ8GHanwUBUFizooIpXiQ4CR6gMMs3N0yyJQ+eUGpTDAXwE5HJagWBaWnKSxgDLmuLYQmHU/6fnPVMJpQWzWyCU2/ArkCMQLTcapnjTyRnroDxziQlxJJRhWg9UU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710822328; c=relaxed/simple;
-	bh=VN66wk4pd+pbC7x5g7MDH8Bc+xnl/oVvzoDN1k4m+1U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fXvB25u0pigEOo4rPtaS1wq2dJPr0jP2VV2f3HD0ElcmjxENLNdXpAkeXA2skB1QjphMIapyEK5eg9envgZATo+jDH40bOoT5f1Om7/RTw5AXFS9AU6XoNyCuU7tSEyK+NWVXvVzn5jiEdh/jWp9ZMrl7ddD5sMVDrNIFY+oOvA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YXFZAbBP; arc=none smtp.client-ip=209.85.161.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oo1-f45.google.com with SMTP id 006d021491bc7-5a47abe2ff7so1977806eaf.0
-        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 21:25:26 -0700 (PDT)
+	s=arc-20240116; t=1710822462; c=relaxed/simple;
+	bh=JmzK7Zbo9hPfx8/XuPbiw7bbbYqr8mArE5GHiVVNrjs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ctw7zVwexh8rvZMF/27rqjgLfvlBQ47AqP0v0DMxD4yFegTz+sLO2tHsgKPC+Z9sk1JyZGVG5RjQrXbPJvxK7Q8AHRr5T0ftE/DipCDs7XlCs5Dd1smGzd37um/m1c2FxVdGRLUEbH8ZeHWVk1yQgnmpISov4Km1wvJHPNHt7Zk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=EG1dHoQu; arc=none smtp.client-ip=209.85.219.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-dc236729a2bso4891017276.0
+        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 21:27:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710822325; x=1711427125; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=DYSxwXFW2D08mopaFSybkujbNsqvikyUbk9X8WRnuB0=;
-        b=YXFZAbBP/ClYcy6nVgT+QRFwD35JJFg08WKy+/rOSoisBqYWdOPez1cQ0thz6Z7wDC
-         P64AQOvJfzC6bFnnGod99e0nRDtxhRRlH+v5viiZuxSUDw5ihL9TJKnoUOBp1VF2tIck
-         0CbcZJW71XaiznUGs8zTXN1KF9CqBcSoMbIP1/XV5ZwWGc1m5rXe9lmOTcNmWc9e473O
-         yvL9hye+CF72amnbbopmoBEe4gSNtsmIM17a+G20TViwP/CDpZSBG8L7iBIwdZZ+Spqu
-         lOAMub5WitfEZFrhAyEUf+9FqfmRWrRdaetxS7ROS6IHIPDicMCjtUHPbYPp7etGjGst
-         vJpQ==
+        d=sifive.com; s=google; t=1710822460; x=1711427260; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7fSeo85Yh8XHxlmyjnlgCbtVU1rId28fL57bIXUgDgo=;
+        b=EG1dHoQuB8X3FzCPLvHnp6iB2AabsZCpU2YR0veCsHJtgP49hLJ+vdtxXeGprJj98W
+         OvYQykEJlZCYtTLuNQvW8ky8EJ4v5l8yiwgwJgp6P6f29FpkBABzN45U7bVrQZbCpmh/
+         1w9ilYtFMGaE42LbbseopvEogU/mX5UgYUEHbZgZiMofpNmrqzAlvP/m7HXKrpU+Kg/e
+         6VBD2mt75GyZtbQ4vw4CGatR6goOZa+Q8LpDk5Y0nHyIu75/SdrKPjGCLL96FYoV00hy
+         RZqNko1YrvYiWoovAB4D96+HHSwvRfwLdnopJ+aAfBeAxpZROq1UlgmBv+1d/T1fqixE
+         Hzxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710822325; x=1711427125;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1710822460; x=1711427260;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DYSxwXFW2D08mopaFSybkujbNsqvikyUbk9X8WRnuB0=;
-        b=OHwmv7oztQTLwrdocizF6n3SaSHbuZoWY7OZLi54iFLQCQtyHJ76nYc5fN1H92LDWo
-         4xsNvb0EMWGhQfnXXS8coIiUv1RxAyzj7kPuaxqVuetq62AHmQFs99/fKOgq02PFJZmG
-         sNcND+/pQF+xYslUcBG7pxUnahoxp/vHa2GuBcQeKJgtH7nhqFm8ok+KwNAkJyQMuPe7
-         n8dsK3HQPCWpBWJba5pZatfG44YXjyXb1jmrQ/fczamoDh3lYMd7XGpt1yHVg0EBae2y
-         eGVPeot29VRB2AecoRwMAgM3qPLMJj1B/7gHiPzFB1j+jhdiS0hFEctEHPtLo65+Kll5
-         rTJw==
-X-Forwarded-Encrypted: i=1; AJvYcCXw8QNAQi1uogToNvqI4OICLTr7wfbo9vciYmbHN95L32dCRAOrT+JZMbyztnc5VgxPP/fZiwR0ATxggZuA4IOsHykH2igqTjfR3w==
-X-Gm-Message-State: AOJu0YzRYwNBwFT6BPiUBLpM+kAhR3fzbaECbKpBvum9FbAeZA0Nc8o/
-	yeo04J0S40drmenwjlB1G1GbcduTmkCkm3ujxhVYTx2reB58gPiSVIbbe9XGWw==
-X-Google-Smtp-Source: AGHT+IH/pO37rgSPaTlNhZttxco3gB1vIzcYxEvQOMB+Zx/OQop+kfGcfEZfksBnuYl+SkTSpUmqqQ==
-X-Received: by 2002:a05:6359:4c85:b0:17c:23c2:98e4 with SMTP id kk5-20020a0563594c8500b0017c23c298e4mr10136124rwc.3.1710822325286;
-        Mon, 18 Mar 2024 21:25:25 -0700 (PDT)
-Received: from thinkpad ([120.138.12.142])
-        by smtp.gmail.com with ESMTPSA id r68-20020a632b47000000b005e43cce33f8sm8062781pgr.88.2024.03.18.21.25.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Mar 2024 21:25:24 -0700 (PDT)
-Date: Tue, 19 Mar 2024 09:55:19 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Serge Semin <fancer.lancer@gmail.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
-	Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev,
-	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 5/5] PCI: dwc: Add common send PME_Turn_Off message
- method
-Message-ID: <20240319042519.GA52500@thinkpad>
-References: <20240213-pme_msg-v4-0-e2acd4d7a292@nxp.com>
- <20240213-pme_msg-v4-5-e2acd4d7a292@nxp.com>
- <erja6zkhstoaverqtadnqj3nsyluh3sealibpujqmea4pndiuv@icihj7cby2l7>
- <Zd0UERil+A2LgSot@lizhi-Precision-Tower-5810>
+        bh=7fSeo85Yh8XHxlmyjnlgCbtVU1rId28fL57bIXUgDgo=;
+        b=pmp/6y6/f4V/yaXHnmgTMLntOArZUo1FiaUa0WN5ywLSVVsOYWQNAUp5dFYMmSGs5l
+         w0ZqV91LZzT+HOHPJ61fDiQ5RICOsFbGpIoGhI7lOkNQ1wZ0RR0szZsnCdVhIenLmyoZ
+         2256DtEMHtlyDkxRzWEbifVN6+9xst8nPXSh7xXB2chQuUnZJodSe7InxGStc/Hw9EeI
+         knFsGceJh/m6PDBtdgsMA/YICeyfE89WipdAyDkhWc8BhhrIoxe9FuHndmAkCPaaZr1h
+         eJtAlUiVe0ccDnSk+d0RfMTnmC1vvUIUMEy2bmRDKbNeYuygzUdBcYTKT6dNC3gchrY5
+         IuNw==
+X-Forwarded-Encrypted: i=1; AJvYcCXYkEA2JsTgp4JRPsPTU2b71UIb/xb4MOG/5/vRblXzW9msGLnKZHKODcR0Q2JQmNXUH51ovz5D6iDL6hUrY3toLg3uIWWRXvPE2Q==
+X-Gm-Message-State: AOJu0YwWVxCAOwHwAWNqo8eDROCxSurJjn+g9bo6N77/DcgbsEc8Y7Hw
+	lJeWVxNbgFt+gcSQPyEdYF6XA6f4WxeQgyVTIhiaWJUgdbBz2UhoI0FFAZH5qLM=
+X-Google-Smtp-Source: AGHT+IHgaLA2b2A4WmPe+4Rv2P3Jrxx3QjSR6PArx5q5wlgmR/45U+DUfpoQCzkEkaNfhEua0UrDTA==
+X-Received: by 2002:a25:db85:0:b0:dc6:238e:d766 with SMTP id g127-20020a25db85000000b00dc6238ed766mr13124502ybf.2.1710822460000;
+        Mon, 18 Mar 2024 21:27:40 -0700 (PDT)
+Received: from [100.64.0.1] ([136.226.86.189])
+        by smtp.gmail.com with ESMTPSA id w12-20020a02968c000000b004743bc59379sm2659823jai.59.2024.03.18.21.27.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Mar 2024 21:27:39 -0700 (PDT)
+Message-ID: <b4863d37-2182-479d-8ca2-79951badfb8d@sifive.com>
+Date: Mon, 18 Mar 2024 23:27:37 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Zd0UERil+A2LgSot@lizhi-Precision-Tower-5810>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/4] dt-bindings: dmaengine: Add dmamux for
+ CV18XX/SG200X series SoC
+Content-Language: en-US
+To: Inochi Amaoto <inochiama@outlook.com>, Vinod Koul <vkoul@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Jisheng Zhang <jszhang@kernel.org>, Liu Gui <kenneth.liu@sophgo.com>,
+ Jingbao Qiu <qiujingbao.dlmu@gmail.com>, dlan@gentoo.org,
+ dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ Chen Wang <unicorn_wang@outlook.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
+References: <IA1PR20MB49536DED242092A49A69CEB6BB2D2@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <IA1PR20MB49532DE75E794419E58F9268BB2D2@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <29f468c5-1aaa-4326-8088-e03a1d6b7174@sifive.com>
+ <IA1PR20MB495363835DD4C6B0EA2DA224BB2C2@IA1PR20MB4953.namprd20.prod.outlook.com>
+From: Samuel Holland <samuel.holland@sifive.com>
+In-Reply-To: <IA1PR20MB495363835DD4C6B0EA2DA224BB2C2@IA1PR20MB4953.namprd20.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Feb 26, 2024 at 05:43:29PM -0500, Frank Li wrote:
-> On Tue, Feb 27, 2024 at 12:52:45AM +0300, Serge Semin wrote:
-> > On Tue, Feb 13, 2024 at 04:50:26PM -0500, Frank Li wrote:
-> > > Reserve space at end of first IORESOURCE_MEM window as message TLP MMIO
-> > > window. This space's size is 'region_align'.
-> > > 
-> > > Set outbound ATU map memory write to send PCI message. So one MMIO write
-> > > can trigger a PCI message, such as PME_Turn_Off.
-> > > 
-> > > Add common dwc_pme_turn_off() function.
-> > > 
-> > > Call dwc_pme_turn_off() to send out PME_Turn_Off message in general
-> > > dw_pcie_suspend_noirq() if there are not platform callback pme_turn_off()
-> > > exist.
-> > > 
-> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > ---
-> > >  drivers/pci/controller/dwc/pcie-designware-host.c | 93 ++++++++++++++++++++++-
-> > >  drivers/pci/controller/dwc/pcie-designware.h      |  2 +
-> > >  2 files changed, 91 insertions(+), 4 deletions(-)
-> > > 
-> > > diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> > > index 267687ab33cbc..5e83756492462 100644
-> > > --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> > > +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> > > @@ -393,6 +393,31 @@ static int dw_pcie_msi_host_init(struct dw_pcie_rp *pp)
-> > >  	return 0;
-> > >  }
-> > >  
-> > > +static void dw_pcie_host_request_msg_tlp_res(struct dw_pcie_rp *pp)
-> > > +{
-> > > +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> > > +	struct resource_entry *win;
-> > > +	struct resource *res;
-> > > +
-> > > +	win = resource_list_first_type(&pp->bridge->windows, IORESOURCE_MEM);
-> > > +	if (win) {
-> > > +		res = devm_kzalloc(pci->dev, sizeof(*res), GFP_KERNEL);
-> > > +		if (!res)
-> > > +			return;
-> > > +
-> > > +		/* Reserve last region_align block as message TLP space */
-> > > +		res->start = win->res->end - pci->region_align + 1;
-> > > +		res->end = win->res->end;
-> > > +		res->name = "msg";
-> > > +		res->flags = win->res->flags | IORESOURCE_BUSY;
-> > > +
-> > > +		if (!request_resource(win->res, res))
-> > > +			pp->msg_res = res;
-> > > +		else
-> > > +			devm_kfree(pci->dev, res);
-> > > +	}
-> > > +}
-> > > +
-> > >  int dw_pcie_host_init(struct dw_pcie_rp *pp)
-> > >  {
-> > >  	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> > > @@ -479,6 +504,9 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
-> > >  
-> > >  	dw_pcie_iatu_detect(pci);
-> > >  
-> > 
-> > > +	/* Need call after dw_pcie_iatu_detect() before dw_pcie_setup_rc() */
-> > > +	dw_pcie_host_request_msg_tlp_res(pp);
-> > 
-> > This may cause regressions for instance if the outbound memory window
-> > is small and is fully dedicated for some device like VGA/GPU/etc.
-> 
-> There are host memory map windows, which are quite big. It will be too
-> small if only because one page size windows less.
-> 
-> Look like it is impossible to dedicated to one device, all pcie devices
-> (VGA/GPU) should go through standard pcie probe flow, the bar will be
-> allocated from bridge windows space.
-> 
+Hi Inochi,
 
-No, Sergey's concern is still valid. You are allocating the memory for TLPs at
-the end of the existing MEM range. But there is a chance that it could cause
-memory hungry devices like GPU to run out of memory in an existing setup.
-
-That being said, I also do not want to hold off merging this series. So let's
-make this region opt-in for drivers making use of this feature. This way, if we
-migrate to a dedicated 'ranges' region in the future, we can remove the
-conditional check and base the check on the existence of the new region.
-
-- Mani
-
-> > 
-> > Why not to use a new ranges-based mapping as we discussed earlier:
-> > https://lore.kernel.org/linux-pci/20240214061412.GB4618@thinkpad/
-> > ?
+On 2024-03-18 11:03 PM, Inochi Amaoto wrote:
+> On Mon, Mar 18, 2024 at 10:22:47PM -0500, Samuel Holland wrote:
+>> On 2024-03-18 1:38 AM, Inochi Amaoto wrote:
+>>> The DMA IP of Sophgo CV18XX/SG200X is based on a DW AXI CORE, with
+>>> an additional channel remap register located in the top system control
+>>> area. The DMA channel is exclusive to each core.
+>>>
+>>> Add the dmamux binding for CV18XX/SG200X series SoC
+>>>
+>>> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+>>> Reviewed-by: Rob Herring <robh@kernel.org>
+>>> ---
+>>>  .../bindings/dma/sophgo,cv1800-dmamux.yaml    | 47 ++++++++++++++++
+>>>  include/dt-bindings/dma/cv1800-dma.h          | 55 +++++++++++++++++++
+>>>  2 files changed, 102 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/dma/sophgo,cv1800-dmamux.yaml
+>>>  create mode 100644 include/dt-bindings/dma/cv1800-dma.h
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/dma/sophgo,cv1800-dmamux.yaml b/Documentation/devicetree/bindings/dma/sophgo,cv1800-dmamux.yaml
+>>> new file mode 100644
+>>> index 000000000000..c813c66737ba
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/dma/sophgo,cv1800-dmamux.yaml
+>>> @@ -0,0 +1,47 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/dma/sophgo,cv1800-dmamux.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Sophgo CV1800/SG200 Series DMA mux
+>>> +
+>>> +maintainers:
+>>> +  - Inochi Amaoto <inochiama@outlook.com>
+>>> +
+>>> +allOf:
+>>> +  - $ref: dma-router.yaml#
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: sophgo,cv1800-dmamux
+>>> +
+>>> +  reg:
+>>> +    maxItems: 2
+>>> +
+>>> +  '#dma-cells':
+>>> +    const: 3
+>>> +    description:
+>>> +      The first cells is DMA channel. The second one is device id.
+>>> +      The third one is the cpu id.
+>>
+>> There are 43 devices, but only 8 channels. Since the channel is statically
+>> specified in the devicetree as the first cell here, that means the SoC DT author
+>> must pre-select which 8 of the 43 devices are usable, right? 
 > 
-> If driver can auto alloc from known range, why need static defined in dts
-> files.
+> Yes, you are right.
 > 
-> static alloc can't resolve small outbound memory windows problem. It may
-> disable this feature. 
+>> And then the rest
+>> would have to omit their dma properties. Wouldn't it be better to leave out the
+>> channel number here and dynamically allocate channels at runtime?
+>>
 > 
-> > 
-> > I know it might be troublesome but still it would be much better
-> > and more portable across various platforms.
-> > 
-> > Bjorn, Lorenzo, Krzysztofm Rob could you please follow the link above
-> > and give your opinion about the solution suggested there?
-> > 
-> > -Serge(y)
-> > 
-> > > +
-> > >  	ret = dw_pcie_edma_detect(pci);
-> > >  	if (ret)
-> > >  		goto err_free_msi;
-> > > @@ -536,6 +564,11 @@ void dw_pcie_host_deinit(struct dw_pcie_rp *pp)
-> > >  
-> > >  	dw_pcie_edma_remove(pci);
-> > >  
-> > > +	if (pp->msg_res) {
-> > > +		release_resource(pp->msg_res);
-> > > +		devm_kfree(pci->dev, pp->msg_res);
-> > > +	}
-> > > +
-> > >  	if (pp->has_msi_ctrl)
-> > >  		dw_pcie_free_msi(pp);
-> > >  
-> > > @@ -697,6 +730,10 @@ static int dw_pcie_iatu_setup(struct dw_pcie_rp *pp)
-> > >  		atu.pci_addr = entry->res->start - entry->offset;
-> > >  		atu.size = resource_size(entry->res);
-> > >  
-> > > +		/* MSG TLB window resource reserve at one of end of IORESOURCE_MEM resource */
-> > > +		if (pp->msg_res && pp->msg_res->parent == entry->res)
-> > > +			atu.size -= resource_size(pp->msg_res);
-> > > +
-> > >  		ret = dw_pcie_prog_outbound_atu(pci, &atu);
-> > >  		if (ret) {
-> > >  			dev_err(pci->dev, "Failed to set MEM range %pr\n",
-> > > @@ -728,6 +765,8 @@ static int dw_pcie_iatu_setup(struct dw_pcie_rp *pp)
-> > >  		dev_warn(pci->dev, "Ranges exceed outbound iATU size (%d)\n",
-> > >  			 pci->num_ob_windows);
-> > >  
-> > > +	pp->msg_atu_index = i;
-> > > +
-> > >  	i = 0;
-> > >  	resource_list_for_each_entry(entry, &pp->bridge->dma_ranges) {
-> > >  		if (resource_type(entry->res) != IORESOURCE_MEM)
-> > > @@ -833,11 +872,54 @@ int dw_pcie_setup_rc(struct dw_pcie_rp *pp)
-> > >  }
-> > >  EXPORT_SYMBOL_GPL(dw_pcie_setup_rc);
-> > >  
-> > > +/* Using message outbound ATU to send out PME_Turn_Off message for dwc PCIe controller */
-> > > +static int dw_pcie_pme_turn_off(struct dw_pcie *pci)
-> > > +{
-> > > +	struct dw_pcie_ob_atu_cfg atu = { 0 };
-> > > +	void __iomem *m;
-> > > +	int ret;
-> > > +
-> > > +	if (pci->num_ob_windows <= pci->pp.msg_atu_index)
-> > > +		return -EINVAL;
-> > > +
-> > > +	if (!pci->pp.msg_res)
-> > > +		return -EINVAL;
-> > > +
-> > > +	atu.code = PCIE_MSG_CODE_PME_TURN_OFF;
-> > > +	atu.routing = PCIE_MSG_TYPE_R_BC;
-> > > +	atu.type = PCIE_ATU_TYPE_MSG;
-> > > +	atu.size = resource_size(pci->pp.msg_res);
-> > > +	atu.index = pci->pp.msg_atu_index;
-> > > +
-> > > +	if (!atu.size) {
-> > > +		dev_dbg(pci->dev,
-> > > +			"atu memory map windows is zero, please check 'msg' reg in dts\n");
-> > > +		return -ENOMEM;
-> > > +	}
-> > > +
-> > > +	atu.cpu_addr = pci->pp.msg_res->start;
-> > > +
-> > > +	ret = dw_pcie_prog_outbound_atu(pci, &atu);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	m = ioremap(atu.cpu_addr, pci->region_align);
-> > > +	if (!m)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	/* A dummy write is converted to a Msg TLP */
-> > > +	writel(0, m);
-> > > +
-> > > +	iounmap(m);
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > >  int dw_pcie_suspend_noirq(struct dw_pcie *pci)
-> > >  {
-> > >  	u8 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-> > >  	u32 val;
-> > > -	int ret;
-> > > +	int ret = 0;
-> > >  
-> > >  	/*
-> > >  	 * If L1SS is supported, then do not put the link into L2 as some
-> > > @@ -849,10 +931,13 @@ int dw_pcie_suspend_noirq(struct dw_pcie *pci)
-> > >  	if (dw_pcie_get_ltssm(pci) <= DW_PCIE_LTSSM_DETECT_ACT)
-> > >  		return 0;
-> > >  
-> > > -	if (!pci->pp.ops->pme_turn_off)
-> > > -		return 0;
-> > > +	if (pci->pp.ops->pme_turn_off)
-> > > +		pci->pp.ops->pme_turn_off(&pci->pp);
-> > > +	else
-> > > +		ret = dw_pcie_pme_turn_off(pci);
-> > >  
-> > > -	pci->pp.ops->pme_turn_off(&pci->pp);
-> > > +	if (ret)
-> > > +		return ret;
-> > >  
-> > >  	ret = read_poll_timeout(dw_pcie_get_ltssm, val, val == DW_PCIE_LTSSM_L2_IDLE,
-> > >  				PCIE_PME_TO_L2_TIMEOUT_US/10,
-> > > diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> > > index 703b50bc5e0f1..9e6076aa4c850 100644
-> > > --- a/drivers/pci/controller/dwc/pcie-designware.h
-> > > +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> > > @@ -341,6 +341,8 @@ struct dw_pcie_rp {
-> > >  	struct pci_host_bridge  *bridge;
-> > >  	raw_spinlock_t		lock;
-> > >  	DECLARE_BITMAP(msi_irq_in_use, MAX_MSI_IRQS);
-> > > +	int			msg_atu_index;
-> > > +	struct resource		*msg_res;
-> > >  };
-> > >  
-> > >  struct dw_pcie_ep_ops {
-> > > 
-> > > -- 
-> > > 2.34.1
-> > > 
-> > > 
+> You mean defining all the dma channel in the device and allocation channel
+> selectively? This is workable, but it still needs a hint to allocate channel.
 
--- 
-மணிவண்ணன் சதாசிவம்
+I mean allocating hardware channels only when a channel is requested by a client
+driver. The dmamux driver could maintain a counter and allocate the channels
+sequentially -- then the first 8 calls to cv1800_dmamux_route_allocate() would
+succeed and later calls from other devices would fail.
+
+> Also, according to the information from sophgo, it does not support dynamic 
+> channel allocation, so all channel can only be initialize once.
+
+That's important to know. In that case, the driver should probably leave the
+registers alone in cv1800_dmamux_free(), and then scan to see if a device is
+already mapped to a channel before allocating a new one. (Or it should have some
+other way of remembering the mapping.) That way a single client can repeatedly
+allocate/free its DMA channel without consuming all of the hardware channels.
+
+> There is another problem, since we defined all the dmas property in the device,
+> How to mask the devices if we do not want to use dma on them? I have see SPI
+> device will disable DMA when allocation failed, I guess this is this mechanism
+> is the same for all devices?
+
+I2C/SPI/UART controller drivers generally still work after failing to acquire a
+DMA channel. For audio-related drivers, DMA is generally a hard dependency.
+
+If each board has 8 or fewer DMA-capable devices enabled in its DT, there is no
+problem. If some board enables more than 8 DMA-capable devices, then it should
+use "/delete-property/ dmas;" on the devices that would be least impacted by
+missing DMA. Otherwise, which devices get functional DMA depends on driver probe
+order.
+
+Normally you wouldn't need to do "/delete-property/ dmas;", because many drivers
+only request the DMA channel when actively being used (e.g. userspace has the
+TTY/spidev/ALSA device file open), but this doesn't help if you can only assign
+each channel once.
+
+Regards,
+Samuel
+
+>>> +
+>>> +  dma-masters:
+>>> +    maxItems: 1
+>>> +
+>>> +  dma-requests:
+>>> +    const: 8
+>>> +
+>>> +required:
+>>> +  - '#dma-cells'
+>>> +  - dma-masters
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    dma-router {
+>>> +      compatible = "sophgo,cv1800-dmamux";
+>>> +      #dma-cells = <3>;
+>>> +      dma-masters = <&dmac>;
+>>> +      dma-requests = <8>;
+>>> +    };
+>>> diff --git a/include/dt-bindings/dma/cv1800-dma.h b/include/dt-bindings/dma/cv1800-dma.h
+>>> new file mode 100644
+>>> index 000000000000..3ce9dac25259
+>>> --- /dev/null
+>>> +++ b/include/dt-bindings/dma/cv1800-dma.h
+>>> @@ -0,0 +1,55 @@
+>>> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
+>>> +
+>>> +#ifndef __DT_BINDINGS_DMA_CV1800_H__
+>>> +#define __DT_BINDINGS_DMA_CV1800_H__
+>>> +
+>>> +#define DMA_I2S0_RX		0
+>>> +#define DMA_I2S0_TX		1
+>>> +#define DMA_I2S1_RX		2
+>>> +#define DMA_I2S1_TX		3
+>>> +#define DMA_I2S2_RX		4
+>>> +#define DMA_I2S2_TX		5
+>>> +#define DMA_I2S3_RX		6
+>>> +#define DMA_I2S3_TX		7
+>>> +#define DMA_UART0_RX		8
+>>> +#define DMA_UART0_TX		9
+>>> +#define DMA_UART1_RX		10
+>>> +#define DMA_UART1_TX		11
+>>> +#define DMA_UART2_RX		12
+>>> +#define DMA_UART2_TX		13
+>>> +#define DMA_UART3_RX		14
+>>> +#define DMA_UART3_TX		15
+>>> +#define DMA_SPI0_RX		16
+>>> +#define DMA_SPI0_TX		17
+>>> +#define DMA_SPI1_RX		18
+>>> +#define DMA_SPI1_TX		19
+>>> +#define DMA_SPI2_RX		20
+>>> +#define DMA_SPI2_TX		21
+>>> +#define DMA_SPI3_RX		22
+>>> +#define DMA_SPI3_TX		23
+>>> +#define DMA_I2C0_RX		24
+>>> +#define DMA_I2C0_TX		25
+>>> +#define DMA_I2C1_RX		26
+>>> +#define DMA_I2C1_TX		27
+>>> +#define DMA_I2C2_RX		28
+>>> +#define DMA_I2C2_TX		29
+>>> +#define DMA_I2C3_RX		30
+>>> +#define DMA_I2C3_TX		31
+>>> +#define DMA_I2C4_RX		32
+>>> +#define DMA_I2C4_TX		33
+>>> +#define DMA_TDM0_RX		34
+>>> +#define DMA_TDM0_TX		35
+>>> +#define DMA_TDM1_RX		36
+>>> +#define DMA_AUDSRC		37
+>>> +#define DMA_SPI_NAND		38
+>>> +#define DMA_SPI_NOR		39
+>>> +#define DMA_UART4_RX		40
+>>> +#define DMA_UART4_TX		41
+>>> +#define DMA_SPI_NOR1		42
+>>> +
+>>> +#define DMA_CPU_A53		0
+>>> +#define DMA_CPU_C906_0		1
+>>> +#define DMA_CPU_C906_1		2
+>>> +
+>>> +
+>>> +#endif // __DT_BINDINGS_DMA_CV1800_H__
+>>> --
+>>> 2.44.0
+>>>
+>>>
+>>> _______________________________________________
+>>> linux-riscv mailing list
+>>> linux-riscv@lists.infradead.org
+>>> http://lists.infradead.org/mailman/listinfo/linux-riscv
+>>
+
 
