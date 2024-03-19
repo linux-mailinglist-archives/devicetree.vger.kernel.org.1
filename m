@@ -1,192 +1,135 @@
-Return-Path: <devicetree+bounces-51780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51781-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90C01880583
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 20:38:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF02F8805C3
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 21:02:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B13A31C228BB
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 19:37:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C7F91C2285F
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 20:02:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89B31376E4;
-	Tue, 19 Mar 2024 19:37:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3514B4EB58;
+	Tue, 19 Mar 2024 20:02:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p6j86hOI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pJnDqtCz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D7331E4A9;
-	Tue, 19 Mar 2024 19:37:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F31012C6B8;
+	Tue, 19 Mar 2024 20:02:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710877076; cv=none; b=ClMY/JFo/VYMsOw/rMbcv4nfa53K1CPxwjt4C99amqlucuKtTxxMzfXqzQYTZ+Kq1j/rZgza4EsRKtGjG4oxaVhF0U096GgMSe661V1hLwM+8EFDhZpFI68oigeDW04xvx3rFQ5gMdb8736ccPsyOlta2nAVdJt/O8a9blqr4Pg=
+	t=1710878530; cv=none; b=gSSfiKvcScbgnqQNWsbQlN4E4FXrHl+PCQs2t7DB5q2ZD7HVM8DgDPvw/ZqGRGSYdrN3QQzm997oLaumtmQpigR20fSlyGXBY6K9t7NGhYPWcf+gxp0oZKaq7RU0yrSwwPzzGrvNq4gVDW3Uh1Hx0ySTCPVqlBYCf+MTYa+cqGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710877076; c=relaxed/simple;
-	bh=BF4CDuK9QPoSPXKTFf0+VPHSKTN403RWHUnsbnBFAxw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rS/DYgK1YEehPbLGgWC9puHtCO15qePgqIA8zU5IVOBWRjnxZdftvMYxkYgLLnIFzS2VRbooQX33AjZyuPLtd2SqQMxV3hE6iln9NXTnSCrnkymJQEiU82Dqj5RwOUytXf1MY+Dk/tAESHiJW5CcI4ALRqoMZSKWZ95GKW+gR9Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p6j86hOI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BC67C433C7;
-	Tue, 19 Mar 2024 19:37:51 +0000 (UTC)
+	s=arc-20240116; t=1710878530; c=relaxed/simple;
+	bh=BfzfXnXoSemadhBtWj3WTtx3o15kRsVsxyeo0pRpIbA=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=pgN9pf30Ym5VusHhsu7L5PJ6zfVMHX2nyr7QTIbt2xBwCj6xjofg6EeaAjOWvQ0lyuAojOLKan/Qm0XaAy2SY/Rg7YeGyWnw4XWQ494143EsF/xkU9Fey0jm14kD1GS76mL746cR0iHeW+iyO7iHOFaouD0taO0JidHSHAPfINs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pJnDqtCz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D5E5C433C7;
+	Tue, 19 Mar 2024 20:02:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710877075;
-	bh=BF4CDuK9QPoSPXKTFf0+VPHSKTN403RWHUnsbnBFAxw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=p6j86hOII7uf85XVmvsdu1Z2RnVR0L9fayo9YvnpzjwgeeQb7g/T90myaZH7jnI1m
-	 a8yyOlZ+Zskrj/gN+q9uQz66P5T4NA0Nk4ZUEdTern5WdBV1GSoxuWBbeH2Tkj0tEK
-	 db3BgrpQLdQb4GDu8CbjPyY780rTlC+ezIc0iEGnnWwPvHKvpMjvifnLM3C0OZQ8Wn
-	 QnkiaYxXRiVXrrG+0fpnlmkTyfoZdudGFn9w6ioxdSh0Hod4R/Kt12KsDyOjOKjKd5
-	 /4Hl1a3H/8+8m16VHTTqaAv85eT/pVUvb/VAeQg1t6+E7H2tURtO1S2YvC8oz8h58U
-	 FNh9r7/hjEgag==
-Date: Tue, 19 Mar 2024 19:37:49 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Ayush Singh <ayushdevel1325@gmail.com>
-Cc: open list <linux-kernel@vger.kernel.org>, jkridner@beagleboard.org,
-	robertcnelson@beagleboard.org, lorforlinux@beagleboard.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Vaishnav M A <vaishnav.a@ti.com>, Mark Brown <broonie@kernel.org>,
-	Johan Hovold <johan@kernel.org>, Alex Elder <elder@kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"moderated list:ARM/TEXAS INSTRUMENTS K3 ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-	"open list:SPI SUBSYSTEM" <linux-spi@vger.kernel.org>,
-	"moderated list:GREYBUS SUBSYSTEM" <greybus-dev@lists.linaro.org>,
-	Vaishnav M A <vaishnav@beagleboard.org>
-Subject: Re: [PATCH v4 1/5] dt-bindings: misc: Add mikrobus-connector
-Message-ID: <20240319-quarters-eskimo-be8e7db01438@spud>
-References: <20240317193714.403132-1-ayushdevel1325@gmail.com>
- <20240317193714.403132-2-ayushdevel1325@gmail.com>
+	s=k20201202; t=1710878529;
+	bh=BfzfXnXoSemadhBtWj3WTtx3o15kRsVsxyeo0pRpIbA=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=pJnDqtCzYhzzXWlnC9ojvuZnXmWsdooKOdDBCKUA3VpLuUkNv6/QqSCz2Iq1NYCId
+	 QWeNNDoQHySk/Co56XBb0CoTAo7F2JYQFkTgR0nl1QOBP6T3/rPjEOLNk8FXDzvayn
+	 nUFdCRXbp3yMYYgotTwKXP6wL73w3M6y4gBC8Y5o7FiQQc9DBmnlTRso4emUlHJh44
+	 a31RC8yKuy3KD6RpVfvKIgkpMxdYysdBrtkl81Nq78Lg4zYn7b3Ek6arb2H8qNye61
+	 w5tUz5gfardmH9IAmTMfdkPDHZzDyWYDLsHFBaeD+8NDkIuQOpjI8sYwNGz4h6zFdu
+	 dOAfSntfba3Ag==
+Date: Tue, 19 Mar 2024 15:02:08 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="K05xHvEr6Oot9xht"
-Content-Disposition: inline
-In-Reply-To: <20240317193714.403132-2-ayushdevel1325@gmail.com>
+From: Rob Herring <robh@kernel.org>
+To: Johan Hovold <johan+linaro@kernel.org>
+Cc: Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, 
+ Matthias Kaehlcke <mka@chromium.org>, devicetree@vger.kernel.org, 
+ netdev@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Rob Herring <robh+dt@kernel.org>, Rocky Liao <quic_rjliao@quicinc.com>, 
+ linux-bluetooth@vger.kernel.org, Douglas Anderson <dianders@chromium.org>, 
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+ Johan Hedberg <johan.hedberg@gmail.com>, 
+ Marcel Holtmann <marcel@holtmann.org>, cros-qcom-dts-watchers@chromium.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ Bjorn Andersson <andersson@kernel.org>, linux-kernel@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org
+In-Reply-To: <20240319152926.1288-2-johan+linaro@kernel.org>
+References: <20240319152926.1288-1-johan+linaro@kernel.org>
+ <20240319152926.1288-2-johan+linaro@kernel.org>
+Message-Id: <171087317847.5394.2197018705200988833.robh@kernel.org>
+Subject: Re: [PATCH v3 1/5] dt-bindings: bluetooth: add
+ 'qcom,local-bd-address-broken'
 
 
---K05xHvEr6Oot9xht
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Tue, 19 Mar 2024 16:29:22 +0100, Johan Hovold wrote:
+> Several Qualcomm Bluetooth controllers lack persistent storage for the
+> device address and instead one can be provided by the boot firmware
+> using the 'local-bd-address' devicetree property.
+> 
+> The Bluetooth bindings clearly states that the address should be
+> specified in little-endian order, but due to a long-standing bug in the
+> Qualcomm driver which reversed the address some boot firmware has been
+> providing the address in big-endian order instead.
+> 
+> The only device out there that should be affected by this is the WCN3991
+> used in some Chromebooks.
+> 
+> Add a 'qcom,local-bd-address-broken' property which can be set on these
+> platforms to indicate that the boot firmware is using the wrong byte
+> order.
+> 
+> Note that ChromeOS always updates the kernel and devicetree in lockstep
+> so that there is no need to handle backwards compatibility with older
+> devicetrees.
+> 
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+>  .../devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml  | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
 
-On Mon, Mar 18, 2024 at 01:07:09AM +0530, Ayush Singh wrote:
-> Add DT bindings for mikroBUS interface. MikroBUS is an open standard
-> developed by MikroElektronika for connecting add-on boards to
-> microcontrollers or microprocessors.
->=20
-> mikroBUS is a connector and does not have a controller. Instead the
-> software is responsible for identification of board and setting up /
-> registering uart, spi, i2c, pwm and other buses. Thus it needs a way to
-> get uart, spi, i2c, pwm and gpio controllers / adapters.
->=20
-> A mikroBUS addon board is free to leave some of the pins unused which
-> are marked as NC or Not Connected.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-But your binding makes everything required. Why would I need to
-instantiate and connect an i2c controller to the mikroebus header if
-I don't intend connecting any mikroebus devices that need one?
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml:98:16: [error] syntax error: mapping values are not allowed here (syntax)
 
-> Some of the pins might need to be configured as GPIOs deviating from their
-> reserved purposes Eg: SHT15 Click where the SCL and SDA Pins need to be
-> configured as GPIOs for the driver (drivers/hwmon/sht15.c) to work.
+dtschema/dtc warnings/errors:
+make[2]: *** Deleting file 'Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.example.dts'
+Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml:98:16: mapping values are not allowed in this context
+make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.example.dts] Error 1
+make[2]: *** Waiting for unfinished jobs....
+./Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml:98:16: mapping values are not allowed in this context
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml: ignoring, error parsing file
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1428: dt_binding_check] Error 2
+make: *** [Makefile:240: __sub-make] Error 2
 
-> For some add-on boards the driver may not take care of some additional
-> signals like reset/wake-up/other. Eg: ENC28J60 click where the reset line
-> (RST pin on the mikrobus port) needs to be pulled high.
+doc reference errors (make refcheckdocs):
 
-What drivers do is not relevant to the binding. Describe the hardware.
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240319152926.1288-2-johan+linaro@kernel.org
 
-> Here's the list of pins in mikroBUS connector:
-> Analog - AN
-> Reset - RST
-> SPI Chip Select - CS
-> SPI Clock - SCK
-> SPI Master Input Slave Output - MISO
-> SPI Master Output Slave Input - MOSI
-> VCC-3.3V power - +3.3V
-> Reference Ground - GND
-> PWM - PWM output
-> INT - Hardware Interrupt
-> RX - UART Receive
-> TX - UART Transmit
-> SCL - I2C Clock
-> SDA - I2C Data
-> +5V - VCC-5V power
-> GND - Reference Ground
->=20
-> Additionally, some new mikroBUS boards contain 1-wire EEPROM that contains
-> a manifest to describe the addon board to provide plug and play
-> capabilities.
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-My problem with this is that it purports to be some generic description
-of the connector but it appears to be very centred on a particular use
-case (this beagle product) with simple add-on boards or those that
-support the auto-detection eeprom. For other use cases I'm at a loss for
-why I'd not omit this node from my DT and treat the mikroebus connector
-like any other header on my boards, where I just apply an overlay that
-hooks up the device to the relevant spi/pwm/i2c/etc controllers.
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-I'd almost go as far as to say that this binding is misleading, because
-it's worded like a complete description of the port but actually only
-seems to describe a (set of) use case(s). What am I missing?
+pip3 install dtschema --upgrade
 
-> Link: https://www.mikroe.com/mikrobus
-> Link:
-> https://download.mikroe.com/documents/standards/mikrobus/mikrobus-standar=
-d-specification-v200.pdf
-> mikroBUS specification
-> Link: https://www.mikroe.com/sht1x-click SHT15 Click
-> Link: https://www.mikroe.com/eth-click ENC28J60 Click
-> Link: https://www.mikroe.com/clickid ClickID
->=20
-> Co-developed-by: Vaishnav M A <vaishnav@beagleboard.org>
-> Signed-off-by: Vaishnav M A <vaishnav@beagleboard.org>
-> Signed-off-by: Ayush Singh <ayushdevel1325@gmail.com>
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
-> +required:
-> +  - compatible
-> +  - pinctrl-0
-> +  - pinctrl-1
-> +  - pinctrl-2
-> +  - pinctrl-3
-> +  - pinctrl-4
-> +  - pinctrl-5
-> +  - pinctrl-6
-> +  - pinctrl-7
-> +  - pinctrl-8
-> +  - i2c-adapter
-> +  - spi-controller
-> +  - spi-cs
-> +  - uart
-> +  - pwms
-> +  - mikrobus-gpios
-
-Oh also, you're missing properties for the supplies.
-
---K05xHvEr6Oot9xht
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZfnpjQAKCRB4tDGHoIJi
-0s0WAP4sxMj7iEDAzcYFuI2/TAZhf+4wpnV6zkAEPu/GrABU6QD+IzPHBYa013DG
-+wV/fVKKJxKX1uzafwvK4rmAAt5pUgI=
-=CeYU
------END PGP SIGNATURE-----
-
---K05xHvEr6Oot9xht--
 
