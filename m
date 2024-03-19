@@ -1,118 +1,157 @@
-Return-Path: <devicetree+bounces-51456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35D8487F65C
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 05:25:00 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AF1587F658
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 05:21:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E95E91F21EF7
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 04:24:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E280DB22087
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 04:21:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27E9C7C083;
-	Tue, 19 Mar 2024 04:24:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D8457C082;
+	Tue, 19 Mar 2024 04:21:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mdpkWybJ"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="wsCyFyhd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50D0B5F544;
-	Tue, 19 Mar 2024 04:24:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2137C1EB4A;
+	Tue, 19 Mar 2024 04:21:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710822294; cv=none; b=E3O24uuruA7HrZUOkpJKbnjH2dP6lflJEfTR/gJnkxQJyrK6dBeV3TBzCHw0o4nwDpvuCYIvfXGGAjUZRL+KyWb43drVecgYJWjok+vUlZNejADtImtgkUsvi2Z5o7DjWYnQufNJmWsniRTKxh+kn+SWtMscfMbKrnpafX0JcRU=
+	t=1710822076; cv=none; b=KYaep8b/JdOjrwS7YcSfZelWr+oUMlZ2Ifn37WzKhcfR6g2cTxM+86WMj7UCb6ycMgNdiVnoY5AgN+lwlACKucdfmTz9Go5pDQEKIpA0NmMUdJqC2AKmsqI01eMHugcthtjXlRkNZaMQ8YJWvfHK1W/GdwSYSJ67/4d1DEWwk70=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710822294; c=relaxed/simple;
-	bh=8COTqAO78HYhmDSxjg8TTpsRSgxaVPz9po3QmqxHMyA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rRAEJtSrAVT4IjZXpTrYx2KyeEEUzxIBd1kCur7Ujr2meEYCEJCzHvRAPo/WcHjTAmMNoZq24ZiA8Pu8x1utJw45WZdvrB92UCtFCvUv50gYch6dHBDNZn/aOL+G4rIfwjPVidpR/+MO1nlgAl6GNFuBDc/DDw/9cb4lOXKYLFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mdpkWybJ; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1710822292; x=1742358292;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=8COTqAO78HYhmDSxjg8TTpsRSgxaVPz9po3QmqxHMyA=;
-  b=mdpkWybJg0oQLh7VDqqnVeY7ZQ9Uxi7u+g5so/ZLpXEf1Z6mjJeECiQD
-   eZg0iQEh0G8QpaE5J58xhP7cYJwJeRp+Yv3h4bokXpjlbQ9BLQevEdsqD
-   LHmwMi8Icnmu8GHUNHJVXCMrBWoEsKGfkZLBx4HBI8YJMaZdHeY91zTLy
-   Fd6ZWufro/6Mzbs3dD257ltfS2/ZPr/75aQ7dwFRGxVX/AXy3BieYoQ3w
-   jJfrOmMPRu+Sm4CJAjJm0YXbHwwf8INKIl4dh6bxpBBh7x2+7GdVbo+VB
-   CX3xgVllAzXrNxO4rqNVWqeYzzUO22JF427Xj5Vo8oJH7w2ap7JhNv/pf
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11017"; a="23174513"
-X-IronPort-AV: E=Sophos;i="6.07,135,1708416000"; 
-   d="scan'208";a="23174513"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Mar 2024 21:24:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,135,1708416000"; 
-   d="scan'208";a="14146453"
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
-  by orviesa007.jf.intel.com with ESMTP; 18 Mar 2024 21:24:47 -0700
-Date: Tue, 19 Mar 2024 12:20:15 +0800
-From: Xu Yilun <yilun.xu@linux.intel.com>
-To: Charles Perry <charles.perry@savoirfairelinux.com>
-Cc: mdf@kernel.org, avandiver@markem-imaje.com, bcody@markem-imaje.com,
-	Wu Hao <hao.wu@intel.com>, Xu Yilun <yilun.xu@intel.com>,
-	Tom Rix <trix@redhat.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	s=arc-20240116; t=1710822076; c=relaxed/simple;
+	bh=uHYyRQ2mhUExRd5wmElp9/X/N4+vsxARJCSyVxITKpQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=lqWceKpCqKgMQ4TGjpxra/yg9YxcMHS34ad1+Y5Xc2yTrAzhh1xQFkREiPXyooG9G00uj59G0jde0Zq5RPSrLllMrRNacODYEvDh2y96Eg64s9xXIYuZi+n29Vdo9wT0XDNoK29ernVUdZT7uepcHe3N+9DYauhXis04X+VYMDA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=wsCyFyhd; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 8B14D87666;
+	Tue, 19 Mar 2024 05:21:11 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1710822072;
+	bh=oRy+2PBzu8Mn0QXSPx0fnRejhAqRzKthrztDSHhFpx4=;
+	h=From:To:Cc:Subject:Date:From;
+	b=wsCyFyhdJbZ+sc+aLTm8B9CPeBxMbP230tjQ2ptH2nvkmEOpGrg1dn56+bGsn3SY/
+	 rNVLUy8cCedYaCYffojFZuJzIsD4B6MbsBeKZMYvz2zJc6Bh9MhFHOQ1JgJZTkHXTS
+	 OvyVyMpnII6V4kjf2QpCeikSVUeZFk/xBfErOiW1HO5yNlGSfJOEDauTDvP8JxXx0D
+	 hpSd5Mh0/MMJfvRaoJkPE/TE6i8oJ75VvP6ZRvqU42eCjmwSIJTvFKRXRJhPYHiJem
+	 /dNv6pwWRszSK0CPXLAb6Wjzmxjwoo8Xi6jyWBv9hTODwuwyB1rUdyyPwu3IyvOr1I
+	 Qlt5BzNmHEZBw==
+From: Marek Vasut <marex@denx.de>
+To: linux-bluetooth@vger.kernel.org
+Cc: Marek Vasut <marex@denx.de>,
+	"David S. Miller" <davem@davemloft.net>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Michal Simek <michal.simek@amd.com>, linux-fpga@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 1/3] fpga: xilinx-spi: extract a common driver core
-Message-ID: <ZfkSf6QG5nIY0zpx@yilunxu-OptiPlex-7050>
-References: <20240313225746.489253-1-charles.perry@savoirfairelinux.com>
- <20240313225746.489253-2-charles.perry@savoirfairelinux.com>
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	Marcel Holtmann <marcel@holtmann.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: net: broadcom-bluetooth: Add CYW43439 DT binding
+Date: Tue, 19 Mar 2024 05:20:35 +0100
+Message-ID: <20240319042058.133885-1-marex@denx.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240313225746.489253-2-charles.perry@savoirfairelinux.com>
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-> +/**
-> + * struct xilinx_fpga_core - interface between the driver and the core manager
-> + *                           of Xilinx 7 Series FPGA manager
-> + * @dev:       device node
-> + * @write:     write callback of the driver
-> + * @prog_b:    PROGRAM_B gpio descriptor
-> + * @init_b:    INIT_B gpio descriptor
-> + * @done:      DONE gpio descriptor
+CYW43439 is a Wi-Fi + Bluetooth combo device from Infineon.
+The Bluetooth part is capable of Bluetooth 5.2 BR/EDR/LE .
+This chip is present e.g. on muRata 1YN module.
 
-Please re-check the Documentation again:
-"Structure fields that are inside a private: area are not listed in the generated output documentation"
+Extend the binding with its DT compatible using fallback
+compatible string to "brcm,bcm4329-bt" which seems to be
+the oldest compatible device. This should also prevent the
+growth of compatible string tables in drivers. The existing
+block of compatible strings is retained.
 
-> + */
-> +struct xilinx_fpga_core {
-> +/* public: */
-> +	struct device *dev;
-> +	int (*write)(struct xilinx_fpga_core *core, const char *buf,
-> +		     size_t count);
-> +/* private: handled by xilinx-core */
-> +	struct gpio_desc *prog_b;
-> +	struct gpio_desc *init_b;
-> +	struct gpio_desc *done;
-> +};
-> +
-[...]
-> -
->  static int xilinx_spi_probe(struct spi_device *spi)
->  {
-> -	struct xilinx_spi_conf *conf;
-> -	struct fpga_manager *mgr;
-> +	struct xilinx_fpga_core *conf;
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: "David S. Miller" <davem@davemloft.net>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Eric Dumazet <edumazet@google.com>
+Cc: Jakub Kicinski <kuba@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>
+Cc: Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+Cc: Marcel Holtmann <marcel@holtmann.org>
+Cc: Paolo Abeni <pabeni@redhat.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-bluetooth@vger.kernel.org
+Cc: netdev@vger.kernel.org
+---
+V2: - Introduce fallback compatible string
+    - Reword the second half of commit message to reflect that
+---
+ .../bindings/net/broadcom-bluetooth.yaml      | 33 +++++++++++--------
+ 1 file changed, 19 insertions(+), 14 deletions(-)
 
-Why do you name it conf? Maybe "core" is better?
+diff --git a/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml b/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
+index cc70b00c6ce57..4a1bfc2b35849 100644
+--- a/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
++++ b/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
+@@ -14,20 +14,25 @@ description:
+ 
+ properties:
+   compatible:
+-    enum:
+-      - brcm,bcm20702a1
+-      - brcm,bcm4329-bt
+-      - brcm,bcm4330-bt
+-      - brcm,bcm4334-bt
+-      - brcm,bcm43430a0-bt
+-      - brcm,bcm43430a1-bt
+-      - brcm,bcm43438-bt
+-      - brcm,bcm4345c5
+-      - brcm,bcm43540-bt
+-      - brcm,bcm4335a0
+-      - brcm,bcm4349-bt
+-      - cypress,cyw4373a0-bt
+-      - infineon,cyw55572-bt
++    oneOf:
++      - items:
++          - enum:
++              - infineon,cyw43439-bt
++          - const: brcm,bcm4329-bt
++      - enum:
++          - brcm,bcm20702a1
++          - brcm,bcm4329-bt
++          - brcm,bcm4330-bt
++          - brcm,bcm4334-bt
++          - brcm,bcm43430a0-bt
++          - brcm,bcm43430a1-bt
++          - brcm,bcm43438-bt
++          - brcm,bcm4345c5
++          - brcm,bcm43540-bt
++          - brcm,bcm4335a0
++          - brcm,bcm4349-bt
++          - cypress,cyw4373a0-bt
++          - infineon,cyw55572-bt
+ 
+   shutdown-gpios:
+     maxItems: 1
+-- 
+2.43.0
 
-Thanks,
-Yilun
 
