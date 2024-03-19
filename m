@@ -1,74 +1,48 @@
-Return-Path: <devicetree+bounces-51487-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51488-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9772487F7AB
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 07:43:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47AFD87F7B7
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 07:46:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D8DA2812AC
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 06:43:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C9171C2161C
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 06:46:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D032251031;
-	Tue, 19 Mar 2024 06:42:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34EC44F898;
+	Tue, 19 Mar 2024 06:46:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XGS8xLbO"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="VQfXANPA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DCE851028;
-	Tue, 19 Mar 2024 06:42:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D5BF2628C;
+	Tue, 19 Mar 2024 06:46:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710830578; cv=none; b=FS6iQJ5MMfblWSpBMSQlq9TpxqJcyCFQB+0bG5WmkIyYVTM8sHKkKPta51Uwdz2tqanzSdmHrB4QzXAcW3aOpL84+X5q+MPX6A35IbiTNKTjvFp3ZWK3aA2365jyv3r1ao5cAdZ0RT4dmwdlPBkhnciRh1OeGsp/ou016M/OiLw=
+	t=1710830781; cv=none; b=KJaG1hYhEyvgopGS1IiTzqlnww/WFKZ4Cix/kiDU3LXdT0ikvc28ElzruVRSEn56Qfj59X2ENjsL4ZpjJdV208GgQxglyIrDceNZPmAUpPGdBq5yhnYikzT7yHa4xP0EcvB/eS/YavJuDgZBuj1yDi3fXdZnDEZpZWG13PxwdmI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710830578; c=relaxed/simple;
-	bh=3jam/nq9dx2B/NFGSZWgKyKZKWTdjQotnoF33x3s4vw=;
+	s=arc-20240116; t=1710830781; c=relaxed/simple;
+	bh=mdofvyXfkAU1Xd6z9oDpDBTYaE1qN9b5520d0v1yYgM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lWWJkqQaOu9q5T73o6pmD3V2yn1K6KO6g1n9quhcR6Y6oCovOs/NMXPpqOmtkcImzY9cjR2xLsbCcBFgIZ4GDCkKeH99tZWS1pApfTAjfn4DN/RVc9bsQPmgH8dE2rkfbX+SOkc91RYpdq90wVERdZLbeRkMd6tKJn2xJohGG+o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XGS8xLbO; arc=none smtp.client-ip=209.85.210.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-6e6ce174d45so4105838b3a.3;
-        Mon, 18 Mar 2024 23:42:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710830576; x=1711435376; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MekR1vkf79zx6hDhHO4dw0XGgAfid+zxEfjnfq9iFoY=;
-        b=XGS8xLbO4wMn6rBK1XScmGPdO/cyscpa1Kfac4052/xXf8/TUvUpnfK9wSGGn+dH3C
-         NW7APK7x2DI04lopyC58U1Z7ywhojDAqK/y1LhHkGJKCAqYhubJ4uDE+9QYDVxlqdf0Q
-         YvrEnozMMxYR+thwgtlwojZFYhzID+bHEPdga8ANqArvz5mlVqjNC/BsUiraQkX/tSkk
-         nTCTC/0QAax/mHyAI8Lns7+shop7li9s+ZovilvnvQIOfi/D7e2b7WazvIi4IXkRt2Vf
-         yTiPWXqIn3J6mWwzjLVtus0aWM3LpySwcQ0OBHVswMrP5ipcdwNua9vY2gzOFwthK8er
-         TcmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710830576; x=1711435376;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MekR1vkf79zx6hDhHO4dw0XGgAfid+zxEfjnfq9iFoY=;
-        b=pddQEYQbHKVdK6JEs6L1FGaFtZRMr7Y/cH0yX/hzBKRljJAh4w8VKMHXcyx+FxK5xl
-         xbi4xTHogkhDzBaK+gLIjygFsbLM4lFh7C8b2/4bXOvC1c+TuXW4DNjjWSA8Afdaii/M
-         UuGwIOlZe3v6Kw0y2qTX/a7KNAWPWEoRn8LLLLAAhrngzXsoirLDf7QmFDRVpVF9/Pe6
-         Z+dZBmkyTalS6UFMvpciJerLq4CWyA5QHKhF+9QFiIsRPv1+PkJJnlszCF1MH857hXDi
-         LuXYZ0Sxd0aJw+Qh8q73iVQ/EDbPlymlplOd1Vc/cW2BQKDlpins+nkRMHNLRfCosKWP
-         z1wA==
-X-Forwarded-Encrypted: i=1; AJvYcCXF32ozUUV2DtpACj5vFCj0/Hy8erqI2hYUyLKgquIDXurOoMtItN1Ehcx3XnRVpN3+xT0CtbVyDByIahWS8v9VP/AC2/ArgXyhuYa9HXIBFJvcQmRkGBY6I6LxBcrubclBCrC8r4wybyE7Nz19k+CJVCL6ZcjlrJowb5WEj9qgttNX/g==
-X-Gm-Message-State: AOJu0YxwzWKqtmeDs9ZNTSr0KvGDT13/qriuTscGoLRbJUZJ56BlBAXo
-	vdmvA2+vi/itUoo3KMMJTAKu1AKqjxLw79bxOGTkVTLU9070f54I
-X-Google-Smtp-Source: AGHT+IELy+WEtoYME8bn4yLFQ+wqr8qOT2Cs6dmJHNy7S8i5urAB8y1ed9hdTxndDnXa/NFifvMK5Q==
-X-Received: by 2002:a05:6a00:1ad3:b0:6e6:4679:fa8b with SMTP id f19-20020a056a001ad300b006e64679fa8bmr2033581pfv.4.1710830576427;
-        Mon, 18 Mar 2024 23:42:56 -0700 (PDT)
-Received: from [172.16.116.58] ([103.15.228.94])
-        by smtp.gmail.com with ESMTPSA id i3-20020a056a00004300b006e56e5c09absm9215698pfk.14.2024.03.18.23.42.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Mar 2024 23:42:56 -0700 (PDT)
-Message-ID: <c85c3d7c-df50-4328-b260-753a036c92d8@gmail.com>
-Date: Tue, 19 Mar 2024 12:12:37 +0530
+	 In-Reply-To:Content-Type; b=GvTN9TMalL8B7Ldgw7TzT6TlplM6euKCMsrA0Fkys63oQztbtv1S/HQKjT3vb0KL3U0z8jB6K+ycTk3G4uZ0BVt+QEU9+UpGgETw4VLwKu6wXUnzg0h8K9ySdQEr+6ihadzc5zErpIym5D2BmjT+6hNwGZTfm9cxpMEB0ZbaV8w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=VQfXANPA; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-154-34-181.elisa-laajakaista.fi [91.154.34.181])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 160A1480;
+	Tue, 19 Mar 2024 07:45:50 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1710830750;
+	bh=mdofvyXfkAU1Xd6z9oDpDBTYaE1qN9b5520d0v1yYgM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=VQfXANPANFMbcFXtwTvq3xg8eJD7hYlkzia6sC1seMMar4Jn9eLfhtzfXHezLuucI
+	 SwYTdrwewcaZuPBvOxlCtFv/QS7XF4QswvpDi7KgcDib6p50e/MnuoiE9sXzuhKd9l
+	 yfSKuQtAf2l4uL9xch7gb2GdkVFW29bbMkogBl8U=
+Message-ID: <22225e92-803d-4aaa-b75f-cfd1d7d8c279@ideasonboard.com>
+Date: Tue, 19 Mar 2024 08:46:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,156 +50,210 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/5] dt-bindings: misc: Add mikrobus-connector
+Subject: Re: [PATCH 2/4] dt-bindings: media: Add bindings for
+ raspberrypi,rp1-cfe
 Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- open list <linux-kernel@vger.kernel.org>
-Cc: jkridner@beagleboard.org, robertcnelson@beagleboard.org,
- lorforlinux@beagleboard.org, Rob Herring <robh@kernel.org>,
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Naushir Patuck
+ <naush@raspberrypi.com>, Laurent Pinchart
+ <laurent.pinchart@ideasonboard.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+ Kieran Bingham <kieran.bingham@ideasonboard.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
- Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic
- <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Vaishnav M A <vaishnav.a@ti.com>, Mark Brown <broonie@kernel.org>,
- Johan Hovold <johan@kernel.org>, Alex Elder <elder@kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "moderated list:ARM/TEXAS INSTRUMENTS K3 ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:SPI SUBSYSTEM" <linux-spi@vger.kernel.org>,
- "moderated list:GREYBUS SUBSYSTEM" <greybus-dev@lists.linaro.org>,
- Vaishnav M A <vaishnav@beagleboard.org>,
- "Russell King (Oracle)" <linux@armlinux.org.uk>
-References: <20240317193714.403132-1-ayushdevel1325@gmail.com>
- <20240317193714.403132-2-ayushdevel1325@gmail.com>
- <1be08004-fe29-4e0b-b0c9-7cc7af15d0b0@linaro.org>
-From: Ayush Singh <ayushdevel1325@gmail.com>
-In-Reply-To: <1be08004-fe29-4e0b-b0c9-7cc7af15d0b0@linaro.org>
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+References: <20240318-rp1-cfe-v1-0-ac6d960ff22d@ideasonboard.com>
+ <20240318-rp1-cfe-v1-2-ac6d960ff22d@ideasonboard.com>
+ <3834dd0a-6dd0-45b1-8b9c-0c840aaf8cf2@linaro.org>
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ xsFNBE6ms0cBEACyizowecZqXfMZtnBniOieTuFdErHAUyxVgtmr0f5ZfIi9Z4l+uUN4Zdw2
+ wCEZjx3o0Z34diXBaMRJ3rAk9yB90UJAnLtb8A97Oq64DskLF81GCYB2P1i0qrG7UjpASgCA
+ Ru0lVvxsWyIwSfoYoLrazbT1wkWRs8YBkkXQFfL7Mn3ZMoGPcpfwYH9O7bV1NslbmyJzRCMO
+ eYV258gjCcwYlrkyIratlHCek4GrwV8Z9NQcjD5iLzrONjfafrWPwj6yn2RlL0mQEwt1lOvn
+ LnI7QRtB3zxA3yB+FLsT1hx0va6xCHpX3QO2gBsyHCyVafFMrg3c/7IIWkDLngJxFgz6DLiA
+ G4ld1QK/jsYqfP2GIMH1mFdjY+iagG4DqOsjip479HCWAptpNxSOCL6z3qxCU8MCz8iNOtZk
+ DYXQWVscM5qgYSn+fmMM2qN+eoWlnCGVURZZLDjg387S2E1jT/dNTOsM/IqQj+ZROUZuRcF7
+ 0RTtuU5q1HnbRNwy+23xeoSGuwmLQ2UsUk7Q5CnrjYfiPo3wHze8avK95JBoSd+WIRmV3uoO
+ rXCoYOIRlDhg9XJTrbnQ3Ot5zOa0Y9c4IpyAlut6mDtxtKXr4+8OzjSVFww7tIwadTK3wDQv
+ Bus4jxHjS6dz1g2ypT65qnHen6mUUH63lhzewqO9peAHJ0SLrQARAQABzTBUb21pIFZhbGtl
+ aW5lbiA8dG9taS52YWxrZWluZW5AaWRlYXNvbmJvYXJkLmNvbT7CwY4EEwEIADgWIQTEOAw+
+ ll79gQef86f6PaqMvJYe9QUCX/HruAIbAwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgAAKCRD6
+ PaqMvJYe9WmFD/99NGoD5lBJhlFDHMZvO+Op8vCwnIRZdTsyrtGl72rVh9xRfcSgYPZUvBuT
+ VDxE53mY9HaZyu1eGMccYRBaTLJSfCXl/g317CrMNdY0k40b9YeIX10feiRYEWoDIPQ3tMmA
+ 0nHDygzcnuPiPT68JYZ6tUOvAt7r6OX/litM+m2/E9mtp8xCoWOo/kYO4mOAIoMNvLB8vufi
+ uBB4e/AvAjtny4ScuNV5c5q8MkfNIiOyag9QCiQ/JfoAqzXRjVb4VZG72AKaElwipiKCWEcU
+ R4+Bu5Qbaxj7Cd36M/bI54OrbWWETJkVVSV1i0tghCd6HHyquTdFl7wYcz6cL1hn/6byVnD+
+ sR3BLvSBHYp8WSwv0TCuf6tLiNgHAO1hWiQ1pOoXyMEsxZlgPXT+wb4dbNVunckwqFjGxRbl
+ Rz7apFT/ZRwbazEzEzNyrBOfB55xdipG/2+SmFn0oMFqFOBEszXLQVslh64lI0CMJm2OYYe3
+ PxHqYaztyeXsx13Bfnq9+bUynAQ4uW1P5DJ3OIRZWKmbQd/Me3Fq6TU57LsvwRgE0Le9PFQs
+ dcP2071rMTpqTUteEgODJS4VDf4lXJfY91u32BJkiqM7/62Cqatcz5UWWHq5xeF03MIUTqdE
+ qHWk3RJEoWHWQRzQfcx6Fn2fDAUKhAddvoopfcjAHfpAWJ+ENc7BTQROprNHARAAx0aat8GU
+ hsusCLc4MIxOQwidecCTRc9Dz/7U2goUwhw2O5j9TPqLtp57VITmHILnvZf6q3QAho2QMQyE
+ DDvHubrdtEoqaaSKxKkFie1uhWNNvXPhwkKLYieyL9m2JdU+b88HaDnpzdyTTR4uH7wk0bBa
+ KbTSgIFDDe5lXInypewPO30TmYNkFSexnnM3n1PBCqiJXsJahE4ZQ+WnV5FbPUj8T2zXS2xk
+ 0LZ0+DwKmZ0ZDovvdEWRWrz3UzJ8DLHb7blPpGhmqj3ANXQXC7mb9qJ6J/VSl61GbxIO2Dwb
+ xPNkHk8fwnxlUBCOyBti/uD2uSTgKHNdabhVm2dgFNVuS1y3bBHbI/qjC3J7rWE0WiaHWEqy
+ UVPk8rsph4rqITsj2RiY70vEW0SKePrChvET7D8P1UPqmveBNNtSS7In+DdZ5kUqLV7rJnM9
+ /4cwy+uZUt8cuCZlcA5u8IsBCNJudxEqBG10GHg1B6h1RZIz9Q9XfiBdaqa5+CjyFs8ua01c
+ 9HmyfkuhXG2OLjfQuK+Ygd56mV3lq0aFdwbaX16DG22c6flkkBSjyWXYepFtHz9KsBS0DaZb
+ 4IkLmZwEXpZcIOQjQ71fqlpiXkXSIaQ6YMEs8WjBbpP81h7QxWIfWtp+VnwNGc6nq5IQDESH
+ mvQcsFS7d3eGVI6eyjCFdcAO8eMAEQEAAcLBXwQYAQIACQUCTqazRwIbDAAKCRD6PaqMvJYe
+ 9fA7EACS6exUedsBKmt4pT7nqXBcRsqm6YzT6DeCM8PWMTeaVGHiR4TnNFiT3otD5UpYQI7S
+ suYxoTdHrrrBzdlKe5rUWpzoZkVK6p0s9OIvGzLT0lrb0HC9iNDWT3JgpYDnk4Z2mFi6tTbq
+ xKMtpVFRA6FjviGDRsfkfoURZI51nf2RSAk/A8BEDDZ7lgJHskYoklSpwyrXhkp9FHGMaYII
+ m9EKuUTX9JPDG2FTthCBrdsgWYPdJQvM+zscq09vFMQ9Fykbx5N8z/oFEUy3ACyPqW2oyfvU
+ CH5WDpWBG0s5BALp1gBJPytIAd/pY/5ZdNoi0Cx3+Z7jaBFEyYJdWy1hGddpkgnMjyOfLI7B
+ CFrdecTZbR5upjNSDvQ7RG85SnpYJTIin+SAUazAeA2nS6gTZzumgtdw8XmVXZwdBfF+ICof
+ 92UkbYcYNbzWO/GHgsNT1WnM4sa9lwCSWH8Fw1o/3bX1VVPEsnESOfxkNdu+gAF5S6+I6n3a
+ ueeIlwJl5CpT5l8RpoZXEOVtXYn8zzOJ7oGZYINRV9Pf8qKGLf3Dft7zKBP832I3PQjeok7F
+ yjt+9S+KgSFSHP3Pa4E7lsSdWhSlHYNdG/czhoUkSCN09C0rEK93wxACx3vtxPLjXu6RptBw
+ 3dRq7n+mQChEB1am0BueV1JZaBboIL0AGlSJkm23kw==
+In-Reply-To: <3834dd0a-6dd0-45b1-8b9c-0c840aaf8cf2@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-
-On 3/19/24 11:33, Krzysztof Kozlowski wrote:
-> On 17/03/2024 20:37, Ayush Singh wrote:
->> Add DT bindings for mikroBUS interface. MikroBUS is an open standard
->> developed by MikroElektronika for connecting add-on boards to
->> microcontrollers or microprocessors.
+On 19/03/2024 08:09, Krzysztof Kozlowski wrote:
+> On 18/03/2024 16:49, Tomi Valkeinen wrote:
+>> Add DT bindings for raspberrypi,rp1-cfe.
 >>
-> ...
->
->> +title: mikroBUS add-on board socket
+>> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+>> ---
+>>   .../bindings/media/raspberrypi,rp1-cfe.yaml        | 103 +++++++++++++++++++++
+>>   1 file changed, 103 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/media/raspberrypi,rp1-cfe.yaml b/Documentation/devicetree/bindings/media/raspberrypi,rp1-cfe.yaml
+>> new file mode 100644
+>> index 000000000000..7b2beeaaab0e
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/media/raspberrypi,rp1-cfe.yaml
+>> @@ -0,0 +1,103 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/media/raspberrypi,rp1-cfe.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Raspberry Pi PiSP Camera Front End
 >> +
 >> +maintainers:
->> +  - Ayush Singh <ayushdevel1325@gmail.com>
+>> +  - Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+>> +  - Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
+>> +
+>> +description: |
+>> +  The Raspberry Pi PiSP Camera Front End is a module in Raspberrypi 5's RP1 I/O
+>> +  controller, that contains:
+>> +  - MIPI D-PHY
+>> +  - MIPI CSI-2 receiver
+>> +  - Simple image processor (called PiSP Front End, or FE)
+>> +
+>> +  The FE documentation is available at:
+>> +  https://datasheets.raspberrypi.com/camera/raspberry-pi-image-signal-processor-specification.pdf
+>> +
+>> +  The PHY and CSI-2 receiver part have no public documentation.
 >> +
 >> +properties:
 >> +  compatible:
->> +    const: mikrobus-connector
+>> +    const: raspberrypi,rpi5-rp1-cfe
 >> +
->> +  pinctrl-0: true
->> +  pinctrl-1: true
->> +  pinctrl-2: true
->> +  pinctrl-3: true
->> +  pinctrl-4: true
->> +  pinctrl-5: true
->> +  pinctrl-6: true
->> +  pinctrl-7: true
->> +  pinctrl-8: true
->> +
->> +  pinctrl-names:
+>> +  reg:
 >> +    items:
->> +      - const: default
->> +      - const: pwm_default
->> +      - const: pwm_gpio
->> +      - const: uart_default
->> +      - const: uart_gpio
->> +      - const: i2c_default
->> +      - const: i2c_gpio
->> +      - const: spi_default
->> +      - const: spi_gpio
+>> +      - description: CSI-2 registers
+>> +      - description: D-PHY registers
+>> +      - description: MIPI CFG (a simple top-level mux) registers
+>> +      - description: FE registers
 >> +
->> +  mikrobus-gpios:
->> +    minItems: 11
->> +    maxItems: 12
-> I don't see any of the issues resolved which I raised at v3. I think
-> Russell pointed that you do not have EEPROM and that some pins are
-> optional. You do not allow that.
-
-So this patchset does not contain any EEPROM code. The bindings describe 
-mikroBUS connector and not mikroBUS addon board. While it is optional 
-for the mikroBUS addon board to not use sone pins (aka NC), the pins 
-still exist on the connector on the device side. It is not optional to 
-have pins in the host device.
-
-> Plus I don't see him being Cced but he had quite detailed look and
-> comments at your patchset, so *you are supposed to Cc* him.
->
-> I also do not see Rob's comments fully addressed.
->
-> Do not send next versions before resolving previous discusssion.
-
-I apologize, I thought he was on the list by get_maintainers.pl, but it 
-seems I was mistaken. I will try to remember going forward.
-
->> +
->> +  i2c-adapter:
->> +    description: i2c adapter attached to the mikrobus socket.
->> +    $ref: /schemas/types.yaml#/definitions/phandle
->> +
->> +  spi-controller:
->> +    description: spi bus number of the spi-master attached to the mikrobus socket.
->> +    $ref: /schemas/types.yaml#/definitions/phandle
->> +
->> +  uart:
->> +    description: uart port attached to the mikrobus socket
->> +    $ref: /schemas/types.yaml#/definitions/phandle
->> +
->> +  pwms:
->> +    description: the pwm-controller corresponding to the mikroBUS PWM pin.
+>> +  interrupts:
 >> +    maxItems: 1
 >> +
->> +  spi-cs:
->> +    description: spi chip-select numbers corresponding to the chip-selects on the mikrobus socket.
->> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->> +    items:
->> +      - description: chip select corresponding to CS pin
->> +      - description: chip select corresponding to RST pin
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  port:
+>> +    $ref: /schemas/graph.yaml#/$defs/port-base
+>> +    additionalProperties: false
+>> +    description: CSI-2 RX Port
+> 
+> Only one port, so there is nothing to output to?
+
+The CFE has DMA, so it writes to memory. But no other outputs.
+
+>> +
+>> +    properties:
+>> +      endpoint:
+>> +        $ref: video-interfaces.yaml#
+>> +        unevaluatedProperties: false
+>> +
+>> +        properties:
+>> +          data-lanes:
+>> +            minItems: 1
+>> +            maxItems: 4
+>> +
+>> +          clock-lanes:
+>> +            maxItems: 1
+>> +
+>> +          clock-noncontinuous: true
+> 
+> Drop
+
+Hmm, I saw this used in multiple other bindings, and thought it means 
+the property is allowed and copied it here.
+
+If that's not the case, does this mean all the properties from 
+video-interfaces.yaml are allowed (even invalid ones, like pclk-sample)?
+
+>> +
+>> +        required:
+>> +          - clock-lanes
+>> +          - data-lanes
 >> +
 >> +required:
 >> +  - compatible
->> +  - pinctrl-0
->> +  - pinctrl-1
->> +  - pinctrl-2
->> +  - pinctrl-3
->> +  - pinctrl-4
->> +  - pinctrl-5
->> +  - pinctrl-6
->> +  - pinctrl-7
->> +  - pinctrl-8
->> +  - i2c-adapter
->> +  - spi-controller
->> +  - spi-cs
->> +  - uart
->> +  - pwms
->> +  - mikrobus-gpios
+>> +  - reg
+>> +  - interrupts
+>> +  - clocks
 >> +
 >> +additionalProperties: false
 >> +
 >> +examples:
 >> +  - |
->> +    #include <dt-bindings/gpio/gpio.h>
+>> +    #include <dt-bindings/clock/rp1.h>
+>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>> +    #include <dt-bindings/mfd/rp1.h>
 >> +
->> +    mikrobus {
->> +      compatible = "mikrobus-connector";
->> +      pinctrl-names = "default", "pwm_default", "pwm_gpio","uart_default", "uart_gpio", "i2c_default",
-> Please properly wrap your code according to Linux and DTS coding style
-> documents.
->
->
-> Best regards,
-> Krzysztof
->
-Ayush Singh
+>> +    rpi1 {
+> 
+> soc
+
+That should actually be "rp1", not "rpi1". rp1 is the co-processor on 
+which the cfe is located, so it doesn't reside in the soc itself. But 
+perhaps that's not relevant, and "soc" is just a generic container that 
+should always be used?
+
+>> +        #address-cells = <2>;
+>> +        #size-cells = <2>;
+>> +
+>> +      csi@110000 {
+> 
+> Fix the indentation. You switched back to 2 spaces here...
+
+Oops.
+
+>> +        compatible = "raspberrypi,rp1-cfe";
+>> +        reg = <0xc0 0x40110000  0x0 0x100>,
+>> +              <0xc0 0x40114000  0x0 0x100>,
+> 
+> Just one space before 0x0
+
+Ok.
+
+  Tomi
+
 
