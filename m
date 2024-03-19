@@ -1,298 +1,161 @@
-Return-Path: <devicetree+bounces-51774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 525B8880516
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 19:47:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34CAC880528
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 19:55:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B7BF51F238EF
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 18:47:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE2C328580C
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 18:55:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 201F739AF3;
-	Tue, 19 Mar 2024 18:47:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCF8239AD6;
+	Tue, 19 Mar 2024 18:55:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="O4UXRN68"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nKR6sUQB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF6E63987D
-	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 18:47:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F311D3B1A4
+	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 18:55:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710874038; cv=none; b=E5hjfplOltLyOuiwMXTi0IRF1sZy5OPJ5LB4LE2sgJKRKmKC/eKZ+60RemFVc+luz2WitKjwNiSZP4x1/WRnBJrKpBF4gNwSYrymUe+4AGyoB6TbUm3rFCczRgwkY7CGOj5ehXP1rW/LIfypFDMKidDuBt2iqtCRoX4VkA96SQE=
+	t=1710874520; cv=none; b=bND6X/GarGgweekTbOoFEdEsERPoJ1WQStAEz6jZIxIEyZHOzi/UW99xinz0maGLAcatUO0plhF2xEr/HKFhZp/3SHPErGDfQzRkJE0Za7W5hqGJAnj/VK3nfnhg9FekKENG/1sYC+cjs7KbKB6/nVeRxB+HqHzKyM4DhqCLFLA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710874038; c=relaxed/simple;
-	bh=+6T83vgzF4M+f76SSlS8X08c5+c85AAPe3UsRbosQTM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pv9MJ7Kz1NKyk5IujZLkjfdHGIFtz3cBaZOyroHLf75pjUvee/+U2XuOZc+baSzh8PbjAFcFqainc74Cviuq4Yv/zhC24VDH4jxq1EhAsorDEEKv2bqjNmA8kEnLoUVy55OrVolf8HMHMd4XCma2rDIFakgZiRLsK81EKUihAcI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=O4UXRN68; arc=none smtp.client-ip=209.85.219.182
+	s=arc-20240116; t=1710874520; c=relaxed/simple;
+	bh=h9vb3dzJK50rF+unzuJ++DX9Ls1tluXIoBoBDWHdUaU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uMjDxVDO0ZgmzG3gYqq+C8H2iKTa4Sh3Ps1AkkupoVsEXxicdXPvazPCi2fDv8kNrYSOkXnI/4z+k24A104w2tqaOjAQ8dLXrI1u0b41eesm7g9e+OPI0dxuMGgQpNA+Oeb7TNqPCglOSYkn2HMjL2wYziK/x8UfF6hsaP3Amks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nKR6sUQB; arc=none smtp.client-ip=209.85.167.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-dcd9e34430cso6191470276.1
-        for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 11:47:15 -0700 (PDT)
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5148ea935b8so2386114e87.1
+        for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 11:55:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710874035; x=1711478835; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+yETJkuJsleidnoVU1VURiPPCKkhUdvuJViHj8ytoVo=;
-        b=O4UXRN68YDZAQWOm1hrO4UGaHQImGrrkTLdonWKGDWZ1OKA4cDd5ItiY1B0eZ9TI5X
-         84u8+wFgPMKXpDqjY/MEBNjWfrVuN32HDkHBhJq0DA8sMqMbq3MLHMcHNX7dFOSmXjKO
-         hQDdmm4Stz1IPSufF5+41AH5wBcb0kLWkFzpBi6tb1KfyezkGKR3ssdHiJISl1QpOWLg
-         DOVz0aBkkDWP7zp+cAHZK5TmR08TmFfPjB4boUlWMPu0scDLvSIRdGXqUjJ1sZ6EyoIr
-         ffGkyYGAnQ7IZ9G4PXJD9OD11zyJi7mEgZHTOL9ceE4IwAV7tFql2uwvKSzjy27rz2fO
-         0Bmg==
+        d=linaro.org; s=google; t=1710874517; x=1711479317; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=83V+kLXEKnt3rHh9YFy/TefnTTCMNLk8pL8V6XrQ+/8=;
+        b=nKR6sUQBm0dfXhBkztlwAWqK+5+79hQOe+QiU2rEh7BsGLYQwXA6DqOg8VNikeWVAm
+         4XRO3oIjj/V3zWgs379QsleBfyM5p5YMaVy8WrMgTGu4ozQbkWZGPEfGhgQF5vU9xu7m
+         JEK9KXXg91XEq1i4oSRNhHgCDFiQ4wnJdPmvmiPRI9P1wYFsKPs6ab6WYibfmb6Esq2y
+         RfW7MgB+Dg7ENxJf7bsot2GjkXoJLSb77aJkjvBo6Hl3fj16ulOkCq88HJXF8U9ZqHrL
+         C6OjFg2cDI/xJ52zGfj3JzCDhrBMSZ8qDk4uKx3l58x8OPFf1f0TEm7z4TvpB5VAu7Pp
+         dHmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710874035; x=1711478835;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+yETJkuJsleidnoVU1VURiPPCKkhUdvuJViHj8ytoVo=;
-        b=kOm6+OpOtkYvurHji+AYaZCrjOXzyXSt3rKHxnde1R9q1je21BR8No9X7Km1YxyfA5
-         d69W0jCA9+s+SFQOMf3CU0mNlh5c+2ZjkQSUTVfIIXHwpO4lyKwugI6NWmK/WeLF+AF2
-         ajAIp302r6SU9nexm6nK1H5kZLo5790Nf1uUN9jaCVGRKzLMWqL88l+1IMz0HmhY5JG5
-         6/zQkBuhgp2O9rLc8pxDnCc3gUVbtQLeMjQ3ZRP1ZzWATX/gAPS3HRPwsme6AllsyZvW
-         Wlu7tNKNnQnP7dNE4eoaV/5v6B4FCjqK94RgbItko2NmJ30hLi+jh/JCVrNQCVnJLL3H
-         fsVg==
-X-Forwarded-Encrypted: i=1; AJvYcCXvj7DjfIRAtBCc5k7MywNz+TAjql8PgRzSW2yUvhzudtqIiaSakfCELHwDTgjIanj38dapee/tdZmK7CAlg6LCWaNYYG6K1izGmQ==
-X-Gm-Message-State: AOJu0YyqfbxcZzVLJwAZLOqu1h047oTRj3Csz2gNdBIxfmHKi0UH+ib3
-	ivACNR8+zEtIuIy1i9e2pWhePk7XhctLcMQFo2bhpz/LaM3kCCxpBPTtp42/nyCzmOK6xJ8SAiC
-	wMmUhL0Hzy5KZ+jRdQMaAF7z0M+9mSFOWHfOW1w==
-X-Google-Smtp-Source: AGHT+IGMULIlFhDFq57eyKDjNgk7qs9vLLxO6TKj43NJhJ7I/TS+DqIXKpFQOhwcgta7HS9GgDe5owb16IxuTP5lU/w=
-X-Received: by 2002:a25:830b:0:b0:dc6:ff32:aaea with SMTP id
- s11-20020a25830b000000b00dc6ff32aaeamr13507330ybk.24.1710874034601; Tue, 19
- Mar 2024 11:47:14 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1710874517; x=1711479317;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=83V+kLXEKnt3rHh9YFy/TefnTTCMNLk8pL8V6XrQ+/8=;
+        b=L5jn32NKBAhQEUfymSn1hQsQALjrWJC4zmNEIcyf9Jf0OjK72XMO2ZTOP9RF4S99Dl
+         VYNQMBXn3QbeM8ZUyK4PFn+XT85fJ5g62yYex5CCVhl43C1XQrW+IzkSS4PwrEp95o0K
+         cr8Gav2MJGzt+i+2cAtRdN8lGMIO2TPzizeyqPb5AWAtTwoyAOkuPDY8FwaibRFmcFRp
+         QGnF+r0V4BeNa9tRBxTr5xiHzsAJSSINrcrziz+hrb7wTkCNT9RPUiOGT2mN2MewkN0n
+         VC/etEdu4inyIJwKQiGp6jl5tv1WfRxTtTp3zUNLvrN/a/zg4utcg2VMN4TzdoDp5acE
+         5p8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWTL47gqX1FETBPC0Wec3YpULxSJ779nGs5B5wUd8pYqPFRo/kvyiDGXLdLdFBuIzYH+suWbgJCWI6DgxbcTgj/z2YQqkpskQa90g==
+X-Gm-Message-State: AOJu0YwvL3yOpAIINNlDvkAp/K3uthatMAmGFNDG3kpBZdCYOPJIig8B
+	YAxxwOnqYa9WafA3+qVBM7q28BJpD1oisu/i8GZ5UJ8zBj/WYRIHry/u8AIV5Qu/0bqSLjC6O7n
+	c
+X-Google-Smtp-Source: AGHT+IEoKE7/yvG89Di0GzAV77SummXupTNxWOUpcNfs4kVIta6lcqVF6t/RsIBXEM6KgN+0jqSVZQ==
+X-Received: by 2002:ac2:5a1c:0:b0:513:d24f:6455 with SMTP id q28-20020ac25a1c000000b00513d24f6455mr33557lfn.29.1710874516960;
+        Tue, 19 Mar 2024 11:55:16 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id bw9-20020a170906c1c900b00a4650ec48d0sm6453124ejb.140.2024.03.19.11.55.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Mar 2024 11:55:16 -0700 (PDT)
+Message-ID: <ae8e8151-b73f-413e-8535-95fc829654bb@linaro.org>
+Date: Tue, 19 Mar 2024 19:55:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240301015118.30072-1-semen.protsenko@linaro.org>
-In-Reply-To: <20240301015118.30072-1-semen.protsenko@linaro.org>
-From: Sam Protsenko <semen.protsenko@linaro.org>
-Date: Tue, 19 Mar 2024 13:47:03 -0500
-Message-ID: <CAPLW+4=_yD3ShU5DvLWFyEzVrVHNVCsB+4bVkP+x_boRmC-vEw@mail.gmail.com>
-Subject: Re: [PATCH v4 1/3] clk: samsung: Implement manual PLL control for
- ARM64 SoCs
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Tomasz Figa <tomasz.figa@gmail.com>, linux-samsung-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] arm64: dts: iesy: add support for iesy PX30 SoM OSM-S
+To: Dominik Poggel <pog@iesy.com>, "robh+dt@kernel.org" <robh+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Tianling Shen <cnsztl@gmail.com>, Chris Morgan <macromorgan@hotmail.com>,
+ Ondrej Jirman <megi@xff.cz>, Andy Yan <andyshrk@163.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20240319095411.4112296-1-pog@iesy.com>
+ <20240319095411.4112296-2-pog@iesy.com>
+ <b4f4f8e3-9832-4789-b4fb-beeeeb5c859e@linaro.org>
+ <8ace15e8-0da1-4384-9042-ab89329c352a@iesy.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <8ace15e8-0da1-4384-9042-ab89329c352a@iesy.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Feb 29, 2024 at 7:51=E2=80=AFPM Sam Protsenko
-<semen.protsenko@linaro.org> wrote:
->
-> Some ARM64 Exynos chips are capable to control PLL clocks automatically.
-> For those chips, whether the PLL is controlled automatically or manually
-> is chosen in PLL_CON1 register with next bits:
->
->     [28]  ENABLE_AUTOMATIC_CLKGATING
->     [1]   MANUAL_PLL_CTRL
->     [0]   AUTO_PLL_CTRL
->
-> The bl2 bootloader sets 0x10000001 value for some PLL_CON1 registers,
-> which means any attempt to control those PLLs manually (e.g.
-> disabling/enabling those PLLs or changing MUX parent clocks) would lead
-> to PLL lock timeout with error message like this:
->
->     Could not lock PLL ...
->
-> At the moment, all Samsung clock drivers implement manual clock control.
-> So in order to make it possible to control PLLs, corresponding PLL_CON1
-> registers should be set to 0x2 first.
->
-> Some older ARM64 chips don't implement the automatic clock control
-> though. It also might be desirable to configure some PLLs for manual
-> control, while keeping the default configuration for the rest. So it'd
-> convenient to choose this PLL mode for each CMU separately. Introduce
-> .manual_plls field to CMU structure to choose the PLL control mode.
-> Because it'll be initialized with "false" in all existing CMU
-> structures by default, it won't affect any existing clock drivers,
-> allowing for this feature to be enabled gradually when it's needed with
-> no change for the rest of users. In case .manual_plls is set, set
-> PLL_CON1 registers to manual control, akin to what's already done for
-> gate clocks in exynos_arm64_init_clocks(). Of course, PLL_CON1 registers
-> should be added to corresponding struct samsung_cmu_info::clk_regs array
-> to make sure they get initialized.
->
-> No functional change. This patch adds a feature, but doesn't enable it
-> for any users.
->
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> ---
+On 19/03/2024 16:17, Dominik Poggel wrote:
+> 
+> Thanks for your input, I will use it and resubmit it afterwards.
+> 
+> Unfortunately 'make dtbs_check' isn't working, as it can't resolve
+> http://devicetree.org/meta-schemas/core.yaml. Probably just a problem on 
+> my end,
+> I will investigate further.
 
-Hi Krzysztof,
+There is nothing to resolve there... did you install all prerequisites
+as mentioned in linked writing schema (dtschema, yamllint)?
 
-If it looks ok to you, can you please apply this series?
+Best regards,
+Krzysztof
 
-    [PATCH 1/3] clk: samsung: Implement manual PLL control for ARM64 SoCs
-    [PATCH 2/3] clk: samsung: exynos850: Add CMU_CPUCL0 and CMU_CPUCL1
-    [PATCH 3/3] arm64: dts: exynos: Add CPU clocks for Exynos850
-
-That concludes my efforts on CPU clock enablement in Exynos850.
-
-Thanks!
-
-> Changes in v4:
->   - Turned register checking macros into static functions
->
-> Changes in v3:
->   - none
->
-> Changes in v2:
->   - none
->
->  drivers/clk/samsung/clk-exynos-arm64.c | 56 +++++++++++++++++++-------
->  drivers/clk/samsung/clk.h              |  4 ++
->  2 files changed, 45 insertions(+), 15 deletions(-)
->
-> diff --git a/drivers/clk/samsung/clk-exynos-arm64.c b/drivers/clk/samsung=
-/clk-exynos-arm64.c
-> index 6fb7194df7ab..bf7de21f329e 100644
-> --- a/drivers/clk/samsung/clk-exynos-arm64.c
-> +++ b/drivers/clk/samsung/clk-exynos-arm64.c
-> @@ -17,10 +17,17 @@
->
->  #include "clk-exynos-arm64.h"
->
-> +/* PLL register bits */
-> +#define PLL_CON1_MANUAL                BIT(1)
-> +
->  /* Gate register bits */
->  #define GATE_MANUAL            BIT(20)
->  #define GATE_ENABLE_HWACG      BIT(28)
->
-> +/* PLL_CONx_PLL register offsets range */
-> +#define PLL_CON_OFF_START      0x100
-> +#define PLL_CON_OFF_END                0x600
-> +
->  /* Gate register offsets range */
->  #define GATE_OFF_START         0x2000
->  #define GATE_OFF_END           0x2fff
-> @@ -38,17 +45,36 @@ struct exynos_arm64_cmu_data {
->         struct samsung_clk_provider *ctx;
->  };
->
-> +/* Check if the register offset is a GATE register */
-> +static bool is_gate_reg(unsigned long off)
-> +{
-> +       return off >=3D GATE_OFF_START && off <=3D GATE_OFF_END;
-> +}
-> +
-> +/* Check if the register offset is a PLL_CONx register */
-> +static bool is_pll_conx_reg(unsigned long off)
-> +{
-> +       return off >=3D PLL_CON_OFF_START && off <=3D PLL_CON_OFF_END;
-> +}
-> +
-> +/* Check if the register offset is a PLL_CON1 register */
-> +static bool is_pll_con1_reg(unsigned long off)
-> +{
-> +       return is_pll_conx_reg(off) && (off & 0xf) =3D=3D 0x4 && !(off & =
-0x10);
-> +}
-> +
->  /**
->   * exynos_arm64_init_clocks - Set clocks initial configuration
-> - * @np:                        CMU device tree node with "reg" property =
-(CMU addr)
-> - * @reg_offs:          Register offsets array for clocks to init
-> - * @reg_offs_len:      Number of register offsets in reg_offs array
-> + * @np:                CMU device tree node with "reg" property (CMU add=
-r)
-> + * @cmu:       CMU data
->   *
-> - * Set manual control mode for all gate clocks.
-> + * Set manual control mode for all gate and PLL clocks.
->   */
->  static void __init exynos_arm64_init_clocks(struct device_node *np,
-> -               const unsigned long *reg_offs, size_t reg_offs_len)
-> +                                           const struct samsung_cmu_info=
- *cmu)
->  {
-> +       const unsigned long *reg_offs =3D cmu->clk_regs;
-> +       size_t reg_offs_len =3D cmu->nr_clk_regs;
->         void __iomem *reg_base;
->         size_t i;
->
-> @@ -60,14 +86,14 @@ static void __init exynos_arm64_init_clocks(struct de=
-vice_node *np,
->                 void __iomem *reg =3D reg_base + reg_offs[i];
->                 u32 val;
->
-> -               /* Modify only gate clock registers */
-> -               if (reg_offs[i] < GATE_OFF_START || reg_offs[i] > GATE_OF=
-F_END)
-> -                       continue;
-> -
-> -               val =3D readl(reg);
-> -               val |=3D GATE_MANUAL;
-> -               val &=3D ~GATE_ENABLE_HWACG;
-> -               writel(val, reg);
-> +               if (cmu->manual_plls && is_pll_con1_reg(reg_offs[i])) {
-> +                       writel(PLL_CON1_MANUAL, reg);
-> +               } else if (is_gate_reg(reg_offs[i])) {
-> +                       val =3D readl(reg);
-> +                       val |=3D GATE_MANUAL;
-> +                       val &=3D ~GATE_ENABLE_HWACG;
-> +                       writel(val, reg);
-> +               }
->         }
->
->         iounmap(reg_base);
-> @@ -177,7 +203,7 @@ void __init exynos_arm64_register_cmu(struct device *=
-dev,
->                 pr_err("%s: could not enable bus clock %s; err =3D %d\n",
->                        __func__, cmu->clk_name, err);
->
-> -       exynos_arm64_init_clocks(np, cmu->clk_regs, cmu->nr_clk_regs);
-> +       exynos_arm64_init_clocks(np, cmu);
->         samsung_cmu_register_one(np, cmu);
->  }
->
-> @@ -224,7 +250,7 @@ int __init exynos_arm64_register_cmu_pm(struct platfo=
-rm_device *pdev,
->                        __func__, cmu->clk_name, ret);
->
->         if (set_manual)
-> -               exynos_arm64_init_clocks(np, cmu->clk_regs, cmu->nr_clk_r=
-egs);
-> +               exynos_arm64_init_clocks(np, cmu);
->
->         reg_base =3D devm_platform_ioremap_resource(pdev, 0);
->         if (IS_ERR(reg_base))
-> diff --git a/drivers/clk/samsung/clk.h b/drivers/clk/samsung/clk.h
-> index a763309e6f12..a70bd7cce39f 100644
-> --- a/drivers/clk/samsung/clk.h
-> +++ b/drivers/clk/samsung/clk.h
-> @@ -330,6 +330,7 @@ struct samsung_clock_reg_cache {
->   * @suspend_regs: list of clock registers to set before suspend
->   * @nr_suspend_regs: count of clock registers in @suspend_regs
->   * @clk_name: name of the parent clock needed for CMU register access
-> + * @manual_plls: Enable manual control for PLL clocks
->   */
->  struct samsung_cmu_info {
->         const struct samsung_pll_clock *pll_clks;
-> @@ -354,6 +355,9 @@ struct samsung_cmu_info {
->         const struct samsung_clk_reg_dump *suspend_regs;
->         unsigned int nr_suspend_regs;
->         const char *clk_name;
-> +
-> +       /* ARM64 Exynos CMUs */
-> +       bool manual_plls;
->  };
->
->  struct samsung_clk_provider *samsung_clk_init(struct device *dev,
-> --
-> 2.39.2
->
 
