@@ -1,215 +1,109 @@
-Return-Path: <devicetree+bounces-51617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AD6787FD75
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 13:21:32 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DE3387FD7F
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 13:23:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA9D71F22C56
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 12:21:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EA486B2195A
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 12:23:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF2717F7C8;
-	Tue, 19 Mar 2024 12:21:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4C077F499;
+	Tue, 19 Mar 2024 12:23:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="z822HIin"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="YMFkbvab"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFC4B7F48A
-	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 12:21:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9DC77F492;
+	Tue, 19 Mar 2024 12:23:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710850885; cv=none; b=SokZi9/AfYQCY7oghRaINcfRZktZH7wOnyss8TlFsOZf92ldr5HMl+bF7Qj5uX14DqDjDlbFFS5oyhlzX3hS/FNjHRIkuxb5gd0JYV35AvX9KiALoOG7tktFOApQBVE6Q1LnkqJI15XQgmkOQ8wzxW4b2804n5dvqqU9jfsBMzs=
+	t=1710851031; cv=none; b=KKzkQ8wRpIKoY4hiYZJEbKsk6shE/Xlup3LDw8pMSu9W3CI2wsofwB4lEO3f1N51qq4qii23Z3FPQRsYg0y0BEQGhPgQUKo77HTpM/8OBzpDSujiUkKHd0K/KPUxPftPa8iPpW6cOQb7rS76ODEBkF+z8iUSiVabD/h3Nf1dayM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710850885; c=relaxed/simple;
-	bh=27rUfD7MEkKL14gEk9IYOPASgdy/NR3DmqlPtc7soRY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fcYvuO4I1z9jN2XlUZcMfxXmzuSMEPEagOLX640nabIFXPOiHLqeTb5LOIKfXiuK1AtiRbmr61VJMd2WBjaQvTWwlAqe8O6QccfjrggpKmiy7MTAdpzV479iy90vWMvleAhWQjw9p8CHfv40J7K88aHGQ/eVOTcyGww7HflrcK8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=z822HIin; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a45f257b81fso714715466b.0
-        for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 05:21:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710850882; x=1711455682; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Cpmdw5XpaoCdxhyeSiy9tIIx/KXvYC3XE2r05d3ZaTE=;
-        b=z822HIinrcFoGOuuiOyWnphzPX3/2/EvUOAOCvGPLeeuUIPAs2A6SSOwEFuIZ/Im2w
-         L37c0vt4TZH4DG/nn12tqyx+w0YTlzXRd1K8otwzAEOKdkfzPmrzqSV4Yged714oEMPm
-         z6Wx0Mph5DkVHowKi2ejsnDUyhZxLolQwZN28fPCK91mXLg7jB40X8y+5nFvghV5xE76
-         HlOSb2207FKhhQp5pP+AvP6v6pbFApKMxidyzssarruG4T+b6BXbwoXLeoUxqC4aMl9z
-         +tXThoDGMNeIBDeAU5RzGjwuvufK47aL6blKbn4TDNyzU/rfXVxP6rH1KWN0L9k7Ddx8
-         aXxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710850882; x=1711455682;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Cpmdw5XpaoCdxhyeSiy9tIIx/KXvYC3XE2r05d3ZaTE=;
-        b=u40Pw/dJPW1DBEe5593B4FN4Pkv7WBdb2U4vKYauWR1RmLgcUe6cvSTXA3tQyKvzXm
-         BNg0fi78/bjPGqDZkG15OEdDm4FiVNltBi44kmeNOlp2IUIxzX7gaDGCm8S9GWPKki05
-         4vvlpsUM4yvq18XRf5gk8pBtgieB14tbX112mwdUYg7vMF4hv6TwcCkWJNzebh1Yd1F7
-         TgZPOzkTc+/x/YwSa2+uGzsHpsyGblfWaX/Rnds3dGqTassLhWA0D1isBRLK66pjqLIT
-         PJLrAETM5mC3IN9vCY4UMSeKlBVwEOSQMPaCnyVA1oJif2dnYv42+nDJOEOpqLs0wMDy
-         parA==
-X-Forwarded-Encrypted: i=1; AJvYcCXXCBz+2z1K+Z/baprdjd04EpZaj5TCxQZO3K1mkzBEPARMs78mXEu94xZS/4xQuFI55bTUCJldtAUMQ+pCoWLrdDhvyWDMWCjr+A==
-X-Gm-Message-State: AOJu0Yz/LwRuZC52XEDuFJUr7KoB4LhMEJVYH9UgGsv8YChOlp0Oq11W
-	kBQ9o8rYAK0u7VOl4Rmf5LQjZwkJV6Du7uLkgYPVSumoQdSYvG/nKQr5Q9N60A0=
-X-Google-Smtp-Source: AGHT+IGJWHELpCKZT/Ag+J7FKpx0IjsLI+DzsH9QFPIYshPca0SwbyJp9P8zi3nolpFX0cq2bvNAhw==
-X-Received: by 2002:a17:906:c30f:b0:a46:a662:e56f with SMTP id s15-20020a170906c30f00b00a46a662e56fmr1700440ejz.38.1710850882197;
-        Tue, 19 Mar 2024 05:21:22 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id g17-20020a170906199100b00a46a49d661fsm3918912ejd.210.2024.03.19.05.21.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Mar 2024 05:21:21 -0700 (PDT)
-Message-ID: <89d459dd-cc8c-4780-a56a-809e24343e69@linaro.org>
-Date: Tue, 19 Mar 2024 13:21:19 +0100
+	s=arc-20240116; t=1710851031; c=relaxed/simple;
+	bh=SlOln8xPDywR1tWfylM5enltr6blU9v4YSUA3SB4mlo=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cotijXgmq9DVmu8z7zYvxw8RBUSxJln2LNqnkaGnPEnA78KoDVAtslFqCUqX3O7dzbmFfPUWjsH7xl6RyW49zSAYay6IBXh8T3CVuEOrUvQIvX4VKf7CP8OWI9jFRu+CfeTjiMe6OCHkcvyMZVq9tjOdVGTxw9cS5KsptngkhHw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=YMFkbvab; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 42JCNgu9004971;
+	Tue, 19 Mar 2024 07:23:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1710851022;
+	bh=LOb4gIwJ/2H59TvQtXjMoCLrpCHsTI10TG1FqHqP4YU=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=YMFkbvabu0ATouR0mxLV8Llj5bEpGudOBC7UmxADxCUlgT2O+S713JTQfqI9vmqku
+	 RCiE43YOCgd/U+kR1BmTbDvPr6/SnHMAqG8zvnR22GMzJVC0rkph3YPdBrlJmqiO9y
+	 qK2haIrmAr7vbGAAn/qX8Pp6zHy3A3RHmn8/GXm8=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 42JCNgpG021186
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 19 Mar 2024 07:23:42 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 19
+ Mar 2024 07:23:41 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 19 Mar 2024 07:23:41 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 42JCNfrU113825;
+	Tue, 19 Mar 2024 07:23:41 -0500
+Date: Tue, 19 Mar 2024 07:23:41 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Chintan Vankar <c-vankar@ti.com>
+CC: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh@kernel.org>, Tero
+ Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <s-vadapalli@ti.com>, <srk@ti.com>, <r-gunasekaran@ti.com>,
+        <danishanwar@ti.com>
+Subject: Re: [PATCH v5 4/5] arm64: dts: ti: k3-j784s4: Add overlay to enable
+ QSGMII mode with CPSW9G
+Message-ID: <20240319122341.g6v6rjb3snru6223@flavored>
+References: <20240314072129.1520475-1-c-vankar@ti.com>
+ <20240314072129.1520475-5-c-vankar@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] dt-bindings: media: Add bindings for
- raspberrypi,rp1-cfe
-To: Naushir Patuck <naush@raspberrypi.com>
-Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
- Kieran Bingham <kieran.bingham@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-References: <20240318-rp1-cfe-v1-0-ac6d960ff22d@ideasonboard.com>
- <20240318-rp1-cfe-v1-2-ac6d960ff22d@ideasonboard.com>
- <eb854c43-1e92-4c19-bfd3-1bde94924319@linaro.org>
- <f97faeb9-8a6b-47c6-9317-daca88257802@ideasonboard.com>
- <30430e0e-70de-4831-97ad-974e350a2e54@ideasonboard.com>
- <5ca1d005-1beb-47ec-943a-9358ae3c6704@linaro.org>
- <CAEmqJPp7uGYe993L+ujth2mfRy66s8-S9FNxPY7vwkrboDq9yg@mail.gmail.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAEmqJPp7uGYe993L+ujth2mfRy66s8-S9FNxPY7vwkrboDq9yg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240314072129.1520475-5-c-vankar@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 19/03/2024 13:06, Naushir Patuck wrote:
-> Hi,
-> 
-> On Tue, 19 Mar 2024 at 09:32, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 19/03/2024 08:00, Tomi Valkeinen wrote:
->>> On 19/03/2024 08:48, Tomi Valkeinen wrote:
->>>> On 19/03/2024 08:23, Krzysztof Kozlowski wrote:
->>>>> On 18/03/2024 16:49, Tomi Valkeinen wrote:
->>>>>> Add DT bindings for raspberrypi,rp1-cfe.
->>>>>>
->>>>>> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
->>>>>> ---
->>>>>>   .../bindings/media/raspberrypi,rp1-cfe.yaml        | 103
->>>>>> +++++++++++++++++++++
->>>>>>   1 file changed, 103 insertions(+)
->>>>>>
->>>>>> diff --git
->>>>>> a/Documentation/devicetree/bindings/media/raspberrypi,rp1-cfe.yaml
->>>>>> b/Documentation/devicetree/bindings/media/raspberrypi,rp1-cfe.yaml
->>>>>> new file mode 100644
->>>>>> index 000000000000..7b2beeaaab0e
->>>>>> --- /dev/null
->>>>>> +++ b/Documentation/devicetree/bindings/media/raspberrypi,rp1-cfe.yaml
->>>>>> @@ -0,0 +1,103 @@
->>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>>> +%YAML 1.2
->>>>>> +---
->>>>>> +$id: http://devicetree.org/schemas/media/raspberrypi,rp1-cfe.yaml#
->>>>>
->>>>> Use compatible as filename.
->>>>
->>>> Ah, indeed. I changed the compatible quite late, adding the "rpi5" as
->>>> versioning, and missed changing the file name.
->>>>
->>>> I'll rename.
->>>
->>> Actually, maybe it's better to have two compatibles,
->>> "raspberrypi,rp1-cfe" as the generic one, and "raspberrypi,rpi5-rp1-cfe"
->>> (or something similar) for RaspberryPi 5.
->>>
->>> And I'm not sure if the "rp1" part is relevant there, would
->>> "raspberrypi,cfe" be just as fine? Naush?
->>
->> See writing bindings. Compatibles should be SoC specific. In some cases
->> generic fallbacks make sense, in some note. But don't just choose
->> "generic fallback" because you want. Provide rationale.
-> 
-> If the compatible is SoC specific, I suppose "raspberrypi,rp1-cfe"
-> would be the correct string.
+On 12:51-20240314, Chintan Vankar wrote:
+> +&serdes2 {
+> +	status = "okay";
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
 
-Sure, but then please think what if rp1 is on Rpi6, called exactly the
-same (rp1), with some minor differences? Could it be? I don't know, you
-are upstreaming this stuff. Just be also sure you read writing bindings
-document.
+Here and elsewhere
+Please follow https://docs.kernel.org/devicetree/bindings/dts-coding-style.html#order-of-properties-in-device-node
 
-Best regards,
-Krzysztof
+> +	serdes2_qsgmii_link: phy@0 {
+> +		reg = <2>;
+> +		cdns,num-lanes = <1>;
+> +		#phy-cells = <0>;
+> +		cdns,phy-type = <PHY_TYPE_QSGMII>;
+> +		resets = <&serdes_wiz2 3>;
+> +	};
+> +};
 
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
