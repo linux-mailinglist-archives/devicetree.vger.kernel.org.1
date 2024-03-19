@@ -1,66 +1,66 @@
-Return-Path: <devicetree+bounces-51759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D1D98803C3
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 18:43:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09D378803D1
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 18:46:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F9311C22C53
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 17:43:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B97DF2848EC
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 17:46:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4045428DDF;
-	Tue, 19 Mar 2024 17:41:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 556A4208D4;
+	Tue, 19 Mar 2024 17:46:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rQf9nojb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SGjDF4XU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FF962943F;
-	Tue, 19 Mar 2024 17:40:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 284D91CAB2;
+	Tue, 19 Mar 2024 17:46:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710870060; cv=none; b=r0j/IKuvDCX/Q9vpJSdwqLO8Tdx5fwqp5FSwrRckMre0hAl1sA31epsLNhBCq4zj+SgGbOh2kWxLMcoj4zo8/QO8jjqDfpLC1ggGAgnucdfts/zwOpUlla6tll6NaI0JHQtL/VOSnp1PqANVmc7z1rB8Shv4mkif1oHig72q5tw=
+	t=1710870373; cv=none; b=K7WL1uRU0XopQq8+S4PATy/6jndQhdcjDdWloR0nAJHmj9j3M+u17HJAvAGczPfHD/pCwSUYE5hBf5DTvpllduGwvqSEPqZlOv2Y92K4hYCbihL2W5zPWlYhnlNnRJ/NN46olRfOKP1+KHN3a3bM+xZbNIazrLNQg2exMqtWFRk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710870060; c=relaxed/simple;
-	bh=CKyJcdGuzJfzYC3Io1ni1ArcNYE/b8UBL4slLPFHKpA=;
+	s=arc-20240116; t=1710870373; c=relaxed/simple;
+	bh=fZ0QELwGTKD07yu3UczJUEharu+OHubpHxFZJAUTYUs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=q5sTB4fMGcqZxUcP99nX6Nu7CCrOokF0MIMcFS18oQtbIf0CZnZ0+mTAtt0ENCJvW+Q8XEpfhTb6KQ/Cr6ouhz/RbrC1NLeC9v6wafWWYFP0gC4PEwhLAbVF2BtGWkDVi4da+JYnf1uwYeiZx2OQCzWnbmhaNxhAXgWmiZ/6yKw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rQf9nojb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80489C433F1;
-	Tue, 19 Mar 2024 17:40:57 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=i0w4WYeHjGrBwpO0HsOgUKIhSccyRPO+1mqWdaYySTZ/KxqX4Y3MI/zTLJFzHCVTydHwCmhOPYsSe4PGg2o2q1KuHJrb9c8Boma47SbV/HlAWPlgZdCFo1MEY6008tZ3qeJoyxcp02EQBVBEL+n1L/2MP2Jx/h49pNGN0cjj5iQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SGjDF4XU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B309CC433C7;
+	Tue, 19 Mar 2024 17:46:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710870059;
-	bh=CKyJcdGuzJfzYC3Io1ni1ArcNYE/b8UBL4slLPFHKpA=;
+	s=k20201202; t=1710870372;
+	bh=fZ0QELwGTKD07yu3UczJUEharu+OHubpHxFZJAUTYUs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rQf9nojbPOW4HrNNylLWnDlZHkF50T40x4EQZuDXubNIO8+PqbyWowceYtbysCw98
-	 WJw0kczvcycOc5DO5OGOwcVsIkA/RZV83q++gFRsIt9a+fox615mRI9giMzh92xIEp
-	 L5ZVem6qySpvk8ZYPecckBjBZBnKB4STaIx78c5oypwY/IbIDUc/bMBTv8Wbgzgr9m
-	 laGIBrNX2D4KWT0cCAlpDUD6BDKcVzbLuNxTGUw6lgAogcZID7C5Ks/dM1doVn2e6/
-	 aWmepWf7vklvJuHia+JJJ+SKMEbu2SYlCGIb3JZTUv/L77BLN2k4pgEHLXTlOsTrXb
-	 YZwArHTx5mqRQ==
-Date: Tue, 19 Mar 2024 17:40:55 +0000
+	b=SGjDF4XUwEcd0DIpqubZHG1E9ca+QEbg+LZv+L1DruzpY8DkKAtPW+mx8gcqncrCK
+	 aGSMqnimyyF9opVvsrMVQUB6aaQNWJnWzxH0Dsg1IiKY3rUGL4zUo+Gp0mD1yR/lrF
+	 YUipTw5PgcvXtcuygqgyrPxTWZ22R0X+/dokUTmwau6naWroLE1CbWFFbyUOpZfSMd
+	 4omkwfypp0zLalklXI0rebBgm3alw9BTx3zv/vrlPVvIHCqEoJ6nhQTxCyRephB0sg
+	 ctYJrWX+aqsZe2jsPPA81mzFu3xeYXenYT0nHYgJJLWDRregqEYAKI9UMj8EzYA8Lf
+	 HTolcnmTMgKuw==
+Date: Tue, 19 Mar 2024 17:46:07 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Huacai Chen <chenhuacai@kernel.org>
-Cc: Keguang Zhang <keguang.zhang@gmail.com>, Vinod Koul <vkoul@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-mips@vger.kernel.org,
-	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 0/2] Add support for Loongson1 DMA
-Message-ID: <20240319-trimester-manhole-3bd092f3343f@spud>
-References: <20240316-loongson1-dma-v6-0-90de2c3cc928@gmail.com>
- <CAAhV-H6aGS6VXGzkqWTyxL7bGw=KdjmnRZj7SpwrV5hT6XQcpg@mail.gmail.com>
- <CAJhJPsVSM-8VA604p2Vr58QJEp+Tg72YTTntnip64Ejz=0aQng@mail.gmail.com>
- <CAAhV-H5TR=y_AmbF6QMJmoS0BhfB=K7forMg0-b2YWm7trktjA@mail.gmail.com>
- <20240318-average-likely-6a55c18db7bb@spud>
- <CAAhV-H4oMoPt7WwWc7wbxy-ShNQ8dPkuTAuvSEGAPBKvkkn24w@mail.gmail.com>
- <20240318-saxophone-sudden-ce0df3a953a8@spud>
- <CAJhJPsXKZr7XDC-i1O_tpcgGE9c0yk7S9Qjnpk7hrU0evAJ+FQ@mail.gmail.com>
- <CAAhV-H5Gm6mACV4smxDB=BJvLr8C1AmgY=mMqfNYOOxEUBhqFA@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Chris Brandt <chris.brandt@renesas.com>,
+	Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-renesas-soc@vger.kernel.org,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH 1/2] dt-bindings: timer: renesas: ostm: Document Renesas
+ RZ/V2H(P) SoC
+Message-ID: <20240319-value-nutmeg-f107f7ac2319@spud>
+References: <20240318160731.33960-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240318160731.33960-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,76 +68,38 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="zXRSty4a3vyseasR"
+	protocol="application/pgp-signature"; boundary="Ic8LyRranNDuv8NG"
 Content-Disposition: inline
-In-Reply-To: <CAAhV-H5Gm6mACV4smxDB=BJvLr8C1AmgY=mMqfNYOOxEUBhqFA@mail.gmail.com>
+In-Reply-To: <20240318160731.33960-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
 
---zXRSty4a3vyseasR
-Content-Type: text/plain; charset=utf-8
+--Ic8LyRranNDuv8NG
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Mar 19, 2024 at 10:40:54AM +0800, Huacai Chen wrote:
-> On Tue, Mar 19, 2024 at 10:32=E2=80=AFAM Keguang Zhang <keguang.zhang@gma=
-il.com> wrote:
-> >
-> > On Mon, Mar 18, 2024 at 11:42=E2=80=AFPM Conor Dooley <conor@kernel.org=
-> wrote:
-> > >
-> > > On Mon, Mar 18, 2024 at 10:26:51PM +0800, Huacai Chen wrote:
-> > > > Hi, Conor,
-> > > >
-> > > > On Mon, Mar 18, 2024 at 7:28=E2=80=AFPM Conor Dooley <conor@kernel.=
-org> wrote:
-> > > > >
-> > > > > On Mon, Mar 18, 2024 at 03:31:59PM +0800, Huacai Chen wrote:
-> > > > > > On Mon, Mar 18, 2024 at 10:08=E2=80=AFAM Keguang Zhang <keguang=
-=2Ezhang@gmail.com> wrote:
-> > > > > > >
-> > > > > > > Hi Huacai,
-> > > > > > >
-> > > > > > > > Hi, Keguang,
-> > > > > > > >
-> > > > > > > > Sorry for the late reply, there is already a ls2x-apb-dma d=
-river, I'm
-> > > > > > > > not sure but can they share the same code base? If not, can=
- rename
-> > > > > > > > this driver to ls1x-apb-dma for consistency?
-> > > > > > >
-> > > > > > > There are some differences between ls1x DMA and ls2x DMA, suc=
-h as
-> > > > > > > registers and DMA descriptors.
-> > > > > > > I will rename it to ls1x-apb-dma.
-> > > > > > OK, please also rename the yaml file to keep consistency.
-> > > > >
-> > > > > No, the yaml file needs to match the (one of the) compatible stri=
-ngs.
-> > > > OK, then I think we can also rename the compatible strings, if poss=
-ible.
-> > >
-> > > If there are no other types of dma controller on this device, I do not
-> > > see why would we add "apb" into the compatible as there is nothing to
-> > > differentiate this controller from.
-> >
-> > That's true. 1A/1B/1C only have one APB DMA.
-> > Should I keep the compatible "ls1b-dma" and "ls1c-dma"?
-> The name "apbdma" comes from the user manual, "exchange data between
-> memory and apb devices", at present there are two drivers using this
-> naming: tegra20-apb-dma.c and ls2x-apb-dma.c.
+On Mon, Mar 18, 2024 at 04:07:30PM +0000, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>=20
+> Document the General Timer Module (a.k.a OSTM) block on Renesas RZ/V2H(P)
+> ("R9A09G057") SoC, which is identical to the one found on the RZ/A1H and
+> RZ/G2L SoCs. Add the "renesas,r9a09g057-ostm" compatible string for the
+> RZ/V2H(P) SoC.
+>=20
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-I think it's unnessesary but I won't stand in your way.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---zXRSty4a3vyseasR
+--Ic8LyRranNDuv8NG
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZfnOJwAKCRB4tDGHoIJi
-0nvrAQDhZVVmZ6duvOR3gVQKirxCEc7beNbKbw7KypGCx1HM8QD/flL3O4geYnwx
-Q4s8Sg0+lo7D1opd2SceXluRzmFuBQc=
-=+H9t
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZfnPXwAKCRB4tDGHoIJi
+0jWYAP9bu4Rs4V0ZMDUyuGoi71pY4Tx/K54RhA+b43wwtFiV8AD+NGtwyo/bwvqL
+yKy84MjX2ffs142Ks+bJXs0ChqKC/A0=
+=NvWw
 -----END PGP SIGNATURE-----
 
---zXRSty4a3vyseasR--
+--Ic8LyRranNDuv8NG--
 
