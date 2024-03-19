@@ -1,294 +1,237 @@
-Return-Path: <devicetree+bounces-51560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F18BE87FB60
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 11:00:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE30E87FB66
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 11:01:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 66E3FB21CDF
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 10:00:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5FDE6B2249E
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 10:01:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2A397F7FD;
-	Tue, 19 Mar 2024 09:56:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA53E7E104;
+	Tue, 19 Mar 2024 10:00:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="isdayeQ7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QhvnyM3I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCCFD7F7E8
-	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 09:56:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 461CE7D3FB;
+	Tue, 19 Mar 2024 10:00:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710842205; cv=none; b=b+VK9tiBDdvSr4gv6E/XnqGCZ5bhPNZGoSBrFynodGe42OkoYgEWhnhFBW78nWIYSagwGuywx70SCJs0RQ/NR7/X8w6zPsSPIz8xv86khVfbcGFFCMBlsPRmtwQhNNLrylCeDNMgE/XZWjRl3SsgUsYnYObPrx3X646r170BORo=
+	t=1710842419; cv=none; b=KStmd4emhUt6/nlZA2wHHovejl9Mvu+1Mz34d2s+TEDJNoBmRnI3ZIJI5ejxOaMWD6c3GUjYgmUcH+rDXSN5GCfMEyZLa0YpKDUz0JZu+BIHk3p1CtGi1x+Px3GMOnOlcQTeVIsXVDGrTtPJwED/wVIpXeKAEBssSrMf64BuTlM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710842205; c=relaxed/simple;
-	bh=sVmpa3YnHgH60lI6Y+lLRwChhU3YC6GAAXpvxJnulaM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IvPVMnBnGFJG+JiHGQtWH4BQfRKEOWgYRTErarYplMTG9U4mZUU4GvQAMiqKm74ijduBu7NVdCmeW1h3PyUusz/YtiHuut1sC2dPuYi8J5pUegQJMz/cVqVFAD1H1d0Ek8QLZQBMLoy0gaMfFkzr/k1EZuK8cS1N02IPGiohEmM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=isdayeQ7; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-563bb51c36eso6136873a12.2
-        for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 02:56:43 -0700 (PDT)
+	s=arc-20240116; t=1710842419; c=relaxed/simple;
+	bh=YS6LfNbkzTPgDh+QU1D0cGkvWCvd8NnUqkDhxC1Y2G8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=T1/imVdZtlkhTONErNA80pbvryGbaXTeZqhpEwE2fyMlyjajPxQ0eXEyTDPS6vCYFWb6H1egRlJMOzatil7LCh4ASkO9xfZrjewLWD9huIaHLr1wy4myXxOipW5YI8dWswKB1zpxtv+UfZwP4i9Xq3p21OGN6Gc8RBT7mqzb5Zs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QhvnyM3I; arc=none smtp.client-ip=209.85.166.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-io1-f49.google.com with SMTP id ca18e2360f4ac-7c8bd9837fdso104989639f.1;
+        Tue, 19 Mar 2024 03:00:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710842202; x=1711447002; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=AS/cPgoMWn3JAoH60GCWZa9D3Pqyi0ONOw1eWx4Iybo=;
-        b=isdayeQ7YQ8tmcZLq47liWCvyBUU67lUnWOn8Ciu32Lo7IEY749vJ2e5Yx3LTBS5nl
-         Z7SjdXW2q/DiqrDWZ+jFugEhV6qZ9/3USJhbaFkKUBEqwD0zY2MpR+Uf+jbmneIYsvgd
-         4cLJ63uC5lIuaZEeBBp+OLlqfliBmXfzbrIAGD+3MsUjJBJs36o8VF3jrhewakfzPcQh
-         bvD5nUKjFclNQhhXuE9PZnHFAyu+5ugBZVPrCA+AYoXW6bhHzhSS3NxhUWHaoLLETG7L
-         I7qoZkzvoqpDNWcJZW4MCkaoB3LSpx6DIm7JXSDZQNhD3LnPPQLPXbM5y9mUie4QBZIT
-         qF/Q==
+        d=gmail.com; s=20230601; t=1710842417; x=1711447217; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3hPBanVUiv6bl/xFEDLvHWIxIkfYGh6kxsMyvNaiemA=;
+        b=QhvnyM3IpEoEb60wTFdzTO51bFWCD1A6HzBaaqwLYTUu4sfuQCILq2yng+ialJhMlZ
+         beBmYPlpxZmbGqih/gwG9QBu94KXZdtfONQ0CV4eUUWdtTuCCmYlc9sD5JmowK0VIyhg
+         fzgVx7pXqJClFwQV9491MyfeLAYoSelNC5VHTAlKI1iRC/LZ7umMU3srCMqduf5BqjG1
+         /9ZxWlJq8lsLUyWquSUpyY6PRKecfgS1KqM49xpfZZ8vKPsPFEu1JBlCexihhs4nQtdz
+         Rm9srkBBnbh/bZigp628WuCiF15JoatUggS1JLA9qJxsNPCWZkIrPVS6BDry00wa5o+W
+         5rHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710842202; x=1711447002;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AS/cPgoMWn3JAoH60GCWZa9D3Pqyi0ONOw1eWx4Iybo=;
-        b=sev9u6s30NXi3r2Stc6xG0fIZyeIi7Nng9qHU0EKhoTAykqFKVSikamXFy5Oqymnjy
-         m4BqC8yX6iYNv8dO2dpHY7+KXo6jvxDF75iHw0P1GZb+8T1ZsMArB5iKUI6KPAutIUd7
-         7ENphy524ouUGmL2al1zc2lVNwlO5Z8H3k3MrUPIXW+QcRTx5Z+mcNeKMc7jCLK01/45
-         MQBRf3ARX9NB+PBuPK6Cy6ms3uu3D3hN7x1n/8y9o439BcFEMmmM59rQPf4D0tQP4Cbl
-         Cgtzhnyul3VTNf7C96yWuqtu9R1G8yHD0UjC4yhcJXKggMTIG26Zg4ZL8mCAWyTbNOmz
-         SMVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWHU6VoQLaOj1SgY2QTFV5nKUqcn0YUmQ3zi3vcTIvO7HFtBVK5HHvWrazsQ5jG1ebLWlk44J7nE/Ffyivnh3nZkNHyd6eksr5cyA==
-X-Gm-Message-State: AOJu0Yx9RdpCBu8sJZxz8nX9HKqlMRLJmWtT9BYDKtbFo773nEfB0Ivw
-	SZNYGx1Ak4M6ii08wNc7+B+6w/5mLMQBp9D+7dtDO+2pK0nU5z+4uLILENn9H/w=
-X-Google-Smtp-Source: AGHT+IH6QxuKQDs1dmD0MxMhAH0Rms/7V/LdF5xNvrXW4SyLdJchixR2Shz1zdbIqB9LOVFovu0V8g==
-X-Received: by 2002:a17:906:6817:b0:a46:bab3:e9e6 with SMTP id k23-20020a170906681700b00a46bab3e9e6mr1455041ejr.1.1710842202110;
-        Tue, 19 Mar 2024 02:56:42 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id jx25-20020a170907761900b00a4661f0f1e7sm5867045ejc.205.2024.03.19.02.56.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Mar 2024 02:56:41 -0700 (PDT)
-Message-ID: <bad5df79-e040-4868-9db6-701110894ea3@linaro.org>
-Date: Tue, 19 Mar 2024 10:56:39 +0100
+        d=1e100.net; s=20230601; t=1710842417; x=1711447217;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3hPBanVUiv6bl/xFEDLvHWIxIkfYGh6kxsMyvNaiemA=;
+        b=BG9r45tDsbFWhs/BEG0Q9ijlj1ttv3GvMu3L3iVUmPy5mGq4W+IvO/fOZEhtbDb5Rc
+         pRDGtuaak6mpYDvqjbz/6UmSo1Elrr9SUDDCIZlZUJI5rFre7VDnVMmjloJhlagLEF+m
+         CTdAugkFnjKYZUchlQ30UGt8NGXX87vSk3WbhatU9WTxRd1ATkJK4uW2odAnhkWh2WKD
+         fFMaoUfHSiMxYlI6Nkp8iSksfb5PVhThoP65dxgPq2Z0rcSE7PqTUx2CG4xrBshlXse/
+         EV4jtTIs1zbDtU80v/B0e+I4/ZKsGos0L8lXc1fhQ5m2xbeCvFcRAae0kqrVVKC1CNQR
+         TGQw==
+X-Forwarded-Encrypted: i=1; AJvYcCWxI/Q+/hTtyD0bgIfjvwGQDDAfwrRAF0DuTpQXdnIxTX8Y7ubX9afQrh2P+Xn394A9D24BnCnn+IgS+4j7dJ3ETYuZOVX2yrt08l+C7pA1gBKVGQdg/9iHWEIP+wx9PXSvGTcovnfO8Q==
+X-Gm-Message-State: AOJu0YyAp5la4/NKb9Kma9k/ZxcL5gcq/YAUr4nCO0tesOqyj0EejUg+
+	AXfyjbkPYBC5aG2wXX1JNnsf9t+QPUtxgWPMwEM9mYF0Vq9yTicM
+X-Google-Smtp-Source: AGHT+IGTYHXQGX2b+BTeHbOpfcgAwsY4OiLK0Vy/KdpuI9pSD3zUUqpj3OvY8szCG0W4zjLmRL8xgw==
+X-Received: by 2002:a6b:f604:0:b0:7c8:c9b5:a1cd with SMTP id n4-20020a6bf604000000b007c8c9b5a1cdmr15298792ioh.18.1710842417219;
+        Tue, 19 Mar 2024 03:00:17 -0700 (PDT)
+Received: from [127.0.1.1] (2a02-8389-41cf-e200-d9d7-4494-41da-066c.cable.dynamic.v6.surfer.at. [2a02:8389:41cf:e200:d9d7:4494:41da:66c])
+        by smtp.gmail.com with ESMTPSA id z4-20020a6b5c04000000b007cbf3d1bc67sm2305937ioh.10.2024.03.19.03.00.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Mar 2024 03:00:16 -0700 (PDT)
+From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Date: Tue, 19 Mar 2024 11:00:10 +0100
+Subject: [PATCH v2] dt-bindings: hwmon: adc128d818: convert to dtschema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] dt-bindings: aspeed: Add eSPI controller
-To: Manojkiran Eda <manojkiran.eda@gmail.com>, patrick.rudolph@9elements.com,
- chiawei_wang@aspeedtech.com, ryan_chen@aspeedtech.com,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
- linux-mtd@lists.infradead.org
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
- miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
- jk@codeconstruct.com.au, openbmc@lists.ozlabs.org
-References: <20240319093405.39833-1-manojkiran.eda@gmail.com>
- <20240319093405.39833-5-manojkiran.eda@gmail.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240319093405.39833-5-manojkiran.eda@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20240319-adc128d818_dtschema-v2-1-0824a6d69493@gmail.com>
+X-B4-Tracking: v=1; b=H4sIACli+WUC/32NQQrCMBBFr1JmbSQztjW48h5SJCaTdsC2kpSil
+ Nzd2AO4fA/++xskjsIJLtUGkVdJMk8F6FCBG+zUsxJfGEhTrU9olPUOyXiD5u6X5AYerdL0OJv
+ gqA1tA2X5ihzkvVdvXeFB0jLHz36y4s/+762oUHltAznLAevm2o9Wnkc3j9DlnL+XqhjvtgAAA
+ A==
+To: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
+ Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>
+X-Mailer: b4 0.14-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1710842413; l=4328;
+ i=javier.carrasco.cruz@gmail.com; s=20240312; h=from:subject:message-id;
+ bh=YS6LfNbkzTPgDh+QU1D0cGkvWCvd8NnUqkDhxC1Y2G8=;
+ b=0i7f/SX0ii5Am/H2bIS68d7rLbSwj0zBzZym3OMzxN28A9d5z/36npPE7JgE9+C1PU0Pb9YQQ
+ CXp73IimlxZA3c2LDtTwiWMsWTKBXyXYgqmOBz4odlsXf3VvoYIMGMM
+X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
+ pk=lzSIvIzMz0JhJrzLXI0HAdPwsNPSSmEn6RbS+PTS9aQ=
 
-On 19/03/2024 10:34, Manojkiran Eda wrote:
-> This commit adds the device tree bindings for aspeed eSPI
-> controller.
-> 
-> Although aspeed eSPI hardware supports 4 different channels,
-> this commit only adds the support for flash channel, the
-> bindings for other channels could be upstreamed when the driver
-> support for those are added.
-> 
-> Signed-off-by: Manojkiran Eda <manojkiran.eda@gmail.com>
-> ---
->  .../bindings/soc/aspeed/aspeed,espi.yaml      | 94 +++++++++++++++++++
->  1 file changed, 94 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/aspeed/aspeed,espi.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/aspeed/aspeed,espi.yaml b/Documentation/devicetree/bindings/soc/aspeed/aspeed,espi.yaml
-> new file mode 100644
-> index 000000000000..3d3ad528e3b3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/aspeed/aspeed,espi.yaml
+Convert adc128d818 bindings to dtschema to support validation.
 
-Why Rob's comments got ignored?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+---
+Changes in v2:
+- Add missing '|' to mark beginning of literal block in ti,mode
+  description.
+- Link to v1: https://lore.kernel.org/r/20240318-adc128d818_dtschema-v1-1-d0af2caef145@gmail.com
+---
+ .../devicetree/bindings/hwmon/adc128d818.txt       | 38 -------------
+ .../devicetree/bindings/hwmon/ti,adc128d818.yaml   | 63 ++++++++++++++++++++++
+ 2 files changed, 63 insertions(+), 38 deletions(-)
 
-This is not a soc component.
+diff --git a/Documentation/devicetree/bindings/hwmon/adc128d818.txt b/Documentation/devicetree/bindings/hwmon/adc128d818.txt
+deleted file mode 100644
+index d0ae46d7bac3..000000000000
+--- a/Documentation/devicetree/bindings/hwmon/adc128d818.txt
++++ /dev/null
+@@ -1,38 +0,0 @@
+-TI ADC128D818 ADC System Monitor With Temperature Sensor
+---------------------------------------------------------
+-
+-Operation modes:
+-
+- - Mode 0:  7 single-ended voltage readings (IN0-IN6),
+-            1 temperature reading (internal)
+- - Mode 1:  8 single-ended voltage readings (IN0-IN7),
+-            no temperature
+- - Mode 2:  4 pseudo-differential voltage readings
+-              (IN0-IN1, IN3-IN2, IN4-IN5, IN7-IN6),
+-            1 temperature reading (internal)
+- - Mode 3:  4 single-ended voltage readings (IN0-IN3),
+-            2 pseudo-differential voltage readings
+-              (IN4-IN5, IN7-IN6),
+-            1 temperature reading (internal)
+-
+-If no operation mode is configured via device tree, the driver keeps the
+-currently active chip operation mode (default is mode 0).
+-
+-
+-Required node properties:
+-
+- - compatible:  must be set to "ti,adc128d818"
+- - reg:         I2C address of the device
+-
+-Optional node properties:
+-
+- - ti,mode:     Operation mode (u8) (see above).
+-
+-
+-Example (operation mode 2):
+-
+-	adc128d818@1d {
+-		compatible = "ti,adc128d818";
+-		reg = <0x1d>;
+-		ti,mode = /bits/ 8 <2>;
+-	};
+diff --git a/Documentation/devicetree/bindings/hwmon/ti,adc128d818.yaml b/Documentation/devicetree/bindings/hwmon/ti,adc128d818.yaml
+new file mode 100644
+index 000000000000..a32035409cee
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/ti,adc128d818.yaml
+@@ -0,0 +1,63 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++
++$id: http://devicetree.org/schemas/hwmon/ti,adc128d818.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments ADC128D818 ADC System Monitor With Temperature Sensor
++
++maintainers:
++  - Javier Carrasco <javier.carrasco.cruz@gmail.com>
++
++description: |
++  The ADC128D818 is a 12-Bit, 8-Channel Analog to Digital Converter (ADC)
++  with a temperature sensor and an I2C interface.
++
++  Datasheets:
++    https://www.ti.com/product/ADC128D818
++
++properties:
++  compatible:
++    const: ti,adc128d818
++
++  reg:
++    maxItems: 1
++
++  ti,mode:
++    $ref: /schemas/types.yaml#/definitions/uint8
++    description: |
++      Operation mode.
++      Mode 0  - 7 single-ended voltage readings (IN0-IN6), 1 temperature
++      reading (internal).
++      Mode 1 - 8 single-ended voltage readings (IN0-IN7), no temperature.
++      Mode 2 - 4 pseudo-differential voltage readings
++      (IN0-IN1, IN3-IN2, IN4-IN5, IN7-IN6), 1 temperature reading (internal).
++      Mode 3 - 4 single-ended voltage readings (IN0-IN3), 2 pseudo-differential
++      voltage readings (IN4-IN5, IN7-IN6), 1 temperature reading (internal).
++    default: 0
++
++  vref-supply:
++    description:
++      The regulator to use as an external reference. If it does not exist, the
++      internal reference will be used.
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        adc@1d {
++            compatible = "ti,adc128d818";
++            reg = <0x1d>;
++            vref-supply = <&vref>;
++            ti,mode = /bits/ 8 <2>;
++        };
++    };
 
-> @@ -0,0 +1,94 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# # Copyright (c) 2024 IBM Corporation.
-> +# # Copyright (c) 2021 Aspeed Technology Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/aspeed/aspeed,espi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Aspeed eSPI Controller
-> +
-> +maintainers:
-> +  - Manojkiran Eda <manojkiran.eda@gmail.com>
-> +  - Patrick Rudolph <patrick.rudolph@9elements.com>
-> +  - Chia-Wei Wang <chiawei_wang@aspeedtech.com>
-> +  - Ryan Chen <ryan_chen@aspeedtech.com>
-> +
-> +description:
-> +  Aspeed eSPI controller implements a device side eSPI endpoint device
-> +  supporting the flash channel.
-
-Explain what is eSPI.
-
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - aspeed,ast2500-espi
-> +          - aspeed,ast2600-espi
-> +      - const: simple-mfd
-
-
-That's not simple-mfd. You have driver for this. Drop.
-
-> +      - const: syscon
-
-That's not syscon. Why do you have ranges then? Where is any explanation
-of hardware which would justify such combination?
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 1
-> +
-> +  ranges: true
-> +
-> +patternProperties:
-> +  "^espi-ctrl@[0-9a-f]+$":
-> +    type: object
-> +
-> +    description: Controls the flash channel of eSPI hardware
-
-That explains nothing. Unless you wanted to use here MTD bindings.
-
-This binding did not improve much. I don't understand why this is not
-SPI (nothing in commit msg, nothing in description), what is eSPI, why
-do you need child device, what are other children (commit msg is quite
-vague here). Why there is no MTD bindings here?
-
-All this looks like crafted for your driver, instead of using existing
-DT bindings like SPI or MTD/NAND. This is a strong no-go.
-
-> +
-> +    properties:
-> +      compatible:
-> +        items:
-
-No items, just use enum.
-
-> +          - enum:
-> +              - aspeed,ast2500-espi-ctrl
-> +              - aspeed,ast2600-espi-ctrl
-> +
-> +      interrupts:
-> +        maxItems: 1
-> +
-> +      clocks:
-> +        maxItems: 1
-> +
-> +    required:
-> +      - compatible
-> +      - interrupts
-> +      - clocks
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - ranges
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/ast2600-clock.h>
-> +
-> +    espi: espi@1e6ee000 {
-> +        compatible = "aspeed,ast2600-espi", "simple-mfd", "syscon";
-> +        reg = <0x1e6ee000 0x1000>;
-> +
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        ranges = <0x0 0x1e6ee000 0x1000>;
-> +
-> +        espi_ctrl: espi-ctrl@0 {
-> +            compatible = "aspeed,ast2600-espi-ctrl";
-> +            reg = <0x0 0x800>,<0x0 0x4000000>;
-
-Fix your style in DTS. There is always a space after ','.
-
-> +            reg-names = "espi_ctrl","espi_flash";
-> +            interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
-> +            clocks = <&syscon ASPEED_CLK_GATE_ESPICLK>;
-> +        };
-> +    };
+---
+base-commit: bf3a69c6861ff4dc7892d895c87074af7bc1c400
+change-id: 20240318-adc128d818_dtschema-02b78fc26f65
 
 Best regards,
-Krzysztof
+-- 
+Javier Carrasco <javier.carrasco.cruz@gmail.com>
 
 
