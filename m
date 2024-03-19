@@ -1,260 +1,324 @@
-Return-Path: <devicetree+bounces-51660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51661-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46B6D87FFCA
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 15:41:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B87487FFCF
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 15:42:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C86961F262FC
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 14:41:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A111B1F24977
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 14:42:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9692541A88;
-	Tue, 19 Mar 2024 14:40:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E45F92628C;
+	Tue, 19 Mar 2024 14:42:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="US+5jJOS"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="vBB0dGcV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2125.outbound.protection.outlook.com [40.107.93.125])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ACC12206E
-	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 14:40:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710859238; cv=none; b=J5dq3Sn4wMyZa6w1kveJZJ9khZhu1rKKMh+d0P9H8IAEAj1BEdhmAfGzjzzd1YgR1uHluWENo6V51B3OczEsOXoc0psMZjfwemX3ZQJkOPzrDq8DQX7K5uI3DI62FN6DoUWQ2i4L6hoQePO2SDIPcfOk8IPWiRs/fiv44IngGUk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710859238; c=relaxed/simple;
-	bh=hUvlXYHXRbSbYEuIAM8dh2+qf7I4NiCSYFgAwXELc8k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nyWVCurisIlG3e62zBJIJm+Ha7PZ10D+U76N+fRBiIcqGp7X4iCfsKWtQftqnIrdQg4eBo0b2XfsW9XL7OxJc9xc4DJKT7SJcH7WQwiLwVI0pVHJm4OhxaK9U6TxOz8M52iKMbCGsvYsv1HadBSytqzqeTupDYUq21nJ6MIpECA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=US+5jJOS; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4146172fb7eso13236445e9.1
-        for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 07:40:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710859235; x=1711464035; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ES8cWh0TyGb6bofcqbZEpvBHsCjAR4bIdkDGwwT2Bhg=;
-        b=US+5jJOSuCVXFZm62MARJDmt6JiOxF8hMdtRBCDEwxnoBbz4StMnUxZWG9WPXtuRch
-         V5+h/o+oBjAqxxzAigrHsRlg0wK9mrd+NoCo6B0yNbBu556EXfv6VRFTS2KnCeiFDDf8
-         QrSztfqNi53vLIciDIrzGLm4wNBoiPsyxMMKqOS1/EwmAuMJWTXQ22FnGzGP5DjT4LTq
-         LC34K87Lgi/TTs8D3bpXJSczojjoDbbPmdIiVYvTKL2m+tUFqgOw7tCIawimBXYYSpxV
-         e42e8M6d4fvTQ+m4W9Ds/rih7SSHCw+lzngI4MzFqwcyFkQJJvPkpvDMuQUsSb+cj6aB
-         2r+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710859235; x=1711464035;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ES8cWh0TyGb6bofcqbZEpvBHsCjAR4bIdkDGwwT2Bhg=;
-        b=aIBmtK2RMJj4nbolDrcZVQaUa8Z4+exuD4hSm4Zur5oF/bYpwXwld8duiFbd9u18+Z
-         ut+/qvs0St0sIk238iBNPBgTPZulzNGlCRSPayne1eDhmGI8fz95+lRkgbQyLQ6qyyVz
-         CO/ytqFBMtwF30dJbnVgYLOTkArDVkyNrHgJtNn0oQrSLUKS73MpAuXrHE2jbomJgpW8
-         QeywPf0fG6J0Lf7R6N6R6zMqGtvhkiOotLKqGuRnwHJ9hFBvKdMQPZc78zZr2Z4omDkX
-         EYjnFPnCJMAty9tHPzSCf4eE9tvX295hDfWvk8v6ixn6BJf1JDc7kXS6F4D2OPjBDWHE
-         wGtQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVlv6yvxP4tyzl3FbPrteKoQCa/oe5wTnKCGeKITNFMhdhbEDSj63ZpPIs+PeJW7rhJKYeqwXklZkhKHTgW27fcJJX1R48k8LTSXA==
-X-Gm-Message-State: AOJu0YwvDGchcn1YQI5tDT+Yel2lkeoXghWmsUWQdYW7psyXIOUaQxVT
-	mkjC6XJzd9CllFqcbed/2VDJeBLUQ2t0hu8MTLaa+tWjcePnmAYCvI3lrfLLHOI=
-X-Google-Smtp-Source: AGHT+IGHndA8tx67uD48ne/gqcgoZLf5qfLqKFjxE51IgZi7umF/F6ZPLdpXbUvt6xaHKcgzLEkPpA==
-X-Received: by 2002:a7b:cbc5:0:b0:413:f3c4:4d95 with SMTP id n5-20020a7bcbc5000000b00413f3c44d95mr8506407wmi.10.1710859234109;
-        Tue, 19 Mar 2024 07:40:34 -0700 (PDT)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id fm24-20020a05600c0c1800b00414650448a7sm2223566wmb.11.2024.03.19.07.40.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Mar 2024 07:40:33 -0700 (PDT)
-Message-ID: <d51ef79a-012e-4701-ac8c-4d1da1827dd8@linaro.org>
-Date: Tue, 19 Mar 2024 14:40:32 +0000
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D05A54273;
+	Tue, 19 Mar 2024 14:42:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.93.125
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710859328; cv=fail; b=skaZq9fEpiCmOSeXEL0OVnlUnkzXD2ENTlNf5SWckxDlRXy6bKbpriL92xCE19R2CfIeT0Sj9N8CvzaPg8wkPximrPTTMgDkKgMd4OD1JYC1KbXUl9pMHkpYXIlicAJAGlPTDiH3Evqa/Im/ni42Iz+y1T8k5EQPmwM4J2z3DZ4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710859328; c=relaxed/simple;
+	bh=Cztm7QnUnik7MNVOft05S+bYhGlHwmkGMTzFuo3/mhg=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=Kzu7eZ0NanjQ9X3PgetfTspGvx5V4j6z5HGBAKby0mLpGMKeuLuevXFlEl6SCdI1Vt9GAPkg7p0cHOEhX6ebV19C+KFX2dsWgqFxv8fUmzNDmrYUOvlOvbdRwlq1eXh5HvB5fuUKhAsorRkPXUjZqMBavufTVZV+xkbLEAD67CM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=vBB0dGcV; arc=fail smtp.client-ip=40.107.93.125
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LHJTR6qykadVHexekJog9i4YQzYKYpnT8uNlVn5q1uM2LqkZ7OHHat8hf7Zcckf3PxWn4SeXvyzeI1QaBuqcMb14LZ84iBZ1KEB7h9iW17pPVX1Webd99UJttSAUcMU4TDVcyDHqhtEh037bqOP71yP7GkWX/O4PedWX49QYlZTN35/pTian/m2q7E2vyuXjinsJTyzSeyYr+RCRKEPdJj3HLpf6CXR0MzNjeYJ3W+wRzP3ZM4GTVymYqfi2B3p/zihNsM7EgjdW1OxzqtEO8WOfZkNeiLtUeQW8Z4qiHk+uejW6uRM8Kz4P+IHLneN6tFQybPN1n2Y2XAURNw76iw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jdE6emH0Icx0Zk3pe4canEW6+8+styr077KgwYNrK/M=;
+ b=GszXx+59GjU6JznIwF3STT17/5d92zGi//3om8WuAHlFbE/PvaGOBAbG5to6ME4zNP3Kn3XxWhN37K7hUoR0vLgxNVGSvpdVkQIgq3Lb2df+VB4bBxQ96CAbTArjB38seNM6XPtjuigPYRZsTbkxAOcoEUh7NIj8OjmIJO6fd7gUk0+sRzCVe7Abr5U44S5Vck2e0tw3E6juRqUBwqyJ9p1OvpJcKjiQXYgNWZqnLgg98foSn81E/TM0NNd2QZ1Yhy6UzJ0NEXBVqTQ+U73RuAP/oQ5NVlYp017CdBT3ny6m/OUhzxGXAJn1GoVXcyJWFdAHsXq3OZiM2oDQyuBMPQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jdE6emH0Icx0Zk3pe4canEW6+8+styr077KgwYNrK/M=;
+ b=vBB0dGcVJpQ1YYeYRwG6FFUo3ZK+T83a6q+bAZqOUx24DJ3BuNUGl5D5hp5WUiK3xM18L8z0dJZqZIRJIbWWQN51b91oOyg7pgIAWDD3UOuSEpJTmH74lqUkTJkQ7q8U0puKdJXayoxNx5R7v86ejYwbaVr9DH+EYujAUX6uWs0=
+Received: from BL1PR12MB5874.namprd12.prod.outlook.com (2603:10b6:208:396::17)
+ by PH8PR12MB6747.namprd12.prod.outlook.com (2603:10b6:510:1c3::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.26; Tue, 19 Mar
+ 2024 14:42:04 +0000
+Received: from BL1PR12MB5874.namprd12.prod.outlook.com
+ ([fe80::8b3e:57e8:d574:309a]) by BL1PR12MB5874.namprd12.prod.outlook.com
+ ([fe80::8b3e:57e8:d574:309a%4]) with mapi id 15.20.7386.025; Tue, 19 Mar 2024
+ 14:42:04 +0000
+Message-ID: <d112481b-4331-4c0c-9775-407ac4a601fb@amd.com>
+Date: Tue, 19 Mar 2024 09:42:01 -0500
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH 2/3] dt-bindings: remoteproc: add Versal-NET platform
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ andersson@kernel.org, mathieu.poirier@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ michal.simek@amd.com, ben.levinsky@amd.com
+Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240315211533.1996543-1-tanmay.shah@amd.com>
+ <20240315211533.1996543-3-tanmay.shah@amd.com>
+ <3ca1c419-d185-4318-92ed-3c4e40dcf5bb@linaro.org>
+ <14be0aa6-49b7-4342-9ca6-750c30c8e1e9@amd.com>
+ <b1320ddf-bacb-41e3-9709-e90df18cc1e3@linaro.org>
+Content-Language: en-US
+From: Tanmay Shah <tanmay.shah@amd.com>
+In-Reply-To: <b1320ddf-bacb-41e3-9709-e90df18cc1e3@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: DS7PR06CA0021.namprd06.prod.outlook.com
+ (2603:10b6:8:2a::23) To BL1PR12MB5874.namprd12.prod.outlook.com
+ (2603:10b6:208:396::17)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: DT Query on "New Compatible vs New Property"
-Content-Language: en-US
-To: Sudeep Holla <sudeep.holla@arm.com>
-Cc: Trilok Soni <quic_tsoni@quicinc.com>, Nikunj Kela
- <quic_nkela@quicinc.com>, Ulf Hansson <ulf.hansson@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- krzysztof.kozlowski+dt@linaro.org,
- Vincent Guittot <vincent.guittot@linaro.org>, robh+dt@kernel.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org,
- "Prasad Sodagudi (QUIC)" <quic_psodagud@quicinc.com>
-References: <CAPDyKFoo+-2AF096Sbn8EHP1H4Zw2+2sFnSyuq65sWGmMmXU0A@mail.gmail.com>
- <ZeWp_UjYfWsnEB-K@bogus> <321069a8-2c46-4871-b85a-5e9cbdda5b5d@quicinc.com>
- <ZfGIPfHH-3r8pWMf@bogus> <3e8e7c8c-c14a-452c-a861-e2a07994119a@linaro.org>
- <ZfLXsCaeycRlQg3I@bogus> <487f91af-722f-44eb-a1a2-61dec586d686@quicinc.com>
- <ZfMZ9ATxuvONcGpz@bogus> <0411f99d-231a-af4b-d681-7f7748361aa3@quicinc.com>
- <904978d8-eab4-4936-86dc-b0b1e7c40256@linaro.org> <Zfl-Z3vm-3sQ5TN5@bogus>
-From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <Zfl-Z3vm-3sQ5TN5@bogus>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL1PR12MB5874:EE_|PH8PR12MB6747:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	lyRk1IUpAP4ezoXCfjMEX+YuUuCZ1Nrwst7bjFzQHesK2eZQ8mMyjzL9Z9xFfy8mu+bW4e9liJVeT0EV+BVz/LhTH5rlqsPOrhG6w2Jw0U9lKOKdmn1diL89Cvw9eMSwo9bdgLUejulHy9aTsaiNMLoRq+KGVnrXSU9gy8AeLvezV9rnvx3qx8h8Kbu2mRpRRazGEZFSd695aqD/7fSYX6AhD0VENrAY2dAL6biBGzMIWeE4pOKJAJN0XqF/3iD9dpGCFKoyvA19RimeO6sQSCQZ0iONmeQL+lYTIgdXAqkD6gxXJFoKhSGRS5oNTaUL7zVXkZoG2zR7VOsnCs00HTpX/ioeTdFnInhy9l911dXp/1rS9X4FpLWTk8IfvSGzwImFyPzeZkog74MD0iiTe/jB8CYlqNac6/FPa06+/9/myHaz6fF7W6/6EFeZ4PnpGNvyZ46B2jh0ldBK6zjurg3D8acP84ddEZDsu1PqOJ6pJTKhDs+Uu/E3i+BpDxyVw1Ug2QC9eH/0SoTz3T9Lj9A6RONXdLpSXVpSUNbDe2p+tU5d0Iwu6cS2DsOCrZ0lmdojD1Hgf95tV6RlzHML508qyZQcsKkzrBrewDo9FLPSETU0m09jv6Nig7lQdNdGSuhc/1VcoiqiWBNkeAXpEPSZOoyXCCaDRClVZMlqLlI=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL1PR12MB5874.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(7416005)(376005)(1800799015);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?VEtWSlpucnprYUhpWlJJdzFMUnNUbnE5K2VtY2VDalRmSHhnVkhKVFpsdCtv?=
+ =?utf-8?B?a0JySi9WU252dGlVMnozZEpJWm5iZG9QVmVlY1gzRUN2dCtBYU5WOXFQS29H?=
+ =?utf-8?B?REl0TjZDSkpLN2hJQ24xNHoyWVpueW1QMkR0Y0l5aC9JYnIzb3hSdFBmc2dw?=
+ =?utf-8?B?SEx0QVNHWmpYSWJTempYWUtMTVNKcnZCM0RRa1Ewa04rcENEMSt2REJwcytq?=
+ =?utf-8?B?QzJoMVdzV0lJTFVmTmxDaCttcXJvaE5OdUZORnVFMWlPVGxkMjVOMWJPdmZT?=
+ =?utf-8?B?UllWOGNmTVhRY002QmpqSEJZRDB2U3AzaWtJRTV5ZnRma2g3dnZSUlRramRD?=
+ =?utf-8?B?OEZIVDBGb1lhZ2pHQ0g3OEI0OVA5NHUxM1NyejEvWjJ6VnpyVmQ4ZitTVVZm?=
+ =?utf-8?B?SUxTYndzSXdBM1RpVW9aM3ExaWxMQ0R6bkcrV3NOUTVIZmV1Y0l2aGl6NFBX?=
+ =?utf-8?B?Lzh3QnZhWllYQTYxd2d4cGdIZGRSdFhHZW1ZYXBYSm9FYTlobzJ1NnBiZmhj?=
+ =?utf-8?B?U0tUNDgvbHZnRURxdHQ4ZHQwZGEvTlJOYTAxcGdXWnZtQThPOVJnSnlJUnhS?=
+ =?utf-8?B?WHhJQ3NRbFRrUDhTa0FPTjdkTTdqcDB4Yk1yREEwMGNjUTh5VFYwSVhpM2U0?=
+ =?utf-8?B?cHVkTmMzdk43WGIwMFN0UGlxOHlYcURrRTVRUnlYeXpMZVl3M0lUaXRreGl6?=
+ =?utf-8?B?M3VPNVVYdTkvalp0MmdScXVIa2dlcTl1Wkg0bit2UUdzek53dnJ3SGI2Y0M4?=
+ =?utf-8?B?NWxRcEFBTFo4dmEzR3VuWTR0eVY4R1YwR2JoTmk2VUt5SGhnM3hHK3ltc1p1?=
+ =?utf-8?B?Y0NXODdKOHREam9yMlp1UHk0cXRJRFFlQ3F2ajRIdVhYZGFQTUw0d0ZMK0xV?=
+ =?utf-8?B?N3RTRWJNd3JHWWlsS0cyOTRwdjQ3bVpCaEh3VURuVU1jNVU0SmlXNUlFVktm?=
+ =?utf-8?B?aGhTa0JrN2VEcEZoUUZyVVZUZmFsR25IN1BSVFJDbUg1UWE3SEJMNnhsWDN1?=
+ =?utf-8?B?N3BaZ0xqMVBjQUNJbEhibEtROFl4RnhvRTRpSlQ1aXNYQnlmRXhqYUZ1US9h?=
+ =?utf-8?B?dWxuY2VYZ2hpMkxmbS9oS3cyQWJxOXRyYnlwa1R1T2tsdW9LeWVzMDdRalV0?=
+ =?utf-8?B?S3N0TXRaZm9DVHF5bmRBTmJSZ0Vnd1hsVlBjc1VFQzhXQ0h1aFExUFBtUFQx?=
+ =?utf-8?B?a0o1R0t3d3ByVnNLS04wQkVCaEZ5N0Y0Z2Yvd2Rzd0NXdGgxOGE3NmdqUFFi?=
+ =?utf-8?B?c1g4YWU1cnovVG1WeG5kWG9KbFNwRjNYbEdaRENVbTlVeXdJYm54NjlGRU8x?=
+ =?utf-8?B?OXJlTVZncXVzVVNCeGNjSmw4dFpkbjVPYUYyKzBRS3pRQXFKcTFnQmdBK1Uz?=
+ =?utf-8?B?TUcxM0ZIYVJLdnZ4czMrdXdLelN3T2JHMmpPUzBLZWdlS2RlbHdyWmFrbjZT?=
+ =?utf-8?B?NDVGbWxYM0xhWEFOd3NoSldrcVJpeW1tSS90Z1NYQWFOamV1ZC94UWovakN2?=
+ =?utf-8?B?aUZSMjBOOXp6YTNtY3ZWc0ppa3dyRndvQ00xaFFHdlJuajhwWHlaQmpUSU1J?=
+ =?utf-8?B?SENSbHdIS0VsVWlXamtHeXJZd0JkcDVrcHlwczNkeWNnb2ZGUHZCVEIvMkZ4?=
+ =?utf-8?B?S1pwMHJ1WENMekZETHNHZ2NTb1hTNzNSb2oxc0FEdlFKVENHbDZSU0d3ajBT?=
+ =?utf-8?B?Y0Z0SGRVMFI0TWdzS0NMNnZHdGh5Vno1UDdjRE8vUDk1ZC9vemhpSjk2WXBS?=
+ =?utf-8?B?OVpaMXJubG50aVJVWmtPMVRDRFM3WnlhS2tEeFJWUnU0bUJaSGV3Tlc0SE9x?=
+ =?utf-8?B?SVE0SHNWOGUyaVBzd1FWQUtYdEVCNy9xcEZ5bnhPT3dkeGVUMFZQZFZWWkRF?=
+ =?utf-8?B?VllPWGMvYXUvWVZLZllVM3RDUHNiY0hzUkxjaFdSa3F3TXhXMkl2NzFjMEkz?=
+ =?utf-8?B?ZlZieHBIQUNoVmxCMlpUWjNuem40VmorS3NJSzh3Qy84VVQ4WWlYazdZaDBJ?=
+ =?utf-8?B?WmpINVFnYlFVd0x2azlwV21HRjdyUVpxTW43OGptdS84OWhyNENpNVlGRG1T?=
+ =?utf-8?B?NzVUVWhsTTlmQzlJcXVYQnNNemZadUJtaFlJdXdQaU0vbE5XOTF1OFJtRVlo?=
+ =?utf-8?Q?zLLK4p6BzlYiWz3xhwHp3fFIb?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 169397ac-ef4b-4f8f-1534-08dc4822be99
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5874.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2024 14:42:04.5418
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: YiybOsVZDnpVBiL2kbwh9h8trDLsLYETZp4DcrC29urQWSheC/RcGGdxwYCm8k1U
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB6747
 
 
 
-On 19/03/2024 12:00, Sudeep Holla wrote:
-> On Tue, Mar 19, 2024 at 10:17:32AM +0000, Srinivas Kandagatla wrote:
->>
->> On 16/03/2024 19:30, Trilok Soni wrote:
->>> On 3/14/2024 11:38 AM, Sudeep Holla wrote:
->>>> On Thu, Mar 14, 2024 at 05:35:23AM -0700, Nikunj Kela wrote:
->>>>>
->>>>> On 3/14/2024 3:55 AM, Sudeep Holla wrote:
->>>>>>>
->>>>>> Nope, the point was will the presence of (available) scmi/rpmi device
->>>>>> node suffice if we are thinking of single board level property or
->>>>>> compatible. I was not mixing the discussion of whether adding such
->>>>>> a property to each needed device node in this discussion to keep it
->>>>>> simple. I have already expressed my opinion on that.
->>>>>>
->>>>>> I am sure qcom will go and do what they want which may work fine for
->>>>>> qcom specific drivers but it will not work for a generic IP driver
->>>>>> used by many vendors. Not sure if Qcom SoCs are just bundle of Qcom
->>>>>> specific IPs or they do have some generic non-Qcom IPs. Lets us take
->>>>>> SMMU as example. If the SCMI/RPMI controls the power to it, would you
->>>>>> go and add this new compatible in the generic SMMU bindings and add
->>>>>> support in the driver for that ? That is big NO as the driver would
->>>>>> just need to use std framework interface(doesn't matter Runtime PM/Clock/
->>>>>> Reset/genpd/PM OPP). That means they don't need any specific bindings
->>>>>> to inform SMMU driver that the power is f/w managed.
->>>>>
->>>>> For SMMU, we dont need to make any changes in the existing driver. Simple
->>>>> power-domain over SCMI will suffice since we don't need to do clock scaling
->>>>> etc. for SMMU. We will use this new property in Qualcomm emac, UFS, USB,
->>>>> QUPs(i2c,spi,uart) drivers.
+On 3/19/24 12:30 AM, Krzysztof Kozlowski wrote:
+> On 19/03/2024 01:51, Tanmay Shah wrote:
+>> Hello Krzysztof,
+>> 
+>> Thanks for reviews. Please find my comments below.
+>> 
+>> On 3/17/24 1:53 PM, Krzysztof Kozlowski wrote:
+>>> On 15/03/2024 22:15, Tanmay Shah wrote:
+>>>> AMD-Xilinx Versal-NET platform is successor of Versal platform. It
+>>>> contains multiple clusters of cortex-R52 real-time processing units.
+>>>> Each cluster contains two cores of cortex-R52 processors. Each cluster
+>>>> can be configured in lockstep mode or split mode.
 >>>>
->>>> Sure, as I mentioned in the beginning itself, it is all in the Qcom
->>>> specific drivers, well you can hack it in any ugly way you want to get
->>>> things working even in the upstream.
+>>>> Each R52 core is assigned 128KB of TCM memory. ATCM memory is 64KB, BTCM
+>>>> and CTCM memoreis are 32KB each. Each TCM memory has its own dedicated
+>>>> power-domain that needs to be requested before using it.
 >>>>
->>>> But just stop and think for a moment how would you solve this problem
->>>> if you had few Synopsys Designware IPs instead of all those Qcom specific
->>>> IPs. Will your suggested solution work or if it works will that even scale ?
+>>>> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
+>>>> ---
+>>>>  .../remoteproc/xlnx,zynqmp-r5fss.yaml         | 220 +++++++++++++++---
+>>>>  1 file changed, 184 insertions(+), 36 deletions(-)
 >>>>
->>>> As I said I will shut up and you can do whatever in your drivers, but I
->>>> just don't want this to set bad example for other vendors who may not have
->>>> all their own IPs and may use some generic ones which means they will now
->>>> follow your solution and go and change those drivers now.
->>>>
->>>> The main point I am trying to make is the provide blocks/nodes should
->>>> have the information that it is firmware managed. The consumer nodes
->>>> have no business to know that information.
->>>>
->>>> I will leave it to you now as I can't stop what you define as Qcom specific
->>>> and what changes you can make in those Qcom specific drivers.
+>>>> diff --git a/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml b/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
+>>>> index 711da0272250..55654ee02eef 100644
+>>>> --- a/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
+>>>> +++ b/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
+>>>> @@ -18,7 +18,9 @@ description: |
+>>>>  
+>>>>  properties:
+>>>>    compatible:
+>>>> -    const: xlnx,zynqmp-r5fss
+>>>> +    enum:
+>>>> +      - xlnx,zynqmp-r5fss
+>>>> +      - xlnx,versal-net-r52fss
+>>>>  
+>>>>    "#address-cells":
+>>>>      const: 2
+>>>> @@ -64,7 +66,9 @@ patternProperties:
+>>>>  
+>>>>      properties:
+>>>>        compatible:
+>>>> -        const: xlnx,zynqmp-r5f
+>>>> +        enum:
+>>>> +          - xlnx,zynqmp-r5f
+>>>> +          - xlnx,versal-net-r52f
+>>>>  
+>>>>        reg:
+>>>>          minItems: 1
+>>>> @@ -135,9 +139,11 @@ required:
+>>>>  allOf:
+>>>>    - if:
+>>>>        properties:
+>>>> -        xlnx,cluster-mode:
+>>>> -          enum:
+>>>> -            - 1
+>>>> +        compatible:
+>>>> +          contains:
+>>>> +            enum:
+>>>> +              - xlnx,versal-net-r52fss
 >>>
->>> I agree with what Sudeep has brought up for the SMMU and USB is another example
->>> where we can have 3rd party phy / Synopsys IPs on the QC devices.
->>
->> This needs more discussion before we even consider adding scmi perf to these
->> drivers.
+>>> Why do you touch these lines?
+>>>
+>>>> +
+>>>>      then:
+>>>>        patternProperties:
+>>>>          "^r5f@[0-9a-f]+$":
+>>>> @@ -149,16 +155,14 @@ allOf:
+>>>>                items:
+>>>>                  - description: ATCM internal memory
+>>>>                  - description: BTCM internal memory
+>>>> -                - description: extra ATCM memory in lockstep mode
+>>>> -                - description: extra BTCM memory in lockstep mode
+>>>> +                - description: CTCM internal memory
+>>>>  
+>>>>              reg-names:
+>>>>                minItems: 1
+>>>>                items:
+>>>> -                - const: atcm0
+>>>> -                - const: btcm0
+>>>> -                - const: atcm1
+>>>> -                - const: btcm1
+>>>> +                - const: atcm
+>>>> +                - const: btcm
+>>>> +                - const: ctcm
+>>>>  
+>>>>              power-domains:
+>>>>                minItems: 2
+>>>> @@ -166,33 +170,70 @@ allOf:
+>>>>                  - description: RPU core power domain
+>>>>                  - description: ATCM power domain
+>>>>                  - description: BTCM power domain
+>>>> -                - description: second ATCM power domain
+>>>> -                - description: second BTCM power domain
+>>>> +                - description: CTCM power domain
+>>>>  
+>>>>      else:
+>>>> -      patternProperties:
+>>>> -        "^r5f@[0-9a-f]+$":
+>>>> -          type: object
+>>>> -
+>>>> -          properties:
+>>>> -            reg:
+>>>> -              minItems: 1
+>>>> -              items:
+>>>> -                - description: ATCM internal memory
+>>>> -                - description: BTCM internal memory
+>>>> -
+>>>> -            reg-names:
+>>>> -              minItems: 1
+>>>> -              items:
+>>>> -                - const: atcm0
+>>>> -                - const: btcm0
+>>>> -
+>>>> -            power-domains:
+>>>> -              minItems: 2
+>>>> -              items:
+>>>> -                - description: RPU core power domain
+>>>> -                - description: ATCM power domain
+>>>> -                - description: BTCM power domain
+>>>> +      allOf:
+>>>> +        - if:
+>>>> +            properties:
+>>>> +              xlnx,cluster-mode:
+>>>> +                enum:
+>>>> +                  - 1
+>>>
+>>> Whatever you did here, is not really readable. You have now multiple
+>>> if:then:if:then embedded.
+>> 
+>> For ZynqMP platform, TCM can be configured differently in lockstep mode
+>> and split mode.
+>> 
+>> For Versal-NET no such configuration is available, but new CTCM memory
+>> is added.
+>> 
+>> So, I am trying to achieve following representation of TCM for both:
+>> 
+>> if: versal-net compatible
+>> then:
+>>   ATCM - 64KB
+>>   BTCM - 32KB
+>>   CTCM - 32KB
+>> 
+>> else: (ZynqMP compatible)
+>>   if:
+>>     xlnx,cluster-mode (lockstep mode)
+>>   then:
+>>     ATCM0 - 64KB
+>>     BTCM0 - 64KB
+>>     ATCM1 - 64KB
+>>     BTCM1 - 64KB
+>>   else: (split mode)
+>>     ATCM0 - 64KB
+>>     BTCM0 - 64KB
+>> 
+>> 
+>> If bindings are getting complicated, does it make sense to introduce
+>> new file for Versal-NET bindings? Let me know how you would like me
+>> to proceed.
 > 
-> Agreed.
+> All this is broken in your previous patchset, but now we nicely see.
 > 
+> No, this does not work like this. You do not have entirely different
+> programming models in one device, don't you?
 > 
->> Big question here is implementation details of the Device SCMI perf
->>
->> With new SCMI Perf changes all the driver resources handling are moved to
->> perf or power domains.
->>
-> 
-> Correct and matches my understanding.
-> 
->> But is this abstraction correct?
->>
-> 
-> Don't know, patches were on the list. But I agree only interested parties
-> reviewed it back then and now more are interested in it and their views
-> may differ. Open to hear them all.
-> 
->> Any standards followed Or Is any of this documented?
->>
-> 
-> Not sure what you are looking for as answer here TBH.
-> 
->> AFAIU, The whole resources moving to SCMI perf are done in pretty adhoc
->> way.(ex: making regulators as power domains, and clks as perf domains.. and
->> in some cases clks are power domains, ...)
->>
-> 
-> Hmm, do we have examples for there ? Because I am interested to know more.
 
-here is a patch series that does conversion.
-
-https://lore.kernel.org/lkml/1a47c20a-abda-4493-a8f0-ff7b4e144d9c@quicinc.com/T/
-
-> 1. Regulators as power domains
-> 	IMO this may have happened before the dedicated regulator protocol
-> 	was added to the SCMI specification.
-> 2. Clocks as perf domains
-> 	Not sure if this ever happened, though I admit clocks property
-> 	were used to refer SCMI perf domains in the DT but they(perf/OPP
-> 	domains) were never integrated into clock framework.
-> 3. Clocks as power domains
-> 	Again this hasn't happened in DT or Linux SCMI implementation
-> 	side. I can't speak about firmware implementation side but
-> 	not conforming to the spec may make it hard to work well with
-> 	generic drivers. Conformance tests must catch them ideally but
-> 	writing the conformance tests and running them on the real
-> 	hardware are 2 things that probably not happening at all(not
-> 	even to some extent).
-> 
->> How can we make sure that other vendors also abstract device resources
->> exactly like what Qualcomm SCMI Server?
->>
-> 
-> We can't. That is the advantage of platform specific firmware
-> implementation. But that said, the firmware should be conformant to the
-> specification. They can't go wild and implement things in a way that
-> makes it incompatible or non-conformant to the specification. In which
-> case the standard upstream SCMI drivers can't simply support that platform.
-> 
->> What I feel so far is that all of the resources are moved to scmi perf in a
->> very Qualcomm implementation way.
->>
-> 
-> It depends on what exactly this "very Qualcomm implementation way" mean
-> when we break down to individual details. Sorry there is no other way
-> to answer or address this. Anything you see as Qcom specific can be
-> either put into conformant or non-conformant bucket with respect to the
-> SCMI specification.
-> 
->> I have no objections to having a generic property or way to determine this
->> more generically. As long as this is explicitly documented as part of Device
->> tree binding for all the devices and done correctly.
->>
-> 
-> OTH, my argument so far is that the presence of SCMI node indicates some
-> or more SCMI features are available on this platform. The SCMI node itself
-> then will have the resource provider nodes(like clock, power, perf, reset,
-> regulator,...etc). If the individual device nodes are consumers of those
-> resources, they will be pointing to those instead of non-SCMI clock, reset,
-> ...etc resource providers. So ideally we don't need anything more in the
-> DT.
-
-The situation that you described is perfect case of SCMI.
-
-With SCMI perf device support case,  combination of these clks, 
-regulators and reset are moved under the perf domain. Its no more the 
-same type of resource provider. So the DT bindings will change drastically.
-
-so the existing driver that was expecting clk/regulators/resets now has 
-to deal with perf domain.
-
---srini
-
+I don't understand what do you mean? Programming model is same. Only number
+of TCMs are changing based on configuration and platform. I can certainly
+list different compatible for different platforms as requested. But other than
+that not sure what needs to be fixed.
 
 
 > 
-> --
-> Regards,
-> Sudeep
+> Best regards,
+> Krzysztof
+> 
+
 
