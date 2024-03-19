@@ -1,202 +1,188 @@
-Return-Path: <devicetree+bounces-51419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2799987F554
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 03:17:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B88287F56A
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 03:26:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 425321C20E5B
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 02:17:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B3D31C21676
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 02:26:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26DF864CE1;
-	Tue, 19 Mar 2024 02:17:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34452651B9;
+	Tue, 19 Mar 2024 02:26:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KZFjJ969"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="u+QpXFOH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A075657A0;
-	Tue, 19 Mar 2024 02:17:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4892964CE9
+	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 02:26:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710814659; cv=none; b=mrhsrQXh8uvL0iF59tbYVuKsAbsH/je8raN9/Yh4QsADuOXAVgtq19pGImuHrluvmUvfcCsv2zCfbdyh1to8ftBujtHzouQtxgZ/KIveea5g2vJJnV5UYWPa9B+WQsvN9Vfgnx6uDaMOqIh3T2DVCYuEBbt08w9qRtQM8T/lCaY=
+	t=1710815185; cv=none; b=CRWltKG2NoiqUNIVrXXEVEvjDZAXybIkXuSP3V8yv/06NKwrieR7u9V1dgkfLKnyeo34TzLd8cy+Sn4MtJ9ZB8sG/CEmQFoHPlLzg1J9w0YRgghUkAZZ9MG0rw8yar4uFCINc9Ru/ObaCfDdILnulKdWmTxRpIWjm9dPDp3zt8w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710814659; c=relaxed/simple;
-	bh=CsG3vmxbvFtQ7kIVlmN4FWQj2lM1tpF+IhDqH5t4bhY=;
+	s=arc-20240116; t=1710815185; c=relaxed/simple;
+	bh=sggre/bwedm+SjhOnNs5oKMSJXt1Hx/MhvbnEbYdQRE=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mmYlz3NXRxgCXxbpPpPyXJNsbld10hPzTsFxg2pbMecVZLcthphggDvSGZc/gZH4hGECzOY9pCGheHu4HJFSNANqzNCNVNgaLwYUfcjprWf1OE9/BFXtQAoxfCUiJF1UMegbphxHv5h5Qgqbjq7+BX1CpxqjN8bkg7z+0bKZ36Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KZFjJ969; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-56b95efd37fso139999a12.0;
-        Mon, 18 Mar 2024 19:17:37 -0700 (PDT)
+	 To:Cc:Content-Type; b=ZJIn7nlB4Xr3aasn3ozpibIGKX7cwZp8cRdg6IKFTCIIEX+tQ6d3BgcGmLCT+sCoAz3qDpm2Bh22anoUszASsLncz5WvPessEPymH92ps61IDlnU42ZnCxL01yf65nZZ5XnXPfxfoj4GsgbQNbCMTsRLMUr+E8j98vc8HO4iWwE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=u+QpXFOH; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a466e53f8c0so653149966b.1
+        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 19:26:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710814656; x=1711419456; darn=vger.kernel.org;
+        d=google.com; s=20230601; t=1710815182; x=1711419982; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=06RPO2L6a0D0jVlzae2rRfq/gkYIWURzVjCd+HP4+0E=;
-        b=KZFjJ969KLoF+Fo7KMcYjYfpBk/3EYivKCa82GXPi+UO4yhOnPOYHBGN7V26gTnbGa
-         gkT5Y2zIpMwdE6Wu4GVg1rSkUJxDBV6fsfwaIbw4Z01H/U672NrCjXN91scd0g3MCTDw
-         XQrGMIJvmtfZotVVOLN+/nyH1BatuEdd1/HS89cKPH7idIzz275GORL7YAHLu9Vba4RM
-         wOsa+DTm/XTOH+33p4tM4/IMptrORoRKjT9JD8JePI0Lp2XLtbkBU4N4irV6pT3xT5rt
-         RzUagQh+rzWlgMKXLJLzCvtmCZKpsyYJ9c+6ascDTfjJYNO+Wz+1NUBuqqbtjo24BDtC
-         jp2g==
+        bh=9PVwebktWBWty2mBrf17cNCGtAzEMmWTbg3BNLwRbR4=;
+        b=u+QpXFOHxIIm2aA8ZtgDstbdEP0JytJobxygrcibELE2iSg42kVC3nIhORU+hQRdCR
+         g02IrjRD211Th2bTY7QgjIDz8/vvzyrWwbNp74QLJaFZFfbHDgcS2+5Tuoj0930kPNkf
+         c5x6ok0I/EMtikTXIe6THfEeU4JEvOhnoN+MkV1pV8QRt5gUoq42kfYXtxdB4JbDg8Mq
+         Ny7aNIrtG/saUzznCbyJGJp+gTdqkFow4k6LyzTqM8w2oRxnxSQ41Quu/jitkpJYs0uC
+         3GS4g2V6k/At4g57bbgqkF2rtgkVMB32SCqGrKB26kWQdo1HgPBZk0ytKK3VgS62qucq
+         Xqsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710814656; x=1711419456;
+        d=1e100.net; s=20230601; t=1710815182; x=1711419982;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=06RPO2L6a0D0jVlzae2rRfq/gkYIWURzVjCd+HP4+0E=;
-        b=BD5wcDvDGYRNA98Px4JxxfDqSahy5QuENOGd50jz+3y6zTkrygtRK5JAwj27nqb0AH
-         0saANWjKedWA5xhjZ4jhif8dFUwaWdiCLOSBkLxworf9Gwl3T8hKrdeJB56vb1usxaRW
-         5o9Lq90X8Q+upnZcxSsLyj9aua95jElCHR6yJ2F80pE/5Prj2L7yBmnG53xGR+fWgNFa
-         CE/hnPLJsznHfHmgTfguh8Hawm3/GG2yysIa8fpTRzWL+cp4H4LYeF+NGtIb2E1NO989
-         74yjWRC350qpwkSkzeWq5JeO873nSQIUmE9jAm3QKDpn7IRs7eI3vEILp9HliHaLkGQ8
-         VUTg==
-X-Forwarded-Encrypted: i=1; AJvYcCWYLyNqSSx6N4cYffoYTMUheOEgZkhulfqv47GXKVV5FAEH0rwt1ZW95iZIjzZuX58woln7SfuxmTUxL7EdLwX/uG+yA/+bLkTppqTp6RxLHwAiV/7x6omERfgNJHdPa5YKDbOFHU9JfsKJEY/OC4hQm8TCbK/NHOQIaADUlVRGe0pHMQyCC2UVe651beaWuTfcALjSbI7hFZvQTXCWTas=
-X-Gm-Message-State: AOJu0YxdwxmW7hcINXt+KimKQRcSXY9jEIQ7sH/JHHSCm/72qA4AmcHN
-	RjIGZKk+8nmLbGLqLrAWblln/oYzaecpW+GKR8n25cHjJjvjivVkXTZvlHZQLzGyZeVZoJaxgm+
-	QfULUh+quc8xyq6ajBJCkPHjzXF8=
-X-Google-Smtp-Source: AGHT+IET5BfyyNn1yIQVOKCdlTrCvipy5TXQyXfXWXQ9ccwDlBn7aPQxcrAA+CMVqApdHTsfUVr56tWGv+GC7gfYxSY=
-X-Received: by 2002:a50:cd87:0:b0:564:f6d5:f291 with SMTP id
- p7-20020a50cd87000000b00564f6d5f291mr8897173edi.34.1710814655306; Mon, 18 Mar
- 2024 19:17:35 -0700 (PDT)
+        bh=9PVwebktWBWty2mBrf17cNCGtAzEMmWTbg3BNLwRbR4=;
+        b=hZ/WEsuQFWcBQgSdot7MvU/z5G+nemDSRMy0MQRv+it2jVkJhed/XWPOmzJBkOqHyw
+         qGoPVVgBSppiHebB/ZqAWBqMcKwY2Sy8nbDh3qqhbvM6q4bOHtIQSKjLSCc5U5smEsz5
+         3BJ2bRlaRXnbqWW5jmnrPiwbv30Tdj4bKjfOqP/U1r9CCFFV8/fgN61EycJdKO6DxE2K
+         zacw282Rj25M8sNQ+4h4jZdPvj2M8jm2iRhW4v83BfXmUoksjiFNOCXRi8MDxwBonORp
+         NG12IWRmdeOYXkQxea0EhsBSF09gT44Gf4YdDIp2QeHU5f8Xo1vokTrSszYhYY7yKABk
+         Hqew==
+X-Forwarded-Encrypted: i=1; AJvYcCU63tizgtFAUxVu6g3ditZxo7F75h7j0+g7qpxeX2wsMP1rEmYOZwuIoOALb1CMzi69ChfLb1oe/yW5pGPJRQb+cQjJh4K+c+mBHw==
+X-Gm-Message-State: AOJu0YyMy2ajxacdfuu4JPNB0SryD9zEVWjpwWz+igQO5opGXkDoRR3z
+	9i6eri8llPnY1cPUPiCMJMVQ4IsUVuXgv/YD1PNOWhQRa6PC8YwBM1uepl5Tf0JU0fFB8RAEkCI
+	8cDaiDwO+2UMKyf0m/jSlBlzg6x62bWwFDLb3
+X-Google-Smtp-Source: AGHT+IFu9/5+j8r+Fb4pBtW95+Cl0mFkAx99vWRUt0Y35XyzFmr6MbTbI8DsVSvg5VsvJGnE/Mvw9QqpeiGeWfWctas=
+X-Received: by 2002:a17:906:81c9:b0:a46:6958:c415 with SMTP id
+ e9-20020a17090681c900b00a466958c415mr639887ejx.8.1710815181445; Mon, 18 Mar
+ 2024 19:26:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240316-loongson1-dma-v6-0-90de2c3cc928@gmail.com>
- <20240316-loongson1-dma-v6-1-90de2c3cc928@gmail.com> <20240317-exorcist-spectator-90f5acb3fe2a@spud>
- <CAJhJPsWOUZsWFvreRrPqQHAjYW7uRT31THHi7CRDN46+nHpL9g@mail.gmail.com> <20240318-value-snide-8733098b9e76@spud>
-In-Reply-To: <20240318-value-snide-8733098b9e76@spud>
-From: Keguang Zhang <keguang.zhang@gmail.com>
-Date: Tue, 19 Mar 2024 10:16:59 +0800
-Message-ID: <CAJhJPsWRoNaSeYs1DjSreriV6V7TgdkktQNWgs=HsNKBAiCpxw@mail.gmail.com>
-Subject: Re: [PATCH v6 1/2] dt-bindings: dma: Add Loongson-1 DMA
-To: Conor Dooley <conor@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-mips@vger.kernel.org, dmaengine@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240228013619.29758-1-quic_wcheng@quicinc.com>
+ <20240228013619.29758-21-quic_wcheng@quicinc.com> <CANqn-rjTgHgzssxZiuwvTKzOS31wzjS4Y9G-XacZN4a7c82MaA@mail.gmail.com>
+ <d97f635f-053b-70a7-5ffe-a1ae273091d1@quicinc.com> <CANqn-ring2uf=A-F7VuRwnJ--n=FtFzSddCmR-=nfxCGcFAF2g@mail.gmail.com>
+ <0e9f0f2f-a404-3b76-3c52-9eca7594efa3@quicinc.com>
+In-Reply-To: <0e9f0f2f-a404-3b76-3c52-9eca7594efa3@quicinc.com>
+From: Albert Wang <albertccwang@google.com>
+Date: Tue, 19 Mar 2024 10:26:08 +0800
+Message-ID: <CANqn-rjMcncjZv9YNZJOZgFo0_ro9hk=TBSFrY9RfhE1Mi13qw@mail.gmail.com>
+Subject: Re: [PATCH v18 20/41] ALSA: usb-audio: qcom: Introduce QC USB SND
+ offloading support
+To: Wesley Cheng <quic_wcheng@quicinc.com>
+Cc: srinivas.kandagatla@linaro.org, mathias.nyman@intel.com, perex@perex.cz, 
+	conor+dt@kernel.org, corbet@lwn.net, lgirdwood@gmail.com, 
+	andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	gregkh@linuxfoundation.org, Thinh.Nguyen@synopsys.com, broonie@kernel.org, 
+	bgoswami@quicinc.com, tiwai@suse.com, robh+dt@kernel.org, 
+	konrad.dybcio@linaro.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-sound@vger.kernel.org, 
+	linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-doc@vger.kernel.org, alsa-devel@alsa-project.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Mar 18, 2024 at 7:29=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
-te:
->
-> On Mon, Mar 18, 2024 at 02:18:27PM +0800, Keguang Zhang wrote:
-> > On Sun, Mar 17, 2024 at 10:40=E2=80=AFPM Conor Dooley <conor@kernel.org=
-> wrote:
-> > >
-> > > On Sat, Mar 16, 2024 at 07:33:53PM +0800, Keguang Zhang via B4 Relay =
-wrote:
-> > > > From: Keguang Zhang <keguang.zhang@gmail.com>
-> > > >
-> > > > Add devicetree binding document for Loongson-1 DMA.
-> > > >
-> > > > Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
-> > > > ---
-> > > > V5 -> V6:
-> > > >    Change the compatible to the fallback
-> > > >    Some minor fixes
-> > > > V4 -> V5:
-> > > >    A newly added patch
-> > > > ---
-> > > >  .../devicetree/bindings/dma/loongson,ls1x-dma.yaml | 66 ++++++++++=
-++++++++++++
-> > > >  1 file changed, 66 insertions(+)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/dma/loongson,ls1x-dm=
-a.yaml b/Documentation/devicetree/bindings/dma/loongson,ls1x-dma.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..06358df725c6
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/dma/loongson,ls1x-dma.yaml
-> > > > @@ -0,0 +1,66 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/dma/loongson,ls1x-dma.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Loongson-1 DMA Controller
-> > > > +
-> > > > +maintainers:
-> > > > +  - Keguang Zhang <keguang.zhang@gmail.com>
-> > > > +
-> > > > +description:
-> > > > +  Loongson-1 DMA controller provides 3 independent channels for
-> > > > +  peripherals such as NAND and AC97.
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    oneOf:
-> > > > +      - const: loongson,ls1b-dma
-> > > > +      - items:
-> > > > +          - enum:
-> > > > +              - loongson,ls1c-dma
-> > > > +          - const: loongson,ls1b-dma
-> > >
-> > > Aren't there several more devices in this family? Do they not have DM=
-A
-> > > controllers?
-> > >
-> > You are right. Loongson1 is a SoC family.
-> > However, only 1A/1B/1C have DMA controller.
->
-> You're missing the 1A then.
->
-Will add 1A.
+> We can discuss that offline and come up with an approach that is
+> reviewable by maintainers and the community.
 
+Sure, looking forward to working together with you!
+
+Thanks,
+Albert Wang
+
+On Fri, Mar 15, 2024 at 4:57=E2=80=AFAM Wesley Cheng <quic_wcheng@quicinc.c=
+om> wrote:
+>
+> Hi Albert
+>
+> On 3/14/2024 3:29 AM, Albert Wang wrote:
+> > On Thu, Mar 14, 2024 at 3:18=E2=80=AFAM Wesley Cheng <quic_wcheng@quici=
+nc.com> wrote:
+> >>
+> >> Hi Albert,
+> >>
+> >> On 3/13/2024 1:03 AM, Albert Wang wrote:
+> >>> Hi Wesley,
+> >>>
+> >>> The suspend function `qc_usb_audio_offload_suspend()` looks to stop
+> >>> the traffic on the bus, so that the bus can be suspended. That allows
+> >>> the application processor(AP) to enter suspend. There is a subtle
+> >>> difference with our feature, which is to allow AP suspend with the
+> >>> Host and USB controller active to continue the audio offloading. We
+> >>> call this feature `allow AP suspend in playback`. So, I have some
+> >>> points to clarify with you:
+> >>
+> >> Yes, I'm aware of that feature also.
+> >>
+> >>> 1. Will the suspend flow `usb_audio_suspend() -->
+> >>> platform_ops->suspend_cb() --> qc_usb_audio_offload_suspend()` be
+> >>> called when offloading is active?
+> >>
+> >> It can be.  This is why in our case, we are going to issue the
+> >> disconnect event to the audio DSP to stop the session if it is current=
+ly
+> >> in one.
+> >>
+> >>> 2. As my understanding, the suspend function is to allow AP suspend
+> >>> when the offloading is IDLE, but it won't allow AP suspend when in
+> >>> playback or capture. Please correct me if anything is wrong.
+> >>
+> >> As mentioned above, it will let apps go into PM suspend after forcing
+> >> the audio stream to be idle.  We won't block PM suspend entry.
+> >>
+> > Right. Your design is to force the audio stream idle, or say, inform
+> > the audio DSP
+> > to stop the current offloading session first, then AP can go into PM
+> > suspend as usual.
+> > Then I can say the current design did not support the `allow AP
+> > suspend in playback`
+> > feature, right?
 > >
-> > > > +
-> > > > +  reg:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  interrupts:
-> > > > +    description: Each channel has a dedicated interrupt line.
-> > > > +    minItems: 1
-> > > > +    maxItems: 3
-> > >
-> > > Is this number not fixed for each SoC?
-> > >
-> > Yes. Actually, it's fixed for the whole family.
 >
-> Then why do you have minItems: 1? Are there multiple DMA controllers
-> on each SoC that only make use of a subset of the possible channels?
+> Correct, this series does not cover this mechanism.
 >
-All channels are available on each SoC.
-Sorry, I will remove the minItems.
-
-Thanks for your review!
-
-> > > > +  interrupt-names:
-> > > > +    minItems: 1
-> > > > +    items:
-> > > > +      - pattern: ch0
-> > > > +      - pattern: ch1
-> > > > +      - pattern: ch2
-> > >
-> > > Why have you made these a pattern? There's no regex being used here a=
-t
-> > > all.
-> > >
-> > Will change items to the following regex.
-> >   interrupt-names:
-> >     minItems: 1
-> >     items:
-> >       - pattern: "^ch[0-2]$"
+> >> Yes, I saw that patch as well.  I'll take a look once this series land=
+s
+> >> upstream.
+> >
+> > That patch is rejected and archived now. So we need to find another
+> > approach to do
+> > that, even based on your framework.
+> >
 >
-
-
---=20
-Best regards,
-
-Keguang Zhang
+> We can discuss that offline and come up with an approach that is
+> reviewable by maintainers and the community.
+>
+> Thanks
+> Wesley Cheng
+>
+> > Thanks,
+> > Albert
+> >
+> >
+> >>> 3. We would like to integrate the `allow AP suspend in playback`
+> >>> feature with your framework to become one upstream offload solution.
+> >>> Here is the patch:
+> >>> https://patchwork.kernel.org/project/linux-pm/patch/20240223143833.15=
+09961-1-guanyulin@google.com/
+> >>> .
+> >>
+> >> Yes, I saw that patch as well.  I'll take a look once this series land=
+s
+> >> upstream.
+> >>
+> >> Thanks
+> >> Wesley Cheng
 
