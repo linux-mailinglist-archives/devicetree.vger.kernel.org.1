@@ -1,99 +1,122 @@
-Return-Path: <devicetree+bounces-51619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51621-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34E6087FD83
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 13:26:01 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E8B887FDB0
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 13:41:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C9A0F1F22DA0
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 12:26:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5437C1F2378E
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 12:41:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49DC27F7C4;
-	Tue, 19 Mar 2024 12:25:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 753937E761;
+	Tue, 19 Mar 2024 12:41:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="ol0N8V5O"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="YS75RVrQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55A1E7F469;
-	Tue, 19 Mar 2024 12:25:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D1525A4C7;
+	Tue, 19 Mar 2024 12:41:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710851156; cv=none; b=nLX8Q5bzU7ot8+zHqEvWCBvBSTDDWRigdiNgb+hldkxdmqqkJUzITboJ86THvS4IkFlIn+HbXKPl6L8NUMKQDE2ykyldoNO/IZ0CEgBwtQqTQlk14zPwKi+IbXR60LTjsAyYAiKVt6qEYGYQ9Ez+vBCwBkLn3jEMnjdA0U4FXYE=
+	t=1710852073; cv=none; b=b+WfVWvEbaexoSyU4MMPYfEp3dwHWPrNLlN7+3eJswpMMwA2I0g6eZXSoT77jCU+7Gz7lT38MYyVB+ogrOj9DBl8E4UIbFh6YcdObhgXlGmXtq8RcuJrPtVXYXYXZOC9MUzf/zy2U1bcDMCNZUnsnDg1NlkMwVroITIQcmtLjnc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710851156; c=relaxed/simple;
-	bh=BP3B84ARNrn7lXfL6vg/q+uz5CqMrzfZiAc+JtFzzGI=;
+	s=arc-20240116; t=1710852073; c=relaxed/simple;
+	bh=GrOBN+jSBZcF9nUlKAzK4ebUgJNLCytGla0/AzR1dkg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FMZGu/njMsd9toWPXFjia3ZY/Mw/RIsSSrAkQ8Wj91ZSU8AmohEqYxIE5cmLMVIuQu/CqpHdKGPB1kYYJStuXCqT2XZoCGjnIUeNvQ9hpMQToM4oIUsfvkvydTuMEMHsKrPCZnOs3HDMv3Winbr8pmnRSldXD9y3AkZMoSlokNs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=ol0N8V5O; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=oLvla2oyvXXJnH6StnpXdN8ZvKvla8sutF0A+RVM3SI=; b=ol0N8V5OvA2RhRy82GsC+gtUiA
-	iWxQT13z+0a4GNIjKIrRvLJGv3xjGoqFCwB30c1fchr32JMByCSjbmtdVkshtAA4jAOwtMJzr6EL1
-	9l7ZvozHYaJjy0C1a0CEWClJkSRY3LGvPKmB3dn3mZnmN3Km9wqf2SMMdK8ZPLmuuzas=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rmYXF-00AhIs-Tv; Tue, 19 Mar 2024 13:25:41 +0100
-Date: Tue, 19 Mar 2024 13:25:41 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Ayush Singh <ayushdevel1325@gmail.com>
-Cc: Michael Walle <mwalle@kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, jkridner@beagleboard.org,
-	robertcnelson@beagleboard.org, lorforlinux@beagleboard.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=QQk/e76j0mcWacPxweT27Q9a1fe9ylPFm2dSS52cJqFVytlKbJn/nY5fywIlh75g7KsgRpjS9h7OUPKxIHqjzELnBwgL5q3yXRUDw13nIWdeRviXG4RWwcXyU61FvaqupLchoZf481MSjFg+6zPllhS+oheuFafQsM2Y4eek+5k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=YS75RVrQ; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 19DAF1FE22;
+	Tue, 19 Mar 2024 13:41:01 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1710852061;
+	bh=0qZGsVKIae4qmkuLNwqJ6ZjQTeE2rCbR5WVNuV1x93g=; h=From:To:Subject;
+	b=YS75RVrQSWd1FtU2qy5WyArZ4+QuY0XtFTlKvhf1dLNjMGtsaww8yVxEo+PRa040G
+	 30sFZixixFqk3QoE/55h8U6vR+i2Uq5u+YYGcKppYc/2fcglE3j/iwDl3nOypaaPrq
+	 pV9EBagJh39FaKs60QzKVBfStu/fHzSTYtBmjHGqlsNYehJgrlPioHfIBllGiVixFV
+	 BQSG7jKPYzc0d0KbxNWA/qjaHsE2DTt3qqCnTIIRJKw8Akw0VVdoHtTOrKXvMwMads
+	 OLjC6Va7+pap1eGCsBRC3jyv05TGx8RQTLue3vsV0FT3BoPLRA7ZbYuhmvpR8owL/V
+	 T9UOmuOoLY8sg==
+Date: Tue, 19 Mar 2024 13:40:56 +0100
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Nishanth Menon <nm@ti.com>
+Cc: Francesco Dolcini <francesco@dolcini.it>,
 	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Vaishnav M A <vaishnav.a@ti.com>, Mark Brown <broonie@kernel.org>,
-	Johan Hovold <johan@kernel.org>, Alex Elder <elder@kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"moderated list:ARM/TEXAS INSTRUMENTS K3 ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-	"open list:SPI SUBSYSTEM" <linux-spi@vger.kernel.org>,
-	"moderated list:GREYBUS SUBSYSTEM" <greybus-dev@lists.linaro.org>,
-	Vaishnav M A <vaishnav@beagleboard.org>
-Subject: Re: [PATCH v4 1/5] dt-bindings: misc: Add mikrobus-connector
-Message-ID: <b62915ca-c151-4e37-bb03-c92c569c84ff@lunn.ch>
-References: <20240317193714.403132-1-ayushdevel1325@gmail.com>
- <20240317193714.403132-2-ayushdevel1325@gmail.com>
- <CZWVF90JJO98.2M7ARQ9WMGC94@kernel.org>
- <d4dc4d94-d323-4158-8c08-b7d37d8750d3@gmail.com>
+	Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	=?iso-8859-1?Q?Jo=E3o_Paulo_Silva_Gon=E7alves?= <joao.goncalves@toradex.com>
+Subject: Re: [PATCH v1] arm64: dts: ti: verdin-am62: use SD1 CD as GPIO
+Message-ID: <20240319124056.GA13970@francesco-nb>
+References: <20240312144956.40211-1-francesco@dolcini.it>
+ <20240319120717.e2p65ricusxuz3wm@subatomic>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <d4dc4d94-d323-4158-8c08-b7d37d8750d3@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240319120717.e2p65ricusxuz3wm@subatomic>
 
-> The device tree defines the SPI controller associated with mikroBUS SPI
-> pins. The driver on match queries and takes a reference to the SPI
-> controller but does nothing with it. Once a mikroBUS add-on board is
-> detected (by passing manifest using sysfs or reading from 1-wire EEPROM),
-> the driver parses the manifest, and if it detects an SPI device in manifest,
-> it registers SPI device along with setting properties such as `chip_select`,
-> `max_speed_hz`, `mode`, etc.,
+Hello Nishanth,
 
-How complex can the description of the hardware be in the manifest?
+On Tue, Mar 19, 2024 at 07:07:17AM -0500, Nishanth Menon wrote:
+> On 15:49-20240312, Francesco Dolcini wrote:
+> > From: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > 
+> > TI SDHCI IP has a hardware debounce timer of 1 second as described in
+> > commit 7ca0f166f5b2 ("mmc: sdhci_am654: Add workaround for card detect
+> > debounce timer"), because of this the boot time increases of up to 1
+> > second.
+> > 
+> > Workaround the issue the same way that is done on
+> > arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts, using the SD1 CD as
+> > GPIO.
+> > 
+> > Suggested-by: Nishanth Menon <nm@ti.com>
+> > Reported-by: João Paulo Silva Gonçalves <joao.goncalves@toradex.com>
+> > Closes: https://lore.kernel.org/all/0e81af80de3d55e72f79af83fa5db87f5c9938f8.camel@toradex.com/
+> > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > ---
+> >  arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi | 12 ++++++++++--
+> >  1 file changed, 10 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
+> > index e8d8857ad51f..a9bf2c17f95a 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
+> > +++ b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
+> > @@ -1441,8 +1447,10 @@ &sdhci0 {
+> >  /* Verdin SD_1 */
+> >  &sdhci1 {
+> >  	pinctrl-names = "default";
+> > -	pinctrl-0 = <&pinctrl_sdhci1>;
+> > +	pinctrl-0 = <&pinctrl_sdhci1>, <&pinctrl_sd1_cd_gpio>;
+> > +	cd-gpios = <&main_gpio1 48 GPIO_ACTIVE_LOW>;
+> >  	disable-wp;
+> > +	ti,fails-without-test-cd;
+> >  	vmmc-supply = <&reg_sdhc1_vmmc>;
+> >  	vqmmc-supply = <&reg_sdhc1_vqmmc>;
+> >  	status = "disabled";
+> 
+> Minor style comment based on recently added https://docs.kernel.org/devicetree/bindings/dts-coding-style.html#order-of-properties-in-device-node
+> 
+> ti,fails-without-test-cd comes after vqmmc-supply and above status.
 
-Could i describe an SPI to I2C converter? And then a few temperature
-sensors, a fan controller, and a GPIO controller on that I2C bus? And
-the GPIO controller is then used for LEDs and a push button? DT
-overlays could describe that. Can the manifest?
+Whoops, you are right, of course, thanks. I'll send a v2 once the merge
+window closes and rc1 is out.
 
-	Andrew
+Francesco
+
 
