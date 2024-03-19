@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-51671-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51672-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECCD588007F
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 16:24:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E50488008F
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 16:28:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7A60282F1A
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 15:24:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B17A91C22050
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 15:28:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D53C6651B4;
-	Tue, 19 Mar 2024 15:24:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D50B657AE;
+	Tue, 19 Mar 2024 15:28:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="r1L4cwO5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sc7ahwSe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2319B46BF
-	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 15:24:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63379651B4
+	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 15:28:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710861891; cv=none; b=d7dxJGPZrrPpnN7okzqYDwOP0tlbspo4abRrW7Ji3FwE6GoC6ov7ce/Fl/grdHLlqI5XdX7VIk+dWg8CojPjX/Lp5armJSNgLZFbCDvDvqIzg35HIme6fB09Z8H+DzG401MDjxd6z7tm3KiDXroIcMzOTa5EGiNCZOyUh96+io4=
+	t=1710862098; cv=none; b=pYU6UwjIwFOwm+71zIiRkreN/YTmL+e7b73ffhVUhIz7c1K3CIUY8CphmpPi6dr6Ht4D+mCkyEAtYnJ2fqwdUStGElAnyauiDxp3zs6fqrjftQbTUwJG3u/BVY47d98VadHs4JsFVl0d24ZSAEDQHMEDj3JVWkTIrplOIfDVs6E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710861891; c=relaxed/simple;
-	bh=lIytFHbbynF0ymPcC7goQip8SDsqtONTI2YWA6WZ5Ao=;
+	s=arc-20240116; t=1710862098; c=relaxed/simple;
+	bh=Iebj8IQWBTDSyQOcN8l27jVQbNugY8Umi0XfChxI060=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tB+cZo8Kb598ANwlGRqQU6p90s3Xt83tK0tODaSPRFQHGbGTgaQgNkXzM6b+dsfXKOGgGqFbeCkpKyIha1dXtOt/PeIon3H7UluRQRbad7oWFDglRYLBqlOFbrBz6DD9wsAVhbgO3mHMqFWlpuFP36elByYjcLMeDDVAz3g8+Gw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=r1L4cwO5; arc=none smtp.client-ip=209.85.218.47
+	 In-Reply-To:Content-Type; b=JjUEkATAvyjhovO7vYi4mJTgsHER+R21vXNXH/w5MMNzCs//ftOlIKyNibCQtQexTAF7ZPEIFjEHQgKLp9MZWAZ5Idvut+FFaWw69nPQBE0sR6I09AStdMvDmBE3/ekdywUYOr/TpYWjmJtGsiz3U3xOO1pvVwTWXmXPQY74+OM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sc7ahwSe; arc=none smtp.client-ip=209.85.218.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a46aaf6081fso414352566b.2
-        for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 08:24:49 -0700 (PDT)
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a46cc947929so264252566b.1
+        for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 08:28:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710861888; x=1711466688; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1710862094; x=1711466894; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=kOmnXFbjjE4szNevNMFXZKUt1lQSXyLP1LD1PrVAQ2E=;
-        b=r1L4cwO5/yDUu/LQnkqLrTxC9nOybOjZEc0eXPzxFSuRSFCA9najUxc5cIlDKdiH0g
-         N5STwFDzhp58D88edjb1ymfmu6kLO2yQgrE7mZWoApgCQOXbgkMJiIJM/S8+IEoDMM33
-         mIXHns6Lik3A7iL8bCcsL8pX5Dnn5eLxSvRlv8SClRTQ0gkgJ3LIy9zrMbaLzVgkpW9/
-         TMSnG8MikJnGMAE8p3poZc1IqoWnxmJtmERHMka1QH39YUpegj7Ypp8eq/DVY3VbX16w
-         auCkyxzumdCrh842LwuYK/5MH6jLdlqoRFX9V9HMjQhrzT3hUIDAUu4dosrS748fbfgC
-         uT1A==
+        bh=Uw3yViolL256D4KpZ/VNe3q1jCT/oeAJQE+OzIT+f9c=;
+        b=sc7ahwSeFLVgvg3AWckEjSPyMlZT2xaSCGY3/VkuI9x3wxJALClLvDidKytFJb1CXY
+         1xaEZ49DMri2opJ3G8ikTdbcRg8glAyjPzEbzCXCxwUU32H8QZunY25S5ix1XDCBCiM5
+         niR0GYxMFsD+nG5ElELjxCIVdKlFXlfx0TVCYKGxm4SEH87A2cfv+MvocK2rjtIdTWb/
+         RzPAEWn15w+8uZVavNGmVmmGwnk6w9WeAwMvXAYKXP89pdyTuLtv5vmYzDIgLIdGL3Od
+         6FZ1qw2jxgIBFYe6OOKecJZDsIhPWh7ElqSQD25aSg8vh3SP5s5MvtD9380HpsC1S2EV
+         tuvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710861888; x=1711466688;
+        d=1e100.net; s=20230601; t=1710862094; x=1711466894;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=kOmnXFbjjE4szNevNMFXZKUt1lQSXyLP1LD1PrVAQ2E=;
-        b=kQqfvpHmWacvKltI+NbwaKSDRwy3jhXdM784IZy1QqpAmpy9rn2nH7V2WrAr5fCo0h
-         w82ELUlfcxb7zx4u6oV9FDvo3tjY8qmq76xAdXMA1K1ddUBPmgVCyji8OWuvGeXoFafh
-         0Bue7cA6/gM8DQRtfU/ZqbgcWmoLc5C0TSKeDqt+B5pNcJohxODlHErivfNjFr1Q6l+n
-         MiIk4Vo2lz7aW8WBPwH2242bi6GVR6SnvxPXfwRUm3sL4x0sladfMlCIjJNTbeLaQCen
-         MGKkpL4AF903w+AeC83ye+b98GD2TPTE4wUcK/KMSUT2ibwfUCsl4sL2UrgJ+Rdrxgio
-         Rvjg==
-X-Forwarded-Encrypted: i=1; AJvYcCXZNOvApiYVkxWp66d0SZbu0RG0fhSboVRpV7eXOa+HXkQJhG6ipcBhOjOuZ1cPkgpD1F1ptap8E9cBjVPb6sZ8jgE2AFgHQLOWGg==
-X-Gm-Message-State: AOJu0YyITcULJ3zOsC0xJQd5dVpqHt+dfcPQPjbY4UfkEJL16soed6PB
-	T9BUOypvAtIExoVXfOpMeA3hRQd3WJNrfEBohY1JmONjh57gORfiEV+Ju3Acxlo=
-X-Google-Smtp-Source: AGHT+IHTYuFBC+LcDF+FXQ6e2/Worpo6eNOG9VEW5amG72ngZAdrH+oLoVookfNEjJvS4++i5dQt+Q==
-X-Received: by 2002:a17:906:b7d3:b0:a46:c8e6:b825 with SMTP id fy19-20020a170906b7d300b00a46c8e6b825mr1790305ejb.26.1710861888426;
-        Tue, 19 Mar 2024 08:24:48 -0700 (PDT)
+        bh=Uw3yViolL256D4KpZ/VNe3q1jCT/oeAJQE+OzIT+f9c=;
+        b=AOnJXqOgeqkpvw312329TBZD+WD7OVWRJl852CIgB0gsrQIy18JkaWk1P/LWuW0I9m
+         QpODU1Jzt4oYrG1bu38755DaJicwcT+pZXmXeEMgl5Fj4EkRLQU2+qj/l0f2HV4lasKk
+         D0Icjov1pMprkNZARL94PWP3X3r+CISIlVIxKXsfxkZwTlbcG1p9oZW6dLnkxQfpCavI
+         unfRPeM9puMljnrWwr48QUFoBXj1ctKEuOQ+eEaMYENFrySC2uz7r/d0lwdfa5ZY8lNu
+         /GZJtppPQPgh852+M5GtgGliGg1OWsjxyqZm+dftoWwlqUJQx33jdXdOb9XVuZ/ZJfcP
+         /gXg==
+X-Forwarded-Encrypted: i=1; AJvYcCX3bWTGE8CC8rwGhzREwgPeaFLX25axXK6l+1pRSS3INrZ2U9XIr1DIOC3AGKapCDENQB1/XUtuRmTti1my3yXnCYvyPZdWAIaXQA==
+X-Gm-Message-State: AOJu0YxMB92/xYypGp7F1IaCMrn7pYCBYwPXjC+JmB3g9qKhyEAFeRCI
+	ofVoRL6S45TuenWjKZ3rYybMISoatcKv/9XPrxEAZ92Cs0ZUr95oPrVjbOiv8BE=
+X-Google-Smtp-Source: AGHT+IF7Mn55tuJjB5sm1mYK+MpMA1+6VQ2Ca0a6t3Dpj8QQx0mBwM7GMKkkizUXQTiG6BR8sjxbqw==
+X-Received: by 2002:a17:906:c14e:b0:a46:a786:8c8c with SMTP id dp14-20020a170906c14e00b00a46a7868c8cmr5971856ejc.77.1710862094598;
+        Tue, 19 Mar 2024 08:28:14 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id dt22-20020a170906b79600b00a4669f6c2e2sm6149478ejb.44.2024.03.19.08.24.46
+        by smtp.gmail.com with ESMTPSA id e25-20020a170906845900b00a4652efd795sm6232497ejy.83.2024.03.19.08.28.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Mar 2024 08:24:47 -0700 (PDT)
-Message-ID: <23692c07-98bd-477d-b244-bba14c50352c@linaro.org>
-Date: Tue, 19 Mar 2024 16:24:44 +0100
+        Tue, 19 Mar 2024 08:28:14 -0700 (PDT)
+Message-ID: <ba8418ab-2829-416c-8e20-414f7818cab9@linaro.org>
+Date: Tue, 19 Mar 2024 16:28:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,7 +77,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 0/4] virt: vmgenid: Add devicetree bindings support
+Subject: Re: [PATCH v1 3/4] dt-bindings: Add bindings for vmgenid
 To: Sudan Landge <sudanl@amazon.com>, tytso@mit.edu, Jason@zx2c4.com,
  robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
  sathyanarayanan.kuppuswamy@linux.intel.com, thomas.lendacky@amd.com,
@@ -86,6 +86,7 @@ To: Sudan Landge <sudanl@amazon.com>, tytso@mit.edu, Jason@zx2c4.com,
 Cc: graf@amazon.de, dwmw@amazon.co.uk, bchalios@amazon.es,
  xmarcalx@amazon.co.uk
 References: <20240319143253.22317-1-sudanl@amazon.com>
+ <20240319143253.22317-4-sudanl@amazon.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -132,24 +133,122 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240319143253.22317-1-sudanl@amazon.com>
+In-Reply-To: <20240319143253.22317-4-sudanl@amazon.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 19/03/2024 15:32, Sudan Landge wrote:
-> This small series of patches aims to add devicetree bindings support for
-> the Virtual Machine Generation ID (vmgenid) driver.
-> 
 > Virtual Machine Generation ID driver was introduced in commit af6b54e2b5ba
-> ("virt: vmgenid: notify RNG of VM fork and supply generation ID") as an
+> ("virt: vmgenid: notify RNG of VM fork and supply generation ID"), as an
 > ACPI only device.
-> We would like to extend vmgenid to support devicetree bindings because:
-> 1. A device should not be defined as an ACPI or DT only device.
 
-Virtual stuff is not a device, so your first assumption or rationale is
-not correct.
+That's not a valid rationale. Second today... we do not add things to
+bindings just because someone added some crazy or not crazy idea to Linux.
 
-Virtual stuff can be ACPI only, because DT is not for Virtual stuff.
+Bindings represent the hardware.
+
+Please come with real rationale. Even if this is accepted, above reason
+is just wrong and will be used as an excuse to promote more crap into
+bindings.
+
+
+A nit, subject: drop second/last, redundant "bindings". The
+"dt-bindings" prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching.
+
+> 
+> Add a devicetree binding support for vmgenid so that hypervisors
+> can support vmgenid without the need to support ACPI.
+
+Devicetree is not for virtual platforms. Virtual platform can define
+whatever interface they want (virtio, ACPI, "VTree" (just invented now)).
+
+> 
+> Signed-off-by: Sudan Landge <sudanl@amazon.com>
+> ---
+>  .../devicetree/bindings/vmgenid/vmgenid.yaml  | 57 +++++++++++++++++++
+
+No, you do not get your own hardware subsystem. Use existing ones.
+
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 58 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/vmgenid/vmgenid.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/vmgenid/vmgenid.yaml b/Documentation/devicetree/bindings/vmgenid/vmgenid.yaml
+> new file mode 100644
+> index 000000000000..17773aa96f8b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/vmgenid/vmgenid.yaml
+> @@ -0,0 +1,57 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/vmgenid/vmgenid.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Virtual Machine Generation Counter ID device.
+
+Titles are not sentences. Drop full stop.
+
+> +
+> +maintainers:
+> +  - Jason A. Donenfeld <Jason@zx2c4.com>
+> +
+> +description: |+
+
+Drop |+
+
+> +  Firmwares or hypervisors can use this devicetree to describe
+> +  interrupts and the shared resources to inject a Virtual Machine Generation
+> +  counter.
+> +
+> +properties:
+> +  compatible:
+> +    const: linux,vmgenctr
+> +
+> +  "#interrupt-cells":
+> +    const: 3
+> +    description: |
+> +      The 1st cell is the interrupt type.
+> +      The 2nd cell contains the interrupt number for the interrupt type.
+> +      The 3rd cell is for trigger type and level flags.
+> +
+> +  interrupt-controller: true
+> +
+> +  reg:
+> +    description: |
+> +      specifies the base physical address and
+> +      size of the regions in memory which holds the VMGenID counter.
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description: |
+> +      interrupt used to notify that a new VMGenID counter is available.
+> +      The interrupt should be Edge triggered.
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    vmgenid@80000000 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+No generic name? Kind of, because *it is not a real thing*.
+
 
 
 Best regards,
