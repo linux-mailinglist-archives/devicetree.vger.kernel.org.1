@@ -1,167 +1,243 @@
-Return-Path: <devicetree+bounces-51505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51519-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2D4687F96C
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 09:22:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4377E87F9C2
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 09:28:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C23CF1C21B24
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 08:22:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 65C511C21B9E
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 08:28:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 339515B1E3;
-	Tue, 19 Mar 2024 08:21:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DF15548F2;
+	Tue, 19 Mar 2024 08:28:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="oqQDhAkp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 584995916D;
-	Tue, 19 Mar 2024 08:21:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90AD154792
+	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 08:28:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710836497; cv=none; b=QxqtB1rpF7DMurhOWlQ4Cd2tmwb0bjvNJkspS2nDF2rsTMo9gr3c5jq5ss+s84A0ga0MJ6BxwikZ5ri0UNSNwQYTlakqrQXcgfZArxGHU/MAE7OMNQUxlmcywEvYNhclh7utkVgzzAYW7cAq37kl6ByDlAbsc7B6uhk7gqRPZns=
+	t=1710836918; cv=none; b=q2ZniPHc+QdIQkd/XHHthl1m1E1f/qlfz3e+IaXuF+dfiEpQeEOqxL8V83rMwQALSHChXfkZss7/Nt20JJnWiaewTQBB6+KLaxvx++Ty6+caQRHHdqwdXw6SxjUBTpdLBebRnpXYBRm3qw8QyXONmXNsHXe1HD/f5exhFeuUZhY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710836497; c=relaxed/simple;
-	bh=1l+VsDLetr19MqFbcaBSq5IeLD1NWkokl+Ro9XgvyMk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UFiRYVrJDuVtWkuPcfX+oU6y1MzvcoAeZNag4X5ONICPKzh5arQXQ5rvvzwQCN4xsXi027mJqFktMfUwFDO6bs2CKj3uMpAbEX56RAmM0xfcvMY+ATrnZ7D9IT86VIFgeKhDsSf69lQMWrgAP750IjdadImDqom4n7GlXT79Qjs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-609fb0450d8so55705947b3.0;
-        Tue, 19 Mar 2024 01:21:35 -0700 (PDT)
+	s=arc-20240116; t=1710836918; c=relaxed/simple;
+	bh=wEOu2J6N3RicgE6VdikhaGkAHK9MlBxWFNBPisxCRwo=;
+	h=References:From:To:Cc:Subject:Date:In-reply-to:Message-ID:
+	 MIME-Version:Content-Type; b=l1UR0LUeVXpI7mqlw++lqs/BZqwfJHEsyGUw7FKiFmM0+JqlmotFDWYNY2K+sxlGVUWlmEDb41yfuPePfiwHp5bqBomzEUTGXksxtD1mAgRFnDER9w7t3R0pta9Y6DG3DbQCrsA9K30UP410h9R6+L1+kAJ5TAE1P6XpFAnXTTc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=oqQDhAkp; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-341808b6217so777380f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 01:28:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1710836913; x=1711441713; darn=vger.kernel.org;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=hgFFAPN7B2IdqbSbHOUWcvyqPwWPHdQWlex71RuQvmY=;
+        b=oqQDhAkpgLw5OUssGrIeyW21nyYmJJfiZEzHuuJBv2Q+Teo8dmTaCaztY2Y5JCM4lI
+         OrjeHBZVNkizeBLsQ6o0vtAyBE3daTkROgs77VU5qAK9HSi7dMa2ypmLmCJhU8EyAKqM
+         1vz3J+bF7xJKd8XN4QSiWaU103vA/Qo5kuLbkIM8BvT4ArTM7CKHwbJLmdbLCmOeJwCT
+         +jkyoXRxHAHi31KJT4jkwL8idnVo28psaU0d/7m0n7oJdxMfEFziTNxWG7lwoTzcwCeH
+         MLmAM/aA/ylmz3Aqy8++f6N4E4eHxMeM8o5rLbYodh46bSJljU0f5g0mHK5kID0q7PkW
+         JAPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710836494; x=1711441294;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Sk6uoSSGwlcUK6y2ntn66lixyi761tGP06lmI4gJ/mE=;
-        b=WY7wiYr6FB1X2gKhM+LxjJSXrQU6RoUuMU1PnQYRLyCEqeMUZvKxsde9YNy6A6tMhq
-         g0cAKoAC3aMuoS47vhbumLOXzpYYgccKWLRvOSG7LsdFgllMJp7DqR1jPPcMN/KzChAh
-         gQR7nIsZh3mbfJk+2yWMq3/KSD6cynnnf082lmFNA0cPXJm72seus6QtxG7mwKVA/tsK
-         Tz+uUEhiqc7Mz7Sv6XwVJSgSsEQIKBv+DUQUXt+OU31jsoyg55np5CEL05jzsI6UbVRE
-         tpp5bA/bKD1kYIQEv1MehBE22otKB9QsZEHc+w590Kr9ifVSjzld1rtlJd3eiDJtIIjV
-         W4+Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUIow7+fTqvaGD9GmJmUTCqsoylyn2MJwvaMBh0/wQclBjfpTWqtGRqu68k6ZM4wVk2pevuaiSVojlkMHzWCJy4f1mrGbtpbUyLsmF5LYnRmugKrQyKOV3hVEUdGn2/Q3pMZaC7d3IdODKYK6Akk5SmNPn3Nciib3i9GLzB270YscCWPl2ib8HWqXem3mWTV4BoGVxWZYVvRDVW11nXIHECasZ5R+du4GZ2
-X-Gm-Message-State: AOJu0YxQM24v1uD7kiuzjUSmTW8qtcTU07T4GixWHJ3gP6BJKittGPCF
-	XzeGElbdQC3YE3rjGOHuRPlFbmCoR4KarUjQOh/FZ3KD0PDq78yR6VwjPY6kauY=
-X-Google-Smtp-Source: AGHT+IGbqEnN9U4PLxGxrJsILv2O2f+wvA0LyA3SOdihrpg449tLji2C99MseNcFTbS1lty6KtkVmA==
-X-Received: by 2002:a81:7185:0:b0:609:fd5f:bcf4 with SMTP id m127-20020a817185000000b00609fd5fbcf4mr2023577ywc.24.1710836494019;
-        Tue, 19 Mar 2024 01:21:34 -0700 (PDT)
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com. [209.85.128.169])
-        by smtp.gmail.com with ESMTPSA id b12-20020a0dd90c000000b0060a5795fde5sm2301743ywe.98.2024.03.19.01.21.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Mar 2024 01:21:20 -0700 (PDT)
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-60a057b6601so51932617b3.2;
-        Tue, 19 Mar 2024 01:21:20 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWCDfms/3cKzJVDkg72tA4hNxeb9UNnMp/pdek+CGyJGk+jN2rE9OO3EN9glDcxBFQOVh5hQhd2ZgUqnt5C5KzHeXWRKLi1fmhT1Utk/1h+2UoBd7VRfGVT9v8HiiPsstWdVjXhkbVe/2ZlT0y5YCmHl0NFDmAsfyMbe07P5D6CJLK8+rAvNAyvqucFMJAtszICfqDxaOUXR+ItD4qszJjlsJrId9GyeVN2
-X-Received: by 2002:a25:e089:0:b0:dc6:c617:7ca with SMTP id
- x131-20020a25e089000000b00dc6c61707camr1281456ybg.29.1710836480016; Tue, 19
- Mar 2024 01:21:20 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1710836913; x=1711441713;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hgFFAPN7B2IdqbSbHOUWcvyqPwWPHdQWlex71RuQvmY=;
+        b=xNN9os0ZT3tW6NnWqeHhC7t+wLeBh+s5jQn/JOwse6s2e++3+rJqa914vpSaoFgwzz
+         Sy3C58yRengUD4EYfbhGwp9jDf74ic7ZtzyE/3uHdvc9br/KXIhU4ExdppKTng99zWmR
+         vBfHon3g71nnTjsLnX9jHLDKvRMZt02tEfyYETLhBAPXtmDym6Q9vQK7OxUKz06G42tg
+         hAVHfnTlVJPTa82rbTR3jkj7nhNt1xhWghzuXpun4oECiR168KxrqsxjkiY+CVBLPhtX
+         PrwGFvpf+v1ExxEC8dzMXywjdEdOJyGReheQ5f6FEmDmGIxeXw1BGhv+ar6eYGC79k8+
+         lcEA==
+X-Forwarded-Encrypted: i=1; AJvYcCUFnRfn26H9WOxduk31dcH6Bk8ny3VDzI1vJV7ou4BZm0Pk6gO0x6zj+IBp/rrxIvwbqucIdp+NaYISTi88IAIoXp+tobAx83sT0Q==
+X-Gm-Message-State: AOJu0YyFUyNzk/u0R89Y0Muow1rprDyg4xQLzOhl4of+G8pkIsqInS7F
+	o887X7fnsSkWWae5Bjgge0Xh0HNuw/iRdPvT+P5oJMnbKAMpOFm0gwUxqFkBZqg=
+X-Google-Smtp-Source: AGHT+IF8VeQ4xCRzE1F2nR3lm7Kyoo5lbqorbXz3zLlgIR0czhWjHZf4ZYDwVRGEa2XhkhvSTql6LA==
+X-Received: by 2002:adf:a358:0:b0:341:8666:ce2e with SMTP id d24-20020adfa358000000b003418666ce2emr913294wrb.0.1710836912716;
+        Tue, 19 Mar 2024 01:28:32 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:a757:fdcf:e3d7:eaed])
+        by smtp.gmail.com with ESMTPSA id ay25-20020a5d6f19000000b0033e3cb02cefsm11883313wrb.86.2024.03.19.01.28.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Mar 2024 01:28:32 -0700 (PDT)
+References: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
+ <20240314232201.2102178-2-jan.dakinevich@salutedevices.com>
+ <1j8r2jj24k.fsf@starbuckisacylon.baylibre.com>
+ <cbfd9c66-cca5-49f5-9468-43710c48518e@salutedevices.com>
+ <1jedc7hlg4.fsf@starbuckisacylon.baylibre.com>
+ <d4cfef9e-3cae-4f1a-90b3-33d5707596f9@salutedevices.com>
+User-agent: mu4e 1.10.8; emacs 29.2
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Kevin
+ Hilman <khilman@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
+ linux-sound@vger.kernel.org, linux-gpio@vger.kernel.org,
+ kernel@salutedevices.com
+Subject: Re: [PATCH 01/25] clk: meson: a1: restrict an amount of 'hifi_pll'
+ params
+Date: Tue, 19 Mar 2024 09:21:27 +0100
+In-reply-to: <d4cfef9e-3cae-4f1a-90b3-33d5707596f9@salutedevices.com>
+Message-ID: <1jsf0mfwwg.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240318172102.45549-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240318172102.45549-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20240318172102.45549-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 19 Mar 2024 09:21:08 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVR=t+QW+kqh3HswJ_8T2Dos381VL8vJvdqiC4RZDRRZw@mail.gmail.com>
-Message-ID: <CAMuHMdVR=t+QW+kqh3HswJ_8T2Dos381VL8vJvdqiC4RZDRRZw@mail.gmail.com>
-Subject: Re: [PATCH v3 4/4] serial: sh-sci: Add support for RZ/V2H(P) SoC
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-serial@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 
-Hi Prabhakar,
 
-On Mon, Mar 18, 2024 at 6:22=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
-om> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Tue 19 Mar 2024 at 01:35, Jan Dakinevich <jan.dakinevich@salutedevices.com> wrote:
+
+> On 3/18/24 13:17, Jerome Brunet wrote:
+>> 
+>> On Sun 17 Mar 2024 at 17:17, Jan Dakinevich <jan.dakinevich@salutedevices.com> wrote:
+>> 
+>>> On 3/15/24 11:58, Jerome Brunet wrote:
+>>>>
+>>>> On Fri 15 Mar 2024 at 02:21, Jan Dakinevich <jan.dakinevich@salutedevices.com> wrote:
+>>>>
+>>>>> Existing values were insufficient to produce accurate clock for audio
+>>>>> devices. New values are safe and most suitable to produce 48000Hz sample
+>>>>> rate.
+>>>>
+>>>> The hifi pll is not about 48k only. I see no reason to restrict the PLL
+>>>> to a single setting.
+>>>>> You've provided no justification why the PLL driver can't reach the same
+>>>> setting for 48k. The setting below is just the crude part. the fine
+>>>> tuning is done done with the frac parameter so I doubt this provides a
+>>>> more accurate rate.
+>>>>
+>>>
+>>> You are right, it is not about 48k only. However, there are two issues.
+>>>
+>>> First, indeed, I could just extend the range of multipliers to 1..255.
+>> 
+>> Why 1..255 ? This is not what I'm pointing out
+>> 
+>> According to the datasheet - the range is 32 - 64, as currently
+>> set in the driver.
+>> 
 >
-> Add serial support for RZ/V2H(P) SoC with earlycon.
+> Could you point where in the doc the range 32..64 is documented?
+> Documentation that I have may be not so complete, but I don't see there
+> any mention about it.
 >
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v2 - > v3
-> - new patch
+> Anyway, range 32..64 of multipliers is not enough to produce accurate
+> clock, and a need 128 for 48kHz.
 
-Thanks for your patch!
+A1 datasheet v0.4 - Section 7.6.3.2
 
-> --- a/drivers/tty/serial/sh-sci.c
-> +++ b/drivers/tty/serial/sh-sci.c
-> @@ -290,7 +290,7 @@ static const struct sci_port_params sci_port_params[S=
-CIx_NR_REGTYPES] =3D {
->         },
 >
->         /*
-> -        * The "SCIFA" that is in RZ/A2, RZ/G2L and RZ/T.
-> +        * The "SCIFA" that is in RZ/A2, RZ/G2L, RZ/T and RZ/V2H.
->          * It looks like a normal SCIF with FIFO data, but with a
->          * compressed address space. Also, the break out of interrupts
->          * are different: ERI/BRI, RXI, TXI, TEI, DRI.
+>> The change you have provided request a multipler of 128/5 = 25,6
+>> If you put assigned-rate = 614400000 in DT, I see no reason can find the
+>> same solution on its own.
+>> 
+>
+> The reasoning is following. I don't know why 32..64 range was declared
+> for this clock, and whether it would be safe to extend it and include
+> 128, which is required for 48kHz. But I know, that multiplier=128 is
+> safe and works fine (together divider=5).
 
-and RZ/V2H has more interrupts than RZ/A1, RZ/G2L and RZ/T...
+You have not answer my remark.
+Mainline does not do everything like the AML SDK does. Saying you are
+copying it because you know it works (in your opinion) is not good
+enough.
 
-In addition, RZ/V2H does not support synchronous mode (does not matter
-for the driver) and modem control signals.
+I'm telling you that your hack is not necessary and so far, you have not
+demonstrated that it is.
 
-Currently, sci_init_pins() does write ones to the SCPTR bits that are
-reserved and marked as "write zero" on RZ/V2H. I am not sure how bad
-that is.  You could avoid that by adding a check for .hasrtscts, but
-that may have impact on other SoCs/boards, where currently e.g. RTS#
-is always programmed for output and active low...
+Also the multiplier range in m/n, not m alone.
 
-So if you really need to avoid writing to these bits, the only safe
-way may be to add a new SCIF type.  But perhaps I'm over-cautious? ;-)
+>
+>>> But I am unsure if hifi_pll is able to handle whole range of
+>>> mulptipliers. The value 128 is taken from Amlogic's branch, and I am
+>>> pretty sure that it works.
+>> 
+>>>
+>>> Second, unfortunately frac parameter currently doesn't work. When frac
+>>> is used enabling of hifi_pll fails in meson_clk_pll_wait_lock(). I see
+>>> it when try to use 44100Hz and multipliers' range is set to 1..255. So,
+>>> support of other rates than 48k requires extra effort.
+>> 
+>> Then your change is even more problematic because it certainly does not
+>> disable frac ... which you say is broken.
+>> 
+>> That parameter should be removed with a proper comment explaining why
+>> you are disabling it. That type a limitation / known issue should be
+>> mentionned in your change.
+>> 
+>
+> Handling of frac should not be removed, it should be fixed to achieve
+> another rates. But that is not the goal of this commit.
 
-> @@ -3224,6 +3224,10 @@ static const struct of_device_id of_sci_match[] __=
-maybe_unused =3D {
->                 .compatible =3D "renesas,scif-r9a07g044",
->                 .data =3D SCI_OF_DATA(PORT_SCIF, SCIx_RZ_SCIFA_REGTYPE),
->         },
-> +       {
-> +               .compatible =3D "renesas,scif-r9a09g057",
-> +               .data =3D SCI_OF_DATA(PORT_SCIF, SCIx_RZ_SCIFA_REGTYPE),
-> +       },
->         /* Family-specific types */
->         {
->                 .compatible =3D "renesas,rcar-gen1-scif",
-> @@ -3554,6 +3558,7 @@ OF_EARLYCON_DECLARE(sci, "renesas,sci", sci_early_c=
-onsole_setup);
->  OF_EARLYCON_DECLARE(scif, "renesas,scif", scif_early_console_setup);
->  OF_EARLYCON_DECLARE(scif, "renesas,scif-r7s9210", rzscifa_early_console_=
-setup);
->  OF_EARLYCON_DECLARE(scif, "renesas,scif-r9a07g044", rzscifa_early_consol=
-e_setup);
-> +OF_EARLYCON_DECLARE(scif, "renesas,scif-r9a09g057", rzscifa_early_consol=
-e_setup);
->  OF_EARLYCON_DECLARE(scifa, "renesas,scifa", scifa_early_console_setup);
->  OF_EARLYCON_DECLARE(scifb, "renesas,scifb", scifb_early_console_setup);
->  OF_EARLYCON_DECLARE(hscif, "renesas,hscif", hscif_early_console_setup);
+You argued that frac was broken and that was partly why you introduced
+this work around. I'm telling you this approach is incorrect.
 
-Gr{oetje,eeting}s,
+So either :
+* Remove frac for now, until it is fixed, because it is broken and add
+  comment clearly explaining that quirk.
+* Or fix it now.
 
-                        Geert
+Your choice.
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+>
+>
+>>>
+>>>>>
+>>>>> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+>>>>> ---
+>>>>>  drivers/clk/meson/a1-pll.c | 8 ++++----
+>>>>>  1 file changed, 4 insertions(+), 4 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/clk/meson/a1-pll.c b/drivers/clk/meson/a1-pll.c
+>>>>> index 4325e8a6a3ef..00e06d03445b 100644
+>>>>> --- a/drivers/clk/meson/a1-pll.c
+>>>>> +++ b/drivers/clk/meson/a1-pll.c
+>>>>> @@ -74,9 +74,9 @@ static struct clk_regmap fixed_pll = {
+>>>>>  	},
+>>>>>  };
+>>>>>  
+>>>>> -static const struct pll_mult_range hifi_pll_mult_range = {
+>>>>> -	.min = 32,
+>>>>> -	.max = 64,
+>>>>> +static const struct pll_params_table hifi_pll_params_table[] = {
+>>>>> +	PLL_PARAMS(128, 5),
+>>>>> +	{ },
+>>>>>  };
+>>>>>  
+>>>>>  static const struct reg_sequence hifi_init_regs[] = {
+>>>>> @@ -124,7 +124,7 @@ static struct clk_regmap hifi_pll = {
+>>>>>  			.shift   = 6,
+>>>>>  			.width   = 1,
+>>>>>  		},
+>>>>> -		.range = &hifi_pll_mult_range,
+>>>>> +		.table = hifi_pll_params_table,
+>>>>>  		.init_regs = hifi_init_regs,
+>>>>>  		.init_count = ARRAY_SIZE(hifi_init_regs),
+>>>>>  	},
+>>>>
+>>>>
+>> 
+>> 
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+
+-- 
+Jerome
 
