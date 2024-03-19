@@ -1,221 +1,120 @@
-Return-Path: <devicetree+bounces-51547-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FE6087FAD9
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 10:36:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CBD487FAD0
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 10:35:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C35FE1C21B9C
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 09:36:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 234EB1F224D7
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 09:35:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8C767D3F0;
-	Tue, 19 Mar 2024 09:35:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94DD47D400;
+	Tue, 19 Mar 2024 09:35:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HGIDPmS9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="b6gNmsnr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7134F7E0E5;
-	Tue, 19 Mar 2024 09:35:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCC3A7D3E6
+	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 09:35:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710840944; cv=none; b=FXy/5iWASlu+uATldMjxMVteoV2pLAr0WjanoQ2/7tzrJ3aiQlfyZCsNoIGyUYf7Z++TyWaLco9lQLSTYEmNAPKneftCwSXbcBRL6TZOv3OsgzIw/TesHPM+8Xi9Ny3C7LeonIFB8VSQ+nYolQre2MWi0blZxYIPcYOqJ7B6nmA=
+	t=1710840931; cv=none; b=SbiLbtGlGHS66pZam5zncJYv3w8yFCJzBvCfa0ZABorvBQ+3aADJ/CIzxclJSJTBlCx1fzpPHiv4BzVjIUP999QKAL3OdRCcMgx9IgOYzbBT9BCMys89Y86Oi/LbIbKBomTPJm52mwzd1SpcEX7Lyn40ioOoqLa4nMZ+tUlOY6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710840944; c=relaxed/simple;
-	bh=9CJSCINmY9+atiiyyvCZsPCO7lIYVL6EtUTHbK+Uv08=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=UM10nWIWbenLfreaAYkKm1Gctgo2m5YmLfTlo3SJBmiaN0dvFl7NAPzJVqTxgsZqkaER1MhwXTKaa/3m0/AfSxfqY6QYFoi1ZuNZygh/j1zWXziSVuCTCpclNntMbO9AsTG08zcjyJhGIcO7cq8gswFXOxjuggD+65jo8RvcGdA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HGIDPmS9; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-1df01161b39so26513195ad.3;
-        Tue, 19 Mar 2024 02:35:43 -0700 (PDT)
+	s=arc-20240116; t=1710840931; c=relaxed/simple;
+	bh=crQWSKqhD5O72VBc1PHOdc8Vc/RicEqwpfQSKOep/cg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=O7CcI574+2XOZdkJImVTTJh1hh9lL7OEh3WeGpgZd+xcPDdFVNfsLrz9Ixn3zSFC+47zrwYdZbiPywJfb3lLKJQWiBe76NxjRGOODtWjQrHU6tok6kT7sx4cJDsGbDjnpwyV4HDE4qEKVS4fxisCygljBsGutnF0BriuOdb1rVE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=b6gNmsnr; arc=none smtp.client-ip=209.85.128.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-609408d4b31so52040367b3.0
+        for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 02:35:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710840943; x=1711445743; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HpO3XyTMYrNp26rIW9VgOyOw5H/JJ52pteRLCcl6qlU=;
-        b=HGIDPmS9GZAXJJ4yNu6sm7qMOdSU5OyJVUbpdG5VY7khD2ftKCYfERB1DmPoQTIrZQ
-         /gLQ4gj4NKZAlDS3199o8UJp1hgq07XUI08tLoAJDJUo4zF6iyQv6fWqyeXt2+nAosKP
-         7D1f8ZcD9ZKFmNDsVwRbO/bo1GKQQP1pes6msdS69Z5YPko0ZXx7xrg+LpCHjc9vBrcH
-         vzEnVe7/OD6Q65lKWmjSbcpU9uqUu20iozOQFpTmcS2ugrwfSGtKDzkoDJhlLQqBViRM
-         13465wFm7MJsSk93rkfTUpIL7SmwxdKrK7m2WLfJI1LUb8Db7vWN8KOShioW/u5W7Okm
-         w6ng==
+        d=linaro.org; s=google; t=1710840929; x=1711445729; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=xR46scEd5OGiZdVCXg0rQe3a9fCq5Vz9qpEb1ZYc0XU=;
+        b=b6gNmsnrlDhEMG0w61H6qwwb/96aNwwVk/MN8Nx88cHqo/3dUKrxbH23DG16cIr/L2
+         IgETHEOxZI/PM1+QKg9OP7ST3kNQH99YpCpWkdUzohjehxZQQe0ttbKfSsNVbt5CHR3E
+         bkgjCU/B3eVBkDqnB+YXHoGkGP6MeLnj/isyjtthiPd7GIGswd4FDviVUIQFj3hxL+RP
+         8GR48Iet0KYgXxeXYajSgYkgcdslZHMXYBlZ5NygphVZkzh8qF1k1MCkgAlAgwIjp3TI
+         8a+dw1AGR03Hup43ZdJ2FgkRZeE95BHpC9ZYorVd7XmKj9UYQVuyf98SShB0+szRPIw9
+         mfBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710840943; x=1711445743;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HpO3XyTMYrNp26rIW9VgOyOw5H/JJ52pteRLCcl6qlU=;
-        b=oE9p9Rx3aR81qNpfAmzJe5vi6Xu5nulWR9FCTyZDXx1DyOPRtRzVf+bTCo5o0HW672
-         vywyHwo2+OH5/ciGTBx87nrypVczZe8gQURgXjUTTZthorr1tV3VK9WcFjCRIIntARvE
-         wX1hey/ST4geavQgbfkaHjRaQO3+Z0KozsfxVhDkwGVthLFlHyGszIIQlSXQi8pZJmq1
-         +2w7k0YSnJ2aM1hBQ395JQuDJf0QsKDWKIaFa27CzXkZk0Fln8woXenVE8QWHoAhCqqE
-         C9Yd0DKP3fuRTgFN/ogKxn/hkcPtQ6tSJNZkg+m5ib19YPrPdXswaOJqPxzAzpAIFz/U
-         AyaA==
-X-Forwarded-Encrypted: i=1; AJvYcCXeG2PxSbth09cpAhb0MhRRJWgV3Sjnl4rv0cV+Uqe2rcfBVvCio/25ve6bF7GXgk/QspXEEkPNExyrYtsSKzfQASaFzdMTXI16gAX65AuOsGsKOstOvd2VsiIHjYwTkWfRfz+BZTWALg==
-X-Gm-Message-State: AOJu0Yz+szV1ui+ImAVLZOKFP3tXNNS3U3MAg5f2QJf4HzlgpfH4OlZ8
-	EgxOrdJ4RmXqA3FejSup9SKeX1T2q5P6caicLxtV5cWXMRqVlqeg
-X-Google-Smtp-Source: AGHT+IHryBKHJ+MSwjp/1byfMt0hDod5YQF/OmkAgxcU2UHV4h3fLG6PWHn1lTiV9EhL0mWJM96Kow==
-X-Received: by 2002:a17:902:e88a:b0:1e0:2c80:2aaf with SMTP id w10-20020a170902e88a00b001e02c802aafmr5518425plg.44.1710840942841;
-        Tue, 19 Mar 2024 02:35:42 -0700 (PDT)
-Received: from localhost.localdomain ([129.41.58.3])
-        by smtp.gmail.com with ESMTPSA id n5-20020a170903110500b001ddc0bc5934sm10942432plh.249.2024.03.19.02.35.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Mar 2024 02:35:42 -0700 (PDT)
-From: Manojkiran Eda <manojkiran.eda@gmail.com>
-To: patrick.rudolph@9elements.com,
-	chiawei_wang@aspeedtech.com,
-	ryan_chen@aspeedtech.com,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org,
-	linux-mtd@lists.infradead.org
-Cc: robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	joel@jms.id.au,
-	andrew@codeconstruct.com.au,
-	miquel.raynal@bootlin.com,
-	richard@nod.at,
-	vigneshr@ti.com,
-	manojkiran.eda@gmail.com,
-	jk@codeconstruct.com.au,
-	openbmc@lists.ozlabs.org
-Subject: [PATCH v2 4/4] dt-bindings: aspeed: Add eSPI controller
-Date: Tue, 19 Mar 2024 15:04:05 +0530
-Message-Id: <20240319093405.39833-5-manojkiran.eda@gmail.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20240319093405.39833-1-manojkiran.eda@gmail.com>
-References: <20240319093405.39833-1-manojkiran.eda@gmail.com>
+        d=1e100.net; s=20230601; t=1710840929; x=1711445729;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xR46scEd5OGiZdVCXg0rQe3a9fCq5Vz9qpEb1ZYc0XU=;
+        b=b8K/5Y7XMU1DJ60vh0YrRvfApiP0R5pLUZl2/yUrE7sTyRSgBLxKt0AllGhlhALBSg
+         iOrN0wkTkb6mSNCOIPXUc5XeC4ub3g3fUODnB2lW3p04S5flxyl10QbnybAOR/B+oJJf
+         38eJmM2H351AcIJu1IJ0YbQlQaBElaY5i4+DQjb8YU3rfGj1USWFOrjFlCO+ukseS5Tg
+         5PRQB6okAa4XH2uNmq5iaOAYlOqK7GF/dTrcVo3/ogoyyN4stmO+t5I0c2p3NKNLK4jk
+         8bpmy8+rIoWoNrTh73g/ArrfN2Hr698t7O1JP9LfunuYc02BkCTOSiaFIy2DSbAeM3bt
+         St8A==
+X-Forwarded-Encrypted: i=1; AJvYcCXuCXP5X7x/CwquYvtrc3PuOh/km894Rh7/na7USeuvPw3n6rICbf6+FHR5b0U+oGq59721wMj7yLXXnUgM+FBxBTmBfpNA648zdg==
+X-Gm-Message-State: AOJu0YyoOoEnxoHh+oBUenq7zkOWpLFydk4+hZTJQZ069igyki0bbfhG
+	YH1OtIiuBW9uVnP3bRFSNAjyNP6Ru6u0GA5CWIJQ5Goh9EBCdPTtINn0nrKYxRhDsxzf+ONQHco
+	hN8J00teqsLLfMacZa51G8n1lHVrtB05dKYPn7w==
+X-Google-Smtp-Source: AGHT+IH99r/kvvmJRAw/ZWjt48XmIun30VNYQDPLxn70UqEVweorAxmCjp8Gd6tgaqNqP65M7MNy+IGg5wrYdgB82h4=
+X-Received: by 2002:a0d:f003:0:b0:60c:c986:5ea with SMTP id
+ z3-20020a0df003000000b0060cc98605eamr13991538ywe.42.1710840928785; Tue, 19
+ Mar 2024 02:35:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240319090729.14674-1-quic_kbajaj@quicinc.com>
+In-Reply-To: <20240319090729.14674-1-quic_kbajaj@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 19 Mar 2024 11:35:17 +0200
+Message-ID: <CAA8EJpojQg2BHvR5kZtRxyXWRKy6zV=88_bdcuMH+QE-n4k73A@mail.gmail.com>
+Subject: Re: [PATCH 0/4] Add USB Support on Qualcomm's QDU/QRU1000 Platform
+To: Komal Bajaj <quic_kbajaj@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Wesley Cheng <quic_wcheng@quicinc.com>, 
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-usb@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-This commit adds the device tree bindings for aspeed eSPI
-controller.
+On Tue, 19 Mar 2024 at 11:08, Komal Bajaj <quic_kbajaj@quicinc.com> wrote:
+>
+> This series adds support of USB3 PHY support for Qualcomm's QDU/QRU1000 Platform.
+>
+> ---------
+> Changes in v2:
+> * Dropped extra lines
+> * Sorted the tables alphabetically
+> * Link to v1: https://lore.kernel.org/linux-arm-msm/20240311120215.16845-1-quic_kbajaj@quicinc.com/
 
-Although aspeed eSPI hardware supports 4 different channels,
-this commit only adds the support for flash channel, the
-bindings for other channels could be upstreamed when the driver
-support for those are added.
+So, this is v2, but you didn't mark patches as v2. Please use b4 for
+sending patches. It can handle patch revisions automatically.
 
-Signed-off-by: Manojkiran Eda <manojkiran.eda@gmail.com>
----
- .../bindings/soc/aspeed/aspeed,espi.yaml      | 94 +++++++++++++++++++
- 1 file changed, 94 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/soc/aspeed/aspeed,espi.yaml
+>
+> Komal Bajaj (4):
+>   dt-bindings: phy: qcom,usb-snps-femto-v2: Add bindings for QDU1000
+>   dt-bindings: phy: qcom,qmp-usb: Add QDU1000 USB3 PHY
+>   dt-bindings: usb: dwc3: Add QDU1000 compatible
+>   phy: qcpm-qmp-usb: Add support for QDU1000/QRU1000
+>
+>  .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml   |  2 +
+>  .../bindings/phy/qcom,usb-snps-femto-v2.yaml  |  1 +
+>  .../devicetree/bindings/usb/qcom,dwc3.yaml    |  3 ++
+>  drivers/phy/qualcomm/phy-qcom-qmp-usb.c       | 49 +++++++++++++++++++
+>  4 files changed, 55 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/soc/aspeed/aspeed,espi.yaml b/Documentation/devicetree/bindings/soc/aspeed/aspeed,espi.yaml
-new file mode 100644
-index 000000000000..3d3ad528e3b3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/aspeed/aspeed,espi.yaml
-@@ -0,0 +1,94 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# # Copyright (c) 2024 IBM Corporation.
-+# # Copyright (c) 2021 Aspeed Technology Inc.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/soc/aspeed/aspeed,espi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Aspeed eSPI Controller
-+
-+maintainers:
-+  - Manojkiran Eda <manojkiran.eda@gmail.com>
-+  - Patrick Rudolph <patrick.rudolph@9elements.com>
-+  - Chia-Wei Wang <chiawei_wang@aspeedtech.com>
-+  - Ryan Chen <ryan_chen@aspeedtech.com>
-+
-+description:
-+  Aspeed eSPI controller implements a device side eSPI endpoint device
-+  supporting the flash channel.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - aspeed,ast2500-espi
-+          - aspeed,ast2600-espi
-+      - const: simple-mfd
-+      - const: syscon
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 1
-+
-+  ranges: true
-+
-+patternProperties:
-+  "^espi-ctrl@[0-9a-f]+$":
-+    type: object
-+
-+    description: Controls the flash channel of eSPI hardware
-+
-+    properties:
-+      compatible:
-+        items:
-+          - enum:
-+              - aspeed,ast2500-espi-ctrl
-+              - aspeed,ast2600-espi-ctrl
-+
-+      interrupts:
-+        maxItems: 1
-+
-+      clocks:
-+        maxItems: 1
-+
-+    required:
-+      - compatible
-+      - interrupts
-+      - clocks
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#address-cells"
-+  - "#size-cells"
-+  - ranges
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/ast2600-clock.h>
-+
-+    espi: espi@1e6ee000 {
-+        compatible = "aspeed,ast2600-espi", "simple-mfd", "syscon";
-+        reg = <0x1e6ee000 0x1000>;
-+
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        ranges = <0x0 0x1e6ee000 0x1000>;
-+
-+        espi_ctrl: espi-ctrl@0 {
-+            compatible = "aspeed,ast2600-espi-ctrl";
-+            reg = <0x0 0x800>,<0x0 0x4000000>;
-+            reg-names = "espi_ctrl","espi_flash";
-+            interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
-+            clocks = <&syscon ASPEED_CLK_GATE_ESPICLK>;
-+        };
-+    };
+
+
 -- 
-2.40.1
-
+With best wishes
+Dmitry
 
