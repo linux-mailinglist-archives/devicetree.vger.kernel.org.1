@@ -1,113 +1,207 @@
-Return-Path: <devicetree+bounces-51518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E71D887F9B9
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 09:28:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B72F87F9D0
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 09:29:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2480282711
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 08:28:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BCF331F21CED
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 08:29:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6337B54673;
-	Tue, 19 Mar 2024 08:28:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 863157CF03;
+	Tue, 19 Mar 2024 08:29:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cE3LpN2/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79B8854646;
-	Tue, 19 Mar 2024 08:28:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0B9E7C08E;
+	Tue, 19 Mar 2024 08:29:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710836884; cv=none; b=OC90zfuAjNh4QsumhU7m1BIx69YCfv3c7a8qsdXVwbfKVv+awuZJBEntbtzmQ9tI1Hj8+uPi2gMVgyR3xAIHjMCeFzU6DetjN2wlRNXMopmQP6fK0ssdfXgK3w9dG0W1MEmLn+GNThcrYHycn/s5j8oaBqB7S5evwnCb9KQTyvw=
+	t=1710836955; cv=none; b=PuPNkdzn34LCcZeF0SXzQpJ75oMzmFCqj7PaAE0WEexxl3NVPqN2g8Y9koVd7zN472oSZwb1AH9P70pOmzqrz6MVZa0CNQMFK9AsfMf5ejiOl0d/BFZ3sNYZd+gHd/UKKNNF6laWZ7ilDJPzxOaiDXY85XjAC69lcSuNI+n/ioE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710836884; c=relaxed/simple;
-	bh=PplFuH6P187QZMNovlUFyDka4tzkkIxOoBolhx3ybns=;
+	s=arc-20240116; t=1710836955; c=relaxed/simple;
+	bh=rVF9H8p5A/tZCcUzg90IMGb1EulK+WvD39yZtuREOCE=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FfqzPqE/fgf+0w1SMxpWpKH4z1E4Lj6brtCZPqS6dkXNFbfpdU1vp34RMQ42ySvYs5+vR3Fs3fbDtbQIJ7YOODIAJco6tGwTOKIjIGTgdxWzrmFutJtV/lOGOCo/uVkSpgjI1KCHdlc6+PehNiEDKCSUSLo6Cv1ppaAu/aazMCo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	 To:Cc:Content-Type; b=JHovoFAQQAEJ3HL3L/H9mk9a+QPvq5T7pbyNZZBB/sG1RkCkOzXiqls2OGnNdCEOs7nPV1qC90uZMSSsA8xpwOKeqFNw2VVuhMBdL5kxQez+lr3hTo7RuDBgFLFfLIr6kk5Mk828MqJ3K6XevZ6Z9FDgA85a/pH66kkcCQxGd9M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cE3LpN2/; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-60cbcd04de9so49811727b3.2;
-        Tue, 19 Mar 2024 01:28:02 -0700 (PDT)
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5684ea117a3so7717949a12.0;
+        Tue, 19 Mar 2024 01:29:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1710836952; x=1711441752; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=k+caFpiF1NE9VjCHjmW6BZDvqMJLVV4nvdJHe6aB/9w=;
+        b=cE3LpN2/GMOpGdvs+lXMV+/pVld0OiUT795aLQnqV29mzUD1emWLleOd4Sh9XbZpkG
+         sfDma3OKiBD8qVukQaWKp/hEbgT/nWUiaAms7rospyf7rgghz8rx9oUYwolBvK0Re+59
+         TlLhq35i6D8ygOt4wnYaPJkc5un4K9ozJ5ovAVu7EjW7o3Bji4fbzNFwmjadJt77qlCx
+         ICt1UhGWSg8xm+ThO670FWVa5MVUd3a/A74DwVvO+BE8vqW/qrKEPYBkY+KHxB2d90i7
+         PHlphRw93c5gSBCauOE+oylBG3Dta26vWmQOCZjAoOqDyT2FWCrFMVcF4BV9jO+fXlAd
+         0zyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710836880; x=1711441680;
+        d=1e100.net; s=20230601; t=1710836952; x=1711441752;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=pnN5onYUcH4rVXEcE9RIGXi7PFLwq3zdoc8o9yqzKhg=;
-        b=VbvbXlI0hrI9HyicaUgHSPcH4Gl19QpYNZms80RQmrgIt4tddZl/7TKtlQBtYxMMiE
-         lgckhCmhejEINDASDsG7pFHmutUh0AEekVTgifcmNWJs2VhstzfEl7OSs8+12VeHpnou
-         K5HBQx6RCJ+snEkeRVPwVcXWKB4iyJtTkHWBPv8OHeDs445PZ6tKYLH8mBiEVwkdSRTv
-         RLj+GbCZ5MgZM7mI3nFX8lc8H9YEZgjdJdjaCpVtkBPJBGK0eu/jUl5/jTKJLdFo3U7P
-         2eOTlc0xvC/wGzBcM6dpDyuZsUFWWyFjXcYDlN/IATj85030y8f5ZzdaF6eOvyLwB4ca
-         2jZA==
-X-Forwarded-Encrypted: i=1; AJvYcCW7TbqJQssDGectoBMSR9vCCvO2zJq/qIKuu+QnzAz4Rp9k5hytKJEnCONP61G+TpjY2Ib7/6653+vAb8+xines3AXlRHk/frt7AOGJjytVU6rZPZryvKtC9KcXsUtN/DEiT0hjP+z01KCP1UMlgj5xOFN+AHaexBqK34lV+NJR8QPnZs0OWmPPgGgZ
-X-Gm-Message-State: AOJu0Yxikk3LsZV/qRFtMuH9sK/Ga58BzLuoNl3RGiAUwkR2USayjFxJ
-	qgJHe7535daOjg3G6eCNOuUJQ7d8ScvwR3BK2gyomQBOTHwh/MbKMakVp23PsmU=
-X-Google-Smtp-Source: AGHT+IFHyQRHnynvIrlaQQEDFXRD35laNBJIoimnuGsLaPmyErbzeeKg7jKx7s302b/+PbZbF/dQmg==
-X-Received: by 2002:a0d:e287:0:b0:609:fb34:4c52 with SMTP id l129-20020a0de287000000b00609fb344c52mr12395782ywe.21.1710836880115;
-        Tue, 19 Mar 2024 01:28:00 -0700 (PDT)
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
-        by smtp.gmail.com with ESMTPSA id g1-20020a81ae41000000b00610351f6888sm1624929ywk.92.2024.03.19.01.27.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Mar 2024 01:27:59 -0700 (PDT)
-Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-dc742543119so4714458276.0;
-        Tue, 19 Mar 2024 01:27:59 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXguX3ueTAdURygJ5owXJZ9JJV6fUXAiOh+LSZJ6EaZS8xFHtHjrY6EA+wRb2QDG93tOp6agKkSeTyI1VuKBQ0xqEzHBDbOu6BD+C/pKHx6Coe1ieHO8H12cdlr+bR6ebNjE0fBELRGzDuPHKGS09B1/VbUEmBPvYvM8Vz5/ApGyppadm+ca6OOJQPi
-X-Received: by 2002:a25:a06:0:b0:dcb:e82c:f7d with SMTP id 6-20020a250a06000000b00dcbe82c0f7dmr9546267ybk.41.1710836879166;
- Tue, 19 Mar 2024 01:27:59 -0700 (PDT)
+        bh=k+caFpiF1NE9VjCHjmW6BZDvqMJLVV4nvdJHe6aB/9w=;
+        b=Kmweg7FJPiz6kbZmviLmaaZsJwiglloK9v4qRHlefvH+5SCROb/TuI3kS5JHZRSO3B
+         OFaSk4ih4+bHx7aP8XQHndAlfT2BRBBBjj+GlNl1RN7zm31pzcPrjq9/fhx1NqW4kbJf
+         4KY19CStfclaxjkmgaKncHOEDh0DIKTnjpx+YU/GjScTK0uzwPObIcizHUeiTNhjgPkM
+         IHjp/BOJX04bB9XiW3wlKuw4MT7VJwzO1vqMaq1bMBmockkahM01MOnCuXQD4AN0blNh
+         nPRiaqoJfedyAQi+4qLbAeGgXZAFmBCKCrzSK1P6xOkpr42v1ihFsCQ5vocTKDGEDnv8
+         Rftg==
+X-Forwarded-Encrypted: i=1; AJvYcCUYjE76bAnfKVx+YiAT/i2+++OQbdq3iWuyIPF77/yFYptKD3EXS9jEK45hiBvBfzIyvriMoWJHt0uPhE2knTmIWh/VzlgiyY4P0R3iPfgnTNOISbfzpgPvsurStk8H+xZ+SzeFDZK1ctmfDN4xk8LaW70NQla+Ma1Q+9c+sI1OxWA8KRWjgrOZVtflYo8P0BVu0CAX4qbBxre4RSdiB1k=
+X-Gm-Message-State: AOJu0YycfI4gVkc8yZl5Xi5m//o2tYlZASSjgwcNfgDducsOfaFAhg7a
+	h1b/Yv3KIgpDfpP5QTSXGv4CEm4abTctyEGCyx2ttU+AssNFaIJEyMDci83x7pGAzfUn9toW+4q
+	hY8C1gxHG7ENPbXUsEDAbKibfHOk=
+X-Google-Smtp-Source: AGHT+IENQGSo2CY36rseL4WEmz3mPXsVW0fWojGGC/2UdA9byb37TJLO4V6lJIqrbscjz/c+UmnsE5alQVGx2i6us3s=
+X-Received: by 2002:a05:6402:320d:b0:56b:9ef8:f656 with SMTP id
+ g13-20020a056402320d00b0056b9ef8f656mr149159eda.7.1710836951986; Tue, 19 Mar
+ 2024 01:29:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240318160731.33960-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240318160731.33960-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20240318160731.33960-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 19 Mar 2024 09:27:47 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWJcTDULiC-3CUh2Q+q-9GLGTDZyf36UN1HAF8Ep+bNqQ@mail.gmail.com>
-Message-ID: <CAMuHMdWJcTDULiC-3CUh2Q+q-9GLGTDZyf36UN1HAF8Ep+bNqQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: timer: renesas: ostm: Document Renesas
- RZ/V2H(P) SoC
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>, 
-	Rob Herring <robh+dt@kernel.org>, 
+References: <20240316-loongson1-dma-v6-0-90de2c3cc928@gmail.com>
+ <20240316-loongson1-dma-v6-1-90de2c3cc928@gmail.com> <20240317-exorcist-spectator-90f5acb3fe2a@spud>
+ <CAJhJPsWOUZsWFvreRrPqQHAjYW7uRT31THHi7CRDN46+nHpL9g@mail.gmail.com>
+In-Reply-To: <CAJhJPsWOUZsWFvreRrPqQHAjYW7uRT31THHi7CRDN46+nHpL9g@mail.gmail.com>
+From: Keguang Zhang <keguang.zhang@gmail.com>
+Date: Tue, 19 Mar 2024 16:28:35 +0800
+Message-ID: <CAJhJPsXzGjD43nj7eLPSmtDLgp1FCvzJFRJDDTY=9Uq_Dc8Qdg@mail.gmail.com>
+Subject: Re: [PATCH v6 1/2] dt-bindings: dma: Add Loongson-1 DMA
+To: Conor Dooley <conor@kernel.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chris Brandt <chris.brandt@renesas.com>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+	linux-mips@vger.kernel.org, dmaengine@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Mar 18, 2024 at 5:08=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
-om> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Mon, Mar 18, 2024 at 2:18=E2=80=AFPM Keguang Zhang <keguang.zhang@gmail.=
+com> wrote:
 >
-> Document the General Timer Module (a.k.a OSTM) block on Renesas RZ/V2H(P)
-> ("R9A09G057") SoC, which is identical to the one found on the RZ/A1H and
-> RZ/G2L SoCs. Add the "renesas,r9a09g057-ostm" compatible string for the
-> RZ/V2H(P) SoC.
+> On Sun, Mar 17, 2024 at 10:40=E2=80=AFPM Conor Dooley <conor@kernel.org> =
+wrote:
+> >
+> > On Sat, Mar 16, 2024 at 07:33:53PM +0800, Keguang Zhang via B4 Relay wr=
+ote:
+> > > From: Keguang Zhang <keguang.zhang@gmail.com>
+> > >
+> > > Add devicetree binding document for Loongson-1 DMA.
+> > >
+> > > Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+> > > ---
+> > > V5 -> V6:
+> > >    Change the compatible to the fallback
+> > >    Some minor fixes
+> > > V4 -> V5:
+> > >    A newly added patch
+> > > ---
+> > >  .../devicetree/bindings/dma/loongson,ls1x-dma.yaml | 66 ++++++++++++=
+++++++++++
+> > >  1 file changed, 66 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/dma/loongson,ls1x-dma.=
+yaml b/Documentation/devicetree/bindings/dma/loongson,ls1x-dma.yaml
+> > > new file mode 100644
+> > > index 000000000000..06358df725c6
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/dma/loongson,ls1x-dma.yaml
+> > > @@ -0,0 +1,66 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/dma/loongson,ls1x-dma.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Loongson-1 DMA Controller
+> > > +
+> > > +maintainers:
+> > > +  - Keguang Zhang <keguang.zhang@gmail.com>
+> > > +
+> > > +description:
+> > > +  Loongson-1 DMA controller provides 3 independent channels for
+> > > +  peripherals such as NAND and AC97.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    oneOf:
+> > > +      - const: loongson,ls1b-dma
+> > > +      - items:
+> > > +          - enum:
+> > > +              - loongson,ls1c-dma
+> > > +          - const: loongson,ls1b-dma
+> >
+> > Aren't there several more devices in this family? Do they not have DMA
+> > controllers?
+> >
+> You are right. Loongson1 is a SoC family.
+> However, only 1A/1B/1C have DMA controller.
 >
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  interrupts:
+> > > +    description: Each channel has a dedicated interrupt line.
+> > > +    minItems: 1
+> > > +    maxItems: 3
+> >
+> > Is this number not fixed for each SoC?
+> >
+> Yes. Actually, it's fixed for the whole family.
+>
+> > > +  interrupt-names:
+> > > +    minItems: 1
+> > > +    items:
+> > > +      - pattern: ch0
+> > > +      - pattern: ch1
+> > > +      - pattern: ch2
+> >
+> > Why have you made these a pattern? There's no regex being used here at
+> > all.
+> >
+> Will change items to the following regex.
+>   interrupt-names:
+>     minItems: 1
+>     items:
+>       - pattern: "^ch[0-2]$"
+>
+Sorry. This pattern fails in dt_binding_check.
+Will use const instead of pattern.
+  interrupt-names:
+   items:
+     - const: ch0
+     - const: ch1
+     - const: ch2
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Gr{oetje,eeting}s,
+> Thanks!
+>
+> > Cheers,
+> > Cono4.
+>
+>
+>
+> --
+> Best regards,
+>
+> Keguang Zhang
 
-                        Geert
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+--
+Best regards,
+
+Keguang Zhang
 
