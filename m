@@ -1,179 +1,128 @@
-Return-Path: <devicetree+bounces-51757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51758-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FE1488038D
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 18:36:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B43B1880398
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 18:38:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 439E11C21F64
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 17:36:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 534C31F2597D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 17:38:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10DA41B7FD;
-	Tue, 19 Mar 2024 17:36:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEDD2200B7;
+	Tue, 19 Mar 2024 17:38:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="trZHbNJo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FhpGq69C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CA8E19BDC;
-	Tue, 19 Mar 2024 17:36:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73BFD19BDC;
+	Tue, 19 Mar 2024 17:38:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710869766; cv=none; b=Soa/bMdDEAf2Pl91+51P8GpqGzP9Xqx3tBZJOPe7j4ulBC24JnAJ828eId7ql4T+5hiZ8DSzD4Bl7m/g7iyrKhXuN8dFYG2x9aKcOjTlYXePYPQ8rfNnDVsHkV1pgZ5JN3muc+g99hSYYP4KNJ2VAhaF3RMwgN2e7UZM9fCkQDU=
+	t=1710869916; cv=none; b=e7yO4h/L8fmWDxroIUM0qmid17v+XCPqlo1PQZvEAxCIg1+i2VTClznjEs7xFkY4XLICDkqYSmjW6szf6igixwLTJORGep/LecaOTWvzT6KqzjYtzB+h78yF+T8POcpp5ygOrblAsJ7kmW0TEXYCWKtFtABVU0rMDXiAM1OZbW8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710869766; c=relaxed/simple;
-	bh=tk3YWbCjBAgqaMu3m4ZPt5MZ1O447J6fwx7jDX/IqvE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=rlyymmKLgqPeYWa2HTFTUyZdC8jfIOrUDnTDNRl7E5OuIuLz/aCDcCF2O3wG34AFNQIHfrQO7dXuBxfV6H2sZvvzP2AauD17s71r1JbfLWY9Csvx0qSAnawyOHJTl4eOamiu9Cio0sWrSqXGxOCu4EMhTSAIsVrY3f3p3jPq/M4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=trZHbNJo; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 42JHZjQD096712;
-	Tue, 19 Mar 2024 12:35:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1710869745;
-	bh=efpn64adRKaugLUnDIE4XDjDeD0LJO7uSxUeR2TSGJU=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=trZHbNJoztj0Z0zu4ijAbHvGQFtHrelyonZLzHqkAJ39ueEhDA479t1QAbVB3TeJe
-	 Ol37n80AZokPGDr51uNzBI4PTEKDUsSxayR7lrjYIDnfw8AVhZntlA97z4WnVwq+Ql
-	 8SO2A4QeKeGHsysezdvVeCfbPo9LTIJsovFlWo0Y=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 42JHZjeN035903
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 19 Mar 2024 12:35:45 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 19
- Mar 2024 12:35:45 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 19 Mar 2024 12:35:45 -0500
-Received: from [10.24.69.142] ([10.24.69.142])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 42JHZbRI026612;
-	Tue, 19 Mar 2024 12:35:38 -0500
-Message-ID: <4b319264-bff7-48e5-85e8-201ca0bafec6@ti.com>
-Date: Tue, 19 Mar 2024 23:05:37 +0530
+	s=arc-20240116; t=1710869916; c=relaxed/simple;
+	bh=4vuAWBj1evs6v+OZMqxOpqf/OaE6RssOo2tlPJIKe2o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FBbHb3nfeM5Y/ZwZNvNJO52MK5dNvVsdAY6wmuHFZLsFg7Ua36MpynaYReQNJTxu6/85yVS07Ifwxh4IvH+MK5mQzUbSWyiF5CUkFl7DAEnN1EBJaBMLg8EqXJ+bI3KmJyFIfb5fLbLD5TMlLn95UnSjEaukTu0MgHKwBeKpv6w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FhpGq69C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00477C433F1;
+	Tue, 19 Mar 2024 17:38:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710869916;
+	bh=4vuAWBj1evs6v+OZMqxOpqf/OaE6RssOo2tlPJIKe2o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FhpGq69CjbpLw7gdlpfimviyUI9rG1eiCMCeg4oRTfRHYiaEvNeWnvg8fB629aLZW
+	 AZ81lwqhxnWfbJDM9iuNZ5Kl5VgSgWoIfbkIO/0TdZPrxNElSmJNv1D4NHBr1x3QQd
+	 d98gs93XJgtAocflD6uznvPw2sPCqqyu19aSUi6BLS8vDa9pSw7V22D7C0mag/CeXa
+	 J+Bwkwx3Dn4Rg02ptndnzDRowRBiznOdoFMON7/tYTQ3gGghhJIQFnLmaFVdaWM7K0
+	 tRNrfqA5FYAFZjs861/KJiC57kUwu+d4A5Q5wuYc3cLP7a6wjL6pOW4W69YHBVCwGG
+	 HvG5QSe0kw+nQ==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1rmdQA-0000000016b-11LA;
+	Tue, 19 Mar 2024 18:38:42 +0100
+Date: Tue, 19 Mar 2024 18:38:42 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Doug Anderson <dianders@chromium.org>,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Marcel Holtmann <marcel@holtmann.org>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	cros-qcom-dts-watchers@chromium.org,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Johan Hedberg <johan.hedberg@gmail.com>,
+	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
+	Matthias Kaehlcke <mka@chromium.org>,
+	Rocky Liao <quic_rjliao@quicinc.com>,
+	linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH v3 2/5] Bluetooth: add quirk for broken address properties
+Message-ID: <ZfnNoi4ahVlzHvvo@hovoldconsulting.com>
+References: <20240319152926.1288-1-johan+linaro@kernel.org>
+ <20240319152926.1288-3-johan+linaro@kernel.org>
+ <CAD=FV=VUFodCAXEJgfpSqZZdtQaw5-8n_-sX_2p6LuQ2ixLRpQ@mail.gmail.com>
+ <Zfm8nifvqb3xO5HG@hovoldconsulting.com>
+ <CAA8EJprp89VgFMjHv=EynROUs632CfQPbEka0GAcEAy743EMaA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/5] dt-bindings: misc: Add mikrobus-connector
-Content-Language: en-US
-To: Andrew Lunn <andrew@lunn.ch>, Ayush Singh <ayushdevel1325@gmail.com>
-CC: Michael Walle <mwalle@kernel.org>,
-        open list
-	<linux-kernel@vger.kernel.org>, <jkridner@beagleboard.org>,
-        <robertcnelson@beagleboard.org>, <lorforlinux@beagleboard.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Derek Kiernan
-	<derek.kiernan@amd.com>,
-        Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann
-	<arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Brown
-	<broonie@kernel.org>, Johan Hovold <johan@kernel.org>,
-        Alex Elder
-	<elder@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE
- BINDINGS" <devicetree@vger.kernel.org>,
-        "moderated list:ARM/TEXAS INSTRUMENTS
- K3 ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-        "open list:SPI
- SUBSYSTEM" <linux-spi@vger.kernel.org>,
-        "moderated list:GREYBUS SUBSYSTEM"
-	<greybus-dev@lists.linaro.org>,
-        Vaishnav M A <vaishnav@beagleboard.org>
-References: <20240317193714.403132-1-ayushdevel1325@gmail.com>
- <20240317193714.403132-2-ayushdevel1325@gmail.com>
- <CZWVF90JJO98.2M7ARQ9WMGC94@kernel.org>
- <d4dc4d94-d323-4158-8c08-b7d37d8750d3@gmail.com>
- <b62915ca-c151-4e37-bb03-c92c569c84ff@lunn.ch>
-From: Vaishnav Achath <vaishnav.a@ti.com>
-In-Reply-To: <b62915ca-c151-4e37-bb03-c92c569c84ff@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAA8EJprp89VgFMjHv=EynROUs632CfQPbEka0GAcEAy743EMaA@mail.gmail.com>
 
-Hi Andrew,
-
-On 19/03/24 17:55, Andrew Lunn wrote:
->> The device tree defines the SPI controller associated with mikroBUS SPI
->> pins. The driver on match queries and takes a reference to the SPI
->> controller but does nothing with it. Once a mikroBUS add-on board is
->> detected (by passing manifest using sysfs or reading from 1-wire EEPROM),
->> the driver parses the manifest, and if it detects an SPI device in manifest,
->> it registers SPI device along with setting properties such as `chip_select`,
->> `max_speed_hz`, `mode`, etc.,
+On Tue, Mar 19, 2024 at 07:01:57PM +0200, Dmitry Baryshkov wrote:
+> On Tue, 19 Mar 2024 at 18:26, Johan Hovold <johan@kernel.org> wrote:
+> >
+> > On Tue, Mar 19, 2024 at 09:10:23AM -0700, Doug Anderson wrote:
+> > > On Tue, Mar 19, 2024 at 8:29 AM Johan Hovold <johan+linaro@kernel.org> wrote:
+> >
+> > > > +       /* When this quirk is set, the Bluetooth Device Address provided by
+> > > > +        * the 'local-bd-address' fwnode property is incorrectly specified in
+> > > > +        * big-endian order.
+> > > > +        *
+> > > > +        * This quirk can be set before hci_register_dev is called or
+> > > > +        * during the hdev->setup vendor callback.
+> > > > +        */
+> > > > +       HCI_QUIRK_BDADDR_PROPERTY_BROKEN,
+> > >
+> > > Like with the binding, I feel like
+> > > "HCI_QUIRK_BDADDR_PROPERTY_BACKWARDS" or
+> > > "HCI_QUIRK_BDADDR_PROPERTY_SWAPPED" would be more documenting but I
+> > > don't feel strongly.
+> >
+> > So, same reasoning here, this it not some quirk that people should go
+> > around setting without first considering to fix their boot firmware.
 > 
-> How complex can the description of the hardware be in the manifest?
-> 
-> Could i describe an SPI to I2C converter? And then a few temperature
-> sensors, a fan controller, and a GPIO controller on that I2C bus? And
-> the GPIO controller is then used for LEDs and a push button? DT
-> overlays could describe that. Can the manifest?
+> The address can be considered broken in many different ways. The name
+> should still be descriptive enough. If you want to specify that it is
+> a broken behaviour, please consider something like BROKEN_BE.
 
-No, it cannot describe such complex hardware, it can only describe 
-simple devices (sensors/displays .etc) on a standard mikroBUS add-on 
-board, we did a analysis on what mikroBUS add-on boards have driver 
-support in Linux and then noticed that most devices does not need this 
-kind of complex description to work:
-https://elinux.org/MikroEClicks_with_Linux_Support
+I doubt that Qualcomm will be able come up with another way to break the
+address property. They'd have to try real hard.
 
-The greybus manifest already is being used in the greybus susbystem for 
-describing an interface and there are already greybus controllers 
-(SPI/I2C .etc) being created according to the manifest contents, all 
-this driver does is to extend that format to be able to instantiate 
-devices on these buses. The primary goals for introducing the driver for 
-mikroBUS add-on boards are:
+And this is an internal define which can be changed at any time. There's
+also some worth in keeping it aligned with the DT property, which I'm
+more open to renaming (e.g. if the DT maintainers thinks dropping the
+vendor prefix makes sense).
 
-1) A way to isolate platform specific information from add-on board 
-specific information - so that each permutation of connecting the add-on 
-board on different ports on different board does not require a new overlay.
-2) A way to instantiate add-on boards on greybus created virtual 
-mikroBUS ports.
-3) Both 1 and 2 should use the same add-on board description format.
+The alternative I considered but rejected was something like
+"local-bd-address-be" as that would be too neutral.
 
-Standard device tree overlays did not help to achieve this and that is 
-why the standard interface discovery mechanism in greybus, the manifest 
-was extended even though it is not the most optimal way to describe 
-hardware.
+Perhaps "local-bd-address-reversed" would at least signal that something
+is backwards, but I still fear that that may be too subtle.
 
-The greybus manifest extensions were made with the following things in 
-mind and three new descriptor were introduced:
-1) mikrobus descriptor - pinmux/port state
-2) device descriptor - contains information which is a superset of 
-struct i2c_board_info , struct spi_board_info .etc
-3) property descriptor - to describe named properties of the types 
-defined under 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/include/linux/property.h#n22
-
-With these we were able to test around 150 add-on boards with 
-corresponding drivers in Linux : 
-https://github.com/MikroElektronika/click_id/tree/main/manifests
-
-The mechanism is not as robust a device tree and should not be compared, 
-the intent was not to create a new hardware description format, but 
-extend the existing greybus manifest format to be able to instantiate 
-devices on the greybus SPI/I2C/GPIO/ (mikroBUS)
-
-Thanks and Regards,
-Vaishnav
-
-
-> 
-> 	Andrew
+Johan
 
