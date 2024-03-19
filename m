@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-51583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEEDD87FC07
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 11:46:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F3C287FC0D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 11:46:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 080A21C20B59
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 10:46:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B155BB21414
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 10:46:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A774F7F7F7;
-	Tue, 19 Mar 2024 10:44:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0714F7FBD0;
+	Tue, 19 Mar 2024 10:44:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QKBiRhDY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="REDceqpZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 919457F46F
-	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 10:44:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CECED7F7D3
+	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 10:44:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710845089; cv=none; b=TSzh8U4d1sixm0ageo9QPDq0jGur3fh5YWsUkYfAbHnnlt2axJMGoRZ2ItmcT/xALtYrohuo+CZM78vKJud3wkN69BwRBJtOGyMf4ZbH8r/u7jSR+oQ40qaFIZOVJMema3GBcFy94QtMCH8rZSFBYc2sooemGZPWJVP3Rra1f90=
+	t=1710845090; cv=none; b=HWK6w3gpERLckD29b/ih5Mz7axCrnflYFLo5sbZpdDXJa4LiVU5ZOyhUF23bPpRWuMpWJEE6QBb5BAjqaRlV+sOQ7dE+INhWjUHRX7G8g1webo5nPIXcrjORHkyoMJChbZBfXRfGaEkuOZFH6V3uz6Dw02vYXqJOw+hxzJJHLgA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710845089; c=relaxed/simple;
-	bh=tPydKqk2YSla66EnZFuqclyzKir7dE9KK2iKURNVrUY=;
+	s=arc-20240116; t=1710845090; c=relaxed/simple;
+	bh=xL8h4eyyWci29QidVxDLfR9l9WmgeWgRBwZjFy3/qKU=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=O4yNSAw/hzhOKGo9Pvl8gXXAGQ1hLeLMTqmHnfr/8KZBWRUJCO1utnWNjFVAmghoTqT4MjSjhoqW1VQA3DOmzQB1eafldjWmA6BKBrRSdJvzcyZYutGQscruPrrwFdaA50lN6kiYIjw2Fpm5H2zn3Swkt1uMRw0M0YP0tek0648=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QKBiRhDY; arc=none smtp.client-ip=209.85.128.47
+	 In-Reply-To:To:Cc; b=l9Yu7IVFGl2fUH1Dh1jJEMYUA8nqgk2OaLY8OVv486IndTc6hGW94ocMDCesRZDspUZ86br5VfQUvYHrvufful1mW1Z941GfkFRlgdEsz6xmOX+OTD3Php2BF4T0mRiRr0XmbssBPnHMNtxEXx4GuoY19tMlvj21nrex7sOiBEE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=REDceqpZ; arc=none smtp.client-ip=209.85.221.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-41413c99748so12041105e9.0
-        for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 03:44:47 -0700 (PDT)
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-341808b6217so848017f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 03:44:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710845086; x=1711449886; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1710845087; x=1711449887; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=KcCFlDSNEFtoMH4ZYLS7c8L9gm9nhZvpG39nlVIAzsM=;
-        b=QKBiRhDYRrjSww2nsoBNfdSY8/koJfsEK8XZCWo02G+LrzadgaqPDEWzQb7JX6Oe20
-         zNhpntU24Y6QQkFU7MFNfmSv/KJcEM6a6W5FzOYthvF3d3E71SJgEYXGIOY3jOpIO5u8
-         4UbHlKHpBIyHQmyH0czcPz7RzaMsP11Tfg9i/mvhFQaMSpe7eY5Jyeygl7adAYmmYMdr
-         jnfiCiYJDWqYDlMtixDtinNHwPTgIVHJRI/PDVGWDxDmBSQl2F5QL2kcX3sbfrohRS5/
-         xb1IagS7xRwDCWyEl+/t/hXmtUh76Z8Yu2mOucCijveCn3CcOGVG9nB98tK1Ri4v08mx
-         s7Rw==
+        bh=ty3VrFMi2Un83tZJpEiaZ9eSHCnRrlGoPwQ7PufQuP0=;
+        b=REDceqpZIRF2An/v6ZtIxjDZ8yw7eJV7QBNSetNUGnREGK+wR3Bc298nvwHeA/VuWz
+         LuammWX4ilRBnoWNFnKTZNPQiAsCK+A3TWdJ2iePbQd2pcZnsLtLiuMNt+2e8ifm99uA
+         Ps6qs9o1gUbApIXf39zZn/urGDZomrERFaqAQZpkAs33oBzbp2AND0YspmZQr86AhMOB
+         46YO3YmgYpjTbJ1zVv22aUQatkSVuKPxXw/FSzchPEj4SfIfj9Yg7MT99iWmynnO4PZW
+         Gfd2WA9ZbhurYRS1KliPCdDak5Ey/t0R7OmZmFrWHJuR3rhmMy2C1fVvHFIb87h/m5mO
+         rbPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710845086; x=1711449886;
+        d=1e100.net; s=20230601; t=1710845087; x=1711449887;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=KcCFlDSNEFtoMH4ZYLS7c8L9gm9nhZvpG39nlVIAzsM=;
-        b=MbZfR7dRRDoDy6INBfpqCJwf/YNCvsiJMdoJIia4IJDvT7wpmeRufJtN53AOGeANwL
-         hGi7aPruZuRGWXuM/5icJ3mOldhPVdr3z7+cw9sblh8/+sn7VAoJdzysJN27mwOXYyk6
-         jWPhj1IiQkl59v8WqYZpLeC4rcjN7uaxlgmnnS8HWNiv2nToY35atIju6bGeosIWX8Wd
-         QeyRUIHKt7KecWzed0tqyRtgm5QU5yWbG+DM6Sz0cy5gAT7+v9hKiS5CbO65GmcH4TfL
-         vDhIhX2UeQcZiehTHzStNgddLotf6Suq6gl3W8kp7dxyuk4/BTXUmaAg9DiW/iiUebRN
-         9gLw==
-X-Forwarded-Encrypted: i=1; AJvYcCXqc+wkmd+YqkGvJeSkOEc7KUU1zAlRg88vPOQwpYrSYt8kOoWCwv12lB9QYHbj8yutChmWfAdAdya9WfY/HUlf2JAP+H7+vIw8Ow==
-X-Gm-Message-State: AOJu0Yzy0eiyxq2pEzkZuwDEJaQ47k//irV7s/9BLzEDPXDsp/yxeTc9
-	YBM3X2yJibeylHWcWUkrLGJz/6HVGUxvpPvk+lW093Y9Mdo20ew/eMBpRoAG0RQ=
-X-Google-Smtp-Source: AGHT+IGgC3joZ9SNi4vPETCkXKlOcafq5dmogQJtOOsU88NpKN/dbbbiashGUrT444nIasUFcRj9aw==
-X-Received: by 2002:a05:600c:4e93:b0:414:22b5:c32c with SMTP id f19-20020a05600c4e9300b0041422b5c32cmr1509952wmq.37.1710845086023;
-        Tue, 19 Mar 2024 03:44:46 -0700 (PDT)
+        bh=ty3VrFMi2Un83tZJpEiaZ9eSHCnRrlGoPwQ7PufQuP0=;
+        b=itkjBbuFqd6A4SjSIhPv7ZwHJ5BpDzdB5aWwQaihyEDUjUoY5eXV5MlQTqG7KDfXDV
+         am6ulb0JyTWnmNzdPakwLTPDq2tzgnVob/GZnCf3qH1gTPPJbxtbygsk/hL2BgCkRVC1
+         BRv0HtgKythb76EMgSGs/lwPPyKf1OAyBDHwfy3+ODit/xBqSCmWfNLwG5h8EavJA7UP
+         sVyxiWouv3ZEaGd3CFgRhWuxIjNbSNNqrFC2ieK3uyah9Y7lF8J3kINcBPlWjsK21sMi
+         egRIkfZS+DiSJhbMwaMKz9GQAVktJeJMWia/M55QOWAqw/TqoX+WOHgtb3XyZ+78Mg6h
+         erIg==
+X-Forwarded-Encrypted: i=1; AJvYcCWpV26DAGlJzTIvwVF3WQgzmr2+jyhLxL1V7P3wXNndIAk+5SWheawFGB/7s+QW0QcB/G/EQAfoHL2o57J2oLqY5c+fQ8WxmIEvsQ==
+X-Gm-Message-State: AOJu0YwzoI6fo60y6aYC7z5BsrafmVFDp8sMPm4usSOo3HUBCEmZjMiZ
+	6nev3vEZngQC/Y6KwsLiiQuCFQafCmA1gL6nz1NX5CLaxrNrQPTpn2mEbL2F9Ec=
+X-Google-Smtp-Source: AGHT+IHDUjCnXWox7pyr/ZefGE91CNvjYVpHS8QiFFtd707Y/0mFvdcstW0ixdbZPpAvgibXV9v+Lg==
+X-Received: by 2002:a05:6000:1805:b0:33e:5310:820f with SMTP id m5-20020a056000180500b0033e5310820fmr1468072wrh.67.1710845087159;
+        Tue, 19 Mar 2024 03:44:47 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id a5-20020a5d4d45000000b0033e03a6b1ecsm12029459wru.18.2024.03.19.03.44.45
+        by smtp.gmail.com with ESMTPSA id a5-20020a5d4d45000000b0033e03a6b1ecsm12029459wru.18.2024.03.19.03.44.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Mar 2024 03:44:45 -0700 (PDT)
+        Tue, 19 Mar 2024 03:44:46 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Tue, 19 Mar 2024 11:44:32 +0100
-Subject: [PATCH 6/7] arm64: dts: qcom: sm8550: remove pcie-1-phy-aux-clk
+Date: Tue, 19 Mar 2024 11:44:33 +0100
+Subject: [PATCH 7/7] arm64: dts: qcom: sm8650: remove pcie-1-phy-aux-clk
  and add pcie1_phy pcie1_phy_aux_clk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -79,7 +79,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240319-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v1-6-926d7a4ccd80@linaro.org>
+Message-Id: <20240319-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v1-7-926d7a4ccd80@linaro.org>
 References: <20240319-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v1-0-926d7a4ccd80@linaro.org>
 In-Reply-To: <20240319-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v1-0-926d7a4ccd80@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -91,20 +91,20 @@ Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3132;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2393;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=tPydKqk2YSla66EnZFuqclyzKir7dE9KK2iKURNVrUY=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBl+WyWIIf6eAULGJi+KYMNFWeRDbZQecFnv0jc1Bih
- YiqNcQiJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZflslgAKCRB33NvayMhJ0UKIEA
- CREHuVTxqFBzS8w1qctN3Q/TWUi+O2WvULNAIc8TrdkVKqYE1zi/eslMXMTM+vyA3GmXSwKoj+JAbf
- 1PivkwHl6csnRWJg32j+EhYkNTxnvJvett9F88fOBTOadAKJSz9jc00GAVTSpeacugGoqNiSZuAG4j
- gG9+DZuBquLDamG4+EV1t5RI9snBRluKJMXOg9VWtUVmiNB8zfecdlNVctAkKpO/nm1rqo44C7A+vM
- cz9AAiIooCYmJDe8DJYGj+SYNnrdw+EFmlQk6tViRJdfChs11bQQEPsv7ePfCOz9uABN+DIkaIL4ks
- vOP8lPHakyl+3RxOGFKs6znQKGB03qnqvpvHZwXAz/3J01GEKyK6mX/ajlqYqRl7i31Fsm0sfW5XLw
- ulQ09aTXg7lP3IA7PGY18/9aW5p9y2FRPKuVP/QNIQkoa1+NYmWcn7C0gZRp1iVrurbnfXfLmBubxN
- s/vN51Y5QYVDu40QgS6wmLHanpQSvVqq+A7i3u/Rj1ClpNKM9WVgC1PcKT2MB1Bs0TYrjT1aM95WCv
- w2VTCUGpaA7zjwi0XdCBaTwZb9CyK3Y6UX9H9t97qZgUSqlN5ww1cOcIdVVnz7qYxraXsCvglFSZEH
- 3Jqc8o2shaZ7eZ2wlDqHWqWvSWIXEVSRFUl8+UX04hJ893SqiLyAJApiPIng==
+ bh=xL8h4eyyWci29QidVxDLfR9l9WmgeWgRBwZjFy3/qKU=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBl+WyXSPEU8h87XAYp3k8Wphua7O1IBTEZXA2fRZKA
+ csAIZCyJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZflslwAKCRB33NvayMhJ0a5REA
+ DFLrlJVrlPgp1qAFKTSAlhaK8VNJVQ+cWx3mJfZbntkamF9yQRQ1MAzJyMi+LP3WPCddk2lbXwl4Bf
+ WdZ7wOFJ2gDBBZX3j5NlfWeHlWHh2eybHELJzsFou6loQO9tuPnzIfSOw1iQ/9Wp006ieX88hwyP4b
+ euTBxe1EgZB3bsSVt1fmfWRu0cXxarjjKg8kWYKofFL+bZVLXEAdf1O/PR8J2WE4oXLc4WA5/7llWQ
+ Ao4pfNsBZFuSzPoDzoBSebX5kyvLMSJykJcsPxTzzz4QQI1110E+a9LMlh5D+kWkO6f2+d0n9z700v
+ Nh528LWb0zUPeGbibCmZEgQGv6oLtkxPSfqf1bMU5tW+aKWzLrw+MmBAb+JA1lZOcQzoeDHRjXmaDP
+ OIYWiM9skcAYfFCPmz5yhkgdCQB3Av/7mMbLHTh0zMXLFbxllRBEtdQYBWNrznYjqhre7QiRTlRkjc
+ m9aw/7icsNc8x1Z0oTTdK/NmpZQhDSrc8W+irx9A/WKIcAELwMOwcqio/F4tkj3J86ZihL7XuFEi22
+ UE0EKl7NrLf/KfaYqNOTQHIA8y30RbM0UOc/HefZFiDWiLPG87+ubw8VFnZn2US7A7q0STym7O7V/c
+ p+l3viI2yKkkbijvh8ma182IGqDdIzWd797/LNn5qj0ZSTkeqWWq2hQPKSpw==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
@@ -113,33 +113,17 @@ provided QMP_PCIE_PHY_AUX_CLK.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8550-hdk.dts |  4 ----
- arch/arm64/boot/dts/qcom/sm8550-mtp.dts |  4 ----
- arch/arm64/boot/dts/qcom/sm8550-qrd.dts |  8 --------
- arch/arm64/boot/dts/qcom/sm8550.dtsi    | 13 ++++---------
- 4 files changed, 4 insertions(+), 25 deletions(-)
+ arch/arm64/boot/dts/qcom/sm8650-mtp.dts |  4 ----
+ arch/arm64/boot/dts/qcom/sm8650-qrd.dts |  4 ----
+ arch/arm64/boot/dts/qcom/sm8650.dtsi    | 13 ++++---------
+ 3 files changed, 4 insertions(+), 17 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
-index 12d60a0ee095..ccff744dcd14 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
-@@ -979,10 +979,6 @@ &pcie1_phy {
+diff --git a/arch/arm64/boot/dts/qcom/sm8650-mtp.dts b/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
+index 4450273f9667..95d0c2baef2b 100644
+--- a/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
++++ b/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
+@@ -645,10 +645,6 @@ &mdss_mdp {
  	status = "okay";
- };
- 
--&pcie_1_phy_aux_clk {
--	clock-frequency = <1000>;
--};
--
- &pm8550_gpios {
- 	sdc2_card_det_n: sdc2-card-det-state {
- 		pins = "gpio12";
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-index 3d4ad5aac70f..1fa7c4492057 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-@@ -739,10 +739,6 @@ &mdss_dp0_out {
- 	remote-endpoint = <&usb_dp_qmpphy_dp_in>;
  };
  
 -&pcie_1_phy_aux_clk {
@@ -149,22 +133,11 @@ index 3d4ad5aac70f..1fa7c4492057 100644
  &pcie0 {
  	wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
  	perst-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-index 92f015017418..da3cfa697969 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-@@ -810,10 +810,6 @@ &mdss_dp0_out {
- 	remote-endpoint = <&usb_dp_qmpphy_dp_in>;
- };
- 
--&pcie_1_phy_aux_clk {
--	status = "disabled";
--};
--
- &pcie0 {
- 	wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
- 	perst-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
-@@ -907,10 +903,6 @@ &pon_resin {
+diff --git a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
+index b07cac2e5bc8..c6e907e40af1 100644
+--- a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
++++ b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
+@@ -831,10 +831,6 @@ &mdss_mdp {
  	status = "okay";
  };
  
@@ -172,14 +145,14 @@ index 92f015017418..da3cfa697969 100644
 -	clock-frequency = <1000>;
 -};
 -
- &qupv3_id_0 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-index 3904348075f6..c74455dfd354 100644
---- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-@@ -58,11 +58,6 @@ bi_tcxo_ao_div2: bi-tcxo-ao-div2-clk {
+ &pcie0 {
+ 	wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
+ 	perst-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
+diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+index ba72d8f38420..6e4362bbcc3a 100644
+--- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+@@ -60,11 +60,6 @@ bi_tcxo_ao_div2: bi-tcxo-ao-div2-clk {
  			clock-mult = <1>;
  			clock-div = <2>;
  		};
@@ -191,9 +164,9 @@ index 3904348075f6..c74455dfd354 100644
  	};
  
  	cpus {
-@@ -776,8 +771,8 @@ gcc: clock-controller@100000 {
- 			#power-domain-cells = <1>;
- 			clocks = <&bi_tcxo_div2>, <&sleep_clk>,
+@@ -758,8 +753,8 @@ gcc: clock-controller@100000 {
+ 				 <&bi_tcxo_ao_div2>,
+ 				 <&sleep_clk>,
  				 <&pcie0_phy>,
 -				 <&pcie1_phy>,
 -				 <&pcie_1_phy_aux_clk>,
@@ -202,7 +175,7 @@ index 3904348075f6..c74455dfd354 100644
  				 <&ufs_mem_phy 0>,
  				 <&ufs_mem_phy 1>,
  				 <&ufs_mem_phy 2>,
-@@ -1906,8 +1901,8 @@ pcie1_phy: phy@1c0e000 {
+@@ -2449,8 +2444,8 @@ pcie1_phy: phy@1c0e000 {
  
  			power-domains = <&gcc PCIE_1_PHY_GDSC>;
  
