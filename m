@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-51552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC96C87FB10
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 10:50:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C98E987FB16
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 10:51:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EDD2C1C21B22
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 09:50:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68CD31F21CA6
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 09:51:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD7ED7D090;
-	Tue, 19 Mar 2024 09:50:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1465E7D090;
+	Tue, 19 Mar 2024 09:51:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oUM2x827"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="O8wgMAwZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E39E548F9
-	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 09:50:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EE5A7D079
+	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 09:51:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710841808; cv=none; b=SsB7KaH7r4sCsTQ1bEG3v5CrYaDKYJZwko9yJlfWn7lwTOQFrHra23DfXVhFvAsc44dYwS4hGrit/npJT8U2jmBdKzhGljv+mrzwtU4RhD2cZgGWHbtR8ePpnc1Kw9jOqM5snb97ypylhQOf3RFQEDgkhz34Jc4BYMzxtNo3J0Q=
+	t=1710841867; cv=none; b=N4oI/vmxOazYrPvGly/7hfmo5WTmIs2rGL68JmCGVy9ePkpHfkhCH6AdX/i03DdiYnlO/2yKFD9sJEf8HtuJjCiyQXjOgRz6iJ4D7VD8nJFahvhZovhS7OjI7ImmcUBi/8xooBI+N58Pepmodzm6KrW2fI0kqeEjXgMmNlFQXnk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710841808; c=relaxed/simple;
-	bh=tw6VpL6uUbF1l8qk/1ld/s+lWnYJuW351zygV2v0NuA=;
+	s=arc-20240116; t=1710841867; c=relaxed/simple;
+	bh=88XzjhFNhn70mBpqUdKgpf7ppYNiFhAhyQuqQQPS+u8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OX3fy7iAUtEA89IYT5g0iLmJcr/kjLN1vZ85CcPP8rHFGcO2ii5UxcR4IsGpFRF5UkHIV6IhTAmEnUZ0aMbPp6V2zTxX//G+8/fmYawZpTfv2Vik/U1YiTZ6rdDlBAmrrlglwbzqizkaBVIvtGWEem1Un16RiT9gxGTZc2WJpjo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oUM2x827; arc=none smtp.client-ip=209.85.218.47
+	 In-Reply-To:Content-Type; b=clmJk2IIgctJpLBdGVIR2B8MbPksgOBHT82TPSdNM1K03XJuHfHZNTEQiNH9oCs8IHxVFyGjxtsEy3cVDcCRLWo6P/YDlnEBKMbPC4NSqeQbCOrYbaVYCmCKwn6ep6v9RyYUaoFTOSlOiJI1o4hYJ141i9t7Rfokknp7kkbBxdw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=O8wgMAwZ; arc=none smtp.client-ip=209.85.218.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a468004667aso562463666b.2
-        for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 02:50:06 -0700 (PDT)
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a450bedffdfso645184066b.3
+        for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 02:51:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710841805; x=1711446605; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1710841864; x=1711446664; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=/3djFcV85FlUlQbj3yunmUo0E6cySmtvMQYg/G6jYmk=;
-        b=oUM2x827h7PPer2IKdaeiZLAfCi1uemooXhxJMJef+UkaWn/Ej9EtXQTB5z4MLsT7S
-         a7u5+DIJ4ey6iTDJdZRQD3krXSSbhHDYXlGt8W8ue6Fmx9f4CZBuvcCVAZF2hAh4uHhm
-         KvbpgazJoldKym/JgVC80RF/DVwbjw8vcR1g4xfMU9WydLKsP0YI297ZJlLWgq5yyJzW
-         CCMehCU7si+OZaJBuySmOzuL7RL1PH1vhhRvWqMBgUuobA//xfIRb5amVN/7niAH95s6
-         lD2K2zClMppZYtoVQpBGuCKFkzbcAY1Sl+5LIsnjkeUbtOKoQDp8iKd/6cgj0l3/ZHqn
-         BoUA==
+        bh=88XzjhFNhn70mBpqUdKgpf7ppYNiFhAhyQuqQQPS+u8=;
+        b=O8wgMAwZunwn+kq5K65kO7LtwfoT+UElhUQfbXIzLmzI4GqgK6hzqS93IF9qqRK1TS
+         tM+RAI2/S+jHkAYazSth0TLF2z05UpnMdw5vt9lJAFzqYi9Dd6pU3nL5BnZy+NSg6H08
+         hC/rfnUAXh8hpLR7jE6M6Qcst89QGuweJl0s0bhDKazM0bNNJkahn/hulcMzQfWuxpig
+         2G7bTmjIwF+QlXhAH0o6ELE16iqSiaJ+iQalWX9UK9Q1Migqr8X4DyBd4QZj8fLQPNoR
+         JCeZjfNc9tqslyIeyIsBfuebU11xhQCzZa3zXdUwQRnFym3H9TJdBNxTkgqJi22C6CJT
+         En7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710841805; x=1711446605;
+        d=1e100.net; s=20230601; t=1710841864; x=1711446664;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=/3djFcV85FlUlQbj3yunmUo0E6cySmtvMQYg/G6jYmk=;
-        b=O9cLwr5r5OOo11y1vS0rKT9owxCLVENt7xueVvxBG1cqv7lMBiYS2mD2ihd68VI60z
-         AmwtIZdQP5B2lIuuRkS26sINF+PXWvkqEymnAScUueU0o26Xq6zQC4Z2xzo6i9g44Sgd
-         /QGqFHxHuUPq4l2jq7GJvkcG8VygCqmMMiFaYJDDR8BScc/jqcD67nrtvVGxOkm4AsuP
-         X6N6jTHYFWxnavH6bXNu4wGpgBAPD88ZM8vk7YhIzYwsnfZmV8PB/O91aBg2+uVRKwsO
-         QFdF4mbjlibTCMwSiR7aq7QnQ/dgiXRSaBhFK1+4qZGG8ilZKDKJo3v5IETPIZ+d4rfA
-         kdog==
-X-Forwarded-Encrypted: i=1; AJvYcCX6z9YZoeS3l1LzQPJWW6sALQ2oOc5RcGocUrKKMm93vevW4ZuyX1HGYR2yQCfNJD4kb/Cy4GSsq5x19T6vmAK8JRJgyxtYLBZm9A==
-X-Gm-Message-State: AOJu0YwZO2BTyFfLqXZfDioMtTGvjJqWmr+3vTyXieA+ZaLfKn2GGzYO
-	Inx49NB3bjLWp98caQllpiaQSd7A8riVUexlzl+TVgnpVuGWHdV0fKUYqvuPxaA=
-X-Google-Smtp-Source: AGHT+IHub3GerXpEi0+h2eEzC/rsUiII/Qbh7o0i096OhIsOQOgoPcmYiKDyB+SU92D5RtOm8jHkvA==
-X-Received: by 2002:a17:906:5913:b0:a46:9cc5:c3b4 with SMTP id h19-20020a170906591300b00a469cc5c3b4mr5464869ejq.76.1710841805472;
-        Tue, 19 Mar 2024 02:50:05 -0700 (PDT)
+        bh=88XzjhFNhn70mBpqUdKgpf7ppYNiFhAhyQuqQQPS+u8=;
+        b=qkyL91EgCX/DADWpPsYv80qcHVLKVPVoadF/dGhk4lAzddYKSTjg0u6jFu9LsEzAkA
+         HrgxSKzw43L5zAWiOfncp/QhiOKfYgrvj/h+olGqjPw0kVcqp0UQau7sUdlj3e07uZbZ
+         T8RdiOaL+4smqzIlWYsBmHsMmyjlCfDYMnpl2sjsRwelGpu+M9BE9MFt7eAhduZFmz7U
+         6HAWlllr7EkHh3SkoB/0i5IpdJSZgrcRbRFi7EyD33jcxIKOw/7B3gJb2OtFv/IxSGQW
+         syu5aW893inr5ZglFAKhH5sZn1J7FcuJG8ILbvlhjuVSWAHwpqhZVRqXEDwir8AKSLR2
+         1reg==
+X-Forwarded-Encrypted: i=1; AJvYcCXzYw3rti4puj0ywTiVbyVqf+4Go0KXt0raB97wJ83isHCFi9JA32cD7xKfXWssc59KgltMNm1GQMrcbAAF83ByAqgHD2eDxWkUjA==
+X-Gm-Message-State: AOJu0Yxqi3ViM1mW/8mOtjSm2zb+NEofozc0uxEvxX3PWvX4/9tRH3LA
+	rwvdLlLvdg8i+7tUs1R0UQEd5eOley3rMTagwuSFNooj8wtFjXg53G5JfrSUxvE=
+X-Google-Smtp-Source: AGHT+IGMWUF80taYTEDTOvULqZp7oGhfy7/aDj3puVhQ4h04RejN43TJV4t5HfEmZUlTmjGVjWE83Q==
+X-Received: by 2002:a17:906:1b15:b0:a46:cc49:2fd8 with SMTP id o21-20020a1709061b1500b00a46cc492fd8mr2387192ejg.67.1710841863797;
+        Tue, 19 Mar 2024 02:51:03 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id v15-20020a1709061dcf00b00a46cf83216csm1345710ejh.120.2024.03.19.02.50.03
+        by smtp.gmail.com with ESMTPSA id dk16-20020a170907941000b00a469f043d7fsm4005091ejc.41.2024.03.19.02.51.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Mar 2024 02:50:05 -0700 (PDT)
-Message-ID: <b238d70e-0361-4f3c-ae6a-4e6497b95d75@linaro.org>
-Date: Tue, 19 Mar 2024 10:50:02 +0100
+        Tue, 19 Mar 2024 02:51:03 -0700 (PDT)
+Message-ID: <4e3fbff7-6edc-4196-bc72-1095f14d0dfa@linaro.org>
+Date: Tue, 19 Mar 2024 10:51:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,7 +77,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] ARM: dts: aspeed: Add eSPI node
+Subject: Re: [PATCH v2 2/4] mtd: Replace module_init with subsys_initcall
 To: Manojkiran Eda <manojkiran.eda@gmail.com>, patrick.rudolph@9elements.com,
  chiawei_wang@aspeedtech.com, ryan_chen@aspeedtech.com,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
@@ -88,7 +88,7 @@ Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
  miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
  jk@codeconstruct.com.au, openbmc@lists.ozlabs.org
 References: <20240319093405.39833-1-manojkiran.eda@gmail.com>
- <20240319093405.39833-4-manojkiran.eda@gmail.com>
+ <20240319093405.39833-3-manojkiran.eda@gmail.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -135,49 +135,21 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240319093405.39833-4-manojkiran.eda@gmail.com>
+In-Reply-To: <20240319093405.39833-3-manojkiran.eda@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 19/03/2024 10:34, Manojkiran Eda wrote:
-> This commit adds eSPI to the device tree for aspeed 5/6th
-> generation SoCs.
-> 
-> Signed-off-by: Manojkiran Eda <manojkiran.eda@gmail.com>
-> ---
->  arch/arm/boot/dts/aspeed/aspeed-g5.dtsi | 19 +++++++++++++++++++
->  arch/arm/boot/dts/aspeed/aspeed-g6.dtsi | 20 ++++++++++++++++++++
->  2 files changed, 39 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-g5.dtsi b/arch/arm/boot/dts/aspeed/aspeed-g5.dtsi
-> index 04f98d1dbb97..eaf7d82b6f46 100644
-> --- a/arch/arm/boot/dts/aspeed/aspeed-g5.dtsi
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-g5.dtsi
-> @@ -343,6 +343,25 @@ sdhci1: sdhci@200 {
->  					status = "disabled";
->  				};
->  			};
-> +			espi: espi@1e6ee000 {
+> While engaged in development on the espi kernel device driver[1],
+> I noticed that the espi flash driver, utilizing the mtd subsystem,
+> appears to initialize before the mtdcore subsystem registers the
 
-spi or syscon
+NAK
 
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+You incorrectly ordered your call, so now to fix this you incorrectly
+re-order rest of kernel. No. Fix your code to handle modules, probe
+deferrals and device links.
 
-
-> +				compatible = "aspeed,ast2500-espi", "simple-mfd", "syscon";
-> +				reg = <0x1e6ee000 0x1000>;
-> +
-> +				#address-cells = <1>;
-> +				#size-cells = <1>;
-> +				ranges = <0x0 0x1e6ee000 0x1000>;
-> +
-> +				espi_ctrl: espi-ctrl@0 {
-
-What is this device? If parent is espi, then what is this?
-
-Where is the binding?
 
 
 Best regards,
