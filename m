@@ -1,65 +1,66 @@
-Return-Path: <devicetree+bounces-51749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E013488030B
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 18:07:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE982880310
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 18:11:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C562B226F8
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 17:06:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26C38283B3F
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 17:11:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABD5313AF2;
-	Tue, 19 Mar 2024 17:06:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAA28210FB;
+	Tue, 19 Mar 2024 17:10:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QMdNq+SY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NObJJsxo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EC7D18C05;
-	Tue, 19 Mar 2024 17:06:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CD26210E6;
+	Tue, 19 Mar 2024 17:10:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710868013; cv=none; b=ogY1m9OKB+L/RtywgmUzrrlge20//dyxk10kCEocv+Sq17g0W+8+2dwWqJrshaodnKlE835cIyGKENK5VerS2Ji3E8niOkqzqGi8j5JhlILGoQAweDnH1IxttEp1XUVXfPqdKRjah+kIp+Gd5J8L6IBg7KoFvDYYkYNQ3UvXMzY=
+	t=1710868254; cv=none; b=IAs4A6uVKu+bMwecvNMvsYL40SkDp0379ZqFghorafhJpETE5jfx6X//kCVHt6UQSjMallW5rmtrI48AKLkkPNDmp3XSBdpzumyPOTIniyF9Z7GbKyTrIu3+GWlZlZt3fPMEtVrr1oZpwK1lKt8+Zc05aoAsb/c9sUxBODKquPI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710868013; c=relaxed/simple;
-	bh=4sfHshxTfCzjYdFQoq9cTJXqvZmtR9W4NjZzxQaBRow=;
+	s=arc-20240116; t=1710868254; c=relaxed/simple;
+	bh=iE7hgBUgh9pLwag2DUIbFk0wKbpQx/A8AbEUFmM4glc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FZemrE64XEwvTJpEphdw+BUxyaYxJUrvM1HBKhSR3/8WwkXRMGTtuvFPxL22E/sPU9w+kMDB6F1Z+wU8B0xH7pkwDsHYrpvIfm44ar++cSQp3nKVDvahOKemx3A/gO8Tv47NfPpYqPDyHlN9kY29s+Ov+bJv2TVSc/zY3HVnREw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QMdNq+SY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F547C433C7;
-	Tue, 19 Mar 2024 17:06:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=gxMrnh3wNTSf/ariHHMZERbbuAY+RVF2h3WUqILwTFUF9tkdgwu38tBa343ChI6Mf/D10eSM5b19es6qzF4phTQ/Y9oBmDTG14HXS2uCVvLY1NR7KJPrHLfZVHd8X5fNrGY+yfvb1ni2wYfIdvoJ7HS7E+J0soQcx/Wxf1dYgAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NObJJsxo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8521AC433B2;
+	Tue, 19 Mar 2024 17:10:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710868013;
-	bh=4sfHshxTfCzjYdFQoq9cTJXqvZmtR9W4NjZzxQaBRow=;
+	s=k20201202; t=1710868254;
+	bh=iE7hgBUgh9pLwag2DUIbFk0wKbpQx/A8AbEUFmM4glc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QMdNq+SYrlw395jnqI4gXOzFdKI0cTTrjTlHx2fvU/T+Cs0RDSulUlb5283MsxYbQ
-	 pe/nqzrLhZl+6e5cJbOQv9rIwxdtXilynchXZMJlC4TbuHddq93v3LmZo0PY1Ev19m
-	 ycUaGfMf8ywgGunDRMQ6sOf3mYdcNPDx39r1a6dWebxYkdkPz6ZZ+2UUaWYygFe9KT
-	 CeGfzJ88mzql6FS3/kYdKb6gNhIUASjZYkk3tlSwUdqC9wg6rc5d8WenekYbyq08IC
-	 0yAKFJg2pydhVApat1qp/GB2aFD5r8C1ZgXrLYDbjO9aseSGCNuBxc8Iy1170O9rdb
-	 ph9cHI9GP8okg==
-Date: Tue, 19 Mar 2024 17:06:47 +0000
+	b=NObJJsxosq3j1km2UrMN6rdRzfL829XRC58cKfSuiqCNrbknyROut7IPyYYQlY9SD
+	 YLyMw8EdLuid+yu/Ho1JWmzWl56XFbYHWF6xljmzWXgwK0hZnN0Eig/OyEL/pZqVte
+	 h9cikC6PWtM/3TFVz1CMRXpwBdBF3kzQyChCon2Dbgq4I7ju6HD8ZNPQytBstIy2PT
+	 t+sngo7ZhbpQae+iir6byQuIIXddOXIaH452rOrYhxD++L9eQJqOy9SWfuO2gD2/Yz
+	 JlnsfY+mFnJnefozuBKAP+BOw0sC5yiqZ9KnO4RTy70tDnhEZo2FuZC1+JRw+psimN
+	 9JcPdpb89kv7g==
+Date: Tue, 19 Mar 2024 17:10:49 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Javier Carrasco <javier.carrasco@wolfvision.net>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+To: Julien Stephan <jstephan@baylibre.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	David Lechner <dlechner@baylibre.com>,
+	Jonathan Cameron <jic23@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Henrik Rydberg <rydberg@bitmath.org>,
-	Bastian Hecht <hechtb@gmail.com>,
-	Michael Riesch <michael.riesch@wolfvision.net>,
-	Jeff LaBundy <jeff@labundy.com>, linux-kernel@vger.kernel.org,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v7 1/4] dt-bindings: touchscreen: add touch-overlay
- property
-Message-ID: <20240319-sympathy-vertigo-9bc884e5fef0@spud>
-References: <20240119-feature-ts_virtobj_patch-v7-0-eda70985808f@wolfvision.net>
- <20240119-feature-ts_virtobj_patch-v7-1-eda70985808f@wolfvision.net>
- <e373c2c7-0cd9-40d6-a19b-3b9a1a81feb2@wolfvision.net>
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	kernel test robot <lkp@intel.com>
+Subject: Re: [PATCH v5 3/7] dt-bindings: iio: adc: ad7380: add
+ pseudo-differential parts
+Message-ID: <20240319-clothes-resisting-1238980300e1@spud>
+References: <20240319-adding-new-ad738x-driver-v5-0-ce7df004ceb3@baylibre.com>
+ <20240319-adding-new-ad738x-driver-v5-3-ce7df004ceb3@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,70 +68,42 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="U9CU1yZFVMXNIoZu"
+	protocol="application/pgp-signature"; boundary="AAHZqaSZHdYHsTHM"
 Content-Disposition: inline
-In-Reply-To: <e373c2c7-0cd9-40d6-a19b-3b9a1a81feb2@wolfvision.net>
+In-Reply-To: <20240319-adding-new-ad738x-driver-v5-3-ce7df004ceb3@baylibre.com>
 
 
---U9CU1yZFVMXNIoZu
+--AAHZqaSZHdYHsTHM
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Mar 19, 2024 at 12:13:08PM +0100, Javier Carrasco wrote:
-> On 1/19/24 08:43, Javier Carrasco wrote:
-> > The touch-overlay encompasses a number of touch areas that define a
-> > clipped touchscreen area and/or buttons with a specific functionality.
-> >=20
-> > A clipped touchscreen area avoids getting events from regions that are
-> > physically hidden by overlay frames.
-> >=20
-> > For touchscreens with printed overlay buttons, sub-nodes with a suitable
-> > key code can be defined to report key events instead of the original
-> > touch events.
-> >=20
-> > Reviewed-by: Jeff LaBundy <jeff@labundy.com>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
-> > ---
-> >  .../bindings/input/touchscreen/touchscreen.yaml    | 119 +++++++++++++=
-++++++++
-> >  1 file changed, 119 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/input/touchscreen/touchs=
-creen.yaml b/Documentation/devicetree/bindings/input/touchscreen/touchscree=
-n.yaml
-> > index 431c13335c40..eb1e86fa86c6 100644
-> > --- a/Documentation/devicetree/bindings/input/touchscreen/touchscreen.y=
-aml
-> > +++ b/Documentation/devicetree/bindings/input/touchscreen/touchscreen.y=
-aml
-> > @@ -87,6 +87,125 @@ properties:
-> >    touchscreen-y-plate-ohms:
-> >      description: Resistance of the Y-plate in Ohms
-> > =20
-> > +  touch-overlay:
+On Tue, Mar 19, 2024 at 11:11:24AM +0100, Julien Stephan wrote:
+> From: David Lechner <dlechner@baylibre.com>
 >=20
-> Even though it has already been reviewed, just in case before it gets
-> applied. Should it not be:
+> Adding AD7383 and AD7384 compatible parts that are pseudo-differential.
 >=20
-> 	description: |
-> 	  List of nodes...
+> Pseudo-differential require common mode voltage supplies, so add them
+> conditionally
 >=20
-> instead, to keep formatting?
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
 
-Yes.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---U9CU1yZFVMXNIoZu
+Thanks,
+Conor.
+
+--AAHZqaSZHdYHsTHM
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZfnGJwAKCRB4tDGHoIJi
-0r+pAQCQN27PZoCuDBHZdZc6ygr5G/8Gjo17ikuaVKSOz2crTAD/e2nwlGPphrqJ
-h1HPjRq7LLIXp5qwQEWUA2oFZPw0TQk=
-=K3lV
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZfnHGQAKCRB4tDGHoIJi
+0vACAP9iDMvhw9YrBRGMQEe5Lde7Eerkrn7w61VRAmvFtLtY4AEA2zYUtehEv4EC
+rIsHRfp4TuYdHPxxvm/2imbwxMb8ogE=
+=yaS1
 -----END PGP SIGNATURE-----
 
---U9CU1yZFVMXNIoZu--
+--AAHZqaSZHdYHsTHM--
 
