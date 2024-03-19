@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-51539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2061E87FAB0
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 10:28:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F17E187FABA
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 10:31:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4A462826CF
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 09:28:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A37BC282892
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 09:31:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04F5C7CF18;
-	Tue, 19 Mar 2024 09:28:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E53A7CF3A;
+	Tue, 19 Mar 2024 09:31:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nKjaR6uV"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jUT1bPQC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E1F464CF6
-	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 09:28:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 652487CF06
+	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 09:31:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710840506; cv=none; b=BsFRqToNR7I0KpFQAxbYHj46QD8D6eCMzRfHNbbmfqfJXv2Gano0UjUp8f8+H8fD2/mXe6UJA5eyrSoy7bDbeFXtUqsWkKTIpesFGllQJugbnk/k4XPEO0IWlGvfoq6qN4ADeA7SIlc78YG16FFKz7vWwY7YjlQq4sAGgXwiUjA=
+	t=1710840704; cv=none; b=sQ435ZWhyE4PzwyuVT5myeR3WRclBaByxybA9n1nWEmQTmhd2RMAG0RHGjYjNEZgRT6DSEUSRilFmW8QUgyQDFeRKIW2kki0NWKy/CpxY8lxWvKtlapvtrUmJlBUXqXkHN8AWLwlA1HlSCt77LFW9PpeFiFTvoQGcry5op++5YM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710840506; c=relaxed/simple;
-	bh=HjBuG9xd7AaXCYgSmfp2B7iX2Cs8p0FwGGbH/0NJwUw=;
+	s=arc-20240116; t=1710840704; c=relaxed/simple;
+	bh=REPKP76FKYRIlT2nLlBWQvO1u9WaatIZi9nkolGnRgc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YroEaiLQmKuiTAsngpAuLrxgp4CiP1uPaUhsn+9PyilCTNy8t3R737nT/c4NLA9K831PtHbYB6Y/4ReAraJpXnZVRoQihHjBC63khxyD0TQTCevuv0Y8WJhXLUkFqFH4CqwhPRIod8k90KxZkdLu/Y9abxgp1oDYRrvf83T6d+k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nKjaR6uV; arc=none smtp.client-ip=209.85.208.49
+	 In-Reply-To:Content-Type; b=sCVuokRoxAvIEiFbRRmu556r3OexdbEbY7ev8UVFmPI/Zodl9hhdntmc6yh0yYZ+1jOEj5Gsk7GtcRC2e/0vb1Pe6ilNqqp8rtQ6oSuSsrXQfzCiwFeTntYugGOiy5T1vA6hRrTXiXLp+ii/UzLueSg3lDCZZQY9jPZbZ4BTk6E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jUT1bPQC; arc=none smtp.client-ip=209.85.218.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-56a9f5694dcso2007401a12.1
-        for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 02:28:24 -0700 (PDT)
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a46c2f29325so238076766b.1
+        for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 02:31:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710840503; x=1711445303; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1710840701; x=1711445501; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=kymKEteOVObESDNW5Fg6UlQetyaf6y6BwpOtbOdOW3o=;
-        b=nKjaR6uVayQjCag9YmkHKchRIjrb2InDky1mXIpEbFRH9jlRuazPVtxFYajQw4F374
-         BxoPjJkOIWknzIYDbpIJdpLcKrHdGSSJafZCKOWFgQjMQS0CeueY8FtJz5pAb0HoZ9D6
-         d77A76OKaiKhwPF5w6IyeJqR3pWEYNe1mWClolIHIjoTlx7lBE2jfUUfcrJp7rEgXclM
-         frFHFrc/CLj9I6p5fzLTzA/dGWZFP6li4uF6kOqFA/U+9XWrRqqgv2mgCXWj4txYATZZ
-         B3/j66BYQjl1hXmljtEAfEm7AxvBFAo+/x8IgmVvLUU+v2ETJtK74RidpsimKHLeybAC
-         FMcw==
+        bh=vqXt6FNYM7+WhScgMZhAmJx3W1Xg1L9EnIDuPxpSMk8=;
+        b=jUT1bPQCayn4OpGvnCzmnQT5RpERsenBMvc6inpH4sHWN/XAPxNr/iqZAI5iY/Nrks
+         rwecNqYWi9txltTA8y7QBV7oRjIoMvke3Rqedx26fscf503Gcf5GKRrs40Vxg6lrmWL6
+         cEyIlbafJTsgnOjxNkvifzegjRCIOAgMFNOMxVhVzPcdTUFmz3+ecxa6oZDOoqmr3CaE
+         nXUsbiQjUzsUANH1oLraoh4NAvdK7Fo5OQjSH4gvFJ0LFWfVg18RaPjZXVero0k8oWFO
+         OBUZ2uGlfhQRX0jrKDQJTF+Jrv1+dU9zvBaKF0sAK+0qZgaIIRNiQSOjY3D0rjGcODTF
+         IuIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710840503; x=1711445303;
+        d=1e100.net; s=20230601; t=1710840701; x=1711445501;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=kymKEteOVObESDNW5Fg6UlQetyaf6y6BwpOtbOdOW3o=;
-        b=eyhqdd9SggK8epyXS/MklsVNtkbikUqO4lt/qIX5lyMkxKFCbvbX3a2Fyjq0mPwziP
-         sXxuhWeRSqf2aKaizAPEHQ8s3Nf8gxmXQfIC+ASjCC4TFDa5d/3UYKApRWrAM6QMfbgr
-         vTfFPQwladi1PpoM3WMWo0HAZr/4szGME7l8ZOzaHnpDUB31opiv8oXrnV9koenpytLA
-         wGeX917RGlFCQX8C4C4qtjuY/0KwFG2s6zyVbZW9rYVGXOA/evY4xc9cwrQ/OnPhfqsM
-         +H/yYiz3wS0rAifEl9fpfYv+F5UvyMz7LrA6pO+toWb00OLzS5M3FT6U5d4hq0Ae36kW
-         3OQA==
-X-Forwarded-Encrypted: i=1; AJvYcCWUTrIbXCGODKTSswvexlqJEGjIcApvbc4ZNZtwcayaubsYw00s8jn66Sg0WlT6Mfc6vsRhevIcEFryZ/oPRcl1bKbjjySgwiSx/Q==
-X-Gm-Message-State: AOJu0Yyrm9JbKvAEwUUZ5AO/DlDXVMFrfohkVfr0nTThhoK+VVw7JDhB
-	vJSXrTdQMtHIT4Hbe8nqy4sqcYNX3EQjkfzTvhNqVfnUfJSINLLFPSc4VUoPTCE=
-X-Google-Smtp-Source: AGHT+IGOpC0whwjzVjMTL4s1NEti9lQQP192YRINNtx2TmmxGlmcu2J/vJb13KVgo2sM3979VaF1Gw==
-X-Received: by 2002:a17:907:7248:b0:a46:e4dc:25ab with SMTP id ds8-20020a170907724800b00a46e4dc25abmr623554ejc.47.1710840503538;
-        Tue, 19 Mar 2024 02:28:23 -0700 (PDT)
+        bh=vqXt6FNYM7+WhScgMZhAmJx3W1Xg1L9EnIDuPxpSMk8=;
+        b=vqavVINTQ+JzeRzN+DCIyC9LGvqvO+8B6ZxSOITN/juxFJRp0meVSqc6JZBSjmh4d1
+         2pc2kGgJehyXMG5GQIEizKkQWIkMH6pvn4Kx20yBuyIF2KznY0npBgLp/wFBXgODEIlb
+         Wh4gXOylwIgaRlLK4HQXDgFYG0oR7sFIbsn4UvjcztZklZhaVbxchUbQO5oSMW4R49td
+         DZRN15tCXy6G8lI4+jwOEjOW9KYLHGxdOiRfKldlz//AMpvbCUgFCrt8k/eJjYje4bZ9
+         C4BUcbcEqU3ystLDGY+Rkx+DKjvRPftbt/yGpo+s2+BlHHOMIUmBeEdF1x6HYumLNQDW
+         4LMg==
+X-Forwarded-Encrypted: i=1; AJvYcCWuvS9R3fMFwul4Otmd+tJNQ+9eWJLu5lrBC3Nm7/5K617KwS1JzEbl+yQoO5qDdRSy7OQi6LMEE6ulzpW8T98L7mbMAQI4MmU2Vg==
+X-Gm-Message-State: AOJu0YzB6AfzBHCF/D1yPFmZNgg7U3pgf1AXAK1hV2jE9U0azdUD/G9R
+	cpygeVDVaboqff/24og/1mIxepZ0rY/dt4pUiC1TJ6HkVgAF2FuNq9b9ob0/CRw=
+X-Google-Smtp-Source: AGHT+IHDKQKMxRW9umwUH256VRLPVuzmLJipnN6Ucqw+yjw+b5IxQV0P9OFyO2GVuWCiNBDxIeL/pA==
+X-Received: by 2002:a17:906:ef0c:b0:a46:c01b:7e2c with SMTP id f12-20020a170906ef0c00b00a46c01b7e2cmr4320148ejs.75.1710840700830;
+        Tue, 19 Mar 2024 02:31:40 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id q21-20020a1709066b1500b00a46524d06afsm5784034ejr.8.2024.03.19.02.28.22
+        by smtp.gmail.com with ESMTPSA id g17-20020a17090670d100b00a46a04d7dc4sm3944468ejk.61.2024.03.19.02.31.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Mar 2024 02:28:23 -0700 (PDT)
-Message-ID: <0ad56d9d-9ba4-40ff-9917-0b71bb530673@linaro.org>
-Date: Tue, 19 Mar 2024 10:28:21 +0100
+        Tue, 19 Mar 2024 02:31:40 -0700 (PDT)
+Message-ID: <8caabb1a-dfba-48d5-a794-a26d0286bad2@linaro.org>
+Date: Tue, 19 Mar 2024 10:31:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,17 +77,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: hwmon: adc128d818: convert to dtschema
-To: Javier Carrasco <javier.carrasco.cruz@gmail.com>,
- Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
- Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 2/4] dt-bindings: media: Add bindings for
+ raspberrypi,rp1-cfe
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Naushir Patuck
+ <naush@raspberrypi.com>, Laurent Pinchart
+ <laurent.pinchart@ideasonboard.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+ Kieran Bingham <kieran.bingham@ideasonboard.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240318-adc128d818_dtschema-v1-1-d0af2caef145@gmail.com>
- <de0b32b3-348a-4d42-89cd-df2c439b8009@linaro.org>
- <beddae56-caef-4684-958b-d11ca0808055@gmail.com>
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+References: <20240318-rp1-cfe-v1-0-ac6d960ff22d@ideasonboard.com>
+ <20240318-rp1-cfe-v1-2-ac6d960ff22d@ideasonboard.com>
+ <3834dd0a-6dd0-45b1-8b9c-0c840aaf8cf2@linaro.org>
+ <22225e92-803d-4aaa-b75f-cfd1d7d8c279@ideasonboard.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -134,59 +145,103 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <beddae56-caef-4684-958b-d11ca0808055@gmail.com>
+In-Reply-To: <22225e92-803d-4aaa-b75f-cfd1d7d8c279@ideasonboard.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/03/2024 08:01, Javier Carrasco wrote:
-> On 3/19/24 06:49, Krzysztof Kozlowski wrote:
->> On 18/03/2024 21:12, Javier Carrasco wrote:
->>> Convert adc128d818 bindings to dtschema to support validation.
->>>
->>> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
->>
->> Thank you for your patch. There is something to discuss/improve.
->>
->>
->>> +$id: http://devicetree.org/schemas/hwmon/ti,adc128d818.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Texas Instruments ADC128D818 ADC System Monitor With Temperature Sensor
->>> +
->>> +maintainers:
->>> +  - Javier Carrasco <javier.carrasco.cruz@gmail.com>
->>> +
->>> +description: |
->>> +  The ADC128D818 is a 12-Bit, 8-Channel Analog to Digital Converter (ADC)
->>> +  with a temperature sensor and an I2C interface.
->>> +
->>> +  Datasheets:
->>> +    https://www.ti.com/product/ADC128D818
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: ti,adc128d818
->>> +
+On 19/03/2024 07:46, Tomi Valkeinen wrote:
 >>> +  reg:
+>>> +    items:
+>>> +      - description: CSI-2 registers
+>>> +      - description: D-PHY registers
+>>> +      - description: MIPI CFG (a simple top-level mux) registers
+>>> +      - description: FE registers
+>>> +
+>>> +  interrupts:
 >>> +    maxItems: 1
 >>> +
->>> +  ti,mode:
+>>> +  clocks:
+>>> +    maxItems: 1
+>>> +
+>>> +  port:
+>>> +    $ref: /schemas/graph.yaml#/$defs/port-base
+>>> +    additionalProperties: false
+>>> +    description: CSI-2 RX Port
 >>
->> You need | to preserve the formatting.
+>> Only one port, so there is nothing to output to?
+> 
+> The CFE has DMA, so it writes to memory. But no other outputs.
+
+You still might have some sort of pipeline, e.g. some post processing
+block. But if this is end block, then I guess it's fine.
+
+> 
+>>> +
+>>> +    properties:
+>>> +      endpoint:
+>>> +        $ref: video-interfaces.yaml#
+>>> +        unevaluatedProperties: false
+>>> +
+>>> +        properties:
+>>> +          data-lanes:
+>>> +            minItems: 1
+>>> +            maxItems: 4
+>>> +
+>>> +          clock-lanes:
+>>> +            maxItems: 1
+>>> +
+>>> +          clock-noncontinuous: true
 >>
+>> Drop
 > 
-> Thanks, I overlooked that. If I am not mistaken, 2 are still missing 
-> (ti,mode and vref-supply descriptions).
+> Hmm, I saw this used in multiple other bindings, and thought it means 
+> the property is allowed and copied it here.
+> 
+> If that's not the case, does this mean all the properties from 
+> video-interfaces.yaml are allowed (even invalid ones, like pclk-sample)?
 
-No, although I commented in a bit wrong place. It should be in
-description of ti,mode. Not in vref-supply.
+Yes, that's the meaning of unevaluatedProperties you have a bit above.
 
 > 
-> By the way, do you know why dtschema does not complain about that? If I 
-> place a '|' in a wrong place, it does complain, though.
+>>> +
+>>> +        required:
+>>> +          - clock-lanes
+>>> +          - data-lanes
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +  - interrupts
+>>> +  - clocks
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/clock/rp1.h>
+>>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>>> +    #include <dt-bindings/mfd/rp1.h>
+>>> +
+>>> +    rpi1 {
+>>
+>> soc
+> 
+> That should actually be "rp1", not "rpi1". rp1 is the co-processor on 
+> which the cfe is located, so it doesn't reside in the soc itself. But 
 
-This is formatting, there is no reason to complain. How would dtschema
-understand that you want or not want formatting?
+Where is the co-processor located?
+
+> perhaps that's not relevant, and "soc" is just a generic container that 
+> should always be used?
+
+Does not have to be soc, but rp1 is not generic.
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+
 
 Best regards,
 Krzysztof
