@@ -1,482 +1,266 @@
-Return-Path: <devicetree+bounces-51406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A17DE87F473
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 01:18:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D71687F483
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 01:26:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2EAB81F22D91
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 00:18:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7D392842F9
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 00:26:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A441D363;
-	Tue, 19 Mar 2024 00:18:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 516382914;
+	Tue, 19 Mar 2024 00:26:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="DDtJ+Tk5"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GTE80Hf8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8765E4A09;
-	Tue, 19 Mar 2024 00:18:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A0E2257D;
+	Tue, 19 Mar 2024 00:26:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710807496; cv=none; b=HIBa2qFumgrNoNKojV8vpJ5ZzR0OwdWCK8aMadSJFG1HZZFTsQGN7/C/X7liwQ8Tj+QIrsSx2UrmyjD+X9lMnvGuJP9iTgBjG3M/q44W4B1t2bBnIRuQvvJ15hjJ7jpFJCJmb3dxgY+HBIIIgnhBXsQ9v878RGobpk7enztCj08=
+	t=1710807984; cv=none; b=iPXruCqYKbnuSNCPm7+A262xu3FjOAgz5tkGeCGR0ObGS0HqDB25n2QBYrGFLcQRHCd0MQDmXBEP7ko1wtzMJyPZWnFemHCPY3RUWDaiXEMqHVCJrFU6mP8NoIzssg0GuLbH8UwrBaIwit3Kzd/de1/3LB5A/2w9MAvH7w6NYMk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710807496; c=relaxed/simple;
-	bh=UAYpoHcWcQe9/rLPtIFT63asfW6UKK+Elm4RdEaNxTE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=abfbNtZZEKiIQe/Qv4w6GuO9pW1YHtmZpSxDS2tzJgsHqbHf55eiZMt0JKeVV9kel082h0+kuw3bpwDzEfbtM20Bweb21loyJcbo9GTVm5g6hWdgl/fIHmhRoFQETjMHwEFmqHAPW6ZtaIvgWvvfSW+ZL/v2gDmdJbse+ubSUBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=sberdevices.ru; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=DDtJ+Tk5; arc=none smtp.client-ip=45.89.224.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sberdevices.ru
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 1C12212000B;
-	Tue, 19 Mar 2024 03:18:01 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 1C12212000B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1710807481;
-	bh=3CLMhNNaDDm1yv/GR1O/EHQ4c1Xvk7kXFEmA957KZEA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-	b=DDtJ+Tk5zAZdRboRgVtghD3Sep3PDPMl213tPim4pA5thBWFSzpTgfW7Ie96FEuDK
-	 UvZT75/X2IffNDUPSVwRflCKLGke3522LLWG7Slzv8RzxAi5H4YwzqhaA/mPM5qHgu
-	 DX0xPQAbnLo1nrEDzHZ5WCG60HjtAaKnQ9Dq5i9R7DE8ebUutVQ9Y5rBn5hT3IF0dw
-	 m3ia+MUUs5g4YVFIxCkwu4XVaFf7Ze8onwvySXAYOgK1bxzkdsOUPSVruy5Q1lifzI
-	 jXkSRkCJnxvU9bWFv6ZzyrBmbVbxEt+cbP0+ipK6PrdTWmIM4QNfLC0m02TNV9z5B/
-	 aEIsDzQMqCCuw==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue, 19 Mar 2024 03:18:00 +0300 (MSK)
-Received: from [172.28.224.29] (100.64.160.123) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Tue, 19 Mar 2024 03:18:00 +0300
-Message-ID: <340ee66a-da5d-4fd5-95a6-ea22839df988@salutedevices.com>
-Date: Tue, 19 Mar 2024 03:17:14 +0300
+	s=arc-20240116; t=1710807984; c=relaxed/simple;
+	bh=LLIv+pugsr/ev0LduqYltbP1hJ6nxTnyLZiG33er3Xk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=e6vlyMIYble78iwseS6P2noI2oBDtBOZHCpFMaZfOIfY3aIe3jgUOW3bXp9kbwbvC3TY84UwdYQ5FDy+bNP9uXDBCdfOkk1wROTn5BGjEZcwW2TIyUfXp+D+YeAqRudJmPLcL79N6Ve6u3wjIwMMk83i6QMkIhu2/eHayNvZRcI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=GTE80Hf8; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1710807982; x=1742343982;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=LLIv+pugsr/ev0LduqYltbP1hJ6nxTnyLZiG33er3Xk=;
+  b=GTE80Hf80IMKcoGUcDpOlP43rSENJgXJiyq70XWz3YSzyZfWzl3g3j3A
+   EV2bwxmBYt+2ox/aV8aExdJCXPofuuihIOjxpI0trynWBZCHkPoXsUox2
+   YF+Nz/Sc2CaBbQM4wqWBtIw8GZBDicCrTk25nRjUSTIzZHyY7i9rFPeR/
+   RyADVIJZPJR3nS45yisT+UpzWP3ZoigZjUdHS67wqK3PYjQzEhqKYx1SE
+   vCoJf8FS5zHi4ULwzLjCO5BmkzR23scKHFs45T835cSJLwmb7zxG3aoik
+   i045ODMMjWdeyTmU51uOZ/xpIzp5h2WodC5zgdASMlJqoR9a0BOpoXktt
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11017"; a="5530491"
+X-IronPort-AV: E=Sophos;i="6.07,135,1708416000"; 
+   d="scan'208";a="5530491"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Mar 2024 17:26:21 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,135,1708416000"; 
+   d="scan'208";a="18104690"
+Received: from lkp-server01.sh.intel.com (HELO b21307750695) ([10.239.97.150])
+  by fmviesa005.fm.intel.com with ESMTP; 18 Mar 2024 17:26:17 -0700
+Received: from kbuild by b21307750695 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rmNJ1-000HKt-0X;
+	Tue, 19 Mar 2024 00:26:15 +0000
+Date: Tue, 19 Mar 2024 08:25:22 +0800
+From: kernel test robot <lkp@intel.com>
+To: Radu Sabau <radu.sabau@analog.com>, Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-i2c@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH 2/2] hwmon: pmbus: adp1050 : Add driver support
+Message-ID: <202403190800.h8cSGROp-lkp@intel.com>
+References: <20240318112140.385244-3-radu.sabau@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 12/25] ASoC: meson: t9015: add support for A1 SoC family
-Content-Language: en-US
-To: Jerome Brunet <jbrunet@baylibre.com>
-CC: Neil Armstrong <neil.armstrong@linaro.org>, Michael Turquette
-	<mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
-	Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <alsa-devel@alsa-project.org>,
-	<linux-sound@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-	<kernel@salutedevices.com>
-References: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
- <20240314232201.2102178-13-jan.dakinevich@salutedevices.com>
- <1j5xxjhktd.fsf@starbuckisacylon.baylibre.com>
-From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-In-Reply-To: <1j5xxjhktd.fsf@starbuckisacylon.baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 184250 [Mar 18 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 10 0.3.10 53c821b925e16276b831986eabc71d60ab82ee60, {Tracking_smtp_not_equal_from}, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2;salutedevices.com:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1;git.kernel.org:7.1.1;100.64.160.123:7.1.2, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2024/03/18 22:54:00
-X-KSMG-LinksScanning: Clean, bases: 2024/03/18 22:54:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/03/18 21:41:00 #24279760
-X-KSMG-AntiVirus-Status: Clean, skipped
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240318112140.385244-3-radu.sabau@analog.com>
+
+Hi Radu,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on groeck-staging/hwmon-next]
+[also build test ERROR on robh/for-next linus/master v6.8 next-20240318]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Radu-Sabau/dt-bindings-hwmon-pmbus-adp1050-add-bindings/20240318-202619
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
+patch link:    https://lore.kernel.org/r/20240318112140.385244-3-radu.sabau%40analog.com
+patch subject: [PATCH 2/2] hwmon: pmbus: adp1050 : Add driver support
+config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20240319/202403190800.h8cSGROp-lkp@intel.com/config)
+compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project 8f68022f8e6e54d1aeae4ed301f5a015963089b7)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240319/202403190800.h8cSGROp-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202403190800.h8cSGROp-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from drivers/hwmon/pmbus/adp1050.c:9:
+   In file included from include/linux/i2c.h:19:
+   In file included from include/linux/regulator/consumer.h:35:
+   In file included from include/linux/suspend.h:5:
+   In file included from include/linux/swap.h:9:
+   In file included from include/linux/memcontrol.h:13:
+   In file included from include/linux/cgroup.h:26:
+   In file included from include/linux/kernel_stat.h:9:
+   In file included from include/linux/interrupt.h:11:
+   In file included from include/linux/hardirq.h:11:
+   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
+   In file included from include/asm-generic/hardirq.h:17:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:13:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:547:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     547 |         val = __raw_readb(PCI_IOBASE + addr);
+         |                           ~~~~~~~~~~ ^
+   include/asm-generic/io.h:560:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     560 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
+      37 | #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
+         |                                                   ^
+   In file included from drivers/hwmon/pmbus/adp1050.c:9:
+   In file included from include/linux/i2c.h:19:
+   In file included from include/linux/regulator/consumer.h:35:
+   In file included from include/linux/suspend.h:5:
+   In file included from include/linux/swap.h:9:
+   In file included from include/linux/memcontrol.h:13:
+   In file included from include/linux/cgroup.h:26:
+   In file included from include/linux/kernel_stat.h:9:
+   In file included from include/linux/interrupt.h:11:
+   In file included from include/linux/hardirq.h:11:
+   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
+   In file included from include/asm-generic/hardirq.h:17:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:13:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:573:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     573 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
+      35 | #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
+         |                                                   ^
+   In file included from drivers/hwmon/pmbus/adp1050.c:9:
+   In file included from include/linux/i2c.h:19:
+   In file included from include/linux/regulator/consumer.h:35:
+   In file included from include/linux/suspend.h:5:
+   In file included from include/linux/swap.h:9:
+   In file included from include/linux/memcontrol.h:13:
+   In file included from include/linux/cgroup.h:26:
+   In file included from include/linux/kernel_stat.h:9:
+   In file included from include/linux/interrupt.h:11:
+   In file included from include/linux/hardirq.h:11:
+   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
+   In file included from include/asm-generic/hardirq.h:17:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:13:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:584:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     584 |         __raw_writeb(value, PCI_IOBASE + addr);
+         |                             ~~~~~~~~~~ ^
+   include/asm-generic/io.h:594:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     594 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   include/asm-generic/io.h:604:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     604 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   In file included from drivers/hwmon/pmbus/adp1050.c:9:
+   In file included from include/linux/i2c.h:19:
+   In file included from include/linux/regulator/consumer.h:35:
+   In file included from include/linux/suspend.h:5:
+   In file included from include/linux/swap.h:9:
+   In file included from include/linux/memcontrol.h:20:
+   In file included from include/linux/mm.h:2188:
+   include/linux/vmstat.h:522:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
+     522 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
+         |                               ~~~~~~~~~~~ ^ ~~~
+>> drivers/hwmon/pmbus/adp1050.c:47:60: error: too few arguments to function call, expected at least 3, have 2
+      47 |                 dev_err_probe(&client->dev, "Device can't be unlocked.\n");
+         |                 ~~~~~~~~~~~~~                                            ^
+   include/linux/dev_printk.h:277:20: note: 'dev_err_probe' declared here
+     277 | __printf(3, 4) int dev_err_probe(const struct device *dev, int err, const char *fmt, ...);
+         |                    ^             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/hwmon/pmbus/adp1050.c:53:63: error: too few arguments to function call, expected at least 3, have 2
+      53 |                 dev_err_probe(&client->dev, "Device couldn't be unlocked.\n");
+         |                 ~~~~~~~~~~~~~                                               ^
+   include/linux/dev_printk.h:277:20: note: 'dev_err_probe' declared here
+     277 | __printf(3, 4) int dev_err_probe(const struct device *dev, int err, const char *fmt, ...);
+         |                    ^             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   7 warnings and 2 errors generated.
 
 
+vim +47 drivers/hwmon/pmbus/adp1050.c
 
-On 3/18/24 13:46, Jerome Brunet wrote:
-> 
-> On Fri 15 Mar 2024 at 02:21, Jan Dakinevich <jan.dakinevich@salutedevices.com> wrote:
-> 
->> A1's internal codec is very close to t9015. The main difference, that it
->> has ADC. This commit introduces support for capturing from it.
-> 
-> This is mis-leading.
-> 
-> It does not look like the change is A1 specific but rather a extension
-> of the support for t9015. It also mixes several different topics like line
-> configuration, capture support, etc ...
-> 
-First, it is not only extentsion. Some bits are changed comparing to
-existing t9015, so new compatible string is still required.
-
-Second, I don't know anything about about ADC in t9015 on other SoCs and
-even don't sure that it exist there (may be I am inattentive, but I'm
-unable to find audio input pin on sm1/g12a's pinout).
-
-> Again, the t9015 changes should be a separated series from the rest, and
-> there should be one patch per topic.
-> 
-> As Mark, if something is meant to be configured based on the HW layout,
-> then there a good change a kcontrol is not appropriate, and this should
-> rather be part of the platform description, like DT.
-> 
-> It was also suggested here:
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/sound/soc/meson/t9015.c?h=v6.8#n298
-> 
-
-Ok. By the way, on a1 LINEOUT_CFG would have another value.
-
->>
->> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
->> ---
->>  sound/soc/meson/t9015.c | 259 ++++++++++++++++++++++++++++++++++++++++
->>  1 file changed, 259 insertions(+)
->>
->> diff --git a/sound/soc/meson/t9015.c b/sound/soc/meson/t9015.c
->> index 48f6767bd858..365955bfeb78 100644
->> --- a/sound/soc/meson/t9015.c
->> +++ b/sound/soc/meson/t9015.c
->> @@ -19,16 +19,33 @@
->>  #define  LOLP_EN	3
->>  #define  DACR_EN	4
->>  #define  DACL_EN	5
->> +#define  ADCR_EN	6
->> +#define  ADCL_EN	7
->> +#define  PGAR_ZCD_EN	8
->> +#define  PGAL_ZCD_EN	9
->> +#define  PGAR_EN	10
->> +#define  PGAL_EN	11
->> +#define  ADCR_INV	16
->> +#define  ADCL_INV	17
->> +#define  ADCR_SRC	18
->> +#define  ADCL_SRC	19
->>  #define  DACR_INV	20
->>  #define  DACL_INV	21
->>  #define  DACR_SRC	22
->>  #define  DACL_SRC	23
->> +#define  ADC_DEM_EN	26
->> +#define  ADC_FILTER_MODE 28
->> +#define  ADC_FILTER_EN	29
->>  #define  REFP_BUF_EN	BIT(12)
->>  #define  BIAS_CURRENT_EN BIT(13)
->>  #define  VMID_GEN_FAST	BIT(14)
->>  #define  VMID_GEN_EN	BIT(15)
->>  #define  I2S_MODE	BIT(30)
->>  #define VOL_CTRL0	0x04
->> +#define  PGAR_VC	0
->> +#define  PGAL_VC	8
->> +#define  ADCR_VC	16
->> +#define  ADCL_VC	24
->>  #define  GAIN_H		31
->>  #define  GAIN_L		23
->>  #define VOL_CTRL1	0x08
->> @@ -46,6 +63,28 @@
->>  #define  LOLN_POL	8
->>  #define  LOLP_POL	12
->>  #define POWER_CFG	0x10
->> +#define LINEIN_CFG	0x14
->> +#define  MICBIAS_LEVEL	0
->> +#define  MICBIAS_EN	3
->> +#define  PGAR_CTVMN	8
->> +#define  PGAR_CTVMP	9
->> +#define  PGAL_CTVMN	10
->> +#define  PGAL_CTVMP	11
->> +#define  PGAR_CTVIN	12
->> +#define  PGAR_CTVIP	13
->> +#define  PGAL_CTVIN	14
->> +#define  PGAL_CTVIP	15
->> +
->> +#define PGAR_MASK	(BIT(PGAR_CTVMP) | BIT(PGAR_CTVMN) | \
->> +			 BIT(PGAR_CTVIP) | BIT(PGAR_CTVIN))
->> +#define PGAR_DIFF	(BIT(PGAR_CTVIP) | BIT(PGAR_CTVIN))
->> +#define PGAR_POSITIVE	(BIT(PGAR_CTVIP) | BIT(PGAR_CTVMN))
->> +#define PGAR_NEGATIVE	(BIT(PGAR_CTVIN) | BIT(PGAR_CTVMP))
->> +#define PGAL_MASK	(BIT(PGAL_CTVMP) | BIT(PGAL_CTVMN) | \
->> +			 BIT(PGAL_CTVIP) | BIT(PGAL_CTVIN))
->> +#define PGAL_DIFF	(BIT(PGAL_CTVIP) | BIT(PGAL_CTVIN))
->> +#define PGAL_POSITIVE	(BIT(PGAL_CTVIP) | BIT(PGAL_CTVMN))
->> +#define PGAL_NEGATIVE	(BIT(PGAL_CTVIN) | BIT(PGAL_CTVMP))
->>  
->>  struct t9015 {
->>  	struct regulator *avdd;
->> @@ -103,6 +142,31 @@ static struct snd_soc_dai_driver t9015_dai = {
->>  	.ops = &t9015_dai_ops,
->>  };
->>  
->> +static struct snd_soc_dai_driver a1_t9015_dai = {
->> +	.name = "t9015-hifi",
->> +	.playback = {
->> +		.stream_name = "Playback",
->> +		.channels_min = 1,
->> +		.channels_max = 2,
->> +		.rates = SNDRV_PCM_RATE_8000_96000,
->> +		.formats = (SNDRV_PCM_FMTBIT_S8 |
->> +			    SNDRV_PCM_FMTBIT_S16_LE |
->> +			    SNDRV_PCM_FMTBIT_S20_LE |
->> +			    SNDRV_PCM_FMTBIT_S24_LE),
->> +	},
->> +	.capture = {
->> +		.stream_name = "Capture",
->> +		.channels_min = 1,
->> +		.channels_max = 2,
->> +		.rates = SNDRV_PCM_RATE_8000_96000,
->> +		.formats = (SNDRV_PCM_FMTBIT_S8 |
->> +			    SNDRV_PCM_FMTBIT_S16_LE |
->> +			    SNDRV_PCM_FMTBIT_S20_LE |
->> +			    SNDRV_PCM_FMTBIT_S24_LE),
->> +	},
->> +	.ops = &t9015_dai_ops,
->> +};
->> +
->>  static const DECLARE_TLV_DB_MINMAX_MUTE(dac_vol_tlv, -9525, 0);
->>  
->>  static const char * const ramp_rate_txt[] = { "Fast", "Slow" };
->> @@ -179,6 +243,166 @@ static const struct snd_soc_dapm_route t9015_dapm_routes[] = {
->>  	{ "LOLP", NULL, "Left+ Driver",  },
->>  };
->>  
->> +static const char * const a1_right_driver_txt[] = { "None", "Right DAC",
->> +	"Left DAC Inverted" };
->> +static const unsigned int a1_right_driver_values[] = { 0, 2, 4 };
->> +
->> +static const char * const a1_left_driver_txt[] = { "None", "Left DAC",
->> +	"Right DAC Inverted" };
->> +static const unsigned int a1_left_driver_values[] = { 0, 2, 4 };
->> +
->> +static SOC_VALUE_ENUM_SINGLE_DECL(a1_right_driver, LINEOUT_CFG, 12, 0x7,
->> +				  a1_right_driver_txt, a1_right_driver_values);
->> +static SOC_VALUE_ENUM_SINGLE_DECL(a1_left_driver, LINEOUT_CFG, 4, 0x7,
->> +				  a1_left_driver_txt, a1_left_driver_values);
->> +
->> +static const struct snd_kcontrol_new a1_right_driver_mux =
->> +	SOC_DAPM_ENUM("Right Driver+ Source", a1_right_driver);
->> +static const struct snd_kcontrol_new a1_left_driver_mux =
->> +	SOC_DAPM_ENUM("Left Driver+ Source", a1_left_driver);
->> +
->> +static const DECLARE_TLV_DB_MINMAX_MUTE(a1_adc_vol_tlv, -29625, 0);
->> +static const DECLARE_TLV_DB_MINMAX_MUTE(a1_adc_pga_vol_tlv, -1200, 0);
->> +
->> +static const char * const a1_adc_right_txt[] = { "Right", "Left" };
->> +static SOC_ENUM_SINGLE_DECL(a1_adc_right, BLOCK_EN, ADCR_SRC, a1_adc_right_txt);
->> +
->> +static const char * const a1_adc_left_txt[] = { "Left", "Right" };
->> +static SOC_ENUM_SINGLE_DECL(a1_adc_left, BLOCK_EN, ADCL_SRC, a1_adc_left_txt);
->> +
->> +static const struct snd_kcontrol_new a1_adc_right_mux =
->> +	SOC_DAPM_ENUM("ADC Right Source", a1_adc_right);
->> +static const struct snd_kcontrol_new a1_adc_left_mux =
->> +	SOC_DAPM_ENUM("ADC Left Source", a1_adc_left);
->> +
->> +static const char * const a1_adc_filter_mode_txt[] = { "Voice", "HiFi"};
->> +static SOC_ENUM_SINGLE_DECL(a1_adc_filter_mode, BLOCK_EN, ADC_FILTER_MODE,
->> +			    a1_adc_filter_mode_txt);
->> +
->> +static const char * const a1_adc_mic_bias_level_txt[] = { "2.0V", "2.1V",
->> +	"2.3V", "2.5V", "2.8V" };
->> +static const unsigned int a1_adc_mic_bias_level_values[] = { 0, 1, 2, 3, 7 };
->> +static SOC_VALUE_ENUM_SINGLE_DECL(a1_adc_mic_bias_level,
->> +				  LINEIN_CFG, MICBIAS_LEVEL, 0x7,
->> +				  a1_adc_mic_bias_level_txt,
->> +				  a1_adc_mic_bias_level_values);
->> +
->> +static const char * const a1_adc_pga_txt[] = { "None", "Differential",
->> +	"Positive", "Negative" };
->> +static const unsigned int a1_adc_pga_right_values[] = { 0, PGAR_DIFF,
->> +	PGAR_POSITIVE, PGAR_NEGATIVE };
->> +static const unsigned int a1_adc_pga_left_values[] = { 0, PGAL_DIFF,
->> +	PGAL_POSITIVE, PGAL_NEGATIVE };
->> +
->> +static SOC_VALUE_ENUM_SINGLE_DECL(a1_adc_pga_right, LINEIN_CFG, 0, PGAR_MASK,
->> +				  a1_adc_pga_txt, a1_adc_pga_right_values);
->> +static SOC_VALUE_ENUM_SINGLE_DECL(a1_adc_pga_left, LINEIN_CFG, 0, PGAL_MASK,
->> +				  a1_adc_pga_txt, a1_adc_pga_left_values);
->> +
->> +static const struct snd_kcontrol_new a1_adc_pga_right_mux =
->> +	SOC_DAPM_ENUM("ADC PGA Right Source", a1_adc_pga_right);
->> +static const struct snd_kcontrol_new a1_adc_pga_left_mux =
->> +	SOC_DAPM_ENUM("ADC PGA Left Source", a1_adc_pga_left);
->> +
->> +static const struct snd_kcontrol_new a1_t9015_snd_controls[] = {
->> +	/* Volume Controls */
->> +	SOC_ENUM("Playback Channel Mode", mono_enum),
->> +	SOC_SINGLE("Playback Switch", VOL_CTRL1, DAC_SOFT_MUTE, 1, 1),
->> +	SOC_DOUBLE_TLV("Playback Volume", VOL_CTRL1, DACL_VC, DACR_VC,
->> +		       0xff, 0, dac_vol_tlv),
->> +
->> +	/* Ramp Controls */
->> +	SOC_ENUM("Ramp Rate", ramp_rate_enum),
->> +	SOC_SINGLE("Volume Ramp Switch", VOL_CTRL1, VC_RAMP_MODE, 1, 0),
->> +	SOC_SINGLE("Mute Ramp Switch", VOL_CTRL1, MUTE_MODE, 1, 0),
->> +	SOC_SINGLE("Unmute Ramp Switch", VOL_CTRL1, UNMUTE_MODE, 1, 0),
->> +
->> +	/* ADC Controls */
->> +	SOC_DOUBLE_TLV("ADC Volume", VOL_CTRL0, ADCL_VC, ADCR_VC,
->> +		       0x7f, 0, a1_adc_vol_tlv),
->> +	SOC_SINGLE("ADC Filter Switch", BLOCK_EN, ADC_FILTER_EN, 1, 0),
->> +	SOC_ENUM("ADC Filter Mode", a1_adc_filter_mode),
->> +	SOC_SINGLE("ADC Mic Bias Switch", LINEIN_CFG, MICBIAS_EN, 1, 0),
->> +	SOC_ENUM("ADC Mic Bias Level", a1_adc_mic_bias_level),
->> +	SOC_SINGLE("ADC DEM Switch", BLOCK_EN, ADC_DEM_EN, 1, 0),
->> +	SOC_DOUBLE_TLV("ADC PGA Volume", VOL_CTRL0, PGAR_VC, PGAL_VC,
->> +		       0x1f, 0, a1_adc_pga_vol_tlv),
->> +	SOC_DOUBLE("ADC PGA Zero Cross-detection Switch", BLOCK_EN,
->> +		   PGAL_ZCD_EN, PGAR_ZCD_EN, 1, 0),
->> +};
->> +
->> +static const struct snd_soc_dapm_widget a1_t9015_dapm_widgets[] = {
->> +	SND_SOC_DAPM_AIF_IN("Right IN", NULL, 0, SND_SOC_NOPM, 0, 0),
->> +	SND_SOC_DAPM_AIF_IN("Left IN", NULL, 0, SND_SOC_NOPM, 0, 0),
->> +	SND_SOC_DAPM_MUX("Right DAC Sel", SND_SOC_NOPM, 0, 0,
->> +			 &t9015_right_dac_mux),
->> +	SND_SOC_DAPM_MUX("Left DAC Sel", SND_SOC_NOPM, 0, 0,
->> +			 &t9015_left_dac_mux),
->> +	SND_SOC_DAPM_DAC("Right DAC", NULL, BLOCK_EN, DACR_EN, 0),
->> +	SND_SOC_DAPM_DAC("Left DAC",  NULL, BLOCK_EN, DACL_EN, 0),
->> +	SND_SOC_DAPM_MUX("Right+ Driver Sel", SND_SOC_NOPM, 0, 0,
->> +			 &a1_right_driver_mux),
->> +	SND_SOC_DAPM_MUX("Left+ Driver Sel", SND_SOC_NOPM, 0, 0,
->> +			 &a1_left_driver_mux),
->> +	SND_SOC_DAPM_OUT_DRV("Right+ Driver", BLOCK_EN, LORP_EN, 0, NULL, 0),
->> +	SND_SOC_DAPM_OUT_DRV("Left+ Driver",  BLOCK_EN, LOLP_EN, 0, NULL, 0),
->> +	SND_SOC_DAPM_OUTPUT("LORP"),
->> +	SND_SOC_DAPM_OUTPUT("LOLP"),
->> +
->> +	SND_SOC_DAPM_INPUT("ADC IN Right"),
->> +	SND_SOC_DAPM_INPUT("ADC IN Left"),
->> +	SND_SOC_DAPM_MUX("ADC PGA Right Sel", SND_SOC_NOPM, 0, 0,
->> +			 &a1_adc_pga_right_mux),
->> +	SND_SOC_DAPM_MUX("ADC PGA Left Sel", SND_SOC_NOPM, 0, 0,
->> +			 &a1_adc_pga_left_mux),
->> +	SND_SOC_DAPM_PGA("ADC PGA Right", BLOCK_EN, PGAR_EN, 0, NULL, 0),
->> +	SND_SOC_DAPM_PGA("ADC PGA Left", BLOCK_EN, PGAL_EN, 0, NULL, 0),
->> +	SND_SOC_DAPM_ADC("ADC Right", NULL, BLOCK_EN, ADCR_EN, 0),
->> +	SND_SOC_DAPM_ADC("ADC Left", NULL, BLOCK_EN, ADCL_EN, 0),
->> +	SND_SOC_DAPM_MUX("ADC Right Sel", SND_SOC_NOPM, 0, 0, &a1_adc_right_mux),
->> +	SND_SOC_DAPM_MUX("ADC Left Sel", SND_SOC_NOPM, 0, 0, &a1_adc_left_mux),
->> +	SND_SOC_DAPM_AIF_OUT("ADC OUT Right", NULL, 0, SND_SOC_NOPM, 0, 0),
->> +	SND_SOC_DAPM_AIF_OUT("ADC OUT Left", NULL, 0, SND_SOC_NOPM, 0, 0),
->> +};
->> +
->> +static const struct snd_soc_dapm_route a1_t9015_dapm_routes[] = {
->> +	{ "Right IN", NULL, "Playback" },
->> +	{ "Left IN", NULL, "Playback" },
->> +	{ "Right DAC Sel", "Right", "Right IN" },
->> +	{ "Right DAC Sel", "Left", "Left IN" },
->> +	{ "Left DAC Sel", "Right", "Right IN" },
->> +	{ "Left DAC Sel", "Left", "Left IN" },
->> +	{ "Right DAC", NULL, "Right DAC Sel" },
->> +	{ "Left DAC", NULL, "Left DAC Sel" },
->> +	{ "Right+ Driver Sel", "Right DAC", "Right DAC" },
->> +	{ "Right+ Driver Sel", "Left DAC Inverted", "Right DAC" },
->> +	{ "Left+ Driver Sel", "Left DAC", "Left DAC" },
->> +	{ "Left+ Driver Sel", "Right DAC Inverted", "Left DAC" },
->> +	{ "Right+ Driver", NULL, "Right+ Driver Sel" },
->> +	{ "Left+ Driver", NULL, "Left+ Driver Sel" },
->> +	{ "LORP", NULL, "Right+ Driver", },
->> +	{ "LOLP", NULL, "Left+ Driver", },
->> +
->> +	{ "ADC PGA Right Sel", "Differential", "ADC IN Right" },
->> +	{ "ADC PGA Right Sel", "Positive", "ADC IN Right" },
->> +	{ "ADC PGA Right Sel", "Negative", "ADC IN Right" },
->> +	{ "ADC PGA Left Sel", "Differential", "ADC IN Left" },
->> +	{ "ADC PGA Left Sel", "Positive", "ADC IN Left" },
->> +	{ "ADC PGA Left Sel", "Negative", "ADC IN Left" },
->> +	{ "ADC PGA Right", NULL, "ADC PGA Right Sel" },
->> +	{ "ADC PGA Left", NULL, "ADC PGA Left Sel" },
->> +	{ "ADC Right", NULL, "ADC PGA Right" },
->> +	{ "ADC Left", NULL, "ADC PGA Left" },
->> +	{ "ADC Right Sel", "Right", "ADC Right" },
->> +	{ "ADC Right Sel", "Left", "ADC Left" },
->> +	{ "ADC Left Sel", "Right", "ADC Right" },
->> +	{ "ADC Left Sel", "Left", "ADC Left" },
->> +	{ "ADC OUT Right", NULL, "ADC Right Sel" },
->> +	{ "ADC OUT Left", NULL, "ADC Left Sel" },
->> +	{ "Capture", NULL, "ADC OUT Right" },
->> +	{ "Capture", NULL, "ADC OUT Left" },
->> +};
->> +
->>  static int t9015_set_bias_level(struct snd_soc_component *component,
->>  				enum snd_soc_bias_level level)
->>  {
->> @@ -241,6 +465,18 @@ static int t9015_component_probe(struct snd_soc_component *component)
->>  	return 0;
->>  }
->>  
->> +static int a1_t9015_component_probe(struct snd_soc_component *component)
->> +{
->> +	/*
->> +	 * This configuration was stealed from original Amlogic's driver to
->> +	 * reproduce the behavior of the driver more accurately. However, it is
->> +	 * not known for certain what it actually affects.
->> +	 */
->> +	snd_soc_component_write(component, POWER_CFG, 0x00010000);
->> +
->> +	return 0;
->> +}
->> +
->>  static const struct snd_soc_component_driver t9015_codec_driver = {
->>  	.probe			= t9015_component_probe,
->>  	.set_bias_level		= t9015_set_bias_level,
->> @@ -254,6 +490,19 @@ static const struct snd_soc_component_driver t9015_codec_driver = {
->>  	.endianness		= 1,
->>  };
->>  
->> +static const struct snd_soc_component_driver a1_t9015_codec_driver = {
->> +	.probe			= a1_t9015_component_probe,
->> +	.set_bias_level		= t9015_set_bias_level,
->> +	.controls		= a1_t9015_snd_controls,
->> +	.num_controls		= ARRAY_SIZE(a1_t9015_snd_controls),
->> +	.dapm_widgets		= a1_t9015_dapm_widgets,
->> +	.num_dapm_widgets	= ARRAY_SIZE(a1_t9015_dapm_widgets),
->> +	.dapm_routes		= a1_t9015_dapm_routes,
->> +	.num_dapm_routes	= ARRAY_SIZE(a1_t9015_dapm_routes),
->> +	.suspend_bias_off	= 1,
->> +	.endianness		= 1,
->> +};
->> +
->>  static int t9015_probe(struct platform_device *pdev)
->>  {
->>  	struct device *dev = &pdev->dev;
->> @@ -315,11 +564,21 @@ static const struct t9015_match_data t9015_match_data = {
->>  	.max_register = POWER_CFG,
->>  };
->>  
->> +static const struct t9015_match_data a1_t9015_match_data = {
->> +	.component_drv = &a1_t9015_codec_driver,
->> +	.dai_drv = &a1_t9015_dai,
->> +	.max_register = LINEIN_CFG,
->> +};
->> +
->>  static const struct of_device_id t9015_ids[] __maybe_unused = {
->>  	{
->>  		.compatible = "amlogic,t9015",
->>  		.data = &t9015_match_data,
->>  	},
->> +	{
->> +		.compatible = "amlogic,t9015-a1",
->> +		.data = &a1_t9015_match_data,
->> +	},
->>  	{ }
->>  };
->>  MODULE_DEVICE_TABLE(of, t9015_ids);
-> 
-> 
+    32	
+    33	static int adp1050_probe(struct i2c_client *client)
+    34	{
+    35		u32 vin_scale_monitor, iin_scale_monitor;
+    36		int ret;
+    37	
+    38		if (!i2c_check_functionality(client->adapter,
+    39					     I2C_FUNC_SMBUS_WRITE_WORD_DATA))
+    40			return -ENODEV;
+    41	
+    42		/* Unlock CHIP's password in order to be able to read/write to it's
+    43		 * VIN_SCALE and IIN_SCALE registers.
+    44		*/
+    45		ret = i2c_smbus_write_word_data(client, ADP1050_CHIP_PASSWORD, 0xFFFF);
+    46		if (ret < 0) {
+  > 47			dev_err_probe(&client->dev, "Device can't be unlocked.\n");
+    48			return ret;
+    49		}
+    50	
+    51		ret = i2c_smbus_write_word_data(client, ADP1050_CHIP_PASSWORD, 0xFFFF);
+    52		if (ret < 0) {
+    53			dev_err_probe(&client->dev, "Device couldn't be unlocked.\n");
+    54			return ret;
+    55		}
+    56	
+    57		/* If adi,vin-scale-monitor isn't set or is set to 0 means that the
+    58		 * VIN monitor isn't used, therefore 0 is used as scale in order
+    59		 * for the readings to return 0.
+    60		*/
+    61		if (device_property_read_u32(&client->dev, "adi,vin-scale-monitor",
+    62					     &vin_scale_monitor))
+    63			vin_scale_monitor = 0;
+    64	
+    65		/* If adi,iin-scale-monitor isn't set or is set to 0 means that the
+    66		 * IIN monitor isn't used, therefore 0 is used as scale in order
+    67		 * for the readings to return 0.
+    68		*/
+    69		if (device_property_read_u32(&client->dev, "adi,iin-scale-monitor",
+    70					     &iin_scale_monitor))
+    71			iin_scale_monitor = 0;
+    72	
+    73		ret = i2c_smbus_write_word_data(client, ADP1050_VIN_SCALE_MONITOR,
+    74						vin_scale_monitor);
+    75		if (ret < 0)
+    76			return ret;
+    77	
+    78		ret = i2c_smbus_write_word_data(client, ADP1050_IIN_SCALE_MONITOR,
+    79						iin_scale_monitor);
+    80		if (ret < 0)
+    81			return ret;
+    82	
+    83		return pmbus_do_probe(client, &adp1050_info);
+    84	}
+    85	
 
 -- 
-Best regards
-Jan Dakinevich
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
