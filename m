@@ -1,176 +1,197 @@
-Return-Path: <devicetree+bounces-51650-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51651-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15F8D87FF44
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 15:04:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A74887FF58
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 15:13:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D2721F24781
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 14:04:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5DC531C22236
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 14:13:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFA1781723;
-	Tue, 19 Mar 2024 14:03:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36B2B81741;
+	Tue, 19 Mar 2024 14:13:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="oY53iuOU"
+	dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="H3zU5Ib1";
+	dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="qERMqygQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.164])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 374352E400;
-	Tue, 19 Mar 2024 14:03:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710857039; cv=none; b=G5KYBIiLOZeYUi/iXHDwWU+TfaH3xpIX57LNbTNCGDi5Zp7UzvKVbIWk3/cPs6aLGLriX9Zqz7KW8Xzy7D/KXdAHIxLQW7Qcy5uoE9Bb22kpdo2+JVrGgkkWk8sawWCeBACsRo1RissBvpYSV6aj+Y88FpeAr3ht1GR2Wk6CJfw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710857039; c=relaxed/simple;
-	bh=A6u0zf6zkyvIBB6bB5G5ap2zNeorlqoksH2AJuDLOB0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lEkjLJF4dQV4Wbg8GF5ozpHRAdI6mn68HxAZIiZJDcM3FJS51z00KtGomKyORRy8Do4C9fNXvnv1XqGQyLlOwfU5M/rloWU7/pvY+GYUcsYTPHe1RKC4YSnpXZ3RwytWbgSMQ6HsnvZ1KuxLcbqgHwYh9Z+7M71J+WAJQNvXaB8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=oY53iuOU; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-154-34-181.elisa-laajakaista.fi [91.154.34.181])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 497B8480;
-	Tue, 19 Mar 2024 15:03:28 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1710857009;
-	bh=A6u0zf6zkyvIBB6bB5G5ap2zNeorlqoksH2AJuDLOB0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oY53iuOUsvbOSB2Gdhr6s3p3inDWth4vJ5dcXuzmr/+i5X0TO8sk9gAL7PERc1cC5
-	 OfdTv0RIniRviwVt74GBUYiv0EXGRAHAmYzV/rM7/sINi36Qy2THIV74lttBiHVZDA
-	 G9uVQV+EstYok1dTWCat02xZ2OE4bP1riY7NCvU8=
-Message-ID: <0401eb0f-0172-4371-9a16-f51b6b885b55@ideasonboard.com>
-Date: Tue, 19 Mar 2024 16:03:52 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A69F481721;
+	Tue, 19 Mar 2024 14:13:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=81.169.146.164
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710857594; cv=pass; b=F3dMPSkPF9choC3kLQltI7i4tG3s4pXWSXlMx0pcKVSouvi9Ydjq4W2dtkGu3vydDZtg3TfSeF1tZ8vwIU+VuhbvMqcSGf+I9tL0aKrWRa7x49/B2NcJOFFRNi9mtxNwgiUKU6YbrcdWUIQXIZImzx21Rud3EirzT8cLedeHep4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710857594; c=relaxed/simple;
+	bh=6aCWbrDbRYmEYuxM00BPHK+S1MuilKFJ1QlbUTNPGZg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ua0sGPgCWUI9mnCSlWDXdKGuSKics8nf/CABOLsaiTG5IRoXuS4YKsvmLPli+Bf0rUBKI9+/7KJnL7yTr1iR2sQHvcfqBKpoLIAafp5lajDulhfATgA3rkn1eSgcR9bC6bBZ47ySUyOqWbYNmSF74TD9/T6G7w6yzoJ8LD89JmU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gerhold.net; spf=none smtp.mailfrom=gerhold.net; dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b=H3zU5Ib1; dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b=qERMqygQ; arc=pass smtp.client-ip=81.169.146.164
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gerhold.net
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=gerhold.net
+ARC-Seal: i=1; a=rsa-sha256; t=1710857570; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=Il3Vil8NTv2dc7zUgfhmuNShS31UiREIMfiltitCFfHOk0qaSgr6rjTXV9cGtCkAT1
+    sHxuBK1b2h4vZuGF6yAEUadl4aqsFGCIExNaheFGhSlhFzsSdWGt7BO0xjCyz9lRbcRO
+    N/ezL/s5/jyR5ZSFFaHmLnpmcJIoGyCtxD25Bz6KQMngkXt9gIWiPuQCzlL6dLBuLBX1
+    TD7py+jrsbCnd8NIfHX3LBLHDiFD+Sew6PvbDnjj2GSFAPvBFvUKkc/cLMFQaJ8IlOAz
+    jIR2gYgwYWc2JmMGnYmXQxoVtFbxn2hp5675bjOsMxcGTxvRvzoTa//GmUjLO0VO+Wxa
+    DTuw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1710857570;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=DYa+8d2UWYgwRzURH7RQQ2juMt5EiPhLxQIXRjk018c=;
+    b=jDBvRhSRo1iznY9fpd3EA5YH32a+u9TTw8EqU+qzSCxyxaan71KpS9CFxOhX2wBJHu
+    XrsNiCVzmo+c8ycxfyf21GKkANav1Te4dH89/8OXVPGQzbLMjmCcWvkmhWXBhV1rrPxU
+    lbUvlvcItDPTrg1xwoo1OkRz6+VFZaDKH89fPBsT66k8vQCCC9iDR/5+xyIJP7f/juVn
+    xABIt88WogBPRAtc/4GM5PFdj84VeKcUPMhEE9V4fvfagVnhswAO7tzmdftHtCROnQQA
+    eIV6gLGM4MnI8/vkGMCv9lbbu8PUrAX6/509X7TKWdTzt/rpoazHhp2pguWiAsUAIdzP
+    CVzA==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1710857570;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=DYa+8d2UWYgwRzURH7RQQ2juMt5EiPhLxQIXRjk018c=;
+    b=H3zU5Ib1Xwft4x9CsITafUB/hXpM8QyleUZWpjLO+TL0LvBY1vyfEbQGH/zXa+J29S
+    yRD1xGtoBDrt1Ie/YED0TQx3rCDBtio2nltT9fVOkq1sO4fJ4vH4o/rHf0ATlb4ObJ+m
+    n7U8DLtZbJsuEnZFM4fBS69Imk5DRxZ0Hids6S74x/Is6/QpG5p6xv+qos6TB+iCWHJj
+    9RGHXxjMbIyVLo/c7NT/i8u5n6s1HLWGRISCwYNfhy9aYKU3PHBT7D727idN0vQ8hMH/
+    T8lCN1qKdLJk6ZSIDBa0C3WvMVwx2GVldaaSz7cjRsbCiU7bFvCZjv3guwu2MRBsI66J
+    1rmQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1710857570;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=DYa+8d2UWYgwRzURH7RQQ2juMt5EiPhLxQIXRjk018c=;
+    b=qERMqygQkvRJLWmJr6bw5nmZ7b76M8SGfHK1T6/gRyCeUVdiVXyv10/iWb6/mmPorH
+    dchaqanpdBvkI2rlOOBg==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA8paF1A=="
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 50.3.1 DYNA|AUTH)
+    with ESMTPSA id R475ba02JECn06O
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Tue, 19 Mar 2024 15:12:49 +0100 (CET)
+Date: Tue, 19 Mar 2024 15:12:42 +0100
+From: Stephan Gerhold <stephan@gerhold.net>
+To: Sumit Garg <sumit.garg@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	caleb.connolly@linaro.org, neil.armstrong@linaro.org,
+	dmitry.baryshkov@linaro.org, laetitia.mariottini@se.com,
+	pascal.eberhard@se.com, abdou.saker@se.com, jimmy.lalande@se.com,
+	benjamin.missey@non.se.com, daniel.thompson@linaro.org,
+	linux-kernel@vger.kernel.org,
+	Jagdish Gediya <jagdish.gediya@linaro.org>
+Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: apq8016: Add Schneider HMIBSC
+ board DTS
+Message-ID: <ZfmdWtoiP4ZF7JRk@gerhold.net>
+References: <20240315060707.471248-1-sumit.garg@linaro.org>
+ <20240315060707.471248-4-sumit.garg@linaro.org>
+ <ZfRlYnEQUKvwGQ65@gerhold.net>
+ <CAFA6WYMucNzLNm+oHNd-Jb65oigpNphU=mFGM1cD8A-mK-BFDw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] dt-bindings: media: Add bindings for
- raspberrypi,rp1-cfe
-Content-Language: en-US
-To: Naushir Patuck <naush@raspberrypi.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
- Kieran Bingham <kieran.bingham@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-References: <20240318-rp1-cfe-v1-0-ac6d960ff22d@ideasonboard.com>
- <20240318-rp1-cfe-v1-2-ac6d960ff22d@ideasonboard.com>
- <eb854c43-1e92-4c19-bfd3-1bde94924319@linaro.org>
- <f97faeb9-8a6b-47c6-9317-daca88257802@ideasonboard.com>
- <30430e0e-70de-4831-97ad-974e350a2e54@ideasonboard.com>
- <5ca1d005-1beb-47ec-943a-9358ae3c6704@linaro.org>
- <CAEmqJPp7uGYe993L+ujth2mfRy66s8-S9FNxPY7vwkrboDq9yg@mail.gmail.com>
- <89d459dd-cc8c-4780-a56a-809e24343e69@linaro.org>
- <CAEmqJPrLP3j37Kcj0mX23x00p=gWuxZPNSUTRGNkcEqsUJ2MjQ@mail.gmail.com>
- <9d238cd6-0e11-4775-bc00-7df50f0a6638@linaro.org>
- <CAEmqJPoVFRUBRnuvRaeWg6vxDaNMzdFzgj2_Gi5bxh5nacdmDw@mail.gmail.com>
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <CAEmqJPoVFRUBRnuvRaeWg6vxDaNMzdFzgj2_Gi5bxh5nacdmDw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAFA6WYMucNzLNm+oHNd-Jb65oigpNphU=mFGM1cD8A-mK-BFDw@mail.gmail.com>
 Content-Transfer-Encoding: 7bit
 
-On 19/03/2024 15:05, Naushir Patuck wrote:
-> On Tue, 19 Mar 2024 at 13:02, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 19/03/2024 13:57, Naushir Patuck wrote:
->>>>>>
->>>>>> See writing bindings. Compatibles should be SoC specific. In some cases
->>>>>> generic fallbacks make sense, in some note. But don't just choose
->>>>>> "generic fallback" because you want. Provide rationale.
->>>>>
->>>>> If the compatible is SoC specific, I suppose "raspberrypi,rp1-cfe"
->>>>> would be the correct string.
->>>>
->>>> Sure, but then please think what if rp1 is on Rpi6, called exactly the
->>>> same (rp1), with some minor differences? Could it be?
->>>
->>> Yes, this is definitely possible.  In such cases, I would expect the
->>> hardware to have a version register that would be queried by the
->>> driver to adjust for minor differences, and the compatible string
->>> remains the same.  Does that seem reasonable?
->>
->> The "would expect" is concerning. The register(s) must be there already,
->> with proper value.
->>
+On Mon, Mar 18, 2024 at 03:20:46PM +0530, Sumit Garg wrote:
+> On Fri, 15 Mar 2024 at 20:43, Stephan Gerhold <stephan@gerhold.net> wrote:
+> > On Fri, Mar 15, 2024 at 11:37:07AM +0530, Sumit Garg wrote:
+> > > Add Schneider Electric HMIBSC board DTS. The HMIBSC board is an IIoT Edge
+> > > Box Core board based on the Qualcomm APQ8016E SoC.
+> > >
+> > > Support for Schneider Electric HMIBSC. Features:
+> > > - Qualcomm Snapdragon 410C SoC - APQ8016 (4xCortex A53, Adreno 306)
+> > > - 1GiB RAM
+> > > - 8GiB eMMC, SD slot
+> > > - WiFi and Bluetooth
+> > > - 2x Host, 1x Device USB port
+> > > - HDMI
+> > > - Discrete TPM2 chip over SPI
+> > > - USB ethernet adaptors (soldered)
+> > >
+> > > Co-developed-by: Jagdish Gediya <jagdish.gediya@linaro.org>
+> > > Signed-off-by: Jagdish Gediya <jagdish.gediya@linaro.org>
+> > > Reviewed-by: Caleb Connolly <caleb.connolly@linaro.org>
+> > > Signed-off-by: Sumit Garg <sumit.garg@linaro.org>
+> > > ---
+> > >  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+> > >  .../dts/qcom/apq8016-schneider-hmibsc.dts     | 510 ++++++++++++++++++
+> > >  2 files changed, 511 insertions(+)
+> > >  create mode 100644 arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts
+> > >
+> > > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> > > index 39889d5f8e12..ad55e52e950b 100644
+> > > --- a/arch/arm64/boot/dts/qcom/Makefile
+> > > +++ b/arch/arm64/boot/dts/qcom/Makefile
+> > > @@ -5,6 +5,7 @@ apq8016-sbc-usb-host-dtbs     := apq8016-sbc.dtb apq8016-sbc-usb-host.dtbo
+> > >
+> > >  dtb-$(CONFIG_ARCH_QCOM)      += apq8016-sbc-usb-host.dtb
+> > >  dtb-$(CONFIG_ARCH_QCOM)      += apq8016-sbc-d3-camera-mezzanine.dtb
+> > > +dtb-$(CONFIG_ARCH_QCOM)      += apq8016-schneider-hmibsc.dtb
+> > >  dtb-$(CONFIG_ARCH_QCOM)      += apq8039-t2.dtb
+> > >  dtb-$(CONFIG_ARCH_QCOM)      += apq8094-sony-xperia-kitakami-karin_windy.dtb
+> > >  dtb-$(CONFIG_ARCH_QCOM)      += apq8096-db820c.dtb
+> > > diff --git a/arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts b/arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts
+> > > new file mode 100644
+> > > index 000000000000..9c79a31a04db
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts
+> > > @@ -0,0 +1,510 @@
+> > > [...]
+> > > +
+> > > +&pm8916_resin {
+> > > +     interrupts = <0x0 0x8 1 IRQ_TYPE_EDGE_FALLING>;
+> > > +     linux,code = <KEY_POWER>;
+> > > +     status = "okay";
+> > > +};
+> >
+> > What is the goal of overriding the interrupt here? It looks like you are
+> > changing the interrupt type from IRQ_TYPE_EDGE_BOTH to FALLING. This
+> > sounds a bit like you want the driver to receive just button release
+> > events (or just press events, not sure about the polarity). I'm not sure
+> > if the driver will handle this correctly.
 > 
-> A version register already exists in the current hardware, so we will
-> update it to identify future hardware revisions.
+> The use-case here is to just act upon button release events and the
+> driver handles this appropriately. Final use-case of the reset button:
+> 
+> - Short press and release leads to normal Linux reboot.
+> - Long press for more than 10 sec or so leads to a hard reset.
+> 
+> With IRQ_TYPE_EDGE_BOTH, that's not achievable because just a simple
+> press leads to Linux reboot.
+> 
 
-But that's a version register for the FE block, not for the whole 
-module, right? Are you suggesting that you'll make sure the FE version 
-will be changed every time anything in the bigger CFE block is changed, 
-and thus the FE version would also reflect the whole CFE version?
+Thanks for explaining your use case. Is the DT really the right place to
+describe this? In the hardware, this is just a button that provides both
+press and release events. Linux typically forwards these events to user
+space, without interpreting them in any way. This means you likely have
+some user space component that listens to the events (e.g. systemd
+logind). Ideally that component should be reconfigured to trigger the
+reboot on release instead of press.
 
-Can there be versions without the FE block, with just the CSI-2 parts?
+If you hardcode this behavior in the DT you are essentially describing
+that the hardware is incapable of detecting the press event before the
+release event. This is not the case, right? There may be use cases where
+someone would still want to detect the key press (rather than just
+release).
 
-Also, I'm still wondering about the RP1 part there in the compatible 
-string. Is it necessary? The CFE is located in the RP1 co-processor, but 
-is that relevant?
-
-Is there a versioning for the whole RP1 chip? Maybe it's going to the 
-wrong direction if we use the board/SoC for this compatible name, as 
-it's actually the RP1 where the CFE is located in, not the SoC.
-
-  Tomi
-
+Thanks,
+Stephan
 
