@@ -1,127 +1,205 @@
-Return-Path: <devicetree+bounces-51634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50ED987FE20
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 14:08:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D32F87FE3E
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 14:11:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 82DE81C21C5C
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 13:08:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D71F41F22A81
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 13:11:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AC818005C;
-	Tue, 19 Mar 2024 13:06:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F26680028;
+	Tue, 19 Mar 2024 13:09:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="dIiK6hiS"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="AkyV0dCr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DA3F81AAE
-	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 13:06:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C0498002A;
+	Tue, 19 Mar 2024 13:09:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710853598; cv=none; b=OOmu55Ftsfnnp6f1ir3Xw8g7QR5fkee6+5KMgYSchX2l5MLGHj30kb8w0dkhEeD8psk8h9sPfj6Lby/T73TwQmaSPMzmSklm87y3sJHKQm4VxZ2rzDtjaShmJ/fMSRD6mBqU6Oma4CxK/2JUWAKjTd6yY287AeGyBLW38TEzLcQ=
+	t=1710853774; cv=none; b=W679tqFepCSetbGeQJO4wMDdEAqqsCpcaMxLXZ55OChErigY5oKl/hdsQA5g9B5IlpbNbjioKczw5U4Rf2z/3C8de/BrlByhMFTgrErjFAke+gl+i9bV2uKETpTTW7HgbQy6yOJC1I1FEbWpxSQCWJx9O+E+rR13fxnTaVH71c0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710853598; c=relaxed/simple;
-	bh=iFwpR9R7RZZeceWMUF41RxivvYImNs6l8Lwq8or5egI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kf44aiJwGNp9sJaCmCGr4lniIQidRDpeqm1pqBwZVFysoZbhnEc1iNOpZ+ifLvflimvGv0Jx9V8Zjvhm0x+p2qgkgsaebtgdxFgDActMiPDy6CtRv1A9oXOjIHy5Smwm1dzqcwCdzGvM84HG5F5v/nPUbz9hEgfmI3/QJGzx0s8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=dIiK6hiS; arc=none smtp.client-ip=209.85.160.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raspberrypi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-2222b96e4d2so3325639fac.3
-        for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 06:06:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1710853595; x=1711458395; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=qWQmoFTqSmJhXM5+bL76nUjgEzlqyYQgelxWMRXy8Ng=;
-        b=dIiK6hiSnaRhVWOMXh9IgaA4caxDXontuV687CQUa+WN3xyM0Rk3EsD+JJDnM11WQb
-         FSLValr/YHzJuOIaHyLmfxW/br2Fc2br/WLs06nnrbx8dI8WcplTF8xuAYJaQFY0ZiR9
-         Yo36qWyYJS9D5iQvHNrpI89FACBGtAVSjRYL6VezwIhRtBajsdO7SBO4+v/ynNKzzdTm
-         OxGvGCd6c1xBSO7xGPwsheVXHvoOSO4S90GE6Zt9xta2/zLnFh1zQcoCMQLTR4pfInWX
-         XFo7KRcmG0EXqKj2hSZPlJ1GY7MJXe0iNAm56Um8cLrp9SZ2TcbEOh341pE5EI0uf+HS
-         arbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710853595; x=1711458395;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qWQmoFTqSmJhXM5+bL76nUjgEzlqyYQgelxWMRXy8Ng=;
-        b=QSDUvGiwjpdqxUNPrPUsunOyEQTaO7d879op7MkMkd+gzTcUos58U8LcnKxX1diYFI
-         2+6Xz0SZOwAHkmNCSVvVXdCl9cpCAo/6PxckYxJFeDWPsaaoD27oDfXkwfEBuRuRA1BK
-         8I3vulz0HPaCm3mXOajdIVprHFmMm8bU1RkzhDkO6gfBxCRXDca0bEUgwQ8WA1WB6kSb
-         37NbgN6zK629yTQ3OIJeeIYArYC2jiVT+XB5w77sf2XroIgjenq709JExwIG/uP/AMw2
-         KOr2Z95SLM3418Rk+xPEwjW/rEaAS8SAOV84rK1+mK4zKlfQe71JqGdi6xbePyGaNcZg
-         NWMA==
-X-Forwarded-Encrypted: i=1; AJvYcCVP0J3Zy/r35LxRNnJTslotF75qvPpz61D17qP44egl1Eq6K5pitS1ZYZPq8ANUqlFWVYrbionRBQShlSmgyvDeQ0zIl5uR19EMaw==
-X-Gm-Message-State: AOJu0Yz4pqDWVJazg65gCAANlORCdnZ2vV/S/+osK48lG0q1gEeeT3Bh
-	zqaBrE6rla+b6JC0mFt/UZ1I1y7K1zdY8aZFQr+eZ0SFrUhnNdMaxLKN+NannV5Xp19NTaquveY
-	4ZaFzkMiSE16jMZSOBZWXixmWlP5wo12Slt8ojg==
-X-Google-Smtp-Source: AGHT+IH3b3a+/tMGFlUi3v6nRTbIFl0E8v2mS/C2QE82azOisrsdw64JHJ4uQYcHiIPKJCLl570m8xpxERqaK0CKzQ4=
-X-Received: by 2002:a05:6358:5e0d:b0:17e:b64b:e0f6 with SMTP id
- q13-20020a0563585e0d00b0017eb64be0f6mr2588285rwn.30.1710853595605; Tue, 19
- Mar 2024 06:06:35 -0700 (PDT)
+	s=arc-20240116; t=1710853774; c=relaxed/simple;
+	bh=jl5LIVHTbgoOfLHubgBGwWwHndy0u8nCAeBqkZeMR8M=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=KOGX7nFZq+wBD/z8c7X7IkYwFskh8plCXgqGCgI74gKNmPAILFMd6OnMbOZPEMEqiqpMvXzFLn6Su5dz8552vWydi3qtvaLHU6CHd24uf9KZmZMATmNSwhr5kxj+/NpCxuOcRi1ala+WjJENKZALgpz+wYZhwqj9nmYKzmn1lIc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=AkyV0dCr; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 397FFE0002;
+	Tue, 19 Mar 2024 13:09:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1710853767;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=U/nxcDTUYi1MXeFeU8TRWO7c9qe7Uu/RNWXFdRywHJE=;
+	b=AkyV0dCrSMZ5ix+ksfm7ahaR5LV1hr425kHRYfiYFD9E4NRgvOqZ2YXS8+33sUjznAkmU1
+	p6C4vkY5NnTysIenRqOuW4YRr+eUrDnKE3CRgRrB/buDV18fY8aHGe94NNW6iqBzCJEOTX
+	+krpiYxIwbS3gIHDHyOm+1FG3QXx+zwTKK8Aq8tUXDCVV+iqOGBxDAZWCRzUzjIgqoxYiI
+	zkxE6+GygI5phLXHzRMx79MTdpqJEFnbxubGKrzfRSbA7gzhtZ5w3Vi5FEIeGf8nDlAEwe
+	5RXvhLmnu5XJ+Riwypshhyt/72W2Vu6loM1/m6s2z78BsKfkjqTVwIAt+4Jeow==
+Date: Tue, 19 Mar 2024 14:09:24 +0100
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Md Sadre Alam <quic_mdalam@quicinc.com>
+Cc: <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+ <broonie@kernel.org>, <robh@kernel.org>,
+ <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+ <richard@nod.at>, <vigneshr@ti.com>, <manivannan.sadhasivam@linaro.org>,
+ <neil.armstrong@linaro.org>, <daniel@makrotopia.org>, <arnd@arndb.de>,
+ <chris.packham@alliedtelesis.co.nz>, <christophe.kerello@foss.st.com>,
+ <linux-arm-msm@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-mtd@lists.infradead.org>, <quic_srichara@quicinc.com>,
+ <quic_varada@quicinc.com>
+Subject: Re: [PATCH v4 2/5] drivers: mtd: nand: Add qpic_common API file
+Message-ID: <20240319140924.167f3063@xps-13>
+In-Reply-To: <756ccc79-0077-5c23-73e3-bbb82fbfa8b0@quicinc.com>
+References: <20240308091752.16136-1-quic_mdalam@quicinc.com>
+	<20240308091752.16136-3-quic_mdalam@quicinc.com>
+	<20240315124517.4a546ce9@xps-13>
+	<93b08226-3297-2161-cc7d-d33d839c32f0@quicinc.com>
+	<20240319114316.4b977d93@xps-13>
+	<756ccc79-0077-5c23-73e3-bbb82fbfa8b0@quicinc.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240318-rp1-cfe-v1-0-ac6d960ff22d@ideasonboard.com>
- <20240318-rp1-cfe-v1-2-ac6d960ff22d@ideasonboard.com> <eb854c43-1e92-4c19-bfd3-1bde94924319@linaro.org>
- <f97faeb9-8a6b-47c6-9317-daca88257802@ideasonboard.com> <30430e0e-70de-4831-97ad-974e350a2e54@ideasonboard.com>
- <5ca1d005-1beb-47ec-943a-9358ae3c6704@linaro.org> <CAEmqJPp7uGYe993L+ujth2mfRy66s8-S9FNxPY7vwkrboDq9yg@mail.gmail.com>
- <89d459dd-cc8c-4780-a56a-809e24343e69@linaro.org> <CAEmqJPrLP3j37Kcj0mX23x00p=gWuxZPNSUTRGNkcEqsUJ2MjQ@mail.gmail.com>
- <9d238cd6-0e11-4775-bc00-7df50f0a6638@linaro.org>
-In-Reply-To: <9d238cd6-0e11-4775-bc00-7df50f0a6638@linaro.org>
-From: Naushir Patuck <naush@raspberrypi.com>
-Date: Tue, 19 Mar 2024 13:05:59 +0000
-Message-ID: <CAEmqJPoVFRUBRnuvRaeWg6vxDaNMzdFzgj2_Gi5bxh5nacdmDw@mail.gmail.com>
-Subject: Re: [PATCH 2/4] dt-bindings: media: Add bindings for raspberrypi,rp1-cfe
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, linux-media@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
-	Kieran Bingham <kieran.bingham@ideasonboard.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-On Tue, 19 Mar 2024 at 13:02, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 19/03/2024 13:57, Naushir Patuck wrote:
-> >>>>
-> >>>> See writing bindings. Compatibles should be SoC specific. In some cases
-> >>>> generic fallbacks make sense, in some note. But don't just choose
-> >>>> "generic fallback" because you want. Provide rationale.
+Hi,
+
+quic_mdalam@quicinc.com wrote on Tue, 19 Mar 2024 17:46:05 +0530:
+
+> On 3/19/2024 4:13 PM, Miquel Raynal wrote:
+> > Hi,
+> >  =20
+> >>>> +/**
+> >>>> + * qcom_offset_to_nandc_reg() - Get the actual offset
+> >>>> + * @regs: pointer to nandc_reg structure
+> >>>> + * @offset: register offset
+> >>>> + *
+> >>>> + * This function will reurn the actual offset for qpic controller r=
+egister
+> >>>> + */
+> >>>> +__le32 *qcom_offset_to_nandc_reg(struct nandc_regs *regs, int offse=
+t)
+> >>>> +{
+> >>>> +	switch (offset) {
+> >>>> +	case NAND_FLASH_CMD:
+> >>>> +		return &regs->cmd;
+> >>>> +	case NAND_ADDR0:
+> >>>> +		return &regs->addr0;
+> >>>> +	case NAND_ADDR1:
+> >>>> +		return &regs->addr1;
+> >>>> +	case NAND_FLASH_CHIP_SELECT:
+> >>>> +		return &regs->chip_sel;
+> >>>> +	case NAND_EXEC_CMD:
+> >>>> +		return &regs->exec;
+> >>>> +	case NAND_FLASH_STATUS:
+> >>>> +		return &regs->clrflashstatus;
+> >>>> +	case NAND_DEV0_CFG0:
+> >>>> +		return &regs->cfg0;
+> >>>> +	case NAND_DEV0_CFG1:
+> >>>> +		return &regs->cfg1;
+> >>>> +	case NAND_DEV0_ECC_CFG:
+> >>>> +		return &regs->ecc_bch_cfg;
+> >>>> +	case NAND_READ_STATUS:
+> >>>> +		return &regs->clrreadstatus;
+> >>>> +	case NAND_DEV_CMD1:
+> >>>> +		return &regs->cmd1;
+> >>>> +	case NAND_DEV_CMD1_RESTORE:
+> >>>> +		return &regs->orig_cmd1;
+> >>>> +	case NAND_DEV_CMD_VLD:
+> >>>> +		return &regs->vld;
+> >>>> +	case NAND_DEV_CMD_VLD_RESTORE:
+> >>>> +		return &regs->orig_vld;
+> >>>> +	case NAND_EBI2_ECC_BUF_CFG:
+> >>>> +		return &regs->ecc_buf_cfg;
+> >>>> +	case NAND_READ_LOCATION_0:
+> >>>> +		return &regs->read_location0;
+> >>>> +	case NAND_READ_LOCATION_1:
+> >>>> +		return &regs->read_location1;
+> >>>> +	case NAND_READ_LOCATION_2:
+> >>>> +		return &regs->read_location2;
+> >>>> +	case NAND_READ_LOCATION_3:
+> >>>> +		return &regs->read_location3;
+> >>>> +	case NAND_READ_LOCATION_LAST_CW_0:
+> >>>> +		return &regs->read_location_last0;
+> >>>> +	case NAND_READ_LOCATION_LAST_CW_1:
+> >>>> +		return &regs->read_location_last1;
+> >>>> +	case NAND_READ_LOCATION_LAST_CW_2:
+> >>>> +		return &regs->read_location_last2;
+> >>>> +	case NAND_READ_LOCATION_LAST_CW_3:
+> >>>> +		return &regs->read_location_last3; =20
 > >>>
-> >>> If the compatible is SoC specific, I suppose "raspberrypi,rp1-cfe"
-> >>> would be the correct string.
+> >>> Why do you need this indirection? =20
 > >>
-> >> Sure, but then please think what if rp1 is on Rpi6, called exactly the
-> >> same (rp1), with some minor differences? Could it be?
-> >
-> > Yes, this is definitely possible.  In such cases, I would expect the
-> > hardware to have a version register that would be queried by the
-> > driver to adjust for minor differences, and the compatible string
-> > remains the same.  Does that seem reasonable?
->
-> The "would expect" is concerning. The register(s) must be there already,
-> with proper value.
->
+> >> This indirection I believe is needed by the write_reg_dma function,
+> >> wherein a bunch of registers are modified based on a starting register.
+> >> Can I change this in a separate cleanup series as a follow up to this?=
+ =20
+> >=20
+> > I think it would be cleaner to make the changes I requested first and
+> > then make a copy. I understand it is more work on your side, so if you
+> > really prefer you can (1) make the copy and then (2) clean it all. But
+> > please do it all in this series. =20
+> Ok
+> >  =20
+> >>>> diff --git a/include/linux/mtd/nand-qpic-common.h b/include/linux/mt=
+d/nand-qpic-common.h
+> >>>> new file mode 100644
+> >>>> index 000000000000..aced15866627
+> >>>> --- /dev/null
+> >>>> +++ b/include/linux/mtd/nand-qpic-common.h
+> >>>> @@ -0,0 +1,486 @@
+> >>>> +/* SPDX-License-Identifier: GPL-2.0 */
+> >>>> +/*
+> >>>> + * QCOM QPIC common APIs header file
+> >>>> + *
+> >>>> + * Copyright (c) 2023 Qualcomm Inc.
+> >>>> + * Authors:     Md sadre Alam           <quic_mdalam@quicinc.com>
+> >>>> + *		Sricharan R             <quic_srichara@quicinc.com>
+> >>>> + *		Varadarajan Narayanan   <quic_varada@quicinc.com>
+> >>>> + *
+> >>>> + */
+> >>>> +#ifndef __MTD_NAND_QPIC_COMMON_H__
+> >>>> +#define __MTD_NAND_QPIC_COMMON_H__
+> >>>> +
+> >>>> +#include <linux/bitops.h>
+> >>>> +#include <linux/clk.h>
+> >>>> +#include <linux/delay.h>
+> >>>> +#include <linux/dmaengine.h>
+> >>>> +#include <linux/dma-mapping.h>
+> >>>> +#include <linux/dma/qcom_adm.h>
+> >>>> +#include <linux/dma/qcom_bam_dma.h>
+> >>>> +#include <linux/module.h>
+> >>>> +#include <linux/mtd/partitions.h>
+> >>>> +#include <linux/mtd/rawnand.h> =20
+> >>>
+> >>> You really need this? =20
+> >> Yes , since some generic structure used here. =20
+> >=20
+> > Which ones? If this is a common file, you probably should not. =20
+>   Since we are using this struct qcom_nand_controller { }
+>   for both SPI nand as well as raw nand. In this we are having this
+>   struct nand_controller controller member.
 
-A version register already exists in the current hardware, so we will
-update it to identify future hardware revisions.
+Maybe we should not expose qcom_nand_controller at all and just share
+the minimum bits which are really common.
 
-Regards,
-Naush
+Thanks,
+Miqu=C3=A8l
 
