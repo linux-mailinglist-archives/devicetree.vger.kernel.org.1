@@ -1,172 +1,168 @@
-Return-Path: <devicetree+bounces-51501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51502-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6740287F8B1
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 09:01:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16E8087F920
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 09:13:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 998B41C21ABA
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 08:01:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 472E81C213AC
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 08:13:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23F7C54645;
-	Tue, 19 Mar 2024 08:00:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="aEEyo48g"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAA13537FE;
+	Tue, 19 Mar 2024 08:12:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2DEB54775;
-	Tue, 19 Mar 2024 08:00:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7395C51C5F;
+	Tue, 19 Mar 2024 08:12:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710835245; cv=none; b=Y2NmLeC1JfhsCeM8OdEoBFK/0yauVX8nAGpWg2+fyfaUl4O9XQPZs9lpGPQA8IEcLwpmcEXXYpGp459pOzGgWhj/JbXII/T+cTJLzx8LGkqMX1MjO+3xWwh8H/ALRwYTTUnRz6vvugAJvRK0FPSPo+uAW9Lfx1H8Rz8TotSjjuY=
+	t=1710835946; cv=none; b=q6K6kLS/p+nGl9Pnha24cc3r+3D3glGnqCTPlNw0WM6mMNT0dFZtye2DlbgugQnXH+5cEE5p7ZObDmFkZjJMMwDWujxJPFf0OmIAgXj/QpXCDy/GhM7efzZa4RgmAqon2joDNqoasqkg1oVzNm2sTwNwH3NCgWcfufXoRFp8L14=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710835245; c=relaxed/simple;
-	bh=DFm94adZYPQ2FWCpzK3RGccm1VoFml8OfF+X802TMVI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=pxgehc+eb0SUloSyT+IE/5wGYvtwaaxSamnsylvykTb8lxcSttYbx/JcONh+a+eF/S8uG301P1tAQl9CX9p55PRBLeNsKW2AER0qrYzIYDkLL5vPjDIWxeOxQmz+L3v4YvE9uJP5WgDaMe7tilbYfGm+yw7a/Vh52rWiqwIaE/Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=aEEyo48g; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 42J80FWC092170;
-	Tue, 19 Mar 2024 03:00:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1710835215;
-	bh=9BEueWubpZ1GK0+Nc3P+zNaaOc+f91SzBDXWy6ZORfg=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=aEEyo48gxaSAQ2pAb8GWa2VA6aCfE6m6OgzgjUPXkWe7xEziOpPImJPnyGCOBtakI
-	 hymW6eXeFf969H04TD5o7sJ7fbjmiyl5vic+JCdD0uQ3IGjzZqr66PUxkDpmMgZKak
-	 A/Dr8kgkBSQEtWUdxQpkzY02rB1qv5qpeMdiewI0=
-Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 42J80FAf003342
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 19 Mar 2024 03:00:15 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 19
- Mar 2024 03:00:15 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 19 Mar 2024 03:00:15 -0500
-Received: from [10.24.69.142] ([10.24.69.142])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 42J8084O124565;
-	Tue, 19 Mar 2024 03:00:08 -0500
-Message-ID: <c2579b14-eb2a-4479-b5c4-86f74a4349b1@ti.com>
-Date: Tue, 19 Mar 2024 13:30:07 +0530
+	s=arc-20240116; t=1710835946; c=relaxed/simple;
+	bh=H77LRDP1ZAiFLCOpOXxrX0rEwjCzTkbq4ZIheDk2y0M=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=V90kCuT32M36DqPnL/8v8D9K6r32wYoZLSE3FsYC/PpTm+Z9CHcSD0dcTWX9zDCVj459GkeRq+wV6FXV7AahaoyENcocNnbTp7gP75J4lSiygIMcORWmiGoJBgBr9j+OeD/fI2aAdxSTi9lwqHsxYuaI+GvR+cNSyX9IdQO9GPI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-dc6dcd9124bso4955438276.1;
+        Tue, 19 Mar 2024 01:12:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710835942; x=1711440742;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2zJdlRpxPRZ55P1IAEnV9vLc1U+U2M6G4MVPK3fBjws=;
+        b=r8N+Cwkhpc+1rtBqXY3c/ozxAckbQ2O6qAxLP8UMUgUt3iPQynwxYW3M4Bl30iXLnP
+         RhGm+N/VfpKZN5RmMU/WbrzT7LzM2rILmex5jc7ZndYagrp7ixgoTrCEOjOcmzGoB3O1
+         Hi9rAx+CYuMI/wrCOEItzsGZ8UsdlTwg7kho3No++vr+CSkZpudE0bfSwym8lLHw7E50
+         mED2ydksbaF1ftTXp5H/9CVSDTxvCuU3zYcgSBDWOOy+iwblbQHEGL6doV96EUFrJEAt
+         VZXpb20wDl980zIxIQuUrsXBUzy7PTtTWTNeTK7XxLppooP6m00f4SD6M6MIvyEg8vps
+         TE0A==
+X-Forwarded-Encrypted: i=1; AJvYcCU50fFg77CVUwcbOVb5xyKFFhlyVHC/MYIdTWLtPtYdI4CmGfYDdr3OYO0runCip0eXXtNtIMJDJuEA80IwUak88a3K/QVqrfoc+GfJ/RZWoqOY6fMQA7azsUIkjjov/AvAOL0SJRJzsvfVnBomDpicl3lhY5JV9b8/R7vDChZw6EH/6Jg3Uqu0SCAYYs+8YRPDw9Xju2T/XPzy2Xm6gJdgwsc3dewEMKft
+X-Gm-Message-State: AOJu0YxUkYA8KjqgCdI0LMOOBpy7dimew7kEdtcJGgaQzZIlTAznpun1
+	geci9gN7fBcP93GGIFbvagncldYMcQGfb+SIBBOiZXChAqWrySd6Tgf8nTTd5Bw=
+X-Google-Smtp-Source: AGHT+IHZ9dSVxHec45+BMhJjTUUkBs9yseYBz2aUmywqF+4X59/g4RSLuP7hJjaMJIKZy2d7o7/dIQ==
+X-Received: by 2002:a25:6604:0:b0:dcc:f6e2:44d0 with SMTP id a4-20020a256604000000b00dccf6e244d0mr1008145ybc.37.1710835941564;
+        Tue, 19 Mar 2024 01:12:21 -0700 (PDT)
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
+        by smtp.gmail.com with ESMTPSA id e84-20020a251e57000000b00dc74ac54f5fsm2158296ybe.63.2024.03.19.01.12.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Mar 2024 01:12:21 -0700 (PDT)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-60a0599f6e5so48767827b3.3;
+        Tue, 19 Mar 2024 01:12:20 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVvwpyUqqWQEwBha2TfR/v0Z4XQSYimKS2YqOm+FvMu9l/QtS7sfLy9ZrcCZTLG4HhvVMrPmnsFxiOaVuKXkFFE/7LnTcalRZbgTrCMwI447SDpZtg/08WFROLwoLHRxeQ1VuaLpSIn5XVb99RbSIwrlC1xB0oAX/B4CGanTYd6m3G22H6ziQBuTkuRS1/rW97zajFXcD9HRwDh2TIVi5kJ4Zl1J/040BId
+X-Received: by 2002:a0d:f186:0:b0:610:b0a6:72e1 with SMTP id
+ a128-20020a0df186000000b00610b0a672e1mr8185978ywf.31.1710835940343; Tue, 19
+ Mar 2024 01:12:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/5] mikrobus: Add mikroBUS driver
-Content-Language: en-US
-To: Ayush Singh <ayushdevel1325@gmail.com>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>,
-        open list <linux-kernel@vger.kernel.org>
-CC: <jkridner@beagleboard.org>, <robertcnelson@beagleboard.org>,
-        <lorforlinux@beagleboard.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Derek Kiernan
-	<derek.kiernan@amd.com>,
-        Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann
-	<arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Brown
-	<broonie@kernel.org>, Johan Hovold <johan@kernel.org>,
-        Alex Elder
-	<elder@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE
- BINDINGS" <devicetree@vger.kernel.org>,
-        "moderated list:ARM/TEXAS INSTRUMENTS
- K3 ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-        "open list:SPI
- SUBSYSTEM" <linux-spi@vger.kernel.org>,
-        "moderated list:GREYBUS SUBSYSTEM"
-	<greybus-dev@lists.linaro.org>,
-        Vaishnav M A <vaishnav@beagleboard.org>
-References: <20240317193714.403132-1-ayushdevel1325@gmail.com>
- <20240317193714.403132-5-ayushdevel1325@gmail.com>
- <06009676-6189-40b9-a6d6-66a112e4f387@linaro.org>
- <89ec1649-5231-422e-9760-6e04b2a514fd@gmail.com>
-From: Vaishnav Achath <vaishnav.a@ti.com>
-In-Reply-To: <89ec1649-5231-422e-9760-6e04b2a514fd@gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20240318172102.45549-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240318172102.45549-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240318172102.45549-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 19 Mar 2024 09:12:07 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdX=3HfYsrHr8Mus9NR9VEoBXh1t=RukmKdcZe=9MaHrcw@mail.gmail.com>
+Message-ID: <CAMuHMdX=3HfYsrHr8Mus9NR9VEoBXh1t=RukmKdcZe=9MaHrcw@mail.gmail.com>
+Subject: Re: [PATCH v3 3/4] dt-bindings: serial: renesas,scif: Document
+ R9A09G057 support
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-serial@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Ayush,
+Hi Prabhakar,
 
-On 19/03/24 12:17, Ayush Singh wrote:
-> On 3/19/24 11:34, Krzysztof Kozlowski wrote:
-> 
->> On 17/03/2024 20:37, Ayush Singh wrote:
->>> DONOTMERGE
->>>
->>> this patch depends on Patch 1, 2, 3
->> So none of your work should be reviewed? I don't understand this, but in
->> such case I am not going to review it.
->>
->> Best regards,
->> Krzysztof
->>
-> I am a bit lost here. It was mentioned in the patch v3 that I should 
-> specify the interdependence of patches in v3. And now you are saying I 
-> should not?
-> 
+On Mon, Mar 18, 2024 at 6:22=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
+om> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Document support for the Serial Communication Interface with FIFO (SCIF)
+> available in the Renesas RZ/V2H(P) (R9A09G057) SoC. The SCIF interface in
+> the Renesas RZ/V2H(P) is similar to that available in the RZ/G2L
+> (R9A07G044) SoC, with the only difference being that the RZ/V2H(P) SoC ha=
+s
+> three additional interrupts: one for Tx end/Rx ready and the other two fo=
+r
+> Rx and Tx buffer full, which are edge-triggered.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v2->v3
+> - Added SoC specific compat string
 
-It was mentioned in v3 that patches that are independent should be sent 
-separately to the particular subsytem list and the dependencies should 
-be mentioned in this series, still in this series you have combined SPI 
-patches/platform DT changes along with the mikroBUS driver patches which 
-creates confusion.
+Thanks for the update!
 
-This is what I mentioned as a response to your v3 series regarding 
-adding the patches
+> --- a/Documentation/devicetree/bindings/serial/renesas,scif.yaml
+> +++ b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
+> @@ -79,6 +79,8 @@ properties:
+>                - renesas,scif-r9a08g045      # RZ/G3S
+>            - const: renesas,scif-r9a07g044   # RZ/G2{L,LC} fallback
+>
+> +      - const: renesas,scif-r9a09g057       # RZ/V2H(P)
+> +
+>    reg:
+>      maxItems: 1
+>
+> @@ -204,6 +206,37 @@ allOf:
+>              - const: dri
+>              - const: tei
+>
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: renesas,scif-r9a09g057
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          items:
+> +            - description: Error interrupt
 
-"The reasoning behind this is that these patches go in to separate 
-maintainer trees and without the bindings merged first the device tree 
-changes cannot be validated, thus it is a usual practice to get the 
-bindings and driver merged first and the device tree changes to go in 
-the next cycle. Another alternative is you can point to your fork with 
-all the changes together."
+[...]
 
-My suggestion was to get your series with the bindings and the base 
-driver support accepted/ready first and the send the platform specific 
-DT changes later. The rationale behind pointing to your fork with all 
-changes is to have all the changes (w1 EEPROM, instantiating remote 
-mikrobus ports over greybus .etc) together and ensure there are no 
-conflicts with the base series.
+These descriptions should be at the top level.  The SoC-specific rules
+should just restrict the lower limit (interrupts/minItems).
 
-It looks like you have put DONOTMERGE on random patches (why is patch 3 
-and 4 marked as do not merge?)
+> +
+> +        interrupt-names:
+> +          items:
+> +            - const: eri
 
-Thanks and Regards,
-Vaishnav
+[...]
 
-> Here is the rationale for the dependence:
-> 
-> 1. Any changes to the property names in dt-bindings patch 1 will need an 
-> appropriate change here.
-> 
-> 2. This patch will fail to build without patch 2.
-> 
-> 3. This patch will fail to build without patch 3.
-> 
-> 
-> Ayush Singh
-> 
+Likewise.
+
+In addition, you should restrict clocks/maxItems to 1, as on RZ/V2H
+only the UART functional clock is supported.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
