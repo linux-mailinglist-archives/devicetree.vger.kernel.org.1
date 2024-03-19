@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-51482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A73D87F73B
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 07:23:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7462F87F73E
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 07:24:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F14E281EA0
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 06:23:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 29E182816B8
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 06:24:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C586B64CD1;
-	Tue, 19 Mar 2024 06:23:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4935C57885;
+	Tue, 19 Mar 2024 06:24:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jufOFVkf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="moxpIdJp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB41353378
-	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 06:23:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 967C64594E
+	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 06:24:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710829415; cv=none; b=LWs2uxZtUCohg2lS3B91FOoAtldyLE6JFUNpngF5V9pwf/j54KsOqkObSHI7oE6ub18T+TXWOfphuw3IdBdB1SpaEBUd5a1kSQtm6x2SngauJy+1exhqRYgtsF/CLUt2Nh6FG9JjUz/nqCUgMWzi7m9JNh50+8AyqFday+nKmqQ=
+	t=1710829445; cv=none; b=A+bOKEFBit2W2Y2tqkOpziZJh5cWtO0L4j0Lj2fIhPY4FgEPZjeKbkPe8dlj/YlHCNV57mYdIxf1RZTzM14KnvgTsg/r6JxofNffjOa87N/3fox6iJwtbr0Qdnsm98HeK5CTkK5qNba5lmJagAlgYYaQDlk7I4spGRjo46RvIno=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710829415; c=relaxed/simple;
-	bh=scEcEIEzZ0aWaiYpHzhB264dKydY3VU30p8I2kOBawU=;
+	s=arc-20240116; t=1710829445; c=relaxed/simple;
+	bh=O8ZHjCzCd6yTdchuxxyQKs4qTuIQFweQIDH0/+X/kCQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=k3vGkfYpjwSaf2WpAGNA1p30MlEiSIFszO2am666lhfFEUIqBaKixXbhNERDxlk1ep79MBpgt1wcnr/4ROb4yrmcC+wdC5jnZHGAXeBIc40aDyMSt5RDyEYAsRLKG2JUJCuXAGHfy4AK4s72054VD4h12wnJ/7lI9F8D6Qz7u50=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jufOFVkf; arc=none smtp.client-ip=209.85.218.50
+	 In-Reply-To:Content-Type; b=bgGCbcAVJH7ZPc9YlUhCou4P3hYvT4iUAZhgqfeM56DJGsjcAmADebLUOGRFgAJcn0Nu5dnZ7oP7qXgdkyLHmYn6JEq8IkedSJFv7vP0yDYQVIJhanUs26prifw5MpjJb+Rypp0mH6rJmjNbJpeDiOlf+Ub4P3WGEDix8n1cOic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=moxpIdJp; arc=none smtp.client-ip=209.85.218.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a44f2d894b7so599669166b.1
-        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 23:23:33 -0700 (PDT)
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a46d9fbb5a5so52006266b.2
+        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 23:24:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710829412; x=1711434212; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1710829442; x=1711434242; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=oRDwYwdIaGbhs9kf+z2mnHg3QHKmO5pIvmImbZULt4I=;
-        b=jufOFVkfNXVhTgdbfW8m7j5WeDS8DfDrca4Uks9WoLWIzp3AFAwHZA1YnnOUUFqQs9
-         PxFzJvMj7yARTShsNAjbHlPurNQdRYorp3ReqDK7SaaMYFp0oIXyTPSNcIoQZS9W3r9+
-         gz61I99zDm0/LB3na2SV+tR0IW75aVAUTE68vr8/nK8RWAeipeQ6+UbnQby60BjvHOZr
-         Lfhs75Xez3srp8S7A8uIiE7Fpm9u9kVmzgyHwJKVHD5EbfoRSbS33rS03IJmozZHQSo8
-         SSKt7e4FqqzEsCqHZBqzsBXygwWS8ggM6XO4GDnOCeMCPMwI8x9YUwkOHDf6c8HCZeu7
-         jYng==
+        bh=Vf3cHCFPsCEbDAPk/mIfBfxsqpfYW1qbahksa0pw4zc=;
+        b=moxpIdJpU8sXci/AMLdxINAKWo8q4GLgVGagDmcZhASCDBqBPCdv33AWsIW/0l6T0/
+         EUlqBpDklH2QnotqSMCnK/7nrnK21sFZ4BiXsmmr14UPq7vrJB6QSJgDxAetN3lkFcAg
+         3Hzl/hvuVdWstU1ML8fmTWBtN35eeMZslAXFo9K/WLeELthjTsOPftiGGXBYlL0WYG/c
+         pO/BdixpEa0BbI90WLuE3GRHMAkyg4rNvADAQyDGTZFNievWcd/hNGYq87mXoE3nKrH7
+         EAM6sAq35w5bJyW9cXpM+864QCfXo4fl9Qi7xdLNOOgs2MGemVeGZ2m4XsEnongR6Gee
+         kVrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710829412; x=1711434212;
+        d=1e100.net; s=20230601; t=1710829442; x=1711434242;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oRDwYwdIaGbhs9kf+z2mnHg3QHKmO5pIvmImbZULt4I=;
-        b=PUiLkTXhU3DBhc3s9KbLUQuHu1VWB1AKkvTTtdoSsE1Euknxk20BIbFK37/Oq1tXA3
-         SfNFIuyMvPPj2CmxxiAe63wVFHZQZdyuNMq7DWVPlUugdSaguvLOPv0Xc1gOCny7F3rx
-         BnnSLyiqRU5uF9F6gqdeAPjJRntsO31UWgcRlm4VGHbUbSRwpGJkAStQtIklAabr19tu
-         xjpqBan8uXw03lfm/me67kQiyxPuysM1EbScm9uii9sukarSLeMAdX+rc2x0Xhe8KxCn
-         LYDUEeUMX9gOzbyZRI+oPUTJIfLGg13iSY2QKtpMRsm+ubfF/m+Cju4E9aDkhnpzaf/f
-         2KpQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUF6pYjNvkq4VnYxEcchp9rVbw1E0X+X0q3oxb+VJRLmI94l/hssf8IJpG5HijWkueiUssO/TEjAqbnRERbaICtKs2QcW/b3MWhUg==
-X-Gm-Message-State: AOJu0YzOdixrwY0/agkNwue6Anb7IRHedWdW2UPHWUTToeIVGu5JoUnZ
-	VAHGQaxSKo3+psT9KPXypZUprliSTJsHvQfu/p+xSIX4cXvYl8Qp91JfNZaeWVA=
-X-Google-Smtp-Source: AGHT+IEposXk9KOXdDGmLySMXySBXtk5WMymxUzb8uB0ShwVCi5mJQqB0ZTcFFPSLExwhSrrtHldcQ==
-X-Received: by 2002:a17:906:b109:b0:a46:cea5:5e7e with SMTP id u9-20020a170906b10900b00a46cea55e7emr2091061ejy.52.1710829412303;
-        Mon, 18 Mar 2024 23:23:32 -0700 (PDT)
+        bh=Vf3cHCFPsCEbDAPk/mIfBfxsqpfYW1qbahksa0pw4zc=;
+        b=YX9VhxLDlGbW+36KYUeM1zav6g4ePet8eTgDMNvl0a/43IgY8J9g/3Qk5Uz3pq/45i
+         U2TJGD14L/RoniHfCyKTq7Audl39r13tHS7+Ethg3yEZGHB45SUV8Xolyda6F3lq+w6M
+         6nK0hZL+7k/teV1ghO+6+53tJ/JjYbHaDvq+tipSdBR4hOiljHJl4fOR0hQ9iR9lvB0+
+         XPex8kDkASY4m/InoXCXdUfuRUa9+pr0GrdL7k2QSUAVPN12NInBlce+6gBDNhEgHKrx
+         FGKQZLHwtcGGglO2WbiG3GxOnjvMd53/6emjoXvYH+kz2slyIiWjRzAGwzVUUctniYjb
+         nfNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWlm3uWhJIOYjdshEl4eBFjolsb5ASQc+11rlk8Y1qNq6vxMXWJ7PQA8//T3FVG0814ay/ZFecICaSDyX98uYOGtj5pqa7TX54aXA==
+X-Gm-Message-State: AOJu0YwtLGC5N7ZJrv6GjX4JY8J1NI4MhJbHnt/t8OmZoM/LC1bl+Ntk
+	fM5Ej6PG0KTNJeDhaKR3JVFXuT60NnK0se+zjxVMS7IgPsXcGd9BsUKk1hvKPC8=
+X-Google-Smtp-Source: AGHT+IEmxUogVI8oxNM0m+UAVT3RyZfJ6XE3FEDGA5K4p9XL8pTgCUgihnzXUOXNjAjoOMI5fu2o6g==
+X-Received: by 2002:a17:906:79c9:b0:a45:f705:777c with SMTP id m9-20020a17090679c900b00a45f705777cmr797225ejo.40.1710829442047;
+        Mon, 18 Mar 2024 23:24:02 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id l8-20020a17090612c800b00a46aab70226sm3302072ejb.180.2024.03.18.23.23.30
+        by smtp.gmail.com with ESMTPSA id l8-20020a17090612c800b00a46aab70226sm3302072ejb.180.2024.03.18.23.23.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Mar 2024 23:23:31 -0700 (PDT)
-Message-ID: <0c1820fb-fbc0-4aae-b0d4-b5bb5c996377@linaro.org>
-Date: Tue, 19 Mar 2024 07:23:30 +0100
+        Mon, 18 Mar 2024 23:24:01 -0700 (PDT)
+Message-ID: <eb854c43-1e92-4c19-bfd3-1bde94924319@linaro.org>
+Date: Tue, 19 Mar 2024 07:23:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,17 +76,10 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/4] media: raspberrypi: Support RPi5's CFE
+Subject: Re: [PATCH 2/4] dt-bindings: media: Add bindings for
+ raspberrypi,rp1-cfe
 Content-Language: en-US
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Naushir Patuck
- <naush@raspberrypi.com>, Laurent Pinchart
- <laurent.pinchart@ideasonboard.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
- Kieran Bingham <kieran.bingham@ideasonboard.com>,
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
  Mauro Carvalho Chehab <mchehab@kernel.org>,
  Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
  Rob Herring <robh+dt@kernel.org>,
@@ -94,9 +87,16 @@ Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  Conor Dooley <conor+dt@kernel.org>,
  Florian Fainelli <florian.fainelli@broadcom.com>,
  Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Naushir Patuck
+ <naush@raspberrypi.com>, Laurent Pinchart
+ <laurent.pinchart@ideasonboard.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+ Kieran Bingham <kieran.bingham@ideasonboard.com>
 References: <20240318-rp1-cfe-v1-0-ac6d960ff22d@ideasonboard.com>
- <28754b32-35c7-4285-a610-3e101da41047@linaro.org>
- <c6526c63-3e8d-46f3-abc2-3cc513617161@ideasonboard.com>
+ <20240318-rp1-cfe-v1-2-ac6d960ff22d@ideasonboard.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -142,47 +142,42 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <c6526c63-3e8d-46f3-abc2-3cc513617161@ideasonboard.com>
+In-Reply-To: <20240318-rp1-cfe-v1-2-ac6d960ff22d@ideasonboard.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/03/2024 07:21, Tomi Valkeinen wrote:
-> Hi,
+On 18/03/2024 16:49, Tomi Valkeinen wrote:
+> Add DT bindings for raspberrypi,rp1-cfe.
 > 
-> On 19/03/2024 08:05, Krzysztof Kozlowski wrote:
->> On 18/03/2024 16:49, Tomi Valkeinen wrote:
->>> This series adds support to the CFE hardware block on RaspberryPi 5. The
->>> CFE (Camera Front End) contains a CSI-2 receiver and Front End, a small
->>> ISP.
->>>
->>> This series is currently based on multiple other serieses:
->>>
->>> - Sakari's "[PATCH v8 00/38] Generic line based metadata support, internal
->>>    pads" for metadata support
->>> - Laurent's "[PATCH 00/15] media: Add driver for the Raspberry Pi <5
->>>    CSI-2 receiver" for a few new pixel formats and imx219 (for testing).
->>> - Jacopo's "[PATCH v5 0/9] media: raspberrypi: Add support for PiSP Back
->>>    End" for some shared uapi headers.
->>>
->>> And to run this, one of course needs the basic RPi5 kernel support plus
->>> relevant dts changes to enable the cfe and camera.
->>
->> Which makes it impossible to merge. Please work on decoupling.
+> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+> ---
+>  .../bindings/media/raspberrypi,rp1-cfe.yaml        | 103 +++++++++++++++++++++
+>  1 file changed, 103 insertions(+)
 > 
-> Yes, it's not for merging as I wrote: "So at the moment we cannot merge 
-> this driver, but hopefully the dependencies will get merged before the 
-> reviews on this one are done."
-> 
-> I believe Sakari's and Jacopo's serieses should be very close to 
-> merging, and those should satisfy the needs of the driver itself.
-> 
-> The DT bindings example uses a header from RPi5 base support series, and 
-> if merging the base support seems to take a long time, I guess I could 
-> drop the include and just use numbers instead for RP1_INT_MIPI0 and 
-> RP1_CLK_MIPI0_CFG. And change those back later when the base support is 
-> merged.
+> diff --git a/Documentation/devicetree/bindings/media/raspberrypi,rp1-cfe.yaml b/Documentation/devicetree/bindings/media/raspberrypi,rp1-cfe.yaml
+> new file mode 100644
+> index 000000000000..7b2beeaaab0e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/raspberrypi,rp1-cfe.yaml
+> @@ -0,0 +1,103 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/raspberrypi,rp1-cfe.yaml#
 
-The problem is that your patches cannot be tested by automated tools.
+Use compatible as filename.
+
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Raspberry Pi PiSP Camera Front End
+
+
+> +
+> +properties:
+> +  compatible:
+> +    const: raspberrypi,rpi5-rp1-cfe
+
+
 
 Best regards,
 Krzysztof
