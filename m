@@ -1,184 +1,275 @@
-Return-Path: <devicetree+bounces-51646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FAC987FF09
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 14:47:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E22687FF1B
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 14:53:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 33FB7282AE1
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 13:47:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 795BF1F2347F
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 13:53:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7C4180616;
-	Tue, 19 Mar 2024 13:47:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A1B581723;
+	Tue, 19 Mar 2024 13:53:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="hAPsiTZQ"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="ZdXJ+IUo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7ABD80607
-	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 13:47:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC4B680BFD;
+	Tue, 19 Mar 2024 13:53:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710856026; cv=none; b=MgiY7yIotBIUxzgZ3Vzk+bp2nhPXUklkluFopaLPFOeqWhtUsqAj1EX4+XD3giajShH7o7lZ1IeAn1Y6DTInMJVhYMvGcjwIr1q2uHGmOm4tOGec8LgWs1okVNOGalCpw96o55ZUwSE9To5gQMnvtFarmas6nMSNvpYZCjog0pc=
+	t=1710856400; cv=none; b=YnbwmPywisBQPMi0F7R9IPfzTFmeqw833TjG+IFLYiJefq0YBBWEZUp6reGTfs3IbKrIGTnxxOJx+o8I2EM+5AV4MRgQOlE7jiPmtQR/W0/oCy61TY7VnelDiSmO7vI+MnLSSu0SZNi67aV5oqleE2P1h9kByF24g8ruu/PEj24=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710856026; c=relaxed/simple;
-	bh=FEiwQI/asXmWDBXom+D3pzYvYu5oomQFPI3U8pnogCY=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Y3iz79FO9Z9LSsVY2+4VvnUsCNZ3q7TVcXYZ69ac/4yatItd6N/aQ7MUPhq3zwK7n9+xqhlOEiGjh1KpzASnsyDMz9lWp4JrlxD20O98T8nAVQF2KiIbDHqB0w23/xOFWRFmw76Ax6Y6Kh1HCgfiOZjoCHa2a+hhZ5HDPVjZj+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=hAPsiTZQ; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-33fd12a06fdso1721627f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 06:47:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1710856022; x=1711460822; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lwR815DYME77h4o7urLuS7peELXtGeH8pgEWYCx5jok=;
-        b=hAPsiTZQwXkN7uoNCWdj4UrmGX5ztPA7SOYGDPylPAzbCBi+n+rVuTGrSHj5ZUR+dc
-         e8qZPgd/YBXM8dg7LMVQzDIZbQUpN952W2qPhnD8K/NXFqaiNZmjlU01Qrj1tH/hrOyk
-         ssh3ZQFBvC1ze3v0r73qvt76vbXhqOttpST0OoP4JQnJ6rpf/i5WG8C2UbDEtsZ4KW/m
-         Ke+uBcNc2Bt4UbRqof6mKOyZjvA9JyCTVzN7wjOVhFp5Zpj5K0qaSJOSmcxbs1fomv4T
-         8pWtjMVT3FQmDMRI7rgEOGwsoBgHPDREuELosVX4Upl9n54YhXISn/UkUalu6WEcqAhF
-         FoEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710856022; x=1711460822;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lwR815DYME77h4o7urLuS7peELXtGeH8pgEWYCx5jok=;
-        b=selh4chlVtK5tab552uo9h8h7KIic8alxTZ/vfkvNk60A5F7c7uNDTfFHkW1aJnMan
-         G9RBA7xJu804lUg3P0QbAUCuo3WBJc4FXbNcTBpTsW1HQXnXjLj8gBdnIlVz6W9kUCJE
-         aXPp38eK5qGNcqnnOTeMSjn0TJLtNIcnkqr+72Neh78W+vZFTGR4aLQvnWTFPGA/Joxu
-         b3E+3I0Y7/J8MWJ5IhEVFI07kLFMv2rEB6J0YfxX1bfp1VVItQNEUBxUW7SdPZfxr8OV
-         IGHX6cu1bndZ6PlaY8jFkWWzOX/WP9MFvJEgmNRS9leKopwhJwHtwr1I5Jjvp4gTuyZY
-         Av2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCV1fBngEITnVF2i6vT/juFqg9GkWu/9FMPAp/NhrQifd88vW+KSww54Att5qDLPSKUc4WWjKadHSkThMPnnf2heKIQv4vdl+K+GnA==
-X-Gm-Message-State: AOJu0Yz7AM5YmVxtCylp2m967rywBlvCkDDmCObBrFoctDtfSlktCcQo
-	9kkBjxQhxebwAqi9DTMQA+HBbeMRmb08q0FkqyKv/AMNsu/0BWCS4rWWGOS7LMw=
-X-Google-Smtp-Source: AGHT+IH5tZbVzPk+iAAJs7mty1sSC4oAZJsAYS9f43ya3U/pZlXDgOVvkRBrz6cvKF1yPa9PO+hiEg==
-X-Received: by 2002:a5d:4577:0:b0:33e:8c7e:608f with SMTP id a23-20020a5d4577000000b0033e8c7e608fmr9272226wrc.12.1710856022158;
-        Tue, 19 Mar 2024 06:47:02 -0700 (PDT)
-Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id u17-20020a5d4351000000b0034180f6d3cfsm2974760wrr.73.2024.03.19.06.47.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Mar 2024 06:47:01 -0700 (PDT)
-Message-ID: <880e016a-d4d2-4bc9-8c75-bbe4848515ad@freebox.fr>
-Date: Tue, 19 Mar 2024 14:47:01 +0100
+	s=arc-20240116; t=1710856400; c=relaxed/simple;
+	bh=OXZgPwWPdTNaxtMnH4myg+ToziRSNnXvhkwXx1ZufmU=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=M/8P5/w41ZhMAOV4Ao35XkNBYUaPLpnh59pm4ubf7gkptaZaCm7JzpL9lZSS4CLwPHxOBpFnC+yw3x+6C7QIXa3/FPeeIE9+WdqZcWA9l9C9h8Umqj6KGN1JpOgPUYWtG2kQdH5OF3HaOp2DqGsqeQ/2nk6EekG8Kzsc2qIztTA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=ZdXJ+IUo; arc=none smtp.client-ip=37.18.73.165
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 0957D10000A;
+	Tue, 19 Mar 2024 16:53:12 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 0957D10000A
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1710856392;
+	bh=cMQFR177UDppiHHa9pB9nbmCdpBrIycSstEw9RoGTQI=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
+	b=ZdXJ+IUoxafVJmHArgilqIq/xR+cA8woWE5N9r6qzBMaWFunn7syOsKx8qLG8PS9j
+	 vQ83YE4Sbd4e2GyM/LXFVj5CQEzYiLvCcu31GAteRYOud+OnUBzC23Uf/Xqzn91k3G
+	 ST/k5QpvS04ZBnytrGLzHPs3ec/4lGwCGF1I6Z0yPqQCyvYoG1ITUtXLW7gjQFLDOv
+	 oH3k8K5Ak8eAwJJDsOFfN4BFtfd2MH2RBk9JpLmvU0nmCx8BeYg+zHF8roQ5tmlLJ6
+	 CW/G29alyisg1jGq+assolGMSWPgFNCYosGKMcHu2B9G5KWPNSyYdnYJtcU7RobrrC
+	 IKjlAIup7GSgw==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Tue, 19 Mar 2024 16:53:11 +0300 (MSK)
+Received: from localhost (100.64.160.123) by p-i-exch-sc-m02.sberdevices.ru
+ (172.16.192.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 19 Mar
+ 2024 16:53:11 +0300
+Date: Tue, 19 Mar 2024 16:53:11 +0300
+From: Dmitry Rokosov <ddrokosov@salutedevices.com>
+To: Jerome Brunet <jbrunet@baylibre.com>
+CC: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Kevin Hilman
+	<khilman@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>, Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <alsa-devel@alsa-project.org>,
+	<linux-sound@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+	<kernel@salutedevices.com>
+Subject: Re: [PATCH 01/25] clk: meson: a1: restrict an amount of 'hifi_pll'
+ params
+Message-ID: <20240319135311.xjpgkvgyczq4eymi@CAB-WSD-L081021>
+References: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
+ <20240314232201.2102178-2-jan.dakinevich@salutedevices.com>
+ <1j8r2jj24k.fsf@starbuckisacylon.baylibre.com>
+ <cbfd9c66-cca5-49f5-9468-43710c48518e@salutedevices.com>
+ <1jedc7hlg4.fsf@starbuckisacylon.baylibre.com>
+ <d4cfef9e-3cae-4f1a-90b3-33d5707596f9@salutedevices.com>
+ <1jsf0mfwwg.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath10k: add
- qcom,no-msa-ready-indicator prop
-Content-Language: en-US
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-To: wireless <linux-wireless@vger.kernel.org>,
- ath10k <ath10k@lists.infradead.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Jeffrey Hugo <quic_jhugo@quicinc.com>, Bjorn Andersson
- <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
- Kalle Valo <kvalo@kernel.org>, Jeff Johnson <quic_jjohnson@quicinc.com>,
- DT <devicetree@vger.kernel.org>, Pierre-Hugues Husson <phhusson@freebox.fr>,
- Jami Kettunen <jamipkettunen@gmail.com>
-References: <14daa98e-7fd3-4ebb-87bb-5d2c1fba679f@freebox.fr>
- <b8de96c7-cbb6-4a09-a4d4-2c11b3ab3e01@freebox.fr> <871q8wk7o3.fsf@kernel.org>
- <3392f356-7b19-483d-b9f8-3bd84068fa52@freebox.fr> <87wmqoilzf.fsf@kernel.org>
- <c58e67e6-6a7f-4963-86b9-580165bf05ba@freebox.fr> <87cyse8j9m.fsf@kernel.org>
- <6d4b1381-c121-4cda-a8c9-9ccac56bd447@freebox.fr> <87plw87nsc.fsf@kernel.org>
- <0816f7bb-3c97-4b90-8e19-191552ea6e26@freebox.fr> <87h6hk7aee.fsf@kernel.org>
- <fb0ffdd9-923a-4191-8304-583243ad528b@freebox.fr>
- <CAA8EJppHa=qEkKbSVs9hMCBXfhiC9MyAQO+v+6TCWhg==4CpOQ@mail.gmail.com>
- <f26dfcc6-5fd3-486d-b0f2-80168eb213c7@freebox.fr>
-In-Reply-To: <f26dfcc6-5fd3-486d-b0f2-80168eb213c7@freebox.fr>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <1jsf0mfwwg.fsf@starbuckisacylon.baylibre.com>
+User-Agent: NeoMutt/20220415
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 184265 [Mar 19 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 10 0.3.10 53c821b925e16276b831986eabc71d60ab82ee60, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, lore.kernel.org:7.1.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;salutedevices.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2024/03/19 13:26:00
+X-KSMG-LinksScanning: Clean, bases: 2024/03/19 13:26:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/03/19 01:36:00 #24282057
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-On 18/03/2024 17:56, Marc Gonzalez wrote:
-
-> Hmm, I don't see protection-domain-mapper running...
+On Tue, Mar 19, 2024 at 09:21:27AM +0100, Jerome Brunet wrote:
 > 
-> Feb 27 17:44:01 venus pd-mapper[308]: no pd maps available
-> Feb 27 17:44:01 venus pd-mapper[328]: no pd maps available
-> Feb 27 17:44:02 venus pd-mapper[345]: no pd maps available
-> Feb 27 17:44:02 venus pd-mapper[347]: no pd maps available
+> On Tue 19 Mar 2024 at 01:35, Jan Dakinevich <jan.dakinevich@salutedevices.com> wrote:
+> 
+> > On 3/18/24 13:17, Jerome Brunet wrote:
+> >> 
+> >> On Sun 17 Mar 2024 at 17:17, Jan Dakinevich <jan.dakinevich@salutedevices.com> wrote:
+> >> 
+> >>> On 3/15/24 11:58, Jerome Brunet wrote:
+> >>>>
+> >>>> On Fri 15 Mar 2024 at 02:21, Jan Dakinevich <jan.dakinevich@salutedevices.com> wrote:
+> >>>>
+> >>>>> Existing values were insufficient to produce accurate clock for audio
+> >>>>> devices. New values are safe and most suitable to produce 48000Hz sample
+> >>>>> rate.
+> >>>>
+> >>>> The hifi pll is not about 48k only. I see no reason to restrict the PLL
+> >>>> to a single setting.
+> >>>>> You've provided no justification why the PLL driver can't reach the same
+> >>>> setting for 48k. The setting below is just the crude part. the fine
+> >>>> tuning is done done with the frac parameter so I doubt this provides a
+> >>>> more accurate rate.
+> >>>>
+> >>>
+> >>> You are right, it is not about 48k only. However, there are two issues.
+> >>>
+> >>> First, indeed, I could just extend the range of multipliers to 1..255.
+> >> 
+> >> Why 1..255 ? This is not what I'm pointing out
+> >> 
+> >> According to the datasheet - the range is 32 - 64, as currently
+> >> set in the driver.
+> >> 
+> >
+> > Could you point where in the doc the range 32..64 is documented?
+> > Documentation that I have may be not so complete, but I don't see there
+> > any mention about it.
+> >
+> > Anyway, range 32..64 of multipliers is not enough to produce accurate
+> > clock, and a need 128 for 48kHz.
+> 
+> A1 datasheet v0.4 - Section 7.6.3.2
+> 
+> >
+> >> The change you have provided request a multipler of 128/5 = 25,6
+> >> If you put assigned-rate = 614400000 in DT, I see no reason can find the
+> >> same solution on its own.
+> >> 
+> >
+> > The reasoning is following. I don't know why 32..64 range was declared
+> > for this clock, and whether it would be safe to extend it and include
+> > 128, which is required for 48kHz. But I know, that multiplier=128 is
+> > safe and works fine (together divider=5).
+> 
+> You have not answer my remark.
+> Mainline does not do everything like the AML SDK does. Saying you are
+> copying it because you know it works (in your opinion) is not good
+> enough.
+> 
+> I'm telling you that your hack is not necessary and so far, you have not
+> demonstrated that it is.
+> 
+> Also the multiplier range in m/n, not m alone.
+> 
+> >
+> >>> But I am unsure if hifi_pll is able to handle whole range of
+> >>> mulptipliers. The value 128 is taken from Amlogic's branch, and I am
+> >>> pretty sure that it works.
+> >> 
+> >>>
+> >>> Second, unfortunately frac parameter currently doesn't work. When frac
+> >>> is used enabling of hifi_pll fails in meson_clk_pll_wait_lock(). I see
+> >>> it when try to use 44100Hz and multipliers' range is set to 1..255. So,
+> >>> support of other rates than 48k requires extra effort.
+> >> 
+> >> Then your change is even more problematic because it certainly does not
+> >> disable frac ... which you say is broken.
+> >> 
+> >> That parameter should be removed with a proper comment explaining why
+> >> you are disabling it. That type a limitation / known issue should be
+> >> mentionned in your change.
+> >> 
+> >
+> > Handling of frac should not be removed, it should be fixed to achieve
+> > another rates. But that is not the goal of this commit.
+> 
+> You argued that frac was broken and that was partly why you introduced
+> this work around. I'm telling you this approach is incorrect.
+> 
+> So either :
+> * Remove frac for now, until it is fixed, because it is broken and add
+>   comment clearly explaining that quirk.
+> * Or fix it now.
+> 
+> Your choice.
+> 
+> >
+> >
+> >>>
+> >>>>>
+> >>>>> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+> >>>>> ---
+> >>>>>  drivers/clk/meson/a1-pll.c | 8 ++++----
+> >>>>>  1 file changed, 4 insertions(+), 4 deletions(-)
+> >>>>>
+> >>>>> diff --git a/drivers/clk/meson/a1-pll.c b/drivers/clk/meson/a1-pll.c
+> >>>>> index 4325e8a6a3ef..00e06d03445b 100644
+> >>>>> --- a/drivers/clk/meson/a1-pll.c
+> >>>>> +++ b/drivers/clk/meson/a1-pll.c
+> >>>>> @@ -74,9 +74,9 @@ static struct clk_regmap fixed_pll = {
+> >>>>>  	},
+> >>>>>  };
+> >>>>>  
+> >>>>> -static const struct pll_mult_range hifi_pll_mult_range = {
+> >>>>> -	.min = 32,
+> >>>>> -	.max = 64,
+> >>>>> +static const struct pll_params_table hifi_pll_params_table[] = {
+> >>>>> +	PLL_PARAMS(128, 5),
+> >>>>> +	{ },
+> >>>>>  };
+> >>>>>  
+> >>>>>  static const struct reg_sequence hifi_init_regs[] = {
+> >>>>> @@ -124,7 +124,7 @@ static struct clk_regmap hifi_pll = {
+> >>>>>  			.shift   = 6,
+> >>>>>  			.width   = 1,
+> >>>>>  		},
+> >>>>> -		.range = &hifi_pll_mult_range,
+> >>>>> +		.table = hifi_pll_params_table,
+> >>>>>  		.init_regs = hifi_init_regs,
+> >>>>>  		.init_count = ARRAY_SIZE(hifi_init_regs),
+> >>>>>  	},
+> >>>>
+> >>>>
+> >> 
+> >> 
+> 
+> 
+> -- 
+> Jerome
 
-Doh! I had the firmware blobs properly embedded in the kernel,
-but the user-space tools needed them in the root filesystem.
+BTW, here Amlogic already mentioned all possible output audio rates for
+which hifipll can be used:
 
-With that latest change, the kernel issue disappears,
-and most of the user-space tools seem happy:
+https://lore.kernel.org/all/1569411888-98116-1-git-send-email-jian.hu@amlogic.com/T/#md7083b4f851ab97dfce43f8f6a3b266eb49ed329
 
-  systemd-journald[199]: Journal started
-  systemd-journald[199]: Runtime Journal (/run/log/journal/0f2e92c39e6f4f3fa6585b56f928c8ed) is 8.0M, max 73.3M, 65.3M free.
-  systemd-random-seed[206]: Kernel entropy pool is not initialized yet, waiting until it is.
-  systemd-journald[199]: Time spent on flushing to /var/log/journal/0f2e92c39e6f4f3fa6585b56f928c8ed is 12.074ms for 3 entries.
-  systemd-journald[199]: System Journal (/var/log/journal/0f2e92c39e6f4f3fa6585b56f928c8ed) is 8.0M, max 4.0G, 3.9G free.
-  systemd-udevd[227]: Using default interface naming scheme 'v255'.
-  cron[285]: (CRON) INFO (pidfile fd = 3)
-  cron[285]: (CRON) INFO (Running @reboot jobs)
-  qrtr-ns[288]: ERROR qrtr-ns: nameserver already running, going dormant: Address already in use
-  rmtfs[291]: [RMTFS storage] request for unknown partition '/boot/modem_fsg_oem_1', rejecting
-  rmtfs[291]: [RMTFS storage] request for unknown partition '/boot/modem_fsg_oem_2', rejecting
+```
+The audio working frequency are 44.1khz, 48khz and 192khz.
 
+614.4M can meet the three frequency.
 
-Corresponding kernel log:
+after the hifi pll, there are two dividers in Audio clock.
 
-[    0.321715] ath10k_snoc 18800000.wifi: Adding to iommu group 0
-[    0.323787] ath10k_snoc 18800000.wifi: snoc xo-cal-data return -22
-[    0.325443] ath10k_snoc 18800000.wifi: supply vdd-3.3-ch1 not found, using dummy regulator
-[    0.325767] ath10k_snoc 18800000.wifi: qmi msa.paddr: 0x0000000094400000 , msa.vaddr: 0x(____ptrval____)
-[    0.325999] ath10k_snoc 18800000.wifi: snoc probe
-...
-[    8.430099] cfg80211: Loading compiled-in X.509 certificates for regulatory database
-[    8.443287] Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
-[    8.446323] Loaded X.509 cert 'wens: 61c038651aabdcf94bd0ac7ff06c7248db18c600'
-[    8.451411] clk: Not disabling unused clocks
-[    8.454159] cfg80211: loaded regulatory.db is malformed or signature is missing/invalid
-[    8.468829] ALSA device list[    8.506030] VFS: Mounted root (nfs filesystem) on device 0:21.
-[    8.511551] Freeing unused kernel memory: 5632K
-[    9.122863] systemd[1]: System time before build time, advancing clock.
-[   12.009922] systemd-journald[204]: Collecting audit messages is disabled.
-[   12.193174] systemd-journald[204]: Received client request to flush runtime journal.
-[   12.803236] random: crng init done
-[   13.580077] atl1c 0000:01:00.0 enp1s0: renamed from eth0 (while UP)
-[   15.255763] remoteproc remoteproc0: powering up 4080000.remoteproc
-[   15.263925] remoteproc remoteproc0: Booting fw image mba.mbn, size 234152
-[   15.277228] ath10k_snoc 18800000.wifi: received modem starting event
-[   15.370471] qcom-q6v5-mss 4080000.remoteproc: MBA booted without debug policy, loading mpss
-[   16.020964] ath10k_snoc 18800000.wifi: received modem running event
-[   16.029559] remoteproc remoteproc0: remote processor 4080000.remoteproc is now up
-[   18.649633] ath10k_snoc 18800000.wifi: wifi fw qmi service found
-[   18.649870] ath10k_snoc 18800000.wifi: qmi wifi fw qmi service connected
-[   18.658200] ath10k_snoc 18800000.wifi: qmi indication register request completed
-[   18.666483] ath10k_snoc 18800000.wifi: qmi host capability request completed
-[   18.674486] ath10k_snoc 18800000.wifi: qmi msa mem region 0 addr 0x0x0000000094400000 size 0x4000 flag 0x00000001
-[   18.676164] ath10k_snoc 18800000.wifi: qmi msa mem region 1 addr 0x0x0000000094404000 size 0xfc000 flag 0x00000000
-[   18.686350] ath10k_snoc 18800000.wifi: qmi msa mem info request completed
-[   18.738546] ath10k_snoc 18800000.wifi: qmi msa mem ready request completed
-[   18.791705] ath10k_snoc 18800000.wifi: qmi chip_id 0x30214 chip_family 0x4001 board_id 0xff soc_id 0x40010002
-[   18.792014] ath10k_snoc 18800000.wifi: qmi fw_version 0x100204b2 fw_build_timestamp 2019-09-04 03:01 fw_build_id QC_IMAGE_VERSION_STRING=WLAN.HL.1.0-01202-QCAHLSWMTPLZ-1.221523.2
+614.4M/3200 = 192khz
 
+614.4M/12800 = 48khz
 
-Yet, I still don't have a wlan network interface.
+614,4M/13932 = 44.0999khz
+```
 
-# ip link
-1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-2: enp1s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
-    link/ether 34:27:92:82:48:ec brd ff:ff:ff:ff:ff:ff
-
-
-I'm kinda stumped at this point... :(
-
-Regards
-
-
+-- 
+Thank you,
+Dmitry
 
