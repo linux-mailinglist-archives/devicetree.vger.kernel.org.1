@@ -1,184 +1,266 @@
-Return-Path: <devicetree+bounces-51664-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51665-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD2E987FFF5
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 15:54:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9F91880045
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 16:10:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 706BD281B3B
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 14:54:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 331B91F2335C
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 15:10:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15B1C56776;
-	Tue, 19 Mar 2024 14:54:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A288F651AF;
+	Tue, 19 Mar 2024 15:10:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="CokfzMWl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Oolw6rGY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2113.outbound.protection.outlook.com [40.107.93.113])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7921E1F608;
-	Tue, 19 Mar 2024 14:54:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.93.113
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710860069; cv=fail; b=c/oopKlCWePhZnlsWgevdN+Lu//5CP6VnywxKuemARMZSL2bZAipKLYyYQZ0tR0QkZM1rOpiBj0BNe0g6FyKNAI9x6C+L+Ze4Kod/J0lACTgkGgdYnYa/3fQPtMSHdj980gru+6yuV7zyFRIBaL8KlU/BUf6NrNSqCebLpdju/Q=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710860069; c=relaxed/simple;
-	bh=LEGHRBc1x31SCTNslE3f5c8b10M6h7Gwl/vlYLf1qIQ=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=CRjJna/DLanoFH+UZTMQhFcQ/LuWMpWOzEnztKkcfWCFd+S7W9hJ8h9ZxPgdDYV3zYcFFQnM22FJkDIcHpksqIuidge6zgCjpWM5oup4M0CxPAJ1cwYF+H7iMB78gI7jWIz6B+Qyt1jURc9ZM/G0Z6LtKapMBwSOHqxhNScbyNo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=CokfzMWl; arc=fail smtp.client-ip=40.107.93.113
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hmSTEZFAfREPUlRDwz+7d2ym9komCFOqZ1QvGN7U1tnZs/IB6wo2J8yBiE11/hbZTs+F5ulKy+LL08C/5HRG8CamBKoutdzNSOb37eufPYh22y8CcVtXTeHJoKiv2bWN5zmAQeD8czRfoaoaUMiAhIBLG0e3aMGP51tDQQhzLAZsUSEpVmfeuO95TWW38McoDmGIUuTF250pT6FtRzX1jLko5tUo4jw4gveqCqGPxUcKiyrykbgiNFsMGK5Pwi5iGPDDVaxLSfBUK8eTZxh6LHXVLvPWbtzY8ss255CY1WMbMgZ4zWlxucKncwo5/O1K3X6QV1ry8yvTLVtfQWyU6A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2nisB9bKJWVy0DVODthEHHAP4pym85K41o+lvCFCOto=;
- b=QirY4RU5uOhoQW5Eg9ZBPmbHuzjZOFx/J5jFXsoWsaPQAzytJc3sf8dGoB6HD2Ux3CD3XvKQGQiFQ2kPo0NaLLwvY9ZXdDFVGE10+hquv8x9gGOo9u55Qw8tPk8ze1lR3nnSdefMOQhmsyDAEVsvYhQCB0I+/VCgw5tk2Znri6Nm6HRpT5UZ+WgBgbtN1JhstekGWVupf+iGpUMmA3jxR/eGx5c5+QgBrFfZ7cnMkZUHHsA8df0PSl2nIztzlyhnyUzSwiW3qBeqBdL1HtcBVYJXm1IG6GItoHd4+BI7vsA6GRvN7Wd9MgqI0bYY+6dYPPQqlyAzek7F04MXob52XQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2nisB9bKJWVy0DVODthEHHAP4pym85K41o+lvCFCOto=;
- b=CokfzMWlWkIoUvXWbVH5OeFIcts33Y5s2QDGuq6/GNGc8BGSkgM2IMVRFwgSbikHCqT9gxB7P8ruoysH1OMf5AvKuOJ5Cv2mAYpDlWdGQpsCEBFysMmY/V5TFC+r5vaEpDGXpOXwXnfPvUv9ToCSypoQZBVc2RZIm2UvwpJIz/4=
-Received: from BL1PR12MB5874.namprd12.prod.outlook.com (2603:10b6:208:396::17)
- by SA1PR12MB7365.namprd12.prod.outlook.com (2603:10b6:806:2ba::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.26; Tue, 19 Mar
- 2024 14:54:24 +0000
-Received: from BL1PR12MB5874.namprd12.prod.outlook.com
- ([fe80::8b3e:57e8:d574:309a]) by BL1PR12MB5874.namprd12.prod.outlook.com
- ([fe80::8b3e:57e8:d574:309a%4]) with mapi id 15.20.7386.025; Tue, 19 Mar 2024
- 14:54:24 +0000
-Message-ID: <927c02e6-70cc-4af1-8e46-c4816583a3e7@amd.com>
-Date: Tue, 19 Mar 2024 09:54:21 -0500
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH v13 2/4] dt-bindings: remoteproc: add Tightly Coupled
- Memory (TCM) bindings
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- andersson@kernel.org, mathieu.poirier@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- michal.simek@amd.com, ben.levinsky@amd.com
-Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-References: <20240311175926.1625180-1-tanmay.shah@amd.com>
- <20240311175926.1625180-3-tanmay.shah@amd.com>
- <84923a4e-6c8e-45b7-b7a8-1a4deeb72347@linaro.org>
-Content-Language: en-US
-From: Tanmay Shah <tanmay.shah@amd.com>
-In-Reply-To: <84923a4e-6c8e-45b7-b7a8-1a4deeb72347@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SN4PR0501CA0061.namprd05.prod.outlook.com
- (2603:10b6:803:41::38) To BL1PR12MB5874.namprd12.prod.outlook.com
- (2603:10b6:208:396::17)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B60DF6519D
+	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 15:10:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710861023; cv=none; b=nPFSlxYqfi844fkYNajSw/4zMwn9P10MG3EPFJqmnoQW7W53bS1PwPINmH8nVDtWfSxxOnKRKDq7lv1MS4S+GP7Z5w32xnAXylZ6WlmZXs5sc3CuHmb9ffTWxROj/yIIaJeKdy25bUi7e144rLzauVhyFU0tQuGH4m0jvE9Df4o=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710861023; c=relaxed/simple;
+	bh=GLE7RjZ8yGnxItU0Sie22/RERMRW/HIE8vexq37+vlU=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=YOY0OaGOeQc30bLrU9TIIhRgFzAbdE5ReVs79H5zR09q7z7bO/W9jRqwYU0v6Jw/6NiCZ8LskgPCGQBMWXEI+GttLzqhb6PLHKKtVSvzodhAxzfVKngE6AWVtVmB7RGkocd0fmMrbkcivqgfYzcSeR6Xw/FvLdez2X/bRBVzIs8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Oolw6rGY; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-34100f4f9a2so1667677f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 08:10:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1710861020; x=1711465820; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Lv9VN9GVBcDOc4A+Q1Q1vvWgwwJ35DrouW0B+LBA6Oc=;
+        b=Oolw6rGYAiag59njDmiCeeKwLjjyBQQfNYxcKWS9mgAS2WKoVFFQp2UE7Jd/R1f82p
+         bpAP1KbkffRwZUSF2wOTGMnK2TgJ+d+K71mYSlxeMzJ3x/y6IwvD3qLl4SehV9jpj/yG
+         mNpz7jLDiAKX73fGo6uecpJD9x6lTvTs4E8NFD/Z8XwvMVkDx4sskB+gslSJrSkoPVmd
+         hpHrJZ0NW8vpW0njWACYYEP3HhilFj7htqqhRDpsmamUOxuATZ7rw3NnVDNbxZu+1cQH
+         bp7CXQEQ4irEbXd9DoaFH660f2HA5UeEpf8OvbxYTIeS0hBFyjIbuIsflvVmtQokXCsp
+         aRWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710861020; x=1711465820;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Lv9VN9GVBcDOc4A+Q1Q1vvWgwwJ35DrouW0B+LBA6Oc=;
+        b=qBddfa14N6AR/6daj3F6EiCyUWHrVMm6Ft0zjiZ4ns0EQy5LvlqtKFytkdSsaZETuO
+         XICvqlYs3moz/4cMRiAQXqlG2ZD32E11yHxwet8BULmUksgoOHDW34QXL46t31W4h2mQ
+         psCNvZhGTYkmmmuLHCJYqWABum1eIJvdQm1NS6cHW6RbiO12BkS+TQCakAoRJ67XESlH
+         nuTzCpLH+rsSv3kX+1b6Gyjzel7Gnefa3JERNiaK7ZSa7cPHxcMAQqTn4YbVqUjGw/te
+         eJdtFIN6nrT30ET5RiokltRGXi2e2eyLZF/XcXeKS9GngWj6H1mf32/nYC6pPV8W/len
+         aB/A==
+X-Forwarded-Encrypted: i=1; AJvYcCXrojH9juA7puJPbwr3gYkV6z8QxL0R6F/eH8XbzgHQ7+lzaC87QpxO30CtGHCcx0dxuTRKyxsmz6NUfmlJVraQYbHR3XtR0WV0iQ==
+X-Gm-Message-State: AOJu0YzKKtoWFxXoMpqDNXmYT5H0446XKM1NY5gP6wkLcPXKWC7C81A+
+	DKicDRvpKpZlS6liXZ3CTTHC89KRiNqBGXHCnp5Km1kjpu9vBnd8zkxwmFg4VbURIiqOgeSFdPp
+	3GAQ=
+X-Google-Smtp-Source: AGHT+IFFAApS5bQKIFb+wgCIKBX+aQfkMy1p3i+4wPO/V4l0krVq+icF57gDaGptc0jSembLd72NeA==
+X-Received: by 2002:adf:fa87:0:b0:33e:7946:4cd2 with SMTP id h7-20020adffa87000000b0033e79464cd2mr10053794wrr.10.1710861019858;
+        Tue, 19 Mar 2024 08:10:19 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:2fcf:6f16:3b3b:da8e? ([2a01:e0a:982:cbb0:2fcf:6f16:3b3b:da8e])
+        by smtp.gmail.com with ESMTPSA id q2-20020a05600000c200b0033dedd63382sm12491818wrx.101.2024.03.19.08.10.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Mar 2024 08:10:19 -0700 (PDT)
+Message-ID: <1b6bc933-d749-4852-a292-5b3b7bedc44e@linaro.org>
+Date: Tue, 19 Mar 2024 16:10:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5874:EE_|SA1PR12MB7365:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	7tlKVuoTyHIkF9wj5vSoebcxjwJ0kI5urX2k3xdpwMJ2mRhwxMJRKNB/RQUignwnGog4PuIyhPisqKNkK8BUm/SV7ZY8Tv+/4g1L7eq5SZ3W6sNRd74ySSgBnS+3XRihc0w5aJUtCDq7VLUDkvECOZQdqiqhvWcNAyFqQgMoP7wz2U02yL7LIU17wyfjDqSbMZH5UXmG/YmNKrETZ/tbfTvCAkpes7xbswja/kyij5wgsarDeG3u9/zGetpBntX6Ou+uunWNhsFVvB4dUruhtaEzPa1aiG29B6ZC5Mvp/WToa9vfGWT/A6cqPDoSOunjr37sLcdUkn81qP8+kdjfscBj2Gfqc6HyvKEkZpiCzaS5LQS5NKDCEb8weS/b2L6RkjZ9F1cydvvcc8s2nJ0kgGI4LUVWwWQURKhw0HYuEawHoqtTH55ZGanMbj9zttXvrMJ7/8iz2uar2XuGg02OCWl1gi+faKz4cM2/KZ7NZlWkpgcSS3pTCLA3wo/TzDro6WIpnlZpyyL47qwCxLC6QaX0KHoz/Nf7F4NCrbsmLyHSnI24BkQ8hFULuQ5zFR0DYQ6ntXNoHW2HzKpKSCl9Grk6zYhftsMetJDsUK/m3CTmXfAzW40XbrBWfHHu769bLHpxNxeyFTlPMIZjDB84Ew==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL1PR12MB5874.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(376005)(1800799015)(7416005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?YkVaUjFLd0hVRkorb3lWZWYzK0xqUDdaM2MxVzVGczdselpBUFNRVnNISFJQ?=
- =?utf-8?B?TnFkSXozT0JxRVZIait2dTJBeUdLQWNtV1lkSjVMOWFtM3FOK2hoMStweE1F?=
- =?utf-8?B?cVVCaUVVa3Z0U1kyVmpQcXRjWEY1RWIvM1FaUUlBc1ZyL3Y4YU5oVGVRelJQ?=
- =?utf-8?B?dE5YR0tFRWJNQmxsSmliNUh4NEFndnhDblpVR1cwMklQM0hTNXRJUTdNVytT?=
- =?utf-8?B?cFQxWlJSTDkxcEI0QTRXYUVOYVNQOUJ5RDNaUWVGMjJqbkNHUmlQbWR1Y1k0?=
- =?utf-8?B?dG16cGdQM0ZwdDhVYnc3Q283K3VMRjUwc0RMbStNcmxWMDNKOUltb2hLNEx3?=
- =?utf-8?B?S2FNZmRyWFlzQ0NiOTJZenR5VVpxUFpiZEdYSUErQk5GTTZ2ek1jaFh0RkY0?=
- =?utf-8?B?aFlYcHZRMTJ2T2I3dDI0MTRPVnlJMHAzM2FhcldLaVc5L29qWlhWNkNIaUZ5?=
- =?utf-8?B?RlVPSFRhcWZVY1ZOc2ZBUVRzQjU2RGJmMmVkM09QSWRoU2dvVk9HYjZNb0tB?=
- =?utf-8?B?cFlPTHBTM2pob0plc2dzb1QyNHhPUHZidlFyMEFWN2pBWlgwUm03OTZuOWZw?=
- =?utf-8?B?QkNwUDVyUFR4dUNMRWl4OUs5RW96Vkcxa3ZVOUNIR250NjN1SlM1WWhSZ1Vw?=
- =?utf-8?B?bWZuNEVYSzFrZHdWeWZEM1ZORWd5SUtzSlMwc00waERBVUFkak1uY1VLcC9Y?=
- =?utf-8?B?cCtpTGkvcG04TlVmc0NOQnF1V1ZjaGloV1dGeVBjamsvYk1uRzRxRjZXY2hR?=
- =?utf-8?B?ak9zTm96Tk5rU2U1MGQ1RFlmWHVnTXk4bnQ0aGs2SGJveGVKbW93dDVsNUw5?=
- =?utf-8?B?UTNUbURRcm0xOEkybmdob2lzdVY0UkpzN0pkSFE5Y1d2WHZtMHJ3a281RVFs?=
- =?utf-8?B?K01iQjFvUlRzK01pWVJRSVd2eWRqbTlnWXdjS0liWjB3NHdHTXVqWFlhRHYy?=
- =?utf-8?B?Zll1RWM5WmxKbzZ3N2FFdEtuZUFKRmYvclVwK0pTaGFiVjlNQWFrelE1U1hM?=
- =?utf-8?B?bHIxOG5haDh4NzB0RThaSzB3N01JVXM4dmJNejkwanpRVDIyWGhHSnFYVFdO?=
- =?utf-8?B?MUY5ZndRemVpdFRVbFl3dnhEUno0Ym1OWWprS3RrSnBBblNHazJCcXhGUi9t?=
- =?utf-8?B?QUhHTXdPL0lXMHFmbTdhL1poTTFTaE9OeDBteXpZb1dQRjVnMC9PNGM1anVh?=
- =?utf-8?B?cjllZXFHRzZnazNySG9WWXc0cjk4TmNMZjZlckdNUHJmWVJhREtsaWg5VXFQ?=
- =?utf-8?B?bVAvc2pySTBySDlQWVozTHkra1lHekdaeXliV2lUcEp0eXV5dklMQmNUYUV4?=
- =?utf-8?B?Nm8zWUFEd2lRazZZS3hsR05yVzNnR0tKdmlXUHRsWDI1dmtleVY3N0ZNZHpx?=
- =?utf-8?B?RTJFVzduK1NpL1Ezd1Y3UWlSc0w1Z1hOVUZGUGluRCtheExkUE5FWFlZMWZD?=
- =?utf-8?B?aFFuNXFCdUJpVGZVUVdVMFNkajIvZlBkOVppaitnR3pGb3BNNlhRbUFpdFFE?=
- =?utf-8?B?V3ZQaTRNYk1zbE5zcFFVSUJWOHhOck1aOVp4NUg3OTNCYzZDQkJrbFppTGNS?=
- =?utf-8?B?Q3hnaHdKUlZOcFoyZDdQRUFUdnRnQjRESFI2NVlrQkQrTkRTbVVSVlU1dnFP?=
- =?utf-8?B?ZzJsSS8wVU1RaGlmcGJlcGR5TmZqTWY0NnVodVBFd0JkVXZ3cldnQlFkb0w0?=
- =?utf-8?B?SC9tZDUwV0dWcS9JODNxM2hUVEkyOW9DOTU4U01lb2VpVjlPUHVDNHcyTzAz?=
- =?utf-8?B?NUwrWTBHMS83SkFqVEFKMjhSa1R5a2dETDlJNGVpendQVG1kZXFLMDN5RnNS?=
- =?utf-8?B?SjlSSVd2RTJMNC9SVVM1eUtEOWxRdGJtNy9ibU9oK3c4dXRHSzhQMFVkVFo5?=
- =?utf-8?B?SEdYYUY0T3paYUt6Nmg0VDBmbHZVTHZHdVhyM2RGS0YwOWdOWktJSEV3MFh6?=
- =?utf-8?B?bCtnTEtwNVN6SE9DYTFXUHFRVlpqRFN3YjZjbzFXKzQvSHhkdkJpT1p0TExa?=
- =?utf-8?B?ZHhXV1hzUnhPeVljR3NCSkdBUFQwOTF4bDF3dUJxZVYwMFlON1UvcjlQQUxu?=
- =?utf-8?B?VXZab25UNGRPejZlT092QWtKa2U3UE1WWWNCRGc3S1FXejFpajNUMlJ0RHhO?=
- =?utf-8?Q?Un7Fiyd2hIDm1pYg1bhPQx4Lo?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5031c4ef-22ce-48b0-4a9f-08dc482477cb
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5874.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2024 14:54:24.6884
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: yUV0QoYmr+bJXvlAQe79MlEvGmnD+kBnyjfpYzFvtS63vU0eGqIex7rLBP36Uork
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7365
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 3/7] phy: qcom: qmp-pcie: register second optional PHY AUX
+ clock
+Content-Language: en-US, fr
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240319-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v1-0-926d7a4ccd80@linaro.org>
+ <20240319-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v1-3-926d7a4ccd80@linaro.org>
+ <CAA8EJpoJ0rUd8aY6xpXyL3Obg66XtOebso_AUUxKmg1CWNykJA@mail.gmail.com>
+ <85d67f3f-2b01-44c0-ace3-5e7cb48a9431@linaro.org>
+ <090e306c-0bfc-4374-83ed-e883d73a0f0a@linaro.org>
+ <CAA8EJpovp1S9MYb3ByeoR7WmjPgUmqicqs_fQo_OoL5_NTNPJw@mail.gmail.com>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <CAA8EJpovp1S9MYb3ByeoR7WmjPgUmqicqs_fQo_OoL5_NTNPJw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 19/03/2024 15:46, Dmitry Baryshkov wrote:
+> On Tue, 19 Mar 2024 at 16:35, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+>>
+>> On 19/03/2024 11:59, Neil Armstrong wrote:
+>>> On 19/03/2024 11:55, Dmitry Baryshkov wrote:
+>>>> On Tue, 19 Mar 2024 at 12:45, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+>>>>>
+>>>>> The PCIe Gen4x2 PHY found in the SM8[456]50 SoCs have a second clock,
+>>>>> add the code to register it for PHYs configs that sets a aux_clock_rate.
+>>>>>
+>>>>> In order to get the right clock, add qmp_pcie_clk_hw_get() which uses
+>>>>> the newly introduced QMP_PCIE_PIPE_CLK & QMP_PCIE_PHY_AUX_CLK clock
+>>>>> IDs and also supports the legacy bindings by returning the PIPE clock.
+>>>>>
+>>>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>>>> ---
+>>>>>    drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 70 ++++++++++++++++++++++++++++++++
+>>>>>    1 file changed, 70 insertions(+)
+>>>>>
+>>>>> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+>>>>> index 079b3e306489..2d05226ae200 100644
+>>>>> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+>>>>> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+>>>>> @@ -22,6 +22,8 @@
+>>>>>    #include <linux/reset.h>
+>>>>>    #include <linux/slab.h>
+>>>>>
+>>>>> +#include <dt-bindings/phy/phy-qcom-qmp.h>
+>>>>> +
+>>>>>    #include "phy-qcom-qmp-common.h"
+>>>>>
+>>>>>    #include "phy-qcom-qmp.h"
+>>>>> @@ -2389,6 +2391,9 @@ struct qmp_phy_cfg {
+>>>>>
+>>>>>           /* QMP PHY pipe clock interface rate */
+>>>>>           unsigned long pipe_clock_rate;
+>>>>> +
+>>>>> +       /* QMP PHY AUX clock interface rate */
+>>>>> +       unsigned long aux_clock_rate;
+>>>>>    };
+>>>>>
+>>>>>    struct qmp_pcie {
+>>>>> @@ -2420,6 +2425,7 @@ struct qmp_pcie {
+>>>>>           int mode;
+>>>>>
+>>>>>           struct clk_fixed_rate pipe_clk_fixed;
+>>>>> +       struct clk_fixed_rate aux_clk_fixed;
+>>>>>    };
+>>>>>
+>>>>>    static inline void qphy_setbits(void __iomem *base, u32 offset, u32 val)
+>>>>> @@ -3681,6 +3687,62 @@ static int phy_pipe_clk_register(struct qmp_pcie *qmp, struct device_node *np)
+>>>>>           return devm_clk_hw_register(qmp->dev, &fixed->hw);
+>>>>>    }
+>>>>>
+>>>>> +/*
+>>>>> + * Register a fixed rate PHY aux clock.
+>>>>> + *
+>>>>> + * The <s>_phy_aux_clksrc generated by PHY goes to the GCC that gate
+>>>>> + * controls it. The <s>_phy_aux_clk coming out of the GCC is requested
+>>>>> + * by the PHY driver for its operations.
+>>>>> + * We register the <s>_phy_aux_clksrc here. The gcc driver takes care
+>>>>> + * of assigning this <s>_phy_aux_clksrc as parent to <s>_phy_aux_clk.
+>>>>> + * Below picture shows this relationship.
+>>>>> + *
+>>>>> + *         +---------------+
+>>>>> + *         |   PHY block   |<<---------------------------------------------+
+>>>>> + *         |               |                                               |
+>>>>> + *         |   +-------+   |                      +-----+                  |
+>>>>> + *   I/P---^-->|  PLL  |---^--->phy_aux_clksrc--->| GCC |--->phy_aux_clk---+
+>>>>> + *    clk  |   +-------+   |                      +-----+
+>>>>> + *         +---------------+
+>>>>> + */
+>>>>> +static int phy_aux_clk_register(struct qmp_pcie *qmp, struct device_node *np)
+>>>>> +{
+>>>>> +       struct clk_fixed_rate *fixed = &qmp->aux_clk_fixed;
+>>>>> +       struct clk_init_data init = { };
+>>>>> +       int ret;
+>>>>> +
+>>>>> +       ret = of_property_read_string_index(np, "clock-output-names", 1, &init.name);
+>>>>> +       if (ret) {
+>>>>> +               dev_err(qmp->dev, "%pOFn: No clock-output-names index 1\n", np);
+>>>>> +               return ret;
+>>>>> +       }
+>>>>> +
+>>>>> +       init.ops = &clk_fixed_rate_ops;
+>>>>> +
+>>>>> +       fixed->fixed_rate = qmp->cfg->aux_clock_rate;
+>>>>> +       fixed->hw.init = &init;
+>>>>> +
+>>>>> +       return devm_clk_hw_register(qmp->dev, &fixed->hw);
+>>>>> +}
+>>>>> +
+>>>>> +static struct clk_hw *qmp_pcie_clk_hw_get(struct of_phandle_args *clkspec, void *data)
+>>>>> +{
+>>>>> +       struct qmp_pcie *qmp = data;
+>>>>> +
+>>>>> +       /* Support legacy bindings */
+>>>>> +       if (!clkspec->args_count)
+>>>>> +               return &qmp->pipe_clk_fixed.hw;
+>>>>> +
+>>>>> +       switch (clkspec->args[0]) {
+>>>>> +       case QMP_PCIE_PIPE_CLK:
+>>>>> +               return &qmp->pipe_clk_fixed.hw;
+>>>>> +       case QMP_PCIE_PHY_AUX_CLK:
+>>>>> +               return &qmp->aux_clk_fixed.hw;
+>>>>> +       }
+>>>>> +
+>>>>> +       return ERR_PTR(-EINVAL);
+>>>>> +}
+>>>>
+>>>> Can we use of_clk_hw_onecell_get() instead? I think it even should be
+>>>> possible to use onecell for both cases, it will look at the first arg,
+>>>> which will be 0 in case of #clock-cells equal to 0.
 
+I didn't find evidence this is the case, while following of_parse_clkspec() called
+from of_clk_get_hw() or clk_core_get(), where clkspec is not initialized, the
+__of_parse_phandle_with_args() and of_phandle_iterator_args() don't touch
+clkspec->args if it->cur_count is 0. So clkspec->args[0] may be left initialized
+and it would be abusingthe API to use it with #clocks-cells = 0.
 
-On 3/19/24 12:29 AM, Krzysztof Kozlowski wrote:
-> On 11/03/2024 18:59, Tanmay Shah wrote:
->> From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
->> 
->> Introduce bindings for TCM memory address space on AMD-xilinx Zynq
->> UltraScale+ platform. It will help in defining TCM in device-tree
->> and make it's access platform agnostic and data-driven.
->> 
->> Tightly-coupled memories(TCMs) are low-latency memory that provides
->> predictable instruction execution and predictable data load/store
->> timing. Each Cortex-R5F processor contains two 64-bit wide 64 KB memory
->> banks on the ATCM and BTCM ports, for a total of 128 KB of memory.
->> 
->> The TCM resources(reg, reg-names and power-domain) are documented for
->> each TCM in the R5 node. The reg and reg-names are made as required
->> properties as we don't want to hardcode TCM addresses for future
->> platforms and for zu+ legacy implementation will ensure that the
->> old dts w/o reg/reg-names works and stable ABI is maintained.
->> 
->> It also extends the examples for TCM split and lockstep modes.
->> 
->> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
->> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
->> ---
+>>>
+>>> Let me investigate if it's possible
+>>
+>> Ok, it would work but it would require building a clk_hw_onecell_data a runtime,
+>> while we could simply provide this qmp_pcie_clk_hw_get() and avoid runtime 2 allocations.
+>>
+>> I'm not sure it's worth it.
 > 
-> I responded under my reviewed-tag, but to be clear, also here:
+> Single allocation (or even 0 allocations if you embed it into struct
+> qmp_pcie) for the sake of using standard helpers.
 > 
-> This patch has is not ready. Please do not merge.
-> 
+Well, sure
 
-Glad we could catch this before merging this.
-I will wait for your reply on other thread for refactoring.
-
-> Best regards,
-> Krzysztof
-> 
+Thanks,
+Neil
 
 
