@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-51478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F73687F728
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 07:17:37 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CCF187F72D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 07:20:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76B4F282D35
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 06:17:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C3224B20BC2
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 06:20:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C89D5B1E3;
-	Tue, 19 Mar 2024 06:17:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 730574EB5D;
+	Tue, 19 Mar 2024 06:19:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kvDWi8gZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xR+k4fkV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BA054C3D0
-	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 06:17:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAF9F4597E
+	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 06:19:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710829051; cv=none; b=lOtEVZwCKrePQTZf6HdTBRHQ9ZUpzA/y3W5J1txKvAIXJS7HJ6UJi3kKKG7wYPXPNVUsrjynpXR+SwPu9/4QaO1rfVEF+Tc+FgKONsvBZ3gqyz6u+eJ4kwIDah/+EaD7TNzIAwA59xOzPz475EFK6gV01kBfXvFqSIcHAzYn5pY=
+	t=1710829197; cv=none; b=r0EbJNdXSD2L3KNKVZGpgemh5itJ4in1gOoBDkoRio279W/sYVtpirTnKwqmCxyU7mRp2gcVQ2eG/C8FcVN7Y5N+wNCZ/21/t7y4hoQttyq+/D94QjZZw+RYRY8wtu2X9mPyXnRjKd11ymHtUFFQ2QxtAv4C+lWC+1JCvBPIRLA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710829051; c=relaxed/simple;
-	bh=KO+9X+7GA92l0o4OIANnyMdbMpIzrM4SjZ4iWAIFwh8=;
+	s=arc-20240116; t=1710829197; c=relaxed/simple;
+	bh=0yijNPe3mwQ64TCF1fbO0XvklpCD7EaEMGjgQsc4qe4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=O2UoP/xSRLDbrDyhfKev1wj9bfaU4Mu7EP1R1riK5o6kTtBYBacpML/ob/8bzMj0FcVdjyTF4+wTNqIMwmK8iAfI/ZFAZHC5w2g9jVC0Ir0+pYpagf6ikGgzob62R2p+rfT48fxG5QRWDe/Yesd+EIKeIHGyV/Zy4iHVoNvmlKc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kvDWi8gZ; arc=none smtp.client-ip=209.85.218.42
+	 In-Reply-To:Content-Type; b=krhHCqAJgYflLWVMyUVqno58VlKiuIid/U2PTwX3+WLOxzjWt4ARj00/bDy5i9/Ij5VZQWMheRySDSq4ARe1LspcWc7wqmJEEOYCldANz27Gcb5Byigj38uVgwNIOvnGWbO+ykdGHGDlwaRznaUvaJPYxUtgJ2a5nXSwa5V8dno=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xR+k4fkV; arc=none smtp.client-ip=209.85.208.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a466e53f8c0so667259266b.1
-        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 23:17:28 -0700 (PDT)
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-563cb3ba9daso5792373a12.3
+        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 23:19:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710829047; x=1711433847; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1710829194; x=1711433994; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=WwhAhaz46GhWTh8+CFLOrSdr5p/C0jE1Rlpb+oSoXR0=;
-        b=kvDWi8gZyqP+CMQK9TV5N0xi1q4sMu09gzIzaaj5jarNVRuzJO+qqPEPCjhnMocKAZ
-         sAu99yUDcuBx3t/j8J4Wut4jwy+T6EBD91MRmIqonGQ+36XeINxX5osEVYEhtr314AAG
-         VtUyRb+SJWv3NWqfDU7AyPVVAzGnEeqUie4fIVuapUyjZQPunz+AwNww/L2OBH3+9HIC
-         jobSMnzGUkJGbZoqeYFPCFhQwkaiqVgZgeqzVgUE8dmFtRJC2CucvLuOpLwElP8smGYH
-         eNT/oHYjcxYC5mMItGv2T8KU4G5zXY7acT26vY9vmi8qhDczjLfphg5B5z/qa0XYmr7J
-         Q5Ww==
+        bh=gkIlYDaJW+9WUMdSaa/ilef43El2pd6walcVrx1mtTU=;
+        b=xR+k4fkVVQCvhzxfFyV7IfBtvMvpQCaC36F9XbNjtYE29dK+8OWLLhgzEEHHGNDw24
+         Zwp7Wec4+90FuG0mQzDtethcWrLK4qxOBnBzlZWsiCJgXaWKJer3/iecyx4xQyEkpTm6
+         JxYrr8l2P3VHra/TFjvammRixgVz2ZzHSDLWSXUukz67Ky1IqXlebcm7nkPJA/o/psFM
+         0w0aaqMGN4iS2BCo4NvWwcEkCOehKysBAbb/vX1KhnRmUIeTksC/+3JwmNqI30+2/gAF
+         DAEIgHRl84Fa4ZZDxTf12yDkcCvQZzYZu3KIDFF657cSruy59ck3R2Zaiej3wcS3yLEl
+         VjIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710829047; x=1711433847;
+        d=1e100.net; s=20230601; t=1710829194; x=1711433994;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WwhAhaz46GhWTh8+CFLOrSdr5p/C0jE1Rlpb+oSoXR0=;
-        b=uW+eGoDN/fRIxJYWFtXxNy2YouhOAAG0f6idONp/KN6pL6EAUYLnSgkqUb027uWaNq
-         I168JzTfu3WFTbDfI/cuf2FsdQBmvGaBx7mhlRa9pHc7+OYRi54gmoTUQ/PQc/mRzLkW
-         kH/akBbN/Z4me6+EIIPCOSqr4ogsZ8Zopw17mmKS8whf48Ah00y/Z7S0hXkdVxYAW8LW
-         vA/caQemHUALkx56a6EzoYav6D5C7p2wCfM7dmXXn/gJosVrCUcRLQC5jrrqH8LAIF9T
-         Tncl4iJd4YY1g2Xvk+EJEikK7V1CZH2sruhleWeWgpBRBoMEbvXP6XcqmRf4NRAxAqUl
-         +77A==
-X-Forwarded-Encrypted: i=1; AJvYcCUTnNUGcVgaTk5DUsuotQovThiKMBLNRtYTRi13ZI+zyc7KH2/4OE0g0A/AYQAi3bpfVsrjlw3PCD2nB8/k1QrtHcNNU6StaNKMiw==
-X-Gm-Message-State: AOJu0Ywhq3Egf7JwAqp4ms6JTTL5heokPHh+tAi/+inoe3v6yGifFZuw
-	36sRG0vFkO4GW1IzpajRcvodTqDiSidHECY6kzMF+aTLv3g+G7Xsx/Lzp67+y8E=
-X-Google-Smtp-Source: AGHT+IH+XSrWLaP6cKqrzqFn0m8tPEQXDgHsrzxAqJ1OHzU6KodiMqML+UVG5mtayCF0OXeOo23nYA==
-X-Received: by 2002:a17:906:4e8f:b0:a46:2ac1:c3f4 with SMTP id v15-20020a1709064e8f00b00a462ac1c3f4mr1024118eju.75.1710829047579;
-        Mon, 18 Mar 2024 23:17:27 -0700 (PDT)
+        bh=gkIlYDaJW+9WUMdSaa/ilef43El2pd6walcVrx1mtTU=;
+        b=aCfAdResHds2ej847YEjUw7Tm0r3KvRh70TWqmO40T7NVg0G1kvSvHv88kbGEUwMwh
+         VCoEWnzNS3UOkq76sS6rNk4DDb/Wlvrec0kBrXm38dnxmsgPL/Hp5S+4c/2FZvggD1C1
+         M1nPX02xcBrk5wLb2YCmDKa1ltKpbdH03+6G3Qx4wau98qpvl2/9p6sRSjFYm8AT9iMZ
+         MYMsl+mmMX/PEf66/1t2B79Wp+MyMynjtvDUFvGXqo/EEiwXM1U06D1vp/0dn0isZrkK
+         peQjy7ZbZuv4je2H9sPIKOvP1xtPyxQTUHTrQ1S7OLt9N9n4ussrmAU37vYycJs5d5W3
+         n4zw==
+X-Forwarded-Encrypted: i=1; AJvYcCXkvJpT25Y21oGVFcFpqC+IcGZ2vP0USGypUmUuaRIh87Ahcfr6Ayq4fzkAA/EbfNMaNK+8QS0ukzsQPbIU+IxC5CxoQ58iKo1vEA==
+X-Gm-Message-State: AOJu0YwtxjgirQKSL7jRn6FRE3Ojj3sL7S2DVIcrCI/qNh32SX84XXsy
+	cGtvDN+QrkJwzrPxHOZjKUBMWA5yCyc+kg1zSLGCZbpIxEonO4cHjZvGqIdFsZc=
+X-Google-Smtp-Source: AGHT+IH6NlDsY4VujEd3BP5gGcnMLKshl/WjA1i6UleU9JCzWb3R4Xp8XGu+iTgxlFdgoByLl5SOUg==
+X-Received: by 2002:a17:906:2310:b0:a46:b028:7dc8 with SMTP id l16-20020a170906231000b00a46b0287dc8mr1073131eja.50.1710829194088;
+        Mon, 18 Mar 2024 23:19:54 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id w28-20020a170907271c00b00a46acfc72a2sm3081369ejk.84.2024.03.18.23.17.25
+        by smtp.gmail.com with ESMTPSA id e25-20020a170906845900b00a4652efd795sm5696140ejy.83.2024.03.18.23.19.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Mar 2024 23:17:27 -0700 (PDT)
-Message-ID: <e6d24815-abf2-4445-bd50-29682455ff86@linaro.org>
-Date: Tue, 19 Mar 2024 07:17:25 +0100
+        Mon, 18 Mar 2024 23:19:53 -0700 (PDT)
+Message-ID: <db13e305-adc4-4990-b9ec-b1cdcdad4406@linaro.org>
+Date: Tue, 19 Mar 2024 07:19:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,20 +76,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/5] dt-bindings: fsl-imx-sdma: Add I2C peripheral
- types ID
+Subject: Re: [PATCH v3 2/4] dt-bindings: serial: renesas,scif: Validate
+ 'interrupts' and 'interrupt-names'
 Content-Language: en-US
-To: Frank Li <Frank.Li@nxp.com>, Vinod Koul <vkoul@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
- Rob Herring <robh@kernel.org>,
+To: Prabhakar <prabhakar.csengg@gmail.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Joy Zou <joy.zou@nxp.com>
-Cc: dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev
-References: <20240318-sdma_upstream-v3-0-da37ddd44d49@nxp.com>
- <20240318-sdma_upstream-v3-4-da37ddd44d49@nxp.com>
+ Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-serial@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20240318172102.45549-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240318172102.45549-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -135,21 +136,38 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240318-sdma_upstream-v3-4-da37ddd44d49@nxp.com>
+In-Reply-To: <20240318172102.45549-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/03/2024 21:44, Frank Li wrote:
-> Add peripheral types ID 26 for I2C because sdma firmware (sdma-6q: v3.6,
-> sdma-7d: v4.6) support I2C DMA transfer.
+On 18/03/2024 18:21, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Add support to validate the 'interrupts' and 'interrupt-names' properties
+> for every supported SoC. This ensures proper handling and configuration of
+> interrupt-related properties across supported platforms.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > ---
->  Documentation/devicetree/bindings/dma/fsl,imx-sdma.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> v2->v3
+> - Listed interrupts and interrupt-names for every SoC in if check
+> ---
+>  .../bindings/serial/renesas,scif.yaml         | 95 ++++++++++++-------
+>  1 file changed, 63 insertions(+), 32 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/serial/renesas,scif.yaml b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
+> index af72c3420453..53f18e9810fd 100644
+> --- a/Documentation/devicetree/bindings/serial/renesas,scif.yaml
+> +++ b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
+> @@ -82,38 +82,6 @@ properties:
+>    reg:
+>      maxItems: 1
+>  
+> -  interrupts:
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I don't understand what is happening with this patchset. Interrupts must
+stay here. Where did you receive any different feedback?
+
 
 Best regards,
 Krzysztof
