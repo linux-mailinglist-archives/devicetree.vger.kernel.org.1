@@ -1,103 +1,132 @@
-Return-Path: <devicetree+bounces-51753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECE06880353
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 18:24:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E49F880372
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 18:28:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2E8B1F22F9E
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 17:24:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3FDF01C22944
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 17:28:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DB1C18C05;
-	Tue, 19 Mar 2024 17:24:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D9FA20B29;
+	Tue, 19 Mar 2024 17:28:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V+T7Pfh+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NtdOUzi1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EFE224B2F;
-	Tue, 19 Mar 2024 17:24:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DB60208C4;
+	Tue, 19 Mar 2024 17:28:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710869076; cv=none; b=IqBykF9YzYDoaNt4XBHCAOWezjgP/wGe0MXnOj09tVh1N5OkErf9ys1NK9g3GJJi9m+YYQV8nOfZdKVa+G07H6NW2wZK3kI70FKTZ4uqFdjyZCOTrST2LzYlcMrUwquxocZNU5GxX3JdkirJJDBJzkeCBtmvJ6Nd3KiIaLdKo+I=
+	t=1710869282; cv=none; b=Q07Lhov5i9olEIUKNdMlpyZMXUv92oDLjHYF1f6C+k7SsECuaemQV1hjl0GUamA8e/S1glxsfLUQ+7bOmY/k9oa2TLlJS7o+gQ5XeZagP0BSN9v4W3Awa7c90A0gvAUl1o6Tu2t9xXIhvHQbfFZtWiWdRaZaJWb3aMUaeJLMMXM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710869076; c=relaxed/simple;
-	bh=U7CbCyFjLydvSjfnUfIRPciwoVaztbmBFmc+BRFRz10=;
+	s=arc-20240116; t=1710869282; c=relaxed/simple;
+	bh=BmjDLFOVVf87fF20Q7iFvAzUVKO78z0OH3SPBHvtlbk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DT7NHtMHgYTbQkIzuXrQyTPoYSANAdA8anDUIZLm7cBLMQdEhID/IFVtAt1955fgiW3BwHG7g+nklKXHCweQVpwKakGI8KUll+BXWHm4ZUdFohP+nVmlQZS4z1BQ+8kxn8TMGYyiQUEdWJPbA9nAn7WCCl8sa+l/N+paPrEhPDE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V+T7Pfh+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91B5DC433C7;
-	Tue, 19 Mar 2024 17:24:32 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=fX3+dN739BAodExrGZk+DiRLMCSwloy4uohZlOxAPNhue//wOuTYq0O5kd173IQmsIqirk6k1TB1ifBV6oxcvY5Yf3Omd04MUeVP7asKD3Es2eJFMZb/nflsJu2gcT9uZfpNlqnwvvK6CtUl2XneDFPE7TPCrjoDPISrcnh1Ka0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NtdOUzi1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBC59C433C7;
+	Tue, 19 Mar 2024 17:28:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710869075;
-	bh=U7CbCyFjLydvSjfnUfIRPciwoVaztbmBFmc+BRFRz10=;
+	s=k20201202; t=1710869281;
+	bh=BmjDLFOVVf87fF20Q7iFvAzUVKO78z0OH3SPBHvtlbk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=V+T7Pfh+x4kg/wi9odomn/H6dSSgiXZthIJ+MyrTOmH5/PWeWsx09bI0P70Ws5iOV
-	 0ByOguj8ewD0dF6xZ8jOzyrZbWOtVv399zMQxghygGWsZZXG80bwW/jZ6CebrltMBn
-	 SomCJMEOBkTr79WTsCXvz+mKy1J+vz6Rrldn/SlS760vZeW6TyIrdJ+vKsgZTjEb6M
-	 EKek/mTrJIoaZKIiz1NIvzP5GQdMov/lYEb/O8fPRxV3zfi023rs6jleJVeD1f91mV
-	 0od2ukYUYCVHv4l7zOBiSZjenDu+3Y7xRF7MqcHYww+A201XfsxZpS7eNCeq1+YXLk
-	 nihTozkAI7IZA==
-Date: Tue, 19 Mar 2024 17:24:30 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Julien Stephan <jstephan@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	David Lechner <dlechner@baylibre.com>,
-	Jonathan Cameron <jic23@kernel.org>,
+	b=NtdOUzi1Q7UTk4HP/QwEE2ZYOe/YCr2YpzkB4PTRdc+9wk2nMfXs4QD8zMx7LwB/A
+	 IhyFX8fahAwF7tColwxJw8emGbkDZkS37rdht4o5D+n9NpWjbMN0NIVUUnueEbhanc
+	 RV+kHQ2H1sv0UpkQamqsXRwglPqYp7I+iWijNzlHW4nqyzOVzhsjnyrvhtF+lgce69
+	 toxyg2DnmNRTIS0wo1jNWg63A/UJd/oYO0GcJRANUHhIzK+9czpyGCFbY6wcn1ZEbX
+	 x1TAEgRfQspZTLRkhAKJnMbf3lmK6QyEUWiveiuA7mW8QNJywOZG/MoL4TFjpXrR4k
+	 XqQQjOZ5FFDVg==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1rmdFw-0000000014I-093X;
+	Tue, 19 Mar 2024 18:28:08 +0100
+Date: Tue, 19 Mar 2024 18:28:08 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Doug Anderson <dianders@chromium.org>
+Cc: Johan Hovold <johan+linaro@kernel.org>,
+	Marcel Holtmann <marcel@holtmann.org>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	Bjorn Andersson <andersson@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH v5 6/7] dt-bindings: iio: adc: ad7380: add support for
- ad738x-4 4 channels variants
-Message-ID: <20240319-dice-overpower-b551ccf08aaa@spud>
-References: <20240319-adding-new-ad738x-driver-v5-0-ce7df004ceb3@baylibre.com>
- <20240319-adding-new-ad738x-driver-v5-6-ce7df004ceb3@baylibre.com>
+	cros-qcom-dts-watchers@chromium.org,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Johan Hedberg <johan.hedberg@gmail.com>,
+	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
+	Matthias Kaehlcke <mka@chromium.org>,
+	Rocky Liao <quic_rjliao@quicinc.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+	Nikita Travkin <nikita@trvn.ru>
+Subject: Re: [PATCH v3 3/5] Bluetooth: qca: fix device-address endianness
+Message-ID: <ZfnLKC7B9o2reC8x@hovoldconsulting.com>
+References: <20240319152926.1288-1-johan+linaro@kernel.org>
+ <20240319152926.1288-4-johan+linaro@kernel.org>
+ <CAD=FV=WqwY07fMV-TuO8QMRnk555BJYEysv4urcugsELufHr4A@mail.gmail.com>
+ <Zfm_oFLNgPHqJKtG@hovoldconsulting.com>
+ <CAD=FV=UgCNmeWJiwWAGj_jm78eeTNoo-_bx7QrqLfyDMJwRNKA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="1YE01LAM9wdFxmi7"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240319-adding-new-ad738x-driver-v5-6-ce7df004ceb3@baylibre.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAD=FV=UgCNmeWJiwWAGj_jm78eeTNoo-_bx7QrqLfyDMJwRNKA@mail.gmail.com>
 
+On Tue, Mar 19, 2024 at 10:12:25AM -0700, Doug Anderson wrote:
+> On Tue, Mar 19, 2024 at 9:38 AM Johan Hovold <johan@kernel.org> wrote:
+> > On Tue, Mar 19, 2024 at 09:10:38AM -0700, Doug Anderson wrote:
 
---1YE01LAM9wdFxmi7
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> > > Personally, I'd prefer it if you didn't break bisectability with your
+> > > series. As it is, if someone applies just the first 3 patches they'll
+> > > end up with broken Bluetooth.
+> >
+> > It doesn't break the build, but yes, the device address would be
+> > reversed for Trogdor machines for two commits and possible break any
+> > previous pairings. That's hardly something to worry about.
+> >
+> > So I consider this to be acceptable for sake of clarity, and especially
+> > since these patches will be coming in from separate trees anyway.
+> 
+> I guess I have a different opinion on the matter. I often end up
+> cherry-picking stuff to older branches and I generally assume that
+> it's relatively safe to pick the beginning of a series without picking
+> later patches because I assume everyone has a goal of bisectability.
+> This breaks that assumption. IMO splitting up the Qualcomm Bluetooth
+> patch into two patches doesn't help enough with clarity to justify.
 
-On Tue, Mar 19, 2024 at 11:11:27AM +0100, Julien Stephan wrote:
-> Add compatible support for ad7380/1/3/4-4 parts which are 4 channels
-> variants from ad7380/1/3/4
->=20
-> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
+I did that in v2 because then the two patches had to be split to
+facilitate backporting as wcn3991 support was added later.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+But the big issue here is taking the patches through different trees. If
+Bjorn could ack the DT patch so that everything goes through the
+Bluetooth tree, then I guess I can reorder the DT patch and squash the
+two driver patches.
 
+But waiting several weeks just to make sure that the DT patch hits
+mainline (and the binding patch before that?) before the driver fixes
+can go in just does not seem worth it to me.
 
+> > I don't think it's worth spending more time and effort on this issue
+> > (which should have been caught and fixed years ago) for this.
+> 
+> Sure, that's your opinion and if the BT folks agree with you then they
+> are free to land the patches without my Reviewed-by on them. ;-) Mine
+> is not a strong Nak but I feel strongly enough that I'd prefer not to
+> have my Reviewed-by added without the re-organization.
 
---1YE01LAM9wdFxmi7
-Content-Type: application/pgp-signature; name="signature.asc"
+Of course, understood.
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZfnKTgAKCRB4tDGHoIJi
-0sqVAQDlnpYjSM6Fvba7o1vgq4n5c7KGSi4udvQpm384U2RN0AEAmwemHzNjHj2p
-r/WBQmKlt23T/dldXwF4ejBtffZQ0g4=
-=QpFs
------END PGP SIGNATURE-----
-
---1YE01LAM9wdFxmi7--
+Johan
 
