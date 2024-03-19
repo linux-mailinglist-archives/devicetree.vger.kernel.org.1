@@ -1,108 +1,145 @@
-Return-Path: <devicetree+bounces-51766-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51767-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0A3888040C
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 18:57:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2B98880447
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 19:03:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 60EA51F2474C
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 17:57:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 19F801C20C0D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 18:03:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78A7D282F1;
-	Tue, 19 Mar 2024 17:57:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BDA336B00;
+	Tue, 19 Mar 2024 18:01:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yy7sXhQu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a2abpvA9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BA9723772;
-	Tue, 19 Mar 2024 17:57:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 537235FDD5;
+	Tue, 19 Mar 2024 18:01:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710871045; cv=none; b=VRtR789NJ/zzLK5CrjPZ9A3a9PbRIhvOO2RTX5e8vpsOwhL8Kp3C4DelmGq0JzKDSiYMFSlikQYuLFZg93ORlsRyA9+B1q3hzDYkoqVRSuwgWqXJu1L+nV6XHTVZ88yI2GvobXGCkMLGtJV38K+Whuqnj0RrQLSxqJeTwqia26A=
+	t=1710871272; cv=none; b=ndWP7Y3zuKRnTLeKCIppTH4C/LC3mrw5wsLwJgjLPeZ+/BR8DAGXEuHDhGCT2TQAZVLxBCPIkkuEU+LlB3BaPcmFEu6TS/I34wUUYpGF2EZuJtOTYU6J1c2hRm5ZZr4RJMvFl9RZMtM79qA5tQG25UplX6E6BzvwN3NgTaJtwEw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710871045; c=relaxed/simple;
-	bh=rSMBRQhO86ZaiahiWoHWOAwZH8gnfghHIse2UHp08jw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HXcs/Q+j3Thtwdb0cZmzFLzXdXbE5OdHbJ2zwe+UAG0J4hXnWliAOegVyNkVXfB0J9rpGzygOhmsz2evddUk2xsZ2SNe4lmHEmzml3EoWCumW2Z+cmtN6MDvOHvPBvktdE8fpVHP5RNnfsmY652S5gBoQ4QNIZK9+js9X1RzQHY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yy7sXhQu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C22A3C43390;
-	Tue, 19 Mar 2024 17:57:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710871044;
-	bh=rSMBRQhO86ZaiahiWoHWOAwZH8gnfghHIse2UHp08jw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Yy7sXhQuG3ansdkEVsG2rjbdMxh+eZDneKfQWZQ/l1vdO3Pfl6XqBD6JH3nso6oTv
-	 rv5w8y5bPaoo6W7bcl0jE7vrVIWHhRdcGEvs/6QGEwubc5FRTVZqIP+xPC7qhIAdGG
-	 OwDl5xORkQqKP3ii9S77hG/Y/vMvObGYGeG5oQKf/mlwTcCT+TcC8nan8hHq5nGN07
-	 LkRtgwdF7+wsAK3H28iwAydH5oN4ROM7NEgEZFArYQIho0KCA+l11bGBNPo6OCvGqW
-	 G4Ogj5Gyz4UPKy48jEQ/MdEd5mUtJ0MHpGC6fnmyHdvZCcjfcXvlO9CH2UjXhEmOpX
-	 7ZRtZy3KX8Sqw==
-Date: Tue, 19 Mar 2024 17:57:20 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Animesh Agarwal <animeshagarwal28@gmail.com>
-Cc: Vladimir Zapolskiy <vz@mleia.com>, Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: nxp,pnx-i2c: Convert to dtschema
-Message-ID: <20240319-oversight-viable-4550ffbc31d9@spud>
-References: <20240318153959.30755-1-animeshagarwal28@gmail.com>
+	s=arc-20240116; t=1710871272; c=relaxed/simple;
+	bh=fURqETKu8mthWcz2QdEl07SUDYEre4FagvpPaVAfaU8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=M2X3PKHOLDK76j9MlSRxU7BUXm0GTkF5LWSKS9/zO/xcME2P3M9WQceS0vuRIQNzu20RvD/+dGsu3nDS1IfJJti36iiztDFRXJ5uvSGBMXhxsTCQGmBNYYSUbaX7s1+K3rSwxsD7GkKL2Xcf4zKAMINykJ5FA9LRv2Nyg+9hyek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=a2abpvA9; arc=none smtp.client-ip=209.85.208.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2d4a901e284so50439661fa.1;
+        Tue, 19 Mar 2024 11:01:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1710871268; x=1711476068; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RFqJ9v2zgUJwbKbtJortrw7B6iqBove/bjKEeSOHJg4=;
+        b=a2abpvA9lKAQ5M7yuSiWFkXUDbidlYup9mVykTvej9QldKCc71bMcIhuuV6qSxbsYs
+         qGIrKWMxmfj+LiJe1qItkF3zIze+HUz1Y2EcLZrYsYZn/W0dAdXIPKNp1S4+cUfKgup+
+         FHnoTKGtYxLHfKt4NmX9fwX8AzQ432G8mcVjnSqRU1csxrsig2mx3Y+Bm/+H1ejmId2H
+         OpDLJTauHVcDHYDKg1mu9c2pXE0wqdo+EvX6HmRHbpakA8rF97c70CoVhOKvCYEp20NK
+         OOGns4aIaeGMS4ZCk1FyYTUHr7xGDwyf7Fy3nMUai0AHZqgLTjAB5I1eYDYnXyQHBfNM
+         o/rA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710871268; x=1711476068;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RFqJ9v2zgUJwbKbtJortrw7B6iqBove/bjKEeSOHJg4=;
+        b=VwoZXq++Uy94TyiKuI1L5OlOYgpiWzFEzvjgH/QBlFtxN63xEl7PMhxntWZIRRYoa6
+         TubeiqpiEKlnrbKKnMagbQoRQaX+L3TQaBmO2hdn9njIv9jNqeQ/sumiaJysFYlelLtn
+         Kvdphc1RUAhiGrwF0qsl7Yz7Zcm5Xv5a3HYOJxp1VLMrZ3Au2sveTdHETWLd0EiBAaxc
+         MKkcZ44YW0Ruaokp6uMc5EIT1vZ9KWXnw4kFEVX7Gv3NxK5OY0j4mXlioCN7KXHTarGp
+         RmCC5G9NWVDxIUh36XFEBP9Tth0wpQC5nx8FUECBSKTAK2uAJHKwt/6Pyh7oTDobfG1X
+         D5Mw==
+X-Forwarded-Encrypted: i=1; AJvYcCXffgXfXSpLGsdcxbFBM/AwT8Mgg7DaAyuZHnH6Z3DO3O96p0ev2HnKCYqk8wk/Qj499WeOzS1iWdpPqzfr6tbME8BYWK804ISBwTJetZjhQuJgfXHxETvNpuiSGywhmC2DFDO6u4ExAA==
+X-Gm-Message-State: AOJu0YxgTyu/59Pm+ny/cpNOihLQofgH/h+wqBPYjK7SxjmziTEKhWhv
+	MPx0CHk0RQwFVbMCICgBnIu+1kj/BDuP/Ja9MgfgetPEpBmdUPPCi0pReK6lrIQ1Nw==
+X-Google-Smtp-Source: AGHT+IH0wFJ4592JDW/65IORR4qqB7fVXRxiU1BJVdjEM8SP91uo7X5gC1S4P1w5CR0U9QhO74npjA==
+X-Received: by 2002:a2e:8e99:0:b0:2d6:84a4:99b4 with SMTP id z25-20020a2e8e99000000b002d684a499b4mr2261330ljk.20.1710871268053;
+        Tue, 19 Mar 2024 11:01:08 -0700 (PDT)
+Received: from [10.0.0.100] (host-85-29-76-118.kaisa-laajakaista.fi. [85.29.76.118])
+        by smtp.gmail.com with ESMTPSA id g6-20020a05651c078600b002d0b21bf81esm1946002lje.43.2024.03.19.11.01.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Mar 2024 11:01:07 -0700 (PDT)
+Message-ID: <6e120eee-5cec-460c-87d2-40ef776efc3d@gmail.com>
+Date: Tue, 19 Mar 2024 20:02:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="03jX1Fej0ep+ArIc"
-Content-Disposition: inline
-In-Reply-To: <20240318153959.30755-1-animeshagarwal28@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 12/13] ASoC: dt-bindings: davinic-mcbsp: Add the
+ 'ti,drive-dx' property
+Content-Language: en-US
+To: Bastien Curutchet <bastien.curutchet@bootlin.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, herve.codina@bootlin.com,
+ christophercordahi@nanometrics.ca
+References: <20240315112745.63230-1-bastien.curutchet@bootlin.com>
+ <20240315112745.63230-13-bastien.curutchet@bootlin.com>
+From: =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
+In-Reply-To: <20240315112745.63230-13-bastien.curutchet@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 
---03jX1Fej0ep+ArIc
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-On Mon, Mar 18, 2024 at 09:09:53PM +0530, Animesh Agarwal wrote:
-> diff --git a/Documentation/devicetree/bindings/i2c/nxp,pnx-i2c.yaml b/Documentation/devicetree/bindings/i2c/nxp,pnx-i2c.yaml
-> new file mode 100644
-> index 000000000000..3125b2f5891e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/i2c/nxp,pnx-i2c.yaml
-> @@ -0,0 +1,46 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/i2c/nxp,pnx-i2c.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+On 15/03/2024 13:27, Bastien Curutchet wrote:
+> McBSP is able to handle capture and playback stream.
+> The McBSP's DX pins that outputs serial data during playback streams can
+> be used to output a chosen pattern during capture streams. For instance,
+> this can be useful to drive an active-low signal during capture streams
+> (by choosing <0> as pattern)
+
+or configure the MCBSPx.DX pin as GPO and use it as a GPIO?
+
+Quite novel use of the hardware, no doubt about it. If you don't have
+DMA servicing the TX, it will just re-transmit the word from from the
+DXR register when the transmitter is pulled out of reset.
+
+Interesting, but I'm not sure if this belongs to DT.
+
+> Add a 'ti,drive-dx' property that can be used to repeatedly output a
+> chosen pattern on DX pin while capture stream is ON.
+> 
+> Signed-off-by: Bastien Curutchet <bastien.curutchet@bootlin.com>
+> ---
+>  Documentation/devicetree/bindings/sound/davinci-mcbsp.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/davinci-mcbsp.yaml b/Documentation/devicetree/bindings/sound/davinci-mcbsp.yaml
+> index d8d4e7ea6e02..f4d1fc6bcd61 100644
+> --- a/Documentation/devicetree/bindings/sound/davinci-mcbsp.yaml
+> +++ b/Documentation/devicetree/bindings/sound/davinci-mcbsp.yaml
+> @@ -80,6 +80,13 @@ properties:
+>        Enable synchronisation error detections when an unexpected frame pulse is
+>        received. If not present, unexpected frame pulses are ignored.
+>  
+> +  ti,drive-dx:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      If the property is present, McBSP will repeatedly output the selected
+> +      value on DX pin during capture streams. For instance, if set to 0, this
+> +      can be used to drive an active-low signal.
 > +
-> +title: NXP PNX I2C Controller
-> +
-> +maintainers:
-> +  - Animesh Agarwal<animeshagarwal28@gmail.com>
+>  required:
+>    - "#sound-dai-cells"
+>    - compatible
 
-You're missing a space before the <, but otherwise this looks fine.
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Thanks,
-Conor.
-
---03jX1Fej0ep+ArIc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZfnSAAAKCRB4tDGHoIJi
-0j+6AQD6xcT1/6zqEUexPuQRIoJHOkyYu1vcSk+IidBMesL1WgEAtG32NnzqA5qe
-TrrUfX0twBIhxb0Hn4r4lsiYh5NKuwo=
-=J0yU
------END PGP SIGNATURE-----
-
---03jX1Fej0ep+ArIc--
+-- 
+Péter
 
