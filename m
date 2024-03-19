@@ -1,205 +1,145 @@
-Return-Path: <devicetree+bounces-51635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51636-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D32F87FE3E
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 14:11:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25A2D87FE7C
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 14:18:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D71F41F22A81
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 13:11:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 525031C21C6A
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 13:18:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F26680028;
-	Tue, 19 Mar 2024 13:09:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA85F7F7C3;
+	Tue, 19 Mar 2024 13:18:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="AkyV0dCr"
+	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="SJdGJMfS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C0498002A;
-	Tue, 19 Mar 2024 13:09:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA8F35A782;
+	Tue, 19 Mar 2024 13:18:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710853774; cv=none; b=W679tqFepCSetbGeQJO4wMDdEAqqsCpcaMxLXZ55OChErigY5oKl/hdsQA5g9B5IlpbNbjioKczw5U4Rf2z/3C8de/BrlByhMFTgrErjFAke+gl+i9bV2uKETpTTW7HgbQy6yOJC1I1FEbWpxSQCWJx9O+E+rR13fxnTaVH71c0=
+	t=1710854300; cv=none; b=f55MNtyrAN2JW+DBqQOjhfzNrsgCIv9y0rkqlFlMGgbThLpyisasfwx/nW4EDPbc0uTi3FNI3PjDzDheRfmRuy9+c/3mBw4vSZZ/nHYwCMWBm52nxKdonWThGLXpcQEuu+1xLcnRHgrikCswTEHLwaqVX5waujDQCfAqWACcQ+U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710853774; c=relaxed/simple;
-	bh=jl5LIVHTbgoOfLHubgBGwWwHndy0u8nCAeBqkZeMR8M=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KOGX7nFZq+wBD/z8c7X7IkYwFskh8plCXgqGCgI74gKNmPAILFMd6OnMbOZPEMEqiqpMvXzFLn6Su5dz8552vWydi3qtvaLHU6CHd24uf9KZmZMATmNSwhr5kxj+/NpCxuOcRi1ala+WjJENKZALgpz+wYZhwqj9nmYKzmn1lIc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=AkyV0dCr; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 397FFE0002;
-	Tue, 19 Mar 2024 13:09:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1710853767;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=U/nxcDTUYi1MXeFeU8TRWO7c9qe7Uu/RNWXFdRywHJE=;
-	b=AkyV0dCrSMZ5ix+ksfm7ahaR5LV1hr425kHRYfiYFD9E4NRgvOqZ2YXS8+33sUjznAkmU1
-	p6C4vkY5NnTysIenRqOuW4YRr+eUrDnKE3CRgRrB/buDV18fY8aHGe94NNW6iqBzCJEOTX
-	+krpiYxIwbS3gIHDHyOm+1FG3QXx+zwTKK8Aq8tUXDCVV+iqOGBxDAZWCRzUzjIgqoxYiI
-	zkxE6+GygI5phLXHzRMx79MTdpqJEFnbxubGKrzfRSbA7gzhtZ5w3Vi5FEIeGf8nDlAEwe
-	5RXvhLmnu5XJ+Riwypshhyt/72W2Vu6loM1/m6s2z78BsKfkjqTVwIAt+4Jeow==
-Date: Tue, 19 Mar 2024 14:09:24 +0100
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Md Sadre Alam <quic_mdalam@quicinc.com>
-Cc: <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
- <broonie@kernel.org>, <robh@kernel.org>,
- <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
- <richard@nod.at>, <vigneshr@ti.com>, <manivannan.sadhasivam@linaro.org>,
- <neil.armstrong@linaro.org>, <daniel@makrotopia.org>, <arnd@arndb.de>,
- <chris.packham@alliedtelesis.co.nz>, <christophe.kerello@foss.st.com>,
- <linux-arm-msm@vger.kernel.org>, <linux-spi@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-mtd@lists.infradead.org>, <quic_srichara@quicinc.com>,
- <quic_varada@quicinc.com>
-Subject: Re: [PATCH v4 2/5] drivers: mtd: nand: Add qpic_common API file
-Message-ID: <20240319140924.167f3063@xps-13>
-In-Reply-To: <756ccc79-0077-5c23-73e3-bbb82fbfa8b0@quicinc.com>
-References: <20240308091752.16136-1-quic_mdalam@quicinc.com>
-	<20240308091752.16136-3-quic_mdalam@quicinc.com>
-	<20240315124517.4a546ce9@xps-13>
-	<93b08226-3297-2161-cc7d-d33d839c32f0@quicinc.com>
-	<20240319114316.4b977d93@xps-13>
-	<756ccc79-0077-5c23-73e3-bbb82fbfa8b0@quicinc.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1710854300; c=relaxed/simple;
+	bh=RR0UkwWsm9OdmDGh3lOnlD7zBWisNdtOai4hXsNHFOk=;
+	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
+	 MIME-Version:Content-Type; b=dEegX4EVuG8hW9ZfAVWWlJpA99xFf0+w6sGvbgH0391oGBhHTWlf3JhLBESdwtLY2yecHzX3L67eXi1q9BcJlwNd9j0LAR2Z9XRigoKFWvPnikaXFf4DgYgD2EkrhvFjy5XqO/3nvs3wBHYFkdjORpUT0vDxa8ppJRelO0RK8hY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=SJdGJMfS; arc=none smtp.client-ip=208.88.110.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 777579C0760;
+	Tue, 19 Mar 2024 09:18:15 -0400 (EDT)
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id a_6GA9s-CbIi; Tue, 19 Mar 2024 09:18:14 -0400 (EDT)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id B99AD9C2CD7;
+	Tue, 19 Mar 2024 09:18:14 -0400 (EDT)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com B99AD9C2CD7
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
+	t=1710854294; bh=5NKRHP1QMpxeSgJzCg5KTSkhGY8m7eqimBDOmXZzCLo=;
+	h=Date:From:To:Message-ID:MIME-Version;
+	b=SJdGJMfSRh5WdHCGswWdQRFF4PVrxtImtEsTGzei+w/QPMSKnvQqCoGuZWzXzR2Fe
+	 fB+QURY728WBm53LR19tDhwhESEa3MstokJ546DyRtbFAtw4bVSz/ZWwlo6GqJcx3Q
+	 OAJnT1s2NJ+K/JlT3rVsbPtgp2bS+ffKXP68acObQbMRA6Jj4++mhhwDzCIjDkFftH
+	 V6NlKRaEaSq78ob2fOkyTmsnzFwTAuUUON1iJ8FHTu/GyteR9ANqTGXqLcCgOZRF+k
+	 gPtxQpaTxg9stn8zuIVjsm8ZdEMyDvyhRlW0ibNTXO1uFRaAVRCpjNkm09hjnKkWYp
+	 qhhMDJF0r1nqQ==
+X-Virus-Scanned: amavis at mail.savoirfairelinux.com
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id heRr1KKMJ06R; Tue, 19 Mar 2024 09:18:14 -0400 (EDT)
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [192.168.48.237])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 8891C9C0760;
+	Tue, 19 Mar 2024 09:18:14 -0400 (EDT)
+Date: Tue, 19 Mar 2024 09:18:14 -0400 (EDT)
+From: Charles Perry <charles.perry@savoirfairelinux.com>
+To: Xu Yilun <yilun.xu@linux.intel.com>
+Cc: mdf <mdf@kernel.org>, Allen VANDIVER <avandiver@markem-imaje.com>, 
+	Brian CODY <bcody@markem-imaje.com>, hao wu <hao.wu@intel.com>, 
+	yilun xu <yilun.xu@intel.com>, Tom Rix <trix@redhat.com>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	krzysztof kozlowski+dt <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, 
+	Michal Simek <michal.simek@amd.com>, 
+	linux-fpga <linux-fpga@vger.kernel.org>, 
+	devicetree <devicetree@vger.kernel.org>, 
+	linux-kernel <linux-kernel@vger.kernel.org>, 
+	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Message-ID: <2023855820.1872598.1710854294497.JavaMail.zimbra@savoirfairelinux.com>
+In-Reply-To: <ZfkSf6QG5nIY0zpx@yilunxu-OptiPlex-7050>
+References: <20240313225746.489253-1-charles.perry@savoirfairelinux.com> <20240313225746.489253-2-charles.perry@savoirfairelinux.com> <ZfkSf6QG5nIY0zpx@yilunxu-OptiPlex-7050>
+Subject: Re: [PATCH v5 1/3] fpga: xilinx-spi: extract a common driver core
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+X-Mailer: Zimbra 8.8.15_GA_4581 (ZimbraWebClient - FF120 (Linux)/8.8.15_GA_4581)
+Thread-Topic: fpga: xilinx-spi: extract a common driver core
+Thread-Index: tkWcNpo3mWp8g/EUE0xd2oh6sbVbuw==
 
-Hi,
 
-quic_mdalam@quicinc.com wrote on Tue, 19 Mar 2024 17:46:05 +0530:
+On Mar 19, 2024, at 12:20 AM, Xu Yilun yilun.xu@linux.intel.com wrote:
+>> +/**
+>> + * struct xilinx_fpga_core - interface between the driver and the core manager
+>> + *                           of Xilinx 7 Series FPGA manager
+>> + * @dev:       device node
+>> + * @write:     write callback of the driver
+>> + * @prog_b:    PROGRAM_B gpio descriptor
+>> + * @init_b:    INIT_B gpio descriptor
+>> + * @done:      DONE gpio descriptor
+> 
+> Please re-check the Documentation again:
+> "Structure fields that are inside a private: area are not listed in the
+> generated output documentation"
+> 
 
-> On 3/19/2024 4:13 PM, Miquel Raynal wrote:
-> > Hi,
-> >  =20
-> >>>> +/**
-> >>>> + * qcom_offset_to_nandc_reg() - Get the actual offset
-> >>>> + * @regs: pointer to nandc_reg structure
-> >>>> + * @offset: register offset
-> >>>> + *
-> >>>> + * This function will reurn the actual offset for qpic controller r=
-egister
-> >>>> + */
-> >>>> +__le32 *qcom_offset_to_nandc_reg(struct nandc_regs *regs, int offse=
-t)
-> >>>> +{
-> >>>> +	switch (offset) {
-> >>>> +	case NAND_FLASH_CMD:
-> >>>> +		return &regs->cmd;
-> >>>> +	case NAND_ADDR0:
-> >>>> +		return &regs->addr0;
-> >>>> +	case NAND_ADDR1:
-> >>>> +		return &regs->addr1;
-> >>>> +	case NAND_FLASH_CHIP_SELECT:
-> >>>> +		return &regs->chip_sel;
-> >>>> +	case NAND_EXEC_CMD:
-> >>>> +		return &regs->exec;
-> >>>> +	case NAND_FLASH_STATUS:
-> >>>> +		return &regs->clrflashstatus;
-> >>>> +	case NAND_DEV0_CFG0:
-> >>>> +		return &regs->cfg0;
-> >>>> +	case NAND_DEV0_CFG1:
-> >>>> +		return &regs->cfg1;
-> >>>> +	case NAND_DEV0_ECC_CFG:
-> >>>> +		return &regs->ecc_bch_cfg;
-> >>>> +	case NAND_READ_STATUS:
-> >>>> +		return &regs->clrreadstatus;
-> >>>> +	case NAND_DEV_CMD1:
-> >>>> +		return &regs->cmd1;
-> >>>> +	case NAND_DEV_CMD1_RESTORE:
-> >>>> +		return &regs->orig_cmd1;
-> >>>> +	case NAND_DEV_CMD_VLD:
-> >>>> +		return &regs->vld;
-> >>>> +	case NAND_DEV_CMD_VLD_RESTORE:
-> >>>> +		return &regs->orig_vld;
-> >>>> +	case NAND_EBI2_ECC_BUF_CFG:
-> >>>> +		return &regs->ecc_buf_cfg;
-> >>>> +	case NAND_READ_LOCATION_0:
-> >>>> +		return &regs->read_location0;
-> >>>> +	case NAND_READ_LOCATION_1:
-> >>>> +		return &regs->read_location1;
-> >>>> +	case NAND_READ_LOCATION_2:
-> >>>> +		return &regs->read_location2;
-> >>>> +	case NAND_READ_LOCATION_3:
-> >>>> +		return &regs->read_location3;
-> >>>> +	case NAND_READ_LOCATION_LAST_CW_0:
-> >>>> +		return &regs->read_location_last0;
-> >>>> +	case NAND_READ_LOCATION_LAST_CW_1:
-> >>>> +		return &regs->read_location_last1;
-> >>>> +	case NAND_READ_LOCATION_LAST_CW_2:
-> >>>> +		return &regs->read_location_last2;
-> >>>> +	case NAND_READ_LOCATION_LAST_CW_3:
-> >>>> +		return &regs->read_location_last3; =20
-> >>>
-> >>> Why do you need this indirection? =20
-> >>
-> >> This indirection I believe is needed by the write_reg_dma function,
-> >> wherein a bunch of registers are modified based on a starting register.
-> >> Can I change this in a separate cleanup series as a follow up to this?=
- =20
-> >=20
-> > I think it would be cleaner to make the changes I requested first and
-> > then make a copy. I understand it is more work on your side, so if you
-> > really prefer you can (1) make the copy and then (2) clean it all. But
-> > please do it all in this series. =20
-> Ok
-> >  =20
-> >>>> diff --git a/include/linux/mtd/nand-qpic-common.h b/include/linux/mt=
-d/nand-qpic-common.h
-> >>>> new file mode 100644
-> >>>> index 000000000000..aced15866627
-> >>>> --- /dev/null
-> >>>> +++ b/include/linux/mtd/nand-qpic-common.h
-> >>>> @@ -0,0 +1,486 @@
-> >>>> +/* SPDX-License-Identifier: GPL-2.0 */
-> >>>> +/*
-> >>>> + * QCOM QPIC common APIs header file
-> >>>> + *
-> >>>> + * Copyright (c) 2023 Qualcomm Inc.
-> >>>> + * Authors:     Md sadre Alam           <quic_mdalam@quicinc.com>
-> >>>> + *		Sricharan R             <quic_srichara@quicinc.com>
-> >>>> + *		Varadarajan Narayanan   <quic_varada@quicinc.com>
-> >>>> + *
-> >>>> + */
-> >>>> +#ifndef __MTD_NAND_QPIC_COMMON_H__
-> >>>> +#define __MTD_NAND_QPIC_COMMON_H__
-> >>>> +
-> >>>> +#include <linux/bitops.h>
-> >>>> +#include <linux/clk.h>
-> >>>> +#include <linux/delay.h>
-> >>>> +#include <linux/dmaengine.h>
-> >>>> +#include <linux/dma-mapping.h>
-> >>>> +#include <linux/dma/qcom_adm.h>
-> >>>> +#include <linux/dma/qcom_bam_dma.h>
-> >>>> +#include <linux/module.h>
-> >>>> +#include <linux/mtd/partitions.h>
-> >>>> +#include <linux/mtd/rawnand.h> =20
-> >>>
-> >>> You really need this? =20
-> >> Yes , since some generic structure used here. =20
-> >=20
-> > Which ones? If this is a common file, you probably should not. =20
->   Since we are using this struct qcom_nand_controller { }
->   for both SPI nand as well as raw nand. In this we are having this
->   struct nand_controller controller member.
+I did generate the documentation for that struct and saw that the
+private fields are indeed removed. This hinted me into thinking that
+I should keep the private kernel-doc, because it's the generator job
+to remove those. Looking again at the kernel-doc.rst example on that
+topic, I understand that this is not the case, will fix.
 
-Maybe we should not expose qcom_nand_controller at all and just share
-the minimum bits which are really common.
+>> + */
+>> +struct xilinx_fpga_core {
+>> +/* public: */
+>> +	struct device *dev;
+>> +	int (*write)(struct xilinx_fpga_core *core, const char *buf,
+>> +		     size_t count);
+>> +/* private: handled by xilinx-core */
+>> +	struct gpio_desc *prog_b;
+>> +	struct gpio_desc *init_b;
+>> +	struct gpio_desc *done;
+>> +};
+>> +
+> [...]
+>> -
+>>  static int xilinx_spi_probe(struct spi_device *spi)
+>>  {
+>> -	struct xilinx_spi_conf *conf;
+>> -	struct fpga_manager *mgr;
+>> +	struct xilinx_fpga_core *conf;
+> 
+> Why do you name it conf? Maybe "core" is better?
+> 
+> Thanks,
+> Yilun
 
-Thanks,
-Miqu=C3=A8l
+Yes, I changed the type but not the name.
+
+Thank you for the review,
+Charles
+
+
+
 
