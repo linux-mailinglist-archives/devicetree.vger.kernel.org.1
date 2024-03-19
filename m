@@ -1,197 +1,290 @@
-Return-Path: <devicetree+bounces-51651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A74887FF58
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 15:13:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1573787FF76
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 15:21:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5DC531C22236
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 14:13:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0F202833B3
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 14:21:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36B2B81741;
-	Tue, 19 Mar 2024 14:13:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A82781753;
+	Tue, 19 Mar 2024 14:21:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="H3zU5Ib1";
-	dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="qERMqygQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c39viybc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.164])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A69F481721;
-	Tue, 19 Mar 2024 14:13:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=81.169.146.164
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710857594; cv=pass; b=F3dMPSkPF9choC3kLQltI7i4tG3s4pXWSXlMx0pcKVSouvi9Ydjq4W2dtkGu3vydDZtg3TfSeF1tZ8vwIU+VuhbvMqcSGf+I9tL0aKrWRa7x49/B2NcJOFFRNi9mtxNwgiUKU6YbrcdWUIQXIZImzx21Rud3EirzT8cLedeHep4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710857594; c=relaxed/simple;
-	bh=6aCWbrDbRYmEYuxM00BPHK+S1MuilKFJ1QlbUTNPGZg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ua0sGPgCWUI9mnCSlWDXdKGuSKics8nf/CABOLsaiTG5IRoXuS4YKsvmLPli+Bf0rUBKI9+/7KJnL7yTr1iR2sQHvcfqBKpoLIAafp5lajDulhfATgA3rkn1eSgcR9bC6bBZ47ySUyOqWbYNmSF74TD9/T6G7w6yzoJ8LD89JmU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gerhold.net; spf=none smtp.mailfrom=gerhold.net; dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b=H3zU5Ib1; dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b=qERMqygQ; arc=pass smtp.client-ip=81.169.146.164
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gerhold.net
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=gerhold.net
-ARC-Seal: i=1; a=rsa-sha256; t=1710857570; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=Il3Vil8NTv2dc7zUgfhmuNShS31UiREIMfiltitCFfHOk0qaSgr6rjTXV9cGtCkAT1
-    sHxuBK1b2h4vZuGF6yAEUadl4aqsFGCIExNaheFGhSlhFzsSdWGt7BO0xjCyz9lRbcRO
-    N/ezL/s5/jyR5ZSFFaHmLnpmcJIoGyCtxD25Bz6KQMngkXt9gIWiPuQCzlL6dLBuLBX1
-    TD7py+jrsbCnd8NIfHX3LBLHDiFD+Sew6PvbDnjj2GSFAPvBFvUKkc/cLMFQaJ8IlOAz
-    jIR2gYgwYWc2JmMGnYmXQxoVtFbxn2hp5675bjOsMxcGTxvRvzoTa//GmUjLO0VO+Wxa
-    DTuw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1710857570;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=DYa+8d2UWYgwRzURH7RQQ2juMt5EiPhLxQIXRjk018c=;
-    b=jDBvRhSRo1iznY9fpd3EA5YH32a+u9TTw8EqU+qzSCxyxaan71KpS9CFxOhX2wBJHu
-    XrsNiCVzmo+c8ycxfyf21GKkANav1Te4dH89/8OXVPGQzbLMjmCcWvkmhWXBhV1rrPxU
-    lbUvlvcItDPTrg1xwoo1OkRz6+VFZaDKH89fPBsT66k8vQCCC9iDR/5+xyIJP7f/juVn
-    xABIt88WogBPRAtc/4GM5PFdj84VeKcUPMhEE9V4fvfagVnhswAO7tzmdftHtCROnQQA
-    eIV6gLGM4MnI8/vkGMCv9lbbu8PUrAX6/509X7TKWdTzt/rpoazHhp2pguWiAsUAIdzP
-    CVzA==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1710857570;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=DYa+8d2UWYgwRzURH7RQQ2juMt5EiPhLxQIXRjk018c=;
-    b=H3zU5Ib1Xwft4x9CsITafUB/hXpM8QyleUZWpjLO+TL0LvBY1vyfEbQGH/zXa+J29S
-    yRD1xGtoBDrt1Ie/YED0TQx3rCDBtio2nltT9fVOkq1sO4fJ4vH4o/rHf0ATlb4ObJ+m
-    n7U8DLtZbJsuEnZFM4fBS69Imk5DRxZ0Hids6S74x/Is6/QpG5p6xv+qos6TB+iCWHJj
-    9RGHXxjMbIyVLo/c7NT/i8u5n6s1HLWGRISCwYNfhy9aYKU3PHBT7D727idN0vQ8hMH/
-    T8lCN1qKdLJk6ZSIDBa0C3WvMVwx2GVldaaSz7cjRsbCiU7bFvCZjv3guwu2MRBsI66J
-    1rmQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1710857570;
-    s=strato-dkim-0003; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=DYa+8d2UWYgwRzURH7RQQ2juMt5EiPhLxQIXRjk018c=;
-    b=qERMqygQkvRJLWmJr6bw5nmZ7b76M8SGfHK1T6/gRyCeUVdiVXyv10/iWb6/mmPorH
-    dchaqanpdBvkI2rlOOBg==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA8paF1A=="
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 50.3.1 DYNA|AUTH)
-    with ESMTPSA id R475ba02JECn06O
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-	(Client did not present a certificate);
-    Tue, 19 Mar 2024 15:12:49 +0100 (CET)
-Date: Tue, 19 Mar 2024 15:12:42 +0100
-From: Stephan Gerhold <stephan@gerhold.net>
-To: Sumit Garg <sumit.garg@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	caleb.connolly@linaro.org, neil.armstrong@linaro.org,
-	dmitry.baryshkov@linaro.org, laetitia.mariottini@se.com,
-	pascal.eberhard@se.com, abdou.saker@se.com, jimmy.lalande@se.com,
-	benjamin.missey@non.se.com, daniel.thompson@linaro.org,
-	linux-kernel@vger.kernel.org,
-	Jagdish Gediya <jagdish.gediya@linaro.org>
-Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: apq8016: Add Schneider HMIBSC
- board DTS
-Message-ID: <ZfmdWtoiP4ZF7JRk@gerhold.net>
-References: <20240315060707.471248-1-sumit.garg@linaro.org>
- <20240315060707.471248-4-sumit.garg@linaro.org>
- <ZfRlYnEQUKvwGQ65@gerhold.net>
- <CAFA6WYMucNzLNm+oHNd-Jb65oigpNphU=mFGM1cD8A-mK-BFDw@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D0028120F;
+	Tue, 19 Mar 2024 14:21:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710858093; cv=none; b=S10VmhAhK4vqk1chaY25iO1Syp8dRzc6fCPcLpwkKO7yDgxdp3TLWTN2HjR/5Httj+WL9bUhohPmTC0g1e79GSN7MnUCCHwk77ZbdHFNKzL0jBQb418v3aRFpfqPESIEmuVlPD77PWvrE5O/4dAYL/ZPpzD8JdyjC3zdKaAqOKQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710858093; c=relaxed/simple;
+	bh=y34XZ0vtIVzYLMMHoygcdczC5B3Or+zKFqx1fZDqsl0=;
+	h=Content-Type:Date:Message-Id:From:To:Subject:Cc:References:
+	 In-Reply-To; b=Lm3DFyKOEwM9Rk5RcVVjWi1lBEJqK6SXTZKzLKgiN+iDFA3nlqyk0yBEQfvuFz0mgjRIsDK+/PRs301IIDmlZZKoQlA0zHvwBQcd/lQZsASuCvAnSCmw9Vg+rePkcrQ/iN1NauxRXOu7+gm9Cnig0xpkt6GG3DOCs6ps1YpuE5Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c39viybc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1E1CC433F1;
+	Tue, 19 Mar 2024 14:21:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710858093;
+	bh=y34XZ0vtIVzYLMMHoygcdczC5B3Or+zKFqx1fZDqsl0=;
+	h=Date:From:To:Subject:Cc:References:In-Reply-To:From;
+	b=c39viybc6vbm3s8cK0P+o1KOgxA9cxDSMr8QauJSlsRB1i7KNLxeYuyiaS0U1nF8Q
+	 ZQZS/+j2UWK49g0Gv1nC0yeHHEN4r1+lUg/xh/UKIl8uKC0cWF1DgLVYaDHGAPpwko
+	 8fUTuZTsDCarBOsEp4BwmWF4m5Th/gpKFfZP2FaZ3UXI5rxn+GUkiwffiLKXtYPbG8
+	 Xrykxxk4Owf9+Qs7ZS4w90OA/HUvEkPfRKLAF0vbKpHXzZ9EKgUjlXt+vK4HBQmt0+
+	 fMRxYnwNPRhJPj71S5lyE5ewhzG7OaU5Eq5A83ny7sxL5oFFn0RFbt5MAXstsXL6MN
+	 rEguoFIDao6cA==
+Content-Type: multipart/signed;
+ boundary=484ebd4306fe9471bc399d353521ffa4b2c7aa00a6aaca1e7f444141b61c;
+ micalg=pgp-sha256; protocol="application/pgp-signature"
+Date: Tue, 19 Mar 2024 15:21:21 +0100
+Message-Id: <CZXSKOLK6S1S.N86E2AZG2V90@kernel.org>
+From: "Michael Walle" <mwalle@kernel.org>
+To: "Ayush Singh" <ayushdevel1325@gmail.com>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski@linaro.org>, "open list"
+ <linux-kernel@vger.kernel.org>, "Andrew Lunn" <andrew@lunn.ch>
+Subject: Re: [PATCH v4 1/5] dt-bindings: misc: Add mikrobus-connector
+Cc: <jkridner@beagleboard.org>, <robertcnelson@beagleboard.org>,
+ <lorforlinux@beagleboard.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Nishanth Menon" <nm@ti.com>, "Vignesh Raghavendra"
+ <vigneshr@ti.com>, "Tero Kristo" <kristo@kernel.org>, "Derek Kiernan"
+ <derek.kiernan@amd.com>, "Dragan Cvetic" <dragan.cvetic@amd.com>, "Arnd
+ Bergmann" <arnd@arndb.de>, "Greg Kroah-Hartman"
+ <gregkh@linuxfoundation.org>, "Vaishnav M A" <vaishnav.a@ti.com>, "Mark
+ Brown" <broonie@kernel.org>, "Johan Hovold" <johan@kernel.org>, "Alex
+ Elder" <elder@kernel.org>, "open list:OPEN FIRMWARE AND FLATTENED DEVICE
+ TREE BINDINGS" <devicetree@vger.kernel.org>, "moderated list:ARM/TEXAS
+ INSTRUMENTS K3 ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, "open
+ list:SPI SUBSYSTEM" <linux-spi@vger.kernel.org>, "moderated list:GREYBUS
+ SUBSYSTEM" <greybus-dev@lists.linaro.org>, "Vaishnav M A"
+ <vaishnav@beagleboard.org>
+X-Mailer: aerc 0.16.0
+References: <20240317193714.403132-1-ayushdevel1325@gmail.com>
+ <20240317193714.403132-2-ayushdevel1325@gmail.com>
+ <CZWVF90JJO98.2M7ARQ9WMGC94@kernel.org>
+ <d4dc4d94-d323-4158-8c08-b7d37d8750d3@gmail.com>
+ <0f3f56d4-3381-44f1-91bc-c126f3ced085@linaro.org>
+ <c8031e17-5ae8-4794-8b8c-1736be6452d3@gmail.com>
+ <CZXMK3W52AFO.1APK080GVJESK@kernel.org>
+ <5a9b1cd9-05ec-4606-92b6-eadbc7af6202@gmail.com>
+ <CZXPQZY8PUGE.QZM8XSOUNMT4@kernel.org>
+ <81ec4156-8758-406e-876b-5acf13951d09@gmail.com>
+In-Reply-To: <81ec4156-8758-406e-876b-5acf13951d09@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAFA6WYMucNzLNm+oHNd-Jb65oigpNphU=mFGM1cD8A-mK-BFDw@mail.gmail.com>
-Content-Transfer-Encoding: 7bit
 
-On Mon, Mar 18, 2024 at 03:20:46PM +0530, Sumit Garg wrote:
-> On Fri, 15 Mar 2024 at 20:43, Stephan Gerhold <stephan@gerhold.net> wrote:
-> > On Fri, Mar 15, 2024 at 11:37:07AM +0530, Sumit Garg wrote:
-> > > Add Schneider Electric HMIBSC board DTS. The HMIBSC board is an IIoT Edge
-> > > Box Core board based on the Qualcomm APQ8016E SoC.
-> > >
-> > > Support for Schneider Electric HMIBSC. Features:
-> > > - Qualcomm Snapdragon 410C SoC - APQ8016 (4xCortex A53, Adreno 306)
-> > > - 1GiB RAM
-> > > - 8GiB eMMC, SD slot
-> > > - WiFi and Bluetooth
-> > > - 2x Host, 1x Device USB port
-> > > - HDMI
-> > > - Discrete TPM2 chip over SPI
-> > > - USB ethernet adaptors (soldered)
-> > >
-> > > Co-developed-by: Jagdish Gediya <jagdish.gediya@linaro.org>
-> > > Signed-off-by: Jagdish Gediya <jagdish.gediya@linaro.org>
-> > > Reviewed-by: Caleb Connolly <caleb.connolly@linaro.org>
-> > > Signed-off-by: Sumit Garg <sumit.garg@linaro.org>
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/Makefile             |   1 +
-> > >  .../dts/qcom/apq8016-schneider-hmibsc.dts     | 510 ++++++++++++++++++
-> > >  2 files changed, 511 insertions(+)
-> > >  create mode 100644 arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts
-> > >
-> > > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> > > index 39889d5f8e12..ad55e52e950b 100644
-> > > --- a/arch/arm64/boot/dts/qcom/Makefile
-> > > +++ b/arch/arm64/boot/dts/qcom/Makefile
-> > > @@ -5,6 +5,7 @@ apq8016-sbc-usb-host-dtbs     := apq8016-sbc.dtb apq8016-sbc-usb-host.dtbo
-> > >
-> > >  dtb-$(CONFIG_ARCH_QCOM)      += apq8016-sbc-usb-host.dtb
-> > >  dtb-$(CONFIG_ARCH_QCOM)      += apq8016-sbc-d3-camera-mezzanine.dtb
-> > > +dtb-$(CONFIG_ARCH_QCOM)      += apq8016-schneider-hmibsc.dtb
-> > >  dtb-$(CONFIG_ARCH_QCOM)      += apq8039-t2.dtb
-> > >  dtb-$(CONFIG_ARCH_QCOM)      += apq8094-sony-xperia-kitakami-karin_windy.dtb
-> > >  dtb-$(CONFIG_ARCH_QCOM)      += apq8096-db820c.dtb
-> > > diff --git a/arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts b/arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts
-> > > new file mode 100644
-> > > index 000000000000..9c79a31a04db
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts
-> > > @@ -0,0 +1,510 @@
-> > > [...]
-> > > +
-> > > +&pm8916_resin {
-> > > +     interrupts = <0x0 0x8 1 IRQ_TYPE_EDGE_FALLING>;
-> > > +     linux,code = <KEY_POWER>;
-> > > +     status = "okay";
-> > > +};
+--484ebd4306fe9471bc399d353521ffa4b2c7aa00a6aaca1e7f444141b61c
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+
+On Tue Mar 19, 2024 at 2:03 PM CET, Ayush Singh wrote:
+> >>>> Regardless, this patch actually does not contain any code for EEPROM
+> >>>> support I have just mentioned it to give more context on why mikroBU=
+S
+> >>>> manifest is the focus of this patch instead of DT overlay or somethi=
+ng
+> >>>> else.
+> >>> Right, and I think this is the crux here. Why can't you use DT
+> >>> overlays? The manifest files, seem to be yet another hardware
+> >>> description (method) and we already have DT. Can't we have some kind
+> >>> of userspace helper that could translate them to DT overlays? That
+> >>> way, you could also handle the EEPROM vs non-EEPROM case, or have
+> >>> some other kind of method to load a DT overlay.
+> >>>
+> >>> Admittedly, I've never worked with in-kernel overlays, but AFAIK
+> >>> they work with some subsystems.
+> >>>
+> >>> -michael
+> >>
+> >> So let me 1st go over 3 cases that the driver needs to support:
+> >>
+> >> 1. Non EEPROM boards:
+> >>
+> >> Using overlays should be pretty similar to current solution. If the
+> >> manifest is converted to overlay in userspace, then we do not even nee=
+d
+> >> to do manifest parsing, setting up spi, i2c etc in the kernel driver.
+> >>
+> >>
+> >> 2. EEPROM boards
+> >>
+> >> How do you propose handling these. If you are proposing storing dt
+> >> overlay in EEPROM, then this raises some questions regarding support
+> >> outside of Linux.
+> >>
+> >> The other option would be generating overlay from manifest in the kern=
+el
+> >> driver, which I'm not sure is significantly better than registering th=
+e
+> >> i2c, spi, etc. interfaces separately using standard kernel APIs.
+> > You did answer that yourself in (1): you could use a user space
+> > helper to translate it to a DT overlay, I don't think this has to be
+> > done in the kernel.
+>
+> I do not understand what you mean. For EEPROM supported boards, user=20
+> space is not involved. The driver can directly read the manifest from=20
+> add-on board and setup everything, so it is plug and play.
+
+A driver could call a user-space helper, which will read the EEPROM
+content (or maybe the driver already passes the content to the
+helper), translate it to a DT overlay, and load it. Wouldn't that
+work?
+
+I'm not saying that is the way to go, just evaluate some ideas.
+
+> The manual involvement of user space is only for non EEPROM boards since=
+=20
+> we do not have a way to identify the board without the user needing to=20
+> provide the manifest.
+
+FWIW, I'm not talking about manual steps here. But more of
+call_usermodehelper(). Or maybe udev can do it?
+
+Btw, [1] mentions hot-plugging. Is that really hot-plugging while
+the system is running? How would that work?
+
+> > Also how do you know whether there is an EEPROM
+> > or not?
+>
+> Set RST GPIO to low. clickID supported board will enter ID MODE, Then=20
+> check if CS line has a w1 gpio bus.
+
+Ok.
+
+> >> 3. Over Greybus
+> >>
+> >> It is quite important to have mikroBUS over greybus for BeagleConnect.
+> >> This is one of the major reasons why greybus manifest was chosen for t=
+he
+> >> manifest format.
+> >>
+> >> Also, it is important to note that mikroBUS manifest is being used sin=
+ce
+> >> 2020 now and thus manifests for a lot of boards (both supporting click=
+ID
+> >> and not supporting it exist). So I would prefer using it, unless of
+> >> course there are strong reasons not to.
+> > And also here, I'm not really familiar with greybus. Could you give
+> > a more complex example? My concern is that some driver might need
+> > additional properties from DT (or software nodes) to function
+> > properly. It might not only be a node with a compatible string but
+> > also more advanced bindings. How would that play together with this?
+> > My gut feeling is that you can handle any missing properties
+> > easier/better (eg. for existing modules) in user space. But maybe
+> > that is already solved in/with greybus?
+>
+> Greybus is a communication protocol designed for modular electronic=20
+> devices. It allows different parts of a device to be hot plugged (added=
+=20
+> or removed) while the device is still running. Greybus manifest is used=
+=20
+> to describe the capabilities of a module in the greybus network. The=20
+> host then creates appropriate bidirectional unipro connections with the=
+=20
+> module based on the cports described in the manifest. I have added a=20
+> link to lwn article that goes into more detail.
+>
+> BeagleConnect simply allows using greybus over any bidirectional=20
+> transport, instead of just Unipro.
+>
+> I cannot comment much about how greybus handles missing properties.=20
+> While greybus also works just in kernel space, greybus protocols are=20
+> inherently higher level than kernel driver, so it might have an easier=20
+> time with this.
+>
+> I have also added a link to eLInux page which provides rational for the=
+=20
+> mikroBUS manifest. But the crux seems to be that dynamic overlays were=20
+> not well-supported back then. Also, the use of mikroBUS using greybus=20
+> subsystem was already used. Hence the mikroBUS driver.
+
+I see this as an opportunity to improve the in-kernel overlays :)
+
+> Greybus is not a big blocker from my perspective, since it is always=20
+> possible to introduce a new protocol for mikroBUS in Greybus spec. I=20
+> think as long as both EEPROM and non EEPROM boards can be supported by=20
+> mikroBUS driver and dt-bindings, are can be used outside of Linux (eg:=20
+> ZephyrRTOS, nuttx, etc), it is fine.
+>
+> > Here's a random one: the manifest [1] just lists the compatible
+> > string apparently, but the actual DT binding has also reset-gpios,
+> > some -supply and interrupt properties.
 > >
-> > What is the goal of overriding the interrupt here? It looks like you are
-> > changing the interrupt type from IRQ_TYPE_EDGE_BOTH to FALLING. This
-> > sounds a bit like you want the driver to receive just button release
-> > events (or just press events, not sure about the polarity). I'm not sure
-> > if the driver will handle this correctly.
-> 
-> The use-case here is to just act upon button release events and the
-> driver handles this appropriately. Final use-case of the reset button:
-> 
-> - Short press and release leads to normal Linux reboot.
-> - Long press for more than 10 sec or so leads to a hard reset.
-> 
-> With IRQ_TYPE_EDGE_BOTH, that's not achievable because just a simple
-> press leads to Linux reboot.
-> 
+> > -michael
+> >
+> > [1] https://github.com/MikroElektronika/click_id/blob/main/manifests/WE=
+ATHER-CLICK.mnfs
+>
+>
+> Yes, the concern is valid. Support for validating the manifest is=20
+> nowhere near as good as devicetree overlays. But I think that would be a=
+=20
+> problem with the device rather than the responsibility of the kernel. It=
+=20
+> is up to the manufacturer to have valid manifests.
 
-Thanks for explaining your use case. Is the DT really the right place to
-describe this? In the hardware, this is just a button that provides both
-press and release events. Linux typically forwards these events to user
-space, without interpreting them in any way. This means you likely have
-some user space component that listens to the events (e.g. systemd
-logind). Ideally that component should be reconfigured to trigger the
-reboot on release instead of press.
+But does the manifest have the capabilities to express all that
+information? To me it looks like just some kind of pinmux, some
+vendor strings and a (DT) compatible string.
+[coming back to this after seeing [2]: there are more properties,
+but it seem just be a list of property=3Dvalue]
 
-If you hardcode this behavior in the DT you are essentially describing
-that the hardware is incapable of detecting the press event before the
-release event. This is not the case, right? There may be use cases where
-someone would still want to detect the key press (rather than just
-release).
+What I'd like to avoid is some kind of in-kernel mapping list from
+manifest to actual driver instantiation.
 
-Thanks,
-Stephan
+I guess you'll get much of that with DT overlays already and if you
+have some kind of automatic translation from manifest to DT overlay,
+it will still be plug-and-play. You could fix up any missing
+properties, etc. manually loading some manifests/dt overlays for
+modules without EEPROMs.
+
+Again, a more complex manifest file would really be appreciated
+here. Not just a simple "there is exactly one trivial SPI device on
+the bus".
+
+FWIW, here is a more complex example [2] which uses the ssd1306
+display driver. Dunno if that is a good example, as it seems to use
+the fb_ssd1306 driver (at least that's what I'm deducing by reading
+the driver-string-id) in staging and there is also ssd1307fb.c in
+drivers/video/fbdev. But how are the additional information like
+width and height translate to the properties of the driver (device
+tree properties, swnode properties, platform_data*)?
+
+On a side note, does the manifest files use the (linux) kernel
+module name for the driver-string-id?
+
+-michael
+
+[1] https://github.com/MikroElektronika/click_id/blob/main/README.md
+[2] https://github.com/MikroElektronika/click_id/blob/main/manifests/OLEDB-=
+CLICK.mnfs
+
+> Link: https://lwn.net/Articles/715955/ Greybus
+> Link https://elinux.org/Mikrobus eLinux article
+
+
+--484ebd4306fe9471bc399d353521ffa4b2c7aa00a6aaca1e7f444141b61c
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iIgEABYIADAWIQQCnWSOYTtih6UXaxvNyh2jtWxG+wUCZfmfYhIcbXdhbGxlQGtl
+cm5lbC5vcmcACgkQzcodo7VsRvuwwAEAsN5Pnsa/SNvIm6g3jIvfx0VgPgf5jZ1o
+mhKMHynealgBALAiZQULQPGr8MO/zU2lTMGIz7VTGegs2Q9Kz7ZrUeAC
+=ZkPm
+-----END PGP SIGNATURE-----
+
+--484ebd4306fe9471bc399d353521ffa4b2c7aa00a6aaca1e7f444141b61c--
 
