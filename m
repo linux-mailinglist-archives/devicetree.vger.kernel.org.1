@@ -1,261 +1,151 @@
-Return-Path: <devicetree+bounces-51796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51797-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EABC88072A
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 23:13:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2B2A880730
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 23:17:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2BC7D1F22F4E
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 22:13:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 023A11C21938
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 22:17:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 938D14F894;
-	Tue, 19 Mar 2024 22:13:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44FE34F889;
+	Tue, 19 Mar 2024 22:17:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="plw5HfNa"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jtZA6t61"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-186.mta0.migadu.com (out-186.mta0.migadu.com [91.218.175.186])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F09C4F5F9
-	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 22:13:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.186
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 729124F5F9;
+	Tue, 19 Mar 2024 22:17:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710886428; cv=none; b=cBCtTXXQBFWpqxg2Xt5sl8GuIXsNOFKkVd919147392TE75TqIqMqoJHXU6Uxmaet+BJwVruvtlSzYkuRUi4THUCIKHavsExGWwIW6I6NKoZrhf8nOro4ZhxXn/KceOj+dL8TN+D8L0aAuyFtfnnMcu1dTumdVRC4MmmEOFaLDE=
+	t=1710886646; cv=none; b=SjPcXhXqIwuh4b96t2lYZEP11l7kcKrDA/HUyVrsl5V9XsXrMBMKyVBgxIIp8Yej9WTubIZip1NOQX1ClWhLcy7LJxVC6U0iVxQgXAEbMZUwYHwrPMum+ejDyLe0ULArWUG8NsPgtrWY5cq0rnBbntoyw96wOgSq0rrOUdADaMs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710886428; c=relaxed/simple;
-	bh=udVUFUWX2J/xUXDGTNFqtziCw0vdxH6hWQRY3LHyu8c=;
-	h=MIME-Version:Date:Content-Type:From:Message-ID:Subject:To:Cc:
-	 In-Reply-To:References; b=cLicD5mGc+oG2qH9M06dSWmCrvdxUeUB2E41VWUL//dmzYnMaOdfiKuE8pM9XKvYwDtavb6gXNE3cTfBr+x+P4It1Fru3L5gUcEHHirlzWxysZhAyJXtVkvs7KX8ALTyzXUhbfrhZWN5oc8mNLbEW7Q0mMaChX9mhX7/1tK/1KE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=plw5HfNa; arc=none smtp.client-ip=91.218.175.186
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
+	s=arc-20240116; t=1710886646; c=relaxed/simple;
+	bh=iSWaMEWDug/PqAcpOySOPvs1GqiZV7u1C4XYEixAJCE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Ot612y7tmShKUDBIqQ7X/tRPxTJ5w8SyNyp5OXMJKSFQHmrZx5qTV6kIU67g5Iaw9eQJOcAq6iFogQZCASTZPNPcfa/OtwdjD/44LPyjU/JRnKG4gsrAM5YzMrY0iSEGNOed82pesDCPumedBDDcb47y658tce/OdxVTIa6KFUc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jtZA6t61; arc=none smtp.client-ip=209.85.208.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-56ba73c02b2so765141a12.0;
+        Tue, 19 Mar 2024 15:17:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1710886642; x=1711491442; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cSNk7Vf1g7S81rJhVAJNnvcZ02nEXYFCinajVc9WiKg=;
+        b=jtZA6t61Cp8qIl7A1LRA27ekgSA9h3CbMO5+RrTkH7geKuJb5svNaRvdRyOniILrEj
+         wnF7eJOyB9HRpX7sZ/gNZGnhmGUEG7HUrmW6RRN1cEkJQwTnMsbNHFje1Tfn4CGaaCfb
+         p4jVWPY2xBZJqIZpZLtzDJHY9Q7X19XpSLR00aJ0c+0fy4099212J2OJtNttnoTHxA/q
+         pSqZbp8NDWYbJP0obajERx3etm9iBs9IAfB29H6dsqGFkTkd7A12KIP1kCoQHbDUnBlG
+         G11SrYErxVLndnIfGOJi+9F0aLy9i3xfeTMLG/lnnSWwP7IOlVFFBizmNze0aUbH37Uj
+         ig1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710886642; x=1711491442;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cSNk7Vf1g7S81rJhVAJNnvcZ02nEXYFCinajVc9WiKg=;
+        b=R4Mg3yeqUrvcGzUI+V9mq3s2+98j9rys1WUgckF8WQMupu2obotfoDd3egL8OK74Vx
+         JpZAF44c9yEKZdeovhfRbpIAQ745P504Jo3+7LQ3pcAXpcYtzEVZw5mM+Z2ENk591E98
+         l3NqaQdIMFbuk2C8EqU855BzRiSUkYXnVsEmCRtL3PtrOnzbSJ4Q/I7ihexJKIT27kk8
+         4jA3GrG0W/2ld7h1VJ5V24DF2CHNiABVseBmyhJDE4Bq/2OOAs0B44M7UM+T/Nnclk1f
+         XevOnk5oOy9P1XnqSwuZYst+qwWyPOjFluzjdHRAKX5tWjqfrWJJ4j7o3vBsHCTgWVxk
+         LaJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUZds5yINfqgGTDg95y1A4yqiWMt/YNozlDen3WgRspe7Z/6pJN6COmgfnRq2uQefvJ+JNXKl6YCnp7HOjWHTmka2IP4CvkdauU4dimwdXMjuqdzoVbnHISGqExF1TgersxrHTb9KP09No1lgtQtPwIO7o1jhA5c2TyxAm3KFLktZMI0iKhMw==
+X-Gm-Message-State: AOJu0YxphkJ6LdULXh/m9/JcTLG1tG7Dqa/lxUhwFKudngHe8fXtX8NY
+	63dCrwwJi9H288aShz1WYCVyc4RvhFvKYOdnwj22gmT1Uj6tLg+b
+X-Google-Smtp-Source: AGHT+IGMRTODL29KcDlbOCHNLwkDAaChUKnvdXRP1BG+7isiw1RpTe6iNe5o6suqQifNVnwSPURhdQ==
+X-Received: by 2002:a05:6402:4499:b0:568:c6df:d23 with SMTP id er25-20020a056402449900b00568c6df0d23mr6871268edb.1.1710886641585;
+        Tue, 19 Mar 2024 15:17:21 -0700 (PDT)
+Received: from bhlegrsu.conti.de ([2a02:908:2525:6ea0::11c2])
+        by smtp.googlemail.com with ESMTPSA id n13-20020a05640204cd00b00569aed32c32sm2761182edw.75.2024.03.19.15.17.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Mar 2024 15:17:21 -0700 (PDT)
+From: Wadim Mueller <wafgo01@gmail.com>
+To: 
+Cc: Wadim Mueller <wafgo01@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Chester Lin <chester62515@gmail.com>,
+	=?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+	Matthias Brugger <mbrugger@suse.com>,
+	NXP S32 Linux Team <s32@nxp.com>,
+	Tim Harvey <tharvey@gateworks.com>,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
+	Marek Vasut <marex@denx.de>,
+	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Markus Niebel <Markus.Niebel@ew.tq-group.com>,
+	Matthias Schiffer <matthias.schiffer@tq-group.com>,
+	Stefan Wahren <stefan.wahren@chargebyte.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Philippe Schenker <philippe.schenker@toradex.com>,
+	Li Yang <leoyang.li@nxp.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 0/2] NXP S32G3 SoC initial bring-up
+Date: Tue, 19 Mar 2024 23:16:08 +0100
+Message-Id: <20240319221614.56652-1-wafgo01@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1710886423;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=mw9oB0GIX+79BFcxVVSixrKnoz3G0x8yQvNbfMRcMYU=;
-	b=plw5HfNa9iIwNfa7udFoR4dM2lapOwmFGbjXJkkxKEU9kDu9vt6qxOLHXOa1PaFKZY5YEV
-	E19wI44COKQBh8vIB/6bgdb7AUVCAuMk33Hv9ZhO5X4+WnIg84InGJoncVkeqWeJTenQI1
-	j0YZUK+0/s5D9RytcwvRToj2HERoGpHa3Ik7u8TYEe4G8p5+1H7PeCnl+AYqjmNxys2l4m
-	5U90TXJXNFixNVT6cat0Y+WO1RxQaE0cY7M1D7qJHiPpLBj9hSQrCZDXc6vCEgudAZQugy
-	pjG2OoJS5bkqlLjifc1rYLqyuZdxUekRv5BPiFP8sKpilr/qoReRLmWk/X//sQ==
-Date: Tue, 19 Mar 2024 22:13:41 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Anton Bambura" <jenneron@postmarketos.org>
-Message-ID: <87c34b2d0a062497488aa1c7e3f0d12d3a029828@postmarketos.org>
-TLS-Required: No
-Subject: Re: [PATCH v2 4/6] arm64: dts: qcom: sc8180x-lenovo-flex-5g: enable
- touchscreen
-To: "Bjorn Andersson" <andersson@kernel.org>
-Cc: "Konrad Dybcio" <konrad.dybcio@linaro.org>, "Rob Herring"
- <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <2tq6m75m3skcu5wlvrwpwnn53kay3pzo2aeecofxpfnll7mwqn@whtnrabrrivw>
-References: <20240203191200.99185-1-jenneron@postmarketos.org>
- <20240203191200.99185-5-jenneron@postmarketos.org>
- <2tq6m75m3skcu5wlvrwpwnn53kay3pzo2aeecofxpfnll7mwqn@whtnrabrrivw>
-X-Migadu-Flow: FLOW_OUT
-
-March 18, 2024 at 4:43 AM, "Bjorn Andersson" <andersson@kernel.org> wrote=
-:
+Content-Transfer-Encoding: 8bit
 
 
+This series brings up initial support for the NXP S32G3 SoC,
+used on the S32G-VNP-RDB3 board [1].
 
->=20
->=20On Sat, Feb 03, 2024 at 09:11:58PM +0200, Anton Bambura wrote:
->=20
->=20>=20
->=20> Set regulators, reset gpio and delays according to ACPI tables.
-> >=20
->=20>=20=20
->=20>=20
->=20>  Signed-off-by: Anton Bambura <jenneron@postmarketos.org>
-> >=20
->=20>  ---
-> >=20
->=20>  .../boot/dts/qcom/sc8180x-lenovo-flex-5g.dts | 30 ++++++++++++++++=
-++-
-> >=20
->=20>  1 file changed, 29 insertions(+), 1 deletion(-)
-> >=20
->=20>=20=20
->=20>=20
->=20>  diff --git a/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts b=
-/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
-> >=20
->=20>  index 6ae6cb030b70..5bf6285f905f 100644
-> >=20
->=20>  --- a/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
-> >=20
->=20>  +++ b/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
-> >=20
->=20>  @@ -271,6 +271,12 @@ vreg_l3c_1p2: ldo3 {
-> >=20
->=20>  regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> >=20
->=20>  };
-> >=20
->=20>=20=20
->=20>=20
->=20>  + vreg_l4c_3p3: ldo4 {
-> >=20
->=20>  + regulator-min-microvolt =3D <3296000>;
-> >=20
->=20>  + regulator-max-microvolt =3D <3304000>;
-> >=20
->=20>  + regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> >=20
->=20>  + };
-> >=20
->=20>  +
-> >=20
->=20>  vreg_l10c_3p3: ldo10 {
-> >=20
->=20>  regulator-min-microvolt =3D <3000000>;
-> >=20
->=20>  regulator-max-microvolt =3D <3312000>;
-> >=20
->=20>  @@ -337,6 +343,12 @@ vreg_l10e_2p9: ldo10 {
-> >=20
->=20>  regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> >=20
->=20>  };
-> >=20
->=20>=20=20
->=20>=20
->=20>  + vreg_l12e_1p8: ldo12 {
-> >=20
->=20>  + regulator-min-microvolt =3D <1800000>;
-> >=20
->=20>  + regulator-max-microvolt =3D <1800000>;
-> >=20
->=20>  + regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> >=20
->=20>  + };
-> >=20
->=20>  +
-> >=20
->=20>  vreg_l16e_3p0: ldo16 {
-> >=20
->=20>  regulator-min-microvolt =3D <3072000>;
-> >=20
->=20>  regulator-max-microvolt =3D <3072000>;
-> >=20
->=20>  @@ -365,11 +377,19 @@ &i2c1 {
-> >=20
->=20>  touchscreen@10 {
-> >=20
->=20>  compatible =3D "hid-over-i2c";
-> >=20
->=20>  reg =3D <0x10>;
-> >=20
->=20>  +
-> >=20
->=20>  hid-descr-addr =3D <0x1>;
-> >=20
->=20>  + reset-gpios =3D <&tlmm 54 GPIO_ACTIVE_LOW>;
-> >=20
->=20>  +
-> >=20
->=20>  + vdd-supply =3D <&vreg_l4c_3p3>;
-> >=20
->=20>  + vddl-supply =3D <&vreg_l12e_1p8>;
-> >=20
->=20>  +
-> >=20
->=20>  + post-power-on-delay-ms =3D <3>;
-> >=20
->=20>  + post-reset-deassert-delay-ms =3D <200>;
-> >=20
->=20
-> As I ran into with the X13s, post-reset-deassert-delay-ms is not an
->=20
->=20accepted property for hid-over-i2c. I think the desired path forward =
-is
->=20
->=20to extend elan,ekth6915.yaml and i2c-hid-of-elan.c and hard code thes=
-e
->=20
->=20values there instead.
->=20
->=20But I suspect you, like me, are unaware of the actual name of the
->=20
->=20device? Perhaps it's acceptable to make something up based on the
->=20
->=20reported product id?
+The following features are supported in this initial port:
 
-Indeed, I don't know the actual IC. evtest reports this:
+  * Devicetree for the S32G-VNP-RDB3 
+  * UART (fsl-linflexuart) with earlycon support
+  * SDHC: fsl-imx-esdhc (SD/eMMC)
 
-Input device ID: bus 0x18 vendor 0x4f3 product 0x2a7d version 0x100
-Input device name: "hid-over-i2c 04F3:2A7D"
+== Changes since v1 ==:
 
->=20
->=20Regards,
->=20
->=20Bjorn
->=20
->=20>=20
->=20> interrupts-extended =3D <&tlmm 122 IRQ_TYPE_LEVEL_LOW>;
-> >=20
->=20>=20=20
->=20>=20
->=20>  - pinctrl-0 =3D <&ts_int_default>;
-> >=20
->=20>  + pinctrl-0 =3D <&ts_int_default>, <&ts_reset_default>;
-> >=20
->=20>  pinctrl-names =3D "default";
-> >=20
->=20>  };
-> >=20
->=20>  };
-> >=20
->=20>  @@ -735,6 +755,14 @@ ts_int_default: ts-int-default-state {
-> >=20
->=20>  drive-strength =3D <2>;
-> >=20
->=20>  };
-> >=20
-> >=20=20
->=20>=20
->=20>  + ts_reset_default: ts-reset-default-state {
-> >=20
->=20>  + pins =3D "gpio54";
-> >=20
->=20>  + function =3D "gpio";
-> >=20
->=20>  +
-> >=20
->=20>  + bias-disable;
-> >=20
->=20>  + drive-strength =3D <16>;
-> >=20
->=20>  + };
-> >=20
->=20>  +
-> >=20
->=20>  usbprim_sbu_default: usbprim-sbu-state {
-> >=20
->=20>  oe-n-pins {
-> >=20
->=20>  pins =3D "gpio152";
-> >=20
->=20>  --=20
->=20>=20
->=20>  2.42.0
-> >
->
+  * fix the reported checkpatch.pl errors. Two warnings still available but can be ignored
+  * clean up unneeded DT nodes and properties
+  * fix 'make dt_binding_check dtbs_check' errors
+  * remove the S32 STMMAC driver and DT node which will be introduced in a new patchset
+  * add NXP authorship and copyright into the dtsi header
+ 
+
+[1] https://www.nxp.com/design/design-center/designs/s32g3-vehicle-networking-reference-design:S32G-VNP-RDB3
+
+
+Wadim Mueller (2):
+  arm64: dts: S32G3: Introduce device tree for S32G-VNP-RDB3
+  dt-bindings: arm: fsl: Document missing s32g3 board and linflexuart
+
+ .../devicetree/bindings/arm/fsl.yaml          |   6 +
+ .../bindings/serial/fsl,s32-linflexuart.yaml  |   3 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ arch/arm64/boot/dts/freescale/s32g3.dtsi      | 236 ++++++++++++++++++
+ .../boot/dts/freescale/s32g399a-rdb3.dts      |  43 ++++
+ 5 files changed, 289 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/s32g3.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/s32g399a-rdb3.dts
+
+-- 
+2.25.1
+
 
