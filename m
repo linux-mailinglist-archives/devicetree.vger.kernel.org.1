@@ -1,273 +1,245 @@
-Return-Path: <devicetree+bounces-51690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51691-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AD75880140
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 16:56:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 123C3880161
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 17:05:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2954EB23275
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 15:56:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 368321C22EFD
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 16:05:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 445E265BAA;
-	Tue, 19 Mar 2024 15:56:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 351118003D;
+	Tue, 19 Mar 2024 16:05:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZRnaBHcS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uYDJUIqt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59D02657BE;
-	Tue, 19 Mar 2024 15:56:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60A28657D2
+	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 16:05:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710863782; cv=none; b=fiVnuqJRdP1shHZAuZjw7oTjYJlLKDA6t3SgNX2pdD9fqSMeBwndHgRCPLHCrbH0HzOHkcAvETtYBa6MdyGYtSH4rLZ7/JH3H/7c14zB9UQVN05ntkbg4jbheLaBC4ZbmObLoGqsSCKoc+VqlKSi/TJp2VCaypKGymdKTHoYtI0=
+	t=1710864337; cv=none; b=MYfKc2j1xXl1admTG96bdbBAB4l+tu+9YPp8e5BhvQtYfurcxcWTIRf4jmusdTYzEhicKeQUGhyvc0XAlT+e6hROVXeMNe4eAyehfmTFWxoyu4RjS5uU591ux0QQnBaiYZamXRT5XDOcGNWvgzbDFWOt3mYj8dAqjGYsF4aN7Eg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710863782; c=relaxed/simple;
-	bh=kTIWQgBaqX7BCGZ6l0YNbzF24DBdzNGDd7qEdfi2zjw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Mu3kj6J0rtqzjeCcyHdEwWxe1VvAubA09dTzNTpjaoPsbTldTul1RPbxj9ncOVl5qL2+BFT7/NYpaKD9PHna4wA4+pa4cSB21XIH6c6ZTRWpa1KkE8tFWhhUJUewQ2jueZcM4cCfu2IUwUDSvVXbDmNeM7yu5qrsCnabGjk+1Hs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZRnaBHcS; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-513dd2d2415so4466880e87.3;
-        Tue, 19 Mar 2024 08:56:19 -0700 (PDT)
+	s=arc-20240116; t=1710864337; c=relaxed/simple;
+	bh=Ad79h1k+HD6v+kGeE/hH+EBlVR2ZFbisAIfFd18eHu8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=nFCJe85VfaJJPxQX4sspaCRgyieifXoVcwUO3snv5PzpAAbuUr7eranQrVhKxsF+jo+NIiT3czIuNGH7dXfqP2vl5YYl7E/N/D7jH0AhZCtyQIW4r9vlTgasV8yovs524BPP1H3csVKECf06SAP607YIcGloLAO9CsduMvjfyk4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uYDJUIqt; arc=none smtp.client-ip=209.85.128.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-60a046c5262so55306547b3.2
+        for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 09:05:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710863778; x=1711468578; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=t4IC/jDYnczASn/Z+j5D8kmO/fWJVOdRI8Restnbwbk=;
-        b=ZRnaBHcSHAD+8+R8QRL2dOdv4nqz6wfl5XkNZnQboQfE3He7ktwl1Qqzn2lgXwGeRz
-         wmzPBxx8Xb2G7aZUk8VbJSZsqiAvIMDjHyangjKl9e36ynPbeylPoEG/AVzZ8tKg/2qW
-         hU183za6xaJDMZ6PYPLVkWXHEOP6SsmOR1cw5w1XNbGKNQldVQooETaexRe5lfozFSCw
-         DDa2TPJkTqi8gzI8xXt/o+bQfnO/TcdlK2ki2s1g/y3jN4go9RV1HmyH9h3ejdY29X6a
-         2Fz2JwXPcdkZbAzn1kCi3mRdpcendQ7PRXOa7EA6M3yjsC7No1/bxtEInEbe4C+y6+Aw
-         7eSw==
+        d=linaro.org; s=google; t=1710864334; x=1711469134; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ol5DwFk94dhNJ8561vUenj1hX3tsUa9C7nuNtM75Z+k=;
+        b=uYDJUIqtI3oZMQjzeA1J5JXYh3HLSmLbQp++faxm/PYEYEDZ/ZBDwaHNvXsSh1Ik6e
+         FOmtKDNxfumJI4E/n2xw1E5Md3lKq586rtIlkEkCdENUlTUbDyLtsg2sn8uvx4RdRG6D
+         qUSZyM52FAdnyIRc0nCAXhiu0vqHOxxuF2Tf4iJXoH5urtMbNXiIOfooPtNiFPLFt2xq
+         u2EnT7+RWgCReWaDFEdFhe92Lm1cEKorfj8lgj7i5bddmJsoBEqX2Bonf+LOCipJYRzu
+         F6kg4wz0p/mXhaxgm3EyUVCblIHabnm86mlmwLEVSMpDEHMe97HEZYC86crABNn5Fb2n
+         MjGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710863778; x=1711468578;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=t4IC/jDYnczASn/Z+j5D8kmO/fWJVOdRI8Restnbwbk=;
-        b=CryyjrPH1M+T8YrvdUlG5rBrATQJPkpTd+UNlK68WaCaorlIzx16AcCfE6Yb8w4jBr
-         xk2+cQu7WKf2tHXNi77LNmkcxFce1WtIim3TmwazfotpV28rcc1qNP94Nnt3R3jLUhh6
-         EDwWcce+YoSy6pFEf7/0ObFpFJCuCatznPh4uDQXj+QTVJshZpLFxxuiHt/M7Dkn0qY4
-         /ClWccd8GhioiWqUcDwVVMatxroaNb38IGwtd10OVHS1EVuImn4ZgxLFmMz3q1Xxa+pX
-         61C1sFMCJhJ2zPFcjOX8/afQmr9wXPOX6yzXE6UA+lRspV3PrWxZuyVsYDf8nM1lfneG
-         zb/g==
-X-Forwarded-Encrypted: i=1; AJvYcCWEcnD11AkPlm3UqnzqJZC7+3o+yxes0UcZaNnXz2zz8v8jzmzMkadZrkdv5a2byT5zQCIBC3Gmle43vvu6l/O4gM66W9VOfa9G/J5/FnfHUfaL1uH+Ye3lZ4WtuD2v+RRerut7e5xE1g==
-X-Gm-Message-State: AOJu0YzS2bXG1+40ziDySyTbTn3/JZOAeAVHnkLxXzCFLjIgzcUNNrQo
-	vZQH3sHan6XfTn2Y2zM40d1lVTjnFsWxRRW4KwcysfH+ALFxMSaq
-X-Google-Smtp-Source: AGHT+IHPjsVkIChJGewZZKSNJVAbvELDs1703BC5ZulAjkk2eenekYwRB/mjugs3Enk3gw3PaJ7LfA==
-X-Received: by 2002:a19:ca05:0:b0:513:b30c:53c7 with SMTP id a5-20020a19ca05000000b00513b30c53c7mr9644413lfg.10.1710863778027;
-        Tue, 19 Mar 2024 08:56:18 -0700 (PDT)
-Received: from ?IPV6:2001:999:708:5b57:30d6:2195:bb7b:bb94? ([2001:999:708:5b57:30d6:2195:bb7b:bb94])
-        by smtp.gmail.com with ESMTPSA id u13-20020ac25bcd000000b005131434454bsm1959551lfn.228.2024.03.19.08.56.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Mar 2024 08:56:17 -0700 (PDT)
-Message-ID: <9d123584-1feb-404b-890f-2da694cf56d5@gmail.com>
-Date: Tue, 19 Mar 2024 17:57:57 +0200
+        d=1e100.net; s=20230601; t=1710864334; x=1711469134;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Ol5DwFk94dhNJ8561vUenj1hX3tsUa9C7nuNtM75Z+k=;
+        b=pj6zME2WYhxA9AWegwTt6f7LL9tFICMuUucibDH+LeGCUppr0dBcTKFUdjg0m1x3wI
+         b3ANXQaWMQgyDKjnBIA8r4oKeq4wpxeLKt8duuXJg1EJC8bnw8Km/1+k/QwSCEBp1pb+
+         BkM98pVVSchPIqPEro8xKuboa35f2OUr+NAPbtuIrc96HgJVqH0cO75laXIsbAD6emOo
+         MI2A2C+jCzKuk4XSlBhT9659tNp8Tlck+KhSVbTtgxoMlZ6f/sfTTQoi+BNv03mlHRGu
+         QtLgaM+VyHaKRXFhFLzGlHB5W73uuFhcaBaUHDxlvbxoEzgdv19pcvr4uO5kCzKQdivY
+         M0FQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVPWeRA2RMwP26ccwK2HOtqugZxnhiYh9FX82myTzzjMDSl0P+FOnS5qWeqG/7MabuxbfA7ZONlQuICIN8T7z4xHOGs5Ow6fqI/1A==
+X-Gm-Message-State: AOJu0Yypuvh5xmPclx8oqUSx692jo1UC9Y7G8lU/2pBwTVgikGdRz+g7
+	KYecpUQovLQzGtKKaCMo3gbg3NmG472E/7Z0xqZjqWoCvU/tGcjLWcOWwrUqDSs1NOCLil+HWgO
+	OHQBbqSZpWJmAUtZpE/LO57hkbSSqZ7bhYIR8Fg==
+X-Google-Smtp-Source: AGHT+IF8cnUo8sbparMWwRRVzaaD6qBiN+30eL8pVGijJslX0pHZp1XBv9v7gWbSuNhRHpCDDPAmYisXA5pPMF9uvsQ=
+X-Received: by 2002:a25:780b:0:b0:dcd:97ad:74b3 with SMTP id
+ t11-20020a25780b000000b00dcd97ad74b3mr2186633ybc.63.1710864334302; Tue, 19
+ Mar 2024 09:05:34 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 07/13] ASoC: ti: davinci-i2s: Add TDM support
-To: Bastien Curutchet <bastien.curutchet@bootlin.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, herve.codina@bootlin.com,
- christophercordahi@nanometrics.ca
-References: <20240315112745.63230-1-bastien.curutchet@bootlin.com>
- <20240315112745.63230-8-bastien.curutchet@bootlin.com>
-Content-Language: en-US
-From: =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
-In-Reply-To: <20240315112745.63230-8-bastien.curutchet@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20240319-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v1-0-926d7a4ccd80@linaro.org>
+ <20240319-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v1-3-926d7a4ccd80@linaro.org>
+ <CAA8EJpoJ0rUd8aY6xpXyL3Obg66XtOebso_AUUxKmg1CWNykJA@mail.gmail.com>
+ <85d67f3f-2b01-44c0-ace3-5e7cb48a9431@linaro.org> <090e306c-0bfc-4374-83ed-e883d73a0f0a@linaro.org>
+ <CAA8EJpovp1S9MYb3ByeoR7WmjPgUmqicqs_fQo_OoL5_NTNPJw@mail.gmail.com> <c799b110-978f-412f-b50e-87a4215a17cf@linaro.org>
+In-Reply-To: <c799b110-978f-412f-b50e-87a4215a17cf@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 19 Mar 2024 18:05:22 +0200
+Message-ID: <CAA8EJpp2pVnKh4J0TnGy_s_GB60P58xEW7OtmzReGVTF-1Ax-g@mail.gmail.com>
+Subject: Re: [PATCH 3/7] phy: qcom: qmp-pcie: register second optional PHY AUX clock
+To: neil.armstrong@linaro.org
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
+On Tue, 19 Mar 2024 at 17:15, <neil.armstrong@linaro.org> wrote:
+>
+> On 19/03/2024 15:46, Dmitry Baryshkov wrote:
+> > On Tue, 19 Mar 2024 at 16:35, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+> >>
+> >> On 19/03/2024 11:59, Neil Armstrong wrote:
+> >>> On 19/03/2024 11:55, Dmitry Baryshkov wrote:
+> >>>> On Tue, 19 Mar 2024 at 12:45, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+> >>>>>
+> >>>>> The PCIe Gen4x2 PHY found in the SM8[456]50 SoCs have a second clock,
+> >>>>> add the code to register it for PHYs configs that sets a aux_clock_rate.
+> >>>>>
+> >>>>> In order to get the right clock, add qmp_pcie_clk_hw_get() which uses
+> >>>>> the newly introduced QMP_PCIE_PIPE_CLK & QMP_PCIE_PHY_AUX_CLK clock
+> >>>>> IDs and also supports the legacy bindings by returning the PIPE clock.
+> >>>>>
+> >>>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> >>>>> ---
+> >>>>>    drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 70 ++++++++++++++++++++++++++++++++
+> >>>>>    1 file changed, 70 insertions(+)
+> >>>>>
+> >>>>> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> >>>>> index 079b3e306489..2d05226ae200 100644
+> >>>>> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> >>>>> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> >>>>> @@ -22,6 +22,8 @@
+> >>>>>    #include <linux/reset.h>
+> >>>>>    #include <linux/slab.h>
+> >>>>>
+> >>>>> +#include <dt-bindings/phy/phy-qcom-qmp.h>
+> >>>>> +
+> >>>>>    #include "phy-qcom-qmp-common.h"
+> >>>>>
+> >>>>>    #include "phy-qcom-qmp.h"
+> >>>>> @@ -2389,6 +2391,9 @@ struct qmp_phy_cfg {
+> >>>>>
+> >>>>>           /* QMP PHY pipe clock interface rate */
+> >>>>>           unsigned long pipe_clock_rate;
+> >>>>> +
+> >>>>> +       /* QMP PHY AUX clock interface rate */
+> >>>>> +       unsigned long aux_clock_rate;
+> >>>>>    };
+> >>>>>
+> >>>>>    struct qmp_pcie {
+> >>>>> @@ -2420,6 +2425,7 @@ struct qmp_pcie {
+> >>>>>           int mode;
+> >>>>>
+> >>>>>           struct clk_fixed_rate pipe_clk_fixed;
+> >>>>> +       struct clk_fixed_rate aux_clk_fixed;
+> >>>>>    };
+> >>>>>
+> >>>>>    static inline void qphy_setbits(void __iomem *base, u32 offset, u32 val)
+> >>>>> @@ -3681,6 +3687,62 @@ static int phy_pipe_clk_register(struct qmp_pcie *qmp, struct device_node *np)
+> >>>>>           return devm_clk_hw_register(qmp->dev, &fixed->hw);
+> >>>>>    }
+> >>>>>
+> >>>>> +/*
+> >>>>> + * Register a fixed rate PHY aux clock.
+> >>>>> + *
+> >>>>> + * The <s>_phy_aux_clksrc generated by PHY goes to the GCC that gate
+> >>>>> + * controls it. The <s>_phy_aux_clk coming out of the GCC is requested
+> >>>>> + * by the PHY driver for its operations.
+> >>>>> + * We register the <s>_phy_aux_clksrc here. The gcc driver takes care
+> >>>>> + * of assigning this <s>_phy_aux_clksrc as parent to <s>_phy_aux_clk.
+> >>>>> + * Below picture shows this relationship.
+> >>>>> + *
+> >>>>> + *         +---------------+
+> >>>>> + *         |   PHY block   |<<---------------------------------------------+
+> >>>>> + *         |               |                                               |
+> >>>>> + *         |   +-------+   |                      +-----+                  |
+> >>>>> + *   I/P---^-->|  PLL  |---^--->phy_aux_clksrc--->| GCC |--->phy_aux_clk---+
+> >>>>> + *    clk  |   +-------+   |                      +-----+
+> >>>>> + *         +---------------+
+> >>>>> + */
+> >>>>> +static int phy_aux_clk_register(struct qmp_pcie *qmp, struct device_node *np)
+> >>>>> +{
+> >>>>> +       struct clk_fixed_rate *fixed = &qmp->aux_clk_fixed;
+> >>>>> +       struct clk_init_data init = { };
+> >>>>> +       int ret;
+> >>>>> +
+> >>>>> +       ret = of_property_read_string_index(np, "clock-output-names", 1, &init.name);
+> >>>>> +       if (ret) {
+> >>>>> +               dev_err(qmp->dev, "%pOFn: No clock-output-names index 1\n", np);
+> >>>>> +               return ret;
+> >>>>> +       }
+> >>>>> +
+> >>>>> +       init.ops = &clk_fixed_rate_ops;
+> >>>>> +
+> >>>>> +       fixed->fixed_rate = qmp->cfg->aux_clock_rate;
+> >>>>> +       fixed->hw.init = &init;
+> >>>>> +
+> >>>>> +       return devm_clk_hw_register(qmp->dev, &fixed->hw);
+> >>>>> +}
+> >>>>> +
+> >>>>> +static struct clk_hw *qmp_pcie_clk_hw_get(struct of_phandle_args *clkspec, void *data)
+> >>>>> +{
+> >>>>> +       struct qmp_pcie *qmp = data;
+> >>>>> +
+> >>>>> +       /* Support legacy bindings */
+> >>>>> +       if (!clkspec->args_count)
+> >>>>> +               return &qmp->pipe_clk_fixed.hw;
+> >>>>> +
+> >>>>> +       switch (clkspec->args[0]) {
+> >>>>> +       case QMP_PCIE_PIPE_CLK:
+> >>>>> +               return &qmp->pipe_clk_fixed.hw;
+> >>>>> +       case QMP_PCIE_PHY_AUX_CLK:
+> >>>>> +               return &qmp->aux_clk_fixed.hw;
+> >>>>> +       }
+> >>>>> +
+> >>>>> +       return ERR_PTR(-EINVAL);
+> >>>>> +}
+> >>>>
+> >>>> Can we use of_clk_hw_onecell_get() instead? I think it even should be
+> >>>> possible to use onecell for both cases, it will look at the first arg,
+> >>>> which will be 0 in case of #clock-cells equal to 0.
+> >>>
+> >>> Let me investigate if it's possible
+> >>
+> >> Ok, it would work but it would require building a clk_hw_onecell_data a runtime,
+> >> while we could simply provide this qmp_pcie_clk_hw_get() and avoid runtime 2 allocations.
+> >>
+> >> I'm not sure it's worth it.
+> >
+> > Single allocation (or even 0 allocations if you embed it into struct
+> > qmp_pcie) for the sake of using standard helpers.
+>
+> And I just recall I tried the same for Amlogic clocks, but the clk_hw_onecell_data hws
+> field is a flexible array member you can't set at runtime, if you try you'll get:
+> drivers/phy/qualcomm/phy-qcom-qmp-pcie.c:3753:38: error: invalid use of flexible array member
+>   3753 |                 qmp->clk_hw_data.hws = qmp->clk_hws;
 
+Yes, so it's either
+devm_kzalloc(dev, struct_size(data, hws, 2), GFP_KERNEL);
+or
+struct qmp_pcie {
+...
+  struct {
+    struct clk_hw_onecell_data clk_data;
+    struct clk_hw clocks[2];
+  };
+};
 
-On 15/03/2024 13:27, Bastien Curutchet wrote:
-> TDM is not supported by the McBSP driver. The McBSP datasheet does not
-> name explicitly TDM as a supported format but it is possible to configure
-> the McBSP to do TDM if all slots are used by McBSP.
-> 
-> Add TDM support. It uses single-phase frame. Slot width is used to
-> compute the McBSP's word length.
-> 
-> Implement the set_tdm_slot() hook of snd_soc_dai_ops struct. It only
-> supports TDM if all slots are used by McBSP.
-> 
-> The snd_soc_dai_driver's capture.channels_max is updated from 2 to 128.
-> 128 is the maximum frame length when using single-phase frame.
-> playback.channels_max has not been updated as I could not test TDM on
-> playbacks with my hardware.
-> 
-> This was tested on platform designed off of DAVINCI/OMAP_L138 with BP_FC
-> format so this is only supported format for TDM yet. A check is done in
-> davinci_i2s_set_dai_fmt() to prevent TDM to be used with other formats
-> 
-> Signed-off-by: Bastien Curutchet <bastien.curutchet@bootlin.com>
-> ---
->  sound/soc/ti/davinci-i2s.c | 81 ++++++++++++++++++++++++++++++++++++--
->  1 file changed, 77 insertions(+), 4 deletions(-)
-> 
-> diff --git a/sound/soc/ti/davinci-i2s.c b/sound/soc/ti/davinci-i2s.c
-> index f4514d4dff07..4adaed010700 100644
-> --- a/sound/soc/ti/davinci-i2s.c
-> +++ b/sound/soc/ti/davinci-i2s.c
-> @@ -160,6 +160,9 @@ struct davinci_mcbsp_dev {
->  	unsigned int fmt;
->  	int clk_div;
->  	bool i2s_accurate_sck;
-> +
-> +	int tdm_slots;
-> +	int slot_width;
->  };
->  
->  static inline void davinci_mcbsp_write_reg(struct davinci_mcbsp_dev *dev,
-> @@ -213,6 +216,57 @@ static void davinci_mcbsp_stop(struct davinci_mcbsp_dev *dev, int playback)
->  	toggle_clock(dev, playback);
->  }
->  
-> +static int davinci_i2s_tdm_word_length(int tdm_slot_width)
-> +{
-> +	switch (tdm_slot_width) {
-> +	case 8:
-> +		return DAVINCI_MCBSP_WORD_8;
-> +	case 12:
-> +		return DAVINCI_MCBSP_WORD_12;
-> +	case 16:
-> +		return DAVINCI_MCBSP_WORD_16;
-> +	case 20:
-> +		return DAVINCI_MCBSP_WORD_20;
-> +	case 24:
-> +		return DAVINCI_MCBSP_WORD_24;
-> +	case 32:
-> +		return DAVINCI_MCBSP_WORD_32;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int davinci_i2s_set_tdm_slot(struct snd_soc_dai *cpu_dai,
-> +				    unsigned int tx_mask,
-> +				    unsigned int rx_mask,
-> +				    int slots, int slot_width)
-> +{
-> +	struct davinci_mcbsp_dev *dev = snd_soc_dai_get_drvdata(cpu_dai);
-> +
-> +	dev_dbg(dev->dev, "%s - slots %d, slot_width %d\n", __func__, slots, slot_width);
+>
+> Neil
+>
+> >
+> >
+> >
+>
 
-The __func__ can be ommited, it is better to leave it for dynamic
-debugging by adding "dyndbg=+pmf" module parameter if needed.
-
-> +
-> +	if (slots > 128 || !slots) {
-> +		dev_err(dev->dev, "Invalid number of slots\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (rx_mask != (1 << slots) - 1) {
-> +		dev_err(dev->dev, "Invalid RX mask (0x%08x) : all slots must be used by McBSP\n",
-> +			rx_mask);
-> +		return -EINVAL;
-
-This is only a restriction for RX?
-
-> +	}
-> +
-> +	if (davinci_i2s_tdm_word_length(slot_width) < 0) {
-> +		dev_err(dev->dev, "%s: Unsupported slot_width %d\n", __func__, slot_width);
-> +		return -EINVAL;
-> +	}
-> +
-> +	dev->tdm_slots = slots;
-> +	dev->slot_width = slot_width;
-> +
-> +	return 0;
-> +}
-> +
->  #define DEFAULT_BITPERSAMPLE	16
->  
->  static int davinci_i2s_set_dai_fmt(struct snd_soc_dai *cpu_dai,
-> @@ -228,6 +282,13 @@ static int davinci_i2s_set_dai_fmt(struct snd_soc_dai *cpu_dai,
->  		DAVINCI_MCBSP_SRGR_FWID(DEFAULT_BITPERSAMPLE - 1);
->  
->  	dev->fmt = fmt;
-> +
-> +	if ((dev->tdm_slots || dev->slot_width) &&
-> +	    ((fmt & SND_SOC_DAIFMT_CLOCK_PROVIDER_MASK) != SND_SOC_DAIFMT_BP_FC)) {
-> +		dev_err(dev->dev, "TDM is only supported for BP_FC format\n");
-> +		return -EINVAL;
-
-I think this is not a valid statement, Fsync can be generated internally
-or coming from external source in TDM mode also.
-
-> +	}
-> +
->  	/* set master/slave audio interface */
->  	switch (fmt & SND_SOC_DAIFMT_CLOCK_PROVIDER_MASK) {
->  	case SND_SOC_DAIFMT_BP_FP:
-> @@ -383,7 +444,13 @@ static int davinci_i2s_hw_params(struct snd_pcm_substream *substream,
->  
->  	master = dev->fmt & SND_SOC_DAIFMT_CLOCK_PROVIDER_MASK;
->  	fmt = params_format(params);
-> -	mcbsp_word_length = asp_word_length[fmt];
-> +	if (dev->slot_width)
-> +		mcbsp_word_length = davinci_i2s_tdm_word_length(dev->slot_width);
-> +	else
-> +		mcbsp_word_length = asp_word_length[fmt];
-> +
-> +	if (mcbsp_word_length < 0)
-> +		return mcbsp_word_length;
->  
->  	switch (master) {
->  	case SND_SOC_DAIFMT_BP_FP:
-> @@ -483,8 +550,13 @@ static int davinci_i2s_hw_params(struct snd_pcm_substream *substream,
->  	switch (master) {
->  	case SND_SOC_DAIFMT_BP_FP:
->  	case SND_SOC_DAIFMT_BP_FC:
-> -		rcr |= DAVINCI_MCBSP_RCR_RFRLEN1(0);
-> -		xcr |= DAVINCI_MCBSP_XCR_XFRLEN1(0);
-> +		if (dev->tdm_slots > 0) {
-> +			rcr |= DAVINCI_MCBSP_RCR_RFRLEN1(dev->tdm_slots - 1);
-> +			xcr |= DAVINCI_MCBSP_XCR_XFRLEN1(dev->tdm_slots - 1);
-> +		} else {
-> +			rcr |= DAVINCI_MCBSP_RCR_RFRLEN1(0);
-> +			xcr |= DAVINCI_MCBSP_XCR_XFRLEN1(0);
-> +		}
->  		break;
->  	case SND_SOC_DAIFMT_BC_FC:
->  	case SND_SOC_DAIFMT_BC_FP:
-> @@ -609,6 +681,7 @@ static const struct snd_soc_dai_ops davinci_i2s_dai_ops = {
->  	.hw_params	= davinci_i2s_hw_params,
->  	.set_fmt	= davinci_i2s_set_dai_fmt,
->  	.set_clkdiv	= davinci_i2s_dai_set_clkdiv,
-> +	.set_tdm_slot   = davinci_i2s_set_tdm_slot,
->  
->  };
->  
-> @@ -621,7 +694,7 @@ static struct snd_soc_dai_driver davinci_i2s_dai = {
->  	},
->  	.capture = {
->  		.channels_min = 2,
-> -		.channels_max = 2,
-> +		.channels_max = 128,
->  		.rates = DAVINCI_I2S_RATES,
->  		.formats = DAVINCI_I2S_FORMATS,
->  	},
 
 -- 
-Péter
+With best wishes
+Dmitry
 
