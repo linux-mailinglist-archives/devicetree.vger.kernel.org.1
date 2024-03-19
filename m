@@ -1,48 +1,75 @@
-Return-Path: <devicetree+bounces-51747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68026880304
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 18:05:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 005B7880309
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 18:06:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8CAAF1C225DA
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 17:05:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 79460B21528
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 17:06:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B623914277;
-	Tue, 19 Mar 2024 17:05:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7AEB13ACC;
+	Tue, 19 Mar 2024 17:06:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="bEi8lZnX"
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="1Oi5hh76"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9950F13ACC;
-	Tue, 19 Mar 2024 17:05:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4D0516423
+	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 17:06:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710867915; cv=none; b=GzneK2xCj6zRpY2jcLx0X8D25UXIWuy9+vOocWrjHl7ipCu/o4dVgD+J+dXrfsWn7071HWhjbI1s66J3sgwRv2une3fhtmKWpnNKuVa121mzMpkuGXE4DHIYh2p2LBiXi+NDgS4M/K+yBHep8XvQLdHu3ZK7DSQoiZcaBfNwPQw=
+	t=1710867965; cv=none; b=fE1S4bwnGt+x7Y92CdXY8TZc9cH3hzbtTTNFPfSJTix5HuoW13Fnwa6Ye6tTh1jmdxng2gnQpuJr83ZRshgUo3tmE6OdEBHMg5N471fW3SlXdqyqQAk7Oy7cXOFtpzWiiL7LIGDWCwSkW3knNYgSU0sSmGFx/CoF3p1e/Kun6G4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710867915; c=relaxed/simple;
-	bh=6MvM4WsSHu3iNIHLp1C+jA6DMDdu04p2cEucTu6LGgk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=u/mfw8C4MihQHfTBo+Xn1RU/97A1eItSc1Lx95xhpJCi3hQm2uR/edIiwUnaDQ1tR0CL6tJSDz8KOaRrqK2nb6wgue9fTzVZYIGOt7lXXDEv9OXrLTEqHNN6+tEo+DCpKRIZzx1Iv5S5Gq1scz0U49amNvhJQOyOn8Ru86pBCBM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=bEi8lZnX; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-154-34-181.elisa-laajakaista.fi [91.154.34.181])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 026977E9;
-	Tue, 19 Mar 2024 18:04:41 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1710867882;
-	bh=6MvM4WsSHu3iNIHLp1C+jA6DMDdu04p2cEucTu6LGgk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bEi8lZnXqFnLStmMm+5KlcGqmrwKhSdhnpzGhW1mqYwekLSdfDPT4gM5iAaZ9kOhq
-	 frRlRpoWr0avJl68Cmt0cVgEEYItbl1AUS7JPwtXEwQaSSObyI61KB/mnRZ0U3uVKg
-	 ulOGGFWxFlRUELU8HKOWQLGS0y3zr15K6cpF+ja8=
-Message-ID: <b95fb19d-1c22-45b2-8b87-78e56d17ae8e@ideasonboard.com>
-Date: Tue, 19 Mar 2024 19:05:04 +0200
+	s=arc-20240116; t=1710867965; c=relaxed/simple;
+	bh=vhV6zUtmAfy/vNP17fIk9V9xTd/09f0QdrKRBGrKG64=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=GFU2Aid2LeL3mrbgGvTPX5sqFyrpNOBRHz4iz+RSjPm/zi02LIvsszBLTneg814KzfZYk/2fiyJ7caoueWs4qPckrPMflwdQ+hbyZKn/nd1z9lftpVRlJQkVdBunfWbWhSPE1l0PbBugkHARF9lFfGiun9NLMzj3NmZf+gX90G0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=1Oi5hh76; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2d228a132acso82404751fa.0
+        for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 10:06:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1710867960; x=1711472760; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vhV6zUtmAfy/vNP17fIk9V9xTd/09f0QdrKRBGrKG64=;
+        b=1Oi5hh764sTTbtaFJPqGqHAXW52NMM2TeV618mILDgAKDk8HM7VF8YKE9Tp5V/Df6J
+         OKrBT5MwuzonxOh7985sbDg0jybKqhmTFvveW535tw5AwO39A4L+qDSvIavVytgJ4xRo
+         x0TMiSSVhn2MJgMWhfIernp4I2iUeO2DbtY2lL67Cn5wiffTcVq/Oyl8YdSUM1892ifR
+         IMx7X7dvXYx3UeDk3ZbpHaCoQXsfVOPgy0vI2HHXCcJfqQfDggOIhudwKfUFIrsL8pa1
+         Nx0Beo5qYBtI7sBr2Nud1Z2qdhwaDT9AsrAE1JFX3cC5FrCgCxNpMr+nFSM4BVCAUt/d
+         NHeA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710867960; x=1711472760;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vhV6zUtmAfy/vNP17fIk9V9xTd/09f0QdrKRBGrKG64=;
+        b=B8g3lSxRn1xVvc34+CyhL35eSbXYptDIHSgl80ssB99BZaNRLVP8OPnGq17CQ4Y8LU
+         bZdv80OkphDlffjI24NuqUzouQ9GXLHTqw9+D9H0HeB0xOqS1RCLc5Hl4ruq/9OseX86
+         Q5cyv1npGKRg9opzqNGYoYm0CVoBolp1DjTzplCQ4rZ/3B1XNqnSIO109rSFjuRkYUtd
+         bWKhc8d41hwToZMzTgo3jydsjAxPVH6L6aUJe/gprp48EO8z7j3gI1O5XwWZMYFKsYWG
+         XzNVy/VBedC5BVd976sDwr+06DYvZmRVT3UwMwSRXXcPvIOCQCcwZGrrvaZuyHXayF2c
+         epVw==
+X-Forwarded-Encrypted: i=1; AJvYcCXJ5PT4cqIlTDGreyX778TjWL0xnYXq5WgUALO5wj9xpDpy6F1yn0kaeJFXe7ML2pal5fRXNcGPdFTBbZQBmKVPR8PFrDLVVTo96w==
+X-Gm-Message-State: AOJu0Yyke5P+gSHn7EXoyzyjSGLr/QOCTr4avjF6u03JAh8QyZVyZ6fZ
+	pN8kk4weY/9Hz7HpBliuqElo0M2lBZzRuvOduW+RNju0KVEX6qHk5f3pUnWABvxR+frF0RP/XWF
+	c
+X-Google-Smtp-Source: AGHT+IHEtmX+QarKHP/fHEiIdq3PIxiOyRbGltyD0iu6IZMQAyPpmgbHVNBWPPYKrEZlewbLrYHffg==
+X-Received: by 2002:a05:651c:1a23:b0:2d4:a8cf:e798 with SMTP id by35-20020a05651c1a2300b002d4a8cfe798mr2972250ljb.14.1710867959880;
+        Tue, 19 Mar 2024 10:05:59 -0700 (PDT)
+Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id t6-20020a05600c450600b004133365bbc6sm21924692wmo.19.2024.03.19.10.05.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Mar 2024 10:05:59 -0700 (PDT)
+Message-ID: <e04b8086-ab76-4921-921a-fa01bfa4f312@freebox.fr>
+Date: Tue, 19 Mar 2024 18:05:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,165 +77,42 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] dt-bindings: media: Add bindings for
- raspberrypi,rp1-cfe
+Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath10k: add
+ qcom,no-msa-ready-indicator prop
 Content-Language: en-US
-To: Naushir Patuck <naush@raspberrypi.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
- Kieran Bingham <kieran.bingham@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-References: <20240318-rp1-cfe-v1-0-ac6d960ff22d@ideasonboard.com>
- <20240318-rp1-cfe-v1-2-ac6d960ff22d@ideasonboard.com>
- <eb854c43-1e92-4c19-bfd3-1bde94924319@linaro.org>
- <f97faeb9-8a6b-47c6-9317-daca88257802@ideasonboard.com>
- <30430e0e-70de-4831-97ad-974e350a2e54@ideasonboard.com>
- <5ca1d005-1beb-47ec-943a-9358ae3c6704@linaro.org>
- <CAEmqJPp7uGYe993L+ujth2mfRy66s8-S9FNxPY7vwkrboDq9yg@mail.gmail.com>
- <89d459dd-cc8c-4780-a56a-809e24343e69@linaro.org>
- <CAEmqJPrLP3j37Kcj0mX23x00p=gWuxZPNSUTRGNkcEqsUJ2MjQ@mail.gmail.com>
- <9d238cd6-0e11-4775-bc00-7df50f0a6638@linaro.org>
- <CAEmqJPoVFRUBRnuvRaeWg6vxDaNMzdFzgj2_Gi5bxh5nacdmDw@mail.gmail.com>
- <0401eb0f-0172-4371-9a16-f51b6b885b55@ideasonboard.com>
- <CAEmqJPohq1Y11uwBWdGGX3B1vPLEK9_A7OQC=-k+bHcdk3n=mQ@mail.gmail.com>
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <CAEmqJPohq1Y11uwBWdGGX3B1vPLEK9_A7OQC=-k+bHcdk3n=mQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+To: wireless <linux-wireless@vger.kernel.org>,
+ ath10k <ath10k@lists.infradead.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Jeffrey Hugo <quic_jhugo@quicinc.com>, Bjorn Andersson
+ <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Kalle Valo <kvalo@kernel.org>, Jeff Johnson <quic_jjohnson@quicinc.com>,
+ DT <devicetree@vger.kernel.org>, Pierre-Hugues Husson <phhusson@freebox.fr>,
+ Jami Kettunen <jamipkettunen@gmail.com>
+References: <14daa98e-7fd3-4ebb-87bb-5d2c1fba679f@freebox.fr>
+ <b8de96c7-cbb6-4a09-a4d4-2c11b3ab3e01@freebox.fr> <871q8wk7o3.fsf@kernel.org>
+ <3392f356-7b19-483d-b9f8-3bd84068fa52@freebox.fr> <87wmqoilzf.fsf@kernel.org>
+ <c58e67e6-6a7f-4963-86b9-580165bf05ba@freebox.fr> <87cyse8j9m.fsf@kernel.org>
+ <6d4b1381-c121-4cda-a8c9-9ccac56bd447@freebox.fr> <87plw87nsc.fsf@kernel.org>
+ <0816f7bb-3c97-4b90-8e19-191552ea6e26@freebox.fr> <87h6hk7aee.fsf@kernel.org>
+ <fb0ffdd9-923a-4191-8304-583243ad528b@freebox.fr>
+ <CAA8EJppHa=qEkKbSVs9hMCBXfhiC9MyAQO+v+6TCWhg==4CpOQ@mail.gmail.com>
+ <f26dfcc6-5fd3-486d-b0f2-80168eb213c7@freebox.fr>
+ <880e016a-d4d2-4bc9-8c75-bbe4848515ad@freebox.fr>
+ <a1dd2944-5d20-4fbe-84f3-b03a0cd5835d@freebox.fr>
+In-Reply-To: <a1dd2944-5d20-4fbe-84f3-b03a0cd5835d@freebox.fr>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/03/2024 17:32, Naushir Patuck wrote:
-> On Tue, 19 Mar 2024 at 14:03, Tomi Valkeinen
-> <tomi.valkeinen@ideasonboard.com> wrote:
->>
->> On 19/03/2024 15:05, Naushir Patuck wrote:
->>> On Tue, 19 Mar 2024 at 13:02, Krzysztof Kozlowski
->>> <krzysztof.kozlowski@linaro.org> wrote:
->>>>
->>>> On 19/03/2024 13:57, Naushir Patuck wrote:
->>>>>>>>
->>>>>>>> See writing bindings. Compatibles should be SoC specific. In some cases
->>>>>>>> generic fallbacks make sense, in some note. But don't just choose
->>>>>>>> "generic fallback" because you want. Provide rationale.
->>>>>>>
->>>>>>> If the compatible is SoC specific, I suppose "raspberrypi,rp1-cfe"
->>>>>>> would be the correct string.
->>>>>>
->>>>>> Sure, but then please think what if rp1 is on Rpi6, called exactly the
->>>>>> same (rp1), with some minor differences? Could it be?
->>>>>
->>>>> Yes, this is definitely possible.  In such cases, I would expect the
->>>>> hardware to have a version register that would be queried by the
->>>>> driver to adjust for minor differences, and the compatible string
->>>>> remains the same.  Does that seem reasonable?
->>>>
->>>> The "would expect" is concerning. The register(s) must be there already,
->>>> with proper value.
->>>>
->>>
->>> A version register already exists in the current hardware, so we will
->>> update it to identify future hardware revisions.
->>
->> But that's a version register for the FE block, not for the whole
->> module, right? Are you suggesting that you'll make sure the FE version
->> will be changed every time anything in the bigger CFE block is changed,
->> and thus the FE version would also reflect the whole CFE version?
-> 
-> Yes, we will update the FE versioning when either CSI2 / FE blocks are updated.
-> 
->>
->> Can there be versions without the FE block, with just the CSI-2 parts?
-> 
-> There is no version register just in the CSI2 block in isolation, so
-> this is not possible.
+On 19/03/2024 15:39, Marc Gonzalez wrote:
 
-I meant could there be a future RPx with only the CSI-2 parts on it, no 
-FE? In which case we would not have any register for the version. But 
-then, that would be a rather big change, so a different compatible 
-string would be in order.
+> What a dweeb... bitten by the very bug I'm supposed to fix :(
 
-So, while it's not exactly a perfect version register, I think it will 
-work fine, assuming the HW people will actually increase the version 
-also for changes outside FE.
+Is there a kernel bootcmd to force the kernel to probe devices sequentially,
+in order to get (roughly) deterministic kernel logs I can run diff on?
+(Even if it slows down boot by a factor of 10)
 
->>
->> Also, I'm still wondering about the RP1 part there in the compatible
->> string. Is it necessary? The CFE is located in the RP1 co-processor, but
->> is that relevant?
->>
->> Is there a versioning for the whole RP1 chip? Maybe it's going to the
->> wrong direction if we use the board/SoC for this compatible name, as
->> it's actually the RP1 where the CFE is located in, not the SoC.
->>
-> 
-> I don't really know the conversion required to answer this one.
-> Logically CFE is on RP1, so it makes sense to me to have "rp1" in the
-> string, but I will follow the judgment of the maintainers.
+Regards
 
-Well, my thinking here was that if we have a register from which to read 
-the version, and Raspberry Pi would create a new co-processor, RP2, with 
-the same CFE. Would we then have "raspberrypi,rp1-cfe" and 
-"raspberrypi,rp2-cfe", even if there are no changes? Or would a plain 
-"raspberrypi,cfe" do for both?
-
-In other words, if we don't need the "rp1" for versioning purposes, 
-should it then be dropped?
-
-On the other hand, maybe it is safer to just keep the "rp1" there anyway...
-
-  Tomi
 
 
