@@ -1,355 +1,256 @@
-Return-Path: <devicetree+bounces-51804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E54F880834
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 00:34:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 150F688084E
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 00:56:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DAD27283F52
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 23:33:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E2E221C21662
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 23:56:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7537E5FB89;
-	Tue, 19 Mar 2024 23:33:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A0365FBA8;
+	Tue, 19 Mar 2024 23:56:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c2SfUKw3"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="UygK9Tel"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1989E5FB8A;
-	Tue, 19 Mar 2024 23:33:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8747A5FB9E
+	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 23:55:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710891237; cv=none; b=FbzWpfjNq8dgWY8sqIJu7ZmDCDV97no1R6Zjtv1fNjz9G8Hs36zdztZ4AMMWg7jHIRcGKh5J4NlEu019yOAD7DqcV9PdOwc6J2f5XaDejTnKEgPDbfdNgNRNgcuNlwk78mip7PYUVjrnPJivClxZ2byoOohLR+8R4i+1XpN5gBM=
+	t=1710892561; cv=none; b=h6d1W5ESQdX29Xi14IrM045cE766Omw5sMN8kzki83w0gpbR8Nt+chwxDQbWPcyH8T0qB8JLHCX3Djb98GLfc2wWV53Y5ZGZOJNL1mVmgbMMOuopdQXe6JejzZEMHuu4kg8zGdcf+xeXeI/DWh21jTQWcG8KufoE2iukrrLJd3M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710891237; c=relaxed/simple;
-	bh=BAeQnfJc0stM5hGfJ6yx1+xz23o3scQQ6R6mOB0fJ6M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sCFp107HJ4mKdTj2Wt7gbru2p+OIbYD68Hhj6YewWN/XYAU3CA1XqXieSGfp8rvdNUbC7/kRxB+6FY4tqFkyPrVnD3YSeXq0/BKX3wqRVZ1fHMNwVFpz+fsyHrW+cUmeoT5Zd7t1vzh5KxOuiJrXD+dEFPMX1yW+dhTlU61sqNA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c2SfUKw3; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-513a08f2263so6367646e87.3;
-        Tue, 19 Mar 2024 16:33:54 -0700 (PDT)
+	s=arc-20240116; t=1710892561; c=relaxed/simple;
+	bh=5HtWc/ds2naXVekfaRBDXHy+hVJPDW7lSLhvTD5oX1Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ci7rKCbmScaNAqLd3jQo3p7AF8XFvwIQoDkEXaIYEPX/kmN4JlxrMiHWF/A8L/DXVjhLPax5uZYfcdHw46LwJVoNgjHKy+5POZU9YoLTB93Fd+WOZX43RT+PuNBz1g2iv9AFYgid86NFXlN7xD6Sh4UWVNK2Pbtu65W2fhTJuAs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=UygK9Tel; arc=none smtp.client-ip=209.85.128.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-609fd5fbe50so65670197b3.0
+        for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 16:55:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710891233; x=1711496033; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=FLndC0G/3mltcgg2R8D275R89gDEgymvsh3WuwDlfNg=;
-        b=c2SfUKw3ks+s024aWGuHItjGuHaNmcV6O43+M5gvD14kdXba2FfN5TPFF9naRHs8Zr
-         U/AmWAdWONcGligSVyTq19J11MDfjTTULQD2gP97Z6HP+A0+MZCixqJGkrFk81Sg4MS+
-         PXTDmBAqG5RnjYfAu5blFH02sqPT14k4g5SLrPSDFNqxvlob6g7w8cCcn6K8ImgbqeBO
-         2m8OUVWrHxGGYLBICRIVvSYxKpnhTH994ghzq2zIKlNuf85lFwOkb2m0stZeMoyycifX
-         +Xz8auFpxDPjM7Wk4++1mpsXX0CZExBVafJQXw5qiaa+lNg1oT44Y74P20jPmDVv+GFL
-         RXMQ==
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1710892558; x=1711497358; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=frQ+kwCuCCJ3eDZ6Belhj/LKRwCvmbaO9rNQmp6RZGY=;
+        b=UygK9TelQHa2C0nVzSXVu6zOLaFPmYABW9BfFaZ7Ls7tuLZ0i2AQKPKs6saUgXBw81
+         QyQanLjCFBr2bn0tGgYLn9xVsXMWyms2okrWOMXtY3qUViVTSld50FqQqJWvOT9lrTp1
+         sYKB0nPloouRo/sEYY3hiqfpuCNcRT512+WB5/JrxTdYnlUd3oYNjBXfwGfRXQEE6KlJ
+         9vZWlXglyKyhiXjJfy9t7KuRhPqrWFEXmRUNFLYrc0SdbRl60S8i3tvfoc6Ll6ida7k6
+         2WVMbMA8+icfnCMEWl5KaVf8MKAv2lvduGzuaZlRqbT/EE+/up8rhTRKf9rzna8m3jCL
+         mZvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710891233; x=1711496033;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FLndC0G/3mltcgg2R8D275R89gDEgymvsh3WuwDlfNg=;
-        b=nMDCiRi5VIlu3UIFYGzsW9aIxOHs+zRbFaD5OrNeG4KvKzh4vMtTBy1vtqfjiY51vn
-         wDLv/SZoRo9CnSIuzStKZQEq3YNm2cLL/km4KGEAqEXGYkSHa+A4gLAwaWouTN3xkiQF
-         NzVz8FC59iYWR9ES90iDlHDpGrtDWzh2U6iSjuCrYR/kzJMBsfopslRR2LjbTCkPY+X+
-         DScm1P8v3u732xZWHiHVquopEKzdlHd8T5UkSNWNVJc0TyoHJXFGUgaJG08JbSiMF4pq
-         TAJKoxC+OYQgN5INERWG5+m4Q0vfEdiv3/jDp4+xaJ8poPSwZYKBq3oDsKkRmOK7s56b
-         ZdIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVU6wcEO4EJS2jte/+QfqUYKeNPcePUrv/C8QAJnnnFyfWlIdn4ATjWN9UG1r0yrpOdqgsE3g6bWdrIPdnzmBvoFUFIta1xEOGWM7DLGrLriLXcdIr+/CXabOzY6teMpajxUwpw5nZK3w==
-X-Gm-Message-State: AOJu0YwaFQ5Eb2wE4VcVRj4rRzzFv3Gbs+T57j9nKKLVK6XGB2F4IC3G
-	vaMF2EX1l/GJOMagqO6g5/4xd3qBnOWzs4bmmBKVaMNyaH80B/hh
-X-Google-Smtp-Source: AGHT+IElRQsyC0gfWx4xAvsvJC7lFVi4nDJg4v7hclw7bZA7leEU1CFhGHHNMw1cc+OIkkfSA8z3Jg==
-X-Received: by 2002:a05:6512:310c:b0:512:ee61:c32b with SMTP id n12-20020a056512310c00b00512ee61c32bmr2976573lfb.43.1710891232935;
-        Tue, 19 Mar 2024 16:33:52 -0700 (PDT)
-Received: from [192.168.100.117] (89-76-44-138.dynamic.chello.pl. [89.76.44.138])
-        by smtp.gmail.com with ESMTPSA id m24-20020aa7d358000000b0056729e902f7sm6227771edr.56.2024.03.19.16.33.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Mar 2024 16:33:52 -0700 (PDT)
-Message-ID: <ff3b061a-27b7-42b3-b741-1d25c06487ae@gmail.com>
-Date: Wed, 20 Mar 2024 00:33:50 +0100
+        d=1e100.net; s=20230601; t=1710892558; x=1711497358;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=frQ+kwCuCCJ3eDZ6Belhj/LKRwCvmbaO9rNQmp6RZGY=;
+        b=iSOLB9y0Tg5FzclHz6PNe2z994To1LUQOtQO3iOOeuuuJEPwYmqn+i+wr33iOh0O1g
+         gXBbtLCss/goqR0rmO0it3/atko7OSOn2NeHQtIkx0gSUVeAwRMrS6VH+gG5yFkCJ3Sl
+         YXgl6OovlVBLFintxERIhefsK0hAt5Hb9+ZST7aYD9CScGop55EgzKqrWMo/IM7tFn4u
+         WQsURUIafBdp3vTopMQX+MJXcm3J+CHNcZvqfaBqS3+GApeGGXyJh3jArN33Wfh6Whp/
+         QIS3cnxnlH0g9q/AmEpgSG2cQ4ebyKCkpbq5RBCP4y2N5DCXZci7xPZTmtKNvsh1WgXi
+         Hmcw==
+X-Forwarded-Encrypted: i=1; AJvYcCWYT6KX5erzOav5OD+88/q0thqJDvMBgq5N9zRQ7KEz+NdyCGFMF/kH0/c1kVkUr88uCaBQppcW7ZfIFwBaXSJYY0QVSE5+wDy+Og==
+X-Gm-Message-State: AOJu0Yz8Yre7KwPrS98pcAps++JgbvV3AFirYYp24eRncErD4dj1s06Z
+	Z1/LMwbr8boAYihkjqactk9ODLyhwjSLRKlhG/Gd+KLKrrpMAq4Y5S4kQHQ9lHu7dXdURzCfTzw
+	UJRUqZxM++Z90Fy0Ni42PpY/Qgc7UO1zeeEmZD13fZYnf+6tPUOA=
+X-Google-Smtp-Source: AGHT+IG8CEb5Ytu01FVI8jWzno3ZalgsXxFiYD/SFGczvQ19FRdvfeY4fGbHx+H+E+NYkk+ncwi6hA8ltk20WFREucc=
+X-Received: by 2002:a25:2fc2:0:b0:dd0:e439:cec6 with SMTP id
+ v185-20020a252fc2000000b00dd0e439cec6mr14153797ybv.18.1710892558409; Tue, 19
+ Mar 2024 16:55:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/3] arm64: dts: allwinner: h616: add support for T95
- tv boxes
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-References: <20240319-add-t95-axp313-support-v4-0-6204b6d23229@gmail.com>
- <20240319-add-t95-axp313-support-v4-3-6204b6d23229@gmail.com>
- <20240319232236.07007592@minigeek.lan>
-Content-Language: pl
-From: Kamil Kasperski <ressetkk@gmail.com>
-In-Reply-To: <20240319232236.07007592@minigeek.lan>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20240319215915.832127-1-samuel.holland@sifive.com> <20240319215915.832127-6-samuel.holland@sifive.com>
+In-Reply-To: <20240319215915.832127-6-samuel.holland@sifive.com>
+From: Deepak Gupta <debug@rivosinc.com>
+Date: Tue, 19 Mar 2024 16:55:47 -0700
+Message-ID: <CAKC1njSg9-hJo6hibcM9a-=FUmMWyR39QUYqQ1uwiWhpBZQb9A@mail.gmail.com>
+Subject: Re: [RISC-V] [tech-j-ext] [RFC PATCH 5/9] riscv: Split per-CPU and
+ per-thread envcfg bits
+To: samuel.holland@sifive.com
+Cc: Palmer Dabbelt <palmer@dabbelt.com>, linux-riscv@lists.infradead.org, 
+	devicetree@vger.kernel.org, Catalin Marinas <catalin.marinas@arm.com>, 
+	linux-kernel@vger.kernel.org, tech-j-ext@lists.risc-v.org, 
+	Conor Dooley <conor@kernel.org>, kasan-dev@googlegroups.com, 
+	Evgenii Stepanov <eugenis@google.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Andrew Jones <ajones@ventanamicro.com>, Guo Ren <guoren@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Paul Walmsley <paul.walmsley@sifive.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-
-W dniu 20.03.2024 o 00:22, Andre Przywara pisze:
-> On Tue, 19 Mar 2024 18:50:24 +0100
-> Kamil Kasperski <ressetkk@gmail.com> wrote:
+On Tue, Mar 19, 2024 at 2:59=E2=80=AFPM Samuel Holland via lists.riscv.org
+<samuel.holland=3Dsifive.com@lists.riscv.org> wrote:
 >
-> Hi Kamil,
+> Some envcfg bits need to be controlled on a per-thread basis, such as
+> the pointer masking mode. However, the envcfg CSR value cannot simply be
+> stored in struct thread_struct, because some hardware may implement a
+> different subset of envcfg CSR bits is across CPUs. As a result, we need
+> to combine the per-CPU and per-thread bits whenever we switch threads.
 >
->> Add dtsi file for T95 tv boxes and add initial support for T95 5G AXP313A
->> variant with a board name H616-T95MAX-AXP313A-v3.0 Internal storage is not
->> accessible due to lack of support for H616 NAND controller.
->>
->> Signed-off-by: Kamil Kasperski <ressetkk@gmail.com>
-> thanks for the changes, looks good now, although a bit minimal ;-)
+
+Why not do something like this
+
+diff --git a/arch/riscv/include/asm/csr.h b/arch/riscv/include/asm/csr.h
+index b3400517b0a9..01ba87954da2 100644
+--- a/arch/riscv/include/asm/csr.h
++++ b/arch/riscv/include/asm/csr.h
+@@ -202,6 +202,8 @@
+ #define ENVCFG_CBIE_FLUSH              _AC(0x1, UL)
+ #define ENVCFG_CBIE_INV                        _AC(0x3, UL)
+ #define ENVCFG_FIOM                    _AC(0x1, UL)
++/* by default all threads should be able to zero cache */
++#define ENVCFG_BASE                    ENVCFG_CBZE
+
+ /* Smstateen bits */
+ #define SMSTATEEN0_AIA_IMSIC_SHIFT     58
+diff --git a/arch/riscv/kernel/process.c b/arch/riscv/kernel/process.c
+index 4f21d970a129..2420123444c4 100644
+--- a/arch/riscv/kernel/process.c
++++ b/arch/riscv/kernel/process.c
+@@ -152,6 +152,7 @@ void start_thread(struct pt_regs *regs, unsigned long p=
+c,
+        else
+                regs->status |=3D SR_UXL_64;
+ #endif
++       current->thread_info.envcfg =3D ENVCFG_BASE;
+ }
+
+And instead of context switching in `_switch_to`,
+In `entry.S` pick up `envcfg` from `thread_info` and write it into CSR.
+
+This construction avoids
+- declaring per cpu riscv_cpu_envcfg
+- syncing up
+- collection of *envcfg bits.
+
+
+> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
+> ---
 >
-> Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+>  arch/riscv/include/asm/cpufeature.h |  2 ++
+>  arch/riscv/include/asm/processor.h  |  1 +
+>  arch/riscv/include/asm/switch_to.h  | 12 ++++++++++++
+>  arch/riscv/kernel/cpufeature.c      |  4 +++-
+>  4 files changed, 18 insertions(+), 1 deletion(-)
 >
-> Please can you wait till the -rc1 release on Sunday, and send a rebased
-> version next week? There is a small merge conflict in the dts Makefile
-> as of now.
+> diff --git a/arch/riscv/include/asm/cpufeature.h b/arch/riscv/include/asm=
+/cpufeature.h
+> index 0bd11862b760..b1ad8d0b4599 100644
+> --- a/arch/riscv/include/asm/cpufeature.h
+> +++ b/arch/riscv/include/asm/cpufeature.h
+> @@ -33,6 +33,8 @@ DECLARE_PER_CPU(long, misaligned_access_speed);
+>  /* Per-cpu ISA extensions. */
+>  extern struct riscv_isainfo hart_isa[NR_CPUS];
 >
-> Cheers,
-> Andre
-
-Sure, no problem. Thank you very much for a review.
-
-Once it gets merged I'll get back to u-boot patch.
-
-Cheers,
-Kamil
-
+> +DECLARE_PER_CPU(unsigned long, riscv_cpu_envcfg);
+> +
+>  void riscv_user_isa_enable(void);
 >
->> ---
->>  arch/arm64/boot/dts/allwinner/Makefile             |   1 +
->>  arch/arm64/boot/dts/allwinner/sun50i-h616-t95.dtsi | 109 +++++++++++++++++++++
->>  .../dts/allwinner/sun50i-h616-t95max-axp313.dts    |  84 ++++++++++++++++
->>  3 files changed, 194 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
->> index 21149b346a60..294921f12b73 100644
->> --- a/arch/arm64/boot/dts/allwinner/Makefile
->> +++ b/arch/arm64/boot/dts/allwinner/Makefile
->> @@ -42,6 +42,7 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
->>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-bigtreetech-cb1-manta.dtb
->>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-bigtreetech-pi.dtb
->>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
->> +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-t95max-axp313.dtb
->>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
->>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-longanpi-3h.dtb
->>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero2w.dtb
->> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-t95.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616-t95.dtsi
->> new file mode 100644
->> index 000000000000..4c02408733bc
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-t95.dtsi
->> @@ -0,0 +1,109 @@
->> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> +/*
->> + * Copyright (C) 2024 Kamil Kasperski <ressetkk@gmail.com>
->> + *
->> + * Common DT nodes for H616-based T95 TV boxes
->> + * There are two versions reported with different PMIC variants.
->> + */
->> +
->> +#include "sun50i-h616.dtsi"
->> +
->> +#include <dt-bindings/gpio/gpio.h>
->> +#include <dt-bindings/interrupt-controller/arm-gic.h>
->> +
->> +/ {
->> +	aliases {
->> +		ethernet1 = &sdio_wifi;
->> +		serial0 = &uart0;
->> +	};
->> +
->> +	chosen {
->> +		stdout-path = "serial0:115200n8";
->> +	};
->> +
->> +	reg_vcc5v: vcc5v {
->> +		/* board wide 5V supply directly from the DC input */
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "vcc-5v";
->> +		regulator-min-microvolt = <5000000>;
->> +		regulator-max-microvolt = <5000000>;
->> +		regulator-always-on;
->> +	};
->> +
->> +	reg_vcc3v3: vcc3v3 {
->> +		/* discrete 3.3V regulator */
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "vcc-3v3";
->> +		regulator-min-microvolt = <3300000>;
->> +		regulator-max-microvolt = <3300000>;
->> +		regulator-always-on;
->> +	};
->> +
->> +	wifi_pwrseq: pwrseq {
->> +		compatible = "mmc-pwrseq-simple";
->> +		clocks = <&rtc CLK_OSC32K_FANOUT>;
->> +		clock-names = "ext_clock";
->> +		pinctrl-0 = <&x32clk_fanout_pin>;
->> +		pinctrl-names = "default";
->> +		reset-gpios = <&pio 6 18 GPIO_ACTIVE_LOW>; /* PG18 */
->> +	};
->> +};
->> +
->> +&ehci0 {
->> +	status = "okay";
->> +};
->> +
->> +&ehci2 {
->> +	status = "okay";
->> +};
->> +
->> +&ir {
->> +	status = "okay";
->> +};
->> +
->> +&mmc0 {
->> +	cd-gpios = <&pio 8 16 GPIO_ACTIVE_LOW>;	/* PI16 */
->> +	bus-width = <4>;
->> +	status = "okay";
->> +};
->> +
->> +&mmc1 {
->> +	mmc-pwrseq = <&wifi_pwrseq>;
->> +	bus-width = <4>;
->> +	non-removable;
->> +	status = "okay";
->> +
->> +	sdio_wifi: wifi@1 {
->> +		reg = <1>;
->> +	};
->> +};
->> +
->> +&ohci0 {
->> +	status = "okay";
->> +};
->> +
->> +&ohci2 {
->> +	status = "okay";
->> +};
->> +
->> +&uart0 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&uart0_ph_pins>;
->> +	status = "okay";
->> +};
->> +
->> +&uart1 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
->> +	uart-has-rtscts;
->> +	status = "okay";
->> +};
->> +
->> +&usbotg {
->> +	dr_mode = "host";	/* USB A type receptable */
->> +	status = "okay";
->> +};
->> +
->> +&usbphy {
->> +	status = "okay";
->> +};
->> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-t95max-axp313.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-t95max-axp313.dts
->> new file mode 100644
->> index 000000000000..08a6b4fcc235
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-t95max-axp313.dts
->> @@ -0,0 +1,84 @@
->> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> +/*
->> + * Copyright (C) 2024 Kamil Kasperski <ressetkk@gmail.com>
->> + *
->> + * Configuration for T95 TV box with board label H616-T95MAX-AXP313A-v3.0
->> + */
->> +
->> +/dts-v1/;
->> +
->> +#include "sun50i-h616-t95.dtsi"
->> +
->> +/ {
->> +	model = "T95 5G (AXP313)";
->> +	compatible = "t95,t95max-axp313", "allwinner,sun50i-h616";
->> +};
->> +
->> +&mmc0 {
->> +	vmmc-supply = <&reg_dldo1>;
->> +};
->> +
->> +&mmc1 {
->> +	vmmc-supply = <&reg_dldo1>;
->> +	vqmmc-supply = <&reg_aldo1>;
->> +};
->> +
->> +&r_i2c {
->> +	status = "okay";
->> +
->> +	axp313: pmic@36 {
->> +		compatible = "x-powers,axp313a";
->> +		reg = <0x36>;
->> +		#interrupt-cells = <1>;
->> +		interrupt-controller;
->> +
->> +		vin1-supply = <&reg_vcc5v>;
->> +		vin2-supply = <&reg_vcc5v>;
->> +		vin3-supply = <&reg_vcc5v>;
->> +
->> +		regulators {
->> +			reg_aldo1: aldo1 {
->> +				regulator-always-on;
->> +				regulator-min-microvolt = <1800000>;
->> +				regulator-max-microvolt = <1800000>;
->> +				regulator-name = "vcc1v8";
->> +			};
->> +
->> +			reg_dldo1: dldo1 {
->> +				regulator-always-on;
->> +				regulator-min-microvolt = <3300000>;
->> +				regulator-max-microvolt = <3300000>;
->> +				regulator-name = "vcc3v3";
->> +			};
->> +
->> +			reg_dcdc1: dcdc1 {
->> +				regulator-always-on;
->> +				regulator-min-microvolt = <810000>;
->> +				regulator-max-microvolt = <990000>;
->> +				regulator-name = "vdd-gpu-sys";
->> +			};
->> +
->> +			reg_dcdc2: dcdc2 {
->> +				regulator-always-on;
->> +				regulator-min-microvolt = <810000>;
->> +				regulator-max-microvolt = <1100000>;
->> +				regulator-name = "vdd-cpu";
->> +			};
->> +
->> +			reg_dcdc3: dcdc3 {
->> +				regulator-always-on;
->> +				regulator-min-microvolt = <1500000>;
->> +				regulator-max-microvolt = <1500000>;
->> +				regulator-name = "vdd-dram";
->> +			};
->> +		};
->> +	};
->> +};
->> +
->> +&pio {
->> +	vcc-pc-supply = <&reg_aldo1>;
->> +	vcc-pf-supply = <&reg_dldo1>;
->> +	vcc-pg-supply = <&reg_aldo1>;
->> +	vcc-ph-supply = <&reg_dldo1>;
->> +	vcc-pi-supply = <&reg_dldo1>;
->> +};
->>
+>  #ifdef CONFIG_RISCV_MISALIGNED
+> diff --git a/arch/riscv/include/asm/processor.h b/arch/riscv/include/asm/=
+processor.h
+> index a8509cc31ab2..06b87402a4d8 100644
+> --- a/arch/riscv/include/asm/processor.h
+> +++ b/arch/riscv/include/asm/processor.h
+> @@ -118,6 +118,7 @@ struct thread_struct {
+>         unsigned long s[12];    /* s[0]: frame pointer */
+>         struct __riscv_d_ext_state fstate;
+>         unsigned long bad_cause;
+> +       unsigned long envcfg;
+>         u32 riscv_v_flags;
+>         u32 vstate_ctrl;
+>         struct __riscv_v_ext_state vstate;
+> diff --git a/arch/riscv/include/asm/switch_to.h b/arch/riscv/include/asm/=
+switch_to.h
+> index 7efdb0584d47..256a354a5c4a 100644
+> --- a/arch/riscv/include/asm/switch_to.h
+> +++ b/arch/riscv/include/asm/switch_to.h
+> @@ -69,6 +69,17 @@ static __always_inline bool has_fpu(void) { return fal=
+se; }
+>  #define __switch_to_fpu(__prev, __next) do { } while (0)
+>  #endif
+>
+> +static inline void sync_envcfg(struct task_struct *task)
+> +{
+> +       csr_write(CSR_ENVCFG, this_cpu_read(riscv_cpu_envcfg) | task->thr=
+ead.envcfg);
+> +}
+> +
+> +static inline void __switch_to_envcfg(struct task_struct *next)
+> +{
+> +       if (riscv_cpu_has_extension_unlikely(smp_processor_id(), RISCV_IS=
+A_EXT_XLINUXENVCFG))
 
+I've seen `riscv_cpu_has_extension_unlikely` generating branchy code
+even if ALTERNATIVES was turned on.
+Can you check disasm on your end as well.  IMHO, `entry.S` is a better
+place to pick up *envcfg.
+
+> +               sync_envcfg(next);
+> +}
+> +
+>  extern struct task_struct *__switch_to(struct task_struct *,
+>                                        struct task_struct *);
+>
+> @@ -80,6 +91,7 @@ do {                                                  \
+>                 __switch_to_fpu(__prev, __next);        \
+>         if (has_vector())                                       \
+>                 __switch_to_vector(__prev, __next);     \
+> +       __switch_to_envcfg(__next);                     \
+>         ((last) =3D __switch_to(__prev, __next));         \
+>  } while (0)
+>
+> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeatur=
+e.c
+> index d1846aab1f78..32aaaf41f8a8 100644
+> --- a/arch/riscv/kernel/cpufeature.c
+> +++ b/arch/riscv/kernel/cpufeature.c
+> @@ -44,6 +44,8 @@ static DECLARE_BITMAP(riscv_isa, RISCV_ISA_EXT_MAX) __r=
+ead_mostly;
+>  /* Per-cpu ISA extensions. */
+>  struct riscv_isainfo hart_isa[NR_CPUS];
+>
+> +DEFINE_PER_CPU(unsigned long, riscv_cpu_envcfg);
+> +
+>  /* Performance information */
+>  DEFINE_PER_CPU(long, misaligned_access_speed);
+>
+> @@ -978,7 +980,7 @@ arch_initcall(check_unaligned_access_all_cpus);
+>  void riscv_user_isa_enable(void)
+>  {
+>         if (riscv_cpu_has_extension_unlikely(smp_processor_id(), RISCV_IS=
+A_EXT_ZICBOZ))
+> -               csr_set(CSR_ENVCFG, ENVCFG_CBZE);
+> +               this_cpu_or(riscv_cpu_envcfg, ENVCFG_CBZE);
+>  }
+>
+>  #ifdef CONFIG_RISCV_ALTERNATIVE
+> --
+> 2.43.1
+>
+>
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#659): https://lists.riscv.org/g/tech-j-ext/message/65=
+9
+> Mute This Topic: https://lists.riscv.org/mt/105033914/7300952
+> Group Owner: tech-j-ext+owner@lists.riscv.org
+> Unsubscribe: https://lists.riscv.org/g/tech-j-ext/unsub [debug@rivosinc.c=
+om]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
+>
 
