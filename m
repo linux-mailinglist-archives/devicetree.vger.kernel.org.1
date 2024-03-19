@@ -1,105 +1,162 @@
-Return-Path: <devicetree+bounces-51760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09D378803D1
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 18:46:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1B0F8803DF
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 18:50:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B97DF2848EC
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 17:46:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3BCC1C2302E
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 17:50:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 556A4208D4;
-	Tue, 19 Mar 2024 17:46:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26664282E1;
+	Tue, 19 Mar 2024 17:50:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SGjDF4XU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="V4rMKBbd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 284D91CAB2;
-	Tue, 19 Mar 2024 17:46:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 447D125777;
+	Tue, 19 Mar 2024 17:50:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710870373; cv=none; b=K7WL1uRU0XopQq8+S4PATy/6jndQhdcjDdWloR0nAJHmj9j3M+u17HJAvAGczPfHD/pCwSUYE5hBf5DTvpllduGwvqSEPqZlOv2Y92K4hYCbihL2W5zPWlYhnlNnRJ/NN46olRfOKP1+KHN3a3bM+xZbNIazrLNQg2exMqtWFRk=
+	t=1710870630; cv=none; b=SAQ+t6vU6ok4b23s7sA6rDZLVsmf/uSCOlJbMHVt4FXMVEukeV5a1aAOy3rtlsc8k1wgtEB65Udfnz2ZJgTRJ72qvI2Y2CW0oBppxF3ebiis33zhrLwptTGzi0PWbZRWn6CnwufctSVHUOyxMnzALTRjc3MSKZNYToXqK69U6gQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710870373; c=relaxed/simple;
-	bh=fZ0QELwGTKD07yu3UczJUEharu+OHubpHxFZJAUTYUs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=i0w4WYeHjGrBwpO0HsOgUKIhSccyRPO+1mqWdaYySTZ/KxqX4Y3MI/zTLJFzHCVTydHwCmhOPYsSe4PGg2o2q1KuHJrb9c8Boma47SbV/HlAWPlgZdCFo1MEY6008tZ3qeJoyxcp02EQBVBEL+n1L/2MP2Jx/h49pNGN0cjj5iQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SGjDF4XU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B309CC433C7;
-	Tue, 19 Mar 2024 17:46:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710870372;
-	bh=fZ0QELwGTKD07yu3UczJUEharu+OHubpHxFZJAUTYUs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SGjDF4XUwEcd0DIpqubZHG1E9ca+QEbg+LZv+L1DruzpY8DkKAtPW+mx8gcqncrCK
-	 aGSMqnimyyF9opVvsrMVQUB6aaQNWJnWzxH0Dsg1IiKY3rUGL4zUo+Gp0mD1yR/lrF
-	 YUipTw5PgcvXtcuygqgyrPxTWZ22R0X+/dokUTmwau6naWroLE1CbWFFbyUOpZfSMd
-	 4omkwfypp0zLalklXI0rebBgm3alw9BTx3zv/vrlPVvIHCqEoJ6nhQTxCyRephB0sg
-	 ctYJrWX+aqsZe2jsPPA81mzFu3xeYXenYT0nHYgJJLWDRregqEYAKI9UMj8EzYA8Lf
-	 HTolcnmTMgKuw==
-Date: Tue, 19 Mar 2024 17:46:07 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chris Brandt <chris.brandt@renesas.com>,
-	Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH 1/2] dt-bindings: timer: renesas: ostm: Document Renesas
- RZ/V2H(P) SoC
-Message-ID: <20240319-value-nutmeg-f107f7ac2319@spud>
-References: <20240318160731.33960-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240318160731.33960-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	s=arc-20240116; t=1710870630; c=relaxed/simple;
+	bh=FC9qHgACVBuEChJbgc+E+ma8kD4QWpYsJ/CWRaVS0Pc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=YWGOu0SJ3tFnmqGldrafuT1t++CQVGhDEZZ0aXCEKS1uKeK5ts+aNbg6vU3nI/HVEs2ri5RHpKi1WPDqxR3NNsKGlImNSvVFgBAAN4vpFTtie7LsCzWQsUPUqPzlLpzJ2StcESHpV+PNKWxox7/mCoX2V/2HtNiuJkEZalN7oPY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=V4rMKBbd; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5688eaf1165so8506222a12.1;
+        Tue, 19 Mar 2024 10:50:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1710870625; x=1711475425; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=90Uve//wIswBhTh9MRoH8u7ai/wsqyznS8g3f0fG1ps=;
+        b=V4rMKBbdlYUU9c8rxsZxxVaXRWKjhckUP5g/uNi+dX1NpZhG9lkaoSeIlts/3xhMzJ
+         y2nzspcheEjUo+Hjc1j3Xn9QKNQgHN1/23UHe9uHSaEeaOzq0um5euV6Mwllh0LOeKkT
+         CnbgUICI6nrS0mL5R1QFJ4kxH+UYkqj3UX0QNlF05yYXz3Gz3quHrCPSrRDcDOLKthS1
+         zkhFrXcPf714PT81+acA9mO+TbKnDeAhs4Drq9La16hgFDa5qLgC/FSGPBualxouu7Ot
+         Rn3LXA25AOWbxLJKGWysqPFIy/7gRTFQVvNhQEUGfiE4/2O7NGeg4bGf3QwwhFjLX7Bn
+         AIIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710870625; x=1711475425;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=90Uve//wIswBhTh9MRoH8u7ai/wsqyznS8g3f0fG1ps=;
+        b=XMtngchyAHYSP892dl7UtIUwpfYFNSccH3XegyAKEWgG7bYNfy8LkkxvNvLcqDsA6K
+         CtdwTiie37EiLFy0OnajME+eGT0d7NvFI5D1+JWGyBSwKUz9HS4axk2700bFA/hUVmPj
+         ZojzOm72h68VLgBjKX/oQBYKdMmV4P6ohaLBtzhf8aYLyBln0EDIC059KC2rRo574Vf7
+         9xmPo+Jb1i53y8Pn3plQ2nEvS+d5meVpRNLPeDB2LA/JgMnri9meWo6uJr2MbPA5KFjP
+         mQt3VATL7kCPKrVutL+Bf/J1+80AJBp5/HkVyFLyQFjVwc2VxaAzFVycOGLj2Pq9duaI
+         kGTA==
+X-Forwarded-Encrypted: i=1; AJvYcCVQU0ZWUpGwPRIhcfNqiBaBkKcVuXx7ILvof8KlxRPXQNiu1qan54jCVerZlwuUOVynj/bvyLjOrGfqpfKL8A125WqpkGBc0Ymj49+k
+X-Gm-Message-State: AOJu0Yz8QBy8un8LAmbOCzko9cam0ou9DKjJxtIUJ9zOAe0Ci03JJ5au
+	+ryUaIw6euzz2K6BsZUWwQ0UEhmE/2Hm0Yb1841urUS5QEFVXaAz
+X-Google-Smtp-Source: AGHT+IF7vuhT7/C4Fxt4OmDcbKvKSoBM91Kwo4Ruhq+2j1nPzidv7MHrmILAqwkpq6LYy5E38Gxm7w==
+X-Received: by 2002:a05:6402:500e:b0:567:9fef:f7ee with SMTP id p14-20020a056402500e00b005679feff7eemr3011457eda.16.1710870625386;
+        Tue, 19 Mar 2024 10:50:25 -0700 (PDT)
+Received: from ALDERLEJK. (89-76-44-138.dynamic.chello.pl. [89.76.44.138])
+        by smtp.gmail.com with ESMTPSA id et5-20020a056402378500b0056ba8b68505sm84329edb.92.2024.03.19.10.50.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Mar 2024 10:50:25 -0700 (PDT)
+From: Kamil Kasperski <ressetkk@gmail.com>
+Subject: [PATCH v4 0/3] Add initial support for T95 TV boxes
+Date: Tue, 19 Mar 2024 18:50:21 +0100
+Message-Id: <20240319-add-t95-axp313-support-v4-0-6204b6d23229@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Ic8LyRranNDuv8NG"
-Content-Disposition: inline
-In-Reply-To: <20240318160731.33960-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAF3Q+WUC/43NwQqDMAyA4VeRntfRNmrrTnuPsUMxVQvTltYVh
+ /juq8Jgl8FO4Q/ky0qiCdZEcilWEkyy0bopR3kqSDvoqTfUYm4imCgZ8IpqRDo3eS4eOND49N6
+ FmVYdoFZNUxtEko99MJ1dDvh2zz3YOLvwOv4ksW8/pPxFJkEZNaAYCMW5rNS1H7V9nFs3kp1M8
+ B8DmWFYQydbAQjym9m27Q2ElnE6AwEAAA==
+To: Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+ Kamil Kasperski <ressetkk@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.13.0
 
+Changes in v4:
+- change wifi pwrseq node name to 'pwrseq' in sun50i-h616-t95.dtsi
+- replace vcc-pg-supply value to reg_aldo1 in &pio
 
---Ic8LyRranNDuv8NG
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+- Link to v3: https://lore.kernel.org/r/20240317-add-t95-axp313-support-v3-0-0d63f7c23d37@gmail.com
 
-On Mon, Mar 18, 2024 at 04:07:30PM +0000, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->=20
-> Document the General Timer Module (a.k.a OSTM) block on Renesas RZ/V2H(P)
-> ("R9A09G057") SoC, which is identical to the one found on the RZ/A1H and
-> RZ/G2L SoCs. Add the "renesas,r9a09g057-ostm" compatible string for the
-> RZ/V2H(P) SoC.
->=20
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Changes in v3:
+- remove underscore from wifi_pwrseq node name in sun50i-h616-t95.dtsi
+- fix line wrap in commit message
+- Link to v2: https://lore.kernel.org/r/20240317-add-t95-axp313-support-v2-0-e38032811758@gmail.com
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+T95 is a most commonly known for being a box with a pre-installed 
+malware. It uses Allwinner H616 and comes with NAND, and DDR3 
+memory.
 
---Ic8LyRranNDuv8NG
-Content-Type: application/pgp-signature; name="signature.asc"
+Those TV boxes usually come with common hardware:
+- Allwinner H616 SoC
+- 2/4 GB DDR3 SDRAM (Hynix H5TQ2G43BFR)
+- 16/32/64 GB NAND flash
+- microSD slot
+- AXP305 or AXP313 PMIC depending on board revision
+- 3.5mm A/V output
+- HDMI port
+- 2x USB 2.0 ports
+- 100M ETH using Internal PHY
+- LG642 Wi-Fi and BT chip (rebranded BCM43342)
+- 7-segment display
+- DC 5V barrel jack port
 
------BEGIN PGP SIGNATURE-----
+The board contains holes hor UART header wired to &uart0.
+&uart1 is used by bluetooth module
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZfnPXwAKCRB4tDGHoIJi
-0jWYAP9bu4Rs4V0ZMDUyuGoi71pY4Tx/K54RhA+b43wwtFiV8AD+NGtwyo/bwvqL
-yKy84MjX2ffs142Ks+bJXs0ChqKC/A0=
-=NvWw
------END PGP SIGNATURE-----
+From the DRAM specification its operation voltage is 1.5V.
 
---Ic8LyRranNDuv8NG--
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Chen-Yu Tsai <wens@csie.org>
+To: Jernej Skrabec <jernej.skrabec@gmail.com>
+To: Samuel Holland <samuel@sholland.org>
+To: Maxime Ripard <mripard@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-sunxi@lists.linux.dev
+
+Signed-off-by: Kamil Kasperski <ressetkk@gmail.com>
+---
+Kamil Kasperski (3):
+      dt-bindings: vendor-prefixes: add t95 string
+      dt-bindings: arm: sunxi: add T95 AXP313
+      arm64: dts: allwinner: h616: add support for T95 tv boxes
+
+ Documentation/devicetree/bindings/arm/sunxi.yaml   |   5 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ arch/arm64/boot/dts/allwinner/Makefile             |   1 +
+ arch/arm64/boot/dts/allwinner/sun50i-h616-t95.dtsi | 109 +++++++++++++++++++++
+ .../dts/allwinner/sun50i-h616-t95max-axp313.dts    |  84 ++++++++++++++++
+ 5 files changed, 201 insertions(+)
+---
+base-commit: 4138f02288333cb596885e9af03dd3ea2de845cb
+change-id: 20240315-add-t95-axp313-support-5f3da8996edd
+
+Best regards,
+-- 
+Kamil Kasperski <ressetkk@gmail.com>
+
 
