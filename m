@@ -1,267 +1,281 @@
-Return-Path: <devicetree+bounces-51597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51598-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65DA187FC76
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 11:59:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DAE9787FCA1
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 12:13:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8F811F22F71
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 10:59:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 71A2B1F2302A
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 11:13:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D44B7D410;
-	Tue, 19 Mar 2024 10:59:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0616E7E58A;
+	Tue, 19 Mar 2024 11:13:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LHNulDAQ"
+	dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b="H2MPDxbG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2128.outbound.protection.outlook.com [40.107.21.128])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7B2F7CF03
-	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 10:59:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710845947; cv=none; b=uDtrBS38CUVwQCZ8F1OwP5gLtRAHF4csYKZzwBlPn28hFDSMsL3sGRldOUWgS9eMzpZnl/A7pUcDl2dl7lVKiiJ70AAHrQ1MbNPSjR0dOmeqiVm35pyJJgEFEBWSfyULmBoBDcMfEhjx/WEOTHS+EvKlEwpVGtjPmjcvtR/DTWs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710845947; c=relaxed/simple;
-	bh=eSyOUTrKm2w+4kPW3KKzkhjBFUJbNXkStK/tdlKIsKc=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=kGrBjRbzVrhX4NBt0OqX8q/lusc6QG2zDGE34NSg5lie2POVR7YSaD88xIooI4FmCZUOLzvsDp1egeGJVHetFMeUtUqwXnLmcHVKXH9MUpVQDfeuWC4hUJzunPKTrpsaqbARy7tl8LrDPMoAw7Q0zW2VAyuowDpWwDTRVE3EvgQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LHNulDAQ; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4141156f245so13017325e9.2
-        for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 03:59:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710845944; x=1711450744; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=URJxdgqVlqoDNrXeeXOTq1SfTWACq8g8yW2+lxzoe5c=;
-        b=LHNulDAQTB32q3f4KTjkBu/EzroYQ9LCKmCzqk1qUH/OwvZ5iLff7JxpdId1lF3kC7
-         DFP17tF2bdcgV/VDnnrPZs+siPNhrf+PN4G3/S+UpM09EYbOtDe9+pwp1gpDcnE3+q4T
-         lEhUxK2GeUcwPCN3GfQDeu0oHEGxzaGCgmeZa6mDYlGovuErfpQg0Ex2a1HCai3BU5l/
-         7MZp1678o8Tuqx1b+VsEff4ZNiH1CoabKvI5m5DseZqBljBU+F92veJu2eHqrx+x2D0t
-         lIlCbBM9FzTfZloQOCD4fsMMPEOoU1x673234NTDLCUhrFZidsqOk5pc9I5S0JlRhqiz
-         A1CQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710845944; x=1711450744;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=URJxdgqVlqoDNrXeeXOTq1SfTWACq8g8yW2+lxzoe5c=;
-        b=aD2xPZ0CUa55RPUHgUqOEevRGFwjxOnrv8xsdS0mTcJ8aF+9dCjOHGRyhGVvI6aTkB
-         Z48lc3rY6sljYkisUk2Fr5Oa7zVLsrCp7KTrIJF/OEjkCB6x7wNdZKOr6q/nBGMKPlUg
-         J2cW7UrC0oj6umnTt+lY2eUh3OR5UUwh6+TJsfHDFlddhOOdRMmpa3n9oNMXe+lMw+7I
-         BpYMoM+PU/5DwTQRLlo5028M0z03Ya6c5GIg3rVhkt34XQCINZCHNVutIorxYXL+GTGY
-         wQV//z/wbY8xdukEtjuhS9aSrwjoCClevLDY/KZZgZZuvwDwnAn3sgjWIrodBv0sBQAo
-         B2yA==
-X-Forwarded-Encrypted: i=1; AJvYcCU3ikV2PGJ6er0Z0eVFcZs/e5wWjigYnfPAizoLCXZrRrrW5u9QCDEowIcGzp+erSpfKLH+pp1viY4diu7FbDkyhfl5idmqRFiaLg==
-X-Gm-Message-State: AOJu0YyRluxupLU46qoWyb6xAdpimfqlPhiqwihJhf+k5SRQTylNXWXg
-	1dnYF1hGuHILaFyMx8RSmy1RrHWMRb2Rq3pr5wyXwxh6hI7uj30uynH+6XN9IYTFZ26/7JFMsJJ
-	2/jM=
-X-Google-Smtp-Source: AGHT+IHTw+fqjT9qtXiOHeC9NT/dqyCAEtCiF1WiSTroO3VvPAOY+LweBAb87o715igho5oYJxZGcw==
-X-Received: by 2002:adf:f5d1:0:b0:33e:7650:58b4 with SMTP id k17-20020adff5d1000000b0033e765058b4mr9601797wrp.27.1710845943516;
-        Tue, 19 Mar 2024 03:59:03 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:2fcf:6f16:3b3b:da8e? ([2a01:e0a:982:cbb0:2fcf:6f16:3b3b:da8e])
-        by smtp.gmail.com with ESMTPSA id l4-20020adfe584000000b0033e91509224sm12093815wrm.22.2024.03.19.03.59.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Mar 2024 03:59:03 -0700 (PDT)
-Message-ID: <85d67f3f-2b01-44c0-ace3-5e7cb48a9431@linaro.org>
-Date: Tue, 19 Mar 2024 11:59:02 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 943207D098;
+	Tue, 19 Mar 2024 11:13:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.128
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710846795; cv=fail; b=sVubUxSXa4Q72mxKymkVhJby4mmu7Z8Bo94N+QN76XalGtY1Uqgz/S2XqWBeCTCyZIfzdvPXxPtMtlySz07bOntvUunlcnVQErgyefpiZBim8sm6SU5+gp/ROEYcwYwD4DHaQJV4MmSuAfYlFq17SyWIRWwxbjzK9HjDwnd17qY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710846795; c=relaxed/simple;
+	bh=Ma+coSQPGDBaEnA6FfBWr47SOG+nduJnKC67O9M0ycY=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=W82DvIKPJAKJJCKZUSfdJ5jlzguaVrWZPRLbXeGXghWJI/7bmIEHVQhcXg64npBRL58+XfaqApk8mvcm8F1DImO7BmbHGamf5c4O4fKTBcFlVV2m6VKVyAmClKgGnLUDMArlxio3+qoPRjQ7bQ/FMJbZMefO/2HniBB50HOjEfs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net; spf=pass smtp.mailfrom=wolfvision.net; dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b=H2MPDxbG; arc=fail smtp.client-ip=40.107.21.128
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wolfvision.net
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=flc51mVtcZsaOmKcrwzM4tV89Gki+PjJnfHFXWo9JfD2Q7puTepOOY/d3dAhAW4grK0mR98LBYrjeEeb5z4SSSDePEwV314+EgHj9dDjwsXo2GNMC/4yc9NdNde8eMvsTPNHedHwp6+1H0HRcWAoCA+gOp5F0aPjppmGgPzYa1nZmSOm6aNCAyoftfN+zLZaFJa99Lywl7qzp8LqwDi0pQhEVgnv4pee/ukK0yR5FcKvqS+A3YvYUfMQEHGxNqRGHi1soSN1rEuKCZbQRoKTyS+9eCp3zowCLvf/HBgo1IJb/HVLjmAjExQwgjp/11IXvBNBGJ0rb4kB8ua6zMlINA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SpN+TlLXPinlcb1KCJZ+adYoFzP1o8Nt9MIspzNm1DI=;
+ b=YBNEpnuetG6rRCQi/mYe1C3V58HRFoe8UEHWXzufTtLlLUi6XRzCk4QqOjoGHuZLm1KElaDvrtgw1d/RKKVjZsCMIic/S0hDW1k86cx6gbvAR+w1gYXugfvGJXVDVY2O9sCadR2ebfs5UBFjJC8AtoL/0sE2v9xyRQBxI4RYI0TZrcOHKFlfP/rs5D1MP+AEiQTMvdqDZG4F5UYJQ/iyZGNL1bLPA7d566ypT/SDY3FMIc3f0AWgy8I8jnqQP+uTogHXLvE94R70vqL41nP1GjrF7TijuyDkIuIcp1MTu7M7yWzO9fXQAf5bjcA0NvgsfYXw8Xyh+k/7Hiow3nCA3A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SpN+TlLXPinlcb1KCJZ+adYoFzP1o8Nt9MIspzNm1DI=;
+ b=H2MPDxbGI+0ucbj8ZphSFO1yydtfGfr1x7Tutc/xcjRND40X7/UuImYXhK34YDDtd/ARQR5uwAJP1ElAB66ApVnp9xccPea63yPX/mScT7Q/5BbLpVXPsxOp6F36wsCgIxOLEPJJ7CoBZ5zXGXD3AwKbxJ/wcunJINhzh1YDACY=
+Received: from VE1PR08MB4974.eurprd08.prod.outlook.com (2603:10a6:803:111::15)
+ by AS8PR08MB9765.eurprd08.prod.outlook.com (2603:10a6:20b:616::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.27; Tue, 19 Mar
+ 2024 11:13:10 +0000
+Received: from VE1PR08MB4974.eurprd08.prod.outlook.com
+ ([fe80::9e35:6de9:e4fc:843f]) by VE1PR08MB4974.eurprd08.prod.outlook.com
+ ([fe80::9e35:6de9:e4fc:843f%7]) with mapi id 15.20.7386.025; Tue, 19 Mar 2024
+ 11:13:10 +0000
+Message-ID: <e373c2c7-0cd9-40d6-a19b-3b9a1a81feb2@wolfvision.net>
+Date: Tue, 19 Mar 2024 12:13:08 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 1/4] dt-bindings: touchscreen: add touch-overlay
+ property
+Content-Language: en-US, de-AT
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Henrik Rydberg <rydberg@bitmath.org>,
+ Bastian Hecht <hechtb@gmail.com>,
+ Michael Riesch <michael.riesch@wolfvision.net>,
+ Jeff LaBundy <jeff@labundy.com>
+Cc: linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
+References: <20240119-feature-ts_virtobj_patch-v7-0-eda70985808f@wolfvision.net>
+ <20240119-feature-ts_virtobj_patch-v7-1-eda70985808f@wolfvision.net>
+From: Javier Carrasco <javier.carrasco@wolfvision.net>
+In-Reply-To: <20240119-feature-ts_virtobj_patch-v7-1-eda70985808f@wolfvision.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: VI1PR04CA0100.eurprd04.prod.outlook.com
+ (2603:10a6:803:64::35) To VE1PR08MB4974.eurprd08.prod.outlook.com
+ (2603:10a6:803:111::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 3/7] phy: qcom: qmp-pcie: register second optional PHY AUX
- clock
-Content-Language: en-US, fr
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240319-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v1-0-926d7a4ccd80@linaro.org>
- <20240319-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v1-3-926d7a4ccd80@linaro.org>
- <CAA8EJpoJ0rUd8aY6xpXyL3Obg66XtOebso_AUUxKmg1CWNykJA@mail.gmail.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <CAA8EJpoJ0rUd8aY6xpXyL3Obg66XtOebso_AUUxKmg1CWNykJA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VE1PR08MB4974:EE_|AS8PR08MB9765:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	0OkV7WpT2d6JVFimOILczuWtqqdu3RzWztWxrgrPwJXu6czx7It6Dl+A1vDXbkDTsPhZofoqqCZwEoFayAqPKb8poBpCSCmkVSGf7MRL03G7fEPcXpNgW7Ht4JIMizZKqLiRz/1Fs3t+wZuNYUCXuHAenj+dt0ml9zEG9GKoWlIXzFnJw5GOi9HUWziiCYs4C7LqAXm9UPd3fVvI+CnqW4ETbJaX/L70bQEikC2pD2RrB0H/OGE7N0aSID9IktIOH4jifgYjF88FUtHbDszIXb+eMER3zf/3cc8BtzsIfgnwJj6QUSMMG7kYF0rjp1ykKhdSNKuJRQbj8n8s1LIVVQl5S52yx0nDcQktwzp7aWj+agx9lQ5qFQrnPmpRoBgVD7kco7pVRQ9eB/lF/NBOdp2s2FnOgh3Jq4VVX/a41k4SbIK5SFGMPSb5VxzaKVH9ah19mcjO9rUnuUEp+8Tb1YHCq9WXnRRnmUdPqOMpNhADuX3b/PwxHQZWli7jg998OmHfILz32fkZ6o4GQths+p1Kxj461ULMEqkYKZjVltqOpwWmYCrgVPLiDxThxNwK44jtChCkzTQuA0zNdVI0WW/zr9pAv4evD7nabIw543xAKD66CKd6iM8kmoSEEryJ2VHK1s63BAuvrGU9KijbyuYrQbGQB7fS9BjHx2KVhZM=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR08MB4974.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(7416005)(1800799015)(366007);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?MERoalc4ZWFLVXV1VmZLbnl4UjBuQzBGSXRWOGNYbEdycVhWTkp1TnkvMmln?=
+ =?utf-8?B?S09hdXNqcEZ5NURkVHpIT3ZwUzkrOVRiVUE2UEVOWGZGTFJiVndKT0FrdXRp?=
+ =?utf-8?B?WWhBUmxGc0x6QVQ5M3lwZERETFB4RktxTTQzdkxzOTN0aEJhSEJadmVVRVUw?=
+ =?utf-8?B?QWUrQXZ3elA5b05XdUFSc3hyQ1FPU0dNdlVxb05qclpHN1F3SzMreFpqVGI0?=
+ =?utf-8?B?TFJuVWpOeldudzVaQUI5M29kV3dia1QzVEF2OFlsNjVmTmhYUHg2N0hzRVVj?=
+ =?utf-8?B?NlZuSVNucFJrWWpEbDV4ZUxzdDE2Y09tdU5RV0toeVgxR1Mza0F3SVFMeUJv?=
+ =?utf-8?B?Z2xFUWpsSU41TE92R2JTK2lFRlBmK2s0UmZRbEVVaEJNNjhOanhUSU5aWURP?=
+ =?utf-8?B?NmZ3UWJnRGRyU3JKTy8wQllYR2F3QTlBRlR5WUxEWnZwcFloUThGckE0R0Fq?=
+ =?utf-8?B?SnZucnNTVlQrYkVBaWE2V0xueTQ3K0NXeVpVNlBzeU51R1l5bVFXY2ZNQTJG?=
+ =?utf-8?B?aXNpWU5IU29PWFgvZ01vMVpCRzRJeTFKYkRjT2tOUVpPSGdrdFBESVA5MEY2?=
+ =?utf-8?B?aDZHaVFmVVNCYzFQWHN0Z0F4MmpWakNtODRhUnZGZXhvZE9VYWNnVDZZdHFr?=
+ =?utf-8?B?RXl1NFM0K2hnaTNXSmQ2bUhpczJiOUdRc0Y3UWhnVWhiNG9OYVFZQVNSWjRv?=
+ =?utf-8?B?VTJNS1Q3amZuUExUeVpybG1UV3dNWSttZGVQR0hsUzF2YTdMR05hRm5ITTU3?=
+ =?utf-8?B?NVI2NXU1Q3RVT1N0cmVJZUFObm1RQUJMMU80TzIxeUlkOTlFaXYrTUJwTkJN?=
+ =?utf-8?B?QzlRd3FNNmE4OEtoS0NZN3JDZ24wWlBEZk5GZXc2c3IyOUF0clFHdWhYYTVZ?=
+ =?utf-8?B?dWFTQ09yd3FTbUtnU2dLZmw3TDRWOG9NUnhwQndDOHdHNmd4dklpdDRMUTdi?=
+ =?utf-8?B?OEVHczVKbWdjeUFQV3k0aVNMVnVDTjQ2ZUVPMFozOWZodThaMjNselRRb2xu?=
+ =?utf-8?B?dyt0b0JnUU9WYk1pSGR5RExZb1o4Z2ZGNEJIdEZvUkdLSmVSZEE5QklCYzJy?=
+ =?utf-8?B?V3psTS9nZk1JOHQ2Y2dKaTIyZ3ZkNHhsbXJzQW53a1lTK0RrVndMeW5OSFZS?=
+ =?utf-8?B?ejlQdTZIc00zNU1ITFlzRStUMGYyTzFzZWVQTFc3VkJTOWNRWHdDbnowS2hH?=
+ =?utf-8?B?d3g3QTdoRlhIYy9oUW9ETitwNW54VnFNY2VHdVl3azNxcStnbHFkbUhNd0Ew?=
+ =?utf-8?B?LzdSMWh3SmdWZ2pRTDFsRDlvbnlWS2VNQkd1UlBIRU1mZEYzcUpoaDJqaEVO?=
+ =?utf-8?B?R3pxLzVPQVk1c1c0S1Y5UStKSVNKcWw2SEtMTGxmaTZjamNIY01LdlV0QVI4?=
+ =?utf-8?B?VTZTSTJORld2ZzB1UjN1TkhRZTNwaU9HYU9qQkRtMnl0MEVIWS84ZHBTbVho?=
+ =?utf-8?B?c1A5N0xqWm44d0JQd1RnZDhrQ0hET3NQT1E5U2hQcHJISVdhUUZmblZSZkh4?=
+ =?utf-8?B?UTNqMkpxSzFBbWI2QnFsM0VrbjRLRHU5d3pjU2F3WUNVNVpJWkNYbC9YUVJ1?=
+ =?utf-8?B?YXR1T2ZVQVBPSFI0c2czVnNkamVEYlBrajJINFBwSVZXVmZWSGVBSG5nakRv?=
+ =?utf-8?B?S0xGSmc3eDhoNTlqK240T1NCZjB1dWZ0Ri9yd2NKMzRieW8rU0U3V29SbDFJ?=
+ =?utf-8?B?dkZxcTVjd2FUOHNCYzBHZ3dya0xLemV2SmZJQXBOOERHcUVqQnhBSGxMZmMr?=
+ =?utf-8?B?ZzFMN0RyOTk0YzdBeWJhaXFNOUoyUVZSYWlpdjhaTjdETGJZNVlucnJmbTRi?=
+ =?utf-8?B?S1JuWnpIbW4wek00ZXYxcjBGV1hka3Z1K1dzdUoveU9VQnRsV3JZR2N3cjBN?=
+ =?utf-8?B?OFJUZDZ1ZnhaTGk5N0VGVE9HaGx0SFkwMDVOZ1IvaXU0WitkeVZSSUM2S0Iw?=
+ =?utf-8?B?ZG1Vd3BiQWFQaHBwU2Vhc1luaTdheFllVkZsVXpEOVNnU1Z5UlRIbGFVY2sz?=
+ =?utf-8?B?STVrbTRSbmNNVzl1bFplN08xemttcno1Yi9mN3JhWnI2T0dTL1Q2RHFJdHA5?=
+ =?utf-8?B?ZUV6b2diL2RNYkZmZTUzcEt1c1QzR2EvTEFKc25pbSsxbTFZSGE4NDF1Rkpu?=
+ =?utf-8?B?ZUN5THUvZ01hZWtzWWFSM09UMTdNb1hYQk9IZnh3b3VqUmlMMUVHMkR4U2pS?=
+ =?utf-8?B?QlpUM3I2dWYyMXAzc1BlVUNQQ2tlU0prUVNnTmFCNjNyenJwOWdIVXJNQ1hv?=
+ =?utf-8?Q?cM6nmQf46230smS3n/n52JzvvfzPpxpUGb5kQpAFuo=3D?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 159179ce-fb7e-43d2-587c-08dc48058f85
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR08MB4974.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2024 11:13:10.1049
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: lRhofwO6+gT12wC2LMpX4SynWOuU5c4SbUNe7103EZZBhNaPnUvqtVA1hbK5Lqtpjla+dnVIj/Qb/7dcfqKSeqO6BrZKjyUlv7KK8q89XcM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR08MB9765
 
-On 19/03/2024 11:55, Dmitry Baryshkov wrote:
-> On Tue, 19 Mar 2024 at 12:45, Neil Armstrong <neil.armstrong@linaro.org> wrote:
->>
->> The PCIe Gen4x2 PHY found in the SM8[456]50 SoCs have a second clock,
->> add the code to register it for PHYs configs that sets a aux_clock_rate.
->>
->> In order to get the right clock, add qmp_pcie_clk_hw_get() which uses
->> the newly introduced QMP_PCIE_PIPE_CLK & QMP_PCIE_PHY_AUX_CLK clock
->> IDs and also supports the legacy bindings by returning the PIPE clock.
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 70 ++++++++++++++++++++++++++++++++
->>   1 file changed, 70 insertions(+)
->>
->> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
->> index 079b3e306489..2d05226ae200 100644
->> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
->> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
->> @@ -22,6 +22,8 @@
->>   #include <linux/reset.h>
->>   #include <linux/slab.h>
->>
->> +#include <dt-bindings/phy/phy-qcom-qmp.h>
->> +
->>   #include "phy-qcom-qmp-common.h"
->>
->>   #include "phy-qcom-qmp.h"
->> @@ -2389,6 +2391,9 @@ struct qmp_phy_cfg {
->>
->>          /* QMP PHY pipe clock interface rate */
->>          unsigned long pipe_clock_rate;
->> +
->> +       /* QMP PHY AUX clock interface rate */
->> +       unsigned long aux_clock_rate;
->>   };
->>
->>   struct qmp_pcie {
->> @@ -2420,6 +2425,7 @@ struct qmp_pcie {
->>          int mode;
->>
->>          struct clk_fixed_rate pipe_clk_fixed;
->> +       struct clk_fixed_rate aux_clk_fixed;
->>   };
->>
->>   static inline void qphy_setbits(void __iomem *base, u32 offset, u32 val)
->> @@ -3681,6 +3687,62 @@ static int phy_pipe_clk_register(struct qmp_pcie *qmp, struct device_node *np)
->>          return devm_clk_hw_register(qmp->dev, &fixed->hw);
->>   }
->>
->> +/*
->> + * Register a fixed rate PHY aux clock.
->> + *
->> + * The <s>_phy_aux_clksrc generated by PHY goes to the GCC that gate
->> + * controls it. The <s>_phy_aux_clk coming out of the GCC is requested
->> + * by the PHY driver for its operations.
->> + * We register the <s>_phy_aux_clksrc here. The gcc driver takes care
->> + * of assigning this <s>_phy_aux_clksrc as parent to <s>_phy_aux_clk.
->> + * Below picture shows this relationship.
->> + *
->> + *         +---------------+
->> + *         |   PHY block   |<<---------------------------------------------+
->> + *         |               |                                               |
->> + *         |   +-------+   |                      +-----+                  |
->> + *   I/P---^-->|  PLL  |---^--->phy_aux_clksrc--->| GCC |--->phy_aux_clk---+
->> + *    clk  |   +-------+   |                      +-----+
->> + *         +---------------+
->> + */
->> +static int phy_aux_clk_register(struct qmp_pcie *qmp, struct device_node *np)
->> +{
->> +       struct clk_fixed_rate *fixed = &qmp->aux_clk_fixed;
->> +       struct clk_init_data init = { };
->> +       int ret;
->> +
->> +       ret = of_property_read_string_index(np, "clock-output-names", 1, &init.name);
->> +       if (ret) {
->> +               dev_err(qmp->dev, "%pOFn: No clock-output-names index 1\n", np);
->> +               return ret;
->> +       }
->> +
->> +       init.ops = &clk_fixed_rate_ops;
->> +
->> +       fixed->fixed_rate = qmp->cfg->aux_clock_rate;
->> +       fixed->hw.init = &init;
->> +
->> +       return devm_clk_hw_register(qmp->dev, &fixed->hw);
->> +}
->> +
->> +static struct clk_hw *qmp_pcie_clk_hw_get(struct of_phandle_args *clkspec, void *data)
->> +{
->> +       struct qmp_pcie *qmp = data;
->> +
->> +       /* Support legacy bindings */
->> +       if (!clkspec->args_count)
->> +               return &qmp->pipe_clk_fixed.hw;
->> +
->> +       switch (clkspec->args[0]) {
->> +       case QMP_PCIE_PIPE_CLK:
->> +               return &qmp->pipe_clk_fixed.hw;
->> +       case QMP_PCIE_PHY_AUX_CLK:
->> +               return &qmp->aux_clk_fixed.hw;
->> +       }
->> +
->> +       return ERR_PTR(-EINVAL);
->> +}
+On 1/19/24 08:43, Javier Carrasco wrote:
+> The touch-overlay encompasses a number of touch areas that define a
+> clipped touchscreen area and/or buttons with a specific functionality.
 > 
-> Can we use of_clk_hw_onecell_get() instead? I think it even should be
-> possible to use onecell for both cases, it will look at the first arg,
-> which will be 0 in case of #clock-cells equal to 0.
+> A clipped touchscreen area avoids getting events from regions that are
+> physically hidden by overlay frames.
+> 
+> For touchscreens with printed overlay buttons, sub-nodes with a suitable
+> key code can be defined to report key events instead of the original
+> touch events.
+> 
+> Reviewed-by: Jeff LaBundy <jeff@labundy.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
+> ---
+>  .../bindings/input/touchscreen/touchscreen.yaml    | 119 +++++++++++++++++++++
+>  1 file changed, 119 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml b/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml
+> index 431c13335c40..eb1e86fa86c6 100644
+> --- a/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml
+> @@ -87,6 +87,125 @@ properties:
+>    touchscreen-y-plate-ohms:
+>      description: Resistance of the Y-plate in Ohms
+>  
+> +  touch-overlay:
 
-Let me investigate if it's possible
+Even though it has already been reviewed, just in case before it gets
+applied. Should it not be:
 
-> 
->> +
->>   static int qmp_pcie_register_clocks(struct qmp_pcie *qmp, struct device_node *np)
->>   {
->>          int ret;
->> @@ -3689,6 +3751,14 @@ static int qmp_pcie_register_clocks(struct qmp_pcie *qmp, struct device_node *np
->>          if (ret)
->>                  return ret;
->>
->> +       if (qmp->cfg->aux_clock_rate) {
->> +               ret = phy_aux_clk_register(qmp, np);
->> +               if (ret)
->> +                       return ret;
->> +
->> +               return devm_of_clk_add_hw_provider(qmp->dev, qmp_pcie_clk_hw_get, qmp);
->> +       }
->> +
->>          return devm_of_clk_add_hw_provider(qmp->dev, of_clk_hw_simple_get,
->>                                             &qmp->pipe_clk_fixed.hw);
->>   }
->>
->> --
->> 2.34.1
->>
->>
-> 
-> 
+	description: |
+	  List of nodes...
+
+instead, to keep formatting?
+
+> +    description: list of nodes defining segments (touch areas) on the
+> +      touchscreen.
+> +
+> +      This object can be used to describe a series of segments to
+> +      restrict the region within touch events are reported or buttons
+> +      with a specific functionality.
+> +
+> +      This is of special interest if the touchscreen is shipped with a physical
+> +      overlay on top of it with a frame that hides some part of the original
+> +      touchscreen area. Printed buttons on that overlay are also a typical
+> +      use case.
+> +
+> +      A new touchscreen area is defined as a sub-node without a key code. If a
+> +      key code is defined in the sub-node, it will be interpreted as a button.
+> +
+> +      The x-origin and y-origin properties of a touchscreen area define the
+> +      offset of a new origin from where the touchscreen events are referenced.
+> +      This offset is applied to the events accordingly. The x-size and y-size
+> +      properties define the size of the touchscreen effective area.
+> +
+> +      The following example shows a new touchscreen area with the new origin
+> +      (0',0') for the touch events generated by the device.
+> +
+> +                   Touchscreen (full area)
+> +         ┌────────────────────────────────────────┐
+> +         │    ┌───────────────────────────────┐   │
+> +         │    │                               │   │
+> +         │    ├ y-size                        │   │
+> +         │    │                               │   │
+> +         │    │       touchscreen area        │   │
+> +         │    │         (no key code)         │   │
+> +         │    │                               │   │
+> +         │    │            x-size             │   │
+> +         │   ┌└──────────────┴────────────────┘   │
+> +         │(0',0')                                 │
+> +        ┌└────────────────────────────────────────┘
+> +      (0,0)
+> +
+
+When at it, the following line could be aligned to match the rest of the
+description.
+
+> +     where (0',0') = (0+x-origin,0+y-origin)
+> +
+> +      Sub-nodes with key codes report the touch events on their surface as key
+> +      events instead.
+> +
+> +      The following example shows a touchscreen with a single button on it.
+> +
+> +              Touchscreen (full area)
+> +        ┌───────────────────────────────────┐
+> +        │                                   │
+> +        │                                   │
+> +        │   ┌─────────┐                     │
+> +        │   │button 0 │                     │
+> +        │   │KEY_POWER│                     │
+> +        │   └─────────┘                     │
+> +        │                                   │
+> +        │                                   │
+> +       ┌└───────────────────────────────────┘
+> +     (0,0)
+> +
+
+And the origin above too.
+
+> +      Segments defining buttons and clipped toushcreen areas can be combined
+> +      as shown in the following example.
+> +      In that case only the events within the touchscreen area are reported
+> +      as touch events. Events within the button areas report their associated
+> +      key code. Any events outside the defined areas are ignored.
+> +
+> +                  Touchscreen (full area)
+> +        ┌─────────┬──────────────────────────────┐
+> +        │         │                              │
+> +        │         │    ┌───────────────────────┐ │
+> +        │ button 0│    │                       │ │
+> +        │KEY_POWER│    │                       │ │
+> +        │         │    │                       │ │
+> +        ├─────────┤    │   touchscreen area    │ │
+> +        │         │    │     (no key code)     │ │
+> +        │         │    │                       │ │
+> +        │ button 1│    │                       │ │
+> +        │ KEY_INFO│   ┌└───────────────────────┘ │
+> +        │         │(0',0')                       │
+> +       ┌└─────────┴──────────────────────────────┘
+> +     (0,0)
+> +
+
+Same with this one.
+
+> +    type: object
+> +
+
+Best regards,
+Javier Carrasco
 
 
