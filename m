@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-51469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39DC987F6C6
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 06:40:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB3AE87F6C8
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 06:42:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E016A2825AB
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 05:40:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3E43D1F221AA
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 05:42:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24EB7446AD;
-	Tue, 19 Mar 2024 05:40:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1B1B446B2;
+	Tue, 19 Mar 2024 05:42:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VIXD8swa"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Us4B3Rd1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D4D7446A4
-	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 05:40:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01F4D446A1
+	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 05:41:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710826817; cv=none; b=ELEO88iItIet0/qZtzk2tWSX6fcICj1EauAmLHj/WOZ3PWTyfKX+A0IhHx67QetS2aLIaLOtalGJBNPL4Ye/C6yzXy96VFRjG/e1RZZCR2vBz3odZNQyAnZFcnKbl8r4yG3pDnmhW09Dm2AAmYVQe+GJIa8/ZLzixSxN5HPAgHo=
+	t=1710826921; cv=none; b=EWW+LUa+GgnG28XuW0Tx0K7k0QbPbsjHlXAnrqA+cDwYAsmuCQfv+FaslDW58t/BFoDtgMaC9i2E6TEegcwlcdVhG0tvsh4xtJf0eCXaDM7ezd8K1jnCfcGvVOSfYSf/aMmLHAWOYQnJYJR+ZFREZGFa2tgNSB5wpTz/fXl/I6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710826817; c=relaxed/simple;
-	bh=HH/JZhkydY05sA0Nccb/eagFi3pmvPYtnU/rWasXdWQ=;
+	s=arc-20240116; t=1710826921; c=relaxed/simple;
+	bh=w92aU9nzDJvbswofHlp0wPznG691YDWd5c5XMUjZ6cc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gOEhaM9QLEsqIXZ7dYtFP5c3kClv7SsPdBR/7+OGOqwE/KuBbzMnl71wLOLf8cmfRYl6g2DV+j/JZkoCQEFVStW44xSRdhy/g39+ot73JBnsM5H5eoTP6HfDvzO0DoaYPeoAZi24U/Yn8GTcLCjWaOdV/EtH+vjrsUzK9Dfl/4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VIXD8swa; arc=none smtp.client-ip=209.85.208.44
+	 In-Reply-To:Content-Type; b=TjGgapFK8/xSB5aw1PBv6KT/EadY8bc75Aclk9tEDYUyZ0roEY/J5Vym2jEfwjCfIoqkNbMv4IFy38B3YuAWr/cYWzUxhtptx3nzdUn7la8i+IdNmgxzkz4OT4xWRqYkKR6rgJ/rfetNKi43oXPRulfxc++ks1Oi1ArQ8k+flVE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Us4B3Rd1; arc=none smtp.client-ip=209.85.218.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-56a0c0a7ebcso2137316a12.1
-        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 22:40:15 -0700 (PDT)
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a46a7b8e07fso362772566b.2
+        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 22:41:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710826814; x=1711431614; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1710826918; x=1711431718; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Yg5l6ONBUvmCbF22a3St9SgW/zyEI2z95zA2tWCdR08=;
-        b=VIXD8swaeZK/g3+zVGABZJFtqd+JElbBGoRe1gKPE8Hswn0vZX8IeflxVeC6qh6at3
-         om+s4lvaqvVb+aIeHaIhMkzIbvltIulTMz9PQNnwwGTbabSrYyi8vGHXPtwuWx/em0ig
-         ywwSoz0PFIujGm+Jp11dMmL39OABbhOoAs14YX6RH2z9D+fwmlQRxaO5sIYZZTben0y7
-         Xdi8eHjxqnBpM4joz4ibyXUEqwztW23wqEddRbPbVrBlJzNi84lcvbray39iGU9KwtnY
-         WzPqwlfEbnLunxrLtVI8DPFe4rYTtUq9qJgc54hLBAD0CgvqJCAWqxek4dnZfstCnQXR
-         0qZA==
+        bh=ie3Z4Qm/raSpZh91B3REFPg2FqghVKIUu65GHuxup64=;
+        b=Us4B3Rd1bYphFwzpufgy2XZ1/tJ9pzg6RD89wmmkLL5pDhKawL/10rw/aAyUGIcBIn
+         aykR55+tD0liROrW84cE490326Ac7Vg8zXTg1/mqOf4a6+IPdiYp6X6n9t7a2qU0zbYV
+         htO5ynkeoZYWJHUUlHPpDoZABdWCaxveeLmKrve+t6esDTlL4HNY+vVWI5jGDMIe/1S6
+         cSFd2bP4RkmElwy9qcvoXRURSYF9YftnEscCJ9NIFyOJXY9vR1D1p9BPlk7rzFprh1vw
+         plhzRPZqzYYjVcONmW5CfymX1PhtwEXArjvIDe/kYDfbXZ9Ak5m21hq8JSq4tapyjXlX
+         N+og==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710826814; x=1711431614;
+        d=1e100.net; s=20230601; t=1710826918; x=1711431718;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Yg5l6ONBUvmCbF22a3St9SgW/zyEI2z95zA2tWCdR08=;
-        b=avMXev7l9MX1vgs4TJA8WZy3RrhF4c4wWTGpATV1iX/uTjcTcZ7ieJJ3DPOxxX3Pj0
-         pDy95ydZ7y7KnRUwIl7rWM45C3PLRp98OZY6KnbyWaTsSGpZTXcfWWB3VEI0XvAEHXNS
-         +2oZVy7swwbm05cVv3A2H42IdtEibZ8TPJp1XgV0ZKa/qV+Pf7cwH3npfQ2v1nQV0dSa
-         RxhoA+GOzKT9Vvq8ifG/fiz2IQ0/WbGrpbSU4BeWAgFGOUZqW+pa2nNGt9JZah7qNhZ2
-         l9DnXhqW00olFyuNNTtnQDPLSYwgices9VoMSnH9UOgIHSAd2PDqP8EZ1cAtY3kUGW8d
-         fqZg==
-X-Forwarded-Encrypted: i=1; AJvYcCUDDTSCu98/1qU7yLB2nnJlxOgwbBZPYwjzK3bZTNuxvwT/OJyeyhOYvbvS9Vph9YUYPwinTIv9v20PPi5UXZWpQb/wXKHLTOmC4w==
-X-Gm-Message-State: AOJu0Yx1VShaVCycGLJ6bZXyA+xFUGTkZN4PkqHdbmHkSVLNGKNBNyAW
-	IUAq+mGKK7TYH+CZjxPe7bMFsnPdaSOGoz6MxvX3RHcJEkZAFbUcWhWdY9HoMSY=
-X-Google-Smtp-Source: AGHT+IE2UEluGxpI/Kr3fxuhDBB7SjJ8zSFCQ8tPfMeJQ9Vksmge4NDVty9dQTk2HEYyTgJ6q4yADw==
-X-Received: by 2002:a17:907:c283:b0:a45:84e7:b265 with SMTP id tk3-20020a170907c28300b00a4584e7b265mr12092832ejc.7.1710826813767;
-        Mon, 18 Mar 2024 22:40:13 -0700 (PDT)
+        bh=ie3Z4Qm/raSpZh91B3REFPg2FqghVKIUu65GHuxup64=;
+        b=fNv7L+3J30s4B0tIlD6laY/sF1f2iTDdhmnJb5ZCy3V1NI7jlz6n5rc5/C/D0RS6I7
+         YcSafV1Y7lapMlusMCN5v5EW/mxy3ZxldQN4Mn8OwZfbEFGJWQNHn31A21mR46ZlZFM8
+         3U24U7XtABbjRkVHc+z8roQSpngCHoIN/qdXN8DyNHOkDtGC4QA7SCDYY9z57ee1HXhs
+         MdOA5Jrq50vay9NejNs+RuE2uCEzKDKtCUbg5tT2WafSC7p+138P7u7Mv9DoyJch7Z5o
+         Olt2Zix7aHhB+tgGHb7Q9jAvEsdHPZygB5oCGfN+u0Z+GmUe2BvwDoxw7E+w1ypmtntW
+         HwTQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV5ITvXM9zpXSvxINMZAM60CnqznDrozbmXFfAoKnnzS+QxZSyyrXPkuU73De66U69ROFHmQoIcNp5NUiUOB4PCcVNUSTv3VVdulQ==
+X-Gm-Message-State: AOJu0YwGi7KiYyo6q5SyygzzBnwvM54sJ0zHjZ+F03HO6W3Ozb3592KT
+	eguKmA4FJ7liH2Q2z2SGPkdckm85124imyRfOpTaNRp3IRIbgxj0TqajibEX7DE=
+X-Google-Smtp-Source: AGHT+IHKpU0t9duPevXb3cdz776i2ohsJaEngFW6R0lR53HhyzpC02sChGFgun/2aqbWUSNJ610gtA==
+X-Received: by 2002:a17:906:4554:b0:a46:b8ed:8a9 with SMTP id s20-20020a170906455400b00a46b8ed08a9mr3980058ejq.55.1710826918354;
+        Mon, 18 Mar 2024 22:41:58 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id sd9-20020a170906ce2900b00a4628cacad4sm5622163ejb.195.2024.03.18.22.40.12
+        by smtp.gmail.com with ESMTPSA id e25-20020a170906845900b00a449026672esm5637429ejy.81.2024.03.18.22.41.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Mar 2024 22:40:13 -0700 (PDT)
-Message-ID: <2fbb3c68-568d-40f5-9f48-139db9a1d7f9@linaro.org>
-Date: Tue, 19 Mar 2024 06:40:11 +0100
+        Mon, 18 Mar 2024 22:41:57 -0700 (PDT)
+Message-ID: <97eeb05d-9fb4-4c78-8d7b-610629ed76b3@linaro.org>
+Date: Tue, 19 Mar 2024 06:41:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,18 +76,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: remoteproc: add Versal platform support
+Subject: Re: [PATCH v2] dt-bindings: net: broadcom-bluetooth: Add CYW43439 DT
+ binding
 Content-Language: en-US
-To: Tanmay Shah <tanmay.shah@amd.com>, Conor Dooley <conor@kernel.org>
-Cc: andersson@kernel.org, mathieu.poirier@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- michal.simek@amd.com, ben.levinsky@amd.com,
- linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240315211533.1996543-1-tanmay.shah@amd.com>
- <20240315211533.1996543-2-tanmay.shah@amd.com>
- <20240317-overturn-frozen-b152dc552a2f@spud>
- <1197b7f7-c43b-4ae6-b914-9e3f547810bb@amd.com>
+To: Marek Vasut <marex@denx.de>, linux-bluetooth@vger.kernel.org
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Conor Dooley <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+ Marcel Holtmann <marcel@holtmann.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ netdev@vger.kernel.org
+References: <20240319042058.133885-1-marex@denx.de>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -133,30 +135,24 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <1197b7f7-c43b-4ae6-b914-9e3f547810bb@amd.com>
+In-Reply-To: <20240319042058.133885-1-marex@denx.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/03/2024 01:37, Tanmay Shah wrote:
-> Hello,
+On 19/03/2024 05:20, Marek Vasut wrote:
+> CYW43439 is a Wi-Fi + Bluetooth combo device from Infineon.
+> The Bluetooth part is capable of Bluetooth 5.2 BR/EDR/LE .
+> This chip is present e.g. on muRata 1YN module.
 > 
-> Thanks for reviews, please find my comments below.
+> Extend the binding with its DT compatible using fallback
+> compatible string to "brcm,bcm4329-bt" which seems to be
+> the oldest compatible device. This should also prevent the
+> growth of compatible string tables in drivers. The existing
+> block of compatible strings is retained.
 > 
-> On 3/17/24 9:50 AM, Conor Dooley wrote:
->> On Fri, Mar 15, 2024 at 02:15:31PM -0700, Tanmay Shah wrote:
->>> AMD-Xilinx Versal platform is successor of ZynqMP platform. Real-time
->>> Processor Unit R5 cluster IP on Versal is same as of ZynqMP Platform.
->>
->>> Only difference is power-domains ID needed by power management firmware.
->>> Hence, keeping the compatible property same as of zynqmp node.
->>
->> No, don't be lazy. Add a compatible with a fallback please.
-> 
-> It's same IP on different platform. I am not sure how adding compatible string
-> adds value. I will refactor this series based on other comments provided.
+> Signed-off-by: Marek Vasut <marex@denx.de>
 
-Judging by your other thread, it would add value. Also writing bindings
-asks you for this.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
