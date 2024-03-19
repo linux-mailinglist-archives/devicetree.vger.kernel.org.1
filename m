@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-51540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F17E187FABA
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 10:31:51 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEDAE87FAC4
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 10:32:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A37BC282892
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 09:31:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 16F57B21676
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 09:32:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E53A7CF3A;
-	Tue, 19 Mar 2024 09:31:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96AC97CF39;
+	Tue, 19 Mar 2024 09:32:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jUT1bPQC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YDO5TM53"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 652487CF06
-	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 09:31:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C69A14594C
+	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 09:32:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710840704; cv=none; b=sQ435ZWhyE4PzwyuVT5myeR3WRclBaByxybA9n1nWEmQTmhd2RMAG0RHGjYjNEZgRT6DSEUSRilFmW8QUgyQDFeRKIW2kki0NWKy/CpxY8lxWvKtlapvtrUmJlBUXqXkHN8AWLwlA1HlSCt77LFW9PpeFiFTvoQGcry5op++5YM=
+	t=1710840764; cv=none; b=tbHCnKJb3EVk2ldepW7S41zY1C5fbpygNndnO+CLYVoh5L1puthw0V2iOHsXM9Ku3yJEFHRMCGzxJ17UlPbERsj1+Ibhuz8G/iAv48NBdi4tqwYd9YVcGJHikGNAvvh/jJrZRhUDs75negizJn9VQRtpQUXplHJyviLqMd115Eg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710840704; c=relaxed/simple;
-	bh=REPKP76FKYRIlT2nLlBWQvO1u9WaatIZi9nkolGnRgc=;
+	s=arc-20240116; t=1710840764; c=relaxed/simple;
+	bh=EhRw1DlitVE5/ED74hJqGs6NTY8v4shdNZKg8C7T3iw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sCVuokRoxAvIEiFbRRmu556r3OexdbEbY7ev8UVFmPI/Zodl9hhdntmc6yh0yYZ+1jOEj5Gsk7GtcRC2e/0vb1Pe6ilNqqp8rtQ6oSuSsrXQfzCiwFeTntYugGOiy5T1vA6hRrTXiXLp+ii/UzLueSg3lDCZZQY9jPZbZ4BTk6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jUT1bPQC; arc=none smtp.client-ip=209.85.218.46
+	 In-Reply-To:Content-Type; b=sslbfciwArjko2COvTW69iTo09RRXXsi29ESVg9ikkx+acFbqcDBkFkZcS/jv1FRM0c2Es9Hv1YJtFCGKbXwt1AZuNgJ4aeC4SaTUMxPB0yqDLbqeY/4pK3RZ/ZlouwuIFN8XlEXrSNUZXyOD5HuZdc5D41GWx3rRxrHcNHdIs8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YDO5TM53; arc=none smtp.client-ip=209.85.208.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a46c2f29325so238076766b.1
-        for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 02:31:42 -0700 (PDT)
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-563c595f968so6651780a12.0
+        for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 02:32:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710840701; x=1711445501; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1710840761; x=1711445561; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=vqXt6FNYM7+WhScgMZhAmJx3W1Xg1L9EnIDuPxpSMk8=;
-        b=jUT1bPQCayn4OpGvnCzmnQT5RpERsenBMvc6inpH4sHWN/XAPxNr/iqZAI5iY/Nrks
-         rwecNqYWi9txltTA8y7QBV7oRjIoMvke3Rqedx26fscf503Gcf5GKRrs40Vxg6lrmWL6
-         cEyIlbafJTsgnOjxNkvifzegjRCIOAgMFNOMxVhVzPcdTUFmz3+ecxa6oZDOoqmr3CaE
-         nXUsbiQjUzsUANH1oLraoh4NAvdK7Fo5OQjSH4gvFJ0LFWfVg18RaPjZXVero0k8oWFO
-         OBUZ2uGlfhQRX0jrKDQJTF+Jrv1+dU9zvBaKF0sAK+0qZgaIIRNiQSOjY3D0rjGcODTF
-         IuIA==
+        bh=AJlT2m2Lxs8DfwrfgJNkUit1voqwbbEl//15xRVMog4=;
+        b=YDO5TM53EMoNWw3TyWdKCFGNw/FBB60TOiOilB5jGXlOBKqbhwZSWoC1MmXLDkJ+d2
+         DdGrA/gYa8PVgUzstDuO30kPN8TpyZSUC0hzUsDCSZ8DLjKyocBhWfpfqmaiMlzclf4T
+         Easm++vxNvihthhAwISoNLKNrgRtkJmo34UAU8xSLmdIhuAK1XwnJ/lfgQ6Gx1KaLAnR
+         Zom3amMBmMuXh0i7wDopvjmra78B/pVVCL4ydUylhSPjXKp6dDFHqo6MKumA95UYFL9B
+         BsOnSCv7DU7DpghCWnfR1tdRLvMUDVDasdoLidxufGahSXFfkINkbvRagxBq/qTIqPHA
+         JXZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710840701; x=1711445501;
+        d=1e100.net; s=20230601; t=1710840761; x=1711445561;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=vqXt6FNYM7+WhScgMZhAmJx3W1Xg1L9EnIDuPxpSMk8=;
-        b=vqavVINTQ+JzeRzN+DCIyC9LGvqvO+8B6ZxSOITN/juxFJRp0meVSqc6JZBSjmh4d1
-         2pc2kGgJehyXMG5GQIEizKkQWIkMH6pvn4Kx20yBuyIF2KznY0npBgLp/wFBXgODEIlb
-         Wh4gXOylwIgaRlLK4HQXDgFYG0oR7sFIbsn4UvjcztZklZhaVbxchUbQO5oSMW4R49td
-         DZRN15tCXy6G8lI4+jwOEjOW9KYLHGxdOiRfKldlz//AMpvbCUgFCrt8k/eJjYje4bZ9
-         C4BUcbcEqU3ystLDGY+Rkx+DKjvRPftbt/yGpo+s2+BlHHOMIUmBeEdF1x6HYumLNQDW
-         4LMg==
-X-Forwarded-Encrypted: i=1; AJvYcCWuvS9R3fMFwul4Otmd+tJNQ+9eWJLu5lrBC3Nm7/5K617KwS1JzEbl+yQoO5qDdRSy7OQi6LMEE6ulzpW8T98L7mbMAQI4MmU2Vg==
-X-Gm-Message-State: AOJu0YzB6AfzBHCF/D1yPFmZNgg7U3pgf1AXAK1hV2jE9U0azdUD/G9R
-	cpygeVDVaboqff/24og/1mIxepZ0rY/dt4pUiC1TJ6HkVgAF2FuNq9b9ob0/CRw=
-X-Google-Smtp-Source: AGHT+IHDKQKMxRW9umwUH256VRLPVuzmLJipnN6Ucqw+yjw+b5IxQV0P9OFyO2GVuWCiNBDxIeL/pA==
-X-Received: by 2002:a17:906:ef0c:b0:a46:c01b:7e2c with SMTP id f12-20020a170906ef0c00b00a46c01b7e2cmr4320148ejs.75.1710840700830;
-        Tue, 19 Mar 2024 02:31:40 -0700 (PDT)
+        bh=AJlT2m2Lxs8DfwrfgJNkUit1voqwbbEl//15xRVMog4=;
+        b=m+wmcrn9UTieBw1x7YUXBCi41CuOG0Y04OIHk5wszZnJBnQUG+owGvbRcU5bOwVm64
+         I9rA5NkS1I/lZAzrCHIHV19OUlogWns8gz969J56pbaALvm/Lgb4aAXdE5n8DPFP/18h
+         /iOrB52F+8HUQSN7AQT8diVl9Jk3cYX9oXRTIy62upKM692+bs0lDEkKCf7w7BdEcsAh
+         RFQHnLTb6VoJcYz/Ua1kJOVTd2oV71yPNyu3bed5SzhC3v9s2xj2P4NnA5C//U+Hi8Dm
+         cl329e+Rv4MLY+zOxLzsb9v2PiShruWfurfjqZC+DdUk8OAOqGdFeOqAHOTW3UOng14b
+         ZmAA==
+X-Forwarded-Encrypted: i=1; AJvYcCV5H8M98xYHCayfCnBcGc4yyaFm5NYo2khcM+AoUoIS3eq7Y1/PpTWAjt+tWlB2ddiA8u3jZ40SZ0mxP9vpEkUN4Zxqpqp6nNOr9w==
+X-Gm-Message-State: AOJu0YwDSrsjSgOyfTLtjO3dQy1ULF3NMa2VgX8fDnN7Me71JPa4ViVT
+	VIrNUA3sSHykkVjUBeAlPMdkU4nU5gG7I28MEZiV/R0c6oOs7U2v6lwsQXClqLY=
+X-Google-Smtp-Source: AGHT+IH+kXzsGWKw68DrEeQHssVKed7FRBQCHrR9rdJ+Mw2E3AkEaiL6PSDwvFv/kBfEBvJbkJxJvQ==
+X-Received: by 2002:a17:906:ccc3:b0:a46:19a7:3b2 with SMTP id ot3-20020a170906ccc300b00a4619a703b2mr7157663ejb.37.1710840761094;
+        Tue, 19 Mar 2024 02:32:41 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id g17-20020a17090670d100b00a46a04d7dc4sm3944468ejk.61.2024.03.19.02.31.38
+        by smtp.gmail.com with ESMTPSA id nb33-20020a1709071ca100b00a46da83f7fdsm727706ejc.145.2024.03.19.02.32.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Mar 2024 02:31:40 -0700 (PDT)
-Message-ID: <8caabb1a-dfba-48d5-a794-a26d0286bad2@linaro.org>
-Date: Tue, 19 Mar 2024 10:31:38 +0100
+        Tue, 19 Mar 2024 02:32:40 -0700 (PDT)
+Message-ID: <5ca1d005-1beb-47ec-943a-9358ae3c6704@linaro.org>
+Date: Tue, 19 Mar 2024 10:32:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,12 +79,12 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 2/4] dt-bindings: media: Add bindings for
  raspberrypi,rp1-cfe
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Naushir Patuck <naush@raspberrypi.com>
 Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Naushir Patuck
- <naush@raspberrypi.com>, Laurent Pinchart
- <laurent.pinchart@ideasonboard.com>,
+ linux-arm-kernel@lists.infradead.org,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
  Sakari Ailus <sakari.ailus@linux.intel.com>,
  Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
  Kieran Bingham <kieran.bingham@ideasonboard.com>,
@@ -97,8 +97,9 @@ Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
 References: <20240318-rp1-cfe-v1-0-ac6d960ff22d@ideasonboard.com>
  <20240318-rp1-cfe-v1-2-ac6d960ff22d@ideasonboard.com>
- <3834dd0a-6dd0-45b1-8b9c-0c840aaf8cf2@linaro.org>
- <22225e92-803d-4aaa-b75f-cfd1d7d8c279@ideasonboard.com>
+ <eb854c43-1e92-4c19-bfd3-1bde94924319@linaro.org>
+ <f97faeb9-8a6b-47c6-9317-daca88257802@ideasonboard.com>
+ <30430e0e-70de-4831-97ad-974e350a2e54@ideasonboard.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -145,103 +146,52 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <22225e92-803d-4aaa-b75f-cfd1d7d8c279@ideasonboard.com>
+In-Reply-To: <30430e0e-70de-4831-97ad-974e350a2e54@ideasonboard.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 19/03/2024 07:46, Tomi Valkeinen wrote:
->>> +  reg:
->>> +    items:
->>> +      - description: CSI-2 registers
->>> +      - description: D-PHY registers
->>> +      - description: MIPI CFG (a simple top-level mux) registers
->>> +      - description: FE registers
->>> +
->>> +  interrupts:
->>> +    maxItems: 1
->>> +
->>> +  clocks:
->>> +    maxItems: 1
->>> +
->>> +  port:
->>> +    $ref: /schemas/graph.yaml#/$defs/port-base
->>> +    additionalProperties: false
->>> +    description: CSI-2 RX Port
+On 19/03/2024 08:00, Tomi Valkeinen wrote:
+> On 19/03/2024 08:48, Tomi Valkeinen wrote:
+>> On 19/03/2024 08:23, Krzysztof Kozlowski wrote:
+>>> On 18/03/2024 16:49, Tomi Valkeinen wrote:
+>>>> Add DT bindings for raspberrypi,rp1-cfe.
+>>>>
+>>>> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+>>>> ---
+>>>>   .../bindings/media/raspberrypi,rp1-cfe.yaml        | 103 
+>>>> +++++++++++++++++++++
+>>>>   1 file changed, 103 insertions(+)
+>>>>
+>>>> diff --git 
+>>>> a/Documentation/devicetree/bindings/media/raspberrypi,rp1-cfe.yaml 
+>>>> b/Documentation/devicetree/bindings/media/raspberrypi,rp1-cfe.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..7b2beeaaab0e
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/media/raspberrypi,rp1-cfe.yaml
+>>>> @@ -0,0 +1,103 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/media/raspberrypi,rp1-cfe.yaml#
+>>>
+>>> Use compatible as filename.
 >>
->> Only one port, so there is nothing to output to?
-> 
-> The CFE has DMA, so it writes to memory. But no other outputs.
-
-You still might have some sort of pipeline, e.g. some post processing
-block. But if this is end block, then I guess it's fine.
-
-> 
->>> +
->>> +    properties:
->>> +      endpoint:
->>> +        $ref: video-interfaces.yaml#
->>> +        unevaluatedProperties: false
->>> +
->>> +        properties:
->>> +          data-lanes:
->>> +            minItems: 1
->>> +            maxItems: 4
->>> +
->>> +          clock-lanes:
->>> +            maxItems: 1
->>> +
->>> +          clock-noncontinuous: true
+>> Ah, indeed. I changed the compatible quite late, adding the "rpi5" as 
+>> versioning, and missed changing the file name.
 >>
->> Drop
+>> I'll rename.
 > 
-> Hmm, I saw this used in multiple other bindings, and thought it means 
-> the property is allowed and copied it here.
+> Actually, maybe it's better to have two compatibles, 
+> "raspberrypi,rp1-cfe" as the generic one, and "raspberrypi,rpi5-rp1-cfe" 
+> (or something similar) for RaspberryPi 5.
 > 
-> If that's not the case, does this mean all the properties from 
-> video-interfaces.yaml are allowed (even invalid ones, like pclk-sample)?
+> And I'm not sure if the "rp1" part is relevant there, would 
+> "raspberrypi,cfe" be just as fine? Naush?
 
-Yes, that's the meaning of unevaluatedProperties you have a bit above.
-
-> 
->>> +
->>> +        required:
->>> +          - clock-lanes
->>> +          - data-lanes
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - interrupts
->>> +  - clocks
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/clock/rp1.h>
->>> +    #include <dt-bindings/interrupt-controller/irq.h>
->>> +    #include <dt-bindings/mfd/rp1.h>
->>> +
->>> +    rpi1 {
->>
->> soc
-> 
-> That should actually be "rp1", not "rpi1". rp1 is the co-processor on 
-> which the cfe is located, so it doesn't reside in the soc itself. But 
-
-Where is the co-processor located?
-
-> perhaps that's not relevant, and "soc" is just a generic container that 
-> should always be used?
-
-Does not have to be soc, but rp1 is not generic.
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-
-
+See writing bindings. Compatibles should be SoC specific. In some cases
+generic fallbacks make sense, in some note. But don't just choose
+"generic fallback" because you want. Provide rationale.
 
 Best regards,
 Krzysztof
