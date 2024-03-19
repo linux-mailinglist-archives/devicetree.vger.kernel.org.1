@@ -1,368 +1,341 @@
-Return-Path: <devicetree+bounces-51783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48BE08805DF
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 21:12:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 009E688066C
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 22:01:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C7DD21F213D3
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 20:12:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0DE961C20C8F
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 21:01:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03D1C548F3;
-	Tue, 19 Mar 2024 20:12:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EC723C485;
+	Tue, 19 Mar 2024 21:01:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="KW6RboEG"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="gOP1c+sq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2078.outbound.protection.outlook.com [40.107.20.78])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45E5C54665;
-	Tue, 19 Mar 2024 20:12:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.78
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710879147; cv=fail; b=TEU3zwzD0rIrX5gNm+bJoeKwTznJ/JhacdFLx49UNlXSVLmORAoyrb58Pt2WWzswEbR4D8vJkbujHE+1eSPZkDv46eNWY6ZpEKGO50EKK33WZikCR5yBNSNqJQtOMtOHBR4j29riG3G5RN9NPoq57sqV/rEOD3G4E1/ZwG9DHKc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710879147; c=relaxed/simple;
-	bh=2wHfEIl9YPecdOFEiJDprXiE/YjRG1DwWhs5+4wHtbs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=tD7FEBdzqWoynvJdSnN07+4BycGvTbgZgLrU1oLLMOvVtFpHdu0ToSCkhosZvECTPGJ1mBi3r73dyCUqcYuPVdsGTrr8AzHTEAmli/hvgFq20V5eUhVh4q6xz7Ej1A+NALV2fgaZD3Rkcdd1yZlZ/wDSfVb+sP2+HbYmcrG+bXQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=KW6RboEG; arc=fail smtp.client-ip=40.107.20.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=E+Pa8uy1zP3En5RVUxOirPZFW7D5W7/7TmrBOCTJ+KhJa7MHbHpigzWqQDn77Y5xiGQPw3PL00XALh10VGY7xUFqoZUeRSXrBzGXbJVQcxW21s97uRLVl2+NDDX2V0Nu+a379hkypVMvsUp48QYGInu22r1+FsM8lqyQV2UeEW3GEbtygyOEa+C0mTF+uGCTHJI7v0lKNZumK8yq1u+JhE/OJiwVR5J++rlQAMZDTxYKaFvoO+InS0ONpaSpEWleO8PCMhvZf1n4ECTQZB45hk5MKT3GOFyX+0gwqeZPsg+3uNlGHp/sCNnO5rXwCmR90peDCH050Fy8B0kWkxaN6w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TpGyRlFoDQt4SCYYVlsimfBB14SIiX8l/jxFrBLLpnI=;
- b=bYd7LhBIZDNBErJPIoUxj7BgT2vYmSEfenyfcFsyjhPx8hftrfQl4Zyy3iR8cLdpFg5Kpw2xSgrvzsTIpXePlzf0xBuNZtH7j9gvhrUREhOxVedaHeBZA3yZ7PWa/+1DDMcXE9v6RhRFCgvZKO764Th3YjwUFeTbiz8t3Xk5ATI6AmI3azVsuX7emVH9DZRqSrzygqZ92KkrEme892BXgRaraD6vKgXcGBPTfNT7xJ6XSWzpLUnHbiO+XdCpO47IGe1AbyEs/VjLoP9v28e05jYmFruYd/aMNIWucR8lR4mC7CJiRfTc9YeSrabJD/Hf8KnecAmJTRvOmHZaWGhncA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TpGyRlFoDQt4SCYYVlsimfBB14SIiX8l/jxFrBLLpnI=;
- b=KW6RboEGLAFcyZuXUmk/vUW1FX6dqWTeM6t5fdVt6PEbOqoGRNeDqv6JWHdb3Gw9BKym8/j6EmuUYYi6KKv1t9xxuLlWT/OhbeJ39Q1i/9dlzIJblhBCMR+wNG+Dlbqtik1tt4cxZdQDo7sVwPwLr4CF6uQRtSiC5h5usyGn+/s=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AS8PR04MB7909.eurprd04.prod.outlook.com (2603:10a6:20b:2a2::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.27; Tue, 19 Mar
- 2024 20:12:21 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::3168:91:27c6:edf6]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::3168:91:27c6:edf6%3]) with mapi id 15.20.7386.025; Tue, 19 Mar 2024
- 20:12:21 +0000
-Date: Tue, 19 Mar 2024 16:12:12 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-	imx@lists.linux.dev, dmaengine@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Joy Zou <joy.zou@nxp.com>
-Subject: Re: [PATCH v2 4/5] dt-bindings: dma: fsl-edma: add fsl,imx8ulp-edma
- compatible string
-Message-ID: <ZfnxnGCK+L6UcLE7@lizhi-Precision-Tower-5810>
-References: <20240229-8ulp_edma-v2-0-9d12f883c8f7@nxp.com>
- <20240229-8ulp_edma-v2-4-9d12f883c8f7@nxp.com>
- <20240304164423.GA626742-robh@kernel.org>
- <ZeZZyTU8FWACW9aj@lizhi-Precision-Tower-5810>
- <CAL_JsqKU=Qay75i1zaasaNHCV2jkseX94fzfe-4AwrV093NOLA@mail.gmail.com>
- <Ze5ustkOPNYpXubj@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Ze5ustkOPNYpXubj@lizhi-Precision-Tower-5810>
-X-ClientProxiedBy: SJ0PR03CA0017.namprd03.prod.outlook.com
- (2603:10b6:a03:33a::22) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 271923FBA3;
+	Tue, 19 Mar 2024 21:01:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710882095; cv=none; b=X5rroKcB8nB63N/zGdYzGQ2oZuBbX5H9UuvxR7NCNFX8l13h8NQU80eyV0IPIAgQvpuEt3X6ncLPbvP04CJmVlzZy2KnNKmajtmPNIoZEHCBQEyTToB30qa40/uu46q7HYBF81aLDBbhBr356nhbiZer6U77/ddL4isveYSeVTw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710882095; c=relaxed/simple;
+	bh=Fefg+/1BVjbXtjfPp8AMwDaKfpDHl61WCT0z7N1myzQ=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Iemq7yda52lo9FOIxfOqhR9Pmb44b9AkVcLuGnOXnBXM2lCmWwDVpNBOkuXVUlSa5GXBeLRS77ucBsp09EWzTQfT0lrno9YwlrwNH5eqTfKHGV9+RSQ/aNIWybATTL0tI7dbpT5vVIqUABRIP5qaAx6ZlCksXMFoiAUXBuUCysg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=gOP1c+sq; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 42JL16Rg103012;
+	Tue, 19 Mar 2024 16:01:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1710882066;
+	bh=yXu//FYcXdqFH43bJEjGRJ337gdmABIU7dHUdY94yvo=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=gOP1c+sqxwwRn98Dd9lMVNRtbPa5us7BdSTFAI6KmQHBeixbIcTiTaeI0QQZlUjbn
+	 Pk6tO2BjWXCQD4+/yejUttx7MDAO49sUKPhtwtKcM+6wRZzP37/v01+LUNPhfGb9SF
+	 4oVWpADdLRjjkTRWjDslYAIt39/xoErJq7AuA0cc=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 42JL16pq039676
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 19 Mar 2024 16:01:06 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 19
+ Mar 2024 16:01:06 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 19 Mar 2024 16:01:06 -0500
+Received: from localhost (udba0500997.dhcp.ti.com [128.247.81.249])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 42JL16D6080117;
+	Tue, 19 Mar 2024 16:01:06 -0500
+Date: Tue, 19 Mar 2024 16:01:06 -0500
+From: Brandon Brnich <b-brnich@ti.com>
+To: Ivan Bornyakov <brnkv.i1@gmail.com>
+CC: Nas Chung <nas.chung@chipsnmedia.com>,
+        Philipp Zabel
+	<p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "jackson.lee"
+	<jackson.lee@chipsnmedia.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>
+Subject: Re: [PATCH 5/6] media: chips-media: wave5: refine SRAM usage
+Message-ID: <20240319210106.awn33cm7ex33g65b@udba0500997>
+References: <20240318144225.30835-1-brnkv.i1@gmail.com>
+ <20240318144225.30835-6-brnkv.i1@gmail.com>
+ <SL2P216MB1246F7FA7E95896AA2409C90FB2C2@SL2P216MB1246.KORP216.PROD.OUTLOOK.COM>
+ <hpqhbksvyfbqjumopk2k2drxri2ycb6j2dbdo74cfymcd7blgx@kzomazfosfwg>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS8PR04MB7909:EE_
-X-MS-Office365-Filtering-Correlation-Id: 29971575-1b2d-4f1b-2720-08dc4850e240
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	ZTYZs3/p3VuVeBXXsh1LmUpx0QsodQVDU6bxVYq8+PkoG1hlnrbVrpUpnTIPTk84+VPn4eEA9ldYikqwVBqYQU4urIhU5/KgBYg4ilUkn4DxCbHKzUTxgEqMvC5TB92GUBKm59POKZnYcWQnxyw5QmzmprUP1/9pneC+zpmVZWH2bPtwbqHFdkKfL2ARSu59hgjObcX0m8XAg7IKuWsgw52gNpCzqUYmO3YeDXxBmvqD7sgfnUCDXa9h8eLvQsyS2EtOQSHFdprJDrBcdwIB5qTU2liRMcCKFmqLq26JzMlKIFf13NDGVyqhvzakNVr/NkJbcp6U/8TQ4v98bmWea7V21uCRReTe0Pfw29yQ4+dDJTjuKfBD1YiDzxf4ERVBWt+Wi5r1C1+F/v4kw3/UrF7c+K+7xCQdX0rUHb/7W86rGPgrPvpg53gPc8SqO8nvTjWyzZbUi6ibWOpy6c6Xw5ztYSxyfCd6fcs/MJXQ08QwC5ZCPwiUmdTAGs5y8zMtTlvhFwl258R44mnr8ASlfiaRgOb6DB28fyGdRUx/0w0qf/YlvfHSjg86loFLoXLn2uuFbbNh6GAOTiwY0aQPI3EBC2Mw5j5DunIzGdnio5LVmuekUdWJJODFSBJbtd8O5CwmKTb74/BQWT12zPsvBAmWgU9wNZQodX7g2eVDHw6rDLV0iw0u7P1I4PlvR0RlSAR7y6MtpG5ppbMsCzfDOo8ll78dqYfiOxEnJ+nCjpY=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(52116005)(1800799015)(366007)(38350700005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?YkovRnM2b3lrOHpVM3MxMHVpK25pOUZya2x6a0kycEt4M0FZZ2puTDVFdEVn?=
- =?utf-8?B?TVBSSmpiVVF4K2JqMC8vL2ZHUmE5ZUo5dWlEYTRxOWZZWGxhamgyVm1hUDlG?=
- =?utf-8?B?ck50eERiODhkbHNjMHN5MlQxSDdVOTBZanhkeXN2YkRZWFJPcThzZzFHWUxu?=
- =?utf-8?B?ZEFVNk9wOVBGTnVLQ092WUhxVDJiVjF6MGkxNEZTRmgzYjE2SVpQbHdsMTNs?=
- =?utf-8?B?ZDFBaEFFU1I3MlZXWjRYa3o3eFNmU1hiWFZnWGZSc0FqOU5QTmpINHZGMC9C?=
- =?utf-8?B?ZFpIWHBqcE5PdklPN2JseWZqRkEyeGtvN1NJajQvaGkreExMajBURytYRjgr?=
- =?utf-8?B?SEVOajlJTzhWRGdJYU5lNXJYckxUbkZhdmYwSHZiUU9pQXV3WTVMQWplMmNl?=
- =?utf-8?B?aTZoY3Y1aTRiTUhIaTNGYldPNW9iYmE3Y3pDQXE0UnQ3SmM1VGhKeEc4WXNU?=
- =?utf-8?B?R0twVmd1djl0SWhFTVUzK3VrYy9NdzJTeTZjU2NGMXBIblhQTU4yelp6dUNJ?=
- =?utf-8?B?T0ZwUXNjM0dMUFBUaU5jOSs2c1U3bjhTZURrdkNyR2NrNDdsdGZJdkVJUTd6?=
- =?utf-8?B?TElRcWFNTTRQUjgrcENVRVVHa2Y4dzlvU2dFc2cwYUsvZTJpYW9LSWNPOWZ4?=
- =?utf-8?B?SThSaW8zNGhpU0NHaWtSMDdNR3NGdFNTRVlyRXRhcHZYTklSVFk3L3M5dGZI?=
- =?utf-8?B?UkVjUk1qRmIrcTRPRDI4OHZYd2QzZHhSMVROYWhpbmFQUmFvMWFISTB2a3ln?=
- =?utf-8?B?Y1Nackl6ck9DMC90REVRK0ZTdDBTanpKaTFqL3U3b2dVZTF3d0tQK3U4cjFa?=
- =?utf-8?B?dk5SOW1UMm9KeXZtNGtRejlFK29rdUFsOHRUY2ViMVlhTzVSTThmOHpvNmNL?=
- =?utf-8?B?OVF2Z0hmeGpEM2F5UkQ2WGxwWUNWb1FuVXIrQ2lKMTg0OGUxV3QrMkJCbmcr?=
- =?utf-8?B?TkZnUTE0aGZhVG52MEFlZVc0Z2dhbjREeU5iU2Y3SnBTd0RBWjdkRjFia1Q3?=
- =?utf-8?B?MnBpOEVqNGVtbmZQVUhScS8vRUlrT2NTWlh0RVJGamdBdTh4VnkvazRGckx1?=
- =?utf-8?B?UkdTSUJxWFFrNHpXU2lSZzlhVVFnZkRkeTBHejlwbFh5ZWplckxnWWtlcGVV?=
- =?utf-8?B?Q3lYQXZpSEhOV2VRclhLRjN4ZEZQTnlDOEhWVWp4M1drMnlBU2ptU0FiYTF3?=
- =?utf-8?B?elg1KzdIR0k5Y21LWUgzTjkvRy9vZjAwaGNlTThtbXFGQ1BnRENydmhmSUNj?=
- =?utf-8?B?RURhSkNJRU5wMW5BMWs1blpXTXI2UDNJT01iR2x5OGl1b0VxZFdQTkg0WjB4?=
- =?utf-8?B?b1B2ck84OFZZaHgvME4xZWpSNTF6M2RhKyszTml2YnowTWNMay9HNEliT291?=
- =?utf-8?B?bjhHMWRZRXdmR211NVpGZlpBMnNrd0pjQkVFRmtiN1J0SWNnamdkRnE0bXor?=
- =?utf-8?B?djJLeFZJNDFqVXhDRUN1QmFEd3FJcHhvdGpTRkFDcEJxaGlqZTZWZHZBYVE5?=
- =?utf-8?B?enVpV0gvWUpvN3E4ems4dFlna29jSEJ3Yjg0K2dCSThXcEpjQk9NRkVoMHM2?=
- =?utf-8?B?dXpRYXhKNkFMbTAxQ1NFenRQemE5TWNFOU0zZEdvR0dwcVRRSGZMUHVSQ1c3?=
- =?utf-8?B?dWlaWHBiNU9GektpWWlSNFRTdllIbmNmUVlTeVlSSGxNVVB4UVJrbDRPeFc0?=
- =?utf-8?B?YWplcWw3WmhnTkxNekwyNTB4VzIraTlGWEM2U3pLR3R0TTZqU3lUTXI0Mkc1?=
- =?utf-8?B?elRCR1FOY1FVSzYzeHhJZUFZY2F2NCt6b3VVcDBRYnhCMDVMSzV3dUpBelNC?=
- =?utf-8?B?R0FnMHFXd0hKZ2FsSDVqT0ZEdWNqL3pUc0RvdGFuYUZYMTNFWFJIY0xsVFYv?=
- =?utf-8?B?LzlraWYvQlk4ZlhFdUZ0V1JPZ1JlU1NpTXNLaTQvSkFLb0MyY1hvVTgzRStE?=
- =?utf-8?B?MERPaGM4MXlXdVJqRC85SThXNjE5RjZCSWxhTGRNeklTUjdidlE2OC9DT21Q?=
- =?utf-8?B?S09SanRwY25JNDNzVTM0ejJGRTZ1SnZKd1dlRllNeEo2VFlub1JrOUNTUStu?=
- =?utf-8?B?cWZTSUloOGFQRlQ2amxwVUw5d3BUaWw1NjNFcU1LdVEwRW8zWEdQSHdtcFRN?=
- =?utf-8?Q?fICoUnnQbMCCbG+nU19B2U1J9?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 29971575-1b2d-4f1b-2720-08dc4850e240
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2024 20:12:21.1702
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: l99RqUk6uFeiz3Q9SCSRVaulXZNWprieUYbnBgFvqCkaxaXWtSNmx0i8JFbfcnZEBTH7yyucLLBqtG/lWp6B3w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7909
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <hpqhbksvyfbqjumopk2k2drxri2ycb6j2dbdo74cfymcd7blgx@kzomazfosfwg>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Sun, Mar 10, 2024 at 10:38:42PM -0400, Frank Li wrote:
-> On Wed, Mar 06, 2024 at 02:40:23PM -0600, Rob Herring wrote:
-> > On Mon, Mar 4, 2024 at 5:31 PM Frank Li <Frank.li@nxp.com> wrote:
+Hi Ivan, 
+
+On 14:24-20240319, Ivan Bornyakov wrote:
+> Hello, Nas
+> 
+> On Tue, Mar 19, 2024 at 10:56:22AM +0000, Nas Chung wrote:
+> > Hi, Ivan.
+> > 
 > > >
-> > > On Mon, Mar 04, 2024 at 10:44:23AM -0600, Rob Herring wrote:
-> > > > On Thu, Feb 29, 2024 at 03:58:10PM -0500, Frank Li wrote:
-> > > > > From: Joy Zou <joy.zou@nxp.com>
-> > > > >
-> > > > > Introduce the compatible string 'fsl,imx8ulp-edma' to enable support for
-> > > > > the i.MX8ULP's eDMA, alongside adjusting the clock numbering. The i.MX8ULP
-> > > > > eDMA architecture features one clock for each DMA channel and an additional
-> > > > > clock for the core controller. Given a maximum of 32 DMA channels, the
-> > > > > maximum clock number consequently increases to 33.
-> > > > >
-> > > > > Signed-off-by: Joy Zou <joy.zou@nxp.com>
-> > > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > > > ---
-> > > > >  .../devicetree/bindings/dma/fsl,edma.yaml          | 26 ++++++++++++++++++++--
-> > > > >  1 file changed, 24 insertions(+), 2 deletions(-)
-> > > > >
-> > > > > diff --git a/Documentation/devicetree/bindings/dma/fsl,edma.yaml b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-> > > > > index aa51d278cb67b..55cce79c759f8 100644
-> > > > > --- a/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-> > > > > @@ -23,6 +23,7 @@ properties:
-> > > > >            - fsl,imx7ulp-edma
-> > > > >            - fsl,imx8qm-adma
-> > > > >            - fsl,imx8qm-edma
-> > > > > +          - fsl,imx8ulp-edma
-> > > > >            - fsl,imx93-edma3
-> > > > >            - fsl,imx93-edma4
-> > > > >            - fsl,imx95-edma5
-> > > > > @@ -53,11 +54,11 @@ properties:
-> > > > >
-> > > > >    clocks:
-> > > > >      minItems: 1
-> > > > > -    maxItems: 2
-> > > > > +    maxItems: 33
-> > > > >
-> > > > >    clock-names:
-> > > > >      minItems: 1
-> > > > > -    maxItems: 2
-> > > > > +    maxItems: 33
-> > > > >
-> > > > >    big-endian:
-> > > > >      description: |
-> > > > > @@ -108,6 +109,7 @@ allOf:
-> > > > >        properties:
-> > > > >          clocks:
-> > > > >            minItems: 2
-> > > > > +          maxItems: 2
-> > > > >          clock-names:
-> > > > >            items:
-> > > > >              - const: dmamux0
-> > > > > @@ -136,6 +138,7 @@ allOf:
-> > > > >        properties:
-> > > > >          clock:
-> > > > >            minItems: 2
-> > > > > +          maxItems: 2
-> > > > >          clock-names:
-> > > > >            items:
-> > > > >              - const: dma
-> > > > > @@ -151,6 +154,25 @@ allOf:
-> > > > >          dma-channels:
-> > > > >            const: 32
-> > > > >
-> > > > > +  - if:
-> > > > > +      properties:
-> > > > > +        compatible:
-> > > > > +          contains:
-> > > > > +            const: fsl,imx8ulp-edma
-> > > > > +    then:
-> > > > > +      properties:
-> > > > > +        clock:
-> > > >
-> > > > clocks
-> > > >
-> > > > > +          maxItems: 33
-> > > >
-> > > > That is already the max. I think you want 'minItems: 33' here.
-> > > >
-> > > > > +        clock-names:
-> > > > > +          items:
-> > > > > +            - const: dma
-> > > > > +            - pattern: "^CH[0-31]-clk$"
-> > > >
-> > > > '-clk' is redundant. [0-31] is not how you do a range of numbers with
-> > > > regex.
-> > > >
-> > > > This doesn't cover clocks 3-33. Not a great way to express in
-> > > > json-schema, but this should do it:
-> > > >
-> > > > allOf:
-> > > >   - items:
-> > > >       - const: dma
-> > > >   - items:
-> > > >       oneOf:
-> > > >         - const: dma
-> > > >         - pattern: "^ch([0-9]|[1-2][0-9]|[3[01])$"
+> > >Allocate SRAM memory on module probe, free on remove. There is no need
+> > >to allocate on device open, free on close, the memory is the same every
+> > >time.
+> > 
+> > If there is no decoder/encoder instance, driver don't need to allocate SRAM memory.
+> > The main reason of allocating the memory in open() is to allow other modules to
+> > use more SRAM memory, if wave5 is not working.
+
+I have to agree with this statement. Moving allocation to probe results
+in wasting SRAM when VPU is not in use. VPU should only be allocating SRAM
+when a stream instance is running and free that back once all instances
+close.
+ 
 > > >
-> > > I understand pattern is wrong. But I don't understand why need 'allOf'.
-> > 
-> > The first 'items' says the 1st entry must be 'dma'. (It might need a
-> > 'maxItems: 33' too now that I look at it.) The 2nd 'items' says all
-> > entries must be either 'dma' or the CHn pattern.
-> 
-> After dig into dt_scheme and json scheme, I start understand what your
-> means.
-> 
-> "clock-names": {                                   
->     "minItems": 33,                                
->     "allOf": [                                     
->          {                                          
->             "items": [                             
->                  {                                  
->                      "const": "dma"                 
->                  }                                  
->             ],                                     
->             "maxItems": 33, 
->             ^^^^^^^^
->       Here need a maxItem 33 and make sure first item is "dma" and total
-> array is 33.                       
-> 
->             "type": "array",                       
->             "minItems": 1                          
->          },                                         
->          {                                          
->             "items": {                             
->             "oneOf": [                         
->                  {                              
->                       "const": "dma"             
->                  },                             
->                  {                              
->                        "pattern": "^ch(0[0-9]|[1-2][0-9]|3[01])$"
->                  }                              
->                  ]                                  
->             },                                     
->             "type": "array"                        
->          }                                          
->     ]                                              
-> }
-> 
-> The yaml source is
-> 
->           allOf:                                                           
->             - items:                                                       
->                 - const: dma                                               
->               maxItems: 33                                                 
->             - items:                                                       
->                 oneOf:                                                     
->                   - const: dma                                             
->                   - pattern: "^ch(0[0-9]|[1-2][0-9]|3[01])$"
-> 
-> 
-> But unfortunately, 
-> 
-> dtschema/meta-schemas/items.yaml
-> 
->     type: object                                                         
->       properties:                                                          
->         items:                                                             
->           type: array                                                      
->         additionalItems: false                                             
->       required:                                                            
->         - items                                                            
->         - maxItems                                                         
->     then:                                                                  
->       description: '"maxItems" is not needed with an "items" list'         
->       not:                                                                 
->         required:                                                          
->           - maxItem
-> 
-> 
-> dt_binding check will complain
-> 	'"maxItems" is not needed with an "items" list'
-> 
-> 
-> I am not sure how to go futher. Maybe below 'stupid' method is less impact.
-> 
-> items
->   - const: dma
->   - const: ch00
->   ...
->   - const: ch31
-> 	  
-> 
-> Frank
-
-@rob:
-
-       I can't found out a way to to handle this case. 
-dtschema/meta-schemas/items.yaml not allow 'maxItems' for 'items'.
-
-       Any suggestion?
-
-Frank
-
-> 
-> > 
-> > > 8ulp need clock 'dma" and "ch*". I think
+> > >Also use gen_pool_size() to determine SRAM memory size to be allocated
+> > >instead of separate "sram-size" DT property to reduce duplication.
 > > >
-> > > items:
-> > >     - const: dma
-> > >     - pattern: "^CH[0-31]-clk$"
+> > >Signed-off-by: Ivan Bornyakov <brnkv.i1@gmail.com>
+> > >---
+> > > .../platform/chips-media/wave5/wave5-helper.c |  3 ---
+> > > .../platform/chips-media/wave5/wave5-vdi.c    | 21 ++++++++++---------
+> > > .../chips-media/wave5/wave5-vpu-dec.c         |  2 --
+> > > .../chips-media/wave5/wave5-vpu-enc.c         |  2 --
+> > > .../platform/chips-media/wave5/wave5-vpu.c    | 12 +++++------
+> > > .../platform/chips-media/wave5/wave5-vpuapi.h |  1 -
+> > > 6 files changed, 16 insertions(+), 25 deletions(-)
 > > >
-> > > should be enough.
+> > >diff --git a/drivers/media/platform/chips-media/wave5/wave5-helper.c
+> > >b/drivers/media/platform/chips-media/wave5/wave5-helper.c
+> > >index 8433ecab230c..ec710b838dfe 100644
+> > >--- a/drivers/media/platform/chips-media/wave5/wave5-helper.c
+> > >+++ b/drivers/media/platform/chips-media/wave5/wave5-helper.c
+> > >@@ -29,9 +29,6 @@ void wave5_cleanup_instance(struct vpu_instance *inst)
+> > > {
+> > > 	int i;
+> > >
+> > >-	if (list_is_singular(&inst->list))
+> > >-		wave5_vdi_free_sram(inst->dev);
+> > >-
+> > > 	for (i = 0; i < inst->fbc_buf_count; i++)
+> > > 		wave5_vpu_dec_reset_framebuffer(inst, i);
+> > >
+> > >diff --git a/drivers/media/platform/chips-media/wave5/wave5-vdi.c
+> > >b/drivers/media/platform/chips-media/wave5/wave5-vdi.c
+> > >index 3809f70bc0b4..ee671f5a2f37 100644
+> > >--- a/drivers/media/platform/chips-media/wave5/wave5-vdi.c
+> > >+++ b/drivers/media/platform/chips-media/wave5/wave5-vdi.c
+> > >@@ -174,16 +174,19 @@ int wave5_vdi_allocate_array(struct vpu_device
+> > >*vpu_dev, struct vpu_buf *array,
+> > > void wave5_vdi_allocate_sram(struct vpu_device *vpu_dev)
+> > > {
+> > > 	struct vpu_buf *vb = &vpu_dev->sram_buf;
+> > >+	dma_addr_t daddr;
+> > >+	void *vaddr;
+> > >+	size_t size;
+> > >
+> > >-	if (!vpu_dev->sram_pool || !vpu_dev->sram_size)
+> > >+	if (!vpu_dev->sram_pool || vb->vaddr)
+> > > 		return;
+> > >
+> > >-	if (!vb->vaddr) {
+> > >-		vb->size = vpu_dev->sram_size;
+> > >-		vb->vaddr = gen_pool_dma_alloc(vpu_dev->sram_pool, vb->size,
+> > >-					       &vb->daddr);
+> > >-		if (!vb->vaddr)
+> > >-			vb->size = 0;
+> > >+	size = gen_pool_size(vpu_dev->sram_pool);
+> > >+	vaddr = gen_pool_dma_alloc(vpu_dev->sram_pool, size, &daddr);
+> > >+	if (vaddr) {
+> > >+		vb->vaddr = vaddr;
+> > >+		vb->daddr = daddr;
+> > >+		vb->size = size;
+> > > 	}
+> > >
+> > > 	dev_dbg(vpu_dev->dev, "%s: sram daddr: %pad, size: %zu, vaddr:
+> > >0x%p\n",
+> > >@@ -197,9 +200,7 @@ void wave5_vdi_free_sram(struct vpu_device *vpu_dev)
+> > > 	if (!vb->size || !vb->vaddr)
+> > > 		return;
+> > >
+> > >-	if (vb->vaddr)
+> > >-		gen_pool_free(vpu_dev->sram_pool, (unsigned long)vb->vaddr,
+> > >-			      vb->size);
+> > >+	gen_pool_free(vpu_dev->sram_pool, (unsigned long)vb->vaddr, vb-
+> > >>size);
+> > >
+> > > 	memset(vb, 0, sizeof(*vb));
+> > > }
+> > >diff --git a/drivers/media/platform/chips-media/wave5/wave5-vpu-dec.c
+> > >b/drivers/media/platform/chips-media/wave5/wave5-vpu-dec.c
+> > >index aa0401f35d32..84dbe56216ad 100644
+> > >--- a/drivers/media/platform/chips-media/wave5/wave5-vpu-dec.c
+> > >+++ b/drivers/media/platform/chips-media/wave5/wave5-vpu-dec.c
+> > >@@ -1854,8 +1854,6 @@ static int wave5_vpu_open_dec(struct file *filp)
+> > > 		goto cleanup_inst;
+> > > 	}
+> > >
+> > >-	wave5_vdi_allocate_sram(inst->dev);
+> > >-
+> > > 	return 0;
+> > >
+> > > cleanup_inst:
+> > >diff --git a/drivers/media/platform/chips-media/wave5/wave5-vpu-enc.c
+> > >b/drivers/media/platform/chips-media/wave5/wave5-vpu-enc.c
+> > >index 8bbf9d10b467..86ddcb82443b 100644
+> > >--- a/drivers/media/platform/chips-media/wave5/wave5-vpu-enc.c
+> > >+++ b/drivers/media/platform/chips-media/wave5/wave5-vpu-enc.c
+> > >@@ -1727,8 +1727,6 @@ static int wave5_vpu_open_enc(struct file *filp)
+> > > 		goto cleanup_inst;
+> > > 	}
+> > >
+> > >-	wave5_vdi_allocate_sram(inst->dev);
+> > >-
+> > > 	return 0;
+> > >
+> > > cleanup_inst:
+> > >diff --git a/drivers/media/platform/chips-media/wave5/wave5-vpu.c
+> > >b/drivers/media/platform/chips-media/wave5/wave5-vpu.c
+> > >index f3ecadefd37a..2a0a70dd7062 100644
+> > >--- a/drivers/media/platform/chips-media/wave5/wave5-vpu.c
+> > >+++ b/drivers/media/platform/chips-media/wave5/wave5-vpu.c
+> > >@@ -178,16 +178,11 @@ static int wave5_vpu_probe(struct platform_device
+> > >*pdev)
+> > > 		return ret;
+> > > 	}
+> > >
+> > >-	ret = of_property_read_u32(pdev->dev.of_node, "sram-size",
+> > >-				   &dev->sram_size);
+> > >-	if (ret) {
+> > >-		dev_warn(&pdev->dev, "sram-size not found\n");
+> > >-		dev->sram_size = 0;
+> > >-	}
+> > >-
 > > 
-> > If it was, then I would not have said anything. If you don't believe
-> > me see if this passes validation:
+> > Required SRAM size is different from each wave5 product.
+> > And, SoC vendor also can configure the different SRAM size
+> > depend on target SoC specification even they use the same wave5 product.
 > > 
-> > clock-names = "dma", "CH0", "foobar";
+> 
+> One can limit iomem address range in SRAM node. Here is the example of
+> how I setup Wave515 with SRAM:
+> 
+> 	sram@2000000 {
+> 		compatible = "mmio-sram";
+> 		reg = <0x0 0x2000000 0x0 0x80000>;
+> 		#address-cells = <1>;
+> 		#size-cells = <1>;
+> 		ranges = <0x0 0x0 0x2000000 0x80000>;
+> 		
+> 		wave515_vpu_sram: wave515-vpu-sram@0 {
+> 			reg = <0x0 0x80000>;
+> 			pool;
+> 		};
+> 	};
+> 
+> 	wave515@410000 {
+> 		compatible = "cnm,wave515";
+> 		reg = <0x0 0x410000 0x0 0x10000>;
+> 		clocks = <&clk_ref1>;
+> 		clock-names = "videc";
+> 		interrupt-parent = <&wave515_intc>;
+> 		interrupts = <16 IRQ_TYPE_LEVEL_HIGH>;
+> 		resets = <&wave515_reset 0>,
+> 			 <&wave515_reset 4>,
+> 			 <&wave515_reset 8>,
+> 			 <&wave515_reset 12>;
+> 		sram = <&wave515_vpu_sram>;
+> 	};
+> 
+> gen_pool_size() returns size of wave515_vpu_sram, no need for extra
+> "sram-size" property.
+
+"sram-size" property does need to be removed, as this was the consensus
+gathered from my patch[0]. However, I think your method is still taking
+a more static approach. One of the recommendations in my thread[1] was
+making a list of known SRAM sizes given typical resolutions and
+iterating through until a valid allocation is done. I don't think this
+is the correct approach either based on Nas's comment that each Wave5
+has different SRAM size requirement. It would clutter up the file too
+much if each wave5 product had its own SRAM size mapping.
+
+Could another approach be to change Wave5 dts node to have property set
+as "sram = <&sram>;" in your example, then driver calls
+gen_pool_availble to get size remaining? From there, a check could be 
+put in place to make sure an unnecessary amount is not being allocated.
+
+
+[0]: https://lore.kernel.org/lkml/99bf4d6d988d426492fffc8de9015751c323bd8a.camel@ndufresne.ca/
+[1]: https://lore.kernel.org/lkml/9c5b7b2c-8a66-4173-dfe9-5724ec5f733d@ti.com/
+
+Thanks,
+Brandon
+> 
+> > Thanks.
+> > Nas.
 > > 
-> > > If you means put on top allOf, other platform use clock name such as
-> > > 'dmamux0'.
+> > > 	dev->sram_pool = of_gen_pool_get(pdev->dev.of_node, "sram", 0);
+> > > 	if (!dev->sram_pool)
+> > > 		dev_warn(&pdev->dev, "sram node not found\n");
+> > >+	else
+> > >+		wave5_vdi_allocate_sram(dev);
+> > >
+> > > 	dev->product_code = wave5_vdi_read_register(dev,
+> > >VPU_PRODUCT_CODE_REGISTER);
+> > > 	ret = wave5_vdi_init(&pdev->dev);
+> > >@@ -259,6 +254,8 @@ static int wave5_vpu_probe(struct platform_device
+> > >*pdev)
+> > > err_clk_dis:
+> > > 	clk_bulk_disable_unprepare(dev->num_clks, dev->clks);
+> > >
+> > >+	wave5_vdi_free_sram(dev);
+> > >+
+> > > 	return ret;
+> > > }
+> > >
+> > >@@ -275,6 +272,7 @@ static void wave5_vpu_remove(struct platform_device
+> > >*pdev)
+> > > 	v4l2_device_unregister(&dev->v4l2_dev);
+> > > 	wave5_vdi_release(&pdev->dev);
+> > > 	ida_destroy(&dev->inst_ida);
+> > >+	wave5_vdi_free_sram(dev);
+> > > }
+> > >
+> > > static const struct wave5_match_data ti_wave521c_data = {
+> > >diff --git a/drivers/media/platform/chips-media/wave5/wave5-vpuapi.h
+> > >b/drivers/media/platform/chips-media/wave5/wave5-vpuapi.h
+> > >index fa62a85080b5..8d88381ac55e 100644
+> > >--- a/drivers/media/platform/chips-media/wave5/wave5-vpuapi.h
+> > >+++ b/drivers/media/platform/chips-media/wave5/wave5-vpuapi.h
+> > >@@ -749,7 +749,6 @@ struct vpu_device {
+> > > 	struct vpu_attr attr;
+> > > 	struct vpu_buf common_mem;
+> > > 	u32 last_performance_cycles;
+> > >-	u32 sram_size;
+> > > 	struct gen_pool *sram_pool;
+> > > 	struct vpu_buf sram_buf;
+> > > 	void __iomem *vdb_register;
+> > >--
+> > >2.44.0
 > > 
-> > What? It's under an if/then schema.
-> > 
-> > Rob
+> 
 
