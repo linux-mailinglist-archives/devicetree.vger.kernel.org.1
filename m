@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-51470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB3AE87F6C8
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 06:42:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AFB987F6DC
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 06:49:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3E43D1F221AA
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 05:42:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E7DA282778
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 05:49:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1B1B446B2;
-	Tue, 19 Mar 2024 05:42:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D472245957;
+	Tue, 19 Mar 2024 05:49:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Us4B3Rd1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mTcPOUFm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01F4D446A1
-	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 05:41:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8C65446A4
+	for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 05:49:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710826921; cv=none; b=EWW+LUa+GgnG28XuW0Tx0K7k0QbPbsjHlXAnrqA+cDwYAsmuCQfv+FaslDW58t/BFoDtgMaC9i2E6TEegcwlcdVhG0tvsh4xtJf0eCXaDM7ezd8K1jnCfcGvVOSfYSf/aMmLHAWOYQnJYJR+ZFREZGFa2tgNSB5wpTz/fXl/I6Q=
+	t=1710827378; cv=none; b=UDLxqpryFNWrxb6hARJ16V2Y2wO2WAANHkT4Q/I9Ikjqu+LcrZEzOYnoDwVv8P/R1GkAqmlvH9X9+I5bLkis6wzReP/tjXchRfOfwSCz/PdNMtX28vgEb6Dtq8l1a3gQAuDRvivfqJ4b+Fc1e7j/pj0frAyh6wD3hi9j4F9mZr8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710826921; c=relaxed/simple;
-	bh=w92aU9nzDJvbswofHlp0wPznG691YDWd5c5XMUjZ6cc=;
+	s=arc-20240116; t=1710827378; c=relaxed/simple;
+	bh=3wLhqYA8kjRNglii51LsWQ+j7Mdkmx0klG1c2/Ru/cA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TjGgapFK8/xSB5aw1PBv6KT/EadY8bc75Aclk9tEDYUyZ0roEY/J5Vym2jEfwjCfIoqkNbMv4IFy38B3YuAWr/cYWzUxhtptx3nzdUn7la8i+IdNmgxzkz4OT4xWRqYkKR6rgJ/rfetNKi43oXPRulfxc++ks1Oi1ArQ8k+flVE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Us4B3Rd1; arc=none smtp.client-ip=209.85.218.44
+	 In-Reply-To:Content-Type; b=FA1P6/voGzKWUS51xmrGsIhUuGmt6M4JA8DhLZRnVN19mUkLDfAULWIjlRS07+opMzcNSlxBNLldCqDKkZi0+ENAW0KtxpYK+tOSnDoJ+Nt6uykskjQruq+4Kfs8aRLb4T1wwVVUeR9vKKumnojqA105RVYvrzsUZ7yZow/QFKM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mTcPOUFm; arc=none smtp.client-ip=209.85.218.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a46a7b8e07fso362772566b.2
-        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 22:41:59 -0700 (PDT)
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a46a7b8e07fso363266766b.2
+        for <devicetree@vger.kernel.org>; Mon, 18 Mar 2024 22:49:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710826918; x=1711431718; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1710827374; x=1711432174; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ie3Z4Qm/raSpZh91B3REFPg2FqghVKIUu65GHuxup64=;
-        b=Us4B3Rd1bYphFwzpufgy2XZ1/tJ9pzg6RD89wmmkLL5pDhKawL/10rw/aAyUGIcBIn
-         aykR55+tD0liROrW84cE490326Ac7Vg8zXTg1/mqOf4a6+IPdiYp6X6n9t7a2qU0zbYV
-         htO5ynkeoZYWJHUUlHPpDoZABdWCaxveeLmKrve+t6esDTlL4HNY+vVWI5jGDMIe/1S6
-         cSFd2bP4RkmElwy9qcvoXRURSYF9YftnEscCJ9NIFyOJXY9vR1D1p9BPlk7rzFprh1vw
-         plhzRPZqzYYjVcONmW5CfymX1PhtwEXArjvIDe/kYDfbXZ9Ak5m21hq8JSq4tapyjXlX
-         N+og==
+        bh=B4bBPzB3w6RgHzzG9byfprH0T7FpSJo+QprsvPHF+xk=;
+        b=mTcPOUFm+wffvGqn6ugn3SqmhO9f1HpsebuUqg72xgc9IsiUaeTfYsVPqiMgAM54y2
+         J93SCaDBvzNuhh2333DAnSShAEBUNFCp3xxJydVLPKzm2hQEGZCBf9pogL+10HHlAb/E
+         sg7nvv15vIVTT+2ZdpaeDuAhNctcAggb0QdK23WEpKvoyAyur7M3ojue32GI0z4J3qg+
+         abVvJQXXGhd6cqOTFfANy6RhyErMu+TzfQcyYecNLzoTX6HFeQzozPUXNtvklETs+nPD
+         P2uT6QEzYHYBN7+ErI39Qn9oj9o8BE39JHhv3M5doNWZoa/VR1XFeBpIzoihp4Zuxpnl
+         xV3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710826918; x=1711431718;
+        d=1e100.net; s=20230601; t=1710827374; x=1711432174;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ie3Z4Qm/raSpZh91B3REFPg2FqghVKIUu65GHuxup64=;
-        b=fNv7L+3J30s4B0tIlD6laY/sF1f2iTDdhmnJb5ZCy3V1NI7jlz6n5rc5/C/D0RS6I7
-         YcSafV1Y7lapMlusMCN5v5EW/mxy3ZxldQN4Mn8OwZfbEFGJWQNHn31A21mR46ZlZFM8
-         3U24U7XtABbjRkVHc+z8roQSpngCHoIN/qdXN8DyNHOkDtGC4QA7SCDYY9z57ee1HXhs
-         MdOA5Jrq50vay9NejNs+RuE2uCEzKDKtCUbg5tT2WafSC7p+138P7u7Mv9DoyJch7Z5o
-         Olt2Zix7aHhB+tgGHb7Q9jAvEsdHPZygB5oCGfN+u0Z+GmUe2BvwDoxw7E+w1ypmtntW
-         HwTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV5ITvXM9zpXSvxINMZAM60CnqznDrozbmXFfAoKnnzS+QxZSyyrXPkuU73De66U69ROFHmQoIcNp5NUiUOB4PCcVNUSTv3VVdulQ==
-X-Gm-Message-State: AOJu0YwGi7KiYyo6q5SyygzzBnwvM54sJ0zHjZ+F03HO6W3Ozb3592KT
-	eguKmA4FJ7liH2Q2z2SGPkdckm85124imyRfOpTaNRp3IRIbgxj0TqajibEX7DE=
-X-Google-Smtp-Source: AGHT+IHKpU0t9duPevXb3cdz776i2ohsJaEngFW6R0lR53HhyzpC02sChGFgun/2aqbWUSNJ610gtA==
-X-Received: by 2002:a17:906:4554:b0:a46:b8ed:8a9 with SMTP id s20-20020a170906455400b00a46b8ed08a9mr3980058ejq.55.1710826918354;
-        Mon, 18 Mar 2024 22:41:58 -0700 (PDT)
+        bh=B4bBPzB3w6RgHzzG9byfprH0T7FpSJo+QprsvPHF+xk=;
+        b=eP1p/enLauns5ETlMDvBYH5qy0dp7qwwYHXI9yX9vVXBVrQRBAw1zl9ADUFqYEQMYL
+         AsoRBsYE2OcJYZPJa4KzePHYNXgkQCrnI6Q826VDfkOexc4SiNCjDUD9X3Ft2iUSiLfV
+         jJxbUwlwxaN5loWw4M9ffuPM5QkiPGxStbxOAUW0ZcmJSj2k3Jl75mUEpMhaChEMTtwL
+         q9d80J5wLCmeCcS6JCYxMDuVFzLmEs3KxFCEfceOTP8gL9Gf3ZEM+gtDG/EjD59ZpPZ4
+         YyvBBIlNIbFxRDEVhIUmNss5ekzJewh7jjeBAgxEZhJusjXLrYyj5uIJFwr1JeWiRCbf
+         nm2Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUMnU/plkQuAqW4T1y4qvSloHBjS7bnssfc4z3Tj+xocYQWlr0yC6HfDI/VQDvI4sVQkjI4Gc4fDlPw5YmRPnLlbgAn+YJbnbFvmw==
+X-Gm-Message-State: AOJu0YwVvkJmspa/9b18eCvClTEJPw+kHRjeOtOderHnBovz0S+F438L
+	3pC5pkAj8x8KuxF/itEW6ZcIBKak2ESfPVqMfSeON9kBuXOXXMntJbWG9RBtZ8A=
+X-Google-Smtp-Source: AGHT+IEh+vDv9zJrRz/0IJPHkzIf99JRfO/ePCJcZCQ0lNZVgT210A2ArrvpPmP/QQpsRHshHxRIBw==
+X-Received: by 2002:a17:906:6bd9:b0:a46:cedd:4eb1 with SMTP id t25-20020a1709066bd900b00a46cedd4eb1mr2168889ejs.42.1710827374260;
+        Mon, 18 Mar 2024 22:49:34 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id e25-20020a170906845900b00a449026672esm5637429ejy.81.2024.03.18.22.41.56
+        by smtp.gmail.com with ESMTPSA id a4-20020a170906368400b00a44936527b5sm5678726ejc.99.2024.03.18.22.49.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Mar 2024 22:41:57 -0700 (PDT)
-Message-ID: <97eeb05d-9fb4-4c78-8d7b-610629ed76b3@linaro.org>
-Date: Tue, 19 Mar 2024 06:41:55 +0100
+        Mon, 18 Mar 2024 22:49:33 -0700 (PDT)
+Message-ID: <de0b32b3-348a-4d42-89cd-df2c439b8009@linaro.org>
+Date: Tue, 19 Mar 2024 06:49:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,20 +76,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: net: broadcom-bluetooth: Add CYW43439 DT
- binding
+Subject: Re: [PATCH] dt-bindings: hwmon: adc128d818: convert to dtschema
 Content-Language: en-US
-To: Marek Vasut <marex@denx.de>, linux-bluetooth@vger.kernel.org
-Cc: "David S. Miller" <davem@davemloft.net>,
- Conor Dooley <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>,
+To: Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+ Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+ Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Linus Walleij <linus.walleij@linaro.org>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
- Marcel Holtmann <marcel@holtmann.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- netdev@vger.kernel.org
-References: <20240319042058.133885-1-marex@denx.de>
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240318-adc128d818_dtschema-v1-1-d0af2caef145@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -135,24 +131,47 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240319042058.133885-1-marex@denx.de>
+In-Reply-To: <20240318-adc128d818_dtschema-v1-1-d0af2caef145@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/03/2024 05:20, Marek Vasut wrote:
-> CYW43439 is a Wi-Fi + Bluetooth combo device from Infineon.
-> The Bluetooth part is capable of Bluetooth 5.2 BR/EDR/LE .
-> This chip is present e.g. on muRata 1YN module.
+On 18/03/2024 21:12, Javier Carrasco wrote:
+> Convert adc128d818 bindings to dtschema to support validation.
 > 
-> Extend the binding with its DT compatible using fallback
-> compatible string to "brcm,bcm4329-bt" which seems to be
-> the oldest compatible device. This should also prevent the
-> growth of compatible string tables in drivers. The existing
-> block of compatible strings is retained.
-> 
-> Signed-off-by: Marek Vasut <marex@denx.de>
+> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thank you for your patch. There is something to discuss/improve.
+
+
+> +$id: http://devicetree.org/schemas/hwmon/ti,adc128d818.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments ADC128D818 ADC System Monitor With Temperature Sensor
+> +
+> +maintainers:
+> +  - Javier Carrasco <javier.carrasco.cruz@gmail.com>
+> +
+> +description: |
+> +  The ADC128D818 is a 12-Bit, 8-Channel Analog to Digital Converter (ADC)
+> +  with a temperature sensor and an I2C interface.
+> +
+> +  Datasheets:
+> +    https://www.ti.com/product/ADC128D818
+> +
+> +properties:
+> +  compatible:
+> +    const: ti,adc128d818
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  ti,mode:
+
+You need | to preserve the formatting.
+
+With this:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
