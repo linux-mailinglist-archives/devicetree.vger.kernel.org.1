@@ -1,144 +1,340 @@
-Return-Path: <devicetree+bounces-51402-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51403-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E018487F452
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 00:59:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11B8887F459
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 01:05:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C7161C20E0F
-	for <lists+devicetree@lfdr.de>; Mon, 18 Mar 2024 23:59:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9AE7282A98
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 00:05:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76E5E5F873;
-	Mon, 18 Mar 2024 23:59:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C912218D;
+	Tue, 19 Mar 2024 00:05:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C1AdiFvA"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Z3zl3nbp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 446415F86E;
-	Mon, 18 Mar 2024 23:59:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E970A19479;
+	Tue, 19 Mar 2024 00:05:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710806373; cv=none; b=rZE8+C7TVCzBorLteqQBVk124GjktHCTd7DjyfPVuFkzZcs8QD4t9K19HloHZ/F+kpRejtSyo/wEuUIPq2goP7ewTJ7m3/KJ3GW3Yuzt6DMiAsFdHdVlk4pFolMtOEWHRlixrctYvbs9Aqse5PSjfo8PNmYmxnDHG9XuTmQN0b8=
+	t=1710806713; cv=none; b=BigEEmrufOVGPxQfkro3u5VO7vftzKH6UkkDOZINVsNTOT+P/N60qHYthQENyN8utuIqb3Yw1OoY+CitU81WcRfyapHmpDeDSM3Mr/0YXAG8lK1ooraSvTAGWqyGVyO6lLdhviJEAW32fNhLWqZcJuPK0EItQfjN2PlkiANfbz0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710806373; c=relaxed/simple;
-	bh=/cuO+2prC5+m8EiBqi7dT0cOyOlyonzfiRrZm1oPk7o=;
+	s=arc-20240116; t=1710806713; c=relaxed/simple;
+	bh=qUH+g0HruDEXB3YbYdk5MPO634/Ais9TzewOfl8eAFI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BReKhBkHYMUKzzifm/fILz6kmZkQuCJBD4sgvK8kyItU3/RDGQxvCOIxkviy2XqQTfw9sLE8IiBDOwRLDc+6F1RO+qnj5KAZd1DXdbXNCeqlzeOP/fShrQGAw2UmLE89HduqpBJPoAxGkld4mjnHYJx67gLW+y9RaFoHk+hk3RE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C1AdiFvA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F906C433C7;
-	Mon, 18 Mar 2024 23:59:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710806372;
-	bh=/cuO+2prC5+m8EiBqi7dT0cOyOlyonzfiRrZm1oPk7o=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=CDQne/DmxM1vJKS4XRe+H1vMYmIeIlioOpIiFqslwqyYYneUeXmRuY4QeYccBGTfE+CvoNFU45vQRj5AvW1jJk91Wp7xKpnpmigN/7EEHBGkgS+65kk1Cfu+ZZich0BlKTC5oolhLEg7v7y2GrkIdTx/qLYoZSFD26RUz0aL8Q0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Z3zl3nbp; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 730F0480;
+	Tue, 19 Mar 2024 01:04:36 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1710806676;
+	bh=qUH+g0HruDEXB3YbYdk5MPO634/Ais9TzewOfl8eAFI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=C1AdiFvAp5GBUxAns2H0MMAN9yTybi5z6O17Afr1xOowOuzOjbiQmOXLsX1anKBLE
-	 ekuU64TRkO34e0BQBu7aabyDQG2sab2rSYLeZaY1509JycooK2lwRbysy0jPUfvXss
-	 ZRCF8DJJX02IUQkm1/E1tAUjhprfG0K9DFFFIuIyH+8Pt2mMW0mjy6g9YOtZDzEl//
-	 vXvyhqPPectG1Zd3rdKITre0iOJNGzLglOg7oAZq6oXMXE25yfVzzwGLC+WhuuyUz3
-	 1caAiqVqEZBiePx3A8nkfPjnmZNHqtNaEsG2uvZdBwwNRX10XivuZ6IDrtK5JMSXqO
-	 vTJEHG9cUEnpw==
-Date: Mon, 18 Mar 2024 23:59:28 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>,
-	Chanwoo Choi <cw00.choi@samsung.com>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	b=Z3zl3nbpBuIjWC7upKjiBFujOL3nIfU43/iXfgDl8B/qFWxahSarqHuPFyqKEvG5y
+	 8p2wAMa7C0j3sPZ6wl0qG8Ne3A4cnlYd7wIQrpEsCH74lEUx+Qz1/m2mwhKtlhizS4
+	 Ita7Df/heP/ubrS3UpTcviglMV/F8eAWR+pZL6KE=
+Date: Tue, 19 Mar 2024 02:05:00 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Anatoliy Klymenko <anatoliy.klymenko@amd.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Michal Simek <michal.simek@amd.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: clock: samsung,s3c6400-clock: convert to DT
- Schema
-Message-ID: <20240318-mummify-helmet-91a1f970a07d@spud>
-References: <20240312185035.720491-1-krzysztof.kozlowski@linaro.org>
- <20240317-curator-smoky-99568f9308bc@spud>
- <60039f49-a20d-49b9-8a3d-2ded499435a4@linaro.org>
- <20240317-jersey-trolling-d4678546e87d@spud>
- <c456f575-570f-40d6-9960-634da314e1d6@linaro.org>
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-media@vger.kernel.org
+Subject: Re: [PATCH v2 3/8] drm: xlnx: zynqmp_dpsub: Anounce supported input
+ formats
+Message-ID: <20240319000500.GU13682@pendragon.ideasonboard.com>
+References: <20240312-dp-live-fmt-v2-0-a9c35dc5c50d@amd.com>
+ <20240312-dp-live-fmt-v2-3-a9c35dc5c50d@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="phI+MIIf734WzXdq"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <c456f575-570f-40d6-9960-634da314e1d6@linaro.org>
+In-Reply-To: <20240312-dp-live-fmt-v2-3-a9c35dc5c50d@amd.com>
 
+Hi Anatoliy,
 
---phI+MIIf734WzXdq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thank you for the patch.
 
-On Mon, Mar 18, 2024 at 05:20:50PM +0100, Krzysztof Kozlowski wrote:
-> On 17/03/2024 16:49, Conor Dooley wrote:
-> > On Sun, Mar 17, 2024 at 04:26:55PM +0100, Krzysztof Kozlowski wrote:
-> >> On 17/03/2024 16:23, Conor Dooley wrote:
-> >>> On Tue, Mar 12, 2024 at 07:50:35PM +0100, Krzysztof Kozlowski wrote:
-> >>>> Convert Samsung S3C6400/S3C6410 SoC clock controller bindings to DT
-> >>>> schema.
-> >>>
-> >>>> +description: |
-> >>>> +  There are several clocks that are generated outside the SoC. It i=
-s expected
-> >>>> +  that they are defined using standard clock bindings with following
-> >>>> +  clock-output-names:
-> >>>> +   - "fin_pll" - PLL input clock (xtal/extclk) - required,
-> >>>> +   - "xusbxti" - USB xtal - required,
-> >>>> +   - "iiscdclk0" - I2S0 codec clock - optional,
-> >>>> +   - "iiscdclk1" - I2S1 codec clock - optional,
-> >>>> +   - "iiscdclk2" - I2S2 codec clock - optional,
-> >>>> +   - "pcmcdclk0" - PCM0 codec clock - optional,
-> >>>> +   - "pcmcdclk1" - PCM1 codec clock - optional, only S3C6410.
-> >>>
-> >>> I know you've only transfered this from the text binding, but what is
-> >>> the relevance of this to the binding for this clock controller? This
-> >>> seems to be describing some ?fixed? clocks that must be provided in
-> >>> addition to this controller. I guess there's probably no other suitab=
-le
-> >>> place to mention these?
-> >>
-> >> To make it correct, these should be made clock inputs to the clock
-> >> controller, even if the driver does not take them, however that's
-> >> obsolete platform which might be removed from kernel this or next year,
-> >> so I don't want to spend time on it.
-> >=20
-> > I think the comment should probably mention that these are the expected
-> > inputs, part of me thought that that was what you were getting at but I
-> > wasn't sure if instead they were inputs to some other IP on the SoC.
->=20
-> I can change it, but just to emphasize: in half a year or next year we
-> will probably remove entire platform, thus also this binding.
+On Tue, Mar 12, 2024 at 05:55:00PM -0700, Anatoliy Klymenko wrote:
+> DPSUB in bridge mode supports multiple input media bus formats.
+> 
+> Announce the list of supported input media bus formats via
+> drm_bridge.atomic_get_input_bus_fmts callback.
+> Introduce a set of live input formats, supported by DPSUB.
+> Rename zynqmp_disp_layer_drm_formats() to zynqmp_disp_layer_formats() to
+> reflect semantics for both live and non-live layer format lists.
+> 
+> Signed-off-by: Anatoliy Klymenko <anatoliy.klymenko@amd.com>
+> ---
+>  drivers/gpu/drm/xlnx/zynqmp_disp.c | 67 +++++++++++++++++++++++++++++++++-----
+>  drivers/gpu/drm/xlnx/zynqmp_disp.h |  4 +--
+>  drivers/gpu/drm/xlnx/zynqmp_dp.c   | 26 +++++++++++++++
+>  drivers/gpu/drm/xlnx/zynqmp_kms.c  |  2 +-
+>  4 files changed, 88 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xlnx/zynqmp_disp.c b/drivers/gpu/drm/xlnx/zynqmp_disp.c
+> index e6d26ef60e89..af851190f447 100644
+> --- a/drivers/gpu/drm/xlnx/zynqmp_disp.c
+> +++ b/drivers/gpu/drm/xlnx/zynqmp_disp.c
+> @@ -18,6 +18,7 @@
+>  #include <linux/dma/xilinx_dpdma.h>
+>  #include <linux/dma-mapping.h>
+>  #include <linux/dmaengine.h>
+> +#include <linux/media-bus-format.h>
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/platform_device.h>
+> @@ -77,12 +78,16 @@ enum zynqmp_dpsub_layer_mode {
+>  /**
+>   * struct zynqmp_disp_format - Display subsystem format information
+>   * @drm_fmt: DRM format (4CC)
+> + * @bus_fmt: Media bus format
+>   * @buf_fmt: AV buffer format
+>   * @swap: Flag to swap R & B for RGB formats, and U & V for YUV formats
+>   * @sf: Scaling factors for color components
+>   */
+>  struct zynqmp_disp_format {
+> -	u32 drm_fmt;
+> +	union {
+> +		u32 drm_fmt;
+> +		u32 bus_fmt;
+> +	};
 
-I know, I saw that. I don't really care what you do given the platform
-is being deleted and it is unlikely that anyone is actually going to be
-assembling a from-scratch dtsi for this SoC. On the other hand, if
-you're doing a conversion, even in this scenario, I think it should be
-clear.=20
-I didn't ack the patch cos I figured you were taking the patch via the
-samsung tree (and on to Stephen) yourself, but here:
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+I'm not a big fan of the union, but I can live with it.
 
-I'd rather argue about the definition of erratum instead of this :)
+>  	u32 buf_fmt;
+>  	bool swap;
+>  	const u32 *sf;
+> @@ -182,6 +187,12 @@ static const u32 scaling_factors_565[] = {
+>  	ZYNQMP_DISP_AV_BUF_5BIT_SF,
+>  };
+>  
+> +static const u32 scaling_factors_666[] = {
+> +	ZYNQMP_DISP_AV_BUF_6BIT_SF,
+> +	ZYNQMP_DISP_AV_BUF_6BIT_SF,
+> +	ZYNQMP_DISP_AV_BUF_6BIT_SF,
+> +};
+> +
+>  static const u32 scaling_factors_888[] = {
+>  	ZYNQMP_DISP_AV_BUF_8BIT_SF,
+>  	ZYNQMP_DISP_AV_BUF_8BIT_SF,
+> @@ -364,6 +375,36 @@ static const struct zynqmp_disp_format avbuf_gfx_fmts[] = {
+>  	},
+>  };
+>  
+> +/* List of live video layer formats */
+> +static const struct zynqmp_disp_format avbuf_live_fmts[] = {
+> +	{
+> +		.bus_fmt	= MEDIA_BUS_FMT_RGB666_1X18,
+> +		.buf_fmt	= ZYNQMP_DISP_AV_BUF_LIVE_CONFIG_BPC_6 |
+> +				  ZYNQMP_DISP_AV_BUF_LIVE_CONFIG_FMT_RGB,
+> +		.sf		= scaling_factors_666,
+> +	}, {
+> +		.bus_fmt	= MEDIA_BUS_FMT_UYVY8_1X24,
+> +		.buf_fmt	= ZYNQMP_DISP_AV_BUF_LIVE_CONFIG_BPC_8 |
+> +				  ZYNQMP_DISP_AV_BUF_LIVE_CONFIG_FMT_RGB,
+> +		.sf		= scaling_factors_888,
+> +	}, {
+> +		.bus_fmt	= MEDIA_BUS_FMT_UYVY8_1X16,
+> +		.buf_fmt	= ZYNQMP_DISP_AV_BUF_LIVE_CONFIG_BPC_8 |
+> +				  ZYNQMP_DISP_AV_BUF_LIVE_CONFIG_FMT_YUV422,
+> +		.sf		= scaling_factors_888,
+> +	}, {
+> +		.bus_fmt	= MEDIA_BUS_FMT_VUY8_1X24,
+> +		.buf_fmt	= ZYNQMP_DISP_AV_BUF_LIVE_CONFIG_BPC_8 |
+> +				  ZYNQMP_DISP_AV_BUF_LIVE_CONFIG_FMT_YUV444,
+> +		.sf		= scaling_factors_888,
+> +	}, {
+> +		.bus_fmt	= MEDIA_BUS_FMT_UYVY10_1X20,
+> +		.buf_fmt	= ZYNQMP_DISP_AV_BUF_LIVE_CONFIG_BPC_10 |
+> +				  ZYNQMP_DISP_AV_BUF_LIVE_CONFIG_FMT_YUV422,
+> +		.sf		= scaling_factors_101010,
+> +	},
+> +};
+> +
+>  static u32 zynqmp_disp_avbuf_read(struct zynqmp_disp *disp, int reg)
+>  {
+>  	return readl(disp->avbuf.base + reg);
+> @@ -883,16 +924,17 @@ zynqmp_disp_layer_find_format(struct zynqmp_disp_layer *layer,
+>  }
+>  
+>  /**
+> - * zynqmp_disp_layer_drm_formats - Return the DRM formats supported by the layer
+> + * zynqmp_disp_layer_formats - Return DRM or media bus formats supported by
+> + * the layer
+>   * @layer: The layer
+>   * @num_formats: Pointer to the returned number of formats
+>   *
+> - * Return: A newly allocated u32 array that stores all the DRM formats
+> + * Return: A newly allocated u32 array that stores all DRM or media bus formats
+>   * supported by the layer. The number of formats in the array is returned
+>   * through the num_formats argument.
+>   */
+> -u32 *zynqmp_disp_layer_drm_formats(struct zynqmp_disp_layer *layer,
+> -				   unsigned int *num_formats)
+> +u32 *zynqmp_disp_layer_formats(struct zynqmp_disp_layer *layer,
+> +			       unsigned int *num_formats)
+>  {
+>  	unsigned int i;
+>  	u32 *formats;
+> @@ -1131,6 +1173,11 @@ static int zynqmp_disp_create_layers(struct zynqmp_disp *disp)
+>  			.num_channels = 1,
+>  		},
+>  	};
+> +	static const struct zynqmp_disp_layer_info live_layer_info = {
+> +		.formats = avbuf_live_fmts,
+> +		.num_formats = ARRAY_SIZE(avbuf_live_fmts),
+> +		.num_channels = 0,
+> +	};
+>  
+>  	unsigned int i;
+>  	int ret;
+> @@ -1140,12 +1187,16 @@ static int zynqmp_disp_create_layers(struct zynqmp_disp *disp)
+>  
+>  		layer->id = i;
+>  		layer->disp = disp;
+> -		layer->info = &layer_info[i];
+>  		/* For now assume dpsub works in either live or non-live mode for both layers.
 
---phI+MIIf734WzXdq
-Content-Type: application/pgp-signature; name="signature.asc"
+While are it, could you please turn this into
 
------BEGIN PGP SIGNATURE-----
+  		/*
+		 * For now assume dpsub works in either live or non-live mode for both layers.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZfjVXwAKCRB4tDGHoIJi
-0oZhAQD+pmOY+P/bz4THs5Dh9jBUlSFieYOnAX0+K/xeZPaoigEAtpb48qbPfE/w
-ORq53TSn9+qiVqYzXqWjizxmSyWJRgw=
-=BACD
------END PGP SIGNATURE-----
+with a blank line just above it ?
 
---phI+MIIf734WzXdq--
+>  		 * Hybrid mode is not supported yet.
+>  		 */
+> -		layer->mode = disp->dpsub->dma_enabled ? ZYNQMP_DPSUB_LAYER_NONLIVE
+> -						       : ZYNQMP_DPSUB_LAYER_LIVE;
+> +		if (disp->dpsub->dma_enabled) {
+> +			layer->mode = ZYNQMP_DPSUB_LAYER_NONLIVE;
+> +			layer->info = &layer_info[i];
+> +		} else {
+> +			layer->mode = ZYNQMP_DPSUB_LAYER_LIVE;
+> +			layer->info = &live_layer_info;
+> +		}
+>  
+>  		ret = zynqmp_disp_layer_request_dma(disp, layer);
+>  		if (ret)
+> diff --git a/drivers/gpu/drm/xlnx/zynqmp_disp.h b/drivers/gpu/drm/xlnx/zynqmp_disp.h
+> index 9b8b202224d9..88c285a12e23 100644
+> --- a/drivers/gpu/drm/xlnx/zynqmp_disp.h
+> +++ b/drivers/gpu/drm/xlnx/zynqmp_disp.h
+> @@ -50,8 +50,8 @@ int zynqmp_disp_setup_clock(struct zynqmp_disp *disp,
+>  void zynqmp_disp_blend_set_global_alpha(struct zynqmp_disp *disp,
+>  					bool enable, u32 alpha);
+>  
+> -u32 *zynqmp_disp_layer_drm_formats(struct zynqmp_disp_layer *layer,
+> -				   unsigned int *num_formats);
+> +u32 *zynqmp_disp_layer_formats(struct zynqmp_disp_layer *layer,
+> +			       unsigned int *num_formats);
+>  void zynqmp_disp_layer_enable(struct zynqmp_disp_layer *layer);
+>  void zynqmp_disp_layer_disable(struct zynqmp_disp_layer *layer);
+>  void zynqmp_disp_layer_set_format(struct zynqmp_disp_layer *layer,
+> diff --git a/drivers/gpu/drm/xlnx/zynqmp_dp.c b/drivers/gpu/drm/xlnx/zynqmp_dp.c
+> index 04b6bcac3b07..a0d169ac48c0 100644
+> --- a/drivers/gpu/drm/xlnx/zynqmp_dp.c
+> +++ b/drivers/gpu/drm/xlnx/zynqmp_dp.c
+> @@ -1568,6 +1568,31 @@ static const struct drm_edid *zynqmp_dp_bridge_edid_read(struct drm_bridge *brid
+>  	return drm_edid_read_ddc(connector, &dp->aux.ddc);
+>  }
+>  
+> +static u32 *
+> +zynqmp_dp_bridge_get_input_bus_fmts(struct drm_bridge *bridge,
+> +				    struct drm_bridge_state *bridge_state,
+> +				    struct drm_crtc_state *crtc_state,
+> +				    struct drm_connector_state *conn_state,
+> +				    u32 output_fmt,
+> +				    unsigned int *num_input_fmts)
+> +{
+> +	struct zynqmp_dp *dp = bridge_to_dp(bridge);
+> +	struct zynqmp_disp_layer *layer;
+> +	enum zynqmp_dpsub_layer_id layer_id;
+> +
+> +	if (dp->dpsub->connected_ports & BIT(ZYNQMP_DPSUB_PORT_LIVE_VIDEO))
+> +		layer_id = ZYNQMP_DPSUB_LAYER_VID;
+> +	else if (dp->dpsub->connected_ports & BIT(ZYNQMP_DPSUB_PORT_LIVE_GFX))
+> +		layer_id = ZYNQMP_DPSUB_LAYER_GFX;
+> +	else {
+> +		*num_input_fmts = 0;
+> +		return NULL;
+> +	}
+
+You need curly braces around all branches if one of them has multiple
+statements.
+
+Given that the above pattern is repeated twice already, a helper
+function that returns the layer pointer would be useful. Then you could
+simply write
+
+	layer = ...(dp);
+	if (!layer) {
+		*num_input_fmts = 0;
+		return NULL;
+	}
+
+With these small issues addressed,
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+> +	layer = dp->dpsub->layers[layer_id];
+> +
+> +	return zynqmp_disp_layer_formats(layer, num_input_fmts);
+> +}
+> +
+>  static const struct drm_bridge_funcs zynqmp_dp_bridge_funcs = {
+>  	.attach = zynqmp_dp_bridge_attach,
+>  	.detach = zynqmp_dp_bridge_detach,
+> @@ -1580,6 +1605,7 @@ static const struct drm_bridge_funcs zynqmp_dp_bridge_funcs = {
+>  	.atomic_check = zynqmp_dp_bridge_atomic_check,
+>  	.detect = zynqmp_dp_bridge_detect,
+>  	.edid_read = zynqmp_dp_bridge_edid_read,
+> +	.atomic_get_input_bus_fmts = zynqmp_dp_bridge_get_input_bus_fmts,
+>  };
+>  
+>  /* -----------------------------------------------------------------------------
+> diff --git a/drivers/gpu/drm/xlnx/zynqmp_kms.c b/drivers/gpu/drm/xlnx/zynqmp_kms.c
+> index 43bf416b33d5..bf9fba01df0e 100644
+> --- a/drivers/gpu/drm/xlnx/zynqmp_kms.c
+> +++ b/drivers/gpu/drm/xlnx/zynqmp_kms.c
+> @@ -152,7 +152,7 @@ static int zynqmp_dpsub_create_planes(struct zynqmp_dpsub *dpsub)
+>  		unsigned int num_formats;
+>  		u32 *formats;
+>  
+> -		formats = zynqmp_disp_layer_drm_formats(layer, &num_formats);
+> +		formats = zynqmp_disp_layer_formats(layer, &num_formats);
+>  		if (!formats)
+>  			return -ENOMEM;
+>  
+> 
+
+-- 
+Regards,
+
+Laurent Pinchart
 
