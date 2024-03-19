@@ -1,111 +1,167 @@
-Return-Path: <devicetree+bounces-51504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35FF487F95F
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 09:19:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2D4687F96C
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 09:22:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD2871F21D69
-	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 08:19:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C23CF1C21B24
+	for <lists+devicetree@lfdr.de>; Tue, 19 Mar 2024 08:22:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 988945381D;
-	Tue, 19 Mar 2024 08:19:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vwp5CQdn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 339515B1E3;
+	Tue, 19 Mar 2024 08:21:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6622354773;
-	Tue, 19 Mar 2024 08:19:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 584995916D;
+	Tue, 19 Mar 2024 08:21:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710836350; cv=none; b=Ey9olF5OBYOoFvoS8ttaKHuBKwwflyjEmmr4+TT8f4QKwSrcT+CkNnnaMY1UwI31cONoH2xpT8QxgWR596v66adpqUgVS6tntBN67VbRxLP3P4KsSja4Jwrwq+GMt5eYQI9sYXyc5/rsk8ex94oqIS22FRoPTqi2y1k2Cd9sP/I=
+	t=1710836497; cv=none; b=QxqtB1rpF7DMurhOWlQ4Cd2tmwb0bjvNJkspS2nDF2rsTMo9gr3c5jq5ss+s84A0ga0MJ6BxwikZ5ri0UNSNwQYTlakqrQXcgfZArxGHU/MAE7OMNQUxlmcywEvYNhclh7utkVgzzAYW7cAq37kl6ByDlAbsc7B6uhk7gqRPZns=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710836350; c=relaxed/simple;
-	bh=3SfmKfgUNOAfWCL6jKlcEf4C3YVN39oYJGMEMbuonRo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UzUxnQxCrogh1tzepPOGfeyvBb81yGW7Z/noVc5c0clnLWApVQHrggvqrVTTZ4HVb61Zh+eVioIGBaUmHUjYPLaG+G3Lejh+mjP4IYa5OzjV4zfFSQGqlC+XcM1Tt786cS9fGcco8NeSFiiyIjhPaw0io4uQw/P/nU8VaWAYo0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vwp5CQdn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C54FEC433F1;
-	Tue, 19 Mar 2024 08:19:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710836350;
-	bh=3SfmKfgUNOAfWCL6jKlcEf4C3YVN39oYJGMEMbuonRo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Vwp5CQdn0MIt9yrPHEn/qNqGQhxuevwB8kuKHo0hf5vB9zBbeR1dBbvQFfba3D5ms
-	 qldO+kjEhp2TzRHDvFXQxfDUVX3+2MfeNT9p12orWYvhYGqXGvxZgac4oTTlaos32r
-	 Y2lt0/aPq4w0UKk0cdENv5BA6aZ9TZ8CxBTQ7QVBYhj8rZ+nEnqRMr3WY9xT1vwkBD
-	 8Bml0CbA/0KVQw7dlNSF0IjGdYFiEqP0yk8ddXTy0OgmBuCxqXrBYPnXwQEhCIRRDU
-	 DCO4pwCfa8Wq5NILweaQshURhPwib4yxlUOaU/+kGrMm20KDt7ZfNc9wSsvZNdt7UK
-	 ixNOpk2nFNMhg==
-Date: Tue, 19 Mar 2024 08:19:04 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Ziv Xu <ziv.xu@starfivetech.com>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Walker Chen <walker.chen@starfivetech.com>,
-	Xingyu Wu <xingyu.wu@starfivetech.com>,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v9 2/3] clocksource: Add JH7110 timer driver
-Message-ID: <20240319-vivacious-anointer-cf790d8852c1@spud>
-References: <20240318030649.10413-1-ziv.xu@starfivetech.com>
- <20240318030649.10413-3-ziv.xu@starfivetech.com>
+	s=arc-20240116; t=1710836497; c=relaxed/simple;
+	bh=1l+VsDLetr19MqFbcaBSq5IeLD1NWkokl+Ro9XgvyMk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=UFiRYVrJDuVtWkuPcfX+oU6y1MzvcoAeZNag4X5ONICPKzh5arQXQ5rvvzwQCN4xsXi027mJqFktMfUwFDO6bs2CKj3uMpAbEX56RAmM0xfcvMY+ATrnZ7D9IT86VIFgeKhDsSf69lQMWrgAP750IjdadImDqom4n7GlXT79Qjs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-609fb0450d8so55705947b3.0;
+        Tue, 19 Mar 2024 01:21:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710836494; x=1711441294;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Sk6uoSSGwlcUK6y2ntn66lixyi761tGP06lmI4gJ/mE=;
+        b=WY7wiYr6FB1X2gKhM+LxjJSXrQU6RoUuMU1PnQYRLyCEqeMUZvKxsde9YNy6A6tMhq
+         g0cAKoAC3aMuoS47vhbumLOXzpYYgccKWLRvOSG7LsdFgllMJp7DqR1jPPcMN/KzChAh
+         gQR7nIsZh3mbfJk+2yWMq3/KSD6cynnnf082lmFNA0cPXJm72seus6QtxG7mwKVA/tsK
+         Tz+uUEhiqc7Mz7Sv6XwVJSgSsEQIKBv+DUQUXt+OU31jsoyg55np5CEL05jzsI6UbVRE
+         tpp5bA/bKD1kYIQEv1MehBE22otKB9QsZEHc+w590Kr9ifVSjzld1rtlJd3eiDJtIIjV
+         W4+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUIow7+fTqvaGD9GmJmUTCqsoylyn2MJwvaMBh0/wQclBjfpTWqtGRqu68k6ZM4wVk2pevuaiSVojlkMHzWCJy4f1mrGbtpbUyLsmF5LYnRmugKrQyKOV3hVEUdGn2/Q3pMZaC7d3IdODKYK6Akk5SmNPn3Nciib3i9GLzB270YscCWPl2ib8HWqXem3mWTV4BoGVxWZYVvRDVW11nXIHECasZ5R+du4GZ2
+X-Gm-Message-State: AOJu0YxQM24v1uD7kiuzjUSmTW8qtcTU07T4GixWHJ3gP6BJKittGPCF
+	XzeGElbdQC3YE3rjGOHuRPlFbmCoR4KarUjQOh/FZ3KD0PDq78yR6VwjPY6kauY=
+X-Google-Smtp-Source: AGHT+IGbqEnN9U4PLxGxrJsILv2O2f+wvA0LyA3SOdihrpg449tLji2C99MseNcFTbS1lty6KtkVmA==
+X-Received: by 2002:a81:7185:0:b0:609:fd5f:bcf4 with SMTP id m127-20020a817185000000b00609fd5fbcf4mr2023577ywc.24.1710836494019;
+        Tue, 19 Mar 2024 01:21:34 -0700 (PDT)
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com. [209.85.128.169])
+        by smtp.gmail.com with ESMTPSA id b12-20020a0dd90c000000b0060a5795fde5sm2301743ywe.98.2024.03.19.01.21.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Mar 2024 01:21:20 -0700 (PDT)
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-60a057b6601so51932617b3.2;
+        Tue, 19 Mar 2024 01:21:20 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWCDfms/3cKzJVDkg72tA4hNxeb9UNnMp/pdek+CGyJGk+jN2rE9OO3EN9glDcxBFQOVh5hQhd2ZgUqnt5C5KzHeXWRKLi1fmhT1Utk/1h+2UoBd7VRfGVT9v8HiiPsstWdVjXhkbVe/2ZlT0y5YCmHl0NFDmAsfyMbe07P5D6CJLK8+rAvNAyvqucFMJAtszICfqDxaOUXR+ItD4qszJjlsJrId9GyeVN2
+X-Received: by 2002:a25:e089:0:b0:dc6:c617:7ca with SMTP id
+ x131-20020a25e089000000b00dc6c61707camr1281456ybg.29.1710836480016; Tue, 19
+ Mar 2024 01:21:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="YezK/PMoxPe85t3w"
-Content-Disposition: inline
-In-Reply-To: <20240318030649.10413-3-ziv.xu@starfivetech.com>
+References: <20240318172102.45549-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240318172102.45549-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240318172102.45549-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 19 Mar 2024 09:21:08 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVR=t+QW+kqh3HswJ_8T2Dos381VL8vJvdqiC4RZDRRZw@mail.gmail.com>
+Message-ID: <CAMuHMdVR=t+QW+kqh3HswJ_8T2Dos381VL8vJvdqiC4RZDRRZw@mail.gmail.com>
+Subject: Re: [PATCH v3 4/4] serial: sh-sci: Add support for RZ/V2H(P) SoC
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-serial@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Prabhakar,
 
---YezK/PMoxPe85t3w
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Mon, Mar 18, 2024 at 6:22=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
+om> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add serial support for RZ/V2H(P) SoC with earlycon.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v2 - > v3
+> - new patch
 
-On Mon, Mar 18, 2024 at 11:06:48AM +0800, Ziv Xu wrote:
+Thanks for your patch!
 
-> +static int jh7110_timer_start(struct jh7110_clkevt *clkevt)
-> +{
-> +	int ret;
-> +
-> +	/* Disable and clear interrupt first */
-> +	writel(JH7110_TIMER_INT_DIS, clkevt->base + JH7110_TIMER_INT_MASK);
-> +	ret = jh7110_timer_int_clear(clkevt);
+> --- a/drivers/tty/serial/sh-sci.c
+> +++ b/drivers/tty/serial/sh-sci.c
+> @@ -290,7 +290,7 @@ static const struct sci_port_params sci_port_params[S=
+CIx_NR_REGTYPES] =3D {
+>         },
+>
+>         /*
+> -        * The "SCIFA" that is in RZ/A2, RZ/G2L and RZ/T.
+> +        * The "SCIFA" that is in RZ/A2, RZ/G2L, RZ/T and RZ/V2H.
+>          * It looks like a normal SCIF with FIFO data, but with a
+>          * compressed address space. Also, the break out of interrupts
+>          * are different: ERI/BRI, RXI, TXI, TEI, DRI.
 
-The return value here is not checked/used.
+and RZ/V2H has more interrupts than RZ/A1, RZ/G2L and RZ/T...
 
-> +	writel(JH7110_TIMER_INT_ENA, clkevt->base + JH7110_TIMER_INT_MASK);
-> +	writel(JH7110_TIMER_ENA, clkevt->base + JH7110_TIMER_ENABLE);
-> +
-> +	return 0;
-> +}
+In addition, RZ/V2H does not support synchronous mode (does not matter
+for the driver) and modem control signals.
 
---YezK/PMoxPe85t3w
-Content-Type: application/pgp-signature; name="signature.asc"
+Currently, sci_init_pins() does write ones to the SCPTR bits that are
+reserved and marked as "write zero" on RZ/V2H. I am not sure how bad
+that is.  You could avoid that by adding a check for .hasrtscts, but
+that may have impact on other SoCs/boards, where currently e.g. RTS#
+is always programmed for output and active low...
 
------BEGIN PGP SIGNATURE-----
+So if you really need to avoid writing to these bits, the only safe
+way may be to add a new SCIF type.  But perhaps I'm over-cautious? ;-)
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZflKeAAKCRB4tDGHoIJi
-0iiAAP9eFKT0Wvg9p6zbDBpV0eN1dqOCx6nUB2Ukf5DY1ap3LQEA5MjriVvzPk0/
-gnnyHqu05K8r0itRDk0eHc7kHO+3mws=
-=dyH+
------END PGP SIGNATURE-----
+> @@ -3224,6 +3224,10 @@ static const struct of_device_id of_sci_match[] __=
+maybe_unused =3D {
+>                 .compatible =3D "renesas,scif-r9a07g044",
+>                 .data =3D SCI_OF_DATA(PORT_SCIF, SCIx_RZ_SCIFA_REGTYPE),
+>         },
+> +       {
+> +               .compatible =3D "renesas,scif-r9a09g057",
+> +               .data =3D SCI_OF_DATA(PORT_SCIF, SCIx_RZ_SCIFA_REGTYPE),
+> +       },
+>         /* Family-specific types */
+>         {
+>                 .compatible =3D "renesas,rcar-gen1-scif",
+> @@ -3554,6 +3558,7 @@ OF_EARLYCON_DECLARE(sci, "renesas,sci", sci_early_c=
+onsole_setup);
+>  OF_EARLYCON_DECLARE(scif, "renesas,scif", scif_early_console_setup);
+>  OF_EARLYCON_DECLARE(scif, "renesas,scif-r7s9210", rzscifa_early_console_=
+setup);
+>  OF_EARLYCON_DECLARE(scif, "renesas,scif-r9a07g044", rzscifa_early_consol=
+e_setup);
+> +OF_EARLYCON_DECLARE(scif, "renesas,scif-r9a09g057", rzscifa_early_consol=
+e_setup);
+>  OF_EARLYCON_DECLARE(scifa, "renesas,scifa", scifa_early_console_setup);
+>  OF_EARLYCON_DECLARE(scifb, "renesas,scifb", scifb_early_console_setup);
+>  OF_EARLYCON_DECLARE(hscif, "renesas,hscif", hscif_early_console_setup);
 
---YezK/PMoxPe85t3w--
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
