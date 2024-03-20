@@ -1,129 +1,210 @@
-Return-Path: <devicetree+bounces-51920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6852880F4A
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 11:07:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA15B880F6C
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 11:15:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C37C1B21F9E
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 10:07:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 15BD61C21D74
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 10:15:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8F473D0AD;
-	Wed, 20 Mar 2024 10:07:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="cxAuwV6B"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B1FD3C466;
+	Wed, 20 Mar 2024 10:15:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+Received: from esa2.ltts.com (unknown [14.140.155.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8E493BBDF
-	for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 10:07:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21BBE2A1B2;
+	Wed, 20 Mar 2024 10:15:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=14.140.155.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710929222; cv=none; b=AKBInhRFAdjcr/7CHaFJBDPRQ+ciMYtZuezUr9UcxHsJPgEiVDJeSklyhRQ0oNQsyVlz7HJHp0214qkEo+sKerNhH/0qdL+4i62Hu76BNCvlx+elUl2YN+smakgJA4G6PvR9V0X8bdFuCFOANPVuxZsEpProlSSWU1pXML/rV18=
+	t=1710929726; cv=none; b=AzS8Sm7POeYHjPp2ZMJhWfWMOmGk25ziuYJP1izCnxLF++lCy2gf7544/Ew6N6OoXNVQH45xApJqF7FMcfqwxCgNms4oZJ3L1XWoKc6XIzWq22fW0hjAD4KmUxh544osMNb/9h4+vrNXKf8NhA4uIc2e8ZRqLa8SuxG+wamz/TQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710929222; c=relaxed/simple;
-	bh=8j6Nh4g7pdDIBz086z/2FkNCN/zIx4mqsZTpE9aItDk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EBD5wbm8lOOCjf8AYdydJgf3LrGdKSGZ+fMiVSYB67Bvn5mIyhh3xmV3cEXlnyzSG7H65e6SmPZHpXHklt1TsBncjzOiLof03iqpYMtkZYSgOhfzvLPnGFu2t7GItuqlDZG0tEDiDD6TqS02NUQ0fiUfnmGXSQshvsoFzA8bsNc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=cxAuwV6B; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=8j6N
-	h4g7pdDIBz086z/2FkNCN/zIx4mqsZTpE9aItDk=; b=cxAuwV6BbACjhN/8iu4C
-	9ALL4xWjsG+r3J0kwR/2VIzWFmwAn4dM/C10Rrm+w+ckYOP2VmY17uviW8NyyVLd
-	JIOT9Zy1Y6quLWEFWWDF/utnhrI89X9aWJusQ4vcKQC8aQAiqw1xVCuP+6IhUMGP
-	XwsFnAQPMFuiuo1X1WnL3bOrWeCYKuBux50Jl39eaRVimhK/HMGv4lQww4lMqK6z
-	BfFSVHl9DyJSPNWSJW/QkyJvMS4fCQDbJtFLhUe2pKOTAw5+PYipUltR8BuQWT6Z
-	6ohuafflYfccyP0/+HhMuJ28vUo2yMyJstAGnxzwj3IGL7wf8G2DYaJ1iedsf1Lc
-	tw==
-Received: (qmail 3168159 invoked from network); 20 Mar 2024 11:06:58 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 20 Mar 2024 11:06:58 +0100
-X-UD-Smtp-Session: l3s3148p1@23FNwBQU2rRehhYE
-Date: Wed, 20 Mar 2024 11:06:58 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Chris Brandt <chris.brandt@renesas.com>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v3 4/4] i2c: riic: Add support for R9A09G057 SoC
-Message-ID: <Zfq1QnvnDSC-dNqN@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Chris Brandt <chris.brandt@renesas.com>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20240319132503.80628-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240319132503.80628-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	s=arc-20240116; t=1710929726; c=relaxed/simple;
+	bh=zfDLbqWgOH8d1+adp9RxEyhJRbc2lOUnCC4kwPqZ5qc=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=LseY4B1DSI2HDsGmJvjolHjO3up1hhZe0RzxKRh6ISLGP/NPDKrimwnNCTIEIzVbzSkN7eqzNluqnV1b0rson5F93gvUOpKz0lBndnhoxdun03w6kEqyKKrWYRitXynXllfUQBfIVy1ry4XzBIA0p96Zz9h0Zbrv41jvou5Anpg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ltts.com; spf=pass smtp.mailfrom=ltts.com; arc=none smtp.client-ip=14.140.155.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ltts.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ltts.com
+IronPort-SDR: oQrzJEPhxgP8uSFlXa+okPvyeBYCfJjsBKwDc4F+mjozrIdneuUGtuGjWkX3CLcm3b42JOf9Tz
+ bIziGp9kJiug==
+Received: from unknown (HELO localhost.localdomain) ([192.168.34.55])
+  by esa2.ltts.com with ESMTP; 20 Mar 2024 15:44:07 +0530
+From: Bhargav Raviprakash <bhargav.r@ltts.com>
+To: jpanis@baylibre.com
+Cc: arnd@arndb.de,
+	bhargav.r@ltts.com,
+	broonie@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	eblanc@baylibre.com,
+	gregkh@linuxfoundation.org,
+	kristo@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	lee@kernel.org,
+	lgirdwood@gmail.com,
+	linus.walleij@linaro.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	m.nirmaladevi@ltts.com,
+	nm@ti.com,
+	robh+dt@kernel.org,
+	vigneshr@ti.com
+Subject: Re: [PATCH v3 01/11] mfd: tps6594: Add register definitions for TI TPS65224 PMIC
+Date: Wed, 20 Mar 2024 15:43:54 +0530
+Message-Id: <20240320101354.463936-1-bhargav.r@ltts.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <44295772-4635-42c2-b7b5-cdc37505715e@baylibre.com>
+References: <44295772-4635-42c2-b7b5-cdc37505715e@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ZK1KxQDIhEaW+sSl"
-Content-Disposition: inline
-In-Reply-To: <20240319132503.80628-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Transfer-Encoding: 8bit
 
+Hello,
 
---ZK1KxQDIhEaW+sSl
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Fri, 8 Mar 2024 12:24:40 +0100, Julien wrote:
+> On 3/8/24 11:34, Bhargav Raviprakash wrote:
+> > From: Nirmala Devi Mal Nadar <m.nirmaladevi@ltts.com>
+> >
+> > Extend TPS6594 PMIC register and field definitions to support TPS65224
+> > power management IC.
+> >
+> > TPS65224 is software compatible to TPS6594 and can re-use many of the
+> > same definitions, new definitions are added to support additional
+> > controls available on TPS65224.
+> >
+> > Signed-off-by: Nirmala Devi Mal Nadar <m.nirmaladevi@ltts.com>
+> > Signed-off-by: Bhargav Raviprakash <bhargav.r@ltts.com>
+> > ---
+> >   include/linux/mfd/tps6594.h | 354 ++++++++++++++++++++++++++++++++++--
+> >   1 file changed, 342 insertions(+), 12 deletions(-)
+> 
+> [...]
+> 
+> > +/* IRQs */
+> > +enum tps65224_irqs {
+> > +	/* INT_BUCK register */
+> > +	TPS65224_IRQ_BUCK1_UVOV,
+> > +	TPS65224_IRQ_BUCK2_UVOV,
+> > +	TPS65224_IRQ_BUCK3_UVOV,
+> > +	TPS65224_IRQ_BUCK4_UVOV,
+> > +	/* INT_LDO_VMON register */
+> > +	TPS65224_IRQ_LDO1_UVOV,
+> > +	TPS65224_IRQ_LDO2_UVOV,
+> > +	TPS65224_IRQ_LDO3_UVOV,
+> > +	TPS65224_IRQ_VCCA_UVOV,
+> > +	TPS65224_IRQ_VMON1_UVOV,
+> > +	TPS65224_IRQ_VMON2_UVOV,
+> > +	/* INT_GPIO register */
+> > +	TPS65224_IRQ_GPIO1,
+> > +	TPS65224_IRQ_GPIO2,
+> > +	TPS65224_IRQ_GPIO3,
+> > +	TPS65224_IRQ_GPIO4,
+> > +	TPS65224_IRQ_GPIO5,
+> > +	TPS65224_IRQ_GPIO6,
+> > +	/* INT_STARTUP register */
+> > +	TPS65224_IRQ_VSENSE,
+> > +	TPS65224_IRQ_ENABLE,
+> > +	TPS65224_IRQ_PB_SHORT,
+> > +	TPS65224_IRQ_FSD,
+> > +	TPS65224_IRQ_SOFT_REBOOT,
+> > +	/* INT_MISC register */
+> > +	TPS65224_IRQ_BIST_PASS,
+> > +	TPS65224_IRQ_EXT_CLK,
+> > +	TPS65224_IRQ_REG_UNLOCK,
+> > +	TPS65224_IRQ_TWARN,
+> > +	TPS65224_IRQ_PB_LONG,
+> > +	TPS65224_IRQ_PB_FALL,
+> > +	TPS65224_IRQ_PB_RISE,
+> > +	TPS65224_IRQ_ADC_CONV_READY,
+> > +	/* INT_MODERATE_ERR register */
+> > +	TPS65224_IRQ_TSD_ORD,
+> > +	TPS65224_IRQ_BIST_FAIL,
+> > +	TPS65224_IRQ_REG_CRC_ERR,
+> > +	TPS65224_IRQ_RECOV_CNT,
+> > +	/* INT_SEVERE_ERR register */
+> > +	TPS65224_IRQ_TSD_IMM,
+> > +	TPS65224_IRQ_VCCA_OVP,
+> > +	TPS65224_IRQ_PFSM_ERR,
+> > +	TPS65224_IRQ_BG_XMON,
+> > +	/* INT_FSM_ERR register */
+> > +	TPS65224_IRQ_IMM_SHUTDOWN,
+> > +	TPS65224_IRQ_ORD_SHUTDOWN,
+> > +	TPS65224_IRQ_MCU_PWR_ERR,
+> > +	TPS65224_IRQ_SOC_PWR_ERR,
+> > +	TPS65224_IRQ_COMM_ERR,
+> > +	TPS65224_IRQ_I2C2_ERR,
+> > +	/* INT_ESM register */
+> > +	TPS65224_IRQ_ESM_MCU_PIN,
+> > +	TPS65224_IRQ_ESM_MCU_FAIL,
+> > +	TPS65224_IRQ_ESM_MCU_RST,
+> 
+> You should remove the 3 lines above for ESM_MCU, since there is none
+> linux driver for ESM_MCU.
+> 
+> > +};
+> > +
+> > +#define TPS65224_IRQ_NAME_BUCK1_UVOV		"buck1_uvov"
+> > +#define TPS65224_IRQ_NAME_BUCK2_UVOV		"buck2_uvov"
+> > +#define TPS65224_IRQ_NAME_BUCK3_UVOV		"buck3_uvov"
+> > +#define TPS65224_IRQ_NAME_BUCK4_UVOV		"buck4_uvov"
+> > +#define TPS65224_IRQ_NAME_LDO1_UVOV		"ldo1_uvov"
+> > +#define TPS65224_IRQ_NAME_LDO2_UVOV		"ldo2_uvov"
+> > +#define TPS65224_IRQ_NAME_LDO3_UVOV		"ldo3_uvov"
+> > +#define TPS65224_IRQ_NAME_VCCA_UVOV		"vcca_uvov"
+> > +#define TPS65224_IRQ_NAME_VMON1_UVOV		"vmon1_uvov"
+> > +#define TPS65224_IRQ_NAME_VMON2_UVOV		"vmon2_uvov"
+> > +#define TPS65224_IRQ_NAME_GPIO1			"gpio1"
+> > +#define TPS65224_IRQ_NAME_GPIO2			"gpio2"
+> > +#define TPS65224_IRQ_NAME_GPIO3			"gpio3"
+> > +#define TPS65224_IRQ_NAME_GPIO4			"gpio4"
+> > +#define TPS65224_IRQ_NAME_GPIO5			"gpio5"
+> > +#define TPS65224_IRQ_NAME_GPIO6			"gpio6"
+> > +#define TPS65224_IRQ_NAME_VSENSE	        "vsense"
+> > +#define TPS65224_IRQ_NAME_ENABLE		"enable"
+> > +#define TPS65224_IRQ_NAME_PB_SHORT		"pb_short"
+> > +#define TPS65224_IRQ_NAME_FSD			"fsd"
+> > +#define TPS65224_IRQ_NAME_SOFT_REBOOT		"soft_reboot"
+> > +#define TPS65224_IRQ_NAME_BIST_PASS		"bist_pass"
+> > +#define TPS65224_IRQ_NAME_EXT_CLK		"ext_clk"
+> > +#define TPS65224_IRQ_NAME_REG_UNLOCK		"reg_unlock"
+> > +#define TPS65224_IRQ_NAME_TWARN			"twarn"
+> > +#define TPS65224_IRQ_NAME_PB_LONG		"pb_long"
+> > +#define TPS65224_IRQ_NAME_PB_FALL		"pb_fall"
+> > +#define TPS65224_IRQ_NAME_PB_RISE		"pb_rise"
+> > +#define TPS65224_IRQ_NAME_ADC_CONV_READY	"adc_conv_ready"
+> > +#define TPS65224_IRQ_NAME_TSD_ORD		"tsd_ord"
+> > +#define TPS65224_IRQ_NAME_BIST_FAIL		"bist_fail"
+> > +#define TPS65224_IRQ_NAME_REG_CRC_ERR		"reg_crc_err"
+> > +#define TPS65224_IRQ_NAME_RECOV_CNT		"recov_cnt"
+> > +#define TPS65224_IRQ_NAME_TSD_IMM		"tsd_imm"
+> > +#define TPS65224_IRQ_NAME_VCCA_OVP		"vcca_ovp"
+> > +#define TPS65224_IRQ_NAME_PFSM_ERR		"pfsm_err"
+> > +#define TPS65224_IRQ_NAME_BG_XMON		"bg_xmon"
+> > +#define TPS65224_IRQ_NAME_IMM_SHUTDOWN		"imm_shutdown"
+> > +#define TPS65224_IRQ_NAME_ORD_SHUTDOWN		"ord_shutdown"
+> > +#define TPS65224_IRQ_NAME_MCU_PWR_ERR		"mcu_pwr_err"
+> > +#define TPS65224_IRQ_NAME_SOC_PWR_ERR		"soc_pwr_err"
+> > +#define TPS65224_IRQ_NAME_COMM_ERR		"comm_err"
+> > +#define TPS65224_IRQ_NAME_I2C2_ERR		"i2c2_err"
+> > +#define TPS65224_IRQ_NAME_ESM_MCU_PIN		"esm_mcu_pin"
+> > +#define TPS65224_IRQ_NAME_ESM_MCU_FAIL		"esm_mcu_fail"
+> > +#define TPS65224_IRQ_NAME_ESM_MCU_RST		"esm_mcu_rst"
+> 
+> You should remove the 3 lines above for ESM_MCU.
+> 
+> Julien
 
-On Tue, Mar 19, 2024 at 01:25:03PM +0000, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->=20
-> Extend the RIIC driver to support the RZ/V2H(P) ("R9A09G057") SoC. It
-> accomplishes this by appending the compatible string list and passing
-> the RZ/V2H-specific OF data.
->=20
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Thanks! will get it done in the next version.
 
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-
-
---ZK1KxQDIhEaW+sSl
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmX6tUIACgkQFA3kzBSg
-KbZxqBAAovXefEUa41PTmZtGk+KcS1qeyf1ckCAnwtRk5PjBelWFuMyRF1L81Hm5
-OGAMcq4BXG/MT2ZVbC3x2jdsMgNsalFvTEsy65RKsKMUhi9iRNQhmPHlj4aFStsG
-V2n2BtoGfneLXuFfldqjR6e3pkMVddYG9WXeKGg+jwovxWwu4rOGtFxvhgXlkmqH
-M1sXipwx8lPzGcVZtSfZPgt9g8fXDD9IJRFkmU/0/rgVzAoEsqnsgS1Bs93KNdcc
-0IW55APInnMRwltTNEJ3ek7lj7mgSqIR4ZDAgoL0IFjuc42YrUoXf3VPNOSw9503
-RCxgFDfNTQcTk6uHqJ+OpiwRkZPTSXxSny9BjZhK+j5P6uh43Uokgtzlw/P6yKyH
-oc35P1giZ7sOisndpTr8MubVkQZhYQ3fLzmeuV8HMyaSR/GPBtHjy0TJ0R7fEeWl
-9S7a2Y6bvDzUtaaK0csT8rS2kRqMOHgchfseXZyG7sF/Xauku2PJjoteSHFU47tZ
-Fu9HoJmCLJVfdfsH5DV5+XOZlzN/zWCdp2dXPQrxsQY5Nh4c2qZcHYJ0Sse7z+VJ
-c6L7MkRujb9kL/faV3vQU5jQ4ol0unqKfime+7N1ZD57AOKgLsgy7Oy/4+GSX3sB
-N7XsP0KbG2tBX+kJFIV0mYJ13HZdplO6iBvRFetU1iKWyF9H3ZU=
-=mvW9
------END PGP SIGNATURE-----
-
---ZK1KxQDIhEaW+sSl--
+Regards,
+Bhargav
 
