@@ -1,128 +1,180 @@
-Return-Path: <devicetree+bounces-51872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51871-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27AD2880CBE
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 09:10:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5D27880CBA
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 09:09:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 57DD11C20BFB
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 08:10:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D686281E4E
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 08:09:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8C5A2C68A;
-	Wed, 20 Mar 2024 08:10:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E0B72BD01;
+	Wed, 20 Mar 2024 08:09:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="m0WSIvTe"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bTQGyRx2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BDD12BD1F;
-	Wed, 20 Mar 2024 08:10:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54617374CF
+	for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 08:09:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710922205; cv=none; b=KAp/2oiFzbMxoYMcFFNEhf45X43ia0E4Y63wg7xEK5B2BqGG0mE0yCfwVARnZVQWRitM81fJyJFew+mMvYxu1rmj3UB9Hwr01QaZ1MDue050OQIE5p5gbi2Y61kjo8bnjicLjmzZoL79MW9+6mnMaQwDDUc76McxnlagZbAs4/s=
+	t=1710922149; cv=none; b=PKeqzGNyxuC6dXNdViiRWR0w9BYfoG4DGhbpjkFMDKJJ95ta3yT8qCedlRN97KxNXbm50nRDKzCz/oeA6ZazTtMLlIU4ByDRMrP/FjsRstUSy4V1oeb8cwKnq1s8x9XlgftrXMjGyIc24cLu2zL87AXxhB93WZWXdAy/pzeEvNA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710922205; c=relaxed/simple;
-	bh=AfCnug0umUcdT2gosXp103HrYU4EPJM44slnpZb1jv0=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NuBMF78dpHwYqE2V1r49tOpA7hkyMX0Hv6MITuoaPke5im9CEz+8Zpfh4VAfR1+PrnC8HsFd+FlMfRmIXXlRMo38b3JHh5JrtU2GIuCdVvLr7ztxdgk9Yy6kDAaw6RskS3pnd/OKw97WH944gkxX1LOwkwNV8IrnJYurWLMLVl4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=m0WSIvTe; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1710922203; x=1742458203;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=AfCnug0umUcdT2gosXp103HrYU4EPJM44slnpZb1jv0=;
-  b=m0WSIvTedQOPaYURL9S8f8A2saKfjS5IC1TvRP2OIJvN0xpQFxrC5gJU
-   5OWdkYvcIK6P113s4B1QeoDpHJnkXF1WAv9GrCICahMGprgvKaE9EgFPR
-   HdmZnkcOFC0tfUmIFcmIEm9eIn1OI1BxJYDp27LSfKJI1YJOlaHgyxWou
-   crVLf2LmPMRaWuiCFtVln/L0Ns1AeAlzAUmmqth5uWzmuMoMCpDDMbcml
-   I+LT7d+BhTI5k1m6/Xks6P6Jwxb50dJ5iPJGy11ioWdXz5FtmbSmpMper
-   2pImnr/x2hH0TluwIUzg98q60IO8b1vDDU8VE977rF1/GkG/d3huelDhh
-   g==;
-X-CSE-ConnectionGUID: eZhPXw6WRumqhkMBxQG74g==
-X-CSE-MsgGUID: a6qsqpTMSjOeZ0F7tAolvA==
-X-IronPort-AV: E=Sophos;i="6.07,139,1708412400"; 
-   d="asc'?scan'208";a="18421063"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 20 Mar 2024 01:10:01 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 20 Mar 2024 01:09:31 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Wed, 20 Mar 2024 01:09:27 -0700
-Date: Wed, 20 Mar 2024 08:08:41 +0000
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Conor Dooley <conor@kernel.org>
-CC: Joshua Yeong <joshua.yeong@starfivetech.com>, <paul.walmsley@sifive.com>,
-	<palmer@dabbelt.com>, <aou@eecs.berkeley.edu>, <geert+renesas@glider.be>,
-	<prabhakar.mahadev-lad.rj@bp.renesas.com>, <alexghiti@rivosinc.com>,
-	<evan@rivosinc.com>, <ajones@ventanamicro.com>, <heiko@sntech.de>,
-	<guoren@kernel.org>, <uwu@icenowy.me>, <jszhang@kernel.org>,
-	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <leyfoon.tan@starfivetech.com>,
-	<jeeheng.sia@starfivetech.com>, <linux-riscv@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 0/4] Add StarFive's StarLink-500 Cache Controller
-Message-ID: <20240320-implement-finishing-136eae51d659@wendy>
-References: <20240314061205.26143-1-joshua.yeong@starfivetech.com>
- <20240317-viral-handcraft-12b2519ff1be@spud>
+	s=arc-20240116; t=1710922149; c=relaxed/simple;
+	bh=g6vL1gQBRUvlde/11uEfc6jiem2SF6/e2PYqvB9Y77U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Gdr7mcMSl98pqA37EYNhzmSo18YWHPgUk6HjbkthPg3vZ4j+4J2rFFMo47DbbDNB2pXu5uNit2JXFthat7ny02BgQa6xTTIdif23foH7TfIhHUB7rPMdSCWYEBeIxxOT0Uh2V7oNXZ42CzYue6M2oR8tNx6zY0myqTSIlP03vtc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bTQGyRx2; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a46d9fbb5a5so224460466b.2
+        for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 01:09:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1710922145; x=1711526945; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=ASNi9NWUv9VIlSCO1/SKf1kBYpvLWhcXFFZ8p/fVKCI=;
+        b=bTQGyRx23V704SOooG1CNYh9YKC4yAeor9jJjJa8K3J13BCRWFzYswVdl/xA2aPeJb
+         PdEnkISpJrmodS0JCtfxNHTYRm+FexoFCLvPrrlbEmkjegGPOeHfLDsIV7S+1XmUe67r
+         TmEr0hAur2Mqvf97fPGxmi11pBqQFJkTNxc8EztgvpKmq2rynDXGAATlS4GvtsAJYUxa
+         PuIlpYamNAzeE8zbH9AYwdzfJrIbUA9c8k44QjX5Jaggyw9UJLoA8MCg5EUo+j9aXdhA
+         RLIWPJdeR4QTClEHccFiFw8WO5TAlNusgyLRsVNzfBrRauz3nYXLeHiig8Nas1OFib4U
+         w3OQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710922145; x=1711526945;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ASNi9NWUv9VIlSCO1/SKf1kBYpvLWhcXFFZ8p/fVKCI=;
+        b=GeAiUaFYTxD/d9y3k5dnh91BQ2SFxHQ4gIrB6V01tOJYaJK9jV16J9752fvdpHiBk5
+         V/rIwBy+pu/lfATob78LqECfwP0T5IQlTCiu2rST2jpexZAIVUP8Tj0wZX+keF2xC8OX
+         uzkHQnJ5Qfbr0omsn3fetu5GCWL/9FfX+nvIKAaJrgpgY7FZ9TMNGIUZCJ7DZ6U9s9fY
+         bApM7AjX20LBE3TffGisQ70aUtXztTOdP4blJpHpFjn2VJG7QloRed6cpA9z61VtCVQc
+         sgonNRkxATKmJWpvLuJTEPEBOx2I7LwLGr+8sTf46Ari+w+GEdMjvKJWEwpITFr/5kKW
+         9orw==
+X-Forwarded-Encrypted: i=1; AJvYcCWP3SNxbANeb9evtfKl+2AGIx8KZrHDS35LXsKIa6OEm2/hzomKDJe+tSp+M80rBad1o0oAeiMkUyH0tVzr8b/uA7tepsGWR/PgKg==
+X-Gm-Message-State: AOJu0Yz1b4ICx+H4/nXtQl2CCq0BGKheCBTwagCQf/9I7xzFrpLQpF6R
+	cxnxqGnGvyzFWNE6Qx2mOvqJv3iidrJqtnEvyL7njkLk6KtTsr0QVwEYcPucAy4=
+X-Google-Smtp-Source: AGHT+IHzLz/YDC6wvNDvpXxhSlIQNsL5c/APZk2tA36UUOOq9RLOFN0hyiFZSdZBuyE5sXQ9isMB3w==
+X-Received: by 2002:a17:906:1796:b0:a46:baa8:6cea with SMTP id t22-20020a170906179600b00a46baa86ceamr3287708eje.10.1710922145614;
+        Wed, 20 Mar 2024 01:09:05 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id ap2-20020a17090735c200b00a46c1dd36f0sm3065788ejc.173.2024.03.20.01.09.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Mar 2024 01:09:05 -0700 (PDT)
+Message-ID: <9b475e13-96b9-4bce-8041-e0d8e5a332a1@linaro.org>
+Date: Wed, 20 Mar 2024 09:09:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="iOmun+xjPn985xOw"
-Content-Disposition: inline
-In-Reply-To: <20240317-viral-handcraft-12b2519ff1be@spud>
+User-Agent: Mozilla Thunderbird
+Subject: Re: (subset) [PATCH v4 0/5] arm64: dts: qcom: sc8280xp: PCIe fixes
+ and GICv3 ITS enable
+To: Johan Hovold <johan@kernel.org>, Bjorn Andersson <andersson@kernel.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+ Johan Hovold <johan+linaro@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240306095651.4551-1-johan+linaro@kernel.org>
+ <171081652637.198276.6219023769904423414.b4-ty@kernel.org>
+ <Zfk98hYPn7kiFGkt@hovoldconsulting.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <Zfk98hYPn7kiFGkt@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
---iOmun+xjPn985xOw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 19/03/2024 08:25, Johan Hovold wrote:
+> On Mon, Mar 18, 2024 at 09:48:30PM -0500, Bjorn Andersson wrote:
+>>
+>> On Wed, 06 Mar 2024 10:56:46 +0100, Johan Hovold wrote:
+>>> This series addresses a few problems with the sc8280xp PCIe
+>>> implementation.
+>>>
+>>> The DWC PCIe controller can either use its internal MSI controller or an
+>>> external one such as the GICv3 ITS. Enabling the latter allows for
+>>> assigning affinity to individual interrupts, but results in a large
+>>> amount of Correctable Errors being logged on both the Lenovo ThinkPad
+>>> X13s and the sc8280xp-crd reference design.
+>>>
+>>> [...]
+>>
+>> Applied, thanks!
+>>
+>> [4/5] arm64: dts: qcom: sc8280xp: add missing PCIe minimum OPP
+>>       commit: 2b621971554a94094cf489314dc1c2b65401965c
+> 
+> I noticed that you applied both of these for 6.10, but this one is a fix
+> that should go into 6.9.
 
-On Sun, Mar 17, 2024 at 03:01:05PM +0000, Conor Dooley wrote:
-> On Thu, Mar 14, 2024 at 02:12:01PM +0800, Joshua Yeong wrote:
-> > StarFive's StarLink-500 Cache Controller flush/invalidates cache using =
-non-
-> > conventional CMO method. This driver provides the cache handling on Sta=
-rFive
-> > RISC-V SoC.
->=20
-> Unlike the other "non-conventional" CMO methods, the jh8100 does not
-> pre-date the Zicbom extension. Why has that not been implemented?
+Well, mixing fixes for different cycles in one patchset was always
+discouraged. In case of some subsystems you would receive clear
+response, that you must split fixes out of the patchset.
 
-Stefan pointed out on IRC yesterday that one of the main selling points
-is the ease of operating on large ranges.
+Fixes being first in the patchset would be probably accepted by the rest
+of subsystems, but putting it in the middle of the patchset is wrong.
 
-> How many peripherals on the jh8100 rely on non-coherent DMA?
->=20
-> Cheers,
-> Conor.
+Best regards,
+Krzysztof
 
-
-
---iOmun+xjPn985xOw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZfqZiQAKCRB4tDGHoIJi
-0qMDAP9sOBXZWhcjt6+UQcqMAdgYDyQ/d+HtGVH8VPq7D6wuPwEAuJxliBsHfezS
-RtGYM/iDUAlOd2eP7RPVi3PWvojxogk=
-=Su/2
------END PGP SIGNATURE-----
-
---iOmun+xjPn985xOw--
 
