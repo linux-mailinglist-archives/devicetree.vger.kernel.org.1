@@ -1,110 +1,132 @@
-Return-Path: <devicetree+bounces-52021-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52022-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 869FF88178F
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 19:52:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A55DA8817A0
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 20:08:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B7BF91C21469
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 18:52:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 412291F22E68
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 19:08:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4661C85632;
-	Wed, 20 Mar 2024 18:51:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B853A85632;
+	Wed, 20 Mar 2024 19:08:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tJgEulWZ"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="eA/c20Zf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D0EB8529D;
-	Wed, 20 Mar 2024 18:51:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E19DF85620;
+	Wed, 20 Mar 2024 19:08:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710960719; cv=none; b=htLVzJFNe4nBh6z4oAtYOXrCoI5KtKaO4ZiEALFEqwPhy/lkmnNEjMeejp2R/z2+OOzelGGx69c9WYdoZgUPabpIs4628ew9Wrl6Zp1wRQerNVPoSImIW22Z1It2/cBq++5XdfVrTi4rUu5T7sYBNMkeDR9ZGo4L6OorM9p+U3o=
+	t=1710961719; cv=none; b=YS9t1wSf/Rj51jfvhSSi9r8MMVvcz35PR+sZcmt3Qczel5X4zfhVvkufa4cJJTdXifflcTbUl9gzDklxtvtjC9fRb+k0gjQoMmn7wTOhZZoQSBiNuwu6ltZSjjg104w7JtkYAgAiqcnSukSxtKbf6oMmb0h97rM3mHXqCBsD4Rc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710960719; c=relaxed/simple;
-	bh=d6TEWqNHGarTNFqrsWL72liC44WwQujen/XgSqv+mE4=;
+	s=arc-20240116; t=1710961719; c=relaxed/simple;
+	bh=RlLArVdNVxnX+9lojlX/66x+328N/NvGFFfTG53lmyI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Gnrb5RmmeEJer5LCms291FlMmjd4weFHBEA9kTrZuqnj60mwytw7mci172ceq4aPnl1fp23cQXgx6GpD5yoa99tFKRExIlR2Ue8tQUx92IiJqMDFBAJ1SDe1vIpOUWSrHwqGOa912Kc4+kLzGnmS2wJjdHAOw4A5CkySU6bMFgM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tJgEulWZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3383AC433C7;
-	Wed, 20 Mar 2024 18:51:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710960718;
-	bh=d6TEWqNHGarTNFqrsWL72liC44WwQujen/XgSqv+mE4=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=Sj53JVNrEl5baZAOtSZKnnaLUpvIZGHq/GboHJz10P6p1Bt8gaBIIgAceNp9yWZi2qIapoiAu8DZ12HY9PRQ+TaVyG5Rai3VGWycPmbAZgpbhqk97Wnr5eIFkR8RTEQDVk+tbe5BMOMXf+Kcb1UGDQd5xqsnQTnwjp3KnENZVuY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=eA/c20Zf; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1710961716;
+	bh=RlLArVdNVxnX+9lojlX/66x+328N/NvGFFfTG53lmyI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tJgEulWZb6a9Mxsm87VZj70L5vi/qsM07l8UWwwHVxy601XWOo1CL64DxxjXBM8eS
-	 iRHp+MgvuzrIojxYqpRWJorzS2mkyGPklEIQNbir5ZfwMiEXpUqvwF7+sMS5jukW+J
-	 WXA6qqWF2f6gloX+W6AgF2BSf4StcZeg50qhA9ruELpijdc7QmVFngiCIlQBrgoX/l
-	 n6oqoLsQQsPa1ulDvjIDDz09b5xV5x8ap+d5+t+GsdNajB/eDvjjOo04zLcORmFBP7
-	 0GHbvASk59MiKYEiBAP8PSI0+DRQIkyV6waMfPGVrRNAm0lIeq8cuOsx+y1sqfN27l
-	 bgSpcDiCedT4w==
-Date: Wed, 20 Mar 2024 18:51:54 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Yangyu Chen <cyy@cyyself.name>
-Cc: Conor Dooley <conor.dooley@microchip.com>, Guo Ren <guoren@kernel.org>,
-	linux-riscv@lists.infradead.org,
-	Damien Le Moal <dlemoal@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
+	b=eA/c20ZfNzyBlrCt0ItE+VzA7h+YQln+eiMR/Lu8qNlqE7EkkDDrmwUsm9nr31mRD
+	 Id6Nvhmj/OI4anXOgyJQ0fxjvvXtm7HBy3sY2RId+XA9kFMnmIIsqJB1ilXOBfs14P
+	 akR5YsIJKORrpZNTDdJOJhH5iDPLdl+ACUu9139pNaDvkHMhukmBxopKwz8BtBnbO8
+	 VcEQsaTstLR+qtobFAGPC+LAU4Bbw6p1ZrHYqr1hBPl035ronnaw1e07G4L5pLXgkB
+	 xSsHDuv5dIWVjYs9eMLHmva3tKQxTR9bvL0kuaginxIQHrXOE0aKaZMI9M8tPtxta1
+	 VOTIzaNJs3SDg==
+Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nfraprado)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 3713D3780BFE;
+	Wed, 20 Mar 2024 19:08:32 +0000 (UTC)
+Date: Wed, 20 Mar 2024 15:08:07 -0400
+From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 5/7] riscv: Kconfig.socs: Split ARCH_CANAAN and
- SOC_CANAAN_K210
-Message-ID: <20240320-harmful-carpenter-40a7de0f273e@spud>
-References: <tencent_FC10B3C630BE27412FED2547245CBE18D807@qq.com>
- <tencent_6F35FEF31908DE6AEB385AE30AC658863C0A@qq.com>
- <CAJF2gTS1-VQP=gQBx=SoUWsdap153EGOObKVn+2L7=kbP2CqFg@mail.gmail.com>
- <20240306-scowling-mortify-9b427c80e8ab@wendy>
- <tencent_91E604E3B4D51DA37045625242A81B07F909@qq.com>
- <20240320-ideology-pasty-d3aea07cc519@spud>
+	Conor Dooley <conor+dt@kernel.org>,
+	Thara Gopinath <thara.gopinath@gmail.com>,
+	Amit Kucheria <amitk@kernel.org>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	stable@vger.kernel.org, Loic Poulain <loic.poulain@linaro.org>
+Subject: Re: [PATCH v2 0/3] QCM2290 LMH
+Message-ID: <d8ed4e6c-549f-4c04-b38a-2d788df8b707@notapiano>
+References: <20240308-topic-rb1_lmh-v2-0-bac3914b0fe3@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="yFaj5iez9WvDhwVq"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20240320-ideology-pasty-d3aea07cc519@spud>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240308-topic-rb1_lmh-v2-0-bac3914b0fe3@linaro.org>
 
+On Sat, Mar 09, 2024 at 02:15:01PM +0100, Konrad Dybcio wrote:
+> Wire up LMH on QCM2290 and fix a bad bug while at it.
+> 
+> P1-2 for thermal, P3 for qcom
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+> Changes in v2:
+> - Pick up tags
+> - Fix a couple typos in commit messages
+> - Drop stray msm8998 binding addition
+> - Link to v1: https://lore.kernel.org/r/20240308-topic-rb1_lmh-v1-0-50c60ffe1130@linaro.org
+> 
+> ---
+> Konrad Dybcio (2):
+>       dt-bindings: thermal: lmh: Add QCM2290 compatible
+>       thermal: qcom: lmh: Check for SCM availability at probe
+> 
+> Loic Poulain (1):
+>       arm64: dts: qcom: qcm2290: Add LMH node
+> 
+>  Documentation/devicetree/bindings/thermal/qcom-lmh.yaml | 12 ++++++++----
+>  arch/arm64/boot/dts/qcom/qcm2290.dtsi                   | 14 +++++++++++++-
+>  drivers/thermal/qcom/lmh.c                              |  3 +++
+>  3 files changed, 24 insertions(+), 5 deletions(-)
 
---yFaj5iez9WvDhwVq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Hi,
 
-On Wed, Mar 20, 2024 at 05:39:14PM +0000, Conor Dooley wrote:
+I've started tracking the results of 'make dtbs_check' on linux-next, and I've
+noticed that on today's next, next-20240320, there's a new warning coming from
+this. The reason is that the DT change has landed, but the binding has not,
+since it goes through a separate tree. I thought the binding was supposed to
+always land before the driver and DT that make use of it, but looking through
+the dt-binding documentation pages I couldn't find anything confirming or
+denying that.
 
-> I got a k230 board (the canmv one) so I should be able to test this
-> myself before picking stuff up.
+I expect this to happen again in the future, which is why I'm reaching out to
+understand better how to deal with this kind of situation.
 
-I've taken a bit of a look at the "sdk" and appears to be a complete
-mess to a non-chinese speaker like me.
-I know you linked a copy of opensbi to use with this, but do you also
-have a version of U-Boot to use with this that is not riddled with
-crap and will compile with a normal toolchain?
+Thanks,
+Nícolas
 
-I have chanced upon Courmisch's repo that looks significantly more
-usable than whatever Canaan have so I guess I will use that:
-https://code.videolan.org/Courmisch/k230-boot
-
-:)
-
---yFaj5iez9WvDhwVq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZfswSQAKCRB4tDGHoIJi
-0qlkAQC7FRjew00zC3r7BNoqFE00Z9wOqBZuIoF6dxLOsByqkwD+K9VLMOVa85Yz
-5lMzqwe7/O9GkMdlnk6wso/HM0S7Kw8=
-=jLB8
------END PGP SIGNATURE-----
-
---yFaj5iez9WvDhwVq--
+> ---
+> base-commit: 8ffc8b1bbd505e27e2c8439d326b6059c906c9dd
+> change-id: 20240308-topic-rb1_lmh-1e0f440c392a
+> 
+> Best regards,
+> -- 
+> Konrad Dybcio <konrad.dybcio@linaro.org>
+> 
 
