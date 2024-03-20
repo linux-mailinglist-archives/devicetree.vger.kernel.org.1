@@ -1,125 +1,138 @@
-Return-Path: <devicetree+bounces-52039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52040-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5B22881A17
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 00:09:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09F6F881A28
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 00:27:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 955E12837D2
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 23:09:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9CEFF1F21FC6
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 23:27:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA54E86122;
-	Wed, 20 Mar 2024 23:09:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F9BF8624D;
+	Wed, 20 Mar 2024 23:27:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wtnlTsix"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="i2cfZ1FE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D38C285C58
-	for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 23:08:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7FB58624B
+	for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 23:27:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710976140; cv=none; b=EbE/oTtbLAc/Hyn1H+cA7+dA2iVlN1lYhKfNTT1xDceKEwTt+Zgncg9GRYCcCkzn4GdTx+rn9lv5OOKWOfcsktMnzNKbmrMbKhB4AF4XnhqtJ2jWvLIOxgTXS3VviiHBVIc3cPJ2t2Pom+KfEL4jprta3mcazW0blnoKdmXxkaI=
+	t=1710977237; cv=none; b=ujM6YwNKEsFooGst4qRCpdi/uaAwCIF/jMhByVkUuT05bFjC3tXgb4+EMF9EXt5KcqjVcjF2Fv9aD48ZQ8ux0UmaTUiVxz2Lgaowg23Cn2ii/W7B5q4oU9u8BsGAe2kDUOM2KK5iDV5zf/XoKTH+K8jogYSsZekvry6PuCaL61Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710976140; c=relaxed/simple;
-	bh=wEitcMtU69ELTQ6HFUAJtJm8A18kUQS1wB/GUBQBwI4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MRbdih2nxkoXhc991LJb6Ck3P4nqQE+FPHFkyDZ45dZHJA6w8nqnLUKrHyIQKvzPWBX4ky+JQ6C94ICW9drdIN4YZtgzT/kNjdBIXcSW4rpQIs21nS/DJa0PCaEcTrfpEvv0CtOxRi8YNXmQ3DRNSD2KnS1WYNX6ocWsTSFGbdI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wtnlTsix; arc=none smtp.client-ip=209.85.208.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2d4801ea689so1028481fa.0
-        for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 16:08:58 -0700 (PDT)
+	s=arc-20240116; t=1710977237; c=relaxed/simple;
+	bh=LEtK8/Irn1SeDDdEPxmXnIY2M7EQZz0VFSkinrgsrwQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CcXCI2QfkzLdrkuRCX9Y+Tgz+7McSqvosbnXajVScqipyjxD48pQTYJk7+iXjeeq2aUKQLeYbXGg6gCO4upCuOb3J91YF+WvY2YeQGAFBZSd3Tz7xDyqiiNRqyX9U5CE4pO9sudi58ylvboXl0l99qsVpD6DSZOC2y2J70SLUFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=i2cfZ1FE; arc=none smtp.client-ip=209.85.219.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-dc74435c428so331952276.2
+        for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 16:27:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710976137; x=1711580937; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IkXn2l9aQZGCQHALJx17Ml36xPwVxX2TSWrjLHWJzFk=;
-        b=wtnlTsixQ64fAnB5ADKJxhH89+rsYZIPpYp9XtwjJ6FRckH39iNaShQD9RbsqAvcbX
-         +qAMDGacbSSriXNZ1zT0XFptmilwmlhpn37OX8ZUU57+een8eqBu943FFmczZaw45Iub
-         sqSvQFgs98JrLma8+UCiZzOvwTnG9Dug1qh8tNT8e1MSptv+AMrUMZwyyGCXO6xPJ2tG
-         QL5AvWqX3oKaFKw7Z3ARA+Z9H94d4L/lgH8802OBhl87piOIu8XF+K/n1lTXUutBPzYg
-         f7W00tD3icjlCjwyGsmbaImqU35yuXbriuspn+i+QgsclTzhabB18cv01Xq8AqEfWpYK
-         SrQA==
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1710977234; x=1711582034; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=q6wHVvQOpEVBe9GN/RDfS0/7UHobpz6yHjFxam80y4A=;
+        b=i2cfZ1FErcW8hCzBGKpd9pYxgNJhFAwgd/1gylI00ZqWOPtatYoERChojvyPGaJUDJ
+         KORISgCBpbhzHikyJbc1IYBkxzBQ8BcO/mlXlnFkLlyggMgK8T7skSAYuwg9fZyaAnAo
+         s8SFdjh3MXJstRfqjYWLHEwqc2XZ9wGNANTFdEMPN5G/P1Yt/q+zBSttQ8adsnRMn9Yp
+         Df0+e6IFyIYn/3aU6EacXIt/FBgjfm1L8nMYFlHi02fz7A+GVqqikkCi95hzqxpQDp04
+         V66A7Cuqsq8WVYyUKBHl0SI9YmnNj41eO7I1Mi+lNsVVgo3bmmFW+lyhNMrLzVqLS8fb
+         QSFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710976137; x=1711580937;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IkXn2l9aQZGCQHALJx17Ml36xPwVxX2TSWrjLHWJzFk=;
-        b=As1COl/hpKzoXUBoVwlHzZ3q9R4ioQLLfiXZ7P6nuRRYBLiKHETV57vIRFg1392r1+
-         FlbzvR8DFMLs0EoPHdVtBewAUQBz1DMzkz/4gMovJBinbHUMtlqeTi97EHI2BSQ02j5O
-         qTKpqT//3/3jUTj58ZlLbBZknSHPqSJyKdpm4Wk2J+Yj79cjo+ZYZ6paxGR+rkS5chkO
-         2mJ7mCdfQGt+rc6CBDNdY7SbFR0rq7CffQOOzeRJi9DYVBQFdUR5c575V6Nh4qF8RBG7
-         xBVmeI6LRrdqYHmFUktWQn6sv/MV7DqA/zCIeHJ+fWk9I3IeULQ9q+k6gdeGKG5hJtvD
-         DPDw==
-X-Forwarded-Encrypted: i=1; AJvYcCUgPMZZ2jzd9tgavN+V+2Ac9VfSUwUsm0Uc8fhMLRwX4HZMcClsxJxUK06bkp6bnQB6NLmCOCo99ms9FiDSCxZzN1iZZuhq0dqjKQ==
-X-Gm-Message-State: AOJu0YwwG02jV07UWFJ/ZKXD80ydTvzxF6Ws2h0+LZpEXip6Okoch3JI
-	8qL/0MHadz4A/ZD+yUhmmXQvddCO3fTCsL1hhI2SRx2IGJcFSq7Jyft+VdHl9ZM=
-X-Google-Smtp-Source: AGHT+IH4oiswGEj49f2wWDyVtL3HMN3AVR4jZcyvrpnyiJp+ismyJGeVgL2Opz5yeSH2QEe/aSfmeQ==
-X-Received: by 2002:a05:651c:1068:b0:2d6:93fa:ce20 with SMTP id y8-20020a05651c106800b002d693face20mr1646812ljm.0.1710976136987;
-        Wed, 20 Mar 2024 16:08:56 -0700 (PDT)
-Received: from [192.168.1.102] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id e7-20020a05651c038700b002d4aa0bcf15sm1181328ljp.71.2024.03.20.16.08.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Mar 2024 16:08:55 -0700 (PDT)
-Message-ID: <65c8614e-d54a-42bb-923c-1c2bfc1d3bc1@linaro.org>
-Date: Thu, 21 Mar 2024 01:08:45 +0200
+        d=1e100.net; s=20230601; t=1710977234; x=1711582034;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=q6wHVvQOpEVBe9GN/RDfS0/7UHobpz6yHjFxam80y4A=;
+        b=ltTFiKSVNkoEuEiQimg90a6xlErgI9JCPD8XRH40U9QF36FWHoKmfCH3F3ypPD5k+N
+         bl/+V1Qjz4jLOhFLn1dQbT/e58NoxTLfJMffZbJ4DaI/6k57BLzRX4OR1S26pOyAaw6r
+         PER/begvCTyLuH2mJB7iRHturSWB+Q+VHXiRAD5X3B+YPMYTlypz04PeQDUlCensEuYZ
+         bLSD6LKpR7+JU+FKueFHsauAUlqVRFUO0kQ0t4O30y0928rVHUivUQMtc9DqAJJlLj0y
+         5+Oy1pI2PP8N5rXsKKEU7gQWC31gILh8H1bjZluiT09HA21yNYAqCcXWL7WeNEZMvheM
+         BSzg==
+X-Forwarded-Encrypted: i=1; AJvYcCWdR+Wcpe3wBGDWevhYOmGlKqAddrYIfEh9ogwKwo7wRJBmon/a5AbYAyYjnw+hGQeeGbOSSeqL2rOYkolO9R+pPZglVVv5PHI9NA==
+X-Gm-Message-State: AOJu0Ywd0D+ygcu1w4EF+vsFKTrbYpK9+5evFgOw1JepRCbqH5eY99Qt
+	mEVZMnBtrp0hlRx9LntjtvMgdAd3XdyI/UzlFEDOH10B+oDIYHpHNxzbuUf7HmHN4RrA2rbaQWi
+	ufy+Qel4vdRRpvtzIWuzEzsAy3BZEnIG57B1SGw==
+X-Google-Smtp-Source: AGHT+IHMZiJ7GkUOJyGqjV4avkqTTAvlzqr7ytyomStzfgostSKHBO29LXnvCAgrpDc5T+ElSP6cMdrouh2QdUXOToE=
+X-Received: by 2002:a25:b847:0:b0:dc6:da83:88e6 with SMTP id
+ b7-20020a25b847000000b00dc6da8388e6mr3262598ybm.32.1710977234540; Wed, 20 Mar
+ 2024 16:27:14 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] arch: arm64: dts: sm8650-hdk: add support for the
- Display Card overlay
-Content-Language: en-US
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240318-topic-sm8650-upstream-hdk-v2-0-b63a5d45a784@linaro.org>
- <20240318-topic-sm8650-upstream-hdk-v2-3-b63a5d45a784@linaro.org>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20240318-topic-sm8650-upstream-hdk-v2-3-b63a5d45a784@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240319215915.832127-1-samuel.holland@sifive.com>
+ <20240319215915.832127-6-samuel.holland@sifive.com> <CAKC1njSg9-hJo6hibcM9a-=FUmMWyR39QUYqQ1uwiWhpBZQb9A@mail.gmail.com>
+ <40ab1ce5-8700-4a63-b182-1e864f6c9225@sifive.com> <17BE5F38AFE245E5.29196@lists.riscv.org>
+In-Reply-To: <17BE5F38AFE245E5.29196@lists.riscv.org>
+From: Deepak Gupta <debug@rivosinc.com>
+Date: Wed, 20 Mar 2024 16:27:03 -0700
+Message-ID: <CAKC1njTnheUHs44qUE2sTdr4N=pwUiOc2H1VEMYzYM84JMwe9w@mail.gmail.com>
+Subject: Re: [RISC-V] [tech-j-ext] [RFC PATCH 5/9] riscv: Split per-CPU and
+ per-thread envcfg bits
+To: debug@rivosinc.com
+Cc: Samuel Holland <samuel.holland@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	Catalin Marinas <catalin.marinas@arm.com>, linux-kernel@vger.kernel.org, 
+	tech-j-ext@lists.risc-v.org, Conor Dooley <conor@kernel.org>, kasan-dev@googlegroups.com, 
+	Evgenii Stepanov <eugenis@google.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Andrew Jones <ajones@ventanamicro.com>, Guo Ren <guoren@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Paul Walmsley <paul.walmsley@sifive.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Neil,
+> > >
+> > > And instead of context switching in `_switch_to`,
+> > > In `entry.S` pick up `envcfg` from `thread_info` and write it into CSR.
+> >
+> > The immediate reason is that writing envcfg in ret_from_exception() adds cycles
+> > to every IRQ and system call exit, even though most of them will not change the
+> > envcfg value. This is especially the case when returning from an IRQ/exception
+> > back to S-mode, since envcfg has zero effect there.
+> >
+> > The CSRs that are read/written in entry.S are generally those where the value
+> > can be updated by hardware, as part of taking an exception. But envcfg never
+> > changes on its own. The kernel knows exactly when its value will change, and
+> > those places are:
+> >
+> >  1) Task switch, i.e. switch_to()
+> >  2) execve(), i.e. start_thread() or flush_thread()
+> >  3) A system call that specifically affects a feature controlled by envcfg
+>
+> Yeah I was optimizing for a single place to write instead of
+> sprinkling at multiple places.
+> But I see your argument. That's fine.
+>
 
-On 3/18/24 11:51, Neil Armstrong wrote:
-> With the SM8650-HDK, a Display Card kit can be connected to provide
-> a VTDR6130 display with Goodix Berlin Touch controller.
-> 
-> In order to route the DSI lanes to the connector for the Display
-> Card kit, a switch must be changed on the board.
-> 
-> The HDMI nodes are disabled since the DSI lanes are shared with
-> the DSI to HDMI transceiver.
-> 
-> Add support for this card as an overlay and apply it it at
-> build-time to the sm8650-hdk dtb.
-> 
-> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
+Because this is RFC and we are discussing it. I thought a little bit
+more about this.
 
-Now I've successfully tested the change on v6.8 with commit 0581bcc48048
-("drm/panel: visionox-vtdr6130: Set prepare_prev_first flag") applied.
+If we were to go with the above approach that essentially requires
+whenever a envcfg bit changes, `sync_envcfg`
+has to be called to reflect the correct value.
 
-Please feel free to add my tag:
+What if some of these features enable/disable are exposed to `ptrace`
+(gdb, etc use cases) for enable/disable.
+How will syncing work then ?
 
-Tested-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+I can see the reasoning behind saving some cycles during trap return.
+But `senvcfg` is not actually a user state, it
+controls the execution environment configuration for user mode. I
+think the best place for this CSR to be written is
+trap return and writing at a single place from a single image on stack
+reduces chances of bugs and errors. And allows
+`senvcfg` features to be exposed to other kernel flows (like `ptrace`)
 
---
-Best wishes,
-Vladimir
+We can figure out ways on how to optimize in trap return path to avoid
+writing it if we entered and exiting on the same
+task.
 
