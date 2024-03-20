@@ -1,313 +1,156 @@
-Return-Path: <devicetree+bounces-51818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 300A488098B
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 03:21:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D69F880993
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 03:28:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9B9901F2391B
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 02:21:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 310B01C21CE8
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 02:28:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0CA47489;
-	Wed, 20 Mar 2024 02:21:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5593FC2E6;
+	Wed, 20 Mar 2024 02:28:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="L17KtDz2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jWsnwBvu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBBA679CB
-	for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 02:21:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8872E8C0B;
+	Wed, 20 Mar 2024 02:27:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710901265; cv=none; b=Bhyqd8IqUcKPl+Y4CdTzK2MNSFrSBXrL+ICvW+zzGtFOn9WP7+RaZ5zqE9/k1WSQumzqpRTfnsvjIgX/+x5XPFxc8LdEePpkKzS1yzhbJv4r5IpEdleX1OMxifq37Lw1AZXaIbpYbpWW3bescjfFHtuyNKIN5OlsiGr0rtOO5/s=
+	t=1710901681; cv=none; b=k4p6PSDktVMvCqLITyf1n5/Ap3NYXddxqKfI/GFlTRQ1Re9M3/lZ0CToYI3BeQFlY/Io6u7BvAFZlB32VD40bXfbVxPVLDiGQJ0a/Njb4BVlF4WpQhoRdo+v3uf4pggpLtdmuB0sIqOSY+qUO4JPkMh+YdxDSc6XNM7ooBTiqO4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710901265; c=relaxed/simple;
-	bh=6bUQxNSzahONk4aC6t+gwjqMoBt/IWX4TNKW2IKyXPA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=StL+s4hc4Xc0PI9si4gWquAJdym4KcE+ETFA5mo3c+EVhaqgXVed6gYNr2JRyFZpM57qCrfGQ3973o7NWHgvXOQEyYIscGK5d5IyKfIm5oVt86CEsBHM4rNA/gyaTQC1itJ6LlfAGWE/57eg3tXbjSibwELcqMZ4ybLt16M6RGI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=L17KtDz2; arc=none smtp.client-ip=209.85.166.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-io1-f46.google.com with SMTP id ca18e2360f4ac-7cf1a21ab1dso9982639f.2
-        for <devicetree@vger.kernel.org>; Tue, 19 Mar 2024 19:21:02 -0700 (PDT)
+	s=arc-20240116; t=1710901681; c=relaxed/simple;
+	bh=CrEDZNktWLaecr9rY/RqMJilDdld6VN4fBZu4A2CU4A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=I2pHXomeFIvk/LTinQ3G41/8VbyVgJskimDdBz7F6jWJSXSVRAyUKCOiy6WCy+Mg7k9WNSpnKwWvx8BLcfCwqV84Ji4Q8yXHWgisJeGs0/lMRwOZdsJW5WVHgHsFeK8kHIP+jmY1KOYEq4ctFC5h6rZ+OFCHCES6TDmAqq6no3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jWsnwBvu; arc=none smtp.client-ip=209.85.208.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-56a2bb1d84eso797699a12.1;
+        Tue, 19 Mar 2024 19:27:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1710901262; x=1711506062; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=20q06/6oGIfjPCtmqOWMDp2L8ubG1IZix8+eCUbt12w=;
-        b=L17KtDz2rodYYM3VzoPfDzcC2bXLcRzh4TefgTouP5iB20TKzQhV6ebJsjljfB//XL
-         TQNB6TbpdZd/ygh7QmPvSlPjbmXXmNsQka2i35yyGk0wTFeAz3MRRT3L4v73dNcwGiJv
-         G4Pbu8BUvXkaptKjrQXH4OibXpBQLaSVIHEYRIpyGqa2Gw6HmxJ0HTxtuyDNI6jldVdn
-         JJpUrNa+XmD4Lq/vaS0gyoO2zFuWhn6SiS+qL+DqLzXWBawDUJDy/jITgKL9b89G9mkk
-         fBFd1IqxANMrrBqgNjFpnBOROkFh4PRfT+97/3FrlKS4r71jwUVdEyyeU9h8NKgAt+/c
-         qmLg==
+        d=gmail.com; s=20230601; t=1710901678; x=1711506478; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CrEDZNktWLaecr9rY/RqMJilDdld6VN4fBZu4A2CU4A=;
+        b=jWsnwBvuUoWHGHVnDfaNmIDjd7pxM6Hv1OsVRUoo3Ghp7lLlvaQvF0r+rpTaSYgezO
+         vqfRRas+vt+z7YnK272XaFKLgk72RRA99gsokPAvMu6b55ihsoeUDE37vPDNx810puDq
+         IjsSPC0+cnkBxu9RzQd/NBc9jAqTpYcLxsv2/Py/LAi7l8mXpeJ5tCdiCI/dp9DhPHZU
+         2jnDhIX3AQX8uctCgufkk35YgUYo/a9Rbs7e3FdlfC8sH5xsi67KtDwW1B/rydi1vFR6
+         DsE07RIEcENBA/UBMaj0I3sftbIxUrrR2Jh0AQgh5+RQzS0PEiktKUQeL3CMFqRMDTDM
+         f7tA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710901262; x=1711506062;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=20q06/6oGIfjPCtmqOWMDp2L8ubG1IZix8+eCUbt12w=;
-        b=ngiWntGfcd7kdnylNxkJsDuKlPTx43UQGd/ppLzfViwy12qGdqqMOHJZtsvxQ5dBjo
-         U5RzJ1DQvnfWV0mrikuCobNK8B6apJNoJcM8tOmuQvQCU8s1axXQlLC7OnFCSwXeOyT3
-         J3ltqHCAdti/BfbD22sVr02WlZzo1xeeHb734b4j098ZiSbKdisUFjd1xcteDjqRyVW1
-         3oaEF3rHzVcbhULGsEsnOdcVOZbbWEkzEk+hI3J1BWnu26piP5SiZhnC3fQYOGOtkma4
-         PF8W2wau2S840ajJ6XEXzlVVlF87o0wnK4WLjddUPn7v796jREqgle2c5L07fBrSBl1j
-         tKFw==
-X-Forwarded-Encrypted: i=1; AJvYcCWZ01ngpOU6tJMmgKwKo/qNpJnqFTkyOqDz9HIzftZKEFjQfHKRSHyCOV8H1MbJtm5MfEVsBZF3ehCg3ZLo3XKgmmLYo+bKb5YwOQ==
-X-Gm-Message-State: AOJu0YxsYEeXXFHyUGYWK7bOFTGsVlYV4sbsePtpRFQaw5j7hokXDu2Q
-	ST0RxWY9/zr4iTgw2nbMigsB1cd1AUpzFXQfNUpXs5+Tb8/OVdQwz60pkDob5VU=
-X-Google-Smtp-Source: AGHT+IG2YVVTRWdfjPzSHAdAFRXz/GHhdXhTPItlVa6ZZGxpXjpCDUqeA3MoQ9oXY66IB7K76slCEQ==
-X-Received: by 2002:a05:6602:340d:b0:7cc:10da:ac1a with SMTP id n13-20020a056602340d00b007cc10daac1amr13941502ioz.8.1710901261875;
-        Tue, 19 Mar 2024 19:21:01 -0700 (PDT)
-Received: from [100.64.0.1] ([136.226.86.189])
-        by smtp.gmail.com with ESMTPSA id fm39-20020a0566382b2700b0047730eb5bebsm3174773jab.60.2024.03.19.19.21.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Mar 2024 19:21:01 -0700 (PDT)
-Message-ID: <40ab1ce5-8700-4a63-b182-1e864f6c9225@sifive.com>
-Date: Tue, 19 Mar 2024 21:20:59 -0500
+        d=1e100.net; s=20230601; t=1710901678; x=1711506478;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CrEDZNktWLaecr9rY/RqMJilDdld6VN4fBZu4A2CU4A=;
+        b=XPoobr/fu/jhLsQqrT2hku2wqD2kaNsLeggnjy6y1vk6ZrK3P0D4x+dnfKSagq5cTk
+         9O4WCOEMhO1Z8zqwWNx7SVw2TCNqaf1KiXqBb8hxQjYq9h6q6aryNOyKSEWNXtC1wp07
+         uu0ihCa+naayZcAeJAnN6t1/6EBEiVMcLaJxg/uvw1jYn7iQA3n+AdZm+hXbOHrP1qwD
+         HHoRlFcXjc28lm+xeIohw1rl65X9rycTshd5k+X0qrdo+SH0sTOkxUIX01Vf+ILxgzuL
+         4DThtyc2oXoAZ5+2bJ/Ns8n77NeBZQIGz2wf+9EULMgruOHO+Q6GxsNPrZG+VB/FD4al
+         nkhw==
+X-Forwarded-Encrypted: i=1; AJvYcCVnUAKtmtEiS+4RQ9TzFa/RELa+CfoM9HCH0jkM5uUoh5ikj5+vIiYwxknfGyZXzMTBgNExmaVPL43bBvfibc3+LsaPUR5HKVDGWf4TKuGTnCL7ze/kZq1KYpn9rQuEwSZ5nS6eQldFkPIOwca4aFsaVyJGFVi2hX/hmNyXABYlOz5t/CXLlOGuVBarns8+iPFbd0wYoc16Wx0/c8vq9Ao=
+X-Gm-Message-State: AOJu0YwYrjLTy9IWFY7tjftP7KARVI4UwfiqeECIc03Y3L2qSqQ/0sHt
+	LI1HSLBFt7xzEkz7Pn7WIqeVCC8xtTmPSRj9NtXwk120ywSupjzdcPTRjBoMuyPYp4YqCKsNDow
+	5/q6PJmfz94it1kFyM15oIYteATM=
+X-Google-Smtp-Source: AGHT+IFt/7I86CbjlI0gZQSF/qcTE6qkqcQl29FokubkU6RSRoHeUOxDw6UA1S3xokrCdi4OqK1Tz8KHuh8CHwiixEY=
+X-Received: by 2002:a50:9e61:0:b0:568:a8f5:d47d with SMTP id
+ z88-20020a509e61000000b00568a8f5d47dmr3899542ede.17.1710901677672; Tue, 19
+ Mar 2024 19:27:57 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RISC-V] [tech-j-ext] [RFC PATCH 5/9] riscv: Split per-CPU and
- per-thread envcfg bits
-To: Deepak Gupta <debug@rivosinc.com>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org, Catalin Marinas <catalin.marinas@arm.com>,
- linux-kernel@vger.kernel.org, tech-j-ext@lists.risc-v.org,
- Conor Dooley <conor@kernel.org>, kasan-dev@googlegroups.com,
- Evgenii Stepanov <eugenis@google.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, Andrew Jones <ajones@ventanamicro.com>,
- Guo Ren <guoren@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Paul Walmsley <paul.walmsley@sifive.com>
-References: <20240319215915.832127-1-samuel.holland@sifive.com>
- <20240319215915.832127-6-samuel.holland@sifive.com>
- <CAKC1njSg9-hJo6hibcM9a-=FUmMWyR39QUYqQ1uwiWhpBZQb9A@mail.gmail.com>
-Content-Language: en-US
-From: Samuel Holland <samuel.holland@sifive.com>
-In-Reply-To: <CAKC1njSg9-hJo6hibcM9a-=FUmMWyR39QUYqQ1uwiWhpBZQb9A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20240316-loongson1-dma-v6-0-90de2c3cc928@gmail.com>
+ <CAAhV-H6aGS6VXGzkqWTyxL7bGw=KdjmnRZj7SpwrV5hT6XQcpg@mail.gmail.com>
+ <CAJhJPsVSM-8VA604p2Vr58QJEp+Tg72YTTntnip64Ejz=0aQng@mail.gmail.com>
+ <CAAhV-H5TR=y_AmbF6QMJmoS0BhfB=K7forMg0-b2YWm7trktjA@mail.gmail.com>
+ <20240318-average-likely-6a55c18db7bb@spud> <CAAhV-H4oMoPt7WwWc7wbxy-ShNQ8dPkuTAuvSEGAPBKvkkn24w@mail.gmail.com>
+ <20240318-saxophone-sudden-ce0df3a953a8@spud> <CAJhJPsXKZr7XDC-i1O_tpcgGE9c0yk7S9Qjnpk7hrU0evAJ+FQ@mail.gmail.com>
+ <CAAhV-H5Gm6mACV4smxDB=BJvLr8C1AmgY=mMqfNYOOxEUBhqFA@mail.gmail.com> <20240319-trimester-manhole-3bd092f3343f@spud>
+In-Reply-To: <20240319-trimester-manhole-3bd092f3343f@spud>
+From: Keguang Zhang <keguang.zhang@gmail.com>
+Date: Wed, 20 Mar 2024 10:27:21 +0800
+Message-ID: <CAJhJPsWN24p8VcLeeB8v_JU6KXTVBzWWcE-Aj4Tc2urqx6sYrw@mail.gmail.com>
+Subject: Re: [PATCH v6 0/2] Add support for Loongson1 DMA
+To: Conor Dooley <conor@kernel.org>
+Cc: Huacai Chen <chenhuacai@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-mips@vger.kernel.org, dmaengine@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Deepak,
+On Wed, Mar 20, 2024 at 1:41=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
+te:
+>
+> On Tue, Mar 19, 2024 at 10:40:54AM +0800, Huacai Chen wrote:
+> > On Tue, Mar 19, 2024 at 10:32=E2=80=AFAM Keguang Zhang <keguang.zhang@g=
+mail.com> wrote:
+> > >
+> > > On Mon, Mar 18, 2024 at 11:42=E2=80=AFPM Conor Dooley <conor@kernel.o=
+rg> wrote:
+> > > >
+> > > > On Mon, Mar 18, 2024 at 10:26:51PM +0800, Huacai Chen wrote:
+> > > > > Hi, Conor,
+> > > > >
+> > > > > On Mon, Mar 18, 2024 at 7:28=E2=80=AFPM Conor Dooley <conor@kerne=
+l.org> wrote:
+> > > > > >
+> > > > > > On Mon, Mar 18, 2024 at 03:31:59PM +0800, Huacai Chen wrote:
+> > > > > > > On Mon, Mar 18, 2024 at 10:08=E2=80=AFAM Keguang Zhang <kegua=
+ng.zhang@gmail.com> wrote:
+> > > > > > > >
+> > > > > > > > Hi Huacai,
+> > > > > > > >
+> > > > > > > > > Hi, Keguang,
+> > > > > > > > >
+> > > > > > > > > Sorry for the late reply, there is already a ls2x-apb-dma=
+ driver, I'm
+> > > > > > > > > not sure but can they share the same code base? If not, c=
+an rename
+> > > > > > > > > this driver to ls1x-apb-dma for consistency?
+> > > > > > > >
+> > > > > > > > There are some differences between ls1x DMA and ls2x DMA, s=
+uch as
+> > > > > > > > registers and DMA descriptors.
+> > > > > > > > I will rename it to ls1x-apb-dma.
+> > > > > > > OK, please also rename the yaml file to keep consistency.
+> > > > > >
+> > > > > > No, the yaml file needs to match the (one of the) compatible st=
+rings.
+> > > > > OK, then I think we can also rename the compatible strings, if po=
+ssible.
+> > > >
+> > > > If there are no other types of dma controller on this device, I do =
+not
+> > > > see why would we add "apb" into the compatible as there is nothing =
+to
+> > > > differentiate this controller from.
+> > >
+> > > That's true. 1A/1B/1C only have one APB DMA.
+> > > Should I keep the compatible "ls1b-dma" and "ls1c-dma"?
+> > The name "apbdma" comes from the user manual, "exchange data between
+> > memory and apb devices", at present there are two drivers using this
+> > naming: tegra20-apb-dma.c and ls2x-apb-dma.c.
+>
+> I think it's unnessesary but I won't stand in your way.
 
-On 2024-03-19 6:55 PM, Deepak Gupta wrote:
-> On Tue, Mar 19, 2024 at 2:59 PM Samuel Holland via lists.riscv.org
-> <samuel.holland=sifive.com@lists.riscv.org> wrote:
->>
->> Some envcfg bits need to be controlled on a per-thread basis, such as
->> the pointer masking mode. However, the envcfg CSR value cannot simply be
->> stored in struct thread_struct, because some hardware may implement a
->> different subset of envcfg CSR bits is across CPUs. As a result, we need
->> to combine the per-CPU and per-thread bits whenever we switch threads.
->>
-> 
-> Why not do something like this
-> 
-> diff --git a/arch/riscv/include/asm/csr.h b/arch/riscv/include/asm/csr.h
-> index b3400517b0a9..01ba87954da2 100644
-> --- a/arch/riscv/include/asm/csr.h
-> +++ b/arch/riscv/include/asm/csr.h
-> @@ -202,6 +202,8 @@
->  #define ENVCFG_CBIE_FLUSH              _AC(0x1, UL)
->  #define ENVCFG_CBIE_INV                        _AC(0x3, UL)
->  #define ENVCFG_FIOM                    _AC(0x1, UL)
-> +/* by default all threads should be able to zero cache */
-> +#define ENVCFG_BASE                    ENVCFG_CBZE
+Then I will follow Huacai's suggestion.
+Thanks for your review, Conor and Huacai.
 
-Linux does not assume Sstrict, so without Zicboz being present in DT/ACPI, we
-have no idea what the CBZE bit does--there's no guarantee it has the standard
-meaning--so it's not safe to set the bit unconditionally. If that policy
-changes, we could definitely simplify the code.
+--=20
+Best regards,
 
->  /* Smstateen bits */
->  #define SMSTATEEN0_AIA_IMSIC_SHIFT     58
-> diff --git a/arch/riscv/kernel/process.c b/arch/riscv/kernel/process.c
-> index 4f21d970a129..2420123444c4 100644
-> --- a/arch/riscv/kernel/process.c
-> +++ b/arch/riscv/kernel/process.c
-> @@ -152,6 +152,7 @@ void start_thread(struct pt_regs *regs, unsigned long pc,
->         else
->                 regs->status |= SR_UXL_64;
->  #endif
-> +       current->thread_info.envcfg = ENVCFG_BASE;
->  }
-> 
-> And instead of context switching in `_switch_to`,
-> In `entry.S` pick up `envcfg` from `thread_info` and write it into CSR.
-
-The immediate reason is that writing envcfg in ret_from_exception() adds cycles
-to every IRQ and system call exit, even though most of them will not change the
-envcfg value. This is especially the case when returning from an IRQ/exception
-back to S-mode, since envcfg has zero effect there.
-
-The CSRs that are read/written in entry.S are generally those where the value
-can be updated by hardware, as part of taking an exception. But envcfg never
-changes on its own. The kernel knows exactly when its value will change, and
-those places are:
-
- 1) Task switch, i.e. switch_to()
- 2) execve(), i.e. start_thread() or flush_thread()
- 3) A system call that specifically affects a feature controlled by envcfg
-
-So that's where this series writes it. There are a couple of minor tradeoffs
-about when exactly to do the write:
-
-- We could drop the sync_envcfg() calls outside of switch_to() by reading the
-  current CSR value when scheduling out a thread, but again that adds overhead
-  to the fast path to remove a tiny bit of code in the prctl() handlers.
-- We don't need to write envcfg when switching to a kernel thread, only when
-  switching to a user thread, because kernel threads never leave S-mode, so
-  envcfg doesn't affect them. But checking the thread type takes many more
-  instructions than just writing the CSR.
-
-Overall, the optimal implementation will approximate the rule of only writing
-envcfg when its value changes.
-
-> This construction avoids
-> - declaring per cpu riscv_cpu_envcfg
-
-This is really a separate concern than when we write envcfg. The per-CPU
-variable is only necessary to support hardware where a subset of harts support
-Zicboz. Since the riscv_cpu_has_extension_[un]likely() helpers were added
-specifically for Zicboz, I assume this is an important use case, and dropping
-support for this hardware would be a regression. After all, hwprobe() allows
-userspace to see that Zicboz is implemented at a per-CPU level. Maybe Andrew can
-weigh in on that.
-
-If we decide to enable Zicboz only when all harts support it, or we decide it's
-safe to attempt to set the envcfg.CBZE bit on harts that do not declare support
-for Zicboz, then we could drop the percpu variable.
-
-> - syncing up
-> - collection of *envcfg bits.
-> 
-> 
->> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
->> ---
->>
->>  arch/riscv/include/asm/cpufeature.h |  2 ++
->>  arch/riscv/include/asm/processor.h  |  1 +
->>  arch/riscv/include/asm/switch_to.h  | 12 ++++++++++++
->>  arch/riscv/kernel/cpufeature.c      |  4 +++-
->>  4 files changed, 18 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/riscv/include/asm/cpufeature.h b/arch/riscv/include/asm/cpufeature.h
->> index 0bd11862b760..b1ad8d0b4599 100644
->> --- a/arch/riscv/include/asm/cpufeature.h
->> +++ b/arch/riscv/include/asm/cpufeature.h
->> @@ -33,6 +33,8 @@ DECLARE_PER_CPU(long, misaligned_access_speed);
->>  /* Per-cpu ISA extensions. */
->>  extern struct riscv_isainfo hart_isa[NR_CPUS];
->>
->> +DECLARE_PER_CPU(unsigned long, riscv_cpu_envcfg);
->> +
->>  void riscv_user_isa_enable(void);
->>
->>  #ifdef CONFIG_RISCV_MISALIGNED
->> diff --git a/arch/riscv/include/asm/processor.h b/arch/riscv/include/asm/processor.h
->> index a8509cc31ab2..06b87402a4d8 100644
->> --- a/arch/riscv/include/asm/processor.h
->> +++ b/arch/riscv/include/asm/processor.h
->> @@ -118,6 +118,7 @@ struct thread_struct {
->>         unsigned long s[12];    /* s[0]: frame pointer */
->>         struct __riscv_d_ext_state fstate;
->>         unsigned long bad_cause;
->> +       unsigned long envcfg;
->>         u32 riscv_v_flags;
->>         u32 vstate_ctrl;
->>         struct __riscv_v_ext_state vstate;
->> diff --git a/arch/riscv/include/asm/switch_to.h b/arch/riscv/include/asm/switch_to.h
->> index 7efdb0584d47..256a354a5c4a 100644
->> --- a/arch/riscv/include/asm/switch_to.h
->> +++ b/arch/riscv/include/asm/switch_to.h
->> @@ -69,6 +69,17 @@ static __always_inline bool has_fpu(void) { return false; }
->>  #define __switch_to_fpu(__prev, __next) do { } while (0)
->>  #endif
->>
->> +static inline void sync_envcfg(struct task_struct *task)
->> +{
->> +       csr_write(CSR_ENVCFG, this_cpu_read(riscv_cpu_envcfg) | task->thread.envcfg);
->> +}
->> +
->> +static inline void __switch_to_envcfg(struct task_struct *next)
->> +{
->> +       if (riscv_cpu_has_extension_unlikely(smp_processor_id(), RISCV_ISA_EXT_XLINUXENVCFG))
-> 
-> I've seen `riscv_cpu_has_extension_unlikely` generating branchy code
-> even if ALTERNATIVES was turned on.
-> Can you check disasm on your end as well.  IMHO, `entry.S` is a better
-> place to pick up *envcfg.
-
-The branchiness is sort of expected, since that function is implemented by
-switching on/off a branch instruction, so the alternate code is necessarily a
-separate basic block. It's a tradeoff so we don't have to write assembly code
-for every bit of code that depends on an extension. However, the cost should be
-somewhat lowered since the branch is unconditional and so entirely predictable.
-
-If the branch turns out to be problematic for performance, then we could use
-ALTERNATIVE directly in sync_envcfg() to NOP out the CSR write.
-
->> +               sync_envcfg(next);
->> +}
->> +
->>  extern struct task_struct *__switch_to(struct task_struct *,
->>                                        struct task_struct *);
->>
->> @@ -80,6 +91,7 @@ do {                                                  \
->>                 __switch_to_fpu(__prev, __next);        \
->>         if (has_vector())                                       \
->>                 __switch_to_vector(__prev, __next);     \
->> +       __switch_to_envcfg(__next);                     \
->>         ((last) = __switch_to(__prev, __next));         \
->>  } while (0)
->>
->> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
->> index d1846aab1f78..32aaaf41f8a8 100644
->> --- a/arch/riscv/kernel/cpufeature.c
->> +++ b/arch/riscv/kernel/cpufeature.c
->> @@ -44,6 +44,8 @@ static DECLARE_BITMAP(riscv_isa, RISCV_ISA_EXT_MAX) __read_mostly;
->>  /* Per-cpu ISA extensions. */
->>  struct riscv_isainfo hart_isa[NR_CPUS];
->>
->> +DEFINE_PER_CPU(unsigned long, riscv_cpu_envcfg);
->> +
->>  /* Performance information */
->>  DEFINE_PER_CPU(long, misaligned_access_speed);
->>
->> @@ -978,7 +980,7 @@ arch_initcall(check_unaligned_access_all_cpus);
->>  void riscv_user_isa_enable(void)
->>  {
->>         if (riscv_cpu_has_extension_unlikely(smp_processor_id(), RISCV_ISA_EXT_ZICBOZ))
->> -               csr_set(CSR_ENVCFG, ENVCFG_CBZE);
->> +               this_cpu_or(riscv_cpu_envcfg, ENVCFG_CBZE);
-
-If we drop the percpu variable, this becomes
-
-	if (riscv_has_extension_unlikely(RISCV_ISA_EXT_ZICBOZ))
-		current->thread.envcfg |= ENVCFG_CBZE;
-
-since the init thread's envcfg gets copied to all other threads via fork(), and
-we can drop the call to riscv_user_isa_enable() from smp_callin(). Or if we
-decide CBZE is always safe to set, then the function is even simpler:
-
-	current->thread.envcfg = ENVCFG_CBZE;
-
-Regards,
-Samuel
-
->>  }
->>
->>  #ifdef CONFIG_RISCV_ALTERNATIVE
->> --
->> 2.43.1
-
+Keguang Zhang
 
