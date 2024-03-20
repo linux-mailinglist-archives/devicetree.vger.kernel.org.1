@@ -1,75 +1,72 @@
-Return-Path: <devicetree+bounces-51875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1742D880CD8
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 09:15:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5B36880CE8
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 09:18:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 45D2D1C20DD6
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 08:15:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92763283DDE
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 08:18:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B5CC33CCC;
-	Wed, 20 Mar 2024 08:15:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4188364C4;
+	Wed, 20 Mar 2024 08:18:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="fA/gZ4CF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="isDxulfI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 468692C85A;
-	Wed, 20 Mar 2024 08:15:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE28933CCC;
+	Wed, 20 Mar 2024 08:18:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710922509; cv=none; b=ruOkyMli7jP00mlMzHaTmiWwNmwdxuZeU0vRHO8jdfHIJYVULQzT8jLqrotSYcyWlIEzyNO/QUybIIdR5nYT3vcIpIcr1f74Z374hyvJmiUzs0QGhZmYYyiMiTTglUt+MOn2Yin8JmhD3FBYnkp5GoF8AO3qMSj9TcSWnzlZea0=
+	t=1710922731; cv=none; b=p9KF3ETXc2jqJX7w1wdBwJY6V4uDeJ5wpuIXJRzDOKh0rGKqVyDBca4lUyL/dNw3261oZ6b0cBq2cmZaYVdWg5yKP3TkKiIqG3xiaUsq1floTTjP4/lnIAjT4Wdc4vMLf+MEjNSGBHg7fDJAOHUcPp3OYMMyTQRiVl3OOYS2jbM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710922509; c=relaxed/simple;
-	bh=yqwN/XmqlhuyVKlnSnySwDvCVYusk7LG+Wgh1XYe0jc=;
+	s=arc-20240116; t=1710922731; c=relaxed/simple;
+	bh=qPkN9E6b8SUh3Jfe6px/hgR01t6ClvlRlfbmqOmQkmU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mEaF3IiX921eiV5PRNsi7fiOWid69NxyWVGn7D3+3KEnxhfwo0CpXx6gc7P0+rNJq+ucD5uxb5ndzw6/1j16gDQ4WhPYOgPvqlIomzCfy1OLfs3Wmfpd42Xq+E5AEwDE4DF3rYYcQBPhId6iUBzPAnvm3RSCRZyNCWyrrztd/po=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=fA/gZ4CF; arc=none smtp.client-ip=192.198.163.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1710922507; x=1742458507;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=yqwN/XmqlhuyVKlnSnySwDvCVYusk7LG+Wgh1XYe0jc=;
-  b=fA/gZ4CFmA2T2AvQ6WZ4PbATl6Y5Jw1JJGg9A+EB7I9KkU9bsa/plml3
-   3pwFJR1Ht5CVrXituM4BsX1pttFDDIyuKPUZaxgUysT9LXPVQ4KzTAx9E
-   JNCfODH1y5JpMrqj2mwH0OAnSDiqEIlF40F3nQeWB8mxSMSLRSgJcCydB
-   EaFSomJ96R1Jbb4cf3jZPn8HjRXI60vroswj1KpPniqKua3Kg3XPVHR37
-   Z824Xv81kKs/0ctkLZbbDRFGGu1UF5MNAuVGxWGkyavwmp5YvucTS7OWO
-   ZxpmtH0/GX5o8DzrqK4cY5qtrPRb11G7JEVwAzNB31Y3RTymyYRbHfDcf
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11018"; a="6009856"
-X-IronPort-AV: E=Sophos;i="6.07,139,1708416000"; 
-   d="scan'208";a="6009856"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2024 01:15:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,139,1708416000"; 
-   d="scan'208";a="13972937"
-Received: from lkp-server01.sh.intel.com (HELO b21307750695) ([10.239.97.150])
-  by fmviesa010.fm.intel.com with ESMTP; 20 Mar 2024 01:15:03 -0700
-Received: from kbuild by b21307750695 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rmr6C-000IT2-1o;
-	Wed, 20 Mar 2024 08:15:00 +0000
-Date: Wed, 20 Mar 2024 16:14:24 +0800
-From: kernel test robot <lkp@intel.com>
-To: Sudan Landge <sudanl@amazon.com>, tytso@mit.edu, Jason@zx2c4.com,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, sathyanarayanan.kuppuswamy@linux.intel.com,
-	thomas.lendacky@amd.com, dan.j.williams@intel.com,
+	 Content-Type:Content-Disposition:In-Reply-To; b=FMOhusI9kfS8W49ddcBXEUgbWZQVcaQqDJoXyPBImcykiU8uPO0FTMLlDQcGJ4UBtypPZ1IVHGv8ItZiQi5yovPC6Ls+gLf28hmOsSUAPRIEqQyaohrKWIMgOnJzQLw1HjS9+SZIbA+oMOKhbw79bycPSz2AQg3HAidbOAYsOFI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=isDxulfI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D9A5C433C7;
+	Wed, 20 Mar 2024 08:18:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710922731;
+	bh=qPkN9E6b8SUh3Jfe6px/hgR01t6ClvlRlfbmqOmQkmU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=isDxulfIyzdljTz66/ur7DrURNSFKF52SPS19OoCQbZLnk9axIxNTk7X0Fnrgj47J
+	 09g61T17V/Tn4WKF541EW1oP1wJhD3d5tm/Rg0/Hd3U24gGvir6cSUZVf0iTFC1sgy
+	 CuPfD4ZBQzYIJs3f3r+jua+NVXmgb+u5+J72t+kRH/B6wQ8JOeGzoCvMe1oFZvWQgH
+	 iyEoPdNyDq6cwoVHjp/bhvcCZ/qe6pgCgFTnvs0qWmGQLyZOocSrKKs33OHCgEi+Kt
+	 T2/0fq2d2aharchudbchah1r8j1T/Yja3xfWjQszQUeWi1NdRGIlhUbz2dot0JSXnP
+	 UMXIRLwiXD8UQ==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1rmrA2-0000000045f-0ivs;
+	Wed, 20 Mar 2024 09:18:58 +0100
+Date: Wed, 20 Mar 2024 09:18:58 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, graf@amazon.de, dwmw@amazon.co.uk,
-	bchalios@amazon.es, xmarcalx@amazon.co.uk
-Subject: Re: [PATCH v1 4/4] virt: vmgenid: add support for devicetree bindings
-Message-ID: <202403201544.8xvAuo13-lkp@intel.com>
-References: <20240319143253.22317-5-sudanl@amazon.com>
+Subject: Re: (subset) [PATCH v4 0/5] arm64: dts: qcom: sc8280xp: PCIe fixes
+ and GICv3 ITS enable
+Message-ID: <Zfqb8jPK50vlqu5Q@hovoldconsulting.com>
+References: <20240306095651.4551-1-johan+linaro@kernel.org>
+ <171081652637.198276.6219023769904423414.b4-ty@kernel.org>
+ <Zfk98hYPn7kiFGkt@hovoldconsulting.com>
+ <9b475e13-96b9-4bce-8041-e0d8e5a332a1@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,60 +75,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240319143253.22317-5-sudanl@amazon.com>
+In-Reply-To: <9b475e13-96b9-4bce-8041-e0d8e5a332a1@linaro.org>
 
-Hi Sudan,
+On Wed, Mar 20, 2024 at 09:09:02AM +0100, Krzysztof Kozlowski wrote:
+> On 19/03/2024 08:25, Johan Hovold wrote:
+> > On Mon, Mar 18, 2024 at 09:48:30PM -0500, Bjorn Andersson wrote:
+> >> On Wed, 06 Mar 2024 10:56:46 +0100, Johan Hovold wrote:
+> >>> This series addresses a few problems with the sc8280xp PCIe
+> >>> implementation.
 
-kernel test robot noticed the following build warnings:
+> >> Applied, thanks!
+> >>
+> >> [4/5] arm64: dts: qcom: sc8280xp: add missing PCIe minimum OPP
+> >>       commit: 2b621971554a94094cf489314dc1c2b65401965c
+> > 
+> > I noticed that you applied both of these for 6.10, but this one is a fix
+> > that should go into 6.9.
+> 
+> Well, mixing fixes for different cycles in one patchset was always
+> discouraged. In case of some subsystems you would receive clear
+> response, that you must split fixes out of the patchset.
+> 
+> Fixes being first in the patchset would be probably accepted by the rest
+> of subsystems, but putting it in the middle of the patchset is wrong.
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v6.8 next-20240320]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Perhaps you should not comment before reading up on the history of this
+series.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Sudan-Landge/virt-vmgenid-rearrange-code-to-make-review-easier/20240319-223642
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20240319143253.22317-5-sudanl%40amazon.com
-patch subject: [PATCH v1 4/4] virt: vmgenid: add support for devicetree bindings
-config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20240320/202403201544.8xvAuo13-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240320/202403201544.8xvAuo13-lkp@intel.com/reproduce)
+This was all intended for 6.9, but merging was stalled for a number of
+reasons so here we are. The patches were also going in through different
+trees, so patch 4/5 is the first Qualcomm SoC patch.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202403201544.8xvAuo13-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/virt/vmgenid.c: In function 'vmgenid_add_acpi':
-   drivers/virt/vmgenid.c:79:45: error: invalid use of undefined type 'struct acpi_device'
-      79 |         status = acpi_evaluate_object(device->handle, "ADDR", NULL, &parsed);
-         |                                             ^~
-   drivers/virt/vmgenid.c:96:56: error: invalid use of undefined type 'struct acpi_device'
-      96 |                                   devm_memremap(&device->dev, phys_addr, VMGENID_SIZE, MEMREMAP_WB)
-         |                                                        ^~
-   drivers/virt/vmgenid.c:102:52: error: invalid use of undefined type 'struct acpi_device'
-     102 |         status = acpi_install_notify_handler(device->handle, ACPI_DEVICE_NOTIFY,
-         |                                                    ^~
-   drivers/virt/vmgenid.c: At top level:
->> drivers/virt/vmgenid.c:196:36: warning: 'vmgenid_acpi_ids' defined but not used [-Wunused-const-variable=]
-     196 | static const struct acpi_device_id vmgenid_acpi_ids[] = {
-         |                                    ^~~~~~~~~~~~~~~~
-
-
-vim +/vmgenid_acpi_ids +196 drivers/virt/vmgenid.c
-
-   195	
- > 196	static const struct acpi_device_id vmgenid_acpi_ids[] = {
-   197		{ "VMGENCTR", 0 },
-   198		{ "VM_GEN_COUNTER", 0 },
-   199		{ }
-   200	};
-   201	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Johan
 
