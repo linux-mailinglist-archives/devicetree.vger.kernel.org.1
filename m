@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-51997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 799E2881593
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 17:26:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2A718815B7
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 17:35:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F2EF31F20EF1
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 16:26:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A21F41C22B47
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 16:35:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A16D154746;
-	Wed, 20 Mar 2024 16:26:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EAA910FA;
+	Wed, 20 Mar 2024 16:35:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OeAzk6+U"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P3Q641IL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A0AB53E13;
-	Wed, 20 Mar 2024 16:26:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 223FAEDC;
+	Wed, 20 Mar 2024 16:35:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710951963; cv=none; b=XZPgbBbpYJ1ZZ6FwZ5LWE+/U+0fH9XBzXuC6+z1US7R+C5V+oL2JWsJkXGXE7c3g2OXL0+7Ft48sHctPCkI/EJMpEcSPopsHs9rOYDFaP9IJOJsiuOywU2U46sidhOCO+OAQl/koe1Qf5KGzQdVq9tmGh+bI7tsTzuttzUBvu6o=
+	t=1710952539; cv=none; b=ieXapqpnWdSL3L0AuKkT3NbdRiKeA8+0NkDqpzfgtD1TGL5dDlF3FigeKyC3SBjDBZs8EvYducuPhR5m3pbxG8TgTTgWboDaVzgAPHgjwVG4kRHJ5V2SVMe71CYEWcCY52KJGaLbA0SavuflRkKrUkewykFCpbm2mtHSc8cBllo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710951963; c=relaxed/simple;
-	bh=AbAffIR7MFEWLLKn/T3bv0OnBju5rB/FzYNjiIim1XI=;
+	s=arc-20240116; t=1710952539; c=relaxed/simple;
+	bh=XXysw+Fp50tmDvgt52SH9gz9silSVStNGQhh5AqQXC4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qxQvqoqZE3xDN8IeZJzsDV4XK+eT7jHwk7HW8wt03ab6ISjqmy1lqh4X4FEBnQvGl98wtyprlAde9YxCBfRD2UaKYqr/YuReB6IC9i1fjYGoDXMfDN0wWv9kr/1QL2ob532teR4YYcPxqQcmTF/A/EUXwgfjC4HppYtmQ7xN1lY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OeAzk6+U; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47769C433F1;
-	Wed, 20 Mar 2024 16:26:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=X3dc9WSJbEypPMsqSpRlDtl/GM0T1aG+H4NW/IwREpIQcBlARRj/sTMyzfx20P4KVPpJC/RY5Gnd+Dtky1J8nYdCvCr/pyzRwTeMT+BbHDNASeJkhXnV3PAj8MYXLmO47SsMUDO1jqOgfUw7FrChCHr4PuHptvZE9ORlh4fH7Vs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P3Q641IL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E190DC433F1;
+	Wed, 20 Mar 2024 16:35:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710951963;
-	bh=AbAffIR7MFEWLLKn/T3bv0OnBju5rB/FzYNjiIim1XI=;
+	s=k20201202; t=1710952538;
+	bh=XXysw+Fp50tmDvgt52SH9gz9silSVStNGQhh5AqQXC4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OeAzk6+Uknf8lI/ls+NRpQRLUwIHUEClV0ZXFnBYSj6z1K3MssrjL31lHxT2bdSxI
-	 7tASlVdmjqFVCz9xbohcXZ6pRB8R3lnoQdhJQrkcB+szwi594VbhF2Ekpqrac6UfE7
-	 5ZwqjuCfzovF2sNiDf6sWvpOiIveEP7EjcsGtFK34APyQT6zRiPNIURKHIRyt2cMay
-	 ZTszs7Ugs4kgtgDNdt8eC+Q4xcYyEoXNKlFboaYn0gzp4Qt/L8VgLTqwlF4n7kJiDf
-	 ZguGeuiAa6AWvvoaz46nzuVTUzlP4JDCVagVMC0BgiP3dY+G2/npXF0VVm+CdMmOdr
-	 jd7UPX0jhxUsA==
-Date: Wed, 20 Mar 2024 16:25:58 +0000
+	b=P3Q641ILZ0No81xX3jZUcFVi2vSrDDqy73xLyc1DCJv8XVFZoxDQVYAvUBfFLzoEa
+	 qDkncCb/4CouGt8j9uXafZWnwzc4dBg/xC7IKmXFOUyBK7YQp6WUxko+WX3qOK7vrA
+	 K5W9LJSFT5DgE+CGt4cB++/1nmew5/L+znkLT1clGllGiTvdVQWEPLngqN4/J6fafv
+	 GP7BZymDBz825X6b5+QrOdBNZ/lMPp2CnwiCerKQvN6Lq/gR+77S5Appm/rgtwvDXv
+	 gg9hPKerTHSeWg17roDqwlZlyt+7BuZ6dGqnBzMHBjAkqfm5wM8/NY4tpdQVSQIDrJ
+	 OqRObsj3u+rjQ==
+Date: Wed, 20 Mar 2024 16:35:33 +0000
 From: Conor Dooley <conor@kernel.org>
 To: Balamanikandan Gunasundar <balamanikandan.gunasundar@microchip.com>
 Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
@@ -55,10 +55,10 @@ Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
 	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
 	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] dt-bindings: mtd: atmel-nand: add deprecated bindings
-Message-ID: <20240320-audibly-emoticon-400e3a42550b@spud>
+Subject: Re: [PATCH 1/3] dt-bindings: mtd: atmel-nand: convert txt to yaml
+Message-ID: <20240320-quicksand-attentive-14610103237b@spud>
 References: <20240320-linux-next-nand-yaml-v1-0-2d2495363e88@microchip.com>
- <20240320-linux-next-nand-yaml-v1-3-2d2495363e88@microchip.com>
+ <20240320-linux-next-nand-yaml-v1-1-2d2495363e88@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,269 +66,272 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="bLcjqDi7D14ZgMoA"
+	protocol="application/pgp-signature"; boundary="c4iHnKnVlwr9DxCN"
 Content-Disposition: inline
-In-Reply-To: <20240320-linux-next-nand-yaml-v1-3-2d2495363e88@microchip.com>
+In-Reply-To: <20240320-linux-next-nand-yaml-v1-1-2d2495363e88@microchip.com>
 
 
---bLcjqDi7D14ZgMoA
+--c4iHnKnVlwr9DxCN
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 20, 2024 at 11:22:09AM +0530, Balamanikandan Gunasundar wrote:
-> Add nand bindings for legacy nand controllers. These bindings are not used
-> with the new device trees. This is still maintained to support legacy dt
-> bindings.
+On Wed, Mar 20, 2024 at 11:22:07AM +0530, Balamanikandan Gunasundar wrote:
+> Convert text to yaml for atmel nand controller
 >=20
 > Signed-off-by: Balamanikandan Gunasundar <balamanikandan.gunasundar@micro=
 chip.com>
 > ---
->  .../bindings/mtd/atmel-nand-deprecated.yaml        | 156 +++++++++++++++=
+>  .../devicetree/bindings/mtd/atmel-nand.txt         |  50 -------
+>  .../devicetree/bindings/mtd/atmel-nand.yaml        | 166 +++++++++++++++=
 ++++++
->  .../devicetree/bindings/mtd/atmel-nand.txt         | 116 ---------------
->  2 files changed, 156 insertions(+), 116 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/mtd/atmel-nand-deprecated.=
-yaml b/Documentation/devicetree/bindings/mtd/atmel-nand-deprecated.yaml
+>  MAINTAINERS                                        |   2 +-
+>  3 files changed, 167 insertions(+), 51 deletions(-)
+> diff --git a/Documentation/devicetree/bindings/mtd/atmel-nand.yaml b/Docu=
+mentation/devicetree/bindings/mtd/atmel-nand.yaml
 > new file mode 100644
-> index 000000000000..c8922ab0f1d5
+> index 000000000000..a5482d292293
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mtd/atmel-nand-deprecated.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/atmel-nand.yaml
 
-Node name matching the devices please.
+Filename matching a compatible please.
 
-> @@ -0,0 +1,156 @@
+> @@ -0,0 +1,166 @@
 > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/mtd/atmel-nand-deprecated.yaml#
+> +$id: http://devicetree.org/schemas/mtd/atmel-nand.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Atmel NAND flash controller deprecated bindings
-
-/stuff/linux-dt/Documentation/devicetree/bindings/mtd/atmel-nand-deprecated=
-=2Eyaml: title: 'Atmel NAND flash controller deprecated bindings' should no=
-t be valid under {'pattern': '([Bb]inding| [Ss]chema)'}
-	hint: Everything is a binding/schema, no need to say it. Describe what har=
-dware the binding is for.
-
+> +title: Atmel NAND flash controller
 > +
 > +maintainers:
 > +  - Balamanikandan Gunasundar <balamanikandan.gunasundar@microchip.com>
 > +
 > +description: |
-> +  This should not be used in the new device trees.
+> +  The NAND flash controller node should be defined under the EBI bus (see
+> +  Documentation/devicetree/bindings/memory-controllers/atmel,ebi.txt|yam=
+l).
 
-If these should not be used in new files, where are the replacement
-bindings for the three devices listed here? I think, rather than being
-deprecated, these are the only bindings for these devices and what you
-actually want to say here is that these should not be used for /new
-devices/. I'd drop mention of deprecation from the title as these
-bindings are the only ones for this hardware AFAICT and just say that
-new devices should be documented in $new_file.
+text|yaml?
 
+> +  One or several NAND devices can be defined under this NAND controller.
+> +  The NAND controller might be connected to an ECC engine.
+> +
 > +properties:
 > +  compatible:
-> +    enum:
-> +      - atmel,at91rm9200-nand
-> +      - atmel,sama5d2-nand
-> +      - atmel,sama5d4-nand
+> +    oneOf:
+> +      - items:
+> +          - enum:
+
+This is just an enum, drop the items and oneof.
+
+> +              - atmel,at91rm9200-nand-controller
+> +              - atmel,at91sam9260-nand-controller
+> +              - atmel,at91sam9261-nand-controller
+> +              - atmel,at91sam9g45-nand-controller
+> +              - atmel,sama5d3-nand-controller
+> +              - microchip,sam9x60-nand-controller
 > +
-> +  reg:
-
-Missing constraints.
-
-> +    description:
-> +      should specify localbus address and size used for the chip, and
-> +      hardware ECC controller if available. If the hardware ECC is PMECC,
-> +      it should contain address and size for PMECC and PMECC Error Locat=
-ion
-> +      controller.  The PMECC lookup table address and size in ROM is
-> +      optional. If not specified, driver will build it in runtime.
+> +  ranges:
+> +    description: empty ranges property to forward EBI ranges definitions.
 > +
-> +  atmel,nand-addr-offset:
+> +  ecc-engine:
 > +    description:
-> +      offset for the address latch.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +      phandle to the PMECC block. Only meaningful if the SoC embeds a PM=
+ECC
+> +      engine.
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - atmel,at91rm9200-nand-controller
+> +              - atmel,at91sam9260-nand-controller
+> +              - atmel,at91sam9261-nand-controller
+> +              - atmel,at91sam9g45-nand-controller
+> +              - atmel,sama5d3-nand-controller
+> +              - microchip,sam9x60-nand-controller
+> +    then:
+> +      properties:
+> +        "#address-cells":
+> +          const: 2
+> +
+> +        "#size-cells":
+> +          const: 1
 
-Missing constraints.
+Why is this in an if? Isn't this all of the devices in the binding?
 
 > +
-> +  atmel,nand-cmd-offset:
-> +    description:
-> +      offset for the command latch.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: atmel,sama5d3-nand-controller
+> +    then:
+> +      properties:
+> +        atmel,nfc-io:
+> +          $ref: /schemas/types.yaml#/definitions/phandle
+> +          description: phandle to the NFC IO block.
+> +
+> +        atmel,nfc-sram:
+> +          $ref: /schemas/types.yaml#/definitions/phandle
+> +          description: phandle to the NFC SRAM block
 
-Missing contraints.
+Please define the properties at the top level and use if statements to
+constrain them.
 
 > +
-> +  "#address-cells":
-> +    description:
-> +      Must be present if the device has sub-nodes representing partitions
-
-Does this binding even allow partition child nodes? Hint: it doesn't.
-
-> +  "#size-cells":
-> +    description:
-> +      Must be present if the device has sub-nodes representing partition=
-s.
-> +
-> +  gpios:
-> +    description:
-> +      specifies the gpio pins to control the NAND device. detect is an
-> +      optional gpio and may be set to 0 if not present.
-
-Missing constraints (and maybe a type too? I dunno if "gpios" has a
-special case in the -gpios regexes).
-
-> +  atmel,nand-has-dma:
-> +    description:
-> +      support dma transfer for nand read/write.
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +
-> +  atmel,has-pmecc:
-> +    description:
-> +      enable Programmable Multibit ECC hardware, capable of BCH encoding
-> +      and decoding, on devices where it is present.
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +
-> +  nand-on-flash-bbt:
-> +    description:
-> +      enable on flash bbt option if not present false
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +
-> +  nand-ecc-mode:
-
-Missing a default since this is optional.
-
-> +    description:
-> +      operation mode of the NAND ecc mode, soft by default.  Supported
-> +    enum:
-> +      [none, soft, hw, hw_syndrome, hw_oob_first, soft_bch]
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +
-> +  atmel,pmecc-cap:
-> +    description:
-> +      error correct capability for Programmable Multibit ECC Controller.=
- If
-> +      the compatible string is "atmel,sama5d2-nand", 32 is also valid.
-> +    enum:
-> +      [2, 4, 8, 12, 24]
-
-You're missing an extra permitted value for the sama5d2.
-
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  atmel,pmecc-sector-size:
-
-Missing a default since this is optional.
-
-> +    description:
-> +      sector size for ECC computation.
-> +    enum:
-> +      [512, 1024]
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  atmel,pmecc-lookup-table-offset:
-
-Missing a default since this is optional.
-
-> +    description:
-> +      includes two offsets of lookup table in ROM for different sector
-> +      size. First one is for sector size 512, the next is for sector size
-> +      1024. If not specified, driver will build the table in runtime.
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +
-> +  nand-bus-width:
-> +    description:
-> +      nand bus width
-> +    enum:
-> +      [8, 16]
-
-Missing a default of 8 here.
-
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-
-You're missing the optional child node for the "nand flash controller" on
-sama5d2.
-
 > +required:
 > +  - compatible
-> +  - reg
-> +  - atmel,nand-addr-offset
-> +  - atmel,nand-cmd-offset
+> +  - ranges
 > +  - "#address-cells"
 > +  - "#size-cells"
-> +  - gpios
+> +
+> +patternProperties:
+> +  "^nand@[a-f0-9]$":
+> +    type: object
+> +    $ref: nand-chip.yaml#
+> +    description:
+> +      NAND chip bindings. All generic properties described in
+> +      Documentation/devicetree/bindings/mtd/{common,nand}.txt also apply=
+ to
+> +      the NAND device node, and NAND partitions should be defined under =
+the
+> +      NAND node as described in
+> +      Documentation/devicetree/bindings/mtd/partition.txt.
+
+These files do not exist.
+
+> +    properties:
+> +      reg:
+> +        minItems: 1
+> +        description:
+> +          describes the CS lines assigned to the NAND device. If the NAN=
+D device
+> +          exposes multiple CS lines (multi-dies chips), your reg propert=
+y will
+> +          contain X tuples of 3 entries.
+
+The "if" here is not accurate. Your binding mandates there being 3
+entries.
+
+> +         reg =3D <0x3 0x0 0x800000>;
+> +          1st entry - the CS line this NAND chip is connected to
+> +          2nd entry - the base offset of the memory region assigned to t=
+his
+> +                      device (always 0)
+> +          3rd entry - the memory region size (always 0x800000)
+> +
+> +      rb-gpios:
+> +        description:
+> +          the GPIO(s) used to check the Ready/Busy status of the NAND.
+> +
+> +      cs-gpios:
+> +        description:
+> +          the GPIO(s) used to control the CS line.
+> +
+> +      det-gpios:
+> +        description:
+> +          the GPIO used to detect if a Smartmedia Card is present.
+> +
+> +      "atmel,rb":
+> +        description:
+> +          an integer identifying the native Ready/Busy pin. Only meaning=
+ful
+> +          on sama5 SoCs.
+
+Then please constrain it to sama5 SoCs only :)
+
+> +        $ref: /schemas/types.yaml#/definitions/uint32
 > +
 > +unevaluatedProperties: false
 > +
 > +examples:
 > +  - |
-> +    nand0: nand@40000000,0 {
+> +    nfc_io: nfc-io@70000000 {
+> +            compatible =3D "atmel,sama5d3-nfc-io", "syscon";
+> +            reg =3D <0x70000000 0x8000000>;
+> +    };
 
-Drop the unused node name.
+What's this got to do with the binding?
 
-> +            compatible =3D "atmel,at91rm9200-nand";
-> +            #address-cells =3D <1>;
-> +            #size-cells =3D <1>;
-> +            reg =3D <0x40000000 0x10000000
-> +                   0xffffe800 0x200>;
-> +            atmel,nand-addr-offset =3D <21>;	/* ale */
-> +            atmel,nand-cmd-offset =3D <22>;	/* cle */
-> +            nand-on-flash-bbt;
-> +            nand-ecc-mode =3D "soft";
-> +            gpios =3D <&pioC 13 0	/* rdy */
-> +                     &pioC 14 0 /* nce */
-> +                     0		/* cd */
-> +                    >;
+> +    pmecc: ecc-engine@ffffc070 {
+> +            compatible =3D "atmel,at91sam9g45-pmecc";
+> +            reg =3D <0xffffc070 0x490>,
+> +                  <0xffffc500 0x100>;
+> +    };
+> +
+> +    ebi: ebi@10000000 {
 
-Please follow the coding style rather than copy-paste from the text
-based binding. Applies to both examples. An example with the nfc would
-be more helpful than two bindings for the same device.
+Drop the unused label.
 
+Same applies here, read the coding style about how to write dts nodes
+please.
 
 Thanks,
 Conor.
 
-> +    };
-> +  - |
-> +    /* for PMECC supported chips */
-> +    nand1@40000000 {
-> +            compatible =3D "atmel,at91rm9200-nand";
-> +            #address-cells =3D <1>;
+> +            compatible =3D "atmel,sama5d3-ebi";
+> +            #address-cells =3D <2>;
 > +            #size-cells =3D <1>;
-> +            reg =3D <0x40000000 0x10000000	/* bus addr & size */
-> +                   0xffffe000 0x00000600	/* PMECC addr & size */
-> +                   0xffffe600 0x00000200	/* PMECC ERRLOC addr & size */
-> +                   0x00100000 0x00100000>;	/* ROM addr & size */
+> +            atmel,smc =3D <&hsmc>;
+> +            reg =3D <0x10000000 0x10000000
+> +                   0x40000000 0x30000000>;
+> +            ranges =3D <0x0 0x0 0x10000000 0x10000000
+> +                      0x1 0x0 0x40000000 0x10000000
+> +                      0x2 0x0 0x50000000 0x10000000
+> +                      0x3 0x0 0x60000000 0x10000000>;
+> +            clocks =3D <&mck>;
 > +
-> +            atmel,nand-addr-offset =3D <21>;	/* ale */
-> +            atmel,nand-cmd-offset =3D <22>;	/* cle */
-> +            nand-on-flash-bbt;
-> +            nand-ecc-mode =3D "hw";
-> +            atmel,has-pmecc;	/* enable PMECC */
-> +            atmel,pmecc-cap =3D <2>;
-> +            atmel,pmecc-sector-size =3D <512>;
-> +            atmel,pmecc-lookup-table-offset =3D <0x8000 0x10000>;
-> +            gpios =3D <&pioD 5 0	/* rdy */
-> +                     &pioD 4 0	/* nce */
-> +                     0		/* cd */
-> +                    >;
+> +            nandflash_controller: nandflash-controller {
+> +                    compatible =3D "atmel,sama5d3-nand-controller";
+> +                    ecc-engine =3D <&pmecc>;
+> +                    #address-cells =3D <2>;
+> +                    #size-cells =3D <1>;
+> +                    ranges;
+> +
+> +                    nand@3 {
+> +                            reg =3D <0x3 0x0 0x800000>;
+> +                            atmel,rb =3D <0>;
+> +
+> +                            /*
+> +                             * Put generic NAND/MTD properties and
+> +                             * subnodes here.
+> +                             */
+> +                    };
+> +             };
 > +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index b6582bd3eb2c..3f2a6756223f 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -14503,7 +14503,7 @@ MICROCHIP NAND DRIVER
+>  M:	Balamanikandan Gunasundar <balamanikandan.gunasundar@microchip.com>
+>  L:	linux-mtd@lists.infradead.org
+>  S:	Supported
+> -F:	Documentation/devicetree/bindings/mtd/atmel-nand.txt
+> +F:	Documentation/devicetree/bindings/mtd/atmel-*.yaml
+>  F:	drivers/mtd/nand/raw/atmel/*
+> =20
+>  MICROCHIP OTPC DRIVER
+>=20
+> --=20
+> 2.25.1
+>=20
 
---bLcjqDi7D14ZgMoA
+--c4iHnKnVlwr9DxCN
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZfsOFQAKCRB4tDGHoIJi
-0t3kAP9jY8HZKToi98ltz47V6tQojJLjSgDRdnCw6LafnC0+wgD+JYw2mnTfdEk6
-AskqOwNiZoOOmlMA/wdsvn9DUlQKOwo=
-=XKaT
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZfsQVQAKCRB4tDGHoIJi
+0koTAP4tmQxWlMJxtREutkSakIUYmZspbFGKbQ8eJnAwETV95AD/Y/aeQTbfPVFf
+J+/ZBy5T6kUykFIsMfA9+lz5Yea25gM=
+=yzG5
 -----END PGP SIGNATURE-----
 
---bLcjqDi7D14ZgMoA--
+--c4iHnKnVlwr9DxCN--
 
