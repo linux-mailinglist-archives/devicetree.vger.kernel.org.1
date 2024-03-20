@@ -1,61 +1,63 @@
-Return-Path: <devicetree+bounces-51979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51980-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 973B888142D
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 16:08:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDB12881435
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 16:10:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 50604281AD2
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 15:08:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6CC86B20F39
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 15:10:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2612F4D11D;
-	Wed, 20 Mar 2024 15:08:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CFBB4D9E4;
+	Wed, 20 Mar 2024 15:10:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BuAWPno6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jy0nD9Hy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA49A4AEFE;
-	Wed, 20 Mar 2024 15:08:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B5A24AEE0;
+	Wed, 20 Mar 2024 15:10:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710947316; cv=none; b=nnqT65i482rFx1KZGpDPadoWrmuSFfRHWcgEMUcpuprChqrZ7dE6jQyeFxoLsuwwrFHQSwN7sod/aOTro0a6qS8xkjzKgCcVVeGEKd1UGikzHpCZjIcD5L5dD227lAXLoZbC7AlXZ8A/dQywZW1nZA08GrkHkE0pq1UQ02YyFdQ=
+	t=1710947417; cv=none; b=E0gJopr/CnSr9pEZAQjkR78CEUD3VyNYpNDBcSK8mls7gIELvtCHnddIh0la6hN7SkIQfpqowHsTWq+LW7bRxEY+F91EIumJCAJQ7/3K4+/I4Yf0atc/3CTvAhDZ8Fgy6zsN8RpZo8wBfeBYpMm6tJT7HjWqZ9d4B7xDKgVU1fE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710947316; c=relaxed/simple;
-	bh=cuT65SArsHk0q0YorBWmBbZLglwm8KniwFvajiph340=;
+	s=arc-20240116; t=1710947417; c=relaxed/simple;
+	bh=4//2Ztgp/9bNI3pOdqFM6t+BddbS0siyo86ffWZ/Cis=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FO/+HP+zS2HR9ITlfqS4HXcFpk6v0d6rVQ0c8YmivbilxRBGGFd3teD7N7aaoQYazPP7zOl+f4KYugRFosLs51qE7ldCE0H4MjX7g6St8ZBnTJ/VzH6Vys3Q0UxRoa8XYiAO4ynFKCSKDpeBnFCrJiq2YhszI0ung/Ys2B0/zF0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BuAWPno6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48E2FC433F1;
-	Wed, 20 Mar 2024 15:08:35 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=CUZs85RvtRy0tUiEyY1+sN9fq6VMUMvvsrPNMX5YqCunhIMv/lrtuYDfcV1Nr9oc8ltvH/gdqWnsbdXjDpWkfmagti41gPQbLRyr9rhuVGBTzCVlDBxT2sH57627WJQOQo6NeJnS5tuorelm8JvKPkrlQA21BQXEM+o8eIWEU0U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jy0nD9Hy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A84FBC433F1;
+	Wed, 20 Mar 2024 15:10:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710947315;
-	bh=cuT65SArsHk0q0YorBWmBbZLglwm8KniwFvajiph340=;
+	s=k20201202; t=1710947416;
+	bh=4//2Ztgp/9bNI3pOdqFM6t+BddbS0siyo86ffWZ/Cis=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BuAWPno6kl1SLrWIxqh3LwKUkzMP738uIRi0OwUTOaxHUaKVpR0agxZPow7dN/Xbm
-	 7gSCuSdapZkTJNJt0pwcpjDVsrCASgZ1AiVgX9mLWeRAHaU0V4/y6BTH+79VyHP9Hm
-	 uOpEfNKuMm5tqCaCinZ5Yy8x7iGQZDwo3retd/Z6wP7AkiihKe1BXIgPbQhnZa9cYV
-	 VxgpNhN5mL0PFCjvw2Al9C86ubexZTYcTV+ztk81TX2C0OHuy3HVF+uqlYevHPy6TK
-	 en3aUDwqvRZW58P3Gsb2HUjM7f5b/+mHrZLfBlMi3P4CC8IbZNYi4CJMMUdP1eb3+Z
-	 FaBDQagCNucrA==
-Date: Wed, 20 Mar 2024 10:08:33 -0500
+	b=jy0nD9HyCZRmXwWFd3UlqqBhl2ZYER4gdgogPzhjSCx3G4XIkqsby7MNTLL8r77YB
+	 01HqIdFbL/wLst4bp5hJPLRhbCYcbH2gxlPbfwB3Hh48Ye6oKE5EJ5DHEMWVL1I6fp
+	 ggOv7O92qxJrZpwJUURgXxc0GAVMPpojWCr7Qbpk0yryJjZwZJTdsJbyAMy1icncEV
+	 mdnQ5oCo6utiYEBoI6sDRK+9pn5ioyYYdO/96Gvadb01Weyrji5E282FFX/A7uZ+ZN
+	 7gLUoYsOVbpDfYSTUQutk9FfhQL2PIxZMlxUd4mdGHqboa+gFbUqzhtgef5d0ASwLi
+	 zc3aYo37Z31nQ==
+Date: Wed, 20 Mar 2024 10:10:14 -0500
 From: Rob Herring <robh@kernel.org>
-To: Ivan Bornyakov <brnkv.i1@gmail.com>
-Cc: Nas Chung <nas.chung@chipsnmedia.com>,
-	Jackson Lee <jackson.lee@chipsnmedia.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/6] dt-bindings: media: cnm,wave521c: drop resets
- restriction
-Message-ID: <20240320150833.GA1729819-robh@kernel.org>
-References: <20240318144225.30835-1-brnkv.i1@gmail.com>
- <20240318144225.30835-4-brnkv.i1@gmail.com>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>, imx@lists.linux.dev,
+	Mark Brown <broonie@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Shengjiu Wang <shengjiu.wang@nxp.com>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH v7 3/4] ASoC: dt-bindings: fsl-sai: allow only one
+ dma-names
+Message-ID: <171094741235.1737484.4683319555697657710.robh@kernel.org>
+References: <20240318-asrc_8qxp-v7-0-01ce5264a761@nxp.com>
+ <20240318-asrc_8qxp-v7-3-01ce5264a761@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,34 +66,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240318144225.30835-4-brnkv.i1@gmail.com>
+In-Reply-To: <20240318-asrc_8qxp-v7-3-01ce5264a761@nxp.com>
 
-On Mon, Mar 18, 2024 at 05:42:18PM +0300, Ivan Bornyakov wrote:
-> Different designs may have different amount of routed reset signals.
-> Drop maxItems restriction, add a small description instead.
+
+On Mon, 18 Mar 2024 15:00:09 -0400, Frank Li wrote:
+> Some sai only connect one direction dma (rx/tx) in SOC. For example:
+> imx8qxp sai5 only connect tx dma channel. So allow only one "rx" or "tx"
+> for dma-names.
 > 
-> Signed-off-by: Ivan Bornyakov <brnkv.i1@gmail.com>
+> Remove description under dmas because no user use index to get dma channel.
+> All user use 'dma-names' to get correct dma channel. dma-names already in
+> 'required' list.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  Documentation/devicetree/bindings/media/cnm,wave521c.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/sound/fsl,sai.yaml | 6 ++----
+>  1 file changed, 2 insertions(+), 4 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/media/cnm,wave521c.yaml b/Documentation/devicetree/bindings/media/cnm,wave521c.yaml
-> index 6a11c1d11fb5..2cb4f68d27ac 100644
-> --- a/Documentation/devicetree/bindings/media/cnm,wave521c.yaml
-> +++ b/Documentation/devicetree/bindings/media/cnm,wave521c.yaml
-> @@ -34,7 +34,8 @@ properties:
->      maxItems: 1
->  
->    resets:
-> -    maxItems: 1
-> +    items:
-> +      - description: Optional reset lines
 
-Your change is a NOP. In fact, the tools will translate an 'items' list 
-with no constraints back into maxItems/minItems.
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-So it seems whatever change you think you needed, you did not validate 
-the change.
-
-Rob
 
