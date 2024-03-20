@@ -1,166 +1,166 @@
-Return-Path: <devicetree+bounces-51948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51949-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D5BC881173
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 13:05:44 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id F283B88117F
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 13:11:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 52B7728545D
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 12:05:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3D445B23573
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 12:10:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89A903F9F8;
-	Wed, 20 Mar 2024 12:05:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 674BF3F9FA;
+	Wed, 20 Mar 2024 12:10:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="YBf9YfYa"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="p50v3l7n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 901E1347B6;
-	Wed, 20 Mar 2024 12:05:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8F2840843;
+	Wed, 20 Mar 2024 12:10:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710936340; cv=none; b=cFXWOPNzC3PQX8iHQdGel+shKaVt7dAVKaoljSk5PhlMqLMjMmAHtn9QLjptB/KCPlNS8xm9YGtzOrr+hzWaUGPHFcn4UZPNg0SthDJqjhiUicvjtEQfd06rqOBN7LHmznWCzg8CA5Z9aUBwFnTHwWddFz4TKN+EdnZnn1zzRyg=
+	t=1710936654; cv=none; b=fWH5QXeBjk8iR9jZCWm+n9qUlgzLQxDN9K0MtrYGUbU3hrORMoq7m5lNNUO70TiOBYYjlE7E3KFXDrpWEiWnJ4FWRCPp6OBFcGCyn19j80oJlyxeCOZncyedbXuWlbzWvPHAsgZaM6TEClyFQcNrOi1vWL4O/B34riY8x30Y7J0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710936340; c=relaxed/simple;
-	bh=Bv0vnDFIE4l1ckdc9yIZADTw7OuOYa398zh7BG+c0nA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LXvXPLCk/uEc/bWb1fOAnFai2+l6Q+/N8j2RepMBDWGJ3mLJQ4ChL9RRGI1A6bkZoREXirJgAIWgf1dXCodYIsNqVja+tMAb7XmbQsW0IDpzvCafyV10cJWG/7PxYmVfeCK/fwl4dn1cmEppvDQkaJ+I3my5ie4TCpQskg2d5ng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=YBf9YfYa; arc=none smtp.client-ip=46.19.9.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-	s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=V38z3dXzsoQdcHr/9aA6f+pJAC6EF/1U7YiXTRMIxXU=; b=YBf9YfYaD5mjsz6HfDj0lOx/CH
-	nXV3cytfORkWXz5TQdmOvMyeR4Vm97N+ozlYxZuCjIrJjMclEaUoW+dGMjBmVg+IVjEb8eOCgjPgH
-	D+F9RRP561uQOl41AdIbH1PkB/d9OqsU8kMznFzVnEDax/yDaAZJh5P1d8HIOxVVqBczvv0cQYNdM
-	hZNY1NIDJ6rxbu6LShFZbj8Z9ap47jRep0KpRjzduKJtdW2WIg/rEdsz9ZtnA5tmPkrtDcXMhLVoj
-	/+5gRhMa/oMz7DOSGzR4BGGWfkGG6VUQsWMpVDMNFJhUcHabSBVkkDk1o2zSsL4+xZasKDg/FRyAH
-	YmPCmdIQ==;
-Received: from [89.212.21.243] (port=54340 helo=[192.168.69.84])
-	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-	(Exim 4.96.2)
-	(envelope-from <andrej.picej@norik.com>)
-	id 1rmuhG-005rRw-0q;
-	Wed, 20 Mar 2024 13:05:30 +0100
-Message-ID: <e994b756-7f4e-4be3-b8f3-310988174b44@norik.com>
-Date: Wed, 20 Mar 2024 13:05:29 +0100
+	s=arc-20240116; t=1710936654; c=relaxed/simple;
+	bh=6BqKuQkKI7qqdSWP3RT3IfyKn2XXs/cwX6b6EcQFUXE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=G8wzjheZNXMsb/hKEC36y4We/E0pelJ/MRuXZCsF2wLcGKKvdEzh9FX/odvwoP3d85aM84OcSRtJuj/MnIFnNjYy0ml/1a/9UsTDK8RU2OrPbzaJaICXj2hjPa/ds23Hmjd4EU8+D0JhjHWNM6TdeJDHcocykdb17lWtKt/A7l0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=p50v3l7n; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42KBjCo1005923;
+	Wed, 20 Mar 2024 12:10:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=yZkO476
+	vWnBXahdSSyoINxOnrUmV547YEJLIGTKnHJQ=; b=p50v3l7nNS6K8XEov+CN+3S
+	na4xRK8KNYVi6MlR2LWCW5Pi+9cg50QOKMbBKusXJd6CduSOzm6gGXYmYbeTgOJV
+	0zGHquWoojVldCnoVv0xogBUrVvnRYTXbRZwddkVEebGq7UoKBsE65YlalHrlPYP
+	vYCqy1xqGSMPKEg/UroQV5q3e6kTp4+4AsdMPyiCP+3XJ6eNO1I72bzIBRrRgyIt
+	SJsBD869113JaIUdMEodjYAYuWTxVZBPEox1/a5a5pPkOJIt8cXOTI3WnBg3RpuT
+	9bnck3/kBDOb5lupR3xXvSYrjb1jGNhWdz9loU0Lr+4CtGaucLg13OoYind1RnQ=
+	=
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wypxq138u-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 20 Mar 2024 12:10:46 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42KCAjjv002954
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 20 Mar 2024 12:10:45 GMT
+Received: from hu-uchheda-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Wed, 20 Mar 2024 05:10:41 -0700
+From: Umang Chheda <quic_uchheda@quicinc.com>
+To: <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <quic_uchheda@quicinc.com>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH] arm64: dts: qcom: qcs6490-rb3gen2: enable PMIC Volume and Power buttons
+Date: Wed, 20 Mar 2024 17:40:16 +0530
+Message-ID: <20240320121016.2878367-1-quic_uchheda@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: iio: adc: nxp,imx93-adc.yaml: Add
- calibration properties
-Content-Language: en-GB
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, haibo.chen@nxp.com,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Cc: jic23@kernel.org, lars@metafoo.de, shawnguo@kernel.org,
- s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- upstream@lists.phytec.de
-References: <20240320100407.1639082-1-andrej.picej@norik.com>
- <20240320100407.1639082-3-andrej.picej@norik.com>
- <38637621-1611-4268-ae79-7ac93a72c5ee@linaro.org>
-From: Andrej Picej <andrej.picej@norik.com>
-In-Reply-To: <38637621-1611-4268-ae79-7ac93a72c5ee@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
-X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: vfYBdB2E3afv6-YuT3Ul3nb2Jk5xjWnY
+X-Proofpoint-GUID: vfYBdB2E3afv6-YuT3Ul3nb2Jk5xjWnY
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-20_08,2024-03-18_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
+ lowpriorityscore=0 phishscore=0 clxscore=1011 malwarescore=0
+ priorityscore=1501 mlxlogscore=999 adultscore=0 suspectscore=0 mlxscore=0
+ bulkscore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2403140001 definitions=main-2403200096
 
-Hi Krzysztof,
+The Volume Down & Power buttons are controlled by the PMIC via
+the PON hardware, and the Volume Up is connected to a PMIC gpio.
 
-On 20. 03. 24 11:26, Krzysztof Kozlowski wrote:
-> On 20/03/2024 11:04, Andrej Picej wrote:
->> Document calibration properties and how to set them.
-> 
-> Bindings are before users.
+Enable the necessary hardware and setup the GPIO state for the
+Volume Up gpio key.
 
-will change patch order when I send a v2.
+Signed-off-by: Umang Chheda <quic_uchheda@quicinc.com>
+---
+ arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 37 ++++++++++++++++++++
+ 1 file changed, 37 insertions(+)
 
-> 
-> Please use subject prefixes matching the subsystem. You can get them for
-> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-> your patch is touching.
-> There is no file extension in prefixes.
+diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+index 63ebe0774f1d..73f6d18d2331 100644
+--- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
++++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+@@ -9,6 +9,8 @@
+ #define PM7250B_SID 8
+ #define PM7250B_SID1 9
+ 
++#include <dt-bindings/input/linux-event-codes.h>
++#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ #include "sc7280.dtsi"
+ #include "pm7250b.dtsi"
+@@ -39,6 +41,22 @@ chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+ 
++	gpio-keys {
++		compatible = "gpio-keys";
++
++		pinctrl-0 = <&key_vol_up_default>;
++		pinctrl-names = "default";
++
++		key-volume-up {
++			label = "Volume_up";
++			gpios = <&pm7325_gpios 6 GPIO_ACTIVE_LOW>;
++			linux,code = <KEY_VOLUMEUP>;
++			wakeup-source;
++			debounce-interval = <15>;
++			linux,can-disable;
++		};
++	};
++
+ 	reserved-memory {
+ 		xbl_mem: xbl@80700000 {
+ 			reg = <0x0 0x80700000 0x0 0x100000>;
+@@ -471,6 +489,25 @@ &gcc {
+ 			   <GCC_WPSS_RSCP_CLK>;
+ };
+ 
++&pm7325_gpios {
++	key_vol_up_default: key-vol-up-state {
++		pins = "gpio6";
++		function = "normal";
++		input-enable;
++		bias-pull-up;
++		qcom,drive-strength = <PMIC_GPIO_STRENGTH_LOW>;
++	};
++};
++
++&pon_pwrkey {
++	status = "okay";
++};
++
++&pon_resin {
++	linux,code = <KEY_VOLUMEDOWN>;
++	status = "okay";
++};
++
+ &qupv3_id_0 {
+ 	status = "okay";
+ };
+-- 
+2.25.1
 
-So: dt-bindings: iio/adc: nxp,imx93-adc: Add calibration properties?
-
-> 
->>
->> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
->> ---
->>   .../bindings/iio/adc/nxp,imx93-adc.yaml           | 15 +++++++++++++++
->>   1 file changed, 15 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
->> index dacc526dc695..64958be62a6a 100644
->> --- a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
->> +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
->> @@ -46,6 +46,21 @@ properties:
->>     "#io-channel-cells":
->>       const: 1
->>   
->> +  nxp,calib-avg-en:
->> +    description:
->> +      Enable or disable averaging of calibration time.
->> +    enum: [ 0, 1 ]
->> +
->> +  nxp,calib-nr-samples:
->> +    description:
->> +      Selects the number of averaging samples to be used during calibration.
->> +    enum: [ 16, 32, 128, 512 ]
->> +
->> +  nxp,calib-t-samples:
->> +    description:
->> +      Specifies the sample time of calibration conversions.
->> +    enum: [ 8, 16, 22, 32 ]
-> 
-> No, use existing, generic properties. Open other bindings for this.
-
-You mean I should use generic properties for the ADC calibration 
-settings? Is there already something in place? Because as I understand 
-it, these calib-* values only effect the calibration process of the ADC.
-
-> 
-> Also, none of these were tested. I am not going to review such untested
-> code.
-> 
-> It does not look like you tested the bindings, at least after quick
-> look. Please run `make dt_binding_check` (see
-> Documentation/devicetree/bindings/writing-schema.rst for instructions).
-> Maybe you need to update your dtschema and yamllint.
-
-You are right, I did not run the dt_binding_check, sorry for this, 
-forgot that this existed. I see now I have to add the:
-> $ref: /schemas/types.yaml#/definitions/uint32
-
-Will fix in v2.
-
-BR,
-Andrej
-
-> 
-> Best regards,
-> Krzysztof
-> 
 
