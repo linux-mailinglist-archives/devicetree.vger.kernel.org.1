@@ -1,104 +1,202 @@
-Return-Path: <devicetree+bounces-52014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D6968816DB
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 18:55:21 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C91A8816F2
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 18:59:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0DC76B212E9
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 17:55:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E30DCB214D6
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 17:59:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 203156A353;
-	Wed, 20 Mar 2024 17:55:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1B0A6A8CD;
+	Wed, 20 Mar 2024 17:59:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fKiTqPRU"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="KKZ51g+u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CE4269DE4;
-	Wed, 20 Mar 2024 17:55:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B2116A8C3;
+	Wed, 20 Mar 2024 17:59:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710957313; cv=none; b=p9xdAINXpZlFlkHISk92BtLUqslOC/rpwFsYlTYMhJHMYjQiNlGmnealEoyI88ubP3XmG2FAySo96WSpCcrzXRaUezzQZwrPtsZy599thcw3h7IblC+14k0Ya241E0xnnP7YReHHZ/lqZeXr/dhBSfQ4fZT64INrkGsXWxoliyo=
+	t=1710957572; cv=none; b=KJP1D8TX9SICloIAVA2kIEwuOZ5XzeZx7F6BJFna3Voqz0kmSh24o8xsy+nu+ODBuf4+bT2R+u7GU1TmZSHtWbwHEDCy3tleT+x079PlKl7Mu5UcY3zDlkIWd5SSJO/UnxWucZlUgrApuLDeA4cTTJMh2vzfElD42JZv3lS59zI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710957313; c=relaxed/simple;
-	bh=rCNMBMu8fQpwrXd/m9/xsyeE/QLxw3BCy3uZoZhw4vA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UYoiHhVMNyTA74uxqWxz17h0IxW3N7QBL0oIweke4R7TlMLvkuICRVnGFOnIQYVQrhCrnuWLcuWEFDTgmuk2jq3ozQG4Elu4g+/cQ8SlfVsrTHoaIknHt0DnVubcM5zzduoI2xt6B8/ghIwnPqjTUUMi3edPx32tY9/s6fkaick=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fKiTqPRU; arc=none smtp.client-ip=209.85.215.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-5e4f79007ffso62326a12.2;
-        Wed, 20 Mar 2024 10:55:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710957311; x=1711562111; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Zjv8XCHpcg6s9nRJ5tVGIKCPsm+AiLcgIe4CWKl0nh0=;
-        b=fKiTqPRUHuk+SiDxkA7xE4Qbv1U+ad+uhFa6RFt0ZzV8v9JZvGZH9UAU9EfMCJlql7
-         /6kX5H+04IyOlSoXPGiBPi2G410BBMoNQ71BySdgIJWnozUuhpaSS/pPX910flMGAESN
-         kXQ9yC7pectZIZbQpOGJFhMmlEVqBr15mO4Rx5l3RLNDu6FqHpLAIjV7ZN/E6y2oFD8V
-         bABLUtqUO4+5toocYwUvsyCVeC7C5eouIWN4Nnnyko+aYHAZzuarGEZnWr2uqd7dOMlP
-         i0db0v7sCl9ZJcHf69TF3Ovzh6Nw4zxWXTHewZxIljO0/3sRHyJRluH9419kO920GaGC
-         qE5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710957311; x=1711562111;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Zjv8XCHpcg6s9nRJ5tVGIKCPsm+AiLcgIe4CWKl0nh0=;
-        b=agRB/0xpgTWb5/ugv/ZIFKRgafx/CYNB1cWlb52nq+tu42BvR8e9+A6GALqCdZUlho
-         0KLJXaKdrepmjdcHRFK0eLu4K+dAoiS9daRXamFOD8c5uENKsvXRXtZ8nCvAniW00NLF
-         5uBU/pyQfSzzO5MczYxMEMzmEsRrOXdNAT7Ix6pKveb7HSSGxx5sGuS5F9IOhlQ2zFDa
-         c33AG3Ee8NvNg/r7NU3bah17psNXvQSBr+vW80DQ9aotPxpU/mhWo7TH3EEb7ahjQq59
-         7yCaB9RIGXqkCRrF4kDTYPCoU3pCIaB0V9rBK0C5oIp2WyGS1LuU2eooY4TsER3c3FWq
-         ksaw==
-X-Forwarded-Encrypted: i=1; AJvYcCVClWB6YhKeIfMMiuQXPfta9ORkW9PQVNZfKmAhsyaLH/88hQwErMh6z6kg4N0tkoLz7UbuYw3a/+OxmMdzOmv9PXX7bwqzPIH6P75oLC3dXhTedJ6nXMqKPJLY+v2KJGL/6BYV1tC/LBjUJ90Oxcna5gS9SPX4CU5mLlZkoSRy2p1qWk01
-X-Gm-Message-State: AOJu0YzDgJ2ZIjevsgDK9yfooFyMkqEUz8civ9uVd8gZNmcTYQEjN31F
-	XdPZYOGe75v9RuxsoCcBHxcxulg7qDR6t79xqMVGYFr++1d/aBQK
-X-Google-Smtp-Source: AGHT+IHI4A2ZmFJtQOglBk0ZqF74aoOeRroVRr+nrO3blb2vQiFyFuxerZbdQnLhovemIxXFf4vYNw==
-X-Received: by 2002:a17:903:2282:b0:1e0:11d8:7898 with SMTP id b2-20020a170903228200b001e011d87898mr14112565plh.47.1710957310866;
-        Wed, 20 Mar 2024 10:55:10 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d2-20020a170903230200b001deffc90392sm9998704plh.35.2024.03.20.10.55.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Mar 2024 10:55:10 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Wed, 20 Mar 2024 10:55:09 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2] dt-bindings: hwmon: adc128d818: convert to dtschema
-Message-ID: <62712a43-fadb-4a44-af6a-d863a7049ecc@roeck-us.net>
-References: <20240319-adc128d818_dtschema-v2-1-0824a6d69493@gmail.com>
+	s=arc-20240116; t=1710957572; c=relaxed/simple;
+	bh=R+7tV7dktd45LPg/YF32aUCOYKAWmKksE4IzEk3YgCQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ttqeOkrmHfgy/LyufmOGEfE+S7f1lva7E9jrUAm13H4TrjMuOckCP3e8PWxqbI8RpfL112OaozuI50dw4I6lGOYkL0n7BUnTQ/M2iEd8J1w3RodGrS6UXbc8t+fyNptV+GEBDbSoLbm14h4nryAiqpnY+lNqKhwXNXTMlSJehRI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=KKZ51g+u; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42KEjcni004879;
+	Wed, 20 Mar 2024 17:59:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=GwAPSGgZJycBh9DQwmyuX+kQ0nITXlVU3IEbYQiabf4=; b=KK
+	Z51g+u+h+6i+qDtxYI2sIBxcpLnlpYZqesFiI8zFVNZ7Z+rr7YK//EPa8nVMkP4A
+	Pp6gqhif1vP2yjoGAdO2Cuwo7NG2uGkdASVVdSLtPFIdwEtCsZXJP7LtxJ0ZcPLe
+	PRIascamMfg6oRu08JRcGQZJEhXqrmxN9nS9IccqBuKVQL99QIjzuumGpI6rUf7k
+	2EEGq5TmHqvbN4jKqf8jk5Fet2ikBtve4OGsB1GchegkYJpQm+4jnV1GxdFB9yq9
+	JI/TmG+D/eGrriynZKnjeZfTBDl/4P/wKmFmgTIRZsBV0F9/JNU/wRuCDDbqbRMI
+	YwCSBcX2+W5k1w8iC3Vw==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wypxq1xdq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 20 Mar 2024 17:59:23 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42KHxMnK015241
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 20 Mar 2024 17:59:22 GMT
+Received: from [10.50.49.240] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 20 Mar
+ 2024 10:59:16 -0700
+Message-ID: <f27bcfff-f710-4a76-b94e-8f1e5365802b@quicinc.com>
+Date: Wed, 20 Mar 2024 23:29:13 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240319-adc128d818_dtschema-v2-1-0824a6d69493@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/4] interconnect: qcom: icc-rpmh: Add QoS
+ configuration support
+Content-Language: en-US
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: Kees Cook <keescook@chromium.org>, <cros-qcom-dts-watchers@chromium.org>,
+        "Gustavo A . R . Silva" <gustavoars@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-hardening@vger.kernel.org>, <quic_rlaggysh@quicinc.com>,
+        <quic_mdtipton@quicinc.com>
+References: <20240306073016.2163-1-quic_okukatla@quicinc.com>
+ <20240306073016.2163-2-quic_okukatla@quicinc.com>
+ <b5ade82e-3a7e-427f-907f-bafe1d203d45@linaro.org>
+From: Odelu Kukatla <quic_okukatla@quicinc.com>
+In-Reply-To: <b5ade82e-3a7e-427f-907f-bafe1d203d45@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: RGD2IVYRZINWp6Ixwexm0TjInTKnGKf3
+X-Proofpoint-GUID: RGD2IVYRZINWp6Ixwexm0TjInTKnGKf3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-20_10,2024-03-18_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
+ lowpriorityscore=0 phishscore=0 clxscore=1015 malwarescore=0
+ priorityscore=1501 mlxlogscore=999 adultscore=0 suspectscore=0 mlxscore=0
+ bulkscore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2403140001 definitions=main-2403200143
 
-On Tue, Mar 19, 2024 at 11:00:10AM +0100, Javier Carrasco wrote:
-> Convert adc128d818 bindings to dtschema to support validation.
+
+
+On 3/6/2024 9:48 PM, Konrad Dybcio wrote:
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+> 
+> On 3/6/24 08:30, Odelu Kukatla wrote:
+>> It adds QoS support for QNOC device and includes support for
+>> configuring priority, priority forward disable, urgency forwarding.
+>> This helps in priortizing the traffic originating from different
+>> interconnect masters at NoC(Network On Chip).
+>>
+>> Signed-off-by: Odelu Kukatla <quic_okukatla@quicinc.com>
+>> ---
+>>   drivers/interconnect/qcom/icc-rpmh.c | 105 +++++++++++++++++++++++++++
+>>   drivers/interconnect/qcom/icc-rpmh.h |  32 ++++++++
+>>   2 files changed, 137 insertions(+)
+>>
+>> diff --git a/drivers/interconnect/qcom/icc-rpmh.c b/drivers/interconnect/qcom/icc-rpmh.c
+>> index c1aa265c1f4e..b4681849df80 100644
+>> --- a/drivers/interconnect/qcom/icc-rpmh.c
+>> +++ b/drivers/interconnect/qcom/icc-rpmh.c
+>> @@ -1,19 +1,57 @@
+>>   // SPDX-License-Identifier: GPL-2.0
+>>   /*
+>>    * Copyright (c) 2020, The Linux Foundation. All rights reserved.
+>> + * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+>>    */
+>>   
+>> +#include <linux/clk.h>
+>>   #include <linux/interconnect.h>
+>>   #include <linux/interconnect-provider.h>
+>>   #include <linux/module.h>
+>>   #include <linux/of.h>
+>>   #include <linux/of_platform.h>
+>>   #include <linux/slab.h>
+>> +#include <linux/bitfield.h>
+> 
+> Please keep the alphabetical order
+> 
 
-Applied.
+I will address this in next version.
 
-Please note that I'll push the branch after the commit window closed.
+>>   
+>>   #include "bcm-voter.h"
+>>   #include "icc-common.h"
+>>   #include "icc-rpmh.h"
+>>   
+>> +/* QNOC QoS */
+>> +#define QOSGEN_MAINCTL_LO(p, qp)	(0x8 + (p->port_offsets[qp]))
+>> +#define QOS_SLV_URG_MSG_EN_MASK		BIT_MASK(3)
+> 
+> Mixing BIT_MASK and GENMASK is very confusing..
+> 
+
+I will fix this in v4.
+
+>> +#define QOS_DFLT_PRIO_MASK		GENMASK(6, 4)
+>> +#define QOS_DISABLE_MASK		BIT_MASK(24)
+>> +
+>> +/**
+>> + * qcom_icc_set_qos - initialize static QoS configurations
+>> + * @qp: qcom icc provider to which @node belongs
+>> + * @node: qcom icc node to operate on
+>> + */
+>> +static void qcom_icc_set_qos(struct qcom_icc_provider *qp,
+>> +				struct qcom_icc_node *node)
+>> +{
+>> +	const struct qcom_icc_qosbox *qos = node->qosbox;
+>> +	int port;
+>> +
+>> +	if (!qp->regmap || !qos)
+>> +		return;
+> 
+> This is not possible if you follow the code flow, I think..
+> 
+> [...]
+> 
+
+Right, it is not needed.
+
+>> + * @prio: priority value assigned to requests on the node
+>> + * @urg_fwd: whether to forward the urgency promotion issued by master(endpoint), or discard
+> 
+> space before the opening brace, please also wrap to 80 lines
+> 
+
+I will fix this in v4.
+
+>> + * @prio_fwd_disable: whether to forward the priority driven by mster, or override by @prio
+> 
+> typo: mster, please also wrap it
+> 
+> Konrad
 
 Thanks,
-Guenter
+Odelu
 
