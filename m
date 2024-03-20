@@ -1,109 +1,107 @@
-Return-Path: <devicetree+bounces-52010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F13D5881634
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 18:12:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A842088167E
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 18:22:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 92705B23C6D
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 17:12:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5E4BC1F2616D
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 17:22:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FE466A010;
-	Wed, 20 Mar 2024 17:11:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AC056A8AB;
+	Wed, 20 Mar 2024 17:21:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QCBkpNz1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sSGqzDQR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE63669E07;
-	Wed, 20 Mar 2024 17:11:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E75006A8A6;
+	Wed, 20 Mar 2024 17:21:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710954717; cv=none; b=QIYtEwgAnRZKVqbYSAgUgHPkGrF071DD5oCVA05aD2eE1BeoXI5VZ/TNyymDuT3PV4IsEhbHVlmzi2rx898Qhzs96p+NOOeYc/0u7YnXJ/HK4y6bbPJTOo70oXPIp7fmmG8Mcr3OQ3GAYHhRnIDbxxNxrlZyOZzqHxEDYesRR68=
+	t=1710955271; cv=none; b=WnbUC2itniXBYPQZRQNsHZpZmsHz4hdqOaxQfBg27ogfX46H/nQoxSmat2uP85DZDeEf4W3fQTsIZv1JH+X8IMdmnrJgYSahuqyXysQg1pfNOE8kMU0YFzLZ9PR9BWmtzovV2I1x6m59yYIxpkOmLBXNG75Fy6A+JmEKqBjljcs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710954717; c=relaxed/simple;
-	bh=0aZFZCOeLAcN+NftH2PeOcpao57s+EO2JXeOavSTOno=;
+	s=arc-20240116; t=1710955271; c=relaxed/simple;
+	bh=vMt26N+gZlbDIjpZ5zan3Cn3V7tOpJjhfbvtLaaSEq0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XG10rEX5910uP6wrzay3D3CRt+sT5vLhXb/qKWK3kJulvNThBBamTnoUMpKW3EiQbI+S8T+4ae2aFQAt47adzX7KCT0gqMYY75+SoEbdGPsqS6VHMWjJ816WYU6yVOAncxh8d7ozT7IBnMC1ewJgsfulbBGQPnj3+/VKzJ/nMfs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QCBkpNz1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96409C433C7;
-	Wed, 20 Mar 2024 17:11:56 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=HRp1iqYX+2cg4D8BXSjHn1t/A5E/IyP+zsLUZ3W+3dUjFGnpeBbuZXTXTG40V4J9835/ebd423zGKQjPPYDfKScgAZOyDGqSHy8RVD/vdvO+M/fZOaBhM2h+HXZjwtXaAsZ3ZeUrqy+P+AbJ44g5R3PIEnZaSwRVvlqOd+yIGvw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sSGqzDQR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDF59C433F1;
+	Wed, 20 Mar 2024 17:21:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710954716;
-	bh=0aZFZCOeLAcN+NftH2PeOcpao57s+EO2JXeOavSTOno=;
+	s=k20201202; t=1710955270;
+	bh=vMt26N+gZlbDIjpZ5zan3Cn3V7tOpJjhfbvtLaaSEq0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QCBkpNz1izIAQnF1MzhDvD0qkClOk9NfXEqsqtET5IxF5C2whK9ftPgRvICiZinaN
-	 KdMEm7da5sCTMHPD2GKHXwsCzDbGqSCm6IbgVS8rNw0PlyOaaaqxehxG+LODHOmHkJ
-	 UkiU0ECukWIcB60nUBNuRwipbi7ahHw349iRfmphgN4m/snQ+FHKdu9spSCWqlJsp1
-	 /hoL7KKkazGYfjERiL2TEIeUhLBRpnwOxb85c10YeFLjbfW4kPLwWVfoqvBXwZSXhi
-	 7wuj0yDfHp4io8dZrLsgb8/RAxe2IYDApPuvKclwRIVvPLfDOgogPvFwunOD7H3Ns3
-	 Ad4kY66LwRtfg==
-Date: Wed, 20 Mar 2024 12:11:54 -0500
-From: Rob Herring <robh@kernel.org>
-To: Johan Hovold <johan+linaro@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Marcel Holtmann <marcel@holtmann.org>,
+	b=sSGqzDQR5pMJHQpJD2A5Tsa85TNyzs/VaHkeFqTGVRii2quMlXc1YRh9shPu6T7Cp
+	 peubW3wxB92VVgh+sNL0e3aZv71RPHtLcLq5pJBIt0TmCezQAlgxtBEXwE4/NNB8yr
+	 Fb8Tgm95F+9adlFvSGejqQxARy+vm1InxtlCBbQv7TQBL4Hm+8PizwvLlES2nrAk7z
+	 8+ImGXduaZYQ1LpSDmNr4BOT/K6bbIGCnPA4f2V4FOhSoklogSnX0F+uOhHM2Ngv0c
+	 Fpy5Mx3zpOBr8J0cY/Vpq84jbQ9q1vAIRlZDvAKXNqS0hnGmq7D6rAahuvHOBXinx6
+	 uBeEoHiGZdmUA==
+Date: Wed, 20 Mar 2024 17:21:05 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Samuel Holland <samuel.holland@sifive.com>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	linux-kernel@vger.kernel.org, tech-j-ext@lists.risc-v.org,
+	kasan-dev@googlegroups.com, Evgenii Stepanov <eugenis@google.com>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Johan Hedberg <johan.hedberg@gmail.com>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-	Rocky Liao <quic_rjliao@quicinc.com>,
-	linux-bluetooth@vger.kernel.org,
-	cros-qcom-dts-watchers@chromium.org, linux-kernel@vger.kernel.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	devicetree@vger.kernel.org, netdev@vger.kernel.org,
-	Douglas Anderson <dianders@chromium.org>,
-	Matthias Kaehlcke <mka@chromium.org>,
-	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>
-Subject: Re: [PATCH v4 1/4] dt-bindings: bluetooth: add
- 'qcom,local-bd-address-broken'
-Message-ID: <171095471407.2028655.14348528428018722281.robh@kernel.org>
-References: <20240320075554.8178-1-johan+linaro@kernel.org>
- <20240320075554.8178-2-johan+linaro@kernel.org>
+	Rob Herring <robh+dt@kernel.org>, Albert Ou <aou@eecs.berkeley.edu>,
+	Shuah Khan <shuah@kernel.org>
+Subject: Re: [RFC PATCH 9/9] selftests: riscv: Add a pointer masking test
+Message-ID: <20240320-handpick-freight-ec8027baa4d1@spud>
+References: <20240319215915.832127-1-samuel.holland@sifive.com>
+ <20240319215915.832127-10-samuel.holland@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="2lLUjXGQgSitrjkh"
+Content-Disposition: inline
+In-Reply-To: <20240319215915.832127-10-samuel.holland@sifive.com>
+
+
+--2lLUjXGQgSitrjkh
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240320075554.8178-2-johan+linaro@kernel.org>
+Content-Transfer-Encoding: quoted-printable
 
-
-On Wed, 20 Mar 2024 08:55:51 +0100, Johan Hovold wrote:
-> Several Qualcomm Bluetooth controllers lack persistent storage for the
-> device address and instead one can be provided by the boot firmware
-> using the 'local-bd-address' devicetree property.
-> 
-> The Bluetooth bindings clearly states that the address should be
-> specified in little-endian order, but due to a long-standing bug in the
-> Qualcomm driver which reversed the address some boot firmware has been
-> providing the address in big-endian order instead.
-> 
-> The only device out there that should be affected by this is the WCN3991
-> used in some Chromebooks.
-> 
-> Add a 'qcom,local-bd-address-broken' property which can be set on these
-> platforms to indicate that the boot firmware is using the wrong byte
-> order.
-> 
-> Note that ChromeOS always updates the kernel and devicetree in lockstep
-> so that there is no need to handle backwards compatibility with older
-> devicetrees.
-> 
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+On Tue, Mar 19, 2024 at 02:58:35PM -0700, Samuel Holland wrote:
+> This test covers the behavior of the PR_SET_TAGGED_ADDR_CTRL and
+> PR_GET_TAGGED_ADDR_CTRL prctl() operations, their effects on the
+> userspace ABI, and their effects on the system call ABI.
+>=20
+> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
 > ---
->  .../devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
+>=20
+>  tools/testing/selftests/riscv/Makefile        |   2 +-
+>  tools/testing/selftests/riscv/tags/Makefile   |  10 +
+>  .../selftests/riscv/tags/pointer_masking.c    | 307 ++++++++++++++++++
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+I dunno much about selftests, but this patch seems to produce some
+warnings about gitignores with allmodconfig:
+tools/testing/selftests/riscv/tags/Makefile: warning: ignored by one of the=
+ .gitignore files
+tools/testing/selftests/riscv/tags/pointer_masking.c: warning: ignored by o=
+ne of the .gitignore files
 
+--2lLUjXGQgSitrjkh
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZfsbAQAKCRB4tDGHoIJi
+0pbyAP4rgHPD5OEauv47v5LeZ6gpBL/+0Gj9XCgAwfpJ1XiI/AEA6/mJhAh0XHlI
+JCwPgAQGsM0OU/X+IRCzl56WkN8M1QA=
+=mhnd
+-----END PGP SIGNATURE-----
+
+--2lLUjXGQgSitrjkh--
 
