@@ -1,204 +1,136 @@
-Return-Path: <devicetree+bounces-51845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F604880BF4
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 08:23:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1528880C03
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 08:29:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 67E96B20D0B
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 07:23:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3EAB7B22019
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 07:29:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9F3A2030A;
-	Wed, 20 Mar 2024 07:23:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A43620DCB;
+	Wed, 20 Mar 2024 07:29:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OJleVZIZ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jE7D2BU/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 085031EEE0
-	for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 07:23:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 371D32BD01;
+	Wed, 20 Mar 2024 07:29:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710919426; cv=none; b=q0BVaLr0EuZYx963cRrpqxazZGFz1AGGthhhLxBT+8hkqbJWu+TUs0TTS3BYSBzJmmUr0A6c51+zsVSxW9+UMJFKSUXrtCc8XRTYLEha/rpUpZtI4JbplK0bcbuV0BkIBGKcjnDjbBrnREqj7+NXxIEORsMPBTO5435nkIs3Yro=
+	t=1710919755; cv=none; b=GnFgWCTm2w4jsQ0eNawJzGVRJa2XHiGJvz01M2SAGXLqB9vlvzAGcyWsESusJ0TW2kPYRR8XPoPwG0XoQ8h9o7j6NTCIW+ZwGgXomh8B39VaCe+5dTtaZC51ejEuBK9W4BCkw6YTebULMTL878Vryotn5Wxw74utoEVapctxOs4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710919426; c=relaxed/simple;
-	bh=EkqWs0W3q04YVqE2gPo5awQuY3J0Lng3bMWEGITru1c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MMGP23SszqN9+77tJaecaPpw805QHJr8dZFs3Afua99ilhiSQQrJiXka8qyyRdKXN6n1KeTt9XiKJaNu+triWk5akkjy5O+wZHLpJBtulUUgoUVjBCXvUqA89q3KvYkrGMir7in+Xv1yA/xaRCfg0l/LGCzfIY8t0t/L6EZKu40=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OJleVZIZ; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a46f670a1a2so26620766b.2
-        for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 00:23:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710919423; x=1711524223; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=i3jlY94/eeyZ6RcBk4RP2SNOK962GMXwjEvU51sOt6s=;
-        b=OJleVZIZCLEsZQWLXTg7B/L2QFjEJEuzof2ZZCL9xntszCLEPYL4XrfYLo61na3r9h
-         +9y/Q/gsmQlkQO/H7AKtCpQ2MEruK1jP/OZuMoFqrdcWtBDqA2J7t3MZbK3yzqxee5tD
-         /Zxf6n9g2oClipaY2/mNIv4VHT9mQrmarCrpM/gDj34vzDWQ6TVf6pJFmrOun/lJ9uoy
-         4+XksrDnI+m0IyBHx+M+RvOP2ZC01xD6xN7dqQ3hso3MNNnluBS5gAdYOyildx9Pqcqn
-         JrCcmHpklDqcoTOLnUqS+rwlu8EZgAMX7KD37d1fY24cHYufswoWZ+qxy3kI+feu/u1F
-         cKWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710919423; x=1711524223;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=i3jlY94/eeyZ6RcBk4RP2SNOK962GMXwjEvU51sOt6s=;
-        b=SKF0SUAiFPZ/X50F+6Dt2t11WprZNDT0+BEsGqiqzbYxvJ49Mpvf/ai+p4r5hKr1Ez
-         j6PS3aTsKnbFmgGafO9bAjs0nu6aMwzCDW3lkM72lufviG2cQX/iCvP0N3FryVTATiBf
-         3/W4iqMBNn1ov96QRGH8pB36TcOeOk3b8uxyWiTs4+j3ss6JTHSV8YhrAfWA65/1JLJj
-         sKF3M/ZMoXfE086yAE+VuGM3EpDkO25rDKwbBT5QpWxLA7vDCT4zbz0sPQHEsBg/sHfm
-         LZJACh52FNTUZERD+Z4GKGcI8NJO3fewz1zeRzH6ZNDgMnRQXvKFwAPMukmECCDXfOrZ
-         Uepw==
-X-Forwarded-Encrypted: i=1; AJvYcCV/PCtGLw+rndj3LngJTG76bJvl0wqws5yJg6QuD/a/cNojSfhPSsOA0MkL2KtoFuNXhydAb6acUB1UeGrk5jVunkw0xg1TDcHVnA==
-X-Gm-Message-State: AOJu0YwH4TqOzEWVsdzwQG3bpuYQ97uvDJwP8R7Krp27sA1TnnhMFLpt
-	m0baJoWX9g/jUPo9OSfRdHGCX/EpVG8eFU0msMOMK90DFQN1Ye+1hrPuk4j5dsY=
-X-Google-Smtp-Source: AGHT+IHfT2z0OxThuuxSUr06aWZGYCKZSymdnckDGx+Y83LSi19WiCYtHnyAy4GauWep8eYh4xrfgw==
-X-Received: by 2002:a17:906:c80a:b0:a45:c027:372 with SMTP id cx10-20020a170906c80a00b00a45c0270372mr676128ejb.68.1710919423329;
-        Wed, 20 Mar 2024 00:23:43 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id s10-20020a1709060c0a00b00a44899a44ddsm7038094ejf.11.2024.03.20.00.23.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Mar 2024 00:23:42 -0700 (PDT)
-Message-ID: <0ad9a94a-0fb6-4ff4-84bf-56ce0ff682f1@linaro.org>
-Date: Wed, 20 Mar 2024 08:23:41 +0100
+	s=arc-20240116; t=1710919755; c=relaxed/simple;
+	bh=SIJLQWAZttGxLBgmyLL6igS6AuPkYTJuC02fay6r37E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LBWjF23BquCbWAL6CvAJIhC6e+RXN3T9Ckv3Hh9ZwuMJab2b3Yz+N7amFKbatu7mD0BlnpG2akyd2ca9Yty1XUwfIcdO8eXlHsOnd8qAnmGFnmqq2+hiPFelTG0Eg0gWmZgScosXFWgev4IxnDcgkE1zOsBt2NDklcRbI175/tk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jE7D2BU/; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1710919753; x=1742455753;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=SIJLQWAZttGxLBgmyLL6igS6AuPkYTJuC02fay6r37E=;
+  b=jE7D2BU/YpudfW/7il6RsJ/u0w0j+jDWDYtjQObqMiLBj1KtXdXJHiYL
+   Kdh9zAGLPTwj3bbnpxdloZy0wEHg4mDyxPEWwMniIGTlBbtfV2UNdUsqr
+   LiTiuhZ0nK3Ed/vA4eR+HDnPwUOxvWIcwTPtsqWac5CTnizB72+grqCm0
+   oRTnWWpgPLqj0MS+G80wHjuyQXyfIsN2cACaTNK0JZk7OM9WSrXS1agp9
+   6Oo9dXKn+sJFnJDngwzRT0mipGS80MZDVHFOUNySfqzRezInUyZbGsy0E
+   /i+usOi6tdJBrlSbizdq2Hxa7mG22ebW+Oarieh9Hg3vpv7yht6VJl0a+
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11018"; a="9598536"
+X-IronPort-AV: E=Sophos;i="6.07,139,1708416000"; 
+   d="scan'208";a="9598536"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2024 00:29:12 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,139,1708416000"; 
+   d="scan'208";a="51507652"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2024 00:29:04 -0700
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 6E3E911F853;
+	Wed, 20 Mar 2024 09:29:01 +0200 (EET)
+Date: Wed, 20 Mar 2024 07:29:01 +0000
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Zhi Mao <zhi.mao@mediatek.com>
+Cc: mchehab@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	laurent.pinchart@ideasonboard.com, shengnan.wang@mediatek.com,
+	yaya.chang@mediatek.com,
+	Project_Global_Chrome_Upstream_Group@mediatek.com,
+	yunkec@chromium.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	jacopo.mondi@ideasonboard.com, 10572168@qq.com,
+	hverkuil-cisco@xs4all.nl, heiko@sntech.de, jernej.skrabec@gmail.com,
+	macromorgan@hotmail.com, linus.walleij@linaro.org,
+	hdegoede@redhat.com, tomi.valkeinen@ideasonboard.com,
+	gerald.loacker@wolfvision.net, andy.shevchenko@gmail.com,
+	bingbu.cao@intel.com, dan.scally@ideasonboard.com,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v1 2/2] media: i2c: Add GC05A2 image sensor driver
+Message-ID: <ZfqQPTgqzOw7tATK@kekkonen.localdomain>
+References: <20240316025253.2300-1-zhi.mao@mediatek.com>
+ <20240316025253.2300-3-zhi.mao@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] clk: samsung: Implement manual PLL control for
- ARM64 SoCs
-To: Sam Protsenko <semen.protsenko@linaro.org>
-Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Tomasz Figa <tomasz.figa@gmail.com>,
- linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240301015118.30072-1-semen.protsenko@linaro.org>
- <CAPLW+4=_yD3ShU5DvLWFyEzVrVHNVCsB+4bVkP+x_boRmC-vEw@mail.gmail.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAPLW+4=_yD3ShU5DvLWFyEzVrVHNVCsB+4bVkP+x_boRmC-vEw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240316025253.2300-3-zhi.mao@mediatek.com>
 
-On 19/03/2024 19:47, Sam Protsenko wrote:
-> On Thu, Feb 29, 2024 at 7:51 PM Sam Protsenko
-> <semen.protsenko@linaro.org> wrote:
->>
->> Some ARM64 Exynos chips are capable to control PLL clocks automatically.
->> For those chips, whether the PLL is controlled automatically or manually
->> is chosen in PLL_CON1 register with next bits:
->>
->>     [28]  ENABLE_AUTOMATIC_CLKGATING
->>     [1]   MANUAL_PLL_CTRL
->>     [0]   AUTO_PLL_CTRL
->>
->> The bl2 bootloader sets 0x10000001 value for some PLL_CON1 registers,
->> which means any attempt to control those PLLs manually (e.g.
->> disabling/enabling those PLLs or changing MUX parent clocks) would lead
->> to PLL lock timeout with error message like this:
->>
->>     Could not lock PLL ...
->>
->> At the moment, all Samsung clock drivers implement manual clock control.
->> So in order to make it possible to control PLLs, corresponding PLL_CON1
->> registers should be set to 0x2 first.
->>
->> Some older ARM64 chips don't implement the automatic clock control
->> though. It also might be desirable to configure some PLLs for manual
->> control, while keeping the default configuration for the rest. So it'd
->> convenient to choose this PLL mode for each CMU separately. Introduce
->> .manual_plls field to CMU structure to choose the PLL control mode.
->> Because it'll be initialized with "false" in all existing CMU
->> structures by default, it won't affect any existing clock drivers,
->> allowing for this feature to be enabled gradually when it's needed with
->> no change for the rest of users. In case .manual_plls is set, set
->> PLL_CON1 registers to manual control, akin to what's already done for
->> gate clocks in exynos_arm64_init_clocks(). Of course, PLL_CON1 registers
->> should be added to corresponding struct samsung_cmu_info::clk_regs array
->> to make sure they get initialized.
->>
->> No functional change. This patch adds a feature, but doesn't enable it
->> for any users.
->>
->> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
->> ---
-> 
-> Hi Krzysztof,
-> 
-> If it looks ok to you, can you please apply this series?
-> 
->     [PATCH 1/3] clk: samsung: Implement manual PLL control for ARM64 SoCs
->     [PATCH 2/3] clk: samsung: exynos850: Add CMU_CPUCL0 and CMU_CPUCL1
->     [PATCH 3/3] arm64: dts: exynos: Add CPU clocks for Exynos850
-> 
-> That concludes my efforts on CPU clock enablement in Exynos850.
+Hi Zhi,
 
-Please do not ping during merge window, for anything else than fixes
-(and me only for fixes being serious regressions or serious issues, not
-for fixing something which never worked thus will not get to fixes
-branch). Not only me, but don't ping that way any of the maintainers.
+Thanks for the set.
 
-Best regards,
-Krzysztof
+On Sat, Mar 16, 2024 at 10:52:53AM +0800, Zhi Mao wrote:
+> +static int gc05a2_set_ctrl(struct v4l2_ctrl *ctrl)
+> +{
+> +	struct gc05a2 *gc05a2 =
+> +		container_of(ctrl->handler, struct gc05a2, ctrls);
+> +	int ret = 0;
+> +	s64 exposure_max;
+> +	struct v4l2_subdev_state *state;
+> +	const struct v4l2_mbus_framefmt *format;
+> +
+> +	state = v4l2_subdev_get_locked_active_state(&gc05a2->sd);
+> +	format = v4l2_subdev_state_get_format(state, 0);
+> +
+> +	if (ctrl->id == V4L2_CID_VBLANK) {
+> +		/* Update max exposure while meeting expected vblanking */
+> +		exposure_max = format->height + ctrl->val - GC05A2_EXP_MARGIN;
+> +		__v4l2_ctrl_modify_range(gc05a2->exposure,
+> +					 gc05a2->exposure->minimum,
+> +					 exposure_max, gc05a2->exposure->step,
+> +					 exposure_max);
+> +	}
+> +
+> +	/*
+> +	 * Applying V4L2 control value only happens
+> +	 * when power is on for streaming.
+> +	 */
+> +	if (!pm_runtime_get_if_in_use(gc05a2->dev))
 
+This should be pm_runtime_get_if_active(). Please assume it takes a single
+argument (the device)---see commit
+c0ef3df8dbaef51ee4cfd58a471adf2eaee6f6b3.
+
+The same comment applies to the GC08A3 if it uses autosuspend, please post
+a new patch for that.
+
+-- 
+Kind regards,
+
+Sakari Ailus
 
