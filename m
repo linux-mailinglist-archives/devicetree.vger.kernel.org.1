@@ -1,129 +1,120 @@
-Return-Path: <devicetree+bounces-51959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51960-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 088558811D9
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 13:47:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73B238811E5
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 13:52:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 387C31C216E1
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 12:47:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2AEF4285F48
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 12:52:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62A73405CD;
-	Wed, 20 Mar 2024 12:47:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C35913FE4F;
+	Wed, 20 Mar 2024 12:52:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FTBnEuEH"
+	dkim=pass (1024-bit key) header.d=xry111.site header.i=@xry111.site header.b="SW6BUJls"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from xry111.site (xry111.site [89.208.246.23])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E136142059;
-	Wed, 20 Mar 2024 12:47:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31976224F2;
+	Wed, 20 Mar 2024 12:52:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.208.246.23
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710938835; cv=none; b=YpjIx9XYDsL9QAinzJoBN7uraqv4Q1DYagHfWFxkO6cKRr6te5ZFvuypYhHAqbdcqmgdaYP9p1HFB+q11HKzg9EG7L/rbBoqWsQb8uF2TTgs/4SDR1JbhapKGL7OHC+qQIzB9wUpdA3KTrrUaeE/R5Drs4PB1+8ZB6xqTshErMg=
+	t=1710939142; cv=none; b=pK+2Pdk6p2+CAudHnm5TkTj/Ih8HBcsrj3dyBWsHIwLBDFkICbceYKqgVz2Rf9kkO+BTGuJbGTQSmV+x2b2m2sdFV8DrHtEpKm8HAnjkeslmn6SCaEeKUmEoPPHnJWtc84k1lD6vZvSpNaQfG0BYAhiDkVRvk77o6xAuPamc7x8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710938835; c=relaxed/simple;
-	bh=PumoaNRhqeCdjNpmQ5E5KB9UvPgXpFhOYon1tT9ulRY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=IvY9xFBdSKNrjPp+eslL95aOxxYdNDA9U5rtk/x+HQ6AAWqmrJbBWrKX8ZpEQSKyBL/zoNU1joa0ddg1cAJkeF4gRUa5b4dNiVCy0M8Le4UEZqZXWIsnhEFhWXG+K34muQsB2AtdWNiVDEOEM+uxWR3tbeJzJlRY0aKbYyWVZHs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FTBnEuEH; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-1dde26f7e1dso48869365ad.1;
-        Wed, 20 Mar 2024 05:47:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710938833; x=1711543633; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PvL7pYKBZmrZonfhNQXehwF3fRzkkMerkgdJSvSaFCg=;
-        b=FTBnEuEHkn5790o6qmiW+ORfkqq2h1fw6DFfdSN2ZCVu/p+ATwMBCstdEvdbA3mSyk
-         u1earSm4B7JOkPSOSYeNRE/4spx6HJHU4rMhLJgb85nZr8zDhGV51y/2wOfxNNEI+LLe
-         SYepyHERWFwfOczKYxDmWZ5GtcOdbdHLlvw98qXxGjV5umeCGP8bnaw2ZyFSc0CQu1hC
-         28lOeFZ8RXXz35tyKLY49c6I+hInU5om09Dx0Hqiqh5Tb91VIUt1fkU/fsXdmNWlFX++
-         8E3MSSGdpZNj5fix4TVqPD8gASHpLtzdM2peYcmHFJe/XKd227m/Y+GlQnM4DyfhSPSo
-         b8Pw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710938833; x=1711543633;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PvL7pYKBZmrZonfhNQXehwF3fRzkkMerkgdJSvSaFCg=;
-        b=SbkqEJamsY/fcG4eUKOUfA8evrwIhKkRNS7dPUwApAHCoCdSW0Vc1sX5B7YPCEcSl5
-         KCx+iVjTzWh9XfjFAKiVXjXE2C9l+vZg2EPVdBkVS+L0pLQd0MuuhrFbWyahIWU3Iwh2
-         WbOMmiUQutdmgXkuNaA0jcwecJkHCxU6Q+yl4tHkleEdBFnBSUo+PM5zEId8Cgzq2DhJ
-         vH2wEf2Er3pDlOFDJTxLktRD5TWQL3yqJ7wayfCYTPOmOuKpvjtgerpe1fOsaGgVYJtr
-         FUbaI/b2a+heqxcDlg6B/nPbHGqu2y7LIuDmGy2t4nV6Eb7gmVGpmAhrTKn7tiWPEyYP
-         CqzQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUqfJ4RUyAZjH5De8fDdfTU4h60UtR9q63KjjUJnuzB0LDsZ2sOvYjeWzXuY0GHdINWJhDDLNzvhR2YE7ZZUsUNwnH/z0zKClQ6Yi2sC5cKvo281fS26mvEy7NVt27IIBKSCCQt5HU8wg==
-X-Gm-Message-State: AOJu0YwphOFDBVPO3HL6K7WoxHiy87fmQYmbGuj96MlSqyt5VWgLSKyw
-	A2hYTjnvwQXtl3MyuHQjH3IYyYNW+vOGKkvI49mDTBDnPRAslHIn
-X-Google-Smtp-Source: AGHT+IEodf+2+PLLFYFKLAGrcuTI/vflqdPXjP76rpdQGRo+VCLOUE7oJACuXm7ijLkmTotZPot1Yw==
-X-Received: by 2002:a17:902:ea08:b0:1db:55cc:d226 with SMTP id s8-20020a170902ea0800b001db55ccd226mr15814248plg.66.1710938833134;
-        Wed, 20 Mar 2024 05:47:13 -0700 (PDT)
-Received: from localhost.localdomain (FL1-125-193-23-126.chb.mesh.ad.jp. [125.193.23.126])
-        by smtp.gmail.com with ESMTPSA id s14-20020a170902ea0e00b001dda32430b3sm13441004plg.89.2024.03.20.05.47.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Mar 2024 05:47:12 -0700 (PDT)
-From: INAGAKI Hiroshi <musashino.open@gmail.com>
-To: pavel@ucw.cz,
-	lee@kernel.org,
-	robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org
-Cc: linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	INAGAKI Hiroshi <musashino.open@gmail.com>
-Subject: [PATCH 2/2] dt-bindings: leds: add LED_FUNCTION_SPEED_* for link speed on LAN/WAN
-Date: Wed, 20 Mar 2024 21:43:17 +0900
-Message-ID: <20240320124431.221-3-musashino.open@gmail.com>
-X-Mailer: git-send-email 2.42.0.windows.2
-In-Reply-To: <20240320124431.221-1-musashino.open@gmail.com>
-References: <20240320124431.221-1-musashino.open@gmail.com>
+	s=arc-20240116; t=1710939142; c=relaxed/simple;
+	bh=nQsfUBwMPXVe4K5gt0eAIEFG0mAVL84r5St9i8+wxIk=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=AbiTg6zXxDmIg/wnvdRBoqXIhC11h8UN7Wr/wZmqmkyS/JxROMNQguy696uqbals65weYE5es032Bar+vSO5R1QPmWjSHjxyAUXZ7f8fUhPwNyP0nGnRGpXd1tIrpljTeihLyNqmakm4PyMPZi+fOpFirmM6kB0V1+/dTRDjrLs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=xry111.site; spf=pass smtp.mailfrom=xry111.site; dkim=pass (1024-bit key) header.d=xry111.site header.i=@xry111.site header.b=SW6BUJls; arc=none smtp.client-ip=89.208.246.23
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=xry111.site
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xry111.site
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xry111.site;
+	s=default; t=1710939138;
+	bh=nQsfUBwMPXVe4K5gt0eAIEFG0mAVL84r5St9i8+wxIk=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=SW6BUJlsDX/vH6gjWlpT+cbGApubryaDyEF8qDyDRffiR8F8JyIwyHOJ+GRsIFzBo
+	 uDfOMHVc+690RVFFaVnT6KvRq57AOMDFG8hGl66yVb4i18Af+br29PzGSi8oUQXTc8
+	 sLEEsQ/2rahhL4NQYDVDANRz/3xsfoNC8uxbwzWc=
+Received: from [127.0.0.1] (unknown [IPv6:2001:470:683e::1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature ECDSA (P-384) server-digest SHA384)
+	(Client did not present a certificate)
+	(Authenticated sender: xry111@xry111.site)
+	by xry111.site (Postfix) with ESMTPSA id 1B11B6776E;
+	Wed, 20 Mar 2024 08:52:14 -0400 (EDT)
+Message-ID: <2d3d529e006a6fbef6fe4a8a20b3eb23fa476ff7.camel@xry111.site>
+Subject: Re: [PATCH v8 4/4] riscv: dts: thead: Enable LicheePi 4A eMMC and
+ microSD
+From: Xi Ruoyao <xry111@xry111.site>
+To: Maxim Kiselev <bigunclemax@gmail.com>
+Cc: Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>, 
+ devicetree@vger.kernel.org, dfustini@baylibre.com, guoren@kernel.org, 
+ jkridner@beagleboard.org, jszhang@kernel.org, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, open list
+ <linux-kernel@vger.kernel.org>,  linux-riscv@lists.infradead.org, Palmer
+ Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>,
+ robertcnelson@beagleboard.org, Rob Herring <robh+dt@kernel.org>, 
+ wefu@redhat.com
+Date: Wed, 20 Mar 2024 20:52:13 +0800
+In-Reply-To: <CALHCpMhc1F5Ue7U_gsDXREHUZRVQJNYRCJxYxoNqbN=-39jf7A@mail.gmail.com>
+References: 
+	<CALHCpMhc1F5Ue7U_gsDXREHUZRVQJNYRCJxYxoNqbN=-39jf7A@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.0 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-Add LED_FUNCTION_SPEED_LAN and LED_FUNCTION_SPEED_WAN for LEDs that
-indicate link speed of ethernet ports on LAN/WAN. This is useful to
-distinguish those LEDs from LEDs that indicate link status (up/down).
+On Wed, 2024-03-20 at 15:28 +0300, Maxim Kiselev wrote:
+> Hi Xi, Drew
+>=20
+> I have the same problem with SD on my LicheePi 4A.
+>=20
+> After some investigations I found how to fix this tuning error.
+> Here is the patch that increases tuning loop count from
+> 40(MAX_TUNING_LOOP at sdhci.c) to 128.
+>=20
+> diff --git a/drivers/mmc/host/sdhci-of-dwcmshc.c
+> b/drivers/mmc/host/sdhci-of-dwcmshc.c
+> index 8d6cfb648096..da8f5820fb69 100644
+> --- a/drivers/mmc/host/sdhci-of-dwcmshc.c
+> +++ b/drivers/mmc/host/sdhci-of-dwcmshc.c
+> @@ -706,6 +706,7 @@ static int th1520_execute_tuning(struct sdhci_host
+> *host, u32 opcode)
+>=20
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* perform tuning */
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sdhci_start_tuning(host);
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 host->tuning_loop_count =3D 128:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 host->tuning_err =3D __sdhci_e=
+xecute_tuning(host, opcode);
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (host->tuning_err) {
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 /* disable auto-tuning upon tuning error */
+>=20
+> After that change tuning works fine. The same value of loop count is
+> used in RevyOS BSP
+> https://github.com/revyos/thead-kernel/blob/c6d4e5df18a17903d012ffd89e67d=
+0ee5ce6cf2d/drivers/mmc/host/sdhci-of-dwcmshc.c#L185
+>=20
+> Honestly, it looks a little bit strange for me.
+>=20
+> It seems that the tuning algorithm requires to move through
+> all the taps of delay line(128 taps?) even if we use THRESHOLD_MODE
+> instend LARGEST_WIN_MODE (I mean bit 2 in AT_CTRL_R(0x540) register).
+>=20
+> Xi, could you also test my fix on your board?
 
-example:
+I'll try it this weekend.  Now having some work with "real time
+priority" to do :(.
 
-Fortinet FortiGate 30E/50E have LEDs that indicate link speed on each
-of the ethernet ports in addition to LEDs that indicate link status
-(up/down).
-
-- 1000 Mbps: green:speed-(lan|wan)-N
--  100 Mbps: amber:speed-(lan|wan)-N
--   10 Mbps: (none, turned off)
-
-Signed-off-by: INAGAKI Hiroshi <musashino.open@gmail.com>
----
- include/dt-bindings/leds/common.h | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/include/dt-bindings/leds/common.h b/include/dt-bindings/leds/common.h
-index d4b8498bde7f..8d446cf88b4c 100644
---- a/include/dt-bindings/leds/common.h
-+++ b/include/dt-bindings/leds/common.h
-@@ -96,6 +96,8 @@
- #define LED_FUNCTION_PROGRAMMING "programming"
- #define LED_FUNCTION_RX "rx"
- #define LED_FUNCTION_SD "sd"
-+#define LED_FUNCTION_SPEED_LAN "speed-lan"
-+#define LED_FUNCTION_SPEED_WAN "speed-wan"
- #define LED_FUNCTION_STANDBY "standby"
- #define LED_FUNCTION_TORCH "torch"
- #define LED_FUNCTION_TX "tx"
--- 
-2.25.1
-
+--=20
+Xi Ruoyao <xry111@xry111.site>
+School of Aerospace Science and Technology, Xidian University
 
