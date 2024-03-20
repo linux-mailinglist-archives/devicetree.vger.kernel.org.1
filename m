@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-51891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51893-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 838B5880E67
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 10:16:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76A35880E7A
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 10:24:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A00F91C20F6A
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 09:16:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9613C1C20E38
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 09:24:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0F9239FEF;
-	Wed, 20 Mar 2024 09:16:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B46173A1C9;
+	Wed, 20 Mar 2024 09:24:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="v4FY7UXQ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DdyUyue0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1473239AC7
-	for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 09:16:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 111F938F84
+	for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 09:24:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710926184; cv=none; b=ZuNqgWXTSnXeWJbv+e0pknjFbUroFiEaBG/LBSvPmHYX0uC4a5OYm10u6w0bJ5x6O8YYBzsXfYkT5Iu3FS4GHWIF1uNR26cB1sipt7t2tNjN23WAHNqU6akHFCVxBNQ3oE/+PaS3zY3TwXnfG9DiMqKY8oSt61JFQBha/smjO5U=
+	t=1710926660; cv=none; b=OF+W1Zjoyyr12Z3BZtfj4jqxxbYWvNjkfGmbWV/nkn8myhzNn8DhRH76Ck2M7e1Un6I9Pv6ShVm4W9pATTIksPEmHs0giFBIDOsuYB3jVBNGPXb/T+xRvAGmCh2kXamnEqWQPUAGJwNpAMbo2gQOylwGit3OLkFPOEhiKF0FFDY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710926184; c=relaxed/simple;
-	bh=7qiN7s71pLRDxczBVXccvkevewv+cyZPsC3vo51G3Wc=;
+	s=arc-20240116; t=1710926660; c=relaxed/simple;
+	bh=+igU+6dI0dNH8oWVQzD11cFNcaUNm31ZLdGo9Y2O9VI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=arsy+s3jacHAXjW+hl1ADOooetb4wN3GLlyArMHoVDUtX+di0IjvTwDvWflrxRIX3fsVHO3/Ff78wYVXYc+1CzTfrSCPp1klDoKbFlbfyoj+0Y2nCDe5alQtZVg3Ilpv8kI2MljCatmTCA0zZDLvBLS/zhtzXxJG/L2grlDDfxs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=v4FY7UXQ; arc=none smtp.client-ip=209.85.222.175
+	 In-Reply-To:Content-Type; b=BbnEPWpGJDAKRK7xfu2K7doGmN9OcgMy+gECismcjCUSvFMgnvTpiMAH6JD0mjHBElJ6FAwnwCh+6vAOCjFgCmPpI6dFDUnBdDNuiNy8aocPLuY5CUBh58QJaNXPqYi7d2dzRPHUfZibEWmvJU+P0MYJt1Ng62LAwGou7yGiy6U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DdyUyue0; arc=none smtp.client-ip=209.85.208.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-789f50b3e40so54191885a.1
-        for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 02:16:22 -0700 (PDT)
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-56829f41f81so9021071a12.2
+        for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 02:24:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710926182; x=1711530982; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1710926656; x=1711531456; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZdemdKKmkbE2PfEGOheslqykPqKEOarSKu2X847Hkx8=;
-        b=v4FY7UXQW3Mtc9KyH6RrZpUNB9nwSfCQPoOuxYGr8A5l+tD2bHiwypW9Xw5h4sBDTn
-         +ZLgDDD9RbELlc2s2RXVIrwB3AS/ZEDSAKFCWuArJBv7K9TB+6xGQgpUzdCOa9jDppuy
-         Y0A6cjG6hm/43/4wgKNFmPygckjfxjN9KJvhMLaKhbsJxQOWa/Hhy6YLm7CrU1VubI6U
-         5g3teykGAfbNRA186AbUK3xj6WG9V8qFHJ23NkfZcyc5tXiQy7urq24V3B9VNn2aHWKt
-         25AmqdXS7BuLJi+2TSYTgm6VnyUhwlZeQRkAi+O7bX8wnprKYi2jFyG1ibYqi4xO6hJO
-         Z1Yg==
+        bh=VAFr8wbXy6NQ4Iu6FgvZQ1njUKht2mIknb8qM/1X3aw=;
+        b=DdyUyue0XCe+JmmQZaJRkLHOpMt3LzroVXf3/wrEebFgUIDjztV07QWqY6hzFlboSL
+         wfAHe12h/ek/ic4dCRZdmTVrbQs8FLW2z9reuH7qUjvmQilze83KziI4JmT4j9csxOuq
+         3KSC4lRf7M/G3rmLjIf//5c2lMh2M13Vv3mo6urKZ2961UC/JwgNByBoB5j6gBaiIuoL
+         wPOjgPXD1gBBLAQQ/58ysW00xDARs66TLCOI//JK69nnwYu9a8SVM4d4ZYPntd1QWdcF
+         pqOZ4FxbR10MS6wmEcAXwLAckqGs0ScgNEbNDKNtiZTrNFdMwoTA22dtzyIvG0zEY2vT
+         kgSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710926182; x=1711530982;
+        d=1e100.net; s=20230601; t=1710926656; x=1711531456;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ZdemdKKmkbE2PfEGOheslqykPqKEOarSKu2X847Hkx8=;
-        b=QQSNAdnO0HqEypcyq1tU6o+GqyPZ7cK/W0/WXPdz0gDzBJW62WhZCs0/T2rqWDhpob
-         AJO651mOqPrQndDEoSjjjp+pA3CrB1RjyuDSsFiY+0rMv/8B47PBXXDpRWpXPWZtrqDC
-         QSK4raYQo8zCDmuFOcX1w/DYSu1FMvFkO4nNe/XN1YBUmv0GqM03doGq5UFw0SnpaIdg
-         Q81rVSrVSUV701ZGI84voLmvA81+kl/SB50GZDgvmX/QUtTUED1yPTVO6YY3fS3oOVs2
-         YwQLnCg5SD5hg1i3B6pho7X1AuV0mwN6p05uAkpMRNDOyiqnHNDuwQjT6GP2B1PrEj1i
-         ttTg==
-X-Forwarded-Encrypted: i=1; AJvYcCWzTwJ78Kled7hR+OsIYp3IHyLtGBhhDD1FoK1CLdv+7QXnSDBEHgZirdQScoP+PNWXViodWbjY4vK+phNvuKHwKSU8Wvo8ZeezEQ==
-X-Gm-Message-State: AOJu0Yx4VC2xeE8usGTN46d5pVAdkM1S72HA33Car9EHbbQuxTJpXMz2
-	1fP2bIZMjRLm6JPNuuLiEFhtGGyzhbPHOs1ZxEXKyoSyQZNdkvQLnqvQUhTHRbg=
-X-Google-Smtp-Source: AGHT+IFH/DGAuG6UpXir+MFQEX93ggRvpCtCWJKypFfAYtegcd5mPZkmVf5EdY3Ii1gsDK1y5VGKng==
-X-Received: by 2002:a05:620a:2402:b0:789:f0c6:a938 with SMTP id d2-20020a05620a240200b00789f0c6a938mr3353352qkn.15.1710926181995;
-        Wed, 20 Mar 2024 02:16:21 -0700 (PDT)
+        bh=VAFr8wbXy6NQ4Iu6FgvZQ1njUKht2mIknb8qM/1X3aw=;
+        b=TM/HSyt1lns7udyWfOIA7z+tIbcYuJp2oCaKDm3B1UxtXRGb2/OjJ4vs/uZrMce0E3
+         oN8oLRVGliMEQNnfv1565mR1xw2Ay3hhpixm3QFXUi3jC9R/NdDUyAymjkw7DtIk7DnW
+         Vtfkj1M2qpWr5FnaGvUuBiY9rpvZ0jtW+BSt9B/3gfVXmb9emb2ibkI+2Idc4rBlI8O5
+         VW3FdLHeGEcHft2yaYjGERZ5Bk7icWM6bro5V0KFGrVYIFGjdfTVS6gqzxIkaPamQIRH
+         wQ3I5AaJC+aJAARPu12AspisTWisY4aqwLFh+PHpJgp7GwVQvEFeULoOzSChn31omDRs
+         zkrg==
+X-Forwarded-Encrypted: i=1; AJvYcCVBSQF13JO7tohrq8fkYr8p8GxMkevJnHiUkajLk4ZynObXQkUqY0wQ0bmNycPsiJ8mn8T7SRl4l1xIaFSYJnr4Q/alsYmy0IgItw==
+X-Gm-Message-State: AOJu0YxZ+NuFo+3dEgC8qNrgMUPrJcNZUSnYUiZCeAzCFSifKVtmllUK
+	WEwJTOvhLp6vqxwrJPIF49D9uaIhL46yeDhQVanh4LBGI8APXyCY8YV//wOJqGc=
+X-Google-Smtp-Source: AGHT+IG1wkMXgCHtI0CeuvdQka+gfmqoNMv2X0/WgV8qEvyK5YKY0Mc10OMvoyj9Y9+OBFuqrFRpHA==
+X-Received: by 2002:aa7:d3c8:0:b0:56b:b7f1:8077 with SMTP id o8-20020aa7d3c8000000b0056bb7f18077mr91036edr.32.1710926656411;
+        Wed, 20 Mar 2024 02:24:16 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id wh12-20020a05620a56cc00b00789f2660e88sm3706262qkn.68.2024.03.20.02.16.18
+        by smtp.gmail.com with ESMTPSA id b70-20020a509f4c000000b00567c34d8a82sm7036077edf.85.2024.03.20.02.24.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Mar 2024 02:16:21 -0700 (PDT)
-Message-ID: <cc5d4fc1-14e7-4a73-80bf-6375e44162a3@linaro.org>
-Date: Wed, 20 Mar 2024 10:16:16 +0100
+        Wed, 20 Mar 2024 02:24:15 -0700 (PDT)
+Message-ID: <f4f23f46-7821-4e71-9b9d-1466bd92efc6@linaro.org>
+Date: Wed, 20 Mar 2024 10:24:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,27 +77,38 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: (subset) [PATCH v4 0/5] arm64: dts: qcom: sc8280xp: PCIe fixes
- and GICv3 ITS enable
-To: Johan Hovold <johan@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Johan Hovold <johan+linaro@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2 1/2] arm64: dts: S32G3: Introduce device tree for
+ S32G-VNP-RDB3
+To: Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
+ Wadim Mueller <wafgo01@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240306095651.4551-1-johan+linaro@kernel.org>
- <171081652637.198276.6219023769904423414.b4-ty@kernel.org>
- <Zfk98hYPn7kiFGkt@hovoldconsulting.com>
- <9b475e13-96b9-4bce-8041-e0d8e5a332a1@linaro.org>
- <Zfqb8jPK50vlqu5Q@hovoldconsulting.com>
- <baf9c1bd-84ef-4ecb-b229-51a83fe82c3f@linaro.org>
- <ZfqhCKoEL4XGRs7T@hovoldconsulting.com>
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
+ Chester Lin <chester62515@gmail.com>, =?UTF-8?Q?Andreas_F=C3=A4rber?=
+ <afaerber@suse.de>, Matthias Brugger <mbrugger@suse.com>,
+ NXP S32 Linux Team <s32@nxp.com>, Tim Harvey <tharvey@gateworks.com>,
+ Alexander Stein <alexander.stein@ew.tq-group.com>,
+ Marek Vasut <marex@denx.de>,
+ Gregor Herburger <gregor.herburger@ew.tq-group.com>,
+ Marco Felsch <m.felsch@pengutronix.de>,
+ Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+ Markus Niebel <Markus.Niebel@ew.tq-group.com>,
+ Matthias Schiffer <matthias.schiffer@tq-group.com>,
+ Stefan Wahren <stefan.wahren@chargebyte.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, Josua Mayer <josua@solid-run.com>,
+ Yannic Moog <y.moog@phytec.de>, Li Yang <leoyang.li@nxp.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20240319221614.56652-1-wafgo01@gmail.com>
+ <20240319221614.56652-2-wafgo01@gmail.com>
+ <a5268bcc-144b-4e86-a13a-33d976368f06@oss.nxp.com>
+ <018d1b9d-7957-4efb-903b-2e510db1ff80@linaro.org>
+ <6830dee9-2378-4742-8ec4-aada9b5aba17@oss.nxp.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -144,51 +155,45 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ZfqhCKoEL4XGRs7T@hovoldconsulting.com>
+In-Reply-To: <6830dee9-2378-4742-8ec4-aada9b5aba17@oss.nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/03/2024 09:40, Johan Hovold wrote:
-> On Wed, Mar 20, 2024 at 09:24:54AM +0100, Krzysztof Kozlowski wrote:
->> On 20/03/2024 09:18, Johan Hovold wrote:
-> 
->>> Perhaps you should not comment before reading up on the history of this
->>> series.
+On 20/03/2024 09:24, Ghennadi Procopciuc wrote:
+> On 3/20/24 09:49, Krzysztof Kozlowski wrote:
+>> On 20/03/2024 08:00, Ghennadi Procopciuc wrote:
+>>> On 3/20/24 00:16, Wadim Mueller wrote:
+>>> [...]
+>>>> +++ b/arch/arm64/boot/dts/freescale/s32g3.dtsi
+>>>> @@ -0,0 +1,236 @@
+>>>> +// SPDX-License-Identifier: GPL-2.0-or-later
+>>>> +/*
+>>>> + * Copyright 2021-2023 NXP
+>>>> + *
+>>>> + * Authors: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+>>>> + *          Ciprian Costea <ciprianmarian.costea@nxp.com>
+>>>> + *          Andra-Teodora Ilie <andra.ilie@nxp.com>
 >>>
->>> This was all intended for 6.9, but merging was stalled for a number of
->>> reasons so here we are. The patches were also going in through different
->>> trees, so patch 4/5 is the first Qualcomm SoC patch.
+>>> This pollutes the content of the file. Please make them part of the
+>>> commit description using 'Signed-off-by' tags.
+>>>
 >>
->> Again, well, you sent it at few days before merge window, so how do you
->> imagine this being applied for v6.9 and still fulfilling "few linux-next
->> cycles before merge window" requirement? Especially that arm-soc cut off
->> is much earlier :/. I talk about patch 5, of course, because that is not
->> a fix (at least not marked as one). Don't expect in general a arms-co
->> patch to be applied four days before merge window, thus the actual fix -
->> patch #4 - should be split.
+>> No, that's not how process works. SoB are part of DCO and Ghennadi is
+>> allowed to skip them. Just read the DCO. Don't add fake SoB tags just
+>> because someone wants...
+>>
+>> Nothing is polluted in the file. That's what this section you have (if
+>> someone wants).
+>>
 > 
-> At the time there was still hope that there may be an rc8, and the patch
-> in question had been used by a large number of X13s users for several
-> weeks, which is a lot more testing than the average Qualcomm patch
-> receives, whether it's in linux-next or not.
+> I apologize for not getting it right earlier. After reviewing the
+> information available at [0], I noticed that it suggests using
+> Co-developed-by and Signed-off-by when a patch has multiple
+> contributors. However, I could not find any mention of the 'Authors'
+> section in the file although it seems to be a common practice.
 
-OK, it does solve some parts of our discussion but does not solve my
-earlier comment: Fixes should be separate series. Certain folks have
-quite strict requirement on this. Try sending a fix with non-fix
-(depending on fix somehow like here) to Mark Brown. He has even template
-for such case...
-
-> 
-> And patch 5 depends on the earlier patches in the series so it belongs
-> in the series, which was also initially posted long before the merge
-> window.
-
-The dependency is might not be good enough reason to combine fixes and
-non-fixes into one series. Dependency should be explained (in 5th
-patch), but it's maintainer's judgement and job to handle this.
-
-And in all this, fact that Bjorn missed certain aspects and applied this
-differently than you wanted, is another argument that this should be split.
+submitting-patches describes the process, thus also patches, but not the
+Linux code. Whatever is in the C/H/DTS/SH/COCCI code, is independent.
 
 Best regards,
 Krzysztof
