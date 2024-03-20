@@ -1,170 +1,139 @@
-Return-Path: <devicetree+bounces-51900-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51901-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77E04880ED6
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 10:41:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47B77880EE3
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 10:44:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A31991C21381
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 09:41:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01E352831EE
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 09:44:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51E873B78B;
-	Wed, 20 Mar 2024 09:41:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 146F33B79F;
+	Wed, 20 Mar 2024 09:44:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BodeFmTi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IiQ/KxHj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 206293A267;
-	Wed, 20 Mar 2024 09:41:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDCC73B791;
+	Wed, 20 Mar 2024 09:44:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710927664; cv=none; b=EkShCCDNSFAmmbHCQnfdiQSQeht2WjccuseGh3Qp7whRjvwrfjTAGCzW7ZHge7+cFG8WobBPVZ0iP7Iy01CmXoyjWQau2Wmblcvoy1r5XojVD8FWmMutr45/vA/2Z0Gfs4myIO4SU0k3qIziUK14xZUZy61YDYGc44bdItkN4K8=
+	t=1710927869; cv=none; b=NkJHRuIwCIOP0xmMBBcrXGwGqDht1mqB3bQ3sbDDHTyTXgYNAVa5JDVrJlMhvWjBqhFo7A/VNjqc9mCptLWsyYIL9e6v5jJGtRLNKhs7u8pxaYbcnLj5pyyFjPdhGuSrYFZ6PYtgXrtABkzX7bZ4rG84hYH8/hdtbGGDbCLMSEk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710927664; c=relaxed/simple;
-	bh=PJh0W/6IWgzjeRlxP5q/GDxrE0ImAbXuBWIYneIpSqc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DHmjb8tx3t7N3RMft/yM7DkZO3pUgHV74wYLlseVo99yZWixCVv5pNpvJ8kEAlLlkcZXvGNZD08k78Sm31beL5jPSQ0/jsIidzsMIQWU/SdK9MV/KpXBwWtT4vtCgtGUNRRuBO5scC0njjw5GF07M5oVPNzZm2Jkvztcs7RfvqY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BodeFmTi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 678EFC433C7;
-	Wed, 20 Mar 2024 09:40:58 +0000 (UTC)
+	s=arc-20240116; t=1710927869; c=relaxed/simple;
+	bh=57GTWlJ10xHsfYL6870kURGURrNt5JlLAOfaQw5P9Mw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=VXj7HSJ+LcbrwSsz5gTvR7kOLT/VZyK/l6/crvBuGB/g/35C17/RB/k9LY1QBGnYXx5M+YviwPuYWxfXgeFS3Bugp7pc5woUkmGtBs3LqF2A/L7Ea2SH59Sq0k6jBJfUAjLvlRPXNgk2OHmyo/BETHtrv6TuqY4cQH3J5UO4/1w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IiQ/KxHj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 7F8BBC433F1;
+	Wed, 20 Mar 2024 09:44:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710927663;
-	bh=PJh0W/6IWgzjeRlxP5q/GDxrE0ImAbXuBWIYneIpSqc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BodeFmTiNO/U0LF9kw3yT7SljIHsw22BHc+LG2KGnb1lkxq3yw0JBOJ6G36wYA3vZ
-	 PDAZJOTIaZpetKTGbz5nYy59hjIpph8bLm0eBic51Dns0CND7LzX1Sq1cMsRZCsoU4
-	 vTXk9dV+gzj/6tQ7kvq57YPcxZ+B/hHVuUvLzRXtdI0TenH3zktbGkR8GUBzijkSoI
-	 WlLrM65hfhq0a4PNll88h2JLHcD/FM+NKYX9QdnhfT+qeteXylX6IJFjVADst+Y699
-	 TK8mToBNjeuKDohfbbsYFoj39eO1yANzUlhySUVzg2lMbogepQVUH9rdfgvK0ny/WO
-	 tRUSiG+GdrEmA==
-Message-ID: <1a9fc75e-2556-4f48-89ab-7c1c6016a01d@kernel.org>
-Date: Wed, 20 Mar 2024 10:40:55 +0100
+	s=k20201202; t=1710927868;
+	bh=57GTWlJ10xHsfYL6870kURGURrNt5JlLAOfaQw5P9Mw=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=IiQ/KxHjF8Wd5+l6cmnn0tVi1X74aXKgNlUIjiSCypFX/Vo4d4HGRUFOzIhj6LhXi
+	 KGMNXYfdkatHKKiklOBSpvpSlLYaev+Jtb2JOFstH3tEMS6jd2GCLBLeBA4Dqby1Pq
+	 Ch0U46U7VrckcTloNs3lHlWNuYTvbXreBw9JfRitoWnOi7Nccx8S7KtBzEdNx62Tcy
+	 XSNdihlGJ2xFIdfsHFN2/DSBu1Vl8rHODiINu8/iMEChOZVz+v+9pyfWYywp1LFDkO
+	 Brm+GDyFENOxAQGtsR+ODQvfr/DP12LxZiNNXLxQnsNJU9G2ear/WQ6qNOXn8nv/t7
+	 oD9MLlf5zONyg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6C0B8CD11C2;
+	Wed, 20 Mar 2024 09:44:28 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH v2 0/5] Baisc devicetree support for Amlogic A4 and A5
+Date: Wed, 20 Mar 2024 17:44:12 +0800
+Message-Id: <20240320-basic_dt-v2-0-681ecfb23baf@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: i2c: renesas,riic: Update comment for
- fallback string
-To: Andi Shyti <andi.shyti@kernel.org>,
- "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Chris Brandt <chris.brandt@renesas.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20240308172726.225357-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240308172726.225357-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <aee88f81-0b8a-4f57-9dab-b4d13db47abe@linaro.org>
- <CA+V-a8s9OaZ7_RXGjkZYpNS7879ku-aXJ+AvsfgvuTZshyWd5A@mail.gmail.com>
- <eqtj4hpmdqhtftdtpvt7r7iwrkzga365p4ao5kuteovb2behxz@frmyzxemkfwm>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <eqtj4hpmdqhtftdtpvt7r7iwrkzga365p4ao5kuteovb2behxz@frmyzxemkfwm>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOyv+mUC/23MSwrCMBSF4a2UOzaSmyZWO3IfUiTm0V6wjSQlK
+ CV7N3bs8D8cvg2Si+QS9M0G0WVKFJYa4tCAmfQyOka2NgguJG9RsIdOZO52Zaic7JRQWmIL9f6
+ KztN7p25D7YnSGuJnlzP+1j9IRsZZ5xGtbzU/X05XPT/DSOZowgxDKeULHOVI+qIAAAA=
+To: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-serial@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1710927866; l=2117;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=57GTWlJ10xHsfYL6870kURGURrNt5JlLAOfaQw5P9Mw=;
+ b=jK6abUosSrr17IwEhUIrG13N7aYIqvBJbqHa/G/LMGiennQnD2whXlY0q+l/D6h/ZnyOdLZ5Y
+ pNQOW88O1UfBKE2djyM09f5JDJ3fXPmBlJvlqA9saYln1HnkZzV7BBn
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 
-On 19/03/2024 22:19, Andi Shyti wrote:
-> Hi Prabhakar,
-> 
-> On Sat, Mar 09, 2024 at 11:05:40PM +0000, Lad, Prabhakar wrote:
->> On Sat, Mar 9, 2024 at 11:58 AM Krzysztof Kozlowski
->>> On 08/03/2024 18:27, Prabhakar wrote:
->>>> With the fallback string being utilized by multiple other SoCs, this
->>>> patch updates the comment for the generic compatible string.
->>>>
->>>> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->>>> Reviewed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
->>>
->>> Really, you review a comment change? Internally?
->>>
->>> Is this some sort of company policy? Are these even true reviews?
->>>
->> Yes this patch was reviewed internally and it's "real". Unfortunately
->> I cannot share the repo externally where this review was done but I
->> can assure it was reviewed. As this is not a single patch all the
->> patches in this series were internally reviewed. Is it bad to review a
->> comment change?
->> BTW what makes you think I have added fake review tags?
-> 
-> I don't believe Krzysztof is questioning the validity of your
-> offline reviews, but the community is unaware of what happens
-> in your closed environment.
-> 
-> If you submit a patch with the r-b tag, it holds little
-> significance for me since I haven't witnessed the review process
-> myself. However, you are, of course, free to include it; I have
-> no objections to that.
-> 
-> My suggestion is for Fabrizio to publicly express his review on
-> this mailing list, which would add more value to the time he
-> spent reviewing your patch.
-> 
-> By the way, there are other companies that do this.
-> 
+Amlogic A4 and A5 are application processors designed for smart audio
+and IoT applications.
 
-To me seeing such reviews of a trivial comment patch means reviews are
-fake, just to fulfill the process. Especially done internally. Kind of
-"patchset looks good, so +1 in Gerrit" (it does not matter if you use
-Gerrit or not...). I don't consider them reviews, but useless company
-policies. Provide real review or do not provide one at all. And provide
-it public, so work with the community, not your inside systems.
+Add the new A4 SoC/board device tree bindings.
+
+Add the new A5 SoC/board device tree bindings.
+
+Add A4 UART compatible line for documentation.
+
+Add basic support for the A4 based Amlogic AV400 board, which describes
+the following components: CPU, GIC, IRQ, Timer and UART. These are capable of
+booting up into the serial console.
+
+Add basic support for the A5 based Amlogic AV400 board, which describes
+the following components: CPU, GIC, IRQ, Timer and UART. These are capable of
+booting up into the serial console.
+
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Changes in v2:
+- Delete bindings for uncommitted boards.
+- Add A4 UART compatible line for documentation.
+- Use common dtsi for a4 and a5.
+- Fix psci version 1.0, and fix some formats.
+- Modify secmon reserved memory size 10M(actual using).
+- Link to v1: https://lore.kernel.org/r/20240312-basic_dt-v1-0-7f11df3a0896@amlogic.com
+
+---
+Xianwei Zhao (5):
+      dt-bindings: arm: amlogic: add A4 support
+      dt-bindings: arm: amlogic: add A5 support
+      dt-bindings: serial: amlogic,meson-uart: Add compatible string for A4
+      arm64: dts: add support for A4 based Amlogic BA400
+      arm64: dts: add support for A5 based Amlogic AV400
+
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 12 ++++
+ .../bindings/serial/amlogic,meson-uart.yaml        |  4 +-
+ arch/arm64/boot/dts/amlogic/Makefile               |  2 +
+ .../boot/dts/amlogic/amlogic-a4-a113l2-ba400.dts   | 42 ++++++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-a4-common.dtsi | 66 ++++++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi        | 40 +++++++++++++
+ .../boot/dts/amlogic/amlogic-a5-a113x2-av400.dts   | 42 ++++++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi        | 40 +++++++++++++
+ 8 files changed, 247 insertions(+), 1 deletion(-)
+---
+base-commit: 7092cfae086f0bc235baca413d0bd904f182670c
+change-id: 20240312-basic_dt-15e47525a413
 
 Best regards,
-Krzysztof
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
 
 
