@@ -1,171 +1,169 @@
-Return-Path: <devicetree+bounces-52024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52025-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A37458817BC
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 20:15:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1004F8817D9
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 20:30:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57AD71F22237
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 19:15:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF902285B5C
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 19:30:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62C5E85636;
-	Wed, 20 Mar 2024 19:15:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B040E8563F;
+	Wed, 20 Mar 2024 19:30:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="B1VWiDKI"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="ZXtVD+1M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4F6D85626;
-	Wed, 20 Mar 2024 19:15:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04FD38563B;
+	Wed, 20 Mar 2024 19:30:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710962119; cv=none; b=TSN4hwVK2XrMe3K+P2zYbkW5djcfSSvStO+0f0UHusx6UnoHMJOf4lIfmXlUbT5nwbwvPjxlMTca1x8ULLlRex4xlbiMmlvDTIcQpelNgxxpZJL7ddSGYB3pR2aURJ9zkNlpsuvh0IYjfxXZc/6GuUoXAHsFq0qil2akS+Fvl8Y=
+	t=1710963028; cv=none; b=epZA4sBiGJZI488Cp+rNyGEbjU0DXpHaHUWN0ZPOpGOB7D2zmWviGnV/E3gBvnISRIJRfsaSY2MGykAgc//G6IyDxzxiwUNwKmBj+/SBasjicMWWbpM+rBOk0wifc9nZR/FVnfpyHOVY7MjUek4ey7oM1nPAI/+T0ighZspkZTI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710962119; c=relaxed/simple;
-	bh=z+JJu0xQoW3dM54mrpxZ3kL3VRvxY9C0AzdnCinEaxc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ljCXjXV6U49IYwqZigBfPKSpZgYFdRN7iPxndATNITuP4JtV6t5Kek+9N9iQt+90lC8x917VD7ih19JnHfDMnOpU95UKel+eNyk1gtuk74KFqubWS7gM485Z90fW5zYRWYVW9avNdmg0+2liHu2xAh9PYyEG6DklgRlnQymQAYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=B1VWiDKI; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1710962115;
-	bh=z+JJu0xQoW3dM54mrpxZ3kL3VRvxY9C0AzdnCinEaxc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=B1VWiDKI1tUhF4pRktoC0eVPZNgiRldDLP2xGOb75MPTlScONOBZX0rX4t3ATjZVG
-	 oGRD9jWNegiZ6o80vmfWoCL7PCBh7MmHCrGLPGKT/aTG5+qcEKrRUuk2VvR5nkegrv
-	 UCa5mSiGxrbyTF+FvV0iWAftyrJmb6mhk9A92+N9Ih+LgUP2gRWKLZSIuMngwTu9U8
-	 Krpx6FxqZCTBuiKaPTl01PEWE0UI26CNo7wd0SsWBMkKcwvzcoQiaiW6UjmIm49p7s
-	 XeAn6D7Zm8HIEu17xszWTg4ck4Vgqneq6usFWY33lTKV2CAC4Tm/KPWbR/eAjOheuj
-	 mZjW/02iYvGQA==
-Received: from mercury (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 99D173780BFE;
-	Wed, 20 Mar 2024 19:15:15 +0000 (UTC)
-Received: by mercury (Postfix, from userid 1000)
-	id 3C9B21060704; Wed, 20 Mar 2024 20:15:15 +0100 (CET)
-Date: Wed, 20 Mar 2024 20:15:15 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-Cc: linux-kernel@vger.kernel.org, 
-	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
-	Robin Murphy <robin.murphy@arm.com>, Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
-	Dragan Simic <dsimic@manjaro.org>, Shreeya Patel <shreeya.patel@collabora.com>, 
-	Chris Morgan <macromorgan@hotmail.com>, Andy Yan <andy.yan@rock-chips.com>, 
-	Nicolas Frattaroli <frattaroli.nicolas@gmail.com>, linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev
-Subject: Re: [PATCH 1/4] dt-bindings: iommu: rockchip: Fix rk3588 variant
-Message-ID: <uund5em6hnexqpzxj3iazpu5gjbfwtdcolhkit4cljgfldiqyf@4jmgeh6aaw7v>
-References: <20240320173736.2720778-1-linkmauve@linkmauve.fr>
- <20240320173736.2720778-2-linkmauve@linkmauve.fr>
+	s=arc-20240116; t=1710963028; c=relaxed/simple;
+	bh=9Onb7SpSSXz/DSaTRYqETVrjUvaMxyS6VNi7FdiIpt0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jf0AHhR5uSEy+CJI3H16uzJkHY2K6Mi2rsqgg8N6Yflvrs9CBg/6UkkuJbAwFZFJeTEYiY4FXlL0lkV6MR7a4VQHi64hZBPhKVivhDcVdQ+amwgzIixKeI7Qro6IUfl43gnAcSPJ1diDsKAaRw1q3q0ffdJCl5PhMSFDVoa/r/k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=ZXtVD+1M; arc=none smtp.client-ip=67.231.149.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+	by mx0a-001ae601.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42KITXvZ004430;
+	Wed, 20 Mar 2024 14:30:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=PODMain02222019; bh=w
+	uhU3jyk69q+EFOCh/CvUNEU93sJaqDrjk2nglUf9VA=; b=ZXtVD+1MfbOex0ZBE
+	RAk88AQ3wQyM9aUy+8b11GrXrifSuTPBGBZV0yy2tAPmaE5ZZnbopGKMOriV1VUL
+	L7sfMZNH0SDI77FfsK9jPth2Ar5BbVIFK160S9SJ9ck/iQ4IQ1Ql92OOD81FpczY
+	5gax+rpgLyZKgM92ASiUgyRV6H7XmlYHbK4oQPvM9MisVkHTs/jljlTCdldxly3g
+	fiDGC3Z6KxAR2Qu5Iu8ONt2gjZw9/Yi+APnq0aqUMpqhXu4gthEcQvjk2AdSCyOO
+	rUx+o8M2wKJnOXQVdP+q+CcA21VFSlQw2PRbDrB6E1q7RAhR0mrR9OxR+UYoQMIH
+	dqljg==
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3wytta0upx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 20 Mar 2024 14:30:14 -0500 (CDT)
+Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Wed, 20 Mar
+ 2024 19:30:12 +0000
+Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
+ ediex01.ad.cirrus.com (198.61.84.80) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4
+ via Frontend Transport; Wed, 20 Mar 2024 19:30:12 +0000
+Received: from aus-sw-rshr002.ad.cirrus.com (aus-sw-rshr002.ad.cirrus.com [141.131.145.53])
+	by ediswmail9.ad.cirrus.com (Postfix) with ESMTP id 70764820246;
+	Wed, 20 Mar 2024 19:30:10 +0000 (UTC)
+From: James Ogletree <jogletre@opensource.cirrus.com>
+To: <dmitry.torokhov@gmail.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <lee@kernel.org>, <broonie@kernel.org>, <jeff@labundy.com>
+CC: <patches@opensource.cirrus.com>, <linux-sound@vger.kernel.org>,
+        <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        James Ogletree
+	<jogletre@opensource.cirrus.com>
+Subject: [PATCH v10 0/5] Add support for CS40L50
+Date: Wed, 20 Mar 2024 19:29:51 +0000
+Message-ID: <20240320192956.2395731-1-jogletre@opensource.cirrus.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="hcmholarfddiyvvu"
-Content-Disposition: inline
-In-Reply-To: <20240320173736.2720778-2-linkmauve@linkmauve.fr>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-ORIG-GUID: L-njsC35T00blTX4eYcgydr-uzt9LSgy
+X-Proofpoint-GUID: L-njsC35T00blTX4eYcgydr-uzt9LSgy
+X-Proofpoint-Spam-Reason: safe
 
+Changes in v10:
+- Minor refactoring and logical improvements all around
+- Renamed and added supplies
 
---hcmholarfddiyvvu
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Changes in v9:
+- Fixed empty struct by utilizing cs_dsp's post_run callback
+- Style fixes in MFD driver
 
-Hello Emmanuel,
+Changes in v8:
+- set_sysclk() -> set_bclk_ratio()
+- Added ID table to codec driver
+- Style improvements
+- Fixed ordering of new write sequence operations
 
-On Wed, Mar 20, 2024 at 06:37:30PM +0100, Emmanuel Gil Peyrot wrote:
-> The documentation got added in f8aa519976b38e67aae02d2db3e2998513305e80,
-> but it hasn=E2=80=99t been added to the driver so it was unused.
->=20
-> Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-> ---
+Changes in v7:
+- Fixed sparse warning
+- Moved write sequences to private data structure
+- Logical and style improvements in write sequence interface
 
-Everything is fine with f8aa519976b38e67aae02d2db3e2998513305e80
-(well the patch description could be better :)) and this patch is
-just wrong. The documentation explicitly adds the combination of
-rk3588-iommu with rk3568-iommu as fallback. The idea is, that the
-driver handles it just like an rk3568 iommu. If some differences
-are found in the future, the driver can switch to handle the more
-specific compatible without any DT changes (which is ABI).
+Changes in v6:
+- Updated write sequencer interface to be control-name based
+- Fixed a race condition and non-handling of repeats in playback callback
+- Stylistic and logical improvements all around
 
-I suggest watching this presentation:
+Changes in v5:
+- Added a codec sub-device to support I2S streaming
+- Moved write sequencer code from cirrus_haptics to cs_dsp
+- Reverted cirrus_haptics library; future Cirrus input
+  drivers will export and utilize cs40l50_vibra functions
+- Added more comments
+- Many small stylistic and logical improvements
 
-https://www.youtube.com/watch?v=3D6iguKSJJfxo
+Changes in v4:
+- Moved from Input to MFD
+- Moved common Cirrus haptic functions to a library
+- Incorporated runtime PM framework
+- Many style improvements
 
-Greetings,
+Changes in v3:
+- YAML formatting corrections
+- Fixed typo in MAINTAINERS
+- Used generic node name "haptic-driver"
+- Fixed probe error code paths
+- Switched to "sizeof(*)"
+- Removed tree reference in MAINTAINERS
 
--- Sebastian
+Changes in v2:
+- Fixed checkpatch warnings
 
->  arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 2 +-
->  drivers/iommu/rockchip-iommu.c            | 3 +++
->  2 files changed, 4 insertions(+), 1 deletion(-)
->=20
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/=
-dts/rockchip/rk3588s.dtsi
-> index 87b83c87bd55..2a23b4dc36e4 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> @@ -704,7 +704,7 @@ vp3: port@3 {
->  	};
-> =20
->  	vop_mmu: iommu@fdd97e00 {
-> -		compatible =3D "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
-> +		compatible =3D "rockchip,rk3588-iommu";
->  		reg =3D <0x0 0xfdd97e00 0x0 0x100>, <0x0 0xfdd97f00 0x0 0x100>;
->  		interrupts =3D <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH 0>;
->  		clocks =3D <&cru ACLK_VOP>, <&cru HCLK_VOP>;
-> diff --git a/drivers/iommu/rockchip-iommu.c b/drivers/iommu/rockchip-iomm=
-u.c
-> index da79d9f4cf63..da0e93c139d1 100644
-> --- a/drivers/iommu/rockchip-iommu.c
-> +++ b/drivers/iommu/rockchip-iommu.c
-> @@ -1361,6 +1361,9 @@ static const struct of_device_id rk_iommu_dt_ids[] =
-=3D {
->  	{	.compatible =3D "rockchip,rk3568-iommu",
->  		.data =3D &iommu_data_ops_v2,
->  	},
-> +	{	.compatible =3D "rockchip,rk3588-iommu",
-> +		.data =3D &iommu_data_ops_v2,
-> +	},
->  	{ /* sentinel */ }
->  };
-> =20
-> --=20
-> 2.44.0
->=20
+James Ogletree (5):
+  firmware: cs_dsp: Add write sequence interface
+  dt-bindings: input: cirrus,cs40l50: Add initial DT binding
+  mfd: cs40l50: Add support for CS40L50 core driver
+  Input: cs40l50 - Add support for the CS40L50 haptic driver
+  ASoC: cs40l50: Support I2S streaming to CS40L50
 
---hcmholarfddiyvvu
-Content-Type: application/pgp-signature; name="signature.asc"
+ .../bindings/input/cirrus,cs40l50.yaml        |  68 +++
+ MAINTAINERS                                   |  12 +
+ drivers/firmware/cirrus/cs_dsp.c              | 278 +++++++++
+ drivers/input/misc/Kconfig                    |  10 +
+ drivers/input/misc/Makefile                   |   1 +
+ drivers/input/misc/cs40l50-vibra.c            | 577 ++++++++++++++++++
+ drivers/mfd/Kconfig                           |  30 +
+ drivers/mfd/Makefile                          |   4 +
+ drivers/mfd/cs40l50-core.c                    | 570 +++++++++++++++++
+ drivers/mfd/cs40l50-i2c.c                     |  68 +++
+ drivers/mfd/cs40l50-spi.c                     |  68 +++
+ include/linux/firmware/cirrus/cs_dsp.h        |  27 +
+ include/linux/mfd/cs40l50.h                   | 137 +++++
+ sound/soc/codecs/Kconfig                      |  11 +
+ sound/soc/codecs/Makefile                     |   2 +
+ sound/soc/codecs/cs40l50-codec.c              | 308 ++++++++++
+ 16 files changed, 2171 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/cirrus,cs40l50.yaml
+ create mode 100644 drivers/input/misc/cs40l50-vibra.c
+ create mode 100644 drivers/mfd/cs40l50-core.c
+ create mode 100644 drivers/mfd/cs40l50-i2c.c
+ create mode 100644 drivers/mfd/cs40l50-spi.c
+ create mode 100644 include/linux/mfd/cs40l50.h
+ create mode 100644 sound/soc/codecs/cs40l50-codec.c
 
------BEGIN PGP SIGNATURE-----
+-- 
+2.25.1
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmX7Nb8ACgkQ2O7X88g7
-+po3QA//ZGRsC3BtWsJE9IZElMcFAVIscBSPpnfwYskq0O3KIoMWwvFQGlHgRQ9G
-dAvpcGMTmFuhv3ZIqiltdO/+bIeOUztINGSzbWNz7uGhpXvTkVkjFzraNUnUKvNh
-oR3U29wGba+FJJODcJ3uSapaPsX8RbCk/nZ2dV32SC1/XK6nOeKXHiqGHJoDNzKL
-OIBE8QDo5+YuElwXkDFs336VtOo1jsyUTefahIfAlJh0MNCXJ8Gq+IoK9Rb0gBH5
-HFmrJY4GodMvwQcNrAIW+FHnV/QNXIGZmbf57ktHUDU3oXqqTr313xTLwcbQO9bL
-Go7UEqWBQV2iUtfsz8eKnmh001LQ6iPyBW/Da+Xv979UrgGemV4yZbn9gZnWeDiC
-wUAnrdQGuyQBNYmdAL5LucuDnoWupwuPI6v6UuxkWI7aTUvESvuNGDHEK2ZhV15U
-Y1Cz3x6g1o9RXKeMST767Xd1AOC/Zs3sunicG3elgWRvMEThrweqZ35fM9b5LSeW
-q2JvJ5C85XF1Ast3dIXZ6EM/WwozjzzCGV+YjX8g7rmx/+3AixhXyzVLKHM81/j8
-YVEwVmIXpBlwxf9mnUyduc7buIGMPYAevwrdk8R08ROhJN5D0YDEfvMGkiPRFiNx
-TTunFW/jz6+B0GOKl9HomDGWAowhIlJvpJWLRtQ3uetHzFgW9LI=
-=7AoS
------END PGP SIGNATURE-----
-
---hcmholarfddiyvvu--
 
