@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-51868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51869-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4123880CA7
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 09:01:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71935880CAF
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 09:06:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 20BAAB20A9A
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 08:01:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DACF01F21FD1
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 08:06:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 909DF2BD01;
-	Wed, 20 Mar 2024 08:01:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 760A32C6BB;
+	Wed, 20 Mar 2024 08:06:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KqUuOTgx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="i+zkdaJk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD81F2C6B2
-	for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 08:01:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1CA22BD01
+	for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 08:06:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710921674; cv=none; b=ij+fDUetoqcqEPSWQW5e8u4LcrB5EedSZLBTdHHqasByJVLV0NmAHqpYub6gonZymsIErTKWJasrcWa0SJKcksqCzSRbIA/U5JHHMMs0WqmFZmP0ngeWcbuxtP3Y/yasiCRTvnPkg2x2Wtzet6va+igjxdgU6bQaVC4ZkIEj/SQ=
+	t=1710921972; cv=none; b=kDxP1mYoD9JsX2kcGkAX+OBGEvHOjj1zAIo2hdUFnosam/E3fK8Z+DuY8dgiM+KOo1LkmCmnwmc2/VzRh+TMg+oamAZrml+u06XGe+O7wAIuqEin1kp2q8LK+mRw9L3yJJ9MjNjeSHbVpog43TZ7Bv1622A8aDUH4mvvirrgQv4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710921674; c=relaxed/simple;
-	bh=YWDQGj+NIT4RX0QDpgYy97e5lxFO9pkCRRwl+TMF5yA=;
+	s=arc-20240116; t=1710921972; c=relaxed/simple;
+	bh=3VaEiu7P6Vt47e432Hig0a+pLMJ67V4uuiIr1ehyxTE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EGe3UDDGXSTMoufV/u+7TLd7BVU4oY/QWcsDbUWYbEaeHNDmFoEnW1XQBaGpUA/r4/e+0Q4VhfkyGWViF71uCLArQqGIJS+RSsQjgIq7Um+5PFJLAJRoUwhyrepaMPMe9Dz9zHHV4bw51MyIK7K6AZzSEy6G8zA0jdBIP9UBUz0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KqUuOTgx; arc=none smtp.client-ip=209.85.208.48
+	 In-Reply-To:Content-Type; b=ZxD2CTPKmCkVqVq/l9WHhfm+3VtYy/+foMS52NR9OHBT0c/3+LqvqlPdE4koldy0StItviBbxpmHQGhDO8juawLmXkR24E+bpJ+SuAE5Goc+jRfMiFUUotgpYQwoq11QVticEd7AIiF99MJ9e9cHApj+RSIt5ZPYS6/NZpYg1I4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=i+zkdaJk; arc=none smtp.client-ip=209.85.208.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-56b8248e2d8so3451575a12.1
-        for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 01:01:12 -0700 (PDT)
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-568a19fcc4eso3585347a12.1
+        for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 01:06:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710921671; x=1711526471; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1710921968; x=1711526768; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=nNs5OHmBIF4OfZczAp5Q6QlN94OHf1q3wmIZoe179dY=;
-        b=KqUuOTgxrX3f7kXUJOCNLLWFh0j4QowpiMG0qQLbLXQ5xycqiaO5BLV0AHyqAcc5KU
-         fv0Hbsm/nneL9O60mh2G3P/ESnOa5xswHKsJ248tHXVqoVZyVyX+zP9YCq1bOYvcK7Yi
-         ULu4X3qW6bDsb+8iXflV4zDmg+cWE2ay0Enf2AL0uDmUNvgbkl/M+BDQmGl8mEsc++Ev
-         2v24IOvs48G9jFkrPoRP3jkbq/S4+OSES2/mNvl64QAp0m8QB0oYtvd9kKZN1OauMJEM
-         7DxKVrS6OHKDgf58+dhNMb+Z5O1s45NjFYm7+5XNCQbbRI7wInyrmrY/iQ732AeSYt4G
-         qQzg==
+        bh=SlzyeVESNsQAYLZBivF0TU3lMaCAxvMVcqfOd6RxnXM=;
+        b=i+zkdaJk++vt1x7IQvwQOTqVbL+vgHV0ZqOi73m/F3qBDc2wJtWkvHm496DLCyoIXh
+         RwN3Z71wefhcaw4UWK+r+jzaUqRFmO5fW+UiBu+SPe/d+Lhp1xL7/Bo5eRSeuWaETdhM
+         oMhOfH8L/pJcc5eyov36yQ1Q092nscxEbv3Jf3lUeCssLXvqdsfRH9pJe/gDzOvo6CjD
+         Af2APwyQDN4qYw2+QqgktRsoglM0b/iqC/Bxovgl/RaBJ6+NeaCsFdSEcSyl/vh+4l0g
+         VMFj7R67JiaTwa4iPInPkpK0MwGH8vdKALYug/tBb2O9jMJhXcOgnn5viadBmY1DCIWn
+         Y0EA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710921671; x=1711526471;
+        d=1e100.net; s=20230601; t=1710921968; x=1711526768;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=nNs5OHmBIF4OfZczAp5Q6QlN94OHf1q3wmIZoe179dY=;
-        b=qzqZphsI8Wi4zdsYFCDqNG/NjE5WgAzBYNSQKVpOY+v5WDBOpcaeadTVbANO62PCiL
-         LmJn0eY38qZa0Qg93uxJnBaGUJTyVERJfbB5MnNhbmOH8IpwQVdjV170UyMLT0NEDuhy
-         xmn2dARqcY/9oG6m6pyS9nS4hOl4WlCnd8mELS7dCrk59ruarUoqPaFTGDtibjbluc4k
-         KC0AAp04x2n/M7VPzAhlcNS4zRqxTsLtLkDdaxNmlAntX5wCZe6GocBJQzTJckS4yMvw
-         HDrACGBdiR53Cqnv8+Tlea8xWYHuAixkHNZ0R1pdGaehRjfI8naK6JxtajUxj2/iJQEl
-         VSag==
-X-Forwarded-Encrypted: i=1; AJvYcCVx8KhN2V35UatnOQwg4hGTRBqhsoBQEJo9W7T4n915tLEMNP24x8VZYONkvtZC4VXnT+KiuGpQv/K66IppnyOp09jiGH9NpZXkdA==
-X-Gm-Message-State: AOJu0Yx/qSC/TUa5wLxGNouMHI+PvJwO0438b7mVUg7uewydGRTpF39q
-	eqxhslkBnqF4Q8UwwVZkIqUoiFomc6RVdfG+mdrgeMm+p2a9Pmlwi68G/H3VFv0=
-X-Google-Smtp-Source: AGHT+IGmg7JhFd9YGo4SzD4tHxgDPiV+U6ye8mank53lEhUoWpv2I3LZiyYHwc5iz/pzjwNM7K6BOg==
-X-Received: by 2002:a05:6402:2b87:b0:568:9ba8:8f1a with SMTP id fj7-20020a0564022b8700b005689ba88f1amr13766609edb.7.1710921670985;
-        Wed, 20 Mar 2024 01:01:10 -0700 (PDT)
+        bh=SlzyeVESNsQAYLZBivF0TU3lMaCAxvMVcqfOd6RxnXM=;
+        b=MR4BcsH7idFaPABlnLy3lE5/h+kaLd50XQ+NKwDj1K6J7RUM6p6SgWFxoDwjp3tfj+
+         MPCG0rVnhFknY9ZRDbWsGJz3rNwT3R6W7KvenzzjsiPdMwm5yNd58SyL4oT+ibMczSfd
+         mohUO3KQcZ99f6g6Qemqx+Jd92YFfrzTRLHkkv/IaPBLYWQ/X1K9xvgSboACzggjbV7t
+         39frplpy2Agk2q0NTKYznGyXP60WffRrDA8nF03mzCReRZEhH3G2dvT0bM566UD/vSY3
+         nunaqyleQg4zmQO/JQU2HFUYpezhKcMhhTM42dbmZvWKMzVcPbmQVs597LkSiwfyO1eT
+         urNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX9Ty8J9rXNkcwsHwbLONRCSkU3mp5Jeu5P3LvyeBbO+fbm3fBfdhtCgQrQuEUbqPGKTEHd5H4kvEiVigzMszags4/AWkBWKSmFZw==
+X-Gm-Message-State: AOJu0YxTjvmkr0DMHWmJ9Ie9lIlUOsylT2Od5BNtWjKjJkFQAYR70F9Y
+	J+QRmgaRzR7WJ8STEjzLU58N+I7sCCOYZcKQ6MWCKjVIdBgANxQWKLKYKMuv2ag=
+X-Google-Smtp-Source: AGHT+IH6EmMnyI9/7MY7sWDDU2aR5lNG12sHgtfcpCwiENfmIWrRyINNt7AJUm8vWKW7hfkG52s/vg==
+X-Received: by 2002:a05:6402:3641:b0:568:32f7:6c55 with SMTP id em1-20020a056402364100b0056832f76c55mr13096907edb.9.1710921968157;
+        Wed, 20 Mar 2024 01:06:08 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id es8-20020a056402380800b00568afb0e731sm5435012edb.63.2024.03.20.01.01.09
+        by smtp.gmail.com with ESMTPSA id cw24-20020a170906c79800b00a469d3df3c1sm5232599ejb.96.2024.03.20.01.06.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Mar 2024 01:01:10 -0700 (PDT)
-Message-ID: <822989eb-0e8c-47af-b1ae-435f35472cb9@linaro.org>
-Date: Wed, 20 Mar 2024 09:01:08 +0100
+        Wed, 20 Mar 2024 01:06:07 -0700 (PDT)
+Message-ID: <5b87eee4-2b28-48a5-a7c8-6c450be724e7@linaro.org>
+Date: Wed, 20 Mar 2024 09:06:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,18 +77,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/7] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy:
- document PHY AUX clock on SM8[456]50 SoCs
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v3 2/4] dt-bindings: serial: renesas,scif: Validate
+ 'interrupts' and 'interrupt-names'
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240319-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v1-0-926d7a4ccd80@linaro.org>
- <20240319-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v1-1-926d7a4ccd80@linaro.org>
+ Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-serial@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20240318172102.45549-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240318172102.45549-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <db13e305-adc4-4990-b9ec-b1cdcdad4406@linaro.org>
+ <010e4742-438f-413f-811f-a033ec104832@linaro.org>
+ <CA+V-a8txP39HJJrJcNqCUgw2NkdA3uSvBrbdSzw0bN6r5LpNaQ@mail.gmail.com>
+ <51743788-3444-4817-864b-404205a06137@linaro.org>
+ <CAMuHMdVWMt_JqpiWasZxS3D8dS5JYgxDU0SKbFxNVV-zWk8D+w@mail.gmail.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -135,22 +143,70 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240319-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v1-1-926d7a4ccd80@linaro.org>
+In-Reply-To: <CAMuHMdVWMt_JqpiWasZxS3D8dS5JYgxDU0SKbFxNVV-zWk8D+w@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 19/03/2024 11:44, Neil Armstrong wrote:
-> The PCIe Gen4x2 PHY found in the SM8[456]50 SoCs have a second clock named
-> "PHY_AUX_CLK" which is an input of the Global Clock Controller (GCC) which
-> is muxed & gated then returned to the PHY as an input.
+On 19/03/2024 14:25, Geert Uytterhoeven wrote:
+> Hi Krzysztof,
 > 
-> Document the clock IDs to select the PIPE clock or the AUX clock,
-> also enforce a second clock-output-names and a #clock-cells value of 1
-> for the PCIe Gen4x2 PHY found in the SM8[456]50 SoCs.
+> On Tue, Mar 19, 2024 at 2:04 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>> On 19/03/2024 13:43, Lad, Prabhakar wrote:
+>>>>>> diff --git a/Documentation/devicetree/bindings/serial/renesas,scif.yaml b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
+>>>>>> index af72c3420453..53f18e9810fd 100644
+>>>>>> --- a/Documentation/devicetree/bindings/serial/renesas,scif.yaml
+>>>>>> +++ b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
+>>>>>> @@ -82,38 +82,6 @@ properties:
+>>>>>>    reg:
+>>>>>>      maxItems: 1
+>>>>>>
+>>>>>> -  interrupts:
+>>>>>
+>>>>> I don't understand what is happening with this patchset. Interrupts must
+>>>>> stay here. Where did you receive any different feedback?
+>>>>
+>>>> Look how it is done:
+>>>> https://elixir.bootlin.com/linux/v6.8/source/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml#L44
+>>>>
+>>> Thanks for the pointer, as the above binding doesn't have any
+>>
+>> Yeah, that's just an example to point you the concept: top level
+>> property comes with widest constraints (or widest matching items
+>> description) and each variant narrows the choice.
+>>
+>>> description items as compared to our case, to clarify I have updated
+>>> the binding is below. Is this the correct approach?
+>>>
+>>> option #1
+>>> ---------------
+>>
+>>
+>> Yes, it looks correct.
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Why duplicate all the descriptions? The only differences are the number
+> of valid interrupts?
+> What was wrong with "[PATCH v2 2/2] dt-bindings: serial: renesas,scif:
+> Validate 'interrupts' and 'interrupt-names'"[1]?
+> 
+> https://lore.kernel.org/r/20240307114217.34784-3-prabhakar.mahadev-lad.rj@bp.renesas.com/
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I have impression that only two variants out of three have same
+descriptions... but now I see mistake I made in above. I read that first
+interrupt is "Error interrupt" but it is "error or combined". Sorry for
+that, I think most of my comment there is not correct.
+
+It could be made oneOf?
+
+    oneOf:
+     - items:
+          - description: A combined interrupt
+     - items:
+         - ....
+       minItems: 4
+?
+
+
 
 Best regards,
 Krzysztof
