@@ -1,295 +1,206 @@
-Return-Path: <devicetree+bounces-51888-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51889-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CEE7880E40
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 10:05:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A95BF880E4B
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 10:08:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03378282E63
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 09:05:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F4522834EF
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 09:08:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D020238DE8;
-	Wed, 20 Mar 2024 09:05:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AEFD38FA0;
+	Wed, 20 Mar 2024 09:07:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="By09qNdT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VIh55/Jn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B89633AC25;
-	Wed, 20 Mar 2024 09:05:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CEE5381AC;
+	Wed, 20 Mar 2024 09:07:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710925536; cv=none; b=MklJL+F+6kJFYxALti4eC1QfzGnktXpyj+T7jXXCOQkAvqZu0mwTweIIOY06M5kpacPvHYnpANMRX/WY+6/mcTL2W+s7pmYqnkLwYSeRai5WRoc0OCJoxHFnCqsr/nQiIQakrQ8LP9xcYGJIM2QnBFLDmzs9l6vqa2sATuNLNH0=
+	t=1710925679; cv=none; b=TA4Nw5DHTl4/+YFvW4XUe54AlBog5NtyQcEVIuypljtkXeH3xxVcccxw6sNKduvVuNl1gD+JK/jN8m3mBp4oBtCRnred2/Fic/89fa2mTIWmxdbn7olQe+2qJaBW1MKmNz5oAjx8zniGHhnVv2rIC7UXMWGeKAHfgDW2vTm3nPw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710925536; c=relaxed/simple;
-	bh=6Qgf/NpiPbzxVmqwhe1v3Rspvjzp2MmQAb5Ad1EHDwQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=OdzJv82+gc6COrc4/g+2U8I/I2fO14TMUmuourMA5r3iqztbUapZeSrxo3npwgGiOcEuJBWOg4eilNtZNIq7GJssWUNVMTeoEdNhkvKNpCT+atEGv+IXLAWW6DBGXJMsaFoKnNMxHB+EaKL6xZ/v64iIf+8jT3VMcr9Xwleax0A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=By09qNdT; arc=none smtp.client-ip=209.85.214.178
+	s=arc-20240116; t=1710925679; c=relaxed/simple;
+	bh=BVbpZjD8QaD7y17IHDhfMTdTYGJnFARN6zjQHua00eU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CY9WxADf8j0XzNRabqJZ9mV7CxZF3cTOIax3DDI8LS1pDj7X/mrPbMVuzELQ5UMZEx+2NVnulRvfb1RsHCmzSqgjfLy9z2YoKeKUV8wY52qawu7rA7xMBtJPbCvt8taG5rJ/CLbLXZ7yDuCSovXkEu+IOwcpyTF2pjWW3C10aJo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VIh55/Jn; arc=none smtp.client-ip=209.85.160.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-1dddb160a37so46896475ad.2;
-        Wed, 20 Mar 2024 02:05:34 -0700 (PDT)
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-22963f0e12cso1227291fac.1;
+        Wed, 20 Mar 2024 02:07:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710925534; x=1711530334; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Q9AnhsV1I63p1VhmH5I/CTh8F8noEyIobCtBN/qPBug=;
-        b=By09qNdTJ0L+rjauTKZ/AninSv3YUJhoBsYXtP402u3aeqz79KYhM99qKBCcDBDFWl
-         WXRp7kI0A8YkEGEntEWACmAkGg9tv8crK9mYRS/EDfxrwv+n6UCYxkXsqdzvIXWAtWeT
-         p4NynY0JUbWdgayv3EeKAPasKyZ2iPaVSs4VXN6XMgv/sA7HiEHi2zq8YaiR9admOA4e
-         i7YJhgi91Ukb30AicV3uaV/vyJiPqJr2FPyrl+OrL8jyOkr0St4GsjtWfug+1vOVb8F4
-         3gqCqPkrPCgDjnnJZxtbj9rJfMSxB+ltec3BjUfMl4BGZQbcRzKRZ4cIS7CBm24FCGNc
-         TK7w==
+        d=gmail.com; s=20230601; t=1710925677; x=1711530477; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=6LYzgeSraIQWph2DLzGUmFCxbm6oNIHNvAA92fmfgfw=;
+        b=VIh55/Jnjr3X9VSUrwXc52Nv/LC69rtjbE5yBp8tKRC9RnNfvh9yG2M0bR079/2JuL
+         ngcCLca9FY4Rfj3eZZlhHitz9l6QIRMaE4AC6zh3H/peQBkLBoy/VvRPrz84dih8qUEW
+         mCLrBMgyu6CveGXJX+UoYXAaUEWvfBanmSANNIEZq56Y8xKhr7U4Hwhgh8w5i1GrKvkL
+         EguZQAtI85vmLJnSVKzRXFKkC5sKZjcSv3Hc+/rCBv9RIMKI8Iq9UpdGtRPvKEutSskT
+         xpxf5QVGiILGjN3OBsB9+u2xcDO5QMkMzfm39Si1OvjwgYthKS9g1fLXba6dhzm3/9ik
+         WRNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710925534; x=1711530334;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q9AnhsV1I63p1VhmH5I/CTh8F8noEyIobCtBN/qPBug=;
-        b=BLhmmFbc9D1JofrJLFYHgwZtgBsxwKprG1YGg+PCMNVIwcWT4DhgnsqZq8sU0Q7TDa
-         sNGsmtqRnx48h55/RyOCriNhFhL1gdqHicMILdqiciCZ4gxsbvtXz72GaUSu+7C+jCB4
-         fIyCjb5UruZfJtfbBEDaIaaN5nZfzyDrwTjGfXLjNoP4ArmSm2to3yR76SoC1B9D2wAJ
-         BencVAR2Zniekx89MKViPNEllKOUnEW02j8lPcqNH5IwI0QUke75Bb2SB17Vsq87J2w0
-         iZHOw0BbVmMWNjRaMQY8HGcmHeYa5vtU6PyIcIK560Ooq0vDHtuRiWHzhzeptJzHdLfT
-         sdIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVEVXDIfZB84+Fa6y8fB/3F6oJsCsntQl+9DnnejF+Tn3jRu6/YHcKENZFKnHmRDfQaQLOJGy0y+BmQBwy1XUpqLUzdqe8adbXMIIBPqB3f28KjvBBLZH3n9Temkb2XW9xxJDC874P3dzeM3/Oy+szSjEoqSrMY0M+z2WFsqLR6Oegl5E+MnPlb
-X-Gm-Message-State: AOJu0Yz9e5FK1cBdOVN4SvPBMcQENWIRESUFhf9xfJVyKInzxoV58ZMN
-	9/tFNWITjvKm7EIUSXkPkV1lvMwfjL8J8g9Z3RguFHNsBdoZewhB
-X-Google-Smtp-Source: AGHT+IGQN51HBV2eG4je+v7GXoz9GezzFu7dyWQoCjgBxUNs4bPN7xeScFwS6s6WwuunnB3tWKBKpA==
-X-Received: by 2002:a17:902:ea10:b0:1e0:1496:91ec with SMTP id s16-20020a170902ea1000b001e0149691ecmr6421247plg.20.1710925533894;
-        Wed, 20 Mar 2024 02:05:33 -0700 (PDT)
-Received: from ?IPV6:2001:b400:e38c:634d:c9ce:74d1:b790:4f66? (2001-b400-e38c-634d-c9ce-74d1-b790-4f66.emome-ip6.hinet.net. [2001:b400:e38c:634d:c9ce:74d1:b790:4f66])
-        by smtp.gmail.com with ESMTPSA id j11-20020a17090276cb00b001dd88a5dc47sm3261282plt.290.2024.03.20.02.05.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Mar 2024 02:05:33 -0700 (PDT)
-Message-ID: <924c4402-af14-4b7a-9a4e-4317c50482cd@gmail.com>
-Date: Wed, 20 Mar 2024 17:05:28 +0800
+        d=1e100.net; s=20230601; t=1710925677; x=1711530477;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6LYzgeSraIQWph2DLzGUmFCxbm6oNIHNvAA92fmfgfw=;
+        b=DQtPjp50SeD6jT5P9K5YyVl+oeFZL+OGHrRyMXrxUYbXUwKyd/BmFstEKvblio932Q
+         GqeDN9QC1m2ohQoO2EmWjcFvJ5MP3oMaqkNJOt9ym/V2t0PwWUEaA0xaTDLSiNNx/rit
+         zcLKZT8pYmmI8kjEMgz5RPs5HZjHDX2+JaAXlQfgwtV/FIRaGy6oq4aJqm+btjCM+T+p
+         1X/qsZ7botjV6NRygVFljao8NXi0z3W0yHDrfnFir+2OWSDkBvdyHY4pE1eYECNx+Y5z
+         o93jfSA0xnmRjBFfCHkwJYz736Yzasm9JyvXbrQavfb2ESIquAfQMKYkCqzCw7lpeJVS
+         zE5w==
+X-Forwarded-Encrypted: i=1; AJvYcCVIeCna18B105Xw5XyzQW8U0B16l+t3xQ9489pXUma5lC8XgT4RGZS3bWxcF2Q8vqpO7L2W7YNtt3ehaGNQKKVBI5TKsy1O6IpAXzjJewwMF0qQEpngI7+CKyUyqTnINpISLMi2wG9pXIL40UrvDU3Z/DRIfn1qJRog1bgJNnTYqS9vrQ==
+X-Gm-Message-State: AOJu0YznFHxH+3u7aDvQaM8CfrtIh0QJbnSBPT2a8TAcLJxTVrJ1WIFV
+	rNhDWZ6kVhTh0SA6YrtLUSkunOO/virPOrXsIfrXLo6mrfQBqQNf
+X-Google-Smtp-Source: AGHT+IE2HShA9tzq7LK/MZr8vowvV1oJMzrwKIWizneyhfLiYWfkofVYT92Zz2xWszZIjg8lo9tqOw==
+X-Received: by 2002:a05:6871:a58d:b0:222:69b4:fccd with SMTP id wd13-20020a056871a58d00b0022269b4fccdmr5292748oab.24.1710925677036;
+        Wed, 20 Mar 2024 02:07:57 -0700 (PDT)
+Received: from localhost.localdomain ([2409:40f4:a4:a590:2a15:ea77:7177:18e3])
+        by smtp.gmail.com with ESMTPSA id k1-20020aa79981000000b006e6f96ecc30sm9021369pfh.2.2024.03.20.02.07.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Mar 2024 02:07:56 -0700 (PDT)
+From: Animesh Agarwal <animeshagarwal28@gmail.com>
+To: 
+Cc: animeshagarwal28@gmail.com,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	linux-ide@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v8] dt-bindings: ata: imx-pata: Convert to dtschema
+Date: Wed, 20 Mar 2024 14:37:30 +0530
+Message-ID: <20240320090733.96828-1-animeshagarwal28@gmail.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drivers: watchdog: ast2600 support bootstatus
-Content-Language: en-US
-To: Guenter Roeck <linux@roeck-us.net>, patrick@stwcx.xyz,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
-References: <20240318055219.3460121-1-peteryin.openbmc@gmail.com>
- <13640a07-7395-4521-9c5d-748599202361@roeck-us.net>
-From: PeterYin <peteryin.openbmc@gmail.com>
-In-Reply-To: <13640a07-7395-4521-9c5d-748599202361@roeck-us.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
+Convert the imx-pata bindings to DT schema.
+Add missing fsl,imx31-pata and fsl,imx51-pata compatibles during
+conversion, because they are already being used in existing DTS.
 
+Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
 
-Guenter Roeck 於 3/19/24 08:46 寫道:
-> On 3/17/24 22:52, Peter Yin wrote:
->> Add WDIOF_EXTERN1 and WDIOF_CARDRESET bootstatus in ast2600
->>
->> Regarding the AST2600 specification, the WDTn Timeout Status Register
->> (WDT10) has bit 1 reserved. To verify the second boot source,
->> we need to check SEC14 bit 12 and bit 13.
->> The bits 8-23 in the WDTn Timeout Status Register are the Watchdog
->> Event Count, which we can use to verify WDIOF_EXTERN1.
->>
->> Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
-> 
-> You'll have to separate dts and yaml file changes from driver changes.
-> 
->> ---
->> Change log:
->>
->> v1 -> v2
->>    - Add comment and support WDIOF_CARDRESET in ast2600
->>
->> v1
->>    - Patch 0001 - Add WDIOF_EXTERN1 bootstatus
->> ---
->>   arch/arm/boot/dts/aspeed/aspeed-g6.dtsi |  8 ++---
->>   drivers/watchdog/aspeed_wdt.c           | 45 ++++++++++++++++++++++---
->>   2 files changed, 44 insertions(+), 9 deletions(-)
->>
->> diff --git a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi 
->> b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
->> index e0b44498269f..23ae7f0430e9 100644
->> --- a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
->> +++ b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
->> @@ -556,24 +556,24 @@ uart5: serial@1e784000 {
->>               wdt1: watchdog@1e785000 {
->>                   compatible = "aspeed,ast2600-wdt";
->> -                reg = <0x1e785000 0x40>;
->> +                reg = <0x1e785000 0x40>, <0x1e6f2000 0x20>;
->>               };
->>               wdt2: watchdog@1e785040 {
->>                   compatible = "aspeed,ast2600-wdt";
->> -                reg = <0x1e785040 0x40>;
->> +                reg = <0x1e785040 0x40>, <0x1e6f2000 0x020>;
->>                   status = "disabled";
->>               };
->>               wdt3: watchdog@1e785080 {
->>                   compatible = "aspeed,ast2600-wdt";
->> -                reg = <0x1e785080 0x40>;
->> +                reg = <0x1e785080 0x40>, <0x1e6f2000 0x020>;
->>                   status = "disabled";
->>               };
->>               wdt4: watchdog@1e7850c0 {
->>                   compatible = "aspeed,ast2600-wdt";
->> -                reg = <0x1e7850C0 0x40>;
->> +                reg = <0x1e7850C0 0x40>, <0x1e6f2000 0x020>;
->>                   status = "disabled";
->>               };
->> diff --git a/drivers/watchdog/aspeed_wdt.c 
->> b/drivers/watchdog/aspeed_wdt.c
->> index b4773a6aaf8c..65118e461130 100644
->> --- a/drivers/watchdog/aspeed_wdt.c
->> +++ b/drivers/watchdog/aspeed_wdt.c
->> @@ -33,6 +33,7 @@ struct aspeed_wdt {
->>       void __iomem        *base;
->>       u32            ctrl;
->>       const struct aspeed_wdt_config *cfg;
->> +    void __iomem        *sec_base;
->>   };
->>   static const struct aspeed_wdt_config ast2400_config = {
->> @@ -82,6 +83,15 @@ MODULE_DEVICE_TABLE(of, aspeed_wdt_of_table);
->>   #define WDT_RESET_MASK1        0x1c
->>   #define WDT_RESET_MASK2        0x20
->> +/*
->> + * Only Ast2600 support
->> + */
->> +#define   WDT_EVENT_COUNTER_MASK    (0xFFF << 8)
->> +#define   WDT_SECURE_ENGINE_STATUS    (0x14)
->> +#define   ABR_IMAGE_SOURCE        BIT(12)
->> +#define   ABR_IMAGE_SOURCE_SPI        BIT(13)
->> +#define   SECOND_BOOT_ENABLE        BIT(14)
->> +
->>   /*
->>    * WDT_RESET_WIDTH controls the characteristics of the external 
->> pulse (if
->>    * enabled), specifically:
->> @@ -313,6 +323,7 @@ static int aspeed_wdt_probe(struct platform_device 
->> *pdev)
->>       const char *reset_type;
->>       u32 duration;
->>       u32 status;
->> +    u32 sec_st;
->>       int ret;
->>       wdt = devm_kzalloc(dev, sizeof(*wdt), GFP_KERNEL);
->> @@ -330,6 +341,12 @@ static int aspeed_wdt_probe(struct 
->> platform_device *pdev)
->>       if (IS_ERR(wdt->base))
->>           return PTR_ERR(wdt->base);
->> +    if (of_device_is_compatible(np, "aspeed,ast2600-wdt")) {
->> +        wdt->sec_base = devm_platform_ioremap_resource(pdev, 1);
->> +        if (IS_ERR(wdt->sec_base))
->> +            return PTR_ERR(wdt->sec_base);
->> +    }
->> +
->>       wdt->wdd.info = &aspeed_wdt_info;
->>       if (wdt->cfg->irq_mask) {
->> @@ -459,12 +476,30 @@ static int aspeed_wdt_probe(struct 
->> platform_device *pdev)
->>       }
->>       status = readl(wdt->base + WDT_TIMEOUT_STATUS);
->> -    if (status & WDT_TIMEOUT_STATUS_BOOT_SECONDARY) {
->> -        wdt->wdd.bootstatus = WDIOF_CARDRESET;
->> -        if (of_device_is_compatible(np, "aspeed,ast2400-wdt") ||
->> -            of_device_is_compatible(np, "aspeed,ast2500-wdt"))
->> -            wdt->wdd.groups = bswitch_groups;
->> +    if (of_device_is_compatible(np, "aspeed,ast2600-wdt")) {
->> +        /*
->> +         * The WDTn Timeout Status Register bit 1 is reserved.
->> +         * To verify the second boot source,
->> +         * we need to check SEC14 bit 12 and bit 13.
->> +         */
->> +        sec_st = readl(wdt->sec_base + WDT_SECURE_ENGINE_STATUS);
->> +        if( sec_st & SECOND_BOOT_ENABLE)
->> +            if (sec_st & ABR_IMAGE_SOURCE ||
->> +                sec_st & ABR_IMAGE_SOURCE_SPI)
-> 
-> I am sure that checkpatch as something to say here. Either case, I would 
-> very
-> much prefer a single if() statement such as
-> 
->          if (sec_st & SECOND_BOOT_ENABLE &&
->              sec_st & (ABR_IMAGE_SOURCE | ABR_IMAGE_SOURCE_SPI))
-> 
->> +                wdt->wdd.bootstatus |= WDIOF_CARDRESET;
->> +
->> +        /*
->> +         * To check Watchdog Event Count for WDIOF_EXTERN1
->> +         */
->> +        if (status & WDT_EVENT_COUNTER_MASK) {
->> +            wdt->wdd.bootstatus |= WDIOF_EXTERN1;
->> +        }
-> 
-> Unnecessary { }
-> 
-> ... but does this really indicate that there was a reset due to some 
-> event ?
-> This reads three 8-bit counters. Wouldn't it make more sense to check bit 0
-> instead ?
-> 
-> I am also not sure if reading the watchdog status from 
-> WDT_SECURE_ENGINE_STATUS
-> adds any value over the status reported in the watchdog status register.
-> You'll have to explain why the added complexity is necessary or even adds
-> value.
-> 
-> Never mind, though ...
-> 
-> Looking into the datasheets, the current code is quite completely wrong 
-> anyway.
-> Bit 1 of the status register indicates on ast2500 if the boot was from 
-> the second
-> boot source. It does not indicate that the most recent reset was 
-> triggered by
-> the watchdog. The code should just be changed to set WDIOF_CARDRESET if 
-> bit 0
-> of the status register is set. The boot source is out of scope for the 
-> watchdog
-> status bits.
-> 
-> Thanks,
-> Guenter
-> 
-Ast2600 has external reset flag on scu74 bit 1
-Can I modify the code like this?
+---
+Changes in v8:
+- added missing space after comma in examples' compatible property
 
-To set WDIOF_EXTERN1 if EXTERN_RESET_FLAG is set,
-To set WDIOF_CARDRESET if WDT_TIMEOUT_STATUS_EVENT(bit0) is set
+Changes in v7:
+- removed blank space at the end of file.
 
+Changes in v6:
+- removed items before const due to single element.
 
-#define   WDT_TIMEOUT_STATUS_EVENT	BIT(0)
-#define   EXTERN_RESET_FLAG		BIT(1)
-#define   ASPEED_SYSTEM_RESET_EVENT	(0x74)
+Changes in v5:
+- added oneOf in compatible property to allow the usage of imx27 alone.
 
-	status = readl(wdt->base + WDT_TIMEOUT_STATUS);
-	if (status & WDT_TIMEOUT_STATUS_EVENT)
-		wdt->wdd.bootstatus = WDIOF_CARDRESET;
+Changes in v4:
+- added fsl,imx31-pata in compatible property as enum.
 
-	if (of_device_is_compatible(np, "aspeed,ast2600-wdt")) {
-		status = readl(wdt->scu_base + ASPEED_SYSTEM_RESET_EVENT);
-		if (status & EXTERN_RESET_FLAG)
-			/*
-			 * Reset cause by Extern Reset
-			 */
-			wdt->wdd.bootstatus |= WDIOF_EXTERN1;
-	} else {
-			wdt->wdd.groups = bswitch_groups;
-	}
-Thanks,
-Peter.
+Changes in v3:
+- added fsl,imx51-pata in compatible property as enum
+- fsl,imx27-pata is added as a const to ensure it is present always
+
+Changes in v2:
+- fixed style issues
+- compatible property now matches the examples
+- fixed yamllint warnings/errors
+---
+ .../devicetree/bindings/ata/fsl,imx-pata.yaml | 42 +++++++++++++++++++
+ .../devicetree/bindings/ata/imx-pata.txt      | 16 -------
+ 2 files changed, 42 insertions(+), 16 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/ata/fsl,imx-pata.yaml
+ delete mode 100644 Documentation/devicetree/bindings/ata/imx-pata.txt
+
+diff --git a/Documentation/devicetree/bindings/ata/fsl,imx-pata.yaml b/Documentation/devicetree/bindings/ata/fsl,imx-pata.yaml
+new file mode 100644
+index 000000000000..324e2413bba8
+--- /dev/null
++++ b/Documentation/devicetree/bindings/ata/fsl,imx-pata.yaml
+@@ -0,0 +1,42 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/ata/fsl,imx-pata.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Freescale i.MX PATA Controller
++
++maintainers:
++  - Animesh Agarwal <animeshagarwal28@gmail.com>
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - fsl,imx31-pata
++              - fsl,imx51-pata
++          - const: fsl,imx27-pata
++      - const: fsl,imx27-pata
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    items:
++      - description: PATA Controller interrupts
++
++  clocks:
++    items:
++      - description: PATA Controller clocks
++
++additionalProperties: false
++
++examples:
++  - |
++    pata: pata@83fe0000 {
++        compatible = "fsl,imx51-pata", "fsl,imx27-pata";
++        reg = <0x83fe0000 0x4000>;
++        interrupts = <70>;
++        clocks = <&clks 161>;
++    };
+diff --git a/Documentation/devicetree/bindings/ata/imx-pata.txt b/Documentation/devicetree/bindings/ata/imx-pata.txt
+deleted file mode 100644
+index f1172f00188a..000000000000
+--- a/Documentation/devicetree/bindings/ata/imx-pata.txt
++++ /dev/null
+@@ -1,16 +0,0 @@
+-* Freescale i.MX PATA Controller
+-
+-Required properties:
+-- compatible: "fsl,imx27-pata"
+-- reg: Address range of the PATA Controller
+-- interrupts: The interrupt of the PATA Controller
+-- clocks: the clocks for the PATA Controller
+-
+-Example:
+-
+-	pata: pata@83fe0000 {
+-		compatible = "fsl,imx51-pata", "fsl,imx27-pata";
+-		reg = <0x83fe0000 0x4000>;
+-		interrupts = <70>;
+-		clocks = <&clks 161>;
+-	};
+-- 
+2.44.0
+
 
