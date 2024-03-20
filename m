@@ -1,175 +1,110 @@
-Return-Path: <devicetree+bounces-52020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 015B488176A
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 19:44:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 869FF88178F
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 19:52:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AAFEA282229
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 18:44:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B7BF91C21469
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 18:52:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5228A6AFAE;
-	Wed, 20 Mar 2024 18:44:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4661C85632;
+	Wed, 20 Mar 2024 18:51:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="J+vujSF5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tJgEulWZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10B4352F78;
-	Wed, 20 Mar 2024 18:44:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D0EB8529D;
+	Wed, 20 Mar 2024 18:51:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710960274; cv=none; b=R5/RWa1ckR63uXtALaGJWOhQ76QfWcsZ4tPlHSrF/wueNalh+v119hrMqKskwNPUEbG70aR5s9xZckEwinluxswdwlUs0eRWHO9NRM5OHvbBPotWQUQ7GZU0gSFM10rIhtuV2fc61Hm2pkI/91ed8AH5vB7E5KbfHk8KhqLjmwg=
+	t=1710960719; cv=none; b=htLVzJFNe4nBh6z4oAtYOXrCoI5KtKaO4ZiEALFEqwPhy/lkmnNEjMeejp2R/z2+OOzelGGx69c9WYdoZgUPabpIs4628ew9Wrl6Zp1wRQerNVPoSImIW22Z1It2/cBq++5XdfVrTi4rUu5T7sYBNMkeDR9ZGo4L6OorM9p+U3o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710960274; c=relaxed/simple;
-	bh=ti10f1siFmjiL/455g1TgRS6RuhZRQCdTQdiF11FS44=;
+	s=arc-20240116; t=1710960719; c=relaxed/simple;
+	bh=d6TEWqNHGarTNFqrsWL72liC44WwQujen/XgSqv+mE4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pqQeP/pyajlDpE7vRpWEkiA+RxZFGMFdDE6KYH3nqF8324ot99H+R35zS53yQVOdmaYyXcVR1f0EMna2qOO/NLRbbyEvjE38s4bJ3FCRk9YwHjmtrTnNLIqxFsBTB4yiylD+Sxn9HU21TM9IFWOO72G6cloaijMrtRknILwxPMU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=J+vujSF5; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=fEgErpl+wLpV80SuRfPGE67eSPI0zTuNiDl4KjehtmY=; b=J+vujSF5pSb6RzVvu6NEt28gQM
-	wgIlw3qz/q/rm1P4Ngknf+9+CCm5jw7vboMtODYv7u9v0R/rD7vTnQNosUl/u8sQwTRQaEe8ZWV+D
-	XNYDL39sv97jA6+xLw2WaXD5qhG5gUKyXwCt9IBs+tEgazof4DBoeQzTzjh/hLdcSWwE=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rn0v4-00AoEN-42; Wed, 20 Mar 2024 19:44:10 +0100
-Date: Wed, 20 Mar 2024 19:44:10 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Ayush Singh <ayushdevel1325@gmail.com>
-Cc: Vaishnav Achath <vaishnav.a@ti.com>, Michael Walle <mwalle@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	open list <linux-kernel@vger.kernel.org>, jkridner@beagleboard.org,
-	robertcnelson@beagleboard.org, lorforlinux@beagleboard.org,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=Gnrb5RmmeEJer5LCms291FlMmjd4weFHBEA9kTrZuqnj60mwytw7mci172ceq4aPnl1fp23cQXgx6GpD5yoa99tFKRExIlR2Ue8tQUx92IiJqMDFBAJ1SDe1vIpOUWSrHwqGOa912Kc4+kLzGnmS2wJjdHAOw4A5CkySU6bMFgM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tJgEulWZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3383AC433C7;
+	Wed, 20 Mar 2024 18:51:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710960718;
+	bh=d6TEWqNHGarTNFqrsWL72liC44WwQujen/XgSqv+mE4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tJgEulWZb6a9Mxsm87VZj70L5vi/qsM07l8UWwwHVxy601XWOo1CL64DxxjXBM8eS
+	 iRHp+MgvuzrIojxYqpRWJorzS2mkyGPklEIQNbir5ZfwMiEXpUqvwF7+sMS5jukW+J
+	 WXA6qqWF2f6gloX+W6AgF2BSf4StcZeg50qhA9ruELpijdc7QmVFngiCIlQBrgoX/l
+	 n6oqoLsQQsPa1ulDvjIDDz09b5xV5x8ap+d5+t+GsdNajB/eDvjjOo04zLcORmFBP7
+	 0GHbvASk59MiKYEiBAP8PSI0+DRQIkyV6waMfPGVrRNAm0lIeq8cuOsx+y1sqfN27l
+	 bgSpcDiCedT4w==
+Date: Wed, 20 Mar 2024 18:51:54 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Yangyu Chen <cyy@cyyself.name>
+Cc: Conor Dooley <conor.dooley@microchip.com>, Guo Ren <guoren@kernel.org>,
+	linux-riscv@lists.infradead.org,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Mark Brown <broonie@kernel.org>, Johan Hovold <johan@kernel.org>,
-	Alex Elder <elder@kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"moderated list:ARM/TEXAS INSTRUMENTS K3 ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-	"open list:SPI SUBSYSTEM" <linux-spi@vger.kernel.org>,
-	"moderated list:GREYBUS SUBSYSTEM" <greybus-dev@lists.linaro.org>,
-	Vaishnav M A <vaishnav@beagleboard.org>
-Subject: Re: [PATCH v4 1/5] dt-bindings: misc: Add mikrobus-connector
-Message-ID: <c368ee3b-1b80-46b1-9aa7-b7fc0094e3a1@lunn.ch>
-References: <c8031e17-5ae8-4794-8b8c-1736be6452d3@gmail.com>
- <CZXMK3W52AFO.1APK080GVJESK@kernel.org>
- <5a9b1cd9-05ec-4606-92b6-eadbc7af6202@gmail.com>
- <CZXPQZY8PUGE.QZM8XSOUNMT4@kernel.org>
- <81ec4156-8758-406e-876b-5acf13951d09@gmail.com>
- <CZXSKOLK6S1S.N86E2AZG2V90@kernel.org>
- <2eec6437-dd11-408d-9bcb-92ba2bee4487@ti.com>
- <28c995cb-1660-435f-9ee4-1195439231f0@gmail.com>
- <f53cd006-5eb0-47f2-8f84-e7915154f12d@lunn.ch>
- <c3223f90-6e7c-4fdc-905a-770c474445e2@gmail.com>
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 5/7] riscv: Kconfig.socs: Split ARCH_CANAAN and
+ SOC_CANAAN_K210
+Message-ID: <20240320-harmful-carpenter-40a7de0f273e@spud>
+References: <tencent_FC10B3C630BE27412FED2547245CBE18D807@qq.com>
+ <tencent_6F35FEF31908DE6AEB385AE30AC658863C0A@qq.com>
+ <CAJF2gTS1-VQP=gQBx=SoUWsdap153EGOObKVn+2L7=kbP2CqFg@mail.gmail.com>
+ <20240306-scowling-mortify-9b427c80e8ab@wendy>
+ <tencent_91E604E3B4D51DA37045625242A81B07F909@qq.com>
+ <20240320-ideology-pasty-d3aea07cc519@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="yFaj5iez9WvDhwVq"
+Content-Disposition: inline
+In-Reply-To: <20240320-ideology-pasty-d3aea07cc519@spud>
+
+
+--yFaj5iez9WvDhwVq
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <c3223f90-6e7c-4fdc-905a-770c474445e2@gmail.com>
 
-On Wed, Mar 20, 2024 at 10:09:05PM +0530, Ayush Singh wrote:
-> On 3/20/24 01:02, Andrew Lunn wrote:
-> 
-> > > Yes, after discussion with Vaishnav and trying to brainstorm some way to do
-> > > the same thing with dt overlays, it seems that trying to use dt overlays
-> > > will mean need to have completely separate implementation of mikroBUS for
-> > > local ports and mikroBUS over greybus.
-> > Could you explain why please?
-> > 
-> > Are greybus I2C bus masters different from physical I2C bus masters?
-> > Are greybus SPI bus masters different from physical SPI bus masters?
-> 
-> Well, they are virtual, so they are not declared in the device tree. I have
-> linked the greybus i2c implementation. It basically allocates an i2c_adpater
-> and then adds it using `i2c_add_adapter` method. This adapter can then be
-> passed to say mikroBUS driver where it can be used as a normal i2c_adapter,
-> and we can register the device to it.
+On Wed, Mar 20, 2024 at 05:39:14PM +0000, Conor Dooley wrote:
 
-Being virtual does not really stop it being added to the DT.
+> I got a k230 board (the canmv one) so I should be able to test this
+> myself before picking stuff up.
 
-I'm making this all up, but i assume it will look something like this:
+I've taken a bit of a look at the "sdk" and appears to be a complete
+mess to a non-chinese speaker like me.
+I know you linked a copy of opensbi to use with this, but do you also
+have a version of U-Boot to use with this that is not riddled with
+crap and will compile with a normal toolchain?
 
-greybus@42 {
-        compatible = "acme,greybus";
-        reg = <0x42 0x100>;
+I have chanced upon Courmisch's repo that looks significantly more
+usable than whatever Canaan have so I guess I will use that:
+https://code.videolan.org/Courmisch/k230-boot
 
-This would represent the greybus host controller.
+:)
 
-	module@0 {
-		 reg = <0>;
+--yFaj5iez9WvDhwVq
+Content-Type: application/pgp-signature; name="signature.asc"
 
-This would represent a module discovered on the bus. I assume there is
-some sort of addressing? The greybus core code dynamically creates the
-node in DT to describe the modules it has discovered. This is not too
-different to USB. You can already describe USB devices in DT, but the
-assumption is you know they exists, e.g. because they are hard wired,
-not hot-plugable. The USB core will associate the USB device with the
-node in DT. But actually creating a node in DT is not too big a jump.
+-----BEGIN PGP SIGNATURE-----
 
-		interface@0 {
-     			compatible = "greybus,i2c";
-			reg = <0>;
-		}
-		interface@1 {
-     			compatible = "greybus,spi";
-			reg = <1>;
-		}
-		interface@10 {
-     			compatible = "greybus,gpio";
-			reg = <10>;
-		}
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZfswSQAKCRB4tDGHoIJi
+0qlkAQC7FRjew00zC3r7BNoqFE00Z9wOqBZuIoF6dxLOsByqkwD+K9VLMOVa85Yz
+5lMzqwe7/O9GkMdlnk6wso/HM0S7Kw8=
+=jLB8
+-----END PGP SIGNATURE-----
 
-It can then enumerate the interfaces on the module, and create the I2C
-node, SPI bus node, the gpio controller etc. Again, the greybus core
-can add nodes to DT to described the discovered hardware, and
-associate them to the linux devices which are created.
-
-That gives you what you need to load a DT overlay to make use of these
-devices. That overlay would contain one of your virtual mikroBUS
-controllers. This virtual controller is basically a phandle-proxy. The
-virtual mikroBUS controllers is a consumer of phandles to an I2C bus,
-an SPI bus, GPIO bus which makes up the pins routed to the mikroBUS
-connector. The virtual mikroBUS controllers is also a provider of an
-I2C bus, an SPI bus, GPIO controller. The mikroBUS device consumes
-these I2C bus, SPI bus etc. The virtual mikroBUS controllers makes it
-simpler for the device to find the resources it needs, since they are
-all in one place. For a physical mikroBUS you have a DT node with
-phandles to the physical devices. For greybus you create a virtual
-device with phandles to the virtual devices added to the DT bus.
-
-You then have everything you need to describe the mikroBUS
-devices. For very simple devices you convert the manifest to a DT
-overlay and load it. For complex devices you directly use a DT
-overlay.
-
-I also don't see any need to do the manifest to DT overlay conversion
-on the fly. You have a database of manifests. They could be converted
-to DT and then added to the linux-firmware repo, for example. If
-device with an unknown manifest is found, it should be possible to
-read the manifest in userspace via its eeprom in /sys/class/. An tool
-could create DT blob and add it to /lib/firmware to get it working
-locally, and provide suggestions how to contribute it to the linux
-firmware project?
-
-   Andrew
+--yFaj5iez9WvDhwVq--
 
