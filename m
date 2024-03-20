@@ -1,121 +1,106 @@
-Return-Path: <devicetree+bounces-51969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95159881357
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 15:30:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA6C3881370
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 15:37:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C65FE1C2288D
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 14:30:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EBBB41C22055
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 14:37:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C18B141C60;
-	Wed, 20 Mar 2024 14:30:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B74A447F58;
+	Wed, 20 Mar 2024 14:37:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DTVmsdtW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pvs4/3Zp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13815848E;
-	Wed, 20 Mar 2024 14:30:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 865854596C;
+	Wed, 20 Mar 2024 14:37:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710945044; cv=none; b=KLXulYnKAAOYZb7rQDRe4dktTBPaVrgdCRT2LRQ79xRXedYdZDyV3vLFQ+LQpz+VVA8nXkkk0HLn76/Fe4djo1QbNd8XnwhZ0x9dRsHE1qtmRFDIxT5LT1nBkBF0cB1IMbaEVz5pqCjTjAznOVzgk7X1Q65KnSA+RfyK9h1+Alo=
+	t=1710945432; cv=none; b=ShMc6pdwaA1ZkNlFYGtatR1FcNZF7HVjEXEdjGND9umNw0kvgvh1/atONsidZnPKYreFWfKKtj5B2ObeAkQmZoOLuUpj1jERcmGjpEU5aSx3ckQu7H4WdRDH1YI1kCRnX/g7CWKwBrypc1W3NoDrjtT/36LIFmHW311QS93NGVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710945044; c=relaxed/simple;
-	bh=zrfVyRY5tL0TunSwp7D8tq7oxVUsmAzsyiCykPlmTnw=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Nrp/hN4DglxRxT/6YqKME53cMPNqhJzCMfq9Sn1FfoH77Bd9PPz8g6P3O8EVed/TWWqa0X3b7KWbkQ/GP+QwY81LLofNuFKi6RUuWHJgm19mtf2KGT+grMauBKoNsEA+bW/kB7zXnNVAwxgeAjAIGq9lSdfc+M5IuDz6Tu7Zlu4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DTVmsdtW; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a46a7208eedso595720666b.0;
-        Wed, 20 Mar 2024 07:30:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710945041; x=1711549841; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=aI/xdfnQChwGM+0xeXeUgfzkjQ2ZUFhMzealK0WWSK8=;
-        b=DTVmsdtWUmeiuQXmPwx3O8pTDtQNQ0ng5I2dITrHJQoEvcFwDuICMuz39oUBTlP03K
-         Gd8PLl0bGH7q8bxC8063DBtOI8Yun7/f3D5X4nng1E+92vontkSQsMkEQRT5QQAY7eyS
-         KBoOGlVdReaIQdi/fYrjMF4FRO47JwiFf4dHs2bbs2APlhgRGT2mcm3zFtztOqzHdOhU
-         0K7MjdbrpXjozjRcwiI3Fu5f5P/HHJwhKwOXR0kT+VMrgjGANAEbtvrKYQgZ6FpnDybZ
-         9yL+zl7xmi7VVEC3Twi+Zs9D8hj5ic640XWoF6+UyqDkkNAY8Btxf22SmpZsTMQNILD+
-         gZig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710945041; x=1711549841;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aI/xdfnQChwGM+0xeXeUgfzkjQ2ZUFhMzealK0WWSK8=;
-        b=C1/NBjCqwZmWHz4g21sq4l6fTwhVeDd9iwCqncBB+N05QeuGoQqjcT1ZDE8bjE7bhI
-         Yl8KX04CyyA6il4VI7mAtNG9i2cRGbhyyFB1PimRWbJySSad4R6WwuUTjcrzJFxjDskB
-         V0ttS8Gy90jvZBWAfkUo5Ys5DaokzufZMTk2nfpxjfcTzPskGAdNRESvQM/hv4HQYqHx
-         WBbSbzI3iDDVsGgx929cT4Q9QraJmbySOrFHTLWBqPq4XSZM3qzlbWre5UbGpH5yASMi
-         wzbxZd56aeUV/DCzpRqsG+jA3LBBxL7bpSBE9jGHppE7yRBKRCDvcOEOjk+/hioNfec8
-         DkJw==
-X-Forwarded-Encrypted: i=1; AJvYcCWyf/oKBoFoSq/ZNkAeRTuzIGBNH5f4kXM2FT9MznJud4pUegYICEpMAaz72sO2mroVhGPVIlGwyEbPxpKGlnG6P50K2uxv3+WReBIhDiq6UF7ZRsPUM8YwaYev3l5FmWvqQP70irXtnHXoTloXRuiBPXsKeMmlGbGIy0QbeOf9Ww==
-X-Gm-Message-State: AOJu0Ywg5m2gO9iKWlMS/n60xqw4pGmBArG2Hw+8hM9RIWfwePYHWNuv
-	jGklDMG13UkCKTTd9VJUCJ88nRfp1H8YX7by9k+BhQInQNEdoUz7
-X-Google-Smtp-Source: AGHT+IHZkG6EvpcQLZ/q8cZUoQjNhtFlYTceRTfWxbzEKFSIBzBThSG3aJZYDEow2oePlcW/pxhgvg==
-X-Received: by 2002:a17:906:ef0c:b0:a46:c01b:7e2c with SMTP id f12-20020a170906ef0c00b00a46c01b7e2cmr7612185ejs.75.1710945041157;
-        Wed, 20 Mar 2024 07:30:41 -0700 (PDT)
-Received: from toolbox.int.toradex.com (31-10-206-125.static.upc.ch. [31.10.206.125])
-        by smtp.gmail.com with ESMTPSA id a18-20020a170906469200b00a46f69a43a8sm745514ejr.184.2024.03.20.07.30.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Mar 2024 07:30:40 -0700 (PDT)
-From: max.oss.09@gmail.com
-To: max.krummenacher@toradex.com
-Cc: conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	francesco.dolcini@toradex.com,
-	kristo@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	nm@ti.com,
-	robh+dt@kernel.org,
-	vigneshr@ti.com,
-	stable@vger.kernel.org
-Subject: [PATCH] arm64: dts: ti: verdin-am62: Set memory size to 2gb
-Date: Wed, 20 Mar 2024 15:29:37 +0100
-Message-ID: <20240320142937.2028707-1-max.oss.09@gmail.com>
-X-Mailer: git-send-email 2.42.0
+	s=arc-20240116; t=1710945432; c=relaxed/simple;
+	bh=sHHbuYFWLzbXRpPFre1G9oi4c/Un6QERBOEq6EyyZOY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jD+DKcGCApnACp7h3GAjtHk6uaHFzGvSt8DbLbe4DTcX0A33PXFyy0P9RmBjU4aYg3VSkiqU5yt4/uz+bLD7E/+ilPG1rZV7+mgd+MufvCNAKC0MOaVV9KYVyMzC270wiQmd5YFvXUBxzGC3Ldo8D7R8kpwbzCFwkg08XrNOKRk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pvs4/3Zp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2674C433C7;
+	Wed, 20 Mar 2024 14:37:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710945432;
+	bh=sHHbuYFWLzbXRpPFre1G9oi4c/Un6QERBOEq6EyyZOY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pvs4/3Zpg/p5C1nPFtJd3JaiL6u9ZdC64Ztv7iG3TDt0UjISG+WWAnaY7/LSE65CY
+	 1fft6ZlyELQuhflT33iq6T0fiIgH9QXMsbjjtWBBEjj1KLEcUpx43oikwge4caOxcI
+	 X3TgX+xeVHt5oa+j1XhC2RQPmsRbC688OE9ejsuHnLx4/2oy9/6701cxnEOYSUZUKM
+	 NLXeOnIED1bm4g1/RKDgK525yIAAn2FvzsZ+J6vX9zzICNYbXmtcQNEFV47HCVmjiu
+	 KIh1wC1v+2hxlelEaASDNZabL59/9tydiyO9K+y+xSJQfaIspm9R6J+sAO3a7XgYv9
+	 n3a4eO9+HdZWQ==
+Date: Wed, 20 Mar 2024 09:37:09 -0500
+From: Rob Herring <robh@kernel.org>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v3 3/4] dt-bindings: serial: renesas,scif: Document
+ R9A09G057 support
+Message-ID: <20240320143709.GA1676859-robh@kernel.org>
+References: <20240318172102.45549-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240318172102.45549-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240318172102.45549-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-From: Max Krummenacher <max.krummenacher@toradex.com>
+On Mon, Mar 18, 2024 at 05:21:01PM +0000, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> 
+> Document support for the Serial Communication Interface with FIFO (SCIF)
+> available in the Renesas RZ/V2H(P) (R9A09G057) SoC. The SCIF interface in
+> the Renesas RZ/V2H(P) is similar to that available in the RZ/G2L
+> (R9A07G044) SoC, with the only difference being that the RZ/V2H(P) SoC has
+> three additional interrupts: one for Tx end/Rx ready and the other two for
+> Rx and Tx buffer full, which are edge-triggered.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v2->v3
+> - Added SoC specific compat string
+> ---
+>  .../bindings/serial/renesas,scif.yaml         | 33 +++++++++++++++++++
+>  1 file changed, 33 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/serial/renesas,scif.yaml b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
+> index 53f18e9810fd..e4ce13e20cd7 100644
+> --- a/Documentation/devicetree/bindings/serial/renesas,scif.yaml
+> +++ b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
+> @@ -79,6 +79,8 @@ properties:
+>                - renesas,scif-r9a08g045      # RZ/G3S
+>            - const: renesas,scif-r9a07g044   # RZ/G2{L,LC} fallback
+>  
+> +      - const: renesas,scif-r9a09g057       # RZ/V2H(P)
 
-The maximum DDR RAM size stuffed on the Verdin AM62 is 2GB,
-correct the memory node accordingly.
+I don't understand why there's not a fallback. Looks like the existing 
+driver would work if you had one. It should be fine to ignore the new 
+interrupts. Though with Geert's comments, it seems there are more 
+differences than you say. 
 
-Fixes: 316b80246b16 ("arm64: dts: ti: add verdin am62")
-Cc: stable@vger.kernel.org
-Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
----
- arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
-index e8d8857ad51f..8c837467069b 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
-@@ -76,7 +76,7 @@ verdin_key_wakeup: key-wakeup {
- 
- 	memory@80000000 {
- 		device_type = "memory";
--		reg = <0x00000000 0x80000000 0x00000000 0x40000000>; /* 1G RAM */
-+		reg = <0x00000000 0x80000000 0x00000000 0x80000000>; /* 2G RAM */
- 	};
- 
- 	opp-table {
--- 
-2.42.0
-
+Rob
 
