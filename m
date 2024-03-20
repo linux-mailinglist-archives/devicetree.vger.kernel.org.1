@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-51890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 902AC880E58
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 10:12:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 838B5880E67
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 10:16:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D1ADE28346E
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 09:12:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A00F91C20F6A
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 09:16:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EB4839AC7;
-	Wed, 20 Mar 2024 09:12:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0F9239FEF;
+	Wed, 20 Mar 2024 09:16:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="foBBNRpD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="v4FY7UXQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AF983985A
-	for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 09:12:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1473239AC7
+	for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 09:16:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710925932; cv=none; b=H0knpOQl994UT50IWE3+gCwNptthzfy5ZQmcTEe8KChl8iUU2O1F0+Qmhgwwo5Bycu0Zi8JOwCNCh6naN0TQoxnRxlXL0aTs9rJgKKziyO0w0U1exhRniQXBsA6R5mpHHg9H4HRcDlpcGvsoKiS6LCKxRl3v/FwByMWcDsZ99ng=
+	t=1710926184; cv=none; b=ZuNqgWXTSnXeWJbv+e0pknjFbUroFiEaBG/LBSvPmHYX0uC4a5OYm10u6w0bJ5x6O8YYBzsXfYkT5Iu3FS4GHWIF1uNR26cB1sipt7t2tNjN23WAHNqU6akHFCVxBNQ3oE/+PaS3zY3TwXnfG9DiMqKY8oSt61JFQBha/smjO5U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710925932; c=relaxed/simple;
-	bh=WeRJH0QRV2eBTRBUmo3FsX3wP6HwE+cjjZ35e1EOC2k=;
+	s=arc-20240116; t=1710926184; c=relaxed/simple;
+	bh=7qiN7s71pLRDxczBVXccvkevewv+cyZPsC3vo51G3Wc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DPOSKVCOU77i1pyyQhAAXEQeXUMC1KXKa9Z1k+0G4aDLpicFIp1uXsYO+keS1rnCLHeZSD7vqfHUEIuJFehSFvXrV2pXz6IHq1TGPH31yzdBbs8DFem2+NEa76Ge81fPqF16VfIBZuO5oiaoxFzwdrGOCRD43fWSKRSrxoJs2Go=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=foBBNRpD; arc=none smtp.client-ip=209.85.167.42
+	 In-Reply-To:Content-Type; b=arsy+s3jacHAXjW+hl1ADOooetb4wN3GLlyArMHoVDUtX+di0IjvTwDvWflrxRIX3fsVHO3/Ff78wYVXYc+1CzTfrSCPp1klDoKbFlbfyoj+0Y2nCDe5alQtZVg3Ilpv8kI2MljCatmTCA0zZDLvBLS/zhtzXxJG/L2grlDDfxs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=v4FY7UXQ; arc=none smtp.client-ip=209.85.222.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-513da1c1f26so7612968e87.3
-        for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 02:12:10 -0700 (PDT)
+Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-789f50b3e40so54191885a.1
+        for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 02:16:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710925928; x=1711530728; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1710926182; x=1711530982; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=CLbF2Sp5cCoAXAJnzkvMalTtiea2jaTjpy6sAVr6xnI=;
-        b=foBBNRpDs9nHyG0N+9YJTGCaB5jP9k0Ju40ojK7yPPRIgMwPcr3htkzv6tra4dKSw9
-         6SdeQa4cxUdkHf8fdogDyLPrcnSsOlBO8g4Z8Lu1kCXY2C1otxuf4oablKEQULRyaEIH
-         tY0vDjr7eFVU1gzzWTJatytWxJR4x1W12TEonte1ZXRFGzgpU7DsxLt7jL6UxwF0/DP0
-         jOpSniAPr/GhM6M7m+h1WP2R24QUV1Alu9P9eI8Rblx/4VIxuUMw83Au23HrAb1+ASO2
-         7+8fKaAw9/NiZP8wz6u2gohKuOTP4aZ5K2NoC0Smpukx63bq7LZA9WJDdpiObmlKPceQ
-         t7xg==
+        bh=ZdemdKKmkbE2PfEGOheslqykPqKEOarSKu2X847Hkx8=;
+        b=v4FY7UXQW3Mtc9KyH6RrZpUNB9nwSfCQPoOuxYGr8A5l+tD2bHiwypW9Xw5h4sBDTn
+         +ZLgDDD9RbELlc2s2RXVIrwB3AS/ZEDSAKFCWuArJBv7K9TB+6xGQgpUzdCOa9jDppuy
+         Y0A6cjG6hm/43/4wgKNFmPygckjfxjN9KJvhMLaKhbsJxQOWa/Hhy6YLm7CrU1VubI6U
+         5g3teykGAfbNRA186AbUK3xj6WG9V8qFHJ23NkfZcyc5tXiQy7urq24V3B9VNn2aHWKt
+         25AmqdXS7BuLJi+2TSYTgm6VnyUhwlZeQRkAi+O7bX8wnprKYi2jFyG1ibYqi4xO6hJO
+         Z1Yg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710925928; x=1711530728;
+        d=1e100.net; s=20230601; t=1710926182; x=1711530982;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=CLbF2Sp5cCoAXAJnzkvMalTtiea2jaTjpy6sAVr6xnI=;
-        b=wGD0NXVCzdPzxpa3cjcH8hSzmTK6teaKszC8GqDaKqp33rl6cGsSsHs0O1iRwREEOp
-         Lfs0j5httLM2DyDUz+CpbArgY6HrfuiGGlsY82Pxub4gZMwBs9JwO1UjOq5SqSUilLsd
-         Pd0fFYFKCd8QF38P7lwieyzefM7RYR7ZngBFdlNHvseVt09p4Lul9xMcxNXtwRERhE9f
-         lEVpk1/7BJ0od4KuivkZqe51vKhrn04jCzrfia1DmJDcI65Db2UOr4rwvJpStuoTJh9Y
-         pTpAKCro5zR04lo2bIn6IWcOtaDD074ChSNh7IprIVsUtgQICIcGdulyp8sngo22URpK
-         7W5w==
-X-Forwarded-Encrypted: i=1; AJvYcCX4yCO+jxFKaBleBwqJnThVrVAdxMppg/cufg4C9QjyV+sO7/a7nKHGR0bhkzsZmnPq80+WhFOW3wO2C0UG+VnO8OBoJ145pF2JSg==
-X-Gm-Message-State: AOJu0YxE2XyUiiTtdSxdgB7dnoYTxwoca2kKN7E6FAsyREPEoJefmU8Y
-	we9spRajNrumes+k6evCeGPC0ioRoCSFUnQFwC3726aVRP2oYsosdZ6HQmF6bnk=
-X-Google-Smtp-Source: AGHT+IFV/PiWYZjnoZXMc0POCR8q15ZWiC273odgEqO+3PbOsPJEBJ+Yz5vK2kvl/K2NIVrDyzu5Gg==
-X-Received: by 2002:a19:2d4a:0:b0:513:d917:7642 with SMTP id t10-20020a192d4a000000b00513d9177642mr10116817lft.22.1710925928318;
-        Wed, 20 Mar 2024 02:12:08 -0700 (PDT)
+        bh=ZdemdKKmkbE2PfEGOheslqykPqKEOarSKu2X847Hkx8=;
+        b=QQSNAdnO0HqEypcyq1tU6o+GqyPZ7cK/W0/WXPdz0gDzBJW62WhZCs0/T2rqWDhpob
+         AJO651mOqPrQndDEoSjjjp+pA3CrB1RjyuDSsFiY+0rMv/8B47PBXXDpRWpXPWZtrqDC
+         QSK4raYQo8zCDmuFOcX1w/DYSu1FMvFkO4nNe/XN1YBUmv0GqM03doGq5UFw0SnpaIdg
+         Q81rVSrVSUV701ZGI84voLmvA81+kl/SB50GZDgvmX/QUtTUED1yPTVO6YY3fS3oOVs2
+         YwQLnCg5SD5hg1i3B6pho7X1AuV0mwN6p05uAkpMRNDOyiqnHNDuwQjT6GP2B1PrEj1i
+         ttTg==
+X-Forwarded-Encrypted: i=1; AJvYcCWzTwJ78Kled7hR+OsIYp3IHyLtGBhhDD1FoK1CLdv+7QXnSDBEHgZirdQScoP+PNWXViodWbjY4vK+phNvuKHwKSU8Wvo8ZeezEQ==
+X-Gm-Message-State: AOJu0Yx4VC2xeE8usGTN46d5pVAdkM1S72HA33Car9EHbbQuxTJpXMz2
+	1fP2bIZMjRLm6JPNuuLiEFhtGGyzhbPHOs1ZxEXKyoSyQZNdkvQLnqvQUhTHRbg=
+X-Google-Smtp-Source: AGHT+IFH/DGAuG6UpXir+MFQEX93ggRvpCtCWJKypFfAYtegcd5mPZkmVf5EdY3Ii1gsDK1y5VGKng==
+X-Received: by 2002:a05:620a:2402:b0:789:f0c6:a938 with SMTP id d2-20020a05620a240200b00789f0c6a938mr3353352qkn.15.1710926181995;
+        Wed, 20 Mar 2024 02:16:21 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id n6-20020a509346000000b0056b924663ecsm1914876eda.59.2024.03.20.02.12.06
+        by smtp.gmail.com with ESMTPSA id wh12-20020a05620a56cc00b00789f2660e88sm3706262qkn.68.2024.03.20.02.16.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Mar 2024 02:12:07 -0700 (PDT)
-Message-ID: <38aaf71a-511d-4e63-9014-07f591d8250b@linaro.org>
-Date: Wed, 20 Mar 2024 10:12:05 +0100
+        Wed, 20 Mar 2024 02:16:21 -0700 (PDT)
+Message-ID: <cc5d4fc1-14e7-4a73-80bf-6375e44162a3@linaro.org>
+Date: Wed, 20 Mar 2024 10:16:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,39 +77,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] dt-bindings: media: Add bindings for
- raspberrypi,rp1-cfe
-To: Naushir Patuck <naush@raspberrypi.com>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
- Kieran Bingham <kieran.bingham@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
- Rob Herring <robh+dt@kernel.org>,
+Subject: Re: (subset) [PATCH v4 0/5] arm64: dts: qcom: sc8280xp: PCIe fixes
+ and GICv3 ITS enable
+To: Johan Hovold <johan@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Johan Hovold <johan+linaro@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-References: <20240318-rp1-cfe-v1-0-ac6d960ff22d@ideasonboard.com>
- <20240318-rp1-cfe-v1-2-ac6d960ff22d@ideasonboard.com>
- <eb854c43-1e92-4c19-bfd3-1bde94924319@linaro.org>
- <f97faeb9-8a6b-47c6-9317-daca88257802@ideasonboard.com>
- <30430e0e-70de-4831-97ad-974e350a2e54@ideasonboard.com>
- <5ca1d005-1beb-47ec-943a-9358ae3c6704@linaro.org>
- <CAEmqJPp7uGYe993L+ujth2mfRy66s8-S9FNxPY7vwkrboDq9yg@mail.gmail.com>
- <89d459dd-cc8c-4780-a56a-809e24343e69@linaro.org>
- <CAEmqJPrLP3j37Kcj0mX23x00p=gWuxZPNSUTRGNkcEqsUJ2MjQ@mail.gmail.com>
- <9d238cd6-0e11-4775-bc00-7df50f0a6638@linaro.org>
- <CAEmqJPoVFRUBRnuvRaeWg6vxDaNMzdFzgj2_Gi5bxh5nacdmDw@mail.gmail.com>
- <0401eb0f-0172-4371-9a16-f51b6b885b55@ideasonboard.com>
- <CAEmqJPohq1Y11uwBWdGGX3B1vPLEK9_A7OQC=-k+bHcdk3n=mQ@mail.gmail.com>
- <b95fb19d-1c22-45b2-8b87-78e56d17ae8e@ideasonboard.com>
- <CAEmqJPoBA4PrbvoGHtiah1B=C7WO+MODUUY0qr0ZdF2eWEB3TA@mail.gmail.com>
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240306095651.4551-1-johan+linaro@kernel.org>
+ <171081652637.198276.6219023769904423414.b4-ty@kernel.org>
+ <Zfk98hYPn7kiFGkt@hovoldconsulting.com>
+ <9b475e13-96b9-4bce-8041-e0d8e5a332a1@linaro.org>
+ <Zfqb8jPK50vlqu5Q@hovoldconsulting.com>
+ <baf9c1bd-84ef-4ecb-b229-51a83fe82c3f@linaro.org>
+ <ZfqhCKoEL4XGRs7T@hovoldconsulting.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -156,44 +144,51 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAEmqJPoBA4PrbvoGHtiah1B=C7WO+MODUUY0qr0ZdF2eWEB3TA@mail.gmail.com>
+In-Reply-To: <ZfqhCKoEL4XGRs7T@hovoldconsulting.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/03/2024 09:50, Naushir Patuck wrote:
->>>>
->>>> Also, I'm still wondering about the RP1 part there in the compatible
->>>> string. Is it necessary? The CFE is located in the RP1 co-processor, but
->>>> is that relevant?
->>>>
->>>> Is there a versioning for the whole RP1 chip? Maybe it's going to the
->>>> wrong direction if we use the board/SoC for this compatible name, as
->>>> it's actually the RP1 where the CFE is located in, not the SoC.
->>>>
->>>
->>> I don't really know the conversion required to answer this one.
->>> Logically CFE is on RP1, so it makes sense to me to have "rp1" in the
->>> string, but I will follow the judgment of the maintainers.
->>
->> Well, my thinking here was that if we have a register from which to read
->> the version, and Raspberry Pi would create a new co-processor, RP2, with
->> the same CFE. Would we then have "raspberrypi,rp1-cfe" and
->> "raspberrypi,rp2-cfe", even if there are no changes? 
-
-That would follow guidelines as expressed in writing bindings.
-
->>Or would a plain
->> "raspberrypi,cfe" do for both?
->>
->> In other words, if we don't need the "rp1" for versioning purposes,
->> should it then be dropped?
+On 20/03/2024 09:40, Johan Hovold wrote:
+> On Wed, Mar 20, 2024 at 09:24:54AM +0100, Krzysztof Kozlowski wrote:
+>> On 20/03/2024 09:18, Johan Hovold wrote:
 > 
-> I agree with the above, you've convinced me that "raspberrypi,cfe"
-> might be the more appropriate string, or a convincing argument for
-> that to be a fallback string.
+>>> Perhaps you should not comment before reading up on the history of this
+>>> series.
+>>>
+>>> This was all intended for 6.9, but merging was stalled for a number of
+>>> reasons so here we are. The patches were also going in through different
+>>> trees, so patch 4/5 is the first Qualcomm SoC patch.
+>>
+>> Again, well, you sent it at few days before merge window, so how do you
+>> imagine this being applied for v6.9 and still fulfilling "few linux-next
+>> cycles before merge window" requirement? Especially that arm-soc cut off
+>> is much earlier :/. I talk about patch 5, of course, because that is not
+>> a fix (at least not marked as one). Don't expect in general a arms-co
+>> patch to be applied four days before merge window, thus the actual fix -
+>> patch #4 - should be split.
+> 
+> At the time there was still hope that there may be an rc8, and the patch
+> in question had been used by a large number of X13s users for several
+> weeks, which is a lot more testing than the average Qualcomm patch
+> receives, whether it's in linux-next or not.
 
-Just follow the guidelines. If you come up with generic compatible
-alone, you could run to the same problems everyone is running.
+OK, it does solve some parts of our discussion but does not solve my
+earlier comment: Fixes should be separate series. Certain folks have
+quite strict requirement on this. Try sending a fix with non-fix
+(depending on fix somehow like here) to Mark Brown. He has even template
+for such case...
+
+> 
+> And patch 5 depends on the earlier patches in the series so it belongs
+> in the series, which was also initially posted long before the merge
+> window.
+
+The dependency is might not be good enough reason to combine fixes and
+non-fixes into one series. Dependency should be explained (in 5th
+patch), but it's maintainer's judgement and job to handle this.
+
+And in all this, fact that Bjorn missed certain aspects and applied this
+differently than you wanted, is another argument that this should be split.
 
 Best regards,
 Krzysztof
