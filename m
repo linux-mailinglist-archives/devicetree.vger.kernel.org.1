@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-51855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D46A2880C67
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 08:52:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 209F7880C6B
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 08:53:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1060A1C2100D
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 07:52:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D2AA1C21197
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 07:53:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F8D228370;
-	Wed, 20 Mar 2024 07:52:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33E962231C;
+	Wed, 20 Mar 2024 07:53:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RjmzNKKX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vvtGBDBk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 888D522313
-	for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 07:52:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5631A2D607
+	for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 07:53:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710921127; cv=none; b=r5nDXnhYCWAP0ovrMM5H2ZwWuT+qChYQ9fLl5dNkt7WnqqDiiTE2lHW82E4fZIaaskKUNmCb8+2VpfUE1wi7BxqvtvakUhNl7//SoRd4I5nlAkPOi4ZCUYg8yDLf8egU7jNlBuy7Z71G0iz9M4FmPN79bvZLsg5z2yfvGbTddhE=
+	t=1710921194; cv=none; b=KYp4TEZ7E0GPBIAUWN+BgNqDNsEuS1t5zhsMuL+if5HUuqk+zyjCZ0Y8aJ/nA8wplKeCGOkYAP3thJxl3kmxyz/9NGGluTB/5pypuhvQemrDvwGJF/Bj1Ox6T8jXIXprwOzwAiamlaxb9Kkwua+esAgUf2DELZx+U6NbmfJxJEo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710921127; c=relaxed/simple;
-	bh=iRLYWjDJYo9C/Vb6ZgBR4j8UJKuqw6+eimV/6sXHQvI=;
+	s=arc-20240116; t=1710921194; c=relaxed/simple;
+	bh=DquwOFlCLvl9oIy3WgH9ufjckvP+TDPpGCX2m1GrLuI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mj1zlZWkUa4HVQMHfD35u6d4W7BZ+m50RPS3reSKcGB9tdCJdb6996UURudanDaTixOgkLOy33TYRXSibGFNcePSRK8eYvjdHd8vkNmVo94+3lq/uwJcNczpTTK1ImPSd9+eRGhmPz6ts9dSlxB4lLpy5JQWHDvik2BT/4TSlbY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RjmzNKKX; arc=none smtp.client-ip=209.85.218.50
+	 In-Reply-To:Content-Type; b=UA9cOeJuFNZ4gfl2JRKZNTHprDPlZPbKxptX/tygQnyt8fAVHCUJHKnO/nahmVQNGTESVSWTnpmUC6ovlltun5HWbNJpLDAd7+TLcprm2mSuBNpzeyfj3Ivmjr5zhpZfCQkLEfPzg1VaYULpdB6PgX6iEBaLWVEmAxWIKHSOD+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vvtGBDBk; arc=none smtp.client-ip=209.85.208.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a466a1f9ea0so414178566b.1
-        for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 00:52:05 -0700 (PDT)
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2d485886545so106243581fa.2
+        for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 00:53:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710921124; x=1711525924; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1710921190; x=1711525990; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=MdFXtzLEhiNt5dy1jWNOqEJC4LRD6aFXbB2ka+clk6Y=;
-        b=RjmzNKKXJ+dfTLZEulUOAzsbOYu5M9i+VGsAjWvk9U2zo2qPwAo3N3JhVTMfcaH1g+
-         xTpeERT+0iTeF1Rtj1+iyo1MvLj9muWd0TMJz8kQY7QO/CSUzu9WIkCOiOqcgQJUsQgw
-         52Y4uqGtfd80JlkZTjCP2xV1yMSe2sBQWawU+9aPZZ8oEOsdIfCbw610w+aPeOWlgIF8
-         xuFU4vI72LIceCQ2Y+Xy0fS/igXOGTkaxostsrnaGmJ54UQcFVp4zkVWOBOYId+W3khA
-         5TBurhnhAv27/je/EpU2B1aLiqdBBNx38PvQ0iJYBp7ELfrAUUOwxTh6EA3roj03fj7X
-         bqqw==
+        bh=hQyCYCN0tfTvCTAs/mUpp7XmNBDVbFeQaUpvKJ7SMuI=;
+        b=vvtGBDBkXAuOwI3Tmu8JNL3yhbK1Z5gP3efuk5YKhLKenOaFNQ0tM8g8DdgGFuFXeW
+         Mos+uDNtctm0KOHgY6JQqYRmG0QnQPi2AXQQv8CycgGr4k0LyVEJ8LMniEMm0jDwN1uz
+         HIre9mDsEYZ7DFg/ephZgCiDdOya2i0auftS/8B/UEBo2dtFQ9+rmQzdLw5QmEy+P55R
+         EdgkyjTwG858b0jw8zBKelo/aw31vIu0XF09rCDMds1v3s2dismw9jE/oBTn8N5PDzXY
+         XTQWwQT1Ir1N9tGVymVvUPkFXNy8bNbniv1NOVlJb0LCjYw0DHS0X/J5XhZZaobIGBZm
+         WrmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710921124; x=1711525924;
+        d=1e100.net; s=20230601; t=1710921190; x=1711525990;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=MdFXtzLEhiNt5dy1jWNOqEJC4LRD6aFXbB2ka+clk6Y=;
-        b=RFo2xbi509wD+jx2/IRsmiq+bbQBc5Bhhz9s3W9wcyX7Nmd5GWtXEzqphNZLLSojRs
-         RMGQY5DtYWc6/xmx7ZYcTmIueEJOkni7LMbqgJHRn93NI5WF9/jGesjKzG2p5+QiOZi+
-         C6lDZTRQXQ0QruLIjuXThB2PNtVZk+o/rU+uYNy4pjTWk4Avu3Vui3W4jG/wlPF3UYYe
-         2ddMJI7qxY0BVcBQutbQXEn4EJyJ+pgbV9llwCB7wePOiJiKxSNFArHHgUY21+pIn5oE
-         OX9QnjJRGadwHJP3Ft22PnRZLQE7VbaAAtuoi9WklUIJmz++Pz6mUlNSgAk7W2oD2mst
-         HVlA==
-X-Gm-Message-State: AOJu0Yw4luJWOVPHGY8eCfXhMzoRIW6eTfV5wHkjztmA9Y0lkfqnQf9i
-	2y7YDBFaFg0XJQD7kUAq1/wm1DDrZZt+5qf/4GvKMCLSYwBzgm9WrYG3u0yZhhkBlI10WJvMQBm
-	N
-X-Google-Smtp-Source: AGHT+IHDQv53H+E8HlX8eV68Sql8wMvhNWuGf3oGuQVmWowN3EZUORKgVFSGI53CNkE+AUrUVODv1A==
-X-Received: by 2002:a05:6402:388f:b0:568:2149:329a with SMTP id fd15-20020a056402388f00b005682149329amr9345451edb.19.1710921123740;
-        Wed, 20 Mar 2024 00:52:03 -0700 (PDT)
+        bh=hQyCYCN0tfTvCTAs/mUpp7XmNBDVbFeQaUpvKJ7SMuI=;
+        b=HNRfrRZgKcJvzt2HUvf/8H0t/2s3vtloe8VKKRtcIF/PS9X8HFgeVV8Fzi1bA3ce3R
+         GOVD9fd4Bg1h0ZD9Zx2DrLh5Hy8gj1tVrOxiMscfQP8fGM9r8bUp2n5TX1vwQhg3nK3h
+         QaR0EAfB+YHMNZOh2SavVsFL0wPI9DTZmflPfWO8fE/nJTeg6e4qY2rmWHm0SgZh9FoO
+         FC1+daBohh8WybPmDgjQmgdqtcHRoavcxPfxKqnA+i+1DXzwNNthKng1j0cjrr0YW+yH
+         KjChUGOqwu891tgQAQV0WePLaiu9FZDk453YSqZ1mwdYjddv2R636GYsM03CZ/J9uGTi
+         r8XQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXaY9zTMJTql1+7ZMe/1emPo2zSiijOfCbkoPjKJ+i+kSyP+G/JoXaCa6LVqQ3U7q6iS3mbNYdrWGq8W5uzlAUbQb803eamWpskVQ==
+X-Gm-Message-State: AOJu0YwdKkch4ix5LMn+dinnm75oYnfQpW1iLq0cqmNDbycpzqRF9DnD
+	a3hlylTegTwT+ESP+uNeFiCeDoaE/NvfxS+CrXkYnn34eD4y7SIjnR0AC+xXKPU=
+X-Google-Smtp-Source: AGHT+IHb/90hrMod2oSieu8utraJQsC2BBqXVqFzehZyvcOV/V/Iiid+Hs54m1s/tFgg/8+aGzLt6A==
+X-Received: by 2002:a2e:b74e:0:b0:2d2:d252:7d07 with SMTP id k14-20020a2eb74e000000b002d2d2527d07mr8887941ljo.15.1710921190483;
+        Wed, 20 Mar 2024 00:53:10 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id bk10-20020a170907360a00b00a46e2f89a9csm1467164ejc.32.2024.03.20.00.52.02
+        by smtp.gmail.com with ESMTPSA id o19-20020a17090611d300b00a46bd891b5bsm3346402eja.225.2024.03.20.00.53.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Mar 2024 00:52:03 -0700 (PDT)
-Message-ID: <1fe9e119-e293-4875-b633-0ce4bd551ee9@linaro.org>
-Date: Wed, 20 Mar 2024 08:52:01 +0100
+        Wed, 20 Mar 2024 00:53:09 -0700 (PDT)
+Message-ID: <2b45017a-5a68-4c56-a1b3-ef17163139d4@linaro.org>
+Date: Wed, 20 Mar 2024 08:53:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,17 +77,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] dt-bindings: arm: sunxi: Add Banana Pi P2 Zero
- v1.1
-To: =?UTF-8?Q?Pavel_L=C3=B6bl?= <pavel@loebl.cz>,
- Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2] dt-bindings: nxp,pnx-i2c: Convert to dtschema
+To: Animesh Agarwal <animeshagarwal28@gmail.com>,
+ Conor Dooley <conor@kernel.org>
+Cc: Vladimir Zapolskiy <vz@mleia.com>, Andi Shyti <andi.shyti@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>
-Cc: devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev
-References: <20240320001152.4077150-1-pavel@loebl.cz>
- <20240320061027.4078852-2-pavel@loebl.cz>
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240318153959.30755-1-animeshagarwal28@gmail.com>
+ <20240319-oversight-viable-4550ffbc31d9@spud>
+ <CAE3Oz81-8tV2iJc7Jp3B-ooHvGeOSctxUAvd_1dA-3DQRUJFPQ@mail.gmail.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -134,17 +135,42 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240320061027.4078852-2-pavel@loebl.cz>
+In-Reply-To: <CAE3Oz81-8tV2iJc7Jp3B-ooHvGeOSctxUAvd_1dA-3DQRUJFPQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 20/03/2024 07:10, Pavel Löbl wrote:
-> Document binding for Banana Pi P2 Zero v1.1.
+On 20/03/2024 01:53, Animesh Agarwal wrote:
+> On Tue, Mar 19, 2024 at 11:27 PM Conor Dooley <conor@kernel.org> wrote:
 > 
-> Signed-off-by: Pavel Löbl <pavel@loebl.cz>
-> ---
+>> You're missing a space before the <, but otherwise this looks fine.
+> 
+> Should I send another version fixing this issue?
+> 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Yes.
+
+While at this:
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching.
+missing i2c
+
+
+---
+
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you know the process, you can skip it (please do
+not feel offended by me posting it here - no bad intentions intended).
+If you do not know the process, here is a short explanation:
+
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
 
 Best regards,
 Krzysztof
