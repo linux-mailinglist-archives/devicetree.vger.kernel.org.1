@@ -1,66 +1,61 @@
-Return-Path: <devicetree+bounces-51977-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51979-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1F34881409
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 16:02:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 973B888142D
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 16:08:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 196341C22489
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 15:02:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 50604281AD2
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 15:08:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9A084AEE0;
-	Wed, 20 Mar 2024 15:02:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2612F4D11D;
+	Wed, 20 Mar 2024 15:08:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GQEvxGcS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BuAWPno6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BA504AEC4;
-	Wed, 20 Mar 2024 15:02:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA49A4AEFE;
+	Wed, 20 Mar 2024 15:08:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710946950; cv=none; b=YmXGlkBMBMmxIpFyeIw1DgVjZrGblYSaBxn2vemsrEnJf5SQvukcncQpNFjk/VENGqBjEBPo3MrwFhy/4LNI/Yqs8Vx2K3WUB93Qn5MKL5nutyTRPdUuT+4q8zjm8AdxILQj9dI5M5qAhApF8QOLQhGOf7y5GT8HAASAcxogoyg=
+	t=1710947316; cv=none; b=nnqT65i482rFx1KZGpDPadoWrmuSFfRHWcgEMUcpuprChqrZ7dE6jQyeFxoLsuwwrFHQSwN7sod/aOTro0a6qS8xkjzKgCcVVeGEKd1UGikzHpCZjIcD5L5dD227lAXLoZbC7AlXZ8A/dQywZW1nZA08GrkHkE0pq1UQ02YyFdQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710946950; c=relaxed/simple;
-	bh=xFMb9nTzM5f7GHI9kIML1UaEuYeBpsEmr2AAulx6QTA=;
+	s=arc-20240116; t=1710947316; c=relaxed/simple;
+	bh=cuT65SArsHk0q0YorBWmBbZLglwm8KniwFvajiph340=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XcsMY2orP9N0d8pQotpvZR6aSYlr3xt/mLlpyvNSA8OBhCAwPDVSFv/Mc9HYt65TqRtzq/jwIJvIz3+vGWKbFkAwGhfse7P+scMNrioEFSjsvjuaBrBZJZFhPUWOEMd8LetUFFd/DBqB5D7GWGL56Vc2u9MGrkDn9UnvCDz1nLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GQEvxGcS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2940CC433F1;
-	Wed, 20 Mar 2024 15:02:30 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=FO/+HP+zS2HR9ITlfqS4HXcFpk6v0d6rVQ0c8YmivbilxRBGGFd3teD7N7aaoQYazPP7zOl+f4KYugRFosLs51qE7ldCE0H4MjX7g6St8ZBnTJ/VzH6Vys3Q0UxRoa8XYiAO4ynFKCSKDpeBnFCrJiq2YhszI0ung/Ys2B0/zF0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BuAWPno6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48E2FC433F1;
+	Wed, 20 Mar 2024 15:08:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710946950;
-	bh=xFMb9nTzM5f7GHI9kIML1UaEuYeBpsEmr2AAulx6QTA=;
+	s=k20201202; t=1710947315;
+	bh=cuT65SArsHk0q0YorBWmBbZLglwm8KniwFvajiph340=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GQEvxGcSs71CdTPbnVAjTm90KV5AD1t/DyVeasJUsZuRHpe4gewe2PNT7tkVc0Uig
-	 4605Y6tjyjoIEv4ZgdkLLqC7jmSpII+mguL6LmhIeNiXCPH0ZeIgHFY+7S/HKC7sf7
-	 tdIFQqdEU7uYtbe0zWirbZJxM7HR5erX2vgPWd9nAmnStC59uDcCKzRt+yQIj4pwDX
-	 D9v/VIFTXy20KzFYyzAntlkggsngEMkiEy3wb0rFJmdFywpsZK5W+XNZ0VKXkzTAOL
-	 RYHJDbf+Cx/ckZynxCOXYADcdWh4IBzzy9ojMhLFX17XUBkyN1gTsogzONWGTPef/O
-	 g0yV6A20oql7w==
-Date: Wed, 20 Mar 2024 10:02:28 -0500
+	b=BuAWPno6kl1SLrWIxqh3LwKUkzMP738uIRi0OwUTOaxHUaKVpR0agxZPow7dN/Xbm
+	 7gSCuSdapZkTJNJt0pwcpjDVsrCASgZ1AiVgX9mLWeRAHaU0V4/y6BTH+79VyHP9Hm
+	 uOpEfNKuMm5tqCaCinZ5Yy8x7iGQZDwo3retd/Z6wP7AkiihKe1BXIgPbQhnZa9cYV
+	 VxgpNhN5mL0PFCjvw2Al9C86ubexZTYcTV+ztk81TX2C0OHuy3HVF+uqlYevHPy6TK
+	 en3aUDwqvRZW58P3Gsb2HUjM7f5b/+mHrZLfBlMi3P4CC8IbZNYi4CJMMUdP1eb3+Z
+	 FaBDQagCNucrA==
+Date: Wed, 20 Mar 2024 10:08:33 -0500
 From: Rob Herring <robh@kernel.org>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Yangtao Li <tiny.windzz@gmail.com>, Viresh Kumar <vireshk@kernel.org>,
-	Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
+To: Ivan Bornyakov <brnkv.i1@gmail.com>
+Cc: Nas Chung <nas.chung@chipsnmedia.com>,
+	Jackson Lee <jackson.lee@chipsnmedia.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	"Rafael J . Wysocki" <rafael@kernel.org>, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Brandon Cheo Fusi <fusibrandon13@gmail.com>,
-	Martin Botka <martin.botka@somainline.org>,
-	Martin Botka <martin.botka1@gmail.com>
-Subject: Re: [PATCH v2 3/8] dt-bindings: opp: Describe H616 OPPs and
- opp-supported-hw
-Message-ID: <20240320150228.GA1705913-robh@kernel.org>
-References: <20240318011228.2626-1-andre.przywara@arm.com>
- <20240318011228.2626-4-andre.przywara@arm.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/6] dt-bindings: media: cnm,wave521c: drop resets
+ restriction
+Message-ID: <20240320150833.GA1729819-robh@kernel.org>
+References: <20240318144225.30835-1-brnkv.i1@gmail.com>
+ <20240318144225.30835-4-brnkv.i1@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,189 +64,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240318011228.2626-4-andre.przywara@arm.com>
+In-Reply-To: <20240318144225.30835-4-brnkv.i1@gmail.com>
 
-On Mon, Mar 18, 2024 at 01:12:23AM +0000, Andre Przywara wrote:
-> From: Martin Botka <martin.botka@somainline.org>
+On Mon, Mar 18, 2024 at 05:42:18PM +0300, Ivan Bornyakov wrote:
+> Different designs may have different amount of routed reset signals.
+> Drop maxItems restriction, add a small description instead.
 > 
-> The Allwinner H616 uses a similar NVMEM based mechanism to determine the
-> silicon revision, which is required to select the right frequency /
-> voltage pair for the OPPs.
-> However it limits the maximum frequency for some speedbins, which
-> requires to introduce the opp-supported-hw property.
-> 
-> Add this property to the list of allowed properties, also drop the
-> requirement for the revision specific opp-microvolt properties, since
-> they won't be needed if using opp-supported-hw. When using this
-> property, we also might have multiple OPP nodes per frequency, so relax
-> the OPP node naming to allow a single letter suffix.
-> 
-> Also use to opportunity to adjust some wording, and drop a sentence
-> referring to the Linux driver and the OPP subsystem.
-> 
-> Shorten the existing example and add another example, showcasing the
-> opp-supported-hw property.
-> 
-> Signed-off-by: Martin Botka <martin.botka@somainline.org>
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> Signed-off-by: Ivan Bornyakov <brnkv.i1@gmail.com>
 > ---
->  .../allwinner,sun50i-h6-operating-points.yaml | 89 ++++++++++---------
->  1 file changed, 47 insertions(+), 42 deletions(-)
+>  Documentation/devicetree/bindings/media/cnm,wave521c.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/opp/allwinner,sun50i-h6-operating-points.yaml b/Documentation/devicetree/bindings/opp/allwinner,sun50i-h6-operating-points.yaml
-> index 51f62c3ae1947..d5439a3f696bc 100644
-> --- a/Documentation/devicetree/bindings/opp/allwinner,sun50i-h6-operating-points.yaml
-> +++ b/Documentation/devicetree/bindings/opp/allwinner,sun50i-h6-operating-points.yaml
-> @@ -13,25 +13,25 @@ maintainers:
->  description: |
->    For some SoCs, the CPU frequency subset and voltage value of each
->    OPP varies based on the silicon variant in use. Allwinner Process
-> -  Voltage Scaling Tables defines the voltage and frequency value based
-> -  on the speedbin blown in the efuse combination. The
-> -  sun50i-cpufreq-nvmem driver reads the efuse value from the SoC to
-> -  provide the OPP framework with required information.
-> +  Voltage Scaling Tables define the voltage and frequency values based
-> +  on the speedbin blown in the efuse combination.
+> diff --git a/Documentation/devicetree/bindings/media/cnm,wave521c.yaml b/Documentation/devicetree/bindings/media/cnm,wave521c.yaml
+> index 6a11c1d11fb5..2cb4f68d27ac 100644
+> --- a/Documentation/devicetree/bindings/media/cnm,wave521c.yaml
+> +++ b/Documentation/devicetree/bindings/media/cnm,wave521c.yaml
+> @@ -34,7 +34,8 @@ properties:
+>      maxItems: 1
 >  
->  allOf:
->    - $ref: opp-v2-base.yaml#
->  
->  properties:
->    compatible:
-> -    const: allwinner,sun50i-h6-operating-points
-> +    enum:
-> +      - allwinner,sun50i-h6-operating-points
-> +      - allwinner,sun50i-h616-operating-points
->  
->    nvmem-cells:
->      description: |
->        A phandle pointing to a nvmem-cells node representing the efuse
-> -      registers that has information about the speedbin that is used
-> +      register that has information about the speedbin that is used
->        to select the right frequency/voltage value pair. Please refer
-> -      the for nvmem-cells bindings
-> -      Documentation/devicetree/bindings/nvmem/nvmem.txt and also
-> +      to the nvmem-cells bindings in
-> +      Documentation/devicetree/bindings/nvmem/nvmem.yaml and also the
->        examples below.
->  
->    opp-shared: true
-> @@ -41,21 +41,23 @@ required:
->    - nvmem-cells
->  
->  patternProperties:
-> -  "^opp-[0-9]+$":
-> +  "^opp-[0-9]+(-[a-z])?$":
->      type: object
->  
->      properties:
->        opp-hz: true
->        clock-latency-ns: true
-> +      opp-microvolt: true
-> +      opp-supported-hw:
-> +        description: |
-> +          A single 32 bit bitmap value, representing compatible HW, one
-> +          bit per speed bin index.
->  
->      patternProperties:
->        "^opp-microvolt-speed[0-9]$": true
->  
->      required:
->        - opp-hz
-> -      - opp-microvolt-speed0
-> -      - opp-microvolt-speed1
-> -      - opp-microvolt-speed2
->  
->      unevaluatedProperties: false
->  
-> @@ -77,58 +79,61 @@ examples:
->              opp-microvolt-speed2 = <800000>;
->          };
->  
-> -        opp-720000000 {
-> +        opp-1080000000 {
->              clock-latency-ns = <244144>; /* 8 32k periods */
-> -            opp-hz = /bits/ 64 <720000000>;
-> +            opp-hz = /bits/ 64 <1080000000>;
->  
-> -            opp-microvolt-speed0 = <880000>;
-> -            opp-microvolt-speed1 = <820000>;
-> -            opp-microvolt-speed2 = <800000>;
-> +            opp-microvolt-speed0 = <1060000>;
-> +            opp-microvolt-speed1 = <880000>;
-> +            opp-microvolt-speed2 = <840000>;
->          };
->  
-> -        opp-816000000 {
-> +        opp-1488000000 {
->              clock-latency-ns = <244144>; /* 8 32k periods */
-> -            opp-hz = /bits/ 64 <816000000>;
-> +            opp-hz = /bits/ 64 <1488000000>;
->  
-> -            opp-microvolt-speed0 = <880000>;
-> -            opp-microvolt-speed1 = <820000>;
-> -            opp-microvolt-speed2 = <800000>;
-> +            opp-microvolt-speed0 = <1160000>;
-> +            opp-microvolt-speed1 = <1000000>;
-> +            opp-microvolt-speed2 = <960000>;
->          };
-> +    };
-> +
-> +  - |
-> +    opp-table {
-> +        compatible = "allwinner,sun50i-h616-operating-points";
-> +        nvmem-cells = <&speedbin_efuse>;
-> +        opp-shared;
->  
-> -        opp-888000000 {
-> +        opp-480000000 {
->              clock-latency-ns = <244144>; /* 8 32k periods */
-> -            opp-hz = /bits/ 64 <888000000>;
-> +            opp-hz = /bits/ 64 <480000000>;
->  
-> -            opp-microvolt-speed0 = <940000>;
-> -            opp-microvolt-speed1 = <820000>;
-> -            opp-microvolt-speed2 = <800000>;
-> +            opp-microvolt = <900000>;
-> +            opp-supported-hw = <0x1f>;
->          };
->  
-> -        opp-1080000000 {
-> +        opp-792000000-l {
->              clock-latency-ns = <244144>; /* 8 32k periods */
-> -            opp-hz = /bits/ 64 <1080000000>;
-> +            opp-hz = /bits/ 64 <792000000>;
->  
-> -            opp-microvolt-speed0 = <1060000>;
-> -            opp-microvolt-speed1 = <880000>;
-> -            opp-microvolt-speed2 = <840000>;
-> +            opp-microvolt = <900000>;
-> +            opp-supported-hw = <0x02>;
->          };
->  
-> -        opp-1320000000 {
-> +        opp-792000000-h {
->              clock-latency-ns = <244144>; /* 8 32k periods */
-> -            opp-hz = /bits/ 64 <1320000000>;
-> +            opp-hz = /bits/ 64 <792000000>;
->  
-> -            opp-microvolt-speed0 = <1160000>;
-> -            opp-microvolt-speed1 = <940000>;
-> -            opp-microvolt-speed2 = <900000>;
-> +            opp-microvolt = <940000>;
-> +            opp-supported-hw = <0x10>;
+>    resets:
+> -    maxItems: 1
+> +    items:
+> +      - description: Optional reset lines
 
-So far, we've avoided multiple entries for a single frequency. I think 
-it would be good to maintain that.
+Your change is a NOP. In fact, the tools will translate an 'items' list 
+with no constraints back into maxItems/minItems.
 
-Couldn't you just do:
-
-opp-supported-hw = <0>, <0x10>, <0x02>;
-
-Where the index corresponds to speed0, speed1, speed2.
-
-If not, then I don't understand how multiple entries of opp-supported-hw 
-are supposed to work.
+So it seems whatever change you think you needed, you did not validate 
+the change.
 
 Rob
 
