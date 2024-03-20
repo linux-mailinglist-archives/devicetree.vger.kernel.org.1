@@ -1,197 +1,104 @@
-Return-Path: <devicetree+bounces-51956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88CB98811B9
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 13:36:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1BF98811D2
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 13:47:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E3AB6B22980
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 12:36:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A8E861F229B3
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 12:47:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE13C3B78B;
-	Wed, 20 Mar 2024 12:36:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF4853FE23;
+	Wed, 20 Mar 2024 12:46:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IUlEARJr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="elDQzjL5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174])
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 358D92E821;
-	Wed, 20 Mar 2024 12:35:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 797D940873;
+	Wed, 20 Mar 2024 12:46:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710938160; cv=none; b=JJxOOyfy8dk0KGdoWneFPjAON+QALaq92IUlqiBtjmLuxx7B1xMA+6+vz6A3e1l8RO/mt5bWzXrqt+y0IHr/VdDj/y6qvnFAMHX6Etolw9xHIcHCofBYiAlq0SzwvIIKuP2XJL6UFUKdeiCEVYU2hDmXGLrenG5LVYvD5i64uHM=
+	t=1710938818; cv=none; b=bMoMf2O4tAYOISsa6133eTPCZ/B29OmYviizSoIR1MIhNeIvC33e+zEOF5s03Z9dUblPfh2ST1N5Meo9kEwINV4BOTtWvOQzKF6VnQ5nPVK3C6oq6o8g+TbjS+NVoeBTND5D0XNVh1gWPFN2As4+fBYL/hm0UPotHJM9e+1dXM8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710938160; c=relaxed/simple;
-	bh=xhP26pSgEUFLaf6nmg+YHggFajvAX/TZ2zrW7LxTpNc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YE3LQ3Qa2RqL2wCCLYrEVY86satzJTyAs/Br6U2ycqqE0pOAXTNLLlJstdIeMFGDJiT4ySKVo2aSJPhAyixguDKvZSZ+Ohc86H5PFxgMrvynLghv6TUR07dQGIwRWnjo8OFUUQFpAlrYI5/BLh9PFyqDzy9r4Qkys9dqqKDg5rg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IUlEARJr; arc=none smtp.client-ip=209.85.215.174
+	s=arc-20240116; t=1710938818; c=relaxed/simple;
+	bh=qG8vU2VNbKP5oWa019GPK79bBq9y97fVA9aDgoKPkbw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=OAeGO6VEizePmcmMGRBtxhLzF4diQDvJ5Hux/QvCtW4B81eToE9sT6J3c3yXbETgidFAaofuz/Ui7xGbcmxNe5NjB0bwybxbJeYNN6W8HJJGMp+pta9w6ze0mQsPX/o3OhaT6RIS3s1lyJ/ob65vDDqQABPmke9OAIhM5W/TtmA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=elDQzjL5; arc=none smtp.client-ip=209.85.214.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f174.google.com with SMTP id 41be03b00d2f7-5c66b093b86so692293a12.0;
-        Wed, 20 Mar 2024 05:35:58 -0700 (PDT)
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-1e04ac4209eso14968205ad.1;
+        Wed, 20 Mar 2024 05:46:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710938158; x=1711542958; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QkgG1cL/5B4fNhZbtl14ktJjjgymucoxHqvalG67OVc=;
-        b=IUlEARJrFwLyQ9shcdmhqPF8hRxhnXrTPOwSsVTzT5x/pJbRP+4dI8LxrdnhdIiDKr
-         hnZM8L2QWTHSHjPQbWpCoA/xLNPiSiSlfjZKZQIfgE6qR56/Ba/fifwFGYsZ2Z5Ajl/L
-         IlWveAXs5tsQeTN6ZqauhdTkRtD5GqC9sO02xCQTtinNhEQK0UJ9sLwT5qzYwj11YIIQ
-         WFjSvQqPe5VirW8N4dJRo5GF/834Cro9PZJ19FqpmkMjLNIcAplTxgXbP5pWHPwAfi4F
-         KpF/Pyd1Fm5IC6rYIMnTwDemf6eeoPrFQcc8lbgCR/ncsD8APzZ/mL4hnwMVBUXWB5ro
-         Xn+w==
+        d=gmail.com; s=20230601; t=1710938817; x=1711543617; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gSN+FDXXyYc0p+FXZb4g9T/TuLHmj5IB4QRgcl+NvwM=;
+        b=elDQzjL528QB/K8rig1yfGrw/Uv9MNBjZX8/tH25ynCNklf+hlvIRReFQQ6lbTs9MN
+         /cyeL1AZF3ifTdCgdZqLZ+KnALE94flw0G+XzHYGVdm3bk9FjXvjrkuysp7NIj092h4O
+         GnVrONVJmLq2en1rU+UGR9INh2O1RAsHg8QpDLVHNwWTNA6jrNttDAAJ62rsnbUc8TXj
+         13/jThCsVzMSZm/MCzlf7Crryo7e+DGemPaOBb/OEj4PavAp/gJZ4R/aQdXrBw0qkdnT
+         tvDIAjeVueJCwe7QbgtMYhAp9HKUjPfE+z0cBwfXHDch2Krmm8JMUWJ2Po/7uorteAVo
+         J5/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710938158; x=1711542958;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QkgG1cL/5B4fNhZbtl14ktJjjgymucoxHqvalG67OVc=;
-        b=aK9VURkyEp2z84LBbXcSHUgEdRGDIE4XjDU83o1eC/ZraVT2dHZh1kvwEJuuB7s01D
-         cTqggH+0wFIYrxI6+lLK6xNZPMOPvBMkr2awAWEHr+o2RJB/68t9DE6O6M7qVnEub+Gv
-         9ZXae9k3yCQUiV+HlbOhvBJYUG6leqecZWP007g0G9PAVXEA+M9F+QKMm9blNC3ABZtq
-         CC4QsRGSARVVcbwXDXWIJumjOQZ3JMhMNesirMyF5XFmbLiXO+D0rdoplh8wt4nLPqrK
-         kFMFlTMEHHLkAHdYzp+EbxcOpDuBdZUWBTqM3KN6+k/0gG9ni0dcj+vrvbWl5cNgFEWi
-         NVbg==
-X-Forwarded-Encrypted: i=1; AJvYcCVleVyvqJpvkR6Fq7WTeqSKLpk9C+4weHVPyM0eD4x/GtZgQe78zW/GNiNvNVFDOlNFO6uFUDjlGWD47n0YaDsxUBIS3JbXrgoT7GoSGQn2TIMyHZD1fAxtnAZ4SBXChxrK22oVuEA1kA==
-X-Gm-Message-State: AOJu0YyUEXRjlGCjoaW03rB7w6Fj2iKiKDWNC3g2E+kld1TqNo1uInxB
-	le0e718kZRtZC5bFBBPz60tN471HFo2zC0BmM7+RhnzrnFAiaEzdI5JwnYfHhfbk8acNn0+SGL0
-	V/dorEozc0kAZQ1eicGW2K8+n5C4=
-X-Google-Smtp-Source: AGHT+IHluuILnheUcmIRRFLg/VWXy6bNItVeObCj2+bK0X6rHBxK/wswlqQZqNhDlGb2BsxHpXvCykbTtvDgNnW+2Hg=
-X-Received: by 2002:a17:90b:30d1:b0:29f:6971:b89 with SMTP id
- hi17-20020a17090b30d100b0029f69710b89mr7534391pjb.3.1710938158173; Wed, 20
- Mar 2024 05:35:58 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1710938817; x=1711543617;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gSN+FDXXyYc0p+FXZb4g9T/TuLHmj5IB4QRgcl+NvwM=;
+        b=VT7CxjTdYH9B3NApLmLcG84NsO5DDRS1ZZYrDbHjU5tLTEzfPfN329kg14vN73wObP
+         5NCku0Hkq/c9Yf9McC+VsBSeMvt+B985E/PJYXX6Ry/9fhfPSVIgRtmrlRMDibmI0NHk
+         AICIQij9n/T4DLGWwoNv1VkxQprw38kt2aJXtmUPpQPfBoSJBSzzWBWUHsVGpf1lJNdE
+         6IS1O0ZEUHzGX3Egq0FqaoqFGpOEnnkikXJaiPsCvRgsHIpPIiTQ7+pJxMFXptmtY9SC
+         1RkCNIReHLo8V0u9Amyi7c0wiZ692zoUkzDqerwsGdLQsR2CBe5CsJYpaeFYyOD3PwLY
+         jpSQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW4MjhcX7DE5NJ/twuw3mwPRM1lrtUOnDg8JbS9TyHtX6qxx8kPepY62DdKa6LkwlO0VjfLKbawag0ckwiU4ZgmlJ0jXJsPx4AImXnnghG+tzGKTxMb38DF2X0OWl4NXPUMfG8m4igIAA==
+X-Gm-Message-State: AOJu0YxSooOwae+CVNmj/RIe3BvyFtt7HBSX3BMJAXDgl8/23oGT0gwv
+	+CeyW5IWVu4ceoRVhzFn4GEM94qOi9wzvb/1etlHxsY0NNBgN+4q
+X-Google-Smtp-Source: AGHT+IGBSLCxUJjMvyQEMyZhLnm6rU96mG5p6AlorUhB5IfhmOkGeiS+w67cbCMG3pv6iors13f0Bw==
+X-Received: by 2002:a17:902:cccd:b0:1e0:2a4b:e51b with SMTP id z13-20020a170902cccd00b001e02a4be51bmr10253211ple.32.1710938816881;
+        Wed, 20 Mar 2024 05:46:56 -0700 (PDT)
+Received: from localhost.localdomain (FL1-125-193-23-126.chb.mesh.ad.jp. [125.193.23.126])
+        by smtp.gmail.com with ESMTPSA id s14-20020a170902ea0e00b001dda32430b3sm13441004plg.89.2024.03.20.05.46.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Mar 2024 05:46:56 -0700 (PDT)
+From: INAGAKI Hiroshi <musashino.open@gmail.com>
+To: pavel@ucw.cz,
+	lee@kernel.org,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	INAGAKI Hiroshi <musashino.open@gmail.com>
+Subject: [PATCH 0/2] dt-bindings: leds: add LED_FUNCTION_* mainly for router devices
+Date: Wed, 20 Mar 2024 21:43:15 +0900
+Message-ID: <20240320124431.221-1-musashino.open@gmail.com>
+X-Mailer: git-send-email 2.42.0.windows.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231129093113.255161-1-paul.elder@ideasonboard.com> <20231129093113.255161-2-paul.elder@ideasonboard.com>
-In-Reply-To: <20231129093113.255161-2-paul.elder@ideasonboard.com>
-From: Adam Ford <aford173@gmail.com>
-Date: Wed, 20 Mar 2024 07:35:46 -0500
-Message-ID: <CAHCN7xLOu5qfxNihEYuSXxuxxH=S_+7nDkX1H=ziDW3QvaErQA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: imx8mp: Add DT nodes for the two ISPs
-To: Paul Elder <paul.elder@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	kieran.bingham@ideasonboard.com, tomi.valkeinen@ideasonboard.com, 
-	umang.jain@ideasonboard.com, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	NXP Linux Team <linux-imx@nxp.com>, Marek Vasut <marex@denx.de>, 
-	Alexander Stein <alexander.stein@ew.tq-group.com>, Lucas Stach <l.stach@pengutronix.de>, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Frank Li <Frank.Li@nxp.com>, 
-	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, 
-	open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Wed, Nov 29, 2023 at 3:31=E2=80=AFAM Paul Elder <paul.elder@ideasonboard=
-.com> wrote:
->
-> The ISP supports both CSI and parallel interfaces, where port 0
-> corresponds to the former and port 1 corresponds to the latter. Since
-> the i.MX8MP's ISPs are connected by the parallel interface to the CSI
-> receiver, set them both to port 1.
->
-> Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
+This patch series adds some LED_FUNCTION_* definitions mainly for router
+devices.
+Those definitions are useful for OpenWrt or something.
 
-Paul, are you able to resend this now that the driver part has been
-merged into the main branch?
+INAGAKI Hiroshi (2):
+  dt-bindings: leds: add LED_FUNCTION_MOBILE for mobile network
+  dt-bindings: leds: add LED_FUNCTION_SPEED_* for link speed on LAN/WAN
 
-If you can't, I can resend it on your behalf.
+ include/dt-bindings/leds/common.h | 3 +++
+ 1 file changed, 3 insertions(+)
 
-thanks,
+-- 
+2.25.1
 
-adam
-
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 50 +++++++++++++++++++++++
->  1 file changed, 50 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/=
-dts/freescale/imx8mp.dtsi
-> index c9a610ba4836..25579d4c58f2 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -1604,6 +1604,56 @@ isi_in_1: endpoint {
->                                 };
->                         };
->
-> +                       isp_0: isp@32e10000 {
-> +                               compatible =3D "fsl,imx8mp-isp";
-> +                               reg =3D <0x32e10000 0x10000>;
-> +                               interrupts =3D <GIC_SPI 74 IRQ_TYPE_LEVEL=
-_HIGH>;
-> +                               clocks =3D <&clk IMX8MP_CLK_MEDIA_ISP_ROO=
-T>,
-> +                                        <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>=
-,
-> +                                        <&clk IMX8MP_CLK_MEDIA_APB_ROOT>=
-;
-> +                               clock-names =3D "isp", "aclk", "hclk";
-> +                               assigned-clocks =3D <&clk IMX8MP_CLK_MEDI=
-A_ISP>;
-> +                               assigned-clock-parents =3D <&clk IMX8MP_S=
-YS_PLL2_500M>;
-> +                               assigned-clock-rates =3D <500000000>;
-> +                               power-domains =3D <&media_blk_ctrl IMX8MP=
-_MEDIABLK_PD_ISP>;
-> +                               fsl,blk-ctrl =3D <&media_blk_ctrl 0>;
-> +                               status =3D "disabled";
-> +
-> +                               ports {
-> +                                       #address-cells =3D <1>;
-> +                                       #size-cells =3D <0>;
-> +
-> +                                       port@1 {
-> +                                               reg =3D <1>;
-> +                                       };
-> +                               };
-> +                       };
-> +
-> +                       isp_1: isp@32e20000 {
-> +                               compatible =3D "fsl,imx8mp-isp";
-> +                               reg =3D <0x32e20000 0x10000>;
-> +                               interrupts =3D <GIC_SPI 75 IRQ_TYPE_LEVEL=
-_HIGH>;
-> +                               clocks =3D <&clk IMX8MP_CLK_MEDIA_ISP_ROO=
-T>,
-> +                                        <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>=
-,
-> +                                        <&clk IMX8MP_CLK_MEDIA_APB_ROOT>=
-;
-> +                               clock-names =3D "isp", "aclk", "hclk";
-> +                               assigned-clocks =3D <&clk IMX8MP_CLK_MEDI=
-A_ISP>;
-> +                               assigned-clock-parents =3D <&clk IMX8MP_S=
-YS_PLL2_500M>;
-> +                               assigned-clock-rates =3D <500000000>;
-> +                               power-domains =3D <&media_blk_ctrl IMX8MP=
-_MEDIABLK_PD_ISP>;
-> +                               fsl,blk-ctrl =3D <&media_blk_ctrl 1>;
-> +                               status =3D "disabled";
-> +
-> +                               ports {
-> +                                       #address-cells =3D <1>;
-> +                                       #size-cells =3D <0>;
-> +
-> +                                       port@1 {
-> +                                               reg =3D <1>;
-> +                                       };
-> +                               };
-> +                       };
-> +
->                         dewarp: dwe@32e30000 {
->                                 compatible =3D "nxp,imx8mp-dw100";
->                                 reg =3D <0x32e30000 0x10000>;
-> --
-> 2.39.2
->
 
