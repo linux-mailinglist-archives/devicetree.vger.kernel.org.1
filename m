@@ -1,130 +1,179 @@
-Return-Path: <devicetree+bounces-51991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D9DF881552
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 17:15:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DBC888156E
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 17:21:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 40E751C22C82
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 16:15:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4963D282456
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 16:21:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6799553E2C;
-	Wed, 20 Mar 2024 16:15:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 809945466C;
+	Wed, 20 Mar 2024 16:20:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C9PJ4h2R"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nx02CsiX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E4CA54BDB;
-	Wed, 20 Mar 2024 16:15:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 490C91A291;
+	Wed, 20 Mar 2024 16:20:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710951334; cv=none; b=UMU8Cnzfg/n2b6rDvzNpNUjoJvGUdZpnNCJef1sm86DdmbNCKDUZG9hyhxeIT3HaamJYllT9NkG0YMbT3gZO9yl09b81xKEmw+M2BOS8yQPuEEzJUX4VSaFEuyclr1lPdS1TIJ2hCjInvKOlaghhM8+ZoAM/Ly6vU7y/E1EaHKw=
+	t=1710951657; cv=none; b=gSH2JmX16W7+PQ4m7OO6vI0bqWKO0uyr9xaSW6O/Yuv0oGA763H+5c08iC8sDUaV2gp4HvkwBN6WT4lKifJ/AWBANe4yMcmO8b10jtEubpqhM6eHQZUtxhzAh46iDxU9KhgptbDCDYDVcIeBsPyJKbx0TEoO5oEsYYPdXTU55xI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710951334; c=relaxed/simple;
-	bh=ieuHVkiJ3mvxSTBYRy2oxHanwhxgK3q2OFoG5+yAQVQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=K95mmpF46yt9OzKCjdg+j0Oni9L92ieOwrlkSgGfoe23aRG6584ecqTspT5rXvr0g8elefCo5+xyPbaQmsRSi+aN6F71XrzDRITh34PnkHbQzmzHJudvORpJkWLdZYtI9tRXODNx/wOTXoyDQQwWYpm7O6w/YOTgCqHs4PajHYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C9PJ4h2R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 611FAC433C7;
-	Wed, 20 Mar 2024 16:15:33 +0000 (UTC)
+	s=arc-20240116; t=1710951657; c=relaxed/simple;
+	bh=z3FvKvwYws62zU5YpFKEphxiNYUrulGGQ60bCVxWjQY=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=Ra6V4q1upZtSpHCz6aZnE+P8t3WHrBzRBrmBJOmmyU/G5sWpERlUBrzTMxvIyodj+5qyFDs3bN2XSeX6FPjsuC6Po59S74akR2J+a1ch9dDS3ZDuDrJtCoK0dJjjDYkyjv8AvNZ9ado6AgQDaWRsS1lz7z/Wwg2854MxKAjF0Ak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nx02CsiX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C0F5C433F1;
+	Wed, 20 Mar 2024 16:20:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710951333;
-	bh=ieuHVkiJ3mvxSTBYRy2oxHanwhxgK3q2OFoG5+yAQVQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=C9PJ4h2RY6P99YTLQRRGAgHBuOSWlMhblYdFowfc+El6TXbIXtyDUKTGqG6OBwVCe
-	 Vcpb7I7GcpZKqZiujvrtk5NBa39AL6WCJVugX5zE1LHScxqtqQHlsx96fBG6qYd3VF
-	 a9aymwRdPN226FPrZqYAe2WhXFnfQMzz4SuZig7LigRlOy0BYdY6EuxoTPW3CHCc/0
-	 QfGBTg39m+l+Tkuh7uL7+xyCk7/mqFITmZPRBZl63Q3H+YomUXfQFa9qPd+htiEuiN
-	 /omcOBrFLrozCxhAqRzn0QwtnrSXhYLxT9EIOza3K8S4U9udr8EGm6ouoX/6A6rNZR
-	 jNfMsiYd3GtWg==
-Date: Wed, 20 Mar 2024 11:15:31 -0500
-From: Rob Herring <robh@kernel.org>
-To: David Woodhouse <dwmw2@infradead.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Sudan Landge <sudanl@amazon.com>, tytso@mit.edu, Jason@zx2c4.com,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	sathyanarayanan.kuppuswamy@linux.intel.com, thomas.lendacky@amd.com,
-	dan.j.williams@intel.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, graf@amazon.de, bchalios@amazon.es,
-	xmarcalx@amazon.co.uk, ardb@kernel.org,
-	benh <benh@kernel.crashing.org>
-Subject: Re: [PATCH v1 0/4] virt: vmgenid: Add devicetree bindings support
-Message-ID: <20240320161531.GA1810860-robh@kernel.org>
-References: <20240319143253.22317-1-sudanl@amazon.com>
- <23692c07-98bd-477d-b244-bba14c50352c@linaro.org>
- <38aad6c0e698c8e804694276d1762d61f2068ce8.camel@infradead.org>
+	s=k20201202; t=1710951656;
+	bh=z3FvKvwYws62zU5YpFKEphxiNYUrulGGQ60bCVxWjQY=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=Nx02CsiXwVEYOyUBA4DS/d5BGB1Djh+gF8drspEXVId+yIsnkbelmAlDNOzSFhfr9
+	 ozUPOsIjtsutc1jxzgLxMZA/NIaQmXp4T1PDkMmg5Cn3wPYU172gm6bGt8UnZFTJZQ
+	 Tk6gcYfrwqn0O7IDUso2VwOzqzz1QHCRHWe048sUYqGQMwsbG95Kdhzu/mAYr6l4OD
+	 n76Q83o70zGwJTHlMdY887t3mNOn0fk8e4i1x7GIcwGiOzyqTen2z8jwwE6HthEauQ
+	 Zd1ARj2TrPRZaIriHLZpI4XPZrRiA7ZAaboqNqnHV/RimiFUNvA16Pp1kz9Pwb0c7A
+	 /X8DK2kQIpQ5A==
+Date: Wed, 20 Mar 2024 11:20:55 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <38aad6c0e698c8e804694276d1762d61f2068ce8.camel@infradead.org>
+From: Rob Herring <robh@kernel.org>
+To: Komal Bajaj <quic_kbajaj@quicinc.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ devicetree@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Bjorn Andersson <andersson@kernel.org>, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ linux-arm-msm@vger.kernel.org
+In-Reply-To: <20240319091020.15137-1-quic_kbajaj@quicinc.com>
+References: <20240319091020.15137-1-quic_kbajaj@quicinc.com>
+Message-Id: <171095148554.1943200.12080115651498296993.robh@kernel.org>
+Subject: Re: [PATCH 0/3] Add devicetree support of USB for QDU/QRU1000
 
-On Wed, Mar 20, 2024 at 01:50:43PM +0000, David Woodhouse wrote:
-> On Tue, 2024-03-19 at 16:24 +0100, Krzysztof Kozlowski wrote:
-> > On 19/03/2024 15:32, Sudan Landge wrote:
-> > > This small series of patches aims to add devicetree bindings support for
-> > > the Virtual Machine Generation ID (vmgenid) driver.
-> > > 
-> > > Virtual Machine Generation ID driver was introduced in commit af6b54e2b5ba
-> > > ("virt: vmgenid: notify RNG of VM fork and supply generation ID") as an
-> > > ACPI only device.
-> > > We would like to extend vmgenid to support devicetree bindings because:
-> > > 1. A device should not be defined as an ACPI or DT only device.
 
-This (and the binding patch) tells me nothing about what "Virtual 
-Machine Generation ID driver" is and isn't really justification for 
-"why".
-
-> > 
-> > Virtual stuff is not a device, so your first assumption or rationale is
-> > not correct.
-> > 
-> > Virtual stuff can be ACPI only, because DT is not for Virtual stuff.
+On Tue, 19 Mar 2024 14:40:17 +0530, Komal Bajaj wrote:
+> This series adds devicetree nodes to support interconnects and usb for qdu/qru1000.
+> This is based on previously sent driver series[1].
+> [1]
+> https://lore.kernel.org/linux-arm-msm/20240319090729.14674-1-quic_kbajaj@quicinc.com/
 > 
-> I strongly disagree with this.
+> ------
+> Changes in v2:
+> * Changes qmpphy node name
+> * Changes dr_mode to otg and added USB-B port USB role switch
+> * Dropped maximum-speed property from usb dwc3 node
+> * Link to v1: https://lore.kernel.org/linux-arm-msm/20240311120859.18489-1-quic_kbajaj@quicinc.com/
 > 
-> Discovering things is what the device-tree is *for*.
-
-DT/ACPI is for discovering what hardware folks failed to make 
-discoverable. But here, both sides are software. Can't the software 
-folks do better?
-
-This is just the latest in $hypervisor bindings[1][2][3]. The value add 
-must be hypervisors because every SoC vendor seems to be creating their 
-own with their own interfaces.
-
-
-> We don't want to add extra complexity and overhead on both host and
-> guest side to make things discoverable in a *less* efficient way.
+> Komal Bajaj (3):
+>   arm64: dts: qcom: qdu1000: Add USB3 and PHY support
+>   arm64: dts: qcom: qdu1000-idp: enable USB nodes
+>   arm64: dts: qcom: qru1000-idp: enable USB nodes
 > 
-> The device-tree isn't just a last-resort for when we can't possibly do
-> things differently in a discoverable way. The device-tree is a first-
-> class citizen and perfectly valid choice as a way to discover things.
+>  arch/arm64/boot/dts/qcom/qdu1000-idp.dts |  65 +++++++++++
+>  arch/arm64/boot/dts/qcom/qdu1000.dtsi    | 133 +++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/qru1000-idp.dts |  65 +++++++++++
+>  3 files changed, 263 insertions(+)
 > 
-> We shouldn't be forcing people to turn things into PCI devices just to
-> avoid adding DT bindings for them.
+> --
+> 2.42.0
 > 
-> And we *certainly* shouldn't be directing people towards all the
-> awfulness of ACPI, and in-kernel bytecode interpreters, and all that
-> horridness, just because we don't want to use DT to... describe things.
+> 
+> 
 
-I assume you have other calls into the hypervisor and notifications from 
-the hypervisor? Are you going to add DT nodes for each one? I'd be more 
-comfortable with DT describing THE communication channel with the 
-hypervisor than what sounds like a singular function. Otherwise, what's 
-the next binding?
 
-Rob
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-[1] https://lore.kernel.org/all/20240222-gunyah-v17-2-1e9da6763d38@quicinc.com/
-[2] https://lore.kernel.org/all/20240129083302.26044-4-yi-de.wu@mediatek.com/
-[3] https://lore.kernel.org/all/20240127004321.1902477-2-davidai@google.com/
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y qcom/qdu1000-idp.dtb qcom/qru1000-idp.dtb' for 20240319091020.15137-1-quic_kbajaj@quicinc.com:
+
+arch/arm64/boot/dts/qcom/qdu1000-idp.dtb: /: usb-conn-gpio: {'compatible': ['gpio-usb-b-connector'], 'vbus-gpio': [[90, 7, 0]], 'id-gpio': [[91, 42, 0]], 'vbus-supply': [[99]], 'pinctrl-0': [[100, 101]], 'pinctrl-names': ['default'], 'port': {'endpoint': {'remote-endpoint': [[102]], 'phandle': [[88]]}}} is not of type 'array'
+	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
+arch/arm64/boot/dts/qcom/qru1000-idp.dtb: /: usb-conn-gpio: {'compatible': ['gpio-usb-b-connector'], 'vbus-gpio': [[86, 7, 0]], 'id-gpio': [[87, 42, 0]], 'vbus-supply': [[95]], 'pinctrl-0': [[96, 97]], 'pinctrl-names': ['default'], 'port': {'endpoint': {'remote-endpoint': [[98]], 'phandle': [[84]]}}} is not of type 'array'
+	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
+arch/arm64/boot/dts/qcom/qru1000-idp.dtb: phy@88e3000: compatible: 'oneOf' conditional failed, one must be fixed:
+	['qcom,qdu1000-usb-hs-phy', 'qcom,usb-snps-hs-7nm-phy'] is too long
+	'qcom,qdu1000-usb-hs-phy' is not one of ['qcom,sc8180x-usb-hs-phy', 'qcom,usb-snps-femto-v2-phy']
+	'qcom,qdu1000-usb-hs-phy' is not one of ['qcom,sa8775p-usb-hs-phy', 'qcom,sc8280xp-usb-hs-phy']
+	'qcom,qdu1000-usb-hs-phy' is not one of ['qcom,sc7280-usb-hs-phy', 'qcom,sdx55-usb-hs-phy', 'qcom,sdx65-usb-hs-phy', 'qcom,sm6375-usb-hs-phy', 'qcom,sm8150-usb-hs-phy', 'qcom,sm8250-usb-hs-phy', 'qcom,sm8350-usb-hs-phy', 'qcom,sm8450-usb-hs-phy']
+	'qcom,usb-snps-hs-5nm-phy' was expected
+	from schema $id: http://devicetree.org/schemas/phy/qcom,usb-snps-femto-v2.yaml#
+arch/arm64/boot/dts/qcom/qru1000-idp.dtb: /soc@0/phy@88e3000: failed to match any schema with compatible: ['qcom,qdu1000-usb-hs-phy', 'qcom,usb-snps-hs-7nm-phy']
+arch/arm64/boot/dts/qcom/qdu1000-idp.dtb: phy@88e3000: compatible: 'oneOf' conditional failed, one must be fixed:
+	['qcom,qdu1000-usb-hs-phy', 'qcom,usb-snps-hs-7nm-phy'] is too long
+	'qcom,qdu1000-usb-hs-phy' is not one of ['qcom,sc8180x-usb-hs-phy', 'qcom,usb-snps-femto-v2-phy']
+	'qcom,qdu1000-usb-hs-phy' is not one of ['qcom,sa8775p-usb-hs-phy', 'qcom,sc8280xp-usb-hs-phy']
+	'qcom,qdu1000-usb-hs-phy' is not one of ['qcom,sc7280-usb-hs-phy', 'qcom,sdx55-usb-hs-phy', 'qcom,sdx65-usb-hs-phy', 'qcom,sm6375-usb-hs-phy', 'qcom,sm8150-usb-hs-phy', 'qcom,sm8250-usb-hs-phy', 'qcom,sm8350-usb-hs-phy', 'qcom,sm8450-usb-hs-phy']
+	'qcom,usb-snps-hs-5nm-phy' was expected
+	from schema $id: http://devicetree.org/schemas/phy/qcom,usb-snps-femto-v2.yaml#
+arch/arm64/boot/dts/qcom/qdu1000-idp.dtb: /soc@0/phy@88e3000: failed to match any schema with compatible: ['qcom,qdu1000-usb-hs-phy', 'qcom,usb-snps-hs-7nm-phy']
+arch/arm64/boot/dts/qcom/qru1000-idp.dtb: /soc@0/phy@88e5000: failed to match any schema with compatible: ['qcom,qdu1000-qmp-usb3-uni-phy']
+arch/arm64/boot/dts/qcom/qru1000-idp.dtb: usb@a6f8800: compatible:0: 'qcom,qdu1000-dwc3' is not one of ['qcom,ipq4019-dwc3', 'qcom,ipq5018-dwc3', 'qcom,ipq5332-dwc3', 'qcom,ipq6018-dwc3', 'qcom,ipq8064-dwc3', 'qcom,ipq8074-dwc3', 'qcom,ipq9574-dwc3', 'qcom,msm8953-dwc3', 'qcom,msm8994-dwc3', 'qcom,msm8996-dwc3', 'qcom,msm8998-dwc3', 'qcom,qcm2290-dwc3', 'qcom,qcs404-dwc3', 'qcom,sa8775p-dwc3', 'qcom,sc7180-dwc3', 'qcom,sc7280-dwc3', 'qcom,sc8280xp-dwc3', 'qcom,sdm660-dwc3', 'qcom,sdm670-dwc3', 'qcom,sdm845-dwc3', 'qcom,sdx55-dwc3', 'qcom,sdx65-dwc3', 'qcom,sdx75-dwc3', 'qcom,sm4250-dwc3', 'qcom,sm6115-dwc3', 'qcom,sm6125-dwc3', 'qcom,sm6350-dwc3', 'qcom,sm6375-dwc3', 'qcom,sm8150-dwc3', 'qcom,sm8250-dwc3', 'qcom,sm8350-dwc3', 'qcom,sm8450-dwc3', 'qcom,sm8550-dwc3', 'qcom,sm8650-dwc3', 'qcom,x1e80100-dwc3']
+	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
+arch/arm64/boot/dts/qcom/qdu1000-idp.dtb: /soc@0/phy@88e5000: failed to match any schema with compatible: ['qcom,qdu1000-qmp-usb3-uni-phy']
+arch/arm64/boot/dts/qcom/qdu1000-idp.dtb: usb@a6f8800: compatible:0: 'qcom,qdu1000-dwc3' is not one of ['qcom,ipq4019-dwc3', 'qcom,ipq5018-dwc3', 'qcom,ipq5332-dwc3', 'qcom,ipq6018-dwc3', 'qcom,ipq8064-dwc3', 'qcom,ipq8074-dwc3', 'qcom,ipq9574-dwc3', 'qcom,msm8953-dwc3', 'qcom,msm8994-dwc3', 'qcom,msm8996-dwc3', 'qcom,msm8998-dwc3', 'qcom,qcm2290-dwc3', 'qcom,qcs404-dwc3', 'qcom,sa8775p-dwc3', 'qcom,sc7180-dwc3', 'qcom,sc7280-dwc3', 'qcom,sc8280xp-dwc3', 'qcom,sdm660-dwc3', 'qcom,sdm670-dwc3', 'qcom,sdm845-dwc3', 'qcom,sdx55-dwc3', 'qcom,sdx65-dwc3', 'qcom,sdx75-dwc3', 'qcom,sm4250-dwc3', 'qcom,sm6115-dwc3', 'qcom,sm6125-dwc3', 'qcom,sm6350-dwc3', 'qcom,sm6375-dwc3', 'qcom,sm8150-dwc3', 'qcom,sm8250-dwc3', 'qcom,sm8350-dwc3', 'qcom,sm8450-dwc3', 'qcom,sm8550-dwc3', 'qcom,sm8650-dwc3', 'qcom,x1e80100-dwc3']
+	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
+arch/arm64/boot/dts/qcom/qru1000-idp.dtb: /soc@0/usb@a6f8800: failed to match any schema with compatible: ['qcom,qdu1000-dwc3', 'qcom,dwc3']
+arch/arm64/boot/dts/qcom/qdu1000-idp.dtb: /soc@0/usb@a6f8800: failed to match any schema with compatible: ['qcom,qdu1000-dwc3', 'qcom,dwc3']
+arch/arm64/boot/dts/qcom/qru1000-idp.dtb: pmic@0: gpio@c000: 'usb-vbus-det-default' does not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml#
+arch/arm64/boot/dts/qcom/qdu1000-idp.dtb: pmic@0: gpio@c000: 'usb-vbus-det-default' does not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml#
+arch/arm64/boot/dts/qcom/qru1000-idp.dtb: gpio@c000: 'usb-vbus-det-default' does not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/pinctrl/qcom,pmic-gpio.yaml#
+arch/arm64/boot/dts/qcom/qdu1000-idp.dtb: gpio@c000: 'usb-vbus-det-default' does not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/pinctrl/qcom,pmic-gpio.yaml#
+arch/arm64/boot/dts/qcom/qru1000-idp.dtb: pinctrl@f000000: Unevaluated properties are not allowed ('usb-id-det-default', 'usb-vbus-boost-default' were unexpected)
+	from schema $id: http://devicetree.org/schemas/pinctrl/qcom,qdu1000-tlmm.yaml#
+arch/arm64/boot/dts/qcom/qdu1000-idp.dtb: pinctrl@f000000: Unevaluated properties are not allowed ('usb-id-det-default', 'usb-vbus-boost-default' were unexpected)
+	from schema $id: http://devicetree.org/schemas/pinctrl/qcom,qdu1000-tlmm.yaml#
+arch/arm64/boot/dts/qcom/qru1000-idp.dtb: usb-conn-gpio: compatible: 'oneOf' conditional failed, one must be fixed:
+	['gpio-usb-b-connector'] is too short
+	'gpio-usb-b-connector' is not one of ['usb-a-connector', 'usb-b-connector', 'usb-c-connector']
+	'samsung,usb-connector-11pin' was expected
+	from schema $id: http://devicetree.org/schemas/connector/usb-connector.yaml#
+arch/arm64/boot/dts/qcom/qru1000-idp.dtb: usb-conn-gpio: 'anyOf' conditional failed, one must be fixed:
+	'vbus-gpios' is a required property
+	'id-gpios' is a required property
+	from schema $id: http://devicetree.org/schemas/connector/usb-connector.yaml#
+arch/arm64/boot/dts/qcom/qru1000-idp.dtb: usb-conn-gpio: Unevaluated properties are not allowed ('compatible', 'id-gpio', 'vbus-gpio' were unexpected)
+	from schema $id: http://devicetree.org/schemas/connector/usb-connector.yaml#
+arch/arm64/boot/dts/qcom/qdu1000-idp.dtb: usb-conn-gpio: compatible: 'oneOf' conditional failed, one must be fixed:
+	['gpio-usb-b-connector'] is too short
+	'gpio-usb-b-connector' is not one of ['usb-a-connector', 'usb-b-connector', 'usb-c-connector']
+	'samsung,usb-connector-11pin' was expected
+	from schema $id: http://devicetree.org/schemas/connector/usb-connector.yaml#
+arch/arm64/boot/dts/qcom/qdu1000-idp.dtb: usb-conn-gpio: 'anyOf' conditional failed, one must be fixed:
+	'vbus-gpios' is a required property
+	'id-gpios' is a required property
+	from schema $id: http://devicetree.org/schemas/connector/usb-connector.yaml#
+arch/arm64/boot/dts/qcom/qdu1000-idp.dtb: usb-conn-gpio: Unevaluated properties are not allowed ('compatible', 'id-gpio', 'vbus-gpio' were unexpected)
+	from schema $id: http://devicetree.org/schemas/connector/usb-connector.yaml#
+
+
+
+
+
 
