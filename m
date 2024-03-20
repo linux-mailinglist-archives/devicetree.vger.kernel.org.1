@@ -1,135 +1,133 @@
-Return-Path: <devicetree+bounces-52033-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52034-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98D34881896
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 21:29:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEAF6881928
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 22:34:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA1361C20EB0
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 20:29:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6CF8D28425D
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 21:34:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A59C785937;
-	Wed, 20 Mar 2024 20:29:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85C798595A;
+	Wed, 20 Mar 2024 21:33:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ly5E8on/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N6WEZKGi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7B9129CE8;
-	Wed, 20 Mar 2024 20:29:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C361838F96;
+	Wed, 20 Mar 2024 21:33:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710966559; cv=none; b=E56Stp+SCaYb1KfMG25ksE2+Yaafr7TATLNlhc2irVB2Oz5txkLwhyEtdR/TuMd7s5X1D4jP2EEbfpd5UivGwkjd/yrkSNwp/HPQ0a30DC4Je61wHeDVMhz8vqM7+X/MjQxu6nbbXq//zAwPjit3dQiFXOYDyVkck70/ucGK03I=
+	t=1710970437; cv=none; b=ZXaWxcF03oBqsBDzx3PwjqWrATrYLH2MI0PkCxsCHFEd33ZQEbbm2pxzbn/23Hph96Cmw9ftbC6WgZtTJe8d/mQK62Oa79bFRoLde82n/hGVjnPhF1vjhrWr8zvSMvl40Cs+z8QtJtc0DNJSWYpcO0A75/pI9VMKaTjXLjXmfrk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710966559; c=relaxed/simple;
-	bh=sibqcgVk69cAWwUp5fELHFPqFKZCzweuaYfOTBxCD6o=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=PtW7htaMg/FnLKT3HGfAJmsGkanWm6ZAVPXu65pK508cxUXuAbGh6ZF+tYMl7Y/I1RDdWcJsfl5C3nCAJeu4v3K5US9BleeJbANJpZAEztCgSduC9IJ6fLDNFU9H3JckYEhD+e/enb5JSPepmNH44BBk2KJ4J+iQue11qD4M3Uc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ly5E8on/; arc=none smtp.client-ip=209.85.167.43
+	s=arc-20240116; t=1710970437; c=relaxed/simple;
+	bh=9po42VtNCWVTAdVKwkrdxiRN/cLeeuxRg1UjTd9aWEE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=lGSplyps4tZWCi49pgsNTH5o1vIF65qALOBHTz6qing/E4nWkBnhHqWX3SSy/RecQoWTVO6NjkFygCNbMSKGZsOzoKphEvSn4x3w1GPusn8bVqQDzK16JVlTs3laxKL+35q9QN29EAo8inEFsM6oUdJAekUgsA/UH3pD4+NqTwE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=N6WEZKGi; arc=none smtp.client-ip=209.85.128.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-513d599dbabso348498e87.1;
-        Wed, 20 Mar 2024 13:29:17 -0700 (PDT)
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4146fe16a1aso2332805e9.1;
+        Wed, 20 Mar 2024 14:33:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710966556; x=1711571356; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Dvd7/K/iPH6D09kkHMbkBRJCLxovJRz+5X5JeM9cC40=;
-        b=ly5E8on/KPPjFjwvSaSEAmef/5FTEnJUr40nDBBV2TV0moKWqXDVO7ZZ5pX/7xg+rZ
-         dnq8HX0ikU6MGnuvuuB6htcGI3ybwGOqYyI9fZars43ZGoiOX4xNqVSkOHWTYs8VBZbx
-         hkQOGGHZJRVZUi1Hcq1gEzkxgCWbhKAQG5quZ9q7gbFvgc7vr97xIu+OJUFFdCIHX5rb
-         FmOGPoNvxCR0TAV3RKOd9qhpxdOCo5EfWgUiWHYSu1M+rmkatYfJSgHQr8GoqhjolScn
-         Eqz0o9ntYKrVkbCzlSrqvtuQd+wnyByFecxwzhZXfQ/paH9h+JqRN/nG9JSgFUbMa5Ij
-         YGfQ==
+        d=gmail.com; s=20230601; t=1710970434; x=1711575234; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HpG5/QJ7+7xCTiH5bZDPq7O3h3XOgm2ds8JyykvemFs=;
+        b=N6WEZKGiVbNB0MDFGOgy3naqGhTvinBRYbcd5P/6zxRQaIkBVC9hw2BXSZBEpPSosu
+         kL018LXHZzUFSGHazu1aJ91NfOmcUcoXbDvutqlfL2/ysrq36AEogTN4XR0VxFAwkrwW
+         RkoN0pQeexYzOjZFtk5cvzQ+ZycQFBZozYXdbGRnpQ3W8uHhYgsB2iGnJgpRPH/jISxL
+         Clir8eW2vExc3VxhFnn/UfAUu5hjhel6jzVFvmwXP0tlatj6boFRdf6av+OgnX37MJrs
+         R7W+FLDRU3OHeh5Z6WFrfL8qLYqm2fo0QM8MazsH1Qg6ImaddcSFuFWjJ3XwslHjpxv3
+         R0qA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710966556; x=1711571356;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Dvd7/K/iPH6D09kkHMbkBRJCLxovJRz+5X5JeM9cC40=;
-        b=GW+ODPBSQtbDNIzgDN/3ZtMyj2UOi+W2wEN7Po4O94prqDVj2tjpG1vYit72YnrARu
-         x6BAynNJUqqY3kKhgQH6r41kE/SKzYLnes1k5IIbhQaQJn0bDm5QKak8Foonw5ewW9Rz
-         hX2RvA/6zrav77sBY5Af9Ck5x1W8vzd/zFOInN+v/Oz6VxVrpAa1dadI2VpvwXRv8XfH
-         XSj2aOGio1kr6ufAHvSpUf554u0LvsPo4oF0qX/jjBXGkmYD5lZ2G4F8podBuiulEBuX
-         Ob3xoJMuL6l8kV17Mxl9/zszSFbNu1bAwNvoPuEL6XCm+9kJD9XPqxsSQ6ZSM8F0/3tj
-         2cAQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX69+DTh7en9/i9ZJdqiEbnSwo1ZZwxJov9+JSVP894DcEHpdgimwZ4LTia2dVBU0vb/xgaILKGMIm1oXx4CACH2GLX44Zi7p8PjE4yqpyx2nvTs9O/xYv6XusYqPlDa9wjx2acBHr0uQ==
-X-Gm-Message-State: AOJu0YwNbakOUg8M5TQTf8IE35tV3st0n6KC3Vf7mAL7swxb9zzrgpwF
-	IZqryDlIcKnD4+Vuo/5zPjoHQ9SdU9Cp5SMve0UAEBTcsRpL292f0rvlw+HzStrfOjzD
-X-Google-Smtp-Source: AGHT+IGeAB6MCS1rA/ycdxQ22gDA1FTucn7CNo0Yl14vI1V2G3iGJZh5xoX+yAWkcX+Cye2/GFrHmw==
-X-Received: by 2002:a19:f803:0:b0:512:ed8e:97ce with SMTP id a3-20020a19f803000000b00512ed8e97cemr5087582lff.16.1710966555838;
-        Wed, 20 Mar 2024 13:29:15 -0700 (PDT)
-Received: from [10.0.0.100] (host-85-29-76-118.kaisa-laajakaista.fi. [85.29.76.118])
-        by smtp.gmail.com with ESMTPSA id q5-20020ac25145000000b00512e594e235sm2348058lfd.242.2024.03.20.13.29.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Mar 2024 13:29:15 -0700 (PDT)
-Message-ID: <d20dc37c-13fa-43d1-af52-dce8d8dcdd75@gmail.com>
-Date: Wed, 20 Mar 2024 22:30:57 +0200
+        d=1e100.net; s=20230601; t=1710970434; x=1711575234;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HpG5/QJ7+7xCTiH5bZDPq7O3h3XOgm2ds8JyykvemFs=;
+        b=gm8baI2r2flnXMPV7r2d1I6Uo29H6h735hctNgYqIr8WereUMuhiYUV3J7zUfnKEFk
+         gEfbLDV0VDOVui+iSSj2iO9j4JC8WHVErGIrEnV482Zgz4Wgx0n64f7OxAXto0cnPmy5
+         VzUDx8fedAlvUH834hOmviWm4aEUxYE2o0JKQoLOOaOSWzWS7duXZXV8pC6rqRLIUqSd
+         ypxI5xnzIl8gWUi+g9qTCSRAqqtNHczuu9EO5qFNiyuhnWAKZG4NR3cG4hc0q1vJelEU
+         loWKFXFyNLwJ5lsNy2yNjk8B/sNTTS4TU7QEWtIgo9cZNKe4scj2aaNIx2fWGsQIT/DC
+         ZhyQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXZApGQm0PA4t4ks50z2ifU698n2fPLe9KuDcTUIW0WdzGbwO3RYrEX9/4mlNZYrGRrX8wA2Tf4yeoFyixoMmvrtNNX2chXPuEaDTvrkfLFxk8lacNQznpvE/GTegSGnAwMXQr+XSyV+w==
+X-Gm-Message-State: AOJu0YyHnGSpUsl/V/wJD4MILIX472r6ieEZJl8fTMn9MBicvoaP/1Nd
+	bXJe/umZZ215K2n5C7l4vI4do7SAYhYTqVxkVSPdcTT8gbanvMVeLRTpqgbh3d0=
+X-Google-Smtp-Source: AGHT+IFqti5ujR7izI6EPODMNsE+CcVGLz8/Sy9EupnoDTQlcmoQlIEmGAk1SrNIwgECdX0USwoRiw==
+X-Received: by 2002:a05:600c:1c19:b0:414:63c6:8665 with SMTP id j25-20020a05600c1c1900b0041463c68665mr5470547wms.2.1710970433959;
+        Wed, 20 Mar 2024 14:33:53 -0700 (PDT)
+Received: from localhost ([2001:861:3385:e20:6384:4cf:52c5:3194])
+        by smtp.gmail.com with ESMTPSA id t12-20020a05600c450c00b00414688af147sm3416429wmo.20.2024.03.20.14.33.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Mar 2024 14:33:53 -0700 (PDT)
+From: Raphael Gallais-Pou <rgallaispou@gmail.com>
+Subject: [PATCH v3 0/2] Update st,stih407-thermal device
+Date: Wed, 20 Mar 2024 22:33:47 +0100
+Message-Id: <20240320-thermal-v3-0-700296694c4a@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 13/13] ASoC: ti: davinci-i2s: Opitonally drive DX pin
- during capture streams
-From: =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
-To: Bastien Curutchet <bastien.curutchet@bootlin.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, herve.codina@bootlin.com,
- christophercordahi@nanometrics.ca
-References: <20240315112745.63230-1-bastien.curutchet@bootlin.com>
- <20240315112745.63230-14-bastien.curutchet@bootlin.com>
- <00182d1d-ef29-457f-9e3e-6e9b57592118@gmail.com>
- <0bb26153-8bcb-475f-8892-5eb925fec538@bootlin.com>
- <7925bbe5-17e8-42cb-a5f0-4f3e06810a90@gmail.com>
-Content-Language: en-US
-In-Reply-To: <7925bbe5-17e8-42cb-a5f0-4f3e06810a90@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADtW+2UC/02MzQ6CMBAGX4X0bE27pYKefA/joS0LNOEvLWk0h
+ Hd3IVE8zu43s7CIwWNkt2xhAZOPfhwI1CljrjVDg9xXxAwE5AJA87nF0JuOl64S1hR1rsEyWk8
+ Ba//aS48ncevjPIb3Hk5yu34bl18jSS54aYXS5RUdFure9MZ3Zzf2bGskODwl5OEBedIqKDT9S
+ P331nX9ANOgGMrWAAAA
+To: "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Patrice Chotard <patrice.chotard@foss.st.com>, Lee Jones <lee@kernel.org>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+X-Mailer: b4 0.13.0
 
+Those two patches update the thermal device by converting the deprecated
+txt documentation file to DT schema, and adding a required property in
+the device tree where it is needed.
 
+Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
+---
+Changes in v3:
+- [1/2] Specify const value for '#thermal-sensor-cells'
+- [1/2] Add 'maxItems' for 'interrupts' property
+- [1/2] Change commit log accordingly
+- Did not add Krzysztof's r-b since patch [1/2] was modified
 
-On 20/03/2024 17:42, Péter Ujfalusi wrote:
->>> On 15/03/2024 13:27, Bastien Curutchet wrote:
->>>> The McBSP's DX pin that outputs serial data during playback streams can
->>>> be used during capture streams to repeatedly output a chosen pattern.
->>>> For instance, this can be useful to drive an active-low signal during
->>>> captures (by choosing <0> as output pattern).
->>>
->>> Are there really any other use of this than to pull down or up the DX
->>> pin (0 or 0xffff)
->>
->> I don't know, indeed today I can only think about these two patterns.
->> I tried to do something in a 'generic' way so it can evolve if needed.
-> 
-> I think the definition of the 'ti,drive-dx' is somehow odd. It allows
-> you to set it to 0x1234 and the DX pin will show 0x1234 when you capture
-> 32bit. If you capture 16bit then it will transmit 0x12 (or 0x34?), no?
-> If you have 4 channel capture then I won't speculate what will be on the
-> DX pin ;)
-> 
-> Would not be better to say that the DX pin will be driven low or high
-> during capture _and_ disable the playback support?
+Changes in v2:
+- [1/2] Change commit log to use imperative
+- [1/2] Drop description
+- [1/2] Drop 'clocks' description
+- [1/2] Add 'reg' property
+- [1/2] Add '#thermal-sensor-cells'
+- [1/2] Make node name generic in example
+- [1/2] Fix YAML style
 
-After some thinking, it might be still better to use the DX pin as GPIO
-and either have a custom machine driver which would handle it (set low
-when a capture trigger happens) or connect it in DAPM as a supply, bias
-or something and ASoC would handle it automagically.
+---
+Raphael Gallais-Pou (2):
+      dt-bindings: thermal: convert st,stih407-thermal to DT schema
+      ARM: dts: st: add thermal property on stih410.dtsi and stih418.dtsi
 
-I think that would be cleaner in many ways. What do you think?
+ .../bindings/thermal/st,stih407-thermal.yaml       | 58 ++++++++++++++++++++++
+ .../devicetree/bindings/thermal/st-thermal.txt     | 32 ------------
+ arch/arm/boot/dts/st/stih410.dtsi                  |  1 +
+ arch/arm/boot/dts/st/stih418.dtsi                  |  1 +
+ 4 files changed, 60 insertions(+), 32 deletions(-)
+---
+base-commit: b6d69282db550689ab5980e06eedd23b64584a73
+change-id: 20240225-thermal-8cd0ba7f452b
 
+Best regards,
 -- 
-Péter
+Raphael Gallais-Pou <rgallaispou@gmail.com>
+
 
