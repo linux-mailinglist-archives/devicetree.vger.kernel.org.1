@@ -1,76 +1,75 @@
-Return-Path: <devicetree+bounces-51842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94F77880BC1
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 08:14:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9500880BD7
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 08:15:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 821141C20EDA
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 07:14:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 200891F24668
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 07:15:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C6711EA8D;
-	Wed, 20 Mar 2024 07:14:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B39C219E8;
+	Wed, 20 Mar 2024 07:15:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yrhWbZkB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="knxTLmxe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC5701EB22
-	for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 07:14:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDCE11EB52
+	for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 07:15:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710918855; cv=none; b=ddYt/vXI7Mh9qXZiVDoIYhwyKu8NG0ZEFvH0w+hFzgg5meLdr02Dpqa/kDjZx/35N7uRRBqRcdcXU4HkS2v976EkroD0GjAJUSsExIaRbnqcCieSpbf6T9q2gwetye4H36qvizWllM9wtX+EgpGLbZJwbuH+cg4O3lTwv72QeUM=
+	t=1710918948; cv=none; b=LBBD0EhZUlf9nNzNGFoxTXkGbS4iT13SZ5f4ovHJrAytNUo7r+LQe5tKnT3KGMbFdvRhEF+dQZiWW+9OPQKPDqrJoULc3zuvzDI0meyKsr8onkfhuEHWTTli6Ol426isbBLyjoEytorNvQO8nGAzxf9ouqGQOYWqlbJ11GU4dEk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710918855; c=relaxed/simple;
-	bh=xEmFnSxCQzrHscs+HCvIbi66aDmD5SivRCMts2FMl/U=;
+	s=arc-20240116; t=1710918948; c=relaxed/simple;
+	bh=uAiOL5GdoR6kEhRwJz3jX8EsnRj9M2m+Ll9g7jlCZ44=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=G8HSG2TYNqt7WmUDjRAmaG00c/C9UPNGXEli4xp+CnbOS49UoWxAKpht2irviYUxKrtaD+xTFVL+JvPBwpfUl6cyI5Hzg7hG68+KY8QYZBEV4fpBt5qxjxo3LqMF1dlJznxGnAco3L0PSv9lBWN71UjJlfVr665BZWlsw+yYnNU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yrhWbZkB; arc=none smtp.client-ip=209.85.208.49
+	 In-Reply-To:Content-Type; b=a8AYWC7EnawNJXbmr9Yh5zfZhK1iv2b/bpVOHbHs6ddc6UGFYDs+hnPRAQjd+6iggnviOwqVRx5YiXnl5i73J7J8SYiOMrszHDqNsKeWIUalMJBecKtN6MBfxexIdV5m596NyrtpeHW10lQKFQJuzZjoXD/In6iSzveJi8JkPxU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=knxTLmxe; arc=none smtp.client-ip=209.85.218.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-56b9e5ed074so1814600a12.3
-        for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 00:14:13 -0700 (PDT)
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a46ba938de0so441721666b.3
+        for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 00:15:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710918852; x=1711523652; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1710918944; x=1711523744; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Wg1FunL6jyj0B4tLM7JyuHaHQjdfFL1e8fU0rSTCcBw=;
-        b=yrhWbZkBQqTMaLhJKaa4CFT/TA5v+2bVGpL7urxDUfNifgoOmYCZTADR/t5TAJfTxr
-         YXpbkZlUd12qNWBDOY5fdD0lo9alIp9msixWqPxcM1f7BZBKN7hxySoEu+nMVT0zdinV
-         X1hAdhQq77UiGEuFRpxTN5L0yOq4uLMCNi6GnP8i27uuJwF7Uz3vckrGLRVKI5suec/X
-         gJJG8cqpmPx5d4aukqK1g1OOSP8ZBtTMkTZC0ucgjHrynL3FhvYwvJrN0uebwMGevOig
-         Tq8VV3JxynjVZ5KdT8x+MKxe96NWeNkXBo+deB2gy61qlVU1JsDDzkREvOyWOpkFUPr/
-         OQ4w==
+        bh=olh1x6wED1wlUWfy3fPcoEKZFeL0ZQi1R+KL4fAIutY=;
+        b=knxTLmxeVD9VFmFhwQPO2ZJRM1WCabdlp8IewU33LTjCmlGEhV/dwYzWvnlLlVHLG+
+         xoKKmKmXv4W9UO3W6JfZx0vmxh1+kwQWifvdGPBIwty55gZtgii9RffMPnygFNG51VFi
+         aGJewFitEovW467BscVsLrGjN0I6Jnbfn1r7I8ar10VI7fCzQDryuT1S+VpVpAVjT5gy
+         rx7sjNUBZc1wirmKl4duSd0/vzvn77xucdFPgHi6rJ2d2kfNAwHD/tzH90JFhG7kaQu9
+         k9hPEPZPlXtDZB49A3pqXDyxPcpHnuOYpb+w8AfiNwyuu+Gi1TgosmJqVMCkqkNFY5rw
+         LJYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710918852; x=1711523652;
+        d=1e100.net; s=20230601; t=1710918944; x=1711523744;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Wg1FunL6jyj0B4tLM7JyuHaHQjdfFL1e8fU0rSTCcBw=;
-        b=d7FJoed9QwETHtNyAHiv9dzzTK/RLesM9xOCQAUvVJ+B5MeoqxVFonm9fv9TDNP9Z3
-         orWxTmDfV0DkurLHP4mUCHyBITiQ1dKe0hkqYz6ZYDo5Du1yY6TZDhM3kgwoIL4+8LXw
-         0bjebQC/wiw9RnLYgxUshR0CbgoTWduyZ6AU+ppDfW8ekTEwE+VmsPyp5w6giyH1prpS
-         s4dMPbz5x//9wvBekIvIIKuVkx3F2lXVQL0odH8YIABfNmwRPxVCjisp3d1cykJ1kY2i
-         qKY1MM5+/a5SwJRKiNPSknEt1fbBPHYFBEBO+tWx4yjykwuHCuW7gJa8UpDocMzxDiWU
-         hZwg==
-X-Forwarded-Encrypted: i=1; AJvYcCWwZrBoffktwZ343Pl7/C2d/KuWPJA5yFM2xumNcjELBBe86fseRMv6bqYxbi4YM6RROLdSQYWD98dNkk7DpkDYuFB+IZFuMtn6VA==
-X-Gm-Message-State: AOJu0Yzmpne+sLKb0hMLuL7CAyUawcXgV/dOtsrIlasSkdWcG9Qu4cUk
-	dH5QdXeAHhbODdbvlbUGfSkTR9OlX1JLwohjMYgRbzvAkK5KvxaB0HqKfmPyhNxqsgGRyaLhYtG
-	e
-X-Google-Smtp-Source: AGHT+IF9gmDahEPShyP+huxWDon36DeJZWflQoKA2dVvNe9Fz8Bf9q3I+ZfZXbfU2hFsKx9u3Yj14Q==
-X-Received: by 2002:a17:906:4a84:b0:a45:27bd:e1ff with SMTP id x4-20020a1709064a8400b00a4527bde1ffmr706874eju.6.1710918852030;
-        Wed, 20 Mar 2024 00:14:12 -0700 (PDT)
+        bh=olh1x6wED1wlUWfy3fPcoEKZFeL0ZQi1R+KL4fAIutY=;
+        b=eJF7ovyX2y9wfEc3ltoFYEYi06JnxRN969fbXV7DTh7hMbvbw53ZRu1K8cXK/DKNRi
+         8C0XijDrWHl2xXgJX3wUPjAIV6bWTLEWuIfH3Zx3527eij2V/UzVqepPptre2xURn0hZ
+         cQtiUk+OfJXeaP6ugOs8bgSySDB1hLPkT8m+wC5OrT7tF91vq0prRRWjvoWH/Ho3PDfe
+         nIcZAE7Jp8JuARsNOA2DGzsh7IwQRE/P4hRDca06F9HQBQNbCEMvVCEIvXvxNIgD7o09
+         kjuFx15CWfgcqkC+LMK9+lwSQhL8CAJcR6tVsQHk+eoZ40SniOM+tHuLLiH1r7vuf3gn
+         a3cw==
+X-Forwarded-Encrypted: i=1; AJvYcCVlFURGAHI5tFDzzvY2Az0Ydj4+rmLIdmqyvoicGxXPminjQbzMFonr+CwVDhGAafRfA0PVVWfIPOueQXA5o+KNLUFXFF4r1BWrwA==
+X-Gm-Message-State: AOJu0YxddPEFHCUdMue7I6GAb2NmTk35Ny06KcpRnha2vZqdzHTRm2rb
+	Hod82O8UOgG0V1xDqFX3ACIfVVhGJ34dAx978yqk/rjJCqzCL3wAUMUWJTHQ6XI=
+X-Google-Smtp-Source: AGHT+IGy4pHyrGgiDEtdIBqpgQzGrmuTcbZzIkFUCPPzqcWHeAqI5EV5Mv+IuXtIUiJAwLJqcvp+Jw==
+X-Received: by 2002:a17:906:4554:b0:a46:b8ed:8a9 with SMTP id s20-20020a170906455400b00a46b8ed08a9mr6443836ejq.55.1710918943919;
+        Wed, 20 Mar 2024 00:15:43 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id hg25-20020a1709072cd900b00a469be48551sm5228432ejc.45.2024.03.20.00.14.09
+        by smtp.gmail.com with ESMTPSA id gy4-20020a170906f24400b00a45f39b2d16sm6818936ejb.200.2024.03.20.00.15.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Mar 2024 00:14:11 -0700 (PDT)
-Message-ID: <5976952b-d5e8-4333-b769-d494b8195689@linaro.org>
-Date: Wed, 20 Mar 2024 08:14:08 +0100
+        Wed, 20 Mar 2024 00:15:43 -0700 (PDT)
+Message-ID: <70846fbb-9c17-440a-911d-456b0444dd94@linaro.org>
+Date: Wed, 20 Mar 2024 08:15:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,8 +77,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: power: reset: add gs101 poweroff
- bindings
+Subject: Re: [PATCH 2/3] arm64: dts: exynos: gs101: add poweroff node
 To: Alexey Klimov <alexey.klimov@linaro.org>, sre@kernel.org,
  robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
  linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
@@ -91,6 +89,7 @@ Cc: conor+dt@kernel.org, linux-samsung-soc@vger.kernel.org,
  alim.akhtar@samsung.com, linux-arm-kernel@lists.infradead.org,
  elder@linaro.org
 References: <20240320020549.71810-1-alexey.klimov@linaro.org>
+ <20240320020549.71810-2-alexey.klimov@linaro.org>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -137,76 +136,31 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240320020549.71810-1-alexey.klimov@linaro.org>
+In-Reply-To: <20240320020549.71810-2-alexey.klimov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 20/03/2024 03:05, Alexey Klimov wrote:
 > Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
-
-Missing commit msg.
-
-A nit, subject: drop second/last, redundant "bindings". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-
 > ---
->  .../power/reset/google,gs101-poweroff.yaml    | 54 +++++++++++++++++++
->  1 file changed, 54 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/reset/google,gs101-poweroff.yaml
+>  arch/arm64/boot/dts/exynos/google/gs101.dtsi | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/power/reset/google,gs101-poweroff.yaml b/Documentation/devicetree/bindings/power/reset/google,gs101-poweroff.yaml
-> new file mode 100644
-> index 000000000000..d704bf28294a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/reset/google,gs101-poweroff.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/power/reset/google,gs101-poweroff.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+> index 55e6bcb3689e..9def28393274 100644
+> --- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+> +++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+> @@ -509,6 +509,13 @@ sysreg_apm: syscon@174204e0 {
+>  		pmu_system_controller: system-controller@17460000 {
+>  			compatible = "google,gs101-pmu", "syscon";
+>  			reg = <0x17460000 0x10000>;
 > +
-> +title: Google GS101 poweroff driver
+> +			poweroff {
+> +				compatible = "google,gs101-poweroff";
+> +				samsung,syscon-phandle = <&pmu_system_controller>;
 
-Bindings are not for drivers, but hardware.
-
-> +
-> +maintainers:
-> +  - Alexey Klimov <alexey.klimov@linaro.org>
-> +
-> +description: |+
-> +  This is a Google Tensor gs101 poweroff driver using custom regmap
-
-Bindings are not for drivers, but hardware.
-
-> +  to map the poweroff register. The poweroff itself is performed with
-> +  a write to the poweroff register from a privileged mode. Since generic
-> +  syscon does not support this, the specific one is required.
-> +  The write to the poweroff register is defined by the register map pointed
-> +  by syscon reference plus the offset with the value and mask defined
-> +  in the poweroff node.
-> +  Default will be little endian mode, 32 bit access only.
-> +
-> +properties:
-> +  compatible:
-> +    const: google,gs101-poweroff
-> +
-> +  mask:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Update only the register bits defined by the mask (32 bit).
-> +
-> +  offset:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Offset in the register map for the poweroff register (in bytes).
-> +
-> +  samsung,syscon-phandle:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-
-This does not look right. The poweroff handling is within PMU, not
-somewhere else. Don't use syscons as a replacement of regular MMIO
-addresses.
+This is just senseless... you are the child of pmu, as seen in this DTS.
+You do not need to reference yourself (so the PMU)!
 
 
 
