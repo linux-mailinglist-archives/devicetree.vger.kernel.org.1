@@ -1,122 +1,117 @@
-Return-Path: <devicetree+bounces-51953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51954-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D55BC8811A4
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 13:28:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 192398811AA
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 13:29:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 578DA1F237A9
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 12:28:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C25F81F23AF7
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 12:29:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 793933FB97;
-	Wed, 20 Mar 2024 12:28:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C871E3FB9E;
+	Wed, 20 Mar 2024 12:29:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KaqzUsks"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="e5vZ9Oxu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C11AF3FB95;
-	Wed, 20 Mar 2024 12:28:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 015B53FB95
+	for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 12:29:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710937714; cv=none; b=bSw9IrQq9WfCEqSqUu93Sxit7iUjrqWjhq/5qwYO53vu4zak/kQ9FOXUsq1xgndJKSLzeaPJ0hqjfwviZwdosB4CsdD5vDyHLhXnReTRenO+87ycWQGTIOMxpnKg5TRi4moG3BxHizWjwrcIPCkEsteRVo4eCCJrF4A1XCI2hgc=
+	t=1710937765; cv=none; b=Izyvn33KWTZszS2F0u7ulfF254fA70MZW5Wu/9CTaSKkHJXBXVN/Ita5Ie/PTMqWpFq2s9BQ0rtG3ynp1KDsk13cpKxn9wOehIqdUyL1wxl4jBzkg2jxYE0sEYWdNcjUa6lBNHUm8sZbe4usuMoUhSnOQFMApLfV81DdDDQ+h3s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710937714; c=relaxed/simple;
-	bh=NXymN6d151ajo67O/+ECjgKwOOheDmG+BgY+3iMrzSI=;
-	h=MIME-Version:From:Date:Message-ID:Subject:To:Cc:Content-Type; b=lZdToIV5+j16FrylZtYTXBd3LDk4dckuubayi18U3L+ckpdjHtN/4e2Unrz0kHdqAvvM1UmOqaY6WzWfBM1S5TSaEXLUsjwob2S0xxc23GrYVNA0C+J1q3hgjEnwcp/3ckd9OjAQ8vnLkvkNbMyosEsbawGDeKOTmmUSyFQfcmA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KaqzUsks; arc=none smtp.client-ip=209.85.208.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-56ba73c02b2so1497280a12.0;
-        Wed, 20 Mar 2024 05:28:32 -0700 (PDT)
+	s=arc-20240116; t=1710937765; c=relaxed/simple;
+	bh=ykaeCwGFN314yllM2TqPdc5k/xh5z5Zbpzu9ntjIRa8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bv5Rf0FWZewla+Y7q1iY7KJTFn3zG0Z3uf6HKSqz3+H9WZa7ZC5sWl3ijbSzcs2R7mkDtCYzidQDniWxHN2A+8DlARQgk9Evp4zefFVOReDIfve9hUsPQYSKneT65rawxWl0nuNII+jPnXCsTQM8GR3ftPYRv3d8p98rDkZpHhk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=e5vZ9Oxu; arc=none smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2d28051376eso111850821fa.0
+        for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 05:29:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710937711; x=1711542511; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=bdUMDayjgwY4ifcDBF0amt72RjSwOT8m0FQhkrxhi5E=;
-        b=KaqzUsksVlU3HgzJN7SytUXe+j/wRneOOi9QVn8TwSf19QmxmfflOis3fcariSDV9v
-         /VAj7Rf1n9LiDhP9jlP7rYuzO5Hxmu6jXRPh3rCriRk7lSqapEm99xLWRCE9IpBs2wkl
-         fgllUMLKzrPA3z0PKolL9i077xFbxBHO55xImXpuerY3Ze+1QsXRY64YBT/NdJMHiHRl
-         A3BIyZh1ee+v2B7cupxX5In8qtvQT4OyZaANtEaVUS0z4RLyot4vSgPHhK4XlA7OUdNw
-         +1Q45IS8mjIWoFmhkgE1W7dyW2yBAve1vG+GFsAldsnTq+sqZvdZHlEDPvih7QAD++Qn
-         DPeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710937711; x=1711542511;
-        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+        d=linaro.org; s=google; t=1710937762; x=1711542562; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=bdUMDayjgwY4ifcDBF0amt72RjSwOT8m0FQhkrxhi5E=;
-        b=g0jNNyMlw4sA8xyaKnhUT8Od3ecR2L46gJ5rAPm92bgYSNBIhIqTKpnwk03vTv8/qs
-         MrVWC636okZbPfm7nWDxdi+t47D9+kNZrPm6RY3SXfBJnFe2e1OAbAi8RnNEWVqbpFOx
-         JcuMV0xFkXpqti+5WvGdogqYjtb8E8Z6oZZ2+SkcHgxSsARYBHOURaGfU+rjF7SQk5U7
-         hP/ObugU8zalaDkFXj6AGLXSQwVRgSbsDG6FvwxEFlQjla0mM+fNbbhBg9E9bp3n9Lmj
-         BrFWj3AvQK2P4mqFOk2U1cFDYo3wi7WLthd+YuTWIbOC0QC240Ph0doY0gl9+wj9lR+r
-         p6wg==
-X-Forwarded-Encrypted: i=1; AJvYcCXdjrC3eH8/nq+JSlrK8hcyKatLKdVvZjhmyBAElMDH3aEHSG+3FRyqqDxyTgFgA4dWHOzAgF/4snx+hJJrxx2Hysy6SNNaBYkl3BrtrPbMAIfKHiqdI4MwaHORJmWNo/uHVbO2R7dcTQ==
-X-Gm-Message-State: AOJu0YzCvbDqChFN6PxVt1cuUv21QibHxDR66Jcy4OEv1AiBLZSp9Xsg
-	M9Rtks2D/9dvkwSbNcUGKPffdYMEJq4KyS0CDG2ys2VEF6iePbLcI1Sy+T/2I1QYO7utMk6L2iW
-	NxffLki8NrfNSYC2hzQqWk6fPJWY=
-X-Google-Smtp-Source: AGHT+IGOIbmdUnhCSYcULvDcwIIZ5WOCfD6T2cbHYI6yQL/t1zgl2lfCuC3N+Jp8O3Js/oAzUBJWFNtd2jCadNraakI=
-X-Received: by 2002:a17:906:c106:b0:a46:9e89:cae9 with SMTP id
- do6-20020a170906c10600b00a469e89cae9mr11909879ejc.39.1710937710775; Wed, 20
- Mar 2024 05:28:30 -0700 (PDT)
+        bh=2HggMCzm7A3w6vJJP6DRxSrZulrULTZscQp/MVjKZ/k=;
+        b=e5vZ9OxuBUd667MTV3rVz3AyrKnIN+kb46FWJra2xrB5Ss0z1jmQBuPJXxiaXP40zw
+         QVWuDjn20i5JK+GdL8Hpu4v2jGaZJfaEP8RuMBmsPZtihS+pn30ZmEjOWt2+6Bpbvwiq
+         VAeZPrqe4mOa9ATdPtMbzDM5BDCi4O9YVoWaf1htky7B/V2y0oDG0YUOj8VILLwePqUN
+         LuoNCQW//urXnAaCjCu8GbYBKlb9fMFQWsMa7CjhDQ4sSaL0JdJ0WP2xeQnvh3m+AwKA
+         TU3dyGtY/JK7GOVSQsoOoX7ECmyOKu2cz903l9yWwRkml4T+vmrFR1uDukrSxHWLZyyY
+         acGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710937762; x=1711542562;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2HggMCzm7A3w6vJJP6DRxSrZulrULTZscQp/MVjKZ/k=;
+        b=GldjebsCGXbzNfDIOPNJMV34IQNmHC1I6aRMrhqZrgQX6mXCYFCzCydVz6ShdXb3A6
+         uigkenurvwVGCeF6O/Zc4rbrbi7ocGee5bv6qq3rD+mJ/5orjgyPJphWeJKgIcJDm6fG
+         5Xt9HBiQJGUzxgc5oLxt6lhQZWzpkQcCiGtGFljAtbTacHjhmq0pV2fwumfbR7Xah16V
+         Ap7kCvnEEfsh/HiXQ/YY83h+Srh0LVS5m5lJvj6+uff9lz+H/HPaDtTTblsl4KsEgtKP
+         8Q/oeXw1K9yLfaAOsoe4QLjL5hU/p8HDsamSw7sF4nQdvJwafoePRCRRb51vo8MJcrsG
+         sgsg==
+X-Forwarded-Encrypted: i=1; AJvYcCUqYLd5B4Em8aFWzJ8RNUOnq0jPLA/JTmKjPPFpqtry/bSI38l8ehBhPauisvWq9r3EBGKmGtAraYs0yjWR5YA/Lse/UEC5UXY5eA==
+X-Gm-Message-State: AOJu0YzDil5slhD+yD+rGOlgbM9y443rJ56MKZXehBHKRxSDVXySan7l
+	PFP/e4b2Hw4nBA7XA3uhnp92GtJBq9QAR7443qFWDQBF7xGEuglNrYSiZvHMqSw=
+X-Google-Smtp-Source: AGHT+IFC89BZ5QnuMlne0HWIODfH9YZ5KhvPId4SDvMTXDpt6Z1jYgoFMGBJvM/RUPRRhPDGAW/hBQ==
+X-Received: by 2002:a05:651c:2106:b0:2d3:5ddc:b949 with SMTP id a6-20020a05651c210600b002d35ddcb949mr12334805ljq.2.1710937762107;
+        Wed, 20 Mar 2024 05:29:22 -0700 (PDT)
+Received: from [172.30.205.3] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id m18-20020a2e9112000000b002d48d8e22c1sm1753267ljg.35.2024.03.20.05.29.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Mar 2024 05:29:21 -0700 (PDT)
+Message-ID: <8c815d0d-e716-49fe-9e94-4c5636380360@linaro.org>
+Date: Wed, 20 Mar 2024 13:29:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Maxim Kiselev <bigunclemax@gmail.com>
-Date: Wed, 20 Mar 2024 15:28:19 +0300
-Message-ID: <CALHCpMhc1F5Ue7U_gsDXREHUZRVQJNYRCJxYxoNqbN=-39jf7A@mail.gmail.com>
-Subject: Re: [PATCH v8 4/4] riscv: dts: thead: Enable LicheePi 4A eMMC and microSD
-To: xry111@xry111.site
-Cc: Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org, 
-	dfustini@baylibre.com, guoren@kernel.org, jkridner@beagleboard.org, 
-	jszhang@kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	open list <linux-kernel@vger.kernel.org>, linux-riscv@lists.infradead.org, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	robertcnelson@beagleboard.org, Rob Herring <robh+dt@kernel.org>, wefu@redhat.com, 
-	Maksim Kiselev <bigunclemax@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845-db845c: make pcie0_3p3v_dual
+ always-on
+To: Caleb Connolly <caleb.connolly@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Vivek Gautam <vivek.gautam@codeaurora.org>
+Cc: Bjorn Andersson <quic_bjorande@quicinc.com>, devicetree@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org
+References: <20240320122515.3243711-1-caleb.connolly@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20240320122515.3243711-1-caleb.connolly@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Xi, Drew
 
-I have the same problem with SD on my LicheePi 4A.
 
-After some investigations I found how to fix this tuning error.
-Here is the patch that increases tuning loop count from
-40(MAX_TUNING_LOOP at sdhci.c) to 128.
+On 3/20/24 13:25, Caleb Connolly wrote:
+> This regulator is responsible not just for the PCIe 3.3v rail, but also
+> for 5v VBUS on the left USB port. There is currently no way to correctly
+> model this dependency on the USB controller, as a result when the PCIe
+> driver is not available (for example when in the initramfs) USB is
+> non-functional.
+> 
+> Until support is added for modelling this property (likely by
+> referencing it as a supply under a usb-connector node), let's just make
+> it always on. We don't target any power constrained usecases and this
+> regulator is required for USB to function correctly.
+> 
+> Fixes: 3f72e2d3e682 ("arm64: dts: qcom: Add Dragonboard 845c")
+> Suggested-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
+> ---
 
-diff --git a/drivers/mmc/host/sdhci-of-dwcmshc.c
-b/drivers/mmc/host/sdhci-of-dwcmshc.c
-index 8d6cfb648096..da8f5820fb69 100644
---- a/drivers/mmc/host/sdhci-of-dwcmshc.c
-+++ b/drivers/mmc/host/sdhci-of-dwcmshc.c
-@@ -706,6 +706,7 @@ static int th1520_execute_tuning(struct sdhci_host
-*host, u32 opcode)
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-        /* perform tuning */
-        sdhci_start_tuning(host);
-+       host->tuning_loop_count = 128:
-        host->tuning_err = __sdhci_execute_tuning(host, opcode);
-        if (host->tuning_err) {
-                /* disable auto-tuning upon tuning error */
-
-After that change tuning works fine. The same value of loop count is
-used in RevyOS BSP
-https://github.com/revyos/thead-kernel/blob/c6d4e5df18a17903d012ffd89e67d0ee5ce6cf2d/drivers/mmc/host/sdhci-of-dwcmshc.c#L185
-
-Honestly, it looks a little bit strange for me.
-
-It seems that the tuning algorithm requires to move through
-all the taps of delay line(128 taps?) even if we use THRESHOLD_MODE
-instend LARGEST_WIN_MODE (I mean bit 2 in AT_CTRL_R(0x540) register).
-
-Xi, could you also test my fix on your board?
-
-Best regards,
-Maksim
+Konrad
 
