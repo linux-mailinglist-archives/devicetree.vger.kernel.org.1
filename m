@@ -1,191 +1,132 @@
-Return-Path: <devicetree+bounces-51951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDD1788118B
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 13:16:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20ACA8811A1
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 13:25:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5DDC5B23594
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 12:16:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A6373285551
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 12:25:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD1F73FB2C;
-	Wed, 20 Mar 2024 12:16:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77CFC3FB3F;
+	Wed, 20 Mar 2024 12:25:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amazon.co.uk header.i=@amazon.co.uk header.b="GmPmSTG5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fEmbLziW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-fw-2101.amazon.com (smtp-fw-2101.amazon.com [72.21.196.25])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A8D03FB3E;
-	Wed, 20 Mar 2024 12:16:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=72.21.196.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9672C40847
+	for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 12:25:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710936987; cv=none; b=WQnR2z0vFKUlk9LpyH4sfiRfDbme32zuKcTOVurrpPxTwwewXeq/18V7zPME/BJnxt3wC/TXjlavp0G5grei4y+ottGMvEhzsadPtF6WiIBI0Xe0cWAeAeVP+rEQ+9VZ7HmlNKe80aSmDg7/z898mi1AeUG6vCQGb0qffO9MDVI=
+	t=1710937537; cv=none; b=QN7T1YmX1dFw5Uf1sEycFPaQAdrOpICIBDUWbQJ9A+5irrqNiiFp3mGqxL1nlupZQYfbPz5enjzbkETEmDUEoXUNif0jYLYRJdRqufIleZ/c03oYBVZXbgXQG76ElIUVdTCGsiUMaChc2v4NbjzQ7z8Bu3/V8StFr2N5u0FswE8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710936987; c=relaxed/simple;
-	bh=9wUxNya5MwO0AWzbSx0vgHmuEQkxOF5N+gqswt8BCKQ=;
-	h=Subject:Message-ID:Date:MIME-Version:To:References:CC:From:
-	 In-Reply-To:Content-Type; b=cQZ7MP58Z8G86wDltQYv14flzF2we5NFlyuhorXidmjKW6u+s9Cu/55djjB2tYeg4Yfs6dpPQXTpt9K+nZGlHKMF/Idde3VoDP7ePIw4mFsaZEtNOGE9urilfNLG04X7rQWDsxZaek/d4W9sXa9GHNKI0+frJ97cvPgO0CSEHNs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.co.uk; spf=pass smtp.mailfrom=amazon.co.uk; dkim=pass (1024-bit key) header.d=amazon.co.uk header.i=@amazon.co.uk header.b=GmPmSTG5; arc=none smtp.client-ip=72.21.196.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.co.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.co.uk
+	s=arc-20240116; t=1710937537; c=relaxed/simple;
+	bh=O6nw9q4DjUyPQCcQqSpruvvcT6pJqqZaEGQnnbRnINc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=aBDApsw6mIBHznsdZOUc+YJ1GWhlC2+eDMiCyNUwgK0aRim5VakqaeoBh5+d8/nwY5t/AdajaZmjbXWWOwioaDhrrT0MR6A6O34LzQks104qcrcXziLmu1W1pqv6IzwnYqHsJH+qgE1vosF2KNS7LB22l3TUkGaCFhSxVRfH2gM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fEmbLziW; arc=none smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2d109e82bd0so89438701fa.3
+        for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 05:25:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.co.uk; i=@amazon.co.uk; q=dns/txt;
-  s=amazon201209; t=1710936986; x=1742472986;
-  h=message-id:date:mime-version:to:references:cc:from:
-   in-reply-to:content-transfer-encoding:subject;
-  bh=oNAChz6dcAhqmSOfvCdYjG/OjnMxp1CwiKwicGuGmuI=;
-  b=GmPmSTG57knKUIgnD62ZVZc9Rq5ZIVJDRTsAINY6W2Q0z7+0Uzr9NcbI
-   6WwxQh0eBvxLWinFQgqqHYj4nGh/gDLBYHjxaLQrEK0H6Rzpha9unx/mo
-   c6SETAclX/sbcgjhBV+fBS0iijDslFON66W8U2poAiMYJrFv9Dbea5u4R
-   A=;
-X-IronPort-AV: E=Sophos;i="6.07,140,1708387200"; 
-   d="scan'208";a="389099048"
-Subject: Re: [PATCH v1 3/4] dt-bindings: Add bindings for vmgenid
-Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO smtpout.prod.us-west-2.prod.farcaster.email.amazon.dev) ([10.43.8.6])
-  by smtp-border-fw-2101.iad2.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2024 12:16:22 +0000
-Received: from EX19MTAEUB001.ant.amazon.com [10.0.43.254:15322]
- by smtpin.naws.eu-west-1.prod.farcaster.email.amazon.dev [10.0.18.20:2525] with esmtp (Farcaster)
- id 21669b37-9eef-4d6e-851b-cf088b8821dd; Wed, 20 Mar 2024 12:16:20 +0000 (UTC)
-X-Farcaster-Flow-ID: 21669b37-9eef-4d6e-851b-cf088b8821dd
-Received: from EX19D036EUC002.ant.amazon.com (10.252.61.191) by
- EX19MTAEUB001.ant.amazon.com (10.252.51.26) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.28; Wed, 20 Mar 2024 12:16:20 +0000
-Received: from [192.168.16.135] (10.106.82.23) by
- EX19D036EUC002.ant.amazon.com (10.252.61.191) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.28; Wed, 20 Mar 2024 12:16:14 +0000
-Message-ID: <7d8f7c42-02e9-46df-8ea5-ab9a4b9721dc@amazon.co.uk>
-Date: Wed, 20 Mar 2024 12:16:10 +0000
+        d=linaro.org; s=google; t=1710937534; x=1711542334; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=uYXISrxVZmG0cSqs1Z3wR5TStIOq15Iq2U3WIUX8ykA=;
+        b=fEmbLziWRdImdGrFaFRieA5M9HTLr1tHmRdrP1WCzQZ7VXar1q23++wDfvPM3fBG7D
+         St5VcQK29Fa4qQ7eOS8HW/q97DogQkWLUSrI952DmpkRfD/HgAGCh4SZgX3oraTSvQkY
+         TCgCG+t3wUSny5888wNA9k84S9uVmskqHxDVI7Y/MwNrlXyDreFMDB1twALN5VLXuSCI
+         uwaaQrZ3PBLaoWerGLqchauX2tMeF642SltB+N9hPZQOlylUBqEcdkHh6ThVH2i+mjm6
+         Ago6GJ2hf53rdrEOIW9NrZLLbn2W6kQYIjug7G4IbWyJb7S51JzggmayIBEbmPVBion1
+         886A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710937534; x=1711542334;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uYXISrxVZmG0cSqs1Z3wR5TStIOq15Iq2U3WIUX8ykA=;
+        b=eTgOq9Em+VLrl5OSxWx+IKVNJwWyxota//aXkkJZPDOh4ZmcR3c5UNC0ckSasHVws6
+         JxmPdkjAVWtqZOHkdgavSJ2hHU0AmoRHOx0CHJdQSacIKd/aqL6FdWu4m11TPBvDxrE5
+         iKBbQBEgBrCwFY9fHZhwXiA6+CvtYfGH1RG74fDNPtUGQcBv7hyowwCc2LQy5g/9Fvsn
+         CqL4y99uLrMbt2UtOSwlqLFpKoIieAdmpUU3qsRcF3AolWRg6IPvT5/UeFV9SayQn0TH
+         pq/Xg/ZNFsBm2o5ICiMydKT5VtNXpsa6vNHqBAY7BAq/W/d1kZUrhvPDzy5yWhaE+x2a
+         7zbA==
+X-Forwarded-Encrypted: i=1; AJvYcCXHfRiYbowp+ns7VwTzN8UX/4ad2dECle4z5HiguuV8w54hrPbY9kRGEL1DozQV1Zp/X5fDPzGhB0qVOH4oS4UqOZfPTZ0uPiGQ9g==
+X-Gm-Message-State: AOJu0YzHbG8FV4VFqzTwFDUacDXcwnJHAK2GKuOpn+RLS9MkxdeWw+u0
+	Oy6QI7AlaX5hvLvKLWcKBzfqBe7iQQvRZsYhF228JdS7HnE7yDcMlTXrRdNPzMg=
+X-Google-Smtp-Source: AGHT+IFSGp6onmwOCG9iC5No7m0riFr/aKFnD+fp7Jq7Vi+y3DuhgxvL8EoLl7vw8JPfZL+MNJ6sNw==
+X-Received: by 2002:a2e:3c12:0:b0:2d2:ccd2:3a9b with SMTP id j18-20020a2e3c12000000b002d2ccd23a9bmr1242515lja.28.1710937533687;
+        Wed, 20 Mar 2024 05:25:33 -0700 (PDT)
+Received: from lion.caleb.rex.connolly.tech (host-92-17-96-232.as13285.net. [92.17.96.232])
+        by smtp.gmail.com with ESMTPSA id p11-20020a05600c358b00b004140e701884sm2062938wmq.22.2024.03.20.05.25.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Mar 2024 05:25:33 -0700 (PDT)
+From: Caleb Connolly <caleb.connolly@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Vivek Gautam <vivek.gautam@codeaurora.org>
+Cc: Caleb Connolly <caleb.connolly@linaro.org>,
+	Bjorn Andersson <quic_bjorande@quicinc.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sdm845-db845c: make pcie0_3p3v_dual always-on
+Date: Wed, 20 Mar 2024 12:25:11 +0000
+Message-ID: <20240320122515.3243711-1-caleb.connolly@linaro.org>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Sudan Landge
-	<sudanl@amazon.com>, <tytso@mit.edu>, <Jason@zx2c4.com>,
-	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <sathyanarayanan.kuppuswamy@linux.intel.com>,
-	<thomas.lendacky@amd.com>, <dan.j.williams@intel.com>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20240319143253.22317-1-sudanl@amazon.com>
- <20240319143253.22317-4-sudanl@amazon.com>
- <ba8418ab-2829-416c-8e20-414f7818cab9@linaro.org>
- <f221da06-2a7c-4db3-a0de-870156865631@amazon.co.uk>
- <cfdb77c8-e893-41bf-965f-1013f3fc910e@linaro.org>
-CC: <graf@amazon.de>, <dwmw@amazon.co.uk>, <bchalios@amazon.es>,
-	<xmarcalx@amazon.co.uk>
-From: "Landge, Sudan" <sudanl@amazon.co.uk>
-In-Reply-To: <cfdb77c8-e893-41bf-965f-1013f3fc910e@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EX19D042UWB001.ant.amazon.com (10.13.139.160) To
- EX19D036EUC002.ant.amazon.com (10.252.61.191)
+Content-Transfer-Encoding: 8bit
 
-Hi Krzysztof,
+This regulator is responsible not just for the PCIe 3.3v rail, but also
+for 5v VBUS on the left USB port. There is currently no way to correctly
+model this dependency on the USB controller, as a result when the PCIe
+driver is not available (for example when in the initramfs) USB is
+non-functional.
 
+Until support is added for modelling this property (likely by
+referencing it as a supply under a usb-connector node), let's just make
+it always on. We don't target any power constrained usecases and this
+regulator is required for USB to function correctly.
 
-The recipient were removed by mistake. I have added them all back and 
-fixed the email client to send mail in the right format. Sorry about that.
-I'll revert after I have done more analysis and better data to explain.
-Thank you for the quick feedback again.
+Fixes: 3f72e2d3e682 ("arm64: dts: qcom: Add Dragonboard 845c")
+Suggested-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Thanks and regards,
-Sudan
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+index 1f517328199b..9a74464b8af9 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+@@ -194,8 +194,14 @@ pcie0_3p3v_dual: vldo-3v3-regulator {
+ 		regulator-max-microvolt = <3300000>;
+ 
+ 		gpio = <&tlmm 90 GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
++		/*
++		 * FIXME: this regulator is responsible for VBUS on the left USB
++		 * port. Keep it always on until we can correctly model this
++		 * this relationship.
++		 */
++		regulator-always-on;
+ 
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pcie0_pwren_state>;
+ 	};
+-- 
+2.44.0
 
-On 20/03/2024 10:24, Krzysztof Kozlowski wrote:
-> CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you can confirm the sender and know the content is safe.
-> 
-> 
-> 
-> On 20/03/2024 11:17, Landge, Sudan wrote:
->>
->> On 19/03/2024 15:28, Krzysztof Kozlowski wrote:
->>> CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you can confirm the sender and know the content is safe.
->>>
->>>
-> 
-> Why did you remove all the people from CC list?
-> >>>
->>> On 19/03/2024 15:32, Sudan Landge wrote:
->>>> Virtual Machine Generation ID driver was introduced in commit af6b54e2b5ba
->>>> ("virt: vmgenid: notify RNG of VM fork and supply generation ID"), as an
->>>> ACPI only device.
->>> That's not a valid rationale. Second today... we do not add things to
->>> bindings just because someone added some crazy or not crazy idea to Linux.
->>>
->>> Bindings represent the hardware.
->>>
->>> Please come with real rationale. Even if this is accepted, above reason
->>> is just wrong and will be used as an excuse to promote more crap into
->>> bindings.
->>
->> Thank you for the quick review.
->>
->> I will add more details to the problem we are trying to fix with an
->> updated cover letter
->>
->> but to summarize the problem briefly:
->>
->> Firecracker is a minimalist feature hypervisor and we do not have ACPI
->> support
->>
->> for ARM yet. The vmgenid devicetree support looked a better option because
->>
->> supporting ACPI on ARM means supporting UEFI which adds a lot of complexity.
-> 
-> That does not convince me. Amount of work for you is not making virtual
-> stuff real hardware. Come with some other discoverable protocol - you
-> have full control of both sides of this thing.
-> 
->>
->>> A nit, subject: drop second/last, redundant "bindings". The
->>> "dt-bindings" prefix is already stating that these are bindings.
->>> See also:
->>> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
->>>
->>> Please use subject prefixes matching the subsystem. You can get them for
->>> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
->>> your patch is touching.
->> Got it, thanks.
->>>> Add a devicetree binding support for vmgenid so that hypervisors
->>>> can support vmgenid without the need to support ACPI.
->>> Devicetree is not for virtual platforms. Virtual platform can define
->>> whatever interface they want (virtio, ACPI, "VTree" (just invented now)).
->> Sorry for my lack of experience in this area. I took reference of virtio
->> devices when I
->>
->> uploaded the patch. We would still like to support vmgenid via a
->> devicetree so I'll
->>
->> revert with a new approach.
-> 
-> There are other solutions, I think. This was discussed already multiple
-> times.
-> 
->>
->>>> Signed-off-by: Sudan Landge<sudanl@amazon.com>
->>>> ---
->>>>    .../devicetree/bindings/vmgenid/vmgenid.yaml  | 57 +++++++++++++++++++
->>> No, you do not get your own hardware subsystem. Use existing ones.
->>
->> Got it. The changes are related to the "rng" subsystem so I'll rethink
->> if that is the
->>
->> right place for this and revert.
-> 
-> Your wrapping is odd. Please use some decent email client.
-> 
-> Anyway, I am not discussing topics semi-private. Keep all maintainers in
-> loop.
-> 
-> Best regards,
-> Krzysztof
-> 
 
