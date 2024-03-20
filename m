@@ -1,136 +1,147 @@
-Return-Path: <devicetree+bounces-51846-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51847-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1528880C03
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 08:29:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BFCC880C0B
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 08:31:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3EAB7B22019
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 07:29:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96D042843CE
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 07:31:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A43620DCB;
-	Wed, 20 Mar 2024 07:29:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F37C020DE5;
+	Wed, 20 Mar 2024 07:31:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jE7D2BU/"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Q1cBSxYK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 371D32BD01;
-	Wed, 20 Mar 2024 07:29:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7284722F0D;
+	Wed, 20 Mar 2024 07:31:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710919755; cv=none; b=GnFgWCTm2w4jsQ0eNawJzGVRJa2XHiGJvz01M2SAGXLqB9vlvzAGcyWsESusJ0TW2kPYRR8XPoPwG0XoQ8h9o7j6NTCIW+ZwGgXomh8B39VaCe+5dTtaZC51ejEuBK9W4BCkw6YTebULMTL878Vryotn5Wxw74utoEVapctxOs4=
+	t=1710919876; cv=none; b=c4oGtv477w3mbJqRT5/ux/Cw9so/onwquMpRY0jsvDdEvCPdfFHs0pducLjAdXmvUDQOA6z2jkUU2Vw96xfDxBIGwoq/W7p4icAJipyuIe7/VaOXHxS9lUN+CJMmyqvj0fMTO+p3kFlViOw6WKrWUPWwjQOaKynlMj5sA3tooUs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710919755; c=relaxed/simple;
-	bh=SIJLQWAZttGxLBgmyLL6igS6AuPkYTJuC02fay6r37E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LBWjF23BquCbWAL6CvAJIhC6e+RXN3T9Ckv3Hh9ZwuMJab2b3Yz+N7amFKbatu7mD0BlnpG2akyd2ca9Yty1XUwfIcdO8eXlHsOnd8qAnmGFnmqq2+hiPFelTG0Eg0gWmZgScosXFWgev4IxnDcgkE1zOsBt2NDklcRbI175/tk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jE7D2BU/; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1710919753; x=1742455753;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=SIJLQWAZttGxLBgmyLL6igS6AuPkYTJuC02fay6r37E=;
-  b=jE7D2BU/YpudfW/7il6RsJ/u0w0j+jDWDYtjQObqMiLBj1KtXdXJHiYL
-   Kdh9zAGLPTwj3bbnpxdloZy0wEHg4mDyxPEWwMniIGTlBbtfV2UNdUsqr
-   LiTiuhZ0nK3Ed/vA4eR+HDnPwUOxvWIcwTPtsqWac5CTnizB72+grqCm0
-   oRTnWWpgPLqj0MS+G80wHjuyQXyfIsN2cACaTNK0JZk7OM9WSrXS1agp9
-   6Oo9dXKn+sJFnJDngwzRT0mipGS80MZDVHFOUNySfqzRezInUyZbGsy0E
-   /i+usOi6tdJBrlSbizdq2Hxa7mG22ebW+Oarieh9Hg3vpv7yht6VJl0a+
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11018"; a="9598536"
-X-IronPort-AV: E=Sophos;i="6.07,139,1708416000"; 
-   d="scan'208";a="9598536"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2024 00:29:12 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,139,1708416000"; 
-   d="scan'208";a="51507652"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2024 00:29:04 -0700
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id 6E3E911F853;
-	Wed, 20 Mar 2024 09:29:01 +0200 (EET)
-Date: Wed, 20 Mar 2024 07:29:01 +0000
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Zhi Mao <zhi.mao@mediatek.com>
-Cc: mchehab@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	laurent.pinchart@ideasonboard.com, shengnan.wang@mediatek.com,
-	yaya.chang@mediatek.com,
-	Project_Global_Chrome_Upstream_Group@mediatek.com,
-	yunkec@chromium.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	jacopo.mondi@ideasonboard.com, 10572168@qq.com,
-	hverkuil-cisco@xs4all.nl, heiko@sntech.de, jernej.skrabec@gmail.com,
-	macromorgan@hotmail.com, linus.walleij@linaro.org,
-	hdegoede@redhat.com, tomi.valkeinen@ideasonboard.com,
-	gerald.loacker@wolfvision.net, andy.shevchenko@gmail.com,
-	bingbu.cao@intel.com, dan.scally@ideasonboard.com,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v1 2/2] media: i2c: Add GC05A2 image sensor driver
-Message-ID: <ZfqQPTgqzOw7tATK@kekkonen.localdomain>
-References: <20240316025253.2300-1-zhi.mao@mediatek.com>
- <20240316025253.2300-3-zhi.mao@mediatek.com>
+	s=arc-20240116; t=1710919876; c=relaxed/simple;
+	bh=Ik5ahjZmxjfQ1FR/v6ZDPMYWeeijut/xAT0hg7CxjZE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GRq1t4efoQhAssGahkeYiv/rwk9IARHR5V0SMlk/8ZX2cHvrd+FTS9yPS1ANv4+DH2JemN9/nXn1Tq8cKtQk3Wr9DqbdVgnNskBWk9EmXRWVwFZbf0he06HMEjc7+SzX0pa+9eEqEgXpJkphgjrhl+bi64DGuXTROuCDgSSf4g4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Q1cBSxYK; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 68F241BF20A;
+	Wed, 20 Mar 2024 07:31:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1710919871;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=voBe4cnKC0PYia7ms5iUQbaUgT546itFPRtdPkNE1ao=;
+	b=Q1cBSxYKQaIltFJkiNRkwe6YV7E7uUhmWbptRl2p/i0RABaEw6LCltBs36y+/AFubbLIoI
+	Gm2n0LiHp+5jjpd7Ux+FiS6cQfihpFUlZuH5uqTXDDmejoDNW7Hpg8ku5vt7sfsVzszS2C
+	HMOZ2ydoyDCJT6i8PqzsNXNMe27Y6ArMipnHj7rDltqswrI48QRV4v716Ay18bxoAkzimR
+	uwKKDIkLQtJ/DDeNbbAsHpAJEFXACx1sRL6UePnwjfqnQWoT3NMwHx6ocx8grfkdymdzfE
+	VFWAH2+u8OLiNA8UfJIbY6iTIrolrARnTn8ZBx+owPUttl1KIXsf1lN13sIPeA==
+Message-ID: <f2d8715d-a1ad-45a4-952f-a702b29740be@bootlin.com>
+Date: Wed, 20 Mar 2024 08:31:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240316025253.2300-3-zhi.mao@mediatek.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 07/13] ASoC: ti: davinci-i2s: Add TDM support
+To: =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, herve.codina@bootlin.com,
+ christophercordahi@nanometrics.ca
+References: <20240315112745.63230-1-bastien.curutchet@bootlin.com>
+ <20240315112745.63230-8-bastien.curutchet@bootlin.com>
+ <9d123584-1feb-404b-890f-2da694cf56d5@gmail.com>
+Content-Language: en-US
+From: Bastien Curutchet <bastien.curutchet@bootlin.com>
+In-Reply-To: <9d123584-1feb-404b-890f-2da694cf56d5@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: bastien.curutchet@bootlin.com
 
-Hi Zhi,
+Hi Péter,
 
-Thanks for the set.
+>> +static int davinci_i2s_set_tdm_slot(struct snd_soc_dai *cpu_dai,
+>> +				    unsigned int tx_mask,
+>> +				    unsigned int rx_mask,
+>> +				    int slots, int slot_width)
+>> +{
+>> +	struct davinci_mcbsp_dev *dev = snd_soc_dai_get_drvdata(cpu_dai);
+>> +
+>> +	dev_dbg(dev->dev, "%s - slots %d, slot_width %d\n", __func__, slots, slot_width);
+> 
+> The __func__ can be ommited, it is better to leave it for dynamic
+> debugging by adding "dyndbg=+pmf" module parameter if needed.
+> 
 
-On Sat, Mar 16, 2024 at 10:52:53AM +0800, Zhi Mao wrote:
-> +static int gc05a2_set_ctrl(struct v4l2_ctrl *ctrl)
-> +{
-> +	struct gc05a2 *gc05a2 =
-> +		container_of(ctrl->handler, struct gc05a2, ctrls);
-> +	int ret = 0;
-> +	s64 exposure_max;
-> +	struct v4l2_subdev_state *state;
-> +	const struct v4l2_mbus_framefmt *format;
-> +
-> +	state = v4l2_subdev_get_locked_active_state(&gc05a2->sd);
-> +	format = v4l2_subdev_state_get_format(state, 0);
-> +
-> +	if (ctrl->id == V4L2_CID_VBLANK) {
-> +		/* Update max exposure while meeting expected vblanking */
-> +		exposure_max = format->height + ctrl->val - GC05A2_EXP_MARGIN;
-> +		__v4l2_ctrl_modify_range(gc05a2->exposure,
-> +					 gc05a2->exposure->minimum,
-> +					 exposure_max, gc05a2->exposure->step,
-> +					 exposure_max);
-> +	}
-> +
-> +	/*
-> +	 * Applying V4L2 control value only happens
-> +	 * when power is on for streaming.
-> +	 */
-> +	if (!pm_runtime_get_if_in_use(gc05a2->dev))
+True, I'll remove the __func__.
 
-This should be pm_runtime_get_if_active(). Please assume it takes a single
-argument (the device)---see commit
-c0ef3df8dbaef51ee4cfd58a471adf2eaee6f6b3.
+>> +
+>> +	if (slots > 128 || !slots) {
+>> +		dev_err(dev->dev, "Invalid number of slots\n");
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	if (rx_mask != (1 << slots) - 1) {
+>> +		dev_err(dev->dev, "Invalid RX mask (0x%08x) : all slots must be used by McBSP\n",
+>> +			rx_mask);
+>> +		return -EINVAL;
+> 
+> This is only a restriction for RX?
+> 
 
-The same comment applies to the GC08A3 if it uses autosuspend, please post
-a new patch for that.
+Nope you're right, I'll add the same for tx_mask.
 
--- 
-Kind regards,
+>> +	}
+>> +
+>> +	if (davinci_i2s_tdm_word_length(slot_width) < 0) {
+>> +		dev_err(dev->dev, "%s: Unsupported slot_width %d\n", __func__, slot_width);
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	dev->tdm_slots = slots;
+>> +	dev->slot_width = slot_width;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>>   #define DEFAULT_BITPERSAMPLE	16
+>>   
+>>   static int davinci_i2s_set_dai_fmt(struct snd_soc_dai *cpu_dai,
+>> @@ -228,6 +282,13 @@ static int davinci_i2s_set_dai_fmt(struct snd_soc_dai *cpu_dai,
+>>   		DAVINCI_MCBSP_SRGR_FWID(DEFAULT_BITPERSAMPLE - 1);
+>>   
+>>   	dev->fmt = fmt;
+>> +
+>> +	if ((dev->tdm_slots || dev->slot_width) &&
+>> +	    ((fmt & SND_SOC_DAIFMT_CLOCK_PROVIDER_MASK) != SND_SOC_DAIFMT_BP_FC)) {
+>> +		dev_err(dev->dev, "TDM is only supported for BP_FC format\n");
+>> +		return -EINVAL;
+> 
+> I think this is not a valid statement, Fsync can be generated internally
+> or coming from external source in TDM mode also.
+> 
 
-Sakari Ailus
+My hardware allow me to only test BP_FC so I wished to put some
+'barriers' in front of untested things.
+
+
+Best regards,
+Bastien
 
