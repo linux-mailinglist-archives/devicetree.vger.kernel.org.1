@@ -1,107 +1,124 @@
-Return-Path: <devicetree+bounces-52016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52017-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B5AB88170A
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 19:03:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54460881714
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 19:04:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 317E71F21BC6
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 18:03:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 09EAC1F217A0
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 18:04:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E80A6A8A4;
-	Wed, 20 Mar 2024 18:03:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D3BC6A358;
+	Wed, 20 Mar 2024 18:04:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iP93OzJq"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="AbLPR7uA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACC47BA45;
-	Wed, 20 Mar 2024 18:03:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB75669E16
+	for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 18:04:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710957812; cv=none; b=KvWuz3sRHKjBKls37AUg+Rw1J46Ai+ok5c4aiqlssz38offIVFqSGD+QiNSQesRnL3IRQroMUHuD5xiFRLYF74wSWGgIwrCGnN2Bw3aRUa6WFTT3IAtywacYa3RwRbwKU+WUlFq+bqC6HeTPtNW/2lHoMn8AHSIS6K7eF/7YBlY=
+	t=1710957879; cv=none; b=AkOYw5MTkYV1TVkkb5lr9AQcvAlCwsz8ocBuYLqP+niqRxlCxAyIUo3sdtu+M/wO1faBUAhd4thzwKrJ64zEWFQGdhwPUlGiNSqArNjs2T5+dyL1ML8AgPx+FkD+iBBTVtcm7Y/dDN8bhdNmb5ZbixDBMHL1XbZ8Ketriorg3z8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710957812; c=relaxed/simple;
-	bh=Ed1I1kIY0Feqy3rs76Gh064Y1IF28xMwtxyZdBPm2NU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t7015FXYR4R7s22GsIkJF3KESKUBNV03O7wITm60FcMdev9mHjimNVSLeOve6OoB8cfgm34haLlTqdQdqpjfPAIbfBBGKbr/X4Ol1gR5AJKWml+3qPuwBu/aUEcycIRGycPc5/wYB6qxUKZSTYd2zXSjvS3KTgAFqFUpzHAhYXY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iP93OzJq; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-1dfff641d10so277945ad.2;
-        Wed, 20 Mar 2024 11:03:30 -0700 (PDT)
+	s=arc-20240116; t=1710957879; c=relaxed/simple;
+	bh=VOZ4WmYYmAeIBgjFbfFvP+4vvCJ36utbFzgoapDF8SQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kyxqkZB9qyqr4QFZ1foi8PdYEGmBebu2QO5AwucsesrwfYUgzUjg8f3mGxWFEuMYUQ5mSybYyh2L8fk9Ho67Mnq/mFcQKBBy6LpxU880zQ5BU/yw50OZs8nhc8g7IyH1mz9agJlAL8u7AacS7nA9BLKrgLbo9ocYt2TXLQTInKk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=AbLPR7uA; arc=none smtp.client-ip=209.85.128.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-609408d4b31so848317b3.0
+        for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 11:04:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710957810; x=1711562610; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fe7+QgceZjZtuMFOC/wsDTnTO94d6hKvWRrBFM6nBWE=;
-        b=iP93OzJqSAbyYpCERL7fMvUaSRjtX+WBXCAcu5ob2NGsTq8zFGfA630NzYucvPE/ly
-         PvSyuVn5B8msv1HAs2mGtO3y3+1xd6Pi/sVnFoV09yc6Mz9YpJ5vDUOLUfZFeYLV7+Ri
-         1iiR+c2onau+EO6XqpXOVk//74G3MBM8QrqDDjaR9iBqotU+vJZpUuTUvzKxq1Hr3f6f
-         7pax4vPSUuRaRM4T5RPlwpbKCYciHdomvOVU5b8iAaM9qm8xstDfF8/NuLNe2I7ULmx4
-         qJWib01E30+LOJn4ITXCcIRy6CuzM3/Udn+59tLe+pe29WwiwTyChavVW6lNKt6ipQQ6
-         m9VQ==
+        d=sifive.com; s=google; t=1710957877; x=1711562677; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6TmgB7TOmDIH1+NUxCse+KiCTmMgVy8/EkD7jAnjwO8=;
+        b=AbLPR7uA6qgMLQH6Nb2BEnJSVKVSZKag7WPNxfyQXJ5vi0ZROOxsPF6/oW4inTv/eT
+         43wD7mfoJ4sF0BC5zJOxQNIDxz4fWJzmPsZG1ADMj4lru8OP/Ov65/etsXXym9Sa6+5r
+         qF1I7LNw7z2Pcxu/52Hdd3Id7Aj7WaQK9D/3LOlV9tJp/Pr5D3QW77hgm/M2d8bg7/Eo
+         +l5YeBIsmQBl3Y1XB/6K38bqan7VWiVkDezfIgFs+CzXM6L14dc6UDm1Yc0A4zcJXAGS
+         +mH/6l+EiDfQcMZs4Sf7kARefRs6IOQx5ENMue7sC3YNzhdsTfpctTIVWqVeSICf5QEN
+         l/bg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710957810; x=1711562610;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fe7+QgceZjZtuMFOC/wsDTnTO94d6hKvWRrBFM6nBWE=;
-        b=kLakEWZjn7/Bww7XGUewa/AZ+hzFOmlmmBIPHFY1tCxSpHstGLelW/ljWXiF9k3yL0
-         LXgC3iREgSq76RydAsw/XoyfvnuqlzX2d0lecGibW9lqwOoqXGLeP3P6s3pfwnQhgApZ
-         ocoRBUoBtdSVjF0al4TonkjLuDittee8GpY+VgJk8obAXhqlB0e3NwhuAoUxGat2lQXQ
-         uPgCPzKHsTglD2jSHQ+EmpHtTCaSJt4GoyWHu2AzkceMJYg9DTK8V/HqKTE2Fr/W8Jmb
-         RGBacgKte0oLUEa9nC60QvfDBQu8PJwlpBwaHJNcHnAeHhno113BtJZmp8ONYOSJwNvg
-         fE+Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWeBADOO+TefesbYAsSqgXTe7F+HotI5Q8K9Z1fhh3d2gDqoJ56EIxJu34NWjQIExAv7aDnc5siLiEwlCNRrBCGV9FlHxypBxnbvMsSe1ugQAu9j76/qdyhylmKUudDmC4MuwWPL4ju8sUFWXatE+97p/+cLDcuLS+IxivyiWOGWdKKEzRI
-X-Gm-Message-State: AOJu0Yzpei0K1cAjXN8nA4dXeSZZ09laoaFt+qTYLqiVXvvcLvKLwx5g
-	TYEAoTf2N1zom4iaYOoA7udPCn/vqPMAKlKiMV61+Lo1IyJrM7WR
-X-Google-Smtp-Source: AGHT+IFFRnrbIv+zEXFsZYEZVqnWgrBJ55jSh4gJkPcPwRtlksgsWMna4/o7BKn9T2JkLcq5eMh0Xg==
-X-Received: by 2002:a17:902:7c87:b0:1de:eca6:483d with SMTP id y7-20020a1709027c8700b001deeca6483dmr16898141pll.27.1710957809804;
-        Wed, 20 Mar 2024 11:03:29 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id u13-20020a170902e80d00b001dd95b5dd0fsm9801984plg.69.2024.03.20.11.03.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Mar 2024 11:03:29 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Wed, 20 Mar 2024 11:03:28 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, peiyu li <579lpy@gmail.com>,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: lm87: convert to dtschema
-Message-ID: <13eff821-e800-415c-bf0c-6d9c11ece565@roeck-us.net>
-References: <20240320-hwmon_yaml-v1-0-a349ca21ccab@gmail.com>
- <20240320-hwmon_yaml-v1-1-a349ca21ccab@gmail.com>
+        d=1e100.net; s=20230601; t=1710957877; x=1711562677;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6TmgB7TOmDIH1+NUxCse+KiCTmMgVy8/EkD7jAnjwO8=;
+        b=P0puazouv8B4xvSII4eOXDRNu9+wPpPSvO5kX0pdI8cakiyQzgO2b3Uq4bzAfg97y+
+         lnPlc0ofWG6WoDEJ+DfTy490a4301e92lga/eNxehY2KBUQoUQMGaTa73euzAKs+kaP9
+         PYG20cAanBv4biwIXAu54pyLuYlU2u73hZLUN5lB4NqintDaj3QSJ/7yeP7JvTW8Mbcl
+         rDg3yD5D/eh4je3TJEX7mx69JjiJDrY0SfFoO9sWDrcL76hP7vhwVN3zl2E/LuSAkhK/
+         JX7wxqTdAMrpW+UL+mdQDVDUVbt7tBBMAhQhMacWwZrB9/oCIFQJHaaCwKnZkD/5yw3s
+         6SXw==
+X-Forwarded-Encrypted: i=1; AJvYcCXE/0hFOpSHB4mqi7xJNe3hqNA3VgX7yWtk0yv2DVTPV9PHVYX7X/Rf08q/5WWAZZCal8U3qNAGyykqxs04o6NKPaQVAT/Ry+I3Yg==
+X-Gm-Message-State: AOJu0YysEHLHPagAdYnZ4bt9JtSu153A2SqzAr1RYaDDvIq8pSsiOzsd
+	yDfsRPNXttHTF8Jafxk27IqYktDYyGI/zjS6b+2EJsnGF5n2Maq6QG2gHtxY1GA=
+X-Google-Smtp-Source: AGHT+IEjNFRrCRHpqrhxdo3V77FEmF7Rpc9yb5igu4d1kI5oiVdJtqEevCyIKfRdNiyO251T+F0HDQ==
+X-Received: by 2002:a81:a50f:0:b0:610:c904:842b with SMTP id u15-20020a81a50f000000b00610c904842bmr2791022ywg.46.1710957876657;
+        Wed, 20 Mar 2024 11:04:36 -0700 (PDT)
+Received: from [100.64.0.1] ([136.226.86.189])
+        by smtp.gmail.com with ESMTPSA id o1-20020a81ef01000000b0060a304ca3f4sm2832865ywm.19.2024.03.20.11.04.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Mar 2024 11:04:35 -0700 (PDT)
+Message-ID: <1ffad954-63bb-497a-af10-0b319a0831b7@sifive.com>
+Date: Wed, 20 Mar 2024 13:04:33 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240320-hwmon_yaml-v1-1-a349ca21ccab@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 9/9] selftests: riscv: Add a pointer masking test
+Content-Language: en-US
+To: Conor Dooley <conor@kernel.org>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>, linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org, Catalin Marinas <catalin.marinas@arm.com>,
+ linux-kernel@vger.kernel.org, tech-j-ext@lists.risc-v.org,
+ kasan-dev@googlegroups.com, Evgenii Stepanov <eugenis@google.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, Albert Ou <aou@eecs.berkeley.edu>,
+ Shuah Khan <shuah@kernel.org>
+References: <20240319215915.832127-1-samuel.holland@sifive.com>
+ <20240319215915.832127-10-samuel.holland@sifive.com>
+ <20240320-handpick-freight-ec8027baa4d1@spud>
+From: Samuel Holland <samuel.holland@sifive.com>
+In-Reply-To: <20240320-handpick-freight-ec8027baa4d1@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Mar 20, 2024 at 06:04:57PM +0100, Javier Carrasco wrote:
-> Convert existing bindings to dtschema to support validation.
+Hi Conor,
+
+On 2024-03-20 12:21 PM, Conor Dooley wrote:
+> On Tue, Mar 19, 2024 at 02:58:35PM -0700, Samuel Holland wrote:
+>> This test covers the behavior of the PR_SET_TAGGED_ADDR_CTRL and
+>> PR_GET_TAGGED_ADDR_CTRL prctl() operations, their effects on the
+>> userspace ABI, and their effects on the system call ABI.
+>>
+>> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
+>> ---
+>>
+>>  tools/testing/selftests/riscv/Makefile        |   2 +-
+>>  tools/testing/selftests/riscv/tags/Makefile   |  10 +
+>>  .../selftests/riscv/tags/pointer_masking.c    | 307 ++++++++++++++++++
 > 
-> This is a straightforward conversion with no new properties.
-> 
-> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> I dunno much about selftests, but this patch seems to produce some
+> warnings about gitignores with allmodconfig:
+> tools/testing/selftests/riscv/tags/Makefile: warning: ignored by one of the .gitignore files
+> tools/testing/selftests/riscv/tags/pointer_masking.c: warning: ignored by one of the .gitignore files
 
-Applied to hwmon-next.
+This is because the "tags" directory name is ignored by the top-level
+.gitignore. I chose the name to match tools/testing/selftests/arm64/tags, but I
+am fine with renaming it to avoid the warning.
 
-Please note that I'll push the branch after the commit window closed.
+Regards,
+Samuel
 
-Thanks,
-Guenter
 
