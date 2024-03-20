@@ -1,169 +1,216 @@
-Return-Path: <devicetree+bounces-51841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51842-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 640D5880BBB
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 08:12:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94F77880BC1
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 08:14:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 84BBB1C223EB
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 07:12:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 821141C20EDA
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 07:14:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1A2E1EB20;
-	Wed, 20 Mar 2024 07:12:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C6711EA8D;
+	Wed, 20 Mar 2024 07:14:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GHM/hvog"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yrhWbZkB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DC3020DCB;
-	Wed, 20 Mar 2024 07:12:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC5701EB22
+	for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 07:14:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710918748; cv=none; b=Ul5Z2yAOY2iBSbpHM5t93bhBQw4AnsqJ6jCBNCCP4hokvy03+Ybs2XkEIy1GXOxp4QwgwvJxS4kOFE4BRTK7X5sNc14keVAsUJsL2JdJD16cLyBH0DeloMMb63FFs+0fBGdMQEcUKgXCWSt92dok3uVnxQAYyb5LflGCddx3YtU=
+	t=1710918855; cv=none; b=ddYt/vXI7Mh9qXZiVDoIYhwyKu8NG0ZEFvH0w+hFzgg5meLdr02Dpqa/kDjZx/35N7uRRBqRcdcXU4HkS2v976EkroD0GjAJUSsExIaRbnqcCieSpbf6T9q2gwetye4H36qvizWllM9wtX+EgpGLbZJwbuH+cg4O3lTwv72QeUM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710918748; c=relaxed/simple;
-	bh=JTCshX56DhuRq+dbv3LL4ovkRcC7ucxnZ9MEKhul8/k=;
-	h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-	 In-Reply-To:Content-Type; b=B9AR+vHH7cfaiYUmWQEW9DW1goRQUeTTvDPe3euD6vxrE9oxk0thTLDG71i2M3G0+Fkq/Qdzch0txwO/1NPSw8wGRCcVlw4Qs/WqResFbYM+hdD8O8J7mh3prTNbzJroYlvCbBWnBVa8Xb8FpHKT2sQ5JcAfTuhOyCDaZ6jUTfY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GHM/hvog; arc=none smtp.client-ip=209.85.167.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f174.google.com with SMTP id 5614622812f47-3c390f91b22so1478972b6e.0;
-        Wed, 20 Mar 2024 00:12:27 -0700 (PDT)
+	s=arc-20240116; t=1710918855; c=relaxed/simple;
+	bh=xEmFnSxCQzrHscs+HCvIbi66aDmD5SivRCMts2FMl/U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=G8HSG2TYNqt7WmUDjRAmaG00c/C9UPNGXEli4xp+CnbOS49UoWxAKpht2irviYUxKrtaD+xTFVL+JvPBwpfUl6cyI5Hzg7hG68+KY8QYZBEV4fpBt5qxjxo3LqMF1dlJznxGnAco3L0PSv9lBWN71UjJlfVr665BZWlsw+yYnNU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yrhWbZkB; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-56b9e5ed074so1814600a12.3
+        for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 00:14:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710918746; x=1711523546; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bhuMvCo3TgtaW8PwFw7FBLn/PThKgsQ0zRt/0tBJ7iM=;
-        b=GHM/hvog9FhxEl/ajQL6VxjStjChy6xrGBbffe9R+Z24jj+neGCAsUllTQoIX7YXON
-         u7JOyHDXxW209/mAKHS7/d5Euy/ILNXzHlYrJDb0QlsdKmm+BHRUWETGXZ0ifKgJBc78
-         RI9wdbq5juqNiE/xvpQ+r4J5clCiwy+Xlul876IkgvnZDKvR9oRulro+sjoRVROOgn31
-         n4yJzyzjyViVeM8tHbjDX9lVP0anV07RdC2UrtMqsI6D4ygRK77nBVmWbLZEs+CqJGJA
-         6VNM7mYQQY//6EZF2X9+bOiANWU8+mNPpS8zVnFSWNXeZjk+5OaDu+5VIx5cQxO0rHBw
-         e26A==
+        d=linaro.org; s=google; t=1710918852; x=1711523652; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Wg1FunL6jyj0B4tLM7JyuHaHQjdfFL1e8fU0rSTCcBw=;
+        b=yrhWbZkBQqTMaLhJKaa4CFT/TA5v+2bVGpL7urxDUfNifgoOmYCZTADR/t5TAJfTxr
+         YXpbkZlUd12qNWBDOY5fdD0lo9alIp9msixWqPxcM1f7BZBKN7hxySoEu+nMVT0zdinV
+         X1hAdhQq77UiGEuFRpxTN5L0yOq4uLMCNi6GnP8i27uuJwF7Uz3vckrGLRVKI5suec/X
+         gJJG8cqpmPx5d4aukqK1g1OOSP8ZBtTMkTZC0ucgjHrynL3FhvYwvJrN0uebwMGevOig
+         Tq8VV3JxynjVZ5KdT8x+MKxe96NWeNkXBo+deB2gy61qlVU1JsDDzkREvOyWOpkFUPr/
+         OQ4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710918746; x=1711523546;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bhuMvCo3TgtaW8PwFw7FBLn/PThKgsQ0zRt/0tBJ7iM=;
-        b=Q9OetgVsh1BFXWmDwWj9VYWDP17mjw/eQhPteuKTZeczUAYPtsSNmxoB1iv4Z9PqZH
-         oW09DoH3aH9UwQ5JGq1FzyvcKxuoyuYV61nnrA6Nu2s5pOp8a6Z8df2SwyTv29s967+O
-         quoxfI772D5wJsC9Xs81pRpXNlFlELpFSLuvn+6Mh7TfQK0zWqv3ub4Fr8pQp8yAhz2Z
-         urBWHaS30ztnXeZ2nc5orWC6YYPjGoabayK+erh/u0JrIIP2Vw4AI9vynw9S7BW9W//C
-         J5mYH/56XusrLymOPdOOeR9vEzZ4cj6RB78dREmyfwyJjQzgR2ci1cZSek3DZBJmcSL2
-         JQ3w==
-X-Forwarded-Encrypted: i=1; AJvYcCVy9vyWsnmMVs2LyZNl1/fV7i/phykZyk2U3FVrcA9rwSinwYONztw/i2VWJRj8cv8CU+xZmWqC8JZmlzSZgh9+oGZIvKY/kWYPx5/LNRfYgbv4lIoFIAWSsQbdCwjYH7iKMVfa8xAyYmL+7Sdd9qwqKQC5YsrvD8ZnUo7K2ELNX2gbRw==
-X-Gm-Message-State: AOJu0YzVffOs41Bbl0V6314dnx4RmB4+d2LZC//cZOhKcclj/btX30ho
-	ksXXnsrGvo0Fr+XWKl5yqAWaRsl6X4L2cNO3UtMwJ7xn4jb4gRDZT6IJQtNgCWg=
-X-Google-Smtp-Source: AGHT+IFYjkAhJU6qgZKZ1Sxu70SlW955OlQtKscMfS6t4l/5ITm8Mj2uH+x1X+AJ/XOFEtz5dOqgiA==
-X-Received: by 2002:a05:6808:b04:b0:3c3:59ef:821e with SMTP id s4-20020a0568080b0400b003c359ef821emr4183108oij.48.1710918746273;
-        Wed, 20 Mar 2024 00:12:26 -0700 (PDT)
-Received: from [192.168.0.13] ([172.92.174.232])
-        by smtp.gmail.com with ESMTPSA id ks11-20020a056a004b8b00b006e647059cccsm10918577pfb.33.2024.03.20.00.12.25
+        d=1e100.net; s=20230601; t=1710918852; x=1711523652;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Wg1FunL6jyj0B4tLM7JyuHaHQjdfFL1e8fU0rSTCcBw=;
+        b=d7FJoed9QwETHtNyAHiv9dzzTK/RLesM9xOCQAUvVJ+B5MeoqxVFonm9fv9TDNP9Z3
+         orWxTmDfV0DkurLHP4mUCHyBITiQ1dKe0hkqYz6ZYDo5Du1yY6TZDhM3kgwoIL4+8LXw
+         0bjebQC/wiw9RnLYgxUshR0CbgoTWduyZ6AU+ppDfW8ekTEwE+VmsPyp5w6giyH1prpS
+         s4dMPbz5x//9wvBekIvIIKuVkx3F2lXVQL0odH8YIABfNmwRPxVCjisp3d1cykJ1kY2i
+         qKY1MM5+/a5SwJRKiNPSknEt1fbBPHYFBEBO+tWx4yjykwuHCuW7gJa8UpDocMzxDiWU
+         hZwg==
+X-Forwarded-Encrypted: i=1; AJvYcCWwZrBoffktwZ343Pl7/C2d/KuWPJA5yFM2xumNcjELBBe86fseRMv6bqYxbi4YM6RROLdSQYWD98dNkk7DpkDYuFB+IZFuMtn6VA==
+X-Gm-Message-State: AOJu0Yzmpne+sLKb0hMLuL7CAyUawcXgV/dOtsrIlasSkdWcG9Qu4cUk
+	dH5QdXeAHhbODdbvlbUGfSkTR9OlX1JLwohjMYgRbzvAkK5KvxaB0HqKfmPyhNxqsgGRyaLhYtG
+	e
+X-Google-Smtp-Source: AGHT+IF9gmDahEPShyP+huxWDon36DeJZWflQoKA2dVvNe9Fz8Bf9q3I+ZfZXbfU2hFsKx9u3Yj14Q==
+X-Received: by 2002:a17:906:4a84:b0:a45:27bd:e1ff with SMTP id x4-20020a1709064a8400b00a4527bde1ffmr706874eju.6.1710918852030;
+        Wed, 20 Mar 2024 00:14:12 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id hg25-20020a1709072cd900b00a469be48551sm5228432ejc.45.2024.03.20.00.14.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Mar 2024 00:12:25 -0700 (PDT)
-Subject: Re: [PATCH v15,RESEND 22/23] PCI: starfive: Offload the NVMe timeout
- workaround to host drivers.
-To: Keith Busch <kbusch@kernel.org>, Kevin Xie <kevin.xie@starfivetech.com>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Minda Chen
- <minda.chen@starfivetech.com>, Conor Dooley <conor@kernel.org>,
- "kw@linux.com" <kw@linux.com>, "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "bhelgaas@google.com" <bhelgaas@google.com>,
- "tglx@linutronix.de" <tglx@linutronix.de>,
- "daire.mcnamara@microchip.com" <daire.mcnamara@microchip.com>,
- "emil.renner.berthing@canonical.com" <emil.renner.berthing@canonical.com>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
- "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- Mason Huo <mason.huo@starfivetech.com>,
- Leyfoon Tan <leyfoon.tan@starfivetech.com>
-References: <ZeCd+xqE6x2ZFtJN@lpieralisi>
- <mhng-87e7ef5a-d60b-4057-960d-41bc901b6c7f@palmer-ri-x1c9>
- <ZedAn8IC+Mpm4Sqz@lpieralisi>
- <ZQ0PR01MB0981BC562E837B232B419AC28229A@ZQ0PR01MB0981.CHNPR01.prod.partner.outlook.cn>
- <ZfJmMcs2UThVSC4v@kbusch-mbp>
-From: Bo Gan <ganboing@gmail.com>
-Message-ID: <16a1e6c6-2e2f-08e5-8da0-1462cec57e1f@gmail.com>
-Date: Wed, 20 Mar 2024 00:12:22 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        Wed, 20 Mar 2024 00:14:11 -0700 (PDT)
+Message-ID: <5976952b-d5e8-4333-b769-d494b8195689@linaro.org>
+Date: Wed, 20 Mar 2024 08:14:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <ZfJmMcs2UThVSC4v@kbusch-mbp>
-Content-Type: text/plain; charset=utf-8; format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: power: reset: add gs101 poweroff
+ bindings
+To: Alexey Klimov <alexey.klimov@linaro.org>, sre@kernel.org,
+ robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ peter.griffin@linaro.org, robh+dt@kernel.org
+Cc: conor+dt@kernel.org, linux-samsung-soc@vger.kernel.org,
+ semen.protsenko@linaro.org, linux-kernel@vger.kernel.org,
+ klimov.linux@gmail.com, kernel-team@android.com, tudor.ambarus@linaro.org,
+ andre.draszik@linaro.org, saravanak@google.com, willmcvicker@google.com,
+ alim.akhtar@samsung.com, linux-arm-kernel@lists.infradead.org,
+ elder@linaro.org
+References: <20240320020549.71810-1-alexey.klimov@linaro.org>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240320020549.71810-1-alexey.klimov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 3/13/24 7:51 PM, Keith Busch wrote:
-> On Thu, Mar 14, 2024 at 02:18:38AM +0000, Kevin Xie wrote:
->>> Re: [PATCH v15,RESEND 22/23] PCI: starfive: Offload the NVMe timeout
->>> workaround to host drivers.
->>>
->>> On Mon, Mar 04, 2024 at 10:08:06AM -0800, Palmer Dabbelt wrote:
->>>> On Thu, 29 Feb 2024 07:08:43 PST (-0800), lpieralisi@kernel.org wrote:
->>>>> On Tue, Feb 27, 2024 at 06:35:21PM +0800, Minda Chen wrote:
->>>>>> From: Kevin Xie <kevin.xie@starfivetech.com>
->>>>>>
->>>>>> As the Starfive JH7110 hardware can't keep two inbound post write
->>>>>> in order all the time, such as MSI messages and NVMe completions.
->>>>>> If the NVMe completion update later than the MSI, an NVMe IRQ handle
->>> will miss.
->>>>>
->>>>> Please explain what the problem is and what "NVMe completions" means
->>>>> given that you are talking about posted writes.
+On 20/03/2024 03:05, Alexey Klimov wrote:
+> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
 
-Echoing Keith here. Why are you treating NVMe completions + MSI as a special case?
-What's special about this combination other than two posted writes? I own JH7110
-visionfive 2 boards myself, and if I'm not mistaken, there are two identical PCIe
-controllers in JH7110. The first one connects the onboard USB controller of vf2,
-which also enables MSI interrupts. How come this exact problem not affecting the
-USB controller? The commit message from Minda strongly suggests it does, and also
-for R8169 NIC. Thus, why would you suggest the problem is confined to NVMe?
+Missing commit msg.
 
-Bo
+A nit, subject: drop second/last, redundant "bindings". The
+"dt-bindings" prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
 
->>
->> Sorry, we made a casual conclusion here.
->> Not any two of inbound post requests can`t be kept in order in JH7110 SoC,
->> the only one case we found is NVMe completions with MSI interrupts.
->> To be more precise, they are the pending status in nvme_completion struct and
->> nvme_irq handler in nvme/host/pci.c.
->>
->> We have shown the original workaround patch before:
->> https://lore.kernel.org/lkml/CAJM55Z9HtBSyCq7rDEDFdw644pOWCKJfPqhmi3SD1x6p3g2SLQ@mail.gmail.com/
->> We put it in our github branch and works fine for a long time.
->> Looking forward to better advices from someone familiar with NVMe drivers.
+> ---
+>  .../power/reset/google,gs101-poweroff.yaml    | 54 +++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/reset/google,gs101-poweroff.yaml
 > 
-> So this platform treats strictly ordered writes the same as if relaxed
-> ordering was enabled? I am not sure if we could reasonably work around
-> such behavior. An arbitrary delay is likely too long for most cases, and
-> too short for the worst case.
-> 
-> I suppose we could quirk a non-posted transaction in the interrupt
-> handler to force flush pending memory updates, but that will noticeably
-> harm your nvme performance. Maybe if you constrain such behavior to the
-> spurious IRQ_NONE condition, then it might be okay? I don't know.
-> 
+> diff --git a/Documentation/devicetree/bindings/power/reset/google,gs101-poweroff.yaml b/Documentation/devicetree/bindings/power/reset/google,gs101-poweroff.yaml
+> new file mode 100644
+> index 000000000000..d704bf28294a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/reset/google,gs101-poweroff.yaml
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/power/reset/google,gs101-poweroff.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Google GS101 poweroff driver
 
-Also copied Keith's latest reply below, and I also have the same doubt.
+Bindings are not for drivers, but hardware.
 
-> Hm, that may not be good enough: if nvme completions can be reordered
-> with their msi's, then I assume data may reorder with their completion.
-> Your application will inevitably see stale and corrupted data, so it
-> sounds like you need some kind of barrier per completion. Ouch!
+> +
+> +maintainers:
+> +  - Alexey Klimov <alexey.klimov@linaro.org>
+> +
+> +description: |+
+> +  This is a Google Tensor gs101 poweroff driver using custom regmap
+
+Bindings are not for drivers, but hardware.
+
+> +  to map the poweroff register. The poweroff itself is performed with
+> +  a write to the poweroff register from a privileged mode. Since generic
+> +  syscon does not support this, the specific one is required.
+> +  The write to the poweroff register is defined by the register map pointed
+> +  by syscon reference plus the offset with the value and mask defined
+> +  in the poweroff node.
+> +  Default will be little endian mode, 32 bit access only.
+> +
+> +properties:
+> +  compatible:
+> +    const: google,gs101-poweroff
+> +
+> +  mask:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Update only the register bits defined by the mask (32 bit).
+> +
+> +  offset:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Offset in the register map for the poweroff register (in bytes).
+> +
+> +  samsung,syscon-phandle:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+
+This does not look right. The poweroff handling is within PMU, not
+somewhere else. Don't use syscons as a replacement of regular MMIO
+addresses.
+
+
+
+Best regards,
+Krzysztof
+
 
