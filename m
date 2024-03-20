@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-51994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89E89881574
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 17:21:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B31B881579
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 17:21:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E450B22FB3
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 16:21:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0535B28336E
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 16:21:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 377295645B;
-	Wed, 20 Mar 2024 16:21:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C672856B9E;
+	Wed, 20 Mar 2024 16:21:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QM6tYwDa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NwgMsq53"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A3845644E;
-	Wed, 20 Mar 2024 16:21:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E68856B89;
+	Wed, 20 Mar 2024 16:21:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710951662; cv=none; b=bE+jS8dIlmUcoWhUWf1NFfYQlEkszrpKFj01odbn5xxQyvV3TLmjQNULZfgqPmBekBs0P+gO/v3beRH4cGLJiBfT1HUvGtU/5Szq2BRQ8zvjx07VD28RzNhpUOQxoUkq3QDvLwQNlLixlNacFfxDPsLv4gWLMkvAdM3xShpHTg0=
+	t=1710951664; cv=none; b=BIqRYbfLJFJD9+1worGuDNRbVxxbAhOkbtG8B6WPEcXyKzsW/kp6FoRJFI3mRkvpLL763EfXqS8met5yHmG0x1RnPoc19C1eidtVR/UhX9Mo8lGmGfMEpyve+PHdv/9viNU4yH3eRu1ZeHaQ4LB5Y69jOYijXHXHq7679IEHEJA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710951662; c=relaxed/simple;
-	bh=2voymtzNKPgSxyypqQxc/DFgDi1DnnjPRI/z96JK+Fw=;
+	s=arc-20240116; t=1710951664; c=relaxed/simple;
+	bh=SGKbHXx9GhYI1qyjfaaZUxa8KlMBS5mpkV54mHCA1kM=;
 	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=NfujP31D0r1CQXZ0S5B5ZK6HKQOxGRV51YgsQbbspy3EBZShce8fpM8/gYskx+t5gXXXvK1HgR9X5vjVnLYTIHhd8cbttTWE3ur4+X8l9rkabJDFjn2ZTkXZDG88TBckjqMc9nynBO6UxrmX9cL1SkSfQR4Cnce8YRuYQHAqBe0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QM6tYwDa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B4B7C433C7;
-	Wed, 20 Mar 2024 16:21:01 +0000 (UTC)
+	 Message-Id:Subject; b=jrht+yxL7GnyQG+kkij8ZWSG24AiwihJPMmORCOQrydHx2QojCo4RPK6AH5I/PlZWVr1JT4iciPomjp8PXbKaOTPf4fOswQKNA/5gopfCBn+2ozez0bYvWyopyQcRjCJhdobq3xAp9LfLpGFRkKPZc8ul/B3I3csdhiv0tUnSZg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NwgMsq53; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD26AC433C7;
+	Wed, 20 Mar 2024 16:21:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710951661;
-	bh=2voymtzNKPgSxyypqQxc/DFgDi1DnnjPRI/z96JK+Fw=;
+	s=k20201202; t=1710951664;
+	bh=SGKbHXx9GhYI1qyjfaaZUxa8KlMBS5mpkV54mHCA1kM=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=QM6tYwDaQHd9Iurd/HI8yyWkLo4TSp9KaujfDvMwsMu08q6LeM+qsCajsOV098RXD
-	 Ea65qVBhYfxiX8mlXxrKInXjLlSBnUg/T7QUBpsAU4D6jbVfTB6IByYQ5alXfQCvqD
-	 aaSLzV3Usb8xEL+4JH+/BcsfxgIVshnpEPLC9G7j5CTnnZMaR24vsoJfdmHFrRYOFD
-	 tXLU1igLOnTccV/HEm1p1CfC1O4AXhMIGYWUYyhbAv2oRsKw9HyQ4RZ9Mq5v1qh7gB
-	 3vSvdkfPvQ6fX7da+GCDw4fOR/MxNVXOVulEvY52M9kfIpvgI5G5+9s2DWhPojEidH
-	 yzcmLl95FJdxw==
-Date: Wed, 20 Mar 2024 11:21:00 -0500
+	b=NwgMsq53JeZlshJ72slYZRRvOR7tc+DhdXbwD5Qp+SQUcOFslmSYsz3q+kzGTgt7/
+	 FB89dwh/oVZks87Kf7f+wmJihmqF+QPSzxGs9gidfF2eJJZPGcoVtOuEsIDYZrTIUd
+	 ukmy/BT+Y5o/Wvd6nKSk8PZl6XEE01GPn99jiA4Er6P4KpZ/DAgJywUjM0oW20AYIc
+	 I732n40K7zT2YiLLxpXTl0huILNUhA0L0QsfNqEDjN8vkzOkk5JUK3Bpbaqd6RqAjP
+	 sWlqIQ0izWXyjtYTbFP4qveCavJFR4mlB7iBSJpQhFvYIXb6wVEebnsLjWBqIW5opd
+	 tP5NN1AK/+TyA==
+Date: Wed, 20 Mar 2024 11:21:02 -0500
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,65 +51,48 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: Rob Herring <robh@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: linux-phy@lists.infradead.org, 
- Kishon Vijay Abraham I <kishon@kernel.org>, linux-arm-msm@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, linux-kernel@vger.kernel.org, 
- Vinod Koul <vkoul@kernel.org>, 
+To: =?utf-8?q?Pavel_L=C3=B6bl?= <pavel@loebl.cz>
+Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ Samuel Holland <samuel@sholland.org>, linux-sunxi@lists.linux.dev, 
+ Chen-Yu Tsai <wens@csie.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Bjorn Andersson <andersson@kernel.org>
-In-Reply-To: <20240319-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v1-0-926d7a4ccd80@linaro.org>
-References: <20240319-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v1-0-926d7a4ccd80@linaro.org>
-Message-Id: <171095148652.1943238.14315576766364498217.robh@kernel.org>
-Subject: Re: [PATCH 0/7] arm64: qcom-sm8[456]50: properly describe the PCIe
- Gen4x2 PHY AUX clock
+ Jernej Skrabec <jernej.skrabec@gmail.com>
+In-Reply-To: <20240320001152.4077150-1-pavel@loebl.cz>
+References: <20240320001152.4077150-1-pavel@loebl.cz>
+Message-Id: <171095148684.1943272.17283470654158577343.robh@kernel.org>
+Subject: Re: [PATCH v2 0/3] dt-bindings: arm: sunxi: Add Banana Pi P2 Zero
+ v1.1
 
 
-On Tue, 19 Mar 2024 11:44:26 +0100, Neil Armstrong wrote:
-> The PCIe Gen4x2 PHY found in the SM8[456]50 SoCs have a second clock named
-> "PHY_AUX_CLK" which is an input of the Global Clock Controller (GCC) which
-> is muxed & gated then returned to the PHY as an input.
+On Wed, 20 Mar 2024 01:11:45 +0100, Pavel Löbl wrote:
+> Adding support for Add Banana Pi P2 Zero v1.1 from Sinovoip.
 > 
-> Document the clock IDs to select the PIPE clock or the AUX clock,
-> also enforce a second clock-output-names and a #clock-cells value of 1
-> for the PCIe Gen4x2 PHY found in the SM8[456]50 SoCs.
+> V2: Added Fixes: tag to 1/3 to reference the commit which introduced
+>     the duplication.
 > 
-> The PHY driver needs a light refactoring to support a second clock,
-> and finally the DT is changed to connect the PHY second clock to the
-> corresponding GCC input then drop the dummy fixed rate clock.
+>     Fixed all issues found by dtbs_check, except "cpu-hot-limit" regexp
+>     which is there for all H2/H3 boards.
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>     Switched back to "usb0_id_det-gpios" for role detection. In one submission
+>     Rob suggested this should be replaced with usb connector node. But as
+>     I understand the code, connector node approach is currently not supported
+>     by the sunxi phy driver.
+> 
+> Signed-off-by: Pavel Löbl <pavel@loebl.cz>
 > ---
-> Neil Armstrong (7):
->       dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: document PHY AUX clock on SM8[456]50 SoCs
->       phy: qcom: qmp-pcie: refactor clock register code
->       phy: qcom: qmp-pcie: register second optional PHY AUX clock
->       phy: qcom: qmp-pcie: register PHY AUX clock for SM8[456]50 4x2 PCIe PHY
->       arm64: dts: qcom: sm8450: remove pcie-1-phy-aux-clk and add pcie1_phy pcie1_phy_aux_clk
->       arm64: dts: qcom: sm8550: remove pcie-1-phy-aux-clk and add pcie1_phy pcie1_phy_aux_clk
->       arm64: dts: qcom: sm8650: remove pcie-1-phy-aux-clk and add pcie1_phy pcie1_phy_aux_clk
+> Pavel Löbl (3):
+>   ARM: dts: sunxi: remove duplicated entries in makefile
+>   dt-bindings: arm: sunxi: Add Banana Pi P2 Zero v1.1
+>   ARM: dts: sun8i: h2+: add support for Banana Pi P2 Zero board
 > 
->  .../bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml   |  27 +++++-
->  arch/arm64/boot/dts/qcom/sm8450.dtsi               |   8 +-
->  arch/arm64/boot/dts/qcom/sm8550-hdk.dts            |   4 -
->  arch/arm64/boot/dts/qcom/sm8550-mtp.dts            |   4 -
->  arch/arm64/boot/dts/qcom/sm8550-qrd.dts            |   8 --
->  arch/arm64/boot/dts/qcom/sm8550.dtsi               |  13 +--
->  arch/arm64/boot/dts/qcom/sm8650-mtp.dts            |   4 -
->  arch/arm64/boot/dts/qcom/sm8650-qrd.dts            |   4 -
->  arch/arm64/boot/dts/qcom/sm8650.dtsi               |  13 +--
->  drivers/phy/qualcomm/phy-qcom-qmp-pcie.c           | 104 ++++++++++++++++++---
->  include/dt-bindings/phy/phy-qcom-qmp.h             |   4 +
->  11 files changed, 129 insertions(+), 64 deletions(-)
-> ---
-> base-commit: 2e93f143ca010a5013528e1cfdc895f024fe8c21
-> change-id: 20240319-topic-sm8x50-upstream-pcie-1-phy-aux-clk-4b35169707dd
+>  .../devicetree/bindings/arm/sunxi.yaml        |   6 +
+>  arch/arm/boot/dts/allwinner/Makefile          |  63 +---
+>  .../sun8i-h2-plus-bananapi-p2-zero-v1.1.dts   | 287 ++++++++++++++++++
+>  3 files changed, 294 insertions(+), 62 deletions(-)
+>  create mode 100644 arch/arm/boot/dts/allwinner/sun8i-h2-plus-bananapi-p2-zero-v1.1.dts
 > 
-> Best regards,
 > --
-> Neil Armstrong <neil.armstrong@linaro.org>
-> 
+> 2.39.2
 > 
 > 
 
@@ -128,12 +111,10 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y qcom/sm8550-hdk.dtb qcom/sm8550-mtp.dtb qcom/sm8550-qrd.dtb qcom/sm8650-mtp.dtb qcom/sm8650-qrd.dtb' for 20240319-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v1-0-926d7a4ccd80@linaro.org:
+New warnings running 'make CHECK_DTBS=y allwinner/sun8i-h2-plus-bananapi-p2-zero-v1.1.dtb' for 20240320001152.4077150-1-pavel@loebl.cz:
 
-arch/arm64/boot/dts/qcom/sm8550-qrd.dtb: clock-controller@100000: clocks: [[41], [42], [43], [44, 0], [45, 0], [45, 1], [45, 2], [46, 0]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/qcom,sm8550-gcc.yaml#
-arch/arm64/boot/dts/qcom/sm8550-qrd.dtb: clock-controller@100000: Unevaluated properties are not allowed ('clocks' was unexpected)
-	from schema $id: http://devicetree.org/schemas/clock/qcom,sm8550-gcc.yaml#
+arch/arm/boot/dts/allwinner/sun8i-h2-plus-bananapi-p2-zero-v1.1.dtb: thermal-zones: cpu-thermal:cooling-maps: 'cpu-hot-limit' does not match any of the regexes: '^map[-a-zA-Z0-9]*$', 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/thermal/thermal-zones.yaml#
 
 
 
