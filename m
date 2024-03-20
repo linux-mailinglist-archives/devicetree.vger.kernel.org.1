@@ -1,140 +1,175 @@
-Return-Path: <devicetree+bounces-52019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52020-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2976881727
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 19:07:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 015B488176A
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 19:44:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A946A1F21BE7
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 18:07:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AAFEA282229
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 18:44:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE6F86A8DD;
-	Wed, 20 Mar 2024 18:07:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5228A6AFAE;
+	Wed, 20 Mar 2024 18:44:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GwsmVKUy"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="J+vujSF5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31DBD6A8C5;
-	Wed, 20 Mar 2024 18:07:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10B4352F78;
+	Wed, 20 Mar 2024 18:44:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710958035; cv=none; b=gepIXHiyQul4TWbneWSOGn85usDNW5viJuG01i++OgyHBql6e2CrRLiksi4L9b8NH58heEok65Pp2TCHQFL0eo1WG02JiiReoWgd4XOG/jVokuOv81BSTem6yM+MzJW8mM7lo+am6P7Lo4+wBG8gjoCQQkRbO25GuFj4RUhZCJw=
+	t=1710960274; cv=none; b=R5/RWa1ckR63uXtALaGJWOhQ76QfWcsZ4tPlHSrF/wueNalh+v119hrMqKskwNPUEbG70aR5s9xZckEwinluxswdwlUs0eRWHO9NRM5OHvbBPotWQUQ7GZU0gSFM10rIhtuV2fc61Hm2pkI/91ed8AH5vB7E5KbfHk8KhqLjmwg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710958035; c=relaxed/simple;
-	bh=x6f/dtZgNhfjcmwPU/NJ1nnNGzOLuuGjWr3KuNwZvJQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=WjRWBMD6CMYXTjDm9FR39jkxeOj9oPYLK84AhV+KzHp74gQ0kgb2GY8rcLAc4VKH9SL89jT03BSHi9oXSOXm8KGTsS2VmcpwAyO3ikCxmLHMVMJ5V1hs1BrcbmIwG3mrJ2W78HO920mbc1W0nibXYIvlVBn9DZ+T2BNAPL006Uk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=GwsmVKUy; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42KEjsXV009922;
-	Wed, 20 Mar 2024 18:07:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=29xaP5UAvNKSpcikIIjh3JQHAC7eEToqPOI6y4HLrM4=; b=Gw
-	smVKUymbkHdUwP7Sd+zIS2l5gX0ho76y4KU+ce/Tz4xz5DhuxfCeQWLmBi5lFf+Y
-	e6r2UHyXjXCZTFlrNs1Bx4RRZbOk/lk+Q/r1yE0SplJuS+GhaLZ+iP7qshL7EHuz
-	T65HcGOrSZrJ6vgF3YyWiNN5p83bhTmo73QkWowHdcFXgb3IvJJusthUfsTuRJMk
-	t7fPQUr6pS9wputCtVP+o5b+4DkmTKUSVEYPNfoJZosRPZd18Yz5YDm8QYdRHtm2
-	s5WaPCZyEH8pbbIhCNUTQ8DowKGFBiCT1a6sx10dhwRSETj+Bn/L7I039/93cyeu
-	htp8sxRXW9gSeQG0mMZQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wyyvdgv2t-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 20 Mar 2024 18:07:08 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42KI77XO002408
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 20 Mar 2024 18:07:07 GMT
-Received: from [10.50.49.240] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 20 Mar
- 2024 11:07:02 -0700
-Message-ID: <f548b8a0-96cc-4079-9070-90236cb28e18@quicinc.com>
-Date: Wed, 20 Mar 2024 23:37:02 +0530
+	s=arc-20240116; t=1710960274; c=relaxed/simple;
+	bh=ti10f1siFmjiL/455g1TgRS6RuhZRQCdTQdiF11FS44=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pqQeP/pyajlDpE7vRpWEkiA+RxZFGMFdDE6KYH3nqF8324ot99H+R35zS53yQVOdmaYyXcVR1f0EMna2qOO/NLRbbyEvjE38s4bJ3FCRk9YwHjmtrTnNLIqxFsBTB4yiylD+Sxn9HU21TM9IFWOO72G6cloaijMrtRknILwxPMU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=J+vujSF5; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=fEgErpl+wLpV80SuRfPGE67eSPI0zTuNiDl4KjehtmY=; b=J+vujSF5pSb6RzVvu6NEt28gQM
+	wgIlw3qz/q/rm1P4Ngknf+9+CCm5jw7vboMtODYv7u9v0R/rD7vTnQNosUl/u8sQwTRQaEe8ZWV+D
+	XNYDL39sv97jA6+xLw2WaXD5qhG5gUKyXwCt9IBs+tEgazof4DBoeQzTzjh/hLdcSWwE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rn0v4-00AoEN-42; Wed, 20 Mar 2024 19:44:10 +0100
+Date: Wed, 20 Mar 2024 19:44:10 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Ayush Singh <ayushdevel1325@gmail.com>
+Cc: Vaishnav Achath <vaishnav.a@ti.com>, Michael Walle <mwalle@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	open list <linux-kernel@vger.kernel.org>, jkridner@beagleboard.org,
+	robertcnelson@beagleboard.org, lorforlinux@beagleboard.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Mark Brown <broonie@kernel.org>, Johan Hovold <johan@kernel.org>,
+	Alex Elder <elder@kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"moderated list:ARM/TEXAS INSTRUMENTS K3 ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+	"open list:SPI SUBSYSTEM" <linux-spi@vger.kernel.org>,
+	"moderated list:GREYBUS SUBSYSTEM" <greybus-dev@lists.linaro.org>,
+	Vaishnav M A <vaishnav@beagleboard.org>
+Subject: Re: [PATCH v4 1/5] dt-bindings: misc: Add mikrobus-connector
+Message-ID: <c368ee3b-1b80-46b1-9aa7-b7fc0094e3a1@lunn.ch>
+References: <c8031e17-5ae8-4794-8b8c-1736be6452d3@gmail.com>
+ <CZXMK3W52AFO.1APK080GVJESK@kernel.org>
+ <5a9b1cd9-05ec-4606-92b6-eadbc7af6202@gmail.com>
+ <CZXPQZY8PUGE.QZM8XSOUNMT4@kernel.org>
+ <81ec4156-8758-406e-876b-5acf13951d09@gmail.com>
+ <CZXSKOLK6S1S.N86E2AZG2V90@kernel.org>
+ <2eec6437-dd11-408d-9bcb-92ba2bee4487@ti.com>
+ <28c995cb-1660-435f-9ee4-1195439231f0@gmail.com>
+ <f53cd006-5eb0-47f2-8f84-e7915154f12d@lunn.ch>
+ <c3223f90-6e7c-4fdc-905a-770c474445e2@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/4] arm64: dts: qcom: sc7280: Add clocks for QOS
- configuration
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Georgi Djakov <djakov@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: Kees Cook <keescook@chromium.org>, <cros-qcom-dts-watchers@chromium.org>,
-        "Gustavo A . R . Silva" <gustavoars@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-hardening@vger.kernel.org>, <quic_rlaggysh@quicinc.com>,
-        <quic_mdtipton@quicinc.com>
-References: <20240306073016.2163-1-quic_okukatla@quicinc.com>
- <20240306073016.2163-5-quic_okukatla@quicinc.com>
- <feb1be8f-ed13-4925-b284-27303651e933@linaro.org>
-From: Odelu Kukatla <quic_okukatla@quicinc.com>
-In-Reply-To: <feb1be8f-ed13-4925-b284-27303651e933@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: uPMnZVlTUOzsgoWHFzgCTkKD5PZv6s__
-X-Proofpoint-ORIG-GUID: uPMnZVlTUOzsgoWHFzgCTkKD5PZv6s__
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-20_10,2024-03-18_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
- bulkscore=0 priorityscore=1501 malwarescore=0 lowpriorityscore=0
- impostorscore=0 adultscore=0 mlxlogscore=999 clxscore=1015 mlxscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2403140001 definitions=main-2403200144
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c3223f90-6e7c-4fdc-905a-770c474445e2@gmail.com>
 
-
-
-On 3/12/2024 4:05 PM, Konrad Dybcio wrote:
+On Wed, Mar 20, 2024 at 10:09:05PM +0530, Ayush Singh wrote:
+> On 3/20/24 01:02, Andrew Lunn wrote:
 > 
+> > > Yes, after discussion with Vaishnav and trying to brainstorm some way to do
+> > > the same thing with dt overlays, it seems that trying to use dt overlays
+> > > will mean need to have completely separate implementation of mikroBUS for
+> > > local ports and mikroBUS over greybus.
+> > Could you explain why please?
+> > 
+> > Are greybus I2C bus masters different from physical I2C bus masters?
+> > Are greybus SPI bus masters different from physical SPI bus masters?
 > 
-> On 3/6/24 08:30, Odelu Kukatla wrote:
->> Add handles for required clocks to be enabled for configuring
->> QoS on sc7280.
->>
->> Signed-off-by: Odelu Kukatla <quic_okukatla@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/sc7280.dtsi | 3 +++
->>   1 file changed, 3 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> index 7e7f0f0fb41b..e1d8fb6afae8 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> @@ -2129,6 +2129,8 @@
->>   			reg = <0 0x016e0000 0 0x1c080>;
->>   			#interconnect-cells = <2>;
->>   			qcom,bcm-voters = <&apps_bcm_voter>;
->> +			clocks = <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
->> +				<&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>;
-> 
-> Please align this with the previous <
-> 
+> Well, they are virtual, so they are not declared in the device tree. I have
+> linked the greybus i2c implementation. It basically allocates an i2c_adpater
+> and then adds it using `i2c_add_adapter` method. This adapter can then be
+> passed to say mikroBUS driver where it can be used as a normal i2c_adapter,
+> and we can register the device to it.
 
-I will fix it in v4.
+Being virtual does not really stop it being added to the DT.
 
-> Konrad
+I'm making this all up, but i assume it will look something like this:
 
-Thanks,
-Odelu
+greybus@42 {
+        compatible = "acme,greybus";
+        reg = <0x42 0x100>;
+
+This would represent the greybus host controller.
+
+	module@0 {
+		 reg = <0>;
+
+This would represent a module discovered on the bus. I assume there is
+some sort of addressing? The greybus core code dynamically creates the
+node in DT to describe the modules it has discovered. This is not too
+different to USB. You can already describe USB devices in DT, but the
+assumption is you know they exists, e.g. because they are hard wired,
+not hot-plugable. The USB core will associate the USB device with the
+node in DT. But actually creating a node in DT is not too big a jump.
+
+		interface@0 {
+     			compatible = "greybus,i2c";
+			reg = <0>;
+		}
+		interface@1 {
+     			compatible = "greybus,spi";
+			reg = <1>;
+		}
+		interface@10 {
+     			compatible = "greybus,gpio";
+			reg = <10>;
+		}
+
+It can then enumerate the interfaces on the module, and create the I2C
+node, SPI bus node, the gpio controller etc. Again, the greybus core
+can add nodes to DT to described the discovered hardware, and
+associate them to the linux devices which are created.
+
+That gives you what you need to load a DT overlay to make use of these
+devices. That overlay would contain one of your virtual mikroBUS
+controllers. This virtual controller is basically a phandle-proxy. The
+virtual mikroBUS controllers is a consumer of phandles to an I2C bus,
+an SPI bus, GPIO bus which makes up the pins routed to the mikroBUS
+connector. The virtual mikroBUS controllers is also a provider of an
+I2C bus, an SPI bus, GPIO controller. The mikroBUS device consumes
+these I2C bus, SPI bus etc. The virtual mikroBUS controllers makes it
+simpler for the device to find the resources it needs, since they are
+all in one place. For a physical mikroBUS you have a DT node with
+phandles to the physical devices. For greybus you create a virtual
+device with phandles to the virtual devices added to the DT bus.
+
+You then have everything you need to describe the mikroBUS
+devices. For very simple devices you convert the manifest to a DT
+overlay and load it. For complex devices you directly use a DT
+overlay.
+
+I also don't see any need to do the manifest to DT overlay conversion
+on the fly. You have a database of manifests. They could be converted
+to DT and then added to the linux-firmware repo, for example. If
+device with an unknown manifest is found, it should be possible to
+read the manifest in userspace via its eeprom in /sys/class/. An tool
+could create DT blob and add it to /lib/firmware to get it working
+locally, and provide suggestions how to contribute it to the linux
+firmware project?
+
+   Andrew
 
