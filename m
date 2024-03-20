@@ -1,123 +1,117 @@
-Return-Path: <devicetree+bounces-51995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B31B881579
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 17:21:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CA5E88157D
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 17:22:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0535B28336E
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 16:21:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C2B01C22E1C
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 16:22:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C672856B9E;
-	Wed, 20 Mar 2024 16:21:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11BBF54FA9;
+	Wed, 20 Mar 2024 16:21:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NwgMsq53"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SoUKb1BM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E68856B89;
-	Wed, 20 Mar 2024 16:21:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC55154F92;
+	Wed, 20 Mar 2024 16:21:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710951664; cv=none; b=BIqRYbfLJFJD9+1worGuDNRbVxxbAhOkbtG8B6WPEcXyKzsW/kp6FoRJFI3mRkvpLL763EfXqS8met5yHmG0x1RnPoc19C1eidtVR/UhX9Mo8lGmGfMEpyve+PHdv/9viNU4yH3eRu1ZeHaQ4LB5Y69jOYijXHXHq7679IEHEJA=
+	t=1710951680; cv=none; b=o4SteFlYDJMzxr99czu+zK8+fqt1NHRPoAAm1aiUeSoF7Q/BpQf1v6T3KMm2XadNPmr0qJQDmZiHzk/XJqkrZwXT4pHFBtCvibqbbHUO3Hw42JSsrHPnevD92T2Qkv+2ihQqtAZzus0Gc37GC5NSU5NkOWo6ZSyb3fdtvFpGVXE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710951664; c=relaxed/simple;
-	bh=SGKbHXx9GhYI1qyjfaaZUxa8KlMBS5mpkV54mHCA1kM=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=jrht+yxL7GnyQG+kkij8ZWSG24AiwihJPMmORCOQrydHx2QojCo4RPK6AH5I/PlZWVr1JT4iciPomjp8PXbKaOTPf4fOswQKNA/5gopfCBn+2ozez0bYvWyopyQcRjCJhdobq3xAp9LfLpGFRkKPZc8ul/B3I3csdhiv0tUnSZg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NwgMsq53; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD26AC433C7;
-	Wed, 20 Mar 2024 16:21:03 +0000 (UTC)
+	s=arc-20240116; t=1710951680; c=relaxed/simple;
+	bh=Knp+GyIrxjiqzs9RPdIV6EPSjw9Di62CuHFlK7en0Zg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eQhh4LUOR6Jc5LmCJFPYxssV4C2UZFDI8IrFQE9eD6ClxPs6b5pBjTz/Qmis+5ytFiFmLChW0GqR1gER8Y8GRJ5cJlB9yXDuJPvrxj7WPbhVkRVTzWr93uLYbdn4I7XW/T0+UsflDimdhycNiJMDD44KXbRPT3pG2hNyR5VcgKk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SoUKb1BM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14062C433F1;
+	Wed, 20 Mar 2024 16:21:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710951664;
-	bh=SGKbHXx9GhYI1qyjfaaZUxa8KlMBS5mpkV54mHCA1kM=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=NwgMsq53JeZlshJ72slYZRRvOR7tc+DhdXbwD5Qp+SQUcOFslmSYsz3q+kzGTgt7/
-	 FB89dwh/oVZks87Kf7f+wmJihmqF+QPSzxGs9gidfF2eJJZPGcoVtOuEsIDYZrTIUd
-	 ukmy/BT+Y5o/Wvd6nKSk8PZl6XEE01GPn99jiA4Er6P4KpZ/DAgJywUjM0oW20AYIc
-	 I732n40K7zT2YiLLxpXTl0huILNUhA0L0QsfNqEDjN8vkzOkk5JUK3Bpbaqd6RqAjP
-	 sWlqIQ0izWXyjtYTbFP4qveCavJFR4mlB7iBSJpQhFvYIXb6wVEebnsLjWBqIW5opd
-	 tP5NN1AK/+TyA==
-Date: Wed, 20 Mar 2024 11:21:02 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1710951679;
+	bh=Knp+GyIrxjiqzs9RPdIV6EPSjw9Di62CuHFlK7en0Zg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SoUKb1BMv1Y/6RqB9NPHqWw3cag7uoAQCxuLrtYBsMxFhQEo9SUBzYhW685e+bgNk
+	 0AZ6w1twoo1I9FuwcyAv8rrpudPPXMGwFaIyVDQgfSSMNzf4fj1kH9ehWNAuvFFddG
+	 hHReE1PEggMbRoyzIW4V0ecGcfKfFX880RgyxCK61aQZFQt0QYYIBIi3Suj3OgDypr
+	 Xb/EarmFUDYC57fuNxmiWlpJV15K0DWT/lWgLJ5ueCnkkp0JKH+74jnyEUHp+WvwI2
+	 KGiX771tL5i6OesbpSQ5EdqinoLLu0eVXgJsSdomDrd14W4vyR31kH16zSOfIF8R9g
+	 tqKHN5i8horBA==
+Date: Wed, 20 Mar 2024 16:21:12 +0000
+From: Simon Horman <horms@kernel.org>
+To: Diogo Ivo <diogo.ivo@siemens.com>
+Cc: danishanwar@ti.com, rogerq@kernel.org, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	andrew@lunn.ch, dan.carpenter@linaro.org, jacob.e.keller@intel.com,
+	robh@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	vigneshr@ti.com, wsa+renesas@sang-engineering.com,
+	hkallweit1@gmail.com, arnd@arndb.de, vladimir.oltean@nxp.com,
+	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, jan.kiszka@siemens.com
+Subject: Re: [PATCH net-next v5 00/10] Support ICSSG-based Ethernet on AM65x
+ SR1.0 devices
+Message-ID: <20240320162112.GW185808@kernel.org>
+References: <20240320144234.313672-1-diogo.ivo@siemens.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: =?utf-8?q?Pavel_L=C3=B6bl?= <pavel@loebl.cz>
-Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- Samuel Holland <samuel@sholland.org>, linux-sunxi@lists.linux.dev, 
- Chen-Yu Tsai <wens@csie.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>
-In-Reply-To: <20240320001152.4077150-1-pavel@loebl.cz>
-References: <20240320001152.4077150-1-pavel@loebl.cz>
-Message-Id: <171095148684.1943272.17283470654158577343.robh@kernel.org>
-Subject: Re: [PATCH v2 0/3] dt-bindings: arm: sunxi: Add Banana Pi P2 Zero
- v1.1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240320144234.313672-1-diogo.ivo@siemens.com>
 
-
-On Wed, 20 Mar 2024 01:11:45 +0100, Pavel Löbl wrote:
-> Adding support for Add Banana Pi P2 Zero v1.1 from Sinovoip.
+On Wed, Mar 20, 2024 at 02:42:22PM +0000, Diogo Ivo wrote:
+> Hello,
 > 
-> V2: Added Fixes: tag to 1/3 to reference the commit which introduced
->     the duplication.
+> This series extends the current ICSSG-based Ethernet driver to support
+> AM65x Silicon Revision 1.0 devices.
 > 
->     Fixed all issues found by dtbs_check, except "cpu-hot-limit" regexp
->     which is there for all H2/H3 boards.
+> Notable differences between the Silicon Revisions are that there is
+> no TX core in SR1.0 with this being handled by the firmware, requiring
+> extra DMA channels to manage communication with the firmware (with the
+> firmware being different as well) and in the packet classifier.
 > 
->     Switched back to "usb0_id_det-gpios" for role detection. In one submission
->     Rob suggested this should be replaced with usb connector node. But as
->     I understand the code, connector node approach is currently not supported
->     by the sunxi phy driver.
+> The motivation behind it is that a significant number of Siemens
+> devices containing SR1.0 silicon have been deployed in the field
+> and need to be supported and updated to newer kernel versions
+> without losing functionality.
 > 
-> Signed-off-by: Pavel Löbl <pavel@loebl.cz>
-> ---
-> Pavel Löbl (3):
->   ARM: dts: sunxi: remove duplicated entries in makefile
->   dt-bindings: arm: sunxi: Add Banana Pi P2 Zero v1.1
->   ARM: dts: sun8i: h2+: add support for Banana Pi P2 Zero board
+> This series is based on TI's 5.10 SDK [1].
 > 
->  .../devicetree/bindings/arm/sunxi.yaml        |   6 +
->  arch/arm/boot/dts/allwinner/Makefile          |  63 +---
->  .../sun8i-h2-plus-bananapi-p2-zero-v1.1.dts   | 287 ++++++++++++++++++
->  3 files changed, 294 insertions(+), 62 deletions(-)
->  create mode 100644 arch/arm/boot/dts/allwinner/sun8i-h2-plus-bananapi-p2-zero-v1.1.dts
+> The fourth version of this patch series can be found in [2].
 > 
-> --
-> 2.39.2
+> Detailed descriptions of the changes in this series can be found in
+> each commit's message.
 > 
+> Both of the problems mentioned in v4 have been addressed by disabling
+> those functionalities, meaning that this driver currently only supports
+> one TX queue and does not support a 100Mbit/s half-duplex connection.
+> The removal of these features has been commented in the appropriate 
+> locations in the code.
 > 
+> [1]: https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/tree/?h=ti-linux-5.10.y
+> [2]: https://lore.kernel.org/netdev/20240305114045.388893-1-diogo.ivo@siemens.com/
 
+## Form letter - net-next-closed
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+(original text from Jakub)
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+The merge window for v6.9 has begun and therefore net-next is closed
+for new drivers, features, code refactoring and optimizations.
+We are currently accepting bug fixes only.
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+Please repost when net-next reopens after March 25th.
 
-  pip3 install dtschema --upgrade
+RFC patches sent for review only are welcome at any time.
 
-
-New warnings running 'make CHECK_DTBS=y allwinner/sun8i-h2-plus-bananapi-p2-zero-v1.1.dtb' for 20240320001152.4077150-1-pavel@loebl.cz:
-
-arch/arm/boot/dts/allwinner/sun8i-h2-plus-bananapi-p2-zero-v1.1.dtb: thermal-zones: cpu-thermal:cooling-maps: 'cpu-hot-limit' does not match any of the regexes: '^map[-a-zA-Z0-9]*$', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/thermal/thermal-zones.yaml#
-
-
-
-
-
+See: https://www.kernel.org/doc/html/next/process/maintainer-netdev.html#development-cycle
+--
+pw-bot: defer
 
