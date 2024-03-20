@@ -1,123 +1,114 @@
-Return-Path: <devicetree+bounces-51879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCACA880D13
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 09:32:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EF77880D35
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 09:40:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 817DC285120
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 08:32:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 27FBE2818E6
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 08:40:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E79492C68C;
-	Wed, 20 Mar 2024 08:32:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ACF937152;
+	Wed, 20 Mar 2024 08:40:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mSqBlz6N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ABH2SvNM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F73338DC0;
-	Wed, 20 Mar 2024 08:32:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E02E122079;
+	Wed, 20 Mar 2024 08:40:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710923540; cv=none; b=K+MRVa8fpYnXR+DTutnbBNghchXrpwVzcelZTpXtaEq6RXj1pRCA/lsxoWN0qMD/135qPD8ClaEwAkEP/cKJGEPyD+4PqITwWn2FBQuGhrMxO0Rw+iDg6kCQoAYCYs3wEuD87KcJ/EiEkBj98HRm3YxJQxP2iwdEUq11cXun9cE=
+	t=1710924035; cv=none; b=K5pr/3Ui7GD9qzyPPfAumhT3VkuVSLZt4QQeectsewMu8gojB+k2WZhqsn2opH4IOhYF6YT5W7RG6UU+FXcdLvKa7hvoZSX1xCNhhW4kU23Iws7sY/NJZYi8y6y8EtE3zpt/Er9VaFA4WPNkl53cWy8GJTw+/DvXQiXkHiGJ2Vk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710923540; c=relaxed/simple;
-	bh=I1GjyquXx44yYevg7HqbsGvpoYxKwSNXqTAAuylPg/Q=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=a9rPxB2kEuc3OrPCbfumPBBaYQKojVG0H5FAWqTCRMUHS/K88ZzIrenIoTGHn4CLkKowmlUAXjesLeNCnrn+A7Iw5/qj9hyjtVGfqTDBgn8SUjruW/l6UVWZKbBBD5QuaazBoRzzksnPwFhrSLLLC5P3VbGeuTMQyWJ6PK7YN9s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mSqBlz6N; arc=none smtp.client-ip=209.85.160.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-229661f57cbso1351060fac.1;
-        Wed, 20 Mar 2024 01:32:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710923538; x=1711528338; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=I1GjyquXx44yYevg7HqbsGvpoYxKwSNXqTAAuylPg/Q=;
-        b=mSqBlz6NJ3+2tCmAGCEr3/IaH2rliKQiymVWeAiE2UO/2Is2feelSUtuV9SDk8ReSp
-         Wxex31zQPLLoGFbb8h6S/wiUlVXS666ZVEU0edgawGmADu3/1Zvc3hPw5wBNJHTA0UND
-         9kTIULEhoEWbVs0ltDg1lSigk3L5M1RXf3eTNZwwAYLZvQEjuGOzwDnMucK5ZLtK/QsO
-         wzY7qWXrKrwugPPTB6QparhZ6Yg5unsQlzjyW77tPehEq2OItjkMdk8cR4XodzTGbz3F
-         0IBaJCDsqa13D+MQPDVTSv2Jlo6tZsjxxaHW0UYREM5bSlQH/0lI2m7mK6x8TsuMDKsn
-         O8cA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710923538; x=1711528338;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=I1GjyquXx44yYevg7HqbsGvpoYxKwSNXqTAAuylPg/Q=;
-        b=wudnkfcYEn6Gm9A4EoeG+MeTDnWgtiPBsqK5CH6J1aow2ZZHzy3XZDDGCMY81e6+s7
-         KWlB+jMFxDsCpiKaUEJRfrHwDWa3wOxhPIkQsL6hs9/YstcV4O/8QazbHDDJts6bN2ot
-         0ELuPWtchwkrJx9T5TnhASIhDesaE+JiQUy3rJjYnF7aNy77YL7hPUEXOlwEDlvdjarJ
-         3DwyarPyrcoRdyq5FgHTGipRpOxFydw83T5x34A1GpTXbjSu1m5EjkkoVZhCZXWznioN
-         DU62Qzt5CtdKL9EbPjj804XJYJZJTLnYquQQ4erz0HGzzNSjQhAov6DuqJ2gRSB+dXIL
-         rD8w==
-X-Forwarded-Encrypted: i=1; AJvYcCW3HZc5D730D4R7aJu/UmaZQ2iI7Zr+1Eh7Sw/IDWIRTq5zRXEhjwMjXNNNeYzVoM/9W54RrbUZbp74MxOnQbaXto1Qtj5dezbNG8PxmtlbyEOAbRA7t4APVsvyJWNb7lZ9/7YAFyE9KKLXe5uOLqsWnT6ESmrnXmmPC0IVqo1aNXCrcA==
-X-Gm-Message-State: AOJu0YwgMX7IT42s7TSi3oA3uuFWwxAsUvL6PQV34CGFcTb9YGIPGGdT
-	asbm8yNPtdwKX12WADNWF4uoLWGXFXZpdENNU684n4dQGvRkQLbqOtGz2iiNcBFo6F6EPn0CAkd
-	UfgarpGac+4g6zNUGT14FTco9Flw=
-X-Google-Smtp-Source: AGHT+IFiavUb4RKpde44jEu7GlR1AFgB69m17aLQQQQL5sk9DzK3kTrvPW91CotGDjLYbJieZL/MDGjGFWjLy+czHIE=
-X-Received: by 2002:a05:6871:5b13:b0:221:96b2:5a4e with SMTP id
- op19-20020a0568715b1300b0022196b25a4emr5273606oac.58.1710923538332; Wed, 20
- Mar 2024 01:32:18 -0700 (PDT)
+	s=arc-20240116; t=1710924035; c=relaxed/simple;
+	bh=EP6W5CkU5wj8hYaU2zzpBiXnfR5QSHzPvzGI68agMwQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uMFWUSR5rmTs8QTtN92UCgYwQIgq83mSCL/j2/kjOEgl9mx1EP7cQHhy/42WWpkLHr3cntT6jB7tHpgt3GEWPPCPIrFH80BdbIeyIMeM9SKyqSNS4/BklTX01vPak2sGmKZuv21YkDGdyptr+O/UavR/lGMBIcrf/ORFzGnDQtY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ABH2SvNM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 527ABC433C7;
+	Wed, 20 Mar 2024 08:40:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710924034;
+	bh=EP6W5CkU5wj8hYaU2zzpBiXnfR5QSHzPvzGI68agMwQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ABH2SvNMymYgmtJ6ajtj9ila2dD/mori48MEJ9dIAMWSzUv+ba0K/iefBWK6zD1at
+	 WcsrU0uB/z+xEOoU3hAXLeBgfRwAfGuJWZlAG7hgXD2zuQvqkZrNJD6Cd8ZzHyR82j
+	 R5xdLZ0oMDHz4IYLD4FthcLeHeL6a1ccigN2bg5gNGtTkNMYfJC8tsj6AVFo9Kzsvn
+	 dAGHCfNOtHXiNUA9aZkkZ6MvtDWlWYCLwJ5vBin6+lPsAYV/TGXtBujcQDEXQioG7x
+	 qVOrWn01xElhqX+5HU0ndTfnGyCZ+9+rkNmHDL5t7RH7BC5YJUNRFAerVTvlZTZs83
+	 /7LPob9MpugOw==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1rmrV2-000000004B1-2Gwb;
+	Wed, 20 Mar 2024 09:40:41 +0100
+Date: Wed, 20 Mar 2024 09:40:40 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH v4 0/5] arm64: dts: qcom: sc8280xp: PCIe fixes
+ and GICv3 ITS enable
+Message-ID: <ZfqhCKoEL4XGRs7T@hovoldconsulting.com>
+References: <20240306095651.4551-1-johan+linaro@kernel.org>
+ <171081652637.198276.6219023769904423414.b4-ty@kernel.org>
+ <Zfk98hYPn7kiFGkt@hovoldconsulting.com>
+ <9b475e13-96b9-4bce-8041-e0d8e5a332a1@linaro.org>
+ <Zfqb8jPK50vlqu5Q@hovoldconsulting.com>
+ <baf9c1bd-84ef-4ecb-b229-51a83fe82c3f@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240318153959.30755-1-animeshagarwal28@gmail.com>
- <20240319-oversight-viable-4550ffbc31d9@spud> <CAE3Oz81-8tV2iJc7Jp3B-ooHvGeOSctxUAvd_1dA-3DQRUJFPQ@mail.gmail.com>
- <2b45017a-5a68-4c56-a1b3-ef17163139d4@linaro.org>
-In-Reply-To: <2b45017a-5a68-4c56-a1b3-ef17163139d4@linaro.org>
-From: Animesh Agarwal <animeshagarwal28@gmail.com>
-Date: Wed, 20 Mar 2024 14:02:07 +0530
-Message-ID: <CAE3Oz81K3dFW7PNV+oEq4HEbTWYP3DkLbpztSXg2jHk+wh1Ebw@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: nxp,pnx-i2c: Convert to dtschema
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Conor Dooley <conor@kernel.org>, Vladimir Zapolskiy <vz@mleia.com>, Andi Shyti <andi.shyti@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <baf9c1bd-84ef-4ecb-b229-51a83fe82c3f@linaro.org>
 
-On Wed, Mar 20, 2024 at 1:23=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
-> Yes.
->
-> While at this:
-> Please use subject prefixes matching the subsystem. You can get them for
-> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-> your patch is touching.
-> missing i2c
+On Wed, Mar 20, 2024 at 09:24:54AM +0100, Krzysztof Kozlowski wrote:
+> On 20/03/2024 09:18, Johan Hovold wrote:
 
-Thanks for the support on this, I will be using proper subject
-prefixes here onwards.
+> > Perhaps you should not comment before reading up on the history of this
+> > series.
+> > 
+> > This was all intended for 6.9, but merging was stalled for a number of
+> > reasons so here we are. The patches were also going in through different
+> > trees, so patch 4/5 is the first Qualcomm SoC patch.
+> 
+> Again, well, you sent it at few days before merge window, so how do you
+> imagine this being applied for v6.9 and still fulfilling "few linux-next
+> cycles before merge window" requirement? Especially that arm-soc cut off
+> is much earlier :/. I talk about patch 5, of course, because that is not
+> a fix (at least not marked as one). Don't expect in general a arms-co
+> patch to be applied four days before merge window, thus the actual fix -
+> patch #4 - should be split.
 
-> This is an automated instruction, just in case, because many review tags
-> are being ignored. If you know the process, you can skip it (please do
-> not feel offended by me posting it here - no bad intentions intended).
-> If you do not know the process, here is a short explanation:
->
-> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-> versions, under or above your Signed-off-by tag. Tag is "received", when
-> provided in a message replied to you on the mailing list. Tools like b4
-> can help here. However, there's no need to repost patches *only* to add
-> the tags. The upstream maintainer will do that for tags received on the
-> version they apply.
->
-> https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/su=
-bmitting-patches.rst#L577
+At the time there was still hope that there may be an rc8, and the patch
+in question had been used by a large number of X13s users for several
+weeks, which is a lot more testing than the average Qualcomm patch
+receives, whether it's in linux-next or not.
 
-Yes, I'll follow these instructions for v3 of this patch.
+And patch 5 depends on the earlier patches in the series so it belongs
+in the series, which was also initially posted long before the merge
+window.
 
-Regards,
-Animesh Agarwal
+I'm sure Bjorn A can handle this in general, even if he failed to notice
+the CC stable tag or had other reasons for applying the fix for 6.10
+instead of 6.9.
+
+Johan
 
