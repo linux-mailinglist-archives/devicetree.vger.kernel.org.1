@@ -1,210 +1,191 @@
-Return-Path: <devicetree+bounces-51884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B053880DA8
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 09:50:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3461880DD9
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 09:53:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8BAFB1C20BA9
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 08:50:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D93801C20CCF
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 08:53:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00A5D39AEC;
-	Wed, 20 Mar 2024 08:47:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA0CC39FC3;
+	Wed, 20 Mar 2024 08:51:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="buZaTYKI"
+	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="MrNRFhKI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BAF6481A0;
-	Wed, 20 Mar 2024 08:47:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC3D638394
+	for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 08:51:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710924440; cv=none; b=BEyGJNSsjw703Uiso3/TtAXqDdp/3n/+QqB3Kfb/BJIWtmfmNfuqvnHyYV1mNSNn0T5cj19Eur0JKBC/Ceo5rc8+fZqniITPNLt/IBc1p6JGqfy6idPyIkIYFKDSom/jQFXAH5KVB01jTWt4FWyhh42OEq28AaX8AM8LOUsZlqI=
+	t=1710924695; cv=none; b=QkxqRhOApXPx1MJXSjAVODH5nnXNGZX45vNZolkJcr0eNVZsMMkQQI2dclw3W/8sbLMCfxWXefk7WMC4p457zTNOzmw/RPoqkSbtYgDFdCYluFY/oF6ko1M91yLVfyi/jx0IefmvWxMOuxq8/D8R6mp9MIRBN+NFfAU9A1l5OyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710924440; c=relaxed/simple;
-	bh=0YKEkgypwgch25SP6MvI0cxNHNU2GFwhWtjZ1AP0+fs=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rK6TtFdZQk4+RtU9qOstOcwUb1/2YlhHMU/1F6rHK6k/u1FTlWTGgt4RCsqiLEp06EZQvkHZEMet4ORY/L0ZCHt0er0gYESyDdUnFvxRiZQYg1WXaD1xvD7bAYpJA2OSKcUkI24v1L4igW4qFJ23QA/EMlXVrXgLKm//vu+NEhE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=buZaTYKI; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-1dee5ef2a7bso45764415ad.1;
-        Wed, 20 Mar 2024 01:47:19 -0700 (PDT)
+	s=arc-20240116; t=1710924695; c=relaxed/simple;
+	bh=4fd1zmbuBjJCarH+myUoDkVe8GZxjxI1yQiK5tJX+FA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=sK9xP14xGNPNuVjuHJuL4TjqW6KzOnnv7i3zpk2forDY4AJ0d00JB8tUFHeV/FRqX7XqGDbUYEuZJhjqBHWDkJNcsmy2+EV6gRKV4/27YlkCGyZXINwYWJjbZ5p57kPFbAbZGgHWXvKW2mWwRe7iGZ0Vy/21diJBSCdTFdSK87A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=MrNRFhKI; arc=none smtp.client-ip=209.85.128.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raspberrypi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-609f1f97864so70388127b3.0
+        for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 01:51:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710924439; x=1711529239; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=KmEZR0TZIkomRjFeSaPJAkhIKg2H/Yce/rgiIixVy2k=;
-        b=buZaTYKIQOouIBhPKCvNVj62BjrLCjjsxRXrosamb/XML2+ka1GCdrFcflAXQG2VnH
-         AXBR92FYWIEVcEApET/rYb5jJAwYeX88nnbcAvqx9iop1zGrMewYBLr/Kr9rivckt2AS
-         T3QG63EcdTuTLrkFLt/r61pYP8JpyBChQqmDZ0E4bU9i/xiEz+OpVsrJlliGY4pOwqnx
-         MrgCUhlYN/+L/98YPj6K35Of1lQRMSRLPALHyTEoo2UsGX/q26vWk+YlQ7kO3XsXaaWQ
-         xRaPMyjPX+1fp4mtz6APQ6CD17RR1680WiwHTv/+jpb+Iq4cH2/ZrX2F0/otwEHXXs5O
-         KasQ==
+        d=raspberrypi.com; s=google; t=1710924693; x=1711529493; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=eJU0O/BFTc3zZqI0qHLQ8I7updnuUUZkqUj3e31JFso=;
+        b=MrNRFhKIYxa8NThkiByC4hWNMWn2bXlDervnqKeGQliI5QcLv6jJkXmjAEPpE54qUy
+         VbfTieTMHzZHhVsCclfW1hcvHh2auQM2ieqcoA/uMcTiuSXC2sLm9PScVUS0y8eYLIeG
+         M6G4Cpyfx3x03MsUAAKK+sLMtSgBbkdhSccEUZ2wYzoxPg9RTLLvl/5rqEaHuyPGnZwA
+         abZSzmUp/4fX2NGspHB4YR6CCQdAd+Cs3UTIlbEV9rE4XWTeINC7iCpkAlcv3KM1+1tn
+         xI92Cqy/4mxSueGf4LJHX+/HqjMFr19vAkF7XJ7ySXBppO4EuH/ZUCwDm9lCSxviSppX
+         hanA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710924439; x=1711529239;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1710924693; x=1711529493;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=KmEZR0TZIkomRjFeSaPJAkhIKg2H/Yce/rgiIixVy2k=;
-        b=KAtCbN8TfY+OOZiECXazBF2T3slfPX5OMzZ4U/WefA6xr8ngqbNHzZucT3Rxo9dR+9
-         u+oLqmyKBfiNzu05ajIRSB8cE1rc+rpiV8txUKkZhyrpo2OpW1ehVU3eMmYYl5SWz9pB
-         N5Zp7LQQciOyF+QGTdyCYrCHNgYNkAzAeT4npBBUhlVe5Wiz/uANg11TBDti6e+/auEF
-         8DFxnvUKCjk5kWb32UnBPhPS9c/UQlRLSuIXHp7hF2o7hKO3AHvkAGUQP3mj54c1NnEr
-         Q0FgrY6qtqh+QgEs/k6d47J79gD/IlSNntGDvcUpACz6ScYvCbUlMyf/SWO+14VifXEX
-         D/uA==
-X-Forwarded-Encrypted: i=1; AJvYcCWOezXwoUayUuBMq5UMUedIkTsruoFgxcAQgT67YUgH8iL6jk4J4trEnoowsccU6bAhu1wSUzRr/rA90800PvLMyIen7z6FirWb96Dqm6B2QcBndvlFjD4x6tqkSA1ttBTHVUru7E40qFWefzz2OytFMDV/0qtvcg/k/fMIQ6ABpA0ToQ==
-X-Gm-Message-State: AOJu0YyqId/NiHCupAKx9P8UuAhvoWjDEsJnD32rODSRFYgK2ui6EJUD
-	xp59T5c8ESdSa5SOWS0GKhbO+TDHDgFgRYHpozyd8jSaLJfI1Y7a
-X-Google-Smtp-Source: AGHT+IGlcuR5ZnxZUBeNvUcBhE0/p/PPIX2gmZEeCtKUIaJ7LbM8JSisiCYiBT45KMUL11ck+H0/PQ==
-X-Received: by 2002:a17:902:ec89:b0:1e0:73d:9196 with SMTP id x9-20020a170902ec8900b001e0073d9196mr12960958plg.46.1710924438602;
-        Wed, 20 Mar 2024 01:47:18 -0700 (PDT)
-Received: from localhost.localdomain ([2409:40f4:a4:a590:2a15:ea77:7177:18e3])
-        by smtp.gmail.com with ESMTPSA id x7-20020a170902a38700b001dee4bd73e0sm11768854pla.59.2024.03.20.01.47.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Mar 2024 01:47:18 -0700 (PDT)
-From: Animesh Agarwal <animeshagarwal28@gmail.com>
-To: 
-Cc: animeshagarwal28@gmail.com,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Vladimir Zapolskiy <vz@mleia.com>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3] dt-bindings: i2c: nxp,pnx-i2c: Convert to dtschema
-Date: Wed, 20 Mar 2024 14:16:20 +0530
-Message-ID: <20240320084623.82248-1-animeshagarwal28@gmail.com>
-X-Mailer: git-send-email 2.44.0
+        bh=eJU0O/BFTc3zZqI0qHLQ8I7updnuUUZkqUj3e31JFso=;
+        b=pMzVcV6HOY2DK2s+e6coaAgv5Y5G28gcKY7dqtVw/L8awyOLTYugvudwkqsuXNDf4W
+         Pe23igyoJHt4kzJUa2iroVH0k7KUnV+8WCBtJeBMqyZiOqRXwOAEAVjDDdJpo4bFyQnK
+         lII13MDwIcYxim4t+Y8ddRuxbZEyp+RWr6GCFqOXUkFXREyQxzvMtYMEWoOvXFdiH0sv
+         2EChjDQsRdkQoQ3VYqJjSj7PoybLDAU+zAwko2rvkuhT35v9Xlm8BFX7FdfZSppef9EO
+         d5m1afzVHYz1fevY48sw8S+O6+5+YlsKOjny5WqAcBgJjh9ua6kvEbzsE7QcfVzkwATU
+         TVgA==
+X-Forwarded-Encrypted: i=1; AJvYcCVPwmk4piMm2F+HUCVPuvzMr2yuXQGUSh3coCI5SuLVFLYMKrz/DTTJVPURLzSsJXwR71j9lteFbrXZFlPAQ5fYBTHxBUi2WclrSQ==
+X-Gm-Message-State: AOJu0Ywo0UN1gLfgX+OXGuBXUKWlAKvuhZyWsb/KoqyCMgqyzBcFpOt3
+	BYoC30m8prHpJn1+qivRlEXYl0iwsvWfGHF1g0XqQMaVKRjH4cRHFl+hmUBLXLod34xv57Pz6r+
+	gECpN3GG11ojte9F2xMn11tjsSd1VW5VJmhIVJg==
+X-Google-Smtp-Source: AGHT+IFJBkbVijduDWGHvYd98RR5/rzGAinhbBufwUINaZiEA4PnEXrEkBl497e8zYOLnQ6k/jitrwdE7DPy1r79onk=
+X-Received: by 2002:a0d:e657:0:b0:610:d86e:954d with SMTP id
+ p84-20020a0de657000000b00610d86e954dmr5086956ywe.34.1710924692900; Wed, 20
+ Mar 2024 01:51:32 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240318-rp1-cfe-v1-0-ac6d960ff22d@ideasonboard.com>
+ <20240318-rp1-cfe-v1-2-ac6d960ff22d@ideasonboard.com> <eb854c43-1e92-4c19-bfd3-1bde94924319@linaro.org>
+ <f97faeb9-8a6b-47c6-9317-daca88257802@ideasonboard.com> <30430e0e-70de-4831-97ad-974e350a2e54@ideasonboard.com>
+ <5ca1d005-1beb-47ec-943a-9358ae3c6704@linaro.org> <CAEmqJPp7uGYe993L+ujth2mfRy66s8-S9FNxPY7vwkrboDq9yg@mail.gmail.com>
+ <89d459dd-cc8c-4780-a56a-809e24343e69@linaro.org> <CAEmqJPrLP3j37Kcj0mX23x00p=gWuxZPNSUTRGNkcEqsUJ2MjQ@mail.gmail.com>
+ <9d238cd6-0e11-4775-bc00-7df50f0a6638@linaro.org> <CAEmqJPoVFRUBRnuvRaeWg6vxDaNMzdFzgj2_Gi5bxh5nacdmDw@mail.gmail.com>
+ <0401eb0f-0172-4371-9a16-f51b6b885b55@ideasonboard.com> <CAEmqJPohq1Y11uwBWdGGX3B1vPLEK9_A7OQC=-k+bHcdk3n=mQ@mail.gmail.com>
+ <b95fb19d-1c22-45b2-8b87-78e56d17ae8e@ideasonboard.com>
+In-Reply-To: <b95fb19d-1c22-45b2-8b87-78e56d17ae8e@ideasonboard.com>
+From: Naushir Patuck <naush@raspberrypi.com>
+Date: Wed, 20 Mar 2024 08:50:56 +0000
+Message-ID: <CAEmqJPoBA4PrbvoGHtiah1B=C7WO+MODUUY0qr0ZdF2eWEB3TA@mail.gmail.com>
+Subject: Re: [PATCH 2/4] dt-bindings: media: Add bindings for raspberrypi,rp1-cfe
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, linux-media@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
+	Kieran Bingham <kieran.bingham@ideasonboard.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Convert the NXP PNX I2C Controller bindings to DT schema.
-Keep only one example in DT schema to remove redundancy.
+On Tue, 19 Mar 2024 at 17:05, Tomi Valkeinen
+<tomi.valkeinen@ideasonboard.com> wrote:
+>
+> On 19/03/2024 17:32, Naushir Patuck wrote:
+> > On Tue, 19 Mar 2024 at 14:03, Tomi Valkeinen
+> > <tomi.valkeinen@ideasonboard.com> wrote:
+> >>
+> >> On 19/03/2024 15:05, Naushir Patuck wrote:
+> >>> On Tue, 19 Mar 2024 at 13:02, Krzysztof Kozlowski
+> >>> <krzysztof.kozlowski@linaro.org> wrote:
+> >>>>
+> >>>> On 19/03/2024 13:57, Naushir Patuck wrote:
+> >>>>>>>>
+> >>>>>>>> See writing bindings. Compatibles should be SoC specific. In some cases
+> >>>>>>>> generic fallbacks make sense, in some note. But don't just choose
+> >>>>>>>> "generic fallback" because you want. Provide rationale.
+> >>>>>>>
+> >>>>>>> If the compatible is SoC specific, I suppose "raspberrypi,rp1-cfe"
+> >>>>>>> would be the correct string.
+> >>>>>>
+> >>>>>> Sure, but then please think what if rp1 is on Rpi6, called exactly the
+> >>>>>> same (rp1), with some minor differences? Could it be?
+> >>>>>
+> >>>>> Yes, this is definitely possible.  In such cases, I would expect the
+> >>>>> hardware to have a version register that would be queried by the
+> >>>>> driver to adjust for minor differences, and the compatible string
+> >>>>> remains the same.  Does that seem reasonable?
+> >>>>
+> >>>> The "would expect" is concerning. The register(s) must be there already,
+> >>>> with proper value.
+> >>>>
+> >>>
+> >>> A version register already exists in the current hardware, so we will
+> >>> update it to identify future hardware revisions.
+> >>
+> >> But that's a version register for the FE block, not for the whole
+> >> module, right? Are you suggesting that you'll make sure the FE version
+> >> will be changed every time anything in the bigger CFE block is changed,
+> >> and thus the FE version would also reflect the whole CFE version?
+> >
+> > Yes, we will update the FE versioning when either CSI2 / FE blocks are updated.
+> >
+> >>
+> >> Can there be versions without the FE block, with just the CSI-2 parts?
+> >
+> > There is no version register just in the CSI2 block in isolation, so
+> > this is not possible.
+>
+> I meant could there be a future RPx with only the CSI-2 parts on it, no
+> FE? In which case we would not have any register for the version. But
+> then, that would be a rather big change, so a different compatible
+> string would be in order.
+>
+> So, while it's not exactly a perfect version register, I think it will
+> work fine, assuming the HW people will actually increase the version
+> also for changes outside FE.
+>
+> >>
+> >> Also, I'm still wondering about the RP1 part there in the compatible
+> >> string. Is it necessary? The CFE is located in the RP1 co-processor, but
+> >> is that relevant?
+> >>
+> >> Is there a versioning for the whole RP1 chip? Maybe it's going to the
+> >> wrong direction if we use the board/SoC for this compatible name, as
+> >> it's actually the RP1 where the CFE is located in, not the SoC.
+> >>
+> >
+> > I don't really know the conversion required to answer this one.
+> > Logically CFE is on RP1, so it makes sense to me to have "rp1" in the
+> > string, but I will follow the judgment of the maintainers.
+>
+> Well, my thinking here was that if we have a register from which to read
+> the version, and Raspberry Pi would create a new co-processor, RP2, with
+> the same CFE. Would we then have "raspberrypi,rp1-cfe" and
+> "raspberrypi,rp2-cfe", even if there are no changes? Or would a plain
+> "raspberrypi,cfe" do for both?
+>
+> In other words, if we don't need the "rp1" for versioning purposes,
+> should it then be dropped?
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
+I agree with the above, you've convinced me that "raspberrypi,cfe"
+might be the more appropriate string, or a convincing argument for
+that to be a fallback string.
 
----
-Changes in v3:
-- Added a missing whitespace character in maintainers.
-- Added parent directory in subject prefix.
+Naush
 
-Changes in v2:
-- Changed the file name from nxp,i2c-pnx.yaml to nxp,pnx-i2c.yaml.
-- Dropped properties which were already defined in the top level $ref.
-- Dropped unused labels in example.
----
- .../devicetree/bindings/i2c/i2c-pnx.txt       | 34 --------------
- .../devicetree/bindings/i2c/nxp,pnx-i2c.yaml  | 46 +++++++++++++++++++
- 2 files changed, 46 insertions(+), 34 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-pnx.txt
- create mode 100644 Documentation/devicetree/bindings/i2c/nxp,pnx-i2c.yaml
-
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-pnx.txt b/Documentation/devicetree/bindings/i2c/i2c-pnx.txt
-deleted file mode 100644
-index 2a59006cf79e..000000000000
---- a/Documentation/devicetree/bindings/i2c/i2c-pnx.txt
-+++ /dev/null
-@@ -1,34 +0,0 @@
--* NXP PNX I2C Controller
--
--Required properties:
--
-- - reg: Offset and length of the register set for the device
-- - compatible: should be "nxp,pnx-i2c"
-- - interrupts: configure one interrupt line
-- - #address-cells: always 1 (for i2c addresses)
-- - #size-cells: always 0
--
--Optional properties:
--
-- - clock-frequency: desired I2C bus clock frequency in Hz, Default: 100000 Hz
--
--Examples:
--
--	i2c1: i2c@400a0000 {
--		compatible = "nxp,pnx-i2c";
--		reg = <0x400a0000 0x100>;
--		interrupt-parent = <&mic>;
--		interrupts = <51 0>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--	};
--
--	i2c2: i2c@400a8000 {
--		compatible = "nxp,pnx-i2c";
--		reg = <0x400a8000 0x100>;
--		interrupt-parent = <&mic>;
--		interrupts = <50 0>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--		clock-frequency = <100000>;
--	};
-diff --git a/Documentation/devicetree/bindings/i2c/nxp,pnx-i2c.yaml b/Documentation/devicetree/bindings/i2c/nxp,pnx-i2c.yaml
-new file mode 100644
-index 000000000000..798a6939b894
---- /dev/null
-+++ b/Documentation/devicetree/bindings/i2c/nxp,pnx-i2c.yaml
-@@ -0,0 +1,46 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/i2c/nxp,pnx-i2c.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NXP PNX I2C Controller
-+
-+maintainers:
-+  - Animesh Agarwal <animeshagarwal28@gmail.com>
-+
-+allOf:
-+  - $ref: /schemas/i2c/i2c-controller.yaml#
-+
-+properties:
-+  compatible:
-+    const: nxp,pnx-i2c
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clock-frequency:
-+    default: 100000
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - "#address-cells"
-+  - "#size-cells"
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    i2c@400a0000 {
-+        compatible = "nxp,pnx-i2c";
-+        reg = <0x400a0000 0x100>;
-+        interrupt-parent = <&mic>;
-+        interrupts = <51 0>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+    };
--- 
-2.44.0
-
+>
+> On the other hand, maybe it is safer to just keep the "rp1" there anyway...
+>
+>   Tomi
+>
 
