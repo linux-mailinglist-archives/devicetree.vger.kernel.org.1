@@ -1,120 +1,198 @@
-Return-Path: <devicetree+bounces-51960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73B238811E5
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 13:52:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABC168811F1
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 13:59:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2AEF4285F48
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 12:52:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F1B71C224D9
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 12:59:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C35913FE4F;
-	Wed, 20 Mar 2024 12:52:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5970E405DB;
+	Wed, 20 Mar 2024 12:59:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=xry111.site header.i=@xry111.site header.b="SW6BUJls"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="FQoGkTpY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from xry111.site (xry111.site [89.208.246.23])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31976224F2;
-	Wed, 20 Mar 2024 12:52:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.208.246.23
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88E3C3FB95;
+	Wed, 20 Mar 2024 12:59:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710939142; cv=none; b=pK+2Pdk6p2+CAudHnm5TkTj/Ih8HBcsrj3dyBWsHIwLBDFkICbceYKqgVz2Rf9kkO+BTGuJbGTQSmV+x2b2m2sdFV8DrHtEpKm8HAnjkeslmn6SCaEeKUmEoPPHnJWtc84k1lD6vZvSpNaQfG0BYAhiDkVRvk77o6xAuPamc7x8=
+	t=1710939550; cv=none; b=fTgA7PfdVaiZ9KpKOHtMx9lp1DkHGvi9CpPObUKoIGpGoSISPurZuOuhf+0CMdj2h1o2i7AHU4tvBCEcw74BOqM40RyaxGPohqv8qfz+CZLDeBSsLXmx2dPVj/+6szQhKqD5JLyziFOe4CvxR6plpIQvaulCNfTN/anPjlkRDEI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710939142; c=relaxed/simple;
-	bh=nQsfUBwMPXVe4K5gt0eAIEFG0mAVL84r5St9i8+wxIk=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=AbiTg6zXxDmIg/wnvdRBoqXIhC11h8UN7Wr/wZmqmkyS/JxROMNQguy696uqbals65weYE5es032Bar+vSO5R1QPmWjSHjxyAUXZ7f8fUhPwNyP0nGnRGpXd1tIrpljTeihLyNqmakm4PyMPZi+fOpFirmM6kB0V1+/dTRDjrLs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=xry111.site; spf=pass smtp.mailfrom=xry111.site; dkim=pass (1024-bit key) header.d=xry111.site header.i=@xry111.site header.b=SW6BUJls; arc=none smtp.client-ip=89.208.246.23
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=xry111.site
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xry111.site
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xry111.site;
-	s=default; t=1710939138;
-	bh=nQsfUBwMPXVe4K5gt0eAIEFG0mAVL84r5St9i8+wxIk=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=SW6BUJlsDX/vH6gjWlpT+cbGApubryaDyEF8qDyDRffiR8F8JyIwyHOJ+GRsIFzBo
-	 uDfOMHVc+690RVFFaVnT6KvRq57AOMDFG8hGl66yVb4i18Af+br29PzGSi8oUQXTc8
-	 sLEEsQ/2rahhL4NQYDVDANRz/3xsfoNC8uxbwzWc=
-Received: from [127.0.0.1] (unknown [IPv6:2001:470:683e::1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature ECDSA (P-384) server-digest SHA384)
-	(Client did not present a certificate)
-	(Authenticated sender: xry111@xry111.site)
-	by xry111.site (Postfix) with ESMTPSA id 1B11B6776E;
-	Wed, 20 Mar 2024 08:52:14 -0400 (EDT)
-Message-ID: <2d3d529e006a6fbef6fe4a8a20b3eb23fa476ff7.camel@xry111.site>
-Subject: Re: [PATCH v8 4/4] riscv: dts: thead: Enable LicheePi 4A eMMC and
- microSD
-From: Xi Ruoyao <xry111@xry111.site>
-To: Maxim Kiselev <bigunclemax@gmail.com>
-Cc: Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>, 
- devicetree@vger.kernel.org, dfustini@baylibre.com, guoren@kernel.org, 
- jkridner@beagleboard.org, jszhang@kernel.org, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, open list
- <linux-kernel@vger.kernel.org>,  linux-riscv@lists.infradead.org, Palmer
- Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>,
- robertcnelson@beagleboard.org, Rob Herring <robh+dt@kernel.org>, 
- wefu@redhat.com
-Date: Wed, 20 Mar 2024 20:52:13 +0800
-In-Reply-To: <CALHCpMhc1F5Ue7U_gsDXREHUZRVQJNYRCJxYxoNqbN=-39jf7A@mail.gmail.com>
-References: 
-	<CALHCpMhc1F5Ue7U_gsDXREHUZRVQJNYRCJxYxoNqbN=-39jf7A@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.0 
+	s=arc-20240116; t=1710939550; c=relaxed/simple;
+	bh=3szIjYTN3iM0DfCCx1AY9klbxfdcTvCQ+thfnuGGKYU=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=OL3Mzti9f/YFcCWT9dHMW3Qzf2ccI4sbqhSOwbwFka2BH41kOZZK+XLQdZN3klMY5TvkQQG0DmTIiup9tZpZ9tM9R2mdrt1VJU3OeQvUUmfTmRjt1/3rbUkbXCx0O/I9tFVmgXchJyRFI+HCdZOTEKNC6wadvqQzrbzNAhhvgWQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=FQoGkTpY; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42KAAnTU026429;
+	Wed, 20 Mar 2024 08:58:40 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=
+	from:to:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=DKIM; bh=qtT3QihMz75U
+	y3fqSwuYAon0fY2IFz2DuKRKO/YS//A=; b=FQoGkTpYnLS8SeSYcLs3uR91UsDm
+	iUr4XR7sDzIWzvaat8krBiO4PSEh3Dbixdv6A+PcQjK14O6Gh79UCepxyau6fWf0
+	63rJqvZEqAxM/IDRwlkM9GzSmxSmjTGl2AjhTAQzIfsabR3uVKIjpuMLCZ6B+F1g
+	ZaHZRLx5vP6oKxeypSNbGqNw+QkoxinxKnbmmGcc4bengH7s0araBB8ZVnFzVFkt
+	t/mKnWMv0kuoogdAL1SPTT+5kMdKUq+7gh+CdLqJY3eNCCrcQic+++mDRf+3xAZu
+	hBu89meK4y9SzVSa20J9DM1ImbwpbJJ1+wyX9LCZvQcfEHhB2NghyJnsVQ==
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3wwragnfju-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 20 Mar 2024 08:58:40 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 42KCwcKm003388
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 20 Mar 2024 08:58:38 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Wed, 20 Mar
+ 2024 08:58:37 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Wed, 20 Mar 2024 08:58:37 -0400
+Received: from radu.ad.analog.com ([10.48.65.243])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 42KCwLBw020197;
+	Wed, 20 Mar 2024 08:58:24 -0400
+From: Radu Sabau <radu.sabau@analog.com>
+To: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+        Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+        Delphine CC Chiu
+	<Delphine_CC_Chiu@Wiwynn.com>,
+        Radu Sabau <radu.sabau@analog.com>, <linux-hwmon@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <linux-i2c@vger.kernel.org>
+Subject: [PATCH v3 1/2] dt-bindings: hwmon: pmbus: adp1050: add bindings
+Date: Wed, 20 Mar 2024 14:57:11 +0200
+Message-ID: <20240320125727.5615-1-radu.sabau@analog.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: 3OJN21agpgRyfoxjEGvN-yxk5VZZD0-u
+X-Proofpoint-ORIG-GUID: 3OJN21agpgRyfoxjEGvN-yxk5VZZD0-u
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-20_08,2024-03-18_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ impostorscore=0 mlxscore=0 clxscore=1015 mlxlogscore=999 malwarescore=0
+ suspectscore=0 spamscore=0 adultscore=0 phishscore=0 bulkscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2403140001 definitions=main-2403200102
 
-On Wed, 2024-03-20 at 15:28 +0300, Maxim Kiselev wrote:
-> Hi Xi, Drew
->=20
-> I have the same problem with SD on my LicheePi 4A.
->=20
-> After some investigations I found how to fix this tuning error.
-> Here is the patch that increases tuning loop count from
-> 40(MAX_TUNING_LOOP at sdhci.c) to 128.
->=20
-> diff --git a/drivers/mmc/host/sdhci-of-dwcmshc.c
-> b/drivers/mmc/host/sdhci-of-dwcmshc.c
-> index 8d6cfb648096..da8f5820fb69 100644
-> --- a/drivers/mmc/host/sdhci-of-dwcmshc.c
-> +++ b/drivers/mmc/host/sdhci-of-dwcmshc.c
-> @@ -706,6 +706,7 @@ static int th1520_execute_tuning(struct sdhci_host
-> *host, u32 opcode)
->=20
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* perform tuning */
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sdhci_start_tuning(host);
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 host->tuning_loop_count =3D 128:
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 host->tuning_err =3D __sdhci_e=
-xecute_tuning(host, opcode);
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (host->tuning_err) {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 /* disable auto-tuning upon tuning error */
->=20
-> After that change tuning works fine. The same value of loop count is
-> used in RevyOS BSP
-> https://github.com/revyos/thead-kernel/blob/c6d4e5df18a17903d012ffd89e67d=
-0ee5ce6cf2d/drivers/mmc/host/sdhci-of-dwcmshc.c#L185
->=20
-> Honestly, it looks a little bit strange for me.
->=20
-> It seems that the tuning algorithm requires to move through
-> all the taps of delay line(128 taps?) even if we use THRESHOLD_MODE
-> instend LARGEST_WIN_MODE (I mean bit 2 in AT_CTRL_R(0x540) register).
->=20
-> Xi, could you also test my fix on your board?
+Add dt-bindings for adp1050 digital controller for isolated power supply
+with pmbus interface voltage, current and temperature monitor.
 
-I'll try it this weekend.  Now having some work with "real time
-priority" to do :(.
+Signed-off-by: Radu Sabau <radu.sabau@analog.com>
+---
+v3:
+ *Remove extra line before '$id'.
+ *Remove 'address-cells' and 'size-cells' from adp1050 node.
+ *Rename adp1050 node to generic name.
+ *Fix typo from 'adress-cells' to 'address-cells' causing errors in the
+  dt-bindings build.
+v2:
+ *Fix identation for example.
+ *Remove 'adi,vin-scale-monitor' and 'iin-scale-monitor' since they are not used
+  anymore.
+ *Fix typo for 'compatbile' to 'compatible'.
+ *Add blank line under datasheet link.
+---
+ .../bindings/hwmon/pmbus/adi,adp1050.yaml     | 49 +++++++++++++++++++
+ MAINTAINERS                                   |  7 +++
+ 2 files changed, 56 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml
 
---=20
-Xi Ruoyao <xry111@xry111.site>
-School of Aerospace Science and Technology, Xidian University
+diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml
+new file mode 100644
+index 000000000000..42cafd8fec25
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml
+@@ -0,0 +1,49 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: https://devicetree.org/schemas/hwmon/pmbus/adi,adp1050.yaml#
++$schema: https://devicetree.org/meta-schemes/core.yaml#
++
++title: Analog Devices ADP1050 digital controller with PMBus interface
++
++maintainers:
++  - Radu Sabau <radu.sabau@analog.com>
++
++description: |
++   The ADP1050 is used to monitor system voltages, currents and temperatures.
++   Through the PMBus interface, the ADP1050 targets isolated power supplies
++   and has four individual monitors for input/output voltage, input current
++   and temperature.
++   Datasheet:
++     https://www.analog.com/en/products/adp1050.html
++
++properties:
++  compatible:
++    const: adi,adp1050
++
++  reg:
++    maxItems: 1
++
++  vcc-supply: true
++
++required:
++  - compatible
++  - reg
++  - vcc-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        clock-frequency = <100000>;
++
++        hwmon@70 {
++            compatible = "adi,adp1050";
++            reg = <0x70>;
++            vcc-supply = <&vcc>;
++        };
++    };
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 43b39956694a..b45753e94756 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -479,6 +479,13 @@ L:	linux-wireless@vger.kernel.org
+ S:	Orphan
+ F:	drivers/net/wireless/admtek/adm8211.*
+ 
++ADP1050 HARDWARE MONITOR DRIVER
++M:	Radu Sabau <radu.sabau@analog.com>
++L:	linux-hwmon@vger.kernel.org
++S:	Supported
++W:	https://ez.analog.com/linux-software-drivers
++F:	Dcumentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml
++
+ ADP1653 FLASH CONTROLLER DRIVER
+ M:	Sakari Ailus <sakari.ailus@iki.fi>
+ L:	linux-media@vger.kernel.org
+-- 
+2.34.1
+
 
