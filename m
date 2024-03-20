@@ -1,480 +1,221 @@
-Return-Path: <devicetree+bounces-52027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC9AB8817DE
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 20:30:38 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2E61881843
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 21:06:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 350561F24207
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 19:30:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2A486B2180D
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 20:06:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8D6485654;
-	Wed, 20 Mar 2024 19:30:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5328885927;
+	Wed, 20 Mar 2024 20:06:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="iYtTjaO0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jTcnpGiR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B877385643;
-	Wed, 20 Mar 2024 19:30:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70BEB8592B;
+	Wed, 20 Mar 2024 20:06:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710963033; cv=none; b=BH6RD0g78pNk33b51bgQewpl4ZGyTeIQO0soHlasUIap2aNxXMPrrM8BEiu+X8fo2yNqSExbc6Bd4xbO/8Igg4ffo02iByLycaVBUQzsYwLk1yMC2BNrUxaDLq12hcO/FECAPpMtgf7zx/G7Dpm97KssZl55LFY8isnOSZT8VAs=
+	t=1710965162; cv=none; b=ACgletDBjdd89W/vpWI+vXB2onEVQDrr86w0Ydc+C1OzOdC0osuMK+BrukyOWzan4srAA5DRAcct2iaMxU2Lqt4lXxVPtbv0bIwwacj1hcAJ7pRJZ5iSowTjC/2RFNx9N6MaHwAOebwsOoeheNeYhtrtQdBJNjEquXIOkt+9JdU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710963033; c=relaxed/simple;
-	bh=yySsep5TXVuG1Ig2ePjKlQL/Qsd2nzDDxH4/GZJMLgc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jW6UtpARL0Y7+y9T8/lSodRMSYKN98DUgX3gQgPaFMxsq+NCos4nyYuEtDj2tBBscs8DQXmyDtIMltWTpxYueqjR0AnUrrdIvw4PqyESIxR4n0yjtgADoafjcnpT2QYjIpLD0Vtth1VLfokFffgDhx4Fr2YN8+gYUfzpIlyFxJk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=iYtTjaO0; arc=none smtp.client-ip=67.231.149.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-	by mx0a-001ae601.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42KITYmZ004433;
-	Wed, 20 Mar 2024 14:30:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	PODMain02222019; bh=KeMCYpkgfe15eWQuCTdGh1I20ze86BnWLdTqfdo4m3E=; b=
-	iYtTjaO04JajjxCRm1ZEshxfSGfxYy4vY51xD8ny8GL9i6grTCVKKzZNOO9UP5Un
-	XDqtREfyRsgB9iEyiNy2+FzVumPu8kTVMp26C+2V0fi+ZywIcGmXJoQQOnBJhrrg
-	TU9ds0ov5FymMT+2k51R4tdC2eEjkon1BgTxKxt/UAM+3OOyG9cOjvAmth7Z/1Uy
-	OgNVeN6fkN/m6rbYxtVq5blib4mIAdchChIqUvufTisFgRdrV9Y3btqRHuUz9um7
-	7s2x5xn6/PRIhmTlFtex+tdIne2I+lopNwwFuLQLg4OUsErLE4VSKX/N9m+WCFm3
-	CHDxiW9j0Rzk1HJsABGPdg==
-Received: from ediex02.ad.cirrus.com ([84.19.233.68])
-	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3wytta0uq7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 20 Mar 2024 14:30:24 -0500 (CDT)
-Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Wed, 20 Mar
- 2024 19:30:22 +0000
-Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
- anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
- 15.2.1544.4 via Frontend Transport; Wed, 20 Mar 2024 19:30:22 +0000
-Received: from aus-sw-rshr002.ad.cirrus.com (aus-sw-rshr002.ad.cirrus.com [141.131.145.53])
-	by ediswmail9.ad.cirrus.com (Postfix) with ESMTP id 60930820246;
-	Wed, 20 Mar 2024 19:30:20 +0000 (UTC)
-From: James Ogletree <jogletre@opensource.cirrus.com>
-To: <dmitry.torokhov@gmail.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <lee@kernel.org>, <broonie@kernel.org>, <jeff@labundy.com>
-CC: <patches@opensource.cirrus.com>, <linux-sound@vger.kernel.org>,
-        <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        James Ogletree
-	<jogletre@opensource.cirrus.com>
-Subject: [PATCH v10 5/5] ASoC: cs40l50: Support I2S streaming to CS40L50
-Date: Wed, 20 Mar 2024 19:29:56 +0000
-Message-ID: <20240320192956.2395731-6-jogletre@opensource.cirrus.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240320192956.2395731-1-jogletre@opensource.cirrus.com>
-References: <20240320192956.2395731-1-jogletre@opensource.cirrus.com>
+	s=arc-20240116; t=1710965162; c=relaxed/simple;
+	bh=XPLYZCzSFf0t6yZ/0SxEIeG4AB/bcA2XHYuZVAsKjBw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=itwsKPe+bkN4lMcqE7CfvnKF4vSbL4yBog8kwFvhNv4CqvtKi6QCsS+j0AyDtRHJBC9wlLkSirZ/OfYQBBUnh4eDoQt9Y+Ti5T+kufXKAu70pm29dCY3O1wetrx0uIeMtmMRToxBE+UxpvAbvCn5kFdt3fZocsqLJ0yLvoGtrJk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jTcnpGiR; arc=none smtp.client-ip=209.85.166.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-io1-f41.google.com with SMTP id ca18e2360f4ac-7cf25c1ee7aso7515439f.2;
+        Wed, 20 Mar 2024 13:06:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1710965159; x=1711569959; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=mq9ESJC3fyCYMk10qgz1yahhrfxVx2rHNgbEzwMj/Ak=;
+        b=jTcnpGiRp8Zy9D32GyEKVAHdY0L9bcMeoSdVNWzDPUhP3O9rJinVgcvJf4Wtvnr6KO
+         9CGsZvhhf2kYZTXYKVVvxShsjA46rlFtlTAtxclt+HMfk6MfBZGRaXGncDdRJfAORsVw
+         jTq06Vfmy8HasK/ArRzKXqRi26CDCmByh6LWNHmKMIYwurO/GKnPSTIkZGL3GVxbP1/z
+         JWrS12RF+y8LhrlxntjBOgCeYNIQYwztlzUqvPn+KrJwG6Aho30znZzHguuBTic+z8ii
+         ecMsLDyMk3lA4E0vL737eSxk1V6Tv9txWeIZoflAsVJWK9RYvh+ngIl2aM3ePvmqMZt2
+         Z7CA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710965159; x=1711569959;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mq9ESJC3fyCYMk10qgz1yahhrfxVx2rHNgbEzwMj/Ak=;
+        b=DdCga/XKrly21Z0Gzwy9Ak8L7gUR4p+Y369lP8XnOns+1XdVvVg7nYoGJ9pPy22lDA
+         Uc6I9fedb4avb1eG6Z2hDca8ZPINa3qSu3DN6O5Wrtpc1k1+puMIAg5Naik/PmqLMNST
+         0QpTrK8hh27i7LGg53mf9I7Yd//PFD2HUi14+esQPuzavhrKBsY/ZzVIaQeyrDnehKlC
+         Ah3AzbhyTDoJuF7mPeKKujz3sJxHgGdHLZb+GgAGxImP32DlJMl7I0xAAmb8jvqKOeL2
+         x2BziMoDdxLv64iSeFyrv6b5C/sB8XftL3zvYR8hsMlFwZmHrY6r+xwVVmiSTkPffDRp
+         +tvw==
+X-Forwarded-Encrypted: i=1; AJvYcCWTfXNpusGPWuu5f3sA79Dl8r4n3xSuqg2eujS0p/PGGPxs0Ia1RMngzSJf244qI2zkPdtf8kHA0P2TxXadNK3Kx5U8E/r6CIzhTt+Y/AayGCYD3FISRljfRJ6S8d/78bYA8tNtT8542Q==
+X-Gm-Message-State: AOJu0YyX4AnBr6hbwFnXYaVmdRF2vbbZSCierQ4bF32HMtCAWj+24jSq
+	vtUDvmKeeSBIzFksYaZGjqwUErMweURsG9T7SI+V0NcU22OYRSb8gwS4CsR7
+X-Google-Smtp-Source: AGHT+IEb+EAgNc8Se4L2RIZ6+xnzWsuM/sAiI8clA2WhDD2Hh5VBPI8Wfwor4JXFh/r3abjXc1Zbdw==
+X-Received: by 2002:a05:6602:8cc:b0:7cb:e510:c289 with SMTP id h12-20020a05660208cc00b007cbe510c289mr17388640ioz.9.1710965159645;
+        Wed, 20 Mar 2024 13:05:59 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id c36-20020a634e24000000b005db034d1514sm11215955pgb.82.2024.03.20.13.05.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Mar 2024 13:05:58 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <23ed5bbb-7616-424b-96ee-3fe1c6d8ca89@roeck-us.net>
+Date: Wed, 20 Mar 2024 13:05:57 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/2] of: create of_root if no dtb provided
+Content-Language: en-US
+To: Rob Herring <robh+dt@kernel.org>
+Cc: Stephen Boyd <sboyd@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
+ =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Lizhi Hou <lizhi.hou@xilinx.com>, Allan Nielsen
+ <allan.nielsen@microchip.com>, Horatiu Vultur
+ <horatiu.vultur@microchip.com>, Steen Hegelund
+ <steen.hegelund@microchip.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20230317053415.2254616-1-frowand.list@gmail.com>
+ <20230317053415.2254616-2-frowand.list@gmail.com>
+ <886049ed-4f5f-4e17-86f4-1245024ade3a@roeck-us.net>
+ <CAL_JsqKsF53v7d7uZ3XT4kPFy-2FBWHfvKNSFdTx2oZhmSZkDA@mail.gmail.com>
+ <66409df9-6f5f-4fbe-ae7f-47b86665c113@roeck-us.net>
+ <CAL_Jsq+0JHTDmBPr94ZZF_5rtQg14q8OmWH6WpRspjHMX-MZmg@mail.gmail.com>
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <CAL_Jsq+0JHTDmBPr94ZZF_5rtQg14q8OmWH6WpRspjHMX-MZmg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Proofpoint-ORIG-GUID: zV86RwKaKFxJ1q9jzU4-xTmUgr40RXPn
-X-Proofpoint-GUID: zV86RwKaKFxJ1q9jzU4-xTmUgr40RXPn
-X-Proofpoint-Spam-Reason: safe
 
-Introduce support for Cirrus Logic Device CS40L50: a
-haptic driver with waveform memory, integrated DSP,
-and closed-loop algorithms.
+On 3/20/24 12:14, Rob Herring wrote:
+> On Mon, Mar 18, 2024 at 4:31 PM Guenter Roeck <linux@roeck-us.net> wrote:
+>>
+>> On 3/18/24 12:26, Rob Herring wrote:
+>>> +Stephen
+>>>
+>>> On Mon, Mar 18, 2024 at 12:09 PM Guenter Roeck <linux@roeck-us.net> wrote:
+>>>>
+>>>> Hi,
+>>>>
+>>>> On Fri, Mar 17, 2023 at 12:34:14AM -0500, Frank Rowand wrote:
+>>>>> When enabling CONFIG_OF on a platform where of_root is not populated by
+>>>>> firmware, we end up without a root node. In order to apply overlays and
+>>>>> create subnodes of the root node, we need one. Create this root node
+>>>>> by unflattening an empty builtin dtb.
+>>>>>
+>>>>> If firmware provides a flattened device tree (FDT) then the FDT is
+>>>>> unflattened via setup_arch().  Otherwise setup_of(), which is called
+>>>>> immediately after setup_arch(), will create the default root node
+>>>>> if it does not exist.
+>>>>>
+>>>>> Signed-off-by: Frank Rowand <frowand.list@gmail.com>
+>>>>
+>>>> This patch results in a crash on nios2.
+>>>
+>>> This patch was never applied. I assume you meant a later version of it
+>>> that did get applied.
+>>>
+>>>>
+>>>> Building nios2:10m50-ghrd:10m50_defconfig:10m50_devboard.dts ... running ...R failed (crashed)
+>>>
+>>> Booting with DT?
+>>>
+>>>> ------------
+>>>> qemu log:
+>>>> earlycon: uart8250 at MMIO32 0x18001600 (options '')
+>>>> printk: legacy bootconsole [uart8250] enabled
+>>>> Linux version 6.8.0-11409-gf6cef5f8c37f (groeck@desktop) (nios2-linux-gcc (GCC) 11.4.0, GNU ld (GNU Binutils) 2.40) #1 Sun Mar 17 23:38:59 PDT 2024
+>>>> Kernel panic - not syncing: early_init_dt_alloc_memory_arch: Failed to allocate 72 bytes align=0x40
+>>>> ---[ end Kernel panic - not syncing: early_init_dt_alloc_memory_arch: Failed to allocate 72 bytes align=0x40 ]---
+>>>
+>>> nios2 looks utterly broken to me. This change should be a nop unless
+>>> initial_boot_params is NULL. It looks like it is possible for r6 (dtb
+>>> address) to be 0 depending on kconfig options, but that would have
+>>> skipped copying and unflattening which would then panic in
+>>> setup_cpuinfo(). If initial_boot_params is not NULL, then the same
+>>> early_init_dt_alloc_memory_arch() calls should fail when copying the
+>>> DT. So I don't see how nios2 booting with DT ever worked.
+>>>
+>>
+>> For nios2, in early_init_devtree():
+>>
+>> void __init early_init_devtree(void *params)
+>> {
+>>           __be32 *dtb = (u32 *)__dtb_start;
+>>          ...
+>>           if (be32_to_cpu((__be32) *dtb) == OF_DT_HEADER)
+>>                   params = (void *)__dtb_start;
+>>
+>> That worked fine until this patch. Starting with this patch, __dtb_start
+>> always points to a valid empty devicetree blob, which overrides the
+>> devicetree blob passed to early_init_devtree(). This causes the problem.
+> 
+> With an external DTB, it doesn't boot with or without this patch. It
+> just dies in different spots. Before it just skipped any memory
 
-The ASoC driver enables I2S streaming to the device.
+No, that is incorrect. Up to this patch it booted just fine with an
+external dtb using the "-initrd" command line argument, and I explained
+to you above why this is the case.
 
-Signed-off-by: James Ogletree <jogletre@opensource.cirrus.com>
----
- MAINTAINERS                      |   1 +
- sound/soc/codecs/Kconfig         |  11 ++
- sound/soc/codecs/Makefile        |   2 +
- sound/soc/codecs/cs40l50-codec.c | 308 +++++++++++++++++++++++++++++++
- 4 files changed, 322 insertions(+)
- create mode 100644 sound/soc/codecs/cs40l50-codec.c
+I guess you are saying I should stop boot testing nios2. I'll do just that.
+Saves me resources and avoids discussions like this.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 49c2e6e57b09..62701b13f741 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4943,6 +4943,7 @@ F:	Documentation/devicetree/bindings/input/cirrus,cs40l50.yaml
- F:	drivers/input/misc/cs40l*
- F:	drivers/mfd/cs40l*
- F:	include/linux/mfd/cs40l*
-+F:	sound/soc/codecs/cs40l*
- 
- CIRRUS LOGIC DSP FIRMWARE DRIVER
- M:	Simon Trimmer <simont@opensource.cirrus.com>
-diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
-index f1e1dbc509f6..1a81bedfdbe3 100644
---- a/sound/soc/codecs/Kconfig
-+++ b/sound/soc/codecs/Kconfig
-@@ -73,6 +73,7 @@ config SND_SOC_ALL_CODECS
- 	imply SND_SOC_CS35L56_I2C
- 	imply SND_SOC_CS35L56_SPI
- 	imply SND_SOC_CS35L56_SDW
-+	imply SND_SOC_CS40L50
- 	imply SND_SOC_CS42L42
- 	imply SND_SOC_CS42L42_SDW
- 	imply SND_SOC_CS42L43
-@@ -800,6 +801,16 @@ config SND_SOC_CS35L56_SDW
- 	help
- 	  Enable support for Cirrus Logic CS35L56 boosted amplifier with SoundWire control
- 
-+config SND_SOC_CS40L50
-+	tristate "Cirrus Logic CS40L50 CODEC"
-+	depends on MFD_CS40L50_CORE
-+	help
-+	  This option enables support for I2S streaming to Cirrus Logic CS40L50.
-+
-+	  CS40L50 is a haptic driver with waveform memory, an integrated
-+	  DSP, and closed-loop algorithms. If built as a module, it will be
-+	  called snd-soc-cs40l50.
-+
- config SND_SOC_CS42L42_CORE
- 	tristate
- 
-diff --git a/sound/soc/codecs/Makefile b/sound/soc/codecs/Makefile
-index a87e56938ce5..7e31f000774a 100644
---- a/sound/soc/codecs/Makefile
-+++ b/sound/soc/codecs/Makefile
-@@ -74,6 +74,7 @@ snd-soc-cs35l56-shared-objs := cs35l56-shared.o
- snd-soc-cs35l56-i2c-objs := cs35l56-i2c.o
- snd-soc-cs35l56-spi-objs := cs35l56-spi.o
- snd-soc-cs35l56-sdw-objs := cs35l56-sdw.o
-+snd-soc-cs40l50-objs := cs40l50-codec.o
- snd-soc-cs42l42-objs := cs42l42.o
- snd-soc-cs42l42-i2c-objs := cs42l42-i2c.o
- snd-soc-cs42l42-sdw-objs := cs42l42-sdw.o
-@@ -460,6 +461,7 @@ obj-$(CONFIG_SND_SOC_CS35L56_SHARED)	+= snd-soc-cs35l56-shared.o
- obj-$(CONFIG_SND_SOC_CS35L56_I2C)	+= snd-soc-cs35l56-i2c.o
- obj-$(CONFIG_SND_SOC_CS35L56_SPI)	+= snd-soc-cs35l56-spi.o
- obj-$(CONFIG_SND_SOC_CS35L56_SDW)	+= snd-soc-cs35l56-sdw.o
-+obj-$(CONFIG_SND_SOC_CS40L50)		+= snd-soc-cs40l50.o
- obj-$(CONFIG_SND_SOC_CS42L42_CORE)	+= snd-soc-cs42l42.o
- obj-$(CONFIG_SND_SOC_CS42L42)	+= snd-soc-cs42l42-i2c.o
- obj-$(CONFIG_SND_SOC_CS42L42_SDW)	+= snd-soc-cs42l42-sdw.o
-diff --git a/sound/soc/codecs/cs40l50-codec.c b/sound/soc/codecs/cs40l50-codec.c
-new file mode 100644
-index 000000000000..6d4a0970b219
---- /dev/null
-+++ b/sound/soc/codecs/cs40l50-codec.c
-@@ -0,0 +1,308 @@
-+// SPDX-License-Identifier: GPL-2.0
-+//
-+// CS40L50 Advanced Haptic Driver with waveform memory,
-+// integrated DSP, and closed-loop algorithms
-+//
-+// Copyright 2024 Cirrus Logic, Inc.
-+//
-+// Author: James Ogletree <james.ogletree@cirrus.com>
-+
-+#include <linux/bitfield.h>
-+#include <linux/mfd/cs40l50.h>
-+#include <linux/pm_runtime.h>
-+#include <sound/pcm_params.h>
-+#include <sound/soc.h>
-+
-+#define CS40L50_REFCLK_INPUT		0x2C04
-+#define CS40L50_ASP_CONTROL2		0x4808
-+#define CS40L50_ASP_DATA_CONTROL5	0x4840
-+
-+/* PLL Config */
-+#define CS40L50_PLL_REFCLK_BCLK		0x0
-+#define CS40L50_PLL_REFCLK_MCLK		0x5
-+#define CS40L50_PLL_REEFCLK_MCLK_CFG	0x00
-+#define CS40L50_PLL_REFCLK_LOOP_MASK	BIT(11)
-+#define CS40L50_PLL_REFCLK_OPEN_LOOP	1
-+#define CS40L50_PLL_REFCLK_CLOSED_LOOP	0
-+#define CS40L50_PLL_REFCLK_LOOP_SHIFT	11
-+#define CS40L50_PLL_REFCLK_FREQ_MASK	GENMASK(10, 5)
-+#define CS40L50_PLL_REFCLK_FREQ_SHIFT	5
-+#define CS40L50_PLL_REFCLK_SEL_MASK	GENMASK(2, 0)
-+#define CS40L50_BCLK_RATIO_DEFAULT	32
-+
-+/* ASP Config */
-+#define CS40L50_ASP_RX_WIDTH_SHIFT	24
-+#define CS40L50_ASP_RX_WIDTH_MASK	GENMASK(31, 24)
-+#define CS40L50_ASP_RX_WL_MASK		GENMASK(5, 0)
-+#define CS40L50_ASP_FSYNC_INV_MASK	BIT(2)
-+#define CS40L50_ASP_BCLK_INV_MASK	BIT(6)
-+#define CS40L50_ASP_FMT_MASK		GENMASK(10, 8)
-+#define CS40L50_ASP_FMT_I2S		0x2
-+
-+struct cs40l50_pll_config {
-+	unsigned int freq;
-+	unsigned int cfg;
-+};
-+
-+struct cs40l50_codec {
-+	struct device *dev;
-+	struct regmap *regmap;
-+	unsigned int daifmt;
-+	unsigned int bclk_ratio;
-+	unsigned int rate;
-+};
-+
-+static const struct cs40l50_pll_config cs40l50_pll_cfg[] = {
-+	{ 32768, 0x00 },
-+	{ 1536000, 0x1B },
-+	{ 3072000, 0x21 },
-+	{ 6144000, 0x28 },
-+	{ 9600000, 0x30 },
-+	{ 12288000, 0x33 },
-+};
-+
-+static int cs40l50_get_clk_config(unsigned int freq, unsigned int *cfg)
-+{
-+	int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(cs40l50_pll_cfg); i++) {
-+		if (cs40l50_pll_cfg[i].freq == freq) {
-+			*cfg = cs40l50_pll_cfg[i].cfg;
-+			return 0;
-+		}
-+	}
-+
-+	return -EINVAL;
-+}
-+
-+static int cs40l50_swap_ext_clk(struct cs40l50_codec *codec, unsigned int clk_src)
-+{
-+	unsigned int cfg;
-+	int ret;
-+
-+	switch (clk_src) {
-+	case CS40L50_PLL_REFCLK_BCLK:
-+		ret = cs40l50_get_clk_config(codec->bclk_ratio * codec->rate, &cfg);
-+		if (ret)
-+			return ret;
-+		break;
-+	case CS40L50_PLL_REFCLK_MCLK:
-+		cfg = CS40L50_PLL_REEFCLK_MCLK_CFG;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	ret = regmap_update_bits(codec->regmap, CS40L50_REFCLK_INPUT,
-+				 CS40L50_PLL_REFCLK_LOOP_MASK,
-+				 CS40L50_PLL_REFCLK_OPEN_LOOP <<
-+				 CS40L50_PLL_REFCLK_LOOP_SHIFT);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_update_bits(codec->regmap, CS40L50_REFCLK_INPUT,
-+				 CS40L50_PLL_REFCLK_FREQ_MASK |
-+				 CS40L50_PLL_REFCLK_SEL_MASK,
-+				 (cfg << CS40L50_PLL_REFCLK_FREQ_SHIFT) | clk_src);
-+	if (ret)
-+		return ret;
-+
-+	return regmap_update_bits(codec->regmap, CS40L50_REFCLK_INPUT,
-+				  CS40L50_PLL_REFCLK_LOOP_MASK,
-+				  CS40L50_PLL_REFCLK_CLOSED_LOOP <<
-+				  CS40L50_PLL_REFCLK_LOOP_SHIFT);
-+}
-+
-+static int cs40l50_clk_en(struct snd_soc_dapm_widget *w,
-+			  struct snd_kcontrol *kcontrol,
-+			  int event)
-+{
-+	struct snd_soc_component *comp = snd_soc_dapm_to_component(w->dapm);
-+	struct cs40l50_codec *codec = snd_soc_component_get_drvdata(comp);
-+	int ret;
-+
-+	switch (event) {
-+	case SND_SOC_DAPM_POST_PMU:
-+		ret = cs40l50_dsp_write(codec->dev, codec->regmap, CS40L50_STOP_PLAYBACK);
-+		if (ret)
-+			return ret;
-+
-+		ret = cs40l50_dsp_write(codec->dev, codec->regmap, CS40L50_START_I2S);
-+		if (ret)
-+			return ret;
-+
-+		ret = cs40l50_swap_ext_clk(codec, CS40L50_PLL_REFCLK_BCLK);
-+		if (ret)
-+			return ret;
-+		break;
-+	case SND_SOC_DAPM_PRE_PMD:
-+		ret = cs40l50_swap_ext_clk(codec, CS40L50_PLL_REFCLK_MCLK);
-+		if (ret)
-+			return ret;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct snd_soc_dapm_widget cs40l50_dapm_widgets[] = {
-+	SND_SOC_DAPM_SUPPLY_S("ASP PLL", 0, SND_SOC_NOPM, 0, 0, cs40l50_clk_en,
-+			      SND_SOC_DAPM_POST_PMU | SND_SOC_DAPM_PRE_PMD),
-+	SND_SOC_DAPM_AIF_IN("ASPRX1", NULL, 0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_IN("ASPRX2", NULL, 0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_OUTPUT("OUT"),
-+};
-+
-+static const struct snd_soc_dapm_route cs40l50_dapm_routes[] = {
-+	{ "ASP Playback", NULL, "ASP PLL" },
-+	{ "ASPRX1", NULL, "ASP Playback" },
-+	{ "ASPRX2", NULL, "ASP Playback" },
-+
-+	{ "OUT", NULL, "ASPRX1" },
-+	{ "OUT", NULL, "ASPRX2" },
-+};
-+
-+static int cs40l50_set_dai_fmt(struct snd_soc_dai *codec_dai, unsigned int fmt)
-+{
-+	struct cs40l50_codec *codec = snd_soc_component_get_drvdata(codec_dai->component);
-+
-+	if ((fmt & SND_SOC_DAIFMT_MASTER_MASK) != SND_SOC_DAIFMT_CBC_CFC)
-+		return -EINVAL;
-+
-+	switch (fmt & SND_SOC_DAIFMT_INV_MASK) {
-+	case SND_SOC_DAIFMT_NB_NF:
-+		codec->daifmt = 0;
-+		break;
-+	case SND_SOC_DAIFMT_NB_IF:
-+		codec->daifmt = CS40L50_ASP_FSYNC_INV_MASK;
-+		break;
-+	case SND_SOC_DAIFMT_IB_NF:
-+		codec->daifmt = CS40L50_ASP_BCLK_INV_MASK;
-+		break;
-+	case SND_SOC_DAIFMT_IB_IF:
-+		codec->daifmt = CS40L50_ASP_FSYNC_INV_MASK | CS40L50_ASP_BCLK_INV_MASK;
-+		break;
-+	default:
-+		dev_err(codec->dev, "Invalid clock invert\n");
-+		return -EINVAL;
-+	}
-+
-+	switch (fmt & SND_SOC_DAIFMT_FORMAT_MASK) {
-+	case SND_SOC_DAIFMT_I2S:
-+		codec->daifmt |= FIELD_PREP(CS40L50_ASP_FMT_MASK, CS40L50_ASP_FMT_I2S);
-+		break;
-+	default:
-+		dev_err(codec->dev, "Unsupported DAI format\n");
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static int cs40l50_hw_params(struct snd_pcm_substream *substream,
-+			     struct snd_pcm_hw_params *params,
-+			     struct snd_soc_dai *dai)
-+{
-+	struct cs40l50_codec *codec = snd_soc_component_get_drvdata(dai->component);
-+	unsigned int asp_rx_wl = params_width(params);
-+	int ret;
-+
-+	codec->rate = params_rate(params);
-+
-+	ret = regmap_update_bits(codec->regmap, CS40L50_ASP_DATA_CONTROL5,
-+				 CS40L50_ASP_RX_WL_MASK, asp_rx_wl);
-+	if (ret)
-+		return ret;
-+
-+	codec->daifmt |= (asp_rx_wl << CS40L50_ASP_RX_WIDTH_SHIFT);
-+
-+	return regmap_update_bits(codec->regmap, CS40L50_ASP_CONTROL2,
-+				  CS40L50_ASP_FSYNC_INV_MASK |
-+				  CS40L50_ASP_BCLK_INV_MASK |
-+				  CS40L50_ASP_FMT_MASK |
-+				  CS40L50_ASP_RX_WIDTH_MASK, codec->daifmt);
-+}
-+
-+static int cs40l50_set_dai_bclk_ratio(struct snd_soc_dai *dai, unsigned int ratio)
-+{
-+	struct cs40l50_codec *codec = snd_soc_component_get_drvdata(dai->component);
-+
-+	codec->bclk_ratio = ratio;
-+
-+	return 0;
-+}
-+
-+static const struct snd_soc_dai_ops cs40l50_dai_ops = {
-+	.set_fmt = cs40l50_set_dai_fmt,
-+	.set_bclk_ratio = cs40l50_set_dai_bclk_ratio,
-+	.hw_params = cs40l50_hw_params,
-+};
-+
-+static struct snd_soc_dai_driver cs40l50_dai[] = {
-+	{
-+		.name = "cs40l50-pcm",
-+		.id = 0,
-+		.playback = {
-+			.stream_name = "ASP Playback",
-+			.channels_min = 1,
-+			.channels_max = 2,
-+			.rates = SNDRV_PCM_RATE_48000,
-+			.formats = SNDRV_PCM_FMTBIT_S16_LE | SNDRV_PCM_FMTBIT_S24_LE,
-+		},
-+		.ops = &cs40l50_dai_ops,
-+	},
-+};
-+
-+static int cs40l50_codec_probe(struct snd_soc_component *component)
-+{
-+	struct cs40l50_codec *codec = snd_soc_component_get_drvdata(component);
-+
-+	codec->bclk_ratio = CS40L50_BCLK_RATIO_DEFAULT;
-+
-+	return 0;
-+}
-+
-+static const struct snd_soc_component_driver soc_codec_dev_cs40l50 = {
-+	.probe = cs40l50_codec_probe,
-+	.dapm_widgets = cs40l50_dapm_widgets,
-+	.num_dapm_widgets = ARRAY_SIZE(cs40l50_dapm_widgets),
-+	.dapm_routes = cs40l50_dapm_routes,
-+	.num_dapm_routes = ARRAY_SIZE(cs40l50_dapm_routes),
-+};
-+
-+static int cs40l50_codec_driver_probe(struct platform_device *pdev)
-+{
-+	struct cs40l50 *cs40l50 = dev_get_drvdata(pdev->dev.parent);
-+	struct cs40l50_codec *codec;
-+
-+	codec = devm_kzalloc(&pdev->dev, sizeof(*codec), GFP_KERNEL);
-+	if (!codec)
-+		return -ENOMEM;
-+
-+	codec->regmap = cs40l50->regmap;
-+	codec->dev = &pdev->dev;
-+
-+	return devm_snd_soc_register_component(&pdev->dev, &soc_codec_dev_cs40l50,
-+					       cs40l50_dai, ARRAY_SIZE(cs40l50_dai));
-+}
-+
-+static const struct platform_device_id cs40l50_id[] = {
-+	{ "cs40l50-codec", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(platform, cs40l50_id);
-+
-+static struct platform_driver cs40l50_codec_driver = {
-+	.probe = cs40l50_codec_driver_probe,
-+	.id_table = cs40l50_id,
-+	.driver = {
-+		.name = "cs40l50-codec",
-+	},
-+};
-+module_platform_driver(cs40l50_codec_driver);
-+
-+MODULE_DESCRIPTION("ASoC CS40L50 driver");
-+MODULE_AUTHOR("James Ogletree <james.ogletree@cirrus.com>");
-+MODULE_LICENSE("GPL");
--- 
-2.25.1
+Guenter
 
 
