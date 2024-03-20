@@ -1,190 +1,123 @@
-Return-Path: <devicetree+bounces-51878-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51879-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0798D880CF9
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 09:25:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCACA880D13
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 09:32:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6C9E5B210D4
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 08:25:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 817DC285120
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 08:32:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A6A036AE7;
-	Wed, 20 Mar 2024 08:25:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E79492C68C;
+	Wed, 20 Mar 2024 08:32:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LHeTQ5Px"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mSqBlz6N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 653E8364BE
-	for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 08:24:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F73338DC0;
+	Wed, 20 Mar 2024 08:32:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710923100; cv=none; b=h9mhrE0mZaKDuwYsB+Ihwxyjsc3/fFRxWeZHgvfvhHXMmxlfjZxxn3WGxnr0sos94f8/YN80MW0QQDDuq9eJypKjvnX6sdKAdlTMWLiIU238jxit3/Gff9iWxMppsSZkjvGUeLUXUHR3hbM2K6Jx1gFXafgUuv++abhgysWL/6g=
+	t=1710923540; cv=none; b=K+MRVa8fpYnXR+DTutnbBNghchXrpwVzcelZTpXtaEq6RXj1pRCA/lsxoWN0qMD/135qPD8ClaEwAkEP/cKJGEPyD+4PqITwWn2FBQuGhrMxO0Rw+iDg6kCQoAYCYs3wEuD87KcJ/EiEkBj98HRm3YxJQxP2iwdEUq11cXun9cE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710923100; c=relaxed/simple;
-	bh=0G/wDf/+bEoJsbR+S3Ffh2JR0dENplkrlOdNn6NjM54=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=C8O6hMY0Dfp2xaZtz1EEPsMuzKqxtHd0Y/+rUvX2u0yijb5PP/grp7KOhJit86mM2qSs3+LoQLbydvmXpVyBEMAKA6S0bdXZ+m+bPaQoTUoOpSVZqrBjn0csZHBiD5iiKfNbSPSHifSMlRDx2PAlXzxpDbYHdSYL82/IYy1AgBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LHeTQ5Px; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a466a27d30aso833384566b.1
-        for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 01:24:58 -0700 (PDT)
+	s=arc-20240116; t=1710923540; c=relaxed/simple;
+	bh=I1GjyquXx44yYevg7HqbsGvpoYxKwSNXqTAAuylPg/Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=a9rPxB2kEuc3OrPCbfumPBBaYQKojVG0H5FAWqTCRMUHS/K88ZzIrenIoTGHn4CLkKowmlUAXjesLeNCnrn+A7Iw5/qj9hyjtVGfqTDBgn8SUjruW/l6UVWZKbBBD5QuaazBoRzzksnPwFhrSLLLC5P3VbGeuTMQyWJ6PK7YN9s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mSqBlz6N; arc=none smtp.client-ip=209.85.160.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-229661f57cbso1351060fac.1;
+        Wed, 20 Mar 2024 01:32:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710923097; x=1711527897; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Pli4imcMGDmtPbUfMUFZLhGttqyEXhVIwlQoh9s/O+E=;
-        b=LHeTQ5Px7+uu6zGdIOXNDk0RHf7WYTc4cpq7bgzbr5MEZUCjCn9l2uGHAALEaknfIX
-         cIzg7rwm6JH9p9vrYcW6mvU5gKx8d6DEz/FAJoQmQn1YSM0EO1XPB1wFKyuktYPbyumw
-         mh5dtAPm3EDRP4I/fO+JbfcbawhqNybjmhmDuOQcJDKGf63LQ7uh8sFAFNzvc9mMJ/d9
-         sNZGhTXdzJZwUQolvZ+HV+AWPCf4x1i4EjLA5npRXG0MRBpXAhv2wrKhYd/qEaZNTUZV
-         VYdwemT+yoT+JIqm7VctW2WlFdNnMlodriSPizugmrJrcr3lbs2q2jJb9h/JxlNjjKwF
-         AHOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710923097; x=1711527897;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1710923538; x=1711528338; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Pli4imcMGDmtPbUfMUFZLhGttqyEXhVIwlQoh9s/O+E=;
-        b=jg3pExV/J8dk983L81Ol1VKk/sTKAIm/Wk4RaTP6WlfLwASCYl/P8B3bovCQ0dfuwx
-         ARcyISJd+VHU8VQOYOX/5yFZosHA2xWS0TINSWfghlRJNHw3bjuIYDyav3tv65fn/aDF
-         LHSOMJxEiD/gXI2vDaKCUjybhi658egI0E1wd7XlrsZgPmttHaOGoWj714eBH2MD8MEH
-         thaW4aTSJRVA2s78mvB6DMea7Ezrazwjai9l4dUr1Pjx9yIOQWnRSi5u0gxFF0W7JEMo
-         +rlqpo+Lf8kkl6CVPH/dYAvlCjblBYd1J2Us7iVbBIS8CzVJNowc9pF5xdXSS4QSjrDZ
-         Sc8A==
-X-Forwarded-Encrypted: i=1; AJvYcCVTCcKonWl6uoG2tBaj5r/xsA/jY4+LMz7R+AJeYpRC/c5VC7WShRJXGwZdIqAKq1NJ/8IjNez4qCyiEO1Zeb4alT7xaK5yFe2YIw==
-X-Gm-Message-State: AOJu0YzSsx6N3w9HtjXCunrRKPRjjBYpUJ6McFL2QR2cO1qGGhiXhGeq
-	NrPEOvgfcwyTrQSlvrBPFhfymt7Ap0rBuR2vrS6a4f+WlcxG59TeEGkaHu0MEyA=
-X-Google-Smtp-Source: AGHT+IG2ytnM+yLYcxXVndyNK7687tWXrVYmiimVuMJg8Vpe+qFWSYcJhzolU52x2iuoHc7v1NzkDQ==
-X-Received: by 2002:a17:906:ad6:b0:a46:8bee:668 with SMTP id z22-20020a1709060ad600b00a468bee0668mr3181870ejf.7.1710923096675;
-        Wed, 20 Mar 2024 01:24:56 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id c17-20020aa7c751000000b00568b43fffb0sm5401094eds.96.2024.03.20.01.24.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Mar 2024 01:24:56 -0700 (PDT)
-Message-ID: <baf9c1bd-84ef-4ecb-b229-51a83fe82c3f@linaro.org>
-Date: Wed, 20 Mar 2024 09:24:54 +0100
+        bh=I1GjyquXx44yYevg7HqbsGvpoYxKwSNXqTAAuylPg/Q=;
+        b=mSqBlz6NJ3+2tCmAGCEr3/IaH2rliKQiymVWeAiE2UO/2Is2feelSUtuV9SDk8ReSp
+         Wxex31zQPLLoGFbb8h6S/wiUlVXS666ZVEU0edgawGmADu3/1Zvc3hPw5wBNJHTA0UND
+         9kTIULEhoEWbVs0ltDg1lSigk3L5M1RXf3eTNZwwAYLZvQEjuGOzwDnMucK5ZLtK/QsO
+         wzY7qWXrKrwugPPTB6QparhZ6Yg5unsQlzjyW77tPehEq2OItjkMdk8cR4XodzTGbz3F
+         0IBaJCDsqa13D+MQPDVTSv2Jlo6tZsjxxaHW0UYREM5bSlQH/0lI2m7mK6x8TsuMDKsn
+         O8cA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710923538; x=1711528338;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=I1GjyquXx44yYevg7HqbsGvpoYxKwSNXqTAAuylPg/Q=;
+        b=wudnkfcYEn6Gm9A4EoeG+MeTDnWgtiPBsqK5CH6J1aow2ZZHzy3XZDDGCMY81e6+s7
+         KWlB+jMFxDsCpiKaUEJRfrHwDWa3wOxhPIkQsL6hs9/YstcV4O/8QazbHDDJts6bN2ot
+         0ELuPWtchwkrJx9T5TnhASIhDesaE+JiQUy3rJjYnF7aNy77YL7hPUEXOlwEDlvdjarJ
+         3DwyarPyrcoRdyq5FgHTGipRpOxFydw83T5x34A1GpTXbjSu1m5EjkkoVZhCZXWznioN
+         DU62Qzt5CtdKL9EbPjj804XJYJZJTLnYquQQ4erz0HGzzNSjQhAov6DuqJ2gRSB+dXIL
+         rD8w==
+X-Forwarded-Encrypted: i=1; AJvYcCW3HZc5D730D4R7aJu/UmaZQ2iI7Zr+1Eh7Sw/IDWIRTq5zRXEhjwMjXNNNeYzVoM/9W54RrbUZbp74MxOnQbaXto1Qtj5dezbNG8PxmtlbyEOAbRA7t4APVsvyJWNb7lZ9/7YAFyE9KKLXe5uOLqsWnT6ESmrnXmmPC0IVqo1aNXCrcA==
+X-Gm-Message-State: AOJu0YwgMX7IT42s7TSi3oA3uuFWwxAsUvL6PQV34CGFcTb9YGIPGGdT
+	asbm8yNPtdwKX12WADNWF4uoLWGXFXZpdENNU684n4dQGvRkQLbqOtGz2iiNcBFo6F6EPn0CAkd
+	UfgarpGac+4g6zNUGT14FTco9Flw=
+X-Google-Smtp-Source: AGHT+IFiavUb4RKpde44jEu7GlR1AFgB69m17aLQQQQL5sk9DzK3kTrvPW91CotGDjLYbJieZL/MDGjGFWjLy+czHIE=
+X-Received: by 2002:a05:6871:5b13:b0:221:96b2:5a4e with SMTP id
+ op19-20020a0568715b1300b0022196b25a4emr5273606oac.58.1710923538332; Wed, 20
+ Mar 2024 01:32:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: (subset) [PATCH v4 0/5] arm64: dts: qcom: sc8280xp: PCIe fixes
- and GICv3 ITS enable
-To: Johan Hovold <johan@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Johan Hovold <johan+linaro@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240306095651.4551-1-johan+linaro@kernel.org>
- <171081652637.198276.6219023769904423414.b4-ty@kernel.org>
- <Zfk98hYPn7kiFGkt@hovoldconsulting.com>
- <9b475e13-96b9-4bce-8041-e0d8e5a332a1@linaro.org>
- <Zfqb8jPK50vlqu5Q@hovoldconsulting.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <Zfqb8jPK50vlqu5Q@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240318153959.30755-1-animeshagarwal28@gmail.com>
+ <20240319-oversight-viable-4550ffbc31d9@spud> <CAE3Oz81-8tV2iJc7Jp3B-ooHvGeOSctxUAvd_1dA-3DQRUJFPQ@mail.gmail.com>
+ <2b45017a-5a68-4c56-a1b3-ef17163139d4@linaro.org>
+In-Reply-To: <2b45017a-5a68-4c56-a1b3-ef17163139d4@linaro.org>
+From: Animesh Agarwal <animeshagarwal28@gmail.com>
+Date: Wed, 20 Mar 2024 14:02:07 +0530
+Message-ID: <CAE3Oz81K3dFW7PNV+oEq4HEbTWYP3DkLbpztSXg2jHk+wh1Ebw@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: nxp,pnx-i2c: Convert to dtschema
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Conor Dooley <conor@kernel.org>, Vladimir Zapolskiy <vz@mleia.com>, Andi Shyti <andi.shyti@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 20/03/2024 09:18, Johan Hovold wrote:
-> On Wed, Mar 20, 2024 at 09:09:02AM +0100, Krzysztof Kozlowski wrote:
->> On 19/03/2024 08:25, Johan Hovold wrote:
->>> On Mon, Mar 18, 2024 at 09:48:30PM -0500, Bjorn Andersson wrote:
->>>> On Wed, 06 Mar 2024 10:56:46 +0100, Johan Hovold wrote:
->>>>> This series addresses a few problems with the sc8280xp PCIe
->>>>> implementation.
-> 
->>>> Applied, thanks!
->>>>
->>>> [4/5] arm64: dts: qcom: sc8280xp: add missing PCIe minimum OPP
->>>>       commit: 2b621971554a94094cf489314dc1c2b65401965c
->>>
->>> I noticed that you applied both of these for 6.10, but this one is a fix
->>> that should go into 6.9.
->>
->> Well, mixing fixes for different cycles in one patchset was always
->> discouraged. In case of some subsystems you would receive clear
->> response, that you must split fixes out of the patchset.
->>
->> Fixes being first in the patchset would be probably accepted by the rest
->> of subsystems, but putting it in the middle of the patchset is wrong.
-> 
-> Perhaps you should not comment before reading up on the history of this
-> series.
-> 
-> This was all intended for 6.9, but merging was stalled for a number of
-> reasons so here we are. The patches were also going in through different
-> trees, so patch 4/5 is the first Qualcomm SoC patch.
+On Wed, Mar 20, 2024 at 1:23=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> Yes.
+>
+> While at this:
+> Please use subject prefixes matching the subsystem. You can get them for
+> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> your patch is touching.
+> missing i2c
 
-Again, well, you sent it at few days before merge window, so how do you
-imagine this being applied for v6.9 and still fulfilling "few linux-next
-cycles before merge window" requirement? Especially that arm-soc cut off
-is much earlier :/. I talk about patch 5, of course, because that is not
-a fix (at least not marked as one). Don't expect in general a arms-co
-patch to be applied four days before merge window, thus the actual fix -
-patch #4 - should be split.
+Thanks for the support on this, I will be using proper subject
+prefixes here onwards.
 
-Best regards,
-Krzysztof
+> This is an automated instruction, just in case, because many review tags
+> are being ignored. If you know the process, you can skip it (please do
+> not feel offended by me posting it here - no bad intentions intended).
+> If you do not know the process, here is a short explanation:
+>
+> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+> versions, under or above your Signed-off-by tag. Tag is "received", when
+> provided in a message replied to you on the mailing list. Tools like b4
+> can help here. However, there's no need to repost patches *only* to add
+> the tags. The upstream maintainer will do that for tags received on the
+> version they apply.
+>
+> https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/su=
+bmitting-patches.rst#L577
 
+Yes, I'll follow these instructions for v3 of this patch.
+
+Regards,
+Animesh Agarwal
 
