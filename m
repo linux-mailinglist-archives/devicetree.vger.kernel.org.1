@@ -1,83 +1,81 @@
-Return-Path: <devicetree+bounces-51870-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-51872-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDD84880CB4
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 09:07:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27AD2880CBE
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 09:10:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5DA951F22E6C
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 08:07:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 57DD11C20BFB
+	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 08:10:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF6F324B33;
-	Wed, 20 Mar 2024 08:07:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8C5A2C68A;
+	Wed, 20 Mar 2024 08:10:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="hHH5DxSY"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="m0WSIvTe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9540936AE4;
-	Wed, 20 Mar 2024 08:07:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BDD12BD1F;
+	Wed, 20 Mar 2024 08:10:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710922055; cv=none; b=AwpomJLlI3y44aR68fmUeyAjXw9/NbfSeOMP5loJmvHg5SfN42PkoZjMdCfCXZ8ZklmAMfBxVFv8JvcDOtPloTF4yO2uV55FCFp2vb0WQWfVJBRCfPgeEp2cyNrYl9my2hMrYsrKkEtOW9Cm1PqGrUJbgJEInamP8hB4RlU7G5Y=
+	t=1710922205; cv=none; b=KAp/2oiFzbMxoYMcFFNEhf45X43ia0E4Y63wg7xEK5B2BqGG0mE0yCfwVARnZVQWRitM81fJyJFew+mMvYxu1rmj3UB9Hwr01QaZ1MDue050OQIE5p5gbi2Y61kjo8bnjicLjmzZoL79MW9+6mnMaQwDDUc76McxnlagZbAs4/s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710922055; c=relaxed/simple;
-	bh=8s8XKGkGT4rwQeAawGzZEkGeS8AnzqsL4K//1R+zt5Q=;
+	s=arc-20240116; t=1710922205; c=relaxed/simple;
+	bh=AfCnug0umUcdT2gosXp103HrYU4EPJM44slnpZb1jv0=;
 	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ah4pTubxMI3wIf5XoYR0a4LBB1wosag+zNUMJdvn5H3/IjtetmPIuKxQ2xyNwViNYSGNR+mXb1pibdpJ3bgDYDUzWbmUl8pIwL9TR88quXUEYHNthIdPJjlNrTyHJ5RMF0l1eyGrdnPJR2M3UbbDeoIL6NX67bvXzHOpA7m9Td8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=hHH5DxSY; arc=none smtp.client-ip=68.232.153.233
+	 Content-Type:Content-Disposition:In-Reply-To; b=NuBMF78dpHwYqE2V1r49tOpA7hkyMX0Hv6MITuoaPke5im9CEz+8Zpfh4VAfR1+PrnC8HsFd+FlMfRmIXXlRMo38b3JHh5JrtU2GIuCdVvLr7ztxdgk9Yy6kDAaw6RskS3pnd/OKw97WH944gkxX1LOwkwNV8IrnJYurWLMLVl4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=m0WSIvTe; arc=none smtp.client-ip=68.232.154.123
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1710922054; x=1742458054;
+  t=1710922203; x=1742458203;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=8s8XKGkGT4rwQeAawGzZEkGeS8AnzqsL4K//1R+zt5Q=;
-  b=hHH5DxSY/R/+5ju6Tu8yndEmtunuKsBNmB260zQ3AYGzWDXV/7XBbvHP
-   Sy1oIN3vxCAEhRW/Nj1GWRpi/beHVw0bW3SHbvOzFtyUHxv3X/OjFvdff
-   0ra9jz4Zq9TIjNFUjz/Wh1SKTv44ZjToDiLBFKAksqGu7par804adSnnZ
-   FwcFP32gvuiGVgb0H7xHaRZ9vNcBABNHUZj9v+KuV417vuSTT8x2SQZvj
-   mUKn7QBMF+zP+2haC5OaXnGifBPBYqDx8SKIy7twNO+mwGb1uByJWVIt/
-   yz8fqyYXwU+Wd8p1LE2PlP6O5BctCQjYvpDjCB27AHQHTz0/ia9x5qBbF
-   Q==;
-X-CSE-ConnectionGUID: +2PKfpLTQGq2m0SEBNMVqQ==
-X-CSE-MsgGUID: eSxs2JbuTmyaJCQMbacMkA==
+  bh=AfCnug0umUcdT2gosXp103HrYU4EPJM44slnpZb1jv0=;
+  b=m0WSIvTedQOPaYURL9S8f8A2saKfjS5IC1TvRP2OIJvN0xpQFxrC5gJU
+   5OWdkYvcIK6P113s4B1QeoDpHJnkXF1WAv9GrCICahMGprgvKaE9EgFPR
+   HdmZnkcOFC0tfUmIFcmIEm9eIn1OI1BxJYDp27LSfKJI1YJOlaHgyxWou
+   crVLf2LmPMRaWuiCFtVln/L0Ns1AeAlzAUmmqth5uWzmuMoMCpDDMbcml
+   I+LT7d+BhTI5k1m6/Xks6P6Jwxb50dJ5iPJGy11ioWdXz5FtmbSmpMper
+   2pImnr/x2hH0TluwIUzg98q60IO8b1vDDU8VE977rF1/GkG/d3huelDhh
+   g==;
+X-CSE-ConnectionGUID: eZhPXw6WRumqhkMBxQG74g==
+X-CSE-MsgGUID: a6qsqpTMSjOeZ0F7tAolvA==
 X-IronPort-AV: E=Sophos;i="6.07,139,1708412400"; 
-   d="asc'?scan'208";a="248659095"
+   d="asc'?scan'208";a="18421063"
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 20 Mar 2024 01:07:30 -0700
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 20 Mar 2024 01:10:01 -0700
 Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 20 Mar 2024 01:07:10 -0700
+ 15.1.2507.35; Wed, 20 Mar 2024 01:09:31 -0700
 Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Wed, 20 Mar 2024 01:07:07 -0700
-Date: Wed, 20 Mar 2024 08:06:20 +0000
+ Transport; Wed, 20 Mar 2024 01:09:27 -0700
+Date: Wed, 20 Mar 2024 08:08:41 +0000
 From: Conor Dooley <conor.dooley@microchip.com>
-To: Samuel Holland <samuel.holland@sifive.com>
-CC: Deepak Gupta <debug@rivosinc.com>, Palmer Dabbelt <palmer@dabbelt.com>,
-	<linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>, Catalin
- Marinas <catalin.marinas@arm.com>, <linux-kernel@vger.kernel.org>, Conor
- Dooley <conor@kernel.org>, <kasan-dev@googlegroups.com>, Evgenii Stepanov
-	<eugenis@google.com>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, Andrew
- Jones <ajones@ventanamicro.com>, Guo Ren <guoren@kernel.org>, Heiko Stuebner
-	<heiko@sntech.de>, Paul Walmsley <paul.walmsley@sifive.com>
-Subject: Re: [RISC-V] [tech-j-ext] [RFC PATCH 5/9] riscv: Split per-CPU and
- per-thread envcfg bits
-Message-ID: <20240320-fanfare-flick-3b38dde081d8@wendy>
-References: <20240319215915.832127-1-samuel.holland@sifive.com>
- <20240319215915.832127-6-samuel.holland@sifive.com>
- <CAKC1njSg9-hJo6hibcM9a-=FUmMWyR39QUYqQ1uwiWhpBZQb9A@mail.gmail.com>
- <40ab1ce5-8700-4a63-b182-1e864f6c9225@sifive.com>
+To: Conor Dooley <conor@kernel.org>
+CC: Joshua Yeong <joshua.yeong@starfivetech.com>, <paul.walmsley@sifive.com>,
+	<palmer@dabbelt.com>, <aou@eecs.berkeley.edu>, <geert+renesas@glider.be>,
+	<prabhakar.mahadev-lad.rj@bp.renesas.com>, <alexghiti@rivosinc.com>,
+	<evan@rivosinc.com>, <ajones@ventanamicro.com>, <heiko@sntech.de>,
+	<guoren@kernel.org>, <uwu@icenowy.me>, <jszhang@kernel.org>,
+	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <leyfoon.tan@starfivetech.com>,
+	<jeeheng.sia@starfivetech.com>, <linux-riscv@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 0/4] Add StarFive's StarLink-500 Cache Controller
+Message-ID: <20240320-implement-finishing-136eae51d659@wendy>
+References: <20240314061205.26143-1-joshua.yeong@starfivetech.com>
+ <20240317-viral-handcraft-12b2519ff1be@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,78 +83,46 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ZQuW/bL/DNtzlQCx"
+	protocol="application/pgp-signature"; boundary="iOmun+xjPn985xOw"
 Content-Disposition: inline
-In-Reply-To: <40ab1ce5-8700-4a63-b182-1e864f6c9225@sifive.com>
+In-Reply-To: <20240317-viral-handcraft-12b2519ff1be@spud>
 
---ZQuW/bL/DNtzlQCx
-Content-Type: text/plain; charset=utf-8
+--iOmun+xjPn985xOw
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Mar 19, 2024 at 09:20:59PM -0500, Samuel Holland wrote:
-> On 2024-03-19 6:55 PM, Deepak Gupta wrote:
-> > On Tue, Mar 19, 2024 at 2:59=E2=80=AFPM Samuel Holland via lists.riscv.=
-org
-> > <samuel.holland=3Dsifive.com@lists.riscv.org> wrote:
-> >>
-> >> Some envcfg bits need to be controlled on a per-thread basis, such as
-> >> the pointer masking mode. However, the envcfg CSR value cannot simply =
-be
-> >> stored in struct thread_struct, because some hardware may implement a
-> >> different subset of envcfg CSR bits is across CPUs. As a result, we ne=
-ed
-> >> to combine the per-CPU and per-thread bits whenever we switch threads.
-> >>
-> >=20
-> > Why not do something like this
-> >=20
-> > diff --git a/arch/riscv/include/asm/csr.h b/arch/riscv/include/asm/csr.h
-> > index b3400517b0a9..01ba87954da2 100644
-> > --- a/arch/riscv/include/asm/csr.h
-> > +++ b/arch/riscv/include/asm/csr.h
-> > @@ -202,6 +202,8 @@
-> >  #define ENVCFG_CBIE_FLUSH              _AC(0x1, UL)
-> >  #define ENVCFG_CBIE_INV                        _AC(0x3, UL)
-> >  #define ENVCFG_FIOM                    _AC(0x1, UL)
-> > +/* by default all threads should be able to zero cache */
-> > +#define ENVCFG_BASE                    ENVCFG_CBZE
+On Sun, Mar 17, 2024 at 03:01:05PM +0000, Conor Dooley wrote:
+> On Thu, Mar 14, 2024 at 02:12:01PM +0800, Joshua Yeong wrote:
+> > StarFive's StarLink-500 Cache Controller flush/invalidates cache using =
+non-
+> > conventional CMO method. This driver provides the cache handling on Sta=
+rFive
+> > RISC-V SoC.
 >=20
-> Linux does not assume Sstrict, so without Zicboz being present in DT/ACPI=
-, we
-> have no idea what the CBZE bit does--there's no guarantee it has the stan=
-dard
-> meaning--so it's not safe to set the bit unconditionally. If that policy
-> changes, we could definitely simplify the code.
+> Unlike the other "non-conventional" CMO methods, the jh8100 does not
+> pre-date the Zicbom extension. Why has that not been implemented?
 
-The wording for that "extension", if two lines in the profiles doc makes
-something an extension is:
-"No non-conforming extensions are present. Attempts to execute unimplemented
-opcodes or access unimplemented CSRs in the standard or reserved encoding
-spaces raises an illegal instruction exception that results in a contained
-trap to the supervisor-mode trap handler."
+Stefan pointed out on IRC yesterday that one of the main selling points
+is the ease of operating on large ranges.
 
-I know we have had new extensions come along and mark previously fair
-game interrupts for vendors as out of bounds. I wonder if there's a risk
-of that happening with CSRs or opcodes too (or maybe it has happened and
-I cannot recall).
+> How many peripherals on the jh8100 rely on non-coherent DMA?
+>=20
+> Cheers,
+> Conor.
 
-Going back to the interrupts - is the Andes PMU non-conforming because
-it uses an interrupt that was declared as vendor usable but is now part
-of the standard space because of AIA? If it is, then the meaning of
-Sstrict could vary wildly based on the set of extensions (and their
-versions for specs). That sounds like a lot of fun.
 
---ZQuW/bL/DNtzlQCx
+
+--iOmun+xjPn985xOw
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZfqY/AAKCRB4tDGHoIJi
-0m4/AP0UYPz9RdNLmW6g7L1tf8w83wsWZfBkuwZqh3A3w0Jq9wEA7t8mWVQ1YVm2
-D9FdG5Y2+4p6MzgZJDv6xF67VncJZAU=
-=unOr
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZfqZiQAKCRB4tDGHoIJi
+0qMDAP9sOBXZWhcjt6+UQcqMAdgYDyQ/d+HtGVH8VPq7D6wuPwEAuJxliBsHfezS
+RtGYM/iDUAlOd2eP7RPVi3PWvojxogk=
+=Su/2
 -----END PGP SIGNATURE-----
 
---ZQuW/bL/DNtzlQCx--
+--iOmun+xjPn985xOw--
 
