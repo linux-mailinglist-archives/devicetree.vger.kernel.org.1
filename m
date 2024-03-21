@@ -1,119 +1,136 @@
-Return-Path: <devicetree+bounces-52273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52276-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 208EE8860E4
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 20:14:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF49D886100
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 20:33:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 87542B22518
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 19:14:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 80B9A283946
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 19:33:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86FEA133435;
-	Thu, 21 Mar 2024 19:14:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EFCB134413;
+	Thu, 21 Mar 2024 19:33:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp1.ms.mff.cuni.cz (smtp-in1.ms.mff.cuni.cz [195.113.20.234])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20A62383A4;
-	Thu, 21 Mar 2024 19:14:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.113.20.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53A58133422;
+	Thu, 21 Mar 2024 19:33:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711048472; cv=none; b=dHUvIagsz7SncomV1Z0oOFF7O9NH1gFCiWuFwDAgIRI62lnI8jHmYFQjAs4w4KCC5zS5DhFtbrW0VetRn/KtbnSwRdMkO3CqQ1/9ZQ9+J2awSgOEa+aKLJwXzw+E8dzPrpGXx0SiLWGU6yPq1LC2/ds62XJiJiUk/ChakC/pL9c=
+	t=1711049594; cv=none; b=ryITxzUdfJx3jeZCe/RC6Kck6UZqYgN+XucNGrEIWcMmlS6sWxhcmB30e+la5gtnDx+o8+ahCBDkpQypaX8cccQddqiXJghs+RhumizlI84ycFbmIQFO/4jAEXVfGwM+p8dXaaXuOQkeMy50SfQFDuZ5i/u2I802ex9mDiEqjIc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711048472; c=relaxed/simple;
-	bh=rPXKI2wJ/6ccp3M6w1iKzAbMhguC0OcVdXiCwXRzO7A=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:From:Cc:Subject:
-	 References:In-Reply-To; b=IHhEzKnYF1SiNSPREE+W0nHP44ivh0hP9kApEbHnHEJ9SWLaYzMu6Xw6n90PL/avBoH+ShjwqRmDJLf7kooTnaKc3kG8SE5qdk1iTuT/MlfGvTJC0zhGcT6TJ1etHx4uxCLGX6a3zm/CWXws+NlB6SA7hlMP6TVLCRbkhZfxkBs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz; spf=pass smtp.mailfrom=matfyz.cz; arc=none smtp.client-ip=195.113.20.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=matfyz.cz
-X-SubmittedBy: id balejk@matfyz.cz subject /postalCode=110+2000/O=Univerzita+20Karlova/street=Ovocn+5CxC3+5CxBD+20trh+20560/5/ST=Praha,+20Hlavn+5CxC3+5CxAD+20m+5CxC4+5Cx9Bsto/C=CZ/CN=Karel+20Balej/emailAddress=balejk@matfyz.cz
-	serial F5FD910E8FE2121B897F7E55B84E351D
-	issued by /C=NL/O=GEANT+20Vereniging/CN=GEANT+20Personal+20CA+204
-	auth type TLS.CUNI
-Received: from localhost (koleje-wifi-0015.koleje.cuni.cz [78.128.191.15])
-	(authenticated)
-	by smtp1.ms.mff.cuni.cz (8.16.1/8.16.1) with ESMTPS id 42LJEBuf000826
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=OK);
-	Thu, 21 Mar 2024 20:14:13 +0100 (CET)
-	(envelope-from balejk@matfyz.cz)
+	s=arc-20240116; t=1711049594; c=relaxed/simple;
+	bh=xXa4FF7nQG3CwW6ptYwxB1tD6/Yh0AKEy2Pi0Dfq8GU=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=ANwf1zngs/Np/yvc7/UYXQjVhFuisgFIbZ+AVgckrIixMgkQsDmQ9pj860Ma0DuRMPzkkxjhF4uvAnOXfbkyJstOP5YmDc1fC6mTTjuHVB2CZqxiGfZGtXBgKVDwhCaPCIojrQVeC1t+5qpcJMqbvNwh2TkgjDG5C2/3W+/1U+Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.96.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1rnO9R-0000Cf-2Z;
+	Thu, 21 Mar 2024 19:32:33 +0000
+Date: Thu, 21 Mar 2024 19:31:48 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>, Jens Axboe <axboe@kernel.dk>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Dave Chinner <dchinner@redhat.com>, Jan Kara <jack@suse.cz>,
+	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Li Lingfeng <lilingfeng3@huawei.com>,
+	Christian Brauner <brauner@kernel.org>,
+	Christian Heusel <christian@heusel.eu>,
+	Min Li <min15.li@samsung.com>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Avri Altman <avri.altman@wdc.com>, Hannes Reinecke <hare@suse.de>,
+	Christian Loehle <CLoehle@hyperstone.com>,
+	Bean Huo <beanhuo@micron.com>, Yeqi Fu <asuk4.q@gmail.com>,
+	Victor Shih <victor.shih@genesyslogic.com.tw>,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+	Dominique Martinet <dominique.martinet@atmark-techno.com>,
+	"Ricardo B. Marliere" <ricardo@marliere.net>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org, linux-block@vger.kernel.org
+Subject: [PATCH 0/8] block: implement NVMEM provider
+Message-ID: <cover.1711048433.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 21 Mar 2024 20:14:44 +0100
-Message-Id: <CZZO2EFTAKN2.246XG441ECYYK@matfyz.cz>
-To: "Mark Brown" <broonie@kernel.org>
-From: "Karel Balej" <balejk@matfyz.cz>
-Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Conor Dooley"
- <conor+dt@kernel.org>,
-        "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
-        "Liam
- Girdwood" <lgirdwood@gmail.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-input@vger.kernel.org>,
-        =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
-        <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>
-Subject: Re: [RFC PATCH v4 2/5] mfd: add driver for Marvell 88PM886 PMIC
-References: <20240321154211.GA13211@google.com>
- <CZZK759UU6G7.MFPYOI0HBB6I@matfyz.cz> <20240321162045.GC13211@google.com>
- <CZZL3MNOT0QG.2WDSNX9XD2RET@matfyz.cz>
- <879296b4-5186-4170-af3f-971787d28514@sirena.org.uk>
- <CZZLDK79D5VK.2VK3X59OHIY2Z@matfyz.cz>
- <45079e37-dde9-4310-a112-7af49f35ac77@sirena.org.uk>
- <CZZLVS3T3QIS.223XHI5OZ7UBG@matfyz.cz>
- <e9c7bd38-49cd-44c2-8842-292bc0b4205f@sirena.org.uk>
- <CZZMTZBZ5S7B.2HR8A6LEY08D4@matfyz.cz>
- <bd4e96b9-1026-469b-9884-073cde1f39dc@sirena.org.uk>
-In-Reply-To: <bd4e96b9-1026-469b-9884-073cde1f39dc@sirena.org.uk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Mark Brown, 2024-03-21T19:00:24+00:00:
-> On Thu, Mar 21, 2024 at 07:16:43PM +0100, Karel Balej wrote:
-> > Mark Brown, 2024-03-21T17:48:28+00:00:
->
-> > > > They do according to the downstream driver which is my only referen=
-ce.
-> > > > In fact, there the driver defines the configs separately for each r=
-egmap
-> > > > but with the same values.
->
-> > > This is a downstream driver - are you sure it's got the best code
-> > > quality?
->
-> > No, that is why I have rewritten it and tried to improve on this. But
-> > like I said, it is my only reference. Is there some other way to verify
-> > this value (besides perhaps the datasheet)?
->
-> The maximum register is whatever the maximum register we know about for
-> the device is, the datasheet is generally a good reference there.
->
-> > > I'm not seeing any references to registers with numbers as high as th=
-e
-> > > maximum register that's there in your driver for example.
->
-> > Indeed, I have performed the same check with the same findings. But tha=
-t
-> > doesn't necessarily mean that the maximum should be lower, no?
->
-> > Do you have some specific modifications of my code in mind regarding
-> > this?
->
-> I would expect that if you have two separate register maps they would
-> have separate configurations that describe the corresponding physical
-> register maps, as far as I can tell this driver is just making up a
-> maximum register number.
+On embedded devices using an eMMC it is common that one or more (hw/sw)
+partitions on the eMMC are used to store MAC addresses and Wi-Fi
+calibration EEPROM data.
 
-Alright, so I should just use a separate config for each regmap and set
-the max_register value for each to whatever I can find is actually the
-highest used value in the downstream code -- correct?
+Implement an NVMEM provider backed by a block device as typically the
+NVMEM framework is used to have kernel drivers read and use binary data
+from EEPROMs, efuses, flash memory (MTD), ...
 
-Thank you,
-K. B.
+In order to be able to reference hardware partitions on an eMMC, add code
+to bind each hardware partition to a specific firmware subnode.
+
+Overall, this enables uniform handling across practially all flash
+storage types used for this purpose (MTD, UBI, and now also MMC).
+
+As part of this series it was necessary to define a device tree schema
+for block devices and partitions on them, which (similar to how it now
+works also for UBI volumes) can be matched by one or more properties.
+
+---
+This series has previously been submitted as RFC on July 19th 2023[1]
+and most of the basic idea did not change since. Another round of RFC
+was submitted on March 5th 2024[2] which has received overall positive
+feedback and only minor corrections have been done since (see
+changelog below).
+
+[1]: https://patchwork.kernel.org/project/linux-block/list/?series=767565
+[2]: https://patchwork.kernel.org/project/linux-block/list/?series=832705
+
+Changes since RFC:
+ * Use 'partuuid' instead of reserved 'uuid' keyword to match against
+   PARTUUID.
+ * Simplify blk_nvmem_init(void) function.
+
+Daniel Golle (8):
+  dt-bindings: block: add basic bindings for block devices
+  block: partitions: populate fwnode
+  block: add new genhd flag GENHD_FL_NVMEM
+  block: implement NVMEM provider
+  dt-bindings: mmc: mmc-card: add block device nodes
+  mmc: core: set card fwnode_handle
+  mmc: block: set fwnode of disk devices
+  mmc: block: set GENHD_FL_NVMEM
+
+ .../bindings/block/block-device.yaml          |  22 +++
+ .../devicetree/bindings/block/partition.yaml  |  51 ++++++
+ .../devicetree/bindings/block/partitions.yaml |  20 +++
+ .../devicetree/bindings/mmc/mmc-card.yaml     |  45 +++++
+ MAINTAINERS                                   |   5 +
+ block/Kconfig                                 |   9 +
+ block/Makefile                                |   1 +
+ block/blk-nvmem.c                             | 169 ++++++++++++++++++
+ block/partitions/core.c                       |  41 +++++
+ drivers/mmc/core/block.c                      |   8 +
+ drivers/mmc/core/bus.c                        |   2 +
+ include/linux/blkdev.h                        |   2 +
+ 12 files changed, 375 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/block/block-device.yaml
+ create mode 100644 Documentation/devicetree/bindings/block/partition.yaml
+ create mode 100644 Documentation/devicetree/bindings/block/partitions.yaml
+ create mode 100644 block/blk-nvmem.c
+
+-- 
+2.44.0
 
