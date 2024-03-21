@@ -1,218 +1,108 @@
-Return-Path: <devicetree+bounces-52229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFC2E885D4A
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 17:20:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21D45885D51
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 17:21:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 742082819BF
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 16:20:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53C551C21945
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 16:21:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFA8712CD82;
-	Thu, 21 Mar 2024 16:20:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 566A312CD8C;
+	Thu, 21 Mar 2024 16:21:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bQfOvwGG"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="bG/dSIXF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-171.mta0.migadu.com (out-171.mta0.migadu.com [91.218.175.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF5C912C7FD;
-	Thu, 21 Mar 2024 16:20:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7672312CD93
+	for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 16:21:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711038053; cv=none; b=oP3m7LspuWuWchcjngqMROpUHjrrB8W//P0CQXJtRWJS2Tx77sVRFi1Vg8PYFCCrNf4PLZ5WsBAAwGhunCAR0zq+jVoDU1/zLKC7HL7p29TG5do6MDCA+EaTQnAVB7ZZ2bTTeqdBUCFZjcf36MPOUe//2p8AlcYnOnf+fhhELz4=
+	t=1711038094; cv=none; b=sUYZQ2VXDbjIKDdqtqhik6qtxTJ1jtHnwETFW/jiTOjXlM/elsmxVVGPt/UOexRNY5QfWv2I7od3d1aiEhC1JmDs9I/cig8eBPFoWv2CxCyVnEgymeUeqXav4xf1uSuoEEasLRjxyf9DETSFfQxNvTJca47fEiePYqneAZd2HqY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711038053; c=relaxed/simple;
-	bh=XZyjOkWc9QSQZf4NA8aTEMhj5g0bWu5Yi9eO+24xidg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Zn24WOx4+U3uSgRDhLLUnpL3wCh2RmWEa4yZbk3CL6H3iX6ybMWl3lciiyThROB4VRddpWdKxmCl/BIWsQGLBRzUiY5tL5jUt5PZregkK6bJEgIJ1Z/HIqcaAGLN684/kE4rZXJDd+K0AzQYbKrWInKHIJcF0cpyurVbhJwxa/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bQfOvwGG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0C7EC43390;
-	Thu, 21 Mar 2024 16:20:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711038053;
-	bh=XZyjOkWc9QSQZf4NA8aTEMhj5g0bWu5Yi9eO+24xidg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bQfOvwGGSx11S83DBOGW3bYlLQ3MWHCcYDK+g+EuLNr+q3bImTgAMbGgxSfTVuIXG
-	 xK4C6wGRl3O9SyuI9K+6w0s8pwxBHTjmckC7dX2Oe1oZF2hLeYvOvRz0RZY27BjclH
-	 SAuuqCpF2y1iMdgUIAuF5gGYiQgU5Ki8XJjEL8syToTKw23JFWGPoMR0KyaT9oYZBp
-	 2SKLPQ6kwjF9/8M1zOro/Y8Bh/0lHo/Aza1KYphM5GywltEYLL/ds+NTD8rmQWQ6h5
-	 UlIHQVErk9ogbuZOQ3s2ijgIhTcHu//QIDWWBDZSxLeBn9rFGMe2iS8i+4cF6he9Ef
-	 nSfJMeb1MyDiw==
-Date: Thu, 21 Mar 2024 16:20:45 +0000
-From: Lee Jones <lee@kernel.org>
-To: Karel Balej <balejk@matfyz.cz>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-	Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [RFC PATCH v4 2/5] mfd: add driver for Marvell 88PM886 PMIC
-Message-ID: <20240321162045.GC13211@google.com>
-References: <20240311160110.32185-1-karelb@gimli.ms.mff.cuni.cz>
- <20240311160110.32185-3-karelb@gimli.ms.mff.cuni.cz>
- <20240321154211.GA13211@google.com>
- <CZZK759UU6G7.MFPYOI0HBB6I@matfyz.cz>
+	s=arc-20240116; t=1711038094; c=relaxed/simple;
+	bh=vl4aNEvlWuyu599jEe9MzAKTAEMe6P8IA55VDrn32vk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UMOko6pYN4AkDwI3A1fLjx8RMXd4LCoBh0fMgThg4RE94NsDlppJLUtprAHQQ8q6NQliZIHpkrG9n3xf3AINhuR5uxFfXly//dRiQKaJXiwPyMc2j2ZfIs8d1cBRgzj7t0/9HXINwNAnz/QdX+5TjgxKxUNxqyhkA4eqN/KItVM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=bG/dSIXF; arc=none smtp.client-ip=91.218.175.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <d947cb15-aafc-487e-8bbd-54d786683470@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1711038089;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=FQil3W2KQkB/aoa0J/1WAVBzi/uloXdl4lywi9s0CFA=;
+	b=bG/dSIXFjDiAzLH18CJVeVC4EOBVmZjZoitp0gw7FOrhBFow5YBNvdf8ZH9/OQamar62l6
+	E+JmLmdxw2VP4EBJi1i5xbFyJYqwVaeT2J8+a0lme613nooki1/9OQgtZLrb+JeTnPTx1w
+	/zPARpFkdbRTYhwiFh4JzN6wPEX+3ns=
+Date: Thu, 21 Mar 2024 12:21:27 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CZZK759UU6G7.MFPYOI0HBB6I@matfyz.cz>
+Subject: Re: [PATCH 1/2] dt-bindings: nvmem: Remove fsl,t1023-sfp in favor of
+ fsl,layerscape-sfp
+Content-Language: en-US
+To: Conor Dooley <conor@kernel.org>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Richard Alpe <richard@bit42.se>, linux-kernel@vger.kernel.org,
+ =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+ Michael Walle <michael@walle.cc>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20240316002026.1808336-1-sean.anderson@linux.dev>
+ <20240317-starved-pager-7a81c5045cfc@spud>
+ <9daf9c8f-6606-4ff6-8065-6a32fa0d152c@linux.dev>
+ <20240318-scarf-startup-64088b1d8d35@spud>
+ <fa047914-da03-4234-b48f-eebdf350795e@linux.dev>
+ <20240319-fondling-implode-322a9cb570b8@spud>
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Sean Anderson <sean.anderson@linux.dev>
+In-Reply-To: <20240319-fondling-implode-322a9cb570b8@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 
-On Thu, 21 Mar 2024, Karel Balej wrote:
-
-> Lee Jones, 2024-03-21T15:42:11+00:00:
-> > On Mon, 11 Mar 2024, Karel Balej wrote:
-> >
-> > > From: Karel Balej <balejk@matfyz.cz>
-> > > 
-> > > Marvell 88PM886 is a PMIC which provides various functions such as
-> > > onkey, battery, charger and regulators. It is found for instance in the
-> > > samsung,coreprimevelte smartphone with which this was tested. Implement
-> > > basic support to allow for the use of regulators and onkey.
-> > > 
-> > > Signed-off-by: Karel Balej <balejk@matfyz.cz>
-> > > ---
-> > > 
-> > > Notes:
-> > >     RFC v4:
-> > >     - Use MFD_CELL_* macros.
-> > >     - Address Lee's feedback:
-> > >       - Do not define regmap_config.val_bits and .reg_bits.
-> > >       - Drop everything regulator related except mfd_cell (regmap
-> > >         initialization, IDs enum etc.). Drop pm886_initialize_subregmaps.
-> > >       - Do not store regmap pointers as an array as there is now only one
-> > >         regmap. Also drop the corresponding enum.
-> > >       - Move regmap_config to the header as it is needed in the regulators
-> > >         driver.
-> > >       - pm886_chip.whoami -> chip_id
-> > >       - Reword chip ID mismatch error message and print the ID as
-> > >         hexadecimal.
-> > >       - Fix includes in include/linux/88pm886.h.
-> > >       - Drop the pm886_irq_number enum and define the (for the moment) only
-> > >         IRQ explicitly.
-> > >     - Have only one MFD cell for all regulators as they are now registered
-> > >       all at once in the regulators driver.
-> > >     - Reword commit message.
-> > >     - Make device table static and remove comma after the sentinel to signal
-> > >       that nothing should come after it.
-> > >     RFC v3:
-> > >     - Drop onkey cell .of_compatible.
-> > >     - Rename LDO page offset and regmap to REGULATORS.
-> > >     RFC v2:
-> > >     - Remove some abstraction.
-> > >     - Sort includes alphabetically and add linux/of.h.
-> > >     - Depend on OF, remove of_match_ptr and add MODULE_DEVICE_TABLE.
-> > >     - Use more temporaries and break long lines.
-> > >     - Do not initialize ret in probe.
-> > >     - Use the wakeup-source DT property.
-> > >     - Rename ret to err.
-> > >     - Address Lee's comments:
-> > >       - Drop patched in presets for base regmap and related defines.
-> > >       - Use full sentences in comments.
-> > >       - Remove IRQ comment.
-> > >       - Define regmap_config member values.
-> > >       - Rename data to sys_off_data.
-> > >       - Add _PMIC suffix to Kconfig.
-> > >       - Use dev_err_probe.
-> > >       - Do not store irq_data.
-> > >       - s/WHOAMI/CHIP_ID
-> > >       - Drop LINUX part of include guard name.
-> > >       - Merge in the regulator series modifications in order to have more
-> > >         devices and modify the commit message accordingly. Changes with
-> > >         respect to the original regulator series patches:
-> > >         - ret -> err
-> > >         - Add temporary for dev in pm88x_initialize_subregmaps.
-> > >         - Drop of_compatible for the regulators.
-> > >         - Do not duplicate LDO regmap for bucks.
-> > >     - Rewrite commit message.
-> > > 
-> > >  drivers/mfd/88pm886.c       | 149 ++++++++++++++++++++++++++++++++++++
-> > >  drivers/mfd/Kconfig         |  12 +++
-> > >  drivers/mfd/Makefile        |   1 +
-> > >  include/linux/mfd/88pm886.h |  38 +++++++++
-> > >  4 files changed, 200 insertions(+)
-> > >  create mode 100644 drivers/mfd/88pm886.c
-> > >  create mode 100644 include/linux/mfd/88pm886.h
-> >
-> > Looks mostly okay.
-> >
-> > > diff --git a/include/linux/mfd/88pm886.h b/include/linux/mfd/88pm886.h
-> > > new file mode 100644
-> > > index 000000000000..a5e6524bb19d
-> > > --- /dev/null
-> > > +++ b/include/linux/mfd/88pm886.h
-> > > @@ -0,0 +1,38 @@
-> > > +/* SPDX-License-Identifier: GPL-2.0-only */
-> > > +#ifndef __MFD_88PM886_H
-> > > +#define __MFD_88PM886_H
-> > > +
-> > > +#include <linux/i2c.h>
-> > > +#include <linux/regmap.h>
-> > > +
-> > > +#define PM886_A1_CHIP_ID		0xa1
-> > > +
-> > > +#define PM886_REGMAP_CONF_MAX_REG	0xfe
-> > > +
-> > > +#define PM886_REG_ID			0x00
-> > > +
-> > > +#define PM886_REG_STATUS1		0x01
-> > > +#define PM886_ONKEY_STS1		BIT(0)
-> > > +
-> > > +#define PM886_REG_MISC_CONFIG1		0x14
-> > > +#define PM886_SW_PDOWN			BIT(5)
-> > > +
-> > > +#define PM886_REG_MISC_CONFIG2		0x15
-> > > +#define PM886_INT_INV			BIT(0)
-> > > +#define PM886_INT_CLEAR			BIT(1)
-> > > +#define PM886_INT_RC			0x00
-> > > +#define PM886_INT_WC			BIT(1)
-> > > +#define PM886_INT_MASK_MODE		BIT(2)
-> > > +
-> > > +struct pm886_chip {
-> > > +	struct i2c_client *client;
-> > > +	unsigned int chip_id;
-> > > +	struct regmap *regmap;
-> > > +};
-> > > +
-> > > +static const struct regmap_config pm886_i2c_regmap = {
-> > > +	.reg_bits = 8,
-> > > +	.val_bits = 8,
-> > > +	.max_register = PM886_REGMAP_CONF_MAX_REG,
-> > > +};
-> >
-> > Why is this in here?
+On 3/19/24 13:55, Conor Dooley wrote:
+> On Mon, Mar 18, 2024 at 11:48:06AM -0400, Sean Anderson wrote:
+>> On 3/18/24 11:40, Conor Dooley wrote:
+>> > On Mon, Mar 18, 2024 at 11:08:00AM -0400, Sean Anderson wrote:
+>> >> On 3/17/24 11:10, Conor Dooley wrote:
+>> > 
+>> >> > Additionally, should
+>> >> > they fall back to t1023-sfp? I see that there's already some dts files
+>> >> > with these compatibles in them but seemingly no driver support as there
+>> >> > is for the t1023-sfp.
+>> >> 
+>> >> I checked the reference manuals for these processors, and all of them use TA 2.0.
+>> > 
+>> > Sounds like a fallback is suitable then, although that will require
+>> > updating the various dts files.
+>> 
+>> Yes, a fallback (like what is done for the T-series) would be suitable,
+>> but given that these devicetrees have been in-tree for eight years I
+>> think it would be preferable to support the existing bindings for
+>> compatibility purposes.
 > 
-> Because since I moved the regulators regmap initialization into the
-> regulators driver, I need to access it from there.
+> Just cos stuff snuck into the tree in dts files doesn't make it right
+> though, I'd rather the bindings were done correctly. I don't care if you
+> want to support all of the compatibles in the driver so that it works
+> with the existing devicetrees though, as long as you mention the
+> rationale in the commit message.
 
-So move it into the regulators driver?
+It doesn't really matter what the schema has as long as the driver supports
+existing device trees.
 
-> > What would you like me to do with this RFC patch?
-> 
-> I was hoping that you would take this through the MFD tree (after the
-> regulator subsystem maintainers approve the regulators driver).
-> 
-> I have added the remaining regulators to the driver just today and plan
-> to send the first non-RFC version of the series after I test it, likely
-> over the weekend. Hopefully the regulators patch will finally get some
-> attention then.
-
-Don't forget that the merge-window is open.
-
-Many maintainers take a well deserved nap during this period.
-
--- 
-Lee Jones [李琼斯]
+--Sean
 
