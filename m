@@ -1,130 +1,97 @@
-Return-Path: <devicetree+bounces-52248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91044885FB5
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 18:26:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49C5B885FC8
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 18:31:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23103282080
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 17:26:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6DAC81C21BC4
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 17:31:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FBDE84A28;
-	Thu, 21 Mar 2024 17:25:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Q5fmhoDq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EEF283CBE;
+	Thu, 21 Mar 2024 17:31:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp1.ms.mff.cuni.cz (smtp-in1.ms.mff.cuni.cz [195.113.20.234])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D72313175A
-	for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 17:25:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 949D117590;
+	Thu, 21 Mar 2024 17:31:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.113.20.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711041936; cv=none; b=Y3Z2swMxLGSbfM8PXmE03/Aaq2Gl0wI4dwZfoXasbBpj+3X1/IQ/akoZXGa7X5XMxGnk5wL267T8vChKZZxWoOFWkafxnL9obJ1/+Bsp9JH106tyz6tpS9mqfD1yshFOGTqzfwVXIfFqpaDzuo4QnXyxMaAqyVwqRXYwlUUIUKQ=
+	t=1711042310; cv=none; b=XYK8f4SU2IyL3kVNjWSBSKn/nEunFw+uFu8gGOpzRrM01Dil9RGnHnohXW0np6JffG0nOJHXA8lZENKo2BPRLg3nQu4utGj3LHido0Ho36fDrNzDhB3Ar0VwFVtfYgS5HRpXfEm1M+cg0g7tzFjtG5ft3OXb5kzl6PtLQP/OvCo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711041936; c=relaxed/simple;
-	bh=tzLyvs7HcITvZy2SLeDlzKPKDAvxzPz3QeAl0srd2kM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GO9tzB2omqDH6TbG7xrDtcPKJm+zxVkHsbkDXAb+XI3ytmky7qKbv6MBRf7Jh8HZPHCmOEv4OFf4frfy7fA71FkXqJNNVqElcBY/VsFwnoDHHiZwBxFvc+oFfZff2KGmzuCSmGWgrBdAA5fXanM6Ak5SH2pfpwHJg955zjnaDGQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Q5fmhoDq; arc=none smtp.client-ip=209.85.208.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2d68651e253so21410311fa.0
-        for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 10:25:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711041932; x=1711646732; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tRBkydo4iL6GNIo9VuK+sRcHXGRAdy7FiD0d40q49mA=;
-        b=Q5fmhoDq1p7ZKB4byx+fxOQBu64C4ohyu5MfzDHeytchUE8sGzOIkWaTDhLt+oIXCu
-         vzjve0oFRgvKiaGHlxcIFmrmSaERKHNHnNLJjzChH0lR5d65c/lkFQbPuxCh6CeV8G2r
-         avbvhd2sn1YZxLJsFxtO1uYr9HYPYq9xseJy09QMMwo1suE/iNZzXZgCHjfBCKa/QeUA
-         KspEPUY1quCgYq5JXAMv5Uvsu1AMhZ0d285QADx6TcSVe377nPwhq1QvG3NGNx3yWePd
-         pB/PAWMA4zS0cE8u8pFs8WmTIr2DB7WNjYpe77AwPKDqzppcihw2XW9jB5EnzZm3Bcmd
-         U1+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711041932; x=1711646732;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tRBkydo4iL6GNIo9VuK+sRcHXGRAdy7FiD0d40q49mA=;
-        b=tujTNX7bHyJcdB0eq9qZu3MzA+OqxOTYm0DTQrMqNCEkZkmCuKyqNI3Ol54qdsOpuI
-         LKZo/izdS2r0tPK7Zxm/HExcC0AEO1SXz4qqkCu946FN9pYCxHNlqsoOgbVFLHQzX5h5
-         +9N+Y3SGfB8MmCUjvmtj7kg0RcYZFt4rq8GpmfPt6U+xEjx2FMFek7cXwAWg8T91sKaw
-         DEXJmTYY1sapTvG8fMaBMwozoh7/deAH34OKVcSrPUzGS8G+Yn7v+AIaT1hEy4Mm2GLX
-         TtD6vEFLN3ifnqyIM4CSg+f+vxiRVPlhYifnMoWvmLqkIXesxp+sscDIK/r1WZRjXdEV
-         3CMw==
-X-Forwarded-Encrypted: i=1; AJvYcCWWikUyjQveeeoB/XblO4TyHR3eo9JyRQyBEdYYUr3fbHmw2uKQwSIAz8as4FqOkNc53m30lBjuZnOpOjCBgePThG6CBP/MnGL8qw==
-X-Gm-Message-State: AOJu0YzfIcY5UMCysphYCNMvlwqlUZinnkVxplPr/vQC34JrbM3H5k9e
-	pI2NNgYyLkigRDMBxAXabsSaHukvn4d9jTnq4nOMnPEVwRLa0SGAzQq9bQ6Y22BaGt52GvRyuVp
-	T
-X-Google-Smtp-Source: AGHT+IHrN9hd+5miWuYAgdozoiw3KTFiep55MuLkXG8T+NijirFPCwjWqLRb4mVSGYXrrzSiJ5bWMw==
-X-Received: by 2002:a05:651c:2ca:b0:2d4:6d12:71f7 with SMTP id f10-20020a05651c02ca00b002d46d1271f7mr117412ljo.15.1711041932431;
-        Thu, 21 Mar 2024 10:25:32 -0700 (PDT)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id i2-20020a05600c354200b0041464451c81sm385263wmq.20.2024.03.21.10.25.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Mar 2024 10:25:31 -0700 (PDT)
-Message-ID: <ebdeceae-62b6-4674-ab19-a3252d52f296@linaro.org>
-Date: Thu, 21 Mar 2024 18:25:30 +0100
+	s=arc-20240116; t=1711042310; c=relaxed/simple;
+	bh=lRZvAs6e51QxA2WQumhhbAA6NHprYtIDHJic0YkCZfA=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:From:Cc:Subject:
+	 References:In-Reply-To; b=IjL58E79/RQRbMuAnGEN3pSohS6solQmWUQEc0DDFa6+F/OeFv1vFyE6Grqqq/NnTyWnEfbMPOhMjgjqa6TXobQEJpCEsgmsAlSp2/WZE894mWNl8/wYtfxEwQ1db7NLaWS3nkDdkvsejehCzrSBlupecYfGatYfN6Fl0tE+p0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz; spf=pass smtp.mailfrom=matfyz.cz; arc=none smtp.client-ip=195.113.20.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=matfyz.cz
+X-SubmittedBy: id balejk@matfyz.cz subject /postalCode=110+2000/O=Univerzita+20Karlova/street=Ovocn+5CxC3+5CxBD+20trh+20560/5/ST=Praha,+20Hlavn+5CxC3+5CxAD+20m+5CxC4+5Cx9Bsto/C=CZ/CN=Karel+20Balej/emailAddress=balejk@matfyz.cz
+	serial F5FD910E8FE2121B897F7E55B84E351D
+	issued by /C=NL/O=GEANT+20Vereniging/CN=GEANT+20Personal+20CA+204
+	auth type TLS.CUNI
+Received: from localhost (koleje-wifi-0015.koleje.cuni.cz [78.128.191.15])
+	(authenticated)
+	by smtp1.ms.mff.cuni.cz (8.16.1/8.16.1) with ESMTPS id 42LHVUUq096433
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=OK);
+	Thu, 21 Mar 2024 18:31:32 +0100 (CET)
+	(envelope-from balejk@matfyz.cz)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/31] Clean up thermal zone polling-delay
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240319-topic-msm-polling-cleanup-v1-0-e0aee1dbcd78@linaro.org>
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20240319-topic-msm-polling-cleanup-v1-0-e0aee1dbcd78@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 21 Mar 2024 18:32:03 +0100
+Message-Id: <CZZLVS3T3QIS.223XHI5OZ7UBG@matfyz.cz>
+To: "Mark Brown" <broonie@kernel.org>
+From: "Karel Balej" <balejk@matfyz.cz>
+Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Conor Dooley"
+ <conor+dt@kernel.org>,
+        "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
+        "Liam
+ Girdwood" <lgirdwood@gmail.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-input@vger.kernel.org>,
+        =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
+        <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>
+Subject: Re: [RFC PATCH v4 2/5] mfd: add driver for Marvell 88PM886 PMIC
+References: <20240311160110.32185-1-karelb@gimli.ms.mff.cuni.cz>
+ <20240311160110.32185-3-karelb@gimli.ms.mff.cuni.cz>
+ <20240321154211.GA13211@google.com> <CZZK759UU6G7.MFPYOI0HBB6I@matfyz.cz>
+ <20240321162045.GC13211@google.com> <CZZL3MNOT0QG.2WDSNX9XD2RET@matfyz.cz>
+ <879296b4-5186-4170-af3f-971787d28514@sirena.org.uk>
+ <CZZLDK79D5VK.2VK3X59OHIY2Z@matfyz.cz>
+ <45079e37-dde9-4310-a112-7af49f35ac77@sirena.org.uk>
+In-Reply-To: <45079e37-dde9-4310-a112-7af49f35ac77@sirena.org.uk>
 
-On 19/03/2024 17:13, Konrad Dybcio wrote:
-> A trivial follow-up on the changes introduced in Commit 488164006a28
-> ("thermal/of: Assume polling-delay(-passive) 0 when absent").
-> 
-> Should probably wait until v6.9-rc1 so that the patch in question is
-> in the base tree, otherwise TZs will fail to register.
-> 
-> FWIW, Compile-tested only (except 8280).
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
+Mark Brown, 2024-03-21T17:17:40+00:00:
+> On Thu, Mar 21, 2024 at 06:08:16PM +0100, Karel Balej wrote:
+> > Mark Brown, 2024-03-21T16:58:44+00:00:
+>
+> > > > > > > > +static const struct regmap_config pm886_i2c_regmap =3D {
+> > > > > > > > +	.reg_bits =3D 8,
+> > > > > > > > +	.val_bits =3D 8,
+> > > > > > > > +	.max_register =3D PM886_REGMAP_CONF_MAX_REG,
+> > > > > > > > +};
+>
+> ...
+>
+> > > You shouldn't be creating two regmaps for the same set of registers,
+> > > that just opens the potential for confusion.
+>
+> > Just the regmap config is the same. Otherwise, each regmap lives at a
+> > different I2C address.
+>
+> Do they both genuinely have the same maximum register?
 
-Are you sure these changes are correct. They are not related to commit 
-488164006a28.
-
-If the sensor has interrupt support, then it can specify:
-
-	polling-delay = <0>;
-
-As a zero polling value can be omitted in the DT then it can be removed.
-
-
-Then when a trip point is crossed, the interrupt fires but then it must 
-sample the temperature of the thermal zone to do the mitigation.
-
-I doubt polling-delay-passive must be removed. The changes you 
-introduced just disable the mitigation and that will lead to board wild 
-reboots.
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
-
+They do according to the downstream driver which is my only reference.
+In fact, there the driver defines the configs separately for each regmap
+but with the same values.
 
