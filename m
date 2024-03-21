@@ -1,117 +1,130 @@
-Return-Path: <devicetree+bounces-52247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52248-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76DFF885F7B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 18:17:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91044885FB5
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 18:26:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 102E21F23EC7
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 17:17:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23103282080
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 17:26:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF3A629CEA;
-	Thu, 21 Mar 2024 17:17:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FBDE84A28;
+	Thu, 21 Mar 2024 17:25:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K8o0ZpY1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Q5fmhoDq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EF3F224D7;
-	Thu, 21 Mar 2024 17:17:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D72313175A
+	for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 17:25:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711041467; cv=none; b=c0/vjp0cWGRcVQo0iOfkPLyai9/yyK3a18C2pVU2JWLGtlw0UGjQg59vEDeiKz+J+0qj1eFkAGWnXd5VbWDGUyCwZ+nYBLVY2XOZzRMDu8IgsLs3AJXsBtJJfyiEJPPxAA/htICo1jAw8bTH3rQyld/82rRZgIprIGWsQ28s/uY=
+	t=1711041936; cv=none; b=Y3Z2swMxLGSbfM8PXmE03/Aaq2Gl0wI4dwZfoXasbBpj+3X1/IQ/akoZXGa7X5XMxGnk5wL267T8vChKZZxWoOFWkafxnL9obJ1/+Bsp9JH106tyz6tpS9mqfD1yshFOGTqzfwVXIfFqpaDzuo4QnXyxMaAqyVwqRXYwlUUIUKQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711041467; c=relaxed/simple;
-	bh=1L/duXBiIPiVo7GCjSeUY9hylRmojjGd3gub4/7cGB4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fMMXngLr3L9tM/Xg4JEOyxclFoEzQxcqRXi/TBOQKZnG+VX+7MFFyfIyDJGX0b5nbu0jS/bMUfau/mv127lWjhpTPDKpidUb+I9DHlPtYxHX5634rVDCh04kEI0mIiTX9AQ6QkOGZfU8dI4Nln32TpBBEQlk7AMnvbDAEx46WtM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K8o0ZpY1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9759FC433F1;
-	Thu, 21 Mar 2024 17:17:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711041467;
-	bh=1L/duXBiIPiVo7GCjSeUY9hylRmojjGd3gub4/7cGB4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=K8o0ZpY1mORa3rA1SZPj71EfUvQ/wRgEAFvOc9SnBV5ozsrvIXEIIeV3ehfSupap5
-	 JndNoTEicC610bIW+GeQqg1F2cP7beIlC9E1MCVwYXPpGMdfzS3NYpmu8PmAbl9QRN
-	 1guiY6dxqSX+3dOopVLaliM8Qm2ggtJ8gJjoTtG4TTB9PNf0iDfqZgOzGA98I9P3F7
-	 RNXPSaIRBNIpSdpvlMcTZgYqJtZ1VZSdkoswogKQf0vmtDOlbgjaBobCRWssKkC5NM
-	 wtC/U2MFabtmplYAtBCCxdQ/qq/t/W8IXXiTLrfow3zjTwSm0noSgjJk4Lfy7XQ4dk
-	 IMTxavIkasHMg==
-Date: Thu, 21 Mar 2024 17:17:40 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Karel Balej <balejk@matfyz.cz>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Liam Girdwood <lgirdwood@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-	Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [RFC PATCH v4 2/5] mfd: add driver for Marvell 88PM886 PMIC
-Message-ID: <45079e37-dde9-4310-a112-7af49f35ac77@sirena.org.uk>
-References: <20240311160110.32185-1-karelb@gimli.ms.mff.cuni.cz>
- <20240311160110.32185-3-karelb@gimli.ms.mff.cuni.cz>
- <20240321154211.GA13211@google.com>
- <CZZK759UU6G7.MFPYOI0HBB6I@matfyz.cz>
- <20240321162045.GC13211@google.com>
- <CZZL3MNOT0QG.2WDSNX9XD2RET@matfyz.cz>
- <879296b4-5186-4170-af3f-971787d28514@sirena.org.uk>
- <CZZLDK79D5VK.2VK3X59OHIY2Z@matfyz.cz>
+	s=arc-20240116; t=1711041936; c=relaxed/simple;
+	bh=tzLyvs7HcITvZy2SLeDlzKPKDAvxzPz3QeAl0srd2kM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GO9tzB2omqDH6TbG7xrDtcPKJm+zxVkHsbkDXAb+XI3ytmky7qKbv6MBRf7Jh8HZPHCmOEv4OFf4frfy7fA71FkXqJNNVqElcBY/VsFwnoDHHiZwBxFvc+oFfZff2KGmzuCSmGWgrBdAA5fXanM6Ak5SH2pfpwHJg955zjnaDGQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Q5fmhoDq; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2d68651e253so21410311fa.0
+        for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 10:25:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1711041932; x=1711646732; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tRBkydo4iL6GNIo9VuK+sRcHXGRAdy7FiD0d40q49mA=;
+        b=Q5fmhoDq1p7ZKB4byx+fxOQBu64C4ohyu5MfzDHeytchUE8sGzOIkWaTDhLt+oIXCu
+         vzjve0oFRgvKiaGHlxcIFmrmSaERKHNHnNLJjzChH0lR5d65c/lkFQbPuxCh6CeV8G2r
+         avbvhd2sn1YZxLJsFxtO1uYr9HYPYq9xseJy09QMMwo1suE/iNZzXZgCHjfBCKa/QeUA
+         KspEPUY1quCgYq5JXAMv5Uvsu1AMhZ0d285QADx6TcSVe377nPwhq1QvG3NGNx3yWePd
+         pB/PAWMA4zS0cE8u8pFs8WmTIr2DB7WNjYpe77AwPKDqzppcihw2XW9jB5EnzZm3Bcmd
+         U1+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711041932; x=1711646732;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tRBkydo4iL6GNIo9VuK+sRcHXGRAdy7FiD0d40q49mA=;
+        b=tujTNX7bHyJcdB0eq9qZu3MzA+OqxOTYm0DTQrMqNCEkZkmCuKyqNI3Ol54qdsOpuI
+         LKZo/izdS2r0tPK7Zxm/HExcC0AEO1SXz4qqkCu946FN9pYCxHNlqsoOgbVFLHQzX5h5
+         +9N+Y3SGfB8MmCUjvmtj7kg0RcYZFt4rq8GpmfPt6U+xEjx2FMFek7cXwAWg8T91sKaw
+         DEXJmTYY1sapTvG8fMaBMwozoh7/deAH34OKVcSrPUzGS8G+Yn7v+AIaT1hEy4Mm2GLX
+         TtD6vEFLN3ifnqyIM4CSg+f+vxiRVPlhYifnMoWvmLqkIXesxp+sscDIK/r1WZRjXdEV
+         3CMw==
+X-Forwarded-Encrypted: i=1; AJvYcCWWikUyjQveeeoB/XblO4TyHR3eo9JyRQyBEdYYUr3fbHmw2uKQwSIAz8as4FqOkNc53m30lBjuZnOpOjCBgePThG6CBP/MnGL8qw==
+X-Gm-Message-State: AOJu0YzfIcY5UMCysphYCNMvlwqlUZinnkVxplPr/vQC34JrbM3H5k9e
+	pI2NNgYyLkigRDMBxAXabsSaHukvn4d9jTnq4nOMnPEVwRLa0SGAzQq9bQ6Y22BaGt52GvRyuVp
+	T
+X-Google-Smtp-Source: AGHT+IHrN9hd+5miWuYAgdozoiw3KTFiep55MuLkXG8T+NijirFPCwjWqLRb4mVSGYXrrzSiJ5bWMw==
+X-Received: by 2002:a05:651c:2ca:b0:2d4:6d12:71f7 with SMTP id f10-20020a05651c02ca00b002d46d1271f7mr117412ljo.15.1711041932431;
+        Thu, 21 Mar 2024 10:25:32 -0700 (PDT)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id i2-20020a05600c354200b0041464451c81sm385263wmq.20.2024.03.21.10.25.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Mar 2024 10:25:31 -0700 (PDT)
+Message-ID: <ebdeceae-62b6-4674-ab19-a3252d52f296@linaro.org>
+Date: Thu, 21 Mar 2024 18:25:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="oJHv45Mb4kHzpP0z"
-Content-Disposition: inline
-In-Reply-To: <CZZLDK79D5VK.2VK3X59OHIY2Z@matfyz.cz>
-X-Cookie: MIT:
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/31] Clean up thermal zone polling-delay
+Content-Language: en-US
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240319-topic-msm-polling-cleanup-v1-0-e0aee1dbcd78@linaro.org>
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20240319-topic-msm-polling-cleanup-v1-0-e0aee1dbcd78@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+On 19/03/2024 17:13, Konrad Dybcio wrote:
+> A trivial follow-up on the changes introduced in Commit 488164006a28
+> ("thermal/of: Assume polling-delay(-passive) 0 when absent").
+> 
+> Should probably wait until v6.9-rc1 so that the patch in question is
+> in the base tree, otherwise TZs will fail to register.
+> 
+> FWIW, Compile-tested only (except 8280).
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+
+Are you sure these changes are correct. They are not related to commit 
+488164006a28.
+
+If the sensor has interrupt support, then it can specify:
+
+	polling-delay = <0>;
+
+As a zero polling value can be omitted in the DT then it can be removed.
 
 
---oJHv45Mb4kHzpP0z
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Then when a trip point is crossed, the interrupt fires but then it must 
+sample the temperature of the thermal zone to do the mitigation.
 
-On Thu, Mar 21, 2024 at 06:08:16PM +0100, Karel Balej wrote:
-> Mark Brown, 2024-03-21T16:58:44+00:00:
+I doubt polling-delay-passive must be removed. The changes you 
+introduced just disable the mitigation and that will lead to board wild 
+reboots.
 
-> > > > > > > +static const struct regmap_config pm886_i2c_regmap = {
-> > > > > > > +	.reg_bits = 8,
-> > > > > > > +	.val_bits = 8,
-> > > > > > > +	.max_register = PM886_REGMAP_CONF_MAX_REG,
-> > > > > > > +};
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-...
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
-> > You shouldn't be creating two regmaps for the same set of registers,
-> > that just opens the potential for confusion.
-
-> Just the regmap config is the same. Otherwise, each regmap lives at a
-> different I2C address.
-
-Do they both genuinely have the same maximum register?
-
---oJHv45Mb4kHzpP0z
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmX8a7QACgkQJNaLcl1U
-h9AzgQf/ZFwxdRh8PV6KEsERNGwwS8v1mrS7lrZyYJ3WLjvxLW4IGIhGJlvYT0QK
-6qY1L7OPpALhBqB9PJOMmzj25gYUrH0G7Xm/mgNLHGUfcziiy+aYFK+qMJz+WhmA
-4jJZonmfKnPo14Q3P0BTRbQ31Sea749XWHsBX6Lj35znOawhFuAveCYPFnmkXV8z
-IGGDK1JzLfPpzqIAt4sQSAK4IxcVZlhW431iWlsOjT6fGjUoCYJ024vfjt/Qe5a9
-LV21+ek3qXEgkiHcJN4J4hVDwm2yQ/+AbTPPjwu1zWmSDWGu9GURK3MJaJYw4xQ0
-8xeNT4PV3q7NHyFblyIuRyKnCJRIXg==
-=XIFj
------END PGP SIGNATURE-----
-
---oJHv45Mb4kHzpP0z--
 
