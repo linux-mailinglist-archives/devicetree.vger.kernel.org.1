@@ -1,156 +1,193 @@
-Return-Path: <devicetree+bounces-52133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52134-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E47B8856E3
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 10:56:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0177C8856EC
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 10:56:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F9EA1C21526
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 09:56:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 255141C21AB0
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 09:56:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 880765577C;
-	Thu, 21 Mar 2024 09:56:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C84465579F;
+	Thu, 21 Mar 2024 09:56:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Jl4Iulz6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZJaK6ZXW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com [209.85.221.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E63454BF7;
-	Thu, 21 Mar 2024 09:56:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1262754F86;
+	Thu, 21 Mar 2024 09:56:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711014978; cv=none; b=cd7DhBuTFXAmXPrXvxS61c+hsqJlk5jpaFlGjcbvodfzyUZ53ZB8T9VaiydIQyvfEEojs7EPe5QAtEOBVG9yf/OWWqYqDg26Vj7Z8WqcM7g9XSaymJ9+849I4sWndmFG5l3Nkoa4sqfuHXXrd9ss686F/XxEZIFt7xLjraAvu7E=
+	t=1711015006; cv=none; b=PcWbFRXmlG17VBM8IVs+VUkjY0VToXruObwtPJRRgMNkGKfZAXO6W0Xfs4J+0XgLagjFLIQZ/CYhuCbv4w5CCKjxFcdPgnQ05uopx3Ha0S0fp2oRkCoOMerZfiPYvHzJschY/0A4CxZ++myxxYYxiboA2wwPSd5dVk6FKoUSN8c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711014978; c=relaxed/simple;
-	bh=z4bJqEtjpB9p3LfYAUeEPJKZF2/fyX+8gXt0JX5QHf8=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qWqjWhaYzFVhtqgFCUUe5DswQkbfo1yq7fnJ52m4uQiLL0vNDw4s5Iybk7QPms7lL8f6D5WmOA4gYjKSK4o/quwfQo+OByMUStP7qa+UIduHvxeRM0Lh8nNSxgZ3pXK8+x4cEJ6UkmnQJYGK31q/laR98v15LfOQfkdaJ04rd2k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Jl4Iulz6; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42L6Ro2A015321;
-	Thu, 21 Mar 2024 09:56:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=qcppdkim1; bh=HZHFgDwoldRyoSYtch7A+
-	4TF5Dl0TrYZYdY3wcOp7Uo=; b=Jl4Iulz6v3+q8FOaRD2QpH2SvR20rDibLOyzH
-	Bt6nC7mwfDd6PAKqzuwGiICHt8I5pXGRQRoV/UtOK/WOufLyr2eWwcPnu7tMYmdw
-	HR2zDoyReziDMT2zQTnWC0TdoWL1frqjwwzJmxKVUtM2XCt3I31R8x+ftdxhbt2V
-	R2nA7My25/XHJtq77MhtpgLtyQ7EpF5o7U4iUQLNB1TwekMDJBxZf6NaaLvP+I9N
-	eOgTyCwo17qANf5T4mCsLofZ7X4tf11sdMCrAfEFA5FEjan2nlTWDr0LwP581aME
-	7Yu/jY1LAslih4psfrAXtN9T+ZL9LjC+ddfcipb7Te7eDCvxw==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x0fmwgdrh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 21 Mar 2024 09:56:12 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42L9uAWl011238
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 21 Mar 2024 09:56:10 GMT
-Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 21 Mar 2024 02:56:05 -0700
-Date: Thu, 21 Mar 2024 15:26:01 +0530
-From: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC: <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <robh@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>, <djakov@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>
-Subject: Re: [PATCH 2/2] clk: qcom: add IPQ9574 interconnect clocks support
-Message-ID: <ZfwEMUBdlQHYz/+h@hu-varada-blr.qualcomm.com>
-References: <20240321043149.2739204-1-quic_varada@quicinc.com>
- <20240321043149.2739204-3-quic_varada@quicinc.com>
- <4079ddcf-425d-4194-93b8-ee113864541e@linaro.org>
+	s=arc-20240116; t=1711015006; c=relaxed/simple;
+	bh=X+vay/ufd0X59BZKgQtvlB9hrVh25YaX+Tq0N2WVlVg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hTwEOviWy2P9JTvpnGucNtzObWOneSLYWjYcHhtMD2hLqKwKOoJNgJMV1pfK8XuirrY4L1YXE2Z6/YVm6iKN34pLAh7Tb7BDXRjnsIikbhFYsRZqWzMAZiA7/T7VcGpUm/yXWId09vs27luvX8O641FKlX4sQavtZ3Vbhwe95l4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZJaK6ZXW; arc=none smtp.client-ip=209.85.221.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-4d435a60217so296572e0c.0;
+        Thu, 21 Mar 2024 02:56:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1711015004; x=1711619804; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+fRFePWYUc68B3PsZK1/PkJRWXlxCxxTCy2WfNf/nvc=;
+        b=ZJaK6ZXWGqoIrZ0/oVWZZF+jW3Na/aDCYgFWxkogxEQfp0GTZio5i5rr509N7AoGxy
+         RenKAtDaMD/b+wXf8Mg2gfqFE3iUYHU6Tt+iFVBFpra/KSp3+B7DYuGRAweOJtyRwD5z
+         eu/WS0F/4nsjARAS9M/rQOEYIVIP39+VIIOIwdtTBrkWTMc4C1syBXETQ9aSFRmG0kpO
+         NHAkyRc8IJtyCsDaW5dKxrTVS3VrJB7JbCAIWJRtyHEBTbMmJDdE7hBl7al7P4ZzXQHP
+         qGJuccn9t1/9pgSUM1yguLxV5VKfpiqL4IxGPpfAXOFGOgm+xFgegd+1StYTfmK4oZGG
+         F7pQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711015004; x=1711619804;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+fRFePWYUc68B3PsZK1/PkJRWXlxCxxTCy2WfNf/nvc=;
+        b=w3FSjrmKPTY45Exiz1bwuis196EGN+HmZ1L0W43vQ9kECG9cCNDTYPQqwemupSSinD
+         IS2FGglKBz5KvlYZ9dkfTCSP6STHSSfEc8Td/O9pXiG74odaN/f3jie9NCn+J+h/hc9u
+         2tsUOLsu6iiN5HvCi9dSUT32RI8y+N9Uux/vTDrtUNm4WSyWhzYwcgtXKyDMQOV8t5US
+         ZVbTMICDIgNCG14R68+FJQ54O2EByynZAd0X1XbqcFvv8H5AOdFlvj3k8qvweNo03XIW
+         wOPvdrnemAcqHrkedT+chHSdiBEUEWQGVn18EEG8WiC9sGsziI6H9nGZXBD0m9tnU3WJ
+         2r2w==
+X-Forwarded-Encrypted: i=1; AJvYcCXGH8NZUfrZNxDarJp8VfbwpQj0y/AKyX1hWYw6Wx79RHLtJsKdvaXJHTg5nBkfGYbkbEkFhivNPDO9wv4BRjxk1n+sRpJJuqYbxNE2+ND/6W8/FhHfBbM8bdlr3ZOg/kPU3P6hpXY5ShU5PQq69lC/nDmf0NzuHs9ukCXwnyAvI9SbgfWelUcDBZaJRLQ+zmMaRfaWsBLko/ZPj2xGlGvnPRbkEL0IzN3L
+X-Gm-Message-State: AOJu0YxMnu9J1sewe70zXMs44Qi+gZrl6NKa39unipDWppWO7YK6NlCk
+	QNMl/bbaJ7XSZKbmJBH4UMzzwbmKNjafdeZ/nd83skPr0pK/E6bEJ5dJnClaEuiM3L1sSdajFsU
+	8TlSrXbZ/qvTtkGn6oxWzxPH8cBQ=
+X-Google-Smtp-Source: AGHT+IGS3HgPdlXdCKerNWxvvRRQVEd5FD9Httx3Fx7LHzwMRUK822/VRu6sF2lPXrq3U/IBQR8bJiWnsyAgWP5X7Tw=
+X-Received: by 2002:a05:6122:c97:b0:4ca:80c5:7544 with SMTP id
+ ba23-20020a0561220c9700b004ca80c57544mr4686116vkb.4.1711015002465; Thu, 21
+ Mar 2024 02:56:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <4079ddcf-425d-4194-93b8-ee113864541e@linaro.org>
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: qY1bNhBsnuPMxIGmJnK4l7gsQ10KCnqw
-X-Proofpoint-ORIG-GUID: qY1bNhBsnuPMxIGmJnK4l7gsQ10KCnqw
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-21_06,2024-03-18_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=755 clxscore=1015
- suspectscore=0 mlxscore=0 spamscore=0 priorityscore=1501 malwarescore=0
- impostorscore=0 lowpriorityscore=0 adultscore=0 bulkscore=0 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2403140001
- definitions=main-2403210068
+References: <20240318172102.45549-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240318172102.45549-5-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdVR=t+QW+kqh3HswJ_8T2Dos381VL8vJvdqiC4RZDRRZw@mail.gmail.com>
+In-Reply-To: <CAMuHMdVR=t+QW+kqh3HswJ_8T2Dos381VL8vJvdqiC4RZDRRZw@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Thu, 21 Mar 2024 09:56:16 +0000
+Message-ID: <CA+V-a8uorWK=Vi=N_CSCTjwn+fhFy4cBsNyA=818Nnwj3mq0Vg@mail.gmail.com>
+Subject: Re: [PATCH v3 4/4] serial: sh-sci: Add support for RZ/V2H(P) SoC
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-serial@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Mar 21, 2024 at 08:25:15AM +0100, Krzysztof Kozlowski wrote:
-> On 21/03/2024 05:31, Varadarajan Narayanan wrote:
-> > Unlike MSM platforms that manage NoC related clocks and scaling
-> > from RPM, IPQ SoCs dont involve RPM in managing NoC related
-> > clocks and there is no NoC scaling.
+Hi Geert,
+
+Thank you for the review.
+
+On Tue, Mar 19, 2024 at 8:21=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
 >
-> If these are clocks, expose them as clocks, not as interconnects.
-
-Earlier IPQ9574 PCIe patches were NAK-ed when these were exposed
-as clocks. Please refer to the following discussions
-
-https://lore.kernel.org/linux-arm-msm/CAA8EJpq0uawrOBHA8XHygEpGYF--HyxJWxKG44iiFdAZZz7O2w@mail.gmail.com/
-https://lore.kernel.org/linux-arm-msm/CAA8EJppabK8j9T40waMv=t-1aksXfqJibWuS41GhruzLhpatrg@mail.gmail.com/
-
-Dmitry had said
-	<quote>
-	I'd kindly suggest implementing the NoC attachment
-	properly. In the end, other Qualcomm platforms use ICC
-	drivers, so by following this pattern we will have more
-	common code paths.
-	</quote>
-
-Hence posted these patches to get feedback.
-
-> > However, there is a requirement to enable some NoC interface
-> > clocks for accessing the peripheral controllers present on
-> > these NoCs.
+> Hi Prabhakar,
+>
+> On Mon, Mar 18, 2024 at 6:22=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail=
+.com> wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > >
-> > Hence adding a minimalistic interconnect driver that can enable
-> > the relevant clocks. This is similar to msm8996-cbf's usage of
-> > icc-clk framework.
+> > Add serial support for RZ/V2H(P) SoC with earlycon.
 > >
-> > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > > ---
-> >  arch/arm64/boot/dts/qcom/ipq9574.dtsi |  2 +
+> > v2 - > v3
+> > - new patch
 >
-> DTS is always, ALWAYS, separate.
-
-Ok.
-
+> Thanks for your patch!
 >
-> >  drivers/clk/qcom/gcc-ipq9574.c        | 75 ++++++++++++++++++++++++++-
-> >  2 files changed, 76 insertions(+), 1 deletion(-)
+> > --- a/drivers/tty/serial/sh-sci.c
+> > +++ b/drivers/tty/serial/sh-sci.c
+> > @@ -290,7 +290,7 @@ static const struct sci_port_params sci_port_params=
+[SCIx_NR_REGTYPES] =3D {
+> >         },
 > >
-> > diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> > index 7f2e5cbf3bbb..efffbd085715 100644
-> > --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> > @@ -11,6 +11,7 @@
-> >  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> >  #include <dt-bindings/reset/qcom,ipq9574-gcc.h>
-> >  #include <dt-bindings/thermal/thermal.h>
-> > +#include <dt-bindings/interconnect/qcom,ipq9574.h>
+> >         /*
+> > -        * The "SCIFA" that is in RZ/A2, RZ/G2L and RZ/T.
+> > +        * The "SCIFA" that is in RZ/A2, RZ/G2L, RZ/T and RZ/V2H.
+> >          * It looks like a normal SCIF with FIFO data, but with a
+> >          * compressed address space. Also, the break out of interrupts
+> >          * are different: ERI/BRI, RXI, TXI, TEI, DRI.
 >
-> Keep the order,
+> and RZ/V2H has more interrupts than RZ/A1, RZ/G2L and RZ/T...
+>
+> In addition, RZ/V2H does not support synchronous mode (does not matter
+> for the driver) and modem control signals.
+>
+> Currently, sci_init_pins() does write ones to the SCPTR bits that are
+> reserved and marked as "write zero" on RZ/V2H. I am not sure how bad
+> that is.  You could avoid that by adding a check for .hasrtscts, but
+> that may have impact on other SoCs/boards, where currently e.g. RTS#
+> is always programmed for output and active low...
+>
+Oops I had totally missed this difference, thanks for catching that.
 
-Ok.
+> So if you really need to avoid writing to these bits, the only safe
+> way may be to add a new SCIF type.  But perhaps I'm over-cautious? ;-)
+>
+As we are adding a SoC specific compat string we can update this if we
+see an issue, but I'm happy to do that change now too. Please let me
+know what would you prefer.
 
-Thanks
-Varada
+Cheers,
+Prabhakar
+> > @@ -3224,6 +3224,10 @@ static const struct of_device_id of_sci_match[] =
+__maybe_unused =3D {
+> >                 .compatible =3D "renesas,scif-r9a07g044",
+> >                 .data =3D SCI_OF_DATA(PORT_SCIF, SCIx_RZ_SCIFA_REGTYPE)=
+,
+> >         },
+> > +       {
+> > +               .compatible =3D "renesas,scif-r9a09g057",
+> > +               .data =3D SCI_OF_DATA(PORT_SCIF, SCIx_RZ_SCIFA_REGTYPE)=
+,
+> > +       },
+> >         /* Family-specific types */
+> >         {
+> >                 .compatible =3D "renesas,rcar-gen1-scif",
+> > @@ -3554,6 +3558,7 @@ OF_EARLYCON_DECLARE(sci, "renesas,sci", sci_early=
+_console_setup);
+> >  OF_EARLYCON_DECLARE(scif, "renesas,scif", scif_early_console_setup);
+> >  OF_EARLYCON_DECLARE(scif, "renesas,scif-r7s9210", rzscifa_early_consol=
+e_setup);
+> >  OF_EARLYCON_DECLARE(scif, "renesas,scif-r9a07g044", rzscifa_early_cons=
+ole_setup);
+> > +OF_EARLYCON_DECLARE(scif, "renesas,scif-r9a09g057", rzscifa_early_cons=
+ole_setup);
+> >  OF_EARLYCON_DECLARE(scifa, "renesas,scifa", scifa_early_console_setup)=
+;
+> >  OF_EARLYCON_DECLARE(scifb, "renesas,scifb", scifb_early_console_setup)=
+;
+> >  OF_EARLYCON_DECLARE(hscif, "renesas,hscif", hscif_early_console_setup)=
+;
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
+8k.org
+>
+> In personal conversations with technical people, I call myself a hacker. =
+But
+> when I'm talking to journalists I just say "programmer" or something like=
+ that.
+>                                 -- Linus Torvalds
 
