@@ -1,210 +1,156 @@
-Return-Path: <devicetree+bounces-52188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52187-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57ED3885A1D
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 14:50:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5127885A18
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 14:49:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B08771F22166
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 13:50:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD87B1C213C3
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 13:49:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1164C84A56;
-	Thu, 21 Mar 2024 13:50:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B346C84A3B;
+	Thu, 21 Mar 2024 13:49:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CYbTPVOQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QfSH0sCH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B13784A52;
-	Thu, 21 Mar 2024 13:50:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A9205810B;
+	Thu, 21 Mar 2024 13:49:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711029029; cv=none; b=RI3UNaRCyOVLaOTKQ9yqyNmF4DfzJku6LLznuBwsd7v50ky8s0fsbl6SaddgJ+WpMenHcO+teNjp/ms07l3aLyLavZMI5uAHjYpKzfdbvuvOLeNYssPrRKmtIT1QvNPkuesKmymKSW8Zi6o8mJPqOub9Sn+Dn0ZWW5XzdHNKaXo=
+	t=1711028960; cv=none; b=iWrund1msg2JuiSRQ2V9/D2MsBCgMCzv1faUiNrs/sgSZeTsVtMrRDaE/PB7x7lUeQPQSmQr5AxlzUEhJ4r1zYqX5xXg1jp16Hj5yar4IoPiSVTi6ngu2ZSLQDVCkr/Ah3x9Wxh/bBlqPMigJOC8lwK9QR9SwVKUX+iyRqbON8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711029029; c=relaxed/simple;
-	bh=K7pzVG0ipu+htF5tFIS19IL9/9ziycsmhQ1w6zOu4RA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jNsKfmofglTYKUDiJuTE948/1GvEchwHCY/i/NcLXC1BAqRXRvjjx2ANpYSTMfvOvOPMik33mt+OYXHNsba8uGhvkeJeD2dxMJ4h1XlPaIQlW4vDY1ws0luGbIR5xfHoimHiFoTFNgynRbQN4huFPTAphRDIrcUhHhQhoqKR1kM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CYbTPVOQ; arc=none smtp.client-ip=209.85.210.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-6e88e4c8500so754294b3a.2;
-        Thu, 21 Mar 2024 06:50:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711029026; x=1711633826; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Bgk+J1XRvDjj/VZHGvqG6xQJJdsshosVOSvgWdd4L4Q=;
-        b=CYbTPVOQoi7CrbrdQT2jvBWo2G8M47SUXq6jdnzMkq4dSFHa+ncxFGYZfTqXenZCnm
-         JD9FXoKzZSVI4PKegKQuuLdFMG9rKxx+w9o8X/iecreVgREEKtmSnjz9FKWkDsll2/OA
-         Wnaenoq4VSmRqOhGWTXxfT9pcRhjZFbFwY8kVLbSYU+T3TLXXl6LZ3mZFXFSE6HiXuHE
-         +rrX55DMHjHGSg5tvzlZbva5pZZ1U/pwHmeu9RrldY6zVAfBPRGSi1IKZDc08pUP2eoT
-         xohS74kvJ8tORoOrouU28TtIJSUk+Z00pWpdygkDkwJe9zPc+ucO9a4QVv2IwS3z5KWF
-         8Bvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711029026; x=1711633826;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Bgk+J1XRvDjj/VZHGvqG6xQJJdsshosVOSvgWdd4L4Q=;
-        b=aOYHVCWxdVbZMVE7jSupbyq/EnFb2WJ3N5Ac1iHBVHXIc0vEE2bYUKmH/DpW/xa8VH
-         jnoCvPPgMWFI3jJDRB8HheCuu7dqOnRLyO5pThdukmq64MkIgBfzKHjNi6CMMd571ZZC
-         xFhxekL95+rzBHlIhQpNTns5pYQ/T55sx8BeriMuxuGJKd6ODfBaI9PSdiAfM+luEEbA
-         5ZduDOeicM4OpSUQC94cHHQ7RWHMWM5sjSEY11EMSFF6QjsEJJHaPPx5qPC6C+WK38rH
-         LXmOTIz6dYnPjt0B7qS2Fkja69ddHq2nZiFsHrzzQKjJOqvpk77LtKU78ghnefvsxkhx
-         507A==
-X-Forwarded-Encrypted: i=1; AJvYcCXUpx1Xb54c97cofInSUDJnUFaVCnzK5YTjh2LIMMa6IvALg0e4Uxg+oG2G3w6paQe0PP88cOMOyECBCGo56q3XUDifA3BoGM4e
-X-Gm-Message-State: AOJu0Yxf74fXXRavPn5HEb7RP7RgSTjfBanZYgOb8ktsOAyhZ/aT55MS
-	49tb1eDt6//I/dS5sWXt0uvYvuSXXngMIWAn4ZoHryX/A/iA7/U+FnArdMkNazo=
-X-Google-Smtp-Source: AGHT+IEmykCE6285kFS1OeJHpoDZ5UFbWUS3isPjkSzMuVzk5m7M9UTn4WKu2qMgQcTWueDKcJOz7g==
-X-Received: by 2002:a05:6a00:398a:b0:6e6:b155:b9a3 with SMTP id fi10-20020a056a00398a00b006e6b155b9a3mr20695503pfb.11.1711029026298;
-        Thu, 21 Mar 2024 06:50:26 -0700 (PDT)
-Received: from kousik.local ([2405:201:c006:31f8:c75d:3405:7d77:21ac])
-        by smtp.gmail.com with ESMTPSA id s36-20020a056a0017a400b006e6adfb8897sm13473344pfg.156.2024.03.21.06.50.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Mar 2024 06:50:26 -0700 (PDT)
-From: Kousik Sanagavarapu <five231003@gmail.com>
-To: linux-kernel@vger.kernel.org
-Cc: devicetree@vger.kernel.org,
-	linux-spi@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1711028960; c=relaxed/simple;
+	bh=KXx1OqLAULwK6itNYdQKESUqdlN3IelvAK9/XCk+0Z8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZPrps3KRK0GjGySczf9fdfVp4PutdxjYiDSE9huWUGPSEWULaSddIgim2/Hs6zKzjdFBRPg4OADE8bRQMV8EpfV0UwSSyk0UpsqPK2kRJQ1hFVxLOL9p8bIg8mM6WVerN3JFIvh4Imue/98Z5p4IR2Uc7KPjsFt2URwrBomh8UY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QfSH0sCH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE0F8C433C7;
+	Thu, 21 Mar 2024 13:49:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711028960;
+	bh=KXx1OqLAULwK6itNYdQKESUqdlN3IelvAK9/XCk+0Z8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QfSH0sCHJWrC0Zm7gIFMlUG/67wXwcMg287W1NWjx4xIRms/VFGt2JNm4zsUSMcPh
+	 7G8ynAWHQYnZOBXA+dMX8X4BcoDhTtjpjCry7WRKeQlW1lhGVcckn8v15LQOumwBB3
+	 90CFXSsIkQKwINN5td+GYaGEGfJbimpmYYKsDyao9gbMcaLix8fnk6Oq7uVukKm+0a
+	 HvMDRdz1NTJnw0Izki2/BYV2UCmnxzZIBd3YQkpDqcVO42zeHtCs2IG1NwygXU0dZZ
+	 51/feqlB/xRW9Xkg+YKqgOVYm+rEq8/UbSh1jBtcOf8gQ35G7K9SioxkuuWMU35rO1
+	 bHI6wwh90eG1g==
+Date: Thu, 21 Mar 2024 08:49:17 -0500
+From: Rob Herring <robh@kernel.org>
+To: Simon Glass <sjg@chromium.org>
+Cc: devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+	Michael Walle <mwalle@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Mark Brown <broonie@kernel.org>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Kousik Sanagavarapu <five231003@gmail.com>
-Subject: [PATCH] dt-bindings: spi: convert spi-jcore to dtschema
-Date: Thu, 21 Mar 2024 19:17:14 +0530
-Message-ID: <20240321134956.7731-1-five231003@gmail.com>
-X-Mailer: git-send-email 2.44.0.273.g4bc5b65358.dirty
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v9 2/2] dt-bindings: mtd: fixed-partition: Add binman
+ compatibles
+Message-ID: <20240321134917.GA1625959-robh@kernel.org>
+References: <20240320052449.175786-1-sjg@chromium.org>
+ <20240320052449.175786-2-sjg@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240320052449.175786-2-sjg@chromium.org>
 
-Convert existing bindings of J-Core spi2 to dtschema.  No new properties
-are added.
+On Wed, Mar 20, 2024 at 06:24:49PM +1300, Simon Glass wrote:
+> Add two compatibles for binman entries, as a starting point for the
+> schema.
+> 
+> Note that, after discussion on v2, we decided to keep the existing
+> meaning of label so as not to require changes to existing userspace
+> software when moving to use binman nodes to specify the firmware
+> layout.
+> 
+> Note also that, after discussion on v6, we decided to use the same
+> 'fixed-partition' schema for the binman features, so this version
+> adds a new 'binman.yaml' file providing the new compatibles to the
+> existing partition.yaml binding.
+> 
+> Signed-off-by: Simon Glass <sjg@chromium.org>
+> ---
+> 
+> (no changes since v8)
+> 
+> Changes in v8:
+> - Switch the patch ordering so the partition change comes first
+> 
+> Changes in v7:
+> - Adjust MAINTAINERS entry
+> - Put compatible strings into the 'fixed-partition' binding
+> 
+> Changes in v5:
+> - Add mention of why 'binman' is the vendor
+> - Drop  'select: false'
+> - Tidy up the compatible setings
+> - Use 'tfa-bl31' instead of 'atf-bl31'
+> 
+> Changes in v4:
+> - Correct selection of multiple compatible strings
+> 
+> Changes in v3:
+> - Drop fixed-partitions from the example
+> - Use compatible instead of label
+> 
+> Changes in v2:
+> - Use plain partition@xxx for the node name
+> 
+>  .../bindings/mtd/partitions/binman.yaml       | 49 +++++++++++++++++++
+>  .../bindings/mtd/partitions/partition.yaml    | 21 ++++++++
+>  MAINTAINERS                                   |  5 ++
+>  3 files changed, 75 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/binman.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mtd/partitions/binman.yaml b/Documentation/devicetree/bindings/mtd/partitions/binman.yaml
+> new file mode 100644
+> index 000000000000..83417ad5cee9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mtd/partitions/binman.yaml
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mtd/partitions/binman.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Binman entries
+> +
+> +description: |
+> +  TBD
 
-Signed-off-by: Kousik Sanagavarapu <five231003@gmail.com>
----
- .../devicetree/bindings/spi/jcore,spi.txt     | 34 -----------
- .../devicetree/bindings/spi/jcore,spi.yaml    | 60 +++++++++++++++++++
- 2 files changed, 60 insertions(+), 34 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/spi/jcore,spi.txt
- create mode 100644 Documentation/devicetree/bindings/spi/jcore,spi.yaml
+?
 
-diff --git a/Documentation/devicetree/bindings/spi/jcore,spi.txt b/Documentation/devicetree/bindings/spi/jcore,spi.txt
-deleted file mode 100644
-index 93936d16e139..000000000000
---- a/Documentation/devicetree/bindings/spi/jcore,spi.txt
-+++ /dev/null
-@@ -1,34 +0,0 @@
--J-Core SPI master
--
--Required properties:
--
--- compatible: Must be "jcore,spi2".
--
--- reg: Memory region for registers.
--
--- #address-cells: Must be 1.
--
--- #size-cells: Must be 0.
--
--Optional properties:
--
--- clocks: If a phandle named "ref_clk" is present, SPI clock speed
--  programming is relative to the frequency of the indicated clock.
--  Necessary only if the input clock rate is something other than a
--  fixed 50 MHz.
--
--- clock-names: Clock names, one for each phandle in clocks.
--
--See spi-bus.txt for additional properties not specific to this device.
--
--Example:
--
--spi@40 {
--	compatible = "jcore,spi2";
--	#address-cells = <1>;
--	#size-cells = <0>;
--	reg = <0x40 0x8>;
--	spi-max-frequency = <25000000>;
--	clocks = <&bus_clk>;
--	clock-names = "ref_clk";
--}
-diff --git a/Documentation/devicetree/bindings/spi/jcore,spi.yaml b/Documentation/devicetree/bindings/spi/jcore,spi.yaml
-new file mode 100644
-index 000000000000..e76775bb68d4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/spi/jcore,spi.yaml
-@@ -0,0 +1,60 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+
-+$id: http://devicetree.org/schemas/spi/jcore,spi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: J-Core SPI controller
-+
-+description: |
-+  The J-Core "spi2" device is a PIO-based SPI controller which used to
-+  perform byte-at-a-time transfers between the CPU and itself.
-+
-+maintainers:
-+  - Kousik Sanagavarapu <five231003@gmail.com>
-+
-+allOf:
-+  - $ref: spi-controller.yaml#
-+
-+properties:
-+  compatible:
-+    const: jcore,spi2
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    description:
-+      If a phandle named "ref_clk" is present, SPI clock speed
-+      programming is relative to the frequency of the indicated clock.
-+      Necessary only if the input clock rate is something other than a
-+      fixed 50 MHz.
-+
-+  clock-names:
-+    description:
-+      Clock names, one for each phandle in clocks.
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: true
-+
-+examples:
-+  - |
-+    spi@40 {
-+      compatible = "jcore,spi2";
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      reg = <0x40 0x8>;
-+      spi-max-frequency = <25000000>;
-+      clocks = <&bus_clk>;
-+      clock-names = "ref_clk";
-+    };
--- 
-2.44.0.273.g4bc5b65358.dirty
+> +
+> +maintainers:
+> +  - Simon Glass <sjg@chromium.org>
+> +
+> +allOf:
+> +  - $ref: /schemas/mtd/partitions/partition.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - binman,entry # generic binman entry
 
+As-is, 'binman' would need to be added to vendor-prefixes.yaml. 
+
+However, I think just 'binman' would provide just as much information. 
+But really, does it provide anything? What would be the difference 
+between this and no compatible?
+
+Rob
 
