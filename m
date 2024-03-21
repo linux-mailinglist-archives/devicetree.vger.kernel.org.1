@@ -1,58 +1,60 @@
-Return-Path: <devicetree+bounces-52189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 004BC885A2C
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 14:55:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C2BC885A37
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 15:00:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A67851F2238C
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 13:55:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA35A285820
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 14:00:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EE0984A59;
-	Thu, 21 Mar 2024 13:55:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EA3384FA2;
+	Thu, 21 Mar 2024 14:00:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="spA4CirM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mGs9wZqA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 131A583CBD;
-	Thu, 21 Mar 2024 13:55:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34B5958AA8;
+	Thu, 21 Mar 2024 14:00:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711029305; cv=none; b=iok/kPYjnFCZ3A0iPKKviCYelYI9IZAwSJOJcXYewOkB+9TdX0uIcw7jCVeo/4B+XLkmg+MUPiL9aiFefWfHO/H/cCGtEIAoZTooGNRCNt8MrvjXcmPLJhVAAiF3SRUMQDyLVQLVNpuQacX9dGmeT5Cir67SfFHctEDyq5NO6QA=
+	t=1711029620; cv=none; b=JAVIDB7XeD4UiOHCd2EizJpsEt4Io4QJpmFGKFS7uRmzgTAntqEZNxpAOE69MRYIBFCKxh/wRd4ARHvbJehM6xUTszyYJBQBnff+Yz6Xv8lGPDYSMKwAkz7j0RDlzj+mQOxcI9smBMUAt07nVJSHM2ITKULJJjfISj1TEKT83pQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711029305; c=relaxed/simple;
-	bh=4FopJU+JNO6LoIJxAvKso5OCBi4WM/l1hySE/+Jb+Nk=;
+	s=arc-20240116; t=1711029620; c=relaxed/simple;
+	bh=LrehIngTDYoBbq8eVDOQTzXWLZZg9zFYRpkqDyiII+g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qaPmeWpkZRzi/CbmrsUhVGRtm9XfiF4E2SYsj7hmE/HTDflQjUN5MBYf/TI+0mxZWMJHViaxPwjpBM95VDl3uIC+CWjoiikQ4hC2Fe0gNO4ttvcwD/xd1qXCiFMIkL3t++1/WnXCIYDG+LJTzpwNdfBsOIIxFX89vSzR4CsNZuQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=spA4CirM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A17DC433C7;
-	Thu, 21 Mar 2024 13:55:04 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=dN4LengOy7nALtVQf2Rrg7ZmP1ul0O5pPYhsD9efVmFANj7l2BV2HtEW4c1NCv/swiOuCDPZ/68RG9OIr3/5r6a9vghDCWVK7E6mS+nqZO99kfHwBVfau5K29lHGsQff+aZLWPtcP6951Pw+/o+Dm6lgtgBt0VnE/HLjqQO2bgo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mGs9wZqA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80B1DC433F1;
+	Thu, 21 Mar 2024 14:00:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711029304;
-	bh=4FopJU+JNO6LoIJxAvKso5OCBi4WM/l1hySE/+Jb+Nk=;
+	s=k20201202; t=1711029619;
+	bh=LrehIngTDYoBbq8eVDOQTzXWLZZg9zFYRpkqDyiII+g=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=spA4CirMMiU7BAJxyR9k9lEB/aZ6+SYz5kgj3tC9d0cOQxCClnnjeLbVK27Ji8U0A
-	 Vl2Ly4Iuj82KAAbivyQ25HunnjDsL5mvYb1RxLGDx+mGqzrIt7GPPGltXgq13vu2bx
-	 S7reJQaQGYFCoh1vRnWO/wytxIy2DuxBVseKP9DtnLba8D/Zrx/Dq0n0Ep8XNhmGlg
-	 Wu0iYM6y2TYKalK1oK/xRuBmdJKYqTDdXELgHHEWOuUu9crA3/W2ESPZB0jZFfk5mE
-	 U7VfJv9BqSFGurxG0Tg/d1V05ZlfsscpzsMrKpjRQpxdjisoftHmSgIyogM40zf4Ba
-	 XQlk7bU3NV9qA==
-Date: Thu, 21 Mar 2024 08:55:02 -0500
+	b=mGs9wZqAdqn0Rw2HwKcrJYpWdq42XPSK6Ztf+F9nJoQ2AvOzEY31+6sIsWp0dV9W5
+	 W9P3opBdZ4pZVY+Wsp0b2h9wegzZjLQdYrXzFllpDjR0wUPVT4ziGj/8E9PRxRAFMo
+	 A4IVS/5Nhu6nRZppsGyqeKACWR4JLEygOcEmtoqvVK7DiffD2JoPZFPeOZZfUoeEsC
+	 LURAwyTAacaokQ1atEKBTFMF7cs3nxyehuNcpHQUD9EJhEOqzqNxLFAq6SzqEHZS0c
+	 Gcbk3DEu07FGqGzhVVf8h1JlyGJQwG4RLI+wrSbO5ps7yfAnJP2wgMAn2MhNvDyiAQ
+	 koE0iopNfYOrQ==
+Date: Thu, 21 Mar 2024 09:00:17 -0500
 From: Rob Herring <robh@kernel.org>
-To: INAGAKI Hiroshi <musashino.open@gmail.com>
-Cc: pavel@ucw.cz, lee@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Hauke Mehrtens <hauke@hauke-m.de>
-Subject: Re: [PATCH 1/2] dt-bindings: leds: add LED_FUNCTION_MOBILE for
- mobile network
-Message-ID: <20240321135502.GA1637678-robh@kernel.org>
-References: <20240320124431.221-1-musashino.open@gmail.com>
- <20240320124431.221-2-musashino.open@gmail.com>
+To: Radu Sabau <radu.sabau@analog.com>
+Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-i2c@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: pmbus: adp1050: add bindings
+Message-ID: <20240321140017.GA1644231-robh@kernel.org>
+References: <20240320125727.5615-1-radu.sabau@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,37 +63,46 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240320124431.221-2-musashino.open@gmail.com>
+In-Reply-To: <20240320125727.5615-1-radu.sabau@analog.com>
 
-On Wed, Mar 20, 2024 at 09:43:16PM +0900, INAGAKI Hiroshi wrote:
-> Add LED_FUNCTION_MOBILE for LEDs that indicate status of mobile network
-> connection.
-> As an example, "Mobile" LEDs on IIJ SA-W2 indicate status (no signal,
-> too low, low, good) of mobile network connection via dongle connected
-> to USB port.
+On Wed, Mar 20, 2024 at 02:57:11PM +0200, Radu Sabau wrote:
+> Add dt-bindings for adp1050 digital controller for isolated power supply
+> with pmbus interface voltage, current and temperature monitor.
 > 
-> Suggested-by: Hauke Mehrtens <hauke@hauke-m.de>
-> Signed-off-by: INAGAKI Hiroshi <musashino.open@gmail.com>
+> Signed-off-by: Radu Sabau <radu.sabau@analog.com>
 > ---
->  include/dt-bindings/leds/common.h | 1 +
->  1 file changed, 1 insertion(+)
+> v3:
+>  *Remove extra line before '$id'.
+>  *Remove 'address-cells' and 'size-cells' from adp1050 node.
+>  *Rename adp1050 node to generic name.
+>  *Fix typo from 'adress-cells' to 'address-cells' causing errors in the
+>   dt-bindings build.
+> v2:
+>  *Fix identation for example.
+>  *Remove 'adi,vin-scale-monitor' and 'iin-scale-monitor' since they are not used
+>   anymore.
+>  *Fix typo for 'compatbile' to 'compatible'.
+>  *Add blank line under datasheet link.
+> ---
+>  .../bindings/hwmon/pmbus/adi,adp1050.yaml     | 49 +++++++++++++++++++
+>  MAINTAINERS                                   |  7 +++
+>  2 files changed, 56 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml
 > 
-> diff --git a/include/dt-bindings/leds/common.h b/include/dt-bindings/leds/common.h
-> index ecea167930d9..d4b8498bde7f 100644
-> --- a/include/dt-bindings/leds/common.h
-> +++ b/include/dt-bindings/leds/common.h
-> @@ -91,6 +91,7 @@
->  #define LED_FUNCTION_LAN "lan"
->  #define LED_FUNCTION_MAIL "mail"
->  #define LED_FUNCTION_MTD "mtd"
-> +#define LED_FUNCTION_MOBILE "mobile"
+> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml
+> new file mode 100644
+> index 000000000000..42cafd8fec25
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: https://devicetree.org/schemas/hwmon/pmbus/adi,adp1050.yaml#
+> +$schema: https://devicetree.org/meta-schemes/core.yaml#
 
-Why doesn't "wan" work?
+Your issues are here. It's "http" and "meta-schemas". This is mostly 
+copy-n-paste, so how did you get it wrong I wonder...
 
->  #define LED_FUNCTION_PANIC "panic"
->  #define LED_FUNCTION_PROGRAMMING "programming"
->  #define LED_FUNCTION_RX "rx"
-> -- 
-> 2.25.1
-> 
+Rob
 
