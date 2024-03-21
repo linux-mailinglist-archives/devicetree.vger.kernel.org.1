@@ -1,145 +1,92 @@
-Return-Path: <devicetree+bounces-52311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19D2A88621A
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 21:54:37 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDB53886355
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 23:30:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 456FB1C21D32
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 20:54:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 42C23B22B2B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 22:30:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5672C13540D;
-	Thu, 21 Mar 2024 20:54:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="S62aIT41"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAD17110A;
+	Thu, 21 Mar 2024 22:30:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from 3.mo560.mail-out.ovh.net (3.mo560.mail-out.ovh.net [46.105.58.226])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87A012DF84;
-	Thu, 21 Mar 2024 20:54:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2D3F2919
+	for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 22:30:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.105.58.226
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711054471; cv=none; b=dg353gR1nR222Tkc5KbhF5DJmDU/BwVUfEL7BOUkAGoQXWIJ/JoUbwkfyRuhpmgpKP7aRLj0MWaueD8DFL6tkH3mu6wiyth13ThX30ANsJtbIstCqeaLy9pLJx71rkk9HLVhEDXnfX0BSMFCxAwx7Q7kOPciCD+q8j0GQDOAVjA=
+	t=1711060235; cv=none; b=F2L/emgp4WTPiwyoG3sOEetWzJr4zI+/Crdk/z2S3+5OQLuIyOt5zL5X3yfKHydsX2zIgQ/p/xtDtSHTT0lsfGiykBinuvB3B5rntoR68ORK9W2/g2BZPvwEodYT8YLVQDH32aDknhVZvA0UCvbSUX57k7PZpN+no+Wl0b26zq0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711054471; c=relaxed/simple;
-	bh=mjDg7wzzBQCmz5jgRMm1V55TPwPVl9hYFeFJAZQ5Fhw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PVgqGQtYv44fowJtikN7CYVCoZotDx+FzNcW0HFMb4Aru7VgEPQ0JH6RZsZGD0lvw5Rj7iAPMatPXecn4OkXhMsks9DZssoGLGaBUsWOkn6xCcglkppAZhPLvr/gPQW6TdiipzAi/uRwSgyuUlyW5A4DZa4eZiIJLbxRABxFDw4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=S62aIT41; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-513e89d0816so1853446e87.0;
-        Thu, 21 Mar 2024 13:54:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711054468; x=1711659268; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4dpqtSWJGyTeUnxqugJzMO94Z9iV/f5bgYjvchhbNxE=;
-        b=S62aIT41CKMejP4Jx1oxEyKBWGx6K88G0mabjcf/8nRtsOflE9Pv381ZO6LK2o6O2V
-         FtQP6HncXJjpIO4N6o4kUkYEtUH20ZhX+Q3n22b/m1kuZNouamMFBmetN6BigwJAWVVZ
-         pn3ez2uOBHmT5sOXeQUem43AgRVGfKQG8io9xkn16wFi43PPWdXd/G9cBOVChcsVIfT2
-         b6ZXhAnVv0+yhtnTEz0/1VQ6ozw5bDDQglQ1tSwF6VtNHq4Fc+JoS5B3W1Qokkk99SFQ
-         rOncIby5jc4P2htZboWDUsW4zT9SLw0MsWhyCKODK2NdEFGBMsFNV0ybfCaZNXbc5p81
-         qgfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711054468; x=1711659268;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4dpqtSWJGyTeUnxqugJzMO94Z9iV/f5bgYjvchhbNxE=;
-        b=jvWI6kfOXgWNFtP/+pL1WclsnhXebqAZohOtIiQGKUhv6a7T4R9v6SPUXzlSCJ1aCt
-         7cw22Md/wuZNwBkHaLms9D1VcewHklNlnPOKm7Seuj8UUpCD2Q810/D7J/72kLv/7ijJ
-         Kz0XjQEQJaJIZF9JSnttbJtujYileMzMHiwTwivBVtNeLiKGUBVW3A8yG8WLnU1wE8tJ
-         vJbQF0Y0KMWi6Qcl8t9R0Pw2+R1DaIHE5jheSMTxBN8pegw/PHL/o+nduHg4RFfzyLO2
-         8MZz818RWOptcpwaJ04I+qSx13vlutKc7KbUDJnMfN2XWc/kcKQ202jfL0etbtFzFKC5
-         9oCA==
-X-Forwarded-Encrypted: i=1; AJvYcCWeI8ERfbTYvDQjrJEip/ogbCDY+OJAY5ajEUcncmvov5pbQGKJDw6IBKBZLMtzt6c/45nS7FLj+kl1e2WrYbvz6fiq80L6pMHa0N672PUOB5KqL/nMVnAFhko1ihShmdJxbV+RL36uMbT9h3sAW8oOe6Bhsy1ApPk6M/JltBl0jCuSMGOt
-X-Gm-Message-State: AOJu0Yz37n4k3D/RM2R6lb5Y+DgjGPaWSZPH8pRPeu+7kpCYpUnRTIQG
-	2P3Te+NvE18TO4vrvd4M7VYBJo0MqSH1zmC5dT5SmfDIRO2sEtLe
-X-Google-Smtp-Source: AGHT+IF00jvltcjrS4QawwDsCnX+RLKRo6CEUXlNmaAZkEy6czLuI6rU56WPSUMOFR9qHZGoD99mGg==
-X-Received: by 2002:a05:6512:3051:b0:513:9e13:6403 with SMTP id b17-20020a056512305100b005139e136403mr390726lfb.21.1711054467418;
-        Thu, 21 Mar 2024 13:54:27 -0700 (PDT)
-Received: from ?IPV6:2a02:8389:41cf:e200:9fd4:5a72:5943:9800? (2a02-8389-41cf-e200-9fd4-5a72-5943-9800.cable.dynamic.v6.surfer.at. [2a02:8389:41cf:e200:9fd4:5a72:5943:9800])
-        by smtp.gmail.com with ESMTPSA id gt32-20020a1709072da000b00a46ee5b9aa1sm302555ejc.90.2024.03.21.13.54.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Mar 2024 13:54:27 -0700 (PDT)
-Message-ID: <469068f9-b219-4d80-bab4-cbffaa04a67d@gmail.com>
-Date: Thu, 21 Mar 2024 21:54:25 +0100
+	s=arc-20240116; t=1711060235; c=relaxed/simple;
+	bh=djABA0MQUQ/IUXuxCfbdjgnBP5/7imImBFnUbC+vJz4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=uyvH/fUesBM/BJFvV0wEg00+fRwxOzEm86HqGxnhyJWGBjit8SVI1tSgfFx5MVt7m5N+GcMhySS+TvUPe0P8eUY6fpknlzBBqfqk4DyyNVM0C0Q1w95DCH/PhNLP13rZ2JIVlzbZXpZItB24oOQLPerGrWdT7cJkjOJMhR7nGDU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=etezian.org; arc=none smtp.client-ip=46.105.58.226
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=etezian.org
+Received: from director6.ghost.mail-out.ovh.net (unknown [10.109.148.116])
+	by mo560.mail-out.ovh.net (Postfix) with ESMTP id 4V0yn6716Kz1M8q
+	for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 21:11:22 +0000 (UTC)
+Received: from ghost-submission-6684bf9d7b-rvvvl (unknown [10.110.96.223])
+	by director6.ghost.mail-out.ovh.net (Postfix) with ESMTPS id 3CBD11FEA3;
+	Thu, 21 Mar 2024 21:11:20 +0000 (UTC)
+Received: from etezian.org ([37.59.142.96])
+	by ghost-submission-6684bf9d7b-rvvvl with ESMTPSA
+	id wCfFC3ii/GWbmBoAVwvt7A
+	(envelope-from <andi@etezian.org>); Thu, 21 Mar 2024 21:11:20 +0000
+Authentication-Results:garm.ovh; auth=pass (GARM-96R00106e97499-cce7-40cf-b671-3279a700b6aa,
+                    FCB1700D1C5E2813125D8B0A0227DF34E0FBA9B2) smtp.auth=andi@etezian.org
+X-OVh-ClientIp:89.217.109.169
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Animesh Agarwal <animeshagarwal28@gmail.com>
+Cc: Conor Dooley <conor.dooley@microchip.com>, 
+ Vladimir Zapolskiy <vz@mleia.com>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, 
+ linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20240320084623.82248-1-animeshagarwal28@gmail.com>
+References: <20240320084623.82248-1-animeshagarwal28@gmail.com>
+Subject: Re: [PATCH v3] dt-bindings: i2c: nxp,pnx-i2c: Convert to dtschema
+Message-Id: <171105547918.707638.11304000819202245225.b4-ty@kernel.org>
+Date: Thu, 21 Mar 2024 22:11:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] dt-bindings: hwmon: ibmpowernv: convert to dtschema
-To: Rob Herring <robh@kernel.org>
-Cc: Guenter Roeck <linux@roeck-us.net>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- linux-hwmon@vger.kernel.org, "Aneesh Kumar K.V" <aneesh.kumar@kernel.org>,
- Nicholas Piggin <npiggin@gmail.com>, Jean Delvare <jdelvare@suse.com>,
- Conor Dooley <conor+dt@kernel.org>, linuxppc-dev@lists.ozlabs.org,
- devicetree@vger.kernel.org, "Naveen N. Rao" <naveen.n.rao@linux.ibm.com>,
- Michael Ellerman <mpe@ellerman.id.au>, linux-kernel@vger.kernel.org,
- Christophe Leroy <christophe.leroy@csgroup.eu>
-References: <20240321-hwmon_dtschema-v1-0-96c3810c3930@gmail.com>
- <20240321-hwmon_dtschema-v1-2-96c3810c3930@gmail.com>
- <171105391076.2619280.17497439995032037227.robh@kernel.org>
-Content-Language: en-US, de-AT
-From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-In-Reply-To: <171105391076.2619280.17497439995032037227.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13.0
+X-Ovh-Tracer-Id: 11707670182381750808
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvledrleejgdekhecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevjghfuffkffggtgfgofesthejredtredtjeenucfhrhhomheptehnughiucfuhhihthhiuceorghnughirdhshhihthhisehkvghrnhgvlhdrohhrgheqnecuggftrfgrthhtvghrnhepffetheduffdvhfdugfffudfgjeejudehheegfeeguefhieeugffhgfeuffdvgfefnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucfkphepuddvjedrtddrtddruddpkeelrddvudejrddutdelrdduieelpdefjedrheelrddugedvrdelieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeduvdejrddtrddtrddupdhmrghilhhfrhhomheprghnughisegvthgviihirghnrdhorhhgpdhnsggprhgtphhtthhopedupdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehiedtpdhmohguvgepshhmthhpohhuth
 
-On 3/21/24 21:45, Rob Herring wrote:
+Hi
+
+On Wed, 20 Mar 2024 14:16:20 +0530, Animesh Agarwal wrote:
+> Convert the NXP PNX I2C Controller bindings to DT schema.
+> Keep only one example in DT schema to remove redundancy.
 > 
-> On Thu, 21 Mar 2024 19:43:43 +0100, Javier Carrasco wrote:
->> Convert existing binding to support validation.
->>
->> This is a straightforward conversion with now new properties.
->>
->> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
->> ---
->>  .../devicetree/bindings/hwmon/ibm,powernv.yaml     | 37 ++++++++++++++++++++++
->>  .../devicetree/bindings/hwmon/ibmpowernv.txt       | 23 --------------
->>  2 files changed, 37 insertions(+), 23 deletions(-)
->>
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/hwmon/ibm,powernv.example.dtb: /example-0/sensor: failed to match any schema with compatible: ['st,stts751']
 > 
 
-Obvious mistake, this compatible belongs to another patch of the series.
+Applied to i2c/i2c-host on
 
-Will be fixed for v2.
+git://git.kernel.org/pub/scm/linux/kernel/git/andi.shyti/linux.git
 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240321-hwmon_dtschema-v1-2-96c3810c3930@gmail.com
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
-> 
+Thank you,
+Andi
 
-Best regards,
-Javier Carrasco
+Patches applied
+===============
+[1/1] dt-bindings: i2c: nxp,pnx-i2c: Convert to dtschema
+      commit: e73b7060deb7da42f4e887cb726d0c7019a84cd0
+
 
