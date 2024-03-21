@@ -1,138 +1,176 @@
-Return-Path: <devicetree+bounces-52040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52041-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09F6F881A28
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 00:27:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 364B7881A8F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 02:10:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9CEFF1F21FC6
-	for <lists+devicetree@lfdr.de>; Wed, 20 Mar 2024 23:27:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D6CC1C20B6D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 01:10:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F9BF8624D;
-	Wed, 20 Mar 2024 23:27:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44CF1ECC;
+	Thu, 21 Mar 2024 01:10:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="i2cfZ1FE"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ICyHrNbx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7FB58624B
-	for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 23:27:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E04F811;
+	Thu, 21 Mar 2024 01:10:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710977237; cv=none; b=ujM6YwNKEsFooGst4qRCpdi/uaAwCIF/jMhByVkUuT05bFjC3tXgb4+EMF9EXt5KcqjVcjF2Fv9aD48ZQ8ux0UmaTUiVxz2Lgaowg23Cn2ii/W7B5q4oU9u8BsGAe2kDUOM2KK5iDV5zf/XoKTH+K8jogYSsZekvry6PuCaL61Y=
+	t=1710983436; cv=none; b=ldT1hVsjhlPtOj0p+3Q8mxUC02dGT++acGE6sEvtW7Ub8X0P1eP/AeM5uj85jYvDtzc3B1TwmWpcBky0ILTkp8VDfSXSvVWAd8inWQstIGQFz6w+STYWCQkhnxcxR2McVCgFzhpWfh6SROmeQoua2i5ZJS3wOBZL2S6ta3kuFos=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710977237; c=relaxed/simple;
-	bh=LEtK8/Irn1SeDDdEPxmXnIY2M7EQZz0VFSkinrgsrwQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CcXCI2QfkzLdrkuRCX9Y+Tgz+7McSqvosbnXajVScqipyjxD48pQTYJk7+iXjeeq2aUKQLeYbXGg6gCO4upCuOb3J91YF+WvY2YeQGAFBZSd3Tz7xDyqiiNRqyX9U5CE4pO9sudi58ylvboXl0l99qsVpD6DSZOC2y2J70SLUFU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=i2cfZ1FE; arc=none smtp.client-ip=209.85.219.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-dc74435c428so331952276.2
-        for <devicetree@vger.kernel.org>; Wed, 20 Mar 2024 16:27:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1710977234; x=1711582034; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=q6wHVvQOpEVBe9GN/RDfS0/7UHobpz6yHjFxam80y4A=;
-        b=i2cfZ1FErcW8hCzBGKpd9pYxgNJhFAwgd/1gylI00ZqWOPtatYoERChojvyPGaJUDJ
-         KORISgCBpbhzHikyJbc1IYBkxzBQ8BcO/mlXlnFkLlyggMgK8T7skSAYuwg9fZyaAnAo
-         s8SFdjh3MXJstRfqjYWLHEwqc2XZ9wGNANTFdEMPN5G/P1Yt/q+zBSttQ8adsnRMn9Yp
-         Df0+e6IFyIYn/3aU6EacXIt/FBgjfm1L8nMYFlHi02fz7A+GVqqikkCi95hzqxpQDp04
-         V66A7Cuqsq8WVYyUKBHl0SI9YmnNj41eO7I1Mi+lNsVVgo3bmmFW+lyhNMrLzVqLS8fb
-         QSFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710977234; x=1711582034;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=q6wHVvQOpEVBe9GN/RDfS0/7UHobpz6yHjFxam80y4A=;
-        b=ltTFiKSVNkoEuEiQimg90a6xlErgI9JCPD8XRH40U9QF36FWHoKmfCH3F3ypPD5k+N
-         bl/+V1Qjz4jLOhFLn1dQbT/e58NoxTLfJMffZbJ4DaI/6k57BLzRX4OR1S26pOyAaw6r
-         PER/begvCTyLuH2mJB7iRHturSWB+Q+VHXiRAD5X3B+YPMYTlypz04PeQDUlCensEuYZ
-         bLSD6LKpR7+JU+FKueFHsauAUlqVRFUO0kQ0t4O30y0928rVHUivUQMtc9DqAJJlLj0y
-         5+Oy1pI2PP8N5rXsKKEU7gQWC31gILh8H1bjZluiT09HA21yNYAqCcXWL7WeNEZMvheM
-         BSzg==
-X-Forwarded-Encrypted: i=1; AJvYcCWdR+Wcpe3wBGDWevhYOmGlKqAddrYIfEh9ogwKwo7wRJBmon/a5AbYAyYjnw+hGQeeGbOSSeqL2rOYkolO9R+pPZglVVv5PHI9NA==
-X-Gm-Message-State: AOJu0Ywd0D+ygcu1w4EF+vsFKTrbYpK9+5evFgOw1JepRCbqH5eY99Qt
-	mEVZMnBtrp0hlRx9LntjtvMgdAd3XdyI/UzlFEDOH10B+oDIYHpHNxzbuUf7HmHN4RrA2rbaQWi
-	ufy+Qel4vdRRpvtzIWuzEzsAy3BZEnIG57B1SGw==
-X-Google-Smtp-Source: AGHT+IHMZiJ7GkUOJyGqjV4avkqTTAvlzqr7ytyomStzfgostSKHBO29LXnvCAgrpDc5T+ElSP6cMdrouh2QdUXOToE=
-X-Received: by 2002:a25:b847:0:b0:dc6:da83:88e6 with SMTP id
- b7-20020a25b847000000b00dc6da8388e6mr3262598ybm.32.1710977234540; Wed, 20 Mar
- 2024 16:27:14 -0700 (PDT)
+	s=arc-20240116; t=1710983436; c=relaxed/simple;
+	bh=2w1fH3LDsNuaN6Ld0HB4fkphXyRR53FgPKy5ZeIFQA0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tr5lfLMX+KrNraCVx7JU7juIXztjwn1LbUJAoRZ+iyTS9Uqoz/acRhuCA58JaK0ZnPMzZ8RMKU4noFudbmVfKtd9EdGQSVAIrt9rhC1Xk98PVIoPoYKdSTw0xz4I6w0E3mdm1W5+bX2x1IoePL46Mpr/jPvebqdK/RwHE197aXM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ICyHrNbx; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1710983434; x=1742519434;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=2w1fH3LDsNuaN6Ld0HB4fkphXyRR53FgPKy5ZeIFQA0=;
+  b=ICyHrNbxbfw3QY5Wkzxk0NZysf5ZVisxDfEkoqmoDS8waLkXGQ8SdqO5
+   dx/iodemB4UuZa250MzrW8DrzayPvTLO1IGXWzFy25HzTN9UqJkXfCBFz
+   3e+kyGW137JYCd4XLqERAUeP+LHvt7AC4nUMUmSOsKkrhj9vQqKVfvI5G
+   tA49EykvJc/jUp8mvJXGNwM0me2JP3J1oNDvG8IqmFoocq9QYGw0sb9Kl
+   bJ8JVeYWS10yUZKsQxoth1kmkh0X0bZot7UAF3VXTj/oSDsBdxt/wE4FO
+   P/MLZcmw5BuQlr8lMOtmqDWE2Nk5eDa+jsk1pEFYFF7xqm3l6GMCNdSYF
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11019"; a="5833802"
+X-IronPort-AV: E=Sophos;i="6.07,141,1708416000"; 
+   d="scan'208";a="5833802"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2024 18:10:33 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,141,1708416000"; 
+   d="scan'208";a="45436962"
+Received: from lkp-server01.sh.intel.com (HELO b21307750695) ([10.239.97.150])
+  by fmviesa001.fm.intel.com with ESMTP; 20 Mar 2024 18:10:29 -0700
+Received: from kbuild by b21307750695 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rn6ws-000J3X-34;
+	Thu, 21 Mar 2024 01:10:26 +0000
+Date: Thu, 21 Mar 2024 09:10:23 +0800
+From: kernel test robot <lkp@intel.com>
+To: Sudan Landge <sudanl@amazon.com>, tytso@mit.edu, Jason@zx2c4.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, sathyanarayanan.kuppuswamy@linux.intel.com,
+	thomas.lendacky@amd.com, dan.j.williams@intel.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, graf@amazon.de, dwmw@amazon.co.uk,
+	bchalios@amazon.es, xmarcalx@amazon.co.uk
+Subject: Re: [PATCH v1 4/4] virt: vmgenid: add support for devicetree bindings
+Message-ID: <202403210806.pMEGAp0x-lkp@intel.com>
+References: <20240319143253.22317-5-sudanl@amazon.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240319215915.832127-1-samuel.holland@sifive.com>
- <20240319215915.832127-6-samuel.holland@sifive.com> <CAKC1njSg9-hJo6hibcM9a-=FUmMWyR39QUYqQ1uwiWhpBZQb9A@mail.gmail.com>
- <40ab1ce5-8700-4a63-b182-1e864f6c9225@sifive.com> <17BE5F38AFE245E5.29196@lists.riscv.org>
-In-Reply-To: <17BE5F38AFE245E5.29196@lists.riscv.org>
-From: Deepak Gupta <debug@rivosinc.com>
-Date: Wed, 20 Mar 2024 16:27:03 -0700
-Message-ID: <CAKC1njTnheUHs44qUE2sTdr4N=pwUiOc2H1VEMYzYM84JMwe9w@mail.gmail.com>
-Subject: Re: [RISC-V] [tech-j-ext] [RFC PATCH 5/9] riscv: Split per-CPU and
- per-thread envcfg bits
-To: debug@rivosinc.com
-Cc: Samuel Holland <samuel.holland@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	Catalin Marinas <catalin.marinas@arm.com>, linux-kernel@vger.kernel.org, 
-	tech-j-ext@lists.risc-v.org, Conor Dooley <conor@kernel.org>, kasan-dev@googlegroups.com, 
-	Evgenii Stepanov <eugenis@google.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Andrew Jones <ajones@ventanamicro.com>, Guo Ren <guoren@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Paul Walmsley <paul.walmsley@sifive.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240319143253.22317-5-sudanl@amazon.com>
 
-> > >
-> > > And instead of context switching in `_switch_to`,
-> > > In `entry.S` pick up `envcfg` from `thread_info` and write it into CSR.
-> >
-> > The immediate reason is that writing envcfg in ret_from_exception() adds cycles
-> > to every IRQ and system call exit, even though most of them will not change the
-> > envcfg value. This is especially the case when returning from an IRQ/exception
-> > back to S-mode, since envcfg has zero effect there.
-> >
-> > The CSRs that are read/written in entry.S are generally those where the value
-> > can be updated by hardware, as part of taking an exception. But envcfg never
-> > changes on its own. The kernel knows exactly when its value will change, and
-> > those places are:
-> >
-> >  1) Task switch, i.e. switch_to()
-> >  2) execve(), i.e. start_thread() or flush_thread()
-> >  3) A system call that specifically affects a feature controlled by envcfg
->
-> Yeah I was optimizing for a single place to write instead of
-> sprinkling at multiple places.
-> But I see your argument. That's fine.
->
+Hi Sudan,
 
-Because this is RFC and we are discussing it. I thought a little bit
-more about this.
+kernel test robot noticed the following build errors:
 
-If we were to go with the above approach that essentially requires
-whenever a envcfg bit changes, `sync_envcfg`
-has to be called to reflect the correct value.
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.8 next-20240320]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-What if some of these features enable/disable are exposed to `ptrace`
-(gdb, etc use cases) for enable/disable.
-How will syncing work then ?
+url:    https://github.com/intel-lab-lkp/linux/commits/Sudan-Landge/virt-vmgenid-rearrange-code-to-make-review-easier/20240319-223642
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20240319143253.22317-5-sudanl%40amazon.com
+patch subject: [PATCH v1 4/4] virt: vmgenid: add support for devicetree bindings
+config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20240321/202403210806.pMEGAp0x-lkp@intel.com/config)
+compiler: alpha-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240321/202403210806.pMEGAp0x-lkp@intel.com/reproduce)
 
-I can see the reasoning behind saving some cycles during trap return.
-But `senvcfg` is not actually a user state, it
-controls the execution environment configuration for user mode. I
-think the best place for this CSR to be written is
-trap return and writing at a single place from a single image on stack
-reduces chances of bugs and errors. And allows
-`senvcfg` features to be exposed to other kernel flows (like `ptrace`)
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202403210806.pMEGAp0x-lkp@intel.com/
 
-We can figure out ways on how to optimize in trap return path to avoid
-writing it if we entered and exiting on the same
-task.
+All errors (new ones prefixed by >>):
+
+   drivers/virt/vmgenid.c: In function 'vmgenid_add_acpi':
+>> drivers/virt/vmgenid.c:79:45: error: invalid use of undefined type 'struct acpi_device'
+      79 |         status = acpi_evaluate_object(device->handle, "ADDR", NULL, &parsed);
+         |                                             ^~
+   drivers/virt/vmgenid.c:96:56: error: invalid use of undefined type 'struct acpi_device'
+      96 |                                   devm_memremap(&device->dev, phys_addr, VMGENID_SIZE, MEMREMAP_WB)
+         |                                                        ^~
+   drivers/virt/vmgenid.c:102:52: error: invalid use of undefined type 'struct acpi_device'
+     102 |         status = acpi_install_notify_handler(device->handle, ACPI_DEVICE_NOTIFY,
+         |                                                    ^~
+   drivers/virt/vmgenid.c: At top level:
+   drivers/virt/vmgenid.c:196:36: warning: 'vmgenid_acpi_ids' defined but not used [-Wunused-const-variable=]
+     196 | static const struct acpi_device_id vmgenid_acpi_ids[] = {
+         |                                    ^~~~~~~~~~~~~~~~
+
+
+vim +79 drivers/virt/vmgenid.c
+
+657fab4d1001e1 Sudan Landge       2024-03-19   69  
+657fab4d1001e1 Sudan Landge       2024-03-19   70  static int vmgenid_add_acpi(struct device *dev, struct vmgenid_state *state)
+657fab4d1001e1 Sudan Landge       2024-03-19   71  {
+657fab4d1001e1 Sudan Landge       2024-03-19   72  	struct acpi_device *device = ACPI_COMPANION(dev);
+af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   73  	struct acpi_buffer parsed = { ACPI_ALLOCATE_BUFFER };
+af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   74  	union acpi_object *obj;
+af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   75  	phys_addr_t phys_addr;
+af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   76  	acpi_status status;
+af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   77  	int ret = 0;
+af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   78  
+af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23  @79  	status = acpi_evaluate_object(device->handle, "ADDR", NULL, &parsed);
+af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   80  	if (ACPI_FAILURE(status)) {
+af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   81  		ACPI_EXCEPTION((AE_INFO, status, "Evaluating ADDR"));
+af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   82  		return -ENODEV;
+af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   83  	}
+af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   84  	obj = parsed.pointer;
+af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   85  	if (!obj || obj->type != ACPI_TYPE_PACKAGE || obj->package.count != 2 ||
+af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   86  	    obj->package.elements[0].type != ACPI_TYPE_INTEGER ||
+af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   87  	    obj->package.elements[1].type != ACPI_TYPE_INTEGER) {
+af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   88  		ret = -EINVAL;
+af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   89  		goto out;
+af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   90  	}
+af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   91  
+af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   92  	phys_addr = (obj->package.elements[0].integer.value << 0) |
+af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   93  		    (obj->package.elements[1].integer.value << 32);
+657fab4d1001e1 Sudan Landge       2024-03-19   94  
+657fab4d1001e1 Sudan Landge       2024-03-19   95  	ret = setup_vmgenid_state(state,
+657fab4d1001e1 Sudan Landge       2024-03-19   96  				  devm_memremap(&device->dev, phys_addr, VMGENID_SIZE, MEMREMAP_WB)
+657fab4d1001e1 Sudan Landge       2024-03-19   97  				 );
+657fab4d1001e1 Sudan Landge       2024-03-19   98  	if (ret)
+657fab4d1001e1 Sudan Landge       2024-03-19   99  		goto out;
+657fab4d1001e1 Sudan Landge       2024-03-19  100  
+657fab4d1001e1 Sudan Landge       2024-03-19  101  	dev->driver_data = state;
+657fab4d1001e1 Sudan Landge       2024-03-19  102  	status = acpi_install_notify_handler(device->handle, ACPI_DEVICE_NOTIFY,
+657fab4d1001e1 Sudan Landge       2024-03-19  103  					     vmgenid_acpi_handler, dev);
+657fab4d1001e1 Sudan Landge       2024-03-19  104  	if (ACPI_FAILURE(status)) {
+657fab4d1001e1 Sudan Landge       2024-03-19  105  		dev_err(dev, "Failed to install acpi notify handler");
+657fab4d1001e1 Sudan Landge       2024-03-19  106  		ret = -ENODEV;
+657fab4d1001e1 Sudan Landge       2024-03-19  107  		dev->driver_data = NULL;
+af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23  108  		goto out;
+af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23  109  	}
+657fab4d1001e1 Sudan Landge       2024-03-19  110  out:
+657fab4d1001e1 Sudan Landge       2024-03-19  111  	ACPI_FREE(parsed.pointer);
+657fab4d1001e1 Sudan Landge       2024-03-19  112  	return ret;
+657fab4d1001e1 Sudan Landge       2024-03-19  113  }
+af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23  114  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
