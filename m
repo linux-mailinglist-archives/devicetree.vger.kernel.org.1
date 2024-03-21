@@ -1,246 +1,154 @@
-Return-Path: <devicetree+bounces-52289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52290-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEDEA88615D
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 20:57:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D279886191
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 21:22:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 86604281E87
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 19:57:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E3C261F22D32
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 20:22:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D8D9134420;
-	Thu, 21 Mar 2024 19:57:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="hFdkSsON"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB627134CC6;
+	Thu, 21 Mar 2024 20:22:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A3E979F0;
-	Thu, 21 Mar 2024 19:57:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10E081332B8;
+	Thu, 21 Mar 2024 20:22:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711051076; cv=none; b=ayYPLaYMucnWKwgxLE4XVxOuVUsj/aw8A7CdbdMKPmbDyUSklEuf/iXaa1XsLHaMOxjjG+MtCXDPqKuYuOTR9e1QNnm78gRgLrAfk4JlTIn6Tr4VZQh9dks2QX86s4GLWLqUkJhXZS2mqSAILCC34Gw51sdWzJVlq6tpcCe9ZAs=
+	t=1711052571; cv=none; b=dtPak7eSbV+7cjRW7E0oxb00INeKAtR1G6DLqJAk8FOHWd1IWlndUmcV/J86+7J6ygPaPP4JkZDT75tqDT0HPp3MmdQbwpTNRZWixxzt0ppfkaWv4Tk8dX+hXM4GgIzPHT9XD++M+BKDxkwoN5jTzchSzYD18Vw4l9orWmBGCjI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711051076; c=relaxed/simple;
-	bh=o9Y3w5cecuIp0kCib8OIXk7mGz8FxiOO9/PPik6zBlY=;
+	s=arc-20240116; t=1711052571; c=relaxed/simple;
+	bh=c6UtEIX10Dr+Hx/y+0/Bd09nWB7sQpI4NOWhdd+BG64=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c/8K8/0WF6P5/SYZA0IaGfGHLIDAMCL9t0VUyi7OyTPSuyxWe6bdYY3cckBAI4WcmiGWPs9rKTxivsw6icvS0nun0vKnHktxzPvMUEW24brPz9U19cJa8mX+gISUNaTDqZcTkCTfYJlfynrvpBNJYt/jnzLCFIqSkn2bvK4LJcc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=hFdkSsON; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5D9D42B3;
-	Thu, 21 Mar 2024 20:57:24 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1711051044;
-	bh=o9Y3w5cecuIp0kCib8OIXk7mGz8FxiOO9/PPik6zBlY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hFdkSsON4YDxCyLKmhiOYtMMEEB7VZuXiyU++yOv/so8GqZNKk1XX9j8rEABz2xHK
-	 b4Pz0bA5yJ9qKPCkrF9DcX3VnX+3xqe+K8RUrZhTkcSWheHXkoQAbfDEcrJqZvtUJq
-	 16lkrWdN9LuXiQPA9s4qZxWu5p2K5Tmq8oN9cpYE=
-Date: Thu, 21 Mar 2024 21:57:49 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Naushir Patuck <naush@raspberrypi.com>
-Cc: linux-media@vger.kernel.org,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	David Plowman <david.plowman@raspberrypi.com>,
-	Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	kernel-list@raspberrypi.com, linux-rpi-kernel@lists.infradead.org,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	bcm-kernel-feedback-list@broadcom.com,
-	Conor Dooley <conor+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=IP71qdqwIEu7WLJkdyzz6RkdG+5GXxFOWZNzI+LZzO2hLZSiPoq8Ph6MY1qktKn4IaEhiAhrSoL85uNz6/vQOupZ3lqesnTgcnSqot50LTRM5J/soYdJPNIWgTD+//SZ1m7RG7/hF0etD4vRglej+UExjPJK5H1MlbAVoa9Ydik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.96.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1rnOvW-0000Y8-0R;
+	Thu, 21 Mar 2024 20:22:14 +0000
+Date: Thu, 21 Mar 2024 20:22:10 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Bart Van Assche <bvanassche@acm.org>
+Cc: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 09/15] media: bcm2835-unicam: Add support for
- CCP2/CSI2 camera interface
-Message-ID: <20240321195749.GZ9582@pendragon.ideasonboard.com>
-References: <20240301213231.10340-1-laurent.pinchart@ideasonboard.com>
- <20240301213231.10340-10-laurent.pinchart@ideasonboard.com>
- <CAEmqJPqdfaND6vFoZgNALfzPf9-VM1XU0AyLs3V6OJe3WkDEng@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>, Jens Axboe <axboe@kernel.dk>,
+	Dave Chinner <dchinner@redhat.com>, Jan Kara <jack@suse.cz>,
+	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Li Lingfeng <lilingfeng3@huawei.com>,
+	Christian Brauner <brauner@kernel.org>,
+	Christian Heusel <christian@heusel.eu>,
+	Min Li <min15.li@samsung.com>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Avri Altman <avri.altman@wdc.com>, Hannes Reinecke <hare@suse.de>,
+	Christian Loehle <CLoehle@hyperstone.com>,
+	Bean Huo <beanhuo@micron.com>, Yeqi Fu <asuk4.q@gmail.com>,
+	Victor Shih <victor.shih@genesyslogic.com.tw>,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+	Dominique Martinet <dominique.martinet@atmark-techno.com>,
+	"Ricardo B. Marliere" <ricardo@marliere.net>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org, linux-block@vger.kernel.org
+Subject: Re: [PATCH 4/8] block: implement NVMEM provider
+Message-ID: <ZfyW8jTAgclicAWd@makrotopia.org>
+References: <cover.1711048433.git.daniel@makrotopia.org>
+ <7555db6eb71d4ccb2b9d5ebe3b41dc34088c6316.1711048433.git.daniel@makrotopia.org>
+ <e170642d-9ae8-4d5a-90d9-2837f1bcef9b@acm.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAEmqJPqdfaND6vFoZgNALfzPf9-VM1XU0AyLs3V6OJe3WkDEng@mail.gmail.com>
+In-Reply-To: <e170642d-9ae8-4d5a-90d9-2837f1bcef9b@acm.org>
 
-Hi Naush,
+Hi Bart,
 
-On Wed, Mar 20, 2024 at 12:30:36PM +0000, Naushir Patuck wrote:
-> On Fri, 1 Mar 2024 at 21:32, Laurent Pinchart wrote:
-> >
-> > From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> >
-> > Add a driver for the Unicam camera receiver block on BCM283x processors.
-> > It is represented as two video device nodes: unicam-image and
-> > unicam-embedded which are connected to an internal subdev (named
-> > unicam-subdev) in order to manage streams routing.
-> >
-> > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> > Co-developed-by: Naushir Patuck <naush@raspberrypi.com>
-> > Signed-off-by: Naushir Patuck <naush@raspberrypi.com>
-> > Co-developed-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
-> > Signed-off-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
-> > Co-developed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > ---
+thank you for looking at the patches!
 
-[snip]
-
-> > ---
-> >  MAINTAINERS                                   |    1 +
-> >  drivers/media/platform/Kconfig                |    1 +
-> >  drivers/media/platform/Makefile               |    1 +
-> >  drivers/media/platform/broadcom/Kconfig       |   23 +
-> >  drivers/media/platform/broadcom/Makefile      |    3 +
-> >  .../platform/broadcom/bcm2835-unicam-regs.h   |  255 ++
-> >  .../media/platform/broadcom/bcm2835-unicam.c  | 2607 +++++++++++++++++
-> >  7 files changed, 2891 insertions(+)
-> >  create mode 100644 drivers/media/platform/broadcom/Kconfig
-> >  create mode 100644 drivers/media/platform/broadcom/Makefile
-> >  create mode 100644 drivers/media/platform/broadcom/bcm2835-unicam-regs.h
-> >  create mode 100644 drivers/media/platform/broadcom/bcm2835-unicam.c
-
-[snip]
-
-> > diff --git a/drivers/media/platform/broadcom/bcm2835-unicam.c b/drivers/media/platform/broadcom/bcm2835-unicam.c
-> > new file mode 100644
-> > index 000000000000..716c89b8a217
-> > --- /dev/null
-> > +++ b/drivers/media/platform/broadcom/bcm2835-unicam.c
-> > @@ -0,0 +1,2607 @@
-
-[snip]
-
-> > +static int unicam_start_streaming(struct vb2_queue *vq, unsigned int count)
-> > +{
-> > +       struct unicam_node *node = vb2_get_drv_priv(vq);
-> > +       struct unicam_device *unicam = node->dev;
-> > +       struct v4l2_subdev_state *state;
-> > +       struct unicam_buffer *buf;
-> > +       unsigned long flags;
-> > +       int ret;
-> > +       u32 pad, stream;
-> > +       u32 remote_pad = is_image_node(node) ? UNICAM_SD_PAD_SOURCE_IMAGE
-> > +                                            : UNICAM_SD_PAD_SOURCE_METADATA;
-> > +
-> > +       /* Look for the route for the given pad and stream. */
-> > +       state = v4l2_subdev_lock_and_get_active_state(&unicam->subdev.sd);
-> > +       ret = v4l2_subdev_routing_find_opposite_end(&state->routing,
-> > +                                                   remote_pad, 0,
-> > +                                                   &pad, &stream);
-> > +       v4l2_subdev_unlock_state(state);
-> > +
-> > +       if (ret)
-> > +               goto err_return_buffers;
-> > +
-> > +       dev_dbg(unicam->dev, "Starting stream on %s: %u/%u -> %u/%u (%s)\n",
-> > +               unicam->subdev.sd.name, pad, stream, remote_pad, 0,
-> > +               is_metadata_node(node) ? "metadata" : "image");
-> > +
-> > +       /* The metadata node can't be started alone. */
-> > +       if (is_metadata_node(node)) {
-> > +               if (!unicam->node[UNICAM_IMAGE_NODE].streaming) {
-> > +                       dev_err(unicam->dev,
-> > +                               "Can't start metadata without image\n");
-> > +                       ret = -EINVAL;
-> > +                       goto err_return_buffers;
-> > +               }
+On Thu, Mar 21, 2024 at 12:44:19PM -0700, Bart Van Assche wrote:
+> On 3/21/24 12:34, Daniel Golle wrote:
+> > On embedded devices using an eMMC it is common that one or more partitions
+> > on the eMMC are used to store MAC addresses and Wi-Fi calibration EEPROM
+> > data. Allow referencing the partition in device tree for the kernel and
+> > Wi-Fi drivers accessing it via the NVMEM layer.
 > 
-> There's a slight change of behaviour in this function when compared to
-> the downstream/BSP non-streams enabled driver.
+> Why to store calibration data in a partition instead of in a file on a
+> filesystem?
+
+First of all, it's just how it is already in the practical world out
+there. The same methods for mass-production are used independently of
+the type of flash memory, so vendors don't care if in Linux the flash
+ends up as MMC/block (in case of an eMMC) device or MTD device (in
+case of SPI-NOR, for example). I can name countless devices of
+numerous vendors following this generally very common practise (and
+then ending up extracting that using ugly custom drivers, or poking
+around in the block devices in early userland, ... none of it is nice,
+which is the motivation for this series).
+Adtran, GL-iNet, Netgear, ... to name just a few very popular vendors.
+
+The devices are already out there, and the way they store those
+details is considered part of the low level firmware which will never
+change. Yet it would be nice to run vanilla Linux on them (or
+OpenWrt), and make sure things like NFS root can work, and for that
+the MAC address needs to be in place already, ie. extracting it in
+userland would be too late.
+
+However, I also believe there is nothing wrong with that and using a
+filesystem comes with many additional pitfalls, such as being possibly
+not cleanly unmounted, the file could be renamed or deleted by the
+user, .... All that should not result in a device not having it's
+proper MAC address any more.
+
+Why have all the complexity for something as simple as storing 6 bytes
+of MAC address?
+
+I will not re-iterate over all that discussion now, you may look at
+list archives where this has been explained and discussed also for the
+first run of the RFC series last year.
+
 > 
-> In the BSP driver, if the embedded data node has been enabled, we wait
-> for both image and embedded data nodes to have start_streaming()
-> called before starting the sensor (see
-> https://github.com/raspberrypi/linux/blob/c04af98514c26014a4f29ec87b3ece95626059bd/drivers/media/platform/bcm2835/bcm2835-unicam.c#L2559).
-> This is also the same for the Pi 5 CFE driver.
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 8c88f362feb55..242a0a139c00a 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -3662,6 +3662,11 @@ L:	linux-mtd@lists.infradead.org
+> >   S:	Maintained
+> >   F:	drivers/mtd/devices/block2mtd.c
+> > +BLOCK NVMEM DRIVER
+> > +M:	Daniel Golle <daniel@makrotopia.org>
+> > +S:	Maintained
+> > +F:	block/blk-nvmem.c
 > 
-> With the logic in this function, we only wait for start_streaming() on
-> the image node then start the sensor streaming immediately.  When
-> start_streaming() for the embedded data node is subsequently called,
-> we end up with the first N buffers missing and/or invalid as the HW
-> channel is enabled while the sensor is streaming.  I noticed this when
-> using libcamera where we start image then embedded node.  If I flip
-> things around (start embedded first then image), everything works as
-> expected.
-> 
-> Could we add back the test to ensure all nodes are streaming before
-> starting the sensor?
+> Why to add this functionality to the block layer instead of somewhere
+> in the drivers/ directory?
 
-Yes, I don't think the current implementation is good. I'm not sure why
-the logic got changed, but I'll address it in the next version.
+Simply because we need notifications about appearing and disappearing
+block devices, or a way to iterate over all block devices in a system.
+For both there isn't currently any other interface than using a
+class_interface for that, and that requires access to &block_class
+which is considered a block subsystem internal.
 
-> > +
-> > +               spin_lock_irqsave(&node->dma_queue_lock, flags);
-> > +               buf = list_first_entry(&node->dma_queue,
-> > +                                      struct unicam_buffer, list);
-> > +               dev_dbg(unicam->dev, "buffer %p\n", buf);
-> > +               node->cur_frm = buf;
-> > +               node->next_frm = buf;
-> > +               list_del(&buf->list);
-> > +               spin_unlock_irqrestore(&node->dma_queue_lock, flags);
-> > +
-> > +               unicam_start_metadata(unicam, buf);
-> > +               node->streaming = true;
-> > +               return 0;
-> > +       }
-> > +
-> > +       ret = pm_runtime_resume_and_get(unicam->dev);
-> > +       if (ret < 0) {
-> > +               dev_err(unicam->dev, "PM runtime resume failed: %d\n", ret);
-> > +               goto err_return_buffers;
-> > +       }
-> > +
-> > +       ret = video_device_pipeline_start(&node->video_dev, &unicam->pipe);
-> > +       if (ret < 0) {
-> > +               dev_dbg(unicam->dev, "Failed to start media pipeline: %d\n", ret);
-> > +               goto err_pm_put;
-> > +       }
-> > +
-> > +       spin_lock_irqsave(&node->dma_queue_lock, flags);
-> > +       buf = list_first_entry(&node->dma_queue,
-> > +                              struct unicam_buffer, list);
-> > +       dev_dbg(unicam->dev, "buffer %p\n", buf);
-> > +       node->cur_frm = buf;
-> > +       node->next_frm = buf;
-> > +       list_del(&buf->list);
-> > +       spin_unlock_irqrestore(&node->dma_queue_lock, flags);
-> > +
-> > +       unicam_start_rx(unicam, buf);
-> > +
-> > +       ret = v4l2_subdev_enable_streams(&unicam->subdev.sd, remote_pad, BIT(0));
-> > +       if (ret < 0) {
-> > +               dev_err(unicam->dev, "stream on failed in subdev\n");
-> > +               goto error_pipeline;
-> > +       }
-> > +
-> > +       node->streaming = true;
-> > +
-> > +       return 0;
-> > +
-> > +error_pipeline:
-> > +       video_device_pipeline_stop(&node->video_dev);
-> > +err_pm_put:
-> > +       pm_runtime_put_sync(unicam->dev);
-> > +err_return_buffers:
-> > +       unicam_return_buffers(node, VB2_BUF_STATE_QUEUED);
-> > +       return ret;
-> > +}
+Also note that the same is true for the MTD NVMEM provider (in
+drivers/mtd/mtdcore.c) as well as the UBI NVMEM provider (in
+drivers/mtd/ubi/nvmem.c), both are considered an integral part of
+their corresponding subsystems -- despite the fact that in those cases
+this wouldn't even be stricktly needed as for MTD we got
+register_mtd_user() and for UBI we'd have
+ubi_register_volume_notifier().
 
-[snip]
-
--- 
-Regards,
-
-Laurent Pinchart
+Doing it differently for block devices would hence not only complicate
+things unnessesarily, it would also be inconsistent.
 
