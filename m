@@ -1,198 +1,185 @@
-Return-Path: <devicetree+bounces-52317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 573678862CB
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 23:00:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 062B48862E2
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 23:06:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA2151F2100B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 22:00:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8592D1F22A79
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 22:06:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 801D0136657;
-	Thu, 21 Mar 2024 22:00:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3A4B13666E;
+	Thu, 21 Mar 2024 22:06:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="52n0zck7"
+	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="sAZfLl1A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B3BF133998;
-	Thu, 21 Mar 2024 22:00:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01ADD132489;
+	Thu, 21 Mar 2024 22:06:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711058408; cv=none; b=RNMu42gWBotNoudOr5+rEC8TyirXP6uZkeMSFJHMKP57VZ3Pm173Rx9+na7bUvBMcoLtancc+m6Z9d99LEnwrs1oI0JZXUl499DWkk5HQSZCw2AgkCPG/ODVw/dtb7Izu6VLBxTN7xIPy3JrYm3v4dfnDUhOU0WGqX+OXMQLl/w=
+	t=1711058775; cv=none; b=QaAZZcElso++Vo8KgwDM3M7wyyfUY+/3aOpjjrwNiK4k1i7qc5Vlw1Gesezz26/1hnzYqb3+A6r21J+kiUSlz+3idRL2dMimh1on1MUdLMQN7zB9VAuib1NMqThQuSkrY4/CkY1izHkdKSHp6Yh5UIEBJ71JDrXos6ojAK2zPNY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711058408; c=relaxed/simple;
-	bh=t2QmslawEats+EV93HQG0+kSPQ49sMzPwqUo61078Cg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J9rqWtWJ1iP9efXgS5M/u7NpeyvAy4msQMQQcgbGzb9KtmXNd7Z9C9DLuyO8pvyraMORxt9XtBEMoVsQs2LT46MjrNJWDqQWW7idjiyeHGULbX/steEfDNB+ndL0ApHwi80Diejq8zjueRktO7JMpbqBmrlJJbMFEoMHddSkAlY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=52n0zck7; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=TT+5vkWHgG4JG2zDFc0DxT6DP+1/xW6JuSns2VThGEI=; b=52n0zck7k+vUeE+nu8Ctrwc7Ne
-	5YWLCUzmuP0BHiG99a9vi2uVwJ4NWyg/aPKrEljnQ54IUg0ZJ/Lf9LhPlyEljuPv8pKm4JKCQ/L+O
-	PtapZuCttFCEENUi8xBRZdV8MQYb1gPLG0kdlZWzdewh5F5tGaY3fNcCH/apvSUvFAaI=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rnQS5-00AuVW-Eo; Thu, 21 Mar 2024 22:59:57 +0100
-Date: Thu, 21 Mar 2024 22:59:57 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Josua Mayer <josua@solid-run.com>
-Cc: Gregory Clement <gregory.clement@bootlin.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	s=arc-20240116; t=1711058775; c=relaxed/simple;
+	bh=jCsAdyC1KUA5vKIMMyySgNdeDPLdStRYb2SYcOmbSS4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=dphE5pAShrf1GaAa+VGfKhEn4uS1i48YCH/QfMV2Y4HAQTeA9YyAvoBcNfvMDlDyrG3/P3ClhflQslZT1XjvDkCSCHZet9zoffGJd8DrGwzF1GYBfQKX4r1ufUSb3zU1umMOOwKyY72FKPINGsR6QhfTUg0XnRt2UBYggbP1XW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=sAZfLl1A; arc=none smtp.client-ip=208.88.110.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id C0E759C53D6;
+	Thu, 21 Mar 2024 18:06:03 -0400 (EDT)
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id nvZ0To_hTJnD; Thu, 21 Mar 2024 18:06:02 -0400 (EDT)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 8C5CD9C52E9;
+	Thu, 21 Mar 2024 18:06:02 -0400 (EDT)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 8C5CD9C52E9
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
+	t=1711058762; bh=1r3GwkK0c9zs1wbPB3fzzwaH34IaNdvV4R26cOy5fiA=;
+	h=From:To:Date:Message-ID:MIME-Version;
+	b=sAZfLl1AnVNozQ6iyYB2Qdc1GW14FSA1QscuRbjlufMGhSEj6xfGeABh55pwC8SP7
+	 4xOSBwfrpj7L7Eu20jlv2wbaTLrQmof0gIP8MvBx1ekOBZCg3uXTjkBDIPl1wGXzQ1
+	 9km//6FG3SIQP1N5GPAJ2PQh0rMW+bdpOMFzWIcpgARdg7x0Skj8OVXgSbiteNKil4
+	 cUrgbAQEstR2nDI5yG0oRhCj0I5ZmfMt4AVnPucJBLOEWOFIlxNv8t1YMko1nvV52z
+	 5ImS3cp122Jg0GKCHMfL2La+S5hHSWPU1rMWPRUwOlgies9OOMK8wf+/IgVBN/ptUU
+	 rOJHAscDb4zsA==
+X-Virus-Scanned: amavis at mail.savoirfairelinux.com
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id PVetQC4MblrT; Thu, 21 Mar 2024 18:06:02 -0400 (EDT)
+Received: from pcperry.mtl.sfl (unknown [192.168.51.254])
+	by mail.savoirfairelinux.com (Postfix) with ESMTPSA id 535DC9C52D8;
+	Thu, 21 Mar 2024 18:06:02 -0400 (EDT)
+From: Charles Perry <charles.perry@savoirfairelinux.com>
+To: mdf@kernel.org
+Cc: avandiver@markem-imaje.com,
+	bcody@markem-imaje.com,
+	Charles Perry <charles.perry@savoirfairelinux.com>,
+	Wu Hao <hao.wu@intel.com>,
+	Xu Yilun <yilun.xu@intel.com>,
+	Tom Rix <trix@redhat.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Yazan Shhady <yazan.shhady@solid-run.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: add description for solidrun cn9130 som
- and clearfog boards
-Message-ID: <e24e78a6-852c-4458-987c-3601908a71f0@lunn.ch>
-References: <20240321-cn9130-som-v1-0-711127a409ae@solid-run.com>
- <20240321-cn9130-som-v1-2-711127a409ae@solid-run.com>
+	Michal Simek <michal.simek@amd.com>,
+	linux-fpga@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v6 0/4] fpga: xilinx-selectmap: add new driver
+Date: Thu, 21 Mar 2024 18:04:32 -0400
+Message-ID: <20240321220447.3260065-1-charles.perry@savoirfairelinux.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240321-cn9130-som-v1-2-711127a409ae@solid-run.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Mar 21, 2024 at 10:47:12PM +0100, Josua Mayer wrote:
-> Add description for the SolidRun CN9130 SoM, and Clearfog Base / Pro
-> reference boards.
-> 
-> The SoM has been designed as a pin-compatible replacement for the older
-> Armada 388 based SoM. Therefore it supports the same boards and a
-> similar feature set.
-> 
-> Most notable upgrades:
-> - 4x Cortex-A72
-> - 10Gbps SFP
-> - Both eMMC and SD supported at the same time
-> 
-> The developer first supporting this product at SolidRun decided to use
-> different filenames for the DTBs: Armada 388 uses the full
-> "clearfog" string while cn9130 uses the abbreviation "cf".
-> This name is already hard-coded in pre-installed vendor u-boot and can
-> not be changed easily.
-> 
-> NOTICE IN CASE ANYBODY WANTS TO SELF-UPGRADE:
-> CN9130 SoM has a different footprint from Armada 388 SoM.
-> Components on the carrier board below the SoM may collide causing
-> damage, such as on Clearfog Base.
-> 
-> Signed-off-by: Josua Mayer <josua@solid-run.com>
-> ---
->  arch/arm64/boot/dts/marvell/Makefile           |   2 +
->  arch/arm64/boot/dts/marvell/cn9130-cf-base.dts | 138 ++++++++++++++
->  arch/arm64/boot/dts/marvell/cn9130-cf-pro.dts  | 249 +++++++++++++++++++++++++
->  arch/arm64/boot/dts/marvell/cn9130-cf.dtsi     | 198 ++++++++++++++++++++
->  arch/arm64/boot/dts/marvell/cn9130-sr-som.dtsi | 160 ++++++++++++++++
->  5 files changed, 747 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
-> index 99b8cb3c49e1..019f2251d696 100644
-> --- a/arch/arm64/boot/dts/marvell/Makefile
-> +++ b/arch/arm64/boot/dts/marvell/Makefile
-> @@ -28,3 +28,5 @@ dtb-$(CONFIG_ARCH_MVEBU) += cn9130-crb-A.dtb
->  dtb-$(CONFIG_ARCH_MVEBU) += cn9130-crb-B.dtb
->  dtb-$(CONFIG_ARCH_MVEBU) += ac5x-rd-carrier-cn9131.dtb
->  dtb-$(CONFIG_ARCH_MVEBU) += ac5-98dx35xx-rd.dtb
-> +dtb-$(CONFIG_ARCH_MVEBU) += cn9130-cf-base.dtb
-> +dtb-$(CONFIG_ARCH_MVEBU) += cn9130-cf-pro.dtb
-> diff --git a/arch/arm64/boot/dts/marvell/cn9130-cf-base.dts b/arch/arm64/boot/dts/marvell/cn9130-cf-base.dts
-> new file mode 100644
-> index 000000000000..b0067940d5e4
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/marvell/cn9130-cf-base.dts
-> @@ -0,0 +1,138 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright (C) 2024 Josua Mayer <josua@solid-run.com>
-> + *
-> + * DTS for SolidRun CN9130 Clearfog Base.
-> + *
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/input/input.h>
-> +
-> +#include "cn9130.dtsi"
-> +#include "cn9130-sr-som.dtsi"
-> +#include "cn9130-cf.dtsi"
-> +
-> +/ {
-> +	model = "SolidRun CN9130 Clearfog Base";
-> +	compatible = "solidrun,clearfog-base-a1", "solidrun,clearfog-a1",
-> +		     "solidrun,cn9130-sr-som","marvell,cn9130",
-> +		     "marvell,armada-ap807-quad", "marvell,armada-ap807";
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +		pinctrl-0 = <&rear_button_pins>;
-> +		pinctrl-names = "default";
-> +
-> +		button-0 {
-> +			/* The rear SW3 button */
-> +			label = "Rear Button";
-> +			gpios = <&cp0_gpio1 31 GPIO_ACTIVE_LOW>;
-> +			linux,can-disable;
-> +			linux,code = <BTN_0>;
-> +		};
-> +	};
-> +
-> +	rfkill-m2-gnss {
-> +		compatible = "rfkill-gpio";
-> +		label = "m.2 GNSS";
-> +		radio-type = "gps";
-> +		/* rfkill-gpio inverts internally */
-> +		shutdown-gpios = <&expander0 9 GPIO_ACTIVE_HIGH>;
-> +	};
-> +
-> +	/* M.2 is B-keyed, so w-disable is for WWAN */
-> +	rfkill-m2-wwan {
-> +		compatible = "rfkill-gpio";
-> +		label = "m.2 WWAN";
-> +		radio-type = "wwan";
-> +		/* rfkill-gpio inverts internally */
-> +		shutdown-gpios = <&expander0 8 GPIO_ACTIVE_HIGH>;
-> +	};
-> +};
-> +
-> +/* SRDS #3 - SGMII 1GE */
-> +&cp0_eth1 {
-> +	phy = <&phy1>;
-> +	phys = <&cp0_comphy3 1>;
-> +	phy-mode = "sgmii";
-> +	status = "okay";
-> +};
-> +
+Hello,
 
-> +&cp0_eth2_phy {
-> +	/*
-> +	 * Configure LEDs:
-> +	 * - LED[0]: link/activity: On/blink (green)
-> +	 * - LED[1]: link is 100/1000Mbps: On (yellow)
-> +	 * - LED[2]: high impedance (floating)
-> +	 */
-> +	marvell,reg-init = <3 16 0xf000 0x0a61>;
+This patchset adds a new driver for the 7 series FPGA's SelectMAP
+interface.
 
-Sorry, but no. List the LEDs in the PHY node, and they can then be
-controlled via /sys/class/leds.
+The SelectMAP interface shares a common GPIO protocol with the SPI
+interface which is already in the kernel (drivers/fpga/xilinx-spi.c).
+The approach proposed in this patchset is to refactor xilinx-spi.c into
+xilinx-core.c which would handle the common GPIO protocol. This is then
+used to build two drivers, the already existing xilinx-spi.c driver and
+a newly added xilinx-selectmap.c driver.
 
-arch/arm/boot/dts/marvell/armada-370-rd.dts is an example.
+The SelectMAP driver proposed only supports 8 bit mode. This is because
+the 16 and 32 bits mode have limitations with regards to compressed
+bitstream support as well as introducing endianness considerations.
 
-	Andrew
+I'm testing xilinx-selectmap.c on a custom i.MX6 board connected to an
+Artix 7 FPGA. Flashing a 913K bitstream takes 0.44 seconds.
+
+Changes since v5: (from Yilun review)
+ * xilinx-core.h: remove private fields kernel-doc
+ * xilinx-spi.c: rename conf into core in xilinx_spi_probe
+ * xilinx-core.c: introduce the new gpio names in patch 4/4
+ * xilinx-core.c: remove kernel-doc on xilinx_core_devm_gpiod_get()
+ * xilinx-selectmap.c:
+   * reorder includes in alphabetical order
+   * xilinx_selectmap_probe(): remove unused resource *r variable
+   * xilinx_selectmap_probe(): use a single gpio_desc* temporary
+   * xilinx_selectmap_probe(): declare variables in reverse xmas tree
+
+Changes since v4: (from Yilun and Krzysztof review)
+ * xilinx-core: use sizeof() instead of hardcoded immediate
+ * xilinx-core: fix module compilation (EXPORT_SYMBOL_GPL, MODULE_LICENSE=
+,
+   MODULE_AUTHOR, MODULE_DESCRIPTION)
+ * xilinx-core: add private/public qualifiers for struct xilinx_fpga_core
+ * xilinx-spi: remove struct xilinx_spi_conf. This struct isn't needed as
+   the struct spi_device* can be retrieved from the struct device*.
+ * dt-bindings: remove usage of "_b" and "-b" for the new driver. We
+   agreed that the spi and selectmap driver will use different bindings
+   which will be handled by the driver core and that the legacy names wil=
+l
+   be used only for the spi compatible.
+ * xilinx-core: select between prog/init and prog_b/init-b
+
+Changes since v3: (from Rob Herring review)
+ * Fix an error in the DT binding example compatible.
+ * Drop the renaming of "prog_b" to "prog" and "init-b" to "init".
+   Patches 2 and 3 are removed.
+
+Changes since v2:
+ * Inserted patch 2 and 3 which rename "prog_b" and "init-b" into "prog"
+   and "init" for the SPI driver.
+ * From Krzysztof Kozlowski review's:
+   * Use more specific compatible names
+   * Remove other missing occurences of the slave word missed in v2.
+ * From Xu Yilun review's:
+   * Fix vertical whitespace in get_done_gpio().
+   * Combine write() and write_one_dummy_byte() together.
+   * Eliminate most of the xilinx_core_probe() arguments, the driver
+     needs to populate those directly into the xilinx_fpga_core struct.
+     Added some documentation to struct xilinx_fpga_core to clarify
+     this.
+   * Removed typedefs from xilinx-core.h.
+   * Moved null checks in xilinx_core_probe() to first patch.
+   * Move csi_b and rdwr_b out of xilinx_selectmap_conf as they are not
+     used out of the probe function.
+
+Changes since v1: (from Krzysztof Kozlowski review's)
+  * Use more conventional names for gpio DT bindings
+  * fix example in DT bindings
+  * add mc-peripheral-props.yaml to DT bindings
+  * fix various formatting mistakes
+  * Remove all occurences of the "slave" word.
+
+Charles Perry (4):
+  fpga: xilinx-spi: extract a common driver core
+  dt-bindings: fpga: xlnx,fpga-selectmap: add DT schema
+  fpga: xilinx-selectmap: add new driver
+  xilinx-core: add new gpio names for prog and init
+
+ .../bindings/fpga/xlnx,fpga-selectmap.yaml    |  86 +++++++
+ drivers/fpga/Kconfig                          |  12 +
+ drivers/fpga/Makefile                         |   2 +
+ drivers/fpga/xilinx-core.c                    | 229 ++++++++++++++++++
+ drivers/fpga/xilinx-core.h                    |  27 +++
+ drivers/fpga/xilinx-selectmap.c               |  95 ++++++++
+ drivers/fpga/xilinx-spi.c                     | 224 ++---------------
+ 7 files changed, 466 insertions(+), 209 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/fpga/xlnx,fpga-sele=
+ctmap.yaml
+ create mode 100644 drivers/fpga/xilinx-core.c
+ create mode 100644 drivers/fpga/xilinx-core.h
+ create mode 100644 drivers/fpga/xilinx-selectmap.c
+
+--
+2.43.0
 
