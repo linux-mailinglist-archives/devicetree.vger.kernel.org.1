@@ -1,127 +1,151 @@
-Return-Path: <devicetree+bounces-52175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52176-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 041AD8858BE
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 13:03:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 274DE8858ED
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 13:18:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9900FB21CF7
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 12:03:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF20B280AB3
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 12:18:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ABA7757EF;
-	Thu, 21 Mar 2024 12:03:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38E8075811;
+	Thu, 21 Mar 2024 12:18:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kkd8ok62"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KUvM0v5a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89A8B56B68;
-	Thu, 21 Mar 2024 12:03:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C23F7603F;
+	Thu, 21 Mar 2024 12:18:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711022630; cv=none; b=XHtf1Lnzcmngip6C2thPWbhw4FPFmYNEuECWdfe97Vyb5iN6FzdgI1DijjDjqDam5qyXDbNZEBWqTTWPdoo4BPFoaOK9m+hyMtlulvHS2EFJzCIBCSLjvZ1/KTY5bpYwCIC1kwPLTJYawhTH1YTuQZCjt+7M4js304+dqkRRugE=
+	t=1711023501; cv=none; b=MABGfib69/K5m+y/Zm2Po+1FWBt8QH1BM2lrthPgUI2WJ5upaRfjghCB6GZqfgndjWCJTQRfTW7T5zwOdT6+A0H0cRj3wvI3b7QZpOyIU97ZvxZRC+tfXjtvuIZ7uv/I1lkU8zpMkrZMbq0ANJFkzoVjJxjsTAsrw9zkYPku4L4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711022630; c=relaxed/simple;
-	bh=6tBrYa203xuCC51j6/N1hP+cXyjYjBcvGz8a2k1TW8Q=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=f0/G/bkeqdL/NrTFXLeVP0Lht+77PaafF87uJ5S8k/sccbKIMzMOSHSVj+bQ4PhRtGUAu9pi/irWx57UWrDsln2vvRl1mei0hMtyXUrYcIbbot3/9e2Fll9YBTomwORT07msekpF4eQP9A8Kit6J5O4mj17T0dFpLqOBfyVnc2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kkd8ok62; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-56bcb9640bbso607141a12.0;
-        Thu, 21 Mar 2024 05:03:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711022627; x=1711627427; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QZuaEg5mTYe1p+g90HQY9VXRTkmxWXoDH9h8Hme3zkM=;
-        b=kkd8ok623PBN1QBn0Ml2y6BovI/Rbt5OfNQ1TXqKBee32TVMzY+YD4xA1uqCGnSu5r
-         ivu71rPeKxkTrc50Ja/yaXCwaccY/F2cIlUp5BcRRYyVoGo6nuCIpj1Mwj5uFhcGoG6q
-         w9c24x7pk6j+hko5t3e1aR5Qu0M5gfcfZ7bV/F4vBDcaKieXOXnAMh3xkDLYZdpXqpCz
-         UFl6pOtdHGMx4Ubm0j7+ObXSFiDVD+K8Y1WTad0NV/18zFwXqzqZvR3+6V+Us8hcETdX
-         4rNX2ED3Ivch9goEYqhCg2UJ4LjIBDFaqg5vfYN0qGM9Egj8s5+m2URK21s7DpS0Nl8i
-         tCnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711022627; x=1711627427;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QZuaEg5mTYe1p+g90HQY9VXRTkmxWXoDH9h8Hme3zkM=;
-        b=RCx7WpWjmQI9E0YMqdAtFNzV3jGXiOOKwWez7qE9XfJCJNXeiNUwsam26WgGmLAZJl
-         WxKpHlx6LFVO/I0uQmvPV4yHjvwl76d3PujHsyAI7vZDuFpSEzc9iggyTTKjJnfedwit
-         XxKMuHWUlJCM9RGSFuMVUvis2e5iAU25ZtlAMxewlpJEPdwcdVKzuOOhcgFhgYhDfSiJ
-         AZedSNgS5rWVswwyWvMt4/L4bgD0ZJIrBLlThYu1X0b2Vh+bbDymCXwgk2YpfYyWB5Td
-         7m28IpcdKHcC5ide8+E4iY3g4bY5eKT2d5SXzjZepJSNAIRIHvbFunyBqsScEmyOoAG8
-         FJtQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXpaZ8oW7f1KZxzpgKmsByTGKTQU8CHC0FBip5lysMgKqpiOIDs04BRduSB0KKSokrjWSAsd5rPevXe3ZsmcvuhrmsAcDqRyU6Gvj4Px+lQVMahAHPb6xq9VRwB4VmHpH/gl4l34JIKSsljN0dJKd6l7sx3gdUHrEzLXPQIoFESHw==
-X-Gm-Message-State: AOJu0Yy13zxt1NKwrre6dte6Fws/DgXy+hyU+ROnK+wV2HyorbQJOjEE
-	iHjKAys+wApYrc6QCfLpJfRBzHiG/n7FdpNFdEwbgKcHFc8E7q7333W3+65taH65eI4205b1m9X
-	Df8NtZfxnR20Dh01TCiZGr7rPFWY=
-X-Google-Smtp-Source: AGHT+IEdNcpby97h1zjyf0aFS1poMNJpJYG+OR/wb6fEAbDA/2zXZUCsa/fIfGYqn+836ym0L8juWXu/yyXOrcfy/E4=
-X-Received: by 2002:a05:6402:4145:b0:565:e646:5c15 with SMTP id
- x5-20020a056402414500b00565e6465c15mr18890285eda.31.1711022626546; Thu, 21
- Mar 2024 05:03:46 -0700 (PDT)
+	s=arc-20240116; t=1711023501; c=relaxed/simple;
+	bh=UBRSx9f1gMDeY6MJdKKzXRvqJDl/ks1aEcmhdUtM2Vs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tbemrIoHF3Km1hyhR3rbBYSep6vidTBrBN795lpzAwirVb0bmlGNROXsFcrjJR/fUtGXlvomuunRtMBVmqDBuLqLcdzJydaYTRf1jye0SLMXMU5fPl2bx76CBbeJi8lKkzyRftQ01oa0QugOdTVdd3WzrDFEFLlWZrYskO73VKU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KUvM0v5a; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49544C433F1;
+	Thu, 21 Mar 2024 12:18:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711023500;
+	bh=UBRSx9f1gMDeY6MJdKKzXRvqJDl/ks1aEcmhdUtM2Vs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=KUvM0v5a2FH0U+EDGdJ3KqZ/zNp1vGL51E7Vvquu1AwsXsW1QzbaWneLQtngs33l0
+	 JqCkyT+MKy1b474b2bpj20AepKpwfwJwJZsH/vznmAyX2oKZuMgVw6lcO3wgRubjL1
+	 LnPg/id3mfN8MuAhAqhI1HiCXyn740cq8wfWzgWCwdjJGp2HxwzUcaI3vAyIPIs94j
+	 SB4CaSBgGI9wH7tEiuXjN+LDx44LuGssrrPUsev/Yiv3wG+F+nnpGzIPaT0GQm3DFy
+	 QpqRJmJV70aTU0si8sMecAVV2xHcvLHtD/059KFin1vKZjbil69yIaT4KYOmilemvG
+	 xP52JxwCZoO3g==
+Message-ID: <e32363b2-66c4-4b76-a56a-40eec3a3c907@kernel.org>
+Date: Thu, 21 Mar 2024 13:18:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next 1/4] dt-bindings: net: dsa: realtek: describe LED
+ usage
+To: Luiz Angelo Daros de Luca <luizluca@gmail.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+ =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+ Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
+ Vladimir Oltean <olteanv@gmail.com>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
 References: <20240310-realtek-led-v1-0-4d9813ce938e@gmail.com>
- <20240310-realtek-led-v1-1-4d9813ce938e@gmail.com> <6705a278-d294-475f-bc4c-b08926c5017d@lunn.ch>
-In-Reply-To: <6705a278-d294-475f-bc4c-b08926c5017d@lunn.ch>
-From: Luiz Angelo Daros de Luca <luizluca@gmail.com>
-Date: Thu, 21 Mar 2024 09:03:34 -0300
-Message-ID: <CAJq09z5wXQQQtHJ5TdSz6J+Ov0Hifde25psoWm8EiHxV8c-TYw@mail.gmail.com>
-Subject: Re: [PATCH net-next 1/4] dt-bindings: net: dsa: realtek: describe LED usage
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Linus Walleij <linus.walleij@linaro.org>, =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>, 
-	Florian Fainelli <f.fainelli@gmail.com>, Vladimir Oltean <olteanv@gmail.com>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+ <20240310-realtek-led-v1-1-4d9813ce938e@gmail.com>
+ <d2568101-f3e0-4c2d-8613-52d023e22b77@kernel.org>
+ <CAJq09z6q2gaZYqc-=fQEMOA1ViAKTEJqT9iF2xsYCde9syouig@mail.gmail.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <CAJq09z6q2gaZYqc-=fQEMOA1ViAKTEJqT9iF2xsYCde9syouig@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Andrew,
+On 21/03/2024 12:56, Luiz Angelo Daros de Luca wrote:
+> 
+>>
+>>> +
+>>> +            patternProperties:
+>>> +              '^led@[a-f0-9]+$':
+>>
+>> [0-3]
+> 
+> leds are already defined for a port. I'm just trying to add a
+> restriction to allow only 0-3 leds and use that to identify the group.
 
-Em dom., 10 de mar. de 2024 =C3=A0s 15:02, Andrew Lunn <andrew@lunn.ch> esc=
-reveu:
->> On Sun, Mar 10, 2024 at 01:51:58AM -0300, Luiz Angelo Daros de Luca wrot=
-e:
-> > Each port can have up to 4 LEDs (3 for current rtl8365mb devices). The
-> > LED reg property will indicate its LED group.
-> > +                properties:
-> > +                  reg:
-> > +                    description:
-> > +                      "reg indicates the LED group for this LED"
-> > +                    enum: [0, 1, 2, 3]
->
-> If this identifies the group, what identifies the actual LED? There
-> are four of them. How do i say LEDs 0 and 1 are unused, 2 and 3 are
-> wired to LEDs?
+Where is the restriction, in your original patch?
 
-Do we need to mention a specific HW is not present? I guess we just
-omit it, like the led@1 and led@2 in the example.
+> These suggestions will redefine the leds property, forcing me to
 
-> It would be much more usual for reg to be the LED number for the
-> port. And there then be a group property indicating what group the LED
-> belongs to. However, i'm wondering, is group fixed? Do we actually
-> need it in DT, or can there just be a table in the driver which maps
-> port:led to group?
+How? I really do not see it.
 
-The LED groups are a fixed HW feature. The chip has dedicated pins for
-each LED in each group. Those pins might have an alternative usage (as
-an GPIO) but you cannot change a LED from a group to another in SW.
-That's why I thought it was a thing to be described in the DT.
+> declare #address-cells, #size-cells for leds and reference the led
+> schema in led@[0-3]. Is there a way to just add a constraint to what
+> is already present?
 
->          Andrew
+I don't follow.
 
-Regards,
+> 
+>>
+>>> +                type: object
+>>> +                additionalProperties: true
+>>
+>> This cannot be 'true'. Which then will point you to errors and missing
+>> ref to leds schema and need to use unevaluatedProperties: false.
+Best regards,
+Krzysztof
 
-Luiz
 
