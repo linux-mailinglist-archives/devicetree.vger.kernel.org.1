@@ -1,155 +1,246 @@
-Return-Path: <devicetree+bounces-52288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 298B0886152
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 20:53:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEDEA88615D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 20:57:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B35C1C21C59
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 19:53:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 86604281E87
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 19:57:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 200F0134430;
-	Thu, 21 Mar 2024 19:53:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D8D9134420;
+	Thu, 21 Mar 2024 19:57:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="fAQkvuRD"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="hFdkSsON"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23E5E13442E;
-	Thu, 21 Mar 2024 19:53:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A3E979F0;
+	Thu, 21 Mar 2024 19:57:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711050786; cv=none; b=euEIkqb8bwXmBY4j5ma2CSqooJH8HELWMgcLo+qCKIchjc+5NjyWlff43hKL9zuJP1jy698d8vuQBGnJwWD5JT3Iq02Q2YZJkz5tCawE8vLZnTiVvRpCw4csMd/DqPcu5UDh4qMGgstQ+otidfuaSEThD1wIsJHT3EYgIht554Y=
+	t=1711051076; cv=none; b=ayYPLaYMucnWKwgxLE4XVxOuVUsj/aw8A7CdbdMKPmbDyUSklEuf/iXaa1XsLHaMOxjjG+MtCXDPqKuYuOTR9e1QNnm78gRgLrAfk4JlTIn6Tr4VZQh9dks2QX86s4GLWLqUkJhXZS2mqSAILCC34Gw51sdWzJVlq6tpcCe9ZAs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711050786; c=relaxed/simple;
-	bh=0AZsgEksMv0v7XeGuddRbuorgH0+GV74G/W/bjtGFUk=;
+	s=arc-20240116; t=1711051076; c=relaxed/simple;
+	bh=o9Y3w5cecuIp0kCib8OIXk7mGz8FxiOO9/PPik6zBlY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TFEq4UyELipmVWSVB3vKyvultijybfVXuljkEe1sexYoBPhIP8HJ+Oy0QCz+qY37TT1sKioemSUqu0rhjVMYDubO2p9r2i7nuGRJ80skYlLv5xk/+RabIlRJ9i3rdURR8eejC5Zu/Q6TMBPfPXcWqXhTdhXVm/i3Pi4hvsiu9XI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=fAQkvuRD; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1711050784; x=1742586784;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=0AZsgEksMv0v7XeGuddRbuorgH0+GV74G/W/bjtGFUk=;
-  b=fAQkvuRDDmdDmsMAIroOiMv6OsnNxMz3hyC8F8AcgZU8XtcWtLIFJKb0
-   qA8JbWd+5F6Jew5GtwqNmVuuO29QcoVfVMPyeGojjKVP1cUaaRrJlh3zE
-   r8BrT/17fttRgc0u9kJuPvf3yg0R+Vt1Bs+A5O2gOTjsokFYl1bwyiZUe
-   wkkHR96qNlCfW1f2RnpTzzOVIRUETzcyAeP+6jb0pa6tr8HabCylCr58L
-   riCb3uyagLntFgbtWqA9EXQfUvx6omLdniF0ANzOMBQfCI4EQDqV3kjjJ
-   0Dp6VzhGWbjM3rtXM5JpYNqN0Uua5vzi1791aA5BUwzc9cRs8bYZxfMPI
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="28541701"
-X-IronPort-AV: E=Sophos;i="6.07,143,1708416000"; 
-   d="scan'208";a="28541701"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Mar 2024 12:53:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,143,1708416000"; 
-   d="scan'208";a="19285155"
-Received: from lkp-server01.sh.intel.com (HELO b21307750695) ([10.239.97.150])
-  by fmviesa004.fm.intel.com with ESMTP; 21 Mar 2024 12:52:59 -0700
-Received: from kbuild by b21307750695 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rnOTA-000Jjz-2l;
-	Thu, 21 Mar 2024 19:52:56 +0000
-Date: Fri, 22 Mar 2024 03:52:32 +0800
-From: kernel test robot <lkp@intel.com>
-To: Sudan Landge <sudanl@amazon.com>, tytso@mit.edu, Jason@zx2c4.com,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, sathyanarayanan.kuppuswamy@linux.intel.com,
-	thomas.lendacky@amd.com, dan.j.williams@intel.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, graf@amazon.de, dwmw@amazon.co.uk,
-	bchalios@amazon.es, xmarcalx@amazon.co.uk
-Subject: Re: [PATCH v2 4/4] virt: vmgenid: add support for devicetree bindings
-Message-ID: <202403220322.EGtpD4Jw-lkp@intel.com>
-References: <20240321025105.53210-5-sudanl@amazon.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=c/8K8/0WF6P5/SYZA0IaGfGHLIDAMCL9t0VUyi7OyTPSuyxWe6bdYY3cckBAI4WcmiGWPs9rKTxivsw6icvS0nun0vKnHktxzPvMUEW24brPz9U19cJa8mX+gISUNaTDqZcTkCTfYJlfynrvpBNJYt/jnzLCFIqSkn2bvK4LJcc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=hFdkSsON; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5D9D42B3;
+	Thu, 21 Mar 2024 20:57:24 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1711051044;
+	bh=o9Y3w5cecuIp0kCib8OIXk7mGz8FxiOO9/PPik6zBlY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hFdkSsON4YDxCyLKmhiOYtMMEEB7VZuXiyU++yOv/so8GqZNKk1XX9j8rEABz2xHK
+	 b4Pz0bA5yJ9qKPCkrF9DcX3VnX+3xqe+K8RUrZhTkcSWheHXkoQAbfDEcrJqZvtUJq
+	 16lkrWdN9LuXiQPA9s4qZxWu5p2K5Tmq8oN9cpYE=
+Date: Thu, 21 Mar 2024 21:57:49 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Naushir Patuck <naush@raspberrypi.com>
+Cc: linux-media@vger.kernel.org,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	David Plowman <david.plowman@raspberrypi.com>,
+	Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	kernel-list@raspberrypi.com, linux-rpi-kernel@lists.infradead.org,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	bcm-kernel-feedback-list@broadcom.com,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 09/15] media: bcm2835-unicam: Add support for
+ CCP2/CSI2 camera interface
+Message-ID: <20240321195749.GZ9582@pendragon.ideasonboard.com>
+References: <20240301213231.10340-1-laurent.pinchart@ideasonboard.com>
+ <20240301213231.10340-10-laurent.pinchart@ideasonboard.com>
+ <CAEmqJPqdfaND6vFoZgNALfzPf9-VM1XU0AyLs3V6OJe3WkDEng@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240321025105.53210-5-sudanl@amazon.com>
+In-Reply-To: <CAEmqJPqdfaND6vFoZgNALfzPf9-VM1XU0AyLs3V6OJe3WkDEng@mail.gmail.com>
 
-Hi Sudan,
+Hi Naush,
 
-kernel test robot noticed the following build warnings:
+On Wed, Mar 20, 2024 at 12:30:36PM +0000, Naushir Patuck wrote:
+> On Fri, 1 Mar 2024 at 21:32, Laurent Pinchart wrote:
+> >
+> > From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> >
+> > Add a driver for the Unicam camera receiver block on BCM283x processors.
+> > It is represented as two video device nodes: unicam-image and
+> > unicam-embedded which are connected to an internal subdev (named
+> > unicam-subdev) in order to manage streams routing.
+> >
+> > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> > Co-developed-by: Naushir Patuck <naush@raspberrypi.com>
+> > Signed-off-by: Naushir Patuck <naush@raspberrypi.com>
+> > Co-developed-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
+> > Signed-off-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
+> > Co-developed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > ---
 
-[auto build test WARNING on a4145ce1e7bc247fd6f2846e8699473448717b37]
+[snip]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Sudan-Landge/virt-vmgenid-rearrange-code-to-make-review-easier/20240321-105317
-base:   a4145ce1e7bc247fd6f2846e8699473448717b37
-patch link:    https://lore.kernel.org/r/20240321025105.53210-5-sudanl%40amazon.com
-patch subject: [PATCH v2 4/4] virt: vmgenid: add support for devicetree bindings
-config: x86_64-randconfig-123-20240321 (https://download.01.org/0day-ci/archive/20240322/202403220322.EGtpD4Jw-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240322/202403220322.EGtpD4Jw-lkp@intel.com/reproduce)
+> > ---
+> >  MAINTAINERS                                   |    1 +
+> >  drivers/media/platform/Kconfig                |    1 +
+> >  drivers/media/platform/Makefile               |    1 +
+> >  drivers/media/platform/broadcom/Kconfig       |   23 +
+> >  drivers/media/platform/broadcom/Makefile      |    3 +
+> >  .../platform/broadcom/bcm2835-unicam-regs.h   |  255 ++
+> >  .../media/platform/broadcom/bcm2835-unicam.c  | 2607 +++++++++++++++++
+> >  7 files changed, 2891 insertions(+)
+> >  create mode 100644 drivers/media/platform/broadcom/Kconfig
+> >  create mode 100644 drivers/media/platform/broadcom/Makefile
+> >  create mode 100644 drivers/media/platform/broadcom/bcm2835-unicam-regs.h
+> >  create mode 100644 drivers/media/platform/broadcom/bcm2835-unicam.c
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202403220322.EGtpD4Jw-lkp@intel.com/
+[snip]
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/virt/vmgenid.c:153:43: sparse: sparse: cast removes address space '__iomem' of expression
+> > diff --git a/drivers/media/platform/broadcom/bcm2835-unicam.c b/drivers/media/platform/broadcom/bcm2835-unicam.c
+> > new file mode 100644
+> > index 000000000000..716c89b8a217
+> > --- /dev/null
+> > +++ b/drivers/media/platform/broadcom/bcm2835-unicam.c
+> > @@ -0,0 +1,2607 @@
 
-vim +/__iomem +153 drivers/virt/vmgenid.c
+[snip]
 
-   133	
-   134	static int vmgenid_add_of(struct device *dev, struct vmgenid_state *state)
-   135	{
-   136	#ifdef	CONFIG_OF
-   137		struct resource res;
-   138		int ret = 0;
-   139	
-   140		if (of_address_to_resource(dev->of_node, 0, &res)) {
-   141			dev_err(dev, "Failed to get resources from device tree");
-   142			ret = -EINVAL;
-   143			goto out;
-   144		}
-   145	
-   146		if (!__request_mem_region(res.start, resource_size(&res),
-   147					  "vmgenid", IORESOURCE_EXCLUSIVE)) {
-   148			dev_err(dev, "Failed to request mem region");
-   149			ret = -EINVAL;
-   150			goto out;
-   151		}
-   152	
- > 153		ret = setup_vmgenid_state(state, (u8 *)of_iomap(dev->of_node, 0));
-   154		if (ret)
-   155			goto out;
-   156	
-   157		state->irq = irq_of_parse_and_map(dev->of_node, 0);
-   158		dev->driver_data = state;
-   159	
-   160		if (request_irq(state->irq, vmgenid_of_irq_handler,
-   161				IRQF_SHARED, "vmgenid", dev) < 0) {
-   162			dev_err(dev, "request_irq failed");
-   163			dev->driver_data = NULL;
-   164			ret = -EINVAL;
-   165			goto out;
-   166		}
-   167	
-   168	out:
-   169		return ret;
-   170	#else
-   171		(void)dev;
-   172		(void)state;
-   173		return -EINVAL;
-   174	#endif
-   175	}
-   176	
+> > +static int unicam_start_streaming(struct vb2_queue *vq, unsigned int count)
+> > +{
+> > +       struct unicam_node *node = vb2_get_drv_priv(vq);
+> > +       struct unicam_device *unicam = node->dev;
+> > +       struct v4l2_subdev_state *state;
+> > +       struct unicam_buffer *buf;
+> > +       unsigned long flags;
+> > +       int ret;
+> > +       u32 pad, stream;
+> > +       u32 remote_pad = is_image_node(node) ? UNICAM_SD_PAD_SOURCE_IMAGE
+> > +                                            : UNICAM_SD_PAD_SOURCE_METADATA;
+> > +
+> > +       /* Look for the route for the given pad and stream. */
+> > +       state = v4l2_subdev_lock_and_get_active_state(&unicam->subdev.sd);
+> > +       ret = v4l2_subdev_routing_find_opposite_end(&state->routing,
+> > +                                                   remote_pad, 0,
+> > +                                                   &pad, &stream);
+> > +       v4l2_subdev_unlock_state(state);
+> > +
+> > +       if (ret)
+> > +               goto err_return_buffers;
+> > +
+> > +       dev_dbg(unicam->dev, "Starting stream on %s: %u/%u -> %u/%u (%s)\n",
+> > +               unicam->subdev.sd.name, pad, stream, remote_pad, 0,
+> > +               is_metadata_node(node) ? "metadata" : "image");
+> > +
+> > +       /* The metadata node can't be started alone. */
+> > +       if (is_metadata_node(node)) {
+> > +               if (!unicam->node[UNICAM_IMAGE_NODE].streaming) {
+> > +                       dev_err(unicam->dev,
+> > +                               "Can't start metadata without image\n");
+> > +                       ret = -EINVAL;
+> > +                       goto err_return_buffers;
+> > +               }
+> 
+> There's a slight change of behaviour in this function when compared to
+> the downstream/BSP non-streams enabled driver.
+> 
+> In the BSP driver, if the embedded data node has been enabled, we wait
+> for both image and embedded data nodes to have start_streaming()
+> called before starting the sensor (see
+> https://github.com/raspberrypi/linux/blob/c04af98514c26014a4f29ec87b3ece95626059bd/drivers/media/platform/bcm2835/bcm2835-unicam.c#L2559).
+> This is also the same for the Pi 5 CFE driver.
+> 
+> With the logic in this function, we only wait for start_streaming() on
+> the image node then start the sensor streaming immediately.  When
+> start_streaming() for the embedded data node is subsequently called,
+> we end up with the first N buffers missing and/or invalid as the HW
+> channel is enabled while the sensor is streaming.  I noticed this when
+> using libcamera where we start image then embedded node.  If I flip
+> things around (start embedded first then image), everything works as
+> expected.
+> 
+> Could we add back the test to ensure all nodes are streaming before
+> starting the sensor?
+
+Yes, I don't think the current implementation is good. I'm not sure why
+the logic got changed, but I'll address it in the next version.
+
+> > +
+> > +               spin_lock_irqsave(&node->dma_queue_lock, flags);
+> > +               buf = list_first_entry(&node->dma_queue,
+> > +                                      struct unicam_buffer, list);
+> > +               dev_dbg(unicam->dev, "buffer %p\n", buf);
+> > +               node->cur_frm = buf;
+> > +               node->next_frm = buf;
+> > +               list_del(&buf->list);
+> > +               spin_unlock_irqrestore(&node->dma_queue_lock, flags);
+> > +
+> > +               unicam_start_metadata(unicam, buf);
+> > +               node->streaming = true;
+> > +               return 0;
+> > +       }
+> > +
+> > +       ret = pm_runtime_resume_and_get(unicam->dev);
+> > +       if (ret < 0) {
+> > +               dev_err(unicam->dev, "PM runtime resume failed: %d\n", ret);
+> > +               goto err_return_buffers;
+> > +       }
+> > +
+> > +       ret = video_device_pipeline_start(&node->video_dev, &unicam->pipe);
+> > +       if (ret < 0) {
+> > +               dev_dbg(unicam->dev, "Failed to start media pipeline: %d\n", ret);
+> > +               goto err_pm_put;
+> > +       }
+> > +
+> > +       spin_lock_irqsave(&node->dma_queue_lock, flags);
+> > +       buf = list_first_entry(&node->dma_queue,
+> > +                              struct unicam_buffer, list);
+> > +       dev_dbg(unicam->dev, "buffer %p\n", buf);
+> > +       node->cur_frm = buf;
+> > +       node->next_frm = buf;
+> > +       list_del(&buf->list);
+> > +       spin_unlock_irqrestore(&node->dma_queue_lock, flags);
+> > +
+> > +       unicam_start_rx(unicam, buf);
+> > +
+> > +       ret = v4l2_subdev_enable_streams(&unicam->subdev.sd, remote_pad, BIT(0));
+> > +       if (ret < 0) {
+> > +               dev_err(unicam->dev, "stream on failed in subdev\n");
+> > +               goto error_pipeline;
+> > +       }
+> > +
+> > +       node->streaming = true;
+> > +
+> > +       return 0;
+> > +
+> > +error_pipeline:
+> > +       video_device_pipeline_stop(&node->video_dev);
+> > +err_pm_put:
+> > +       pm_runtime_put_sync(unicam->dev);
+> > +err_return_buffers:
+> > +       unicam_return_buffers(node, VB2_BUF_STATE_QUEUED);
+> > +       return ret;
+> > +}
+
+[snip]
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Regards,
+
+Laurent Pinchart
 
