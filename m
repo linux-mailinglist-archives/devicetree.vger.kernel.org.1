@@ -1,263 +1,174 @@
-Return-Path: <devicetree+bounces-52115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ED7B8855DE
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 09:40:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A44B8855E9
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 09:43:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C8C22821B7
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 08:40:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F1411F21B2A
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 08:43:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 560471864A;
-	Thu, 21 Mar 2024 08:40:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 238EB199AD;
+	Thu, 21 Mar 2024 08:43:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tnCLmwmV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QtI0Cj/E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 503B7F519
-	for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 08:40:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A485EBE6E
+	for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 08:43:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711010408; cv=none; b=jVDAcPRq+1qTopxGaWDzYNfBlvscmevUvG38RgmASN25qFMfL5mhILDAPr55uHxfV3Mk2oQ5WIOn7u63xsB0IZJvD0PZMnZBkJwF0Q6v/jzG72s/c7LMKkzfZbBvdz+u7o4GNMRVaGd/uUeDmv9SLvJJIe2kB6F3bKD4O5JeU3U=
+	t=1711010632; cv=none; b=i1Jv9lcOClGTKuEjGnrK/F/1bsUxw/Fqk+Tqj+VleSLp1N3BKl59Ogtkx4ITyJgdFu0/9KWUkS1ajAtptQLU49ZQ4728gfkLLSQq/+FwiWhWlEUJudq2wLiGKLVxkEhyN7DAaxM7pNrsto6Vsi44diUCnOW6RYtp3zU92vpkork=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711010408; c=relaxed/simple;
-	bh=oRd+yM7ZzeNrMBRK5K8UEgWAj0LhRJwmY+bwbTNGQps=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SlXxJs0aG+dV0tqU7bXoeh7jf3hnOJGFEzPFuvnDXZ8rKPlQQO8Ev7VkWlf5+/+5ZRGbETNbNwhfTMHlpTqNayqTGBwgEU7L3+9WHfcidOI1ilU7JCLHhy/CvreNnSpPb3QISeTV+s9mT5rcCluc4u4AKudoPbvjJ2sFjpGAZiM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tnCLmwmV; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-56bb3343552so741492a12.0
-        for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 01:40:06 -0700 (PDT)
+	s=arc-20240116; t=1711010632; c=relaxed/simple;
+	bh=28HOCiOmu9WvE2902Wrdaewgex0JDB4Twyq7107VSWk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=fn5AXceTbWeWXbeKJ8nxUIr+lBeuXScvy8RX0b5TatjfH4lpiHbfGzKbURo0BEe+g3pl3YQMlGFsA+vchBX/Z0x90Lzk4qqakx0kux2tE00l9kXWxh5HwKlsqXx2MCEb5Muf7It3KVymRfJycq1DRaUHM76mFrOEQxeq/QuQ+nA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QtI0Cj/E; arc=none smtp.client-ip=209.85.215.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-5c6bd3100fcso406443a12.3
+        for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 01:43:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711010405; x=1711615205; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=kZmS4x8JWAHXoDT8/RhY2F7SBv6SO4D4gWDtaTnP6xI=;
-        b=tnCLmwmVbQ2FOxhKPVLI37fLUHsAV/9MwuxXLsDClBH8s2GskUeb9/wqJ/jDiUuGOq
-         IDlrfCjIiwrvjETAPZ2aFqxkfQnW6W9/qfV8aUYM1L9yuUZei4IVBoZkY4+RVEuid587
-         sMuVdqIL5f8VeNGmMK32AQ39QhpfYLKfYoN4qQsU1+neRDGCxy26xd8egCFSERrp0OXc
-         QIA1OXXKdraNJQAo+2eDGvR23Pxudp7PtO29B7YwhhPwURVeAnMAWMu7ejIIiTte+xYc
-         /n/kdEKOMcPe9/8NA/2Lpa+JcePgOGBKP5596q9JPFoBPIouUJCK0pN/oV4W7hG1oFDS
-         u3bg==
+        d=gmail.com; s=20230601; t=1711010630; x=1711615430; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=szKtMshgUT4sbRUdwIPjAVb77JePZ91N1VuTVtrKCL4=;
+        b=QtI0Cj/EB21v8OoJ7rbeA+yE5v+LY6k0ymg+jQbLvEFC98zhlSenrEffGItGMVz5qp
+         2MUQ5Z4qIwT0flR3uYT4jSwg1XltvduWAFBaXI373JyjZfd9/dLih9t+WKqlbzUrh3iQ
+         9e5R/Nmmg9RcO/vDtgpHXhuFjNcn3DZXpOhnjO5obY9L1owMyG50rViLRNxUliF1Io1U
+         lllcEvBIIyupp/7IX0mvcYsCC+eU5xcbRBVhUu+ok1McA3bl7e3NSs4QcPAbwmvPamMj
+         gZBn1IId3kpgM6U03QnD1rUF8c80WuqbFBXRdXnBSqOFuueFNAxVV6m/gDZ15BGetjrU
+         SeTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711010405; x=1711615205;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kZmS4x8JWAHXoDT8/RhY2F7SBv6SO4D4gWDtaTnP6xI=;
-        b=uQZsNHfr1yDrscuPV+SgtLs6G8LBpVoQJSSR6ZadIPukmlyfOpU/pgCfI18VpDBicM
-         SQz3WWY9KbxWN+/z9aAr6YiUS03oG3aO0UTzdLkaeWmBA5HlvhtQBKoWB8AvpGA661uV
-         92rGTqYHwTHQoc+mTh252ABf/5RPnBzqvzv3bDj+42lzwVhlHHifu4jYQOaqM7s3+CZy
-         1maufuI2WK9aEfMFn+AlWaOOwVp3oz4saINxfdlz2ARj/d78R4GzrNMw4yqzpmv6sC3P
-         NBVOgc2rq+Lmlj12PHxpR8Po62kQduT1kNjaYw/IAj9bHhBWjOJJCv278aHApQd1sI6e
-         DiZw==
-X-Forwarded-Encrypted: i=1; AJvYcCUfxijSfmyTfHS3alPjz0qrV2ao4MP6LCdAtNiemSRIYifje6HKRmPJXz0LoMbdOzB+st76AQ1kiikbx3na3LlHZn8p0Nvu9R/FqQ==
-X-Gm-Message-State: AOJu0Yzfn6Q9MaX/j7/wtF+IUEayuWEyqznRTl5wkaumA3apjF5at2HE
-	KmTReSTdD8cwQqmhZYYVTFYnVIc0ton6H/Q3xHzHT8ea3cdg3gGiW0bkzKx/bp8=
-X-Google-Smtp-Source: AGHT+IGWsWDqP4bU6S67h6uto6SYqxREt3sKUyPaVbmgH1DOJ9Mxa9sxchyD4SniyP9lz2gR7hoqwQ==
-X-Received: by 2002:a05:6402:2421:b0:566:f5d6:4b4 with SMTP id t33-20020a056402242100b00566f5d604b4mr5809365eda.12.1711010404783;
-        Thu, 21 Mar 2024 01:40:04 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id cf13-20020a0564020b8d00b00569731a1eb2sm4432406edb.46.2024.03.21.01.40.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Mar 2024 01:40:04 -0700 (PDT)
-Message-ID: <96493beb-afbf-42f2-88f0-ad645422ecdb@linaro.org>
-Date: Thu, 21 Mar 2024 09:40:00 +0100
+        d=1e100.net; s=20230601; t=1711010630; x=1711615430;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=szKtMshgUT4sbRUdwIPjAVb77JePZ91N1VuTVtrKCL4=;
+        b=bn2c9AajUKMzIUscC2bnJwN5sL756TbBhJf+qs7Jk4M+OcB36Q+o4FDq9wo0ZKobqZ
+         UPqGqtQEQnCxs5Gbf1YqJbWawjhbzW5UFWtGJKSBirGpzQ/1gILwP3/PGcJy0f8e5clH
+         ejtxoGwb6Cs9MDt5D+VbeYi2jM01mcau9q+b82Iuf70y7M3z3Xyo38IvEhRPfUwI5Em6
+         HBY32gBC/tZ3/N4GL0QSA7G8/1QSru8N1lcx/gKVBo99XxPIWaH8IXqhgSWrGYKfUgGm
+         tdTM7PZlWr8dwqs5TnI9QYuSqjGh46XnQgNg+J2YvfXNvxKYP1krxdIIC+Y5rv/MHQSi
+         vb5w==
+X-Forwarded-Encrypted: i=1; AJvYcCX3XCOEGSopVpEbRJXDUt2VTr/GtLo/3u890rMV+HxQzRfsMbGyJKhpELVOv1qoiy5E8eUmY++XY8Y3fWH0MlJgpytJJnHUyYDB/Q==
+X-Gm-Message-State: AOJu0YzSs+uvcD2nwmFJ6S+9IrCtgrU3zYDxXxdmh/TkYtqMGk6PyPtq
+	WDkfgzK+y0g1gqTwr8OfdpC/IZNxbyHEuF5kbcqPjoKtlYGbtKlqyunwjF4O
+X-Google-Smtp-Source: AGHT+IE6OEZc/sCMlgMcJGmKphOKbYmT76R84GTKr1zHMLFVydTg4Bf/eM1RFxkNsyKctEW/8Y3Xqg==
+X-Received: by 2002:a17:90a:c305:b0:29b:e26a:3239 with SMTP id g5-20020a17090ac30500b0029be26a3239mr1168741pjt.47.1711010629871;
+        Thu, 21 Mar 2024 01:43:49 -0700 (PDT)
+Received: from localhost.localdomain ([223.178.83.204])
+        by smtp.googlemail.com with ESMTPSA id m2-20020a17090a71c200b0029bce05b7dfsm3000830pjs.32.2024.03.21.01.43.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Mar 2024 01:43:49 -0700 (PDT)
+From: Kanak Shilledar <kanakshilledar@gmail.com>
+To: 
+Cc: krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	daniel.baluta@nxp.com,
+	kanakshilledar@gmail.com,
+	Kanak Shilledar <kanakshilledar111@protonmail.com>
+Subject: [PATCH] dt-bindings: serial: actions,owl-uart: convert to dtschema
+Date: Thu, 21 Mar 2024 14:13:28 +0530
+Message-Id: <20240321084328.200347-1-kanakshilledar@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v3 12/12] dt-bindings: net: add Microchip's
- LAN865X 10BASE-T1S MACPHY
-To: Parthiban.Veerasooran@microchip.com, conor@kernel.org, andrew@lunn.ch
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, horms@kernel.org, saeedm@nvidia.com,
- anthony.l.nguyen@intel.com, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, corbet@lwn.net, linux-doc@vger.kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, Horatiu.Vultur@microchip.com,
- ruanjinjie@huawei.com, Steen.Hegelund@microchip.com,
- vladimir.oltean@nxp.com, UNGLinuxDriver@microchip.com,
- Thorsten.Kummermehr@microchip.com, Pier.Beruto@onsemi.com,
- Selvamani.Rajagopal@onsemi.com, Nicolas.Ferre@microchip.com,
- benjamin.bigler@bernformulastudent.ch
-References: <20240306085017.21731-1-Parthiban.Veerasooran@microchip.com>
- <20240306085017.21731-13-Parthiban.Veerasooran@microchip.com>
- <20240306-spree-islamist-957acf0ee368@spud>
- <4c5968a3-c043-45fc-8fff-2a9eaa6de341@lunn.ch>
- <20240306-ripeness-dimple-e360a031ccde@spud>
- <05a9a7ee-e4f0-443e-9c8a-8ee649a11448@microchip.com>
- <2f384a54-74a0-4a75-a325-8985257b5d66@linaro.org>
- <ba37c212-fb98-407d-9bee-6d14801754d9@microchip.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ba37c212-fb98-407d-9bee-6d14801754d9@microchip.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 21/03/2024 09:38, Parthiban.Veerasooran@microchip.com wrote:
-> Hi Krzysztof,
-> 
-> On 20/03/24 3:23 pm, Krzysztof Kozlowski wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>
->> On 20/03/2024 09:40, Parthiban.Veerasooran@microchip.com wrote:
->>> Hi Conor & Andrew,
->>>
->>> Please find my reply below by consolidating other two emails comments
->>> related to this.
->>>
->>> On 07/03/24 12:31 am, Conor Dooley wrote:
->>>> On Wed, Mar 06, 2024 at 07:48:57PM +0100, Andrew Lunn wrote:
->>>>>>> +description:
->>>>>>> +  The LAN8650/1 combines a Media Access Controller (MAC) and an Ethernet
->>>>>>> +  PHY to enable 10BASE‑T1S networks. The Ethernet Media Access Controller
->>>>>>> +  (MAC) module implements a 10 Mbps half duplex Ethernet MAC, compatible
->>>>>>> +  with the IEEE 802.3 standard and a 10BASE-T1S physical layer transceiver
->>>>>>> +  integrated into the LAN8650/1. The communication between the Host and
->>>>>>> +  the MAC-PHY is specified in the OPEN Alliance 10BASE-T1x MACPHY Serial
->>>>>>> +  Interface (TC6).
->>>>>>> +
->>>>>>> +allOf:
->>>>>>> +  - $ref: ethernet-controller.yaml#
->>>>>>> +
->>>>>>> +properties:
->>>>>>> +  compatible:
->>>>>>> +    oneOf:
->>>>>>> +      - items:
->>>>>>> +          - const: microchip,lan8650
->>>>>>> +          - const: microchip,lan8651
->>>>>> The order here is wrong, lan8561 needs to come before the fallback of
->>>>>> lan8650.
->>>>> I don't think it is a fallback. There are two devices, and hence two
->>>>> different compatibles. So i suspect the -items: is wrong here?
->>>> It'd just be a two entry enum then, but I did take a quick look at the
->>>> driver earlier and saw:
->>>> +static const struct of_device_id lan865x_dt_ids[] = {
->>>> +    { .compatible = "microchip,lan8650" },
->>>> +    { .compatible = "microchip,lan8651" },
->>>> +    { /* Sentinel */ }
->>>> +};
->>>>
->>>> That, along with no other of_device_is_compatible() type operations
->>>> made me think that having a fallback actually was suitable.
->>>>
->>>> You cropped it out, but the patch had:
->>>>> +  compatible:
->>>>> +    oneOf:
->>>>> +      - items:
->>>>> +          - const: microchip,lan8650
->>>>> +          - const: microchip,lan8651
->>>>> +      - enum:
->>>>> +          - microchip,lan8650
->>>> So it doesn't appear to be an accidental items in place of an enum,
->>>> since the other compatible is in another enum.
->>> As per Andrew's comment in another email, both LAN8650 and LAN8651 are
->>> two different variants but they both share almost all characteristics
->>> except one thing that is LAN8651 has "Single 3.3V supply with integrated
->>> 1.8V regulator" which doesn't have anything to do with driver. That's
->>
->> So why this is not reflected in your driver? Why didn't you address that
->> part, but ignored?
-> No, it is not ignored. This difference is specific to hardware and there 
-> is no configuration/setting to be done from driver.
->>
->>> why I have kept them as fallback as Conor said in this email. Hope you
->>> all OK with this.
->>
->> Did you read the feedback? Your response is not solving here anything.
->> How 8650 can be used twice? Please point me to DTS showing both usages.
-> May be I have a misunderstanding here. Let's clarify it.
-> 
-> LAN8650 and LAN8651 both are two different variants but both implements 
-> same functionality. The only difference is LAN8651 has "Single 3.3V 
-> supply with integrated" where LAN8650 doesn't have this. This is 
-> hardware specific difference and there is no configuration/setting to be 
-> done in the driver specific to this difference in the LAN8651. So 
-> basically the driver can support for both variants without any 
-> additional settings.
-> 
-> LAN8650: https://www.microchip.com/en-us/product/lan8650
-> LAN8651: https://www.microchip.com/en-us/product/lan8651
-> 
-> The below link shows the difference between them,
-> https://www.microchip.com/en-us/product-comparison.lan8650.lan8651
-> 
-> With the above details, I would change the microchip,lan865x.yaml with 
-> the below details.
-> 
-> compatible:
->    enum:
->      - microchip,lan8650
->      - microchip,lan8651
-> 
-> And in the lan865x.c, I would remove the below line because
-> .compatible = "microchip,lan8650" already supports for LAN8651 as well.
-> 
-> .compatible = "microchip,lan8651"
-> 
-> Let me know your opinion on this proposal? or do you have any 
-> misunderstanding here?
+From: Kanak Shilledar <kanakshilledar111@protonmail.com>
 
-It's still wrong. Upstream your DTS and then test it. You will
-immediately see that it does not work. So first make it working, then
-send code to review.
+Convert the Actions Semi Owl UART to newer DT schema.
 
-Best regards,
-Krzysztof
+Signed-off-by: Kanak Shilledar <kanakshilledar111@protonmail.com>
+---
+ .../bindings/serial/actions,owl-uart.txt      | 16 -------
+ .../bindings/serial/actions,owl-uart.yaml     | 43 +++++++++++++++++++
+ 2 files changed, 43 insertions(+), 16 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/serial/actions,owl-uart.txt
+ create mode 100644 Documentation/devicetree/bindings/serial/actions,owl-uart.yaml
+
+diff --git a/Documentation/devicetree/bindings/serial/actions,owl-uart.txt b/Documentation/devicetree/bindings/serial/actions,owl-uart.txt
+deleted file mode 100644
+index aa873eada02d..000000000000
+--- a/Documentation/devicetree/bindings/serial/actions,owl-uart.txt
++++ /dev/null
+@@ -1,16 +0,0 @@
+-Actions Semi Owl UART
+-
+-Required properties:
+-- compatible :  "actions,s500-uart", "actions,owl-uart" for S500
+-                "actions,s900-uart", "actions,owl-uart" for S900
+-- reg        :  Offset and length of the register set for the device.
+-- interrupts :  Should contain UART interrupt.
+-
+-
+-Example:
+-
+-		uart3: serial@b0126000 {
+-			compatible = "actions,s500-uart", "actions,owl-uart";
+-			reg = <0xb0126000 0x1000>;
+-			interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+-		};
+diff --git a/Documentation/devicetree/bindings/serial/actions,owl-uart.yaml b/Documentation/devicetree/bindings/serial/actions,owl-uart.yaml
+new file mode 100644
+index 000000000000..ee0e508255b6
+--- /dev/null
++++ b/Documentation/devicetree/bindings/serial/actions,owl-uart.yaml
+@@ -0,0 +1,43 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/serial/actions,owl-uart.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Actions Semi Owl UART
++
++maintainers:
++  - Kanak Shilledar <kanakshilledar111@protonmail.com>
++
++allOf:
++  - $ref: serial.yaml
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - actions,s500-uart
++          - actions,s900-uart
++          - actions,owl-uart
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    serial@b0126000 {
++        compatible = "actions,s500-uart";
++        reg = <0xb0126000 0x1000>;
++        interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
++    };
+-- 
+2.34.1
 
 
