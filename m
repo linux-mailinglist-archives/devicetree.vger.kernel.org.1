@@ -1,97 +1,140 @@
-Return-Path: <devicetree+bounces-52249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49C5B885FC8
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 18:31:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB400885FED
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 18:39:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6DAC81C21BC4
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 17:31:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 189B21C21D19
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 17:39:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EEF283CBE;
-	Thu, 21 Mar 2024 17:31:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EE9C12CD8C;
+	Thu, 21 Mar 2024 17:39:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=amazon.co.uk header.i=@amazon.co.uk header.b="twhwCJ4M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp1.ms.mff.cuni.cz (smtp-in1.ms.mff.cuni.cz [195.113.20.234])
+Received: from smtp-fw-9102.amazon.com (smtp-fw-9102.amazon.com [207.171.184.29])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 949D117590;
-	Thu, 21 Mar 2024 17:31:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.113.20.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AB068624C;
+	Thu, 21 Mar 2024 17:39:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.171.184.29
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711042310; cv=none; b=XYK8f4SU2IyL3kVNjWSBSKn/nEunFw+uFu8gGOpzRrM01Dil9RGnHnohXW0np6JffG0nOJHXA8lZENKo2BPRLg3nQu4utGj3LHido0Ho36fDrNzDhB3Ar0VwFVtfYgS5HRpXfEm1M+cg0g7tzFjtG5ft3OXb5kzl6PtLQP/OvCo=
+	t=1711042788; cv=none; b=TsvahzagSWlq49EmIFRCgl4lx1NXI09ibktw/xc9diET+n4qSNwVsEzr1yCQ68MLHuc6FS0aLw27vLTdew12M8JRkU/BzlpknZAziYxoXS4TkFoEkCMzSRY5NLH4lrcaF6kjpc8pgqe1zbiZF4zfBmMEbidHRsXpPHimDrHzMQI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711042310; c=relaxed/simple;
-	bh=lRZvAs6e51QxA2WQumhhbAA6NHprYtIDHJic0YkCZfA=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:From:Cc:Subject:
-	 References:In-Reply-To; b=IjL58E79/RQRbMuAnGEN3pSohS6solQmWUQEc0DDFa6+F/OeFv1vFyE6Grqqq/NnTyWnEfbMPOhMjgjqa6TXobQEJpCEsgmsAlSp2/WZE894mWNl8/wYtfxEwQ1db7NLaWS3nkDdkvsejehCzrSBlupecYfGatYfN6Fl0tE+p0o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz; spf=pass smtp.mailfrom=matfyz.cz; arc=none smtp.client-ip=195.113.20.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=matfyz.cz
-X-SubmittedBy: id balejk@matfyz.cz subject /postalCode=110+2000/O=Univerzita+20Karlova/street=Ovocn+5CxC3+5CxBD+20trh+20560/5/ST=Praha,+20Hlavn+5CxC3+5CxAD+20m+5CxC4+5Cx9Bsto/C=CZ/CN=Karel+20Balej/emailAddress=balejk@matfyz.cz
-	serial F5FD910E8FE2121B897F7E55B84E351D
-	issued by /C=NL/O=GEANT+20Vereniging/CN=GEANT+20Personal+20CA+204
-	auth type TLS.CUNI
-Received: from localhost (koleje-wifi-0015.koleje.cuni.cz [78.128.191.15])
-	(authenticated)
-	by smtp1.ms.mff.cuni.cz (8.16.1/8.16.1) with ESMTPS id 42LHVUUq096433
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=OK);
-	Thu, 21 Mar 2024 18:31:32 +0100 (CET)
-	(envelope-from balejk@matfyz.cz)
+	s=arc-20240116; t=1711042788; c=relaxed/simple;
+	bh=tmVyl3CnV/a8ywSLGoP9rsnHV/1ICdCewlLv8W7cRX4=;
+	h=Subject:Message-ID:Date:MIME-Version:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=L4MYEzDeo+oWLsluX6bSgd7z1vX6RhraXBOLY0M9+IJVwNHhrD2a7Ut4c6kp3iMrVF2S3rTVoe7oGh25Y/FyOQ8S+sE+KRH06IJUXeCOptAENHbFu1eQ5oERoQu30mg247DOiIw2ObdG/MmPtOleuc53mbN2NkPtl4ci/ctKklc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.co.uk; spf=pass smtp.mailfrom=amazon.co.uk; dkim=pass (1024-bit key) header.d=amazon.co.uk header.i=@amazon.co.uk header.b=twhwCJ4M; arc=none smtp.client-ip=207.171.184.29
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.co.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.co.uk
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.co.uk; i=@amazon.co.uk; q=dns/txt;
+  s=amazon201209; t=1711042786; x=1742578786;
+  h=message-id:date:mime-version:to:cc:references:from:
+   in-reply-to:content-transfer-encoding:subject;
+  bh=Y2m0HUIoPsV3lCWkx5c13P3hII6BgfumgnVO7r8vV/0=;
+  b=twhwCJ4MOi1AdIEx/qlHJTs6nIanHZjex7NMfjF8GgPe8U6mWCflP6IM
+   Z2YBiThp43iy4TsqUp+fFQlcxSOPKhq/XSS2ELeYw1m6DacFPVF12ImqT
+   g28Ucu6vvGRIzOoYAGYk5iY1LwMYCheDk/LXF1lVwtF1vRxkr25KcjlXl
+   Q=;
+X-IronPort-AV: E=Sophos;i="6.07,143,1708387200"; 
+   d="scan'208";a="405714813"
+Subject: Re: [PATCH v1 0/4] virt: vmgenid: Add devicetree bindings support
+Received: from pdx4-co-svc-p1-lb2-vlan3.amazon.com (HELO smtpout.prod.us-west-2.prod.farcaster.email.amazon.dev) ([10.25.36.214])
+  by smtp-border-fw-9102.sea19.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Mar 2024 17:39:39 +0000
+Received: from EX19MTAEUB001.ant.amazon.com [10.0.10.100:51553]
+ by smtpin.naws.eu-west-1.prod.farcaster.email.amazon.dev [10.0.24.234:2525] with esmtp (Farcaster)
+ id 07620b8e-e807-42d8-ae98-352d02494533; Thu, 21 Mar 2024 17:39:38 +0000 (UTC)
+X-Farcaster-Flow-ID: 07620b8e-e807-42d8-ae98-352d02494533
+Received: from EX19D036EUC002.ant.amazon.com (10.252.61.191) by
+ EX19MTAEUB001.ant.amazon.com (10.252.51.26) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.28; Thu, 21 Mar 2024 17:39:38 +0000
+Received: from [192.168.15.25] (10.106.82.17) by EX19D036EUC002.ant.amazon.com
+ (10.252.61.191) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.28; Thu, 21 Mar
+ 2024 17:39:32 +0000
+Message-ID: <db5a1027-93b7-4630-b679-8a654905dc48@amazon.co.uk>
+Date: Thu, 21 Mar 2024 17:39:28 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 21 Mar 2024 18:32:03 +0100
-Message-Id: <CZZLVS3T3QIS.223XHI5OZ7UBG@matfyz.cz>
-To: "Mark Brown" <broonie@kernel.org>
-From: "Karel Balej" <balejk@matfyz.cz>
-Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Conor Dooley"
- <conor+dt@kernel.org>,
-        "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
-        "Liam
- Girdwood" <lgirdwood@gmail.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-input@vger.kernel.org>,
-        =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
-        <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>
-Subject: Re: [RFC PATCH v4 2/5] mfd: add driver for Marvell 88PM886 PMIC
-References: <20240311160110.32185-1-karelb@gimli.ms.mff.cuni.cz>
- <20240311160110.32185-3-karelb@gimli.ms.mff.cuni.cz>
- <20240321154211.GA13211@google.com> <CZZK759UU6G7.MFPYOI0HBB6I@matfyz.cz>
- <20240321162045.GC13211@google.com> <CZZL3MNOT0QG.2WDSNX9XD2RET@matfyz.cz>
- <879296b4-5186-4170-af3f-971787d28514@sirena.org.uk>
- <CZZLDK79D5VK.2VK3X59OHIY2Z@matfyz.cz>
- <45079e37-dde9-4310-a112-7af49f35ac77@sirena.org.uk>
-In-Reply-To: <45079e37-dde9-4310-a112-7af49f35ac77@sirena.org.uk>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>, David Woodhouse <dwmw2@infradead.org>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Sudan Landge
+	<sudanl@amazon.com>, <tytso@mit.edu>, <Jason@zx2c4.com>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<sathyanarayanan.kuppuswamy@linux.intel.com>, <thomas.lendacky@amd.com>,
+	<dan.j.williams@intel.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <graf@amazon.de>, <bchalios@amazon.es>,
+	<xmarcalx@amazon.co.uk>, <ardb@kernel.org>, benh <benh@kernel.crashing.org>
+References: <20240319143253.22317-1-sudanl@amazon.com>
+ <23692c07-98bd-477d-b244-bba14c50352c@linaro.org>
+ <38aad6c0e698c8e804694276d1762d61f2068ce8.camel@infradead.org>
+ <20240320161531.GA1810860-robh@kernel.org>
+ <60404403932a984d1f75d111ff53b9053af03579.camel@infradead.org>
+ <20240321133250.GA1600070-robh@kernel.org>
+From: "Landge, Sudan" <sudanl@amazon.co.uk>
+In-Reply-To: <20240321133250.GA1600070-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EX19D044UWB002.ant.amazon.com (10.13.139.188) To
+ EX19D036EUC002.ant.amazon.com (10.252.61.191)
 
-Mark Brown, 2024-03-21T17:17:40+00:00:
-> On Thu, Mar 21, 2024 at 06:08:16PM +0100, Karel Balej wrote:
-> > Mark Brown, 2024-03-21T16:58:44+00:00:
->
-> > > > > > > > +static const struct regmap_config pm886_i2c_regmap =3D {
-> > > > > > > > +	.reg_bits =3D 8,
-> > > > > > > > +	.val_bits =3D 8,
-> > > > > > > > +	.max_register =3D PM886_REGMAP_CONF_MAX_REG,
-> > > > > > > > +};
->
-> ...
->
-> > > You shouldn't be creating two regmaps for the same set of registers,
-> > > that just opens the potential for confusion.
->
-> > Just the regmap config is the same. Otherwise, each regmap lives at a
-> > different I2C address.
->
-> Do they both genuinely have the same maximum register?
 
-They do according to the downstream driver which is my only reference.
-In fact, there the driver defines the configs separately for each regmap
-but with the same values.
+
+On 21/03/2024 13:32, Rob Herring wrote:
+> CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you can confirm the sender and know the content is safe.
+> 
+> 
+> 
+> On Wed, Mar 20, 2024 at 04:55:45PM +0000, David Woodhouse wrote:
+>> On Wed, 2024-03-20 at 11:15 -0500, Rob Herring wrote:
+>>> On Wed, Mar 20, 2024 at 01:50:43PM +0000, David Woodhouse wrote:
+>>>> On Tue, 2024-03-19 at 16:24 +0100, Krzysztof Kozlowski wrote:
+>>>>> On 19/03/2024 15:32, Sudan Landge wrote:
+>>>>>> This small series of patches aims to add devicetree bindings support for
+>>>>>> the Virtual Machine Generation ID (vmgenid) driver.
+>>>>>>
+>>>>>> Virtual Machine Generation ID driver was introduced in commit af6b54e2b5ba
+>>>>>> ("virt: vmgenid: notify RNG of VM fork and supply generation ID") as an
+>>>>>> ACPI only device.
+>>>>>> We would like to extend vmgenid to support devicetree bindings because:
+>>>>>> 1. A device should not be defined as an ACPI or DT only device.
+>>>
+>>> This (and the binding patch) tells me nothing about what "Virtual
+>>> Machine Generation ID driver" is and isn't really justification for
+>>> "why".
+>>
+>> It's a reference to a memory area which the OS can use to tell whether
+>> it's been snapshotted and restored (or 'forked'). A future submission
+>> should have a reference to something like
+>> https://www.qemu.org/docs/master/specs/vmgenid.html or the Microsoft
+>> doc which is linked from there.
+> 
+> That doc mentions fw_cfg for which we already have a binding. Why can't
+> it be used/extended here?
+QEMU has support for vmgenid but even they do not pass vmgenid directly 
+to the guest kernel using fw_cfg. QEMU passes the vmgenid/UUID via 
+fw_cfg to an intermediate UEFI firmware. This UEFI firmware, running as 
+a guest in QEMU, reads the UUID from fw_cfg and creates ACPI tables for 
+it. The UEFI firmware then passes the UUID information to the guest 
+kernel via ACPI.
+This approach requires yet another intermediary which is UEFI firmware 
+and adds more complexity than ACPI for minimalist hypervisors that do 
+not have an intermediate bootloader today.
+
+> 
+> Rob
+> 
+> [1] https://www.kernel.org/doc/Documentation/devicetree/bindings/firmware/qemu%2Cfw-cfg-mmio.yaml
+
 
