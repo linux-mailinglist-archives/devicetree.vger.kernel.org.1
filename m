@@ -1,75 +1,76 @@
-Return-Path: <devicetree+bounces-52151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53435885806
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 12:18:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09010885847
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 12:25:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E3E301F22410
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 11:18:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B3C15284799
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 11:25:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21A035FDDD;
-	Thu, 21 Mar 2024 11:17:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B83615823A;
+	Thu, 21 Mar 2024 11:25:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eTj+vDnq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TUcJZFz1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com [209.85.222.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86D485FDD4
-	for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 11:17:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C702858235
+	for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 11:25:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711019851; cv=none; b=jkai3KuRd40LlKAFWCKM8EJbXkuhk9rPEPxFlP5Nb8VhhMmnWj9I2ZatIdnde5g/0gkMmkWcCjuIC4xPxkDII6qk/ddkYX9Jx3p7nVTBda5ahEdmAzPESENsqDg2iW8fRK2WYGhK071pXt3DfpaiIJZ1eqrml2BCRITjpZxoj1o=
+	t=1711020311; cv=none; b=Bz20q2uTIfzH+IC9nUDCwDoUJHz68IoL1DK2R5D2b17xDtd/RWJMyTSGrLjsgnuX/byTJdZ4TlcHvUq5j35qp/o3VeailU370Eifwuru1L8S2Wj+dXUx6nozb2YvkK09SPAQwEfHrSu6fayObVdfJ9iw0scJXtIBV3lAMVkoutA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711019851; c=relaxed/simple;
-	bh=mSUh4v/RL+IdcdrUbUoaHaEmfRRTCNfxUzTm6/jvZZY=;
+	s=arc-20240116; t=1711020311; c=relaxed/simple;
+	bh=KMWylqW711t7MACsRbN1TvhF6nbAcTz/VLJbxkHR4gI=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=lGQXxuLCVp1YhGQc38gy14G3YNi6WxXtMj6ld2luc4Mo+dXvJpisezWf6h3Ep8DkM1W8USL47tuM81AP1ULLh44hi1perfIplCAjcpiTFtR6kWcSF3EfiawvKjnEPGX43htPQCDE+gAqg4+CRhT42l773EPBLvcWugU1NOzkS8Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eTj+vDnq; arc=none smtp.client-ip=209.85.210.169
+	 In-Reply-To:To:Cc; b=uDsX3plGdktG6nyZhkg1JfHLBi/QgxW6x7BrMvbu2jXSNMkZ+qyx09ktMS2DkDuqqu/eysov3Mh6krLs9PgclSFuG5p8L2mD8um/NU3ly8ND2DPkR1RY40Coq2HandeIodJnsGeB+0dVpSpYyVmWrlXUJXcI8RmGab3HYfk4zlE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TUcJZFz1; arc=none smtp.client-ip=209.85.222.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-6e6fb9a494aso711582b3a.0
-        for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 04:17:29 -0700 (PDT)
+Received: by mail-ua1-f46.google.com with SMTP id a1e0cc1a2514c-7dacc916452so264706241.0
+        for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 04:25:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711019849; x=1711624649; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711020308; x=1711625108; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=PEOq/9uGaHs+ORFcTWIE8PonAqZ/+6MtiDjpCwOLP68=;
-        b=eTj+vDnqcfyxJazD3VvBXOZ4WzeJhszyhGVUdYhKsQoicQuJtbxcUqhCcNq+gFyW9Y
-         Azwu9HKtz5GxvMJv7/031xCzGjoTjT0CL7hDX12YqvXYZ/Kiq0ehjz8YKn66CLVpn6hD
-         vSdZOCf7JJKkDGTCRwoF7I8jWbU5n4eGcI6rb108cpj33uRil+cun+hdHuVaG3bXNk3Y
-         kauccxubZmg+AsVzZOBHFr3zlmJqQwVABHSmPa+VBX57xY/yyXrF+yf4g1H9ksMAUiI+
-         862cf65U11hR3BJ0DFpv0Qt6c6qDZKER7YeSVkltva0Ifn8rRwOXFOTVvzk5zzovvSsd
-         1SWg==
+        bh=KYDoji15P5HsiN/P0wTyX60zAfAmG6vlj4lO2mZaCqk=;
+        b=TUcJZFz1ohuweBWbyfdljv67kQ7JNfMhqB61GtzI0F/ad8ACZNzt0fjhB4TDpK7W3P
+         pooH1jgckLVElVUGj2rBupwmRoBWG1IzAUIrmCaicTBAjK8lfH3Q2uzap/JeRUctP0Ek
+         QlmZDtJVRnw+lcI6PuHFmU3xmuWmOzc4m6D0efLeiLG1NRLJM92Xgn1rw69pl3wL0nR+
+         /rDxKi7ZYoJRirMwIWwlaKUTnSK4BBVY7J02hfrQKJjy09u9YbDUl5b0HqVCAQsGOKa2
+         Uf46bqSsoimjmHBaOtpsnH8F0eAxn0Li6uFa0w87xJlG9ueBpkTIoBq+yExqAmaZVb0N
+         NFxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711019849; x=1711624649;
+        d=1e100.net; s=20230601; t=1711020308; x=1711625108;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=PEOq/9uGaHs+ORFcTWIE8PonAqZ/+6MtiDjpCwOLP68=;
-        b=lgvfq3iLmak+6V54x6N5pgdqfHgFu5unEMLiFRiKtO56QTKry5fhtsfElQXSxrNI57
-         hl3Q8VTByOqdN1acBgQ5DZu7HBBU8WK/oZ8//f2575WWiPKgw04/3n0mGB4Y8TXaVbu5
-         latuBXy1oAePVgL2ju0Fbv5TWDp5bItTPOHYzwoFQF6IvlnXSICc8ftCBio6rImX3ols
-         p+djSqWHBLVyhdDALD/ZYp7+O6dphpnXxL3Z6ru8sx20tLtSY5OBR1ghIOCw6kmXOJuA
-         ddk2DgWV9RLSe0xO8AtN25L31p+Ah8QC0pGoxMok26sZUermmQJn01k2jzEpY1Z8kL6U
-         6deQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXh7ki3fcR6nXdY3PImOUu4aw4cQ/Qjh1a1Ko/Q+/cgajO2CfRpF7+czKmaYwNU+guZ+mi1BYmwUmOFU3kpA7zj8mOlzktZPhDIlw==
-X-Gm-Message-State: AOJu0Yz+I9WBkxtkRhnm/1s53DRGJRQeJ+pk/C/x9shiZKBmm1H3gCs6
-	9Eo5/tCD7IMfiHn+v/YdURZVprCVbR2DyZSWqXez92oUKogY+pjYdVqandkWcw==
-X-Google-Smtp-Source: AGHT+IGhrgPS65VX+UybTahtlEb+U5xWUT3BsBlb8cPBVFosXH0JpTMWNJ7+QB8rs/pAj8LyeDMPfQ==
-X-Received: by 2002:a05:6a00:6005:b0:6ea:7b38:a0fb with SMTP id fo5-20020a056a00600500b006ea7b38a0fbmr197330pfb.5.1711019848642;
-        Thu, 21 Mar 2024 04:17:28 -0700 (PDT)
+        bh=KYDoji15P5HsiN/P0wTyX60zAfAmG6vlj4lO2mZaCqk=;
+        b=vkxwWaXPqeFciAAXj72frUmJDFfH8qhBS6UchAo/zuNKzuZAQQf9z4kzDxYBkWStSE
+         3i3d+oddWmxd75NjKzrYrASKlmM3CHp0vQ/YIa8pdg95KLWeb2nZaKxgKsZ1LYvL037h
+         waFB+sLCnHE10W4xn1mc+iKhWftXRfOB8qQ0zTz1SRjkNGMEXy0Q/jd6l9qC6ouVjA/s
+         Te5VfdkfDXcnKXApRQe/rLMCsK7hj9EE2yEaXAcGO2tzZk5r+O6fHYDCeU0ZyOkXa4px
+         +0f0cHPJ6SG3iEUSNUjXCZqVa/0rfl4vDTZQf3k0r32S9wuqcmS0/QaCQaFDsVpfow0K
+         tn9w==
+X-Forwarded-Encrypted: i=1; AJvYcCWkU5xLWWGe4Aor2UT43x2f1yEWEsKnbJXkOCG9FQ13kOkI7g5hfVovzG3/C9VGr2lwWGKb/KEJXfzgLrEnONk/e+yakH9e7D0ogw==
+X-Gm-Message-State: AOJu0YzdpAE6uF013D3alaK7mvKrZOY2/HsHJJo+8TwtsVPKJXfxNW4q
+	gutcc8wlzuy+mb7dOLfY0Zhl0ErIZX224Q7cf/D+85Qrwr1MwJ2hJ5XVhf1XgpSH2LmRlDdwc2Y
+	=
+X-Google-Smtp-Source: AGHT+IEPtkF9qX1leYPHNRDsFpttA8FXZ0PmY8cLC2e9jIid7J3TwoC8DsN/sCK7Xx/HgMkb1KyXkQ==
+X-Received: by 2002:a05:6a20:1582:b0:1a3:64e1:b6d with SMTP id h2-20020a056a20158200b001a364e10b6dmr10529382pzj.46.1711019852932;
+        Thu, 21 Mar 2024 04:17:32 -0700 (PDT)
 Received: from [127.0.1.1] ([2409:40f4:102b:a64b:d832:a82a:837c:6d3])
-        by smtp.gmail.com with ESMTPSA id ka6-20020a056a00938600b006e7324d32bbsm5531120pfb.122.2024.03.21.04.17.24
+        by smtp.gmail.com with ESMTPSA id ka6-20020a056a00938600b006e7324d32bbsm5531120pfb.122.2024.03.21.04.17.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Mar 2024 04:17:28 -0700 (PDT)
+        Thu, 21 Mar 2024 04:17:32 -0700 (PDT)
 From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Date: Thu, 21 Mar 2024 16:46:32 +0530
-Subject: [PATCH v2 12/21] arm64: dts: qcom: qcs404: Add PCIe bridge node
+Date: Thu, 21 Mar 2024 16:46:33 +0530
+Subject: [PATCH v2 13/21] arm64: dts: qcom: sc8180x: Add PCIe bridge node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,7 +79,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240321-pcie-qcom-bridge-dts-v2-12-1eb790c53e43@linaro.org>
+Message-Id: <20240321-pcie-qcom-bridge-dts-v2-13-1eb790c53e43@linaro.org>
 References: <20240321-pcie-qcom-bridge-dts-v2-0-1eb790c53e43@linaro.org>
 In-Reply-To: <20240321-pcie-qcom-bridge-dts-v2-0-1eb790c53e43@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -90,16 +91,16 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, 
  Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=860;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1867;
  i=manivannan.sadhasivam@linaro.org; h=from:subject:message-id;
- bh=mSUh4v/RL+IdcdrUbUoaHaEmfRRTCNfxUzTm6/jvZZY=;
- b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBl/BcMPwjDgcilCW9SfEEA5N8VeskzXhjNJyVH0
- EpmyskkUUiJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCZfwXDAAKCRBVnxHm/pHO
- 9YSYCACaW6BUhqx6O5wM3sKih7zJxA6F5kgvCYnX1NqLN3ek3PJt+GOBSxhtUk1jTwQIkC2hiL5
- u5ymkY/HKbZkO/MSfGMNyb45QezG1wUInpRrbwreZ2EVPexgaCpXJRV1ZqQetVbdHcCEOuxDvM1
- E9r0FmsufXiCeVDg7h18nuOuftiiK5xms0nbvc5mdfBk36zFgR4sNSmJ+qz2F1QlHB/7xj665Fd
- xZRvXgRZjQ3gdHyb7xlwPMM0JDskZ4xTt1ffw7/Um1LRIvfnSkGRCoHDeuuqh4l1ZLo3ESTqOHI
- PAsMtHtMW6m9Xwa6Wo5Ntss7Gfywv9yGZgHAaOfxLRHbBiYH
+ bh=KMWylqW711t7MACsRbN1TvhF6nbAcTz/VLJbxkHR4gI=;
+ b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBl/BcMSC6ZcFxTragSwKQJPd9VtucfQCSDZDiMq
+ 0b5lht1HT2JATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCZfwXDAAKCRBVnxHm/pHO
+ 9dz2B/4zFUeB8rvtM8DzqBQbkRT4yKNFxGHi9RQpnuQYpw3H0Fov8cSnLGpDWf3zAm0ABaWuQ8u
+ NitXa72HXSjRF/bxpamNtgy8nKgiRMCDbihGnAhjE8dV4AF623fSqLdEs2lzan0FFIE0LJ3C/UC
+ sXH/e+NA8EVwgbYBhXRcBMkV5uS8oZEV8rlnwBcTZ5gKnWoehT56HCm/wXEAJIN+4I4MefHhbcu
+ CMgssacecJIjBQDYJIfRlogjrJ4vn619b3iS0juhFtJ9pNUb947AaKoQ+7BRo7i14Uc5b7ey67n
+ 8f8vkhufueWHl+NKrCQbLucTx1cZgWgRvrwv20v0kpjIJGoQ
 X-Developer-Key: i=manivannan.sadhasivam@linaro.org; a=openpgp;
  fpr=C668AEC3C3188E4C611465E7488550E901166008
 
@@ -108,15 +109,15 @@ for each controller instance. Hence, add a node to represent the bridge.
 
 Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/qcs404.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi | 40 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 40 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-index a05d0234f7fc..ac451f378056 100644
---- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-@@ -1516,6 +1516,16 @@ pcie: pcie@10000000 {
- 			phy-names = "pciephy";
+diff --git a/arch/arm64/boot/dts/qcom/sc8180x.dtsi b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
+index 32afc78d5b76..322ead0389c9 100644
+--- a/arch/arm64/boot/dts/qcom/sc8180x.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
+@@ -1777,6 +1777,16 @@ pcie0: pcie@1c00000 {
+ 			dma-coherent;
  
  			status = "disabled";
 +
@@ -130,8 +131,59 @@ index a05d0234f7fc..ac451f378056 100644
 +				ranges;
 +			};
  		};
- 	};
  
+ 		pcie0_phy: phy@1c06000 {
+@@ -1888,6 +1898,16 @@ pcie3: pcie@1c08000 {
+ 			dma-coherent;
+ 
+ 			status = "disabled";
++
++			pcie@0 {
++				device_type = "pci";
++				reg = <0x0 0x0 0x0 0x0 0x0>;
++				bus-range = <0x01 0xff>;
++
++				#address-cells = <3>;
++				#size-cells = <2>;
++				ranges;
++			};
+ 		};
+ 
+ 		pcie3_phy: phy@1c0c000 {
+@@ -2000,6 +2020,16 @@ pcie1: pcie@1c10000 {
+ 			dma-coherent;
+ 
+ 			status = "disabled";
++
++			pcie@0 {
++				device_type = "pci";
++				reg = <0x0 0x0 0x0 0x0 0x0>;
++				bus-range = <0x01 0xff>;
++
++				#address-cells = <3>;
++				#size-cells = <2>;
++				ranges;
++			};
+ 		};
+ 
+ 		pcie1_phy: phy@1c16000 {
+@@ -2112,6 +2142,16 @@ pcie2: pcie@1c18000 {
+ 			dma-coherent;
+ 
+ 			status = "disabled";
++
++			pcie@0 {
++				device_type = "pci";
++				reg = <0x0 0x0 0x0 0x0 0x0>;
++				bus-range = <0x01 0xff>;
++
++				#address-cells = <3>;
++				#size-cells = <2>;
++				ranges;
++			};
+ 		};
+ 
+ 		pcie2_phy: phy@1c1c000 {
 
 -- 
 2.25.1
