@@ -1,176 +1,191 @@
-Return-Path: <devicetree+bounces-52041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 364B7881A8F
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 02:10:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8862881ADE
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 03:12:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D6CC1C20B6D
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 01:10:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC5DD1C20E27
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 02:12:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44CF1ECC;
-	Thu, 21 Mar 2024 01:10:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC83E4A1D;
+	Thu, 21 Mar 2024 02:12:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ICyHrNbx"
+	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="e57m5gcX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2073.outbound.protection.outlook.com [40.107.215.73])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E04F811;
-	Thu, 21 Mar 2024 01:10:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710983436; cv=none; b=ldT1hVsjhlPtOj0p+3Q8mxUC02dGT++acGE6sEvtW7Ub8X0P1eP/AeM5uj85jYvDtzc3B1TwmWpcBky0ILTkp8VDfSXSvVWAd8inWQstIGQFz6w+STYWCQkhnxcxR2McVCgFzhpWfh6SROmeQoua2i5ZJS3wOBZL2S6ta3kuFos=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710983436; c=relaxed/simple;
-	bh=2w1fH3LDsNuaN6Ld0HB4fkphXyRR53FgPKy5ZeIFQA0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tr5lfLMX+KrNraCVx7JU7juIXztjwn1LbUJAoRZ+iyTS9Uqoz/acRhuCA58JaK0ZnPMzZ8RMKU4noFudbmVfKtd9EdGQSVAIrt9rhC1Xk98PVIoPoYKdSTw0xz4I6w0E3mdm1W5+bX2x1IoePL46Mpr/jPvebqdK/RwHE197aXM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ICyHrNbx; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1710983434; x=1742519434;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=2w1fH3LDsNuaN6Ld0HB4fkphXyRR53FgPKy5ZeIFQA0=;
-  b=ICyHrNbxbfw3QY5Wkzxk0NZysf5ZVisxDfEkoqmoDS8waLkXGQ8SdqO5
-   dx/iodemB4UuZa250MzrW8DrzayPvTLO1IGXWzFy25HzTN9UqJkXfCBFz
-   3e+kyGW137JYCd4XLqERAUeP+LHvt7AC4nUMUmSOsKkrhj9vQqKVfvI5G
-   tA49EykvJc/jUp8mvJXGNwM0me2JP3J1oNDvG8IqmFoocq9QYGw0sb9Kl
-   bJ8JVeYWS10yUZKsQxoth1kmkh0X0bZot7UAF3VXTj/oSDsBdxt/wE4FO
-   P/MLZcmw5BuQlr8lMOtmqDWE2Nk5eDa+jsk1pEFYFF7xqm3l6GMCNdSYF
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11019"; a="5833802"
-X-IronPort-AV: E=Sophos;i="6.07,141,1708416000"; 
-   d="scan'208";a="5833802"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2024 18:10:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,141,1708416000"; 
-   d="scan'208";a="45436962"
-Received: from lkp-server01.sh.intel.com (HELO b21307750695) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 20 Mar 2024 18:10:29 -0700
-Received: from kbuild by b21307750695 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rn6ws-000J3X-34;
-	Thu, 21 Mar 2024 01:10:26 +0000
-Date: Thu, 21 Mar 2024 09:10:23 +0800
-From: kernel test robot <lkp@intel.com>
-To: Sudan Landge <sudanl@amazon.com>, tytso@mit.edu, Jason@zx2c4.com,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, sathyanarayanan.kuppuswamy@linux.intel.com,
-	thomas.lendacky@amd.com, dan.j.williams@intel.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, graf@amazon.de, dwmw@amazon.co.uk,
-	bchalios@amazon.es, xmarcalx@amazon.co.uk
-Subject: Re: [PATCH v1 4/4] virt: vmgenid: add support for devicetree bindings
-Message-ID: <202403210806.pMEGAp0x-lkp@intel.com>
-References: <20240319143253.22317-5-sudanl@amazon.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAEA24A3D;
+	Thu, 21 Mar 2024 02:12:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.215.73
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710987165; cv=fail; b=ZIF6Np8QcwE+sWtuNLOI3nFHRByZtf+1Zn8QbofIu4BdiLeaK6ttpns+vD70LJUw0QWyAJuDeL4KlPXqz42FhoNSiVYVGueMxypetr5eRd5n/kOzbjbZ/lgh2snpzrJzpC6gmDgm5cPZmaAZbjFdtoZONTqGzvdwenZ4mjl+RwI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710987165; c=relaxed/simple;
+	bh=PXOAsU+g9TUL7wSr5DXPHJCzYLjsZ/lPUrwLmTyhD4o=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=OfOFIUs2vn/IVdVnDyJ4pBRsSENsNgvXcV015nhE3io05HYY9BMdqFONclfULIsiuFHOpURQyM6eC1KbwJyB44g5fcBG4IpM6XcAiIXQZnXnHiW2RzOzoNnt5D3orRE5PqqscpuX76065y6wEE7ImUDatAy0/8x7KsN+SAz4Ctw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com; spf=pass smtp.mailfrom=wiwynn.com; dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b=e57m5gcX; arc=fail smtp.client-ip=40.107.215.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wiwynn.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DUwTo3MUMNJ7ojnEf+vj5H6iQRSqwcdfJn6kOV6lQiRTfvSTzIjFueZCk9Mby76LtSHgCEU5YF9Yqita/wkBpqRdnRI1dCWoymcBYvNDIfAVBuwkghxzypQ98+n8lgjfxiZcNdoORcrR7gSKKrYiCZitayezh0sCEp7v471hKG/+CG7ui3tlKQd18DGb0vgGofPzDvWcbmYpd1aZjNo7F9FNVuRazJFrrPjNi6VscAfO81MpUErzQQE97gDa8GuPmSbBApO0fHBctwRWlrmtPnkO7qXnn08QLXmAmkEdWutyBR9p5NxriULuBQa3gnLwu7l0uSPmT7KQ31N/OifE3Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RwllaVZrK3Z03jlhItgA6A0K4JF92EcjWplkQCYFA5w=;
+ b=iPWOc+LfwFyGWSS7NGqfS/UnPHOhsGvGv7l6nd8T6INZTLLPjQglrs5TlmkNkv4EGMrTvMSDjOfdtnqWysbkXsD/DJOtkRW5/GeXoup8fIdRNS10lxLw5blEsRNUrOFXfngHDh6EIUrLV7wNk6dBq0AoL+HwyVz91GB7nwWS/g0xo+ktdhJ+3/HAz411c6qdvOTlEIROa/P6VO157dNWroAjx3g9WEjyMUh+141m0PDcl5qmohm1BVgcoBUISs/6A27JJ8pfqUdZRbAfHLZD9gwg7aHlvgrpBx2WquTEsJ9SpPuTUH6EtmylrGjP64URdPaa94L5BoJIY5/OtA0a3A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=wiwynn.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RwllaVZrK3Z03jlhItgA6A0K4JF92EcjWplkQCYFA5w=;
+ b=e57m5gcXKLxjCGqnOX+unkyuZYFXrBT9sTeTeZrGl+LTS5uhMSOdsr7KQkASNEf+lE8tHUmQ3kSn7QWifKK3/gbfpVC6i5Ei09Y5IkF1W1d9zcvn3ZC8bvdp8B2QY+TJbWLohCjmJbTcVOb8b6J1wiZpVjA8SJrVvCfxGid+v+QKmYDYncsPdSJ/l50ArkfmctCXzMatqpmC9FQla0a7MIkA8bxSB5v4ivStojN//zColkhtSBIzfse0+IahzoktiVpu364Tjg4inOzjP69mbUkeQu3mbkKi59kubFO3Qy12Jr/Nhnd/ggHYQpWdSzaIOkuO+nDWs/tuZaoy7xddBw==
+Received: from PU1PR01CA0007.apcprd01.prod.exchangelabs.com
+ (2603:1096:803:15::19) by TYZPR04MB7235.apcprd04.prod.outlook.com
+ (2603:1096:400:45d::5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.30; Thu, 21 Mar
+ 2024 02:12:39 +0000
+Received: from HK3PEPF0000021F.apcprd03.prod.outlook.com
+ (2603:1096:803:15:cafe::e) by PU1PR01CA0007.outlook.office365.com
+ (2603:1096:803:15::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.28 via Frontend
+ Transport; Thu, 21 Mar 2024 02:12:38 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
+ smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
+Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
+ designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.20.1.79; helo=localhost.localdomain;
+Received: from localhost.localdomain (211.20.1.79) by
+ HK3PEPF0000021F.mail.protection.outlook.com (10.167.8.41) with Microsoft SMTP
+ Server id 15.20.7409.10 via Frontend Transport; Thu, 21 Mar 2024 02:12:37
+ +0000
+From: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+To: patrick@stwcx.xyz
+Cc: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v7 00/22] Add i2c-mux and eeprom devices for Meta Yosemite 4
+Date: Thu, 21 Mar 2024 10:12:12 +0800
+Message-Id: <20240321021236.1823693-1-Delphine_CC_Chiu@wiwynn.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240319143253.22317-5-sudanl@amazon.com>
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: HK3PEPF0000021F:EE_|TYZPR04MB7235:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: f79a2b0e-f197-44e7-235c-08dc494c6148
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	JhBEbcQc73lwS7erGUvts4E4N7lXtDb70tIe3Zz97xme4bT/+UNq8PkdcCCRspbnEkpinnkUQq7lG07NcihHmrfOrUFIWfiy2eDnBetIey9U9bNOyWgOYTQ9TuEcER7fLcvrAU4OHy1Hs6hyMRc9lHQ00kvJ3BX/PNNybH1HlCPV6SxI1F6LSk7qs5uExtkiI9jCuzI2kHY/wWbAQMPh3FpgqQnSWmmxmto85b7+5VKJlHI9wRKqPs+xkUSEUOB9SQQxjWjAkn9zIIE6VzvXMQlHVZrKXXvWwHaEydxuKb9p7+xZ0zL9Jk11pbcp//8UhsJ7JkRE4Pa/hhB5y+ryw7MiobKwDujGjwuBajYcTVBhhcmosdQmkT+ARX0PPTL1doyw5Sy7ynyS/HNbarw22JgjM5/Jv0WMav/obLwsiKAtUm5re2XO2OJK6EP6aJvwkqWwVtfUhsXXETigjzX0NlUyOubOoIfhO2LUWl3+uPs10W8ixqVP1Bm6MIkKyqc43tyOB1KQ8qt+eaQyDMlzDS5R99v6/nFe8PIDQBUMHCAlCtrCn4yJBLzZ7zPGfvrJxhOsbI79vpE785kT1nODyHIKTaHlDSumT8z9Gy6QgIUFo97jCjX9lM95nNkATVyanRK6WmUepbzS1zpIZcqKCFqhKEAT4aqqtfAFjTUWyJYSMXJUuBeG0ipdfVkwvHrStaiBiYf1nL2quuxZhVaAhxsgzaQRvB1Y+SrVa5Wq++EDO8ozuTU40A7AgbVvhnP/
+X-Forefront-Antispam-Report:
+	CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230031)(7416005)(36860700004)(376005)(82310400014)(1800799015);DIR:OUT;SFP:1101;
+X-OriginatorOrg: wiwynn.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Mar 2024 02:12:37.6040
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f79a2b0e-f197-44e7-235c-08dc494c6148
+X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
+X-MS-Exchange-CrossTenant-AuthSource:
+	HK3PEPF0000021F.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR04MB7235
 
-Hi Sudan,
+Changelog:
+  - v7
+    - Revise pca9506 i2c address
+  - v6
+    - Revise i2c duty-cycle for meeting 400khz spec
+  - v5
+    - Support medusa board adc sensors
+    - support NIC eeprom
+  - v4
+    - Re-format gpio linename
+    - Revise i2c device node names
+    - Split patches by logic changes
+  - v3
+    - Correct patch for revising gpio name
+  - v2
+    - Revise mx31790 fan tach config
+    - Add mctp config for NIC
+    - Support mux to cpld
+    - Revise gpio name
+  - v1
+    - Add gpio and eeprom behind i2c-mux
+    - Remove redundant idle-state setting for i2c-mux
+    - Enable adc 15, wdt2,spi gpio for yosemite4 use
+    - Revise quad mode to dual mode to avoid WP pin influnece the SPI
+    - Revise power sensor adm1281 for yosemite4 schematic change
+    - Add gpio pca9506 I/O expander for yosemite4 use
+    - remove space for adm1272 compatible
+    - enable interrupt setting for pca9555
+    - add eeprom for yosemite4 medusa board/BSM use
+    - remove temperature sensor for yosemite4 schematic change
+    - add power sensor for power module reading
+    - Revise adc128d818 adc mode for yosemite4 schematic change
+    - Revise ina233 for yosemite4 schematic change
+    - Remove idle state setting for yosemite4 NIC connection
+    - Initialize bmc gpio state
+    - Revise mx31790 fan tach config
+    - Add mctp config for NIC
+    - Support mux to cpld
+    - Revise gpio name
 
-kernel test robot noticed the following build errors:
+Delphine CC Chiu (22):
+  ARM: dts: aspeed: yosemite4: Revise i2c-mux devices
+  ARM: dts: aspeed: yosemite4: Enable adc15
+  ARM: dts: aspeed: yosemite4: Enable spi-gpio setting
+  ARM: dts: aspeed: yosemite4: Enable watchdog2
+  ARM: dts: aspeed: yosemite4: Revise quad mode to dual mode
+  ARM: dts: aspeed: yosemite4: Revise power sensor adm1281 for schematic
+    change
+  ARM: dts: aspeed: yosemite4: Add gpio pca9506
+  ARM: dts: aspeed: yosemite4: Remove space for adm1272 compatible
+  ARM: dts: aspeed: yosemite4: Enable interrupt setting for pca9555
+  ARM: dts: aspeed: yosemite4: Add power sensor for power module reading
+  ARM: dts: aspeed: yosemite4: Add eeprom for yosemite4 use
+  ARM: dts: aspeed: yosemite4: Remove temperature sensor for yosemite4
+    schematic change
+  ARM: dts: aspeed: yosemite4: Revise adc128d818 adc mode for yosemite4
+    schematic change
+  ARM: dts: aspeed: yosemite4: Revise ina233 config for yosemite4
+    schematic change
+  ARM: dts: aspeed: yosemite4: Remove idle state setting for yosemite4
+    NIC connection
+  ARM: dts: aspeed: yosemite4: Initialize bmc gpio state
+  ARM: dts: aspeed: yosemite4: Revise mx31790 fan tach config
+  ARM: dts: aspeed: yosemite4: add mctp config for NIC
+  ARM: dts: aspeed: yosemite4: support mux to cpld
+  ARM: dts: aspeed: yosemite4: support medusa board adc sensors
+  ARM: dts: aspeed: yosemite4: support NIC eeprom
+  ARM: dts: aspeed: yosemite4: Revise i2c duty-cycle
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.8 next-20240320]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Sudan-Landge/virt-vmgenid-rearrange-code-to-make-review-easier/20240319-223642
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20240319143253.22317-5-sudanl%40amazon.com
-patch subject: [PATCH v1 4/4] virt: vmgenid: add support for devicetree bindings
-config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20240321/202403210806.pMEGAp0x-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240321/202403210806.pMEGAp0x-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202403210806.pMEGAp0x-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/virt/vmgenid.c: In function 'vmgenid_add_acpi':
->> drivers/virt/vmgenid.c:79:45: error: invalid use of undefined type 'struct acpi_device'
-      79 |         status = acpi_evaluate_object(device->handle, "ADDR", NULL, &parsed);
-         |                                             ^~
-   drivers/virt/vmgenid.c:96:56: error: invalid use of undefined type 'struct acpi_device'
-      96 |                                   devm_memremap(&device->dev, phys_addr, VMGENID_SIZE, MEMREMAP_WB)
-         |                                                        ^~
-   drivers/virt/vmgenid.c:102:52: error: invalid use of undefined type 'struct acpi_device'
-     102 |         status = acpi_install_notify_handler(device->handle, ACPI_DEVICE_NOTIFY,
-         |                                                    ^~
-   drivers/virt/vmgenid.c: At top level:
-   drivers/virt/vmgenid.c:196:36: warning: 'vmgenid_acpi_ids' defined but not used [-Wunused-const-variable=]
-     196 | static const struct acpi_device_id vmgenid_acpi_ids[] = {
-         |                                    ^~~~~~~~~~~~~~~~
-
-
-vim +79 drivers/virt/vmgenid.c
-
-657fab4d1001e1 Sudan Landge       2024-03-19   69  
-657fab4d1001e1 Sudan Landge       2024-03-19   70  static int vmgenid_add_acpi(struct device *dev, struct vmgenid_state *state)
-657fab4d1001e1 Sudan Landge       2024-03-19   71  {
-657fab4d1001e1 Sudan Landge       2024-03-19   72  	struct acpi_device *device = ACPI_COMPANION(dev);
-af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   73  	struct acpi_buffer parsed = { ACPI_ALLOCATE_BUFFER };
-af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   74  	union acpi_object *obj;
-af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   75  	phys_addr_t phys_addr;
-af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   76  	acpi_status status;
-af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   77  	int ret = 0;
-af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   78  
-af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23  @79  	status = acpi_evaluate_object(device->handle, "ADDR", NULL, &parsed);
-af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   80  	if (ACPI_FAILURE(status)) {
-af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   81  		ACPI_EXCEPTION((AE_INFO, status, "Evaluating ADDR"));
-af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   82  		return -ENODEV;
-af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   83  	}
-af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   84  	obj = parsed.pointer;
-af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   85  	if (!obj || obj->type != ACPI_TYPE_PACKAGE || obj->package.count != 2 ||
-af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   86  	    obj->package.elements[0].type != ACPI_TYPE_INTEGER ||
-af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   87  	    obj->package.elements[1].type != ACPI_TYPE_INTEGER) {
-af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   88  		ret = -EINVAL;
-af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   89  		goto out;
-af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   90  	}
-af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   91  
-af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   92  	phys_addr = (obj->package.elements[0].integer.value << 0) |
-af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23   93  		    (obj->package.elements[1].integer.value << 32);
-657fab4d1001e1 Sudan Landge       2024-03-19   94  
-657fab4d1001e1 Sudan Landge       2024-03-19   95  	ret = setup_vmgenid_state(state,
-657fab4d1001e1 Sudan Landge       2024-03-19   96  				  devm_memremap(&device->dev, phys_addr, VMGENID_SIZE, MEMREMAP_WB)
-657fab4d1001e1 Sudan Landge       2024-03-19   97  				 );
-657fab4d1001e1 Sudan Landge       2024-03-19   98  	if (ret)
-657fab4d1001e1 Sudan Landge       2024-03-19   99  		goto out;
-657fab4d1001e1 Sudan Landge       2024-03-19  100  
-657fab4d1001e1 Sudan Landge       2024-03-19  101  	dev->driver_data = state;
-657fab4d1001e1 Sudan Landge       2024-03-19  102  	status = acpi_install_notify_handler(device->handle, ACPI_DEVICE_NOTIFY,
-657fab4d1001e1 Sudan Landge       2024-03-19  103  					     vmgenid_acpi_handler, dev);
-657fab4d1001e1 Sudan Landge       2024-03-19  104  	if (ACPI_FAILURE(status)) {
-657fab4d1001e1 Sudan Landge       2024-03-19  105  		dev_err(dev, "Failed to install acpi notify handler");
-657fab4d1001e1 Sudan Landge       2024-03-19  106  		ret = -ENODEV;
-657fab4d1001e1 Sudan Landge       2024-03-19  107  		dev->driver_data = NULL;
-af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23  108  		goto out;
-af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23  109  	}
-657fab4d1001e1 Sudan Landge       2024-03-19  110  out:
-657fab4d1001e1 Sudan Landge       2024-03-19  111  	ACPI_FREE(parsed.pointer);
-657fab4d1001e1 Sudan Landge       2024-03-19  112  	return ret;
-657fab4d1001e1 Sudan Landge       2024-03-19  113  }
-af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23  114  
+ .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 1258 +++++++++++++++--
+ 1 file changed, 1151 insertions(+), 107 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.25.1
+
 
