@@ -1,365 +1,154 @@
-Return-Path: <devicetree+bounces-52205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76B17885AF9
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 15:41:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB4FC885B06
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 15:43:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 016E91F226B9
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 14:41:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6AA741F21B26
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 14:43:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 066FA86655;
-	Thu, 21 Mar 2024 14:39:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AA1886255;
+	Thu, 21 Mar 2024 14:42:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bu55E+89"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X2KAZ0D3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF7F285624;
-	Thu, 21 Mar 2024 14:39:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FB6684FBE;
+	Thu, 21 Mar 2024 14:42:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711031989; cv=none; b=ory7QGnMci/8v9UGcPDApv8iCxI15Z5M2NuDlYpNY2sY+z/RvtQ1fAOq350A1ysXDUmVL7vtnSGOZxaaB6WtYhZDOwRH57mXG8lxB788PhDuauMR0aqjc9TSBTmudyXTRIfqMQMcdh+MzLR2cAa/PJNWWQcF9bxFYWQ+IULo4DY=
+	t=1711032149; cv=none; b=erpnzKoKp5x8H3tTNmdTDobXcG7vW8X7sINgTh78mHmtdNKZjXJRK4M+9qMCogGHaJVneN6N1+S8Jm12X1UkZphZ4j+CwAovseb8MqYJ2ZdMONS2DjquzJvMFM3u88njHi9CatKj6M9dlK3KTgYnLJpws9PIikZl1axgo2rqVFM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711031989; c=relaxed/simple;
-	bh=nD6bMf7Xr8n3v+b5OzhAL7f+FUoIz+AiyDQfstHETQY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=K/cyoko+8Yk1khe4zwMavanG7i6VrRVrnMC7Vk7J5QcAl+wWP5hsw7xbw3O8CIED38t6dDZdlRM4FcgIKJSQkrBInk4PpzxiaKCjzfgu4X5cAHeNQrUMq5aX7I4Xr/7obVzwJNGmwLiS4uGVIeM+eV5HICLMynRjNPf0Bqnuwbs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bu55E+89; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a46f0da1b4fso140408566b.2;
-        Thu, 21 Mar 2024 07:39:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711031986; x=1711636786; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OXdUi70LVWiCFaEv3hJR6QqlTeECRXc1VTJKBn3DQG8=;
-        b=bu55E+89ZhlJaXTmF2BgImiSgMF1HoNwc5eucR6CdrLTd/Krm7Q0pQex58B3i04n39
-         YeBw0CfeBpzFWaB8/16S35ZP26s/isUFAnSjEbaF79r4lZCihWsamCp+KpxGmatgIVgk
-         PN+XW4hV6Agrpdonb4Ju4U/r1rjDeFw9Lt7AVWj/A3vrHbTv1CDsIS9Ih+TH27U3skuq
-         vfbNTnhqPgJAZ+N8ZokN3knvh/qopLju3okVQXF6J5gRLwXAmhSl1wiCh50fIfauhMk6
-         HQA2OP51jO0TJDlRS7QdmYzcbTpkWckrsssbQPl6tasDJoY9YxfjmL9PleCtQ3UvuZS7
-         GOAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711031986; x=1711636786;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OXdUi70LVWiCFaEv3hJR6QqlTeECRXc1VTJKBn3DQG8=;
-        b=CAUo+z19oOWdw/jgLsCCBSEVRmAbqoRkVemFeQNT0bTdEOR+byw+mxHmA/+JU5nzS/
-         Pi4eRgewyQJ5W1QWVIuhV/2TPtaDq6zyBygGw4wlurEKV+5tZJjgbzJH3YnQDA4Pq+r4
-         OHfQ1R9x93/JVsBcJ3LtlwsgKm9gX9eIWGDsG6Kry+BPD0iLQjUL5leyHXoLs7S5LpVX
-         w9ZRrfjh1vg+lNKwyFUtF4ZD7MiCLF3wJUCLpDt2IRkEISdm0FwbGNydSKueOPSZchDn
-         IIo+v55PgvKuToavKOYndsr66w+on7uMScYKknkl4i2HZo9Wv261zh8DAsO8bm/deWh2
-         l9KA==
-X-Forwarded-Encrypted: i=1; AJvYcCUGAaoE65tJaAyh3vh+lyjtacH5fJsFJOCScgzFHIboP/f0XeBjmbWCCtQ8sIXLw7MOmttuR+mNCXwf+EjXM1k5JkmqUXsYvVkz8z2nnIgT8Xx9DaH9ZQRPWjJfxUcHbdi2NFp+8ZBKV0UafBegLmEVbEzPnocGfgVOG8VK+0K1NSWl+cc=
-X-Gm-Message-State: AOJu0YxQujKffi9B4f4rp9g4ihNm58uUnw21LJr4uv1w5pPjBuL03tpg
-	AY2YZ3NSSPUkqRAJOPAR45UDJG2+kJSy9KHCmy/rRBFuFg5l8zc=
-X-Google-Smtp-Source: AGHT+IEvmqJxcgqCs9F+eugbA6eGhxim0tnRpaHrzHeGvksZYvis0wjT7sLG+3A8uZaxlaeZJkatXg==
-X-Received: by 2002:a17:906:e2c6:b0:a47:fdd:e97d with SMTP id gr6-20020a170906e2c600b00a470fdde97dmr1586471ejb.51.1711031986124;
-        Thu, 21 Mar 2024 07:39:46 -0700 (PDT)
-Received: from U4.lan ([2a02:810b:f40:4600:b39:dab4:8e20:e918])
-        by smtp.gmail.com with ESMTPSA id e3-20020a170906248300b00a46abaeeb1csm6147923ejb.104.2024.03.21.07.39.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Mar 2024 07:39:45 -0700 (PDT)
-From: Alex Bee <knaerzche@gmail.com>
-To: Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1711032149; c=relaxed/simple;
+	bh=eCmOsrWn0vFoPh2l6bOYyx1AWFAxo0BkYpUu5K+u20o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mor0FCcO7rGhlV4ggF32008TvS6zsaNtKz3017alokPoEXzGHYNirHeSEqMnVos6ePnoKIObq2pOA/f+3JDma1FsmVNoTDNR5Nmhv4vnP9324KhHgCCZDPFAXR9BizkdBS3Bs5zWu/JsTktS98DOsLlbeE8B3Zfzw8Q7sWJIdVc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X2KAZ0D3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A08D5C43330;
+	Thu, 21 Mar 2024 14:42:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711032148;
+	bh=eCmOsrWn0vFoPh2l6bOYyx1AWFAxo0BkYpUu5K+u20o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=X2KAZ0D3Xtxnv8OsYsVu202OprZWKYS6nVtp75NTuw2qtG5JG7OdKdlb+mvYvOpYJ
+	 2MKgxqYMC8QT1D+DnlVkvA/BnK26R6JFhtlknlsKgRtO9W3DgyGk1pUFCF1VyRPApE
+	 ugFxgtieTtv7vJFX8tmzOBTBmKO/r+PuWT3atzqg6rXtzoixTbJIzPlDPj7XSgRDuw
+	 gVHsTreKozoPmoROAQSD4Vz1XZzR1Nybo6yTLD2gT14qDB5b7MSwVUh9yA4k+pGuRQ
+	 TEoFYmySo5HXc6pzc2sfQYV74BK6XXCJ4+mlEEvoT828OKhxAYjQGF/s+p01Agagwm
+	 Kyb3v+2RKO4zg==
+Date: Thu, 21 Mar 2024 09:42:26 -0500
+From: Rob Herring <robh@kernel.org>
+To: Tao Zhang <quic_taozha@quicinc.com>
+Cc: Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Konrad Dybcio <konradybcio@gmail.com>,
+	Mike Leach <mike.leach@linaro.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>
-Cc: Chris Zhong <zyw@rock-chips.com>,
-	Zhang Qing <zhangqing@rock-chips.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	Alex Bee <knaerzche@gmail.com>
-Subject: [PATCH 5/5] regulator: rk808: Add RK816 support
-Date: Thu, 21 Mar 2024 15:39:13 +0100
-Message-ID: <20240321143911.90210-8-knaerzche@gmail.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240321143911.90210-2-knaerzche@gmail.com>
-References: <20240321143911.90210-2-knaerzche@gmail.com>
+	Jinlong Mao <quic_jinlmao@quicinc.com>,
+	Leo Yan <leo.yan@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Tingwei Zhang <quic_tingweiz@quicinc.com>,
+	Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+	Trilok Soni <quic_tsoni@quicinc.com>,
+	Song Chai <quic_songchai@quicinc.com>,
+	linux-arm-msm@vger.kernel.org, andersson@kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: arm: qcom,coresight-funnel: Add label
+ for multi-ouput
+Message-ID: <20240321144226.GA1689544-robh@kernel.org>
+References: <1711009927-17873-1-git-send-email-quic_taozha@quicinc.com>
+ <1711009927-17873-2-git-send-email-quic_taozha@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1711009927-17873-2-git-send-email-quic_taozha@quicinc.com>
 
-Add support for rk816 to the exisiting rk808 regulator driver.
+On Thu, Mar 21, 2024 at 04:32:04PM +0800, Tao Zhang wrote:
+> Add new property "label" to label the source corresponding to the
+> output connection. When the funnel supports multi-output, this
+> property needs to be introduced to mark which source component a
+> certain output connection corresponds to.
+> 
+> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+> ---
+>  .../arm/arm,coresight-dynamic-funnel.yaml     | 34 ++++++++++++++++---
+>  1 file changed, 30 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
+> index 44a1041cb0fc..cde62c286d29 100644
+> --- a/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
+> +++ b/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
+> @@ -66,13 +66,39 @@ properties:
+>          $ref: /schemas/graph.yaml#/properties/port
+>  
+>    out-ports:
+> -    $ref: /schemas/graph.yaml#/properties/ports
+> -    additionalProperties: false
+> -
+> +    type: object
+>      properties:
+> +      "#address-cells":
+> +        const: 1
+> +
+> +      "#size-cells":
+> +        const: 0
+> +
+>        port:
+> +        type: object
+> +
+> +    patternProperties:
+> +      '^port(@[0-7])?$':
+> +        type: object
+>          description: Output connection to CoreSight Trace bus
+> -        $ref: /schemas/graph.yaml#/properties/port
 
-The infrastructure of the driver can be re-used as is. A peculiarity for
-this version is, that BUCK1/BUCK2 have a (common) bit which needs to
-toggled after a voltage change to "confirm" the change. Regulator regmap
-takes care of that by defining a apply_bit and apply_reg for those
-regulators.
+Nope, now you have no constraints on port node properties. Please look 
+at how other bindings are done to add properties on endpoint node.
 
-Signed-off-by: Alex Bee <knaerzche@gmail.com>
----
- drivers/regulator/rk808-regulator.c | 202 +++++++++++++++++++++++++++-
- 1 file changed, 201 insertions(+), 1 deletion(-)
+> +
+> +        patternProperties:
+> +          "^endpoint(@[0-9a-f]+)?$":
+> +            type: object
+> +            properties:
+> +              remote-endpoint:
+> +                description: |
+> +                  phandle to an 'endpoint' subnode of a remote device node.
+> +                  $ref: /schemas/types.yaml#/definitions/phandle
 
-diff --git a/drivers/regulator/rk808-regulator.c b/drivers/regulator/rk808-regulator.c
-index a6a563e402d0..7a9cd991039b 100644
---- a/drivers/regulator/rk808-regulator.c
-+++ b/drivers/regulator/rk808-regulator.c
-@@ -158,6 +158,11 @@
- 	RK8XX_DESC_COM(_id, _match, _supply, _min, _max, _step, _vreg,	\
- 	_vmask, _ereg, _emask, 0, 0, _etime, &rk808_reg_ops)
- 
-+#define RK816_DESC(_id, _match, _supply, _min, _max, _step, _vreg,	\
-+	_vmask, _ereg, _emask, _disval, _etime)				\
-+	RK8XX_DESC_COM(_id, _match, _supply, _min, _max, _step, _vreg,	\
-+	_vmask, _ereg, _emask, _emask, _disval, _etime, &rk816_reg_ops)
-+
- #define RK817_DESC(_id, _match, _supply, _min, _max, _step, _vreg,	\
- 	_vmask, _ereg, _emask, _disval, _etime)				\
- 	RK8XX_DESC_COM(_id, _match, _supply, _min, _max, _step, _vreg,	\
-@@ -258,7 +263,7 @@ static const unsigned int rk808_buck1_2_ramp_table[] = {
- 	2000, 4000, 6000, 10000
- };
- 
--/* RK817 RK809 */
-+/* RK817/RK809/RK816 (buck 1/2 only) */
- static const unsigned int rk817_buck1_4_ramp_table[] = {
- 	3000, 6300, 12500, 25000
- };
-@@ -640,6 +645,38 @@ static int rk808_set_suspend_disable(struct regulator_dev *rdev)
- 				  rdev->desc->enable_mask);
- }
- 
-+static const struct rk8xx_register_bit rk816_suspend_bits[] = {
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG1, 0),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG1, 1),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG1, 2),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG1, 3),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG2, 0),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG2, 1),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG2, 2),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG2, 3),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG2, 4),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG2, 5),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG1, 5),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG1, 6),
-+};
-+
-+static int rk816_set_suspend_enable(struct regulator_dev *rdev)
-+{
-+	int rid = rdev_get_id(rdev);
-+
-+	return regmap_update_bits(rdev->regmap, rk816_suspend_bits[rid].reg,
-+				  rk816_suspend_bits[rid].bit,
-+				  rk816_suspend_bits[rid].bit);
-+}
-+
-+static int rk816_set_suspend_disable(struct regulator_dev *rdev)
-+{
-+	int rid = rdev_get_id(rdev);
-+
-+	return regmap_update_bits(rdev->regmap, rk816_suspend_bits[rid].reg,
-+				  rk816_suspend_bits[rid].bit, 0);
-+}
-+
- static int rk817_set_suspend_enable_ctrl(struct regulator_dev *rdev,
- 					 unsigned int en)
- {
-@@ -913,6 +950,54 @@ static const struct regulator_ops rk809_buck5_ops_range = {
- 	.set_suspend_disable	= rk817_set_suspend_disable,
- };
- 
-+static const struct regulator_ops rk816_buck1_2_ops_ranges = {
-+	.list_voltage		= regulator_list_voltage_linear_range,
-+	.map_voltage		= regulator_map_voltage_linear_range,
-+	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
-+	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
-+	.set_voltage_time_sel	= regulator_set_voltage_time_sel,
-+	.enable			= regulator_enable_regmap,
-+	.disable		= regulator_disable_regmap,
-+	.is_enabled		= regulator_is_enabled_regmap,
-+	.set_mode		= rk8xx_set_mode,
-+	.get_mode		= rk8xx_get_mode,
-+	.set_suspend_mode	= rk8xx_set_suspend_mode,
-+	.set_ramp_delay		= regulator_set_ramp_delay_regmap,
-+	.set_suspend_voltage	= rk808_set_suspend_voltage_range,
-+	.set_suspend_enable	= rk816_set_suspend_enable,
-+	.set_suspend_disable	= rk816_set_suspend_disable,
-+};
-+
-+static const struct regulator_ops rk816_buck4_ops_ranges = {
-+	.list_voltage		= regulator_list_voltage_linear_range,
-+	.map_voltage		= regulator_map_voltage_linear_range,
-+	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
-+	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
-+	.set_voltage_time_sel	= regulator_set_voltage_time_sel,
-+	.enable			= regulator_enable_regmap,
-+	.disable		= regulator_disable_regmap,
-+	.is_enabled		= regulator_is_enabled_regmap,
-+	.set_mode		= rk8xx_set_mode,
-+	.get_mode		= rk8xx_get_mode,
-+	.set_suspend_mode	= rk8xx_set_suspend_mode,
-+	.set_suspend_voltage	= rk808_set_suspend_voltage_range,
-+	.set_suspend_enable	= rk816_set_suspend_enable,
-+	.set_suspend_disable	= rk816_set_suspend_disable,
-+};
-+
-+static const struct regulator_ops rk816_reg_ops = {
-+	.list_voltage		= regulator_list_voltage_linear,
-+	.map_voltage		= regulator_map_voltage_linear,
-+	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
-+	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
-+	.enable			= regulator_enable_regmap,
-+	.disable		= regulator_disable_regmap,
-+	.is_enabled		= rk8xx_is_enabled_wmsk_regmap,
-+	.set_suspend_voltage	= rk808_set_suspend_voltage,
-+	.set_suspend_enable	= rk816_set_suspend_enable,
-+	.set_suspend_disable	= rk816_set_suspend_disable,
-+};
-+
- static const struct regulator_ops rk817_reg_ops = {
- 	.list_voltage		= regulator_list_voltage_linear,
- 	.map_voltage		= regulator_map_voltage_linear,
-@@ -1392,6 +1477,117 @@ static const struct regulator_desc rk809_reg[] = {
- 			  DISABLE_VAL(3)),
- };
- 
-+static const struct linear_range rk816_buck_4_voltage_ranges[] = {
-+	REGULATOR_LINEAR_RANGE(800000, 0, 26, 100000),
-+	REGULATOR_LINEAR_RANGE(3500000, 27, 31, 0),
-+};
-+
-+static const struct regulator_desc rk816_reg[] = {
-+	{
-+		.name = "DCDC_REG1",
-+		.supply_name = "vcc1",
-+		.of_match = of_match_ptr("DCDC_REG1"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK816_ID_DCDC1,
-+		.ops = &rk816_buck1_2_ops_ranges,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = 64,
-+		.linear_ranges = rk805_buck_1_2_voltage_ranges,
-+		.n_linear_ranges = ARRAY_SIZE(rk805_buck_1_2_voltage_ranges),
-+		.vsel_reg = RK818_BUCK1_ON_VSEL_REG,
-+		.vsel_mask = RK818_BUCK_VSEL_MASK,
-+		.apply_reg = RK816_DCDC_EN_REG2,
-+		.apply_bit = RK816_BUCK_DVS_CONFIRM,
-+		.enable_reg = RK816_DCDC_EN_REG1,
-+		.enable_mask = BIT(4) | BIT(0),
-+		.enable_val = BIT(4) | BIT(0),
-+		.disable_val = BIT(4),
-+		.ramp_reg = RK818_BUCK1_CONFIG_REG,
-+		.ramp_mask = RK808_RAMP_RATE_MASK,
-+		.ramp_delay_table = rk817_buck1_4_ramp_table,
-+		.n_ramp_values = ARRAY_SIZE(rk817_buck1_4_ramp_table),
-+		.of_map_mode = rk8xx_regulator_of_map_mode,
-+		.owner = THIS_MODULE,
-+	}, {
-+		.name = "DCDC_REG2",
-+		.supply_name = "vcc2",
-+		.of_match = of_match_ptr("DCDC_REG2"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK816_ID_DCDC2,
-+		.ops = &rk816_buck1_2_ops_ranges,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = 64,
-+		.linear_ranges = rk805_buck_1_2_voltage_ranges,
-+		.n_linear_ranges = ARRAY_SIZE(rk805_buck_1_2_voltage_ranges),
-+		.vsel_reg = RK818_BUCK2_ON_VSEL_REG,
-+		.vsel_mask = RK818_BUCK_VSEL_MASK,
-+		.apply_reg = RK816_DCDC_EN_REG2,
-+		.apply_bit = RK816_BUCK_DVS_CONFIRM,
-+		.enable_reg = RK816_DCDC_EN_REG1,
-+		.enable_mask = BIT(5) | BIT(1),
-+		.enable_val = BIT(5) | BIT(1),
-+		.disable_val = BIT(5),
-+		.ramp_reg = RK818_BUCK2_CONFIG_REG,
-+		.ramp_mask = RK808_RAMP_RATE_MASK,
-+		.ramp_delay_table = rk817_buck1_4_ramp_table,
-+		.n_ramp_values = ARRAY_SIZE(rk817_buck1_4_ramp_table),
-+		.of_map_mode = rk8xx_regulator_of_map_mode,
-+		.owner = THIS_MODULE,
-+	}, {
-+		.name = "DCDC_REG3",
-+		.supply_name = "vcc3",
-+		.of_match = of_match_ptr("DCDC_REG3"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK816_ID_DCDC3,
-+		.ops = &rk808_switch_ops,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = 1,
-+		.enable_reg = RK816_DCDC_EN_REG1,
-+		.enable_mask = BIT(6) | BIT(2),
-+		.enable_val =  BIT(6) | BIT(2),
-+		.disable_val = BIT(6),
-+		.of_map_mode = rk8xx_regulator_of_map_mode,
-+		.owner = THIS_MODULE,
-+	}, {
-+		.name = "DCDC_REG4",
-+		.supply_name = "vcc4",
-+		.of_match = of_match_ptr("DCDC_REG4"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK816_ID_DCDC4,
-+		.ops = &rk816_buck4_ops_ranges,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = 32,
-+		.linear_ranges = rk816_buck_4_voltage_ranges,
-+		.n_linear_ranges = ARRAY_SIZE(rk816_buck_4_voltage_ranges),
-+		.vsel_reg = RK818_BUCK4_ON_VSEL_REG,
-+		.vsel_mask = RK818_BUCK4_VSEL_MASK,
-+		.enable_reg = RK816_DCDC_EN_REG1,
-+		.enable_mask = BIT(7) | BIT(3),
-+		.enable_val = BIT(7) | BIT(3),
-+		.disable_val = BIT(7),
-+		.of_map_mode = rk8xx_regulator_of_map_mode,
-+		.owner = THIS_MODULE,
-+	},
-+	RK816_DESC(RK816_ID_LDO1, "LDO_REG1", "vcc5", 800, 3400, 100,
-+		   RK818_LDO1_ON_VSEL_REG, RK818_LDO_VSEL_MASK,
-+		   RK816_LDO_EN_REG1, ENABLE_MASK(0), DISABLE_VAL(0), 400),
-+	RK816_DESC(RK816_ID_LDO2, "LDO_REG2", "vcc5", 800, 3400, 100,
-+		   RK818_LDO2_ON_VSEL_REG, RK818_LDO_VSEL_MASK,
-+		   RK816_LDO_EN_REG1, ENABLE_MASK(1), DISABLE_VAL(1), 400),
-+	RK816_DESC(RK816_ID_LDO3, "LDO_REG3", "vcc5", 800, 3400, 100,
-+		   RK818_LDO3_ON_VSEL_REG, RK818_LDO_VSEL_MASK,
-+		   RK816_LDO_EN_REG1, ENABLE_MASK(2), DISABLE_VAL(2), 400),
-+	RK816_DESC(RK816_ID_LDO4, "LDO_REG4", "vcc6", 800, 3400, 100,
-+		   RK818_LDO4_ON_VSEL_REG, RK818_LDO_VSEL_MASK,
-+		   RK816_LDO_EN_REG1, ENABLE_MASK(3), DISABLE_VAL(3), 400),
-+	RK816_DESC(RK816_ID_LDO5, "LDO_REG5", "vcc6", 800, 3400, 100,
-+		   RK818_LDO5_ON_VSEL_REG, RK818_LDO_VSEL_MASK,
-+		   RK816_LDO_EN_REG2, ENABLE_MASK(0), DISABLE_VAL(0), 400),
-+	RK816_DESC(RK816_ID_LDO6, "LDO_REG6", "vcc6", 800, 3400, 100,
-+		   RK818_LDO6_ON_VSEL_REG, RK818_LDO_VSEL_MASK,
-+		   RK816_LDO_EN_REG2, ENABLE_MASK(1), DISABLE_VAL(1), 400),
-+};
-+
- static const struct regulator_desc rk817_reg[] = {
- 	{
- 		.name = "DCDC_REG1",
-@@ -1714,6 +1910,10 @@ static int rk808_regulator_probe(struct platform_device *pdev)
- 		regulators = rk809_reg;
- 		nregulators = RK809_NUM_REGULATORS;
- 		break;
-+	case RK816_ID:
-+		regulators = rk816_reg;
-+		nregulators = ARRAY_SIZE(rk816_reg);
-+		break;
- 	case RK817_ID:
- 		regulators = rk817_reg;
- 		nregulators = RK817_NUM_REGULATORS;
--- 
-2.43.2
+Don't need this.
 
+> +              label:
+> +                description: Label the source corresponding to the output connection
+> +                $ref: /schemas/types.yaml#/definitions/string
+
+label already has a type.
+
+As this node is an output, aren't you labeling what the destination is, 
+not the "source"?
+
+Why can't you look at the remote connection to identify what it is?
+
+
+> +    oneOf:
+> +      - required:
+> +          - port
+> +      - required:
+> +          - "#address-cells"
+> +          - "#size-cells"
+
+The common schema that you removed handles this.
+
+Rob
 
