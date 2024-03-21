@@ -1,80 +1,83 @@
-Return-Path: <devicetree+bounces-52212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCCE9885B61
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 16:05:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C73A9885B79
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 16:13:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A6821F23C68
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 15:05:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20CA1285527
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 15:13:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 854CC86646;
-	Thu, 21 Mar 2024 15:04:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BA5C8615A;
+	Thu, 21 Mar 2024 15:13:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="fLaVV0ah"
+	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="UfS6l8Bk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-db5eur01on2059.outbound.protection.outlook.com [40.107.15.59])
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2108.outbound.protection.outlook.com [40.107.8.108])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FF7E8625F;
-	Thu, 21 Mar 2024 15:04:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.15.59
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF2FE85943;
+	Thu, 21 Mar 2024 15:13:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.8.108
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711033475; cv=fail; b=RBD2XgDoi6L89nx2MNcxeHTyvPq3cWJ4xOpKxpW/2iW4QPqU9pQ4UKxtDOt+Ok4CD87HoOnKIoAVl8+/6+S095+njBBxtAYv0Fv1ZrWbFe4HFjsTAlHpWS+a2eebzLOJXDW4L3K3lze6hoXHDiCP2BvPdf18ntdtvEUJdtBap/E=
+	t=1711034019; cv=fail; b=NlRO6bsgNMzVX8N+6ggF2oMF+zK2xFErqjmO8O6tkeKjyf1Tb816P2zjbOjtgshh3AilVCZ+LdEylchRySZMTiE6AvKei2FpI0duJpFBuTZ0KanbTt8cSm3aVUeE4zt52zC/2nQo1LuA0kVIPrqv0pCaAwcxmdhiUN+DiHEI7GE=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711033475; c=relaxed/simple;
-	bh=1zLFM1PbEs4P2h2NyGL2hlusKCOxxaFjzdHJT/cglsc=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=YoA1Y5Nx9C+DMkT/4ORN9kIuMA+ddaU3QY978mFAq01H97VdIR8Rw3rusWljM2vPQFxtIvSC1Ha/SQsq18IUG7Q/1l03L4wpuXMJ64SDHPqySx3HjuouR5wjIOJWGOBK3PM9ws8oFCQMV5fTGnJQtZCFRln3ViNwM7UtaniUxNI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=fLaVV0ah; arc=fail smtp.client-ip=40.107.15.59
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+	s=arc-20240116; t=1711034019; c=relaxed/simple;
+	bh=ctlP0XhziHdMGK0XcKwrNCUso1ROP2CyzdIdHK0AG/c=;
+	h=From:Date:Subject:Content-Type:Message-Id:To:Cc:MIME-Version; b=BKmKDJQ1+Sj4BachNwDARmDpkSMrbE1h8CctlIAMh8QFvjMd9B6l+Xm4EPmyShBCu8p185fXCsMKtYwz7bAZd2KMSpRvv8Ay/6/wUyXfpVFoKYSjlEUtIUU1txERVHIfJ9ZGEoZ6/y/0SS4WampKbMNbhIBVzRbM6nNaHwQlL4Q=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com; spf=pass smtp.mailfrom=solid-run.com; dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b=UfS6l8Bk; arc=fail smtp.client-ip=40.107.8.108
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=solid-run.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=G7/plrA34P9jLWJPiB2eMlxNElc+whmg9IpRVqIDFbvuq1NuRplbx9T40kfAW5ZG/wrTrfAAFqJjm0QDaVypZ/1XgIuIQ7t3kTSau8ckygoj8wb0f5AH9MmIb8GrihUkg5FHyiWIAymfQyCwihVxyHZE3zIwdjonAamIYTJF2mbhSvtart6Lr26zy8p7OCUlp1ajbPUunWOO3l05IhPHmj0DOP+PvWqkzf1VDF3PvNLsV/OGu5leSb9Akz+wZQDSI1xayAG951yAzAXGCTpqe8Zgr8rPyZZ1nn9Ci8BziqicglQmVGfjj9vPD4YZFHaCGPK9Nww6L5/yEKFJ9dgn9A==
+ b=QP2l8+qHYtDUQ/VaX+poothIiabEVAx7tG3ScK+28hBXLXyzi0MCnEtkjjtgCI2eEipkpjphCBgjqaut2qFyXgSRK6X1ELoa7DHde9H8cfqa0HxOMhWqmnyodxedeM3k1ni+UIsb4FAyQTU/b6cqn3x71vDnFr3+QlgShI9APO4Y+msuqoT3SvttxfowdLbgmWWsExu1tZ/dHC2vpgQ8XyKL+yuAsIR8RfrJFnNSsEfknhScdb9Q2SrtM/MyTB0OhplYAczgH5xvJ14l2fprbtjVStPHY4ZzNxcWnshPka5cp5yZhasrYV6vL0ZVZcKAxQfnC9JAPdxL2UVx6rCj3Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=T8GIHj5Vj+nxFYFGoXsUi9GsA8NxysTkUy6qq+4cSL0=;
- b=ZP87Y68UpujJYY7IwoI5aZf7iKkmkiUmUwhCu+wQptYjgFyzPZA8jXI3x14ea3Y7bDYCrhSRZCWYey28bsyQgK2cu7UnmS10laUM8xu7PoHDcOoN8pQYBK0eCJgUCX22oXmPuMHL+yUCFcN46hHIylYP5viMtItdqlyijNXLAHceg+G/fYGVyNYHUB79g4cV1joEqEkYjWkcLSRLVoOgKHKCswb5DXIt4w290QxVswoAPvSHts1mSy8o3bTYPSUDmSbCq7ORuPtKkGIA9pFMC3zhMvALwP6s6OTATQC32kSCLUfQb3sRcoaMzHfFgEfP4gti4KiA1RGwxyrq5FNotQ==
+ bh=4O4vxaBJfT9m0gyYqownn4cTQ5IHN0R8B4MeQnLER6A=;
+ b=PXZp0E5Fbeqy3STSEkMZPosk3r+0uRQ0oT2dGP4WCRWmCatiQ+H2sMDGDaCtLpaT+Zel7dRA8o4MUKQNmUc0lKeCFKulaGD2DwGvYSuM7k17s0dngBu8UL/Mh0+l31gu9SRf0WE1C5VNd8sa7URQIfECBcw3opkhhAx5uMVtzNaiv7uBXszxLyGmRWQsEnjA4uvM7xLFCkhl5bZxjlwDMPQrkM4XIIdbfr2RRxjjxqf0jbWWTDZq0pb/LluD6udN77yH4QtYCGRePd1rIvZfCU2hIfau3rg2dwq2CMejMVJgCKgzJzWLV+sRTM0AjE5AiKoCuq7QmN92OLgylXwfxQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ smtp.mailfrom=solid-run.com; dmarc=pass action=none
+ header.from=solid-run.com; dkim=pass header.d=solid-run.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=T8GIHj5Vj+nxFYFGoXsUi9GsA8NxysTkUy6qq+4cSL0=;
- b=fLaVV0ahG6WG7QscwXEk89k6iQ0uyohWJ1xbAURX1rh+QS55VStGKyJV/uupX3bG00j/KvLjUluwav00PP9XQ6Kshzt54hzYjqinNmCyT3PnVtSvxA6BOs33BqDu4AbILW6iwUx4DTaCIH9fWLC0MxEsKWqguzww/KOiHTHHIfs=
+ bh=4O4vxaBJfT9m0gyYqownn4cTQ5IHN0R8B4MeQnLER6A=;
+ b=UfS6l8BkN+Bey5HWy5lvOUJRQoWi/x1MWj18SVwrtsrSvxsaafv6yCJ8t94xni6OGO1bREXVukhLTqQtbpys2IYkstGYZFIG+emOpJ7Qg5fv1iEMRDyL3Ojuxm4B7VIJHi6tpexMNGwHUV0KyvVwuy5CrzyHQJ75cAnvK0lgOfg=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by GVXPR04MB9880.eurprd04.prod.outlook.com (2603:10a6:150:119::6) with
+ header.d=none;dmarc=none action=none header.from=solid-run.com;
+Received: from AM9PR04MB7586.eurprd04.prod.outlook.com (2603:10a6:20b:2d5::17)
+ by AS4PR04MB9691.eurprd04.prod.outlook.com (2603:10a6:20b:4f4::20) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.30; Thu, 21 Mar
- 2024 15:04:30 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::3168:91:27c6:edf6]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::3168:91:27c6:edf6%3]) with mapi id 15.20.7386.025; Thu, 21 Mar 2024
- 15:04:28 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>,
-	linux-sound@vger.kernel.org (open list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM...),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [PATCH v2 1/1] ASoC: dt-bindings: fsl-audmix: Convert fsl,audmix.txt to yaml
-Date: Thu, 21 Mar 2024 11:04:00 -0400
-Message-Id: <20240321150401.2464783-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR03CA0121.namprd03.prod.outlook.com
- (2603:10b6:a03:33c::6) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+ 2024 15:13:32 +0000
+Received: from AM9PR04MB7586.eurprd04.prod.outlook.com
+ ([fe80::57e1:e1cb:74e2:2e9d]) by AM9PR04MB7586.eurprd04.prod.outlook.com
+ ([fe80::57e1:e1cb:74e2:2e9d%5]) with mapi id 15.20.7386.031; Thu, 21 Mar 2024
+ 15:13:32 +0000
+From: Josua Mayer <josua@solid-run.com>
+Date: Thu, 21 Mar 2024 16:13:19 +0100
+Subject: [PATCH RFC] arm64: dts: lx2160a: extend 32-bit, and add 64-bit pci
+ regions
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240321-lx2160-pci-v1-1-3673708f7eb6@solid-run.com>
+X-B4-Tracking: v=1; b=H4sIAI5O/GUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDQ0ML3ZwKI0MzA92C5Exdk6SUJENLs1RTizRjJaCGgqLUtMwKsGHRSkF
+ uzkqxtbUAjy/5tWEAAAA=
+To: Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Yazan Shhady <yazan.shhady@solid-run.com>, 
+ Jon Nettleton <jon@solid-run.com>, linux-arm-kernel@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Josua Mayer <josua@solid-run.com>
+X-Mailer: b4 0.12.4
+X-ClientProxiedBy: FR0P281CA0189.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:ab::20) To AM9PR04MB7586.eurprd04.prod.outlook.com
+ (2603:10a6:20b:2d5::17)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,237 +85,167 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|GVXPR04MB9880:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7d33b5fd-e864-4c13-4b2b-08dc49b83443
+X-MS-TrafficTypeDiagnostic: AM9PR04MB7586:EE_|AS4PR04MB9691:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9264ac89-fb8a-4532-2244-08dc49b978d6
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info:
-	nO6m6rIV8OT7LbYjk/+wbsACLGUJU91r0nCzd8tssxLVxpfRYuQWexbcXK6aMr+9R7IqfckkeGjC3uYYFpuNB79vXWCgcDgO5YjGbcziPfDjYPss5dwzHDsFVJYstxW2gibAYhegXG8rgYcMjHj2gDTkVMCe5DqsrtncZbChlbjIvhcVzgRcgu6ryIn9G1ckYAbuEOHp453wiv+iM7koFcypKqfTw+/WgfTTAKwMrH1QuRRAQqD+tLnKwY8Sk45WQAKe8W2zIof/nJlJr1VJupgIhnhPkaUz0M3ZsWLl3CWVHrfhdRtRpBUIC87fVZmJnuv022Vg9SMj0s70dqAjmGvDKF2n/W6054VmUJxjDnklpucVxN6T5qSVAm2Z/nbFk4VWweaCmzasJf/eqDucfFWO6B10e0CUBvbjgr8mb9MEnoWyXN0dZqdlVlqKZlo3OFlKUWmmXJ4M0rOwKacPeAfPA8wtjjGlztiNXz2ngJmwnlRVXxcKNqs7rxr9w+liNHXc/UOW5r9/UXjm3usV0Y3X3NH0Oyaobi62eR1xOimE97ipYJYae9ksS/vIaVssNUR3ZFY/MAG5SPhVndC1FtNTEEmh7h1tXxGtqhWyKhX/Z9vYVU3WScLBXzy5ydHbgEKHK6AmpHiuxy012CF5+g/h66tMD2oJEfhOmExkjwk=
+	zWYlC/HVb0BgvvGi1DfztYgNsbI5SG4zU0r6Irc58QZHcTfCE3N1B39CgnAniN7bDjpXypEaE5WhpcUOmYFsCJKf24ZK+/7Jn90cgJxkK6/JfBvrrP0RdSnjh30eAMNVXv+8DMhhx2Zck6zXaareNckprawzXWvmGUNLSWBwueLw3wCTUzlRLOxFhZgvYfGOemGFhunQEHNsqu7ohIyDEukinhiNy6gNSkA70vfjKZFpKZpSbeR7PzAbhJ5s8dcpguXXZR7NFkiME4ayV/1ka5YS3WLnrlFtaLBnPE6JAWMpsrWq1X9ikUBXxFSxuBVCmhqdZa1Vp2Zll5ePJilPxtCLjVOjWffIFprjV5ZCOwZF/nBnpNlbs00hyd2rLztJ1lqddOwNBOb5aQRJIiA4XXiKqYvUHG/yQUtj097rz4gPV2CuycTgOdyYYNhjiEKRuqZx0KlxGJYx2J7hObdsZuwIs1oFDk/XafePYwoP1Fv4gRTrkyoB/5PfetbZTP4ildfJIHNNq8PMsji0GeadtlFWW1LTi00PpfdUkTGYJ6BtF3vE7B395U6V8j+XEqZAS/uASbcipQoNvACropNuHcuZaloAq35uANm2CVaz+M9iFa2aR74T2ZbgVcynOLQCbRLxZDDBdN9pjlZZda8uez+zgk77hrvmZmxM5QeXgOr07ogzTDGgAXNxV+wtLSrdYCjif6VfoScSb9gZQd4U9TGetLx6cWZry4MEbWaZ+7k=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(366007)(52116005)(1800799015)(38350700005);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB7586.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(1800799015)(366007)(52116005)(38350700005);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?7y1NFH5UgGs+A4n9QgELBJAmOUEhodS3S00EVtSBwRsmkI2k02p7jt77aDa8?=
- =?us-ascii?Q?xcLVjesudrG7CPQMaVSGiQ9/GoxYd/euTZLmn+a2TAYmTioAlWqUrLtKKoiW?=
- =?us-ascii?Q?ZhzlXJrKRySPquWrireUGnTHQ3Vw6RsQmsGznCwsCREPNYRzlHL/RGxzgbMB?=
- =?us-ascii?Q?xO3W27xJLzioFecSEFAVWvz7mE24lYxW69qQCF24hUqPucghjzXrAgdct/n2?=
- =?us-ascii?Q?qK1TPU6r66raU5+Hh+p0uC/IL5QcLhZs1vtYb5xKxjJiU4ijkKrTgGCXkb+4?=
- =?us-ascii?Q?MBnuuLhYHxkajPEcRaLa0QgLY2vSDqntG0MSu1eTkEQDLktS3vRMfJeUc52Y?=
- =?us-ascii?Q?1dU3x3DVjVmXFZBPwXajXisp1tvLkDjLkKoNEMh/ohlr2DDWyltNjDekZu00?=
- =?us-ascii?Q?IMci40W8sNl7KoIagLjfzm4Nivcy3jfuDRr9SmW/XgoXqXoODDy11B67Q6d+?=
- =?us-ascii?Q?M565R4urM4Q9akO/JvL90u/30ISiwOwZVuf71FqhKn2bFI8LoncbrIdDaoyf?=
- =?us-ascii?Q?V/DkEK5KsyRN/17W4ovsSYPIbSgzq0H0RtwKUVWep7GYpgxInGSFOnCR1Gn5?=
- =?us-ascii?Q?DnYjdZu/DAlvxtlbnc7b7/HLv6Ip1jntjy0H7ZRIFZgwVOCoKH1PM/fQ2hDr?=
- =?us-ascii?Q?iU2EWuG9MRvDLAtNTZx81wO39mXgwfZOCMU1jjlytHw+VRwz7rMFMfHEySh3?=
- =?us-ascii?Q?oB0d8Pb/WmKDNrXDEli0QlrQqWlE5qJPAhTx5/Dbegjzmth41njY0eKraEB3?=
- =?us-ascii?Q?6my458g58eNOqaw8OQYcDdSf4enpz1Zph0O7jHxsQ/1nMoL2WVlZHVmHe4TL?=
- =?us-ascii?Q?bmNSR37CNvuk/pqHny+NyS+7Rw/FRDXDBTb/tJ2PaOhJI04bP1uHfJG/R3cq?=
- =?us-ascii?Q?9Zim22vpz913oWChkuaxhah2XnIhXnBiy3Q4rQ5J/aNmwPN8uVYl4aY8FdnV?=
- =?us-ascii?Q?Yj5cZWDGOg71cytrwSa+yRXyqfOjO2/zpjsNrbR9LajhzrXZ20dPMIdgGViy?=
- =?us-ascii?Q?9tyTqXk5iV3fw9dWsLWQwUmWKsUz1g46NTb8L2wNbDD0MAD6g9FhfPrhZZlF?=
- =?us-ascii?Q?ygugUJ9Grvn7KJiOB3rP+WAhdjyhjUCz3m9NZHjytKGrXoDF4VkBGr2glsL+?=
- =?us-ascii?Q?YxaidlTVMTKN1wEZYonMai+dMX8XTSdOSQseKsJ2lRnZctp7gEETvZ75HwoK?=
- =?us-ascii?Q?pxgs5MQUWtwlGh2y59uQZeY2rDjn6zqHmrgGd5KOwMa5/IyAXS9HUrLNMND8?=
- =?us-ascii?Q?GfxH+svuCcLKQv01SHQW7V/asBbz5Q6Ge44D80UFSzBNSsnAylb3UsMSJGTg?=
- =?us-ascii?Q?0Ade/oO7pp8uyV/hWgVkZXVblJxltfPfCmetfuEEWoxChub6IODyA/2yHIiI?=
- =?us-ascii?Q?Eq3vBYEox2fFa9bMWX/E9DhXtgEJm9k6BSiV0ctphdWBFtf/JaXJ1LgiwsQC?=
- =?us-ascii?Q?ttjdYlNp2cYCvQcH7/PjTl1wTi66rs4icqjlf2mWB+00tr8lGPxGpEL8CxeA?=
- =?us-ascii?Q?7ZS6Q3MWN28nnNgrNVsPj5GtL+bV78ijkBpmO6Ss1eRWLboJ1WZciu0hwfNp?=
- =?us-ascii?Q?ItG33LB9IEuwNcBqT8Z+5hannXah9wNOzKMunPdL?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7d33b5fd-e864-4c13-4b2b-08dc49b83443
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+	=?utf-8?B?M0VHVHNNQ0ZmOVYyTzZVOGpMb2hxNTlIT004TER6bkZVQmM1UHRmaWRhcEhq?=
+ =?utf-8?B?OHZ0Y0FBUVVvODF0UDdyeW9TTzZRR3FQaU80OXFkVDJTaEU2TWo4WnJCb0Yy?=
+ =?utf-8?B?VjdPa0VPNTllSGRBVE5SM2U3dFJTOGJBWlNPR2FMMmppQzc2N3EyUzRBUnRs?=
+ =?utf-8?B?U0VEdHNMclFpcnBuRjVsbGlmbWdDcGZuNjc4eHNSTGJFbmdRTCtnNGp0dzZi?=
+ =?utf-8?B?RWRSdkEyR1AybVNhZXpRTURmRWdKWFhXMTJwdTMrbnNyZEMwVytFQXg4eDh5?=
+ =?utf-8?B?TlZCNStPa3Z2a0FJdWpMQ3FJdWM1QXZTL05mNFU0LzIvMXhaOVJQNnBocXEw?=
+ =?utf-8?B?c1AyK28wdWZJRDhnVTNadllKMzQzUUZKV0pXM1VFL0pMVUhycDZndFVlbjVB?=
+ =?utf-8?B?U2tWUEZQaU9ja3dxNmNGNDdreW5rTFpnWWpldkxQdVcrK3BhVnpnSUp2SEpq?=
+ =?utf-8?B?eVFMbW1qYStGckZmVkF5TmZwUEIyUEJheDZDQVBtTytiSkRFOGg2NHJDVncz?=
+ =?utf-8?B?dkhDTklDRDF3aGpZUVpFYUlvV2FQeXRQRVJ2NVNtQlNtM1c2d2ZNeDQ2MHNG?=
+ =?utf-8?B?Z0w5VWRPRXMwM05GbUp2N1cwdGU5WVU2SXZNWXoyTnRONm90R0xOVE1ONGFm?=
+ =?utf-8?B?cUJxckxVaWdERTUxKzhjRWI4dGgwRHNZd3J1SWVnMjFOakthTDNHdjBDYU9S?=
+ =?utf-8?B?QlZkUC9LRXYyMTFTc1lMSndEVWtiOGxhdmdxYXJFT3lUUmJpRTI3T2dSVjV6?=
+ =?utf-8?B?MWVXMHB0cFFNK0tZd0ZxR0hVeVNYSDRwd2FqbElrbjdlYzR2VHcrOWIyZFRO?=
+ =?utf-8?B?YTdYN29YUDZIRWNmTnFtZ25aRDlXRnpvSnRYbXlBSEJHRUpQcG5WOE1CbndE?=
+ =?utf-8?B?OWE4LzhkNEttZHByQUgycjhCcGc5dWVtdXlqSU5qd2FJUHZZMm9YWFovR2dF?=
+ =?utf-8?B?eklBY25YbXlpYUJ1aGxsOVl3SkxnRnlyWmhNSTAwYk5TMGhFTWZZWm9ueVIz?=
+ =?utf-8?B?eVFkSmxkQzRncUk1UEVyczQ3UW80SW1xZjFqdVZ1emt1SHRMdTUrcUI3Ni9q?=
+ =?utf-8?B?Mnp3NXJ1dVhiR0ZFbDRYQzdXUWFxQVR0K0s0a1JOQXErejVWVVdWT1Z4MDNT?=
+ =?utf-8?B?RkpscHJlMUZSN0RzemEyazhjQTlwcXBwZ2FZbTFyRU5FdVNwbTYzTWtPTEFF?=
+ =?utf-8?B?OU5hNWpWdlZWbWVDZDNZY1VvRjBVcnBtNUIvTXlERzJrdUQ4UEdSdXhodTY4?=
+ =?utf-8?B?eXlSZ0dSNFBOYmxMYjdGZDJIUEdYZTZtRCs4eWRwdjhRR1A1V0F5emxIRnNQ?=
+ =?utf-8?B?YUc1MVdyVjNOTUNwUWh3YXpxNXlmUDVqcnpGNHNvZkVoSy8rbW51MitIekZQ?=
+ =?utf-8?B?bHpSck56Ty9QR1RnVVFHN3l6NEovL29iZ3ZZWkdJVmlQTTRta1p1Rnd2NklZ?=
+ =?utf-8?B?VFE5cTN1bGlXVVJOSXo4NitoMUFpVVRBdmdxcHRJRnB6djNNS2ozZkR3eTdk?=
+ =?utf-8?B?LzNLaU1vRWdJMG9RMWhUZzZsaVBxN1FqU2I0Qjg5Y2JFT3FNTXNHcU9WZ3Zn?=
+ =?utf-8?B?NUExOXhQcTRzVDVvUzV2YjFNeTc4cXFoQ2luRmlKdkZ0TjZQMFBLQzRlcVVr?=
+ =?utf-8?B?VldJQjVCaUtpVityM01tWjFlYWNZQWJ4dFdjS1RCTVNoN0NSMFNMZk1EOWVo?=
+ =?utf-8?B?cDlVaXd2V3NNdHFkUHljaXU1N3lnbjBIcWFmQlB0QWlOYStRYlFTQ2hCYTRh?=
+ =?utf-8?B?M21wdzg4SXIzN0xEYkcwVVdiZnVEK3MzYUk4ZDdaMldRKzNsYjBpMndvK2Yz?=
+ =?utf-8?B?aityeU5vVDN4SVF4aGJTbExXcS9YTFJHcElNNTVDdVB1azRNbElzdld2TUtE?=
+ =?utf-8?B?U3loQ3kwWXY4YjhvVEFnZ0dNVGNLaEFEcjVITXdjV1RDaDZ2ZjJ4QzhHUjdI?=
+ =?utf-8?B?WjdIdk5rVVFScWRNa1pvKys1UUVHNkhhWWlGUUVaWGRkWGdNUEFNS0NOcC93?=
+ =?utf-8?B?QjhIOVROMkdla3dyMDh3bUxmOU9heWJ1RDlTaml2T3R6cktnYURieDRZVm5Q?=
+ =?utf-8?B?cUdSeEUwYnpta0xkMjZIb1JsUytsUlU2UW14bGUvRTl1YTdJbTRhRlUzODBp?=
+ =?utf-8?Q?CCJaHvKkOfpOUvifiHTZPAzB5?=
+X-OriginatorOrg: solid-run.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9264ac89-fb8a-4532-2244-08dc49b978d6
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB7586.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Mar 2024 15:04:28.1456
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Mar 2024 15:13:32.6131
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-Id: a4a8aaf3-fd27-4e27-add2-604707ce5b82
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: B/U/QDhmCOGfpd1QrApizzsGoEe5iEYGFrjzqIjjgKBa1Zu7fsisvq6Tqhf6f/BbUMESh9EwlFAkxOBjuNuETA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB9880
+X-MS-Exchange-CrossTenant-UserPrincipalName: hr9ySBz83Vbp7lfvL2/Ur1pbd34QSuJinJU2VTXTIkmt278Pn1BGflWUKqYgKRq7ALE0KO86cvWtqvCBlCARUA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR04MB9691
 
-Convert fsl,audmix.txt to yaml to let dtb check tools check audmix part.
+LX2160 SoC pci-e controller supports 64-bit memory regions up to 16GB,
+32-bit regions up to 3GB and 16-bit regions up to 64k.
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
+For each pci-e controller:
+- extend the existing 32-bit regions to 3GB size
+- add 16-bit region
+- add 64-bit region
+
+Marked RFC because I would like some advice on the io resource flags.
+
+This allocation was tested on SolidRun Clearfog-CX with EDK2 firmware
+(ACPI) on pcie5, and later adapted for device-tree.
+The device-tree configuration was tested with pcie3 and pcie5 and nxp
+lsdk-21.08 based u-boot.
+
+Fixes allocation of large, and 64-bit BARs as requested by many pci
+cards, especially graphics processors or AI accelerators, e.g.:
+[    2.941187] pci 0000:01:00.0: BAR 0: no space for [mem size 0x200000000 64bit pref]
+[    2.948834] pci 0000:01:00.0: BAR 0: failed to assign [mem size 0x200000000 64bit pref]
+
+Signed-off-by: Josua Mayer <josua@solid-run.com>
 ---
+ arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 24 ++++++++++++++++++------
+ 1 file changed, 18 insertions(+), 6 deletions(-)
 
-Notes:
-    Change from v1 to v2
-    - Add | at descript
-    - Add phandle-array according to rob's feedback
-    
-    $ref: /schemas/types.yaml#/definitions/phandle-array
-    minItems: 2
-    items:
-     - description: the AUDMIX output
-       maxItems: 1
-     - description: serial audio input 1
-       maxItems: 1
-     - description: serial audio input 2
-       maxItems: 1
-    
-    dt_binding_check and DTB_CHECK passed.
-    
-    make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j8  dt_binding_check DT_SCHEMA_FILES=fsl,audmix.yaml
-      LINT    Documentation/devicetree/bindings
-      DTEX    Documentation/devicetree/bindings/sound/fsl,audmix.example.dts
-      CHKDT   Documentation/devicetree/bindings/processed-schema.json
-      SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-      DTC_CHK Documentation/devicetree/bindings/sound/fsl,audmix.example.dtb
+diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+index 6640b49670ae..3ab1db6f54e2 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+@@ -1134,7 +1134,9 @@ pcie1: pcie@3400000 {
+ 			apio-wins = <8>;
+ 			ppio-wins = <8>;
+ 			bus-range = <0x0 0xff>;
+-			ranges = <0x82000000 0x0 0x40000000 0x80 0x40000000 0x0 0x40000000>; /* non-prefetchable memory */
++			ranges = <0x02102000 0x84 0x00000000 0x84 0x00000000 0x04 0x00000000>, /* 64-Bit Window - prefetchable */
++				 <0x82000000 0x00 0x40000000 0x80 0x40000000 0x00 0xc0000000>, /* 32-Bit Window - non-prefetchable */
++				 <0x02000000 0x00 0x00000000 0x80 0x10000000 0x00 0x00010000>; /* 16-Bit IO Window */
+ 			msi-parent = <&its>;
+ 			#interrupt-cells = <1>;
+ 			interrupt-map-mask = <0 0 0 7>;
+@@ -1162,7 +1164,9 @@ pcie2: pcie@3500000 {
+ 			apio-wins = <8>;
+ 			ppio-wins = <8>;
+ 			bus-range = <0x0 0xff>;
+-			ranges = <0x82000000 0x0 0x40000000 0x88 0x40000000 0x0 0x40000000>; /* non-prefetchable memory */
++			ranges = <0x02102000 0x8c 0x00000000 0x8c 0x00000000 0x04 0x00000000>, /* 64-Bit Window - prefetchable */
++				 <0x82000000 0x00 0x40000000 0x88 0x40000000 0x00 0xc0000000>, /* 32-Bit Window - non-prefetchable */
++				 <0x02000000 0x00 0x00000000 0x88 0x10000000 0x00 0x00010000>; /* 16-Bit IO Window */
+ 			msi-parent = <&its>;
+ 			#interrupt-cells = <1>;
+ 			interrupt-map-mask = <0 0 0 7>;
+@@ -1190,7 +1194,9 @@ pcie3: pcie@3600000 {
+ 			apio-wins = <256>;
+ 			ppio-wins = <24>;
+ 			bus-range = <0x0 0xff>;
+-			ranges = <0x82000000 0x0 0x40000000 0x90 0x40000000 0x0 0x40000000>; /* non-prefetchable memory */
++			ranges = <0x02102000 0x94 0x00000000 0x94 0x00000000 0x04 0x00000000>, /* 64-Bit Window - prefetchable */
++				 <0x82000000 0x00 0x40000000 0x90 0x40000000 0x00 0xc0000000>, /* 32-Bit Window - non-prefetchable */
++				 <0x02000000 0x00 0x00000000 0x90 0x10000000 0x00 0x00010000>; /* 16-Bit IO Window */
+ 			msi-parent = <&its>;
+ 			#interrupt-cells = <1>;
+ 			interrupt-map-mask = <0 0 0 7>;
+@@ -1218,7 +1224,9 @@ pcie4: pcie@3700000 {
+ 			apio-wins = <8>;
+ 			ppio-wins = <8>;
+ 			bus-range = <0x0 0xff>;
+-			ranges = <0x82000000 0x0 0x40000000 0x98 0x40000000 0x0 0x40000000>; /* non-prefetchable memory */
++			ranges = <0x02102000 0x9c 0x00000000 0x9c 0x00000000 0x04 0x00000000>, /* 64-Bit Window - prefetchable */
++				 <0x82000000 0x00 0x40000000 0x98 0x40000000 0x00 0xc0000000>, /* 32-Bit Window - non-prefetchable */
++				 <0x02000000 0x00 0x00000000 0x98 0x10000000 0x00 0x00010000>; /* 16-Bit IO Window */
+ 			msi-parent = <&its>;
+ 			#interrupt-cells = <1>;
+ 			interrupt-map-mask = <0 0 0 7>;
+@@ -1246,7 +1254,9 @@ pcie5: pcie@3800000 {
+ 			apio-wins = <256>;
+ 			ppio-wins = <24>;
+ 			bus-range = <0x0 0xff>;
+-			ranges = <0x82000000 0x0 0x40000000 0xa0 0x40000000 0x0 0x40000000>; /* non-prefetchable memory */
++			ranges = <0x02102000 0xa4 0x00000000 0xa4 0x00000000 0x04 0x00000000>, /* 64-Bit Window - prefetchable */
++				 <0x82000000 0x00 0x40000000 0xa0 0x40000000 0x00 0xc0000000>, /* 32-Bit Window - non-prefetchable */
++				 <0x02000000 0x00 0x00000000 0xa0 0x10000000 0x00 0x00010000>; /* 16-Bit IO Window */
+ 			msi-parent = <&its>;
+ 			#interrupt-cells = <1>;
+ 			interrupt-map-mask = <0 0 0 7>;
+@@ -1274,7 +1284,9 @@ pcie6: pcie@3900000 {
+ 			apio-wins = <8>;
+ 			ppio-wins = <8>;
+ 			bus-range = <0x0 0xff>;
+-			ranges = <0x82000000 0x0 0x40000000 0xa8 0x40000000 0x0 0x40000000>; /* non-prefetchable memory */
++			ranges = <0x02102000 0xac 0x00000000 0xac 0x00000000 0x04 0x00000000>, /* 64-Bit Window - prefetchable */
++				 <0x82000000 0x00 0x40000000 0xa8 0x40000000 0x00 0xc0000000>, /* 32-Bit Window - non-prefetchable */
++				 <0x02000000 0x00 0x00000000 0xa8 0x10000000 0x00 0x00010000>; /* 16-Bit IO Window */
+ 			msi-parent = <&its>;
+ 			#interrupt-cells = <1>;
+ 			interrupt-map-mask = <0 0 0 7>;
 
- .../devicetree/bindings/sound/fsl,audmix.txt  | 50 -----------
- .../devicetree/bindings/sound/fsl,audmix.yaml | 83 +++++++++++++++++++
- 2 files changed, 83 insertions(+), 50 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/fsl,audmix.txt
- create mode 100644 Documentation/devicetree/bindings/sound/fsl,audmix.yaml
+---
+base-commit: e8f897f4afef0031fe618a8e94127a0934896aba
+change-id: 20240118-lx2160-pci-4bdb196e58f3
 
-diff --git a/Documentation/devicetree/bindings/sound/fsl,audmix.txt b/Documentation/devicetree/bindings/sound/fsl,audmix.txt
-deleted file mode 100644
-index 840b7e0d6a631..0000000000000
---- a/Documentation/devicetree/bindings/sound/fsl,audmix.txt
-+++ /dev/null
-@@ -1,50 +0,0 @@
--NXP Audio Mixer (AUDMIX).
--
--The Audio Mixer is a on-chip functional module that allows mixing of two
--audio streams into a single audio stream. Audio Mixer has two input serial
--audio interfaces. These are driven by two Synchronous Audio interface
--modules (SAI). Each input serial interface carries 8 audio channels in its
--frame in TDM manner. Mixer mixes audio samples of corresponding channels
--from two interfaces into a single sample. Before mixing, audio samples of
--two inputs can be attenuated based on configuration. The output of the
--Audio Mixer is also a serial audio interface. Like input interfaces it has
--the same TDM frame format. This output is used to drive the serial DAC TDM
--interface of audio codec and also sent to the external pins along with the
--receive path of normal audio SAI module for readback by the CPU.
--
--The output of Audio Mixer can be selected from any of the three streams
-- - serial audio input 1
-- - serial audio input 2
-- - mixed audio
--
--Mixing operation is independent of audio sample rate but the two audio
--input streams must have same audio sample rate with same number of channels
--in TDM frame to be eligible for mixing.
--
--Device driver required properties:
--=================================
--  - compatible		: Compatible list, contains "fsl,imx8qm-audmix"
--
--  - reg			: Offset and length of the register set for the device.
--
--  - clocks		: Must contain an entry for each entry in clock-names.
--
--  - clock-names		: Must include the "ipg" for register access.
--
--  - power-domains	: Must contain the phandle to AUDMIX power domain node
--
--  - dais		: Must contain a list of phandles to AUDMIX connected
--			  DAIs. The current implementation requires two phandles
--			  to SAI interfaces to be provided, the first SAI in the
--			  list being used to route the AUDMIX output.
--
--Device driver configuration example:
--======================================
--  audmix: audmix@59840000 {
--    compatible = "fsl,imx8qm-audmix";
--    reg = <0x0 0x59840000 0x0 0x10000>;
--    clocks = <&clk IMX8QXP_AUD_AUDMIX_IPG>;
--    clock-names = "ipg";
--    power-domains = <&pd_audmix>;
--    dais = <&sai4>, <&sai5>;
--  };
-diff --git a/Documentation/devicetree/bindings/sound/fsl,audmix.yaml b/Documentation/devicetree/bindings/sound/fsl,audmix.yaml
-new file mode 100644
-index 0000000000000..9413b901cf778
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/fsl,audmix.yaml
-@@ -0,0 +1,83 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/fsl,audmix.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NXP Audio Mixer (AUDMIX).
-+
-+maintainers:
-+  - Shengjiu Wang <shengjiu.wang@nxp.com>
-+  - Frank Li <Frank.Li@nxp.com>
-+
-+description: |
-+  The Audio Mixer is a on-chip functional module that allows mixing of two
-+  audio streams into a single audio stream. Audio Mixer has two input serial
-+  audio interfaces. These are driven by two Synchronous Audio interface
-+  modules (SAI). Each input serial interface carries 8 audio channels in its
-+  frame in TDM manner. Mixer mixes audio samples of corresponding channels
-+  from two interfaces into a single sample. Before mixing, audio samples of
-+  two inputs can be attenuated based on configuration. The output of the
-+  Audio Mixer is also a serial audio interface. Like input interfaces it has
-+  the same TDM frame format. This output is used to drive the serial DAC TDM
-+  interface of audio codec and also sent to the external pins along with the
-+  receive path of normal audio SAI module for readback by the CPU.
-+
-+  The output of Audio Mixer can be selected from any of the three streams
-+    - serial audio input 1
-+    - serial audio input 2
-+    - mixed audio
-+
-+  Mixing operation is independent of audio sample rate but the two audio
-+  input streams must have same audio sample rate with same number of channels
-+  in TDM frame to be eligible for mixing.
-+
-+properties:
-+  compatible:
-+    const: fsl,imx8qm-audmix
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: ipg
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  dais:
-+    description: contain a list of phandles to AUDMIX connected DAIs.
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    minItems: 2
-+    items:
-+      - description: the AUDMIX output
-+        maxItems: 1
-+      - description: serial audio input 1
-+        maxItems: 1
-+      - description: serial audio input 2
-+        maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - power-domains
-+  - dais
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    audmix@59840000 {
-+      compatible = "fsl,imx8qm-audmix";
-+      reg = <0x59840000 0x10000>;
-+      clocks = <&amix_lpcg 0>;
-+      clock-names = "ipg";
-+      power-domains = <&pd_audmix>;
-+      dais = <&sai4>, <&sai5>;
-+    };
+Sincerely,
 -- 
-2.34.1
+Josua Mayer <josua@solid-run.com>
 
 
