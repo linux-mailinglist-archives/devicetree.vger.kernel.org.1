@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-52254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E14DC886010
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 18:52:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D71D886014
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 18:52:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 08C901C215E8
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 17:52:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BFCB11C215E8
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 17:52:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 205BA132494;
-	Thu, 21 Mar 2024 17:52:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38800132C36;
+	Thu, 21 Mar 2024 17:52:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Xfm9d30x"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OdYYRvV/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44BE68624C
-	for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 17:52:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74AAC8C0A
+	for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 17:52:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711043530; cv=none; b=gVApvISwuM4tQFXpWrNfKTynbOcRFweqGKp4FCqpiLpf9UqOtvBOZBnSy12gSX7dzlzIZV8NHkhEJkQTZbfu3pCxUFrP6Tn0H+9B/3rVDktSXwNoE9Tz7L+qz+JfH0yqavDD+wtQ4il9X6EOx+snMltSe4KGPoZo/w7XJXm23sQ=
+	t=1711043561; cv=none; b=Hw1i7FUYe907ovXt9JYjWLMVRzhq+dvSQ0GBBm2CVgqLEX1Ig39sySIuAn+MK0BvacS1N9D9FcG6ukANQR6sDiVx/GlmlpB8t2kbIfp5IRHsW14YMbjqC8LPD4nFZcPhoRLfaYX5Kf76c8QbheH16qTKQYSd71krdEhUdtrI9O4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711043530; c=relaxed/simple;
-	bh=hpym4Ko12Q6kLulQl2rpkYItjutok6446U7ykm3mysw=;
+	s=arc-20240116; t=1711043561; c=relaxed/simple;
+	bh=dEorxwaEpRkmnK/FE7L/B1lCuXyDhcYdMUd4QUK0lFk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aC7kAQUOStmATetbWB69jOi3rtQQrhFn6nWM5wL3QLg98u66MkhHdi4uXSN6O4ug2aU8o0qP8PMrd6Nw6nP4IPePxiNxTlg8yYym5YxCegNd+rjfG+mdA8CsPxlfTTTm7mEza4Sn0/NDDzp1h0yO9aQnYOz9hYO1vEO//u0UHZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Xfm9d30x; arc=none smtp.client-ip=209.85.218.43
+	 In-Reply-To:Content-Type; b=MAOxXVVvKzhHcHNeIMY9cmyfPddbf0BurUrsee0ZZkdQ/IwMf58zy/aZ0uG91sopThrJnNDwkPfKTn4p7UVcERC6Fj35bE5v7QS7ZmUpdo8dr4azc7TgZglE4POMJge5R9HVJOONczEgBmqCgRpP7G3HEH15gLXMpmT0E2Bd91Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OdYYRvV/; arc=none smtp.client-ip=209.85.218.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a466fc8fcccso175693166b.1
-        for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 10:52:08 -0700 (PDT)
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a46ba938de0so184132766b.3
+        for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 10:52:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711043526; x=1711648326; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711043558; x=1711648358; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=hpym4Ko12Q6kLulQl2rpkYItjutok6446U7ykm3mysw=;
-        b=Xfm9d30xodkSmEN3xI9pzT8i9h70RGESB2rM6IEQtWYB4ZX0VlaSfExL0T/yXdWBAT
-         IH3jsuw8D4EdHb/Qgr8BtO90dfgmlZm/e3CkiTi8u2OR/voXIH7190tbtVqKs6+IIz6m
-         hqDZlwhO2Pg4OQytkouflSmBxdO4k068JSq70J1INO9ZO5bcLC6yJMz6ccFBpoC+oewv
-         9Uy8q3z/OZ6VIRdiIDp6xq+1skPQziXAo76QcbvbgYq6JTFdQeOQ4aMTYJ2IBnzgxkA4
-         ebhMXsFq8yaeZbmokcHCG0r1K4wdy2HQtYcUhn2hlkQElEcgIkXIrFz/25HVQEDO0XsJ
-         Uy9A==
+        bh=bLPdg5m2309S6AMRu1XaQxbj3FlZZTAOencomDh/QvY=;
+        b=OdYYRvV/SEO3RYPJXCo5uZku48+V11aZUDWJKobd6XuNSnDcdoiKMW7K7mN35VEo4F
+         7fLhYSpOvlHV/8AiGCNeVFzn1iKTfx12oMxEHuV7aqJwK/QCVqCZK+DwpJedD768zbQi
+         /vjMkSKzpf/jzE31hwgIHv6R22kgcz4SRnmhc3WKLpBjQaqgHL2rXt42yAuGScOJOQ0x
+         FflolsgPl8zSKViTkrVTuy8Rjd3BRzM24WsfADAk49/JAV7TYykJey3HG1VuFd25mQ1/
+         rQURAp8i9W9CHYXNmX50M8/6krg0gryjBdu/AXpDorcHRQee213FO8NpvPKl6su0MB1I
+         tV/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711043526; x=1711648326;
+        d=1e100.net; s=20230601; t=1711043558; x=1711648358;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=hpym4Ko12Q6kLulQl2rpkYItjutok6446U7ykm3mysw=;
-        b=kA04kzK4TY9Lg218LcMs4CLjXs3wGGMoQh5kSpBi9QSAuexjPwnaFcdHGvtVAJP9pi
-         j3hH/PHi/OTWdsuGS/0kTvws9QAxTb7yWbRQ4u3Lj02UccbMXCJ3tbq7iI1DZGXYIqoF
-         SJIKgnFpPb14fO7GpHzpnIFuzySp8j8HAHpavCjCcuclfnrJsttss3Dtptc9TWyN5q2y
-         IOjlc0JzRdTsTQjWC8ZkQ+EM97ZXKw130/8ukvPZZONkf8lldnmkVu0sq29spR7sx6QN
-         fgB3wZOB1Xf1CS+iOOU0NH7C50E0p9dvadtUixsMOCMwOinvR39k7VDNtA6zAqRiaY1X
-         hGBA==
-X-Forwarded-Encrypted: i=1; AJvYcCXKwVQ5gdeUETMOin5paIhwJvsiRZS65oLMe/24dk5q6Lq28P3x0dtEZ8l21Cyqk1VSIbv0Zwvr8LeQfNr6485je0Ez9j+AETeh2g==
-X-Gm-Message-State: AOJu0Yx3vtpAl38m+5gsJUhQR7itTZlUlGrixbBf575ctkZ5IvOgVQFq
-	WpsPethRO3JYKystXDeIXZvLCWlP/qfYCmvZxS8Ug1O6ybGYpy5Df8LZnH9EKVw=
-X-Google-Smtp-Source: AGHT+IFz1VBOsZ5KYnpLjv5s8XxJ2PFZC1A5nzDlvRLAG03tAZB7bZ30DT9F9wmvTQEQE4+UmBzwaQ==
-X-Received: by 2002:a17:906:fb06:b0:a46:5dc4:dab9 with SMTP id lz6-20020a170906fb0600b00a465dc4dab9mr115802ejb.38.1711043526591;
-        Thu, 21 Mar 2024 10:52:06 -0700 (PDT)
+        bh=bLPdg5m2309S6AMRu1XaQxbj3FlZZTAOencomDh/QvY=;
+        b=JJgRun2bGVxRpucLKkau971pn5OowedsFI1kGE7zPfix4jmtcDi85e7AUH2SVM1Pwz
+         wx1ODUcx8tiXofrCfOi/s98Wn1qW2nBO9TtDST7rao7KlG99tjZue5MJrdjmIEcUGg+s
+         VmE6RU6mwnbmITccZClZ8C0QgFk2Snp6qt+G4GCJJvoUCMaBxoqL58t2cjWnUyJBbiRo
+         3O3q1nUnQXvpGX+UEScpMWq+JVHnNhmQuI46PjO4wQ/E8rSxJlUpH50KsMaKN99+1aKm
+         ODkGEVsF3Mk2qyz2TN9k5RS2YGYj/qFDpPrnwn6pKMRAjvPOmu7BkNGWv8BhFdsNX7t+
+         kvbA==
+X-Forwarded-Encrypted: i=1; AJvYcCUxxo5yjBnEEk9zroEYjCnrhgtf8+Xe8GyluQUOxHlCoOwwE1ryJpLp5dR4XQsMnyQlvFtN20MIuKQ2zxBfzYbHuikM/n0qm5Ayvg==
+X-Gm-Message-State: AOJu0YzShyYyHiUGvPyi8e/ySUQ5LIK9PxvMA+TWXbo24zLeUHZC4qqW
+	3eT1OGTVcHFtDHm6aa3ZQfkQlfnRKIcoOvSSTHHwpHDI0cYa3hwnAqrEcXFwbsE=
+X-Google-Smtp-Source: AGHT+IHIOt/fsqbrW1JuBHKnXYYqK++34N8ONBHL5RUctpniW7PkUxhDrI/SSKb3Hw8mzjfCtaZDJA==
+X-Received: by 2002:a17:906:b0c6:b0:a46:617e:d3a7 with SMTP id bk6-20020a170906b0c600b00a46617ed3a7mr85393ejb.60.1711043557833;
+        Thu, 21 Mar 2024 10:52:37 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id gt32-20020a1709072da000b00a46ee5b9aa1sm155532ejc.90.2024.03.21.10.52.03
+        by smtp.gmail.com with ESMTPSA id bz22-20020a1709070ab600b00a472688a9ffsm23857ejc.219.2024.03.21.10.52.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Mar 2024 10:52:06 -0700 (PDT)
-Message-ID: <3a3bf0ef-61d6-4b4c-8259-277b15394c98@linaro.org>
-Date: Thu, 21 Mar 2024 18:52:02 +0100
+        Thu, 21 Mar 2024 10:52:37 -0700 (PDT)
+Message-ID: <f3490f17-9324-4461-bd18-b2ec9379d1a0@linaro.org>
+Date: Thu, 21 Mar 2024 18:52:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,7 +77,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/4] dt-bindings: arm: fsl: Document NXP S32G3 board
+Subject: Re: [PATCH v3 2/4] dt-bindings: serial: fsl-linflexuart: add
+ compatible for S32G3
 To: Wadim Mueller <wafgo01@gmail.com>
 Cc: Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -89,23 +90,18 @@ Cc: Rob Herring <robh+dt@kernel.org>,
  Jiri Slaby <jirislaby@kernel.org>, Chester Lin <chester62515@gmail.com>,
  =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
  Matthias Brugger <mbrugger@suse.com>, NXP S32 Linux Team <s32@nxp.com>,
- Tim Harvey <tharvey@gateworks.com>,
- Alexander Stein <alexander.stein@ew.tq-group.com>,
- Marek Vasut <marex@denx.de>,
+ Tim Harvey <tharvey@gateworks.com>, Marco Felsch <m.felsch@pengutronix.de>,
  Gregor Herburger <gregor.herburger@ew.tq-group.com>,
- Joao Paulo Goncalves <joao.goncalves@toradex.com>,
- Marco Felsch <m.felsch@pengutronix.de>,
+ Marek Vasut <marex@denx.de>, Hugo Villeneuve <hvilleneuve@dimonoff.com>,
  Markus Niebel <Markus.Niebel@ew.tq-group.com>,
  Matthias Schiffer <matthias.schiffer@tq-group.com>,
  Stefan Wahren <stefan.wahren@chargebyte.com>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Philippe Schenker <philippe.schenker@toradex.com>,
- Yannic Moog <y.moog@phytec.de>, Li Yang <leoyang.li@nxp.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-serial@vger.kernel.org
+ Bjorn Helgaas <bhelgaas@google.com>, Josua Mayer <josua@solid-run.com>,
+ Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org
 References: <20240321154108.146223-1-wafgo01@gmail.com>
- <20240321154108.146223-2-wafgo01@gmail.com>
+ <20240321154108.146223-3-wafgo01@gmail.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -152,42 +148,32 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240321154108.146223-2-wafgo01@gmail.com>
+In-Reply-To: <20240321154108.146223-3-wafgo01@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 21/03/2024 16:41, Wadim Mueller wrote:
-> The NXP S32G3 Reference Design Board 3 (S32G-VNP-RDB3) [1]
-> is not documented.
+> Add a compatible string for the uart binding of NXP S32G3 platforms. Here
+> we use "s32v234-linflexuart" as fallback since the current linflexuart
+> driver can still work on S32G3.
+> 
+> Signed-off-by: Wadim Mueller <wafgo01@gmail.com>
+> ---
+>  .../devicetree/bindings/serial/fsl,s32-linflexuart.yaml        | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.yaml b/Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.yaml
+> index 7a105551fa6a..f8eb92c9a8d9 100644
+> --- a/Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.yaml
+> +++ b/Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.yaml
+> @@ -25,6 +25,9 @@ properties:
+>        - items:
+>            - const: nxp,s32g2-linflexuart
+>            - const: fsl,s32v234-linflexuart
+> +      - items:
+> +          - const: nxp,s32g3-linflexuart
 
-Is not documented, so it means that you document existing board from
-DTS? I think not, so please describe what you are doing accurately. Use
-imperative mood. See longer explanation here:
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-
-"Document foo bar".
-Or "Add bindings for foo bar"
-
-No need to resend just to fix this, that's generic comment.
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
----
-
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+Combine it with previous entry as enum.
 
 Best regards,
 Krzysztof
