@@ -1,122 +1,155 @@
-Return-Path: <devicetree+bounces-52287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D213388613B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 20:44:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 298B0886152
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 20:53:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8DB2C282110
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 19:44:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B35C1C21C59
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 19:53:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A51EC134412;
-	Thu, 21 Mar 2024 19:44:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 200F0134430;
+	Thu, 21 Mar 2024 19:53:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=acm.org header.i=@acm.org header.b="rUgkUQ4p"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="fAQkvuRD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from 009.lax.mailroute.net (009.lax.mailroute.net [199.89.1.12])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E302132C38;
-	Thu, 21 Mar 2024 19:44:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=199.89.1.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23E5E13442E;
+	Thu, 21 Mar 2024 19:53:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711050274; cv=none; b=NR7imQrWVqHJdc+qWPC2yToodQ2wuba9b+GdfKKCvPELw5nS2BeUX8/W05L3wComR/dhl3M8Q6IvMLxQLQgpcNGNAN6tRpTqtBEjIcabC4jFe7F5EV9hEi1WQV7dS7sJJDOMBpMQJZEHZMZNAYKZ7Wk6bRNOSpKU8dDVDFFEUdo=
+	t=1711050786; cv=none; b=euEIkqb8bwXmBY4j5ma2CSqooJH8HELWMgcLo+qCKIchjc+5NjyWlff43hKL9zuJP1jy698d8vuQBGnJwWD5JT3Iq02Q2YZJkz5tCawE8vLZnTiVvRpCw4csMd/DqPcu5UDh4qMGgstQ+otidfuaSEThD1wIsJHT3EYgIht554Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711050274; c=relaxed/simple;
-	bh=rbdZgAx5OMc44/b4taFIydsj3IvyxH7jHFsK3TNL/BQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=HqMlrV3QkZ9hjlTfoWpFvKWwTbma28aFpmlHk2SeXoZw1+QJHfXlla2lhf8qDBqhUPwZgHTqGiEzr1uaYtIKQ2PzkG10Bv4+oJqk9x5m5TruX2m8RpipXh15+hwfNdfov1A2XmyX6tNxnnt2++4XQGceSwSGtu0n681gSyg4jmE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=acm.org; spf=pass smtp.mailfrom=acm.org; dkim=pass (2048-bit key) header.d=acm.org header.i=@acm.org header.b=rUgkUQ4p; arc=none smtp.client-ip=199.89.1.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=acm.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=acm.org
-Received: from localhost (localhost [127.0.0.1])
-	by 009.lax.mailroute.net (Postfix) with ESMTP id 4V0wrw3Y7ZzlgVnF;
-	Thu, 21 Mar 2024 19:44:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=acm.org; h=
-	content-transfer-encoding:content-type:content-type:in-reply-to
-	:from:from:references:content-language:subject:subject
-	:user-agent:mime-version:date:date:message-id:received:received;
-	 s=mr01; t=1711050263; x=1713642264; bh=SpVSKe2FDWsZA6RlvkSY8fUG
-	PrZo8UAPmj+w+wT8abY=; b=rUgkUQ4pKvRo0MnKMv8HBajk8pKVG9x3IEojHuPf
-	Ksp0ApJU9+XRXIEOYNl6KEdaEMhGZ/HAPli/vwcHJ3F/ghYkYIZmqZYQpzGkFLLA
-	KQNMM5bw3tVq5qbSjO5ztqkqXkvgQCTZNc+088HlNcasrDeXjnZve3u8diVNwnkL
-	hqJNbyih6MHR/86S2+cBdrEg2Lg1vIrbZBqbl6jo4MUNgw6ifBWs8Avsmr7CmB/Z
-	Y4dzECXDa+aqHwSnkL0rh3mcnM2CcTQRtqwjCDZM4KtwTr9JukhvizlTlTjxqfv9
-	+ai3/saCPjc9cNvBevTZo+ZGjgvVBRGjnFcymG1fT4BU2w==
-X-Virus-Scanned: by MailRoute
-Received: from 009.lax.mailroute.net ([127.0.0.1])
- by localhost (009.lax [127.0.0.1]) (mroute_mailscanner, port 10029) with LMTP
- id TjaQfJAj6kku; Thu, 21 Mar 2024 19:44:23 +0000 (UTC)
-Received: from [100.96.154.173] (unknown [104.132.1.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: bvanassche@acm.org)
-	by 009.lax.mailroute.net (Postfix) with ESMTPSA id 4V0wrh4tZhzlgTGW;
-	Thu, 21 Mar 2024 19:44:20 +0000 (UTC)
-Message-ID: <e170642d-9ae8-4d5a-90d9-2837f1bcef9b@acm.org>
-Date: Thu, 21 Mar 2024 12:44:19 -0700
+	s=arc-20240116; t=1711050786; c=relaxed/simple;
+	bh=0AZsgEksMv0v7XeGuddRbuorgH0+GV74G/W/bjtGFUk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TFEq4UyELipmVWSVB3vKyvultijybfVXuljkEe1sexYoBPhIP8HJ+Oy0QCz+qY37TT1sKioemSUqu0rhjVMYDubO2p9r2i7nuGRJ80skYlLv5xk/+RabIlRJ9i3rdURR8eejC5Zu/Q6TMBPfPXcWqXhTdhXVm/i3Pi4hvsiu9XI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=fAQkvuRD; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1711050784; x=1742586784;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=0AZsgEksMv0v7XeGuddRbuorgH0+GV74G/W/bjtGFUk=;
+  b=fAQkvuRDDmdDmsMAIroOiMv6OsnNxMz3hyC8F8AcgZU8XtcWtLIFJKb0
+   qA8JbWd+5F6Jew5GtwqNmVuuO29QcoVfVMPyeGojjKVP1cUaaRrJlh3zE
+   r8BrT/17fttRgc0u9kJuPvf3yg0R+Vt1Bs+A5O2gOTjsokFYl1bwyiZUe
+   wkkHR96qNlCfW1f2RnpTzzOVIRUETzcyAeP+6jb0pa6tr8HabCylCr58L
+   riCb3uyagLntFgbtWqA9EXQfUvx6omLdniF0ANzOMBQfCI4EQDqV3kjjJ
+   0Dp6VzhGWbjM3rtXM5JpYNqN0Uua5vzi1791aA5BUwzc9cRs8bYZxfMPI
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="28541701"
+X-IronPort-AV: E=Sophos;i="6.07,143,1708416000"; 
+   d="scan'208";a="28541701"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Mar 2024 12:53:04 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,143,1708416000"; 
+   d="scan'208";a="19285155"
+Received: from lkp-server01.sh.intel.com (HELO b21307750695) ([10.239.97.150])
+  by fmviesa004.fm.intel.com with ESMTP; 21 Mar 2024 12:52:59 -0700
+Received: from kbuild by b21307750695 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rnOTA-000Jjz-2l;
+	Thu, 21 Mar 2024 19:52:56 +0000
+Date: Fri, 22 Mar 2024 03:52:32 +0800
+From: kernel test robot <lkp@intel.com>
+To: Sudan Landge <sudanl@amazon.com>, tytso@mit.edu, Jason@zx2c4.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, sathyanarayanan.kuppuswamy@linux.intel.com,
+	thomas.lendacky@amd.com, dan.j.williams@intel.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, graf@amazon.de, dwmw@amazon.co.uk,
+	bchalios@amazon.es, xmarcalx@amazon.co.uk
+Subject: Re: [PATCH v2 4/4] virt: vmgenid: add support for devicetree bindings
+Message-ID: <202403220322.EGtpD4Jw-lkp@intel.com>
+References: <20240321025105.53210-5-sudanl@amazon.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/8] block: implement NVMEM provider
-Content-Language: en-US
-To: Daniel Golle <daniel@makrotopia.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
- Jens Axboe <axboe@kernel.dk>, Dave Chinner <dchinner@redhat.com>,
- Jan Kara <jack@suse.cz>, =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?=
- <linux@weissschuh.net>, Damien Le Moal <dlemoal@kernel.org>,
- Li Lingfeng <lilingfeng3@huawei.com>, Christian Brauner
- <brauner@kernel.org>, Christian Heusel <christian@heusel.eu>,
- Min Li <min15.li@samsung.com>, Adrian Hunter <adrian.hunter@intel.com>,
- Avri Altman <avri.altman@wdc.com>, Hannes Reinecke <hare@suse.de>,
- Christian Loehle <CLoehle@hyperstone.com>, Bean Huo <beanhuo@micron.com>,
- Yeqi Fu <asuk4.q@gmail.com>, Victor Shih <victor.shih@genesyslogic.com.tw>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Dominique Martinet <dominique.martinet@atmark-techno.com>,
- "Ricardo B. Marliere" <ricardo@marliere.net>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
- linux-block@vger.kernel.org
-References: <cover.1711048433.git.daniel@makrotopia.org>
- <7555db6eb71d4ccb2b9d5ebe3b41dc34088c6316.1711048433.git.daniel@makrotopia.org>
-From: Bart Van Assche <bvanassche@acm.org>
-In-Reply-To: <7555db6eb71d4ccb2b9d5ebe3b41dc34088c6316.1711048433.git.daniel@makrotopia.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240321025105.53210-5-sudanl@amazon.com>
 
-On 3/21/24 12:34, Daniel Golle wrote:
-> On embedded devices using an eMMC it is common that one or more partitions
-> on the eMMC are used to store MAC addresses and Wi-Fi calibration EEPROM
-> data. Allow referencing the partition in device tree for the kernel and
-> Wi-Fi drivers accessing it via the NVMEM layer.
+Hi Sudan,
 
-Why to store calibration data in a partition instead of in a file on a
-filesystem?
+kernel test robot noticed the following build warnings:
 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 8c88f362feb55..242a0a139c00a 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -3662,6 +3662,11 @@ L:	linux-mtd@lists.infradead.org
->   S:	Maintained
->   F:	drivers/mtd/devices/block2mtd.c
->   
-> +BLOCK NVMEM DRIVER
-> +M:	Daniel Golle <daniel@makrotopia.org>
-> +S:	Maintained
-> +F:	block/blk-nvmem.c
+[auto build test WARNING on a4145ce1e7bc247fd6f2846e8699473448717b37]
 
-Why to add this functionality to the block layer instead of somewhere
-in the drivers/ directory?
+url:    https://github.com/intel-lab-lkp/linux/commits/Sudan-Landge/virt-vmgenid-rearrange-code-to-make-review-easier/20240321-105317
+base:   a4145ce1e7bc247fd6f2846e8699473448717b37
+patch link:    https://lore.kernel.org/r/20240321025105.53210-5-sudanl%40amazon.com
+patch subject: [PATCH v2 4/4] virt: vmgenid: add support for devicetree bindings
+config: x86_64-randconfig-123-20240321 (https://download.01.org/0day-ci/archive/20240322/202403220322.EGtpD4Jw-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240322/202403220322.EGtpD4Jw-lkp@intel.com/reproduce)
 
-Thanks,
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202403220322.EGtpD4Jw-lkp@intel.com/
 
-Bart.
+sparse warnings: (new ones prefixed by >>)
+>> drivers/virt/vmgenid.c:153:43: sparse: sparse: cast removes address space '__iomem' of expression
+
+vim +/__iomem +153 drivers/virt/vmgenid.c
+
+   133	
+   134	static int vmgenid_add_of(struct device *dev, struct vmgenid_state *state)
+   135	{
+   136	#ifdef	CONFIG_OF
+   137		struct resource res;
+   138		int ret = 0;
+   139	
+   140		if (of_address_to_resource(dev->of_node, 0, &res)) {
+   141			dev_err(dev, "Failed to get resources from device tree");
+   142			ret = -EINVAL;
+   143			goto out;
+   144		}
+   145	
+   146		if (!__request_mem_region(res.start, resource_size(&res),
+   147					  "vmgenid", IORESOURCE_EXCLUSIVE)) {
+   148			dev_err(dev, "Failed to request mem region");
+   149			ret = -EINVAL;
+   150			goto out;
+   151		}
+   152	
+ > 153		ret = setup_vmgenid_state(state, (u8 *)of_iomap(dev->of_node, 0));
+   154		if (ret)
+   155			goto out;
+   156	
+   157		state->irq = irq_of_parse_and_map(dev->of_node, 0);
+   158		dev->driver_data = state;
+   159	
+   160		if (request_irq(state->irq, vmgenid_of_irq_handler,
+   161				IRQF_SHARED, "vmgenid", dev) < 0) {
+   162			dev_err(dev, "request_irq failed");
+   163			dev->driver_data = NULL;
+   164			ret = -EINVAL;
+   165			goto out;
+   166		}
+   167	
+   168	out:
+   169		return ret;
+   170	#else
+   171		(void)dev;
+   172		(void)state;
+   173		return -EINVAL;
+   174	#endif
+   175	}
+   176	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
