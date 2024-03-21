@@ -1,91 +1,105 @@
-Return-Path: <devicetree+bounces-52259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52260-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7EC9886056
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 19:09:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF7E3886069
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 19:16:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 25C851C21C55
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 18:09:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8FC9B1F214D8
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 18:16:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 647AE1332B3;
-	Thu, 21 Mar 2024 18:09:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="NoBJdGAd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD6791332AD;
+	Thu, 21 Mar 2024 18:16:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp1.ms.mff.cuni.cz (smtp-in1.ms.mff.cuni.cz [195.113.20.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 711771755F;
-	Thu, 21 Mar 2024 18:09:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A37B884A28;
+	Thu, 21 Mar 2024 18:16:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.113.20.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711044582; cv=none; b=ojKGgU3PjIVnVhmA25br9p2/Rb1byBqbKNpELxyVfS8NqAz+w5iVgNh9hsq2mr2OD81qZY7gxM5b/3LUItwGEISWyL7UTE43sPnn40kGpQoLKVRcYpNVRYO7S66iBnwcT/NXGPAWO30/bqEY/dTvdnC/3GzlnPtdbMiNqy1Sz74=
+	t=1711044991; cv=none; b=gVZesJB6/EhqrcblRoxFqbqPx57jBJV5YZAl3VFvRZKIxqXgwWrt8dKH7D8g382Gh/2r8V61FGtVy0Cxkf/O9g1Du6Z1O5RWVfmQz86hRj/frQX9f3pKF9e2RNpEduuckXaCVYb+K3dj+24xerv5CNV4ZpObnkblOLXw22sQr9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711044582; c=relaxed/simple;
-	bh=EKM1WN0aZAdKU+UAA8PVXOIGWKPiZ4kqUbOcK+NoD3I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bP2si+XKyQP0hr1TCWvupaHQXt2ByDiUyTsiSJrhgK53Fg2pn7lrao8rOeVGB13LnIF/jL+mL6PLUG3ciUAy3aO7aljj+lDXg24gS0bHteanEHA/BU41WOd8yMFcgiXUSE17/NOmTBAV2OIOkzbc80qeOXUawa2GHNLQrnZZ99A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=NoBJdGAd; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4A546672;
-	Thu, 21 Mar 2024 19:09:10 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1711044550;
-	bh=EKM1WN0aZAdKU+UAA8PVXOIGWKPiZ4kqUbOcK+NoD3I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NoBJdGAdRAf0jKdD7YHe20YwUXAg7soWErsBSMe0L64O7Baz7SL30bkA16m/Tm+ne
-	 WdTb6NCMX90Sgie175OKRQgen4cVVlan6SirqCplk2YqwAiusoALwE+rsI120k5xJU
-	 vSyET+XULDUcD7XuwQ75vCGUWMNrYu3L6G5UyxQY=
-Date: Thu, 21 Mar 2024 20:09:35 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Lee Jones <lee@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
-	Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Anders Darander <anders@chargestorm.se>,
-	Matt Ranostay <mranostay@gmail.com>,
-	Peter Meerwald <pmeerw@pmeerw.net>,
-	Ricardo Ribalda <ribalda@kernel.org>
-Subject: Re: (subset) [PATCH] dt-bindings: leds: pca963x: Convert text
- bindings to YAML
-Message-ID: <20240321180935.GF18799@pendragon.ideasonboard.com>
-References: <20240305004501.849-1-laurent.pinchart@ideasonboard.com>
- <171103315829.46862.417559829428388360.b4-ty@kernel.org>
+	s=arc-20240116; t=1711044991; c=relaxed/simple;
+	bh=kzF3PP5TBxeeyiFtNbxnHwiSOrORgk8U71rb5F3qK3Y=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:To:From:
+	 References:In-Reply-To; b=V3B9n3Md8F94dGWLpzOd/IimDlPU47tzEOzyHyZLsvQXV3AiuC8D22cupWWlwV0eceJisZTzBu2NCpjcHM7+Ki9y+Cx3Tcngq1u6UVQd2Zs7kxkhG92CNcLsyQn0dD45JTwCaP+PCZvlYueGOv95oHyv4CDioqjUDcOyXv8OZRk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz; spf=pass smtp.mailfrom=matfyz.cz; arc=none smtp.client-ip=195.113.20.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=matfyz.cz
+X-SubmittedBy: id balejk@matfyz.cz subject /postalCode=110+2000/O=Univerzita+20Karlova/street=Ovocn+5CxC3+5CxBD+20trh+20560/5/ST=Praha,+20Hlavn+5CxC3+5CxAD+20m+5CxC4+5Cx9Bsto/C=CZ/CN=Karel+20Balej/emailAddress=balejk@matfyz.cz
+	serial F5FD910E8FE2121B897F7E55B84E351D
+	issued by /C=NL/O=GEANT+20Vereniging/CN=GEANT+20Personal+20CA+204
+	auth type TLS.CUNI
+Received: from localhost (koleje-wifi-0015.koleje.cuni.cz [78.128.191.15])
+	(authenticated)
+	by smtp1.ms.mff.cuni.cz (8.16.1/8.16.1) with ESMTPS id 42LIGAOn098122
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=OK);
+	Thu, 21 Mar 2024 19:16:12 +0100 (CET)
+	(envelope-from balejk@matfyz.cz)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <171103315829.46862.417559829428388360.b4-ty@kernel.org>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 21 Mar 2024 19:16:43 +0100
+Message-Id: <CZZMTZBZ5S7B.2HR8A6LEY08D4@matfyz.cz>
+Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Conor Dooley"
+ <conor+dt@kernel.org>,
+        "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
+        "Liam
+ Girdwood" <lgirdwood@gmail.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-input@vger.kernel.org>,
+        =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
+        <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>
+Subject: Re: [RFC PATCH v4 2/5] mfd: add driver for Marvell 88PM886 PMIC
+To: "Mark Brown" <broonie@kernel.org>
+From: "Karel Balej" <balejk@matfyz.cz>
+References: <20240311160110.32185-1-karelb@gimli.ms.mff.cuni.cz>
+ <20240311160110.32185-3-karelb@gimli.ms.mff.cuni.cz>
+ <20240321154211.GA13211@google.com> <CZZK759UU6G7.MFPYOI0HBB6I@matfyz.cz>
+ <20240321162045.GC13211@google.com> <CZZL3MNOT0QG.2WDSNX9XD2RET@matfyz.cz>
+ <879296b4-5186-4170-af3f-971787d28514@sirena.org.uk>
+ <CZZLDK79D5VK.2VK3X59OHIY2Z@matfyz.cz>
+ <45079e37-dde9-4310-a112-7af49f35ac77@sirena.org.uk>
+ <CZZLVS3T3QIS.223XHI5OZ7UBG@matfyz.cz>
+ <e9c7bd38-49cd-44c2-8842-292bc0b4205f@sirena.org.uk>
+In-Reply-To: <e9c7bd38-49cd-44c2-8842-292bc0b4205f@sirena.org.uk>
 
-Hi Lee,
+Mark Brown, 2024-03-21T17:48:28+00:00:
+> On Thu, Mar 21, 2024 at 06:32:03PM +0100, Karel Balej wrote:
+> > Mark Brown, 2024-03-21T17:17:40+00:00:
+>
+> > > Do they both genuinely have the same maximum register?
+>
+> > They do according to the downstream driver which is my only reference.
+> > In fact, there the driver defines the configs separately for each regma=
+p
+> > but with the same values.
+>
+> This is a downstream driver - are you sure it's got the best code
+> quality?
 
-On Thu, Mar 21, 2024 at 02:59:18PM +0000, Lee Jones wrote:
-> On Tue, 05 Mar 2024 02:45:01 +0200, Laurent Pinchart wrote:
-> > Convert the pca963x DT bindings to YAML schema. The existing properties
-> > are kept without modification, but the example is adapted to the latest
-> > common bindings for LEDs.
-> 
-> Applied, thanks!
-> 
-> [1/1] dt-bindings: leds: pca963x: Convert text bindings to YAML
->       commit: 779027a0a7392610cbfd3210836d6b0e6ddef434
+No, that is why I have rewritten it and tried to improve on this. But
+like I said, it is my only reference. Is there some other way to verify
+this value (besides perhaps the datasheet)?
 
-Thank you. https://git.kernel.org/pub/scm/linux/kernel/git/lee/leds.git/
-doesn't contain that commit, have you just not pushed yet, or am I
-looking at the wrong tree ?
+> I'm not seeing any references to registers with numbers as high as the
+> maximum register that's there in your driver for example.
 
--- 
-Regards,
+Indeed, I have performed the same check with the same findings. But that
+doesn't necessarily mean that the maximum should be lower, no?
 
-Laurent Pinchart
+Do you have some specific modifications of my code in mind regarding
+this?
+
+Thank you,
+K. B.
 
