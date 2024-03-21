@@ -1,121 +1,105 @@
-Return-Path: <devicetree+bounces-52129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52130-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 680B7885690
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 10:33:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E23D3885699
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 10:33:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A13F1C21318
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 09:33:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F52C1C2142B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 09:33:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4059253E0D;
-	Thu, 21 Mar 2024 09:32:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23F65446DC;
+	Thu, 21 Mar 2024 09:33:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CtL0toEz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8382220326;
-	Thu, 21 Mar 2024 09:32:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F411AC2E6
+	for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 09:33:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711013579; cv=none; b=ssPSOnfnYG9oJHo2G2VNJtChKa1zIX8Mt0iDonsFp34d3bzKNyMZlj1js4WQS1ldSlsuh/3DBNWTfAN8F9r9UqoE36dAcAD95FI6f8JPv+HkcVf84AX5Q+paBpFJsfU2EoYumxQPmon2XYatxKxJ2qMR1ulkI5ab6DMuhHKYesQ=
+	t=1711013634; cv=none; b=f/VuZqIYhvNcFSUF9qR8GM6heqG1Uqr/z2EiOD1eLrYJRCRJX5l2vmQhQ2KrThFRLD4e+Kuf7SbtXP8zfrTr0Hjhv2okaPBCfDZIfovEDiZD/fNxJb3Cx8EvTUcbCqeLA6dxZR0v1tDruzocrZeB23rZCHT0kswWe01bHKDGdHE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711013579; c=relaxed/simple;
-	bh=iHMWBPP9KJVog54ihelmxgv7C4JSysp6R4W5sOgY3zQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=t/bcW0wIkQDw44q7AfysNHqQMFwPDFBnAqYdbKKPrLX5EwKuK144pCi/zL9u4lmZbAJPg1YLIb5W90CQGPdjokZEcw0ytYOhe+itHJt9AZIKGHwrsZ2d+U3A3WD0PjrX4BTJFDzHcaeTbIS5podsMzYPY23zP6rcwzqmSASm2eg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875a9e.versanet.de ([83.135.90.158] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1rnEmn-000801-MU; Thu, 21 Mar 2024 10:32:33 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
- linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Dragan Simic <dsimic@manjaro.org>,
- Shreeya Patel <shreeya.patel@collabora.com>,
- Chris Morgan <macromorgan@hotmail.com>, Andy Yan <andy.yan@rock-chips.com>,
- Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
- linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- iommu@lists.linux.dev
-Subject:
- Re: [PATCH 2/4] media: dt-binding: media: Document
- =?UTF-8?B?cmszNTg44oCZcw==?= vepu121
-Date: Thu, 21 Mar 2024 10:32:32 +0100
-Message-ID: <2798331.BEx9A2HvPv@diego>
-In-Reply-To: <70439a01-7949-46bf-a701-c82ba961171a@linaro.org>
-References:
- <20240320173736.2720778-1-linkmauve@linkmauve.fr>
- <855507987.0ifERbkFSE@diego>
- <70439a01-7949-46bf-a701-c82ba961171a@linaro.org>
+	s=arc-20240116; t=1711013634; c=relaxed/simple;
+	bh=Ti2kfQCJIgAw1p/n5GO6AD1U8Ses7iBLnDZF5oV0lug=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HVqirD5x6DrdzNQkmP867P6o0UNZ2UWFpvjhOs5l+RbfbqEjPlC20qvLB9FRC9lj1tirY2sczsuhiUnqeDHnFHP958SChPUniYiOEo3zKNvWKH0QBqAwlPAZg2tzmQLphiE3alhzHc9Tj1oV8mwxqwLAmOs+cV1rKRCTrxj+Ues=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CtL0toEz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFC10C433C7;
+	Thu, 21 Mar 2024 09:33:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711013633;
+	bh=Ti2kfQCJIgAw1p/n5GO6AD1U8Ses7iBLnDZF5oV0lug=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CtL0toEzq7fDiqlYF/f2UmcQWBOrQn2SHUgknQM+Z/fRRF3J/y6WRNYznR8+EoVxQ
+	 XwQ+Xo0JxlLbgCqeHQaQuWi9xf4rgKLa1oHuqVSuNqtUZHtUR+2n5zzjvYpbBN1JNk
+	 uT6GdP18soNejfX+aNJCXtiCfyouo+NxcnghBKTi30qWlwBUKn/TQXlE9oxnzfEXgD
+	 xlV1Z/WueSQQF/jqQE4jOytwV6N6f7iMXHoAGJkLOGCZlMbSmigouQpvc7tTJ96AFO
+	 0EgslTPflHY0cZqIAb5uT8vSZCtDQ98eyWFaqT3KDl0ewLLXc+QVv0qZoVh0fiLe3b
+	 8Q2nCAcclJRjA==
+Date: Thu, 21 Mar 2024 09:33:49 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Kanak Shilledar <kanakshilledar@gmail.com>,
+	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+	devicetree@vger.kernel.org, daniel.baluta@nxp.com,
+	Kanak Shilledar <kanakshilledar111@protonmail.com>
+Subject: Re: [PATCH] dt-bindings: serial: actions,owl-uart: convert to
+ dtschema
+Message-ID: <20240321-anthology-gab-6c8c81453404@spud>
+References: <20240321084328.200347-1-kanakshilledar@gmail.com>
+ <56225e33-d308-435e-b69e-2cb7dba7d57b@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="5vkmmIqEsTqAWvfM"
+Content-Disposition: inline
+In-Reply-To: <56225e33-d308-435e-b69e-2cb7dba7d57b@linaro.org>
+
+
+--5vkmmIqEsTqAWvfM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
 
-Am Donnerstag, 21. M=E4rz 2024, 10:19:54 CET schrieb Krzysztof Kozlowski:
-> On 21/03/2024 09:47, Heiko St=FCbner wrote:
-> >>>      enum:
-> >>>        - rockchip,rk3568-vepu
-> >>> +      - rockchip,rk3588-vepu121
-> >>
-> >> What is 121?
+On Thu, Mar 21, 2024 at 10:22:21AM +0100, Krzysztof Kozlowski wrote:
+> On 21/03/2024 09:43, Kanak Shilledar wrote:
+> > From: Kanak Shilledar <kanakshilledar111@protonmail.com>
 > >=20
-> > That is the strange naming of the ip block inside the soc.
-> >=20
-> > I.e. the rk3588 TRM lists a number of different video encoders and deco=
-ders:
-> > - VDPU121 is decoding h.263 and mpeg1,2,4
-> > - VDPU381 is decoding h.265, h.264 and some more
-> > - VDPU720 is decoding jpeg
-> > - VDPU981 decodes AV1
-> > - VEPU121 is the jpeg encoder above
-> > - VEPU580 encodes h.264 and h.265
-> >=20
-> > Each of those are separate IP blocks with their own io-memory, their own
-> > interrupts and their own iommus, etc.
+> > Convert the Actions Semi Owl UART to newer DT schema.
 >=20
-> Thanks for explanation. Short introduction in commit msg would be nice
-> (e.g. VEPU121, one of two VEPU encoders). OTOH, why not documenting all
-> of them? Bindings are supposed to be as complete as possible.
+> You are using ProtonMail, so just be aware that it might not be suitable
+> for public Linux discussions:
+> https://www.kernel.org/doc/html/next/process/email-clients.html#proton-ma=
+il
+>=20
+> (no need to resend just for that)
 
-We have a concurrent series for the vdpu121 running at
-  https://lore.kernel.org/all/20240316071100.2419369-1-liujianfeng1994@gmai=
-l.com
+I think this might actually have been fixed/worked around for kernel.org
+addresses. There was a thread a while back on the fediverse stuff with
+Konstantin and some Proton people IIRC. I've not deleted the document
+section though, because nobody has sent me a mail from proton in ages
+so I have not been able to check whether or not it has been fixed.
+I think they might've hacked in an "if (kernel.org) {disble_wdk=3Dtrue}"!
 
-I think not all of those encoders/decoders are based on the Hantro IP
-or at least at the moment we don't know this yet.
-Hence people adding compatibles for the blocks they have actually
-managed to run on their hardware.
+--5vkmmIqEsTqAWvfM
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Bindings are supposed to be as complete as possible, but revising a wrong
-binding later is very hard. And the whole media part is full of binary libr=
-aries
-in the vendor kernel and has not the best documentation.
+-----BEGIN PGP SIGNATURE-----
 
-So I guess people are just cautious ;-)
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZfv+/QAKCRB4tDGHoIJi
+0prUAP0Twq1L7jjiUvG06O2WY+3tNohftzix1B2TxvO5mcghtAEAuackNMNgzyKN
+CfOfCtpyjEpGg1VSxPkuq9xEVwukKwI=
+=wHZ6
+-----END PGP SIGNATURE-----
 
-
-Heiko
-
-
+--5vkmmIqEsTqAWvfM--
 
