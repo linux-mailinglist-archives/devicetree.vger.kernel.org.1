@@ -1,108 +1,134 @@
-Return-Path: <devicetree+bounces-52230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52231-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21D45885D51
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 17:21:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 260CC885D82
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 17:33:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53C551C21945
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 16:21:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D0C62285C27
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 16:33:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 566A312CD8C;
-	Thu, 21 Mar 2024 16:21:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5E8A5660;
+	Thu, 21 Mar 2024 16:33:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="bG/dSIXF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XIq357YG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-171.mta0.migadu.com (out-171.mta0.migadu.com [91.218.175.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7672312CD93
-	for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 16:21:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7A9579D2;
+	Thu, 21 Mar 2024 16:33:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711038094; cv=none; b=sUYZQ2VXDbjIKDdqtqhik6qtxTJ1jtHnwETFW/jiTOjXlM/elsmxVVGPt/UOexRNY5QfWv2I7od3d1aiEhC1JmDs9I/cig8eBPFoWv2CxCyVnEgymeUeqXav4xf1uSuoEEasLRjxyf9DETSFfQxNvTJca47fEiePYqneAZd2HqY=
+	t=1711038805; cv=none; b=JkJ3TF+k6tdSySxEU82pLH0/at56tQY0ckM7SzSid8rUGcXswuk5NlGvHkjzFdFHv/o189/FyAtgBmkVv6AnG+AkRlvD2pIswgWcY/uGCcpY0f/g3lug4gTJILXzhLWpoUk5cRJxHEQgJDyQFupDXDq8a9CCRep19khPm6vFTIg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711038094; c=relaxed/simple;
-	bh=vl4aNEvlWuyu599jEe9MzAKTAEMe6P8IA55VDrn32vk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UMOko6pYN4AkDwI3A1fLjx8RMXd4LCoBh0fMgThg4RE94NsDlppJLUtprAHQQ8q6NQliZIHpkrG9n3xf3AINhuR5uxFfXly//dRiQKaJXiwPyMc2j2ZfIs8d1cBRgzj7t0/9HXINwNAnz/QdX+5TjgxKxUNxqyhkA4eqN/KItVM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=bG/dSIXF; arc=none smtp.client-ip=91.218.175.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <d947cb15-aafc-487e-8bbd-54d786683470@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1711038089;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=FQil3W2KQkB/aoa0J/1WAVBzi/uloXdl4lywi9s0CFA=;
-	b=bG/dSIXFjDiAzLH18CJVeVC4EOBVmZjZoitp0gw7FOrhBFow5YBNvdf8ZH9/OQamar62l6
-	E+JmLmdxw2VP4EBJi1i5xbFyJYqwVaeT2J8+a0lme613nooki1/9OQgtZLrb+JeTnPTx1w
-	/zPARpFkdbRTYhwiFh4JzN6wPEX+3ns=
-Date: Thu, 21 Mar 2024 12:21:27 -0400
+	s=arc-20240116; t=1711038805; c=relaxed/simple;
+	bh=qcEcrD27GhTPL4Tby9xhBQdegYW9lZV+AHeuR3cTfSA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ndECovm5+/wo90eNRLD6T9Wg4/7xfz8gsI06nw3PlI1Zuqbw507MI/dXg9YgSzCu1V2zdMU6EuYjVi3lQIHZlAWNNudOuD6mOjAPc1eVKQAw/ogfczagJQQznDRgoDAyGzC1ZErxj8bfTAuhvaQls9k4XfjvPoigDvC2joUyURg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XIq357YG; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a466a1f9ea0so73706066b.1;
+        Thu, 21 Mar 2024 09:33:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1711038802; x=1711643602; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=W/h/OC6XXnIFGw6jiS4Rplee9xUvxXvhUXxw1/DP+Ew=;
+        b=XIq357YGlScruSTRzR4e7qGItUjSffNrXXvB72SbaAkMWKcJOMYsX1cg1caI9e6GWh
+         tRTPqUyi/V68j/bLqUhmGgMu1Ce4jQ+VGZwg0+6Y/3qbSyfK4MynP6ADKh3P1odBHQbx
+         H+/8TjaEyJZdJ38qXejHRneTRNfcvxSo2STPJbnMgC/JwupSHT7AGCLe5LEslZJnHMn6
+         4u0h29Kjwu4PG1zeeRp5nNNuSZqfAJHXbvaUfbQSS5ow04mOH6K6K96d8pnf/5ca4/vb
+         KBtPWa47tFpQxioQAnZ4SSMpHss5z7PGaKlSmTStC0qLWyRKn0DKOK6batLIfbIHeFYw
+         852A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711038802; x=1711643602;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=W/h/OC6XXnIFGw6jiS4Rplee9xUvxXvhUXxw1/DP+Ew=;
+        b=V5UkUXXfkE0RE5l3EA8QvLCjXRxn4dAOsyeMeEt9MWPzO7NcDzN7zBl1dcLJfMC/72
+         k2ggv1CYFg3Rwnh4JocZbWR7hFD9SXta0uBbWycHGjMwNTevlhesKzvy+E6w2Xrva1Uf
+         TCgVHXWhyuxh1/zacEjaBaTaDspzviZ4FEP3wqEKw24IQ4AQBz6zs4CTjpuv/gIBAxVa
+         kCcUqLg/qepQ2dFx0+cw8Ri39yIOr+aqAtYlRz+oN0u+38hoB4K4jsQekZI8aK1XWeqo
+         IcuKhgk2onzxfn7SzebptCMfeyP+BSG9LfE/QBPC4KasIrNyhg4+bnW7IAliKLcjjuG3
+         g28A==
+X-Forwarded-Encrypted: i=1; AJvYcCVMzzaGy4Tb1gAmfcnPPRwizWvahWWaXHh75LZsKIHmPCt5bCH3jYIyItLuzxCxOf58EJIHlbeZVknNqwuhu0zze2BaGuqCKhJLy0GID+du+Aaf4GrWGZeNbuTuBg0vWGmjlEUpVfKdBg==
+X-Gm-Message-State: AOJu0YwwzenENITdX9vGyEoHgDZZceZCurbD4dRW57h1JsaqiMmt6kdt
+	X3VSxeMgcYAsEYNNdCJoSlq1Z2sEat1f55utMF1yEwkLXzz+zgJ2
+X-Google-Smtp-Source: AGHT+IENMSdv8xlE0iuedgIy9cKlPI5SrVN77feHC6WTieRSG8Omrgj/3aKwrxDhKFd5xReLG1EWCw==
+X-Received: by 2002:a50:bae3:0:b0:56b:986b:b4e7 with SMTP id x90-20020a50bae3000000b0056b986bb4e7mr2472630ede.27.1711038802015;
+        Thu, 21 Mar 2024 09:33:22 -0700 (PDT)
+Received: from [127.0.1.1] (91-118-163-37.static.upcbusiness.at. [91.118.163.37])
+        by smtp.gmail.com with ESMTPSA id v11-20020a056402184b00b00568e3d3337bsm50509edy.18.2024.03.21.09.33.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Mar 2024 09:33:21 -0700 (PDT)
+From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Subject: [PATCH v2 0/2] dt-bindings: hwmon: convert lm87 and max6650 to
+ dtschema
+Date: Thu, 21 Mar 2024 17:33:16 +0100
+Message-Id: <20240321-hwmon_yaml-v2-0-74fa8eb60ec9@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/2] dt-bindings: nvmem: Remove fsl,t1023-sfp in favor of
- fsl,layerscape-sfp
-Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Richard Alpe <richard@bit42.se>, linux-kernel@vger.kernel.org,
- =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
- Michael Walle <michael@walle.cc>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-References: <20240316002026.1808336-1-sean.anderson@linux.dev>
- <20240317-starved-pager-7a81c5045cfc@spud>
- <9daf9c8f-6606-4ff6-8065-6a32fa0d152c@linux.dev>
- <20240318-scarf-startup-64088b1d8d35@spud>
- <fa047914-da03-4234-b48f-eebdf350795e@linux.dev>
- <20240319-fondling-implode-322a9cb570b8@spud>
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Sean Anderson <sean.anderson@linux.dev>
-In-Reply-To: <20240319-fondling-implode-322a9cb570b8@spud>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
+X-B4-Tracking: v=1; b=H4sIAExh/GUC/23M0QrCIBTG8VcZ5zpDj0Krq94jRjhn88DU0LDG8
+ N2zXXf5/+D7bZBtIpvh0m2QbKFMMbTAQwfG6TBbRlNrQI6KS+TMvX0M91X7hanpJHsrRzQ9Qjs
+ 8k33QZ8duQ2tH+RXTuttF/Na/TBGMMy3V2WgUxujxOntNy9FED0Ot9QvPeJZOpAAAAA==
+To: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
+ Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, peiyu li <579lpy@gmail.com>
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>
+X-Mailer: b4 0.14-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1711038801; l=1406;
+ i=javier.carrasco.cruz@gmail.com; s=20240312; h=from:subject:message-id;
+ bh=qcEcrD27GhTPL4Tby9xhBQdegYW9lZV+AHeuR3cTfSA=;
+ b=EtXSHwezkxvj2eEAxycT7GjXEUHqtENYKfUoFe0+mGm/+PnzrgR/x6uYXcXZRxxoTJ6FYJV+7
+ g/k3vBjATwdCu3jVAUDCKrbE3RxbSuZje4AHB7v1HJVEgydrQZcG7pJ
+X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
+ pk=lzSIvIzMz0JhJrzLXI0HAdPwsNPSSmEn6RbS+PTS9aQ=
 
-On 3/19/24 13:55, Conor Dooley wrote:
-> On Mon, Mar 18, 2024 at 11:48:06AM -0400, Sean Anderson wrote:
->> On 3/18/24 11:40, Conor Dooley wrote:
->> > On Mon, Mar 18, 2024 at 11:08:00AM -0400, Sean Anderson wrote:
->> >> On 3/17/24 11:10, Conor Dooley wrote:
->> > 
->> >> > Additionally, should
->> >> > they fall back to t1023-sfp? I see that there's already some dts files
->> >> > with these compatibles in them but seemingly no driver support as there
->> >> > is for the t1023-sfp.
->> >> 
->> >> I checked the reference manuals for these processors, and all of them use TA 2.0.
->> > 
->> > Sounds like a fallback is suitable then, although that will require
->> > updating the various dts files.
->> 
->> Yes, a fallback (like what is done for the T-series) would be suitable,
->> but given that these devicetrees have been in-tree for eight years I
->> think it would be preferable to support the existing bindings for
->> compatibility purposes.
-> 
-> Just cos stuff snuck into the tree in dts files doesn't make it right
-> though, I'd rather the bindings were done correctly. I don't care if you
-> want to support all of the compatibles in the driver so that it works
-> with the existing devicetrees though, as long as you mention the
-> rationale in the commit message.
+This series converts the existing lm87.txt and max6650.txt bindings to
+dtschema. Both are direct conversions with no additional properties.
 
-It doesn't really matter what the schema has as long as the driver supports
-existing device trees.
+There has been an attempt to convert the bindings of the lm87 before
+[1], but the author (added to recipients) has confirmed that no further
+versions will be submitted, and no acknowledgment is desired.
 
---Sean
+Link: https://lore.kernel.org/linux-hwmon/20231030125221.12974-1-579lpy@gmail.com [1]
+
+Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+---
+Changes in v2:
+- max6650: add property constraints and commit message indentation.
+- lm87: No changes, already applied to hwmon-next.
+- Link to v1: https://lore.kernel.org/r/20240320-hwmon_yaml-v1-0-a349ca21ccab@gmail.com
+
+---
+Javier Carrasco (2):
+      dt-bindings: hwmon: lm87: convert to dtschema
+      dt-bindings: hwmon: max6650: convert to dtschema
+
+ Documentation/devicetree/bindings/hwmon/lm87.txt   | 30 ----------
+ .../devicetree/bindings/hwmon/max6650.txt          | 28 ---------
+ .../devicetree/bindings/hwmon/maxim,max6650.yaml   | 70 ++++++++++++++++++++++
+ .../devicetree/bindings/hwmon/ti,lm87.yaml         | 69 +++++++++++++++++++++
+ 4 files changed, 139 insertions(+), 58 deletions(-)
+---
+base-commit: a4145ce1e7bc247fd6f2846e8699473448717b37
+change-id: 20240320-hwmon_yaml-4d738e3b2c82
+
+Best regards,
+-- 
+Javier Carrasco <javier.carrasco.cruz@gmail.com>
+
 
