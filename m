@@ -1,105 +1,97 @@
-Return-Path: <devicetree+bounces-52260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF7E3886069
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 19:16:36 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8116188606F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 19:18:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8FC9B1F214D8
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 18:16:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 05A9AB20F53
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 18:18:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD6791332AD;
-	Thu, 21 Mar 2024 18:16:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CE8F1332AD;
+	Thu, 21 Mar 2024 18:17:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oETWmU7u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp1.ms.mff.cuni.cz (smtp-in1.ms.mff.cuni.cz [195.113.20.234])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A37B884A28;
-	Thu, 21 Mar 2024 18:16:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.113.20.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 232EC56B76;
+	Thu, 21 Mar 2024 18:17:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711044991; cv=none; b=gVZesJB6/EhqrcblRoxFqbqPx57jBJV5YZAl3VFvRZKIxqXgwWrt8dKH7D8g382Gh/2r8V61FGtVy0Cxkf/O9g1Du6Z1O5RWVfmQz86hRj/frQX9f3pKF9e2RNpEduuckXaCVYb+K3dj+24xerv5CNV4ZpObnkblOLXw22sQr9U=
+	t=1711045079; cv=none; b=lWSPkWI0pc4RvCXmMeahcdfm0SY0eQmqavlgxIXwOAKqlO4c0mPYnfvpDUi42UHrPBpxJumrawDAMfn5fbKu60urjfsoEKG2dUq4mXXOWQGHdlZGFyovzoUsk8PlZuFgHb53lh3P8Z9jH6uzxCyyojgngowNdFGfdqP8o+t07Mo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711044991; c=relaxed/simple;
-	bh=kzF3PP5TBxeeyiFtNbxnHwiSOrORgk8U71rb5F3qK3Y=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:To:From:
-	 References:In-Reply-To; b=V3B9n3Md8F94dGWLpzOd/IimDlPU47tzEOzyHyZLsvQXV3AiuC8D22cupWWlwV0eceJisZTzBu2NCpjcHM7+Ki9y+Cx3Tcngq1u6UVQd2Zs7kxkhG92CNcLsyQn0dD45JTwCaP+PCZvlYueGOv95oHyv4CDioqjUDcOyXv8OZRk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz; spf=pass smtp.mailfrom=matfyz.cz; arc=none smtp.client-ip=195.113.20.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=matfyz.cz
-X-SubmittedBy: id balejk@matfyz.cz subject /postalCode=110+2000/O=Univerzita+20Karlova/street=Ovocn+5CxC3+5CxBD+20trh+20560/5/ST=Praha,+20Hlavn+5CxC3+5CxAD+20m+5CxC4+5Cx9Bsto/C=CZ/CN=Karel+20Balej/emailAddress=balejk@matfyz.cz
-	serial F5FD910E8FE2121B897F7E55B84E351D
-	issued by /C=NL/O=GEANT+20Vereniging/CN=GEANT+20Personal+20CA+204
-	auth type TLS.CUNI
-Received: from localhost (koleje-wifi-0015.koleje.cuni.cz [78.128.191.15])
-	(authenticated)
-	by smtp1.ms.mff.cuni.cz (8.16.1/8.16.1) with ESMTPS id 42LIGAOn098122
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=OK);
-	Thu, 21 Mar 2024 19:16:12 +0100 (CET)
-	(envelope-from balejk@matfyz.cz)
+	s=arc-20240116; t=1711045079; c=relaxed/simple;
+	bh=n30lmUTaurXJL0m9vzKRKEcVW+uOPFlH8nDiOrmwatA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=p7bmV33zQe/4vy3DabOIjcMoCuE08hnhlkPHIyaeoKav1VFsXgVK90hTQBTj4N+vTh9DuI288Tarrmro52U8qUk0n+8xa8VpPZtxoYGsF9uhQtH0mcEFy2UcjsJsnZs5c09nD+XFUu4JQH0MccOX1yR45WQ/Ld/W2GW7WAa7Vlw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oETWmU7u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5562DC433F1;
+	Thu, 21 Mar 2024 18:17:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711045078;
+	bh=n30lmUTaurXJL0m9vzKRKEcVW+uOPFlH8nDiOrmwatA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oETWmU7uQsbX8mhu0Eq9o8tfeMByFeBEvERGAnGJ6RDJbLQIbj/WiyAivPqWaIy7n
+	 vGGXT7hsqTUOqg1NqziFlYPLrcRTLOXTFSM6KnheDb6ZOyy0v2KyP4SgAA5w9yjKP2
+	 vFaAEiWQ5K/n/o9gHL2raHVe+xTLKjyaZTBfZ0MHHpqOnGXmkB09JVrbJYJbx4zr5g
+	 mC8hasaUVeoH4Hst2MzfW07KtX7K4lfDGevhi933bymU9cCvDFrTYipasHZM4v9g6D
+	 DDpGJFy4G3GbXeF+tYz4vk/9SOz25Naajy3uoBOZSECcUbEZkubV4QAJGKz6Yo2PNA
+	 wCHPb3hPyc3RQ==
+Date: Thu, 21 Mar 2024 18:17:53 +0000
+From: Lee Jones <lee@kernel.org>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+	Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Anders Darander <anders@chargestorm.se>,
+	Matt Ranostay <mranostay@gmail.com>,
+	Peter Meerwald <pmeerw@pmeerw.net>,
+	Ricardo Ribalda <ribalda@kernel.org>
+Subject: Re: (subset) [PATCH] dt-bindings: leds: pca963x: Convert text
+ bindings to YAML
+Message-ID: <20240321181753.GH13211@google.com>
+References: <20240305004501.849-1-laurent.pinchart@ideasonboard.com>
+ <171103315829.46862.417559829428388360.b4-ty@kernel.org>
+ <20240321180935.GF18799@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 21 Mar 2024 19:16:43 +0100
-Message-Id: <CZZMTZBZ5S7B.2HR8A6LEY08D4@matfyz.cz>
-Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Conor Dooley"
- <conor+dt@kernel.org>,
-        "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
-        "Liam
- Girdwood" <lgirdwood@gmail.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-input@vger.kernel.org>,
-        =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
-        <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>
-Subject: Re: [RFC PATCH v4 2/5] mfd: add driver for Marvell 88PM886 PMIC
-To: "Mark Brown" <broonie@kernel.org>
-From: "Karel Balej" <balejk@matfyz.cz>
-References: <20240311160110.32185-1-karelb@gimli.ms.mff.cuni.cz>
- <20240311160110.32185-3-karelb@gimli.ms.mff.cuni.cz>
- <20240321154211.GA13211@google.com> <CZZK759UU6G7.MFPYOI0HBB6I@matfyz.cz>
- <20240321162045.GC13211@google.com> <CZZL3MNOT0QG.2WDSNX9XD2RET@matfyz.cz>
- <879296b4-5186-4170-af3f-971787d28514@sirena.org.uk>
- <CZZLDK79D5VK.2VK3X59OHIY2Z@matfyz.cz>
- <45079e37-dde9-4310-a112-7af49f35ac77@sirena.org.uk>
- <CZZLVS3T3QIS.223XHI5OZ7UBG@matfyz.cz>
- <e9c7bd38-49cd-44c2-8842-292bc0b4205f@sirena.org.uk>
-In-Reply-To: <e9c7bd38-49cd-44c2-8842-292bc0b4205f@sirena.org.uk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240321180935.GF18799@pendragon.ideasonboard.com>
 
-Mark Brown, 2024-03-21T17:48:28+00:00:
-> On Thu, Mar 21, 2024 at 06:32:03PM +0100, Karel Balej wrote:
-> > Mark Brown, 2024-03-21T17:17:40+00:00:
->
-> > > Do they both genuinely have the same maximum register?
->
-> > They do according to the downstream driver which is my only reference.
-> > In fact, there the driver defines the configs separately for each regma=
-p
-> > but with the same values.
->
-> This is a downstream driver - are you sure it's got the best code
-> quality?
+On Thu, 21 Mar 2024, Laurent Pinchart wrote:
 
-No, that is why I have rewritten it and tried to improve on this. But
-like I said, it is my only reference. Is there some other way to verify
-this value (besides perhaps the datasheet)?
+> Hi Lee,
+> 
+> On Thu, Mar 21, 2024 at 02:59:18PM +0000, Lee Jones wrote:
+> > On Tue, 05 Mar 2024 02:45:01 +0200, Laurent Pinchart wrote:
+> > > Convert the pca963x DT bindings to YAML schema. The existing properties
+> > > are kept without modification, but the example is adapted to the latest
+> > > common bindings for LEDs.
+> > 
+> > Applied, thanks!
+> > 
+> > [1/1] dt-bindings: leds: pca963x: Convert text bindings to YAML
+> >       commit: 779027a0a7392610cbfd3210836d6b0e6ddef434
+> 
+> Thank you. https://git.kernel.org/pub/scm/linux/kernel/git/lee/leds.git/
+> doesn't contain that commit, have you just not pushed yet, or am I
+> looking at the wrong tree ?
 
-> I'm not seeing any references to registers with numbers as high as the
-> maximum register that's there in your driver for example.
+I haven't pushed anything publicly today yet.  Still collecting.
 
-Indeed, I have performed the same check with the same findings. But that
-doesn't necessarily mean that the maximum should be lower, no?
+When pushed in a few moments, it'll show up in `for-leds-next-next`.
 
-Do you have some specific modifications of my code in mind regarding
-this?
-
-Thank you,
-K. B.
+-- 
+Lee Jones [李琼斯]
 
