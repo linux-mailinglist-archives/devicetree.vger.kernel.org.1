@@ -1,252 +1,154 @@
-Return-Path: <devicetree+bounces-52216-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52217-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63F33885C28
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 16:39:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69F22885C3F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 16:42:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C2BDD1F26ACD
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 15:39:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 86A521C2337C
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 15:42:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD350127B43;
-	Thu, 21 Mar 2024 15:34:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52D3786AC9;
+	Thu, 21 Mar 2024 15:41:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nGHL3Xkv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fDxLU/Hh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CF9986AC6;
-	Thu, 21 Mar 2024 15:34:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71FC641775;
+	Thu, 21 Mar 2024 15:41:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711035265; cv=none; b=LtdV7mixDNRh6ETsglc/BI9FeFYbldAn5g/OajPBoQIWDn1c8PkpGCkxomkxQMXOv8INZh35UeWKE9LYxNJEwBpQkSBZYyUissQnc03N4SSDuiCP86c5FZBk/v+UBgrtRNQ5gdOzKhlSIXmyhI6GwVY6ntDsryiwOoowzfccO3Q=
+	t=1711035676; cv=none; b=UoLKd4GuCaBNa2T2T4dJDF4DYfUgMcW9lr7Vz5tWzq2jJFuzXBglTqaN/5iQKfSh8ByKrX714OXYgzbGGdkrGkFQFf5GhRvCRUyZr55JCR+4ktapSsL/sBgf9ZgbAA50dgghLUyMlEaAcu+7SEphU7QgQy6IxNGgxiIXyb1Xsq8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711035265; c=relaxed/simple;
-	bh=NHdYAaxvtVR1hgs4LTAu4brIdcf4tG0DdKMRKvsq9hc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RzN2sDX9bYDEUO755gEFJGdERhRkvD4RA/6vpJabOYIxWSTWqUT6Hn6Y+ebgydkj8Y72f7HDZsZ3Fa6Omf35sMp4QTjn7VLpBnCxcJpvwhxnZxO0cJ9u7YPua+g1/46UiboqfezA4bj1/wnO3fr6S2SURjTakh5xDY1NTYL1oiI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nGHL3Xkv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DADCDC433F1;
-	Thu, 21 Mar 2024 15:34:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711035265;
-	bh=NHdYAaxvtVR1hgs4LTAu4brIdcf4tG0DdKMRKvsq9hc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nGHL3XkvR3+D5mCUGkXbXVSrM8ykvghnJNr89wu3Cs4z0DG7wcnfRUG7FqEzl63cb
-	 IAsqbwoEcEhKfp/XHuzkO6jww0XfkgnKx6N3837tG1/I3hmqKzQLS3Sxs0OBwhqlb1
-	 KAOFGyZ4EUO7iaFSVfmVmUIUYphDcRdIJasOuhtuUygx0qkGZOJvDV8RPQq9UjLkny
-	 6X5wZ+AJtJxzUS/uz1TVUJJDFH1RtY9Qv8m5WOy021xqn8CkceiCR1GBiOClIj7UeG
-	 RXRYZFff7LtoCTsU4k1iQ5jcpqndflp22xL1g+9twCKaaa+Xe+cyWcZkoPTVvHb6rG
-	 nQSEabUZen2Sg==
-Date: Thu, 21 Mar 2024 15:34:17 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Parthiban.Veerasooran@microchip.com
-Cc: krzysztof.kozlowski@linaro.org, andrew@lunn.ch, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-	horms@kernel.org, saeedm@nvidia.com, anthony.l.nguyen@intel.com,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	corbet@lwn.net, linux-doc@vger.kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, Horatiu.Vultur@microchip.com,
-	ruanjinjie@huawei.com, Steen.Hegelund@microchip.com,
-	vladimir.oltean@nxp.com, UNGLinuxDriver@microchip.com,
-	Thorsten.Kummermehr@microchip.com, Pier.Beruto@onsemi.com,
-	Selvamani.Rajagopal@onsemi.com, Nicolas.Ferre@microchip.com,
-	benjamin.bigler@bernformulastudent.ch
-Subject: Re: [PATCH net-next v3 12/12] dt-bindings: net: add Microchip's
- LAN865X 10BASE-T1S MACPHY
-Message-ID: <20240321-upcountry-finless-b0e9b1ab4deb@spud>
-References: <20240306085017.21731-1-Parthiban.Veerasooran@microchip.com>
- <20240306085017.21731-13-Parthiban.Veerasooran@microchip.com>
- <20240306-spree-islamist-957acf0ee368@spud>
- <4c5968a3-c043-45fc-8fff-2a9eaa6de341@lunn.ch>
- <20240306-ripeness-dimple-e360a031ccde@spud>
- <05a9a7ee-e4f0-443e-9c8a-8ee649a11448@microchip.com>
- <2f384a54-74a0-4a75-a325-8985257b5d66@linaro.org>
- <ba37c212-fb98-407d-9bee-6d14801754d9@microchip.com>
- <96493beb-afbf-42f2-88f0-ad645422ecdb@linaro.org>
- <1735add6-4a6a-452b-bf26-1cf19c95493e@microchip.com>
+	s=arc-20240116; t=1711035676; c=relaxed/simple;
+	bh=1tXzIQqeVghPRbcRUP2yLJurLlrEsCWJrrB199RVdZ4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=UFMytugA8Nb/9dU/Ms1TjTAgmaTBlAo+e7JFwq8IwEWtrqjzC2q8b50Gi+9G5JKv6+99vqwGCQbr+iG+sRxSfCRhr1Diz26EpEWr/a75+vr0jp0HSO7YUiPipiAOyoUVcOy9IXsqihcRl0ZhEi1msRp571u0eFUHEtGdH7DvziI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fDxLU/Hh; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a46ce2bd562so152560466b.2;
+        Thu, 21 Mar 2024 08:41:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1711035672; x=1711640472; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5BWYJUTrFZc4IzWvfu7rsC6QGv6V0lgilNTT92/bTSE=;
+        b=fDxLU/HhMaM6SQkoVQHlrTCcLXaAKj3PoW0dWv7NXrFKGc5Kdr/gSVqTaQh9ikJ21a
+         /2ghk+Yb39Q6fG59X4pZIQwphPP44UvBvJJX8Bh6tg8xknJAHKUemzRu1m+c+PIN3/Xv
+         K8szMDC/kl+eaiOy7Tl+zNdOG5ctYHR6mdcaSoMWo+10cEypMh9muh8PgQhG3hmpXHXR
+         QFJiS3SBCyyRtqJHVUV+PLfJcT23MBTnhvYbPaz0d3ZVmC9tetNAKwd4VRDf85Y5PFq3
+         T4Jli2poZ68t+LH4dct5Wd/tE3NmcHR0CwQaEudgP8+ZDMGSc/iX6mWHhoG6OSdvHzVY
+         Sm2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711035672; x=1711640472;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5BWYJUTrFZc4IzWvfu7rsC6QGv6V0lgilNTT92/bTSE=;
+        b=lZ72NmT5EwbrPbVnNPf1ZHsWJVc5DJ+nUdreHJiLEdlr94y/z8Aw+ciCWmXnAqQPYb
+         uii1vIDePTmFqIxD6eV7RGZYwoTwYTsYYFkCghv+OR08GWVgUX4XkC28s2rCXfFPFWyt
+         e+rpkbfWKoaIFaS3K7Aq9sa8x6W8uOC6dXVcFBWru9uQBIY3vMDjDZvICfIurmVwPpMj
+         BbTBHglzHmJ0cZ8+VdQVkttEZAZCfuidkxDGfg0ZjT5VBStojrvf88sEW2tLtZCeq2zQ
+         kv3M7n4IT2gweNZBYWlBUZFehPUx0AGlZHV5LzJZMttR4RFulCINcvXkShUVGz5RUSvl
+         LmGQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUIyRuunmwsMZRjk9SULO3IlEGlPgQPSGyTtV7v71DkfZ0xZKN4jrJ/oEJaqWCFgCBd/5Zn14KS1M+wkF5qIvKXS7yUG6fhnmPAICeiiigTghis6o93VojH0JY9CuGsLOp/7l99ClBguPEDgDJteziZhtvM4QqLtl3oChphaCqnLntUhWVI5/annIhKtWxFdPyGGH8j/K2RK9w0Atc0TggaNQ==
+X-Gm-Message-State: AOJu0YxH46sSMThIB0eVxeUz2jBwVZYMK71AEiaMjc4K3pvuI3FO59GI
+	OBCuiP1J8a590pm/iyNwlZ7/LhY0wQA29XOYy19P1oabSxUI5rcwwtRycbuyf/M=
+X-Google-Smtp-Source: AGHT+IFqj+XX53X3qzQVK8gOG3eglXmFmD7208zZjw/2sioO578sxzn/K3QoFQdAdgAVlKTXd2omkw==
+X-Received: by 2002:a17:906:4889:b0:a46:d304:fd0d with SMTP id v9-20020a170906488900b00a46d304fd0dmr7594403ejq.11.1711035672430;
+        Thu, 21 Mar 2024 08:41:12 -0700 (PDT)
+Received: from bhlegrsu.conti.de ([2a02:908:2525:6ea0::11c2])
+        by smtp.googlemail.com with ESMTPSA id wy3-20020a170906fe0300b00a46b10861acsm36851ejb.208.2024.03.21.08.41.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Mar 2024 08:41:11 -0700 (PDT)
+From: Wadim Mueller <wafgo01@gmail.com>
+To: 
+Cc: Wadim Mueller <wafgo01@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Chester Lin <chester62515@gmail.com>,
+	=?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+	Matthias Brugger <mbrugger@suse.com>,
+	NXP S32 Linux Team <s32@nxp.com>,
+	Tim Harvey <tharvey@gateworks.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Marek Vasut <marex@denx.de>,
+	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
+	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Markus Niebel <Markus.Niebel@ew.tq-group.com>,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	Matthias Schiffer <matthias.schiffer@tq-group.com>,
+	Stefan Wahren <stefan.wahren@chargebyte.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Philippe Schenker <philippe.schenker@toradex.com>,
+	Li Yang <leoyang.li@nxp.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-serial@vger.kernel.org
+Subject: [PATCH v3 0/4] NXP S32G3 SoC initial bring-up
+Date: Thu, 21 Mar 2024 16:41:02 +0100
+Message-Id: <20240321154108.146223-1-wafgo01@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Hkhej6qqS7FQuj9S"
-Content-Disposition: inline
-In-Reply-To: <1735add6-4a6a-452b-bf26-1cf19c95493e@microchip.com>
+Content-Transfer-Encoding: 8bit
 
+This series brings up initial support for the NXP S32G3 SoC,
+used on the S32G-VNP-RDB3 board [1].
 
---Hkhej6qqS7FQuj9S
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The following features are supported in this initial port:
 
-On Thu, Mar 21, 2024 at 12:00:56PM +0000, Parthiban.Veerasooran@microchip.c=
-om wrote:
-> Hi Krzysztof,
->=20
-> On 21/03/24 2:10 pm, Krzysztof Kozlowski wrote:
-> > EXTERNAL EMAIL: Do not click links or open attachments unless you know =
-the content is safe
-> >=20
-> > On 21/03/2024 09:38, Parthiban.Veerasooran@microchip.com wrote:
-> >> Hi Krzysztof,
-> >>
-> >> On 20/03/24 3:23 pm, Krzysztof Kozlowski wrote:
-> >>> EXTERNAL EMAIL: Do not click links or open attachments unless you kno=
-w the content is safe
-> >>>
-> >>> On 20/03/2024 09:40, Parthiban.Veerasooran@microchip.com wrote:
-> >>>> Hi Conor & Andrew,
-> >>>>
-> >>>> Please find my reply below by consolidating other two emails comments
-> >>>> related to this.
-> >>>>
-> >>>> On 07/03/24 12:31 am, Conor Dooley wrote:
-> >>>>> On Wed, Mar 06, 2024 at 07:48:57PM +0100, Andrew Lunn wrote:
-> >>>>>>>> +description:
-> >>>>>>>> +  The LAN8650/1 combines a Media Access Controller (MAC) and an=
- Ethernet
-> >>>>>>>> +  PHY to enable 10BASE=E2=80=91T1S networks. The Ethernet Media=
- Access Controller
-> >>>>>>>> +  (MAC) module implements a 10 Mbps half duplex Ethernet MAC, c=
-ompatible
-> >>>>>>>> +  with the IEEE 802.3 standard and a 10BASE-T1S physical layer =
-transceiver
-> >>>>>>>> +  integrated into the LAN8650/1. The communication between the =
-Host and
-> >>>>>>>> +  the MAC-PHY is specified in the OPEN Alliance 10BASE-T1x MACP=
-HY Serial
-> >>>>>>>> +  Interface (TC6).
-> >>>>>>>> +
-> >>>>>>>> +allOf:
-> >>>>>>>> +  - $ref: ethernet-controller.yaml#
-> >>>>>>>> +
-> >>>>>>>> +properties:
-> >>>>>>>> +  compatible:
-> >>>>>>>> +    oneOf:
-> >>>>>>>> +      - items:
-> >>>>>>>> +          - const: microchip,lan8650
-> >>>>>>>> +          - const: microchip,lan8651
-> >>>>>>> The order here is wrong, lan8561 needs to come before the fallbac=
-k of
-> >>>>>>> lan8650.
-> >>>>>> I don't think it is a fallback. There are two devices, and hence t=
-wo
-> >>>>>> different compatibles. So i suspect the -items: is wrong here?
-> >>>>> It'd just be a two entry enum then, but I did take a quick look at =
-the
-> >>>>> driver earlier and saw:
-> >>>>> +static const struct of_device_id lan865x_dt_ids[] =3D {
-> >>>>> +    { .compatible =3D "microchip,lan8650" },
-> >>>>> +    { .compatible =3D "microchip,lan8651" },
-> >>>>> +    { /* Sentinel */ }
-> >>>>> +};
-> >>>>>
-> >>>>> That, along with no other of_device_is_compatible() type operations
-> >>>>> made me think that having a fallback actually was suitable.
-> >>>>>
-> >>>>> You cropped it out, but the patch had:
-> >>>>>> +  compatible:
-> >>>>>> +    oneOf:
-> >>>>>> +      - items:
-> >>>>>> +          - const: microchip,lan8650
-> >>>>>> +          - const: microchip,lan8651
-> >>>>>> +      - enum:
-> >>>>>> +          - microchip,lan8650
-> >>>>> So it doesn't appear to be an accidental items in place of an enum,
-> >>>>> since the other compatible is in another enum.
-> >>>> As per Andrew's comment in another email, both LAN8650 and LAN8651 a=
-re
-> >>>> two different variants but they both share almost all characteristics
-> >>>> except one thing that is LAN8651 has "Single 3.3V supply with integr=
-ated
-> >>>> 1.8V regulator" which doesn't have anything to do with driver. That's
-> >>>
-> >>> So why this is not reflected in your driver? Why didn't you address t=
-hat
-> >>> part, but ignored?
-> >> No, it is not ignored. This difference is specific to hardware and the=
-re
-> >> is no configuration/setting to be done from driver.
-> >>>
-> >>>> why I have kept them as fallback as Conor said in this email. Hope y=
-ou
-> >>>> all OK with this.
-> >>>
-> >>> Did you read the feedback? Your response is not solving here anything.
-> >>> How 8650 can be used twice? Please point me to DTS showing both usage=
-s.
-> >> May be I have a misunderstanding here. Let's clarify it.
-> >>
-> >> LAN8650 and LAN8651 both are two different variants but both implements
-> >> same functionality. The only difference is LAN8651 has "Single 3.3V
-> >> supply with integrated" where LAN8650 doesn't have this. This is
-> >> hardware specific difference and there is no configuration/setting to =
-be
-> >> done in the driver specific to this difference in the LAN8651. So
-> >> basically the driver can support for both variants without any
-> >> additional settings.
-> >>
-> >> LAN8650: https://www.microchip.com/en-us/product/lan8650
-> >> LAN8651: https://www.microchip.com/en-us/product/lan8651
-> >>
-> >> The below link shows the difference between them,
-> >> https://www.microchip.com/en-us/product-comparison.lan8650.lan8651
-> >>
-> >> With the above details, I would change the microchip,lan865x.yaml with
-> >> the below details.
-> >>
-> >> compatible:
-> >>     enum:
-> >>       - microchip,lan8650
-> >>       - microchip,lan8651
-> >>
-> >> And in the lan865x.c, I would remove the below line because
-> >> .compatible =3D "microchip,lan8650" already supports for LAN8651 as we=
-ll.
-> >>
-> >> .compatible =3D "microchip,lan8651"
-> >>
-> >> Let me know your opinion on this proposal? or do you have any
-> >> misunderstanding here?
-> >=20
-> > It's still wrong. Upstream your DTS and then test it. You will
-> > immediately see that it does not work. So first make it working, then
-> > send code to review.
-> Sorry for the inconvenience. I did the below changes in my=20
-> microchip,lan865x.yaml file and executed dt_binding_check. It=20
-> successfully created the microchip,lan865x.example.dts without any=20
-> errors. Herewith I have attached the updated microchip,lan865x.yaml file=
-=20
-> and the generated microchip,lan865x.example.dts file for your reference.
->=20
-> properties:
->    compatible:
->      oneOf:
->        - items:
->            - const: microchip,lan8651
->            - const: microchip,lan8650
+  * Devicetree for the S32G-VNP-RDB3 
+  * UART (fsl-linflexuart) with earlycon support
+  * SDHC: fsl-imx-esdhc (SD/eMMC)
 
-No, this is not right either. You need to also allow the lan8650 on its
-own. All you had to do with the original items list was flip the order
-of the lan8650 and lan8651.
+== Changes since v2 ==:
 
---Hkhej6qqS7FQuj9S
-Content-Type: application/pgp-signature; name="signature.asc"
+  * split each dt schema doc change into a seperate patch
+  * removed unnedeed IRQ from SCMI node
+  * add mmc bus-width to S32G-VNP-RDB3 board dts file
+  * fixed comments in arm-v8 timer interrupt mappings
+ 
 
------BEGIN PGP SIGNATURE-----
+[1] https://www.nxp.com/design/design-center/designs/s32g3-vehicle-networking-reference-design:S32G-VNP-RDB3
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZfxTaAAKCRB4tDGHoIJi
-0pn7APwPC0i09RDDMqIEPSfbO956debgSpLA0amibHHjDDzYXwD+Lt2CLi8me13G
-AKnDr07DjFN0MT6eFRZNd48M/6ZVDwA=
-=920K
------END PGP SIGNATURE-----
+Wadim Mueller (4):
+  dt-bindings: arm: fsl: Document NXP S32G3 board
+  dt-bindings: serial: fsl-linflexuart: add compatible for S32G3
+  dt-bindings: mmc: fsl-imx-esdhc: add NXP S32G3 support
+  arm64: dts: S32G3: Introduce device tree for S32G-VNP-RDB3
 
---Hkhej6qqS7FQuj9S--
+ .../devicetree/bindings/arm/fsl.yaml          |   6 +
+ .../bindings/mmc/fsl-imx-esdhc.yaml           |   4 +
+ .../bindings/serial/fsl,s32-linflexuart.yaml  |   3 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ arch/arm64/boot/dts/freescale/s32g3.dtsi      | 237 ++++++++++++++++++
+ .../boot/dts/freescale/s32g399a-rdb3.dts      |  45 ++++
+ 6 files changed, 296 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/s32g3.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/s32g399a-rdb3.dts
+
+-- 
+2.25.1
+
 
