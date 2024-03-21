@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-52255-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52256-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D71D886014
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 18:52:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15D54886019
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 18:53:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BFCB11C215E8
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 17:52:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFAB828826E
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 17:53:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38800132C36;
-	Thu, 21 Mar 2024 17:52:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2D42133297;
+	Thu, 21 Mar 2024 17:53:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OdYYRvV/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wpdVb1kH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74AAC8C0A
-	for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 17:52:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9669133421
+	for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 17:53:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711043561; cv=none; b=Hw1i7FUYe907ovXt9JYjWLMVRzhq+dvSQ0GBBm2CVgqLEX1Ig39sySIuAn+MK0BvacS1N9D9FcG6ukANQR6sDiVx/GlmlpB8t2kbIfp5IRHsW14YMbjqC8LPD4nFZcPhoRLfaYX5Kf76c8QbheH16qTKQYSd71krdEhUdtrI9O4=
+	t=1711043621; cv=none; b=mVtdStLEU8Y2gqpsVpoGK+suvsF5J8OlNk1j1Ugw/DEpZ+la82TWA1Tes1nWXpFL0oFXhC78OS8yvuw1x12XglKbtEFc3OT9OQWlKGcNxiayR2goLcohUQfHkjZIMf32DEwRp1ak+tftAVW3uXtUryAJ2LhxxpGpmMpv/5Yqrxc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711043561; c=relaxed/simple;
-	bh=dEorxwaEpRkmnK/FE7L/B1lCuXyDhcYdMUd4QUK0lFk=;
+	s=arc-20240116; t=1711043621; c=relaxed/simple;
+	bh=bF8QrpzwQGgX8su9aJVHy7LJKwzxezOd8U7dVZd/t0A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MAOxXVVvKzhHcHNeIMY9cmyfPddbf0BurUrsee0ZZkdQ/IwMf58zy/aZ0uG91sopThrJnNDwkPfKTn4p7UVcERC6Fj35bE5v7QS7ZmUpdo8dr4azc7TgZglE4POMJge5R9HVJOONczEgBmqCgRpP7G3HEH15gLXMpmT0E2Bd91Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OdYYRvV/; arc=none smtp.client-ip=209.85.218.51
+	 In-Reply-To:Content-Type; b=VZP2y+nl1smEA4DZcBEFlSqD/+VJw5sPzJ48kvjxnMpvPL4fWuaaxGNQoCdSZPU4cuwYH0Kyaywo91OzOy/VnMlGNGkADRSwsAO00RmHrpnUpWEqSuJR5gRof8QUVF+QlqwQ/Zd5nfcaNUdDka5epGITP2etV3joE/mDHIrmy2A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wpdVb1kH; arc=none smtp.client-ip=209.85.167.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a46ba938de0so184132766b.3
-        for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 10:52:39 -0700 (PDT)
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-512ed314881so1069450e87.2
+        for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 10:53:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711043558; x=1711648358; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711043618; x=1711648418; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=bLPdg5m2309S6AMRu1XaQxbj3FlZZTAOencomDh/QvY=;
-        b=OdYYRvV/SEO3RYPJXCo5uZku48+V11aZUDWJKobd6XuNSnDcdoiKMW7K7mN35VEo4F
-         7fLhYSpOvlHV/8AiGCNeVFzn1iKTfx12oMxEHuV7aqJwK/QCVqCZK+DwpJedD768zbQi
-         /vjMkSKzpf/jzE31hwgIHv6R22kgcz4SRnmhc3WKLpBjQaqgHL2rXt42yAuGScOJOQ0x
-         FflolsgPl8zSKViTkrVTuy8Rjd3BRzM24WsfADAk49/JAV7TYykJey3HG1VuFd25mQ1/
-         rQURAp8i9W9CHYXNmX50M8/6krg0gryjBdu/AXpDorcHRQee213FO8NpvPKl6su0MB1I
-         tV/g==
+        bh=WfLcNILKMVKH6IqH6h/LG+TRykq0kNVLgBulVnZ4zQ0=;
+        b=wpdVb1kHZRdQaK9RJxt6HhXEO+ZpEpfU+XOyTlbWkxbxfqugkBq1pGSuKtpB0fgsrj
+         99ReSUQRx6A+gOQkOVoPffIcWutHF3qNxOnOz8zZKG+OkIKq9PDXQDYK2SsTm0yBV33u
+         /2c2NLHexvUPaCLrgXlJvuqy0X14fMwCftqBlb47n33VeqNrAyDf/rhBvJcJRWOAHGZt
+         ieHxduI5gZbSbJfkdB3qILK0hhoE6pWKf0hW7bXnVEkqxS2Vl+24NqrIIQ56yBf+Kgi+
+         4GcHB1ypV5u36TepNSmf/+ApksmyB64phFtvqD8EsDykQRBd99JOxrLCbrp11QhXYo59
+         Uy9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711043558; x=1711648358;
+        d=1e100.net; s=20230601; t=1711043618; x=1711648418;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=bLPdg5m2309S6AMRu1XaQxbj3FlZZTAOencomDh/QvY=;
-        b=JJgRun2bGVxRpucLKkau971pn5OowedsFI1kGE7zPfix4jmtcDi85e7AUH2SVM1Pwz
-         wx1ODUcx8tiXofrCfOi/s98Wn1qW2nBO9TtDST7rao7KlG99tjZue5MJrdjmIEcUGg+s
-         VmE6RU6mwnbmITccZClZ8C0QgFk2Snp6qt+G4GCJJvoUCMaBxoqL58t2cjWnUyJBbiRo
-         3O3q1nUnQXvpGX+UEScpMWq+JVHnNhmQuI46PjO4wQ/E8rSxJlUpH50KsMaKN99+1aKm
-         ODkGEVsF3Mk2qyz2TN9k5RS2YGYj/qFDpPrnwn6pKMRAjvPOmu7BkNGWv8BhFdsNX7t+
-         kvbA==
-X-Forwarded-Encrypted: i=1; AJvYcCUxxo5yjBnEEk9zroEYjCnrhgtf8+Xe8GyluQUOxHlCoOwwE1ryJpLp5dR4XQsMnyQlvFtN20MIuKQ2zxBfzYbHuikM/n0qm5Ayvg==
-X-Gm-Message-State: AOJu0YzShyYyHiUGvPyi8e/ySUQ5LIK9PxvMA+TWXbo24zLeUHZC4qqW
-	3eT1OGTVcHFtDHm6aa3ZQfkQlfnRKIcoOvSSTHHwpHDI0cYa3hwnAqrEcXFwbsE=
-X-Google-Smtp-Source: AGHT+IHIOt/fsqbrW1JuBHKnXYYqK++34N8ONBHL5RUctpniW7PkUxhDrI/SSKb3Hw8mzjfCtaZDJA==
-X-Received: by 2002:a17:906:b0c6:b0:a46:617e:d3a7 with SMTP id bk6-20020a170906b0c600b00a46617ed3a7mr85393ejb.60.1711043557833;
-        Thu, 21 Mar 2024 10:52:37 -0700 (PDT)
+        bh=WfLcNILKMVKH6IqH6h/LG+TRykq0kNVLgBulVnZ4zQ0=;
+        b=tMnoQPhMBbHICy9sc73f5QdkcGknZr0VuPqIBJ+wV2Gurc7dBIeGNzQF5VqhAZqMBL
+         JVdE4DqUaIMI570j6g8d9OaAOP7xti0cs1eTGaaLNNqXv2DHM3CcIPcwVQ0/8yPQk2mK
+         eBGkXYtSZhFQ/B/492PbKsJ2wl8/VcHJvN68AD2RtMd6OklLgdmHC8Cw8/wKvkQ8hnLa
+         2gyM/rqTgK/tw+RTOlJTKwQ+dR2Ag3QB+wEvcbDFTb9pTf3bIIiMgzi/yYrWLsIMlg/4
+         nEjVDsht8LgkV5DZ8DvnhrHKiQ0p3F1f99GA8oR0Z8Aa1iOmtZrzJnHA6wt291lympB8
+         n6fQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUMvBraNtfJwt0V8GOdAZteFz90CBu0V/VycUB33k2WG2kb3KhYE4ZF+EkmMJ8ps5jaLN/ReExJe8e+u5wq1qugm7LCyBNk388vjQ==
+X-Gm-Message-State: AOJu0YzlrlmYtZIjXGXtDu1BIeBsnWTGRUyJ4dgfc44nuqoKl6b6eJ84
+	qI5VeMhs/nCYQtjx3cVuVcX282VZFffHqLhSlTRYF/nqdDfarNrkcwDDeR4vlx8=
+X-Google-Smtp-Source: AGHT+IEgLpwbnVgSnpxQTIOpQab94kvnZWJf7XczPmv9vUiAZoOrKbqCvLR7HxrAOTIShSszLroQ+Q==
+X-Received: by 2002:a19:c212:0:b0:515:8568:bb67 with SMTP id l18-20020a19c212000000b005158568bb67mr70197lfc.27.1711043617842;
+        Thu, 21 Mar 2024 10:53:37 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id bz22-20020a1709070ab600b00a472688a9ffsm23857ejc.219.2024.03.21.10.52.34
+        by smtp.gmail.com with ESMTPSA id la8-20020a170906ad8800b00a46e92e583bsm151110ejb.149.2024.03.21.10.53.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Mar 2024 10:52:37 -0700 (PDT)
-Message-ID: <f3490f17-9324-4461-bd18-b2ec9379d1a0@linaro.org>
-Date: Thu, 21 Mar 2024 18:52:33 +0100
+        Thu, 21 Mar 2024 10:53:37 -0700 (PDT)
+Message-ID: <00174dc3-65a7-4a2e-b48d-a974336a3f18@linaro.org>
+Date: Thu, 21 Mar 2024 18:53:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,8 +77,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] dt-bindings: serial: fsl-linflexuart: add
- compatible for S32G3
+Subject: Re: [PATCH v3 3/4] dt-bindings: mmc: fsl-imx-esdhc: add NXP S32G3
+ support
 To: Wadim Mueller <wafgo01@gmail.com>
 Cc: Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -92,16 +92,19 @@ Cc: Rob Herring <robh+dt@kernel.org>,
  Matthias Brugger <mbrugger@suse.com>, NXP S32 Linux Team <s32@nxp.com>,
  Tim Harvey <tharvey@gateworks.com>, Marco Felsch <m.felsch@pengutronix.de>,
  Gregor Herburger <gregor.herburger@ew.tq-group.com>,
- Marek Vasut <marex@denx.de>, Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+ Marek Vasut <marex@denx.de>,
+ Joao Paulo Goncalves <joao.goncalves@toradex.com>,
  Markus Niebel <Markus.Niebel@ew.tq-group.com>,
  Matthias Schiffer <matthias.schiffer@tq-group.com>,
  Stefan Wahren <stefan.wahren@chargebyte.com>,
- Bjorn Helgaas <bhelgaas@google.com>, Josua Mayer <josua@solid-run.com>,
- Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Philippe Schenker <philippe.schenker@toradex.com>,
+ Yannic Moog <y.moog@phytec.de>, Li Yang <leoyang.li@nxp.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-serial@vger.kernel.org
 References: <20240321154108.146223-1-wafgo01@gmail.com>
- <20240321154108.146223-3-wafgo01@gmail.com>
+ <20240321154108.146223-4-wafgo01@gmail.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -148,32 +151,42 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240321154108.146223-3-wafgo01@gmail.com>
+In-Reply-To: <20240321154108.146223-4-wafgo01@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 21/03/2024 16:41, Wadim Mueller wrote:
-> Add a compatible string for the uart binding of NXP S32G3 platforms. Here
-> we use "s32v234-linflexuart" as fallback since the current linflexuart
-> driver can still work on S32G3.
+> Add a compatible string for the SDHC binding of NXP S32G3 platforms. Here
+> we use "nxp,s32g2-usdhc" as fallback since the s32g2-usdhc
+> driver works also on S32G3 platforms.
 > 
 > Signed-off-by: Wadim Mueller <wafgo01@gmail.com>
 > ---
->  .../devicetree/bindings/serial/fsl,s32-linflexuart.yaml        | 3 +++
->  1 file changed, 3 insertions(+)
+>  Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.yaml b/Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.yaml
-> index 7a105551fa6a..f8eb92c9a8d9 100644
-> --- a/Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.yaml
-> +++ b/Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.yaml
-> @@ -25,6 +25,9 @@ properties:
+> diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> index 82eb7a24c857..b42b4368fa4e 100644
+> --- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> @@ -35,6 +35,7 @@ properties:
+>            - fsl,imx8mm-usdhc
+>            - fsl,imxrt1050-usdhc
+>            - nxp,s32g2-usdhc
+> +          - nxp,s32g3-usdhc
 >        - items:
->            - const: nxp,s32g2-linflexuart
->            - const: fsl,s32v234-linflexuart
+>            - const: fsl,imx50-esdhc
+>            - const: fsl,imx53-esdhc
+> @@ -90,6 +91,9 @@ properties:
+>            - enum:
+>                - fsl,imxrt1170-usdhc
+>            - const: fsl,imxrt1050-usdhc
 > +      - items:
-> +          - const: nxp,s32g3-linflexuart
+> +          - const: nxp,s32g3-usdhc
+> +          - const: nxp,s32g2-usdhc
 
-Combine it with previous entry as enum.
+No, that's just wrong. G3 is not and is compatible with G2? There is no
+dualism here. Either it is or it is not. Not both.
 
 Best regards,
 Krzysztof
