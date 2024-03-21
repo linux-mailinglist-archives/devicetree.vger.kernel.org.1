@@ -1,97 +1,153 @@
-Return-Path: <devicetree+bounces-52261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8116188606F
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 19:18:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C688886086
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 19:29:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 05A9AB20F53
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 18:18:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B2E05B20F60
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 18:29:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CE8F1332AD;
-	Thu, 21 Mar 2024 18:17:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE89813340A;
+	Thu, 21 Mar 2024 18:29:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oETWmU7u"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dk50kXp0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 232EC56B76;
-	Thu, 21 Mar 2024 18:17:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1116E79C3;
+	Thu, 21 Mar 2024 18:29:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711045079; cv=none; b=lWSPkWI0pc4RvCXmMeahcdfm0SY0eQmqavlgxIXwOAKqlO4c0mPYnfvpDUi42UHrPBpxJumrawDAMfn5fbKu60urjfsoEKG2dUq4mXXOWQGHdlZGFyovzoUsk8PlZuFgHb53lh3P8Z9jH6uzxCyyojgngowNdFGfdqP8o+t07Mo=
+	t=1711045746; cv=none; b=Kw2arp/VyeTwT4+WqxfYKi50mIWg1kOekGwSXV8+oxZ5fEtkFCMFVIgtZQVVCBAoHR5WAEwKuxdGIvA7ZKdU1nNO32AoE6+7Q3Vo4B0cQsomJezNKz1KzR6lBIiHdZRXoXPU8hBE+2AyfYdrxZTRQq7PEfjm5stXJzHTm4Do1Wg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711045079; c=relaxed/simple;
-	bh=n30lmUTaurXJL0m9vzKRKEcVW+uOPFlH8nDiOrmwatA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p7bmV33zQe/4vy3DabOIjcMoCuE08hnhlkPHIyaeoKav1VFsXgVK90hTQBTj4N+vTh9DuI288Tarrmro52U8qUk0n+8xa8VpPZtxoYGsF9uhQtH0mcEFy2UcjsJsnZs5c09nD+XFUu4JQH0MccOX1yR45WQ/Ld/W2GW7WAa7Vlw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oETWmU7u; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5562DC433F1;
-	Thu, 21 Mar 2024 18:17:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711045078;
-	bh=n30lmUTaurXJL0m9vzKRKEcVW+uOPFlH8nDiOrmwatA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oETWmU7uQsbX8mhu0Eq9o8tfeMByFeBEvERGAnGJ6RDJbLQIbj/WiyAivPqWaIy7n
-	 vGGXT7hsqTUOqg1NqziFlYPLrcRTLOXTFSM6KnheDb6ZOyy0v2KyP4SgAA5w9yjKP2
-	 vFaAEiWQ5K/n/o9gHL2raHVe+xTLKjyaZTBfZ0MHHpqOnGXmkB09JVrbJYJbx4zr5g
-	 mC8hasaUVeoH4Hst2MzfW07KtX7K4lfDGevhi933bymU9cCvDFrTYipasHZM4v9g6D
-	 DDpGJFy4G3GbXeF+tYz4vk/9SOz25Naajy3uoBOZSECcUbEZkubV4QAJGKz6Yo2PNA
-	 wCHPb3hPyc3RQ==
-Date: Thu, 21 Mar 2024 18:17:53 +0000
-From: Lee Jones <lee@kernel.org>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
-	Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Anders Darander <anders@chargestorm.se>,
-	Matt Ranostay <mranostay@gmail.com>,
-	Peter Meerwald <pmeerw@pmeerw.net>,
-	Ricardo Ribalda <ribalda@kernel.org>
-Subject: Re: (subset) [PATCH] dt-bindings: leds: pca963x: Convert text
- bindings to YAML
-Message-ID: <20240321181753.GH13211@google.com>
-References: <20240305004501.849-1-laurent.pinchart@ideasonboard.com>
- <171103315829.46862.417559829428388360.b4-ty@kernel.org>
- <20240321180935.GF18799@pendragon.ideasonboard.com>
+	s=arc-20240116; t=1711045746; c=relaxed/simple;
+	bh=zAYATeMtAMSyXywpEjHIrjoVSN0gBr394TEV8OH5uaM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=U/6bYQ2PwU4V//c6WLBYighlX3h2z1NXA3o1+qs6oBj/3cscUzRusXNiVLY3ppreDlWlIBCH7GPRJCj80nXnt/ROznYV3x/7u0dzgweA2M4ut99ntD1ZczmWWbIPCEWX5KPGbYEInJ3zRvNs9BI8KUeFTw5e2/m/+IAyCV4AesY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dk50kXp0; arc=none smtp.client-ip=209.85.208.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2d4a901e284so28531781fa.1;
+        Thu, 21 Mar 2024 11:29:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1711045743; x=1711650543; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Vs5BZUwaXWyx9DjsP3hmBPa0Q/mMIBukAIBdGCnvVlg=;
+        b=dk50kXp00FStVEFHbmgDVFXONESk+IqBY23Mkyxa8P/WJHVSsZ+K4kAKeWter0TanJ
+         jPd6/UOqvBafj8WJJatfx3nGAA+2Y0+uF2ZdAgtnYwQcNQ8B9/Up+Ami0uw4Eu76+3ML
+         N67CpQxmxqaxZCiQl5TLlcM7h06EtLyqcB47XPFjM6HURZubyC9ei5cqJ2YiwiDFQttz
+         FsMEpgRKp2DLFdejwr0ikDB6Wtz6NSzXamYqdz4hYFZDxp29gLF4zCY3Ug6rE9vr8VgK
+         1Ss/kCmnIwOChwNgcDM5eEAMiMrY7hYV8UJRBi6X9u+WQlmJRt9js0Oe57Drzo6orzPx
+         A49Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711045743; x=1711650543;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Vs5BZUwaXWyx9DjsP3hmBPa0Q/mMIBukAIBdGCnvVlg=;
+        b=SP3XxRY5L4F9VxOXNNyOJ9E1in9zGGlD7RxjQsKbz3LcP3HeJBx89FhLsQx0dV3U3/
+         AcrjL4bqaogswOeHfYGu6ur8227fKAH5nT1vzVQ5IPw3nyJi2czK5FXL8tix01yYJ9sN
+         vD1/e0ajUFL6QJuxLgU1Y+Q0TySwG2TVV2FNtlwz7OKiZa8X4MJCdibX0rkv1lStgPcp
+         KQ3FUN2azTfWnUEw7JRjRosW3Z9A1f7Q92rKa/HQwrowlk3OAseDbsLoaqvn360T2W8J
+         IxdhZhhPVY6nvL7JrGIL5Tll/uC/ZANgYoe/4YtrC57tj0XJAdOATQaLsV+WIGnPRi1x
+         9fCw==
+X-Forwarded-Encrypted: i=1; AJvYcCWGQktJbh9d0cstj7lgpw2y1S5hcP4I8ZqS8Z8ed3ctCb5dUQWhXW/1+oHhDCpUXgDBCMi5YuMhBd+I4aZzxObXpwT1Wpjm29g85pqmpDx3k8IQsuLuRkzg4HqRK9wnVkIAmNJcB5UkBw==
+X-Gm-Message-State: AOJu0Yy9TjDpDCTBp3jJ7U3NJ/eSU7Va8JsnI9BxzOv3ca+sLV1U7AwU
+	sBcPXw0eX64BKxctvXqJBFe0UJqSTk4U4YvLl76iQ8i5JIzPyYrW
+X-Google-Smtp-Source: AGHT+IHlLxV084PNF9KvdinqIY/5RnBQjRLaYTLjnsTeGxJShM01hzRIKLza1dnWvqk3W23qcD2dAA==
+X-Received: by 2002:a2e:9556:0:b0:2d4:7004:ba8a with SMTP id t22-20020a2e9556000000b002d47004ba8amr259463ljh.53.1711045742805;
+        Thu, 21 Mar 2024 11:29:02 -0700 (PDT)
+Received: from [10.0.0.42] (host-85-29-76-118.kaisa-laajakaista.fi. [85.29.76.118])
+        by smtp.gmail.com with ESMTPSA id p22-20020a2e9a96000000b002d45dd6004esm40852lji.121.2024.03.21.11.29.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Mar 2024 11:29:02 -0700 (PDT)
+Message-ID: <e6994ff1-6c32-4dac-846a-5f4f18b2f996@gmail.com>
+Date: Thu, 21 Mar 2024 20:31:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 13/13] ASoC: ti: davinci-i2s: Opitonally drive DX pin
+ during capture streams
+To: Bastien Curutchet <bastien.curutchet@bootlin.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, herve.codina@bootlin.com,
+ christophercordahi@nanometrics.ca
+References: <20240315112745.63230-1-bastien.curutchet@bootlin.com>
+ <20240315112745.63230-14-bastien.curutchet@bootlin.com>
+ <00182d1d-ef29-457f-9e3e-6e9b57592118@gmail.com>
+ <0bb26153-8bcb-475f-8892-5eb925fec538@bootlin.com>
+ <7925bbe5-17e8-42cb-a5f0-4f3e06810a90@gmail.com>
+ <d20dc37c-13fa-43d1-af52-dce8d8dcdd75@gmail.com>
+ <5467add6-0099-4e54-a4f7-12aa149d03c7@bootlin.com>
+Content-Language: en-US
+From: =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
+In-Reply-To: <5467add6-0099-4e54-a4f7-12aa149d03c7@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240321180935.GF18799@pendragon.ideasonboard.com>
 
-On Thu, 21 Mar 2024, Laurent Pinchart wrote:
+Hi Bastien,
 
-> Hi Lee,
-> 
-> On Thu, Mar 21, 2024 at 02:59:18PM +0000, Lee Jones wrote:
-> > On Tue, 05 Mar 2024 02:45:01 +0200, Laurent Pinchart wrote:
-> > > Convert the pca963x DT bindings to YAML schema. The existing properties
-> > > are kept without modification, but the example is adapted to the latest
-> > > common bindings for LEDs.
-> > 
-> > Applied, thanks!
-> > 
-> > [1/1] dt-bindings: leds: pca963x: Convert text bindings to YAML
-> >       commit: 779027a0a7392610cbfd3210836d6b0e6ddef434
-> 
-> Thank you. https://git.kernel.org/pub/scm/linux/kernel/git/lee/leds.git/
-> doesn't contain that commit, have you just not pushed yet, or am I
-> looking at the wrong tree ?
+On 3/21/24 17:14, Bastien Curutchet wrote:
+>>> I think the definition of the 'ti,drive-dx' is somehow odd. It allows
+>>> you to set it to 0x1234 and the DX pin will show 0x1234 when you capture
+>>> 32bit. If you capture 16bit then it will transmit 0x12 (or 0x34?), no?
+>>> If you have 4 channel capture then I won't speculate what will be on the
+>>> DX pin ;)
+>>>
+>>> Would not be better to say that the DX pin will be driven low or high
+>>> during capture _and_ disable the playback support?
+>>
+>> After some thinking, it might be still better to use the DX pin as GPIO
+>> and either have a custom machine driver which would handle it (set low
+>> when a capture trigger happens) or connect it in DAPM as a supply, bias
+>> or something and ASoC would handle it automagically.
+>>
+>> I think that would be cleaner in many ways. What do you think?
+>>
+> I agree, that would be cleaner. I ran a few tests to see if that would
+> work on my hardware. It doesn't ... So I looked back to the schematics
+> and found two reasons :
+>  * the DX pin needs to be in sync with the clock.
 
-I haven't pushed anything publicly today yet.  Still collecting.
+I'm not sure what this means, sync with which clock?
 
-When pushed in a few moments, it'll show up in `for-leds-next-next`.
+>  * the DX pin needs to be in a high-impedance state between two frames
+>    so a pull-up can drive it back up. Actually, the DX pin is also
+>    linked to the FSR pin so it provides the frame clock to the capture
+>    stream.
+
+Hrm, you are using the DX pin as FSR for the capture? Why not McBSP.FSR pin?
+
+Looking back to the patch, one thing stood out: you are setting the
+XDATDLY to 2.
+You have some sort of T1 framing on the bus? The pullup will make the DX
+line high in for the framing bit, right?
+Or you simulate another FSR line with T1 framing DX?
+
+The 'ti,drive-dx' sounds like a bad property for sure, you have T1
+framing and driving the DX to certain level.
+It is like DSP_A (1 bit delay) playing constant 0x2 ?
+
+Can you use aplay /dev/zero and a DT property to select T1 framing for
+the playback? Or that would be too coarse for timing the start of
+playback and capture?
 
 -- 
-Lee Jones [李琼斯]
+Péter
 
