@@ -1,148 +1,123 @@
-Return-Path: <devicetree+bounces-52318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52323-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7B278862DF
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 23:06:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28612886344
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 23:26:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3882286BFE
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 22:06:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D2EE91F21FE6
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 22:26:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEB4013665C;
-	Thu, 21 Mar 2024 22:06:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B06C136678;
+	Thu, 21 Mar 2024 22:25:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="T5uniTGB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lhRjKsFj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40FC4133998;
-	Thu, 21 Mar 2024 22:06:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 322B513791A;
+	Thu, 21 Mar 2024 22:25:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711058774; cv=none; b=anffCRPGdEg61SPxTy5QzrxTg364SsMg6YNBBjLnOkhfceBq67oOQZuLyt12uCJhX5M2TBKDJdGL/ulVUXJE470HH0L/0exVuq8kerZ4TfS5YrWhWUHPCQ63zi41EhzilHW8sp7bshCvQJH8m/bJun86ojqnqi+mOXaMdwDUmss=
+	t=1711059931; cv=none; b=oqqzY2nAD7FYUA+Pl3U/q9Rhw6QBM2Gqyx/6HtcxFz7t6jlFM84UhQ3xpT/ZZUs3Kb3M7YF092138/VfqraMDbu1i8h44r0f0y003FOwGONmrT7rNrcnIoy7Fe/XSSkwlg6Jy5MoWEnlFJY9u4tp4bydH0Jlsnsk9cPj31H90c8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711058774; c=relaxed/simple;
-	bh=TIQnoZwJq4qDV5cDowLeR4WsNNtBuDa7FQIqcE3Y5wM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=hpy65wh6h4MYyApgQeLOcQDZ8Ptz5sGUCStrxGHnSJaTdfkKuP4fOzJk4CpbvbjhxgU+taZjUMK08xpzdc8XQF0bPeXwNNvRnyL+oFeMzgMK3cFa5PEA/zbO6s/GDikucP2g5dB9WdqXJtRF8pM/E4y6NbqyxxKgv7IoeUqhGk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=T5uniTGB; arc=none smtp.client-ip=208.88.110.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 096639C5431;
-	Thu, 21 Mar 2024 18:06:11 -0400 (EDT)
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id MV2G5OsxunWi; Thu, 21 Mar 2024 18:06:10 -0400 (EDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 5CB399C5485;
-	Thu, 21 Mar 2024 18:06:10 -0400 (EDT)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 5CB399C5485
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
-	t=1711058770; bh=//jzrul5/etI5HJYv4rf3hRGSryC23BhON2Tv1y72Hc=;
-	h=From:To:Date:Message-ID:MIME-Version;
-	b=T5uniTGBmvD8LX14fBd2OlCRPvba5J3pH1vN0P9VlkNjSgE40kuovUZ27K0X9vPMn
-	 e1fAvNB24jTKTgskz7fQCj1PvqdO3DpfYG52PuFSMPUnux/r0JXWMg+SNXNSzdx0x5
-	 ePQScX9L8vlWCgNz891db+MEXYLlxN8Qt8B5GXz0GwK3UiDuzCQ8JedKJZVaqAYfv/
-	 0Cd+DtdmlG1BjeIiv9Mf6WbyDZ5eyypCB5RbENlG86Tkrclf6G9BHIShLosqrQgn8F
-	 nx/osgfLH91TFIo2HJ8OGCB9nloSWtSnN2Xuhb2TpKy7dPNvJ0KmRCgUrnGqgU5WXK
-	 iFAjlu1JFKPIw==
-X-Virus-Scanned: amavis at mail.savoirfairelinux.com
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id Jg8QBSn7EGNf; Thu, 21 Mar 2024 18:06:10 -0400 (EDT)
-Received: from pcperry.mtl.sfl (unknown [192.168.51.254])
-	by mail.savoirfairelinux.com (Postfix) with ESMTPSA id 33CD79C5431;
-	Thu, 21 Mar 2024 18:06:10 -0400 (EDT)
-From: Charles Perry <charles.perry@savoirfairelinux.com>
-To: mdf@kernel.org
-Cc: avandiver@markem-imaje.com,
-	bcody@markem-imaje.com,
-	Charles Perry <charles.perry@savoirfairelinux.com>,
-	Wu Hao <hao.wu@intel.com>,
-	Xu Yilun <yilun.xu@intel.com>,
-	Tom Rix <trix@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michal Simek <michal.simek@amd.com>,
-	linux-fpga@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v6 4/4] fpga: xilinx-core: add new gpio names for prog and init
-Date: Thu, 21 Mar 2024 18:04:36 -0400
-Message-ID: <20240321220447.3260065-5-charles.perry@savoirfairelinux.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240321220447.3260065-1-charles.perry@savoirfairelinux.com>
-References: <20240321220447.3260065-1-charles.perry@savoirfairelinux.com>
+	s=arc-20240116; t=1711059931; c=relaxed/simple;
+	bh=KV1cqdEWouuF9AZNPJszbFGwtds7bB206s9mEHm38IY=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=k8YkGFUKBCC0BeIxwy9Du6cbpVAawpB0ADU4w5LYcDupoY0BkBQ9feOx6GuDXiyooC1iQOL066R329RaF4voZUSPQXnSP12w0S2M37HR7etZKMW47KHXb4fLV4fbolvVFLVpybMd0BMZblZDLREC/ZEr9bhej25z93gzOC01P6Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lhRjKsFj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB606C433C7;
+	Thu, 21 Mar 2024 22:25:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711059931;
+	bh=KV1cqdEWouuF9AZNPJszbFGwtds7bB206s9mEHm38IY=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=lhRjKsFjoMXVNpayNroILS0ygmnonPsjJ3uvr2+RVILA/g48y/YGCQrtQiMiMMj6e
+	 kF/UT1WFAZUL41Jt3DvwiDMM7Vc37F5y04cBhGYI7DUoLJH5aeFdFmDYcp+DgQzZXQ
+	 +jbySrQHsxnpT+M5T3jGxKjtWh/ouwD6lb0B09ZbiPm+bsRxZUprOq/Fe+PaKEeq6G
+	 usSTwEn0klpCUepXRR8YvBDEXGEtQXGKMinN3GEdgrzho7UevbflmAviDtQZCKxREe
+	 FfPPrrXcoT3+WiNxJnbbmSh45+FQGTl/Cq6jDy4vBMFe76rnAGuIyioJwiy3xG5qGq
+	 whLWO4I6Tw29A==
+Date: Thu, 21 Mar 2024 17:25:29 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+From: Rob Herring <robh@kernel.org>
+To: Anatoliy Klymenko <anatoliy.klymenko@amd.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, linux-kernel@vger.kernel.org, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Robert Foss <rfoss@kernel.org>, Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Michal Simek <michal.simek@amd.com>, Rob Herring <robh+dt@kernel.org>, 
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
+ linux-media@vger.kernel.org, Jonas Karlman <jonas@kwiboo.se>, 
+ linux-arm-kernel@lists.infradead.org, Maxime Ripard <mripard@kernel.org>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>
+In-Reply-To: <20240321-dp-live-fmt-v3-8-d5090d796b7e@amd.com>
+References: <20240321-dp-live-fmt-v3-0-d5090d796b7e@amd.com>
+ <20240321-dp-live-fmt-v3-8-d5090d796b7e@amd.com>
+Message-Id: <171105992875.3043233.18321806946234735413.robh@kernel.org>
+Subject: Re: [PATCH v3 8/9] dt-bindings: xlnx: Add VTC and TPG bindings
 
-Old names (prog_b and init-b) are used as a fallback for hardware
-compatible with the "xlnx,fpga-slave-serial" string.
 
-Signed-off-by: Charles Perry <charles.perry@savoirfairelinux.com>
----
- drivers/fpga/xilinx-core.c | 20 ++++++++++++++++++--
- 1 file changed, 18 insertions(+), 2 deletions(-)
+On Thu, 21 Mar 2024 13:43:46 -0700, Anatoliy Klymenko wrote:
+> DO NOT MERGE. REFERENCE ONLY.
+> 
+> Add binding for AMD/Xilinx Video Timing Controller and Test Pattern
+> Generator.
+> 
+> Copy media-bus-formats.h into dt-bindings/media to suplement TPG DT node.
+> 
+> Signed-off-by: Anatoliy Klymenko <anatoliy.klymenko@amd.com>
+> ---
+>  .../bindings/display/xlnx/xlnx,v-tpg.yaml          |  87 ++++++++++
+>  .../devicetree/bindings/display/xlnx/xlnx,vtc.yaml |  65 ++++++++
+>  include/dt-bindings/media/media-bus-format.h       | 177 +++++++++++++++++++++
+>  3 files changed, 329 insertions(+)
+> 
 
-diff --git a/drivers/fpga/xilinx-core.c b/drivers/fpga/xilinx-core.c
-index a35c43382dd5f..39aeacf2e4f17 100644
---- a/drivers/fpga/xilinx-core.c
-+++ b/drivers/fpga/xilinx-core.c
-@@ -171,6 +171,20 @@ static int xilinx_core_write_complete(struct fpga_ma=
-nager *mgr,
- 	return -ETIMEDOUT;
- }
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-+static inline struct gpio_desc *
-+xilinx_core_devm_gpiod_get(struct device *dev, const char *con_id,
-+			   const char *legacy_con_id, enum gpiod_flags flags)
-+{
-+	struct gpio_desc *desc;
-+
-+	desc =3D devm_gpiod_get(dev, con_id, flags);
-+	if (IS_ERR(desc) && PTR_ERR(desc) =3D=3D -ENOENT &&
-+	    of_device_is_compatible(dev->of_node, "xlnx,fpga-slave-serial"))
-+		desc =3D devm_gpiod_get(dev, legacy_con_id, flags);
-+
-+	return desc;
-+}
-+
- static const struct fpga_manager_ops xilinx_core_ops =3D {
- 	.state =3D xilinx_core_state,
- 	.write_init =3D xilinx_core_write_init,
-@@ -186,12 +200,14 @@ int xilinx_core_probe(struct xilinx_fpga_core *core=
-)
- 		return -EINVAL;
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/display/xlnx/xlnx,v-tpg.yaml:35:4: [warning] wrong indentation: expected 4 but found 3 (indentation)
+./Documentation/devicetree/bindings/display/xlnx/xlnx,v-tpg.yaml:45:8: [warning] wrong indentation: expected 8 but found 7 (indentation)
+./Documentation/devicetree/bindings/display/xlnx/xlnx,v-tpg.yaml:49:8: [warning] wrong indentation: expected 8 but found 7 (indentation)
 
- 	/* PROGRAM_B is active low */
--	core->prog_b =3D devm_gpiod_get(core->dev, "prog_b", GPIOD_OUT_LOW);
-+	core->prog_b =3D xilinx_core_devm_gpiod_get(core->dev, "prog", "prog_b"=
-,
-+						  GPIOD_OUT_LOW);
- 	if (IS_ERR(core->prog_b))
- 		return dev_err_probe(core->dev, PTR_ERR(core->prog_b),
- 				     "Failed to get PROGRAM_B gpio\n");
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/xlnx/xlnx,v-tpg.yaml: bus-format: missing type definition
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/xlnx/xlnx,v-tpg.yaml: xlnx,bridge: missing type definition
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/xlnx/xlnx,vtc.yaml: xlnx,pixels-per-clock: missing type definition
 
--	core->init_b =3D devm_gpiod_get_optional(core->dev, "init-b", GPIOD_IN)=
-;
-+	core->init_b =3D xilinx_core_devm_gpiod_get(core->dev, "init", "init-b"=
-,
-+						  GPIOD_IN);
- 	if (IS_ERR(core->init_b))
- 		return dev_err_probe(core->dev, PTR_ERR(core->init_b),
- 				     "Failed to get INIT_B gpio\n");
---
-2.43.0
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240321-dp-live-fmt-v3-8-d5090d796b7e@amd.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
