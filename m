@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-52166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52168-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9563A88586C
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 12:37:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37D0F88589E
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 12:56:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C5EE11C218DF
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 11:37:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A13851F218AE
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 11:56:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F083058ACE;
-	Thu, 21 Mar 2024 11:37:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A47A56B9C;
+	Thu, 21 Mar 2024 11:55:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IIFiYMFd"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="wLyXcSx9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C22A56B9C;
-	Thu, 21 Mar 2024 11:37:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D7FE3C17;
+	Thu, 21 Mar 2024 11:55:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711021021; cv=none; b=KsB3M4KqEs/k9OcpAMgTNX2HaTRyN8C5eShPD6FVDRjc06tycLcldzajQdX2MztkSdhZAMc7o6IlK5jSqxFd7tYKJgsUE+bdulyzAVvG1WTcu63B9EFJxZegkT+yEwUN6uyyZkkllSi0pBVqKk+g4/X+1xmAxq1k4RY56kzlw1A=
+	t=1711022159; cv=none; b=AhWGAH/RLXE909gImteopLLXFHJy2R7wbGTv0Yql1I1DB4Cirz2LyFLUiNAS2QT66uu9nzwZ1PgUF9eVgzBSTE1pRbQey3FujV3MwpFhsePLCkISe3En5k8C10zHePtkCrThxXQQTSW2+oslGPhu4kDZf0FtNn1ork0U0dqNI6g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711021021; c=relaxed/simple;
-	bh=ZW/lmDZPDUcpi6YJcBgfOXWeHLZGXtzQbVULFL/SW2Q=;
+	s=arc-20240116; t=1711022159; c=relaxed/simple;
+	bh=OOKeFMdqN/oRnbdKq0PnsVOa1ssNxlZTwhJ9GrYbeOI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=K0wyOrjCrdP41U8+OA8kP/Y8yp5vTVQ8bQAZdHlUevRcNUTvU9+ZKPJUtE5q+XWMNqxTgP05dkZDHjj4s2/WLbLJeVWRuVtbye4/vYST97rt76s4jq8fWeV3rG849Oy+u69fY30SDA/wnOgBkgfz+fJwrEXKf1Mh9g+cCllwY84=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IIFiYMFd; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42LBA0xD014142;
-	Thu, 21 Mar 2024 11:36:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=QM56RlcJFoSE7/fF9yNnNxqs/106YgOgiHjhhqmK7fc=; b=II
-	FiYMFd01KE5c5IQHkDaMxqV8VczrPVwWZNSy8UnPsx17iAFTDltoO1w1oF5dhuSf
-	R89e0337KoIRpZSl9YRSlyO+nQN8iCh9vH3GihDoVFB5uyzKL4AYGc9fWRzMqzIV
-	+/4/gYAzEzUBUeO6jTzwoMA8RCQ6lS4JPvKT4XDV1OBhtNGZin0x8WwOxbIAVgAf
-	d8MFGRy/waE4QPTrfAQUPb1AjF9VQBANMUDGvR5sfTTcx35nZuD2rXWBY0GlV360
-	WEyoVk6PBlPlGw/Bc4HUmfDThWMZpzkWg3kxoFo+9awvzpqr9U2jQ7T7J5WHs2vb
-	9pOsQ+XQjeEpL4rDu4JQ==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x0b5494ae-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 21 Mar 2024 11:36:56 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42LBati2029129
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 21 Mar 2024 11:36:55 GMT
-Received: from [10.218.5.19] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 21 Mar
- 2024 04:36:49 -0700
-Message-ID: <33c54316-492f-4e94-9f02-80d0d272ba3b@quicinc.com>
-Date: Thu, 21 Mar 2024 17:06:46 +0530
+	 In-Reply-To:Content-Type; b=Z4FowFJroMD7AY65vfKUuDGM4qCna6eNCSsLr/3NzqmQoXE3y4t9ndZ9k6wWr74kj/pVt36Od8IgUftR+smlNEISWxsb6Y2M0ZqFndMQjb9wQjFndVpb3QCMgDfaWXrCWuvlJvRztsn2NKHgoJbiCEMTTM2PyuJAaO3dJG4jg0Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=wLyXcSx9; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 42LBtIum009191;
+	Thu, 21 Mar 2024 06:55:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1711022118;
+	bh=bfXSNgzfF39TmycWQT9ljrIkLfLOmINJWk7nXQyV6gU=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=wLyXcSx94ZSt8JqZDiY6Ry8Ubk8G1CwXaejforsyVW7LKcjbYEi9+6tIwpVDAS/yo
+	 agpOJCZdtJ8VLLYAnPSZSyK1kQ2nQYVxTjllp40J54ikcgBili0q9Zx4GdZsiei8kV
+	 Zkx9l6Yg/JahLyS2WsZYKN19Bc61AsbWYZEvknPY=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 42LBtIV2032767
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 21 Mar 2024 06:55:18 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 21
+ Mar 2024 06:55:18 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 21 Mar 2024 06:55:18 -0500
+Received: from [10.24.69.142] ([10.24.69.142])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 42LBtAWR111394;
+	Thu, 21 Mar 2024 06:55:10 -0500
+Message-ID: <ef6a1c28-70dc-4077-b644-2704ac3cf30f@ti.com>
+Date: Thu, 21 Mar 2024 17:25:09 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,75 +65,149 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 RESEND 2/6] clk: qcom: videocc-sm8550: Add support for
- videocc XO clk ares
+Subject: Re: [PATCH v4 1/5] dt-bindings: misc: Add mikrobus-connector
 Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+To: Michael Walle <mwalle@kernel.org>, Andrew Lunn <andrew@lunn.ch>
+CC: "Russell King (Oracle)" <linux@armlinux.org.uk>,
+        Ayush Singh
+	<ayushdevel1325@gmail.com>,
+        open list <linux-kernel@vger.kernel.org>, <jkridner@beagleboard.org>,
+        <robertcnelson@beagleboard.org>, <lorforlinux@beagleboard.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley
-	<conor+dt@kernel.org>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Taniya Das
-	<quic_tdas@quicinc.com>,
-        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
-        Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik
-	<quic_imrashai@quicinc.com>
-References: <20240321092529.13362-1-quic_jkona@quicinc.com>
- <20240321092529.13362-3-quic_jkona@quicinc.com>
- <CAA8EJpqrJ1bh3hdS8Gm-QRe1iEYj34Wwz+=vOtONUgAF=hOZYw@mail.gmail.com>
-From: Jagadeesh Kona <quic_jkona@quicinc.com>
-In-Reply-To: <CAA8EJpqrJ1bh3hdS8Gm-QRe1iEYj34Wwz+=vOtONUgAF=hOZYw@mail.gmail.com>
+	<conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra
+	<vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Derek Kiernan
+	<derek.kiernan@amd.com>,
+        Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann
+	<arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Brown
+	<broonie@kernel.org>, Johan Hovold <johan@kernel.org>,
+        Alex Elder
+	<elder@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE
+ BINDINGS" <devicetree@vger.kernel.org>,
+        "moderated list:ARM/TEXAS INSTRUMENTS
+ K3 ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+        "open list:SPI
+ SUBSYSTEM" <linux-spi@vger.kernel.org>,
+        "moderated list:GREYBUS SUBSYSTEM"
+	<greybus-dev@lists.linaro.org>,
+        Vaishnav M A <vaishnav@beagleboard.org>
+References: <20240317193714.403132-1-ayushdevel1325@gmail.com>
+ <20240317193714.403132-2-ayushdevel1325@gmail.com>
+ <CZWVF90JJO98.2M7ARQ9WMGC94@kernel.org>
+ <d4dc4d94-d323-4158-8c08-b7d37d8750d3@gmail.com>
+ <b62915ca-c151-4e37-bb03-c92c569c84ff@lunn.ch>
+ <4b319264-bff7-48e5-85e8-201ca0bafec6@ti.com>
+ <4c299d42-84c7-46fc-952f-292cef1bb4b4@lunn.ch>
+ <ded6c350-4c70-4a26-8b18-6605dcc6e084@ti.com>
+ <CZZBT3ZMDCVI.40UX5MB6LY4I@kernel.org>
+From: Vaishnav Achath <vaishnav.a@ti.com>
+In-Reply-To: <CZZBT3ZMDCVI.40UX5MB6LY4I@kernel.org>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ILTxTxi4x6d4LU_jQByIfH4SrIGNrY0p
-X-Proofpoint-ORIG-GUID: ILTxTxi4x6d4LU_jQByIfH4SrIGNrY0p
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-21_08,2024-03-18_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 clxscore=1015
- mlxlogscore=914 malwarescore=0 phishscore=0 mlxscore=0 suspectscore=0
- bulkscore=0 lowpriorityscore=0 priorityscore=1501 adultscore=0 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2403140001
- definitions=main-2403210081
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
 
 
-On 3/21/2024 3:14 PM, Dmitry Baryshkov wrote:
-> On Thu, 21 Mar 2024 at 11:26, Jagadeesh Kona <quic_jkona@quicinc.com> wrote:
+On 21/03/24 15:08, Michael Walle wrote:
+> Hi,
+> 
+>>> Is that because the current software support is too limited? Are there
+>>> manufactures who want to create more complex designed, but are limited
+>>> by what can be described in the manifest?
+>>>
 >>
->> Add support for videocc XO clk ares for consumer drivers to be
->> able to request for this reset.
+>> most mikroBUS add-on boards in production lies in the category of
+>> sensors, displays, connectivity, mixed signal (ADC/DAC .etc) and if you
+>> look at the existing bindings under bindings/iio/ , most devices need
+>> only simple descriptions and the properties are mainly standard bus
+>> properties (SPI/I2C properties), IRQ, named-gpios, named properties,
+>> regulators, clocks the extension to manifest was made taking this into
+>> account and the named property description interface just maps the
+>> manifest entries to the unified device property interface under
+>> include/linux/property.h
 > 
-> Nit: s/for//
+> How will the ethernet boards ([1], [2]) work? Where do they get
+> their MAC address from, for example. The DT has some nice properties
+> for that, but I doubt that will be possible with the manifest files.
+> I've looked at the manifest file for the w5500 board [3] and to me
+> it looks like that board will come up with a random MAC address on
+> each start. Thus, even today, you have some boards which require
+> a more complex description.
 > 
 
-Sure, will update this in next series.
+Agreed, this is a limitation, unless the corresponding 
+drivers/subsystems use device_property_read_* helper to fetch 
+properties, it will not work and net/core/of_net.c only implements 
+of_get_* helpers even though the underlying functions can be implemented 
+with equivalent device_property_read_* equivalent as well.
 
-Thanks,
-Jagadeesh
+> Apart from the discussion whether the manifest is a suitable or
+> sufficient mechanism to describe the hardware, I think the main
+> problem with the proposed binding, is that it doesn't follow the
+> binding Rob was proposing for a socket. If I want to use DT
+> overlays, how would you describe an add-on board?
+> 
+> The proposal was that the base board has something like
+> 
+> mikrobus: socket {
+> 	compatible = "mikrobus-socket";
+> 	i2c-parent = <&i2c0>;
+> 	spi-parent = <&spi0>;
+> 
+> 	i2c {};
+> 	spi {};
+> };
+> 
+> an add-on board can then have a DT snippet/overlay like the
+> following:
+> 
+> &mikrobus {
+> 	i2c {
+> 		eeprom@52: {
+> 			reg = <52>;
+> 			compatible = <atmel,at24..>;
+> 		}
+> 	};
+> 
+> 	spi {
+> 		sensor@0: {
+> 			reg = <0>;
+> 			compatible = <foobar>;
+> 		};
+> 	};
+> };
+> 
+> That should be possible with a binding for the mikrobus, which
+> in fact it is just a pin header with a standard pinout. Also as
+> Russell pointed out in v3, the EEPROM/manifest is not part of the
+> mikrobus standard. So maybe that deserves an own compatible, like
+> 
+>     compatible = "mikroe,click", "mikrobus-socket";
+> 
+> Or maybe click-eeprom? Although click seems to be the brand name of
+> MikroElektronika.
 
->>
->> Fixes: f53153a37969 ("clk: qcom: videocc-sm8550: Add video clock controller driver for SM8550")
->> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+Agreed, there is nothing preventing us to convert the binding and update 
+the driver to follow the above proposed format and will be done in next 
+revision. Click is brand name of MikroElektronika and they don't allow 
+custom boards to use that branding, however clickid can be used in the 
+case where EEPROM is present/enable the socket to be probeable.
+
+Thanks and Regards,
+Vaishnav
+
 > 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> -michael
 > 
->> ---
->>   drivers/clk/qcom/videocc-sm8550.c | 1 +
->>   1 file changed, 1 insertion(+)
-> 
-> 
+> [1] https://www.mikroe.com/eth-3-click
+> [2] https://www.mikroe.com/eth-wiz-click
+> [3] https://github.com/MikroElektronika/click_id/blob/main/manifests/ETH-WIZ-CLICK.mnfs
 
