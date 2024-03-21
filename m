@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-52265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BD57886097
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 19:34:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CEAD68860A9
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 19:44:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 20EE41F230CC
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 18:34:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5AEB61F22996
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 18:44:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D982134422;
-	Thu, 21 Mar 2024 18:34:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C01FD132C16;
+	Thu, 21 Mar 2024 18:43:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jANCOR/X"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f/kBiwgh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 485A5133423;
-	Thu, 21 Mar 2024 18:34:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00CC85CB5;
+	Thu, 21 Mar 2024 18:43:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711046042; cv=none; b=gpmsH8QnVQAuA7hbKAPjoxVPqSBcpEZvdm2J9HU9eyI0dEMdNf4JpdjA3KaEAU6wJrajpZwzpNisomguEGTF1H5YZfpz/AUbvoNP6EypeJxSPyMlkM+N1nwezGejoeFJoF50kw5Mx+cVvIWHreeXE1EhKhLDrUWCwU8v4+Jm0/g=
+	t=1711046637; cv=none; b=iNAdsJd0x1aTVDeu5LDmGFGy43CMQvc1bRR4hdGwvcIVOiq8df8QGjVR6AfkMkKgcbnEDJV21JGff68i5doNayk2iv/9onJFAPP4hzMF0AbYezIEAQGTKC2opBLrsc+TJWaDCkmp22IcdG262YWPFvDadtbE/jCuJSAO36lyzrY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711046042; c=relaxed/simple;
-	bh=7xiP7a7c+JxaaenvtRnKz3pbYlEuJfkFC57nCHzqmio=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=SKPWQCC1Rh4GgqHbMTYeXFoDMABSpNOg0Z4O8VWsg/2RrFiyRkTm8gi3TJB/Yez39EEIcW0GQn177QMQfAZMq8JTBzEiHDBWVaZZy4Iv/rqIarDmTGi9pFVBZ0tZrmNNDQcnKjBCg7Df+0bqHpvLdEnypGnzeLKmHF0OuCiBQY8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jANCOR/X; arc=none smtp.client-ip=209.85.218.43
+	s=arc-20240116; t=1711046637; c=relaxed/simple;
+	bh=qb/Bf0zXY7etChiyat2ZjXEDTHS7YWl2pfFPxlK7XNM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=f9u2YZOoG83A+SayYhDaeCDcgpGENdjoGRXqaLRE0hTN2Dfz/ePCf+iYmapTvav5olyc+Gs29tAlsGQ3heCOF+gZ6jSxnEw6DIjfq6KuT6vCgXxDrqhOmxZpAC3d2em9UK+mSaHtByRBFzfbRFTdbt51HH/vsuUvhAnkXlRhfnE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f/kBiwgh; arc=none smtp.client-ip=209.85.208.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a44ad785a44so162317966b.3;
-        Thu, 21 Mar 2024 11:34:00 -0700 (PDT)
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-56890b533aaso1584409a12.3;
+        Thu, 21 Mar 2024 11:43:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711046039; x=1711650839; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/wjCWlFIYSFB5yCG74NtFNwwkx6eRRKsau/wQBzaYZI=;
-        b=jANCOR/X7OM1UIZRsIxLa6UbE4LLJ/4B2MPE+bZUu538nuT+aX0/o+2u7408mOzbvh
-         nRtl0VSPMSEyy7nPnKRRE5n3d8pN0EjBxBz3tpBJAYUv/bjtOU2TenKLmiakPiwjJOg5
-         fRRdmUXwp2dibXm3mcOegylw3V9nEUIbCwwzoddEABqzmIGnYAHemvIWg6/XrH6W4uJi
-         Esdg9/i45t7n86AA3Lzi7xHOL8CcRhnq5dbNw5oau5thMUceCb6wpDzj9oiUOWS32AEQ
-         +5g5wnEgB+TcCmDCvnuocVPCbkk9xj97S8Y2E6KZMZ67uVJUHoIOXdTTgciEihRhujdV
-         3q4A==
+        d=gmail.com; s=20230601; t=1711046634; x=1711651434; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=S3YRi7CjBRkbKzL2OgLfygDYkiVqLApDwF8CS48Fl/4=;
+        b=f/kBiwghPzQdYjipKjBp3qfA+pZj2oeiJcGtEKdK8Wp8iV+syeEuFXzcSd2CX29s8/
+         14LWCpdW+ev3yW6yqejGa4R9DdIT9jr2kG7PMQKBgrX5CBnQZmHumqZJUE4k6+A+pLao
+         Jc/rVwcUEUt3XBm6BwMzUlZJan6cfLI5uJcvBKVNQjo3PMnYTWppzwXufJaZ1M0Z3Vov
+         YfCaDo0fP27G9fX2cZgFsOAWjykZsgSpXEzw2pEdVxNaq8M6jFz1cLXTqr2Bq5Jt9isB
+         K2yFbcZIksN8bGhKIZEKQwMhtC8DBvznSuaaTauA3q9v+WBEDfafaCH1aECjtiKC5yML
+         jc5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711046039; x=1711650839;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/wjCWlFIYSFB5yCG74NtFNwwkx6eRRKsau/wQBzaYZI=;
-        b=N87+dtHVg57Fb2OMut3UrqtNuw6IODb3AR0R8Pgm2bTwk+oFyta+bH34t3t2lDtd1n
-         tKeqbjsFneexJwD18qulA8QxttTfUlEVpsLZThc4ON7CUp0EsAbb0F9D/i9DuEpT7aXH
-         77QM7ySFDl5GWs6PMEU2ST6s2B+0nA1j0hScVX14iHWOSMETDtXyK77k+PQv4CiMctNd
-         cRBDiO8p5evfS3uZbJ266zczOK5X5yYvW4QahfGK2DSIsJWpxn4DHqFAzfHGvLRRwBLl
-         ox0swRNqbtg32wwBPkC0Pk08KwdRb6AuKI7Xsj9hiIMcrsacUjOJTLaKztqSHCZ4OmHH
-         6gIg==
-X-Forwarded-Encrypted: i=1; AJvYcCXFPpwsldBmDTMNR/1yly8StFRq8YfaetUwujBDcbxCzIr7Ljj/zj5BwdeWJ7602Zcqk+vjXRGnMTbCSFkpYg3UroXukx588eueEUUiPHHDYwvrNIUh8R/JeNX/NF0SKqImnlGWb8tYNQ==
-X-Gm-Message-State: AOJu0YxWDdUOWuWW8HANCAj0ry654mHWJ7usNOkKRAR3+tOLFs00dL+n
-	YV1nAbPnqcBqBmghstBYvFSFhRgB7ySdCwNNoJgHWiR+GQxf7NxkMorJsDofsQo7bA==
-X-Google-Smtp-Source: AGHT+IFf8Jg9aCrejcgaXxXMXUX2MxqCqZrm7ikC89u/wfAcOtUALsq0zG+LKzRZnCQHjZQIH33RQw==
-X-Received: by 2002:a17:906:39c9:b0:a46:74fe:904f with SMTP id i9-20020a17090639c900b00a4674fe904fmr186915eje.26.1711046039590;
-        Thu, 21 Mar 2024 11:33:59 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1711046634; x=1711651434;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=S3YRi7CjBRkbKzL2OgLfygDYkiVqLApDwF8CS48Fl/4=;
+        b=nqqjlTT1jvRiSqrHmpDntKJNKo09l+JEhAW0/83c9dJDt1/dSpkvGaVYbgvfRrAOFW
+         aE/8N3JAaVu6cJ2uDclCFAurq1ix5AR5AILeD8HCLL7HmtAKG9wW5kgtLRsJv+gPL0JL
+         67aBew+Rqjf+1bSirgiavJDRiUPvdpj2NSTP4E6Up2q3rUloyMVmBKnouVWfatv1TgVR
+         sj0yPi8d6u5M5FSvwpuvD8VRRIhqARKD5E6SDjkBu/b8nGwEO5kc8Tsctmwk0iQdbHB7
+         KuOYOReM1350c7REzjpP7XsUv34akrXfKDKQGmbsJRq7zoIFYTNPXlAuAel6KFFRAz7R
+         ZIMA==
+X-Forwarded-Encrypted: i=1; AJvYcCWx/y16KGDHpjYOYwCre/2U85/52ULJiI3Z35xJN/xmA5opmNFe1rApV6I0Dj1ZPtVlkYc1zAbTsuChBtcqVjq3qZP/mL4nnPUmoKJrG8vz3Sd1XHqsoEjlVRX9VfsH8Zp2LrD/78h7hA==
+X-Gm-Message-State: AOJu0YyPvcgI6G9vZG92jr9TNTlz3x4jJ+M9B9rUhry+aiZHIlaa3fVF
+	fpraE/OF52G6FFA2mS97DAseFTCeYzRrnqPoveCQZLuiRKlOzrEG
+X-Google-Smtp-Source: AGHT+IEFiHREKP8OZY99MKua7vP3dIM4RLhMeHsbw+XjxbzuNF+ZCfqYHSxtkpjGdUDBwcJAT31ZEA==
+X-Received: by 2002:a17:906:b4b:b0:a46:edfb:ff68 with SMTP id v11-20020a1709060b4b00b00a46edfbff68mr195840ejg.5.1711046634142;
+        Thu, 21 Mar 2024 11:43:54 -0700 (PDT)
 Received: from [127.0.1.1] (2a02-8389-41cf-e200-7db2-5855-2c59-b89b.cable.dynamic.v6.surfer.at. [2a02:8389:41cf:e200:7db2:5855:2c59:b89b])
-        by smtp.gmail.com with ESMTPSA id hg18-20020a1709072cd200b00a4661caeed7sm191511ejc.48.2024.03.21.11.33.58
+        by smtp.gmail.com with ESMTPSA id t6-20020a17090616c600b00a4576dd5a8csm188627ejd.201.2024.03.21.11.43.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Mar 2024 11:33:59 -0700 (PDT)
+        Thu, 21 Mar 2024 11:43:53 -0700 (PDT)
 From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Date: Thu, 21 Mar 2024 19:33:49 +0100
-Subject: [PATCH 2/2] iio: health: max30102: add support for max30101
+Subject: [PATCH 0/5] dt-bindings: hwmon: convert multiple devices to
+ dtschema
+Date: Thu, 21 Mar 2024 19:43:41 +0100
+Message-Id: <20240321-hwmon_dtschema-v1-0-96c3810c3930@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,58 +78,71 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240321-max30101-v1-2-00b83e966824@gmail.com>
-References: <20240321-max30101-v1-0-00b83e966824@gmail.com>
-In-Reply-To: <20240321-max30101-v1-0-00b83e966824@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+X-B4-Tracking: v=1; b=H4sIAN1//GUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDYyMD3Yzy3Py8+JSS4uSM1NxEXfM0U4s0E0tDQ4vERCWgpoKi1LTMCrC
+ B0bG1tQCDcjUqYAAAAA==
+To: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
+ Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Matt Ranostay <matt@ranostay.sg>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, Michael Ellerman <mpe@ellerman.id.au>, 
+ Nicholas Piggin <npiggin@gmail.com>, 
+ Christophe Leroy <christophe.leroy@csgroup.eu>, 
+ "Aneesh Kumar K.V" <aneesh.kumar@kernel.org>, 
+ "Naveen N. Rao" <naveen.n.rao@linux.ibm.com>
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
  Javier Carrasco <javier.carrasco.cruz@gmail.com>
 X-Mailer: b4 0.14-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1711046035; l=1134;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1711046632; l=1900;
  i=javier.carrasco.cruz@gmail.com; s=20240312; h=from:subject:message-id;
- bh=7xiP7a7c+JxaaenvtRnKz3pbYlEuJfkFC57nCHzqmio=;
- b=GqM8SG4IKmQSjjGx9ANWhEXgwQF1sKrh9nP3LExH/gTWzHVrz6e+htgtkXace0BnMO9mHirKJ
- bGzdnPEfsvkA0lZ6xd3B0dAXrIm+Te3xV/VX5DXqAgvX0d83IFDF2nS
+ bh=qb/Bf0zXY7etChiyat2ZjXEDTHS7YWl2pfFPxlK7XNM=;
+ b=LOtmOlWuGJJX1J1QTb6GMHIbOB8AUQtCR2RcGKO2IgzNuYJegE0yHi9i1d4c8pEUHYeoO5Fsk
+ Jp0xXdmoM1tARxzZhRyS8V3i+Zh/xozT+HvOd6B9c5uZUNkTIj6vQOV
 X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
  pk=lzSIvIzMz0JhJrzLXI0HAdPwsNPSSmEn6RbS+PTS9aQ=
 
-The Maxim max30101 is the replacement for the max30105, which is no
-longer recommended for future designs.
+This series converts the following existing bindings to dtschema:
 
-Their internal structure is identical, as well as the register map,
-configuration options and sensitivity, which allows for code recycling.
+- as370
+- ibmpowernv
+- stts751
+- ibm,p8-occ-hwmon (moved to trivial-devices.yaml)
+
+Additionally, pwm-fan.txt has been dropped because it was converted a
+year ago, and it is not mentioned anywhere in the tree.
+I could not find the rationale, but its current state does not seem to
+provide any valuable information.
+
+The binding of the as370 looks very simple, but given that the reg
+property is not a single address, I have written a dedicated file for
+it. If reg = <address range> is valid in trivial-devices.yaml, I have
+nothing against moving this device as well.
 
 Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
 ---
- drivers/iio/health/max30102.c | 2 ++
- 1 file changed, 2 insertions(+)
+Javier Carrasco (5):
+      dt-bindings: hwmon: as370: convert to dtschema
+      dt-bindings: hwmon: ibmpowernv: convert to dtschema
+      dt-bindings: hwmon: pwm-fan: drop text file
+      dt-bindings: hwmon: stts751: convert to dtschema
+      dt-bindings: hwmon: ibm,p8-occ-hwmon: move to trivial devices
 
-diff --git a/drivers/iio/health/max30102.c b/drivers/iio/health/max30102.c
-index 37e619827e8a..6616729af5b7 100644
---- a/drivers/iio/health/max30102.c
-+++ b/drivers/iio/health/max30102.c
-@@ -613,6 +613,7 @@ static void max30102_remove(struct i2c_client *client)
- }
- 
- static const struct i2c_device_id max30102_id[] = {
-+	{ "max30101", max30105 },
- 	{ "max30102", max30102 },
- 	{ "max30105", max30105 },
- 	{}
-@@ -620,6 +621,7 @@ static const struct i2c_device_id max30102_id[] = {
- MODULE_DEVICE_TABLE(i2c, max30102_id);
- 
- static const struct of_device_id max30102_dt_ids[] = {
-+	{ .compatible = "maxim,max30101" },
- 	{ .compatible = "maxim,max30102" },
- 	{ .compatible = "maxim,max30105" },
- 	{ }
+ Documentation/devicetree/bindings/hwmon/as370.txt  | 11 ------
+ .../devicetree/bindings/hwmon/ibm,p8-occ-hwmon.txt | 25 -------------
+ .../devicetree/bindings/hwmon/ibm,powernv.yaml     | 37 +++++++++++++++++++
+ .../devicetree/bindings/hwmon/ibmpowernv.txt       | 23 ------------
+ .../devicetree/bindings/hwmon/pwm-fan.txt          |  1 -
+ .../devicetree/bindings/hwmon/st,stts751.yaml      | 41 ++++++++++++++++++++++
+ .../devicetree/bindings/hwmon/stts751.txt          | 15 --------
+ .../devicetree/bindings/hwmon/syna,as370.yaml      | 32 +++++++++++++++++
+ .../devicetree/bindings/trivial-devices.yaml       |  2 ++
+ 9 files changed, 112 insertions(+), 75 deletions(-)
+---
+base-commit: ebc9bee8814d12ec247de117aa2f7fd39ff11127
+change-id: 20240320-hwmon_dtschema-7f58f49118aa
 
+Best regards,
 -- 
-2.40.1
+Javier Carrasco <javier.carrasco.cruz@gmail.com>
 
 
