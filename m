@@ -1,153 +1,84 @@
-Return-Path: <devicetree+bounces-52208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D82AF885B2E
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 15:52:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3948885B41
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 15:59:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7691D1F2264E
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 14:52:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F5BC284FF6
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 14:59:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01C0084FC5;
-	Thu, 21 Mar 2024 14:52:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 733468595C;
+	Thu, 21 Mar 2024 14:59:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PhTBSDJF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EC9C58232;
-	Thu, 21 Mar 2024 14:52:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43A6485650;
+	Thu, 21 Mar 2024 14:59:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711032737; cv=none; b=TZPVLZd5ng1MlsZ/HPOpClVl1M+i5ABRlHgxJEfp7hcmLVvvbA4WO1zzOt4SuNGoZpepPjcj6cEovjmfD686X18RRO381M90Paor/cq2CiN3CluOordDdd5wg3EYKDErnPkKafVg0uNYnGe8svWdowrzSPo8K8pKrug9EQqpjfQ=
+	t=1711033161; cv=none; b=jANEKK9mhkpkU4Oqwl+azSpriL3xKky/9UU2R40KQ60KGpIy1RXvV6btTQpd4LhJ86ViCl989pdk7bVWBiGhIiJiNBhafLXNElFC4frVDUb6lKN4DFrGc/3g6bad88iTZvatHczT9xzh20zWJkPVr133FucRx6zXYPF31YDlIFw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711032737; c=relaxed/simple;
-	bh=EUh2B2yBe9JAd5dMMj00ZCYwh//VjKBq0E4ohqEGc6g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hvyinkuLhbpwnKWuSrJoK2uR7lA21w+T+9CxrOJTLzbS1GTHkP3Vby9oyKyGAu0HOmCfHkShXweETmrCLCNMQv2hcr7/MYOSQzY4RvyTJdjHoQY9Fpc6fv6Usc8RviUq17ER0O7uFEArN242nUlh18+E7wXdMjwRPBlQTT4k3hI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 08E341007;
-	Thu, 21 Mar 2024 07:52:48 -0700 (PDT)
-Received: from [10.1.38.27] (FVFF763DQ05P.cambridge.arm.com [10.1.38.27])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4C2E53F67D;
-	Thu, 21 Mar 2024 07:52:11 -0700 (PDT)
-Message-ID: <d44ddcc7-1e44-415c-93d0-c08e7836e3e3@arm.com>
-Date: Thu, 21 Mar 2024 14:52:10 +0000
+	s=arc-20240116; t=1711033161; c=relaxed/simple;
+	bh=Nz9OfYvrur6nou4pNIOYZtLhK+8oHGW5EWI0IUKNg4c=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=qDSEJOb9biuLxlp3dZFUv42bEGlt9gnDUxx6Cq7o1jPC0YtjF5gkTUqxS4x0sk4bX32o40dBcnVp7REKWCb5u9fK8hRoGyNn+C5VFm6fYgMOy/vDSWHK6NkjOL3vtLvg0+Zpx9PzaE8boy7MxAh1Ly19u7xMvY1kQqaBdUHnTGQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PhTBSDJF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93F42C433C7;
+	Thu, 21 Mar 2024 14:59:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711033160;
+	bh=Nz9OfYvrur6nou4pNIOYZtLhK+8oHGW5EWI0IUKNg4c=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=PhTBSDJFF8HdyfkkGyOgAs6CocZT9MLYaIPiLiXTbTc+lavnu03+adwii8zKx6ICa
+	 ce53dZ+3C2tr/AH6gqIhSuCHTBdSkr+DiBuExOVY9eNUzir0ZTTLh92+vA8DlfyIjC
+	 78gK1x1kaywmc4XRaysBzj/RJyCdTv2EC7oznVn9f4ZvS1+BA1b2JouEryCoGZLPQR
+	 GzrGvTdJSCaBD4RvDTJbE65zHRuXiqSPtQYE7jzmvPKNVYKsaOiJiBN79oQf1HvspP
+	 cgjltwxh+bZjCdFFPN8ZQU+mxqijLprG5yzo4IV5k8wg+iaMJs0eq2ipnsND2bNF0P
+	 2WxIUvbCViJxQ==
+From: Lee Jones <lee@kernel.org>
+To: devicetree@vger.kernel.org, linux-leds@vger.kernel.org, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Anders Darander <anders@chargestorm.se>, 
+ Matt Ranostay <mranostay@gmail.com>, Peter Meerwald <pmeerw@pmeerw.net>, 
+ Ricardo Ribalda <ribalda@kernel.org>
+In-Reply-To: <20240305004501.849-1-laurent.pinchart@ideasonboard.com>
+References: <20240305004501.849-1-laurent.pinchart@ideasonboard.com>
+Subject: Re: (subset) [PATCH] dt-bindings: leds: pca963x: Convert text
+ bindings to YAML
+Message-Id: <171103315829.46862.417559829428388360.b4-ty@kernel.org>
+Date: Thu, 21 Mar 2024 14:59:18 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: arm: qcom,coresight-funnel: Add label
- for multi-ouput
-Content-Language: en-GB
-To: Rob Herring <robh@kernel.org>, Tao Zhang <quic_taozha@quicinc.com>
-Cc: Mathieu Poirier <mathieu.poirier@linaro.org>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Konrad Dybcio <konradybcio@gmail.com>, Mike Leach <mike.leach@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Jinlong Mao <quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, coresight@lists.linaro.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
- Yuanfang Zhang <quic_yuanfang@quicinc.com>,
- Trilok Soni <quic_tsoni@quicinc.com>, Song Chai <quic_songchai@quicinc.com>,
- linux-arm-msm@vger.kernel.org, andersson@kernel.org
-References: <1711009927-17873-1-git-send-email-quic_taozha@quicinc.com>
- <1711009927-17873-2-git-send-email-quic_taozha@quicinc.com>
- <20240321144226.GA1689544-robh@kernel.org>
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20240321144226.GA1689544-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.12.4
 
-On 21/03/2024 14:42, Rob Herring wrote:
-> On Thu, Mar 21, 2024 at 04:32:04PM +0800, Tao Zhang wrote:
->> Add new property "label" to label the source corresponding to the
->> output connection. When the funnel supports multi-output, this
->> property needs to be introduced to mark which source component a
->> certain output connection corresponds to.
->>
->> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
->> ---
->>   .../arm/arm,coresight-dynamic-funnel.yaml     | 34 ++++++++++++++++---
->>   1 file changed, 30 insertions(+), 4 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
->> index 44a1041cb0fc..cde62c286d29 100644
->> --- a/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
->> +++ b/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
->> @@ -66,13 +66,39 @@ properties:
->>           $ref: /schemas/graph.yaml#/properties/port
->>   
->>     out-ports:
->> -    $ref: /schemas/graph.yaml#/properties/ports
->> -    additionalProperties: false
->> -
->> +    type: object
->>       properties:
->> +      "#address-cells":
->> +        const: 1
->> +
->> +      "#size-cells":
->> +        const: 0
->> +
->>         port:
->> +        type: object
->> +
->> +    patternProperties:
->> +      '^port(@[0-7])?$':
->> +        type: object
->>           description: Output connection to CoreSight Trace bus
->> -        $ref: /schemas/graph.yaml#/properties/port
+On Tue, 05 Mar 2024 02:45:01 +0200, Laurent Pinchart wrote:
+> Convert the pca963x DT bindings to YAML schema. The existing properties
+> are kept without modification, but the example is adapted to the latest
+> common bindings for LEDs.
 > 
-> Nope, now you have no constraints on port node properties. Please look
-> at how other bindings are done to add properties on endpoint node.
 > 
->> +
->> +        patternProperties:
->> +          "^endpoint(@[0-9a-f]+)?$":
->> +            type: object
->> +            properties:
->> +              remote-endpoint:
->> +                description: |
->> +                  phandle to an 'endpoint' subnode of a remote device node.
->> +                  $ref: /schemas/types.yaml#/definitions/phandle
-> 
-> Don't need this.
-> 
->> +              label:
->> +                description: Label the source corresponding to the output connection
->> +                $ref: /schemas/types.yaml#/definitions/string
-> 
-> label already has a type.
-> 
-> As this node is an output, aren't you labeling what the destination is,
-> not the "source"?
-> 
-> Why can't you look at the remote connection to identify what it is?
 
-+1
+Applied, thanks!
 
+[1/1] dt-bindings: leds: pca963x: Convert text bindings to YAML
+      commit: 779027a0a7392610cbfd3210836d6b0e6ddef434
 
-Suzuki
-
-
-> 
-> 
->> +    oneOf:
->> +      - required:
->> +          - port
->> +      - required:
->> +          - "#address-cells"
->> +          - "#size-cells"
-> 
-> The common schema that you removed handles this.
-> 
-> Rob
+--
+Lee Jones [李琼斯]
 
 
