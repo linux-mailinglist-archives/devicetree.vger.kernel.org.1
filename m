@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-52104-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52105-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 059D088559E
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 09:24:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA7718855B3
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 09:30:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 290651C20F90
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 08:24:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 402E61F23F4A
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 08:30:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC5E15D733;
-	Thu, 21 Mar 2024 08:24:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86FA51426D;
+	Thu, 21 Mar 2024 08:30:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AFd0EZ4s"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HnZrNLBW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA0D059147
-	for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 08:24:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8C51CA50
+	for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 08:30:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711009461; cv=none; b=qdr1y/mUfvEg9J1zKCf0Y4FKBY9YVcxkeGNfHN3h2MjbnhgLzaXNrClSRxRPcwgPJhDAQIb/fVAXv/vIOaf674TAAQkG7rADkC4NfSAew/1inYjDEfmthHmsZomR7CntNfzOHNKV4JxB+YDYV7ObzUDI+Z4QTqQCVhdK1oNblLI=
+	t=1711009823; cv=none; b=SbmfffMuM2QgqTZOIi9HAIuq1LpC0X8crA2Bi2YmT6jLSQDBIk+hBp1K2hn1Dj4D7IfO5fDXYrMrsVwvMYfqB3RLfywzof+1tYzSIxv960zT+3dxxVfVeKa0RCqRPOP6sCT+G4Rn/2APvB2VvFP1c97xsbRx0Run1HB2nppVZ4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711009461; c=relaxed/simple;
-	bh=puypE/cD4qoL7TggRdj4y0HLYHlNQcFzzc+Li1UZ2kg=;
+	s=arc-20240116; t=1711009823; c=relaxed/simple;
+	bh=HsRhN+duvTrY3XPtjwHlYhQBN5UQvr1V1Pj8yD5+gJM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nLS0BAc1XZ7/3EPp9iaJAFFkMQRXVpKoEzzIuGDjSRJN5c3NswjPrsUHg1Fyc0rts2CvRpTSS5uA5F5anRBf9K5mqcTRgetprqTsOmUHSfWG0Szh74Nm3ym72zG0KPeUcYZ3H1iTpvZMieQ/vZIR5lgmFoZRG0bly3M/2UwQGbs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AFd0EZ4s; arc=none smtp.client-ip=209.85.208.44
+	 In-Reply-To:Content-Type; b=tcENwdxM1+YhX/9rRaUQaVTQjwbL8/7G1lb+A5cwQHQszSRC0HE5Yv7YUsZbALlQprGRisQ3N7WGJ8jQUFRuoJwNbp846//nhD7WacZvER3Ru1k4K+guLHU505ptqf6cPdX6Hw6Z30YtEcGYslT66TLiiBrPwY4FdkCGRVUql9Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HnZrNLBW; arc=none smtp.client-ip=209.85.218.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-56bcb9640bbso300661a12.0
-        for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 01:24:18 -0700 (PDT)
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a46f97b8a1bso83761466b.0
+        for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 01:30:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711009457; x=1711614257; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711009820; x=1711614620; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=+UypPW8gPwDLXrQUnDbD7DxFqZiEj0eZW8k1MOScP+U=;
-        b=AFd0EZ4sw8lzS7CjgGAzvVy3q1l9AwT4ythC+6Ib3IRj4mrKZDLuBkOUDRj8IoyBfx
-         WuSvemsTMycRvIhhcIPBJAEASeP43y2KkTPNPl1S1Gb9SokTcZpifueb/MZMYAOummf0
-         B620l24O9i5mWxQJWBUO+jESFuKNkjvb7serpXyRTcLTH353unomYdG/pOXsh5+fQgQQ
-         HP0GjbqR+4mWpUX/tP89nbxwFOlncfWxbyw1p2d5ZD/0gZ3jv4rXpZ0dluvKjkyfxsq3
-         vk2xPR5/4YMkUYYJj31AQDuiYYBmwosJy5QQGNTpnrKtVTJ5wEgmnHnH9TIBlPgWvwe/
-         /DXg==
+        bh=55Jd54rSk1a0z8KIdTUOdYyilUIgNXSyH+PmVwJ3RS0=;
+        b=HnZrNLBWRewe3KdIc6bn6rjsygqeLpbGXQ9CtYDD+o/vNsSWSwnUwCW9PRlbQJCYX9
+         D9lOqiuo4CkcjVKrfHQGP7zWBkX2db+f2gOBPr5zVi7Azoma1sSCOiXGRQAoeSZMtXEA
+         HoQUzEekXX/omYbWJDcczkkcDqdyDHWB3hwrT0ETgvA4LmYtKh4Maat79n3uP071BXRN
+         orVq3Ei04AG94e6qRlJXhWskno72wZD+8iMEdf55IhZm6Mg7l6AAvp/4up0qcmRQwlAQ
+         CmHKNpIt0TuBJPU5hR4fghUEcaKfAVvdXsrVdKXVRT+GTZGqhWJElErdr8rs605P+PZI
+         F5OQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711009457; x=1711614257;
+        d=1e100.net; s=20230601; t=1711009820; x=1711614620;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=+UypPW8gPwDLXrQUnDbD7DxFqZiEj0eZW8k1MOScP+U=;
-        b=vynLkRQN94lc1KuV+yhlS+fWGchUuFaulfnKnMrb35+M4nkTD/tQGh/oWNe2JcJzhP
-         VEITcwZK/6rfdBhRJSQ8/Gx8N17CyCpCDzp9V2SpJBkXirr+Wk0UJ+rhEzoytfJDpQuH
-         Dh20h2heGrghsgG/+ZVhgiIMCJRxW0YJL9fPLBMDOwY1VrUX20cf5Vr7JG1kFJAodvJR
-         ZWlg56e7MKHe+kF1UfJKhVop8SSu31S58BahU4gKQlEUoY0qSjqY32nJXn4/p8h4j612
-         YHngbUwit9gz9YrhfFWNnxjcEW9AWytXND4CJclHEA8qHob2maHGqF2t2NfyHttx4Tnf
-         10CQ==
-X-Gm-Message-State: AOJu0Yz4jM50wEIbZaaFB0fDC2fqnHmpJXo1MKPQcyMCE2PFfXjjnntI
-	ElsRRvCNnqIctOL2hQSAzP2CjFgFLgi/s0/XOcy6OOyD40xNXU5ZpYT9LYdSnSo=
-X-Google-Smtp-Source: AGHT+IGnBqvwAnhgvz2ONAGBSV04k1AJkK5A2dPVwZs64JtSxb2/pkLeOZkuNPJugcGk81huW3bM2g==
-X-Received: by 2002:a17:907:940c:b0:a46:ea52:3ed2 with SMTP id dk12-20020a170907940c00b00a46ea523ed2mr4872278ejc.44.1711009457118;
-        Thu, 21 Mar 2024 01:24:17 -0700 (PDT)
+        bh=55Jd54rSk1a0z8KIdTUOdYyilUIgNXSyH+PmVwJ3RS0=;
+        b=Ar8HbJXKX4d7z1Gvm91z3J0HiUI1ldhfEdoAYyI3SsliLXxmXNm2NBOC8wkAJGKCxW
+         kZfffyRUxOdzVRQ8NZmfOn/8WAAH5EtzaXM4o0fvSV2cMrcWRSRk9+kle6HNqBoqwS4R
+         nr2GuMnzViW/7oAcNU8+yJ4xtBPtxsRFzlcCRN8ZjMkClZZbR1bUWfatI8HaVhDDJsB7
+         SLsFHbz0srwSQymi+LwJdwtkffXXyjOg5MQ9g3LcrwsDIsxS+arFxaYjlSwm+21MQ52g
+         kNJCJPGFaj/PtrQVjQouvMu4E2uWgr5tXgT0aqcQVcC3pdOL5C4CNgjRIJzvGKhc0s8v
+         uhhA==
+X-Forwarded-Encrypted: i=1; AJvYcCWSWriMmTNzviD8aBi6+U2PtF+tWZfHvgWTGcYzfqr1ok9cB6+YZVYTuMHZqmeNL1Zdh0TIs37cSwSmyaFefWN1dHrVc6+mKuO38A==
+X-Gm-Message-State: AOJu0YzhOsrnzpU/CvT2NhCwFEP5683Xq0Bf5PpREw6BiRcX+gmXvA/t
+	hAFdUKF0SuIh6L2onCDm4uoMvKd/PmZT0Hl7uLEaaBW3BV44xZX+Wkt6Yn61260=
+X-Google-Smtp-Source: AGHT+IEZJMJs3qFCoXfACFACARdbdMU5MSSKWQPXBGtUGzQVlGkFsIHuFUPWEtlOTSC2FQ3Pr+qAMw==
+X-Received: by 2002:a17:906:4889:b0:a46:d304:fd0d with SMTP id v9-20020a170906488900b00a46d304fd0dmr6537275ejq.11.1711009820020;
+        Thu, 21 Mar 2024 01:30:20 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id jz8-20020a17090775e800b00a4644397aa9sm8164487ejc.67.2024.03.21.01.24.15
+        by smtp.gmail.com with ESMTPSA id vi2-20020a170907d40200b00a45c8b6e965sm8198845ejc.3.2024.03.21.01.30.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Mar 2024 01:24:16 -0700 (PDT)
-Message-ID: <9d9efb8a-0b3c-4e7a-8673-07cd3b1f5f87@linaro.org>
-Date: Thu, 21 Mar 2024 09:24:14 +0100
+        Thu, 21 Mar 2024 01:30:19 -0700 (PDT)
+Message-ID: <87f66ba9-1692-4d89-a537-a6ff648a6ce3@linaro.org>
+Date: Thu, 21 Mar 2024 09:30:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,19 +77,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: Add bindings for Cadence I2S-MC
- controller
-To: Xingyu Wu <xingyu.wu@starfivetech.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Claudiu Beznea <Claudiu.Beznea@microchip.com>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor.dooley@microchip.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- alsa-devel@alsa-project.org, linux-sound@vger.kernel.org
-References: <20240320090239.168743-1-xingyu.wu@starfivetech.com>
- <20240320090239.168743-2-xingyu.wu@starfivetech.com>
+Subject: Re: [PATCH 1/2] dmaengine: ingenic: add Ingenic PDMA controller
+ support.
+To: bin.yao@ingenic.com, vkoul@kernel.org
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, 1587636487@qq.com
+References: <20240321080228.24147-1-bin.yao@ingenic.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -135,150 +130,26 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240320090239.168743-2-xingyu.wu@starfivetech.com>
+In-Reply-To: <20240321080228.24147-1-bin.yao@ingenic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/03/2024 10:02, Xingyu Wu wrote:
-> Add bindings for the Multi-Channel I2S controller of Cadence.
+On 21/03/2024 09:02, bin.yao@ingenic.com wrote:
+> From: "bin.yao" <bin.yao@ingenic.com>
 > 
-> The Multi-Channel I2S (I2S-MC) implements a function of the
-> 8-channel I2S bus interfasce. Each channel can become receiver
-> or transmitter. Four I2S instances are used on the StarFive
-> JH8100 SoC. One instance of them is limited to 2 channels, two
-> instance are limited to 4 channels, and the other one can use
-> most 8 channels. Add a unique property about
-> 'starfive,i2s-max-channels' to distinguish each instance.
+> This module can be found on ingenic victory soc.
 > 
-> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+> Signed-off-by: bin.yao <bin.yao@ingenic.com>
 > ---
->  .../bindings/sound/cdns,i2s-mc.yaml           | 110 ++++++++++++++++++
->  1 file changed, 110 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/cdns,i2s-mc.yaml
+>  drivers/dma/Kconfig        |    6 +
+>  drivers/dma/Makefile       |    1 +
+>  drivers/dma/ingenic-pdma.c | 1356 ++++++++++++++++++++++++++++++++++++
+>  3 files changed, 1363 insertions(+)
+>  create mode 100644 drivers/dma/ingenic-pdma.c
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/cdns,i2s-mc.yaml b/Documentation/devicetree/bindings/sound/cdns,i2s-mc.yaml
-> new file mode 100644
-> index 000000000000..0a1b0122a246
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/cdns,i2s-mc.yaml
-> @@ -0,0 +1,110 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/cdns,i2s-mc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Cadence multi-channel I2S controller
-> +
-> +description:
-> +  The Cadence I2S Controller implements a function of the multi-channel
-> +  (up to 8-channel) bus. It combines functions of a transmitter and a receiver.
-> +
-> +maintainers:
-> +  - Xingyu Wu <xingyu.wu@starfivetech.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - cdns,i2s-mc
 
-Why did this appear? Who asked for this? Usually these blocks are not
-usable on their own.
-
-> +      - starfive,jh8100-i2s
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    description:
-> +      The interrupt line number for the I2S controller. Add this
-> +      parameter if the I2S controller that you are using does not
-> +      using DMA.
-
-That's still wrong. You already got comment on this. Either you have
-interrupt or not. You do not add interrupts, based on your choice or not
-of having DMA. Drop the comment.
-
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: Bit clock
-> +      - description: Main ICG clock
-> +      - description: Inner master clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: bclk
-> +      - const: icg
-> +      - const: mclk_inner
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  dmas:
-> +    items:
-> +      - description: TX DMA Channel
-> +      - description: RX DMA Channel
-> +    minItems: 1
-> +
-> +  dma-names:
-> +    items:
-> +      - const: tx
-> +      - const: rx
-> +    minItems: 1
-> +
-> +  "#sound-dai-cells":
-> +    const: 0
-> +
-> +allOf:
-> +  - $ref: dai-common.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: starfive,jh8100-i2s
-> +    then:
-> +      properties:
-> +        starfive,i2s-max-channels:
-> +          description:
-> +            Number of I2S max stereo channels supported on the StarFive
-> +            JH8100 SoC.
-> +          $ref: /schemas/types.yaml#/definitions/uint32
-
-Properties must be defined in top-level. You can disallow the property
-for other variants, but I claim you won't have here other variants.
-
-https://elixir.bootlin.com/linux/v5.19/source/Documentation/devicetree/bindings/example-schema.yaml#L212
-
-
-> +          enum: [2, 4, 8]
-> +      required:
-> +        - starfive,i2s-max-channels
-> +
-> +required:
-
-required goes after properties.
-
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +
-> +oneOf:
-> +  - required:
-> +      - dmas
-> +      - dma-names
-> +  - required:
-> +      - interrupts
-
-This won't work. Provide both interrupts and dmas, and then test your DTS.
-
-> +
-> +unevaluatedProperties: false
-> +
+You did not even compile this code... You don't have ingenic-pdma.h
+header at this point.
 
 Best regards,
 Krzysztof
