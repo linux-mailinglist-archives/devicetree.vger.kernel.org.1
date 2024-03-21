@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-52118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3707788564B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 10:20:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D294885657
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 10:22:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BB23B1F21292
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 09:20:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B74CD1F21D93
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 09:22:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2DE33FB84;
-	Thu, 21 Mar 2024 09:20:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 576A63BBC4;
+	Thu, 21 Mar 2024 09:22:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CjggUsPe"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gLADhlg+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08DB31CAA7
-	for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 09:19:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6037F5472A
+	for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 09:22:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711012801; cv=none; b=NpO23kWtLtbE2WyYbUuPNuJW60U11FdHVAe979lQdf/E5Ei+yVNl78xGIKbR00FbCgpWrJK4xyEePRUITiGaQoiNdkYEJx/tfM8Sd9kTGzLnC4VD2/ePMStxYFAQFRy8fsKrFMSRCZau8vzp7XrkulnxRcPcnO9azLzF8DoUKAk=
+	t=1711012947; cv=none; b=C51WiLNWKnvRob4dzTA4qE62Usn5vT8TzFX3YRGx3x/x586TeGwemQdH8Q46Oc6vLzBU+NbObMLv+UzHYoNJ72pQwmZ2hpoKP5cpgScUA/W8yy39UxHFKjK/wxTb+CcXmXvwP5P/HNsQvFQ7RmETanJOmsOxAiqIWwObsxpjyvw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711012801; c=relaxed/simple;
-	bh=OpPTfb6qaEpkPkfkuKGzKaqr8JmtOCHMyQRPHWlpa9U=;
+	s=arc-20240116; t=1711012947; c=relaxed/simple;
+	bh=NikxXZsM2oqTbE5plR9higq0t63PY1WgIdhQ/hAR2OU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=g3sVpUPUtbBiotmYqcdjQv/RCYRmrpV5OtIVBUb/CQZXlOEp8LYRpnYboqDymxm1V829X8H/xNQVMTv8E5IDcJZy9IO/FNYA75vz7uZNoW4hDWbvAmC8qewEM5HHCNxSg99s1AiVHRLasBgpMo2QrjNQXRtkAf0rs70zXLN7ukc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CjggUsPe; arc=none smtp.client-ip=209.85.218.48
+	 In-Reply-To:Content-Type; b=CX7RMZ6tqnEOVz+XP/VoRrv0MvlnB9MnHHmAwsvM7p/h1+F0t6AOlAzEPNleOXWpdY+bHa+Jacr7qmy1LlY1PlDOU8u0h2m2uawGVyTKAPypFrA+U3pETYYbJs0l8m7k0YZbCx+8a5pjtwhm5mAwdKVMC+tW4R95PoH7r7z7cb8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gLADhlg+; arc=none smtp.client-ip=209.85.208.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a46f60cc80aso96027966b.0
-        for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 02:19:59 -0700 (PDT)
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-563cb3ba9daso721315a12.3
+        for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 02:22:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711012798; x=1711617598; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711012943; x=1711617743; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=y9o6XSHuV6Rg9KXXUPNQI/05zH9LN9kPlAx4Zl2+03o=;
-        b=CjggUsPed1UM2xWN2b+IMZAixvm64MCww0KVXEkMFiesUSX02xc7Lxj67XdvcROcso
-         F2wvF+HfU2yE2vfVK3HU0eCnxBwj/ybLlgR01OXB4uGWBQIAPVfLk+6YA0DofS4yxC8y
-         Z7SZDbHvjz3hHf/uouwU0Rwv7RsU59hAIEY/PuqsIcWEtCVsqMLlNnQP4/Ck88xlT1Ij
-         eS3id/XuMxi1GkYHOahdUywbbw/SQJldCM2/aYbLUrMekUzUCD5DfpV4M0BXcp9dIcrU
-         0PgFvoHo91yb632ONOazplpY7bboKjSMvLzyA0z0eHCMB/YbS2HQ/LqEPDQJvqR/sf3E
-         0w3A==
+        bh=/iPjQm1UzBF1UXjG0k+m5CWg/5774BRFCdavfhr5n7U=;
+        b=gLADhlg+wHH3SfkaZXhYNcnhvBtfXHnUljWhfcUwKdv/L5JnEmsxie2nU+Led4GXXc
+         euGO0E//FoXEfpmgCX1ifGkmOyNxi8R/unGBjE7UGWlO/9D7FHrV3KwFocfz9oqj+OKr
+         d3a/WTa+sfEi30UVgDawEK/EuH3UhMQZ1MFd23sXzUaYSGFqoSFyUoWq+tTiikPqlAC3
+         utxRpj2fx7O7EwV/Y/yYkMc35Qjf9+5Iu3ObUmOgSchu6WVV/HfaEpSmoGGbxJOvhaGU
+         zbt7YMH+TFZe6M3FH9A02umDWmLvE9g3wyLJ07bZL4EDmOKldrLEcaNe/UPoIGkKiO6q
+         ZS1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711012798; x=1711617598;
+        d=1e100.net; s=20230601; t=1711012943; x=1711617743;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=y9o6XSHuV6Rg9KXXUPNQI/05zH9LN9kPlAx4Zl2+03o=;
-        b=QCwv19Pb1gcUCpdxrtvSXRKeKquTb1XGW3vAOsuqUcfRobsMmtm9UdYRVgNtfySi9g
-         Gp1mP0eVzg3nU6F0p9L+W4hePC1uzPp+uBUAeAD9JZiKsDJr6+UWIZ+zQje+sMigipb8
-         ZuGcJm9EGVH+5ai6GlC/tsz4rbuCpd9gr1o+Anm5mWeifg6nmAnS9NE9LoaSLxnjMMYB
-         cvdzmsF3v6kfinfIqr4QgSWRJNRkMey3o9fu6YEuhg3TF4gYHRv0ccmoRKQoqK9GfKit
-         sBg+6uzSyddIhLNg7kuUBvQvqbYX+PDoJHU+iOg4AA9aJBlSIcieXtOcqeLCuic4mkWK
-         uJGw==
-X-Forwarded-Encrypted: i=1; AJvYcCVjFSHJZlxhntE3X2qsCpKDy7+FXSZGmqhy87UJtozXsdlTdloCTAelOzl+Y0l1B27g3BP04y5DBaPZXlZJ+QEuRfKnj6zMo64mdw==
-X-Gm-Message-State: AOJu0YzTlIL8ZCCP7gQ0xyVE8SbHmeL1IL6lsX0OHrP9B8vgy66rJh2J
-	ByRzfhRgT5rC4U8+klzWcCxm1tAMvU6kvGBH7EfUMcbWh+fFbVTWEWJ2iXLSiwY=
-X-Google-Smtp-Source: AGHT+IF9916kM88PSoRglR66YCcVmLN+62YSmph8pj40Ei4HCql0ciJAUzxwTQXAbPksJsFHjE255A==
-X-Received: by 2002:a17:906:190a:b0:a46:8c10:c75a with SMTP id a10-20020a170906190a00b00a468c10c75amr3106595eje.38.1711012798372;
-        Thu, 21 Mar 2024 02:19:58 -0700 (PDT)
+        bh=/iPjQm1UzBF1UXjG0k+m5CWg/5774BRFCdavfhr5n7U=;
+        b=Xg1QepUbE3xmeKBh01si9WZz+pICvrXsovojbAAA/6qkkMhC3+nRrRLZjV5V7YZ8PU
+         h1lxBMwgcP0jTO2DY27dXcZMBABLpPA8CCXLmf0tjIjFKB8HBCpy16HU5Ya7s6qK6lb5
+         d4H0Wl6jh6DIzIjcPyJsR9/et56u2LJlDAFJ1EriTTk6/UyWtegpBYEEM3+ZkD4MZbrr
+         zj6KXoZuefN34wb6VlgU+vDh7uKCwZ9SVHy3DoTfOepnhXHuHzzU42gFIqlvjxYywvi/
+         ZDkZnL0DCm0p9FKPIdp2k84M+lpsocotHW04vZMoiyRYaKig6DpbBi8YfEdBG0OPx5Uy
+         RPgg==
+X-Forwarded-Encrypted: i=1; AJvYcCUXx8tj/1AMvqV+HJGIKgzqAZvXGdibfcPywd/TsA7BWKWu64wmeQz/nnp1vLNi2ZllmTtmFuRMTaD/p8wTTX6VHFKhkMH4lDNpiQ==
+X-Gm-Message-State: AOJu0Yw4VUa+Xr15sQE6f6BmjVu0Gf9v0ZxqptaDoDwRscH0sBAW1xG9
+	bp2vBNfZ9i5jF1qmaARuyVqEm3OugBvdLAZOPjCXwXpU+TPxKlAZe+cwWhj+B1M=
+X-Google-Smtp-Source: AGHT+IGGUjTg7TyWBeR15AbjcxSWvKQz0fPydSkbTTRBeM+EpDQLJEWwKW1x4raSc16x3Pb5jPbLBA==
+X-Received: by 2002:a05:6402:528a:b0:56b:863c:2c92 with SMTP id en10-20020a056402528a00b0056b863c2c92mr5594394edb.34.1711012943596;
+        Thu, 21 Mar 2024 02:22:23 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id gf9-20020a170906e20900b00a46a27794f6sm6172838ejb.123.2024.03.21.02.19.55
+        by smtp.gmail.com with ESMTPSA id p8-20020a50cd88000000b0056851310a04sm8231756edi.16.2024.03.21.02.22.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Mar 2024 02:19:57 -0700 (PDT)
-Message-ID: <70439a01-7949-46bf-a701-c82ba961171a@linaro.org>
-Date: Thu, 21 Mar 2024 10:19:54 +0100
+        Thu, 21 Mar 2024 02:22:23 -0700 (PDT)
+Message-ID: <56225e33-d308-435e-b69e-2cb7dba7d57b@linaro.org>
+Date: Thu, 21 Mar 2024 10:22:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,29 +77,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: =?UTF-8?Q?Re=3A_=5BPATCH_2/4=5D_media=3A_dt-binding=3A_media=3A_Doc?=
- =?UTF-8?Q?ument_rk3588=E2=80=99s_vepu121?=
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>, linux-kernel@vger.kernel.org
-Cc: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Dragan Simic <dsimic@manjaro.org>,
- Shreeya Patel <shreeya.patel@collabora.com>,
- Chris Morgan <macromorgan@hotmail.com>, Andy Yan <andy.yan@rock-chips.com>,
- Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
- linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- iommu@lists.linux.dev
-References: <20240320173736.2720778-1-linkmauve@linkmauve.fr>
- <20240320173736.2720778-3-linkmauve@linkmauve.fr>
- <4c05d3c0-aa79-4ce0-918c-7d0967ace520@linaro.org>
- <855507987.0ifERbkFSE@diego>
+Subject: Re: [PATCH] dt-bindings: serial: actions,owl-uart: convert to
+ dtschema
+To: Kanak Shilledar <kanakshilledar@gmail.com>
+Cc: krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+ devicetree@vger.kernel.org, daniel.baluta@nxp.com,
+ Kanak Shilledar <kanakshilledar111@protonmail.com>
+References: <20240321084328.200347-1-kanakshilledar@gmail.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -146,33 +130,112 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <855507987.0ifERbkFSE@diego>
+In-Reply-To: <20240321084328.200347-1-kanakshilledar@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 21/03/2024 09:47, Heiko Stübner wrote:
->>>      enum:
->>>        - rockchip,rk3568-vepu
->>> +      - rockchip,rk3588-vepu121
->>
->> What is 121?
+On 21/03/2024 09:43, Kanak Shilledar wrote:
+> From: Kanak Shilledar <kanakshilledar111@protonmail.com>
 > 
-> That is the strange naming of the ip block inside the soc.
-> 
-> I.e. the rk3588 TRM lists a number of different video encoders and decoders:
-> - VDPU121 is decoding h.263 and mpeg1,2,4
-> - VDPU381 is decoding h.265, h.264 and some more
-> - VDPU720 is decoding jpeg
-> - VDPU981 decodes AV1
-> - VEPU121 is the jpeg encoder above
-> - VEPU580 encodes h.264 and h.265
-> 
-> Each of those are separate IP blocks with their own io-memory, their own
-> interrupts and their own iommus, etc.
+> Convert the Actions Semi Owl UART to newer DT schema.
 
-Thanks for explanation. Short introduction in commit msg would be nice
-(e.g. VEPU121, one of two VEPU encoders). OTOH, why not documenting all
-of them? Bindings are supposed to be as complete as possible.
+You are using ProtonMail, so just be aware that it might not be suitable
+for public Linux discussions:
+https://www.kernel.org/doc/html/next/process/email-clients.html#proton-mail
+
+(no need to resend just for that)
+
+> 
+> Signed-off-by: Kanak Shilledar <kanakshilledar111@protonmail.com>
+> ---
+>  .../bindings/serial/actions,owl-uart.txt      | 16 -------
+>  .../bindings/serial/actions,owl-uart.yaml     | 43 +++++++++++++++++++
+>  2 files changed, 43 insertions(+), 16 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/serial/actions,owl-uart.txt
+>  create mode 100644 Documentation/devicetree/bindings/serial/actions,owl-uart.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/serial/actions,owl-uart.txt b/Documentation/devicetree/bindings/serial/actions,owl-uart.txt
+> deleted file mode 100644
+> index aa873eada02d..000000000000
+> --- a/Documentation/devicetree/bindings/serial/actions,owl-uart.txt
+> +++ /dev/null
+> @@ -1,16 +0,0 @@
+> -Actions Semi Owl UART
+> -
+> -Required properties:
+> -- compatible :  "actions,s500-uart", "actions,owl-uart" for S500
+> -                "actions,s900-uart", "actions,owl-uart" for S900
+> -- reg        :  Offset and length of the register set for the device.
+> -- interrupts :  Should contain UART interrupt.
+> -
+> -
+> -Example:
+> -
+> -		uart3: serial@b0126000 {
+> -			compatible = "actions,s500-uart", "actions,owl-uart";
+> -			reg = <0xb0126000 0x1000>;
+> -			interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+> -		};
+> diff --git a/Documentation/devicetree/bindings/serial/actions,owl-uart.yaml b/Documentation/devicetree/bindings/serial/actions,owl-uart.yaml
+> new file mode 100644
+> index 000000000000..ee0e508255b6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/serial/actions,owl-uart.yaml
+> @@ -0,0 +1,43 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/serial/actions,owl-uart.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Actions Semi Owl UART
+> +
+> +maintainers:
+> +  - Kanak Shilledar <kanakshilledar111@protonmail.com>
+> +
+> +allOf:
+> +  - $ref: serial.yaml
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - actions,s500-uart
+> +          - actions,s900-uart
+> +          - actions,owl-uart
+
+That's not what old binding said and you did not explain differences
+from conversion in commit msg.
+
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    serial@b0126000 {
+> +        compatible = "actions,s500-uart";
+
+That's not what was in old binding.
+
+That's not what is being used. It does not look like you tested the DTS
+against bindings. Please run `make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+
 
 Best regards,
 Krzysztof
