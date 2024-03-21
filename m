@@ -1,125 +1,216 @@
-Return-Path: <devicetree+bounces-52224-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52225-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD9AC885C8D
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 16:51:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2C30885D1D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 17:13:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6AA55285A15
-	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 15:51:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53802283F15
+	for <lists+devicetree@lfdr.de>; Thu, 21 Mar 2024 16:13:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA16386261;
-	Thu, 21 Mar 2024 15:51:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="oBKDKkH3"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A0EA12C530;
+	Thu, 21 Mar 2024 16:13:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp1.ms.mff.cuni.cz (smtp-in1.ms.mff.cuni.cz [195.113.20.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72F651E879;
-	Thu, 21 Mar 2024 15:51:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E126374DB;
+	Thu, 21 Mar 2024 16:12:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.113.20.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711036267; cv=none; b=RUN/U7OXRfQjungU32Wted7uMEoVwa/oAb5SAYIIgj8VPYHSKZvtZq6o3t+7VS++xkyO7bBoTqsjBwDILb5IssHx2W4nmCjhSL3brE+qaCeToN9HnBOpJcmoKQWdMEBV5nsMY642pW5wRJ98z8UY5Gpx9IN2SQ+/zTJwKgEbUsw=
+	t=1711037582; cv=none; b=hBp0QSqEDqLNNZsB4VGllertCKe0OJTt/kDhuO/2qfV+0T/gmW+35kSukVNhFo0XKwtMmF6KdOiI5jHQnRhcjG8r8xWJLvh7HEnIDfUX9c6f/ptCaFqN3Lm9xzGfLgzafE4ilOQVMfBkSLAhMDMUHjat//Ttun9frckiTQlylqw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711036267; c=relaxed/simple;
-	bh=NcoABh9qQqWyHeyP/BJpH8RDi7iEiqb/AKOW3kyJ7Hk=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=enr9cjIK/XHfqpvKswRRpQZG8xQaFAXHEQpTtLhRfI0zPRd7J2x2s7NWFT1zbZQIacZl0nNe9OFLcIy6rD8Ec2JyOB8CoNDst2JFXAf4EAyZvWwa4mQcZOc8XWsLlBwG+ioWRBMmDgoEa8YNkC9V1wAnOohvaf8fOlJvjjCdzms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=oBKDKkH3; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42LFOW30010746;
-	Thu, 21 Mar 2024 15:50:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=qcppdkim1; bh=FRj4LVlZr5NDfUAqAPS+X
-	NAuH+YYahtbNBB1SbEdMAM=; b=oBKDKkH38UMpT2lFxBJvGBHAI7ipNAdSu7t7d
-	xYezGRKPqmIGRvI9X+rvP5942Kq9O6LQ7V5NpoaxzaMH53PFRZP2Yvf34mUpiL8F
-	Mb+MCyUa2LCAU2UtYIA9BzaVVRcbq21eqd0V6XCaC7Aw22UgNWhOidTKpSgCuBkn
-	iYygFm7MNNdAOcuLjMZA4HSHMyZFqyXVVYxMgIo7NSC8VtcjqcxkfMuWnEpJsr2G
-	CW01W4OGJbcKRHzS5ma7EdsfzsLU64Jc5MN5d8MdMAdeqIWqbmn/sOQNQVhem/SO
-	U5RAwycD/5U8avMp2SDcN/u+OLLEuKVpxlDTtm6sMkosKlNfA==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x0f1nhd6w-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 21 Mar 2024 15:50:58 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42LFovDG006831
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 21 Mar 2024 15:50:57 GMT
-Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 21 Mar 2024 08:50:53 -0700
-Date: Thu, 21 Mar 2024 21:20:49 +0530
-From: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: Rob Herring <robh@kernel.org>
-CC: <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>, <djakov@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: interconnect: Add Qualcomm IPQ9574
- support
-Message-ID: <ZfxXWaNzJoai6VpV@hu-varada-blr.qualcomm.com>
-References: <20240321043149.2739204-1-quic_varada@quicinc.com>
- <20240321043149.2739204-2-quic_varada@quicinc.com>
- <20240321143549.GA1679970-robh@kernel.org>
+	s=arc-20240116; t=1711037582; c=relaxed/simple;
+	bh=9R4gCox+E9eEsiYc1eXiYAUN243WaEBdwfQKvOV43eo=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:To:From:
+	 References:In-Reply-To; b=lSCm3t9Ibm0+SIfxZuyzKPfpLDbeaIVOua8QnnXxyg0Ucv6ZT6TeXi02YY8msXvexqMwksFQrAaKpwGP3NX5dvJ5FgBH/SyxsKGpgBgxg8e0Z9o0wClYhoMdHbAiUaDNKZbpkTyhEgb9hvfDriAQobMsoKu0zNKGiMcBu0d42Y8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz; spf=pass smtp.mailfrom=matfyz.cz; arc=none smtp.client-ip=195.113.20.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=matfyz.cz
+X-SubmittedBy: id balejk@matfyz.cz subject /postalCode=110+2000/O=Univerzita+20Karlova/street=Ovocn+5CxC3+5CxBD+20trh+20560/5/ST=Praha,+20Hlavn+5CxC3+5CxAD+20m+5CxC4+5Cx9Bsto/C=CZ/CN=Karel+20Balej/emailAddress=balejk@matfyz.cz
+	serial F5FD910E8FE2121B897F7E55B84E351D
+	issued by /C=NL/O=GEANT+20Vereniging/CN=GEANT+20Personal+20CA+204
+	auth type TLS.CUNI
+Received: from localhost (koleje-wifi-0015.koleje.cuni.cz [78.128.191.15])
+	(authenticated)
+	by smtp1.ms.mff.cuni.cz (8.16.1/8.16.1) with ESMTPS id 42LGCJZi093335
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=OK);
+	Thu, 21 Mar 2024 17:12:20 +0100 (CET)
+	(envelope-from balejk@matfyz.cz)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240321143549.GA1679970-robh@kernel.org>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: S01h8yhEomAX6KFUw1hiZzgJAvomdgE-
-X-Proofpoint-ORIG-GUID: S01h8yhEomAX6KFUw1hiZzgJAvomdgE-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-21_10,2024-03-21_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
- bulkscore=0 mlxlogscore=999 adultscore=0 malwarescore=0 spamscore=0
- suspectscore=0 clxscore=1015 lowpriorityscore=0 phishscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2403140001 definitions=main-2403210115
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 21 Mar 2024 17:12:52 +0100
+Message-Id: <CZZK759UU6G7.MFPYOI0HBB6I@matfyz.cz>
+Cc: "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>,
+        "Conor Dooley" <conor+dt@kernel.org>,
+        "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
+        "Liam Girdwood"
+ <lgirdwood@gmail.com>,
+        "Mark Brown" <broonie@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-input@vger.kernel.org>,
+        =?utf-8?q?Duje_Mihanovi=C4=87?=
+ <duje.mihanovic@skole.hr>,
+        <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>
+Subject: Re: [RFC PATCH v4 2/5] mfd: add driver for Marvell 88PM886 PMIC
+To: "Lee Jones" <lee@kernel.org>
+From: "Karel Balej" <balejk@matfyz.cz>
+References: <20240311160110.32185-1-karelb@gimli.ms.mff.cuni.cz>
+ <20240311160110.32185-3-karelb@gimli.ms.mff.cuni.cz>
+ <20240321154211.GA13211@google.com>
+In-Reply-To: <20240321154211.GA13211@google.com>
 
-On Thu, Mar 21, 2024 at 09:35:49AM -0500, Rob Herring wrote:
-> On Thu, Mar 21, 2024 at 10:01:48AM +0530, Varadarajan Narayanan wrote:
-> > Add master/slave ids for Qualcomm IPQ9574 Network-On-Chip
-> > interfaces. This will be used by the gcc-ipq9574 driver
-> > that will for providing interconnect services using the
-> > icc-clk framework.
-> >
-> > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> > ---
-> >  .../dt-bindings/interconnect/qcom,ipq9574.h   | 62 +++++++++++++++++++
-> >  1 file changed, 62 insertions(+)
-> >  create mode 100644 include/dt-bindings/interconnect/qcom,ipq9574.h
-> >
-> > diff --git a/include/dt-bindings/interconnect/qcom,ipq9574.h b/include/dt-bindings/interconnect/qcom,ipq9574.h
-> > new file mode 100644
-> > index 000000000000..96f79a86e8d2
-> > --- /dev/null
-> > +++ b/include/dt-bindings/interconnect/qcom,ipq9574.h
-> > @@ -0,0 +1,62 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
+Lee Jones, 2024-03-21T15:42:11+00:00:
+> On Mon, 11 Mar 2024, Karel Balej wrote:
 >
-> Where did you come up with GPL-2.0+? Every other qcom interconnect
-> header is GPL-2.0-only. Is your employer okay with GPLv3 AND after?
+> > From: Karel Balej <balejk@matfyz.cz>
+> >=20
+> > Marvell 88PM886 is a PMIC which provides various functions such as
+> > onkey, battery, charger and regulators. It is found for instance in the
+> > samsung,coreprimevelte smartphone with which this was tested. Implement
+> > basic support to allow for the use of regulators and onkey.
+> >=20
+> > Signed-off-by: Karel Balej <balejk@matfyz.cz>
+> > ---
+> >=20
+> > Notes:
+> >     RFC v4:
+> >     - Use MFD_CELL_* macros.
+> >     - Address Lee's feedback:
+> >       - Do not define regmap_config.val_bits and .reg_bits.
+> >       - Drop everything regulator related except mfd_cell (regmap
+> >         initialization, IDs enum etc.). Drop pm886_initialize_subregmap=
+s.
+> >       - Do not store regmap pointers as an array as there is now only o=
+ne
+> >         regmap. Also drop the corresponding enum.
+> >       - Move regmap_config to the header as it is needed in the regulat=
+ors
+> >         driver.
+> >       - pm886_chip.whoami -> chip_id
+> >       - Reword chip ID mismatch error message and print the ID as
+> >         hexadecimal.
+> >       - Fix includes in include/linux/88pm886.h.
+> >       - Drop the pm886_irq_number enum and define the (for the moment) =
+only
+> >         IRQ explicitly.
+> >     - Have only one MFD cell for all regulators as they are now registe=
+red
+> >       all at once in the regulators driver.
+> >     - Reword commit message.
+> >     - Make device table static and remove comma after the sentinel to s=
+ignal
+> >       that nothing should come after it.
+> >     RFC v3:
+> >     - Drop onkey cell .of_compatible.
+> >     - Rename LDO page offset and regmap to REGULATORS.
+> >     RFC v2:
+> >     - Remove some abstraction.
+> >     - Sort includes alphabetically and add linux/of.h.
+> >     - Depend on OF, remove of_match_ptr and add MODULE_DEVICE_TABLE.
+> >     - Use more temporaries and break long lines.
+> >     - Do not initialize ret in probe.
+> >     - Use the wakeup-source DT property.
+> >     - Rename ret to err.
+> >     - Address Lee's comments:
+> >       - Drop patched in presets for base regmap and related defines.
+> >       - Use full sentences in comments.
+> >       - Remove IRQ comment.
+> >       - Define regmap_config member values.
+> >       - Rename data to sys_off_data.
+> >       - Add _PMIC suffix to Kconfig.
+> >       - Use dev_err_probe.
+> >       - Do not store irq_data.
+> >       - s/WHOAMI/CHIP_ID
+> >       - Drop LINUX part of include guard name.
+> >       - Merge in the regulator series modifications in order to have mo=
+re
+> >         devices and modify the commit message accordingly. Changes with
+> >         respect to the original regulator series patches:
+> >         - ret -> err
+> >         - Add temporary for dev in pm88x_initialize_subregmaps.
+> >         - Drop of_compatible for the regulators.
+> >         - Do not duplicate LDO regmap for bucks.
+> >     - Rewrite commit message.
+> >=20
+> >  drivers/mfd/88pm886.c       | 149 ++++++++++++++++++++++++++++++++++++
+> >  drivers/mfd/Kconfig         |  12 +++
+> >  drivers/mfd/Makefile        |   1 +
+> >  include/linux/mfd/88pm886.h |  38 +++++++++
+> >  4 files changed, 200 insertions(+)
+> >  create mode 100644 drivers/mfd/88pm886.c
+> >  create mode 100644 include/linux/mfd/88pm886.h
+>
+> Looks mostly okay.
+>
+> > diff --git a/include/linux/mfd/88pm886.h b/include/linux/mfd/88pm886.h
+> > new file mode 100644
+> > index 000000000000..a5e6524bb19d
+> > --- /dev/null
+> > +++ b/include/linux/mfd/88pm886.h
+> > @@ -0,0 +1,38 @@
+> > +/* SPDX-License-Identifier: GPL-2.0-only */
+> > +#ifndef __MFD_88PM886_H
+> > +#define __MFD_88PM886_H
+> > +
+> > +#include <linux/i2c.h>
+> > +#include <linux/regmap.h>
+> > +
+> > +#define PM886_A1_CHIP_ID		0xa1
+> > +
+> > +#define PM886_REGMAP_CONF_MAX_REG	0xfe
+> > +
+> > +#define PM886_REG_ID			0x00
+> > +
+> > +#define PM886_REG_STATUS1		0x01
+> > +#define PM886_ONKEY_STS1		BIT(0)
+> > +
+> > +#define PM886_REG_MISC_CONFIG1		0x14
+> > +#define PM886_SW_PDOWN			BIT(5)
+> > +
+> > +#define PM886_REG_MISC_CONFIG2		0x15
+> > +#define PM886_INT_INV			BIT(0)
+> > +#define PM886_INT_CLEAR			BIT(1)
+> > +#define PM886_INT_RC			0x00
+> > +#define PM886_INT_WC			BIT(1)
+> > +#define PM886_INT_MASK_MODE		BIT(2)
+> > +
+> > +struct pm886_chip {
+> > +	struct i2c_client *client;
+> > +	unsigned int chip_id;
+> > +	struct regmap *regmap;
+> > +};
+> > +
+> > +static const struct regmap_config pm886_i2c_regmap =3D {
+> > +	.reg_bits =3D 8,
+> > +	.val_bits =3D 8,
+> > +	.max_register =3D PM886_REGMAP_CONF_MAX_REG,
+> > +};
+>
+> Why is this in here?
 
-Oops. Will fix it in the next version.
+Because since I moved the regulators regmap initialization into the
+regulators driver, I need to access it from there.
 
-Thanks
-Varada
+> What would you like me to do with this RFC patch?
+
+I was hoping that you would take this through the MFD tree (after the
+regulator subsystem maintainers approve the regulators driver).
+
+I have added the remaining regulators to the driver just today and plan
+to send the first non-RFC version of the series after I test it, likely
+over the weekend. Hopefully the regulators patch will finally get some
+attention then.
+
+Thank you, best regards,
+K. B.
 
