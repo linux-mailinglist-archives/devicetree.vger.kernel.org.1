@@ -1,121 +1,327 @@
-Return-Path: <devicetree+bounces-52587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEA59887438
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 21:44:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D68F588748D
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 22:45:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE4E11C21D4B
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 20:44:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05A741C20385
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 21:45:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C42097F7E8;
-	Fri, 22 Mar 2024 20:44:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56D8480623;
+	Fri, 22 Mar 2024 21:45:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dGtQv85Y"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="j9VkbPSM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E47C4679E1
-	for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 20:44:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 445417FBBD;
+	Fri, 22 Mar 2024 21:45:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711140248; cv=none; b=nV1kNXzOMo5caHMCciwnkqg2ANmw9cCM/idtR4+Es7EmimzvgtEy0YFw4EdqtMfMeGkThNA8D3BmpAFIED1knSYkjFzv+zZMRBS+1Ig0kqCN1jh6RONmoDqzfHiVAGwqDGeV/QELx+n+NkIimrqxW9W108K44URFmagiqozhXtY=
+	t=1711143945; cv=none; b=R8KkjNvNNjuyl64y7b8uFQNKpKH0bpRicD7JA/oqq+ZZaaJ56dAGoB3r/EZXSAPBbdIu0LlKRGNhReWVxowBMHrd1RMiWPQCOlGhXBtD9M6R2a88R4+wyJpp09tt2e6pXTDK/edvhuIXtH+PxpjOoMrZDsWLTY6W6jQgmmR/67Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711140248; c=relaxed/simple;
-	bh=cdtFl6iLAHk1Vr+6jkOspmAMmf94CBqvn+kJl1AgPRI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sxOS3BaHokTE3LlpESz/h0F1pw7PqvZl1xVR6adOd9rsMQF+ziL/XPqjmb4eprvZWprDgxetmP46yLXYprviFvzb4n8Gz5ujxFa3+ILKxqcFTR5qxku/1R7j/aP32vSXLg0/sujobkgkP3sqYtzVAMfaoaJsLb5bB7u7slRY0oU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dGtQv85Y; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-33e17342ea7so1206854f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 13:44:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711140245; x=1711745045; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tjlcpy9oH2RphOesJNzXB8pL3ummy1CxCHShx47lx50=;
-        b=dGtQv85Y4vstzxhT1ylF0vEmVzPyKPoJf6QKysD/EfAsYSFhX1Qxj7/rJs/CSR2P07
-         dQo1t4td7i3CO7o7iBluqZG6pcHK/avGu9iEJeKF39XtEOlXJZgoQh/M6MEKp1baPOUp
-         +7za5E0NO9JZCyv8GB03hSM3RfgqJGAe0qs/x87FHXLeAKDPD6NUENxULLSv48zHtiRO
-         oCpgnkeJY9FYjujldUkf7HadFcxTkyrjilReV6WzbF9EVrmGmsQylc7Hv9Y54toAI35q
-         fpLruE+EGVdOtip4yTGddOhZtdpZdKmmdCBGJ6QvdRTfMTUcH7KIcvLXiQo+LmHLLi5y
-         kBRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711140245; x=1711745045;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tjlcpy9oH2RphOesJNzXB8pL3ummy1CxCHShx47lx50=;
-        b=I7gQVXqwjIQQfqF8urXqG4fRBV8q9G4+WjCHWV/bu/uYN/llwi7i9MZdkor1zxaO51
-         uBqga3AsqjG2E5Tz6j9JN89hxEapvEAT2tSjTHhSsqBjrYx2T/T4zRM5ZZMX7OJl3KVE
-         bMt0/mUoWnYtZGhErY2BNcZgc0VDlHgNlIg326TodKkApUt2auj1Zou16auezjT+aKU+
-         sW9p21KYPVhFoIfAWCz/LtZ3GK/lU1GruAd6ykbcA6ewqz466PPLyrj2otiNrZTGAZhD
-         PvvUAa1lcx2kMN2xteTCrvVm0oFHCB+nPmbCgYYPcBY/wjCB2MCtr2PONKTaPOJvXBem
-         Potg==
-X-Forwarded-Encrypted: i=1; AJvYcCXO9C5Cj05UdoJNerI0WgUvYe31Hi8OUtNjzCkLbKcC7X3XCwT4PhWsfikVKFLqGzPx+GPQWGgLS8Uz8lS61nW9Nc8bgjzOH6r9XA==
-X-Gm-Message-State: AOJu0YxQbmGP48ASbYT+0tK5dxncoVYzzbeQEW2OgSTsouhkqGaoouTe
-	mQ1ErO7phCXsdZ/wFItkEmBZ4MldqKw3xMkdRsL1uWlH+gBpF/27spe7WVTbxT8=
-X-Google-Smtp-Source: AGHT+IFSBv8mmfWNJQGZ+o4H7aPA+E9nwD0XtouiZeMdGlUjzuXBbSISqCQZgJ3dZHa+ntlt1/m/Vg==
-X-Received: by 2002:a5d:4002:0:b0:33e:1c40:4f18 with SMTP id n2-20020a5d4002000000b0033e1c404f18mr358630wrp.4.1711140245049;
-        Fri, 22 Mar 2024 13:44:05 -0700 (PDT)
-Received: from [192.168.0.253] ([176.61.106.68])
-        by smtp.gmail.com with ESMTPSA id cr8-20020a05600004e800b0033e7715bafasm2837046wrb.59.2024.03.22.13.44.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Mar 2024 13:44:04 -0700 (PDT)
-Message-ID: <7cd6768d-780c-4cdb-8091-c7a161eab23e@linaro.org>
-Date: Fri, 22 Mar 2024 20:44:03 +0000
+	s=arc-20240116; t=1711143945; c=relaxed/simple;
+	bh=RPzQOy33+Y/0DmScu38OT6d5/HZNS3n3ZyQRLAU8nw4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NPyrK4fVbZE/GsgprR14MN0wI28vH/P9uo9NOXN8j5TDWmp1KLc8OSB/I/3RahEqEyM50HIEUqyoJtDA40XcFwcIKsIcmE/ILQIfLONS4paAOPinCTvhq474lRB/oZnFXN3aqQC4HyiFgVqP535GVlZPWJBwcKhl+Qpf5S+epEs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=j9VkbPSM; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1711143944; x=1742679944;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=RPzQOy33+Y/0DmScu38OT6d5/HZNS3n3ZyQRLAU8nw4=;
+  b=j9VkbPSM8GhRYGVolJXNZWwKWIBLRmi+zW7HP8VkTWi4wvd8IHFEcteg
+   TIvRtGbK6S0nrEcxpYVgTaeVB3eI3uWqy8mdYpU0Ox4jf9JErEhgJGMLx
+   hr8zX6dN8dNhKktjXNKUJ2DxyBbRb3PX7HduTKOy2G8HA6HCdGWHSrzz2
+   9ZPci8GXIiwXsiLg9BD/Zt1+AppouotEFSJ73zZFPzi0yG4IxRDAnuYAI
+   2GGsteUbo2Z+MblD997stXlf08/i96qzEbm4wr5c2LbAvf47kDZmruJOR
+   68+P1ImscllPQpa75SFtXVtnOEX9M64XNftGezF3vzo2tjwsdXyCZU7Ui
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11021"; a="6328945"
+X-IronPort-AV: E=Sophos;i="6.07,147,1708416000"; 
+   d="scan'208";a="6328945"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Mar 2024 14:45:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,147,1708416000"; 
+   d="scan'208";a="15018611"
+Received: from lkp-server01.sh.intel.com (HELO b21307750695) ([10.239.97.150])
+  by fmviesa007.fm.intel.com with ESMTP; 22 Mar 2024 14:45:38 -0700
+Received: from kbuild by b21307750695 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rnmhj-000Kdj-23;
+	Fri, 22 Mar 2024 21:45:35 +0000
+Date: Sat, 23 Mar 2024 05:45:09 +0800
+From: kernel test robot <lkp@intel.com>
+To: Alex Bee <knaerzche@gmail.com>, Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Chris Zhong <zyw@rock-chips.com>,
+	Zhang Qing <zhangqing@rock-chips.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, Alex Bee <knaerzche@gmail.com>
+Subject: Re: [PATCH 2/5] mfd: rk8xx: Add RK816 support
+Message-ID: <202403230551.Vc1eaxTr-lkp@intel.com>
+References: <20240321143911.90210-5-knaerzche@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: usb: qcom,pmic-typec: drop port
- description
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: neil.armstrong@linaro.org, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240322-typec-fix-example-v1-0-6b01c347419e@linaro.org>
- <20240322-typec-fix-example-v1-1-6b01c347419e@linaro.org>
- <230eab52-9751-43fd-8e47-fbfe12410e44@linaro.org>
- <CAA8EJprD3fM966pLV4QXPUu=bFTn24fvPMKOaGqtqkAbdz7sOQ@mail.gmail.com>
- <5ea4a187-1971-4970-a289-826d96c0351a@linaro.org>
- <c0f1e898-7638-4b7b-a938-9e31e5b57e57@linaro.org>
- <0b091595-1587-421d-bb00-c00ef729d143@linaro.org>
- <CAA8EJpqvwhafFoD_=GO4E93JBQA2A+xY0rG14pgPm=xgJ9Yz_Q@mail.gmail.com>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <CAA8EJpqvwhafFoD_=GO4E93JBQA2A+xY0rG14pgPm=xgJ9Yz_Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240321143911.90210-5-knaerzche@gmail.com>
 
-On 22/03/2024 15:49, Dmitry Baryshkov wrote:
-> It's true that we don't describe CC lines. However In most of the
-> cases CC lines are handled by the Type-C port manager directly. So
-> there will be a connection from usb-c-connector to the pmic-typec
-> itself (which looks pretty redundant).
+Hi Alex,
 
-I think it more logical to associate the role-switch event with the CC 
-lines which actually handle the messaging than the HS PHY which does not 
-to be honest.
+kernel test robot noticed the following build errors:
 
-If we predicate a name change on fixing the namespace then we should fix 
-the namespace instead of reuse existing for expediency.
+[auto build test ERROR on lee-mfd/for-mfd-next]
+[also build test ERROR on lee-mfd/for-mfd-fixes broonie-regulator/for-next robh/for-next linus/master v6.8 next-20240322]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-$0.02
+url:    https://github.com/intel-lab-lkp/linux/commits/Alex-Bee/dt-bindings-mfd-Add-rk816-binding/20240321-224318
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git for-mfd-next
+patch link:    https://lore.kernel.org/r/20240321143911.90210-5-knaerzche%40gmail.com
+patch subject: [PATCH 2/5] mfd: rk8xx: Add RK816 support
+config: arm-randconfig-002-20240322 (https://download.01.org/0day-ci/archive/20240323/202403230551.Vc1eaxTr-lkp@intel.com/config)
+compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project 23de3862dce582ce91c1aa914467d982cb1a73b4)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240323/202403230551.Vc1eaxTr-lkp@intel.com/reproduce)
 
----
-bod
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202403230551.Vc1eaxTr-lkp@intel.com/
+
+All error/warnings (new ones prefixed by >>):
+
+   In file included from drivers/mfd/rk8xx-core.c:14:
+   In file included from include/linux/mfd/rk808.h:18:
+   In file included from include/linux/regulator/machine.h:15:
+   In file included from include/linux/regulator/consumer.h:35:
+   In file included from include/linux/suspend.h:5:
+   In file included from include/linux/swap.h:9:
+   In file included from include/linux/memcontrol.h:20:
+   In file included from include/linux/mm.h:2188:
+   include/linux/vmstat.h:522:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
+     522 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
+         |                               ~~~~~~~~~~~ ^ ~~~
+>> drivers/mfd/rk8xx-core.c:395:8: warning: 'const' type qualifier on return type has no effect [-Wignored-qualifiers]
+     395 | static const unsigned int rk816_get_irq_reg(struct regmap_irq_chip_data *data,
+         |        ^~~~~
+>> drivers/mfd/rk8xx-core.c:573:17: error: incompatible function pointer types initializing 'unsigned int (*)(struct regmap_irq_chip_data *, unsigned int, int)' with an expression of type 'const unsigned int (struct regmap_irq_chip_data *, unsigned int, int)' [-Wincompatible-function-pointer-types]
+     573 |         .get_irq_reg = rk816_get_irq_reg,
+         |                        ^~~~~~~~~~~~~~~~~
+   2 warnings and 1 error generated.
+
+
+vim +573 drivers/mfd/rk8xx-core.c
+
+   394	
+ > 395	static const unsigned int rk816_get_irq_reg(struct regmap_irq_chip_data *data,
+   396						    unsigned int base, int index)
+   397	{
+   398		unsigned int irq_reg = base;
+   399	
+   400		switch (base) {
+   401		case RK816_INT_STS_REG1:
+   402			irq_reg += rk816_irq_status_offsets[index];
+   403			break;
+   404		case RK816_INT_STS_MSK_REG1:
+   405			irq_reg += rk816_irq_mask_offsets[index];
+   406			break;
+   407		}
+   408	
+   409		return irq_reg;
+   410	};
+   411	
+   412	static const struct regmap_irq rk816_irqs[] = {
+   413		/* INT_STS_REG1 IRQs */
+   414		REGMAP_IRQ_REG(RK816_IRQ_PWRON_FALL, 0, RK816_INT_STS_PWRON_FALL),
+   415		REGMAP_IRQ_REG(RK816_IRQ_PWRON_RISE, 0, RK816_INT_STS_PWRON_RISE),
+   416	
+   417		/* INT_STS_REG2 IRQs  */
+   418		REGMAP_IRQ_REG(RK816_IRQ_VB_LOW, 1, RK816_INT_STS_VB_LOW),
+   419		REGMAP_IRQ_REG(RK816_IRQ_PWRON, 1, RK816_INT_STS_PWRON),
+   420		REGMAP_IRQ_REG(RK816_IRQ_PWRON_LP, 1, RK816_INT_STS_PWRON_LP),
+   421		REGMAP_IRQ_REG(RK816_IRQ_HOTDIE, 1, RK816_INT_STS_HOTDIE),
+   422		REGMAP_IRQ_REG(RK816_IRQ_RTC_ALARM, 1, RK816_INT_STS_RTC_ALARM),
+   423		REGMAP_IRQ_REG(RK816_IRQ_RTC_PERIOD, 1, RK816_INT_STS_RTC_PERIOD),
+   424		REGMAP_IRQ_REG(RK816_IRQ_USB_OV, 1, RK816_INT_STS_USB_OV),
+   425	
+   426		/* INT_STS3 IRQs */
+   427		REGMAP_IRQ_REG(RK816_IRQ_PLUG_IN, 2, RK816_INT_STS_PLUG_IN),
+   428		REGMAP_IRQ_REG(RK816_IRQ_PLUG_OUT, 2, RK816_INT_STS_PLUG_OUT),
+   429		REGMAP_IRQ_REG(RK816_IRQ_CHG_OK, 2, RK816_INT_STS_CHG_OK),
+   430		REGMAP_IRQ_REG(RK816_IRQ_CHG_TE, 2, RK816_INT_STS_CHG_TE),
+   431		REGMAP_IRQ_REG(RK816_IRQ_CHG_TS, 2, RK816_INT_STS_CHG_TS),
+   432		REGMAP_IRQ_REG(RK816_IRQ_CHG_CVTLIM, 2, RK816_INT_STS_CHG_CVTLIM),
+   433		REGMAP_IRQ_REG(RK816_IRQ_DISCHG_ILIM, 2, RK816_INT_STS_DISCHG_ILIM),
+   434	};
+   435	
+   436	static const struct regmap_irq rk818_irqs[] = {
+   437		/* INT_STS */
+   438		[RK818_IRQ_VOUT_LO] = {
+   439			.mask = RK818_IRQ_VOUT_LO_MSK,
+   440			.reg_offset = 0,
+   441		},
+   442		[RK818_IRQ_VB_LO] = {
+   443			.mask = RK818_IRQ_VB_LO_MSK,
+   444			.reg_offset = 0,
+   445		},
+   446		[RK818_IRQ_PWRON] = {
+   447			.mask = RK818_IRQ_PWRON_MSK,
+   448			.reg_offset = 0,
+   449		},
+   450		[RK818_IRQ_PWRON_LP] = {
+   451			.mask = RK818_IRQ_PWRON_LP_MSK,
+   452			.reg_offset = 0,
+   453		},
+   454		[RK818_IRQ_HOTDIE] = {
+   455			.mask = RK818_IRQ_HOTDIE_MSK,
+   456			.reg_offset = 0,
+   457		},
+   458		[RK818_IRQ_RTC_ALARM] = {
+   459			.mask = RK818_IRQ_RTC_ALARM_MSK,
+   460			.reg_offset = 0,
+   461		},
+   462		[RK818_IRQ_RTC_PERIOD] = {
+   463			.mask = RK818_IRQ_RTC_PERIOD_MSK,
+   464			.reg_offset = 0,
+   465		},
+   466		[RK818_IRQ_USB_OV] = {
+   467			.mask = RK818_IRQ_USB_OV_MSK,
+   468			.reg_offset = 0,
+   469		},
+   470	
+   471		/* INT_STS2 */
+   472		[RK818_IRQ_PLUG_IN] = {
+   473			.mask = RK818_IRQ_PLUG_IN_MSK,
+   474			.reg_offset = 1,
+   475		},
+   476		[RK818_IRQ_PLUG_OUT] = {
+   477			.mask = RK818_IRQ_PLUG_OUT_MSK,
+   478			.reg_offset = 1,
+   479		},
+   480		[RK818_IRQ_CHG_OK] = {
+   481			.mask = RK818_IRQ_CHG_OK_MSK,
+   482			.reg_offset = 1,
+   483		},
+   484		[RK818_IRQ_CHG_TE] = {
+   485			.mask = RK818_IRQ_CHG_TE_MSK,
+   486			.reg_offset = 1,
+   487		},
+   488		[RK818_IRQ_CHG_TS1] = {
+   489			.mask = RK818_IRQ_CHG_TS1_MSK,
+   490			.reg_offset = 1,
+   491		},
+   492		[RK818_IRQ_TS2] = {
+   493			.mask = RK818_IRQ_TS2_MSK,
+   494			.reg_offset = 1,
+   495		},
+   496		[RK818_IRQ_CHG_CVTLIM] = {
+   497			.mask = RK818_IRQ_CHG_CVTLIM_MSK,
+   498			.reg_offset = 1,
+   499		},
+   500		[RK818_IRQ_DISCHG_ILIM] = {
+   501			.mask = RK818_IRQ_DISCHG_ILIM_MSK,
+   502			.reg_offset = 1,
+   503		},
+   504	};
+   505	
+   506	static const struct regmap_irq rk817_irqs[RK817_IRQ_END] = {
+   507		REGMAP_IRQ_REG_LINE(0, 8),
+   508		REGMAP_IRQ_REG_LINE(1, 8),
+   509		REGMAP_IRQ_REG_LINE(2, 8),
+   510		REGMAP_IRQ_REG_LINE(3, 8),
+   511		REGMAP_IRQ_REG_LINE(4, 8),
+   512		REGMAP_IRQ_REG_LINE(5, 8),
+   513		REGMAP_IRQ_REG_LINE(6, 8),
+   514		REGMAP_IRQ_REG_LINE(7, 8),
+   515		REGMAP_IRQ_REG_LINE(8, 8),
+   516		REGMAP_IRQ_REG_LINE(9, 8),
+   517		REGMAP_IRQ_REG_LINE(10, 8),
+   518		REGMAP_IRQ_REG_LINE(11, 8),
+   519		REGMAP_IRQ_REG_LINE(12, 8),
+   520		REGMAP_IRQ_REG_LINE(13, 8),
+   521		REGMAP_IRQ_REG_LINE(14, 8),
+   522		REGMAP_IRQ_REG_LINE(15, 8),
+   523		REGMAP_IRQ_REG_LINE(16, 8),
+   524		REGMAP_IRQ_REG_LINE(17, 8),
+   525		REGMAP_IRQ_REG_LINE(18, 8),
+   526		REGMAP_IRQ_REG_LINE(19, 8),
+   527		REGMAP_IRQ_REG_LINE(20, 8),
+   528		REGMAP_IRQ_REG_LINE(21, 8),
+   529		REGMAP_IRQ_REG_LINE(22, 8),
+   530		REGMAP_IRQ_REG_LINE(23, 8)
+   531	};
+   532	
+   533	static struct regmap_irq_chip rk805_irq_chip = {
+   534		.name = "rk805",
+   535		.irqs = rk805_irqs,
+   536		.num_irqs = ARRAY_SIZE(rk805_irqs),
+   537		.num_regs = 1,
+   538		.status_base = RK805_INT_STS_REG,
+   539		.mask_base = RK805_INT_STS_MSK_REG,
+   540		.ack_base = RK805_INT_STS_REG,
+   541		.init_ack_masked = true,
+   542	};
+   543	
+   544	static struct regmap_irq_chip rk806_irq_chip = {
+   545		.name = "rk806",
+   546		.irqs = rk806_irqs,
+   547		.num_irqs = ARRAY_SIZE(rk806_irqs),
+   548		.num_regs = 2,
+   549		.irq_reg_stride = 2,
+   550		.mask_base = RK806_INT_MSK0,
+   551		.status_base = RK806_INT_STS0,
+   552		.ack_base = RK806_INT_STS0,
+   553		.init_ack_masked = true,
+   554	};
+   555	
+   556	static const struct regmap_irq_chip rk808_irq_chip = {
+   557		.name = "rk808",
+   558		.irqs = rk808_irqs,
+   559		.num_irqs = ARRAY_SIZE(rk808_irqs),
+   560		.num_regs = 2,
+   561		.irq_reg_stride = 2,
+   562		.status_base = RK808_INT_STS_REG1,
+   563		.mask_base = RK808_INT_STS_MSK_REG1,
+   564		.ack_base = RK808_INT_STS_REG1,
+   565		.init_ack_masked = true,
+   566	};
+   567	
+   568	static const struct regmap_irq_chip rk816_irq_chip = {
+   569		.name = "rk816",
+   570		.irqs = rk816_irqs,
+   571		.num_irqs = ARRAY_SIZE(rk816_irqs),
+   572		.num_regs = 3,
+ > 573		.get_irq_reg = rk816_get_irq_reg,
+   574		.status_base = RK816_INT_STS_REG1,
+   575		.mask_base = RK816_INT_STS_MSK_REG1,
+   576		.ack_base = RK816_INT_STS_REG1,
+   577		.init_ack_masked = true,
+   578	};
+   579	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
