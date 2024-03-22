@@ -1,221 +1,121 @@
-Return-Path: <devicetree+bounces-52533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52534-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3542D88711F
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 17:47:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A9A188712B
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 17:48:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 72AC5B2271B
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 16:47:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3BA07B23766
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 16:48:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40CDA5F466;
-	Fri, 22 Mar 2024 16:47:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C0675D47B;
+	Fri, 22 Mar 2024 16:48:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="GfW4Vs3V"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m+SenR8z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2046.outbound.protection.outlook.com [40.107.22.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0520B54FB0;
-	Fri, 22 Mar 2024 16:47:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.46
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711126045; cv=fail; b=SglEXoZTUSQMpGcpc+n8JAyut+mckhNg+iRyGAMYToNe1eJfwixcksXp8hECt1kqJnyIAU7Yk8lwJd6G3ZJ9RbCbYKuJSdvaIV7wX5QMTobsDYlfyb1w2BHAk0jPNZprr671kOEPRJQijAn1RKBi4jn8jZBbwSvZnx72KcxGBp8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711126045; c=relaxed/simple;
-	bh=x4Agbi4JG6RT6eEHAcI7QdDsYeCUF81txT8lsWqvImU=;
-	h=From:To:Subject:Date:Message-Id:Content-Type:MIME-Version; b=pB/GFpsNnO0Z9Lo/BQ4eTyONWjbjHN2Q4eFKFOLGr26DtuTq3vU0BsN/w2oDmEofM14Fix2VG3xAwqRMGlk3nKzWZmI/7mmpK7wb138eZoo/ri3bx6kaq1jZEx1OSDB8jPzYMa1wkSABvQGYzovzUz5vD5L4WWb/VQVY/wspzaY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=GfW4Vs3V; arc=fail smtp.client-ip=40.107.22.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=R+VIzEdgDmrC82lfdQ/7Q2PvovYb97o2LpAomwkzZe/t8kUGaIVPnpF5YCT+VwfRsUsqnCCM+oy0ioyTWr3nnlixC9BIJUDSV4XOhH1covyZcC7weUGUCKlxGy9nbfYhgNzvgiTRnIfbqp9G4u7xzFEBaEZNr6o0WkQr2YursSRWmjbGkmkr0SbQfooM/NJBB3U9hVU3P3AUv1RuDlOj1JnTPw1GoCGADzU1GgJIbbZ691yRyR8o1ZkNnEUugbaR2v5nCZF5e0d397SqCcOzSp9lbd/kAwaILEsL8Fln99dVFp3l4e5RcHeQ+7XbFVufZzyTs9oJIeXH2Sn5vb6ZVA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=q95J9wkBjmG8HlTJHJKKLK7f5frw5MA4lLnjSh4FkNE=;
- b=DscUzN76sS66EceVMEdGGuD+M7IC3jFr12eiAd0Jt6mYP7eh6FqHnWfLWXYu+0BxdIgMUTQfkv2fCeQAtpD9Ivx2lnbTjzb4fzTymEJnvzE10XtyXZ1SBfniMK/X2o0K7xBtLcChKROORdJp4NpIQvxFTfcogZJ/WwVco/B1yiYZVOWLRtaPXeNC9PQFeI86UwAwmekQ5ekIiNyrtfNDyjQO0CQAaWJu1T1/ciAjRIY+xehBlCVxJnCfQl6DmDeGI5PM3b/6KPu4ur+4Jk/C2FypDg5DMWskO0renOpHCgWGI9zXbpawzvg3sXPZYWLfh91EY6y51iA9vzE4WhZfVg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=q95J9wkBjmG8HlTJHJKKLK7f5frw5MA4lLnjSh4FkNE=;
- b=GfW4Vs3Vp4VVO2bRxXuyDM0iJlQUR973PrFURcFeEux14bDqc528S/ADByH+24qGr+KFUCWvGhTHxc9LrxRHbFmYws6BOqrLTh3W5ndorMld7BmDhhYhdLgBgbZCewsQvS7LFH/IikliG4/w7S8l18ChR3SuAEmixIktxb+Xo3M=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by DBAPR04MB7477.eurprd04.prod.outlook.com (2603:10a6:10:1a9::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.23; Fri, 22 Mar
- 2024 16:47:20 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::3168:91:27c6:edf6]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::3168:91:27c6:edf6%3]) with mapi id 15.20.7386.025; Fri, 22 Mar 2024
- 16:47:20 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Rob Herring <robh@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B1795CDFA;
+	Fri, 22 Mar 2024 16:48:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1711126100; cv=none; b=ZzGYx3JuSwy1iluezK7Wy/7FQVk14G79qIcqW8KLQpmlP0x7+QJxhhF7XLE6TbbWOk6aozQ4DWJfh+qY9RCwqnDrFjUweypT9BD5q0Z/1CHVb3VOODkdP8mZoz3X14UhxU1AQL6ZXE+1heb3JSTt8Grb+9k/s/ZrUo+lkt0QCHU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1711126100; c=relaxed/simple;
+	bh=AIxpdyQlT/B7BYVjFoMD8/QUyW+1uhLFqyaeq6EgDW4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZWC7/4T6D+CBUUfx5A8gTgh9/1q7ajCldM6otX8jiAyo3tFeps3E3ZLWTIB2t4OI/UnuH4jOW415uprB5w9RBHRsK0KyPGJDO9xUeWak71wHSmxAWlrw7LlTrftbVIZ3uOxyKZh+dTvy8YN0TDUHPL5bMYArKhueO+S5zeryD5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m+SenR8z; arc=none smtp.client-ip=209.85.215.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-5dbd519bde6so1467200a12.1;
+        Fri, 22 Mar 2024 09:48:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1711126098; x=1711730898; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=iLWuYvxt8cJho/qyhrDkNvS5uRVsAloQRBQojo7kkCY=;
+        b=m+SenR8znrNZmLAg7GWJCqvlUSpT/0BvOYuM8PMFsjm5eBQtFooZHeGFQwa+n7awHC
+         Z1rjJ/UtR9KYlHsApMkUHIGtWtGXQGzxu/83+amxOHUqWNgQzjY4YfSaDJUODmeYFBl8
+         wdSk7rOLSnCdX2YMeUxsVgNRe5jQlpzgqwAl86k0wxF9aF0vyMODxYjWeXPhBm0d3V4D
+         xo6wIpxAYCUedsLnRu36hH9hPseoq6S9ln9hmjYQem8kjMnPt+Y6zPDa6JiDp597Wuxa
+         gskeyhMZW1cc7gZ8D8Mda5uwgqVZCyokbgd6FWyMkzQYcpUeXDxf500kBNiYxHfWurTd
+         0eLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711126098; x=1711730898;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iLWuYvxt8cJho/qyhrDkNvS5uRVsAloQRBQojo7kkCY=;
+        b=hgxaMMLBpSwkzNE1X8lVYLq/Qere1lbcfLXeWbeRDKzNl1J65pnu8O3A1j88SsCS2l
+         Pfx0xXb9WMKq3g7KKEedcosCR8bZkTvWa8P/RPrxa7s/iauYuF1+QrPu1a6UNAWkNcO6
+         EXSHMT65YQO2BR6IWVNsyFQiLmqvV+ZaMEZSaekmswNMDm8NEWH0XXJdl2XlBjBx7Uyy
+         tfFJyf+/N85okUyRJXGbQ92p0Jd0Kjeb61x7yXcUCDYQzKxiCHOVNi1EL9yz45AW5jT9
+         5owVUdrzkkql8fSSFDFgo/y5FRjx0LLp0euoN8pTiU9XEkCpvUnXTx6JbU1xDKIKzf44
+         8n1Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVb37bTfdj0dMD014I+0Q+yFGeVC3CVh/l7BAjwBWwJbJphV/BnA+CCGFx68TRhjhArWMLtmUmOGb9yw1+8mBPWPOrpqR88Gwya/+o7/mL791zK04CLQ/c4l+jfURkza3N8PTjwt6cDfHxuVXhHH0dLDvPVhmpQmLoOC7WEztkdgSIdcA==
+X-Gm-Message-State: AOJu0Yw1DbxLGxverbXzmAYhUBBsAoc7K22SJesQlGdwvDBwgTtvT1SB
+	7hKmsb9jn5jpuraV+yGzCM+YLU3jlbf8AZYUtdD/55ds7hJjpovV
+X-Google-Smtp-Source: AGHT+IF7ZJb9s4Yx5/oto0bsQjpkkyHcU/EVUMjRlMUGYu/PgXMG5bI/6u+KSo3WZ0/VTzE6OQtw6A==
+X-Received: by 2002:a17:90b:1c01:b0:29f:cd96:5952 with SMTP id oc1-20020a17090b1c0100b0029fcd965952mr187833pjb.22.1711126098455;
+        Fri, 22 Mar 2024 09:48:18 -0700 (PDT)
+Received: from five231003 ([2405:201:c006:31f8:d95b:eb72:e032:7eef])
+        by smtp.gmail.com with ESMTPSA id si15-20020a17090b528f00b0029e05ec1cb3sm2124620pjb.52.2024.03.22.09.48.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Mar 2024 09:48:18 -0700 (PDT)
+Date: Fri, 22 Mar 2024 22:18:12 +0530
+From: Kousik Sanagavarapu <five231003@gmail.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-spi@vger.kernel.org,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Dong Aisheng <aisheng.dong@nxp.com>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	imx@lists.linux.dev (open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH 1/1] arm64: dts: imx8-ss-conn: fix usdhc wrong lpcg clock order
-Date: Fri, 22 Mar 2024 12:47:05 -0400
-Message-Id: <20240322164706.2626088-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SA1P222CA0115.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:806:3c5::24) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	Mark Brown <broonie@kernel.org>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+	Daniel Baluta <daniel.baluta@nxp.com>
+Subject: Re: [PATCH v2] spi: dt-bindings: jcore,spi: convert spi-jcore to
+ dtschema
+Message-ID: <Zf22TLko8tFEYMDI@five231003>
+References: <20240321180617.35390-1-five231003@gmail.com>
+ <affc1b03-7a23-4fd8-bf85-4155bcd41df1@linaro.org>
+ <CAN19-EfCOWFqFCrF0iCaxhfZuteWawQoH0d6pTN3cgQ7p-CK6w@mail.gmail.com>
+ <5dd3237f-e0a2-4214-a63f-233e89a26b8d@linaro.org>
+ <6552bcb8-e046-4882-91da-1094fff3d239@linaro.org>
+ <20240322150524.GA895852-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DBAPR04MB7477:EE_
-X-MS-Office365-Filtering-Correlation-Id: e775c2ae-d62a-47e1-e868-08dc4a8fbd8b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	QQs51n5k+mQw6TZWA05nxz8u/PuOb+Qd2shssjKB4dm8STbMSfcmZQwQx1NCtHCxH5kEuZWbVdXstDnyBTqhm7hZMU2FRL5RKCg6ruJF+6NjUTt3kfnNQ5HLbGAtX7lZM1q4BWKLErMpOUw8uclMMYSaehRVOu9L5ThqRQHbjOVbw/KAWNnQWBNscX8VtJzfHt0t22C8y2BWxZD6qEBLf0CM1zurSEbxZsQEHnB/QDuQCo63I6NAxUjLc0rPtdenun7hUayBrhYKM3e1qGmPI77jOW6jKxizBa8UxeMju7wUCgqwgqC+oUGkelI7Z9aYQQt4cULJhc+LYNsBr7Grg76oQIRvrqlQusqv13wsNCKljY5+NANr1wh0QdEgScT5U16F6sEU+ppWCBCICcMOGnJw/VbNYpQGFke6XgAQGcu6R2DGoRzxtDs+pyuQg+UEUF1b1su73U5ls4ERzjpquLw9wiz661xFmq4bbhenPQnmgEzqbEeZWT7384IFkQKQSXQ79IPF7Wxo+rzfelZUU5pDP9kj3L0Gvc1dRZ+p/JbP1vkHqaNXMLnM81j2Q8LbIkkk0qYuebNuTarOOD4WSZP9oYD9XDWSAvzdlLLxA8Tq0Mrg9lOvBYHxbPRycDyZX1BuLUoGSP6ZrBK5zBVtQjYmFixLSaMuXnoLo3FA0dmMrYVbmoGihDWIvIfs2E6lMEaAVRwnBZ/BVxQjNtTwPD4LJ47bIjj8h+xJezhbuUA=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(52116005)(7416005)(1800799015)(376005)(38350700005)(921011);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?uW01BKcEzHzegBJC+e7UjxBY0+xNpFFnacIfq8Y0xiYdWTKzGdjv5d6k2MDy?=
- =?us-ascii?Q?wQVHGFFJJkEF4Vwe8ezzrCWX/ZnVrZ6aFVR3vHAqePJS4/bJWH/p0TkvkAkf?=
- =?us-ascii?Q?4aENNDw46K8a3ci1w8t0KiXVdqKXztzTUle3JHGWhgEr5OpM5/Ce5jSVh8lx?=
- =?us-ascii?Q?KFJSxhMqpNAvvXwaU9ThLacwTnoRaRVVo0W/h1XcR5Gwcfn6/bEhD+b/U5RS?=
- =?us-ascii?Q?Kav9NHgdv+aOW74lOshQlQ7EZJsjblgK3h9ZRe6USzsdfYfMA/Z1h9KSGjqp?=
- =?us-ascii?Q?0lKYXDGeRBaGILqtJxf81bZf4nyOV/5I7+H5JPti5MdtDqmzDdeOIkhfgRhL?=
- =?us-ascii?Q?dDvBPifdQtvv/jwMQo9Utw+tBULUdOj4UrPYU0KTtHefVXEJTy3SkzEyYJA/?=
- =?us-ascii?Q?/XOqJ21qPT4oANT7LCeTx3sAOw1ljC6eUoo79QJZ6ZwCOWOK2tWVJRQ+bz4k?=
- =?us-ascii?Q?wqPNwND0Ew2aCUxwQ5d28h7P8h6TVFGPXxTa1+/8zVeDFBYUhGQMeAY8ypER?=
- =?us-ascii?Q?e9rgP2RXEu7YcOL/BFE2dCvk66czvCLDJ4k7DmrCfKU8WsXqkhLDQOMcNKtT?=
- =?us-ascii?Q?0mRIeE8Q+6rHdVP59MrpBSmYP6lC8znYDFe1VVudVxM1n+blVKyTHBrMf4qn?=
- =?us-ascii?Q?3qm1F8NkdfIVAmZ36MbROLjI9MRFU5vl4IOuECKfP8kBzJLKg+AaBySFxgNR?=
- =?us-ascii?Q?vblUPK66bHj/6BrieIB+YXS6w2V4xC+3kXRo1UAyWMPLgjCKoHJGzfC1lixg?=
- =?us-ascii?Q?bXBKvdlTLN5QNJ4vfcqPZphrOAPWI3HLqE7wIPnL87EMwZfcycc1UvZdFPCz?=
- =?us-ascii?Q?XD5gG8jAb8xCn158jjm2lwB36Xp6k82WVrQHvMZ+mr0S+vbRMVEcFdp1RbOJ?=
- =?us-ascii?Q?f3TeJ1EAcEX14WP19ss7Y1ies8Xhd8V8AGIVxsbo7loyZfwUr1u3CgMb49Q5?=
- =?us-ascii?Q?sqR6Tq/7XefFr8VN2sduoHTNhfQw1RkM+rqf7SozRGN4Z1fZOP2pOjcC1X36?=
- =?us-ascii?Q?vgzt1Rixhy5MWCzyuj2uam9+zIOUWrT5suYo+TTOyFds0S8FqRcUuczncRJa?=
- =?us-ascii?Q?mkGUSgrM1xRm/7Mqw1V1O2jx8dnPhd/ddr1HFimEmcFTs4PtkP8QxrhphtlF?=
- =?us-ascii?Q?uXFQvNyNMsQ3j3AenO/cJSS6UIq1HqtZ6h9Z754gv1cYfKZmBlA5NUFZNbii?=
- =?us-ascii?Q?r22ST7KISzdYhzSTsmABlWalzFL5OXdBcxfmiIB+v43z2RBLTF2OoPVjlT8a?=
- =?us-ascii?Q?tPk4a/Z7EaAmu8zY/fKbDFRnZZpa4vYiRijQXqnPoT7D+fEpvIyivnKjnTuz?=
- =?us-ascii?Q?k5vxDbl1ilJ7MMzV4+TvvwJ+arLvyxnewFu+Ovc63TmSX7k1y59w24Iz3RHd?=
- =?us-ascii?Q?f1GgudpxVhUhthq3HfyUFNda3ZPBRjnIAHyJe7ALWOZYCUpTEjnY3YaNx5TZ?=
- =?us-ascii?Q?qQK4PQtJOraOLxOckA6b7mEHiI5EvaHWVBAcKEggA4qZzP9U6QvnsEcRjpa4?=
- =?us-ascii?Q?a5kGj0pCixqqF0aYuGbkxHyl+AY8TQ01AeWAf7R4H8R7XIpabog+gQxi5SFT?=
- =?us-ascii?Q?bK6zLHZAxBr77XV/6xGvFiCxjVc47Gg2PaUovo/Q?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e775c2ae-d62a-47e1-e868-08dc4a8fbd8b
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Mar 2024 16:47:20.2334
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 6jbcFlFBYJp4yPhgTH85LE7VsjRKSOo2DYphe3Ly0uSdPAxYupI46paYhodLmiqdP/Q9K6UHzhGNlKqzVejwUA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR04MB7477
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240322150524.GA895852-robh@kernel.org>
 
-The actual clock show wrong frequency:
+On Fri, Mar 22, 2024 at 10:05:24AM -0500, Rob Herring wrote:
+> On Fri, Mar 22, 2024 at 07:49:57AM +0100, Krzysztof Kozlowski wrote:
+> > This applies to all GSoC or some Linux Mentorship programs: I suggest to
+> > choose for conversion bindings with more users and bigger possible
+> > impact. So first I would look at ARM64 and ARMv7 platforms. We still
+> > have around 1000 and 3500 unique warnings about undocumented compatibles
+> > for ARM64 defconfig and ARM multi_v7! That's the platforms you should
+> > choose.
+> > 
+> > Not SuperH, ARC, or whatever with only one DTS which is difficult to
+> > build for regular developer.
+> 
+> To add to this, either ask DT maintainers what would be useful to work 
+> on or you can look here[1][2] to see what are the top occurring 
+> undocumented (by schema) compatibles.
+> 
+> Rob
+> 
+> [1] https://gitlab.com/robherring/linux-dt/-/jobs/6453674734
+> [2] https://gitlab.com/robherring/linux-dt/-/jobs/6453674732
 
-   echo on >/sys/devices/platform/bus\@5b000000/5b010000.mmc/power/control
-   cat /sys/kernel/debug/mmc0/ios
-
-   clock:          200000000 Hz
-   actual clock:   166000000 Hz
-                   ^^^^^^^^^
-   .....
-
-According to
-
-sdhc0_lpcg: clock-controller@5b200000 {
-                compatible = "fsl,imx8qxp-lpcg";
-                reg = <0x5b200000 0x10000>;
-                #clock-cells = <1>;
-                clocks = <&clk IMX_SC_R_SDHC_0 IMX_SC_PM_CLK_PER>,
-                         <&conn_ipg_clk>, <&conn_axi_clk>;
-                clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>,
-                                <IMX_LPCG_CLK_5>;
-                clock-output-names = "sdhc0_lpcg_per_clk",
-                                     "sdhc0_lpcg_ipg_clk",
-                                     "sdhc0_lpcg_ahb_clk";
-                power-domains = <&pd IMX_SC_R_SDHC_0>;
-        }
-
-"per_clk" should be IMX_LPCG_CLK_0 instead of IMX_LPCG_CLK_5.
-
-After correct clocks order:
-
-   echo on >/sys/devices/platform/bus\@5b000000/5b010000.mmc/power/control
-   cat /sys/kernel/debug/mmc0/ios
-
-   clock:          200000000 Hz
-   actual clock:   198000000 Hz
-                   ^^^^^^^^
-   ...
-
-Fixes: 16c4ea7501b1 ("arm64: dts: imx8: switch to new lpcg clock binding")
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi
-index 3c42240e78e24..af2259e997967 100644
---- a/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi
-@@ -67,8 +67,8 @@ usdhc1: mmc@5b010000 {
- 		interrupts = <GIC_SPI 232 IRQ_TYPE_LEVEL_HIGH>;
- 		reg = <0x5b010000 0x10000>;
- 		clocks = <&sdhc0_lpcg IMX_LPCG_CLK_4>,
--			 <&sdhc0_lpcg IMX_LPCG_CLK_0>,
--			 <&sdhc0_lpcg IMX_LPCG_CLK_5>;
-+			 <&sdhc0_lpcg IMX_LPCG_CLK_5>,
-+			 <&sdhc0_lpcg IMX_LPCG_CLK_0>;
- 		clock-names = "ipg", "ahb", "per";
- 		power-domains = <&pd IMX_SC_R_SDHC_0>;
- 		status = "disabled";
-@@ -78,8 +78,8 @@ usdhc2: mmc@5b020000 {
- 		interrupts = <GIC_SPI 233 IRQ_TYPE_LEVEL_HIGH>;
- 		reg = <0x5b020000 0x10000>;
- 		clocks = <&sdhc1_lpcg IMX_LPCG_CLK_4>,
--			 <&sdhc1_lpcg IMX_LPCG_CLK_0>,
--			 <&sdhc1_lpcg IMX_LPCG_CLK_5>;
-+			 <&sdhc1_lpcg IMX_LPCG_CLK_5>,
-+			 <&sdhc1_lpcg IMX_LPCG_CLK_0>;
- 		clock-names = "ipg", "ahb", "per";
- 		power-domains = <&pd IMX_SC_R_SDHC_1>;
- 		fsl,tuning-start-tap = <20>;
-@@ -91,8 +91,8 @@ usdhc3: mmc@5b030000 {
- 		interrupts = <GIC_SPI 234 IRQ_TYPE_LEVEL_HIGH>;
- 		reg = <0x5b030000 0x10000>;
- 		clocks = <&sdhc2_lpcg IMX_LPCG_CLK_4>,
--			 <&sdhc2_lpcg IMX_LPCG_CLK_0>,
--			 <&sdhc2_lpcg IMX_LPCG_CLK_5>;
-+			 <&sdhc2_lpcg IMX_LPCG_CLK_5>,
-+			 <&sdhc2_lpcg IMX_LPCG_CLK_0>;
- 		clock-names = "ipg", "ahb", "per";
- 		power-domains = <&pd IMX_SC_R_SDHC_2>;
- 		status = "disabled";
--- 
-2.34.1
-
+Thank you for the valuable pieces of advice and links Krzysztof and Rob.
 
