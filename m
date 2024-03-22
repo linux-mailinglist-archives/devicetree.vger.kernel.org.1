@@ -1,167 +1,123 @@
-Return-Path: <devicetree+bounces-52538-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52539-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 581A78871C7
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 18:14:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54FED8871F2
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 18:40:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C11271F22B93
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 17:14:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 108892847D7
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 17:40:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11C845F87F;
-	Fri, 22 Mar 2024 17:14:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDD645FBAD;
+	Fri, 22 Mar 2024 17:40:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="DJnokTum"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tUV4V9ch"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 430115D752
-	for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 17:13:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90C015FBA5;
+	Fri, 22 Mar 2024 17:40:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711127641; cv=none; b=k3cG5vARNCVwtaProtyoEs1HGayUSLl+9pVjI1SDdIdHA8PrzW+Gvbbd8bWKyvcoQ83bXYb/zcisZL9HAlC6DNGbMzFUZMpnvURUji23MAhS8NKLD+bhSySM45LJsoXEIipppOjzvRc2HTmnVA86IZyTu+MVRVXaErUBuhB9Yh0=
+	t=1711129214; cv=none; b=UgMtDn88TE3i3fV22J8dXkcijwYGkLpNKbVNZouQBWPB9q26bvhkP2XsI0fmLjdROxDOd7zLLoCFT1LjBYCyhM8hJRV/bYFkdPqtLO3zF5K1Xcj1zSkUtcaF9P36v5glOdsBlHfBQ7L5CQqulAM1iZWPKrnEcwPtqZCA7CInMwo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711127641; c=relaxed/simple;
-	bh=eupBAERlpi60lBkl1wmr+KLhDG+teWj2Aum1Gw416Bw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=W8PcA7L5YAX0l7GhDGN6BVj5TQwX8g0w73VNSD9KGO+uhaBU3OJCRmsF/Wkz7/1QefnGJ+SLgkztthfDBNCMpBv/n/8xLw58OZV0OuCEALAbC0Z9HeqhvvFsIrtJwBGvkikEWgK/tIKl405mq/QYI2c37vNxEdhYqRtc6/v8Fr0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=DJnokTum; arc=none smtp.client-ip=209.85.219.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-dcc4de7d901so2056876276.0
-        for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 10:13:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1711127638; x=1711732438; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JrCZcezSHtMHgCYV9eTeglWhzn7+4jU5szarE8AAqMc=;
-        b=DJnokTumywRquMuBU3I+SKpJAvoVvHRxbv1CggjzeSnqHjwlZ+y3+6K6KtnmnFRh21
-         RhfPoP2UiTZMQmMX6GaVcwG7w3uiEIbst2L1nXk4bopLucJUUB3M++uIrAsPh/tvxKTp
-         HBb0T2dtE5pivRGTE1+l0x79WBC7I6oSpjMizWSbDk2cDknhIEuBHwcTbQQ+ebwvCybf
-         oSAaVJzNojSrzKG2hysRYVpkAHKRqHZmZVW2oQ5zt96Jhhr4sDx8Nu5uCxcU4/9gWzEq
-         L1aICic+22+csRBHjrCaiqWoCOLNJo2KaHwwbsp0iRQwfpokgk5WEznrfmnu1xNa+uQZ
-         A0ew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711127638; x=1711732438;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JrCZcezSHtMHgCYV9eTeglWhzn7+4jU5szarE8AAqMc=;
-        b=YjbNwovDuz75gdR8SLBAaiQr+nzYxY3DotZ8qrF45Rzzave2Sc8mXg9QgNA259Fb6T
-         +6a4/c3ZOAEn+XXrWtl0z5M1l9y19HJyv/VL69NyvTMw538kBRphsWsP83Up3+CnbxTv
-         xfvsdx/xKbRZUnjZs5+nDaRwxhzmxyQQ/1H74bZObwDLhXl3Zl4rphnItVW6S1OKStnm
-         wC96XF4mW2R5Kmx5SW34jDWUfWCOwmAWfR2bC7W3T01h2YNqpMi7oFBgGOhvKruhS0Q0
-         MpWvoYbWauW3atOCzouQ8ulExHm7KlzBL0YJZ/iDShv76QTbpfVE0XP9JxVp44tOJnp3
-         EV9g==
-X-Forwarded-Encrypted: i=1; AJvYcCWxOVNsTdFe+m/9AicA+E7l9AV4622YrvJIdSsI2RqGl5Oj/yXrQh1B6oDuB+2jo0Wd2wO2LCqTkfIcZU/Ne5j8P9KQMHZlpNxtgQ==
-X-Gm-Message-State: AOJu0Yx5A+mrrVisBl37mv6Ry/9HXSL+CJDLAWt0imFYC87dzmLcVvN2
-	kyuYjeloHNmKtxFi950bTTFobUQeJTrgj/rNz21w0PjIOd3XG5fgNvQe7QvUWj0Rln1g0t8kR+D
-	1DGL+69dy57o5AYW1NZjek/m4zIJ01Q2JspUoFQ==
-X-Google-Smtp-Source: AGHT+IE+dsR/xonqkKbxamX8f+YQ5K1V1B8ZXMDiZAfjLGnUm36k6juYRhEDctP2PuCEMODRsbZ2Htfibx0XdOXU0Jg=
-X-Received: by 2002:a25:b121:0:b0:dc6:d2d3:a57c with SMTP id
- g33-20020a25b121000000b00dc6d2d3a57cmr2856379ybj.59.1711127638274; Fri, 22
- Mar 2024 10:13:58 -0700 (PDT)
+	s=arc-20240116; t=1711129214; c=relaxed/simple;
+	bh=tTwBbRt2pqHamlnWharifXWWwuWmdQz8Rk753vrs9Tc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GGbaeP+bk/ShdsMxJX7Yj+DDkIxBw4jKn1yDd6BrZ40YxOod4pRaXHCzTL6EPqzGCoT32D+mIV4cc6KLrQ7uoykHLQ7FIpm3kbI9tIcWqu6olAByoDWqo2pc3ktCoHAemE403nna3QZuPZidSTwMelThruHj8SYfR0HZL0YSvKA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tUV4V9ch; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65E1DC433C7;
+	Fri, 22 Mar 2024 17:40:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711129214;
+	bh=tTwBbRt2pqHamlnWharifXWWwuWmdQz8Rk753vrs9Tc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tUV4V9chSdBEhmS3/ab/LOTuC18tZ5+Xt9D4PIFL9rhdteNBuxvFgwNzKnxUCpx39
+	 xSNyMVK0iGDIKqvXHfr9GfE6EqcmmKwGa2zd3AQOkAaAiVFr2DIcDnvL/eLoWCW0+g
+	 T0htdNedHpFoIJJrZjeG+pIY4NSf6RT4FWmmi4Ncvt0nkLS1j1l+pVWgHYJr+arT9G
+	 LO7EgQJiZcHwwYVh4DCjxTcMZ+tqxSVapjXaPc7b5hPiwjEX4VkCK97zQZaYp73t/Z
+	 tPiMy5yoJp4rpdLUxmFWfwpualX/lxqznaUpeG7zx71u3mZE32PxtDCWgqQbHBDw36
+	 XaNwctZduV9JQ==
+Date: Fri, 22 Mar 2024 17:40:08 +0000
+From: Conor Dooley <conor@kernel.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-media@vger.kernel.org, mchehab@kernel.org, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	matthias.bgg@gmail.com, amergnat@baylibre.com,
+	moudy.ho@mediatek.com, hverkuil-cisco@xs4all.nl,
+	sebastian.fricke@collabora.com, u.kleine-koenig@pengutronix.de,
+	chunkuang.hu@kernel.org, p.zabel@pengutronix.de,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH 3/4] dt-bindings: media: mediatek: mdp3: Add support for
+ MT8188 RDMA
+Message-ID: <20240322-elderly-ether-170408423883@spud>
+References: <20240322092845.381313-1-angelogioacchino.delregno@collabora.com>
+ <20240322092845.381313-4-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240319215915.832127-1-samuel.holland@sifive.com>
- <20240319215915.832127-6-samuel.holland@sifive.com> <CAKC1njSg9-hJo6hibcM9a-=FUmMWyR39QUYqQ1uwiWhpBZQb9A@mail.gmail.com>
- <40ab1ce5-8700-4a63-b182-1e864f6c9225@sifive.com> <CAKC1njQYZHbQJ71mapeG1DEw=A+aGx77xsuQGecsNFpoJ=tzGQ@mail.gmail.com>
- <d9452ab4-a783-4bcf-ac25-40baa4f31fac@sifive.com>
-In-Reply-To: <d9452ab4-a783-4bcf-ac25-40baa4f31fac@sifive.com>
-From: Deepak Gupta <debug@rivosinc.com>
-Date: Fri, 22 Mar 2024 10:13:48 -0700
-Message-ID: <CAKC1njRBbzM+gWowg1LOjq5GzVn4q+vJP9JUswVYfWmEw+yHSg@mail.gmail.com>
-Subject: Re: [RISC-V] [tech-j-ext] [RFC PATCH 5/9] riscv: Split per-CPU and
- per-thread envcfg bits
-To: Samuel Holland <samuel.holland@sifive.com>
-Cc: Conor Dooley <conor@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	Catalin Marinas <catalin.marinas@arm.com>, linux-kernel@vger.kernel.org, 
-	tech-j-ext@lists.risc-v.org, kasan-dev@googlegroups.com, 
-	Evgenii Stepanov <eugenis@google.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Andrew Jones <ajones@ventanamicro.com>, Guo Ren <guoren@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Paul Walmsley <paul.walmsley@sifive.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="TYbo2CO3aIfqwZwQ"
+Content-Disposition: inline
+In-Reply-To: <20240322092845.381313-4-angelogioacchino.delregno@collabora.com>
+
+
+--TYbo2CO3aIfqwZwQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Mar 21, 2024 at 5:13=E2=80=AFPM Samuel Holland
-<samuel.holland@sifive.com> wrote:
->
-> On 2024-03-19 11:39 PM, Deepak Gupta wrote:
-> >>>> --- a/arch/riscv/include/asm/switch_to.h
-> >>>> +++ b/arch/riscv/include/asm/switch_to.h
-> >>>> @@ -69,6 +69,17 @@ static __always_inline bool has_fpu(void) { retur=
-n false; }
-> >>>>  #define __switch_to_fpu(__prev, __next) do { } while (0)
-> >>>>  #endif
-> >>>>
-> >>>> +static inline void sync_envcfg(struct task_struct *task)
-> >>>> +{
-> >>>> +       csr_write(CSR_ENVCFG, this_cpu_read(riscv_cpu_envcfg) | task=
-->thread.envcfg);
-> >>>> +}
-> >>>> +
-> >>>> +static inline void __switch_to_envcfg(struct task_struct *next)
-> >>>> +{
-> >>>> +       if (riscv_cpu_has_extension_unlikely(smp_processor_id(), RIS=
-CV_ISA_EXT_XLINUXENVCFG))
-> >>>
-> >>> I've seen `riscv_cpu_has_extension_unlikely` generating branchy code
-> >>> even if ALTERNATIVES was turned on.
-> >>> Can you check disasm on your end as well.  IMHO, `entry.S` is a bette=
-r
-> >>> place to pick up *envcfg.
-> >>
-> >> The branchiness is sort of expected, since that function is implemente=
-d by
-> >> switching on/off a branch instruction, so the alternate code is necess=
-arily a
-> >> separate basic block. It's a tradeoff so we don't have to write assemb=
-ly code
-> >> for every bit of code that depends on an extension. However, the cost =
-should be
-> >> somewhat lowered since the branch is unconditional and so entirely pre=
-dictable.
-> >>
-> >> If the branch turns out to be problematic for performance, then we cou=
-ld use
-> >> ALTERNATIVE directly in sync_envcfg() to NOP out the CSR write.
-> >
-> > Yeah I lean towards using alternatives directly.
->
-> One thing to note here: we can't use alternatives directly if the behavio=
-r needs
-> to be different on different harts (i.e. a subset of harts implement the =
-envcfg
-> CSR). I think we need some policy about which ISA extensions are allowed =
-to be
-> asymmetric across harts, or else we add too much complexity.
+On Fri, Mar 22, 2024 at 10:28:44AM +0100, AngeloGioacchino Del Regno wrote:
+> Add a compatible for MediaTek MT8188 RDMA, which supports only a
+> subset of the MDP3 components of its similar MT8195 counterpart.
+>=20
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
 
-As I've responded on the same thread . We are adding too much
-complexity by assuming
-that heterogeneous ISA exists (which it doesn't today). And even if it
-exists, it wouldn't work.
-Nobody wants to spend a lot of time figuring out which harts have
-which ISA and which
-packages are compiled with which ISA. Most of the end users do `sudo
-apt get install blah blah`
-And then expect it to just work. It doesn't work for other
-architectures and even when someone
-tried, they had to disable certain ISA features to make sure that all
-cores have the same ISA feature
-(search AVX12 Intel Alder Lake Disable).
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
->
-> Regards,
-> Samuel
->
+Thanks,
+Conor.
+
+> ---
+>  Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.y=
+aml b/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
+> index 59db8306485b..18603f6c5e06 100644
+> --- a/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
+> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
+> @@ -23,6 +23,7 @@ properties:
+>      oneOf:
+>        - enum:
+>            - mediatek,mt8183-mdp3-rdma
+> +          - mediatek,mt8188-mdp3-rdma
+>            - mediatek,mt8195-mdp3-rdma
+>            - mediatek,mt8195-vdo1-rdma
+>        - items:
+> --=20
+> 2.44.0
+>=20
+
+--TYbo2CO3aIfqwZwQ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZf3CeAAKCRB4tDGHoIJi
+0l3AAQCL5XSgotDR4l9Rji+b5MSgqPkrXB/7xT15infA4yxeLgD/dJ3reW+ywpxg
+TVn9ErbQIAsrdGYLZO/BdFSmBaP5pgE=
+=sIb/
+-----END PGP SIGNATURE-----
+
+--TYbo2CO3aIfqwZwQ--
 
