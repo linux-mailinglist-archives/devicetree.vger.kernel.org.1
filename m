@@ -1,280 +1,266 @@
-Return-Path: <devicetree+bounces-52456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E68E7886AA0
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 11:45:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6026886AB9
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 11:55:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 86F56B20FC8
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 10:45:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5CEB5283CEC
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 10:55:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 851723B798;
-	Fri, 22 Mar 2024 10:45:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23F093D961;
+	Fri, 22 Mar 2024 10:54:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aiVvjJoG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lrCUysCT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B8DB224FA
-	for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 10:45:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6C703D38D
+	for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 10:54:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711104313; cv=none; b=PFakMQLV1DEN6SCR+H3rbaN0oe8/EY6QwDjr02aM5Zim/LPxtUGgcy0pmp8aCAWxVrpIzpF6RSrM2KBBoMSNTfrEgnV53Qm/XEOHsR0wRPBo8qRJ4UsS60AIuiF+Hm0rjh1tQTMw7iyVVX9LjIgU8ysBo454Naqqj6YXBYTJBs8=
+	t=1711104894; cv=none; b=RB6QkET77Er2nWcmC7C+bdXjSmoNRc4KsFWZgWhV+1pjCQKSOS22FTEG95sJCWZCXto+G96ry9PeEHgX5XPVHTOGXUkPH9ct/6t3EuQoaXAq3/U9ftdzR/DULj7ubPQlBG1DdCJvsi6ekreDfcRdvO8H3P2TXF8i/1cKXfrGB+k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711104313; c=relaxed/simple;
-	bh=jWRuh7EGPZi+az7Aq33aapOL1INFIF3xUm8yZfIfKMU=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=tNKKhq5ccGzFh1WSvvPaVy2OJmfDcNs+2Fdzyh+/U3wCucRDjLUTimKWU5qXaazrcfwe/WMz1Vr/YanPaxUm20WaKT7vWar7TCosXbvr+RV4X2tQIHkWsPdW1zlAdJVERdXzza0hVKvM7qBUnDAw1m8E4zE207xp0Z7zw+JmTm0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aiVvjJoG; arc=none smtp.client-ip=209.85.221.51
+	s=arc-20240116; t=1711104894; c=relaxed/simple;
+	bh=lqlF6LC2lHEkheQ1iOMwalBqlnrXpZNihZvbCgN/AP8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jhTFQA9IEQ9jpVhRu1Xq+Ap3kG2Ie5Aers6Jh3AYzH08EQEWYCUuJSgylnGODkI+bOMc7vebsM5yUOp8sM815ZfaJbXnlQBuXxT4y2rgLx53ZoV+Yc7zXszMHQMtNsszfsgx4OZWeCM9GnJDIa+6VgiXsBzWpppV8VUBOJGWtLQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lrCUysCT; arc=none smtp.client-ip=209.85.219.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-33e1878e357so810631f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 03:45:11 -0700 (PDT)
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-dcbc6a6808fso1901726276.2
+        for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 03:54:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711104310; x=1711709110; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Ijz4cnwmta4DwRjOoVv/yS9+lUjTkF7NKjIpyzpOrv4=;
-        b=aiVvjJoG80jSLyFxRYRywfwVzM2t3cEK6wFW+rDlM7+Kb8C25AtGPLDwfBaEgXQ2KL
-         Te7NM0ap/2sD4j9y3TiEuCvF1luJuEdWqYK0Jk4igM2//0uxmcdLQLVRSo/X+I/eDaSs
-         rpYue8vOhFCbn7wlKcrTcES3gD8JzLHAwLEgGiAiCsWY1fz+YE7jGQakTcua6QaxwOyC
-         Vlogzmrv2+x4gHOl4VspPwGL/VTD0Z8W5WHonXDE2Ig+rDOvYUYy5tHT6Y3CLFzctct7
-         IXmgzNSr7mT2cSlKePOR1YvAEQICy08BqoqzCTnORko+nBOPRfcgvmF1zBoNl32NpPxR
-         gulA==
+        d=linaro.org; s=google; t=1711104891; x=1711709691; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=3yLTyJy7JcrovLWujJX3AA6N2qSzZlAvcXrRMfhN/Lk=;
+        b=lrCUysCTxiIcVxILMqEGFBATl4JZBjmnrzIBw7gjsu2YpkQ17dRvE+4uutEjSSHeFZ
+         9+4C/C93lLUqqc4LPij+Vmj80Vz76PeZJJimWMHK69W7jc78Lgz8UVRkiUtWF8Xw5zeN
+         WXg/A8/hEakxKIhTwf2z63n0205mPT/aFt985myrah9K1+eKs9qPbl5T5Da5MZIYNPxN
+         Cys+313sqGiXPASl2SdsF7mz2ViGA5HmqRCHCxATr17enjX36TxvV+2rYOcSocjOtBWx
+         0I4evCeOWeWBXhnVEQb4hXERXmdD+1IH85q1G7BoBXhjmUS1X9YtgBoO5x7+aJCrT08R
+         ztxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711104310; x=1711709110;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Ijz4cnwmta4DwRjOoVv/yS9+lUjTkF7NKjIpyzpOrv4=;
-        b=K/derRuxne9V0t48w3pV5YVd7qidXJEFDrgTQiK+yFiIOzRmGzeXXP7u1TN/FHM4ir
-         8jY4lSZRHzMzyr0nrUMmKJxVkEXXgvXO7j2WNAfuRYWUHnWeKNVOMCZjFjPtusFJ3Awt
-         TBk4Vms16xOiKHCqlOUCyEQHM3hPlH3L8hLjxpt5pPHUsM1nBJoklG3BKm8tmd9LyLsx
-         3CumLkUe7WJWx5WfzJOjeFVxjQVDT71mgdZOIhHlnnJeDQateyr2hrtwhzoLsv8Y4S5J
-         +zH+LncEnxCcvtCfmJdGkRaa+GJm+F4rguakX+uSGrMH6ynMyPysjdOZz/40UXh/VTGo
-         UHGg==
-X-Forwarded-Encrypted: i=1; AJvYcCWvr5yMUoA2k7oqr7oNAF6h0DYCYNyQp8EpM3fNwPxN+GwBnCavQ63G+2TJuebeWjotKWmVoQh5Ji+7DiZ/IV2mFwKuzDF5pcfY/w==
-X-Gm-Message-State: AOJu0Yz+gGKLUwfvYosTr/j4XT5A91oo4TxVCzvvRLndZNSatHoupUX/
-	q9WTtEOeMxqctVcbZF04LfaCl4rutlc9kyX6lvIrEIQIPp6t6wygCn5YYlfwfP4=
-X-Google-Smtp-Source: AGHT+IE0h2NuaEVe60IzMpflYy6JouB/v/PcDVSKl0vyEQEKhI77w54WnPoVuNyW77f1ZSy4VjO1Wg==
-X-Received: by 2002:a5d:69d0:0:b0:33e:7f51:c2f9 with SMTP id s16-20020a5d69d0000000b0033e7f51c2f9mr1268500wrw.49.1711104309609;
-        Fri, 22 Mar 2024 03:45:09 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:3ee1:a278:2b57:55f7? ([2a01:e0a:982:cbb0:3ee1:a278:2b57:55f7])
-        by smtp.gmail.com with ESMTPSA id j1-20020adff001000000b0033e7e9c8657sm1778124wro.45.2024.03.22.03.45.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Mar 2024 03:45:09 -0700 (PDT)
-Message-ID: <1dc187c1-2005-486f-a9dd-6648cf52ab70@linaro.org>
-Date: Fri, 22 Mar 2024 11:45:08 +0100
+        d=1e100.net; s=20230601; t=1711104891; x=1711709691;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3yLTyJy7JcrovLWujJX3AA6N2qSzZlAvcXrRMfhN/Lk=;
+        b=qLcYZX5QzaF6V8jZVHlI8huqsKdUES6vrRUwAKctlBx8JkuxyxlCLGDYqyyKMdm59Q
+         p2BjVsqi0MtEhTMse/rayZpMX7/fZIpeAr9NLwc1zd0SKVIrh9/ibQMfH4Z6hQ9wKj2a
+         DxLDFrS5PS+KbfcA7RFrvAgkt1y5vY6ArKaCL8HiRRKDypnh1Hq/3UGImpLPKY+5yPYG
+         e1k2b+rP+fcFxcstCxzPHgQAdhQHB635QZLrAEaD9aSzP+oBWq4Gi+70j4rrCbbxFaik
+         0kEPFc3SBjlA/qaio7jBl0iuOafOn4HEUmRMsHVgcFS7C0/uQNwc38KTjyNr/wTa5O0C
+         4N+w==
+X-Forwarded-Encrypted: i=1; AJvYcCWHOb5ty+iCntg7kUgBLukknWF0tYdhvnIiavY24lvTzZa+eZWv1gE2I9L9EuvYUSCH0zzyDg1Vu2z1+bT1ljsvfVM/rqoCy4rM2Q==
+X-Gm-Message-State: AOJu0YzM/kPSu8vvRjR4HJ7RG6VedVhE976QP2+7tNbTWgrGesap3IpD
+	qKorJracuzKv3rf43UUN3v/29lq4F8/24+S3xY2SsEdAXfUiU9z9aAZ4HzFS/0g2UWJBOGq/yrn
+	VaitSB9/ESa4jrBFqR70ktTKa56sR6hCHVGMmbg==
+X-Google-Smtp-Source: AGHT+IGz+x7tVfFIboyUBVIztTiYvPl61n17Jr2i8etPqEnpA+dZPRoFyPRs7c3I1/knQbb/932ar1JaVW/dsRUSqng=
+X-Received: by 2002:a25:dbd0:0:b0:dc2:1f53:3a4f with SMTP id
+ g199-20020a25dbd0000000b00dc21f533a4fmr1686940ybf.5.1711104890696; Fri, 22
+ Mar 2024 03:54:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 3/7] phy: qcom: qmp-pcie: register second optional PHY
- AUX clock
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240322-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v2-0-3ec0a966d52f@linaro.org>
- <20240322-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v2-3-3ec0a966d52f@linaro.org>
- <CAA8EJpoJWKZcZu3SY2P9dpYQ_KXkimRXNhAKfaOreCGZ1muYqw@mail.gmail.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <CAA8EJpoJWKZcZu3SY2P9dpYQ_KXkimRXNhAKfaOreCGZ1muYqw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240322-fp4-tcpm-v1-0-c5644099d57b@fairphone.com> <20240322-fp4-tcpm-v1-5-c5644099d57b@fairphone.com>
+In-Reply-To: <20240322-fp4-tcpm-v1-5-c5644099d57b@fairphone.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Fri, 22 Mar 2024 12:54:39 +0200
+Message-ID: <CAA8EJpq3eKFYhBbnggzRy2acE6uSyWGqCMcLxfkqx1Hot50gRw@mail.gmail.com>
+Subject: Re: [PATCH 5/5] arm64: dts: qcom: sm7225-fairphone-fp4: Enable USB
+ role switching
+To: Luca Weiss <luca.weiss@fairphone.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Wesley Cheng <quic_wcheng@quicinc.com>, "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, ~postmarketos/upstreaming@lists.sr.ht, 
+	phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-usb@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 22/03/2024 11:41, Dmitry Baryshkov wrote:
-> On Fri, 22 Mar 2024 at 11:43, Neil Armstrong <neil.armstrong@linaro.org> wrote:
->>
->> The PCIe Gen4x2 PHY found in the SM8[456]50 SoCs have a second clock,
->> add the code to register it for PHYs configs that sets a aux_clock_rate.
->>
->> In order to get the right clock, add qmp_pcie_clk_hw_get() which uses
->> the newly introduced QMP_PCIE_PIPE_CLK & QMP_PCIE_PHY_AUX_CLK clock
->> IDs and also supports the legacy bindings by returning the PIPE clock
->> when #clock-cells=0.
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> 
-> Small question below.
-> 
->> ---
->>   drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 78 ++++++++++++++++++++++++++++++--
->>   1 file changed, 75 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
->> index e8da2e9146dc..6c9a95e62429 100644
->> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
->> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
->> @@ -22,6 +22,8 @@
->>   #include <linux/reset.h>
->>   #include <linux/slab.h>
->>
->> +#include <dt-bindings/phy/phy-qcom-qmp.h>
->> +
->>   #include "phy-qcom-qmp-common.h"
->>
->>   #include "phy-qcom-qmp.h"
->> @@ -2389,6 +2391,9 @@ struct qmp_phy_cfg {
->>
->>          /* QMP PHY pipe clock interface rate */
->>          unsigned long pipe_clock_rate;
->> +
->> +       /* QMP PHY AUX clock interface rate */
->> +       unsigned long aux_clock_rate;
->>   };
->>
->>   struct qmp_pcie {
->> @@ -2420,6 +2425,7 @@ struct qmp_pcie {
->>          int mode;
->>
->>          struct clk_fixed_rate pipe_clk_fixed;
->> +       struct clk_fixed_rate aux_clk_fixed;
->>   };
->>
->>   static inline void qphy_setbits(void __iomem *base, u32 offset, u32 val)
->> @@ -3686,6 +3692,62 @@ static int phy_pipe_clk_register(struct qmp_pcie *qmp, struct device_node *np)
->>          return devm_clk_hw_register(qmp->dev, &fixed->hw);
->>   }
->>
->> +/*
->> + * Register a fixed rate PHY aux clock.
->> + *
->> + * The <s>_phy_aux_clksrc generated by PHY goes to the GCC that gate
->> + * controls it. The <s>_phy_aux_clk coming out of the GCC is requested
->> + * by the PHY driver for its operations.
->> + * We register the <s>_phy_aux_clksrc here. The gcc driver takes care
->> + * of assigning this <s>_phy_aux_clksrc as parent to <s>_phy_aux_clk.
->> + * Below picture shows this relationship.
->> + *
->> + *         +---------------+
->> + *         |   PHY block   |<<---------------------------------------------+
->> + *         |               |                                               |
->> + *         |   +-------+   |                      +-----+                  |
->> + *   I/P---^-->|  PLL  |---^--->phy_aux_clksrc--->| GCC |--->phy_aux_clk---+
->> + *    clk  |   +-------+   |                      +-----+
->> + *         +---------------+
->> + */
->> +static int phy_aux_clk_register(struct qmp_pcie *qmp, struct device_node *np)
->> +{
->> +       struct clk_fixed_rate *fixed = &qmp->aux_clk_fixed;
->> +       struct clk_init_data init = { };
->> +       int ret;
->> +
->> +       ret = of_property_read_string_index(np, "clock-output-names", 1, &init.name);
->> +       if (ret) {
->> +               dev_err(qmp->dev, "%pOFn: No clock-output-names index 1\n", np);
->> +               return ret;
->> +       }
->> +
->> +       init.ops = &clk_fixed_rate_ops;
->> +
->> +       fixed->fixed_rate = qmp->cfg->aux_clock_rate;
->> +       fixed->hw.init = &init;
->> +
->> +       return devm_clk_hw_register(qmp->dev, &fixed->hw);
->> +}
->> +
->> +static struct clk_hw *qmp_pcie_clk_hw_get(struct of_phandle_args *clkspec, void *data)
->> +{
->> +       struct qmp_pcie *qmp = data;
->> +
->> +       /* Support legacy bindings */
->> +       if (!clkspec->args_count)
->> +               return &qmp->pipe_clk_fixed.hw;
->> +
->> +       switch (clkspec->args[0]) {
->> +       case QMP_PCIE_PIPE_CLK:
->> +               return &qmp->pipe_clk_fixed.hw;
->> +       case QMP_PCIE_PHY_AUX_CLK:
->> +               return &qmp->aux_clk_fixed.hw;
-> 
-> Does the absence of the default case trigger a warning if compiled with W=1?
+On Fri, 22 Mar 2024 at 10:03, Luca Weiss <luca.weiss@fairphone.com> wrote:
+>
+> Configure the Type-C and VBUS regulator on PM7250B and wire it up to the
+> USB PHY, so that USB role and orientation switching works.
+>
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
+> With this patch I'm not quite sure if the 'ports' are connected
+> correctly, though functionally everything appears to work fine.
+>
+> On some other SoCs port@1 in qmpphy and a second port in dwc3 are
+> connected together also - one port of USB 2.0 HS, one for USB 3.0 SS.
+>
+> Here I'm following sm8250's solution. Also checking the binding doc
+> doesn't reveal anything useful.
 
-Nop it doesn't with GCC arm-gnu-toolchain-13.2.Rel1-x86_64-aarch64-none-linux-gnu + W=1 and with smatch and C=1
+Thanks for pointing it out. The SM8250 / RB5 predated final DP
+bindings / graphs. As such it didn't fully describe the signal chain
+(the signals go from DWC3 and from DP controllers to the QMP PHY,
+where they are muxed to the 4 output lanes).
+I'll post an update for sm8250 / bindings doc.
 
-Neil
+I'd kindly ask to connect qmp / port@1 and dwc / port@1
 
-> 
->> +       }
->> +
->> +       return ERR_PTR(-EINVAL);
->> +}
->> +
->>   static int qmp_pcie_register_clocks(struct qmp_pcie *qmp, struct device_node *np)
->>   {
->>          int ret;
->> @@ -3694,9 +3756,19 @@ static int qmp_pcie_register_clocks(struct qmp_pcie *qmp, struct device_node *np
->>          if (ret)
->>                  return ret;
->>
->> -       ret = of_clk_add_hw_provider(np, of_clk_hw_simple_get, &qmp->pipe_clk_fixed.hw);
->> -       if (ret)
->> -               return ret;
->> +       if (qmp->cfg->aux_clock_rate) {
->> +               ret = phy_aux_clk_register(qmp, np);
->> +               if (ret)
->> +                       return ret;
->> +
->> +               ret = of_clk_add_hw_provider(np, qmp_pcie_clk_hw_get, qmp);
->> +               if (ret)
->> +                       return ret;
->> +       } else {
->> +               ret = of_clk_add_hw_provider(np, of_clk_hw_simple_get, &qmp->pipe_clk_fixed.hw);
->> +               if (ret)
->> +                       return ret;
->> +       }
->>
->>          /*
->>           * Roll a devm action because the clock provider is the child node, but
->>
->> --
->> 2.34.1
->>
->>
-> 
-> 
+> ---
+>  arch/arm64/boot/dts/qcom/sm6350.dtsi              | 25 ++++++++++
+>  arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts | 57 ++++++++++++++++++++++-
+>  2 files changed, 81 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+> index 24bcec3366ef..b267500467f0 100644
+> --- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+> @@ -1686,6 +1686,27 @@ usb_1_qmpphy: phy@88e8000 {
+>                         #phy-cells = <1>;
+>
+>                         status = "disabled";
+> +
+> +                       ports {
+> +                               #address-cells = <1>;
+> +                               #size-cells = <0>;
+> +
+> +                               port@0 {
+> +                                       reg = <0>;
+> +
+> +                                       usb_1_qmpphy_out: endpoint {};
+> +                               };
+> +
+> +                               port@1 {
+> +                                       reg = <1>;
+> +                               };
+> +
+> +                               port@2 {
+> +                                       reg = <2>;
+> +
+> +                                       usb_1_qmpphy_dp_in: endpoint {};
+> +                               };
+> +                       };
+>                 };
+>
+>                 dc_noc: interconnect@9160000 {
+> @@ -1861,6 +1882,10 @@ usb_1_dwc3: usb@a600000 {
+>                                 snps,hird-threshold = /bits/ 8 <0x10>;
+>                                 phys = <&usb_1_hsphy>, <&usb_1_qmpphy QMP_USB43DP_USB3_PHY>;
+>                                 phy-names = "usb2-phy", "usb3-phy";
+> +
+> +                               port {
+> +                                       usb_1_role_switch_out: endpoint {};
+> +                               };
+>                         };
+>                 };
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
+> index bc67e8c1fe4d..104f23ec322d 100644
+> --- a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
+> @@ -19,6 +19,7 @@
+>  #include <dt-bindings/leds/common.h>
+>  #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+>  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+> +#include <dt-bindings/usb/pd.h>
+>  #include "sm7225.dtsi"
+>  #include "pm6150l.dtsi"
+>  #include "pm6350.dtsi"
+> @@ -543,6 +544,50 @@ conn-therm@1 {
+>         };
+>  };
+>
+> +&pm7250b_typec {
+> +       vdd-pdphy-supply = <&vreg_l3a>;
+> +
+> +       status = "okay";
+> +
+> +       connector {
+> +               compatible = "usb-c-connector";
+> +
+> +               power-role = "source";
+> +               data-role = "dual";
+> +               self-powered;
+> +
+> +               source-pdos = <PDO_FIXED(5000, 1500,
+> +                                        PDO_FIXED_DUAL_ROLE |
+> +                                        PDO_FIXED_USB_COMM |
+> +                                        PDO_FIXED_DATA_SWAP)>;
+> +
+> +               ports {
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +
+> +                       port@0 {
+> +                               reg = <0>;
+> +                               pm7250b_role_switch_in: endpoint {
+> +                                       remote-endpoint = <&usb_1_role_switch_out>;
+> +                               };
+> +                       };
+> +
+> +                       port@1 {
+> +                               reg = <1>;
+> +                               pm7250b_typec_mux_in: endpoint {
+> +                                       remote-endpoint = <&usb_1_qmpphy_out>;
+> +                               };
+> +                       };
+> +               };
+> +       };
+> +};
+> +
+> +&pm7250b_vbus {
+> +       regulator-min-microamp = <500000>;
+> +       regulator-max-microamp = <1500000>;
+> +       status = "okay";
+> +};
+> +
+>  &pmk8350_rtc {
+>         status = "okay";
+>  };
+> @@ -726,7 +771,12 @@ &usb_1 {
+>
+>  &usb_1_dwc3 {
+>         maximum-speed = "super-speed";
+> -       dr_mode = "peripheral";
+> +       dr_mode = "otg";
+> +       usb-role-switch;
+> +};
+> +
+> +&usb_1_role_switch_out {
+> +       remote-endpoint = <&pm7250b_role_switch_in>;
+>  };
+>
+>  &usb_1_hsphy {
+> @@ -740,10 +790,15 @@ &usb_1_hsphy {
+>  &usb_1_qmpphy {
+>         vdda-phy-supply = <&vreg_l22a>;
+>         vdda-pll-supply = <&vreg_l16a>;
+> +       orientation-switch;
+>
+>         status = "okay";
+>  };
+>
+> +&usb_1_qmpphy_out {
+> +       remote-endpoint = <&pm7250b_typec_mux_in>;
+> +};
+> +
+>  &wifi {
+>         vdd-0.8-cx-mx-supply = <&vreg_l4a>;
+>         vdd-1.8-xo-supply = <&vreg_l7a>;
+>
+> --
+> 2.44.0
+>
+>
 
+
+-- 
+With best wishes
+Dmitry
 
