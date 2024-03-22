@@ -1,76 +1,63 @@
-Return-Path: <devicetree+bounces-52444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E8F1886A01
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 11:14:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8235A886A26
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 11:23:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2508C286155
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 10:14:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37F63284135
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 10:23:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56E4A374CF;
-	Fri, 22 Mar 2024 10:14:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD6CB383AE;
+	Fri, 22 Mar 2024 10:22:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tgCGwem6"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="B/GDueIx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03C4D1BC47
-	for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 10:14:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BADDC3D3B3;
+	Fri, 22 Mar 2024 10:22:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711102458; cv=none; b=WzYQgG5Xa+1A0rwVV9XyU7Pg+dwkpZ4k0jlJw8WUE+YovPJv637lrg9Tre+8dDwMx0PITRSIwecduwqrBsTzFcAfciSbdSlUkZ8N7/KvfVXbCqQE2buXndq5iwMvqXvnAG5ad2zbZ82QWBjnFFXrDrnXcA5eZW4Q+rtBR66Sg2M=
+	t=1711102958; cv=none; b=acV3D/u0lUsS35ywhcOBBLLh65nNe8G9WHiVICH7zK3dsV0CBhSr7mB5/dB1wG8RpV4lz6chmSoCzqvCe4Qw5xfLJWuV2U36ykwUnOBjdnuX1dmUn9Ro2AjHriUWUNUHUXQ9mcckHF0jcZPxHeFO16KD0pfgdi4bRPI84aTsCV0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711102458; c=relaxed/simple;
-	bh=WMFeu+j2iiU36qC4wXma6HUaUVDLeBLZufALRk+rXWI=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=d/hMzQEOXcOnEdffbyhHYEBbmkbV0mhlo6nOKtA8gnW8ktthtyoergH3x/kfiGjSMDQTigBtTaxQiLwklHe8OLE6bDjRDJCm/GjnT+yr6RfDm9P1CUgfKbqkz5IM435KvJ5E7M1RWPQdwgff+1MFhNP9hFp3GXFSh9xJziUGHmM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tgCGwem6; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4147c8e7965so2351685e9.2
-        for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 03:14:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711102453; x=1711707253; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=DOf1xm2Wbn7WqqM5LpTuhpZlLrziWVP3OvZukZiG1Ck=;
-        b=tgCGwem65dfK05lSIbTySzEQTk062HwlFplbgiK5/y0B8QX3guB2V+1FWOBimHCx4F
-         ZTXB8VNZupZWMPf7dVXSMw7huCDxwIqjj6yvZknLExT8yZFQiMKga6VHsUWax++0Vb0w
-         dbhs2nbARfTyP0wpbdkGAaXMzFC4aOHw3/sJlHFqRZIB72cmgo9MuG+2ToWbq5z40gKt
-         V6fmLpVSXljNZ2XKAdV4x3Zj8YPiS92s+5Cu7gTzW3i7x4hhVNx0+vSMDvVHYnkimCEG
-         xYIVp7IkCM0E1QBWZeoeFKV/mUNq4mwmtoXWX62RcUNqkF3jnm9/9ii5Gl3/DuIqJkHx
-         OZIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711102453; x=1711707253;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=DOf1xm2Wbn7WqqM5LpTuhpZlLrziWVP3OvZukZiG1Ck=;
-        b=k0Z/24bvklMiRHmtUKluxVDs9jy4RfLD0BmKOEVY+RFXcGr+fSoi//qnea+y+rD6xs
-         A0AV1htVx4Nb90JITi/3Yq8rag6Jn+m4Wz9z/McHrPm4TMJcREdB4O5UcSndF5fTLLJ/
-         ObPRiJxnTR94pVk5tfKfFUu5bxWn2/8588CDNht+4LBX1Y7Q++oamHmagBw+6r14ZgKw
-         2sBmdynfE0N2mGEu0kcy4YzRErWnsegXdsGr3xcPY5vedYkGtTakUagx55Es0GC4dCa6
-         wDDFn/gkkQjbOflgLJ1g7YYr/re0Uret7NyghIKEZq5GbGiY12MwkBZ5kAxH7c7Xu530
-         nswA==
-X-Forwarded-Encrypted: i=1; AJvYcCV40E81hfMU+7l8XCMsyUHK6tqCZDQZ1+Qe0M9p8nXNlpAtgEx+PgXQNogFZsIvlOFIcgXVCPjWaBLj9aIeW/lE11cFkSCgIsUV8w==
-X-Gm-Message-State: AOJu0YxgfvlbbSm+kMdpd4HJw3m/GvKu6ww8UNKGITElJPQeal0iF4N9
-	0TWa6wymPN4N87h+4lJiLZPA3ZJyj56soBIr/k27aSrHQHYu9XloBSdkP/VPmcw=
-X-Google-Smtp-Source: AGHT+IEpZLhHtN9no5st6JD8bO8E6gGN/hMjnnh806usH+5rVCCOArNkPL1sv8V/dFDNNeytPOVSQQ==
-X-Received: by 2002:a05:600c:4690:b0:412:f015:6fa6 with SMTP id p16-20020a05600c469000b00412f0156fa6mr1370398wmo.28.1711102452932;
-        Fri, 22 Mar 2024 03:14:12 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:3ee1:a278:2b57:55f7? ([2a01:e0a:982:cbb0:3ee1:a278:2b57:55f7])
-        by smtp.gmail.com with ESMTPSA id e13-20020a05600c4e4d00b004146750314csm8493505wmq.3.2024.03.22.03.14.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Mar 2024 03:14:12 -0700 (PDT)
-Message-ID: <3080f43a-1a10-4c63-8265-fda2284354e1@linaro.org>
-Date: Fri, 22 Mar 2024 11:14:11 +0100
+	s=arc-20240116; t=1711102958; c=relaxed/simple;
+	bh=jQ1A3iunoJqVPVAohgMpGzli1IusWCUHRlBP+T0f0OY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=oQRgVXBJB8+sfD+MqdpQ5uX4y8n6DdR6eb62hOjkZXfeuteRh8qPmrsrz+fonHuruVCYlwsV/KzRAPPxuh6E1nInX2FbIbxXi+CgZ4iXPIQOpIMEEJEyPfvh9HK9zYAGrqUIElqRZUMyRx3cBysJ6CUaG3N3wapoiUHBYdGDiYA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=B/GDueIx; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42MAFdnN029095;
+	Fri, 22 Mar 2024 10:22:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=DGPQHj7+v6fyAAfdAuyrN1/4eFBJEz3zzoRR86rxgrI=; b=B/
+	GDueIxJpEvZRyx4GLaU5O2cZxcykoixX8Qtuih+Ekdjm2aS5je5P7LrtFHdvcNi5
+	98YzC7iBC36IXbtzeuBCIG7iw4F+GLCHSZrxDQkp6mdSEx/8ub3sElhIK+HBX3WS
+	0MsOSLzoe1WM3O/1+RhfMj2lFQgXVpBiaDZVprG4mN0ueo5laEME6WhV4SUf5Tjl
+	AOrNmvQyLKh9bL+doM2qoxS5sA9saT7b3AtjRLOoRXmOjnGnFPOCb2YJgd/OZB9+
+	5mKe2z1eZDRswrypwRqhXSyFRmjQPVdT8nWUYVcXor6P12vftuB8HU1de7M+4zsf
+	V5IuezQ7HegyvO3v2nTQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x0wy91h9s-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 22 Mar 2024 10:22:19 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42MAMIpa015998
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 22 Mar 2024 10:22:18 GMT
+Received: from [10.233.17.145] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 22 Mar
+ 2024 03:22:12 -0700
+Message-ID: <55829f0f-6f5a-4898-b3d6-33850e790d62@quicinc.com>
+Date: Fri, 22 Mar 2024 18:22:10 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,145 +65,201 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v5 09/21] drivers: crypto: meson: process more than
- MAXDESCS descriptors
-To: Corentin Labbe <clabbe.montjoie@gmail.com>,
- Alexey Romanov <avromanov@salutedevices.com>
-Cc: clabbe@baylibre.com, herbert@gondor.apana.org.au, davem@davemloft.net,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, vadim.fedorenko@linux.dev,
- linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, kernel@salutedevices.com
-References: <20240301132936.621238-1-avromanov@salutedevices.com>
- <20240301132936.621238-10-avromanov@salutedevices.com> <Zf1BAlYtiwPOG-Os@Red>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <Zf1BAlYtiwPOG-Os@Red>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH 1/4] dt-bindings: arm: qcom,coresight-funnel: Add label
+ for multi-ouput
+To: Suzuki K Poulose <suzuki.poulose@arm.com>, Rob Herring <robh@kernel.org>,
+        Tao Zhang <quic_taozha@quicinc.com>
+CC: Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Alexander Shishkin
+	<alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Jinlong Mao <quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Song Chai <quic_songchai@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <andersson@kernel.org>
+References: <1711009927-17873-1-git-send-email-quic_taozha@quicinc.com>
+ <1711009927-17873-2-git-send-email-quic_taozha@quicinc.com>
+ <20240321144226.GA1689544-robh@kernel.org>
+ <443edf61-2a28-4ae7-ac88-2da2d29cebe3@quicinc.com>
+ <77fd8549-5e69-42a8-9e35-5d3de56a490f@arm.com>
+From: Tingwei Zhang <quic_tingweiz@quicinc.com>
+In-Reply-To: <77fd8549-5e69-42a8-9e35-5d3de56a490f@arm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: IgLOd7gJWFknAndjGbnbJqNatcG6T4rm
+X-Proofpoint-ORIG-GUID: IgLOd7gJWFknAndjGbnbJqNatcG6T4rm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-22_06,2024-03-21_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ spamscore=0 impostorscore=0 adultscore=0 mlxlogscore=999 suspectscore=0
+ bulkscore=0 phishscore=0 clxscore=1015 priorityscore=1501 mlxscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2403210001 definitions=main-2403220073
 
-On 22/03/2024 09:27, Corentin Labbe wrote:
-> Le Fri, Mar 01, 2024 at 04:29:24PM +0300, Alexey Romanov a écrit :
->> 1. The old alhorithm was not designed to process a large
->> amount of memory, and therefore gave incorrect results.
+On 3/22/2024 5:42 PM, Suzuki K Poulose wrote:
+> On 22/03/2024 07:02, Tingwei Zhang wrote:
+>> On 3/21/2024 10:42 PM, Rob Herring wrote:
+>>> On Thu, Mar 21, 2024 at 04:32:04PM +0800, Tao Zhang wrote:
+>>>> Add new property "label" to label the source corresponding to the
+>>>> output connection. When the funnel supports multi-output, this
+>>>> property needs to be introduced to mark which source component a
+>>>> certain output connection corresponds to.
+>>>>
+>>>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+>>>> ---
+>>>>   .../arm/arm,coresight-dynamic-funnel.yaml     | 34 
+>>>> ++++++++++++++++---
+>>>>   1 file changed, 30 insertions(+), 4 deletions(-)
+>>>>
+>>>> diff --git 
+>>>> a/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
+>>>> index 44a1041cb0fc..cde62c286d29 100644
+>>>> --- 
+>>>> a/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
+>>>> +++ 
+>>>> b/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
+>>>> @@ -66,13 +66,39 @@ properties:
+>>>>           $ref: /schemas/graph.yaml#/properties/port
+>>>>     out-ports:
+>>>> -    $ref: /schemas/graph.yaml#/properties/ports
+>>>> -    additionalProperties: false
+>>>> -
+>>>> +    type: object
+>>>>       properties:
+>>>> +      "#address-cells":
+>>>> +        const: 1
+>>>> +
+>>>> +      "#size-cells":
+>>>> +        const: 0
+>>>> +
+>>>>         port:
+>>>> +        type: object
+>>>> +
+>>>> +    patternProperties:
+>>>> +      '^port(@[0-7])?$':
+>>>> +        type: object
+>>>>           description: Output connection to CoreSight Trace bus
+>>>> -        $ref: /schemas/graph.yaml#/properties/port
+>>>
+>>> Nope, now you have no constraints on port node properties. Please look
+>>> at how other bindings are done to add properties on endpoint node.
+>>>
+>> Thanks for pointing this out, Rob. Shall we ref port-base and
+>> endpoint-base then add new properties on endpoint? In this way, the 
+>> redundant code from port schema is not required.
+>>>> +
+>>>> +        patternProperties:
+>>>> +          "^endpoint(@[0-9a-f]+)?$":
+>>>> +            type: object
+>>>> +            properties:
+>>>> +              remote-endpoint:
+>>>> +                description: |
+>>>> +                  phandle to an 'endpoint' subnode of a remote 
+>>>> device node.
+>>>> +                  $ref: /schemas/types.yaml#/definitions/phandle
+>>>
+>>> Don't need this.
+>>>
+>>>> +              label:
+>>>> +                description: Label the source corresponding to the 
+>>>> output connection
+>>>> +                $ref: /schemas/types.yaml#/definitions/string
+>>>
+>>> label already has a type.
+>>>
+>>> As this node is an output, aren't you labeling what the destination is,
+>>> not the "source"?
+>>>
+>>> Why can't you look at the remote connection to identify what it is?
+>>>
+>> This funnel can route data stream from different trace source to 
+>> different output ports. This lable property is added to describe which 
+>> source is routed to this output port.
 >>
->> 2. Not all Amlogic SoC's use 3 KEY/IV descriptors.
->> Add keyiv descriptors count parameter to platform data.
+>> For example, the graph is as below. Funnel3 routes trace data from 
+>> TPDM0 to output[0] and output[0] of funnel3 is connected to input[0] 
+>> of TPDA0.
+> 
+> Funnel3 and Funnel4 are really Replicators ! How are they Funnels ? 
+> Again, my question still stands. Are Funnel(Replicator-renamed)3/4 and 
+> Funnel 0/1/2 programmable ?
+
+Sorry for oversimplied the topology. Funnel3 and Funnel4 have multiple 
+input ports instead of just one input port. It can have multiple input 
+ports and multiple output ports. Unlike replicator, it won't replicate 
+same data trace to all the outputs.
+
+Funnel3/funnel4 has same programing capability like standard coresight 
+funnel. It can enable input ports as requested. It can not be programed 
+to route which source to which output ports. Hardware staticlly defined 
+which source is routed to which output.
+
+> 
+> Suzuki
+> 
+> 
+>> While Funnels routes trace data from TPDM1 to output[1] which connects 
+>> to input[1] of TPDA0. Hope that clarifies this a little bit.
 >>
->> Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
->> ---
->>   drivers/crypto/amlogic/amlogic-gxl-cipher.c | 441 ++++++++++++--------
->>   drivers/crypto/amlogic/amlogic-gxl-core.c   |   1 +
->>   drivers/crypto/amlogic/amlogic-gxl.h        |   2 +
->>   3 files changed, 280 insertions(+), 164 deletions(-)
+>> |---------|    |---------|    |---------|    |---------|    |---------|
+>> |  TPDM0  |    |  TPDM1  |    |  TPDM2  |    |  TPDM3  |    |  TPDM4  |
+>> |---------|    |---------|    |---------|    |---------|    |---------|
+>>      |               |             |               |              |
+>>      |               |             |               |              |
+>>      |               |             |               |              |
+>>      |-----|   |-----|             |-----|   |-----|              |
+>>            |   |                         |   |                    |
+>>            |   |                         |   |                    |
+>>         [0]|   |[1]                   [0]|   |[1]                 |
+>>       \-------------/               \-------------/        \------------/
+>>        \  FUNNEL0  /                 \  FUNNEL1  /          \  FUNNEL2  /
+>>         -----------                   -----------            -----------
+>>              |                             |                      |
+>>       \-------------/               \-------------/               |
+>>        \  FUNNEL3  /                 \  FUNNEL4  /                |
+>>         -----------                   -----------                 |
+>>            |  |                         |   |
+>>         [0]|  |[1]                   [0]|   |[1]                  |
+>>            |  |----------               |   |                     |
+>>            |            |               |   |                     |
+>>            |-------|    |      |------- |   |          |--------- |
+>>                    |    |      |            |          |
+>>                    |    |      |            |          |
+>>                 [0]|    |[1]   |[2]         |[3]       |[4]
+>>             \ ---------------------------------------------------/
+>>              \                     TPDA0                        /
+>>               \                                                /
+>>                ------------------------------------------------
+>>
+>>>
+>>>> +    oneOf:
+>>>> +      - required:
+>>>> +          - port
+>>>> +      - required:
+>>>> +          - "#address-cells"
+>>>> +          - "#size-cells"
+>>>
+>>> The common schema that you removed handles this.
+>>>
+>>> Rob
 >>
 > 
-> Hello
-> 
-> I have started to test by adding patch one by one and when testing this one I got:
-> [   21.674995] gxl-crypto c883e000.crypto: will run requests pump with realtime priority
-> [   21.679686] gxl-crypto c883e000.crypto: will run requests pump with realtime priority
-> [   21.704366] ------------[ cut here ]------------
-> [   21.704480] DMA-API: gxl-crypto c883e000.crypto: device driver tries to sync DMA memory it has not allocated [device address=0x000000000264c000] [size=48 bytes]
-> [   21.717684] WARNING: CPU: 1 PID: 263 at kernel/dma/debug.c:1105 check_sync+0x1d0/0x688
-> [   21.725512] Modules linked in: meson_rng meson_gxbb_wdt rng_core amlogic_gxl_crypto(+) meson_canvas libphy(+) watchdog ghash_generic gcm xctr xts cts essiv authenc cmac xcbc ccm
-> [   21.741211] CPU: 1 PID: 263 Comm: c883e000.crypto Not tainted 6.8.0-rc1-00052-g595d4248b127 #24
-> [   21.749834] Hardware name: Libre Computer AML-S905X-CC (DT)
-> [   21.755353] pstate: 600000c5 (nZCv daIF -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-> [   21.762252] pc : check_sync+0x1d0/0x688
-> [   21.766047] lr : check_sync+0x1d0/0x688
-> [   21.769842] sp : ffff8000820fbb40
-> [   21.773119] x29: ffff8000820fbb40 x28: 0000000000000000 x27: 0000000000000000
-> [   21.780192] x26: ffff800081d639d0 x25: 0000000000001327 x24: ffff00000288b010
-> [   21.787265] x23: 0000000000000050 x22: 0000000000001327 x21: ffff800081c23a20
-> [   21.794336] x20: ffff800080fe0bb8 x19: ffff8000820fbbc0 x18: 0000000000000006
-> [   21.801410] x17: 645b206465746163 x16: 6f6c6c6120746f6e x15: ffff8000820fb540
-> [   21.808482] x14: 000000000000000b x13: ffff800081002748 x12: 0000000000000249
-> [   21.815554] x11: 00000000000000c3 x10: ffff80008105a748 x9 : ffff800081002748
-> [   21.822626] x8 : 00000000ffffefff x7 : ffff80008105a748 x6 : 80000000fffff000
-> [   21.829700] x5 : ffff00007d9abb08 x4 : 0000000000000000 x3 : 0000000000000027
-> [   21.836772] x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffff00000b314ec0
-> [   21.843844] Call trace:
-> [   21.846260]  check_sync+0x1d0/0x688
-> [   21.849710]  debug_dma_sync_single_for_device+0xb8/0xc0
-> [   21.854885]  dma_sync_single_for_device+0xc0/0x11c
-> [   21.859628]  meson_handle_cipher_request+0x49c/0x7c4 [amlogic_gxl_crypto]
-> [   21.866356]  crypto_pump_work+0x160/0x2ac
-> [   21.870324]  kthread_worker_fn+0xe4/0x300
-> [   21.874291]  kthread+0x11c/0x120
-> [   21.877483]  ret_from_fork+0x10/0x20
-> [   21.881020] irq event stamp: 9880
-> [   21.884296] hardirqs last  enabled at (9879): [<ffff800080988834>] _raw_spin_unlock_irqrestore+0x6c/0x70
-> [   21.893698] hardirqs last disabled at (9880): [<ffff800080987ca0>] _raw_spin_lock_irqsave+0x84/0x88
-> [   21.902668] softirqs last  enabled at (5638): [<ffff800080010674>] __do_softirq+0x494/0x4dc
-> [   21.910947] softirqs last disabled at (5627): [<ffff8000800161f0>] ____do_softirq+0x10/0x1c
-> [   21.919227] ---[ end trace 0000000000000000 ]---
 
-I confirm I see the same starting with this change with DMA_API_DEBUG=1
-
-[    4.745240] ------------[ cut here ]------------
-[    4.745295] DMA-API: gxl-crypto c883e000.crypto: device driver tries to sync DMA memory it has not allocated [device address=0x000000000a816030] [size=16 bytes]
-[    4.758496] WARNING: CPU: 3 PID: 75 at kernel/dma/debug.c:1105 check_sync+0x1d8/0x690
-[    4.766242] Modules linked in:
-[    4.769258] CPU: 3 PID: 75 Comm: c883e000.crypto Not tainted 6.8.0-rc6-next-20240229-g99fbe5828431 #167
-[    4.778576] Hardware name: Libre Computer AML-S905X-CC (DT)
-[    4.784094] pstate: 600000c5 (nZCv daIF -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-[    4.790993] pc : check_sync+0x1d8/0x690
-[    4.794786] lr : check_sync+0x1d8/0x690
-[    4.798581] sp : ffff800082563b90
-[    4.801859] x29: ffff800082563b90 x28: ffff8000816ef298 x27: 0000000000000000
-[    4.808934] x26: ffff0000041ed010 x25: 0000000000000018 x24: 0000000000004000
-[    4.816006] x23: ffff8000816d1190 x22: 0000000000004000 x21: ffff800081539b50
-[    4.823079] x20: ffff800082563c40 x19: ffff8000816ef2b0 x18: 0000000000000030
-[    4.830151] x17: 645b206465746163 x16: 6f6c6c6120746f6e x15: 0720072007200720
-[    4.837223] x14: ffff80008154f2c0 x13: 00000000000002a6 x12: 00000000000000e2
-[    4.844296] x11: 0720072007200720 x10: ffff8000815a72c0 x9 : 00000000fffff000
-[    4.851369] x8 : ffff80008154f2c0 x7 : ffff8000815a72c0 x6 : 0000000000000000
-[    4.858441] x5 : 80000000fffff000 x4 : 000000000000aff5 x3 : 0000000000000000
-[    4.865514] x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffff0000091a9100
-[    4.872587] Call trace:
-[    4.874999]  check_sync+0x1d8/0x690
-[    4.878449]  debug_dma_sync_single_for_cpu+0x84/0x8c
-[    4.883366]  dma_sync_single_for_cpu+0x58/0x10c
-[    4.887851]  meson_handle_cipher_request+0x3b0/0x780
-[    4.892767]  crypto_pump_work+0x15c/0x2bc
-[    4.896734]  kthread_worker_fn+0xcc/0x184
-[    4.900702]  kthread+0x118/0x11c
-[    4.903893]  ret_from_fork+0x10/0x20
-[    4.907430] ---[ end trace 0000000000000000 ]---
-
+-- 
 Thanks,
-Neil
-
-> 
-> Regards
+Tingwei
 
 
