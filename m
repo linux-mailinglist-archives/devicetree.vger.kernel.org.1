@@ -1,91 +1,141 @@
-Return-Path: <devicetree+bounces-52530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51E40887048
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 17:05:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A5FE8870CF
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 17:26:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0DB602819E0
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 16:05:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6BE771C22D5B
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 16:26:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6227856B76;
-	Fri, 22 Mar 2024 16:05:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4493E5820C;
+	Fri, 22 Mar 2024 16:26:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="W3V1cRet"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lithops.sigma-star.at (lithops.sigma-star.at [195.201.40.130])
+Received: from out-189.mta0.migadu.com (out-189.mta0.migadu.com [91.218.175.189])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 049AC50249;
-	Fri, 22 Mar 2024 16:05:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.201.40.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 530F85674C
+	for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 16:26:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.189
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711123530; cv=none; b=fHveUWzMCOoLeCL4q8P65JfO5psBC1tfpUz0jgvMRLDyOdvK4pHhm+dlvZzLKVsbjCMpH9OrNnrddipfGa9s564YYsFjZBAQw79e++PQ/XKVZ0HC+k6j+h4STJefMyAZ8qgvdnkgAZNiWetiT/Xs9lKMJdHXNtF3P07PoHObpAQ=
+	t=1711124778; cv=none; b=H1kGw+XXzMHDfp004ix94sD6tNqnzTpjANymsfNVD5rVV2GpqYFdIdvT/dxyHup9ZDXf6sQQ+JO4IT14nKrfIiL7zXNsrOOa6wfviRubeB5+TiB8T5ac4QE8IgNR6L6rvdNK7ij5jLkR6cueCld3OY7VVFFsSZ1/nlAeXP7wL9k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711123530; c=relaxed/simple;
-	bh=IV+OAjI9wnnxfMCGrBCAD3gzlO25uVV33QSEA4X33AM=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=oaCKmfTb37XAcaAgXh3fy9IVC/iL1cqc94jT95vMjZPQtFgA9IphRY6W0ywK00PD4ttqgdHGQoQNVYgw8d0U+PMEzR5K8acKAzRMsia6tve7SkiEb5z5dUVYC9qHN2MixSzpBvts5EG1Y8wZncYLxhX+u1i1ngaqshFwVpF0ipw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nod.at; spf=fail smtp.mailfrom=nod.at; arc=none smtp.client-ip=195.201.40.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nod.at
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nod.at
-Received: from localhost (localhost [127.0.0.1])
-	by lithops.sigma-star.at (Postfix) with ESMTP id 6223C6450948;
-	Fri, 22 Mar 2024 17:05:19 +0100 (CET)
-Received: from lithops.sigma-star.at ([127.0.0.1])
-	by localhost (lithops.sigma-star.at [127.0.0.1]) (amavisd-new, port 10032)
-	with ESMTP id apiN5osYyNZi; Fri, 22 Mar 2024 17:05:19 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-	by lithops.sigma-star.at (Postfix) with ESMTP id F245161F0A9F;
-	Fri, 22 Mar 2024 17:05:18 +0100 (CET)
-Received: from lithops.sigma-star.at ([127.0.0.1])
-	by localhost (lithops.sigma-star.at [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id EYt00MZaZPo2; Fri, 22 Mar 2024 17:05:18 +0100 (CET)
-Received: from lithops.sigma-star.at (lithops.sigma-star.at [195.201.40.130])
-	by lithops.sigma-star.at (Postfix) with ESMTP id B6A4B61F0A9D;
-	Fri, 22 Mar 2024 17:05:18 +0100 (CET)
-Date: Fri, 22 Mar 2024 17:05:18 +0100 (CET)
-From: Richard Weinberger <richard@nod.at>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	linux-mtd <linux-mtd@lists.infradead.org>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	david oberhollenzer <david.oberhollenzer@sigma-star.at>
-Message-ID: <2125862147.90778.1711123518626.JavaMail.zimbra@nod.at>
-In-Reply-To: <Zf2qQSRWYDzKd4--@makrotopia.org>
-References: <cover.1702952891.git.daniel@makrotopia.org> <20240219120156.383a1427@xps-13> <1209094181.98490.1708899174329.JavaMail.zimbra@nod.at> <ZdvV1KABu_UCSL7B@makrotopia.org> <1754825522.38834.1710105437883.JavaMail.zimbra@nod.at> <Ze5uUyUuEDBM3p43@makrotopia.org> <1196553263.78350.1710887478387.JavaMail.zimbra@nod.at> <Zf2qQSRWYDzKd4--@makrotopia.org>
-Subject: Re: [PATCH v7 7/7] mtd: ubi: provide NVMEM layer over UBI volumes
+	s=arc-20240116; t=1711124778; c=relaxed/simple;
+	bh=HOkr8Hoor9LWrctKOQzP7fj5wIdq4ZleDhqNpY3eCFM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=upbApCn6UVvGwseUoVw7Rggv3rMDjt+3bjAJyttLTssQ2u3r1W2a8QHtohaV2iEm5z8Zrv86HIS9BdQc1twZ3NoMn2FtmbXpTf02Fzu+SOJz2j9SzjdF0KJHm3RbIWZFWeABSWERweWwR1OEkqEiKaRGS27WBcUSzR992CVJr9g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=W3V1cRet; arc=none smtp.client-ip=91.218.175.189
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <bcb82d05-3c8f-40f4-a8d3-a0d7c17497b3@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1711124774;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Y/6J+YbEX3EYv+o0oRRUc2f+RR8PKsdbh2rDoDRf+CQ=;
+	b=W3V1cRetDjH+QZIfP4YR4L6tc6g5V3rgUlEvOaJraPy1aw5TxWHFAm76DXOEaXXhFcDmRO
+	/A8RFQT2CcLz+uR6kYkPmm9mRm2eUeXxXManLt/BUgoFyzoQVys+3F5xw6hW2idomfhSEl
+	z0QwYPUnTiKYqSmUGTO8tb68riCfcj0=
+Date: Fri, 22 Mar 2024 12:26:10 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Zimbra 8.8.12_GA_3807 (ZimbraWebClient - FF97 (Linux)/8.8.12_GA_3809)
-Thread-Topic: provide NVMEM layer over UBI volumes
-Thread-Index: tOfo7y+yLt5SSiGVRI1o4gXoH7tsLw==
+Subject: Re: [PATCH 1/2] dt-bindings: nvmem: Remove fsl,t1023-sfp in favor of
+ fsl,layerscape-sfp
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Conor Dooley <conor@kernel.org>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Richard Alpe <richard@bit42.se>, linux-kernel@vger.kernel.org,
+ =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+ Michael Walle <michael@walle.cc>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20240316002026.1808336-1-sean.anderson@linux.dev>
+ <20240317-starved-pager-7a81c5045cfc@spud>
+ <9daf9c8f-6606-4ff6-8065-6a32fa0d152c@linux.dev>
+ <20240318-scarf-startup-64088b1d8d35@spud>
+ <fa047914-da03-4234-b48f-eebdf350795e@linux.dev>
+ <20240319-fondling-implode-322a9cb570b8@spud>
+ <d947cb15-aafc-487e-8bbd-54d786683470@linux.dev>
+ <024ca6eb-c3d8-4764-946e-1070d1bfb806@linaro.org>
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Sean Anderson <sean.anderson@linux.dev>
+In-Reply-To: <024ca6eb-c3d8-4764-946e-1070d1bfb806@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 
------ Urspr=C3=BCngliche Mail -----
-> Von: "Daniel Golle" <daniel@makrotopia.org>
-> So: hold my beer, I'll be back shortly ;)
->=20
-> If anyone has better ideas on how to utilize support for raw NAND or the
-> OneNAND controller in QEMU in a device-tree environment which actually
-> works, that'd be great. Obviously I don't care about other peripherals
-> like Bluetooth and all the complicated stuff of the N80x...
+On 3/22/24 03:01, Krzysztof Kozlowski wrote:
+> On 21/03/2024 17:21, Sean Anderson wrote:
+>> On 3/19/24 13:55, Conor Dooley wrote:
+>>> On Mon, Mar 18, 2024 at 11:48:06AM -0400, Sean Anderson wrote:
+>>>> On 3/18/24 11:40, Conor Dooley wrote:
+>>>>> On Mon, Mar 18, 2024 at 11:08:00AM -0400, Sean Anderson wrote:
+>>>>>> On 3/17/24 11:10, Conor Dooley wrote:
+>>>>>
+>>>>>>> Additionally, should
+>>>>>>> they fall back to t1023-sfp? I see that there's already some dts files
+>>>>>>> with these compatibles in them but seemingly no driver support as there
+>>>>>>> is for the t1023-sfp.
+>>>>>>
+>>>>>> I checked the reference manuals for these processors, and all of them use TA 2.0.
+>>>>>
+>>>>> Sounds like a fallback is suitable then, although that will require
+>>>>> updating the various dts files.
+>>>>
+>>>> Yes, a fallback (like what is done for the T-series) would be suitable,
+>>>> but given that these devicetrees have been in-tree for eight years I
+>>>> think it would be preferable to support the existing bindings for
+>>>> compatibility purposes.
+>>>
+>>> Just cos stuff snuck into the tree in dts files doesn't make it right
+>>> though, I'd rather the bindings were done correctly. I don't care if you
+>>> want to support all of the compatibles in the driver so that it works
+>>> with the existing devicetrees though, as long as you mention the
+>>> rationale in the commit message.
+>> 
+>> It doesn't really matter what the schema has as long as the driver supports
+>> existing device trees.
+> 
+> We do not talk about driver now but bindings. You add new compatibles on
+> a basis that they were already used. This cannot bypass regular review
+> comments, so if during regular review process we would require
+> fallbacks, then you are expected to listen to review also when
+> documenting existing compatibles. Otherwise everyone would prefer to
+> snuck in incorrect code and later document it "it was there!".
 
-Speaking of "hold my beer", maybe we can hack something into nandsim
-to act like a device tree attachable device?
-In theory, device tree is also available on x86 and other non-embedded arch=
-s.
+To be clear, the existing nodes look like
 
-Thanks,
-//richard
+	sfp: sfp@e8000 {
+		compatible = "fsl,t1040-sfp";
+		reg	   = <0xe8000 0x1000>;
+	};
+
+which is perfectly serviceable for read-only use (as the clock is only
+necessary for writing). As these devices are effectively identical, the
+compatible could also look like what the P-series has:
+
+	sfp: sfp@e8000 {
+		compatible = "fsl,p2041-sfp", "fsl,qoriq-sfp-1.0";
+		reg	   = <0xe8000 0x1000>;
+	};
+
+but in either case, it is desirable for the driver to match based on the
+more-specific compatible (as well as the less-specific compatible) as we
+already have enough information from the more-specific compatible to
+select the correct implementation.
+
+--Sean
 
