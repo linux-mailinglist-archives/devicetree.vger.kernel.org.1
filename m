@@ -1,121 +1,154 @@
-Return-Path: <devicetree+bounces-52374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C51E8866F4
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 07:43:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A4DA8866F9
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 07:45:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B62461F22BA2
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 06:43:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91D011F22E7E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 06:45:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0188FC8FF;
-	Fri, 22 Mar 2024 06:42:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D2C9D30B;
+	Fri, 22 Mar 2024 06:45:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="n3H7ZnqK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZQG17hsO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FD00199C2
-	for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 06:42:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A7ADC8E2;
+	Fri, 22 Mar 2024 06:45:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711089752; cv=none; b=UBruqfjiuf/iJlTE+QCSv1o+bNn5RTY7EVdtppm0ASlVfcbOXWUzKJfETehXA86XHKpaDrKzE4gSn/AxrwB6006qac5mzv7ybYWymJwCz/L40IqN3thxxmIFhp1n2Vwu7MFdZ/ZNkDsdKGBqXkDzLWLN2rEVoQaEVUT5EqzWzR8=
+	t=1711089939; cv=none; b=kvfxbzTe0MxwIdNJmdeCOSf6oMPpKdFaotVeqx8JzSMlWt1aYk+p3TKFQCjoXHAn4NYNNlDLoHYmVmaa1Y9coBANMomGiNuHS62LOozb1/2qrVGP9Ay9/o7/PAmnHXil+nuxTOJVWIQ2HeGgbo1+SCnw+wyC9jyadRibQpsN9LY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711089752; c=relaxed/simple;
-	bh=9bdjqCAyvS7k1BS7Lhjz19NNuYfcjp2pCZWc4hg6CHY=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=HxGW4QjkCiADCRcxcfDEJJxks6uQkJZw0GFMLz9nKraXcckVOidrv2uVR3jnzMCTeaKm+et8Te5zJGXgxXt+dIZDunsOMWWfPJ9exedXDydgb6o9Ymt6nV9RTJjAqlZZEFq2i/dxzaQX27LZqBMj7jdfmm7GWdowTNL6J17pFj0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=n3H7ZnqK; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-55a179f5fa1so2440933a12.0
-        for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 23:42:29 -0700 (PDT)
+	s=arc-20240116; t=1711089939; c=relaxed/simple;
+	bh=/lf0tDQvXRFPt50cWid1RnW3RlMNcFsrS7mt3Xkwubw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=gYJAJzHCGLTf01FpQHiInX6S4ofWrTY94OJbdigvOfsM0DwjGnQpeJZNBkEPY/oMU0/T3tLO8BDoVd4W9Fn2dVEcM0/uckkGEbefURtznOYRlM9qpmc7WOy8NNJhq5GNa5rRg9pPruiSw3nj9amBoHEvFSUfkycVgYKpmCaoDms=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZQG17hsO; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a46cc947929so247641166b.1;
+        Thu, 21 Mar 2024 23:45:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711089748; x=1711694548; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=BmaPEfXpnyUWO4tk/lYu9wRilg7S6pQ6tbGno3QPjdk=;
-        b=n3H7ZnqKKHlBSYPu7tTeNj2R3K7tdVZRPhdMA1+H1J+2f+e7QsLbbQZLgJRhIaqDva
-         ZSvORsxZfDBoDTk985oitAkBzRHet+ZU9Afqssft8uwEOeg+QhjaSlmGd2q4aRgfUjdX
-         5JLIImnVX8SQt6VktVR1DSpjeJDMoiD4H/reFsufUCG2efKN8rCMKhQtEqfS+Oa8II8n
-         aM67M5RAjxlB7rXDZodXReKUGHATxarpSiK7WuByfmgx+ShHDVWVSfNB/OovY0NwGP4A
-         RG3jsvVV8FAXdj0sQ2X6VVaZ546RpA/E3AQ05WBsZjd4J8ZsiWiOqHwEo0PFwx4XjfQG
-         wgDw==
+        d=gmail.com; s=20230601; t=1711089936; x=1711694736; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ui2/86gYMRmJflyA3uO46uowsgpBJaLyEk39FOlIr+w=;
+        b=ZQG17hsOyVigXsWBn4Gakscd26vEhfyrj+rBwJOlhiOqLHV+0ykQ0RyCpPy+h6iRD6
+         gWSR5xM3sI507gFZJuGB3pyEFqHllrnp+W5Vm71lmW3fKPQjxyEXonUfgWZz605LqkwH
+         9LM+dwQ6GH+LU49aC8KhDd6k3qLdPbJW/RW9Ht/vBeVhtg66KthoCbX+rpC4lH6NFLst
+         IqnG5S6UvQM+4HH11ioA6pKhVAHJmA3ZicXbqql8HmIIimmQOOrtqZxi2hmRaJL6dGPL
+         7Yzurh7hUVugQUlJfcMvUDO3rKEJSkDzwPiODZAUWiM3YPu3+Dz8G6YA0KujmqyoGWwC
+         AOmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711089748; x=1711694548;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1711089936; x=1711694736;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=BmaPEfXpnyUWO4tk/lYu9wRilg7S6pQ6tbGno3QPjdk=;
-        b=mRL6MLEijpLe6ZwNY1nQEXHzL3dCc+lG24MTP5am/jTAIdiWevjLDQxYzOhTdfGeye
-         R/btArKh9cLFhLnpPq3izVFPZ6UrcjVusblrij/mta9/gXilmWpxRryugGlPty/HhESt
-         TSqlii/LSjUY6ziMg3ydtQ6vLZrEiMVsqDdFhnGPgzbeZbmungtw7B57BB79KuV+fB99
-         33/tz5GfVA98R4L0gzeRXplwYGL/c2zBlXCpw2fNrFsH/upJfcDnAsG27O+sDHNBSAcM
-         64akH4o4X6yaHIB7UOVxhknnKoldHspta021bJtbGUxi5mIAzh0syGr+/AqlOMxhfS68
-         J/ew==
-X-Forwarded-Encrypted: i=1; AJvYcCWzU1y/4yVEdVv1xAAM8viI1L8Qwmv839EN1Af305OI2ACSlZi/5QCgMs02hYTs5CpvPOG7xOX3Q1upPMWI/bJJJFjPQYarkKjzEA==
-X-Gm-Message-State: AOJu0Yw4NBfI3j2bKk8FsW9CfLgDuIMrB2d9PEYoxHGqsgzRz6nqaF/q
-	WNxbNWM+eFR1QmYwHQ02fI5KNzojMzVFiXCMtUjHWWRpVyXEmWrg3O48e05Nxvo=
-X-Google-Smtp-Source: AGHT+IFjCUgRktXwrv+Lvi6UwcbsFwpnpkk/JBK3O3IuUm86QVwXhrso59zXtrI/2Z72EZMRI6ku9A==
-X-Received: by 2002:a50:d559:0:b0:567:a318:ac0b with SMTP id f25-20020a50d559000000b00567a318ac0bmr916782edj.16.1711089747857;
-        Thu, 21 Mar 2024 23:42:27 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id p8-20020a05640243c800b0056bdc4a5cd6sm645506edc.62.2024.03.21.23.42.26
+        bh=ui2/86gYMRmJflyA3uO46uowsgpBJaLyEk39FOlIr+w=;
+        b=R1QC0p8khCAUi53ZzpeE/SeAKXVjtb5G1r1daVl8ekcN4DJZOlWELA2WJnl863cQYP
+         FUF6sSEqhdaqL7SQRaUhHZxAjBbJR9Y4wz9T0/L1Rof81BltFGh4LRMZIiT5QTdylveq
+         yNIHvJDbSsEmouettLClUlFu01wUf9yy9GGmPIc0C1PbZoYwFH3/XDejF9JRMEE4gZX6
+         MdbSoRyeICc/TlfSUJettmPfpc/M3pVRoa2kpZUfVNcQazf8FMqwO26TeL/osfT4GQnW
+         YyWGJ0aK/IgjByDApumQG95+l21rbar+rJfpwAfzdlnB/v82qHdu35VCB4LDBDDRi6GY
+         umYQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXC6o1CRtxOAhcwGsfIEC/6qXn7M6KGBKyU8GZTzPoWb/fdDzSV+fD9pTx/wODWA/ATfb0j8D/+FOnQP7UsFNQbyhOFLIvZBcTfgKuFLWLDvNI95vuL7dpWuL7OHuTmlsTrAAZdCAY3+Q==
+X-Gm-Message-State: AOJu0YxEAkkmnXyeTO+VyjzOKn72jRUWPx3vJFX+KE6wx3E8tdcQd9Xo
+	FaGQ1wgUnsmT378apV04apTHBEudIw0Ks04TCtsGoYaD2XefOrSX
+X-Google-Smtp-Source: AGHT+IGtFzN/gx9AFNKUy9rg+o03MkxUw7k8OBf076+VwdSjKPVBe2p5nZFPIt2uvPzL3RYH0jwxwA==
+X-Received: by 2002:a17:906:eb08:b0:a43:f267:789f with SMTP id mb8-20020a170906eb0800b00a43f267789fmr948688ejb.41.1711089935743;
+        Thu, 21 Mar 2024 23:45:35 -0700 (PDT)
+Received: from [127.0.1.1] ([213.208.157.67])
+        by smtp.gmail.com with ESMTPSA id e19-20020a170906375300b00a46bb8a44cdsm679694ejc.198.2024.03.21.23.45.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Mar 2024 23:42:27 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Yoshinori Sato <ysato@users.sourceforge.jp>,
-	Rich Felker <dalias@libc.org>,
-	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
-	devicetree@vger.kernel.org,
-	linux-sh@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Kousik Sanagavarapu <five231003@gmail.com>
-Subject: [PATCH] sh: j2: drop incorrect SPI controller max frequency property
-Date: Fri, 22 Mar 2024 07:42:21 +0100
-Message-Id: <20240322064221.25776-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        Thu, 21 Mar 2024 23:45:35 -0700 (PDT)
+From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Subject: [PATCH v2 0/5] dt-bindings: hwmon: convert multiple devices to
+ dtschema
+Date: Fri, 22 Mar 2024 07:45:25 +0100
+Message-Id: <20240322-hwmon_dtschema-v2-0-570bee1acecb@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAUp/WUC/13M3QrCIBjG8VsZ73GGH6tcR91HjBCn84XU0GHF8
+ N6zQScd/h94fitkk9BkOHcrJFMwYwwt+K4D7VSYDcGpNXDKeyo4Je7pY7hNS9bOeEVO9iBtPzA
+ mlYJ2eiRj8bWB17G1w7zE9N78wr7rj2L/VGGEkuGohWRUi0HQy+wV3vc6ehhrrR9LIkOmrAAAA
+ A==
+To: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
+ Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Michael Ellerman <mpe@ellerman.id.au>, 
+ Nicholas Piggin <npiggin@gmail.com>, 
+ Christophe Leroy <christophe.leroy@csgroup.eu>, 
+ "Aneesh Kumar K.V" <aneesh.kumar@kernel.org>, 
+ "Naveen N. Rao" <naveen.n.rao@linux.ibm.com>
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>
+X-Mailer: b4 0.14-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1711089934; l=2069;
+ i=javier.carrasco.cruz@gmail.com; s=20240312; h=from:subject:message-id;
+ bh=/lf0tDQvXRFPt50cWid1RnW3RlMNcFsrS7mt3Xkwubw=;
+ b=2McnvuoHUuUtyQYvJUEBSnqDqQnJ2c+n4tSid9GmqgqV0Zi9e4tkHLv2pe+8MbsJr3uSAau/w
+ yu/hjQxdwhkDr6+Iz3JBjASswg0ktvFhZOYsYhqCwUWzDO/UB4e8+YF
+X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
+ pk=lzSIvIzMz0JhJrzLXI0HAdPwsNPSSmEn6RbS+PTS9aQ=
 
-The J2 SPI controller bindings never allowed spi-max-frequency property
-in the controller node.  Neither old spi-bus.txt bindings, nor new DT
-schema allows it.  Linux driver does not parse that property from
-controller node, thus drop it from DTS as incorrect hardware
-description.  The SPI child device has already the same property with
-the same value, so functionality should not be affected.
+This series converts the following existing bindings to dtschema:
 
-Cc: Kousik Sanagavarapu <five231003@gmail.com>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+- as370
+- ibmpowernv
+- stts751
+- ibm,p8-occ-hwmon (moved to trivial-devices.yaml)
+
+Additionally, pwm-fan.txt has been dropped because it was converted a
+year ago, and it is not mentioned anywhere in the tree.
+I could not find the rationale, but its current state does not seem to
+provide any valuable information.
+
+The binding of the as370 looks very simple, but given that the reg
+property is not a single address, I have written a dedicated file for
+it. If reg = <address range> is valid in trivial-devices.yaml, I have
+nothing against moving this device as well.
+
+Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
 ---
- arch/sh/boot/dts/j2_mimas_v2.dts | 2 --
- 1 file changed, 2 deletions(-)
+Changes in v2:
+- ibmpowernv: fix compatible string in the example.
+- Link to v1: https://lore.kernel.org/r/20240321-hwmon_dtschema-v1-0-96c3810c3930@gmail.com
 
-diff --git a/arch/sh/boot/dts/j2_mimas_v2.dts b/arch/sh/boot/dts/j2_mimas_v2.dts
-index fa9562f78d53..faf884f53804 100644
---- a/arch/sh/boot/dts/j2_mimas_v2.dts
-+++ b/arch/sh/boot/dts/j2_mimas_v2.dts
-@@ -71,8 +71,6 @@ spi0: spi@40 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 
--			spi-max-frequency = <25000000>;
--
- 			reg = <0x40 0x8>;
- 
- 			sdcard@0 {
+---
+Javier Carrasco (5):
+      dt-bindings: hwmon: as370: convert to dtschema
+      dt-bindings: hwmon: ibmpowernv: convert to dtschema
+      dt-bindings: hwmon: pwm-fan: drop text file
+      dt-bindings: hwmon: stts751: convert to dtschema
+      dt-bindings: hwmon: ibm,p8-occ-hwmon: move to trivial devices
+
+ Documentation/devicetree/bindings/hwmon/as370.txt  | 11 ------
+ .../devicetree/bindings/hwmon/ibm,p8-occ-hwmon.txt | 25 -------------
+ .../devicetree/bindings/hwmon/ibm,powernv.yaml     | 37 +++++++++++++++++++
+ .../devicetree/bindings/hwmon/ibmpowernv.txt       | 23 ------------
+ .../devicetree/bindings/hwmon/pwm-fan.txt          |  1 -
+ .../devicetree/bindings/hwmon/st,stts751.yaml      | 41 ++++++++++++++++++++++
+ .../devicetree/bindings/hwmon/stts751.txt          | 15 --------
+ .../devicetree/bindings/hwmon/syna,as370.yaml      | 32 +++++++++++++++++
+ .../devicetree/bindings/trivial-devices.yaml       |  2 ++
+ 9 files changed, 112 insertions(+), 75 deletions(-)
+---
+base-commit: ebc9bee8814d12ec247de117aa2f7fd39ff11127
+change-id: 20240320-hwmon_dtschema-7f58f49118aa
+
+Best regards,
 -- 
-2.34.1
+Javier Carrasco <javier.carrasco.cruz@gmail.com>
 
 
