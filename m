@@ -1,131 +1,129 @@
-Return-Path: <devicetree+bounces-52493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A4ED886E63
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 15:22:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2C97886E71
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 15:25:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C03F1C21211
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 14:22:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DEBC1F224D8
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 14:25:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE8E447A57;
-	Fri, 22 Mar 2024 14:22:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F330847A57;
+	Fri, 22 Mar 2024 14:24:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="YahQzIVQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p9C1X74a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E68B3EA69;
-	Fri, 22 Mar 2024 14:22:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C61A5481D1;
+	Fri, 22 Mar 2024 14:24:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711117360; cv=none; b=J9R+mNwep1S3rlYk04HWB4UqJ8Xci2CitcTz+Slj9zOGq+KMNBiweedDGuVx3NX2rOWQdzvDPiJ0WT3njprJu8oIEYN9e5BSp91TymmbtQmiTPdElOzOOSjcWdnUulJY81PFwqBivqdwZqd7Sosc32wa3hQk+2yI35YeIB7xKcA=
+	t=1711117496; cv=none; b=JcVDK/iimSHb7LHmyWOfxQxot6NDER+mLPIKPVlDiSo08rjyyAvLPpnkuyT5PhGaZiWWLfCuUFv5JH4vS52pP8rZJDzSzjfU6nuQZGzcj/d1ESXRdSDQNfuLLQ/4yxy8BGNrEWx9SCaMnMNFMrvLZ5JHclxmGfiIdrCICbKoKjY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711117360; c=relaxed/simple;
-	bh=BR0WlKret8eILef1rpRsE7FbijXE68ZU4YU5Orzxgn4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HQJdsga4Zb/5E3+ZY9ch1XNSXLdyhoajkbwR4z7Nl2VKhWuvFtTC+wQZkJrcE88/xhuLGM8u0COkE2pUhN2gTu0R1mIl5jHtf38fbyI/21URXsyfwfolyINZJTfovGD5tyfAK4oiq4dI3lOYbyf6CnCLRVjIM2gpds5E4vDCZjM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=YahQzIVQ; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 2B31AE0004;
-	Fri, 22 Mar 2024 14:22:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1711117349;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=SH1XRhULQIs8JPRuZsRMbAGpvto0OH+vLr70bNJGEho=;
-	b=YahQzIVQq0jJ1ScOJhQ/K+EwS4rg6H7JA024lGZUDBFPIlgbkqTCFwDO5ePCgG+fjLWptk
-	Es6WkS2daYPgFJsTy9CiAkveBWPlcPHZApIlp6nlAepa1ykZHJWcsb6GE9jRaEMcj4A6bE
-	2xNxzOT6ZuruAE8/uWn/8MuIHYlhHUDq9gWgVKBZb2tjg9nJnULQdy/nJnGFz+ULMhcyiD
-	C5wdMigkNMVqYqwwHGK6KUsrwnq6HtYYzLhIwt2HQw0xH+TbTmm+tZng3Q6FY6+TpHOLmt
-	b+gsW6jyAQhDTC9Mi6bP4ureTAOgB3GiqQpiXRVNptdmT02lrzTQ1RlB/DoTuQ==
-Date: Fri, 22 Mar 2024 15:22:26 +0100
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, Luis Chamberlain
- <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Mark Brown <broonie@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
- Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
- Russell King <linux@armlinux.org.uk>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- devicetree@vger.kernel.org, Dent Project <dentproject@linuxfoundation.org>
-Subject: Re: [PATCH net-next v5 13/17] net: pse-pd: Use regulator framework
- within PSE framework
-Message-ID: <20240322152226.7de347a6@kmaincent-XPS-13-7390>
-In-Reply-To: <Zf2QsfsxcPoCq_SC@pengutronix.de>
-References: <20240227-feature_poe-v5-0-28f0aa48246d@bootlin.com>
-	<20240227-feature_poe-v5-13-28f0aa48246d@bootlin.com>
-	<ZeObuKHkPN3tiWz_@pengutronix.de>
-	<20240304102708.5bb5d95c@kmaincent-XPS-13-7390>
-	<ZeWi90H-B4XeSkFs@pengutronix.de>
-	<20240321171524.0b04bfcc@kmaincent-XPS-13-7390>
-	<ZfxjosqPMo0ECBmx@pengutronix.de>
-	<20240322113950.27d35376@kmaincent-XPS-13-7390>
-	<Zf2QsfsxcPoCq_SC@pengutronix.de>
-Organization: bootlin
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1711117496; c=relaxed/simple;
+	bh=RVI/efteQCKqZjTG1IpZpoRWMwJCgqrfbqKi4jhZC4o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=S1q6prOZ+eNJ2fBFMly9NzNQsr3GbzILWi0Bxc33xRkVHF5wqPtFnOYdZVUlMtHwTgP9lPVCtkRpBCdGEYKrUbvCGdYgRI4O+Nq0HActcdtvUATDFRXFH7cUh63OucwRZBC2Gc1HWq+DI61XeP4EVaCKOEK5a6m+DZyg+1Bamhs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p9C1X74a; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BEC5C433C7;
+	Fri, 22 Mar 2024 14:24:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711117496;
+	bh=RVI/efteQCKqZjTG1IpZpoRWMwJCgqrfbqKi4jhZC4o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=p9C1X74a1jnG3XpxuajooWGojIDix6bmT6uqBE8l2HkAY9omVA4O1B0byql0SKdyH
+	 CYi7jeSkQf46LxgR1Ni0T0njDfeLKT7xiNS3gA/3cdGTKGCdel/QpQJQVI7ZeITY/T
+	 TCw3b5WDMwKKCqqSwoAgcF9kMlW0e7JE77y8nv80k2qYxUuWvRffrtI2EoaSJBWKpy
+	 UBpTPQohevNnSMe9JV+y1Isxz+8TjQCDi+uY05tQ+wtO1KCYBP0nQ8Xp4t7aO1LI0/
+	 6Iq4d3j/s4EMcrA3RgzpLv1icIZZFUVxdgMvffPcfwtVNw6BLtFLnHk8e3rdHIXAKm
+	 nzpFs27W6mSdQ==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1rnfpQ-000000001yB-3TGf;
+	Fri, 22 Mar 2024 15:25:05 +0100
+Date: Fri, 22 Mar 2024 15:25:04 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Abel Vesa <abel.vesa@linaro.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Rob Clark <robdclark@gmail.com>,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Sean Paul <sean@poorly.run>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kuogee Hsieh <quic_khsieh@quicinc.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] drm/msm/dp: Add support for determining the
+ eDP/DP mode from DT
+Message-ID: <Zf2UwOGU2N7BfTTw@hovoldconsulting.com>
+References: <20240322-x1e80100-display-refactor-connector-v3-0-af14c29af665@linaro.org>
+ <20240322-x1e80100-display-refactor-connector-v3-1-af14c29af665@linaro.org>
+ <CAA8EJpp6V5qVzbYtnU=JjO8FX45fcxBvWsD3PWQ5bu5wuv-T=g@mail.gmail.com>
+ <Zf2JYmm3DEaR8vB5@linaro.org>
+ <CAA8EJppT2VAXMxAbMztbi=-QZj8nP++_Zy4RQHkY-DrO5W_3EQ@mail.gmail.com>
+ <Zf2Se84QnWccpiM/@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: kory.maincent@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Zf2Se84QnWccpiM/@linaro.org>
 
-On Fri, 22 Mar 2024 15:07:45 +0100
-Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+On Fri, Mar 22, 2024 at 04:15:23PM +0200, Abel Vesa wrote:
+> On 24-03-22 15:38:03, Dmitry Baryshkov wrote:
+> > On Fri, 22 Mar 2024 at 15:36, Abel Vesa <abel.vesa@linaro.org> wrote:
+> > > On 24-03-22 15:30:54, Dmitry Baryshkov wrote:
+> > > > On Fri, 22 Mar 2024 at 15:22, Abel Vesa <abel.vesa@linaro.org> wrote:
 
-> Hay Kory,
->=20
-> On Fri, Mar 22, 2024 at 11:39:50AM +0100, Kory Maincent wrote:
-> > Hello Oleksij,
-> >=20
-> > On Thu, 21 Mar 2024 17:43:14 +0100
-> > Oleksij Rempel <o.rempel@pengutronix.de> wrote:
-> >  =20
-> > > On Thu, Mar 21, 2024 at 05:15:24PM +0100, Kory Maincent wrote: =20
-> > > > Hello Oleksij,
-> > > > Sorry, I forgot to reply about this.
-> > > > This is specific to pse_regulator driver. Could we tackle this chan=
-ge in
-> > > > another patch series when the current patch series got applied?
-> > > > Also I don't have the hardware to test it.   =20
-> > >=20
-> > > ACK, no problem. =20
-> >=20
-> > I have a question unrelated to this.
-> > Why do you add refcount on the pse_control struct?
-> > The pse control is related to the RJ45 port. Each port is exclusively
-> > related to one pse control.
-> > Shouldn't we return an error in case of two get of the same pse control
-> > index? Do you see use cases where a pse control could be get two times?=
- =20
->=20
-> I assume, any instance which need coordinate PSE behavior with own action=
-s.
-> For example - PHY will probably need to coordinate PHY state with PSE PD
-> classification process.
+> > > > > +static int dp_display_get_connector_type(struct platform_device *pdev,
+> > > > > +                                        const struct msm_dp_desc *desc)
+> > > > > +{
+> > > > > +       struct device *dev = &pdev->dev;
+> > > > > +       struct device_node *aux_bus;
+> > > > > +       struct device_node *panel;
+> > > > > +       int ret = DRM_MODE_CONNECTOR_DisplayPort;
+> > > > > +
+> > > > > +       /* legacy platforms specify connector type in match data */
+> > > > > +       if (desc->connector_type == DRM_MODE_CONNECTOR_eDP ||
+> > > > > +               desc->connector_type == DRM_MODE_CONNECTOR_DisplayPort)
+> > > >
+> > > > misaligned
+> > > >
+> > >
+> > > Sure, will fix.
+> > >
+> > > > > +               return desc->connector_type;
+> > > >
+> > > > Can we drop this part completely?
+> > > >
+> > >
+> > > You mean the whole if clause? How should we handle the legacy approach
+> > > then?
+> > 
+> > Legacy platforms still have the aux-bus/panel. so they should be
+> > handled by the check below.
+> > 
+> 
+> Oh, in that case we can drop the connector_type from every desc for all
+> platforms.
 
-Indeed, I was focused on devicetree and didn't thought of coordination
-between PHY and PSE. Thanks for your reply.
+Guys, please trim your replies!
 
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+Johan
 
