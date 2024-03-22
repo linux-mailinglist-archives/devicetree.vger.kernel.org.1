@@ -1,138 +1,149 @@
-Return-Path: <devicetree+bounces-52520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52521-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BD1E886FA5
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 16:14:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57738886FBA
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 16:23:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 233AD2860E8
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 15:14:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 682D81C22569
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 15:23:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDAF156B80;
-	Fri, 22 Mar 2024 15:13:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D91E53E35;
+	Fri, 22 Mar 2024 15:23:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HF8JbSRd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qsnn1yXW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 053A34E1C4;
-	Fri, 22 Mar 2024 15:13:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 509604F897
+	for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 15:23:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711120430; cv=none; b=MU/iFWND1f7MT1dbhE0AWC9zUwQzi2lFmWs3WYTc2iGl3tGeT7VR+aVqFPYywX4js+evXgxODhQRy+syoNFiNpWO4HqSH/DQcT0KHNMBosJbA2R73beLpT0/9vPAMDG+uOkUeSA+NOpl8qIu6p2NNWJ2egbiUIEFamWuUind/Iw=
+	t=1711121006; cv=none; b=qr4tfsYmVrSZz3g7opmk6UzcEUJR2znPlEEsmrbwRgJW68q1q0mVlv+wDEP7s3Xlse1lL/qT1BlUi6wFuOFitPog6qO1YDpH0akHlTpbWMGzs1/ExRARP2kuipgWsT8Z4JuAYDk0k+vI7HX2VgCAF7Mz/138Z8ClRvwLIpzqzdM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711120430; c=relaxed/simple;
-	bh=aEiwvFe1b6yF+StEQZ1rr1/VhFvd+gqzOrSn6S08Psw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=GUOs/p5Q8dKD+SJVa/edKL65GOIQjTC+ijxuTHWtc9X17wZjKYP4CNtRs1TDTxTUQGURFx5Whr5qDcRUs2v/peGnkhkCNIkeMpEMM0OF+UfX3EKNtMZ9OzeswvODaABxSQkVViAyXvY3iQ09rfsl8bPA+BoeC8aRfvZcd3dwvxc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HF8JbSRd; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-414787c73c7so8261155e9.0;
-        Fri, 22 Mar 2024 08:13:48 -0700 (PDT)
+	s=arc-20240116; t=1711121006; c=relaxed/simple;
+	bh=Jh9QoSpAh1VJIpxGig8oTblYGq/+BHwEt/Vp0lSS23E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MLPX32bXhCQX14EQcjTiKd83cKRSN0Z/r921jwsgkh3/lBlmfhZE7D0AKo0DQ+xpFKAQxqneCDddbTs/Ri9FeZR+OmIqT7PqWX+iNlO4yO2FBgI4DR/v72rvcEvRsfVRKzXQnBlg/ZURMGSkGwFrVD8CdMIGSJ1uZSAXdgva++w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qsnn1yXW; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-33edbc5932bso1251441f8f.3
+        for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 08:23:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711120427; x=1711725227; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WwFqtu9cCN48eR2VP1yO+BUGDJO89kd/raVOaSi/YaE=;
-        b=HF8JbSRdRNXTUpKRm+8Gxk3C74RbWDpW2ZhBXu/ukJ6p/0AFRyBeO01FM5nJQuDe7J
-         TftpE3pFl2XMV22KdoD4L6LOvhPbhWKi6YlxlJizqcZiBU9kM3ghnjLxJ9sAvk+IhSoa
-         qqr1GzTmC5dNwjtQx8VZ2RQgVDCiYjmNbp9DxcD7XcnCbLDkrybTucm/jf8TlwisWy8I
-         P6UFT9v1lppCnVLarS+Fjv37qFwDfDmKc1RwY5RBqI8vkoExB+DImT75aT+TpBirnuiw
-         ZyUrNhIiHrfwkIBDYjA9PNr0kcWs+dkzzJlUdehFuJMiFBom1ClyXf4JBrJmIDI0ZbIs
-         JJ0A==
+        d=linaro.org; s=google; t=1711121003; x=1711725803; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xH+tLDeMl99Xl0L3QKJ15jBZOcEoqwwXUzAeFBXfobY=;
+        b=qsnn1yXW8LdqXh4iwvKIexEj6btk6YM1YV6p5gVHnL/mnupx2gW2u/NRIX1SB5mTp3
+         wwdIELhghDdDWtBDP+ud2NnjwHwJ+4p82zk5MUuXrXh2jNYbDOJnRhNHB8MzZ8+EgNhf
+         z12pSygmnuARXarXJvGgKlud8WQHRouHU3caeIqstB3UbbbxXbW7lapN6mFnpwtw+0bO
+         mEhc+hvQsz7bPdTmxGhcGWeiin2bp5KcWsxV4wfE9XLajeelpb6c1BDg7yHbS00D4tAW
+         HJT1uB/8k5rNcfeilhft+0UHLs+8lEl7df+hCkjFsqvRU5OkHpuONnCf7g8ep7pJXHZv
+         HT2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711120427; x=1711725227;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WwFqtu9cCN48eR2VP1yO+BUGDJO89kd/raVOaSi/YaE=;
-        b=p2Qc/8QOJhSNtduFksby/WwUSlOqAc0PwdKy9IgYEWbuAJfniv+DcC6yUzExIXW0MX
-         Zam3P5rclcMlR8+aHREMwWQ0SCkBf6VGmJugPQCgNhsgpGHJHqSmUWuBDmECQI9ZMxml
-         CgT3vZIyPzo3B3ojVxaBnp2J/bM/UMnQXAxdtCrgNDhZzqajn+yjSTBgWxsz0bNSKhN2
-         LOE7mdFoIId/iGjO//uULRPyKrDJXTbN3kqWSacFbbDCLyjcbtO6dKanLE6fYOc2Pmvs
-         UN2A/jgES9+1ZciyksRzoAeJYv/vKpN4UZUz0mwj609p1cYdRRYpOcdC894U8si/HRou
-         oevQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVn6Yyqy8zWN8xEbweO1oIqhoCptrJiYboWFs2D6vw9ODhGf3TzWzFztVz1bi32dPskz1HKrt5Tq2UCv3iySMJtI3Tj/PjLwLk0l01GpBaa0I8yKO8nKf42ub4by7nqTSFlLuHh59ec3f9tY7q2
-X-Gm-Message-State: AOJu0YzWPX93eihme8m3uRiup7JYLYlcmVwFvWWMjoDRIJ2XlPzc7Kd/
-	FbvN+cJw8kBFkNxPXh/a93MJ3MzpfheUSZIEWBsqptEVk3MiXcIp
-X-Google-Smtp-Source: AGHT+IHZNeSZB4uvwIbaQvYaMT6aOs5dhwK5eOPl9RrKRfxIl1ZJULyy64o1gTX5Dx2isLcaInjLRg==
-X-Received: by 2002:a05:600c:5596:b0:414:c42:e114 with SMTP id jp22-20020a05600c559600b004140c42e114mr1824737wmb.39.1711120427360;
-        Fri, 22 Mar 2024 08:13:47 -0700 (PDT)
-Received: from prasmi.home ([2a00:23c8:2500:a01:7b89:721b:d6b0:d7e8])
-        by smtp.gmail.com with ESMTPSA id h13-20020a05600c314d00b004146d736fcdsm8626677wmo.36.2024.03.22.08.13.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Mar 2024 08:13:46 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chris Brandt <chris.brandt@renesas.com>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2 2/2] clocksource/drivers/renesas-ostm: Allow OSTM driver to reprobe for RZ/V2H(P) SoC
-Date: Fri, 22 Mar 2024 15:12:19 +0000
-Message-Id: <20240322151219.885832-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240322151219.885832-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20240322151219.885832-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        d=1e100.net; s=20230601; t=1711121003; x=1711725803;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xH+tLDeMl99Xl0L3QKJ15jBZOcEoqwwXUzAeFBXfobY=;
+        b=KKFmA1i0gTwN1mPhTQYco9OsosT4+vzmJBTfEPFQHq/3wCbZTGqDQtRnZg6ivJrtMw
+         qoYc2EtChVgFipNRAgzCUKgHe0YqDE9xJdBQ5PIY0De+UoYzx+fUHkv4/I0XXGuGQVbA
+         a9YE+Ht3L2+tSEnk55lgsIhTAU1Kzaeqa03tAqhnVrbGqFnzDLBSu4oVjMA5id7eaiY4
+         3P7c4X5yECOmi4vyg8yTScMSvzLBWHKyf6AYST3mt9M6FDYfr2MYXIN2DceIpRGJHfcV
+         gB3Naz1+sKGrDKLcJe0kgMriLLqotrZFfeiNQfu9qoBCmZCBjhOaPbpAqp/m4fLOgaIm
+         FcEg==
+X-Forwarded-Encrypted: i=1; AJvYcCX8ZwqR8aR6N0FNKOzscrwSC+DfHBy5QFgRp/APQeTuqh12JKWgQ229YUaWPKq0QhTgj37vEgjce5+LsPPz1RhfxWegobdHJ/mvCA==
+X-Gm-Message-State: AOJu0YxmeG7pZwl06rONjpWqtmXgzdhCyLTQadhLqHuAd/+DLQv+a3lv
+	zA2DtYz+YFqxLcx7QjzLCqWH5+bcs9/LBW5MEgqP/a1Y2l697QReRDkD4SZlo3ejQ/CGuoCS4/c
+	E
+X-Google-Smtp-Source: AGHT+IFq6peRNoTIZX+OTTQQf2b0W2SgKQJH3FoqXVgRL6cjwP/nlcEPgUeLLcilEgXGe1cpMzVILg==
+X-Received: by 2002:adf:e603:0:b0:341:b5ca:8f88 with SMTP id p3-20020adfe603000000b00341b5ca8f88mr1503198wrm.48.1711121002762;
+        Fri, 22 Mar 2024 08:23:22 -0700 (PDT)
+Received: from [192.168.0.102] ([176.61.106.68])
+        by smtp.gmail.com with ESMTPSA id t17-20020a0560001a5100b0033dd2c3131fsm2282603wry.65.2024.03.22.08.23.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 22 Mar 2024 08:23:22 -0700 (PDT)
+Message-ID: <0b091595-1587-421d-bb00-c00ef729d143@linaro.org>
+Date: Fri, 22 Mar 2024 15:23:21 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: usb: qcom,pmic-typec: drop port
+ description
+Content-Language: en-US
+To: neil.armstrong@linaro.org, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240322-typec-fix-example-v1-0-6b01c347419e@linaro.org>
+ <20240322-typec-fix-example-v1-1-6b01c347419e@linaro.org>
+ <230eab52-9751-43fd-8e47-fbfe12410e44@linaro.org>
+ <CAA8EJprD3fM966pLV4QXPUu=bFTn24fvPMKOaGqtqkAbdz7sOQ@mail.gmail.com>
+ <5ea4a187-1971-4970-a289-826d96c0351a@linaro.org>
+ <c0f1e898-7638-4b7b-a938-9e31e5b57e57@linaro.org>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <c0f1e898-7638-4b7b-a938-9e31e5b57e57@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 22/03/2024 15:09, neil.armstrong@linaro.org wrote:
+>> TBH I think we should drop this HS, SS stuff from the connector 
+>> definition - there's nothing to say in a h/w definition anywhere HS 
+>> must be a port or indeed SS - not all hardware knows or cares about 
+>> different HS/SS signalling.
+> 
+> It matches the USB-C connector electrical characteristics, which by spec 
+> has, at least:
+> - High-Speed USB Line
+> - up to 4 differential high-speed lanes that can be switched to DP, USB2 
+> or PCIe
+> - SideBand line (SBU)
+> 
+> And those 3 components can be handled by 3 different HW in the SoC, so 
+> each one has a dedicated port.
+> 
+> Remember DT describes the HW, not the SW implementation.
+> 
+> Neil
 
-The RZ/V2H(P) (R9A09G057) SoC is equipped with the Generic Timer Module,
-also known as OSTM. Similar to the RZ/G2L SoC, the OSTM on the RZ/V2H(P)
-SoC requires the reset line to be deasserted before accessing any
-registers.
+Yes, you're right about that.
 
-Early call to ostm_init() happens through TIMER_OF_DECLARE() which always
-fails with -EPROBE_DEFER, as resets are not available that early in the
-boot process.  To address this issue on the RZ/V2H(P) SoC, enable the OSTM
-driver to be reprobed through the platform driver probe mechanism.
+I suppose
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+1. Orientation switches should be defined as coming from a port on the
+    connector associated with the CC pins.
+    port@3:
+    orientation-switch port name goes here
+
+2. Data-role switches...
+    Again the CC pins
+
+https://community.silabs.com/s/article/what-s-the-role-of-cc-pin-in-type-c-solution?language=en_US
+
+Maybe the right-thing-to-do is to add another port for the CC pins - 
+which would still describe the hardware characteristics but would 
+_accurately_ name the thing which does the data-role/orientation switching
+
+CC1/CC2
+
+Then we would not be abusing HS/SS/SBU for the port names - we'd be 
+extending the connector definition but also naming the ports/endpoints 
+appropriately associated with the data over the hw
+
 ---
-v1->v2
-- Updated commit description
-- Dropped usage of IS_ENABLED() and used defined() instead
----
- drivers/clocksource/renesas-ostm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/clocksource/renesas-ostm.c b/drivers/clocksource/renesas-ostm.c
-index 8da972dc1713..39487d05a009 100644
---- a/drivers/clocksource/renesas-ostm.c
-+++ b/drivers/clocksource/renesas-ostm.c
-@@ -224,7 +224,7 @@ static int __init ostm_init(struct device_node *np)
- 
- TIMER_OF_DECLARE(ostm, "renesas,ostm", ostm_init);
- 
--#ifdef CONFIG_ARCH_RZG2L
-+#if defined(CONFIG_ARCH_RZG2L) || defined(CONFIG_ARCH_R9A09G057)
- static int __init ostm_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
--- 
-2.34.1
-
+bod
 
