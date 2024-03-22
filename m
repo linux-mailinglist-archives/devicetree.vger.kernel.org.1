@@ -1,115 +1,219 @@
-Return-Path: <devicetree+bounces-52543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4F1D887232
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 18:53:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E423E887238
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 18:54:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 53FBE1F21CBE
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 17:53:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9854028234A
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 17:54:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AF6A60880;
-	Fri, 22 Mar 2024 17:52:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D9F060885;
+	Fri, 22 Mar 2024 17:54:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=acm.org header.i=@acm.org header.b="kgwNwn08"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZLseMYIp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from 009.lax.mailroute.net (009.lax.mailroute.net [199.89.1.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B167F60874;
-	Fri, 22 Mar 2024 17:52:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=199.89.1.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E47ED605A3;
+	Fri, 22 Mar 2024 17:54:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711129973; cv=none; b=ZzxaFD25HmVAFQ55JuamBChNoIlBrOYBGCCQd4U/RIPhGjwhU4z99XemAeyNdCF6blHU1RMVXEJXeas98ZJ5i41zSijHFGXecXnbOSLVzfBUQax26O6aVBEND7ezq6oOwY8+tx+WhM3/06qAjHFl4HiXY+aL0vmg2WBefgtS2AI=
+	t=1711130053; cv=none; b=kPP4++dCUn04e+r2mCyh2BJLMsWGHwPtf9tjEJdSMDG8HdKcVBoN+pvSGMMr7bJrOgYGGphTgCViCEPlIL/JV/5IgXBI32dbYavuR7bqsTTmkXCAXWwJLAlQKs6OCmQm6vDaZ46SZmqA0wEZ+lzEoUPI88xiJBcnKaqCxR+8aZI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711129973; c=relaxed/simple;
-	bh=cPpzkL33TNc8EjbO22UOd0Waan/BeO74C1s1p9UZ/a4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=unCVsHDHhDwrfiiN/OPEFwVNN4kZgZqK5I9mfspxzcj2Nr+J/nZ4/HLJC0h0dGdSZgdfriIF/H+Hw3tMCy6XYwOVgjYzDPsac9HupfDn0tSzw5gRusThwD51Brhe++GQSJZ6gniq3Hd2xx98RWa05h5jaeqIashznQTqj4mtr3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=acm.org; spf=pass smtp.mailfrom=acm.org; dkim=pass (2048-bit key) header.d=acm.org header.i=@acm.org header.b=kgwNwn08; arc=none smtp.client-ip=199.89.1.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=acm.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=acm.org
-Received: from localhost (localhost [127.0.0.1])
-	by 009.lax.mailroute.net (Postfix) with ESMTP id 4V1VKb22wkzlgVnF;
-	Fri, 22 Mar 2024 17:52:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=acm.org; h=
-	content-transfer-encoding:content-type:content-type:in-reply-to
-	:from:from:references:content-language:subject:subject
-	:user-agent:mime-version:date:date:message-id:received:received;
-	 s=mr01; t=1711129964; x=1713721965; bh=VmpsveN1Jy+pI79mJoSzX1Tm
-	iWIgqpdMBcYQ0YCsro8=; b=kgwNwn08fqIrxHP5H264S72bIhZb5jOd5P/pAbWr
-	10b43ql298Ll0OdhuZl6sZ+SQPHzPNFSfKJjYVXeh9BY1K2zegzA7vH1mnjPnfjM
-	FKBzy4bDVWu7O8eMuV1EPQBWHCtKrcSWoLPpktF66AS4wUAC/1kJzufGMdnNs7t6
-	q62nT2xTeE0UTqel4BxzJFRA2elLKTNpfbKk1uNTklo+TMPgN4CM2FgMOUT58Z91
-	m4vAdjX7Pgn88NAymF5V6woD9zN7GrsuQ+lc29MAkDz8NIJN+P0kxHny8Mi/8bc1
-	i7RXpEKlbNBrfk2dtM5LEP+NrJzjyXCBIiVKPjVpX+ndeg==
-X-Virus-Scanned: by MailRoute
-Received: from 009.lax.mailroute.net ([127.0.0.1])
- by localhost (009.lax [127.0.0.1]) (mroute_mailscanner, port 10029) with LMTP
- id CnWJKX_Ztm_X; Fri, 22 Mar 2024 17:52:44 +0000 (UTC)
-Received: from [100.96.154.173] (unknown [104.132.1.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: bvanassche@acm.org)
-	by 009.lax.mailroute.net (Postfix) with ESMTPSA id 4V1VKK1wLtzlgTGW;
-	Fri, 22 Mar 2024 17:52:36 +0000 (UTC)
-Message-ID: <99874d1e-ff5c-4e8a-9922-752207119147@acm.org>
-Date: Fri, 22 Mar 2024 10:52:36 -0700
+	s=arc-20240116; t=1711130053; c=relaxed/simple;
+	bh=cuEt0R+/b/OljUG03tx8fQcLhAkGOfqCIl+FHBVR1u4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=H+6lv89h4TFsPgqNXLfwOVzJiTvosMfb4o4z8nxCsHMTxYsWxaA6HU6u2gbnAjzxxJm+vXyheWZ2PDLYwCT0lczAdnsIMxNGt/H8upnGKE03w+hRgpJ4iDiCpG5a+CpR/g+ZwQ4ggh/G2gkMH1LdirHs2YqAa6iimhDGn1Jz8TE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZLseMYIp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA043C43390;
+	Fri, 22 Mar 2024 17:54:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711130052;
+	bh=cuEt0R+/b/OljUG03tx8fQcLhAkGOfqCIl+FHBVR1u4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZLseMYIp9W0rxvFDH/VAZuwtH7tqFA+4borkS9S8MI+m3S2Tm+0VpmmM7MtvARqJF
+	 W4/yvVKch22j+FjQqV/yuoZhpx08quQe9ql1REpy/x226FzLUu54MZalvxf03x/y9m
+	 geOLi8lkiX3UPOYLARypRZuqCz9DE9zoDOmho7RirACzt4V/WOoDQiRptgwNg0e8RB
+	 N927ATfXYQaxO60ajvGG/wHaeeSubfGKlAnwV1KvOQJSRpDaFg1KLzvrGNJUZpL0T6
+	 ZIDCuEik6FMWJKkDMhLutqT6ewvAcboIs9peAZVcYwXtbhW/j1pLhUuQbAy6RgTMKr
+	 TTn5fySWdRnqA==
+Date: Fri, 22 Mar 2024 17:54:08 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Allen_Lin <allencl_lin@hotmail.com>
+Cc: dmitry.torokhov@gmail.com, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	jikos@kernel.org, benjamin.tissoires@redhat.com,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/4] dt-bindings: input: Add Himax HX83102J touchscreen
+Message-ID: <20240322-mammary-boil-f9a4c347fba1@spud>
+References: <20240322085606.993896-1-allencl_lin@hotmail.com>
+ <TY0PR06MB56116F0902017225C78EDDDD9E312@TY0PR06MB5611.apcprd06.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/8] block: implement NVMEM provider
-Content-Language: en-US
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
- Jens Axboe <axboe@kernel.dk>, Dave Chinner <dchinner@redhat.com>,
- Jan Kara <jack@suse.cz>, =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?=
- <linux@weissschuh.net>, Damien Le Moal <dlemoal@kernel.org>,
- Li Lingfeng <lilingfeng3@huawei.com>, Christian Brauner
- <brauner@kernel.org>, Christian Heusel <christian@heusel.eu>,
- Min Li <min15.li@samsung.com>, Adrian Hunter <adrian.hunter@intel.com>,
- Avri Altman <avri.altman@wdc.com>, Hannes Reinecke <hare@suse.de>,
- Christian Loehle <CLoehle@hyperstone.com>, Bean Huo <beanhuo@micron.com>,
- Yeqi Fu <asuk4.q@gmail.com>, Victor Shih <victor.shih@genesyslogic.com.tw>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Dominique Martinet <dominique.martinet@atmark-techno.com>,
- "Ricardo B. Marliere" <ricardo@marliere.net>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
- linux-block@vger.kernel.org
-References: <cover.1711048433.git.daniel@makrotopia.org>
- <7555db6eb71d4ccb2b9d5ebe3b41dc34088c6316.1711048433.git.daniel@makrotopia.org>
- <e170642d-9ae8-4d5a-90d9-2837f1bcef9b@acm.org>
- <ZfyW8jTAgclicAWd@makrotopia.org>
-From: Bart Van Assche <bvanassche@acm.org>
-In-Reply-To: <ZfyW8jTAgclicAWd@makrotopia.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="hK1Zc8DPJQdpQOE2"
+Content-Disposition: inline
+In-Reply-To: <TY0PR06MB56116F0902017225C78EDDDD9E312@TY0PR06MB5611.apcprd06.prod.outlook.com>
 
-On 3/21/24 13:22, Daniel Golle wrote:
-> On Thu, Mar 21, 2024 at 12:44:19PM -0700, Bart Van Assche wrote:
->> Why to add this functionality to the block layer instead of somewhere
->> in the drivers/ directory?
-> 
-> Simply because we need notifications about appearing and disappearing
-> block devices, or a way to iterate over all block devices in a system.
-> For both there isn't currently any other interface than using a
-> class_interface for that, and that requires access to &block_class
-> which is considered a block subsystem internal.
 
-That's an argument for adding an interface to the block layer that
-implements this functionality but not for adding this code in the block
-layer.
+--hK1Zc8DPJQdpQOE2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks,
+On Fri, Mar 22, 2024 at 04:56:03PM +0800, Allen_Lin wrote:
+> Add the HX83102j touchscreen device tree bindings documents.
+> HX83102j is a Himax TDDI touchscreen controller.
+> It's power sequence should be bound with a lcm driver, thus it
+> needs to be a panel follower. Others are the same as normal SPI
+> touchscreen controller.
+>=20
+> Signed-off-by: Allen_Lin <allencl_lin@hotmail.com>
 
-Bart.
+note to self/Krzysztof/Rob:
+There was a previous attempt at this kind of device. This version looks
+better but might be incomplete given there's a bunch more properties in
+that patchset:
+https://lore.kernel.org/all/20231017091900.801989-1-tylor_yang@himax.corp-p=
+artner.google.com/
+
+> ---
+>  .../input/touchscreen/himax,hx83102j.yaml     | 73 +++++++++++++++++++
+>  MAINTAINERS                                   |  6 ++
+>  2 files changed, 79 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/h=
+imax,hx83102j.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/himax,hx=
+83102j.yaml b/Documentation/devicetree/bindings/input/touchscreen/himax,hx8=
+3102j.yaml
+> new file mode 100644
+> index 000000000000..6c0a1ebf8d91
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/himax,hx83102j.=
+yaml
+> @@ -0,0 +1,73 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/touchscreen/himax,hx83102j.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Himax hx83102j touchscreen
+> +
+> +maintainers:
+> +  - Allen Lin <allencl_lin@hotmail.com>
+> +
+> +description:
+> +  This Himax hx83102j touchscreen uses the spi protocol.
+> +
+> +allOf:
+> +  - $ref: /schemas/input/touchscreen/touchscreen.yaml#
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: himax,hx83102j
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  spi-cpha: true
+> +
+> +  spi-cpol: true
+> +
+> +  spi-max-frequency: true
+> +
+> +  panel: true
+> +
+> +  himax,pid:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      PID for HID device, used to load correct firmware.
+
+One thing I did comment on that old patchset is why you cannot just use
+firmware-name here?
+
+Cheers,
+Conor.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - reset-gpios
+> +  - panel
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    spi {
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <0>;
+> +      ap_ts: touchscreen@0 {
+> +        compatible =3D "himax,hx83102j";
+> +        reg =3D <0>;
+> +        pinctrl-names =3D "default";
+> +        pinctrl-0 =3D <&touch_int0 &touch_reset>;
+> +        reset-gpios =3D <&gpio1 8 GPIO_ACTIVE_LOW>;
+> +        spi-cpha;
+> +        spi-cpol;
+> +        interrupt-parent =3D <&gpio1>;
+> +        interrupts =3D <7 IRQ_TYPE_LEVEL_LOW>;
+> +        panel =3D <&panel>;
+> +      };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 43b39956694a..aa51c60fd66d 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -9669,6 +9669,12 @@ L:	linux-kernel@vger.kernel.org
+>  S:	Maintained
+>  F:	drivers/misc/hisi_hikey_usb.c
+> =20
+> +HIMAX HID HX83102J TOUCHSCREEN
+> +M:	Allen Lin <allencl_lin@hotmail.com>
+> +L:	linux-input@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/input/touchscreen/himax,hx83102j.ya=
+ml
+> +
+>  HIMAX HX83112B TOUCHSCREEN SUPPORT
+>  M:	Job Noorman <job@noorman.info>
+>  L:	linux-input@vger.kernel.org
+> --=20
+> 2.34.1
+>
+
+--hK1Zc8DPJQdpQOE2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZf3FwAAKCRB4tDGHoIJi
+0gyYAP9Md446e439eml8dXX9grwTZoejgH0BhgAAWh8Q7P4ATwEA3PgLj7r0Tl9p
+tDry6VYILvNuLKpI13WhewztAPskIAk=
+=PNnb
+-----END PGP SIGNATURE-----
+
+--hK1Zc8DPJQdpQOE2--
 
