@@ -1,124 +1,126 @@
-Return-Path: <devicetree+bounces-52540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E025A887205
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 18:42:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D14CF887224
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 18:50:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1CC631C22D70
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 17:42:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87AF7284E50
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 17:50:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A05E5FBA5;
-	Fri, 22 Mar 2024 17:42:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B40D4604DE;
+	Fri, 22 Mar 2024 17:50:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ej6Aeh3C"
+	dkim=pass (2048-bit key) header.d=acm.org header.i=@acm.org header.b="Qpsv8DC7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from 008.lax.mailroute.net (008.lax.mailroute.net [199.89.1.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BE5D5A4C5;
-	Fri, 22 Mar 2024 17:42:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 804D5604A6;
+	Fri, 22 Mar 2024 17:50:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=199.89.1.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711129354; cv=none; b=Z41niSyGqBsiPkH+1c0RTNKKoHMJ4p2+aQS4C7epujrwGPzADoVdwC/J8yAbgiJjXjOpBooX5T7/Qq8yIMLzkrmh4Xh39IdX2ydslGDyI6gRHkl9clJwqTSjEBWS5MSVayiO2Bp8sG7HlUVXOsO166mvJ0GCagSynt5ye2MH3Zs=
+	t=1711129811; cv=none; b=E36O6beB75Cz2TVsAV/6FjcJUlVgAns/PbxEZYNLLZ2NboFWGmKzNME8GGLWYCQMiOvrs+m9GcS/02xloLSGBNQJxCTJEdcPfQwlUHgZ8+cF3qeXleat3xGXsdvoE4mEqucnLgMQ6hHC0Lq8r8JvpCmuKwX3AMk27xQxq6LNhrI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711129354; c=relaxed/simple;
-	bh=3kctBgA6lO8k+iTgwdlRZdF4LsZ7E3FLLcIygOl/PhM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DBhBxo4/l2pqPG5jEU8KwXmyM2RoYl0BwQXiG7yjnP7Nscw7vTI8C6nE1kmGhyCol8f/5VatS2a1bSmFQjDd4X/qweovnmxpAwMAwALTBxoEz4rI6wnslBJxNUImDfv/tQhmx5I66OUgcPrv5M5EnyP1utvPftSwDwVuZdTWJ98=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ej6Aeh3C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18D76C433C7;
-	Fri, 22 Mar 2024 17:42:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711129353;
-	bh=3kctBgA6lO8k+iTgwdlRZdF4LsZ7E3FLLcIygOl/PhM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ej6Aeh3CoH8kLnzYgrIrHa5ws9MHyb+JqLdpLA+ALsczv8CRg8/W1qneRl9NPhV4G
-	 Sb2kDLEfDcMLXH7JCyGchJOLx8n4d4TTwDAKVFZHhnsMglnxNPbOtWWgdUm031o4+k
-	 8GEA50RUjoTQzt7mBz7lj47lE29RMH4TTimr1KYfjuB2SMSKMn8/vbFz0Vs0/9hPbE
-	 EesxTpYwPk3Z8PdOezw5pySCQrINyRMTaFai4XymGi/99vf3AHBB7+N5Iqf7LmFQNC
-	 gbwZ3YE3PI08ccSeltFvAEF8eGqIS6yyPKRNd+JkkhA/jGwyIYvGD6mE6R1NHkq3fy
-	 mf0YaS+HrXt0Q==
-Date: Fri, 22 Mar 2024 17:42:27 +0000
-From: Conor Dooley <conor@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-media@vger.kernel.org, mchehab@kernel.org, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	matthias.bgg@gmail.com, amergnat@baylibre.com,
-	moudy.ho@mediatek.com, hverkuil-cisco@xs4all.nl,
-	sebastian.fricke@collabora.com, u.kleine-koenig@pengutronix.de,
-	chunkuang.hu@kernel.org, p.zabel@pengutronix.de,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH 1/4] dt-bindings: soc: mediatek: Add support for MT8188
- VPPSYS
-Message-ID: <20240322-lugged-tabloid-3d5a85dc58d0@spud>
-References: <20240322092845.381313-1-angelogioacchino.delregno@collabora.com>
- <20240322092845.381313-2-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1711129811; c=relaxed/simple;
+	bh=tlaxGcQqSo4rsMaZE0sbNHeXStqfwgVpWciJkli4y+E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=pUdmeTAQO5IdjmOQ9QU9XcsGdDjoTvA6OADnPdZRhI4Lr4xzq23GpEGoGCR81dpjPu+FHn93Cz7d1ClkNDpWQ43cyvHjLvXo00BnHdy2YHqAJpT+0WTIpPIlDcYwV9Hj4MrPIAsPQP9/pzIvFP7GwZ00tUENYPEfyYFI+MG5cNs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=acm.org; spf=pass smtp.mailfrom=acm.org; dkim=pass (2048-bit key) header.d=acm.org header.i=@acm.org header.b=Qpsv8DC7; arc=none smtp.client-ip=199.89.1.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=acm.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=acm.org
+Received: from localhost (localhost [127.0.0.1])
+	by 008.lax.mailroute.net (Postfix) with ESMTP id 4V1VGR4j9Yz6Cnk95;
+	Fri, 22 Mar 2024 17:50:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=acm.org; h=
+	content-transfer-encoding:content-type:content-type:in-reply-to
+	:from:from:references:content-language:subject:subject
+	:user-agent:mime-version:date:date:message-id:received:received;
+	 s=mr01; t=1711129797; x=1713721798; bh=afZlcm9O07bvpHWZp13m44cg
+	Mjqanzjz1tGTAZQ/1YM=; b=Qpsv8DC7mL/Qcs4xoiwBfXcBY4Y5RAIaatVQz7e0
+	NmTdbhx1Xsns+fOdYL4hRE0TSmqH/tkSqTJUfxTbNyGRIE37amKlWJ4sOG/4J9Rq
+	E1OlRyafw/bvMN6lPbKPVjJOARn9tI5lwiLNOWFpPp3xY18La+U79Q21j3TRjlFW
+	lTuANy7O79bywNMmr3DDk5u73ZNtChsWQ2S637Yrcdw2tU2esITNy61wtZSVyDwF
+	auUIvSZmBhD9AD/zmrt+L8xNEeGCgA27jur2s4MC/uU795KGEP3p1XkAOuDP9PvO
+	6b4Q0VUPCVm6smHq/cZwoEBSZdEwWvG4HyveTE0u6aEm8g==
+X-Virus-Scanned: by MailRoute
+Received: from 008.lax.mailroute.net ([127.0.0.1])
+ by localhost (008.lax [127.0.0.1]) (mroute_mailscanner, port 10029) with LMTP
+ id WDCEdahPUwBV; Fri, 22 Mar 2024 17:49:57 +0000 (UTC)
+Received: from [100.96.154.173] (unknown [104.132.1.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: bvanassche@acm.org)
+	by 008.lax.mailroute.net (Postfix) with ESMTPSA id 4V1VG64fZqz6Cnk8t;
+	Fri, 22 Mar 2024 17:49:50 +0000 (UTC)
+Message-ID: <7027ccdc-878a-420e-a7ea-5156e1d67b8a@acm.org>
+Date: Fri, 22 Mar 2024 10:49:48 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="RnulqveRO5MGLP2A"
-Content-Disposition: inline
-In-Reply-To: <20240322092845.381313-2-angelogioacchino.delregno@collabora.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/8] block: add new genhd flag GENHD_FL_NVMEM
+Content-Language: en-US
+To: Daniel Golle <daniel@makrotopia.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+ Jens Axboe <axboe@kernel.dk>, Dave Chinner <dchinner@redhat.com>,
+ Jan Kara <jack@suse.cz>, =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?=
+ <linux@weissschuh.net>, Damien Le Moal <dlemoal@kernel.org>,
+ Li Lingfeng <lilingfeng3@huawei.com>, Christian Brauner
+ <brauner@kernel.org>, Christian Heusel <christian@heusel.eu>,
+ Min Li <min15.li@samsung.com>, Adrian Hunter <adrian.hunter@intel.com>,
+ Avri Altman <avri.altman@wdc.com>, Hannes Reinecke <hare@suse.de>,
+ Christian Loehle <CLoehle@hyperstone.com>, Bean Huo <beanhuo@micron.com>,
+ Yeqi Fu <asuk4.q@gmail.com>, Victor Shih <victor.shih@genesyslogic.com.tw>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ Dominique Martinet <dominique.martinet@atmark-techno.com>,
+ "Ricardo B. Marliere" <ricardo@marliere.net>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+ linux-block@vger.kernel.org
+References: <cover.1711048433.git.daniel@makrotopia.org>
+ <89abd9ab93783da0e8934ebc03d66559f78f6060.1711048433.git.daniel@makrotopia.org>
+From: Bart Van Assche <bvanassche@acm.org>
+In-Reply-To: <89abd9ab93783da0e8934ebc03d66559f78f6060.1711048433.git.daniel@makrotopia.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 3/21/24 12:33, Daniel Golle wrote:
+> Add new flag to destinguish block devices which may act as an NVMEM
+> provider.
+> 
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> ---
+>   include/linux/blkdev.h | 2 ++
+>   1 file changed, 2 insertions(+)
+> 
+> diff --git a/include/linux/blkdev.h b/include/linux/blkdev.h
+> index c3e8f7cf96be9..f2c4f280d7619 100644
+> --- a/include/linux/blkdev.h
+> +++ b/include/linux/blkdev.h
+> @@ -81,11 +81,13 @@ struct partition_meta_info {
+>    * ``GENHD_FL_NO_PART``: partition support is disabled.  The kernel will not
+>    * scan for partitions from add_disk, and users can't add partitions manually.
+>    *
+> + * ``GENHD_FL_NVMEM``: the block device should be considered as NVMEM provider.
+>    */
+>   enum {
+>   	GENHD_FL_REMOVABLE			= 1 << 0,
+>   	GENHD_FL_HIDDEN				= 1 << 1,
+>   	GENHD_FL_NO_PART			= 1 << 2,
+> +	GENHD_FL_NVMEM				= 1 << 3,
+>   };
 
---RnulqveRO5MGLP2A
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Mar 22, 2024 at 10:28:42AM +0100, AngeloGioacchino Del Regno wrote:
-> Add compatible for MT8188 VPP mutex.
->=20
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
-
-You should at least mention the difference between this any anything
-else.
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+What would break if this flag wouldn't exist?
 
 Thanks,
-Conor.
 
-> ---
->  .../devicetree/bindings/soc/mediatek/mediatek,mutex.yaml         | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/soc/mediatek/mediatek,mute=
-x.yaml b/Documentation/devicetree/bindings/soc/mediatek/mediatek,mutex.yaml
-> index ba2014a8725c..a10326a9683d 100644
-> --- a/Documentation/devicetree/bindings/soc/mediatek/mediatek,mutex.yaml
-> +++ b/Documentation/devicetree/bindings/soc/mediatek/mediatek,mutex.yaml
-> @@ -33,6 +33,7 @@ properties:
->        - mediatek,mt8186-disp-mutex
->        - mediatek,mt8186-mdp3-mutex
->        - mediatek,mt8188-disp-mutex
-> +      - mediatek,mt8188-vpp-mutex
->        - mediatek,mt8192-disp-mutex
->        - mediatek,mt8195-disp-mutex
->        - mediatek,mt8195-vpp-mutex
-> --=20
-> 2.44.0
->=20
+Bart.
 
---RnulqveRO5MGLP2A
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZf3DAwAKCRB4tDGHoIJi
-0h/UAQCmi1zJDBqq/ELBeN+fgFnCvi/ZrBGGgS+TL6o5qCdBGgD/RNFzAN9Zq2LO
-sIgPEEJHFQ88CwRPTus+5+JuaPXzLgQ=
-=m4WI
------END PGP SIGNATURE-----
-
---RnulqveRO5MGLP2A--
 
