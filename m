@@ -1,132 +1,196 @@
-Return-Path: <devicetree+bounces-52345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D951886632
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 06:32:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E708788664E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 06:40:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2F498B249A9
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 05:32:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 07F721C235F6
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 05:40:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42206C144;
-	Fri, 22 Mar 2024 05:29:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5184D8F68;
+	Fri, 22 Mar 2024 05:40:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bl3gClSV"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eq5jPgtV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B44A4FBF2;
-	Fri, 22 Mar 2024 05:29:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5580B15BB
+	for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 05:40:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711085391; cv=none; b=HWaT5aPwY/N3rVde0Xm8p90t44GnaDokEhUUfoMoZRNkHYYBAsJQgkY64jCpfQJMHj1RyWAM4wbSmz4utTAX/Me+s3vm/gRgR4RwKZwYm9JEGtNfBvq0OFSNXvCGZq2vxf+vw6X9eXosPHitiFi3Q/hl2NyasmOxsS7D40Eh0nE=
+	t=1711086051; cv=none; b=ts7pSwybK7FQd+9UnxaH1dCp5xdtCuPKqRslOhkN+MtQGwxOhjHm2P1nOLUAo4hWixh1l2Rd1d35XQsxvjlRq4B/yza1yK+FsFFH1QZ0VIxubDo4htFtjPzAQMFpgZh4rLR+KfydO2/GMTWk12eWJiuTCwt3bXaidtH3a0xpg34=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711085391; c=relaxed/simple;
-	bh=pdeOuks3LIs3Mh9ph/rGzJ+Io0OhwyHsCvVWeoBP/6U=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Yt4gJiZBl0jwhetG7KUQjWO013mwhFml9p4iK/lIboo7dY/bRueKr/Tqor07LzCdu9WOyTiV/sdYpDY7nNL8sKlM0+vKl3BeQOXTufJX44QcFWnpPEhBQ4tDxG5bPWBA2elYZn5QhNotFM2l4WBbQyZU/3Zhytf7O17xWjzMOtQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bl3gClSV; arc=none smtp.client-ip=209.85.214.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-1e00d1e13a2so10274365ad.0;
-        Thu, 21 Mar 2024 22:29:49 -0700 (PDT)
+	s=arc-20240116; t=1711086051; c=relaxed/simple;
+	bh=FaXVFsApl7dblUMKMUDUIpzrwE5ABcfu9Hq6RbVdq64=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PAjZF2IE3HaXND6HGveCInTEp36y/7oy/WYOySzJXFuRMU6sqTwHS2CYwBs0SiaHMYAyvrLhI56EC9n1zzh5rfwMMhk0/uR4YSjeupkQmyNaUU662MyIxxJTTl0VrKOXilrKfu2kmEAgj6iOd0H5sjjU2JR6v6MZKSUdG1zQquI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eq5jPgtV; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-513e6777af4so3222070e87.2
+        for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 22:40:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711085388; x=1711690188; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+nQtnYW8cekda2E01DVGVjSk0pOF2YP92IFRmmPrICQ=;
-        b=Bl3gClSVwlVkpbF0gV8e4tw6MU27TY5MlCCnKiGBbFMqldqoyPWn6LmqzsYcamaXra
-         HgNqQlwuFPsF69T/01pGUsx+/Et/hXGbBB1qJ2IjoEWajvg2SRgW5GAdDvDAg+ilRCsO
-         frbaMYSUMLS+f6bFNTfHW27u+rTv/It2DaDROJXO6mdXHJ0s/dUQd/KfVMkAAUeDpCKL
-         EoUinoXJ1k/SB+k+Pf2I8QUnip7TdnckInHkXNUCLYBQmyCEazxjoitA2RUI6EeRGscL
-         frs12L9Kh3VVIxvt1pCKAVc7h5IMi8x0tp4Jjs9peTipkCIKAydfqeGaxW5oxlgykeVb
-         Bw5A==
+        d=linaro.org; s=google; t=1711086047; x=1711690847; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=BROMpVHLCWSHO69sYcqHfhDhJzuRwH9THVcSjAEu5o4=;
+        b=eq5jPgtVez0zzO+UAoHwSd9BXULrkVyOitAncaDPa4Tc0ZbF0FglJQYt74WlRSAdA3
+         S/Z5QP7Uql8ZTwONkcOmtc7+KR4RnHCn9L4fHsLpye4qkFFZ5CkgFWZbKxkktknuabup
+         0qLDpvEHWtpmGjN/b/6hWjEPnCR6HHH/YIYSHeZvQxoSUZS0kIOByom2tzbu79nR7OSD
+         ZD8Ra0ntKfnLyb0BlhmFabUPnv4R0R8lqB6na9cOawFEx6W8b6eiA2XCZLwnS3MO0/Lb
+         Spk3gWWUDaGpRE0qJAqkTmUgSh6H5xJbKvPJ0lb0VvwrWUPjEPTYEjUhM7wKWoIA3LrV
+         RM5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711085388; x=1711690188;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+nQtnYW8cekda2E01DVGVjSk0pOF2YP92IFRmmPrICQ=;
-        b=IMKXDb9c47yOf9x45QBVPEnpfKymz8w8edoFq3ayQnApVq7TCfxuY+NvUeZ87VRqiF
-         WLXw9MUCoLK7cy11aLEVapDiZsvRMSeDyU6Myz1vkhzrbJXzUehBLYK1+j6FKm0spwEt
-         AGBJ5QC8XWfSNKvQ4hSFdiM6mJwQcs/5Tt93Ru2wFyWSNt06hguOO0g+kgsafVUmyuBx
-         UvoXo1PptISRzzw8aYdDP3aRnBC0DkXGW5LanWFlHzteZLd6qVoskAAg4fEowlOKJzxs
-         TgrdZmG25sbNF+FggC2aZRh2uNgqOr8EuReLkTB1BzOBpFqhdN0hzXrNA3kclPTRsxb1
-         nG/w==
-X-Forwarded-Encrypted: i=1; AJvYcCV50TrGZeJAqhvQvZkEHyuUbnBMWH6KhytrmgQYwSSrPkLrOhWowjQTQ/j+iT56fm8Ekg6vxzFRrxfqne0aUCbXhno8KXN2H4gfpmT3AUtYbqVJM2OjtnqS/hCiGUmyraGQnUwh0QXD9hg=
-X-Gm-Message-State: AOJu0YxjVuDTmCX4DxP83DkfINrhbGKX5YDWkD298x9nOY1DNwirQo/4
-	PBEfikLIBYeH1kVyn2H00nInhGRIAHWzLjEoNtvnFR30B42AjpskStoFwrqkI2bk9Q==
-X-Google-Smtp-Source: AGHT+IGWRWK0tGZwBaGff9HXSl9tVqTjf0FaaPeLL1/J/kZHM6H1XF3+uirsjSMrdpkZZK+QcAFgFg==
-X-Received: by 2002:a17:903:2450:b0:1dd:a50c:1fdd with SMTP id l16-20020a170903245000b001dda50c1fddmr1873946pls.65.1711085388034;
-        Thu, 21 Mar 2024 22:29:48 -0700 (PDT)
-Received: from localhost.localdomain ([221.220.133.103])
-        by smtp.gmail.com with ESMTPSA id e5-20020a170902d38500b001dffa622527sm882978pld.225.2024.03.21.22.29.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Mar 2024 22:29:47 -0700 (PDT)
-From: Jianfeng Liu <liujianfeng1994@gmail.com>
-To: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org
-Cc: robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de,
-	jacob-chen@iotwrt.com,
-	ezequiel@vanguardiasur.com.ar,
-	mchehab@kernel.org,
-	liujianfeng1994@gmail.com,
-	sfr@canb.auug.org.au
-Subject: [PATCH v1 2/2] arm64: dts: rockchip: Add RGA2 support to rk3588
-Date: Fri, 22 Mar 2024 13:29:15 +0800
-Message-Id: <20240322052915.3507937-3-liujianfeng1994@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240322052915.3507937-1-liujianfeng1994@gmail.com>
-References: <20240322052915.3507937-1-liujianfeng1994@gmail.com>
+        d=1e100.net; s=20230601; t=1711086047; x=1711690847;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BROMpVHLCWSHO69sYcqHfhDhJzuRwH9THVcSjAEu5o4=;
+        b=YMxUm+3wQbVL2Zg9Z/seC0yfEMNL2zAM+5u1kAXTwirwt3sRW14JjsgZWsMdD/S5YJ
+         8bTQo77FVpPom18DI9wQhcuute4ieVy0pK2bdJg7kzP5fbeTYPPs9F5BkqilhisUfQNV
+         YMDuhgMF12aUEKqcq4qt/Ort/WWQ6WTVms9V1Gd3jatpDumV8gsbmHg9dYQSGdmGyxfv
+         FcqQDxIPBf/26XTwYPbK4G79pImW7wPYFUkvxb0QNQ20irN6CcGRvbPjGvmhe3v8hFFk
+         JTNah+dIn67hih5JMjOjIE3GpbenbOTi/GK9L8pA+/48tZ5a3Of700KAGz3dadWqniwd
+         KxTQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU/dzwUtZjZFO+vOzz3KyZ/Y9NPReE3aKRDyQLVMnmel9mBzowXgEOCs0FdCQ9iiS8uHw0gHqCV2c64wzl69Lauh5TpGdXUv7Pwrw==
+X-Gm-Message-State: AOJu0Yw0OD/qEYPMM6odvtaQYT9y3qkKMslon7mTzAiHNvhnOZfkZzM5
+	qnOl7iDW+ndLYe/+rFEaqnohFvse+UiD0sAjfqmOx9yh+xNvvrTatmi/PwKoBHo=
+X-Google-Smtp-Source: AGHT+IFPslJAzt8t6fwf7l4FRWO+/BZKadxr4PCvyq9DBD7dU+cemCW3lroB9iRSoo+rQtO/x/40KA==
+X-Received: by 2002:ac2:4652:0:b0:513:572f:88f1 with SMTP id s18-20020ac24652000000b00513572f88f1mr1086426lfo.27.1711086047335;
+        Thu, 21 Mar 2024 22:40:47 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id f12-20020a17090624cc00b00a46aac377e8sm636880ejb.54.2024.03.21.22.40.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Mar 2024 22:40:46 -0700 (PDT)
+Message-ID: <17611183-f288-47fe-a5e1-91ee16168db0@linaro.org>
+Date: Fri, 22 Mar 2024 06:40:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 0/4] virt: vmgenid: Add devicetree bindings support
+To: "Landge, Sudan" <sudanl@amazon.co.uk>, Rob Herring <robh@kernel.org>,
+ David Woodhouse <dwmw2@infradead.org>
+Cc: Sudan Landge <sudanl@amazon.com>, tytso@mit.edu, Jason@zx2c4.com,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ sathyanarayanan.kuppuswamy@linux.intel.com, thomas.lendacky@amd.com,
+ dan.j.williams@intel.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, graf@amazon.de, bchalios@amazon.es,
+ xmarcalx@amazon.co.uk, ardb@kernel.org, benh <benh@kernel.crashing.org>
+References: <20240319143253.22317-1-sudanl@amazon.com>
+ <23692c07-98bd-477d-b244-bba14c50352c@linaro.org>
+ <38aad6c0e698c8e804694276d1762d61f2068ce8.camel@infradead.org>
+ <20240320161531.GA1810860-robh@kernel.org>
+ <60404403932a984d1f75d111ff53b9053af03579.camel@infradead.org>
+ <20240321133250.GA1600070-robh@kernel.org>
+ <db5a1027-93b7-4630-b679-8a654905dc48@amazon.co.uk>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <db5a1027-93b7-4630-b679-8a654905dc48@amazon.co.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-RK3588 also features a RGA2 block. Add the necessary device tree
-node.
+On 21/03/2024 18:39, Landge, Sudan wrote:
+> 
+> 
+> On 21/03/2024 13:32, Rob Herring wrote:
+>> CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you can confirm the sender and know the content is safe.
+>>
+>>
+>>
+>> On Wed, Mar 20, 2024 at 04:55:45PM +0000, David Woodhouse wrote:
+>>> On Wed, 2024-03-20 at 11:15 -0500, Rob Herring wrote:
+>>>> On Wed, Mar 20, 2024 at 01:50:43PM +0000, David Woodhouse wrote:
+>>>>> On Tue, 2024-03-19 at 16:24 +0100, Krzysztof Kozlowski wrote:
+>>>>>> On 19/03/2024 15:32, Sudan Landge wrote:
+>>>>>>> This small series of patches aims to add devicetree bindings support for
+>>>>>>> the Virtual Machine Generation ID (vmgenid) driver.
+>>>>>>>
+>>>>>>> Virtual Machine Generation ID driver was introduced in commit af6b54e2b5ba
+>>>>>>> ("virt: vmgenid: notify RNG of VM fork and supply generation ID") as an
+>>>>>>> ACPI only device.
+>>>>>>> We would like to extend vmgenid to support devicetree bindings because:
+>>>>>>> 1. A device should not be defined as an ACPI or DT only device.
+>>>>
+>>>> This (and the binding patch) tells me nothing about what "Virtual
+>>>> Machine Generation ID driver" is and isn't really justification for
+>>>> "why".
+>>>
+>>> It's a reference to a memory area which the OS can use to tell whether
+>>> it's been snapshotted and restored (or 'forked'). A future submission
+>>> should have a reference to something like
+>>> https://www.qemu.org/docs/master/specs/vmgenid.html or the Microsoft
+>>> doc which is linked from there.
+>>
+>> That doc mentions fw_cfg for which we already have a binding. Why can't
+>> it be used/extended here?
+> QEMU has support for vmgenid but even they do not pass vmgenid directly 
+> to the guest kernel using fw_cfg. QEMU passes the vmgenid/UUID via 
+> fw_cfg to an intermediate UEFI firmware. This UEFI firmware, running as 
+> a guest in QEMU, reads the UUID from fw_cfg and creates ACPI tables for 
+> it. The UEFI firmware then passes the UUID information to the guest 
+> kernel via ACPI.
+> This approach requires yet another intermediary which is UEFI firmware 
+> and adds more complexity than ACPI for minimalist hypervisors that do 
+> not have an intermediate bootloader today.
 
-Signed-off-by: Jianfeng Liu <liujianfeng1994@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+What stops you from passing fw_cfg not to UEFI FW? BTW, no actual VM
+name was used in your posting, but now suddenly it is a talk about QEMU.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-index 87b83c87b..8f130177b 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-@@ -387,6 +387,17 @@ psci {
- 		method = "smc";
- 	};
- 
-+	rga: rga@fdb80000 {
-+		compatible = "rockchip,rk3588-rga", "rockchip,rk3288-rga";
-+		reg = <0x0 0xfdb80000 0x0 0x180>;
-+		interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH 0>;
-+		clocks = <&cru ACLK_RGA2>, <&cru HCLK_RGA2>, <&cru CLK_RGA2_CORE>;
-+		clock-names = "aclk", "hclk", "sclk";
-+		resets = <&cru SRST_RGA2_CORE>, <&cru SRST_A_RGA2>, <&cru SRST_H_RGA2>;
-+		reset-names = "core", "axi", "ahb";
-+		power-domains = <&power RK3588_PD_VDPU>;
-+	};
-+
- 	spll: clock-0 {
- 		compatible = "fixed-clock";
- 		clock-frequency = <702000000>;
--- 
-2.34.1
+Best regards,
+Krzysztof
 
 
