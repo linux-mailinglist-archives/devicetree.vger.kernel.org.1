@@ -1,169 +1,117 @@
-Return-Path: <devicetree+bounces-52459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52460-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D54E9886B20
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 12:14:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E093E886B57
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 12:34:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1FEC2B21D82
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 11:14:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8143EB214EA
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 11:34:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FAEF3F9DD;
-	Fri, 22 Mar 2024 11:14:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C898A3F9C2;
+	Fri, 22 Mar 2024 11:34:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="TumINdaO"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="fUDSHomL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 298A33F8F0;
-	Fri, 22 Mar 2024 11:14:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB6983F8FB;
+	Fri, 22 Mar 2024 11:34:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711106058; cv=none; b=bqJ101UVq4MnYZlzJNRH6tLM7k6cLxnNtLsYdhQaxDkXIEaFqZVM7FH3QyH6lHS40EyyQbe2GZ11oYvAlJAPqOz0S6Q91JTwNnN3uejStvSQJE2OKPy8uwiFlbrnSG8rQ5iXNxvSLX5sru14proBuy2PhnKmwahhVkglzRnrK/Y=
+	t=1711107266; cv=none; b=VmdCczSbk64dOVn3k1ItCUoZcpomQhJ00i5cKMDUEE86uGjrZsZnuO4dvcYfdtDWdPmgUwQFzKLQyMFuIDxcNcNxYDLB+jfm8kGaxJZRLp4/pyjFzlFXc9mFhOD0GV9KJ6rVl+QZhhNtxG8zK6EXtb6t0DIR1diZUPSZWautPqs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711106058; c=relaxed/simple;
-	bh=qsj5SJJLL3hn/E7WHUBIXUNo9Zm2xRwmM/UmQy0kVxc=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uOoe6c5Vsl5VGR/cfBsCR0EU32QhZey6PewS4QBOEkyFK+DwW0ZP0GA5FaT4bYrNgotCkV2N7AIWD3n8FaK5vtbyN7HqWNOvw3yy9SzAeSXbH91mj/YyznV1JkTpGnYxczYNkpFrrdq6BzD4/bWcUren/gDEBlHZDahGOVvw/p0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=TumINdaO; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 42MBDnxp028164;
-	Fri, 22 Mar 2024 06:13:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1711106029;
-	bh=qsj5SJJLL3hn/E7WHUBIXUNo9Zm2xRwmM/UmQy0kVxc=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=TumINdaOvBTjZebAaKy0IAZ63sODcUYxwldp2AghLFJcC8YfqCC5oZglvgWpIZXau
-	 XiArng8WmN+6fv1G1eWBEjpxatclL+iapDGPYolSaP3r9m5Ae4VV/GpIn9IdzE1IpQ
-	 MQWxYGHYNt6byGHpa07ZFvzE/vsw+xfbOMI3cDjo=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 42MBDn0d112805
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 22 Mar 2024 06:13:49 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 22
- Mar 2024 06:13:49 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 22 Mar 2024 06:13:49 -0500
-Received: from localhost (jluthra.dhcp.ti.com [172.24.227.217])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 42MBDmAv056703;
-	Fri, 22 Mar 2024 06:13:49 -0500
-Date: Fri, 22 Mar 2024 16:43:48 +0530
-From: Jai Luthra <j-luthra@ti.com>
-To: Changhuang Liang <changhuang.liang@starfivetech.com>
-CC: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Mauro Carvalho Chehab
-	<mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans
- Verkuil <hverkuil-cisco@xs4all.nl>,
-        Vaishnav Achath <vaishnav.a@ti.com>,
-        Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        "linux-media@vger.kernel.org"
-	<linux-media@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Aradhya
- Bhatia <a-bhatia1@ti.com>, Devarsh Thakkar <devarsht@ti.com>,
-        Jack Zhu
-	<jack.zhu@starfivetech.com>,
-        Julien Massot <julien.massot@collabora.com>,
-        Jayshri Pawar <jpawar@cadence.com>
-Subject: Re: =?utf-8?B?5Zue5aSNOiBbUEFUQw==?= =?utf-8?Q?H?= RFC 03/21] media:
- cadence: csi2rx: Support runtime PM
-Message-ID: <eymalpqyxgp3qa35fzvqahny4sg7xibzuvgoks2wp5wujrlltf@76i6d764npmt>
-References: <20240222-multistream-v1-0-1837ed916eeb@ti.com>
- <20240222-multistream-v1-3-1837ed916eeb@ti.com>
- <SHXPR01MB0671C565B12032569CFACD6EF231A@SHXPR01MB0671.CHNPR01.prod.partner.outlook.cn>
+	s=arc-20240116; t=1711107266; c=relaxed/simple;
+	bh=OdYK8KD02d6UmxwIIam/r9XyRmX3DuDRyGM+jv+Hc2g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ipeum4vcE18EmvO3iFIoWGLcXoCQ45e2pUgL5GCr864cjEdegKVqR1nLvtqzdbs0x69QE457ycQ8DT1CxA0ozxRI06lE2bwIP6s5fPXwUF/WD4O0ZhMxb1h6YFyk7y1JD07ZjeQB9BcdyLYbsL+J5QqomjWx+4IJe+QTBMNx7Bs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=fUDSHomL; arc=none smtp.client-ip=198.175.65.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1711107265; x=1742643265;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=OdYK8KD02d6UmxwIIam/r9XyRmX3DuDRyGM+jv+Hc2g=;
+  b=fUDSHomLUzynr9rbREoLELXJpe0jIZb/wreoyu0RgdgmmjTuFm/OnzwS
+   qPerlpUlfCqIFbpXI1F/vRjvlSteuRlaWB/95Fl+swRhlM+CR85KjTt9G
+   gALMJTlHe0zheyOZ+5vHJ2Hav3iIZ7qyh0KhB/GEpmPFYXoibnuT8MNhK
+   Byl5HvZ7H583NR6IPDSOkms+IKhAyut/xuF00aNSPvy8R+W0hiYKBsIfJ
+   80xB9VaW4N2f1fJQlTBu0nNG6bvBXydUYMtD3yJBzeyA99ShlBPoK34B1
+   L6q5qeaBpAEjDh5N+ud+t1EiCpAMWZmxX0c49J6TOtE2uMROITtkemaai
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="6089699"
+X-IronPort-AV: E=Sophos;i="6.07,145,1708416000"; 
+   d="scan'208";a="6089699"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Mar 2024 04:34:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,145,1708416000"; 
+   d="scan'208";a="52313988"
+Received: from lkp-server01.sh.intel.com (HELO b21307750695) ([10.239.97.150])
+  by orviesa001.jf.intel.com with ESMTP; 22 Mar 2024 04:34:21 -0700
+Received: from kbuild by b21307750695 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rndAA-000KGx-1D;
+	Fri, 22 Mar 2024 11:34:18 +0000
+Date: Fri, 22 Mar 2024 19:33:27 +0800
+From: kernel test robot <lkp@intel.com>
+To: Varadarajan Narayanan <quic_varada@quicinc.com>, andersson@kernel.org,
+	konrad.dybcio@linaro.org, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	mturquette@baylibre.com, sboyd@kernel.org, djakov@kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-pm@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev,
+	Varadarajan Narayanan <quic_varada@quicinc.com>
+Subject: Re: [PATCH 2/2] clk: qcom: add IPQ9574 interconnect clocks support
+Message-ID: <202403221944.SAbczEhw-lkp@intel.com>
+References: <20240321043149.2739204-3-quic_varada@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="itm27ryyihoirz6k"
-Content-Disposition: inline
-In-Reply-To: <SHXPR01MB0671C565B12032569CFACD6EF231A@SHXPR01MB0671.CHNPR01.prod.partner.outlook.cn>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-
---itm27ryyihoirz6k
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240321043149.2739204-3-quic_varada@quicinc.com>
 
-Hi Changhuang,
+Hi Varadarajan,
 
-On Mar 22, 2024 at 09:26:22 +0000, Changhuang Liang wrote:
-> Hi, Jai
->=20
-> > [PATCH RFC 03/21] media: cadence: csi2rx: Support runtime PM
-> >=20
-> > From: Jayshri Pawar <jpawar@cadence.com>
-> >=20
-> > Use runtime power management hooks to save power when CSI-RX is not in
-> > use. Also stop/start any in-progress streams, which might happen during=
- a
-> > system suspend/resume cycle.
-> >=20
-> > Signed-off-by: Jayshri Pawar <jpawar@cadence.com>
-> > Co-developed-by: Jai Luthra <j-luthra@ti.com>
-> > Signed-off-by: Jai Luthra <j-luthra@ti.com>
->=20
-> I want to send a series containing this patch, So I want to help you send=
- this patch,
-> What about your opinion?
+kernel test robot noticed the following build errors:
 
-Not sure I understood exactly - but yes please feel free to post this=20
-patch as part of your series.
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on clk/clk-next linus/master v6.8 next-20240322]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-That will be appreciated in fact, as this change is not related to the=20
-multi-stream support anyway.
+url:    https://github.com/intel-lab-lkp/linux/commits/Varadarajan-Narayanan/dt-bindings-interconnect-Add-Qualcomm-IPQ9574-support/20240321-123508
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20240321043149.2739204-3-quic_varada%40quicinc.com
+patch subject: [PATCH 2/2] clk: qcom: add IPQ9574 interconnect clocks support
+config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20240322/202403221944.SAbczEhw-lkp@intel.com/config)
+compiler: alpha-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240322/202403221944.SAbczEhw-lkp@intel.com/reproduce)
 
->=20
-> Regards,
-> Changhuang
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202403221944.SAbczEhw-lkp@intel.com/
 
---=20
-Thanks,
-Jai
+All errors (new ones prefixed by >>):
 
-GPG Fingerprint: 4DE0 D818 E5D5 75E8 D45A AFC5 43DE 91F9 249A 7145
+   alpha-linux-ld: drivers/clk/qcom/gcc-ipq9574.o: in function `gcc_ipq9574_probe':
+>> (.text+0x1a0): undefined reference to `icc_clk_register'
+>> alpha-linux-ld: (.text+0x1ac): undefined reference to `icc_clk_register'
 
---itm27ryyihoirz6k
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmX9Z+kACgkQQ96R+SSa
-cUVrqQ/+OPUiGMHr7g5ovZS6euRkhPyWXNaM0BGqFtLD5S75tiX7y7Pet5GQ6aZg
-2m9+FcFC86zvIcF99C44op7tWRTuDtNcf3YGXnxFV7/izC8Z8YGjLEhdlybPj89u
-MHZuB6W2GVpWqLof0W+cBu/vXsifQmUAKtQXPe4FglJVaN25J+Q85jdzwy0sDIVI
-beCoWF5Dwjk+g3R4aodvNZCfQZ8g37nbRh5/72KAKDv8kcG590lRDCuHkBYVpowW
-XsJ5k1cci24XNsF5lzB83ScmsL1NVm8zj5XSwBbdAJjzIU0qVJe0U+w3kEMIhVFh
-45EYyAggEoaG2QotO91hS1uQ5PfbDGyYZp0OLvjzt8WIzBFbZLRUlIgE0sasWH9l
-EhEhjmEtSgIHpukYPt7BuEGU2VvxHLI5Wk+UYLJ3sQxxJk1sh0H70WTkYfcsB1Vr
-/SXsCt3p/FqkLobeQ5WXTy56rfqMTx25fk6m/FePK56ya97UHHp825IGCHgY/akh
-cyvuix3LOz9EsNF5FL7AKytbuo+wdmYZ1fP/jP2jRf4yVhWKoRa22zd0rLPckL+j
-Z537fVpVkcWTx/f4OFPxxXNPG2WP+qfv5J6ZZpI1wWSSa6n0Js/T7nXTERflHa/F
-nyHcxI8P43u82loUxoK6Jt955G1Ee/VTZdMOpKdUj7aAX1+CeQI=
-=dxEU
------END PGP SIGNATURE-----
-
---itm27ryyihoirz6k--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
