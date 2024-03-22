@@ -1,136 +1,135 @@
-Return-Path: <devicetree+bounces-52401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52402-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F61E8867EA
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 09:06:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5473F8867F2
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 09:10:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B0C21F2273F
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 08:06:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 86AAE1C21662
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 08:10:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A59516430;
-	Fri, 22 Mar 2024 08:06:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 543DE168A9;
+	Fri, 22 Mar 2024 08:09:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="CBrUF++O"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="B9InOQ+P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79BF3171CD
-	for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 08:06:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9314F14ABC
+	for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 08:09:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711094781; cv=none; b=q63srHAcHDFgkwEUlGkfdhVrUsIUSEY62NTdQ8McMGWeQd5X2yYgXLSNNuhy9/gd6eHt312itRaBJHg3PfM1V9B/el/N9DIMNd/ioy7G7KchB6l3BH2418JsCYSpbH23F/QJ+5JnIBip/ZjaFeCcQG3ZChW5+lpTGrDftirbnZ4=
+	t=1711094994; cv=none; b=ioe8d/m5sNqwB2CKlCe7fHdK10PPjL5SsrKsIOjGTuWWn+dT49GVmrDBjix5qeuZnjgkzIfZVXqOk6ssNdaAmEvrc0wctSmYqpLgNc8NEthsbuaT04Sap1PKan13/wOEmoQ9T6ZSFtrtalar2tFJuLvvAYuYaF/OhUB/0nY5u/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711094781; c=relaxed/simple;
-	bh=yuz1DDYwwZ+Wu+hp6fEC6IuIktiCN/2dn12Wf0kXYLk=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=dET14cVXls/Uy+ejHmDEPtQF3YZd9Rg19cdzrTCZADR6H8tmGLVXwFiBqfKMvdq606Upt69USMivSpMWlEXjRZgMwzLi2q4VEidYFv3SEIrQQsCiehQgHXs/4voWbrzJ1SyzLgWmgHPjOy7SDiLhgjmvjOxiFFWinaTx/mTW3Zg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=CBrUF++O; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-56ba6c83805so2192767a12.0
-        for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 01:06:17 -0700 (PDT)
+	s=arc-20240116; t=1711094994; c=relaxed/simple;
+	bh=RXpY8uaT9EOvBi9I6yC5dPQJDGkDvO2f0RD5A5oINvM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IUnjpkf7aI0LQRfNU7oZo6B2Ma/vqNB4afSj2FSfWDVmoSMnuxXWVPh3+JhYrE4DcS5SNoHlBuuw0Zlg2SIabzsiTAJgABXMHbo7sTQ27T5SCid3R/B0IwTLvtiUT95YCXsTy8mE7Dk33g7BMt4tvEYf9Xw0qZcOSlFyu8Mjkbk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=B9InOQ+P; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4146562a839so12882955e9.1
+        for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 01:09:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1711094776; x=1711699576; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=XsZLSAJEXmeZxbFin0CImKOsNm3aXacrTABAdgCK260=;
-        b=CBrUF++OF+YmwdF6X7cykeYwFFB9S4gKX91/zNupGnSducv/hPcy1m4P6tCruNlZ7S
-         xas4y+D/4SCEZFHVgSY2G4pNqZUN6GPz9NfUhkb85MzcScr4YLE4FsN0PuDuwF4Iynj8
-         ObSYvEe8YoMS0IjJRdo2KIYRIhK8XroE5ez5ergYLk6pqiU1G4pPriGhEHmwp7f5eF8E
-         v1QKwafh/VkVEL23GO8IljWpuG2qr3GAe17GOSYuEiqDIgdO8u4TNdpS+AbLUO3uRdu/
-         bOk7whClpIa/DtkJ2Vfp8s2pSM93Tk9DL/6OH+FM4VmrHSu+IyuCL5xtxkJU+tff5e8f
-         LAxA==
+        d=ventanamicro.com; s=google; t=1711094991; x=1711699791; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=GE5LhZmpwjg/Vlr/58M0lzDTSb9NjpNMdXrf3nX1bH4=;
+        b=B9InOQ+PPsQ4o98v6jbhqxusFM6ok4lzPoiplSY06dm5w1ilqY8EhDCfhNBiS9pvTA
+         iAZlf/9iraFY47KZXYHnhMl3m1P3YjZsTiOmpuyCMjkyBpa5pw7SdJL2ownJJiuDhqD1
+         8ahLsiAbIsgN0HXOqZ8vdbCFwvcCm9JlbFtYlc9Z/HIoae/mZwsGJcQFjTuOjJDkOxxP
+         qGAZMrOs8Cwm58s6c1XRf7hD8AT1CEvSveKp7sP7iEbI+FmvlOBmwMEIA1sJ/MsDKyqz
+         A6ABXwaxk22ujwn2lZxF54JaQZM1Cxbwzwdnd0WgDrvT8MWXjL6G1ZgBgjz7pTcxTBsD
+         /cdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711094776; x=1711699576;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XsZLSAJEXmeZxbFin0CImKOsNm3aXacrTABAdgCK260=;
-        b=FlP3JYcH3HEHxpJhvdykpc7ngPfJWKDlWLgtuo8uiaxU+W9/cCKh4G1fXgQ5bP/szv
-         7UBicy23WMh8ZSCY56G4EO9fe6rx8YS9nKD3GBCC4rbI/6ORld9QwM250Z1WRrmKHT8t
-         KsYafCo0ch6i7RBluwk5tLH/ERzfHgBLD6fz8MDGulBt5jGbkMvNQFTW762DhyJFzm2M
-         TGZRCpnlUxcY4UnWxzBmLhRChLh4aNkZBQ57N74au2UV2MZLvxZj8KohpR7cISuI0V28
-         uo3eSqL8jCLi4rwip8ffe4E2/wMmI4RmU69AbpqqsNpXlf6q6I0Cm9hjzxFO8Av3kjea
-         6W2w==
-X-Forwarded-Encrypted: i=1; AJvYcCXq0Hlkz+xZXeiXrmFmm8bo8pn2QKKJdq28Sxw8Dn4kqgrquGbL9U0QRxGxAJIdTtxc+LQ5Rw1tvmHnvtv5P9+Tlao5A+dCxcVuqQ==
-X-Gm-Message-State: AOJu0YxUC4MZkP/Qc1njKpnSB462AYBnJ5Ny0SQuKn3i1uHKLU+Tk5cw
-	VSRjoNzMRYl8r3TLHBDgONA8JoaRm2TE0o7gSS+KZucOM9xwxTaqB3KanTMt5sI=
-X-Google-Smtp-Source: AGHT+IF6hLTM5QsWFB8daZv5l4Na45H7PPkkgF62jW5LxW0NpIpFh38gMORfD2MF7w/c7B8DVIGztA==
-X-Received: by 2002:a50:9b44:0:b0:56b:b7f1:8094 with SMTP id a4-20020a509b44000000b0056bb7f18094mr977606edj.35.1711094775863;
-        Fri, 22 Mar 2024 01:06:15 -0700 (PDT)
-Received: from [192.168.1.70] ([84.102.31.156])
-        by smtp.gmail.com with ESMTPSA id fe8-20020a056402390800b0056bd1e71310sm743729edb.85.2024.03.22.01.06.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Mar 2024 01:06:15 -0700 (PDT)
-Message-ID: <b473d940-0301-472d-90f0-297da6815377@baylibre.com>
-Date: Fri, 22 Mar 2024 09:06:13 +0100
+        d=1e100.net; s=20230601; t=1711094991; x=1711699791;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GE5LhZmpwjg/Vlr/58M0lzDTSb9NjpNMdXrf3nX1bH4=;
+        b=iPWe/+aP906cuwYPy5hbjWg9I9Wm6YIpwVvrulCt+bHsqOj6eEoLDpyefVY4PXnLBH
+         rStFqNzRbDWiVxLORoslMzZG7LQFcl0TkpMZpGpHyYcfZBRJeyB3RQxVVRUVNpH0CRjf
+         Iwkm15h2FmPuodVTya3GbWs2sQjKdqW3d5cBG6qydB03Z9uUSVoUbeiBPZJb0vxgVild
+         jyYdMG3MCn5tNMsNP5D9abQ8YwvImXG+X3V7GLMtcaqOABJxxRMreRA+9sbeeAo1QPxe
+         EtsIiYaRwlYsHD+aGqMXlVPXIp3FnbhVhQs+InI6IRHiE/w57VU+jJ25Y6yilg5lypPL
+         oScQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWERu7qeKvpcgjL34HZ451/WTFhlWWhM2ks+dnk4Hp9CKkpkpTINkchttOkLOBFhAr1ZOyKn8YhEyTTtMhqhJauheX1LPjp4hTrbg==
+X-Gm-Message-State: AOJu0YwNvh3HADB6xZInFV8tjfli/vff6GcskrrrJbpifW82ig7FyHNl
+	CC0zjZxzfaHQoD4uhfr89yu7lyTTgkE+ZqQ3oTCpvrRX9PrbvfFQtI0Ibs33RWA=
+X-Google-Smtp-Source: AGHT+IHLQHBi7qQwYV/Vh2cMH5xV/FtpkfvFnaz2JqA5AbMTziv+62cDRdiytui2Ed6ojUwu7J0rsg==
+X-Received: by 2002:a05:600c:1c26:b0:414:a89:3443 with SMTP id j38-20020a05600c1c2600b004140a893443mr902935wms.25.1711094990861;
+        Fri, 22 Mar 2024 01:09:50 -0700 (PDT)
+Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
+        by smtp.gmail.com with ESMTPSA id s16-20020a05600c45d000b00413f4cb62e1sm2291207wmo.23.2024.03.22.01.09.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Mar 2024 01:09:50 -0700 (PDT)
+Date: Fri, 22 Mar 2024 09:09:49 +0100
+From: Andrew Jones <ajones@ventanamicro.com>
+To: Deepak Gupta <debug@rivosinc.com>
+Cc: Samuel Holland <samuel.holland@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	Catalin Marinas <catalin.marinas@arm.com>, linux-kernel@vger.kernel.org, tech-j-ext@lists.risc-v.org, 
+	Conor Dooley <conor@kernel.org>, kasan-dev@googlegroups.com, 
+	Evgenii Stepanov <eugenis@google.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Rob Herring <robh+dt@kernel.org>, Guo Ren <guoren@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+	Paul Walmsley <paul.walmsley@sifive.com>
+Subject: Re: [RISC-V] [tech-j-ext] [RFC PATCH 5/9] riscv: Split per-CPU and
+ per-thread envcfg bits
+Message-ID: <20240322-3c32873c4021477383a15f7d@orel>
+References: <20240319215915.832127-1-samuel.holland@sifive.com>
+ <20240319215915.832127-6-samuel.holland@sifive.com>
+ <CAKC1njSg9-hJo6hibcM9a-=FUmMWyR39QUYqQ1uwiWhpBZQb9A@mail.gmail.com>
+ <40ab1ce5-8700-4a63-b182-1e864f6c9225@sifive.com>
+ <CAKC1njQYZHbQJ71mapeG1DEw=A+aGx77xsuQGecsNFpoJ=tzGQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 10/11] pinctrl: pinctrl-tps6594: Add TPS65224 PMIC
- pinctrl and GPIO
-From: Julien Panis <jpanis@baylibre.com>
-To: Bhargav Raviprakash <bhargav.r@ltts.com>, linux-kernel@vger.kernel.org
-Cc: m.nirmaladevi@ltts.com, lee@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, arnd@arndb.de, gregkh@linuxfoundation.org,
- lgirdwood@gmail.com, broonie@kernel.org, linus.walleij@linaro.org,
- linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org, nm@ti.com,
- vigneshr@ti.com, kristo@kernel.org, eblanc@baylibre.com
-References: <20240320102559.464981-1-bhargav.r@ltts.com>
- <20240320102559.464981-11-bhargav.r@ltts.com>
- <775348fb-3227-4609-b4aa-c8a6eddb8953@baylibre.com>
-Content-Language: en-US
-In-Reply-To: <775348fb-3227-4609-b4aa-c8a6eddb8953@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAKC1njQYZHbQJ71mapeG1DEw=A+aGx77xsuQGecsNFpoJ=tzGQ@mail.gmail.com>
 
-On 3/21/24 12:10, Julien Panis wrote:
-> On 3/20/24 11:25, Bhargav Raviprakash wrote:
->> From: Nirmala Devi Mal Nadar <m.nirmaladevi@ltts.com>
->>
->> Add support for TPS65224 pinctrl and GPIOs to TPS6594 driver as they have
->> significant functional overlap.
->> TPS65224 PMIC has 6 GPIOS which can be configured as GPIO or other
->> dedicated device functions.
->>
->> Signed-off-by: Nirmala Devi Mal Nadar <m.nirmaladevi@ltts.com>
->> Signed-off-by: Bhargav Raviprakash <bhargav.r@ltts.com>
->> Acked-by: Linus Walleij <linus.walleij@linaro.org>
->
-> With this patch, an issue is observed on am62a:
->
-> root@am62axx-evm:~# dmesg | grep tps
-> ...
-> [   12.122631] tps6594-pinctrl tps6594-pinctrl.2.auto: error -EINVAL: Couldn't register 
-> gpio_regmap driver
-> [   12.133216] tps6594-pinctrl: probe of tps6594-pinctrl.2.auto failed with error -22
->
-> Without this patch, the issue disappears. Do you observe
-> the same result with your am62p ?
->
-> Julien Panis
+On Tue, Mar 19, 2024 at 09:39:52PM -0700, Deepak Gupta wrote:
+...
+> I am not sure of the practicality of this heterogeneity for Zicboz and
+> for that matter any of the upcoming
+> features that'll be enabled via senvcfg (control flow integrity,
+> pointer masking, etc).
+> 
+> As an example if cache zeroing instructions are used by app binary, I
+> expect it to be used in following
+> manner
+> 
+>  - Explicitly inserting cbo.zero by application developer
+>  - Some compiler flag which ensures that structures larger than cache
+> line gets zeroed by cbo.zero
+> 
+> In either of the cases, the developer is not expecting to target it to
+> a specific hart on SoC and instead expect it to work.
+> There might be libraries (installed via sudo apt get) with cache zero
+> support in them which may run in different address spaces.
+> Should the library be aware of the CPU on which it's running. Now
+> whoever is running these binaries should be aware which CPUs
+> they get assigned to in order to avoid faults?
+> 
+> That seems excessive, doesn't it?
 >
 
-Hi Barghav.
+It might be safe to assume extensions like Zicboz will be on all harts if
+any, but I wouldn't expect all extensions in the future to be present on
+all available harts. For example, some Arm big.LITTLE boards only have
+virt extensions on big CPUs. When a VMM wants to launch a guest it must
+be aware of which CPUs it will use for the VCPU threads. For riscv, we
+have the which-cpus variant of the hwprobe syscall to try and make this
+type of thing easier to manage, but I agree it will still be a pain for
+software since it will need to make that query and then set its affinity,
+which is something it hasn't needed to do before.
 
-I found the issue in your patch.
-
-In probe function you handle TPS652254 and TPS6594 'switch' cases,
-but you do not handle TPS6593 and LP8764 cases.
-Since AM62A uses a TPS6593, it currently falls in the default case,
-and as a result probe fails.
-
-Please fix it for v5.
-
-Julien Panis
+Thanks,
+drew
 
