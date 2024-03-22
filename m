@@ -1,213 +1,341 @@
-Return-Path: <devicetree+bounces-52437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 523D6886998
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 10:45:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BB7C8869BE
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 10:53:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B045E1F22D99
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 09:45:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11458285166
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 09:53:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 595BC210EE;
-	Fri, 22 Mar 2024 09:45:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68B28224DE;
+	Fri, 22 Mar 2024 09:53:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RT/bx1Bo"
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=amperemail.onmicrosoft.com header.i=@amperemail.onmicrosoft.com header.b="QNQvcl/r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02on2119.outbound.protection.outlook.com [40.107.95.119])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87B2D20DDB;
-	Fri, 22 Mar 2024 09:45:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711100733; cv=none; b=EtBlWd9YReNIIjnZlZlByyO/ZGEPm8CpE3qGfMg6k0JIpSaUdGz8fvzMjxNA4spEq4HBDiSF+JFchQsMrLvbjKYNqof8ipZJgAzw+tAUneCx1TBBvMsHeqg/77JypuiYgTiJuS1TZaM3t21K/ZS94p4WtMtKn4w8WKKkJBF2Pag=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711100733; c=relaxed/simple;
-	bh=A4FOGLlvtuthBYiub+mR8yfwfnfz1i/GHCFLNMfFHSs=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Xw0IQtJlDA8Upd0+6IJ/VM6ODRmeeHkttKqKx9nbwz+UlA69aAGdiRNcd6zVFZKZrafM/WAMhGcR2k08nR3up3HvACFoGo0M/rMJ5J7oj1ByJeIwrmejy8N7HGgKXL5N3nyV0FnK5wFfUoD9fsifOJf5qEI+oTG4zUoXcJtkWS0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RT/bx1Bo; arc=none smtp.client-ip=209.85.208.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-56bdf81706aso756225a12.2;
-        Fri, 22 Mar 2024 02:45:31 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB77922331;
+	Fri, 22 Mar 2024 09:53:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.95.119
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1711101227; cv=fail; b=bbTOoaVcIdAx7wcO4XuxBxE5QAtTvMSlBCDSVp4I1hpq+2paCUEDRUjkrfw64OWGPR6KGWR9k27Ryp7gB0YfxqrXPOn4XqXpManKlVoIdb2ZrACWdggPZAO0KGPxF+ZNk2YXxywp4uX90ZDpyBI3+cF7X4avy9g1g6V3sh94s4Q=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1711101227; c=relaxed/simple;
+	bh=tJLEqsv0GOiQY4bNXClIz+CkefM0IdNvM1Iq+5UtcKw=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=gn+aM3m7EXtnxKXs/OMexXgygffKZpiiUuWjriv0xxIzpUZrBBzghYZCRIkmCuitjv9q5oqLYq/hlLSUG18y693LB2MHGXydRUpvQ452aDKIGroHetH3wG3xdplAGBs/q9/G525CPYKXQC8S/KhxLvc4iV3hL8Vc5wXTgvTtpcU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=amperemail.onmicrosoft.com; spf=pass smtp.mailfrom=os.amperecomputing.com; dkim=fail (0-bit key) header.d=amperemail.onmicrosoft.com header.i=@amperemail.onmicrosoft.com header.b=QNQvcl/r reason="key not found in DNS"; arc=fail smtp.client-ip=40.107.95.119
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=amperemail.onmicrosoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=os.amperecomputing.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YT5Mx2J2qPiJt8ogPsgDnzyPbERJ2M3usc7/xBrXcLH5losKmYwTj/gOt1syhF+CM1cIbTNj7g1b0XUiqGVe5kqdAGeGVPsWrvd2/VPSaiIj8exZn0fJtF0DDff3/FhUiA6F9Mm7EKxdtLdiVsCHMunWGbQwzzEBG5R5mMbYF2mqXXMekQEIcPxyKvYuqOyQdpPS21jXBQf9jOsZuIMJ22aX0hEhKWAG2YPeeAJLgBMb0Gbui3pD6/zV3pOp/HWOpHA85WBcRyFBHhBTgcK0PJFSmt08dZLd3hAke1DAk2waz3bkzxafpKsDic7Dg+EeC23NQPXJrWHuO+qIQBKeOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0H7NitF17piND1xkvkM0wQqIck0PKS20irKLz1MvAQo=;
+ b=oI4FkvXxrV6Fq8zz+XVvqOg3Qqlk5+DYxCn1qAoUTtbloB76zQoIJRcIfyUuE4GlRiwC+FECd6TAADh0MEo6YDYlKfRfWzlqTrUNHI6SPt3BtOejhpi7qTWZvPR+miARhwsV9Wk4WxPIpaRf7sWu4lShAVq2E59j4U11y7wM5dfUjQuFvTWiw0UtdFpkxxHcE2tOMpopPC+UAfm9hH8q/VjtPSpDhpU8Udps8yg7IbLD2FcKFaxqDlGNcCsc2FiCMLBhJwxJ+vUAgIQ+UbVFXCkYIETlNVmzPEjw9FAJj1HYJ+7Sy0KZCqZbhQtaULTQrjgESdpvgWaHm8GnzC2agQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
+ header.from=amperemail.onmicrosoft.com; dkim=pass
+ header.d=amperemail.onmicrosoft.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711100730; x=1711705530; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=AlmUZX1oKnCqPJXsSuCW5CozYj1wJFSEFEeiu59yIp4=;
-        b=RT/bx1BoKmV/H07F2KB3VAiCTU9NK5DSdzkM3LbD6svSDVKB/RT0wKdPy8PT/gljED
-         uXuc0C0pKXug4Plzo7ycf3C4ZNFqNvIgP58E/0ORjbRS43S1AjxZptd0EIpabsGmDWE4
-         zNwz9U9Zl5byqu+a7KQaLpBxXGD0Z2fMIHrtOFTdQF8SoL+ryMdTn+zY73dnt8xhqE/o
-         4OY0YfPd2j1KzUc3pxFrBtuLW+wfEZRy2mpotH7Jw/zZB3fAcZGz8f83FANPWZei5bW2
-         R4HQs/6aWBDij5eif2tTjdRBXoD24mcWH8KC0AI0LiJhWCit/b6UDC91PmFdcfXv9jOF
-         RxHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711100730; x=1711705530;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AlmUZX1oKnCqPJXsSuCW5CozYj1wJFSEFEeiu59yIp4=;
-        b=EhIk2jv5hTv7M4wJu/xN+KHzAbG3B19AVDWqFnylEt9uTbgYME9Y9r4F7FU5Bv5wvE
-         wgl6QdvqTF6NczEtVQ7/8eNdaPeH9ZNScGDDSeJnfP+tHmlyy3fBXxxOemTyTr2mSZcf
-         7B1H3BF/Kzoiofcb0RIvp6+QqsQ38GeCNxyFtEmk83O/SG74wBzDBCWJCQyfaLZQdcjs
-         5Br2DMkql0ytV1HcC/kuwY9QRtCmuc2RhrANpZOkio4PzkMDoraqGtLSs/D1u/BqbgkV
-         Ioba8PxMdfH667hdLV54EJpElHTi23I5LM0HSYHGTwYOykYZqYBQTT42lv1dkY8RUZyM
-         Kgog==
-X-Forwarded-Encrypted: i=1; AJvYcCXpNWu0Vf9LtwVNot9Un1ytWdEiEb3qFUAuCbNkwkNvvxS/qTrQEg2l0/H+I82umBN28GwFfl06KKZrGpYgG7TK9U9ksDHOV3qoQpS9+oltZ8s3OMgewBvgzF/G8mCy+KDPoVDDX384oQkX5cHoSOFWvElHUJTYbGiKN64WbxjGNmykNvHa+CKmCdK2NIhx8i9fTaQhQ9nT3pzGrkTHCR2ljA==
-X-Gm-Message-State: AOJu0YztxUAwaEANpQ3Z1EDFk3asbgxs/THwOaB4G/U6VqV2AGX/fnDA
-	4hbZxy5CsryIfCH16U0eOfFh5qOlKrlTE4jvPWbpoLHSdxSC2sxV
-X-Google-Smtp-Source: AGHT+IEMdPwXdULfmQN6UAn3oOA+aJ6y8GiAsPYU2u8TIUMJ7NjPC6DuAt/2jKqSVu/RE4c3YGQRhQ==
-X-Received: by 2002:a50:cd1c:0:b0:56b:6ec6:af2f with SMTP id z28-20020a50cd1c000000b0056b6ec6af2fmr1179534edi.6.1711100729462;
-        Fri, 22 Mar 2024 02:45:29 -0700 (PDT)
-Received: from bhlegrsu.conti.de ([2a02:908:2525:6ea0::11c2])
-        by smtp.gmail.com with ESMTPSA id b9-20020aa7d489000000b00568ba57983csm839426edr.0.2024.03.22.02.45.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Mar 2024 02:45:29 -0700 (PDT)
-From: Wadim Mueller <wafgo01@gmail.com>
-X-Google-Original-From: Wadim Mueller <wadim.mueller@continental.com>
-Date: Fri, 22 Mar 2024 10:45:26 +0100
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Wadim Mueller <wafgo01@gmail.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Chester Lin <chester62515@gmail.com>,
-	Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-	Matthias Brugger <mbrugger@suse.com>,
-	NXP S32 Linux Team <s32@nxp.com>,
-	Tim Harvey <tharvey@gateworks.com>,
-	Marco Felsch <m.felsch@pengutronix.de>,
-	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
-	Marek Vasut <marex@denx.de>,
-	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
-	Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-	Matthias Schiffer <matthias.schiffer@tq-group.com>,
-	Stefan Wahren <stefan.wahren@chargebyte.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Philippe Schenker <philippe.schenker@toradex.com>,
-	Yannic Moog <y.moog@phytec.de>, Li Yang <leoyang.li@nxp.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-serial@vger.kernel.org
-Subject: Re: [PATCH v3 3/4] dt-bindings: mmc: fsl-imx-esdhc: add NXP S32G3
- support
-Message-ID: <20240322094526.GA7097@bhlegrsu.conti.de>
-References: <20240321154108.146223-1-wafgo01@gmail.com>
- <20240321154108.146223-4-wafgo01@gmail.com>
- <00174dc3-65a7-4a2e-b48d-a974336a3f18@linaro.org>
+ d=amperemail.onmicrosoft.com; s=selector1-amperemail-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0H7NitF17piND1xkvkM0wQqIck0PKS20irKLz1MvAQo=;
+ b=QNQvcl/rOAroOomuEhFTLbF+BE8Gd4OxS9krS/cxieKLinvH6dZ/qsteneINS5QCY60PcYXKJkuTlrcx/0eAV6XGaYtJZxVzjTk1qwBCBYPgmg533GtIMFv5twkONzlOC2CfqeAuERVqRFPWBxQ5dTN3pM/APLfgFTu41Rw9H4A=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amperemail.onmicrosoft.com;
+Received: from DM6PR01MB5947.prod.exchangelabs.com (2603:10b6:5:1dd::12) by
+ MW4PR01MB6129.prod.exchangelabs.com (2603:10b6:303:77::14) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7409.15; Fri, 22 Mar 2024 09:53:39 +0000
+Received: from DM6PR01MB5947.prod.exchangelabs.com
+ ([fe80::b557:13cd:8a29:ae08]) by DM6PR01MB5947.prod.exchangelabs.com
+ ([fe80::b557:13cd:8a29:ae08%4]) with mapi id 15.20.7409.023; Fri, 22 Mar 2024
+ 09:53:38 +0000
+Message-ID: <21256600-d94d-4287-b22f-f22258121668@amperemail.onmicrosoft.com>
+Date: Fri, 22 Mar 2024 16:53:28 +0700
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: hwmon: Add maxim max31790 driver
+ bindings
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Chanh Nguyen <chanh@os.amperecomputing.com>, Jean Delvare
+ <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Justin Ledford
+ <justinledford@google.com>, devicetree@vger.kernel.org,
+ linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+ OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+ Open Source Submission <patches@amperecomputing.com>
+Cc: Phong Vo <phong@os.amperecomputing.com>,
+ Thang Nguyen <thang@os.amperecomputing.com>,
+ Quan Nguyen <quan@os.amperecomputing.com>
+References: <20240311111347.23067-1-chanh@os.amperecomputing.com>
+ <20240311111347.23067-2-chanh@os.amperecomputing.com>
+ <6fb70adb-aa85-4b9c-b093-afa4ec7ed056@linaro.org>
+ <ab8b45c5-2ef0-4a87-87bf-f797954b4574@amperemail.onmicrosoft.com>
+ <a224e752-d99b-45d3-b5db-761a698c347e@linaro.org>
+From: Chanh Nguyen <chanh@amperemail.onmicrosoft.com>
+In-Reply-To: <a224e752-d99b-45d3-b5db-761a698c347e@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SG2PR02CA0117.apcprd02.prod.outlook.com
+ (2603:1096:4:92::33) To DM6PR01MB5947.prod.exchangelabs.com
+ (2603:10b6:5:1dd::12)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <00174dc3-65a7-4a2e-b48d-a974336a3f18@linaro.org>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6PR01MB5947:EE_|MW4PR01MB6129:EE_
+X-MS-Office365-Filtering-Correlation-Id: 44a47a26-8412-42f8-8d3a-08dc4a55f29e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	jKkAW8OVhvAEez6TIN1o3eMCTiXoAw5dT+GmoMkriH3A07Nx6N09bmP1REH0P8r5LewGo8mGc5bplY5mlrZA/N+wbciHi5YYnRh5WEz3sR6Wi818ZsJRO9d1HOHrYh/9iDNBs4Gf6OtUfStErZHULg1hoYSvGlWt6AB83gzl8xoB+72mGhQl/0NQ0X3eKoxFwySF2ahTOSKWoGJ/KGHPgoj1G7zB38RDSxHH+mt1GhTKswOawrB5A6rsZEAlF+ReO4Bu2UWj8AlOr2HzskC7+S/Z12lnl8L+JTQ1x7Bzu8xog6cc+Rnq9hW39aZk7kTrqR0YcDhuwKO2oTvGs/0gz9pnilUA3gRWEQzfMElF/aMW6GGgEt7jZj4SRcnF1xCwzuA+4vJx29SfScSEBwmfzTsJCMceR6mgRqRLWIFLEEhnXszBHDl1VqedZLZRprrDztZ8CV9L81zevzvNk21xEBSh1KeDMNdj9urbZ4D4Rd72LM2ad8RwvVDFkhk0b1jddiL6Y8MYynCks0Ex3Yp8yaRgwGJ2Z/iQ62zng4Ay72PPGq8wwaIfs5nEsCWne3pVRvoYBdrwzrRPGuy7DDwulYL3Zcf9h5kj7WjHOEinoSg3iOe9WMYPraUJLInuH5bWw+853df8P2/qSbYfYIMChw==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR01MB5947.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(376005)(7416005)(366007)(921011);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?Q2dUYlZrcFVib2ZPQ0hRbTRwNnAwQUxpNWt4QUQ5c0dqRyswUkt2TENtQ0N1?=
+ =?utf-8?B?dWMyb3RvSFN0bnE1aFNHTnJIQXFDdmh5OE04T0E2VUNySUZDbGE2UHRST2FS?=
+ =?utf-8?B?dEJBQk0wbmRoa0JTNUZ6a2tTWStoamRSRzVlR3hmUy8rejUyZWthUjVIWTho?=
+ =?utf-8?B?STZQZ3pHQ1NqdklndHNRMFhKSGkrc29XTTFuWGNrVWt0NlpjWHdMUTlkd21C?=
+ =?utf-8?B?Nm9DemlBWHRzNEJGb2k4eG5PTm9SemRBbHJlWHFuSk1KRDNqM1U5YWZBUVd3?=
+ =?utf-8?B?LzVWc2FhUWlVNmtrdGhTS00xQ245Yyt2K2x2RW1BTUdOV09kbjFVS2pVcmlK?=
+ =?utf-8?B?LzdsWHV3Zm16eXF0WHdyaWtLWTNTQzI5Slk0bWtHVlhzdDV5WlFWQm9BMWo3?=
+ =?utf-8?B?RHYrVk1uZXpHRXBWUDlkNWpXSk5EbHR6V3hVdXp2OTJwOEc5eTJsanZGeGVE?=
+ =?utf-8?B?SVN4QmI2amY3VndzZWtJanlCTjlKZ2dIMHozMU9UWlBFRy9yTGN2Zko5QzF6?=
+ =?utf-8?B?NTZGTlk4NFJtc0hMUEczWmxhWW04akFVVUVmbE1iQ3NDYUZKZC9XOXdwbVF1?=
+ =?utf-8?B?Y1EyUVVJQndWMW9TQXh4VVMvZ2srdjcyUXdyTU12clNSWlV5ejNHSERFekJJ?=
+ =?utf-8?B?OUQwamtTVGppTkJTWWw0Wnl0Ri9hR1dTUzdEbnhzanIvTmlHOVhQenJUbFd6?=
+ =?utf-8?B?bUpJU1ErOHhZYXI4RWszOWg5RDZ2dmtqRkVyeHhMTHI2Szh3NHdjVGdEOVRN?=
+ =?utf-8?B?NU1ja21NQm1nTWFFSG42blQxeVV2clNRRi82akp6eDRYcG1YdVg1eWI3a1o1?=
+ =?utf-8?B?WTJiL3ZrM1NaN2poOUZkM1VmMEFMQjhORFhFVzhnVi8wdVhMV1A4ZmtlcFBF?=
+ =?utf-8?B?ck9FQkk4OW4zMjlKd0l4WFpuVllmd0Jvc29RcnhiSVpUaTFOZmM3R05INUR4?=
+ =?utf-8?B?Y0xHdlVPWldIMUVmWDYybXplN09EdUV2QXZENVdnZ3B1aTM3Z2RseUVNd3B5?=
+ =?utf-8?B?QzdnSno0RmdEbjRxZms1QnVPUXJTQ0dnbXplY3cxdWZ5NlRkVTZSbnc2TER3?=
+ =?utf-8?B?SlBLL3pHdmQ5U0l5VGdSUTVQU1RSbVovZU5hczlySjEzT0lzc0Y3RzNSVWhB?=
+ =?utf-8?B?blM5SktOVHR4S21VZlIxR25lMGxJcDZDZmxySkpuZDV6dzhLSFlZNmJsVndq?=
+ =?utf-8?B?N1p2WVliUmhtcHg3ZmZYdXZ6ZmZDWnNyUHlYbjkrOEFJWnVoVEV3NFJTQ3BM?=
+ =?utf-8?B?aHVSd1FnZ0hvdHZTNmZvYTIxQXpWUFhYR3ludENKYWNlRSsxamJCZkVnaWNz?=
+ =?utf-8?B?Y3RYTzFmQm54MFZtV0hUZkc5ak0wd2t5TStQR0Z4Q05KMU5XWlVOc0FqOEND?=
+ =?utf-8?B?NS9vQW0wSEp3TlJHeHJRbVNucnJoN1BBWXNIeEx5dStEb0RZSFgwRC9Xb0V4?=
+ =?utf-8?B?U2FnNmRjaERjN2pDbitwcnoxc1plWkE5Z2hzcElUV2JtUTNGMXQ4VnRlUmcy?=
+ =?utf-8?B?dXpRRGVPRE5JOXpYWnJBT3p5UDEwaVJLMFQ2dTJzMUpubkJuT01nMDBQcFlD?=
+ =?utf-8?B?dGJlU2VLbEtIa3phK05mYUdqbnk2ZFU4MWlsMmUva0pYNkNzdm9GRVAzQnEx?=
+ =?utf-8?B?S0lvdFNjcStmTS84T2ZGNUhSS3RUYW9kRXR6L2U2SDV4QlQralFmUnFmeDJr?=
+ =?utf-8?B?aFVOVlF6U0lLaG4yTi95ZHhkSlZHeEZDRGZTamVGUVF2WXY2T2xTaWR0Ly9x?=
+ =?utf-8?B?aC9YTFhXdVppNjF3VVFteHIzT0VKQ01WUVpnYmJWdU5mU1hFQXJraW5LSnRj?=
+ =?utf-8?B?Vjh2UFVEVFZWeXJ1ZTZMSHZNUmxYMnVDbVlWV1lyMEJGQWIvYkIvMEMvc08v?=
+ =?utf-8?B?SWRydnU4a0IwV1FET3BnSFR2LzdBTFFuTmk2YmRnUGJhcFNzRnlGVSt4dVJY?=
+ =?utf-8?B?YmgxSTRsWnBVUDBPVUQ3Yy91SXRBWDJUbXpCVk1lWjNLTkVpbmNyK0kzTUdh?=
+ =?utf-8?B?bnNDbDJ5K1pyQWc3eDBmK2wycy90dW1XK3JrRy95QVNpMWZ4MURsTTNVbVRt?=
+ =?utf-8?B?VmdkNExGNDBFdmdBeVNudmtoQ0xybHNyNzdMcXY3bys4TjYrWnNOaGEzV29o?=
+ =?utf-8?B?V1dIYWtVYlpXMFVHeXppOUFyQ0VuR0V0Qk9lemdVMFBzMGhLMVB4MVNMN2Nr?=
+ =?utf-8?Q?SbVVhXBh38v9XsW7kefgFjc=3D?=
+X-OriginatorOrg: amperemail.onmicrosoft.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 44a47a26-8412-42f8-8d3a-08dc4a55f29e
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR01MB5947.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Mar 2024 09:53:38.6376
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: a4pkiwUNXc9TlDYog3ejAwkKZcHohafIbP+eNy3nG83xoK3iW9Pqcht0NvCkcIQJz+KMk38Sm6X9HbdVY1lZ6o5JsVlyXzrEIJvwpn1juYI/gBD5xnHk0cYCJQRzQ9cb
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR01MB6129
 
-On Thu, Mar 21, 2024 at 06:53:34PM +0100, Krzysztof Kozlowski wrote:
-> On 21/03/2024 16:41, Wadim Mueller wrote:
-> > Add a compatible string for the SDHC binding of NXP S32G3 platforms. Here
-> > we use "nxp,s32g2-usdhc" as fallback since the s32g2-usdhc
-> > driver works also on S32G3 platforms.
-> > 
-> > Signed-off-by: Wadim Mueller <wafgo01@gmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> > index 82eb7a24c857..b42b4368fa4e 100644
-> > --- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> > +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> > @@ -35,6 +35,7 @@ properties:
-> >            - fsl,imx8mm-usdhc
-> >            - fsl,imxrt1050-usdhc
-> >            - nxp,s32g2-usdhc
-> > +          - nxp,s32g3-usdhc
-> >        - items:
-> >            - const: fsl,imx50-esdhc
-> >            - const: fsl,imx53-esdhc
-> > @@ -90,6 +91,9 @@ properties:
-> >            - enum:
-> >                - fsl,imxrt1170-usdhc
-> >            - const: fsl,imxrt1050-usdhc
-> > +      - items:
-> > +          - const: nxp,s32g3-usdhc
-> > +          - const: nxp,s32g2-usdhc
+
+
+On 18/03/2024 17:00, Krzysztof Kozlowski wrote:
+> On 18/03/2024 10:51, Chanh Nguyen wrote:
+>>
+>>> It does not look like you tested the bindings, at least after quick
+>>> look. Please run `make dt_binding_check` (see
+>>> Documentation/devicetree/bindings/writing-schema.rst for instructions).
+>>> Maybe you need to update your dtschema and yamllint.
+>>>
+>>
+>>
+>> I tested the binding, I didn't see any warning/error log. Please review
+>> my logs as below
 > 
-> No, that's just wrong. G3 is not and is compatible with G2? There is no
-> dualism here. Either it is or it is not. Not both.
->
-
-I am trying to understand your statement but I am not sure whether I get
-it right.
-
-Let me try to explain what I understand is wrong with this patch. 
-
-Having nxp,s32g2-usdhc and nxp,s32g2-usdhc in one enum
-
-> >            - nxp,s32g2-usdhc
-> > +          - nxp,s32g3-usdhc
-
-would mean that those are 
-__not__ compatible with each other, whereas the anouther item
-
-> > +      - items:
-> > +          - const: nxp,s32g3-usdhc
-> > +          - const: nxp,s32g2-usdhc
+> Hm, I don't remember what brought my attention to possible error. Maybe
+> I mistyped my template.
+> 
+>>
+>> => make dt_binding_check DT_SCHEMA_FILES=/hwmon/max31790.yaml
+>> make[1]: Entering directory '/DISK4T/work/community/linux/out'
+>>     DTEX    Documentation/devicetree/bindings/hwmon/max31790.example.dts
+>>     DTC_CHK Documentation/devicetree/bindings/hwmon/max31790.example.dtb
+>> make[1]: Leaving directory '/DISK4T/work/community/linux/out'
+>>
+>>>>
+>>>> Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
+>>>> ---
+>>>>    .../devicetree/bindings/hwmon/max31790.yaml   | 44 +++++++++++++++++++
+>>>>    1 file changed, 44 insertions(+)
+>>>>    create mode 100644 Documentation/devicetree/bindings/hwmon/max31790.yaml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/hwmon/max31790.yaml b/Documentation/devicetree/bindings/hwmon/max31790.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..5a93e6bdebda
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/hwmon/max31790.yaml
+>>>
+>>> Filename like compatible.
+>>
+>> Yes, I'll update that in v2
+>>
+>>>
+>>>> @@ -0,0 +1,44 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/hwmon/max31790.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: The Maxim MAX31790 Fan Controller
+>>>> +
+>>>> +maintainers:
+>>>> +  - Jean Delvare <jdelvare@suse.com>
+>>>> +  - Guenter Roeck <linux@roeck-us.net>
+>>>
+>>> You should have here someone responsible for hardware, not subsystem
+>>> maintainers.
+>>>
+>>
+>> Hi Krzysztof,
+>> I checked the history of the drivers/hwmon/max31790.c and see Guenter
+>> Roeck <linux@roeck-us.net> as an important maintainer. I saw many
+>> commits from him. So, I add him to maintainer list.
+> 
+> OK
+> 
+>>
+>>>> +
+>>>> +description: >
+>>>> +  The MAX31790 controls the speeds of up to six fans using six
+>>>> +  independent PWM outputs. The desired fan speeds (or PWM duty cycles)
+>>>> +  are written through the I2C interface.
+>>>> +
+>>>> +  Datasheets:
+>>>> +    https://datasheets.maximintegrated.com/en/ds/MAX31790.pdf
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    const: maxim,max31790
+>>>> +
+>>>> +  reg:
+>>>> +    maxItems: 1
+>>>
+>>> That's weirdly empty.
+>>>
+>>
+>> Hi Krzysztof,
+>> I have not yet understood your comment here. Please help give more
+>> details for my missing! Thank Krzysztof!
+> 
+> I expect many more properties of a fan controller. Resources (clocks,
+> PWMs, supplies) and FAN specific properties.
 > 
 
-where both const entries are side by side means that those are compatible. Which is
-paradox. Is this undersanding correct?
+Hi Krzysztof,
 
-So if I want to have the follwing im my DTS for the mmc node
+I'm creating a base binding document for the max31790 driver. I'm basing 
+it on the drivers/hwmon/max31790.c. Currently, the max31790.c driver has 
+not yet implemented other properties, such as clocks, fan-supply, pwms, 
+etc. So I just introduced the "compatible" and "reg" properties.
 
-usdhc0: mmc@402f0000 {
-			compatible = "nxp,s32g3-usdhc",
-				     "nxp,s32g2-usdhc";
-				     ...
-}
+In the near future, if any other properties are necessary, I think we 
+will implement them in drivers/hwmon/max31790.c then update this binding 
+document.
 
-The schema update should contain just this part?
+I look at other binding documents, I also see something similar. They 
+just introduce the "compatible" and "reg" properties.
 
-i@@ -90,6 +90,9 @@ properties:
-           - enum:
-               - fsl,imxrt1170-usdhc
-           - const: fsl,imxrt1050-usdhc
-+      - items:
-+          - const: nxp,s32g3-usdhc
-+          - const: nxp,s32g2-usdhc
- 
-   reg:
-     maxItems: 1
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/hwmon/adi,max31760.yaml 
 
 
-Is this correct?
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/hwmon/adt7475.yaml
 
-With this patch in place I dont see any issues with an 
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/hwmon/adi,ad741x.yaml
 
-"make CHECK_DTBS=y freescale/s32g399a-rdb3.dtb"
-
-as well as "make dt_binding_check dtbs_check" seems to be OK with this.
+This is only my view. It's a pleasure to hear your advice. Thanks!
 
 
-Thanks for your guidence so far, much appreciated!
+> 
+>>>> +
+>>>> +required:
+>>>> +  - compatible
+>>>> +  - reg
+>>>> +
+>>>
+>>> You miss allOf: with $ref to fan controller schema.
+>>>
+>>
+>> Thank Krzysztof,
+>> I'll add the allOf at v2.
+>>
+>>>> +additionalProperties: false
+>>>> +
+>>>> +examples:
+>>>> +  - |
+>>>> +    i2c {
+>>>> +      #address-cells = <1>;
+>>>> +      #size-cells = <0>;
+>>>> +
+>>>> +      max31790@20 {
+>>>
+>>> Node names should be generic. See also an explanation and list of
+>>> examples (not exhaustive) in DT specification:
+>>> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+>>>
+>>
+>> I suggest some node names, such as "i2c-fan" or "fan-controller" . Can
+>> you please share your ideas with me!
+> 
+> Look at recent commits and patches for similar type of a device.
+> 
 
-Best Regard
-Wadim
+Hi Krzysztof,
+
+I checked on recent commits and found something of a similar type.
+
+adi,max31760.yaml
+         fan-controller@50 {
+             reg = <0x50>;
+             compatible = "adi,max31760";
+         };
+
+hpe,gxp-fan-ctrl.yaml
+     fan-controller@1000c00 {
+       compatible = "hpe,gxp-fan-ctrl";
+       reg = <0x1000c00 0x200>, <0xd1000000 0xff>, <0x80200000 0x100000>;
+       reg-names = "base", "pl", "fn2";
+     };
 
 
+adi,axi-fan-control.yaml
+         axi_fan_control: axi-fan-control@80000000 {
+             compatible = "adi,axi-fan-control-1.00.a";
+             reg = <0x0 0x80000000 0x10000>;
+             clocks = <&clk 71>;
+             interrupts = <0 110 0>;
+             pulses-per-revolution = <2>;
+         };
+
+I think "fan-controller" is a good node name. Do you think so?
 
 > Best regards,
 > Krzysztof
