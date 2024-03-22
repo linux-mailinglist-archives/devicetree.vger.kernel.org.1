@@ -1,142 +1,117 @@
-Return-Path: <devicetree+bounces-52327-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52328-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 040AB886446
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 01:14:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69FEE886469
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 01:37:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B8081F2265A
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 00:14:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B6851C22100
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 00:37:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 916BE383;
-	Fri, 22 Mar 2024 00:13:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD1AF23C9;
+	Fri, 22 Mar 2024 00:37:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="QAcNKIrc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Zin8zpDE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE4E619A
-	for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 00:13:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E62210FA;
+	Fri, 22 Mar 2024 00:37:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711066436; cv=none; b=VdbpTkGZcOqLpG3L8SUQLhzqcMJo+pNAbd04eZE56KAeNZxYlEI2ClsSi4rqAYhKzW6FhPqyf/05mpORlpjqvIDb1122TkK4PHlDazOwOBmPx9hQxFZN7//apeHbXKa4Q1mMgcdbHYA3uTS/Rpz32X208F0201FA5oweP/EUPj4=
+	t=1711067848; cv=none; b=CViGpdohUh5TpSDcpEbDbeHR5kfd52HmFP+luJQ7XNhJXUHtSMcjkMXFTZcYjIeCepmVy6dRv4l+onFhIQdzNpYOrR1sRlZrZqcHEISNz+qur+SO9+OQMGjzkD5fiSob4RSFu7FJcQM3spZ+IbCIm/eq9hBhRAcoBOnqkzhjchA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711066436; c=relaxed/simple;
-	bh=Z5fjCzmDv7rqR7iUDqxDLqg/AN5GIh/c5iZIz9BpjEI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=idkyJiASYC6knb6BiTSDACCUIgTGqdBgmdTSMKq/1RXfqVj6L3XX1qYav7pyJ0jg3/q4I1TaI1gAvGB7vRPKIg7SzVNv850NKM6+s5Qs5dkGWdcK6XckFkyT6MyxLZDXqAtEySN+VU8Q2XuwzD/n7LZcroHUwa1Lp2yE5mAfrRI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=QAcNKIrc; arc=none smtp.client-ip=209.85.166.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-il1-f182.google.com with SMTP id e9e14a558f8ab-3686abc0dc2so3246195ab.2
-        for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 17:13:54 -0700 (PDT)
+	s=arc-20240116; t=1711067848; c=relaxed/simple;
+	bh=cZRKpREq1+mSTdHJ2+dKnJk+wXA+G7FnsX/QltF9LoU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=VNhVhjWzmqxeLd6Fwr5ce4zOGb0c/6rnyCAjGmcOKFbNLGd2VoUtVyy4cyjQ2OG5d/IngIs4fGaYV/uoN7RXmF2eAcEGVHX7gK9JJuX54J1JeKDtagR2KcTK0IUCJKc8N6HZg5jB090jIJvAGhAk4n3J7UwY1e6Ts0AW4v4Mbbc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Zin8zpDE; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a4715d4c2cbso164209566b.1;
+        Thu, 21 Mar 2024 17:37:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1711066434; x=1711671234; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oVj0RTqijXF6fGHo7lvyifktNSlsSBmRQcPYhg8uW8Y=;
-        b=QAcNKIrcsdNtT0pZpXNbkJzKMlZtJcSzPC0XFEQKRXTTEh0FM61171mjI2WPIGK55N
-         3fmWSLAduhmYr1bhTpAm/0lX1iMdA3Y+MAJ2mNTpBbnGBbzwZsA51Drgigrtcf9MRjcq
-         ZEBTvYyEj7Thixeku7+4uUTLHabcsrhxrclVBH89vgo9zdAxAL3a+BIb6qC0CvsqQmRb
-         DwI8161oN9mMEXtTCRsEboi6gv1VOhJEYdlBeGRJwJksi8t+pEDbN0dCmoVR/xnbeaCF
-         GufQJsb02A/RBSYn9s7umWR7DEDkqCdYgsAylGMvV7dwJmyd8xyIlpVPwMuKcAE18rWv
-         44dQ==
+        d=gmail.com; s=20230601; t=1711067845; x=1711672645; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=O2uqHc9ouvoPNaqDwbwGS4nnzEWfppAeWb4n/QR3EZE=;
+        b=Zin8zpDE9ynn1ZIeXvHATJmD4YL78SRZXpom4hHmVSA/W8MjNixZRUCrQ2Q8G8QpHo
+         VoHgHEX4D1DVWyP1J5Nt9zJ/eEvkNq1SK+BHB8yoikrOqTTLH1VWxpok1VDmdnpDTUsY
+         G4Tg2b+ir2j+Ljta2YXn5llwikllQV1tY6WON5PbDExfYZXJDyxLjaqVBdcyBaW01qOb
+         A5nnDfdeCEPV88YQHab3oQjRlqPLkbzi4PMUrlpxaod8ZaPpdfaJ6uOElklgDeF6RCms
+         pv8OEk6VktxwR9t3Soe4qI5B/6Kr3CWbvWngN4449XBgQtMkGrV1x8hYs+d6f61tsp52
+         yZKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711066434; x=1711671234;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oVj0RTqijXF6fGHo7lvyifktNSlsSBmRQcPYhg8uW8Y=;
-        b=Lnwe69PE7QDMTzXVK6v5fRjlI4fRHtyk4bk6fHb63S9Nh9eiTu5rzKNU101xtHsOiv
-         s915cSzLhcbPJHwYAHIeF10/HJNmRISC/LW4MH7JxjnWDrVf8ND+ZgRbC8sNhImUcdIb
-         7k2DEFKrxVWnbKSuFEywLF/evigcuBUn+lI37slRbaDtduOZdKs3vKfBZIid7ZXg4EbG
-         0XGaXE8+kWQWs2FNpwR4h6VAQ4yXJzk3dlm3h6BVYj4kTh/YysSKlj8damyWOAzNevBV
-         Q0QnDPcN+dddKXr41LbZ+uey05PhcPKGfvM0t64yMXJtX+joXxj1J1wS7atbsTHBZVD4
-         KdJA==
-X-Forwarded-Encrypted: i=1; AJvYcCVJG9PZKm7zrjlvSwrzYQHaxKxh7VkBmXm3PeZA4Fh20uNlg/PmWATbuBCzCFRlo+wNh2blh8hMy9lpvLbR4QW+1sL0oBNUmh92mg==
-X-Gm-Message-State: AOJu0Ywz6JUv1olgnn24PA5UdEQNx7KJ9ySiiO1RnE1v1ceF8c+KGpH6
-	MSsrg80hdvJC0zIqbDaYxAX1KL9/8iW6Huisp3oCXrR+/vmIXYD3+W1+cjord08=
-X-Google-Smtp-Source: AGHT+IFKwWGMcmPYu0Ub5wCx2QiMD01tH+85fFGHMfPp5sK/V1U4H3V0F6RY+8M0VE4TG4elEaDvoQ==
-X-Received: by 2002:a92:dc83:0:b0:365:29e4:d95d with SMTP id c3-20020a92dc83000000b0036529e4d95dmr966458iln.30.1711066434179;
-        Thu, 21 Mar 2024 17:13:54 -0700 (PDT)
-Received: from [100.64.0.1] ([136.226.86.189])
-        by smtp.gmail.com with ESMTPSA id y18-20020a056638015200b00476f1daad44sm206727jao.54.2024.03.21.17.13.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Mar 2024 17:13:53 -0700 (PDT)
-Message-ID: <d9452ab4-a783-4bcf-ac25-40baa4f31fac@sifive.com>
-Date: Thu, 21 Mar 2024 19:13:52 -0500
+        d=1e100.net; s=20230601; t=1711067845; x=1711672645;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=O2uqHc9ouvoPNaqDwbwGS4nnzEWfppAeWb4n/QR3EZE=;
+        b=kO5FqcGqCjWiHXxepoFe+QeF66z4+ffyRQ0hBg06mjjaBp0T8eOa9MItoRPo3JVSJH
+         U2q3j7emkZm+R7QwjN9xcPjK+uAQvhWN1/kIFtuFHndDSCFbegFCJykGG2l1wo6/ShHQ
+         1xDNWen4OmZdjb9nNIs99L33t3RBKPqy6D67tkRij9K4Lck675dLgCxG9q8kIynNIJSw
+         jnaczdpvbq+aPubt5gAThfwc5Lcm1rgSbWxnHWrstDKlBiDH0YT8FvvtOAe4O7woITMa
+         Bm8k5yqXXqJ1QZiO8BUeRjPPCOxr5wgsAyuQolBRLgSvGPEnY0gSY40w20A0VI6Jv7z+
+         W+jQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXKOh2sxZNMQq2E3xCB6ac/87Z9EvOCLORQmXmJ661gs0b8JdIRpgwfkobQnScD3gdK3E0miGEdt3CTeov/PMWcuM9FPq5GhShxzDVZfhgEBO30oLdbkDon9QWyMUJmbn3iP/DYDA2BMQ==
+X-Gm-Message-State: AOJu0YzDzzSq7T1CVZYMVXEn88sn+Ys2ofKN8vso9BrlEuPMbr1SK1iR
+	dND/3GMV4lZENHZdDHJUaEnq/2yFt/fMZCFy++lLEzbNKAX/QIDnkFle/SQUADRvlA==
+X-Google-Smtp-Source: AGHT+IE9F9LofvqrJFkW07VZDpYiLFIMl/PfrORIa1sQYA5F+od94OpRg4nR/XnDMp/LSOleot+SGQ==
+X-Received: by 2002:a17:906:e290:b0:a46:f018:3f1d with SMTP id gg16-20020a170906e29000b00a46f0183f1dmr599310ejb.73.1711067845388;
+        Thu, 21 Mar 2024 17:37:25 -0700 (PDT)
+Received: from 764c7355c69b.v.cablecom.net (84-72-156-211.dclient.hispeed.ch. [84.72.156.211])
+        by smtp.gmail.com with ESMTPSA id o11-20020a170906774b00b00a46af0fbf5dsm439950ejn.103.2024.03.21.17.37.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Mar 2024 17:37:25 -0700 (PDT)
+From: Lothar Rubusch <l.rubusch@gmail.com>
+To: lars@metafoo.de,
+	Michael.Hennerich@analog.com,
+	jic23@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	eraretuya@gmail.com,
+	l.rubusch@gmail.com
+Subject: [PATCH v2 0/3] iio: adxl345: add spi-3wire
+Date: Fri, 22 Mar 2024 00:37:10 +0000
+Message-Id: <20240322003713.6918-1-l.rubusch@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RISC-V] [tech-j-ext] [RFC PATCH 5/9] riscv: Split per-CPU and
- per-thread envcfg bits
-Content-Language: en-US
-To: Deepak Gupta <debug@rivosinc.com>, Conor Dooley <conor@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>
-Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
- Catalin Marinas <catalin.marinas@arm.com>, linux-kernel@vger.kernel.org,
- tech-j-ext@lists.risc-v.org, kasan-dev@googlegroups.com,
- Evgenii Stepanov <eugenis@google.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, Andrew Jones <ajones@ventanamicro.com>,
- Guo Ren <guoren@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Paul Walmsley <paul.walmsley@sifive.com>
-References: <20240319215915.832127-1-samuel.holland@sifive.com>
- <20240319215915.832127-6-samuel.holland@sifive.com>
- <CAKC1njSg9-hJo6hibcM9a-=FUmMWyR39QUYqQ1uwiWhpBZQb9A@mail.gmail.com>
- <40ab1ce5-8700-4a63-b182-1e864f6c9225@sifive.com>
- <CAKC1njQYZHbQJ71mapeG1DEw=A+aGx77xsuQGecsNFpoJ=tzGQ@mail.gmail.com>
-From: Samuel Holland <samuel.holland@sifive.com>
-In-Reply-To: <CAKC1njQYZHbQJ71mapeG1DEw=A+aGx77xsuQGecsNFpoJ=tzGQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 2024-03-19 11:39 PM, Deepak Gupta wrote:
->>>> --- a/arch/riscv/include/asm/switch_to.h
->>>> +++ b/arch/riscv/include/asm/switch_to.h
->>>> @@ -69,6 +69,17 @@ static __always_inline bool has_fpu(void) { return false; }
->>>>  #define __switch_to_fpu(__prev, __next) do { } while (0)
->>>>  #endif
->>>>
->>>> +static inline void sync_envcfg(struct task_struct *task)
->>>> +{
->>>> +       csr_write(CSR_ENVCFG, this_cpu_read(riscv_cpu_envcfg) | task->thread.envcfg);
->>>> +}
->>>> +
->>>> +static inline void __switch_to_envcfg(struct task_struct *next)
->>>> +{
->>>> +       if (riscv_cpu_has_extension_unlikely(smp_processor_id(), RISCV_ISA_EXT_XLINUXENVCFG))
->>>
->>> I've seen `riscv_cpu_has_extension_unlikely` generating branchy code
->>> even if ALTERNATIVES was turned on.
->>> Can you check disasm on your end as well.  IMHO, `entry.S` is a better
->>> place to pick up *envcfg.
->>
->> The branchiness is sort of expected, since that function is implemented by
->> switching on/off a branch instruction, so the alternate code is necessarily a
->> separate basic block. It's a tradeoff so we don't have to write assembly code
->> for every bit of code that depends on an extension. However, the cost should be
->> somewhat lowered since the branch is unconditional and so entirely predictable.
->>
->> If the branch turns out to be problematic for performance, then we could use
->> ALTERNATIVE directly in sync_envcfg() to NOP out the CSR write.
-> 
-> Yeah I lean towards using alternatives directly.
+Move driver wide constants and fields into the header. Reduce
+redundant info struct definitions. Allow to pass a function
+pointer from SPI/I2C specific probe, and smaller refactorings.
+Apply regmap_update_bits() in the core file replaces the
+regmap_write() to format_data.
 
-One thing to note here: we can't use alternatives directly if the behavior needs
-to be different on different harts (i.e. a subset of harts implement the envcfg
-CSR). I think we need some policy about which ISA extensions are allowed to be
-asymmetric across harts, or else we add too much complexity.
+Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
+---
+V1 -> V2: split into spi-3wire and refactoring
 
-Regards,
-Samuel
+Lothar Rubusch (3):
+  iio: accel: adxl345: Update adxl345
+  iio: accel: adxl345: Add spi-3wire feature
+  dt-bindings: iio: accel: adxl345: Add spi-3wire
+
+ .../bindings/iio/accel/adi,adxl345.yaml       |   2 +
+ drivers/iio/accel/adxl345.h                   |  44 ++++++-
+ drivers/iio/accel/adxl345_core.c              | 117 ++++++++++--------
+ drivers/iio/accel/adxl345_i2c.c               |  30 ++---
+ drivers/iio/accel/adxl345_spi.c               |  38 +++---
+ 5 files changed, 146 insertions(+), 85 deletions(-)
+
+-- 
+2.25.1
 
 
