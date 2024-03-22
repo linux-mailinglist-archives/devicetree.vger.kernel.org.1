@@ -1,157 +1,137 @@
-Return-Path: <devicetree+bounces-52471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73835886BE5
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 13:12:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04815886C00
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 13:25:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 03AECB24A35
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 12:12:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AD77E1F251D6
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 12:25:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11CD43E49D;
-	Fri, 22 Mar 2024 12:11:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E92933FE52;
+	Fri, 22 Mar 2024 12:25:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BJ+8Wwia"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QD75jSUP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 536F0446A0
-	for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 12:11:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B27D3FE3D
+	for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 12:25:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711109503; cv=none; b=MZgnSaPiUO6pBWYL5XEQfNl1G4PHFqj/Ys7BnBGZieukOaL0qfxPYXqk3hqbl820Nho97P0CZupWK/bcnjOZByhlc7RovTENHqGqR1e6rSIRD9CqirT5MRiSfYo8qO5vGqZSIqtY8gXzTPr9uR+Z/iKnZksB27UzK+aGLZZVu10=
+	t=1711110320; cv=none; b=K1qRz5TlDuGyR1iZ40SS3zsteLPVqSjItqdzEPN2WW0ywDcRRNdVFLGlpBwC+HVgXB5XWY/IZ0H/6fw/+bD7EB4AUwGYrNxqwRMKUo/HQxitXUpS7IXsByzcoC05Rr4Ak2b4GvhP+eGmAsCMEbbRyneKh5MhlUAFvLGpk6SFtpQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711109503; c=relaxed/simple;
-	bh=7Hi/wqqjIIEsOtQpwnH6pqXUN/y4LiNuG3sgNcl1HpE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=o2Qy5WoE0gGnSHkhdjnt1s8xxF1iY9jLSxxxYvFsuoOFmvxqhrFan4ePfycho77xxiGllTVZ4MWfWMBUrxCnI7f2EvYghGucvS6/L9b4uyFSfCW747mr0Jzz8Se7xEhyQKsAzGCXpJK9Y16+1LXICcNJjIDzn/y4bUmJz0uN5Fc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BJ+8Wwia; arc=none smtp.client-ip=209.85.221.48
+	s=arc-20240116; t=1711110320; c=relaxed/simple;
+	bh=ZEnIxGQIqrPER/t8ApwexaX5resinISqhwzMF02gDuo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=llohlTdDrSoXvA4LQbzz5wK2jufw9hr4Bs75Ft31NJ2ohh6zHNa3y/uQ8ncSGt5tmJzbHer37Uyz5cs1uOAYS1Gdo2OEDFAlNIfUWhZgay0nUuommsYPTTw8hYtAr+W7imR15hZUxsCzzEhBr/3w5b4vDAvvUZZ8T6PSlR/TdHo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QD75jSUP; arc=none smtp.client-ip=209.85.219.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-33e162b1b71so1467696f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 05:11:41 -0700 (PDT)
+Received: by mail-qv1-f50.google.com with SMTP id 6a1803df08f44-6962e6fbf60so20375896d6.1
+        for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 05:25:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711109500; x=1711714300; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Le16WcSed8nC9jSC5l5hiFp9bIsB6xxNGHVWFVCiUd8=;
-        b=BJ+8Wwiacn76gzFe14x1TGLz9ggI+UtGv2BcQDwMWJUaS2wR0xfJ/UD2y3UOIWABjO
-         UuLgzhzsZexi3RiRC39xfZ1bWWQQ12eODH3PjS3c01O+4TF0IynVhAoqz8XbZwn3aFv5
-         CRfDI5CT2/MVEvNspSZeX1nZvL4zYjPtqRs9ZTAXNNdhHXqK6jinGupwIKV8xaK8qFDy
-         IC8ePHjkjv+Z1tXg4nvtltn4HD8P2GZBs6YeabHKNsHRfpPlvovIZj9K93ckx61z9hHZ
-         Rfhb0NBPmyie3R3+vEpvy9xJEsUV7FABDtYCZbUztiBwDwKaXYg1YN/AZwTUWQ3QWyaX
-         PSOw==
+        d=linaro.org; s=google; t=1711110318; x=1711715118; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=jBLDXQz7Tm/l5pS6UUf5eGUMWwFYBh+cuJFlCxTgaWc=;
+        b=QD75jSUPqIdWfpc5O6dL2nFUl8rQyo1c+FcP8ipJjfOC/DLTjJs4yravwFdziZWD1Z
+         /T0Iqc4b5HWXT9vBJE/DBOYSZFyuxhnBx72hi/Piwr5aaIkIGfXcIYA1hUBQI237re6p
+         WfWiCTrTnrGR93xN6iUW3DEpymmwVqf/SayDYNOr4aYOMmVuTS38ti/H11019kXq1ruz
+         ZUz0WSr2hIHoO+kydEKf7ntyd+tXZ6hLbLehbU8/mMJ12i6PCj0PIMVHLTBPf+JNkuxr
+         FHYpsNs1czAuScX9eIeaG1a1g8MUMaHqGkBO6T/uOPlLU0mwbxf3bcHYDU9V8vM5eGvx
+         jv/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711109500; x=1711714300;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Le16WcSed8nC9jSC5l5hiFp9bIsB6xxNGHVWFVCiUd8=;
-        b=kca2NsEWHd+b8d97fZXOU5vwZ1mN5Vw6n/NU6Rf4g2h/VsMnePisz/eJ/Qr2oK3GGG
-         QV2JJIsNpWw5WhvnsxF4Y3qsJpoMWYlW1Tbp6aTV1+3N0LXqmfb4KxL57IWzfNVBoeDI
-         JbSe35iH88cpXl45l7E+BoMj1VqBajn5QcO967GF0FR7O9x4W/kbh5284pDfFXd85MjK
-         rwr9WHQHigxt94c4sY/vMaPjBZwVLGsEhd1xwWkD13wDN8D706Ocx1gh7VifiuZB+iCO
-         dvnXldHBsdhFKTpSsnJKMc3slgfb9Ao4rk4JtFZE/e+4nv40WcJlhhvyTDlwgtlRThgy
-         SYkA==
-X-Forwarded-Encrypted: i=1; AJvYcCV0kNkzepFbZ/avrGrA28lhNyMLBC1FDFmFe87fIPWw3E47d/+pkCKviXwZ0X/ROGgsDEQbJNcmYYUM+TylC91O7CLZwGOeFxnDyg==
-X-Gm-Message-State: AOJu0Ywq0+viLJlgnzGEp9bjshOVm55D4G5pTySnnsXm0uontpMrKv4M
-	LYadpqxQxmQyAkvXRcqECU2OBEuPh6ocfb9qqj0uMhoGH6gOZiCDndti6AqYjUM=
-X-Google-Smtp-Source: AGHT+IESitk5Tjv3Y5YyH2RjM4Y2RiRCyJcZ1naAnp1SZ/0nNfHcKxGUONrIuupIg7Hge3PdklpXpw==
-X-Received: by 2002:a5d:494f:0:b0:33e:6db4:e89f with SMTP id r15-20020a5d494f000000b0033e6db4e89fmr1261987wrs.22.1711109499658;
-        Fri, 22 Mar 2024 05:11:39 -0700 (PDT)
-Received: from [192.168.0.102] ([176.61.106.68])
-        by smtp.gmail.com with ESMTPSA id bk19-20020a0560001d9300b0033e2291fbc0sm1947516wrb.68.2024.03.22.05.11.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Mar 2024 05:11:39 -0700 (PDT)
-Message-ID: <635f7501-82cf-4df1-9194-27f24eb40a53@linaro.org>
-Date: Fri, 22 Mar 2024 12:11:38 +0000
+        d=1e100.net; s=20230601; t=1711110318; x=1711715118;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jBLDXQz7Tm/l5pS6UUf5eGUMWwFYBh+cuJFlCxTgaWc=;
+        b=nWerhp8S0S1GGvC33BgUc4O+oRzhIvb+0ZsQwy8Bd/p66kvdbfckk9hQtOU+7YoGr/
+         Lxx9L7aQtZYPXMN1TKtUpFSvO11vVoYW/+6KQ1mBQOzsV61sY11erQxRueCdcjiJoGIu
+         6BONl1ILG2KXp7TxRgvUD4hiZjzfzq2cuKUzhKk5WpCs0t60UI64I0pvBBSsEz/oCKcU
+         pjwDoi+0FdusfLqBWF0DvKNEE0W/4NolIuaUAgcdiPYDzX2xmVQSk0BmNFrMXmZcO8vz
+         OXl3U4+67G18UjvBk5mwZ0SkY44b7KhxnuD61tJZHjLainSPKnn+ZpB0XnFdZRDeDTFW
+         e9AA==
+X-Forwarded-Encrypted: i=1; AJvYcCXw+HcfB6cMI896KEDdygvRS5RBragrU2UufzU7BBLPqxauI/36ISqsnWAZ3/YYDVVU8CHHX2AvXYtelfBK4x3Z8NPXjL7P8InFkw==
+X-Gm-Message-State: AOJu0YxO9heGpF6ufVM7KnWK4ctSZhFmf532IMtmQafp2cOlt667uez+
+	5FpdJtQSb1P+3kssChiUd/AUIZUBi1+PNXvyKK68ZJcHDm3JUV+PCD8NYMnIYXROFc1p9aBZ3fH
+	/i8ddoeXnSBDXLYkH66CUY38IpGZxsPQvX9IbuA==
+X-Google-Smtp-Source: AGHT+IGIExSUNDd4r7jVV65H6zHX9xhOASVzk/Kf4IvYae9WrM2l7rC7eu20JTysrN3EznovSYV/NmWRKgOzkgIigyE=
+X-Received: by 2002:a05:6214:2a87:b0:696:1ffd:a32c with SMTP id
+ jr7-20020a0562142a8700b006961ffda32cmr2045115qvb.31.1711110318092; Fri, 22
+ Mar 2024 05:25:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8250: add a link between DWC3 and
- QMP PHY
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
-References: <20240322-typec-fix-sm8250-v1-0-1ac22b333ea9@linaro.org>
- <20240322-typec-fix-sm8250-v1-2-1ac22b333ea9@linaro.org>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20240322-typec-fix-sm8250-v1-2-1ac22b333ea9@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240320020549.71810-1-alexey.klimov@linaro.org>
+ <20240320020549.71810-3-alexey.klimov@linaro.org> <4d5b2da7-2a45-4a9f-8a96-a6840d2751a2@linaro.org>
+In-Reply-To: <4d5b2da7-2a45-4a9f-8a96-a6840d2751a2@linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Fri, 22 Mar 2024 12:25:06 +0000
+Message-ID: <CADrjBPrthH4cKBpDeGV8u2ydErCJuqbdBhFQs+62k7bfPyJNvA@mail.gmail.com>
+Subject: Re: [PATCH 3/3] power: reset: add new gs101-poweroff driver
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Alexey Klimov <alexey.klimov@linaro.org>, sre@kernel.org, robh@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, robh+dt@kernel.org, conor+dt@kernel.org, 
+	linux-samsung-soc@vger.kernel.org, semen.protsenko@linaro.org, 
+	linux-kernel@vger.kernel.org, klimov.linux@gmail.com, kernel-team@android.com, 
+	tudor.ambarus@linaro.org, andre.draszik@linaro.org, saravanak@google.com, 
+	willmcvicker@google.com, alim.akhtar@samsung.com, 
+	linux-arm-kernel@lists.infradead.org, elder@linaro.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 22/03/2024 11:58, Dmitry Baryshkov wrote:
-> The SuperSpeed signals originate from the DWC3 host controller and then
-> are routed through the Combo QMP PHY, where they are multiplexed with
-> the DisplayPort signals. Add corresponding OF graph link.
-> 
-> Reported-by: Luca Weiss <luca.weiss@fairphone.com>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/sm8250.dtsi | 24 ++++++++++++++++++++++--
->   1 file changed, 22 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> index d57039a4c3aa..e551e733ab94 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> @@ -3917,6 +3917,10 @@ port@0 {
->   
->   				port@1 {
->   					reg = <1>;
-> +
-> +					usb_1_qmpphy_usb_ss_in: endpoint {
-> +						remote-endpoint = <&usb_1_dwc3_ss_out>;
-> +					};
->   				};
->   
->   				port@2 {
-> @@ -4195,8 +4199,24 @@ usb_1_dwc3: usb@a600000 {
->   				phys = <&usb_1_hsphy>, <&usb_1_qmpphy QMP_USB43DP_USB3_PHY>;
->   				phy-names = "usb2-phy", "usb3-phy";
->   
-> -				port {
-> -					usb_1_dwc3_hs_out: endpoint {};
-> +				ports {
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +
-> +					port@0 {
-> +						reg = <0>;
-> +
-> +						usb_1_dwc3_hs_out: endpoint {
-> +						};
-> +					};
-> +
-> +					port@1 {
-> +						reg = <1>;
-> +
-> +						usb_1_dwc3_ss_out: endpoint {
-> +							remote-endpoint = <&usb_1_qmpphy_usb_ss_in>;
-> +						};
-> +					};
->   				};
->   			};
->   		};
-> 
+Hi Krzysztof,
 
-I think these should go into platform definitions, there's nothing at 
-the SoC level that imposes the port constraint.
+Thanks for your review feedback!
 
----
-bod
+On Wed, 20 Mar 2024 at 07:20, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 20/03/2024 03:05, Alexey Klimov wrote:
+> > +
+> > +     ret = devm_work_autocancel(dev, &gs101->shutdown_work,
+> > +                                gs101_shutdown_work_fn);
+> > +     if (ret) {
+> > +             dev_err(dev, "failed to register gs101 shutdown_work: %i\n", ret);
+> > +             unregister_keyboard_notifier(&gs101->keyboard_nb);
+> > +             return ret;
+> > +     }
+> > +
+> > +     gs101_poweroff_ctx = gs101;
+> > +     platform_set_drvdata(pdev, gs101);
+> > +
+> > +     /*
+> > +      * At this point there is a chance that psci_sys_poweroff already
+> > +      * registered as pm_power_off hook but unfortunately it cannot power
+> > +      * off the gs101 SoC hence we are rewriting it here just as is.
+> > +      */
+> > +     pm_power_off = gs101_poweroff;
+>
+> So that's a duplicated syscon power off driver. Why syscon does not
+> work? syscon_node_to_regmap() does not return correct regmap?
 
+Yes, for gs101 the regmap handling PMU registers is now created by
+exynos-pmu driver and is obtained using
+exynos_get_pmu_regmap_by_phandle() API. That was required due to the
+SMC call required to write to these registers from Linux.
+
+> If so,
+> this should be fixed instead of copying the driver with basically only
+> one difference.
+
+Are you suggesting we should add some API to syscon.c that allows
+regmaps created in other drivers like exynos-pmu.c or altera-sysmgr.c
+to be registered in the syscon_list?
+
+Thanks,
+
+Peter
 
