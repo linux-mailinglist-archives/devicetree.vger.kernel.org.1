@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-52349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 062EF88665D
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 06:44:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 174F5886664
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 06:45:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 58B87B22211
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 05:44:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8388B1F22CEE
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 05:45:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E90F15BB;
-	Fri, 22 Mar 2024 05:44:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DDB8C121;
+	Fri, 22 Mar 2024 05:45:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SDTtaTL3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aqtN94WJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B7D04436
-	for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 05:44:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58220BA3F
+	for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 05:45:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711086273; cv=none; b=D1jH7AT3/VUqg04Ka0+DlxOkFd+9BeG7X2kRFlzG487OqeVwoqsY2stKmWRL8DrVNbUqFVdOY1Fg9rYfDThc96FyoaaWgA8s+3UeZz/qvHV4Sqfll42uVzNj4kt91bcQ6vlBP4eoGt73ymfAv/+p36Y5VUS8lQnZDRTZCU8r/gY=
+	t=1711086339; cv=none; b=MATJhH1JhnAHPjJkomvSyliuwtvzvStNpGwQQmojHA2gvClWEKaoADL7E14/8WVRfSZ1uyDDo2/eRpefMq1nUBTMu9ER6uThOVKulNstE4AKbQcgQiRRB9zUs9is0ZaS9Y038JmdSrORKkwfUZB936+cAP4DXJIV3PXJ9uoOPkQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711086273; c=relaxed/simple;
-	bh=uOq5p/Eb5ykqUHQZyziKCXEGEMNI+vTHrhDo5R41vFs=;
+	s=arc-20240116; t=1711086339; c=relaxed/simple;
+	bh=m+xtxXrjwcetnFQbzF9BIF47u1pNPnKMbu4D+kyqqkY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cCoGQddQvME+nV7GuCn5n2wnfmZkiSxO9rV15s7nn2DrTdL5mj0iBZWdtA+dC17oYk3flh7tVU49yGx/0W5s+zvA6z0rMUikCVSE07aZVR4wGTnWpQC/RJUNEI9JQXRUn2c5MYwqwmbtQvnAHH9Qz5ci/0CyEmx6d8n89doMDX8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SDTtaTL3; arc=none smtp.client-ip=209.85.218.46
+	 In-Reply-To:Content-Type; b=ZTudCgp01LVVnoKr8tdnlwg98XkbYUJQulIWQgN/7E+8DLSl042AJvxum4djdSG1s2AznuW6hl0a97wzGR9wgkz2vm93O8aDBAloQxbH+vqSXvWd1dz3AzvOZGWwfYgcvz2G3NOly0uTl1ppEXVhKo0uHoO1ORYGvvJJpBjKRcg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aqtN94WJ; arc=none smtp.client-ip=209.85.221.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a4702457ccbso235668566b.3
-        for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 22:44:29 -0700 (PDT)
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-33e1d327595so1248489f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 22:45:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711086268; x=1711691068; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711086336; x=1711691136; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=nm9xbL6fdbmkA2PfY/NtYXaykwPAjIVdTVbULwbVVtw=;
-        b=SDTtaTL31u3UBWBfI8TyNu3x4qX2FQlcXlt6a6NM+pPVfMmYd8MQFjWqpZrTBBh3GO
-         4lyngn2xIeWu3oLxwJi+qNpvHuV0r7ZxhsXIwX3WF8nDhPoaHl8ATHjogKgc9tFOY3/f
-         r+HKDkpu8SxE2zty+C+SXlGlGVc4hsuoO4Q4kkTuMOzfMySOywI8LZD0+EsxSYdTmJn5
-         bLJTbrrU8aNA6A+BWfs/4v9vRFb6ouO5Nm6kMLHTPuPLdLQkh3vB/ZKsRLDsovc0JT83
-         vK/+iYjgnheV+3rJpC5geqqBT4PUtPN8486sBfYVZpFz/EDOBc7A8eyg1+sg/szPp4Tz
-         mEBg==
+        bh=MkFAmC+2FK4ht3eTsZWzjqwcgcYA/tAPnTXmCidIbM4=;
+        b=aqtN94WJkgZa16Klhyj86sGvFzw6J7NI4ZbB2A0yqO7RLmdlS7Zwj4hubjUOCPSmPk
+         ACE8Vdwa2R8oUsQlZRj1N/Gxe2Kt51nyI9NBrjjoHGrl1NfDfegrQ+9w5Bavir1q1Vdp
+         YD6Bfqm5cK0Qr0kBgGmyAGiJui5JjAgdk0DiYChis0UiJkkuYNa3x5XBf9+gDjcvE8FI
+         YXERXnXg+ZrlRYhdvJxdEgdVktaauHsS612RqSrMvdZ/DCoK63ZTE2lkzPQRhK1bbRY0
+         UOLpgLEym3y7q2TUsTN6aZOvQ40Ukao/pAFBSXs3G1Yf4vzYGdkz8qYO9GEt46XTV2xk
+         Yx4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711086268; x=1711691068;
+        d=1e100.net; s=20230601; t=1711086336; x=1711691136;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=nm9xbL6fdbmkA2PfY/NtYXaykwPAjIVdTVbULwbVVtw=;
-        b=oPIOsposMhOzKfw0oXf/MhkBwuMTEKzu2hxdnY67dFVVcYiKMuPeTxN0YEU+N3FhoB
-         6K14AM1LJ0jMUGcyQgoBu7cR6oqnIi0nnP3T+W8HJ6VgKsflR8OjXpaqOGMEtB/dr6P4
-         Sge3JLeoxzQvD1SH/i0uRo5cGXvCmE1XKQx5SgwB8kh5jTGBhTTDytzlh31v9BLvf5uS
-         or6FXXHwA3qCg/V2CPSq+KcZy61zqZTRyBj6DdfV2Z1p/d9IhbrzYr0PIEWCXfTAFlY/
-         97r4a5sCJ98FUdRWfsDQXUIGdgdWTV0dU5olxaXz3GhX2F5IRITQ6mO2555GGbOILbm/
-         sGQw==
-X-Forwarded-Encrypted: i=1; AJvYcCUPbVdng4F57tc6T8ogy/v+76bfnHIYG+Uuu7/g7QANWerETec55LB1Ta1jnelsmKtX3NBh6fkPfnjOH4QyP8r1rBQVRRdrUv27ZQ==
-X-Gm-Message-State: AOJu0YxksVIUa3R8/nwGfFvRvuSXDabpNA3jfr/oWlPC5D9Esxa+k/xD
-	W6toCkGXEP1PQHhQ1JIY+m+cJQi5zVzDng5rs62X4mvB98CcIZ6MOkVR6t79zk8=
-X-Google-Smtp-Source: AGHT+IHz4eOI/1BdG4Cjom5CZIaMivnSB7vOCtXEwzNWSV9lnXnDQx4VJBWJSOgUsbGlUSSKC4zkWg==
-X-Received: by 2002:a17:907:7e8e:b0:a46:5e1b:58a3 with SMTP id qb14-20020a1709077e8e00b00a465e1b58a3mr1110987ejc.35.1711086266344;
-        Thu, 21 Mar 2024 22:44:26 -0700 (PDT)
+        bh=MkFAmC+2FK4ht3eTsZWzjqwcgcYA/tAPnTXmCidIbM4=;
+        b=GSrewBPKcSLGoUw3EBgV1Q7isAdDSeI5K1ZNqWpXM6r9A5CbSs8sdLlPII4LUkZhzV
+         hhxvL3OTEBQSLo+rra09sxMoe0DFbVbqfu4S8KgniN6fA/Rl4cmmKvD9JcwtU/vaILfH
+         gPvYmXgqGR6FBALBOwVTBm1nO95YNkTnGZrQoIHRUgCWe/Jo3C6YKKi30/rwrQvOk+Wi
+         IV8ipr+f/uRVSLaR4r81coYFWOBNv5ahRUMCojUQy45FfAJQ1P+kS8NfIJAknQafXe7h
+         ZGarn0EGMOd13Ao+Q30V7HzxB85DP4roTqUMPPzyufPnFUDbl1+uatEJG5OUclTlS8iD
+         5ubg==
+X-Forwarded-Encrypted: i=1; AJvYcCWIKxEfczOC+zXdRhojV0EFnkAo8E/tWaIyXvOmJevBrr+WABmEa39u9RdSVxWpKiyPi9ffxxPwaZ/RieeRB3hVNJfP+CAu5Xgung==
+X-Gm-Message-State: AOJu0YxBmVONpADbZjTkemhffEPSdPic5kLQFQBMEGgSoqsff8JVZCjk
+	NGaGu0JCD3doDn2IKwBguCJdkfRqrF2nNDf6BWb5qepitusdL+Bghtij26WVFFc=
+X-Google-Smtp-Source: AGHT+IG09f3nMQjPFTGhbvqw1bkRjjmxyDkfTjJR7qm/soiCrhTRjHLcsz6KrpBAj99xkB25s4o3Ww==
+X-Received: by 2002:adf:ec8f:0:b0:33e:cf4d:c583 with SMTP id z15-20020adfec8f000000b0033ecf4dc583mr892321wrn.16.1711086335711;
+        Thu, 21 Mar 2024 22:45:35 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id h8-20020a1709060f4800b00a471b5b25b9sm633096ejj.127.2024.03.21.22.44.24
+        by smtp.gmail.com with ESMTPSA id i23-20020a170906115700b00a46cc25b550sm639326eja.5.2024.03.21.22.45.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Mar 2024 22:44:25 -0700 (PDT)
-Message-ID: <b224cd7e-ebd0-41ef-b1e2-64f76d246307@linaro.org>
-Date: Fri, 22 Mar 2024 06:44:23 +0100
+        Thu, 21 Mar 2024 22:45:35 -0700 (PDT)
+Message-ID: <abd29b47-a8ab-4e2a-8147-d5d8ded98065@linaro.org>
+Date: Fri, 22 Mar 2024 06:45:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,23 +77,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: remoteproc: add Versal-NET platform
-To: Tanmay Shah <tanmay.shah@amd.com>, andersson@kernel.org,
- mathieu.poirier@linaro.org, robh+dt@kernel.org,
+Subject: Re: [PATCH 2/2] clk: qcom: add IPQ9574 interconnect clocks support
+To: Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc: andersson@kernel.org, konrad.dybcio@linaro.org, robh@kernel.org,
  krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- michal.simek@amd.com, ben.levinsky@amd.com
-Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240315211533.1996543-1-tanmay.shah@amd.com>
- <20240315211533.1996543-3-tanmay.shah@amd.com>
- <3ca1c419-d185-4318-92ed-3c4e40dcf5bb@linaro.org>
- <14be0aa6-49b7-4342-9ca6-750c30c8e1e9@amd.com>
- <b1320ddf-bacb-41e3-9709-e90df18cc1e3@linaro.org>
- <d112481b-4331-4c0c-9775-407ac4a601fb@amd.com>
- <6f2ebe09-8ce5-4388-a01a-84ebc271472e@linaro.org>
- <72f3caa2-30ec-4191-9477-2d2a5e7f2f4b@amd.com>
- <5025fb10-3bcc-43b1-ae85-b556f1c0415f@linaro.org>
- <091c5ff9-dce9-4c63-a2ca-39d570e2f0a5@amd.com>
+ mturquette@baylibre.com, sboyd@kernel.org, djakov@kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-pm@vger.kernel.org
+References: <20240321043149.2739204-1-quic_varada@quicinc.com>
+ <20240321043149.2739204-3-quic_varada@quicinc.com>
+ <4079ddcf-425d-4194-93b8-ee113864541e@linaro.org>
+ <ZfwEMUBdlQHYz/+h@hu-varada-blr.qualcomm.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -140,238 +135,36 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <091c5ff9-dce9-4c63-a2ca-39d570e2f0a5@amd.com>
+In-Reply-To: <ZfwEMUBdlQHYz/+h@hu-varada-blr.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/03/2024 16:13, Tanmay Shah wrote:
-> 
-> 
-> On 3/21/24 2:39 AM, Krzysztof Kozlowski wrote:
->> On 20/03/2024 16:14, Tanmay Shah wrote:
->>>
->>>
->>> On 3/20/24 2:40 AM, Krzysztof Kozlowski wrote:
->>>> On 19/03/2024 15:42, Tanmay Shah wrote:
->>>>>
->>>>>
->>>>> On 3/19/24 12:30 AM, Krzysztof Kozlowski wrote:
->>>>>> On 19/03/2024 01:51, Tanmay Shah wrote:
->>>>>>> Hello Krzysztof,
->>>>>>>
->>>>>>> Thanks for reviews. Please find my comments below.
->>>>>>>
->>>>>>> On 3/17/24 1:53 PM, Krzysztof Kozlowski wrote:
->>>>>>>> On 15/03/2024 22:15, Tanmay Shah wrote:
->>>>>>>>> AMD-Xilinx Versal-NET platform is successor of Versal platform. It
->>>>>>>>> contains multiple clusters of cortex-R52 real-time processing units.
->>>>>>>>> Each cluster contains two cores of cortex-R52 processors. Each cluster
->>>>>>>>> can be configured in lockstep mode or split mode.
->>>>>>>>>
->>>>>>>>> Each R52 core is assigned 128KB of TCM memory. ATCM memory is 64KB, BTCM
->>>>>>>>> and CTCM memoreis are 32KB each. Each TCM memory has its own dedicated
->>>>>>>>> power-domain that needs to be requested before using it.
->>>>>>>>>
->>>>>>>>> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
->>>>>>>>> ---
->>>>>>>>>  .../remoteproc/xlnx,zynqmp-r5fss.yaml         | 220 +++++++++++++++---
->>>>>>>>>  1 file changed, 184 insertions(+), 36 deletions(-)
->>>>>>>>>
->>>>>>>>> diff --git a/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml b/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
->>>>>>>>> index 711da0272250..55654ee02eef 100644
->>>>>>>>> --- a/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
->>>>>>>>> +++ b/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
->>>>>>>>> @@ -18,7 +18,9 @@ description: |
->>>>>>>>>  
->>>>>>>>>  properties:
->>>>>>>>>    compatible:
->>>>>>>>> -    const: xlnx,zynqmp-r5fss
->>>>>>>>> +    enum:
->>>>>>>>> +      - xlnx,zynqmp-r5fss
->>>>>>>>> +      - xlnx,versal-net-r52fss
->>>>>>>>>  
->>>>>>>>>    "#address-cells":
->>>>>>>>>      const: 2
->>>>>>>>> @@ -64,7 +66,9 @@ patternProperties:
->>>>>>>>>  
->>>>>>>>>      properties:
->>>>>>>>>        compatible:
->>>>>>>>> -        const: xlnx,zynqmp-r5f
->>>>>>>>> +        enum:
->>>>>>>>> +          - xlnx,zynqmp-r5f
->>>>>>>>> +          - xlnx,versal-net-r52f
->>>>>>>>>  
->>>>>>>>>        reg:
->>>>>>>>>          minItems: 1
->>>>>>>>> @@ -135,9 +139,11 @@ required:
->>>>>>>>>  allOf:
->>>>>>>>>    - if:
->>>>>>>>>        properties:
->>>>>>>>> -        xlnx,cluster-mode:
->>>>>>>>> -          enum:
->>>>>>>>> -            - 1
->>>>>>>>> +        compatible:
->>>>>>>>> +          contains:
->>>>>>>>> +            enum:
->>>>>>>>> +              - xlnx,versal-net-r52fss
->>>>>>>>
->>>>>>>> Why do you touch these lines?
->>>>>>>>
->>>>>>>>> +
->>>>>>>>>      then:
->>>>>>>>>        patternProperties:
->>>>>>>>>          "^r5f@[0-9a-f]+$":
->>>>>>>>> @@ -149,16 +155,14 @@ allOf:
->>>>>>>>>                items:
->>>>>>>>>                  - description: ATCM internal memory
->>>>>>>>>                  - description: BTCM internal memory
->>>>>>>>> -                - description: extra ATCM memory in lockstep mode
->>>>>>>>> -                - description: extra BTCM memory in lockstep mode
->>>>>>>>> +                - description: CTCM internal memory
->>>>>>>>>  
->>>>>>>>>              reg-names:
->>>>>>>>>                minItems: 1
->>>>>>>>>                items:
->>>>>>>>> -                - const: atcm0
->>>>>>>>> -                - const: btcm0
->>>>>>>>> -                - const: atcm1
->>>>>>>>> -                - const: btcm1
->>>>>>>>> +                - const: atcm
->>>>>>>>> +                - const: btcm
->>>>>>>>> +                - const: ctcm
->>>>>>>>>  
->>>>>>>>>              power-domains:
->>>>>>>>>                minItems: 2
->>>>>>>>> @@ -166,33 +170,70 @@ allOf:
->>>>>>>>>                  - description: RPU core power domain
->>>>>>>>>                  - description: ATCM power domain
->>>>>>>>>                  - description: BTCM power domain
->>>>>>>>> -                - description: second ATCM power domain
->>>>>>>>> -                - description: second BTCM power domain
->>>>>>>>> +                - description: CTCM power domain
->>>>>>>>>  
->>>>>>>>>      else:
->>>>>>>>> -      patternProperties:
->>>>>>>>> -        "^r5f@[0-9a-f]+$":
->>>>>>>>> -          type: object
->>>>>>>>> -
->>>>>>>>> -          properties:
->>>>>>>>> -            reg:
->>>>>>>>> -              minItems: 1
->>>>>>>>> -              items:
->>>>>>>>> -                - description: ATCM internal memory
->>>>>>>>> -                - description: BTCM internal memory
->>>>>>>>> -
->>>>>>>>> -            reg-names:
->>>>>>>>> -              minItems: 1
->>>>>>>>> -              items:
->>>>>>>>> -                - const: atcm0
->>>>>>>>> -                - const: btcm0
->>>>>>>>> -
->>>>>>>>> -            power-domains:
->>>>>>>>> -              minItems: 2
->>>>>>>>> -              items:
->>>>>>>>> -                - description: RPU core power domain
->>>>>>>>> -                - description: ATCM power domain
->>>>>>>>> -                - description: BTCM power domain
->>>>>>>>> +      allOf:
->>>>>>>>> +        - if:
->>>>>>>>> +            properties:
->>>>>>>>> +              xlnx,cluster-mode:
->>>>>>>>> +                enum:
->>>>>>>>> +                  - 1
->>>>>>>>
->>>>>>>> Whatever you did here, is not really readable. You have now multiple
->>>>>>>> if:then:if:then embedded.
->>>>>>>
->>>>>>> For ZynqMP platform, TCM can be configured differently in lockstep mode
->>>>>>> and split mode.
->>>>>>>
->>>>>>> For Versal-NET no such configuration is available, but new CTCM memory
->>>>>>> is added.
->>>>>>>
->>>>>>> So, I am trying to achieve following representation of TCM for both:
->>>>>>>
->>>>>>> if: versal-net compatible
->>>>>>> then:
->>>>>>>   ATCM - 64KB
->>>>>>>   BTCM - 32KB
->>>>>>>   CTCM - 32KB
->>>>>>>
->>>>>>> else: (ZynqMP compatible)
->>>>>>>   if:
->>>>>>>     xlnx,cluster-mode (lockstep mode)
->>>>>>>   then:
->>>>>>>     ATCM0 - 64KB
->>>>>>>     BTCM0 - 64KB
->>>>>>>     ATCM1 - 64KB
->>>>>>>     BTCM1 - 64KB
->>>>>>>   else: (split mode)
->>>>>>>     ATCM0 - 64KB
->>>>>>>     BTCM0 - 64KB
->>>>>>>
->>>>>>>
->>>>>>> If bindings are getting complicated, does it make sense to introduce
->>>>>>> new file for Versal-NET bindings? Let me know how you would like me
->>>>>>> to proceed.
->>>>>>
->>>>>> All this is broken in your previous patchset, but now we nicely see.
->>>>>>
->>>>>> No, this does not work like this. You do not have entirely different
->>>>>> programming models in one device, don't you?
->>>>>>
->>>>>
->>>>> I don't understand what do you mean? Programming model is same. Only number
->>>>> of TCMs are changing based on configuration and platform. I can certainly
->>>>> list different compatible for different platforms as requested. But other than
->>>>> that not sure what needs to be fixed.
->>>>
->>>> You cannot have same programming model with different memory mappings.
->>>> Anyway, please follow writing bindings rules: all of your different
->>>> devices must have dedicated compatible. I really though we talked about
->>>> two IPs on same SoC...
->>>
->>> I agree that Versal compatible should be added, I will do that in next revision.
->>>
->>> For ZynqMP case, it is two IPs on same SOC. In lockstep mode and split mode,
->>> same SOC is configuring TCM differently.
->>>
->>> How this should be resolved for Versal-NET ? Driver avoids such TCM configuration
->>> for Versal-NET.
+On 21/03/2024 10:56, Varadarajan Narayanan wrote:
+> On Thu, Mar 21, 2024 at 08:25:15AM +0100, Krzysztof Kozlowski wrote:
+>> On 21/03/2024 05:31, Varadarajan Narayanan wrote:
+>>> Unlike MSM platforms that manage NoC related clocks and scaling
+>>> from RPM, IPQ SoCs dont involve RPM in managing NoC related
+>>> clocks and there is no NoC scaling.
 >>
->> Binding should describe the hardware, not what driver is doing
->> currently, so the question is: does your device have such properties or
->> not? Anyway, you need compatible per each variant and each SoC
->> implementation.
+>> If these are clocks, expose them as clocks, not as interconnects.
 > 
-> Thanks for reviews.
+> Earlier IPQ9574 PCIe patches were NAK-ed when these were exposed
+> as clocks. Please refer to the following discussions
 > 
-> Okay in that case I believe I should add one more property to current bindings for TCM
-> configuration.
+> https://lore.kernel.org/linux-arm-msm/CAA8EJpq0uawrOBHA8XHygEpGYF--HyxJWxKG44iiFdAZZz7O2w@mail.gmail.com/
+> https://lore.kernel.org/linux-arm-msm/CAA8EJppabK8j9T40waMv=t-1aksXfqJibWuS41GhruzLhpatrg@mail.gmail.com/
 > 
+> Dmitry had said
+> 	<quote>
+> 	I'd kindly suggest implementing the NoC attachment
+> 	properly. In the end, other Qualcomm platforms use ICC
+> 	drivers, so by following this pattern we will have more
+> 	common code paths.
+> 	</quote>
+> 
+> Hence posted these patches to get feedback.
 
-I am not sure if you understand how IRC works... You sent me message on
-IRC about this topic and shortly after you quit. So how am I supposed to
-send reply? IRC does not work like that...
-
-> From our discussion I conclude to following next steps:
-> 
-> 1) I will send Versal and Versal-NET support as part of previous series (v14) so we get
-> bigger picture in the first place.
-> 
-> 2) Add separate compatible for versal platform.
-> Use device compatible string to maintain
-> backward compatibility and not machine (root node) compatible string.
-> 
-> 3) Add tcm,mode property in bindings and each device must configure TCM based on that
-> property only and not based on compatible string.
-> 
-> 4) Versal-NET will disallow tcm,mode property in bindings as no such configuration is
-> possible for that platform.
-
-I really don't know your SoCs. What about Zynq? You keep using here
-names all over the place, but I am not Xilinx maintainer.
-
+Then explain the rationale in commit msg.
 
 Best regards,
 Krzysztof
