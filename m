@@ -1,141 +1,165 @@
-Return-Path: <devicetree+bounces-52531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52532-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A5FE8870CF
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 17:26:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0603C8870FF
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 17:39:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6BE771C22D5B
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 16:26:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 69DF61F2313E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 16:39:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4493E5820C;
-	Fri, 22 Mar 2024 16:26:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 498405B217;
+	Fri, 22 Mar 2024 16:39:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="W3V1cRet"
+	dkim=pass (1024-bit key) header.d=amazon.co.uk header.i=@amazon.co.uk header.b="OPFlwYmW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-189.mta0.migadu.com (out-189.mta0.migadu.com [91.218.175.189])
+Received: from smtp-fw-52005.amazon.com (smtp-fw-52005.amazon.com [52.119.213.156])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 530F85674C
-	for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 16:26:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.189
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42826495F0;
+	Fri, 22 Mar 2024 16:39:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.119.213.156
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711124778; cv=none; b=H1kGw+XXzMHDfp004ix94sD6tNqnzTpjANymsfNVD5rVV2GpqYFdIdvT/dxyHup9ZDXf6sQQ+JO4IT14nKrfIiL7zXNsrOOa6wfviRubeB5+TiB8T5ac4QE8IgNR6L6rvdNK7ij5jLkR6cueCld3OY7VVFFsSZ1/nlAeXP7wL9k=
+	t=1711125565; cv=none; b=n8ow4z1zqoDNAbOTFWYKlSe4/H2jXUBBhN0DZvr5+b17kR3I/i69hzSd4MbiCrPDQqrJxwy7n6D+JQPCZs28kWbmz8VjYZ4+MSrT2Qgo4zcv3AV9NGWGfgI+9cNtCTkK0fuQehIu0Ag2BU637Zu4wD2TRGPqBloYdX5fDxRharw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711124778; c=relaxed/simple;
-	bh=HOkr8Hoor9LWrctKOQzP7fj5wIdq4ZleDhqNpY3eCFM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=upbApCn6UVvGwseUoVw7Rggv3rMDjt+3bjAJyttLTssQ2u3r1W2a8QHtohaV2iEm5z8Zrv86HIS9BdQc1twZ3NoMn2FtmbXpTf02Fzu+SOJz2j9SzjdF0KJHm3RbIWZFWeABSWERweWwR1OEkqEiKaRGS27WBcUSzR992CVJr9g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=W3V1cRet; arc=none smtp.client-ip=91.218.175.189
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <bcb82d05-3c8f-40f4-a8d3-a0d7c17497b3@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1711124774;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Y/6J+YbEX3EYv+o0oRRUc2f+RR8PKsdbh2rDoDRf+CQ=;
-	b=W3V1cRetDjH+QZIfP4YR4L6tc6g5V3rgUlEvOaJraPy1aw5TxWHFAm76DXOEaXXhFcDmRO
-	/A8RFQT2CcLz+uR6kYkPmm9mRm2eUeXxXManLt/BUgoFyzoQVys+3F5xw6hW2idomfhSEl
-	z0QwYPUnTiKYqSmUGTO8tb68riCfcj0=
-Date: Fri, 22 Mar 2024 12:26:10 -0400
+	s=arc-20240116; t=1711125565; c=relaxed/simple;
+	bh=nlkMOMncwpIINGvRX/UEkWw6eMthWmsYDewKJVNfR6E=;
+	h=Subject:Message-ID:Date:MIME-Version:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Us+X8jOtHhl6MQlZoeVCj53LuCJ1L4LugjmPrRGOqX1gphrjy/DGfaICPWcv2cYDkRh6zYhbe7l3B0/X8fn4a3IRsyWusyg+IDpkuAH2kZV5QVZnXqoxk1FIB3Vy4MioDlSxLU07Rsdc33mVc0Q5yMRR/U/9W4kRASos5vAsoxQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.co.uk; spf=pass smtp.mailfrom=amazon.co.uk; dkim=pass (1024-bit key) header.d=amazon.co.uk header.i=@amazon.co.uk header.b=OPFlwYmW; arc=none smtp.client-ip=52.119.213.156
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.co.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.co.uk
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.co.uk; i=@amazon.co.uk; q=dns/txt;
+  s=amazon201209; t=1711125563; x=1742661563;
+  h=message-id:date:mime-version:to:cc:references:from:
+   in-reply-to:content-transfer-encoding:subject;
+  bh=H3tv937L/nNlgjDfXEwnKqcwdZa8dGHZRZ7eEGPyFgw=;
+  b=OPFlwYmW9s49e9Yvm/O/1zAspOtRhE8CPfvMBeSvl03ZI25j5yl2uxH6
+   FqBp08hRpV0hftIRpoUqZ2b5H104F8o1r1inOqlIINHvKbq1tIoC9Jaiu
+   9x7PdQtGrtGqiYURX0hsJqxKUir32M4vZc+QkawTg80yZnE9Ebr8ue6AZ
+   Q=;
+X-IronPort-AV: E=Sophos;i="6.07,146,1708387200"; 
+   d="scan'208";a="642879176"
+Subject: Re: [PATCH v1 0/4] virt: vmgenid: Add devicetree bindings support
+Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO smtpout.prod.us-west-2.prod.farcaster.email.amazon.dev) ([10.43.8.6])
+  by smtp-border-fw-52005.iad7.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Mar 2024 16:39:20 +0000
+Received: from EX19MTAEUA002.ant.amazon.com [10.0.43.254:18975]
+ by smtpin.naws.eu-west-1.prod.farcaster.email.amazon.dev [10.0.11.17:2525] with esmtp (Farcaster)
+ id e58a527d-dcbd-4bc9-a202-dbb0c45db04e; Fri, 22 Mar 2024 16:39:18 +0000 (UTC)
+X-Farcaster-Flow-ID: e58a527d-dcbd-4bc9-a202-dbb0c45db04e
+Received: from EX19D036EUC002.ant.amazon.com (10.252.61.191) by
+ EX19MTAEUA002.ant.amazon.com (10.252.50.126) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.28; Fri, 22 Mar 2024 16:39:17 +0000
+Received: from [192.168.15.170] (10.106.83.11) by
+ EX19D036EUC002.ant.amazon.com (10.252.61.191) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.28; Fri, 22 Mar 2024 16:39:11 +0000
+Message-ID: <d790d5cc-a116-4d5b-97a4-da0d073ff3e3@amazon.co.uk>
+Date: Fri, 22 Mar 2024 16:39:07 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/2] dt-bindings: nvmem: Remove fsl,t1023-sfp in favor of
- fsl,layerscape-sfp
+User-Agent: Mozilla Thunderbird
 Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Conor Dooley <conor@kernel.org>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Richard Alpe <richard@bit42.se>, linux-kernel@vger.kernel.org,
- =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
- Michael Walle <michael@walle.cc>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-References: <20240316002026.1808336-1-sean.anderson@linux.dev>
- <20240317-starved-pager-7a81c5045cfc@spud>
- <9daf9c8f-6606-4ff6-8065-6a32fa0d152c@linux.dev>
- <20240318-scarf-startup-64088b1d8d35@spud>
- <fa047914-da03-4234-b48f-eebdf350795e@linux.dev>
- <20240319-fondling-implode-322a9cb570b8@spud>
- <d947cb15-aafc-487e-8bbd-54d786683470@linux.dev>
- <024ca6eb-c3d8-4764-946e-1070d1bfb806@linaro.org>
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Sean Anderson <sean.anderson@linux.dev>
-In-Reply-To: <024ca6eb-c3d8-4764-946e-1070d1bfb806@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
+To: David Woodhouse <dwmw2@infradead.org>, Rob Herring <robh@kernel.org>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Sudan Landge
+	<sudanl@amazon.com>, <tytso@mit.edu>, <Jason@zx2c4.com>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<sathyanarayanan.kuppuswamy@linux.intel.com>, <thomas.lendacky@amd.com>,
+	<dan.j.williams@intel.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <graf@amazon.de>, <bchalios@amazon.es>,
+	<xmarcalx@amazon.co.uk>, <ardb@kernel.org>, benh <benh@kernel.crashing.org>
+References: <20240319143253.22317-1-sudanl@amazon.com>
+ <23692c07-98bd-477d-b244-bba14c50352c@linaro.org>
+ <38aad6c0e698c8e804694276d1762d61f2068ce8.camel@infradead.org>
+ <20240320161531.GA1810860-robh@kernel.org>
+ <60404403932a984d1f75d111ff53b9053af03579.camel@infradead.org>
+ <20240321133250.GA1600070-robh@kernel.org>
+ <db5a1027-93b7-4630-b679-8a654905dc48@amazon.co.uk>
+ <17611183-f288-47fe-a5e1-91ee16168db0@linaro.org>
+ <ee688cca986d95148a55e32fee48ceed8567f128.camel@infradead.org>
+ <CAL_JsqJOn9yU_YC0+q=4DX9_=0+z8yTact0HAvOKbrUpcXHxkQ@mail.gmail.com>
+ <0a83e174db16e15cb0f0d3ac37d6717c918ee78d.camel@infradead.org>
+From: "Landge, Sudan" <sudanl@amazon.co.uk>
+In-Reply-To: <0a83e174db16e15cb0f0d3ac37d6717c918ee78d.camel@infradead.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: EX19D038UWC003.ant.amazon.com (10.13.139.209) To
+ EX19D036EUC002.ant.amazon.com (10.252.61.191)
 
-On 3/22/24 03:01, Krzysztof Kozlowski wrote:
-> On 21/03/2024 17:21, Sean Anderson wrote:
->> On 3/19/24 13:55, Conor Dooley wrote:
->>> On Mon, Mar 18, 2024 at 11:48:06AM -0400, Sean Anderson wrote:
->>>> On 3/18/24 11:40, Conor Dooley wrote:
->>>>> On Mon, Mar 18, 2024 at 11:08:00AM -0400, Sean Anderson wrote:
->>>>>> On 3/17/24 11:10, Conor Dooley wrote:
->>>>>
->>>>>>> Additionally, should
->>>>>>> they fall back to t1023-sfp? I see that there's already some dts files
->>>>>>> with these compatibles in them but seemingly no driver support as there
->>>>>>> is for the t1023-sfp.
->>>>>>
->>>>>> I checked the reference manuals for these processors, and all of them use TA 2.0.
->>>>>
->>>>> Sounds like a fallback is suitable then, although that will require
->>>>> updating the various dts files.
->>>>
->>>> Yes, a fallback (like what is done for the T-series) would be suitable,
->>>> but given that these devicetrees have been in-tree for eight years I
->>>> think it would be preferable to support the existing bindings for
->>>> compatibility purposes.
->>>
->>> Just cos stuff snuck into the tree in dts files doesn't make it right
->>> though, I'd rather the bindings were done correctly. I don't care if you
->>> want to support all of the compatibles in the driver so that it works
->>> with the existing devicetrees though, as long as you mention the
->>> rationale in the commit message.
->> 
->> It doesn't really matter what the schema has as long as the driver supports
->> existing device trees.
+
+
+On 22/03/2024 14:27, David Woodhouse wrote:
+> On Fri, 2024-03-22 at 08:22 -0500, Rob Herring wrote:
+>>
+>>>> What stops you from passing fw_cfg not to UEFI FW? BTW, no actual VM
+>>>> name was used in your posting, but now suddenly it is a talk about QEMU.
 > 
-> We do not talk about driver now but bindings. You add new compatibles on
-> a basis that they were already used. This cannot bypass regular review
-> comments, so if during regular review process we would require
-> fallbacks, then you are expected to listen to review also when
-> documenting existing compatibles. Otherwise everyone would prefer to
-> snuck in incorrect code and later document it "it was there!".
+> (Forgot to address the second part of that last time. No specific VMM
+> was mentioned in the first place because this isn't VMM-specific)
+> 
+QEMU is referenced to explain `vmgenid` which they are also using and 
+have more documentation on it. We mentioned the hypervisor we tested the 
+changes with in the cover letter which is 
+https://github.com/firecracker-microvm/firecracker but this change isn't 
+VMM specific.
 
-To be clear, the existing nodes look like
-
-	sfp: sfp@e8000 {
-		compatible = "fsl,t1040-sfp";
-		reg	   = <0xe8000 0x1000>;
-	};
-
-which is perfectly serviceable for read-only use (as the clock is only
-necessary for writing). As these devices are effectively identical, the
-compatible could also look like what the P-series has:
-
-	sfp: sfp@e8000 {
-		compatible = "fsl,p2041-sfp", "fsl,qoriq-sfp-1.0";
-		reg	   = <0xe8000 0x1000>;
-	};
-
-but in either case, it is desirable for the driver to match based on the
-more-specific compatible (as well as the less-specific compatible) as we
-already have enough information from the more-specific compatible to
-select the correct implementation.
-
---Sean
+>>> That would be possible. But not ideal.
+>>
+>> Why not ideal?
+>>
+>> To rephrase the question, why is it fine for UEFI to read the vmgenid
+>> from fw_cfg, but the kernel can't use the same mechanism?
+> 
+> Because fw_cfg an incestuous way to get data from the VMM into the BIOS
+> (both SeaBIOS and UEFI). It's the way we pass the ACPI tables and
+> things like that.
+> 
+> It *isn't* designed as a general-purpose way of doing device discovery
+> for use by various operating systems.
+> 
+> I'm also not sure Firecracker, which is the VMM Sudan is working on,
+> even *has* fw_cfg. Especially on ARM. If we're going to be forced to
+> add some complicated device with MMIO and DMA just to be able to
+> advertise the existence of a simple memory region, that's just as bad
+> as being forced to expose it as an emulated PCI device.
+> 
+> This is what DT is *for*.
+> 
+> 
+>> The response
+>> that you'd have to use UEFI to use fw_cfg makes no sense to me. The
+>> only reason I can think of is just being lazy and wanting to have
+>> minimal changes to some existing driver. It looks to me like you could
+>> implement this entirely in userspace already with zero kernel or
+>> binding changes. From a quick look, we already have a fw_cfg driver
+>> exposing UUID (that's the same thing as vmgenid AIUI) to userspace,
+>> and you can feed that back into the random pool.
+>>
+>> I am concerned that we already have a mechanism and you want to add a
+>> second way. When do we ever think that's a good idea? What happens
+>> on the next piece of fw_cfg data? We add yet another binding?
+> 
+> No, because fw_cfg is a way for the VMM to give configuration
+> information to the firmware. There's a clue in the name. The firmware
+> then sets up ACPI tables or DT to pass information in a more coherent
+> and structured fashion to general-purpose operating systems.
+> 
+> And some VMMs *don't* use fw_cfg at all because for the minimal microvm
+> case it's overkill.
+> 
+The hypervisor we work on 
+(https://github.com/firecracker-microvm/firecracker) does not have 
+fw_cfg, it loads kernel directly without the need for UEFI or any 
+intermediate firmware. It is, as said, an overkill to enable UEFI and 
+fw_cfg just to support `vmgenid` specially when there is an alternative 
+available which could keep things simple for the vmm and for the linux 
+driver.
 
