@@ -1,218 +1,120 @@
-Return-Path: <devicetree+bounces-52373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A94658866E3
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 07:41:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C51E8866F4
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 07:43:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3403C1F24B4A
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 06:41:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B62461F22BA2
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 06:43:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A23FDF67;
-	Fri, 22 Mar 2024 06:40:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0188FC8FF;
+	Fri, 22 Mar 2024 06:42:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="OTudlDjp"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="n3H7ZnqK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR01-HE1-obe.outbound.protection.outlook.com (mail-he1eur01on2045.outbound.protection.outlook.com [40.107.13.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43451D30B;
-	Fri, 22 Mar 2024 06:40:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.13.45
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711089604; cv=fail; b=AMZ8ncNYX9+1ZuB/Vy4C06aqLY8bHH/44x0O0yi7WR3Bwf7b8aLVl5tP3uZ8TR32UcsJSaJhXsMDMInYFdZ1TPz/zeJYadCel2pp+aED54tJXaEKXAfgsFJkYzsPdOuOXI0r6dqdaRBRUB8kbk8c51ViZel4g/weL4tOzcKdsXo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711089604; c=relaxed/simple;
-	bh=iq0aeOXRtYSj1S1qQsrH0OYGqDtpnssctSdsD1Uxh+8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=plC09FBsSHVzbxtYp3ZE1GhrUjrrBgoxzhzY95u8pcaksdSxmeAogqmFxHeZ6e4DHW6ngBMKLw1rFzEENT+OhdpzG1vX7RHYrsCmkcy8taOuWAU2ohErU8GWB7CXfw6eCcNl4L+iW54FbB4gFA9+5iL9WWoLnsYXL+0psLPfrKs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=OTudlDjp; arc=fail smtp.client-ip=40.107.13.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QwCmrBsRpNZwdotXEGzrqe0vw93K8TBXGGYuF/q3Qz3UW+xG7XbOhy6/tTkj9EjTAllw91TPDFlK1fNRwxUct8GsuJpX6UQ26P0p7lSs62SnnepM7VmF6gceVsN28VjyWSZrE3XZJL+hkCpovCiywRQGJ4D+2IlMVcGRZD5lj+8aU9KNqzXBA4BExfj0DoPfnzUFhU6O2QWNQh3QD9i3xnverJd2Sg+8jdKTyfPFMscF/eFcQ58QtbEH+Ingl92V1/uod32Vz9hR0WCQtBTtUNEqaXYrMGrzuCbUdplGur0tACquDr8Q05oDhIHQ00wi0J77K+eq2xvlXuWja7wxwQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IViR90ZsEm7l1zdbOidolnyGedq1oAOZ99AzYJwXUkw=;
- b=USq8fBxPzCmMF3/4NZBe6yUa+H1OnXppA9I6uRjkTMR3XyVDi6xfao4q4lVprX3as57taxN/4+b0Zt7WKLl4eXwoqk+4W2ZfMBUb9U/WJgsnMsEraQjeyR5nSiyh1G+KlekCTE5XkyhJjM3NUgCtfMUgp82KXcHTJplwykBNNuUT0HVs4wzM7Qv3RW3NFBCHLLnOahyqDoQPJjhxGngSgPmmO1JXK/xmjzznAZKCENZcJVP/F8YdOf6GXbcMxsujTtnee1l9NvhaSZoa63GZHpxcHSQ0RiV+l99cR7gjV+hpbHOUxX5IQwC/0Z1KONz5vAAFblIk3JnHX7Ck3+sBNA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IViR90ZsEm7l1zdbOidolnyGedq1oAOZ99AzYJwXUkw=;
- b=OTudlDjpCNkuIRoD2/9ngJXf/mF9oVD3K0Mh3i1/xuQySbbPFT5JWmKmlF+KzrImr+HyxXb7wqOBr0TPhQKcoqyuFV/1WkFtUHojjsOfYsNajD2U48D1TP/uvNdYs3RKvupRyG9nem1dWY0JqIWwWgTaJDuYwyE1zYgyHhkcgyY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB8829.eurprd04.prod.outlook.com (2603:10a6:102:20c::17)
- by PAXPR04MB8928.eurprd04.prod.outlook.com (2603:10a6:102:20f::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.24; Fri, 22 Mar
- 2024 06:40:01 +0000
-Received: from PAXPR04MB8829.eurprd04.prod.outlook.com
- ([fe80::1b13:505:8d50:f4e3]) by PAXPR04MB8829.eurprd04.prod.outlook.com
- ([fe80::1b13:505:8d50:f4e3%4]) with mapi id 15.20.7386.023; Fri, 22 Mar 2024
- 06:40:01 +0000
-From: Xu Yang <xu.yang_2@nxp.com>
-To: frank.li@nxp.com,
-	will@kernel.org,
-	mark.rutland@arm.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	john.g.garry@oracle.com,
-	jolsa@kernel.org,
-	namhyung@kernel.org,
-	irogers@google.com
-Cc: mike.leach@linaro.org,
-	peterz@infradead.org,
-	mingo@redhat.com,
-	acme@kernel.org,
-	alexander.shishkin@linux.intel.com,
-	adrian.hunter@intel.com,
-	linux-arm-kernel@lists.infradead.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FD00199C2
+	for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 06:42:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1711089752; cv=none; b=UBruqfjiuf/iJlTE+QCSv1o+bNn5RTY7EVdtppm0ASlVfcbOXWUzKJfETehXA86XHKpaDrKzE4gSn/AxrwB6006qac5mzv7ybYWymJwCz/L40IqN3thxxmIFhp1n2Vwu7MFdZ/ZNkDsdKGBqXkDzLWLN2rEVoQaEVUT5EqzWzR8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1711089752; c=relaxed/simple;
+	bh=9bdjqCAyvS7k1BS7Lhjz19NNuYfcjp2pCZWc4hg6CHY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=HxGW4QjkCiADCRcxcfDEJJxks6uQkJZw0GFMLz9nKraXcckVOidrv2uVR3jnzMCTeaKm+et8Te5zJGXgxXt+dIZDunsOMWWfPJ9exedXDydgb6o9Ymt6nV9RTJjAqlZZEFq2i/dxzaQX27LZqBMj7jdfmm7GWdowTNL6J17pFj0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=n3H7ZnqK; arc=none smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-55a179f5fa1so2440933a12.0
+        for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 23:42:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1711089748; x=1711694548; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BmaPEfXpnyUWO4tk/lYu9wRilg7S6pQ6tbGno3QPjdk=;
+        b=n3H7ZnqKKHlBSYPu7tTeNj2R3K7tdVZRPhdMA1+H1J+2f+e7QsLbbQZLgJRhIaqDva
+         ZSvORsxZfDBoDTk985oitAkBzRHet+ZU9Afqssft8uwEOeg+QhjaSlmGd2q4aRgfUjdX
+         5JLIImnVX8SQt6VktVR1DSpjeJDMoiD4H/reFsufUCG2efKN8rCMKhQtEqfS+Oa8II8n
+         aM67M5RAjxlB7rXDZodXReKUGHATxarpSiK7WuByfmgx+ShHDVWVSfNB/OovY0NwGP4A
+         RG3jsvVV8FAXdj0sQ2X6VVaZ546RpA/E3AQ05WBsZjd4J8ZsiWiOqHwEo0PFwx4XjfQG
+         wgDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711089748; x=1711694548;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BmaPEfXpnyUWO4tk/lYu9wRilg7S6pQ6tbGno3QPjdk=;
+        b=mRL6MLEijpLe6ZwNY1nQEXHzL3dCc+lG24MTP5am/jTAIdiWevjLDQxYzOhTdfGeye
+         R/btArKh9cLFhLnpPq3izVFPZ6UrcjVusblrij/mta9/gXilmWpxRryugGlPty/HhESt
+         TSqlii/LSjUY6ziMg3ydtQ6vLZrEiMVsqDdFhnGPgzbeZbmungtw7B57BB79KuV+fB99
+         33/tz5GfVA98R4L0gzeRXplwYGL/c2zBlXCpw2fNrFsH/upJfcDnAsG27O+sDHNBSAcM
+         64akH4o4X6yaHIB7UOVxhknnKoldHspta021bJtbGUxi5mIAzh0syGr+/AqlOMxhfS68
+         J/ew==
+X-Forwarded-Encrypted: i=1; AJvYcCWzU1y/4yVEdVv1xAAM8viI1L8Qwmv839EN1Af305OI2ACSlZi/5QCgMs02hYTs5CpvPOG7xOX3Q1upPMWI/bJJJFjPQYarkKjzEA==
+X-Gm-Message-State: AOJu0Yw4NBfI3j2bKk8FsW9CfLgDuIMrB2d9PEYoxHGqsgzRz6nqaF/q
+	WNxbNWM+eFR1QmYwHQ02fI5KNzojMzVFiXCMtUjHWWRpVyXEmWrg3O48e05Nxvo=
+X-Google-Smtp-Source: AGHT+IFjCUgRktXwrv+Lvi6UwcbsFwpnpkk/JBK3O3IuUm86QVwXhrso59zXtrI/2Z72EZMRI6ku9A==
+X-Received: by 2002:a50:d559:0:b0:567:a318:ac0b with SMTP id f25-20020a50d559000000b00567a318ac0bmr916782edj.16.1711089747857;
+        Thu, 21 Mar 2024 23:42:27 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id p8-20020a05640243c800b0056bdc4a5cd6sm645506edc.62.2024.03.21.23.42.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Mar 2024 23:42:27 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Yoshinori Sato <ysato@users.sourceforge.jp>,
+	Rich Felker <dalias@libc.org>,
+	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-perf-users@vger.kernel.org,
-	imx@lists.linux.dev
-Subject: [PATCH v8 8/8] perf vendor events arm64:: Add i.MX93 DDR Performance Monitor metrics
-Date: Fri, 22 Mar 2024 14:39:30 +0800
-Message-Id: <20240322063930.749126-8-xu.yang_2@nxp.com>
+	linux-sh@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Kousik Sanagavarapu <five231003@gmail.com>
+Subject: [PATCH] sh: j2: drop incorrect SPI controller max frequency property
+Date: Fri, 22 Mar 2024 07:42:21 +0100
+Message-Id: <20240322064221.25776-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240322063930.749126-1-xu.yang_2@nxp.com>
-References: <20240322063930.749126-1-xu.yang_2@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR02CA0121.apcprd02.prod.outlook.com
- (2603:1096:4:188::21) To PAXPR04MB8829.eurprd04.prod.outlook.com
- (2603:10a6:102:20c::17)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB8829:EE_|PAXPR04MB8928:EE_
-X-MS-Office365-Filtering-Correlation-Id: b747d162-ee17-4187-d8f9-08dc4a3ae647
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	BCNBeNq7/6598cCtLskV9mbLHxnqebLqtIqQRW/i69WWwNvW62phphawjKy7wQ5FgSJn7BAIn1sWbNydSsixW5pERUP/k/jmYXUosduHPlY0fM47ZS0IgXasLnbNNsQl8/XkMRnvutBk4vrY5l7rt3jm4z+59c5FLgcrJbFW6vqS9mxSPHcM+0pjxTs1YlPypR+R3YXM/u4iM1XCaX3/iNYFg83YKdHAi3TAhU5EwEMUvN2EEl2qMucqyjtwMXAxlbKV24+P4hfVTvc7iA0HuM0GsxeQnFcFV0t51DNL5Ib43+pUKZ7fEFeUeStgdzxsPxhhIkWWjhPc/yCpJKwiNpxJS0XURD8fkx77qM+A68gi1QNvhLQVcstkzk2um1ZnMe4CMk0sLl6QhfL8wHVDAqc+EM/XjKVaa4Owi4ojcoVr1sSy0ksK9kBwqOZ7Duy26mcKyO4gADjPOX+lmJmNyRpPVR6RQgQyhCiu6DNsu7CjZ0c+yU60mvsf2a/1581OfYVwqJ2js5ScXG0GpfrbqFsXAQf2hpiP+5wACGIfInleHgFy0IXmLKNCia5QA/qRNTlB660UMhhwdSQEach1fSWxlNeH+nUJ4no4wrmGMTtqYY7UVMv48AtTVV0Ef28MB3cD1WCOndSEvrtcvsQ/oLz9hCxVIcZ8EljgjVbt7RrBXrfcb0KZ4HCcJT/zUtYY9t6ESH2WUJoCSiA62O6A/f40oix+U7qqtzlCd83imUI=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8829.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(52116005)(1800799015)(366007)(376005)(921011)(38350700005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?YORkAWrR4qpELRfRoQXorGgwnBaGg4aSGaaS7nUQKnexkmHw+EoZUuJX10Ce?=
- =?us-ascii?Q?BVWbLPfJlCSm88e+5p1oTSKwDyXzsGbv7E42yMSfsgtfoWo1aMPRqhNgM3/5?=
- =?us-ascii?Q?h+OFtKmHinVV4dhDKR2yCC8V9mW95etaibHdJphZdwf9nV7QAgujtMsAUCcn?=
- =?us-ascii?Q?Fvv4hSqi6V6pYknhKyy1zgOoGvxD7ATKN55iMHY+x+KAT18jKU2ZbTiumsSF?=
- =?us-ascii?Q?XBaMfWgvO6GUUTGw0a+d7znYY709dj3vfwf7Cmqz+5dCZferIzoZN/F33eQ1?=
- =?us-ascii?Q?/BvUJKkyF0dHnQMTByv51niJxd5erXDo19McoQqkLv/aharKqk5F2vvRFr1B?=
- =?us-ascii?Q?CyhZiIss+acLJC3rvo1TTNwEaP6Ue4IAWZ+zelZlzUl9BIi2z33RkcNWKLR1?=
- =?us-ascii?Q?Da6b6U9xJydH5gIl9cC/OoqmcSX0vVFchfIct5ET2xaDuQwJlEz2eP1l7rbf?=
- =?us-ascii?Q?+kjJGl1LlsczeNt2fgob3gYUguwNAU6oi2JMxXgJGVeq48gdS0nAOPWApxin?=
- =?us-ascii?Q?oUV0+Sp8zZsTE7DhgLrwU4nhFGtIn1+0LdZlIScWlWy0GrxQfehwI0AAQgPw?=
- =?us-ascii?Q?u6g6ELcee1cmAr9tK4o1wOODAeP5F4b0Wc+L07Hfpjpy7rfiJFghNUSHb7x7?=
- =?us-ascii?Q?AGs9u40IaK4vBHdjwZpSAd7WQvm3exZepwtF29/KqRfd2jPUT2NHJRO4xzGs?=
- =?us-ascii?Q?Oey5M7RhLHkUaffy/2uq1RRZTC8o8Th2jo1+s/mbc+lJyLzKTw9ZEteWvLbW?=
- =?us-ascii?Q?HlYCjuDUFZ9y4xtf3kuDRJ/LGFRtGNL4aayjdnEdnQsmfav8KN2+UkT6f1W4?=
- =?us-ascii?Q?wthF/2U3R8F7hxFk43UtAj7k8X/5wQdBtF2bdYJqwkk0/nOjeiO2t0XnOsOb?=
- =?us-ascii?Q?pWqlN/hj1qfqhl5mIJg2mhWXWFeZsNRTf6Mdwew2QK3jBbf6D/tG4bTghmaP?=
- =?us-ascii?Q?YPD09Q0aeDGKRgApr8i4znSMu6AWMrJ72qgXCnzXrn5cIK9OQHpm232fIc4b?=
- =?us-ascii?Q?veNudCrqSO+DVxBPYIYCxeN4QNZTalUSMKKTETDw+fXmuDSDSbhBZqK4yieZ?=
- =?us-ascii?Q?O587B/lg5BQfDubKqQNzERP8eqHUIruc2ipSC3ThJ3VuI9Fq8hHIuU2qKTl3?=
- =?us-ascii?Q?6bpNfzBdlX3tOdItSv9o2sGerGqiIRyfN3Ud1tc5wPAjfUjc+JqQ0lZmKEqY?=
- =?us-ascii?Q?M/REs0EmH2RhvTVf8FNY4ygTpC50s6Q8jH/TcuszY0YD9uhNdIQxzlnpnSEp?=
- =?us-ascii?Q?n5eWK/CLbDfVEh13m39qDVeWwzvI6ycycDTVczOF7jjNq+vWRK1pIYFg9UbK?=
- =?us-ascii?Q?Z3HW10sD/3s/fkQdJeuolCdO/XO5IL4mhI9LChd4SIHPra4nEthmlV5pDn5v?=
- =?us-ascii?Q?FdmGR1QBSSqre7EFAVxQ/wBuKyywWzF5YtRPAnTk4bWzEuMPW16uoOzlZzSM?=
- =?us-ascii?Q?TMG7X2vp39/7cQrOLQn1Sk+A4ZJK8HnpQAPd+6mld+aYuhLflcNx4QD0WwMm?=
- =?us-ascii?Q?vmzP2ktY2kcqCYdqceB47kmJvyBK8eGrX03c2SAtRRtugGEtdu9haNplALql?=
- =?us-ascii?Q?2oSyjDaAhQT99sKe4KTg5PIpjW+BjPqH080ku+kP?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b747d162-ee17-4187-d8f9-08dc4a3ae647
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8829.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Mar 2024 06:40:01.3379
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 5Z2JxBFtWvzvjmu+196flzwQ/2IeVk0TPJ5TuGAefv4GPYPHmnG8liGQ6zWCuCnYrFDSGo5fMasxtX2RQ3tpSw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8928
+Content-Transfer-Encoding: 8bit
 
-Add JSON metrics for i.MX93 DDR Performance Monitor.
+The J2 SPI controller bindings never allowed spi-max-frequency property
+in the controller node.  Neither old spi-bus.txt bindings, nor new DT
+schema allows it.  Linux driver does not parse that property from
+controller node, thus drop it from DTS as incorrect hardware
+description.  The SPI child device has already the same property with
+the same value, so functionality should not be affected.
 
-Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-
+Cc: Kousik Sanagavarapu <five231003@gmail.com>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
-Changes in v7:
- - new patch
-Changes in v8:
- - no changes
----
- .../arch/arm64/freescale/imx93/sys/ddrc.json  |  9 +++++++
- .../arm64/freescale/imx93/sys/metrics.json    | 26 +++++++++++++++++++
- 2 files changed, 35 insertions(+)
- create mode 100644 tools/perf/pmu-events/arch/arm64/freescale/imx93/sys/ddrc.json
- create mode 100644 tools/perf/pmu-events/arch/arm64/freescale/imx93/sys/metrics.json
+ arch/sh/boot/dts/j2_mimas_v2.dts | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/tools/perf/pmu-events/arch/arm64/freescale/imx93/sys/ddrc.json b/tools/perf/pmu-events/arch/arm64/freescale/imx93/sys/ddrc.json
-new file mode 100644
-index 000000000000..eeeae4d49fce
---- /dev/null
-+++ b/tools/perf/pmu-events/arch/arm64/freescale/imx93/sys/ddrc.json
-@@ -0,0 +1,9 @@
-+[
-+   {
-+           "BriefDescription": "ddr cycles event",
-+           "EventCode": "0x00",
-+           "EventName": "imx93_ddr.cycles",
-+           "Unit": "imx9_ddr",
-+           "Compat": "imx93"
-+   }
-+]
-diff --git a/tools/perf/pmu-events/arch/arm64/freescale/imx93/sys/metrics.json b/tools/perf/pmu-events/arch/arm64/freescale/imx93/sys/metrics.json
-new file mode 100644
-index 000000000000..4d2454ca1259
---- /dev/null
-+++ b/tools/perf/pmu-events/arch/arm64/freescale/imx93/sys/metrics.json
-@@ -0,0 +1,26 @@
-+[
-+   {
-+	    "BriefDescription": "bandwidth usage for lpddr4x evk board",
-+	    "MetricName": "imx93_bandwidth_usage.lpddr4x",
-+	    "MetricExpr": "(((( imx9_ddr0@ddrc_pm_0@ ) * 2 * 8 ) + (( imx9_ddr0@ddrc_pm_3@ + imx9_ddr0@ddrc_pm_5@ + imx9_ddr0@ddrc_pm_7@ + imx9_ddr0@ddrc_pm_9@ - imx9_ddr0@ddrc_pm_2@ - imx9_ddr0@ddrc_pm_4@ - imx9_ddr0@ddrc_pm_6@ - imx9_ddr0@ddrc_pm_8@ ) * 32 )) / duration_time) / (3733 * 1000000 * 2)",
-+	    "ScaleUnit": "1e2%",
-+	    "Unit": "imx9_ddr",
-+	    "Compat": "imx93"
-+   },
-+   {
-+	    "BriefDescription": "bytes all masters read from ddr",
-+	    "MetricName": "imx93_ddr_read.all",
-+	    "MetricExpr": "( imx9_ddr0@ddrc_pm_0@ ) * 2 * 8",
-+	    "ScaleUnit": "9.765625e-4KB",
-+	    "Unit": "imx9_ddr",
-+	    "Compat": "imx93"
-+   },
-+   {
-+	    "BriefDescription": "bytes all masters write to ddr",
-+	    "MetricName": "imx93_ddr_write.all",
-+	    "MetricExpr": "( imx9_ddr0@ddrc_pm_3@ + imx9_ddr0@ddrc_pm_5@ + imx9_ddr0@ddrc_pm_7@ + imx9_ddr0@ddrc_pm_9@ - imx9_ddr0@ddrc_pm_2@ - imx9_ddr0@ddrc_pm_4@ - imx9_ddr0@ddrc_pm_6@ - imx9_ddr0@ddrc_pm_8@ ) * 32",
-+	    "ScaleUnit": "9.765625e-4KB",
-+	    "Unit": "imx9_ddr",
-+	    "Compat": "imx93"
-+   }
-+]
+diff --git a/arch/sh/boot/dts/j2_mimas_v2.dts b/arch/sh/boot/dts/j2_mimas_v2.dts
+index fa9562f78d53..faf884f53804 100644
+--- a/arch/sh/boot/dts/j2_mimas_v2.dts
++++ b/arch/sh/boot/dts/j2_mimas_v2.dts
+@@ -71,8 +71,6 @@ spi0: spi@40 {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 
+-			spi-max-frequency = <25000000>;
+-
+ 			reg = <0x40 0x8>;
+ 
+ 			sdcard@0 {
 -- 
 2.34.1
 
