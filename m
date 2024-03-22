@@ -1,116 +1,191 @@
-Return-Path: <devicetree+bounces-52382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52383-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C986886710
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 07:48:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF00988671C
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 07:50:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 15EFB282B90
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 06:48:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62CD5285D4B
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 06:50:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EF18101DE;
-	Fri, 22 Mar 2024 06:48:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6012D10799;
+	Fri, 22 Mar 2024 06:50:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lvYjq6KY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FTyHSnrZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C304D51A;
-	Fri, 22 Mar 2024 06:48:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8584365C
+	for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 06:50:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711090101; cv=none; b=bh3lVdJQJxFlFa5elaoJc4KK6aET+lnhvONFPNACEEOZ1qNWZRs9L7rvWcM21FDEOhF2/PPEt5zDee6JtZFP/YkT88huQ9E/Xvq5Oq8apz7zubkldeBKnc0x5Uoi11fad67zEkW6Ox+X/V4foLaHShpE2UF7ZdUw12nvaIBBmN8=
+	t=1711090203; cv=none; b=Mo65glfzqRBWPtwMg0mUGD8t89iMHdc15HIyp17LfyUPXbWfR5yTeNFfr8A3AhXmd7/UGn1+fMTIDuPJqC2UvMuX6LFMOvblUZ5baiXqWvxrW/lFW1DqdyRgFIVXL4f8qgdhY+FrF466tgOMJN4qUF5ahVQpjr8c1wtwQqTCIHw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711090101; c=relaxed/simple;
-	bh=MMToYGDlPx6M64cs/BtMBKCnEYYVKlgAvV4z9fQeu8Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tlRZ+pI90alfhsHOcFl+WJaE3BX7KKAQWZ2QG1ZMpRlhD1xHonwvb4jc/VbS54l7xD6RQh+fhIAEYFytZbrEXqrRJZS3UhO0gGPPt7qeFpTg7SvC2Fs1DDivE1G1bwzGW4X0hhNv7adahJOXBHVVKb8SKHQKdwCdCKPb5rALeRk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lvYjq6KY; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1711090099; x=1742626099;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=MMToYGDlPx6M64cs/BtMBKCnEYYVKlgAvV4z9fQeu8Q=;
-  b=lvYjq6KYMgq0JeyE9MVCMT28cMZDxJBIXOWm6LrYQX4GeJUwTL9CDrl/
-   CJp8fwI4iRTGfMwMvcUkh2TMpxibFZwjgu6gevLc8WypanU1nsKDmoHEF
-   JQ8NjztnMykm+CVcA4CMIiWTEtDLl/4hu/NKFL2BlYI5ZDWRAsMoY1L15
-   onE8QwOEvQCejW9i5vxUA6cg9tEmD8eLyJSkaWoekLYxgjV43tvh3gRwO
-   2Hi7JEFGtq9S5/B7C9KqVYm1dwZl+XsLlatjN9nLIWZxd/5UstorjSfMV
-   TgPBB9Q+alo8leAWrPYe9GHCEQAQLNOUVcs7u2zYbmdtyvp3QJJk0/KYF
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="5980684"
-X-IronPort-AV: E=Sophos;i="6.07,145,1708416000"; 
-   d="scan'208";a="5980684"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Mar 2024 23:48:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,145,1708416000"; 
-   d="scan'208";a="14834215"
-Received: from lkp-server01.sh.intel.com (HELO b21307750695) ([10.239.97.150])
-  by fmviesa006.fm.intel.com with ESMTP; 21 Mar 2024 23:48:14 -0700
-Received: from kbuild by b21307750695 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rnYhI-000K5n-0c;
-	Fri, 22 Mar 2024 06:48:12 +0000
-Date: Fri, 22 Mar 2024 14:47:52 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andrej Picej <andrej.picej@norik.com>, haibo.chen@nxp.com,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, jic23@kernel.org, lars@metafoo.de,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, upstream@lists.phytec.de
-Subject: Re: [PATCH 2/2] dt-bindings: iio: adc: nxp,imx93-adc.yaml: Add
- calibration properties
-Message-ID: <202403221438.trdG8I0x-lkp@intel.com>
-References: <20240320100407.1639082-3-andrej.picej@norik.com>
+	s=arc-20240116; t=1711090203; c=relaxed/simple;
+	bh=hztYgNnzlR152Q63wYFJZiUp6doejgjvGN/l4pW2yDQ=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=QPSDiMhShMEO2ZQe8ynRpZv4qYPATEnGKGGt4iFuON1aci0w7KTjVMiX/TdMYlwURxey+zEmDpdkaGzTH/qHot2K453OHVRTu7zeRtDLcwN9Mjvs5qQ3rVbg1SFlCKs6B8D9NtTMxAYWCP/t6Sj/A5mxQWTzP1j1hnA+3UBK1GA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FTyHSnrZ; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-56bb22ff7baso1972956a12.3
+        for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 23:50:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1711090200; x=1711695000; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :references:cc:to:from:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=I5sXdHzq2mmZcnR2eOCseDkPnOJfe4dMIq6Nx93VsWs=;
+        b=FTyHSnrZhDy+83Bfolh44ZqzCpJXV8y6p4crt6V67gpmEIcCG0d543cA9beHz2dW8V
+         da2ESaAkVD34BzVi4OQS/GVmNpAOIpBlI0SrcxgLgVd0pslzB4bl0jRfTMY/8MU0KlkQ
+         YwalxWfODwlbfNSPKnl/Q8Q+yHTwI8CQHTFXAWFtxjRpOqN7nNL3b0SomaExbbjkq63P
+         5ksJUidLuv3h1Dx8xJJFs98Xs4I5DQ5p10JOQas2Lc4DPtxWXANbzTPJcvWvVMXXQr7K
+         vH6YPJ7pB6QneHIfT9ZQy9dyAXK/CRpBOP9D5hdSxQz7rHWEjuk7yOVtrP+TME2LErge
+         Sk3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711090200; x=1711695000;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :references:cc:to:from:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=I5sXdHzq2mmZcnR2eOCseDkPnOJfe4dMIq6Nx93VsWs=;
+        b=Z9wKaVWUNsm+pFfOFwT0DpLNj1bykdgJNXMojMjSU361Mkx7HaNzm9RqTkFrT+L/9k
+         IzKUKMgtsSRQBAeyqCf5u8l+viVaZD4P6Wu9MmYuYpDipjWMa4b5B7wgN3iv9OM1fHSh
+         J+yeWk/4znH77Z9r8h+hy4zujF0o7ekIOglNKwlX8HHptCi8FxUqEUHywVyLLcbtG0nE
+         kGbOgDd166ohgC687GGG8diSIw/tDOiFs0TE/fEDcZD+9fjz7f1Q1s9HTPe6+i6dyABk
+         ANuKDCKVbtS61mAtpzTgNLI6n7fQY0W7yovff18WhVb4E0RRXna5+Cu0toSdEd9nNIHC
+         FQ0Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUuGmgPBWGglnO2VtfV/tXKjZuECvRz4kcwDW/Wy3HS9lOE1BNkuU+xo8XmUIRhQW92mbGRHLmY5tmvI+OgmaTsc9BTe0a2M3Zvaw==
+X-Gm-Message-State: AOJu0YxRFhtwlWQdsu/j4g6FCh58uao2lSAr5hVCPQnY698e2RRnCdtI
+	MmOiGH9SrexMKlFSLJvG0Qm+my8UV95lw70xtYG6+SHh/xOLsqcPdPUVG1wE3Yg=
+X-Google-Smtp-Source: AGHT+IE3YrB9dGa6c/3rZ7XZG81Ue+YmKn0StgDF4kORTuR77P423KY9HDLM/D5HN28VPadJWIfavA==
+X-Received: by 2002:a17:906:a84d:b0:a46:930c:b793 with SMTP id dx13-20020a170906a84d00b00a46930cb793mr958073ejb.9.1711090199863;
+        Thu, 21 Mar 2024 23:49:59 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id rp20-20020a170906d97400b00a46a2779475sm683399ejb.101.2024.03.21.23.49.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Mar 2024 23:49:59 -0700 (PDT)
+Message-ID: <6552bcb8-e046-4882-91da-1094fff3d239@linaro.org>
+Date: Fri, 22 Mar 2024 07:49:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240320100407.1639082-3-andrej.picej@norik.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] spi: dt-bindings: jcore,spi: convert spi-jcore to
+ dtschema
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Kousik Sanagavarapu <five231003@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-spi@vger.kernel.org, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Mark Brown <broonie@kernel.org>, Shuah Khan <skhan@linuxfoundation.org>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+ Daniel Baluta <daniel.baluta@nxp.com>
+References: <20240321180617.35390-1-five231003@gmail.com>
+ <affc1b03-7a23-4fd8-bf85-4155bcd41df1@linaro.org>
+ <CAN19-EfCOWFqFCrF0iCaxhfZuteWawQoH0d6pTN3cgQ7p-CK6w@mail.gmail.com>
+ <5dd3237f-e0a2-4214-a63f-233e89a26b8d@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <5dd3237f-e0a2-4214-a63f-233e89a26b8d@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Andrej,
+On 22/03/2024 07:34, Krzysztof Kozlowski wrote:
+> On 22/03/2024 07:23, Kousik Sanagavarapu wrote:
+>> On Fri, 22 Mar 2024, 11:33 Krzysztof Kozlowski, <
+>> krzysztof.kozlowski@linaro.org> wrote:
+>>
+>>> On 21/03/2024 19:02, Kousik Sanagavarapu wrote:
+>>>
+>>>> +  spi-max-frequency:
+>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>
+>>> No, drop. From which other SPI binding did you take it? I asked you to
+>>> look at existing code.
+>>>
+>>
+>> Without this, "make dt_binding_check" would break though, right at the
+>> position in the example where "spi-max-frequency" is used.  That was
+>> also the reason why additionalProperties was set to true in the last
+>> iteration, but after reading the doc more carefully I realized that was
+>> wrong after you pointed it out.
+>>
+>> I followed along bindings/spi/nvidia,tegra114-spi.yaml.
+> 
+> OK, you are right, the property is used here in controller node, however
+> Linux driver never parsed it. It was never used, so I propose to drop it
+> from the binding and example. You can mention in commit msg that
+> spi-max-frequency was not documented thus you drop it from the example.
+> 
+> DTS should be fixed as well. I'll send a patch for it.
 
-kernel test robot noticed the following build warnings:
+Cc Daniel,
 
-[auto build test WARNING on jic23-iio/togreg]
-[also build test WARNING on linus/master v6.8 next-20240322]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+BTW, J2 core is rather odd platform to work on... Even cross compiling
+and building that DTB is tricky. If I failed, I have doubts that you
+tested the DTS with your binding.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Andrej-Picej/iio-adc-imx93-Make-calibration-properties-configurable/20240320-184314
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-patch link:    https://lore.kernel.org/r/20240320100407.1639082-3-andrej.picej%40norik.com
-patch subject: [PATCH 2/2] dt-bindings: iio: adc: nxp,imx93-adc.yaml: Add calibration properties
-compiler: loongarch64-linux-gcc (GCC) 13.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20240322/202403221438.trdG8I0x-lkp@intel.com/reproduce)
+This applies to all GSoC or some Linux Mentorship programs: I suggest to
+choose for conversion bindings with more users and bigger possible
+impact. So first I would look at ARM64 and ARMv7 platforms. We still
+have around 1000 and 3500 unique warnings about undocumented compatibles
+for ARM64 defconfig and ARM multi_v7! That's the platforms you should
+choose.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202403221438.trdG8I0x-lkp@intel.com/
+Not SuperH, ARC, or whatever with only one DTS which is difficult to
+build for regular developer.
 
-dtcheck warnings: (new ones prefixed by >>)
-   Documentation/devicetree/bindings/net/snps,dwmac.yaml: mac-mode: missing type definition
->> Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml: nxp,calib-avg-en: missing type definition
->> Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml: nxp,calib-nr-samples: missing type definition
->> Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml: nxp,calib-t-samples: missing type definition
+Best regards,
+Krzysztof
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
