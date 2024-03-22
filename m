@@ -1,184 +1,132 @@
-Return-Path: <devicetree+bounces-52481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52482-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 525A4886CCB
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 14:23:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D769D886D7C
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 14:41:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 776711C2194B
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 13:23:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8DA9D1F225FD
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 13:41:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2654045C10;
-	Fri, 22 Mar 2024 13:23:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA3724D9FC;
+	Fri, 22 Mar 2024 13:28:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BkvEbZJm"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eMk4zdrd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F24FC45BED;
-	Fri, 22 Mar 2024 13:23:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BFF746522
+	for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 13:28:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711113785; cv=none; b=ARLlIcfO1AP6icJhYC1hImsZhdEO3ERggbZAVzUQX6YLT6QEiuIixCUpR/05beY0L7WKGY9DRolMvW50z3C3N+C4iKujDd/O31HtXtlNIcwKhfTzHXOj0osa0O2V2GWRms+uY7OdbJotjm3oAux4ljgZTloRXsUPRr0LrYhREiY=
+	t=1711114099; cv=none; b=EzMalC5QNPCqbmn62ftoUxkraK86vS3m2FUJHi/pUT7W6us4jrOri6mpE9s8lbgNqsG+afCaJR+Jfm4zmtOhtc303XqqYCB1N1Lh2kSuFL4yjvs+nxLE/IpcB3PTAylIr8chtQQzvoTJ7/mK3K/LynmnCQpa0MKyodpnMC7UL2w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711113785; c=relaxed/simple;
-	bh=NuYAmabxa/yWXcfo3iLE1DlzpL+At+H+5WTtA6hN4Dk=;
+	s=arc-20240116; t=1711114099; c=relaxed/simple;
+	bh=IzOAEu+wO6bc93he6oyR3C00QDPujoCbNJiCwFw/ehk=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=eUSEqF2rpNXnZECrkfa8oBwuJJpOT2bM+/GviTOgBZu/lWuv59qprtImwlNysdH4p5Pa9nh/uMX43vc7BHjTZvDw+hhNENok9XsdN0/bpBbGWptAR6ZHuDg1o2Vwk0Tvet3nJcOEjIqZOHR9CPyQ71bYT+WBjd0/lO5PUOiRSpU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BkvEbZJm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D23A2C43394;
-	Fri, 22 Mar 2024 13:23:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711113784;
-	bh=NuYAmabxa/yWXcfo3iLE1DlzpL+At+H+5WTtA6hN4Dk=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=BkvEbZJmtRbe8zFHBjVrFInPy52I6aGhzKaXqFHlrKAUWsMsi+D8KL9DKYbufNcv6
-	 ocF1bYVIBxkJeHx1+SmNh7vBWvoF6L1Tiqym+WheRPJQVwM/DNZdiWZaV+BaHhc0ur
-	 +N2+bsZ59xDKALfaahSZTsRHHUMbSU/YiZ3oZLxmRUf6eTnN5G/ACGB5oU/7Vgsh6g
-	 tJXr+0v0nY6xBsROKd/zewO3wwRJAm7CBhxME39jIHwipAbUVBfsiQXDBEm5ZqZr9Q
-	 ZOa2vQQtAhUkiLm1CpxFnnnsFRzoh1K6+k8xMwoD0iOtifC6WxSqpNxOyKfSkU7UJP
-	 pTHiSXC1h5JJw==
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-513edc88d3cso2193740e87.0;
-        Fri, 22 Mar 2024 06:23:04 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVveiIzMD4dEnX+fQR+TLrCp27B/m3ZSwF3RjgOFNclM+gU/RAswLAPwx2XsLFc80xYCAgz74LmZNqbH+mPOi+WaaHYtPx0nEe23Qj3j7nBVwJLMotVuwJ0wK/RZb141NF0kyLZ1lWsHA==
-X-Gm-Message-State: AOJu0YyynY9B/QOo41XOZ6SB2cWB3LnhbRn69AqiUKeMGrYow5apRFwu
-	Udc4S04wpfife991xN5SZZg7gt2sF/2UJCOFkMQOlTY8GGIvR77KnVBxl1Iom4aSmsnZf2VHOF3
-	2aJ/WfTaJplL0BXSrG6wSxSJaAA==
-X-Google-Smtp-Source: AGHT+IHyFZczWhGC6ve0i/5WXp/HVFxoVNnBJ4Urb8ygFY8b8o6uu8DSGBiXVedOzqpoWkoV6iKw2/m0pOvxfFx/aEY=
-X-Received: by 2002:a19:741a:0:b0:513:dac5:ee1a with SMTP id
- v26-20020a19741a000000b00513dac5ee1amr1552133lfe.25.1711113783071; Fri, 22
- Mar 2024 06:23:03 -0700 (PDT)
+	 To:Cc:Content-Type; b=dpLz7E3CZsUhGhMrzq4KlYvERs8DUa7Pjb/9vdoY/bX3MS7mP062mWsV27jxApqKsYIuLbbNqziGpEi+QkjIQ/kyBujuRksrfPxxmsgx8DrpCR773QfYB3aiHPOeMVwnnTzp4h85eIL4LnVRbNvVkmPvktjZUSVx+CKyl8lH7rs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eMk4zdrd; arc=none smtp.client-ip=209.85.219.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-dc6d8bd612dso2055442276.1
+        for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 06:28:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1711114097; x=1711718897; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=R9g57H/zZx4/H4WjLHlsjs71ZcYJXW78b4kk7aQ8Rnc=;
+        b=eMk4zdrdkcGXx2x4J+q1Y5EkVIxWSr2/lrylt9TjrsUqAZAH9pNQftmEmSKALzpDUM
+         EUi/wTRVTlO5C3R5gtD1mZiOl41QI5evKJtAWC5XeyPZp2kGH8hk+eFyNpz78gR01zib
+         JsGH469nn/YaOzdUVxD6XQz1105B0vblG0yIlrYx1eTF3HzjQVpwHDTiKlH+o3/OY010
+         bii8EAI2794cKFXQGnsjv/+x1tnGzcIMVbt5uJ8CRUhC90UhbxNp1P42F1HKejgzKI8g
+         QIbFG5PLw80Z2Uv8BW2InoGNnKyCe2QCEK0lRVDp7/YhfPI0J2ha2f6Hxu/FAPNtftul
+         8idA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711114097; x=1711718897;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=R9g57H/zZx4/H4WjLHlsjs71ZcYJXW78b4kk7aQ8Rnc=;
+        b=PR+KDVlAc/OfLpM2RU8wEYU9JW2jjkBaavR9P73MVNeen/yfbxFYBcOeARtaWrsQpb
+         fZoSOYidX2+wGlcXsxwFczO8iERcPFWPF+wmsqFPuvhJtshy5LALLSLNGEYIqRhU9oPm
+         zZVj1R/FllZSbGOp49R4T8GSs7UbJtWf1HOThltqi7oQk3GoCaxciIYqbgX2olgbw6xl
+         Rkl1iF2lhSbv/gHblpz1WPjeUTKHYPqaRDepGPNF4TB0z6xo7q99nehFkZp8pulkMQIH
+         NVZTe5RfKjdcu+RTfWQUSMBMh3j+LgjvzfPC4iuVlAV2/GOu8WX5HF2BiZbK+Im8TA2r
+         MU/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWCI/zr4AkLjzVwQSf3IVj8Uok3Lq3L3gZbEQcSjVu+O5em8cyDwzBuO+ji3gk/KzFEwOD8RTK9AxjslEkjEIuR/c+BkWzWTFAV5g==
+X-Gm-Message-State: AOJu0YxdyZkvWSievrSQtQymtOrDD79r/pToZUS9f0CVMTX7QNW4egJt
+	EWijPDZPvEId21Mb02iVEd7n3hJ3TvrZC8ZXx3A8Sc8PRIHlr79Yvwbu5uP5wtK5acniiPGfhMP
+	2vhA72tR/bb+I7QXwel45+amjnX1Kodxkxckt7g==
+X-Google-Smtp-Source: AGHT+IH7CzRuo8/gSz47w0tiHuUL2Af6cUjw8esZFVf+qHXlReq8WQsMmc4NMNSha+DBw0ccFVOkoUZTkavB9NoA+Do=
+X-Received: by 2002:a25:aea0:0:b0:dcc:4b44:336c with SMTP id
+ b32-20020a25aea0000000b00dcc4b44336cmr2133365ybj.53.1711114097008; Fri, 22
+ Mar 2024 06:28:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240319143253.22317-1-sudanl@amazon.com> <23692c07-98bd-477d-b244-bba14c50352c@linaro.org>
- <38aad6c0e698c8e804694276d1762d61f2068ce8.camel@infradead.org>
- <20240320161531.GA1810860-robh@kernel.org> <60404403932a984d1f75d111ff53b9053af03579.camel@infradead.org>
- <20240321133250.GA1600070-robh@kernel.org> <db5a1027-93b7-4630-b679-8a654905dc48@amazon.co.uk>
- <17611183-f288-47fe-a5e1-91ee16168db0@linaro.org> <ee688cca986d95148a55e32fee48ceed8567f128.camel@infradead.org>
-In-Reply-To: <ee688cca986d95148a55e32fee48ceed8567f128.camel@infradead.org>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 22 Mar 2024 08:22:50 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJOn9yU_YC0+q=4DX9_=0+z8yTact0HAvOKbrUpcXHxkQ@mail.gmail.com>
-Message-ID: <CAL_JsqJOn9yU_YC0+q=4DX9_=0+z8yTact0HAvOKbrUpcXHxkQ@mail.gmail.com>
-Subject: Re: [PATCH v1 0/4] virt: vmgenid: Add devicetree bindings support
-To: David Woodhouse <dwmw2@infradead.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, "Landge, Sudan" <sudanl@amazon.co.uk>, 
-	Sudan Landge <sudanl@amazon.com>, tytso@mit.edu, Jason@zx2c4.com, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	sathyanarayanan.kuppuswamy@linux.intel.com, thomas.lendacky@amd.com, 
-	dan.j.williams@intel.com, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, graf@amazon.de, bchalios@amazon.es, 
-	xmarcalx@amazon.co.uk, ardb@kernel.org, benh <benh@kernel.crashing.org>
+References: <20240322-typec-fix-example-v1-0-6b01c347419e@linaro.org>
+ <20240322-typec-fix-example-v1-1-6b01c347419e@linaro.org> <230eab52-9751-43fd-8e47-fbfe12410e44@linaro.org>
+In-Reply-To: <230eab52-9751-43fd-8e47-fbfe12410e44@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Fri, 22 Mar 2024 15:28:05 +0200
+Message-ID: <CAA8EJprD3fM966pLV4QXPUu=bFTn24fvPMKOaGqtqkAbdz7sOQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: usb: qcom,pmic-typec: drop port description
+To: "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, Mar 22, 2024 at 3:21=E2=80=AFAM David Woodhouse <dwmw2@infradead.or=
-g> wrote:
+On Fri, 22 Mar 2024 at 14:35, Bryan O'Donoghue
+<bryan.odonoghue@linaro.org> wrote:
 >
-> On Fri, 2024-03-22 at 06:40 +0100, Krzysztof Kozlowski wrote:
-> > On 21/03/2024 18:39, Landge, Sudan wrote:
-> > >
-> > >
-> > > On 21/03/2024 13:32, Rob Herring wrote:
-> > > > CAUTION: This email originated from outside of the organization. Do=
- not click links or open attachments unless you can confirm the sender and =
-know the content is safe.
-> > > >
-> > > >
-> > > >
-> > > > On Wed, Mar 20, 2024 at 04:55:45PM +0000, David Woodhouse wrote:
-> > > > > On Wed, 2024-03-20 at 11:15 -0500, Rob Herring wrote:
-> > > > > > On Wed, Mar 20, 2024 at 01:50:43PM +0000, David Woodhouse wrote=
-:
-> > > > > > > On Tue, 2024-03-19 at 16:24 +0100, Krzysztof Kozlowski wrote:
-> > > > > > > > On 19/03/2024 15:32, Sudan Landge wrote:
-> > > > > > > > > This small series of patches aims to add devicetree bindi=
-ngs support for
-> > > > > > > > > the Virtual Machine Generation ID (vmgenid) driver.
-> > > > > > > > >
-> > > > > > > > > Virtual Machine Generation ID driver was introduced in co=
-mmit af6b54e2b5ba
-> > > > > > > > > ("virt: vmgenid: notify RNG of VM fork and supply generat=
-ion ID") as an
-> > > > > > > > > ACPI only device.
-> > > > > > > > > We would like to extend vmgenid to support devicetree bin=
-dings because:
-> > > > > > > > > 1. A device should not be defined as an ACPI or DT only d=
-evice.
-> > > > > >
-> > > > > > This (and the binding patch) tells me nothing about what "Virtu=
-al
-> > > > > > Machine Generation ID driver" is and isn't really justification=
- for
-> > > > > > "why".
-> > > > >
-> > > > > It's a reference to a memory area which the OS can use to tell wh=
-ether
-> > > > > it's been snapshotted and restored (or 'forked'). A future submis=
-sion
-> > > > > should have a reference to something like
-> > > > > https://www.qemu.org/docs/master/specs/vmgenid.html or the Micros=
-oft
-> > > > > doc which is linked from there.
-> > > >
-> > > > That doc mentions fw_cfg for which we already have a binding. Why c=
-an't
-> > > > it be used/extended here?
-> > > QEMU has support for vmgenid but even they do not pass vmgenid direct=
-ly
-> > > to the guest kernel using fw_cfg. QEMU passes the vmgenid/UUID via
-> > > fw_cfg to an intermediate UEFI firmware. This UEFI firmware, running =
-as
-> > > a guest in QEMU, reads the UUID from fw_cfg and creates ACPI tables f=
-or
-> > > it. The UEFI firmware then passes the UUID information to the guest
-> > > kernel via ACPI.
-> > > This approach requires yet another intermediary which is UEFI firmwar=
-e
-> > > and adds more complexity than ACPI for minimalist hypervisors that do
-> > > not have an intermediate bootloader today.
-> >
-> > What stops you from passing fw_cfg not to UEFI FW? BTW, no actual VM
-> > name was used in your posting, but now suddenly it is a talk about QEMU=
-.
+> On 22/03/2024 11:52, Dmitry Baryshkov wrote:
+> > The PMIC Type-C controller doesn't have separate role-switching signal.
+> > Instead it has an HS signal connection between embedded USB-C connector
+> > node and the HS port of the USB controller.
 >
-> That would be possible. But not ideal.
-
-Why not ideal?
-
-To rephrase the question, why is it fine for UEFI to read the vmgenid
-from fw_cfg, but the kernel can't use the same mechanism? The response
-that you'd have to use UEFI to use fw_cfg makes no sense to me. The
-only reason I can think of is just being lazy and wanting to have
-minimal changes to some existing driver. It looks to me like you could
-implement this entirely in userspace already with zero kernel or
-binding changes. From a quick look, we already have a fw_cfg driver
-exposing UUID (that's the same thing as vmgenid AIUI) to userspace,
-and you can feed that back into the random pool.
-
-I am concerned that we already have a mechanism and you want to add a
-second way. When do we ever think that's a good idea? What happens on
-the next piece of fw_cfg data? We add yet another binding?
-
-> Just as exposing it via PCI
-> would be possible, but not ideal. Or forcing ACPI onto the guests in
-> question, and various other less efficient options.
+> I take your point on port as a signal but the way type-c determines
+> data-role is via the DR_Swap message.
 >
-> If what we're really looking at here is a hostile takeover of the DT
-> bindings repository, with a blanket "No, DT is dead. Go use something
-> else, preferably ACPI", than all those other options are possible. We
-> *never* have to add a new binding to DT ever again. Let's just set the
-> existing bindings in stone and move on.
+> https://www.embedded.com/usb-type-c-and-power-delivery-101-power-delivery-protocol/
+>
+> We receive an IRQ which is a packet containing DR_Swap - TCPM consumes
+> that data and does a data-role switch.
+>
+> The port then establishes the link between typec-port and redriver or PHY.
+>
+> So, I think HS should be dropped from the commit logs and names in both
+> series.
 
-I'll refrain from all my snarky replies to this that aren't helpful to
-the discussion.
+Then the actual usage doesn't match the schema. usb-c-connector
+clearly defines HS, SS and SBU ports
+The snps,dwc3.yaml describes ports as ones handling usb-role-switch,
+but then clearly writes that port@0 is HS and port@1 is SS. As such, I
+think, the correct name for the ports is to have _hs_ in the name
 
-Rob
+We have pmic-typec/port, separate graph port for role-switching
+(supported by TCPM code), but we didn't use it at all on our platforms
+(nor do we need it, as we use the HS port).
+
+>
+> BTW for the GLINK devices I think the adsp firmware just notifies the
+> APSS of the data-role switch so, these types of devices probably should
+> have an epdoint with "usb_role_switch" in the name.
+>
+> ---
+> bod
+>
+
+
+-- 
+With best wishes
+Dmitry
 
