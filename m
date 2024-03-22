@@ -1,121 +1,178 @@
-Return-Path: <devicetree+bounces-52534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52535-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A9A188712B
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 17:48:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 219B288714E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 17:54:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3BA07B23766
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 16:48:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8CA801F22CC6
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 16:54:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C0675D47B;
-	Fri, 22 Mar 2024 16:48:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEFF95D729;
+	Fri, 22 Mar 2024 16:53:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m+SenR8z"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="gt7Zs7LI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B1795CDFA;
-	Fri, 22 Mar 2024 16:48:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A567D605A5
+	for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 16:52:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711126100; cv=none; b=ZzGYx3JuSwy1iluezK7Wy/7FQVk14G79qIcqW8KLQpmlP0x7+QJxhhF7XLE6TbbWOk6aozQ4DWJfh+qY9RCwqnDrFjUweypT9BD5q0Z/1CHVb3VOODkdP8mZoz3X14UhxU1AQL6ZXE+1heb3JSTt8Grb+9k/s/ZrUo+lkt0QCHU=
+	t=1711126380; cv=none; b=QFUajC/zCJKljmPljRBTkOauczxoD9UbdQz+T/EuEhstKNkGjr7vni2zVIzB+kCR5tBET6qers1tzcV25zLtT8YeRkcb/fgcWpqUKw+2yGasNxDCHyKYvLXLFoHBqYekjGq88VORo6qcREQ4tHNzU15KsUGd0RBzP5/qDztOiNQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711126100; c=relaxed/simple;
-	bh=AIxpdyQlT/B7BYVjFoMD8/QUyW+1uhLFqyaeq6EgDW4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZWC7/4T6D+CBUUfx5A8gTgh9/1q7ajCldM6otX8jiAyo3tFeps3E3ZLWTIB2t4OI/UnuH4jOW415uprB5w9RBHRsK0KyPGJDO9xUeWak71wHSmxAWlrw7LlTrftbVIZ3uOxyKZh+dTvy8YN0TDUHPL5bMYArKhueO+S5zeryD5s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m+SenR8z; arc=none smtp.client-ip=209.85.215.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-5dbd519bde6so1467200a12.1;
-        Fri, 22 Mar 2024 09:48:19 -0700 (PDT)
+	s=arc-20240116; t=1711126380; c=relaxed/simple;
+	bh=ugO3VCcCbFXqa0j0ulFrbXaGajsAP4EqVB7of7qqfPs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NKw3lH3nkKYurBELdBqmA4VbFIx8lw7kQHR06kpqVW9yEh6OZAMuO8JN2PyLOUVaDEwfHnnxMBm/cGYm//8Xrg2ivIgTW4fALBtpfrNOCxTsGieNxXe+xdM/o9bblCBhFH69JKJOhPfzg8vRcy9QV5fSHADWs+VIsre/EmveksU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=gt7Zs7LI; arc=none smtp.client-ip=209.85.128.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-609ff069a40so26733087b3.1
+        for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 09:52:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711126098; x=1711730898; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=iLWuYvxt8cJho/qyhrDkNvS5uRVsAloQRBQojo7kkCY=;
-        b=m+SenR8znrNZmLAg7GWJCqvlUSpT/0BvOYuM8PMFsjm5eBQtFooZHeGFQwa+n7awHC
-         Z1rjJ/UtR9KYlHsApMkUHIGtWtGXQGzxu/83+amxOHUqWNgQzjY4YfSaDJUODmeYFBl8
-         wdSk7rOLSnCdX2YMeUxsVgNRe5jQlpzgqwAl86k0wxF9aF0vyMODxYjWeXPhBm0d3V4D
-         xo6wIpxAYCUedsLnRu36hH9hPseoq6S9ln9hmjYQem8kjMnPt+Y6zPDa6JiDp597Wuxa
-         gskeyhMZW1cc7gZ8D8Mda5uwgqVZCyokbgd6FWyMkzQYcpUeXDxf500kBNiYxHfWurTd
-         0eLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711126098; x=1711730898;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1711126377; x=1711731177; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=iLWuYvxt8cJho/qyhrDkNvS5uRVsAloQRBQojo7kkCY=;
-        b=hgxaMMLBpSwkzNE1X8lVYLq/Qere1lbcfLXeWbeRDKzNl1J65pnu8O3A1j88SsCS2l
-         Pfx0xXb9WMKq3g7KKEedcosCR8bZkTvWa8P/RPrxa7s/iauYuF1+QrPu1a6UNAWkNcO6
-         EXSHMT65YQO2BR6IWVNsyFQiLmqvV+ZaMEZSaekmswNMDm8NEWH0XXJdl2XlBjBx7Uyy
-         tfFJyf+/N85okUyRJXGbQ92p0Jd0Kjeb61x7yXcUCDYQzKxiCHOVNi1EL9yz45AW5jT9
-         5owVUdrzkkql8fSSFDFgo/y5FRjx0LLp0euoN8pTiU9XEkCpvUnXTx6JbU1xDKIKzf44
-         8n1Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVb37bTfdj0dMD014I+0Q+yFGeVC3CVh/l7BAjwBWwJbJphV/BnA+CCGFx68TRhjhArWMLtmUmOGb9yw1+8mBPWPOrpqR88Gwya/+o7/mL791zK04CLQ/c4l+jfURkza3N8PTjwt6cDfHxuVXhHH0dLDvPVhmpQmLoOC7WEztkdgSIdcA==
-X-Gm-Message-State: AOJu0Yw1DbxLGxverbXzmAYhUBBsAoc7K22SJesQlGdwvDBwgTtvT1SB
-	7hKmsb9jn5jpuraV+yGzCM+YLU3jlbf8AZYUtdD/55ds7hJjpovV
-X-Google-Smtp-Source: AGHT+IF7ZJb9s4Yx5/oto0bsQjpkkyHcU/EVUMjRlMUGYu/PgXMG5bI/6u+KSo3WZ0/VTzE6OQtw6A==
-X-Received: by 2002:a17:90b:1c01:b0:29f:cd96:5952 with SMTP id oc1-20020a17090b1c0100b0029fcd965952mr187833pjb.22.1711126098455;
-        Fri, 22 Mar 2024 09:48:18 -0700 (PDT)
-Received: from five231003 ([2405:201:c006:31f8:d95b:eb72:e032:7eef])
-        by smtp.gmail.com with ESMTPSA id si15-20020a17090b528f00b0029e05ec1cb3sm2124620pjb.52.2024.03.22.09.48.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Mar 2024 09:48:18 -0700 (PDT)
-Date: Fri, 22 Mar 2024 22:18:12 +0530
-From: Kousik Sanagavarapu <five231003@gmail.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-spi@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Mark Brown <broonie@kernel.org>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Daniel Baluta <daniel.baluta@nxp.com>
-Subject: Re: [PATCH v2] spi: dt-bindings: jcore,spi: convert spi-jcore to
- dtschema
-Message-ID: <Zf22TLko8tFEYMDI@five231003>
-References: <20240321180617.35390-1-five231003@gmail.com>
- <affc1b03-7a23-4fd8-bf85-4155bcd41df1@linaro.org>
- <CAN19-EfCOWFqFCrF0iCaxhfZuteWawQoH0d6pTN3cgQ7p-CK6w@mail.gmail.com>
- <5dd3237f-e0a2-4214-a63f-233e89a26b8d@linaro.org>
- <6552bcb8-e046-4882-91da-1094fff3d239@linaro.org>
- <20240322150524.GA895852-robh@kernel.org>
+        bh=y51uEGJ03D6pw21uRms6OLbBjZsNY8YSRn9RWNKVb+8=;
+        b=gt7Zs7LIEjkrCuFLBHQq+9o8bSsfH1Ov05v4LPLE48/hUiYYODfkVGVUaYhBcFjHJ+
+         0X6i9UOEdDeICZydK840q2xp/F+AB3VW4Zmf8NTkSmYOqZ8T/ovN5fZ44dw1oM6+AUoI
+         zXET6j7bNXPdROlqyKcR7OPsdT3j0Qc9vLS+nXD/1vw8jT6QeBkKH2a44Daox+SH4ep+
+         MNNd4bpmivvUdP4WFv3LEq0wp6aIP8Gb6qRxiDSzwvjpFfhou84x3tnZYo7AwL7XpK+L
+         vOnuj6//8GRCtfQzE7llvlSmRkXL+DQasnbiIQY43gK+e3C8sZNrW6HvLBgRs4onCSwl
+         doYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711126377; x=1711731177;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=y51uEGJ03D6pw21uRms6OLbBjZsNY8YSRn9RWNKVb+8=;
+        b=G7n/Bvo6uDaLQ9W6b8btapLWpFb0FdrgzJF8LhMyC9T106oyIgfDBGIrILqH3mJQe4
+         ruyg4V8eYTngVWtfh3j2DvrvMPy5DeBsp6ThSqINECX+F2AoXfhc0LPVw+cE43cO2TKD
+         jUMifBs7hMRfpWplCfwDOHH/mgDRb/A8samw4NqLegUOhSunbb91vnIc31Ew9hkbRB15
+         9P7P7lPvQX3O6hLjpcQMbCf0MkatbjGs4y7HrA86umtwSHRSHS5Gk8mx7TGonj/qyTm3
+         PzahW+LivawRDGUT5Kg3X8NoI7GbKSQBlJdupYUNCjEnCdEAkDWZ45CAIUxieSB0TJnE
+         2ROg==
+X-Forwarded-Encrypted: i=1; AJvYcCU4E5WDDVQf/YPV28RW72Bed+2EgmETL57ajcLrgitdMD10EMfspg7YNRNGIqS0kFgP5Kfk0V9+VmM5S9LvxVRZiqLFSLisAeLLug==
+X-Gm-Message-State: AOJu0YyqP9UPdw5Hv53UiJ4VjlQa6Io1BlqlROJUt47pPEVP9JB7SORM
+	xBE46LRv2Kgl23T9xvk62w4TgbDK0uvIULLReqvQhrwRD/z/gMxtdTsRnlQUog7DLej1aMsCK1j
+	L/Luik22kJDzG4Yt4yf4eARRsMprVaOl1p8hxsw==
+X-Google-Smtp-Source: AGHT+IEpg7MCg3bZ38eIAspdWgzOjXUKRaxb3wbMQl77qTIMFr7IGfaPlazJNe4j1FElxowopIqWuHH20jjSqY11dPk=
+X-Received: by 2002:a81:710a:0:b0:60f:d6fc:74f3 with SMTP id
+ m10-20020a81710a000000b0060fd6fc74f3mr228823ywc.7.1711126377529; Fri, 22 Mar
+ 2024 09:52:57 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240322150524.GA895852-robh@kernel.org>
+References: <20240319215915.832127-1-samuel.holland@sifive.com>
+ <20240319215915.832127-6-samuel.holland@sifive.com> <CAKC1njSg9-hJo6hibcM9a-=FUmMWyR39QUYqQ1uwiWhpBZQb9A@mail.gmail.com>
+ <40ab1ce5-8700-4a63-b182-1e864f6c9225@sifive.com> <CAKC1njQYZHbQJ71mapeG1DEw=A+aGx77xsuQGecsNFpoJ=tzGQ@mail.gmail.com>
+ <20240322-3c32873c4021477383a15f7d@orel>
+In-Reply-To: <20240322-3c32873c4021477383a15f7d@orel>
+From: Deepak Gupta <debug@rivosinc.com>
+Date: Fri, 22 Mar 2024 09:52:48 -0700
+Message-ID: <CAKC1njTGSMPekhvyRW0gz6+mY2S_==voCcspoLAyp38X-BcWcw@mail.gmail.com>
+Subject: Re: [RISC-V] [tech-j-ext] [RFC PATCH 5/9] riscv: Split per-CPU and
+ per-thread envcfg bits
+To: Andrew Jones <ajones@ventanamicro.com>
+Cc: Samuel Holland <samuel.holland@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	Catalin Marinas <catalin.marinas@arm.com>, linux-kernel@vger.kernel.org, 
+	tech-j-ext@lists.risc-v.org, Conor Dooley <conor@kernel.org>, kasan-dev@googlegroups.com, 
+	Evgenii Stepanov <eugenis@google.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Guo Ren <guoren@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+	Paul Walmsley <paul.walmsley@sifive.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Mar 22, 2024 at 10:05:24AM -0500, Rob Herring wrote:
-> On Fri, Mar 22, 2024 at 07:49:57AM +0100, Krzysztof Kozlowski wrote:
-> > This applies to all GSoC or some Linux Mentorship programs: I suggest to
-> > choose for conversion bindings with more users and bigger possible
-> > impact. So first I would look at ARM64 and ARMv7 platforms. We still
-> > have around 1000 and 3500 unique warnings about undocumented compatibles
-> > for ARM64 defconfig and ARM multi_v7! That's the platforms you should
-> > choose.
-> > 
-> > Not SuperH, ARC, or whatever with only one DTS which is difficult to
-> > build for regular developer.
-> 
-> To add to this, either ask DT maintainers what would be useful to work 
-> on or you can look here[1][2] to see what are the top occurring 
-> undocumented (by schema) compatibles.
-> 
-> Rob
-> 
-> [1] https://gitlab.com/robherring/linux-dt/-/jobs/6453674734
-> [2] https://gitlab.com/robherring/linux-dt/-/jobs/6453674732
+On Fri, Mar 22, 2024 at 1:09=E2=80=AFAM Andrew Jones <ajones@ventanamicro.c=
+om> wrote:
+>
+> On Tue, Mar 19, 2024 at 09:39:52PM -0700, Deepak Gupta wrote:
+> ...
+> > I am not sure of the practicality of this heterogeneity for Zicboz and
+> > for that matter any of the upcoming
+> > features that'll be enabled via senvcfg (control flow integrity,
+> > pointer masking, etc).
+> >
+> > As an example if cache zeroing instructions are used by app binary, I
+> > expect it to be used in following
+> > manner
+> >
+> >  - Explicitly inserting cbo.zero by application developer
+> >  - Some compiler flag which ensures that structures larger than cache
+> > line gets zeroed by cbo.zero
+> >
+> > In either of the cases, the developer is not expecting to target it to
+> > a specific hart on SoC and instead expect it to work.
+> > There might be libraries (installed via sudo apt get) with cache zero
+> > support in them which may run in different address spaces.
+> > Should the library be aware of the CPU on which it's running. Now
+> > whoever is running these binaries should be aware which CPUs
+> > they get assigned to in order to avoid faults?
+> >
+> > That seems excessive, doesn't it?
+> >
+>
+> It might be safe to assume extensions like Zicboz will be on all harts if
+> any, but I wouldn't expect all extensions in the future to be present on
+> all available harts. For example, some Arm big.LITTLE boards only have
+> virt extensions on big CPUs. When a VMM wants to launch a guest it must
+> be aware of which CPUs it will use for the VCPU threads. For riscv, we
+> have the which-cpus variant of the hwprobe syscall to try and make this
+> type of thing easier to manage, but I agree it will still be a pain for
+> software since it will need to make that query and then set its affinity,
+> which is something it hasn't needed to do before.
+>
 
-Thank you for the valuable pieces of advice and links Krzysztof and Rob.
+Sure, the future may be a world where heterogeneous ISA is a thing. But
+that's not the present. Let's not try to build for something which
+doesn't exist.
+It has been (heterogeneous ISA) tried earlier many times and mostly have
+fallen flat (remember on Intel alder lake, Intel had to ship a ucode patch =
+to
+disable AVX512 exactly for same reason)
+https://www.anandtech.com/show/17047/the-intel-12th-gen-core-i912900k-revie=
+w-hybrid-performance-brings-hybrid-complexity/2
+
+As and when ISA features get enabled, they get compiled into libraries/bina=
+ries
+and end user many times use things like `taskset` to set affinity
+without even realizing
+there is some weirdness going on under the hood. For majority of use
+cases -- heterogeneous
+ISA doesn't make sense. Sure if someone is willing to build a custom
+SoC with heterogeneous
+ISA for their strict usecase, they control their software and hardware
+and thus they can do that.
+But littering linux kernel to support wierd usecases and putting a
+burden of that on majority of
+usecases and software is not wise.
+
+If something like this has to be done, I expect first that it doesn't
+force end users to learn
+about ISA differences between harts on their system and then figure
+out which installed
+packages have which ISA features compiled in. This is like walking on
+eggshells from the end
+user perspective. Sure, end user can be extremely intelligent / smart
+and figure it all out but
+that population is rare and that rare population can develop their
+custom kernel and libc
+patches to do something like this.
+
+This is a good science project to support heterogeneous ISA but
+practically not viable unless
+there is a high level end user use case.
+
+> Thanks,
+> drew
 
