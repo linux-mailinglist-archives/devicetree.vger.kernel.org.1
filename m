@@ -1,280 +1,411 @@
-Return-Path: <devicetree+bounces-52387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15E4C886751
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 08:07:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BC1388675E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 08:16:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A07D1C23B99
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 07:07:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7EB6F1C2375F
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 07:16:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2B7111713;
-	Fri, 22 Mar 2024 07:07:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C790C1118C;
+	Fri, 22 Mar 2024 07:16:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="g55O7fj1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QxfFVxUt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE59C15AF9
-	for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 07:07:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC5291119E;
+	Fri, 22 Mar 2024 07:16:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711091252; cv=none; b=gRr074eYeGqxMUJDZpWrN3lPLcTruJnoSNUkahhrLGkZNfUSUDjAV69fyWaRHwO167/0Q/0X1tfehlGY6RvzwUJbBCD/+i9M82k4p3xaTNwP+pJ2OJGMiYTmfaBP7qW9ddDo/cf2Ruuctxy34SfYvKsSf8wzmUnp8Xee65tu8Eo=
+	t=1711091785; cv=none; b=l2g8r2EzUdxZEZW3a5d1td8YQTbcQJUdQucIa3TDIAOiMgNJfChMkFhqzfUGL2QLJhyOjwq7WlruF5cUAu/V7q9CfDIny3P8epGQm82iUr1Gf2Sec55jHgMGNaQgLp+yC3esuF2DpgEEtYNo6vmpw7ZiVGJh+La2rNyczBqNnZw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711091252; c=relaxed/simple;
-	bh=dibDD3RK/z7jNjEE6AyFDQpIw0sjzNzfRVggjdX1JEo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YqIfsLkX3pjseOE2D+yhYkx9O8gJfxbV4wsF5zD3r1pm4zeINXT5ufJpE0D7Ag67pUIsNo2E/y7mBmq3OeM6mZYms1Z7hiM2xrHgZLym4bkc1VU/ob3yVR1QsOTVCi+oi5qJ0ILEr1NUBP7lyTx9maI5PSVKGAWwpj1w07nlfNE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=g55O7fj1; arc=none smtp.client-ip=209.85.208.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-56bcbf40cabso1821682a12.0
-        for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 00:07:29 -0700 (PDT)
+	s=arc-20240116; t=1711091785; c=relaxed/simple;
+	bh=cr/gq9Hz7MjDp3VpYL4qLkDVuVmAvk584ocPGpL8vrM=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ETDewkIADQ8Jezhv572Ont0ABE/ZoK26ftA/cDqf9U0zfQSYHS79wFEB2j7LW7w0N1+7b7s30vGMpJIuCergEgt1GVAWiwt5pzDiyDknRD83q7NGZ6/5eNS9o8uUE+nlqRyHvkRHomZQpKesY39QHhSmb62ae2yz00KZtZ5CDBY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QxfFVxUt; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-33d90dfe73cso978113f8f.0;
+        Fri, 22 Mar 2024 00:16:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711091248; x=1711696048; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=+IqxYSznSF0dOGEo3eRAT53h2zWat2EDnZFz5bA1NmU=;
-        b=g55O7fj1Ag90P5mQ5tTRLVkDtyERteU7LkbRKqGzBxYfu8cJPK4A4N3bts7FrulTAz
-         0x7VzKXOfS+r8Ahh639LVdcZ8RGndQdhBoTmHcsw2otBelX0zfxOhq+8XD6Ub9ks1//I
-         JXxg7slK9mRSC0z5rGJOs4cyT81oQ+Lr+fggnXAUp/W51VNSyjloC+6p/AaeAdrnNOU5
-         fN6pClBDmv4m2N3f/8lTsaiVkcX9JD4tpOyPhB42SjwLHJvodapD1bYJtGlMV6uYeO1e
-         7Sj99T6+iwP5Qd3f/QDXL9txQjbUzMk8vfgQZcFhJ2kTvIUmtY+edsV/nxR7l34J6lM2
-         Ei2A==
+        d=gmail.com; s=20230601; t=1711091782; x=1711696582; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Iznl4WZmLsguPyAc9eH8R5PJlabuCZnbo+2mKeF1vzE=;
+        b=QxfFVxUtM0tS3AsT0sq7r0kHVAGNOyuh8iM+GtPYGugRgXYUGWf7n6N6McjsKA407f
+         CNBq2UnlTig/VG6sbQXi01lceXBB8TdDZbzhvwVfFZLM6frzlRwItXwr2LxYjETzzHio
+         NnmDm1xnCQzO0UaiyYTk3NYe0oj864Zrtvpp0KJy12g/MpBw41/sSTaFJPX8UjWHMq/D
+         dgonkPGnGsk2yJ/h6u2+N2MucxTV1fA0GgxGPcitBmlWI81cVbwgrq1T7QkvSkGL129z
+         b91MMoDcPfmAzQV+vRJPjTVZI0j95l5Y3grFOepiJZLuZOyvLu/whjNOnpprw19EYm+8
+         b6gQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711091248; x=1711696048;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+IqxYSznSF0dOGEo3eRAT53h2zWat2EDnZFz5bA1NmU=;
-        b=AgwUZ20rzQY9/ZIDZbVIn+hIhWwKVw6PmfxXlgLE2IxCoxJJULDgI6bi+Aow+lWL5v
-         3/zyyuQeiDfce2tki3zO/iVRcrOYjgHcdCmbyXKFLOIPsAgG+AxA6Rdg8nVovV47T+ok
-         SDTE/e/iKTXkEiWNKiJD2ptl8FCEI//dePmYB58tZF/KKaWWbLNKY34f3POk+eFvkCXY
-         a+enLxrdq8cDhsODdA4qIECa8Ja8AnZ4rp+CJBpwZOPyMtS/IzZtEefN9dGJSpJ38uY2
-         oR5tSG/W8gePULIEe2jdn1Y3a1+2Ymk9A4Js34CEF6dK3ppnzfv/xxPjXbp+Ax5hBXMu
-         6D/w==
-X-Forwarded-Encrypted: i=1; AJvYcCUuK093ebwCAD5q94zkwnowL+PptJAXmcI84imHt4wFKOS4J9bTsuA3EuWKWLJkcdUG2Xy/JkdBAXOSA1FNEi3lnTFhZwvwXJidMg==
-X-Gm-Message-State: AOJu0YzGIHtuCYItNWuof/4JL8TLY9TM1/FETaJmjA6VwfuQ2oNz8DO+
-	qBWubq32ScjWuc9D2dUJBi0yRqILD8vxhJwBVY8vXjB2h446O9oZKVPRtc/XuYs=
-X-Google-Smtp-Source: AGHT+IEnFRcf8NA34JzX7H+NXLIfCDHydjoDSkAEynbOJCarizdc+au3qNpI2J4YN4RK8akreuQcaA==
-X-Received: by 2002:a50:9e65:0:b0:565:7b61:4c82 with SMTP id z92-20020a509e65000000b005657b614c82mr849247ede.5.1711091248066;
-        Fri, 22 Mar 2024 00:07:28 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id ig3-20020a056402458300b00568b6d731e1sm699630edb.4.2024.03.22.00.07.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Mar 2024 00:07:27 -0700 (PDT)
-Message-ID: <f2b2ecd2-7df7-4265-a022-655bffc7ac61@linaro.org>
-Date: Fri, 22 Mar 2024 08:07:25 +0100
+        d=1e100.net; s=20230601; t=1711091782; x=1711696582;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Iznl4WZmLsguPyAc9eH8R5PJlabuCZnbo+2mKeF1vzE=;
+        b=JN62tJwqpma98QRdz0NiRcDD6auVADwTzOLUsEmZK64p1CZpRYwL2r+PLEKjCOvwxl
+         uWRYU9fuaJ3w49Q1ZoYKCVOTRpU6ddkkHPKxvri6V/zdMCQ/UfdTr6UsxXyJGkRgOTp/
+         wUxy89RWfpr9P77mW+A8p7lgynt3uMRXJWlzQFsX71Tk0xfaztfyd2Lfpe955STHosg5
+         hbjsTDqv2nhY+nQ75xoHt3CwFehEhXIaLbQLzJokcdwAgPmSFzRn8dlM8w5UJx7Auk3w
+         UBOqMssWdsn1sKNEHXDYmqEKgGha9vUMs9+VTCxUELrQp5weRZK5NGlWhGAo4VPd0tMO
+         Uu2A==
+X-Forwarded-Encrypted: i=1; AJvYcCWvuPbea5K9vpOXjUJXJpldDDvIdXIHJYEIafgpZoHjF8T2P2zAtXW8eJ/QLVmb4OwiwcWRXeiFG/tVau/vKjNca07HnCOjHTuECl+CbeuCDteaqXT1IRza+rjm9vu34RHSYQz/aGFUbw==
+X-Gm-Message-State: AOJu0YzRNeB5LFnUPDQle+YDHJW2cpOMKINV9rBZFBqZ7lJnxEBZ3R6A
+	tZ3sBxwE64Nb4g0yRJQANZIjPymPRxVl61voYhiRISgxDQA5iMUs
+X-Google-Smtp-Source: AGHT+IGHqU2a59T96Pj/BjdvIqr7mH07mQh1y4XtvPXYoKRd9U2ZISkXZOfmtQko/0CTn0jnc+ytvQ==
+X-Received: by 2002:a5d:60c7:0:b0:33e:63c2:c43a with SMTP id x7-20020a5d60c7000000b0033e63c2c43amr834708wrt.26.1711091781766;
+        Fri, 22 Mar 2024 00:16:21 -0700 (PDT)
+Received: from ?IPv6:2001:a61:343e:8301:d737:22b0:7431:8d01? ([2001:a61:343e:8301:d737:22b0:7431:8d01])
+        by smtp.gmail.com with ESMTPSA id dl17-20020a0560000b9100b0033d6bc17d0esm1372338wrb.74.2024.03.22.00.16.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Mar 2024 00:16:21 -0700 (PDT)
+Message-ID: <374831e2acbac85a0087e3dd0824ec3395ffe2fa.camel@gmail.com>
+Subject: Re: [PATCH v2 1/3] iio: accel: adxl345: Update adxl345
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Lothar Rubusch <l.rubusch@gmail.com>, lars@metafoo.de, 
+	Michael.Hennerich@analog.com, jic23@kernel.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, eraretuya@gmail.com
+Date: Fri, 22 Mar 2024 08:16:20 +0100
+In-Reply-To: <20240322003713.6918-2-l.rubusch@gmail.com>
+References: <20240322003713.6918-1-l.rubusch@gmail.com>
+	 <20240322003713.6918-2-l.rubusch@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: mfd: Add rk816 binding
-To: Alex Bee <knaerzche@gmail.com>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Linus Walleij <linus.walleij@linaro.org>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
-Cc: Chris Zhong <zyw@rock-chips.com>, Zhang Qing <zhangqing@rock-chips.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org
-References: <20240321143911.90210-2-knaerzche@gmail.com>
- <20240321143911.90210-4-knaerzche@gmail.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240321143911.90210-4-knaerzche@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 21/03/2024 15:39, Alex Bee wrote:
-> Add DT binding document for Rockchip's RK816 PMIC
-> 
-> Signed-off-by: Alex Bee <knaerzche@gmail.com>
+On Fri, 2024-03-22 at 00:37 +0000, Lothar Rubusch wrote:
+> Move driver wide constants and fields into the header.
+> Let probe call a separate setup function. Provide
+> possibility for an SPI/I2C specific setup to be passed
+> as function pointer to core.
+>=20
+> Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
+> ---
+> =C2=A0drivers/iio/accel/adxl345.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 4=
+4 +++++++++++-
+> =C2=A0drivers/iio/accel/adxl345_core.c | 117 +++++++++++++++++-----------=
+---
+> =C2=A0drivers/iio/accel/adxl345_i2c.c=C2=A0 |=C2=A0 30 ++++----
+> =C2=A0drivers/iio/accel/adxl345_spi.c=C2=A0 |=C2=A0 28 ++++----
+> =C2=A04 files changed, 134 insertions(+), 85 deletions(-)
+>=20
+> diff --git a/drivers/iio/accel/adxl345.h b/drivers/iio/accel/adxl345.h
+> index 284bd387c..01493c999 100644
+> --- a/drivers/iio/accel/adxl345.h
+> +++ b/drivers/iio/accel/adxl345.h
+> @@ -8,6 +8,39 @@
+> =C2=A0#ifndef _ADXL345_H_
+> =C2=A0#define _ADXL345_H_
+> =C2=A0
+> +#include <linux/iio/iio.h>
+> +
+> +/* ADXL345 register definitions */
+> +#define ADXL345_REG_DEVID		0x00
+> +#define ADXL345_REG_OFSX		0x1E
+> +#define ADXL345_REG_OFSY		0x1F
+> +#define ADXL345_REG_OFSZ		0x20
+> +#define ADXL345_REG_OFS_AXIS(index)	(ADXL345_REG_OFSX + (index))
+> +#define ADXL345_REG_BW_RATE		0x2C
+> +#define ADXL345_REG_POWER_CTL		0x2D
+> +#define ADXL345_REG_DATA_FORMAT		0x31
+> +#define ADXL345_REG_DATAX0		0x32
+> +#define ADXL345_REG_DATAY0		0x34
+> +#define ADXL345_REG_DATAZ0		0x36
+> +#define ADXL345_REG_DATA_AXIS(index)	\
+> +	(ADXL345_REG_DATAX0 + (index) * sizeof(__le16))
+> +
+> +#define ADXL345_BW_RATE			GENMASK(3, 0)
+> +#define ADXL345_BASE_RATE_NANO_HZ	97656250LL
+> +
+> +#define ADXL345_POWER_CTL_MEASURE	BIT(3)
+> +#define ADXL345_POWER_CTL_STANDBY	0x00
+> +
+> +#define ADXL345_DATA_FORMAT_FULL_RES	BIT(3) /* Up to 13-bits resolution =
+*/
+> +#define ADXL345_DATA_FORMAT_SPI=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 BIT(6) /* spi-3wire */
+> +#define ADXL345_DATA_FORMAT_2G		0
+> +#define ADXL345_DATA_FORMAT_4G		1
+> +#define ADXL345_DATA_FORMAT_8G		2
+> +#define ADXL345_DATA_FORMAT_16G		3
+> +#define ADXL345_DATA_FORMAT_MSK		~((u8) BIT(6)) /* ignore spi-3wire
+> */
+> +
+> +#define ADXL345_DEVID			0xE5
+> +
+> =C2=A0/*
+> =C2=A0 * In full-resolution mode, scale factor is maintained at ~4 mg/LSB
+> =C2=A0 * in all g ranges.
+> @@ -23,11 +56,20 @@
+> =C2=A0 */
+> =C2=A0#define ADXL375_USCALE	480000
+> =C2=A0
+> +enum adxl345_device_type {
+> +	ADXL345,
+> +	ADXL375,
+> +};
+> +
+> =C2=A0struct adxl345_chip_info {
+> =C2=A0	const char *name;
+> =C2=A0	int uscale;
+> =C2=A0};
+> =C2=A0
+> -int adxl345_core_probe(struct device *dev, struct regmap *regmap);
+> +extern const struct adxl345_chip_info adxl3x5_chip_info[];
+> +
+> +int adxl345_core_probe(struct device *dev, struct regmap *regmap,
+> +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct adxl345_chip_info *c=
+hip_info,
+> +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int (*setup)(struct device*, stru=
+ct regmap*));
+> =C2=A0
+> =C2=A0#endif /* _ADXL345_H_ */
+> diff --git a/drivers/iio/accel/adxl345_core.c b/drivers/iio/accel/adxl345=
+_core.c
+> index 8bd30a23e..040c3f05a 100644
+> --- a/drivers/iio/accel/adxl345_core.c
+> +++ b/drivers/iio/accel/adxl345_core.c
+> @@ -17,38 +17,9 @@
+> =C2=A0
+> =C2=A0#include "adxl345.h"
+> =C2=A0
+> -#define ADXL345_REG_DEVID		0x00
+> -#define ADXL345_REG_OFSX		0x1e
+> -#define ADXL345_REG_OFSY		0x1f
+> -#define ADXL345_REG_OFSZ		0x20
+> -#define ADXL345_REG_OFS_AXIS(index)	(ADXL345_REG_OFSX + (index))
+> -#define ADXL345_REG_BW_RATE		0x2C
+> -#define ADXL345_REG_POWER_CTL		0x2D
+> -#define ADXL345_REG_DATA_FORMAT		0x31
+> -#define ADXL345_REG_DATAX0		0x32
+> -#define ADXL345_REG_DATAY0		0x34
+> -#define ADXL345_REG_DATAZ0		0x36
+> -#define ADXL345_REG_DATA_AXIS(index)	\
+> -	(ADXL345_REG_DATAX0 + (index) * sizeof(__le16))
+> -
+> -#define ADXL345_BW_RATE			GENMASK(3, 0)
+> -#define ADXL345_BASE_RATE_NANO_HZ	97656250LL
+> -
+> -#define ADXL345_POWER_CTL_MEASURE	BIT(3)
+> -#define ADXL345_POWER_CTL_STANDBY	0x00
+> -
+> -#define ADXL345_DATA_FORMAT_FULL_RES	BIT(3) /* Up to 13-bits resolution =
+*/
+> -#define ADXL345_DATA_FORMAT_2G		0
+> -#define ADXL345_DATA_FORMAT_4G		1
+> -#define ADXL345_DATA_FORMAT_8G		2
+> -#define ADXL345_DATA_FORMAT_16G		3
+> -
+> -#define ADXL345_DEVID			0xE5
+> -
+> =C2=A0struct adxl345_data {
+> =C2=A0	const struct adxl345_chip_info *info;
+> =C2=A0	struct regmap *regmap;
+> -	u8 data_range;
+> =C2=A0};
+> =C2=A0
+> =C2=A0#define ADXL345_CHANNEL(index, axis) {					\
+> @@ -62,6 +33,18 @@ struct adxl345_data {
+> =C2=A0		BIT(IIO_CHAN_INFO_SAMP_FREQ),				\
+> =C2=A0}
+> =C2=A0
+> +const struct adxl345_chip_info adxl3x5_chip_info[] =3D {
+> +	[ADXL345] =3D {
+> +		.name =3D "adxl345",
+> +		.uscale =3D ADXL345_USCALE,
+> +	},
+> +	[ADXL375] =3D {
+> +		.name =3D "adxl375",
+> +		.uscale =3D ADXL375_USCALE,
+> +	},
+> +};
+> +EXPORT_SYMBOL_NS_GPL(adxl3x5_chip_info, IIO_ADXL345);
+> +
+> =C2=A0static const struct iio_chan_spec adxl345_channels[] =3D {
+> =C2=A0	ADXL345_CHANNEL(0, X),
+> =C2=A0	ADXL345_CHANNEL(1, Y),
+> @@ -197,14 +180,21 @@ static void adxl345_powerdown(void *regmap)
+> =C2=A0	regmap_write(regmap, ADXL345_REG_POWER_CTL, ADXL345_POWER_CTL_STAN=
+DBY);
+> =C2=A0}
+> =C2=A0
+> -int adxl345_core_probe(struct device *dev, struct regmap *regmap)
+> +static int adxl345_setup(struct device *dev, struct adxl345_data *data,
+> +			 int (*setup)(struct device*, struct regmap*))
+> =C2=A0{
+> -	struct adxl345_data *data;
+> -	struct iio_dev *indio_dev;
+> =C2=A0	u32 regval;
+> =C2=A0	int ret;
+> =C2=A0
+> -	ret =3D regmap_read(regmap, ADXL345_REG_DEVID, &regval);
+> +	/* Perform bus specific settings if available */
+> +	if (setup) {
+> +		ret =3D setup(dev, data->regmap);
+> +		if (ret)
+> +			return ret;
+> +	}
 
-> diff --git a/Documentation/devicetree/bindings/mfd/rockchip,rk816.yaml b/Documentation/devicetree/bindings/mfd/rockchip,rk816.yaml
-> new file mode 100644
-> index 000000000000..b46de99f60ff
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/rockchip,rk816.yaml
-> @@ -0,0 +1,259 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/rockchip,rk816.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: RK816 Power Management Integrated Circuit
-> +
-> +maintainers:
-> +  - Chris Zhong <zyw@rock-chips.com>
-> +  - Zhang Qing <zhangqing@rock-chips.com>
-> +
-> +description: |
-
-Do not need '|' unless you need to preserve formatting.
-
-> +  Rockchip RK816 series PMIC. This device consists of an i2c controlled MFD
-> +  that includes regulators, a RTC, a gpio controller, and a power button.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - rockchip,rk816
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  '#clock-cells':
-> +    description: |
-
-Do not need '|' unless you need to preserve formatting.
-
-> +      See <dt-bindings/clock/rockchip,rk808.h> for clock IDs.
-> +    const: 1
-> +
-> +  clock-output-names:
-> +    description:
-> +      From common clock binding to override the default output clock name.
-
-Drop description, it's obvious.
-
-> +    maxItems: 2
-> +
-> +  gpio-controller: true
-> +
-> +  '#gpio-cells':
-> +    const: 2
-> +
-> +  system-power-controller:
-> +    type: boolean
-> +    description:
-> +      Telling whether or not this PMIC is controlling the system power.
-> +
-> +  wakeup-source:
-> +    type: boolean
-> +    description:
-> +      Device can be used as a wakeup source.
-
-Drop description, it's obvious. It's considered generic property, even
-if we did not document it in dtschema yet.
+nit: likely a better name would be bus_setup(). Then you could drop the com=
+ment as it
+becomes useless...
 
 > +
-> +  vcc1-supply:
-> +    description:
-> +      The input supply for DCDC_REG1.
+> +	/* Read out DEVID */
+> +	ret =3D regmap_read(data->regmap, ADXL345_REG_DEVID, &regval);
+> =C2=A0	if (ret < 0)
+> =C2=A0		return dev_err_probe(dev, ret, "Error reading device ID\n");
+> =C2=A0
+> @@ -212,37 +202,62 @@ int adxl345_core_probe(struct device *dev, struct r=
+egmap
+> *regmap)
+> =C2=A0		return dev_err_probe(dev, -ENODEV, "Invalid device ID: %x,
+> expected %x\n",
+> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 regval, ADXL345_DEVID);
+> =C2=A0
+> +	/* Update data_format to full-resolution mode */
+> +	ret =3D regmap_update_bits(data->regmap, ADXL345_REG_DATA_FORMAT,
+> +				 ADXL345_DATA_FORMAT_MSK,
+> ADXL345_DATA_FORMAT_FULL_RES);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to update data_format
+> register\n");
 > +
-> +  vcc2-supply:
-> +    description:
-> +      The input supply for DCDC_REG2.
+> +	/* Enable measurement mode */
+> +	ret =3D adxl345_powerup(data->regmap);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "Failed to enable measurement
+> mode\n");
 > +
-> +  vcc3-supply:
-> +    description:
-> +      The input supply for DCDC_REG3.
+> +	ret =3D devm_add_action_or_reset(dev, adxl345_powerdown, data->regmap);
+> +	if (ret < 0)
+> +		return ret;
 > +
-> +  vcc4-supply:
-> +    description:
-> +      The input supply for DCDC_REG4.
+> +	return 0;
+> +}
 > +
-> +  vcc5-supply:
-> +    description:
-> +      The input supply for LDO_REG1, LDO_REG2, and LDO_REG3.
+> +/**
+> + * adxl345_core_probe() - probe and setup for the adxl345 accelerometer,
+> + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 also =
+covers the adlx375 accelerometer
+> + * @dev:	Driver model representation of the device
+> + * @regmap:	Regmap instance for the device
+> + * @chip_info:=C2=A0 Structure containing device specific data
+> + * @setup:	Setup routine to be executed right before the standard device
+> + *		setup, can also be set to NULL if not required
+> + *
+> + * Return: 0 on success, negative errno on error
+> + */
+> +int adxl345_core_probe(struct device *dev, struct regmap *regmap,
+> +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct adxl345_chip_info *c=
+hip_info,
+> +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int (*setup)(struct device*, stru=
+ct regmap*))
+> +{
+> +	struct adxl345_data *data;
+> +	struct iio_dev *indio_dev;
+> +	int ret;
 > +
-> +  vcc6-supply:
-> +    description:
-> +      The input supply for LDO_REG4, LDO_REG5, and LDO_REG6.
+> =C2=A0	indio_dev =3D devm_iio_device_alloc(dev, sizeof(*data));
+> =C2=A0	if (!indio_dev)
+> =C2=A0		return -ENOMEM;
+> =C2=A0
+> =C2=A0	data =3D iio_priv(indio_dev);
+> =C2=A0	data->regmap =3D regmap;
+> -	/* Enable full-resolution mode */
+> -	data->data_range =3D ADXL345_DATA_FORMAT_FULL_RES;
+> -	data->info =3D device_get_match_data(dev);
+> -	if (!data->info)
+> -		return -ENODEV;
+> -
+> -	ret =3D regmap_write(data->regmap, ADXL345_REG_DATA_FORMAT,
+> -			=C2=A0=C2=A0 data->data_range);
+> -	if (ret < 0)
+> -		return dev_err_probe(dev, ret, "Failed to set data range\n");
+> +	data->info =3D chip_info;
+> =C2=A0
+> -	indio_dev->name =3D data->info->name;
+> +	indio_dev->name =3D chip_info->name;
+> =C2=A0	indio_dev->info =3D &adxl345_info;
+> =C2=A0	indio_dev->modes =3D INDIO_DIRECT_MODE;
+> =C2=A0	indio_dev->channels =3D adxl345_channels;
+> =C2=A0	indio_dev->num_channels =3D ARRAY_SIZE(adxl345_channels);
+> =C2=A0
+> -	/* Enable measurement mode */
+> -	ret =3D adxl345_powerup(data->regmap);
+> -	if (ret < 0)
+> -		return dev_err_probe(dev, ret, "Failed to enable measurement
+> mode\n");
+> -
+> -	ret =3D devm_add_action_or_reset(dev, adxl345_powerdown, data->regmap);
+> -	if (ret < 0)
+> +	ret =3D adxl345_setup(dev, data, setup);
+> +	if (ret) {
+> +		dev_err(dev, "ADXL345 setup failed\n");
+> =C2=A0		return ret;
+> +	}
+> =C2=A0
+> =C2=A0	return devm_iio_device_register(dev, indio_dev);
+> =C2=A0}
+> diff --git a/drivers/iio/accel/adxl345_i2c.c b/drivers/iio/accel/adxl345_=
+i2c.c
+> index a3084b0a8..3f882e2e0 100644
+> --- a/drivers/iio/accel/adxl345_i2c.c
+> +++ b/drivers/iio/accel/adxl345_i2c.c
+> @@ -9,6 +9,7 @@
+> =C2=A0 */
+> =C2=A0
+> =C2=A0#include <linux/i2c.h>
+> +#include <linux/mod_devicetable.h>
+> =C2=A0#include <linux/module.h>
+> =C2=A0#include <linux/regmap.h>
+> =C2=A0
+> @@ -21,41 +22,36 @@ static const struct regmap_config adxl345_i2c_regmap_=
+config =3D {
+> =C2=A0
+> =C2=A0static int adxl345_i2c_probe(struct i2c_client *client)
+> =C2=A0{
+> +	const struct adxl345_chip_info *chip_data;
+> =C2=A0	struct regmap *regmap;
+> =C2=A0
+> +	/* Retrieve device data, i.e. the name, to pass it to the core */
+> +	chip_data =3D i2c_get_match_data(client);
 > +
-> +  vcc7-supply:
-> +    description:
-> +      The input supply for BOOST.
-> +
-> +  vcc8-supply:
-> +    description:
-> +      The input supply for OTG_SWITCH.
-> +
-> +  regulators:
-> +    type: object
-> +    patternProperties:
-> +      "^(DCDC_REG[1-4]|LDO_REG[1-6]|BOOST|OTG_SWITCH)$":
 
-Lowercase. No underscores allowed, use hyphens.
-
-> +        type: object
-> +        $ref: ../regulator/regulator.yaml#
-
-Full path, so /schemas/regulator/
-
-> +        unevaluatedProperties: false
-> +    unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - "#clock-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
+While unlikely use a proper pattern. Meaning, check for NULL pointers and b=
+ail out in
+that case... Also, you need to justify why are you moving these calls to th=
+e bus in
+your commit message.
 
 
-Best regards,
-Krzysztof
+It seems to me that you're trying to refactor too much in a single patch. M=
+aybe step
+back and try to separate changes in different patches. Like this one (passi=
+ng
+chip_info) from the bus file could be in it's own patch. Will also (or shou=
+ld at
+least :)) "force" you to have a more dedicated commit message explaining wh=
+y you're
+introducing the change.
+
+- Nuno S=C3=A1
 
 
