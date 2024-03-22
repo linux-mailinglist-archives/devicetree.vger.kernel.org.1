@@ -1,109 +1,115 @@
-Return-Path: <devicetree+bounces-52452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B14B2886A80
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 11:38:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E3AC886A87
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 11:40:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E2F351C20E87
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 10:38:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1066A281F43
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 10:40:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE0E13B2A4;
-	Fri, 22 Mar 2024 10:38:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3657D3B2BF;
+	Fri, 22 Mar 2024 10:40:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JiihL1+/"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Abs65TWj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 501F33BB21
-	for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 10:38:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 817B73DB9A;
+	Fri, 22 Mar 2024 10:39:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711103927; cv=none; b=HLyr2l9tX6w5fhNs49lZnlgo+lRgpZeskVTZ1gns35pvvEcIKsFhT+QLHImRnRTwmNd09d6RNp8JTFPSkdijUdF0J8tOioHDL+EZQjtz7cc0Vtddx1s4GX9qV2f72LBnniAPg798bxqfQFZXxkt5+MMuW26eD8/5tf/avfzBaDY=
+	t=1711104000; cv=none; b=OHAZRQxnYbzDjTX9PT8q20rnLMIYfxCT//iBNNOr/QIAP4ZIIJ6yBPfeWsbZ+cu76deS0pc/7I7kHJcOtcni5S48TeHSLmmv9+Tt3LebWAxHIXAxG6eaqB5p2oAdS885YFGoNZxqb7acnW9FARnGczHRUVF+lWJaKUia0/vs3lc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711103927; c=relaxed/simple;
-	bh=Hq2/eEOuWhpmKCsuwoD25OCbkTU9eHjsACQjFbIL5J4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZD2RSogTzaNDoriK0p4BFnmNWeD4ohv6ux8Tr0Ky0VaWVLX5TejPu+naV69E1QYK992d8hgEDlh9wp/9dLrvuPeo36fSlZs8IEkU8EldpOrZ5Od8MOCR/9DJPqo4MTTn3wwZ5+hUPzQsuGgJfeq78vIrLFW5NJgUPexR16VJHN8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JiihL1+/; arc=none smtp.client-ip=209.85.219.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-dd161eb03afso1649058276.0
-        for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 03:38:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711103925; x=1711708725; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=EW5QX/PBiLajaatZ/82NErGaCFABadkL02aA8JURVjA=;
-        b=JiihL1+/6U2Cx7eJN6b4Oe67iNFFFwpMCixX/BSNlEZziujtNC4bsDiR9/+lxJy7AU
-         rhESgenhwWlEL6pwXxuSKhrD88LMs5SO/ztC1aZ8D7V3oLww0qjE4XWA2kZgjc6mbsas
-         ytdavUNjY1u2pDaiNesQGnGiJDq532WBuZudF1qkTElflgRSWQgZf67M7ej3kqhao0jx
-         jDwxeTLj3YRuG7SwuntosDcRg+U1OCkZEhKRvuU2AGYktjqC347VbPZu1wzginm7/8L6
-         qRDUy6AH8GmHh6qUOakmNrWj6QcY9HXDADUt+gWDIpZOpzJw0tQTO0+gamIKnhygF4rY
-         +5tw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711103925; x=1711708725;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EW5QX/PBiLajaatZ/82NErGaCFABadkL02aA8JURVjA=;
-        b=YNyhu7DNgHPOf//kQLhF2/Bk8biVhZjUOdI78EmJr/hXUBSlrp8aNTHOJ86DJ6Ma1m
-         aN5lJxlXaFMFVxYaIn7CB5eaTIBOHlB2ADnvme20pOu+He/DyhYE8P9zzlZOhB/gKexv
-         Amb047wDQ0iEQtfvn70hUjiKPcyPQVZ1CqASnqNNQzdnxMIkhFUy5TiRZtvb/UV/xpJH
-         /hk7kF0t6xX+zfSPHCX8G6ryKdapHcBPzaAb7J6JhgciGR3iiz8SloEw3agGLM1u2LHP
-         VK+dpzBqZ1jJvBD5NrgjJuQOh7s9jZ8cNmVyT5YnSV4o73GEPoYsTiTFnlQvQMC/zvB/
-         77Kg==
-X-Forwarded-Encrypted: i=1; AJvYcCViwdsw9ZXTlPa6xuG/HI+ulkbTUUvmH+Cybu2q7+xldSppQTm3sWZHrsmrSYWbfITtNg954ydENHZ839ab0jY/fAQaSAAdAy0cVQ==
-X-Gm-Message-State: AOJu0Yw8JouexuqiNp6BXL3jl3HwYEpORjCnnlNvbJUb1TraY/GHeUsS
-	IizlUNqt+v3glfQGg3xp1/vkVhRtxXj7402UKToKi2o2Kzjce7USmMQ988ebumQRWtAEu6YztJE
-	cVH+eN0sognzrTl6wlqHGYn7Uzj8YEF/fvRtslxRp5/tIUQpluWQ=
-X-Google-Smtp-Source: AGHT+IHSKsoTSx1uARV4yY9pfYF30+iJm9yZmLK1Rm0y026834WCXCVGtwW6NoGV0aiUmgbWwwTt9TMD1a0SiQcBybI=
-X-Received: by 2002:a5b:651:0:b0:dc6:2e29:4262 with SMTP id
- o17-20020a5b0651000000b00dc62e294262mr1579006ybq.58.1711103925350; Fri, 22
- Mar 2024 03:38:45 -0700 (PDT)
+	s=arc-20240116; t=1711104000; c=relaxed/simple;
+	bh=mbCfCKEKkGI+oF9DOo3BjBASMhgsvFpxmE1dYl1oeYo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=eElb8GaMfu/RYLfQegyjhO0wbM8yjwXjSNZURHOxfWAZg6E5RVRw+DOisxNBAxe/WLp95n06htke/CXF1YDvvnLiy93F/XcocercOxm80YI6jmRGlw+mB/Zt3N5xCRyMKIe0pewKzlGx3jvJWOGf7tuOivFZLcoagUp3ge5wr+o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Abs65TWj; arc=none smtp.client-ip=217.70.183.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 8BA7040009;
+	Fri, 22 Mar 2024 10:39:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1711103993;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=mbCfCKEKkGI+oF9DOo3BjBASMhgsvFpxmE1dYl1oeYo=;
+	b=Abs65TWjIPymsT85gW9nGnQpgIGr9KiT9Gv2MVsg/9VrWqqW8BgIoe5JtB+BFcqEm2mik+
+	9LxLqoBDweMoBwKelRyPlawVI+DJyg2CkGUOt8mS6QeAa/EX8yQEL49hWTTipnwQaSh1CH
+	+DyQnuXdKUbP4sprV3J+U3wOf0rPVkeN3I+gl2Lt/4bpz6R1gRfJOZBKM5+ALsELMvhZSg
+	V7umSn7hZY/d9mtHhC4rqI4Js8rwcydFkG86LbGaTEJAOBJu5eJjgByGWZB8yD/nj2Ggzc
+	dxKOQ9VU/Bauu1rL0pg3AHLvTE8ZYypx6layXd6CGjdo2x5ZCJRWOfUmuTXNtg==
+Date: Fri, 22 Mar 2024 11:39:50 +0100
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, Luis Chamberlain
+ <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Mark Brown <broonie@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
+ Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+ Russell King <linux@armlinux.org.uk>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ devicetree@vger.kernel.org, Dent Project <dentproject@linuxfoundation.org>
+Subject: Re: [PATCH net-next v5 13/17] net: pse-pd: Use regulator framework
+ within PSE framework
+Message-ID: <20240322113950.27d35376@kmaincent-XPS-13-7390>
+In-Reply-To: <ZfxjosqPMo0ECBmx@pengutronix.de>
+References: <20240227-feature_poe-v5-0-28f0aa48246d@bootlin.com>
+	<20240227-feature_poe-v5-13-28f0aa48246d@bootlin.com>
+	<ZeObuKHkPN3tiWz_@pengutronix.de>
+	<20240304102708.5bb5d95c@kmaincent-XPS-13-7390>
+	<ZeWi90H-B4XeSkFs@pengutronix.de>
+	<20240321171524.0b04bfcc@kmaincent-XPS-13-7390>
+	<ZfxjosqPMo0ECBmx@pengutronix.de>
+Organization: bootlin
+X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240322-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v2-0-3ec0a966d52f@linaro.org>
- <20240322-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v2-2-3ec0a966d52f@linaro.org>
-In-Reply-To: <20240322-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v2-2-3ec0a966d52f@linaro.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Fri, 22 Mar 2024 12:38:34 +0200
-Message-ID: <CAA8EJpq1JSLdzpkbjSPjfFWvMEKgFBifjkOjAMQJUO40-bFnSw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/7] phy: qcom: qmp-pcie: refactor clock register code
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: kory.maincent@bootlin.com
 
-On Fri, 22 Mar 2024 at 11:43, Neil Armstrong <neil.armstrong@linaro.org> wrote:
->
-> The PCIe Gen4x2 PHY found in the SM8[456]50 SoCs have a second clock,
-> in order to expose it, split the current clock registering in two parts:
-> - CCF clock registering
-> - DT clock registering
->
-> Keep the of_clk_add_hw_provider/devm_add_action_or_reset to keep
-> compatibility with the legacy subnode bindings.
->
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 15 +++++++++++----
->  1 file changed, 11 insertions(+), 4 deletions(-)
+Hello Oleksij,
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On Thu, 21 Mar 2024 17:43:14 +0100
+Oleksij Rempel <o.rempel@pengutronix.de> wrote:
 
+> On Thu, Mar 21, 2024 at 05:15:24PM +0100, Kory Maincent wrote:
+> > Hello Oleksij,
+> > Sorry, I forgot to reply about this.
+> > This is specific to pse_regulator driver. Could we tackle this change in
+> > another patch series when the current patch series got applied?
+> > Also I don't have the hardware to test it. =20
+>=20
+> ACK, no problem.
 
--- 
-With best wishes
-Dmitry
+I have a question unrelated to this.
+Why do you add refcount on the pse_control struct?
+The pse control is related to the RJ45 port. Each port is exclusively relat=
+ed
+to one pse control.
+Shouldn't we return an error in case of two get of the same pse control ind=
+ex?
+Do you see use cases where a pse control could be get two times?
+
+Regards,
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
