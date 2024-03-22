@@ -1,263 +1,399 @@
-Return-Path: <devicetree+bounces-52361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3A958866BB
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 07:30:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A15BE8866BF
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 07:31:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B9E4284FB7
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 06:30:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 577C528544B
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 06:31:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B1E079DD;
-	Fri, 22 Mar 2024 06:30:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F1BA2900;
+	Fri, 22 Mar 2024 06:31:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="stf+/S8z"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="QON1sgdq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com [209.85.217.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2071.outbound.protection.outlook.com [40.107.7.71])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53FACFC0A
-	for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 06:30:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.42
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711089010; cv=none; b=d7/1awq0pl0XoS0D5cC2NTANhB7A1EC9cQpu0AM7sG77qYUWDm9ipKa05ThqUAvHGj4Z6epR458HDicZeZoycqFkJrVxhc7oAd/W2SV8pCU6kVFaQxA6h+/Bu1T6XzS/nWv1t2X+TWisPT3vbmlfHXte+o9Qxc4Rddt/uzRfOCY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711089010; c=relaxed/simple;
-	bh=RaLGXV3wkG8D6RtEzkqlYsPr48/oVFW/MpPxaPCCmkk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=A7fYwxc24WfEwuIhNdb3FkXsSTkVOzKb1pExPLWDnpClqgji/DYAXR+IcZxwhJTSPHr17SHvgGwaYF2xvg6bqo0QZhwllBlQreDFgZ9HtEp6kR5af6m0X8r2Z4KWEvi1YIWkkLBVjtEGFfqWRs/fVAgnKR/1rD9HPJIzpU8C85o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=stf+/S8z; arc=none smtp.client-ip=209.85.217.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-475ffc62cbaso613544137.1
-        for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 23:30:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711089006; x=1711693806; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=friF4mqOpL+RBrI/R2ofg6E/u5m4j7bkXfIK/7gVkkA=;
-        b=stf+/S8zs96LGMGDQqSboY1KerMZnnbVepOJjCFdryUDNZKrPAWnIcDXDyMcG04vWR
-         BW0TXkqyPNppDR+tTTQPOwbmLIW05GDQbZzz0CaPndrDGvh7tDaErrh0edIzK63qQOOb
-         qMfEpLDkd8SR7ncBNG6bN8TkEtRERzd4j/vRLJq8XLKzXZQt8z9E5uecpMABp9/Z1CMJ
-         jLXY37c2Si9KOOOdbnyRV/Z5Cyw+larnRWo/wHZ7R5MssApdakTHS1DakhuSRUmGkD6h
-         cun+EylIqK9ajPe8SWc+8u30p8xszVPJmMhSUa+80yqJ+dX54WgPrHnWLbMhLOSHyHcs
-         8GkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711089006; x=1711693806;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=friF4mqOpL+RBrI/R2ofg6E/u5m4j7bkXfIK/7gVkkA=;
-        b=YYOgu4Xx8HTmQw8AURIhpI8OWfj2ZlsXNaw3I1nsnxTvTMd9+iDp6dTXbbCh+AmIDQ
-         wzvVgqOClGqJh98WwoUwpH0Yrbvgeshx7YK0F3sl0jV42vb/dMtTRTpPjXu3Sc7z1//1
-         bFc3unl+QxVf9ttWrL69SZjjd58qsFXhNVane+hU166tZx2aIKNPOp/THP3z+J3rDIHb
-         C4qMJ4lwPHqB3FeheKXvAI0n+RV+TQB5tjx0uB3+mNAPEl5j8yqspbR5DhGaY1YOrh3u
-         UgLX8vFpyymXFNVLSav4pdWLw666w562mFqxT7VawHXSbH9NOYyfnqTRqn+M42usPnue
-         FJsQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVk/nfHFWofsFbvtQEd7FAdDAvBGC3iMGp0HkyPtC0qs00WA3SW3/aUZoq//WiOEdC3bRyV5jba2QixS85fXf9x8Lk+43s+HaCsbw==
-X-Gm-Message-State: AOJu0Yx24obB277fvKlldW9SA+zWvVqB4+7/S2Mj6zdrgMkyVRcwoIQz
-	ShdSihJdaSu/oKJaAmqpRSEDqZZrRg0rKpx4GDOObBi7Xa8Knq1+4CP1wlT6CB/ZgdC56wnBYhJ
-	EDGaxVcHSBUMhUuKhMIIPuukgv6p8fSJOH88NhQ==
-X-Google-Smtp-Source: AGHT+IFQbB1B4AoNXkHKSgOqNqZlxMtMbvTbOTZhu1rm2Mw16zgjYGcqyrLEXEkNf5ApfjNO9O5cs8chrkwQfUwFz8E=
-X-Received: by 2002:a67:f2c1:0:b0:476:b180:5cf0 with SMTP id
- a1-20020a67f2c1000000b00476b1805cf0mr1601671vsn.34.1711089006234; Thu, 21 Mar
- 2024 23:30:06 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D36E04409;
+	Fri, 22 Mar 2024 06:31:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.7.71
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1711089097; cv=fail; b=riomDPzceMv74YCKJK8pMa9S1uNpe6e7tdCOxwcxS3z3G6GpEQp7xYXearZRNVREHb8VzvOU8pkF8D+Cq5EnqGi40K5oFxWsm2aiG/7lyRTZE2lLpiVmzEAOThwpKoVpqw817AoZrbsXiz0sIrdBz3vuDSFdXW66s8JjqafwMV8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1711089097; c=relaxed/simple;
+	bh=qekVVyydMcecyBUyOMBgMqnUxIWJnewvdoVXV+DAFD4=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=AiKRJ+NIOwXW/PcA8wKT1Gho/vzAH+skxpn9/pbeOvNH3jfXsuu48vJZQLVgnq+cFhkOnSvTMcMZvHx7FFuQjuqiIjJmScNjMeWEIRpaXOHi+a7+jNqvC7zMP7yCeVAhP2VLbSBC6132giJ0nVI881lzo6zU0jURsCl8l2j5oo4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=QON1sgdq; arc=fail smtp.client-ip=40.107.7.71
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Qd5mV0vlDZrMhfG9RTJED927FNNqDMxeGRtkGxcj95QM4RwCusfRX7UtTtHeVHmDiE9dAh0mdy9MfTTAfV8Bvj387z7vTJv+VL3IFhGpV8jCNqgfRoVw2I8byZvRX8WMfCnheOuVpm6nhM+RGGtKHdkYSY1lDLDOr92jTVgYyLh0LLDbuh0vGRBbp8uW4H8qVqqOjAuT1CfJFDHU3R0C4fHtm6f3WJXuA585awweP7lcTeKWkwwVIY1gBdGxtPREW/G3afQOsasWs4CaEaVlprYiKFhGonzKe5wztb3NcNqxu2OGYWIpk8mHfZSygfl4sXg02E4Lb+sUsMNwO1Xomg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZkMB3hnPAbE1o3QNmHbn2H3QKjPl+d0+rMN9JandbvU=;
+ b=biPrCC7gXkuVgTiN9r97Nl8WIewJvb1uaTeZ8VzfLhl0N2G8nbNa3IssWylbTX//L/8INfUlAUOi7n5Wauz9SF5qgLPX5LW2dMaNC9P7O4p+SEPeALxkArjETOER6OywgQ3F3feao1Up0tL84ute61W3xf5mkAXG9n3djMl5c5CQdiXVjJeVI0yqiKwm3oCi8VnMhAI4utlt4odnEYR93huJGcP0aHzlwHgolbS+qfJagqDqWcC9fst3hrf9q8qyaSW8RWFLjL8vz4Fo1O9l56kcgh1eeMMyEscEB2P2k5cn6DwPSuQPTz44heco9HR7RR8ARZAxSLDsZV088gVw4w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZkMB3hnPAbE1o3QNmHbn2H3QKjPl+d0+rMN9JandbvU=;
+ b=QON1sgdqlMhUkdyDvhpI4dIXymFXYXRTrv3Fe7pB5GQCMvYDpbYDQ9Vc4uLoTz5WOK0zNk9nc8GUGtkUwjqk3kOzYRnfCIDw9BO+PlrwL8qdpuGLWroTFrViel8i3gLuXWoL2KgMebpekLqAt+neYt1VJSE5Kq2ZBAcx8s6e5Kk=
+Received: from PAXPR04MB8829.eurprd04.prod.outlook.com (2603:10a6:102:20c::17)
+ by PAWPR04MB10007.eurprd04.prod.outlook.com (2603:10a6:102:387::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.24; Fri, 22 Mar
+ 2024 06:31:31 +0000
+Received: from PAXPR04MB8829.eurprd04.prod.outlook.com
+ ([fe80::1b13:505:8d50:f4e3]) by PAXPR04MB8829.eurprd04.prod.outlook.com
+ ([fe80::1b13:505:8d50:f4e3%4]) with mapi id 15.20.7386.023; Fri, 22 Mar 2024
+ 06:31:31 +0000
+From: Xu Yang <xu.yang_2@nxp.com>
+To: Frank Li <frank.li@nxp.com>
+CC: "will@kernel.org" <will@kernel.org>, "mark.rutland@arm.com"
+	<mark.rutland@arm.com>, "robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "shawnguo@kernel.org"
+	<shawnguo@kernel.org>, "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+	"kernel@pengutronix.de" <kernel@pengutronix.de>, "festevam@gmail.com"
+	<festevam@gmail.com>, "john.g.garry@oracle.com" <john.g.garry@oracle.com>,
+	"jolsa@kernel.org" <jolsa@kernel.org>, "namhyung@kernel.org"
+	<namhyung@kernel.org>, "irogers@google.com" <irogers@google.com>,
+	"mike.leach@linaro.org" <mike.leach@linaro.org>, "peterz@infradead.org"
+	<peterz@infradead.org>, "mingo@redhat.com" <mingo@redhat.com>,
+	"acme@kernel.org" <acme@kernel.org>, "alexander.shishkin@linux.intel.com"
+	<alexander.shishkin@linux.intel.com>, "adrian.hunter@intel.com"
+	<adrian.hunter@intel.com>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-perf-users@vger.kernel.org"
+	<linux-perf-users@vger.kernel.org>, "imx@lists.linux.dev"
+	<imx@lists.linux.dev>
+Subject: RE: [PATCH v7 4/8] perf: imx_perf: refactor driver for imx93
+Thread-Topic: [PATCH v7 4/8] perf: imx_perf: refactor driver for imx93
+Thread-Index: AQHadr7+Q7BPMTMxC02y+WE7XiG70LE910eAgAV6zgA=
+Date: Fri, 22 Mar 2024 06:31:31 +0000
+Message-ID:
+ <PAXPR04MB8829CFC1CDC14460745916248C312@PAXPR04MB8829.eurprd04.prod.outlook.com>
+References: <20240315095555.2628684-1-xu.yang_2@nxp.com>
+ <20240315095555.2628684-4-xu.yang_2@nxp.com>
+ <ZfiIU6EyI9J4ynTk@lizhi-Precision-Tower-5810>
+In-Reply-To: <ZfiIU6EyI9J4ynTk@lizhi-Precision-Tower-5810>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PAXPR04MB8829:EE_|PAWPR04MB10007:EE_
+x-ms-office365-filtering-correlation-id: 3c9cb274-cdbb-4196-cc6d-08dc4a39b680
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ l7L3myG+2vrNLmlUDH3lBzfkdPPApldW7uo/uUYtzOochfry/OoHtSVg6HtkbKhEm6hnTxDiJeSQnwRZz4K38x3YbRnrA4t/slsROp7iNn3++Q/Q2teQEBB2DISt24cMACNV/VzZPxfyDlwzsPW/S+MdLkbCEDPm2wl6AoJAjnOGk137k3ZHTdnTtcbxFvGkMZ0fVudONmKYAEccYi4/cT3vXIJImS/oUdm9Nn56it+DFVyrBHJxIDNyuo6Fci+Ob5o58WLGrSU7ps3DyxlryZDKErlmoGB4FcCNIZQ8vmqxgbqYYlzJPDt5XOXCGWL0yNdIjZw6vhtlp4bsqIad04P9gTUOsd1nXlX3mou2/rXJfL0gXJr/WZLsMfamGaWAH7OOXOud3y32wn6D5ol4tTueScx9CajCLSU/Mp5TddHF+n0k35fcG9pltHMJB6ZPrthHO4tRXIyhp6ouTgoSP+2EWMwcrleZxL5Xb6/rvWQVVBD5gaW/JEfXU2X4Y34bZv87ZBj8rUD2adZKInMfUUuVhPjRZUHDOKjgEG8j0RHD7hBPCwIt+S61i6U0XaOx0tRKgiDBVl1f5TuU6g1Ua32nViwgvIv1rdO3886k9EJQ/Xg1EK9NRzwtw7AlF1BjOeZ++5r0wfH26gfIpi6VjPPW76MiyilJ3cMN+QFgPVfhp9hURIPnplq8lYfixtnwDl9kEm8aJ5XZASRLwyCR1A==
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8829.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(376005)(1800799015)(366007)(38070700009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?mNX/TR9AFMNum1YcNYHn64fmtpP84BQc7ImjmClq2RBLf2bgnmis8PU5cytn?=
+ =?us-ascii?Q?oVwuDe4Nly7+hJkYXxHxB4kzQNgCJRwMppY4AiCgFe3seldtgGii8r/LqKvl?=
+ =?us-ascii?Q?61SwHGzgYIukSjjtutf+kS7XpEerHA8aDZeQoE3fM9PwHL6yvXLO+lxf0TX3?=
+ =?us-ascii?Q?kGW8SNYsDEW/dMSVJQNG3Z/vIj16UZ3A16KJ4o79tuZGWimIHw6IA0n78uQX?=
+ =?us-ascii?Q?6bwLX5Ih1Hs77QuS618uec8U3qGF7sB+mJFoeJyjpZ8Og+2IcJitZyN1s4HS?=
+ =?us-ascii?Q?67h8XuD3+NbpT7+8Y1bNz3KhkeOwhAXPczSY2yD6uO3bXEFjKBd1C4NoBMbH?=
+ =?us-ascii?Q?at8DxI0TD2f6SkMEFMn7EklhC5GuhuwDvT8LtPrlPmbtmWBmh6ZcfVpZO0fT?=
+ =?us-ascii?Q?qQddPX0DkzxOh1/ASlcV6ifK+y4V0JCGNbvPQzNt8CDGJV9Lib0ytd4VGI/u?=
+ =?us-ascii?Q?P7/cletv4+JaIouZCSTMtLPmMneCZ7F4GznjyWzxfireMc/DChsg2CPafbAy?=
+ =?us-ascii?Q?lbf1TlZwSHBim/PMD25inV6cpW71RyNzjO2tv3p1lYq2/Rw3qhwBVZIKIX8y?=
+ =?us-ascii?Q?ktIDiB6NPwOvXMGFtb1sWDGMv92wz9sWMReHSzecHvv6eRxMyu+Kj9U2rBWQ?=
+ =?us-ascii?Q?GOtS9rv3AzFEj1ha8tKv491d2j9GqzEO8XYC8NWXD8v3c9FwGxDZ524w/9X9?=
+ =?us-ascii?Q?jREmrYr3Omxg829tNBjxzxtgcRbxr2FvHlmbNDUIHHusXMgu6MRf02ppPWK/?=
+ =?us-ascii?Q?lwWUDliVSt3ZvyGqSEzANARG11ohB1WB1oX0OHMXlGrhzAhX8EkBf1sUHhy0?=
+ =?us-ascii?Q?vDWEYxU4PYq3Y67F35e2Aq4fkx87xtYfn90qg3+9jjAQKi5oeJf1a3QILhKe?=
+ =?us-ascii?Q?u3hUZZ6pKM0cTGfAqDKnwAe46ycK7kgTVLn6obsaRAoCoRt8nzNZF5cNTtPc?=
+ =?us-ascii?Q?ZJtiXezjRChB5q5DsaH8NeW1WUxlcuC6ywvO7hWokhv3EwAwTQupdoVGM/kZ?=
+ =?us-ascii?Q?hnoNF8ix3Y6t04kigwT3MMRGXMSn63hTnfvw3ZZOAM1/TN7OQWyFomrK1k+S?=
+ =?us-ascii?Q?cQODt45SgD49K2O+du3c4JbI2NabKNzffglkwsXvFqCaOXXsZFDc5BDbOVcK?=
+ =?us-ascii?Q?JDXlQZFL5COikwgZxhy2QubBpE+CZyKwe7BwNmeZFho0EaSS+mqXTi8cRKOX?=
+ =?us-ascii?Q?tSC4l2GTUIVmJzaSR+cc0dlGEgf5HtlDeQu6UWm2MgpJHepBPzg4s4RFJHaa?=
+ =?us-ascii?Q?2UXx5Ax7mFuQ0MBvtCjyFpYZHxvnW0QR2QdMYOCR0c/L7r8Ppkda5EJpDheB?=
+ =?us-ascii?Q?UqhzkMqW/m9U/dRMRCSQS9NtyJbmxE6z+4p4FWrZ7Xf+0Su+sdOejlHDrqwQ?=
+ =?us-ascii?Q?BsZ4i0pVUM1dX6cEWjTueD8bEXf/UItFLpKSwlOnLSwGYcajYuJbJKUIFmEt?=
+ =?us-ascii?Q?jiSDiiezGeOIQa1qvgexAOLfT8wQZUZ4L057g92oAWnh8ZBceKQyaNUOPgRF?=
+ =?us-ascii?Q?d5o7vmWvx2H9bMROxGr1Lmn+L9BBgw4aVjHhAAyiVnfzwJ+qMXo0vjMnINga?=
+ =?us-ascii?Q?57cA7xLccZd26Q8pIBg=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240315060707.471248-1-sumit.garg@linaro.org>
- <20240315060707.471248-4-sumit.garg@linaro.org> <ZfRlYnEQUKvwGQ65@gerhold.net>
- <CAFA6WYMucNzLNm+oHNd-Jb65oigpNphU=mFGM1cD8A-mK-BFDw@mail.gmail.com>
- <ZfmdWtoiP4ZF7JRk@gerhold.net> <CAFA6WYPzdSHEMmeb_J6LPje8MUkSSq93oN3+O1PMahtZN7hWnA@mail.gmail.com>
- <ZfwM3ZrjTWR_QANd@gerhold.net>
-In-Reply-To: <ZfwM3ZrjTWR_QANd@gerhold.net>
-From: Sumit Garg <sumit.garg@linaro.org>
-Date: Fri, 22 Mar 2024 11:59:54 +0530
-Message-ID: <CAFA6WYN+Y8qyv9yEMoU1wqpqDN7rwNO5xfHkSUe+H2DdSiBqyA@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: apq8016: Add Schneider HMIBSC
- board DTS
-To: Stephan Gerhold <stephan@gerhold.net>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	caleb.connolly@linaro.org, neil.armstrong@linaro.org, 
-	dmitry.baryshkov@linaro.org, laetitia.mariottini@se.com, 
-	pascal.eberhard@se.com, abdou.saker@se.com, jimmy.lalande@se.com, 
-	benjamin.missey@non.se.com, daniel.thompson@linaro.org, 
-	linux-kernel@vger.kernel.org, Jagdish Gediya <jagdish.gediya@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8829.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3c9cb274-cdbb-4196-cc6d-08dc4a39b680
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Mar 2024 06:31:31.4864
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ijPbuTk+nM/o8ZMvmurqSnxR4u1Sx4QU96ehGBSoSjHn4j3ezPfZEaR5XC9oFzBjAXXVmihwccQm905qwsdxWg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR04MB10007
 
-On Thu, 21 Mar 2024 at 16:03, Stephan Gerhold <stephan@gerhold.net> wrote:
->
-> On Wed, Mar 20, 2024 at 12:10:32PM +0530, Sumit Garg wrote:
-> > On Tue, 19 Mar 2024 at 19:43, Stephan Gerhold <stephan@gerhold.net> wrote:
-> > > On Mon, Mar 18, 2024 at 03:20:46PM +0530, Sumit Garg wrote:
-> > > > On Fri, 15 Mar 2024 at 20:43, Stephan Gerhold <stephan@gerhold.net> wrote:
-> > > > > On Fri, Mar 15, 2024 at 11:37:07AM +0530, Sumit Garg wrote:
-> > > > > > Add Schneider Electric HMIBSC board DTS. The HMIBSC board is an IIoT Edge
-> > > > > > Box Core board based on the Qualcomm APQ8016E SoC.
-> > > > > >
-> > > > > > Support for Schneider Electric HMIBSC. Features:
-> > > > > > - Qualcomm Snapdragon 410C SoC - APQ8016 (4xCortex A53, Adreno 306)
-> > > > > > - 1GiB RAM
-> > > > > > - 8GiB eMMC, SD slot
-> > > > > > - WiFi and Bluetooth
-> > > > > > - 2x Host, 1x Device USB port
-> > > > > > - HDMI
-> > > > > > - Discrete TPM2 chip over SPI
-> > > > > > - USB ethernet adaptors (soldered)
-> > > > > >
-> > > > > > Co-developed-by: Jagdish Gediya <jagdish.gediya@linaro.org>
-> > > > > > Signed-off-by: Jagdish Gediya <jagdish.gediya@linaro.org>
-> > > > > > Reviewed-by: Caleb Connolly <caleb.connolly@linaro.org>
-> > > > > > Signed-off-by: Sumit Garg <sumit.garg@linaro.org>
-> > > > > > ---
-> > > > > >  arch/arm64/boot/dts/qcom/Makefile             |   1 +
-> > > > > >  .../dts/qcom/apq8016-schneider-hmibsc.dts     | 510 ++++++++++++++++++
-> > > > > >  2 files changed, 511 insertions(+)
-> > > > > >  create mode 100644 arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts
-> > > > > >
-> > > > > > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> > > > > > index 39889d5f8e12..ad55e52e950b 100644
-> > > > > > --- a/arch/arm64/boot/dts/qcom/Makefile
-> > > > > > +++ b/arch/arm64/boot/dts/qcom/Makefile
-> > > > > > @@ -5,6 +5,7 @@ apq8016-sbc-usb-host-dtbs     := apq8016-sbc.dtb apq8016-sbc-usb-host.dtbo
-> > > > > >
-> > > > > >  dtb-$(CONFIG_ARCH_QCOM)      += apq8016-sbc-usb-host.dtb
-> > > > > >  dtb-$(CONFIG_ARCH_QCOM)      += apq8016-sbc-d3-camera-mezzanine.dtb
-> > > > > > +dtb-$(CONFIG_ARCH_QCOM)      += apq8016-schneider-hmibsc.dtb
-> > > > > >  dtb-$(CONFIG_ARCH_QCOM)      += apq8039-t2.dtb
-> > > > > >  dtb-$(CONFIG_ARCH_QCOM)      += apq8094-sony-xperia-kitakami-karin_windy.dtb
-> > > > > >  dtb-$(CONFIG_ARCH_QCOM)      += apq8096-db820c.dtb
-> > > > > > diff --git a/arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts b/arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts
-> > > > > > new file mode 100644
-> > > > > > index 000000000000..9c79a31a04db
-> > > > > > --- /dev/null
-> > > > > > +++ b/arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts
-> > > > > > @@ -0,0 +1,510 @@
-> > > > > > [...]
-> > > > > > +
-> > > > > > +&pm8916_resin {
-> > > > > > +     interrupts = <0x0 0x8 1 IRQ_TYPE_EDGE_FALLING>;
-> > > > > > +     linux,code = <KEY_POWER>;
-> > > > > > +     status = "okay";
-> > > > > > +};
-> > > > >
-> > > > > What is the goal of overriding the interrupt here? It looks like you are
-> > > > > changing the interrupt type from IRQ_TYPE_EDGE_BOTH to FALLING. This
-> > > > > sounds a bit like you want the driver to receive just button release
-> > > > > events (or just press events, not sure about the polarity). I'm not sure
-> > > > > if the driver will handle this correctly.
-> > > >
-> > > > The use-case here is to just act upon button release events and the
-> > > > driver handles this appropriately. Final use-case of the reset button:
-> > > >
-> > > > - Short press and release leads to normal Linux reboot.
-> > > > - Long press for more than 10 sec or so leads to a hard reset.
-> > > >
-> > > > With IRQ_TYPE_EDGE_BOTH, that's not achievable because just a simple
-> > > > press leads to Linux reboot.
-> > > >
-> > >
-> > > Thanks for explaining your use case. Is the DT really the right place to
-> > > describe this? In the hardware, this is just a button that provides both
-> > > press and release events. Linux typically forwards these events to user
-> > > space, without interpreting them in any way. This means you likely have
-> > > some user space component that listens to the events (e.g. systemd
-> > > logind). Ideally that component should be reconfigured to trigger the
-> > > reboot on release instead of press.
+
+>=20
+> On Fri, Mar 15, 2024 at 05:55:51PM +0800, Xu Yang wrote:
+> > This driver is initinally used to support imx93 Soc and now it's time t=
+o
+> > add support for imx95 Soc. However, some macro definitions and events a=
+re
+> > different on these two Socs. For preparing imx95 supports, this will
+> > refactor driver for imx93.
 > >
-> > I am not sure if that's really the case. I only see power key value to
-> > be reported as follows:
+> > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
 > >
-> > input_report_key(pwrkey->input, pwrkey->code, 1);
-> >                     or
-> > input_report_key(pwrkey->input, pwrkey->code, 0);
+> > ---
+> > Changes in v4:
+> >  - new patch
+> > Changes in v5:
+> >  - use is_visible to hide unwanted attributes as suggested by Will
+> > Changes in v6:
+> >  - improve imx93_ddr_perf_monitor_config()
+> > Changes in v7:
+> >  - improve imx93_ddr_perf_monitor_config() as suggested by Frank
+> > ---
+> >  drivers/perf/fsl_imx9_ddr_perf.c | 80 +++++++++++++++++++-------------
+> >  1 file changed, 47 insertions(+), 33 deletions(-)
 > >
-> > It's not like a press event being a rising edge (0->1) or a release
-> > event being a falling edge (1->0) reported. AFAICS, a reboot is issued
-> > whenever the value of power key is reported as "1".
+> > diff --git a/drivers/perf/fsl_imx9_ddr_perf.c b/drivers/perf/fsl_imx9_d=
+dr_perf.c
+> > index 4fdf8bcf6646..5537f4e07852 100644
+> > --- a/drivers/perf/fsl_imx9_ddr_perf.c
+> > +++ b/drivers/perf/fsl_imx9_ddr_perf.c
+> > @@ -11,14 +11,14 @@
+> >  #include <linux/perf_event.h>
 > >
->
-> If you look inside the input_report_key() function you can see that the
-> input subsystem internally tracks the key state. input_get_disposition()
-> returns INPUT_IGNORE_EVENT if the key bit already has the same value.
-> Only when the key changes its state, an event is sent to user space.
-> This means that all events reported to user space are effectively
-> rising/falling edges (an event with value "1" is a rising edge 0->1, an
-> event with value "0" is a falling edge 1->0).
->
-> The only reason why setting IRQ_TYPE_EDGE_FALLING works here is because
-> of the workaround added in commit be8fc023ef64 ("Input: pm8941-pwrkey -
-> simulate missed key press events") [1]. No event is reported when you
-> start pressing the key. When you release the key, you get a key press
-> event (rising edge) immediately followed by a key release (falling
-> edge). But the workaround was added to handle potentially missed
-> interrupts, not to inhibit reporting key press events.
+> >  /* Performance monitor configuration */
+> > -#define PMCFG1  			0x00
+> > -#define PMCFG1_RD_TRANS_FILT_EN 	BIT(31)
+> > -#define PMCFG1_WR_TRANS_FILT_EN 	BIT(30)
+> > -#define PMCFG1_RD_BT_FILT_EN 		BIT(29)
+> > -#define PMCFG1_ID_MASK  		GENMASK(17, 0)
+> > +#define PMCFG1				0x00
+> > +#define MX93_PMCFG1_RD_TRANS_FILT_EN	BIT(31)
+> > +#define MX93_PMCFG1_WR_TRANS_FILT_EN	BIT(30)
+> > +#define MX93_PMCFG1_RD_BT_FILT_EN	BIT(29)
+> > +#define MX93_PMCFG1_ID_MASK		GENMASK(17, 0)
+> >
+> > -#define PMCFG2  			0x04
+> > -#define PMCFG2_ID			GENMASK(17, 0)
+> > +#define PMCFG2				0x04
+> > +#define MX93_PMCFG2_ID			GENMASK(17, 0)
+> >
+> >  /* Global control register affects all counters and takes priority ove=
+r local control registers */
+> >  #define PMGC0		0x40
+> > @@ -76,6 +76,11 @@ static const struct imx_ddr_devtype_data imx93_devty=
+pe_data =3D {
+> >  	.identifier =3D "imx93",
+> >  };
+> >
+> > +static inline bool is_imx93(struct ddr_pmu *pmu)
+> > +{
+> > +	return pmu->devtype_data =3D=3D &imx93_devtype_data;
+> > +}
+> > +
+> >  static const struct of_device_id imx_ddr_pmu_dt_ids[] =3D {
+> >  	{.compatible =3D "fsl,imx93-ddr-pmu", .data =3D &imx93_devtype_data},
+> >  	{ /* sentinel */ }
+> > @@ -185,7 +190,7 @@ static struct attribute *ddr_perf_events_attrs[] =
+=3D {
+> >  	IMX9_DDR_PMU_EVENT_ATTR(ddrc_ld_wiq_6, ID(2, 70)),
+> >  	IMX9_DDR_PMU_EVENT_ATTR(ddrc_ld_wiq_7, ID(2, 71)),
+> >  	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pmon_empty, ID(2, 72)),
+> > -	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pm_rd_trans_filt, ID(2, 73)),
+> > +	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pm_rd_trans_filt, ID(2, 73)),	/* imx93=
+ specific*/
+> >
+> >  	/* counter3 specific events */
+> >  	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_row_collision_0, ID(3, 64)),
+> > @@ -197,7 +202,7 @@ static struct attribute *ddr_perf_events_attrs[] =
+=3D {
+> >  	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_row_collision_6, ID(3, 70)),
+> >  	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_row_collision_7, ID(3, 71)),
+> >  	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pmon_full, ID(3, 72)),
+> > -	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pm_wr_trans_filt, ID(3, 73)),
+> > +	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pm_wr_trans_filt, ID(3, 73)),	/* imx93=
+ specific*/
+> >
+> >  	/* counter4 specific events */
+> >  	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_row_open_0, ID(4, 64)),
+> > @@ -209,7 +214,7 @@ static struct attribute *ddr_perf_events_attrs[] =
+=3D {
+> >  	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_row_open_6, ID(4, 70)),
+> >  	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_row_open_7, ID(4, 71)),
+> >  	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pmon_ld_rdq2_rmw, ID(4, 72)),
+> > -	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pm_rd_beat_filt, ID(4, 73)),
+> > +	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pm_rd_beat_filt, ID(4, 73)),	/* imx93 =
+specific*/
+> >
+> >  	/* counter5 specific events */
+> >  	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_valid_start_0, ID(5, 64)),
+> > @@ -244,9 +249,26 @@ static struct attribute *ddr_perf_events_attrs[] =
+=3D {
+> >  	NULL,
+> >  };
+> >
+> > +static umode_t
+> > +ddr_perf_events_attrs_is_visible(struct kobject *kobj,
+> > +				       struct attribute *attr, int unused)
+> > +{
+> > +	struct pmu *pmu =3D dev_get_drvdata(kobj_to_dev(kobj));
+> > +	struct ddr_pmu *ddr_pmu =3D to_ddr_pmu(pmu);
+> > +
+> > +	if ((!strcmp(attr->name, "eddrtq_pm_rd_trans_filt") ||
+> > +		!strcmp(attr->name, "eddrtq_pm_wr_trans_filt") ||
+> > +		!strcmp(attr->name, "eddrtq_pm_rd_beat_filt")) &&
+> > +		!is_imx93(ddr_pmu))
+> > +		return 0;
+>=20
+> I think use name to check visible is not good enough.
 
-I rather see it differently being actually allowing the current
-use-case to support only the IRQ_TYPE_EDGE_FALLING. As per your
-description above, a falling edge can only be an event for user-space
-if we have:
+Yeah, I failed to find out a better way to deal with it.
 
-input_report_key(pwrkey->input, pwrkey->code, 1);
-input_report_key(pwrkey->input, pwrkey->code, 0);
+>=20
+> struct imx9_pmu_events_attr
+> {
+> 	struct perf_pmu_events_attr perf_attr;
+> 	void * drv_data;
+> };
+>=20
+> #define IMX9_DDR_PMU_EVENT_ATTR_COM(_name, _id, drv_data)                =
+             \
+>         (&((struct imx9_pmu_events_attr[]) {                            \
+>                 { .perf_attr.attr =3D __ATTR(_name, 0444, ddr_pmu_event_s=
+how, NULL),\
+>                   .perf_attr.id =3D _id,
+> 		  .drv_data =3D drv_data,
+> 		 }                                          \
+>         })[0].perf_attr.attr.attr)
+>=20
+> #define IMX9_DDR_PMU_EVENT_ATTR(_namee,  _id,)
+> 	IMX9_DDR_PMU_EVENT_ATTR_COM(_name, _id, NULL)
+>=20
+> #define IMX93_DDR_PMU_EVENT_ATTR(_name, _id)
+> 	IMX9_DDR_PMU_EVENT_ATTR_COM(_name, _id, &imx93_devtype_data)
+>=20
+> So
+>=20
+> ddr_perf_events_attrs_is_visible()
+> {
+> 	struct imx9_pmu_events_attr *imx9_attr =3D container_of(attr, imx9_pmu_e=
+vents_attr, perf_attr)
+>=20
+> 	if (!imx9_attr->drv_data)
+> 		return attr->mode;
+>=20
+> 	if (imx9_attr->drv_data ! =3D ddr_pmu->drv_data)
+> 		return 0;
+>=20
+> 	return attr->mode;
+> }
 
-rather than only
+I've tried your suggestion, it works and make sense for me.
+I'll integrate this in next version.
 
-input_report_key(pwrkey->input, pwrkey->code, 0);
+Thanks,
+Xu Yang
 
-which won't trigger any event for user-space, right?
-
->
-> In my opinion, if you want to perform an action on key release rather
-> than key press then you should adjust the user space program to do so.
-> From the point of view of the hardware DT (and even the kernel), the key
-> press happens when you actually start pressing the key, and not later
-> when you release it.
-
-The reason why we are discussing it back and forth looks like due to
-lack of clarity as to how HMIBSC board supports this button. The
-common implementation as per db410c DTS is to have two buttons:
-
-- One button is representing pwrkey(KEY_POWER) which is solely
-consumed by the operating system to cleanly power off/restart the
-db410c.
-- Another button is representing pm8916_resin(KEY_VOLUMEDOWN) which
-apart from normal volume down is also consumed by PMIC hardware to
-perform a hard reset on a long press (if more than 10 sec.).
-
-However, on HMIBSC board we only have a single power/reset button
-which has to support the dual role of above two buttons on db410c:
-
-Only one button as pm8916_resin(KEY_POWER), behaviour required:
-- The rising edge (or button press) has to be only consumed by PMIC to
-perform a hard reset of the HMIBSC board if pressed for more than 10
-secs.
-- The falling edge has to be consumed by the operating system to
-cleanly reboot the HMIBSC board.
-
-So what you are asking here is that the operating system has to be
-notified of the rising edge of the button even if it has to just
-ignore that without any action. Do you really think that would be
-acceptable as a generic solution for systemd logind?
-
-Also, why DT isn't the right place for correctly describing the
-intended hardware behaviour? Or am I missing any DT policy which says
-hardware has to be described the exact way it is rather than the
-expected way for hardware to behave? BTW, If you want the hardware
-behaviour to be properly commented then I can do that too.
-
--Sumit
-
->
-> Thanks,
-> Stephan
->
-> [1]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=be8fc023ef64dcb11042aaa4bb0f29f7e0335d85
+>=20
+> Frank
+>=20
+> > +
+> > +	return attr->mode;
+> > +}
+> > +
+> >  static const struct attribute_group ddr_perf_events_attr_group =3D {
+> >  	.name =3D "events",
+> >  	.attrs =3D ddr_perf_events_attrs,
+> > +	.is_visible =3D ddr_perf_events_attrs_is_visible,
+> >  };
+> >
+> >  PMU_FORMAT_ATTR(event, "config:0-15");
+> > @@ -368,36 +390,28 @@ static void ddr_perf_counter_local_config(struct =
+ddr_pmu *pmu, int config,
+> >  	}
+> >  }
+> >
+> > -static void ddr_perf_monitor_config(struct ddr_pmu *pmu, int event,
+> > -				    int counter, int axi_id, int axi_mask)
+> > +static void imx93_ddr_perf_monitor_config(struct ddr_pmu *pmu, int eve=
+nt,
+> > +					  int counter, int axi_id, int axi_mask)
+> >  {
+> >  	u32 pmcfg1, pmcfg2;
+> > +	u32 mask[] =3D {  MX93_PMCFG1_RD_TRANS_FILT_EN,
+> > +			MX93_PMCFG1_WR_TRANS_FILT_EN,
+> > +			MX93_PMCFG1_RD_BT_FILT_EN };
+> >
+> >  	pmcfg1 =3D readl_relaxed(pmu->base + PMCFG1);
+> >
+> > -	if (counter =3D=3D 2 && event =3D=3D 73)
+> > -		pmcfg1 |=3D PMCFG1_RD_TRANS_FILT_EN;
+> > -	else if (counter =3D=3D 2 && event !=3D 73)
+> > -		pmcfg1 &=3D ~PMCFG1_RD_TRANS_FILT_EN;
+> > -
+> > -	if (counter =3D=3D 3 && event =3D=3D 73)
+> > -		pmcfg1 |=3D PMCFG1_WR_TRANS_FILT_EN;
+> > -	else if (counter =3D=3D 3 && event !=3D 73)
+> > -		pmcfg1 &=3D ~PMCFG1_WR_TRANS_FILT_EN;
+> > -
+> > -	if (counter =3D=3D 4 && event =3D=3D 73)
+> > -		pmcfg1 |=3D PMCFG1_RD_BT_FILT_EN;
+> > -	else if (counter =3D=3D 4 && event !=3D 73)
+> > -		pmcfg1 &=3D ~PMCFG1_RD_BT_FILT_EN;
+> > +	if (counter >=3D 2 && counter <=3D 4)
+> > +		pmcfg1 =3D event =3D=3D 73 ? pmcfg1 | mask[counter - 2] :
+> > +				pmcfg1 & ~mask[counter - 2];
+> >
+> > -	pmcfg1 &=3D ~FIELD_PREP(PMCFG1_ID_MASK, 0x3FFFF);
+> > -	pmcfg1 |=3D FIELD_PREP(PMCFG1_ID_MASK, axi_mask);
+> > -	writel(pmcfg1, pmu->base + PMCFG1);
+> > +	pmcfg1 &=3D ~FIELD_PREP(MX93_PMCFG1_ID_MASK, 0x3FFFF);
+> > +	pmcfg1 |=3D FIELD_PREP(MX93_PMCFG1_ID_MASK, axi_mask);
+> > +	writel_relaxed(pmcfg1, pmu->base + PMCFG1);
+> >
+> >  	pmcfg2 =3D readl_relaxed(pmu->base + PMCFG2);
+> > -	pmcfg2 &=3D ~FIELD_PREP(PMCFG2_ID, 0x3FFFF);
+> > -	pmcfg2 |=3D FIELD_PREP(PMCFG2_ID, axi_id);
+> > -	writel(pmcfg2, pmu->base + PMCFG2);
+> > +	pmcfg2 &=3D ~FIELD_PREP(MX93_PMCFG2_ID, 0x3FFFF);
+> > +	pmcfg2 |=3D FIELD_PREP(MX93_PMCFG2_ID, axi_id);
+> > +	writel_relaxed(pmcfg2, pmu->base + PMCFG2);
+> >  }
+> >
+> >  static void ddr_perf_event_update(struct perf_event *event)
+> > @@ -513,7 +527,7 @@ static int ddr_perf_event_add(struct perf_event *ev=
+ent, int flags)
+> >  		ddr_perf_event_start(event, flags);
+> >
+> >  	/* read trans, write trans, read beat */
+> > -	ddr_perf_monitor_config(pmu, event_id, counter, cfg1, cfg2);
+> > +	imx93_ddr_perf_monitor_config(pmu, event_id, counter, cfg1, cfg2);
+> >
+> >  	return 0;
+> >  }
+> > --
+> > 2.34.1
+> >
 
