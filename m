@@ -1,122 +1,278 @@
-Return-Path: <devicetree+bounces-52392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52393-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A0BB8867B4
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 08:58:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46B298867BA
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 08:59:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9ED8F1F24BD0
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 07:58:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF84E286A0E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 07:59:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFA3F12E7D;
-	Fri, 22 Mar 2024 07:58:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C936612E7D;
+	Fri, 22 Mar 2024 07:59:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="jfOkAL69"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="DpqNeicN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 397CA13AC0
-	for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 07:58:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B059F18EC0
+	for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 07:59:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711094327; cv=none; b=JULD3TdHUpvP6GfQeAreEldUEV25Y1XgWm+d81pn48FyYykwapU+KjFtxKFjzrSYJARIDgsnt8lUTv7mvHfw6/JJl8mQpuynb98VBpJ+CSewXaL1TmMpBn8sR/k4OIdFP3TDDn6ibFzw9KF+WvGV6dLeBKUsraL5bQ6pWwdA8JQ=
+	t=1711094358; cv=none; b=jWI6SI543I3tpFdGwLteK+YQip8yFWtzagvC/UW7/dLQz5QtSrGxFNXSA9w9Ivv5+E555kijKvz7yGvZJRrk2+Bt6iMtncLtogO9642PHLBuWdYd9zAw/hrUZMh/eP+YfcGh78vinn/lbGyCQVC2RZMXyVIJPWVkbqMQTbHmbgs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711094327; c=relaxed/simple;
-	bh=Qq2UvdnGF+i0lv3cQE2vwfxzP0IBqc7zAeM21eyo6SQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aelo1AF/Nbw6AXULBYSrHnSY2i52bNmbaPhFjLGBWHdnPr2I4+OVN+0Gve+Sg8BT5x5rnMgrPFvspbkm6+9dlssOP3yGZTgwnNEk6E8rg9L2eIZQAxlcDrtUJX5wAYiGwSfqcKxKbqKjBI8lX7e5PH6L+09WP/+8eCnmqzYy2cI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=jfOkAL69; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-41400a9844aso16697655e9.0
-        for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 00:58:45 -0700 (PDT)
+	s=arc-20240116; t=1711094358; c=relaxed/simple;
+	bh=8oNeA1R+uaPm6qmNmNCiQoHzDfg9lMR1N0jwijC+qtM=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=kGnW356JInP5IzGCxtdBOPQ/l5OWgKol9Wv2xo/B1VXlHZJ9+MJ0FyHTaIrIJfpr5NdTVEBMkKWXyWZAXn5txqxPflMMQ+s6+lPc97bmpQDV6VQYR09Z49njoaSf4105Sbe6jgbZX3kDoweHkw7dcdeYfxpjK8sxscOyxDTWOcg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=DpqNeicN; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a46f0da1b4fso236246766b.2
+        for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 00:59:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1711094324; x=1711699124; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Qq2UvdnGF+i0lv3cQE2vwfxzP0IBqc7zAeM21eyo6SQ=;
-        b=jfOkAL691tIThdM2H6V8bwKl0a8v0F+Z2P6HHsYjwVCxMBc99VJHaB3dZOUPZXA5MN
-         glky4jDmSJkxyAE6eXqaRq3tLSWtT9xKnef/Onj3bCv7z7YlKYgq/DzNASaICEeetebc
-         5iEgZBjhiNEWRvFJHaau5VQfR6zTBo3czlGiDaPv3aVn5sbhITQdk+Sk4lrGuIGGR1/v
-         jT2vfxjcLddwscfgP4ARuQ5aM8CMiO2qDPbjTod2e3ttRze9DcGw3PcXBAOy8RVWChrH
-         s/nIC00DVB9QJ2BnDBTrETu/F5YLcex4UnxznOLk+G/WUJZVoDh6iivSMmIw8fiUpI1I
-         tvaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711094324; x=1711699124;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=fairphone.com; s=fair; t=1711094355; x=1711699155; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Qq2UvdnGF+i0lv3cQE2vwfxzP0IBqc7zAeM21eyo6SQ=;
-        b=fHXioVTDiTrO0ne7GKDAjzF28RhT7XU/W5MDP+n8LyWtBok+8fQQ2hEwhHXM5jeZo+
-         5k473EEgcXFULc828AIjqNFZYyyekJ0EcLKrrVy1TCsYFakizeljaDn1roSe1yTiamrk
-         MIRpt1GKeiWfjWQTUqTbx0waYKFTqaFGI+n5bRzyZJdolL4vLMMksymhwYKuT7ajHSh0
-         k9Q12UgjoCt+LY8THmkJy7oRfpYOJyTlDW3562+ZAu8x+cykWfCRL963sfNOHTIwZaEl
-         +f3AXsW1peXJKQDKP/DjB5cTc3BPKf9jDcD7/wJVsXKEx6H23QgjSntDJ6//6u5CCkSK
-         xVpQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXDmF+bmUNeLGbUF+m8o0+KPL31eZz2sROLoiIIBjjDOihLaG/GWZA1gBvyoiRZ9t7bWRv+ODb0M6YBOGu6r44HOjPwqmxu3+Y0xA==
-X-Gm-Message-State: AOJu0YxpIT6Ym0+V9AyUe/9jMVIZSslupHtnFAbL8jBb69mj9wy/E+r9
-	ZQLawg+d5veE2w6cmAYjdHA0xhX1xWWpTnyNu8htbdZB6UlJRoXNsdo3jYE8WUU=
-X-Google-Smtp-Source: AGHT+IFfPw7L8Q/FyVD0aA/iJBlzVnrZAE+Hkn53NugKvE+lKFP30YlXVm9GuwDSXbo7RH3uCwUB2w==
-X-Received: by 2002:a05:600c:3b17:b0:414:b66:51f3 with SMTP id m23-20020a05600c3b1700b004140b6651f3mr1050755wms.14.1711094324659;
-        Fri, 22 Mar 2024 00:58:44 -0700 (PDT)
-Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
-        by smtp.gmail.com with ESMTPSA id n18-20020a05600c501200b004146bdce3fesm8016711wmr.4.2024.03.22.00.58.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Mar 2024 00:58:44 -0700 (PDT)
-Date: Fri, 22 Mar 2024 08:58:43 +0100
-From: Andrew Jones <ajones@ventanamicro.com>
-To: Samuel Holland <samuel.holland@sifive.com>
-Cc: Deepak Gupta <debug@rivosinc.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	Catalin Marinas <catalin.marinas@arm.com>, linux-kernel@vger.kernel.org, tech-j-ext@lists.risc-v.org, 
-	Conor Dooley <conor@kernel.org>, kasan-dev@googlegroups.com, 
-	Evgenii Stepanov <eugenis@google.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, Guo Ren <guoren@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
-	Paul Walmsley <paul.walmsley@sifive.com>
-Subject: Re: [RISC-V] [tech-j-ext] [RFC PATCH 5/9] riscv: Split per-CPU and
- per-thread envcfg bits
-Message-ID: <20240322-168f191eeb8479b2ea169a5e@orel>
-References: <20240319215915.832127-1-samuel.holland@sifive.com>
- <20240319215915.832127-6-samuel.holland@sifive.com>
- <CAKC1njSg9-hJo6hibcM9a-=FUmMWyR39QUYqQ1uwiWhpBZQb9A@mail.gmail.com>
- <40ab1ce5-8700-4a63-b182-1e864f6c9225@sifive.com>
+        bh=KS7w40gQLpj4JwebvWp26JX7Uxo13WZZkGHnC6K49Ow=;
+        b=DpqNeicN6x0yz0BWdbxBsr27s38PDKt92ZWdfruIg5sdJ+jYtiWJSzx9mDcmSuZqj4
+         HH66YTl5FiEyuu+ay/nr1X+dFe4NPlCnqUhCrezmrsG968m+Vrs9NcNCQvsAuyhi2+La
+         4quvFAZoifWwlJ5cWOjPuOHCU0rckcUg4OlSuK1TwOSX9qvcuXwO4dpWVTXhIGMisQYj
+         xVwBIUrMWSwqvmaUm35EVvrSlvTzMjYp+wBEAS4q1USANa2u8+l8XWAB90h2A1Aggv1M
+         +NrUEcMExrtGRLJ6GOaSIWaaVHhNGN2PEdEiukYkFWbPIpnX5PBrhi1PA4Vi4kJyEKZD
+         JICA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711094355; x=1711699155;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=KS7w40gQLpj4JwebvWp26JX7Uxo13WZZkGHnC6K49Ow=;
+        b=A48GAY7u4dmLH5Ld0wJOPBk4zsbnNVngpx+M/WMfDlDs35y2X++fwKcCHResQioFu0
+         JlOyLHrnvO5KXbp1JvJEqUAjS92WWobmXKEKwcAyl/aA6GxhjHbxixOfvQ6DESJDbKlW
+         Jw6YvP1hujzcKkF6rg+THagsVu9iksZE8tQWoMf5E1940hjAvnlBXPbwfUOsUPAkJwiv
+         02k8xpkc7UyGlNn+NubagSdlYpYVORZ/x83N0R68cblTGT33feJP06wDsfs7TioCjhMI
+         u1n/HKO2X9w2J1Zqhhf17osuIrLid9USUj9rFlqLNv1jNG4qNESDvCdh+XuZDtuSURGo
+         VxHQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUgMf2/3Mjo7hqEB1cwMvbQuLqtVaT0SDhFDjTRnJgRebruXSyDd5Xh8Fc2yyjSpx9/Ou6VyQmhKa8KeyeCslg4XeHQANvWPbh7/g==
+X-Gm-Message-State: AOJu0YyeXgxMWy/qmi/69R8qQmRwnlIjAtpROp+asn4CTNTldcEyAows
+	iPIPjOWaPJgyXinz9UpkY6oC6yeSgA86kAAvxOh65Rfew6SLQY0JezLee9jMar4=
+X-Google-Smtp-Source: AGHT+IFscmFzR59tvnQPVG1KyfSwq3bup2AKubi8RDQJUccob6bzs5EDHOm1AZDCss3DP/15OGmO1Q==
+X-Received: by 2002:a17:907:a4e:b0:a46:ac55:8e69 with SMTP id be14-20020a1709070a4e00b00a46ac558e69mr1453125ejc.14.1711094354759;
+        Fri, 22 Mar 2024 00:59:14 -0700 (PDT)
+Received: from localhost (046125249120.public.t-mobile.at. [46.125.249.120])
+        by smtp.gmail.com with ESMTPSA id f13-20020a1709067f8d00b00a46a4a14555sm737912ejr.86.2024.03.22.00.59.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 22 Mar 2024 00:59:14 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <40ab1ce5-8700-4a63-b182-1e864f6c9225@sifive.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 22 Mar 2024 08:59:12 +0100
+Message-Id: <D004BPW9N0FS.376F67CINO459@fairphone.com>
+Cc: "Nitin Rawat" <quic_nitirawa@quicinc.com>, "Andy Gross"
+ <agross@kernel.org>, "Bjorn Andersson" <andersson@kernel.org>, "Konrad
+ Dybcio" <konrad.dybcio@linaro.org>, "Alim Akhtar"
+ <alim.akhtar@samsung.com>, "Avri Altman" <avri.altman@wdc.com>, "Bart Van
+ Assche" <bvanassche@acm.org>, "Rob Herring" <robh+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, <cros-qcom-dts-watchers@chromium.org>,
+ <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
+ <linux-arm-msm@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v5 2/3] arm64: dts: qcom: sc7280: Add UFS nodes for
+ sc7280 soc
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Manivannan Sadhasivam" <mani@kernel.org>
+X-Mailer: aerc 0.15.2
+References: <20231204-sc7280-ufs-v5-0-926ceed550da@fairphone.com>
+ <20231204-sc7280-ufs-v5-2-926ceed550da@fairphone.com>
+ <621388b9-dcee-4af2-9763-e5d623d722b7@quicinc.com>
+ <CXFJNBNKTRHH.2CS6TO2MEGJWL@fairphone.com>
+ <20231204172829.GA69580@thinkpad>
+In-Reply-To: <20231204172829.GA69580@thinkpad>
 
-On Tue, Mar 19, 2024 at 09:20:59PM -0500, Samuel Holland wrote:
-...
-> This is really a separate concern than when we write envcfg. The per-CPU
-> variable is only necessary to support hardware where a subset of harts support
-> Zicboz. Since the riscv_cpu_has_extension_[un]likely() helpers were added
-> specifically for Zicboz, I assume this is an important use case, and dropping
-> support for this hardware would be a regression. After all, hwprobe() allows
-> userspace to see that Zicboz is implemented at a per-CPU level. Maybe Andrew can
-> weigh in on that.
+On Mon Dec 4, 2023 at 6:28 PM CET, Manivannan Sadhasivam wrote:
+> On Mon, Dec 04, 2023 at 01:21:42PM +0100, Luca Weiss wrote:
+> > On Mon Dec 4, 2023 at 1:15 PM CET, Nitin Rawat wrote:
+> > >
+> > >
+> > > On 12/4/2023 3:54 PM, Luca Weiss wrote:
+> > > > From: Nitin Rawat <quic_nitirawa@quicinc.com>
+> > > >=20
+> > > > Add UFS host controller and PHY nodes for sc7280 soc.
+> > > >=20
+> > > > Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
+> > > > Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> > > > Tested-by: Konrad Dybcio <konrad.dybcio@linaro.org> # QCM6490 FP5
+> > > > [luca: various cleanups and additions as written in the cover lette=
+r]
+> > > > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> > > > ---
+> > > >   arch/arm64/boot/dts/qcom/sc7280.dtsi | 74 +++++++++++++++++++++++=
+++++++++++++-
+> > > >   1 file changed, 73 insertions(+), 1 deletion(-)
+> > > >=20
+> > > > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot=
+/dts/qcom/sc7280.dtsi
+> > > > index 04bf85b0399a..8b08569f2191 100644
+> > > > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> > > > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> > > > @@ -15,6 +15,7 @@
+> > > >   #include <dt-bindings/dma/qcom-gpi.h>
+> > > >   #include <dt-bindings/firmware/qcom,scm.h>
+> > > >   #include <dt-bindings/gpio/gpio.h>
+> > > > +#include <dt-bindings/interconnect/qcom,icc.h>
+> > > >   #include <dt-bindings/interconnect/qcom,osm-l3.h>
+> > > >   #include <dt-bindings/interconnect/qcom,sc7280.h>
+> > > >   #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > > > @@ -906,7 +907,7 @@ gcc: clock-controller@100000 {
+> > > >   			clocks =3D <&rpmhcc RPMH_CXO_CLK>,
+> > > >   				 <&rpmhcc RPMH_CXO_CLK_A>, <&sleep_clk>,
+> > > >   				 <0>, <&pcie1_phy>,
+> > > > -				 <0>, <0>, <0>,
+> > > > +				 <&ufs_mem_phy 0>, <&ufs_mem_phy 1>, <&ufs_mem_phy 2>,
+> > > >   				 <&usb_1_qmpphy QMP_USB43DP_USB3_PIPE_CLK>;
+> > > >   			clock-names =3D "bi_tcxo", "bi_tcxo_ao", "sleep_clk",
+> > > >   				      "pcie_0_pipe_clk", "pcie_1_pipe_clk",
+> > > > @@ -2238,6 +2239,77 @@ pcie1_phy: phy@1c0e000 {
+> > > >   			status =3D "disabled";
+> > > >   		};
+> > > >  =20
+> > > > +		ufs_mem_hc: ufs@1d84000 {
+> > > > +			compatible =3D "qcom,sc7280-ufshc", "qcom,ufshc",
+> > > > +				     "jedec,ufs-2.0";
+> > > > +			reg =3D <0x0 0x01d84000 0x0 0x3000>;
+> > > > +			interrupts =3D <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
+> > > > +			phys =3D <&ufs_mem_phy>;
+> > > > +			phy-names =3D "ufsphy";
+> > > > +			lanes-per-direction =3D <2>;
+> > > > +			#reset-cells =3D <1>;
+> > > > +			resets =3D <&gcc GCC_UFS_PHY_BCR>;
+> > > > +			reset-names =3D "rst";
+> > > > +
+> > > > +			power-domains =3D <&gcc GCC_UFS_PHY_GDSC>;
+> > > > +			required-opps =3D <&rpmhpd_opp_nom>;
+> > > > +
+> > > > +			iommus =3D <&apps_smmu 0x80 0x0>;
+> > > > +			dma-coherent;
+> > > > +
+> > > > +			interconnects =3D <&aggre1_noc MASTER_UFS_MEM QCOM_ICC_TAG_ALWA=
+YS
+> > > > +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+> > > > +					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+> > > > +					 &cnoc2 SLAVE_UFS_MEM_CFG QCOM_ICC_TAG_ALWAYS>;
+> > > > +			interconnect-names =3D "ufs-ddr", "cpu-ufs";
+> > > > +
+> > > > +			clocks =3D <&gcc GCC_UFS_PHY_AXI_CLK>,
+> > > > +				 <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
+> > > > +				 <&gcc GCC_UFS_PHY_AHB_CLK>,
+> > > > +				 <&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
+> > > > +				 <&rpmhcc RPMH_CXO_CLK>,
+> > > > +				 <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
+> > > > +				 <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
+> > > > +				 <&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
+> > > > +			clock-names =3D "core_clk",
+> > > > +				      "bus_aggr_clk",
+> > > > +				      "iface_clk",
+> > > > +				      "core_clk_unipro",
+> > > > +				      "ref_clk",
+> > > > +				      "tx_lane0_sync_clk",
+> > > > +				      "rx_lane0_sync_clk",
+> > > > +				      "rx_lane1_sync_clk";
+> > > > +			freq-table-hz =3D
+> > > > +				<75000000 300000000>,
+> > > > +				<0 0>,
+> > > > +				<0 0>,
+> > > > +				<75000000 300000000>,
+> > > > +				<0 0>,
+> > > > +				<0 0>,
+> > > > +				<0 0>,
+> > > > +				<0 0>;
+> > > > +			status =3D "disabled";
+> > > > +		};
+> > > > +
+> > > > +		ufs_mem_phy: phy@1d87000 {
+> > > > +			compatible =3D "qcom,sc7280-qmp-ufs-phy";
+> > > > +			reg =3D <0x0 0x01d87000 0x0 0xe00>;
+> > > > +			clocks =3D <&rpmhcc RPMH_CXO_CLK>,
+> > > > +				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>,
+> > > > +				 <&gcc GCC_UFS_1_CLKREF_EN>;
+> > > > +			clock-names =3D "ref", "ref_aux", "qref";
+> > > > +
+> > > > +			power-domains =3D <&gcc GCC_UFS_PHY_GDSC>;
+> >=20
+> > Hi Nitin,
+> >=20
+> > >
+> > > GCC_UFS_PHY_GDSC is UFS controller GDSC. For sc7280 Phy we don't need=
+ this.
+> >=20
+> > In the current dt-bindings the power-domains property is required.
+> >=20
+> > Is there another power-domain for the PHY to use, or do we need to
+> > adjust the bindings to not require power-domains property for ufs phy o=
+n
+> > sc7280?
+> >=20
 >
+> PHYs are backed by MX power domain. So you should use that.
+>
+> > Also, with "PHY" in the name, it's interesting that this is not for the
+> > phy ;)
+> >=20
+>
+> Yes, confusing indeed. But the controllers (PCIe, UFS, USB etc...) are ba=
+cked by
+> GDSCs and all the analog components (PHYs) belong to MX domain since it i=
+s kind
+> of always ON.
+>
+> I'll submit a series to fix this for the rest of the SoCs.
 
-Hi Samuel,
+Hi Mani,
 
-I've approached Zicboz the same way I would approach all extensions, which
-is to be per-hart. I'm not currently aware of a platform that is / will be
-composed of harts where some have Zicboz and others don't, but there's
-nothing stopping a platform like that from being built. I realize this
-adds complexity that we may not want to manage in Linux without an actual
-use case requiring it. I wouldn't be opposed to keeping things simple for
-now, only bringing in complexity when needed (for this extension or for a
-future extension with envcfg bits), but we should ensure we make it clear
-that we're making those simplifications now based on assumptions, and we
-may need to change things later.
+Did you get around to sending such series?
 
-Thanks,
-drew
+This would also fix some binding warnings, e.g. on SM6350.
+
+  arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dtb: phy@1d87000: 'power-do=
+mains' is a required property
+          from schema $id: http://devicetree.org/schemas/phy/qcom,sc8280xp-=
+qmp-ufs-phy.yaml#
+
+Regards
+Luca
+
+
+>
+> - Mani
+>
+> > Regards
+> > Luca
+> >=20
+> > >
+> > > > +
+> > > > +			resets =3D <&ufs_mem_hc 0>;
+> > > > +			reset-names =3D "ufsphy";
+> > > > +
+> > > > +			#clock-cells =3D <1>;
+> > > > +			#phy-cells =3D <0>;
+> > > > +
+> > > > +			status =3D "disabled";
+> > > > +		};
+> > > > +
+> > > >   		ipa: ipa@1e40000 {
+> > > >   			compatible =3D "qcom,sc7280-ipa";
+> > > >  =20
+> > > >=20
+> >=20
+
 
