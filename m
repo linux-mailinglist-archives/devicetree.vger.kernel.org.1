@@ -1,176 +1,171 @@
-Return-Path: <devicetree+bounces-52390-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52391-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB299886781
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 08:31:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 763B1886791
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 08:39:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8648B2840ED
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 07:31:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A6561C22063
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 07:39:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D4BB11CB0;
-	Fri, 22 Mar 2024 07:31:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 503E7125C4;
+	Fri, 22 Mar 2024 07:39:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="iSD9Xgd4"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="ntplgsJt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B79F17541;
-	Fri, 22 Mar 2024 07:31:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9271E6FB0;
+	Fri, 22 Mar 2024 07:39:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711092700; cv=none; b=JurtapyVu4HdzMDSpfG9aFoIxPSW0Sew8jiiyK6lwW4OYsI87r3G8YaUwl3pNGMmVtE2DY45ag/QFcsiONJlSFDQMTMIWWW9H2Esy1/ZzcC98sra2TASR/anBT6HddfZqtKnOyqn9UcwtrpkU2qaOej9e3Rc4gKFpBhdmMRfJdI=
+	t=1711093154; cv=none; b=vFYIEUP5G00dEZ409BrhyvW0/SdtOM7m6GLIPahgbYdiWw2v+/ho16M3oO1nkbTe8iSC7huBOm5hMA2OQWlbXGATNcJ5n2Zodc1rmLUOjnruCzw5SrAYReru1Hy0D543Mc+w7lD3sd2J+A+F1dpzFEPWbX5GjKKQU+kUw+8SAmM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711092700; c=relaxed/simple;
-	bh=1rzS6p1dJQyF/ZSOpXxB1J4g5C8EI88hO1+/BB5uU90=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=huxOnTyXIE7pZNJ39qUiISa8No6DUgfV7blz7B8yshfj/9O+RMwEKH87IYuK2HOfrNX0CtLSIxuTSJOWMze6qgk0ysVbIgC2vCzqhWBgqW/RwsWsMmBBECee/tN4Fvq9oLRkhFYO/nhCWzPHqdueWYVt9B3pdWVlGPgUfd3H1Tg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=iSD9Xgd4; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1711092698; x=1742628698;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=1rzS6p1dJQyF/ZSOpXxB1J4g5C8EI88hO1+/BB5uU90=;
-  b=iSD9Xgd46P+QVW9IiApFp4zOrq8EFxUXbmj5BiREyLt1x2hBTXXWvP+P
-   4TT5xR4kZ4WVU13K0JYe+EMYA7PIB69EysZZlu2ugAOjEsR0qj0woy3c9
-   226LVZjAchd7cS7fivM6GmowP729Av3jbzyXhd3EA5As88rW4kLrL1bP/
-   2MdWo/6rngnT9rI2Ii+BQPAf705w3W/giNyCU+zOnCcmDM+wlGWwScPWm
-   NJR+A8qSEpvOrvVmaq6fAjIr5VoGtZGmiP96UguZEIGqCckXJchdPlY7j
-   NR5hNQAVtUXjfmyhF9qp4iq4oZoS1j5xq2gWlXbxajgurgjEaIqV5QCzf
-   Q==;
-X-CSE-ConnectionGUID: aRUh/ppPSjiLg30OD7E4FA==
-X-CSE-MsgGUID: 8SIMjWfATaawJYZQlZMRbQ==
-X-IronPort-AV: E=Sophos;i="6.07,145,1708412400"; 
-   d="asc'?scan'208";a="18544964"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 22 Mar 2024 00:31:36 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 22 Mar 2024 00:31:29 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex03.mchp-main.com (10.10.85.151)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Fri, 22 Mar 2024 00:31:26 -0700
-Date: Fri, 22 Mar 2024 07:30:39 +0000
-From: Conor Dooley <conor.dooley@microchip.com>
-To: <Balamanikandan.Gunasundar@microchip.com>
-CC: <conor@kernel.org>, <miquel.raynal@bootlin.com>, <richard@nod.at>,
-	<vigneshr@ti.com>, <robh@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <Nicolas.Ferre@microchip.com>,
-	<alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>,
-	<linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: mtd: atmel-nand: convert txt to yaml
-Message-ID: <20240322-arrest-pucker-7ff731359fa0@wendy>
-References: <20240320-linux-next-nand-yaml-v1-0-2d2495363e88@microchip.com>
- <20240320-linux-next-nand-yaml-v1-1-2d2495363e88@microchip.com>
- <20240320-quicksand-attentive-14610103237b@spud>
- <3c199359-f0d8-4ec0-bf86-930b2ecfb876@microchip.com>
+	s=arc-20240116; t=1711093154; c=relaxed/simple;
+	bh=74IY4W2ReJ+EBD6XqkKEfxqxu9pBcnlGD0ss0VXKhTw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VaxTvPumt0lZr4qdd49l3FTfCmA1KyEtTCIndDc4YfEEOSrEzNQ46NKTqB7w2jXVzPnyxW/fpAGIojC/ThJpv5H8z1LH08unGKymrNlT5kjwyb9H1Zt934mGRWPw34phlLKqoERqd9cho35wW3tkuXA8Hz9h/UOsMj6iy7i7A+4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=ntplgsJt; arc=none smtp.client-ip=46.19.9.99
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+	s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=XmDDFMU/4E1etv5sIVB4WfwFGi7VCAGsEJBu9uRrii4=; b=ntplgsJtLpus/vc2992ovayXVr
+	xY1h7gl0F9U4X7qnD9MaEwn3gzMxCaBv+BE0Ew/TFtNB1JxSD60Mj9yDNW3SP9AMBEQMRneN367ff
+	F4gZ7pKaaPdB4xtX0OZ37aS5zwe8qbY4CH110T5xAOYHvLUKElqzQuAnXr7J9+5kuz3cEHSpmWnCj
+	AECN7w7n+GLIYFfRPhwS/AnY/E9DIWaMZDTiffyWnxvdprQbrv94BoZurPD+F7TRSLRtbDe0FXfbH
+	MDmq6ytMd+SaaPh8AeImdbmWqu28kvm3rORB01SIRvaRIf0sZ3nUJ8HloT0yxwX3Oa5BZHqOf47wX
+	OQB5UT7Q==;
+Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:55020 helo=[192.168.69.84])
+	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	(Exim 4.96.2)
+	(envelope-from <andrej.picej@norik.com>)
+	id 1rnZUV-00EHuV-2e;
+	Fri, 22 Mar 2024 08:39:02 +0100
+Message-ID: <40e08a5e-e7e9-47c7-9102-24a2bbba67cf@norik.com>
+Date: Fri, 22 Mar 2024 08:39:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="5XY8D9lenP0Sop6x"
-Content-Disposition: inline
-In-Reply-To: <3c199359-f0d8-4ec0-bf86-930b2ecfb876@microchip.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] dt-bindings: iio: adc: nxp,imx93-adc.yaml: Add
+ calibration properties
+Content-Language: en-GB
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, haibo.chen@nxp.com,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Cc: jic23@kernel.org, lars@metafoo.de, shawnguo@kernel.org,
+ s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ upstream@lists.phytec.de
+References: <20240320100407.1639082-1-andrej.picej@norik.com>
+ <20240320100407.1639082-3-andrej.picej@norik.com>
+ <38637621-1611-4268-ae79-7ac93a72c5ee@linaro.org>
+ <e994b756-7f4e-4be3-b8f3-310988174b44@norik.com>
+ <7e58bf96-3c38-467f-86b6-06ff5feedb31@linaro.org>
+From: Andrej Picej <andrej.picej@norik.com>
+In-Reply-To: <7e58bf96-3c38-467f-86b6-06ff5feedb31@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
+X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
---5XY8D9lenP0Sop6x
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 20. 03. 24 13:15, Krzysztof Kozlowski wrote:
+> On 20/03/2024 13:05, Andrej Picej wrote:
+>> Hi Krzysztof,
+>>
+>> On 20. 03. 24 11:26, Krzysztof Kozlowski wrote:
+>>> On 20/03/2024 11:04, Andrej Picej wrote:
+>>>> Document calibration properties and how to set them.
+>>>
+>>> Bindings are before users.
+>>
+>> will change patch order when I send a v2.
+>>
+>>>
+>>> Please use subject prefixes matching the subsystem. You can get them for
+>>> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+>>> your patch is touching.
+>>> There is no file extension in prefixes.
+>>
+>> So: dt-bindings: iio/adc: nxp,imx93-adc: Add calibration properties?
+> 
+> Did you run the command I proposed? I don't see much of "/", but except
+> that looks good.
 
-On Fri, Mar 22, 2024 at 04:27:29AM +0000, Balamanikandan.Gunasundar@microch=
-ip.com wrote:
-> On 20/03/24 10:05 pm, Conor Dooley wrote:
-> > On Wed, Mar 20, 2024 at 11:22:07AM +0530, Balamanikandan Gunasundar wro=
-te:
+Ok noted.
 
-> >> +allOf:
-> >> +  - if:
-> >> +      properties:
-> >> +        compatible:
-> >> +          contains:
-> >> +            enum:
-> >> +              - atmel,at91rm9200-nand-controller
-> >> +              - atmel,at91sam9260-nand-controller
-> >> +              - atmel,at91sam9261-nand-controller
-> >> +              - atmel,at91sam9g45-nand-controller
-> >> +              - atmel,sama5d3-nand-controller
-> >> +              - microchip,sam9x60-nand-controller
-> >> +    then:
-> >> +      properties:
-> >> +        "#address-cells":
-> >> +          const: 2
-> >> +
-> >> +        "#size-cells":
-> >> +          const: 1
-> > Why is this in an if? Isn't this all of the devices in the binding?
-> >=20
->=20
-> The default nand-controller.yaml defines this as const values.=20
-> (#address-cell : 1 and #size-cells : 1). I am trying to override this=20
-> const value.
+> 
+>>
+>>>
+>>>>
+>>>> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+>>>> ---
+>>>>    .../bindings/iio/adc/nxp,imx93-adc.yaml           | 15 +++++++++++++++
+>>>>    1 file changed, 15 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+>>>> index dacc526dc695..64958be62a6a 100644
+>>>> --- a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+>>>> +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+>>>> @@ -46,6 +46,21 @@ properties:
+>>>>      "#io-channel-cells":
+>>>>        const: 1
+>>>>    
+>>>> +  nxp,calib-avg-en:
+>>>> +    description:
+>>>> +      Enable or disable averaging of calibration time.
+>>>> +    enum: [ 0, 1 ]
+>>>> +
+>>>> +  nxp,calib-nr-samples:
+>>>> +    description:
+>>>> +      Selects the number of averaging samples to be used during calibration.
+>>>> +    enum: [ 16, 32, 128, 512 ]
+>>>> +
+>>>> +  nxp,calib-t-samples:
+>>>> +    description:
+>>>> +      Specifies the sample time of calibration conversions.
+>>>> +    enum: [ 8, 16, 22, 32 ]
+>>>
+>>> No, use existing, generic properties. Open other bindings for this.
+>>
+>> You mean I should use generic properties for the ADC calibration
+>> settings? Is there already something in place? Because as I understand
+>> it, these calib-* values only effect the calibration process of the ADC.
+> 
+> Please take a look at other devices and dtschema. We already have some
+> properties for this... but maybe they cannot be used?
+> 
 
-You're not overriding anything as you don't have a ref to
-nand-controller.yaml in this file, AFAICT. Why don't you?
+I did look into other ADC devices, grep across iio/adc, adc bindings 
+folders and couldn't find anything closely related to what we are 
+looking for. Could you please point me to the properties that you think 
+should be used for this?
 
-> May be I should think about better approach ?
+Thank you.
+Andrej
 
-You should be able to apply this unconditionally for this file. I don't
-see why the if would be needed?
-
-
-> >> +patternProperties:
-> >> +  "^nand@[a-f0-9]$":
-> >> +    type: object
-> >> +    $ref: nand-chip.yaml#
-> >> +    description:
-> >> +      NAND chip bindings. All generic properties described in
-> >> +      Documentation/devicetree/bindings/mtd/{common,nand}.txt also ap=
-ply to
-> >> +      the NAND device node, and NAND partitions should be defined und=
-er the
-> >> +      NAND node as described in
-> >> +      Documentation/devicetree/bindings/mtd/partition.txt.
-> > These files do not exist.
-> >=20
->=20
-> Apologies for copying the content from the text file. I will correct this.
-
-You don't need these comments at all I think. You have the ref to
-nand-chip.yaml, so at least the first text file reference can be
-removed.
-
-> Yes. I should fix the alignment. I will send a v2 shortly
-
-I did make other comments, so I assume you agree with everything else I
-mentioned and will implement them in v2.
-
-Thanks,
-Conor.
-
---5XY8D9lenP0Sop6x
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZf0zmQAKCRB4tDGHoIJi
-0udtAQD10mY1UxAUiy245iE/HFMBpXrP6RsT1/Jv5xwrvG6KqQD/XUG4OLX7ZUxr
-FFeupjEPcEhaLjXcg3DqAb7W/vtRCAw=
-=Lnin
------END PGP SIGNATURE-----
-
---5XY8D9lenP0Sop6x--
+> 
+> Best regards,
+> Krzysztof
+> 
 
