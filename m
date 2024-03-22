@@ -1,64 +1,61 @@
-Return-Path: <devicetree+bounces-52335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52336-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29EA7886511
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 03:12:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A5D188651E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 03:16:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4FB8B1C2116A
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 02:12:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 17F201F23EF4
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 02:16:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60AEB15D1;
-	Fri, 22 Mar 2024 02:12:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40D7417FD;
+	Fri, 22 Mar 2024 02:16:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="afLtE0T0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YHXg9XZk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3538810FA;
-	Fri, 22 Mar 2024 02:12:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 194151396;
+	Fri, 22 Mar 2024 02:16:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711073521; cv=none; b=NomlHRKQJ+vecwMCycIEecH5rX2Fv6UD3Zo45WsIUys+VXHUcNiN0+SIfPdGa5TK1reyJG3Wf/CMGCj2gTBWo0uI4ONRXHsUylozQ6QfdW4nITc6gNJZJlha0v78Xf+XMTRpRD4f8ZKdaUI4aVIHffjs3TRklR0ssMlopT/9Sm0=
+	t=1711073772; cv=none; b=uUYoA5qgfng+Jok3cabaqfRd0Zcy6ik36hT7E7Bf5YdvD5GzD9tvUXxyy12R+k4vVgsLHPGFcNWHuUhgLmrOuKWRBOFUt5jnbi9g2yx9JMybNet6JNO8UaJM2u0xigD9UZhBmBTHM9G6/b6fEHCGwXHyBrVJlNhMMK/K4B+BZMk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711073521; c=relaxed/simple;
-	bh=83nutzeefgsOE5CnvYG798Q0O8Wla+1+5aZYf7V8tL4=;
+	s=arc-20240116; t=1711073772; c=relaxed/simple;
+	bh=K/8Y6IptA1fL79TfA4npH3+SXlRYXFqAUiqkofQiLCA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fpRaqtkt6LnuwM8wlPoPEEoNe1eWvT3dik+d/8Qmr3yWtNGJq3vEfGyPs4E3D72zx3fM4X0YYNbcz5GqulAMMqN1iIVf10xQaOLerbcetp8OpmIa8D21m7ByvUd3r3P7PBad9KxFEIdMXiboIgMtGKwMcAtXWzoGmFtJSZWqMmo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=afLtE0T0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB13FC433F1;
-	Fri, 22 Mar 2024 02:12:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lUrippoosS0ZkdpVkKfWEHB9t03cLtsf6Q9SdMeYp8exWBkuye4QE1Eh+LhagPeBZkhfBhAVEzjPjhGKJALwJzx4Dy1n1GjTky9FtKGEH8Yi1xqvjVoj1GaMJWntQ9uUXETapqMrpYdGJwlgfNi6DOsy4qZYJHaJhQOyTyQEwnY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YHXg9XZk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51826C433C7;
+	Fri, 22 Mar 2024 02:16:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711073521;
-	bh=83nutzeefgsOE5CnvYG798Q0O8Wla+1+5aZYf7V8tL4=;
+	s=k20201202; t=1711073771;
+	bh=K/8Y6IptA1fL79TfA4npH3+SXlRYXFqAUiqkofQiLCA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=afLtE0T0j/XfJkMMdDNkeaRrj1xuQ87Gs3WgccYlaqcIIS36e3KPftIhmnSmw3Gwp
-	 Kv6f8YAwUAyl9s88Ibwkmr/0irZ8roqDT1pfe1uYSKf0balWVFcTQEG/9l5ObOZ+L0
-	 olwWgDVlPrHFNPSHh/wt1MeZ61F7Nx71rk0DsT8y3CAm5hr4WMAgA11wBc09rMdV3q
-	 DFTDOZd2FWtSn1bEbvyOSzHYv1alOdfx7Gflbh5PbXbpicpunXf00OA3e5J/UCtKsF
-	 hQwUK3uILtiNHP8B4ml2RgOOoihF3KXmfI0d/GPLHDwaY/sK5yTOF+lQ/2FYC4izH3
-	 HUxuIm6p4m0xA==
-Date: Thu, 21 Mar 2024 21:11:58 -0500
+	b=YHXg9XZkBS++OJhttPNAmI5qUUjVQx3Ogs+b0y4Vrg8UwYbcrYL1rOIJO1NpGVjrU
+	 LLou69/J5u/VyzhmcItFGSWD1nfq1CUnRys46Vb+aWw19hb39E+XtEkHSFTWyS41s1
+	 fhVvngsepVZ5oZG3jUfXj/IaU0Wsp2vR0GmedgVW4zkAYT+kAWchHo45PRYBgSOWC0
+	 eyf34Lk6iSAmxIHmv2j92kextw2DhFsuxll42dCyXBamHXw5bHxIe4kFbgD4vs27py
+	 72laSIUaStcySOqoOK++zDj5HhP5t+gfg/owWd3m3AyL3U4jZYLzFLQwudOQyHQGW1
+	 p5CUcaHL65ilw==
+Date: Thu, 21 Mar 2024 21:16:09 -0500
 From: Rob Herring <robh@kernel.org>
-To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: "Aneesh Kumar K.V" <aneesh.kumar@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	"Naveen N. Rao" <naveen.n.rao@linux.ibm.com>,
-	Conor Dooley <conor+dt@kernel.org>, linuxppc-dev@lists.ozlabs.org,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, Nicholas Piggin <npiggin@gmail.com>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Jean Delvare <jdelvare@suse.com>
-Subject: Re: [PATCH 5/5] dt-bindings: hwmon: ibm,p8-occ-hwmon: move to
- trivial devices
-Message-ID: <171107351631.3413678.6212026381128408904.robh@kernel.org>
-References: <20240321-hwmon_dtschema-v1-0-96c3810c3930@gmail.com>
- <20240321-hwmon_dtschema-v1-5-96c3810c3930@gmail.com>
+To: Josua Mayer <josua@solid-run.com>
+Cc: Yazan Shhady <yazan.shhady@solid-run.com>, linux-kernel@vger.kernel.org,
+	Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH 1/2] dt-bindings: arm64: marvell: add solidrun cn9130
+ clearfog boards
+Message-ID: <171107376685.3418327.3613926203249839043.robh@kernel.org>
+References: <20240321-cn9130-som-v1-0-711127a409ae@solid-run.com>
+ <20240321-cn9130-som-v1-1-711127a409ae@solid-run.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,20 +64,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240321-hwmon_dtschema-v1-5-96c3810c3930@gmail.com>
+In-Reply-To: <20240321-cn9130-som-v1-1-711127a409ae@solid-run.com>
 
 
-On Thu, 21 Mar 2024 19:43:46 +0100, Javier Carrasco wrote:
-> This binding meets the requirements to be converted to dtschema
-> via trivial-devices.yaml.
+On Thu, 21 Mar 2024 22:47:11 +0100, Josua Mayer wrote:
+> Add bindings for SolidRun Clearfog boards, using a new SoM based on
+> CN9130 SoC.
+> The carrier boards are identical to the older Armada 388 based Clearfog
+> boards. For consistency the carrier part of compatible strings are
+> copied, including the established "-a1" suffix.
 > 
-> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+> Signed-off-by: Josua Mayer <josua@solid-run.com>
 > ---
->  .../devicetree/bindings/hwmon/ibm,p8-occ-hwmon.txt | 25 ----------------------
->  .../devicetree/bindings/trivial-devices.yaml       |  2 ++
->  2 files changed, 2 insertions(+), 25 deletions(-)
+>  .../devicetree/bindings/arm/marvell/armada-7k-8k.yaml        | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
 
 
