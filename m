@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-52383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52384-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF00988671C
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 07:50:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDD16886738
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 08:02:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62CD5285D4B
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 06:50:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 94E7D287CED
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 07:02:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6012D10799;
-	Fri, 22 Mar 2024 06:50:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D9F910A25;
+	Fri, 22 Mar 2024 07:02:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FTyHSnrZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ag7GBhke"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8584365C
-	for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 06:50:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49287FC0A
+	for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 07:01:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711090203; cv=none; b=Mo65glfzqRBWPtwMg0mUGD8t89iMHdc15HIyp17LfyUPXbWfR5yTeNFfr8A3AhXmd7/UGn1+fMTIDuPJqC2UvMuX6LFMOvblUZ5baiXqWvxrW/lFW1DqdyRgFIVXL4f8qgdhY+FrF466tgOMJN4qUF5ahVQpjr8c1wtwQqTCIHw=
+	t=1711090920; cv=none; b=DSP/LtU0vk2UfnvMiFzD6FQVY26wNbmwMreqNWZdEs/0S5IU6/vkd66QXIgFvIy9lg9N+NtzlgrpdhkiNPxKt3bq1Z3jZ2ZHpa44A4DPApJ7s9hKBZXL3O8xakPtG4/NIJIAebKXhaFOx9Uwo2rV9G/DkgTWtX5y0IA6SgxWe9w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711090203; c=relaxed/simple;
-	bh=hztYgNnzlR152Q63wYFJZiUp6doejgjvGN/l4pW2yDQ=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=QPSDiMhShMEO2ZQe8ynRpZv4qYPATEnGKGGt4iFuON1aci0w7KTjVMiX/TdMYlwURxey+zEmDpdkaGzTH/qHot2K453OHVRTu7zeRtDLcwN9Mjvs5qQ3rVbg1SFlCKs6B8D9NtTMxAYWCP/t6Sj/A5mxQWTzP1j1hnA+3UBK1GA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FTyHSnrZ; arc=none smtp.client-ip=209.85.208.52
+	s=arc-20240116; t=1711090920; c=relaxed/simple;
+	bh=DHdboDDtCJrSx2L+T/NGooFqHH+v5lVIsVRvPx5Adhw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Q1MghnNoOwPn6uVvf3vuFmvCzwSdUIL2L/+FJV8nAlTrQcNVzIbudErkUFdvfssKIRjw0czdJnvIAgjYqdg4vr6YAFcE9TPshryu7WtwcYob5JRvtYTX7qpm8MhgjmeqIEEw529lqUPL25GQpDF0RPuHy0bRBTi8fvosT8keZkA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ag7GBhke; arc=none smtp.client-ip=209.85.167.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-56bb22ff7baso1972956a12.3
-        for <devicetree@vger.kernel.org>; Thu, 21 Mar 2024 23:50:01 -0700 (PDT)
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-513d23be0b6so2152445e87.0
+        for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 00:01:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711090200; x=1711695000; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:from:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=I5sXdHzq2mmZcnR2eOCseDkPnOJfe4dMIq6Nx93VsWs=;
-        b=FTyHSnrZhDy+83Bfolh44ZqzCpJXV8y6p4crt6V67gpmEIcCG0d543cA9beHz2dW8V
-         da2ESaAkVD34BzVi4OQS/GVmNpAOIpBlI0SrcxgLgVd0pslzB4bl0jRfTMY/8MU0KlkQ
-         YwalxWfODwlbfNSPKnl/Q8Q+yHTwI8CQHTFXAWFtxjRpOqN7nNL3b0SomaExbbjkq63P
-         5ksJUidLuv3h1Dx8xJJFs98Xs4I5DQ5p10JOQas2Lc4DPtxWXANbzTPJcvWvVMXXQr7K
-         vH6YPJ7pB6QneHIfT9ZQy9dyAXK/CRpBOP9D5hdSxQz7rHWEjuk7yOVtrP+TME2LErge
-         Sk3g==
+        d=linaro.org; s=google; t=1711090916; x=1711695716; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=xt5DFdAiqqJ4FjawcSekvhuik3FwaWDYhDwXluF4Ffg=;
+        b=Ag7GBhkeDXUKGPXw39CuyfST5hiq3+5ixrYC/L562Dr+TG0MZySX6LJlFqESiuGVdi
+         xWe56LHJ6XnKtTqwmydNjOtxPemVzxbL1PfHRPfuX0C+ZM1IiJ1Zy03yugDDj5cwhimH
+         zL4TsAq/DQtExBnE/mPaPA6hcLHSoqjjrizNS26ypDx7sDbfvpiXzdvHiwKZgzp6TLjl
+         a/XF67A6QwLrmoh7tTiWbshWsQQjsfTMIolyPeFfcUTy0bqcyn4nu+RGj+ts3rem0+b8
+         +T3+RdN42NHea4xf8iiEy8LklteocRFV77nO4dLPgPsKdFWOSIi7Lb3gpe5pPMyzLMr+
+         VLuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711090200; x=1711695000;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:from:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=I5sXdHzq2mmZcnR2eOCseDkPnOJfe4dMIq6Nx93VsWs=;
-        b=Z9wKaVWUNsm+pFfOFwT0DpLNj1bykdgJNXMojMjSU361Mkx7HaNzm9RqTkFrT+L/9k
-         IzKUKMgtsSRQBAeyqCf5u8l+viVaZD4P6Wu9MmYuYpDipjWMa4b5B7wgN3iv9OM1fHSh
-         J+yeWk/4znH77Z9r8h+hy4zujF0o7ekIOglNKwlX8HHptCi8FxUqEUHywVyLLcbtG0nE
-         kGbOgDd166ohgC687GGG8diSIw/tDOiFs0TE/fEDcZD+9fjz7f1Q1s9HTPe6+i6dyABk
-         ANuKDCKVbtS61mAtpzTgNLI6n7fQY0W7yovff18WhVb4E0RRXna5+Cu0toSdEd9nNIHC
-         FQ0Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUuGmgPBWGglnO2VtfV/tXKjZuECvRz4kcwDW/Wy3HS9lOE1BNkuU+xo8XmUIRhQW92mbGRHLmY5tmvI+OgmaTsc9BTe0a2M3Zvaw==
-X-Gm-Message-State: AOJu0YxRFhtwlWQdsu/j4g6FCh58uao2lSAr5hVCPQnY698e2RRnCdtI
-	MmOiGH9SrexMKlFSLJvG0Qm+my8UV95lw70xtYG6+SHh/xOLsqcPdPUVG1wE3Yg=
-X-Google-Smtp-Source: AGHT+IE3YrB9dGa6c/3rZ7XZG81Ue+YmKn0StgDF4kORTuR77P423KY9HDLM/D5HN28VPadJWIfavA==
-X-Received: by 2002:a17:906:a84d:b0:a46:930c:b793 with SMTP id dx13-20020a170906a84d00b00a46930cb793mr958073ejb.9.1711090199863;
-        Thu, 21 Mar 2024 23:49:59 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1711090916; x=1711695716;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xt5DFdAiqqJ4FjawcSekvhuik3FwaWDYhDwXluF4Ffg=;
+        b=rlpjdjoB/tbPbtV94dMuHbKQB7Zc/QGWoCRp/9qQmWZxrcuovLgRvKZviWFQpG8EYF
+         jM8I/bvD+RuypQ0FTgnkFj6wns4kTJ2JQlJk+a3M5C9/76QoeX+t8j2ZtKxX4pye9Sh9
+         ojblsj/9R4NVj7FrjlNW6EiG0CBKmqXm72K+MNxZ/+xunnuYhl9hrTEBzKAotkbvwkf1
+         ZS1Ryb+rCB9Hv/tFF3jWNCDXfemXmEi72gD+EDzQx4+qprxpV+PBYYAFji0HY9miNjuk
+         PXJYtiPex/HZtit4jm9xg1awDTw0u/Fuwve7pGvJsFwi/VlF1PsQsINstDnp0lS+R2Zq
+         xfVA==
+X-Forwarded-Encrypted: i=1; AJvYcCXCUZKXIMixh7UzNSkeIMBsM+QiMXyUEG86Mcb6p9RBnJYbyR8RdKdqXfsUcp7AvfRSv7YuFvCr1/rCYxUF5ivsqpyHKe+PMg1c1w==
+X-Gm-Message-State: AOJu0YwKVHWEUZ1vgyRw/mjuvi/AywEJ2iACI649phJ/Ggd/KjihGzfg
+	3B5wA3lvJRRYeGk++Z2QfVpW+WtZ6LXdnkKbtdhKyrUAn6FvOuQRRYxMh4g8yOI=
+X-Google-Smtp-Source: AGHT+IHUiCv4xvWMPJB41KX70x4Hwplv/qe8S//aNnLWfuL5FWjmxJX2k9NJMs5RCbDCV5aPgXVRyw==
+X-Received: by 2002:ac2:4d9b:0:b0:515:99e9:712a with SMTP id g27-20020ac24d9b000000b0051599e9712amr781505lfe.19.1711090916398;
+        Fri, 22 Mar 2024 00:01:56 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id rp20-20020a170906d97400b00a46a2779475sm683399ejb.101.2024.03.21.23.49.58
+        by smtp.gmail.com with ESMTPSA id cs11-20020a0564020c4b00b0056b0af78d80sm274270edb.34.2024.03.22.00.01.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Mar 2024 23:49:59 -0700 (PDT)
-Message-ID: <6552bcb8-e046-4882-91da-1094fff3d239@linaro.org>
-Date: Fri, 22 Mar 2024 07:49:57 +0100
+        Fri, 22 Mar 2024 00:01:55 -0700 (PDT)
+Message-ID: <024ca6eb-c3d8-4764-946e-1070d1bfb806@linaro.org>
+Date: Fri, 22 Mar 2024 08:01:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,21 +77,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] spi: dt-bindings: jcore,spi: convert spi-jcore to
- dtschema
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Kousik Sanagavarapu <five231003@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-spi@vger.kernel.org, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 1/2] dt-bindings: nvmem: Remove fsl,t1023-sfp in favor of
+ fsl,layerscape-sfp
+To: Sean Anderson <sean.anderson@linux.dev>, Conor Dooley <conor@kernel.org>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Richard Alpe <richard@bit42.se>, linux-kernel@vger.kernel.org,
+ =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+ Michael Walle <michael@walle.cc>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Conor Dooley <conor+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Mark Brown <broonie@kernel.org>, Shuah Khan <skhan@linuxfoundation.org>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>,
- Daniel Baluta <daniel.baluta@nxp.com>
-References: <20240321180617.35390-1-five231003@gmail.com>
- <affc1b03-7a23-4fd8-bf85-4155bcd41df1@linaro.org>
- <CAN19-EfCOWFqFCrF0iCaxhfZuteWawQoH0d6pTN3cgQ7p-CK6w@mail.gmail.com>
- <5dd3237f-e0a2-4214-a63f-233e89a26b8d@linaro.org>
+ Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20240316002026.1808336-1-sean.anderson@linux.dev>
+ <20240317-starved-pager-7a81c5045cfc@spud>
+ <9daf9c8f-6606-4ff6-8065-6a32fa0d152c@linux.dev>
+ <20240318-scarf-startup-64088b1d8d35@spud>
+ <fa047914-da03-4234-b48f-eebdf350795e@linux.dev>
+ <20240319-fondling-implode-322a9cb570b8@spud>
+ <d947cb15-aafc-487e-8bbd-54d786683470@linux.dev>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -136,54 +141,47 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <5dd3237f-e0a2-4214-a63f-233e89a26b8d@linaro.org>
+In-Reply-To: <d947cb15-aafc-487e-8bbd-54d786683470@linux.dev>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 22/03/2024 07:34, Krzysztof Kozlowski wrote:
-> On 22/03/2024 07:23, Kousik Sanagavarapu wrote:
->> On Fri, 22 Mar 2024, 11:33 Krzysztof Kozlowski, <
->> krzysztof.kozlowski@linaro.org> wrote:
->>
->>> On 21/03/2024 19:02, Kousik Sanagavarapu wrote:
+On 21/03/2024 17:21, Sean Anderson wrote:
+> On 3/19/24 13:55, Conor Dooley wrote:
+>> On Mon, Mar 18, 2024 at 11:48:06AM -0400, Sean Anderson wrote:
+>>> On 3/18/24 11:40, Conor Dooley wrote:
+>>>> On Mon, Mar 18, 2024 at 11:08:00AM -0400, Sean Anderson wrote:
+>>>>> On 3/17/24 11:10, Conor Dooley wrote:
+>>>>
+>>>>>> Additionally, should
+>>>>>> they fall back to t1023-sfp? I see that there's already some dts files
+>>>>>> with these compatibles in them but seemingly no driver support as there
+>>>>>> is for the t1023-sfp.
+>>>>>
+>>>>> I checked the reference manuals for these processors, and all of them use TA 2.0.
+>>>>
+>>>> Sounds like a fallback is suitable then, although that will require
+>>>> updating the various dts files.
 >>>
->>>> +  spi-max-frequency:
->>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>
->>> No, drop. From which other SPI binding did you take it? I asked you to
->>> look at existing code.
->>>
+>>> Yes, a fallback (like what is done for the T-series) would be suitable,
+>>> but given that these devicetrees have been in-tree for eight years I
+>>> think it would be preferable to support the existing bindings for
+>>> compatibility purposes.
 >>
->> Without this, "make dt_binding_check" would break though, right at the
->> position in the example where "spi-max-frequency" is used.  That was
->> also the reason why additionalProperties was set to true in the last
->> iteration, but after reading the doc more carefully I realized that was
->> wrong after you pointed it out.
->>
->> I followed along bindings/spi/nvidia,tegra114-spi.yaml.
+>> Just cos stuff snuck into the tree in dts files doesn't make it right
+>> though, I'd rather the bindings were done correctly. I don't care if you
+>> want to support all of the compatibles in the driver so that it works
+>> with the existing devicetrees though, as long as you mention the
+>> rationale in the commit message.
 > 
-> OK, you are right, the property is used here in controller node, however
-> Linux driver never parsed it. It was never used, so I propose to drop it
-> from the binding and example. You can mention in commit msg that
-> spi-max-frequency was not documented thus you drop it from the example.
-> 
-> DTS should be fixed as well. I'll send a patch for it.
+> It doesn't really matter what the schema has as long as the driver supports
+> existing device trees.
 
-Cc Daniel,
-
-BTW, J2 core is rather odd platform to work on... Even cross compiling
-and building that DTB is tricky. If I failed, I have doubts that you
-tested the DTS with your binding.
-
-This applies to all GSoC or some Linux Mentorship programs: I suggest to
-choose for conversion bindings with more users and bigger possible
-impact. So first I would look at ARM64 and ARMv7 platforms. We still
-have around 1000 and 3500 unique warnings about undocumented compatibles
-for ARM64 defconfig and ARM multi_v7! That's the platforms you should
-choose.
-
-Not SuperH, ARC, or whatever with only one DTS which is difficult to
-build for regular developer.
+We do not talk about driver now but bindings. You add new compatibles on
+a basis that they were already used. This cannot bypass regular review
+comments, so if during regular review process we would require
+fallbacks, then you are expected to listen to review also when
+documenting existing compatibles. Otherwise everyone would prefer to
+snuck in incorrect code and later document it "it was there!".
 
 Best regards,
 Krzysztof
