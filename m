@@ -1,205 +1,116 @@
-Return-Path: <devicetree+bounces-52574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D68C88734D
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 19:42:02 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFBDC88735F
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 19:51:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 28CCE288771
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 18:42:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5C20BB219E7
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 18:51:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56B5E6A32D;
-	Fri, 22 Mar 2024 18:41:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A52D173180;
+	Fri, 22 Mar 2024 18:51:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j5Lyk2Yf"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="KA7PtXeT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 255895FDC9;
-	Fri, 22 Mar 2024 18:41:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBEE7629E2;
+	Fri, 22 Mar 2024 18:51:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711132919; cv=none; b=ItNRL1mOhwKYuEwJn01UxR9tUtECG/nksPq0E4hjhiyrgN8+3k+jWSIWZkbFRXTr+zvAZZWwry6IJIGbawNVPUAElYVTm83MF7B5YcmXoc2AK2zECqsKneDuKiaVCrFJomLrtsXVYquREbw762Lwgleh1p585PKqIVA7t21CU1k=
+	t=1711133494; cv=none; b=XjHHDNlQbkPbUy1vwCO70nEm1pZTLAjx6chdES8MRwD+l2AGdHztgMnhqESc32Tjr3QKK1hXMCaFPAD6U3B27NddaR7EJDUdcRmaK25ptgVayfErNp12LCTu0gYErLqOpE1qd2NIHVmATXSfFmcsBftZYt0UpDOun2w5zKFZyHw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711132919; c=relaxed/simple;
-	bh=F11k4iI02tzCqpoumpy2ptLTRb5nTvwahbpqwzebvKI=;
+	s=arc-20240116; t=1711133494; c=relaxed/simple;
+	bh=knezeFITMrOeKtT2zrfqXKXzWrr8TJ45SZ5iAZ8WBFo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ran5rZ3i0LV1/MAm6j3JTwmYymznbdPpofdRWGUYhtcp2nXMuSg/fKLpgZ3JohiUd46ahtbVg6DgwrsTLzGbtT2qsvJwQatYJywtcoQPAuu95LUc+gxOV8/DSsXu51OVat8TwVH6DDiIIlx6LonBlDyAq7+xyabL61b7TEODOok=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j5Lyk2Yf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05A0CC433C7;
-	Fri, 22 Mar 2024 18:41:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711132918;
-	bh=F11k4iI02tzCqpoumpy2ptLTRb5nTvwahbpqwzebvKI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=j5Lyk2YftVMKaJ9QA+oLv/BWSAsGEYXT/O9U4taywknWePLo6uZDQrL9JZFfaSKAl
-	 St2bIrbsE2P75d5lEvYCbAMsUd83jvz8Ik4D5YG3gyIDVWV7Emg37kuj66NxkAJUdO
-	 4VmTUaHFu2M8uIjc+GpRoqPjrRi83HfotABCghV4jB0UOoAI2EjUX2ZuR0ztatKBD1
-	 jHdB+8oh3zCTjQI1nWlWjXi4GcEEs330XBMKVW6+IYnJKEeRdtYmlYKcDtZc8gAcj0
-	 PvNUx+kPXQ0c0ZGJOxzOUHa6Bmrjy+wDte0n7McFiCOsTytCPtc1jF5zRdHbrO9ToQ
-	 brsM9GWBU5FEw==
-Date: Fri, 22 Mar 2024 18:41:52 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=CVksI/blmKVPXe8q542gNfEoxvj2E2XHBaUvxGkq6GLjQuvEOFogOd7pvxXPJe4yqiKiiLj7Sx5MRYi1oqcnOV5QJ+KxlH+ph+guBjs/2/Ynvheu4D2XnJgsAThOck5GmRAW2KDyBigYEVD6ZdJHZBy0IIGeNxaLbEILvxhWLsE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=KA7PtXeT; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=UiMuCZuCE+GDbraTFgLjnezZYv3h2ixZi1ZXPtQOspI=; b=KA7PtXeTDDxMMDvhwcNlopN79C
+	axGXt6HfyXpXMRQ6iSLvZBqBPY+Wgyzv70AlZ1kuUgGWwk1WcJcMhpilere+va8+jV+srPuBPtAIa
+	40v4LkmOPmrYyWcwnJvuiR9BkwJiCfRl0PI5M2K6PyaD3gsda2FUioXdxyG08MirHMI8=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rnjz6-00Ayph-VK; Fri, 22 Mar 2024 19:51:20 +0100
+Date: Fri, 22 Mar 2024 19:51:20 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Ayush Singh <ayushdevel1325@gmail.com>
+Cc: open list <linux-kernel@vger.kernel.org>, jkridner@beagleboard.org,
+	robertcnelson@beagleboard.org, lorforlinux@beagleboard.org,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v4 4/5] dt-bindings: serial: Add documentation for
- Renesas RZ/V2H(P) (R9A09G057) SCIF support
-Message-ID: <20240322-donor-undying-d941fc3db445@spud>
-References: <20240322144355.878930-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240322144355.878930-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Vaishnav M A <vaishnav.a@ti.com>, Mark Brown <broonie@kernel.org>,
+	Johan Hovold <johan@kernel.org>, Alex Elder <elder@kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"moderated list:ARM/TEXAS INSTRUMENTS K3 ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+	"open list:SPI SUBSYSTEM" <linux-spi@vger.kernel.org>,
+	"moderated list:GREYBUS SUBSYSTEM" <greybus-dev@lists.linaro.org>,
+	Vaishnav M A <vaishnav@beagleboard.org>,
+	Michael Walle <mwalle@kernel.org>
+Subject: Re: [PATCH v4 1/5] dt-bindings: misc: Add mikrobus-connector
+Message-ID: <362aace1-2e6a-4b50-acf8-6dccafd44973@lunn.ch>
+References: <20240317193714.403132-1-ayushdevel1325@gmail.com>
+ <20240317193714.403132-2-ayushdevel1325@gmail.com>
+ <711ff5ea-244d-4b64-a39c-3f2da63e30c0@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="kbZNjUf7uTigHDC3"
-Content-Disposition: inline
-In-Reply-To: <20240322144355.878930-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-
-
---kbZNjUf7uTigHDC3
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <711ff5ea-244d-4b64-a39c-3f2da63e30c0@gmail.com>
 
-On Fri, Mar 22, 2024 at 02:43:54PM +0000, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->=20
-> Document support for the Serial Communication Interface with FIFO (SCIF)
-> available in the Renesas RZ/V2H(P) (R9A09G057) SoC. The SCIF interface in
-> the Renesas RZ/V2H(P) is similar to that available in the RZ/G2L
-> (R9A07G044) SoC, with the following differences:
->=20
-> - RZ/V2H(P) SoC has three additional interrupts: one for Tx end/Rx ready
->   and two for Rx and Tx buffer full, all of which are edge-triggered.
-> - RZ/V2H(P) supports asynchronous mode, whereas RZ/G2L supports both
->   synchronous and asynchronous modes.
-> - There are differences in the configuration of certain registers such
->   as SCSMR, SCFCR, and SCSPTR between the two SoCs.
->=20
-> To handle these differences in the driver, a new SoC-specific compatible
-> string is added, ensuring proper handling of the unique features and
-> register configurations of the RZ/V2H(P) SoC.
->=20
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> After going through all the discussions here, I have a few questions:
+> 
+> 1. Is the old `*_register_device(controller, board_info)` style discouraged
+> in favor of using device tree, at least for drivers using multiple
+> fundamental buses (i2c, spi, etc)?
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Historically, they were used in board files, where you needed to write
+C code for every single board. That did not scale, which is why we
+swapped to DT.
 
-Thanks,
-Conor.
+board_info is still useful, e.g. for platforms which don't have DT. I
+support a few amd64 boards where i need to use a platform driver to
+instantiate some I2C and MDIO devices. But in general DT is much
+easier to use.
 
-> ---
-> v3->v4
-> - Appended the interrupts instead of adding SoC specific
-> - Added restriction for clocks and reset
->=20
-> v2->v3
-> - Added SoC specific compat string
-> ---
->  .../bindings/serial/renesas,scif.yaml         | 30 +++++++++++++++++++
->  1 file changed, 30 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/serial/renesas,scif.yaml b=
-/Documentation/devicetree/bindings/serial/renesas,scif.yaml
-> index c13b31c28049..93fc7b75e2e5 100644
-> --- a/Documentation/devicetree/bindings/serial/renesas,scif.yaml
-> +++ b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
-> @@ -79,6 +79,8 @@ properties:
->                - renesas,scif-r9a08g045      # RZ/G3S
->            - const: renesas,scif-r9a07g044   # RZ/G2{L,LC} fallback
-> =20
-> +      - const: renesas,scif-r9a09g057       # RZ/V2H(P)
-> +
->    reg:
->      maxItems: 1
-> =20
-> @@ -93,6 +95,9 @@ properties:
->            - description: Break interrupt
->            - description: Data Ready interrupt
->            - description: Transmit End interrupt
-> +          - description: Transmit End/Data Ready interrupt
-> +          - description: Receive buffer full interrupt (EDGE trigger)
-> +          - description: Transmit buffer empty interrupt (EDGE trigger)
->          minItems: 4
-> =20
->    interrupt-names:
-> @@ -104,6 +109,9 @@ properties:
->        - const: bri
->        - const: dri
->        - const: tei
-> +      - const: tei-dri
-> +      - const: rxi-edge
-> +      - const: txi-edge
-> =20
->    clocks:
->      minItems: 1
-> @@ -160,6 +168,7 @@ allOf:
->                - renesas,rcar-gen3-scif
->                - renesas,rcar-gen4-scif
->                - renesas,scif-r9a07g044
-> +              - renesas,scif-r9a09g057
->      then:
->        required:
->          - resets
-> @@ -209,9 +218,30 @@ allOf:
->        properties:
->          interrupts:
->            minItems: 6
-> +          maxItems: 6
-> =20
->          interrupt-names:
->            minItems: 6
-> +          maxItems: 6
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: renesas,scif-r9a09g057
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 1
-> +
-> +        clock-names:
-> +          maxItems: 1
-> +
-> +        interrupts:
-> +          minItems: 9
-> +
-> +        interrupt-names:
-> +          minItems: 9
-> =20
->  unevaluatedProperties: false
-> =20
-> --=20
-> 2.34.1
->=20
+> 2. Is the preferred way to handle virtual devices (like those created by
+> greybus subsystem) now device tree? Is that one of the blockers for greybus
+> i2c, spi etc to still be in staging?
 
---kbZNjUf7uTigHDC3
-Content-Type: application/pgp-signature; name="signature.asc"
+I would not say they are virtual. They do exist. They are just not
+memory mapped like most devices, but in another address space, one
+which you access via RPCs.
 
------BEGIN PGP SIGNATURE-----
+> 
+> 3. How are virtual devices created in device tree? If I register an i2c
+> adapter using `i2c_add_adapter`, is the device tree entry is dynamically
+> created, which can then be used by a device tree overlay?
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZf3Q8AAKCRB4tDGHoIJi
-0rSuAQDQBPGUs8icPLxwGsWSeXy4khapO+KonhR3hhzZarFPagEA+J5rYERXAPIm
-ZqcsXcmdvvFPcibF6kTToxC6lUyChgs=
-=JU55
------END PGP SIGNATURE-----
+As far as i'm aware, there are no examples today. You are doing
+something different, something new. Adding these dynamic devices to DT
+is just a suggestion from me, as a good way to solve your problem. You
+will need to look into the DT core and figure out how to do it.
 
---kbZNjUf7uTigHDC3--
+     Andrew
 
