@@ -1,171 +1,122 @@
-Return-Path: <devicetree+bounces-52391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52392-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 763B1886791
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 08:39:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A0BB8867B4
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 08:58:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A6561C22063
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 07:39:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9ED8F1F24BD0
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 07:58:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 503E7125C4;
-	Fri, 22 Mar 2024 07:39:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFA3F12E7D;
+	Fri, 22 Mar 2024 07:58:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="ntplgsJt"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="jfOkAL69"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9271E6FB0;
-	Fri, 22 Mar 2024 07:39:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 397CA13AC0
+	for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 07:58:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711093154; cv=none; b=vFYIEUP5G00dEZ409BrhyvW0/SdtOM7m6GLIPahgbYdiWw2v+/ho16M3oO1nkbTe8iSC7huBOm5hMA2OQWlbXGATNcJ5n2Zodc1rmLUOjnruCzw5SrAYReru1Hy0D543Mc+w7lD3sd2J+A+F1dpzFEPWbX5GjKKQU+kUw+8SAmM=
+	t=1711094327; cv=none; b=JULD3TdHUpvP6GfQeAreEldUEV25Y1XgWm+d81pn48FyYykwapU+KjFtxKFjzrSYJARIDgsnt8lUTv7mvHfw6/JJl8mQpuynb98VBpJ+CSewXaL1TmMpBn8sR/k4OIdFP3TDDn6ibFzw9KF+WvGV6dLeBKUsraL5bQ6pWwdA8JQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711093154; c=relaxed/simple;
-	bh=74IY4W2ReJ+EBD6XqkKEfxqxu9pBcnlGD0ss0VXKhTw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VaxTvPumt0lZr4qdd49l3FTfCmA1KyEtTCIndDc4YfEEOSrEzNQ46NKTqB7w2jXVzPnyxW/fpAGIojC/ThJpv5H8z1LH08unGKymrNlT5kjwyb9H1Zt934mGRWPw34phlLKqoERqd9cho35wW3tkuXA8Hz9h/UOsMj6iy7i7A+4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=ntplgsJt; arc=none smtp.client-ip=46.19.9.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-	s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=XmDDFMU/4E1etv5sIVB4WfwFGi7VCAGsEJBu9uRrii4=; b=ntplgsJtLpus/vc2992ovayXVr
-	xY1h7gl0F9U4X7qnD9MaEwn3gzMxCaBv+BE0Ew/TFtNB1JxSD60Mj9yDNW3SP9AMBEQMRneN367ff
-	F4gZ7pKaaPdB4xtX0OZ37aS5zwe8qbY4CH110T5xAOYHvLUKElqzQuAnXr7J9+5kuz3cEHSpmWnCj
-	AECN7w7n+GLIYFfRPhwS/AnY/E9DIWaMZDTiffyWnxvdprQbrv94BoZurPD+F7TRSLRtbDe0FXfbH
-	MDmq6ytMd+SaaPh8AeImdbmWqu28kvm3rORB01SIRvaRIf0sZ3nUJ8HloT0yxwX3Oa5BZHqOf47wX
-	OQB5UT7Q==;
-Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:55020 helo=[192.168.69.84])
-	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-	(Exim 4.96.2)
-	(envelope-from <andrej.picej@norik.com>)
-	id 1rnZUV-00EHuV-2e;
-	Fri, 22 Mar 2024 08:39:02 +0100
-Message-ID: <40e08a5e-e7e9-47c7-9102-24a2bbba67cf@norik.com>
-Date: Fri, 22 Mar 2024 08:39:01 +0100
+	s=arc-20240116; t=1711094327; c=relaxed/simple;
+	bh=Qq2UvdnGF+i0lv3cQE2vwfxzP0IBqc7zAeM21eyo6SQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aelo1AF/Nbw6AXULBYSrHnSY2i52bNmbaPhFjLGBWHdnPr2I4+OVN+0Gve+Sg8BT5x5rnMgrPFvspbkm6+9dlssOP3yGZTgwnNEk6E8rg9L2eIZQAxlcDrtUJX5wAYiGwSfqcKxKbqKjBI8lX7e5PH6L+09WP/+8eCnmqzYy2cI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=jfOkAL69; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-41400a9844aso16697655e9.0
+        for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 00:58:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1711094324; x=1711699124; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Qq2UvdnGF+i0lv3cQE2vwfxzP0IBqc7zAeM21eyo6SQ=;
+        b=jfOkAL691tIThdM2H6V8bwKl0a8v0F+Z2P6HHsYjwVCxMBc99VJHaB3dZOUPZXA5MN
+         glky4jDmSJkxyAE6eXqaRq3tLSWtT9xKnef/Onj3bCv7z7YlKYgq/DzNASaICEeetebc
+         5iEgZBjhiNEWRvFJHaau5VQfR6zTBo3czlGiDaPv3aVn5sbhITQdk+Sk4lrGuIGGR1/v
+         jT2vfxjcLddwscfgP4ARuQ5aM8CMiO2qDPbjTod2e3ttRze9DcGw3PcXBAOy8RVWChrH
+         s/nIC00DVB9QJ2BnDBTrETu/F5YLcex4UnxznOLk+G/WUJZVoDh6iivSMmIw8fiUpI1I
+         tvaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711094324; x=1711699124;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Qq2UvdnGF+i0lv3cQE2vwfxzP0IBqc7zAeM21eyo6SQ=;
+        b=fHXioVTDiTrO0ne7GKDAjzF28RhT7XU/W5MDP+n8LyWtBok+8fQQ2hEwhHXM5jeZo+
+         5k473EEgcXFULc828AIjqNFZYyyekJ0EcLKrrVy1TCsYFakizeljaDn1roSe1yTiamrk
+         MIRpt1GKeiWfjWQTUqTbx0waYKFTqaFGI+n5bRzyZJdolL4vLMMksymhwYKuT7ajHSh0
+         k9Q12UgjoCt+LY8THmkJy7oRfpYOJyTlDW3562+ZAu8x+cykWfCRL963sfNOHTIwZaEl
+         +f3AXsW1peXJKQDKP/DjB5cTc3BPKf9jDcD7/wJVsXKEx6H23QgjSntDJ6//6u5CCkSK
+         xVpQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXDmF+bmUNeLGbUF+m8o0+KPL31eZz2sROLoiIIBjjDOihLaG/GWZA1gBvyoiRZ9t7bWRv+ODb0M6YBOGu6r44HOjPwqmxu3+Y0xA==
+X-Gm-Message-State: AOJu0YxpIT6Ym0+V9AyUe/9jMVIZSslupHtnFAbL8jBb69mj9wy/E+r9
+	ZQLawg+d5veE2w6cmAYjdHA0xhX1xWWpTnyNu8htbdZB6UlJRoXNsdo3jYE8WUU=
+X-Google-Smtp-Source: AGHT+IFfPw7L8Q/FyVD0aA/iJBlzVnrZAE+Hkn53NugKvE+lKFP30YlXVm9GuwDSXbo7RH3uCwUB2w==
+X-Received: by 2002:a05:600c:3b17:b0:414:b66:51f3 with SMTP id m23-20020a05600c3b1700b004140b6651f3mr1050755wms.14.1711094324659;
+        Fri, 22 Mar 2024 00:58:44 -0700 (PDT)
+Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
+        by smtp.gmail.com with ESMTPSA id n18-20020a05600c501200b004146bdce3fesm8016711wmr.4.2024.03.22.00.58.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Mar 2024 00:58:44 -0700 (PDT)
+Date: Fri, 22 Mar 2024 08:58:43 +0100
+From: Andrew Jones <ajones@ventanamicro.com>
+To: Samuel Holland <samuel.holland@sifive.com>
+Cc: Deepak Gupta <debug@rivosinc.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	Catalin Marinas <catalin.marinas@arm.com>, linux-kernel@vger.kernel.org, tech-j-ext@lists.risc-v.org, 
+	Conor Dooley <conor@kernel.org>, kasan-dev@googlegroups.com, 
+	Evgenii Stepanov <eugenis@google.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Rob Herring <robh+dt@kernel.org>, Guo Ren <guoren@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+	Paul Walmsley <paul.walmsley@sifive.com>
+Subject: Re: [RISC-V] [tech-j-ext] [RFC PATCH 5/9] riscv: Split per-CPU and
+ per-thread envcfg bits
+Message-ID: <20240322-168f191eeb8479b2ea169a5e@orel>
+References: <20240319215915.832127-1-samuel.holland@sifive.com>
+ <20240319215915.832127-6-samuel.holland@sifive.com>
+ <CAKC1njSg9-hJo6hibcM9a-=FUmMWyR39QUYqQ1uwiWhpBZQb9A@mail.gmail.com>
+ <40ab1ce5-8700-4a63-b182-1e864f6c9225@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: iio: adc: nxp,imx93-adc.yaml: Add
- calibration properties
-Content-Language: en-GB
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, haibo.chen@nxp.com,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Cc: jic23@kernel.org, lars@metafoo.de, shawnguo@kernel.org,
- s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- upstream@lists.phytec.de
-References: <20240320100407.1639082-1-andrej.picej@norik.com>
- <20240320100407.1639082-3-andrej.picej@norik.com>
- <38637621-1611-4268-ae79-7ac93a72c5ee@linaro.org>
- <e994b756-7f4e-4be3-b8f3-310988174b44@norik.com>
- <7e58bf96-3c38-467f-86b6-06ff5feedb31@linaro.org>
-From: Andrej Picej <andrej.picej@norik.com>
-In-Reply-To: <7e58bf96-3c38-467f-86b6-06ff5feedb31@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
-X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <40ab1ce5-8700-4a63-b182-1e864f6c9225@sifive.com>
 
-On 20. 03. 24 13:15, Krzysztof Kozlowski wrote:
-> On 20/03/2024 13:05, Andrej Picej wrote:
->> Hi Krzysztof,
->>
->> On 20. 03. 24 11:26, Krzysztof Kozlowski wrote:
->>> On 20/03/2024 11:04, Andrej Picej wrote:
->>>> Document calibration properties and how to set them.
->>>
->>> Bindings are before users.
->>
->> will change patch order when I send a v2.
->>
->>>
->>> Please use subject prefixes matching the subsystem. You can get them for
->>> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
->>> your patch is touching.
->>> There is no file extension in prefixes.
->>
->> So: dt-bindings: iio/adc: nxp,imx93-adc: Add calibration properties?
-> 
-> Did you run the command I proposed? I don't see much of "/", but except
-> that looks good.
+On Tue, Mar 19, 2024 at 09:20:59PM -0500, Samuel Holland wrote:
+...
+> This is really a separate concern than when we write envcfg. The per-CPU
+> variable is only necessary to support hardware where a subset of harts support
+> Zicboz. Since the riscv_cpu_has_extension_[un]likely() helpers were added
+> specifically for Zicboz, I assume this is an important use case, and dropping
+> support for this hardware would be a regression. After all, hwprobe() allows
+> userspace to see that Zicboz is implemented at a per-CPU level. Maybe Andrew can
+> weigh in on that.
+>
 
-Ok noted.
+Hi Samuel,
 
-> 
->>
->>>
->>>>
->>>> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
->>>> ---
->>>>    .../bindings/iio/adc/nxp,imx93-adc.yaml           | 15 +++++++++++++++
->>>>    1 file changed, 15 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
->>>> index dacc526dc695..64958be62a6a 100644
->>>> --- a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
->>>> +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
->>>> @@ -46,6 +46,21 @@ properties:
->>>>      "#io-channel-cells":
->>>>        const: 1
->>>>    
->>>> +  nxp,calib-avg-en:
->>>> +    description:
->>>> +      Enable or disable averaging of calibration time.
->>>> +    enum: [ 0, 1 ]
->>>> +
->>>> +  nxp,calib-nr-samples:
->>>> +    description:
->>>> +      Selects the number of averaging samples to be used during calibration.
->>>> +    enum: [ 16, 32, 128, 512 ]
->>>> +
->>>> +  nxp,calib-t-samples:
->>>> +    description:
->>>> +      Specifies the sample time of calibration conversions.
->>>> +    enum: [ 8, 16, 22, 32 ]
->>>
->>> No, use existing, generic properties. Open other bindings for this.
->>
->> You mean I should use generic properties for the ADC calibration
->> settings? Is there already something in place? Because as I understand
->> it, these calib-* values only effect the calibration process of the ADC.
-> 
-> Please take a look at other devices and dtschema. We already have some
-> properties for this... but maybe they cannot be used?
-> 
+I've approached Zicboz the same way I would approach all extensions, which
+is to be per-hart. I'm not currently aware of a platform that is / will be
+composed of harts where some have Zicboz and others don't, but there's
+nothing stopping a platform like that from being built. I realize this
+adds complexity that we may not want to manage in Linux without an actual
+use case requiring it. I wouldn't be opposed to keeping things simple for
+now, only bringing in complexity when needed (for this extension or for a
+future extension with envcfg bits), but we should ensure we make it clear
+that we're making those simplifications now based on assumptions, and we
+may need to change things later.
 
-I did look into other ADC devices, grep across iio/adc, adc bindings 
-folders and couldn't find anything closely related to what we are 
-looking for. Could you please point me to the properties that you think 
-should be used for this?
-
-Thank you.
-Andrej
-
-> 
-> Best regards,
-> Krzysztof
-> 
+Thanks,
+drew
 
