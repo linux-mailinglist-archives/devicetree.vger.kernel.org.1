@@ -1,125 +1,110 @@
-Return-Path: <devicetree+bounces-52554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 322F288729D
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 19:08:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 799848872AD
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 19:12:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 650741C21720
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 18:08:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F06A282514
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 18:12:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA7D2627E4;
-	Fri, 22 Mar 2024 18:08:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="blJilI8H"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03838629F3;
+	Fri, 22 Mar 2024 18:12:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C8186217C;
-	Fri, 22 Mar 2024 18:08:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45403629E1;
+	Fri, 22 Mar 2024 18:12:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711130895; cv=none; b=XtW4x/VmR5PQeNicrbTHthumGGRyHIdzOvIVb3SOXoFrOKCZyVbNEZ8ypgCi5CyAG1n1VEjsOtJKAK5VFFT8PqIvzoxh4YNPGU4q6KcvL/KylFb0yRQsjTIruDo2nXW3si+tKR7R4HjRx9cU5KgendtF9UEUZFHwux4oiOjikh0=
+	t=1711131140; cv=none; b=t42tDmnf0x8LeXB3RDr9W/2FBrw67SXSVhblcSFd6NwnE1GuMzonFdIUmUqYdTSTTlJXFJiDOhoIRMeHaZjAlbsyybqzkuZQHhHPXKn2zpoEGSpNVR6IYBszUT22Q44hH1EWBJpC0NVSn1GMyKvU9sMHXqpUuXZxuZY8MxeDCzQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711130895; c=relaxed/simple;
-	bh=fQXZuc6meo+LXu79cW5I7jPiDyKbQOSV3nOXls1mcm0=;
+	s=arc-20240116; t=1711131140; c=relaxed/simple;
+	bh=0hrvSYNToT8Eq5YXROkXYwZEAFnql+3JchMf3WGhKIE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YNIyS/jg/8X+Oztmk4aDw62Qe6NvEGUbJKcZTlaPFeJ0zVYnEO/x5fLA2hnOPO6rF9wyt3PIwmgxLz0tL/pHM2ugLkC8cKm3UMxQKTa2dPYrP8aBzf37wZF9s9LfT1l34FHR53XcQjp2j/VG4M8Kic4iCMKZ38z4PeH++1NxroY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=blJilI8H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2661FC43390;
-	Fri, 22 Mar 2024 18:08:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711130895;
-	bh=fQXZuc6meo+LXu79cW5I7jPiDyKbQOSV3nOXls1mcm0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=blJilI8Hi2JBw1HOLOVWzOx764MvFX6UDS6AmOG45iIc6+1akhltpXW8w6CzxvKHm
-	 oJszU/Qt371YWwmXbGij1nq0bb/aLW5D2wQXrKVeTBW7+4t4M2Vd5Qscvai8RO9uP0
-	 CtdmlknHA623GlwtdgfEJaoSjM76VTebxdq0vNeuv02zTqEx+Kot8tNjpWf7WhKV8U
-	 VAlv8wsjkLzfiH5iXchY4mM4OeYfTfnYnWaxJREJKOPumk2QGg2Hi36itK0iORbvts
-	 z0w976BHZaHRAhKvbWCuckQYDZSnVb2wyvrlIMqVMqUOWgHyYk+ygQZW0oFvwvbzjk
-	 JJ5rniRAmyLFw==
-Date: Fri, 22 Mar 2024 18:08:08 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Parthiban.Veerasooran@microchip.com
-Cc: krzysztof.kozlowski@linaro.org, andrew@lunn.ch, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-	horms@kernel.org, saeedm@nvidia.com, anthony.l.nguyen@intel.com,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	corbet@lwn.net, linux-doc@vger.kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, Horatiu.Vultur@microchip.com,
-	ruanjinjie@huawei.com, Steen.Hegelund@microchip.com,
-	vladimir.oltean@nxp.com, UNGLinuxDriver@microchip.com,
-	Thorsten.Kummermehr@microchip.com, Pier.Beruto@onsemi.com,
-	Selvamani.Rajagopal@onsemi.com, Nicolas.Ferre@microchip.com,
-	benjamin.bigler@bernformulastudent.ch
-Subject: Re: [PATCH net-next v3 12/12] dt-bindings: net: add Microchip's
- LAN865X 10BASE-T1S MACPHY
-Message-ID: <20240322-bronzing-gangrene-486296d6117c@spud>
-References: <20240306-spree-islamist-957acf0ee368@spud>
- <4c5968a3-c043-45fc-8fff-2a9eaa6de341@lunn.ch>
- <20240306-ripeness-dimple-e360a031ccde@spud>
- <05a9a7ee-e4f0-443e-9c8a-8ee649a11448@microchip.com>
- <2f384a54-74a0-4a75-a325-8985257b5d66@linaro.org>
- <ba37c212-fb98-407d-9bee-6d14801754d9@microchip.com>
- <96493beb-afbf-42f2-88f0-ad645422ecdb@linaro.org>
- <1735add6-4a6a-452b-bf26-1cf19c95493e@microchip.com>
- <20240321-upcountry-finless-b0e9b1ab4deb@spud>
- <13a28ba3-2da4-428c-8091-25e75c6c11e8@microchip.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Icn7e4vjsKqlySrxO/Fj7uLOlJXSiTQJ3j7BkyoSwnsBtHElyHuVmFXmyMmWg/FpZDlGJvdcP/R/RMRMJXR/v5lgNqVKD1SW7ydZXNVmK7yuf/PO3Pxv8hOB9EsroHBacnwAvb7wJWN0t/xzFs5A864znizhq2L8bmShwfp5raI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.96.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1rnjMx-0005ca-2P;
+	Fri, 22 Mar 2024 18:11:55 +0000
+Date: Fri, 22 Mar 2024 18:11:51 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Bart Van Assche <bvanassche@acm.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>, Jens Axboe <axboe@kernel.dk>,
+	Dave Chinner <dchinner@redhat.com>, Jan Kara <jack@suse.cz>,
+	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Li Lingfeng <lilingfeng3@huawei.com>,
+	Christian Brauner <brauner@kernel.org>,
+	Christian Heusel <christian@heusel.eu>,
+	Min Li <min15.li@samsung.com>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Avri Altman <avri.altman@wdc.com>, Hannes Reinecke <hare@suse.de>,
+	Christian Loehle <CLoehle@hyperstone.com>,
+	Bean Huo <beanhuo@micron.com>, Yeqi Fu <asuk4.q@gmail.com>,
+	Victor Shih <victor.shih@genesyslogic.com.tw>,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+	Dominique Martinet <dominique.martinet@atmark-techno.com>,
+	"Ricardo B. Marliere" <ricardo@marliere.net>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org, linux-block@vger.kernel.org
+Subject: Re: [PATCH 4/8] block: implement NVMEM provider
+Message-ID: <Zf3J5wAgng8br6yd@makrotopia.org>
+References: <cover.1711048433.git.daniel@makrotopia.org>
+ <7555db6eb71d4ccb2b9d5ebe3b41dc34088c6316.1711048433.git.daniel@makrotopia.org>
+ <e170642d-9ae8-4d5a-90d9-2837f1bcef9b@acm.org>
+ <ZfyW8jTAgclicAWd@makrotopia.org>
+ <99874d1e-ff5c-4e8a-9922-752207119147@acm.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="S2tY6Un3N5uwXbGz"
-Content-Disposition: inline
-In-Reply-To: <13a28ba3-2da4-428c-8091-25e75c6c11e8@microchip.com>
-
-
---S2tY6Un3N5uwXbGz
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <99874d1e-ff5c-4e8a-9922-752207119147@acm.org>
 
-On Fri, Mar 22, 2024 at 06:25:02AM +0000, Parthiban.Veerasooran@microchip.c=
-om wrote:
-> Ah ok, now I understand this. Then it is supposed to be like below,
->=20
-> properties:=20
->=20
->    compatible:=20
->=20
->      oneOf:=20
->=20
->        - const: microchip,lan8650=20
->=20
->        - items:=20
->=20
->            - const: microchip,lan8651=20
->=20
->            - const: microchip,lan8650
->=20
-> Executed dt_binding_check with the above update and it was successful.=20
-> Hope this is OK?
+On Fri, Mar 22, 2024 at 10:52:36AM -0700, Bart Van Assche wrote:
+> On 3/21/24 13:22, Daniel Golle wrote:
+> > On Thu, Mar 21, 2024 at 12:44:19PM -0700, Bart Van Assche wrote:
+> > > Why to add this functionality to the block layer instead of somewhere
+> > > in the drivers/ directory?
+> > 
+> > Simply because we need notifications about appearing and disappearing
+> > block devices, or a way to iterate over all block devices in a system.
+> > For both there isn't currently any other interface than using a
+> > class_interface for that, and that requires access to &block_class
+> > which is considered a block subsystem internal.
+> 
+> That's an argument for adding an interface to the block layer that
+> implements this functionality but not for adding this code in the block
+> layer.
 
-That looks about what I would expect to see, yes.
+Fine with me. I can implement such an interface, similar to how it is
+implemented for MTD devices or UBI volumes for the block layer.
 
+I would basically add a subscription and callback interface utilizing
+a class_interface inside the block subsystem similar to how the same
+is done in this series for registering block-device-backed NVMEM
+providers.
 
---S2tY6Un3N5uwXbGz
-Content-Type: application/pgp-signature; name="signature.asc"
+However, given that this is a bigger task, I'd like to know from more
+than one block subsystem maintainer that this approach would be
+agreeable before spending time and effort in this direction.
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZf3JBwAKCRB4tDGHoIJi
-0qZBAP9TqELgibVyHTh6TNWuFU2T4oY9Ob9ctLd7nkjGBVVy6QD/V5J/qVbshDrN
-sDFI7s1V58/hn+099z9ElLwxU6Ut/wU=
-=etGe
------END PGP SIGNATURE-----
-
---S2tY6Un3N5uwXbGz--
+Also note that obviously it would be much more intrusive and affect
+*all* users of the block subsystem, while the current approach would
+only affect those users who got CONFIG_BLOCK_NVMEM enabled.
 
