@@ -1,468 +1,154 @@
-Return-Path: <devicetree+bounces-52424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FFF4886941
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 10:30:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0A87886950
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 10:33:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 59A421C23F81
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 09:30:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C4A701C215F2
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 09:33:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46A783C46B;
-	Fri, 22 Mar 2024 09:29:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="PVIpcBH9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97A3420309;
+	Fri, 22 Mar 2024 09:33:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2135.outbound.protection.partner.outlook.cn [139.219.146.135])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C9E438DDD;
-	Fri, 22 Mar 2024 09:29:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711099753; cv=none; b=idq1DhIliKUSxpeJiqWZD5z+vif0Ep32ud+GWv9PlYOm02/e9m4KLiuEvez5jCuJwjw9WQ2K1WpG9XcAqaqZSELeaAhEPjDfywUkcY+tfojEyHI3F/mD6IVO5+cVV14CjMNoyNtXVuj4ttSKSxQaU+0AR0XXLP5jkbxh9nXrfik=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711099753; c=relaxed/simple;
-	bh=4amundVKYBlSE0uqGcpRga8XrKsqEbBI94uQCoLB7QU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=SHcpgzdjXNKDE37by91b4l8O5rZyoYSTkfrEI6u4mNHqWBTZ6xRPYpEnKNRWUBYQyzGeYwGtqntBDfcdQ6/zoI24zkW8UcDAWd3mH96DClLfIzzYABxlK/8xcLp6JDPwonqHfNHPEvNQCwTOLw8FFRTU+Bnk0+EAy/nHbbDicgc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=PVIpcBH9; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1711099749;
-	bh=4amundVKYBlSE0uqGcpRga8XrKsqEbBI94uQCoLB7QU=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=PVIpcBH9kYPJIol66J9sc/Vr0EkaiebpxVCoufid4xumEC07fgZw+lVFqgR75SOT6
-	 T6nJXxPjlh8sIRoc4/2P954uCXCQUGFbPRssPKmiRNo2ra9dTECtFLYegwRZ9TSWn5
-	 7DnODLDFVLV8KiQxlUWQUL3YsDJFPuJxUGVF2jTOAO5hr+eT2oFBYHDdfaeCZJtozy
-	 bIlMgygoSTFUcjMMECc3GSl/3pmDCpNV6kRpjjlf8voWzeGGDD7tAryt5CiFU3GOWZ
-	 GM59EcbHxGEKo6KnkP2/MDHM4bYBJOMHXbIXg9kMXykSQF0NQe/OUoM9+kKaBw7vW2
-	 WrHEhHBwaOlmQ==
-Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 6492A378211A;
-	Fri, 22 Mar 2024 09:29:08 +0000 (UTC)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: linux-media@vger.kernel.org
-Cc: mchehab@kernel.org,
-	robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	amergnat@baylibre.com,
-	moudy.ho@mediatek.com,
-	hverkuil-cisco@xs4all.nl,
-	sebastian.fricke@collabora.com,
-	u.kleine-koenig@pengutronix.de,
-	chunkuang.hu@kernel.org,
-	p.zabel@pengutronix.de,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	kernel@collabora.com
-Subject: [PATCH 4/4] media: platform: mtk-mdp3: Add support for MT8188 MDP3 components
-Date: Fri, 22 Mar 2024 10:28:45 +0100
-Message-ID: <20240322092845.381313-5-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240322092845.381313-1-angelogioacchino.delregno@collabora.com>
-References: <20240322092845.381313-1-angelogioacchino.delregno@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E93B199AD;
+	Fri, 22 Mar 2024 09:33:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.135
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1711100009; cv=fail; b=MVE7XjpyHpoa5ZIrmecBfOZHppo4pONcmRIdltWGN+QkFtThPiKMqQOKCOhJKvmeq9eev5AwqC09mPsOLv+eVmk1fifstvWX2kEb5KuI6TYLvhYT0xgXw8oJqgRDD1LQ0Zx/7JZNkRE7gItk0iSxCyVtWMIBd0d3Z7cdWs3Jgio=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1711100009; c=relaxed/simple;
+	bh=gxhut695F8esbhX9LHz6cc1aFEmLRIlROucXU+v3gHU=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=KlsYD8kaPzzRK9xiqJxz6M6Jeo73aVoJoBSuOa87oSUb6iXMBl/r94nUJXp0F8m3kxQ88cVqWtrtD79SclBVBiQNcb3x9FB+JFvJUo1O4fW3fH/2A0SVarBEMDKOxSPqatRKVpGrQmd6NAlPxb+pueMDp6zO/r1baiwepiwdYTA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.135
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bAPzSXCRl/ru6/XMtGs2ElENDrREVdd8x/i91rBkPR7ikyPdRbXTA+oAiysZ44r7r3U09+hs7RCc5ym1HUNtd5xM5UCnYm4hykrXu6o/j9i7z2NoSltWPiU9Y4qLbrJM8sghcZCXp175aY/Mwc2VpINzv4uykgnMGMCT2BIIhxgXp6zRkpF5+3U1Pz48D6NDXhXiu+HpJQHogOzFaoipG5G6kF32puEDmM8SU/w0dbMDv1+Z66NoeKbj94Ocqnb7S6Oq9a0GW5o39ZPK2TK6N7C8gO2PkLWe4dT7BzNkDQechSn3isgzLk8jTBy5IDYO7yr2Pn7qZL06e+FiZnCPFA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gxhut695F8esbhX9LHz6cc1aFEmLRIlROucXU+v3gHU=;
+ b=KSUh5PNGRYyE2W1Uf4Cl+J5LSdfkjGpPaDzraTOzteD+JNR+NEG2YMRZ6rISiTZ7e6yR5PfvLZ6BNRpA3utuaw8Wli9ld6VlNb4133P8eNoHEizvg6cA2LHAw7OssZnibrMIeIl6i7gSInM268KP/GTmK/BAHnPXST1jNWY8Fmcsd+jsYchwWAtsoxBaMflGrGluXMKvKPoQP15jwwcDybcqAuU2qYjfbQtZwNuZ6VCIyHgQbD1t6THuZuhUPmMt6RGuXDe5xt7eqCvCXsJ1rCPG8lkYQh6+Yi+AGD5xxILyo3Wh0wOoxPtVjD4hkTJcGMMQ2p48e7b/rDLTxj8oXA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Received: from ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:7::14) by ZQ2PR01MB1241.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:6::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.13; Fri, 22 Mar
+ 2024 09:33:16 +0000
+Received: from ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+ ([fe80::5de:15b9:3114:4f45]) by ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+ ([fe80::5de:15b9:3114:4f45%5]) with mapi id 15.20.7386.025; Fri, 22 Mar 2024
+ 09:33:16 +0000
+From: Hal Feng <hal.feng@starfivetech.com>
+To: JeeHeng Sia <jeeheng.sia@starfivetech.com>, "kernel@esmil.dk"
+	<kernel@esmil.dk>, "conor@kernel.org" <conor@kernel.org>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"paul.walmsley@sifive.com" <paul.walmsley@sifive.com>, "palmer@dabbelt.com"
+	<palmer@dabbelt.com>, "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
+	"mturquette@baylibre.com" <mturquette@baylibre.com>, "sboyd@kernel.org"
+	<sboyd@kernel.org>, "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+	"emil.renner.berthing@canonical.com" <emil.renner.berthing@canonical.com>,
+	Xingyu Wu <xingyu.wu@starfivetech.com>
+CC: "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, Leyfoon Tan
+	<leyfoon.tan@starfivetech.com>
+Subject: RE: [RFC v3 02/16] reset: starfive: Convert the word "jh71x0" to
+ "starfive"
+Thread-Topic: [RFC v3 02/16] reset: starfive: Convert the word "jh71x0" to
+ "starfive"
+Thread-Index: AQHaQ8ld9K0U0x50EUeXbB8eniMmabFD7KaQ
+Date: Fri, 22 Mar 2024 09:33:16 +0000
+Message-ID:
+ <ZQ2PR01MB130701FF146FB6922B7ACD59E631A@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
+References: <20240110133128.286657-1-jeeheng.sia@starfivetech.com>
+ <20240110133128.286657-3-jeeheng.sia@starfivetech.com>
+In-Reply-To: <20240110133128.286657-3-jeeheng.sia@starfivetech.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: ZQ2PR01MB1307:EE_|ZQ2PR01MB1241:EE_
+x-ms-office365-filtering-correlation-id: 28513295-9dad-486a-91eb-08dc4a531a81
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ BK0M4PKffo+QnsFQat27fXgxl+RpcRGzZgtREzfkm/ugJ8I1PQZLX+/bHFtKnKRfrhRcztuv7y5tGeqpn5bR8aXNaXjwlU9A/AqO+ZvWWcBtbjRRNRn4eHiXdz4x4rwdd9d+77qfne3QexXbsS4maKtn9P7BJS4qP3/7Z17tWrU/35PlyWVfHhV3ZVz64sn9P8/9Ff6uJdaRc8whYT6FrJz8O6a8V9SkMNbSCJjeqOdttxLDv1Ozcb+S5xyoGttDVtKtBjojbirlnOy5GyRLTPfZgbIbdu0DesuyabqALl/hMaToH571RGY/KmVzHcJ+aS8HYH5LuiBUNXiRorq4wb4uuk1Wrl1HYQyzQ9ZHSh0i6rdahGFGreKObWOpNEc9fryQtCQ7EZv2CA06OMv5mmDNJkFqvaFvoq5pMHvX4UgXawJk3+6j3S/vqmTCnQBWJzW+G747TNm6YNhYxrTiHHc87Xpq2TuA57N/eTmND/bTsKc7zhePiVKxPiTOrqUhJvY58oVV1EkPCeS0zqyAvqDNMuGE1QlGdTH+kaEfCi7XgNJ6o2rRF8JP620htYaPXsBogy0oNbhhl+XpXrHhTWCQg8SHUZ6TL6rIzTLhLRp0zjgEN7TK5o2jVZkc3BOE1EvUZmMXn3SQ3FRKn0v0qw==
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(7416005)(1800799015)(366007)(921011)(38070700009);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?8T2UsewSpQ9iaxi+thpzWq/bbkUwrrf+9NCek+opxqX6S2RDxsXr0M8Xh84A?=
+ =?us-ascii?Q?/AlcLTmE8WOfCVx02ZbLk7in918kAHuVirfgq9AkYUSVE5Jux8z4Q0xT6vOz?=
+ =?us-ascii?Q?wHrf+dR7yJcLNtsFBZJD6n02H/Xbc2iFP/fL5Avzt50kQpPzJLEZh9e/9zGX?=
+ =?us-ascii?Q?xaGS/eAD9WRP8lmnzU/zijfcgVqTfMa7FjxvSCt7Du0Obt944njjeUUpRaCu?=
+ =?us-ascii?Q?B6lybIAPT2XKgSK9EDBNvV3rZ7Amz6lQpa2SopWHHzRSDywxBOi8PMOnU/I9?=
+ =?us-ascii?Q?47YCskZ2yPkDyQL659/9+bC44iiQ1yVgAtvD4O3QHere9uNbucbRWgMaOPIB?=
+ =?us-ascii?Q?hHm40rt7eUsmPjXdI5XEF+1LoD524v9VXvCh28aSRXE3L8ZQdZqJkq/rFCGL?=
+ =?us-ascii?Q?akfSzyYey+XMERKhlr9N8WLQuREp+jutXt8TsusuafFas038S4+Vt2ZANOpV?=
+ =?us-ascii?Q?eMbxUAM2myEPtWRFF0mM6qgd8+yPcA8azdiGrP46PCJBmyaInd9gPSz2JGEl?=
+ =?us-ascii?Q?AzmJtGqzawJMbLq+0/WJi1vR/5NkFvKNIMo0adVZ6r+8sQcKDu1rWodZikDN?=
+ =?us-ascii?Q?0pOENNBY/j9PDsyICN5pf9AGMGdNOVnNOYOhyo5RH5JdlvJcjL5kfaaSeJgK?=
+ =?us-ascii?Q?q4+jcQ701Qgjx5cYXp/muIkhjmawqGCJJk4Rn583y4wZFPH/sIxNuj29Dq2e?=
+ =?us-ascii?Q?mBOXJl1wyYNfgkunr3IrTUmk2AKQmZ7Cby0p8JnVSggKW8PgVW1SULdgYMUl?=
+ =?us-ascii?Q?mS4qMRrh+pIMge/xJb4qOLP4UjTCovYNXdKeneFoEAV5IviJPYp00mNQaMfV?=
+ =?us-ascii?Q?YY1TKERls4Hz6vQJ7epH9RXaCYJaHyWiRTcNdsS/aBpZlieVpCTUwbeWIS6S?=
+ =?us-ascii?Q?eNtEQXnXVZIdzQRszioN2zWKRJIIkmUJgnznZXiZcvbj2kQ+Ph/SEMJA4tXN?=
+ =?us-ascii?Q?ylUoCJfRksKQYu5Vq1qkMoFHxmZuUpw4qw5HWhCNaxJnE/WspGSC1GlM+yqx?=
+ =?us-ascii?Q?26Mp1+xRZomtFoph2tQc4JiyqCVwQ4gSEgugTkm+Tn7s04fagjJeVrJ9POOl?=
+ =?us-ascii?Q?NFC1xioum5fR7wjrUJ3bB2t+eg4+PUxJR3z//jpp8mC6oT8nSRPj31jkQ/ZK?=
+ =?us-ascii?Q?6/Ytk8/5yXy4iYEqrjLKjw6F+GN8xYCUj4JIyIdXKgesw8faqA/GGPADqYSB?=
+ =?us-ascii?Q?sTiWJWEgqSOMTVQWm1jwK6Z5sUMMJNg5NbLFsI0vCEMlp6/12jgneQI8w7sY?=
+ =?us-ascii?Q?FE9URzct/zhx4G/KkAaL5aMN/Nee+YjulGSfueU+J7m3ozJ4QO4oDDohiRRc?=
+ =?us-ascii?Q?9Pr9A6Qq1NWl73HpuORkytBm19RozC4icbKrZcKtWTK17nRit+NGxwighskd?=
+ =?us-ascii?Q?l4otQuUEVE6q9guO+d5SsZ0bRLRStdZ43aVzU0TvHaH1d/KgdEU889fqWSS8?=
+ =?us-ascii?Q?o+P2G/TrPESdZyvSOuIGJdWuxKIg8dZdHFoIJnitCmwwtvPkVNlWa097nzWh?=
+ =?us-ascii?Q?ce37ETuykI/aeGECAWFRVvXbCcVYw7uGWBdrntGt9WYmP55dhrvrbaLewsdv?=
+ =?us-ascii?Q?Yb9EDqHfIq+2TLaiaLBRXBfzqFb6eE/XM6lVwH/s?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-Network-Message-Id: 28513295-9dad-486a-91eb-08dc4a531a81
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Mar 2024 09:33:16.6952
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 1sq2bAkZdvN8c0re2gYBrSDSyULUfPtKIdNoBjnUcLGUyHkQ3BHDijGTN6b7y2w9iQmaVOsoMGs9QvM6CTO7pqNes6rSw17bg3W2mt1Uh6g=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ2PR01MB1241
 
-MT8195 and MT8188 share a similar MDP3 macro-block, with minor
-differences - as in, the latter supports a subset of the number
-of components supported by the former, but are otherwise handled
-in the same way.
+> On 10.01.24 21:31, JeeHeng Sia wrote:
+>=20
+> Function names that consist of the 'jh71x0' naming convention are renamed=
+ to
+> use the 'starfive' wording.
+>=20
+> Signed-off-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
+> Reviewed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
+> Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 
-Add driver data for MT8188, reusing the already present MT8195
-data where possible.
-
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- .../platform/mediatek/mdp3/mdp_cfg_data.c     | 280 ++++++++++++++++++
- .../platform/mediatek/mdp3/mtk-img-ipi.h      |   1 +
- .../platform/mediatek/mdp3/mtk-mdp3-cfg.h     |   1 +
- .../platform/mediatek/mdp3/mtk-mdp3-core.c    |   3 +
- 4 files changed, 285 insertions(+)
-
-diff --git a/drivers/media/platform/mediatek/mdp3/mdp_cfg_data.c b/drivers/media/platform/mediatek/mdp3/mdp_cfg_data.c
-index ecca52b45307..0b4c50bc1776 100644
---- a/drivers/media/platform/mediatek/mdp3/mdp_cfg_data.c
-+++ b/drivers/media/platform/mediatek/mdp3/mdp_cfg_data.c
-@@ -46,6 +46,53 @@ enum mt8183_mdp_comp_id {
- 	MT8183_MDP_COMP_WROT1,          /* 25 */
- };
- 
-+enum mt8188_mdp_comp_id {
-+	/* MT8188 Comp id */
-+	/* ISP */
-+	MT8188_MDP_COMP_WPEI = 0,
-+	MT8188_MDP_COMP_WPEO,           /* 1 */
-+
-+	/* MDP */
-+	MT8188_MDP_COMP_CAMIN,          /* 2 */
-+	MT8188_MDP_COMP_RDMA0,          /* 3 */
-+	MT8188_MDP_COMP_RDMA2,          /* 4 */
-+	MT8188_MDP_COMP_RDMA3,          /* 5 */
-+	MT8188_MDP_COMP_FG0,            /* 6 */
-+	MT8188_MDP_COMP_FG2,            /* 7 */
-+	MT8188_MDP_COMP_FG3,            /* 8 */
-+	MT8188_MDP_COMP_TO_SVPP2MOUT,   /* 9 */
-+	MT8188_MDP_COMP_TO_SVPP3MOUT,   /* 10 */
-+	MT8188_MDP_COMP_TO_WARP0MOUT,   /* 11 */
-+	MT8188_MDP_COMP_VPP0_SOUT,      /* 12 */
-+	MT8188_MDP_COMP_VPP1_SOUT,      /* 13 */
-+	MT8188_MDP_COMP_PQ0_SOUT,       /* 14 */
-+	MT8188_MDP_COMP_HDR0,           /* 15 */
-+	MT8188_MDP_COMP_HDR2,           /* 16 */
-+	MT8188_MDP_COMP_HDR3,           /* 17 */
-+	MT8188_MDP_COMP_AAL0,           /* 18 */
-+	MT8188_MDP_COMP_AAL2,           /* 19 */
-+	MT8188_MDP_COMP_AAL3,           /* 20 */
-+	MT8188_MDP_COMP_RSZ0,           /* 21 */
-+	MT8188_MDP_COMP_RSZ2,           /* 22 */
-+	MT8188_MDP_COMP_RSZ3,           /* 23 */
-+	MT8188_MDP_COMP_TDSHP0,         /* 24 */
-+	MT8188_MDP_COMP_TDSHP2,         /* 25 */
-+	MT8188_MDP_COMP_TDSHP3,         /* 26 */
-+	MT8188_MDP_COMP_COLOR0,         /* 27 */
-+	MT8188_MDP_COMP_COLOR2,         /* 28 */
-+	MT8188_MDP_COMP_COLOR3,         /* 29 */
-+	MT8188_MDP_COMP_OVL0,           /* 30 */
-+	MT8188_MDP_COMP_PAD0,           /* 31 */
-+	MT8188_MDP_COMP_PAD2,           /* 32 */
-+	MT8188_MDP_COMP_PAD3,           /* 33 */
-+	MT8188_MDP_COMP_TCC0,           /* 34 */
-+	MT8188_MDP_COMP_WROT0,          /* 35 */
-+	MT8188_MDP_COMP_WROT2,          /* 36 */
-+	MT8188_MDP_COMP_WROT3,          /* 37 */
-+	MT8188_MDP_COMP_MERGE2,         /* 38 */
-+	MT8188_MDP_COMP_MERGE3,         /* 39 */
-+};
-+
- enum mt8195_mdp_comp_id {
- 	/* MT8195 Comp id */
- 	/* ISP */
-@@ -123,6 +170,13 @@ static const struct of_device_id mt8183_mdp_probe_infra[MDP_INFRA_MAX] = {
- 	[MDP_INFRA_SCP] = { .compatible = "mediatek,mt8183-scp" }
- };
- 
-+static const struct of_device_id mt8188_mdp_probe_infra[MDP_INFRA_MAX] = {
-+	[MDP_INFRA_MMSYS] = { .compatible = "mediatek,mt8188-vppsys0" },
-+	[MDP_INFRA_MMSYS2] = { .compatible = "mediatek,mt8188-vppsys1" },
-+	[MDP_INFRA_MUTEX] = { .compatible = "mediatek,mt8188-vpp-mutex" },
-+	[MDP_INFRA_MUTEX2] = { .compatible = "mediatek,mt8188-vpp-mutex" },
-+};
-+
- static const struct of_device_id mt8195_mdp_probe_infra[MDP_INFRA_MAX] = {
- 	[MDP_INFRA_MMSYS] = { .compatible = "mediatek,mt8195-vppsys0" },
- 	[MDP_INFRA_MMSYS2] = { .compatible = "mediatek,mt8195-vppsys1" },
-@@ -167,6 +221,40 @@ static const u32 mt8183_mutex_idx[MDP_MAX_COMP_COUNT] = {
- 	[MDP_COMP_CCORR0] = MUTEX_MOD_IDX_MDP_CCORR0,
- };
- 
-+static const u32 mt8188_mutex_idx[MDP_MAX_COMP_COUNT] = {
-+	[MDP_COMP_RDMA0] = MUTEX_MOD_IDX_MDP_RDMA0,
-+	[MDP_COMP_RDMA2] = MUTEX_MOD_IDX_MDP_RDMA2,
-+	[MDP_COMP_RDMA3] = MUTEX_MOD_IDX_MDP_RDMA3,
-+	[MDP_COMP_FG0] = MUTEX_MOD_IDX_MDP_FG0,
-+	[MDP_COMP_FG2] = MUTEX_MOD_IDX_MDP_FG2,
-+	[MDP_COMP_FG3] = MUTEX_MOD_IDX_MDP_FG3,
-+	[MDP_COMP_HDR0] = MUTEX_MOD_IDX_MDP_HDR0,
-+	[MDP_COMP_HDR2] = MUTEX_MOD_IDX_MDP_HDR2,
-+	[MDP_COMP_HDR3] = MUTEX_MOD_IDX_MDP_HDR3,
-+	[MDP_COMP_AAL0] = MUTEX_MOD_IDX_MDP_AAL0,
-+	[MDP_COMP_AAL2] = MUTEX_MOD_IDX_MDP_AAL2,
-+	[MDP_COMP_AAL3] = MUTEX_MOD_IDX_MDP_AAL3,
-+	[MDP_COMP_RSZ0] = MUTEX_MOD_IDX_MDP_RSZ0,
-+	[MDP_COMP_RSZ2] = MUTEX_MOD_IDX_MDP_RSZ2,
-+	[MDP_COMP_RSZ3] = MUTEX_MOD_IDX_MDP_RSZ3,
-+	[MDP_COMP_MERGE2] = MUTEX_MOD_IDX_MDP_MERGE2,
-+	[MDP_COMP_MERGE3] = MUTEX_MOD_IDX_MDP_MERGE3,
-+	[MDP_COMP_TDSHP0] = MUTEX_MOD_IDX_MDP_TDSHP0,
-+	[MDP_COMP_TDSHP2] = MUTEX_MOD_IDX_MDP_TDSHP2,
-+	[MDP_COMP_TDSHP3] = MUTEX_MOD_IDX_MDP_TDSHP3,
-+	[MDP_COMP_COLOR0] = MUTEX_MOD_IDX_MDP_COLOR0,
-+	[MDP_COMP_COLOR2] = MUTEX_MOD_IDX_MDP_COLOR2,
-+	[MDP_COMP_COLOR3] = MUTEX_MOD_IDX_MDP_COLOR3,
-+	[MDP_COMP_OVL0] = MUTEX_MOD_IDX_MDP_OVL0,
-+	[MDP_COMP_PAD0] = MUTEX_MOD_IDX_MDP_PAD0,
-+	[MDP_COMP_PAD2] = MUTEX_MOD_IDX_MDP_PAD2,
-+	[MDP_COMP_PAD3] = MUTEX_MOD_IDX_MDP_PAD3,
-+	[MDP_COMP_TCC0] = MUTEX_MOD_IDX_MDP_TCC0,
-+	[MDP_COMP_WROT0] = MUTEX_MOD_IDX_MDP_WROT0,
-+	[MDP_COMP_WROT2] = MUTEX_MOD_IDX_MDP_WROT2,
-+	[MDP_COMP_WROT3] = MUTEX_MOD_IDX_MDP_WROT3,
-+};
-+
- static const u32 mt8195_mutex_idx[MDP_MAX_COMP_COUNT] = {
- 	[MDP_COMP_RDMA0] = MUTEX_MOD_IDX_MDP_RDMA0,
- 	[MDP_COMP_RDMA1] = MUTEX_MOD_IDX_MDP_RDMA1,
-@@ -288,6 +376,171 @@ static const struct mdp_comp_data mt8183_mdp_comp_data[MDP_MAX_COMP_COUNT] = {
- 	},
- };
- 
-+static const struct mdp_comp_data mt8188_mdp_comp_data[MDP_MAX_COMP_COUNT] = {
-+	[MDP_COMP_WPEI] = {
-+		{MDP_COMP_TYPE_WPEI, 0, MT8188_MDP_COMP_WPEI, MDP_MM_SUBSYS_0},
-+		{0, 0, 0}
-+	},
-+	[MDP_COMP_WPEO] = {
-+		{MDP_COMP_TYPE_EXTO, 0, MT8188_MDP_COMP_WPEO, MDP_MM_SUBSYS_0},
-+		{0, 0, 0}
-+	},
-+	[MDP_COMP_CAMIN] = {
-+		{MDP_COMP_TYPE_DL_PATH, 0, MT8188_MDP_COMP_CAMIN, MDP_MM_SUBSYS_0},
-+		{3, 3, 0}
-+	},
-+	[MDP_COMP_RDMA0] = {
-+		{MDP_COMP_TYPE_RDMA, 0, MT8188_MDP_COMP_RDMA0, MDP_MM_SUBSYS_0},
-+		{3, 0, 0}
-+	},
-+	[MDP_COMP_RDMA2] = {
-+		{MDP_COMP_TYPE_RDMA, 1, MT8188_MDP_COMP_RDMA2, MDP_MM_SUBSYS_1},
-+		{3, 0, 0}
-+	},
-+	[MDP_COMP_RDMA3] = {
-+		{MDP_COMP_TYPE_RDMA, 2, MT8188_MDP_COMP_RDMA3, MDP_MM_SUBSYS_1},
-+		{3, 0, 0}
-+	},
-+	[MDP_COMP_FG0] = {
-+		{MDP_COMP_TYPE_FG, 0, MT8188_MDP_COMP_FG0, MDP_MM_SUBSYS_0},
-+		{1, 0, 0}
-+	},
-+	[MDP_COMP_FG2] = {
-+		{MDP_COMP_TYPE_FG, 1, MT8188_MDP_COMP_FG2, MDP_MM_SUBSYS_1},
-+		{1, 0, 0}
-+	},
-+	[MDP_COMP_FG3] = {
-+		{MDP_COMP_TYPE_FG, 2, MT8188_MDP_COMP_FG3, MDP_MM_SUBSYS_1},
-+		{1, 0, 0}
-+	},
-+	[MDP_COMP_HDR0] = {
-+		{MDP_COMP_TYPE_HDR, 0, MT8188_MDP_COMP_HDR0, MDP_MM_SUBSYS_0},
-+		{1, 0, 0}
-+	},
-+	[MDP_COMP_HDR2] = {
-+		{MDP_COMP_TYPE_HDR, 1, MT8188_MDP_COMP_HDR2, MDP_MM_SUBSYS_1},
-+		{1, 0, 0}
-+	},
-+	[MDP_COMP_HDR3] = {
-+		{MDP_COMP_TYPE_HDR, 2, MT8188_MDP_COMP_HDR3, MDP_MM_SUBSYS_1},
-+		{1, 0, 0}
-+	},
-+	[MDP_COMP_AAL0] = {
-+		{MDP_COMP_TYPE_AAL, 0, MT8188_MDP_COMP_AAL0, MDP_MM_SUBSYS_0},
-+		{1, 0, 0}
-+	},
-+	[MDP_COMP_AAL2] = {
-+		{MDP_COMP_TYPE_AAL, 1, MT8188_MDP_COMP_AAL2, MDP_MM_SUBSYS_1},
-+		{1, 0, 0}
-+	},
-+	[MDP_COMP_AAL3] = {
-+		{MDP_COMP_TYPE_AAL, 2, MT8188_MDP_COMP_AAL3, MDP_MM_SUBSYS_1},
-+		{1, 0, 0}
-+	},
-+	[MDP_COMP_RSZ0] = {
-+		{MDP_COMP_TYPE_RSZ, 0, MT8188_MDP_COMP_RSZ0, MDP_MM_SUBSYS_0},
-+		{1, 0, 0}
-+	},
-+	[MDP_COMP_RSZ2] = {
-+		{MDP_COMP_TYPE_RSZ, 1, MT8188_MDP_COMP_RSZ2, MDP_MM_SUBSYS_1},
-+		{2, 0, 0},
-+		{MDP_COMP_MERGE2, true, true}
-+	},
-+	[MDP_COMP_RSZ3] = {
-+		{MDP_COMP_TYPE_RSZ, 2, MT8188_MDP_COMP_RSZ3, MDP_MM_SUBSYS_1},
-+		{2, 0, 0},
-+		{MDP_COMP_MERGE3, true, true}
-+	},
-+	[MDP_COMP_TDSHP0] = {
-+		{MDP_COMP_TYPE_TDSHP, 0, MT8188_MDP_COMP_TDSHP0, MDP_MM_SUBSYS_0},
-+		{1, 0, 0}
-+	},
-+	[MDP_COMP_TDSHP2] = {
-+		{MDP_COMP_TYPE_TDSHP, 1, MT8188_MDP_COMP_TDSHP2, MDP_MM_SUBSYS_1},
-+		{1, 0, 0}
-+	},
-+	[MDP_COMP_TDSHP3] = {
-+		{MDP_COMP_TYPE_TDSHP, 2, MT8188_MDP_COMP_TDSHP3, MDP_MM_SUBSYS_1},
-+		{1, 0, 0}
-+	},
-+	[MDP_COMP_COLOR0] = {
-+		{MDP_COMP_TYPE_COLOR, 0, MT8188_MDP_COMP_COLOR0, MDP_MM_SUBSYS_0},
-+		{1, 0, 0}
-+	},
-+	[MDP_COMP_COLOR2] = {
-+		{MDP_COMP_TYPE_COLOR, 1, MT8188_MDP_COMP_COLOR2, MDP_MM_SUBSYS_1},
-+		{1, 0, 0}
-+	},
-+	[MDP_COMP_COLOR3] = {
-+		{MDP_COMP_TYPE_COLOR, 2, MT8188_MDP_COMP_COLOR3, MDP_MM_SUBSYS_1},
-+		{1, 0, 0}
-+	},
-+	[MDP_COMP_OVL0] = {
-+		{MDP_COMP_TYPE_OVL, 0, MT8188_MDP_COMP_OVL0, MDP_MM_SUBSYS_0},
-+		{1, 0, 0}
-+	},
-+	[MDP_COMP_PAD0] = {
-+		{MDP_COMP_TYPE_PAD, 0, MT8188_MDP_COMP_PAD0, MDP_MM_SUBSYS_0},
-+		{1, 0, 0}
-+	},
-+	[MDP_COMP_PAD2] = {
-+		{MDP_COMP_TYPE_PAD, 1, MT8188_MDP_COMP_PAD2, MDP_MM_SUBSYS_1},
-+		{1, 0, 0}
-+	},
-+	[MDP_COMP_PAD3] = {
-+		{MDP_COMP_TYPE_PAD, 2, MT8188_MDP_COMP_PAD3, MDP_MM_SUBSYS_1},
-+		{1, 0, 0}
-+	},
-+	[MDP_COMP_TCC0] = {
-+		{MDP_COMP_TYPE_TCC, 0, MT8188_MDP_COMP_TCC0, MDP_MM_SUBSYS_0},
-+		{1, 0, 0}
-+	},
-+	[MDP_COMP_WROT0] = {
-+		{MDP_COMP_TYPE_WROT, 0, MT8188_MDP_COMP_WROT0, MDP_MM_SUBSYS_0},
-+		{1, 0, 0}
-+	},
-+	[MDP_COMP_WROT2] = {
-+		{MDP_COMP_TYPE_WROT, 1, MT8188_MDP_COMP_WROT2, MDP_MM_SUBSYS_1},
-+		{1, 0, 0}
-+	},
-+	[MDP_COMP_WROT3] = {
-+		{MDP_COMP_TYPE_WROT, 2, MT8188_MDP_COMP_WROT3, MDP_MM_SUBSYS_1},
-+		{1, 0, 0}
-+	},
-+	[MDP_COMP_MERGE2] = {
-+		{MDP_COMP_TYPE_MERGE, 0, MT8188_MDP_COMP_MERGE2, MDP_MM_SUBSYS_1},
-+		{1, 0, 0}
-+	},
-+	[MDP_COMP_MERGE3] = {
-+		{MDP_COMP_TYPE_MERGE, 1, MT8188_MDP_COMP_MERGE3, MDP_MM_SUBSYS_1},
-+		{1, 0, 0}
-+	},
-+	[MDP_COMP_PQ0_SOUT] = {
-+		{MDP_COMP_TYPE_DUMMY, 0, MT8188_MDP_COMP_PQ0_SOUT, MDP_MM_SUBSYS_0},
-+		{0, 0, 0}
-+	},
-+	[MDP_COMP_TO_WARP0MOUT] = {
-+		{MDP_COMP_TYPE_DUMMY, 1, MT8188_MDP_COMP_TO_WARP0MOUT, MDP_MM_SUBSYS_0},
-+		{0, 0, 0}
-+	},
-+	[MDP_COMP_TO_SVPP2MOUT] = {
-+		{MDP_COMP_TYPE_DUMMY, 2, MT8188_MDP_COMP_TO_SVPP2MOUT, MDP_MM_SUBSYS_1},
-+		{0, 0, 0}
-+	},
-+	[MDP_COMP_TO_SVPP3MOUT] = {
-+		{MDP_COMP_TYPE_DUMMY, 3, MT8188_MDP_COMP_TO_SVPP3MOUT, MDP_MM_SUBSYS_1},
-+		{0, 0, 0}
-+	},
-+	[MDP_COMP_VPP0_SOUT] = {
-+		{MDP_COMP_TYPE_PATH, 0, MT8188_MDP_COMP_VPP0_SOUT, MDP_MM_SUBSYS_1},
-+		{2, 6, 0}
-+	},
-+	[MDP_COMP_VPP1_SOUT] = {
-+		{MDP_COMP_TYPE_PATH, 1, MT8188_MDP_COMP_VPP1_SOUT, MDP_MM_SUBSYS_0},
-+		{2, 8, 0}
-+	},
-+};
-+
- static const struct mdp_comp_data mt8195_mdp_comp_data[MDP_MAX_COMP_COUNT] = {
- 	[MDP_COMP_WPEI] = {
- 		{MDP_COMP_TYPE_WPEI, 0, MT8195_MDP_COMP_WPEI, MDP_MM_SUBSYS_0},
-@@ -1046,6 +1299,15 @@ static const struct mdp_pipe_info mt8183_pipe_info[] = {
- 	[MDP_PIPE_RDMA0] = {MDP_PIPE_RDMA0, MDP_MM_SUBSYS_0, 3}
- };
- 
-+static const struct mdp_pipe_info mt8188_pipe_info[] = {
-+	[MDP_PIPE_WPEI] = {MDP_PIPE_WPEI, MDP_MM_SUBSYS_0, 0},
-+	[MDP_PIPE_RDMA0] = {MDP_PIPE_RDMA0, MDP_MM_SUBSYS_0, 1},
-+	[MDP_PIPE_RDMA2] = {MDP_PIPE_RDMA2, MDP_MM_SUBSYS_1, 0},
-+	[MDP_PIPE_RDMA3] = {MDP_PIPE_RDMA3, MDP_MM_SUBSYS_1, 1},
-+	[MDP_PIPE_VPP1_SOUT] = {MDP_PIPE_VPP1_SOUT, MDP_MM_SUBSYS_0, 2},
-+	[MDP_PIPE_VPP0_SOUT] = {MDP_PIPE_VPP0_SOUT, MDP_MM_SUBSYS_1, 2},
-+};
-+
- static const struct mdp_pipe_info mt8195_pipe_info[] = {
- 	[MDP_PIPE_WPEI] = {MDP_PIPE_WPEI, MDP_MM_SUBSYS_0, 0},
- 	[MDP_PIPE_WPEI2] = {MDP_PIPE_WPEI2, MDP_MM_SUBSYS_0, 1},
-@@ -1082,6 +1344,24 @@ const struct mtk_mdp_driver_data mt8183_mdp_driver_data = {
- 	.pp_used = MDP_PP_USED_1,
- };
- 
-+const struct mtk_mdp_driver_data mt8188_mdp_driver_data = {
-+	.mdp_plat_id = MT8188,
-+	.mdp_con_res = 0x14001000,
-+	.mdp_probe_infra = mt8188_mdp_probe_infra,
-+	.mdp_sub_comp_dt_ids = mt8195_sub_comp_dt_ids,
-+	.mdp_cfg = &mt8195_plat_cfg,
-+	.mdp_mutex_table_idx = mt8188_mutex_idx,
-+	.comp_data = mt8188_mdp_comp_data,
-+	.comp_data_len = ARRAY_SIZE(mt8188_mdp_comp_data),
-+	.format = mt8195_formats,
-+	.format_len = ARRAY_SIZE(mt8195_formats),
-+	.def_limit = &mt8195_mdp_def_limit,
-+	.pipe_info = mt8188_pipe_info,
-+	.pipe_info_len = ARRAY_SIZE(mt8188_pipe_info),
-+	.pp_criteria = &mt8195_mdp_pp_criteria,
-+	.pp_used = MDP_PP_USED_2,
-+};
-+
- const struct mtk_mdp_driver_data mt8195_mdp_driver_data = {
- 	.mdp_plat_id = MT8195,
- 	.mdp_con_res = 0x14001000,
-diff --git a/drivers/media/platform/mediatek/mdp3/mtk-img-ipi.h b/drivers/media/platform/mediatek/mdp3/mtk-img-ipi.h
-index f83ac408306e..4764c5b5107b 100644
---- a/drivers/media/platform/mediatek/mdp3/mtk-img-ipi.h
-+++ b/drivers/media/platform/mediatek/mdp3/mtk-img-ipi.h
-@@ -116,6 +116,7 @@ struct img_frameparam {
- 
- /* Platform config indicator */
- #define MT8183 8183
-+#define MT8188 8195
- #define MT8195 8195
- 
- #define CFG_CHECK(plat, p_id) ((plat) == (p_id))
-diff --git a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-cfg.h b/drivers/media/platform/mediatek/mdp3/mtk-mdp3-cfg.h
-index 49cdf45f6e59..7f7625299ce7 100644
---- a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-cfg.h
-+++ b/drivers/media/platform/mediatek/mdp3/mtk-mdp3-cfg.h
-@@ -10,6 +10,7 @@
- #include <linux/types.h>
- 
- extern const struct mtk_mdp_driver_data mt8183_mdp_driver_data;
-+extern const struct mtk_mdp_driver_data mt8188_mdp_driver_data;
- extern const struct mtk_mdp_driver_data mt8195_mdp_driver_data;
- 
- struct mdp_dev;
-diff --git a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.c b/drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.c
-index 5209f531ef8d..61a798f33041 100644
---- a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.c
-+++ b/drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.c
-@@ -21,6 +21,9 @@ static const struct of_device_id mdp_of_ids[] = {
- 	{ .compatible = "mediatek,mt8183-mdp3-rdma",
- 	  .data = &mt8183_mdp_driver_data,
- 	},
-+	{ .compatible = "mediatek,mt8188-mdp3-rdma",
-+	  .data = &mt8188_mdp_driver_data,
-+	},
- 	{ .compatible = "mediatek,mt8195-mdp3-rdma",
- 	  .data = &mt8195_mdp_driver_data,
- 	},
--- 
-2.44.0
+Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
 
 
