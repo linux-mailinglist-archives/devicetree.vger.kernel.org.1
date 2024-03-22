@@ -1,96 +1,129 @@
-Return-Path: <devicetree+bounces-52526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE75D887008
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 16:50:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C17F6887015
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 16:57:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A6EA285B20
-	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 15:50:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CD1428685B
+	for <lists+devicetree@lfdr.de>; Fri, 22 Mar 2024 15:57:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 095D056751;
-	Fri, 22 Mar 2024 15:49:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="bkVeCRkP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B36FA53390;
+	Fri, 22 Mar 2024 15:57:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6425059163;
-	Fri, 22 Mar 2024 15:49:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B315653811;
+	Fri, 22 Mar 2024 15:57:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711122558; cv=none; b=r8wCUjkcofAmtv7tiB312z3KVbXLT+SfIYadY7Auz2HWkzYFTwchzuSxRaKNpwh2SAr5hVJdJUyUIgoLDn6U2ivEMsNc+KfL8j+cfwOGczDwtH5nl+K1hJlJA/RhfsYY+ogaGIcsh+TvTnEmfDOQPNDJeoXGk15o+hy1h/XL+wY=
+	t=1711123043; cv=none; b=GNA6/b6N0QDxYP3wK0TmtvHbes+CzJ7D5nyR3QJCzvzjwLVaIZsfsuyjNHnrXrrDQ6uWKCa2sXYKvLrj9aFLs3+5wjV3UWwvYlZEaYeynUZvuIT58icTRzaDdCLPjNdBC3n+Tn3kgWAnUnbNHP4E5SjkM5rrcNi9/TG6HOifgGU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711122558; c=relaxed/simple;
-	bh=SH0nqNuxhZgHCsVr9BNRBW8W8DQKuuRqCpmLlgkB5Zs=;
+	s=arc-20240116; t=1711123043; c=relaxed/simple;
+	bh=g8t//AI7C/xXEKlaVarUSs1GgQOPycd3Pj2sIFog6vI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JjPeN9YPiTHOip3QuRCb2HPNzHXRurYnKaa/offmmmNKx/XexUGv+tEDpAfjeXAhILPVCy+Z0rT+R0/HfMRohRyCCPbiXpN0GzWwF0nPnPIByTwzElZcvJUfgnOYFFCh1MQXtQlc8j0fEPyDX44I+iz+C5WRtnaLlL/pf31BwIg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=bkVeCRkP; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=jgLIHqFNuXkHH5HYUZp2KdJbY2+i8m+EoWOC10J0nag=; b=bkVeCRkPeYKdrjZ5+hPC7Nr9sL
-	IfWGLwhWrYUKy+NEb/c6mBu52TNd5wQyVd9q3dVq3okHbLg90PDZriwdohrJUJC8yJAe2DsMZsqAL
-	St+0Cj3f2QU5LvRKgSjAmGAZ8Z/pvyF0g0PGEvmLEStsbrQ0M3qPuEgjFbaMrkpOeuzA=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rnh8n-00AyBo-5d; Fri, 22 Mar 2024 16:49:09 +0100
-Date: Fri, 22 Mar 2024 16:49:09 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Josua Mayer <josua@solid-run.com>
-Cc: Gregory Clement <gregory.clement@bootlin.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=kXISWou+/Z2fGTLQrWvzD9YUjVGi284eGUQ9FmKAHV2i++cFfmxjQbzV/POJKBivw2OzahYwFk4DuhQBB3CRZf9wZLNIDa5vPGkEwf1tRMZyD600KtYoflTN5BiRmMrfHUrhnvRsGHuN3QE5Jd6Z9MFLxGP7gOPwCdVBa/qtTkY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.96.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1rnhGL-000542-0p;
+	Fri, 22 Mar 2024 15:56:57 +0000
+Date: Fri, 22 Mar 2024 15:56:49 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Richard Weinberger <richard@nod.at>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Yazan Shhady <yazan.shhady@solid-run.com>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/2] arm64: dts: add description for solidrun cn9130 som
- and clearfog boards
-Message-ID: <a22e7861-c140-4f34-97be-a1f4e435b44b@lunn.ch>
-References: <20240321-cn9130-som-v1-0-711127a409ae@solid-run.com>
- <20240321-cn9130-som-v1-2-711127a409ae@solid-run.com>
- <e24e78a6-852c-4458-987c-3601908a71f0@lunn.ch>
- <0d1afbcc-948e-4aff-8296-42f7166d318d@solid-run.com>
- <4fff2165-c3cc-41d8-b541-6e69ce4d98ac@lunn.ch>
- <748753a6-9fde-4d4f-8fee-5b93dbb532f0@solid-run.com>
+	linux-mtd <linux-mtd@lists.infradead.org>,
+	devicetree <devicetree@vger.kernel.org>,
+	linux-kernel <linux-kernel@vger.kernel.org>,
+	david oberhollenzer <david.oberhollenzer@sigma-star.at>
+Subject: Re: [PATCH v7 7/7] mtd: ubi: provide NVMEM layer over UBI volumes
+Message-ID: <Zf2qQSRWYDzKd4--@makrotopia.org>
+References: <cover.1702952891.git.daniel@makrotopia.org>
+ <82ceb13954f7e701bf47c112333e7b15a57fc360.1702952891.git.daniel@makrotopia.org>
+ <20240219120156.383a1427@xps-13>
+ <1209094181.98490.1708899174329.JavaMail.zimbra@nod.at>
+ <ZdvV1KABu_UCSL7B@makrotopia.org>
+ <1754825522.38834.1710105437883.JavaMail.zimbra@nod.at>
+ <Ze5uUyUuEDBM3p43@makrotopia.org>
+ <1196553263.78350.1710887478387.JavaMail.zimbra@nod.at>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <748753a6-9fde-4d4f-8fee-5b93dbb532f0@solid-run.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1196553263.78350.1710887478387.JavaMail.zimbra@nod.at>
 
-> I (currently) can't put in the led node e.g.
-> linux,default-trigger = "link100|link1000|tx|rx";
-> Right?
+On Tue, Mar 19, 2024 at 11:31:18PM +0100, Richard Weinberger wrote:
+> ----- Ursprüngliche Mail -----
+> > Von: "Daniel Golle" <daniel@makrotopia.org>
+> >> BTW: Is there a nice way to test this with nandsim in qemu?
+> >> I'd love being able to test all ubi attach code paths on my test setup.
+> > 
+> > From what I can tell 'nandsim' doesn't have a way to be defined in
+> > Device Tree, making it unsuitable to test the attachment of UBI in
+> > this way.
+> > 
+> > However, QEMU does support emulating TI OMAP's OneNAND controller, eg.
+> > as part of the Nokia N810 hardware supported by qemu-system-arm, see
+> > 
+> > https://www.qemu.org/docs/master/system/arm/nseries.html
+> > 
+> > So we could use that and modify the device tree in Linux to have a MTD
+> > partition for UBI and 'compatible = "linux,ubi";' set therein:
+> > 
+> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/boot/dts/ti/omap/omap2420-n8x0-common.dtsi#n84
+> > 
+> > If you like I can prepare such a test setup.
+> 
+> This would be great!
+> 
+> > Is there a repository for MTD/UBI tests to be run on QEMU which I should
+> > contribute this to?
+> 
+> UBI tests reside in the mtd-utils repository.
+> http://git.infradead.org/?p=mtd-utils.git;a=tree;f=tests/ubi-tests;h=20fd6a043eeb96a81736dd07885f74e4e0bb0cc0;hb=HEAD
+> 
+> Maybe you can provide a small shell script which configures qemu?
+> It doesn't have to be fancy, just something David or I can use as staring point.
 
-No. The trigger will be 'netdev'. Or 'heartbeat', or
-'kbd-numlock'. They are just LEDs, they can be used for
-anything. While testing some of this code i had the keyboard numlock
-indicating network packets, since it easier to see than the RJ45
-socket... The same applies the other way. The RJ45 LEDs are just Linux
-LEDs, they can be used for anything...
+I'm working on it but it turns out to be a bit more difficult than I
+thought it would be, because
 
-I do have some code adding additional properties for the blink
-reason. However, it is very debatable if it belongs in DT. DT
-describes hardware, not configuration of hardware.
+ * the only devices with NAND flash emulated in QEMU or Nokia N800 and
+   N810 as well as some even more ancient Intel PXA270 based PDA like
+   the Sharp 'spitz'.
 
-Do you actually have labels on the case indicating what the LEDs mean?
-It could be we describe the label, which is hardware, not the
-configuration of the LED, which is policy from user space.
+ * QEMU support for the N800 and N810 has apparently been bitrotting and
+   is broken at least since 2019, nobody seems to care much.
 
-   Andrew
+ * The spitz predates device tree and hence is unsuitable for testing
+   attachment of UBI via DT. But it at least boots because Guenter Roeck
+   makes sure it does[1].
+
+I was about to create a spitz-like imaginary board with DT, but also that
+doesn't seem to be completely trivial.
+
+So: hold my beer, I'll be back shortly ;)
+
+If anyone has better ideas on how to utilize support for raw NAND or the
+OneNAND controller in QEMU in a device-tree environment which actually
+works, that'd be great. Obviously I don't care about other peripherals
+like Bluetooth and all the complicated stuff of the N80x...
+
+[1]: https://github.com/groeck/linux-build-test/blob/master/rootfs/arm/run-qemu-arm.sh#L64
 
