@@ -1,143 +1,109 @@
-Return-Path: <devicetree+bounces-52610-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D50188775C
-	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 08:02:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB39C887771
+	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 08:44:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB1411C21532
-	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 07:02:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 184DD1C20B4D
+	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 07:44:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE2C68F6C;
-	Sat, 23 Mar 2024 07:01:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1502BE7F;
+	Sat, 23 Mar 2024 07:44:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ihJsGJVb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m65fT+9W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E97E7523A;
-	Sat, 23 Mar 2024 07:01:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 711D56107;
+	Sat, 23 Mar 2024 07:44:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711177316; cv=none; b=glbZ3XNvUtSTqllZo9o+/4F0yDlGJPQlK79VKwgJ5tkOwo+tOWGfuNFV7qQM+RDOJEA4tmGvAKqkjYDss3HTwOYozYMWKLR8IPIpRHabWZiB6Wlidp+OrubPXIgEwxcyHITYNWRhhOnTMLSAjaDdIA9QtEa8JyJWfxxncMINemQ=
+	t=1711179872; cv=none; b=Fpd8MxdQD762HzuwF29Fs9+q9jOvANaFyMoqeF4pUJyfRH9SSrgbydxKOhFxStynk9WrgNUxC1qLvt14NN/aJINzpDndQ9YTPMfGdx2jQVyFlFlldNpvWUGbrh5Z9mnzgABrtM4Uyw3AoRQEIPsuaxZM15KERZpVmEfwyQgYXfw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711177316; c=relaxed/simple;
-	bh=yhbjA5niZQhSFgh07i14d0fXkDpexeMQw2/j5Wlv5v8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Pp34ybzUhF/V0jVvfDC6l/VRsEwcfuxjQikZ3494Hb9vVniIMSNf+uhiJwDE8tKTJ0VCKCjhRfBTPQo60qAuOgHJgCVI34EHZeQDDHaW9CdClRkOwGumvk/8S1lAflzHj8ZmJwMron9RuAoxAN08hYXDChMk2xvJeHSYsSA2I/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ihJsGJVb; arc=none smtp.client-ip=198.175.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1711177315; x=1742713315;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=yhbjA5niZQhSFgh07i14d0fXkDpexeMQw2/j5Wlv5v8=;
-  b=ihJsGJVb9TuAtV/twgKI5E5lM0mTJypxBbdkVFDmEwCf20p/SpPvqZba
-   IAObMGn6Zec8IGjjzcEmAprYUH86G01YFn97xV04fXKjcaxM0B0wCPYQY
-   vazMhhUYTclep1YtHt2dIGrKsrlFN0n91Q8a20HqMHLXxIGvxNdMlXd9X
-   m60sB5YwCF0iWFFPnEkjeGCYAAIFVLYsh5u1QPUI8m6zS6dREvXqZCQ2X
-   3Lvv6Xk6d9+GhFaOpVktWYzfogWbVmscHUbMFs37RIa7Yp5rpz2p4SOXs
-   FSCB4+RxH2wrP6y9hP6gcEiQHffa9RJo9CkZD3FmGlYAMdzkudzd69cIC
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11021"; a="10021885"
-X-IronPort-AV: E=Sophos;i="6.07,148,1708416000"; 
-   d="scan'208";a="10021885"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Mar 2024 00:01:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,148,1708416000"; 
-   d="scan'208";a="19815686"
-Received: from lkp-server01.sh.intel.com (HELO b21307750695) ([10.239.97.150])
-  by orviesa003.jf.intel.com with ESMTP; 23 Mar 2024 00:01:50 -0700
-Received: from kbuild by b21307750695 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rnvO0-000KwJ-06;
-	Sat, 23 Mar 2024 07:01:48 +0000
-Date: Sat, 23 Mar 2024 15:01:40 +0800
-From: kernel test robot <lkp@intel.com>
-To: Alex Bee <knaerzche@gmail.com>, Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, Chris Zhong <zyw@rock-chips.com>,
-	Zhang Qing <zhangqing@rock-chips.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, Alex Bee <knaerzche@gmail.com>
-Subject: Re: [PATCH 2/5] mfd: rk8xx: Add RK816 support
-Message-ID: <202403231417.oV6q6CGc-lkp@intel.com>
-References: <20240321143911.90210-5-knaerzche@gmail.com>
+	s=arc-20240116; t=1711179872; c=relaxed/simple;
+	bh=vG2ixD67oI7pZv/388uv2qcvWouiFsZXmP0odTodtpc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=evzWQbVv+XKtvM6g6iKjKqPwHSjpj1zPKO+h3fFS5WDyhMLNLIYEj1R1ImjOc7ds8Wyta2enPLsgZxojrN93vDcLVH6KRrmFx2tZwvJ7Gi1sZOVqX6+MbLNSxCjE9Ku4UXKSagxuU1VvHdJ/W2CoYHYxLFH5ouCgwwXvnVGz5Hg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m65fT+9W; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-1e08512cd8dso15886335ad.2;
+        Sat, 23 Mar 2024 00:44:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1711179871; x=1711784671; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pFIHxUfDhEjmdeRNyvzrzBdHaOdyGF17bN8Se5iKpPk=;
+        b=m65fT+9W0pxnmLbXRWx9sEntCLHjtqOluhcfs/POCXAPQwkQT82KqtWz/y6wqvyTFy
+         9aPD3mwSRml9RbwyQuMCcmz+zEpZ+KF6OSbLnfdpCPQq89CyZfm7r7QIVGZrPr1aeZeN
+         T51VqvYrP52rO/EOUMrpabemQS+/myb7m/vCSM3VZ55hdB8fsHtyu0uBPLgJk0qMBkA8
+         4J1GBJKZ3dIrkgIxR4hHSRlTuKC0T3DqZa3IOcmmy4ctw6VYZvcFFGK9UCxhjh/d7iQE
+         QuAhbhyIc7NAz9A91cNRnYB6xxpRCwMtN1/GpDCCbjZIer7wE95EV4AFgfB3spoKsRUF
+         JQDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711179871; x=1711784671;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pFIHxUfDhEjmdeRNyvzrzBdHaOdyGF17bN8Se5iKpPk=;
+        b=iCNy29OwkbIVwyycCwzXA1++yJ82sNxxAb8dE4/f1dd9PkZtXB5w+P4icbiTqspBUi
+         q2yTRqhTTpv0N71WUn/4/Kee3Aceo4+CEBfSKFLCoVl+8XqtvgV7BTq8heGbfKGH2aTc
+         X1GgbWFh121RCiDsX5lLsBM9xs7/g1tMWQt+KmjmGmJolDpzQOl5D1QjFNqvtQp1Ml5/
+         DWgxcGMIsSV9s2iX4k0zbUAiNP8lBFQiZZAjkpnqROqsuBpEfgGk1QXLWH9gpK7YCInG
+         O2nRCSVYR/a2gre7hVrfjfyqjJv6QfwT+iOSUseUxap1bbnRaNGcOMgepHYgoUx4RzQv
+         Bwlw==
+X-Forwarded-Encrypted: i=1; AJvYcCX3AUo8iTOcM3BnRGSdKKwD6UfPUec+KO+iLEUum1IvAyHNh9cDjvJe7IHTl+uhH0CW+wg7nHyRowt5cSfQ/RZWKRKPhKN/1Bw7hliZygIdkS6AYTOSwuTDjGInI3XAqlYYEu5IhZCbAA==
+X-Gm-Message-State: AOJu0YzrbHDhbS0M+kpuFXc/nvVim/t6GlZzVyv2eOgczW9Sgc+sE9gk
+	rwRxUvhuJrTNAc+uT4Uka1rnzm5zENQ9ljvUoMAvbDe9TmDfwcOw
+X-Google-Smtp-Source: AGHT+IEj30C0v+2g9xEMtQMRIUC41VW6iffGnxv5pvPvgNMX+B7jKGvVtvW5+QBJZ7LipLK/kLtSmw==
+X-Received: by 2002:a05:6a20:a919:b0:1a1:4df8:1ec4 with SMTP id cd25-20020a056a20a91900b001a14df81ec4mr1394890pzb.19.1711179870652;
+        Sat, 23 Mar 2024 00:44:30 -0700 (PDT)
+Received: from localhost.localdomain (FL1-125-193-23-126.chb.mesh.ad.jp. [125.193.23.126])
+        by smtp.gmail.com with ESMTPSA id l17-20020a170902d05100b001e0410bfccasm976825pll.126.2024.03.23.00.44.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 23 Mar 2024 00:44:30 -0700 (PDT)
+From: INAGAKI Hiroshi <musashino.open@gmail.com>
+To: pavel@ucw.cz,
+	lee@kernel.org,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	INAGAKI Hiroshi <musashino.open@gmail.com>
+Subject: [PATCH v2 0/2] dt-bindings: leds: add LED_FUNCTION_* mainly for router devices
+Date: Sat, 23 Mar 2024 16:36:08 +0900
+Message-ID: <20240323074326.1428-1-musashino.open@gmail.com>
+X-Mailer: git-send-email 2.42.0.windows.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240321143911.90210-5-knaerzche@gmail.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Alex,
+This patch series adds some LED_FUNCTION_* definitions mainly for router
+devices.
+Those definitions are useful for OpenWrt or something.
 
-kernel test robot noticed the following build warnings:
+v1 -> v2
 
-[auto build test WARNING on lee-mfd/for-mfd-next]
-[also build test WARNING on lee-mfd/for-mfd-fixes broonie-regulator/for-next robh/for-next linus/master v6.8 next-20240322]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+- fix sort order of LED_FUNCTION_MOBILE
+- improve the commit description of the first commit
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Alex-Bee/dt-bindings-mfd-Add-rk816-binding/20240321-224318
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git for-mfd-next
-patch link:    https://lore.kernel.org/r/20240321143911.90210-5-knaerzche%40gmail.com
-patch subject: [PATCH 2/5] mfd: rk8xx: Add RK816 support
-config: arc-randconfig-001-20240322 (https://download.01.org/0day-ci/archive/20240323/202403231417.oV6q6CGc-lkp@intel.com/config)
-compiler: arc-elf-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240323/202403231417.oV6q6CGc-lkp@intel.com/reproduce)
+INAGAKI Hiroshi (2):
+  dt-bindings: leds: add LED_FUNCTION_MOBILE for mobile network
+  dt-bindings: leds: add LED_FUNCTION_SPEED_* for link speed on LAN/WAN
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202403231417.oV6q6CGc-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/mfd/rk8xx-core.c:395:8: warning: type qualifiers ignored on function return type [-Wignored-qualifiers]
-     395 | static const unsigned int rk816_get_irq_reg(struct regmap_irq_chip_data *data,
-         |        ^~~~~
-
-
-vim +395 drivers/mfd/rk8xx-core.c
-
-   394	
- > 395	static const unsigned int rk816_get_irq_reg(struct regmap_irq_chip_data *data,
-   396						    unsigned int base, int index)
-   397	{
-   398		unsigned int irq_reg = base;
-   399	
-   400		switch (base) {
-   401		case RK816_INT_STS_REG1:
-   402			irq_reg += rk816_irq_status_offsets[index];
-   403			break;
-   404		case RK816_INT_STS_MSK_REG1:
-   405			irq_reg += rk816_irq_mask_offsets[index];
-   406			break;
-   407		}
-   408	
-   409		return irq_reg;
-   410	};
-   411	
+ include/dt-bindings/leds/common.h | 3 +++
+ 1 file changed, 3 insertions(+)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.25.1
+
 
