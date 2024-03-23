@@ -1,90 +1,91 @@
-Return-Path: <devicetree+bounces-52659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59FC58878A6
-	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 13:22:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51A4B8878D3
+	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 14:28:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16331284999
-	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 12:22:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CAE41F2404D
+	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 13:28:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E76FB54BF4;
-	Sat, 23 Mar 2024 12:20:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41DBA3B1AA;
+	Sat, 23 Mar 2024 13:28:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a50eC65e"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="at9o7Now"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 374954D9F8;
-	Sat, 23 Mar 2024 12:20:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81FB01B95C;
+	Sat, 23 Mar 2024 13:28:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711196451; cv=none; b=ZKTPI3N4l7AHBsFRHdUvwbrwxmhkSbAdmlV1j+FzfvQqiCMvNkn57rmt/gV1d50oSNfUIkceqEtURRfOZlyH2fd93DvfY295UXgFmebDkcKYfwisz1X6BVAATd68KtCBSsp/Cllo4RKsolcSOIFd4ha8BbKk5gCFN1Upm7n+yIs=
+	t=1711200501; cv=none; b=uKN89nktNN8PHCdXy2mlHYoUCibgIpDoF7TMcgWq1PFO+u7y3xVU58giuFqJd8yc27q5ebJVNKDCSJMdtz9g3FNqIGZutfdlLWvOdsLzTPn/u2ZiOpn6kM5ipn+jdxLDMBThVREV30aNQ4A4jpL7RfPQ1Wy3niHyOLsXMcu7Ago=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711196451; c=relaxed/simple;
-	bh=pToit27TqLaZTZVIWd9WSIUZ1i+05Dk9aFS/Q3bfuoY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=loeBhR1awqP9kOBT45iguoC0Qxk4sjSXNmcLwBY1wBw5ePalYW04aTKmMFw8W1VzAFQizbR5Qrd0foKbWAwHFJXngKuP9leUG2skSmdKGZuDl2dkezpaGZDb/UbBWe6CljvnewlCy9H2VjpunaGsYSJ13xXvrSNnbXI7GFiZ1EI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=a50eC65e; arc=none smtp.client-ip=209.85.167.54
+	s=arc-20240116; t=1711200501; c=relaxed/simple;
+	bh=FVG1NGLm0NqbBCJODls7SI+MMlqwX2csixRc1Mf+tTM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gULu9PlnuejP1rmzZreC9aerTBjcbrPH5qwJxLZSvumR/hu/GFNfg5eAG5/pm5hFy+4D01TW4u5nwx1Uz4VzwZZcTjvGgBXaTmhavfQtYMP14zEgOQ9Q9+2j/Z8Fwnxsgz6EUotTM7R6OD0xGvIF6Psb/9tkRX5PiqGKaO6iQYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=at9o7Now; arc=none smtp.client-ip=209.85.221.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-513d599dbabso3872907e87.1;
-        Sat, 23 Mar 2024 05:20:49 -0700 (PDT)
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-341b9f6fb2eso787349f8f.2;
+        Sat, 23 Mar 2024 06:28:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711196448; x=1711801248; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6xtVnBwEs4bYQsVbe2uhOnHxLXkyj8rDngprTSIhtgU=;
-        b=a50eC65eWaBcRPKIcQcHSDmCk3duVu5wYKrISH7GjiTV1zbiU+N6OBlUug/hRrvQDD
-         5rTVnP4OcvtZaPakEWfpTDkWKgHJZtpJGLQwnU1K0ykLtbt8dgcY+rNwtxhZU0rz+zKo
-         Ha+hOgZSO4o5zWG0yjGlbu4k6fS6LOWbi7La47qyz1O7HOOLnVtuI4TXR/KH0O5qgy4A
-         haTEXN0RNT4VaHMH+6FxeLmRB/H9Sd5SNRPLhYc9DpX0/yddEG+2B8BWE2als1s+6ZLW
-         wQzidtMxBAXN5JqVQoeU5iEtkVAaQSAeIDCCl5Gp1nuraPeSNiKNcIS5LF8sORruoz4D
-         FKtw==
+        d=gmail.com; s=20230601; t=1711200498; x=1711805298; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=EZ1pELuVvPRDiO8S0zv+ldR/r8hfFaunbVkRqdzuPe4=;
+        b=at9o7NowD8bCYYmNx8aPVjl6o5GlszGcwPT8qveI40JKnt9bmCVxxk2M0gBnze2lBY
+         v34tsNcv0QRa7ZjMq2XepU2VrXy3lL8wdlGNaympe0XSZPiyJ5SEfRMeKH42Ioz1U2bo
+         4dDLiRrUuBLDf8EuOM5P7dmsNAh+0n3NxIaygLRdshxcEUJ+7Mof+LWWiqJZf3JdZ8Ip
+         Qqz1lcz8UwEniR/5JuH5cO35V4Tf3gmpmwmbpP7pRpK0d5el4XlaXmL61PSOj1pYdgCm
+         z1DxKd7+Zc8F5RjQGbMbhIweOJGnFQXVNGU+mfvi7vOgpqw35pibTeO5AdDJgLa9UXKf
+         YgIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711196448; x=1711801248;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6xtVnBwEs4bYQsVbe2uhOnHxLXkyj8rDngprTSIhtgU=;
-        b=prvBf5ttBRmVLeeG4os6/O58nTA6iHEx4AXKUUpOmLUt+O8AaaTyBFxpEZ5q6ihJ6S
-         D/h61/uW7ZnBTEJvvrU/c6sZseoMOlWv9fMOUE2MDLXKmEhLZquyHIR953bjct+A2s7J
-         eRUN2sTy37oqfLWq6FFnQKIeg9o7zduVjWkVGNm1D1RO9qlLZMMVd9GXhH+ZhnRseWUg
-         2Ji7zEvwMlYnn5aTXZ7+RRnjbU7iMX8FVLQz3W+wVT1MUmp2WcytD3otuDh/g6dDMksh
-         J5Z96/wKrYbJA1KNnzrMzB9QMShmXou6HjPgOWhRYt9NPn98Cm6VKl+/Md9RHMwcurWT
-         qS3g==
-X-Forwarded-Encrypted: i=1; AJvYcCXIy5pvJHCu3pamlKvWnvCyu1zcN9Qgv6NOlT2BBShZaDoh+MXQn3dYRdgCx5yJGqbrhqvDlsi5BcCvLnH507tt5FelTZSJv4O7OEppI/lJKiJgQCEQLed8eP1L72bK54ZG9xgFPvkrsw==
-X-Gm-Message-State: AOJu0YysA9gNW8fdSyfDNa4vgcghFdlbcrFx8OJMGcMcTF6/WJgYjFh7
-	atSgWeaAHMOdtB8+OSGmUnfHW/QfJpQkmP1oetRnioTxW4axqODV
-X-Google-Smtp-Source: AGHT+IEL9fGHncT0nfVkXdgNVn5H3HiyENNSgBkVIsx/OHDiKca1zsqf+jxso+E1tHLiUKLd3OA+yQ==
-X-Received: by 2002:a05:6512:2ed:b0:513:25c6:e98e with SMTP id m13-20020a05651202ed00b0051325c6e98emr1535015lfq.1.1711196448352;
-        Sat, 23 Mar 2024 05:20:48 -0700 (PDT)
-Received: from 764c7355c69b.v.cablecom.net (84-72-156-211.dclient.hispeed.ch. [84.72.156.211])
-        by smtp.gmail.com with ESMTPSA id gx24-20020a1709068a5800b00a46f0d133b9sm857265ejc.98.2024.03.23.05.20.47
+        d=1e100.net; s=20230601; t=1711200498; x=1711805298;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EZ1pELuVvPRDiO8S0zv+ldR/r8hfFaunbVkRqdzuPe4=;
+        b=I0Y+d7gisqwsFYKJTfLY+8fIMQsQ+lS6tSq118jcD3byL+jD0jeNx+7lDmIRAiV9W9
+         doRrPV0E7PnCa2BrNhdgzcuwQDDOdT56phxa+KklxCyaMFqdXQkLzc2mvi6qwi2pxF/4
+         9KjpDpH9o2GA4aDSFX10S/RuH9MBq8+0cRkMMxNp2Rmby7GsbV97cRDyyyPpOYVYjZvi
+         q8caZZK0ql05jdCmBfeTNvuPDHVLoz1wY3Tjfgt4QSVYnsdZ5Qii/D1/Ipd5Q9HwnLM3
+         ZemX6/EwTY/ZZFZYIGZvbKIpZxyxqjis6wVeFLIdXK4wGjqmSqez1AnF88w9lrsfgSfK
+         lMLg==
+X-Forwarded-Encrypted: i=1; AJvYcCU1vImtJuTBLqb/9jk6SkR5zifg9Eef/SwnFGm3SsJAznHu9CQg88Zho+WbFj/lfPJXePFJS2HqDDmpHBcvh79DaMZxbeMPsi3ru0O7bbBTcwwJQ6alVJsj36IqO1pyz9WdRfU0rDtajdUBapvebJWIktRUvjUIl0TfOTVrjZTjSNOdOvk=
+X-Gm-Message-State: AOJu0YwQti+GCoY280+dAyI9tKx/9VTuPxtrHtY0ii+xPUEtPuXNRaMD
+	e0JtoNTpj5AokYqJb8NJCAgUc0tQ8OiSXYznqeUnbbrhPSQlhP0=
+X-Google-Smtp-Source: AGHT+IHWBxgXRVeLan1IbXLwr5IkdNxnlpfI/0AVMaa+FFCBgQFF1+WMjd7RRQ9wtNDRtuN2vh/s0Q==
+X-Received: by 2002:a5d:40cb:0:b0:33e:1f2a:d88a with SMTP id b11-20020a5d40cb000000b0033e1f2ad88amr1468113wrq.69.1711200497586;
+        Sat, 23 Mar 2024 06:28:17 -0700 (PDT)
+Received: from U4.lan ([2a02:810b:f40:4600:fbb8:7547:139d:a40f])
+        by smtp.gmail.com with ESMTPSA id x17-20020adfffd1000000b00341babb8af0sm3076061wrs.7.2024.03.23.06.28.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 23 Mar 2024 05:20:48 -0700 (PDT)
-From: Lothar Rubusch <l.rubusch@gmail.com>
-To: lars@metafoo.de,
-	Michael.Hennerich@analog.com,
-	jic23@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org
-Cc: linux-iio@vger.kernel.org,
+        Sat, 23 Mar 2024 06:28:17 -0700 (PDT)
+From: Alex Bee <knaerzche@gmail.com>
+To: Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>
+Cc: Chris Zhong <zyw@rock-chips.com>,
+	Zhang Qing <zhangqing@rock-chips.com>,
 	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	eraretuya@gmail.com,
-	l.rubusch@gmail.com
-Subject: [PATCH v3 6/6] dt-bindings: iio: accel: adxl345: Add spi-3wire
-Date: Sat, 23 Mar 2024 12:20:30 +0000
-Message-Id: <20240323122030.21800-7-l.rubusch@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240323122030.21800-1-l.rubusch@gmail.com>
-References: <20240323122030.21800-1-l.rubusch@gmail.com>
+	linux-gpio@vger.kernel.org,
+	Alex Bee <knaerzche@gmail.com>
+Subject: [PATCH v3 0/5] Add RK816 PMIC support
+Date: Sat, 23 Mar 2024 14:27:53 +0100
+Message-ID: <20240323132757.141861-2-knaerzche@gmail.com>
+X-Mailer: git-send-email 2.43.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,27 +94,63 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add spi-3wire because the driver optionally supports spi-3wire.
+This series aims to add support for Rockchip RK816 PMIC series. As per
+datasheet it's targeted for RK3126/RK3128 (RK816-1), RK1108 (RK816-2) and
+PX3-SE (RK816-3) but might be used for other SoCs as well. The MFD consists
+of an integrated RTC, a GPIO controller, two 32k clock outputs, a power
+key, 3 buck- and 6 ldo regulators, 3 regulator-switches, and charger with
+integrated fuel gauge. Charger and fuel gauge are not part of this series.
+Two of the switches (otg/boost) are part of the binding, but not of
+the driver. They must only ever be enabled if no battery charging is
+happening, but it will be enabled automatically if a battery is attached
+and an external power source is connected. Thus that needs some
+incorporation of a yet to be added charger driver.
+Integration in the existing rk8xx-infrastructure was pretty straightforward
+and only needed very little tweaking. In order to not further bloat the
+driver(s) too much with additional `#define`s I tried to re-use existing
+ones wherever possible.
 
-Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
----
- Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+The patches are loosely based on the vendor's implementation, verified
+against the datasheet and tested/measured on a RK3126 board. As they are
+touching several subsystems I'm sending them (very) early for the
+6.10.-cycle.
 
-diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
-index 07cacc3f6..280ed479e 100644
---- a/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
-+++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
-@@ -32,6 +32,8 @@ properties:
- 
-   spi-cpol: true
- 
-+  spi-3wire: true
-+
-   interrupts:
-     maxItems: 1
- 
+changes since v1:
+  - integrated Krzysztof's feedback for the bindings and the resulting
+    driver changes
+  - fixed a sparse warning 
+
+link to v1:
+https://lore.kernel.org/lkml/20240321143911.90210-2-knaerzche@gmail.com/
+
+changes since v2:
+  - integrated Krzysztof's feedback to v2 of the bindings and the resulting
+    driver changes
+
+link to v2:
+https://lore.kernel.org/lkml/20240323085852.116756-1-knaerzche@gmail.com/
+
+Please see individual patches for details about the changes.
+
+Alex Bee (5):
+  dt-bindings: mfd: Add rk816 binding
+  mfd: rk8xx: Add RK816 support
+  pinctrl: rk805: Add rk816 pinctrl support
+  regulator: rk808: Support apply_bit for
+    rk808_set_suspend_voltage_range
+  regulator: rk808: Add RK816 support
+
+ .../bindings/mfd/rockchip,rk816.yaml          | 274 ++++++++++++++++++
+ drivers/mfd/Kconfig                           |   4 +-
+ drivers/mfd/rk8xx-core.c                      | 103 +++++++
+ drivers/mfd/rk8xx-i2c.c                       |  45 ++-
+ drivers/pinctrl/pinctrl-rk805.c               |  69 +++++
+ drivers/regulator/rk808-regulator.c           | 218 +++++++++++++-
+ include/linux/mfd/rk808.h                     | 141 +++++++++
+ 7 files changed, 847 insertions(+), 7 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk816.yaml
+
 -- 
-2.25.1
+2.43.2
 
 
