@@ -1,368 +1,183 @@
-Return-Path: <devicetree+bounces-52619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB7BF8877B0
-	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 09:59:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA00D8877CE
+	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 10:35:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C34B2822EB
-	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 08:59:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 307511F21E48
+	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 09:35:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5073A1B7F3;
-	Sat, 23 Mar 2024 08:59:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99A57DF53;
+	Sat, 23 Mar 2024 09:35:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IX5yS8rJ"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="HoE6pFfX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F109010962;
-	Sat, 23 Mar 2024 08:59:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC9E6DDA7
+	for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 09:35:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711184355; cv=none; b=HGTxFrG+QL3fWUhyTwk3XqwYSZDyGNqRxx69Voce+Uwk6X3oM3YNnrDI4LFIhgu7O1HCuFda54UcvsEuJ6iDYI1hBOu4xT+K2aPys9s8TIegIO6sETlF10UcKcmMiU8DV0jbM6uqEW/9mzHG04pXI1DG6aBar8exaq9Zj050Au4=
+	t=1711186544; cv=none; b=QrQ2QTv1Waa9FzfXPSoAGfXMLYo+MMEkMLCok4AF4hTLMb/JGD8EOw00wrWci9tjfXGNsgLGgr0hzFDIHGnilL35j4bJJRaCIaaVLZP1tHS1BCINpaqFRyorfizjpuEj+hqqt3I0P0t7VegJvBZ0SHhMo8NqwqqycgzRfyWpzvI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711184355; c=relaxed/simple;
-	bh=N+mrDPDXYSwBhO66GMgsa1GiQAyYWPEs+oDHd6c4528=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=kWu3qUkHI4USwqEWo6jWMLSyaorg0veIXy8UfknFFvz0KWN5Web/HuUymVdnHSn2VzsYDv/G+7Jm8UqiPRu66fkiiOMEKRCN/suggSwLnKPSbk6Nxh7oxQc17bPEUAcs3NyxMCYtnd/29ffUqM0jCC3c1DtP4ZHeoPhEGv7//vk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IX5yS8rJ; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-34005b5927eso1762403f8f.1;
-        Sat, 23 Mar 2024 01:59:12 -0700 (PDT)
+	s=arc-20240116; t=1711186544; c=relaxed/simple;
+	bh=IS2YT0ZGw+pwuMBw7oTHx8qnYRpFJ+PCjNBh1mJnF9w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ICdbTZxojBZdCro4jlPtL+uuF6K0yQCtGuQyXu5/evyhHgnfEaQFxGT1hcVWtyRQi/ccErb9K1QNnqmRaDRPRzRaWan/eh+JGjx4YXh8wo4tCe8qIRnd2nowU6j69NgXGuppvWSzFtMAstGpYBuVMrcPTTY4PulpuYTyYirtw+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=HoE6pFfX; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4148090ca8aso2212215e9.1
+        for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 02:35:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711184351; x=1711789151; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kwxxoovN4u1+4DsDbntI4M1SVvSsXRN0Avi5P47WEck=;
-        b=IX5yS8rJQtvBUJHWMlKuJbjdQfkkWn4tTVwt5FghL0ARypnXvFqoZeROxGccXQ46ig
-         rw3b1RcJZrK4+pQdwLKqKRQ2qvfxOQc7M5s0Ltb+6sUnQvJptIAVn3DBNFEc6TqfH195
-         hPiu+puy56QzV8xpL/mMRcJl/euuaWoRqLUW5MbB1ew+zxtuyUyORYFWtVqZ2mEjfQPv
-         GGvLx9i/bk8ZjcXzV4ymBKTY98Deml7gxTVmzWK6Q2Z/NiR1Q97dfZWnC2g/+QG11VlL
-         9WdE+6ZWh3jMDu1QuqakV7Dd+Qk8RcJe9JXLGVvrGaMaLZup2BYED+234yDJxZKpPHfI
-         kWKA==
+        d=ventanamicro.com; s=google; t=1711186541; x=1711791341; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=gifRQ1PeHTOYVEFwRFqeQ4RDDqpypI+PitbwyUwiMWU=;
+        b=HoE6pFfXEUuJjG51J2ymubUO7cyU9rDGDIZ0D+rFscFjdSicMCKmzQR8Ob3qtAW1hd
+         /iERj9xc/28SwZresj2Iid2Shp3hyaFd+NDD4welHBOREO767mrmN1KxH1QRc/g91zjA
+         j9FYgG8OfNuUPAoEeeeKkgzssxggT4a/M78EW1nG29WvSuy0+mv/g8SwbpCDUPgtxDpY
+         Q/tZA/PBxp3E6FkZO3rLdN3G+0p6awHLQriubEcWjzKFaCy7xZ2wUicDvxz5menSHZ5s
+         JoTy1MtEXFb/q0X3iyqvWeErcwWxOapgV0YP35kqwXnOLWuvEvi2TUSWx8sdZeR3UPUe
+         cBdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711184351; x=1711789151;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kwxxoovN4u1+4DsDbntI4M1SVvSsXRN0Avi5P47WEck=;
-        b=CGJUqtpInqbPprqpFJK1zuy1K1a85yceoLo/D2/fgTcPpso5Ycwn9eI0z5ivCuGwcd
-         KCrnf889BzxE/HCXzKqYRdPVQ4Pc822PBDqYlvNo6SDlO+/fqCtWAy3NLGghK8KoCLtB
-         71uWqCGkR0XnmVNEnYFEryrOtlMxF7k3jbVpjUHZUeRyW8WoEvX4/DDbBUXKVW+w1UG0
-         aWcXvtXWdJljpbmuuTVzr8AbDKt9/Yd15Om2UgBMvNuMvGEPfF+T9F/BAPQLfb9jO+44
-         DUDc7xcBI93lmlpij9m3KVSOh0t0UwHCrmFGqH8iLYNjzUWaV7YEc1EOX0Qo+II0iBsO
-         lEGw==
-X-Forwarded-Encrypted: i=1; AJvYcCVlRlQIVsmIijT76fBYWcjqHLMe3om9uxSPdZYMeO1ZjlM7iUg18aK6X7Kv1SEg2TtFdLPtdWoJ/Az2euptP4kMcI0h6QbxHpAf77l7RqnEgfpK92VxwOwYyU398i3uvzNs4ctr/HsdvJgDHtL9A0CyBZ4HtV/jN7a7dMetcsN4WZmns98=
-X-Gm-Message-State: AOJu0YylyKoFBWhhUJKZ3zPp2lI2MGgAH2YmLFwgsRMae4QbQaYW33tF
-	X8tILWMP1sFBOQCuydYJ13B2GwAQsJ7h0DMqvdTysq9xabCRyJc=
-X-Google-Smtp-Source: AGHT+IFF17xjDy+ptXcgihz83Sv4sxZrl9Ftth0tW9FhON1w6JdemKQL5SiIfYCqfiBtAnwfPC13fw==
-X-Received: by 2002:a5d:624d:0:b0:341:bdd4:aedf with SMTP id m13-20020a5d624d000000b00341bdd4aedfmr1121650wrv.25.1711184351252;
-        Sat, 23 Mar 2024 01:59:11 -0700 (PDT)
-Received: from U4.lan ([2a02:810b:f40:4600:fbb8:7547:139d:a40f])
-        by smtp.gmail.com with ESMTPSA id x16-20020a5d6b50000000b0033e93e00f68sm3965031wrw.61.2024.03.23.01.59.10
+        d=1e100.net; s=20230601; t=1711186541; x=1711791341;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gifRQ1PeHTOYVEFwRFqeQ4RDDqpypI+PitbwyUwiMWU=;
+        b=XWHbu3oYNX9HP0BDMVuglfNvWqOgbgeD7gyh2KF1ue+GxaQO8mmYcLe8Xff2cuYHGA
+         o4UgawwNerF8mVKpC6dV8dKLHdfvSWWwTJss/smlbSBJY2y7uSh9pEzpezczptp69hj2
+         qgJFSeZK9MmyZdBhjIp3wmiVgQS6cP8jqpbfq8O3bZWqy31js8YzdHafkbBgk39KTC7L
+         42wKhMJ3lU0GGtSHKq4dy0faL3Q/cOv+r1zI4QuDROrtnwm1fO0q/iUsmFrWTC467DAO
+         WH0fsxRs5Dhv8qRT7xksLNNjUcONYK4ZrTHiE7LfXr/PnjfDL6PtsElel9+BfBJO1XMq
+         IZuA==
+X-Forwarded-Encrypted: i=1; AJvYcCVkuArTwFsVXJvDNxjaly+e4jYf1arUrT0LF6AcKkQYJyOisjNxt8BCc5LBBtE/Y+YbmT544M1ICxgE6iGBd47I3ElBngg7GAuNdg==
+X-Gm-Message-State: AOJu0YxmQKHJDCyiXpFHIg9vnEJzqVZktpX7y24vPNoTRfQFowPWYYJ/
+	rTpMgUDNPG5Q25xUz8CcAK6MWurrROFgswdhwdmxeNy9q7+l3AU7HBvxvkKc21I=
+X-Google-Smtp-Source: AGHT+IFbwgqGndQ/tq89s59sI9i70gnFLDdzQdyEVv7eywiPzA9nOZyyH6mD6Ek/HoPjrrEzETlg/w==
+X-Received: by 2002:a5d:40d2:0:b0:33e:78d5:848e with SMTP id b18-20020a5d40d2000000b0033e78d5848emr1084783wrq.12.1711186540910;
+        Sat, 23 Mar 2024 02:35:40 -0700 (PDT)
+Received: from localhost ([2a00:11b1:10c0:1192:d048:e3e1:1749:7466])
+        by smtp.gmail.com with ESMTPSA id cl1-20020a5d5f01000000b0033e72e104c5sm3007561wrb.34.2024.03.23.02.35.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 23 Mar 2024 01:59:11 -0700 (PDT)
-From: Alex Bee <knaerzche@gmail.com>
-To: Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>
-Cc: Chris Zhong <zyw@rock-chips.com>,
-	Zhang Qing <zhangqing@rock-chips.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	Alex Bee <knaerzche@gmail.com>
-Subject: [PATCH v2 5/5] regulator: rk808: Add RK816 support
-Date: Sat, 23 Mar 2024 09:58:52 +0100
-Message-ID: <20240323085852.116756-6-knaerzche@gmail.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240323085852.116756-1-knaerzche@gmail.com>
-References: <20240323085852.116756-1-knaerzche@gmail.com>
+        Sat, 23 Mar 2024 02:35:40 -0700 (PDT)
+Date: Sat, 23 Mar 2024 10:35:38 +0100
+From: Andrew Jones <ajones@ventanamicro.com>
+To: Deepak Gupta <debug@rivosinc.com>
+Cc: Samuel Holland <samuel.holland@sifive.com>, 
+	Conor Dooley <conor@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	Catalin Marinas <catalin.marinas@arm.com>, linux-kernel@vger.kernel.org, tech-j-ext@lists.risc-v.org, 
+	kasan-dev@googlegroups.com, Evgenii Stepanov <eugenis@google.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, Guo Ren <guoren@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Paul Walmsley <paul.walmsley@sifive.com>
+Subject: Re: [RISC-V] [tech-j-ext] [RFC PATCH 5/9] riscv: Split per-CPU and
+ per-thread envcfg bits
+Message-ID: <20240323-28943722feb57a41fb0ff488@orel>
+References: <20240319215915.832127-1-samuel.holland@sifive.com>
+ <20240319215915.832127-6-samuel.holland@sifive.com>
+ <CAKC1njSg9-hJo6hibcM9a-=FUmMWyR39QUYqQ1uwiWhpBZQb9A@mail.gmail.com>
+ <40ab1ce5-8700-4a63-b182-1e864f6c9225@sifive.com>
+ <CAKC1njQYZHbQJ71mapeG1DEw=A+aGx77xsuQGecsNFpoJ=tzGQ@mail.gmail.com>
+ <d9452ab4-a783-4bcf-ac25-40baa4f31fac@sifive.com>
+ <CAKC1njRBbzM+gWowg1LOjq5GzVn4q+vJP9JUswVYfWmEw+yHSg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAKC1njRBbzM+gWowg1LOjq5GzVn4q+vJP9JUswVYfWmEw+yHSg@mail.gmail.com>
 
-Add support for rk816 to the existing rk808 regulator driver.
+On Fri, Mar 22, 2024 at 10:13:48AM -0700, Deepak Gupta wrote:
+> On Thu, Mar 21, 2024 at 5:13 PM Samuel Holland
+> <samuel.holland@sifive.com> wrote:
+> >
+> > On 2024-03-19 11:39 PM, Deepak Gupta wrote:
+> > >>>> --- a/arch/riscv/include/asm/switch_to.h
+> > >>>> +++ b/arch/riscv/include/asm/switch_to.h
+> > >>>> @@ -69,6 +69,17 @@ static __always_inline bool has_fpu(void) { return false; }
+> > >>>>  #define __switch_to_fpu(__prev, __next) do { } while (0)
+> > >>>>  #endif
+> > >>>>
+> > >>>> +static inline void sync_envcfg(struct task_struct *task)
+> > >>>> +{
+> > >>>> +       csr_write(CSR_ENVCFG, this_cpu_read(riscv_cpu_envcfg) | task->thread.envcfg);
+> > >>>> +}
+> > >>>> +
+> > >>>> +static inline void __switch_to_envcfg(struct task_struct *next)
+> > >>>> +{
+> > >>>> +       if (riscv_cpu_has_extension_unlikely(smp_processor_id(), RISCV_ISA_EXT_XLINUXENVCFG))
+> > >>>
+> > >>> I've seen `riscv_cpu_has_extension_unlikely` generating branchy code
+> > >>> even if ALTERNATIVES was turned on.
+> > >>> Can you check disasm on your end as well.  IMHO, `entry.S` is a better
+> > >>> place to pick up *envcfg.
+> > >>
+> > >> The branchiness is sort of expected, since that function is implemented by
+> > >> switching on/off a branch instruction, so the alternate code is necessarily a
+> > >> separate basic block. It's a tradeoff so we don't have to write assembly code
+> > >> for every bit of code that depends on an extension. However, the cost should be
+> > >> somewhat lowered since the branch is unconditional and so entirely predictable.
+> > >>
+> > >> If the branch turns out to be problematic for performance, then we could use
+> > >> ALTERNATIVE directly in sync_envcfg() to NOP out the CSR write.
+> > >
+> > > Yeah I lean towards using alternatives directly.
+> >
+> > One thing to note here: we can't use alternatives directly if the behavior needs
+> > to be different on different harts (i.e. a subset of harts implement the envcfg
+> > CSR). I think we need some policy about which ISA extensions are allowed to be
+> > asymmetric across harts, or else we add too much complexity.
+> 
+> As I've responded on the same thread . We are adding too much
+> complexity by assuming
+> that heterogeneous ISA exists (which it doesn't today). And even if it
+> exists, it wouldn't work.
+> Nobody wants to spend a lot of time figuring out which harts have
+> which ISA and which
+> packages are compiled with which ISA. Most of the end users do `sudo
+> apt get install blah blah`
+> And then expect it to just work.
 
-The infrastructure of the driver can be re-used as is. A peculiarity for
-this version is, that BUCK1/BUCK2 have a (common) bit which needs to
-toggled after a voltage change to confirm the change. Regulator regmap
-takes care of that by defining a apply_bit and apply_reg for those
-regulators.
+That will still work if the applications and libraries installed are
+heterogeneous-platform aware, i.e. they do the figuring out which harts
+have which extensions themselves. Applications/libraries should already
+be probing for ISA extensions before using them. It's not a huge leap to
+also check which harts support those extensions and then ensure affinity
+is set appropriately.
 
-Signed-off-by: Alex Bee <knaerzche@gmail.com>
----
-changes since v1:
-  - align regulator's .name and .of_match with updated binding
+> It doesn't work for other
+> architectures and even when someone
+> tried, they had to disable certain ISA features to make sure that all
+> cores have the same ISA feature
+> (search AVX12 Intel Alder Lake Disable).
 
- drivers/regulator/rk808-regulator.c | 202 +++++++++++++++++++++++++++-
- 1 file changed, 201 insertions(+), 1 deletion(-)
+The RISC-V software ecosystem is still being developed. We have an
+opportunity to drop assumptions made by other architectures.
 
-diff --git a/drivers/regulator/rk808-regulator.c b/drivers/regulator/rk808-regulator.c
-index a6a563e402d0..9f69b4d483d0 100644
---- a/drivers/regulator/rk808-regulator.c
-+++ b/drivers/regulator/rk808-regulator.c
-@@ -158,6 +158,11 @@
- 	RK8XX_DESC_COM(_id, _match, _supply, _min, _max, _step, _vreg,	\
- 	_vmask, _ereg, _emask, 0, 0, _etime, &rk808_reg_ops)
- 
-+#define RK816_DESC(_id, _match, _supply, _min, _max, _step, _vreg,	\
-+	_vmask, _ereg, _emask, _disval, _etime)				\
-+	RK8XX_DESC_COM(_id, _match, _supply, _min, _max, _step, _vreg,	\
-+	_vmask, _ereg, _emask, _emask, _disval, _etime, &rk816_reg_ops)
-+
- #define RK817_DESC(_id, _match, _supply, _min, _max, _step, _vreg,	\
- 	_vmask, _ereg, _emask, _disval, _etime)				\
- 	RK8XX_DESC_COM(_id, _match, _supply, _min, _max, _step, _vreg,	\
-@@ -258,7 +263,7 @@ static const unsigned int rk808_buck1_2_ramp_table[] = {
- 	2000, 4000, 6000, 10000
- };
- 
--/* RK817 RK809 */
-+/* RK817/RK809/RK816 (buck 1/2 only) */
- static const unsigned int rk817_buck1_4_ramp_table[] = {
- 	3000, 6300, 12500, 25000
- };
-@@ -640,6 +645,38 @@ static int rk808_set_suspend_disable(struct regulator_dev *rdev)
- 				  rdev->desc->enable_mask);
- }
- 
-+static const struct rk8xx_register_bit rk816_suspend_bits[] = {
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG1, 0),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG1, 1),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG1, 2),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG1, 3),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG2, 0),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG2, 1),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG2, 2),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG2, 3),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG2, 4),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG2, 5),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG1, 5),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG1, 6),
-+};
-+
-+static int rk816_set_suspend_enable(struct regulator_dev *rdev)
-+{
-+	int rid = rdev_get_id(rdev);
-+
-+	return regmap_update_bits(rdev->regmap, rk816_suspend_bits[rid].reg,
-+				  rk816_suspend_bits[rid].bit,
-+				  rk816_suspend_bits[rid].bit);
-+}
-+
-+static int rk816_set_suspend_disable(struct regulator_dev *rdev)
-+{
-+	int rid = rdev_get_id(rdev);
-+
-+	return regmap_update_bits(rdev->regmap, rk816_suspend_bits[rid].reg,
-+				  rk816_suspend_bits[rid].bit, 0);
-+}
-+
- static int rk817_set_suspend_enable_ctrl(struct regulator_dev *rdev,
- 					 unsigned int en)
- {
-@@ -913,6 +950,54 @@ static const struct regulator_ops rk809_buck5_ops_range = {
- 	.set_suspend_disable	= rk817_set_suspend_disable,
- };
- 
-+static const struct regulator_ops rk816_buck1_2_ops_ranges = {
-+	.list_voltage		= regulator_list_voltage_linear_range,
-+	.map_voltage		= regulator_map_voltage_linear_range,
-+	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
-+	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
-+	.set_voltage_time_sel	= regulator_set_voltage_time_sel,
-+	.enable			= regulator_enable_regmap,
-+	.disable		= regulator_disable_regmap,
-+	.is_enabled		= regulator_is_enabled_regmap,
-+	.set_mode		= rk8xx_set_mode,
-+	.get_mode		= rk8xx_get_mode,
-+	.set_suspend_mode	= rk8xx_set_suspend_mode,
-+	.set_ramp_delay		= regulator_set_ramp_delay_regmap,
-+	.set_suspend_voltage	= rk808_set_suspend_voltage_range,
-+	.set_suspend_enable	= rk816_set_suspend_enable,
-+	.set_suspend_disable	= rk816_set_suspend_disable,
-+};
-+
-+static const struct regulator_ops rk816_buck4_ops_ranges = {
-+	.list_voltage		= regulator_list_voltage_linear_range,
-+	.map_voltage		= regulator_map_voltage_linear_range,
-+	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
-+	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
-+	.set_voltage_time_sel	= regulator_set_voltage_time_sel,
-+	.enable			= regulator_enable_regmap,
-+	.disable		= regulator_disable_regmap,
-+	.is_enabled		= regulator_is_enabled_regmap,
-+	.set_mode		= rk8xx_set_mode,
-+	.get_mode		= rk8xx_get_mode,
-+	.set_suspend_mode	= rk8xx_set_suspend_mode,
-+	.set_suspend_voltage	= rk808_set_suspend_voltage_range,
-+	.set_suspend_enable	= rk816_set_suspend_enable,
-+	.set_suspend_disable	= rk816_set_suspend_disable,
-+};
-+
-+static const struct regulator_ops rk816_reg_ops = {
-+	.list_voltage		= regulator_list_voltage_linear,
-+	.map_voltage		= regulator_map_voltage_linear,
-+	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
-+	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
-+	.enable			= regulator_enable_regmap,
-+	.disable		= regulator_disable_regmap,
-+	.is_enabled		= rk8xx_is_enabled_wmsk_regmap,
-+	.set_suspend_voltage	= rk808_set_suspend_voltage,
-+	.set_suspend_enable	= rk816_set_suspend_enable,
-+	.set_suspend_disable	= rk816_set_suspend_disable,
-+};
-+
- static const struct regulator_ops rk817_reg_ops = {
- 	.list_voltage		= regulator_list_voltage_linear,
- 	.map_voltage		= regulator_map_voltage_linear,
-@@ -1392,6 +1477,117 @@ static const struct regulator_desc rk809_reg[] = {
- 			  DISABLE_VAL(3)),
- };
- 
-+static const struct linear_range rk816_buck_4_voltage_ranges[] = {
-+	REGULATOR_LINEAR_RANGE(800000, 0, 26, 100000),
-+	REGULATOR_LINEAR_RANGE(3500000, 27, 31, 0),
-+};
-+
-+static const struct regulator_desc rk816_reg[] = {
-+	{
-+		.name = "dcdc1-regulator",
-+		.supply_name = "vcc1",
-+		.of_match = of_match_ptr("dcdc1-regulator"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK816_ID_DCDC1,
-+		.ops = &rk816_buck1_2_ops_ranges,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = 64,
-+		.linear_ranges = rk805_buck_1_2_voltage_ranges,
-+		.n_linear_ranges = ARRAY_SIZE(rk805_buck_1_2_voltage_ranges),
-+		.vsel_reg = RK818_BUCK1_ON_VSEL_REG,
-+		.vsel_mask = RK818_BUCK_VSEL_MASK,
-+		.apply_reg = RK816_DCDC_EN_REG2,
-+		.apply_bit = RK816_BUCK_DVS_CONFIRM,
-+		.enable_reg = RK816_DCDC_EN_REG1,
-+		.enable_mask = BIT(4) | BIT(0),
-+		.enable_val = BIT(4) | BIT(0),
-+		.disable_val = BIT(4),
-+		.ramp_reg = RK818_BUCK1_CONFIG_REG,
-+		.ramp_mask = RK808_RAMP_RATE_MASK,
-+		.ramp_delay_table = rk817_buck1_4_ramp_table,
-+		.n_ramp_values = ARRAY_SIZE(rk817_buck1_4_ramp_table),
-+		.of_map_mode = rk8xx_regulator_of_map_mode,
-+		.owner = THIS_MODULE,
-+	}, {
-+		.name = "dcdc2-regulator",
-+		.supply_name = "vcc2",
-+		.of_match = of_match_ptr("dcdc2-regulator"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK816_ID_DCDC2,
-+		.ops = &rk816_buck1_2_ops_ranges,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = 64,
-+		.linear_ranges = rk805_buck_1_2_voltage_ranges,
-+		.n_linear_ranges = ARRAY_SIZE(rk805_buck_1_2_voltage_ranges),
-+		.vsel_reg = RK818_BUCK2_ON_VSEL_REG,
-+		.vsel_mask = RK818_BUCK_VSEL_MASK,
-+		.apply_reg = RK816_DCDC_EN_REG2,
-+		.apply_bit = RK816_BUCK_DVS_CONFIRM,
-+		.enable_reg = RK816_DCDC_EN_REG1,
-+		.enable_mask = BIT(5) | BIT(1),
-+		.enable_val = BIT(5) | BIT(1),
-+		.disable_val = BIT(5),
-+		.ramp_reg = RK818_BUCK2_CONFIG_REG,
-+		.ramp_mask = RK808_RAMP_RATE_MASK,
-+		.ramp_delay_table = rk817_buck1_4_ramp_table,
-+		.n_ramp_values = ARRAY_SIZE(rk817_buck1_4_ramp_table),
-+		.of_map_mode = rk8xx_regulator_of_map_mode,
-+		.owner = THIS_MODULE,
-+	}, {
-+		.name = "dcdc3-regulator",
-+		.supply_name = "vcc3",
-+		.of_match = of_match_ptr("dcdc3-regulator"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK816_ID_DCDC3,
-+		.ops = &rk808_switch_ops,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = 1,
-+		.enable_reg = RK816_DCDC_EN_REG1,
-+		.enable_mask = BIT(6) | BIT(2),
-+		.enable_val =  BIT(6) | BIT(2),
-+		.disable_val = BIT(6),
-+		.of_map_mode = rk8xx_regulator_of_map_mode,
-+		.owner = THIS_MODULE,
-+	}, {
-+		.name = "dcdc4-regulator",
-+		.supply_name = "vcc4",
-+		.of_match = of_match_ptr("dcdc4-regulator"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK816_ID_DCDC4,
-+		.ops = &rk816_buck4_ops_ranges,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = 32,
-+		.linear_ranges = rk816_buck_4_voltage_ranges,
-+		.n_linear_ranges = ARRAY_SIZE(rk816_buck_4_voltage_ranges),
-+		.vsel_reg = RK818_BUCK4_ON_VSEL_REG,
-+		.vsel_mask = RK818_BUCK4_VSEL_MASK,
-+		.enable_reg = RK816_DCDC_EN_REG1,
-+		.enable_mask = BIT(7) | BIT(3),
-+		.enable_val = BIT(7) | BIT(3),
-+		.disable_val = BIT(7),
-+		.of_map_mode = rk8xx_regulator_of_map_mode,
-+		.owner = THIS_MODULE,
-+	},
-+	RK816_DESC(RK816_ID_LDO1, "ldo1-regulator", "vcc5", 800, 3400, 100,
-+		   RK818_LDO1_ON_VSEL_REG, RK818_LDO_VSEL_MASK,
-+		   RK816_LDO_EN_REG1, ENABLE_MASK(0), DISABLE_VAL(0), 400),
-+	RK816_DESC(RK816_ID_LDO2, "ldo2-regulator", "vcc5", 800, 3400, 100,
-+		   RK818_LDO2_ON_VSEL_REG, RK818_LDO_VSEL_MASK,
-+		   RK816_LDO_EN_REG1, ENABLE_MASK(1), DISABLE_VAL(1), 400),
-+	RK816_DESC(RK816_ID_LDO3, "ldo3-regulator", "vcc5", 800, 3400, 100,
-+		   RK818_LDO3_ON_VSEL_REG, RK818_LDO_VSEL_MASK,
-+		   RK816_LDO_EN_REG1, ENABLE_MASK(2), DISABLE_VAL(2), 400),
-+	RK816_DESC(RK816_ID_LDO4, "ldo4-regulator", "vcc6", 800, 3400, 100,
-+		   RK818_LDO4_ON_VSEL_REG, RK818_LDO_VSEL_MASK,
-+		   RK816_LDO_EN_REG1, ENABLE_MASK(3), DISABLE_VAL(3), 400),
-+	RK816_DESC(RK816_ID_LDO5, "ldo5-regulator", "vcc6", 800, 3400, 100,
-+		   RK818_LDO5_ON_VSEL_REG, RK818_LDO_VSEL_MASK,
-+		   RK816_LDO_EN_REG2, ENABLE_MASK(0), DISABLE_VAL(0), 400),
-+	RK816_DESC(RK816_ID_LDO6, "ldo6-regulator", "vcc6", 800, 3400, 100,
-+		   RK818_LDO6_ON_VSEL_REG, RK818_LDO_VSEL_MASK,
-+		   RK816_LDO_EN_REG2, ENABLE_MASK(1), DISABLE_VAL(1), 400),
-+};
-+
- static const struct regulator_desc rk817_reg[] = {
- 	{
- 		.name = "DCDC_REG1",
-@@ -1714,6 +1910,10 @@ static int rk808_regulator_probe(struct platform_device *pdev)
- 		regulators = rk809_reg;
- 		nregulators = RK809_NUM_REGULATORS;
- 		break;
-+	case RK816_ID:
-+		regulators = rk816_reg;
-+		nregulators = ARRAY_SIZE(rk816_reg);
-+		break;
- 	case RK817_ID:
- 		regulators = rk817_reg;
- 		nregulators = RK817_NUM_REGULATORS;
--- 
-2.43.2
 
+As I said in a different reply, it's reasonable for Linux to not add the
+complexity until a use case comes along that Linux would like to support,
+but I think it would be premature for Linux to put a stake in the sand.
+
+So, how about we add code that confirms Zicboz is on all harts. If any
+hart does not have it, then we complain loudly and disable it on all
+the other harts. If it was just a hardware description bug, then it'll
+get fixed. If there's actually a platform which doesn't have Zicboz
+on all harts, then, when the issue is reported, we can decide to not
+support it, support it with defconfig, or support it under a Kconfig
+guard which must be enabled by the user.
+
+Thanks,
+drew
 
