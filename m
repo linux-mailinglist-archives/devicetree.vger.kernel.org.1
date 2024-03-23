@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-52624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 854978877F3
-	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 11:22:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ECEE28877F9
+	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 11:24:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 106C41F2196A
-	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 10:22:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C52D1F21B87
+	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 10:24:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29F2B1078F;
-	Sat, 23 Mar 2024 10:22:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E16B10A0C;
+	Sat, 23 Mar 2024 10:24:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gmoC56K8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Rr6zboSE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FD0EFC15
-	for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 10:22:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6EA11095C
+	for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 10:24:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711189349; cv=none; b=fyo2jxVvSf7RG3ma0d7MztIx61bqaaM30zpLb80aqxULJwmscXVKgGOHUILzoQjmWKyeBS/Xgo19iXcWBKMT/DpNFJ/OPdYIgV8ER9LhIyZNLrnQd4HbtJHXzIw5miPRzyuEABhYtr5b3yWtC5HIpfzx+KRex5+JNFkhhFItxQU=
+	t=1711189491; cv=none; b=fOPuPXlCJOIHOcOZlr7jBT2pL39Y9PXlOYnSq6RgW82Ea01M3A6PlNkJPehQf21cR/9Y9c2jDfZrre9099noolj1yzZ2i2J5c4AesofWzT2afDs5ZJhOehXTsk6ZgokuRSOovIIVZNtlMaIf8Xygdw4jAJxibsJBlNNxAUMXg8c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711189349; c=relaxed/simple;
-	bh=maYA6TPojxmMCR50lqXmD0Mifz4P+KTUcHOwdTmcM6E=;
+	s=arc-20240116; t=1711189491; c=relaxed/simple;
+	bh=EI4E2QPRZgdV+VYaFBNzKDcDkTtZXfPdSLG/1fRvzgw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VPbcaEjqub2nznmXyQ1lw3MBgxxmvWFyECpbHN4SXn3LsHWZkhL75QHXs1B8MeGJIgqmKRvDmRJzBTzzANcXSxZnmQBanbtqWZKM1MDgc544FQAQoIDL8uSA0nY107M8ZjHQYCSHBe4po05g33U72gAbQvVmi4Kpb/b+MrrKWpA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gmoC56K8; arc=none smtp.client-ip=209.85.218.48
+	 In-Reply-To:Content-Type; b=WIX6Y6EBzVrB7A9/CSwOxcNgLeux6NmbmB3yJuPdWcYABtFfLZBK/mkuMRCUFYr3f04+sFOLXXSX4ycHx9RUcNdE09jfr5xQlhjXhr/xIAXvHyzzMDo7+W/uSmYO4sAfyjWpmBhatS0vNkGegrgd/r9P+lK/x2TwPKidYV3tJKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Rr6zboSE; arc=none smtp.client-ip=209.85.218.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a46d0a8399aso663630266b.1
-        for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 03:22:27 -0700 (PDT)
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a46d0a8399aso663816666b.1
+        for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 03:24:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711189345; x=1711794145; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711189488; x=1711794288; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=js4PIaXcQxhgLbPodRVWcO3IY0/eYmoev+fpsoez2d4=;
-        b=gmoC56K8NXk+mZU0qWpim2E8QRa6G3wJskEVziWLof1piN0vEkJbur2JGg9KcMuaMr
-         IZXd3i/vP5xIgFuMsApGsf6ByomLRS+/b+1yqd6Hm/+uIdI/bGRw1gj7xhjKjDo2RUX7
-         yhPxS26wuaR1M6qaNdmY0u+1JUM7M7bYJsrAYwu6s6qYpgOvmsn9hZ9dDhx9kD5gXCyI
-         /KZIY3R5CNlw8tJiGZKMtarKdfRnbYNYRlAIXUfL6Z4piTy/sIBGnLxGDnaHmbRX6GvH
-         OHmsCQQxs2/AZvRMeJe32vHW9SJgJHzVLlIGg+8K4Mk0+jYrRO2PxO1P5dDaZypiQqry
-         xGpg==
+        bh=27eV0IsdHyW0CoX0dFZS8tHIPLcqxbkMkWnidM0bXYY=;
+        b=Rr6zboSE1nIuDsfatICRiiIPJO4Ee+sWRlIJ5ADV5K42zoubzLAnIUThu8iXReixF0
+         tK+Arq7OizleFgWZbO4gW8qKjDeLvP56RyyQ8DUdi7Ls/21vWx8oh9fPGySmva2FFIq+
+         SY4FEIq/Y2GphMCN7z2tnvyvv3h6Y8Ca9HOZraGiN2b/qHDeK5oCQnFvsv6I5c9ya4Cu
+         WKA7ajFRlGrixM/z+SQ+ijSFlGefLlhSqE6d5XJ8JPlFcOuzddZB1dFr77My5d4+DSX4
+         mGY1RFM4Gcud9VkpMB8zKoHs3+h3MKjTpfLYhEvBA4OFsL6+2E9CDb2t+cSseqoUilgR
+         FvKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711189345; x=1711794145;
+        d=1e100.net; s=20230601; t=1711189488; x=1711794288;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=js4PIaXcQxhgLbPodRVWcO3IY0/eYmoev+fpsoez2d4=;
-        b=PXEC4VyD8xrh+Jq78y9ZKiYULZlXtuBr4YxIUGN4Joehv+ivARrxi2fxi3pmJbPown
-         4WJ+lzsFlqm/hb7nAlJvV2zP1JPjsEDxAZCTfs/JyEXHdjlRmvliN42qOFPaBCIjIT5u
-         NrnIHGdvM+kZpw7fQ8PjLqmDo75lpU22eX6+YKgZTJGpMmW2i8vNX+li73c8kJ4vh2Qk
-         NsdQYre80FcBNMwV6A0mXOyPWv4eAVV1Sc0cvVuae2iySPiBCdIFUxyGjrkRNsayJhRd
-         zqYs5Fm9DEW7l84VT1GAZtayHdVb3jGGBfYW8A6Nb3bVjtlwPdenSmEeedACjCZEJw05
-         ZcNg==
-X-Forwarded-Encrypted: i=1; AJvYcCU0508mVnQ47B6wkDM260rBMomp4GhQ8sJH5RzIvmOr/spyjALUg6ldFt0U1B9xBJGNL4Mw2j+JViK0+0tFcn/SGBf/DqYI/vJ+8A==
-X-Gm-Message-State: AOJu0Ywto38f2ypEXyUBXKySptWZbBeSja/GuInLpnrzn6bCbghoTQXQ
-	in7dYuw2gZ31etdP+YGlVWlp4LQ5vQFdQRekFnmxTCXBXEnPFqbJfVlEGyWwhe4=
-X-Google-Smtp-Source: AGHT+IG2Mjn8BezvSbIrsxNKvzbQCc4BQteR/QamUB88CUwTsVWu0/n5l1PE3Cl/rT26gl4+EI8Lww==
-X-Received: by 2002:a17:906:69c2:b0:a47:3cd5:b3f1 with SMTP id g2-20020a17090669c200b00a473cd5b3f1mr1148989ejs.35.1711189345542;
-        Sat, 23 Mar 2024 03:22:25 -0700 (PDT)
+        bh=27eV0IsdHyW0CoX0dFZS8tHIPLcqxbkMkWnidM0bXYY=;
+        b=SsYyhdXyAFYDk+ToMYYoIL3jI9bhtLtnnUiN+B2TxNzQF2g22o+zySuzyPVh/s47Xi
+         FWH5Ovs29tScRgtXHEkKNH2m08c5ePHj/tX0nhjflxPvQG0CHi0RMk56rCsJxmc4estm
+         6/D4LWeQuDRfhyyu3TuQ60VqnzAhPex6yQ0ffphRzeFt9wS4Z9GJqr5/j/8JNmzQOArw
+         zHDp8utbRPr3oPo5+rFgsgn5Jnv5AvjsVnO3gAUZhnlskdlBoNb5f/14m7WwDgDczOVr
+         eTE9KqIy5TmpV4PYHDw1f1ck9u/szxFGpXV4ysOMkQjc/V+MB3/ZWKymtZ9KLRVEN3ak
+         254g==
+X-Forwarded-Encrypted: i=1; AJvYcCWLunvNvONa5uf808af0xEU2bbcNWnjLkoM0/ohS7XpJ2S9o9qiXpiFoDtvKZqYWPMWdUsMxC0kELWRYrEZGApDwxsIZrkDuSx1fA==
+X-Gm-Message-State: AOJu0YwcNd4f/nTgQnvZofeE6Zm4H+UrXcMLlwjWJkZfsN55fod3fzzS
+	yc9CX06JidsTSMOkkVwy66wyUTeIb+R/ox0Z4p5rgrmaM7x6cpggBbgTeOcMJjs=
+X-Google-Smtp-Source: AGHT+IElMB+eq0Nqv/BFxyyEAHz5MAomDs2zRpTTQQ7d1Mgzoga3P3xV4zoLW3fiI2kzGmV2lirrNg==
+X-Received: by 2002:a17:907:7d8b:b0:a46:d04b:66e7 with SMTP id oz11-20020a1709077d8b00b00a46d04b66e7mr1340567ejc.25.1711189487936;
+        Sat, 23 Mar 2024 03:24:47 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id c4-20020a170906170400b00a473abcb9fdsm767413eje.90.2024.03.23.03.22.23
+        by smtp.gmail.com with ESMTPSA id m19-20020a1709060d9300b00a45c9945251sm753897eji.192.2024.03.23.03.24.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Mar 2024 03:22:25 -0700 (PDT)
-Message-ID: <4439d51f-072a-4b0f-a6e4-b95192eac83b@linaro.org>
-Date: Sat, 23 Mar 2024 11:22:22 +0100
+        Sat, 23 Mar 2024 03:24:47 -0700 (PDT)
+Message-ID: <703de50e-f271-4e65-bda4-85b1835afa6e@linaro.org>
+Date: Sat, 23 Mar 2024 11:24:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,28 +77,34 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 8/9] dt-bindings: xlnx: Add VTC and TPG bindings
-To: Conor Dooley <conor@kernel.org>,
- Anatoliy Klymenko <anatoliy.klymenko@amd.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Michal Simek <michal.simek@amd.com>, Andrzej Hajda
- <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-media@vger.kernel.org
-References: <20240321-dp-live-fmt-v3-0-d5090d796b7e@amd.com>
- <20240321-dp-live-fmt-v3-8-d5090d796b7e@amd.com>
- <a82d525c-737a-4ac4-9d71-e88f4ba69ea1@linaro.org>
- <20240322-absence-endurable-dee8a25643b7@spud>
+Subject: Re: [PATCH net-next v3 12/12] dt-bindings: net: add Microchip's
+ LAN865X 10BASE-T1S MACPHY
+To: Parthiban.Veerasooran@microchip.com, conor@kernel.org
+Cc: andrew@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, horms@kernel.org, saeedm@nvidia.com,
+ anthony.l.nguyen@intel.com, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, corbet@lwn.net, linux-doc@vger.kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, Horatiu.Vultur@microchip.com,
+ ruanjinjie@huawei.com, Steen.Hegelund@microchip.com,
+ vladimir.oltean@nxp.com, UNGLinuxDriver@microchip.com,
+ Thorsten.Kummermehr@microchip.com, Pier.Beruto@onsemi.com,
+ Selvamani.Rajagopal@onsemi.com, Nicolas.Ferre@microchip.com,
+ benjamin.bigler@bernformulastudent.ch
+References: <20240306085017.21731-1-Parthiban.Veerasooran@microchip.com>
+ <20240306085017.21731-13-Parthiban.Veerasooran@microchip.com>
+ <20240306-spree-islamist-957acf0ee368@spud>
+ <4c5968a3-c043-45fc-8fff-2a9eaa6de341@lunn.ch>
+ <20240306-ripeness-dimple-e360a031ccde@spud>
+ <05a9a7ee-e4f0-443e-9c8a-8ee649a11448@microchip.com>
+ <2f384a54-74a0-4a75-a325-8985257b5d66@linaro.org>
+ <ba37c212-fb98-407d-9bee-6d14801754d9@microchip.com>
+ <96493beb-afbf-42f2-88f0-ad645422ecdb@linaro.org>
+ <1735add6-4a6a-452b-bf26-1cf19c95493e@microchip.com>
+ <20240321-upcountry-finless-b0e9b1ab4deb@spud>
+ <13a28ba3-2da4-428c-8091-25e75c6c11e8@microchip.com>
+ <d41a53bd-ea1e-476a-a18c-ed51dbac0a98@linaro.org>
+ <b3c5d217-a5e3-4957-884c-02e8c10aba9d@microchip.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -145,43 +151,34 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240322-absence-endurable-dee8a25643b7@spud>
+In-Reply-To: <b3c5d217-a5e3-4957-884c-02e8c10aba9d@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 22/03/2024 19:05, Conor Dooley wrote:
-> On Fri, Mar 22, 2024 at 06:59:18AM +0100, Krzysztof Kozlowski wrote:
->> On 21/03/2024 21:43, Anatoliy Klymenko wrote:
->>> diff --git a/include/dt-bindings/media/media-bus-format.h b/include/dt-bindings/media/media-bus-format.h
->>> new file mode 100644
->>> index 000000000000..60fc6e11dabc
->>> --- /dev/null
->>> +++ b/include/dt-bindings/media/media-bus-format.h
->>> @@ -0,0 +1,177 @@
->>> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
->>> +/*
->>> + * Media Bus API header
->>> + *
->>> + * Copyright (C) 2009, Guennadi Liakhovetski <g.liakhovetski@gmx.de>
->>> + *
->>> + * This program is free software; you can redistribute it and/or modify
->>> + * it under the terms of the GNU General Public License version 2 as
->>> + * published by the Free Software Foundation.
+On 22/03/2024 09:28, Parthiban.Veerasooran@microchip.com wrote:
+>>>
+>>>         - const: microchip,lan8650
+>>>
+>>>         - items:
+>>>
+>>>             - const: microchip,lan8651
+>>>
+>>>             - const: microchip,lan8650
+>>>
+>>> Executed dt_binding_check with the above update and it was successful.
+>>> Hope this is OK?
 >>
->> That's not true. Your SPDX tells something entirely different.
+>> This is the third time you ask us. None of the previous cases were
+>> actually tested. Maybe this one was, maybe not. I assume the latter.
 >>
->> Anyway, you did not explain why you need to copy anything anywhere.
-> 
-> I assume by "copy anything anywhere" you mean "why did you copy a linux
-> uapi header into the bindings?
+>> First, test your code.
+> As I mentioned in the previous email itself, I tested this case and the 
+> previous case both in my RPI 4 setup before replying to the comment. The 
 
-Yes, I trimmed context too much.
+I don't understand how one can test bindings and DTS on RPI 4. Testing
+is with dt_bindings_check and dtbs_check.
 
-The reasoning of copying some UAPI and claiming it is a binding was:
-"Copy media-bus-formats.h into dt-bindings/media to suplement TPG DT node."
-so as seen *there is no reason*.
 
-Commit msg should explain why we are doing things.
 
 Best regards,
 Krzysztof
