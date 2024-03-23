@@ -1,355 +1,199 @@
-Return-Path: <devicetree+bounces-52697-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52698-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB3B9887A42
-	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 21:19:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1972A887A4A
+	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 21:37:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B63D1C20C69
-	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 20:19:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A0BF6282067
+	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 20:37:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9086359B48;
-	Sat, 23 Mar 2024 20:19:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D8F7443D;
+	Sat, 23 Mar 2024 20:37:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="htIvVvLP"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="d0QTy3pu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D92EA59170
-	for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 20:19:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FC4320EB
+	for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 20:37:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711225144; cv=none; b=V5aHGKiVxNo6UGptKHFy8/LsV4KLAx6HgJcr/FTyOjoBo1uMsKIOUGPLavUiPq7JYZLTj7qjSvKaWCnXwnERu3mGZ0sptwxdol5cviux7cK9crJ2cGVNVyajj09GApDKFJp/Hc4CxW9B0GhXF3sfm146A4grF9syD6QMY/AMU9k=
+	t=1711226262; cv=none; b=A9bM0Or1OK74QE4/imKKAUXd4K/5ALhcm29uvuVO5rWjnl7eV7JMfMMz6BG/EuLVc1hE0pqT+SkdQDS12B50msZesvBjMfBkiFey9O07tzNvo4y0LMgkIImDsH81UTsUcJw3+0Z7D2TnhnM+brAOuYtUcdrtM8mWb3fk/dez47E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711225144; c=relaxed/simple;
-	bh=yF9tgIOTw/Pz3Oq00reWuwJoaxt/ocFSZJWqGKmiY8U=;
+	s=arc-20240116; t=1711226262; c=relaxed/simple;
+	bh=F/YPXLz2Mwerh5c3sVMFT48r3GG2KwGnkstMSeaVehY=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YVZ0oqbivjcT17ktZ2BkiF8J8Ip4EclTi/aFHEsBP3inu1iyrN2aANhRu00ZDQTnHJ/7Yx+871h41ravAcE2HF7B5HTY85FgIINQuE3iivrrzNMk+JPGLO6HbV3u5L6ZI53Pcgeedq+lgJ7EzE7MKIogQ1YlAUkOGi9qBSW1iDU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=htIvVvLP; arc=none smtp.client-ip=209.85.208.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2d68cf90ec4so55204721fa.1
-        for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 13:19:01 -0700 (PDT)
+	 To:Cc:Content-Type; b=o0TGtqs+9X9ZxbhhueVgfBtklWX7hpycRkHLLOJvcw1hWTQJn/O84M7k1XPl/5xwk6Xwjg7PDFTrJjRcGmBWqHLIXfpBR1ES2Jqs1pjRoz31bXOk3tQyH65zT3jueVIsEDEx7h/KN4KWTWN/muCY7DBrTf3JonzPS9/ZUJ6y6jM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=d0QTy3pu; arc=none smtp.client-ip=209.85.128.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-60a15449303so33986877b3.0
+        for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 13:37:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1711225140; x=1711829940; darn=vger.kernel.org;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1711226260; x=1711831060; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=IwKoue/JycJ5C5eskOmYEmBYSHXL2+1E+Dj8y9vrNj4=;
-        b=htIvVvLPHMqwGmBDXriJLoc3gapc7pcvFEa7pPuYY2JXY7t5VLV4ugTMK3mdegc0rm
-         pDE/0ZbF/gMscSH4nOYD/t3tzLNEL3A01SX5WdDwi6drm7tD8fewvt6WpHd7p44wCOSh
-         F8jDv0D5l2/OCYgy6HKO/BJOS7LGMifJ/I9ae2ixOavMTZeCwnbqb4ejEazoq2+qS0ZS
-         ePNHw+SPKhxK6eQzP3QEKY6QKO2JBIITpZFB2pzr5XbKcrmAjm6dKJy7LpFIF1JAiDHm
-         7hwH2PGvHqWLcBKt3VjZh0mqwosgkgvmM6X6Fzxn0aoafceLGXdXRHVCARB0tsNwAe8J
-         A1Rg==
+        bh=24wJWvfMNNR4rY9ZJ72kq+zMk5fkM7haArePsqOnmfc=;
+        b=d0QTy3pug2+hrioDXiuX4WEzadBLhhwfIxGhfWAd1QzalwL77nBJMa7cdsY5KDsDNC
+         g3IvRgrBa02ajKtrtAX84rVgeCM1ykzF5Mj7/tHqQZy7cHjXQv0W1ZIsy3+68iR8ma3s
+         /GRpE8/ImxQ93cdus+KQvvBgL3y+mo7QvMpc3hEHOylChtOUtYBQN0RapxF/+n9O/xfI
+         oVVNIUGyAOBvcyirlkTqYPYtE5DiQ+OPALsXgcTgDqbyHARMPVcxiQXBx1eGazPxcdAp
+         9NrgwDf1Lq4ITB24Sr/9jJIv2tP3cHt/rrYOgXt8+58Hr8CPEfLtVvgdHpE2i1ms/0oF
+         rsDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711225140; x=1711829940;
+        d=1e100.net; s=20230601; t=1711226260; x=1711831060;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=IwKoue/JycJ5C5eskOmYEmBYSHXL2+1E+Dj8y9vrNj4=;
-        b=TjQge4NCV7rbHXoWWz4CNBJqrhSWO/aHFWPLlbZvJOa03Y6gwLsAAlYOvAa795M63f
-         xY1U6C8/OpVr4R3kXoZBTwtZcqYbIjLi9aX5MudD8ZZ1+7995bwBF1HDJ7H3f7nGKn2w
-         BNW0B4VBxTYdhzcX5rWjZPUINSJu6b0qv/Xmii/FWFf11XJU3MlXF+fVhCiqEMOKfAja
-         67MApfLv2tTm1rwQ8lMtmxAf295pZKyhV3JElcA1Oktto7lCdSycJ/FucDsU7Pbkbu5G
-         yxU1QSoEWLBr5F9tP6BJNj9i1DaSNoc2K09cv28VbG0839ez3uo0mp9mCCAJviyJDPXe
-         e7ow==
-X-Forwarded-Encrypted: i=1; AJvYcCXM0QpxUcx9Wazjuyu14npXmiurqDazgG2PRaOc6202piVnXV+DNWkPi8p+pgUTva6KEt0CyDL8bJ3KVrAhzo+576V3lF8gCyQDZw==
-X-Gm-Message-State: AOJu0YwNCUBDxzq8mUyZ0ci2/EfTrz344PDphSsk6r5k+2XcsN3uIuMK
-	6FP0tR/2hDbq18TlpXO/Sz24jxSMatDp6zRF2uh/33Q1gPAa8yfbKFH0eWFskY/Yn1PxUiPuVz8
-	+60d7vjPvEeAJbd6qup5Q/Jj3erGEmGdCRfOpkw==
-X-Google-Smtp-Source: AGHT+IHXb2n1QgoAGJw4rCrvCmSPt+Xctcfjoe3mOglZ/rmKGPtBVrpMNpxIirDAUPPmdzMDRDLzLo9/gfdba6VfBEo=
-X-Received: by 2002:a2e:380a:0:b0:2d4:b061:da01 with SMTP id
- f10-20020a2e380a000000b002d4b061da01mr1860928lja.19.1711225139678; Sat, 23
- Mar 2024 13:18:59 -0700 (PDT)
+        bh=24wJWvfMNNR4rY9ZJ72kq+zMk5fkM7haArePsqOnmfc=;
+        b=uuHLo0EsppgHS0uLtJYFnmesN/H21FbSrAP3n2lYHB2Cw3OJbbVRbxthRBlJbSjtC4
+         miXKogLX+2cMC79QD1Yx5kXweRdqabeTfc2xLAsyNFQlYnQS+sOi4wLw2kcQ9bbqaLJ2
+         qYV6nbB5tXoOxrZAO1wF286Z2Kk0M6/vdU4WBpDG30OCG3ycg1h3aa18w07AyW0JtZia
+         oWFAr4psSbEa+c47Bbarv3v1yIq3RCfqhVuUBCkquRaQiNDAqMz+oLNoT0oCE6B9DYvK
+         joxZKIpoVqdyULG0P177aSAgE1N0KQod0UFYeb/q7hwy2/tsy/qtcFVcsgT0X5/rmZaQ
+         3UOA==
+X-Forwarded-Encrypted: i=1; AJvYcCUw2jdxgCQ2q/Sxak1uA4zExlNrAOlPR0hHU6XKJQalGve9PKRHqv2+RFxd7Ts8/MLZfYTvOuNHGtyJcUAh3iKoZdvGNnno0byipQ==
+X-Gm-Message-State: AOJu0Yz4NoWiS+ZaN1LYmFUUVkafkKwRtHbLCC8PBfnzihgI7kVcXPag
+	NxqH8y2I5hwlw3bhcvPWsoLMOFZloZ1RKHs8ebelho5h3oGRthmk5TH1eS94zmnsyKD0bQAePqA
+	cSdYFAztTiKM3ZUWDbLQWMcQaCxUQVmiM/bMx1w==
+X-Google-Smtp-Source: AGHT+IGKymQ6ArV3LTX39wPDQmJ+EcNQqIyE71qeKh8yulGXmkXtiwJzoMcBHLUtnhwBvRoabFlDgM5kHlMz+0M6rCw=
+X-Received: by 2002:a0d:d981:0:b0:609:6eb0:4714 with SMTP id
+ b123-20020a0dd981000000b006096eb04714mr2781546ywe.34.1711226259384; Sat, 23
+ Mar 2024 13:37:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1711131830.git.marcelo.schmitt@analog.com>
- <81665b5f0d37d593e6d299528de8d68da8574077.1711131830.git.marcelo.schmitt@analog.com>
- <20240323184454.201edbc3@jic23-huawei>
-In-Reply-To: <20240323184454.201edbc3@jic23-huawei>
-From: David Lechner <dlechner@baylibre.com>
-Date: Sat, 23 Mar 2024 15:18:48 -0500
-Message-ID: <CAMknhBFRa-AwM3o-AdDDmPnwLAer8x=9TJNasSbY2bu5h9mMdQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: Add AD4000
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, lars@metafoo.de, 
-	Michael.Hennerich@analog.com, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	marcelo.schmitt1@gmail.com, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240319215915.832127-1-samuel.holland@sifive.com>
+ <20240319215915.832127-6-samuel.holland@sifive.com> <CAKC1njSg9-hJo6hibcM9a-=FUmMWyR39QUYqQ1uwiWhpBZQb9A@mail.gmail.com>
+ <40ab1ce5-8700-4a63-b182-1e864f6c9225@sifive.com> <CAKC1njQYZHbQJ71mapeG1DEw=A+aGx77xsuQGecsNFpoJ=tzGQ@mail.gmail.com>
+ <d9452ab4-a783-4bcf-ac25-40baa4f31fac@sifive.com> <CAKC1njRBbzM+gWowg1LOjq5GzVn4q+vJP9JUswVYfWmEw+yHSg@mail.gmail.com>
+ <20240323-28943722feb57a41fb0ff488@orel>
+In-Reply-To: <20240323-28943722feb57a41fb0ff488@orel>
+From: Deepak Gupta <debug@rivosinc.com>
+Date: Sat, 23 Mar 2024 13:37:28 -0700
+Message-ID: <CAKC1njRqWYOsF9bQvWX99DhP8Ji_wDUc8J8N41=N6J_tncM3=A@mail.gmail.com>
+Subject: Re: [RISC-V] [tech-j-ext] [RFC PATCH 5/9] riscv: Split per-CPU and
+ per-thread envcfg bits
+To: Andrew Jones <ajones@ventanamicro.com>
+Cc: Samuel Holland <samuel.holland@sifive.com>, Conor Dooley <conor@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, linux-riscv@lists.infradead.org, 
+	devicetree@vger.kernel.org, Catalin Marinas <catalin.marinas@arm.com>, 
+	linux-kernel@vger.kernel.org, tech-j-ext@lists.risc-v.org, 
+	kasan-dev@googlegroups.com, Evgenii Stepanov <eugenis@google.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Guo Ren <guoren@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+	Paul Walmsley <paul.walmsley@sifive.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Mar 23, 2024 at 1:45=E2=80=AFPM Jonathan Cameron <jic23@kernel.org>=
- wrote:
+On Sat, Mar 23, 2024 at 2:35=E2=80=AFAM Andrew Jones <ajones@ventanamicro.c=
+om> wrote:
 >
-> On Fri, 22 Mar 2024 19:05:08 -0300
-> Marcelo Schmitt <marcelo.schmitt@analog.com> wrote:
->
-> > Add device tree documentation for AD4000 series of ADC devices.
+> On Fri, Mar 22, 2024 at 10:13:48AM -0700, Deepak Gupta wrote:
+
+> > > > Yeah I lean towards using alternatives directly.
+> > >
+> > > One thing to note here: we can't use alternatives directly if the beh=
+avior needs
+> > > to be different on different harts (i.e. a subset of harts implement =
+the envcfg
+> > > CSR). I think we need some policy about which ISA extensions are allo=
+wed to be
+> > > asymmetric across harts, or else we add too much complexity.
 > >
-> > Datasheet: https://www.analog.com/media/en/technical-documentation/data=
--sheets/ad4000-4004-4008.pdf
-> > Datasheet: https://www.analog.com/media/en/technical-documentation/data=
--sheets/ad4001-4005.pdf
-> > Datasheet: https://www.analog.com/media/en/technical-documentation/data=
--sheets/ad4002-4006-4010.pdf
-> > Datasheet: https://www.analog.com/media/en/technical-documentation/data=
--sheets/ad4003-4007-4011.pdf
-> > Datasheet: https://www.analog.com/media/en/technical-documentation/data=
--sheets/ad4020-4021-4022.pdf
-> > Datasheet: https://www.analog.com/media/en/technical-documentation/data=
--sheets/adaq4001.pdf
-> > Datasheet: https://www.analog.com/media/en/technical-documentation/data=
--sheets/adaq4003.pdf
-> >
-> > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> > ---
-> > Pasting relevant comment from cover letter here to aid reviewers.
-> >
-> > These devices have the same SPI (Strange Peripheral Interface) as AD794=
-4
-> > devices, which has been documented in ad7944.rst [1].
-> > The device tree description for SPI connections and mode can be the sam=
-e as of
-> > ad7944 adi,spi-mode [2].
-> > Because ad4000 driver does not currently support daisy-chain mode, I si=
-mplified
-> > things a little bit. If having a more complete doc is preferred, I'm fi=
-ne
-> > changing to that.
-
-Yes, having a complete binding is always preferred [1]. Bindings
-should never omit anything just because it isn't implemented in the
-driver.
-
-[1]: https://www.kernel.org/doc/html/latest/devicetree/bindings/writing-bin=
-dings.html
-
-...
-
-> > +
-> > +  adi,spi-cs-mode:
+> > As I've responded on the same thread . We are adding too much
+> > complexity by assuming
+> > that heterogeneous ISA exists (which it doesn't today). And even if it
+> > exists, it wouldn't work.
+> > Nobody wants to spend a lot of time figuring out which harts have
+> > which ISA and which
+> > packages are compiled with which ISA. Most of the end users do `sudo
+> > apt get install blah blah`
+> > And then expect it to just work.
 >
-> We've just merged a driver for the ad7944 and bindings which has a
-> similar 3-wire-mode.  Please share the approach used in that binding.
-> Whilst it seems we don't have the other mode here, I think we still want
-> to use a similar enum.
+> That will still work if the applications and libraries installed are
+> heterogeneous-platform aware, i.e. they do the figuring out which harts
+> have which extensions themselves. Applications/libraries should already
+> be probing for ISA extensions before using them. It's not a huge leap to
+> also check which harts support those extensions and then ensure affinity
+> is set appropriately.
 
-The ad40xx chips actually do have the same daisy chain mode. So the
-exact same property and all enum values apply.
+How ?
+It's a single image of a library that will be loaded in multiple address sp=
+aces.
+You expect all code pages to do COW for multiple address spaces or
+expect to have
+per task variables to choose different code paths in the library based
+on address space its
+running in ?
+On top of that, the library/application developer doesn't know how the
+end user is going to use them.
+End users (sysadmin, etc)  just might use taskset to put affinity on
+tasks without being aware.
+I just don't see the motivation in an application developer/library
+developer to do something
+like this. No application/library developer has time for this. Putting
+a lot of burden on application
+developers is mostly a nuisance considering they don't have to think
+about these nuisance
+when they expect the same code to be deployed on non-riscv architectures.
 
-> +CC David to take a look at this one given he went through long
-> discussions on how to deal with it for the driver he was working on
-> so probably remembers the reasoning etc better than I do :)
+One good example of putting unnecessary burden on app/library
+developer is Intel SGX
+This is exactly the reason Intel SGX failed. Application developers
+don't have time to develop
+confidential compute version of the application for a specific CPU
+while on other CPUs carry
+a different version of application. But at the same time virtual
+machine confidential compute is
+better approach where all complicated decision making is delegated to
+operating system
+developer and application/library developers are empowered to only
+think about their stuff.
+
 >
+> > It doesn't work for other
+> > architectures and even when someone
+> > tried, they had to disable certain ISA features to make sure that all
+> > cores have the same ISA feature
+> > (search AVX12 Intel Alder Lake Disable).
+>
+> The RISC-V software ecosystem is still being developed. We have an
+> opportunity to drop assumptions made by other architectures.
 
-In addition to the SPI wiring modes, the proposed bindings are also
-missing power supplies and the busy interrupt.
+It doesn't mean that it should try to make the same mistakes which
+others have done.
 
-Also, since the ADAQ chips are quite different from the AD chips, it
-would be very helpful for reviewers (and git history) to split out
-adding those chips to the DT bindings and driver into separate
-patches. This way we can clearly see which features only apply to the
-ADAQ chips.
+If there is a motivation and use case from end user perspective, please pro=
+vide.
+Otherwise no point doing something which is just a science thought
+exercise and no concrete use case.
 
-Here is what I would consider a reasonably complete binding for the
-AD40XX chips (excluding ADAQ for now as I suggested).
+Please note that these arguments are against Heterogeneous ISA on cores.
+From power and efficiency perspective cores can still be heterogeneous.
 
-
----
-# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-%YAML 1.2
----
-$id: http://devicetree.org/schemas/iio/adc/adi,ad4000.yaml#
-$schema: http://devicetree.org/meta-schemas/core.yaml#
-
-title: Analog Devices AD4000 and similar Analog to Digital Converters
-
-maintainers:
-  - Marcelo Schmitt <marcelo.schmitt@analog.com>
-
-description: |
-  Analog Devices AD4000 family of Analog to Digital Converters with SPI sup=
-port.
-  Specifications can be found at:
-    https://www.analog.com/media/en/technical-documentation/data-sheets/ad4=
-000-4004-4008.pdf
-    https://www.analog.com/media/en/technical-documentation/data-sheets/ad4=
-001-4005.pdf
-    https://www.analog.com/media/en/technical-documentation/data-sheets/ad4=
-002-4006-4010.pdf
-    https://www.analog.com/media/en/technical-documentation/data-sheets/ad4=
-003-4007-4011.pdf
-    https://www.analog.com/media/en/technical-documentation/data-sheets/ad4=
-020-4021-4022.pdf
-
-$ref: /schemas/spi/spi-peripheral-props.yaml#
-
-properties:
-  compatible:
-    enum:
-      - adi,ad4000
-      - adi,ad4001
-      - adi,ad4002
-      - adi,ad4003
-      - adi,ad4004
-      - adi,ad4005
-      - adi,ad4006
-      - adi,ad4007
-      - adi,ad4008
-      - adi,ad4010
-      - adi,ad4011
-      - adi,ad4020
-      - adi,ad4021
-      - adi,ad4022
-
-  reg:
-    maxItems: 1
-
-  spi-max-frequency:
-    maximum: 102040816 # for VIO > 2.7 V, 81300813 for VIO > 1.7 V
-
-  spi-cpha: true
-
-  adi,spi-mode:
-    $ref: /schemas/types.yaml#/definitions/string
-    enum: [ single, chain ]
-    description: |
-      This property indicates the SPI wiring configuration.
-
-      When this property is omitted, it is assumed that the device is using=
- what
-      the datasheet calls "4-wire mode". This is the conventional SPI mode =
-used
-      when there are multiple devices on the same bus. In this mode, the CN=
-V
-      line is used to initiate the conversion and the SDI line is connected=
- to
-      CS on the SPI controller.
-
-      When this property is present, it indicates that the device is using =
-one
-      of the following alternative wiring configurations:
-
-      * single: The datasheet calls this "3-wire mode". (NOTE: The datashee=
-t's
-        definition of 3-wire mode is NOT at all related to the standard
-        spi-3wire property!) This mode is often used when the ADC is the on=
-ly
-        device on the bus. In this mode, SDI is tied to VIO, and the CNV li=
-ne
-        can be connected to the CS line of the SPI controller or to a GPIO,=
- in
-        which case the CS line of the controller is unused.
-      * chain: The datasheet calls this "chain mode". This mode is used to =
-save
-        on wiring when multiple ADCs are used. In this mode, the SDI line o=
-f
-        one chip is tied to the SDO of the next chip in the chain and the S=
-DI of
-        the last chip in the chain is tied to GND. Only the first chip in t=
-he
-        chain is connected to the SPI bus. The CNV line of all chips are ti=
-ed
-        together. The CS line of the SPI controller can be used as the CNV =
-line
-        only if it is active high.
-
-  '#daisy-chained-devices': true
-
-  vdd-supply:
-    description: A 1.8V supply that powers the chip (VDD).
-
-  vio-supply:
-    description:
-      A 1.8V to 5V supply for the digital inputs and outputs (VIO).
-
-  ref-supply:
-    description:
-      A 2.5 to 5V supply for the external reference voltage (REF).
-
-  cnv-gpios:
-    description:
-      The Convert Input (CNV). This input has multiple functions. It initia=
-tes
-      the conversions and selects the SPI mode of the device (chain or CS).=
- In
-      'single' mode, this property is omitted if the CNV pin is connected t=
-o the
-      CS line of the SPI controller.
-    maxItems: 1
-
-  interrupts:
-    description:
-      The SDO pin can also function as a busy indicator. This node should b=
-e
-      connected to an interrupt that is triggered when the SDO line goes lo=
-w
-      while the SDI line is high and the CNV line is low ('single' mode) or=
- the
-      SDI line is low and the CNV line is high ('multi' mode); or when the =
-SDO
-      line goes high while the SDI and CNV lines are high (chain mode),
-    maxItems: 1
-
-required:
-  - compatible
-  - reg
-  - vdd-supply
-  - vio-supply
-  - ref-supply
-
-allOf:
-  # in '4-wire' mode, cnv-gpios is required, for other modes it is optional
-  - if:
-      not:
-        required:
-          - adi,spi-mode
-    then:
-      required:
-        - cnv-gpios
-  # chain mode has lower SCLK max rate
-  - if:
-      required:
-        - adi,spi-mode
-      properties:
-        adi,spi-mode:
-          const: chain
-    then:
-      properties:
-        spi-max-frequency:
-          maximum: 50000000 # for VIO > 2.7 V, 40000000 for VIO > 1.7 V
-      required:
-        - '#daisy-chained-devices'
-    else:
-      properties:
-        '#daisy-chained-devices': false
-
-unevaluatedProperties: false
-
-examples:
-  - |
-    #include <dt-bindings/gpio/gpio.h>
-    spi {
-        #address-cells =3D <1>;
-        #size-cells =3D <0>;
-        adc@0 {
-            compatible =3D "adi,ad4020";
-            reg =3D <0>;
-            spi-max-frequency =3D <71000000>;
-            vdd-supply =3D <&supply_1_8V>;
-            vio-supply =3D <&supply_1_8V>;
-            ref-supply =3D <&supply_5V>;
-            cnv-gpios =3D <&gpio0 88 GPIO_ACTIVE_HIGH>;
-        };
-    };
+>
+>
+> As I said in a different reply, it's reasonable for Linux to not add the
+> complexity until a use case comes along that Linux would like to support,
+> but I think it would be premature for Linux to put a stake in the sand.
+>
+> So, how about we add code that confirms Zicboz is on all harts. If any
+> hart does not have it, then we complain loudly and disable it on all
+> the other harts. If it was just a hardware description bug, then it'll
+> get fixed. If there's actually a platform which doesn't have Zicboz
+> on all harts, then, when the issue is reported, we can decide to not
+> support it, support it with defconfig, or support it under a Kconfig
+> guard which must be enabled by the user.
+>
+> Thanks,
+> drew
 
