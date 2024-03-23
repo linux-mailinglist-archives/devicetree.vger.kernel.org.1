@@ -1,129 +1,124 @@
-Return-Path: <devicetree+bounces-52701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B211887A6C
-	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 22:18:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39A59887A79
+	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 22:35:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B508BB21909
-	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 21:18:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8896281FE0
+	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 21:35:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23D4D56B72;
-	Sat, 23 Mar 2024 21:18:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 081DF59B40;
+	Sat, 23 Mar 2024 21:35:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UazFPNk9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M93ttoP4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68ECB1A38FC;
-	Sat, 23 Mar 2024 21:18:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 876E94DA14;
+	Sat, 23 Mar 2024 21:35:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711228684; cv=none; b=U3eogo6jZSqsGH2+0ApBtfs96EvuuEwqPA4TKUP3IWdW3kq1rqoBYrqryoPAji2dp4GAWul+qWwPobY7NovNqDOFZ+8/EFdRRvUE6gzxBW41M3bWJ6DUfM84b3YxnPHsKJTMZDXAT2yxyEkMJLNDwN5K3C5eyzsHSxDpC++ik3w=
+	t=1711229722; cv=none; b=bwz5MrxFLpoOgwTZmRkmkiQTOPW9RDsV63bhK14dJUl245gzDg99V4H+EfJTmcftPRxlPbpdhI5bxhdNkEi112e4y/DwZES1f0LOrHzhGFsaPIAK0xjOJLa3+gsc68yRvbEMHlXjzDNharBWQsRpM15mMjhngupNn5gCQtGBVnE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711228684; c=relaxed/simple;
-	bh=3IR6+azhCfPyr1SvRmZLmSOsS1saIo/5ABkALBwv9Oo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OI7/qehPWeg07kEih+Ao6IMtyDRyN5tDXdSJzsuTwfd29gP9FmTmDtT0VbSNykIophhnQ4q7+Boabqy31F9PtbUF9puGZwYKEkDIpG75t4aE44nfuBRV6kxgZ6x1WdKMb1nNUymYmCdH5NvDUkH22Er31Zf90QJyFJ5kY307/EA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UazFPNk9; arc=none smtp.client-ip=209.85.128.54
+	s=arc-20240116; t=1711229722; c=relaxed/simple;
+	bh=TFXIj5mvfTZYZ+/AQvqgbwvAx8bC445BW1C69Qbt5uU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=d5tOn0e2jlv7gqOLpo2Rm+R76Di96Mq9RxdN+CWElE3xC5HM2mhLjVDe0mfnlwlhrhVkkyBJqE/dbbejcSagembFBrHqLHlPwNgOyd74V2eCZHYLTXErLfs6DY3VhvgQQB93/j+v47b+GpsU86Ch62cZCr40OPui2CYbNCpggsc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=M93ttoP4; arc=none smtp.client-ip=209.85.160.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-41480df2ce0so5740005e9.3;
-        Sat, 23 Mar 2024 14:18:02 -0700 (PDT)
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-221ffba5c8bso2031050fac.1;
+        Sat, 23 Mar 2024 14:35:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711228681; x=1711833481; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3jrmFxwvHn+1SRq6v+CJ783Vy+oA3qLS0/S9njDH5R0=;
-        b=UazFPNk9ESo3CRgW1H9eQwayQ6/ZBWTeYqyYxQduNQhVayzZcU/ielXP607KBrsiZq
-         JvvmAJvbg6/QAUrjbWQawlSoQy3nrhuSFEmrsmFtdHYt/OJv+EPRLYuJRurcuZOZjzSA
-         5g4s1NrpnZa6nZlABSjzPuxSB00TWfmgcjO+Pl89NZT+HnIYs3IfO1iPxcLArZ2fRID1
-         AGsOA454l6i1B0jk1B50S7BOfLtO5u5ShrvG9sMXH/Wo2rKWcGFLIflG1c9Fb3oae55e
-         SJBXjkIKclJJeUWWZ93VxnTYKhql6TS7aHJuud8lKwPP+XsMpB1PvWNqLXXi7oE7+UEe
-         okrg==
+        d=gmail.com; s=20230601; t=1711229720; x=1711834520; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=QroXftDALwHHBo/MBvbGld59w96AGtW6cgASiak20nw=;
+        b=M93ttoP46YVuvOAJFJWVOcKebrd/YJNnoBYY+7hpGSSkFxmiOu0z5qiuLHS9wtsBNm
+         9kNzwcgrzaRmgkHJKbymoNhlp1StDGPYHDVzsPfZIv4Ho5TwKHxK+gIy/glhEumbRhbA
+         9MtzXepoPIop6iNwK+xhuDt9oKUn8pkI1+aoH+Im1d5MVF/fyUQkDPpJfpoMUhj1xkyb
+         s5ifNv7aflzHcEdE8gfzqBt02wC/u7PVzkYu1EtHQrmCuEWVHcybuN28ej/d52aFmgbv
+         IzAlNJwxEL6OwmmuUpBWkmZ1T5SE6vvxPEhYFzt7UJHdqLz11fomlCbQKoGMydYa3hRE
+         lf+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711228681; x=1711833481;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1711229720; x=1711834520;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3jrmFxwvHn+1SRq6v+CJ783Vy+oA3qLS0/S9njDH5R0=;
-        b=qseD/uCF6i0KBnr+TU/hanEKhlft7nVmFvgP6IXRAkqsojOZsMl7mvfHGfewFx1D+b
-         CewqqLcj3FDamUUlYWGZs9DY2K3wJV3tk9+3Gk0ciCPTRZvdrGAeVMRU63Z16GCVNBJa
-         ogIewqUHUxwtq2q1kgTg9fSPJ1wyOE/YxnyyfkzGECPqa1ejlCA0NttFKYY6VObUDS0V
-         C4K1YO+RxILs3i2sgYPUXeuwiEH6a9lx2SUZB9fbBuPqAhoJyA128M++rPOVyyO5AtT2
-         JsaxcXIQXldl0IkQoxmYyF1C4wVBFsMAPKMJOune4AKmUPGXogaxULGHn9fu+dfmOyQF
-         J8lg==
-X-Forwarded-Encrypted: i=1; AJvYcCUkDrfaNG5CXy+5pfFTThiP1bKzXZAfkU1H6MnEpxRQTfWYGuXvDrWJWVlH5o5qAh5pP18TfzjoLlCrkfrYMi68QJ8t0PvIgHVbhzu6VxQNabvV+XN6MDRSwFsflzwvfYpAk+SilvJBIaJe77NISJ2iZEI2bmkkbgu5dgS3DQyMowfFPRs=
-X-Gm-Message-State: AOJu0YzGkAUsJtaXJcBx57CbmNwZ2RpXriXSwsyPD3BpA9BtRLkZm4JI
-	zHRghBPGJjzprvS4lNZ2voCPOL/qAkDTVenFlD8wlTbeprHxReQ=
-X-Google-Smtp-Source: AGHT+IHAU5vY0etGgtJzkwrqVnlIHq+OT7B0xJ8ln/HDYHEfgXRUTbvf8Bsh0WGUNXkLlj/OuFG+Hg==
-X-Received: by 2002:a05:600c:a43:b0:412:d68c:8229 with SMTP id c3-20020a05600c0a4300b00412d68c8229mr2670298wmq.39.1711228680572;
-        Sat, 23 Mar 2024 14:18:00 -0700 (PDT)
-Received: from ?IPV6:2a02:810b:f40:4600:9d72:900:89e2:b7c1? ([2a02:810b:f40:4600:9d72:900:89e2:b7c1])
-        by smtp.gmail.com with ESMTPSA id fm17-20020a05600c0c1100b0041485a9d633sm968604wmb.25.2024.03.23.14.17.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Mar 2024 14:18:00 -0700 (PDT)
-Message-ID: <5bfed075-0228-44d9-84a0-2adba47b86e4@gmail.com>
-Date: Sat, 23 Mar 2024 22:17:58 +0100
+        bh=QroXftDALwHHBo/MBvbGld59w96AGtW6cgASiak20nw=;
+        b=MsR8x0+h++IjuAzb3PB4j+kdY91W6cUa7uih8dUUFbCd0XC6oP5agbv0WjfvmhNCR6
+         EnmlwuKJLomC5DUeVs45/Jrx+I2gqaa2rzlM5HQj6WDYPQn6pVb84Lw4FlN0urfIYIuO
+         ZMK3jc5JXdwL3PYZXnpN7OpYKyOT1Ke+XOcAbMCjML2Pv3oj5p+bSmRVWThf9aVZ1tHz
+         WEmT4jN1JZku73xW0rTA42epfS5Ye4CZvipbjiUTGhJoWwh736NSU5nqKD9s1N51Cd35
+         fwaBln0TO0bxdlYJMSBoQD5FZ62dCj9JDwPFDwvcy88rAo9OpaYUt8wCDN0kx18n7iXG
+         HicQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXvoHQw4qJLa4YTJ3HOvDgbNnT/5CDv1UzHB4H2+Wl/FlUwpczrcqQaOoc0We+pydJpmEtj79mhzqiGjokhens9NKRmDeqcEZTKlzwSe6AZ2zbGwKHElVIrrV7dyshqjeXGmYfckdiifAy7QrTPR6WxrlCWG8fvVCFNkD6Q+RL11if75A==
+X-Gm-Message-State: AOJu0YxtIw7Al7Ca5VhhPYGZI2IYsQ6LA3YW7zwiWLeMRVFrbkyTdEcj
+	Cmjoqd4Q66rGsNJ9RoSKqUTu70GdL4sJR2SJtaz4pLT/0SSMEL2+
+X-Google-Smtp-Source: AGHT+IG65g5LySY7bsvCW6f4G3I6il3q9sPRPEMKhe/b+cpW2rb2p7s1fSaP7LFoDzyzJXR2YJLvKA==
+X-Received: by 2002:a05:6870:9714:b0:229:c291:bff8 with SMTP id n20-20020a056870971400b00229c291bff8mr3740190oaq.16.1711229720538;
+        Sat, 23 Mar 2024 14:35:20 -0700 (PDT)
+Received: from localhost ([2804:30c:1618:ed00:d152:440c:102b:144e])
+        by smtp.gmail.com with ESMTPSA id p1-20020aa78601000000b006e697bd5285sm1770874pfn.203.2024.03.23.14.35.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 23 Mar 2024 14:35:19 -0700 (PDT)
+Date: Sat, 23 Mar 2024 18:35:48 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Marcelo Schmitt <marcelo.schmitt@analog.com>, lars@metafoo.de,
+	Michael.Hennerich@analog.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: Add AD4000
+Message-ID: <Zf9LNPv16wsPsZA6@debian-BULLSEYE-live-builder-AMD64>
+References: <cover.1711131830.git.marcelo.schmitt@analog.com>
+ <81665b5f0d37d593e6d299528de8d68da8574077.1711131830.git.marcelo.schmitt@analog.com>
+ <20240323184454.201edbc3@jic23-huawei>
+ <CAMknhBFRa-AwM3o-AdDDmPnwLAer8x=9TJNasSbY2bu5h9mMdQ@mail.gmail.com>
+ <CAMknhBFZa4eQ1bbJQb+ESZdsbLh5xSBn+feMwmWbc58mT2UWPA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/5] dt-bindings: mfd: Add rk816 binding
-Content-Language: en-US, de-DE
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Lee Jones <lee@kernel.org>, Chris Zhong <zyw@rock-chips.com>,
- Zhang Qing <zhangqing@rock-chips.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>, Linus Walleij <linus.walleij@linaro.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
-References: <20240323132757.141861-2-knaerzche@gmail.com>
- <20240323132757.141861-4-knaerzche@gmail.com>
- <368eb339-4f0f-4471-9367-9263caa3fab7@linaro.org>
-From: Alex Bee <knaerzche@gmail.com>
-In-Reply-To: <368eb339-4f0f-4471-9367-9263caa3fab7@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMknhBFZa4eQ1bbJQb+ESZdsbLh5xSBn+feMwmWbc58mT2UWPA@mail.gmail.com>
 
+On 03/23, David Lechner wrote:
+> On Sat, Mar 23, 2024 at 3:18 PM David Lechner <dlechner@baylibre.com> wrote:
+> 
+> ...
+> 
+> > Here is what I would consider a reasonably complete binding for the
+> > AD40XX chips (excluding ADAQ for now as I suggested).
+> 
+> I missed one...
+> 
+> I also think it makes sense for the High-Z mode selection to be a DT
+> property since needing to enable it or disable it depends entirely on
+> what is connected to the analog input pins.
+> 
+> ---
+> 
+>   adi,high-z-input:
+>     type: boolean
+>     description:
+>       High-Z mode allows the amplifier and RC filter in front of the ADC to be
+>       chosen based on the signal bandwidth of interest, rather than the settling
+>       requirements of the switched capacitor SAR ADC inputs.
 
-Am 23.03.24 um 15:32 schrieb Krzysztof Kozlowski:
-> On 23/03/2024 14:27, Alex Bee wrote:
->> Add DT binding document for Rockchip's RK816 PMIC
->>
->> Signed-off-by: Alex Bee <knaerzche@gmail.com>
->
->> +  regulators:
->> +    type: object
->> +    patternProperties:
->> +      '^(boost|dcdc[1-4]|ldo[1-6]|otg-switch)$':
->> +        type: object
->> +        $ref: /schemas/regulator/regulator.yaml#
->> +        unevaluatedProperties: false
-> This is good.
->
->> +    unevaluatedProperties: false
-> I missed it last time, apologies. This (second) unevaluated should be
-> "additionalProperties: false" instead.
-Alright. Since there are no driver changes required for this change, I'll
-give the other maintainers some time to review and fix it alongside in v4.
+ok, will do the suggested changes, including provide AD and ADAQ in separate patches.
 
-Alex
-
-> With this fixed:
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->
->
-> Best regards,
-> Krzysztof
->
+Thanks,
+Marcelo
 
