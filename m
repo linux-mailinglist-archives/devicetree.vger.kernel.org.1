@@ -1,58 +1,75 @@
-Return-Path: <devicetree+bounces-52694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD71D887A09
-	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 19:59:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1ED98887A14
+	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 20:08:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1ADBD1C20B93
-	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 18:59:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C7F6B1F21765
+	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 19:08:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1E3D57878;
-	Sat, 23 Mar 2024 18:59:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 680FD5810D;
+	Sat, 23 Mar 2024 19:08:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o1bhn+Lm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZYGj3MjQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3ABC53361;
-	Sat, 23 Mar 2024 18:59:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BC244E1C4;
+	Sat, 23 Mar 2024 19:08:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711220390; cv=none; b=tQpJD7RZbxWXVUuEAizNLjnKYd5XRLC0ghX/N4Xha9+343SQLwuPbcfWwDBzO8cw70HT+Cy89k4f5XkP7pkVZ1KCNhaX78CSsfFojkhvZTtt3hWUfWJgwCjrkGNssvb7801cFw0aTZGAf5+QgK8wWFZKy/O/aXpCXi10jZygQdw=
+	t=1711220891; cv=none; b=j1q723jb71rVwRiwTYsCrwYTpJk+/INFevNU/sND20624IpvDUss/BX6WvTkSage9q8fFJ01Huvpvz6cSlAkIs+zuc4XexMymxzkf4FXpd+1BjOVZFdOBPl5Y/CfhLTz7/VrSYdInCjMporfwq3I26dBCSxL8ewOBuigsbu11qM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711220390; c=relaxed/simple;
-	bh=Y/htR2XugPbloOUL0n/2gOxXFOGMv0kVDQBoVfgT2TY=;
+	s=arc-20240116; t=1711220891; c=relaxed/simple;
+	bh=9+sQO6Zyazf3riHAPr4vw0wfA2CTMxeeqFat8In/BUI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qmbHQAWp1irr1v47nokt3adSd5UzkoifR+wmBlZXUfs7DBqt1x6Q0sT9mYjdN6Ui7MCWYyIehRGDkrHnj6aK6uVS3nOMYOE9bGvVzQRdMXGWhF5QX6zy0IV5IPE3lmGN7e/1bKc6DG0mdO8NtLKIAVBaUfPuPfk6XrMkfY9cX2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o1bhn+Lm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDD17C433F1;
-	Sat, 23 Mar 2024 18:59:47 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=fALujtLUF0jwveFURXQ+LvXPGexJvhzv0XohL3mWua9sFBxxCAuJf7eQ/gCDCEXVqmQjGVXKKuRiuuUAqpOPN+jRxmw3AvWti/dpvvNDc8xzg/DQTV4MVxk6JsMFR9meij5M5JoQ9tVAwgf6JSCELdpqJCLYIS4t8mOSS/zoQwM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZYGj3MjQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CE15C433C7;
+	Sat, 23 Mar 2024 19:08:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711220390;
-	bh=Y/htR2XugPbloOUL0n/2gOxXFOGMv0kVDQBoVfgT2TY=;
+	s=k20201202; t=1711220890;
+	bh=9+sQO6Zyazf3riHAPr4vw0wfA2CTMxeeqFat8In/BUI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=o1bhn+Lmw87ktBbgrEHn0K/f54NNoP0SfqmY8VEXpjlvCmeTXuTmotSHWkYJUicSf
-	 Y+0m6D0fo6P9ucbGIK3RoELXZtjxkRkfHGWZNkDTgFQca1qT1LYrafaSo/wyPe9zRe
-	 5OieBzBkWaZeH+n5v+ydxZF0tBGOyp1A7Gk5BOt7ai8rHgmc8lEI4LzUtlvGZhMgY3
-	 w1YyRUOExNZncKmyZKno3xuykECUO5iKCoNixBNtR7s0uicH/yZ4oEevwUXuKt6RNi
-	 E1cXMX/EY5eHUENxSRlO5hSUfDjpbLw6QZ/quvjVHtVzeQVtKDPrHz8UcWONSt1Rbb
-	 0B9VYIn0Vsgnw==
-Date: Sat, 23 Mar 2024 18:59:45 +0000
+	b=ZYGj3MjQ8L+ziQ43RKGtutkhb+qszI4YtjRXG5l2kQ6elGdn5A992hi3tuVRtt+3C
+	 DE86Amtg0TbggEFZfqUNSdEMQPiaTVRr8Hdlo7hSzuJ4TjyTHoychCuKOieoBQytKD
+	 sB4qd3fOrtb153vcs1V3slc19OLe7xXlDWFPx+suildW95BS+tWER1ao7B+/bnSfB1
+	 U8oZ7Vdnx+viv0HJyryrin35TqF+H0qALo4AkiOtOPuAhRS2oaw69rPKSJiJs6/l+f
+	 t15sYcoN3eEBIan1sxuWTqVSqG8c45Qy17nrHzuWS9Efl3LJyYInADtoeaS227xC5M
+	 2AvNHlTgPA3NA==
+Date: Sat, 23 Mar 2024 19:08:04 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Alexandru Gagniuc <mr.nuke.me@gmail.com>
-Cc: andersson@kernel.org, konrad.dybcio@linaro.org, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, robert.marko@sartura.hr,
-	ansuelsmth@gmail.com
-Subject: Re: [PATCH 1/2] dt-bindings: net: ipq4019-mdio: add IPQ9574
- compatible
-Message-ID: <20240323-subsidy-thrash-4860285fadfc@spud>
-References: <20240323160935.2848095-1-mr.nuke.me@gmail.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Anatoliy Klymenko <anatoliy.klymenko@amd.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Michal Simek <michal.simek@amd.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-media@vger.kernel.org
+Subject: Re: [PATCH v3 8/9] dt-bindings: xlnx: Add VTC and TPG bindings
+Message-ID: <20240323-kennel-mousiness-f8fc12777cf9@spud>
+References: <20240321-dp-live-fmt-v3-0-d5090d796b7e@amd.com>
+ <20240321-dp-live-fmt-v3-8-d5090d796b7e@amd.com>
+ <a82d525c-737a-4ac4-9d71-e88f4ba69ea1@linaro.org>
+ <20240322-absence-endurable-dee8a25643b7@spud>
+ <4439d51f-072a-4b0f-a6e4-b95192eac83b@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,68 +77,69 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ZTU7TAzTO40/oK9T"
+	protocol="application/pgp-signature"; boundary="APHpANq/M0OjDKgl"
 Content-Disposition: inline
-In-Reply-To: <20240323160935.2848095-1-mr.nuke.me@gmail.com>
+In-Reply-To: <4439d51f-072a-4b0f-a6e4-b95192eac83b@linaro.org>
 
 
---ZTU7TAzTO40/oK9T
+--APHpANq/M0OjDKgl
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Mar 23, 2024 at 11:09:34AM -0500, Alexandru Gagniuc wrote:
-> Add a compatible property specific to IPQ9574. This should be used
-> along with the IPQ4019 compatible. This second compatible serves the
-> same purpose as the ipq{5,6,8} compatibles. This is to indicate that
-> the clocks properties are required.
+On Sat, Mar 23, 2024 at 11:22:22AM +0100, Krzysztof Kozlowski wrote:
+> On 22/03/2024 19:05, Conor Dooley wrote:
+> > On Fri, Mar 22, 2024 at 06:59:18AM +0100, Krzysztof Kozlowski wrote:
+> >> On 21/03/2024 21:43, Anatoliy Klymenko wrote:
+> >>> diff --git a/include/dt-bindings/media/media-bus-format.h b/include/d=
+t-bindings/media/media-bus-format.h
+> >>> new file mode 100644
+> >>> index 000000000000..60fc6e11dabc
+> >>> --- /dev/null
+> >>> +++ b/include/dt-bindings/media/media-bus-format.h
+> >>> @@ -0,0 +1,177 @@
+> >>> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+> >>> +/*
+> >>> + * Media Bus API header
+> >>> + *
+> >>> + * Copyright (C) 2009, Guennadi Liakhovetski <g.liakhovetski@gmx.de>
+> >>> + *
+> >>> + * This program is free software; you can redistribute it and/or mod=
+ify
+> >>> + * it under the terms of the GNU General Public License version 2 as
+> >>> + * published by the Free Software Foundation.
+> >>
+> >> That's not true. Your SPDX tells something entirely different.
+> >>
+> >> Anyway, you did not explain why you need to copy anything anywhere.
+> >=20
+> > I assume by "copy anything anywhere" you mean "why did you copy a linux
+> > uapi header into the bindings?
 >=20
-> Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-Cheers,
-Conor.
-
-> ---
->  Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> Yes, I trimmed context too much.
 >=20
-> diff --git a/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml=
- b/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
-> index 0029e197a825..a94480e819ac 100644
-> --- a/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
-> +++ b/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
-> @@ -20,6 +20,7 @@ properties:
->            - enum:
->                - qcom,ipq6018-mdio
->                - qcom,ipq8074-mdio
-> +              - qcom,ipq9574-mdio
->            - const: qcom,ipq4019-mdio
-> =20
->    "#address-cells":
-> @@ -76,6 +77,7 @@ allOf:
->                - qcom,ipq5018-mdio
->                - qcom,ipq6018-mdio
->                - qcom,ipq8074-mdio
-> +              - qcom,ipq9574-mdio
->      then:
->        required:
->          - clocks
-> --=20
-> 2.40.1
+> The reasoning of copying some UAPI and claiming it is a binding was:
+> "Copy media-bus-formats.h into dt-bindings/media to suplement TPG DT node=
+=2E"
+> so as seen *there is no reason*.
 >=20
 
---ZTU7TAzTO40/oK9T
+> Commit msg should explain why we are doing things.
+
+Oh for sure. I was just wondering if you were complaining about the UAPI
+header or if that comment was about the copyright notice. If it had been
+the latter I was gonna point out the former :)
+
+--APHpANq/M0OjDKgl
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZf8moQAKCRB4tDGHoIJi
-0hEGAQDf59+J7anuJNNdHglpOi0I+Mnh3MREBiFZuCoCIfijIAEAq8Ljd4BcvdIg
-nmWddEf+CIj4Go4q+NJnSj+kvoOqlgI=
-=bXI/
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZf8okwAKCRB4tDGHoIJi
+0uqqAP9b69AYr5D7FhDNnL/D8l5mnPP/f42epRSDhGpCwvmQwAD+P/S/aI8e14av
+MPfETCx+sejBWrcfF0p6HK7BDCtvTAg=
+=4lmD
 -----END PGP SIGNATURE-----
 
---ZTU7TAzTO40/oK9T--
+--APHpANq/M0OjDKgl--
 
