@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-52594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52595-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A7E48875F2
-	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 01:11:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A6D288761C
+	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 01:29:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E778284BAB
-	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 00:11:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4728284C4F
+	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 00:29:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78DF238F;
-	Sat, 23 Mar 2024 00:11:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8D1210F9;
+	Sat, 23 Mar 2024 00:29:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="H3oW9gJi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LbwIbGNJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99E69182
-	for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 00:11:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68CB43201
+	for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 00:29:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711152699; cv=none; b=uM5leny1bcpU9PFt6yFpTH1cMHQ/IrmRpy33WZxYj83BDi93y8A9XZy6B5/8jXYOnxKDif29l4oiHNACIYRzXfo+u59Z7hBQrVW7RhSBo+UP4+CTlEEYvKoXF5TPe4TXTMOrFPpwBO0/CA6i1LFq5JQOUo0cnF2gwmFQ1F2Y9Rc=
+	t=1711153748; cv=none; b=Ky7VqNV7m3Bp8/huXW2kg60BeyCkUx/0CQkJJfnYoZBUNbusfAdK1FZ3oirXUybKNyMLBj9M0a9fmn34u1W/EtlmhgZPSI0gKe2Q9l5AYEUE+/f1+jF5ayayNocb44YeYs6JxjIz7HhcGEDL4aW+bJ6furuuW2oCwhT3QnQpx7E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711152699; c=relaxed/simple;
-	bh=P/EP+P6BnH9TyUaUed9aOUzEfM5ZQWRlxn2Pg6ia2PE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uToC+29tRkZszrHzerSGH5OJtwzYpwaUHfXUSoz+dLILtYajXYtY1NV788FRQ3MXi4PaVYvXI1hISlbIum1UTArUM0vi/VZ7qlMU8MoO7kQI/AG0lgVZMF9o2kXypMLVeEs+q+9tWc4i/+gxGiif/Gz6uQ3Pp5bSie/zXYzx2Kk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=H3oW9gJi; arc=none smtp.client-ip=209.85.208.169
+	s=arc-20240116; t=1711153748; c=relaxed/simple;
+	bh=cu2BNWH6WbgOzz3G19ecvxyJwG3OxcG4EYlK0MMkNkk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=GiuMx9N8sS5M6q0n3hfOwez5F/xmBTi1v1lLse8lJuiOfnXAAlpTWWutmDB3FJ6tqJDC1+e702WdGe0e7mygKuoFcR8sB9zKTWilpVJYM/Xosa03Wz5EeBQQfXpMf1YR7pDnJKdoRikMI+ZFPjsdmUSuWjmI0ODjjqz/ah0n5ps=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LbwIbGNJ; arc=none smtp.client-ip=209.85.218.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2d6a1ad08b8so36008471fa.1
-        for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 17:11:37 -0700 (PDT)
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a4644bde1d4so368297466b.3
+        for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 17:29:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711152695; x=1711757495; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1711153744; x=1711758544; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=m3MCFSvMO/tlYKEIBdXDWMBZUwgIizoQXcUu+EHJkdE=;
-        b=H3oW9gJi0BtcFA5C8+buZiXV1xpIgH2zLlCZ1mb7+poN6srbvB7b/kW5OdV8pC08MT
-         SCkB1Iuowpf/8HClZicSLLzBF8d1UEFjJQqdPwQ61ne4Ex5p+CniK1qAwf3w7TXbC+5c
-         XT8KHYD8zPtIgcxEvhSX7aCmHtg32fWv9LTPJE8BObbr/naa0RVCijgmnqMGOAS0EaYL
-         SZPcA0ejWjU6/zOaK1ShEF/z1O+8butI+9yoMOrAxUjBEHYGzJuyyChBv02uV8Q+L26F
-         TnQbEOuAb3ZXs2GNzBwLgJCTvIch5Tq8ncbVGeSkmjsJyM07ktq7NhsThkbITvb01ljT
-         wKiQ==
+        bh=pZHRO2qwwFdcHjxfusuWGefIdyNkghgxbZHMsP8YFAY=;
+        b=LbwIbGNJWYjMDwJgWRKksv731Ki+VWEKBih6W145nIdPX9/iYzj6KRz9IWoeJqo2lJ
+         80Xd7wCAz2pTW6w/7+uyfu/oUxIB3EcfUt+Ie49bXkdRb/ZHO4Z5QLhgLp+5wCXl8L7T
+         Y2dME5jDf1H2Ks26yj1zBi5kI7AobYyFp2AHvypp6vCwLTqJi+crfx3HZDC+EfRqwWuz
+         HEDfmRgJAn68OXS6x5nq+blucy/V43RS4Q77CKfuQ5mKJVolTGrZNA/8bFRWyO9Dmcp8
+         aPZU290dsL9wYmDDJ2+TffCiwR9PqZ2ib6PIlOUXeiFOQJR/Lfp7bZBr9Q+zue0lIG8z
+         3H1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711152695; x=1711757495;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1711153744; x=1711758544;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=m3MCFSvMO/tlYKEIBdXDWMBZUwgIizoQXcUu+EHJkdE=;
-        b=XRH28ahpxUz/0xydDXepPouEMHZNYu6/Ak68jMb/R2ZD4wXMZ/fHA43Ob7ZfZ224jP
-         f02onGWAnYpZkRIiffbfQbSwNlu8CNL/DguJ9rO6lCp8KtXe4F6kw2yMRGgFKga+7j/d
-         qa2iH7mPsmlZyOFTxJ6MVZ1g7HjbO6TWRQFPYXR7J1WM0AlQI05qhIjycsD6WFlECryS
-         5KYmb9PN4TWVYQKB1xU48PVEC9GaBItSdU51KsTOvcQCe4ODMDIcN26FPdxzY2G5nJc5
-         9S1gqq71jvltbYVQnB3m3W/RGtPMlOnplpQCuUNdDNyzSZEbIzFEDifdCkvs8aHyNXwK
-         tFPg==
-X-Forwarded-Encrypted: i=1; AJvYcCX6dH4Aa6gKrJtH6SpqQYIpSsMQIOeP2EatDo+bqJV9UVUJ384E9WFwJRBZpzSaPEi6lEknYJaNm/1ZJiGq4Rnr6hxFU7eL4W3wRA==
-X-Gm-Message-State: AOJu0YyU4MTU8eUZ1kGYcgEUDQV2LxxQZ5ckHOKV6WFJ4gHDINzBnANL
-	PZQBCUSm5E6UpzVMgZbfI6K7q6zPA89q+EHMsSf5QczcrWDU3zG6hWSkIhucFIE=
-X-Google-Smtp-Source: AGHT+IFry0RlYQGrAAhXRAPDON49IcLTGX1hJRc3YJNRYsvqjBsTp4W4Yr1IHjDKv2LU9H9QWOR04g==
-X-Received: by 2002:a19:5f46:0:b0:515:9aa9:ecb7 with SMTP id a6-20020a195f46000000b005159aa9ecb7mr667861lfj.27.1711152695471;
-        Fri, 22 Mar 2024 17:11:35 -0700 (PDT)
+        bh=pZHRO2qwwFdcHjxfusuWGefIdyNkghgxbZHMsP8YFAY=;
+        b=qtytUtIlcW3kotUjn+MFVJuWZcxjV13dPlisZ838nywewvnle2s5xjxil1rg7qpH36
+         LwfUG6tRHO4V4oN76Q4ksR2BU3kXD1GpgKsMYQjNAwuIUxLkw3ZbEOscjovUCdkjoYQN
+         rY3yl7episkFbp/mCFxF36SHfPutfRZkg45HHi+kh/TGAZPDR4l9Gb/4yc7qoVzFfoFE
+         v3dSLpRcgyzhWZiOJXWLAuIbLE+VV4uPVXiXIPUdZ+i7ql1TC9DossGroTwD30f0m8lF
+         yu8MgtE3MAKennvqv2oWmIEopYMGNkWPAOjHLe46hYfQLWDax1FfmtCgTGN8Ox/SV0KN
+         JwXg==
+X-Forwarded-Encrypted: i=1; AJvYcCWK44FaUJRnMGh0zvp0XdD1r1gN0j79p0CIErteZsLm0/cheOksgqAPn8Kve6ZSYP442xRdB3PNd6ZjZgyMJ5pSEHdSUhb4BmCqrA==
+X-Gm-Message-State: AOJu0YyGurZ9sI7UTK006tnKvfW3uXKpvCTdMTr1tTV6p9Yts66AjZQ1
+	AR/Wfis5HZbWBDhETWW+44bsktXQ59bAuz6LtwzH7TWPVX56KqL4x9fh4eptHdcLz5NV2dYC5op
+	CBI0=
+X-Google-Smtp-Source: AGHT+IH80VKvG83Knpz7MvFUfHZwOkOG78oP7VguNp6EmF3SNCJdMugJ+coJOJkRZRWKNvRHv5kSkw==
+X-Received: by 2002:a17:906:f8c7:b0:a47:669:e2e9 with SMTP id lh7-20020a170906f8c700b00a470669e2e9mr614073ejb.77.1711153743797;
+        Fri, 22 Mar 2024 17:29:03 -0700 (PDT)
 Received: from [192.168.92.47] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
-        by smtp.gmail.com with ESMTPSA id i8-20020a17090671c800b00a46d4e26301sm341615ejk.27.2024.03.22.17.11.34
+        by smtp.gmail.com with ESMTPSA id e10-20020a170906504a00b00a4735e440e1sm351242ejk.97.2024.03.22.17.29.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Mar 2024 17:11:34 -0700 (PDT)
-Message-ID: <cf8fb32d-3061-42e7-aa7d-4624c2bf413b@linaro.org>
-Date: Sat, 23 Mar 2024 01:11:33 +0100
+        Fri, 22 Mar 2024 17:29:03 -0700 (PDT)
+Message-ID: <4b37a6e5-f917-4ead-9678-554a0d8f4660@linaro.org>
+Date: Sat, 23 Mar 2024 01:29:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,16 +77,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 00/21] Add PCIe bridge node in DT for Qcom SoCs
+Subject: Re: [PATCH 2/2] clk: qcom: add IPQ9574 interconnect clocks support
 Content-Language: en-US
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org,
- Rob Herring <robh@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
-References: <20240321-pcie-qcom-bridge-dts-v2-0-1eb790c53e43@linaro.org>
+To: Varadarajan Narayanan <quic_varada@quicinc.com>, andersson@kernel.org,
+ robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ mturquette@baylibre.com, sboyd@kernel.org, djakov@kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-pm@vger.kernel.org
+References: <20240321043149.2739204-1-quic_varada@quicinc.com>
+ <20240321043149.2739204-3-quic_varada@quicinc.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -122,29 +123,47 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20240321-pcie-qcom-bridge-dts-v2-0-1eb790c53e43@linaro.org>
+In-Reply-To: <20240321043149.2739204-3-quic_varada@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21.03.2024 12:16, Manivannan Sadhasivam wrote:
-> On Qcom SoCs, the PCIe host bridge is connected to a single PCIe bridge
-> for each controller instance. Hence, this series adds a DT node for the
-> PCIe bridges across all SoCs.
+On 21.03.2024 05:31, Varadarajan Narayanan wrote:
+> Unlike MSM platforms that manage NoC related clocks and scaling
+> from RPM, IPQ SoCs dont involve RPM in managing NoC related
+> clocks and there is no NoC scaling.
 > 
-> There is no functionality change with this series, but the PCIe bridge
-> representation in DT will be necessary to add the DT node for the client
-> devices like the one proposed in power sequencing series [1].
+> However, there is a requirement to enable some NoC interface
+> clocks for accessing the peripheral controllers present on
+> these NoCs.
 > 
-> - Mani
+> Hence adding a minimalistic interconnect driver that can enable
+> the relevant clocks. This is similar to msm8996-cbf's usage of
+> icc-clk framework.
 > 
-> [1] https://lore.kernel.org/linux-arm-msm/20240216203215.40870-8-brgl@bgdev.pl/
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
 > ---
 
-Everything looks good
+[...]
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> @@ -9,9 +9,16 @@
+>  #include <linux/of.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/regmap.h>
+> +#if IS_ENABLED(CONFIG_INTERCONNECT)
+
+This is bad practice, especially given the reasoning for your changes.
+
+It's best if you add a dependency on interconnect to this driver,
+otherwise things will go into uncountable EPROBE_DEFERs if there are
+nodes consuming icc handles, but the supplier never registers.
+
+[...]
+
+>  
+>  static int gcc_ipq9574_probe(struct platform_device *pdev)
+
+..and that approach could save the probe func from the absolute mess it
+has become with this patch
 
 Konrad
 
