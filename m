@@ -1,127 +1,154 @@
-Return-Path: <devicetree+bounces-52603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB3B5887687
-	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 03:00:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05EEA8876AD
+	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 03:39:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 85CF8B21C1E
-	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 02:00:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B5CCC283BCA
+	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 02:39:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 388CF10F1;
-	Sat, 23 Mar 2024 02:00:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54F1E10E5;
+	Sat, 23 Mar 2024 02:39:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="FrO3NjeB"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="YfQXCdSL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C44EA31
-	for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 02:00:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19F1B372;
+	Sat, 23 Mar 2024 02:39:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711159246; cv=none; b=a4covLj5gins3KWuCrQ31Cbh7JLSefS3ZVooBB9slY9ubV1uH7Z276HYjjFaf7WL3A5y+J/N7ruaIWpyWniztVya2ftjAN/FiP5EUg6B78AisfF9/Y9uo6GDKCEIQs78b3+VSWMf68wmnXv0bFAG3H89j6sxTqnUR5qJMehAMWA=
+	t=1711161546; cv=none; b=GniEK8bZjKXLJI61IFZCJfBgz4P7dge3QSRA0jgmDhkmfn9PUi2dqchAwktagFy+6UuKDxAaCJRjTmBc7BZEoSdCrtn9CbMybaucTruBzHH94GzVhwrE9eha6RvCrU+c8ZT2L2/MzR+aSsTBqNEBMPdIKQBj8vYWTgmG2PJz8+0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711159246; c=relaxed/simple;
-	bh=x+FdX9DQdTFaHf4AamxvgZg5mk3QbFF5nbQKe4Tw0Hg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WZVu1nd/3biECcIRn6iYDZDYaxT2bKISEBb+glMSDNsbiJaSdB7wtOuFHnq0cVh/hq/ZdmP+Mh6+l8ogqr+q8KI85jBswLL8ME6ipL6PEtmHRiG+YBUznrmSTTbK6N3obFEe+/z3LYe2LTImMN2Q/EX6nd8kYZ3d1c1LeYabceQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=FrO3NjeB; arc=none smtp.client-ip=209.85.160.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-qt1-f178.google.com with SMTP id d75a77b69052e-42ee0c326e8so67801cf.0
-        for <devicetree@vger.kernel.org>; Fri, 22 Mar 2024 19:00:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1711159243; x=1711764043; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=x+FdX9DQdTFaHf4AamxvgZg5mk3QbFF5nbQKe4Tw0Hg=;
-        b=FrO3NjeB1p3HNQ7n3aAwsjvbCZYdBqLycBLD1KhKgeBahgxAdugvWqpKS0O16MFlBE
-         m5TA6QyHm7dzZ9+abrCQjRWy+wDOOUCUpxoujnCkxhDbo/rMecG6bNLYihZWErrah9t4
-         frSTx2wt6393IX/JZWngN78P0cCGJmY+GRXUuADHYqZKIUPiabLUyk+lwG4Rmy1xPF8h
-         y/YFeV9zsJo9eAI4DjlGmYYY7x16urD2Q5HtvStYAPI8egl4FFScYRdE+A6q7m2+0FTf
-         +3CKkwU7dl2Wqx9jghR0vMLkmIJxf8cZNRLzlCWMsRTfYkoeEZSpLg9+jzABoTtbQaLJ
-         jEzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711159243; x=1711764043;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=x+FdX9DQdTFaHf4AamxvgZg5mk3QbFF5nbQKe4Tw0Hg=;
-        b=mWUcCrYztEZJfev0MsbmT3n3CZ3NiEWPprDNB7a9Txd/ukaZBCoAJBIDocXh6LQN9H
-         6DguSN/SUKkkhx35xg874kpLq423kr6zOJMAJ/qvFHFkR1GxXwTgAqDgc6E/f3W3TPGY
-         8/loy9s1ptd7TT90zNRuqRsAH6PcLHoIyjeNE+xQjehNBIuOIwahY8TDOxXhr7+7fi34
-         cFwqKn0jmyu5UP4sZ3FryT9Oh0cqQ9s3WfMve+k3nL67wvnDtNNmUZIRwErWzs9vNa35
-         MKW9gkxdIc9sdmNt0hiW3jEIAuIS5fBRLBt0NSiZbOUBC/s1L7jDY29RIdUpaUU4p6FO
-         F2yQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWMggA4JI++tFGowarnXiPbKap5Z/WWf0QsX10OI6kFA0mUrWZIdQp6EZKX2oaJWom2kRF/5TE9WowOjoHdQweZ6Mn0fI6THMfURw==
-X-Gm-Message-State: AOJu0Yz59yUcVzKdRsK+l0KoBgNO8PCD8UFAPD6y5K+gjUQfI34Z0ClQ
-	QmoVPRUoIYuhI6MfMxBJRA5YOBqsFrlKacaVTSZ7QxC1t0GCLYF5lXkQ4eOvL0/vXU80IQyTYhg
-	27lZ0VA0JLX5PbJHmw+DTi8JwefrW1xukXcgN
-X-Google-Smtp-Source: AGHT+IHEu5RsydW1nGrf112JXAAobeSfXYgjaT18QBQKEPz/AjPpVseTu9jTurdFvMxJjea4j9qTo3T86+aT+MmmskM=
-X-Received: by 2002:a05:622a:5cb:b0:430:ed37:bad0 with SMTP id
- d11-20020a05622a05cb00b00430ed37bad0mr663579qtb.13.1711159243461; Fri, 22 Mar
- 2024 19:00:43 -0700 (PDT)
+	s=arc-20240116; t=1711161546; c=relaxed/simple;
+	bh=AG4ON7xvljtcWn/UdtM0z5wavsqCCf+b9NqhLGrDMMo=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=RIXynElh/I2+7CuTgblvVPudxT70n0WaQ/8GQ74FUmV/OycIZErW01F5+4/r5HX7m3Sci6ZXyMujTCBFPNMmv7LYG01CeKhRtLV6k+ZDkFS46+Ki5PP4VrLX5GSZ1IyT78eEW6MIHicxN5N/CjY2gk4zC0/FyPc3g+Fn9Hr6ow8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=YfQXCdSL; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 7ff1eaace8be11ee935d6952f98a51a9-20240323
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=kBYW2HSKPAO73a9/6vY6GefeFn9WVoTooqq0gWEt8W4=;
+	b=YfQXCdSL3rIBSXx5qkrvELIQoZg+22qs38uyUcx1y9sTal4kApzSX4lcsT363eKltk8iITT7Q0/XHmy59VrQwgS9vY7fOYd1pq4wX1u426JbZKRcT1lnTpsW/QiBiMybu4kFcYHeqnGUcN7hvEmXt/JVDNV/Lm/H8sPOHsgLGII=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.37,REQID:ef87021b-4913-42b2-a968-43c163aba95f,IP:0,U
+	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+	N:release,TS:-25
+X-CID-META: VersionHash:6f543d0,CLOUDID:d6abbb90-e2c0-40b0-a8fe-7c7e47299109,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
+	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: 7ff1eaace8be11ee935d6952f98a51a9-20240323
+Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw02.mediatek.com
+	(envelope-from <zhi.mao@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1453211815; Sat, 23 Mar 2024 10:38:58 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Sat, 23 Mar 2024 10:38:56 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Sat, 23 Mar 2024 10:38:54 +0800
+From: Zhi Mao <zhi.mao@mediatek.com>
+To: <mchehab@kernel.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <sakari.ailus@linux.intel.com>
+CC: <laurent.pinchart@ideasonboard.com>, <shengnan.wang@mediatek.com>,
+	<yaya.chang@mediatek.com>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, <yunkec@chromium.org>,
+	<conor+dt@kernel.org>, <matthias.bgg@gmail.com>,
+	<angelogioacchino.delregno@collabora.com>, <jacopo.mondi@ideasonboard.com>,
+	<zhi.mao@mediatek.com>, <10572168@qq.com>, <hverkuil-cisco@xs4all.nl>,
+	<heiko@sntech.de>, <jernej.skrabec@gmail.com>, <macromorgan@hotmail.com>,
+	<linus.walleij@linaro.org>, <hdegoede@redhat.com>,
+	<tomi.valkeinen@ideasonboard.com>, <gerald.loacker@wolfvision.net>,
+	<andy.shevchenko@gmail.com>, <bingbu.cao@intel.com>,
+	<dan.scally@ideasonboard.com>, <linux-media@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>
+Subject: [PATCH v8 0/2] media: i2c: Add support for GC08A3 sensor 
+Date: Sat, 23 Mar 2024 10:38:49 +0800
+Message-ID: <20240323023851.5503-1-zhi.mao@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240220111044.133776-1-herve.codina@bootlin.com>
- <20240220111044.133776-3-herve.codina@bootlin.com> <CAGETcx_xkVJn1NvCmztAv13N-7ZGqZ+KfkFg-Xn__skEBiYtHw@mail.gmail.com>
- <20240221095137.616d2aaa@bootlin.com> <CAGETcx9eFuqwJTSrGz9Or8nfHCN3=kNO5KpXwdUxQ4Z7FxHZug@mail.gmail.com>
- <20240321125904.3ed99eb5@bootlin.com>
-In-Reply-To: <20240321125904.3ed99eb5@bootlin.com>
-From: Saravana Kannan <saravanak@google.com>
-Date: Fri, 22 Mar 2024 19:00:03 -0700
-Message-ID: <CAGETcx-oMbjtgW-sqzP6GPuM9BwgQrYJawpui3QMf1A-ETHpvg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] of: property: fw_devlink: Fix links to supplier when
- created from phandles
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Shawn Guo <shawnguo@kernel.org>, Wolfram Sang <wsa@kernel.org>, Mark Brown <broonie@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, stable@vger.kernel.org, 
-	Android Kernel Team <kernel-team@android.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--10.668500-8.000000
+X-TMASE-MatchedRID: krcWnEzmQoEtlu2PjaXfUW3NvezwBrVmQPCPzycuBFOl4EP+dy+wBAwF
+	qajp21ReNJCQfPeJOQovXSnelSgBMJlIfdN/LTrGdE/dhjO8a+RqYquCrLrVwhHfiujuTbedduS
+	l0OECBiZx7H5wEf5GN9b0cMVDXqkVp8pDLp9CdcJc/msUC5wFQUyQ5fRSh265NSweOixQAJJHdE
+	c8dOyw1Vl+Hk3Iw2bEgDLqnrRlXrYyF7rbsD7xoYrfx+nI+XiI+gtHj7OwNO2J8YJgRrgXF7T1y
+	WCIvwqnrolbQyGqrgQeOCBAkDaY05qOSQt7Cnwr
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--10.668500-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP:
+	E9F45716C2CDABF3B78A875838D6AE63442ADCAFC38CA188AB45B35435897E332000:8
+X-MTK: N
 
-On Thu, Mar 21, 2024 at 4:59=E2=80=AFAM Herve Codina <herve.codina@bootlin.=
-com> wrote:
->
-> Hi Saravana,
->
-> On Mon, 4 Mar 2024 23:14:13 -0800
-> Saravana Kannan <saravanak@google.com> wrote:
->
-> ...
-> >
-> > Thanks for the example. Let me think about this a bit on how we could
-> > fix this and get back to you.
-> >
-> > Please do ping me if I don't get back in a week or two.
-> >
->
-> This is my ping.
-> Do you move forward ?
+This series adds YAML DT binding and V4L2 sub-device driver for Galaxycore's
+GC08A3 8-megapixel 10-bit RAW CMOS 1/4" sensor, with an MIPI CSI-2 image data
+interface and the I2C control bus.
 
-Thanks for the ping. I thought about it a bit. I think the right fix
-it to undo the overlay fix I had suggested to Geert and then make the
-overlay code call __fw_devlink_pickup_dangling_consumers() on the
-parent device of the top level overlay nodes that get added that don't
-have a device created for them.
+The driver is implemented with V4L2 framework.
+ - Async registered as a V4L2 sub-device.
+ - As the first component of camera system including Seninf, ISP pipeline.
+ - A media entity that provides one source pad in common.
+ - Used in camera features on ChromeOS application.
 
-I'll try to wrap up a patch for this on Monday. But if you want to
-take a shot at this, that's ok too.
+Also this driver supports following features:
+ - manual exposure and analog gain control support
+ - vertical blanking control support
+ - test pattern support
+ - media controller support
+ - runtime PM support
+ - support resolution: 3264x2448@30fps, 1920x1080@60fps
 
--Saravana
+Previous versions of this patch-set can be found here:
+v7: https://lore.kernel.org/linux-media/20240303022609.26263-1-zhi.mao@mediatek.com/
+v6: https://lore.kernel.org/linux-media/20240227013221.21512-1-zhi.mao@mediatek.com/
+v5: https://lore.kernel.org/linux-media/20240220012540.10607-1-zhi.mao@mediatek.com/
+v4: https://lore.kernel.org/linux-media/20240204061538.2105-1-zhi.mao@mediatek.com/
+v3: https://lore.kernel.org/linux-media/20240109022715.30278-1-zhi.mao@mediatek.com/
+v2: https://lore.kernel.org/linux-media/20231207052016.25954-1-zhi.mao@mediatek.com/
+v1: https://lore.kernel.org/linux-media/20231123115104.32094-1-zhi.mao@mediatek.com/
+
+This series is based on linux-next, tag: next-20240323
+Changes in v8:
+- gc08a3 sensor driver:
+-- use function: pm_runtime_get_if_active()
+
+Thanks
+
+Zhi Mao (2):
+  media: dt-bindings: i2c: add GalaxyCore GC08A3 image sensor
+  media: i2c: Add GC08A3 image sensor driver
+
+ .../bindings/media/i2c/galaxycore,gc08a3.yaml |  112 ++
+ drivers/media/i2c/Kconfig                     |   10 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/gc08a3.c                    | 1339 +++++++++++++++++
+ 4 files changed, 1462 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/galaxycore,gc08a3.yaml
+ create mode 100644 drivers/media/i2c/gc08a3.c
+
+-- 
+2.25.1
 
 
--Saravana
+
 
