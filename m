@@ -1,150 +1,145 @@
-Return-Path: <devicetree+bounces-52690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52691-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 462188879B8
-	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 18:24:09 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A72368879CE
+	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 18:45:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D77951F21815
-	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 17:24:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 44EBAB21301
+	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 17:45:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DCA053814;
-	Sat, 23 Mar 2024 17:24:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC6B556770;
+	Sat, 23 Mar 2024 17:45:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=thefossguy.com header.i=@thefossguy.com header.b="q8pqdray"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gT0DGOjM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-4018.proton.ch (mail-4018.proton.ch [185.70.40.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B84B151C59
-	for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 17:23:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.40.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D7A056440;
+	Sat, 23 Mar 2024 17:45:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711214640; cv=none; b=nwF/hDr1hFPWMAs4IgvmQv680aR4IWAnWH6Sg19f6/sM7ph4nzHaHWHwymIxLsakdsP9Wx9KELykhDJvynwF42MPqwEDCU1NKTIaxwlisKkC77cqFsnxG8XN+c5em8c187ZiIUxs1HWhI74uJWtTkkHszFVA2agMLZ+Rx0igOmc=
+	t=1711215931; cv=none; b=eFSH9VXkrUunKjIBoU7rSRaiZkKtyUIHzw40OaqNsxPzlr8zrHk6WSG1HC78wlQO+YhrTTbNNiQWDJoYqzOfk8Lt5KS8f11EcGGsmalJetYft7vtBZhNxJrVSmIO+Fh7C65/d6Qff84o1X3FlLwyhVW8Jw3VkUM7ClVrwcrRCKM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711214640; c=relaxed/simple;
-	bh=hLd9g0J+arhug+21RAMsKmSEAuU65lTeZKlInmYv/o0=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TlfN1Ffp/Q6Q5aOTEeKuYXoFB2m+Yic1Z5O2VZCynNu/8Fj4RyWGLmz60z+MNQ8rwrxjex8Mt7DmcVPUmTPylQ9zUQMYmHS2p1bjCSsDLqy/ccG0wBBWeyxOPgA3cjCd5bHOeLj9hVGnWWpIEpbcuK9H6uEuRz3veXJDd08fg8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thefossguy.com; spf=pass smtp.mailfrom=thefossguy.com; dkim=pass (2048-bit key) header.d=thefossguy.com header.i=@thefossguy.com header.b=q8pqdray; arc=none smtp.client-ip=185.70.40.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thefossguy.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thefossguy.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thefossguy.com;
-	s=protonmail; t=1711214635; x=1711473835;
-	bh=hLd9g0J+arhug+21RAMsKmSEAuU65lTeZKlInmYv/o0=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=q8pqdrayecYfqrEuANc8LK9O5kKn9h5cphBj9UumlvrDAVHKSrVxzDyJE2t5F9b5U
-	 Aoe807R7CUJOlv+pR641GkAk/wGuHw7meGMLJ8NaMEhV4Ioy9ZqOMXRlCmENkIR4kx
-	 wQ1PREruEKOtR/cuJpiK3T1YjVqs2XTlJsp1Zb4yaHWnxK8G7ef9ZhOsDYPDevV0YN
-	 eCAPYjydSRmeXZQHdKCl14AACNpfJQ2z2bvbscO93RsszIIHZyE/VbP7x64/fisf5B
-	 bL5eQRQCWVvObycGUmNrwGekIkkQ2xdxsv6RCs2dgNNj2tbqOMFYmotGoFOZ2M2KTe
-	 8+NbVT+9gnO9A==
-Date: Sat, 23 Mar 2024 17:23:38 +0000
-To: Linux regressions mailing list <regressions@lists.linux.dev>
-From: Pratham Patel <prathampatel@thefossguy.com>
-Cc: "sebastian.reichel@collabora.com" <sebastian.reichel@collabora.com>, "saravanak@google.com" <saravanak@google.com>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "stable@vger.kernel.org" <stable@vger.kernel.org>
-Subject: Re: Fixing the devicetree of Rock 5 Model B (and possibly others)
-Message-ID: <28S1EMw5YOnQIBpQ8_qaZZ6c9Go-j6-lLuWWbRpe6-MtRUd7Ay-uXq8JHbVVtJv3LzpxjI8jYg7ukNntbN22PVV-hOWbuTY8FNWgvM4zSwI=@thefossguy.com>
-In-Reply-To: <092a7c4c-0a75-4b27-acec-385fdcfb9f7a@leemhuis.info>
-References: <tQ0L3-34g4t-mzfQIP6KDe5OYelGnEo6Udzq6Kb_nEcljppSQUXOktpE__nL-CdLOu9gW-4tIIbjtSbqrdCrjEkdhZLPiiHTqRcCB6WORuM=@thefossguy.com> <092a7c4c-0a75-4b27-acec-385fdcfb9f7a@leemhuis.info>
-Feedback-ID: 104309535:user:proton
+	s=arc-20240116; t=1711215931; c=relaxed/simple;
+	bh=09Jlw6JAYNxan0UgyQwmL0W49AB8IvibjbCytlUkkmI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LTHLJICnKN0TBii7o/sZcCa4EIgwd4Z1X63z3Sj/Bc476HCzogVxG0wo1H+PmmyGupcmPakjUQB0/Zshl1TS/ncJcCxpKuaLGrusH+guhANlAnFN9HfJB4/ZBWAsHirYvU1rgJL7zmVgOyHZcJiH0j7j+TL8XGfBOyu9OUZHCRI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gT0DGOjM; arc=none smtp.client-ip=209.85.219.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-db4364ecd6aso3028413276.2;
+        Sat, 23 Mar 2024 10:45:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1711215929; x=1711820729; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=09Jlw6JAYNxan0UgyQwmL0W49AB8IvibjbCytlUkkmI=;
+        b=gT0DGOjMJvCm8SPXawi+8jE4daHdbnslTFHIFtNTxR9peiEeLVJGPt5pikp09H7WNe
+         WXmLq3CzVVuSfUT5ITh62/q8KliihSzK0z94/X2AP4vhqRR3aXH5+/VCt2rGPFiMASZi
+         LRimtEcZPurMyZPuBLjKFer+TrtYdnEOK/0VpMK3Kdi/cs8wsxmfrPIn/2E4E7GmJ5RT
+         Own4CyPkDkzK+Yy5cWHnPafqSMgM7cvwkTSjzbShuUrcE2HtZMXbwRKKlfDIlLdPxXff
+         2fq5mVQs/coar/GaLPp0vmvK6+W8wGi7qNf3o3ZOZrsuhXNuEilZIbafLDV7AAS/kCma
+         uMbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711215929; x=1711820729;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=09Jlw6JAYNxan0UgyQwmL0W49AB8IvibjbCytlUkkmI=;
+        b=umu0GibHo5Ur6aFdfFFiO1UFkZGMzAHr4rvRtO03bAP6cU4tWHOeoyyGGg+hsLfLav
+         1rznj6ce9xQJFo6arqOnkBopVm59cUzRfLBxQyKo3ejMLY2Slpfol3yKAICfZE330hM5
+         BzBRYWd7bQNJjfCAXstZZa8H/zSJaNVUZSKWqEmGM5pyJBDuUSDqHEx4n+r32OOU7vVF
+         m3003dk1GXuVSHgkoN0FCO7hbl0Y0kqNFBlR442v99aRAE4AhVF8fD3Bfokgeo2Zx029
+         4OsJrUkqGf/0jIVd3dorau7GpL4pqRCdCtYVcCtBpts1O+mWEq+AlS9zZb1UxBtaLkrm
+         DddA==
+X-Forwarded-Encrypted: i=1; AJvYcCUOdEwLhpLeyLr+uLGXhp7WCr83wdlbVpuUwVpxdZr9o+pbQIIZUl5zjDwp2uFzPq25yO7yFF5j+jrobDWAj3BJ5J4fQsUcbPESFfh8JxyzX3OxJggON1xZAQVHLr9rMDDxjfgT+UVT40BTZerh8uE5BpUu1YCTHRhtTbuffAUukDtBmg==
+X-Gm-Message-State: AOJu0Yy5JqATBTHRT5iPw/8EBBRHB6b7CtqlRBardca1y0L6+CQL4oKC
+	UKReSKfyyA8htEMyZMVsBl7by98NKKzqbhWkllLdvV3vJ6WYAuI3gY3jXGqfWe/GAUqlNJoGf0H
+	3GGIg7exKD//0p2u6a7obmaGu/TE=
+X-Google-Smtp-Source: AGHT+IEFb6YvIfpbWjIkc0eHeWpdtr2FGrRcO1jVvrslMjqGs/8hmtHC2bqq1nx/GCiXoXXoEJxM6NTxA7rIqLiBKF8=
+X-Received: by 2002:a25:2690:0:b0:dd1:3cc1:5352 with SMTP id
+ m138-20020a252690000000b00dd13cc15352mr2152175ybm.15.1711215928904; Sat, 23
+ Mar 2024 10:45:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; protocol="application/pgp-signature"; micalg=pgp-sha512; boundary="------f1e788887cf9d788045acc7ae71ae8322eea6a98cb58be5654c24d039bf47d68"; charset=utf-8
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------f1e788887cf9d788045acc7ae71ae8322eea6a98cb58be5654c24d039bf47d68
-Content-Type: multipart/mixed;boundary=---------------------ae8a0b7b1b36c345004b08b7de4976a5
-
------------------------ae8a0b7b1b36c345004b08b7de4976a5
+References: <20240322003713.6918-1-l.rubusch@gmail.com> <20240322003713.6918-4-l.rubusch@gmail.com>
+ <20240322021739.GA3418523-robh@kernel.org> <CAFXKEHYrRn+vKZB9eX_RFDLanhqLsRwT1b-wxUdeZTrBrshSzA@mail.gmail.com>
+ <60ed3d61-1ece-498f-97a2-7b1c618ceacb@linaro.org>
+In-Reply-To: <60ed3d61-1ece-498f-97a2-7b1c618ceacb@linaro.org>
+From: Lothar Rubusch <l.rubusch@gmail.com>
+Date: Sat, 23 Mar 2024 18:44:52 +0100
+Message-ID: <CAFXKEHYVhj2yhaEjJmh+qRN8YbtN_LyeQ65YX1aL-4j7FJ=r6Q@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] dt-bindings: iio: accel: adxl345: Add spi-3wire
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, lars@metafoo.de, Michael.Hennerich@analog.com, 
+	jic23@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, eraretuya@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;charset=utf-8
 
-On Saturday, March 23rd, 2024 at 22:47, Linux regression tracking (Thorste=
-n Leemhuis) <regressions@leemhuis.info> wrote:
+On Sat, Mar 23, 2024 at 3:27=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 23/03/2024 13:04, Lothar Rubusch wrote:
+> > On Fri, Mar 22, 2024 at 3:17=E2=80=AFAM Rob Herring <robh@kernel.org> w=
+rote:
+> >>
+> >> On Fri, Mar 22, 2024 at 12:37:13AM +0000, Lothar Rubusch wrote:
+> >>> Provide the optional spi-3wire in the example.
+> >>
+> >> That doesn't match the diff as you don't touch the example. But really=
+,
+> >> this should say why you need spi-3wire.
+> >
+> > I understand. The change does not add anything to the example. which
+> > is definitely wrong.
+> > Anyway I'm unsure about this change in particular. I know the spi-3wire
+> > binding exists and can be implemented. Not all spi devices offer it. No=
+t all
+> > drivers implement it. My patch set tries to implement spi-3wire for the
+> > particular accelerometer.
+> > Do I need to add something here to dt-bindings documentation of the
+> > adxl345? Or, as an optional spi feature, is it covered anyway by
+> > documentation of optional spi bindings? So, should I refrase this parti=
+cular
+> > patch or may I drop it entirely? Could you please clarify.
+>
+> Whether you need to change bindings or not, dtbs_check will tell you.
+> Just run dtbs_check on your DTS.
+>
 
-> =
+I'm not changing upstream DTS. At most, the documentation should
+mention something.
 
+> It does not look like you tested the DTS against bindings. Please run
+> `make dtbs_check W=3D1` (see
+> Documentation/devicetree/bindings/writing-schema.rst or
+> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sou=
+rces-with-the-devicetree-schema/
+> for instructions).
+>
 
-> =
+No, I didn't. dtbs_check did not work right out of the box, but it
+sounds great and I will figure out. Currently my setup is a bit
+customized. I compile the modules out of tree, dockerized with several
+DTBOs. I use an automized setup to verify spi, spi-3wire and i2c
+probing still works on the hardware. It is tested at least somehow.
 
-
-> On 23.03.24 18:02, Pratham Patel wrote:
-> =
-
-
-> > Since the introduction of the `of: property: fw_devlink: Fix stupid bu=
-g in remote-endpoint parsing` patch,
-> =
-
-
-> =
-
-
-> There is an earlier bug report asking for a revert of that patch:
-> =
-
-
-> https://lore.kernel.org/all/ZfvN5jDrftG-YRG4@titan/
-> =
-
-
-> > an issue
-> =
-
-
-> =
-
-
-> Is your problem maybe similar to the one above?
-
-I don't get that exact message in the boot log but yes.
-
-> Ciao, Thorsten
-
- -- Pratham Patel
------------------------ae8a0b7b1b36c345004b08b7de4976a5
-Content-Type: application/pgp-keys; filename="publickey - prathampatel@thefossguy.com - 0xF2DDE54D.asc"; name="publickey - prathampatel@thefossguy.com - 0xF2DDE54D.asc"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="publickey - prathampatel@thefossguy.com - 0xF2DDE54D.asc"; name="publickey - prathampatel@thefossguy.com - 0xF2DDE54D.asc"
-
-LS0tLS1CRUdJTiBQR1AgUFVCTElDIEtFWSBCTE9DSy0tLS0tCgp4ak1FWmZjR2RSWUpLd1lCQkFI
-YVJ3OEJBUWRBa2VYM3NrdFI1R0lZQTM5VXhoRTlZcitZMy8zd0ZXUmwKZlZ5T1hsaWdnS2ZOT1hC
-eVlYUm9ZVzF3WVhSbGJFQjBhR1ZtYjNOelozVjVMbU52YlNBOGNISmhkR2hoCmJYQmhkR1ZzUUhS
-b1pXWnZjM05uZFhrdVkyOXRQc0tNQkJBV0NnQStCWUpsOXdaMUJBc0pCd2dKa01lcApYbTlkS2Er
-V0F4VUlDZ1FXQUFJQkFoa0JBcHNEQWg0QkZpRUU4dDNsVFJRTDQ4NE9oNDE3eDZsZWIxMHAKcjVZ
-QUFDYlFBUDlMc1NwUlQwSTV2TC8ycHpBa2F2UVhLdStWR1BRMk44RUVYZGpSVkRseGl3RUFwMVpS
-ClB0M2k5RG9qcXg1OE9MQ2R3N2xHMlVwdkJGZ2dCeGVrV216d1dRbk9PQVJsOXdaMUVnb3JCZ0VF
-QVpkVgpBUVVCQVFkQXJlOWp5aVR3VFBGSjNaazJvTVd0ZDVxSi9zcWNKRUZrckZxNUpVVzRWalVE
-QVFnSHduZ0UKR0JZS0FDb0ZnbVgzQm5VSmtNZXBYbTlkS2ErV0Fwc01GaUVFOHQzbFRSUUw0ODRP
-aDQxN3g2bGViMTBwCnI1WUFBRFRGQVA5WUZIL0FxKzVFd3pHQ0xJZWhNNGJsUW5hK2t0cnNPRWlw
-VllVTVZMd0tjQUQvVktHQwo0eFRtTENUQUNDcFNqRjdVRzBVY2NNOVU0T21ZV2RlVU9HUk1hd1k9
-Cj01cTBtCi0tLS0tRU5EIFBHUCBQVUJMSUMgS0VZIEJMT0NLLS0tLS0K
------------------------ae8a0b7b1b36c345004b08b7de4976a5--
-
---------f1e788887cf9d788045acc7ae71ae8322eea6a98cb58be5654c24d039bf47d68
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: ProtonMail
-
-wnUEARYKACcFgmX/D/UJkMepXm9dKa+WFiEE8t3lTRQL484Oh417x6leb10p
-r5YAAHYlAP9lfb3BSFKYtWm/S0bfoj6e7K4Y+l8y9pnmg7U4pWoPkQEAjxWI
-9LvXFmeUGLD2Z2Lu+WoJ7RU/hCOljmBRtQHtEgU=
-=V9PA
------END PGP SIGNATURE-----
-
-
---------f1e788887cf9d788045acc7ae71ae8322eea6a98cb58be5654c24d039bf47d68--
-
+> AFAIR, spi-3wire requires being explicitly mentioned in the device bindin=
+gs.
+>
+>
+> Best regards,
+> Krzysztof
+>
 
