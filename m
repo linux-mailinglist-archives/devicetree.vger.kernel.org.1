@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-52622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 768368877E9
-	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 11:19:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DFED8877ED
+	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 11:20:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C2F071F21BAF
-	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 10:19:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 07E2D1F21BA2
+	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 10:20:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 642DA101DA;
-	Sat, 23 Mar 2024 10:19:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18514101C5;
+	Sat, 23 Mar 2024 10:20:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fXH8aU6t"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gpoxnD/I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CD422C80
-	for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 10:19:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12CB6FC05
+	for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 10:20:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711189148; cv=none; b=kmr43FnRCCUB4XuEI7RWhGW7MbA+WFs1F2+oskk3hj/PS6dQsSqkitYLq7DLk5FooVc9+uGC4FS4AkmZkwzfsFyIJO2Eq0+C1kQKPpy2bM6fTvOqm9dzWS8bhOhl2DbvKvTcBgx29oIuBbC1WJ8utiI+HyzbeqbWX+qhU9nsKU8=
+	t=1711189254; cv=none; b=L5wdQQy8lXxVY8UxZF7rTAI7TDM7VdPZrHy1ynxZUgOjtMJYBuC9XCB9ENTLnCo6O8ZJu5TYYY1cFnq0/VAUqiiEIRE3so7Oj2vo3MsyPQhmQpIa6sOLymB9OdGiUqX59K/sZyVR285ToK9ixdZbAHprPui+Yp9NyL/yQns/Tio=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711189148; c=relaxed/simple;
-	bh=yWkds7nD2ZS519CEcHKNQhFmrIHYkW4kP2K1ilnU+Pk=;
+	s=arc-20240116; t=1711189254; c=relaxed/simple;
+	bh=dvu4HMkciLRlA9Wv6uzSgwhF/+pW5hAcu4Hxgz8c3DI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JxC+h3Wgk6WC2ugrvx+apI6EE6kEMJWoUj5EW1D+gLcXYHhFFIYzsBnZSGqCVqrutpc8BvW3ImrYu630kVJ0wAT7TCBGScEv9KArTwWh+dMDm/rehGO52pSzZ5Oj+Bix3Pkfaho39reRTt7q+F1bm077LP6VygbmY0sxF+WNioQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fXH8aU6t; arc=none smtp.client-ip=209.85.218.48
+	 In-Reply-To:Content-Type; b=pQAXw5rH7Z/rg59N2dEjTCg4RxkmqJdH4cXhuikDEO4glC7BMYlipJjJK6FEisuDsFoKJ/HAqRbdYK5hYTNrBQK+YAqcpaCJ/zKr7PNrhUwzplM0qVdL8l9eLuE3StRVSHM0jNmPQdNbfbPvuzonyTBu/8KfIiwi0uCBfYfq66c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gpoxnD/I; arc=none smtp.client-ip=209.85.218.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a4715d4c2cbso350167866b.1
-        for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 03:19:06 -0700 (PDT)
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a4707502aafso499143566b.0
+        for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 03:20:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711189145; x=1711793945; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711189250; x=1711794050; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=jsWVUzTZjb8sGoPxm2j46t2rbn6viTMSYqvI2Re5TR4=;
-        b=fXH8aU6tsORX+8Hm9qgsWdOvAh/MUtiKcFNhR9OYAAVlkyrPMpXDiv5M1owlnJpFuw
-         LeKbQfqdhbQOEw51iFRYvE1u5SCX1RqAUjf+Jbt9naU4NWjCt5/7a6XeO0Re5LVLxRA8
-         VYfQP+WOY9dDuFpSTpiawcruJpj+AOpbEYutJVLhAFGcOaiX/WRdWqJEH+4c/Lwsnd+L
-         X8ZhDU0y/iSGIG6n3wUuYdXzksaIGJc2VRbnplz27cNkFt7WY4xpeUUSAXkOUPklvsSH
-         Ml4fK8TpvGJ78DTVct9x1/xTbbxCSYnEr8su3wEKG58q3ou4NEI9j1/9SECcBoupT/cb
-         Y4Jg==
+        bh=mv+dntp0+Yd5x4FtxAoMVnrAVTs/kYox5gzBd17b5Sk=;
+        b=gpoxnD/IKa1guJRyM06Q/P8Mk2ztE4tOoFwpA49USwMpxS1gthx+QO+DYX04mlTUFz
+         pALwlxMa84xEX9RwNMCzhfzGgiFsOLwHeHgqtvJ/spa28xWJqcuNRNRBqPD71Mcs4gUZ
+         h6pfga3DfwzAYSx80ShDXiG4WgeMGM9G0exULttMhaTy2KLEHkLg3nBIMImv8Vq/a4OC
+         d3yCZvKQqZRCay83ZLfm9MH8sVfKXiwlVFz1Er9l15ajLfwfJAO5f0u2nuNEGfX+kOJK
+         AArVxkQnIX9wzJ1b+JJ69zhvux25VX/WVgJ3lG1bBqXutlD/6NcApoi6+vugzG3gxUkV
+         gY1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711189145; x=1711793945;
+        d=1e100.net; s=20230601; t=1711189250; x=1711794050;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=jsWVUzTZjb8sGoPxm2j46t2rbn6viTMSYqvI2Re5TR4=;
-        b=wrBtpGoSmsQFy2ULJXtVhesUSKqRqKGaqsBM4pMr9nBJfLPkG5rsmP/MAK55YqX6Ny
-         bjT5C8xXUSOs2HWhDH/v9VHaXlc/9UGhJWHUkwPTeb3FGMzJMWjUWdb7ZaTaruyBGv1J
-         5mv76Z0WF0P0x16e8+OFUKkJHNZqXVsLNw6IBYTNgdvwQpmq/isIeT/gcMQdMcoyHrdA
-         gkQPrmRHpxipRicEUjik0/XmIvwxm3T59pHCpBdS/79VRlkpQcV32NB1IdzP0p1MA2Il
-         K3MgBvJTKt7kaxerFh+WGU1VK+jf2w7xMlZ0tZbdjIbd81EY0aGQgbQfFFqqHqCNJ0VR
-         2FjA==
-X-Forwarded-Encrypted: i=1; AJvYcCVnUUaBrRzcAganbfcUdloXLmvONHcgql+BbMvZ1Oq3oq6tunBfPOaQpBOsOT5Tb3QP7g/vAWTqMFFmcbIC1JXv/jWxOyW34o7CkQ==
-X-Gm-Message-State: AOJu0Yw7yQ5cTGPB9adqzrzq+pWR1Qa98oa50Eci7y9Biuo2VtDAzQUx
-	76tL2u7dnT3bukAoBlvDu/NBiD3MrAjbPi5lNhT00QF4ZOVfFML/8lPOZil3fXY=
-X-Google-Smtp-Source: AGHT+IGQslGoKM0t42VsynDcdmkNlrLvqjsHEB56Do9omRsijDvuZnkqdoR90hWKpBnqiuSFScyYMQ==
-X-Received: by 2002:a17:906:6bc3:b0:a45:ab61:7a47 with SMTP id t3-20020a1709066bc300b00a45ab617a47mr1315089ejs.16.1711189144821;
-        Sat, 23 Mar 2024 03:19:04 -0700 (PDT)
+        bh=mv+dntp0+Yd5x4FtxAoMVnrAVTs/kYox5gzBd17b5Sk=;
+        b=f4K3dbPL4SVyWK95LBBqDt3KVzaO8rPSbC5WfcsXF2U9E71B616sftumPhcYyKSXvw
+         u8eMd7YxWd/JBBFCRSFKZKsIT5usbmHF2KNxxL/lG0Wp5D5yFMnO+kgwrpuFXLJi5PRe
+         PKYSSee8m1FV16onJbf1/l/oSWUWFaZ0JpWKsRcrmCnesY2Y4rbIgirZYQhigB+tDr2Z
+         C7M1CYM0fGMYccbeAVW1Sc3QrnxVfF5V3HwGzumd9RgVmWzoZAKQePorbOkeIgcdQaf1
+         MSVPTeQbDJwMtrf7f0S9h/pQmYqRGezma6jArFxFKq/S+UJsAmocrUNvK0zon7eFyMpu
+         wf6A==
+X-Forwarded-Encrypted: i=1; AJvYcCXm9p8BdVoLvAQOb5g8OTCaxHPml6hxUU9LoEUNbAFa8fcYjFKGXRFFvVjgHOCY/uJcfx0XrRgQDGaq5ldgu0diFznozR7gEFaPnA==
+X-Gm-Message-State: AOJu0YzDEB9UVP3AR+hSZe9j48XPBm61/y+7u7Vz0x2YHvr92GhujQe/
+	8UIHjoLouQf7oi/abarx0RJAoOZM8vIv8NMplAzHOZT6zW+HOAfJdr8t1zK6pHU=
+X-Google-Smtp-Source: AGHT+IF+QkBaa9f+5oBcdmnEhymDovwjZkQnW5un8gceEcxp2mRV4SYnZHHM4XYweYwBFQkG93ai3A==
+X-Received: by 2002:a17:906:8cc:b0:a47:3f10:b3c8 with SMTP id o12-20020a17090608cc00b00a473f10b3c8mr1216214eje.26.1711189250183;
+        Sat, 23 Mar 2024 03:20:50 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id le13-20020a170906ae0d00b00a47464a6ee4sm369968ejb.173.2024.03.23.03.19.02
+        by smtp.gmail.com with ESMTPSA id o1-20020a1709061d4100b00a46b4c09670sm755351ejh.131.2024.03.23.03.20.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Mar 2024 03:19:04 -0700 (PDT)
-Message-ID: <13fcafd7-2e10-485e-bd39-acf67288f07b@linaro.org>
-Date: Sat, 23 Mar 2024 11:19:02 +0100
+        Sat, 23 Mar 2024 03:20:49 -0700 (PDT)
+Message-ID: <c0d70ba9-34ef-4121-834d-4d107f03d7f0@linaro.org>
+Date: Sat, 23 Mar 2024 11:20:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,24 +77,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/9] Setting live video input format for ZynqMP DPSUB
-To: Anatoliy Klymenko <anatoliy.klymenko@amd.com>,
+Subject: Re: [PATCH v3 8/9] dt-bindings: xlnx: Add VTC and TPG bindings
+To: "Klymenko, Anatoliy" <Anatoliy.Klymenko@amd.com>,
  Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
  David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Michal Simek <michal.simek@amd.com>, Andrzej Hajda
- <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ "Simek, Michal" <michal.simek@amd.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>,
  Mauro Carvalho Chehab <mchehab@kernel.org>
 Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-media@vger.kernel.org
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>
 References: <20240321-dp-live-fmt-v3-0-d5090d796b7e@amd.com>
+ <20240321-dp-live-fmt-v3-8-d5090d796b7e@amd.com>
+ <a82d525c-737a-4ac4-9d71-e88f4ba69ea1@linaro.org>
+ <MW4PR12MB7165889CE7F27A3F0B29DC7EE6312@MW4PR12MB7165.namprd12.prod.outlook.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -141,50 +148,85 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240321-dp-live-fmt-v3-0-d5090d796b7e@amd.com>
+In-Reply-To: <MW4PR12MB7165889CE7F27A3F0B29DC7EE6312@MW4PR12MB7165.namprd12.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/03/2024 21:43, Anatoliy Klymenko wrote:
-> Implement live video input format setting for ZynqMP DPSUB.
+On 22/03/2024 20:12, Klymenko, Anatoliy wrote:
+> Hi Krzysztof,
 > 
-> ZynqMP DPSUB can operate in 2 modes: DMA-based and live.
+> Thanks a lot for the review.
 > 
-> In the live mode, DPSUB receives a live video signal from FPGA-based CRTC.
-> DPSUB acts as a DRM encoder bridge in such a scenario. To properly tune
-> into the incoming video signal, DPSUB should be programmed with the proper
-> media bus format. This patch series addresses this task.
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: Thursday, March 21, 2024 10:59 PM
+>> To: Klymenko, Anatoliy <Anatoliy.Klymenko@amd.com>; Laurent Pinchart
+>> <laurent.pinchart@ideasonboard.com>; Maarten Lankhorst
+>> <maarten.lankhorst@linux.intel.com>; Maxime Ripard <mripard@kernel.org>;
+>> Thomas Zimmermann <tzimmermann@suse.de>; David Airlie
+>> <airlied@gmail.com>; Daniel Vetter <daniel@ffwll.ch>; Simek, Michal
+>> <michal.simek@amd.com>; Andrzej Hajda <andrzej.hajda@intel.com>; Neil
+>> Armstrong <neil.armstrong@linaro.org>; Robert Foss <rfoss@kernel.org>; Jonas
+>> Karlman <jonas@kwiboo.se>; Jernej Skrabec <jernej.skrabec@gmail.com>; Rob
+>> Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
+>> <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley <conor+dt@kernel.org>;
+>> Mauro Carvalho Chehab <mchehab@kernel.org>
+>> Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>; dri-
+>> devel@lists.freedesktop.org; linux-arm-kernel@lists.infradead.org; linux-
+>> kernel@vger.kernel.org; devicetree@vger.kernel.org; linux-
+>> media@vger.kernel.org
+>> Subject: Re: [PATCH v3 8/9] dt-bindings: xlnx: Add VTC and TPG bindings
+>>
+>> Caution: This message originated from an External Source. Use proper caution
+>> when opening attachments, clicking links, or responding.
+>>
+>>
+>> On 21/03/2024 21:43, Anatoliy Klymenko wrote:
+>>> diff --git a/include/dt-bindings/media/media-bus-format.h b/include/dt-
+>> bindings/media/media-bus-format.h
+>>> new file mode 100644
+>>> index 000000000000..60fc6e11dabc
+>>> --- /dev/null
+>>> +++ b/include/dt-bindings/media/media-bus-format.h
+>>> @@ -0,0 +1,177 @@
+>>> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+>>> +/*
+>>> + * Media Bus API header
+>>> + *
+>>> + * Copyright (C) 2009, Guennadi Liakhovetski <g.liakhovetski@gmx.de>
+>>> + *
+>>> + * This program is free software; you can redistribute it and/or modify
+>>> + * it under the terms of the GNU General Public License version 2 as
+>>> + * published by the Free Software Foundation.
+>>
+>> That's not true. Your SPDX tells something entirely different.
+>>
 > 
-> Patch 1/9: Set the DPSUB layer mode of operation prior to enabling the
-> layer. Allows to use layer operational mode before its enablement.
+> Thank you - I'll see how to fix it.
 > 
-> Patch 2/9: Update some IP register defines.
+>> Anyway, you did not explain why you need to copy anything anywhere.
+>>
+>> Specifically, random hex values *are not bindings*.
+>>
 > 
-> Patch 3/9: Factor out some code into a helper function.
-> 
-> Patch 4/9: Announce supported input media bus formats via
-> drm_bridge_funcs.atomic_get_input_bus_fmts callback.
-> 
-> Patch 5/9: Minimize usage of a global flag. Minor improvement.
-> 
-> Patch 6/9: Program DPSUB live video input format based on selected bus
-> config in the new atomic bridge state.
-> 
-> Patch 7/9: New optional CRTC atomic helper proposal that will allow CRTC
-> to participate in DRM bridge chain format negotiation and impose format
-> restrictions. Incorporate this callback into the DRM bridge format
-> negotiation process.
-> 
-> Patch 8/9: DT bindings documentation for Video Timing Controller and Test
-> Pattern Generator IPs.
-> 
-> Patch 9/9: Reference FPGA CRTC driver based on AMD/Xilinx Test Pattern
-> Generator (TPG) IP. Add driver for the AMD/Xilinx Video Timing Controller
-> (VTC), which supplements TPG.
+> The same media bus format values are being used by the reference driver in patch #9. And, as far as I know, we cannot use headers from Linux API headers directly (at least I 
 
-None of the last users of your API can be merged, therefore this API
-should be considered as without users. We do not add API which does not
-have any in-tree users.
+I don't understand what does it mean. You can use in your driver
+whatever headers you wish, I don't care about them.
+
+
+noticed the same pattern in ../dt-bindings/sdtv-standarts.h for
+instance). What would be the best approach to reusing the same defines
+on DT and driver sides from your point of view? Symlink maybe?
+> 
+
+Wrap your messages to match mailing list discussion style. There are no
+defines used in DT. If there are, show me them in *THIS* or other
+*upstreamed* (being upstreamed) patchset.
+
+Whatever you have out of tree or "DO NOT MERGE" does not matter and does
+not justify anything.
+
 
 Best regards,
 Krzysztof
