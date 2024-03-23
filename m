@@ -1,183 +1,117 @@
-Return-Path: <devicetree+bounces-52620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52621-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA00D8877CE
-	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 10:35:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C438C8877E0
+	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 11:05:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 307511F21E48
-	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 09:35:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D1A31F21A24
+	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 10:05:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99A57DF53;
-	Sat, 23 Mar 2024 09:35:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5301CF9FE;
+	Sat, 23 Mar 2024 10:04:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="HoE6pFfX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cKz05Y6f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC9E6DDA7
-	for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 09:35:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8B242C80;
+	Sat, 23 Mar 2024 10:04:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711186544; cv=none; b=QrQ2QTv1Waa9FzfXPSoAGfXMLYo+MMEkMLCok4AF4hTLMb/JGD8EOw00wrWci9tjfXGNsgLGgr0hzFDIHGnilL35j4bJJRaCIaaVLZP1tHS1BCINpaqFRyorfizjpuEj+hqqt3I0P0t7VegJvBZ0SHhMo8NqwqqycgzRfyWpzvI=
+	t=1711188297; cv=none; b=SAJh/BraoioIo5r5DwWbL+GxXVgzaiL7o8hqHuTj6p+d79kXALBMrTxqDL7JvVwB5TxBYq2IxlPMT9lFjfhiZNaY+EDf7+EHrmJ2bFLCC+vG8LZD8OB5zRI76EvXZaY80P2Hu+oNyMuSSsbfbvkG05PQ0dtVLwOS4XlSEaSI1C8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711186544; c=relaxed/simple;
-	bh=IS2YT0ZGw+pwuMBw7oTHx8qnYRpFJ+PCjNBh1mJnF9w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ICdbTZxojBZdCro4jlPtL+uuF6K0yQCtGuQyXu5/evyhHgnfEaQFxGT1hcVWtyRQi/ccErb9K1QNnqmRaDRPRzRaWan/eh+JGjx4YXh8wo4tCe8qIRnd2nowU6j69NgXGuppvWSzFtMAstGpYBuVMrcPTTY4PulpuYTyYirtw+k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=HoE6pFfX; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4148090ca8aso2212215e9.1
-        for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 02:35:42 -0700 (PDT)
+	s=arc-20240116; t=1711188297; c=relaxed/simple;
+	bh=mYKDpuTZ3EY3JPjM1cY2bRM/CW/Ophp7wIDj7iCnfZ8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bjitlbCRftu2UrIojtzB0fi/73dabrHW5K3BT07tHaBbRKSVZdmCmYFNvZO+3e8oTPFxwtDn+WlxkGZYBy9cnPBIYM7YEulXv1Lp0sIFKKNnwN+9jw6v30x8UcjNR6k6XnreSzd6pDu6fNQvv8s/Vu6masRzSHhvXF5JpyYhE88=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cKz05Y6f; arc=none smtp.client-ip=209.85.216.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-29b7164eef6so2161350a91.2;
+        Sat, 23 Mar 2024 03:04:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1711186541; x=1711791341; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=gifRQ1PeHTOYVEFwRFqeQ4RDDqpypI+PitbwyUwiMWU=;
-        b=HoE6pFfXEUuJjG51J2ymubUO7cyU9rDGDIZ0D+rFscFjdSicMCKmzQR8Ob3qtAW1hd
-         /iERj9xc/28SwZresj2Iid2Shp3hyaFd+NDD4welHBOREO767mrmN1KxH1QRc/g91zjA
-         j9FYgG8OfNuUPAoEeeeKkgzssxggT4a/M78EW1nG29WvSuy0+mv/g8SwbpCDUPgtxDpY
-         Q/tZA/PBxp3E6FkZO3rLdN3G+0p6awHLQriubEcWjzKFaCy7xZ2wUicDvxz5menSHZ5s
-         JoTy1MtEXFb/q0X3iyqvWeErcwWxOapgV0YP35kqwXnOLWuvEvi2TUSWx8sdZeR3UPUe
-         cBdw==
+        d=gmail.com; s=20230601; t=1711188295; x=1711793095; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VddLd/wi/hh0VChb93jRd8h5amxI6kZmImE+BpCXwms=;
+        b=cKz05Y6fp9gFkrJ+saZiz0ajbC+IIpWEnXvaJVwnEQ1Tu48U4gDRxeghuUJCAPXojC
+         LPv2Pbb9G9atDn3TFuUZX/PDKp9uheygZEDyVcveyFIN/Sb3KrYryA7cbNauWQQguubf
+         r98Kirrd0DE6FaSgY80JVcxuT2iQR5cuGADXCFpo3r48tKDmogyY2MBwMbryhcXB93Rx
+         dD6i3gpgpdQwfnTPqxIsKvJPCsM4qDZaWnt43Z79cGy2ZOFV1Bh5Xa8YrX50xiJlGQee
+         5KuXYVD9E3Djh75j/C1ZYq+qaCmvCo20TJGzR6RtNFMHUTB6qB6QKWg0FJMLbQm3nO7F
+         uSRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711186541; x=1711791341;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gifRQ1PeHTOYVEFwRFqeQ4RDDqpypI+PitbwyUwiMWU=;
-        b=XWHbu3oYNX9HP0BDMVuglfNvWqOgbgeD7gyh2KF1ue+GxaQO8mmYcLe8Xff2cuYHGA
-         o4UgawwNerF8mVKpC6dV8dKLHdfvSWWwTJss/smlbSBJY2y7uSh9pEzpezczptp69hj2
-         qgJFSeZK9MmyZdBhjIp3wmiVgQS6cP8jqpbfq8O3bZWqy31js8YzdHafkbBgk39KTC7L
-         42wKhMJ3lU0GGtSHKq4dy0faL3Q/cOv+r1zI4QuDROrtnwm1fO0q/iUsmFrWTC467DAO
-         WH0fsxRs5Dhv8qRT7xksLNNjUcONYK4ZrTHiE7LfXr/PnjfDL6PtsElel9+BfBJO1XMq
-         IZuA==
-X-Forwarded-Encrypted: i=1; AJvYcCVkuArTwFsVXJvDNxjaly+e4jYf1arUrT0LF6AcKkQYJyOisjNxt8BCc5LBBtE/Y+YbmT544M1ICxgE6iGBd47I3ElBngg7GAuNdg==
-X-Gm-Message-State: AOJu0YxmQKHJDCyiXpFHIg9vnEJzqVZktpX7y24vPNoTRfQFowPWYYJ/
-	rTpMgUDNPG5Q25xUz8CcAK6MWurrROFgswdhwdmxeNy9q7+l3AU7HBvxvkKc21I=
-X-Google-Smtp-Source: AGHT+IFbwgqGndQ/tq89s59sI9i70gnFLDdzQdyEVv7eywiPzA9nOZyyH6mD6Ek/HoPjrrEzETlg/w==
-X-Received: by 2002:a5d:40d2:0:b0:33e:78d5:848e with SMTP id b18-20020a5d40d2000000b0033e78d5848emr1084783wrq.12.1711186540910;
-        Sat, 23 Mar 2024 02:35:40 -0700 (PDT)
-Received: from localhost ([2a00:11b1:10c0:1192:d048:e3e1:1749:7466])
-        by smtp.gmail.com with ESMTPSA id cl1-20020a5d5f01000000b0033e72e104c5sm3007561wrb.34.2024.03.23.02.35.39
+        d=1e100.net; s=20230601; t=1711188295; x=1711793095;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VddLd/wi/hh0VChb93jRd8h5amxI6kZmImE+BpCXwms=;
+        b=JyV4o9HMPWqu0V8BvhdtxV4oSEUI8jk/1iNY8QLMAkCqnbYe4RxKX+dfBelUrqjyGp
+         25d9A4q77T1FHwCFZHgUjQ4XWD1zT+cxhkF7Y5lBS25qR8h7e98DMCLv3B+V6/9lY0f3
+         H4nLPw0o1atkDA85mu5V8g3fBjKyaH9aItCFm9uJe36XYZC2RdL1MHk0uUPUV+IDxret
+         43yPT8puO0HQ9eVYljn2CSJn9I7QltJo+tSng8S7DzYQcRDxXOW4oa+H76U242zhn/7b
+         YSGBTqi/7HXy6TfL+a5RhXfUIYmOskSjarVwOO/foafKvJfL5AnS5bY7VbJEYHhGBic2
+         zXYw==
+X-Forwarded-Encrypted: i=1; AJvYcCUNv4r5IqC7L0+cBh9WUuKrEje4Y0C0wA34vAhJ/T5DCDh3Ap9vO8qUR0PEaY3CyHZgkmGsy1WQiqwmf/0Z9t38YlfkfwqXkHX1B2dnh7phTkxqOrfR3uyDKn/Ot3KVrBYFirNwA/sIiA==
+X-Gm-Message-State: AOJu0YwafdoJtLpvdjYtRUyW9hdHGXImQbXE6o1eUKSRIZ5KKX5D3F3o
+	5SnPJpaF84T/rmxmuUKasTsr7/AkPLgw86VT8xLEeKRBjkI+T1htDN+W67Je9LY=
+X-Google-Smtp-Source: AGHT+IHHapQvAw6lAaSMn3aBbi50gvCb3gNUuuZzwFhRwPdbTfyMRZyMRM9i28QJTkhWoZ4LMaUtmw==
+X-Received: by 2002:a17:90b:806:b0:2a0:4bc9:a4e0 with SMTP id bk6-20020a17090b080600b002a04bc9a4e0mr1625304pjb.4.1711188295173;
+        Sat, 23 Mar 2024 03:04:55 -0700 (PDT)
+Received: from localhost.localdomain ([103.149.249.231])
+        by smtp.gmail.com with ESMTPSA id sl3-20020a17090b2e0300b002a0304e158bsm2352931pjb.41.2024.03.23.03.04.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 23 Mar 2024 02:35:40 -0700 (PDT)
-Date: Sat, 23 Mar 2024 10:35:38 +0100
-From: Andrew Jones <ajones@ventanamicro.com>
-To: Deepak Gupta <debug@rivosinc.com>
-Cc: Samuel Holland <samuel.holland@sifive.com>, 
-	Conor Dooley <conor@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	Catalin Marinas <catalin.marinas@arm.com>, linux-kernel@vger.kernel.org, tech-j-ext@lists.risc-v.org, 
-	kasan-dev@googlegroups.com, Evgenii Stepanov <eugenis@google.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, Guo Ren <guoren@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Paul Walmsley <paul.walmsley@sifive.com>
-Subject: Re: [RISC-V] [tech-j-ext] [RFC PATCH 5/9] riscv: Split per-CPU and
- per-thread envcfg bits
-Message-ID: <20240323-28943722feb57a41fb0ff488@orel>
-References: <20240319215915.832127-1-samuel.holland@sifive.com>
- <20240319215915.832127-6-samuel.holland@sifive.com>
- <CAKC1njSg9-hJo6hibcM9a-=FUmMWyR39QUYqQ1uwiWhpBZQb9A@mail.gmail.com>
- <40ab1ce5-8700-4a63-b182-1e864f6c9225@sifive.com>
- <CAKC1njQYZHbQJ71mapeG1DEw=A+aGx77xsuQGecsNFpoJ=tzGQ@mail.gmail.com>
- <d9452ab4-a783-4bcf-ac25-40baa4f31fac@sifive.com>
- <CAKC1njRBbzM+gWowg1LOjq5GzVn4q+vJP9JUswVYfWmEw+yHSg@mail.gmail.com>
+        Sat, 23 Mar 2024 03:04:54 -0700 (PDT)
+From: Jianhua Lu <lujianhua000@gmail.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Jianhua Lu <lujianhua000@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sm8250-xiaomi-elish: set pm8150b_vbus regulator-min-microamp and regulator-max-microamp
+Date: Sat, 23 Mar 2024 18:04:43 +0800
+Message-ID: <20240323100443.2478-1-lujianhua000@gmail.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAKC1njRBbzM+gWowg1LOjq5GzVn4q+vJP9JUswVYfWmEw+yHSg@mail.gmail.com>
 
-On Fri, Mar 22, 2024 at 10:13:48AM -0700, Deepak Gupta wrote:
-> On Thu, Mar 21, 2024 at 5:13 PM Samuel Holland
-> <samuel.holland@sifive.com> wrote:
-> >
-> > On 2024-03-19 11:39 PM, Deepak Gupta wrote:
-> > >>>> --- a/arch/riscv/include/asm/switch_to.h
-> > >>>> +++ b/arch/riscv/include/asm/switch_to.h
-> > >>>> @@ -69,6 +69,17 @@ static __always_inline bool has_fpu(void) { return false; }
-> > >>>>  #define __switch_to_fpu(__prev, __next) do { } while (0)
-> > >>>>  #endif
-> > >>>>
-> > >>>> +static inline void sync_envcfg(struct task_struct *task)
-> > >>>> +{
-> > >>>> +       csr_write(CSR_ENVCFG, this_cpu_read(riscv_cpu_envcfg) | task->thread.envcfg);
-> > >>>> +}
-> > >>>> +
-> > >>>> +static inline void __switch_to_envcfg(struct task_struct *next)
-> > >>>> +{
-> > >>>> +       if (riscv_cpu_has_extension_unlikely(smp_processor_id(), RISCV_ISA_EXT_XLINUXENVCFG))
-> > >>>
-> > >>> I've seen `riscv_cpu_has_extension_unlikely` generating branchy code
-> > >>> even if ALTERNATIVES was turned on.
-> > >>> Can you check disasm on your end as well.  IMHO, `entry.S` is a better
-> > >>> place to pick up *envcfg.
-> > >>
-> > >> The branchiness is sort of expected, since that function is implemented by
-> > >> switching on/off a branch instruction, so the alternate code is necessarily a
-> > >> separate basic block. It's a tradeoff so we don't have to write assembly code
-> > >> for every bit of code that depends on an extension. However, the cost should be
-> > >> somewhat lowered since the branch is unconditional and so entirely predictable.
-> > >>
-> > >> If the branch turns out to be problematic for performance, then we could use
-> > >> ALTERNATIVE directly in sync_envcfg() to NOP out the CSR write.
-> > >
-> > > Yeah I lean towards using alternatives directly.
-> >
-> > One thing to note here: we can't use alternatives directly if the behavior needs
-> > to be different on different harts (i.e. a subset of harts implement the envcfg
-> > CSR). I think we need some policy about which ISA extensions are allowed to be
-> > asymmetric across harts, or else we add too much complexity.
-> 
-> As I've responded on the same thread . We are adding too much
-> complexity by assuming
-> that heterogeneous ISA exists (which it doesn't today). And even if it
-> exists, it wouldn't work.
-> Nobody wants to spend a lot of time figuring out which harts have
-> which ISA and which
-> packages are compiled with which ISA. Most of the end users do `sudo
-> apt get install blah blah`
-> And then expect it to just work.
+Fix the dtb check warnings:
+  sm8250-xiaomi-elish-boe.dtb: usb-vbus-regulator@1100: 'regulator-min-microamp' is a required property
+  sm8250-xiaomi-elish-boe.dtb: usb-vbus-regulator@1100: 'regulator-max-microamp' is a required property
 
-That will still work if the applications and libraries installed are
-heterogeneous-platform aware, i.e. they do the figuring out which harts
-have which extensions themselves. Applications/libraries should already
-be probing for ISA extensions before using them. It's not a huge leap to
-also check which harts support those extensions and then ensure affinity
-is set appropriately.
+Fixes: 69652787279d ("arm64: dts: qcom: sm8250-xiaomi-elish: Add pm8150b type-c node and enable usb otg")
+Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
+---
+ arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> It doesn't work for other
-> architectures and even when someone
-> tried, they had to disable certain ISA features to make sure that all
-> cores have the same ISA feature
-> (search AVX12 Intel Alder Lake Disable).
+diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
+index 2042020eb0dd..41f117474872 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
+@@ -668,6 +668,8 @@ pm8150b_role_switch_in: endpoint {
+ };
+ 
+ &pm8150b_vbus {
++	regulator-min-microamp = <500000>;
++	regulator-max-microamp = <3000000>;
+ 	status = "okay";
+ };
+ 
+-- 
+2.44.0
 
-The RISC-V software ecosystem is still being developed. We have an
-opportunity to drop assumptions made by other architectures.
-
-
-As I said in a different reply, it's reasonable for Linux to not add the
-complexity until a use case comes along that Linux would like to support,
-but I think it would be premature for Linux to put a stake in the sand.
-
-So, how about we add code that confirms Zicboz is on all harts. If any
-hart does not have it, then we complain loudly and disable it on all
-the other harts. If it was just a hardware description bug, then it'll
-get fixed. If there's actually a platform which doesn't have Zicboz
-on all harts, then, when the issue is reported, we can decide to not
-support it, support it with defconfig, or support it under a Kconfig
-guard which must be enabled by the user.
-
-Thanks,
-drew
 
