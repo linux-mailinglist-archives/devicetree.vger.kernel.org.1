@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-52674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C645887910
-	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 15:27:17 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76DC2887914
+	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 15:28:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91CBE1F21BD2
-	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 14:27:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C10A4B2306D
+	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 14:28:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A81D03D96D;
-	Sat, 23 Mar 2024 14:27:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D81DB41232;
+	Sat, 23 Mar 2024 14:28:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bJH0kJGE"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="L6D/877F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C83EC405F9
-	for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 14:27:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CD17405FB
+	for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 14:28:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711204030; cv=none; b=Y2hzjgceOUrlLVGjODvSw4jRlT16I7BajpTZgLvxfqalZeoB0lRb8KdyzX139qvqAkylHtEUfUhVDcwyVBJK9NFuJTIE9QIg7L/BeMQEqlhHLCUn/djP15H6bUVbiZfPINJ3WEnUI+r3mdo0BLfK9wodhEE5bWrtxt7ckzKJ91s=
+	t=1711204121; cv=none; b=U92fbVubOOJnUj5kcqL8Yro/D+x+To38oO/CM15gltrjcjs8XxP33BooleLJ6+w50EpSMNZhl9N7/eNhqYKe7UdZSwV2aLpqMaSkf6ilUQsgGoM2NzKonIyAqCEW+ePFSbHB8IzYaYfPxP0zjaWrbZR3F1VWYZvy76MvCICpT5s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711204030; c=relaxed/simple;
-	bh=yAu9+EPTHObXFA6DXYHHdnrKv2ZFkpaqVL3c/WYox7A=;
+	s=arc-20240116; t=1711204121; c=relaxed/simple;
+	bh=V2NKjV/9MRruChSsK8vjvJS9GdHK98QZJJdEg6HlKI0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=m1dZqsvylylqKkIAZO7JhscBDaCl0S+nNuFPKxCBXruFZKNa7VE07e5iz11tU5Ao4poRSkuFuWcBcjSDVCW2oJq+VWrkg2DiXXya1AxJ1FjrVd+UEa9gaht/fJSJt5pvgVMFGS/V9ccwFqIvO5qKRNKGj0JHQl8szMTnXkdKOjc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bJH0kJGE; arc=none smtp.client-ip=209.85.208.43
+	 In-Reply-To:Content-Type; b=AMgUVyfTxIE96wuVYnL6W7Zh1POfATqdypxQtaGMA6yX0Z6jha/L8z20bmSJugVSeqmhSiawWG+NEga1ef0OimpJUMMd8EJmP+sGcYCiw9JZLrqIie//JH/d3MbtMFIb02D97MvF8zlLEFJyJT56M9uZWECFxTeOuIXOKcHnQdw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=L6D/877F; arc=none smtp.client-ip=209.85.218.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-56bfaf01ea0so435531a12.2
-        for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 07:27:08 -0700 (PDT)
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a4644bde1d4so413282266b.3
+        for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 07:28:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711204027; x=1711808827; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711204118; x=1711808918; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=+mPyCydP232/a3ZqKo1prnF0wT4mtv+pHJqA+no/89Q=;
-        b=bJH0kJGEt5KoR4r0dPG5AMLadzCVi3tfF1SWdmU76osm7o12juZhIWNR37QY7j+++f
-         pkB0Ih0BO/zA/8GNJmzOOQDVbQD9VhVFHvBGInhNYBYlUBS62I/iyiqnaUzEy7jlsWn7
-         KiIqZVLMs1RLGBoOwKR5YKJtoLFajTUu9ctgd5JKw2nOEMFZGuG0gGbvS45O5Fdh9oD1
-         K3a5a8l3QThzBji42ooKU/ofoGO/uGuefO1iGiDSRgsoC/m7bXjlFJoom7r2uXsq+aMk
-         DPWazgPTh13m+rHwufJAiezO384btEW5CMHWs7cubx4IeltoZk3Q0Csr2AmeNln1tvP3
-         0TTw==
+        bh=V2NKjV/9MRruChSsK8vjvJS9GdHK98QZJJdEg6HlKI0=;
+        b=L6D/877F0vFQfMAcSVH40n4xFxlxeIFF+5UpefLDiZ6Re3QjUIVvl/Pd3/JgwYgGwj
+         DwQopVsnCFx6G+gqqf09boYG1JICoNb1v0Fa8PrqOF2L0bqMgqsD+9BlMxh++7sdj9gq
+         VCycZHUKHywgJjjdGRiFX18jBNPa9zNqWyvGlNE3K/m/XcWUg9HKNM1EG1OuQpehp+2z
+         a9breg75VpIm6MeqxyzCbAWOJ+5Q/EPG2z5T9Gsk1QnGuZRgw7DaWhy4WwhR68NC7GMq
+         YVGvgWYuCRQ4vyQtiBkxbP5ZJw0G/oMw8lz+np1BtFEKNp1uijVC183ONvx05Ghe+VE9
+         DbTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711204027; x=1711808827;
+        d=1e100.net; s=20230601; t=1711204118; x=1711808918;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=+mPyCydP232/a3ZqKo1prnF0wT4mtv+pHJqA+no/89Q=;
-        b=QKkRgnOLcCHZb5gf5hesDHTnQ/XFCE4xIOPuCyRtUbMLmsfnL7OcS0ZkeOrAsqPjko
-         qnUbXZsYQ71P/5Vd+raKvlUjATNlJNE1+wRaPZwD4XwESegtIEinA93Ulf0qgCEgF87W
-         oPgg9bhWxU/ITJ+2+sSmQXd+uewH5u8ze9Mi5mbd0XF3Ilv2kcuh5+BkPN0Dr6Qqdnmt
-         077PJTXKsWpb3JuSd1ztreNLAVqjmlHkfYtEm6EY5qDxhxB5IWV5aLVSMKuwzEom4e3i
-         MKLhnR/kozUPdMnuEBdDm99BGdvE9zPnymyLvQ3W/nrDAqwJXpo6TBQ9CnbzPctETKDY
-         Wihg==
-X-Forwarded-Encrypted: i=1; AJvYcCU9whHKR/RJUTorWF7640+n6t16HtlRfa+K31rkyVp1U/ynAK/9/j4fYFg8XYKvxHYvxmWF9fn91icWYqeCDVFcA7w3c41vOXdVxA==
-X-Gm-Message-State: AOJu0YyhH/0StgdV5fTee4Aj3exAiU0KaclBjYCdWWB3o8xLDWYOUGCy
-	0xEr80r91smp/8Srwzo7PGhrtfXD7XLTjjMxAM41bY9SS2WQlVMEgjaUgHk1nw8=
-X-Google-Smtp-Source: AGHT+IG8gWF6QmW4BFVAigIDpGdN1RzHG69iv6AmVZQOUgrJ29rPOx7Dx3tg6m/7ZrxrP81vEw971w==
-X-Received: by 2002:a17:906:3016:b0:a47:3900:7b2d with SMTP id 22-20020a170906301600b00a4739007b2dmr2163463ejz.6.1711204026997;
-        Sat, 23 Mar 2024 07:27:06 -0700 (PDT)
+        bh=V2NKjV/9MRruChSsK8vjvJS9GdHK98QZJJdEg6HlKI0=;
+        b=C9dmCC5aN8sMmIBj1/OD2K+DIK3YH1AdvPd/ZozOQuIBtw3+bU48+SR8Yc9JD+DLxF
+         ujiFm0DFrVKtSqT9qoRKKcsYuSylL9gTv3nF7j9V8aA9xPx+FRV8MCrjkH9Ng7fYScI6
+         kxCki+45pO1XH4MublrRXTWip5Ywk7hW0jt/sQnfLA2bAyyqIH7/df1tCHMtdjJI9KZE
+         8ODRgym8YHIlr1PKyS2mb4WfEOUCAD5ZXupzNxFSD08d9OZjcUU/hxMzHC+0sz22a2gB
+         i1DEAZ2YaTIb+J5XfB8eJsTEk7OMCk/bRBp34wK/vkUgWx0JWtG8WJ9ocmc4C3WEz0OT
+         wMxg==
+X-Forwarded-Encrypted: i=1; AJvYcCUE6PrzzpmIB9ASE6rMQh66aLkxZON5scvo3CbZ061SGjx227XsSbELFg87lk9t/AaCIBHvnLNdzC8NUWI+LmR6b0hyUqU2Fzlu2A==
+X-Gm-Message-State: AOJu0YxsaCfwrCIPIlVaR6egYlxNRm1ElMdpucQxahtOWpjLunoMd2A0
+	JRvzZHAErl3GL6Ee7CU2W40fgsQgwI5n6rQhf4iU5CE9FWXhhm81SQRF3nOGjVg=
+X-Google-Smtp-Source: AGHT+IGNsLru95rurRaS/+SBs355qf8iBCJXXTsr35KUl82vOabRUAGxbh048dRdrxy1cWZleQeWRg==
+X-Received: by 2002:a17:906:60c8:b0:a47:32b3:18c5 with SMTP id f8-20020a17090660c800b00a4732b318c5mr1681059ejk.68.1711204118269;
+        Sat, 23 Mar 2024 07:28:38 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id v8-20020a170906180800b00a46be5169f1sm956411eje.181.2024.03.23.07.27.05
+        by smtp.gmail.com with ESMTPSA id bw2-20020a170906c1c200b00a471b5b25b9sm955586ejb.127.2024.03.23.07.28.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Mar 2024 07:27:06 -0700 (PDT)
-Message-ID: <60ed3d61-1ece-498f-97a2-7b1c618ceacb@linaro.org>
-Date: Sat, 23 Mar 2024 15:27:05 +0100
+        Sat, 23 Mar 2024 07:28:37 -0700 (PDT)
+Message-ID: <9700cc88-bddb-480d-9417-04b2ff539a2f@linaro.org>
+Date: Sat, 23 Mar 2024 15:28:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,16 +77,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] dt-bindings: iio: accel: adxl345: Add spi-3wire
-To: Lothar Rubusch <l.rubusch@gmail.com>, Rob Herring <robh@kernel.org>
-Cc: lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+Subject: Re: [PATCH v3 6/6] dt-bindings: iio: accel: adxl345: Add spi-3wire
+To: Lothar Rubusch <l.rubusch@gmail.com>, lars@metafoo.de,
+ Michael.Hennerich@analog.com, jic23@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, eraretuya@gmail.com
-References: <20240322003713.6918-1-l.rubusch@gmail.com>
- <20240322003713.6918-4-l.rubusch@gmail.com>
- <20240322021739.GA3418523-robh@kernel.org>
- <CAFXKEHYrRn+vKZB9eX_RFDLanhqLsRwT1b-wxUdeZTrBrshSzA@mail.gmail.com>
+References: <20240323122030.21800-1-l.rubusch@gmail.com>
+ <20240323122030.21800-7-l.rubusch@gmail.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -133,40 +131,20 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAFXKEHYrRn+vKZB9eX_RFDLanhqLsRwT1b-wxUdeZTrBrshSzA@mail.gmail.com>
+In-Reply-To: <20240323122030.21800-7-l.rubusch@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 23/03/2024 13:04, Lothar Rubusch wrote:
-> On Fri, Mar 22, 2024 at 3:17 AM Rob Herring <robh@kernel.org> wrote:
->>
->> On Fri, Mar 22, 2024 at 12:37:13AM +0000, Lothar Rubusch wrote:
->>> Provide the optional spi-3wire in the example.
->>
->> That doesn't match the diff as you don't touch the example. But really,
->> this should say why you need spi-3wire.
-> 
-> I understand. The change does not add anything to the example. which
-> is definitely wrong.
-> Anyway I'm unsure about this change in particular. I know the spi-3wire
-> binding exists and can be implemented. Not all spi devices offer it. Not all
-> drivers implement it. My patch set tries to implement spi-3wire for the
-> particular accelerometer.
-> Do I need to add something here to dt-bindings documentation of the
-> adxl345? Or, as an optional spi feature, is it covered anyway by
-> documentation of optional spi bindings? So, should I refrase this particular
-> patch or may I drop it entirely? Could you please clarify.
+On 23/03/2024 13:20, Lothar Rubusch wrote:
+> Add spi-3wire because the driver optionally supports spi-3wire.
 
-Whether you need to change bindings or not, dtbs_check will tell you.
-Just run dtbs_check on your DTS.
+"the driver and the device"
+Bindings should describe hardware, not drivers.
 
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check W=1` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
+No need to resend just for this.
 
-AFAIR, spi-3wire requires being explicitly mentioned in the device bindings.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
