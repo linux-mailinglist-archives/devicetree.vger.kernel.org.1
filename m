@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-52628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5353F887828
-	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 11:57:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D188688782B
+	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 11:58:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BCF39B217AE
-	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 10:57:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 016D11C20D26
+	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 10:58:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9D6F12E6C;
-	Sat, 23 Mar 2024 10:56:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC3EC1118C;
+	Sat, 23 Mar 2024 10:58:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oJcwOCRN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="g8LmlDlv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 287F512E4E
-	for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 10:56:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B15612E70
+	for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 10:58:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711191417; cv=none; b=qFgj/qlgvtip5K48IyPPiritCK8twcAVSP+t/3Or1vSPVO5qGI+hjvd1M3r8/Ni/WtcwEXUlcaiIEW7Ln1k0WbPZ/zLmNzmciwtAZb5StoC8fhjbRENKzcrr6W48s8esjLsTzXFdhyueLBUUUxj6cVDElVl9oolpaT3AIp0b0A8=
+	t=1711191489; cv=none; b=dILzlVwLNDtltABYa06GYKwYB5TcYvsc72hN+6eSAK1+hYOtWFtI2syOhgAkq7oFlHRbuVMAm297RUl0hqevMiIuOrL9mjzTQS7vAv0kiqS9MeSoe3Sw8v/cTlfifdE6G53pLIUOXtmsNPVwmvie1KFvIYNmtfBOCPhn0TyBIok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711191417; c=relaxed/simple;
-	bh=VIbLes27jEf6JgKHt/toUQiJfAIhjL2eEIUnni/VzOQ=;
+	s=arc-20240116; t=1711191489; c=relaxed/simple;
+	bh=n69ToU/bGzfYVBCPdb/s16H80OBw86Sk8GJ1YQygjQM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WL+jY5utMsmA095pVcEcFGtB+DcB9yMyUTmoFublZBMfb4L0TDTU7Nmqn0hfDq7tw14EcHJLwXMLqW2sF+ikSNp0cR+Pxeaz32PbEwVlXmg0OVjFJn/RP6bMH7Zeoi8FfgAF0ONsTzgDEyF9wl7Jit/T+eOUHf30wdN/U4Vj9e8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oJcwOCRN; arc=none smtp.client-ip=209.85.218.52
+	 In-Reply-To:Content-Type; b=N4H8BKMmMbIRQ2/X7RQlSmN4AKQgC7h9TMRa4Af4nZJASbre2nfe2S9l8f919x7fZma+wgvQxJOPcOkw1q+FztHFCNgGtSs/wEtcip6s0bxTnNnrU/S/jSAlBgOPo+GE+AlPfJRpKJpVONik9Ch8NA6spqLtglNBM5UH11DiPrk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=g8LmlDlv; arc=none smtp.client-ip=209.85.208.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a46f0da1b4fso378099766b.2
-        for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 03:56:55 -0700 (PDT)
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-56bf957dbb5so312299a12.0
+        for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 03:58:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711191414; x=1711796214; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711191486; x=1711796286; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=6qH44GpyQ2Dg0uH2aL2PD4YJ+8tvrIK4vagX1Nu+PVY=;
-        b=oJcwOCRNhCbhbFuY38MXrqu6vj/xUYzGrHy8U6rHF0NIiLQjqm9pwt1vihligSD+Q2
-         1qSZ8LoM5OwR8q6bWeOTEHeM0fpsI4ppaEQAdlcBCLFE5+y63PTjDJGPyGCBIrZfMV9w
-         lgjlObwq+Kvtv8KcLOlcd7XOhgL7T15leVbIqDl9zAh9SmQZVDe4ha2x5M6fwuusd2oe
-         T/6Z0nT4KHoHS0DPOznh4RcPMbNJ4qZ+n7yZRmXPj4r6+iLHds3HHgcVJqdBXtPp7nSs
-         bT/TfCz25n+3ElQ92EqTPyWRYvUcWVzr7imwW5gFOE8ypoVKn3B5JepM14orNSVDmgxL
-         5RFg==
+        bh=JDNnuYfBg2LsQPsZLEVL1qEcxCMLm0xKdzHquFpm9cY=;
+        b=g8LmlDlvSc6gdVIrR6wVJXeff8dDjY0VYXBZqjq3ZUDvc/qb6AO+bmeKNX+T823kgF
+         kAJpa0FYZqc68qAMGODtmjDefZznkgo87u/2mXrDRqvRTBt3+wb2eJpoI2othQedRdFp
+         kMEvmnyklGMO5i3n+GQj6GXSXY32+RAQ5cclljVRTEn4bWYfDFAnimWv3j38jPHW5r0B
+         kqTRCLIeAv+q61ClInGSLhD6WijYDH3chxr8zuxBuwOqsibWpquHLmA5wOwRK3YWF8f4
+         MoUuZGYD+GR8Da8l4u4Dz84mNmqGVMWbw5uROvWTGawSV6SWDguaZ0C3kIkzoQu0m/9M
+         UBVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711191414; x=1711796214;
+        d=1e100.net; s=20230601; t=1711191486; x=1711796286;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=6qH44GpyQ2Dg0uH2aL2PD4YJ+8tvrIK4vagX1Nu+PVY=;
-        b=wJpDBr97AZU16Ad/m0ZHfLGozppWJmoF+4kDJ3apElfGUDcUldLxKGpedQ1K5q2qAl
-         epD3XJEbFedrOkUBPO0/Zq7SPPY1BBesUvtP9gBzkyScutaRSiQMb+QI0CIKVVZ60nnS
-         IcfSn3XGyVP3TWmor9SFOkSFwnHhi/Y4rHBS//RgIygC74lKCU61H5WJ8xbmJMbDCNd3
-         vcdxhfIXFD6yT6ermxqIV026LkZLtvm1U4Ba8HAsXNkS/j6d5wGG6latXckN4nHRPbBw
-         0l1cI9Fjt+1P+yBLiQEFLFf4Pq6+jUFI4r/EHivavqdVndqiiM3JvgmoVzlCP4Wu8k17
-         Psng==
-X-Forwarded-Encrypted: i=1; AJvYcCWwwkoz985z6UxmM6rTsu6+F+KQs2huYaUVlY3UC6CmELk9pfMIc4LcnNHZDLNlkI/BDD367W0LTicgEqFI9QRJTvmZdk4GCzINLw==
-X-Gm-Message-State: AOJu0YznnXFVpnYB56N+rnPCdNUjJqX/vZZK8OU+vHbUYSd6qOSC0XZ4
-	X/P02bXRSPMrk1KOBCxEGBkQ48XI6biLx9NsNAOzgTY49KWrqfBEqGyZzmlcQ6w=
-X-Google-Smtp-Source: AGHT+IG63vyL6z9bDMXxeqqWG7+SobFku2bTTks4vtGbGTq5M25d0VdGa3mPoDK2Lx3O7hKiLKvhYQ==
-X-Received: by 2002:a17:906:528c:b0:a46:5d40:eb97 with SMTP id c12-20020a170906528c00b00a465d40eb97mr1409296ejm.70.1711191414450;
-        Sat, 23 Mar 2024 03:56:54 -0700 (PDT)
+        bh=JDNnuYfBg2LsQPsZLEVL1qEcxCMLm0xKdzHquFpm9cY=;
+        b=pUbA1q6faQZl6+GZnenG+N3Fi7UkbpFlPbFcTtA7YKpQU9vz6ns+RfWIq5FF/t/Ydm
+         vButD3pQ7sCte8nGRr8iq42aPFEfGzi5LzvWAZ/saqJMj2/f2K8DW8Tm4ml0VdJ7AGo9
+         XzW2RpCMbdR39n/IsFN/nEtxUgTDo/uXlbIJyvm7bt3Gg7Bt4Ls4CG8Vmt0I4FHqYqc8
+         /PSKceZoLAss3ahDOdattpiyVcXLC6Xvaq1CQKR39ZQAv0QrVC5uL2vAUOFmGQAXSGyh
+         UClqR9BAs9pxo9WZVAf5Mm5U10zyb/CHyTyrrtmkUBrtWpimkYDl5vsMH5eeJKJjdrhX
+         yA5A==
+X-Forwarded-Encrypted: i=1; AJvYcCXoYdthjj9JGdkIZDfc6ZpWitfjiGtNx7Sjz8s6emabuiumeC8brjB8RyNOg8l3BPj2g5/kWxBwaPnxBInvBQhTVEgSSFeFLxX9tA==
+X-Gm-Message-State: AOJu0YwfnTDYIw8FqXvfFN/CtchBTqTB9H/PmabYq4o0xTbxAIgtGhTa
+	bAn9GLQoyrlk/K4VZpBtAEki2+QbveXsek6m8fy7UYV0UMonkA8KpBP0icwlEFg=
+X-Google-Smtp-Source: AGHT+IGvpJx1hrtUJJNQa2vXd8FmTJjhq04TKEcEsVe7vYgGuRI7Iwrvi+VoNuxBhvV1hXnkNLMALA==
+X-Received: by 2002:a50:ccc9:0:b0:568:bc48:5f27 with SMTP id b9-20020a50ccc9000000b00568bc485f27mr1351215edj.39.1711191485958;
+        Sat, 23 Mar 2024 03:58:05 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id h13-20020a1709063c0d00b00a472688a9ffsm782954ejg.219.2024.03.23.03.56.52
+        by smtp.gmail.com with ESMTPSA id u8-20020aa7d888000000b0056bbf8898e7sm796706edq.54.2024.03.23.03.58.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Mar 2024 03:56:53 -0700 (PDT)
-Message-ID: <a4bcfc72-5b81-4460-9bd1-fbb3e0cb1ec0@linaro.org>
-Date: Sat, 23 Mar 2024 11:56:51 +0100
+        Sat, 23 Mar 2024 03:58:05 -0700 (PDT)
+Message-ID: <17d410dd-bb9b-4962-bd53-1385d25d898b@linaro.org>
+Date: Sat, 23 Mar 2024 11:58:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,14 +77,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: leds: add LED_FUNCTION_MOBILE for
- mobile network
-To: INAGAKI Hiroshi <musashino.open@gmail.com>, pavel@ucw.cz, lee@kernel.org,
- robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Hauke Mehrtens <hauke@hauke-m.de>
-References: <20240323074326.1428-1-musashino.open@gmail.com>
- <20240323074326.1428-2-musashino.open@gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: Add AD4000
+To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+ Rob Herring <robh@kernel.org>
+Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, robh+dt@kernel.org,
+ devicetree@vger.kernel.org, lars@metafoo.de, linux-iio@vger.kernel.org,
+ jic23@kernel.org, Michael.Hennerich@analog.com, linux-kernel@vger.kernel.org
+References: <cover.1711131830.git.marcelo.schmitt@analog.com>
+ <81665b5f0d37d593e6d299528de8d68da8574077.1711131830.git.marcelo.schmitt@analog.com>
+ <171115011818.1710405.2845384923597786826.robh@kernel.org>
+ <Zf5Mhm4KRQzu9qZs@debian-BULLSEYE-live-builder-AMD64>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -131,19 +134,43 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240323074326.1428-2-musashino.open@gmail.com>
+In-Reply-To: <Zf5Mhm4KRQzu9qZs@debian-BULLSEYE-live-builder-AMD64>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/03/2024 08:36, INAGAKI Hiroshi wrote:
-> Add LED_FUNCTION_MOBILE for LEDs that indicate status of mobile network
-> connection. This is useful to distinguish those LEDs from LEDs that
-> indicates status of wired "wan" connection.
+On 23/03/2024 04:29, Marcelo Schmitt wrote:
+>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>>
+>> yamllint warnings/errors:
+>>
+>> dtschema/dtc warnings/errors:
+>> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/adi,ad4000.example.dtb: adc@0: Unevaluated properties are not allowed ('#address-cells', '#size-cells' were unexpected)
+>> 	from schema $id: http://devicetree.org/schemas/iio/adc/adi,ad4000.yaml#
+>> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/adi,ad4000.example.dtb: adc@0: Unevaluated properties are not allowed ('#address-cells', '#size-cells' were unexpected)
+>> 	from schema $id: http://devicetree.org/schemas/iio/adc/adi,ad4000.yaml#
+>>
 > 
-> example (on stock fw):
+> ok, adding proper #address-cells and #size-cells fixes the warning.
 > 
+>   '#address-cells':
+>     const: 1
+> 
+>   '#size-cells':
+>     const: 0
+> 
+> I'm assuming missing those in v1 doesn't hurt review so will wait for some
+> feedback before sending a v2.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hurts in a way it is a proof you did not test your binding before
+sending. Performing review on untested code might be a waste of
+reviewers time. Please test your code before sending it. I am not going
+to perform review of untested code.
+
+It does not look like you tested the bindings, at least after quick
+look. Please run `make dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
+Maybe you need to update your dtschema and yamllint.
 
 Best regards,
 Krzysztof
