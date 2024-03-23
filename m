@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-52625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52626-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECEE28877F9
-	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 11:24:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC047887802
+	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 11:32:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C52D1F21B87
-	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 10:24:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 409ACB214CA
+	for <lists+devicetree@lfdr.de>; Sat, 23 Mar 2024 10:32:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E16B10A0C;
-	Sat, 23 Mar 2024 10:24:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E99BF10A1B;
+	Sat, 23 Mar 2024 10:32:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Rr6zboSE"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PY3rTDy7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6EA11095C
-	for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 10:24:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 171CC53BE
+	for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 10:32:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711189491; cv=none; b=fOPuPXlCJOIHOcOZlr7jBT2pL39Y9PXlOYnSq6RgW82Ea01M3A6PlNkJPehQf21cR/9Y9c2jDfZrre9099noolj1yzZ2i2J5c4AesofWzT2afDs5ZJhOehXTsk6ZgokuRSOovIIVZNtlMaIf8Xygdw4jAJxibsJBlNNxAUMXg8c=
+	t=1711189968; cv=none; b=azNdZ+jVEMGMbk+Cb32EmUjrfeMw505IDQcf1IdyWhuZXMRfX7hpm+HvOgXkDb9n17bz3xlodF7rvVToFXe0bwZHC1MH63/ZGyUQUNZ1LlqDWBdBsSgGXxhjZvrmndhN36EEm4VbVR21jwQgiv0ogWOT6hFQYqTePmvWDwgy9fQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711189491; c=relaxed/simple;
-	bh=EI4E2QPRZgdV+VYaFBNzKDcDkTtZXfPdSLG/1fRvzgw=;
+	s=arc-20240116; t=1711189968; c=relaxed/simple;
+	bh=xi4jsFMElReW/+CyyGmZ+8iR/JIPeTUo1oF6PNIxMxM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WIX6Y6EBzVrB7A9/CSwOxcNgLeux6NmbmB3yJuPdWcYABtFfLZBK/mkuMRCUFYr3f04+sFOLXXSX4ycHx9RUcNdE09jfr5xQlhjXhr/xIAXvHyzzMDo7+W/uSmYO4sAfyjWpmBhatS0vNkGegrgd/r9P+lK/x2TwPKidYV3tJKE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Rr6zboSE; arc=none smtp.client-ip=209.85.218.44
+	 In-Reply-To:Content-Type; b=fieH7n9Z7lW/C7yTv2GOtHdWsU/BxDdsX/wkQcSHxkBgHHalib/OrD72BLcjuy+UbW+GIgZKAu2BLY7NfkLK3Qe2BDra5wqQLn0DP4sYKn1P1+Ihuo0ejpuQMZzJjZU6OQCJPNY2EQXI7nxGHSvSscINIZnJmYKHCqQMtBy+SQw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PY3rTDy7; arc=none smtp.client-ip=209.85.218.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a46d0a8399aso663816666b.1
-        for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 03:24:49 -0700 (PDT)
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a465ddc2c09so163902466b.2
+        for <devicetree@vger.kernel.org>; Sat, 23 Mar 2024 03:32:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711189488; x=1711794288; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711189965; x=1711794765; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=27eV0IsdHyW0CoX0dFZS8tHIPLcqxbkMkWnidM0bXYY=;
-        b=Rr6zboSE1nIuDsfatICRiiIPJO4Ee+sWRlIJ5ADV5K42zoubzLAnIUThu8iXReixF0
-         tK+Arq7OizleFgWZbO4gW8qKjDeLvP56RyyQ8DUdi7Ls/21vWx8oh9fPGySmva2FFIq+
-         SY4FEIq/Y2GphMCN7z2tnvyvv3h6Y8Ca9HOZraGiN2b/qHDeK5oCQnFvsv6I5c9ya4Cu
-         WKA7ajFRlGrixM/z+SQ+ijSFlGefLlhSqE6d5XJ8JPlFcOuzddZB1dFr77My5d4+DSX4
-         mGY1RFM4Gcud9VkpMB8zKoHs3+h3MKjTpfLYhEvBA4OFsL6+2E9CDb2t+cSseqoUilgR
-         FvKg==
+        bh=r8URojT0oHtu3+AzXIASnC0WWRVX6/5eAhPSlQrL+18=;
+        b=PY3rTDy79OHaUKxVGNiub+WsQWzr5JiLlK4AWZsxfhJI+GO5Sz+28Lr8QqC913Bpk4
+         TXWJuM88SFrXSLZw7u0e7Y5Q3/bYnUe8Tp+3qV5LVxSyemUYpEPEyvngbZ70ZHz4srtw
+         JIfNhnkaA+L6PQtKNhz0mxwvBnpF7jtrDJWUUrt1pNazKSvmCYQs/Kuer29DPjU21d97
+         iuLNkwjhXN8cykUhtzcnFSdKK3uz2Qi28D3JlK3wfTGX/i5F9TcVutOztrU1VG42jSlh
+         BvKfupA2PQqdelU2MFyDcNUf3b6+pZO/8KjQztYyCtTtHAJ83kHORBfgx9CmPCKiIXHQ
+         z2KA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711189488; x=1711794288;
+        d=1e100.net; s=20230601; t=1711189965; x=1711794765;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=27eV0IsdHyW0CoX0dFZS8tHIPLcqxbkMkWnidM0bXYY=;
-        b=SsYyhdXyAFYDk+ToMYYoIL3jI9bhtLtnnUiN+B2TxNzQF2g22o+zySuzyPVh/s47Xi
-         FWH5Ovs29tScRgtXHEkKNH2m08c5ePHj/tX0nhjflxPvQG0CHi0RMk56rCsJxmc4estm
-         6/D4LWeQuDRfhyyu3TuQ60VqnzAhPex6yQ0ffphRzeFt9wS4Z9GJqr5/j/8JNmzQOArw
-         zHDp8utbRPr3oPo5+rFgsgn5Jnv5AvjsVnO3gAUZhnlskdlBoNb5f/14m7WwDgDczOVr
-         eTE9KqIy5TmpV4PYHDw1f1ck9u/szxFGpXV4ysOMkQjc/V+MB3/ZWKymtZ9KLRVEN3ak
-         254g==
-X-Forwarded-Encrypted: i=1; AJvYcCWLunvNvONa5uf808af0xEU2bbcNWnjLkoM0/ohS7XpJ2S9o9qiXpiFoDtvKZqYWPMWdUsMxC0kELWRYrEZGApDwxsIZrkDuSx1fA==
-X-Gm-Message-State: AOJu0YwcNd4f/nTgQnvZofeE6Zm4H+UrXcMLlwjWJkZfsN55fod3fzzS
-	yc9CX06JidsTSMOkkVwy66wyUTeIb+R/ox0Z4p5rgrmaM7x6cpggBbgTeOcMJjs=
-X-Google-Smtp-Source: AGHT+IElMB+eq0Nqv/BFxyyEAHz5MAomDs2zRpTTQQ7d1Mgzoga3P3xV4zoLW3fiI2kzGmV2lirrNg==
-X-Received: by 2002:a17:907:7d8b:b0:a46:d04b:66e7 with SMTP id oz11-20020a1709077d8b00b00a46d04b66e7mr1340567ejc.25.1711189487936;
-        Sat, 23 Mar 2024 03:24:47 -0700 (PDT)
+        bh=r8URojT0oHtu3+AzXIASnC0WWRVX6/5eAhPSlQrL+18=;
+        b=t5tlZU83or6B+Hf1BWuberKisXBbu6g19rAvu6W8Nu+A1DrK0KVOswwkxiniU7h30+
+         9czOrMRjqxrA1U/nfh4NomrsgVFhUOvtVmrnDRM1jUNqvxIFz9YHXh6lV4kBrtm3hITl
+         aFlkDpA7lLvw48egiu7GOtymJYd3qhWw9mX6QjnOAVjLwB1/tHYYNdYFnDRMvpuGGtDY
+         KOgQ3VSEjCnrd/IZAldLDJnJZEpzfvgmnyl+AnQwWszxBJ64py1TCeYN7c4N/l/gbwrp
+         RgcTnxzXuO7PiwNBeS8i/DFxxVYspFy3balBXkFakzy33v2duoFtQDfmrfChBkLrrvzf
+         5+Iw==
+X-Forwarded-Encrypted: i=1; AJvYcCXD6sajlevGs8UTU4MMJpftGDwQNA8LqV8QOzRpN8LrcRaJJUzsJtT/HyQ+LHDSkwhh119co7oD/hY7GN3eNej7IgnVP+2yqJ4Bow==
+X-Gm-Message-State: AOJu0YxAvc1f+bUaexjMM1LNxVxPzsHEfrnprCUEfKABvC+gOjXInbn6
+	615C2ME7BHJCb5FrxrALPrLJqMJ7RZtg1zWuCAcx8Mxg8FFnvHJ0rZ6G4bU9+aw=
+X-Google-Smtp-Source: AGHT+IHsYDkit5rlnhfzCtTtWmQb+Dp//t6C/IHIfFL6toJGVCxTzhJs7h7KvR2Y1q4+ZKSWDCJ+nQ==
+X-Received: by 2002:a50:ccd0:0:b0:567:2a22:6e86 with SMTP id b16-20020a50ccd0000000b005672a226e86mr1323611edj.22.1711189965437;
+        Sat, 23 Mar 2024 03:32:45 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id m19-20020a1709060d9300b00a45c9945251sm753897eji.192.2024.03.23.03.24.45
+        by smtp.gmail.com with ESMTPSA id n23-20020aa7db57000000b00568c3a2f4f8sm747598edt.74.2024.03.23.03.32.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Mar 2024 03:24:47 -0700 (PDT)
-Message-ID: <703de50e-f271-4e65-bda4-85b1835afa6e@linaro.org>
-Date: Sat, 23 Mar 2024 11:24:44 +0100
+        Sat, 23 Mar 2024 03:32:44 -0700 (PDT)
+Message-ID: <bfe79f3d-1615-45a4-81f7-7e30740308d7@linaro.org>
+Date: Sat, 23 Mar 2024 11:32:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,34 +77,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v3 12/12] dt-bindings: net: add Microchip's
- LAN865X 10BASE-T1S MACPHY
-To: Parthiban.Veerasooran@microchip.com, conor@kernel.org
-Cc: andrew@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, horms@kernel.org, saeedm@nvidia.com,
- anthony.l.nguyen@intel.com, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, corbet@lwn.net, linux-doc@vger.kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, Horatiu.Vultur@microchip.com,
- ruanjinjie@huawei.com, Steen.Hegelund@microchip.com,
- vladimir.oltean@nxp.com, UNGLinuxDriver@microchip.com,
- Thorsten.Kummermehr@microchip.com, Pier.Beruto@onsemi.com,
- Selvamani.Rajagopal@onsemi.com, Nicolas.Ferre@microchip.com,
- benjamin.bigler@bernformulastudent.ch
-References: <20240306085017.21731-1-Parthiban.Veerasooran@microchip.com>
- <20240306085017.21731-13-Parthiban.Veerasooran@microchip.com>
- <20240306-spree-islamist-957acf0ee368@spud>
- <4c5968a3-c043-45fc-8fff-2a9eaa6de341@lunn.ch>
- <20240306-ripeness-dimple-e360a031ccde@spud>
- <05a9a7ee-e4f0-443e-9c8a-8ee649a11448@microchip.com>
- <2f384a54-74a0-4a75-a325-8985257b5d66@linaro.org>
- <ba37c212-fb98-407d-9bee-6d14801754d9@microchip.com>
- <96493beb-afbf-42f2-88f0-ad645422ecdb@linaro.org>
- <1735add6-4a6a-452b-bf26-1cf19c95493e@microchip.com>
- <20240321-upcountry-finless-b0e9b1ab4deb@spud>
- <13a28ba3-2da4-428c-8091-25e75c6c11e8@microchip.com>
- <d41a53bd-ea1e-476a-a18c-ed51dbac0a98@linaro.org>
- <b3c5d217-a5e3-4957-884c-02e8c10aba9d@microchip.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: mfd: Add rk816 binding
+To: Alex Bee <knaerzche@gmail.com>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Linus Walleij <linus.walleij@linaro.org>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
+Cc: Chris Zhong <zyw@rock-chips.com>, Zhang Qing <zhangqing@rock-chips.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org
+References: <20240323085852.116756-1-knaerzche@gmail.com>
+ <20240323085852.116756-2-knaerzche@gmail.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -151,34 +136,190 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <b3c5d217-a5e3-4957-884c-02e8c10aba9d@microchip.com>
+In-Reply-To: <20240323085852.116756-2-knaerzche@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 22/03/2024 09:28, Parthiban.Veerasooran@microchip.com wrote:
->>>
->>>         - const: microchip,lan8650
->>>
->>>         - items:
->>>
->>>             - const: microchip,lan8651
->>>
->>>             - const: microchip,lan8650
->>>
->>> Executed dt_binding_check with the above update and it was successful.
->>> Hope this is OK?
->>
->> This is the third time you ask us. None of the previous cases were
->> actually tested. Maybe this one was, maybe not. I assume the latter.
->>
->> First, test your code.
-> As I mentioned in the previous email itself, I tested this case and the 
-> previous case both in my RPI 4 setup before replying to the comment. The 
+On 23/03/2024 09:58, Alex Bee wrote:
+> Add DT binding document for Rockchip's RK816 PMIC
+> 
+> Signed-off-by: Alex Bee <knaerzche@gmail.com>
+> ---
+> changes since v1:
+>   - lowercase/hyphens for regulator node names
+>   - rename "-reg" to "-regulator" to make node names generic
 
-I don't understand how one can test bindings and DTS on RPI 4. Testing
-is with dt_bindings_check and dtbs_check.
+I don't understand why did you do it. I did not ask for it. If you want
+to rename, drop redundant regulator or reg suffix from node names.
 
+>   - dropped superfluous description for clock-output-names and
+>     wakeup-source
+>   - dropped "|" for text blocks that don't require to preserve formatting
+>   - use full path for `$ref`s
+>   - added pins description to the binding
+>   - added charger function to description
+>  
+>  .../bindings/mfd/rockchip,rk816.yaml          | 269 ++++++++++++++++++
+>  1 file changed, 269 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk816.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/rockchip,rk816.yaml b/Documentation/devicetree/bindings/mfd/rockchip,rk816.yaml
+> new file mode 100644
+> index 000000000000..9664162f4f75
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/rockchip,rk816.yaml
+> @@ -0,0 +1,269 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/rockchip,rk816.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: RK816 Power Management Integrated Circuit
+> +
+> +maintainers:
+> +  - Chris Zhong <zyw@rock-chips.com>
+> +  - Zhang Qing <zhangqing@rock-chips.com>
+> +
+> +description:
+> +  Rockchip RK816 series PMIC. This device consists of an i2c controlled MFD
+> +  that includes regulators, a RTC, a GPIO controller, a power button, and a
+> +  battery charger manager with fuel gauge.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - rockchip,rk816
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  '#clock-cells':
+> +    description:
+> +      See <dt-bindings/clock/rockchip,rk808.h> for clock IDs.
+> +    const: 1
+> +
+> +  clock-output-names:
+> +    maxItems: 2
+> +
+> +  gpio-controller: true
+> +
+> +  '#gpio-cells':
+> +    const: 2
+> +
+> +  system-power-controller:
+> +    type: boolean
+> +    description:
+> +      Telling whether or not this PMIC is controlling the system power.
+> +
+> +  wakeup-source:
+> +    type: boolean
+> +
+> +  vcc1-supply:
+> +    description:
+> +      The input supply for dcdc1-regulator.
+> +
+> +  vcc2-supply:
+> +    description:
+> +      The input supply for dcdc2-regulator.
+> +
+> +  vcc3-supply:
+> +    description:
+> +      The input supply for dcdc3-regulator.
+> +
+> +  vcc4-supply:
+> +    description:
+> +      The input supply for dcdc4-regulator.
+> +
+> +  vcc5-supply:
+> +    description:
+> +      The input supply for ldo1-regulator, ldo2-regulator, and ldo3-regulator.
+> +
+> +  vcc6-supply:
+> +    description:
+> +      The input supply for ldo4-regulator, ldo5-regulator, and ldo6-regulator.
+> +
+> +  vcc7-supply:
+> +    description:
+> +      The input supply for boost.
+> +
+> +  vcc8-supply:
+> +    description:
+> +      The input supply for otg-switch.
+> +
+> +  regulators:
+> +    type: object
+> +    patternProperties:
+> +      "^(boost|dcdc[1-4]-regulator|ldo[1-6]-regulator|otg-switch)$":
+> +        type: object
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +        unevaluatedProperties: false
+> +    unevaluatedProperties: false
+> +
+> +patternProperties:
+> +  '-pins$':
 
+Keep consistent quotes, so either ' or ".
+
+> +    type: object
+> +    additionalProperties: false
+> +    $ref: /schemas/pinctrl/pinmux-node.yaml
+> +
+> +    properties:
+> +      function:
+> +        enum: [pin_fun_gpio, pin_fun_thermistor]
+
+gpio, thermistor
+(pin_fun is redundant)
+
+> +
+> +      pins:
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        const: gpio0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - "#clock-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/pinctrl/rockchip.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        rk816: pmic@1a {
+> +            compatible = "rockchip,rk816";
+> +            reg = <0x1a>;
+> +            interrupt-parent = <&gpio0>;
+> +            interrupts = <RK_PA2 IRQ_TYPE_LEVEL_LOW>;
+> +            clock-output-names = "xin32k", "rk816-clkout2";
+> +            pinctrl-names = "default";
+> +            pinctrl-0 = <&pmic_int_l>;
+> +            gpio-controller;
+> +            system-power-controller;
+> +            wakeup-source;
+> +            #clock-cells = <1>;
+> +            #gpio-cells = <2>;
+> +
+> +            vcc1-supply = <&vcc_sys>;
+> +            vcc2-supply = <&vcc_sys>;
+> +            vcc3-supply = <&vcc_sys>;
+> +            vcc4-supply = <&vcc_sys>;
+> +            vcc5-supply = <&vcc33_io>;
+> +            vcc6-supply = <&vcc_sys>;
+
+Add pins node to the example.
 
 Best regards,
 Krzysztof
