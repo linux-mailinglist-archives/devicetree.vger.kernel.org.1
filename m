@@ -1,195 +1,87 @@
-Return-Path: <devicetree+bounces-52746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32336887D37
-	for <lists+devicetree@lfdr.de>; Sun, 24 Mar 2024 15:38:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD473887D80
+	for <lists+devicetree@lfdr.de>; Sun, 24 Mar 2024 16:46:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D82F028155B
-	for <lists+devicetree@lfdr.de>; Sun, 24 Mar 2024 14:38:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A0CE1C208BB
+	for <lists+devicetree@lfdr.de>; Sun, 24 Mar 2024 15:46:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DFC818035;
-	Sun, 24 Mar 2024 14:38:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7AC218622;
+	Sun, 24 Mar 2024 15:46:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=xry111.site header.i=@xry111.site header.b="Zgfs6kJu"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=semeza.com header.i=@semeza.com header.b="WOevSQKw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from xry111.site (xry111.site [89.208.246.23])
+Received: from rs1.rcnoc.com (rs1.rcnoc.com [167.235.180.68])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5A3810A19;
-	Sun, 24 Mar 2024 14:38:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.208.246.23
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D52CB17BC7
+	for <devicetree@vger.kernel.org>; Sun, 24 Mar 2024 15:46:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=167.235.180.68
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711291128; cv=none; b=AHtZntQMt/ESxFy7I2U/NkGuJ4TgornTIQm6V/JFzYlG592otj0EYPqmg7uoaX1p0iGhpAMYs95UZLXEEjerMGmYzFa5LMl0qLGrT/6vS+/hQYc0juSU0oRULELc7jKAv0FzjbTEiHp8I6WzFH2ByIp+yVvsGASaQq13lNFVFAU=
+	t=1711295191; cv=none; b=pQjBDYbLg6cCLqDbgqEUkD1UkQB/yP9Rz1yD/Ai/WawsWi1/U3VeL9xJzVYlNIiFVnLUn0F64gTBIw13sNQ3DRl52z1TLcvBAD1WXq8n2Xt+OE1c1bHXiGJxLKI+w+a0/iyjlDaOstvb/pp3GU/zMeQnTrq6HwtJy5Xz9jr0SGo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711291128; c=relaxed/simple;
-	bh=IbsCl9l2o8yFRzxnTIHD21nvFORmc81BmARxaSCYcRc=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=TFzAoXww/IhaYzSVaJtJ9wOVKELuMb2yjm/JgU6Rn6AUaLcu181OI+UjpEPgoQ+RLpR48A6hTGKwRgJOpwRWcSI5grYynWs/ACEGMCd90qz7XSjtOILGyvt+3GOeA3ndgPpZ0aFEHCoE9Vx0PRTBs7Moktx4shvNrl+xPXwMnCA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=xry111.site; spf=pass smtp.mailfrom=xry111.site; dkim=pass (1024-bit key) header.d=xry111.site header.i=@xry111.site header.b=Zgfs6kJu; arc=none smtp.client-ip=89.208.246.23
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=xry111.site
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xry111.site
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xry111.site;
-	s=default; t=1711291118;
-	bh=IbsCl9l2o8yFRzxnTIHD21nvFORmc81BmARxaSCYcRc=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=Zgfs6kJu7XcbbtN5sfNCkJmpgBquCo0qpHVWDb0ye12q1YA2pIun9RU/ncnRIrm2m
-	 ZQCq4XQbP7vMZSbG3oyJ3blii5OrRtC/jpxV83y96CJ4eMOCbQA96dM+ZhxattXuxs
-	 uNdiWM2T1ep3SipujgMP1W2b5bXHOM3wo9GsfsMg=
-Received: from [IPv6:240e:358:11fe:a000:dc73:854d:832e:8] (unknown [IPv6:240e:358:11fe:a000:dc73:854d:832e:8])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature ECDSA (P-384) server-digest SHA384)
-	(Client did not present a certificate)
-	(Authenticated sender: xry111@xry111.site)
-	by xry111.site (Postfix) with ESMTPSA id 06DBA6737D;
-	Sun, 24 Mar 2024 10:38:26 -0400 (EDT)
-Message-ID: <0c3c6f3cae125fd51105264308aff5d9968a65e2.camel@xry111.site>
-Subject: Re: [PATCH v8 4/4] riscv: dts: thead: Enable LicheePi 4A eMMC and
- microSD
-From: Xi Ruoyao <xry111@xry111.site>
-To: Drew Fustini <drew@pdp7.com>, Maxim Kiselev <bigunclemax@gmail.com>
-Cc: Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>, 
- devicetree@vger.kernel.org, dfustini@baylibre.com, guoren@kernel.org, 
- jkridner@beagleboard.org, jszhang@kernel.org, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, open list
- <linux-kernel@vger.kernel.org>,  linux-riscv@lists.infradead.org, Palmer
- Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>,
- robertcnelson@beagleboard.org, Rob Herring <robh+dt@kernel.org>, 
- wefu@redhat.com
-Date: Sun, 24 Mar 2024 22:38:21 +0800
-In-Reply-To: <Zf+A7KEYL/tZb9/N@x1>
-References: 
-	<CALHCpMhc1F5Ue7U_gsDXREHUZRVQJNYRCJxYxoNqbN=-39jf7A@mail.gmail.com>
-	 <Zf+A7KEYL/tZb9/N@x1>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.0 
+	s=arc-20240116; t=1711295191; c=relaxed/simple;
+	bh=CH22KDsIfnBf1FZj/OYQuAjer7NOUcCjja7Wwt5sLoY=;
+	h=To:Subject:Date:From:Message-ID:MIME-Version:Content-Type; b=nhIgf3QfwlQuKBBC8jtEZaEOrw1ek6TVmIbIk2QtdvzXmKk88Uwc+nRICqYyzbloUk0Yo20zk5GEEs0mz7rb8biQZ9IEbbUfy2a88GE9DudMSyQjGGM5Fjd40CYoTFhjfA3ehUHRokX8nZAQ1Pdr5spGhbaSvfEGQcm2Oin2Yeo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=cththemes.com; spf=none smtp.mailfrom=rs1.rcnoc.com; dkim=pass (2048-bit key) header.d=semeza.com header.i=@semeza.com header.b=WOevSQKw; arc=none smtp.client-ip=167.235.180.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=cththemes.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=rs1.rcnoc.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=semeza.com;
+	s=default; h=Content-Type:MIME-Version:Message-ID:Reply-To:From:Date:Subject:
+	To:Sender:Cc:Content-Transfer-Encoding:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=Ro3q5X8qu0DVRIztGFlidU87HpYGUNu8VIvQ/AgSshk=; b=WOevSQKwUQUIaCIYGLxNGKf19K
+	gb5+mnaAuaGu8+gBsbp1wRJdfg4pSvwdhd8VxO47xW7FlEiUTqwQsAt/Jwh4zECxfB/WSNjtXD+X5
+	ZGVzVpRPz+SL+Hai7mPNqn05YK+XQ/V86/lQsBT+WTcVOUtPYdVtqhyA5xsPhVkJxPTasAaA2r5XJ
+	7WPkjVU2wNS7PKL1IautZALQHd3P0vW8TqN1a45afgo+4GOaeab7x9YXpdmNyZHdjMv8Ffhkxfroq
+	uFFfcOJyP9Ff2SYfIFneQP8h6GQ6S5VCPPsRX9CG0nCdoPM7M7Ljt8cnSqajX0orBAWXhrpmMJ9cE
+	5UAJMcNA==;
+Received: from semeza by rs1.rcnoc.com with local (Exim 4.96.2)
+	(envelope-from <semeza@rs1.rcnoc.com>)
+	id 1roPnm-00EIb5-0D
+	for devicetree@vger.kernel.org;
+	Sun, 24 Mar 2024 18:30:26 +0300
+To: devicetree@vger.kernel.org
+Subject: TownHub Contact Form
+X-PHP-Script: semeza.com/index.php for 77.247.178.110
+ X-PHP-Originating-Script: 3050:PHPMailer.php
+Date: Sun, 24 Mar 2024 15:30:25 +0000
+From: TownHub Theme <wordpress@cththemes.com>
+Reply-To: devicetree@vger.kernel.org
+Message-ID: <19xXdlTL5UttcGvGEA6CtWY71Wfbu5ainT3wWjDRo@semeza.com>
+X-Mailer: PHPMailer 6.8.1 (https://github.com/PHPMailer/PHPMailer)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - rs1.rcnoc.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [3050 978] / [47 12]
+X-AntiAbuse: Sender Address Domain - rs1.rcnoc.com
+X-Get-Message-Sender-Via: rs1.rcnoc.com: authenticated_id: semeza/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: rs1.rcnoc.com: semeza
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-On Sat, 2024-03-23 at 18:25 -0700, Drew Fustini wrote:
-> On Wed, Mar 20, 2024 at 03:28:19PM +0300, Maxim Kiselev wrote:
-> > Hi Xi, Drew
-> >=20
-> > I have the same problem with SD on my LicheePi 4A.
-> >=20
-> > After some investigations I found how to fix this tuning error.
-> > Here is the patch that increases tuning loop count from
-> > 40(MAX_TUNING_LOOP at sdhci.c) to 128.
-> >=20
-> > diff --git a/drivers/mmc/host/sdhci-of-dwcmshc.c
-> > b/drivers/mmc/host/sdhci-of-dwcmshc.c
-> > index 8d6cfb648096..da8f5820fb69 100644
-> > --- a/drivers/mmc/host/sdhci-of-dwcmshc.c
-> > +++ b/drivers/mmc/host/sdhci-of-dwcmshc.c
-> > @@ -706,6 +706,7 @@ static int th1520_execute_tuning(struct
-> > sdhci_host
-> > *host, u32 opcode)
-> >=20
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* perform tuning */
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sdhci_start_tuning(host);
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 host->tuning_loop_count =3D 128:
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 host->tuning_err =3D __sdhci=
-_execute_tuning(host, opcode);
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (host->tuning_err) {
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 /* disable auto-tuning upon tuning error */
-> >=20
-> > After that change tuning works fine. The same value of loop count is
-> > used in RevyOS BSP
-> > https://github.com/revyos/thead-kernel/blob/c6d4e5df18a17903d012ffd89e6=
-7d0ee5ce6cf2d/drivers/mmc/host/sdhci-of-dwcmshc.c#L185
-> >=20
-> > Honestly, it looks a little bit strange for me.
-> >=20
-> > It seems that the tuning algorithm requires to move through
-> > all the taps of delay line(128 taps?) even if we use THRESHOLD_MODE
-> > instend LARGEST_WIN_MODE (I mean bit 2 in AT_CTRL_R(0x540)
-> > register).
-> >=20
-> > Xi, could you also test my fix on your board?
+From: unittine <devicetree@vger.kernel.org>
+Subject: Contact Form Subject
 
-It works for me as well.  I'm now getting:
+Message Body:
+My one and only, your love is my strength. 
+In case you have a bit of free time, would you kindly check out my page through this link: https://tinyurl.com/23xlk4g8 I've uploaded some recent photos and updates from current events there. It would be great to catch up and share our experiences.
 
-[    0.854357] mmc1: new ultra high speed SDR104 SDXC card at address aaaa
-[    0.862267] mmcblk1: mmc1:aaaa SR256 238 GiB
-[    0.876623]  mmcblk1: p1
+-- 
+This e-mail was sent from a contact form on TownHub (http://localhost:8888/homeradar)
 
-Tested-by: Xi Ruoyao <xry111@xry111.site>
-
-Thanks a lot!
-
-> Thanks for figuring this out!
->=20
-> When I was upstreaming support, I noticed __sdhci_execute_tuning() in
-> T-Head's version of sdhci-of-dwcmshc.c seemed to duplicate what already
-> existed in drivers/mmc/host/sdhci.c. I had thought T-Head copied it
-> because it was a static function.
->=20
-> 9cc811a342be ("mmc: sdhci: add __sdhci_execute_tuning() to header")
-> allowed me to remove __sdhci_execute_tuning() from sdhci-of-dwcmshc.
-> However, I overlooked this resulted in changing the tuning loop from
-> 128 back to the upstream default of 40.
->=20
-> Before this change, the microSD did work for me on the lpi4 but I would
-> see the following:
->=20
-> [=C2=A0=C2=A0=C2=A0 4.182483] mmc1: Tuning failed, falling back to fixed =
-sampling
-> clock
-> [=C2=A0=C2=A0=C2=A0 4.189022] sdhci-dwcmshc ffe7090000.mmc: tuning failed=
-: -11
-> [=C2=A0=C2=A0=C2=A0 4.194734] mmc1: tuning execution failed: -5
-> [=C2=A0=C2=A0=C2=A0 4.287899] mmc1: new high speed SDHC card at address a=
-aaa
-> [=C2=A0=C2=A0=C2=A0 4.299763] mmcblk1: mmc1:aaaa SD32G 29.7 GiB
-> [=C2=A0=C2=A0=C2=A0 4.316963]=C2=A0 mmcblk1: p1 p2
->=20
-> root@lpi4amain:~# cat /sys/kernel/debug/mmc1/ios
-> clock:		50000000 Hz
-> actual clock:	49500000 Hz
-> vdd:		21 (3.3 ~ 3.4 V)
-> bus mode:	2 (push-pull)
-> chip select:	0 (don't care)
-> power mode:	2 (on)
-> bus width:	2 (4 bits)
-> timing spec:	2 (sd high-speed)
-> signal voltage:	0 (3.30 V)
-> driver type:	0 (driver type B)
->=20
-> With the change to 128, I no longer see the tuning failure and the
-> microSD continues to work okay:
->=20
-> [=C2=A0=C2=A0=C2=A0 4.307040] mmc1: new ultra high speed SDR104 SDHC card=
- at address
-> aaaa
-> [=C2=A0=C2=A0=C2=A0 4.320462] mmcblk1: mmc1:aaaa SD32G 29.7 GiB
-> [=C2=A0=C2=A0=C2=A0 4.338646]=C2=A0 mmcblk1: p1 p2
->=20
-> root@lpi4amain:/sys/kernel/debug/mmc1# cat ios
-> clock:		198000000 Hz
-> actual clock:	198000000 Hz
-> vdd:		21 (3.3 ~ 3.4 V)
-> bus mode:	2 (push-pull)
-> chip select:	0 (don't care)
-> power mode:	2 (on)
-> bus width:	2 (4 bits)
-> timing spec:	6 (sd uhs SDR104)
-> signal voltage:	1 (1.80 V)
-> driver type:	0 (driver type B)
->=20
-> This has the benefit of the card now works at 198 MHz in SDR104 mode
-> instead of 50 MHz when tuning failed.
->=20
-> Tested-by: Drew Fustini <drew@pdp7.com>
-
---=20
-Xi Ruoyao <xry111@xry111.site>
-School of Aerospace Science and Technology, Xidian University
 
