@@ -1,147 +1,114 @@
-Return-Path: <devicetree+bounces-53022-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95B8888AA80
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 18:00:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30040887F29
+	for <lists+devicetree@lfdr.de>; Sun, 24 Mar 2024 22:25:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 335691F62447
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 17:00:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B72EA2815E6
+	for <lists+devicetree@lfdr.de>; Sun, 24 Mar 2024 21:25:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A3AA13CC62;
-	Mon, 25 Mar 2024 15:28:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C2051CD02;
+	Sun, 24 Mar 2024 21:25:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="gqLR18gn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lZ/VvvsJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail2.andi.de1.cc (vmd64148.contaboserver.net [161.97.139.27])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75D4A131185;
-	Mon, 25 Mar 2024 15:28:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=161.97.139.27
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE7EB101E6
+	for <devicetree@vger.kernel.org>; Sun, 24 Mar 2024 21:25:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711380512; cv=none; b=akJ5fUatIxTwM/f0NM3YErd9fYWHJ6JbmGKXXon1AhgLo276BmW2AtW3SkyJYLlhnELM6kAPprlUW8fcgt2GQD1ENp+C2v+kaNyp2/eLGQGwl/jIChVU/EtIOh7mOa4rswuC01WffMFyQIqAEW9m8RXkmHOZWidGOzUGmn3NMSs=
+	t=1711315505; cv=none; b=X4WWRWJuvrV0p/sDTZsi4pnKTo1UxG9c9PhX0tqN/I/n00lAd1Gb2HaGu4KyTh/zA/v2SGk9WLXS008a6dNoRqxYzcBsznxBKQKMN8aab3U4rJtoPI76bYTBGb3MAy0qN+bUPhe1oixdyHAj3p2JvFjAJgSE4VvebwhyOnk7oWw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711380512; c=relaxed/simple;
-	bh=yuwjtveKEbaL2UN5MUISEfFsSHypms+Pae4GIvHAq7M=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=I18g15LN1p2PbLHbK4JBSyxaJ6Kub7kbJwuMnnKrx+whGosrO6sWYe6nVu/rRejN6FFi7HeyWoUgPg/0G0Seo5vAK8MCmrthV2vt+4r5Cjn16JbiP/QEwaRcQ5IV3KB35DDoKztY8Hs2Hqp6KB4QT+bmkj7udw38QRtcfJS1p9c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=gqLR18gn; arc=none smtp.client-ip=161.97.139.27
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-Received: from mail.andi.de1.cc ([2a02:c205:3004:2154::1])
-	by mail2.andi.de1.cc with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <andreas@kemnade.info>)
-	id 1roltB-003KDv-0p;
-	Mon, 25 Mar 2024 16:05:29 +0100
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=NfgmcINbKPDsoie0JtH7mN1+qoCT0MNsvrJB7mPvdII=; b=gqLR18gnnboPMYwN2nCyKZCucU
-	BjKN5z2jbUjHe/IpT79E1Tn8JdVrsBXlg0duVIrIGIukJjYwdDhhm3BdI5KQSFKs/RK1J308eY3O1
-	BQzCDSZOTZJccfdnPEHgtNkYv/Ek5/WM+CYPzW+TAYrRfoAGZproLSjGmsdJioq5Zn60nMZRJwILx
-	Eklssc9RsdeuSzSg/nW8GECrqZvvHsNXrsUmucqj7htOTvsj+Kqq2KgPPYQf8Mcg98CN9X81eihug
-	BwKULqBCYLP8m/z6LqFCeTuTzpFQdTDkLBj+ABUnKh8IWZA886vmDgHK9fK0diBa6UrOACXitLWWd
-	mmd5xhqg==;
-Received: from p2003010777026a001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:107:7702:6a00:1a3d:a2ff:febf:d33a] helo=aktux)
-	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <andreas@kemnade.info>)
-	id 1roUCV-000Y9r-Fy; Sun, 24 Mar 2024 21:12:14 +0100
-Received: from andi by aktux with local (Exim 4.96)
-	(envelope-from <andreas@kemnade.info>)
-	id 1roUCU-000yRE-1A;
-	Sun, 24 Mar 2024 21:12:14 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: lee@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	mazziesaccount@gmail.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev
-Cc: Andreas Kemnade <andreas@kemnade.info>
-Subject: [RFC PATCH 2/2] mfd: rohm-bd71828: Add power off functionality
-Date: Sun, 24 Mar 2024 21:12:10 +0100
-Message-Id: <20240324201210.232301-3-andreas@kemnade.info>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240324201210.232301-1-andreas@kemnade.info>
-References: <20240324201210.232301-1-andreas@kemnade.info>
+	s=arc-20240116; t=1711315505; c=relaxed/simple;
+	bh=cwb+YFRbwyYuw0AcWdz6CUnMjydvn4ln5n953mSo1/E=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=V+72Rh+WC8cH/kfIlGGtqD8Ex3lb6RPc16cL/c+CHYHqeKfmPR2oRT8KugQOTdE+Gb1aVVfm4Qrc9qxthkbIU23tZdYRWHoTLF9rP4Xk6Emh803B8z5GtlCGOCH63/iNNNfIpYhChjxSiEOKINdaXxjU8v19/bqj6EmR5q0oLHQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lZ/VvvsJ; arc=none smtp.client-ip=209.85.167.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-3c39177fea4so2636650b6e.2
+        for <devicetree@vger.kernel.org>; Sun, 24 Mar 2024 14:25:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1711315502; x=1711920302; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=JAn6z6C6kAQCNocTNhwJGXaT3ktUI5cvq1m2gw2cMlM=;
+        b=lZ/VvvsJDEAAuFKZ0gmOUfq4yqK30jwFLE+hnyJls6E1AF6tC/A2jSgIwp+7MT6Z0R
+         1rsqtOhvFcYpC7pFneC0gDA2To1cToOjJGCK/FYo10p+WfvLC3h7aQE+pQKVjLcX8s5O
+         fiBfUR/b08U4MK0n01nOlE+uXs8G1fyVfqxzYPReUbFYYTVcBywjwxwc98aPkJa2x01E
+         k9Y+2mrvjZaT+aynXA9EfoFTRE1TZd27RIlTyBOn3lJNtxxbLfnqP4TwW1nUoIZ/l5Ak
+         E6AYiOVmx4EQhZN2OBxRBLvFZkrASWExS3EUJvKkFlJHcr625cYLJd4Ux8ZNoAFMaE0G
+         hkew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711315502; x=1711920302;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JAn6z6C6kAQCNocTNhwJGXaT3ktUI5cvq1m2gw2cMlM=;
+        b=qaW3oV6+VhgMkTmAqZO9qap/MBBRAS0TzI+JZlXET6ceZywzBucPbyJBEwdqCpWJBl
+         69tvJwkOIWlTDTx5Z/UFif2wi5Ym1+Y8H3624yI3cASsracMLRu9IycoahIhLBicYQx2
+         vFW08Eup91t05PAsoqU1Mt1CTmeSuLY9po4Rq43huPBeSe7kF8qZ4aPKKTNlLrah/lUB
+         tZR3sijYqz4xE5k2DjKec2+1mWI2v6usMN4hoK5WmS29OPz/SfmWpFD6aFiESc3NGQ7j
+         l7mCsqwJq2MHX0dFAFfnMVlVTKn8TujlvPYBoHIVLxb8W+Fh6HmkzMvEN2MHVwkdwRcD
+         dcng==
+X-Forwarded-Encrypted: i=1; AJvYcCWcCJM/Y82Q4ELpRK9ydcjCud7bweE3DlaZvsXpSV21TxHjj8ZMHmUJPzI2iaQYOnE3Er6U5lV9/QBAHA6sT5bWxotEgBxqqiMIvQ==
+X-Gm-Message-State: AOJu0Yx851clbryJqO//ejpxdfk87+R6Jf33yEgd5xDqux/jpZokBEWC
+	oVRX4o3UaWWDsEJB3+MY9uPwQjLgsfPPumb1RxY7CyG44aA6cNp8MyAr3n4P7wp0n5l+vcz56LN
+	9g8J/j8GWMjez6cOGH6faVR9TrxPwYa2rgk+bKQ==
+X-Google-Smtp-Source: AGHT+IFsASaAXYhy6wMEzFscwmoJiMkAf8XUTx8af2vr4btW+ENv9jYLPxo+baqJKEZ59gDPp1vL6Dvk7ZbPq+nVlgU=
+X-Received: by 2002:a05:6808:2a43:b0:3c3:7edd:bf84 with SMTP id
+ fa3-20020a0568082a4300b003c37eddbf84mr5754842oib.35.1711315501982; Sun, 24
+ Mar 2024 14:25:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240324-x1e80100-display-refactor-connector-v4-0-e0ebaea66a78@linaro.org>
+ <20240324-x1e80100-display-refactor-connector-v4-1-e0ebaea66a78@linaro.org>
+In-Reply-To: <20240324-x1e80100-display-refactor-connector-v4-1-e0ebaea66a78@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Sun, 24 Mar 2024 23:24:50 +0200
+Message-ID: <CAA8EJppues54mPveOn7irCHYe+T4Fdv-=4ucLLpqq843NLBAfQ@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] drm/msm/dp: Add support for determining the eDP/DP
+ mode from DT
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kuogee Hsieh <quic_khsieh@quicinc.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Johan Hovold <johan@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Since the chip can power off the system, add the corresponding
-functionality.
-Based on https://github.com/kobolabs/Kobo-Reader/raw/master/hw/imx6sll-clara2e/kernel.tar.bz2
-No information source about the magic numbers found.
+On Sun, 24 Mar 2024 at 20:57, Abel Vesa <abel.vesa@linaro.org> wrote:
+>
+> Instead of relying on different compatibles for eDP and DP, lookup
+> the panel node in devicetree to figure out the connector type and
+> then pass on that information to the PHY. External DP doesn't have
+> a panel described in DT, therefore, assume it's eDP if panel node
+> is present.
+>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+>  drivers/gpu/drm/msm/dp/dp_display.c | 29 ++++++++++++++++++++++++++++-
+>  1 file changed, 28 insertions(+), 1 deletion(-)
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
- drivers/mfd/rohm-bd71828.c | 31 ++++++++++++++++++++++++++++++-
- 1 file changed, 30 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/mfd/rohm-bd71828.c b/drivers/mfd/rohm-bd71828.c
-index 594718f7e8e1..5a55aa3620d0 100644
---- a/drivers/mfd/rohm-bd71828.c
-+++ b/drivers/mfd/rohm-bd71828.c
-@@ -464,6 +464,24 @@ static int set_clk_mode(struct device *dev, struct regmap *regmap,
- 				  OUT32K_MODE_CMOS);
- }
- 
-+static struct i2c_client *bd71828_dev;
-+static void bd71828_power_off(void)
-+{
-+	i2c_smbus_write_byte_data(bd71828_dev, 0x03, 0xff);
-+	mdelay(500);
-+	i2c_smbus_write_byte_data(bd71828_dev, BD71828_REG_INT_DCIN2, 0x02);
-+	mdelay(500);
-+	while (true) {
-+		i2c_smbus_write_byte_data(bd71828_dev, BD71828_REG_PS_CTRL_1, 0x02);
-+		mdelay(500);
-+	}
-+}
-+
-+static void bd71828_remove_poweroff(void *data)
-+{
-+	bd71828_dev = NULL;
-+}
-+
- static int bd71828_i2c_probe(struct i2c_client *i2c)
- {
- 	struct regmap_irq_chip_data *irq_data;
-@@ -542,7 +560,18 @@ static int bd71828_i2c_probe(struct i2c_client *i2c)
- 	ret = devm_mfd_add_devices(&i2c->dev, PLATFORM_DEVID_AUTO, mfd, cells,
- 				   NULL, 0, regmap_irq_get_domain(irq_data));
- 	if (ret)
--		dev_err_probe(&i2c->dev, ret, "Failed to create subdevices\n");
-+		return	dev_err_probe(&i2c->dev, ret, "Failed to create subdevices\n");
-+
-+	if (of_device_is_system_power_controller(i2c->dev.of_node)) {
-+		if (!pm_power_off) {
-+			bd71828_dev = i2c;
-+			pm_power_off = bd71828_power_off;
-+			ret = devm_add_action_or_reset(&i2c->dev,
-+						       bd71828_remove_poweroff,
-+						       NULL);
-+		} else
-+			dev_warn(&i2c->dev, "Poweroff callback already assigned\n");
-+	}
- 
- 	return ret;
- }
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
 -- 
-2.39.2
-
+With best wishes
+Dmitry
 
