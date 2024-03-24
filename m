@@ -1,122 +1,107 @@
-Return-Path: <devicetree+bounces-52721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52722-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2867F887C6D
-	for <lists+devicetree@lfdr.de>; Sun, 24 Mar 2024 12:07:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AC8D887C81
+	for <lists+devicetree@lfdr.de>; Sun, 24 Mar 2024 12:22:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 31D0FB20F49
-	for <lists+devicetree@lfdr.de>; Sun, 24 Mar 2024 11:07:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B06411F212F2
+	for <lists+devicetree@lfdr.de>; Sun, 24 Mar 2024 11:22:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17257175A5;
-	Sun, 24 Mar 2024 11:07:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4FE5175AD;
+	Sun, 24 Mar 2024 11:22:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f+Gs6Z+c"
+	dkim=pass (2048-bit key) header.d=thefossguy.com header.i=@thefossguy.com header.b="eg84ZX3U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-4323.proton.ch (mail-4323.proton.ch [185.70.43.23])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA73317589;
-	Sun, 24 Mar 2024 11:07:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17E8128E7;
+	Sun, 24 Mar 2024 11:21:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.23
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711278453; cv=none; b=glBTFPTcJOzv+Ia1/qVxiMTmD2pDP0shiJ0vj6Knzg1ZW1g3ENvPGGb5EXt8b+oGdIkWGvsmiQdPcMwM67t1qi77v+WsfwzZtUoiObYcAnGiZjZvHTz4203NBMWTGLkvZNaFYrVUKwDcQ76OmTZfiV7z5qaz/9inZNQlr7fqRFk=
+	t=1711279321; cv=none; b=apXo1OS2fDEEh3A8xdFACNbdeqIe4vDhupWlpMavz9qsdwkp6imv7eIhQhoiNpSRfVvK1DZz55l8gE4Ir0dPPFaLizljqmS2wpKzL69nzi/S1kwz+ANxmztSydw6Y6731b3OTCRZUEOl9mJ38GFAQ4LZpFxeqGaWkt5zTBluzV4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711278453; c=relaxed/simple;
-	bh=c4DwOWppSfnfeU/csggpl62l/AoBhxYYo3PnytUAr6g=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=olpnrykGYaBdUpDL3IxelmAEklFq3HW/9D0jJh/S3n0f3Zh4z1XPBz4foNI/nVfAI2MhO+sGRiYKgvdHDnvvlOIcTKyKeaOJHbRx4FQD0dfxZRiop8wFkOgeNOhKmhLjpZxUam/CrN2kWwCK9pd7PxvpTd92wOFarCHbWtKzunE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f+Gs6Z+c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00201C433F1;
-	Sun, 24 Mar 2024 11:07:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711278451;
-	bh=c4DwOWppSfnfeU/csggpl62l/AoBhxYYo3PnytUAr6g=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=f+Gs6Z+chTKB0PynaDzxKDYVMmzLIQDib0BphLl9FOGvJ1foQe/nljTsYbLPD5in5
-	 5JlcLQCVTLeuwQnmK7mWGH4MlqyA8g3syPivr/diQf7OQz/IYnKThR/iWh8u79fCku
-	 /2mvNFaLqOkO+Ai7kE86b3sHbN7ZGk21udKOkzOTB7zaC6UA4cMlazn4yI9birZuHc
-	 KLVFQ5ytzdb5J97FVMGouLyjYARbW6wRbA5PVbFKdFxjOPTEJQXvivDXbtAOKK5gFz
-	 YdGoN/w5FVR0Pu2VfxaekhGeANIz2wlpj5Y/fG6EQJ5Pvkiv88AJ6RScBPAoV53WQ/
-	 y0d2JqZdbh1+Q==
-Date: Sun, 24 Mar 2024 11:07:15 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Javier Carrasco <javier.carrasco.cruz@gmail.com>, Lars-Peter Clausen
- <lars@metafoo.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Matt Ranostay <matt@ranostay.sg>, Jonathan Cameron
- <Jonathan.Cameron@huawei.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: iio: health: maxim,max30102: fix
- compatible check
-Message-ID: <20240324110715.0832e6d6@jic23-huawei>
-In-Reply-To: <20240317-bakery-numeric-a34b928efa6d@spud>
-References: <20240316-max30102_binding_fix-v1-1-e8e58f69ef8a@gmail.com>
-	<20240317-bakery-numeric-a34b928efa6d@spud>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1711279321; c=relaxed/simple;
+	bh=CHiCwMJx97a7aFumYdhFFpr0BdNcgHlVnJDNYCZsuPM=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=kDsWHMOrsNXr1/NANQNa3dMLmVjPWaiMqi0xE+uzZxbjOix5R6QxfHO7GGo4m+4aeppUilkL5Z5RhACkHe/uJ/mulTsD7pPZObGfc9BvWEsuPhPmfMzxwW1TZEdaFsDK9kMEVdNhdTyDowFLEwoZDPrIoKmjUpz4QTqymUMoyJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thefossguy.com; spf=pass smtp.mailfrom=thefossguy.com; dkim=pass (2048-bit key) header.d=thefossguy.com header.i=@thefossguy.com header.b=eg84ZX3U; arc=none smtp.client-ip=185.70.43.23
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thefossguy.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thefossguy.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thefossguy.com;
+	s=protonmail; t=1711279308; x=1711538508;
+	bh=CHiCwMJx97a7aFumYdhFFpr0BdNcgHlVnJDNYCZsuPM=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=eg84ZX3UbyCWGStzmB+0bD9GjZ4fgn606vz6QIfuD/mQdedzWjM1fPiCFs9FZGStY
+	 XjL4X7RfBy10J554SUUVuqDECeCmSDw1lIVcGGnobLQw/38l+yS9ArM9a5Jfx0fSWo
+	 f3V6zmmgDXQ2PRcz8GivkibgkC/Dr/ZSl+QBeh7zgRGfBFSRH5+jthYV6cw8LJtbIG
+	 jpr1ZB8XX8yQRvxTna40ASXtf8+JD3DorFCB3EK1ogRJNOQM/J5KftxDxDHYO6tNau
+	 UZMb0XZhw28aBJjTjILCDze3lF//FGIz1IjXaOoRRjh8CS5hBNRsgHV9pI+qTsMUnc
+	 SRECmoe9eVr8Q==
+Date: Sun, 24 Mar 2024 11:21:38 +0000
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+From: Pratham Patel <prathampatel@thefossguy.com>
+Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, heiko@sntech.de, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/1] arm64: dts: rockchip: disable analog audio for rock-5b
+Message-ID: <TbQeSy-AWAKVHo2Alb8hXUvplVNvohDJ2ztRM1x3Fo5PMmGLMsJxtHR-OIms9FlUshfUD9x45EghBCB9gVtcUPlxeMRUJQ_C95DVhu3AJrk=@thefossguy.com>
+In-Reply-To: <0005257d-8022-4a66-a802-0c920d259ccd@linaro.org>
+References: <20240324062816.145858-1-prathampatel@thefossguy.com> <0005257d-8022-4a66-a802-0c920d259ccd@linaro.org>
+Feedback-ID: 104309535:user:proton
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, 17 Mar 2024 14:37:39 +0000
-Conor Dooley <conor@kernel.org> wrote:
+On Sunday, March 24th, 2024 at 16:15, Krzysztof Kozlowski <krzysztof.kozlow=
+ski@linaro.org> wrote:
 
-> On Sat, Mar 16, 2024 at 11:56:57PM +0100, Javier Carrasco wrote:
-> > The "maxim,green-led-current-microamp" property is only available for
-> > the max30105 part (it provides an extra green LED), and must be set to
-> > false for the max30102 part.
-> > 
-> > Instead, the max30100 part has been used for that, which is not
-> > supported by this binding (it has its own binding).
-> > 
-> > This error was introduced during the txt to yaml conversion.
-> > 
-> > Fixes: 5a6a65b11e3a ("dt-bindings:iio:health:maxim,max30102: txt to yaml conversion")
-> > Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>  
-> 
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Applied to the fixes-togreg branch of iio.git (which I'll rebase on rc1 once available)
-and marked for stable.  Not really a critical thing to backport, but maybe it is worth
-doing as risk is very low
+>=20
+>=20
+> On 24/03/2024 07:28, Pratham Patel wrote:
+>=20
+> > The addition of `of: property: fw_devlink: Fix stupid bug in remote-end=
+point parsing`
+>=20
+>=20
+> Please refer to commits using commit sha () syntax, as mentioned in
+> submitting patches.
 
-Thanks,
+Noticed that in the wiki but didn't do that since the commit hash for the c=
+ommit
+was different in each branch (of the stable tree). Maybe I should have copi=
+ed the SHA
+from Linus' tree. I will do that.
 
-Jonathan
+> > + /*
+> > + *analog-sound {
+> > + * compatible =3D "audio-graph-card";
+> > + * label =3D "rk3588-es8316";
+>=20
+>=20
+> Do not comment out code. Instead disable the nodes and provide
+> appropriate comment describing reason.
 
-> 
-> > ---
-> >  Documentation/devicetree/bindings/iio/health/maxim,max30102.yaml | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/iio/health/maxim,max30102.yaml b/Documentation/devicetree/bindings/iio/health/maxim,max30102.yaml
-> > index c13c10c8d65d..eed0df9d3a23 100644
-> > --- a/Documentation/devicetree/bindings/iio/health/maxim,max30102.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/health/maxim,max30102.yaml
-> > @@ -42,7 +42,7 @@ allOf:
-> >        properties:
-> >          compatible:
-> >            contains:
-> > -            const: maxim,max30100
-> > +            const: maxim,max30102
-> >      then:
-> >        properties:
-> >          maxim,green-led-current-microamp: false
-> > 
-> > ---
-> > base-commit: c1f10ac840caced7a9f717d4170dcc14b3fac076
-> > change-id: 20240316-max30102_binding_fix-898e7c94cce9
-> > 
-> > Best regards,
-> > -- 
-> > Javier Carrasco <javier.carrasco.cruz@gmail.com>
-> >   
+I tried changing the status from okay to disabled. That didn't work. The SB=
+C
+still locked up during boot.
 
+> Anyway, this does not look like correct solution. DTS is independent of
+> OS, so bug in fwlink does not matter for DTS. Either DTS is a correct
+> hardware representation or not.
+
+I agree, it's not the correct solution. It is a temporary workaround for th=
+e regression
+caused. I will send more patches once I receive a few more RK3588-based SBC=
+s and investigate.
+
+ -- Pratham Patel
 
