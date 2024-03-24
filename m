@@ -1,61 +1,68 @@
-Return-Path: <devicetree+bounces-52740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEEDE887CEF
-	for <lists+devicetree@lfdr.de>; Sun, 24 Mar 2024 14:48:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC380887CF7
+	for <lists+devicetree@lfdr.de>; Sun, 24 Mar 2024 14:54:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 32D571F2139A
-	for <lists+devicetree@lfdr.de>; Sun, 24 Mar 2024 13:48:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4DA441F212A1
+	for <lists+devicetree@lfdr.de>; Sun, 24 Mar 2024 13:54:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ADE917C6E;
-	Sun, 24 Mar 2024 13:48:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BEEB17C7C;
+	Sun, 24 Mar 2024 13:54:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Svn04hu9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sfiiQY+T"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E62717BD8;
-	Sun, 24 Mar 2024 13:48:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD38E17BCA;
+	Sun, 24 Mar 2024 13:54:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711288129; cv=none; b=al16N1oSKFHGPM1RsPpM1u8HGIKZY/1f/SqCxsemjOObhADb95YCtBrhCx+17TI/cjbexLuRrqPKY1cA5Xf2hZF87Tp1zngpOrhFdGaRAp6ef2Z9GPyEBBLxm7eutQK4R2WNWF4QB+N8qxfboWBy2NngseICCKIr66ScQbXnZwY=
+	t=1711288482; cv=none; b=OeyAl4YW4L9NOrwF1kmnGff31NRnCt3gr5UBtFBnfllc/HtzgyK72dXYWcL6FZQRGBHWdQBJ2euYonQfVFd98nvQSZmeQ6n9IBs5vGr423lxWa0rfCO/sn9D4SdmUEkXkfGXcqmaDnT62N8lspgRQL5+6LXbBrV6ZJ/DFXyZue8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711288129; c=relaxed/simple;
-	bh=zRMB1/rY1fmj+rn+rQdZtN7w8NIdtyU62gDn1wZDU5k=;
+	s=arc-20240116; t=1711288482; c=relaxed/simple;
+	bh=L3eiBM3uq6W9B54PHA6++0VN5SYP8Sh0IVo8b/FkvIE=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kcA9/w9K1PK5VYbEoRjhrVCZS+zlx10E+q21Z/rfJuHdspWCdjDXmZrGTis1qz4/X2Yy6e5pS023+iFg6j8yAC98A1VbtC94WC+v5Gqso16CxsgJ874eWE9OUjzC4HsUKjH7po3mNg99gFOZXd+L2Ieu2Sb8Qn+RFVXxvFwLR8Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Svn04hu9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A34EDC433C7;
-	Sun, 24 Mar 2024 13:48:45 +0000 (UTC)
+	 MIME-Version:Content-Type; b=hn5kGOcuMq9PSvQ60q+pysDqNiQ9lhPldRUac3RJT8H9S4hIOSgA7Pz6sWnqXmZpuaEIoStbHohcYCGsIj3lloS6pyDaUwuk1Zm1uTYGGpylBJGwniflLzkdg5iuUJKzwrPcVJFwEHLJIqJNoJe2rfBYTbPKY93tovagKXCwvlk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sfiiQY+T; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F4FAC433F1;
+	Sun, 24 Mar 2024 13:54:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711288128;
-	bh=zRMB1/rY1fmj+rn+rQdZtN7w8NIdtyU62gDn1wZDU5k=;
+	s=k20201202; t=1711288481;
+	bh=L3eiBM3uq6W9B54PHA6++0VN5SYP8Sh0IVo8b/FkvIE=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Svn04hu9InZRCzC98oCb/1Di+4l+P5WVSgmISLjgIxOmc+Bplh1GGkXY9m52TlQU7
-	 55/6RxB7RCf3GFcp8+zkztllJVHR81qxbl9Ck30+xbfOi1UniDpyGOkrursnTkBacs
-	 Rh7WXpjl4+VOs0VcPT0JeQvb45OWkrvLjGmE1S37VBMn7rz9AYseapjHVDNcYc+5Cb
-	 fWEkvclV2/dbdQZcUbR/ExzOUsAwLkgE82okiVxP8RbxQoqW+/b/p4sVLVcmQsj1ED
-	 HjZpTBbzafii13qSTURf6vXc+Ca6RVtOq1x7jhN9ingByu/6a7lgGwP5laJouV1iV/
-	 8TxhoCUmCW5qA==
-Date: Sun, 24 Mar 2024 13:48:35 +0000
+	b=sfiiQY+TsD3FaX0kL3X/fKuSvqjPE3/1wMNAfjfC/BqoJ5/mloZ6YrOYfOBQF0rFc
+	 R4NNlmOifgOI3sXL13QlHJh+Pwg/nL4WwcJz3Lr2XfiAcWGEEwBfe896Z1OwcR0r2m
+	 VPaf2gSw75Fw5G7pjqm0g2DPh0Rgi6UmfGatEhnLbl11vVGbFLz5W+OTtHyevrdPjO
+	 YoRJImLD9Hh28Dt25hWC4VK0ZV6ZPplCuEwMQhEhORzmrx5dBqHNgIQcledk8BOmYu
+	 Nj0kphW0O1KKo5wthVGBrbH6iYZcPIXPe5Ne40U/31yGoNadxnaMgfWYzsAy4KYGWc
+	 4zxp3apamBadQ==
+Date: Sun, 24 Mar 2024 13:54:25 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: Lothar Rubusch <l.rubusch@gmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, lars@metafoo.de,
- Michael.Hennerich@analog.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, eraretuya@gmail.com
-Subject: Re: [PATCH v2 1/3] iio: accel: adxl345: Update adxl345
-Message-ID: <20240324134835.56bd216c@jic23-huawei>
-In-Reply-To: <CAFXKEHYUVoiW6MthJokV2=AYcZnqw36jETL=-m6kpDCP_UNHAg@mail.gmail.com>
-References: <20240322003713.6918-1-l.rubusch@gmail.com>
-	<20240322003713.6918-2-l.rubusch@gmail.com>
-	<51e3683f-be53-4bb7-a994-ffd05744a745@linaro.org>
-	<CAFXKEHYUVoiW6MthJokV2=AYcZnqw36jETL=-m6kpDCP_UNHAg@mail.gmail.com>
+To: Andrej Picej <andrej.picej@norik.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ haibo.chen@nxp.com, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ lars@metafoo.de, shawnguo@kernel.org, s.hauer@pengutronix.de,
+ kernel@pengutronix.de, festevam@gmail.com, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ upstream@lists.phytec.de
+Subject: Re: [PATCH 2/2] dt-bindings: iio: adc: nxp,imx93-adc.yaml: Add
+ calibration properties
+Message-ID: <20240324135425.229622d6@jic23-huawei>
+In-Reply-To: <1bbd4fdf-59c5-42b2-8698-95f402645c67@norik.com>
+References: <20240320100407.1639082-1-andrej.picej@norik.com>
+	<20240320100407.1639082-3-andrej.picej@norik.com>
+	<38637621-1611-4268-ae79-7ac93a72c5ee@linaro.org>
+	<e994b756-7f4e-4be3-b8f3-310988174b44@norik.com>
+	<7e58bf96-3c38-467f-86b6-06ff5feedb31@linaro.org>
+	<40e08a5e-e7e9-47c7-9102-24a2bbba67cf@norik.com>
+	<a1b173c0-5120-40f6-9708-cd810b4a2406@linaro.org>
+	<1bbd4fdf-59c5-42b2-8698-95f402645c67@norik.com>
 X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -66,78 +73,120 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Sat, 23 Mar 2024 13:16:56 +0100
-Lothar Rubusch <l.rubusch@gmail.com> wrote:
+On Fri, 22 Mar 2024 10:58:54 +0100
+Andrej Picej <andrej.picej@norik.com> wrote:
 
-> (...)
-> > > Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
-> > > ---
-> > >  drivers/iio/accel/adxl345.h      |  44 +++++++++++-
-> > >  drivers/iio/accel/adxl345_core.c | 117 +++++++++++++++++--------------
-> > >  drivers/iio/accel/adxl345_i2c.c  |  30 ++++----
-> > >  drivers/iio/accel/adxl345_spi.c  |  28 ++++----
-> > >  4 files changed, 134 insertions(+), 85 deletions(-)
-> > >
-> > > diff --git a/drivers/iio/accel/adxl345.h b/drivers/iio/accel/adxl345.h
-> > > index 284bd387c..01493c999 100644
-> > > --- a/drivers/iio/accel/adxl345.h
-> > > +++ b/drivers/iio/accel/adxl345.h
-> > > @@ -8,6 +8,39 @@
-> > >  #ifndef _ADXL345_H_
-> > >  #define _ADXL345_H_
-> > >
-> > > +#include <linux/iio/iio.h>
-> > > +
-> > > +/* ADXL345 register definitions */
-> > > +#define ADXL345_REG_DEVID            0x00
-> > > +#define ADXL345_REG_OFSX             0x1E
-> > > +#define ADXL345_REG_OFSY             0x1F
-> > > +#define ADXL345_REG_OFSZ             0x20
-> > > +#define ADXL345_REG_OFS_AXIS(index)  (ADXL345_REG_OFSX + (index))
-> > > +#define ADXL345_REG_BW_RATE          0x2C
-> > > +#define ADXL345_REG_POWER_CTL                0x2D
-> > > +#define ADXL345_REG_DATA_FORMAT              0x31
-> > > +#define ADXL345_REG_DATAX0           0x32
-> > > +#define ADXL345_REG_DATAY0           0x34
-> > > +#define ADXL345_REG_DATAZ0           0x36
-> > > +#define ADXL345_REG_DATA_AXIS(index) \
-> > > +     (ADXL345_REG_DATAX0 + (index) * sizeof(__le16))
-> > > +
-> > > +#define ADXL345_BW_RATE                      GENMASK(3, 0)
-> > > +#define ADXL345_BASE_RATE_NANO_HZ    97656250LL
-> > > +
-> > > +#define ADXL345_POWER_CTL_MEASURE    BIT(3)
-> > > +#define ADXL345_POWER_CTL_STANDBY    0x00
-> > > +
-> > > +#define ADXL345_DATA_FORMAT_FULL_RES BIT(3) /* Up to 13-bits resolution */
-> > > +#define ADXL345_DATA_FORMAT_SPI         BIT(6) /* spi-3wire */
-> > > +#define ADXL345_DATA_FORMAT_2G               0
-> > > +#define ADXL345_DATA_FORMAT_4G               1
-> > > +#define ADXL345_DATA_FORMAT_8G               2
-> > > +#define ADXL345_DATA_FORMAT_16G              3
-> > > +#define ADXL345_DATA_FORMAT_MSK              ~((u8) BIT(6)) /* ignore spi-3wire */
-> > > +
-> > > +#define ADXL345_DEVID                        0xE5
-> > > +  
-> (...)
+> On 22. 03. 24 09:14, Krzysztof Kozlowski wrote:
+> > On 22/03/2024 08:39, Andrej Picej wrote:  
+> >> On 20. 03. 24 13:15, Krzysztof Kozlowski wrote:  
+> >>> On 20/03/2024 13:05, Andrej Picej wrote:  
+> >>>> Hi Krzysztof,
+> >>>>
+> >>>> On 20. 03. 24 11:26, Krzysztof Kozlowski wrote:  
+> >>>>> On 20/03/2024 11:04, Andrej Picej wrote:  
+> >>>>>> Document calibration properties and how to set them.  
+> >>>>>
+> >>>>> Bindings are before users.  
+> >>>>
+> >>>> will change patch order when I send a v2.
+> >>>>  
+> >>>>>
+> >>>>> Please use subject prefixes matching the subsystem. You can get them for
+> >>>>> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> >>>>> your patch is touching.
+> >>>>> There is no file extension in prefixes.  
+> >>>>
+> >>>> So: dt-bindings: iio/adc: nxp,imx93-adc: Add calibration properties?  
+> >>>
+> >>> Did you run the command I proposed? I don't see much of "/", but except
+> >>> that looks good.  
+> >>
+> >> Ok noted.
+> >>  
+> >>>  
+> >>>>  
+> >>>>>  
+> >>>>>>
+> >>>>>> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+> >>>>>> ---
+> >>>>>>     .../bindings/iio/adc/nxp,imx93-adc.yaml           | 15 +++++++++++++++
+> >>>>>>     1 file changed, 15 insertions(+)
+> >>>>>>
+> >>>>>> diff --git a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+> >>>>>> index dacc526dc695..64958be62a6a 100644
+> >>>>>> --- a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+> >>>>>> +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+> >>>>>> @@ -46,6 +46,21 @@ properties:
+> >>>>>>       "#io-channel-cells":
+> >>>>>>         const: 1
+> >>>>>>     
+> >>>>>> +  nxp,calib-avg-en:
+> >>>>>> +    description:
+> >>>>>> +      Enable or disable averaging of calibration time.
+> >>>>>> +    enum: [ 0, 1 ]
+> >>>>>> +
+> >>>>>> +  nxp,calib-nr-samples:
+> >>>>>> +    description:
+> >>>>>> +      Selects the number of averaging samples to be used during calibration.
+> >>>>>> +    enum: [ 16, 32, 128, 512 ]
+> >>>>>> +
+> >>>>>> +  nxp,calib-t-samples:
+> >>>>>> +    description:
+> >>>>>> +      Specifies the sample time of calibration conversions.
+> >>>>>> +    enum: [ 8, 16, 22, 32 ]  
+> >>>>>
+> >>>>> No, use existing, generic properties. Open other bindings for this.  
+> >>>>
+> >>>> You mean I should use generic properties for the ADC calibration
+> >>>> settings? Is there already something in place? Because as I understand
+> >>>> it, these calib-* values only effect the calibration process of the ADC.  
+> >>>
+> >>> Please take a look at other devices and dtschema. We already have some
+> >>> properties for this... but maybe they cannot be used?
+> >>>  
+> >>
+> >> I did look into other ADC devices, grep across iio/adc, adc bindings
+> >> folders and couldn't find anything closely related to what we are
+> >> looking for. Could you please point me to the properties that you think
+> >> should be used for this?  
+> > 
+> > Indeed, there are few device specific like qcom,avg-samples. We have
+> > though oversampling-ratio, settling-time-us and min-sample-time (which
+> > is not that good because does not use unit suffix).  
 > 
-> I think I see your point. My patch has more noise and lacks a logic
-> structure in proceding.
-> I will resubmit, but may I ask one question in particular. I moved the
-> entire list of register
-> defines from the adxl345_core.c to the common adxl345.h.
-> For setting spi-3wire with my approach, only two of those defines are
-> needed. I think it is
-> nicer for readability to keep the defines together, though, in a
-> commonly shared header.
-> Nevertheless most of the defines are just used locally in the .._core.c
-> Should I move them for refactory?
+> Ok, these are examples but I think I should not use them, since these 
+> are i.MX93 ADC specific settings, which are used for configuration of 
+> calibration process, and are not related to the standard conversion 
+> process during runtime. Calibration process is the first step that 
+> should be done after every power-on reset.
+> 
+> > 
+> > Then follow up questions:
+> >   - nxp,calib-avg-en: Why is it a board-level decision? I would assume
+> > this depends on user choice and what kind of input you have (which could
+> > be board dependent or could be runtime decision).  
+> 
+> Not really sure I get your question, so please elaborate if I missed the 
+> point.
+> This is a user choice, to enable or disable the averaging function in 
+> calibration, but this is a board-level decision, probably relates on 
+> external ADC regulators and input connections. The same options are used 
+> for every ADC channel and this can not be a runtime decision, since 
+> calibration is done before the ADC is even registered.
 
-Move them as a block (which you did).  It's confusing to have only a subset of
-defines in one place.
+I'll raise this question in reply to the cover letter or patch 1 where
+it is perhaps more appropriate, but I'd really like to know more about why
+these are useful at all. 
 
-> I feel there is no reason to move them. On the other hand I see many
-> drivers keep them in a common header. Hence, is there a best practice
-> which justifies moving them to a header?
+> 
+> >   - nxp,calib-t-samples: what does it mean? Time is expressed in time
+> > units, but there is nothing about units in the property name.
+> >   
+> 
+> You are right, basically this is "time" in cycles of AD_CLK. I should at 
+> least add that to the property description.
+> 
+> Best regards,
+> Andrej Picej
 
 
