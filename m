@@ -1,147 +1,300 @@
-Return-Path: <devicetree+bounces-52712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 015E3887B5C
-	for <lists+devicetree@lfdr.de>; Sun, 24 Mar 2024 03:11:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3597887BDB
+	for <lists+devicetree@lfdr.de>; Sun, 24 Mar 2024 07:28:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2048B282335
-	for <lists+devicetree@lfdr.de>; Sun, 24 Mar 2024 02:11:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 895A72819B0
+	for <lists+devicetree@lfdr.de>; Sun, 24 Mar 2024 06:28:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC9A617C8;
-	Sun, 24 Mar 2024 02:11:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4802314A83;
+	Sun, 24 Mar 2024 06:28:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jfRclf39"
+	dkim=pass (2048-bit key) header.d=thefossguy.com header.i=@thefossguy.com header.b="hHxJ/wM8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-4323.proton.ch (mail-4323.proton.ch [185.70.43.23])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0649981E;
-	Sun, 24 Mar 2024 02:11:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F20B14008
+	for <devicetree@vger.kernel.org>; Sun, 24 Mar 2024 06:28:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.23
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711246267; cv=none; b=HJRim6hDMnmmM4AOlQC+tQQdx8SRe/ogPdWYE5KNNIWOWk/YoEscS8Kb5XNx4hAZtxVn7prjgnxcP7o7u/BYy+88CyKVn52Z/DoNW6BJhQAkwrUJ61VKUDfcZof5s4cDePBXoFHDKPuuIsimLSsWZYDDeqyP0LRcKUevRh79DHI=
+	t=1711261713; cv=none; b=NcSNKMDEuehAaVSI1X8vWmhO6lXxBS9NO1fb4oGSOxf8MLzLlpSiiW+qbeRESiZBXoGZiCLh20wj1DPREFJyWsdFPu1/qvqjvRfMfRKVYDwrPgurQ/YUfSkCVoUG602oX2GSmjjwCAq9ozRnHKZ+cWmUPiNvNLHTN70cGXXkCYM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711246267; c=relaxed/simple;
-	bh=O4mxWIZtqaCaa6tGkopSI4pdla5nDON3z7rbb6/L1r0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LZDUS7Kqa3nOaSE8Ru+Qhrv5iaNuZ3Yqb+lkcYz3mA03YCW/GRnuJbzlKIf4LTxv0QInE9cRmv8ccyfqTzIZlO8HmlMWKjRHfg5DTQqFfRbUjSt/mebIRWvGjrYAnjW1Qwf4Yhkf4pQiVzJge2Eb92mbJHBDWTrXHXGcJoU2qsE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jfRclf39; arc=none smtp.client-ip=209.85.167.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-513e10a4083so3777936e87.1;
-        Sat, 23 Mar 2024 19:11:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711246264; x=1711851064; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y9wMu56cuKN3w+mxBDS/FvXc6kf2qXtgJwy0PKkso6k=;
-        b=jfRclf398hU7aTyO7NtvZCVMKolLLjtNA39qTjKiqvgvEk13vpdGBzFkAzvgldCYWa
-         M9Ex0K4w9B15L1SEyDENr+u2gTv8vAIImOhnNVOgmTZmum+Suc6Z+OVKB97DLF1EmXBP
-         VFmTbugOwthsrkT8M4q0ilrBrwZ7PY84vtOvknoisczX9ul6Gc4ZJqiUzaXuISc+GyDg
-         wnPd57sUqrvCpY1SL8R+2tpQm8cQtNLxtEe2tdffVkou6pfogGe33OJty5l5vUFLyg9N
-         zSBPukXPYytekGjG/h7dG9o12codxKLUNfHcZVhLu+FQZgwGHSwHOkRxtmVIjh7ookeU
-         rEXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711246264; x=1711851064;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Y9wMu56cuKN3w+mxBDS/FvXc6kf2qXtgJwy0PKkso6k=;
-        b=hE3qFeSVk5la2ruGbPrKc5r6l6rwhtJ2oIHY1vtHR7H8/u6OfgaOBKkC3CWezHgcfY
-         O+LnIY/tHqllQk83J1oqcUu0zUKEuMm4fU1bzs7lE4FvlZ9/i5wcpfPbRov8yEKoIMRN
-         69KSVWgWt2sSrSzOSDYeOTXNLjcelVGuyYKbmHeozF6jRgM1tZ2U6hyxRactvQAFglrB
-         bibcQNx2LTCA6Wv+LVPW/6NM5zERwQpp4W6jdMD3+kKC8A1TiJ7cZJwhFY+p/6o/ND0C
-         GbUr85a5KfkIJPEqVkgvSBsm1wA3g4f38CCmz6CrP1nKPFw6JvdRUJS+CsqzOOrZK7WX
-         Saig==
-X-Forwarded-Encrypted: i=1; AJvYcCXxe3JyREYhVGUD6GozFAtGaL+bGQD2co3QoIy4p9EbD7zSi0C+kdlP6Zy149tFt/oAs1lkehTHxA8fqQdv/4ZsGO6lNk3d7r+P22qTeMU01YrTYBvYGN1ZAJdWEma/LTYf0GdPFART0PWiARL4Vo70DIM1umwVM9pjKY+iHx+iOQ==
-X-Gm-Message-State: AOJu0YyJ1DPvxsO4d19sUCe/mUhvnEcf19IHem1YIdjJXX+fR577Zgld
-	AAHWIK7rS4hA7MqQe52aZ+6G3sSIvY/FDnriqOIFN6YB/X0JIQ2scxsDIGUkAL1rnfsTMba3CV2
-	F+RBL1hxqBr9+wblTS8CAUnM+H8o=
-X-Google-Smtp-Source: AGHT+IFOyuKElypawmVuALXhEMGMLfWqusJVVb7LEmch8qfvQf/2Qx6F4tMq/LvEII9lATb9de4+2xPCidrrfM4YdL8=
-X-Received: by 2002:a05:6512:1ce:b0:513:cf5a:f872 with SMTP id
- f14-20020a05651201ce00b00513cf5af872mr2003294lfp.69.1711246263889; Sat, 23
- Mar 2024 19:11:03 -0700 (PDT)
+	s=arc-20240116; t=1711261713; c=relaxed/simple;
+	bh=DiFiTxtC4+mNZik5jfzRqgogbn+kJlJXcy4jKp87dUY=;
+	h=Date:To:From:Cc:Subject:Message-ID:MIME-Version:Content-Type; b=hGkHoOshXYEk/hq8GAQhemWsFJ0MKYG3QRQKXBfEv56eavrOaGzZqGedn367RSxYgov7nTw3Q8QQPp0x9Qvgg1vmo25N+01kngnPUR8aAe4Zqjw502HsJnHEbouAQMyxehJSHirblBWAk3aHT3Lk72pfyIMs9N4H5i0TZtvlTyI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thefossguy.com; spf=pass smtp.mailfrom=thefossguy.com; dkim=pass (2048-bit key) header.d=thefossguy.com header.i=@thefossguy.com header.b=hHxJ/wM8; arc=none smtp.client-ip=185.70.43.23
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thefossguy.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thefossguy.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thefossguy.com;
+	s=protonmail; t=1711261707; x=1711520907;
+	bh=a63CZcwFphRB57yPggM+jr72sf2vf1666LkQCgfK334=;
+	h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=hHxJ/wM8FAmmGAR72NKrEG2yhdCpRUhNFL6Xd7KLv6Qe1y2gv5z8n4yZUEQv8ljNO
+	 iOy67FMN0U+dv8rR31yUEPONhfaK8yYync3e5Kudlcez3M0BeH2joCUR1nX2pDazWG
+	 21JtDOr8cLGOYAY6xeHDB6BhLBX3L4O8UtyqxsE3vJcvOiiJBWEhHVOR+Qh/5Vm5Ay
+	 DN/DIYPjjsTtXMrC0CGbujV+DKRORGGKGKi9z1TxqDgEQdoM7E2NR5JnITFSsClZ+K
+	 jIkmw55zBdFPIxvo6BiZ0f4tNOw9xc14i7kldml9vHyYgc4JZ8snub59c5v2M+gvtR
+	 +WYLAqyAEL4sQ==
+Date: Sun, 24 Mar 2024 06:28:23 +0000
+To: robh@kernel.org
+From: Pratham Patel <prathampatel@thefossguy.com>
+Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, heiko@sntech.de, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/1] arm64: dts: rockchip: disable analog audio for rock-5b
+Message-ID: <20240324062816.145858-1-prathampatel@thefossguy.com>
+Feedback-ID: 104309535:user:proton
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240310-realtek-led-v1-0-4d9813ce938e@gmail.com>
- <20240310-realtek-led-v1-1-4d9813ce938e@gmail.com> <d2568101-f3e0-4c2d-8613-52d023e22b77@kernel.org>
- <CAJq09z6q2gaZYqc-=fQEMOA1ViAKTEJqT9iF2xsYCde9syouig@mail.gmail.com> <e32363b2-66c4-4b76-a56a-40eec3a3c907@kernel.org>
-In-Reply-To: <e32363b2-66c4-4b76-a56a-40eec3a3c907@kernel.org>
-From: Luiz Angelo Daros de Luca <luizluca@gmail.com>
-Date: Sat, 23 Mar 2024 23:10:52 -0300
-Message-ID: <CAJq09z6qinM-bp3ht35JdcggVpwQscThAQOAs2yB2do-BFN9VA@mail.gmail.com>
-Subject: Re: [PATCH net-next 1/4] dt-bindings: net: dsa: realtek: describe LED usage
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>, =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>, 
-	Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>, 
-	Vladimir Oltean <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; protocol="application/pgp-signature"; micalg=pgp-sha256; boundary="------3c806d4c2f81f7a599b0ee2b3bd7400598ea8a4eeaf69b05d445b87dd6a7713e"; charset=utf-8
 
-Hi Krzysztof,
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------3c806d4c2f81f7a599b0ee2b3bd7400598ea8a4eeaf69b05d445b87dd6a7713e
+Content-Type: multipart/mixed;
+ boundary=8b8383b24c45133ed25453f6bb43398b50bf4dbdc8feb4450923da509f1c
+From: Pratham Patel <prathampatel@thefossguy.com>
+To: robh@kernel.org
+Cc: krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/1] arm64: dts: rockchip: disable analog audio for rock-5b
+Date: Sun, 24 Mar 2024 11:58:16 +0530
+Message-ID: <20240324062816.145858-1-prathampatel@thefossguy.com>
+X-Mailer: git-send-email 2.42.0
+MIME-Version: 1.0
 
-> >>
-> >>> +
-> >>> +            patternProperties:
-> >>> +              '^led@[a-f0-9]+$':
-> >>
-> >> [0-3]
-> >
-> > leds are already defined for a port. I'm just trying to add a
-> > restriction to allow only 0-3 leds and use that to identify the group.
->
-> Where is the restriction, in your original patch?
+--8b8383b24c45133ed25453f6bb43398b50bf4dbdc8feb4450923da509f1c
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-I tried to limit the led index to [0-3] (from the original
-'^led@[a-f0-9]+$') and reg also to [0-3] (originally not constrained).
+The addition of `of: property: fw_devlink: Fix stupid bug in remote-endpoint parsing`
+has surfaced an issue with the analog audio property in the devicetree
+for the rock-5b. Booting kernels v6.7.9+ and v6.8.0+ would cause the
+following call trace:
 
->
-> > These suggestions will redefine the leds property, forcing me to
->
-> How? I really do not see it.
+[   21.595068] Call trace:
+[   21.595288]  smp_call_function_many_cond+0x174/0x5f8
+[   21.595728]  on_each_cpu_cond_mask+0x2c/0x40
+[   21.596109]  cpuidle_register_driver+0x294/0x318
+[   21.596524]  cpuidle_register+0x24/0x100
+[   21.596875]  psci_cpuidle_probe+0x2e4/0x490
+[   21.597247]  platform_probe+0x70/0xd0
+[   21.597575]  really_probe+0x18c/0x3d8
+[   21.597905]  __driver_probe_device+0x84/0x180
+[   21.598294]  driver_probe_device+0x44/0x120
+[   21.598669]  __device_attach_driver+0xc4/0x168
+[   21.599063]  bus_for_each_drv+0x8c/0xf0
+[   21.599408]  __device_attach+0xa4/0x1c0
+[   21.599748]  device_initial_probe+0x1c/0x30
+[   21.600118]  bus_probe_device+0xb4/0xc0
+[   21.600462]  device_add+0x68c/0x888
+[   21.600775
+]  platform_device_add+0x19c/0x270
+[   21.601154]  platform_device_register_full+0xdc/0x178
+[   21.601602]  psci_idle_init+0xa0/0xc8
+[   21.601934]  do_one_initcall+0x60/0x290
+[   21.602275]  kernel_init_freeable+0x20c/0x3e0
+[   21.602664]  kernel_init+0x2c/0x1f8
+[   21.602979]  ret_from_fork+0x10/0x20
 
-I thought it was including the previous object definition when I
-mentioned the same property again. However, the
-"unevaluatedProperties: false" made it clear that it is actually
-replacing the previous declaration. Sorry for my lack of experience.
+This is a temporary workaround to at least have the SBC boot. There are
+a few more SBCs that _might_ have this issue. I suspect that the
+rock-5a and nanopc-t6 might also have this issue but I do not own either
+board to verify this claim, yet.
 
-> > declare #address-cells, #size-cells for leds and reference the led
-> > schema in led@[0-3]. Is there a way to just add a constraint to what
-> > is already present?
->
-> I don't follow.
+Closes: https://lore.kernel.org/regressions/28S1EMw5YOnQIBpQ8_qaZZ6c9Go-j6-lLuWWbRpe6-MtRUd7Ay-uXq8JHbVVtJv3LzpxjI8jYg7ukNntbN22PVV-hOWbuTY8FNWgvM4zSwI=@thefossguy.com/T/#m69eedea6fbcb0591d54a9ccd478c2782ef045547
 
-I would like to somehow add a restriction without replacing the
-existing subnode definition. I'm not sure if the YAML scheme can
-modify an heritaged sub-sub-property without redefining it all over
-again or if the parent object requires a specific subobject property.
-Anyway, the discussion ended up concluding that it was not worth it to
-add such complexity for this situation.
+Signed-off-by: Pratham Patel <prathampatel@thefossguy.com>
+---
+ .../boot/dts/rockchip/rk3588-rock-5b.dts      | 110 +++++++++---------
+ 1 file changed, 57 insertions(+), 53 deletions(-)
 
-Thank you for your time.
+diff --git a/arch/arm64/boot/d
+ts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+index 1fe8b2a0e..6d3b9f52c 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+@@ -20,22 +20,24 @@ chosen {
+ 		stdout-path = "serial2:1500000n8";
+ 	};
+ 
+-	analog-sound {
+-		compatible = "audio-graph-card";
+-		label = "rk3588-es8316";
+-
+-		widgets = "Microphone", "Mic Jack",
+-			  "Headphone", "Headphones";
+-
+-		routing = "MIC2", "Mic Jack",
+-			  "Headphones", "HPOL",
+-			  "Headphones", "HPOR";
+-
+-		dais = <&i2s0_8ch_p0>;
+-		hp-det-gpio = <&gpio1 RK_PD5 GPIO_ACTIVE_HIGH>;
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&hp_detect>;
+-	};
++	/*
++	 *analog-sound {
++	 *	compatible = "audio-graph-card";
++	 *	label = "rk3588-es8316";
++	 *
++	 *	widgets = "Microphone", "Mic Jack",
++	 *		  "Headphone", "Headphones";
++	 *
++	 *	routing = "MIC2", "Mic Jack",
++	 *		  "Headphones", "HPOL",
++	 *		  "Headphones", "HPOR";
++	 *
 
->
-> >
-> >>
-> >>> +                type: object
-> >>> +                additionalProperties: true
-> >>
-> >> This cannot be 'true'. Which then will point you to errors and missing
-> >> ref to leds schema and need to use unevaluatedProperties: false.
-> Best regards,
-> Krzysztof
->
++	 *	dais = <&i2s0_8ch_p0>;
++	 *	hp-det-gpio = <&gpio1 RK_PD5 GPIO_ACTIVE_HIGH>;
++	 *	pinctrl-names = "default";
++	 *	pinctrl-0 = <&hp_detect>;
++	 *};
++	 */
+ 
+ 	leds {
+ 		compatible = "gpio-leds";
+@@ -236,43 +238,45 @@ hym8563: rtc@51 {
+ 	};
+ };
+ 
+-&i2c7 {
+-	status = "okay";
+-
+-	es8316: audio-codec@11 {
+-		compatible = "everest,es8316";
+-		reg = <0x11>;
+-		clocks = <&cru I2S0_8CH_MCLKOUT>;
+-		clock-names = "mclk";
+-		assigned-clocks = <&cru I2S0_8CH_MCLKOUT>;
+-		assigned-clock-rates = <12288000>;
+-		#sound-dai-cells = <0>;
+-
+-		port {
+-			es8316_p0_0: endpoint {
+-				remote-endpoint = <&i2s0_8ch_p0_0>;
+-			};
+-		};
+-	};
+-};
+-
+-&i2s0_8ch {
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&i2s0_lrck
+-		     &i2s0_mclk
+-		     &i2s0_sclk
+-		     &i2s0_sdi0
+-		     &i2s0_sdo0>;
+-	status = "okay";
+-
+-	i2s0_8ch_p0: port {
+-		i2s0_8ch_p0_0: endpoint {
+-			dai-format = "i2s";
+-			mclk-fs = <256>;
+-			remote-endpoint = <&es8316_p0_0>;
+-		};
+-	};
+-};
 
-Regards,
++/*
++ *&i2c7 {
++ *	status = "okay";
++ *
++ *	es8316: audio-codec@11 {
++ *		compatible = "everest,es8316";
++ *		reg = <0x11>;
++ *		clocks = <&cru I2S0_8CH_MCLKOUT>;
++ *		clock-names = "mclk";
++ *		assigned-clocks = <&cru I2S0_8CH_MCLKOUT>;
++ *		assigned-clock-rates = <12288000>;
++ *		#sound-dai-cells = <0>;
++ *
++ *		port {
++ *			es8316_p0_0: endpoint {
++ *				remote-endpoint = <&i2s0_8ch_p0_0>;
++ *			};
++ *		};
++ *	};
++ *};
++ *
++ *&i2s0_8ch {
++ *	pinctrl-names = "default";
++ *	pinctrl-0 = <&i2s0_lrck
++ *		     &i2s0_mclk
++ *		     &i2s0_sclk
++ *		     &i2s0_sdi0
++ *		     &i2s0_sdo0>;
++ *	status = "okay";
++ *
++ *	i2s0_8ch_p0: port {
++ *		i2s0_8ch_p0_0: endpoint {
++ *			dai-format = "i2s";
++ *			mclk-fs = <256>;
++ *			remote-endpoint = <&es8316_p0_0>;
++ *		};
++ *	};
++ *};
++ */
+ 
+ &pcie2x1l0 {
+ 	pinctrl-names = "default";
+-- 
+2.42.0
 
-Luiz
+
+--8b8383b24c45133ed25453f6bb43398b50bf4dbdc8feb4450923da509f1c
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; name="publickey -
+ prathampatel@thefossguy.com - f2dde54d.asc"; filename="publickey -
+ prathampatel@thefossguy.com - f2dde54d.asc"
+Content-Type: application/pgp-keys; name="publickey -
+ prathampatel@thefossguy.com - f2dde54d.asc"; filename="publickey -
+ prathampatel@thefossguy.com - f2dde54d.asc"
+
+LS0tLS1CRUdJTiBQR1AgUFVCTElDIEtFWSBCTE9DSy0tLS0tClZlcnNpb246IEdvcGVuUEdQIDIu
+Ny4zCkNvbW1lbnQ6IGh0dHBzOi8vZ29wZW5wZ3Aub3JnCgp4ak1FWmZjR2RSWUpLd1lCQkFIYVJ3
+OEJBUWRBa2VYM3NrdFI1R0lZQTM5VXhoRTlZcitZMy8zd0ZXUmxmVnlPClhsaWdnS2ZOT1hCeVlY
+Um9ZVzF3WVhSbGJFQjBhR1ZtYjNOelozVjVMbU52YlNBOGNISmhkR2hoYlhCaGRHVnMKUUhSb1pX
+WnZjM05uZFhrdVkyOXRQc0tNQkJBV0NnQStCWUpsOXdaMUJBc0pCd2dKa01lcFhtOWRLYStXQXhV
+SQpDZ1FXQUFJQkFoa0JBcHNEQWg0QkZpRUU4dDNsVFJRTDQ4NE9oNDE3eDZsZWIxMHByNVlBQUNi
+UUFQOUxzU3BSClQwSTV2TC8ycHpBa2F2UVhLdStWR1BRMk44RUVYZGpSVkRseGl3RUFwMVpSUHQz
+aTlEb2pxeDU4T0xDZHc3bEcKMlVwdkJGZ2dCeGVrV216d1dRbk9PQVJsOXdaMUVnb3JCZ0VFQVpk
+VkFRVUJBUWRBcmU5anlpVHdUUEZKM1prMgpvTVd0ZDVxSi9zcWNKRUZrckZxNUpVVzRWalVEQVFn
+SHduZ0VHQllLQUNvRmdtWDNCblVKa01lcFhtOWRLYStXCkFwc01GaUVFOHQzbFRSUUw0ODRPaDQx
+N3g2bGViMTBwcjVZQUFEVEZBUDlZRkgvQXErNUV3ekdDTEllaE00YmwKUW5hK2t0cnNPRWlwVllV
+TVZMd0tjQUQvVktHQzR4VG1MQ1RBQ0NwU2pGN1VHMFVjY005VTRPbVlXZGVVT0dSTQphd1k9Cj01
+cTBtCi0tLS0tRU5EIFBHUCBQVUJMSUMgS0VZIEJMT0NLLS0tLS0=
+--8b8383b24c45133ed25453f6bb43398b50bf4dbdc8feb4450923da509f1c--
+
+--------3c806d4c2f81f7a599b0ee2b3bd7400598ea8a4eeaf69b05d445b87dd6a7713e
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+Version: ProtonMail
+
+wnUEARYIACcFAmX/yAYJEMepXm9dKa+WFiEE8t3lTRQL484Oh417x6leb10p
+r5YAAPO5AP9YZpo1HThMcfrMLya9+c3+SBqyU8JuDWvN2MRLtkaMMgEApkZZ
+dpmaWfNi4Vdfs4OUd1oSAfLGUw9dCGUaufd3JQk=
+=GeuM
+-----END PGP SIGNATURE-----
+
+
+--------3c806d4c2f81f7a599b0ee2b3bd7400598ea8a4eeaf69b05d445b87dd6a7713e--
+
 
