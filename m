@@ -1,135 +1,97 @@
-Return-Path: <devicetree+bounces-52762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53006-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA238887EAC
-	for <lists+devicetree@lfdr.de>; Sun, 24 Mar 2024 20:21:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBC8C88AA15
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 17:50:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 406A8B20B8C
-	for <lists+devicetree@lfdr.de>; Sun, 24 Mar 2024 19:20:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1931B1C33DC3
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 16:50:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC92C12E4E;
-	Sun, 24 Mar 2024 19:20:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C501D139CE5;
+	Mon, 25 Mar 2024 15:08:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m4YqvKVr"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="W9qFDpeK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail2.andi.de1.cc (vmd64148.contaboserver.net [161.97.139.27])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBD49DF60;
-	Sun, 24 Mar 2024 19:20:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE14C128395;
+	Mon, 25 Mar 2024 15:08:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=161.97.139.27
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711308038; cv=none; b=XVeKCjc5a2o5MvhgtwObXaiVTVny2Rn2U1+26Mp7J6LBkPGCVPBsiauKjkAD+352Z1rPTiGBMp2syMnji6rzXjD2RSmkZNWMOFyNTWqeGudHPiCXAEaMtk4Nq6UQvZ+zmMGZoepojA4qLmT8Ue0U2tTvs4ALNgtJo2d3sHiCzPM=
+	t=1711379322; cv=none; b=Rr1TsCyFCcHAzrcbfrjPuonuWTDiVV2ibtMqBZWKK4/1wFXPEUm/VU08mQe704VrRKiQFUgkdAZSHEKuYvLVfltLzGEN44nixFroCYQum6748WPrxQ5C4dDNH4H2kHTUeR+GmICAFYiZBQI/G7ErIxnMBoXxl85ljJYIkMJj2OM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711308038; c=relaxed/simple;
-	bh=7xiP7a7c+JxaaenvtRnKz3pbYlEuJfkFC57nCHzqmio=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=YAklrFitwlWuGuOVw/uIf3THhREqTFox3JnxYB3EGP7lQ6NYyD3FffwXjxISTGFS0TlK6N1nnZv1baliFwenNZGMdsnODJyRTgvNMIV/2vkOcLR2gu4rKb9koObW+Zu5q2Wwud/R4NX/a+2EC+k9djq35ot14fNmUR8AKUtUON0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m4YqvKVr; arc=none smtp.client-ip=209.85.208.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2d28051376eso70575651fa.0;
-        Sun, 24 Mar 2024 12:20:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711308034; x=1711912834; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/wjCWlFIYSFB5yCG74NtFNwwkx6eRRKsau/wQBzaYZI=;
-        b=m4YqvKVrV95IOKN8w43VSilrFj/7jsg3QAnSHJxgKDvMyOemye18PtUqHcRjcYpQlT
-         2h1hS2EvTdjyQgZ5pBzqWGXUyhtzLQy4iKkOUgx0710W68BOvLmIBWvhaVmg+X2wlWJs
-         ITJoqQ3o73mUqvxG3EXJVvLUV/mnQ1h03RcMOY3P0akaJEp2dSTWmuguqC/PNS3YFAuZ
-         xj1BdUyUfOgNUXsvZGbIeqPv3pUA1FgThXXZZz4wSJ2CiI6mapW5nwvAxKBt0vFuMVl0
-         v8Ov22GHst+DFTNs/ScT/bHEejwOgMEvtwH7iLLC3FtQw1/D5KrM5Vcmc3lV8bJQuRR2
-         7WXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711308034; x=1711912834;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/wjCWlFIYSFB5yCG74NtFNwwkx6eRRKsau/wQBzaYZI=;
-        b=uyVgmpiDjj3hPOmniDxW2OOPOBTFuNZSiITDzaRlxKakhXtCrJPjVvMr8P1TmSuRzM
-         CtH/3Q81cB1RRQOUUjvdfSunoJGlwiUCCGsJzPLEs+jsRViIhRK+lcF4T8UUv40Zciik
-         3qaqidlwpMBKy71QgOSj8ku0RH6FZ1BeUsYojyVAGHMQ5IFY5/2DkQmgC3oyImNuwYYZ
-         SuIm8OEVUNnkm3LaxO/PU1ipgypKl6u0VQNkho8roCqOKhKAnFu2lyXIKbjrRfZMX8m4
-         cEr55vJA1KpC1AStSpREM9Ng+h9qxJaQPiIQORnHhaZqsN/eNY4r3jcrsfMMHxJ9heZ/
-         0Gpg==
-X-Forwarded-Encrypted: i=1; AJvYcCWPQiKxDjfStREO1ObtHnCLFE0EH2O+VaF3/gkH4FaxXlIJkEbvyHEBcoUg5m/m1+P5jd57Ate6LAqUSxtLB2fjgI8bQPf31hVgd3P+qoTiYAULNu83ARa46PnVMMgpXlCa6Mc+dUNhAg==
-X-Gm-Message-State: AOJu0YwYyR4NhcCdVe2KNFGNh0xQOcEGL8m9WyChCVDvKoYzS16oJF0w
-	cRqAi/nd0zC/OJBxGXDeMzYmdth0GA9koCafLlrITvYq7gL6PK3+MRJMMZv72Sopow==
-X-Google-Smtp-Source: AGHT+IHavYd8spLhyeQFjvZDMW3NjuNiOTPvJc6e8eW4eyUkSLEdX9oRDBDq4fMjkVf9SCAc1t0gjw==
-X-Received: by 2002:a2e:8055:0:b0:2d4:6bab:15eb with SMTP id p21-20020a2e8055000000b002d46bab15ebmr4120105ljg.12.1711308034456;
-        Sun, 24 Mar 2024 12:20:34 -0700 (PDT)
-Received: from [127.0.1.1] (2a02-8389-41cf-e200-2e5e-f14e-aa7c-2010.cable.dynamic.v6.surfer.at. [2a02:8389:41cf:e200:2e5e:f14e:aa7c:2010])
-        by smtp.gmail.com with ESMTPSA id i2-20020a17090639c200b00a471cbc4ddbsm2248205eje.26.2024.03.24.12.20.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 Mar 2024 12:20:34 -0700 (PDT)
-From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Date: Sun, 24 Mar 2024 20:20:29 +0100
-Subject: [PATCH v2 2/2] iio: health: max30102: add support for max30101
+	s=arc-20240116; t=1711379322; c=relaxed/simple;
+	bh=4eUXmKM7SyiyHM/IxR2x3wjvf4JQ3Ytj0cbIwS+59Tc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=TdJHqmPo5Vu+ddJfKWvSJy9BEIFwfw2hePl9snZBWAmQ1H17Oy/gxbjsSp+Pp7QG/cE4FevA1yOi/uy9TciYoo9ohdnyUz9/7yfKu5agVbKPchMxXWE8CcqpLi7nCQnbHbNMjG/9OHz5dNWRa+0+54tC6o0iibVG3fDHM7hW9+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=W9qFDpeK; arc=none smtp.client-ip=161.97.139.27
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+Received: from mail.andi.de1.cc ([2a02:c205:3004:2154::1])
+	by mail2.andi.de1.cc with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <andreas@kemnade.info>)
+	id 1rolwF-003KEw-0u;
+	Mon, 25 Mar 2024 16:08:39 +0100
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:MIME-Version:
+	Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=sWnFDfi1/XqxIpOEFodQssSrAAdigmg6P7HROJwwOI4=; b=W9qFDpeKt57pNsUuHdG4rbVqS/
+	Xia3MmBHHQ9FIzT5KmUnjwn/B0O9nIDIaZCGsj4hIPyfUSsSb+5ERzwkPjHcj878yfoHGjNbaQlax
+	3uOdBAhZvlLI+5VHhnzRRj/U0E5S4f14dWPCvqT0eUGLUlQpzC0oUQAydZSO4T4dEklNfwwbz6Rxw
+	MAFAm/FOITk5X+XjUD180WE89gr1z7WfBFA1/Rl2EZ3zScpmS4ggYM0kWru/P5HmEKq7JQZiYyTyl
+	L/zBTpSnspJeoFozbvR8k/i6FDIIMwisiJa9DBdl8MpXhfuIXsh2fA4CGqe6MHXe4xk/DkgZQ+c0c
+	V1yFjzXw==;
+Received: from p2003010777026a001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:107:7702:6a00:1a3d:a2ff:febf:d33a] helo=aktux)
+	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <andreas@kemnade.info>)
+	id 1roUCT-000Y9b-VS; Sun, 24 Mar 2024 21:12:13 +0100
+Received: from andi by aktux with local (Exim 4.96)
+	(envelope-from <andreas@kemnade.info>)
+	id 1roUCS-000yR4-21;
+	Sun, 24 Mar 2024 21:12:12 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: lee@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	mazziesaccount@gmail.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev
+Cc: Andreas Kemnade <andreas@kemnade.info>
+Subject: [RFC PATCH 0/2] mfd: rohm-bd71828: Add power off
+Date: Sun, 24 Mar 2024 21:12:08 +0100
+Message-Id: <20240324201210.232301-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240324-max30101-v2-2-611deb510c97@gmail.com>
-References: <20240324-max30101-v2-0-611deb510c97@gmail.com>
-In-Reply-To: <20240324-max30101-v2-0-611deb510c97@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Matt Ranostay <matt@ranostay.sg>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Javier Carrasco <javier.carrasco.cruz@gmail.com>
-X-Mailer: b4 0.14-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1711308030; l=1134;
- i=javier.carrasco.cruz@gmail.com; s=20240312; h=from:subject:message-id;
- bh=7xiP7a7c+JxaaenvtRnKz3pbYlEuJfkFC57nCHzqmio=;
- b=ZIhZQxFriY3rYD9NfH1Fh7pSZhQQ1vajuMhHB/O6TxymWQpWUFOaN2+pTyBLsSmOs5aEKxNxR
- wj19lp5GNLEDD5ECl6h5XrXmUtFxOpeAKiz0pU7D0UF41X+IHxIqZLq
-X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
- pk=lzSIvIzMz0JhJrzLXI0HAdPwsNPSSmEn6RbS+PTS9aQ=
+Content-Transfer-Encoding: 8bit
 
-The Maxim max30101 is the replacement for the max30105, which is no
-longer recommended for future designs.
+Add power off functionality. Marked as RFC because of magic numbers
+without a good source and strange delays. The only information source is
+only a vendor kernel.
 
-Their internal structure is identical, as well as the register map,
-configuration options and sensitivity, which allows for code recycling.
+Andreas Kemnade (2):
+  dt-bindings: mfd: Add ROHM BD71828 system-power-controller property
+  mfd: rohm-bd71828: Add power off functionality
 
-Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
----
- drivers/iio/health/max30102.c | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/drivers/iio/health/max30102.c b/drivers/iio/health/max30102.c
-index 37e619827e8a..6616729af5b7 100644
---- a/drivers/iio/health/max30102.c
-+++ b/drivers/iio/health/max30102.c
-@@ -613,6 +613,7 @@ static void max30102_remove(struct i2c_client *client)
- }
- 
- static const struct i2c_device_id max30102_id[] = {
-+	{ "max30101", max30105 },
- 	{ "max30102", max30102 },
- 	{ "max30105", max30105 },
- 	{}
-@@ -620,6 +621,7 @@ static const struct i2c_device_id max30102_id[] = {
- MODULE_DEVICE_TABLE(i2c, max30102_id);
- 
- static const struct of_device_id max30102_dt_ids[] = {
-+	{ .compatible = "maxim,max30101" },
- 	{ .compatible = "maxim,max30102" },
- 	{ .compatible = "maxim,max30105" },
- 	{ }
+ .../bindings/mfd/rohm,bd71828-pmic.yaml       |  2 ++
+ drivers/mfd/rohm-bd71828.c                    | 31 ++++++++++++++++++-
+ 2 files changed, 32 insertions(+), 1 deletion(-)
 
 -- 
-2.40.1
+2.39.2
 
 
