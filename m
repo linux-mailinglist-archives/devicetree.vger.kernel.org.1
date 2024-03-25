@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-52956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37DE288A855
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 17:07:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A13FF88A857
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 17:07:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A00A61F679E5
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 16:07:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C2CE51C361D3
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 16:07:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0942F139CF5;
-	Mon, 25 Mar 2024 13:55:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B8BB13A24C;
+	Mon, 25 Mar 2024 13:55:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a3EOWKIG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pyPed3Cw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1A5F3DABF7;
-	Mon, 25 Mar 2024 13:55:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EBD73DABF7;
+	Mon, 25 Mar 2024 13:55:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711374932; cv=none; b=h11Jzd6fHByYQSIoY3j1XOGUJvExnk0ufIXrVE3E69mDqSQhUGQQLDolkaSgC3g2jcA+enLnkVVm4tz7NvGRFEcXTKHRLnPDwkkimybW/T5xVaclFR7U+r5+gPTmls+MDH9P/ac5rsSQTQeSk+zyU/5GNZYS93jGA8CYrUoPP8A=
+	t=1711374934; cv=none; b=VqLs5io53cMC8/mG34zuFcfd4Q8aRReGxemZtiUZatH1NXHU+PsaN4dVpuwBUPTy107St41AfF3m6ELCt02vGYkl+GeB66q5gWaoFp4lTvHOvclatPyzOhj97pWTIivgzHkvN+Ht44FZy8XwaYRkhUkH36GcLipFDYCR+cRJgLQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711374932; c=relaxed/simple;
-	bh=MkXFxr+38wn5av7v3wRZghhYyjXiCj+5YDe2axVzFDQ=;
+	s=arc-20240116; t=1711374934; c=relaxed/simple;
+	bh=/CTXyIhEl1GbZCvu7Z5J8qj1bQmG+Iqgauuw0Et0EzU=;
 	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=amqmBfqJVCkoggbPqHZ4SmeslxsFpNyPaO5jvaDr1sxc/xr4TuDl/64V9gO4vad1tdKSeDRcWdLJyIFeWbQpbRa7kSPr/1PD3v1vLVnBc3LhMsx/q8LwgyUuL/iDpgd4FR6arw+AuEFRsFLwQTMtjL5Y35XjYEMr6gT5l9EPH4c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a3EOWKIG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DAFFC433F1;
-	Mon, 25 Mar 2024 13:55:31 +0000 (UTC)
+	 Message-Id:Subject; b=pzmopXYUt3DW3EU5UGl5OAoQZVyJFRLdcr5yf7Xv+UqdGS54BhSi4eaToowbQ7n4r/kHBtURBma8iTtoLItM2wC/M8rQrtxU/2J7V4A/qjX/gvJdj59UIERtT5qyNTz6E2vdU2NMdZ4rnbp831PIJvY+lfpwhO9iHPAbkp985U4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pyPed3Cw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9DBFC433F1;
+	Mon, 25 Mar 2024 13:55:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711374931;
-	bh=MkXFxr+38wn5av7v3wRZghhYyjXiCj+5YDe2axVzFDQ=;
+	s=k20201202; t=1711374933;
+	bh=/CTXyIhEl1GbZCvu7Z5J8qj1bQmG+Iqgauuw0Et0EzU=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=a3EOWKIGjVSy12sY01z0j003UgNllyXG/j4Mu3ogM2Ob7fbgsiRWjw0/5bA3OUTty
-	 47amA9Tj/c4EbfJ08wECjH0TxWQtcgW54T7JDihwnDZ/mgUKgAJFoNxHFY63eZN+Eh
-	 AqMjsGQG0qDQ8y9dLXiW4Sidowcf5A1E3QIMlfHWCNxUU0j2z1RqVwbxHTSiuAxMqn
-	 EOwH4oqSF0cAYyryt4yrMHQKk9tPUfKwI0hND73aKEDwCuP60HNydXAOGHU+TMgeqB
-	 9bkNA4Bd2d62pTBHrXvrae3HdmUakU4GCbwiz37hMguJ20sIYkl3i+fi5Lq9BfMdUu
-	 COz3Atz8An1Hg==
-Date: Mon, 25 Mar 2024 08:55:30 -0500
+	b=pyPed3Cwcq00V7CeIL0MBIbc5Lv1eYrjR4NUBivKvOwFC7NeNUkepwHxHuaukVoMt
+	 +RBn5tMN05AJPgGJWmJEDnXhuc20ptvvpBF8Md8Gm5Cxg+ozj8rzCZfZVNydzDqbru
+	 xVfg6B6dqXV4r1Dhpl3gFGgmeIwd2llH8dTCttBH19qyVdMSyAUaBdJqR+V6jSNraA
+	 y7Msb3cI5HQJZUJNAk5XLZldQcEEGwN/HGtuwfujlxmI+117cmiLwyoRD/Y1NBWn6q
+	 gbuA7PAA7P3iHgEMaJDYDaBCH5Jea2hpwmnno+uY+Y5NVLBqElGdjEbBmOS7RyOgdX
+	 WDumwRQe0LNlA==
+Date: Mon, 25 Mar 2024 08:55:32 -0500
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,570 +51,168 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: Rob Herring <robh@kernel.org>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: David Plowman <david.plowman@raspberrypi.com>, 
- linux-media@vger.kernel.org, 
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: David Airlie <airlied@gmail.com>, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ devicetree@vger.kernel.org, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Ray Jui <rjui@broadcom.com>, 
- Jean-Michel Hautbois <jeanmichel.hautbois@yoseli.org>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>, kernel-list@raspberrypi.com, 
- linux-rpi-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
- devicetree@vger.kernel.org, Scott Branden <sbranden@broadcom.com>, 
- bcm-kernel-feedback-list@broadcom.com, 
- Hans Verkuil <hverkuil-cisco@xs4all.nl>, Rob Herring <robh+dt@kernel.org>, 
- Dave Stevenson <dave.stevenson@raspberrypi.com>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Naushir Patuck <naush@raspberrypi.com>
-In-Reply-To: <20240324220854.15010-1-laurent.pinchart@ideasonboard.com>
-References: <20240324220854.15010-1-laurent.pinchart@ideasonboard.com>
-Message-Id: <171137470561.3264768.17438798530055106065.robh@kernel.org>
-Subject: Re: [PATCH v7 00/15] media: Add driver for the Raspberry Pi <5
- CSI-2 receiver
+ dri-devel@lists.freedesktop.org, Conor Dooley <conor+dt@kernel.org>, 
+ Daniel Vetter <daniel@ffwll.ch>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Nicolas Belin <nbelin@baylibre.com>, "Lukas F. Hartmann" <lukas@mntre.com>, 
+ Maxime Ripard <mripard@kernel.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jagan Teki <jagan@amarulasolutions.com>, linux-clk@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20240325-amlogic-v6-4-upstream-dsi-ccf-vim3-v11-0-04f55de44604@linaro.org>
+References: <20240325-amlogic-v6-4-upstream-dsi-ccf-vim3-v11-0-04f55de44604@linaro.org>
+Message-Id: <171137470605.3264802.15535340477361907465.robh@kernel.org>
+Subject: Re: [PATCH v11 0/7] drm/meson: add support for MIPI DSI Display
 
 
-On Mon, 25 Mar 2024 00:08:36 +0200, Laurent Pinchart wrote:
-> Hello everybody,
-> 
-> This patch series adds a new driver for the BCM2835 (and derivative)
-> CCP2/CSI2 camera interface named Unicam. This IP core is found in the
-> VC4-based Raspberry Pi, namely the Pi Zero, Pi 3 and Pi 4.
-> 
-> Camera support for Raspberry Pi 4 currently relies on a downstream
-> Unicam driver that live in the Raspberry Pi kernel tree ([1]). The
-> driver uses the V4L2 API, but works around the lack of features in V4L2
-> to properly support sensor embedded data. Since the Unicam driver
-> development by Raspberry Pi, some of those features have been merged in
-> the kernel (namely the V4L2 streams API) or are being developed (namely
-> generic metadata formats and subdev internal pads), with patches posted
-> for review on the linux-media mailing list ([2]).
-> 
-> This new upstream driver is based on the downstream code, extensively
-> reworked to use the new V4L2 APIs.
-> 
-> The series is based on top of a merge of
-> 
-> - v8 of the generic metadata and internal pads, rebased on v6.9-rc1 ([3])
-> - the downstream ISP driver ported to mainline ([4])
-> 
-> For convenience, it can be found in [5]. Note that the ISP driver is
-> getting upstreamed separately.
-> 
-> The series starts with five patches that add support for streams and
-> embedded data to the imx219 driver (01/15 to 05/15). Patches 06/15 to
-> 09/15 then add the Unicam driver, with new V4L2 pixel formats (06/15 and
-> 07/15) and DT bindings (08/15) The remaining patches cover DT
-> integration (10/15 to 14/15) with a sample DT overlay for the IMX219
-> camera module (15/15).
-> 
-> The patches have been tested on a Raspberry Pi 4 using an IMX219 camera
-> module (the Raspberry Pi camera v2), with libcamera. Updates are needed
-> to libcamera to use the new V4L2 APIs, patches have been posted to [6].
-> For manual testing with media-ctl, corresponding API updates to
-> v4l-utils are available at [7].
-> 
-> The changes to the imx219 driver effectively define the interface that
-> raw sensors should expose to userspace. This needs to be documented
-> explicitly. When posting v6, I stated that I would like the series to
-> first get a review round, which will likely raise API questions. and
-> then work on the documentation. As not many API questions have been
-> raised yet, I'll give reviewers another chance :-)
-> 
-> As a summary, more work is needed, in particular documenting how to use
-> the API in raw camera sensor drivers, and implementing support for the
-> latest generic metadata API in media-ctl and v4l2-compliance. I'm
-> however happy with the unicam implementation, and I believe we're really
-> nearing completion. This series, along with the libcamera support, help
-> validating the new kernel APIs. We have in my opinion reached a point
-> where we can start converting other sensor drivers from the downstream
-> Raspberry Pi kernel to the standard APIs for embedded data, as well as
-> integrating the APIs in the Raspberry Pi 5 CFE driver.
-> 
-> [1] https://github.com/raspberrypi/linux/tree/rpi-6.1.y/drivers/media/platform/bcm2835
-> [2] https://lore.kernel.org/linux-media/20240313072516.241106-1-sakari.ailus@linux.intel.com/
-> [3] https://git.kernel.org/pub/scm/linux/kernel/git/pinchartl/linux.git/log/?h=rpi/v6.9/metadata/v8
-> [4] https://git.kernel.org/pub/scm/linux/kernel/git/pinchartl/linux.git/log/?h=rpi/v6.9/isp/v2
-> [5] https://git.kernel.org/pub/scm/linux/kernel/git/pinchartl/linux.git/log/?h=rpi/v6.9/unicam/next
-> [6] https://lists.libcamera.org/pipermail/libcamera-devel/2024-March/040711.html
-> [7] https://git.linuxtv.org/pinchartl/v4l-utils.git/log/?h=metadata
-> 
-> Here's the mandatory v4l2-compliance report. There are 5 errors, which
-> are caused by v4l2-compliance not supporting the new embedded data APIs
-> yet. This will be fixed and patches for v4l2-compliance will be
-> submitted (alongside patches to media-ctl).
-> 
-> v4l2-compliance 1.27.0-5180, 64 bits, 64-bit time_t
-> v4l2-compliance SHA: c14579f7e5f5 2024-03-01 20:29:24
-> 
-> Compliance test for unicam device /dev/media0:
-> 
-> Media Driver Info:
-> 	Driver name      : unicam
-> 	Model            : unicam
-> 	Serial           :
-> 	Bus info         : platform:fe801000.csi
-> 	Media version    : 6.8.0
-> 	Hardware revision: 0x00000000 (0)
-> 	Driver version   : 6.8.0
-> 
-> Required ioctls:
-> 	test MEDIA_IOC_DEVICE_INFO: OK
-> 	test invalid ioctls: OK
-> 
-> Allow for multiple opens:
-> 	test second /dev/media0 open: OK
-> 	test MEDIA_IOC_DEVICE_INFO: OK
-> 	test for unlimited opens: OK
-> 
-> Media Controller ioctls:
-> 	test MEDIA_IOC_G_TOPOLOGY: OK
-> 	Entities: 4 Interfaces: 4 Pads: 8 Links: 7
-> 	test MEDIA_IOC_ENUM_ENTITIES/LINKS: OK
-> 	test MEDIA_IOC_SETUP_LINK: OK
-> 
-> Total for unicam device /dev/media0: 8, Succeeded: 8, Failed: 0, Warnings: 0
-> --------------------------------------------------------------------------------
-> Compliance test for unicam device /dev/video0:
-> 
-> Driver Info:
-> 	Driver name      : unicam
-> 	Card type        : unicam
-> 	Bus info         : platform:fe801000.csi
-> 	Driver version   : 6.8.0
-> 	Capabilities     : 0xa4a00001
-> 		Video Capture
-> 		Metadata Capture
-> 		I/O MC
-> 		Streaming
-> 		Extended Pix Format
-> 		Device Capabilities
-> 	Device Caps      : 0x24200001
-> 		Video Capture
-> 		I/O MC
-> 		Streaming
-> 		Extended Pix Format
-> Media Driver Info:
-> 	Driver name      : unicam
-> 	Model            : unicam
-> 	Serial           :
-> 	Bus info         : platform:fe801000.csi
-> 	Media version    : 6.8.0
-> 	Hardware revision: 0x00000000 (0)
-> 	Driver version   : 6.8.0
-> Interface Info:
-> 	ID               : 0x0300000d
-> 	Type             : V4L Video
-> Entity Info:
-> 	ID               : 0x0000000b (11)
-> 	Name             : unicam-image
-> 	Function         : V4L2 I/O
-> 	Flags            : default
-> 	Pad 0x0100000c   : 0: Sink
-> 	  Link 0x0200000f: from remote pad 0x1000003 of entity 'unicam' (Video Interface Bridge): Data, Enabled, Immutable
-> 
-> Required ioctls:
-> 	test MC information (see 'Media Driver Info' above): OK
-> 	test VIDIOC_QUERYCAP: OK
-> 	test invalid ioctls: OK
-> 
-> Allow for multiple opens:
-> 	test second /dev/video0 open: OK
-> 	test VIDIOC_QUERYCAP: OK
-> 	test VIDIOC_G/S_PRIORITY: OK
-> 	test for unlimited opens: OK
-> 
-> Debug ioctls:
-> 	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
-> 	test VIDIOC_LOG_STATUS: OK
-> 
-> Input ioctls:
-> 	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
-> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
-> 	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
-> 	test VIDIOC_ENUMAUDIO: OK (Not Supported)
-> 	test VIDIOC_G/S/ENUMINPUT: OK
-> 	test VIDIOC_G/S_AUDIO: OK (Not Supported)
-> 	Inputs: 1 Audio Inputs: 0 Tuners: 0
-> 
-> Output ioctls:
-> 	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
-> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
-> 	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
-> 	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
-> 	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
-> 	Outputs: 0 Audio Outputs: 0 Modulators: 0
-> 
-> Input/Output configuration ioctls:
-> 	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
-> 	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
-> 	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
-> 	test VIDIOC_G/S_EDID: OK (Not Supported)
-> 
-> Control ioctls (Input 0):
-> 	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
-> 	test VIDIOC_QUERYCTRL: OK (Not Supported)
-> 	test VIDIOC_G/S_CTRL: OK (Not Supported)
-> 	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
-> 	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
-> 	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
-> 	Standard Controls: 0 Private Controls: 0
-> 
-> Format ioctls (Input 0):
-> 	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
-> 	test VIDIOC_G/S_PARM: OK (Not Supported)
-> 	test VIDIOC_G_FBUF: OK (Not Supported)
-> 	test VIDIOC_G_FMT: OK
-> 	test VIDIOC_TRY_FMT: OK
-> 	test VIDIOC_S_FMT: OK
-> 	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
-> 	test Cropping: OK (Not Supported)
-> 	test Composing: OK (Not Supported)
-> 	test Scaling: OK
-> 
-> Codec ioctls (Input 0):
-> 	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
-> 	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
-> 	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
-> 
-> Buffer ioctls (Input 0):
-> 	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
-> 	test CREATE_BUFS maximum buffers: OK
-> 	test VIDIOC_EXPBUF: OK
-> 	test Requests: OK (Not Supported)
-> 
-> Total for unicam device /dev/video0: 47, Succeeded: 47, Failed: 0, Warnings: 0
-> --------------------------------------------------------------------------------
-> Compliance test for unicam device /dev/video1:
-> 
-> Driver Info:
-> 	Driver name      : unicam
-> 	Card type        : unicam
-> 	Bus info         : platform:fe801000.csi
-> 	Driver version   : 6.8.0
-> 	Capabilities     : 0xa4a00001
-> 		Video Capture
-> 		Metadata Capture
-> 		I/O MC
-> 		Streaming
-> 		Extended Pix Format
-> 		Device Capabilities
-> 	Device Caps      : 0x24a00000
-> 		Metadata Capture
-> 		I/O MC
-> 		Streaming
-> 		Extended Pix Format
-> Media Driver Info:
-> 	Driver name      : unicam
-> 	Model            : unicam
-> 	Serial           :
-> 	Bus info         : platform:fe801000.csi
-> 	Media version    : 6.8.0
-> 	Hardware revision: 0x00000000 (0)
-> 	Driver version   : 6.8.0
-> Interface Info:
-> 	ID               : 0x03000013
-> 	Type             : V4L Video
-> Entity Info:
-> 	ID               : 0x00000011 (17)
-> 	Name             : unicam-embedded
-> 	Function         : V4L2 I/O
-> 	Pad 0x01000012   : 0: Sink
-> 	  Link 0x02000015: from remote pad 0x1000004 of entity 'unicam' (Video Interface Bridge): Data, Enabled, Immutable
-> 
-> Required ioctls:
-> 	test MC information (see 'Media Driver Info' above): OK
-> 	test VIDIOC_QUERYCAP: OK
-> 	test invalid ioctls: OK
-> 
-> Allow for multiple opens:
-> 	test second /dev/video1 open: OK
-> 	test VIDIOC_QUERYCAP: OK
-> 	test VIDIOC_G/S_PRIORITY: OK
-> 	test for unlimited opens: OK
-> 
-> Debug ioctls:
-> 	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
-> 	test VIDIOC_LOG_STATUS: OK
-> 
-> Input ioctls:
-> 	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
-> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
-> 	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
-> 	test VIDIOC_ENUMAUDIO: OK (Not Supported)
-> 	test VIDIOC_G/S/ENUMINPUT: OK
-> 	test VIDIOC_G/S_AUDIO: OK (Not Supported)
-> 	Inputs: 1 Audio Inputs: 0 Tuners: 0
-> 
-> Output ioctls:
-> 	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
-> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
-> 	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
-> 	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
-> 	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
-> 	Outputs: 0 Audio Outputs: 0 Modulators: 0
-> 
-> Input/Output configuration ioctls:
-> 	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
-> 	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
-> 	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
-> 	test VIDIOC_G/S_EDID: OK (Not Supported)
-> 
-> Control ioctls (Input 0):
-> 	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
-> 	test VIDIOC_QUERYCTRL: OK (Not Supported)
-> 	test VIDIOC_G/S_CTRL: OK (Not Supported)
-> 	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
-> 	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
-> 	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
-> 	Standard Controls: 0 Private Controls: 0
-> 
-> Format ioctls (Input 0):
-> 	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
-> 	test VIDIOC_G/S_PARM: OK (Not Supported)
-> 	test VIDIOC_G_FBUF: OK (Not Supported)
-> 	test VIDIOC_G_FMT: OK
-> 		fail: v4l2-test-formats.cpp(590): dataformat 00003ff8 (x?) for buftype 13 not reported by ENUM_FMT
-> 	test VIDIOC_TRY_FMT: FAIL
-> 	test VIDIOC_S_FMT: OK
-> 	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
-> 	test Cropping: OK (Not Supported)
-> 	test Composing: OK (Not Supported)
-> 	test Scaling: OK (Not Supported)
-> 
-> Codec ioctls (Input 0):
-> 	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
-> 	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
-> 	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
-> 
-> Buffer ioctls (Input 0):
-> 	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
-> 	test CREATE_BUFS maximum buffers: OK
-> 	test VIDIOC_EXPBUF: OK
-> 	test Requests: OK (Not Supported)
-> 
-> Total for unicam device /dev/video1: 47, Succeeded: 46, Failed: 1, Warnings: 0
-> --------------------------------------------------------------------------------
-> Compliance test for unicam device /dev/v4l-subdev0:
-> 
-> Driver Info:
-> 	Driver version   : 6.8.0
-> 	Capabilities     : 0x00000002
-> 		Streams Support
-> 	Client Capabilities: 0x0000000000000003
-> streams interval-uses-which Media Driver Info:
-> 	Driver name      : unicam
-> 	Model            : unicam
-> 	Serial           :
-> 	Bus info         : platform:fe801000.csi
-> 	Media version    : 6.8.0
-> 	Hardware revision: 0x00000000 (0)
-> 	Driver version   : 6.8.0
-> Interface Info:
-> 	ID               : 0x03000017
-> 	Type             : V4L Sub-Device
-> Entity Info:
-> 	ID               : 0x00000001 (1)
-> 	Name             : unicam
-> 	Function         : Video Interface Bridge
-> 	Pad 0x01000002   : 0: Sink
-> 	  Link 0x02000009: from remote pad 0x1000006 of entity 'imx219 5-0010' (Camera Sensor): Data, Enabled, Immutable
-> 	Pad 0x01000003   : 1: Source
-> 	  Link 0x0200000f: to remote pad 0x100000c of entity 'unicam-image' (V4L2 I/O): Data, Enabled, Immutable
-> 	Pad 0x01000004   : 2: Source
-> 	  Link 0x02000015: to remote pad 0x1000012 of entity 'unicam-embedded' (V4L2 I/O): Data, Enabled, Immutable
-> 
-> Required ioctls:
-> 	test MC information (see 'Media Driver Info' above): OK
-> 	test VIDIOC_SUDBEV_QUERYCAP: OK
-> 	test invalid ioctls: OK
-> 
-> Allow for multiple opens:
-> 	test second /dev/v4l-subdev0 open: OK
-> 	test VIDIOC_SUBDEV_QUERYCAP: OK
-> 	test for unlimited opens: OK
-> 
-> Debug ioctls:
-> 	test VIDIOC_LOG_STATUS: OK (Not Supported)
-> 
-> Input ioctls:
-> 	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
-> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
-> 	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
-> 	test VIDIOC_ENUMAUDIO: OK (Not Supported)
-> 	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
-> 	test VIDIOC_G/S_AUDIO: OK (Not Supported)
-> 	Inputs: 0 Audio Inputs: 0 Tuners: 0
-> 
-> Output ioctls:
-> 	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
-> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
-> 	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
-> 	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
-> 	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
-> 	Outputs: 0 Audio Outputs: 0 Modulators: 0
-> 
-> Input/Output configuration ioctls:
-> 	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
-> 	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
-> 	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
-> 	test VIDIOC_G/S_EDID: OK (Not Supported)
-> 
-> Sub-Device routing ioctls:
-> 		fail: v4l2-test-subdevs.cpp(631): !(source->flags & MEDIA_PAD_FL_SOURCE)
-> 	test Try VIDIOC_SUBDEV_G_ROUTING/VIDIOC_SUBDEV_S_ROUTING: FAIL
-> 		fail: v4l2-test-subdevs.cpp(631): !(source->flags & MEDIA_PAD_FL_SOURCE)
-> 	test Active VIDIOC_SUBDEV_G_ROUTING/VIDIOC_SUBDEV_S_ROUTING: FAIL
-> 
-> Sub-Device ioctls (Sink Pad 0):
-> 
-> Sub-Device ioctls (Source Pad 1):
-> 
-> Sub-Device ioctls (Source Pad 2):
-> 
-> Control ioctls:
-> 	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
-> 	test VIDIOC_QUERYCTRL: OK (Not Supported)
-> 	test VIDIOC_G/S_CTRL: OK (Not Supported)
-> 	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
-> 	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
-> 	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
-> 	Standard Controls: 0 Private Controls: 0
-> 
-> Format ioctls:
-> 	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
-> 	test VIDIOC_G/S_PARM: OK (Not Supported)
-> 	test VIDIOC_G_FBUF: OK (Not Supported)
-> 	test VIDIOC_G_FMT: OK (Not Supported)
-> 	test VIDIOC_TRY_FMT: OK (Not Supported)
-> 	test VIDIOC_S_FMT: OK (Not Supported)
-> 	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
-> 	test Cropping: OK (Not Supported)
-> 	test Composing: OK (Not Supported)
-> 	test Scaling: OK (Not Supported)
-> 
-> Codec ioctls:
-> 	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
-> 	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
-> 	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
-> 
-> Buffer ioctls:
-> 	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
-> 	test CREATE_BUFS maximum buffers: OK
-> 	test VIDIOC_EXPBUF: OK (Not Supported)
-> 	test Requests: OK (Not Supported)
-> 
-> Total for unicam device /dev/v4l-subdev0: 47, Succeeded: 45, Failed: 2, Warnings: 0
-> --------------------------------------------------------------------------------
-> Compliance test for unicam device /dev/v4l-subdev1:
-> 
-> Driver Info:
-> 	Driver version   : 6.8.0
-> 	Capabilities     : 0x00000002
-> 		Streams Support
-> 	Client Capabilities: 0x0000000000000003
-> streams interval-uses-which Media Driver Info:
-> 	Driver name      : unicam
-> 	Model            : unicam
-> 	Serial           :
-> 	Bus info         : platform:fe801000.csi
-> 	Media version    : 6.8.0
-> 	Hardware revision: 0x00000000 (0)
-> 	Driver version   : 6.8.0
-> Interface Info:
-> 	ID               : 0x03000019
-> 	Type             : V4L Sub-Device
-> Entity Info:
-> 	ID               : 0x00000005 (5)
-> 	Name             : imx219 5-0010
-> 	Function         : Camera Sensor
-> 	Pad 0x01000006   : 0: Source
-> 	  Link 0x02000009: to remote pad 0x1000002 of entity 'unicam' (Video Interface Bridge): Data, Enabled, Immutable
-> 	Pad 0x01000007   : 1: Sink, 00000008
-> 	Pad 0x01000008   : 2: Sink, 00000008
-> 
-> Required ioctls:
-> 	test MC information (see 'Media Driver Info' above): OK
-> 	test VIDIOC_SUDBEV_QUERYCAP: OK
-> 	test invalid ioctls: OK
-> 
-> Allow for multiple opens:
-> 	test second /dev/v4l-subdev1 open: OK
-> 	test VIDIOC_SUBDEV_QUERYCAP: OK
-> 	test for unlimited opens: OK
-> 
-> Debug ioctls:
-> 	test VIDIOC_LOG_STATUS: OK (Not Supported)
-> 
-> Input ioctls:
-> 	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
-> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
-> 	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
-> 	test VIDIOC_ENUMAUDIO: OK (Not Supported)
-> 	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
-> 	test VIDIOC_G/S_AUDIO: OK (Not Supported)
-> 	Inputs: 0 Audio Inputs: 0 Tuners: 0
-> 
-> Output ioctls:
-> 	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
-> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
-> 
-> Dave Stevenson (2):
->   dt-bindings: media: Add bindings for bcm2835-unicam
->   media: bcm2835-unicam: Add support for CCP2/CSI2 camera interface
-> 
-> Jean-Michel Hautbois (3):
->   media: v4l: Add V4L2-PIX-FMT-Y12P format
->   media: v4l: Add V4L2-PIX-FMT-Y14P format
->   ARM: dts: bcm2835: Add Unicam CSI nodes
-> 
-> Laurent Pinchart (8):
->   media: i2c: imx219: Inline imx219_update_pad_format() in its caller
->   media: i2c: imx219: Add internal image sink pad
->   media: i2c: imx219: Report internal routes to userspace
->   media: i2c: imx219: Report streams using frame descriptors
->   media: i2c: imx219: Add embedded data support
->   ARM: dts: bcm2835-rpi: Move firmware-clocks from bcm2711 to bcm2835
->   ARM: dts: bcm2711-rpi-4-b: Add CAM1 regulator
->   [DNI] arm64: dts: broadcom: Add overlay for Raspberry Pi 4B IMX219
->     camera
-> 
-> Uwe Kleine-König (2):
->   ARM: dts: bcm2711-rpi: Add pinctrl-based multiplexing for I2C0
->   ARM: dts: bcm2711-rpi-cm4-io: Add RTC on I2C0
-> 
->  .../bindings/media/brcm,bcm2835-unicam.yaml   |  117 +
->  .../media/v4l/pixfmt-yuv-luma.rst             |   48 +
->  MAINTAINERS                                   |    7 +
->  .../arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts |    7 +
->  .../boot/dts/broadcom/bcm2711-rpi-cm4-io.dts  |    9 +
->  arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi   |   34 +-
->  arch/arm/boot/dts/broadcom/bcm2711.dtsi       |    8 +
->  arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi   |   19 +
->  arch/arm/boot/dts/broadcom/bcm283x.dtsi       |   24 +
->  arch/arm64/boot/dts/broadcom/Makefile         |    2 +
->  .../dts/broadcom/bcm2711-rpi-4-b-imx219.dtso  |   65 +
->  drivers/media/i2c/imx219.c                    |  420 ++-
->  drivers/media/platform/Kconfig                |    1 +
->  drivers/media/platform/Makefile               |    1 +
->  drivers/media/platform/broadcom/Kconfig       |   23 +
->  drivers/media/platform/broadcom/Makefile      |    3 +
->  .../platform/broadcom/bcm2835-unicam-regs.h   |  255 ++
->  .../media/platform/broadcom/bcm2835-unicam.c  | 2667 +++++++++++++++++
->  drivers/media/v4l2-core/v4l2-ioctl.c          |    2 +
->  include/uapi/linux/videodev2.h                |    2 +
->  20 files changed, 3639 insertions(+), 75 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml
->  create mode 100644 arch/arm64/boot/dts/broadcom/bcm2711-rpi-4-b-imx219.dtso
->  create mode 100644 drivers/media/platform/broadcom/Kconfig
->  create mode 100644 drivers/media/platform/broadcom/Makefile
->  create mode 100644 drivers/media/platform/broadcom/bcm2835-unicam-regs.h
->  create mode 100644 drivers/media/platform/broadcom/bcm2835-unicam.c
-> 
-> 
-> base-commit: e21180b6d61e9b4ee15e2047b55b14b306465d15
+On Mon, 25 Mar 2024 12:09:46 +0100, Neil Armstrong wrote:
+> The Amlogic G12A, G12B & SM1 SoCs embeds a Synopsys DW-MIPI-DSI transceiver (ver 1.21a),
+> with a custom glue managing the IP resets, clock and data input similar to the DW-HDMI
+> glue on the same Amlogic SoCs.
+> 
+> This is a follow-up of v5  now the DRM patches are applied, the clk & DT changes
+> remains for a full DSI support on G12A & SM1 platforms.
+> 
+> The DW-MIPI-DSI transceiver + D-PHY are clocked by the GP0 PLL, and the ENCL encoder + VIU
+> pixel reader by the VCLK2 clock using the HDMI PLL.
+> 
+> The DW-MIPI-DSI transceiver gets this pixel stream as input clocked with the VCLK2 clock.
+> 
+> An optional "MEAS" clock can be enabled to measure the delay between each vsync feeding the
+> DW-MIPI-DSI transceiver.
+> 
+> The clock setup has been redesigned to use CCF, a common PLL (GP0) and the VCLK2 clock
+> path for DSI in preparation of full CCF support and possibly dual display with HDMI.
+> 
+> The change from v5 is that now we use a "VCLK" driver instead of notifier and rely
+> on CLK_SET_RATE_GATE to ensure the VCLK gate operation are called.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+> Changes in v11:
+> - Rebased on v6.9-rc1
+> - Fixed overlay handling/creation
+> - Link to v10: https://lore.kernel.org/r/20240205-amlogic-v6-4-upstream-dsi-ccf-vim3-v10-0-dc06073d5330@linaro.org
+> 
+> Changes in v10:
+> - Rename regmap_vclk to meson_clk and add _gate for the gate
+> - Move COMMON_CLK_MESON_VCLK to following patch
+> - Remove CLK_SET_RATE_PARENT from g12a_vclk2_sel, keep it only on mipi_dsi_pxclk_sel
+> - Add more info on commit message to specify how clock setup is designed
+> - Remove forgotten CLK_IGNORE_UNUSED on g12a_vclk2_input
+> - Remove useless CLK_SET_RATE_PARENT on g12a_vclk2_div to stop propagatting rate _after_ vclk2_div
+> - Remove invalid CLK_SET_RATE_GATE on g12a_vclk2 since it's not a divider...
+> - Drop already applied patches
+> - move Khadas TS050 changes as an overlay
+> - Link to v9: https://lore.kernel.org/r/20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-0-95256ed139e6@linaro.org
+> 
+> Changes in v9:
+> - Colledte reviewed-bys
+> - Fixed patches 2 & 4, commit messages and bindings format
+> - Link to v8: https://lore.kernel.org/r/20231109-amlogic-v6-4-upstream-dsi-ccf-vim3-v8-0-81e4aeeda193@linaro.org
+> 
+> Changes in v8:
+> - Switch vclk clk driver to parm as requested by Jerome
+> - Added bindings fixes to amlogic,meson-axg-mipi-pcie-analog & amlogic,g12a-mipi-dphy-analog
+> - Fixed DT errors in vim3 example and MNT Reform DT
+> - Rebased on next-20231107, successfully tested on VIM3L
+> - Link to v7: https://lore.kernel.org/r/20230803-amlogic-v6-4-upstream-dsi-ccf-vim3-v7-0-762219fc5b28@linaro.org
+> 
+> Changes in v7:
+> - Added review tags
+> - Fixed patch 5 thanks to George
+> - Link to v6: https://lore.kernel.org/r/20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v6-0-fd2ac9845472@linaro.org
+> 
+> Changes in v6:
+> - dropped applied DRM patches
+> - dropped clk private prefix patches
+> - rebased on top of 20230607-topic-amlogic-upstream-clkid-public-migration-v2-0-38172d17c27a@linaro.org
+> - re-ordered/cleaned ENCL patches to match clkid public migration
+> - Added new "vclk" driver
+> - uses vclk driver instead of notifier
+> - cleaned VCLK2 clk flags
+> - add px_clk gating from DSI driver
+> - Link to v5: https://lore.kernel.org/r/20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v5-0-56eb7a4d5b8e@linaro.org
+> 
+> Changes in v5:
+> - Aded PRIV all the G12 internal clk IDS to simplify public exposing
+> - Fixed the DSI bindings
+> - Fixed the DSI HSYNC/VSYNC polarity handling
+> - Fixed the DSI clock setup
+> - Fixed the DSI phy timings
+> - Dropped components for DSI, only keeping it for HDMI
+> - Added MNT Reform 2 CM4 DT
+> - Dropped already applied PHY fix
+> - Link to v4: https://lore.kernel.org/r/20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-0-2592c29ea263@linaro.org
+> 
+> Changes from v3 at [3]:
+> - switched all clk setup via CCF
+> - using single PLL for DSI controller & ENCL encoder
+> - added ENCL clocks to CCF
+> - make the VCLK2 clocks configuration by CCF
+> - fixed probe/bind of DSI controller to work with panels & bridges
+> - added bit_clk to controller to it can setup the BIT clock aswell
+> - added fix for components unbind
+> - added fix for analog phy setup value
+> - added TS050 timings fix
+> - dropped previous clk control patch
+> 
+> Changes from v2 at [2]:
+> - Fixed patch 3
+> - Added reviews from Jagan
+> - Rebased on v5.19-rc1
+> 
+> Changes from v1 at [1]:
+> - fixed DSI host bindings
+> - add reviewed-by tags for bindings
+> - moved magic values to defines thanks to Martin's searches
+> - added proper prefixes to defines
+> - moved phy_configure to phy_init() dw-mipi-dsi callback
+> - moved phy_on to a new phy_power_on() dw-mipi-dsi callback
+> - correctly return phy_init/configure errors to callback returns
+> 
+> [1] https://lore.kernel.org/r/20200907081825.1654-1-narmstrong@baylibre.com
+> [2] https://lore.kernel.org/r/20220120083357.1541262-1-narmstrong@baylibre.com
+> [3] https://lore.kernel.org/r/20220617072723.1742668-1-narmstrong@baylibre.com
+> 
+> ---
+> Neil Armstrong (7):
+>       dt-bindings: arm: amlogic: Document the MNT Reform 2 CM4 adapter with a BPI-CM4 Module
+>       clk: meson: add vclk driver
+>       clk: meson: g12a: make VCLK2 and ENCL clock path configurable by CCF
+>       drm/meson: gate px_clk when setting rate
+>       arm64: meson: g12-common: add the MIPI DSI nodes
+>       arm64: meson: khadas-vim3l: add TS050 DSI panel overlay
+>       arm64: dts: amlogic: meson-g12b-bananapi-cm4: add support for MNT Reform2 with CM4 adaper
+> 
+>  Documentation/devicetree/bindings/arm/amlogic.yaml |   1 +
+>  arch/arm64/boot/dts/amlogic/Makefile               |   5 +
+>  arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi  |  70 ++++
+>  .../meson-g12b-bananapi-cm4-mnt-reform2.dts        | 384 +++++++++++++++++++++
+>  .../boot/dts/amlogic/meson-khadas-vim3-ts050.dtso  | 108 ++++++
+>  drivers/clk/meson/Kconfig                          |   5 +
+>  drivers/clk/meson/Makefile                         |   1 +
+>  drivers/clk/meson/g12a.c                           |  72 ++--
+>  drivers/clk/meson/vclk.c                           | 141 ++++++++
+>  drivers/clk/meson/vclk.h                           |  51 +++
+>  drivers/gpu/drm/meson/meson_dw_mipi_dsi.c          |   7 +
+>  11 files changed, 825 insertions(+), 20 deletions(-)
+> ---
+> base-commit: 4cece764965020c22cff7665b18a012006359095
+> change-id: 20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-b8e5217e1f4a
+> 
+> Best regards,
 > --
-> Regards,
+> Neil Armstrong <neil.armstrong@linaro.org>
 > 
-> Laurent Pinchart
 > 
 > 
 
@@ -633,24 +231,18 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y broadcom/bcm2711-rpi-4-b.dtb broadcom/bcm2711-rpi-cm4-io.dtb' for 20240324220854.15010-1-laurent.pinchart@ideasonboard.com:
+New warnings running 'make CHECK_DTBS=y amlogic/meson-g12b-bananapi-cm4-mnt-reform2.dtb' for 20240325-amlogic-v6-4-upstream-dsi-ccf-vim3-v11-0-04f55de44604@linaro.org:
 
-arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dtb: soc: firmware: {'compatible': ['raspberrypi,bcm2835-firmware', 'simple-mfd'], '#address-cells': [[1]], '#size-cells': [[1]], 'mboxes': [[29]], 'dma-ranges': True, 'phandle': [[30]], 'clocks': {'compatible': ['raspberrypi,firmware-clocks'], '#clock-cells': [[1]], 'phandle': [[16]]}, 'gpio': {'compatible': ['raspberrypi,firmware-gpio'], 'gpio-controller': True, '#gpio-cells': [[2]], 'status': ['okay'], 'gpio-line-names': ['BT_ON', 'WL_ON', 'PWR_LED_OFF', 'GLOBAL_RESET', 'VDD_SD_IO_SEL', 'CAM_GPIO', 'SD_PWR_ON', ''], 'phandle': [[10]]}, 'reset': {'compatible': ['raspberrypi,firmware-reset'], '#reset-cells': [[1]], 'phandle': [[39]]}} should not be valid under {'type': 'object'}
-	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
-arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dtb: soc: power: {'compatible': ['raspberrypi,bcm2835-power'], 'firmware': [[30]], '#power-domain-cells': [[1]], 'phandle': [[11]]} should not be valid under {'type': 'object'}
-	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
-arch/arm/boot/dts/broadcom/bcm2711-rpi-cm4-io.dtb: soc: firmware: {'compatible': ['raspberrypi,bcm2835-firmware', 'simple-mfd'], '#address-cells': [[1]], '#size-cells': [[1]], 'mboxes': [[27]], 'dma-ranges': True, 'phandle': [[28]], 'clocks': {'compatible': ['raspberrypi,firmware-clocks'], '#clock-cells': [[1]], 'phandle': [[16]]}, 'gpio': {'compatible': ['raspberrypi,firmware-gpio'], 'gpio-controller': True, '#gpio-cells': [[2]], 'status': ['okay'], 'gpio-line-names': ['BT_ON', 'WL_ON', 'PWR_LED_OFF', 'ANT1', 'VDD_SD_IO_SEL', 'CAM_GPIO', 'SD_PWR_ON', 'ANT2'], 'phandle': [[10]], 'ant1-hog': {'gpio-hog': True, 'gpios': [[3, 0]], 'output-high': True, 'line-name': ['ant1'], 'phandle': [[164]]}, 'ant2-hog': {'gpio-hog': True, 'gpios': [[7, 0]], 'output-low': True, 'line-name': ['ant2'], 'phandle': [[165]]}}, 'reset': {'compatible': ['raspberrypi,firmware-reset'], '#reset-cells': [[1]], 'phandle': [[166]]}} should not be valid under {'type': 'object'}
-	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
-arch/arm/boot/dts/broadcom/bcm2711-rpi-cm4-io.dtb: soc: power: {'compatible': ['raspberrypi,bcm2835-power'], 'firmware': [[28]], '#power-domain-cells': [[1]], 'phandle': [[11]]} should not be valid under {'type': 'object'}
-	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
-arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dtb: i2c0mux: $nodename:0: 'i2c0mux' does not match '^(i2c-?)?mux'
-	from schema $id: http://devicetree.org/schemas/i2c/i2c-mux-pinctrl.yaml#
-arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dtb: i2c0mux: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'i2c@0', 'i2c@1' were unexpected)
-	from schema $id: http://devicetree.org/schemas/i2c/i2c-mux-pinctrl.yaml#
-arch/arm/boot/dts/broadcom/bcm2711-rpi-cm4-io.dtb: i2c0mux: $nodename:0: 'i2c0mux' does not match '^(i2c-?)?mux'
-	from schema $id: http://devicetree.org/schemas/i2c/i2c-mux-pinctrl.yaml#
-arch/arm/boot/dts/broadcom/bcm2711-rpi-cm4-io.dtb: i2c0mux: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'i2c@0', 'i2c@1' were unexpected)
-	from schema $id: http://devicetree.org/schemas/i2c/i2c-mux-pinctrl.yaml#
+arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-mnt-reform2.dtb: /soc/bus@ff600000/bus@42000/clock-controller@0: failed to match any schema with compatible: ['amlogic,g12a-audio-clkc']
+arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-mnt-reform2.dtb: /soc/bus@ff600000/bus@42000/audio-controller@744: failed to match any schema with compatible: ['amlogic,g12a-tohdmitx']
+arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-mnt-reform2.dtb: sys-ctrl@0: '#address-cells', '#size-cells', 'ranges' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml#
+arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-mnt-reform2.dtb: sound: Unevaluated properties are not allowed ('assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' were unexpected)
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-sound-card.yaml#
+arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-mnt-reform2.dtb: sound: 'anyOf' conditional failed, one must be fixed:
+	'clocks' is a required property
+	'#clock-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/clock/clock.yaml#
 
 
 
