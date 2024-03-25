@@ -1,198 +1,246 @@
-Return-Path: <devicetree+bounces-53163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53164-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8758688B20A
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 21:52:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9866B88B20E
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 21:54:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CB68302563
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 20:52:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4572C3010DB
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 20:54:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B92D35EE64;
-	Mon, 25 Mar 2024 20:49:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24DB05CDE9;
+	Mon, 25 Mar 2024 20:54:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="aSRJ5t/h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KwA6OjC6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C09A5B697;
-	Mon, 25 Mar 2024 20:49:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6CA25C61A;
+	Mon, 25 Mar 2024 20:54:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711399774; cv=none; b=e/odQ/CCFjJhFxmo4eZViFTDOcNjAcXXzohkyYERS5F8/sBoEwpYHmZvmtKeAaECF0V4VRkbIDApfoR7QaZ0WT4mNoZEGxg25tqMDpaoEn6Vho15vN4pJX9YPjd+zPZNcVKPNS9nvcv+m1qHVCi/ED/pW0DPNKtVoRcyFNGEQr8=
+	t=1711400047; cv=none; b=EzQjJ9coAxykYvL/mBtedwDuCbm1bXPvE/Y67al/0/iI9WMqdcAut85hKpfYTduc0F9rGfG7pzEe4c51wNCtvuWca6V87bhKMiCPxomZ++4IOp6waN82ubBYNJJh3Tyd0RdOAdmyyHy2U6wnmZOEG3mWvl7275NCz2P12MwfHZk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711399774; c=relaxed/simple;
-	bh=v2sCagyw5B4R+DhIJI4upQC0K1saLorduD0I/khMud4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=vAFfFsN7g1oxo1edi3pflQeXnTl+JevbKZx0fg7iSDegzcQvOzDnXPM1Vxx6vGjyL2V5v8tVdXnttPCfVJjLHD1Cl9VKbI7bmGlnu6BJ4KRks4Fr9NBp4Thr+T2iWoxUT+BaJInuiPUUDAOpqu4VRC9gYfTVjvE3dHF5b9Um8fs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=aSRJ5t/h; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id F3E767E4;
-	Mon, 25 Mar 2024 21:48:59 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1711399740;
-	bh=v2sCagyw5B4R+DhIJI4upQC0K1saLorduD0I/khMud4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aSRJ5t/hKEaL5Y5fRmdbT70h4MxoUrkGFIdTymqWiHi0DyeHGKLeINLO10hR+yUeH
-	 RoptWoC3sxp8Tf2h6kb9Q5eOtDaIei218uS5Gw+UinPqZtJMBC8mFTtQ87IQu2IV1C
-	 H/QKuF9QLk8TKx9krPIASnHmMsxRtPmvIgVMmae4=
-Date: Mon, 25 Mar 2024 22:49:24 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	Paul Elder <paul.elder@ideasonboard.com>,
-	Adam Ford <aford173@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Marek Vasut <marex@denx.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-	linux-media@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: imx8mp: Add DT nodes for the two ISPs
-Message-ID: <20240325204924.GY18799@pendragon.ideasonboard.com>
-References: <20240325151339.19041-1-laurent.pinchart@ideasonboard.com>
- <4879631.GXAFRqVoOG@steina-w>
+	s=arc-20240116; t=1711400047; c=relaxed/simple;
+	bh=9C8mX0Sn8bD6Hlp2PGlk47N5EtGWqTTT35zwy1vMM/8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KlmPampOuByCO6wl10VfJqPpCkZ00zwyUYKserrK5CEp83BhZxFjlLThUTD3wDFgIAOJI2s9QaLKZUTiKj7F8NGij86AEYjCVFd3pR6ZThWIQZr8cHMDdlGlKilZWYgQDYnO/SHR/TrMY6EIMStTCFOxsaq9VSsJ83smZ7cgdPA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KwA6OjC6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AF9AC43609;
+	Mon, 25 Mar 2024 20:54:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711400046;
+	bh=9C8mX0Sn8bD6Hlp2PGlk47N5EtGWqTTT35zwy1vMM/8=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=KwA6OjC6kS7NV4mny7t0anve5yezcA9gHGnG0+QBB3qOWPGErzfBZStoXLBg25km5
+	 34oeL4NmVasFpVxJP9mI4dyLdmyV1RCDk7bPNMDUhMcgUGUJFMz3IOrz2zfoKmfKWV
+	 tZTQ/gz0S97oC7Ep7xnjvFEps2ytyFxpN314XnB+DjmDV91IQxuIQaIo4WdT7yuZLF
+	 hU+P6h8JTg/1PxpKh4h/YqEK7s1kFinJIhe+CWQMWWzKFtbpfs3hY4v4jOFifKvO00
+	 bBbrmuQtb50X8oYWzEwHWQETNMbBlXjCvo2qVrYBpDaJI2xnOKuqWPppPflvp2zJYx
+	 tonE2+1i/EbWw==
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-513dc9d6938so6038052e87.2;
+        Mon, 25 Mar 2024 13:54:06 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXjA2qNiMoi+upOOHm/GrhMwITMC2eLMP2ApuIfNwMHRKCPaeeg0+CyclTqrW8DGJ4ERPaiUe47TNMP3K96+Uf8TAbXvprtAGNSHOBYiPLbicXGQsoBFbJpSdhbQq9mlk9uXd6O3OiUmg==
+X-Gm-Message-State: AOJu0Yx9EK3h49dk/NRFEO5w1MavfDGqYjE3vI0Uamt5GqlGOeOsDxWX
+	bmZRe4/BFonZi69Re31Rnxy3Jp0fo23tUIklfOsb8EChYYaDkjam/C2T1Qld70l39b0bdRJEfVv
+	Gm8dmLY1EKQhnvAkr4Dv4O1OYTA==
+X-Google-Smtp-Source: AGHT+IGTbH9QEnxsUF+g0cge9suFlGFw+bMh5s/tISFaAF52hjs7iTkFjNsCLSrhGK9FRt8/U9kUQM0J93ZdPlGIGe8=
+X-Received: by 2002:a19:431a:0:b0:513:cffc:e74 with SMTP id
+ q26-20020a19431a000000b00513cffc0e74mr4954881lfa.52.1711400044805; Mon, 25
+ Mar 2024 13:54:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <4879631.GXAFRqVoOG@steina-w>
+References: <20240325195306.13133-1-sudanl@amazon.com> <20240325195306.13133-4-sudanl@amazon.com>
+In-Reply-To: <20240325195306.13133-4-sudanl@amazon.com>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Mon, 25 Mar 2024 15:53:52 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKYXk7V4bFHCfhaD_DtetxQR3Z3SwHKJehuH_Br3YOKUw@mail.gmail.com>
+Message-ID: <CAL_JsqKYXk7V4bFHCfhaD_DtetxQR3Z3SwHKJehuH_Br3YOKUw@mail.gmail.com>
+Subject: Re: [PATCH v3 3/4] dt-bindings: rng: Add vmgenid support
+To: Sudan Landge <sudanl@amazon.com>
+Cc: tytso@mit.edu, Jason@zx2c4.com, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, sathyanarayanan.kuppuswamy@linux.intel.com, 
+	thomas.lendacky@amd.com, dan.j.williams@intel.com, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, graf@amazon.de, dwmw@amazon.co.uk, 
+	bchalios@amazon.es, xmarcalx@amazon.co.uk
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Alexander,
+On Mon, Mar 25, 2024 at 2:53=E2=80=AFPM Sudan Landge <sudanl@amazon.com> wr=
+ote:
+>
 
-On Mon, Mar 25, 2024 at 04:52:21PM +0100, Alexander Stein wrote:
-> Am Montag, 25. März 2024, 16:13:39 CET schrieb Laurent Pinchart:
-> > From: Paul Elder <paul.elder@ideasonboard.com>
-> > 
-> > The ISP supports both CSI and parallel interfaces, where port 0
-> > corresponds to the former and port 1 corresponds to the latter. Since
-> > the i.MX8MP's ISPs are connected by the parallel interface to the CSI
-> > receiver, set them both to port 1.
-> > 
-> > Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > ---
-> > Changes since v1:
-> > 
-> > - Fix clock ordering
-> > - Add #address-cells and #size-cells to ports nodes
-> > ---
-> >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 50 +++++++++++++++++++++++
-> >  1 file changed, 50 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > index bfc5c81a5bd4..1d2670b91b53 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > @@ -1616,6 +1616,56 @@ isi_in_1: endpoint {
-> >  				};
-> >  			};
-> >  
-> > +			isp_0: isp@32e10000 {
-> > +				compatible = "fsl,imx8mp-isp";
-> > +				reg = <0x32e10000 0x10000>;
-> > +				interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
-> > +				clocks = <&clk IMX8MP_CLK_MEDIA_ISP_ROOT>,
-> > +					 <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>,
-> > +					 <&clk IMX8MP_CLK_MEDIA_APB_ROOT>;
-> > +				clock-names = "isp", "aclk", "hclk";
-> > +				assigned-clocks = <&clk IMX8MP_CLK_MEDIA_ISP>;
-> > +				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_500M>;
-> > +				assigned-clock-rates = <500000000>;
-> > +				power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_ISP>;
-> > +				fsl,blk-ctrl = <&media_blk_ctrl 0>;
-> > +				status = "disabled";
-> > +
-> > +				ports {
-> > +					#address-cells = <1>;
-> > +					#size-cells = <0>;
-> > +
-> > +					port@1 {
-> > +						reg = <1>;
-> > +					};
-> > +				};
-> > +			};
-> > +
-> > +			isp_1: isp@32e20000 {
-> > +				compatible = "fsl,imx8mp-isp";
-> > +				reg = <0x32e20000 0x10000>;
-> > +				interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>;
-> > +				clocks = <&clk IMX8MP_CLK_MEDIA_ISP_ROOT>,
-> > +					 <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>,
-> > +					 <&clk IMX8MP_CLK_MEDIA_APB_ROOT>;
-> > +				clock-names = "isp", "aclk", "hclk";
-> > +				assigned-clocks = <&clk IMX8MP_CLK_MEDIA_ISP>;
-> > +				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_500M>;
-> > +				assigned-clock-rates = <500000000>;
-> > +				power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_ISP>;
-> > +				fsl,blk-ctrl = <&media_blk_ctrl 1>;
-> > +				status = "disabled";
-> > +
-> > +				ports {
-> > +					#address-cells = <1>;
-> > +					#size-cells = <0>;
-> > +
-> > +					port@1 {
-> > +						reg = <1>;
-> > +					};
-> > +				};
-> > +			};
-> > +
-> 
-> The patch itself is okay. But you might not be able to
-> configure the parent of IMX8MP_CLK_MEDIA_ISP if dewarp is enabled before.
-> This is due to IMX8MP_CLK_MEDIA_ISP_ROOT being enabled in 'pgc_ispdwp'
-> power domain. Reparenting is not possible anymore in this case.
+Please give time for discussions on prior versions to finish and
+others to comment. We're not all in one timezone and are busy. I've
+replied there too.
 
-Good point. 
+> Virtual Machine Generation ID driver was introduced in commit af6b54e2b5b=
+a
+> ("virt: vmgenid: notify RNG of VM fork and supply generation ID"), as an
+> ACPI only device.
+>
+> VMGenID specification http://go.microsoft.com/fwlink/?LinkId=3D260709 def=
+ines
+> a mechanism for the BIOS/hypervisors to communicate to the virtual machin=
+e
+> that it is executed with a different configuration (e.g. snapshot executi=
+on
+> or creation from a template).
+> The guest operating system can use the notification for various purposes
+> such as re-initializing its random number generator etc.
+>
+> As per the specs, hypervisor should provide a globally unique identified,
+> or GUID via ACPI.
+>
+> This patch tries to mimic the mechanism to provide the same functionality
+> which is for a hypervisor/BIOS to notify the virtual machine when it is
+> executed with a different configuration.
+>
+> As part of this support the devicetree bindings requires the hypervisors =
+or
+> BIOS to provide a memory address which holds the GUID and an IRQ which is
+> used to notify when there is a change in the GUID.
+> The memory exposed in the DT should follow the rules defined in the
+> vmgenid spec mentioned above.
+>
+> *Reason for this change*:
+> Chosing ACPI or devicetree is an intrinsic part of an hypervisor design.
+> Without going into details of why a hypervisor would chose DT over ACPI,
+> we would like to highlight that the hypervisors that have chose devicetre=
+e
+> and now want to make use of the vmgenid functionality cannot do so today
+> because vmgenid is an ACPI only device.
+> This forces these hypervisors to change their design which could have
+> undesirable impacts on their use-cases, test-scenarios etc.
+>
+> The point of vmgenid is to provide a mechanism to discover a GUID when
+> the execution state of a virtual machine changes and the simplest
+> way to do it is pass a memory location and an interrupt via devicetree.
+> It would complicate things unnecessarily if instead of using devicetree,
+> we try to implement a new protocol or modify other protocols to somehow
+> provide the same functionility.
+>
+> We believe that adding a devicetree binding for vmgenid is a simpler,
+> better alternative to provide the same functionality and will allow
+> such hypervisors as mentioned above to continue using devicetree.
+>
+> More references to vmgenid specs:
+>  - https://www.qemu.org/docs/master/specs/vmgenid.html
+>  - https://learn.microsoft.com/en-us/windows/win32/hyperv_v2/virtual-
+> machine-generation-identifier
+>
+> Signed-off-by: Sudan Landge <sudanl@amazon.com>
+> ---
+>  .../devicetree/bindings/rng/vmgenid.yaml      | 58 +++++++++++++++++++
 
-> Something like
-> ---8<---
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -1837,11 +1837,13 @@ media_blk_ctrl: blk-ctrl@32ec0000 {
->                                                   <&clk IMX8MP_CLK_MEDIA_APB>,
->                                                   <&clk IMX8MP_CLK_MEDIA_DISP1_PIX>,
->                                                   <&clk IMX8MP_CLK_MEDIA_DISP2_PIX>,
-> +                                                 <&clk IMX8MP_CLK_MEDIA_ISP>,
->                                                   <&clk IMX8MP_VIDEO_PLL1>;
->                                 assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>,
->                                                          <&clk IMX8MP_SYS_PLL1_800M>,
->                                                          <&clk IMX8MP_VIDEO_PLL1_OUT>,
-> -                                                        <&clk IMX8MP_VIDEO_PLL1_OUT>;
-> +                                                        <&clk IMX8MP_VIDEO_PLL1_OUT>,
-> +                                                        <&clk IMX8MP_SYS_PLL2_500M>;
->                                 assigned-clock-rates = <500000000>, <200000000>,
->                                                        <0>, <0>, <1039500000>;
+Filename should match the compatible, whatever that ends up being.
 
-With an assigned clock rate here too then ?
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 59 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rng/vmgenid.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/rng/vmgenid.yaml b/Documen=
+tation/devicetree/bindings/rng/vmgenid.yaml
+> new file mode 100644
+> index 000000000000..24643080d6b0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rng/vmgenid.yaml
+> @@ -0,0 +1,58 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rng/vmgenid.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Virtual Machine Generation Counter ID device
+> +
+> +maintainers:
+> +  - Jason A. Donenfeld <Jason@zx2c4.com>
+> +
+> +description:
+> +  Firmwares or hypervisors can use this devicetree to describe
+> +  interrupts and the shared resources to inject a Virtual Machine Genera=
+tion
+> +  counter.
+> +
+> +properties:
+> +  compatible:
+> +    const: virtual,vmgenctr
+> +
+> +
+> +  "#interrupt-cells":
+> +    const: 3
+> +    description:
+> +      The 1st cell is the interrupt type.
+> +      The 2nd cell contains the interrupt number for the interrupt type.
+> +      The 3rd cell is for trigger type and level flags.
+> +
+> +  interrupt-map: true
 
->                                 #power-domain-cells = <1>;
-> ---8<---
-> is needed.
+Sigh. What makes this an interrupt-map? Why do you think you need this
+and #interrupt-cells? You don't have them in the example.
 
-Sascha, are you OK with this approach ?
+> +
+> +  reg:
+> +    description:
+> +      The 1st cell specifies the base physical address of the 8-byte ali=
+gned
+> +      buffer in guest memory space which is guaranteed not to be used by=
+ the
+> +      operating system.
+> +      The 2nd cell specifies the size of the buffer which holds the VMGe=
+nID.
 
-> >  			dewarp: dwe@32e30000 {
-> >  				compatible = "nxp,imx8mp-dw100";
-> >  				reg = <0x32e30000 0x10000>;
-> > 
-> > base-commit: 4cece764965020c22cff7665b18a012006359095
+I didn't ask for you to explain the purpose of cells in 'reg' as that
+is the same for *every* instance of 'reg'. Ignore DTisms and describe
+the format of the registers. For example, is it 4 32-bit registers
+(hex) or 9 32-bit registers (ascii)?
 
--- 
-Regards,
-
-Laurent Pinchart
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description:
+> +      interrupt used to notify that a new VMGenID counter is available.
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    rng@80000000 {
+> +      compatible =3D "virtual,vmgenctr";
+> +      reg =3D <0x80000000 0x1000>;
+> +      interrupts =3D <0x00 0x23 0x01>;
+> +    };
+> +
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index de6a64b248ae..e295d2f50af4 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -18461,6 +18461,7 @@ M:      "Theodore Ts'o" <tytso@mit.edu>
+>  M:     Jason A. Donenfeld <Jason@zx2c4.com>
+>  S:     Maintained
+>  T:     git https://git.kernel.org/pub/scm/linux/kernel/git/crng/random.g=
+it
+> +F:     Documentation/devicetree/bindings/rng/vmgenid.yaml
+>  F:     drivers/char/random.c
+>  F:     drivers/virt/vmgenid.c
+>
+> --
+> 2.40.1
+>
+>
 
