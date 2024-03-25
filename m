@@ -1,121 +1,122 @@
-Return-Path: <devicetree+bounces-52844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 989E088A368
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 14:59:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AA6F88A3D1
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 15:12:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E8A01F3D3B4
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 13:59:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C43E11F3DF1D
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 14:12:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DDA1159918;
-	Mon, 25 Mar 2024 10:37:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05B2A170A36;
+	Mon, 25 Mar 2024 10:47:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fTN4Rt79"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="n0gWS2ha"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 053C41836E8;
-	Mon, 25 Mar 2024 09:38:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24EB1190662;
+	Mon, 25 Mar 2024 09:59:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711359491; cv=none; b=Up61atS5TAskIRsqvff/ZuCf2TVeq/UFNOKrmMvxc2hwuNwvFEvhWKqPRL6aF0JaTg54NnP6uTwnqkEzoXNnmWSj2GwUqzke73y5oDdrhVqgZrnaB+x9y01V1hzcLgNcpucA30CgDX8qbMVOpqDr9aXSDjcBQL1m4LkAdxcKJvA=
+	t=1711360774; cv=none; b=aqejty3mno75wRRfoIFu4q3LAJUBdczId40YJgz9JimecFvIXvFLXopvCN8KV28XGqUipL7jY6KgrBoJodvyRCCWK1KfObdF98UzsbzFYO1xqZl3nVzhOfiiU5P0pvONcgnpJluf43XQruNNJHaaoMVMLwi+1wd5kB93oG51ZxI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711359491; c=relaxed/simple;
-	bh=LYP5Vsr+Zdn9vmu5oX47MSKUEjdDr89roznGdVIV8NQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FvE8n63QKlC4X19OCKq+ohz1noDfmu/woh3TXv1TKZTuqshE3faFJZlguICzP4FPMww14C8S/K7LemuIjX4AWSAOWtC4ikYheTv1Adrh4JiBU+sptBNMvhny0HHrdZGDBxA0IJfQCwWz2G+gQQtPU0rObCN+C08l8YXOKzHeY/0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fTN4Rt79; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C3BCC43399;
-	Mon, 25 Mar 2024 09:38:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711359490;
-	bh=LYP5Vsr+Zdn9vmu5oX47MSKUEjdDr89roznGdVIV8NQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fTN4Rt79eQEh52TaxQ9rjiVbMydp1wnV9526o8VNh1Ii+/xtIoPqzDnXQsfw0rxTL
-	 mvMKcIb0wVzFAgG8lCfBr8SoWJtnCPLE8J34W6f6ovMEy4bMtFfLrrS8e9hrdSv5D+
-	 juoxqHH7QCQm1276XDdfOWC6P3ZoPn5B3WO7IhT4UR+neTTpQC6BSp6iaD7AbYeQ72
-	 lW9HdUUMtGlLMuSbZhaFUs6a63NlPwxrVyMgH6wXJXgJk0qVCbNLk+ziK02qF5oNXC
-	 SSAFzzJA1sgWWU3vuXqF96QuvsDkrv6+3yziAo0edcIhLqB2s2JdDKTY84v0lZa+Jn
-	 0FPiuR1GVs0fw==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1rogmW-000000006zS-1WeW;
-	Mon, 25 Mar 2024 10:38:17 +0100
-Date: Mon, 25 Mar 2024 10:38:16 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Taniya Das <quic_tdas@quicinc.com>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH v4 3/8] clk: qcom: gpucc-sc8280xp: Add external supply
- for GX gdsc
-Message-ID: <ZgFGCGgbY-4Xd_2k@hovoldconsulting.com>
-References: <20240125-sa8295p-gpu-v4-0-7011c2a63037@quicinc.com>
- <20240125-sa8295p-gpu-v4-3-7011c2a63037@quicinc.com>
+	s=arc-20240116; t=1711360774; c=relaxed/simple;
+	bh=V71GOfQZeCnRv0gdv6EbVgKYTEs080nwBndJyVfUGUA=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=S322nT/HNdSM977VHsAjKQBhXdTiD3iRRag2RNpi6bdwyNkziygrOCVhYzDlRGJFKpokM0vbtS/1OtldbZstdPDqxLbtNM3JPXoDKxQMUP9cCi+PQ+jmdLOKXy2JGufiH77MPQabw6GjqL1oEnAJDW5IgKPhzwcsH9dSYpxFU0g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=n0gWS2ha; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42P8eGmA028115;
+	Mon, 25 Mar 2024 10:44:07 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=ffbGzpk
+	ISaeUbR7jR83UhYzV507/spEZuEB2LJi1r+s=; b=n0gWS2ha/eKuYFCL9oX5EIw
+	Bg1NzsCkqiDc38Ee7IZOEEquoBhLx1EaZb9TR8oJrEoGFxG/It5WfZz8u4gIrBIO
+	zCtpuleSZQiiAGVo7tjql9EqoFb7EVWKk8eZG0vQnWWXY50LgRMo1DlPUfCzbV3u
+	FZnJVzhzWgLHwvN92OKahVOhJMGsbxXgcPfLGUiq4HtPDQcdsjtk/3Bb4STstH7f
+	8FNTkLl0qR9CxiphXXpbYDeCP1xRe2d0gifbzRQB9fPaV/xY86jZstEQujuWN8St
+	h/unnqrnwyUHPSOHcs7VixG+EUBQjojj/2ZK1kzGZlCcHEGA5W6LjgWiREkkMqw=
+	=
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3x1n3977fn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 25 Mar 2024 10:44:07 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 6101240045;
+	Mon, 25 Mar 2024 10:43:58 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8A8F3216EF3;
+	Mon, 25 Mar 2024 10:42:43 +0100 (CET)
+Received: from localhost (10.201.21.128) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 25 Mar
+ 2024 10:42:42 +0100
+From: Christophe Roullier <christophe.roullier@foss.st.com>
+To: "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni
+	<pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Jose Abreu <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark
+ Brown <broonie@kernel.org>,
+        Christophe Roullier
+	<christophe.roullier@foss.st.com>,
+        Marek Vasut <marex@denx.de>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 0/2] Add properties in dwmac-stm32 documentation
+Date: Mon, 25 Mar 2024 10:42:16 +0100
+Message-ID: <20240325094218.56934-1-christophe.roullier@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240125-sa8295p-gpu-v4-3-7011c2a63037@quicinc.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-25_07,2024-03-21_02,2023-05-22_02
 
-On Thu, Jan 25, 2024 at 01:05:09PM -0800, Bjorn Andersson wrote:
-> On SA8295P and SA8540P the GFX rail is powered by a dedicated external
-> regulator, instead of the rpmh-controlled "gfx.lvl".
-> 
-> Define the "vdd-gfx" as the supply regulator for the GDSC, to cause the
-> gdsc logic to look for, and control, this external power supply.
-> 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> ---
->  drivers/clk/qcom/gpucc-sc8280xp.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/clk/qcom/gpucc-sc8280xp.c b/drivers/clk/qcom/gpucc-sc8280xp.c
-> index 8e147ee294ee..e2b3bc000c71 100644
-> --- a/drivers/clk/qcom/gpucc-sc8280xp.c
-> +++ b/drivers/clk/qcom/gpucc-sc8280xp.c
-> @@ -399,6 +399,7 @@ static struct gdsc gx_gdsc = {
->  	},
->  	.pwrsts = PWRSTS_OFF_ON,
->  	.flags = CLAMP_IO | RETAIN_FF_ENABLE,
-> +	.supply = "vdd-gfx",
+Introduce 2 new properties in dwmac-stm32 documentation
 
-This change now triggers warnings on SC8280XP which does not have this
-supply:
+ - phy-supply: to manage PHY regulator.
+ - st,ext-phyclk: is present since 2020 in driver so need to explain
+   it and avoid dtbs check issue : views/kernel/upstream/net-next/arch/arm/boot/dts/st/stm32mp157c-dk2.dtb: 
+ethernet@5800a000: Unevaluated properties are not allowed 
+('st,ext-phyclk' was unexpected)
+   Furthermore this property will be use in upstream of MP13 dwmac glue. (next step)
 
-	gpu_cc-sc8280xp 3d90000.clock-controller: supply vdd-gfx not found, using dummy regulator
+V2: - Drop deprecated: property for st,eth-clk-sel and st,eth-ref-clk-sel
+V3: - Rework commit message
 
-I've sent a change to start treating this optional supply as truly
-optional here (even if it has not shown up in lore yet):
+Christophe Roullier (2):
+  dt-bindings: net: add phy-supply property for stm32
+  dt-bindings: net: dwmac: Document STM32 property st,ext-phyclk
 
-	https://lore.kernel.org/r/20240325081957.10946-1-johan+linaro@kernel.org
+ Documentation/devicetree/bindings/net/stm32-dwmac.yaml | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-But why are we still using the same compatible string for sc8280xp and
-sa8540p and sa8295p if they differ in such a way?
+-- 
+2.25.1
 
-Shouldn't these structures be different for the two classes of SoCs,
-which would avoid such issues and which would allow us to continue to
-warn if the supply is missing on a sa8540p derivative platforms where it
-appears to be required.
-
-Johan
 
