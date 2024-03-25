@@ -1,89 +1,137 @@
-Return-Path: <devicetree+bounces-52850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5391588A42E
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 15:21:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8872E88A3A5
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 15:07:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0DD5D2E54F8
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 14:21:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9C951C3A9A4
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 14:07:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C42084FD0;
-	Mon, 25 Mar 2024 10:47:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B59018C9E5;
+	Mon, 25 Mar 2024 10:49:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="kg16ByBE"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BX+gcc2Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BBB112FF7C;
-	Mon, 25 Mar 2024 10:18:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6889224DB;
+	Mon, 25 Mar 2024 10:21:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711361939; cv=none; b=E85MTCn7G3q52uZNtzqr9hMpCRkWKTAMN814TZ9Ty//wrWtcoyi1Kgy3A12YyQgIdz2DLBzM2E4xG7rANzi6gaAasFwQBf1CCjIwFSYDnaxcsbiQmHg/ncLQXG++ogi4kVVNr3HAwOKSx7//juoh1J+CIOJpyoUntrZUW8GzvoQ=
+	t=1711362064; cv=none; b=eYXrBFauFp3MkQPF0qDceQSnHcCPysLGIfjV3OuNCEIDzIx+4wtYin/y6cJ8eFP/5lhEShafWbzSp+R4UO7ArHT4K7hDLUxsx67ju8Y4a6I6hwGTAOtNyzkpzwqlrzjw5UXbWyS5okX53K0zCgIlN5rT5kwUiTCUvladbnRbJec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711361939; c=relaxed/simple;
-	bh=PwgsFa5XA28r6N/luTZ5/joQDm3rKoAZilaYfT7S4vU=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=nbXF7ZGcE/7rCcyp6n8of862Nk6USluBtU3i62KXzczAjS0AfBdEOvF45m3cudZMuRGDKgJPR2IbmFcmyt9YW3h2143GAZwry4yyHoLRO5XouN3YC7Mc0/YV6zj7vIyOvp6UJ0u72DLCPMKnAz/PZpKEszQApOwdd2Mj8TAwJJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=kg16ByBE; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 3F607E0004;
-	Mon, 25 Mar 2024 10:18:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1711361929;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=WbqeBpH+1QqX5M3BkHKBHii3KNtrStCGIe/gU4War+M=;
-	b=kg16ByBE+hTjI5M1VNC9tw5XGgrSRTyhUOsnX6FW+GRN5E8xg0DVVMdVUNxYKM+ZlZxDSX
-	ArfOPFUhppEDSpXnyZoEpeCfVZHHzLcyVuWtAZZsDkuMxCA3KQsSyzcNRg93ePpCqKRTdS
-	oz2UFUCRjBQlKmwQywTiO9rP1scFmZitYTxgIA8vta4fJs1+v3tEWM7d7fxmHYmZoCK8a9
-	jPEllFSh+USSEFdrM71O/lGUL7z5bmjWVIZHOUFVK3YsySEZw1XE+vOIeZVkM8csTZJV+j
-	XcIJeo9sf3d08eJ9PFDaJHG9sqSRRI3RhKY2TXqZQaeExGZfQYpwXoARcx9w0g==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	linux-mtd@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mtd: Add Samsung S5Pv210 OneNAND
-Date: Mon, 25 Mar 2024 11:18:47 +0100
-Message-Id: <20240325101847.262460-1-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20240313184317.18466-1-krzysztof.kozlowski@linaro.org>
-References: 
+	s=arc-20240116; t=1711362064; c=relaxed/simple;
+	bh=fcnh9KN2bWNwKxwz0u8fBtorPz/wfJtgWjD0gXneYto=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=OSJMJMCVPeWgNhd7jzfwwHCP1qoH2eVDkvC0WINim9FQ8HOT0gnksHuQPaVoIZxpafaBWj1x7FVahEwcPYu6hBjkHP7+BGfFQmqMeNXCz0sXHQ+92Mi7LaYWuWuFP7uspstm437rJgeK+w6BzrEprkLepyHJNjpDhF5W7qaUwoM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=BX+gcc2Z; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42P9TTFd019743;
+	Mon, 25 Mar 2024 10:20:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=IcffQD5
+	r/DCrkWeuEoMCS5WgcaSsE7f+GLTUFJRqYog=; b=BX+gcc2ZxDLZ1lJ6qKK9u1M
+	oYXXjd0vyyjvaANhdsZiNKfsPuVhJAMnGknLDAH3Z7fnpjii1AboPm3U/KZGxvnX
+	GZuR5gSYA17Rso/9/aj8h3Cs61wtRgMp/fX63cSvM/Pa1VtATZzUKv7dRPDPsBFT
+	qLjh7FlsjZvHDOb6Ivy4HVtjo9jFKLZ/OqtYKLScx0SWDTVJmzbNbtPHoZd5dWZ9
+	VWwpQQz10dxifi8CJCrlQBkSRuTJVFw/WzRr3agzJOh6MyFCMv4ZKtQuYmxVUdpX
+	F6A7rOXm7xav6G9CnQrLN+cwcWfa9y+wYKKoZHUr1dUjefC6pXw1pHjpqUpVc1A=
+	=
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x2yrurwdn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 25 Mar 2024 10:20:57 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42PAKuYx030905
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 25 Mar 2024 10:20:56 GMT
+Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Mon, 25 Mar 2024 03:20:51 -0700
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <djakov@kernel.org>, <quic_anusha@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>
+CC: Varadarajan Narayanan <quic_varada@quicinc.com>
+Subject: [PATCH v2 0/4] Add interconnect driver for IPQ9574 SoC
+Date: Mon, 25 Mar 2024 15:50:32 +0530
+Message-ID: <20240325102036.95484-1-quic_varada@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: b'26729dbb53ac575635ef96ece0442165efa9613f'
 Content-Transfer-Encoding: 8bit
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: A7_2uxPqxX1NkPPuf_jbPdHk9eI1Olpn
+X-Proofpoint-GUID: A7_2uxPqxX1NkPPuf_jbPdHk9eI1Olpn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-25_08,2024-03-21_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 spamscore=0
+ mlxlogscore=999 mlxscore=0 suspectscore=0 clxscore=1015 priorityscore=1501
+ lowpriorityscore=0 phishscore=0 malwarescore=0 bulkscore=0 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2403210001
+ definitions=main-2403250057
 
-On Wed, 2024-03-13 at 18:43:17 UTC, Krzysztof Kozlowski wrote:
-> Document binding for Samsung S5Pv210 SoC OneNAND controller used already
-> in S5Pv210 DTS.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+MSM platforms manage NoC related clocks and scaling from RPM.
+However, in IPQ SoCs, RPM is not involved in managing NoC
+related clocks and there is no NoC scaling.
 
-Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git mtd/next, thanks.
+However, there is a requirement to enable some NoC interface
+clocks for the accessing the peripherals present in the
+system. Hence add a minimalistic interconnect driver that
+establishes a path from the processor/memory to those peripherals
+and vice versa.
 
-Miquel
+---
+v2:
+qcom,ipq9574.h
+	Fix license identifier
+	Rename macros
+qcom,ipq9574-gcc.yaml
+	Include interconnect-cells
+gcc-ipq9574.c
+	Update commit log
+	Remove IS_ENABLED(CONFIG_INTERCONNECT) and auto select it from Kconfig
+ipq9574.dtsi
+	Moved to separate patch
+	Include interconnect-cells to clock controller node
+drivers/clk/qcom/Kconfig:
+	Auto select CONFIG_INTERCONNECT & CONFIG_INTERCONNECT_CLK
+
+Varadarajan Narayanan (4):
+  dt-bindings: clock: Add interconnect-cells
+  dt-bindings: interconnect: Add Qualcomm IPQ9574 support
+  clk: qcom: add IPQ9574 interconnect clocks support
+  arm64: dts: qcom: ipq9574: Add icc provider ability to gcc
+
+ .../bindings/clock/qcom,ipq9574-gcc.yaml      |  3 +
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi         |  2 +
+ drivers/clk/qcom/Kconfig                      |  2 +
+ drivers/clk/qcom/gcc-ipq9574.c                | 65 ++++++++++++++++++-
+ .../dt-bindings/interconnect/qcom,ipq9574.h   | 62 ++++++++++++++++++
+ 5 files changed, 133 insertions(+), 1 deletion(-)
+ create mode 100644 include/dt-bindings/interconnect/qcom,ipq9574.h
+
+-- 
+2.34.1
+
 
