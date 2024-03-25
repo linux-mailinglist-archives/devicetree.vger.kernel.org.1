@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-53097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C684D88AEB4
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 19:43:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E42788AEBD
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 19:44:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 29B153255AC
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 18:43:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 082142E7912
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 18:44:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8222E83A19;
-	Mon, 25 Mar 2024 18:29:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF21E12FF9F;
+	Mon, 25 Mar 2024 18:32:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oJebxdlf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vFBVHOg2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C420658109
-	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 18:29:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA02F12FF77
+	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 18:32:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711391399; cv=none; b=ph1qNYlpWjF2K7YAoNMI48nAdSSL7t8/eWHdeHlOuVVrRR2RkXssKonCkwXucbEaOfbZLS5yfpmBGS0ImIxAQ7svuY/ZkqeZN66Lq3yUk+tSI8PLgkrOKIRtqfm//ml3wqoNIUYhzjz5xUWikJM7xZP99ichOlRFpG5uE1NgmdU=
+	t=1711391525; cv=none; b=j5fa8GPHVOS5NBYlCGjuomrHI/HyAYmAGK3vzg0UBq1XC3Vgav4EJwtYsJ+fTGjNOXJ1+wGE9P0gn9/uJ+wIdIBxg/nP4TkCZGNpqKi771gDZI+KrQA9tsuSlZ6KhKovvkbC/bz8IQZ6476Zv+8Gr0DX+0Q3Bl6VugQCh5Dt4wg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711391399; c=relaxed/simple;
-	bh=5A9bEatgpaVNwlc0KnC+nlXHE1Xh2u/nUrUsbXyNMlU=;
+	s=arc-20240116; t=1711391525; c=relaxed/simple;
+	bh=mO8L61rn13ML2kHXu++z7PonzlDxvH77sL/UBdrrACA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uGoXVmQznvsT4bq4tWLseUBGZDqNI8Wjd6AodpAyKIu5Lnb+ZixwovFGc0q4rxtmeVlyI5YnR066qQBrtyK1ENzlHfszxICFWdnbkwvQtTf7xsHeDWlQbCuxrbw4gtTpMgwDcUBy96LCE8B+PvnOAdNBd8XSMx72+EOWlh0JrAA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oJebxdlf; arc=none smtp.client-ip=209.85.208.44
+	 In-Reply-To:Content-Type; b=mhw23FVBjvCE9X6xpbISKScLtGXGdJyOCclSkbc1jGDsYlFdI9yJTcsENzkXSxplV1JOJUO54MN0Jp3S+JmXFp8v7uKVNMp6Tovt43ncrW0mSZUoVglwlD/KL1CdQgDvP5loZQ0rZPGBRWWwsKOy7mrmyxha6ZYmDObHdNZcYpc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vFBVHOg2; arc=none smtp.client-ip=209.85.208.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-565c6cf4819so9541781a12.1
-        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 11:29:57 -0700 (PDT)
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-56a2bb1d84eso8311404a12.1
+        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 11:32:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711391396; x=1711996196; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711391522; x=1711996322; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=O74EmUiSstjmybMjda17zgqbkXw0yJnE6sWYaC/X1YY=;
-        b=oJebxdlfnfA86yzCEkNJeXn4si8qSArspOyTmH46ASAVzhxEUVX2IiAWaVQnYinm3m
-         X0TXPvR3gfa3Coxa3ZOOzYYkVv66UaXHcSNf0IwtWkqNwEfUQPUacWg/ipoTGKSEWLpb
-         gsxJ3X5KX/6T4V28XF/iUdl7aXmcsp07/Ko24hJde5RY1ad8CPrYp+hCsMmQ7BV4BI3u
-         7E25fJKhm3wKPgbs53ziZYUCXygjzkb+kh4A8TFYZHjsxC8zQRJ3kdDQllTJ4M9/o94+
-         ozx2GADjHfdZBib0B8uzWTnWUNy1VAFtl9qZ5UyUuKAhqSlQFJZGLH4zXCq2reLZXlb4
-         XFjw==
+        bh=40kriHtHzo/weKjqXNA02dhnRsGAkkW+OFWjqG0F5UQ=;
+        b=vFBVHOg2lQUMISEmLDqu94M2PQsHapsRsdHh+jLDBR9MYdheCVkjRFyeZH7OPnPpMm
+         KwP6s7I4aT1OiOEMNvk9PdNTXUpb2CmuP8OCEjflqF29hQ2HAQqOHpxgjIzPO2aKFq0E
+         iX62MJ1hcRhvcf4onExNc5WcmmL5Jh8wQVFv3WpcIh8RnxbMHqZ9t9kWewWDnpeAou2w
+         1uONpIbCshUE3usy4GlWyVG/bb7YgGp8aTBy61wDjShdA4jdqctaL8QNutC2iocEfE4h
+         Kyco0On7nVhboVPrrsue1LuAnP8IDfoSamX78BrehVzDTYivRVj5J9jYiMJPsDo9MLJ9
+         8Z8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711391396; x=1711996196;
+        d=1e100.net; s=20230601; t=1711391522; x=1711996322;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=O74EmUiSstjmybMjda17zgqbkXw0yJnE6sWYaC/X1YY=;
-        b=Lg9fssp3fSw6lf1hKj9OemHDrJVhIzAPalaM78xR+NaftcmwghgIMVSuSSnYb0Eo8z
-         k8zCMBdu//4OKTuhrbHxqFkzW38Vejt7Y1Cf0O7y0NEpUDl36K51QiTbVMKy/Z3dTtR5
-         g18mRzNqLJogyPP5q7mZ9UzoeuwM7tyKKuoupyy24I5ek1lPzbGnQlMrof/SCWPgkwYG
-         TERCV2g1itpTBeJPHryX4LSj9nmC1N7s3bAbbXs0S8jg6V3NuCd09E5BghiSevE6aoKp
-         SXjxocbnyqrl1finl95ol9ViVTevPgEXVt8hmDkwzE5oJQQsoWbvIEbSpXG4vRDrT8YP
-         2Q0g==
-X-Forwarded-Encrypted: i=1; AJvYcCXEmyBGaKiwOPHzNap/jGu8kG5oPSrD0Ujd6YhcrVKlRYBPfqMAKDa85Fc03RKEeKd9eRqMR6FzqY+iW6IGlShbgvuJu6YPXMzwzQ==
-X-Gm-Message-State: AOJu0YyZkQbuCBO8K8FuoW0hzKNJFA2Z9exLKKafqVkK1IQ3D3snvzfi
-	lD/uLNDYpCFxg5kim16CkDDrdZCmO0A89B6QjVfBbY9i1qXnMrPbVfWdhgPQZA0=
-X-Google-Smtp-Source: AGHT+IGVdXsdSroplgg7wqHIN5VNzTN6/mXnV+YBCm9y+0BV0CHmxVtZTbktg8a2Ave9EZuFzWzC0A==
-X-Received: by 2002:a17:906:744:b0:a45:f9c5:3024 with SMTP id z4-20020a170906074400b00a45f9c53024mr5625453ejb.11.1711391396204;
-        Mon, 25 Mar 2024 11:29:56 -0700 (PDT)
+        bh=40kriHtHzo/weKjqXNA02dhnRsGAkkW+OFWjqG0F5UQ=;
+        b=cpo3QEfrXRrD53OoRkID3YxCnCvSUCeOLKWWDc3fzxdb6+7bnZ5VRCij5vuk89Dfy0
+         a6Yjiw0qDUZ7afpuB+9BoYc7BgrMsuWaUNDZaYBdCHgupe6tBaTDthVeAP9i4+F5e38H
+         Bb4qC8ttTUjJVH1rxb05fkPNDhxB9t5WhEqEgJk7Mq34n+jZQsm6WrBHqF+yZjfKw90A
+         D6hLTRrfthMxXYvyNy+WLhRAvbnZFwEj4jsnozlamq1Ufvj8zC9ZiVIPRk+DQpFqU7w1
+         njEPgLHb3d47oExxHNNDMpl4UvJtGpjrCdOR6R+8q/cn8otbMrCcwD6ldi0XRqcgSjeg
+         QneQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWiYjzYM+YDzeO/5yvWfiHIlN+q/wMXpSxUIRuE8IC0MBM+8CYbvEu2iQSrzpdJCTI27QAvsDZl/Vmcfb8yrfpJcsc2kbsWhfpFTw==
+X-Gm-Message-State: AOJu0Yyd19MYxNr98ONQRh32M3n2mfc+GZaApZSVkxIu2lCO0jvGg7HY
+	vC9FuYZLgwIlsW/NfSCTjAlHLrBQ7GCjGXud5dlyUm/dfGyDZLGloqnsAYhR0wo=
+X-Google-Smtp-Source: AGHT+IEwujOc/9mRxFF5CqW1Igi5kS/A3g1/SVekLN/Z3TSsS3CWUZdumBbXENerRCkn5XccZZiemw==
+X-Received: by 2002:a50:d695:0:b0:566:7769:11c with SMTP id r21-20020a50d695000000b005667769011cmr6048133edi.19.1711391522233;
+        Mon, 25 Mar 2024 11:32:02 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.44])
-        by smtp.gmail.com with ESMTPSA id lu7-20020a170906fac700b00a46a9cdcfa5sm3290491ejb.162.2024.03.25.11.29.55
+        by smtp.gmail.com with ESMTPSA id b23-20020a056402139700b0056c0d96e099sm1440218edv.89.2024.03.25.11.32.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Mar 2024 11:29:55 -0700 (PDT)
-Message-ID: <dc4251d1-8cbb-4a0c-834c-26f16f3f9484@linaro.org>
-Date: Mon, 25 Mar 2024 19:29:54 +0100
+        Mon, 25 Mar 2024 11:32:01 -0700 (PDT)
+Message-ID: <f74a01bd-46a3-46cd-a47a-fcfccd7e4dc6@linaro.org>
+Date: Mon, 25 Mar 2024 19:32:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,14 +77,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: stm32: add heartbeat led for stm32mp157c-ed1
-To: patrice.chotard@foss.st.com, robh+dt@kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- alexandre.torgue@foss.st.com
-Cc: linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240325170656.2829600-1-patrice.chotard@foss.st.com>
+Subject: Re: [PATCH v4 4/7] dt-bindings: iio: accel: adxl345: Add spi-3wire
+To: Lothar Rubusch <l.rubusch@gmail.com>, lars@metafoo.de,
+ Michael.Hennerich@analog.com, jic23@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, eraretuya@gmail.com
+References: <20240325153356.46112-1-l.rubusch@gmail.com>
+ <20240325153356.46112-5-l.rubusch@gmail.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -131,36 +131,41 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240325170656.2829600-1-patrice.chotard@foss.st.com>
+In-Reply-To: <20240325153356.46112-5-l.rubusch@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/03/2024 18:06, patrice.chotard@foss.st.com wrote:
-> From: Patrice Chotard <patrice.chotard@foss.st.com>
-> 
-> Add heartbeat led for stm32mp157c-ed1.
-> 
-> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
-> ---
->  arch/arm/boot/dts/st/stm32mp157c-ed1.dts | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/st/stm32mp157c-ed1.dts b/arch/arm/boot/dts/st/stm32mp157c-ed1.dts
-> index 66ed5f9921ba..bd727455a7e4 100644
-> --- a/arch/arm/boot/dts/st/stm32mp157c-ed1.dts
-> +++ b/arch/arm/boot/dts/st/stm32mp157c-ed1.dts
-> @@ -24,6 +24,15 @@ chosen {
->  		stdout-path = "serial0:115200n8";
->  	};
->  
-> +	led {
-> +		compatible = "gpio-leds";
-> +		led-blue {
-> +			gpios = <&gpiod 9 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "heartbeat";
-> +			default-state = "off";
+On 25/03/2024 16:33, Lothar Rubusch wrote:
+> Add spi-3wire because the driver optionally supports spi-3wire.
 
-Please add function and color properties.
+This is a friendly reminder during the review process.
+
+It seems my or other reviewer's previous comments were not fully
+addressed. Maybe the feedback got lost between the quotes, maybe you
+just forgot to apply it. Please go back to the previous discussion and
+either implement all requested changes or keep discussing them.
+
+Thank you.
+
+> 
+> Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
+> ---
+
+This is a friendly reminder during the review process.
+
+It looks like you received a tag and forgot to add it.
+
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+
+If a tag was not added on purpose, please state why and what changed.
 
 Best regards,
 Krzysztof
