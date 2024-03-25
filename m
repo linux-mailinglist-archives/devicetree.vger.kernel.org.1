@@ -1,68 +1,70 @@
-Return-Path: <devicetree+bounces-52950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48A1888A846
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 17:06:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3101188AB65
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 18:21:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1EA21F3878D
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 16:06:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 338FCBC51AB
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 16:06:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD6376CDC8;
-	Mon, 25 Mar 2024 13:50:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7117C6CDCF;
+	Mon, 25 Mar 2024 13:50:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WUyA8LPm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AHXAU5mL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
+Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C64B5490D
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0AE845BFB
 	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 13:50:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.41
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711374609; cv=none; b=rRVlE2Hxr9wCfIAysU14B7LJUbqj4o0ji0lOTENqaBatHU+dIlVJRv7DJfC7/DXYjLM6ZEztHLRMc6PqKZLu/eEefUWI+juglxLCRYFDVkFkD50WOqwbo10JbwKAMfQgX/o8JQBjH5YSu8GeZKH4esUGyf6QjPh4nPOhIdn/Uac=
+	t=1711374610; cv=none; b=AgXmuuyHwC3mGHyT94ynFt3/gprfD9rI8q1WFdmI7zR6iTE2N5bBn4gzhUGKF8Gk90ooNNP2QKnVH0h+PTIHsE4unKF3w1YfOhLarYdMlvJ3TWxSMZ7bvq5GkMtGbUPO07e/NM7hEWUKgUlIYUBrAB8IWddKQGR01mzWL3wYMqQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711374609; c=relaxed/simple;
-	bh=IHxvsFny4yDLBa0KNPDKPyi62gMH873tsfNUiZtTjYU=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=KyVLZjaRT1rE0u1HriNCUVvUJam8nDXvSJvKFmVJshzr/pZpiHpFV1kxLiHdCG3aACBzlhkIM4n5LURAzP1Q9IcOZNBVYDTeoKuRMJl2Fxdzdyzka3SnRsKyuZNMF6K5osDMn2JC8tgjewK81q/CsvCXJxFfN1oCX2sq4f3O8Po=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WUyA8LPm; arc=none smtp.client-ip=209.85.160.41
+	s=arc-20240116; t=1711374610; c=relaxed/simple;
+	bh=q9M4zIA3ONzCtXDUYXWJF+nh7UxDlHrpYPY8m9fSLIo=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=Pdl01+rQo2C/Ml4hdqShsklOoUiZ5aJY5Ghl1xrJTZbgazpBJOC1YLSM2IGAiOosZZYq4FU7v39C1EVBDH9Pkn7KFo33JoyYdwy0JJ7ZqLeHoc2bEpBClTa9BfbiJ05+1vcANii5pPtlVz2OSh6NfjNnY+3O2D8s922btzw/dTo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AHXAU5mL; arc=none smtp.client-ip=209.85.161.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-2220a3b3871so2146588fac.2
-        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 06:50:07 -0700 (PDT)
+Received: by mail-oo1-f44.google.com with SMTP id 006d021491bc7-5a4859178f1so2370635eaf.0
+        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 06:50:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711374607; x=1711979407; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=TZEm7dLC7DLgBBuXFeLiLeXWBBGx7yk8NhEbIQaE86A=;
-        b=WUyA8LPmiD5mwiL42fveaDVC2SWgU9Qc1fmYl7bxUSZP+EW77DFr4WKDTbjiuTtf/e
-         yu0VPULQJZVJ87DpAgpnjgKJ3IQuPuEjVqLPyDIg1yLNRJJmtPqO951Jc3EHFugxoaFn
-         MUmOn9PfeJoca46aG+CTrB/vwdasFcvtK+3yReFwrn0CUu7E4NpVGBFq2u7ARlslcLur
-         GbDPXi9RpvKTh2BB3W/5rdfDLgb1K4cD9JDX5GY3MyVKyzoz7taRLkhulqficmHIvthy
-         +vYRydAuBJkRqxSGM4HvpF5VoEzLsjnpj6xO7GUcfDpyAZxsn6z5FIVPrtCtOefOrL9p
-         y0Ow==
+        d=gmail.com; s=20230601; t=1711374608; x=1711979408; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BbJkqNdY66C3ZGpPlypuMpUlQgBvGG9nwBs5AHhdlTI=;
+        b=AHXAU5mLiGWoWVbESLPZaztCV7WxKF9CQNq86E8cxJXGa63XY4BQb1QkmpS67KedWG
+         SlOqpTZxqk8gRPgzMHQ2RT6z3JEAKCIJo5iBcpa0GAVV+m8fqQEkAJs/sUtKg4cVs/pi
+         O13Wrt8yy86/wlW/aKch5SL9cLiQY81XNE3rF+g4aY2K7CTNmXdyaTGffJeS7+Vwrn+w
+         gAk3HIVGYLscOudSw2R55AGPPF46Tb27LdQxIb6WT1/RMWt/WUg99qLtvXSMPbRvn89V
+         ohDkLhEP+iUn7mTMB0wwKUbv09rL/tXDhg8uBAKX989KpAjNAN/j0B4IXLe8IYwvORxN
+         wPpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711374607; x=1711979407;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TZEm7dLC7DLgBBuXFeLiLeXWBBGx7yk8NhEbIQaE86A=;
-        b=j6PVwaBe7qadbl74Qvex5cVYVdyVWvBAs6wdKIRfm3SwypUTBMm2fgL3jfR8EeZAJu
-         OXUXQQVhdq6ENK0aV3xa1ntibH5fcBeToYZ+Gusq2fr/MUHkJZjpKWgPmfoH45HmdbUD
-         BF29f1jZ2zqG5VqqyXK9jMh6IEfKnJBScqi2EuooRJNoG7yhKK2N6GjAz8PKYwF8OF5x
-         0wPShePgKVjVAhZTRN0Cpxa1+xtP5EGquZcTKPB7jHQS05kAEcxBozMR5Rpb11syqPPY
-         gLM6v1VbvGLHbVxOr1GhY/Q/EdjYdJ0VVpT6hKAo1ztFUmFS+I69qfvzioW7ieCCIqG/
-         UaTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWp4niHyiovztVkbFx20WOQeSiHl7kJjERKkPRDeE3rP6L3H82aB5aBlL3myS3UATAEWTZT3cV8/ly8wRABkUqtH2d55IWJK/wHmQ==
-X-Gm-Message-State: AOJu0YwxUWdo5K5+I5DRx9E6xzpRU1y3awJUJr3D0lE6+r55USjWyvRG
-	dzuQM+L+Ai/YMjNpHgZCan75NG7IYN7Rz5dCdJFYHR5fEkfLMuXO
-X-Google-Smtp-Source: AGHT+IEuxzOZwBoIMGZhGDau9fYZ1S9BgGTKCMVOyBdlostVlEY2F4PkvLWDocaBgYB5mDFwp371nw==
-X-Received: by 2002:a05:6870:2251:b0:221:5739:a144 with SMTP id j17-20020a056870225100b002215739a144mr7518495oaf.37.1711374607232;
+        d=1e100.net; s=20230601; t=1711374608; x=1711979408;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=BbJkqNdY66C3ZGpPlypuMpUlQgBvGG9nwBs5AHhdlTI=;
+        b=YG36NaKP0Xv0sGSukl+4Q45gwDdPPFSyV7SF6oxMwYDlWUD/m/xPf+ws50rv6LNNYR
+         URoISWuslkJnR4M9Cesb8DteGpuKZv+XeurFb3pghEsEQ+mGvMjPKwpsupB9VkNLLSh8
+         1gR1EvUSYUdqKNaIJ0kEoNBmxM+9HeVXgKxHvfKgzIQelaDCW2X7HDa4rCqmmdHwN9go
+         Oc9el+OI+FythT7GTrDXnnxh+SRS6W5er77Bjg5T2K45t/ZP394+rVziH9mcTnRofhnL
+         CmVfgN2e1O5lW+eX8CaonVfawII1934OTlnghhJS8HRLrzMtzJ4IlNoOYWpe/rxsvLCb
+         /KSg==
+X-Forwarded-Encrypted: i=1; AJvYcCW56sx6CSkjpNnBDdlr0FSeg99kjqkNcVlUZm1Ea1eDPjJacaDONYUxRTuzNaFP4KMLsjrT22cP9UzPmlmwmMeoBcl5iXNaGYE/sg==
+X-Gm-Message-State: AOJu0YwGUpwp9OOhDMOGwc/N1eSS3IF5BgFPYUnmzPWhr3l0lhBniiKs
+	IAYlWSuRXi6ua3o2rM6aYnhaAzuHBJ+9XRjLUKrTRkdoINlzgzQd
+X-Google-Smtp-Source: AGHT+IFn8uSOzi00+o3avwWfZrNmEtyROyQtLHm+wDAbt7YI8gO+mya+YXn8B4WCU3TqBLHIJUo6xg==
+X-Received: by 2002:a05:6870:3041:b0:221:bf34:b15f with SMTP id u1-20020a056870304100b00221bf34b15fmr8485533oau.25.1711374607986;
         Mon, 25 Mar 2024 06:50:07 -0700 (PDT)
 Received: from localhost.localdomain ([75.28.21.198])
-        by smtp.gmail.com with ESMTPSA id z8-20020a05683010c800b006e673e2d2a3sm1118250oto.77.2024.03.25.06.50.06
+        by smtp.gmail.com with ESMTPSA id z8-20020a05683010c800b006e673e2d2a3sm1118250oto.77.2024.03.25.06.50.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Mon, 25 Mar 2024 06:50:07 -0700 (PDT)
 From: Chris Morgan <macroalpha82@gmail.com>
@@ -82,10 +84,12 @@ Cc: dri-devel@lists.freedesktop.org,
 	krzysztof.kozlowski+dt@linaro.org,
 	robh@kernel.org,
 	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH 0/5] Add Support for RK3326 GameForce Chi
-Date: Mon, 25 Mar 2024 08:49:54 -0500
-Message-Id: <20240325134959.11807-1-macroalpha82@gmail.com>
+Subject: [PATCH 1/5] dt-bindings: vendor-prefix: Add prefix for GameForce
+Date: Mon, 25 Mar 2024 08:49:55 -0500
+Message-Id: <20240325134959.11807-2-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240325134959.11807-1-macroalpha82@gmail.com>
+References: <20240325134959.11807-1-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,41 +100,28 @@ Content-Transfer-Encoding: 8bit
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-Add support for the GameForce Chi [1].
+GameForce is a company that produces handheld game consoles.
 
-The GameForce Chi has the following hardware:
-Tested:
- - 3.5" dual lane 640x480 DSI display.
- - 15 GPIO based face buttons.
- - 2 ADC based face buttons.
- - 1 ADC joystick (left) connected to internal SARADC.
- - RGB LED arrays for key backlighting
- - Dual internal speakers.
- - Realtek RTL8723BS SDIO WiFi.
- - Single SDMMC slot.
+https://gameforce.fun/
 
-Not Working (with notes in device-tree):
- - Bluetooth - missing firmware
- - 1 ADC joystick (right) connected to unknown UART based ADC.
+Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-[1] https://gameforce.fun/pages/gallery-of-gameforce-retro-gaming-handheld
-
-Chris Morgan (5):
-  dt-bindings: vendor-prefix: Add prefix for GameForce
-  dt-bindings: display: Add GameForce Chi Panel
-  drm/panel: st7703: Add GameForce Chi Panel Support
-  dt-bindings: arm: rockchip: Add GameForce Chi
-  arm64: dts: rockchip: Add GameForce Chi
-
- .../devicetree/bindings/arm/rockchip.yaml     |   5 +
- .../display/panel/rocktech,jh057n00900.yaml   |   2 +
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../dts/rockchip/rk3326-gameforce-chi.dts     | 811 ++++++++++++++++++
- drivers/gpu/drm/panel/panel-sitronix-st7703.c |  87 ++
- 6 files changed, 908 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3326-gameforce-chi.dts
-
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index b97d298b3eb6..3def72060414 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -529,6 +529,8 @@ patternProperties:
+     description: FX Technology Ltd.
+   "^galaxycore,.*":
+     description: GalaxyCore Inc.
++  "^gameforce,.*":
++    description: GameForce
+   "^gardena,.*":
+     description: GARDENA GmbH
+   "^gateway,.*":
 -- 
 2.34.1
 
