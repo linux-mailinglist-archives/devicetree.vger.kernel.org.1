@@ -1,119 +1,107 @@
-Return-Path: <devicetree+bounces-53105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 684F088AF15
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 19:55:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4977A88AF43
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 20:05:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A2671C612C5
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 18:55:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F27531F3E9ED
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 19:05:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78FCC803;
-	Mon, 25 Mar 2024 18:55:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18B26610D;
+	Mon, 25 Mar 2024 19:05:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ce19zb8U"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xm6uYaT8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B6B84A1E;
-	Mon, 25 Mar 2024 18:55:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDAF44C92;
+	Mon, 25 Mar 2024 19:05:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711392907; cv=none; b=gUzhP1f+ZlLqxCoSjnGOFPVguNVegrMmfjDyjiBRPJU730nwpJ7JgPI3hDiJIB7zRzJGUpWCPCUMjeTiPBopjwOjlN+/OmiZ2cwNQvUpEgB4Y5SeIJ1fhwdSCE6UbXm9N6LQYlM0zdLnJthyjNZgG8GrRGbH92y0FjjL1jsMtl8=
+	t=1711393501; cv=none; b=s5e4JNqPXnv5O7L76duyI/wkTO+E9mnxUpsCgE8+b0BRZGuVBAv5LarMf9hPGMqgjCToxwo9WxLDqg6JV/9KAPZktPmnp5adsUFbH9dce6YT8d1nIARXm/STv05dkHrux3QUEenmQQmp8vzayLmif2eJNm6wKGWYvXLxvblqIFw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711392907; c=relaxed/simple;
-	bh=HuXoZCdostDrFpH15Qo3iGpc1ljZlvUtdVpgd37wLHo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qwbIgQgOnqjf8DEwuVbR0Q/BXc2vzIDBEyQhm/tRAgGlPO1lWuWJvY7SMfdHEC/A8+eZ6SORGVaDgYXzusXrds6S4SAKbqi/FQV7gVn/Jpi5Vh42bpuG5GQKF/VAnfmMbtSq47XaXvX8G/udQBznjL3Zoxg6SoeP5bMQaXy7LMY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ce19zb8U; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2307EC433C7;
-	Mon, 25 Mar 2024 18:55:02 +0000 (UTC)
+	s=arc-20240116; t=1711393501; c=relaxed/simple;
+	bh=PCXWRBZ3KUg5nUnH8IGx9fSZU8eB9QHi4G/KXrmD2Zk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Sp/Vq0w2DQtlOU3IloUGBJskXP7+pIkepe20BYwi454/VC6rEpc4Hl0m+xV9BPUTLLg146UdeGCz25y2e8ZQTYGBcQMNhNfiktX0I4CEVGpx1PpinZB4tF2zIP/6hEldS4TyxdrnQfChh9Z2CZcScR1mxClcJNaNUczxQrPGTac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xm6uYaT8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC2B8C433F1;
+	Mon, 25 Mar 2024 19:04:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711392906;
-	bh=HuXoZCdostDrFpH15Qo3iGpc1ljZlvUtdVpgd37wLHo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ce19zb8UiLDL/1zxhZ2Pft835jYvZSG/haMhGYB7Wr2/B7KgAjJETbCGZ1HkZUeMm
-	 d9hyQtVHhD+Prd3NdwNNTn9omf4z6XuT7w3QP/trwofP8e5qYRzww8ECSVzDWtxlqY
-	 VJ5ZpHx1BWflb4mM3IKjNAzQiD6K1TNx+WM28ZBQDWe4cxXw/YNt9trolRDT9BT3yS
-	 hoHjQjByNNuLGDCCVu5fBsbVK6lWXZJhRlDsPIHiToFVIACCFcJZP5JmVSD+q2mMDz
-	 nF5WmX2WGL4V05qDATkYQEN+d1SHNXgMHbu/rZ0e7rNXJ13zs7feD0N82eNmCUiZEB
-	 GQOjlubp/Kriw==
-Date: Mon, 25 Mar 2024 18:55:00 +0000
-From: Conor Dooley <conor@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-media@vger.kernel.org, mchehab@kernel.org, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	matthias.bgg@gmail.com, amergnat@baylibre.com,
-	moudy.ho@mediatek.com, hverkuil-cisco@xs4all.nl,
-	sebastian.fricke@collabora.com, u.kleine-koenig@pengutronix.de,
-	chunkuang.hu@kernel.org, p.zabel@pengutronix.de,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH 1/4] dt-bindings: soc: mediatek: Add support for MT8188
- VPPSYS
-Message-ID: <20240325-sternness-capsize-f01e69fd5b51@spud>
-References: <20240322092845.381313-1-angelogioacchino.delregno@collabora.com>
- <20240322092845.381313-2-angelogioacchino.delregno@collabora.com>
- <20240322-lugged-tabloid-3d5a85dc58d0@spud>
- <f90b2c8b-6eb3-46dc-abcc-600248218b4e@collabora.com>
+	s=k20201202; t=1711393500;
+	bh=PCXWRBZ3KUg5nUnH8IGx9fSZU8eB9QHi4G/KXrmD2Zk=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Xm6uYaT8FsQir59HCSm1zzR2KDNdLZQRG9aCcNX3/Zh88DVwtYNAYjaFe+XgxWnoR
+	 qtxYUziyHqAgnkyg8eZidqqDwzP8qTteuN9S4QK5zAXxX3JUMdaUsh2jeTjWVIU1Dg
+	 T2HREYnAK1e0+V9Z3Ctjo9X5XT8WBkQYRmva8kOfmGEX9D/CAGGyI4w6tASPxtKIUK
+	 LlouIXt8BIKWTJCoBvtUU0cgsmVmmx4GePPi45O3v1QEWU9iD8JyVEwnuZS+bQQqQc
+	 fIE3aie2ImuX1J6wCP9UUc4zOcsCOcaUW59W70Gb1s97pZvjaVGuauDQjQHf7l2+8t
+	 tKGKi8BPAi11Q==
+Date: Mon, 25 Mar 2024 19:04:41 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Julien Stephan <jstephan@baylibre.com>, Lars-Peter Clausen
+ <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+ <broonie@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel test robot
+ <lkp@intel.com>
+Subject: Re: [PATCH v5 7/7] iio: adc: ad7380: add support for ad738x-4 4
+ channels variants
+Message-ID: <20240325190441.6387056d@jic23-huawei>
+In-Reply-To: <CAMknhBH0E258geq8WOKf3X0r7VngdDoSfNB5g6KTGBzEoUtMqA@mail.gmail.com>
+References: <20240319-adding-new-ad738x-driver-v5-0-ce7df004ceb3@baylibre.com>
+	<20240319-adding-new-ad738x-driver-v5-7-ce7df004ceb3@baylibre.com>
+	<20240324131059.77fa8e68@jic23-huawei>
+	<CAMknhBH0E258geq8WOKf3X0r7VngdDoSfNB5g6KTGBzEoUtMqA@mail.gmail.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="IcmFJ4HTwNob2iDV"
-Content-Disposition: inline
-In-Reply-To: <f90b2c8b-6eb3-46dc-abcc-600248218b4e@collabora.com>
-
-
---IcmFJ4HTwNob2iDV
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Mar 25, 2024 at 09:23:58AM +0100, AngeloGioacchino Del Regno wrote:
-> Il 22/03/24 18:42, Conor Dooley ha scritto:
-> > On Fri, Mar 22, 2024 at 10:28:42AM +0100, AngeloGioacchino Del Regno wr=
-ote:
-> > > Add compatible for MT8188 VPP mutex.
-> > >=20
-> > > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@=
-collabora.com>
-> >=20
-> > You should at least mention the difference between this any anything
-> > else.
-> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+On Mon, 25 Mar 2024 10:01:29 -0500
+David Lechner <dlechner@baylibre.com> wrote:
+
+> On Sun, Mar 24, 2024 at 8:11=E2=80=AFAM Jonathan Cameron <jic23@kernel.or=
+g> wrote:
+> >
+> > On Tue, 19 Mar 2024 11:11:28 +0100
+> > Julien Stephan <jstephan@baylibre.com> wrote:
+> > =20
+> > > Add support for ad7380/1/2/3-4 parts which are 4 channels
+> > > variants from ad7380/1/2/3
+> > >
+> > > Signed-off-by: Julien Stephan <jstephan@baylibre.com> =20
+> > This and other patches I didn't comment on all look good to me.
+> > So just those minor few bits and bobs for v6 and I'll pick this up
+> > if nothing else comes in.
+> > =20
 >=20
-> It's exactly always the same difference for MuteX blocks: different bits =
-to
-> activate mute for some IP ... but yeah, you're right, I'll shoot a word a=
-bout
-> this in the commit description on v2 (waiting a bit before doing that any=
-way).
+> Hi Jonathan, as a reminder, this is the driver we dropped from the 6.9
+> cycle. We still don't have a patch prepared for the resolution boost
+> feature that may require us to reconsider some of our userspace
+> interface choices here. Hopefully we can get that sorted out in the
+> next 6 weeks, but I just wanted to make you aware ahead of time so
+> that we don't end up in the same situation in case things don't go as
+> planned again. Do you have "usual" way you prefer to handle a
+> situation like this?
 
-Yah, I'm just pointing it out because it goes from an immediate ack to
-having check the binding in-tree to see that this is an enum (although
-that's due to the shitty looking diff that you can't avoid) and check
-the driver patch to see that this is in fact a difference before
-acking. I wouldn't bother sending a v2 if this was the only thing, seems
-like a waste of your effort.
+My preferences:
 
---IcmFJ4HTwNob2iDV
-Content-Type: application/pgp-signature; name="signature.asc"
+Post as an RFC with a comment on what is unresolved.
+I'll still review the RFC but won't apply until you let me know it's
+good to go (ideally by posting a non RFC version)
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgHIhAAKCRB4tDGHoIJi
-0qyCAPwNc6YpOHxH4MFoBa+5ozXwV4HdU7nhnOAxax2hDSnLdgD8Dsn7gmIq7ESV
-cdzVJ3ykJWesyZCqaJEg8C/OPtEIiw4=
-=6BOw
------END PGP SIGNATURE-----
-
---IcmFJ4HTwNob2iDV--
+Jonathan
 
