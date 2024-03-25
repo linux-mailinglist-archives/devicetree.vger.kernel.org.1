@@ -1,184 +1,103 @@
-Return-Path: <devicetree+bounces-52787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52789-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC3F18898C9
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 10:50:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D07F188963F
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 09:48:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E7A82A83A2
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 09:50:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 870B41F3158A
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 08:48:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C07F5127B77;
-	Mon, 25 Mar 2024 05:12:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE9B2131E23;
+	Mon, 25 Mar 2024 05:31:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="jZtDyWln"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h9k94xcb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C21941292F6
-	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 01:26:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4927D14A602;
+	Mon, 25 Mar 2024 01:54:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711329972; cv=none; b=ogModiRxMASj958ZRXDDWr7GuYtN0x3GRQUXiEfaq9oiooKefTh/v3qcMvdRwdREf3jkg1Z6dR9X3vevnUuFEIZf35VLKDA0syTDzldWYi6wRAwA4RY1++LfIuZoTA5EAUcBQ16pF0fvhRwXFZiG1gwNL8Of5momZcByei9m7IA=
+	t=1711331663; cv=none; b=s+Og1v+sz5Cu9YYB0bLFQFGIEh86DhtXeRa9mQCECeHyMoHfnjupBsbvGG/8lEezaoabwLfrMYKqyz1fbaTFw9QxOLtX2V3DT+TGupkf6fcgcP9/j8kFsKwOz3iq/lfpeTyxMLN4D0bGedNhcKMcILHaejPQXhhBVWGYX8vOS+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711329972; c=relaxed/simple;
-	bh=TkNgras5ZUpGkbxWjPcva7sUuxVdARVYD58kLBCBPgU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DaKGgw2Kcz1NqN8CbkFGlmhyALzjiLbh+ZwbbwOMffVbdZUOVk964DbVNL3XGoLJXyKRfbHx0kbLTz2m/0pJFc85UtTxbK6TpzokVLb23s0bI6MIumYL/Sbr11CnSprYLYOarhp3S8gDr4w1HJXhwCzwWkqbFytEXvhQ0C8z38M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=jZtDyWln; arc=none smtp.client-ip=209.85.219.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-qv1-f50.google.com with SMTP id 6a1803df08f44-6968a5d1b47so4331496d6.1
-        for <devicetree@vger.kernel.org>; Sun, 24 Mar 2024 18:26:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1711329969; x=1711934769; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y0Dbx4/AQEaK3b87iVLlgcHWjdXiKW8/SKBtYSvJ4l8=;
-        b=jZtDyWlnLVFhljDgXn57ijKmJOY8U7jwzYweh8AoMPEAKBpiqplKxUPA4XSGABxpn2
-         wYej31r7gngsrvHP/vY2z6UWuYiWEMsyGehYMN4WC4upfMqyBrkjDIflumiV0q0dhMRQ
-         69GV4Cd+Tzyr4r0ZMPuY6W8BHOT/pngFwwU+s=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711329969; x=1711934769;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Y0Dbx4/AQEaK3b87iVLlgcHWjdXiKW8/SKBtYSvJ4l8=;
-        b=n+fe6IqGKS8iM0Y9ukX3Yf/5cj4wXawsJF2jGw6uXo5xjMnk/5eGDykbuASAanpfpT
-         y8VOXyGn1bHKZNFEgiAfYvJsFbkZtmG9NkJcNtKtcO8Vome0FOq8rjRZRcYkWL3NnkDj
-         2EClopg7lDnmaK0ZknDIF2SEsEhi5AJog+3bjhD+V/ytc32ob3mNnso+oeasSgpwhi1k
-         9lEXBLo8J+hGtzEUSWSL/OTOrtaCixXg4rj83Wvwrp1dSiAxtvk3SuiD2a1QEoG4RRND
-         wEV9Db+SA8bXK2U7zsNSNKvo84hOSj+pO014SgMEARnZena/wh8efDwdLfr9zAWeZE6R
-         XBVQ==
-X-Gm-Message-State: AOJu0Yzo9PjfemMrMeD4LWT7pSlN+8dq7OQ/SOLNYXopN/X2uLty7s9k
-	852nIk7BXT+2lX/pyYgt+07RFNMVOHX+eKf8iDV+rcuDGB0bSsdyv3J5XH6EnBpUrSTczCVDDjn
-	9K+9bS5Yf+4EliXxsSjMkLXMD9oAtdu6pE+Ao
-X-Google-Smtp-Source: AGHT+IF8k6IEgNL4Ml3wABhG3s1RLLEjzUk0aITApXvBMpCMHfkjVmDSrsKoCpsIrVx5U2+VbKSHOEy12MRmxPAYxkg=
-X-Received: by 2002:a05:6214:410:b0:690:a576:2a2c with SMTP id
- z16-20020a056214041000b00690a5762a2cmr6745531qvx.32.1711329968724; Sun, 24
- Mar 2024 18:26:08 -0700 (PDT)
+	s=arc-20240116; t=1711331663; c=relaxed/simple;
+	bh=3uYZHwDwMvbZsbPB9A8Yw6hlzifQeyqRpNoGZWbsN+k=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=pE4r8+7RgNIwwOAOSnVOTmtLdX2uDbmura8OZtnoAHM2kSNPjfXpRn0wE6aVzrZe4oa04rx1pVdBKCYfOfPXJB+zUdQ1AJBxEhE0mPOfaj6ssu5vrc10LzySpsXTRhTQnVkRsTD5lF9GCAsgwrRfe5badSZ2DSJAFewOmk4+goA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h9k94xcb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 92EA7C43141;
+	Mon, 25 Mar 2024 01:54:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711331662;
+	bh=3uYZHwDwMvbZsbPB9A8Yw6hlzifQeyqRpNoGZWbsN+k=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=h9k94xcbzJ8umZuKaQRlTjbGGULOk4jiUy+LTnqdw+5V0UeEaeG2CccGQ5FoT6wmp
+	 Bc7nwkoDuWl2JWkhsNf8c/jAhkXnsvmpwuAhNnCI7Syw0XkmEo6fiLXTkHnbtCUBpP
+	 +lCVm3kgaGGxFz0w+K3m0jDpgzeE96ybpByO+uvG+Yu8GN10by+bQJkUBtUPPc4SSA
+	 qd0I6OD9ZsUXcTvjDA+kNSOCHOwWyGVt5rxFDpNZSgmpPnfRoCL4Rm9Nt937fcnz0o
+	 WMTcuCiC5uQ7lecp/2nEZh3Cc0ZYcITDSjLAENZxAyzgMJ99vP3lJhLY6IwtsLhHc4
+	 BwNKmpQAXlfAQ==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 7E659D2D0E6;
+	Mon, 25 Mar 2024 01:54:22 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240320052449.175786-1-sjg@chromium.org> <20240320052449.175786-2-sjg@chromium.org>
- <20240321134917.GA1625959-robh@kernel.org>
-In-Reply-To: <20240321134917.GA1625959-robh@kernel.org>
-From: Simon Glass <sjg@chromium.org>
-Date: Mon, 25 Mar 2024 14:25:57 +1300
-Message-ID: <CAFLszThbC7PDnJk8pXS2bNN9ebntoOJ-7xxkFU_LCm4Jg-km4w@mail.gmail.com>
-Subject: Re: [PATCH v9 2/2] dt-bindings: mtd: fixed-partition: Add binman compatibles
-To: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-mtd@lists.infradead.org, 
-	Michael Walle <mwalle@kernel.org>, Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v2] gpio: Add ChromeOS EC GPIO driver
+From: patchwork-bot+chrome-platform@kernel.org
+Message-Id: 
+ <171133166251.9916.2499455576829331445.git-patchwork-notify@kernel.org>
+Date: Mon, 25 Mar 2024 01:54:22 +0000
+References: <20240220045230.2852640-1-swboyd@chromium.org>
+In-Reply-To: <20240220045230.2852640-1-swboyd@chromium.org>
+To: Stephen Boyd <swboyd@chromium.org>
+Cc: linus.walleij@linaro.org, brgl@bgdev.pl, linux-kernel@vger.kernel.org,
+ patches@lists.linux.dev, devicetree@vger.kernel.org,
+ chrome-platform@lists.linux.dev, dianders@chromium.org,
+ treapking@chromium.org, linux-gpio@vger.kernel.org, lee@kernel.org,
+ bleung@chromium.org, groeck@chromium.org
 
-Hi Rob,
+Hello:
 
-On Fri, 22 Mar 2024 at 02:49, Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, Mar 20, 2024 at 06:24:49PM +1300, Simon Glass wrote:
-> > Add two compatibles for binman entries, as a starting point for the
-> > schema.
-> >
-> > Note that, after discussion on v2, we decided to keep the existing
-> > meaning of label so as not to require changes to existing userspace
-> > software when moving to use binman nodes to specify the firmware
-> > layout.
-> >
-> > Note also that, after discussion on v6, we decided to use the same
-> > 'fixed-partition' schema for the binman features, so this version
-> > adds a new 'binman.yaml' file providing the new compatibles to the
-> > existing partition.yaml binding.
-> >
-> > Signed-off-by: Simon Glass <sjg@chromium.org>
-> > ---
-> >
-> > (no changes since v8)
-> >
-> > Changes in v8:
-> > - Switch the patch ordering so the partition change comes first
-> >
-> > Changes in v7:
-> > - Adjust MAINTAINERS entry
-> > - Put compatible strings into the 'fixed-partition' binding
-> >
-> > Changes in v5:
-> > - Add mention of why 'binman' is the vendor
-> > - Drop  'select: false'
-> > - Tidy up the compatible setings
-> > - Use 'tfa-bl31' instead of 'atf-bl31'
-> >
-> > Changes in v4:
-> > - Correct selection of multiple compatible strings
-> >
-> > Changes in v3:
-> > - Drop fixed-partitions from the example
-> > - Use compatible instead of label
-> >
-> > Changes in v2:
-> > - Use plain partition@xxx for the node name
-> >
-> >  .../bindings/mtd/partitions/binman.yaml       | 49 +++++++++++++++++++
-> >  .../bindings/mtd/partitions/partition.yaml    | 21 ++++++++
-> >  MAINTAINERS                                   |  5 ++
-> >  3 files changed, 75 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/binman.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/mtd/partitions/binman.yaml b/Documentation/devicetree/bindings/mtd/partitions/binman.yaml
-> > new file mode 100644
-> > index 000000000000..83417ad5cee9
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mtd/partitions/binman.yaml
-> > @@ -0,0 +1,49 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/mtd/partitions/binman.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Binman entries
-> > +
-> > +description: |
-> > +  TBD
->
-> ?
+This patch was applied to chrome-platform/linux.git (for-kernelci)
+by Bartosz Golaszewski <bartosz.golaszewski@linaro.org>:
 
-Oh yes, I forgot to put that back when I reworked all these again.
+On Mon, 19 Feb 2024 20:52:27 -0800 you wrote:
+> The ChromeOS embedded controller (EC) supports setting the state of
+> GPIOs when the system is unlocked, and getting the state of GPIOs in all
+> cases. The GPIOs are on the EC itself, so the EC acts similar to a GPIO
+> expander. Add a driver to get and set the GPIOs on the EC through the
+> host command interface.
+> 
+> Cc: Lee Jones <lee@kernel.org>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Bartosz Golaszewski <brgl@bgdev.pl>
+> Cc: Benson Leung <bleung@chromium.org>
+> Cc: Guenter Roeck <groeck@chromium.org>
+> Cc: <linux-gpio@vger.kernel.org>
+> Cc: <chrome-platform@lists.linux.dev>
+> Cc: Pin-yen Lin <treapking@chromium.org>
+> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+> 
+> [...]
 
->
-> > +
-> > +maintainers:
-> > +  - Simon Glass <sjg@chromium.org>
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/mtd/partitions/partition.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - binman,entry # generic binman entry
->
-> As-is, 'binman' would need to be added to vendor-prefixes.yaml.
->
-> However, I think just 'binman' would provide just as much information.
-> But really, does it provide anything? What would be the difference
-> between this and no compatible?
+Here is the summary with links:
+  - [v2] gpio: Add ChromeOS EC GPIO driver
+    https://git.kernel.org/chrome-platform/c/f837fe1bffe6
 
-In Binman this is the base class ('entry') for all entry types that it
-understands. I don't expect we would actually use this since it does
-not define what the contents are.
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-So I can remove this line.
 
-Regards,
-Simon
 
