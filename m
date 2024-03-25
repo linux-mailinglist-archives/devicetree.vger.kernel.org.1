@@ -1,102 +1,213 @@
-Return-Path: <devicetree+bounces-53182-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53183-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6269688B330
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 22:53:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD12388B338
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 22:54:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 934F61C32894
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 21:53:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DBC0C1C3C49C
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 21:54:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F02736F517;
-	Mon, 25 Mar 2024 21:53:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A0AF6FE09;
+	Mon, 25 Mar 2024 21:54:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eLVQ5GoF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92E236FE11
-	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 21:53:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55DC76F517
+	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 21:54:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711403591; cv=none; b=snAazFYpyQZrvu9AnnC3fdMUy2S7tZUJnj+150Wy6erAktrXK5AztPQwYNY1/ZzQmnjkU26td5N28JUbJ7r15FEvwDKb7cZlE78xuNVSXxnVqXMvrXAsopiDraz2XMqsrWE8RduiYwqSw6V+zBKN+Cd1iw/dtmkduBFzsIgKyNg=
+	t=1711403646; cv=none; b=IkKQp4ABLxzfNIHM9Ylz9qOamPGhR+kcjrmEz8YOt6h1YzPNvrBBMe3kHf1Ke3B1H9d9CwlDJ0YyLzWsLR61MqlQHlKRjJo5Eg+CJGHWeRAKePQxnQjyKnTfBgW8Smzz+M6OsFVLjna0QodoO1ZsPusmfBucmdb2dwga6NVFY84=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711403591; c=relaxed/simple;
-	bh=tsLrYTiowfyn60jULAu7pCAGPr9bVoOouKUILMASPG0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=XJ4aEA27Iwnb9P7qm9dkgnl0BMpZYpU52gCbbl1ZAz8+5+m2BV7m17Atf5SYkdGKqY43xOIZSNtLlOYhiEjTKEctK5IEmBxbsvXUj70lHJqSIE65kcF5Bb8O/X7FxAxkDzK1//uTJeDWEHNUDsEtkDV6k0WJuvWlCtCkesvxqo4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875aaf.versanet.de ([83.135.90.175] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1rosFb-0003lL-IN; Mon, 25 Mar 2024 22:53:03 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Chris Morgan <macroalpha82@gmail.com>, Dragan Simic <dsimic@manjaro.org>
-Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, robh@kernel.org,
- Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH 0/4] User Requested Fixes for Powkiddy RK3566 Devices
-Date: Mon, 25 Mar 2024 22:53:02 +0100
-Message-ID: <2854897.88bMQJbFj6@diego>
-In-Reply-To: <5e2f0da3fc066cf1faddda71bb6ea2e7@manjaro.org>
-References:
- <20240325175133.19393-1-macroalpha82@gmail.com>
- <5e2f0da3fc066cf1faddda71bb6ea2e7@manjaro.org>
+	s=arc-20240116; t=1711403646; c=relaxed/simple;
+	bh=nL+Uzlfw/AaAFx1mcC0U5lbqyulPaq575q6dcQpJgK4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=n8lyvdJH5O0zMDzoatlZ9hNZZg64KzVfriRwQhP2HizkGYugrKTcAOq/385Rh4qI2AD+fQgOIz6MFIPr/l8c2XQ+kmJdc/hmHbDFe4y5WkghVkX+rDKoDTV6Y2Gh9g0iLBxlgtMb6RgYUzvJ4oZd9aFu4tSs0WS0jVCgyjIFhiU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eLVQ5GoF; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a474d26fb41so230809266b.2
+        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 14:54:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1711403643; x=1712008443; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=rWkdxwCEceF+/Lm+DvMTGD7B4AzBOLQ6FiIdwSXTWbs=;
+        b=eLVQ5GoFPkbs5YsHPE0BhyGz8X5YFfjebmwjv4l17nOsg7VMxdAObpHteeYUgcLOn+
+         QGDLo2k5gZBs5/v/Ui28Qw5tmOIjAtuQdYsmdkHOjyPA1sh71Vk0Is14ZEtRQIrWATBZ
+         7CPYlHZuvOWDcBkWs0EsFwWTXZAt/F+3XPP0xwAFl4smWUauYQAsdQ30z6AMLlZE5OSh
+         38pvvudIh6zQzCaKpo5xINSlke1h+/A4ZzjbzKQyDjm5Qi5OIF8kZqBh450/hhFcSK3w
+         Rzxh+4vLPzkL++m+lBS8KO2yA99mNQCrUQ/NqK4xBhT1iY0sz7aRj/Bjmoo0P0DztOVE
+         aFnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711403643; x=1712008443;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rWkdxwCEceF+/Lm+DvMTGD7B4AzBOLQ6FiIdwSXTWbs=;
+        b=pX74YANxG3KqdjQ1PoN/blp3GBp3El1Tre3ZfdES4Ev1Iej5TTgSou4hYW+j3l8UHO
+         bdNOYxJmlxRB5XoZ0C3lZuaCAKYLEwkgg6GFgFPNC4CSFk7tXt7q0i8VvjQjkhVn2NCb
+         WUqpYxPZ3L7sgAXfv10YsaUxsGWbyMWPv5hDoS6YvztMZbDfCCT5nPdH5gjtRB1Gde3S
+         kuLvSbUppzx8GJdRG0XQJ5mo6AmaHHVoYZ0xPKYtrkRt4eC9W7rAxge6Pzw86avx6jbH
+         xR8sey269ul1uWnXlt423QNhtofXm1hYvCitbkPr8UeXnH44YcWFl7YKpEk78PcLSqYn
+         dNuQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWS4ZTlcmfo53MjBzXhNCniJEYYMiy1j7DCwLcJ34YJtoZvQ15x5VgwqrVMPHfyi4Ta3xKTS6l2NmsgUpqaijHjpDz+BbzOSdpueg==
+X-Gm-Message-State: AOJu0YyoexzXFOpm/Q3aWwfXHcpTVi0IfPSCh0cuyYFsfFXl0hN88MA7
+	fVPkqWstNM9a4xyoPI+R8ibJaYRG1i0KUOVoGVTnuH6Yyn3ubiRtFXxCjOyCg40=
+X-Google-Smtp-Source: AGHT+IG7qNlR1X29KZcs7p5CEho85/VXgcbCXQHPb8ot+hckQCdkCOZRVe5k1lbC2ZMrN36t5Wv0Fg==
+X-Received: by 2002:a17:906:4a1a:b0:a46:aed5:2552 with SMTP id w26-20020a1709064a1a00b00a46aed52552mr5578519eju.45.1711403642692;
+        Mon, 25 Mar 2024 14:54:02 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.44])
+        by smtp.gmail.com with ESMTPSA id h4-20020a1709060f4400b00a4628cacad4sm3445416ejj.195.2024.03.25.14.54.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Mar 2024 14:54:02 -0700 (PDT)
+Message-ID: <de4c8f93-b688-4607-9aa5-bb061c947963@linaro.org>
+Date: Mon, 25 Mar 2024 22:54:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/4] virt: vmgenid: change implementation to use a
+ platform driver
+To: Sudan Landge <sudanl@amazon.com>, tytso@mit.edu, Jason@zx2c4.com,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ sathyanarayanan.kuppuswamy@linux.intel.com, thomas.lendacky@amd.com,
+ dan.j.williams@intel.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: graf@amazon.de, dwmw@amazon.co.uk, bchalios@amazon.es,
+ xmarcalx@amazon.co.uk
+References: <20240325195306.13133-1-sudanl@amazon.com>
+ <20240325195306.13133-3-sudanl@amazon.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240325195306.13133-3-sudanl@amazon.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Am Montag, 25. M=E4rz 2024, 18:57:06 CET schrieb Dragan Simic:
-> Hello Chris,
->=20
-> On 2024-03-25 18:51, Chris Morgan wrote:
-> > From: Chris Morgan <macromorgan@hotmail.com>
-> >=20
-> > Users have requested fixes for Powkiddy devices to help with some
-> > intermittent WiFi issues by adding additional properties to the
-> > SDMMC2 node. They have also requested that the model name be
-> > represented consistently with both the manufacturer name and model
-> > name. Lastly, there exists a second configuration of the RGB30 with
-> > a slightly different regulator layout we need to describe.
-> >=20
-> > I have added the new/additional property of "chasis-type" as well.
->=20
-> Shouldn't this series be labeled as v2?
+On 25/03/2024 20:53, Sudan Landge wrote:
+> Re-implement vmgenid as a platform driver in preparation
+> for adding devicetree bindings support in next commits.
+> 
+> Signed-off-by: Sudan Landge <sudanl@amazon.com>
+> ---
+>  drivers/virt/vmgenid.c | 101 ++++++++++++++++++++++++++++++-----------
+>  1 file changed, 74 insertions(+), 27 deletions(-)
+> 
+> diff --git a/drivers/virt/vmgenid.c b/drivers/virt/vmgenid.c
+> index ea956df02874..d5394c706bd9 100644
+> --- a/drivers/virt/vmgenid.c
+> +++ b/drivers/virt/vmgenid.c
+> @@ -11,6 +11,8 @@
+>  #include <linux/module.h>
+>  #include <linux/acpi.h>
+>  #include <linux/random.h>
+> +#include <acpi/actypes.h>
+> +#include <linux/platform_device.h>
 
-I think this is for Powkiddy handhelds, the other series was
-for Anberic ones.
+Do not add headers to the end of lists.
 
-Somehow they design and build seemingly dozens of somewhat
-similar handhelds around the rk3566 ;-)
+>  
+>  ACPI_MODULE_NAME("vmgenid");
+>  
+
+...
+
+>  
+> -static struct acpi_driver vmgenid_driver = {
+> -	.name = "vmgenid",
+> -	.ids = vmgenid_ids,
+> -	.owner = THIS_MODULE,
+> -	.ops = {
+> -		.add = vmgenid_add,
+> -		.notify = vmgenid_notify
+> -	}
+> +static struct platform_driver vmgenid_plaform_driver = {
+> +	.probe      = vmgenid_add,
+> +	.driver     = {
+> +		.name   = "vmgenid",
+> +		.acpi_match_table = ACPI_PTR(vmgenid_ids),
+
+ACPI_PTR does not make sense. If this can be compile tested !ACPI, then
+this is wrong. If this cannot be compile tested, then this is redundant
+and confusing so... also wrong.
+
+> +		.owner = THIS_MODULE,
+> +	},
+>  };
+>  
+> -module_acpi_driver(vmgenid_driver);
+> +static int vmgenid_platform_device_init(void)
+> +{
+> +	return platform_driver_register(&vmgenid_plaform_driver);
+> +}
+> +
+> +static void vmgenid_platform_device_exit(void)
+> +{
+> +	platform_driver_unregister(&vmgenid_plaform_driver);
+> +}
+> +
+> +module_init(vmgenid_platform_device_init)
+> +module_exit(vmgenid_platform_device_exit)
+
+Why this cannot be module_platform_driver?
 
 
-> By the way, regarding renaming the mmcX aliases, maybe that would
-> actually be doable, but only if you have full control over software
-> that runs on these devices.
->=20
-> > Chris Morgan (4):
-> >   dts: rockchip: Add chasis-type for Powkiddy rk3566 devices
-> >   arm64: dts: rockchip: Update sdmmc node for wifi on powkiddy rk3566
-> >   arm64: dts: rockchip: Correct model name for Powkiddy RK3566 Devices
-> >   arm64: dts: rockchip: Describe Alternate Regulator Config on RGB30
-> >=20
-> >  .../dts/rockchip/rk3566-powkiddy-rgb30.dts    | 30 ++++++++++++++++++-
-> >  .../dts/rockchip/rk3566-powkiddy-rk2023.dts   |  6 +++-
-> >  .../dts/rockchip/rk3566-powkiddy-rk2023.dtsi  |  4 +++
-> >  .../boot/dts/rockchip/rk3566-powkiddy-x55.dts |  4 +++
-> >  4 files changed, 42 insertions(+), 2 deletions(-)
->=20
 
-
-
+Best regards,
+Krzysztof
 
 
