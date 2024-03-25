@@ -1,90 +1,95 @@
-Return-Path: <devicetree+bounces-52915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 731B388ACD3
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 19:01:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3193E88A6E6
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 16:39:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A875DBA6EDD
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 15:31:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB96B2E55B7
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 15:39:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99F9B13E3E3;
-	Mon, 25 Mar 2024 12:52:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8E7455C1D;
+	Mon, 25 Mar 2024 13:14:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fiGPx4QM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 578341758F;
-	Mon, 25 Mar 2024 12:52:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76F0B58122;
+	Mon, 25 Mar 2024 13:14:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711371145; cv=none; b=FEMUJ+T1Ll4CmLgO4jQ6Q1LFPBny18mhgxcPgMtelfNwvxL7v7msYBKqC2y71QVvKMG4h6RnpxAZEyGZIBoVMdxbbyZU4RoN3Co8Y0EzCQ2Dl2b5F54itTpeiuHl3Zm1RFNpF9rEqR3GitDg895Pk7FXASuNfTwNPEziRBFvelc=
+	t=1711372493; cv=none; b=qJZC87NBTgtq3qRj3DKN2EfoPHf3UqF64kRhZIs+1yIa7knxD0rRR7rWBGfIWlhTJjTG9dTxoTaW8jv31Li2mU10lZhVI3s6IbOah6HJooHsyQe7XZkMOEsvgeJ3imSIxBSiA4X4gYbDSfymP9wLXWGluOKtQ06io8iqqmbc/5A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711371145; c=relaxed/simple;
-	bh=ExUUsC+CqMjF+l/I8M6xKudiZbcZcqHRiPeAkaD7Bko=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Bo1u9xAAGUJD5D8rBO1LNSasLPSGd74Ns0AlppLFzPAoAk04vbJiebK/AObKrFk57YYj3O4wLhgXePX9u8+i0JdRvhJTKjZTI9S5mv7K9riNI/M5Ad9Jo6LrHqJ57feLNbw9dPXP4lrITx38pMAqpPp9cp22/094BnFCBgx5aLE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7162F1FB;
-	Mon, 25 Mar 2024 05:52:56 -0700 (PDT)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C48633F67D;
-	Mon, 25 Mar 2024 05:52:20 -0700 (PDT)
-Date: Mon, 25 Mar 2024 12:52:18 +0000
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liviu Dudau <liviu.dudau@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Amit Kucheria <amit.kucheria@linaro.org>, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>
-Subject: Re: (subset) [PATCH 2/2] arm64: dts: juno: fix thermal zone node
- names
-Message-ID: <ZgFzgr1KtuFIeVux@bogus>
-References: <20240103142051.111717-1-krzysztof.kozlowski@linaro.org>
- <20240103142051.111717-2-krzysztof.kozlowski@linaro.org>
- <171136466536.36729.15243854495211929982.b4-ty@linaro.org>
+	s=arc-20240116; t=1711372493; c=relaxed/simple;
+	bh=CSra3YthhrCHfS7IYgqOMfTftBpB8MN3q/Y9zvFN/bs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=HlTAK7Q5EHOBmz/nc6eL6ZbfWkob2W0Tr8J7RpgEW6uHFkbjfp0uJnRIeGgiYqRmBGM3utVnMtvmMiRq6psZM6pIzbjQzASMQ890f8ggQFxsZtHEDPy2vu7B7k1IUHZ+M+1hmUQ/Kk0Uv6DuUs86D2POH4sa5CBZelcTvicVsDg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fiGPx4QM; arc=none smtp.client-ip=209.85.160.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-2220a3b3871so2134522fac.2;
+        Mon, 25 Mar 2024 06:14:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1711372491; x=1711977291; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CSra3YthhrCHfS7IYgqOMfTftBpB8MN3q/Y9zvFN/bs=;
+        b=fiGPx4QMUEXAT17OydPjChw8OeuhNrHICTMj2DU/ca+C6DyNdAX2VTpT4E8b7w2x54
+         oiYWN8UyRFxv0lMLkLDk42nB37AtAQZrl8XU4vF1nnFhvw7K6rl0h4DCLOtzMCPjuPaN
+         n4nrmk6Te6nb6nbSDs3PQzEQpAzfgRRPVla3ox4XQuRH+RaHqsCjfdUfxyCDOTRaDJ7L
+         p3TemB1k5YeK2nYaxgzyjYz0tXcL3aKsJDF/RWwySM5k8jiwVpGyhI8TUYW4JYYvz023
+         I0427OruqHXL9KZifLwHjyb+I2eP30bEqVU8RVG4+XkPpNukxU+jtc0Y5XU7zmfYCEjW
+         DFkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711372491; x=1711977291;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CSra3YthhrCHfS7IYgqOMfTftBpB8MN3q/Y9zvFN/bs=;
+        b=HMuv1MPk8U7ARjjpD952HCe0+EKGCg/a8/c1jJlEPYdsgojJAL8jeLpYA34Mc/16HW
+         Aj4oAgVqwv1BhlPretBR/Ya7eLLqCAGSa0PQfPUmLAe0LqO5z/lZkkeCf6Uw7j7ppMMs
+         yZHr95BgsC7DAinmWS3/kL9Z58kgrny7KKPTRwWIE6iGBFaswz5QFU6vHF4NADxAyy0P
+         2MGUB3CFkVDmc9FQqUsl9E0DOw9B6IGUZ7rzNn6Bu3tKNQhdbQEX3Kebyc7AzNXQMTIF
+         EQOl014exQH6RtrlUY0se7NLuea+wm7X2TvP7hsS1kkOPtnr2xcXUrM9CrmPNZlVlHr1
+         4TRQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWz3scd6JGwvVl32GuQ/sYBkevzd/EXrFh+yETnxnhZc64Hg1Di5tBXeO6XHgElxdN5j6kMLy6vMBF0ZAWgIQ8ErducYsjReqlcH1jG/DioSaPowS8ngQjiSXcxibsMjzthvnZMSUFDE8LVQv4W3FrzHP8WF/ozW3hEvoJfpwr+lz0Cvg==
+X-Gm-Message-State: AOJu0YzkkIHBBTENB/nTc4UbWGr3AhFp4kjo5sS+GffbSCqt1uqvxJyf
+	cCgr3QxWOe8YgiOO7R77W8yKr6DFrDbELndvs3En6CPlGOGA8brVDUgAHuvpyYRaRfXWHrJnsH7
+	BDsc3n7htEaoe2SxxgDfToxQW+gk=
+X-Google-Smtp-Source: AGHT+IEurqRDv48Z8CVbJqzcgDi1BfQqhuj9Z/krmK1kUz5QXRPGdceUCiZyYYQ9mdNnDQKAudMzogwIgMhXNn14QoY=
+X-Received: by 2002:a05:6870:e2ca:b0:220:ee88:6107 with SMTP id
+ w10-20020a056870e2ca00b00220ee886107mr7582972oad.23.1711372491393; Mon, 25
+ Mar 2024 06:14:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <171136466536.36729.15243854495211929982.b4-ty@linaro.org>
+References: <20240320090733.96828-1-animeshagarwal28@gmail.com> <1a7ec34d-b126-4193-9e0c-bbdfe4e7126f@kernel.org>
+In-Reply-To: <1a7ec34d-b126-4193-9e0c-bbdfe4e7126f@kernel.org>
+From: Animesh Agarwal <animeshagarwal28@gmail.com>
+Date: Mon, 25 Mar 2024 18:44:40 +0530
+Message-ID: <CAE3Oz82QY8OWsbpNJw+bhwHd-R67bfhQspKoAdZgnALQtw9Gvg@mail.gmail.com>
+Subject: Re: [PATCH v8] dt-bindings: ata: imx-pata: Convert to dtschema
+To: Damien Le Moal <dlemoal@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	NXP Linux Team <linux-imx@nxp.com>, linux-ide@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Mar 25, 2024 at 12:05:14PM +0100, Krzysztof Kozlowski wrote:
-> 
-> On Wed, 03 Jan 2024 15:20:51 +0100, Krzysztof Kozlowski wrote:
-> > Linux kernel uses thermal zone node name during registering thermal
-> > zones and has a hard-coded limit of 20 characters, including terminating
-> > NUL byte.  Exceeding the limit will cause failure to configure thermal
-> > zone.
-> > 
-> > 
-> 
-> Applied, thanks!
-> 
-> This was waiting on the lists for some time and no one picked it up, so... let
-> me know if I should drop it from my tree.
->
+On Mon, Mar 25, 2024 at 2:59=E2=80=AFPM Damien Le Moal <dlemoal@kernel.org>=
+ wrote:
+> Applied to for-6.10. Thanks !
 
-Sorry for that, must have slipped through when I was off. Thanks for picking
-it up. If not too late, feel free to add
-
-Acked-by: Sudeep Holla <sudeep.holla@arm.com>
-
--- 
-Regards,
-Sudeep
+Thanks Damien.
 
