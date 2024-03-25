@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-53140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45CE888B0AE
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 21:00:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C47288B0BF
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 21:03:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C54541FA74D7
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 20:00:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DEE541FA1279
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 20:03:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C83953C6A4;
-	Mon, 25 Mar 2024 20:00:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34280219E5;
+	Mon, 25 Mar 2024 20:03:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Nux9ob7/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Kmfzl8Vl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 036291F95E
-	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 19:59:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79B9510940
+	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 20:03:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711396801; cv=none; b=tmS/FeZ5en4h35T+UHUPrfCqz+YBPnpj9dS3RjfQpamf7YCexFiow1Ww9MbnLP3P3qNF19s40jbmAx7VAryijPd1KHQF31VG69/9I4gRKEyQMMHEJtJQU5P/daII19WcQkWNNWLdxh/yVv+9TIyuIPTkj8WCGJZI70hvvcwrOaU=
+	t=1711397005; cv=none; b=OV8QRln229trfUBPVt+73vyT9oMg+nBRHLpWdZjiZqslJQ3OhJS/ov35UN5JV5JDE1ATCKnW+xOR7/qBjgzRnbJPf5BONxvnNu2GyL6mF75NE8XD9m8ULVyeY8AjrEtmR2z9LeRpQA0+AysSrTKGzqjbPfJkapOlH7CP4ef1Nvc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711396801; c=relaxed/simple;
-	bh=KAhUTJvzNkm3b4neV7pulzSSEmuCbrpXuxRSv5AiZzo=;
+	s=arc-20240116; t=1711397005; c=relaxed/simple;
+	bh=TwMkeWpclzXCBkaal+VQMnS9QReh1wKoO0peqGbyf/4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RXwBvXZUM40wXFWRrsAJpov0b8dWQ0HkLtYBvQJvI4LilhAJvh4OkTmSypW0m0uIBF8uTA14+tD+W/A1XIMEYUvjlEClRXfQM7L0o4arIxnU/0ReY0lr8tKpmLv17NeTZKFznyxRZFVcEJlDrVNgcVlZ+3sUBJyUML8HtIb1wn8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Nux9ob7/; arc=none smtp.client-ip=209.85.218.48
+	 In-Reply-To:Content-Type; b=WwVwwPqGQYRoILfudl1nSRs3NEsgvATFdIdf0xp4V6KiLrFCKDBr0bzP0YVauE9lJFRsZpjLb0aynQ7zRs/bvAnzkCjP/JRK2hdzALzA/JPoIyiW86KfETua0IcnGrsPmuZiWgaJ7XFAkH6QozxtdbToAbk9+c/jEwjAjlQV5zY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Kmfzl8Vl; arc=none smtp.client-ip=209.85.167.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a46ba938de0so646518266b.3
-        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 12:59:59 -0700 (PDT)
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-515a81928faso1914897e87.1
+        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 13:03:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711396798; x=1712001598; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711397001; x=1712001801; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=lgkQSyal/SRv3rQQQEwxvLE+TokRSozfMoQk2BKMP5I=;
-        b=Nux9ob7/BUxo8Xgz9Q41Lg6fJJVdKH/Ku8NVRaema5c/p4LqzL3FXlpgJzGNHsSL1X
-         iV0sOsEf7naO/K9y3alJLvLHbRrOTXe1YPmfGzKMKQPJti5IkQ40UndMzWjTUHk4MZg8
-         3PgOeqpUMkF/782c/EhRZxlMellDhJECNqysDw5S9EGHU7lHO2AGxxsvx9MkGZrsp5AZ
-         YHnHriXPogAVPcdJ8MVYQNXS5x0K20cpHQ0vOPp6w52ODRn3yWx74hUj6Y06tdEpSlOu
-         nCu+qBmyLmMqgmiB2EdCiZ0rU1DVtfScngecPD/5PE9cCF9xh9Fsi8UO7dxhI4tEo9Ar
-         mjYw==
+        bh=6S8/Z0ZYfA3UwpibszhHRIh0e1eVZX+vgAmFfeoHkFo=;
+        b=Kmfzl8VltZS2zciiyzAM67guln5IbPHcuAP3JfD5a/JeItvSb2y40Zp5mXgXHLb9CC
+         HQ37s0LgqpNVRnMP1OihuWGTuNA5jKcjtH0QZjBRCpLyUS5PPZgp+rg+0hsBU1I/6/d1
+         OOVPNLQjjFiOhReO9vND900cAt8zBk/bt6UuRDxyPZY4Eylh9CZTGQta25Fej47lHy0A
+         hCL2ub6HMhCwG3y+MkOcxuITuQBgl3seTEgtG3VIX8wp2bfZ7vk51sc0jESATq5IPwhb
+         seIcWU+TgzgTMK/FgppNvUP9djmpelhlp26Y22rIhT8Gs2bS8eS46edFzZ4mfq4GFcxP
+         DVjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711396798; x=1712001598;
+        d=1e100.net; s=20230601; t=1711397001; x=1712001801;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=lgkQSyal/SRv3rQQQEwxvLE+TokRSozfMoQk2BKMP5I=;
-        b=iv/9rOM3ilMj+9VcK43mesZiXPVm/rBFWlwK7ByOnpQDBebnMLSgMVguyTbBIZk7Be
-         lLHzu6d6pHYn96qTwqt2zSqqBgNM6nTGjJcy9dPSCOmmn4zVxvKw2FYjRhBV3t3IuApv
-         Rki5dtXsnctpoha91BrkxIxhso+uxgfYtdptDb/7cYTadF3coNMuMlDbYc9Vh/Z1meak
-         7dLXZJv8xxdufKBVPrrmiFE4w1pdEco6oVgE4tLqyCSkCxEDXcBZifOwzmVsUOWpxu9a
-         7ob+0WgJUGLArmboWDX4A2XCjiBpiCSLK5mnyhHBOVXvhrOidT/uB4JBQwVjLwZA0X63
-         uyOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUiBUQtrmD/jWHDNKUhQPO5awNK9vrZOFF3QXjmHPMIGwUoEHpdkt47RoV/KrsNk/JCwkPK40b8/VI3BECuJHskAFIr/rT4TR/rWw==
-X-Gm-Message-State: AOJu0YyLCimApw1gzfyAcKVCoNxbImesHewdV2RbfO8mErCN00LTm/tA
-	z1nmw+JjlZLCVyfswMfowyQb/LfAqauiyjwmtH2TiUZ0GJJfKnpiGLrDltrLOZw=
-X-Google-Smtp-Source: AGHT+IG3JV9sncL+HlDfYCuquIzMG0sUzlaNlli/pgwtzOtHqj5IB8gq6tHfiKiNfQHuVqRONWmswA==
-X-Received: by 2002:a17:906:da04:b0:a46:11a9:430 with SMTP id fi4-20020a170906da0400b00a4611a90430mr469317ejb.76.1711396798312;
-        Mon, 25 Mar 2024 12:59:58 -0700 (PDT)
+        bh=6S8/Z0ZYfA3UwpibszhHRIh0e1eVZX+vgAmFfeoHkFo=;
+        b=tDOBgq2xeB2UiIlLpfDCIt5QBm3iWti5eqhM8AM3gv4ibUeQ/+gexfP/KkRSeqZ2Ob
+         XRSB9xtdWjzxJ3NpN/d0jmL6ZdnCU6QO+Nw4DCFW9IwMQncFHJ3dNSMo189pueOtQj33
+         js0kukuRIECm7QywjCJ0l2DTmhV8JFcOinX8Td+jz3uv/XPlA9RqLY7Zr7ERM6vujyCW
+         qYhGm9jXiWZvAK62K0Vf8IF80mlZ0NvSfaSoyAAVVefmaho61PmGU39Tp1WEm9AE5C7e
+         20+NHerCHyc/ZNKY67Ro8gssdDHG02vjwbBEsdbqKYvhhVcIcudg7LQSJpdjveJ+NzfI
+         uTZw==
+X-Forwarded-Encrypted: i=1; AJvYcCVCq+IZmSvKAjZHGk6rvSbpSXEBgvzKZws4Q6N8fnCBaS/+FfYda5K1aYYK5Kx3bQA+pNSNVwEPPpbsLXCZiOhKZiOec49oxL/geg==
+X-Gm-Message-State: AOJu0YwGnxJx8/RUmyKqIlYAZcbF00TaBUc6GQUtEmTFtCeV0+UAKR/f
+	syAKEWdZasY0AbBZLD0IJT05zprp8QW1H8LSRf3RVa3geIxzcY+dAP7DJUnQUjQ=
+X-Google-Smtp-Source: AGHT+IHrybv2fqHhJdRG93g9c2PPfKonICcZTLUfioe8ulodjCCsGaBWJUrjag++cCzvT4P64Ykvtw==
+X-Received: by 2002:a05:6512:44b:b0:513:d49a:7a0d with SMTP id y11-20020a056512044b00b00513d49a7a0dmr5366460lfk.42.1711397001502;
+        Mon, 25 Mar 2024 13:03:21 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.44])
-        by smtp.gmail.com with ESMTPSA id e9-20020a170906c00900b00a462e166b9bsm3379435ejz.112.2024.03.25.12.59.56
+        by smtp.gmail.com with ESMTPSA id m12-20020a1709061ecc00b00a46d04b6117sm3385907ejj.64.2024.03.25.13.03.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Mar 2024 12:59:57 -0700 (PDT)
-Message-ID: <dbe90a1c-bac2-4176-8eba-7ad96a182313@linaro.org>
-Date: Mon, 25 Mar 2024 20:59:55 +0100
+        Mon, 25 Mar 2024 13:03:20 -0700 (PDT)
+Message-ID: <82e54af1-c2d2-4cc3-b8cc-a90a4f74795e@linaro.org>
+Date: Mon, 25 Mar 2024 21:03:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,23 +77,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/3] QCM2290 LMH
-To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>,
- Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 3/4] dt-bindings: rtc: digicolor-rtc: convert to dtschema
+To: Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+ Rob Herring <robh@kernel.org>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Thara Gopinath
- <thara.gopinath@gmail.com>, Amit Kucheria <amitk@kernel.org>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, stable@vger.kernel.org,
- Loic Poulain <loic.poulain@linaro.org>
-References: <20240308-topic-rb1_lmh-v2-0-bac3914b0fe3@linaro.org>
- <d8ed4e6c-549f-4c04-b38a-2d788df8b707@notapiano>
+ Conor Dooley <conor+dt@kernel.org>, Baruch Siach <baruch@tkos.co.il>,
+ linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20240323-rtc-yaml-v1-0-0c5d12b1b89d@gmail.com>
+ <20240323-rtc-yaml-v1-3-0c5d12b1b89d@gmail.com>
+ <20240325160152.GA4035876-robh@kernel.org>
+ <f765a609-529c-4987-812f-9135041f63d5@gmail.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -140,41 +135,42 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <d8ed4e6c-549f-4c04-b38a-2d788df8b707@notapiano>
+In-Reply-To: <f765a609-529c-4987-812f-9135041f63d5@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 20/03/2024 20:08, Nícolas F. R. A. Prado wrote:
->> Loic Poulain (1):
->>       arm64: dts: qcom: qcm2290: Add LMH node
+On 25/03/2024 20:46, Javier Carrasco wrote:
+> On 3/25/24 17:01, Rob Herring wrote:
+>> On Sat, Mar 23, 2024 at 11:46:15PM +0100, Javier Carrasco wrote:
+>>> Convert existing binding to dtschema to support validation.
+>>>
+>>> The binding has been renamed to match its compatible. Apart from that,
+>>> it is a direct conversion with no additions.
+>>>
+>>> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+>>> ---
+>>>  .../devicetree/bindings/rtc/cnxt,cx92755-rtc.yaml  | 37 ++++++++++++++++++++++
+>>>  .../devicetree/bindings/rtc/digicolor-rtc.txt      | 17 ----------
+>>>  2 files changed, 37 insertions(+), 17 deletions(-)
 >>
->>  Documentation/devicetree/bindings/thermal/qcom-lmh.yaml | 12 ++++++++----
->>  arch/arm64/boot/dts/qcom/qcm2290.dtsi                   | 14 +++++++++++++-
->>  drivers/thermal/qcom/lmh.c                              |  3 +++
->>  3 files changed, 24 insertions(+), 5 deletions(-)
+>> This could probably just go into trivial-rtc.yaml.
+>>
+>> Rob
 > 
-> Hi,
-> 
-> I've started tracking the results of 'make dtbs_check' on linux-next, and I've
-> noticed that on today's next, next-20240320, there's a new warning coming from
-> this. The reason is that the DT change has landed, but the binding has not,
-> since it goes through a separate tree. I thought the binding was supposed to
-> always land before the driver and DT that make use of it, but looking through
+> Does it make no difference if the reg property is a single address or
+> address + size? trivial-rtc.yaml does no specify that ('an address' is
+> mentioned), and I don't know if it is obvious for someone who wants to
+> use this device.
 
-There is no such rule. Of course new binding should be documented in
-earlier or the same kernel release cycle as users get in, but it's not a
-requirement.
+First, you can answer to this by yourself: where do you have the "size"
+documented? You will see that nowhere, because your description is
+actually redundant and should be dropped. So if "nowhere", then your
+binding is the same as trivial-rtc.
 
-
-> the dt-binding documentation pages I couldn't find anything confirming or
-> denying that.
-> 
-> I expect this to happen again in the future, which is why I'm reaching out to
-> understand better how to deal with this kind of situation.
-
-Deal as what to do? Are you asking in terms of maintenance of some
-subsystem or sending some patches? In this particular case here, I don't
-think there is anything on your side to deal with.
+The presence of size is defined by the bus, not by this binding.
+Therefore you do not have to tell anyone that it is address+size,
+because it is obvious from the bus. And from device datasheet (bindings
+are not replacement of datasheets).
 
 Best regards,
 Krzysztof
