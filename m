@@ -1,127 +1,148 @@
-Return-Path: <devicetree+bounces-52871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59FFC88ACFF
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 19:06:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 714B088A4EB
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 15:43:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E13AEB323F1
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 14:33:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C9E52E49FC
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 14:43:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE62F18C782;
-	Mon, 25 Mar 2024 11:25:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD0C11386D0;
+	Mon, 25 Mar 2024 11:42:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Hbh/xgSn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xGpnpF/U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD01518C9D6
-	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 10:48:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 859FF19D1B9
+	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 10:52:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711363723; cv=none; b=otKWb+E59DSopEUW3+w8qi5yR/diG/Q62W4kbA20AeJGdRprQpLnDNdr9axlAlIKRrIg8hZJfcFNGFtLsBmv26aRd3Sfz6M6l7S6lirXWoz5xPYdW1m2LKnaXwxh2SQ+jP3YbSXjRIzBD7Fizw8ZZYm1lGBvhZ1YjT11on/Q1O0=
+	t=1711363970; cv=none; b=blH64bjnMxXHvxLlNysORxL48Z04SvNJvnziFXDBF2ZMsW6OLXLfazqbYzoAsZBNgXjIc3RsxGYHzpKSNgeSvTZsODCCj2Uvst3Ppub9IPFqlb91gpJ5qxZfNNUVrz3M+FqHXoI0FAtCO4O0DixPzSGy+7SKg1SO/kOmqGEJu+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711363723; c=relaxed/simple;
-	bh=2ymQHq92dFt5ftZpOQDXAFXnvGbioEFB3yZ5dxZ8PX4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=kjBQdqfJFLMH7YXWFO+pYEFt2oXUZDepFiwOWXZhJCN66bR/I+qIKqmn2YCEJsJVlAf5158Z+uydLd6GTU9TEM5bTnb1FjYfKNF3D/s3Vtq9OizgPjbUowxYyAZ55zPfDumy2/plcTxiaXqbDB/SSrrC8bBv9wbHY3plgeDN8CU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Hbh/xgSn; arc=none smtp.client-ip=209.85.167.45
+	s=arc-20240116; t=1711363970; c=relaxed/simple;
+	bh=krCHL+qxAQ4SQ2psaIH85lNezKIzeTKZh1ZNAsaTRY4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sN7fS4lraJ2ZIZnhLLvWExAdqAhKOBFrCjOpC7ckaoJ9oCRgDTSyEKZkCmeqQPcsoZCksW0ctYqMZj67ohg7TTpjN43a79S3nP/C1aRWmf7vnIq63r577u1sT9qPhgbUt1sUL1krL3bVDjXayTvcLvV8s4C0xRtKdz22mOEHT1w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xGpnpF/U; arc=none smtp.client-ip=209.85.167.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-513d717269fso5225641e87.0
-        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 03:48:40 -0700 (PDT)
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-51381021af1so6431887e87.0
+        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 03:52:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711363719; x=1711968519; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ipt8Nni/JGxfVH6xjAHK3ADWRzeEAUH7NmYP0XN00dA=;
-        b=Hbh/xgSnldbXoXCPSuyqkZ9srFfEFplg9HpwNkajsfrCkjMljhP79sc/Nsw6mnQP//
-         K7fmbMuROB3AUuc/cIgIX7XpCimLVxcYvCpmQQQHqqpAtK6cx746hX7OAXcXlzcEUF8i
-         JO/7M6qZBkYyvz2VQ9LTPfKNzEgY/Z1RV1PvcDvdZk2wC1dM/iFIxK8V8q7QVlbC7Umj
-         Mg5HircVmTP8JAmftqAdg4llSex0FByyBRlPQ3SzPU05dXPpdZh7v7VvX5P3nnt+8Nux
-         EBvEerIO1lj0VHWe/jsMcQc4YSEqvTev3jT530H9y9bMpGHV01gE9areVnAp7Nc0ZJN2
-         3a4w==
+        d=linaro.org; s=google; t=1711363967; x=1711968767; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=B/45gkU1OW/Fa6jqiOKHWiKJTgLo8h9uP7u3dIPIa2Y=;
+        b=xGpnpF/UIQYWQY/gDMIz6KBG+snbPIYjkMDxZrK3B8rFRKledvnifIcno/7ZY2naNc
+         oNTvJcFyuU22bbKFpTbAat4bOnE3EUWH1CvVAWs+cxakG1yod4lTwpnNx6yFfBmT7KLP
+         APQGNjGQdYCdqQrBjTDYAqB3ZB2P+ix5fobRRWoyVCXVOuzzateS7Ep+dPIuxfXdcVBu
+         6mmASZF8vdhe1aQa8QudENDJUtbZGIKaRS3axCItweI9RxlYee7HIlPSzx3Njk7nK5zl
+         PX87ihlyNetTCK5K2Y6ZHTX57Ka6plQR8Gg9dJwd7eS+qXhOkseaWp5ClRTxdbVftJcr
+         bpvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711363719; x=1711968519;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ipt8Nni/JGxfVH6xjAHK3ADWRzeEAUH7NmYP0XN00dA=;
-        b=xPdswJuSDpTockQhEf9n5KwieLN4y152tVfmWCJMKUgZ8k3z4f7H8x6gb/Lz3XI9k0
-         acVqbik/1daSO44D8EIzs3WdzBIV3plZRJVpbsYkB5+V6CCBMEZQTyWUj5volLTg1uTp
-         Tk4EP6G6ms66cGoDiNpFwOu+7P4xl0ON3ZFEQZl0+vv8+VDKRtEdPQtRTHYsCxZEZxQb
-         zVu/ZoLTVhCG9yJ1IOwO5UucZTiH4NLcqi25mIpa6rll3khLSram64ULQ6q79Kzd5s0C
-         v7rjUwwu0ofVx2GxRPzzJXgXzzvIiMal64jgmX288fLpW4U7e619a4eX9ep2DqvGD5f8
-         lY7w==
-X-Forwarded-Encrypted: i=1; AJvYcCVEVi7vI1RMWtg0XV2SS6sYcQtlDDYQKsilr0LR0f8r2mYb9NPKSk+s8OCKL/aYdSCuFem9qWRYqOE/Vz3PfoZt+D4+IhJ49whkqw==
-X-Gm-Message-State: AOJu0YzD+DtfzZ2giA2zooxWyIVtu2XT7sg3FQUVz7qjRbjlxFxlPOLk
-	0dNDnN4o2qKdhX+KR5ETU+FVTQnPTOBTGohN+BSWUsDZ97EtcKhXIuOyMD7pzAY=
-X-Google-Smtp-Source: AGHT+IHQzqJeE/IoQzxHE7jCIJWL1TTDdd8bA1fBeZ5XLg80Uh92cwV9vAQl/+qFaFpTQrZejIynHw==
-X-Received: by 2002:ac2:5dfc:0:b0:515:ab85:34c2 with SMTP id z28-20020ac25dfc000000b00515ab8534c2mr1795658lfq.29.1711363718839;
-        Mon, 25 Mar 2024 03:48:38 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.222.44])
-        by smtp.gmail.com with ESMTPSA id df15-20020a05640230af00b00568d6a20717sm2859339edb.52.2024.03.25.03.48.37
+        d=1e100.net; s=20230601; t=1711363967; x=1711968767;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=B/45gkU1OW/Fa6jqiOKHWiKJTgLo8h9uP7u3dIPIa2Y=;
+        b=FygKq7tRuNdFgWCjXoBt+8zpatsxAtgzV2/2AbQRYGulwGUpv7PBrULD/Z3HFC+ba8
+         VmI6PSTtvjp4fBkS719ZUOgIbSUKAcZfFyVsf7766JEgvFa0ae4tZ9ppzJMEB4tJGkil
+         ZPAEqL3IwblAnQZWkTkrpn4ZPiwDKgqZyl2RzLh2govt/K8WHG3MjPXM0OSCac1kfPGH
+         oRurUtYfMSbK4CpK7kfWP2XFpdcBAHT1luxBLfM0RTQ8p4ASXHv+PmBnKw25UD6Mxpjn
+         auEynddwZBmeIyx8GGfEc/wRFGT0NIiD7/6SdVnRRNeKWw6SkSVjZ9hfEUBGjYF2qKea
+         BHyQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUq1180dTVkGIbdrTu0/nPWEQFJ+Yj0WmJG8UM+wpUgFSH4vnJrvXig7DMBQSHlsx7qAHN1+UyvF8Ul0H6KxtH0i1hYrlvJMTNqqw==
+X-Gm-Message-State: AOJu0YxeF6RyC0bPoHnbmkmoOy5aFEhP9f7vpvvjO3TeMpVWj2hyQcyU
+	JiMuX4NxKaBK/3+76LIjB/Q1TOyWndn7Kt4WViEgr63B9wgzYX6zDlqez+8sL4c=
+X-Google-Smtp-Source: AGHT+IEclAfbiEIquW9pL3ASZRMHbyWd/lIOzT5bu64XepiQ3fVd79XZUHfg0x/tT73njuoHcmQwYA==
+X-Received: by 2002:a05:6512:1590:b0:515:a9d5:aab6 with SMTP id bp16-20020a056512159000b00515a9d5aab6mr3848775lfb.18.1711363966528;
+        Mon, 25 Mar 2024 03:52:46 -0700 (PDT)
+Received: from localhost ([102.222.70.76])
+        by smtp.gmail.com with ESMTPSA id kj9-20020a170907764900b00a4636d9d28dsm2903246ejc.69.2024.03.25.03.52.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Mar 2024 03:48:38 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Li Yang <leoyang.li@nxp.com>,
-	Rob Herring <robh@kernel.org>,
+        Mon, 25 Mar 2024 03:52:45 -0700 (PDT)
+Date: Mon, 25 Mar 2024 13:52:42 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Yangyu Chen <cyy@cyyself.name>
+Cc: linux-riscv@lists.infradead.org, Conor Dooley <conor@kernel.org>,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Marc Zyngier <maz@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	linuxppc-dev@lists.ozlabs.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-gpio@vger.kernel.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 2/2] dt-bindings: timer: narrow regex for unit address to hex numbers
-Date: Mon, 25 Mar 2024 11:48:33 +0100
-Message-Id: <20240325104833.33372-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240325104833.33372-1-krzysztof.kozlowski@linaro.org>
-References: <20240325104833.33372-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v6 05/11] riscv: Kconfig.socs: Split ARCH_CANAAN and
+ SOC_CANAAN_K210
+Message-ID: <e255a964-27bf-4eb9-8e9a-4f60d1ccd12b@moroto.mountain>
+References: <tencent_F76EB8D731C521C18D5D7C4F8229DAA58E08@qq.com>
+ <tencent_F208A26B5338C6E14AC6648730368AF0FD0A@qq.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <tencent_F208A26B5338C6E14AC6648730368AF0FD0A@qq.com>
 
-Regular expression used to match the unit address part should not allow
-non-hex numbers.  Expect at least one hex digit as well.
+On Sat, Mar 23, 2024 at 08:12:17PM +0800, Yangyu Chen wrote:
+> Since SOC_FOO should be deprecated from patch [1], and cleanup for other
+> SoCs is already on the mailing list [2,3,4], we remove the use of
+> SOC_CANAAN and use ARCH_CANAAN for SoCs vendored by Canaan instead from
+> now on. And allows ARCH_CANAAN to be selected for other Canaan SoCs.
+> 
+> Then, since we have Canaan Kendryte K230 with MMU now, the use of
+> SOC_CANAAN is no longer only referred to K210. Thus, we introduce a new
+> symbol SOC_CANAAN_K210 for any conditional code or driver selection
+> specific to the K210, so users will not try to build some K210-specific
+> things when MMU is enabled and see it fails to boot on K210.
+> 
+> [1] https://lore.kernel.org/linux-riscv/20221121221414.109965-1-conor@kernel.org/
+> [2] https://lore.kernel.org/linux-riscv/20240305-praying-clad-c4fbcaa7ed0a@spud/
+> [3] https://lore.kernel.org/linux-riscv/20240305-fled-undrilled-41dc0c46bb29@spud/
+> [4] https://lore.kernel.org/linux-riscv/20240305-stress-earflap-d7ddb8655a4d@spud/
+> 
+> Signed-off-by: Yangyu Chen <cyy@cyyself.name>
+> ---
+>  arch/riscv/Kconfig.socs                        | 8 +++++---
+>  arch/riscv/Makefile                            | 2 +-
+>  arch/riscv/configs/nommu_k210_defconfig        | 3 ++-
+>  arch/riscv/configs/nommu_k210_sdcard_defconfig | 3 ++-
+>  4 files changed, 10 insertions(+), 6 deletions(-)
+> 
+> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+> index 623de5f8a208..5710aee456ac 100644
+> --- a/arch/riscv/Kconfig.socs
+> +++ b/arch/riscv/Kconfig.socs
+> @@ -72,11 +72,13 @@ config SOC_VIRT
+>  	  This enables support for QEMU Virt Machine.
+>  
+>  config ARCH_CANAAN
+> -	def_bool SOC_CANAAN
+> +	bool "Canaan Kendryte SoC"
+> +	help
+> +	  This enables support for Canaan Kendryte SoC platform hardware.
+>  
+> -config SOC_CANAAN
+> +config SOC_CANAAN_K210
 
-Acked-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
+This breaks git bisect, right?  There are references to SOC_CANAAN that
+are get updated later in the patch series.  You can't delete SOC_CANAAN
+and leave the other references dangling.
 
-v2: Change '*' into '+' in the regex.
----
- .../devicetree/bindings/timer/arm,arch_timer_mmio.yaml          | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/timer/arm,arch_timer_mmio.yaml b/Documentation/devicetree/bindings/timer/arm,arch_timer_mmio.yaml
-index 7a4a6ab85970..ab8f28993139 100644
---- a/Documentation/devicetree/bindings/timer/arm,arch_timer_mmio.yaml
-+++ b/Documentation/devicetree/bindings/timer/arm,arch_timer_mmio.yaml
-@@ -60,7 +60,7 @@ properties:
-       be implemented in an always-on power domain."
- 
- patternProperties:
--  '^frame@[0-9a-z]*$':
-+  '^frame@[0-9a-f]+$':
-     type: object
-     additionalProperties: false
-     description: A timer node has up to 8 frame sub-nodes, each with the following properties.
--- 
-2.34.1
+regards,
+dan carpenter
 
 
