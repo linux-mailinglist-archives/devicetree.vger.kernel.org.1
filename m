@@ -1,140 +1,101 @@
-Return-Path: <devicetree+bounces-53046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53047-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7293388AB06
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 18:13:36 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD2FD88B512
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 00:13:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D174366EBA
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 17:13:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2C05ACE3540
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 17:14:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 269F214AD1D;
-	Mon, 25 Mar 2024 15:50:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 913CC14E2EE;
+	Mon, 25 Mar 2024 15:52:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YcSz9C4W"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bTHLCfZg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80E8114AD0F;
-	Mon, 25 Mar 2024 15:50:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D85D13B290;
+	Mon, 25 Mar 2024 15:52:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711381823; cv=none; b=ouEEZ0zw/Wqym8m1v23jhgvPUkuzj4uB8fFtPpO2iONHovA+NRTKKaD5HQGYYs5ebeda/vB57Ie6m68XUwJwkdenyxOtNOwpvGKoA2ekym9GNo2ElXEVICDg1Z9IEh0VoOz+1yTeJwxtQnXwIqgz1n6gzcZgmHqMAZI33AYSPl0=
+	t=1711381938; cv=none; b=isUKJ6kj3+6FNbCSzVxVmYiscgl3FEMxtJUNCGysRKIyzDO06gN8KG5wEY/8EZJ7ZKTrqAfKB8uCUWKKUKhuYNTUKfrRMATPQ9atV1JG3bpNEhQU6x6aqxsJt1KL9wHqZP4R+JIg35nPiK/OubY5Lb6clMCKQyN5DU9SHn+8sFM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711381823; c=relaxed/simple;
-	bh=L6eAQT01UwjooOaRaAv+MlN39/Mt+Kq8bgG92V4Ywuk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=hFwahHdRVA3v91zn1zECXDexw+cN9obkJSWVXVCzR3LinuHO9fwQ5s40Alwm0FxRSuzF3RCzSvmxIegW6WzuuzYHBgEiURxoWBgp35h14MOD74HmFqzMLZ/dsyTCkqnWJgm9IqfAaSgZVoPcqV6gP/YZq1eUKIW45mxOLjmZQCI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YcSz9C4W; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42PF0TAv010542;
-	Mon, 25 Mar 2024 15:50:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:date:subject:mime-version:content-type
-	:content-transfer-encoding:message-id:references:in-reply-to:to
-	:cc; s=qcppdkim1; bh=oiq3itImfZFjYsnbUThxlqIuSDzh3zeTFUr1Rt52iYk
-	=; b=YcSz9C4W40rq/BbG/OIdrctOnFNzXi8vfzABy4vDR1Z1BiKG8IkFBaz5sBJ
-	w4+KzA01u3IIh9FkHH0L4vaorAOnOdl74NZI3eqiBQUYLTbH3JvI5t3LLyYKxjao
-	1DZScpw6HvN8PoAy2k2mSecuG0eTuoDQbIHJsDp2bBxna2/W7HnMj7GERDbQXulT
-	HDs3cJ3wi3c1PIkFlQnbJazjmubYzBL5FcCB56Ydb7otOBjlztIyfoMzvyXO7lpK
-	rjuXaY5O8y6o+0Rhlemsq6Bi7b/gvui4FUJON10gjhPxWISUCI0aNzP3lasfgX/Z
-	lSusss9qOowQswOpv5DWADLNyMw==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x381e8q7e-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 25 Mar 2024 15:50:17 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42PFoGuj000817
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 25 Mar 2024 15:50:16 GMT
-Received: from hu-kathirav-blr.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Mon, 25 Mar 2024 08:50:12 -0700
-From: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-Date: Mon, 25 Mar 2024 21:19:50 +0530
-Subject: [PATCH v2 3/3] cpufreq: qcom-nvmem: add support for IPQ5321
+	s=arc-20240116; t=1711381938; c=relaxed/simple;
+	bh=sOLBnPszEseCrqEhABXNORHufRD3rz4P4P6IKCH46XY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YUB+RQqAMuCUVq4Fa11PiVs/FsTDYmk2EXIodx8uHA0ZZb6AvZ+/x7SsV0FoYw+ZxEwHs8PZdepDxVbXGVPLZpk2JsKgb/myKJP6Ph8EP9GhOmY7SwK+N5H5aTozu/0q33a+ywjs7gDZdL0nNWitLAGrmDroma1eHyWyNhNmSfo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bTHLCfZg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A032FC32796;
+	Mon, 25 Mar 2024 15:52:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711381937;
+	bh=sOLBnPszEseCrqEhABXNORHufRD3rz4P4P6IKCH46XY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bTHLCfZgVrIJw6zmFtALYr1Hi0YzXyAkj8DhdVOKD+eokDB9g9SOxbejyPJKh188z
+	 TC0ylXaFB8a/lNLwlIfVuskCYvPEF3FxtL4YJJ2EgY51q1acJnEAr6Bt7GmzvtPCP1
+	 fvVkvHITXpBMtf9aMJXkqTzqWuJGlf35bccDAsdqNSTPNJOQntvmh3g0oVvIX75NQ4
+	 5geV1tizFBnic+iRRhpTpi8QtR3goe7T3jnla9afcNe56buNgq647nvhLcA797rghe
+	 iwcH8PnzgpykApYyFVChp6KKQghsGTBsj+yOYe+eLR9eQBoiWF9+O624vWwo2GIqJy
+	 2jdbtSLrrtYgA==
+Date: Mon, 25 Mar 2024 10:52:15 -0500
+From: Rob Herring <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+	linux-sound@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>, devicetree@vger.kernel.org,
+	Liam Girdwood <lgirdwood@gmail.com>, imx@lists.linux.dev,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v2 1/1] ASoC: dt-bindings: fsl-esai: Convert fsl,esai.txt
+ to yaml
+Message-ID: <171138193441.3998562.4443623988882776576.robh@kernel.org>
+References: <20240322145406.2613256-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240325-ipq5321-sku-support-v2-3-f30ce244732f@quicinc.com>
-References: <20240325-ipq5321-sku-support-v2-0-f30ce244732f@quicinc.com>
-In-Reply-To: <20240325-ipq5321-sku-support-v2-0-f30ce244732f@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Ilia Lin <ilia.lin@kernel.org>,
-        "Rafael J. Wysocki"
-	<rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        "Kathiravan
- Thirumoorthy" <quic_kathirav@quicinc.com>,
-        Mukesh Ojha
-	<quic_mojha@quicinc.com>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1711381799; l=907;
- i=quic_kathirav@quicinc.com; s=20230906; h=from:subject:message-id;
- bh=L6eAQT01UwjooOaRaAv+MlN39/Mt+Kq8bgG92V4Ywuk=;
- b=+TDJMyKV3mdy/WhoAWGHrT5yqsuDW/rYxHbZuDEVwqrX0nNUszRFfyafB/0NRNdr2TaPw3kRW
- tFFx2Z8Q9IgAYRkMhY6MN2tEKqrHWf2qAFY2qcIggEx8MotzBMvO2HY
-X-Developer-Key: i=quic_kathirav@quicinc.com; a=ed25519;
- pk=xWsR7pL6ch+vdZ9MoFGEaP61JUaRf0XaZYWztbQsIiM=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 7BfQUIoP1k9Xx0b7ENunZjmIw29ZBrpu
-X-Proofpoint-ORIG-GUID: 7BfQUIoP1k9Xx0b7ENunZjmIw29ZBrpu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-25_12,2024-03-21_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 clxscore=1015
- spamscore=0 priorityscore=1501 suspectscore=0 mlxscore=0 impostorscore=0
- phishscore=0 malwarescore=0 lowpriorityscore=0 bulkscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2403210001
- definitions=main-2403250087
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240322145406.2613256-1-Frank.Li@nxp.com>
 
-Like all other SoCs in IPQ5332 family, cpufreq for IPQ5321 is also
-determined by the eFuse, with the maximum limit of 1.1GHz. Add support
-for the same.
 
-Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
-Reviewed-by: Mukesh Ojha <quic_mojha@quicinc.com>
-Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
----
- drivers/cpufreq/qcom-cpufreq-nvmem.c | 1 +
- 1 file changed, 1 insertion(+)
+On Fri, 22 Mar 2024 10:54:05 -0400, Frank Li wrote:
+> Convert fsl,esai.txt to yaml. So DTB_CHECK tools can verify dts file about
+> esai part.
+> 
+> clock-names 'spba' is optional according to description. So minItems of
+> clocks and clock-names is 3.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> 
+> Notes:
+>     Change from v1 to v2
+>     - alphabetical order compatible string according to rob's suggestion
+>     - clock description move under 'clock' according to kryszof's suggestion
+>     - fix descritpion indent according to rob's suggestion
+> 
+>     Pass dt_binding check
+>      make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j8  dt_binding_check DT_SCHEMA_FILES=fsl,esai.yaml
+>       DTEX    Documentation/devicetree/bindings/sound/fsl,esai.example.dts
+>       LINT    Documentation/devicetree/bindings
+>       CHKDT   Documentation/devicetree/bindings/processed-schema.json
+>       SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+>       DTC_CHK Documentation/devicetree/bindings/sound/fsl,esai.example.dtb
+> 
+>  .../devicetree/bindings/sound/fsl,esai.txt    |  68 ----------
+>  .../devicetree/bindings/sound/fsl,esai.yaml   | 116 ++++++++++++++++++
+>  2 files changed, 116 insertions(+), 68 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/fsl,esai.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/fsl,esai.yaml
+> 
 
-diff --git a/drivers/cpufreq/qcom-cpufreq-nvmem.c b/drivers/cpufreq/qcom-cpufreq-nvmem.c
-index ea05d9d67490..0a46b5d49d32 100644
---- a/drivers/cpufreq/qcom-cpufreq-nvmem.c
-+++ b/drivers/cpufreq/qcom-cpufreq-nvmem.c
-@@ -191,6 +191,7 @@ static int qcom_cpufreq_kryo_name_version(struct device *cpu_dev,
- 	case QCOM_ID_IPQ5312:
- 	case QCOM_ID_IPQ5302:
- 	case QCOM_ID_IPQ5300:
-+	case QCOM_ID_IPQ5321:
- 	case QCOM_ID_IPQ9514:
- 	case QCOM_ID_IPQ9550:
- 	case QCOM_ID_IPQ9554:
-
--- 
-2.34.1
+Reviewed-by: Rob Herring <robh@kernel.org>
 
 
