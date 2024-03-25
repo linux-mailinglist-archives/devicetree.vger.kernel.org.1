@@ -1,287 +1,203 @@
-Return-Path: <devicetree+bounces-52896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8822C88A551
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 15:54:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5BAB88A557
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 15:55:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 32CFA29289E
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 14:53:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C927F1C35FB8
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 14:55:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF41E1CAC60;
-	Mon, 25 Mar 2024 11:53:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B63E1C525C;
+	Mon, 25 Mar 2024 11:58:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uq8yMrcX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MAcNm/kG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22A321B677D
-	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 11:28:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E5D21C5AA5;
+	Mon, 25 Mar 2024 11:31:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711366110; cv=none; b=GA6TeplixKolT+nHwzreSgHtmjZ31NxQrXIXDYIxvQVhFyI/+MalOyKF1kDi/iUsdP+aDHTMXPS4BsU5DcT6HkyDqpBddRCe+Lhphd/awujJH32Ca9egMlOVKGThFhrrhSUVVvLb/YVQxPDe9Icody3W6VNIxi/VzUips1LET+U=
+	t=1711366281; cv=none; b=gwB6fvH4v2AaewrXuimYCF9vuQyrKtR3CQAMo4VxcGe5gf7BE7hDto4KLdMc5cSOG9Eapzf17aa9gJj32T4Q2kZby2GVIpwp6x9/NXbaxBvuiZElgRDvQJKxULouXb5txJXAmS8A98VRjfQVbXPBiTTDLZA0IHUqgmqkq5VZLI4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711366110; c=relaxed/simple;
-	bh=Kb0ChK44DNvG0kIt6cuGOk3+3+FQUmQbtSel7T9Eans=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JykuzIQqAQLJwFjdWhr71ZSZ8s9zBKuj48h0hbMoI7FVOgKuhrt8bfqBztIy6CBb4ECxprPZMEpYbQzFVTnT65C6BnF6/GkEZa8Rf1MLltipTwrIrlhAI7iWz/uQmtRPormsEvGbUVV0SslTNKfZPjgGI62buBxBYlqIUkhlfXw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uq8yMrcX; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4148a139b1bso3551395e9.2
-        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 04:28:27 -0700 (PDT)
+	s=arc-20240116; t=1711366281; c=relaxed/simple;
+	bh=EyIlueejT0gK9GuEs5MdPNg8HDGXDVqmLnd5nxFpcZ4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=Ypqqy0jNaJp+tlKd2kL0uFEjfsxRMJr1+5V/QFvxpnk8qOIDk4liDIuhhjqmuluhH4RBeqRG0hcEx+YJrg6NnTqx9RCjH0bQ+vG2pI2wquJ6Hgf97Btl0Bq9UxmvOUgKiR9SHihKoT1Ln0Jd9Tcd1q3UsMzxDKxLwNaxWUO5Qvg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MAcNm/kG; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-515a68d45faso1518007e87.3;
+        Mon, 25 Mar 2024 04:31:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711366106; x=1711970906; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=7PkuvMLKJsiJtypoy3shfvrIyPp1wECQoiUOUJHPvWE=;
-        b=uq8yMrcXAsZdWtFZa4dc8zRxzAU4iievUZGi/dkfrwvw9fgyr01fY7KXyYYfVenJmr
-         xPUp8s+kqrTS3Ya7hJEkNpB4+250LWjJ4zu59ACnlCRrB3wv0HbXLaSJt8cVuWqQ5muu
-         8f4Uw7/LO6HmWIm1id1Wl6rVQlQEfPcgvY1jhX3UMvQm83kIwJ9EEA/ZVhtUD9ptm+BV
-         +3ZEWgVKJm2LCM2gTPwPwCic3TidF68wF/WBfgQ7umhSBeKt8UmaEIiGyd/azNgtXUZN
-         iSMmqBkPmQst0oQeu+2E1aO0k1n+T0EGb1sC9DfQ6M1tPaU5w0MHN9t2l4/cpZSq0xzm
-         38Sw==
+        d=gmail.com; s=20230601; t=1711366276; x=1711971076; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WJkBHyUsM1Ra6ur6SOchqQjxQFdX44EdA5Gc6F4wbhw=;
+        b=MAcNm/kGdnd0rZqRC8e7j+J81J0l53eJYL3481mBjVy8IsB4/nm9IhyCWN6oklYO72
+         QEy6V0YEQ8lOEN+QJ6lnximKhQjY1pUTFOcuC6VTr2AyeHsf6WpoPVu15Rdgd8RRE0CN
+         9vhdh3HjhJhp12SJO25bonDUUKQZVIa1KfLVpyvSoMSyEompAGW9GCjQnZZdRRStgvcp
+         cjSJNaMY+9g98Qin+Lg5ZSVFhUelgGMkuQ8mCdo+lQ24qYfeygy5ju80e6YJjTne5p5b
+         RqqCJxy6z3s+yNp12vpDlX2GLhjnPRJ8AH549OFgTo/hWa/vyigPPx+t4d2T8UDh1Zh8
+         Nb4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711366106; x=1711970906;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7PkuvMLKJsiJtypoy3shfvrIyPp1wECQoiUOUJHPvWE=;
-        b=VXyd8VzlZZEcqMhkQ0+9AwmRYM6DetSWPl5+2a7ifRMiNh3J50dh5njZEwjF7h5PLg
-         FMAZTQSqsx0rQCxIauzj5iHH3QuOahUOf4Q0fD2+aT0H82dqy+5mIu6lVruMiNWm1w2f
-         xvGYIqaAozH4DvMfq4pgCQrmi1xSS/DZ+R2lXhicRNS0IZatiC5UYjz1mnbWJoJjReW3
-         Flnp3we2xoAGvhh4H9rDuS61VahzhIhOmAEieAZHOL3JuAFAfgp29FnHbHSS4L0JH6bd
-         a7My56qA9OnwdoGivvYu+T1cgpcePLj9/2izzV+fUjSYlq1ibpNTHySweBzPR8OiqQLn
-         HIqA==
-X-Forwarded-Encrypted: i=1; AJvYcCX5thCdhpZ8bHIwQ9OhesZSDpWu5i/CxQj5EUxdvkDXx/e1u35NMr3Lro8xYtfo9wf9LFoP1W9/8fiQd/1l9t+EUA+JYFmjeZVpuQ==
-X-Gm-Message-State: AOJu0YzZ+5Af5k78MDYB2ETcYdC/5uUaudSSdxls3BzdykhCN5Q0D9E3
-	w/rUoLIatw7CZt+NCYg8rrqBhAfCz7Mq6tgO7VkWaSoQvkiMFwTf8/7XW04v4B8=
-X-Google-Smtp-Source: AGHT+IGdPOEsKK08n8+zv8VWhqXsgYa4DkSPuzYOZZysyCPuYv1EFKvN2PJp6ZKDBFxCKijxETmBsQ==
-X-Received: by 2002:a05:600c:35d2:b0:412:ea4c:dc4b with SMTP id r18-20020a05600c35d200b00412ea4cdc4bmr4589807wmq.6.1711366106448;
-        Mon, 25 Mar 2024 04:28:26 -0700 (PDT)
-Received: from aspen.lan (aztw-34-b2-v4wan-166919-cust780.vm26.cable.virginm.net. [82.37.195.13])
-        by smtp.gmail.com with ESMTPSA id iv16-20020a05600c549000b0041409cabb39sm8112451wmb.18.2024.03.25.04.28.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Mar 2024 04:28:25 -0700 (PDT)
-Date: Mon, 25 Mar 2024 11:28:24 +0000
-From: Daniel Thompson <daniel.thompson@linaro.org>
-To: Patrick Gansterer <paroga@paroga.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	Lee Jones <lee@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v4 2/2] backlight: Add new lm3509 backlight driver
-Message-ID: <20240325112824.GA190706@aspen.lan>
-References: <20240310135344.3455294-1-paroga@paroga.com>
- <20240310135344.3455294-2-paroga@paroga.com>
+        d=1e100.net; s=20230601; t=1711366276; x=1711971076;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WJkBHyUsM1Ra6ur6SOchqQjxQFdX44EdA5Gc6F4wbhw=;
+        b=BPd6kH+QULDFAMEU6KWslsEpSJT2XdAsx2OLPdr+oBgb4VzpRdt0A9ovEGYYbpbeZH
+         6BNiy+idW8S4Plk03QKPG+d+cfmMFhPQI5+tduFO/00l3tzBoe7/v2yShBq4rVkAtwLa
+         yoeg5CIq7Rs1IO6Ln54pchHjMqIFP9yJ8RHm//3fzw/NjVu5IwQio2AXf/sERWXhENVH
+         R5tEHF6AvihIOhdSps+eaOtGDbyUrGQWkbM0WNoHWrx243YYQI2iMJONSWfOydSiBFz/
+         PMK+e/WaBsPui4MZQ6EJGqPwHr9BabNN2MjoriVC0wkoJIIOVQemG2Zo1Nb4Fk6G056q
+         UZCg==
+X-Forwarded-Encrypted: i=1; AJvYcCWkY5JhNelePlDssYOBobAv3E9CFnd14TYnKQHIdh3CLbpD9ycXLJh7MozytR9jBWJdakrxg8XIFQZLTi55+Fr+3nctVtGq3cegfHgu8JgcOtZBo8NL3Nd/B97cM2YxKyyJlG4sySDAUw==
+X-Gm-Message-State: AOJu0YyBIcprijDQjxrDipq11zV7SE8gG6v6yt07njm+leYR4GpKm/f6
+	SWinmKRaWp7UIj47vqr1xf6+2WnpsAlwFWvW1QNWSZKcf0CTwYzACEraDHR9
+X-Google-Smtp-Source: AGHT+IF2nqxUG0rM7Fo+wTv5ljPmgwCa+w71rkB3zM9tbCRqlpdyPxc1zfzOtVQRkUO55CzC5ywi3Q==
+X-Received: by 2002:a19:ca07:0:b0:512:fabd:8075 with SMTP id a7-20020a19ca07000000b00512fabd8075mr4079760lfg.48.1711366276190;
+        Mon, 25 Mar 2024 04:31:16 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:7426:df00::6? (drtxq0yyyyyyyyyyyyydy-3.rev.dnainternet.fi. [2001:14ba:7426:df00::6])
+        by smtp.gmail.com with ESMTPSA id y5-20020a196405000000b00515a3293478sm955108lfb.104.2024.03.25.04.31.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Mar 2024 04:31:15 -0700 (PDT)
+Message-ID: <472c6eaf-6cbc-484c-bc94-571d115176aa@gmail.com>
+Date: Mon, 25 Mar 2024 13:31:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240310135344.3455294-2-paroga@paroga.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 2/2] mfd: rohm-bd71828: Add power off functionality
+Content-Language: en-US, en-GB
+To: Andreas Kemnade <andreas@kemnade.info>, lee@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev
+References: <20240324201210.232301-1-andreas@kemnade.info>
+ <20240324201210.232301-3-andreas@kemnade.info>
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20240324201210.232301-3-andreas@kemnade.info>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-^^^
-Also not copied to LKML...
+On 3/24/24 22:12, Andreas Kemnade wrote:
+> Since the chip can power off the system, add the corresponding
+> functionality.
+> Based on https://github.com/kobolabs/Kobo-Reader/raw/master/hw/imx6sll-clara2e/kernel.tar.bz2
+> No information source about the magic numbers found.
 
+Oh, interesting repository :) Thanks for linking to it! I didn't know 
+someone had reworked this driver...
 
-On Sun, Mar 10, 2024 at 02:52:57PM +0100, Patrick Gansterer wrote:
-> This is a general driver for LM3509 backlight chip of TI.
-> LM3509 is High Efficiency Boost for White LEDs and/or OLED Displays with
-> Dual Current Sinks. This driver supports OLED/White LED select, brightness
-> control and sub/main control.
-> The datasheet can be found at http://www.ti.com/product/lm3509.
->
-> Signed-off-by: Patrick Gansterer <paroga@paroga.com>
+I have access to the data-sheets so I also have some pieces of 
+information. I hope I can clarify part of the puzzle. Unfortunately I 
+have no information about the magic delays. I guess I could try asking 
+though.
 
-Overall looks good but there are some review comments inline below.
+Oh, it seems to me this handler is only working on BD71828, not on 
+BD71815. So, it should be tied to the ROHM_CHIP_TYPE_BD71828.
 
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> ---
+>   drivers/mfd/rohm-bd71828.c | 31 ++++++++++++++++++++++++++++++-
+>   1 file changed, 30 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/mfd/rohm-bd71828.c b/drivers/mfd/rohm-bd71828.c
+> index 594718f7e8e1..5a55aa3620d0 100644
+> --- a/drivers/mfd/rohm-bd71828.c
+> +++ b/drivers/mfd/rohm-bd71828.c
+> @@ -464,6 +464,24 @@ static int set_clk_mode(struct device *dev, struct regmap *regmap,
+>   				  OUT32K_MODE_CMOS);
+>   }
+>   
+> +static struct i2c_client *bd71828_dev;
 
-> diff --git a/drivers/video/backlight/lm3509_bl.c b/drivers/video/backlight/lm3509_bl.c
-> new file mode 100644
-> index 000000000000..696ec8aab6aa
-> --- /dev/null
-> +++ b/drivers/video/backlight/lm3509_bl.c
-> @@ -0,0 +1,338 @@
-> <snip>
-> +struct lm3509_bl {
-> +	struct regmap *regmap;
-> +	struct backlight_device *bl_main;
-> +	struct backlight_device *bl_sub;
-> +	struct gpio_desc *reset_gpio;
-> +};
-> +
-> +struct lm3509_bl_led_pdata {
+I'm not sure why to store pointer to the device and not a pointer to the 
+regmap?
 
-What does the p stand for here?
-
-(only asking because pdata was the idiomatic form for platform data and
-this driver only uses DT-only so I'm finding pdata values everywhere
-really confusing)
-
-
-> +	const char *label;
-> +	int led_sources;
-> +	u32 brightness;
-> +	u32 max_brightness;
-> +};
-> +
-> +static void lm3509_reset(struct lm3509_bl *data)
+> +static void bd71828_power_off(void)
 > +{
-> +	if (data->reset_gpio) {
-> +		gpiod_set_value(data->reset_gpio, 1);
-> +		udelay(1);
-> +		gpiod_set_value(data->reset_gpio, 0);
-> +		udelay(10);
+> +	i2c_smbus_write_byte_data(bd71828_dev, 0x03, 0xff);
+
+0x03 is a "reset reason" - register. Spec I have states that the 
+register should clear when a reset occurs - but it also says the bits 
+are "write '1' to clear". So, for some reason(?), this clears the 
+previous reset reason. I am unsure why i2c_smbus_write_byte_data() and 
+not regmap()?
+
+> +	mdelay(500);
+> +	i2c_smbus_write_byte_data(bd71828_dev, BD71828_REG_INT_DCIN2, 0x02);
+
+This clears the DCIN monitoring status bit from the IRQ status register. 
+I don't understand the purpose though.
+
+> +	mdelay(500);
+> +	while (true) {
+> +		i2c_smbus_write_byte_data(bd71828_dev, BD71828_REG_PS_CTRL_1, 0x02);
+
+This write to PS_CTRL_1 initiates a state transition. 0x2 equals to HBNT 
+state. Eg, in usual cases this should be a start of the power-off sequence.
+
+> +		mdelay(500);
 > +	}
 > +}
-> +
-> <snip>
-> +
-> +static struct backlight_device *
-> +lm3509_backlight_register(struct device *dev, const char *name_suffix,
-> +			  struct lm3509_bl *data,
-> +			  const struct backlight_ops *ops,
-> +			  const struct lm3509_bl_led_pdata *pdata)
-> +
+
+If you have the hardware to test this on, then it'd be great to see if 
+clearing the reset reason and IRQ status could be dropped. I can't 
+immediately think of a reason for those.
+
+> +static void bd71828_remove_poweroff(void *data)
 > +{
-> +	struct backlight_device *bd;
-> +	struct backlight_properties props;
-> +	const char *label = pdata->label;
-> +	char name[64];
-> +
-> +	memset(&props, 0, sizeof(props));
-> +	props.type = BACKLIGHT_RAW;
-> +	props.brightness = pdata->brightness;
-> +	props.max_brightness = pdata->max_brightness;
+> +	bd71828_dev = NULL;
 
-Please set props.scale appropriately for this device (given it only has
-32 brightness levels I assume it is non-linear?).
+This does not smell correct to me. Should we remove the 
+bd71828_power_off() from the pm_power_off instead?
 
-
-> +
-> +	if (!label) {
-> +		snprintf(name, sizeof(name), "lm3509-%s-%s", dev_name(dev),
-> +			 name_suffix);
-> +		label = name;
-> +	}
-> +
-> +	bd = devm_backlight_device_register(dev, label, dev, data, ops, &props);
-> +	if (bd)
-> +		backlight_update_status(bd);
-> +
-> +	return bd;
 > +}
 > +
-> <snip>
+>   static int bd71828_i2c_probe(struct i2c_client *i2c)
+>   {
+>   	struct regmap_irq_chip_data *irq_data;
+> @@ -542,7 +560,18 @@ static int bd71828_i2c_probe(struct i2c_client *i2c)
+>   	ret = devm_mfd_add_devices(&i2c->dev, PLATFORM_DEVID_AUTO, mfd, cells,
+>   				   NULL, 0, regmap_irq_get_domain(irq_data));
+>   	if (ret)
+> -		dev_err_probe(&i2c->dev, ret, "Failed to create subdevices\n");
+> +		return	dev_err_probe(&i2c->dev, ret, "Failed to create subdevices\n");
 > +
-> +static int lm3509_probe(struct i2c_client *client)
-> +{
-> +	struct lm3509_bl *data;
-> +	struct device *dev = &client->dev;
-> +	int ret;
-> +	bool oled_mode = false;
-> +	unsigned int reg_gp_val = 0;
-> +	struct lm3509_bl_led_pdata pdata[LM3509_NUM_SINKS];
-> +	u32 rate_of_change = 0;
-> +
-> +	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C)) {
-> +		dev_err(dev, "i2c functionality check failed\n");
-> +		return -EOPNOTSUPP;
+> +	if (of_device_is_system_power_controller(i2c->dev.of_node)) {
+> +		if (!pm_power_off) {
+> +			bd71828_dev = i2c;
+> +			pm_power_off = bd71828_power_off;
+> +			ret = devm_add_action_or_reset(&i2c->dev,
+> +						       bd71828_remove_poweroff,
+> +						       NULL);
+> +		} else
+> +			dev_warn(&i2c->dev, "Poweroff callback already assigned\n");
 > +	}
-> +
-> +	data = devm_kzalloc(dev, sizeof(struct lm3509_bl), GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	data->regmap = devm_regmap_init_i2c(client, &lm3509_regmap);
-> +	if (IS_ERR(data->regmap))
-> +		return PTR_ERR(data->regmap);
-> +	i2c_set_clientdata(client, data);
-> +
-> +	data->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_LOW);
-> +	if (IS_ERR(data->reset_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(data->reset_gpio),
-> +				     "Failed to get 'reset' gpio\n");
-> +
-> +	lm3509_reset(data);
-> +
-> +	memset(pdata, 0, sizeof(pdata));
-> +	ret = lm3509_parse_dt_node(dev, pdata);
-> +	if (ret)
-> +		return ret;
-> +
-> +	oled_mode = of_property_read_bool(dev->of_node, "ti,oled-mode");
-> +
-> +	if (!of_property_read_u32(dev->of_node,
-> +				  "ti,brightness-rate-of-change-us",
-> +				  &rate_of_change)) {
-> +		switch (rate_of_change) {
-> +		case 51:
-> +			reg_gp_val = 0;
-> +			break;
-> +		case 13000:
-> +			reg_gp_val = BIT(REG_GP_RMP1_BIT);
-> +			break;
-> +		case 26000:
-> +			reg_gp_val = BIT(REG_GP_RMP0_BIT);
-> +			break;
-> +		case 52000:
-> +			reg_gp_val = BIT(REG_GP_RMP0_BIT) |
-> +				     BIT(REG_GP_RMP1_BIT);
-> +			break;
-> +		default:
-> +			dev_warn(dev, "invalid rate of change %u\n",
-> +				 rate_of_change);
-> +			break;
-> +		}
-> +	}
-> +
-> +	if (pdata[0].led_sources ==
-> +	    (BIT(LM3509_SINK_MAIN) | BIT(LM3509_SINK_SUB)))
-> +		reg_gp_val |= BIT(REG_GP_UNI_BIT);
-> +	if (oled_mode)
-> +		reg_gp_val |= BIT(REG_GP_OLED_BIT);
-> +
-> +	ret = regmap_write(data->regmap, REG_GP, reg_gp_val);
-> +	if (ret < 0)
-> +		return ret;
+>   
+>   	return ret;
+>   }
 
-Is this the first time we write to the peripheral? If so the error path
-is probably worth a dev_err_probe() (I don't think regmap_write() logs
-anything on failure to write).
+Thanks for doing the digging Andreas! I think supporting the power-off 
+for devices using this PMIC is nice!
 
+Yours,
+	-- Matti
 
-> +	if (pdata[0].led_sources) {
-> +		data->bl_main = lm3509_backlight_register(
-> +			dev, "main", data, &lm3509_main_ops, &pdata[0]);
-> +		if (IS_ERR(data->bl_main)) {
-> +			dev_err(dev, "failed to register main backlight\n");
-> +			return PTR_ERR(data->bl_main);
+-- 
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
 
-This should use dev_err_probe().
+~~ When things go utterly wrong vim users can always type :help! ~~
 
-
-> +		}
-> +	}
-> +
-> +	if (pdata[1].led_sources) {
-> +		data->bl_sub = lm3509_backlight_register(
-> +			dev, "sub", data, &lm3509_sub_ops, &pdata[1]);
-> +		if (IS_ERR(data->bl_sub)) {
-> +			dev_err(dev,
-> +				"failed to register secondary backlight\n");
-> +			return PTR_ERR(data->bl_sub);
-
-Another good place for dev_err_probe().
-
-
-Daniel.
 
