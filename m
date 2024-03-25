@@ -1,70 +1,72 @@
-Return-Path: <devicetree+bounces-52867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B2E088A3C8
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 15:12:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91FBB88A472
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 15:27:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C88F12E0349
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 14:12:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C69C2E5068
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 14:27:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30A47146D72;
-	Mon, 25 Mar 2024 11:13:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FEC112B159;
+	Mon, 25 Mar 2024 11:13:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oyyvSCR4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="s5PdTw9L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1307E16F82B
-	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 10:36:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F78816F833
+	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 10:36:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711362979; cv=none; b=ivCiRMs0YYKHgyNJb/Ynyhpxc8TBTwbfxsaoDj3inz10BW9sP+t6N5HINfb69dFMmORH05WR0NWRlRX476a33fKwoAcKnT7WKehz1oSOaUJPirk5DC9rGJ7JTO6sFWqXufe9k76iU+pj0fLUbtd/Ti2iZ5QguU/NFMH5SrwhvjU=
+	t=1711362979; cv=none; b=Qxbiqrys1FfgBga+u6KAZbigrZSHmfnys0MfC16B0UgUQpy6uH03PXOV0/IseGtDuCeajKQzVMvFoisoyN7oCFQzzZNRpd42EIwGWVD1CdOgoeOkmuF5jpsygfI4ia16e63DyDV7LPpdceIivRYlXg92XJaEb/nRQRkx8rZsOBE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1711362979; c=relaxed/simple;
-	bh=jqvU3Y2sBVXpLMRkDMJYk9Nm5Kg4ldvtAjFdlImDn3k=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=SzSdEO9O5kJSK0qbNRrctsfbGS2Lxx6pl8GQe9b4RonC4KUAwbDs+b5lcWbOfJukD2RvUkLgpg9/3vaM99DOVwyds01uVCSsdAEvsG8/tvrXbef4P7CVQXtzj42MhRq0G5nsxkC7ovvBv0HmFqsOszEeyw4wf+hXVtlQLzqZtOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oyyvSCR4; arc=none smtp.client-ip=209.85.208.46
+	bh=o8FkFMcnGCkErGN46EocDqCxv2FUm77R00EJGlA+8Eg=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=cTpP5XiNNzZB49+pF3huRQDwlwyy+sM9JJmGL6gt2KpzclbM3Lbc/6SN0GYulOe0w+I22p7pGKDWPzsj+SpDycqMg+Pzlfi8kih+xkOn7Y743EoMUeaugyYJVzClTu9PF1hYoS+oQsl0jOkKMxBsPNYdJOzzFHy9T2Ja4Rtoje0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=s5PdTw9L; arc=none smtp.client-ip=209.85.218.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-56c1a65275bso147147a12.1
-        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 03:36:15 -0700 (PDT)
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a465ddc2c09so231970566b.2
+        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 03:36:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711362974; x=1711967774; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=9sOPezhldmxSnr8OT7bAHjF4t98n/YFRx58g6GLuW1s=;
-        b=oyyvSCR4onxuZ5WG3yDM3NZKytDqtmFRVbIBEHpGrgxbLccCUF+vAoFQgcKlehRMT4
-         6Xx7dsnoSY6AjQhQ50nS7vG92eynCwz0r2yskCLi75Dh5gTQzUwZ/pcEZo/F+p7k20Qa
-         PubTvMCGTobjcqOWjWNddyO7eP4dEcrnI+eNFKNyIixxxTxbXWAEFJ5XmpXRomDW80ol
-         ubeLYROG/gf99pUY8diaxrn7uB/Klz4oxya5L2u91yh2FC1diujmh39SJS/Hb4mTN6m+
-         BO1TIlHe8Yd7FjfDJjiu5X01bBaexh1T9Dt2U7OJcWxQ46uT/IHTZbXMcHQPr53D83Gn
-         V6Hw==
+        d=linaro.org; s=google; t=1711362976; x=1711967776; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=W09M8JIJtZCbNBhGe/AHRCcrRIGkrBwh+HJVwKRzmpo=;
+        b=s5PdTw9LBvuIFiOkT/K7o3zSBFrUtD0G3ZXzQWlZ7mrfNVBTJO1pPB6P3XvqKI/UOV
+         e2UqS9lGLz4j+G5AksmHUiIrCSN9mG1DfPaXeGuDzyNkFyoko4I3m+ZazSOy6k2y8O4L
+         J55nz9Dp/e6zAn1nIEpGyc5K5ju8b+njndP0t1EDa1wvwzlyJBuXDpgJvcm3AojqoSak
+         9hVCTE/fhekwcyBveJn5vvT9k2tzXO6HyRdQae9kEqqrvgYGgvnPQ19Pl3Lzt6Q2dgKQ
+         rIh5Ncuow1sUd3bzJt0c/Y+h2dpJyJOzRSlxaxw699KXNJsPXuJMVKbmNBweqoq85bOJ
+         0LgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711362974; x=1711967774;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9sOPezhldmxSnr8OT7bAHjF4t98n/YFRx58g6GLuW1s=;
-        b=ne/PGBJM8zxd6FiLWV3MmjS88PgZVfNW7rlj59R3HjpukZILBBNYFH0+ON7jPz8c5s
-         ZcmnAuuwwNxVyWdYPpo/QsG/QEr8RYeSqD/y9B77zl2/Ci9q0cozYQ+x7QL0mOJu9Rup
-         IiIDpLdPoUcgp0VLJs9/ZFAAGYU2DN1jfoqK8uRn9MAFSqsBIOrIPXbsLdXmnWXT5CBR
-         MmfZDBNev9nyeEp1Qh0hk0TNFkVMHdneCiQVRC3in6jB2x0Eo9ciFJDwWDyuqQ2G3VJ5
-         Ctmh/BdIGtTJh2TW8pJ2CccCcrJe7hviJxKrCOT7wp52Et7WABcm0zzXXAhpz4Ha1l5T
-         4yJg==
-X-Forwarded-Encrypted: i=1; AJvYcCUjrDnNdOhFLpwusRxOm8Hc6bPt8BV0P3Om6Tp0JdQchLAchXqpjj/A/WccEePw3BQe1dhuso791S4/L+AHMHyejwEByR27tv/m5w==
-X-Gm-Message-State: AOJu0YyEvqE7Ye6BQ7dzOaZ0SVqmxj9ZjF3p724BrHuuBqNlE2Ha7+a6
-	osYwR6D27o4CTRFkdTqAdNeWUGIqifiPhtlLUdL67cFHLk3dpJxAzGpuzLdkbBI=
-X-Google-Smtp-Source: AGHT+IGxM8s228b1XWbE+SeGTrM1fDdyMya66yBrGFVuE7WBvD2ok2jlRcn2B1rUDQ1HBTx/Bvze3Q==
-X-Received: by 2002:a50:9e44:0:b0:568:d19e:7ab0 with SMTP id z62-20020a509e44000000b00568d19e7ab0mr5606866ede.36.1711362974289;
-        Mon, 25 Mar 2024 03:36:14 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1711362976; x=1711967776;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=W09M8JIJtZCbNBhGe/AHRCcrRIGkrBwh+HJVwKRzmpo=;
+        b=XbZanKH2twW+Ql7VB6WMYK46yDx931YZXasVpOi2FGuo1kC5op3gy06pH4PyJe5wFi
+         8CsjxX55v//49iPFeUadDjcPL4VTXxBawIvgWYkUMG/LKYSrTB0uoiPXSVdZXPBYHRXD
+         6OrbSv6GapoWjbjUCa2OOZ1rEcgRpUUEaQHwZLnv8U+6YCqu/zFqUp/SPDbD+gyBc78y
+         6Wa9+QnE7TlOJEE04ciNNbmM5EP1PpJA54tSf8fEWR+jq039bMxOzp6WjPy6Py4X91qy
+         n7zW4/hhSiwpEz99Z9GjtWp6jQ8Or0lZecIRU+f6RgTj6H9MW51k32fZAe8EFEBN0GHx
+         ulSw==
+X-Forwarded-Encrypted: i=1; AJvYcCWbZvPv13+QWFssoI9lp1HGskQqIh/M4IudHMlnL/wCso/6u5jJsWt9FzGGWa3+htDM0RmYJbDZ88KJfFydn/Va8V8YwgKZMudqug==
+X-Gm-Message-State: AOJu0YzZQG/DtwQxtgvyY5qE6JP9SoFoF90rk0FqWejg9riZ2+pcFOrp
+	5q7lyGGSpZkkuz4oZwTRB1L13umuJm0pNnFq7idE7iZJ5s37az9oC9xVMg6eatk=
+X-Google-Smtp-Source: AGHT+IHmQpcP4djMqJlgyZNdnJK2o64l+ykSs8j6DoMBtPxwMAnnBzvrwX1Qg9HlK4MmGrHDb/DTZQ==
+X-Received: by 2002:a50:8717:0:b0:568:abe3:52b2 with SMTP id i23-20020a508717000000b00568abe352b2mr6048218edb.23.1711362975826;
+        Mon, 25 Mar 2024 03:36:15 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.222.44])
-        by smtp.gmail.com with ESMTPSA id dm28-20020a05640222dc00b0056b7ed75a46sm2827319edb.27.2024.03.25.03.36.12
+        by smtp.gmail.com with ESMTPSA id dm28-20020a05640222dc00b0056b7ed75a46sm2827319edb.27.2024.03.25.03.36.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Mar 2024 03:36:13 -0700 (PDT)
+        Mon, 25 Mar 2024 03:36:15 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Neil Armstrong <neil.armstrong@linaro.org>,
 	Sam Ravnborg <sam@ravnborg.org>,
@@ -81,12 +83,13 @@ To: Neil Armstrong <neil.armstrong@linaro.org>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
 	Rob Herring <robh@kernel.org>
-Subject: [RESEND PATCH v4 1/3] dt-bindings: display: panel: add common dual-link schema
-Date: Mon, 25 Mar 2024 11:36:09 +0100
-Message-Id: <20240325103611.28240-1-krzysztof.kozlowski@linaro.org>
+Subject: [RESEND PATCH v4 2/3] dt-bindings: display: novatek,nt35950: define ports
+Date: Mon, 25 Mar 2024 11:36:10 +0100
+Message-Id: <20240325103611.28240-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240325103611.28240-1-krzysztof.kozlowski@linaro.org>
+References: <20240325103611.28240-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,79 +98,48 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add schema with common properties shared among dual-link panel ICs.
+The panel-common schema does not define what "ports" property is, so
+bring the definition by referencing the panel-common-dual.yaml. Panels
+can be single- or dual-link, thus require only one port@0.
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+
 ---
 
 Changes since v3:
-1. Re-phrase description of binding and ports (Laurent)
-v3: https://lore.kernel.org/all/20230823081500.84005-1-krzysztof.kozlowski@linaro.org/
+1. Rb tag
 
 Changes since v2:
-1. New Patch
-v2: https://lore.kernel.org/all/20230502120036.47165-1-krzysztof.kozlowski@linaro.org/
-v1: https://lore.kernel.org/all/20230416153929.356330-1-krzysztof.kozlowski@linaro.org/
----
- .../display/panel/panel-common-dual.yaml      | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/panel/panel-common-dual.yaml
+1. Use panel-common-dual
 
-diff --git a/Documentation/devicetree/bindings/display/panel/panel-common-dual.yaml b/Documentation/devicetree/bindings/display/panel/panel-common-dual.yaml
-new file mode 100644
-index 000000000000..cc7ea3c35c77
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/panel-common-dual.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/panel/panel-common-dual.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Common Properties for Dual-Link Display Panels
-+
-+maintainers:
-+  - Thierry Reding <thierry.reding@gmail.com>
-+  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-+
-+description:
-+  Properties common for Panel IC supporting dual link panels.  Devices might
-+  support also single link.
-+
-+allOf:
-+  - $ref: panel-common.yaml#
-+
-+properties:
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+    additionalProperties: false
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: First link
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Second link
-+
-+      "#address-cells": true
-+      "#size-cells": true
-+
-+    required:
-+      - port@0
-+
-+# Single-panel setups are still allowed.
-+oneOf:
-+  - required:
-+      - ports
-+  - required:
-+      - port
-+
-+additionalProperties: true
+Changes since v1:
+1. Rework to add ports to device schema, not to panel-common.
+---
+ .../devicetree/bindings/display/panel/novatek,nt35950.yaml     | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt35950.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt35950.yaml
+index 377a05d48a02..7cac93b20944 100644
+--- a/Documentation/devicetree/bindings/display/panel/novatek,nt35950.yaml
++++ b/Documentation/devicetree/bindings/display/panel/novatek,nt35950.yaml
+@@ -19,7 +19,7 @@ description: |
+   either bilinear interpolation or pixel duplication.
+ 
+ allOf:
+-  - $ref: panel-common.yaml#
++  - $ref: panel-common-dual.yaml#
+ 
+ properties:
+   compatible:
+@@ -59,6 +59,7 @@ required:
+   - avee-supply
+   - dvdd-supply
+   - vddio-supply
++  - ports
+ 
+ additionalProperties: false
+ 
 -- 
 2.34.1
 
