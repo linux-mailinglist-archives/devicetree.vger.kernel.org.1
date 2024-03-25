@@ -1,103 +1,95 @@
-Return-Path: <devicetree+bounces-52793-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52791-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D61DC88A07C
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 13:56:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFAF7889A7A
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 11:29:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 27411B27349
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 10:34:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A2C21C331E2
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 10:29:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C7BA1442FD;
-	Mon, 25 Mar 2024 05:46:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43BD4141995;
+	Mon, 25 Mar 2024 05:44:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UyQ9GcpQ"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="bf9fXS0f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7583214BFAD;
-	Mon, 25 Mar 2024 02:13:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8AFD234510
+	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 02:41:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711332788; cv=none; b=uLxv90YTrSm1WQKHWmnrlkArSAF/5kHlZ2LHD+yzvI5Ldlgti9uE1lLs9in0yMsn6CGlR97EnCmqZlwjqyA73C7TAQldAChcUsLC7BRi2Roc4HTIHETtENoZrWY/48uIiBdme7bfvLNOOQZHTmgnMoC4/yGBmz4u43/+fDaHios=
+	t=1711334506; cv=none; b=ckXi47D+B2U+R99QfSf4FVJ/GEf06ViKCU4TynzcGWo0nSVZsH0FuT8XviYMxsaYsz3X576A2x5L+n/DhoXZknRzcf9ohXWRkClQbF0krqaW/tDNfy3j7l0Kpje1YCNshJ3j5IheBx1gF5f5//8nu54FjtQQPjVfQDRT3PQBKFg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711332788; c=relaxed/simple;
-	bh=ZjgqCWsmKkuovh6MisooZl+/2MBUKF7fK+TUoxzUHCY=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=jfuBFDahOi0A4nCuavFksz9YDWqnSXonY6ZcM6oF9GqT8EGHPNGJGazh+yYqjaEbH/y/7TiyhZcqAUOeFwTFTSIQqClOjQI/SCrM/Xdz3mF4/zMl9Az92I4n64jlb5KVWRh9ScXFHZrLDwHhFrNJ+QoesrPIASTPbsbA9ss/xPI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UyQ9GcpQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 936DDC43143;
-	Mon, 25 Mar 2024 02:13:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711332787;
-	bh=ZjgqCWsmKkuovh6MisooZl+/2MBUKF7fK+TUoxzUHCY=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=UyQ9GcpQVXzojXqUM9nOd0DRpLaGTsf7lQnP/2oEM4OV2s7EmzskxKAF3m0kyMsZ/
-	 EoJSLaEw/RsRKxYAFmogtyUY6LbxNri8zfPW6jlz9Z154rcef8YdgG+MuzEY9GGgbv
-	 0jnG8pZFD1YArL/3LfWRH1fn/6NuZbECfm+o+nbwfpRSCgna7epf1KkgzYdNtq/HNv
-	 BaUu05Vd0gN/UZO3xJzFtAdoxG2xDhVcBlZgKBV8o/JKftE79GMlzoG3KQ0MzDYOlR
-	 19+gaNycmmH6Q5THqCgCzN01lhj3UZVJGH4vldwCskiKeaCOtoJsNMQj48BwHeeUlZ
-	 RYraCD/FCaX5w==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 7FFB1D2D0E6;
-	Mon, 25 Mar 2024 02:13:07 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1711334506; c=relaxed/simple;
+	bh=G6eyCkk3zcshPKj88fY6m2LVAW13sxCXTh/5Qc/MreA=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=YE1Nl+vNcBdpogMJPwg+QvP+IkTVEEzdPAjmCTvuCu7UZD3gtYJmu7wq791iqSNa095soYacoibjyQGmeFh0x6NV1H+QfiNzbYYfF3oxLbOcA+lnSaH7KXczaiI79/wGhaJTmhxS9TCsjYs3UjkvQ/xq7TG7IQkXuRDZOnQbXug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=bf9fXS0f; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v2] gpio: Add ChromeOS EC GPIO driver
-From: patchwork-bot+chrome-platform@kernel.org
-Message-Id: 
- <171133278751.9916.9482317589165848392.git-patchwork-notify@kernel.org>
-Date: Mon, 25 Mar 2024 02:13:07 +0000
-References: <20240220045230.2852640-1-swboyd@chromium.org>
-In-Reply-To: <20240220045230.2852640-1-swboyd@chromium.org>
-To: Stephen Boyd <swboyd@chromium.org>
-Cc: linus.walleij@linaro.org, brgl@bgdev.pl, linux-kernel@vger.kernel.org,
- patches@lists.linux.dev, devicetree@vger.kernel.org,
- chrome-platform@lists.linux.dev, dianders@chromium.org,
- treapking@chromium.org, linux-gpio@vger.kernel.org, lee@kernel.org,
- bleung@chromium.org, groeck@chromium.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1711334499;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=s0AjBi2RF0rePA20AYHaT0lWCGd363Pz8c5elcKVlPE=;
+	b=bf9fXS0f/xJ4HrbQseZ2WaI5ZocGKaDNVpqH2SXtbHQkDFSjlAEjXIJCMcZtJIycyT/yCY
+	eXo/RFl98EssfPBtqKiIkxc9/tn+9VvhqFsa+tfZgOF1n5TbmAc9ZQx/O7TuqjgZ6EK7Ps
+	pygBsdpDkxLcDLmIe/7PB3GtdFN1EGThz6cY1nVUAWXXFL2E5bxzDOiPfLaD3Qcdevyhhw
+	BGAzYueQ2BbM+f4Ui4XCVRMep8XxJYdd5IpsRRc0Y0+S5lTyBqPd35Jf/ChyTWNVqPMrQO
+	EdAJv4s93WJIuuSoQ16X5kcGnpQ2yfNAqpj1ywn0+PsP29g9Ii7S5v/9oBNkBw==
+Date: Mon, 25 Mar 2024 03:41:37 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: linux-rockchip@lists.infradead.org, krzysztof.kozlowski+dt@linaro.org,
+ Anand Moon <linux.amoon@gmail.com>, conor+dt@kernel.org,
+ didi.debian@cknow.org, devicetree@vger.kernel.org, robh+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2] arm64: dts: rockchip: Add cache information to the SoC
+ dtsi for RK3328
+In-Reply-To: <171131986742.918919.14220098959078401116.b4-ty@sntech.de>
+References: <a681b3c6dbf7b25b1527b11cea5ae0d6d1733714.1709958234.git.dsimic@manjaro.org>
+ <171131986742.918919.14220098959078401116.b4-ty@sntech.de>
+Message-ID: <e3eebf444a5440a983f5848c0d7af1e3@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hello:
-
-This patch was applied to chrome-platform/linux.git (for-next)
-by Bartosz Golaszewski <bartosz.golaszewski@linaro.org>:
-
-On Mon, 19 Feb 2024 20:52:27 -0800 you wrote:
-> The ChromeOS embedded controller (EC) supports setting the state of
-> GPIOs when the system is unlocked, and getting the state of GPIOs in all
-> cases. The GPIOs are on the EC itself, so the EC acts similar to a GPIO
-> expander. Add a driver to get and set the GPIOs on the EC through the
-> host command interface.
+On 2024-03-24 23:38, Heiko Stuebner wrote:
+> On Sat, 9 Mar 2024 05:24:42 +0100, Dragan Simic wrote:
+>> Add missing cache information to the Rockchip RK3328 SoC dtsi, to 
+>> allow
+>> the userspace, which includes lscpu(1) that uses the virtual files 
+>> provided
+>> by the kernel under the /sys/devices/system/cpu directory, to display 
+>> the
+>> proper RK3328 cache information.
+>> 
+>> While there, use a more self-descriptive label for the L2 cache node, 
+>> which
+>> also makes it more consistent with other SoC dtsi files.
+>> 
+>> [...]
 > 
-> Cc: Lee Jones <lee@kernel.org>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Bartosz Golaszewski <brgl@bgdev.pl>
-> Cc: Benson Leung <bleung@chromium.org>
-> Cc: Guenter Roeck <groeck@chromium.org>
-> Cc: <linux-gpio@vger.kernel.org>
-> Cc: <chrome-platform@lists.linux.dev>
-> Cc: Pin-yen Lin <treapking@chromium.org>
-> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+> Applied, thanks!
 > 
-> [...]
+> [1/1] arm64: dts: rockchip: Add cache information to the SoC dtsi for 
+> RK3328
+>       commit: 67a6a98575974416834c2294853b3814376a7ce7
 
-Here is the summary with links:
-  - [v2] gpio: Add ChromeOS EC GPIO driver
-    https://git.kernel.org/chrome-platform/c/f837fe1bffe6
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+Great, thanks!
 
