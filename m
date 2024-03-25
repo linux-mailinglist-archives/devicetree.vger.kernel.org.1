@@ -1,91 +1,69 @@
-Return-Path: <devicetree+bounces-52863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D60E388B0A9
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 20:59:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A430988A53D
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 15:51:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E6C05BC6542
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 14:27:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 43F7AC01A1C
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 14:27:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13589142E96;
-	Mon, 25 Mar 2024 11:12:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B114915217C;
+	Mon, 25 Mar 2024 11:12:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PVr0lNne"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="hVeUkH1Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3A4915AADE
-	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 10:33:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D8AB143867;
+	Mon, 25 Mar 2024 10:34:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711362807; cv=none; b=Lz3klUonmmURX8OEbifuJ3hFFPLEoo8iKP1otbm+oM7AZ30lo2+1kN2pPziDTF33WpRvdSWIvuI7V7OKngbsept5BkcO95aw35n2WgT8vJXxEtCmRBBFiZpK4Po3MOUFKQTCapiGZ4UBrPncBRwgvthEOkIzI98qa/P+WbPaB2U=
+	t=1711362866; cv=none; b=NlKOLHKHMaTEwTcEKoC/U6RxRbFhTQOwhNBMJhRo1iC8/mT8daUXZLFC3ibv0JioYv1vundcV1tvOyMMITNKL1vp6UXUgfkGklvii7HSdiuLR6sOslQ8mG9eHZqnpIENQLCzs3ehCo+W8rkf0E43PXnTV8qM44pr0aWphRPeLEU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711362807; c=relaxed/simple;
-	bh=veY2UbQB8Op7JAcmMcgKbzf2VaEh1Cc+Wkmsk2z3A1o=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=YSO4SCkUeh21EIyU118zdkWXiRDgAZAr5fjBPEiZpEl9c05jROmEgT50BuD/UUiKaWBgsYJZvSiyIkvcwplzNaI08moOvuQW55rNa7qrwdfhREklZLUzjXiqpYeVv+TC1h/8q15gV5gb33fqSCbpuFKE4lvy4MIjI1QYhyE0t3U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PVr0lNne; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-513d599dbabso5415010e87.1
-        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 03:33:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711362804; x=1711967604; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=IlSF/XzYfABBPkSuT+dcOfufwQU4xv4Qhn96JVhkpvs=;
-        b=PVr0lNneAPzI6Yn6+yI9KLa4fVb+M1Ih7YLzYxhNqnX+zB8fGqWbSBkX7YiL93emQw
-         /MzSqdw5Zmw7L+wq8ywQOiKzdu76qpOrQrLtkdISoQiLyk4/cy5SzbP2JchufYz81rLF
-         q4M68foEgVjQj8wjdv5v+4Pws/oVdn++/zNyytVbHfY/z0mss2MdrQs4nEdSm2mbJ6jg
-         +rlrJSt++qCeF2k/UousaBo0/6J89j3P6C99ttDdNh0zD0+KUDolR1USkCPdujn7yfBY
-         Zp+CWk2zYKv25yU59rLVDUDeKx/0nauKoMSNw7V7pyHZFIvlSYXXM8nw5oYqtDwLh5BA
-         +y9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711362804; x=1711967604;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IlSF/XzYfABBPkSuT+dcOfufwQU4xv4Qhn96JVhkpvs=;
-        b=J217jVsIeQUgWZr07NlrmzJyRVC2JQ3YCowM6W2/PfI8kAj1hN8i7CMyO3wZO5OV5g
-         fkzz1Zsu5OzuiqGMR6NLlG0UqJZh2dajDPkF3p+0QdMT68EPRR7ATHEWn34Rl0C9LlB8
-         r4MV0WjhTE7+eXny5T5CNSb+xHrD3kdS/VTWWMule3vo/gb55D3b0yvVaTm5MVGcm126
-         aYAVz1OFLclmk2WstHxTdCM7Qq6+ul9h9u48BVuSl9u6TZfcKZSHdR94SgeR16Mxwpt5
-         vfh63MwD9kXkCq+66sBfCAx9MYU3c+larL4VIg8ysW8F0s+KNgtzsEt48LSfQmwHhzuh
-         YMUA==
-X-Forwarded-Encrypted: i=1; AJvYcCWmL0DPw7RyIBx1PB/SULIIMMusMFoLzKsP9yNcUgmm7QOj1ZJKCRfD+nsm7r8NKAjE56KOvDDnj99ctDJrvHOtW+gvu6LTpiNbmA==
-X-Gm-Message-State: AOJu0YzDOPIZfpZ8gfhux+xSOY21WTknHkPZt/UWcpmISOuKaqnDw1ms
-	3jZnqvj7I2M9sLIIpEoscMLdS/YaMm81DPSJLvJd39ZnmjYn+omGtZB5hIC1csQ=
-X-Google-Smtp-Source: AGHT+IE5PQzQdX9H1hgeYc8OivCnUMTMVa7putOS9zMdbQ3op2eD2+msOoq0IZkoh8Nh+wl5dBNx7g==
-X-Received: by 2002:a19:f615:0:b0:513:aa0d:d3cc with SMTP id x21-20020a19f615000000b00513aa0dd3ccmr4818948lfe.34.1711362804207;
-        Mon, 25 Mar 2024 03:33:24 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.222.44])
-        by smtp.gmail.com with ESMTPSA id g17-20020a056402091100b0056c0cec810bsm1166030edz.85.2024.03.25.03.33.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Mar 2024 03:33:23 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@somainline.org>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [RESEND PATCH] dt-bindings: display: sony,td4353-jdi: allow width-mm and height-mm
-Date: Mon, 25 Mar 2024 11:32:27 +0100
-Message-Id: <20240325103227.27474-1-krzysztof.kozlowski@linaro.org>
+	s=arc-20240116; t=1711362866; c=relaxed/simple;
+	bh=0iNVx8Jzuei+t2Arv/gUH0iqVqglcoWVyc4RGWKsV3E=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=iG29aD2wm5AiWHl1GfZ22KwwM20zf8a1wDGP0gOF+rQ9aiNEuFWrw/tZefj/istTafc9TUpDi3znvK3t2jykjbZgXRWcKWBSC3094j9DtlWVcklFfRUjErfY3cF+mFd5ZhXP7k0oDXWWnT7On4ADWAm0OyoSCBvcMmI/uo19agE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=hVeUkH1Z; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 42PAYAoI085942;
+	Mon, 25 Mar 2024 05:34:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1711362850;
+	bh=KnYfVum1Y9tijG92Yx6yRaXnOvhRxG3WBuusOzf8vv8=;
+	h=From:To:CC:Subject:Date;
+	b=hVeUkH1ZMTQqChdFSuCKspkXvYSXF29Rl2LHIAn95BX8vbWZT+xdBEBaQMRLHpvU2
+	 yr7hUtASPcIGixWxxjRdVfAC3hooYS51HaUaUW9A8ohfBLnoX4ls/dnQK1qNBQtWi4
+	 HJY8F0oAnAAedeNdrvCtu2Ri/kRl/37wZkYQghPQ=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 42PAYA9X012975
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 25 Mar 2024 05:34:10 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 25
+ Mar 2024 05:34:09 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 25 Mar 2024 05:34:09 -0500
+Received: from uda0510294.dhcp.ti.com (uda0510294.dhcp.ti.com [10.24.69.66])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 42PAY5YR109320;
+	Mon, 25 Mar 2024 05:34:06 -0500
+From: Beleswar Padhi <b-padhi@ti.com>
+To: <nm@ti.com>
+CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <b-kapoor@ti.com>, <u-kumar1@ti.com>
+Subject: [PATCH v2] arm64: dts: ti: k3-j721e-sk: Add support for multiple CAN instances
+Date: Mon, 25 Mar 2024 16:04:05 +0530
+Message-ID: <20240325103405.182692-1-b-padhi@ti.com>
 X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -94,35 +72,180 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Allow width and height properties from panel-common.yaml, already used
-on some boards:
+CAN instance 0 in the mcu domain is brought on the j721e-sk board
+through header J1. Thus, add its respective transceiver 1 dt node to add
+support for this CAN instance.
 
-  sdm845-sony-xperia-tama-apollo.dtb: panel@0: 'height-mm', 'width-mm' do not match any of the regexes: 'pinctrl-[0-9]+'
+CAN instances 0, 5 and 9 in the main domain are brought on the j721e-sk
+board through headers J5, J6 and J2 respectively. Thus, add their
+respective transceivers 2, 3 and 4 dt nodes to add support for these CAN
+instances.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
 ---
+Test logs: https://gist.github.com/3V3RYONE/d60192fa2ccdf523f303e9904fbe8e17
 
-Rob, could you pick up this one? Was on the list for almost a year.
+v2: Changelog:
+1) Re-ordered status = "okay" property to the end of all applicable dt
+nodes following kernel documentation
 
+Link to v1:
+https://lore.kernel.org/linux-arm-kernel/20240315124728.490331-1-b-padhi@ti.com/
 
- .../devicetree/bindings/display/panel/sony,td4353-jdi.yaml      | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm64/boot/dts/ti/k3-j721e-sk.dts | 116 +++++++++++++++++++++++++
+ 1 file changed, 116 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/panel/sony,td4353-jdi.yaml b/Documentation/devicetree/bindings/display/panel/sony,td4353-jdi.yaml
-index b6b885b4c22d..07bce556ad40 100644
---- a/Documentation/devicetree/bindings/display/panel/sony,td4353-jdi.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/sony,td4353-jdi.yaml
-@@ -23,6 +23,8 @@ properties:
-   reg: true
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+index 0c4575ad8d7c..7170f0220afd 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+@@ -210,6 +210,42 @@ vdd_sd_dv_alt: gpio-regulator-tps659411 {
+ 			 <3300000 0x1>;
+ 	};
  
-   backlight: true
-+  width-mm: true
-+  height-mm: true
++	transceiver1: can-phy0 {
++		compatible = "ti,tcan1042";
++		#phy-cells = <0>;
++		max-bitrate = <5000000>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&mcu_mcan0_gpio_pins_default>;
++		standby-gpios = <&wkup_gpio0 3 GPIO_ACTIVE_HIGH>;
++	};
++
++	transceiver2: can-phy1 {
++		compatible = "ti,tcan1042";
++		#phy-cells = <0>;
++		max-bitrate = <5000000>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&main_mcan0_gpio_pins_default>;
++		standby-gpios = <&main_gpio0 65 GPIO_ACTIVE_HIGH>;
++	};
++
++	transceiver3: can-phy2 {
++		compatible = "ti,tcan1042";
++		#phy-cells = <0>;
++		max-bitrate = <5000000>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&main_mcan5_gpio_pins_default>;
++		standby-gpios = <&main_gpio0 66 GPIO_ACTIVE_HIGH>;
++	};
++
++	transceiver4: can-phy3 {
++		compatible = "ti,tcan1042";
++		#phy-cells = <0>;
++		max-bitrate = <5000000>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&main_mcan9_gpio_pins_default>;
++		standby-gpios = <&main_gpio0 67 GPIO_ACTIVE_HIGH>;
++	};
++
+ 	dp_pwr_3v3: fixedregulator-dp-prw {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "dp-pwr";
+@@ -367,6 +403,45 @@ J721E_IOPAD(0x164, PIN_OUTPUT, 7) /* (V29) RGMII5_TD2 */
+ 		>;
+ 	};
  
-   vddio-supply:
-     description: VDDIO 1.8V supply
++	main_mcan0_pins_default: main-mcan0-default-pins {
++		pinctrl-single,pins = <
++			J721E_IOPAD(0x208, PIN_INPUT, 0) /* (W5) MCAN0_RX */
++			J721E_IOPAD(0x20c, PIN_OUTPUT, 0) /* (W6) MCAN0_TX */
++		>;
++	};
++
++	main_mcan0_gpio_pins_default: main-mcan0-gpio-default-pins {
++		pinctrl-single,pins = <
++			J721E_IOPAD(0x108, PIN_INPUT, 7) /* (AD27) PRG0_PRU1_GPO2.GPIO0_65 */
++		>;
++	};
++
++	main_mcan5_pins_default: main-mcan5-default-pins {
++		pinctrl-single,pins = <
++			J721E_IOPAD(0x050, PIN_INPUT, 6) /* (AE21) PRG1_PRU0_GPO18.MCAN5_RX */
++			J721E_IOPAD(0x04c, PIN_OUTPUT, 6) /* (AJ21) PRG1_PRU0_GPO17.MCAN5_TX */
++		>;
++	};
++
++	main_mcan5_gpio_pins_default: main-mcan5-gpio-default-pins {
++		pinctrl-single,pins = <
++			J721E_IOPAD(0x10c, PIN_INPUT, 7) /* (AC25) PRG0_PRU1_GPO3.GPIO0_66 */
++		>;
++	};
++
++	main_mcan9_pins_default: main-mcan9-default-pins {
++		pinctrl-single,pins = <
++			J721E_IOPAD(0x0d0, PIN_INPUT, 6) /* (AC27) PRG0_PRU0_GPO8.MCAN9_RX */
++			J721E_IOPAD(0x0cc, PIN_OUTPUT, 6) /* (AC28) PRG0_PRU0_GPO7.MCAN9_TX */
++		>;
++	};
++
++	main_mcan9_gpio_pins_default: main-mcan9-gpio-default-pins {
++		pinctrl-single,pins = <
++			J721E_IOPAD(0x110, PIN_INPUT, 7) /* (AD29) PRG0_PRU1_GPO4.GPIO0_67 */
++		>;
++	};
++
+ 	dp0_pins_default: dp0-default-pins {
+ 		pinctrl-single,pins = <
+ 			J721E_IOPAD(0x1c4, PIN_INPUT, 5) /* SPI0_CS1.DP0_HPD */
+@@ -555,6 +630,19 @@ J721E_WKUP_IOPAD(0xfc, PIN_INPUT_PULLUP, 0) /* (H24) WKUP_I2C0_SDA */
+ 		>;
+ 	};
+ 
++	mcu_mcan0_pins_default: mcu-mcan0-default-pins {
++		pinctrl-single,pins = <
++			J721E_WKUP_IOPAD(0x0ac, PIN_INPUT, 0) /* (C29) MCU_MCAN0_RX */
++			J721E_WKUP_IOPAD(0x0a8, PIN_OUTPUT, 0) /* (D29) MCU_MCAN0_TX */
++		>;
++	};
++
++	mcu_mcan0_gpio_pins_default: mcu-mcan0-gpio-default-pins {
++		pinctrl-single,pins = <
++			J721E_WKUP_IOPAD(0x0bc, PIN_INPUT, 7) /* (F27) WKUP_GPIO0_3 */
++		>;
++	};
++
+ 	/* Reset for M.2 M Key slot on PCIe1  */
+ 	mkey_reset_pins_default: mkey-reset-pns-default-pins {
+ 		pinctrl-single,pins = <
+@@ -1108,6 +1196,34 @@ &pcie1_rc {
+ 	num-lanes = <2>;
+ };
+ 
++&mcu_mcan0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&mcu_mcan0_pins_default>;
++	phys = <&transceiver1>;
++	status = "okay";
++};
++
++&main_mcan0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&main_mcan0_pins_default>;
++	phys = <&transceiver2>;
++	status = "okay";
++};
++
++&main_mcan5 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&main_mcan5_pins_default>;
++	phys = <&transceiver3>;
++	status = "okay";
++};
++
++&main_mcan9 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&main_mcan9_pins_default>;
++	phys = <&transceiver4>;
++	status = "okay";
++};
++
+ &ufs_wrapper {
+ 	status = "disabled";
+ };
 -- 
 2.34.1
 
