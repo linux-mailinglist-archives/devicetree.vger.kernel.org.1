@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-52865-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52866-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91FBB88A472
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 15:27:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A751D88ACF8
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 19:05:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C69C2E5068
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 14:27:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E6E49C01C2E
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 14:28:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FEC112B159;
-	Mon, 25 Mar 2024 11:13:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40D0816F0EA;
+	Mon, 25 Mar 2024 11:13:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="s5PdTw9L"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HvOo9NXz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F78816F833
-	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 10:36:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 431D616F845
+	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 10:36:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711362979; cv=none; b=Qxbiqrys1FfgBga+u6KAZbigrZSHmfnys0MfC16B0UgUQpy6uH03PXOV0/IseGtDuCeajKQzVMvFoisoyN7oCFQzzZNRpd42EIwGWVD1CdOgoeOkmuF5jpsygfI4ia16e63DyDV7LPpdceIivRYlXg92XJaEb/nRQRkx8rZsOBE=
+	t=1711362981; cv=none; b=qZKi8nAj+uaz0U+aCRA0DgswkQsWIB8qsQp6CD4q1FQGZPtSnjua8M14lwmVfSdePwtGWLDFHGN8005q8QMZRhJBOMJbkMi/PXQPJipSjpAU4iqTOn7gtetMrA706yHyFty91J54Kt9LKkwOzl4qEgXUq6DlE9S6UeVczWZntZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711362979; c=relaxed/simple;
-	bh=o8FkFMcnGCkErGN46EocDqCxv2FUm77R00EJGlA+8Eg=;
+	s=arc-20240116; t=1711362981; c=relaxed/simple;
+	bh=9EC2e/ZlUF4xrN0qiUj/v62fecqd52+/NMrB/JXkVlU=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=cTpP5XiNNzZB49+pF3huRQDwlwyy+sM9JJmGL6gt2KpzclbM3Lbc/6SN0GYulOe0w+I22p7pGKDWPzsj+SpDycqMg+Pzlfi8kih+xkOn7Y743EoMUeaugyYJVzClTu9PF1hYoS+oQsl0jOkKMxBsPNYdJOzzFHy9T2Ja4Rtoje0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=s5PdTw9L; arc=none smtp.client-ip=209.85.218.49
+	 MIME-Version; b=g5zOQTd1CGa9EhGkjJMk+OxV98F4z7ojSvFHe9IDTmTM4iX5xDHYT/Yp/qWvzbtzp6FIOm4bPk3paiKVCuW7hQ0PTDztE284bWph9lVOTcGq++oIWpkCmwvRRDNWvGSWNbbOImuySTPPwLUOVCzqe+H5EkddPTm8Q8DJExZEO2k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HvOo9NXz; arc=none smtp.client-ip=209.85.208.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a465ddc2c09so231970566b.2
-        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 03:36:17 -0700 (PDT)
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-56845954ffeso5676291a12.2
+        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 03:36:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711362976; x=1711967776; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711362977; x=1711967777; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=W09M8JIJtZCbNBhGe/AHRCcrRIGkrBwh+HJVwKRzmpo=;
-        b=s5PdTw9LBvuIFiOkT/K7o3zSBFrUtD0G3ZXzQWlZ7mrfNVBTJO1pPB6P3XvqKI/UOV
-         e2UqS9lGLz4j+G5AksmHUiIrCSN9mG1DfPaXeGuDzyNkFyoko4I3m+ZazSOy6k2y8O4L
-         J55nz9Dp/e6zAn1nIEpGyc5K5ju8b+njndP0t1EDa1wvwzlyJBuXDpgJvcm3AojqoSak
-         9hVCTE/fhekwcyBveJn5vvT9k2tzXO6HyRdQae9kEqqrvgYGgvnPQ19Pl3Lzt6Q2dgKQ
-         rIh5Ncuow1sUd3bzJt0c/Y+h2dpJyJOzRSlxaxw699KXNJsPXuJMVKbmNBweqoq85bOJ
-         0LgQ==
+        bh=MzqGDlYO53VtpNTfk9/2jQSIhaYzka5q6tmocMJNTUk=;
+        b=HvOo9NXzgYYLU4muD87mLb5OZjw2bDcxshkSzHOoTdN2+IYUnPTsHW8Yw+ExVFZqx9
+         tR7YA211D8Q1vzp6WXidX5iJWP8dPeCjPSKC7bOf1VzqlJLUMinQ6/3ts4Xcwdz6Jvsr
+         ggNIXDhVT/zpc2BycfgmRDLK8Py4KrWIJMmb53noM3HCo0Eu9jbDbHOH6dm27oGJGbns
+         MChXPinaiSO7PQlE4mwBDYDkX2sFrS7Z4lgiiuKs39uQIXvu/7phbIvAGTbvLfweZnZz
+         bSU8pWsjEiCU5zxiVhl+MjqZpuLb9vMGtoHCk/YAWM6idnH7hgDJCE7dp0PwVacCchMn
+         EQ2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711362976; x=1711967776;
+        d=1e100.net; s=20230601; t=1711362977; x=1711967777;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=W09M8JIJtZCbNBhGe/AHRCcrRIGkrBwh+HJVwKRzmpo=;
-        b=XbZanKH2twW+Ql7VB6WMYK46yDx931YZXasVpOi2FGuo1kC5op3gy06pH4PyJe5wFi
-         8CsjxX55v//49iPFeUadDjcPL4VTXxBawIvgWYkUMG/LKYSrTB0uoiPXSVdZXPBYHRXD
-         6OrbSv6GapoWjbjUCa2OOZ1rEcgRpUUEaQHwZLnv8U+6YCqu/zFqUp/SPDbD+gyBc78y
-         6Wa9+QnE7TlOJEE04ciNNbmM5EP1PpJA54tSf8fEWR+jq039bMxOzp6WjPy6Py4X91qy
-         n7zW4/hhSiwpEz99Z9GjtWp6jQ8Or0lZecIRU+f6RgTj6H9MW51k32fZAe8EFEBN0GHx
-         ulSw==
-X-Forwarded-Encrypted: i=1; AJvYcCWbZvPv13+QWFssoI9lp1HGskQqIh/M4IudHMlnL/wCso/6u5jJsWt9FzGGWa3+htDM0RmYJbDZ88KJfFydn/Va8V8YwgKZMudqug==
-X-Gm-Message-State: AOJu0YzZQG/DtwQxtgvyY5qE6JP9SoFoF90rk0FqWejg9riZ2+pcFOrp
-	5q7lyGGSpZkkuz4oZwTRB1L13umuJm0pNnFq7idE7iZJ5s37az9oC9xVMg6eatk=
-X-Google-Smtp-Source: AGHT+IHmQpcP4djMqJlgyZNdnJK2o64l+ykSs8j6DoMBtPxwMAnnBzvrwX1Qg9HlK4MmGrHDb/DTZQ==
-X-Received: by 2002:a50:8717:0:b0:568:abe3:52b2 with SMTP id i23-20020a508717000000b00568abe352b2mr6048218edb.23.1711362975826;
-        Mon, 25 Mar 2024 03:36:15 -0700 (PDT)
+        bh=MzqGDlYO53VtpNTfk9/2jQSIhaYzka5q6tmocMJNTUk=;
+        b=oo0KlPSAhgyrXUjBssmQySWa/O+hGV8nWhKxx8bGWGPWl6zsiuERl3gvxNm6WU4oaO
+         i8E8jhWPjr+QGMUZH00g7dnzM50Yw6hN7HclX7FZfSGiruDLE8D0hSnak/ZTkUbESp5U
+         H3sP2wMiyiD4XzqyYsGGoxjqlYWdajr3M22ovSio/f8BpBh7tlz7pNOw+iYQUwbMTA0S
+         4NwVM/XOcf/53TEN+Dgg6ykgwiSnZd+qYMyur4MoN5Fma+CbeXoRR5r/3UDCCoxvNmHp
+         5rlV25ImryUXxiSKfIYjTs8Nm27MuBSbhpYPHxxIbeAU51i5EDB8uw/BmZrjij9bK73S
+         kP5A==
+X-Forwarded-Encrypted: i=1; AJvYcCXp15n+Z0U7rs8kv2F0whiI+anwpju0Z066XikyUfCjxvGC0m6697VJPUCHSb4hBevKqe1Mg0/ZeB1u/5cpwTbVBtmSL4t2qUb8lQ==
+X-Gm-Message-State: AOJu0YzU3MAGboo9n7bQj3yoxsqdWCACgpwVZ0rhFkYJUmHF9PG61KVW
+	d+RUzrbrjexaMZ5M7omZmyask+C8Cmg6fHGcVMZpmjQwk4o15Ntm84dp4qSN2RQ=
+X-Google-Smtp-Source: AGHT+IETJftRskEwl5RpRH8gvHqeBixLLouS91glYunfDQKwsjow2ORhmWr+ywgqdej1UpqdN9epjg==
+X-Received: by 2002:a50:9e45:0:b0:56b:cf42:bcf with SMTP id z63-20020a509e45000000b0056bcf420bcfmr4231366ede.1.1711362977412;
+        Mon, 25 Mar 2024 03:36:17 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.222.44])
-        by smtp.gmail.com with ESMTPSA id dm28-20020a05640222dc00b0056b7ed75a46sm2827319edb.27.2024.03.25.03.36.14
+        by smtp.gmail.com with ESMTPSA id dm28-20020a05640222dc00b0056b7ed75a46sm2827319edb.27.2024.03.25.03.36.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Mar 2024 03:36:15 -0700 (PDT)
+        Mon, 25 Mar 2024 03:36:16 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Neil Armstrong <neil.armstrong@linaro.org>,
 	Sam Ravnborg <sam@ravnborg.org>,
@@ -84,9 +84,9 @@ To: Neil Armstrong <neil.armstrong@linaro.org>,
 	linux-kernel@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 	Rob Herring <robh@kernel.org>
-Subject: [RESEND PATCH v4 2/3] dt-bindings: display: novatek,nt35950: define ports
-Date: Mon, 25 Mar 2024 11:36:10 +0100
-Message-Id: <20240325103611.28240-2-krzysztof.kozlowski@linaro.org>
+Subject: [RESEND PATCH v4 3/3] dt-bindings: display: novatek,nt36523: define ports
+Date: Mon, 25 Mar 2024 11:36:11 +0100
+Message-Id: <20240325103611.28240-3-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240325103611.28240-1-krzysztof.kozlowski@linaro.org>
 References: <20240325103611.28240-1-krzysztof.kozlowski@linaro.org>
@@ -100,7 +100,8 @@ Content-Transfer-Encoding: 8bit
 
 The panel-common schema does not define what "ports" property is, so
 bring the definition by referencing the panel-common-dual.yaml. Panels
-can be single- or dual-link, thus require only one port@0.
+can be single- or dual-link, depending on the compatible, thus add
+if:then:else: block narrowing ports per variant.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Reviewed-by: Rob Herring <robh@kernel.org>
@@ -111,34 +112,64 @@ Changes since v3:
 1. Rb tag
 
 Changes since v2:
-1. Use panel-common-dual
+1. Use panel-common-dual.
+2. Add if:then:else:
 
 Changes since v1:
 1. Rework to add ports to device schema, not to panel-common.
 ---
- .../devicetree/bindings/display/panel/novatek,nt35950.yaml     | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ .../display/panel/novatek,nt36523.yaml        | 25 +++++++++++++++----
+ 1 file changed, 20 insertions(+), 5 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt35950.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt35950.yaml
-index 377a05d48a02..7cac93b20944 100644
---- a/Documentation/devicetree/bindings/display/panel/novatek,nt35950.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/novatek,nt35950.yaml
-@@ -19,7 +19,7 @@ description: |
-   either bilinear interpolation or pixel duplication.
+diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
+index 5f7e4c486094..bbeea8cfa5fb 100644
+--- a/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
++++ b/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
+@@ -14,9 +14,6 @@ description: |
+   panels. Support video mode panels from China Star Optoelectronics
+   Technology (CSOT) and BOE Technology.
  
- allOf:
+-allOf:
 -  - $ref: panel-common.yaml#
-+  - $ref: panel-common-dual.yaml#
- 
+-
  properties:
    compatible:
-@@ -59,6 +59,7 @@ required:
-   - avee-supply
-   - dvdd-supply
-   - vddio-supply
-+  - ports
+     oneOf:
+@@ -38,7 +35,6 @@ properties:
+     description: regulator that supplies the I/O voltage
  
- additionalProperties: false
+   reg: true
+-  ports: true
+   rotation: true
+   backlight: true
+ 
+@@ -47,7 +43,26 @@ required:
+   - reg
+   - vddio-supply
+   - reset-gpios
+-  - ports
++
++allOf:
++  - $ref: panel-common-dual.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - novatek,nt36523w
++    then:
++      properties:
++        ports:
++          properties:
++            port@1: false
++    else:
++      properties:
++        port: false
++        ports:
++          required:
++            - port@1
+ 
+ unevaluatedProperties: false
  
 -- 
 2.34.1
