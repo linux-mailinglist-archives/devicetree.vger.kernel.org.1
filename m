@@ -1,166 +1,188 @@
-Return-Path: <devicetree+bounces-52827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52828-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA3EE88A26E
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 14:37:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30F9D88A29D
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 14:41:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 848C72A7DFD
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 13:37:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C6FC1F3B175
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 13:41:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBF43144D1D;
-	Mon, 25 Mar 2024 10:22:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B351913C9B2;
+	Mon, 25 Mar 2024 10:26:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="l3uGXkjs"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iPeMlSMx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 225DB1442E2
-	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 07:56:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9CCD59B7F
+	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 08:23:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711353407; cv=none; b=kYSfPpSqYMJZWsqq7pKwxX6MSalLmkf+YdKcw9XqovmWz/gf3qgFbYfpcxmOcstgaeDlkazOCFd+iiOntuwWBC8MIMK07Ah0BuXqp2Pb3kR7N7v5WpJIW+raeKCRbHh/OOWf8Mn7wy1GReAfxsjPxO8LQN0Mj1Is0rseIPz4grw=
+	t=1711354985; cv=none; b=noo1MgGMXVUoxaqk9ngnNKKodiJN/ZF+3GgSFjBobUggoZ3EWT6zMj8pda3ANJFD1NqOmPPB+OlMEvlAhrQ9kAQNSJFXldOyUixNSlAedyX7BI6QIk/YOVBbyjEgniqMVaKcEfZMfP+KwaBBqzM23EWBsnYiTTIsbdMuGXXXeUM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711353407; c=relaxed/simple;
-	bh=A1g9JztB5Pywe1EJsKY+CQBGaXRMW2hC6ZpyWTRjSnE=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gCLZnC/bjx/SzkzaA59ocTuwN9rAx1J2NTxwFxeKD/PP3UGtqCd7ZhICagGcD1YnxogihJyV819W3NLwsF5Ex655E9tZCs3N+tdkHcYg+iG157GJAMoKE9PMt5LHvpvl6Tsbv3ogIH3vsvJmpCsaUgerpaANeXyBjj1c+hNbByM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=l3uGXkjs; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a46ea03c2a5so696982066b.1
-        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 00:56:45 -0700 (PDT)
+	s=arc-20240116; t=1711354985; c=relaxed/simple;
+	bh=ijxk0tKRhwDiFDaof0PwkqnS6IfxiZILFA8DV9dkKEI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ROquVeN5e8n7q31c/p8jp2rZ8chXsEQl+gypOFsuEie7e+bepK2W84kSSP8ZK3dq9JiOdwOVNtj9OLAPzsSncNFc5LQtZIJX+BHk8omP/xNuRFjUpjCyJefTif03EQtGNfdBzeWxWVVNnJ3b75t+/ry8TdAcYkwJVkXCceMUXQg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iPeMlSMx; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-512ed314881so2888531e87.2
+        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 01:23:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1711353404; x=1711958204; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=a89LEVm7xD3V3aipTuTByCc7qaD6TInwfvfX/3rmr3k=;
-        b=l3uGXkjscBHFukOlvOmsm8G4dS35a3QXA5h9XUa6LvhZiksqPGbbNKLfVmrMmLjX8l
-         adCbtJ9weEP1OC0HqkiCtwVGXF5itcEJUREuPsQbfiXHEorfTrEZTH73K4iWwWGtHuIm
-         V2hTEAT7aZK5LcoNAltI+WDxz4oVhugnzk60g=
+        d=linaro.org; s=google; t=1711354982; x=1711959782; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=HMQJ/okPtBULpef79IGqedhpXloJdTUeROtXqmnf/p8=;
+        b=iPeMlSMxS/CWYb42zB97f5NvYw3VvbQXnREM3W/XLexDQ2j9T3ogudwo4b/QSX5QWm
+         MtzzCOuiN88FfxJ19zUrJHhJgDQC+T4CHsfkRe1XRJkTWoB0sNU0lDJNZrVHKurTQPYb
+         JQlwQg6Wx0zkiEkr+6evZiFhbR1QkLs5DKknq/FEFO4nycLcN4OqZ0pok0EoZtpd+Xaf
+         Bbo20wYhqPCzy3UyHh3V5r5eDv6o1ph+IlBDeyNbyQI7mg6N45nTMmH+dcB6U1RgvNvU
+         VKMZswZ8/3V8G8tSy2gcmdS4S9R1WUozHSb0FDI77Wg82vBdlvu1fPBJ5EeLdWoitU5z
+         pOfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711353404; x=1711958204;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=a89LEVm7xD3V3aipTuTByCc7qaD6TInwfvfX/3rmr3k=;
-        b=noHtsnRTOsqSEWNgaq7VYKMtqo7vunHDAr9wsOqoZmesGk7OxozBUOcf1LGpcKoJQ+
-         qUqCvMKdhokpMLmiIDMPSwhfGOWmHASBhVeKoKmdatEsKKN1TWN2zKXQXACRqMZ25UKv
-         XiiLaB+Dcb/gpp4kF4rovopnbtNqYujSP4jsCHDtGxdUWbE3/bUy883/+M7X4L5mjFhr
-         +Ag3JyMWT1kQNnnZqQUz1WwIG2PL4W286n1Hoxp2+gw6s0pHl0yfpX7XV4XyORHFmc8T
-         o/mFyNt7rsU5PFlKNVSInrVVj3fsasFyILQPjudqfxFxDx0TQO3LCmVi6G31pmt+qpl5
-         OU5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCV0icLX2yb6kmUp/mANJFjawDiqp2ckK3MbzFITzI3qcGNli4hgmbxcX2D08IwoOQHOmHFLZYnJO778PBnYnmOlKenVkvIqWAYrgg==
-X-Gm-Message-State: AOJu0Yzfps5RNVaexHqTw2aynYYosgdp9dGGQFoGxNS+biANy3aCt3GP
-	QuajvzOAHKlbewVdif7IW/ZjItx+A4WE8JbcqGvyz/v8pv3miRUZb5NSK3coSzU9fS9G1TwKig+
-	dsKg=
-X-Google-Smtp-Source: AGHT+IEeee43tChvxvBZH14MFQxubrof2GweXWpHdJI4TLqNPXlTq1m6/KkDZ6ZtyycHFcrYpdLjtg==
-X-Received: by 2002:a17:906:b786:b0:a47:4145:3598 with SMTP id dt6-20020a170906b78600b00a4741453598mr4172639ejb.20.1711353404443;
-        Mon, 25 Mar 2024 00:56:44 -0700 (PDT)
-Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-87-8-99-67.retail.telecomitalia.it. [87.8.99.67])
-        by smtp.gmail.com with ESMTPSA id lb13-20020a170906adcd00b00a4750131edasm1661001ejb.206.2024.03.25.00.56.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Mar 2024 00:56:44 -0700 (PDT)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: linux-amarula@amarulasolutions.com,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH] ARM: dts: stm32: move can3 node from stm32f746 to stm32f769
-Date: Mon, 25 Mar 2024 08:56:28 +0100
-Message-ID: <20240325075635.1382911-1-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.43.0
+        d=1e100.net; s=20230601; t=1711354982; x=1711959782;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HMQJ/okPtBULpef79IGqedhpXloJdTUeROtXqmnf/p8=;
+        b=auN9QjbrlkF+RK3dkyJTxhluc/aiaPU8kYtuqaZZRdga5eY7HZr0YDzJGFYblUVN5D
+         ThX9pnPb7ytmPkEmIEMp2Hd5OCiZeuVnwNjPGvwhxAqT6Iisu30F0vilR7gr3MDMGWuf
+         mG9+CJzcWXC0gzJQ4eWVZ+zoq8ZkrKDQ0RnfMypLAtwEGZKmC5IQfODVO5bCK71UZ5f9
+         1cnmqxeEv4QyBJGzzCZA3ExCvPgvvziTGJ4mNqVOgL8Agbd4KLJ8h+zuyrZ6YYqOAkRk
+         jdHxJZFkDI3cW/fLIvpCczVeGp1zOJcbfYGvbdEKiZVzY3Vjx2SVMsWuBw8FkIgxEs6k
+         wLOg==
+X-Forwarded-Encrypted: i=1; AJvYcCVLg3opBPPzOCFkwAumM0QJBvVaYrhoeaA3MfoBcVNVQ/13sGW84FW27l7C/vj2RpgJy2n5UWnoWUkoNFyD/AGOLOyK8w3zON514A==
+X-Gm-Message-State: AOJu0Yx4/RZR8PASLlfI6bPSTvezOQPGHDVkPuqyMJmEyOgniW/pE9HR
+	ANFrOtatkkq+FHxPZKVwx4/tEDYZiSat6BBiclfzk7F+HxmpXpO0oZnsFhcBaik=
+X-Google-Smtp-Source: AGHT+IFdGvMO0JyTBK8+IQdjNO3yWH2O2uD959pWJuRDd6A/NJku8pyRlXBpCotrzi2yhfTeFIOEQQ==
+X-Received: by 2002:a05:6512:3b1f:b0:513:c9a6:46ce with SMTP id f31-20020a0565123b1f00b00513c9a646cemr5154347lfv.9.1711354981966;
+        Mon, 25 Mar 2024 01:23:01 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.44])
+        by smtp.gmail.com with ESMTPSA id bk3-20020a0560001d8300b00341c9956dc9sm3710731wrb.68.2024.03.25.01.22.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Mar 2024 01:23:00 -0700 (PDT)
+Message-ID: <3b38abb9-c3ac-4b55-889a-424396f1113d@linaro.org>
+Date: Mon, 25 Mar 2024 09:22:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: exynos: gs101: define all PERIC USI nodes
+To: Tudor Ambarus <tudor.ambarus@linaro.org>, peter.griffin@linaro.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: alim.akhtar@samsung.com, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, andre.draszik@linaro.org,
+ willmcvicker@google.com, kernel-team@android.com
+References: <20240307135912.163996-1-tudor.ambarus@linaro.org>
+ <073e5ef5-2a2e-4300-93d6-e25552276e13@linaro.org>
+ <73ba6104-aa54-444e-b6c5-7f89d1fa0060@linaro.org>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <73ba6104-aa54-444e-b6c5-7f89d1fa0060@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-According to documents [1], [2] and [3], we have 2 CAN devices on the
-stm32f746 platform and 3 on the stm32f769 platform. So let's move the
-can3 node from stm32f746.dtsi to stm32f769.dtsi.
+On 22/03/2024 14:39, Tudor Ambarus wrote:
+>>
+>>> +				#address-cells = <1>;
+>>> +				#size-cells = <0>;
+> 
+> I'd like to respin this patch. Any preference on coding style for
+> #address-cells and #size-cells? I guess they shall be above ranges
+> property if present.
 
-[1] https://www.st.com/en/microcontrollers-microprocessors/stm32f7-series.html
-[2] RM0385: STM32F75xxx and STM32F74xxx advanced Arm®-based 32-bit MCUs
-[3] RM0410: STM32F76xxx and STM32F77xxx advanced Arm®-based 32-bit MCUs
-Fixes: df362914eead ("ARM: dts: stm32: re-add CAN support on stm32f746")
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+No, ranges should be just after reg, because it encodes often the same
+or similar information (see also DTS Coding Style). I don't have
+guideline, can be anywhere before vendor properties.
 
----
+> 
+>>> +				pinctrl-names = "default";
+>>> +				pinctrl-0 = <&hsi2c1_bus>;
+>>
+>> Please reverse two lines, first pinctrl-0 then pinctrl-names. I know we
+> 
+> Ok.
+> 
+>> did not follow this convention till now, but at least new code can be
+>> correct. Also clocks should be before pinctrl, so we keep some sort of
+>> alphabetical order.
+> 
+> Ok.
+> 
+> I guess the order shall be:
+> 
+> 1. compatible
+> 2. reg
 
- arch/arm/boot/dts/st/stm32f746.dtsi | 17 -----------------
- arch/arm/boot/dts/st/stm32f769.dtsi | 17 +++++++++++++++++
- 2 files changed, 17 insertions(+), 17 deletions(-)
+3. ranges
 
-diff --git a/arch/arm/boot/dts/st/stm32f746.dtsi b/arch/arm/boot/dts/st/stm32f746.dtsi
-index 65c72b6fcc83..2537b3d47e6f 100644
---- a/arch/arm/boot/dts/st/stm32f746.dtsi
-+++ b/arch/arm/boot/dts/st/stm32f746.dtsi
-@@ -257,23 +257,6 @@ rtc: rtc@40002800 {
- 			status = "disabled";
- 		};
- 
--		can3: can@40003400 {
--			compatible = "st,stm32f4-bxcan";
--			reg = <0x40003400 0x200>;
--			interrupts = <104>, <105>, <106>, <107>;
--			interrupt-names = "tx", "rx0", "rx1", "sce";
--			resets = <&rcc STM32F7_APB1_RESET(CAN3)>;
--			clocks = <&rcc 0 STM32F7_APB1_CLOCK(CAN3)>;
--			st,gcan = <&gcan3>;
--			status = "disabled";
--		};
--
--		gcan3: gcan@40003600 {
--			compatible = "st,stm32f4-gcan", "syscon";
--			reg = <0x40003600 0x200>;
--			clocks = <&rcc 0 STM32F7_APB1_CLOCK(CAN3)>;
--		};
--
- 		spi2: spi@40003800 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-diff --git a/arch/arm/boot/dts/st/stm32f769.dtsi b/arch/arm/boot/dts/st/stm32f769.dtsi
-index 4e7d9032149c..e8cbb99e81a6 100644
---- a/arch/arm/boot/dts/st/stm32f769.dtsi
-+++ b/arch/arm/boot/dts/st/stm32f769.dtsi
-@@ -7,6 +7,23 @@
- 
- / {
- 	soc {
-+		can3: can@40003400 {
-+			compatible = "st,stm32f4-bxcan";
-+			reg = <0x40003400 0x200>;
-+			interrupts = <104>, <105>, <106>, <107>;
-+			interrupt-names = "tx", "rx0", "rx1", "sce";
-+			resets = <&rcc STM32F7_APB1_RESET(CAN3)>;
-+			clocks = <&rcc 0 STM32F7_APB1_CLOCK(CAN3)>;
-+			st,gcan = <&gcan3>;
-+			status = "disabled";
-+		};
-+
-+		gcan3: gcan@40003600 {
-+			compatible = "st,stm32f4-gcan", "syscon";
-+			reg = <0x40003600 0x200>;
-+			clocks = <&rcc 0 STM32F7_APB1_CLOCK(CAN3)>;
-+		};
-+
- 		dsi: dsi@40016c00 {
- 			compatible = "st,stm32-dsi";
- 			reg = <0x40016c00 0x800>;
--- 
-2.43.0
+> 3. #address-cells (if applicable)
+>    #size-cells (if applicable)
+
+> 5. Standard/common properties ordered alphabetically (ex. clocks,
+>    interrupts, pinctrl)
+> 6. vendor-specific properties
+> 7. status (if applicable)
+> 
+
+Rest looks fine, thanks.
+
+Best regards,
+Krzysztof
 
 
