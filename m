@@ -1,97 +1,100 @@
-Return-Path: <devicetree+bounces-53103-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53104-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 118D388AED7
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 19:48:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55C8C88AEE4
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 19:50:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B96672E4F32
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 18:48:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7FB061C3DA45
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 18:50:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28A5948CD4;
-	Mon, 25 Mar 2024 18:38:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2D8A6F50F;
+	Mon, 25 Mar 2024 18:41:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="HKt979+O"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GLy8bZle"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA3C4804;
-	Mon, 25 Mar 2024 18:38:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A735A6EB75;
+	Mon, 25 Mar 2024 18:41:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711391918; cv=none; b=DH6QtHq7UYtu2yZlHMcOfdqmGHIgTx9bdbYfn0hwlZwfrdUhIgub0Gi2s6SoeijV1UI6dqm2vR/2AD2r05ab1tzmBtEqTcz1LT4qn/M3HZlSETJFKED3WMXt7XhkrA18d2ZoLwxCm5XnhyoRnabG2o1KixN6LfuM3hD5MdzKnsc=
+	t=1711392113; cv=none; b=iFXspLyuFN64v7d+O+s+AAjTfrG4lriJ9awt7ShAh/9W5RaQ3i0lffGXUu2HptkhYch1iewFTIH1p8DzUTUQj1gquAslWVcGW64FgZ1FsOzyp1wFNU/+eL6snT1eVH36M0LODe43mdmf2KRG483TKB2pYU38HGr0Z1a4bzlGfiQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711391918; c=relaxed/simple;
-	bh=blLcvYAqaiFz1G8fZPDqiwWnJvL9Uqm3A7A++8T3s4E=;
+	s=arc-20240116; t=1711392113; c=relaxed/simple;
+	bh=l11EKaNUz9GB+4g3b07Q3DH2nIYGQPe6bdaMGVe0pQM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=K2dgaw+1h9tafnTpQueVIaWPL8fRwkAR7njUqQW089NBxazajSrUTqwtUCqWRYzt/gzMytMAHkCtMctH6UlTAjkYwSEQmBlJySeh4Pnfwm7LQCvqSjb2B3hvKhIQRuRKzqLQyUcfseTE8+nHegh8lfI+bKb8lJu4j5uH0Kj9d7w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=HKt979+O; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7F9DC433C7;
-	Mon, 25 Mar 2024 18:38:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1711391917;
-	bh=blLcvYAqaiFz1G8fZPDqiwWnJvL9Uqm3A7A++8T3s4E=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=kUOaXFX46WFcOx43ZMO+QXZh5CwNEZ9YU7qfJ2ECohvxVojJKd4BCzvVOLn6xxSMavA1cxgGxLOufkYEf47bDpceV4xFHelofjjtbSQ4so2oQeK5zkxJSzZQkuehWW3g/sjgrZcs88NIHlchUb21Chtrh04sJC1o9etGKU2Nda8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GLy8bZle; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30065C433C7;
+	Mon, 25 Mar 2024 18:41:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711392113;
+	bh=l11EKaNUz9GB+4g3b07Q3DH2nIYGQPe6bdaMGVe0pQM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HKt979+ORk1GhjUQtnxxmtJbwUrwTflAts8wpAM/N32EZjdQOWQv6hEg4o1jT3KHH
-	 TxDtUSOEippLs58N41KVnI1fxTM8cx5ilGEDvgaO6kKL/clCZ29Lo1eiS+BSSwqAZE
-	 BEYre//S80GNmVbAidCHyDdkaWKRij86uLr2LLLA=
-Date: Mon, 25 Mar 2024 19:38:34 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Lizhi Hou <lizhi.hou@amd.com>, Max Zhen <max.zhen@amd.com>,
-	Sonal Santan <sonal.santan@amd.com>,
-	Stefano Stabellini <stefano.stabellini@xilinx.com>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Allan Nielsen <allan.nielsen@microchip.com>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Steen Hegelund <steen.hegelund@microchip.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Nuno Sa <nuno.sa@analog.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	stable@vger.kernel.org
-Subject: Re: [PATCH v6 1/2] driver core: Introduce device_link_wait_removal()
-Message-ID: <2024032554-tipoff-extrude-a631@gregkh>
-References: <20240325152140.198219-1-herve.codina@bootlin.com>
- <20240325152140.198219-2-herve.codina@bootlin.com>
+	b=GLy8bZleyU7PZdytFpWUA4zVa2WUcfOQs7RGO/3w9CHfXeM131dKg1x+A8iSijVXM
+	 jeFb8VCwYJ/EDcHjR0hYoH7mNGNy2joQ/m5DKF3kzDZWsaf7hQ/UepFfBItKpLfdwG
+	 vwG1THMSZRrMWFfy/KXpg9cvo6pRlMuBGUE8d+550hRnHv/sMKd8QdkKVI9nvAGh9I
+	 rBkUF+QTmYWj3euk6rb0SOeWhRLMAFbO6NWFZfVNt8FEUwJ85HmSXg6LtMW1B/CV7O
+	 Y7QBTfGvJOt4i6+oDsEfmFKdzjybciobFQfYwcL9vXumiek96K4m4FiBqKPFoiS3+I
+	 424w6TptR9FmQ==
+Date: Mon, 25 Mar 2024 18:41:49 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Julien Massot <julien.massot@collabora.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	kernel@collabora.com, linux-kernel@vger.kernel.org,
+	mchehab@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	sakari.ailus@iki.fi
+Subject: Re: [PATCH v6 2/4] dt-bindings: media: add Maxim MAX96714 GMSL2
+ Deserializer
+Message-ID: <20240325-mundane-rascal-7ea91354c989@spud>
+References: <20240325131634.165361-1-julien.massot@collabora.com>
+ <20240325131634.165361-3-julien.massot@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="oZEk1+ct/QRLmZun"
+Content-Disposition: inline
+In-Reply-To: <20240325131634.165361-3-julien.massot@collabora.com>
+
+
+--oZEk1+ct/QRLmZun
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240325152140.198219-2-herve.codina@bootlin.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Mar 25, 2024 at 04:21:25PM +0100, Herve Codina wrote:
-> The commit 80dd33cf72d1 ("drivers: base: Fix device link removal")
-> introduces a workqueue to release the consumer and supplier devices used
-> in the devlink.
-> In the job queued, devices are release and in turn, when all the
-> references to these devices are dropped, the release function of the
-> device itself is called.
-> 
-> Nothing is present to provide some synchronisation with this workqueue
-> in order to ensure that all ongoing releasing operations are done and
-> so, some other operations can be started safely.
-> 
-> For instance, in the following sequence:
->   1) of_platform_depopulate()
->   2) of_overlay_remove()
+On Mon, Mar 25, 2024 at 02:16:32PM +0100, Julien Massot wrote:
+> Add DT bindings for Maxim MAX96714 GMSL2 Deserializer.
+>=20
+> Signed-off-by: Julien Massot <julien.massot@collabora.com>
+> ---
+> Change since v5:
+>  - Reverse the fallback MAX96714 can fallback to MAX96714F
+>  - Use const instead of enum for MAX96714F compatible
 
-So this is only an issue for overlays?  Why has no one noticed this in
-the years since 80dd33cf72d1 was added?  Why is this an issue now
-suddenly?
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-thanks,
+Thanks,
+Conor.
 
-greg k-h
+--oZEk1+ct/QRLmZun
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgHFbAAKCRB4tDGHoIJi
+0quiAP485hQRBqlw8D/APXClwqmk9pCnKq37vLGUibyIIIiFGQD+Nk15zjIhNj9d
+OxNjxYURGjJocr5LEyonMMij5MXj3gM=
+=VjMi
+-----END PGP SIGNATURE-----
+
+--oZEk1+ct/QRLmZun--
 
