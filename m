@@ -1,114 +1,138 @@
-Return-Path: <devicetree+bounces-53148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE13A88B135
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 21:21:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42D8B88B145
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 21:25:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B3C81F325CE
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 20:21:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EAC721F616BA
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 20:25:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A35A43AD0;
-	Mon, 25 Mar 2024 20:21:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4703946430;
+	Mon, 25 Mar 2024 20:25:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="JDWkMkfc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ENM5X+VU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail2.andi.de1.cc (vmd64148.contaboserver.net [161.97.139.27])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C080FC01;
-	Mon, 25 Mar 2024 20:21:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=161.97.139.27
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 874454597D;
+	Mon, 25 Mar 2024 20:25:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711398094; cv=none; b=eB/yeg4oLmfWfsff8ppTVXr0++XjsuvC0YELn1BdHzsD5lmHD0ikzGqIhlTNT/FnolIznBZQMN5dZ6I6ZOVr3Gw1Thx8gA7Zx7J6k9v3Eugq2Ch41SK5MvlhMO5/9lnr7YUMTQX5kWjBJESutLlFNeUn4bCyIUCbEI0/h/zgR6Y=
+	t=1711398310; cv=none; b=dJEBgZtWPpKM1x2oV8bVKIMtE6VdkZgWcwdOmRHGqNF0u45IPSuazC7+ziE5kmR8CwBTc37kKgsMnpjfSNdY2KekfH7nLw79hkjao8YAgOSGsEphh2J6iqfG/5zmTNs11oN/YO9iNZLgFsIERqtueEyK5r5WXS+qjzNLo9P5BwE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711398094; c=relaxed/simple;
-	bh=a+z3qKumD+RQg3H6lUB5SaV/7DJ5gP11DLjMy8pF7WQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=esLFlOfqzl17kh2d/j6HYhDsK51oHSLU8tWN1RQJwpvAQWSMeCw/FvlAmfxJXS/t/wrt6uUHxA9W6NuoqjFERCptR1pYQDpsAy6fhxBba+gPldZZ8KrCUtypBEf5fJxZrSseVGDoFtH8G2b96g0jBRXI26vJpya05a/jQFcKsTY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=JDWkMkfc; arc=none smtp.client-ip=161.97.139.27
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-Received: from mail.andi.de1.cc ([2a02:c205:3004:2154::1])
-	by mail2.andi.de1.cc with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <andreas@kemnade.info>)
-	id 1roqp0-003NzO-1U;
-	Mon, 25 Mar 2024 21:21:30 +0100
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:Content-Type:
-	MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=rkYfldBj3PRsa1Dy1CFhJw9d4S4bgs5eahv262+sdRk=; b=JDWkMkfcIOmuGiIGE865IPb2Pl
-	T0S3ZyUfwoq6deGR7lFt0pMcHnIzfCXNLTHaSGO2ZBz58uMI+7M7rx+W6NwRUPFHMsBRfeabngEda
-	EXLFYdcuvAK2LTYx9au2SBPk0YBIRhVurf6uoiMDZVPa8cFNpwYQOPTV/y81GBzn3zjvU3qYvP4Ei
-	j4VqIae3b58yb4u9rjiNJPf0qPSp/ddzNbamh2BpWUAQDSOZae1/nNFj5bSpIptQnUCumSGNmsMLW
-	2V0NF6VpfMoiIbuRFYAa/jXVvfdWgvQigaX+CPJM7hVbceEA1ajK7rDtAzYMLgDQbaHcz6nPvHICa
-	rWtLunKQ==;
-Received: from p2003010777026a001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:107:7702:6a00:1a3d:a2ff:febf:d33a] helo=aktux)
-	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <andreas@kemnade.info>)
-	id 1roqoz-0000he-1O;
-	Mon, 25 Mar 2024 21:21:30 +0100
-Date: Mon, 25 Mar 2024 21:21:27 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: lee@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, mazziesaccount@gmail.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, imx@lists.linux.dev
-Subject: Re: [RFC PATCH 2/2] mfd: rohm-bd71828: Add power off functionality
-Message-ID: <20240325212127.7583c845@aktux>
-In-Reply-To: <b5cc609a-b3c5-4994-bcd5-e25a43d33cff@linaro.org>
-References: <20240324201210.232301-1-andreas@kemnade.info>
-	<20240324201210.232301-3-andreas@kemnade.info>
-	<b5cc609a-b3c5-4994-bcd5-e25a43d33cff@linaro.org>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1711398310; c=relaxed/simple;
+	bh=DBk0mGRrqs3fXNbMGeMFrYvbKXWx16IUFmAGJWlOobc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZTZHj5GXcpkpVjlQmauUagHt2kc+ndX4rWiI0aDU3WUce6gcC9E7F8B8ILKexJ1mjDgSiI4GfOjxDGAGR3hD2WBqq2g0bC8Js+grlL5ztpmD91PT/eonCvcKgCx7RbCTtxyScFGdisM08CpF2+xmeffXvk6rR+CI38FXCR5A+Vc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ENM5X+VU; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a46de423039so274387966b.0;
+        Mon, 25 Mar 2024 13:25:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1711398307; x=1712003107; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=JKap+w2F/mavcZpUAHIDLIPh2s+384u67vVZTtB6BQw=;
+        b=ENM5X+VUEZFbxXuDnMO9uulUHLWG+w2RulePa3K6m1e8te/PVHIe0f8jww/i6u653m
+         95QZ5qOLfppntJ5ORq/2WqKCOY/PE49nUE2hS3CUpGs/4wyRA/nEyDtMFRfuzEKRXcy9
+         PiNlGhgAiU20lHTYcVGx4spRwD1yvYkF2ZM+y5SL93Jov+tX1UajAbvF2HR9zQwxflFW
+         XQ5Gip6HREEFeQkGAdB++kZIewKIz6J0I85qEMTpnNAsWBPYikT3F07Q5DvDOctaYK8p
+         T3h6XBp6Oa7Xdln3ghOsROBOTvUbne7NgfU5HMHln0sv0jpqJ9JBc49WvtODKka5pJMA
+         8U1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711398307; x=1712003107;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JKap+w2F/mavcZpUAHIDLIPh2s+384u67vVZTtB6BQw=;
+        b=ejyVRxE3fTCyFbKgQGv1sa6rJa8Rhmm4BlqiSYHmoaOTxOFTVZB4QAv3UH0NRLP77x
+         7WLEXwcrTSjNmi4+tJOvzLkbygS1giSURf84goVPafuIkLWXn9ctal28WqLTDO5jW+KW
+         Oj0/l/NcBzzMNaqf+MNOHiRzCyyWrmqZcpp96/LkyTXdsof93l6KgYUMfQ+Jwm2y+WRR
+         qZsTU24AbbaakD48G4I+JZCfB9lQfNTk4z+NSS7hIyVrUc4etz1sy4GvOfsAekN3KQ4k
+         ihWzrU7RQddC3E5x9vhvMyCgeLisDV3nxJthcyMVC0EIQOhx8/RcJzXZkUujqzSLzsRX
+         bOQQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXulkDdGLnfICWW4/W1N+CqGYmUxEjMh6BbRs7IdM4lnmX2/If5VG03Rk1aM6ghJeQO4mXWeKos+q3DET445QehPa/ZT1McqGIyBTcK623U7SALpHNcLilZVxYHejVXc5rFJO2IJpfr8uGtkOhvpu1SujnbjWlpMzOXLpWHVBez140MlwFn13etcpvt+3nWwzlZyeR3NeMkirpt2n7DUa99CFyusQ==
+X-Gm-Message-State: AOJu0YxOh2fB0pHKHkbjMiiDkgP6Emzzh7DOuXI+bo4nyFADrOydYxRa
+	UUIqX2jj2f+/sNTvLtXFdDszQGZ12z5Ycfz8y2ESBQOoq5IkThy5
+X-Google-Smtp-Source: AGHT+IH3MYHwbMtQtubhWVjxi/2gtr5wMVHSj9eDzomJs3JTaxIPbZAKJDw+94DvZ7YPRH86G7VJGg==
+X-Received: by 2002:a50:d484:0:b0:568:c6a2:f411 with SMTP id s4-20020a50d484000000b00568c6a2f411mr5723974edi.32.1711398306520;
+        Mon, 25 Mar 2024 13:25:06 -0700 (PDT)
+Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id c36-20020a509fa7000000b0056bdec673c3sm3456565edf.38.2024.03.25.13.25.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Mar 2024 13:25:06 -0700 (PDT)
+Date: Mon, 25 Mar 2024 21:25:04 +0100
+From: Stanislav Jakubek <stano.jakubek@gmail.com>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] ARM: dts: qcom: Add support for Motorola Moto G
+ (2013)
+Message-ID: <ZgHdoK6luxRcKgRx@standask-GA-A55M-S2HP>
+References: <f5d4d71cd59f25b80889ef88fa044aa3a4268d46.1711288736.git.stano.jakubek@gmail.com>
+ <b35ad5ff8a13f9df415b6e6700b3b5d3f13bfce8.1711288736.git.stano.jakubek@gmail.com>
+ <ffa93b4a-608a-4cf5-b111-0d1f8520afdd@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ffa93b4a-608a-4cf5-b111-0d1f8520afdd@linaro.org>
 
-On Mon, 25 Mar 2024 13:13:13 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+On Mon, Mar 25, 2024 at 08:28:27PM +0100, Konrad Dybcio wrote:
+> On 24.03.2024 3:04 PM, Stanislav Jakubek wrote:
+> > Add a device tree for the Motorola Moto G (2013) smartphone based
+> > on the Qualcomm MSM8226 SoC.
+> > 
+> > Initially supported features:
+> >   - Buttons (Volume Down/Up, Power)
+> >   - eMMC
+> >   - Hall Effect Sensor
+> >   - SimpleFB display
+> >   - TMP108 temperature sensor
+> >   - Vibrator
+> > 
+> > Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+> > ---
+> 
+> [...]
+> 
+> > +		hob-ram@f500000 {
+> > +			reg = <0x0f500000 0x40000>,
+> > +			      <0x0f540000 0x2000>;
+> > +			no-map;
+> > +		};
+> 
+> Any reason it's in two parts? Should it be one contiguous region, or
+> two separate nodes?
+> 
+> lgtm otherwise
 
-> On 24/03/2024 21:12, Andreas Kemnade wrote:
-> >  	struct regmap_irq_chip_data *irq_data;
-> > @@ -542,7 +560,18 @@ static int bd71828_i2c_probe(struct i2c_client *i2c)
-> >  	ret = devm_mfd_add_devices(&i2c->dev, PLATFORM_DEVID_AUTO, mfd, cells,
-> >  				   NULL, 0, regmap_irq_get_domain(irq_data));
-> >  	if (ret)
-> > -		dev_err_probe(&i2c->dev, ret, "Failed to create subdevices\n");
-> > +		return	dev_err_probe(&i2c->dev, ret, "Failed to create subdevices\n");
-> > +
-> > +	if (of_device_is_system_power_controller(i2c->dev.of_node)) {
-> > +		if (!pm_power_off) {
-> > +			bd71828_dev = i2c;
-> > +			pm_power_off = bd71828_power_off;
-> > +			ret = devm_add_action_or_reset(&i2c->dev,
-> > +						       bd71828_remove_poweroff,
-> > +						       NULL);
-> > +		} else
-> > +			dev_warn(&i2c->dev, "Poweroff callback already assigned\n");  
-> 
-> Missing {}
-> 
-> Please run scripts/checkpatch.pl and fix reported warnings. Some
-> warnings can be ignored, but the code here looks like it needs a fix.
-> Feel free to get in touch if the warning is not clear.
-> 
-No, it does not complain about the {}. I was a bit unsure whether it is
-required or not, but I was sure that checkpatch.pl does catch such things.
-Yes, documentation clearly says that braces are required in those cases.
+Hi Konrad, I copied this from downstream as-is.
+According to the downstream docs [1]:
 
-Regards,
-Andreas
+HOB RAM MMAP Device provides ability for userspace to access the
+hand over block memory to read out modem related parameters.
+
+And the two regs are the "DHOB partition" and "SHOB partition".
+
+I suppose this is something Motorola (firmware?) specific (since the
+downstream compatible is mmi,hob_ram [2]).
+Should I split this into 2 nodes - dhob@f500000 and shob@f540000?
+
+Stanislav
+
+[1] https://github.com/LineageOS/android_kernel_motorola_msm8226/blob/cm-14.1/Documentation/devicetree/bindings/misc/hob_ram.txt
+[2] https://github.com/LineageOS/android_kernel_motorola_msm8226/blob/cm-14.1/arch/arm/boot/dts/msm8226-moto-common.dtsi#L258
 
