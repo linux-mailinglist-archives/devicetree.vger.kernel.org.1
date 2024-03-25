@@ -1,178 +1,196 @@
-Return-Path: <devicetree+bounces-53001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5808388A9A4
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 17:39:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66A2288B3CC
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 23:17:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA5B8341EA0
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 16:39:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A9C43B209B7
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 16:40:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C515112E1D0;
-	Mon, 25 Mar 2024 14:49:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA21E1422B3;
+	Mon, 25 Mar 2024 14:51:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="HGyMikF8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1224113CC56;
-	Mon, 25 Mar 2024 14:49:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DC1913248B
+	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 14:51:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711378144; cv=none; b=MJEpVelmxaUPz6Mj7pwPDixvQEDqG/0QvGE5l2E9I/Gk6BowJCNrdz9Gqt5u9+wbCBfhcI7xHQ/IQuZR7e2j6a8NEETKhq0NejLyjCmaW79Fr/XfIEajbMR1VKXDSrznBc1x15TbowuogvIJ+6cb+grQgl5r+Pro6eQR3mfvxIw=
+	t=1711378267; cv=none; b=abybi3y+l/WvskkEeyEjHlw0YNqa4qVrNMr5XifXBvZ5qfez2EOKLCmC12XRrVZvzEvq6h/LoJ1CAgjUxqUTlwFTfYxUjRzYjnv11CDDZ8aLI2nlQ6Wp7XT6hzLIaqshWHJYniYUrtsjGOe9wIQ8FzmOavKlQKHaPK+TMgAFXQU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711378144; c=relaxed/simple;
-	bh=IuU2/7ewmGvoGLx3m/MQEnHlk5Ob0Q4OW6aJ2yIFh0A=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Y6vDj6POIfsak6lRRimul1mJ66kLpfOETsdgXkhQ29orD6MaWNe+6OzIIsd6aewTxOum4DP+1ydt4r3W4S9gLkhiXOIn0VhQ3AFqfeVMcJPvW802+j1sqTCr5yFIE0r4zTZY58nb7U46WpfkM+84Qf1RXBTk9ntxsMEbQnAat54=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4V3G565Bc4z6K6Xy;
-	Mon, 25 Mar 2024 22:48:10 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id 574001400D5;
-	Mon, 25 Mar 2024 22:48:58 +0800 (CST)
-Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.35; Mon, 25 Mar
- 2024 14:48:57 +0000
-Date: Mon, 25 Mar 2024 14:48:57 +0000
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Lothar Rubusch <l.rubusch@gmail.com>
-CC: Jonathan Cameron <jic23@kernel.org>, <lars@metafoo.de>,
-	<Michael.Hennerich@analog.com>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <eraretuya@gmail.com>
-Subject: Re: [PATCH v3 4/6] iio: accel: adxl345: Remove single info
- instances
-Message-ID: <20240325144857.000017fb@Huawei.com>
-In-Reply-To: <CAFXKEHZWArvErzeoaO+jMrrA7AuQ4izJioNW_wWTza-bLXV22A@mail.gmail.com>
-References: <20240323122030.21800-1-l.rubusch@gmail.com>
-	<20240323122030.21800-5-l.rubusch@gmail.com>
-	<20240324133536.01067770@jic23-huawei>
-	<CAFXKEHZWArvErzeoaO+jMrrA7AuQ4izJioNW_wWTza-bLXV22A@mail.gmail.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1711378267; c=relaxed/simple;
+	bh=fExKIKJW/Sui9p0QMSEHCLxBIxThmZtBvMsrSKs6nH4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=A71ALE2iPzcc9y5046fLSu0TvKY9bopJwcGGlIZEF2GYm3NNjtvlY2D2hRaOdHbAgaCgpIp1gSCWG0E8lD2EMKhj5vFNkLo4JaZiziKlttSGQ6uEGJvy/0bxOq09f/VU/JXXF3zUMAg67Ad+F300ENlXPqM30g/hPH7IWjq7k3A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=HGyMikF8; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1711378265;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=6f76n+F3TImw5GBRyhLX3S/9HNrkYFUIIpB+Isg5Lho=;
+	b=HGyMikF8UgioXmnPnpFuY9UDfIRAoxvnv6WtpjbrOnxayfmCv45VG7dCfv5Og0FJAtSjn1
+	tyLaOTXvwKnoaU5eLpfk8a99TXRqVsplh/RSmpZ3nuK6uR+AxI5IIvCHKc95zh/7XNssoG
+	1IBDLQj/1E0wtxX0gunSgW4GZNKrPFw=
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
+ [209.85.208.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-150-oI-NDailNh2UB7hXC3HDBQ-1; Mon, 25 Mar 2024 10:51:02 -0400
+X-MC-Unique: oI-NDailNh2UB7hXC3HDBQ-1
+Received: by mail-ed1-f69.google.com with SMTP id 4fb4d7f45d1cf-56c1c344fe0so226975a12.0
+        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 07:51:01 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711378261; x=1711983061;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6f76n+F3TImw5GBRyhLX3S/9HNrkYFUIIpB+Isg5Lho=;
+        b=IIrMAI40gtoKXSYTjSw8cnJxXLl/VqYVnJ6DRkTyB3EE7BD5E1bA+rKUqMX3ZnaTmf
+         32v/2Zzu8qzmv9UJR3kCeDwcWp15IK4UlnyN8R/Hhx2Jfho+dqq1igOjnYfEilrDAh4I
+         PW4tgDzykxovc293FMzwcSFhqbZrQlgiMrdV1d0ZmDJSerwj486YyQ23WwsxFg1sWIq1
+         MKUVlbCuWETCN0k32UymnX+NdDuQ+q3rKnB7YoOidEpwMjTPubyOPDwtGhIeOx2xgOLm
+         HjWDiCrA4SgwMdXSIEVPjluxbeTusz1P5x8DC/iJjbUVxLjnLsZX73cn4Q5TOrFtpK+M
+         CbMg==
+X-Gm-Message-State: AOJu0YzW6baZHjlNPXt4xpp6hFTMIL2m8CXMervFA/Tklwbqc2ilSxZ4
+	i9sevHYdJ/OGpR7Fc/Xu2QGulLCXkpUzEkVBYQSFkEyDTST/7jzTONSz0vOtcET9g/gpMEnD6t7
+	yb8GTM7ujkGRbWDwvcF8WEOgnX2TPNzPHlBPW/TCNyVSlAwC+nfma+Ku+wbY=
+X-Received: by 2002:a50:d659:0:b0:565:665b:9c82 with SMTP id c25-20020a50d659000000b00565665b9c82mr5477527edj.8.1711378260918;
+        Mon, 25 Mar 2024 07:51:00 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFPqhUMr6qXBjwymyKLKDFFf+Ez8n4lo28gTUTivdmH89U3wE5JSwWmqkk/4T2fLKQMBnPtQw==
+X-Received: by 2002:a50:d659:0:b0:565:665b:9c82 with SMTP id c25-20020a50d659000000b00565665b9c82mr5477507edj.8.1711378260600;
+        Mon, 25 Mar 2024 07:51:00 -0700 (PDT)
+Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec? (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl. [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
+        by smtp.gmail.com with ESMTPSA id l2-20020aa7cac2000000b00568e3d3337bsm3033238edt.18.2024.03.25.07.50.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Mar 2024 07:51:00 -0700 (PDT)
+Message-ID: <a1cd7477-570b-48e1-b3fd-941b176bc9c0@redhat.com>
+Date: Mon, 25 Mar 2024 15:50:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: lhrpeml100004.china.huawei.com (7.191.162.219) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 0/4] platform: arm64: Acer Aspire 1 embedded controller
+Content-Language: en-US, nl
+To: Nikita Travkin <nikita@trvn.ru>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Sebastian Reichel <sre@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, platform-driver-x86@vger.kernel.org
+References: <20240315-aspire1-ec-v5-0-f93381deff39@trvn.ru>
+From: Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <20240315-aspire1-ec-v5-0-f93381deff39@trvn.ru>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sun, 24 Mar 2024 20:06:51 +0100
-Lothar Rubusch <l.rubusch@gmail.com> wrote:
+Hi,
 
-> On Sun, Mar 24, 2024 at 2:35=E2=80=AFPM Jonathan Cameron <jic23@kernel.or=
-g> wrote:
-> >
-> > On Sat, 23 Mar 2024 12:20:28 +0000
-> > Lothar Rubusch <l.rubusch@gmail.com> wrote:
-> > =20
-> > > Add a common array adxl3x5_chip_info and an enum for
-> > > indexing. This allows to remove local redundantly
-> > > initialized code in the bus specific modules.
-> > >
-> > > Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
-> > > ---
-> > >  drivers/iio/accel/adxl345.h      |  7 +++++++
-> > >  drivers/iio/accel/adxl345_core.c | 12 ++++++++++++
-> > >  drivers/iio/accel/adxl345_i2c.c  | 20 +++++---------------
-> > >  drivers/iio/accel/adxl345_spi.c  | 20 +++++---------------
-> > >  4 files changed, 29 insertions(+), 30 deletions(-)
-> > >
-> > > diff --git a/drivers/iio/accel/adxl345.h b/drivers/iio/accel/adxl345.h
-> > > index 6b84a2cee..de6b1767d 100644
-> > > --- a/drivers/iio/accel/adxl345.h
-> > > +++ b/drivers/iio/accel/adxl345.h
-> > > @@ -26,11 +26,18 @@
-> > >   */
-> > >  #define ADXL375_USCALE       480000
-> > >
-> > > +enum adxl345_device_type {
-> > > +     ADXL345,
-> > > +     ADXL375,
-> > > +};
-> > > +
-> > >  struct adxl345_chip_info {
-> > >       const char *name;
-> > >       int uscale;
-> > >  };
-> > >
-> > > +extern const struct adxl345_chip_info adxl3x5_chip_info[];
-> > > +
-> > >  int adxl345_core_probe(struct device *dev, struct regmap *regmap,
-> > >                      int (*setup)(struct device*, struct regmap*));
-> > >
-> > > diff --git a/drivers/iio/accel/adxl345_core.c b/drivers/iio/accel/adx=
-l345_core.c
-> > > index 33424edca..e3718d0dd 100644
-> > > --- a/drivers/iio/accel/adxl345_core.c
-> > > +++ b/drivers/iio/accel/adxl345_core.c
-> > > @@ -62,6 +62,18 @@ struct adxl345_data {
-> > >               BIT(IIO_CHAN_INFO_SAMP_FREQ),                          =
- \
-> > >  }
-> > >
-> > > +const struct adxl345_chip_info adxl3x5_chip_info[] =3D {
-> > > +     [ADXL345] =3D {
-> > > +             .name =3D "adxl345",
-> > > +             .uscale =3D ADXL345_USCALE,
-> > > +     },
-> > > +     [ADXL375] =3D {
-> > > +             .name =3D "adxl375",
-> > > +             .uscale =3D ADXL375_USCALE,
-> > > +     },
-> > > +};
-> > > +EXPORT_SYMBOL_NS_GPL(adxl3x5_chip_info, IIO_ADXL345); =20
-> >
-> > There is little advantage here form using an array.  I'd just have
-> > two exported structures.   Then the name alone is enough in the
-> > id tables.  And probably no need for the enum definition.
-> >
-> > This use of arrays is an old pattern that makes little sense if the
-> > IDs have no actual meaning and you aren't supporting lots of different
-> > parts.  For 2 parts I'd argue definitely not worth it.
-> > =20
->=20
-> Agree. I see your point. I drop the info array enum patch.
->=20
-> (...)
->=20
-> Btw. may I ask another question: The adxl345/75 driver is doing the
-> configuration
-> inside the probe(). Other Analog drivers moved that out into a
-> xxx_setup() and call
-> this function in the probe(). In general, is it better to keep all
-> inside  the probe() or
-> separate? I mean, the probe is still quite short, and reading through
-> severl call
-> hierarchies feels a bit "sparghetti". On the other side I can see a
-> certain idea of
-> separation of functionality: dedicated chip configuration. Would you
-> mind to give
-> me a small statement/opinion on this please?
+On 3/15/24 2:51 PM, Nikita Travkin wrote:
+> The laptop contains an embedded controller that provides a set of
+> features:
+> 
+> - Battery and charger monitoring
+> - USB Type-C DP alt mode HPD monitoring
+> - Lid status detection
+> - Small amount of keyboard configuration*
+> 
+> [*] The keyboard is handled by the same EC but it has a dedicated i2c
+> bus and is already enabled. This port only provides fn key behavior
+> configuration.
+> 
+> Unfortunately, while all this functionality is implemented in ACPI, it's
+> currently not possible to use ACPI to boot Linux on such Qualcomm
+> devices. Thus this series implements and enables a new driver that
+> provides support for the EC features.
+> 
+> The EC would be one of the last pieces to get almost full support for the
+> Acer Aspire 1 laptop in the upstream Linux kernel.
+> 
+> This series is similar to the EC driver for Lenovo Yoga C630, proposed
+> in [1] but seemingly never followed up...
+> 
+> [1] https://lore.kernel.org/all/20230205152809.2233436-1-dmitry.baryshkov@linaro.org/
+> 
+> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
 
-I'd based it on code complexity.
-If it's one call (and error handling) to do it then inline makes sense.
+Thank you for your patch-series, I've applied the series to my
+review-hans branch:
+https://git.kernel.org/pub/scm/linux/kernel/git/pdx86/platform-drivers-x86.git/log/?h=review-hans
 
-If it's  lots of lines, a separate function make sense.
+I've fixed the Kconfig typo Randy spotted while applying this.
 
-Where the boundary between the two lies is subjective so I tend to
-just go with whatever an author prefers.  Note that I'm not keen
-to see the noise of refactors if the code lies in this gray area?
+Once I've run some tests on this branch the patches there will be
+added to the platform-drivers-x86/for-next branch and eventually
+will be included in the pdx86 pull-request to Linus for the next
+merge-window.
 
-Jonathan
+Regards,
+
+Hans
 
 
->=20
+
+
+
+> ---
+> Changes in v5:
+> - Various cleanups (Bryan, Ilpo)
+> - Add Bryan as Reviewer for platform/arm64 (Bryan, Ilpo)
+> - Link to v4: https://lore.kernel.org/r/20240312-aspire1-ec-v4-0-bd8e3eea212f@trvn.ru
+> 
+> Changes in v4:
+> - Move to platform/arm64 (Sebastian, Hans)
+> - Drop fn mode dt property (Rob)
+> - Add fn_lock attribute in sysfs (Rob)
+> - Report psy present correctly (Sebastian)
+> - Link to v3: https://lore.kernel.org/r/20240220-aspire1-ec-v3-0-02cb139a4931@trvn.ru
+> 
+> Changes in v3:
+> - Supress warning on few no-op events.
+> - Invert the fn key behavior (Rob, Conor)
+> - Link to v2: https://lore.kernel.org/r/20231212-aspire1-ec-v2-0-ca495ea0a7ac@trvn.ru
+> 
+> Changes in v2:
+> - Drop incorrectly allowed reg in the ec connector binding (Krzysztof)
+> - Minor style changes (Konrad)
+> - Link to v1: https://lore.kernel.org/r/20231207-aspire1-ec-v1-0-ba9e1c227007@trvn.ru
+> 
+> ---
+> Nikita Travkin (4):
+>       dt-bindings: platform: Add Acer Aspire 1 EC
+>       platform: Add ARM64 platform directory
+>       platform: arm64: Add Acer Aspire 1 embedded controller driver
+>       arm64: dts: qcom: acer-aspire1: Add embedded controller
+> 
+>  .../bindings/platform/acer,aspire1-ec.yaml         |  60 +++
+>  MAINTAINERS                                        |  16 +
+>  arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts   |  40 +-
+>  drivers/platform/Kconfig                           |   2 +
+>  drivers/platform/Makefile                          |   1 +
+>  drivers/platform/arm64/Kconfig                     |  35 ++
+>  drivers/platform/arm64/Makefile                    |   8 +
+>  drivers/platform/arm64/acer-aspire1-ec.c           | 562 +++++++++++++++++++++
+>  8 files changed, 723 insertions(+), 1 deletion(-)
+> ---
+> base-commit: a1e7655b77e3391b58ac28256789ea45b1685abb
+> change-id: 20231206-aspire1-ec-6b3d2cac1a72
+> 
+> Best regards,
 
 
