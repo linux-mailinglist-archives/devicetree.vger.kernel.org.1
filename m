@@ -1,161 +1,99 @@
-Return-Path: <devicetree+bounces-53073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53074-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB56788AD10
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 19:09:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 819AB88AD54
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 19:14:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 368882E1A7A
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 18:09:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A88A362A8D
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 18:14:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DAE312E1F9;
-	Mon, 25 Mar 2024 17:30:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1507C12F588;
+	Mon, 25 Mar 2024 17:44:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IlJCckWo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jhBdE2Et"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98E4512E1E5;
-	Mon, 25 Mar 2024 17:30:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D091F12EBF2;
+	Mon, 25 Mar 2024 17:44:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711387820; cv=none; b=lY7iecpmpuEjhRix9RdfUWOrnw5DWxr790kYXLiYlDpnMRbhiaxvo8C0XP15IRRfexWPWqN5C1t3tp9OmBKFAyNLUdyeKW5xUsuIW+FYR1CY4Qdc3OWfF/+n+o5QMdVnW+rvdj8YeNcUEfuTTSC9iAK+aHHdDghMCc4bK00WbI0=
+	t=1711388655; cv=none; b=VfDAaXOrAuL3kk4knLVai9FWCzCW1B1/qNRpxaFahA3nfxMtGOx764xJZ4zCgj38HTY+XxdD1H7QSGn0VsphxOp5hXZeIHjG9tsgLtEE9DVoP7n9WFtYZqL5X5NZXHM9J9BXhZ/F9XEtUJBalTbDFWbu5lrkwGXKkCV04BugtSI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711387820; c=relaxed/simple;
-	bh=MZEKCbTRYkyqe+9HBejrDZkLY/jTlsFTwN+TfksBPzo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=XrxdHuTOdXJQtul1HrtUyL894s0fnR9WRo0ousF5ef+LT43clkIxFcAhu5oMrnok02DWQ2DNZ3RHrBkcPj1/F0n+xVH3qaC/6Jtx17LRGZ2HcPU3ciJdeo6VcVWq2otEbqnrXSfsTFp41l9cX/sjuWMwJPv/Sy7UTDqE4qhbsB4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IlJCckWo; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42PExqJv003871;
-	Mon, 25 Mar 2024 17:30:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=nKJL2glUN1khhJxllTuVn8romkg29EQEStQj/muOjcg=; b=Il
-	JCckWoU67Kqz/FOZCLWvU4Rn+5yl56EFp1UkP+zz/ZHIg+SNYshi3oFgdkpEc6JH
-	xZW4/w11pU2d9PYrNdJzbUo5jTLPw4Jc3FZsOunSXBx7ayv7LgKftX6aZoioodyi
-	4IQpgAnQ/vNRceFOBjTRVDvC09kqPUNNopnCzvcAm32vTphYAsFTn55Lf/tRouG3
-	zunuYK2uYsKTDrqq6eXCoeDm2pbI6iELnj4lUzCJsv8XUOP2NV1Zh8Lk9l/8lAa8
-	vCbIDFt8vx3zDcwsJgWdBtzaHWhDcog2NVddYCHmFiOqFS/FOxGTrHMWJFXR11XH
-	SxwiaNl+Iwt+0viozAbg==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x31wssrrf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 25 Mar 2024 17:30:11 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42PHUALv027223
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 25 Mar 2024 17:30:10 GMT
-Received: from [10.216.25.244] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 25 Mar
- 2024 10:30:04 -0700
-Message-ID: <807015d4-c5ed-4e04-9948-fd1ff894a04e@quicinc.com>
-Date: Mon, 25 Mar 2024 22:59:49 +0530
+	s=arc-20240116; t=1711388655; c=relaxed/simple;
+	bh=84QJw+nFRWJcCI9qLc+HWOqIdwtPfnng/a06NrPc9zg=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=nkBcVMxv/XkDUotxbj/YrWFdGLsUd+gVG3AUgH7sdlDBx3Jbkjh9UpKZphbg67OPdgVJlEys+MkODQ3xUKK7yEgXoOeo5wN8YStAXT0myQ23dxQ/AY20xm0nq90wu7bxFYWmXbJoWOpAoHjeRVae8cgf6mp+Ni+pI8OLLKIHhD0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jhBdE2Et; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 892D4C43390;
+	Mon, 25 Mar 2024 17:44:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711388654;
+	bh=84QJw+nFRWJcCI9qLc+HWOqIdwtPfnng/a06NrPc9zg=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=jhBdE2EtXZRXGWjy0Ty+MK0oU4ksW6nrbVRnDx+mSpLspg6shj4DC1wpBdRLN7Dc7
+	 eXIP7eXXiw/beSozIggbEDp85tyoIkFqmn4j7iiIHSjK0pkwpughN3r79dWkEfrGdf
+	 n4Mt46Q0NauarqspcR7w6gQb7Nr2pdEkmPOlTLVbj56kbnsWCCLX+V7dAEyR5yg5wt
+	 tuDC1Ww5/J9XSAbjp54HbM9DUeikJYNAPWYNhk5fJ/xkLY2Sm9mpBhJMksOkeQBHtp
+	 B4+grnwjxTsuE4NTo8RmYEedf8vGbIrXXw40qyssfXlPUMcO8X8Ai9jSdDxzaDfHFK
+	 7Dg/paNrEVoRw==
+From: Mark Brown <broonie@kernel.org>
+To: lgirdwood@gmail.com, robh+dt@kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+ Kartik Agarwala <agarwala.kartik@gmail.com>
+Cc: patches@opensource.cirrus.com, linux-sound@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ javier.carrasco.cruz@gmail.com
+In-Reply-To: <20240317200201.119233-1-agarwala.kartik@gmail.com>
+References: <20240317200201.119233-1-agarwala.kartik@gmail.com>
+Subject: Re: [PATCH] ASoC: dt-bindings: wm8776: Convert to dtschema
+Message-Id: <171138865226.327140.7724830944005917187.b4-ty@kernel.org>
+Date: Mon, 25 Mar 2024 17:44:12 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v16 7/9] usb: dwc3: qcom: Refactor IRQ handling in glue
- driver
-To: Johan Hovold <johan@kernel.org>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Wesley Cheng
-	<quic_wcheng@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Felipe Balbi
-	<balbi@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_ppratap@quicinc.com>,
-        <quic_jackp@quicinc.com>
-References: <20240307062052.2319851-1-quic_kriskura@quicinc.com>
- <20240307062052.2319851-8-quic_kriskura@quicinc.com>
- <ZgFyukBXIIwZo7v-@hovoldconsulting.com>
- <50926b91-3c61-4dbf-85c9-7558ab96e628@quicinc.com>
- <ZgF6zvaT2OkrbkHK@hovoldconsulting.com>
-Content-Language: en-US
-From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <ZgF6zvaT2OkrbkHK@hovoldconsulting.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: fv_zp3OmKnWSlRlXye2O5YSOpWEYu8CD
-X-Proofpoint-ORIG-GUID: fv_zp3OmKnWSlRlXye2O5YSOpWEYu8CD
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-25_15,2024-03-21_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- clxscore=1015 malwarescore=0 priorityscore=1501 phishscore=0 bulkscore=0
- adultscore=0 spamscore=0 mlxscore=0 mlxlogscore=792 impostorscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2403210001 definitions=main-2403250101
+X-Mailer: b4 0.14-dev
 
-
-
-On 3/25/2024 6:53 PM, Johan Hovold wrote:
-> On Mon, Mar 25, 2024 at 06:45:07PM +0530, Krishna Kurapati PSSNV wrote:
->>>> +static int dwc3_qcom_setup_irq(struct platform_device *pdev)
->>>> +{
->>>> +	struct dwc3_qcom *qcom = platform_get_drvdata(pdev);
->>>> +	bool is_multiport;
->>>> +	int ret;
->>>> +	int i;
->>>> +
->>>> +	qcom->num_ports = dwc3_qcom_find_num_ports(pdev);
->>>> +	if (qcom->num_ports < 0)
->>>> +		return -ENOMEM;
->>>
->>> Just return 'ret' directly.
->>
->> Sure, will init ret to -ENOMEM and return ret here. >
-Hi Johan,
-
-> I meant that you should return whatever error dwc3_qcom_find_num_ports()
-> returns, so perhaps something like:
+On Mon, 18 Mar 2024 01:32:02 +0530, Kartik Agarwala wrote:
+> Convert WM8776 audio CODEC bindings from text to dtschema.
+> 
 > 
 
-Got it. Any error that might come up in interrupt reading as well.
-> 	
-> 	ret = dwc3_qcom_find_num_ports(pdev);
-> 	if (ret < 0)
-> 		return ret;
-> 
-> 	qcom->num_ports = ret;
-> 
-> It looks like dwc3_qcom_find_num_ports() can also return 0 (e.g. on
-> malformed DT), which also needs to be handled somehow. I missed that
-> earlier.
-> 
+Applied to
 
- From what I remember, Konrad mentioned that we might not need to 
-support incomplete or improper DT [1]. Also since this is close to 
-getting merged, can we take up any changes for Malformed DT handling 
-later given that only one or two devices are present and less likely to 
-be given a malformed DT.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-[1]: 
-https://lore.kernel.org/all/c8d77d4f-6696-4dc9-8030-daf1d10b114b@linaro.org/
+Thanks!
 
-Regards,
-Krishna,
+[1/1] ASoC: dt-bindings: wm8776: Convert to dtschema
+      commit: 1fdc23aa57913d7a0a521f71dcdefdde9364d4f9
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
