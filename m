@@ -1,185 +1,178 @@
-Return-Path: <devicetree+bounces-53133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53134-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA74588B069
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 20:48:33 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5070888B5DB
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 01:14:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CDEB91C3B5A0
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 19:48:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EFD55B2AC34
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 19:53:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6703134AC;
-	Mon, 25 Mar 2024 19:48:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA09B18AF4;
+	Mon, 25 Mar 2024 19:53:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lyVdiL5w"
+	dkim=pass (1024-bit key) header.d=amazon.com header.i=@amazon.com header.b="QH8Yw//Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp-fw-2101.amazon.com (smtp-fw-2101.amazon.com [72.21.196.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD9981CD10
-	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 19:48:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F142C1F95E;
+	Mon, 25 Mar 2024 19:53:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=72.21.196.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711396109; cv=none; b=C7A0ni687BTgCfLNnG2RXIrm5HUM+qPTLE4AylwEY8GvKwVASXJEKKqXQLrBCBTbvhqHUpsJ13pczfrmXWmJhZL6RPqNiIDIF2MGWP5HbKBGpjo7bdbUAI0DdBD6IJ1mSd1OVvndVXhV08dEH5BMU4Rw7gzxrw3YpnZqQTEQYm8=
+	t=1711396408; cv=none; b=GBYKSA0gvAFREq47Ch9VzD0BQK8lmpYBQ8k+LhOIEjLovdVDv236xpwbIF/UD/FxadbFdYBTPRVIgC2X9mE1RFOn9ITdj6BITOOXkbRM6VL0bywfxuDP3rboX4HoSvnEy68rH8IwbUECtlGUOshxCC+7Rc9lxaZZkSWpxKEqcWo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711396109; c=relaxed/simple;
-	bh=KClceAiTx50PmEj45jOUs8Pxb/WPzW5nVVqPr0ifJXo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=q6Yrb+xqz3+9Hq1Knzf0YEWt2Fy3VmaeRVH+oCxH2elk05U14KZGpfHzEVl52G+ds1/MAaOOFjrsRT8Ip47ndp4V1ttK+v6JphcMVImi7h8TOvqK9ErRy4LrSUKDVVthFPH4aMURxgkqObidUom7dynB/nMWvJWeddpIyeCyuoE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lyVdiL5w; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-56bf60ddc71so1231128a12.2
-        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 12:48:27 -0700 (PDT)
+	s=arc-20240116; t=1711396408; c=relaxed/simple;
+	bh=q1usJ8QHSuHNaxle/+mq18GQ0GoIN9fVwo0LxtaUAiY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=I5luqnxEhjrjCwDSLdUOvGXgkSeAPkIz/MhM7PPUsKfC+uE28t2s+LtWPg5ZcLeA6LUp9XtPQOCgvDgNWRkQ/LkL0vAvnBjak0Wor2Z1bhH4tcBJMzlhpoVKEMB7C0SDawgrbEQ9vgQOG2l8U4YguDRMMOGwaiIKdTHO7h5ZBHk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.com; spf=pass smtp.mailfrom=amazon.co.uk; dkim=pass (1024-bit key) header.d=amazon.com header.i=@amazon.com header.b=QH8Yw//Y; arc=none smtp.client-ip=72.21.196.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.co.uk
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711396106; x=1712000906; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=S6rqeKaNGqBYxhYJKK3a8zmfD1iSFSJpl8wBKkIyphM=;
-        b=lyVdiL5w6TttTfJMu2eKLrfUJhiAMpGKOL562z7dYIQ132tMin9FbfGAQ4HupthMwv
-         M+2HcrdTd9rLZYiH76luBptohFsfLZxxvKqLD49LLkUuiG2Pu18AGC++FvDoiArkJJgs
-         QM6n5Dq+af2YLToBRLmij1zS0YhNQVPcJb23CjwyRFLfxwlNj5uPADtFVHoWhbaFk+r5
-         t/UhiXU+LIKPmxNrtpp0BubslZ8CKYIlc5Pns+gyZxdg2ApGtwLUK1POUKLMLr9srcCK
-         wcWQ+ad+ChY1mNRQyW3KJCF8T+2UvLYhmZ8OaKpxmfGVVzwcLbGoQlvoJSDM+QAWuK2C
-         dgcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711396106; x=1712000906;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=S6rqeKaNGqBYxhYJKK3a8zmfD1iSFSJpl8wBKkIyphM=;
-        b=LXykSO0QjE8rKujFEOtirbUfj9yZunB1vhE2o+7IEx3x/c9ccE7g5uC/fVlU4yKjAF
-         Z4Hn/A5zfjuXiJ/JjW+zfU5gwFLw6zwIagDXsza1yHDhDXhyBngHdYwco3MByl/iKvgy
-         ePWj9LKVsyyGDIqSp9ulq2L/WIgAAm6BoVRhlJeyjyc56bvszXwc2ZYMmmuWjHkEc86K
-         ixLMSz2Xv+r2zV6ZffmK3VtVKYjBXkG8waDGf1ZvGMrJJxSU9nX035/UCvH6j4B2qEJu
-         QKse4FDMpwa0VIDHPKFkU2yqi3ZTmzcIxR3S2ccxdqJkjtO70WoUBxJ5XAKPvtwUCbqY
-         Wc1A==
-X-Forwarded-Encrypted: i=1; AJvYcCX8yv5ECiM5xEJKyftCLoUUncKDW9Qf3SikCOlYJaT7u8HNWop9CGEf3fAm262xdh5SeWL599ZaTDCSRTOLCuQ45Ql9iJw6KHXhzA==
-X-Gm-Message-State: AOJu0Yy9S/kDnreLKJln+FJbqjyfoYj5pyP1y8pZclRa+WKTuoqz2gpj
-	Z8GKZEbQRV2zeE1jd9tPcHWgry0UEkkzffXWwqsxPSgiA+3m+76IGm9cVUHDe9g=
-X-Google-Smtp-Source: AGHT+IHrYqHgrd0OjrA4X1d+flYknuft+irR9Y0HPMjL6dRJwgrza42uiyXAM5kq8hxb2PXhOq9RWQ==
-X-Received: by 2002:a50:99d6:0:b0:568:a792:276 with SMTP id n22-20020a5099d6000000b00568a7920276mr7023386edb.7.1711396106143;
-        Mon, 25 Mar 2024 12:48:26 -0700 (PDT)
-Received: from [192.168.92.47] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
-        by smtp.gmail.com with ESMTPSA id t25-20020a056402241900b0056bd13ce50esm3259265eda.44.2024.03.25.12.48.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Mar 2024 12:48:25 -0700 (PDT)
-Message-ID: <2311d5e6-8ef4-4ce3-8a6a-7731f819b05e@linaro.org>
-Date: Mon, 25 Mar 2024 20:48:23 +0100
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1711396407; x=1742932407;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=Go4UW8g/eSRArcR0sYsp9T6DHVfri7II0K0Xak1x5y0=;
+  b=QH8Yw//YNk74XPwyPk+AwlEXoLKdoFroFF19VBpjmDD0tElroH3PAO8W
+   jmao6Ai5TGbd/AjDLZ8p+d4OByfWAQsrDm/QNq1HVrbkYcmzWfXJ1cjoX
+   XltYALh7oRSz/Usbfpcwft7rpJWQUUFgfYDZaOQSccLlShrst0soRd5PU
+   4=;
+X-IronPort-AV: E=Sophos;i="6.07,154,1708387200"; 
+   d="scan'208";a="390412224"
+Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO smtpout.prod.us-east-1.prod.farcaster.email.amazon.dev) ([10.43.8.6])
+  by smtp-border-fw-2101.iad2.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Mar 2024 19:53:24 +0000
+Received: from EX19MTAEUC001.ant.amazon.com [10.0.10.100:11373]
+ by smtpin.naws.eu-west-1.prod.farcaster.email.amazon.dev [10.0.4.153:2525] with esmtp (Farcaster)
+ id db789414-5269-494e-a3db-5e6085d2ae6a; Mon, 25 Mar 2024 19:53:23 +0000 (UTC)
+X-Farcaster-Flow-ID: db789414-5269-494e-a3db-5e6085d2ae6a
+Received: from EX19D036EUC002.ant.amazon.com (10.252.61.191) by
+ EX19MTAEUC001.ant.amazon.com (10.252.51.155) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.28; Mon, 25 Mar 2024 19:53:22 +0000
+Received: from bcd074994f7f.amazon.com (10.106.83.11) by
+ EX19D036EUC002.ant.amazon.com (10.252.61.191) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.28; Mon, 25 Mar 2024 19:53:17 +0000
+From: Sudan Landge <sudanl@amazon.com>
+To: <tytso@mit.edu>, <Jason@zx2c4.com>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<sudanl@amazon.com>, <sathyanarayanan.kuppuswamy@linux.intel.com>,
+	<thomas.lendacky@amd.com>, <dan.j.williams@intel.com>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <graf@amazon.de>, <dwmw@amazon.co.uk>, <bchalios@amazon.es>,
+	<xmarcalx@amazon.co.uk>
+Subject: [PATCH v3 0/4] virt: vmgenid: Add devicetree bindings support
+Date: Mon, 25 Mar 2024 19:53:02 +0000
+Message-ID: <20240325195306.13133-1-sudanl@amazon.com>
+X-Mailer: git-send-email 2.39.3 (Apple Git-146)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/3] QCM2290 LMH
-To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Thara Gopinath
- <thara.gopinath@gmail.com>, Amit Kucheria <amitk@kernel.org>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, stable@vger.kernel.org,
- Loic Poulain <loic.poulain@linaro.org>
-References: <20240308-topic-rb1_lmh-v2-0-bac3914b0fe3@linaro.org>
- <d8ed4e6c-549f-4c04-b38a-2d788df8b707@notapiano>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <d8ed4e6c-549f-4c04-b38a-2d788df8b707@notapiano>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: EX19D039UWB001.ant.amazon.com (10.13.138.119) To
+ EX19D036EUC002.ant.amazon.com (10.252.61.191)
 
-On 20.03.2024 8:08 PM, Nícolas F. R. A. Prado wrote:
-> On Sat, Mar 09, 2024 at 02:15:01PM +0100, Konrad Dybcio wrote:
->> Wire up LMH on QCM2290 and fix a bad bug while at it.
->>
->> P1-2 for thermal, P3 for qcom
->>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
->> Changes in v2:
->> - Pick up tags
->> - Fix a couple typos in commit messages
->> - Drop stray msm8998 binding addition
->> - Link to v1: https://lore.kernel.org/r/20240308-topic-rb1_lmh-v1-0-50c60ffe1130@linaro.org
->>
->> ---
->> Konrad Dybcio (2):
->>       dt-bindings: thermal: lmh: Add QCM2290 compatible
->>       thermal: qcom: lmh: Check for SCM availability at probe
->>
->> Loic Poulain (1):
->>       arm64: dts: qcom: qcm2290: Add LMH node
->>
->>  Documentation/devicetree/bindings/thermal/qcom-lmh.yaml | 12 ++++++++----
->>  arch/arm64/boot/dts/qcom/qcm2290.dtsi                   | 14 +++++++++++++-
->>  drivers/thermal/qcom/lmh.c                              |  3 +++
->>  3 files changed, 24 insertions(+), 5 deletions(-)
-> 
-> Hi,
-> 
-> I've started tracking the results of 'make dtbs_check' on linux-next, and I've
-> noticed that on today's next, next-20240320, there's a new warning coming from
-> this. The reason is that the DT change has landed, but the binding has not,
-> since it goes through a separate tree. I thought the binding was supposed to
-> always land before the driver and DT that make use of it, but looking through
-> the dt-binding documentation pages I couldn't find anything confirming or
-> denying that.
+This small series of patches aims to add devicetree bindings support for
+the Virtual Machine Generation ID (vmgenid).
 
-Yes, that's the ideal way of things happening..
+Virtual Machine Generation ID was introduced in commit af6b54e2b5ba
+("virt: vmgenid: notify RNG of VM fork and supply generation ID") as an
+ACPI only device.
 
-> 
-> I expect this to happen again in the future, which is why I'm reaching out to
-> understand better how to deal with this kind of situation.
+VMGenID specification http://go.microsoft.com/fwlink/?LinkId=260709 defines
+a mechanism for the BIOS/hypervisors to communicate to the virtual machine
+that it is executed with a different configuration (e.g. snapshot execution
+or creation from a template).
+The guest operating system can use the notification for various purposes
+such as re-initializing its random number generator etc.
 
-..but due to the kernel dev process, doing that across multiple trees would
-either require constant agreements on immutable branches containing bindings,
-mixing patches across trees, or delaying dts changes by a cycle or so
+More references to vmgenid specs:
+ - https://www.qemu.org/docs/master/specs/vmgenid.html
+ - https://learn.microsoft.com/en-us/windows/win32/hyperv_v2/virtual-machine-generation-identifier
 
-Konrad 
+*Reason for this change*:
+Chosing ACPI or devicetree is an intrinsic part of an hypervisor design.
+Without going into details of why a hypervisor would chose DT over ACPI,
+we would like to highlight that the hypervisors that have chose devicetree
+and now want to make use of the vmgenid functionality cannot do so today
+because vmgenid is an ACPI only device.
+This forces these hypervisors to change their design which could have
+undesirable impacts on their use-cases, test-scenarios etc.
+
+The point of vmgenid is to provide a mechanism to discover a GUID when
+the execution state of a virtual machine changes and the simplest
+way to do it is pass a memory location and an interrupt via devicetree.
+It would complicate things unnecessarily if instead of using devicetree,
+we try to implement a new protocol or modify other protocols to somehow
+provide the same functionility.
+
+We believe that adding a devicetree binding for vmgenid is a simpler,
+better alternative to provide the same functionality and will allow
+such hypervisors as mentioned above to continue using devicetree.
+
+Addtional notes:
+While adding the devicetree support we considered re-using existing
+structures/code to avoid duplication code and reduce maintenance; so,
+we used the same driver to be configured either by ACPI or by DT.
+This also meant reimplementing the existing vmgenid ACPI bus driver as a
+platform driver and making it discoverable using `driver.of_match_table`
+and `driver.acpi_match_table`.
+
+There is no user impact or change in vmgenid functionality when used
+with ACPI. We verified ACPI support of these patches on X86 and DT
+support on ARM using Firecracker hypervisor
+https://github.com/firecracker-microvm/firecracker.
+
+To check schema and syntax errors, the bindings file is verified with:
+```
+  make dt_binding_check \
+  DT_SCHEMA_FILES=Documentation/devicetree/bindings/vmgenid/vmgenid.yaml
+```
+and the patches were verified with:
+`scripts/checkpatch.pl --strict v1-000*`.
+
+Changelog with respect to version 2:
+- As per review comments, used platform apis instead of "of_*" APIs,
+  removed unnecessary #include and used IF_ENABLED instead of ifdef.
+- Added more info for vmgenid buffer address and corrected the formatting.
+- Replaced the compatible string from "linux,*" to "virtual,*" because,
+  the device does not have a vendor.
+
+Changelog with respect to version 1:
+- Moved vmgenid.yaml bindings to the more related "rng" folder.
+- Removed `vmgenid_remove` to since it is unrelated to the
+  current goal of the patch.
+- Updated the cover letter and bindings commit
+  "[PATCH v2 3/4] dt-bindings: rng: Add vmgenid support" to
+  provide more information on vmgenid.
+- Compiled with and without CONFIG_OF/CONFIG_ACPI and fixed
+  compilers errors/warnings.
+
+
+Sudan Landge (4):
+  virt: vmgenid: rearrange code to make review easier
+  virt: vmgenid: change implementation to use a platform driver
+  dt-bindings: rng: Add vmgenid support
+  virt: vmgenid: add support for devicetree bindings
+
+ .../devicetree/bindings/rng/vmgenid.yaml      |  58 ++++++
+ MAINTAINERS                                   |   1 +
+ drivers/virt/Kconfig                          |   1 -
+ drivers/virt/vmgenid.c                        | 194 ++++++++++++++----
+ 4 files changed, 217 insertions(+), 37 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/rng/vmgenid.yaml
+
+
+base-commit: 8e938e39866920ddc266898e6ae1fffc5c8f51aa
+-- 
+2.40.1
+
+
 
