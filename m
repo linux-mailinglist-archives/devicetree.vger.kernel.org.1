@@ -1,146 +1,421 @@
-Return-Path: <devicetree+bounces-52948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52949-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF3E288A7F0
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 16:59:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BE5B88A827
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 17:04:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C92C1C3E71F
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 15:59:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3EDD51C63527
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 16:04:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AB27129A9F;
-	Mon, 25 Mar 2024 13:35:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E36A1429B;
+	Mon, 25 Mar 2024 13:44:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="dR7AnY10"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xa0RdV9P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04008128810
-	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 13:35:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5672D18E06;
+	Mon, 25 Mar 2024 13:44:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711373732; cv=none; b=mgkgCE56Rt2IwbtStHMYr0lTc/Ea7fyrY50S4UFURFaH9ynN72bmCyjJGxxQ5pUZi3Kvb/4simm3vYv0kN5ceeWnzH3Cd692b0q+58dO2AwEEmRKtAfqLZeSpwaf97P5q8pDHVU39LIphxxzbW7cCjiTddW6Qre75m8q323OJ+I=
+	t=1711374280; cv=none; b=nL/2um+0jx4TPugNf9dXN7+mTbYnbrPpA8FRsEjQ0Ytax8qB3x3RdRMPv8ivewuEETZ5dACw8rzXKykTYUwo80TrY1SSZLmeIWnrf/Uoyn0gVWilGUFquiwLkPVWBUL/v3LuCgFMnLOMnlRKWcF8L2zOgTwRKHdLjXQBkDuUzrg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711373732; c=relaxed/simple;
-	bh=TCPyUbafQCw3a+le65i3q3p05CsQjzehRXJqoZCkz3Y=;
+	s=arc-20240116; t=1711374280; c=relaxed/simple;
+	bh=DZl6nDTB2qGtV6PxioPQOgrKAtIwR3hCFBQwQXqjh2M=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=G1qw/R+lc0f02A2E4+dHCqdGIrmq0yj3TnLNonFYP/BiYPoP0P6Q4e7TzvGgaZ3m0ieisqshd4zOTESfkuCoDrXM9wyBYjrwaKOehMQKj9wpEXsHD0tmbQzZVoDJ6HrVYYGWW2kPOnITuaEIfBiEwQnOaSB/ie7Ap4k+RbefQHQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=dR7AnY10; arc=none smtp.client-ip=209.85.208.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2d48f03a8bbso48617671fa.0
-        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 06:35:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1711373728; x=1711978528; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wMCYCOAUB399ZWIzjXcdJZ2KHil8v/UMqqPWVku47Q0=;
-        b=dR7AnY10y3mjOLMoHH2w2eytqdV9Uq/BKXafcRA2zXUUwzbPFF0cps/iyRTvt969He
-         O/+3xoW+jb9bNYH6D20oSKtGgep2Ysp8EdYuY5J5GQOJ+9NDHUBzQVsg6mcmLmH/fRSg
-         s5yqOxGprnEqB5cGfH0G8hhVZRqIRJu31JZfVkMVkP09OXirZQ/WCNn3H+kfYqsF3jPa
-         I2YUyNjgQz/qlCzwVCZkLH1afrox7DHarxEFcJnghYxprBRp0957bMB/CpwKDOV2hwld
-         IQF9X7qktxL1SthMR/S538GVvz/KK6T3xI2+hFIGu2OteMb2ish6SsmwS6WPO2fYaxd/
-         C1aw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711373728; x=1711978528;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wMCYCOAUB399ZWIzjXcdJZ2KHil8v/UMqqPWVku47Q0=;
-        b=W9P4fZKTq5Y4eH97DANqLvz7+YxU7NZb6PMdhzrdvrO5dSM0dT3mQjYLlG4fCsM7rV
-         eKLCEUTluzVWY0Bo3NU4pHU9zBRHs6+khliWaZQRU95nwetdKZKLmPUJ2rabdWWTzplK
-         sn7LhI2BBOsBx2ucKxEaX9GO5pI+2m6QsiQqrdB7smbJLV4ude1RKg2JpZljkRpguQaS
-         sYUFfjo1zJaNzk61gDJSFXap2exQWSz/ATHdxOdnZSlMZfdp2bw/0SSdcVK2n63t5CRr
-         3SH/xBjulsr99rpk/QYVZE6Q80rbrMkjznsD8SMZToLMWdVAl/p96WClbKHOa9Kdb52A
-         Cv2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWX3fEsAPgEu0SzxfRs0oKtQVsKKmZpat5VsuQR3i3QYKQsrF2AkgjWdk3lwQierBPkJmO9nlg/Y23fCbRI3Y4lgWGY5A9N/opN7g==
-X-Gm-Message-State: AOJu0YyuNEiXdpbgWqfWtigtqcAsSDH8nQLTVXxQrCdSwEJNia/xGuVf
-	F0hqCfKlRLRW6T/JkL2pWr7gTuHJrXxF/o8+bFsZvOGWCQveu4rL4tc+vm6t9KIzAWay0/jXv2+
-	/GeDCM2yeZEKP7OnEfFnG+IuJnackgBSFBfw5fQ==
-X-Google-Smtp-Source: AGHT+IHaTowjHDD+wkEmqqR2T4q/qAfyUNdkL17rUe2qmjICjJ4WsEyBPGIBcsY6t/oJ7tOBkVYkWK9qUuSPYEm359Q=
-X-Received: by 2002:a05:651c:212a:b0:2d6:ce5c:de25 with SMTP id
- a42-20020a05651c212a00b002d6ce5cde25mr1524321ljq.8.1711373728029; Mon, 25 Mar
- 2024 06:35:28 -0700 (PDT)
+	 To:Cc:Content-Type; b=YXDVHr4p/QNi4uDnmpMrC8vpbwQP8cWgUYjA0ZG6ZhbECd1wrSpMGi2teMOm2wkE5O/RPIhZbR54pxOj9O4e54QQBvj/pVvXU/2lesZHUergzd2O1r4BBsxEQgorhhfvkLRtzFl9cfL7t2hqf4iY8sv1KdiQunPWIpPwKqbuFV8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xa0RdV9P; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28F4FC43394;
+	Mon, 25 Mar 2024 13:44:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711374280;
+	bh=DZl6nDTB2qGtV6PxioPQOgrKAtIwR3hCFBQwQXqjh2M=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=Xa0RdV9P+hPBrFjZAlkbrC8whEDn7XqCtSCQnrt7wEe+I0CnbSsRuXoPH3e0xvZo3
+	 JeLh65yMEGhSIAU2kmzjDp8x8dhe9mgonh/9MFGPUjXPt4RKdtKY3GpoFSvcBxIuhz
+	 htJW1xmgDsus3dQ5soIBZzzf4q67/AA0bQ1CQHcN4R45RMez8WACBWLe0pzPYymX30
+	 rXWfvwaPThvnWqHM9yZgJ1Q2i31uETEXYgKqgT8MkA2caLy0Wo/Wa9hIzbdrOR0Jlc
+	 qPhnmTdSpqYbiLDkuwx6lYZ2a2SI8fo952FB73pwEm/kFQgJ/Og5W0e7MlQ8XZ/c5W
+	 wdxDIV3xgy0lw==
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-513cf9bacf1so5913069e87.0;
+        Mon, 25 Mar 2024 06:44:40 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXYkaKw1gv4pL1wa/7alL+JHN6Qi/xH0tmYmng8k3gqGu5RZ4rRXTWKTD7KMzmt54WtAzR/NIkCikx6d4ozlH1cU1FeGhTjluKwcA==
+X-Gm-Message-State: AOJu0YxUyf2yIh+5+RwLBl2jkAogxyW5pwUnhsfC+RoQlzQNOd3vKp0Q
+	ISRdVSsYu7LrcGQz1aMq5LkKc5mW99o3AdDGe6VZtaPtEkePmDgOunjp/o8yuPPtoTGtI7ZE58F
+	UlqhZwU9xwVuTF0iVRgzfnVgjdg==
+X-Google-Smtp-Source: AGHT+IFCwvfdTNdOVONLZ2l9mTxAgYoPvzuYyg3raz4YL3hudDkpzUAO+J9tMp0FOd7bflLxSvMLVjR4TVGjQ8+othE=
+X-Received: by 2002:a19:6a0c:0:b0:515:9abb:fa61 with SMTP id
+ u12-20020a196a0c000000b005159abbfa61mr4926300lfu.24.1711374278436; Mon, 25
+ Mar 2024 06:44:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1711131830.git.marcelo.schmitt@analog.com>
- <15a70e55d7b6f0a97c4042bdaa41c2b672eb4f2f.1711131830.git.marcelo.schmitt@analog.com>
- <CAMknhBH7umcBD0hyt=6fOKu9E8k=CSrnNE4Z+9ynn0F4B=Wk2w@mail.gmail.com>
-In-Reply-To: <CAMknhBH7umcBD0hyt=6fOKu9E8k=CSrnNE4Z+9ynn0F4B=Wk2w@mail.gmail.com>
-From: David Lechner <dlechner@baylibre.com>
-Date: Mon, 25 Mar 2024 08:35:16 -0500
-Message-ID: <CAMknhBHZT5xM5RG0cmEHvCJ5AwZnLQnV9_jW5=gP=s_45LYfcw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] iio: adc: Add support for AD4000
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>
-Cc: lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	marcelo.schmitt1@gmail.com, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240325092808.117510-1-cristian.marussi@arm.com> <20240325092808.117510-2-cristian.marussi@arm.com>
+In-Reply-To: <20240325092808.117510-2-cristian.marussi@arm.com>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Mon, 25 Mar 2024 08:44:24 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKr9maL9W_9hQapPKFa+6S6wTr7WubHoHWtENyk74BDFA@mail.gmail.com>
+Message-ID: <CAL_JsqKr9maL9W_9hQapPKFa+6S6wTr7WubHoHWtENyk74BDFA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: mailbox: arm,mhuv3: Add bindings
+To: Cristian Marussi <cristian.marussi@arm.com>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, sudeep.holla@arm.com, jassisinghbrar@gmail.com, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Mar 23, 2024 at 4:53=E2=80=AFPM David Lechner <dlechner@baylibre.co=
-m> wrote:
+On Mon, Mar 25, 2024 at 4:28=E2=80=AFAM Cristian Marussi
+<cristian.marussi@arm.com> wrote:
 >
-> On Fri, Mar 22, 2024 at 5:06=E2=80=AFPM Marcelo Schmitt
-> <marcelo.schmitt@analog.com> wrote:
-> >
+> Add bindings for the ARM MHUv3 Mailbox controller.
+>
+> Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
+> ---
+>  .../bindings/mailbox/arm,mhuv3.yaml           | 239 ++++++++++++++++++
+>  1 file changed, 239 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/arm,mhuv3.y=
+aml
+>
+> diff --git a/Documentation/devicetree/bindings/mailbox/arm,mhuv3.yaml b/D=
+ocumentation/devicetree/bindings/mailbox/arm,mhuv3.yaml
+> new file mode 100644
+> index 000000000000..bfb8ec341d26
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mailbox/arm,mhuv3.yaml
+> @@ -0,0 +1,239 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mailbox/arm,mhuv3.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ARM MHUv3 Mailbox Controller
+> +
+> +maintainers:
+> +  - Sudeep Holla <sudeep.holla@arm.com>
+> +  - Cristian Marussi <cristian.marussi@arm.com>
+> +
+> +description: |
+> +  The Arm Message Handling Unit (MHU) Version 3 is a mailbox controller =
+that
+> +  enables unidirectional communications with remote processors through v=
+arious
+> +  possible transport protocols.
+> +  The controller can optionally support a varying number of extensions t=
+hat, in
+> +  turn, enable different kinds of transport to be used for communication=
+.
+> +  Number, type and characteristics of each supported extension can be di=
+scovered
+> +  dynamically at runtime.
+> +
+> +  Given the unidirectional nature of the controller, an MHUv3 mailbox co=
+ntroller
+> +  is composed of a MHU Sender (MHUS) containing a PostBox (PBX) block an=
+d a MHU
+> +  Receiver (MHUR) containing a MailBox (MBX) block, where
+> +
+> +   PBX is used to
+> +      - Configure the MHU
+> +      - Send Transfers to the Receiver
+> +      - Optionally receive acknowledgment of a Transfer from the Receive=
+r
+> +
+> +   MBX is used to
+> +      - Configure the MHU
+> +      - Receive Transfers from the Sender
+> +      - Optionally acknowledge Transfers sent by the Sender
+> +
+> +  Both PBX and MBX need to be present and defined in the DT description =
+if you
+> +  need to establish a bidirectional communication, since you will have t=
+o
+> +  acquire two distinct unidirectional channels, one for each block.
+> +
+> +  As a consequence both blocks needs to be represented separately and sp=
+ecified
+> +  as distinct DT nodes in order to properly describe their resources.
+> +
+> +  Note that, though, thanks to the runtime discoverability, there is no =
+need to
+> +  identify the type of blocks with distinct compatibles.
+> +
+> +  Following are the MHUv3 possible extensions.
+> +
+> +  - Doorbell Extension (DBE): DBE defines a type of channel called a Doo=
+rbell
+> +    Channel (DBCH). DBCH enables a single bit Transfer to be sent from t=
+he
+> +    Sender to Receiver. The Transfer indicates that an event has occurre=
+d.
+> +    When DBE is implemented, the number of DBCHs implemented is between =
+1 and
+> +    128, numbered starting from 0 in ascending order.
+> +    Each DBCH contains 32 individual fields, referred to as flags, each =
+of which
+> +    can be used independently. It is possible for the Sender to send mul=
+tiple
+> +    Transfers at once using a single DBCH, so long as each Transfer uses
+> +    a different flag in the DBCH.
+> +    Optionally, data may be transmitted through an out-of-band shared me=
+mory
+> +    region, wherein the MHU Doorbell is used strictly as an interrupt ge=
+neration
+> +    mechanism, but this is out of the scope of these bindings.
+> +
+> +  - FastChannel Extension (FCE): FCE defines a type of channel called a =
+Fast
+> +    Channel (FCH). FCH is intended for lower overhead communication betw=
+een
+> +    Sender and Receiver at the expense of determinism. An FCH allows the=
+ Sender
+> +    to update the channel value at any time, regardless of whether the p=
+revious
+> +    value has been seen by the Receiver. When the Receiver reads the cha=
+nnel's
+> +    content it gets the last value written to the channel.
+> +    FCH is considered lossy in nature, and means that the Sender has no =
+way of
+> +    knowing if, or when, the Receiver will act on the Transfer.
+> +    FCHs are expected to behave as RAM which generates interrupts when w=
+rites
+> +    occur to the locations within the RAM.
+> +    When FCE is implemented, the number of FCH that an implementation of=
+ the MHU
+> +    can support is between 1-1024, if the Fast Channel word-size is 32-b=
+its, or
+> +    between 1-512, when the Fast Channel word-size is 64-bits.
 
-...
+Be consistent: FastChannel
 
-> > +
-> > +       vref_reg =3D devm_regulator_get(&spi->dev, "vref");
->
-> This should to be devm_regulator_get_optional(), otherwise it can
-> return a "dummy" regulator if one is missing in the devicetree which
-> will fail when getting the voltage.
->
-> > +       if (IS_ERR(vref_reg))
-> > +               return dev_err_probe(&spi->dev, PTR_ERR(vref_reg),
-> > +                                    "Failed to get vref regulator\n");
-> > +
-> > +       ret =3D regulator_enable(vref_reg);
-> > +       if (ret < 0)
-> > +               return dev_err_probe(&spi->dev, ret,
-> > +                                    "Failed to enable voltage regulato=
-r\n");
-> > +
-> > +       ret =3D devm_add_action_or_reset(&spi->dev, ad4000_regulator_di=
-sable, vref_reg);
-> > +       if (ret)
-> > +               return dev_err_probe(&spi->dev, ret,
-> > +                                    "Failed to add regulator disable a=
-ction\n");
-> > +
-> > +       st->vref =3D regulator_get_voltage(vref_reg);
-> > +       if (st->vref < 0)
-> > +               return dev_err_probe(&spi->dev, st->vref, "Failed to ge=
-t vref\n");
-> > +
-> > +       if (!device_property_present(&spi->dev, "adi,spi-cs-mode")) {
-> > +               st->cnv_gpio =3D devm_gpiod_get(&spi->dev, "cnv", GPIOD=
-_OUT_HIGH);
-> > +               if (IS_ERR(st->cnv_gpio)) {
-> > +                       if (PTR_ERR(st->cnv_gpio) =3D=3D -EPROBE_DEFER)
-> > +                               return -EPROBE_DEFER;
-> > +
-> > +                       return dev_err_probe(&spi->dev, PTR_ERR(st->cnv=
-_gpio),
-> > +                                            "Failed to get CNV GPIO");
-> > +               }
-> > +       }
->
+> +    FCHs are numbered from 0 in ascending order.
+> +    Note that Fast Channel word-size is implementation defined, not conf=
+igurable
+> +    but discoverable at run-time.
+> +    Optionally, data may be transmitted through an out-of-band shared me=
+mory
+> +    region, wherein the MHU FastChannel is used as an interrupt generati=
+on
+> +    mechanism which carries also a pointer to such out-of-band data, but=
+ this
+> +    is out of the scope of these bindings.
+> +
+> +  - FIFO Extension (FE): FE defines a Channel type called a FIFO Channel=
+ (FFCH).
+> +    FFCH allows a Sender to send
+> +       - Multiple Transfer to the Receiver without having to wait for a =
+previous
+> +         Transfer to be acknowledged by the Receiver, as long as the FIF=
+O has
+> +         room for the Transfer.
+> +       - Transfers which require the Receiver to provide acknowledgment.
+> +       - Transfers which have in-band payload.
+> +    In all cases, the data is guaranteed to be observed by the Receiver =
+in the
+> +    same order which the Sender sent it.
+> +    When FE is implemented, the number of FFCH an implementation of the =
+MHU can
+> +    support is between 1 and 64, numbered starting from the 0 in ascendi=
+ng
+> +    order. The FIFO size is implementation defined and not configurable.
 
-In a review for a different patch, Jonathan said he would prefer
-devm_regulator_get() and failing in regulator_get_voltage() rather
-than using devm_regulator_get_optional() so I think the same would
-apply here and my suggestion should be overruled.
+Size is discoverable or opaque to s/w?
+
+> +    Optionally, additional data may be transmitted through an out-of-ban=
+d shared
+> +    memory region, wherein the MHU FIFO is used to transmit, in order, a=
+ small
+> +    part of the payload (like a header) and a reference to the shared me=
+mory
+> +    area holding the remaining, bigger, chunk of the payload, but this i=
+s out of
+> +    the scope of these bindings.
+> +
+> +properties:
+> +  compatible:
+> +    const: arm,mhuv3
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 38
+> +
+> +  interrupt-names:
+> +    description: |
+> +      The MHUv3 controller generates a number of events some of which ar=
+e used
+> +      to generate interrupts; as a consequence it can expose a varying n=
+umber of
+> +      optional PBX/MBX interrupts, representing the events generated dur=
+ing the
+> +      operation of the various transport protocols associated with diffe=
+rent
+> +      extensions. All interrupts of the MHU are level-sensitive.
+> +      Some of these optional interrupts are defined per-channel, where t=
+he
+> +      number of channels effectively available is implementation defined=
+ and
+> +      run-time discoverable.
+> +      In the following, for sake of simplicity, only a limited number of
+> +      per-channel interrupt names are enumerated, out of all the possibl=
+e
+> +      channels allowed by the specification for each extension type.
+> +
+> +      - "combined": PBX/MBX Combined interrupt
+> +      - "combined-ffch": PBX/MBX FIFO Combined interrupt
+> +      - "ffch-low-tide-<N>": PBX/MBX FIFO Channel <N> Low Tide interrupt
+> +      - "ffch-high-tide-<N>": PBX/MBX FIFO Channel <N> High Tide interru=
+pt
+> +      - "ffch-flush-<N>": PBX/MBX FIFO Channel <N> Flush interrupt
+> +      - "mbx-dbch-xfer-<N>": MBX Doorbell Channel <N> Transfer interrupt
+> +      - "mbx-fch-xfer-<N>": MBX Fast Channel <N> Transfer interrupt
+> +      - "mbx-fchgrp-xfer-<N>": MBX Fast Channel <N> Group Transfer inter=
+rupt
+> +      - "mbx-ffch-xfer-<N>": MBX FIFO Channel <N> Transfer interrupt
+> +      - "pbx-dbch-xfer-ack-<N>": PBX Doorbell Channel <N> Transfer Ack i=
+nterrupt
+> +      - "pbx-ffch-xfer-ack-<N>": PBX FIFO Channel <N> Transfer Ack inter=
+rupt
+
+It would be better to not define these strings twice. You can do
+something like this:
+
+items:
+  oneOf:
+     - const: combined
+       description: ...
+     - pattern: '^ffch-low-tide-[0-9]+$'
+       description: ...
+
+And so on.
+
+> +
+> +      The only mandatory interrupts on the MHU are:
+> +        - combined
+> +        - mbx-fch-xfer-<N> but only if mbx-fcgrp-xfer-<N> is not impleme=
+nted.
+> +
+> +    minItems: 1
+> +    maxItems: 38
+
+Perhaps a comment on where 38 comes from. AIUI, this is a "should be
+enough for now" value.
+
+> +    items:
+> +      enum:
+> +        - combined
+> +        - combined-ffch
+> +        - ffch-low-tide-0
+> +        - ffch-low-tide-1
+> +        - ffch-low-tide-2
+> +        - ffch-low-tide-3
+> +        - ffch-high-tide-0
+> +        - ffch-high-tide-1
+> +        - ffch-high-tide-2
+> +        - ffch-high-tide-3
+> +        - ffch-flush-0
+> +        - ffch-flush-1
+> +        - ffch-flush-2
+> +        - ffch-flush-3
+> +        - mbx-dbch-xfer-0
+> +        - mbx-dbch-xfer-1
+> +        - mbx-dbch-xfer-2
+> +        - mbx-dbch-xfer-3
+> +        - mbx-fch-xfer-0
+> +        - mbx-fch-xfer-1
+> +        - mbx-fch-xfer-2
+> +        - mbx-fch-xfer-3
+> +        - mbx-fchgrp-xfer-0
+> +        - mbx-fchgrp-xfer-1
+> +        - mbx-fchgrp-xfer-2
+> +        - mbx-fchgrp-xfer-3
+> +        - mbx-ffch-xfer-0
+> +        - mbx-ffch-xfer-1
+> +        - mbx-ffch-xfer-2
+> +        - mbx-ffch-xfer-3
+> +        - pbx-dbch-xfer-ack-0
+> +        - pbx-dbch-xfer-ack-1
+> +        - pbx-dbch-xfer-ack-2
+> +        - pbx-dbch-xfer-ack-3
+> +        - pbx-ffch-xfer-ack-0
+> +        - pbx-ffch-xfer-ack-1
+> +        - pbx-ffch-xfer-ack-2
+> +        - pbx-ffch-xfer-ack-3
+> +
+> +  '#mbox-cells':
+> +    description: |
+> +      The first argument in the consumers 'mboxes' property represents t=
+he
+> +      extension type, the second is for the channel number while the thi=
+rd
+> +      depends on extension type.
+> +
+> +      Extension type for DBE is 0 and the third parameter represents the
+> +      doorbell flag number to use.
+> +      Extension type for FCE is 1, third parameter unused.
+> +      Extension type for FE is 2, third parameter unused.
+> +
+> +      mboxes =3D <&mhu 0 0 5>; // DBE, Doorbell Channel Window 0, doorbe=
+ll flag 5.
+> +      mboxes =3D <&mhu 0 1 7>; // DBE, Doorbell Channel Window 1, doorbe=
+ll flag 7.
+> +      mboxes =3D <&mhu 1 0 0>; // FCE, Fast Channel Window 0.
+> +      mboxes =3D <&mhu 1 3 0>; // FCE, Fast Channel Window 3.
+> +      mboxes =3D <&mhu 2 1 0>; // FE, FIFO Channel Window 1.
+> +      mboxes =3D <&mhu 2 7 0>; // FE, FIFO Channel Window 7.
+> +    const: 3
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - interrupt-names
+> +  - '#mbox-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    soc {
+> +        #address-cells =3D <2>;
+> +        #size-cells =3D <2>;
+> +
+> +        mhu_tx: mailbox@2aaa0000 {
+
+Drop unused labels.
+
+> +            compatible =3D "arm,mhuv3";
+> +            #mbox-cells =3D <3>;
+> +            reg =3D <0 0x2aaa0000 0 0x10000>;
+> +            clocks =3D <&clock 0>;
+> +            interrupt-names =3D "combined", "pbx-dbch-xfer-ack-1",
+> +                               "ffch-high-tide-0";
+> +            interrupts =3D <0 36 4>, <0 37 4>;
+> +        };
+> +
+> +        mhu_rx: mailbox@2ab00000 {
+> +            compatible =3D "arm,mhuv3";
+> +            #mbox-cells =3D <3>;
+> +            reg =3D <0 0x2aab0000 0 0x10000>;
+> +            clocks =3D <&clock 0>;
+> +            interrupt-names =3D "combined", "mbx-dbch-xfer-1", "ffch-low=
+-tide-0";
+> +            interrupts =3D <0 35 4>, <0 38 4>, <0 39 4>;
+> +        };
+> +    };
+> --
+> 2.34.1
+>
 
