@@ -1,169 +1,125 @@
-Return-Path: <devicetree+bounces-52877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2230688A4D9
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 15:41:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04A0D88A4D5
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 15:41:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D1272300C26
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 14:41:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 19D711C3C0EE
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 14:41:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8D191C5232;
-	Mon, 25 Mar 2024 11:30:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF34E74BE7;
+	Mon, 25 Mar 2024 11:30:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D/W3xGaS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="i2mYiWv7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 367F016F905
-	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 11:13:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 353B21BAC23
+	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 11:13:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711365222; cv=none; b=oFQ6Ncs+9duJiqgnEbaehcgfWWkFCdpvSzDK9lVGlkwxllI7Ls1li1sMUGe7OaS+gYaUbeErUQnTV2LOa2IcHxfPWt4/IjGq1kCA0UsVowxDoyhg7cd/HSf2xY5Oo32hW7QXlNBhai9BczXcmBqa3ZGfBbOGudbyRvPRshbKo0I=
+	t=1711365233; cv=none; b=WLWPh6NOE7QN97es+fpXIlabC1DfBEKjBAt2BaQ7knCm5jGqm1xIc8ewTOgD4KukXJdrVVHPLe7+6XXKWoToefSDVqxoGQpW0c7fMkyNI3Mq8qNZR8jFoncSxCqKyJSAozzRcyy1+WLN3f8R26O0oxIT6E9QoZxF3KUQAuHrZ0o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711365222; c=relaxed/simple;
-	bh=9PMUjn8RdkjtSyngjkr83QqyrlJOo/C/rNsA96zzs78=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FY6NTp6QA3qfQMkBxFb5wqQ2uH7Jct8xEi1RNugk9P5ewHJJSvZJ4LBR9wCEp4P7Ws23Kwyyhl1rtt1j6zA7N63ubU4nRz8F6rqYMmnkdEFzZzZEzHDXcyB/MGNWd8ljEqw+szu2+UZGCcoWkkBO7DfA8ogkw65yAA4v1kPmwcI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D/W3xGaS; arc=none smtp.client-ip=209.85.208.48
+	s=arc-20240116; t=1711365233; c=relaxed/simple;
+	bh=CsnJnRPcWog1AhZph4odR/X3hPqH8uWzUIUQNePou5k=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=tWjPIa6R1v2IPsK3HXUlzfLhUtbIKnGAMYTk/RjXxnlCdKYG5sp7mqo+ky1DfQpRZphGvFNiqplot5pB/LsD5mrd0sOE4lLPL69ayCZ7XKdlMjBszEwPZizj8vrrlP36sLBe5CT7VSGL91+HoUCEzNW7171cwkRN1qXFMrqjUVc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=i2mYiWv7; arc=none smtp.client-ip=209.85.218.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-56c0652d37aso1870617a12.0
-        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 04:13:39 -0700 (PDT)
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a474d26fb41so159080966b.2
+        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 04:13:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711365218; x=1711970018; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=GVTLPRNC8lERWtFEKllCFLlAr+4rekLqrYnvlo/C204=;
-        b=D/W3xGaS56mjL09e0oN1uOGx+N1LMr9v8wsZuywx3scZ4AaaCpkyhAEwDZvvlcX21V
-         0zpqH/KE+ajLWoLkaMV8nSsskIYBczAQDiRQnamwWcs+Ux5UsZILOkv7v/vtz2riKUFU
-         KEewvI0utUs54uYVWSCi4KX7ijavJQS0VyvdZ5vvESApUVIIL5Z5Ixfr6l6v6cIuDsKs
-         9V1dO1RbWpHHRh+sxY+DT4BtQHPmYS642u5pNcrIkkplvWIOF0/RFbZsL56NEiN5uEHx
-         VO050hG0zL2K3yw0RHc5OM703yF5Q4u27MDFHbdg7j89anHDJVn37mADuOVsxA6wb2co
-         MSZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711365218; x=1711970018;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1711365228; x=1711970028; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=GVTLPRNC8lERWtFEKllCFLlAr+4rekLqrYnvlo/C204=;
-        b=PKvsS8fhCElGI4wE7eua9qDHEljjDHQK0N+ge6LCGOQjbKKBEF1rD2ibjYCCQlmQzI
-         r0vWNSrj4y0TM9hGB9HqLNiMQyHr9scvtTf734RWn6iLENdY0qsGsRtY6K9S+bIAq/7p
-         4t7NWer98pHQP5wWHG4puUHpv0YxrPxsSdAXgaaiPesh3hSLIxoY8MEyCJSN3cebtAU1
-         O3CIWo+Iifg9mkwAByJOVmN0NVKNjBwNx8k811fKxZ63GtZi0v2RmVXXCEwrGvlsWzLB
-         lD0uGcC1vL4tWef1C3/Zxjg2CM05/c26VlPQ5PbYOXGvtpYLiHfns1qpcRknZrDJWqUH
-         sk3w==
-X-Forwarded-Encrypted: i=1; AJvYcCUAzUmpcPmxXP4R/LxZpBVsWPaS+23BRJTyq4YKtx7PyMNtnWU4ischchVxB02TDpC7EDndVIAFzgGIk24xHL8OvD0NxY8j5ESFtQ==
-X-Gm-Message-State: AOJu0Yz+jyVR4AgeTZap1iCFrAVPdxSvfIwjPjJH74j27KwUpzbqUb7+
-	WoeE05qevDo7oeHLrZMWAgq5lUtA95x/lM/9v/6II4eVaSlbjURxxtEP29CNBtw=
-X-Google-Smtp-Source: AGHT+IGWJgUWwiyuSJJARP08SDpf9eX4VrEW4YkuyG/NTERYUB5N6tRJO3ciAhp4KXQS5nhmrR1zAA==
-X-Received: by 2002:a17:907:9804:b0:a49:833d:a9ad with SMTP id ji4-20020a170907980400b00a49833da9admr2666831ejc.38.1711365218577;
-        Mon, 25 Mar 2024 04:13:38 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.44])
-        by smtp.gmail.com with ESMTPSA id h10-20020a170906590a00b00a46196a7faesm2943993ejq.57.2024.03.25.04.13.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Mar 2024 04:13:38 -0700 (PDT)
-Message-ID: <1d9f160f-e155-4d2b-b598-d1dc76e49110@linaro.org>
-Date: Mon, 25 Mar 2024 12:13:36 +0100
+        bh=xoyYuiUZGUFC3ha/4x22ZxwHLgySLn4r64un5f+TeAU=;
+        b=i2mYiWv7cGRlMGxP3I4QE5gnhZNZUP0UJfpHR2g/YnKgMCcQaHgfxA/5bJamrE8mYy
+         bfxvVSIBbkxvKiHJHdJ83niAW1Cjj+VBGyyg4tBVpGmCk0LInEgDqgCI7EczP3Jf202T
+         GTQJY3GeVv/FXNNk3WA+sHenv2Y77/ATnUh+0kJSA6u1cXGIEN6JFASiZk4KuaIrxkiL
+         x9IUh95qMo3OnBhosiXKm2akPg5gmQa333iMUtKVaU4O3jsnymM62PRCcp9LeIGmoRVZ
+         pcdLxSe0rcxrLSfyLIpZLf/j+HppWBvT2hQZOkaCp+fL2YKCQcbhlBKwpZpjR+mdTO+U
+         oOdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711365228; x=1711970028;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xoyYuiUZGUFC3ha/4x22ZxwHLgySLn4r64un5f+TeAU=;
+        b=jUldFotK48ZV5B3jXnEZ6OAUZcX8V0fipZdkyImwOjq/dhZAY5Biqn42dTLQrHvsyc
+         WbCpsOYiraRZoaagAxgNykvUFKhNjkLNkqaw4YgLCnzvxeYs89CtGm+5dbmoeMGNQ63k
+         oyz91KWVUb6cL2azFe3SZ0Po3Fr8FLthE7UhwgAicVwtRqAnVzTzaNlYYG37CL5mlTQf
+         G8BIoV3i9/HsiyTmnuWcl374TGz1IS5RJE2D9+UsB0k5ujEViuH6IpqdXESx5/MbMGMl
+         hLbexOOGOkrwoqFED3Ns7UV48AkV6tXiAI1hYStuUWI+9HZRfgJ8nO0lSIx9M0fk8qi1
+         iL5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUnc0U9E5SGveNnkyScfdjssKILIMX83cJ/cSeU0LFub9H6yn409ujOm7RDqQbiUfe9SmXcRlwWmX2EorbmpdveMVItKONbDPrnCQ==
+X-Gm-Message-State: AOJu0YxLxA1JCA3S1rjqEzp05vJtFYhXJpjGIqNr6KgVgre34Zg9f5Cs
+	3YpGBWaCJlNBCfZY3JRl0w41dwpRXLcml2Dpd+w0mxFKHSiJxgbRSCla0bib2F8=
+X-Google-Smtp-Source: AGHT+IEUex17Jst2eGsMe98Iuo5t4cMBsMavpCzi4l2n3luenkHwWGs8eKyJbj2V1ryUNtTHXaDLJg==
+X-Received: by 2002:a17:907:7288:b0:a4a:3955:460e with SMTP id dt8-20020a170907728800b00a4a3955460emr1569675ejc.58.1711365228518;
+        Mon, 25 Mar 2024 04:13:48 -0700 (PDT)
+Received: from [127.0.1.1] ([178.197.222.44])
+        by smtp.gmail.com with ESMTPSA id m21-20020a17090679d500b00a4739efd7cesm2965936ejo.60.2024.03.25.04.13.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Mar 2024 04:13:48 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: krzysztof.kozlowski+dt@linaro.org, robh@kernel.org, conor+dt@kernel.org, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: alim.akhtar@samsung.com, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, broonie@kernel.org, andi.shyti@kernel.org, 
+ semen.protsenko@linaro.org, kernel-team@android.com, 
+ willmcvicker@google.com, andre.draszik@linaro.org, peter.griffin@linaro.org
+In-Reply-To: <20240216140449.2564625-1-tudor.ambarus@linaro.org>
+References: <20240216140449.2564625-1-tudor.ambarus@linaro.org>
+Subject: Re: [PATCH v2 0/7] ARM: dts: samsung: specify the SPI FIFO depth
+Message-Id: <171136522717.38881.15348393587552800276.b4-ty@linaro.org>
+Date: Mon, 25 Mar 2024 12:13:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/7] ARM: dts: samsung: exynos5433: specify the SPI
- FIFO depth
-To: Tudor Ambarus <tudor.ambarus@linaro.org>,
- krzysztof.kozlowski+dt@linaro.org, robh@kernel.org, conor+dt@kernel.org
-Cc: alim.akhtar@samsung.com, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org, broonie@kernel.org, andi.shyti@kernel.org,
- semen.protsenko@linaro.org, kernel-team@android.com,
- willmcvicker@google.com, andre.draszik@linaro.org, peter.griffin@linaro.org
-References: <20240216140449.2564625-1-tudor.ambarus@linaro.org>
- <20240216140449.2564625-6-tudor.ambarus@linaro.org>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240216140449.2564625-6-tudor.ambarus@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13.0
 
-On 16/02/2024 15:04, Tudor Ambarus wrote:
+
+On Fri, 16 Feb 2024 14:04:42 +0000, Tudor Ambarus wrote:
+> Bindings patch sent but not yet integrated:
+> https://lore.kernel.org/linux-spi/20240216070555.2483977-2-tudor.ambarus@linaro.org/
+> 
 > Up to now the SPI alias was used as an index into an array defined in
-> the SPI driver to determine the SPI FIFO depthj Drop the dependency on
+> the SPI driver to determine the SPI FIFO depth. Drop the dependency on
 > the SPI alias and specify the SPI FIFO depth directly into the SPI node.
 > 
-> The FIFO depth were determined based on the SPI aliases that are defined
-> in exynos5433-tm2-common.dtsi:
-> 	spi0 = &spi_0;
-> 	spi1 = &spi_1;
-> 	spi2 = &spi_2;
-> 	spi3 = &spi_3;
-> 	spi4 = &spi_4;
-> spi-s3c64xx.c driver defines the following fifo_lvl_mask for the
-> "samsung,exynos5433-spi" compatible:
-> 	.fifo_lvl_mask  = { 0x1ff, 0x7f, 0x7f, 0x7f, 0x7f, 0x1ff},
-> Thus spi{0, 4} were considered having 256 byte FIFO depths, and
-> spi{1, 2, 3} having 64 byte FIFO depths. Update device tree with these
-> FIFO depths. No functional change expected.
-> 
-> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
-> ---
->  arch/arm64/boot/dts/exynos/exynos5433.dtsi | 5 +++++
+> [...]
 
-This and next one has wrong subject prefix. I fixed it.
+Applied, thanks!
+
+[1/7] ARM: dts: samsung: exynos3250: specify the SPI FIFO depth
+      https://git.kernel.org/krzk/linux/c/43dc9f88ff4db5c932cfb35cfe4bfeff25ed60e2
+[2/7] ARM: dts: samsung: exynos4: specify the SPI FIFO depth
+      https://git.kernel.org/krzk/linux/c/f743fedc881b38a62ee47d752e59ab1ddb247052
+[3/7] ARM: dts: samsung: exynos5250: specify the SPI FIFO depth
+      https://git.kernel.org/krzk/linux/c/a0f87a269f660cb41c2b38041183e3e31c69818d
+[4/7] ARM: dts: samsung: exynos5420: specify the SPI FIFO depth
+      https://git.kernel.org/krzk/linux/c/cc8e49917ca8a3a939d303a7103b9d30ed7d0873
+[5/7] ARM: dts: samsung: exynos5433: specify the SPI FIFO depth
+      https://git.kernel.org/krzk/linux/c/65993c76e64a2fa71ffd05ce260f553d1b3e904f
+[6/7] ARM: dts: samsung: exynosautov9: specify the SPI FIFO depth
+      https://git.kernel.org/krzk/linux/c/b115751fddaf31a0367c19bf080dddcb928a109a
+[7/7] ARM: dts: samsung: s5pv210: specify the SPI FIFO depth
+      https://git.kernel.org/krzk/linux/c/d2c81a9b6acc9ad6fa1a97bf21939adad1882dfa
 
 Best regards,
-Krzysztof
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
