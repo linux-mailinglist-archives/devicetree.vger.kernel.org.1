@@ -1,110 +1,113 @@
-Return-Path: <devicetree+bounces-53080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53083-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 023C788AD7B
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 19:16:09 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1931488B507
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 00:10:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 976E71FA2C01
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 18:16:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 94390B60230
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 18:19:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29EF413C3CA;
-	Mon, 25 Mar 2024 17:44:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 822925A0F5;
+	Mon, 25 Mar 2024 17:51:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yz8AQU2p"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KCOPKmei"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED9D42F37;
-	Mon, 25 Mar 2024 17:44:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8F3412E7E
+	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 17:51:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711388687; cv=none; b=lkttYXWoL+EYu5uTy9Q/NkrHf6ssQrX/EddInwSXf1Xbzp8YGNiVz+9pE/v1T7KIiusge0pNtyAF2sAFBZ8ocjIaHGx3VVDYPFMfWGnzFrcxpQwGwEswCzzzMZfPut1YWl5aOP7bAJf2LNorMrTL0kk9Fqj+W7I4FSoPjSwvtzo=
+	t=1711389105; cv=none; b=sqfmBu7kClzVpPorddqgkNIMV4fSahj2s1Ldtazv8qZ5X66VMLFKbcfPM6/JD6wwmyFFvVeyiVmuDHBpS87rhCKoS3twSohomzHqeJQ8a5lpVnewmMHfxNcUH3D7qFKkIix2pkZuCSh3cKZfNV8d9v82a4mQEfnpl7teyVT+siM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711388687; c=relaxed/simple;
-	bh=sGxgdgp8IdZweLfej/ZPALfocbt++oorzgjstiDxN2g=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=pnjVkdzfIwECXgDd4Wb2jo83E8JRIg9HDiMkYL3XdPYLRbMdsWpnzpdrBcFk5oYMqtd9swSAGo2c1BQZ09/JkbNF8DJmac7+Qv2kCK9SpcnpI/ZG8EvGKS0O0BEX29LYIEUZ1XI4BgGxRLWXoy0nBlLEyEJaVRCJtp6EK+ysv0c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yz8AQU2p; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3BF7C43394;
-	Mon, 25 Mar 2024 17:44:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711388686;
-	bh=sGxgdgp8IdZweLfej/ZPALfocbt++oorzgjstiDxN2g=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=Yz8AQU2pf0m8iCdqgpUDqgULidA/gav9A6k8kAFVuOmJpP4CsOW98If+/vkoh05yM
-	 fXhNkOkr2v2lY3vyrYiV6e6RjYGmpbWteHnaJNxqO9WKpyXFfEEJnPK7GuHU0OakQM
-	 jG1La1JOKMR/YS5hZkOfPfJMSkchrTwUFY1/nq9YBHy5m5xMWcTJPbzVzeQyutDfDt
-	 /Kuz9bdAXkt70jMbd/JpGOgzaDvtAqo1X5cdNoRRPOg0IKEWdTOccn4PL5OkOOGcWX
-	 OmxUTE6wLwzfnZ+sUtsSqZbhBdEsePVrp5HVzeYQASol3Gpg7yjb6ZReH7Ql7v3i5K
-	 kW7fhrLJxzkFg==
-From: Mark Brown <broonie@kernel.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Luca Weiss <luca.weiss@fairphone.com>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-usb@vger.kernel.org
-In-Reply-To: <20240322-fp4-tcpm-v1-0-c5644099d57b@fairphone.com>
-References: <20240322-fp4-tcpm-v1-0-c5644099d57b@fairphone.com>
-Subject: Re: (subset) [PATCH 0/5] Add TCPM support for PM7250B and
- Fairphone 4
-Message-Id: <171138868340.327260.16162463727167389208.b4-ty@kernel.org>
-Date: Mon, 25 Mar 2024 17:44:43 +0000
+	s=arc-20240116; t=1711389105; c=relaxed/simple;
+	bh=wPxTQ6L5hQ1V3kyCgCwmlYGOnI6xMxC4dA6ZWmf1aj8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=A7rSuvsIpTGTYk5vyTdvg46VNJ7CxRBw+5oyijS+ZNKLL9vKCQOQr4LTUTHHGhUijiYO+YFMc6qd3P9ZHJPotiopXy2617Z4q4bvxsGUJIKwpzLdMt4vt4ja5mQdoAWfAXNTuYC20S3OXdAnF9aVGpxmmTkFaMSg6T5tHO4kYA4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KCOPKmei; arc=none smtp.client-ip=209.85.167.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-3c37e87756dso2828053b6e.3
+        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 10:51:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1711389101; x=1711993901; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/r8vljI0U/6T7iQFumI3En0jSQqfhVb0aBnuodSXerk=;
+        b=KCOPKmeiMtYyILaSlFNxCo6NyWTRXoFlU45PAuMpoQW/Z2xgKRT4QP5/nB/AQ7vXKh
+         K9SUFzvHPhyHFXzifQeNLC+7j6EKylLbec512daXDRSc+miCjEemH05CpbkNfBP5tV2J
+         s6JSsvExc9o9ZjivCX3sWdGLqsXczke2GmJZchkLUcPu3cUqogV3cSFXuIBAq/TZVczR
+         /Q3foOrpSNhoSmxN2uZuFTjBfzZm2wtCQBJwwbzU9Cx6oICh7up6YGKZ/r+wglL7n3AT
+         0/Ndiej9r14JpuL1NKmEbT1EDAaEmaJAZqmdFUDJgHIYjie+cZBr8TAAspWUcJFAU107
+         m+iA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711389101; x=1711993901;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/r8vljI0U/6T7iQFumI3En0jSQqfhVb0aBnuodSXerk=;
+        b=DDHzs1XD4ddh7dWF8imvOAClPWjImnNS/DRDXKYgI530uKI3KUpFrSnASJKlgpWz5+
+         NI6CftaPkWKP4PfmSATc0TY1irhpcpOFT7Q327As8OT1HS4ixTdnqykSzn05eozpgfEa
+         l0/Szsd3zpR6+edFBLLC2wTk4i6L6eI4NtVwLyuFqdd71znAvT41iqPV7L8/DHtW5ovj
+         dtI8czlWVVuwIovIB+p9OsKzPKjMWi/xfe2mz5sEQxfyuy+DzlpHsaW0IEc3lGMOQ1pp
+         tPJk0gUmdnVluwAlmqyrsMmrwAHtapVPoZ4iv4CPoE167x3MMvDSADEGjFhghCTmUX0j
+         duUg==
+X-Gm-Message-State: AOJu0Yzkijj878bI57cr9YDGbihUZltWyjvulKMBNk/6yD7NDRuQFucm
+	nzW/2x1TbvM4I3fxGVWEzmzPXxNJK9ZUsWIiuUEEWibARemkahKE
+X-Google-Smtp-Source: AGHT+IGQhBj0/vZKeDLja/qFooAeE9BRme6iskuqmtEcG8UmUih+LrVCq8mb2vqEH9Xyw9PtPAys9g==
+X-Received: by 2002:a05:6808:1209:b0:3c3:b392:4b87 with SMTP id a9-20020a056808120900b003c3b3924b87mr9100054oil.53.1711389101079;
+        Mon, 25 Mar 2024 10:51:41 -0700 (PDT)
+Received: from localhost.localdomain ([75.28.21.198])
+        by smtp.gmail.com with ESMTPSA id u17-20020a056808151100b003c3d3fc607csm212505oiw.26.2024.03.25.10.51.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Mar 2024 10:51:40 -0700 (PDT)
+From: Chris Morgan <macroalpha82@gmail.com>
+To: linux-rockchip@lists.infradead.org
+Cc: devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	conor+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	robh@kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH 0/4] User Requested Fixes for Powkiddy RK3566 Devices
+Date: Mon, 25 Mar 2024 12:51:29 -0500
+Message-Id: <20240325175133.19393-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14-dev
+Content-Transfer-Encoding: 8bit
 
-On Fri, 22 Mar 2024 09:01:31 +0100, Luca Weiss wrote:
-> This series adds support for Type-C Port Management on the Fairphone 4
-> which enables USB role switching and orientation switching.
-> 
-> This enables a user for example to plug in a USB stick or a USB keyboard
-> to the Type-C port.
-> 
-> 
-> [...]
+From: Chris Morgan <macromorgan@hotmail.com>
 
-Applied to
+Users have requested fixes for Powkiddy devices to help with some
+intermittent WiFi issues by adding additional properties to the
+SDMMC2 node. They have also requested that the model name be
+represented consistently with both the manufacturer name and model
+name. Lastly, there exists a second configuration of the RGB30 with
+a slightly different regulator layout we need to describe.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+I have added the new/additional property of "chasis-type" as well.
 
-Thanks!
+Chris Morgan (4):
+  dts: rockchip: Add chasis-type for Powkiddy rk3566 devices
+  arm64: dts: rockchip: Update sdmmc node for wifi on powkiddy rk3566
+  arm64: dts: rockchip: Correct model name for Powkiddy RK3566 Devices
+  arm64: dts: rockchip: Describe Alternate Regulator Config on RGB30
 
-[1/5] dt-bindings: regulator: qcom,usb-vbus-regulator: Add PM7250B compatible
-      commit: 0c5f77f4eaef8ed9fe752d21f40ac471dd511cfc
+ .../dts/rockchip/rk3566-powkiddy-rgb30.dts    | 30 ++++++++++++++++++-
+ .../dts/rockchip/rk3566-powkiddy-rk2023.dts   |  6 +++-
+ .../dts/rockchip/rk3566-powkiddy-rk2023.dtsi  |  4 +++
+ .../boot/dts/rockchip/rk3566-powkiddy-x55.dts |  4 +++
+ 4 files changed, 42 insertions(+), 2 deletions(-)
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+-- 
+2.34.1
 
 
