@@ -1,124 +1,149 @@
-Return-Path: <devicetree+bounces-53042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53043-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74F8888AAEA
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 18:11:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89A0E88AAF6
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 18:12:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A5C691C3A9AD
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 17:11:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BAF901C3DFC9
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 17:12:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD93D13E8AF;
-	Mon, 25 Mar 2024 15:46:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35783146597;
+	Mon, 25 Mar 2024 15:50:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SYEpR+Hp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE6A913E8BF;
-	Mon, 25 Mar 2024 15:46:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85C3E146587;
+	Mon, 25 Mar 2024 15:50:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711381612; cv=none; b=mtNQeHaOcepL3ocX67vPqH0whnWw5fViBf4Lds2aNBZhKVEmkyul7QrMT6anHjAfgW6cM/Ljgdc6DLZ/aknd1S9tQ0/tipN1bH3TMXY4LOQUT/mStUJCFByvLWSuzotBIdWA1Dzk1ISnf6kEwTAtwJY63aGN3gczSWdQF2g14Ss=
+	t=1711381811; cv=none; b=jSwYIukFYXhHuAf5thvLePD5b9OZZoqDNlPdRBWXscdLZDNMbTgVxNzasXs5fN9QvEJEBDmkWHTxi80Kd5DueVRW6If6btw3H0RWuWDqh3awUHgW3GHdYpW/S1sAZEMbkm07DivhgDxYEJ0hjGtUBVW3huyVwjDGTdRR1oHL1e4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711381612; c=relaxed/simple;
-	bh=GzSXXAtn+MG9MXEBydJA28ph4fycU10z4qRFnMd2PPg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f0UA+8jHgSaJssZqSmpm77krzrTugaU/1e27IlVe9WSSpMcE9R5lP/zrT1g4VfhC2BmJ2+g117YtIoWmrXDkYs4OrTDMBFV4m0e1U0oHa0T0oEzYnfLR6XISKcmoxXnN4rxjcL5mec8Oa+LnU04E6wkfTE5pmXDXrqxL9iopprg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.96.2)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1romWj-0002mZ-1Y;
-	Mon, 25 Mar 2024 15:46:21 +0000
-Date: Mon, 25 Mar 2024 15:46:17 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Jens Axboe <axboe@kernel.dk>,
-	Dave Chinner <dchinner@redhat.com>, Jan Kara <jack@suse.cz>,
-	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>,
-	Damien Le Moal <dlemoal@kernel.org>,
-	Li Lingfeng <lilingfeng3@huawei.com>,
-	Christian Brauner <brauner@kernel.org>,
-	Christian Heusel <christian@heusel.eu>,
-	Min Li <min15.li@samsung.com>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Avri Altman <avri.altman@wdc.com>, Hannes Reinecke <hare@suse.de>,
-	Christian Loehle <CLoehle@hyperstone.com>,
-	Bean Huo <beanhuo@micron.com>, Yeqi Fu <asuk4.q@gmail.com>,
-	Victor Shih <victor.shih@genesyslogic.com.tw>,
-	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-	Dominique Martinet <dominique.martinet@atmark-techno.com>,
-	"Ricardo B. Marliere" <ricardo@marliere.net>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mmc@vger.kernel.org, linux-block@vger.kernel.org
-Subject: Re: [PATCH 0/8] block: implement NVMEM provider
-Message-ID: <ZgGcSclcPMlXiPLV@makrotopia.org>
-References: <cover.1711048433.git.daniel@makrotopia.org>
- <20240325151259.GB3591150-robh@kernel.org>
+	s=arc-20240116; t=1711381811; c=relaxed/simple;
+	bh=zX04EH+4MwyZ3/UQjXgdCLOvVCK1C+C2iTBk3fYJ2gs=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=H/m/CSPEXuoYKwLOhR/5tpdDjN56lM3VkgTtZLgFE7Nilk7zdAX5YwmNPI+JIFTFIZdlDlQdSlvyujV+D8NwGG4dfLrAPpwid5DgqJ8Pwbd1azea7Ikqv9TpUV1Dg6KHnvucTCrKIaJgnNGSdLqidFWFP9O4xLCdBh+KEkHLLMs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SYEpR+Hp; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42PEPCsL010575;
+	Mon, 25 Mar 2024 15:50:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:subject:date:message-id:mime-version:content-type
+	:content-transfer-encoding:to:cc; s=qcppdkim1; bh=O2/Zpcx3MdIsGM
+	tkmh42I91WJh8rWahn55GaFo9B+xQ=; b=SYEpR+HpP06HEtWq+GfgI9mcWQToTf
+	3s1QDNFlIyPbiMamhrGJbmow4TITLxIgAKsw6zxwF0jrw2+vCWjxw93GL+2gva5e
+	in0q3dbR4ARKZlZcytJlDS0aUB9wnrAl5S+xopupWuI+4np3TCi6Kl8BVmQTg42J
+	3BqQSUPXWYopIIa5qUTs3kEr2vSvQz0OWhGASjGHb83WtD1d4BhmtFkw8AoJzGRF
+	dP0aK174vaji4vIkjXefrx+7JA94ptP7KhjYvvw+OXIKXU8cKWOyDdNFSOvFgCId
+	KkH9EYeMaASfr8A5EMU0rOxT+K8axipg9euS+zvMTDHPndP4an5CpheQ==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x3b0yr6vy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 25 Mar 2024 15:50:05 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42PFo47Y016230
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 25 Mar 2024 15:50:04 GMT
+Received: from hu-kathirav-blr.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Mon, 25 Mar 2024 08:49:59 -0700
+From: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+Subject: [PATCH v2 0/3] Add support for the IPQ5321 SoC
+Date: Mon, 25 Mar 2024 21:19:47 +0530
+Message-ID: <20240325-ipq5321-sku-support-v2-0-f30ce244732f@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240325151259.GB3591150-robh@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABudAWYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyjHQUlJIzE
+ vPSU3UzU4B8JSMDIxMDIyML3cyCQlNjI0Pd4uxS3eLSgoL8ohLdpBQDcwNTsxTTVANDJaDOgqL
+ UtMwKsKnRsbW1AFhtsH1lAAAA
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Ilia Lin <ilia.lin@kernel.org>,
+        "Rafael J. Wysocki"
+	<rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        "Kathiravan
+ Thirumoorthy" <quic_kathirav@quicinc.com>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>,
+        Mukesh Ojha <quic_mojha@quicinc.com>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1711381799; l=1152;
+ i=quic_kathirav@quicinc.com; s=20230906; h=from:subject:message-id;
+ bh=zX04EH+4MwyZ3/UQjXgdCLOvVCK1C+C2iTBk3fYJ2gs=;
+ b=Qs4iXLAMy20KVWlXuT9mh8zhJadcZTmFL8Rya4FKgU7Xf2fv0zlDUAjCZ65CA/gHgC4ne3JLb
+ nHDMyT50v2hCGRyjZtmor9bUYGqmljk6ZkRpP1GCLU3X/+m/X1iyhDH
+X-Developer-Key: i=quic_kathirav@quicinc.com; a=ed25519;
+ pk=xWsR7pL6ch+vdZ9MoFGEaP61JUaRf0XaZYWztbQsIiM=
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: ML8yShBGWV8r-9TTJSSTWPdI8OF5FI7d
+X-Proofpoint-GUID: ML8yShBGWV8r-9TTJSSTWPdI8OF5FI7d
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-25_12,2024-03-21_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 malwarescore=0
+ mlxscore=0 lowpriorityscore=0 adultscore=0 bulkscore=0 spamscore=0
+ impostorscore=0 phishscore=0 mlxlogscore=643 priorityscore=1501
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2403210001 definitions=main-2403250087
 
-On Mon, Mar 25, 2024 at 10:12:59AM -0500, Rob Herring wrote:
-> On Thu, Mar 21, 2024 at 07:31:48PM +0000, Daniel Golle wrote:
-> > On embedded devices using an eMMC it is common that one or more (hw/sw)
-> > partitions on the eMMC are used to store MAC addresses and Wi-Fi
-> > calibration EEPROM data.
-> > 
-> > Implement an NVMEM provider backed by a block device as typically the
-> > NVMEM framework is used to have kernel drivers read and use binary data
-> > from EEPROMs, efuses, flash memory (MTD), ...
-> > 
-> > In order to be able to reference hardware partitions on an eMMC, add code
-> > to bind each hardware partition to a specific firmware subnode.
-> > 
-> > Overall, this enables uniform handling across practially all flash
-> > storage types used for this purpose (MTD, UBI, and now also MMC).
-> > 
-> > As part of this series it was necessary to define a device tree schema
-> > for block devices and partitions on them, which (similar to how it now
-> > works also for UBI volumes) can be matched by one or more properties.
-> > 
-> > ---
-> > This series has previously been submitted as RFC on July 19th 2023[1]
-> > and most of the basic idea did not change since. Another round of RFC
-> > was submitted on March 5th 2024[2] which has received overall positive
-> > feedback and only minor corrections have been done since (see
-> > changelog below).
-> 
-> Also, please version your patches. 'RFC' is a tag, not a version. v1 was
-> July. v2 was March 5th. This is v3.
+IPQ5321 SoC belong to IPQ5332 family. Add the SoC ID and the cpufreq
+support. Maximum cpufreq for IPQ5321 is 1.1GHZ, which is determined
+based on the eFuse.
 
-According to "Submitting patches: the essential guide to getting your
-code into the kernel" [1] a version is also a tag.
+Viresh is okay to merge the cpufreq change via qcom tree[1] and provided
+his Ack.
 
-Quote:
- Common tags might include a version descriptor if the [sic] multiple
- versions of the patch have been sent out in response to comments
- (i.e., “v1, v2, v3”), or “RFC” to indicate a request for comments.
+[1]
+https://lore.kernel.org/linux-arm-msm/20240306053200.6iwrviltwt3pnfnt@vireshk-i7/
 
-Maybe this should be clarified, exclusive or inclusive "or" is up to
-the reader to interpret at this point, and I've often seen RFC, RFCv2,
-v1, v2, ... as a sequence of tags applied for the same series, which
-is why I followed what I used to believe was the most common
-interpretation of the guidelines.
+Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+---
+Changes in v2:
+	- rebase on next-20240325
+	- pick up the tags
+	- Link to v1:
+	  https://lore.kernel.org/linux-arm-msm/20240228-ipq5321-sku-support-v1-0-14e4d4715f4b@quicinc.com/
 
-In any way, thank you for pointing it out, I assume the next iteration
-should then be v4.
+---
+Kathiravan Thirumoorthy (3):
+      dt-bindings: arm: qcom,ids: Add SoC ID for IPQ5321
+      soc: qcom: socinfo: Add SoC ID for IPQ5321
+      cpufreq: qcom-nvmem: add support for IPQ5321
 
-[1]: https://docs.kernel.org/process/submitting-patches.html
+ drivers/cpufreq/qcom-cpufreq-nvmem.c | 1 +
+ drivers/soc/qcom/socinfo.c           | 1 +
+ include/dt-bindings/arm/qcom,ids.h   | 1 +
+ 3 files changed, 3 insertions(+)
+---
+base-commit: 1fdad13606e104ff103ca19d2d660830cb36d43e
+change-id: 20240228-ipq5321-sku-support-bd07056d5e01
+
+Best regards,
+-- 
+Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+
 
