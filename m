@@ -1,102 +1,213 @@
-Return-Path: <devicetree+bounces-52802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52804-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E72488A155
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 14:16:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DDD688A0CE
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 14:03:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5DFBFB251E1
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 12:46:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5630D1F39458
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 13:03:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF16754915;
-	Mon, 25 Mar 2024 07:32:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 187331509B1;
+	Mon, 25 Mar 2024 08:25:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DhmNMN2t"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="McD66DBg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EEDB13E6CF;
-	Mon, 25 Mar 2024 04:42:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E627F152191;
+	Mon, 25 Mar 2024 06:08:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711341755; cv=none; b=GDFh5XHwg9ZS2TuHlYos9RCEtapuV7tfj6/WABJ1W/heT97e5uRMSp1O6H9PPlx5EgWHhb95+AVX94MZ3+1mTLU8o1IyRve8beWYsdjTWFZXgVMbY8DrP2oqiY/WC0EI3VEIe1HFkANAEqdPuKqtE9LTkOVDM2wsHsJyBnXPTaU=
+	t=1711346916; cv=none; b=u98omzRprvgdqw6x7/fUHQXA9ljbXoISihov298B0Ihwy/iFOICMAPKaxkcl5tlvNJgzN2iyrBtIKwfn0fupeLusN2gdzregMeoHbrb5v6ewKU9JPju4GD0MbNubkO6ocguppSABORtsxIdy7OK8/BY204YoBWmziO7WxBHCGkM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711341755; c=relaxed/simple;
-	bh=983c2mSpRtzHZd3RX0FbvmlLGvQpO2bWYGuEJVdPXiM=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=SHYG8//jYNw4N4uYX1WYDxaK/LMWrEAdSoqOu7olXWxiTGn5XJhqcQI6BXTV+su30Np+1NWD0UtksNGqkjI9cDm0JAL0IOHT3vmK8pKAH03j6PjlC0RzVVV2TUe0X/N2VSAxeq1gzzMn6KPFaeMyK8mqARDJC+miQiPgxgEJ4xg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DhmNMN2t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 92948C43394;
-	Mon, 25 Mar 2024 04:42:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711341754;
-	bh=983c2mSpRtzHZd3RX0FbvmlLGvQpO2bWYGuEJVdPXiM=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=DhmNMN2tF/acZiHHFVovBVnZwiaO1oB814vBKArondxj3E1Byyz1qqTWxsohjhYg6
-	 +gI7iq0jLQCxC9L57FIwH5krZFrHzIQMVBnYaoXC4vKu59wvi0mNYTQJvad+gSMoAp
-	 5aO1xde4w9zblgHpuzrJ7ndoEMK/drH1yiaqc5EZnMC0J0Zxf3FrYFIGQQ/KYzW8sM
-	 y7ugrQNZYbu3t0noHgiLkMX8Ie1VIkarzj05tC/ONvktMIOf9+Ru2uSf9InpLcX7IS
-	 0qts8mBqdqFKCakLJw0lmbLK39TOQHEOzIalOU4A/6VUzfyJEreK9Ue9aPfxudRl5h
-	 M4d8b/4W3VvWg==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 857A0D2D0E0;
-	Mon, 25 Mar 2024 04:42:34 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1711346916; c=relaxed/simple;
+	bh=Yag/GmL+iks+hAEilxwHzv1y/IG9X+DScY72ID0EE5o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=USlWvsbF59CLiq3RA0Rpd9/dR2BpQSIqpf8Afgf7l8SGloqYJNyqoRUYDgP1TnNuTTSA4VEKwxCY9ku3sfd7xusE65sLjUFvbtZoWSs5exQy28yhknZoPElRZ+v6rgO4IG1xpJzy849Ohte7EEfpW81S6onFPQb3jYcb8LpTG2k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=McD66DBg; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42P62fuZ010813;
+	Mon, 25 Mar 2024 06:08:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=OhPCQYg2/myYUoLSKnbrt/7cFvjxXml/wAWhy8l/zCE=; b=Mc
+	D66DBgtx7Ihe8Bhquf+oNb37UqxDBwAQHt0vwjY63RAUyw8Pa+4DewssBpsPLzzt
+	oOL3hPoNFM9JMXCeUiIxF3KEMOWMHrhjQtHR3B1dPmUlj/1XThP6zzV7G4DvbqRz
+	Nq6E/AKhXoREdTChi3Hmi9oTRmIJo2hznNOV+gZOrk0kdB6RiMniu42kXo9+kQpp
+	7SrirlGfnrwSZXUqQVW8abUWFAkve2HCBu0fMXp99X00DqDdZAZbcv9JIAUDJhlD
+	b6f1wuXSr0YG6ADKXsaCE/0Hju0zPLO+mU9Cnz29KHntJagsA0VYsQWICq3bGuB2
+	zfP50m0BzZNiafEOivEw==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x1pdpx8yc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 25 Mar 2024 06:08:30 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42P68SQX018068
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 25 Mar 2024 06:08:28 GMT
+Received: from [10.216.57.55] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sun, 24 Mar
+ 2024 23:08:22 -0700
+Message-ID: <725471b1-46a9-43b0-bede-33f01c953d51@quicinc.com>
+Date: Mon, 25 Mar 2024 11:37:51 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v3 0/4] riscv: sophgo: add reset support for SG2042
-From: patchwork-bot+linux-riscv@kernel.org
-Message-Id: 
- <171134175454.18749.13038964057011467100.git-patchwork-notify@kernel.org>
-Date: Mon, 25 Mar 2024 04:42:34 +0000
-References: <cover.1706577450.git.unicorn_wang@outlook.com>
-In-Reply-To: <cover.1706577450.git.unicorn_wang@outlook.com>
-To: Chen Wang <unicornxw@gmail.com>
-Cc: linux-riscv@lists.infradead.org, aou@eecs.berkeley.edu,
- chao.wei@sophgo.com, conor@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- palmer@dabbelt.com, paul.walmsley@sifive.com, p.zabel@pengutronix.de,
- robh+dt@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com, guoren@kernel.org,
- jszhang@kernel.org, inochiama@outlook.com, unicorn_wang@outlook.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2 RESEND 1/6] dt-bindings: clock: qcom: Add SM8650 video
+ clock controller
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Taniya Das
+	<quic_tdas@quicinc.com>,
+        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+        Ajit Pandey <quic_ajipan@quicinc.com>,
+        Imran Shaik
+	<quic_imrashai@quicinc.com>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>
+References: <20240321092529.13362-1-quic_jkona@quicinc.com>
+ <20240321092529.13362-2-quic_jkona@quicinc.com>
+ <CAA8EJppsMchthssctEgUf9q45j84cSLQ78Ur+vaA0Z7GEQi8+g@mail.gmail.com>
+From: Jagadeesh Kona <quic_jkona@quicinc.com>
+In-Reply-To: <CAA8EJppsMchthssctEgUf9q45j84cSLQ78Ur+vaA0Z7GEQi8+g@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ZPKEMIv6Og3jftBAbkOP7KbfC7NKGCb_
+X-Proofpoint-ORIG-GUID: ZPKEMIv6Og3jftBAbkOP7KbfC7NKGCb_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-25_03,2024-03-21_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ priorityscore=1501 bulkscore=0 lowpriorityscore=0 impostorscore=0
+ suspectscore=0 mlxscore=0 adultscore=0 phishscore=0 spamscore=0
+ mlxlogscore=999 malwarescore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2403210001 definitions=main-2403250031
 
-Hello:
 
-This series was applied to riscv/linux.git (fixes)
-by Inochi Amaoto <inochiama@outlook.com>:
 
-On Tue, 30 Jan 2024 09:49:08 +0800 you wrote:
-> From: Chen Wang <unicorn_wang@outlook.com>
+On 3/21/2024 6:42 PM, Dmitry Baryshkov wrote:
+> On Thu, 21 Mar 2024 at 11:26, Jagadeesh Kona <quic_jkona@quicinc.com> wrote:
+>>
+>> Extend device tree bindings of SM8450 videocc to add support
+>> for SM8650 videocc. While it at, fix the incorrect header
+>> include in sm8450 videocc yaml documentation.
+>>
+>> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>   .../devicetree/bindings/clock/qcom,sm8450-videocc.yaml    | 4 +++-
+>>   include/dt-bindings/clock/qcom,sm8450-videocc.h           | 8 +++++++-
+>>   2 files changed, 10 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
+>> index bad8f019a8d3..79f55620eb70 100644
+>> --- a/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
+>> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
+>> @@ -8,18 +8,20 @@ title: Qualcomm Video Clock & Reset Controller on SM8450
+>>
+>>   maintainers:
+>>     - Taniya Das <quic_tdas@quicinc.com>
+>> +  - Jagadeesh Kona <quic_jkona@quicinc.com>
+>>
+>>   description: |
+>>     Qualcomm video clock control module provides the clocks, resets and power
+>>     domains on SM8450.
+>>
+>> -  See also:: include/dt-bindings/clock/qcom,videocc-sm8450.h
+>> +  See also:: include/dt-bindings/clock/qcom,sm8450-videocc.h
 > 
-> This series adds reset controller support for Sophgo SG2042 using
-> reset-simple driver.
+> This almost pleads to go to a separate patch. Fixes generally should
+> be separated from the rest of the changes.
 > 
-> Thanks,
-> Chen
+
+Thanks Dmitry for your review.
+
+Sure, will separate this into a separate patch in next series.
+
+>>
+>>   properties:
+>>     compatible:
+>>       enum:
+>>         - qcom,sm8450-videocc
+>>         - qcom,sm8550-videocc
+>> +      - qcom,sm8650-videocc
+>>
+>>     reg:
+>>       maxItems: 1
+>> diff --git a/include/dt-bindings/clock/qcom,sm8450-videocc.h b/include/dt-bindings/clock/qcom,sm8450-videocc.h
+>> index 9d795adfe4eb..ecfebe52e4bb 100644
+>> --- a/include/dt-bindings/clock/qcom,sm8450-videocc.h
+>> +++ b/include/dt-bindings/clock/qcom,sm8450-videocc.h
+>> @@ -1,6 +1,6 @@
+>>   /* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+>>   /*
+>> - * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
+>> + * Copyright (c) 2023-2024, Qualcomm Innovation Center, Inc. All rights reserved.
+>>    */
+>>
+>>   #ifndef _DT_BINDINGS_CLK_QCOM_VIDEO_CC_SM8450_H
+>> @@ -19,6 +19,11 @@
+>>   #define VIDEO_CC_MVS1C_DIV2_DIV_CLK_SRC                                9
+>>   #define VIDEO_CC_PLL0                                          10
+>>   #define VIDEO_CC_PLL1                                          11
+>> +#define VIDEO_CC_MVS0_SHIFT_CLK                                        12
+>> +#define VIDEO_CC_MVS0C_SHIFT_CLK                               13
+>> +#define VIDEO_CC_MVS1_SHIFT_CLK                                        14
+>> +#define VIDEO_CC_MVS1C_SHIFT_CLK                               15
+>> +#define VIDEO_CC_XO_CLK_SRC                                    16
 > 
-> [...]
+> Are these values applicable to sm8450?
+> 
 
-Here is the summary with links:
-  - [v3,1/4] dt-bindings: reset: sophgo: support SG2042
-    (no matching commit)
-  - [v3,2/4] reset: simple: add support for Sophgo SG2042
-    (no matching commit)
-  - [v3,3/4] riscv: dts: add reset generator for Sophgo SG2042 SoC
-    https://git.kernel.org/riscv/c/1ce7587e507e
-  - [v3,4/4] riscv: dts: add resets property for uart node
-    https://git.kernel.org/riscv/c/08573ba006ab
+No, the shift clocks above are part of SM8650 only. To reuse the 
+existing SM8550 videocc driver for SM8650 and to register these shift 
+clocks for SM8650, I added them here.
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+Thanks,
+Jagadeesh
 
-
+>>
+>>   /* VIDEO_CC power domains */
+>>   #define VIDEO_CC_MVS0C_GDSC                                    0
+>> @@ -34,5 +39,6 @@
+>>   #define CVP_VIDEO_CC_MVS1C_BCR                                 4
+>>   #define VIDEO_CC_MVS0C_CLK_ARES                                        5
+>>   #define VIDEO_CC_MVS1C_CLK_ARES                                        6
+>> +#define VIDEO_CC_XO_CLK_ARES                                   7
+>>
+>>   #endif
+>> --
+>> 2.43.0
+>>
+>>
+> 
+> 
 
