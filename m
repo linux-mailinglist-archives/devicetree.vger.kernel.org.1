@@ -1,172 +1,118 @@
-Return-Path: <devicetree+bounces-52836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52838-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56ECE88A2E4
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 14:48:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE71588A330
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 14:54:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11579285963
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 13:48:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B3011C39C05
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 13:54:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF59113D610;
-	Mon, 25 Mar 2024 10:31:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CF8615E1EB;
+	Mon, 25 Mar 2024 10:36:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="XY9PQcdX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dBaMxLRU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3B7415FA78;
-	Mon, 25 Mar 2024 08:55:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2257817A367
+	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 09:11:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711356927; cv=none; b=PgFSpTo0fwRZ8BVeAhevba/n2Nk9OULtjnnCR6ypaKmI0vF6Fgrz92elQJu4hKNdIvkWgemMDsU+lZP4S/6EdHuuDyGuldyaEqMjlfJFv3Bo3+joYT1A41IQjtDb15vgWk3pVXj0dK0Njwb06kEAJfR5Kep7I15PdQ29hk2AsKU=
+	t=1711357907; cv=none; b=Dyvi0dFLZugZLPENQycbHjAgHX7yqJpRvdsD4AX56NTar29Dnc9diONx2gefjnGX4xTH7nNufKEy2vUX/sBFQZ8tntHo15iZchc6Xz23HerlDKirUZhkLFoQPkTI/U/IbSYeasc3h5xjNfB//b7Wc2rVpZCnal/Mw1D/nZiNWe4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711356927; c=relaxed/simple;
-	bh=9Zx5nFRmvcxOO0R4A2j6vwLiz60QZij0S1cVKtpLzGs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DC4uYJrMWWKDUeQu2h/Ro+UCS8gnsqKxwcSE0XxaoLE+YaMQkZRpRS9FC4ckKvjLyL7K249A7G7cP14pGdg2v/Zo4nIr2pd4fE+MW64QbQCfIrt/HQKQWY7dW9jlWEiQnw02aX0y0ngsWR7RfpupTkoJnc/edxgY1Gsx21ZzIGY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=XY9PQcdX; arc=none smtp.client-ip=46.19.9.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-	s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=F6rSXpona0HdJDPphQfQZFWovV+BlIiwnVNpbjTN1io=; b=XY9PQcdXeEv9WDvOA7E9F8Tk18
-	Zf9e74xVOMNr1mpIDwfutyg9bT6NEGXysqew9xEiIm/Zg3JVTtHyG6VHivJPlo3oS5RE1yspmIgn8
-	AyolnG90VhozWvoasNtl7KjaiHHFCQbpeGsMdK1PE3OTpQRC+lvmkZhAWgz579TyqIC0MhBk5wxih
-	CQVdABAkspZTKofRXjEfb5QNK1WNcmJa5x/WTzDere7Dub35txCIoNc/h2IEJ+A9GxK9HrkT/o6Av
-	6a35y9O1NFTsfJRu3llqaxe70OrK4FyS98E13TwRe5UFRlAPA0wrFXm1u3VoYg+Yx9vG8Qb1SfooF
-	4f263Ozg==;
-Received: from [89.212.21.243] (port=35446 helo=[192.168.69.116])
-	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-	(Exim 4.96.2)
-	(envelope-from <primoz.fiser@norik.com>)
-	id 1rog72-009eRJ-0N;
-	Mon, 25 Mar 2024 09:55:24 +0100
-Message-ID: <44ac8977-cf98-46a5-be15-1bec330c6a2e@norik.com>
-Date: Mon, 25 Mar 2024 09:55:23 +0100
+	s=arc-20240116; t=1711357907; c=relaxed/simple;
+	bh=3IyQ0IHUZedUd4BUZemr8PwrT1edFjZ7/8DR77OpHPo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=skBEN2Q/7cRHwpYeEU+7Ri1fBsIQqPlZz7V8o297ZQxDcqRREmK1wn2CCadlTdmBCAe/94r+jfa81BHYIZhESs1SSmXJ3Zwy2mc7yQKOZNUN8lKNwT/uEeCxXg1/IKhcmgISsT86Ej/uvRNNJ1+qOKR/xF+HcWo3q0mqbbr4lOo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dBaMxLRU; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-513dc99b709so5074581e87.1
+        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 02:11:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1711357903; x=1711962703; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=RoF9SKtcQIDNK7kNazTEQf3Z7HNt40P18vhcuuLiprE=;
+        b=dBaMxLRUhAxqUsFozVzhlMzEUymdFHCE/FgMhvC4G/aoNxZG6EiLmIDh0LZ6XH3mH9
+         d+nr3RZESJtW2oz6tWOM5yI9kAkRzI7uzvZgZQgz3tEL0UNnS542KzIRg8Tdqgc/IHHU
+         Phzvi+C//lYWijy45XIEfk162SpfIPfG/8HncoJNk+XCC92yxxXu4WrNTIfyiiK6lXcn
+         ynLXu4xz5CyB67Vd17uEzrZkEgjlVbi5Ob04WUa9p4/VUBi9nD2cHrMQgL+v5HTejmUS
+         9qLiJSW3hpTXYIBmlEZHw0RaREjqRLd5HJfa5tlAhfnfB5bSDzyYJ1NjSv+vikY1UnTY
+         KUrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711357903; x=1711962703;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RoF9SKtcQIDNK7kNazTEQf3Z7HNt40P18vhcuuLiprE=;
+        b=Cag6iIIL3Q8VVfyqRNAJ7DhlNMXj6eo4QR/OYugOBX2yzCVJA85ZNNfcH7W83F1WQQ
+         QHqUIZSDjTXmTqoujPj343LvltgDGhGAl4MsEvkhWSMujVnN9gEuh1IhUz0Xy6aLNshX
+         hL14yYIPBJcLDRjnWKAd6FiYHt6iFCJcaBbbRgLoeH5lAvbnnQXJIfQc3aaVZkzoGddS
+         mQvjQvIY64xwBuOEVhVCfvT9KC94mosRmMFXucjPzTfBkfurMu5EClqersQ1lGXwhkSl
+         DBqrGc8JChEa0enOig55ORBzZDXEop+4Cn5c4aP/kP+6McdRqabFuQGUHRSfLDZHChRl
+         wLBA==
+X-Forwarded-Encrypted: i=1; AJvYcCUMS4j5ypA+SfVfFNgopuprE/cP/goWgOWcrLaCQEci04naDrRYsXLGC/AnxrgQJQAW7OXH9QQqfB5cRucrCyPTMi5jwaVkw4IA+Q==
+X-Gm-Message-State: AOJu0Yz0Hs9rtPZG+k5mDiwKIgSrLgK+WpG276uekhmoysZZjq+/h20P
+	VrVXFSPxJ4YhVnjrcUS7pV4VNLU/jVPEDg1cXkgGbsKRj6Vd1r31Ki5m+4sqMb0=
+X-Google-Smtp-Source: AGHT+IEyPfn3dgbloCj+TwQHEGcc6B6s6dmgZhFHmd8I5jGWzU+1BzuI3rvwBpuZn9wcIqv58h4rqg==
+X-Received: by 2002:ac2:4643:0:b0:513:4705:a4f3 with SMTP id s3-20020ac24643000000b005134705a4f3mr4317389lfo.65.1711357903118;
+        Mon, 25 Mar 2024 02:11:43 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.222.44])
+        by smtp.gmail.com with ESMTPSA id t15-20020a5d690f000000b0033e95bf4796sm8947000wru.27.2024.03.25.02.11.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Mar 2024 02:11:42 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>
+Subject: [PATCH] docs: dt-bindings: add missing address/size-cells to example
+Date: Mon, 25 Mar 2024 10:11:39 +0100
+Message-Id: <20240325091139.18602-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [Upstream] [PATCH 0/2] i.MX93 ADC calibration settings
-Content-Language: en-US
-To: Andrej Picej <andrej.picej@norik.com>, Jonathan Cameron <jic23@kernel.org>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, lars@metafoo.de,
- krzysztof.kozlowski+dt@linaro.org, imx@lists.linux.dev,
- linux-iio@vger.kernel.org, festevam@gmail.com, s.hauer@pengutronix.de,
- upstream@lists.phytec.de, linux-kernel@vger.kernel.org, haibo.chen@nxp.com,
- kernel@pengutronix.de, shawnguo@kernel.org, robh@kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20240320100407.1639082-1-andrej.picej@norik.com>
- <20240324135559.1640551d@jic23-huawei>
- <3423ea96-859d-4c4b-a9a7-e0d9c3c00727@norik.com>
-From: Primoz Fiser <primoz.fiser@norik.com>
-Organization: Norik systems d.o.o.
-In-Reply-To: <3423ea96-859d-4c4b-a9a7-e0d9c3c00727@norik.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: primoz.fiser@norik.com
-X-Authenticated-Sender: cpanel.siel.si: primoz.fiser@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
 
-Hi Jonathan,
+Complete the example of recommended order of properties by adding
+missing address/size-cells.  They are not necessary to illustrate the
+style, but lack of them us bit really correct DTS code which might
+confuse readers.
 
-On 25. 03. 24 09:32, Andrej Picej wrote:
-> Hi Jonathan,
-> 
-> On 24. 03. 24 14:55, Jonathan Cameron wrote:
->> On Wed, 20 Mar 2024 11:04:04 +0100
->> Andrej Picej <andrej.picej@norik.com> wrote:
->>
->>> Hi all,
->>>
->>> we had some problems with failing ADC calibration on the i.MX93 boards.
->>> Changing default calibration settings fixed this. The board where this
->>> patches are useful is not yet upstream but will be soon (hopefully).
->>
->> Tell us more.  My initial instinct is that this shouldn't be board
->> specific.
->> What's the trade off we are making here?  Time vs precision of
->> calibration or
->> something else?  If these are set to a level by default that doesn't work
->> for our board, maybe we should just change them for all devices?
->>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-The imx93_adc driver is quite new.
+---
 
-If you look at line #162, you will find a comment by the original author:
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>
+---
+ Documentation/devicetree/bindings/dts-coding-style.rst | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> 	/*
-> 	 * TODO: we use the default TSAMP/NRSMPL/AVGEN in MCR,
-> 	 * can add the setting of these bit if need in future.
-> 	 */
-
-URL:
-https://github.com/torvalds/linux/blob/master/drivers/iio/adc/imx93_adc.c#L162
-
-So, for most use-cases the default setting should work, but why not make
-them configurable?
-
-So this patch-series just implement what was missing from the beginning
-/ was planned for later.
-
-BR,
-Primoz
-
-
-> 
-> So we have two different boards with the same SoC. On one, the
-> calibration works with the default values, on the second one the
-> calibration fails, which makes the ADC unusable. What the ADC lines
-> measure differ between the boards though. But the implementation is
-> nothing out of the ordinary.
-> 
-> We tried different things but the only thing that helped is to use
-> different calibration properties. We tried deferring the probe and
-> calibration until later boot and after boot, but it did not help.
-> 
-> In the Reference Manual [1] (chapter 72.5.1) it is written:
-> 
->> 4. Configure desired calibration settings (default values kept for
->> highest accuracy maximum time).
-> 
-> So your assumption is correct, longer calibration time (more averaging
-> samples) -> higher precision. The default values go for a high accuracy.
-> And since we use a NRSMPL (Number of Averaging Samples) of 32 instead of
-> default 512, we reduce the accuracy so the calibration values pass the
-> internal defined limits.
-> 
-> I'm not sure that changing default values is the right solution here. We
-> saw default values work with one of the boards. And since the NXP kept
-> these values adjustable I think there is a reason behind it.
-> 
-> Note: When I say one of the boards I mean one board form. So same board
-> version, but different HW.
-> 
-> Best regards,
-> Andrej
-> 
-> [1] i.MX 93 Applications Processor Reference Manual, Rev. 4, 12/2023
-> _______________________________________________
-> upstream mailing list
-> upstream@lists.phytec.de
-> http://lists.phytec.de/cgi-bin/mailman/listinfo/upstream
+diff --git a/Documentation/devicetree/bindings/dts-coding-style.rst b/Documentation/devicetree/bindings/dts-coding-style.rst
+index a9bdd2b59dca..8a68331075a0 100644
+--- a/Documentation/devicetree/bindings/dts-coding-style.rst
++++ b/Documentation/devicetree/bindings/dts-coding-style.rst
+@@ -144,6 +144,8 @@ Example::
+ 		#dma-cells = <1>;
+ 		clocks = <&clock_controller 0>, <&clock_controller 1>;
+ 		clock-names = "bus", "host";
++		#address-cells = <1>;
++		#size-cells = <1>;
+ 		vendor,custom-property = <2>;
+ 		status = "disabled";
+ 
+-- 
+2.34.1
 
 
