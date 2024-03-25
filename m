@@ -1,246 +1,127 @@
-Return-Path: <devicetree+bounces-53164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9866B88B20E
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 21:54:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49BCD88B21C
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 21:56:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4572C3010DB
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 20:54:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA59B1F654FA
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 20:56:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24DB05CDE9;
-	Mon, 25 Mar 2024 20:54:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C3C85B1E8;
+	Mon, 25 Mar 2024 20:56:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KwA6OjC6"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="WkH5Ay4Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6CA25C61A;
-	Mon, 25 Mar 2024 20:54:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98DCB2F2D;
+	Mon, 25 Mar 2024 20:56:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711400047; cv=none; b=EzQjJ9coAxykYvL/mBtedwDuCbm1bXPvE/Y67al/0/iI9WMqdcAut85hKpfYTduc0F9rGfG7pzEe4c51wNCtvuWca6V87bhKMiCPxomZ++4IOp6waN82ubBYNJJh3Tyd0RdOAdmyyHy2U6wnmZOEG3mWvl7275NCz2P12MwfHZk=
+	t=1711400212; cv=none; b=baBtFtWQT9m7dpDPYaR+48lc0JKJrAzA4KQ45wWx3fZFAthzBkUjvWkXkejvTHFZa/efGspNL3xU3sbhWSZXeIQDJIz+YpTdKD/Fu8HozRqpxfsqiBrFblO71EMOrCTT2eL2tMSFxSLn7K5q2d9UJePRMuGkq7MHORKjRHc8Klk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711400047; c=relaxed/simple;
-	bh=9C8mX0Sn8bD6Hlp2PGlk47N5EtGWqTTT35zwy1vMM/8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KlmPampOuByCO6wl10VfJqPpCkZ00zwyUYKserrK5CEp83BhZxFjlLThUTD3wDFgIAOJI2s9QaLKZUTiKj7F8NGij86AEYjCVFd3pR6ZThWIQZr8cHMDdlGlKilZWYgQDYnO/SHR/TrMY6EIMStTCFOxsaq9VSsJ83smZ7cgdPA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KwA6OjC6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AF9AC43609;
-	Mon, 25 Mar 2024 20:54:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711400046;
-	bh=9C8mX0Sn8bD6Hlp2PGlk47N5EtGWqTTT35zwy1vMM/8=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=KwA6OjC6kS7NV4mny7t0anve5yezcA9gHGnG0+QBB3qOWPGErzfBZStoXLBg25km5
-	 34oeL4NmVasFpVxJP9mI4dyLdmyV1RCDk7bPNMDUhMcgUGUJFMz3IOrz2zfoKmfKWV
-	 tZTQ/gz0S97oC7Ep7xnjvFEps2ytyFxpN314XnB+DjmDV91IQxuIQaIo4WdT7yuZLF
-	 hU+P6h8JTg/1PxpKh4h/YqEK7s1kFinJIhe+CWQMWWzKFtbpfs3hY4v4jOFifKvO00
-	 bBbrmuQtb50X8oYWzEwHWQETNMbBlXjCvo2qVrYBpDaJI2xnOKuqWPppPflvp2zJYx
-	 tonE2+1i/EbWw==
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-513dc9d6938so6038052e87.2;
-        Mon, 25 Mar 2024 13:54:06 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXjA2qNiMoi+upOOHm/GrhMwITMC2eLMP2ApuIfNwMHRKCPaeeg0+CyclTqrW8DGJ4ERPaiUe47TNMP3K96+Uf8TAbXvprtAGNSHOBYiPLbicXGQsoBFbJpSdhbQq9mlk9uXd6O3OiUmg==
-X-Gm-Message-State: AOJu0Yx9EK3h49dk/NRFEO5w1MavfDGqYjE3vI0Uamt5GqlGOeOsDxWX
-	bmZRe4/BFonZi69Re31Rnxy3Jp0fo23tUIklfOsb8EChYYaDkjam/C2T1Qld70l39b0bdRJEfVv
-	Gm8dmLY1EKQhnvAkr4Dv4O1OYTA==
-X-Google-Smtp-Source: AGHT+IGTbH9QEnxsUF+g0cge9suFlGFw+bMh5s/tISFaAF52hjs7iTkFjNsCLSrhGK9FRt8/U9kUQM0J93ZdPlGIGe8=
-X-Received: by 2002:a19:431a:0:b0:513:cffc:e74 with SMTP id
- q26-20020a19431a000000b00513cffc0e74mr4954881lfa.52.1711400044805; Mon, 25
- Mar 2024 13:54:04 -0700 (PDT)
+	s=arc-20240116; t=1711400212; c=relaxed/simple;
+	bh=jZAaZSV8+oeKiKviZ1HtHAmT0OJ5cJAbq/XwTAhv4Z4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AM2dmk7gYY6fMUqDwUTRXv6hG3w3yP+ohiG14E5d6qrxn7uCFBpTvB7UmgoI5fPm4TQQhCyX7ArH2Gli7qqcn+fUyDL5Gv67cr0CYMvofgAgmlvssiI3ZutdiXrBJGVRltTWBgg9EvXG+maGHlr/HCwNmgyBB0i+HZFgAobqjes=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=WkH5Ay4Y; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id E4DBC7E4;
+	Mon, 25 Mar 2024 21:56:17 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1711400178;
+	bh=jZAaZSV8+oeKiKviZ1HtHAmT0OJ5cJAbq/XwTAhv4Z4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WkH5Ay4YO65Efcg8u+F3/kraIMLvPDeJo/fzZf51YWL3VgPRDsc+cFPhDTiD6eBZT
+	 m4Gl67UD6OVYRs5tS+4GWkTR3FReLcNPdrV29i8Okyz6jJcy3aHj6YGNj1R0buhf0z
+	 qnqQBXINhnHz5v2pojkw/D4bAG6n1prJr9TrCiYs=
+Date: Mon, 25 Mar 2024 22:56:41 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Trevor Zaharichuk <trevor@au-zone.com>,
+	Greg Lytle <greg@au-zone.com>, Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Sean Nyekjaer <sean@geanix.com>,
+	linux-iio@vger.kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: iio: dac: ti,dac5571: Add DAC081C081
+ support
+Message-ID: <20240325205641.GD23988@pendragon.ideasonboard.com>
+References: <20240325203245.31660-1-laurent.pinchart@ideasonboard.com>
+ <20240325203245.31660-2-laurent.pinchart@ideasonboard.com>
+ <20240325204857.4f2fd468@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240325195306.13133-1-sudanl@amazon.com> <20240325195306.13133-4-sudanl@amazon.com>
-In-Reply-To: <20240325195306.13133-4-sudanl@amazon.com>
-From: Rob Herring <robh+dt@kernel.org>
-Date: Mon, 25 Mar 2024 15:53:52 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKYXk7V4bFHCfhaD_DtetxQR3Z3SwHKJehuH_Br3YOKUw@mail.gmail.com>
-Message-ID: <CAL_JsqKYXk7V4bFHCfhaD_DtetxQR3Z3SwHKJehuH_Br3YOKUw@mail.gmail.com>
-Subject: Re: [PATCH v3 3/4] dt-bindings: rng: Add vmgenid support
-To: Sudan Landge <sudanl@amazon.com>
-Cc: tytso@mit.edu, Jason@zx2c4.com, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, sathyanarayanan.kuppuswamy@linux.intel.com, 
-	thomas.lendacky@amd.com, dan.j.williams@intel.com, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, graf@amazon.de, dwmw@amazon.co.uk, 
-	bchalios@amazon.es, xmarcalx@amazon.co.uk
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240325204857.4f2fd468@jic23-huawei>
 
-On Mon, Mar 25, 2024 at 2:53=E2=80=AFPM Sudan Landge <sudanl@amazon.com> wr=
-ote:
->
+Hi Jonathan,
 
-Please give time for discussions on prior versions to finish and
-others to comment. We're not all in one timezone and are busy. I've
-replied there too.
+On Mon, Mar 25, 2024 at 08:48:57PM +0000, Jonathan Cameron wrote:
+> On Mon, 25 Mar 2024 22:32:41 +0200 Laurent Pinchart wrote:
+> 
+> > The DAC081C081 is a TI DAC whose software interface is compatible with
+> > the DAC5571. It is the 8-bit version of the DAC121C081, already
+> > supported by the DAC5571 bindings. Extends the bindings to support this
+> > chip.
+> > 
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> 
+> Hi Laurent,
+> 
+> Given it's a part number where no one is going to guess it is compatible
+> with the DAC5571 and that we don't have a history of fallback compatibles
+> I'm fine with this change, but just wanted to ask is a fallback compatible
+> useful to you to run with older kernels?
+> 
+> I should have noticed when Peter added the dac121c081. If we add a fallback
+> should do that one as well.
 
-> Virtual Machine Generation ID driver was introduced in commit af6b54e2b5b=
-a
-> ("virt: vmgenid: notify RNG of VM fork and supply generation ID"), as an
-> ACPI only device.
->
-> VMGenID specification http://go.microsoft.com/fwlink/?LinkId=3D260709 def=
-ines
-> a mechanism for the BIOS/hypervisors to communicate to the virtual machin=
-e
-> that it is executed with a different configuration (e.g. snapshot executi=
-on
-> or creation from a template).
-> The guest operating system can use the notification for various purposes
-> such as re-initializing its random number generator etc.
->
-> As per the specs, hypervisor should provide a globally unique identified,
-> or GUID via ACPI.
->
-> This patch tries to mimic the mechanism to provide the same functionality
-> which is for a hypervisor/BIOS to notify the virtual machine when it is
-> executed with a different configuration.
->
-> As part of this support the devicetree bindings requires the hypervisors =
-or
-> BIOS to provide a memory address which holds the GUID and an IRQ which is
-> used to notify when there is a change in the GUID.
-> The memory exposed in the DT should follow the rules defined in the
-> vmgenid spec mentioned above.
->
-> *Reason for this change*:
-> Chosing ACPI or devicetree is an intrinsic part of an hypervisor design.
-> Without going into details of why a hypervisor would chose DT over ACPI,
-> we would like to highlight that the hypervisors that have chose devicetre=
-e
-> and now want to make use of the vmgenid functionality cannot do so today
-> because vmgenid is an ACPI only device.
-> This forces these hypervisors to change their design which could have
-> undesirable impacts on their use-cases, test-scenarios etc.
->
-> The point of vmgenid is to provide a mechanism to discover a GUID when
-> the execution state of a virtual machine changes and the simplest
-> way to do it is pass a memory location and an interrupt via devicetree.
-> It would complicate things unnecessarily if instead of using devicetree,
-> we try to implement a new protocol or modify other protocols to somehow
-> provide the same functionility.
->
-> We believe that adding a devicetree binding for vmgenid is a simpler,
-> better alternative to provide the same functionality and will allow
-> such hypervisors as mentioned above to continue using devicetree.
->
-> More references to vmgenid specs:
->  - https://www.qemu.org/docs/master/specs/vmgenid.html
->  - https://learn.microsoft.com/en-us/windows/win32/hyperv_v2/virtual-
-> machine-generation-identifier
->
-> Signed-off-by: Sudan Landge <sudanl@amazon.com>
-> ---
->  .../devicetree/bindings/rng/vmgenid.yaml      | 58 +++++++++++++++++++
+I've indeed noticed that there should have been a fallback for
+dac121c081, but didn't stop to ponder why that wasn't the case, and just
+went along with the flow :-) I agree a fallback could be useful, which
+would then allow dropping patch 2/5 from this series (*). I can do so if
+you prefer.
 
-Filename should match the compatible, whatever that ends up being.
+* This is not entirely true. While the DAC1081C081 is largely compatible
+with the DAC5573, they have different values for one of the power-down
+resistors (2.5kΩ instead of 1kΩ if I recall correctly). To be completely
+accurate, the driver should report that. We could still use the fallback
+compatible, reporting the wrong power-down resistor value.
 
->  MAINTAINERS                                   |  1 +
->  2 files changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/rng/vmgenid.yaml
->
-> diff --git a/Documentation/devicetree/bindings/rng/vmgenid.yaml b/Documen=
-tation/devicetree/bindings/rng/vmgenid.yaml
-> new file mode 100644
-> index 000000000000..24643080d6b0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rng/vmgenid.yaml
-> @@ -0,0 +1,58 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/rng/vmgenid.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Virtual Machine Generation Counter ID device
-> +
-> +maintainers:
-> +  - Jason A. Donenfeld <Jason@zx2c4.com>
-> +
-> +description:
-> +  Firmwares or hypervisors can use this devicetree to describe
-> +  interrupts and the shared resources to inject a Virtual Machine Genera=
-tion
-> +  counter.
-> +
-> +properties:
-> +  compatible:
-> +    const: virtual,vmgenctr
-> +
-> +
-> +  "#interrupt-cells":
-> +    const: 3
-> +    description:
-> +      The 1st cell is the interrupt type.
-> +      The 2nd cell contains the interrupt number for the interrupt type.
-> +      The 3rd cell is for trigger type and level flags.
-> +
-> +  interrupt-map: true
+> > ---
+> >  Documentation/devicetree/bindings/iio/dac/ti,dac5571.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/iio/dac/ti,dac5571.yaml b/Documentation/devicetree/bindings/iio/dac/ti,dac5571.yaml
+> > index 79da0323c327..e59db861e2eb 100644
+> > --- a/Documentation/devicetree/bindings/iio/dac/ti,dac5571.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/dac/ti,dac5571.yaml
+> > @@ -21,6 +21,7 @@ properties:
+> >        - ti,dac5573
+> >        - ti,dac6573
+> >        - ti,dac7573
+> > +      - ti,dac081c081
+> >        - ti,dac121c081
+> >  
+> >    reg:
 
-Sigh. What makes this an interrupt-map? Why do you think you need this
-and #interrupt-cells? You don't have them in the example.
+-- 
+Regards,
 
-> +
-> +  reg:
-> +    description:
-> +      The 1st cell specifies the base physical address of the 8-byte ali=
-gned
-> +      buffer in guest memory space which is guaranteed not to be used by=
- the
-> +      operating system.
-> +      The 2nd cell specifies the size of the buffer which holds the VMGe=
-nID.
-
-I didn't ask for you to explain the purpose of cells in 'reg' as that
-is the same for *every* instance of 'reg'. Ignore DTisms and describe
-the format of the registers. For example, is it 4 32-bit registers
-(hex) or 9 32-bit registers (ascii)?
-
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    description:
-> +      interrupt used to notify that a new VMGenID counter is available.
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    rng@80000000 {
-> +      compatible =3D "virtual,vmgenctr";
-> +      reg =3D <0x80000000 0x1000>;
-> +      interrupts =3D <0x00 0x23 0x01>;
-> +    };
-> +
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index de6a64b248ae..e295d2f50af4 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -18461,6 +18461,7 @@ M:      "Theodore Ts'o" <tytso@mit.edu>
->  M:     Jason A. Donenfeld <Jason@zx2c4.com>
->  S:     Maintained
->  T:     git https://git.kernel.org/pub/scm/linux/kernel/git/crng/random.g=
-it
-> +F:     Documentation/devicetree/bindings/rng/vmgenid.yaml
->  F:     drivers/char/random.c
->  F:     drivers/virt/vmgenid.c
->
-> --
-> 2.40.1
->
->
+Laurent Pinchart
 
