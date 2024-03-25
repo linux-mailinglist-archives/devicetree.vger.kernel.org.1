@@ -1,273 +1,178 @@
-Return-Path: <devicetree+bounces-53058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65E7B88ABA1
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 18:29:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF32588ABA8
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 18:29:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D8E91C391BA
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 17:29:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3CAE91F2788C
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 17:29:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2462312E1F0;
-	Mon, 25 Mar 2024 16:22:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEB5E128368;
+	Mon, 25 Mar 2024 16:23:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M64/jWNf"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="bNg693gY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA24912E1D9;
-	Mon, 25 Mar 2024 16:22:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0124F768EC
+	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 16:23:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711383768; cv=none; b=VmOI9qnqBo5KulweJ6HeA9r0qIHRGmU5eVR0Nl3AxzJdjuZ5Jlgs8IVnnZR1sIV7w1pb6qiW/gpMEsG+kPCCKDlb6odOLcbOJ4NcVqA5Jj3AT4P6cUtlTrOIJGGa0+7PRnLke3XYl40raINpYMPZQXcrqgQuM9kzEgNSQY7mbfM=
+	t=1711383829; cv=none; b=EVS/L+TQITi1AtzSqsIkGWHQPWjPhQOdQ4yHOR1VKNMF5qE2eW4frGN5pmuLjMAoIFPljP/nu0WZ3Swuu43J3Wwc+OAywWh8PYowwXnqe/sBDo8eVoLXql/zEtxr37/shhu4fyQsdSOoXFRTt0zA4+qSjElcLLtf97aanpWysew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711383768; c=relaxed/simple;
-	bh=xE6KNpCOn2OEaSo250Fbx8HQD0Ki6bF5GBxHx8kHNfc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oAhrRFxinyvyiVGwWX8Lzp88nise/4gr6HLDv+qZUXNicxD7midLiBG+vhvHq1c0G7+tuSOOnu2HfIP2buAPoxtnmQKs7rryhg9gjlRpvnvlHNXpfA5rM9Orm94n7U9d0aD/jsva43hthYXSlOgG7ZAa3k2yHHKLIJ9SnKINbGE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M64/jWNf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E0D8C433C7;
-	Mon, 25 Mar 2024 16:22:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711383767;
-	bh=xE6KNpCOn2OEaSo250Fbx8HQD0Ki6bF5GBxHx8kHNfc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=M64/jWNfngnT3K2O0pepQWlnUxOW6YNPcpROJY1+gM/c8i3VywFpfoLk0JTo00PKW
-	 iXf9f7G6lCML6+X9GtBSPg18JyUpmFZB/PMdRYUq1+iS4ioyDjuBjjSI4Mir22hRpF
-	 1XPxZQjSvs0lak8qEx48f2iE8MCI35aAn3A3zr9SwvtBOEsbWUqJFSUneSB+yWu4hx
-	 fS4pjsv6BfTmJPYkUo9LeFkuFdLoq42jOWyHOO3oU3J8O3BLHOKL3YintLT7xUkhxk
-	 VyaH2lzmc8VzwK61/yHWMmumaF3jOWkFlb9vO9atzVOh8RPRImz5vS1PFa6i/ybMYl
-	 AX0z34uS1hFuA==
-Date: Mon, 25 Mar 2024 11:22:45 -0500
-From: Rob Herring <robh@kernel.org>
-To: Tan Chun Hau <chunhau.tan@starfivetech.com>
-Cc: "David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Simon Horman <horms@kernel.org>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Andrew Halaney <ahalaney@redhat.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	Russell King <rmk+kernel@armlinux.org.uk>,
-	Ley Foon Tan <leyfoon.tan@starfivetech.com>,
-	Jee Heng Sia <jeeheng.sia@starfivetech.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v3 1/1] dt-bindings: net: starfive,jh7110-dwmac: Add
- StarFive JH8100 support
-Message-ID: <20240325162245.GA4167001-robh@kernel.org>
-References: <20240325085131.182657-1-chunhau.tan@starfivetech.com>
- <20240325085131.182657-2-chunhau.tan@starfivetech.com>
+	s=arc-20240116; t=1711383829; c=relaxed/simple;
+	bh=YFrRYJmE2c0Njd/WjfccaQYzVP23csJig+MqZX6xV88=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=j4XKfqpuqfruf/RLBzP/53A+kejd0dJybVxXEhcJIzvd7fywJU+xxulSHD6tVUCqXKf5jv8qlOQ06W9V6jf3ET5dR3d7/JeE9pSjRjzZyCk7sGdvyqox7zHn6uTDZHlJ0w1i763Zmcd3o9/mxmhbL6QeOGzHD8bPo/uUR/TZXUo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=bNg693gY; arc=none smtp.client-ip=209.85.208.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2d4a8bddc21so62473391fa.0
+        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 09:23:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1711383826; x=1711988626; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rFcfwD2v6qpH4vAhBOADFCJxvrI715+cznBhJwreFCA=;
+        b=bNg693gYe+XqMbXPLwytAj1DW4TWOdFgIkYynhGZ5jLpywIn73CoqucTs3oAz8BXmi
+         k/Ivm6vwfw2fk13UUlQTvpD+XOJqmL2smuv253/e4EYqGUVC/F5E55gbZGVSFIV6c4T+
+         IVRcHRt10DBkqxd5bu307cFUdzzSJqs/CYXplnrB6BT3w61HjpmbKzV8QK9aDcLsxUpA
+         tSUOE5VIYP4vR+gbt0xhK1NDwyiYNMC2LIPd8ySb9bAaD2IfUqEJAYyc9Nmbc5bbHsfZ
+         nR/Q3Rp3A50GLOyCF5d4juoXyxED0bdEXlmhBJf0CX1jnARlkRekA2F/tTDZ8zCtahKJ
+         urXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711383826; x=1711988626;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rFcfwD2v6qpH4vAhBOADFCJxvrI715+cznBhJwreFCA=;
+        b=YOjkZKUSgCQ8I1YCSogB9K7b7pmDe4cmnVaZAuFCBAl8Sz0DY2DEgjje1Owtxkqpa2
+         jtYXm9lHlm/c0j3zr/kBUxsjszwwO7TJl+Cow083sS9jbe8E6wfTMjqGiwbKeZZ9wwur
+         x7cSjLoCX7537iHYY9cEwMgME0iz39tjzncMSmMkiAb4jEzQowXwSZeYVxkQ9X/r7Txb
+         u/A7C0CB4egkcNbGmAlt7CoNzbUo5VaMmI7nh4Kpm+s4VygjGYljCxjuJkp3tOiQBVXK
+         QZS+XovSeb/cCqTQKSRhyUakr0bxqADV7xIe4uxPT7mQItHQdwRqTYUeXCmccVuFw53P
+         ivoA==
+X-Forwarded-Encrypted: i=1; AJvYcCVir8UWRXvcmJTQ0uBh0o/veZf0aHpSsdF4pnkpzAaOPOY3KO+NH346DLlZfZDXQLBf5HfY0Q3kqY2FmBl9edLzgNPNKAGCEvddxA==
+X-Gm-Message-State: AOJu0YyWeqpgFIZHTIR0FtbKgWE2qepqJlAUc3GXov3VP5q47w0kIwoP
+	l7pT1C102qyeXI7MykMG7XFvqANtxecyQnDwyCfBIKKF8bCKI7ZmQsKfd5FFLJhoetUY1t2EEXy
+	oaoA3jo8qBTLzsg5Lzhn8agnaoykdKrZZEEmmHg==
+X-Google-Smtp-Source: AGHT+IH4j5PPquST9xGKo8St/ikKbO6tk+Yedi+DAtFkCTZT5UC4mlTlEQkIXAn9mq4Oivrt7Ob9WJnK0Bj5SKvyufE=
+X-Received: by 2002:a2e:8085:0:b0:2d4:ffe:c55e with SMTP id
+ i5-20020a2e8085000000b002d40ffec55emr4716403ljg.25.1711383826136; Mon, 25 Mar
+ 2024 09:23:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240325085131.182657-2-chunhau.tan@starfivetech.com>
+References: <20240325131624.26023-1-brgl@bgdev.pl> <20240325131624.26023-5-brgl@bgdev.pl>
+ <87r0fy8lde.fsf@kernel.org> <CAMRc=Mc2Tc8oHr5NVo=aHAADkJtGCDAVvJs+7V-19m2zGi-vbw@mail.gmail.com>
+ <87frwe8jiu.fsf@kernel.org>
+In-Reply-To: <87frwe8jiu.fsf@kernel.org>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Mon, 25 Mar 2024 17:23:35 +0100
+Message-ID: <CAMRc=MdCv+vTMZML-wzRQqZZavquV3DABYM4KYw-HwqS47sTyw@mail.gmail.com>
+Subject: Re: [PATCH v6 04/16] dt-bindings: net: wireless: qcom,ath11k:
+ describe the ath11k on QCA6390
+To: Kalle Valo <kvalo@kernel.org>
+Cc: Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+	"David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Saravana Kannan <saravanak@google.com>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Arnd Bergmann <arnd@arndb.de>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Marek Szyprowski <m.szyprowski@samsung.com>, 
+	Alex Elder <elder@linaro.org>, Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Abel Vesa <abel.vesa@linaro.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Lukas Wunner <lukas@wunner.de>, 
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, linux-bluetooth@vger.kernel.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-pci@vger.kernel.org, linux-pm@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, ath11k@lists.infradead.org, 
+	Johan Hovold <johan@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Mar 25, 2024 at 01:51:31AM -0700, Tan Chun Hau wrote:
-> Add StarFive JH8100 dwmac support.
-> The JH8100 dwmac shares the same driver code as the JH7110 dwmac
-> and has only one reset signal.
-> 
-> Please refer to below:
-> 
->   JH8100: reset-names = "stmmaceth";
->   JH7110: reset-names = "stmmaceth", "ahb";
+On Mon, Mar 25, 2024 at 3:37=E2=80=AFPM Kalle Valo <kvalo@kernel.org> wrote=
+:
+>
+> Bartosz Golaszewski <brgl@bgdev.pl> writes:
+>
+> > On Mon, Mar 25, 2024 at 2:57=E2=80=AFPM Kalle Valo <kvalo@kernel.org> w=
+rote:
+> >
+> >>
+> >> Bartosz Golaszewski <brgl@bgdev.pl> writes:
+> >>
+> >> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> >> >
+> >> > Add a PCI compatible for the ATH11K module on QCA6390 and describe t=
+he
+> >> > power inputs from the PMU that it consumes.
+> >> >
+> >> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> >>
+> >> [...]
+> >>
+> >> > +allOf:
+> >> > +  - if:
+> >> > +      properties:
+> >> > +        compatible:
+> >> > +          contains:
+> >> > +            const: pci17cb,1101
+> >> > +    then:
+> >> > +      required:
+> >> > +        - vddrfacmn-supply
+> >> > +        - vddaon-supply
+> >> > +        - vddwlcx-supply
+> >> > +        - vddwlmx-supply
+> >> > +        - vddrfa0p8-supply
+> >> > +        - vddrfa1p2-supply
+> >> > +        - vddrfa1p7-supply
+> >> > +        - vddpcie0p9-supply
+> >> > +        - vddpcie1p8-supply
+> >>
+> >> I don't know DT well enough to know what the "required:" above means,
+> >> but does this take into account that there are normal "plug&play" type
+> >> of QCA6390 boards as well which don't need any DT settings?
+> >
+> > Do they require a DT node though for some reason?
+>
+> You can attach the device to any PCI slot, connect the WLAN antenna and
+> it just works without DT nodes. I'm trying to make sure here that basic
+> setup still works.
+>
 
-It's debatable whether JH8100 is compatible with JH7110 if the 2nd reset 
-was not optional. I guess if the Linux driver treated it that way, we 
-can get away with it. It would simplify the conditionals in the schema 
-if the schema also treated the 2nd entry as optional on JH7110 as well.
+Sure, definitely. I there's no DT node, then the binding doesn't apply
+and the driver (the platform part of it) will not probe.
 
+> Adding also Johan and ath11k list. For example, I don't know what's the
+> plan with Lenovo X13s, will it use this framework? I guess in theory we
+> could have devices which use qcom,ath11k-calibration-variant from DT but
+> not any of these supply properties?
+>
 
->   JH7100: reset-names = "ahb";
-> 
-> Example usage of JH8100 in the device tree:
-> 
-> gmac0: ethernet@16030000 {
->         compatible = "starfive,jh8100-dwmac",
->                      "starfive,jh7110-dwmac",
->                      "snps,dwmac-5.20";
->         ...
-> };
-> 
-> Signed-off-by: Tan Chun Hau <chunhau.tan@starfivetech.com>
-> ---
->  .../devicetree/bindings/net/snps,dwmac.yaml   |  1 +
->  .../bindings/net/starfive,jh7110-dwmac.yaml   | 82 +++++++++++++------
->  2 files changed, 58 insertions(+), 25 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> index 6b0341a8e0ea..a6d596b7dcf4 100644
-> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> @@ -97,6 +97,7 @@ properties:
->          - snps,dwxgmac-2.10
->          - starfive,jh7100-dwmac
->          - starfive,jh7110-dwmac
-> +        - starfive,jh8100-dwmac
->  
->    reg:
->      minItems: 1
-> diff --git a/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
-> index 0d1962980f57..da3cc984fec9 100644
-> --- a/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
-> @@ -18,6 +18,7 @@ select:
->          enum:
->            - starfive,jh7100-dwmac
->            - starfive,jh7110-dwmac
-> +          - starfive,jh8100-dwmac
->    required:
->      - compatible
->  
-> @@ -30,6 +31,10 @@ properties:
->        - items:
->            - const: starfive,jh7110-dwmac
->            - const: snps,dwmac-5.20
-> +      - items:
-> +          - const: starfive,jh8100-dwmac
-> +          - const: starfive,jh7110-dwmac
-> +          - const: snps,dwmac-5.20
->  
->    reg:
->      maxItems: 1
-> @@ -83,29 +88,13 @@ allOf:
->    - if:
->        properties:
->          compatible:
-> -          contains:
-> -            const: starfive,jh7100-dwmac
-> -    then:
-> -      properties:
-> -        interrupts:
-> -          minItems: 2
-> -          maxItems: 2
-> -
-> -        interrupt-names:
-> -          minItems: 2
-> -          maxItems: 2
-> -
-> -        resets:
-> -          maxItems: 1
-> -
-> -        reset-names:
-> -          const: ahb
-> -
-> -  - if:
-> -      properties:
-> -        compatible:
-> -          contains:
-> -            const: starfive,jh7110-dwmac
-> +          allOf:
-> +            - contains:
-> +                enum:
-> +                  - starfive,jh8100-dwmac
-> +            - contains:
-> +                enum:
-> +                  - starfive,jh7110-dwmac
+Good point. I will receive the X13s in a month from now. I do plan on
+upstreaming correct support for WLAN and BT for it as well.
 
-There's no need for the 2nd entry. You just need to check
+I guess we can always relax the requirements once a valid use-case appears?
 
-I would something like this structure:
+Bart
 
-  - if:
-      properties:
-        compatible:
-          contains:
-            const: starfive,jh7100-dwmac
-
-    then:
-
-      if:
-        properties:
-          compatible:
-            contains:
-              const: starfive,jh8100-dwmac
-      then:
-        ...
-      else:
-        ...
-
-
->      then:
->        properties:
->          interrupts:
-> @@ -117,10 +106,53 @@ allOf:
->            maxItems: 3
->  
->          resets:
-> -          minItems: 2
-> +          maxItems: 1
->  
->          reset-names:
-> -          minItems: 2
-> +          const: stmmaceth
-> +
-> +    else:
-
-I don't think you need the else. Just do another 'if' entry.
-
-> +      if:
-> +        properties:
-> +          compatible:
-> +            contains:
-> +              const: starfive,jh7100-dwmac
-> +      then:
-> +        properties:
-> +          interrupts:
-> +            minItems: 2
-> +            maxItems: 2
-> +
-> +          interrupt-names:
-> +            minItems: 2
-> +            maxItems: 2
-> +
-> +          resets:
-> +            maxItems: 1
-> +
-> +          reset-names:
-> +            const: ahb
-> +
-> +        if:
-> +          properties:
-> +            compatible:
-> +              contains:
-> +                const: starfive,jh7110-dwmac
-> +        then:
-> +          properties:
-> +            interrupts:
-> +              minItems: 3
-> +              maxItems: 3
-> +
-> +            interrupt-names:
-> +              minItems: 3
-> +              maxItems: 3
-> +
-> +            resets:
-> +              minItems: 2
-> +
-> +            reset-names:
-> +              minItems: 2
->  
->  unevaluatedProperties: false
->  
-> -- 
-> 2.25.1
-> 
+> --
+> https://patchwork.kernel.org/project/linux-wireless/list/
+>
+> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpa=
+tches
 
