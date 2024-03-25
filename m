@@ -1,156 +1,169 @@
-Return-Path: <devicetree+bounces-52892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7678B88A5B1
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 16:03:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2230688A4D9
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 15:41:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B36B0C071FD
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 14:47:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D1272300C26
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 14:41:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8BD61514E0;
-	Mon, 25 Mar 2024 11:45:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8D191C5232;
+	Mon, 25 Mar 2024 11:30:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UXek09c6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D/W3xGaS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4289815664F;
-	Mon, 25 Mar 2024 11:11:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 367F016F905
+	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 11:13:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711365061; cv=none; b=kN1aGVkHYg5HU2+M9gKRwBEts5oVM4jzI8yR1nFiveAwS6WgGICS790kkk77l6lTK28b3LBnLT+Xw9+p9hZBYOU/LroUvH5Tm6519aLYbLZzXDuSSN4BLbX68NRc/IsUEbtZmqygT+QnWpiDeUQg22+u0vENn0Ls+eJMDW6ueGM=
+	t=1711365222; cv=none; b=oFQ6Ncs+9duJiqgnEbaehcgfWWkFCdpvSzDK9lVGlkwxllI7Ls1li1sMUGe7OaS+gYaUbeErUQnTV2LOa2IcHxfPWt4/IjGq1kCA0UsVowxDoyhg7cd/HSf2xY5Oo32hW7QXlNBhai9BczXcmBqa3ZGfBbOGudbyRvPRshbKo0I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711365061; c=relaxed/simple;
-	bh=nM8sx42xDx95HRJ1wPccausmC0pYy6OVh8wnJGrVyxw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t8IjNvAJfNhojIqY+o2/dbekQMsRBSoj9h9eCB7RvoAIDP10QrE+yM+ZSnzZGN9oPcWsq2uSpMBBAQliYiVfW3HhUDwpfFZzS6dO1/cTbCDBx/k13fVjmcE+1TiPLTJnv87k4BkCMokKL+UggBkPvIAeFYD7oMJ1T99PIR3UGFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UXek09c6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3897CC433F1;
-	Mon, 25 Mar 2024 11:10:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711365060;
-	bh=nM8sx42xDx95HRJ1wPccausmC0pYy6OVh8wnJGrVyxw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UXek09c6cW+G+x6iB1Jv6w5GUQmW9OLkvmUdoL+mdCU1yXcp6oJfVVuTBUC3Q/Cyk
-	 NX3khylkoegm4UxLO1a0/ubyu6hdMd3PDa2CfU6mEA6W8YvYR2h2XJjTTef1YDIHYc
-	 mj7rziUUjF9kvF6abIm7GB1Lkb2WOZcIWmrns4EPMTsA3YoWh8H3yKDJzFLRQ+F2fJ
-	 O4/4Vo2/eaChhs1clAYhDWr1XbaTG0p6zqKNeO9LefMbklD84RICylMiSLMkmnU+CI
-	 C9l6dyDXhurJtzLvruf9J7nlugslgxzuiSkKw2UtQdbuwZ6hPXXVhDMvw0RAyfJQ5A
-	 8tKoT0ncUKN/g==
-Date: Mon, 25 Mar 2024 11:10:55 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Dan Carpenter <dan.carpenter@linaro.org>
-Cc: Yangyu Chen <cyy@cyyself.name>, linux-riscv@lists.infradead.org,
-	Damien Le Moal <dlemoal@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-gpio@vger.kernel.org,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 05/11] riscv: Kconfig.socs: Split ARCH_CANAAN and
- SOC_CANAAN_K210
-Message-ID: <20240325-slept-collie-9cdb65f2a94c@spud>
-References: <tencent_F76EB8D731C521C18D5D7C4F8229DAA58E08@qq.com>
- <tencent_F208A26B5338C6E14AC6648730368AF0FD0A@qq.com>
- <e255a964-27bf-4eb9-8e9a-4f60d1ccd12b@moroto.mountain>
+	s=arc-20240116; t=1711365222; c=relaxed/simple;
+	bh=9PMUjn8RdkjtSyngjkr83QqyrlJOo/C/rNsA96zzs78=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FY6NTp6QA3qfQMkBxFb5wqQ2uH7Jct8xEi1RNugk9P5ewHJJSvZJ4LBR9wCEp4P7Ws23Kwyyhl1rtt1j6zA7N63ubU4nRz8F6rqYMmnkdEFzZzZEzHDXcyB/MGNWd8ljEqw+szu2+UZGCcoWkkBO7DfA8ogkw65yAA4v1kPmwcI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D/W3xGaS; arc=none smtp.client-ip=209.85.208.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-56c0652d37aso1870617a12.0
+        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 04:13:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1711365218; x=1711970018; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=GVTLPRNC8lERWtFEKllCFLlAr+4rekLqrYnvlo/C204=;
+        b=D/W3xGaS56mjL09e0oN1uOGx+N1LMr9v8wsZuywx3scZ4AaaCpkyhAEwDZvvlcX21V
+         0zpqH/KE+ajLWoLkaMV8nSsskIYBczAQDiRQnamwWcs+Ux5UsZILOkv7v/vtz2riKUFU
+         KEewvI0utUs54uYVWSCi4KX7ijavJQS0VyvdZ5vvESApUVIIL5Z5Ixfr6l6v6cIuDsKs
+         9V1dO1RbWpHHRh+sxY+DT4BtQHPmYS642u5pNcrIkkplvWIOF0/RFbZsL56NEiN5uEHx
+         VO050hG0zL2K3yw0RHc5OM703yF5Q4u27MDFHbdg7j89anHDJVn37mADuOVsxA6wb2co
+         MSZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711365218; x=1711970018;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GVTLPRNC8lERWtFEKllCFLlAr+4rekLqrYnvlo/C204=;
+        b=PKvsS8fhCElGI4wE7eua9qDHEljjDHQK0N+ge6LCGOQjbKKBEF1rD2ibjYCCQlmQzI
+         r0vWNSrj4y0TM9hGB9HqLNiMQyHr9scvtTf734RWn6iLENdY0qsGsRtY6K9S+bIAq/7p
+         4t7NWer98pHQP5wWHG4puUHpv0YxrPxsSdAXgaaiPesh3hSLIxoY8MEyCJSN3cebtAU1
+         O3CIWo+Iifg9mkwAByJOVmN0NVKNjBwNx8k811fKxZ63GtZi0v2RmVXXCEwrGvlsWzLB
+         lD0uGcC1vL4tWef1C3/Zxjg2CM05/c26VlPQ5PbYOXGvtpYLiHfns1qpcRknZrDJWqUH
+         sk3w==
+X-Forwarded-Encrypted: i=1; AJvYcCUAzUmpcPmxXP4R/LxZpBVsWPaS+23BRJTyq4YKtx7PyMNtnWU4ischchVxB02TDpC7EDndVIAFzgGIk24xHL8OvD0NxY8j5ESFtQ==
+X-Gm-Message-State: AOJu0Yz+jyVR4AgeTZap1iCFrAVPdxSvfIwjPjJH74j27KwUpzbqUb7+
+	WoeE05qevDo7oeHLrZMWAgq5lUtA95x/lM/9v/6II4eVaSlbjURxxtEP29CNBtw=
+X-Google-Smtp-Source: AGHT+IGWJgUWwiyuSJJARP08SDpf9eX4VrEW4YkuyG/NTERYUB5N6tRJO3ciAhp4KXQS5nhmrR1zAA==
+X-Received: by 2002:a17:907:9804:b0:a49:833d:a9ad with SMTP id ji4-20020a170907980400b00a49833da9admr2666831ejc.38.1711365218577;
+        Mon, 25 Mar 2024 04:13:38 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.44])
+        by smtp.gmail.com with ESMTPSA id h10-20020a170906590a00b00a46196a7faesm2943993ejq.57.2024.03.25.04.13.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Mar 2024 04:13:38 -0700 (PDT)
+Message-ID: <1d9f160f-e155-4d2b-b598-d1dc76e49110@linaro.org>
+Date: Mon, 25 Mar 2024 12:13:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="wGBS4mUdIPIRsN3V"
-Content-Disposition: inline
-In-Reply-To: <e255a964-27bf-4eb9-8e9a-4f60d1ccd12b@moroto.mountain>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/7] ARM: dts: samsung: exynos5433: specify the SPI
+ FIFO depth
+To: Tudor Ambarus <tudor.ambarus@linaro.org>,
+ krzysztof.kozlowski+dt@linaro.org, robh@kernel.org, conor+dt@kernel.org
+Cc: alim.akhtar@samsung.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, broonie@kernel.org, andi.shyti@kernel.org,
+ semen.protsenko@linaro.org, kernel-team@android.com,
+ willmcvicker@google.com, andre.draszik@linaro.org, peter.griffin@linaro.org
+References: <20240216140449.2564625-1-tudor.ambarus@linaro.org>
+ <20240216140449.2564625-6-tudor.ambarus@linaro.org>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240216140449.2564625-6-tudor.ambarus@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 16/02/2024 15:04, Tudor Ambarus wrote:
+> Up to now the SPI alias was used as an index into an array defined in
+> the SPI driver to determine the SPI FIFO depthj Drop the dependency on
+> the SPI alias and specify the SPI FIFO depth directly into the SPI node.
+> 
+> The FIFO depth were determined based on the SPI aliases that are defined
+> in exynos5433-tm2-common.dtsi:
+> 	spi0 = &spi_0;
+> 	spi1 = &spi_1;
+> 	spi2 = &spi_2;
+> 	spi3 = &spi_3;
+> 	spi4 = &spi_4;
+> spi-s3c64xx.c driver defines the following fifo_lvl_mask for the
+> "samsung,exynos5433-spi" compatible:
+> 	.fifo_lvl_mask  = { 0x1ff, 0x7f, 0x7f, 0x7f, 0x7f, 0x1ff},
+> Thus spi{0, 4} were considered having 256 byte FIFO depths, and
+> spi{1, 2, 3} having 64 byte FIFO depths. Update device tree with these
+> FIFO depths. No functional change expected.
+> 
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+> ---
+>  arch/arm64/boot/dts/exynos/exynos5433.dtsi | 5 +++++
 
---wGBS4mUdIPIRsN3V
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This and next one has wrong subject prefix. I fixed it.
 
-On Mon, Mar 25, 2024 at 01:52:42PM +0300, Dan Carpenter wrote:
-> On Sat, Mar 23, 2024 at 08:12:17PM +0800, Yangyu Chen wrote:
-> > Since SOC_FOO should be deprecated from patch [1], and cleanup for other
-> > SoCs is already on the mailing list [2,3,4], we remove the use of
-> > SOC_CANAAN and use ARCH_CANAAN for SoCs vendored by Canaan instead from
-> > now on. And allows ARCH_CANAAN to be selected for other Canaan SoCs.
-> >=20
-> > Then, since we have Canaan Kendryte K230 with MMU now, the use of
-> > SOC_CANAAN is no longer only referred to K210. Thus, we introduce a new
-> > symbol SOC_CANAAN_K210 for any conditional code or driver selection
-> > specific to the K210, so users will not try to build some K210-specific
-> > things when MMU is enabled and see it fails to boot on K210.
-> >=20
-> > [1] https://lore.kernel.org/linux-riscv/20221121221414.109965-1-conor@k=
-ernel.org/
-> > [2] https://lore.kernel.org/linux-riscv/20240305-praying-clad-c4fbcaa7e=
-d0a@spud/
-> > [3] https://lore.kernel.org/linux-riscv/20240305-fled-undrilled-41dc0c4=
-6bb29@spud/
-> > [4] https://lore.kernel.org/linux-riscv/20240305-stress-earflap-d7ddb86=
-55a4d@spud/
-> >=20
-> > Signed-off-by: Yangyu Chen <cyy@cyyself.name>
-> > ---
-> >  arch/riscv/Kconfig.socs                        | 8 +++++---
-> >  arch/riscv/Makefile                            | 2 +-
-> >  arch/riscv/configs/nommu_k210_defconfig        | 3 ++-
-> >  arch/riscv/configs/nommu_k210_sdcard_defconfig | 3 ++-
-> >  4 files changed, 10 insertions(+), 6 deletions(-)
-> >=20
-> > diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
-> > index 623de5f8a208..5710aee456ac 100644
-> > --- a/arch/riscv/Kconfig.socs
-> > +++ b/arch/riscv/Kconfig.socs
-> > @@ -72,11 +72,13 @@ config SOC_VIRT
-> >  	  This enables support for QEMU Virt Machine.
-> > =20
-> >  config ARCH_CANAAN
-> > -	def_bool SOC_CANAAN
-> > +	bool "Canaan Kendryte SoC"
-> > +	help
-> > +	  This enables support for Canaan Kendryte SoC platform hardware.
-> > =20
-> > -config SOC_CANAAN
-> > +config SOC_CANAAN_K210
->=20
-> This breaks git bisect, right?  There are references to SOC_CANAAN that
-> are get updated later in the patch series.  You can't delete SOC_CANAAN
-> and leave the other references dangling.
+Best regards,
+Krzysztof
 
-Right. I thought that I had said to resend the patch from v5 and solicit
-acks to take it via the soc tree [1]. Splitting it out like this means you
-have to introduce a symbol that shadows the original one and then switch
-only once all references have been removed. If this series went into 6.10,
-which it should, the switch would be in 6.11. I think the chances of a
-meaningful conflict are low with the treewide swap so it should be safe
-to do.
-
-
-1 - https://lore.kernel.org/all/20240320-ideology-pasty-d3aea07cc519@spud/
-
---wGBS4mUdIPIRsN3V
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgFbvwAKCRB4tDGHoIJi
-0uSwAP95G4FiQlISuzAR9Fwa0rZx0NdUZQm9zCWUnZVjAvWBpwD/TRvaSY/ZlNhe
-Uuf98Lvqw1twNosFPzpGll8glXobsQ4=
-=Ztlu
------END PGP SIGNATURE-----
-
---wGBS4mUdIPIRsN3V--
 
