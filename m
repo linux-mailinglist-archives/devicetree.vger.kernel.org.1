@@ -1,208 +1,166 @@
-Return-Path: <devicetree+bounces-53171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AADD88B648
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 01:43:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C1D488B2A6
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 22:24:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7A151BA29F3
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 21:11:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCBBF304460
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 21:24:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCFB16FE36;
-	Mon, 25 Mar 2024 21:10:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ADFC6D1A7;
+	Mon, 25 Mar 2024 21:24:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Wk0pUGBB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GKCBNgJQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA0A45BACF;
-	Mon, 25 Mar 2024 21:10:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F8B26BFC5;
+	Mon, 25 Mar 2024 21:24:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711401020; cv=none; b=bGmQDlxAkvagSaWmTz+WtpN3wODMUzz7hQfjKh9Thz0ym70L9ymXFozvlIaKkykZfqJZAxuBJiCFMdiOyXfeLYR5zcD26qp925ytaDxtU5maEUcq4mNBu9Px3MtuJEiOCf9pKAmNMQQxnEhOU+q3/xhsIbrk8Z7uPthqRoDARZM=
+	t=1711401848; cv=none; b=gsN2/O0c1U9PeHYz71AXoHZUECjPXZRn9VLrkhqIj8gda0kaJ/ewQKCzdyqJ4l2eBmZZ+wGN3AHcIbAmL5r1sufJLpL5OI0xNLd0W5KSx52pvUzqxG3NeLswI7r3x9jF6v2ia23Z09+B15VdNUEJlm91d0fAZLHfzF6/3Mzzncs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711401020; c=relaxed/simple;
-	bh=sCh/0SN7MH569zUkTqSnKfaRS1rQLp/YzuaMSAPp7s8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=pszpKTXwMiBmv3oBHrRewIW1jzbD161bMzOLd+rk5PyJZ1K5iEIRzTT0bIuL0+iIM976AJ8yA3o2k19UfTAZ5uibPGxbkMgWZZz025Vx2ElnK/YlpywrhMqL38wuF8T+7U9krOkXrjNtcyurS/n3aieYGkHxGq3ALLxx0lBGyNA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Wk0pUGBB; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4148c73255eso3506155e9.0;
-        Mon, 25 Mar 2024 14:10:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711401017; x=1712005817; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VGEtC9VmIyJE7VU6ssd2fF9DrY93wiaDpfh+Fxx4nJA=;
-        b=Wk0pUGBBiki73om8ZqbRuAkq80hK5jNBSUN6AyaNAutU6KxHoaLj5bUai2HXXJjMld
-         2oyei/Bv9hcZL8FaJ1mcrwo78ACgTi0uV5c7cbiiXo514PmeFM/QKKAngKYiBNIX7JAt
-         /7ciSFWPcBdUy06MOgsAJ904YBLtHzG3HVEI0fH80jm8/aSh0u861QQMPxWuUrNsHpHw
-         DA/KeYdA4+cxNVPm+zHBwxCwU3PvwCCKVX0u4z7pR0s335VmoU9Hj+GX7NP63XwPIsew
-         OqQxVdlvZf++Od8W2NyvDDO+TI073Y+ZuFeL15Mpt66EnVNZ+kMTDA3fMXh6lb7I1qCe
-         8ZiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711401017; x=1712005817;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VGEtC9VmIyJE7VU6ssd2fF9DrY93wiaDpfh+Fxx4nJA=;
-        b=PVwJQEDyTGNbAUkAjJ5Y+HSta5r/ve/SSy3xFlLnf3MTNljKZ6uum3v25NL+x5/jry
-         SiHxt7tAvQz3qoR+mGL98FlqJyI42hu9PSkSTvQYvs71YogfAMKxuBwJHz5TqAoJJnbJ
-         EcsKq6xVwRu/vAEpXOyjY5tVcMkzdeF1fVNbOr8Pv/4jSOoIaqE57n1ELhCD7vfikdFV
-         3opa8O0MX2fNKn8g7d6NCKUceFnYu4HuFM8AEsEXu+2rDFG+OcTcLk5g3gkS+57qPD3S
-         gynUnTbYzKCVw9XSQUa6UZw2hjvjW+GAfX6KX9OFw+zJJU6An6kY9ifAkSttTBD1Sshi
-         bIaA==
-X-Forwarded-Encrypted: i=1; AJvYcCUeWa9IzzVyaLMuo92IAFz/JA9tdHIga8RgaDIGChxngsG+YRJsoOeOzyEMjAVXqHcg88tEbMHN/S3BypoQiBnfi6N5M6gC6DD7/igoQpID4upyxSXIyrzhf434JOv/BwRCRVuJRWXeXA==
-X-Gm-Message-State: AOJu0YxPQmQb0Oy4XiqY1qcjurH/jHDluEPIrzmQjFVZxHSoBLUSbZLd
-	HR216m089L1Ue3jI8VDjEEnK56VqMTaPoxzALSXmveGPiTd36CsH
-X-Google-Smtp-Source: AGHT+IHGroIo6ERn3UACocSiJ9WfFMGughDyjwCI0sGpKzQMBRpQryv/QV+raqs/d3JR/ZOmehBCyw==
-X-Received: by 2002:a05:600c:216:b0:413:eb74:fe46 with SMTP id 22-20020a05600c021600b00413eb74fe46mr6071381wmi.34.1711401016909;
-        Mon, 25 Mar 2024 14:10:16 -0700 (PDT)
-Received: from [127.0.1.1] (2a02-8389-41cf-e200-36af-6d49-8348-9a76.cable.dynamic.v6.surfer.at. [2a02:8389:41cf:e200:36af:6d49:8348:9a76])
-        by smtp.gmail.com with ESMTPSA id n39-20020a05600c502700b004148c3685ffsm1520768wmr.3.2024.03.25.14.10.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Mar 2024 14:10:16 -0700 (PDT)
-From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Date: Mon, 25 Mar 2024 22:10:11 +0100
-Subject: [PATCH v2 4/4] dt-bindings: rtc: nxp,lpc1788-rtc: convert to
- dtschema
+	s=arc-20240116; t=1711401848; c=relaxed/simple;
+	bh=2LGOLBNCx7l5fGnLnJy2dGw8TkN9T7q+Oy/fWlM/3bY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=AS/GIR+OJk0Chv05bUuGCip1TK6rkxc5AY09kGWi6p7B0Scbea55TqpyAD2WmTPXtY2jRU/Y56naP6ciXmqv8snj8G/MT73SCxSmRLZKT6d4Qp+YCmrOmVCwTBVBRd/SccNJdttoOcOLNoYi3YZI05ZQdRfh7YR4Om8Hc7s+2Lg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GKCBNgJQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B50E5C433C7;
+	Mon, 25 Mar 2024 21:24:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711401847;
+	bh=2LGOLBNCx7l5fGnLnJy2dGw8TkN9T7q+Oy/fWlM/3bY=;
+	h=From:To:Cc:Subject:Date:From;
+	b=GKCBNgJQzb3AwbOviieh4Yfmx7Ji/Wz5feZEaEAmK8zeGqL+8EKZ9erhxUHZtvUlN
+	 VoIwMRslNCcK+IgfN/qNT2o3C8Pz4Q/NGM2FoR1VLLFKIuSxAm0kZZlKZktxRXZM67
+	 qYFzUF97SH7LtBRufTlUf9MMdxbvKAz0ah9/B1FvWbZQxXz1d+VxKFZzOygNLUTDjG
+	 A1nvEcYYPa8LZqn2wa8McPfxAbeZbRDJm0MIEJvwMooxqndgORU72pLAq3Da7V0AfU
+	 yJI3Wa7fEPh0R3AJSW1PQAifdA4gzAmx13Q/ea557ox67ddrm/4TwcTpWOpZ+Eytlv
+	 XZaT1XTW2f+Fg==
+Received: by mercury (Postfix, from userid 1000)
+	id BE877106074E; Mon, 25 Mar 2024 22:24:04 +0100 (CET)
+From: Sebastian Reichel <sre@kernel.org>
+To: Sebastian Reichel <sre@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Sebastian Reichel <sebastian.reichel@collabora.com>
+Subject: [PATCH v6 0/1] UNI-T UTi260B support
+Date: Mon, 25 Mar 2024 22:19:53 +0100
+Message-ID: <20240325212402.150906-1-sre@kernel.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240325-rtc-yaml-v2-4-ff9f68f43dbc@gmail.com>
-References: <20240325-rtc-yaml-v2-0-ff9f68f43dbc@gmail.com>
-In-Reply-To: <20240325-rtc-yaml-v2-0-ff9f68f43dbc@gmail.com>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Baruch Siach <baruch@tkos.co.il>
-Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- Javier Carrasco <javier.carrasco.cruz@gmail.com>
-X-Mailer: b4 0.14-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1711401010; l=2986;
- i=javier.carrasco.cruz@gmail.com; s=20240312; h=from:subject:message-id;
- bh=sCh/0SN7MH569zUkTqSnKfaRS1rQLp/YzuaMSAPp7s8=;
- b=6R9l6ygvPscEyjE4CGScDoU+15JmPTtf8S09nBgY79mYNNOW8MuR1i7FbWVW6UogNFnlzdrHB
- u3FW9fWKirvCjn3A7AywBDl3Iw0u11JeqYAspyEXKUMCgx05zKSpzc0
-X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
- pk=lzSIvIzMz0JhJrzLXI0HAdPwsNPSSmEn6RbS+PTS9aQ=
+Content-Transfer-Encoding: 8bit
 
-Convert existing binding to dtschema to support validation.
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-This is a direct conversion with no additions.
+Hi,
 
-Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
----
- .../devicetree/bindings/rtc/nxp,lpc1788-rtc.txt    | 21 --------
- .../devicetree/bindings/rtc/nxp,lpc1788-rtc.yaml   | 60 ++++++++++++++++++++++
- 2 files changed, 60 insertions(+), 21 deletions(-)
+This adds adds support for the i.MX6ULL based UNI-T UTi260B thermal camera.
+The DT is based on reverse engineered information. More information about
+the device can be found in this presentation from Embedded Recipes 2023:
 
-diff --git a/Documentation/devicetree/bindings/rtc/nxp,lpc1788-rtc.txt b/Documentation/devicetree/bindings/rtc/nxp,lpc1788-rtc.txt
-deleted file mode 100644
-index 3c97bd180592..000000000000
---- a/Documentation/devicetree/bindings/rtc/nxp,lpc1788-rtc.txt
-+++ /dev/null
-@@ -1,21 +0,0 @@
--NXP LPC1788 real-time clock
--
--The LPC1788 RTC provides calendar and clock functionality
--together with periodic tick and alarm interrupt support.
--
--Required properties:
--- compatible	: must contain "nxp,lpc1788-rtc"
--- reg		: Specifies base physical address and size of the registers.
--- interrupts	: A single interrupt specifier.
--- clocks	: Must contain clock specifiers for rtc and register clock
--- clock-names	: Must contain "rtc" and "reg"
--  See ../clocks/clock-bindings.txt for details.
--
--Example:
--rtc: rtc@40046000 {
--	compatible = "nxp,lpc1788-rtc";
--	reg = <0x40046000 0x1000>;
--	interrupts = <47>;
--	clocks = <&creg_clk 0>, <&ccu1 CLK_CPU_BUS>;
--	clock-names = "rtc", "reg";
--};
-diff --git a/Documentation/devicetree/bindings/rtc/nxp,lpc1788-rtc.yaml b/Documentation/devicetree/bindings/rtc/nxp,lpc1788-rtc.yaml
-new file mode 100644
-index 000000000000..db900617f1e3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/rtc/nxp,lpc1788-rtc.yaml
-@@ -0,0 +1,60 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/rtc/nxp,lpc1788-rtc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NXP LPC1788 real-time clock
-+
-+description:
-+  The LPC1788 RTC provides calendar and clock functionality
-+  together with periodic tick and alarm interrupt support.
-+
-+maintainers:
-+  - Javier Carrasco <javier.carrasco.cruz@gmail.com>
-+
-+allOf:
-+  - $ref: rtc.yaml#
-+
-+properties:
-+  compatible:
-+    const: nxp,lpc1788-rtc
-+
-+  reg:
-+    description:
-+      Base address and length of the register region.
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: RTC clock
-+      - description: Register clock
-+
-+  clock-names:
-+    items:
-+      - const: rtc
-+      - const: reg
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - interrupts
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/lpc18xx-ccu.h>
-+
-+    rtc@40046000 {
-+        compatible = "nxp,lpc1788-rtc";
-+        reg = <0x40046000 0x1000>;
-+        clocks = <&creg_clk 0>, <&ccu1 CLK_CPU_BUS>;
-+        clock-names = "rtc", "reg";
-+        interrupts = <47>;
-+    };
+ * https://embedded-recipes.org/2023/wp-content/uploads/2023/10/Running-FOSS-on-a-Thermal-Camera-Sebastian-Reichel-compressed.pdf
+ * https://www.youtube.com/watch?v=uvObsCG-Cqo
+
+make -j4 CHECK_DTBS=y nxp/imx/imx6ull-uti260b.dtb reports no issues.
+
+I also prepared a branch with these patches (and a minimal kernel config)
+and published it here:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/sre/linux-misc.git/log/?h=uti260b
+
+Changes since PATCHv5:
+ * https://lore.kernel.org/all/20240226212740.2019837-1-sre@kernel.org/
+  - rebase to v6.9-rc1
+  - drop merged patches (all but DTS)
+
+Changes since PATCHv4:
+ * https://lore.kernel.org/all/20240224213240.1854709-1-sre@kernel.org/
+  - drop merged patches
+  - use new NXP mailing list
+  - UTi260B board DT: change patch title
+  - UTi260B board DT: fix node order
+
+Changes since PATCHv3:
+ * https://lore.kernel.org/all/20240216223654.1312880-1-sre@kernel.org/
+  - weim binding: use " instead of '
+  - weim binding: use "if: not: required: - foo" instead of "if: properties: foo: false"
+  - imx6ull-uti260b.dts: merge ecspi3_csgrp into ecspi3grp
+  - collect Reviewed-by from Krzysztof Kozlowski
+
+Changes since PATCHv2:
+ * https://lore.kernel.org/all/20240213010347.1075251-1-sre@kernel.org/
+  - drop fsl,imx-asrc YAML binding conversion (merged)
+  - collect a bunch of Reviewed-by/Acked-by tags
+  - weim DT binding: fix issue with requirements
+  - xnur-gpio -> xnur-gpios change: Improve patch long description
+
+Changes since PATCHv1:
+ * https://lore.kernel.org/all/20240210012114.489102-1-sre@kernel.org/
+  - uni-t,imx6ull-uti260b -> uni-t,uti260b
+  - add Acked-by for uni-t vendor prefix
+  - add Acked-by for HDMI audio index fix
+  - add Acked-by for LCDIF power-domain requirement drop
+  - anatop DT binding: Fixed indentation in example
+  - anatop DT binding: Described IRQs
+  - touchscreen DT binding: change tsc@ to touchscreen@ in example
+  - touchscreen DT binding: change xnur-gpio to xnur-gpios
+  - weim DT binding: drop acme,whatever example
+  - weim DT binding: use flash@ instead of nor@
+  - weim DT binding: update weim.txt reference in arcx,anybus-controller.txt
+  - weim DT binding: switch to memory-controller binding
+  - fsl,imx-asrc DT binding: fix ASoC patch subject prefix
+  - fsl,imx-asrc DT binding: add constraints
+  - add new patch fixing xnur-gpio(s) in all i.MX6UL board DT files
+  - add new patch fixing touchscreen nodename in i.MX6UL SoC DT file
+  - add new patch fixing weim nodename in all i.MX SoC DT files
+  - device DTS: use color/functions for the led
+  - device DTS: increase SPI speed
+  - device DTS: add comment for SD / eMMC node
+
+Unadressed feedback from PATCHv1:
+  - anatop phandle vs parent: technically it makes sense to just use the
+    parent, but this driver is only used by i.MX6. The current code makes
+	use of the phandle, so we cannot drop it because of backwards
+	compatibility. So I don't see a point in deprecating this property.
+  - touchscreen binding: I kept measure-delay-time and pre-charge-time
+    values in hex, since that is being used everywhere and the unit
+	is unknown. The values are directly written into HW registers and
+	the i.MX6UL TRM does not provide any hints about the unit. I do not
+	have an i.MX6UL device with a touchsreen, so I cannot test either.
+  - regulator name in DT: I did not rename the regulators to just
+    "regulator", since the nodename must be unique.
+
+Greetings,
+
+-- Sebastian
+
+Sebastian Reichel (1):
+  ARM: dts: imx: Add UNI-T UTi260B thermal camera board
+
+ arch/arm/boot/dts/nxp/imx/Makefile            |   1 +
+ arch/arm/boot/dts/nxp/imx/imx6ull-uti260b.dts | 566 ++++++++++++++++++
+ 2 files changed, 567 insertions(+)
+ create mode 100644 arch/arm/boot/dts/nxp/imx/imx6ull-uti260b.dts
 
 -- 
-2.40.1
+2.43.0
 
 
