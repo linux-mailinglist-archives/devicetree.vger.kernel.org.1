@@ -1,959 +1,659 @@
-Return-Path: <devicetree+bounces-52955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AA0088A870
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 17:10:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37DE288A855
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 17:07:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E3F2734638F
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 16:06:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A00A61F679E5
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 16:07:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C8676F066;
-	Mon, 25 Mar 2024 13:50:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0942F139CF5;
+	Mon, 25 Mar 2024 13:55:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Xv/F6qkj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a3EOWKIG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7BEB45C06
-	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 13:50:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1A5F3DABF7;
+	Mon, 25 Mar 2024 13:55:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711374614; cv=none; b=C3zTUE3eD2Kdui8lYyku35mPUzX/I8B94qNksnttMU3xUP/TNvIjYZA4DRWE8jehgLfk+yyJNcexK30QttGdfNXCaXBb2Qk0xVsCel5EC5vBwf85P11Yu/HkTcK6Z7qiZNu8tBL2EW3p9Jm7O3k66HgF4f1Yec7hdSCaou2S97c=
+	t=1711374932; cv=none; b=h11Jzd6fHByYQSIoY3j1XOGUJvExnk0ufIXrVE3E69mDqSQhUGQQLDolkaSgC3g2jcA+enLnkVVm4tz7NvGRFEcXTKHRLnPDwkkimybW/T5xVaclFR7U+r5+gPTmls+MDH9P/ac5rsSQTQeSk+zyU/5GNZYS93jGA8CYrUoPP8A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711374614; c=relaxed/simple;
-	bh=3JWWGmeLKXk0+f14K57FLKkYAqyqwjgQxA9sw2w6MRA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=QKfAyVSiPwZB3ppnAk3Xmwce1JJNKa2FEnLweTWBZQdPJsXsK4Zb0YfEReG2gClN/kUPXX8ZPpLpVOhQWmqY4ths1TB5C1o5n2GK5HBP9CRO3xLpDm5DU5LmTR3cSpPn1KRpsiHDUW/emeDd5zinyk81IouFqxmWyPPb6Kf6E6A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Xv/F6qkj; arc=none smtp.client-ip=209.85.210.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-6e6cf03a76dso1128965a34.3
-        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 06:50:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711374611; x=1711979411; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1Myxzqa3EkVTS56GMqlhd0l8iTPqf0adbaLrmdDa0/Q=;
-        b=Xv/F6qkjQppgq0bS5t+isYGhDH8D2Bp7RbFXNqwK4W6XSah56lpoxSM36XjDeUazdd
-         3YJhDmzWuwfbijQRNMpP/7P59/OdnfeNvKW4VsDir6yVoyTSaLSBPnzgS3gFFBjAs0Zu
-         s9kzUfWlBynNLHweowTAgjq/sdtYU2B5cd/awXYIw+bTbgXpkwRMHtqmvUlWxcdtRGWw
-         GuLW8p0Ocks93fdgTjxRf9bzcGagVO2tOhNLSppHmuA8S2/AHWHi18LD3ZlSkLzXJgXu
-         Vb7zwt6XZ3nls+ZGfBaT/CP9MviqNNmGXM/BAJmMS5V4uLmhgNoPKwxeviCREWFi8SNL
-         VsHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711374611; x=1711979411;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1Myxzqa3EkVTS56GMqlhd0l8iTPqf0adbaLrmdDa0/Q=;
-        b=ODmGz85tyZVZJR0iJZ/i8QIo+xKph2wTZEjYpIpaX+vAaPmxM3TMqD7fnc2WPrFTVj
-         oEI4WqRkt2s0HXKWUrCQ8I/7zpxabug2/q4xrZDNOUxm7WpV073cX67iZQq0YtG20R1d
-         +ViI5dV+zLvhQ1sYSMMiL1MumGAn5mcBHbDGFJYxDKf4aa9LZmK4Srv8XEo2bpugeHqn
-         LmiEoGfDIxokiqRAvujyk+4ivONV+m3KWPpCSn63A7smL/uQTjX0pA5tIqRRiLb4EQnt
-         RU37IHl+CwOfJ7ljnccfvaCsZlJaDheUcjoWiGuyAvQT943BVMe8CLXyldsgTWDr42Ei
-         7pbQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWzL9o/977CtyOtzaDmT0cdNRlEgkqp7GUPHD96SFA4d9DfZOdWZOps++loaRx3X6jrzCeBHK7hBKUQ5frqefUH+pegBr92mwEvUw==
-X-Gm-Message-State: AOJu0Yxvbh5avK4rkhCqlnoADhz5NDJd/0dWA9b+Ln2XXcqAM30X/LBj
-	A0qu+r1rsXcWLuxJy7++2HrKevwi9iFNoWXiaoX5lvfgD7nbsMoF
-X-Google-Smtp-Source: AGHT+IHmddrSZZB2SCJRUO3C2MC0iOFn7e2y/reQwi23NtKWTFC2Zrjz6D9vdouSjoyKsapManJtTg==
-X-Received: by 2002:a05:6830:4426:b0:6e6:e19e:387 with SMTP id q38-20020a056830442600b006e6e19e0387mr905007otv.34.1711374610727;
-        Mon, 25 Mar 2024 06:50:10 -0700 (PDT)
-Received: from localhost.localdomain ([75.28.21.198])
-        by smtp.gmail.com with ESMTPSA id z8-20020a05683010c800b006e673e2d2a3sm1118250oto.77.2024.03.25.06.50.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Mar 2024 06:50:10 -0700 (PDT)
-From: Chris Morgan <macroalpha82@gmail.com>
-To: linux-rockchip@lists.infradead.org
-Cc: dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	daniel@ffwll.ch,
-	airlied@gmail.com,
-	sam@ravnborg.org,
-	quic_jesszhan@quicinc.com,
-	neil.armstrong@linaro.org,
-	megi@xff.cz,
-	kernel@puri.sm,
-	agx@sigxcpu.org,
-	heiko@sntech.de,
-	conor+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	robh@kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH 5/5] arm64: dts: rockchip: Add GameForce Chi
-Date: Mon, 25 Mar 2024 08:49:59 -0500
-Message-Id: <20240325134959.11807-6-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240325134959.11807-1-macroalpha82@gmail.com>
-References: <20240325134959.11807-1-macroalpha82@gmail.com>
+	s=arc-20240116; t=1711374932; c=relaxed/simple;
+	bh=MkXFxr+38wn5av7v3wRZghhYyjXiCj+5YDe2axVzFDQ=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=amqmBfqJVCkoggbPqHZ4SmeslxsFpNyPaO5jvaDr1sxc/xr4TuDl/64V9gO4vad1tdKSeDRcWdLJyIFeWbQpbRa7kSPr/1PD3v1vLVnBc3LhMsx/q8LwgyUuL/iDpgd4FR6arw+AuEFRsFLwQTMtjL5Y35XjYEMr6gT5l9EPH4c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a3EOWKIG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DAFFC433F1;
+	Mon, 25 Mar 2024 13:55:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711374931;
+	bh=MkXFxr+38wn5av7v3wRZghhYyjXiCj+5YDe2axVzFDQ=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=a3EOWKIGjVSy12sY01z0j003UgNllyXG/j4Mu3ogM2Ob7fbgsiRWjw0/5bA3OUTty
+	 47amA9Tj/c4EbfJ08wECjH0TxWQtcgW54T7JDihwnDZ/mgUKgAJFoNxHFY63eZN+Eh
+	 AqMjsGQG0qDQ8y9dLXiW4Sidowcf5A1E3QIMlfHWCNxUU0j2z1RqVwbxHTSiuAxMqn
+	 EOwH4oqSF0cAYyryt4yrMHQKk9tPUfKwI0hND73aKEDwCuP60HNydXAOGHU+TMgeqB
+	 9bkNA4Bd2d62pTBHrXvrae3HdmUakU4GCbwiz37hMguJ20sIYkl3i+fi5Lq9BfMdUu
+	 COz3Atz8An1Hg==
+Date: Mon, 25 Mar 2024 08:55:30 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: Rob Herring <robh@kernel.org>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: David Plowman <david.plowman@raspberrypi.com>, 
+ linux-media@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Ray Jui <rjui@broadcom.com>, 
+ Jean-Michel Hautbois <jeanmichel.hautbois@yoseli.org>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, kernel-list@raspberrypi.com, 
+ linux-rpi-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
+ devicetree@vger.kernel.org, Scott Branden <sbranden@broadcom.com>, 
+ bcm-kernel-feedback-list@broadcom.com, 
+ Hans Verkuil <hverkuil-cisco@xs4all.nl>, Rob Herring <robh+dt@kernel.org>, 
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Naushir Patuck <naush@raspberrypi.com>
+In-Reply-To: <20240324220854.15010-1-laurent.pinchart@ideasonboard.com>
+References: <20240324220854.15010-1-laurent.pinchart@ideasonboard.com>
+Message-Id: <171137470561.3264768.17438798530055106065.robh@kernel.org>
+Subject: Re: [PATCH v7 00/15] media: Add driver for the Raspberry Pi <5
+ CSI-2 receiver
 
-From: Chris Morgan <macromorgan@hotmail.com>
 
-Add support for the GameForce Chi, which is a handheld gaming console
-from GameForce with a Rockchip RK3326 SoC. The device has a 640x480
-3.5" dual-lane DSI display, one analog joystick connected to the SoC
-SARADC controller and a second analog joystick connected to an unknown
-UART based ADC, a single SD card slot, a single USB-C port for
-charging, and onboard RTL8723BS WiFi/Bluetooth combo, multiple face
-buttons, and an array of R/G/B LEDs used for key backlighting.
+On Mon, 25 Mar 2024 00:08:36 +0200, Laurent Pinchart wrote:
+> Hello everybody,
+> 
+> This patch series adds a new driver for the BCM2835 (and derivative)
+> CCP2/CSI2 camera interface named Unicam. This IP core is found in the
+> VC4-based Raspberry Pi, namely the Pi Zero, Pi 3 and Pi 4.
+> 
+> Camera support for Raspberry Pi 4 currently relies on a downstream
+> Unicam driver that live in the Raspberry Pi kernel tree ([1]). The
+> driver uses the V4L2 API, but works around the lack of features in V4L2
+> to properly support sensor embedded data. Since the Unicam driver
+> development by Raspberry Pi, some of those features have been merged in
+> the kernel (namely the V4L2 streams API) or are being developed (namely
+> generic metadata formats and subdev internal pads), with patches posted
+> for review on the linux-media mailing list ([2]).
+> 
+> This new upstream driver is based on the downstream code, extensively
+> reworked to use the new V4L2 APIs.
+> 
+> The series is based on top of a merge of
+> 
+> - v8 of the generic metadata and internal pads, rebased on v6.9-rc1 ([3])
+> - the downstream ISP driver ported to mainline ([4])
+> 
+> For convenience, it can be found in [5]. Note that the ISP driver is
+> getting upstreamed separately.
+> 
+> The series starts with five patches that add support for streams and
+> embedded data to the imx219 driver (01/15 to 05/15). Patches 06/15 to
+> 09/15 then add the Unicam driver, with new V4L2 pixel formats (06/15 and
+> 07/15) and DT bindings (08/15) The remaining patches cover DT
+> integration (10/15 to 14/15) with a sample DT overlay for the IMX219
+> camera module (15/15).
+> 
+> The patches have been tested on a Raspberry Pi 4 using an IMX219 camera
+> module (the Raspberry Pi camera v2), with libcamera. Updates are needed
+> to libcamera to use the new V4L2 APIs, patches have been posted to [6].
+> For manual testing with media-ctl, corresponding API updates to
+> v4l-utils are available at [7].
+> 
+> The changes to the imx219 driver effectively define the interface that
+> raw sensors should expose to userspace. This needs to be documented
+> explicitly. When posting v6, I stated that I would like the series to
+> first get a review round, which will likely raise API questions. and
+> then work on the documentation. As not many API questions have been
+> raised yet, I'll give reviewers another chance :-)
+> 
+> As a summary, more work is needed, in particular documenting how to use
+> the API in raw camera sensor drivers, and implementing support for the
+> latest generic metadata API in media-ctl and v4l2-compliance. I'm
+> however happy with the unicam implementation, and I believe we're really
+> nearing completion. This series, along with the libcamera support, help
+> validating the new kernel APIs. We have in my opinion reached a point
+> where we can start converting other sensor drivers from the downstream
+> Raspberry Pi kernel to the standard APIs for embedded data, as well as
+> integrating the APIs in the Raspberry Pi 5 CFE driver.
+> 
+> [1] https://github.com/raspberrypi/linux/tree/rpi-6.1.y/drivers/media/platform/bcm2835
+> [2] https://lore.kernel.org/linux-media/20240313072516.241106-1-sakari.ailus@linux.intel.com/
+> [3] https://git.kernel.org/pub/scm/linux/kernel/git/pinchartl/linux.git/log/?h=rpi/v6.9/metadata/v8
+> [4] https://git.kernel.org/pub/scm/linux/kernel/git/pinchartl/linux.git/log/?h=rpi/v6.9/isp/v2
+> [5] https://git.kernel.org/pub/scm/linux/kernel/git/pinchartl/linux.git/log/?h=rpi/v6.9/unicam/next
+> [6] https://lists.libcamera.org/pipermail/libcamera-devel/2024-March/040711.html
+> [7] https://git.linuxtv.org/pinchartl/v4l-utils.git/log/?h=metadata
+> 
+> Here's the mandatory v4l2-compliance report. There are 5 errors, which
+> are caused by v4l2-compliance not supporting the new embedded data APIs
+> yet. This will be fixed and patches for v4l2-compliance will be
+> submitted (alongside patches to media-ctl).
+> 
+> v4l2-compliance 1.27.0-5180, 64 bits, 64-bit time_t
+> v4l2-compliance SHA: c14579f7e5f5 2024-03-01 20:29:24
+> 
+> Compliance test for unicam device /dev/media0:
+> 
+> Media Driver Info:
+> 	Driver name      : unicam
+> 	Model            : unicam
+> 	Serial           :
+> 	Bus info         : platform:fe801000.csi
+> 	Media version    : 6.8.0
+> 	Hardware revision: 0x00000000 (0)
+> 	Driver version   : 6.8.0
+> 
+> Required ioctls:
+> 	test MEDIA_IOC_DEVICE_INFO: OK
+> 	test invalid ioctls: OK
+> 
+> Allow for multiple opens:
+> 	test second /dev/media0 open: OK
+> 	test MEDIA_IOC_DEVICE_INFO: OK
+> 	test for unlimited opens: OK
+> 
+> Media Controller ioctls:
+> 	test MEDIA_IOC_G_TOPOLOGY: OK
+> 	Entities: 4 Interfaces: 4 Pads: 8 Links: 7
+> 	test MEDIA_IOC_ENUM_ENTITIES/LINKS: OK
+> 	test MEDIA_IOC_SETUP_LINK: OK
+> 
+> Total for unicam device /dev/media0: 8, Succeeded: 8, Failed: 0, Warnings: 0
+> --------------------------------------------------------------------------------
+> Compliance test for unicam device /dev/video0:
+> 
+> Driver Info:
+> 	Driver name      : unicam
+> 	Card type        : unicam
+> 	Bus info         : platform:fe801000.csi
+> 	Driver version   : 6.8.0
+> 	Capabilities     : 0xa4a00001
+> 		Video Capture
+> 		Metadata Capture
+> 		I/O MC
+> 		Streaming
+> 		Extended Pix Format
+> 		Device Capabilities
+> 	Device Caps      : 0x24200001
+> 		Video Capture
+> 		I/O MC
+> 		Streaming
+> 		Extended Pix Format
+> Media Driver Info:
+> 	Driver name      : unicam
+> 	Model            : unicam
+> 	Serial           :
+> 	Bus info         : platform:fe801000.csi
+> 	Media version    : 6.8.0
+> 	Hardware revision: 0x00000000 (0)
+> 	Driver version   : 6.8.0
+> Interface Info:
+> 	ID               : 0x0300000d
+> 	Type             : V4L Video
+> Entity Info:
+> 	ID               : 0x0000000b (11)
+> 	Name             : unicam-image
+> 	Function         : V4L2 I/O
+> 	Flags            : default
+> 	Pad 0x0100000c   : 0: Sink
+> 	  Link 0x0200000f: from remote pad 0x1000003 of entity 'unicam' (Video Interface Bridge): Data, Enabled, Immutable
+> 
+> Required ioctls:
+> 	test MC information (see 'Media Driver Info' above): OK
+> 	test VIDIOC_QUERYCAP: OK
+> 	test invalid ioctls: OK
+> 
+> Allow for multiple opens:
+> 	test second /dev/video0 open: OK
+> 	test VIDIOC_QUERYCAP: OK
+> 	test VIDIOC_G/S_PRIORITY: OK
+> 	test for unlimited opens: OK
+> 
+> Debug ioctls:
+> 	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+> 	test VIDIOC_LOG_STATUS: OK
+> 
+> Input ioctls:
+> 	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMINPUT: OK
+> 	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+> 	Inputs: 1 Audio Inputs: 0 Tuners: 0
+> 
+> Output ioctls:
+> 	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+> 	Outputs: 0 Audio Outputs: 0 Modulators: 0
+> 
+> Input/Output configuration ioctls:
+> 	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+> 	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+> 	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+> 	test VIDIOC_G/S_EDID: OK (Not Supported)
+> 
+> Control ioctls (Input 0):
+> 	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+> 	test VIDIOC_QUERYCTRL: OK (Not Supported)
+> 	test VIDIOC_G/S_CTRL: OK (Not Supported)
+> 	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+> 	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+> 	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+> 	Standard Controls: 0 Private Controls: 0
+> 
+> Format ioctls (Input 0):
+> 	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+> 	test VIDIOC_G/S_PARM: OK (Not Supported)
+> 	test VIDIOC_G_FBUF: OK (Not Supported)
+> 	test VIDIOC_G_FMT: OK
+> 	test VIDIOC_TRY_FMT: OK
+> 	test VIDIOC_S_FMT: OK
+> 	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+> 	test Cropping: OK (Not Supported)
+> 	test Composing: OK (Not Supported)
+> 	test Scaling: OK
+> 
+> Codec ioctls (Input 0):
+> 	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+> 	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+> 	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+> 
+> Buffer ioctls (Input 0):
+> 	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+> 	test CREATE_BUFS maximum buffers: OK
+> 	test VIDIOC_EXPBUF: OK
+> 	test Requests: OK (Not Supported)
+> 
+> Total for unicam device /dev/video0: 47, Succeeded: 47, Failed: 0, Warnings: 0
+> --------------------------------------------------------------------------------
+> Compliance test for unicam device /dev/video1:
+> 
+> Driver Info:
+> 	Driver name      : unicam
+> 	Card type        : unicam
+> 	Bus info         : platform:fe801000.csi
+> 	Driver version   : 6.8.0
+> 	Capabilities     : 0xa4a00001
+> 		Video Capture
+> 		Metadata Capture
+> 		I/O MC
+> 		Streaming
+> 		Extended Pix Format
+> 		Device Capabilities
+> 	Device Caps      : 0x24a00000
+> 		Metadata Capture
+> 		I/O MC
+> 		Streaming
+> 		Extended Pix Format
+> Media Driver Info:
+> 	Driver name      : unicam
+> 	Model            : unicam
+> 	Serial           :
+> 	Bus info         : platform:fe801000.csi
+> 	Media version    : 6.8.0
+> 	Hardware revision: 0x00000000 (0)
+> 	Driver version   : 6.8.0
+> Interface Info:
+> 	ID               : 0x03000013
+> 	Type             : V4L Video
+> Entity Info:
+> 	ID               : 0x00000011 (17)
+> 	Name             : unicam-embedded
+> 	Function         : V4L2 I/O
+> 	Pad 0x01000012   : 0: Sink
+> 	  Link 0x02000015: from remote pad 0x1000004 of entity 'unicam' (Video Interface Bridge): Data, Enabled, Immutable
+> 
+> Required ioctls:
+> 	test MC information (see 'Media Driver Info' above): OK
+> 	test VIDIOC_QUERYCAP: OK
+> 	test invalid ioctls: OK
+> 
+> Allow for multiple opens:
+> 	test second /dev/video1 open: OK
+> 	test VIDIOC_QUERYCAP: OK
+> 	test VIDIOC_G/S_PRIORITY: OK
+> 	test for unlimited opens: OK
+> 
+> Debug ioctls:
+> 	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+> 	test VIDIOC_LOG_STATUS: OK
+> 
+> Input ioctls:
+> 	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMINPUT: OK
+> 	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+> 	Inputs: 1 Audio Inputs: 0 Tuners: 0
+> 
+> Output ioctls:
+> 	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+> 	Outputs: 0 Audio Outputs: 0 Modulators: 0
+> 
+> Input/Output configuration ioctls:
+> 	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+> 	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+> 	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+> 	test VIDIOC_G/S_EDID: OK (Not Supported)
+> 
+> Control ioctls (Input 0):
+> 	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+> 	test VIDIOC_QUERYCTRL: OK (Not Supported)
+> 	test VIDIOC_G/S_CTRL: OK (Not Supported)
+> 	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+> 	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+> 	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+> 	Standard Controls: 0 Private Controls: 0
+> 
+> Format ioctls (Input 0):
+> 	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+> 	test VIDIOC_G/S_PARM: OK (Not Supported)
+> 	test VIDIOC_G_FBUF: OK (Not Supported)
+> 	test VIDIOC_G_FMT: OK
+> 		fail: v4l2-test-formats.cpp(590): dataformat 00003ff8 (x?) for buftype 13 not reported by ENUM_FMT
+> 	test VIDIOC_TRY_FMT: FAIL
+> 	test VIDIOC_S_FMT: OK
+> 	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+> 	test Cropping: OK (Not Supported)
+> 	test Composing: OK (Not Supported)
+> 	test Scaling: OK (Not Supported)
+> 
+> Codec ioctls (Input 0):
+> 	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+> 	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+> 	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+> 
+> Buffer ioctls (Input 0):
+> 	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+> 	test CREATE_BUFS maximum buffers: OK
+> 	test VIDIOC_EXPBUF: OK
+> 	test Requests: OK (Not Supported)
+> 
+> Total for unicam device /dev/video1: 47, Succeeded: 46, Failed: 1, Warnings: 0
+> --------------------------------------------------------------------------------
+> Compliance test for unicam device /dev/v4l-subdev0:
+> 
+> Driver Info:
+> 	Driver version   : 6.8.0
+> 	Capabilities     : 0x00000002
+> 		Streams Support
+> 	Client Capabilities: 0x0000000000000003
+> streams interval-uses-which Media Driver Info:
+> 	Driver name      : unicam
+> 	Model            : unicam
+> 	Serial           :
+> 	Bus info         : platform:fe801000.csi
+> 	Media version    : 6.8.0
+> 	Hardware revision: 0x00000000 (0)
+> 	Driver version   : 6.8.0
+> Interface Info:
+> 	ID               : 0x03000017
+> 	Type             : V4L Sub-Device
+> Entity Info:
+> 	ID               : 0x00000001 (1)
+> 	Name             : unicam
+> 	Function         : Video Interface Bridge
+> 	Pad 0x01000002   : 0: Sink
+> 	  Link 0x02000009: from remote pad 0x1000006 of entity 'imx219 5-0010' (Camera Sensor): Data, Enabled, Immutable
+> 	Pad 0x01000003   : 1: Source
+> 	  Link 0x0200000f: to remote pad 0x100000c of entity 'unicam-image' (V4L2 I/O): Data, Enabled, Immutable
+> 	Pad 0x01000004   : 2: Source
+> 	  Link 0x02000015: to remote pad 0x1000012 of entity 'unicam-embedded' (V4L2 I/O): Data, Enabled, Immutable
+> 
+> Required ioctls:
+> 	test MC information (see 'Media Driver Info' above): OK
+> 	test VIDIOC_SUDBEV_QUERYCAP: OK
+> 	test invalid ioctls: OK
+> 
+> Allow for multiple opens:
+> 	test second /dev/v4l-subdev0 open: OK
+> 	test VIDIOC_SUBDEV_QUERYCAP: OK
+> 	test for unlimited opens: OK
+> 
+> Debug ioctls:
+> 	test VIDIOC_LOG_STATUS: OK (Not Supported)
+> 
+> Input ioctls:
+> 	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+> 	Inputs: 0 Audio Inputs: 0 Tuners: 0
+> 
+> Output ioctls:
+> 	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+> 	Outputs: 0 Audio Outputs: 0 Modulators: 0
+> 
+> Input/Output configuration ioctls:
+> 	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+> 	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+> 	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+> 	test VIDIOC_G/S_EDID: OK (Not Supported)
+> 
+> Sub-Device routing ioctls:
+> 		fail: v4l2-test-subdevs.cpp(631): !(source->flags & MEDIA_PAD_FL_SOURCE)
+> 	test Try VIDIOC_SUBDEV_G_ROUTING/VIDIOC_SUBDEV_S_ROUTING: FAIL
+> 		fail: v4l2-test-subdevs.cpp(631): !(source->flags & MEDIA_PAD_FL_SOURCE)
+> 	test Active VIDIOC_SUBDEV_G_ROUTING/VIDIOC_SUBDEV_S_ROUTING: FAIL
+> 
+> Sub-Device ioctls (Sink Pad 0):
+> 
+> Sub-Device ioctls (Source Pad 1):
+> 
+> Sub-Device ioctls (Source Pad 2):
+> 
+> Control ioctls:
+> 	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+> 	test VIDIOC_QUERYCTRL: OK (Not Supported)
+> 	test VIDIOC_G/S_CTRL: OK (Not Supported)
+> 	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+> 	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+> 	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+> 	Standard Controls: 0 Private Controls: 0
+> 
+> Format ioctls:
+> 	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+> 	test VIDIOC_G/S_PARM: OK (Not Supported)
+> 	test VIDIOC_G_FBUF: OK (Not Supported)
+> 	test VIDIOC_G_FMT: OK (Not Supported)
+> 	test VIDIOC_TRY_FMT: OK (Not Supported)
+> 	test VIDIOC_S_FMT: OK (Not Supported)
+> 	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+> 	test Cropping: OK (Not Supported)
+> 	test Composing: OK (Not Supported)
+> 	test Scaling: OK (Not Supported)
+> 
+> Codec ioctls:
+> 	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+> 	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+> 	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+> 
+> Buffer ioctls:
+> 	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+> 	test CREATE_BUFS maximum buffers: OK
+> 	test VIDIOC_EXPBUF: OK (Not Supported)
+> 	test Requests: OK (Not Supported)
+> 
+> Total for unicam device /dev/v4l-subdev0: 47, Succeeded: 45, Failed: 2, Warnings: 0
+> --------------------------------------------------------------------------------
+> Compliance test for unicam device /dev/v4l-subdev1:
+> 
+> Driver Info:
+> 	Driver version   : 6.8.0
+> 	Capabilities     : 0x00000002
+> 		Streams Support
+> 	Client Capabilities: 0x0000000000000003
+> streams interval-uses-which Media Driver Info:
+> 	Driver name      : unicam
+> 	Model            : unicam
+> 	Serial           :
+> 	Bus info         : platform:fe801000.csi
+> 	Media version    : 6.8.0
+> 	Hardware revision: 0x00000000 (0)
+> 	Driver version   : 6.8.0
+> Interface Info:
+> 	ID               : 0x03000019
+> 	Type             : V4L Sub-Device
+> Entity Info:
+> 	ID               : 0x00000005 (5)
+> 	Name             : imx219 5-0010
+> 	Function         : Camera Sensor
+> 	Pad 0x01000006   : 0: Source
+> 	  Link 0x02000009: to remote pad 0x1000002 of entity 'unicam' (Video Interface Bridge): Data, Enabled, Immutable
+> 	Pad 0x01000007   : 1: Sink, 00000008
+> 	Pad 0x01000008   : 2: Sink, 00000008
+> 
+> Required ioctls:
+> 	test MC information (see 'Media Driver Info' above): OK
+> 	test VIDIOC_SUDBEV_QUERYCAP: OK
+> 	test invalid ioctls: OK
+> 
+> Allow for multiple opens:
+> 	test second /dev/v4l-subdev1 open: OK
+> 	test VIDIOC_SUBDEV_QUERYCAP: OK
+> 	test for unlimited opens: OK
+> 
+> Debug ioctls:
+> 	test VIDIOC_LOG_STATUS: OK (Not Supported)
+> 
+> Input ioctls:
+> 	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+> 	Inputs: 0 Audio Inputs: 0 Tuners: 0
+> 
+> Output ioctls:
+> 	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 
+> Dave Stevenson (2):
+>   dt-bindings: media: Add bindings for bcm2835-unicam
+>   media: bcm2835-unicam: Add support for CCP2/CSI2 camera interface
+> 
+> Jean-Michel Hautbois (3):
+>   media: v4l: Add V4L2-PIX-FMT-Y12P format
+>   media: v4l: Add V4L2-PIX-FMT-Y14P format
+>   ARM: dts: bcm2835: Add Unicam CSI nodes
+> 
+> Laurent Pinchart (8):
+>   media: i2c: imx219: Inline imx219_update_pad_format() in its caller
+>   media: i2c: imx219: Add internal image sink pad
+>   media: i2c: imx219: Report internal routes to userspace
+>   media: i2c: imx219: Report streams using frame descriptors
+>   media: i2c: imx219: Add embedded data support
+>   ARM: dts: bcm2835-rpi: Move firmware-clocks from bcm2711 to bcm2835
+>   ARM: dts: bcm2711-rpi-4-b: Add CAM1 regulator
+>   [DNI] arm64: dts: broadcom: Add overlay for Raspberry Pi 4B IMX219
+>     camera
+> 
+> Uwe Kleine-König (2):
+>   ARM: dts: bcm2711-rpi: Add pinctrl-based multiplexing for I2C0
+>   ARM: dts: bcm2711-rpi-cm4-io: Add RTC on I2C0
+> 
+>  .../bindings/media/brcm,bcm2835-unicam.yaml   |  117 +
+>  .../media/v4l/pixfmt-yuv-luma.rst             |   48 +
+>  MAINTAINERS                                   |    7 +
+>  .../arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts |    7 +
+>  .../boot/dts/broadcom/bcm2711-rpi-cm4-io.dts  |    9 +
+>  arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi   |   34 +-
+>  arch/arm/boot/dts/broadcom/bcm2711.dtsi       |    8 +
+>  arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi   |   19 +
+>  arch/arm/boot/dts/broadcom/bcm283x.dtsi       |   24 +
+>  arch/arm64/boot/dts/broadcom/Makefile         |    2 +
+>  .../dts/broadcom/bcm2711-rpi-4-b-imx219.dtso  |   65 +
+>  drivers/media/i2c/imx219.c                    |  420 ++-
+>  drivers/media/platform/Kconfig                |    1 +
+>  drivers/media/platform/Makefile               |    1 +
+>  drivers/media/platform/broadcom/Kconfig       |   23 +
+>  drivers/media/platform/broadcom/Makefile      |    3 +
+>  .../platform/broadcom/bcm2835-unicam-regs.h   |  255 ++
+>  .../media/platform/broadcom/bcm2835-unicam.c  | 2667 +++++++++++++++++
+>  drivers/media/v4l2-core/v4l2-ioctl.c          |    2 +
+>  include/uapi/linux/videodev2.h                |    2 +
+>  20 files changed, 3639 insertions(+), 75 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml
+>  create mode 100644 arch/arm64/boot/dts/broadcom/bcm2711-rpi-4-b-imx219.dtso
+>  create mode 100644 drivers/media/platform/broadcom/Kconfig
+>  create mode 100644 drivers/media/platform/broadcom/Makefile
+>  create mode 100644 drivers/media/platform/broadcom/bcm2835-unicam-regs.h
+>  create mode 100644 drivers/media/platform/broadcom/bcm2835-unicam.c
+> 
+> 
+> base-commit: e21180b6d61e9b4ee15e2047b55b14b306465d15
+> --
+> Regards,
+> 
+> Laurent Pinchart
+> 
+> 
 
-The vendor was unable to provide details on the unknown UART based
-ADC which I have documented via a comment in the device-tree, and
-the vendor also does not have available Bluetooth firmware (the BT
-was not previously working on the vendor's OS, this has also been
-noted in a device-tree comment).
 
-Aside from the right analog ADC joystick and bluetooth all hardware has
-been tested and is working as expected.
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
----
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../dts/rockchip/rk3326-gameforce-chi.dts     | 811 ++++++++++++++++++
- 2 files changed, 812 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3326-gameforce-chi.dts
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index f906a868b71a..584ee35da180 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -10,6 +10,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3308-rock-pi-s.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3318-a95x-z2.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3326-anbernic-rg351m.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3326-anbernic-rg351v.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3326-gameforce-chi.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3326-odroid-go2.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3326-odroid-go2-v11.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3326-odroid-go3.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3326-gameforce-chi.dts b/arch/arm64/boot/dts/rockchip/rk3326-gameforce-chi.dts
-new file mode 100644
-index 000000000000..f7a9e763fba0
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3326-gameforce-chi.dts
-@@ -0,0 +1,811 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2024 Chris Morgan <macromorgan@hotmail.com>
-+ */
-+
-+/dts-v1/;
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/pinctrl/rockchip.h>
-+#include "rk3326.dtsi"
-+
-+/ {
-+	model = "GameForce Chi";
-+
-+	compatible = "gameforce,chi", "rockchip,rk3326";
-+
-+	chassis-type = "handset";
-+
-+	aliases {
-+		mmc0 = &sdmmc;
-+		mmc1 = &sdio;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial2:115200n8";
-+	};
-+
-+	adc_joystick: adc-joystick {
-+		compatible = "adc-joystick";
-+		io-channels = <&saradc 0>,
-+			      <&saradc 1>;
-+		poll-interval = <100>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		axis@0 {
-+			reg = <0>;
-+			abs-flat = <10>;
-+			abs-fuzz = <10>;
-+			abs-range = <850 175>;
-+			linux,code = <ABS_Y>;
-+		};
-+
-+		axis@1 {
-+			reg = <1>;
-+			abs-flat = <10>;
-+			abs-fuzz = <10>;
-+			abs-range = <800 190>;
-+			linux,code = <ABS_X>;
-+		};
-+	};
-+
-+	adc_keys: adc-keys {
-+		compatible = "adc-keys";
-+		io-channels = <&saradc 2>;
-+		io-channel-names = "buttons";
-+		keyup-threshold-microvolt = <1800000>;
-+		poll-interval = <60>;
-+
-+		button-1 {
-+			label = "HAPPY1";
-+			linux,code = <BTN_TRIGGER_HAPPY1>;
-+			press-threshold-microvolt = <15000>;
-+		};
-+
-+		button-2 {
-+			label = "HAPPY2";
-+			linux,code = <BTN_TRIGGER_HAPPY2>;
-+			press-threshold-microvolt = <300000>;
-+		};
-+	};
-+
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		power-supply = <&vcc_bl>;
-+		pwms = <&pwm1 0 25000 0>;
-+	};
-+
-+	battery: battery {
-+		compatible = "simple-battery";
-+		charge-full-design-microamp-hours = <3000000>;
-+		charge-term-current-microamp = <300000>;
-+		constant-charge-current-max-microamp = <1500000>;
-+		constant-charge-voltage-max-microvolt = <4200000>;
-+		factory-internal-resistance-micro-ohms = <180000>;
-+		voltage-max-design-microvolt = <4250000>;
-+		voltage-min-design-microvolt = <3400000>;
-+
-+		ocv-capacity-celsius = <20>;
-+		ocv-capacity-table-0 =  <4106000 100>, <4071000 95>, <4018000 90>, <3975000 85>,
-+					<3946000 80>, <3908000 75>, <3877000 70>, <3853000 65>,
-+					<3834000 60>, <3816000 55>, <3802000 50>, <3788000 45>,
-+					<3774000 40>, <3760000 35>, <3748000 30>, <3735000 25>,
-+					<3718000 20>, <3697000 15>, <3685000 10>, <3625000 5>,
-+					<3400000 0>;
-+	};
-+
-+	gpio_leds: gpio-leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&led_pins>;
-+
-+		red_led: led-0 {
-+			color = <LED_COLOR_ID_RED>;
-+			gpios = <&gpio3 RK_PC4 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		green_led: led-1 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			gpios = <&gpio3 RK_PC5 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		blue_led: led-2 {
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&gpio3 RK_PC6 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		white_led: led-3 {
-+			color = <LED_COLOR_ID_WHITE>;
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&gpio3 RK_PB3 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		chg_led: led-4 {
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_CHARGING;
-+			gpios = <&gpio3 RK_PB2 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+	};
-+
-+	gpio_keys: gpio-keys {
-+		compatible = "gpio-keys";
-+		pinctrl-0 = <&btn_pins_ctrl>;
-+		pinctrl-names = "default";
-+
-+		button-a {
-+			gpios = <&gpio2 RK_PB0 GPIO_ACTIVE_LOW>;
-+			label = "EAST";
-+			linux,code = <BTN_EAST>;
-+		};
-+
-+		button-b {
-+			gpios = <&gpio2 RK_PB1 GPIO_ACTIVE_LOW>;
-+			label = "SOUTH";
-+			linux,code = <BTN_SOUTH>;
-+		};
-+
-+		button-down {
-+			gpios = <&gpio1 RK_PB5 GPIO_ACTIVE_LOW>;
-+			label = "DPAD-DOWN";
-+			linux,code = <BTN_DPAD_DOWN>;
-+		};
-+
-+		button-home {
-+			gpios = <&gpio2 RK_PA0 GPIO_ACTIVE_LOW>;
-+			label = "HOME";
-+			linux,code = <BTN_MODE>;
-+		};
-+
-+		button-l1 {
-+			gpios = <&gpio2 RK_PA6 GPIO_ACTIVE_LOW>;
-+			label = "TL";
-+			linux,code = <BTN_TL>;
-+		};
-+
-+		button-l2 {
-+			gpios = <&gpio2 RK_PA4 GPIO_ACTIVE_LOW>;
-+			label = "TL2";
-+			linux,code = <BTN_TL2>;
-+		};
-+
-+		button-left {
-+			gpios = <&gpio1 RK_PB6 GPIO_ACTIVE_LOW>;
-+			label = "DPAD-LEFT";
-+			linux,code = <BTN_DPAD_LEFT>;
-+		};
-+
-+		button-r1 {
-+			gpios = <&gpio2 RK_PA7 GPIO_ACTIVE_LOW>;
-+			label = "TR";
-+			linux,code = <BTN_TR>;
-+		};
-+
-+		button-r2 {
-+			gpios = <&gpio2 RK_PA5 GPIO_ACTIVE_LOW>;
-+			label = "TR2";
-+			linux,code = <BTN_TR2>;
-+		};
-+
-+		button-right {
-+			gpios = <&gpio1 RK_PB7 GPIO_ACTIVE_LOW>;
-+			label = "DPAD-RIGHT";
-+			linux,code = <BTN_DPAD_RIGHT>;
-+		};
-+
-+		button-select {
-+			gpios = <&gpio2 RK_PA3 GPIO_ACTIVE_LOW>;
-+			label = "SELECT";
-+			linux,code = <BTN_SELECT>;
-+		};
-+
-+		button-start {
-+			gpios = <&gpio2 RK_PA2 GPIO_ACTIVE_LOW>;
-+			label = "START";
-+			linux,code = <BTN_START>;
-+		};
-+
-+		button-up {
-+			gpios = <&gpio1 RK_PB4 GPIO_ACTIVE_LOW>;
-+			label = "DPAD-UP";
-+			linux,code = <BTN_DPAD_UP>;
-+		};
-+
-+		button-x {
-+			gpios = <&gpio2 RK_PB3 GPIO_ACTIVE_LOW>;
-+			label = "NORTH";
-+			linux,code = <BTN_NORTH>;
-+		};
-+
-+		button-y {
-+			gpios = <&gpio2 RK_PB2 GPIO_ACTIVE_LOW>;
-+			label = "WEST";
-+			linux,code = <BTN_WEST>;
-+		};
-+	};
-+
-+	multi-led {
-+		compatible = "leds-group-multicolor";
-+		color = <LED_COLOR_ID_RGB>;
-+		function = LED_FUNCTION_KBD_BACKLIGHT;
-+		leds = <&red_led>, <&green_led>, <&blue_led>;
-+	};
-+
-+	sound {
-+		compatible = "simple-audio-card";
-+		pinctrl-0 = <&hp_det>;
-+		pinctrl-names = "default";
-+		simple-audio-card,name = "rk817_ext";
-+		simple-audio-card,aux-devs = <&spk_amp>;
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,hp-det-gpio = <&gpio2 RK_PC6 GPIO_ACTIVE_HIGH>;
-+		simple-audio-card,mclk-fs = <256>;
-+		simple-audio-card,widgets =
-+			"Microphone", "Mic Jack",
-+			"Headphone", "Headphones",
-+			"Speaker", "Internal Speakers";
-+		simple-audio-card,routing =
-+			"MICL", "Mic Jack",
-+			"Headphones", "HPOL",
-+			"Headphones", "HPOR",
-+			"Internal Speakers", "Speaker Amp OUTL",
-+			"Internal Speakers", "Speaker Amp OUTR",
-+			"Speaker Amp INL", "HPOL",
-+			"Speaker Amp INR", "HPOR";
-+		simple-audio-card,pin-switches = "Internal Speakers";
-+
-+		simple-audio-card,codec {
-+			sound-dai = <&rk817>;
-+		};
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&i2s1_2ch>;
-+		};
-+	};
-+
-+	spk_amp: audio-amplifier {
-+		compatible = "simple-audio-amplifier";
-+		enable-gpios = <&gpio2 RK_PB5 GPIO_ACTIVE_HIGH>;
-+		pinctrl-0 = <&spk_amp_enable_h>;
-+		pinctrl-names = "default";
-+		sound-name-prefix = "Speaker Amp";
-+	};
-+
-+	sdio_pwrseq: sdio-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		clocks = <&rk817 1>;
-+		clock-names = "ext_clock";
-+		pinctrl-0 = <&wifi_enable_h>;
-+		pinctrl-names = "default";
-+		post-power-on-delay-ms = <200>;
-+		reset-gpios = <&gpio0 RK_PA2 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	vccsys: vccsys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v8_sys";
-+		regulator-always-on;
-+		regulator-min-microvolt = <3800000>;
-+		regulator-max-microvolt = <3800000>;
-+	};
-+
-+	vibrator_left: pwm-vibrator-l {
-+		compatible = "pwm-vibrator";
-+		pwm-names = "enable";
-+		pwms = <&pwm4 0 25000 0>;
-+	};
-+
-+	vibrator_right: pwm-vibrator-r {
-+		compatible = "pwm-vibrator";
-+		pwm-names = "enable";
-+		pwms = <&pwm5 0 25000 0>;
-+	};
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&vdd_arm>;
-+};
-+
-+&cpu1 {
-+	cpu-supply = <&vdd_arm>;
-+};
-+
-+&cpu2 {
-+	cpu-supply = <&vdd_arm>;
-+};
-+
-+&cpu3 {
-+	cpu-supply = <&vdd_arm>;
-+};
-+
-+&display_subsystem {
-+	status = "okay";
-+};
-+
-+&dsi {
-+	status = "okay";
-+
-+	ports {
-+		mipi_out: port@1 {
-+			reg = <1>;
-+
-+			mipi_out_panel: endpoint {
-+				remote-endpoint = <&mipi_in_panel>;
-+			};
-+		};
-+	};
-+
-+	internal_display: panel@0 {
-+		reg = <0>;
-+		compatible = "gameforce,chi-panel";
-+		backlight = <&backlight>;
-+		iovcc-supply = <&vcc_lcd>;
-+		vcc-supply = <&vcc_lcd>;
-+		reset-gpios = <&gpio3 RK_PA0 GPIO_ACTIVE_LOW>;
-+
-+		port {
-+			mipi_in_panel: endpoint {
-+				remote-endpoint = <&mipi_out_panel>;
-+			};
-+		};
-+	};
-+};
-+
-+&dsi_dphy {
-+	status = "okay";
-+};
-+
-+&gpu {
-+	mali-supply = <&vdd_logic>;
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	clock-frequency = <400000>;
-+	i2c-scl-falling-time-ns = <16>;
-+	i2c-scl-rising-time-ns = <280>;
-+	status = "okay";
-+
-+	rk817: pmic@20 {
-+		compatible = "rockchip,rk817";
-+		reg = <0x20>;
-+		#clock-cells = <1>;
-+		clock-names = "mclk";
-+		clock-output-names = "rk808-clkout1", "xin32k";
-+		clocks = <&cru SCLK_I2S1_OUT>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PC1 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-0 = <&pmic_int>, <&i2s1_2ch_mclk>;
-+		pinctrl-names = "default";
-+		#sound-dai-cells = <0>;
-+		system-power-controller;
-+		wakeup-source;
-+
-+		vcc1-supply = <&vccsys>;
-+		vcc2-supply = <&vccsys>;
-+		vcc3-supply = <&vccsys>;
-+		vcc4-supply = <&vccsys>;
-+		vcc5-supply = <&vccsys>;
-+		vcc6-supply = <&vccsys>;
-+		vcc7-supply = <&vcc_3v0>;
-+		vcc8-supply = <&vccsys>;
-+		vcc9-supply = <&dcdc_boost>;
-+
-+		regulators {
-+			vdd_logic: DCDC_REG1 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-max-microvolt = <1150000>;
-+				regulator-min-microvolt = <950000>;
-+				regulator-name = "vdd_logic";
-+				regulator-ramp-delay = <6001>;
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <950000>;
-+				};
-+			};
-+
-+			vdd_arm: DCDC_REG2 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-min-microvolt = <950000>;
-+				regulator-name = "vdd_arm";
-+				regulator-ramp-delay = <6001>;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+					regulator-suspend-microvolt = <950000>;
-+				};
-+			};
-+
-+			vcc_ddr: DCDC_REG3 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-name = "vcc_ddr";
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+
-+			vcc_3v0: DCDC_REG4 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-max-microvolt = <3000000>;
-+				regulator-min-microvolt = <3000000>;
-+				regulator-name = "vcc_3v0";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+					regulator-suspend-microvolt = <3000000>;
-+				};
-+			};
-+
-+			vcc_1v8: LDO_REG2 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-name = "vcc_1v8";
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1800000>;
-+				};
-+			};
-+
-+			vdd_1v0: LDO_REG3 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-max-microvolt = <1000000>;
-+				regulator-min-microvolt = <1000000>;
-+				regulator-name = "vdd_1v0";
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1000000>;
-+				};
-+			};
-+
-+			vcc_3v0_pmu: LDO_REG4 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-max-microvolt = <3000000>;
-+				regulator-min-microvolt = <3000000>;
-+				regulator-name = "vcc_3v0_pmu";
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <3000000>;
-+				};
-+			};
-+
-+			vccio_sd: LDO_REG5 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-name = "vccio_sd";
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <3300000>;
-+				};
-+			};
-+
-+			vcc_sd: LDO_REG6 {
-+				regulator-boot-on;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-name = "vcc_sd";
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <3300000>;
-+				};
-+			};
-+
-+			vcc_bl: LDO_REG7 {
-+				regulator-max-microvolt = <3300000>;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-name = "vcc_bl";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+					regulator-suspend-microvolt = <3300000>;
-+				};
-+			};
-+
-+			vcc_lcd: LDO_REG8 {
-+				regulator-max-microvolt = <2800000>;
-+				regulator-min-microvolt = <2800000>;
-+				regulator-name = "vcc_lcd";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+					regulator-suspend-microvolt = <2800000>;
-+				};
-+			};
-+
-+			vcc_wifi: LDO_REG9 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-name = "vcc_wifi";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+					regulator-suspend-microvolt = <3300000>;
-+				};
-+			};
-+
-+			dcdc_boost: BOOST {
-+				regulator-max-microvolt = <5000000>;
-+				regulator-min-microvolt = <5000000>;
-+				regulator-name = "dcdc_boost";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			otg_switch: OTG_SWITCH {
-+				regulator-name = "otg_switch";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+		};
-+
-+		rk817_charger: charger {
-+			monitored-battery = <&battery>;
-+			rockchip,resistor-sense-micro-ohms = <10000>;
-+			rockchip,sleep-enter-current-microamp = <300000>;
-+			rockchip,sleep-filter-current-microamp = <100000>;
-+		};
-+	};
-+};
-+
-+&i2s1_2ch {
-+	status = "okay";
-+};
-+
-+&io_domains {
-+	vccio1-supply = <&vcc_3v0_pmu>;
-+	vccio2-supply = <&vccio_sd>;
-+	vccio3-supply = <&vcc_3v0>;
-+	vccio4-supply = <&vcc_3v0>;
-+	vccio5-supply = <&vcc_3v0>;
-+	vccio6-supply = <&vcc_3v0>;
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+	bluetooth-pins {
-+		bt_reset: bt-reset {
-+			rockchip,pins =
-+				<0 RK_PA0 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+
-+		bt_wake_dev: bt-wake-dev {
-+			rockchip,pins =
-+				<0 RK_PA1 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		bt_wake_host: bt-wake-host {
-+			rockchip,pins =
-+				<0 RK_PA7 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	headphone {
-+		hp_det: hp-det {
-+			rockchip,pins =
-+				<2 RK_PC6 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+
-+	gpio-btns {
-+		btn_pins_ctrl: btn-pins-ctrl {
-+			rockchip,pins =
-+				<1 RK_PB4 RK_FUNC_GPIO &pcfg_pull_up>,
-+				<1 RK_PB5 RK_FUNC_GPIO &pcfg_pull_up>,
-+				<1 RK_PB6 RK_FUNC_GPIO &pcfg_pull_up>,
-+				<1 RK_PB7 RK_FUNC_GPIO &pcfg_pull_up>,
-+				<2 RK_PA0 RK_FUNC_GPIO &pcfg_pull_up>,
-+				<2 RK_PA2 RK_FUNC_GPIO &pcfg_pull_up>,
-+				<2 RK_PA3 RK_FUNC_GPIO &pcfg_pull_up>,
-+				<2 RK_PA4 RK_FUNC_GPIO &pcfg_pull_up>,
-+				<2 RK_PA5 RK_FUNC_GPIO &pcfg_pull_up>,
-+				<2 RK_PA6 RK_FUNC_GPIO &pcfg_pull_up>,
-+				<2 RK_PA7 RK_FUNC_GPIO &pcfg_pull_up>,
-+				<2 RK_PB0 RK_FUNC_GPIO &pcfg_pull_up>,
-+				<2 RK_PB1 RK_FUNC_GPIO &pcfg_pull_up>,
-+				<2 RK_PB2 RK_FUNC_GPIO &pcfg_pull_up>,
-+				<2 RK_PB3 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+
-+	gpio-leds {
-+		led_pins: led-pins {
-+			rockchip,pins =
-+				<3 RK_PB2 RK_FUNC_GPIO &pcfg_pull_none>,
-+				<3 RK_PB3 RK_FUNC_GPIO &pcfg_pull_none>,
-+				<3 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>,
-+				<3 RK_PC5 RK_FUNC_GPIO &pcfg_pull_none>,
-+				<3 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	pmic {
-+		pmic_int: pmic-int {
-+			rockchip,pins =
-+				<0 RK_PC1 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+
-+		soc_slppin_gpio: soc_slppin_gpio {
-+			rockchip,pins =
-+				<0 RK_PA4 RK_FUNC_GPIO &pcfg_output_low>;
-+		};
-+
-+		soc_slppin_rst: soc_slppin_rst {
-+			rockchip,pins =
-+				<0 RK_PA4 2 &pcfg_pull_none>;
-+		};
-+
-+		soc_slppin_slp: soc_slppin_slp {
-+			rockchip,pins =
-+				<0 RK_PA4 1 &pcfg_pull_none>;
-+		};
-+	};
-+
-+	sdio-pwrseq {
-+		wifi_enable_h: wifi-enable-h {
-+			rockchip,pins =
-+				<0 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	speaker {
-+		spk_amp_enable_h: spk-amp-enable-h {
-+			rockchip,pins =
-+				<2 RK_PB5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
-+&pmu_io_domains {
-+	pmuio1-supply = <&vcc_1v8>;
-+	pmuio2-supply = <&vcc_3v0_pmu>;
-+	status = "okay";
-+};
-+
-+&pwm1 {
-+	status = "okay";
-+};
-+
-+&pwm4 {
-+	status = "okay";
-+};
-+
-+&pwm5 {
-+	status = "okay";
-+};
-+
-+&saradc {
-+	vref-supply = <&vcc_1v8>;
-+	status = "okay";
-+};
-+
-+&sdio {
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	cap-sdio-irq;
-+	disable-wp;
-+	keep-power-in-suspend;
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+	no-mmc;
-+	no-sd;
-+	non-removable;
-+	sd-uhs-sdr104;
-+	status = "okay";
-+};
-+
-+&sdmmc {
-+	cap-mmc-highspeed;
-+	cap-sd-highspeed;
-+	no-sdio;
-+	sd-uhs-sdr12;
-+	sd-uhs-sdr25;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr104;
-+	vmmc-supply = <&vcc_sd>;
-+	vqmmc-supply = <&vccio_sd>;
-+	status = "okay";
-+};
-+
-+&sfc {
-+	#address-cells = <1>;
-+	pinctrl-0 = <&sfc_clk &sfc_cs0 &sfc_bus2>;
-+	pinctrl-names = "default";
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <108000000>;
-+		spi-rx-bus-width = <2>;
-+		spi-tx-bus-width = <1>;
-+	};
-+};
-+
-+&tsadc {
-+	status = "okay";
-+};
-+
-+&u2phy {
-+	status = "okay";
-+
-+	u2phy_otg: otg-port {
-+		status = "okay";
-+	};
-+};
-+
-+&usb20_otg {
-+	status = "okay";
-+};
-+
-+/*
-+ * The right ADC joystick exists connected to an unknown ADC
-+ * controller which can be communicated with via uart0. This ADC device
-+ * is an 8-pin SOIC with no markings located right next to the left ADC
-+ * joystick ribbon cable. The pinout for this ADC controller appears to
-+ * be pin 1 - VCC (2.8v), pin 2 - 1.8v (clk maybe?), pin 3 - GPIO 10,
-+ * pin 4 - unknown, pin 5 - unknown, pin 6 - analog in, pin 7 - analog in,
-+ * pin 8 - ground. There is currently a userspace UART driver for this
-+ * device but it only works with the BSP joystick driver.
-+ */
-+&uart0 {
-+	status = "okay";
-+};
-+
-+/* Bluetooth was not working on BSP and is not currently working on
-+ * mainline due to missing firmware. Bluetooth requires removal of DMA
-+ * or else it will not probe.
-+ */
-+&uart1 {
-+	/delete-property/ dma-names;
-+	/delete-property/ dmas;
-+	uart-has-rtscts;
-+	status = "okay";
-+
-+	bluetooth: bluetooth {
-+		compatible = "realtek,rtl8723ds-bt";
-+		device-wake-gpios = <&gpio0 RK_PA1 GPIO_ACTIVE_HIGH>;
-+		enable-gpios = <&gpio0 RK_PA0 GPIO_ACTIVE_HIGH>;
-+		host-wake-gpios = <&gpio0 RK_PA7 GPIO_ACTIVE_HIGH>;
-+		pinctrl-0 = <&bt_reset>, <&bt_wake_dev>, <&bt_wake_host>;
-+		pinctrl-names = "default";
-+	};
-+};
-+
-+&uart2 {
-+	pinctrl-0 = <&uart2m1_xfer>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&vopb {
-+	status = "okay";
-+};
-+
-+&vopb_mmu {
-+	status = "okay";
-+};
--- 
-2.34.1
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y broadcom/bcm2711-rpi-4-b.dtb broadcom/bcm2711-rpi-cm4-io.dtb' for 20240324220854.15010-1-laurent.pinchart@ideasonboard.com:
+
+arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dtb: soc: firmware: {'compatible': ['raspberrypi,bcm2835-firmware', 'simple-mfd'], '#address-cells': [[1]], '#size-cells': [[1]], 'mboxes': [[29]], 'dma-ranges': True, 'phandle': [[30]], 'clocks': {'compatible': ['raspberrypi,firmware-clocks'], '#clock-cells': [[1]], 'phandle': [[16]]}, 'gpio': {'compatible': ['raspberrypi,firmware-gpio'], 'gpio-controller': True, '#gpio-cells': [[2]], 'status': ['okay'], 'gpio-line-names': ['BT_ON', 'WL_ON', 'PWR_LED_OFF', 'GLOBAL_RESET', 'VDD_SD_IO_SEL', 'CAM_GPIO', 'SD_PWR_ON', ''], 'phandle': [[10]]}, 'reset': {'compatible': ['raspberrypi,firmware-reset'], '#reset-cells': [[1]], 'phandle': [[39]]}} should not be valid under {'type': 'object'}
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dtb: soc: power: {'compatible': ['raspberrypi,bcm2835-power'], 'firmware': [[30]], '#power-domain-cells': [[1]], 'phandle': [[11]]} should not be valid under {'type': 'object'}
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+arch/arm/boot/dts/broadcom/bcm2711-rpi-cm4-io.dtb: soc: firmware: {'compatible': ['raspberrypi,bcm2835-firmware', 'simple-mfd'], '#address-cells': [[1]], '#size-cells': [[1]], 'mboxes': [[27]], 'dma-ranges': True, 'phandle': [[28]], 'clocks': {'compatible': ['raspberrypi,firmware-clocks'], '#clock-cells': [[1]], 'phandle': [[16]]}, 'gpio': {'compatible': ['raspberrypi,firmware-gpio'], 'gpio-controller': True, '#gpio-cells': [[2]], 'status': ['okay'], 'gpio-line-names': ['BT_ON', 'WL_ON', 'PWR_LED_OFF', 'ANT1', 'VDD_SD_IO_SEL', 'CAM_GPIO', 'SD_PWR_ON', 'ANT2'], 'phandle': [[10]], 'ant1-hog': {'gpio-hog': True, 'gpios': [[3, 0]], 'output-high': True, 'line-name': ['ant1'], 'phandle': [[164]]}, 'ant2-hog': {'gpio-hog': True, 'gpios': [[7, 0]], 'output-low': True, 'line-name': ['ant2'], 'phandle': [[165]]}}, 'reset': {'compatible': ['raspberrypi,firmware-reset'], '#reset-cells': [[1]], 'phandle': [[166]]}} should not be valid under {'type': 'object'}
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+arch/arm/boot/dts/broadcom/bcm2711-rpi-cm4-io.dtb: soc: power: {'compatible': ['raspberrypi,bcm2835-power'], 'firmware': [[28]], '#power-domain-cells': [[1]], 'phandle': [[11]]} should not be valid under {'type': 'object'}
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dtb: i2c0mux: $nodename:0: 'i2c0mux' does not match '^(i2c-?)?mux'
+	from schema $id: http://devicetree.org/schemas/i2c/i2c-mux-pinctrl.yaml#
+arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dtb: i2c0mux: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'i2c@0', 'i2c@1' were unexpected)
+	from schema $id: http://devicetree.org/schemas/i2c/i2c-mux-pinctrl.yaml#
+arch/arm/boot/dts/broadcom/bcm2711-rpi-cm4-io.dtb: i2c0mux: $nodename:0: 'i2c0mux' does not match '^(i2c-?)?mux'
+	from schema $id: http://devicetree.org/schemas/i2c/i2c-mux-pinctrl.yaml#
+arch/arm/boot/dts/broadcom/bcm2711-rpi-cm4-io.dtb: i2c0mux: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'i2c@0', 'i2c@1' were unexpected)
+	from schema $id: http://devicetree.org/schemas/i2c/i2c-mux-pinctrl.yaml#
+
+
+
+
 
 
