@@ -1,102 +1,117 @@
-Return-Path: <devicetree+bounces-52990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52991-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B6B888AA7B
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 18:00:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9B6288A972
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 17:34:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 23CD0C011F7
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 16:33:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C772E1C3A0A6
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 16:34:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D74F71739;
-	Mon, 25 Mar 2024 14:36:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B43E213CFA8;
+	Mon, 25 Mar 2024 14:37:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cBu3GFHg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RDn/EEpk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01FB958135;
-	Mon, 25 Mar 2024 14:36:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19F7E7351A
+	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 14:37:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711377409; cv=none; b=b0kObiX+gqydCXN2jPxbA62x4n0s/7bn54hbhRYbUWAOXEAWopejF7TPPcM9Kwgdcw/Z2PLKhHRelwIm+H1cf9JDWV4pwYOyx6ZNk/zEEfr5ahbilk3JqrTjsp086cBlAH4lXhWxTym2CTeAwQh31NOqy1QjFhtFTksp22p7WBY=
+	t=1711377455; cv=none; b=tI32R1FtdXmDLZfAy6fy0l1LZfusUqSdta1s1v6+V6ZdvskIUvvsSSKhY9smsiCo89IF/UTiCN9tDIE9uS8B8TTd/ePjeKBjcfBcm5i+6LNx5yBWF+BPkPGCTkHd61JCDUAQ7O1+ZUaDWJFDuUUK+ubNY/qIsLSaK3DyNSnYld8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711377409; c=relaxed/simple;
-	bh=9Qe/3gikq2clmRBfjTNKgor6Y6DhAn8an5PiAqL/lqs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qfxUTOFw+B/U1rTvSym+JGV0IJpilqxOMs+tWxFKgviBbCFxpVL/I0N6FhxAvJIiXkdzSOCywHPiIE2OpqiKSyMeBYHnHljnxIZTC2o2GGDEIYuYKqzjOZyB2ClxGAN9ryv0IZQgLAFq/nud/CHgZtACCmGz5osRYviecM01GUg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cBu3GFHg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 409D1C433F1;
-	Mon, 25 Mar 2024 14:36:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711377408;
-	bh=9Qe/3gikq2clmRBfjTNKgor6Y6DhAn8an5PiAqL/lqs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cBu3GFHgd64EEQ6NHJ6CqPTLWLLzUk1XuaHt9Ll03UYJR+IqIMELoRgvmKxNiw0xO
-	 Cba4oOz+nYXiGyZoJtbVOPY8qJ5JFSMGY5gMFUmwpAhqWNYZH8iZkQIoHYoywnBjlV
-	 BAxfA1HE1NWYaSv0WbE2RtLX8LbnglngBbBgYkqQlUydIBKvF3v+nMn5xna2ahYU2k
-	 AfpNyiBPzEdH1tRV/RniYF9F74eokbYmjZRzk1IcT+s7GJH8PYAsjQ8PQGnuo4t+0i
-	 A7ODhZOGKH+bKdebrMBNXMstZZYr7IwDpoUwQPt20sykp37tvqjoleOGhGGT8jUXRo
-	 GTOVpjgQwT71w==
-Date: Mon, 25 Mar 2024 09:36:46 -0500
-From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Inki Dae <inki.dae@samsung.com>, devicetree@vger.kernel.org,
-	Seung-Woo Kim <sw0312.kim@samsung.com>,
-	linux-samsung-soc@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Kyungmin Park <kyungmin.park@samsung.com>,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: display: samsung,exynos5-dp: convert to
- DT Schema
-Message-ID: <171137740493.3330504.1269871894633902325.robh@kernel.org>
-References: <20240313182855.14140-1-krzysztof.kozlowski@linaro.org>
+	s=arc-20240116; t=1711377455; c=relaxed/simple;
+	bh=akusApTTdNscCjvWH2lKBQ/Qho8aJnSRwvSLmiP5JVI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=sjq1poVSdn6D06xZuf9xocnByPIHAiv/uE44+llm0FsGE7w075UuHUwP3nXLmfUxuTzDghGh0SQ7kN174mEYYW33nPlnBFA8XRkNEY8TOe02OYp1f1w+arz8vegyOZx2Riyj5Ltr0FkeRWZQsfWsHTRnxhOljhDJ9pLHBdgGOrE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RDn/EEpk; arc=none smtp.client-ip=209.85.160.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-222ba2a19bdso2864772fac.1
+        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 07:37:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1711377453; x=1711982253; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=CHXhjJWjnxIiWVpwLnVown8C0k9DA5ZojMOHGZI8kRY=;
+        b=RDn/EEpkiHIj6M5UnXoUsSDbUnwOzkE5KMSSaP+zX0Tmx/X86ZLoTZigO7THwip8tP
+         /j5SJbFkwDgcaSJnisUpnzOSevt69yVRBxGxxvhu0yehIcXh3XkFpUMdjgYeQ3M7NJMJ
+         sbAj3rJK/20wMD7Eu5zWg5cmhrPy0xLrZbWPLSmk1C+OjeyNKx4SYjhWQsHLtEWRTHL9
+         FCw0zzZFDXoRYw6CWxhy5Sj3DQ17ASrrvsLu14gKSJD4489n5KPjfTU1j/iY86t5j4es
+         7V/kv7NQPfdskqTE481YyFDL8zvfzUBeDVsShv2Jdqkhi5daHAE5rQ4nCkk3YBLZIvEc
+         f3Og==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711377453; x=1711982253;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CHXhjJWjnxIiWVpwLnVown8C0k9DA5ZojMOHGZI8kRY=;
+        b=G03MHEq2dYkYEChtvR9j4J7zig0cwVHaPb1f4lpY8MJQbizyT+BAAcuTFQ/VYimClt
+         QVHVNRg5fA2ap/B0MdHlwH+cw4aqRoAeSvid+t3rq2ofBAB5iPAqE3AAlN7LMQlSrkUM
+         fUE5qDakJkOkwelTmFDO5+EAnLKs086k7cB9jo8f5UIsyw2ILjlfoxKrXPDtBEB94mGI
+         a0alKlCrpILJG18gCLpGTM4F31d/Q1yDIyfYnkaT8EM92I8zkEc5bFLw1k4OQD8w4kiw
+         9MynhRTRVH8vBpx5o56IqYWF7w8T8EnZwaf0jdvR3TeffTNCQji49Tw+AeGVvyuhsZ58
+         SrlQ==
+X-Gm-Message-State: AOJu0YxmIoD63eiiCokvZrhetsBq96kHUlpBV7MoqiGObavE4nFVf0oZ
+	7d51BA7hABzlGE6ZgsdCkw9pldkAftYZY8KnPmysY/1i/FSfOSyy
+X-Google-Smtp-Source: AGHT+IHUDWUSCv9u87bi1dNcgdPTV3+KFK6kxGC0XJ4f0baGuP+vF4RIdDClds0BV4HbrVTiPWJD9g==
+X-Received: by 2002:a05:6871:712:b0:22a:36b9:69e3 with SMTP id f18-20020a056871071200b0022a36b969e3mr3757124oap.19.1711377453091;
+        Mon, 25 Mar 2024 07:37:33 -0700 (PDT)
+Received: from localhost.localdomain ([75.28.21.198])
+        by smtp.gmail.com with ESMTPSA id xb22-20020a056870cd9600b0022a0ff98f9bsm1417180oab.4.2024.03.25.07.37.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Mar 2024 07:37:32 -0700 (PDT)
+From: Chris Morgan <macroalpha82@gmail.com>
+To: linux-rockchip@lists.infradead.org
+Cc: devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	conor+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	robh@kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH 0/4] User Requested Fixes for Anbernic RGxx3
+Date: Mon, 25 Mar 2024 09:37:25 -0500
+Message-Id: <20240325143729.83852-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240313182855.14140-1-krzysztof.kozlowski@linaro.org>
+Content-Transfer-Encoding: 8bit
 
+From: Chris Morgan <macromorgan@hotmail.com>
 
-On Wed, 13 Mar 2024 19:28:55 +0100, Krzysztof Kozlowski wrote:
-> Convert Samsung Exynos5250/5420 SoC Display Port Controller bindings to
-> DT schema with a change: add power-domains, already used in DTS.
-> 
-> This Display Port controller is actually variant of Analogix Display
-> Port bridge, however new DT Schema does not reference analogix,dp.yaml,
-> because of incompatibilities in the driver.  The analogix,dp.yaml
-> expects two ports, input and output, but Linux Exynos DP DRM driver and
-> DTS use only one port: output.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> Changes in v2:
-> 1. Document deprecated samsung,hpd-gpios
-> ---
->  .../bindings/display/exynos/exynos_dp.txt     | 112 ------------
->  .../display/samsung/samsung,exynos5-dp.yaml   | 163 ++++++++++++++++++
->  2 files changed, 163 insertions(+), 112 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/exynos/exynos_dp.txt
->  create mode 100644 Documentation/devicetree/bindings/display/samsung/samsung,exynos5-dp.yaml
-> 
+Users have requested fixes for Anbernic devices to help with some
+intermittent WiFi issues by adding additional properties to the
+SDMMC2 node and by making the sdmmc aliases consistent across the
+device lineup. They have also requested that the model name be
+represented consistently with both the manufacturer name and model
+name.
 
-Applied, thanks!
+I have added the new/additional property of "chasis-type" as well.
+
+Chris Morgan (4):
+  arm64: dts: rockchip: rgxx3: Add additional properties for WiFi
+  arm64: dts: rockchip: rgxx3: Add optional node for chasis-type
+  arm64: dts: rockchip: Correct RGxx3 SDMMC ordering
+  arm64: dts: rockchip: Correct model name for Anbernic RGxx3 Devices
+
+ .../boot/dts/rockchip/rk3566-anbernic-rg-arc-d.dts   |  7 -------
+ .../boot/dts/rockchip/rk3566-anbernic-rg-arc-s.dts   |  6 ------
+ .../boot/dts/rockchip/rk3566-anbernic-rg353p.dts     |  9 +--------
+ .../boot/dts/rockchip/rk3566-anbernic-rg353ps.dts    |  8 +-------
+ .../boot/dts/rockchip/rk3566-anbernic-rg353v.dts     |  9 +--------
+ .../boot/dts/rockchip/rk3566-anbernic-rg353vs.dts    |  8 +-------
+ .../boot/dts/rockchip/rk3566-anbernic-rg503.dts      |  8 +-------
+ .../boot/dts/rockchip/rk3566-anbernic-rgxx3.dtsi     | 12 ++++++++++++
+ 8 files changed, 17 insertions(+), 50 deletions(-)
+
+-- 
+2.34.1
 
 
