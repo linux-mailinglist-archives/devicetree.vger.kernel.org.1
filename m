@@ -1,75 +1,76 @@
-Return-Path: <devicetree+bounces-53121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53130-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F87488B00E
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 20:35:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5E5688B052
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 20:43:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88AEA1F3F74E
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 19:34:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD9E81C61FBD
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 19:43:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BA0B1B80F;
-	Mon, 25 Mar 2024 19:34:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E18A446AF;
+	Mon, 25 Mar 2024 19:42:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="P0/U3Mde"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gX6Gs62G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F19E18E25
-	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 19:34:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FFA244C73
+	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 19:42:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711395295; cv=none; b=WXs+G6fixVkWHxtxxzZccN3v6LTwlhZNE6H6vt4JsKvqThqgIXKYmZSYlj2xS+L1ZnDCnj/KQqj8YyeRV71JiDmae6wtXchjGYjBn/9gZGqPwX4dayaghC3P2GIOphzyIvn5KSxsOi2KVbcVDfKxQT/PbSBOufqT3UYL44NjpUE=
+	t=1711395748; cv=none; b=IYshPMohQpTQT4KAPiCtLZdi3AZWLoS0yFn8CFtdDmNcp5jznrkon1qP6GJ1OQSkLbAFoq51GOu2gLF9/5xGAiGEbH5RkLme0sTgtm0RrUwZ9cKh00dkh1xQZxF8YQE9htacJpmIF+QNY8oay7BeIB1AxBpyOO1tP/wAjU9dwr0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711395295; c=relaxed/simple;
-	bh=TcaoZfkFDJ0SW2sazAPugT6iTiRkzmVSQnVaA2oU4AA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fJgBz6JAzN9knafH/yjXQnNm0iICGSx6fxXMbRnuuSD1AZecw55GN+/Yua9JAG6XvxeZhcafPn4eZ6F0stbFhvoRjA8uz4eGD80J9Y9BFXqh5Xfm9M+UsfQdFECOMEART2yknZMrtUZLWgCAbuvtieu495WpzVhbg73s71F3eVE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=P0/U3Mde; arc=none smtp.client-ip=209.85.167.42
+	s=arc-20240116; t=1711395748; c=relaxed/simple;
+	bh=ypsRzg0nnFkRf2RJcsIZnCo0butaUzeBoZjGQ2DzBBM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=Cd0FfQpZmgDfeadsqyOkSUY3qacZPdYLeMQY+GfqW39iGp0ClFB5NuHlxLh/1pX4ulgwJBUEkRIvoUxiI3b+Sf5R44CA8W/17L9ZYxj7UO+jqIgUCtftNlgGRUDkzPRt4bMk3l7G2iARK8nh46z0gtpvSTROmsfcTmTp0Ty9zqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gX6Gs62G; arc=none smtp.client-ip=209.85.208.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-513dd2d2415so4974090e87.3
-        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 12:34:53 -0700 (PDT)
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-56bf6591865so3529064a12.0
+        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 12:42:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711395292; x=1712000092; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711395743; x=1712000543; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=x+gDb2N6PTSkcMItP5di4fY0wfhSgyZf/tI28W/p5zg=;
-        b=P0/U3Mdea8BzRqcNVk64KVdpjTOdoekXqST34vArEjdbwDs9pGJgmLrDc1SxvJtG4S
-         krWXwvz8QvNXgDjFm2FdmB40OD6fHAPjgZjU2MrYwS10HXM72+9mSaPQiu4bURdQYnDQ
-         MLaPK6iMuObhA1EVCM/UwwUmbs25PwJNy4i2dOn5XryK/FYuIVP4ivGVdB8b3liKeWF8
-         QjHxhzARWv8IIGLa+Tp9UPPuccmQ2OxKrnq6GMnTRokp+fzBL+yBw5XcBse81+0enAZO
-         06+rLw99+9Dbvj+WT5VVEb1M8hGReqlTgD2napSleWEU4obs0H5FV99IimBx02iAq0s9
-         zWTA==
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=HyXt8Nh1cqgfrrfN6pydYm+s3xY97iTFX20FlWEUsGE=;
+        b=gX6Gs62G0bh1kD9gzPL88M5NcmmiW6HHq0R2tPIrPQQCgfwWwUKupmRuNgNmXJHcVT
+         XwCWtA5pI9BraXP9TUs1sPLiuUg6RxHwzhdi9544JtVJ+kGonBNH+FsNl9sNYZd+jiJk
+         ygwMRE+c5c52OADoOGhmgXq2diWLFEu2wFNhji0ZYdCPeZqXFrRv+Y85phfOT+Yu8pe8
+         TMDjZq1e+7o+m9oHYy5raW058HdjttTo7dATKG9DCq1m9wpyYNOLeRyEdCJLrihz+ude
+         T2iL90MDOfF6sDBSY8SQZK2dnpYB30H1f4/hPMcOlj4TvuSvYM61yeKEfiC1/wowMNlT
+         8G7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711395292; x=1712000092;
+        d=1e100.net; s=20230601; t=1711395743; x=1712000543;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=x+gDb2N6PTSkcMItP5di4fY0wfhSgyZf/tI28W/p5zg=;
-        b=ngQOXgPagay82hRXthNYIGDzLyhVKjvngfeh8fP1jUoHhGWQb9mTbUipIoxooSIFQ1
-         ag//+fX+bUVKDgp4wzMrr58ifRlcSKJcn3CYuRl+gk+t01T0e4sQijTP9xOglJ9T6ACH
-         SCi/1Z7OJD1TO1JXD4inw3RMDWsReylPMfxMCTBEfLEUDGetuHMklPPMqz4sj699q0Uj
-         l8yVnWhZCO+q3sbWicRf4ayHbGeM/9pvMNmDuMj/8TD1hrcZpgdkJtTSLGw/VaZH715m
-         1L5d3WMqrY3lfh5lCfSAOhE6fuIk1+kHqG0Q3dv50khZstPUSxvfwxJnSEIkeiIAveTD
-         G84Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXGj0k9ZT0k/+Y4ygLE23tnE284Zfvs0Ps53OBYkJuXaysFYgkGUkTuNnuOsmHrFVFiHV2T5hezTah2COvn3Z/lw9zeFOwftQ1RPA==
-X-Gm-Message-State: AOJu0YwlS/ozVXMfhXq2CfmBS2SR/K4H8imnqTp7Jp2MQKxsHwKS1Di/
-	rocXhnFvX9eq1SQnO5eUQfKICH/zb8EM+ScgAUv0xv9KRmvWvE54cyPNr2Uc6Fg=
-X-Google-Smtp-Source: AGHT+IHbytwcxVQX8sINOS5f/VeuNB1cnyMyAow8UBiZjk6VQPWInASHXbA2UbZdykG4zG2sOY7wtg==
-X-Received: by 2002:ac2:538c:0:b0:513:93dd:9ecd with SMTP id g12-20020ac2538c000000b0051393dd9ecdmr5427715lfh.21.1711395292242;
-        Mon, 25 Mar 2024 12:34:52 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.44])
-        by smtp.gmail.com with ESMTPSA id g14-20020a1709063b0e00b00a473774b027sm3359364ejf.207.2024.03.25.12.34.50
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HyXt8Nh1cqgfrrfN6pydYm+s3xY97iTFX20FlWEUsGE=;
+        b=GuPAbZgWLSc5nD64cilPvsY110Sk0uHVCowG4pUdgcGo7sydR/BZVnzni3EPqJKq+U
+         4hKx8LtUprTW6ocrZ2h73o1th5+FSKZyiPHUwYfiqZkpS+tf6nwqfeLoIXW13a+3FqAZ
+         PdoIyBfnkR/EuE7rztx865yZ4LF+9a2TMMFjtjzYa/3P3YThGJ7Eo9lgBVned72qkcWM
+         XksammfOrSTH5G4R+3Q/YpDJxgtK5vGI+3T8Qhn+Dn8vnZxQyTDjUCdmR7nEMXtrZ/qs
+         AnN7vzi7VEpshkhWvtk8qjyZQ6Wo+/92KL07v/8HKRVXZPeLXF60FJm08J6jwVv5DH91
+         SuIg==
+X-Forwarded-Encrypted: i=1; AJvYcCUhAJgYfq28HDHWsJf+X3TMVW8Hjh9NrLwmPmaQ8bLvmSz92pOB/0JH6l5D8h/kzuFXXeN9o9wHj0Z795aLFvODZoKA+VLqIEF63Q==
+X-Gm-Message-State: AOJu0YzvPbGRbm1UadlPy4ZPwnCdYR5XaVUhf+n9LYLX6FuVX0pMzNyT
+	bFsMWOFyrqBXac3HJT58Flw8583A4feYg7HtHW9dooCM1YG7a0CijSEA7RP4SRgdOjdb5tKMSk5
+	7
+X-Google-Smtp-Source: AGHT+IHtQkqTFclZnmQ9QgOD9sPLdODVgukMjlmtIWofka5bajjQgmQ0lFZxgyrGm1UK1nW5E7yilw==
+X-Received: by 2002:a50:a45b:0:b0:568:9936:b2e with SMTP id v27-20020a50a45b000000b0056899360b2emr5305945edb.24.1711395743606;
+        Mon, 25 Mar 2024 12:42:23 -0700 (PDT)
+Received: from [192.168.92.47] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
+        by smtp.gmail.com with ESMTPSA id fg15-20020a056402548f00b0056bff5bc492sm2514539edb.8.2024.03.25.12.42.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Mar 2024 12:34:51 -0700 (PDT)
-Message-ID: <e1836cb6-64cd-4866-9c0a-f0dda096aa18@linaro.org>
-Date: Mon, 25 Mar 2024 20:34:49 +0100
+        Mon, 25 Mar 2024 12:42:23 -0700 (PDT)
+Message-ID: <fe40b307-26d0-4b2a-869b-5d093415b9d1@linaro.org>
+Date: Mon, 25 Mar 2024 20:42:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,138 +78,145 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: arm64: marvell: add solidrun cn9130
- clearfog boards
-To: Josua Mayer <josua@solid-run.com>, Andrew Lunn <andrew@lunn.ch>,
- Gregory Clement <gregory.clement@bootlin.com>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Yazan Shhady <yazan.shhady@solid-run.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20240321-cn9130-som-v1-0-711127a409ae@solid-run.com>
- <20240321-cn9130-som-v1-1-711127a409ae@solid-run.com>
- <0f7ca0ed-a1c1-41d2-a1fa-27431d14c056@solid-run.com>
+Subject: Re: [PATCH v2 3/4] clk: qcom: add IPQ9574 interconnect clocks support
+To: Varadarajan Narayanan <quic_varada@quicinc.com>, andersson@kernel.org,
+ mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, djakov@kernel.org,
+ quic_anusha@quicinc.com, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20240325102036.95484-1-quic_varada@quicinc.com>
+ <20240325102036.95484-4-quic_varada@quicinc.com>
 Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <0f7ca0ed-a1c1-41d2-a1fa-27431d14c056@solid-run.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
+ BB/OmIWU6X+LZW6P88ZmHe+KeyABLMP5s1tJNK1j4ntT7mECcWZDzafPWF4F6m4WJOG27kTJ
+ HGWdmtO+RvadOVi6CoUDqALsmfS3MUG5Pj2Ne9+0jRg4hEnB92AyF9rW2G3qisFcwPgvatt7
+ TXD5E38mLyOPOUyXNj9XpDbt1hNwKQfiidmPh5e7VNAWRnW1iCMMoKqzM1Anzq7e5Afyeifz
+ zRcQPLaqrPjnKqZGL2BKQSZDh6NkI5ZLRhhHQf61fkWcUpTp1oDC6jWVfT7hwRVIQLrrNj9G
+ MpPzrlN4YuAqKeIer1FMt8cq64ifgTzxHzXsMcUdclzq2LTk2RXaPl6Jg/IXWqUClJHbamSk
+ t1bfif3SnmhA6TiNvEpDKPiT3IDs42THU6ygslrBxyROQPWLI9IL1y8S6RtEh8H+NZQWZNzm
+ UQ3imZirlPjxZtvz1BtnnBWS06e7x/UEAguj7VHCuymVgpl2Za17d1jj81YN5Rp5L9GXxkV1
+ aUEwONM3eCI3qcYm5JNc5X+JthZOWsbIPSC1Rhxz3JmWIwP1udr5E3oNRe9u2LIEq+wH/toH
+ kpPDhTeMkvt4KfE5m5ercid9+ZXAqoaYLUL4HCEw+HW0DXcKDwARAQABzShLb25yYWQgRHli
+ Y2lvIDxrb25yYWQuZHliY2lvQGxpbmFyby5vcmc+wsGOBBMBCAA4FiEEU24if9oCL2zdAAQV
+ R4cBcg5dfFgFAmQ5bqwCGwMFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AACgkQR4cBcg5dfFjO
+ BQ//YQV6fkbqQCceYebGg6TiisWCy8LG77zV7DB0VMIWJv7Km7Sz0QQrHQVzhEr3trNenZrf
+ yy+o2tQOF2biICzbLM8oyQPY8B///KJTWI2khoB8IJSJq3kNG68NjPg2vkP6CMltC/X3ohAo
+ xL2UgwN5vj74QnlNneOjc0vGbtA7zURNhTz5P/YuTudCqcAbxJkbqZM4WymjQhe0XgwHLkiH
+ 5LHSZ31MRKp/+4Kqs4DTXMctc7vFhtUdmatAExDKw8oEz5NbskKbW+qHjW1XUcUIrxRr667V
+ GWH6MkVceT9ZBrtLoSzMLYaQXvi3sSAup0qiJiBYszc/VOu3RbIpNLRcXN3KYuxdQAptacTE
+ mA+5+4Y4DfC3rUSun+hWLDeac9z9jjHm5rE998OqZnOU9aztbd6zQG5VL6EKgsVXAZD4D3RP
+ x1NaAjdA3MD06eyvbOWiA5NSzIcC8UIQvgx09xm7dThCuQYJR4Yxjd+9JPJHI6apzNZpDGvQ
+ BBZzvwxV6L1CojUEpnilmMG1ZOTstktWpNzw3G2Gis0XihDUef0MWVsQYJAl0wfiv/0By+XK
+ mm2zRR+l/dnzxnlbgJ5pO0imC2w0TVxLkAp0eo0LHw619finad2u6UPQAkZ4oj++iIGrJkt5
+ Lkn2XgB+IW8ESflz6nDY3b5KQRF8Z6XLP0+IEdLOOARkOW7yEgorBgEEAZdVAQUBAQdAwmUx
+ xrbSCx2ksDxz7rFFGX1KmTkdRtcgC6F3NfuNYkYDAQgHwsF2BBgBCAAgFiEEU24if9oCL2zd
+ AAQVR4cBcg5dfFgFAmQ5bvICGwwACgkQR4cBcg5dfFju1Q//Xta1ShwL0MLSC1KL1lXGXeRM
+ 8arzfyiB5wJ9tb9U/nZvhhdfilEDLe0jKJY0RJErbdRHsalwQCrtq/1ewQpMpsRxXzAjgfRN
+ jc4tgxRWmI+aVTzSRpywNahzZBT695hMz81cVZJoZzaV0KaMTlSnBkrviPz1nIGHYCHJxF9r
+ cIu0GSIyUjZ/7xslxdvjpLth16H27JCWDzDqIQMtg61063gNyEyWgt1qRSaK14JIH/DoYRfn
+ jfFQSC8bffFjat7BQGFz4ZpRavkMUFuDirn5Tf28oc5ebe2cIHp4/kajTx/7JOxWZ80U70mA
+ cBgEeYSrYYnX+UJsSxpzLc/0sT1eRJDEhI4XIQM4ClIzpsCIN5HnVF76UQXh3a9zpwh3dk8i
+ bhN/URmCOTH+LHNJYN/MxY8wuukq877DWB7k86pBs5IDLAXmW8v3gIDWyIcgYqb2v8QO2Mqx
+ YMqL7UZxVLul4/JbllsQB8F/fNI8AfttmAQL9cwo6C8yDTXKdho920W4WUR9k8NT/OBqWSyk
+ bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
+ nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
+ izWDgYvmBE8=
+In-Reply-To: <20240325102036.95484-4-quic_varada@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 22/03/2024 11:08, Josua Mayer wrote:
-> Am 21.03.24 um 22:47 schrieb Josua Mayer:
->> Add bindings for SolidRun Clearfog boards, using a new SoM based on
->> CN9130 SoC.
->> The carrier boards are identical to the older Armada 388 based Clearfog
->> boards. For consistency the carrier part of compatible strings are
->> copied, including the established "-a1" suffix.
->>
->> Signed-off-by: Josua Mayer <josua@solid-run.com>
->> ---
->>  .../devicetree/bindings/arm/marvell/armada-7k-8k.yaml        | 12 ++++++++++++
->>  1 file changed, 12 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/marvell/armada-7k-8k.yaml b/Documentation/devicetree/bindings/arm/marvell/armada-7k-8k.yaml
->> index 16d2e132d3d1..36bdfd1bedd9 100644
->> --- a/Documentation/devicetree/bindings/arm/marvell/armada-7k-8k.yaml
->> +++ b/Documentation/devicetree/bindings/arm/marvell/armada-7k-8k.yaml
->> @@ -82,4 +82,16 @@ properties:
->>            - const: marvell,armada-ap807-quad
->>            - const: marvell,armada-ap807
->>  
->> +      - description:
->> +          SolidRun CN9130 clearfog family single-board computers
->> +        items:
->> +          - enum:
->> +              - solidrun,clearfog-base-a1
->> +              - solidrun,clearfog-pro-a1
->> +          - const: solidrun,clearfog-a1
->> +          - const: solidrun,cn9130-sr-som
->> +          - const: marvell,cn9130
->> +          - const: marvell,armada-ap807-quad
->> +          - const: marvell,armada-ap807
->> +
->>  additionalProperties: true
+On 25.03.2024 11:20 AM, Varadarajan Narayanan wrote:
+> Unlike MSM platforms that manage NoC related clocks and scaling
+> from RPM, IPQ SoCs dont involve RPM in managing NoC related
+> clocks and there is no NoC scaling.
 > 
-> Before merging I would like some feedback about adding
-> another product later, to ensure the compatibles above
-> are adequate? In particular:
-> - sequence of soc, cp, carrier compatibles
-> - name of som compatible
+> However, there is a requirement to enable some NoC interface
+> clocks for accessing the peripheral controllers present on
+> these NoCs. Though exposing these as normal clocks would work,
+> having a minimalistic interconnect driver to handle these clocks
+> would make it consistent with other Qualcomm platforms resulting
+> in common code paths.  This is similar to msm8996-cbf's usage of
+> icc-clk framework.
 > 
-> Draft for future bindings:
->       - description:
->           SolidRun CN9130 SoM based single-board computers
->           with 1 external CP on the Carrier.
->         items:
->           - enum:
->               - solidrun,cn9131-solidwan
->           - const: marvell,cn9131
->           - const: solidrun,cn9130-sr-som
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> ---
 
-This does not look correct. cn9131 is not compatible with your som.
+[...]
 
->           - const: marvell,cn9130
+>  
+> +
+> +static struct icc_clk_data *icc_ipq9574;
+> +
 
-SoCs are compatible only in some cases, e.g. one is a subset of another
-like stripped out of modem. Are you sure this is your case?
+What does this help achieve?
 
+[...]
 
->           - const: marvell,armada-ap807-quad
->           - const: marvell,armada-ap807
+> +static int noc_clks[] = {
 
-Anyway, 6 compatibles is beyond useful amount. What are you expressing
-here? Why is this even armada ap807?
+We could probably use indexed identifiers here to avoid confusion:
+[ICC_BINDING_NAME] = CLK_BINDING_NAME
 
-Best regards,
-Krzysztof
+>  static int gcc_ipq9574_probe(struct platform_device *pdev)
+>  {
+> -	return qcom_cc_probe(pdev, &gcc_ipq9574_desc);
+> +	int ret = qcom_cc_probe(pdev, &gcc_ipq9574_desc);
+> +	struct icc_provider *provider;
+> +	struct icc_clk_data *icd;
+> +	int i;
+> +
+> +	if (ret)
 
+I'd personally prefer if you left ret uninitialized and assigned it
+above the if-statement.
+
+> +		return dev_err_probe(&pdev->dev, ret, "%s failed\n", __func__);
+
+Please avoid the use of __func__ throughout your change and write
+a more useful error message.
+
+> +
+> +	icd = devm_kmalloc(&pdev->dev, ARRAY_SIZE(noc_clks) * sizeof(*icd),
+> +			   GFP_KERNEL);
+
+devm_kcalloc
+
+> +
+> +	if (IS_ERR_OR_NULL(icd))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(icd),
+> +				     "%s malloc failed\n", __func__);
+
+ditto
+
+> +
+> +	icc_ipq9574 = icd;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(noc_clks); i++, icd++) {
+> +		icd->clk = gcc_ipq9574_clks[noc_clks[i]]->hw.clk;
+> +		if (IS_ERR_OR_NULL(icd->clk)) {
+> +			dev_err(&pdev->dev, "%s: %d clock not found\n",
+> +				__func__, noc_clks[i]);
+> +			return -ENOENT;
+
+return dev_err_probe
+
+> +		}
+> +		icd->name = clk_hw_get_name(&gcc_ipq9574_clks[noc_clks[i]]->hw);
+> +	}
+> +
+> +	provider = icc_clk_register(&pdev->dev, IPQ_APPS_ID,
+> +				    ARRAY_SIZE(noc_clks), icc_ipq9574);
+> +	if (IS_ERR_OR_NULL(provider))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(provider),
+> +				     "%s: icc_clk_register failed\n", __func__);
+
+ditto
+
+On a second thought, since I'm assuming you're going to expand this to other
+IPQ SoCs, it might be useful to factor this out into drivers/clk/qcom/common.c
+
+Konrad
 
