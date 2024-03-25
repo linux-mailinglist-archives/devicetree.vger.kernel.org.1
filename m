@@ -1,153 +1,87 @@
-Return-Path: <devicetree+bounces-52902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52903-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3CDC88A5D2
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 16:07:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3DEE88A5F6
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 16:12:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 120411C20F46
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 15:07:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D44FD1C3563F
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 15:12:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BBFD1474CF;
-	Mon, 25 Mar 2024 12:18:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2BE61F5F6;
+	Mon, 25 Mar 2024 12:30:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ThJn+H66"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nrQlwVvS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5A3C185225
-	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 12:18:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD5071CA9C;
+	Mon, 25 Mar 2024 12:30:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711369123; cv=none; b=Io5Ibc1W9VSPFliSUyL90D0dgPP/oHX+PEdO+LaMk8wiNULEI7fnL1cSpF6hFblKT8b90TrR0UuC6icPS1rRDjKHojJJsfKk+NixgkvHSyjXIMNJFCXrZIpc13pTrWJ9anI9aQ4pSx12VDE1UokIq6o0Z1JEdrJGJYStZd5g6cQ=
+	t=1711369826; cv=none; b=LjsMouAH+N2dTy1kDjJWJllGpPzhQuZx2Dn/t3REDyulpQuMXSo0wLMKt1tZnEcOE6tdEVSBeu7XXmJ4cuMu70HmkHS1iBm4UtKHRhHlrmSi1I66KYSIxuV36xIRrURSa8ynd08p21Io3ITQgwkcvTYmP+ZYSAiM97mjiW3euVI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711369123; c=relaxed/simple;
-	bh=rO5219Pj6j4ZSRkxMdCRnPmmnWZM0k+HYHdJIkbS3hk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YH1Gv9jH+7XZ1CE0mKqxQjmT9o/ZQ8kl87gPKnQX224Vg4wIFPMCvHzs8A0u7wVdmA+2yy2DaQJYM8AOv2PzbbVoU64qnSxg5Kb4OVDYgcpSNBkgnd+gT7AGBW0ogtDre1f18K4pwi06ir7LppXDG+27KWCQTGTIsEWJmjSSr/E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ThJn+H66; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a46f0da1b4fso542558166b.2
-        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 05:18:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711369118; x=1711973918; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=G2y9i2COvcri6xE7JejirEaovfB+5tn5pFGkRVkFTOc=;
-        b=ThJn+H66r85bbsCCXAmIcAkyBH/b0LSD+1Hk86dpD0qxasaqSo5h30++iGCH1pgIFD
-         QOncpqZYWRDNcxbloh4E/CUmCm+RLm1x81ca5EBl+eA3f2IDsCP2OQms6gxADJ8nR8W2
-         XBjtqbNsyLWLbU7N5ZWEgq8Ngkgi6dAtl2OhgaE/00uLs77j6OxWySWuDrKb0zlAfWY7
-         BzXaKDyhs7Uq725tHGGE0+y+zOkCV7Dn1mhupl1v4S6H1NU4osI8JmmcKA3aUlcwlTyr
-         Qzi5NTaukVy9wIe6U6wWfiKBMdRLTMCxBB5y5O4kcYByRleXx1zExrrMlqCYSKb434wT
-         iIrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711369118; x=1711973918;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=G2y9i2COvcri6xE7JejirEaovfB+5tn5pFGkRVkFTOc=;
-        b=QpGqyGTEiMBb0cF61cg315lzQxNNRWNO/ARhjBcuQCi2wBDhmJkThsHR2+X2Zcd2rx
-         KstxKnOnvzlo092L4dJX7Sgdd4pHOWYlRrO/APU7wYWGacdnQjMW/Pi5wCg5obc4XyQY
-         20UgU44rJi2wq8RJcuwCF31GN9/cvr9qf+VNHo8I+KxJRG3ZR+ZPFYvxNBP8I47056T+
-         wnUJ8g9t9rDSbZeoGwtvAOqa5aRbpwn7OX5KsAIp6s6+rNzhx5VqppZNO6eq9KM1asBP
-         w/DugnXGGGLXmly44LvYTp4tMfhaLdfSIQ3olDcoOIAcm0r6SHx2Imw82Aro50Yuea7P
-         8c3w==
-X-Forwarded-Encrypted: i=1; AJvYcCUZkkKY5WkkTOPJz0RkVLgKpsmYNdt9t7CbpTTUJ+9mcYULQOGDpFUAj+IYThkCnxVPeD9sKskF3cIXZiqDywSGZntRDQsYMTgL8g==
-X-Gm-Message-State: AOJu0Yy3qGk3RNfkaoG1vvOlrNc4h9I60M9Vf20Cj0eR58aHB2DPgOPM
-	rtnoObkMHWIqlxdmghifDYMK/xIFPtzbeSQMJuAK4hfYCAnbARDsFWcKBmlCTpY=
-X-Google-Smtp-Source: AGHT+IF8f94ASiXNXvJp0Qs6hi9PEbwojy4JDu18Vx1rBLUliAvkY1z54cyxgPVzdcQh+6/VI9b95w==
-X-Received: by 2002:a17:906:1416:b0:a46:b76d:dc30 with SMTP id p22-20020a170906141600b00a46b76ddc30mr4257990ejc.44.1711369118060;
-        Mon, 25 Mar 2024 05:18:38 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.44])
-        by smtp.gmail.com with ESMTPSA id l11-20020a170906414b00b00a46c39e6a47sm3023803ejk.148.2024.03.25.05.18.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Mar 2024 05:18:36 -0700 (PDT)
-Message-ID: <b53c36f6-c3e2-4763-adae-5db8b4faeff6@linaro.org>
-Date: Mon, 25 Mar 2024 13:18:35 +0100
+	s=arc-20240116; t=1711369826; c=relaxed/simple;
+	bh=uSA6b/rXUkeindQUeRTDu0X18aB4WbICa7Pj8OSlW6U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Uqm/voBRvg5GhZmQYYJDIEhXifOogyO2dbsK+ZbWWkRsSYv7au2avF/w33fJRZGY+bVf5Q9Yvns7G1Fqler6euq4IOwjPTa2GwK7bRqW1VXpCdMPtPCz2lstf1oRs9KJLM03GdesQcJTQIyLMlGnvoJomcXYHn2Lz7HlZhPJcDI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nrQlwVvS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3792FC433F1;
+	Mon, 25 Mar 2024 12:30:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711369826;
+	bh=uSA6b/rXUkeindQUeRTDu0X18aB4WbICa7Pj8OSlW6U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nrQlwVvSO+ZUSTM9MvRT2mHQAYNtQN7mSFORV2D8DevnHh4u89hQJuwObevqhRGyc
+	 7TsTel3bGmTRVyl3/3iwYlyCLypIN198PRM4jiFzbGp8dC3vhFFUIAkwis36BP77qL
+	 CXjgrVzC0MgwDDCT6id46mvHALNzWADTA/qf2rn4+IkBe3//bqG4BYcXP+wZ72hPkB
+	 Pgx/93GYDdYVwRucrJYm/KDjVVvvZIU/7RIyhwWGF8t4rS+/vXJgrt9LaCpGqpmVRw
+	 yiGe2Egf8XpYo9q0I40IldEx/ffe3C6i76I+8IXvOUvQ6l4X+cQsAgMH6Jl7M9Sunc
+	 IFfH+1LLe8/CA==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1rojTE-000000001Qs-3iyO;
+	Mon, 25 Mar 2024 13:30:32 +0100
+Date: Mon, 25 Mar 2024 13:30:32 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Krishna Kurapati <quic_kriskura@quicinc.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Wesley Cheng <quic_wcheng@quicinc.com>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+	linux-kernel@vger.kernel.org, quic_ppratap@quicinc.com,
+	quic_jackp@quicinc.com, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v16 1/9] dt-bindings: usb: Add bindings for multiport
+ properties on DWC3 controller
+Message-ID: <ZgFuaL7H2U3Awo2p@hovoldconsulting.com>
+References: <20240307062052.2319851-1-quic_kriskura@quicinc.com>
+ <20240307062052.2319851-2-quic_kriskura@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: Add Motorola Moto G (2013)
-To: Stanislav Jakubek <stano.jakubek@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, phone-devel@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <f5d4d71cd59f25b80889ef88fa044aa3a4268d46.1711288736.git.stano.jakubek@gmail.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <f5d4d71cd59f25b80889ef88fa044aa3a4268d46.1711288736.git.stano.jakubek@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240307062052.2319851-2-quic_kriskura@quicinc.com>
 
-On 24/03/2024 15:03, Stanislav Jakubek wrote:
-> Document the Motorola Moto G (2013), which is a smartphone based
-> on the Qualcomm MSM8226 SoC.
+On Thu, Mar 07, 2024 at 11:50:44AM +0530, Krishna Kurapati wrote:
+> Add bindings to indicate properties required to support multiport
+> on Synopsys DWC3 controller.
 > 
-> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
-> ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
 
