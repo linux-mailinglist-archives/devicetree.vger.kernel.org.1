@@ -1,115 +1,160 @@
-Return-Path: <devicetree+bounces-53050-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53051-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA01488B432
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 23:34:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8967A88AB3D
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 18:18:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 330B2CE3703
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 17:15:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A07B1F38B80
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 17:18:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CA9A46430;
-	Mon, 25 Mar 2024 15:55:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A73647F7D6;
+	Mon, 25 Mar 2024 15:59:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HTVOnG9e"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="d2JaH/4t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2611B3DAC1B;
-	Mon, 25 Mar 2024 15:55:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F32407F7DC;
+	Mon, 25 Mar 2024 15:59:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711382115; cv=none; b=nstMcoF4mNVnOvCkdzv0nl3wrUBoIdeDBJN7KJIho8WLtSBRiqY6Z4fuEZgrIetBnrTOUi7vrY5e1tUN7LIK1fQ8XOjmwIzcYX1LY4g7unfNpvg6S/yEQ5Ymtk6gvYMK8Ni1xlAysnJ6GsQYLR97m8q+dR6CPvI0H8xko2TeHts=
+	t=1711382350; cv=none; b=NjB0Bp9guVACBtFJ+z0FlzyQJC8LJTqpOfHLOwK8bPPgVXM/P6qtEQCxwFnCKMumRZLdemscbAADCkTNJxdMfXzziY2ymPhCLN9O5oOaUt878ZYkUlWDe4dp+qifc17j1ZMwGHsXcEzZCiTdKnzp0vAaMjevc1tjitOURisF6Cw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711382115; c=relaxed/simple;
-	bh=Qrm85A8Diw5Gs2yIB6OBv4B2K3mJND/QD/+WwIzJCi4=;
+	s=arc-20240116; t=1711382350; c=relaxed/simple;
+	bh=z6TktM9oeZYfD2iw3BnLyXq0E5TG0XoAbr6D5qI8LfY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JPl+iJAaiyg4iNNlRkWi3KfWxuvsxPy3GnHflfVA8PWkzNFDeydTxqNSSSRq1s1/r/6Fd1O7iN1BveD26Nyu9xlkOcu1O47Oj69fkQ5dU8IpXkqBJq2NYwUktcvGqKtlk2oURp+IKotKiPziUAta/ObfzinERbV5XHSrS0nLQOI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HTVOnG9e; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84908C433F1;
-	Mon, 25 Mar 2024 15:55:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711382114;
-	bh=Qrm85A8Diw5Gs2yIB6OBv4B2K3mJND/QD/+WwIzJCi4=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=VcNc6RwO3LgL3wGRqZyyGGY/5gB1Hj3JBFJUDESWNxEMIuV3RsAx9kVTLHfP6HDrV3VZCoeq9nlkIQTEqhsfVK4TEIzROFXS/vB51QSeOJGKpU7aiqxZDBjU/VoeEljlDFRwk6GuQQMRlwwrDx87ckAxM6SBYFyBigD8+ZdzE2w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=d2JaH/4t; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1711382347;
+	bh=z6TktM9oeZYfD2iw3BnLyXq0E5TG0XoAbr6D5qI8LfY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HTVOnG9eZEmLxIFYr1M3r3MIu+sGS9zMpH9+XHc3RXu87d4DM6FB9T7VL5ubdvx+J
-	 mbFCn5vtYqfoK3Xqsup3qBq2vjBIT58NflajB/Fo4LLDbL8zcb8F8+G/eKLasa3QS5
-	 /OSDIdLRfTtROM3FtHwAztk/mieNKuxye+N8b9V5zlZbn/xniUiGH96Tod7aFtLTV7
-	 rY7hPOo9lyxVfym0p9eapPz2BJAoddFVNLO2pTaRupHawPoyb4ZhK5OnTRrw37dpaa
-	 ei2rZwk3fEOy5wXhPkMtTTcpMmOXqogDi6tAmNtzrJJFfNswl7GDWmETexBGjn1Hx+
-	 v+vkg82MM0H6Q==
-Date: Mon, 25 Mar 2024 10:55:12 -0500
-From: Rob Herring <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Vinod Koul <vkoul@kernel.org>, linux-kernel@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, dmaengine@vger.kernel.org,
-	Joy Zou <joy.zou@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v3 4/5] dt-bindings: dma: fsl-edma: add fsl,imx8ulp-edma
- compatible string
-Message-ID: <171138211122.4034960.14889461643514509727.robh@kernel.org>
-References: <20240323-8ulp_edma-v3-0-c0e981027c05@nxp.com>
- <20240323-8ulp_edma-v3-4-c0e981027c05@nxp.com>
+	b=d2JaH/4tV0LyVi0uyRz3byEOEifMu162pRb26KxjcEUxZ5VvtYxVsHk/rmSVV57bD
+	 7byKasfozdy+2czFVurHQ7KjR4IltkaPUvLq6P3evAaYL6i4pG5bXSAHBlY2/0O6hP
+	 q26QHHeeOTN3SPezNEI90RM8dn3ZGJiVYxyodSkuv2Myr+nAcMkx+GY0E4/Fwyrpnr
+	 w+DkvDV/oof3kyfGe/O+rCGFKivV6YNPkSXUqsxx9W4nnXrL91mI3/eO1fBG0L5CTH
+	 HdLeM6/ZS4PgqjBuBxFSIgNAx6p/qJK4IRUedivCsRs7V+aTWYjWASZWvpAem//4ff
+	 OXQRIwFVCUHYw==
+Received: from mercury (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 3D48337813B7;
+	Mon, 25 Mar 2024 15:59:07 +0000 (UTC)
+Received: by mercury (Postfix, from userid 1000)
+	id 769C3106074E; Mon, 25 Mar 2024 16:58:47 +0100 (CET)
+Date: Mon, 25 Mar 2024 16:58:47 +0100
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Boris Brezillon <boris.brezillon@collabora.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, linux-rockchip@lists.infradead.org, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	kernel@collabora.com
+Subject: Re: [PATCH v1 3/4] arm64: dts: rockchip: rk3588-rock5b: Enable GPU
+Message-ID: <a6uu7b3y7d4nirxbplc5cj4oeuyblx2grpvvldeovofhx3tnqc@dlse3vixhpws>
+References: <20240325153850.189128-1-sebastian.reichel@collabora.com>
+ <20240325153850.189128-4-sebastian.reichel@collabora.com>
+ <20240325164441.1dab4018@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="rdf73uqhcgedopzb"
+Content-Disposition: inline
+In-Reply-To: <20240325164441.1dab4018@collabora.com>
+
+
+--rdf73uqhcgedopzb
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240323-8ulp_edma-v3-4-c0e981027c05@nxp.com>
+Content-Transfer-Encoding: quoted-printable
 
+Hi,
 
-On Sat, 23 Mar 2024 11:34:53 -0400, Frank Li wrote:
-> From: Joy Zou <joy.zou@nxp.com>
-> 
-> Introduce the compatible string 'fsl,imx8ulp-edma' to enable support for
-> the i.MX8ULP's eDMA, alongside adjusting the clock numbering. The i.MX8ULP
-> eDMA architecture features one clock for each DMA channel and an additional
-> clock for the core controller. Given a maximum of 32 DMA channels, the
-> maximum clock number consequently increases to 33.
-> 
-> Signed-off-by: Joy Zou <joy.zou@nxp.com>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> 
-> Notes:
->      Changes in v3:
->         - Change clock name form CHXX-CLK to chxx
->         - Fix typeo 'clock'
->         - Add dma-cell description
->         - About clock-names:
->           items:
->             oneOf:
->               - const: dma
->               - pattern: ...
-> 
->         Which already detect naming wrong, for example:
-> 
->         clock-names = "dma", "ch00", "ch01", "ch02", "ch03",
->                       ....
->                       "ch28", "ch29", "ch30", "abcc";
-> 
->         arch/arm64/boot/dts/freescale/imx8ulp-evk.dtb: dma-controller@29010000: clock-names:32: 'oneOf' conditional failed, one must be fixed:
->                 'dma' was expected
->                 'abcc' does not match '^ch(0[0-9]|[1-2][0-9]|3[01])$'
-> 
->         Only lose order check, such as ch00, dma, ch03, ch02, can pass check.
->         I think it is good enough.
-> 
->         I tried rob's suggestion, but met some technology issue. Detail see
-> 
->         https://lore.kernel.org/imx/20240229-8ulp_edma-v2-0-9d12f883c8f7@nxp.com/T/#mc5767dd505d4b7cfc66586a0631684a57e735476
-> 
->  .../devicetree/bindings/dma/fsl,edma.yaml          | 40 ++++++++++++++++++++--
->  1 file changed, 38 insertions(+), 2 deletions(-)
-> 
+On Mon, Mar 25, 2024 at 04:44:41PM +0100, Boris Brezillon wrote:
+> On Mon, 25 Mar 2024 16:37:20 +0100
+> Sebastian Reichel <sebastian.reichel@collabora.com> wrote:
+>=20
+> > From: Boris Brezillon <boris.brezillon@collabora.com>
+> >=20
+> > Enable the Mali GPU in the Rock 5B.
+> >=20
+> > Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
+>=20
+> I don't remember writing this patch ;-), maybe I screwed authorship at
+> some point, dunno.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+mh, I cherry-picked the DT patches from your branch before
+cleaning them up.
 
+> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> > ---
+> >  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> >=20
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm=
+64/boot/dts/rockchip/rk3588-rock-5b.dts
+> > index 1fe8b2a0ed75..096ee7a98b89 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> > @@ -180,6 +180,11 @@ &cpu_l3 {
+> >  	cpu-supply =3D <&vdd_cpu_lit_s0>;
+> >  };
+> > =20
+> > +&gpu {
+> > +	mali-supply =3D <&vdd_gpu_s0>;
+> > +	status =3D "okay";
+> > +};
+> > +
+> >  &i2c0 {
+> >  	pinctrl-names =3D "default";
+> >  	pinctrl-0 =3D <&i2c0m2_xfer>;
+> > @@ -470,6 +475,7 @@ rk806_dvs3_null: dvs3-null-pins {
+> > =20
+> >  		regulators {
+> >  			vdd_gpu_s0: vdd_gpu_mem_s0: dcdc-reg1 {
+> > +				regulator-always-on;
+>=20
+> Hm, should we mention why the regulator is always on here?
+
+In case of the EVB1 it's needed because the generic coupler driver
+cannot handle regulators that are not always on. I'm not sure why
+it was added for the Rock 5B. I will check if it works without that
+flag.
+
+Greetings,
+
+-- Sebastian
+
+--rdf73uqhcgedopzb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmYBny4ACgkQ2O7X88g7
++poZyQ/9G9QEr+2KbYk/fyuDkbFekDi5Glgsc2BnOzUb7Fc/xRgFCjcxrHlYKwgO
+PiNmoQd3mtYg5dV9LXrAk6CCSwMulGLpYvPbeb2CWrSRz2GdzKFuSbSz1Cu8QcUi
+taJwzSCCIkKA6yp6KJU8zasTVOhfOMuuWymfKomL6nE/4UqoLCMWNurt5IAuyWQw
+ygipqVELxmkDFoS2yx3s2wDi/MrvG5jWVTeX8d4WWyfAyl4SIeiHlpwFNZ1QjFBr
+39RxnW7Z/OxyASUHg6YV5ysoxd4Mo07XBxEEzjsMCvUxoc6PvQxsQjZYJ330Qa7c
+vbGsrlG3359jmybiFZyJnAcXgwyA9Ly5AtRP+XcO20gCDBe55pTuAr5zMQe2943c
+6jApERBuQTbMSsQHoUXFi6zDKhfs2I8GM4vKmk1zOk5slDCWnYHfrG7qMtkzAKN6
+R7hPsj7DuBdNP0i6kiepHUqhU3G+LzsyqxD0Jh4VxiRiNiRUcOAyQT0JY29AkXhT
+hYyF5n8Q5Y7DvtqH2NKGRoXsLhI/jo6FXU9aBeuTVxYCdCNe4gkDkCWtHLSmMIu3
+wdPwJy2lq9GLaNd0Z9IHc06ymM5Uy9RyzhhHcrWJvPKDeAKfl264bcqJbwySjmug
+jvvGSbwi1CX+a+6iKqfXAvYwxUBJ1pLI/Jxqeyz0Ml/zMeREsAY=
+=Gono
+-----END PGP SIGNATURE-----
+
+--rdf73uqhcgedopzb--
 
