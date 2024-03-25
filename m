@@ -1,191 +1,131 @@
-Return-Path: <devicetree+bounces-53120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E590688AFF9
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 20:30:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D554C88B014
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 20:36:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C9A0347839
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 19:30:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C32D1F63FD8
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 19:36:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE3B718E1A;
-	Mon, 25 Mar 2024 19:30:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1303F1B978;
+	Mon, 25 Mar 2024 19:36:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DB628KU8"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="B697wdui"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 038BA1B969
-	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 19:30:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 540E812B77;
+	Mon, 25 Mar 2024 19:36:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711395022; cv=none; b=KVWY/KtsvQEtLNEE2nPw4cOANILMzmIlMbo4aCCEFwlUznLOx/N/v4adLyHEMgJ7C9h2FZxRqaDhBPGe9YVBuCM7h2RwCk9DGOXqjS0S/5Y0p/gVdxJzMA0UzjpbOCWXXKLGMSE5znRVWevNtOUThDGVMuLVzHgu/0oZbLqDMME=
+	t=1711395375; cv=none; b=FgSoL5qwIaT+nOCdLIFIneptO6506rL5GX4LVLPIm95C2hnlUGVfc7cavMMRTHLkIIGm3iZi5wTRSbC2zyeEpsKXvLYhwixKuyqDxu7aja5TrMJPyNPyx+Q4akMizYgBq0IzDRUBVy/rNky0MQ9RGU0Da9kWKmKmJjQDhCPSujc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711395022; c=relaxed/simple;
-	bh=uPe8oNZuRjkr6igJ6+uXw4kV5e62kfNMyQsl4UJy4wc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iKMh+FM7XfLuU/umMQJ0J1TpbhRDecYxS+o5pWPBtxEd2bkMykm8ZFnzqP+s2dc9+Ncr2J1f9veoXCCSH6cRzvc1evOhOoQ/Js2wnjzZ7yp6MiQIzJigQ4gIJVYe/HOe6aKbzun3CAsOYoEPMZRe0hIv9qpJ9VpRkmwdEQwAXDA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DB628KU8; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a2f22bfb4e6so621839266b.0
-        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 12:30:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711395019; x=1711999819; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=jv/1xmcEvOlqaR46UzZJ7st3YBn+EpjWb15LuamGQxQ=;
-        b=DB628KU8Ehu9ggev0qLWeo8pkUCof/0j3QCfQQlITdYClelQC6EQz9Vynx+VpDbM1L
-         XxtmGpks9ZhImymnFXlkFdTwF/DAezjxscBl4d6SWZnefHrinwnvokflNMM6iSqfeEGe
-         RZ/+Es2mNluXUIlpHbSx/3uII1IwuHThjYbxvx8PTjaWyNEMpVX3nuVk7HEip2mEgydk
-         TrmiUMplFEfh+QGAK6lhx3zuxM6BHg6padPbF+zpTGo0GYltJdEjPK7ALHkrcL4VeNfh
-         pmdB5F9LcIcSYqwsO7pa12r2Gr3PZRp9Fo1m8+Th9LUtOwDN9EuDMYTxPxwCYfRco/5K
-         2QuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711395019; x=1711999819;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jv/1xmcEvOlqaR46UzZJ7st3YBn+EpjWb15LuamGQxQ=;
-        b=M8hkENzUMM/B2fVUz3GKyBStpzQ2d5iiinf7j52gp5KhTnOLolMc/qda5H3BiiSXqn
-         7uHcuaxWZgUswtCoxokS3sn+VPOBTPNsMXasFBmgb+oRRiO129OCWY0cuo3eWP0in3ll
-         dgIKEf9ZOCeYl+MhrBm0kCt/XltcGL5hA2QlhV4JSePc+TjjEsmWTfQ6OPiQa+CfI6yf
-         acQ0iSgd6f8Enn7fWEzFWJgWtstLuZPgD4gozDkoCGICWbQuaR/edG2HvMzzL0vH+eYR
-         cH7CRvLtxLLVDM7Er15CT2f2yNtE4Qon5jHfCecjBiFcao5D2weXrHTQfTFXytQnpt/K
-         eMGw==
-X-Forwarded-Encrypted: i=1; AJvYcCXkbTlBDa9tpuQ6UFULLDBiF87GoPcbxInntRPaV6Rumiy/4xLzOI+pE+yUIp70Jg828alUE3A25NJOfLoaG1zO6M+NVYjetvEODw==
-X-Gm-Message-State: AOJu0YwDgjZxKMAacQmDU8BDrFmJXI38hkJoAHedWvKGKXwmMgUZ1yP+
-	fctvj25f/hCl3NOzIPPUbRBUslRlTZ1/L/FkbfpTyJmjv08JQNDUsrLxSZhlmrw=
-X-Google-Smtp-Source: AGHT+IGX4/HFcgffUtYMyhp+T40RL1ILiQHYgjsp+MVTbpKOKdEt5DSqzufsE6rQjsLkAFDBctdkkQ==
-X-Received: by 2002:a17:907:11cb:b0:a47:35e5:7da0 with SMTP id va11-20020a17090711cb00b00a4735e57da0mr5224303ejb.41.1711395019094;
-        Mon, 25 Mar 2024 12:30:19 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.44])
-        by smtp.gmail.com with ESMTPSA id ao11-20020a170907358b00b00a4a377ee13asm1233822ejc.218.2024.03.25.12.30.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Mar 2024 12:30:18 -0700 (PDT)
-Message-ID: <02fc496c-caac-4434-8e18-229074733b1c@linaro.org>
-Date: Mon, 25 Mar 2024 20:30:16 +0100
+	s=arc-20240116; t=1711395375; c=relaxed/simple;
+	bh=ns2j/1xbq6BTPWqUJG3b2GwBYjyqRHljKR5mnkkMGU8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=RR1+AY3EQCohRZgfNgXNzr0hziRh/H2LTPkc72ICxw0ehY7ukUlyan8lcinpWyzK6lkU2BvswOGOC/g23rG6ksUSVXp+p+Mj48jA9xUtSI+//RG5XUV0BZnLgUipL313E5f3MbkrCg1HR/ZJsNyC/1WL5OX2lyIxyjVuao9ITkA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=B697wdui; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1711395371;
+	bh=ns2j/1xbq6BTPWqUJG3b2GwBYjyqRHljKR5mnkkMGU8=;
+	h=From:To:Cc:Subject:Date:From;
+	b=B697wduiQcwgu9tNrSJ7sTGIjT+DrQVFCSufUafFKE2l1bNs/SwCIOwGpK2q5XNip
+	 9b25E+JFedcQ40kDC4v94I1hmIt74wohUdwEzrdmAHCbiNG9cTTbgmHtzNSBASHHYz
+	 7jGaiXmdQN+r92OptRwr/6U2zTnbXHCf4uBFBNZFwgueG21yfhClv1hU9EBcr6YUuO
+	 hlb1uK3eGr51f5Q2gUAFwbvjeWzEjZmYXBbAsOLcO7yUOkvUxQI1Yg+aPXE/qm8xMQ
+	 0zdfwS/6/vJ5lrFb1rhcMyYNA+0mNYWvJfpcpWT9NnRt7iLsbIW1w7Rf0ksA5Zfinr
+	 DWW5uQpqEXEnA==
+Received: from jupiter.universe (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 66AC83782082;
+	Mon, 25 Mar 2024 19:36:11 +0000 (UTC)
+Received: by jupiter.universe (Postfix, from userid 1000)
+	id 0F4364800CD; Mon, 25 Mar 2024 20:36:11 +0100 (CET)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	linux-clk@vger.kernel.org
+Cc: Elaine Zhang <zhangqing@rock-chips.com>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	huangtao@rock-chips.com,
+	andy.yan@rock-chips.com,
+	Michal Tomek <mtdev79b@gmail.com>,
+	Ilya K <me@0upti.me>,
+	Chad LeClair <leclair@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	kernel@collabora.com
+Subject: [PATCH v9 0/7] rockchip: clk: add GATE_LINK support
+Date: Mon, 25 Mar 2024 20:33:31 +0100
+Message-ID: <20240325193609.237182-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ASoC: dt-bindings: wm8974: Convert to dtschema
-To: Kartik Agarwala <agarwala.kartik@gmail.com>, lgirdwood@gmail.com,
- broonie@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org
-Cc: patches@opensource.cirrus.com, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- javier.carrasco.cruz@gmail.com
-References: <20240325181943.116733-1-agarwala.kartik@gmail.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240325181943.116733-1-agarwala.kartik@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 25/03/2024 19:19, Kartik Agarwala wrote:
-> Convert WM8974 audio CODEC bindings from text to dtschema.
-> 
-> Signed-off-by: Kartik Agarwala <agarwala.kartik@gmail.com>
+Hi,
 
-Thank you for your patch. There are no DTS users of this binding, so
-while such conversions are useful, they have significantly smaller
-impact. In the future, please consider converting bindings from active
-platforms (arm64 defconfig, arm multi_v7). This would have significantly
-bigger impact.
+This implements proper GATE_LINK support following the suggestion from Stephen
+Boyd to use clk PM operations by creating MFD dynamically. This required some
+restructuring, since CLK_OF_DECLARE() is called before devices are available.
 
-See also:
-https://lore.kernel.org/all/6552bcb8-e046-4882-91da-1094fff3d239@linaro.org/
+Apart from improved power consumption, this fixes the runtime errors from the
+pmdomain driver (failed to set idle on domain '%s').
 
-> ---
->  .../devicetree/bindings/sound/wlf,wm8974.txt  | 15 -------
->  .../devicetree/bindings/sound/wlf,wm8974.yaml | 41 +++++++++++++++++++
->  2 files changed, 41 insertions(+), 15 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8974.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8974.yaml
-> 
+Changes since PATCHv8:
+ * https://lore.kernel.org/linux-rockchip/20240126182919.48402-1-sebastian.reichel@collabora.com/
+ * rebased to v6.9-rc1
+ * dropped all merged patches (i.e. all but the last one)
+ * rewrote and split the final patch
+   - should be easier to review
+   - properly calls pm_clk_suspend/pm_clk_resume
+   - now works on Orange Pi
 
-...
+Changes since PATCHv7:
+ * https://lore.kernel.org/all/20231213185114.47565-1-sebastian.reichel@collabora.com/
+ * rebased to v6.8-rc1
+ * Collected Reviewed-by/Acked-by from Krzysztof Kozlowski for DT binding patches
+ * support nr_clk=0 in rockchip_clk_find_max_clk_id() for smatch
 
-> +  "#sound-dai-cells":
-> +    const: 0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        codec@1a {
-> +            compatible = "wlf,wm8974";
-> +            reg = <0x1a>;
+Greetings,
 
-In the future for other patches like this, make example complete, so add
-a dai-cells also here.
+-- Sebstian
 
-No need to resend just for that.
+Sebastian Reichel (7):
+  clk: rockchip: rk3588: drop unused code
+  clk: rockchip: handle missing clocks with -EPROBE_DEFER
+  clk: rockchip: rk3588: register GATE_LINK later
+  clk: rockchip: expose rockchip_clk_set_lookup
+  clk: rockchip: fix error for unknown clocks
+  clk: rockchip: implement linked gate clock support
+  clk: rockchip: rk3588: drop RK3588_LINKED_CLK
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ drivers/clk/rockchip/Makefile     |   1 +
+ drivers/clk/rockchip/clk-rk3588.c | 124 +++++++++++++-----------------
+ drivers/clk/rockchip/clk.c        |  71 ++++++++++++++---
+ drivers/clk/rockchip/clk.h        |  37 +++++++++
+ drivers/clk/rockchip/gate-link.c  |  99 ++++++++++++++++++++++++
+ 5 files changed, 251 insertions(+), 81 deletions(-)
+ create mode 100644 drivers/clk/rockchip/gate-link.c
 
-Best regards,
-Krzysztof
+-- 
+2.43.0
 
 
