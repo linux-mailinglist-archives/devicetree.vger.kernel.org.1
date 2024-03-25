@@ -1,177 +1,136 @@
-Return-Path: <devicetree+bounces-52846-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52847-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE64288A3A0
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 15:06:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8DFD88A3C3
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 15:11:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D22411C39E4B
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 14:06:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA7C01C3A5C8
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 14:11:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4914149001;
-	Mon, 25 Mar 2024 10:39:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88F11152E0C;
+	Mon, 25 Mar 2024 10:45:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="wWRh8sbX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pMKOMEoi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77DAF184418;
-	Mon, 25 Mar 2024 09:44:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C74D614F135
+	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 09:50:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711359887; cv=none; b=c3odYcjSX00BI1p94uxcXmo548tLpvwy9wmHVXI1sY3KRT5K8JxBNIhCPDJErD4Y7QIRMtJqfqpgWjbt1JC9DikWEBoQ7XXKhI/GDwmKKNdoGVDcwJudnZPD9vph3Hy3BhfUSwzaQLY4bmITcKO3Y8Wx/HO41PSkI6jTrz6xDEY=
+	t=1711360210; cv=none; b=XwqnxERuBpP6tIbg2bw1Oy9NShr5q9Yifuj+dhP7jNEcHqAQ1wbAjliHfBXWDR+dL38bM83sfphX2gqr9I0uQaA1xAGZporL+AhJ0+ZMhU2F2JJ7SlUJREn+xeBYOyDChZ8/Pd2d+zoC2iVAIuCI/vgI8KJABEzs0tKWzQc9UOM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711359887; c=relaxed/simple;
-	bh=dVAYdGBq2nlf8m9m7k04u7V6y/IdKZueMG04GsJ80TI=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=K6l9APm3Jnl6XmZb2dq/g+6Zdmo9vuglp0gjZQAreljqKk8h18Pv7StlV9iLyjg1SbZ6dkjp7n2n6WBBMoke7XkewSeUVJx5LIkW0XghqW5xSxQspR7lgm6LdhszOFetEZcB+HzyPaQdO0fuLDqYpFyjCd+lug5Z7tz2o7mrNvk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=wWRh8sbX; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42P8fHpK027449;
-	Mon, 25 Mar 2024 10:44:07 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	selector1; bh=TumpbS5vUWGOFAnUTrFiTwigoWxOBILory3Y1hvCVq0=; b=wW
-	Rh8sbXOSa0HCm1qDw2GTdinczGE4iRNoMKzZ7d+eb5UHjHsJiN0qP3Fr/Xvk53Iz
-	J+wNsoVqGlJYXOJz7xjFeEjIAxCLMac/W5bzILa06kMAzLXmbCI6ULLXkNOG14TE
-	owDV+JjBKXjFxbj06eSZgJ01Pco8aFl8ESMtwmKfEcwqMYto19eY7vlMUfdaPixj
-	zwgosJVIMzgCbGeBt5aQ8ZbhVzMiKMaaTvLUAcsuUSaUVrGiaDFua2GLwyoyFg1i
-	ATP2pzEQGPqaqX5OongDIvdKSsYYrkgQYbiZAvJ0IQioenTg4gAJo0aE4qB3bHKQ
-	Dbjj1sRZMBV3mg6hdrcA==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3x29h5mfw9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 25 Mar 2024 10:44:07 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 6089F4002D;
-	Mon, 25 Mar 2024 10:43:58 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 94129216EF9;
-	Mon, 25 Mar 2024 10:42:44 +0100 (CET)
-Received: from localhost (10.201.21.128) by SHFDAG1NODE2.st.com (10.75.129.70)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 25 Mar
- 2024 10:42:44 +0100
-From: Christophe Roullier <christophe.roullier@foss.st.com>
-To: "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet
-	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni
-	<pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Jose Abreu <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
-        Mark
- Brown <broonie@kernel.org>,
-        Christophe Roullier
-	<christophe.roullier@foss.st.com>,
-        Marek Vasut <marex@denx.de>
-CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3 2/2] dt-bindings: net: dwmac: Document STM32 property st,ext-phyclk
-Date: Mon, 25 Mar 2024 10:42:18 +0100
-Message-ID: <20240325094218.56934-3-christophe.roullier@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240325094218.56934-1-christophe.roullier@foss.st.com>
-References: <20240325094218.56934-1-christophe.roullier@foss.st.com>
+	s=arc-20240116; t=1711360210; c=relaxed/simple;
+	bh=RguhNyq8VKCcqdMobDZ5d8KWbokBDnm4sDXkSJhbkaY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=hTGxegXj9/fFEOQPtqgyVBFoIHVkt3pCtkOnOzcbGiUWBw5JGo2QI5ESHqLtW1lfbOJDo9p1cWZG4Wdfal4M/HWWIIFFlidZ3oIzFsNOYj1UXQr8U7vjeuvKulGeau5nh0oJ/uZLLRQBMJBI+A2NY2xsMMTD1d9TO3njskUOB84=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pMKOMEoi; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a4a39ab1a10so68583266b.1
+        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 02:50:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1711360207; x=1711965007; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lAVXzsVvl26kQg1gDZQrqcIA6gVD8tK0rGgKzqQmaOA=;
+        b=pMKOMEoivbp9/FKScjJ72xNj4UuqjyHwykaVRHq5z9tJsXuF4KFqopKf0IdT+XtvNV
+         cppvkxhnVcdHtqGQA3CRkvVyaBY5ZWRWuJ42dU5nQSZputR0q41iDhGlozzSe+1OcRRh
+         wmUeJVGbe35pzVXZ0RqIXCZ+gyUanFO59NACX9siLc9WM3FuDbAsC3FxogbZiW9v8JrN
+         CwN/PwgQDoF3tKNTQWrAYcqx/a/p37nBGh1IGIiwhU65VSS2A1FFWkNxPgWiLDJzBAuV
+         iMElz3NO3eSZ6q9NF7bct3TriHPLVh/nBYu8Hl7kSYG7BE/V6IfbrNty7l8kPf8iYVQ/
+         MqwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711360207; x=1711965007;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lAVXzsVvl26kQg1gDZQrqcIA6gVD8tK0rGgKzqQmaOA=;
+        b=GLGYKtUoEtwQ4VJCANXdH2LK/8+SVqy1zMxi29fPJJgBWF1u7rZtTud4hUWO1zRu/p
+         mE+r2SNQY2GAeE/2PU4WCn9cdXXGhaZui88sAhsP2f2YdM2vLvNIvQmW351nM2yspFUS
+         uXncdnyMeZpor1h8f77xdKyobH8znIpww0pHT7ceOSdJ3y1iU1+2ke9NldtBWbgig5AC
+         1PESoCwZ8duWmoxxYxzlyyTql+PJfLxnDkx530yXBJVzj7U9QCUhtuL8riEVM/U74qWV
+         ImB0JbCed8c3VyhtYWbZh9sYdCXR1lp5zRq+kJS219ca4aInRUW6HWWOlxNiS3wCGph3
+         CqzA==
+X-Forwarded-Encrypted: i=1; AJvYcCXWj5iW4PZvdJKNaSV7YQDbOHT678yDe8vNNYL96RbC5hoCELxG+NQfpddIXJ9c172LfRLQtJqnP1s9vJH+j7KFqfxz1PCXstH+qg==
+X-Gm-Message-State: AOJu0YzzgTyDNH4rfzKDdxd5+1NvtofiB/rkXpvMwa+nbBbqMfp4J37N
+	TIp94FkU+RYgnMpsnHpwPn94fd4VGXBjHRGbMIXvdnh09Hc0NTHpT1I6Sq2XQAcIHISdrpk7O2a
+	G
+X-Google-Smtp-Source: AGHT+IFdHnqwTXF7AWbNNmY2g7WJshW/L6qIT7jU5SUKjSfolEmDSj+P9BTccpZWBEOh+YFvHtm2Uw==
+X-Received: by 2002:a17:906:7154:b0:a4a:33e4:bcae with SMTP id z20-20020a170906715400b00a4a33e4bcaemr1509262ejj.30.1711360207053;
+        Mon, 25 Mar 2024 02:50:07 -0700 (PDT)
+Received: from [192.168.2.107] ([79.115.63.252])
+        by smtp.gmail.com with ESMTPSA id qy34-20020a17090768a200b00a4623030893sm2854174ejc.126.2024.03.25.02.50.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Mar 2024 02:50:06 -0700 (PDT)
+Message-ID: <d55f1809-3977-4942-8137-d1fa1895ddf1@linaro.org>
+Date: Mon, 25 Mar 2024 09:50:05 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-25_07,2024-03-21_02,2023-05-22_02
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] docs: dt-bindings: add missing address/size-cells to
+ example
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240325091139.18602-1-krzysztof.kozlowski@linaro.org>
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <20240325091139.18602-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The Linux kernel dwmac-stm32 driver currently supports three DT
-properties used to configure whether PHY clock are generated by
-the MAC or supplied to the MAC from the PHY.
+Hi, Krzysztof,
 
-Originally there were two properties, st,eth-clk-sel and
-st,eth-ref-clk-sel, each used to configure MAC clocking in
-different bus mode and for different MAC clock frequency.
-Since it is possible to determine the MAC 'eth-ck' clock
-frequency from the clock subsystem and PHY bus mode from
-the 'phy-mode' property, two disparate DT properties are
-no longer required to configure MAC clocking.
 
-Linux kernel commit
-1bb694e20839 ("net: ethernet: stmmac: simplify phy modes management for stm32")
-introduced a third, unified, property st,ext-phyclk. This property
-covers both use cases of st,eth-clk-sel and st,eth-ref-clk-sel DT
-properties, as well as a new use case for 25 MHz clock generated
-by the MAC.
+On 3/25/24 09:11, Krzysztof Kozlowski wrote:
+> Complete the example of recommended order of properties by adding
+> missing address/size-cells.  They are not necessary to illustrate the
+> style, but lack of them us bit really correct DTS code which might
 
-The third property st,ext-phyclk is so far undocumented,
-document it.
+some typo here
 
-Below table summarizes the clock requirement and clock sources for
-supported PHY interface modes.
- __________________________________________________________________________
-|PHY_MODE | Normal | PHY wo crystal|   PHY wo crystal   |No 125Mhz from PHY|
-|         |        |      25MHz    |        50MHz       |                  |
+> confuse readers.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> Cc: Tudor Ambarus <tudor.ambarus@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/dts-coding-style.rst | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/dts-coding-style.rst b/Documentation/devicetree/bindings/dts-coding-style.rst
+> index a9bdd2b59dca..8a68331075a0 100644
+> --- a/Documentation/devicetree/bindings/dts-coding-style.rst
+> +++ b/Documentation/devicetree/bindings/dts-coding-style.rst
+> @@ -144,6 +144,8 @@ Example::
+>  		#dma-cells = <1>;
+>  		clocks = <&clock_controller 0>, <&clock_controller 1>;
+>  		clock-names = "bus", "host";
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
 
----------------------------------------------------------------------------
-|  MII    |    -   |     eth-ck    |        n/a         |       n/a        |
-|         |        | st,ext-phyclk |                    |                  |
+I propose having #address-cells and #size-cells after ranges, because
+they are related:
+https://devicetree-specification.readthedocs.io/en/stable/devicetree-basics.html#ranges
 
----------------------------------------------------------------------------
-|  GMII   |    -   |     eth-ck    |        n/a         |       n/a        |
-|         |        | st,ext-phyclk |                    |                  |
+Looking good:
+Reviewed-by: Tudor Ambarus <tudor.ambarus@linaro.org>
 
----------------------------------------------------------------------------
-| RGMII   |    -   |     eth-ck    |        n/a         |      eth-ck      |
-|         |        | st,ext-phyclk |                    | st,eth-clk-sel or|
-|         |        |               |                    | st,ext-phyclk    |
-
----------------------------------------------------------------------------
-| RMII    |    -   |     eth-ck    |      eth-ck        |       n/a        |
-|         |        | st,ext-phyclk | st,eth-ref-clk-sel |                  |
-|         |        |               | or st,ext-phyclk   |                  |
-
----------------------------------------------------------------------------
-
-Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
----
- Documentation/devicetree/bindings/net/stm32-dwmac.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/net/stm32-dwmac.yaml b/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
-index 80937b28fa046..529665d4fc911 100644
---- a/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
-@@ -85,6 +85,13 @@ properties:
-   phy-supply:
-     description: PHY regulator
- 
-+  st,ext-phyclk:
-+    description:
-+      set this property in RMII mode when you have PHY without crystal 50MHz and want to
-+      select RCC clock instead of ETH_REF_CLK. OR in RGMII mode when you want to select
-+      RCC clock instead of ETH_CLK125.
-+    type: boolean
-+
-   st,eth-clk-sel:
-     description:
-       set this property in RGMII PHY when you want to select RCC clock instead of ETH_CLK125.
--- 
-2.25.1
-
+>  		vendor,custom-property = <2>;
+>  		status = "disabled";
+>  
 
