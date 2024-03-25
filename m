@@ -1,216 +1,116 @@
-Return-Path: <devicetree+bounces-52997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CCAE88A97D
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 17:34:53 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4872788B320
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 22:49:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B320732434A
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 16:34:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E6E53C41598
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 16:35:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0754E157E8C;
-	Mon, 25 Mar 2024 14:38:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84170155A55;
+	Mon, 25 Mar 2024 14:39:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RkpAcbia"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2002C13CFB1;
-	Mon, 25 Mar 2024 14:38:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BD6E58135;
+	Mon, 25 Mar 2024 14:39:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711377509; cv=none; b=Xu67CCl1CBphMcgmOL4J2AzQWc0Zwc8lN3/ZM1l23kXzjoOUQ09LEN93JiHTTRq6nOwFONDZTyPl/e6YXwlSvML8boHbqjCzijE0GgvRIPAPBA0t8jWpV4yjJe9OEzgKjlPRru2Htrfsp90hflOdyIKq697o0RCSDodNopSNqNc=
+	t=1711377583; cv=none; b=stPgsTdePX/DMFUfbgaUSHKObh2t0Yy5+uFkutCKCG28XZJNxD8qJAqAcHuM9HMbSJ9yq7nsihuXFD+AEvsKWGMtpWuNWHNpucZ7/zoalxKyMat+TpfC+sRB8nmTZwWdgDVKHYAhaqxYv/L2IWodv3F9Kp7eWfsVOhoYItWvHOk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711377509; c=relaxed/simple;
-	bh=Ckca2N9m0ahjegAreV5WnqCxxSRm3G5AE9yrUUmr61A=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RSfzlf24lgnXK30x7n5/0/i3/l5tvPK+bObAdzTXy1LGyB6qcYB/zadu32QUEHCz8DpezJxTXBHv34yCdaDFjCldXfSRCAh40gnGsbI66h1wWIRhrnbclqfiE3uM0Sja936POVcvZT562mP4Uwgw6VSETbQ/vFknwFwz+CvvWso=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.216])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4V3Fmm0GCCz6K9Tn;
-	Mon, 25 Mar 2024 22:34:00 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id 55533140B39;
-	Mon, 25 Mar 2024 22:38:24 +0800 (CST)
-Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.35; Mon, 25 Mar
- 2024 14:38:23 +0000
-Date: Mon, 25 Mar 2024 14:38:22 +0000
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC: Andrej Picej <andrej.picej@norik.com>, <haibo.chen@nxp.com>,
-	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<jic23@kernel.org>, <lars@metafoo.de>, <shawnguo@kernel.org>,
-	<s.hauer@pengutronix.de>, <kernel@pengutronix.de>, <festevam@gmail.com>,
-	<imx@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <robh@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<upstream@lists.phytec.de>
-Subject: Re: [PATCH 2/2] dt-bindings: iio: adc: nxp,imx93-adc.yaml: Add
- calibration properties
-Message-ID: <20240325143822.000060db@Huawei.com>
-In-Reply-To: <178594a2-cd5f-4608-aae6-7d68fd0817e0@linaro.org>
-References: <20240320100407.1639082-1-andrej.picej@norik.com>
-	<20240320100407.1639082-3-andrej.picej@norik.com>
-	<38637621-1611-4268-ae79-7ac93a72c5ee@linaro.org>
-	<e994b756-7f4e-4be3-b8f3-310988174b44@norik.com>
-	<7e58bf96-3c38-467f-86b6-06ff5feedb31@linaro.org>
-	<40e08a5e-e7e9-47c7-9102-24a2bbba67cf@norik.com>
-	<a1b173c0-5120-40f6-9708-cd810b4a2406@linaro.org>
-	<1bbd4fdf-59c5-42b2-8698-95f402645c67@norik.com>
-	<178594a2-cd5f-4608-aae6-7d68fd0817e0@linaro.org>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1711377583; c=relaxed/simple;
+	bh=FjnS44ng3NPsn9900ILtiMh5uro5/JiC38NCbn+WTYw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P+QJrwnRELQgDJPapey3vg9dEFwBMb05Dprv/GA3s9yJ2QTsu9Wtpyl7C1DuV9KoVYaOnylenrpRiLct2rWorKgp1pEzVZi6YVatbTwKo3TfBBGi8TwYx4IO0EszEs2Vpx1a6S4YWlCNb9FePtckyHD+l/PwTI8kazrSResj+AY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RkpAcbia; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DE25C41674;
+	Mon, 25 Mar 2024 14:39:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711377582;
+	bh=FjnS44ng3NPsn9900ILtiMh5uro5/JiC38NCbn+WTYw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RkpAcbiawu2zrTNsSnZevVXPSjwCNl7i9z7hG0I0A/7jZ6i6zvL1/9OrDI9MBg6LE
+	 x3udYirwdM7/VCWp6qcMvNWE//aqcmEUyrqKaVfZpGKkz9UjuF11Z+pNo1WTfsaWUQ
+	 uo9BQwFdP6Uxigvupxzgwmvw7CGjVbJS1DbF/TYibY7UZTSNDknpt9CCA7WnQVw96T
+	 eLw+ezpKL6ilfx4tTV/QsDBPtSRmybf/pUAMb3H/MjyFORS24NISod0DZiGqQMg8ew
+	 IfKIE1b/Rq8pksjUMb/+xqE3NcFUTUM2gmhHQI/YtsIni3oz5aomYN4d9LqyHZrol+
+	 GWNbUFuNmPf7Q==
+Date: Mon, 25 Mar 2024 09:39:40 -0500
+From: Rob Herring <robh@kernel.org>
+To: Dharma Balasubiramani <dharma.b@microchip.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Maxime Ripard <mripard@kernel.org>,
+	linux-kernel@vger.kernel.org, David Airlie <airlied@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	linux-arm-kernel@lists.infradead.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	devicetree@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	dri-devel@lists.freedesktop.org, Conor Dooley <conor+dt@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>
+Subject: Re: [PATCH v4] dt-bindings: display: atmel,lcdc: convert to dtschema
+Message-ID: <171137757831.3350156.9187326461669491839.robh@kernel.org>
+References: <20240318-lcdc-fb-v4-1-c533c7c2c706@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml100004.china.huawei.com (7.191.162.219) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240318-lcdc-fb-v4-1-c533c7c2c706@microchip.com>
 
-On Mon, 25 Mar 2024 10:58:51 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-> On 22/03/2024 10:58, Andrej Picej wrote:
-> > On 22. 03. 24 09:14, Krzysztof Kozlowski wrote:  
-> >> On 22/03/2024 08:39, Andrej Picej wrote:  
-> >>> On 20. 03. 24 13:15, Krzysztof Kozlowski wrote:  
-> >>>> On 20/03/2024 13:05, Andrej Picej wrote:  
-> >>>>> Hi Krzysztof,
-> >>>>>
-> >>>>> On 20. 03. 24 11:26, Krzysztof Kozlowski wrote:  
-> >>>>>> On 20/03/2024 11:04, Andrej Picej wrote:  
-> >>>>>>> Document calibration properties and how to set them.  
-> >>>>>>
-> >>>>>> Bindings are before users.  
-> >>>>>
-> >>>>> will change patch order when I send a v2.
-> >>>>>  
-> >>>>>>
-> >>>>>> Please use subject prefixes matching the subsystem. You can get them for
-> >>>>>> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-> >>>>>> your patch is touching.
-> >>>>>> There is no file extension in prefixes.  
-> >>>>>
-> >>>>> So: dt-bindings: iio/adc: nxp,imx93-adc: Add calibration properties?  
-> >>>>
-> >>>> Did you run the command I proposed? I don't see much of "/", but except
-> >>>> that looks good.  
-> >>>
-> >>> Ok noted.
-> >>>  
-> >>>>  
-> >>>>>  
-> >>>>>>  
-> >>>>>>>
-> >>>>>>> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
-> >>>>>>> ---
-> >>>>>>>     .../bindings/iio/adc/nxp,imx93-adc.yaml           | 15 +++++++++++++++
-> >>>>>>>     1 file changed, 15 insertions(+)
-> >>>>>>>
-> >>>>>>> diff --git a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
-> >>>>>>> index dacc526dc695..64958be62a6a 100644
-> >>>>>>> --- a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
-> >>>>>>> +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
-> >>>>>>> @@ -46,6 +46,21 @@ properties:
-> >>>>>>>       "#io-channel-cells":
-> >>>>>>>         const: 1
-> >>>>>>>     
-> >>>>>>> +  nxp,calib-avg-en:
-> >>>>>>> +    description:
-> >>>>>>> +      Enable or disable averaging of calibration time.
-> >>>>>>> +    enum: [ 0, 1 ]
-> >>>>>>> +
-> >>>>>>> +  nxp,calib-nr-samples:
-> >>>>>>> +    description:
-> >>>>>>> +      Selects the number of averaging samples to be used during calibration.
-> >>>>>>> +    enum: [ 16, 32, 128, 512 ]
-> >>>>>>> +
-> >>>>>>> +  nxp,calib-t-samples:
-> >>>>>>> +    description:
-> >>>>>>> +      Specifies the sample time of calibration conversions.
-> >>>>>>> +    enum: [ 8, 16, 22, 32 ]  
-> >>>>>>
-> >>>>>> No, use existing, generic properties. Open other bindings for this.  
-> >>>>>
-> >>>>> You mean I should use generic properties for the ADC calibration
-> >>>>> settings? Is there already something in place? Because as I understand
-> >>>>> it, these calib-* values only effect the calibration process of the ADC.  
-> >>>>
-> >>>> Please take a look at other devices and dtschema. We already have some
-> >>>> properties for this... but maybe they cannot be used?
-> >>>>  
-> >>>
-> >>> I did look into other ADC devices, grep across iio/adc, adc bindings
-> >>> folders and couldn't find anything closely related to what we are
-> >>> looking for. Could you please point me to the properties that you think
-> >>> should be used for this?  
-> >>
-> >> Indeed, there are few device specific like qcom,avg-samples. We have
-> >> though oversampling-ratio, settling-time-us and min-sample-time (which
-> >> is not that good because does not use unit suffix).  
-> > 
-> > Ok, these are examples but I think I should not use them, since these 
-> > are i.MX93 ADC specific settings, which are used for configuration of   
+On Mon, 18 Mar 2024 11:10:13 +0530, Dharma Balasubiramani wrote:
+> Convert the atmel,lcdc bindings to DT schema.
+> Changes during conversion: add missing clocks and clock-names properties.
 > 
+> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+> ---
+> This patch converts the existing lcdc display text binding to JSON schema.
+> The binding is split into two namely
+> lcdc.yaml
+> - Holds the frame buffer properties
+> lcdc-display.yaml
+> - Holds the display panel properties which is a phandle to the display
+> property in lcdc fb node.
 > 
-> No vendor prefix, so they rather should be generic, not imx93
-> specific... But this the binding for imx93, so I don't understand your
-> statement.
-
-Based on my current understanding what we have here is not remotely
-generic, so standard properties don't make sense (though naming the
-nxp ones in a consistent fashion with other bindings is useful)
-
-I'm not entirely convinced there is a strong argument to support them at all
-though.  Still thinking / gathering info on that.
-
+> These bindings are tested using the following command.
+> 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> ---
+> Changes in v4:
+> - Add maximum for atmel,guard-time property.
+> - Add constraints for bits-per-pixel property.
+> - Update the atmel,lcd-wiring-mode property's ref to point single string
+>   rather than an array.
+> - Add constraints for atmel,lcd-wiring-mode property.
+> - Add maxItems to the atmel,power-control-gpio property.
+> - Link to v3: https://lore.kernel.org/r/20240304-lcdc-fb-v3-1-8b616fbb0199@microchip.com
 > 
-> > calibration process, and are not related to the standard conversion 
-> > process during runtime. Calibration process is the first step that 
-> > should be done after every power-on reset.
-> >   
-> >>
-> >> Then follow up questions:
-> >>   - nxp,calib-avg-en: Why is it a board-level decision? I would assume
-> >> this depends on user choice and what kind of input you have (which could
-> >> be board dependent or could be runtime decision).  
-> > 
-> > Not really sure I get your question, so please elaborate if I missed the 
-> > point.
-> > This is a user choice, to enable or disable the averaging function in 
-> > calibration, but this is a board-level decision, probably relates on 
-> > external ADC regulators and input connections. The same options are used 
-> > for every ADC channel and this can not be a runtime decision, since 
-> > calibration is done before the ADC is even registered.  
+> Changes in v3:
+> - Remove the generic property "bits-per-pixel"
+> - Link to v2: https://lore.kernel.org/r/20240304-lcdc-fb-v2-1-a14b463c157a@microchip.com
 > 
-> You now mix how Linux driver behaves with hardware. Why you cannot
-> recalibrate later, e.g. when something else is being connected to the
-> exposed pins?
+> Changes in v2:
+> - Run checkpatch and remove whitespace errors.
+> - Add the standard interrupt flags.
+> - Split the binding into two, namely lcdc.yaml and lcdc-display.yaml.
+> - Link to v1: https://lore.kernel.org/r/20240223-lcdc-fb-v1-1-4c64cb6277df@microchip.com
+> ---
+>  .../bindings/display/atmel,lcdc-display.yaml       | 103 +++++++++++++++++++++
+>  .../devicetree/bindings/display/atmel,lcdc.txt     |  87 -----------------
+>  .../devicetree/bindings/display/atmel,lcdc.yaml    |  70 ++++++++++++++
+>  3 files changed, 173 insertions(+), 87 deletions(-)
+> 
 
-Generally we don't make strong efforts to support dev board use cases where
-the components wired tend to change.  So normally this isn't too much of
-a concern.  Previously, we've tried to support this stuff and it always
-ends up as a mess because of the crazy range of things that can be wired.
-
-Jonathan
-
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+Applied, thanks!
 
 
