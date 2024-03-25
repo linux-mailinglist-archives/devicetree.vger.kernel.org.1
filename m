@@ -1,104 +1,161 @@
-Return-Path: <devicetree+bounces-52911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52912-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D89F88A652
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 16:23:21 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE6CC88B12B
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 21:18:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DF701F3BF60
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 15:23:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 40E7BC0456D
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 15:28:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68E931F19A;
-	Mon, 25 Mar 2024 12:45:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF78C13DDC2;
+	Mon, 25 Mar 2024 12:48:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aHh6WPfN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q0CfJBIT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F2B61FA4
-	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 12:45:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAC977440B;
+	Mon, 25 Mar 2024 12:48:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711370742; cv=none; b=ayQHG+ZXTmxYOqE4Mz6JX64NR24EuKrXjTSgOmt9aX8O9E90b9bCpHcnmoMJKzRL40RTaC+4nPXdnm6WDDTa2UVxEi8pmhx7uGUozBRKbYku9KyxKeEbDuDqzhjKn/sqbttTgxyXX4F3jBSRZ5HQDyaHSETsamOOTDpv+gy4smk=
+	t=1711370931; cv=none; b=hZKzIHODgqOyZF7L+3IEc2CLIG3DV3FB5YUzJx7QBJ8bloslk+HawjdFC3HT1X2b4Sju0YM/s2R+b75B4DgW9fC3Ogpekyet7o0val94xL6+mazgvcG1SZZg/pD4JJYALBhFQV043L3vx9UbAz5KB9fzf0bS6zNoDargCJ9nelo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711370742; c=relaxed/simple;
-	bh=jFAJJBZ7w2HGxEoQD4IPOO+YemTNHNOU01iTofesezQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oFGrRBXlTrBEZA8QqkLzBNg3wD4jp4xzxGpNzb1T/ucF6QiRBysw/hCQD8cHNzz+1HN8F1UQRNrcP2dLs0kq8uRJmGA37P22jD7iZR+vDABpfcSn2Yw5VHmJzAksVLj0Ma7jQhNnkjBY9BKyubVW+4rIATrY83kx5FKErzqOc7s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aHh6WPfN; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-414859830f2so8679135e9.0
-        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 05:45:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711370739; x=1711975539; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Mr094tqbb7t0gaddbBeDzNaAJNuOic0uHzVPON5hPTo=;
-        b=aHh6WPfNuxDdhzXgqDBwQyzelK4BBytCAwJqgpIvCYL+lsl2I1In/QMrXUuaKQj+Co
-         y2TCJpWJNuXdv/cfWFD7lTL3NlvoM5l+Le8nc5G4ZCrSf1771RN/QNLixQuDLIpE0rjm
-         VIlaiXaOARzd/0KzVhkBseDsqf3vS+knGUmME1ioxy9ufu7mwns6Nlay4W4xDYvKo255
-         klI8EnqB6gVXCDePDZO/fyb9sUGck4zDAeivTKZFKlRVhHIhLaCFRZ7AS9mHTFSpx7uJ
-         SW4NAu4LTrAyOporDj/sD2m60ZI0p/fcdp26e9nvSW3BNzQGclOKTmpHOD7N7+uy9sMc
-         UTuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711370739; x=1711975539;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Mr094tqbb7t0gaddbBeDzNaAJNuOic0uHzVPON5hPTo=;
-        b=lgiZp0XW9nCjgYmsQ5OkIBjmeLfBTS5S2e4PF54IW0nL3Jb/auqAUY0mT3vf5YkrGL
-         /wFkv4sXttZAIRUKHZnBSWjn2nb9fLgC1EieCSORicLB9r/IobitdKJjLLOcYm2W+Lqd
-         VWQqlTFyx1QZq06ciMjtsr+WgjSejDuagb0NhW82sGS13MQ0M3GbExgzu3hSLJB6Pw4f
-         WFlLk0QnG0OK2LQUzpqOewUzPQ5M/NZ3dpJV3kUoaI3eMz+c0bjsf+o0693ihPI9cHAo
-         C1aS/7yYWzKbglODmvFn1zJQ85C4mOlqhcZpwZbPk1/MHdNglMwNuYZadZlhVrMEz6PI
-         tFzQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVPflfZ5chfu1km3lC/Ux09ldjMWFNGmOyoul7inoJwCCvw0ZgdMhPfgqzfH2NGxzShGqgvwj/58b58qpBHiQX+n1e8UtnODHt2ew==
-X-Gm-Message-State: AOJu0YyG6jWsxH2RDyx8BSB5aT1fUL6258tllC+XLXa3EnwG3MMJQ2NK
-	pfKq/9oUncFlstwsKcTRXy7ENhbDCklLSMoG99VoD5dt6tWVSt5l1M9BbKPXrKY=
-X-Google-Smtp-Source: AGHT+IEdhASmhpgpMn0JRksM/eo2Hqq1dK9CQwhtcLk2Ko9opS+KAE+Y9nF5MLutxyGPWmJ/PyVnow==
-X-Received: by 2002:a05:600c:1987:b0:414:8865:bf99 with SMTP id t7-20020a05600c198700b004148865bf99mr2767476wmq.27.1711370739088;
-        Mon, 25 Mar 2024 05:45:39 -0700 (PDT)
-Received: from [192.168.2.107] ([79.115.63.252])
-        by smtp.gmail.com with ESMTPSA id u13-20020a056000038d00b00341c934ae4asm4402949wrf.75.2024.03.25.05.45.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Mar 2024 05:45:38 -0700 (PDT)
-Message-ID: <a385246b-bcdf-4fd1-ba28-06a5d2d64e21@linaro.org>
-Date: Mon, 25 Mar 2024 12:45:36 +0000
+	s=arc-20240116; t=1711370931; c=relaxed/simple;
+	bh=iRD16UiH7hTocRQ9SdX7iMdmAToWubYP+iIOkYgDzLQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bmNq0m8sQLmfYSqkHBcorMFzlcZI6KfOI4qOi+NK4lxVSbMhi1v/qsKIG46EsH3Ce0HMWbJMnMaEXtTtGuZHuXRKMI7wLeBLI5pqD73q4BjxErbSjSdVEj6r+5YurD/XX1dv+1zGEc307KLDNBjF6G/jGRybObnJZ5jOa70Ji08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q0CfJBIT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B90DC433F1;
+	Mon, 25 Mar 2024 12:48:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711370931;
+	bh=iRD16UiH7hTocRQ9SdX7iMdmAToWubYP+iIOkYgDzLQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Q0CfJBITHHlgzbXGUIqXuGHxZsFtaZAjXZsCOb44hqcSFKVOUea+fCBltGLe8T2Lc
+	 W/YlY6rIziro2yZhYt7f1cK4jXZuqERJRiSLryMwiPB5rbmA8rib43EgtBBXCNNu4C
+	 rjlgkDp5c9SAFeHRgq071PLm6ofKJmJIA01A+1cmXZJ9DaQomCmoWDoYDJNSI/tuHc
+	 ZZs2ToX8NBuo/bpyMtlf7LHisyL/jGr7jjbPVzw3Mk+zsn6JhndcYLxTsXaRhCufIT
+	 ycKGVVw4dfWedG+1c/+nqqM9DSwsalrSrfdu88uNP8CfBg4ZumIdg/cevcK2dZwvqa
+	 +KXI40WQWktdQ==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1rojl4-000000001Up-0XcL;
+	Mon, 25 Mar 2024 13:48:58 +0100
+Date: Mon, 25 Mar 2024 13:48:58 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Krishna Kurapati <quic_kriskura@quicinc.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Wesley Cheng <quic_wcheng@quicinc.com>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+	linux-kernel@vger.kernel.org, quic_ppratap@quicinc.com,
+	quic_jackp@quicinc.com
+Subject: Re: [PATCH v16 7/9] usb: dwc3: qcom: Refactor IRQ handling in glue
+ driver
+Message-ID: <ZgFyukBXIIwZo7v-@hovoldconsulting.com>
+References: <20240307062052.2319851-1-quic_kriskura@quicinc.com>
+ <20240307062052.2319851-8-quic_kriskura@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/7] ARM: dts: samsung: exynos5433: specify the SPI
- FIFO depth
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- krzysztof.kozlowski+dt@linaro.org, robh@kernel.org, conor+dt@kernel.org
-Cc: alim.akhtar@samsung.com, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org, broonie@kernel.org, andi.shyti@kernel.org,
- semen.protsenko@linaro.org, kernel-team@android.com,
- willmcvicker@google.com, andre.draszik@linaro.org, peter.griffin@linaro.org
-References: <20240216140449.2564625-1-tudor.ambarus@linaro.org>
- <20240216140449.2564625-6-tudor.ambarus@linaro.org>
- <1d9f160f-e155-4d2b-b598-d1dc76e49110@linaro.org>
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <1d9f160f-e155-4d2b-b598-d1dc76e49110@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240307062052.2319851-8-quic_kriskura@quicinc.com>
 
+On Thu, Mar 07, 2024 at 11:50:50AM +0530, Krishna Kurapati wrote:
+> On multiport supported controllers, each port has its own DP/DM
+> and SS (if super speed capable) interrupts. As per the bindings,
+> their interrupt names differ from standard ones having "_x" added
+> as suffix (x indicates port number). Identify from the interrupt
+> names whether the controller is a multiport controller or not.
+> Refactor dwc3_qcom_setup_irq() call to parse multiport interrupts
+> along with non-multiport ones accordingly..
+> 
+> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> ---
+>  drivers/usb/dwc3/dwc3-qcom.c | 146 +++++++++++++++++++++++++++--------
+>  1 file changed, 112 insertions(+), 34 deletions(-)
 
+This is much better. Just a couple of nits below.
 
-On 3/25/24 11:13, Krzysztof Kozlowski wrote:
->>  arch/arm64/boot/dts/exynos/exynos5433.dtsi | 5 +++++
-> This and next one has wrong subject prefix. I fixed it.
+> +static int dwc3_qcom_find_num_ports(struct platform_device *pdev)
+> +{
+> +	const char *irq_name;
+> +	int port_index;
+> +	int irq;
+> +
+> +	irq = platform_get_irq_byname_optional(pdev, "qusb2_phy");
+> +	if (irq > 0)
+> +		return 1;
+> +
+> +	irq = platform_get_irq_byname_optional(pdev, "dp_hs_phy_irq");
+> +	if (irq > 0)
+> +		return 1;
+> +
+> +	for (port_index = 0; port_index < DWC3_MAX_PORTS; port_index++) {
+> +		irq_name = devm_kasprintf(&pdev->dev, GFP_KERNEL, "dp_hs_phy_%d", port_index + 1);
 
-ah, s/arm/arm64. Thank you!
+Please use a stack allocated buffer for these strings as we don't need
+them any more after this function returns.
+
+> +		if (!irq_name)
+> +			return -ENOMEM;
+> +
+> +		irq = platform_get_irq_byname_optional(pdev, irq_name);
+> +		if (irq <= 0)
+> +			return port_index;
+> +	}
+> +
+> +	return port_index;
+
+I think explicitly returning DWC3_MAX_PORTS here would be more readable.
+
+> +}
+> +
+> +static int dwc3_qcom_setup_irq(struct platform_device *pdev)
+> +{
+> +	struct dwc3_qcom *qcom = platform_get_drvdata(pdev);
+> +	bool is_multiport;
+> +	int ret;
+> +	int i;
+> +
+> +	qcom->num_ports = dwc3_qcom_find_num_ports(pdev);
+> +	if (qcom->num_ports < 0)
+> +		return -ENOMEM;
+
+Just return 'ret' directly.
+
+> +
+> +	is_multiport = (qcom->num_ports > 1) ? true : false;
+
+And no need for the ternary operator:
+
+	is_multiport = (qcom->num_ports > 1);
+
+> +
+> +	for (i = 0; i < qcom->num_ports; i++) {
+> +		ret = dwc3_qcom_setup_port_irq(pdev, i, is_multiport);
+>  		if (ret)
+>  			return ret;
+> -		qcom->ss_phy_irq = irq;
+>  	}
+>  
+>  	return 0;
+
+With that fixed:
+
+Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
 
