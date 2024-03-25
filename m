@@ -1,174 +1,216 @@
-Return-Path: <devicetree+bounces-52995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52997-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AC4288A977
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 17:34:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CCAE88A97D
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 17:34:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC4851F275B0
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 16:34:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B320732434A
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 16:34:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 128A0142E67;
-	Mon, 25 Mar 2024 14:37:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jK4CjQhW"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0754E157E8C;
+	Mon, 25 Mar 2024 14:38:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76B40155756
-	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 14:37:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2002C13CFB1;
+	Mon, 25 Mar 2024 14:38:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711377458; cv=none; b=dM8iMY013vBuw/MlCsudd7npyvwkhJLnZ8lEA6a6ZDQ+G0o70egLiXbEgfxRvCx0hneTneKjwEmxovsJM0FQKoUb8wvX0GVgetQEc/htguAPs8NK8B8ldfPZtkLaaJJzgJUHBqxqM9HaIVbTBzhl6eOHFRzlrc7qrfEg/ZKGsC4=
+	t=1711377509; cv=none; b=Xu67CCl1CBphMcgmOL4J2AzQWc0Zwc8lN3/ZM1l23kXzjoOUQ09LEN93JiHTTRq6nOwFONDZTyPl/e6YXwlSvML8boHbqjCzijE0GgvRIPAPBA0t8jWpV4yjJe9OEzgKjlPRru2Htrfsp90hflOdyIKq697o0RCSDodNopSNqNc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711377458; c=relaxed/simple;
-	bh=Fssp2qY4F0D7euFBIp9B/WaaFx12Sagz9GCQSLQTDWs=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=lJ8WxgZDYYY4DQ1W6UsDtYhnrHCLTVd1lkgia0kRzCmYUxThL+wUB+b7FOWkmckyRlf9I7bK4Rwjrbl/L6ExnfBHJ67l63SxpPr/RyaoR3LqC5a8tnRt5AMHyIFEP2T8HHHVMq7PfNmqV752WjjkQtDzXSZpEqXtgAIhqwe94Eg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jK4CjQhW; arc=none smtp.client-ip=209.85.161.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-5a493475aefso2572259eaf.1
-        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 07:37:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711377455; x=1711982255; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aCswsN7FdkVodfTM0bhOmSxk9PJOmJSqCfqeMtR+9hA=;
-        b=jK4CjQhWXjOj4botXIpAeQpcJSVyXCYRADcljH7/L1VwMYio8oVU//hvwM2Sw/qGDO
-         VlcdxEb35SW7Fb3s2ontocK4s7mReczR0Dsv+iDZ9cKQqd61utn/zyPZxtTln5r6jTUS
-         Zn77NAeMu+TIPF/MCXGT4v8Puog1HJsEYfZ0IYRSzntfUyxSJO/ua91onxw6rq7mSufk
-         rQuvfhIJJWO30v4kMXdvEf6TWo5/d5FxoeMxBB/2lgYF4L2oQGSHWJCO9D4Vmlc6ASi/
-         ipGzdnvWxnOYCf5Hoq/MnDupqw9Iw1k5PDSA92HjC6aMu2HaWyJJr4T9mF3GPuH89sIA
-         Gs7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711377455; x=1711982255;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aCswsN7FdkVodfTM0bhOmSxk9PJOmJSqCfqeMtR+9hA=;
-        b=bHd8Y5k2yugbKcWHLGRMV2HJIPDK7pgVfd3mb7kZYnV86j2FCQ0DzsQle8saqiNCLi
-         rdDWfhlFKmf2ncTV2BTwfO2zQ9gy+uTwFf0YS8Nx7npn035Yd7+nZzb3otmCMimzuZO9
-         1q4s/1NUeDZ1oArd6YwbVu6OOAtomMppy2OJHBNKBFKuS3kR8cbD5vgnain7ajepX2As
-         A6lznAyvpQp+G1p2nlodQpUQwm9ErzS08nuqQ/iK681kbZMp7Jd3jAhWpvqbUarq/JrN
-         Dhu5cBEKvxiuDEhdyQ5USerR2hrz4RSRRfqPv612GGfIXukEiAgpwkJ8dJHcVYcX9XZn
-         x6Eg==
-X-Gm-Message-State: AOJu0YxiiRY5qKvgTIgHQNsor+vMLV1ljT4awbYdXRnRf6udNzix6m0S
-	C7pXa5zji/HdvRxFR2WzoLh1kK9/iZNtj/oljjxvLWgyTXwqN5ql
-X-Google-Smtp-Source: AGHT+IF15hJ/tYtP/YPhos0TSN5AF90nlbwnLe+gFG5FFOw3TAp2QzxMRddVXxnIHduPKnzh0crI5Q==
-X-Received: by 2002:a05:6870:702c:b0:221:9cf3:8ae5 with SMTP id u44-20020a056870702c00b002219cf38ae5mr2674242oae.24.1711377455394;
-        Mon, 25 Mar 2024 07:37:35 -0700 (PDT)
-Received: from localhost.localdomain ([75.28.21.198])
-        by smtp.gmail.com with ESMTPSA id xb22-20020a056870cd9600b0022a0ff98f9bsm1417180oab.4.2024.03.25.07.37.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Mar 2024 07:37:35 -0700 (PDT)
-From: Chris Morgan <macroalpha82@gmail.com>
-To: linux-rockchip@lists.infradead.org
-Cc: devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	conor+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	robh@kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH 4/4] arm64: dts: rockchip: Correct model name for Anbernic RGxx3 Devices
-Date: Mon, 25 Mar 2024 09:37:29 -0500
-Message-Id: <20240325143729.83852-5-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240325143729.83852-1-macroalpha82@gmail.com>
-References: <20240325143729.83852-1-macroalpha82@gmail.com>
+	s=arc-20240116; t=1711377509; c=relaxed/simple;
+	bh=Ckca2N9m0ahjegAreV5WnqCxxSRm3G5AE9yrUUmr61A=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=RSfzlf24lgnXK30x7n5/0/i3/l5tvPK+bObAdzTXy1LGyB6qcYB/zadu32QUEHCz8DpezJxTXBHv34yCdaDFjCldXfSRCAh40gnGsbI66h1wWIRhrnbclqfiE3uM0Sja936POVcvZT562mP4Uwgw6VSETbQ/vFknwFwz+CvvWso=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.216])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4V3Fmm0GCCz6K9Tn;
+	Mon, 25 Mar 2024 22:34:00 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
+	by mail.maildlp.com (Postfix) with ESMTPS id 55533140B39;
+	Mon, 25 Mar 2024 22:38:24 +0800 (CST)
+Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.35; Mon, 25 Mar
+ 2024 14:38:23 +0000
+Date: Mon, 25 Mar 2024 14:38:22 +0000
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC: Andrej Picej <andrej.picej@norik.com>, <haibo.chen@nxp.com>,
+	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<jic23@kernel.org>, <lars@metafoo.de>, <shawnguo@kernel.org>,
+	<s.hauer@pengutronix.de>, <kernel@pengutronix.de>, <festevam@gmail.com>,
+	<imx@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <robh@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<upstream@lists.phytec.de>
+Subject: Re: [PATCH 2/2] dt-bindings: iio: adc: nxp,imx93-adc.yaml: Add
+ calibration properties
+Message-ID: <20240325143822.000060db@Huawei.com>
+In-Reply-To: <178594a2-cd5f-4608-aae6-7d68fd0817e0@linaro.org>
+References: <20240320100407.1639082-1-andrej.picej@norik.com>
+	<20240320100407.1639082-3-andrej.picej@norik.com>
+	<38637621-1611-4268-ae79-7ac93a72c5ee@linaro.org>
+	<e994b756-7f4e-4be3-b8f3-310988174b44@norik.com>
+	<7e58bf96-3c38-467f-86b6-06ff5feedb31@linaro.org>
+	<40e08a5e-e7e9-47c7-9102-24a2bbba67cf@norik.com>
+	<a1b173c0-5120-40f6-9708-cd810b4a2406@linaro.org>
+	<1bbd4fdf-59c5-42b2-8698-95f402645c67@norik.com>
+	<178594a2-cd5f-4608-aae6-7d68fd0817e0@linaro.org>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml100004.china.huawei.com (7.191.162.219) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
 
-From: Chris Morgan <macromorgan@hotmail.com>
+On Mon, 25 Mar 2024 10:58:51 +0100
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-Some Anbernic model names begin with the company "Anbernic" and others
-simply list the model number. Make this consistent across the device
-lineup by including the manufacturer in the model name.
+> On 22/03/2024 10:58, Andrej Picej wrote:
+> > On 22. 03. 24 09:14, Krzysztof Kozlowski wrote:  
+> >> On 22/03/2024 08:39, Andrej Picej wrote:  
+> >>> On 20. 03. 24 13:15, Krzysztof Kozlowski wrote:  
+> >>>> On 20/03/2024 13:05, Andrej Picej wrote:  
+> >>>>> Hi Krzysztof,
+> >>>>>
+> >>>>> On 20. 03. 24 11:26, Krzysztof Kozlowski wrote:  
+> >>>>>> On 20/03/2024 11:04, Andrej Picej wrote:  
+> >>>>>>> Document calibration properties and how to set them.  
+> >>>>>>
+> >>>>>> Bindings are before users.  
+> >>>>>
+> >>>>> will change patch order when I send a v2.
+> >>>>>  
+> >>>>>>
+> >>>>>> Please use subject prefixes matching the subsystem. You can get them for
+> >>>>>> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> >>>>>> your patch is touching.
+> >>>>>> There is no file extension in prefixes.  
+> >>>>>
+> >>>>> So: dt-bindings: iio/adc: nxp,imx93-adc: Add calibration properties?  
+> >>>>
+> >>>> Did you run the command I proposed? I don't see much of "/", but except
+> >>>> that looks good.  
+> >>>
+> >>> Ok noted.
+> >>>  
+> >>>>  
+> >>>>>  
+> >>>>>>  
+> >>>>>>>
+> >>>>>>> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+> >>>>>>> ---
+> >>>>>>>     .../bindings/iio/adc/nxp,imx93-adc.yaml           | 15 +++++++++++++++
+> >>>>>>>     1 file changed, 15 insertions(+)
+> >>>>>>>
+> >>>>>>> diff --git a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+> >>>>>>> index dacc526dc695..64958be62a6a 100644
+> >>>>>>> --- a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+> >>>>>>> +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+> >>>>>>> @@ -46,6 +46,21 @@ properties:
+> >>>>>>>       "#io-channel-cells":
+> >>>>>>>         const: 1
+> >>>>>>>     
+> >>>>>>> +  nxp,calib-avg-en:
+> >>>>>>> +    description:
+> >>>>>>> +      Enable or disable averaging of calibration time.
+> >>>>>>> +    enum: [ 0, 1 ]
+> >>>>>>> +
+> >>>>>>> +  nxp,calib-nr-samples:
+> >>>>>>> +    description:
+> >>>>>>> +      Selects the number of averaging samples to be used during calibration.
+> >>>>>>> +    enum: [ 16, 32, 128, 512 ]
+> >>>>>>> +
+> >>>>>>> +  nxp,calib-t-samples:
+> >>>>>>> +    description:
+> >>>>>>> +      Specifies the sample time of calibration conversions.
+> >>>>>>> +    enum: [ 8, 16, 22, 32 ]  
+> >>>>>>
+> >>>>>> No, use existing, generic properties. Open other bindings for this.  
+> >>>>>
+> >>>>> You mean I should use generic properties for the ADC calibration
+> >>>>> settings? Is there already something in place? Because as I understand
+> >>>>> it, these calib-* values only effect the calibration process of the ADC.  
+> >>>>
+> >>>> Please take a look at other devices and dtschema. We already have some
+> >>>> properties for this... but maybe they cannot be used?
+> >>>>  
+> >>>
+> >>> I did look into other ADC devices, grep across iio/adc, adc bindings
+> >>> folders and couldn't find anything closely related to what we are
+> >>> looking for. Could you please point me to the properties that you think
+> >>> should be used for this?  
+> >>
+> >> Indeed, there are few device specific like qcom,avg-samples. We have
+> >> though oversampling-ratio, settling-time-us and min-sample-time (which
+> >> is not that good because does not use unit suffix).  
+> > 
+> > Ok, these are examples but I think I should not use them, since these 
+> > are i.MX93 ADC specific settings, which are used for configuration of   
+> 
+> 
+> No vendor prefix, so they rather should be generic, not imx93
+> specific... But this the binding for imx93, so I don't understand your
+> statement.
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353p.dts  | 2 +-
- arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353ps.dts | 2 +-
- arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353v.dts  | 2 +-
- arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353vs.dts | 2 +-
- arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg503.dts   | 2 +-
- 5 files changed, 5 insertions(+), 5 deletions(-)
+Based on my current understanding what we have here is not remotely
+generic, so standard properties don't make sense (though naming the
+nxp ones in a consistent fashion with other bindings is useful)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353p.dts b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353p.dts
-index 94c678c44d3a..0df1254f89af 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353p.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353p.dts
-@@ -8,7 +8,7 @@
- #include "rk3566-anbernic-rg353x.dtsi"
- 
- / {
--	model = "RG353P";
-+	model = "Anbernic RG353P";
- 	compatible = "anbernic,rg353p", "rockchip,rk3566";
- 
- 	battery: battery {
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353ps.dts b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353ps.dts
-index 25edd81ce26b..b1fd2b0f6719 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353ps.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353ps.dts
-@@ -8,7 +8,7 @@
- #include "rk3566-anbernic-rg353x.dtsi"
- 
- / {
--	model = "RG353PS";
-+	model = "Anbernic RG353PS";
- 	compatible = "anbernic,rg353ps", "rockchip,rk3566";
- 
- 	battery: battery {
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353v.dts b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353v.dts
-index 5354c5958df2..9fa68cc53015 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353v.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353v.dts
-@@ -8,7 +8,7 @@
- #include "rk3566-anbernic-rg353x.dtsi"
- 
- / {
--	model = "RG353V";
-+	model = "Anbernic RG353V";
- 	compatible = "anbernic,rg353v", "rockchip,rk3566";
- 
- 	battery: battery {
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353vs.dts b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353vs.dts
-index 02653b59f6c2..78adac9fff58 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353vs.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353vs.dts
-@@ -8,7 +8,7 @@
- #include "rk3566-anbernic-rg353x.dtsi"
- 
- / {
--	model = "RG353VS";
-+	model = "Anbernic RG353VS";
- 	compatible = "anbernic,rg353vs", "rockchip,rk3566";
- 
- 	battery: battery {
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg503.dts b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg503.dts
-index e7161a86a9f1..b7e029a7039a 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg503.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg503.dts
-@@ -8,7 +8,7 @@
- #include "rk3566-anbernic-rgxx3.dtsi"
- 
- / {
--	model = "RG503";
-+	model = "Anbernic RG503";
- 	compatible = "anbernic,rg503", "rockchip,rk3566";
- 
- 	adc-joystick {
--- 
-2.34.1
+I'm not entirely convinced there is a strong argument to support them at all
+though.  Still thinking / gathering info on that.
+
+> 
+> > calibration process, and are not related to the standard conversion 
+> > process during runtime. Calibration process is the first step that 
+> > should be done after every power-on reset.
+> >   
+> >>
+> >> Then follow up questions:
+> >>   - nxp,calib-avg-en: Why is it a board-level decision? I would assume
+> >> this depends on user choice and what kind of input you have (which could
+> >> be board dependent or could be runtime decision).  
+> > 
+> > Not really sure I get your question, so please elaborate if I missed the 
+> > point.
+> > This is a user choice, to enable or disable the averaging function in 
+> > calibration, but this is a board-level decision, probably relates on 
+> > external ADC regulators and input connections. The same options are used 
+> > for every ADC channel and this can not be a runtime decision, since 
+> > calibration is done before the ADC is even registered.  
+> 
+> You now mix how Linux driver behaves with hardware. Why you cannot
+> recalibrate later, e.g. when something else is being connected to the
+> exposed pins?
+
+Generally we don't make strong efforts to support dev board use cases where
+the components wired tend to change.  So normally this isn't too much of
+a concern.  Previously, we've tried to support this stuff and it always
+ends up as a mess because of the crazy range of things that can be wired.
+
+Jonathan
+
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
 
 
