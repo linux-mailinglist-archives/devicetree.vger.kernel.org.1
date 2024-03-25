@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-52825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A55E88A177
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 14:18:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1974A88A17E
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 14:19:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D8AE1C37816
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 13:18:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C33512C6DD7
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 13:19:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 951E41B531C;
-	Mon, 25 Mar 2024 10:22:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B43513B789;
+	Mon, 25 Mar 2024 10:22:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gZQ5qeXZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tH2dQjst"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 434DC13B2BC
-	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 07:53:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 158C313BAC7
+	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 07:54:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711353212; cv=none; b=ghA33uMo0KyOPbrQVTMdnzdoN6kZO/ANa0hDIUPKUtSktwD7EsVI0xk1jMWYPW3hYqo5eSuLs/6UVdBuLhCCWY2SRegLjixw0YDwFtp0tGyB78lrx/MvWjq8skjq1z2Vazv+M8J2i9Eaw5wWwJRcGqdF5vgaKJoHrPvSOZSK/6w=
+	t=1711353251; cv=none; b=WFKL5ldepHCKx87r/nBJX1ExkeZXBCqBFH5FHfNxT7vAYsMBM4bxgsaOnZuOMbalMNBl3E5kMoB96H/pujiBY7XFL3i1h69EvKP57tg/Jgw8BcIoEH3HSfK6YVZtEhciffGjvgKZJxooNZLV0D/mnCXGGvEc9HHkJ9yYpW5sh9M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711353212; c=relaxed/simple;
-	bh=NsTCHErHO1Os3QJWxLJot1Cy7AKxqjP+UA/NIo7tkAM=;
+	s=arc-20240116; t=1711353251; c=relaxed/simple;
+	bh=SiL2cOC4UkSRN6To77htH0u+bIRbM+hM0ShWsbSjA9Q=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Zi/8Lhcl4xQLc/YeRZj5I1qUZRzOdwruKyFl0NbYRgjraJKdG+SGjlaxJ/ZKWt6k2hBLjkY82GtsdILe38BxdHvfLM/bfqT3cJyfN1ZkyRcvNoaAqSh8Xwgl3BLoEkeMbu+bFYbrI8yXmTYd7QjI7eVymiRli9LHcf9oaX5HLTg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gZQ5qeXZ; arc=none smtp.client-ip=209.85.208.46
+	 In-Reply-To:Content-Type; b=d4ZcXnpVRF0ui8tm4YNh2SgVNa3viafZNt9SZERx30T2oR6BU2jlFP/9doKa08NPGBMswsG9NKetCCS1/pla/6GRJveqLvkDExtISwMfgBifMx+JbsRaB4y3MCI2nR8izqNiaAhg/UJfBt3EmPkYITKMPixj0sPfSBxNc0DG1/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tH2dQjst; arc=none smtp.client-ip=209.85.218.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-568c714a9c7so4631146a12.2
-        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 00:53:29 -0700 (PDT)
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a46ba938de0so541844066b.3
+        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 00:54:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711353208; x=1711958008; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711353248; x=1711958048; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=LEbJxJAXHSBHG4bXcG/SHFEloCDd93YMgEhq+PhIopA=;
-        b=gZQ5qeXZx6YSekpLO+BVBaTpadEf979FV8Gt1GhTWvm6Qm07DFZW3K5IOBbrRb+3Eu
-         HKU5DLLPau0zG6wxwJgi2Ctp99HS2I6xrTRrNHBNENV2EjOBaEbCLfqzTNbKm0/05sqO
-         /kx6XJupBZaujsp/6M9J7ScbsobHbJAzQkV8lVZQZ063KCFyiKhQS3pV8+PU1MMRgydv
-         REi/3lx3jHXVoZGR5ROrweVTjt9iAu0zgiQ7nacf350ixiPtvhULu8LVFppCC/G0Sgr9
-         Xq1zhC7fp5w2Fa41T6aoGFTDG56WoQRyHtuRrXdVx3hiKqnUYRWB0wlqlD3lSuarw90y
-         yk/g==
+        bh=l+j9XIstmyfOIFs/mzBgM74Il3hTkmShlFDV4fvnnUk=;
+        b=tH2dQjstL+yG94YwPQ47h6jcggl6EtzsTmP4OtVTHiGeWVFUFiIuCieF2Z7Mi8tWB8
+         5fJlmkNO5QVzgFifFmxpOTlRHabC8e/heUq9NKsRAISDbEXA8QHE4joqTN78rJ3TkHiZ
+         nxsS+liJ6mtLBM2M4JzrD37fQ+BOxjDZPwwKEN7riYkCuZI5qafs9oAcTUkkrLZm+WNz
+         nQvNckqx2eJPoDnAhsBUlx3xNSCJsnfaba2EI5SFKwrSyLxYz834MkF8NdV3wSqHbTMh
+         I5XMc2blo6z5ZvsUZ0LButdKq3P1Yp83b1xz8k/1Wirf2DD9O45BltNnVnITEY78RBDx
+         BHWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711353208; x=1711958008;
+        d=1e100.net; s=20230601; t=1711353248; x=1711958048;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=LEbJxJAXHSBHG4bXcG/SHFEloCDd93YMgEhq+PhIopA=;
-        b=qrdMKnfjma01IdkXI/DcyrHmKm2MGmor7u+BrOLgbIcm1XFDYPWnoQl5Gw8lBSkvlD
-         EIbCrULZcqnbn64a9AFE8i8AZrVfwJ52GXvFus+BPp0CUdQcn+AVWKGW9JLA41t9HH7l
-         Im3lzUTgmyf5+SotXgKwrnEMediR3VqW5yRJYeAsl4HE2j4q5wAaZY91uRLN0Xhv7B+t
-         e23ArQpyrhmmVXCme5Q2caU5VdQWVWKSEha/MbAQneWQZgqsBeF+n0Juq9g8DeJSTSjI
-         ogHvYbskTP28Pup1uwbb7vpxIYhwuCw0pdgRLyDACq5eajJKACEGERXsLl/Wetszq1nR
-         RbMw==
-X-Forwarded-Encrypted: i=1; AJvYcCXfx2u1wBmhAyjtOwB0kok2wwk09h/DL90o8WHt0N0MovtfXE4rLaLayvL7cCMTniIqbgtDzcaBDiXhtnEYAYLBL/Qi62PxbwQ1gQ==
-X-Gm-Message-State: AOJu0Yx0FT3Bht8DGiQPqL0CgnBMqWFsNEjGsE/dF0ysdjBUpfArLafE
-	VpFguQgJEibV+RcjoPswNn5V/XsdTGGa3QguVSolmkTHO9zEHbcrXTHrrwYe1TQ=
-X-Google-Smtp-Source: AGHT+IH9gf7iPbhVd/ffWCSv+4yTFrdws9ZI3P24b0hOqMbjAv7r/5+zhfIZcMRlP8v67K0ZBipH+Q==
-X-Received: by 2002:a50:d5d5:0:b0:568:d74f:bb8e with SMTP id g21-20020a50d5d5000000b00568d74fbb8emr4302571edj.3.1711353208463;
-        Mon, 25 Mar 2024 00:53:28 -0700 (PDT)
+        bh=l+j9XIstmyfOIFs/mzBgM74Il3hTkmShlFDV4fvnnUk=;
+        b=OCUqMZAaQw6b1hTnvwyo+jn3sJOWOriautaXvZJt9Em8TODQJ1vDomthVP33RthkUF
+         3fajMwFUiilD4OiD5qIbsB1fEFls0N7Y0ouD7qrQhf5rauJ8ZapegCjCRBHoGnMP5bxO
+         h+hiE2N2pYjQbZ1vu85DY9Aw1yQekRXj9rExR+Dzdv+vtg+IMpF3kASY56avnmA1YWFU
+         x5V41BuIEUO+nD57mYr8oJ76K/4hkjyiVApwVvhvbM3PJG2RBTzWB/5h/E9TXNU3+hch
+         3EHPFUx6gjgV/1ofm8zk1Pe04uoBX1WrJCtyf7JnoJjFQMNHwA9VKp2UkQi7bMphnj4m
+         ffjg==
+X-Forwarded-Encrypted: i=1; AJvYcCXNHehj4tzl8S7e43/D/AWhYEtMRzlef7itGy75ZBrhAG9uB9DjQKo2NRybVMIOfIWYj4GNVzl2tFTtrSYCSQJ7mh3vsdD3rQUfgA==
+X-Gm-Message-State: AOJu0YxpHj99v7p8IetUPeBS6OKQR2pdLB1j6P0Eg8/fFNLrezCsPoxA
+	PAcK3fuDS5WRlWTACa0BHpVx2SMt8KQvtmZBCUdQqbuX/1yVBY5dFvnDdSb8Ns8=
+X-Google-Smtp-Source: AGHT+IFZHvVGYfpWttbeE5p951o+nMovN19l6HSah8/Q61kmIJu/8BNnZVhXy//VLT9+ryj4GU9sRg==
+X-Received: by 2002:a17:906:7215:b0:a46:614f:f2be with SMTP id m21-20020a170906721500b00a46614ff2bemr4253911ejk.28.1711353248531;
+        Mon, 25 Mar 2024 00:54:08 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.44])
-        by smtp.gmail.com with ESMTPSA id n19-20020a05640205d300b0056c136015b1sm808877edx.67.2024.03.25.00.53.26
+        by smtp.gmail.com with ESMTPSA id q16-20020a170906389000b00a46a643b6fbsm2813202ejd.15.2024.03.25.00.54.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Mar 2024 00:53:27 -0700 (PDT)
-Message-ID: <a98a044c-82b3-4853-84fe-490ba36485e3@linaro.org>
-Date: Mon, 25 Mar 2024 08:53:25 +0100
+        Mon, 25 Mar 2024 00:54:07 -0700 (PDT)
+Message-ID: <5feee389-a88f-4204-a72a-78b53a9dfb55@linaro.org>
+Date: Mon, 25 Mar 2024 08:54:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,8 +77,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/4] dt-bindings: serial: fsl-linflexuart: add
- compatible for S32G3
+Subject: Re: [PATCH v4 3/4] dt-bindings: mmc: fsl-imx-esdhc: add NXP S32G3
+ support
 To: Wadim Mueller <wafgo01@gmail.com>
 Cc: Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -90,21 +90,20 @@ Cc: Rob Herring <robh+dt@kernel.org>,
  Jiri Slaby <jirislaby@kernel.org>, Chester Lin <chester62515@gmail.com>,
  =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
  Matthias Brugger <mbrugger@suse.com>, NXP S32 Linux Team <s32@nxp.com>,
- Tim Harvey <tharvey@gateworks.com>, Marco Felsch <m.felsch@pengutronix.de>,
+ Tim Harvey <tharvey@gateworks.com>,
+ Alexander Stein <alexander.stein@ew.tq-group.com>,
  Gregor Herburger <gregor.herburger@ew.tq-group.com>,
- Marek Vasut <marex@denx.de>,
- Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+ Marek Vasut <marex@denx.de>, Marco Felsch <m.felsch@pengutronix.de>,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>,
  Markus Niebel <Markus.Niebel@ew.tq-group.com>,
  Matthias Schiffer <matthias.schiffer@tq-group.com>,
  Stefan Wahren <stefan.wahren@chargebyte.com>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Philippe Schenker <philippe.schenker@toradex.com>,
- Yannic Moog <y.moog@phytec.de>, Li Yang <leoyang.li@nxp.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-serial@vger.kernel.org
+ Bjorn Helgaas <bhelgaas@google.com>, Yannic Moog <y.moog@phytec.de>,
+ Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org
 References: <20240324214329.29988-1-wafgo01@gmail.com>
- <20240324214329.29988-3-wafgo01@gmail.com>
+ <20240324214329.29988-4-wafgo01@gmail.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -151,14 +150,14 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240324214329.29988-3-wafgo01@gmail.com>
+In-Reply-To: <20240324214329.29988-4-wafgo01@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 24/03/2024 22:43, Wadim Mueller wrote:
-> Add a compatible string for the uart binding of NXP S32G3 platforms. Here
-> we use "s32v234-linflexuart" as fallback since the current linflexuart
-> driver can still work on S32G3.
+> Add a compatible string for the SDHC binding of NXP S32G3 platforms. Here
+> we use "nxp,s32g2-usdhc" as fallback since the s32g2-usdhc
+> driver works also on S32G3 platforms.
 > 
 > Signed-off-by: Wadim Mueller <wafgo01@gmail.com>
 > ---
