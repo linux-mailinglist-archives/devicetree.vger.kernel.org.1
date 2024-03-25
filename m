@@ -1,150 +1,144 @@
-Return-Path: <devicetree+bounces-53030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0124F88AAAC
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 18:05:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EE0888AAB0
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 18:05:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D754D3401F0
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 17:05:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D063E1C3A739
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 17:05:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A64A012BF2F;
-	Mon, 25 Mar 2024 15:34:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98D5C19470;
+	Mon, 25 Mar 2024 15:36:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FWJDz+yz"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="NWXn+bSK";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="PaaYe2di"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from wflow2-smtp.messagingengine.com (wflow2-smtp.messagingengine.com [64.147.123.137])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB00A82D74;
-	Mon, 25 Mar 2024 15:34:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 171F718EB8;
+	Mon, 25 Mar 2024 15:36:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.147.123.137
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711380897; cv=none; b=YCkgz6AKHps+1i76WZglMLpyZGqGpM0WXIVo53s2qO4imgq/NKN1m9dxcYWuSKQxsEGeZu9ZtK10C7/sRdQZvr62UUQA8yC95MRLlx1codyon6d7JjmRoElqpBg+CVxI+nk3fNQoeA27J99V0CM+BfHKE1KYbvVhO+BP8tofE+s=
+	t=1711380976; cv=none; b=iSPFWTMMpC6V/+0LFeLvX4n9w71KGgwAzP7aV323Ms1ArjK2W4wa1Y1tGv7WqcVqOHbe8Ter6K7XOTRX2/7vNXw42DN6gS0DYdCxL5IcD/sMCKdjlTCCDRIjpjIKe/FQKN3UOb2mR5jCjJK7R3LaxznhdctcJbqCzprrqAx1DLw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711380897; c=relaxed/simple;
-	bh=VpmSCUo4LCSDAreg17AyaXZjU/kMgoCoxrBfLAVsbns=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Kk4i5vZXgCn18DNbj4E3Puoajum0c/GzWDlPgkdMgtR08CGG6975am7501rVgwOhwXN8NXi+uXA9W3c670SxIGfCzrWxbLLoYEHn0VmVIL4v4z70mMjB6/puF+AK1SxI3caPdgL/IxKMyxUvrwE3i16UtSOkThDEuTWl4aQXqH0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FWJDz+yz; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-513dc9d6938so5617942e87.2;
-        Mon, 25 Mar 2024 08:34:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711380894; x=1711985694; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CiSHINdO4QQ9dGEkUNG8gKxPDwA7BezRYNLVvF2c4GI=;
-        b=FWJDz+yzomkrbc6FXZUNN8OTlDrCAwaVNBb9ATK7zlo3//HaVnlcy4f4DUKoW0tZS7
-         m5fzTb9JpOGNmwZBaZG3sbvv4WiXnGz+njQrett79NQ8NoeInXPYCR/Fwziex1Wa/sJ7
-         6Mu/jX7F30qdWexK8CtrpdLdhh8s+/qEx+t+oTQ5T4w2YLCi1gxnnvdp0m0tUhY9+LXn
-         GEJ177dQZpAq8jfjSN+QG3Y298VaTQmHznd2bzrTQ+xUbCSDlYkg4yEYIb1c7pbitvk/
-         NnTPA6Li01IgrJhVlFoZixjBKuPnO21qyxmIudegx7lpuP+9QIQbOPQN/Z6kg1Jbu/fp
-         BN0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711380894; x=1711985694;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CiSHINdO4QQ9dGEkUNG8gKxPDwA7BezRYNLVvF2c4GI=;
-        b=HanqLK1OhkTA4wl96vwuJhRRFCJ8WDp569eLZbiebjHVcWJWyh/4pf54d+pkv7w+RI
-         iGmYUqXvDfBFeiupkazvIhKDKBkSlKD8XrFurz1zray68JmFfvqv1K/vz8UGpMLKYTVZ
-         EUOxrt8giwuOfg/OJm0JX76SzBsW/w+euPgonU21agmwk7GRs9mz62/8kocx9DIcDrrM
-         wCo7BcWTFP5A/Ks9zPeV3rE74unJrbuOsHP4LdUHUSD2Yu4sHTNSfWqbS9F79s2vavIU
-         uuC4IaZjyeL3VdNs0PG0wOucbLACLKsMCRXjKoanFoDROS7/tfja7qeSBdhwdHFuO2i9
-         b+2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWN83047bVa8EdEMJPROixvC7ubyd+C7SAdzNEcCsnanwOfS6KME9bhG20VVtCsuirPpq+VuP6DW5nv/I5Al5Tg5RzZZf5fme5/Gmmauw8A08ss/XD0SLCQwgM/TaBbcWpjVJzMOgsRyQ==
-X-Gm-Message-State: AOJu0Yztj+e+t0/6qzbPwI0a/DZsu/Timc3Iah2yi6nuApMsd9UznJWs
-	q3NmxTrVQpDyL+xFQwRCC+RDuEgZou8c3FiKdUkg+K8q2sJkrd4/
-X-Google-Smtp-Source: AGHT+IEwy3EYA8kKvQPY3gjgvTL1CYxxrX54THrLiN66C1zBx3z6uDkuHjcp5TU9+9lJcfYG7H660w==
-X-Received: by 2002:ac2:554c:0:b0:513:d339:8b1 with SMTP id l12-20020ac2554c000000b00513d33908b1mr4663596lfk.27.1711380893781;
-        Mon, 25 Mar 2024 08:34:53 -0700 (PDT)
-Received: from 764c7355c69b.v.cablecom.net (84-72-156-211.dclient.hispeed.ch. [84.72.156.211])
-        by smtp.gmail.com with ESMTPSA id u13-20020a17090626cd00b00a45200fe2b5sm3142382ejc.224.2024.03.25.08.34.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Mar 2024 08:34:53 -0700 (PDT)
-From: Lothar Rubusch <l.rubusch@gmail.com>
-To: lars@metafoo.de,
-	Michael.Hennerich@analog.com,
-	jic23@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org
-Cc: linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	eraretuya@gmail.com,
-	l.rubusch@gmail.com
-Subject: [PATCH v4 7/7] iio: accel: adxl345: Add spi-3wire option
-Date: Mon, 25 Mar 2024 15:33:56 +0000
-Message-Id: <20240325153356.46112-8-l.rubusch@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240325153356.46112-1-l.rubusch@gmail.com>
-References: <20240325153356.46112-1-l.rubusch@gmail.com>
+	s=arc-20240116; t=1711380976; c=relaxed/simple;
+	bh=y0YBOhKfsbV8uAOt8notX758x95HAI2drqMGctzG7Ac=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=S8vXO1HDfrWV6OoUiBHmUU2oZQeRamwlzvgSPQqaXSxtxjibL+YVEk0Eub4wlO9lf42xxYHPthhhH311Zlk9ke3ILVxXVEb0OkCb+Q0BhRCjK43oS3JfXREXfaClx+/DQ+rBlBkbawVWwPZXmWMaF8B+odUf2AlU4Xes36LqKwY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=NWXn+bSK; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=PaaYe2di; arc=none smtp.client-ip=64.147.123.137
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailflow.west.internal (Postfix) with ESMTP id 3D74D2CC0521;
+	Mon, 25 Mar 2024 11:36:08 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute3.internal (MEProxy); Mon, 25 Mar 2024 11:36:10 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:message-id:mime-version:reply-to
+	:subject:subject:to:to; s=fm1; t=1711380967; x=1711384567; bh=d0
+	dvJmQIQfye1imnVs8CcjRWqczhUMat/+HUwY7kQKY=; b=NWXn+bSKdKiGa5TqGc
+	Sg3JXih7dGDMdn/NlU+SHiW9WjBN+4eGs5Szr1F2laVsdXQfsVChidMlm0Riz96e
+	QwBRUlb2glwkBrePnAmj1iqN4tDa/707WxEGUxD9w2/p4SPK6sTNdpy/7QxkFECL
+	0zMzNh1gGMVeReHB9HZHvQzyD6vAdWo53SjFpj2UP5hoKIdgzUS0OSnhbEHVW7R6
+	BKEsyTcM4X777KeWkOqlW2Xpkd22jhgDNvRrDpLcuIia/4fT9N62B7BoJwbJwgwH
+	h9H3AS7PQoMe39rIV5mUlVeW5cw0+Qr3YDSCBmqwwjtf91xzJjASBjxobcgWTjI+
+	9AHA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm2; t=1711380967; x=1711384567; bh=d0dvJmQIQfye1
+	imnVs8CcjRWqczhUMat/+HUwY7kQKY=; b=PaaYe2diWAxBc2NRb4+K10o/UFk1G
+	agFFnPNUSQe+mbdQaXoRcX97KTp05JFKqzcWOZ3ep3kEhBThECKaqsAXGe4f7ASN
+	2pFY1r/yQLW5Ypgp4L8nUFELXuANdxcZVWgun5biOilv4e33mjJnobZvtNzyAkpc
+	gPp9189llCh3VBYGS33tZ7mR/bYHdjPWiHOmqS/SZSGWf+V0ZKNlwlxIKpVbmNvh
+	6VkRyma2zMiHkK4blTUfPtAfOtkpPlscnkJubC4f8UlKG0iNgXX58SSyLPR8ge7j
+	G33RXLpGd0CWLEksvvIjbFXPmuCtPXFO0QPUWRvudu4m80mO+TxcApSyg==
+X-ME-Sender: <xms:5pkBZuJAXfTdPvEzs0yByrXVVQmeDOswVCJoJuKflwmFpSOs5nQfVw>
+    <xme:5pkBZmLITej98jdVe5XhemaYgsx_cZlISwk7pjAzk4ydn4AS5JxNm3ryCNEXfCQjx
+    zHAl3OR22zYkrWbMUk>
+X-ME-Received: <xmr:5pkBZuu13njiGrytg-n3Nkvr77sfKJv8GbyAdQBcDt7Hz6pXhXYCroFgpSG5ZWccHG9bi4hB8iY8KBe_jF5_jhIwUGyyAad8DY5m>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrudduuddgudekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvvefufffkofggtgfgsehtkeertdertdejnecuhfhrohhmpefpihhklhgr
+    shcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhouggvrhhluhhnugdorhgvnhgvsh
+    grshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrghtthgvrhhnpeehudelteetkefg
+    ffefudefuedvjeeivdekhfevieefgeffheeltddvvefhfeetgeenucevlhhushhtvghruf
+    hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehnihhklhgrshdrshhouggvrhhl
+    uhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgv
+X-ME-Proxy: <xmx:5pkBZjYDzFH6FxaVXoifNBKEwdYO18iyhASJ2po9P3EaALLx5FhiUw>
+    <xmx:5pkBZlamyyQMFHUYNSc51ZpNlSj3mZelSe0EuQFSAUaouNEOdq8XUg>
+    <xmx:5pkBZvCyVQ5liW1TgINbQO5IQrCzC19Qb22LP5zGbm4yoNF7vbqCSg>
+    <xmx:5pkBZrZhHqFlono_3jX7xlzL_JgNVzmPm7JyM5NWwmY_SUS-QtY8-w>
+    <xmx:55kBZtLsFgztZbfEiyRgbSfxuY5ENCOUmKzXC3MC54uLrGishFNvR-wemnJoTsM2>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 25 Mar 2024 11:36:03 -0400 (EDT)
+From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Sergey Shtylyov <s.shtylyov@omp.ru>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: linux-renesas-soc@vger.kernel.org,
+	=?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Subject: [net-next,v4 0/2] ravb: Support describing the MDIO bus
+Date: Mon, 25 Mar 2024 16:34:49 +0100
+Message-ID: <20240325153451.2366083-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Add a setup function implementation to the spi module to enable
-spi-3wire as option when specified in the device-tree.
+Hello,
 
-Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
----
- drivers/iio/accel/adxl345.h     |  1 +
- drivers/iio/accel/adxl345_spi.c | 12 +++++++++++-
- 2 files changed, 12 insertions(+), 1 deletion(-)
+This series adds support to the binding and driver of the Renesas
+Ethernet AVB to described the MDIO bus. Currently the driver uses the OF
+node of the device itself when registering the MDIO bus. This forces any
+MDIO bus properties the MDIO core should react on to be set on the
+device OF node. This is confusing and non of the MDIO bus properties are
+described in the Ethernet AVB bindings.
 
-diff --git a/drivers/iio/accel/adxl345.h b/drivers/iio/accel/adxl345.h
-index 620a2e0f0..55a72ca38 100644
---- a/drivers/iio/accel/adxl345.h
-+++ b/drivers/iio/accel/adxl345.h
-@@ -36,6 +36,7 @@
- #define ADXL345_DATA_FORMAT_8G		2
- #define ADXL345_DATA_FORMAT_16G		3
- #define ADXL345_DATA_FORMAT_MSK		~((u8) BIT(6)) /* ignore spi-3wire */
-+#define ADXL345_DATA_FORMAT_SPI_3WIRE	BIT(6)
- 
- #define ADXL345_DEVID			0xE5
- 
-diff --git a/drivers/iio/accel/adxl345_spi.c b/drivers/iio/accel/adxl345_spi.c
-index 1c0513bd3..f145d5c1d 100644
---- a/drivers/iio/accel/adxl345_spi.c
-+++ b/drivers/iio/accel/adxl345_spi.c
-@@ -20,6 +20,16 @@ static const struct regmap_config adxl345_spi_regmap_config = {
- 	.read_flag_mask = BIT(7) | BIT(6),
- };
- 
-+static int adxl345_spi_setup(struct device *dev, struct regmap *regmap)
-+{
-+	struct spi_device *spi = container_of(dev, struct spi_device, dev);
-+
-+	if (spi->mode & SPI_3WIRE)
-+		return regmap_write(regmap, ADXL345_REG_DATA_FORMAT,
-+				    ADXL345_DATA_FORMAT_SPI_3WIRE);
-+	return 0;
-+}
-+
- static int adxl345_spi_probe(struct spi_device *spi)
- {
- 	struct regmap *regmap;
-@@ -33,7 +43,7 @@ static int adxl345_spi_probe(struct spi_device *spi)
- 	if (IS_ERR(regmap))
- 		return dev_err_probe(&spi->dev, PTR_ERR(regmap), "Error initializing regmap\n");
- 
--	return adxl345_core_probe(&spi->dev, regmap, NULL);
-+	return adxl345_core_probe(&spi->dev, regmap, adxl345_spi_setup);
- }
- 
- static const struct adxl345_chip_info adxl345_spi_info = {
+Patch 1/2 extends the bindings with an optional mdio child-node to the
+device that can be used to contain the MDIO bus settings. While patch
+2/2 changes the driver to use this node (if present) when registering
+the MDIO bus.
+
+If the new optional mdio child-node is not present the driver fallback
+to the old behavior and uses the device OF node like before. This change
+is fully backward compatible with existing usage of the bindings.
+
+For changelog see individual patches.
+
+Niklas Söderlund (2):
+  dt-bindings: net: renesas,etheravb: Add optional MDIO bus node
+  ravb: Add support for an optional MDIO mode
+
+ .../devicetree/bindings/net/renesas,etheravb.yaml    | 12 ++++++++++--
+ drivers/net/ethernet/renesas/ravb_main.c             |  9 ++++++++-
+ 2 files changed, 18 insertions(+), 3 deletions(-)
+
 -- 
-2.25.1
+2.44.0
 
 
