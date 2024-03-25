@@ -1,396 +1,191 @@
-Return-Path: <devicetree+bounces-53176-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53180-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1709E88B30A
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 22:46:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EF9288B31A
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 22:49:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 305D61C3937B
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 21:46:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 14F9F30426F
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 21:49:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44DFD6F076;
-	Mon, 25 Mar 2024 21:46:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 137E96F51D;
+	Mon, 25 Mar 2024 21:49:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kYIdts/I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26D8C33995;
-	Mon, 25 Mar 2024 21:46:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 343A06EB6A;
+	Mon, 25 Mar 2024 21:49:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711403171; cv=none; b=M5aWr01K/9FMGeb72IqdHKpXNXil+2lJ8qCSAWM+4nYNXEPnqBVrPRYLpYEt1jxAB9Yhf164TLvCT5aH1Zfw4mosfTeTvNl6byz3urngc+0VuwChH+JRxCZytwBVrSb0wko3iBsDFJT48XwLn+mADyEtLHdv/ENqBbvSZmXfvP0=
+	t=1711403344; cv=none; b=URieejPEAv5oZV/di6DSjS6Zd/9EySgnIiYrp7NpD/kqObGmZzloWUhYsDs/cPl3eZ2oJh2EmOy5f9rrtcGXdkCR/rbKdwGXMQXYzn026pwzY6Y6MFkJ2mpPVVPxwed8DiI5RA5Zz0nwptTw4/nULQIuwc45eMX0wKacNfW/8R4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711403171; c=relaxed/simple;
-	bh=QmcrFjHsyLYA5YkEZPsztUH8CEd2ed/E9NAk9w9yOQg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=n4V/0h0fbEY/MHJvT404iAWKRuZCathYUIoPlse5rLEk6l19r0R0SjK4XNz8rOPjYDVavczwLqXuldlHm/Tr3qRTsidvw2l/0ZDsctiKxgZKxeOkXDR5CpJfpSsP0ne8/f94D4w1GYFFes15gcEslXoMEqwzSYWoRzwupS82uYc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8ECFCC433C7;
-	Mon, 25 Mar 2024 21:46:10 +0000 (UTC)
-Received: by mercury (Postfix, from userid 1000)
-	id A7F0D1060C59; Mon, 25 Mar 2024 22:46:07 +0100 (CET)
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-Date: Mon, 25 Mar 2024 22:45:29 +0100
-Subject: [PATCH 3/3] dt-bindings: hsi: omap-ssi: convert to YAML
+	s=arc-20240116; t=1711403344; c=relaxed/simple;
+	bh=v34Hl2d2E4vR+PopgFPmlL1rrpBU/J/HWmTPc8VwUYk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AQ+OD0F/r1cU9hf9eU0JNqKv8yeKOUIlkD9dJ5cx78r9BrBP7Dw1XxA21KvZCp6JK0nIOGTP9iMulrqUEo7XSoHhHh722xt12RyePoxQd6RDa6zUvPaWsrwdBRcVnzg+nB/+0dLUK65WJtdZjKBwEnDZV2DV+pR9QrTdl4Xl2Xk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kYIdts/I; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-56b0af675deso5987099a12.1;
+        Mon, 25 Mar 2024 14:49:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1711403340; x=1712008140; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=qUM4vmKmjA1gYO0tbm7KTA4LmIiK39ngypqIHIOvMUY=;
+        b=kYIdts/IIOJ+5D+ZFUyt/S3BRrk695DSNkqdQcfjbDk2+am8Uqgayhc+Yzzh90Nzwg
+         o3dEL+Id7Zv95s4lS4sLEbixmLNDPTMDPiImN3azc5sEhxnJDwoJZZiSfjN8+rPwbQNF
+         b0CBjtqticSD5MIIWpGo7r1mFX0+KXRqxX4m/fajkel3SpCEo+NpKYjleSAZT8TCJwyR
+         SO2WZ2OEw8IpDCKMRJf88+fgzudaZq487g+hmHz+0QMGwTf1QGWTULyj//UJjHk6eA2o
+         5C9ySS0tgXC+Jvyu8oM/I6YRcXCZTiXBuWYr8z45iEbrRZjh77M3EJqz2qFH4jzxKHDN
+         uvDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711403340; x=1712008140;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qUM4vmKmjA1gYO0tbm7KTA4LmIiK39ngypqIHIOvMUY=;
+        b=M5CtCR2tJjWHfD+kiYJC+5A0ooo8943xC+vRF9yj95fdcwJNuFnTfZ6ZdKVm6l2dxK
+         2mHY2iBNxLN/m+0nS3W7e8UJAMUabJDxyEZ4beUcBZ/HTUOl9SpeYGO2YAFwB/j5mEct
+         ckva+bQauIXHqeO5ufhMgFyPvrQY0VL/ydwTf13erqHGUgPV4KOZmkxgyBWIl1YL8mqN
+         mRAev6Lp7CC3bwhxctg3MuASvxw25jSKJnSqmKiYQn/mikFCwvjlvcwfrXkYTTgutNSR
+         b8NUnJ3KMkRkK7ccWQbZZV28DjAyTyb9PkJogrcqWrX1PcZCPu2OrGTe99jPdUDiOJct
+         zsXA==
+X-Forwarded-Encrypted: i=1; AJvYcCV7MiYdV2NQ8ixf/4gMGF4pwLS6JhJde6WP5ON5l5aHy+RL1icFPkrwHiKyTVjBpTiWfTUurcCrQ+R91G5/3eEIwqU3MG/WZ0PFYIBOyxZzXrMN3MZmM0DfUVMEp+nunzQOTH/w9pWkVaClLEckerua2qjGJxuKASKaxrslK3/x3uQQ
+X-Gm-Message-State: AOJu0YxPDPzmGKYDrIgH0dRpGcsDO1FyfhXGkvBclxIpnufzmuhZ9NhJ
+	861MvArhqDssp8uuro6XNhbg+DcAmhW7TJqAtlnNGYrQy6y8nSj6
+X-Google-Smtp-Source: AGHT+IGqzF3fHuQAIWMVhReRKPOloiG3GIJOv/fRY7SrojJhBUXyuiPBtXLwZklMVo7FZ83sKnItLQ==
+X-Received: by 2002:a50:d685:0:b0:56b:83ff:e044 with SMTP id r5-20020a50d685000000b0056b83ffe044mr5778673edi.1.1711403340182;
+        Mon, 25 Mar 2024 14:49:00 -0700 (PDT)
+Received: from tom-HP-ZBook-Fury-15-G7-Mobile-Workstation (net-188-217-49-82.cust.vodafonedsl.it. [188.217.49.82])
+        by smtp.gmail.com with ESMTPSA id c13-20020a056402100d00b00568abb329a3sm3403484edu.88.2024.03.25.14.48.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Mar 2024 14:48:59 -0700 (PDT)
+Date: Mon, 25 Mar 2024 22:48:56 +0100
+From: Tommaso Merciai <tomm.merciai@gmail.com>
+To: Adam Ford <aford173@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org, marex@denx.de,
+	alexander.stein@ew.tq-group.com, frieder.schrempf@kontron.de,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Liu Ying <victor.liu@nxp.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+	linux-pm@vger.kernel.org
+Subject: Re: [PATCH V8 00/12] soc: imx8mp: Add support for HDMI
+Message-ID: <ZgHxSHDAt7ytqDC1@tom-HP-ZBook-Fury-15-G7-Mobile-Workstation>
+References: <20240203165307.7806-1-aford173@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240325-hsi-dt-binding-v1-3-88e8e97c3aae@collabora.com>
-References: <20240325-hsi-dt-binding-v1-0-88e8e97c3aae@collabora.com>
-In-Reply-To: <20240325-hsi-dt-binding-v1-0-88e8e97c3aae@collabora.com>
-To: Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>
-Cc: Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org, 
- linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Sebastian Reichel <sebastian.reichel@collabora.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=8551;
- i=sebastian.reichel@collabora.com; h=from:subject:message-id;
- bh=QmcrFjHsyLYA5YkEZPsztUH8CEd2ed/E9NAk9w9yOQg=;
- b=owEBbQKS/ZANAwAKAdju1/PIO/qaAcsmYgBmAfCeONHV0Vf/JS55qeIDQCbkyhC/+neYKfnzK
- cbB4o6MWqqJAjMEAAEKAB0WIQTvZg0HRj+Lcmp5VBPY7tfzyDv6mgUCZgHwngAKCRDY7tfzyDv6
- mm+ND/9+dIsmQTiua4Fn6p1l4BRJ1/bzeRI+hWKnufspaFPql152TlDuMe58Cc0xhVe+e3ckF0l
- 1Vkq33+Qg2itF+0yPjyB1UB2zVT16RtmHp16Jf81OhRddyJTZ7afgKmDUXTWcVcVDMw6mJTAHiO
- 2T0x9YJwRKsrlzRd36fQfLvoXdalnvyxWe3AF5yusPuBWjUD5yNa114EIz/SK6U9xsemDwXMTAf
- WorllkXQvBD1mSPUIWZHCifDiAdOXJaGcqsZmEGGoUKlA0QhXu8i7g45rr+tE5cZT9JncrAPXxC
- iHL0ToxxMpBQylRMUfkB7VllsqFThAlenX8vCDpEdajqHFjqHUKVtYxGW8bodiEKok61nlHJ4HZ
- lBZBRwVKe23ckECpCpKVumWbdJxCSkehnruXI9p1gbK0WBAw9JKL1MQw9ObsShYJ+Nq39ZWl3LQ
- DnCIoUP9XjB2x6GF+ZVHtNecHrO+BlSSZrJDCQrxvWUEyszErZc3GTk8bf7w3b1Z/GTJyJ4/eQp
- C2vpIkD+VumhtTF+0YFtQwn8yk+QdWW+jGEowEzl+HNgieyT30jTQc8spHuWF9lewbEG6iIx70k
- 3rtDwKbjgUi8U8SGWZiElpRLnne3Yz67XGxVvX15iFMDWEC28XBcSy/KF2lBR0cyhhkackYXeDp
- Qy4dndvCFuCAvkA==
-X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
- fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240203165307.7806-1-aford173@gmail.com>
 
-Convert the legacy txt binding to modern YAML.
-No semantic change.
+Hi Adam, Lucas,
+Thanks for this series.
 
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- Documentation/devicetree/bindings/hsi/omap-ssi.txt | 102 -----------
- .../devicetree/bindings/hsi/ti,omap-ssi.yaml       | 196 +++++++++++++++++++++
- 2 files changed, 196 insertions(+), 102 deletions(-)
+This series make HDMI work on evk.
+All is working properly on my side.
 
-diff --git a/Documentation/devicetree/bindings/hsi/omap-ssi.txt b/Documentation/devicetree/bindings/hsi/omap-ssi.txt
-deleted file mode 100644
-index 77a0c3c3036e..000000000000
---- a/Documentation/devicetree/bindings/hsi/omap-ssi.txt
-+++ /dev/null
-@@ -1,102 +0,0 @@
--OMAP SSI controller bindings
--
--OMAP3's Synchronous Serial Interface (SSI) controller implements a
--legacy variant of MIPI's High Speed Synchronous Serial Interface (HSI),
--while the controller found inside OMAP4 is supposed to be fully compliant
--with the HSI standard.
--
--Required properties:
--- compatible:		Should include "ti,omap3-ssi" or "ti,omap4-hsi"
--- reg-names:		Contains the values "sys" and "gdd" (in this order).
--- reg:			Contains a matching register specifier for each entry
--			in reg-names.
--- interrupt-names:	Contains the value "gdd_mpu".
--- interrupts: 		Contains matching interrupt information for each entry
--			in interrupt-names.
--- ranges:		Represents the bus address mapping between the main
--			controller node and the child nodes below.
--- clock-names:		Must include the following entries:
--  "ssi_ssr_fck": The OMAP clock of that name
--  "ssi_sst_fck": The OMAP clock of that name
--  "ssi_ick": The OMAP clock of that name
--- clocks:		Contains a matching clock specifier for each entry in
--			clock-names.
--- #address-cells:	Should be set to <1>
--- #size-cells:		Should be set to <1>
--
--Each port is represented as a sub-node of the ti,omap3-ssi device.
--
--Required Port sub-node properties:
--- compatible:		Should be set to the following value
--			ti,omap3-ssi-port (applicable to OMAP34xx devices)
--			ti,omap4-hsi-port (applicable to OMAP44xx devices)
--- reg-names:		Contains the values "tx" and "rx" (in this order).
--- reg:			Contains a matching register specifier for each entry
--			in reg-names.
--- interrupts:		Should contain interrupt specifiers for mpu interrupts
--			0 and 1 (in this order).
--- ti,ssi-cawake-gpio:	Defines which GPIO pin is used to signify CAWAKE
--			events for the port. This is an optional board-specific
--			property. If it's missing the port will not be
--			enabled.
--
--Optional properties:
--- ti,hwmods:		Shall contain TI interconnect module name if needed
--			by the SoC
--
--Example for Nokia N900:
--
--ssi-controller@48058000 {
--	compatible = "ti,omap3-ssi";
--
--	/* needed until hwmod is updated to use the compatible string */
--	ti,hwmods = "ssi";
--
--	reg = <0x48058000 0x1000>,
--	      <0x48059000 0x1000>;
--	reg-names = "sys",
--		    "gdd";
--
--	interrupts = <55>;
--	interrupt-names = "gdd_mpu";
--
--	clocks = <&ssi_ssr_fck>,
--		 <&ssi_sst_fck>,
--		 <&ssi_ick>;
--	clock-names = "ssi_ssr_fck",
--		      "ssi_sst_fck",
--		      "ssi_ick";
--
--	#address-cells = <1>;
--	#size-cells = <1>;
--	ranges;
--
--	ssi-port@4805a000 {
--		compatible = "ti,omap3-ssi-port";
--
--		reg = <0x4805a000 0x800>,
--		      <0x4805a800 0x800>;
--		reg-names = "tx",
--			    "rx";
--
--		interrupt-parent = <&intc>;
--		interrupts = <67>,
--			     <68>;
--
--		ti,ssi-cawake-gpio = <&gpio5 23 GPIO_ACTIVE_HIGH>; /* 151 */
--	}
--
--	ssi-port@4805a000 {
--		compatible = "ti,omap3-ssi-port";
--
--		reg = <0x4805b000 0x800>,
--		      <0x4805b800 0x800>;
--		reg-names = "tx",
--			    "rx";
--
--		interrupt-parent = <&intc>;
--		interrupts = <69>,
--			     <70>;
--
--	}
--}
-diff --git a/Documentation/devicetree/bindings/hsi/ti,omap-ssi.yaml b/Documentation/devicetree/bindings/hsi/ti,omap-ssi.yaml
-new file mode 100644
-index 000000000000..eb82f85c25b6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hsi/ti,omap-ssi.yaml
-@@ -0,0 +1,196 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/hsi/ti,omap-ssi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: SSI Controller on OMAP SoCs
-+
-+description:
-+  OMAP3's Synchronous Serial Interface (SSI) controller implements a
-+  legacy variant of MIPI's High Speed Synchronous Serial Interface (HSI),
-+  while the controller found inside OMAP4 is supposed to be fully compliant
-+  with the HSI standard.
-+
-+maintainers:
-+  - Sebastian Reichel <sre@kernel.org>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,omap3-ssi
-+      - ti,omap4-hsi
-+
-+  reg:
-+    items:
-+      - description: registers for sys
-+      - description: registers for gdd
-+
-+  reg-names:
-+    items:
-+      - const: sys
-+      - const: gdd
-+
-+  ranges: true
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 1
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 3
-+
-+  clock-names:
-+    minItems: 1
-+    maxItems: 3
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-names:
-+    const: gdd_mpu
-+
-+  ti,hwmods:
-+    const: ssi
-+    deprecated: true
-+
-+patternProperties:
-+  "[hs]si-port@[0-9a-f]+":
-+    type: object
-+
-+    additionalProperties: false
-+
-+    properties:
-+      compatible:
-+        enum:
-+          - ti,omap3-ssi-port
-+          - ti,omap4-hsi-port
-+
-+      reg:
-+        items:
-+          - description: TX registers
-+          - description: RX registers
-+
-+      reg-names:
-+        items:
-+          - const: tx
-+          - const: rx
-+
-+      interrupts:
-+        items:
-+          - description: MPU interrupt 0
-+          - description: MPU interrupt 1
-+        minItems: 1
-+
-+      ti,ssi-cawake-gpio:
-+        description: GPIO signifying CAWAKE events
-+        maxItems: 1
-+
-+      hsi-client:
-+        type: object
-+        $ref: /schemas/hsi/hsi-client.yaml#
-+
-+    required:
-+      - compatible
-+      - reg
-+      - reg-names
-+      - interrupts
-+
-+    allOf:
-+      - if:
-+          properties:
-+            compatible:
-+              contains:
-+                const: ti,omap3-ssi-port
-+        then:
-+          properties:
-+            $nodename:
-+              pattern: "^ssi-port@(.*)?$"
-+            interrupts:
-+              minItems: 2
-+        else:
-+          properties:
-+            $nodename:
-+              pattern: "^hsi-port@(.*)?$"
-+            interrupts:
-+              maxItems: 1
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - ranges
-+  - "#address-cells"
-+  - "#size-cells"
-+  - clocks
-+  - clock-names
-+  - interrupts
-+  - interrupt-names
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: ti,omap3-ssi
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 3
-+        clock-names:
-+          items:
-+            - const: ssi_ssr_fck
-+            - const: ssi_sst_fck
-+            - const: ssi_ick
-+    else:
-+      properties:
-+        clocks:
-+          maxItems: 1
-+        clock-names:
-+          items:
-+            - const: hsi_fck
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    ssi-controller@48058000 {
-+        compatible = "ti,omap3-ssi";
-+        reg = <0x48058000 0x1000>,
-+              <0x48059000 0x1000>;
-+        reg-names = "sys", "gdd";
-+        ranges;
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        clocks = <&ssi_ssr_fck>,
-+                 <&ssi_sst_fck>,
-+                 <&ssi_ick>;
-+        clock-names = "ssi_ssr_fck",
-+                      "ssi_sst_fck",
-+                      "ssi_ick";
-+        interrupts = <55>;
-+        interrupt-names = "gdd_mpu";
-+
-+        ssi-port@4805a000 {
-+                compatible = "ti,omap3-ssi-port";
-+                reg = <0x4805a000 0x800>,
-+                      <0x4805a800 0x800>;
-+                reg-names = "tx", "rx";
-+                interrupt-parent = <&intc>;
-+                interrupts = <67>, <68>;
-+                ti,ssi-cawake-gpio = <&gpio5 23 GPIO_ACTIVE_HIGH>;
-+        };
-+
-+        ssi-port@4805b000 {
-+                compatible = "ti,omap3-ssi-port";
-+                reg = <0x4805b000 0x800>,
-+                      <0x4805b800 0x800>;
-+                reg-names = "tx", "rx";
-+                interrupt-parent = <&intc>;
-+                interrupts = <69>, <70>;
-+        };
-+    };
+Tested on: Linux imx8mp-lpddr4-evk 6.9.0-rc1.
+Hope this help.
 
--- 
-2.43.0
+Tested-by: Tommaso Merciai <tomm.merciai@gmail.com>
 
+Thanks & Regards,
+Tommaso
+
+On Sat, Feb 03, 2024 at 10:52:40AM -0600, Adam Ford wrote:
+> The i.MX8M Plus has an HDMI controller, but it depends on two
+> other systems, the Parallel Video Interface (PVI) and the
+> HDMI PHY from Samsung. The LCDIF controller generates the display
+> and routes it to the PVI which converts passes the parallel video
+> to the HDMI bridge.  The HDMI system has a corresponding power
+> domain controller whose driver was partially written, but the
+> device tree for it was never applied, so some changes to the
+> power domain should be harmless because they've not really been
+> used yet.
+> 
+> This series is adapted from multiple series from Lucas Stach with
+> edits and suggestions from feedback from various series, but it
+> since it's difficult to use and test them independently,
+> I merged them into on unified series.  The version history is a
+> bit ambiguous since different components were submitted at different
+> times and had different amount of retries.  In an effort to merge them
+> I used the highest version attempt.
+> 
+> Adam Ford (3):
+>   dt-bindings: soc: imx: add missing clock and power-domains to
+>     imx8mp-hdmi-blk-ctrl
+>   pmdomain: imx8mp-blk-ctrl: imx8mp_blk: Add fdcc clock to hdmimix
+>     domain
+>   arm64: defconfig: Enable DRM_IMX8MP_DW_HDMI_BRIDGE as module
+> 
+> Lucas Stach (9):
+>   dt-bindings: phy: add binding for the i.MX8MP HDMI PHY
+>   phy: freescale: add Samsung HDMI PHY
+>   arm64: dts: imx8mp: add HDMI power-domains
+>   arm64: dts: imx8mp: add HDMI irqsteer
+>   dt-bindings: display: imx: add binding for i.MX8MP HDMI PVI
+>   drm/bridge: imx: add driver for HDMI TX Parallel Video Interface
+>   dt-bindings: display: imx: add binding for i.MX8MP HDMI TX
+>   drm/bridge: imx: add bridge wrapper driver for i.MX8MP DWC HDMI
+>   arm64: dts: imx8mp: add HDMI display pipeline
+> 
+>  .../display/bridge/fsl,imx8mp-hdmi-tx.yaml    |  102 ++
+>  .../display/imx/fsl,imx8mp-hdmi-pvi.yaml      |   84 ++
+>  .../bindings/phy/fsl,imx8mp-hdmi-phy.yaml     |   62 +
+>  .../soc/imx/fsl,imx8mp-hdmi-blk-ctrl.yaml     |   22 +-
+>  arch/arm64/boot/dts/freescale/imx8mp.dtsi     |  145 +++
+>  arch/arm64/configs/defconfig                  |    1 +
+>  drivers/gpu/drm/bridge/imx/Kconfig            |   18 +
+>  drivers/gpu/drm/bridge/imx/Makefile           |    2 +
+>  drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c  |  207 ++++
+>  drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c   |  154 +++
+>  drivers/phy/freescale/Kconfig                 |    6 +
+>  drivers/phy/freescale/Makefile                |    1 +
+>  drivers/phy/freescale/phy-fsl-samsung-hdmi.c  | 1075 +++++++++++++++++
+>  drivers/pmdomain/imx/imx8mp-blk-ctrl.c        |   10 +-
+>  14 files changed, 1876 insertions(+), 13 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/fsl,imx8mp-hdmi-tx.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pvi.yaml
+>  create mode 100644 Documentation/devicetree/bindings/phy/fsl,imx8mp-hdmi-phy.yaml
+>  create mode 100644 drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c
+>  create mode 100644 drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c
+>  create mode 100644 drivers/phy/freescale/phy-fsl-samsung-hdmi.c
+> 
+> -- 
+> 2.43.0
+> 
+> 
 
