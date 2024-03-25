@@ -1,181 +1,152 @@
-Return-Path: <devicetree+bounces-53142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7769788B0C6
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 21:04:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E36888B0D9
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 21:06:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2CBA930236D
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 20:04:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B28E2E36BF
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 20:06:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC90A4A31;
-	Mon, 25 Mar 2024 20:04:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69A933399F;
+	Mon, 25 Mar 2024 20:06:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SomlfL+H"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oCq/30nk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2286F10940;
-	Mon, 25 Mar 2024 20:04:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ABB43E468;
+	Mon, 25 Mar 2024 20:06:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711397061; cv=none; b=pAKuCscD2od867yhXbdUTsPEzIQ2KuUitpZ2I4+z15m4ZPxdZmQhdXem1kXKvDPokCjYvjYIuW8rUS4O9XuPWk6MF976PiJ3luq3bJMBqinuMy/ZsH3K9CFLyfo7q3CD20xK9rT5r8m2j1M7AGgsV7zhu29pWNwJroIfXsLmV1k=
+	t=1711397203; cv=none; b=tPd1ZBkKWy+2bHebBbHJRRGwY0y3ADpk0xsbKGt2mRKnRthI8yn0yUZMW6sSyOci7HBKuQJlsiIMznBu7G14AGrxXz0Be2CiY5/0koPHtTUbUjehIfnwlmIP8CnBWBVmIWwizTj9SC2csnuwC3hW7x03v2e6ETlX3JcivN8X5w0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711397061; c=relaxed/simple;
-	bh=7LbosvrRoSaOFVXQNHiQGzHq/d1asJ/LAmMmK1qoAOY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=uZ9XpgQ9agVbCYDc8NnSxR6j8tAmnLIdp2L/j+/nAEVWi0rhWFuQHVgAx74p2sMSQdkhV3wgnXx4qzZRZ0xoS49VZpYnLtmaz4tOXRHzbKjlHe4+E9LCQvLZFbAN/AdqNSeDq93Hm3xce/JW4rPIwBt4P5H2ac6EHCqVLNGKgWs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SomlfL+H; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42PIuBuO017962;
-	Mon, 25 Mar 2024 20:03:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=h+1UxwxuvCslZU2aNyiMM9f3pn/NiRqoN5yz+kk6g5M=; b=So
-	mlfL+HDTZJC1n3IMkgeXNeqt1HUmnWw6VJ03VK+CJ6SDIWdofyQdB9DoVuaCtpYK
-	7vFB/JC803KoaRTgSGWX1PJrR6FAH7tVfAEW5P6mOmjtmu6hmFjcuSrFwfQywpnN
-	RQK760jtY3C0n+qV4AD+ynWyNzoyfO1HezeRJ9KeCu85B2OOyzAGXSmFXF4pXLmV
-	p72il8IfVsl8zz9S/Nnq2E5fkKfa/htkMcJqBAMoM2CO0cQey3CyKWlsdXcDmfRY
-	yN7HzpZZCmfhlKOnNEEjbEQdExAP+22NBvOsX6U/K+lP5bqkGR5SmdyB5VmsclXM
-	DOtgk/Dph0FZOJpqh08A==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x34hssqwf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 25 Mar 2024 20:03:48 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42PK3lQt002408
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 25 Mar 2024 20:03:47 GMT
-Received: from [10.227.110.203] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 25 Mar
- 2024 13:03:45 -0700
-Message-ID: <8019f005-efaa-4b31-90d7-fdefd5f6191e@quicinc.com>
-Date: Mon, 25 Mar 2024 13:03:44 -0700
+	s=arc-20240116; t=1711397203; c=relaxed/simple;
+	bh=TFyc7t7zAjF14Ku+RI2u7lJnCT2d4Wt2C2Ahw/P8HW0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ZA503o6Sjtf+4PpQ5OY/uWXKtQj/9HynDDXksveRihUvlhSn3T9Z/WlJRMQdlTyMQ2+P/opCPkwVTqjh2eqh5hVXCvGrrxIk+lwL3wSx+7zp+38QecNGy7SEpPuqGxKg6r6WYeKdHbL+kI1CYxHlAnh05ifKCMJAs0uUPTpRPhs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oCq/30nk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 855F5C433F1;
+	Mon, 25 Mar 2024 20:06:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711397202;
+	bh=TFyc7t7zAjF14Ku+RI2u7lJnCT2d4Wt2C2Ahw/P8HW0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=oCq/30nkbitp5TaP/65h2LjOGxDs81MCvMY3Fqo3I76+1/BGnWdq1gGTuRLBUCZXi
+	 X22nB5Re7Rh3xEiZjLVqGBglCDSW1TPVhHfIVXmOhIr47oiANLUt0gkHGJbCefGE0J
+	 VckK+PFUZEWc4kxwZ6P+XYX9zPE/Pmc1Z857yQm4L8V//8XlRfoz0IK1mw5B/KsaJt
+	 9Q5ZHatW8UI//Xcqvcole458xy8oeNpa5pkBnHOp97cD2WhxiyytGxj6rW75JTrQfh
+	 BGXCoY+hZsdt1Xam8ElbM4GqJ0nYzISvggIcey4++RpLlU68TZttccJzIc4UAX2ckX
+	 i0h+4XsZyaJJg==
+Date: Mon, 25 Mar 2024 20:06:25 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>
+Cc: Julien Stephan <jstephan@baylibre.com>, Lars-Peter Clausen
+ <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel test robot <lkp@intel.com>
+Subject: Re: [PATCH v5 4/7] iio: adc: ad7380: add support for
+ pseudo-differential parts
+Message-ID: <20240325200625.5a07cec4@jic23-huawei>
+In-Reply-To: <CAMknhBGmM7yt1JR1tW4SS5RLGpN9PtnMrf0WvZ-bhU-gSv3YUQ@mail.gmail.com>
+References: <20240319-adding-new-ad738x-driver-v5-0-ce7df004ceb3@baylibre.com>
+	<20240319-adding-new-ad738x-driver-v5-4-ce7df004ceb3@baylibre.com>
+	<20240324130135.35f4b0eb@jic23-huawei>
+	<CAMknhBGmM7yt1JR1tW4SS5RLGpN9PtnMrf0WvZ-bhU-gSv3YUQ@mail.gmail.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 04/16] dt-bindings: net: wireless: qcom,ath11k:
- describe the ath11k on QCA6390
-Content-Language: en-US
-To: Bartosz Golaszewski <brgl@bgdev.pl>, Kalle Valo <kvalo@kernel.org>
-CC: Marcel Holtmann <marcel@holtmann.org>,
-        Luiz Augusto von Dentz
-	<luiz.dentz@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric
- Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni
-	<pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
-	<broonie@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon
-	<will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-        Saravana Kannan
-	<saravanak@google.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Arnd
- Bergmann <arnd@arndb.de>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Marek
- Szyprowski <m.szyprowski@samsung.com>,
-        Alex Elder <elder@linaro.org>,
-        Srini
- Kandagatla <srinivas.kandagatla@linaro.org>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Manivannan
- Sadhasivam <mani@kernel.org>,
-        Lukas Wunner <lukas@wunner.de>,
-        Dmitry
- Baryshkov <dmitry.baryshkov@linaro.org>,
-        <linux-bluetooth@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-wireless@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-pci@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>,
-        Bartosz Golaszewski
-	<bartosz.golaszewski@linaro.org>
-References: <20240325131624.26023-1-brgl@bgdev.pl>
- <20240325131624.26023-5-brgl@bgdev.pl> <87r0fy8lde.fsf@kernel.org>
- <CAMRc=Mc2Tc8oHr5NVo=aHAADkJtGCDAVvJs+7V-19m2zGi-vbw@mail.gmail.com>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <CAMRc=Mc2Tc8oHr5NVo=aHAADkJtGCDAVvJs+7V-19m2zGi-vbw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: amv7YH_YeBwotbXxq6Rf_df94OWD9htV
-X-Proofpoint-GUID: amv7YH_YeBwotbXxq6Rf_df94OWD9htV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-25_18,2024-03-21_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
- spamscore=0 phishscore=0 lowpriorityscore=0 mlxscore=0 bulkscore=0
- impostorscore=0 clxscore=1011 mlxlogscore=999 malwarescore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2403210001 definitions=main-2403250121
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On 3/25/2024 7:09 AM, Bartosz Golaszewski wrote:
-> On Mon, Mar 25, 2024 at 2:57 PM Kalle Valo <kvalo@kernel.org> wrote:
->>
->> Bartosz Golaszewski <brgl@bgdev.pl> writes:
->>
->>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->>>
->>> Add a PCI compatible for the ATH11K module on QCA6390 and describe the
->>> power inputs from the PMU that it consumes.
->>>
->>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->>
->> [...]
->>
->>> +allOf:
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            const: pci17cb,1101
->>> +    then:
->>> +      required:
->>> +        - vddrfacmn-supply
->>> +        - vddaon-supply
->>> +        - vddwlcx-supply
->>> +        - vddwlmx-supply
->>> +        - vddrfa0p8-supply
->>> +        - vddrfa1p2-supply
->>> +        - vddrfa1p7-supply
->>> +        - vddpcie0p9-supply
->>> +        - vddpcie1p8-supply
->>
->> I don't know DT well enough to know what the "required:" above means,
->> but does this take into account that there are normal "plug&play" type
->> of QCA6390 boards as well which don't need any DT settings?
->>
+
+> > > +     /*
+> > > +      * pseudo-differential chips have common mode supplies for the negative
+> > > +      * input pin.
+> > > +      */
+> > > +     for (i = 0; i < st->chip_info->num_vcm_supplies; i++) {
+> > > +             struct regulator *vcm;
+> > > +
+> > > +             vcm = devm_regulator_get_optional(&spi->dev,  
+> >
+> > Why optional?
+> >  
+> > > +                                               st->chip_info->vcm_supplies[i]);
+> > > +             if (IS_ERR(vcm))  
+> >
+> > This will fail if it's not there, so I'm guessing you are using this to avoid
+> > getting to the regulator_get_voltage?  If it's not present I'd rely on that
+> > failing rather than the confusing handling here.
+> >
+> > When the read of voltage wasn't in probe this would have resulted in a problem
+> > much later than initial setup, now it is, we are just pushing it down a few lines.
+> >
+> > Arguably we could have a devm_regulator_get_not_dummy()
+> > that had same implementation to as get_optional() but whilst it's called that
+> > I think it's confusing to use like this.  
 > 
-> Do they require a DT node though for some reason?
+> Despite the misleading naming, I guess I am used to
+> devm_regulator_get_optional() by now having used it enough times.
+> Since it fails either way though, technically both ways seem fine so I
+> can't really argue for one over the other.
+> 
+> But given that this is a common pattern in many IIO drivers, maybe we
+> make a devm_regulator_get_enable_get_voltage()? This would return the
+> voltage on success or an error code. (If the regulator subsystem
+> doesn't want this maybe we could have
+> devm_iio_regulator_get_enable_get_voltage()).
+> 
+> If the dev_err_probe() calls were included in
+> devm_regulator_get_enable_get_voltage(), then the 10+ lines of code
+> here and in many other drivers to get the regulator, enable it, add
+> the reset action and get the voltage could be reduced to 3 lines.
 
-I would not expect the "PC" flavor of the card to require DT.
-The "mobile" and "automotive" flavors would probably require it.
+I like this proposal a lot. RFC, so it's visible outside the depths
+of this thread?
+Particularly good as it will keep the regulator opaque in the same
+fashion as devm_regulator_get_enabled()
+
+As you say, we have a 'lot' of instances of this (quick grep
+suggests > 50 in IIO alone and smaller numbers elsewhere).
+
+Jonathan
+
+
+> 
+> >  
+> > > +                     return dev_err_probe(&spi->dev, PTR_ERR(vcm),
+> > > +                                          "Failed to get %s regulator\n",
+> > > +                                          st->chip_info->vcm_supplies[i]);
+> > > +
+> > > +             ret = regulator_enable(vcm);
+> > > +             if (ret)
+> > > +                     return ret;
+> > > +
+> > > +             ret = devm_add_action_or_reset(&spi->dev,
+> > > +                                            ad7380_regulator_disable, vcm);
+> > > +             if (ret)
+> > > +                     return ret;
+> > > +
+> > > +             ret = regulator_get_voltage(vcm);  
+> >
+> > I'd let this fail if we have a dummy regulator.
+> >  
+> > > +             if (ret < 0)
+> > > +                     return ret;
+> > > +
+> > > +             st->vcm_mv[i] = ret / 1000;
+> > > +     }
+> > > +  
+> 
 
 
