@@ -1,116 +1,223 @@
-Return-Path: <devicetree+bounces-53004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53005-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F360B88A9F2
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 17:47:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32FC188AA02
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 17:48:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C383303D3F
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 16:47:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB0A6304A63
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 16:48:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B13F137915;
-	Mon, 25 Mar 2024 15:01:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E27171386B1;
+	Mon, 25 Mar 2024 15:06:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="IPXxTTFD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rO1guDMr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92C671327F7
-	for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 15:01:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B65B61386AA;
+	Mon, 25 Mar 2024 15:06:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711378908; cv=none; b=cVSAU+2BmzOIkI13aygVH50meRcTVj7ldpaqdfROIbF6h1oYZ8wvGpaen0IEpaNH7z3NgzEuRgdsjXZxLD8yChuVORRlzqKYgyA0F5V5m2rtOfISZYPW/b62RN8iABGOhrqJQDFp8WsmfipL1SJu3raoq811SKOxz6BGpvNf85c=
+	t=1711379172; cv=none; b=kDqqkEnKc9INdCexLPLd5FMwKSnkCwaqApoWZBIpugbZAdd60/PYs/KZelOSIrejsH35EF5mSEpAHAPkizQH1gGvOFe7/u8C3vh9bCSVYB7iuDnjnj+DXNSk5IrnyMwxZdWZeANbev7cPuaKxenu2eF3lesRLEEbVpyd1Cg/6zk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711378908; c=relaxed/simple;
-	bh=J1GJWD2Uw75AizZkYb7+DSC6vbUI9FgQBFn59jiHELI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dqR66JTlRVTuDQ/rmeaC/6ZMOiNOh0FW2TW+NoqetQNYEMwOTD/bUmKYJC+ICt0PkO0jA3cYI45IB9qVVfw0a83zNNUrqeL5Y/kJ43HFgzo8ZnZw655eGm+vd/Uw9SRf/dGSIGLUgcemQlP8tVtDAu8mtXArsLXmj3/ToGhSrmg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=IPXxTTFD; arc=none smtp.client-ip=209.85.208.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2d23114b19dso65952781fa.3
-        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 08:01:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1711378904; x=1711983704; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=J1GJWD2Uw75AizZkYb7+DSC6vbUI9FgQBFn59jiHELI=;
-        b=IPXxTTFDZ2yqE7cPE0bgKDl/r6ii8rARFxYt+n1Yde2OISROkMCUVXHOimuHc1d23K
-         I8SonAi3QeQlp1TBVBqi354iIK1wxdDDM6OrsUScCH6kdRk0TgCnnOynytvzq2qrpVCo
-         Yu9w28sfNj7K/UZZUqHww0EaahDj5fAysq2Hu0xMY352T70UnW22or36cFUOSRnxmEW5
-         zdXpN/427/YWbMSMqwDh7ph9G4UQ7DvlXL5f7mp4hnArwkz/xqJfNTcfIzxG+D8na2Kc
-         O2OqBKszt6b+02XFAfgP1YyKQheXE4EIAOUm8ZmGTJ9irfS2la9wC/gn5959ls80Qwav
-         ENDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711378904; x=1711983704;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=J1GJWD2Uw75AizZkYb7+DSC6vbUI9FgQBFn59jiHELI=;
-        b=wmX5EHvs4zhNOFdTAG5FNV+ipur9UKhW2rI4EdFd4+tczPhxedHBYaVLU4/L6Rbb0r
-         /sZdQiigHYWk0f3nBhoSV/H4fIWdpcju+vVX4L8zmRob5wtivcYwL9U4sDUTlkJLNicH
-         mRXLG88mCAlBZlL6r565kkx7QrKpMRGr0qOSUb18PiycXQ+nGdzgud+Y1+V79MoGXjmY
-         XQbRfkysfO3Mrq4o1ZCy85DmrFhx5GEX3al6zfvPESleOr5pRsJJ7iAPUYU5rAxxYUUk
-         09vGOdsYwAb80+YpX1qustNk2Z7ibsOUXMA7VepHJJfCIGdqGrlCORKQyiJHe2IAHRhj
-         wM0w==
-X-Forwarded-Encrypted: i=1; AJvYcCU9z1oPjnGRbN6zkptyfrXNtDd7jPrdWnCJu8pP4Sj434bq2PcKc5bmUZ0q+M3o39FUs6SlDxy27c3Idb4FlsS90FsC6agCb82nmA==
-X-Gm-Message-State: AOJu0YwQoIpNNQLvFIR6aSA63NmdJT5iqFirKvKhMd325Hv5bnFlXhDi
-	KJuTMYyFLsKH3OGKG339VsRyuxp5365fTEtE8Uw5SckDTDJPkGNL+4xdhkhUoTJtj7DYQ3wT2u2
-	vragpKnt/3E7c8SbKVfMHdogcY/T1g1d4w+Q2Bw==
-X-Google-Smtp-Source: AGHT+IEXWyh8xd3VomCJthT7kJfFp+OHTh+i9uf/Ek3pq0kOY3hlzw+qYnSAMFsfi1PIn1RIyt45npMZCd1BRSd8e1M=
-X-Received: by 2002:a05:651c:232:b0:2d6:a5e0:f50 with SMTP id
- z18-20020a05651c023200b002d6a5e00f50mr56296ljn.11.1711378901034; Mon, 25 Mar
- 2024 08:01:41 -0700 (PDT)
+	s=arc-20240116; t=1711379172; c=relaxed/simple;
+	bh=XzL2EPuo80gTaTjOKJ5O1h54N1xpp8OnrwD3hF9mTqE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rz9d7ePcx0IiEj3f+E30KgG3624rtBDqgCIEc0jNLSkwNFzrIui40+Eei/AcTS9b1G1TAYVJMQPa0IHJmofXh755JVKrWpVQLGE4dkSc0aHzlR29RjTeRHD2fGrh66PMqkx0BCZJbv+v7UnWpC7grdQOkyLEtQM8yj9YdFiRvCc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rO1guDMr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12377C433C7;
+	Mon, 25 Mar 2024 15:06:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711379172;
+	bh=XzL2EPuo80gTaTjOKJ5O1h54N1xpp8OnrwD3hF9mTqE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rO1guDMrW0qeIRhrGSgOb2PIA2ign9tsPDLC8TgculSQ547kJuyGrJ4KLf5jS2oBN
+	 XFn2+KjZfbhtXUBT7AYgpc9yxTavVD0n3Lyelis2VDyKR0n1cKJnE/3xTwNWxblySr
+	 F53oUzvq6DB0mD1YYd23Vo0U95GryW7VVnpNnwgh0meJ+cfVTMYNi7TFFTzU+OUaJ4
+	 pX9gWryDlu9+TqBxeJ9blSxTdr7zliUshZKPBH5Ikq8Qm6FyHwZKgTqeOrB6xJZXQL
+	 Od8FxVsnQ0edqAZYiIfKs9EMM2yYSWT0HT3wz7+SO6Vklx2XfA44eu9X5bwwihlkM1
+	 cDoHrm1jIMpxw==
+Date: Mon, 25 Mar 2024 10:06:09 -0500
+From: Rob Herring <robh@kernel.org>
+To: Sudan Landge <sudanl@amazon.com>
+Cc: tytso@mit.edu, Jason@zx2c4.com, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, sathyanarayanan.kuppuswamy@linux.intel.com,
+	thomas.lendacky@amd.com, dan.j.williams@intel.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	graf@amazon.de, dwmw@amazon.co.uk, bchalios@amazon.es,
+	xmarcalx@amazon.co.uk
+Subject: Re: [PATCH v2 3/4] dt-bindings: rng: Add vmgenid support
+Message-ID: <20240325150609.GA3477574-robh@kernel.org>
+References: <20240321025105.53210-1-sudanl@amazon.com>
+ <20240321025105.53210-4-sudanl@amazon.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240319-adding-new-ad738x-driver-v5-0-ce7df004ceb3@baylibre.com>
- <20240319-adding-new-ad738x-driver-v5-7-ce7df004ceb3@baylibre.com> <20240324131059.77fa8e68@jic23-huawei>
-In-Reply-To: <20240324131059.77fa8e68@jic23-huawei>
-From: David Lechner <dlechner@baylibre.com>
-Date: Mon, 25 Mar 2024 10:01:29 -0500
-Message-ID: <CAMknhBH0E258geq8WOKf3X0r7VngdDoSfNB5g6KTGBzEoUtMqA@mail.gmail.com>
-Subject: Re: [PATCH v5 7/7] iio: adc: ad7380: add support for ad738x-4 4
- channels variants
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Julien Stephan <jstephan@baylibre.com>, Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	kernel test robot <lkp@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240321025105.53210-4-sudanl@amazon.com>
 
-On Sun, Mar 24, 2024 at 8:11=E2=80=AFAM Jonathan Cameron <jic23@kernel.org>=
- wrote:
->
-> On Tue, 19 Mar 2024 11:11:28 +0100
-> Julien Stephan <jstephan@baylibre.com> wrote:
->
-> > Add support for ad7380/1/2/3-4 parts which are 4 channels
-> > variants from ad7380/1/2/3
-> >
-> > Signed-off-by: Julien Stephan <jstephan@baylibre.com>
-> This and other patches I didn't comment on all look good to me.
-> So just those minor few bits and bobs for v6 and I'll pick this up
-> if nothing else comes in.
->
+On Thu, Mar 21, 2024 at 02:51:04AM +0000, Sudan Landge wrote:
+> Virtual Machine Generation ID driver was introduced in commit af6b54e2b5ba
+> ("virt: vmgenid: notify RNG of VM fork and supply generation ID"), as an
+> ACPI only device.
+> 
+> VMGenID specification http://go.microsoft.com/fwlink/?LinkId=260709 defines
+> a mechanism for the BIOS/hypervisors to communicate to the virtual machine
+> that it is executed with a different configuration (e.g. snapshot execution
+> or creation from a template).
+> The guest operating system can use the notification for various purposes
+> such as re-initializing its random number generator etc.
+> 
+> As per the specs, hypervisor should provide a globally unique identified,
+> or GUID via ACPI.
+> 
+> This patch tries to mimic the mechanism to provide the same functionality
+> which is for a hypervisor/BIOS to notify the virtual machine when it is
+> executed with a different configuration.
+> 
+> As part of this support the devicetree bindings requires the hypervisors or
+> BIOS to provide a memory address which holds the GUID and an IRQ which is
+> used to notify when there is a change in the GUID.
+> The memory exposed in the DT should follow the rules defined in the
+> vmgenid spec mentioned above.
+> 
+> *Reason for this change*:
+> Chosing ACPI or devicetree is an intrinsic part of an hypervisor design.
+> Without going into details of why a hypervisor would chose DT over ACPI,
+> we would like to highlight that the hypervisors that have chose devicetree
+> and now want to make use of the vmgenid functionality cannot do so today
+> because vmgenid is an ACPI only device.
+> This forces these hypervisors to change their design which could have
+> undesirable impacts on their use-cases, test-scenarios etc.
+> 
+> The point of vmgenid is to provide a mechanism to discover a GUID when
+> the execution state of a virtual machine changes and the simplest
+> way to do it is pass a memory location and an interrupt via devicetree.
+> It would complicate things unnecessarily if instead of using devicetree,
+> we try to implement a new protocol or modify other protocols to somehow
+> provide the same functionility.
+> 
+> We believe that adding a devicetree binding for vmgenid is a simpler,
+> better alternative to provide the same functionality and will allow
+> such hypervisors as mentioned above to continue using devicetree.
+> 
+> More references to vmgenid specs:
+>  - https://www.qemu.org/docs/master/specs/vmgenid.html
+>  - https://learn.microsoft.com/en-us/windows/win32/hyperv_v2/virtual-machine-generation-identifier
+> 
+> Signed-off-by: Sudan Landge <sudanl@amazon.com>
+> ---
+>  .../devicetree/bindings/rng/vmgenid.yaml      | 57 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 58 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rng/vmgenid.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/rng/vmgenid.yaml b/Documentation/devicetree/bindings/rng/vmgenid.yaml
+> new file mode 100644
+> index 000000000000..4b6ab62cc2ae
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rng/vmgenid.yaml
+> @@ -0,0 +1,57 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rng/vmgenid.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Virtual Machine Generation Counter ID device
+> +
+> +maintainers:
+> +  - Jason A. Donenfeld <Jason@zx2c4.com>
+> +
+> +description:
+> +  Firmwares or hypervisors can use this devicetree to describe
+> +  interrupts and the shared resources to inject a Virtual Machine Generation
+> +  counter.
+> +
+> +properties:
+> +  compatible:
+> +    const: linux,vmgenctr
 
-Hi Jonathan, as a reminder, this is the driver we dropped from the 6.9
-cycle. We still don't have a patch prepared for the resolution boost
-feature that may require us to reconsider some of our userspace
-interface choices here. Hopefully we can get that sorted out in the
-next 6 weeks, but I just wanted to make you aware ahead of time so
-that we don't end up in the same situation in case things don't go as
-planned again. Do you have "usual" way you prefer to handle a
-situation like this?
+Why 'linux'? It should be named for a particular host implementation 
+(and that implementation's bugs/quirks). However, this thing is simple 
+enough we can perhaps avoid that here. As the interface is defined by 
+Microsoft, then perhaps they should be the vendor here.
+
+> +
+> +  "#interrupt-cells":
+> +    const: 3
+> +    description: |
+> +      The 1st cell is the interrupt type.
+> +      The 2nd cell contains the interrupt number for the interrupt type.
+> +      The 3rd cell is for trigger type and level flags.
+> +
+> +  interrupt-controller: true
+
+Why is this device an interrupt controller?
+
+> +
+> +  reg:
+> +    description: |
+> +      specifies the base physical address and
+> +      size of the regions in memory which holds the VMGenID counter.
+
+Odd wrapping, but drop unless you have something specific to say about 
+region like perhaps the layout of the registers. Or maybe thats defined 
+somewhere else?
+
+Does the spec say anything about endianness or access size? DT assumes 
+native endianness by default. We have properties to deal these, but 
+would be better to be explicit if that's defined already.
+
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description: |
+
+Don't need '|' if no formatting.
+
+> +      interrupt used to notify that a new VMGenID counter is available.
+> +      The interrupt should be Edge triggered.
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    rng@80000000 {
+> +      compatible = "linux,vmgenctr";
+> +      reg = <0x80000000 0x1000>;
+> +      interrupts = <0x00 0x23 0x01>;
+> +    };
+> +
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 43b39956694a..cf4b2e10fb49 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -18431,6 +18431,7 @@ M:	"Theodore Ts'o" <tytso@mit.edu>
+>  M:	Jason A. Donenfeld <Jason@zx2c4.com>
+>  S:	Maintained
+>  T:	git https://git.kernel.org/pub/scm/linux/kernel/git/crng/random.git
+> +F:	Documentation/devicetree/bindings/rng/vmgenid.yaml
+>  F:	drivers/char/random.c
+>  F:	drivers/virt/vmgenid.c
+>  
+> -- 
+> 2.40.1
+> 
+> 
 
