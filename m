@@ -1,317 +1,102 @@
-Return-Path: <devicetree+bounces-52801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-52802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEE59889FE5
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 13:43:30 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E72488A155
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 14:16:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4CF611F38FFE
-	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 12:43:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5DFBFB251E1
+	for <lists+devicetree@lfdr.de>; Mon, 25 Mar 2024 12:46:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B156C184404;
-	Mon, 25 Mar 2024 07:32:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF16754915;
+	Mon, 25 Mar 2024 07:32:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="G8hd7UzZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DhmNMN2t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m92243.xmail.ntesmail.com (mail-m92243.xmail.ntesmail.com [103.126.92.243])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87A381A2F5E;
-	Mon, 25 Mar 2024 04:27:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.126.92.243
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EEDB13E6CF;
+	Mon, 25 Mar 2024 04:42:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711340828; cv=none; b=tZ8u5EGzxJI+ZF3+7Ru0rXgj0AQC3d5LcO73hoJFj2DliccZs3gll0cStpVaUB8GC/5SDSf7h/CEzD62s+qMNXEk3CHhJs37LcDBIxBb640oVC2fdXTei3Ph39zivN0s36wrtxD76DxrydvQGLsH8mTafH62WU4V72DW9soCB5U=
+	t=1711341755; cv=none; b=GDFh5XHwg9ZS2TuHlYos9RCEtapuV7tfj6/WABJ1W/heT97e5uRMSp1O6H9PPlx5EgWHhb95+AVX94MZ3+1mTLU8o1IyRve8beWYsdjTWFZXgVMbY8DrP2oqiY/WC0EI3VEIe1HFkANAEqdPuKqtE9LTkOVDM2wsHsJyBnXPTaU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711340828; c=relaxed/simple;
-	bh=SN/GS0AZ+EUWn+mOIgLp5B2MlLhwKNw641U3Dmvv68g=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=A9KNbysHq8Dwyc/4MItnPj1MMLgwwYRZx96TcDavzFF5PmMe25Euo0PLV6WnzI3tMmmTgJPrB7vA+lhSHSNYc0k313z1Bx/5BsjOaiieOcnWXButWu76hhzFUpbvti6KlyYGUk9sL7alTPh4f1muJJ6IGLeCqe6iQaLSaWRPj8U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=G8hd7UzZ; arc=none smtp.client-ip=103.126.92.243
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-DKIM-Signature: a=rsa-sha256;
-	b=G8hd7UzZoAdbA1wHmMGafPZkMMNd476Dw1t4XSX3Yv3G1NYOQryEFaXBLj4d+eXjS7R4Y3ypOxtTyS0vv2PkMV/FKUodn5Gyy66Ah8kSlgQzdC6Az/nU0yaiHbUxNy+jrjGEe7ZRze86al36eDaqhwZGUJofvHmhj3AAe2mhd2g=;
-	c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=qNWQ0E2o06XH4CPhJnC+MNCo7SgW7ENaUR/eOaQ2c7o=;
-	h=date:mime-version:subject:message-id:from;
-Received: from localhost.localdomain (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTPA id 119807C0194;
-	Mon, 25 Mar 2024 12:16:57 +0800 (CST)
-From: Sugar Zhang <sugar.zhang@rock-chips.com>
-To: heiko@sntech.de
-Cc: linux-rockchip@lists.infradead.org,
-	Sugar Zhang <sugar.zhang@rock-chips.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Rob Herring <robh@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 2/2] dt-bindings: clock: rockchip: Add support for clk input / output switch
-Date: Mon, 25 Mar 2024 12:16:30 +0800
-Message-Id: <1711340191-69588-2-git-send-email-sugar.zhang@rock-chips.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1711340191-69588-1-git-send-email-sugar.zhang@rock-chips.com>
-References: <1711340191-69588-1-git-send-email-sugar.zhang@rock-chips.com>
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkJNT1ZJGklCS05ITR9DHR5VEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk5DTUtIVUpLS1VKQl
-	kG
-X-HM-Tid: 0a8e73d3653b09d2kunm119807c0194
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NxA6Gjo5FDMIFg02FQg2NEki
-	IwpPCVFVSlVKTEpKSE9LSUpDSU9CVTMWGhIXVQgOHBoJVQETGhUcOwkUGBBWGBMSCwhVGBQWRVlX
-	WRILWUFZTkNVSUlVTFVKSk9ZV1kIAVlBQk9MSzcG
+	s=arc-20240116; t=1711341755; c=relaxed/simple;
+	bh=983c2mSpRtzHZd3RX0FbvmlLGvQpO2bWYGuEJVdPXiM=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=SHYG8//jYNw4N4uYX1WYDxaK/LMWrEAdSoqOu7olXWxiTGn5XJhqcQI6BXTV+su30Np+1NWD0UtksNGqkjI9cDm0JAL0IOHT3vmK8pKAH03j6PjlC0RzVVV2TUe0X/N2VSAxeq1gzzMn6KPFaeMyK8mqARDJC+miQiPgxgEJ4xg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DhmNMN2t; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 92948C43394;
+	Mon, 25 Mar 2024 04:42:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711341754;
+	bh=983c2mSpRtzHZd3RX0FbvmlLGvQpO2bWYGuEJVdPXiM=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=DhmNMN2tF/acZiHHFVovBVnZwiaO1oB814vBKArondxj3E1Byyz1qqTWxsohjhYg6
+	 +gI7iq0jLQCxC9L57FIwH5krZFrHzIQMVBnYaoXC4vKu59wvi0mNYTQJvad+gSMoAp
+	 5aO1xde4w9zblgHpuzrJ7ndoEMK/drH1yiaqc5EZnMC0J0Zxf3FrYFIGQQ/KYzW8sM
+	 y7ugrQNZYbu3t0noHgiLkMX8Ie1VIkarzj05tC/ONvktMIOf9+Ru2uSf9InpLcX7IS
+	 0qts8mBqdqFKCakLJw0lmbLK39TOQHEOzIalOU4A/6VUzfyJEreK9Ue9aPfxudRl5h
+	 M4d8b/4W3VvWg==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 857A0D2D0E0;
+	Mon, 25 Mar 2024 04:42:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v3 0/4] riscv: sophgo: add reset support for SG2042
+From: patchwork-bot+linux-riscv@kernel.org
+Message-Id: 
+ <171134175454.18749.13038964057011467100.git-patchwork-notify@kernel.org>
+Date: Mon, 25 Mar 2024 04:42:34 +0000
+References: <cover.1706577450.git.unicorn_wang@outlook.com>
+In-Reply-To: <cover.1706577450.git.unicorn_wang@outlook.com>
+To: Chen Wang <unicornxw@gmail.com>
+Cc: linux-riscv@lists.infradead.org, aou@eecs.berkeley.edu,
+ chao.wei@sophgo.com, conor@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ palmer@dabbelt.com, paul.walmsley@sifive.com, p.zabel@pengutronix.de,
+ robh+dt@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com, guoren@kernel.org,
+ jszhang@kernel.org, inochiama@outlook.com, unicorn_wang@outlook.com
 
-This patch add support switch for clk-bidirection which located
-at GRF, such as SAIx_MCLK_{IN OUT} which share the same pin.
-and these config maybe located in many pieces of GRF,
-which hard to addressed in one single clk driver. so, we add
-this simple helper driver to address this situation.
+Hello:
 
-In order to simplify implement and usage, and also for safety
-clk usage (avoid high freq glitch), we set all clk out as disabled
-(which means Input default for clk-bidrection) in the pre-stage,
-such boot-loader or init by HW default. And then set a safety freq
-before enable clk-out, such as "assign-clock-rates" or clk_set_rate
-in drivers.
+This series was applied to riscv/linux.git (fixes)
+by Inochi Amaoto <inochiama@outlook.com>:
 
-e.g.
+On Tue, 30 Jan 2024 09:49:08 +0800 you wrote:
+> From: Chen Wang <unicorn_wang@outlook.com>
+> 
+> This series adds reset controller support for Sophgo SG2042 using
+> reset-simple driver.
+> 
+> Thanks,
+> Chen
+> 
+> [...]
 
-1. mclk{out,in}_sai0 define:
+Here is the summary with links:
+  - [v3,1/4] dt-bindings: reset: sophgo: support SG2042
+    (no matching commit)
+  - [v3,2/4] reset: simple: add support for Sophgo SG2042
+    (no matching commit)
+  - [v3,3/4] riscv: dts: add reset generator for Sophgo SG2042 SoC
+    https://git.kernel.org/riscv/c/1ce7587e507e
+  - [v3,4/4] riscv: dts: add resets property for uart node
+    https://git.kernel.org/riscv/c/08573ba006ab
 
-  mclkin_sai0: mclkin-sai0 {
-      compatible = "fixed-clock";
-      #clock-cells = <0>;
-      clock-frequency = <12288000>;
-      clock-output-names = "mclk_sai0_from_io";
-  };
-
-  mclkout_sai0: mclkout-sai0@ff040070 {
-      compatible = "rockchip,clk-out";
-      reg = <0 0xff040070 0 0x4>;
-      clocks = <&cru MCLK_SAI0_OUT2IO>;
-      #clock-cells = <0>;
-      clock-output-names = "mclk_sai0_to_io";
-      rockchip,bit-shift = <4>;
-      //example with PD if reg access needed
-      power-domains = <&power RK3562_PD_VO>;
-  };
-
-Note:
-
-clock-output-names of mclkin_sai0 should equal to strings in drivers. such as:
-
-drivers/clk/rockchip/clk-rk3562.c:
-PNAME(clk_sai0_p) = { "clk_sai0_src", "clk_sai0_frac", "xin_osc0_half", "mclk_sai0_from_io" };
-
-2. mclkout_sai0 usage:
-
-  &ext_codec {
-      clocks = <&mclkout_sai0>;
-      clock-names = "mclk";
-      assigned-clocks = <&mclkout_sai0>;
-      assigned-clock-rates = <12288000>;
-      pinctrl-names = "default";
-      pinctrl-0 = <&i2s0m0_mclk>;
-  };
-
-  clk_summary on sai0 work:
-
-  cat /sys/kernel/debug/clk/clk_summary | egrep "pll|sai0"
-
-  clk_sai0_src                1        1        0  1188000000          0     0  50000
-    clk_sai0_frac             1        1        0    12288000          0     0  50000
-      clk_sai0                1        1        0    12288000          0     0  50000
-        mclk_sai0             1        1        0    12288000          0     0  50000
-          mclk_sai0_out2io    1        1        0    12288000          0     0  50000
-            mclk_sai0_to_io   1        1        0    12288000          0     0  50000
-
-  example with PD if reg access needed:
-
-  * PD status when mclk_sai0_to_io on:
-
-  cat /sys/kernel/debug/pm_genpd/pm_genpd_summary
-
-  domain                          status          children
-    /device                                                runtime status
-  ----------------------------------------------------------------------
-  ...
-
-  vo                              on
-    /devices/platform/clocks/ff040070.mclkout-sai0         active
-  ...
-
-  * PD status when mclk_sai0_to_io off:
-
-  cat /sys/kernel/debug/pm_genpd/pm_genpd_summary
-
-  domain                          status          children
-    /device                                                runtime status
-  ----------------------------------------------------------------------
-  ...
-
-  vo                              off-0
-    /devices/platform/clocks/ff040070.mclkout-sai0         suspended
-  ...
-
-3. mclkin_sai0 usage:
-
-  please override freq of mclkin as the real external clkin, such as:
-
-  &mclkin_sai0 {
-      clock-frequency = <24576000>;
-  }
-
-  &ext_codec {
-      clocks = <&mclkin_sai0>;
-      clock-names = "mclk";
-      assigned-clocks = <&cru CLK_SAI0>;
-      assigned-clock-parents = <&mclkin_sai0>;
-      pinctrl-names = "default";
-      pinctrl-0 = <&i2s0m0_mclk>;
-  };
-
-  clk_summary on sai0 work:
-
-  cat /sys/kernel/debug/clk/clk_summary | egrep "pll|sai0"
-
-  mclk_sai0_from_io          1        1        0    12288000          0     0  50000
-    clk_sai0                 1        1        0    12288000          0     0  50000
-      mclk_sai0              1        1        0    12288000          0     0  50000
-        mclk_sai0_out2io     0        0        0    12288000          0     0  50000
-          mclk_sai0_to_io    0        0        0    12288000          0     0  50000
-
-Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
----
-
- .../bindings/clock/rockchip,clk-out.yaml           | 107 +++++++++++++++++++++
- 1 file changed, 107 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/rockchip,clk-out.yaml
-
-diff --git a/Documentation/devicetree/bindings/clock/rockchip,clk-out.yaml b/Documentation/devicetree/bindings/clock/rockchip,clk-out.yaml
-new file mode 100644
-index 0000000..6582605
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/rockchip,clk-out.yaml
-@@ -0,0 +1,107 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/rockchip,clk-out.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Rockchip Clock Out Control Module Binding
-+
-+maintainers:
-+  - Sugar Zhang <sugar.zhang@rock-chips.com>
-+
-+description: |
-+  This add support switch for clk-bidirection which located
-+  at GRF, such as SAIx_MCLK_{IN OUT} which share the same pin.
-+  and these config maybe located in many pieces of GRF,
-+  which hard to addressed in one single clk driver. so, we add
-+  this simple helper driver to address this situation.
-+
-+  In order to simplify implement and usage, and also for safety
-+  clk usage (avoid high freq glitch), we set all clk out as disabled
-+  (which means Input default for clk-bidrection) in the pre-stage,
-+  such boot-loader or init by HW default. And then set a safety freq
-+  before enable clk-out, such as "assign-clock-rates" or clk_set_rate
-+  in drivers.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - rockchip,clk-out
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#clock-cells":
-+    const: 1
-+
-+  clocks:
-+    maxItems: 1
-+    description: parent clocks.
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  clock-output-names:
-+    maxItems: 1
-+
-+  rockchip,bit-shift:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Defines the bit shift of clk out enable.
-+
-+  rockchip,bit-set-to-disable:
-+    type: boolean
-+    description: |
-+      By default this clock sets the bit at bit-shift to enable the clock.
-+      Setting this property does the opposite: setting the bit disable
-+      the clock and clearing it enables the clock.
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - "#clock-cells"
-+  - clock-output-names
-+  - rockchip,bit-shift
-+
-+additionalProperties: false
-+
-+examples:
-+  # Clock Provider node:
-+  - |
-+    mclkin_sai0: mclkin-sai0 {
-+        compatible = "fixed-clock";
-+        #clock-cells = <0>;
-+        clock-frequency = <12288000>;
-+        clock-output-names = "mclk_sai0_from_io";
-+    };
-+
-+    mclkout_sai0: mclkout-sai0@ff040070 {
-+        compatible = "rockchip,clk-out";
-+        reg = <0 0xff040070 0 0x4>;
-+        clocks = <&cru MCLK_SAI0_OUT2IO>;
-+        #clock-cells = <0>;
-+        clock-output-names = "mclk_sai0_to_io";
-+        rockchip,bit-shift = <4>;
-+    };
-+
-+  # Clock mclkout Consumer node:
-+  - |
-+    ext_codec {
-+        clocks = <&mclkout_sai0>;
-+        clock-names = "mclk";
-+        assigned-clocks = <&mclkout_sai0>;
-+        assigned-clock-rates = <12288000>;
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&i2s0m0_mclk>;
-+    };
-+
-+  # Clock mclkin Consumer node:
-+  - |
-+    ext_codec {
-+        clocks = <&mclkin_sai0>;
-+        clock-names = "mclk";
-+        assigned-clocks = <&cru CLK_SAI0>;
-+        assigned-clock-parents = <&mclkin_sai0>;
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&i2s0m0_mclk>;
-+    };
+You are awesome, thank you!
 -- 
-2.7.4
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
 
