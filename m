@@ -1,318 +1,136 @@
-Return-Path: <devicetree+bounces-53672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 581E188D08F
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 23:12:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD80088D091
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 23:12:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A63A2B218DE
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 22:12:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A8FC328EEC
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 22:12:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BFF113D62F;
-	Tue, 26 Mar 2024 22:12:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB61413D62F;
+	Tue, 26 Mar 2024 22:12:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jaXHsYfF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BDGImm8/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA7B413D538;
-	Tue, 26 Mar 2024 22:12:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7730313D538;
+	Tue, 26 Mar 2024 22:12:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711491126; cv=none; b=pPywhBO9U59ngzvRTs6Ijh/o2D7FZLPQPgCc9DiCZACO+sV2R4fK55GWmWBvCyus/Wgdfhe9C9F0y3oLeBGWUP05tMukQkqA+/2PCJM631V/X0HSvhCoR3XgpP8bzgZh7pexo4A560/LQreS11tT6P6sw2vbGS6XaMW1PauGEoc=
+	t=1711491148; cv=none; b=RUEw/f1NrxkUTWXF136M4U8QAz2zQ8Wi64XmO6cUHTrOXGQY+43AEqSp1EVIb5mmjLH5tCFn8qNq9s9TbWEepXIpHmNho92gzKrQq0eXhRZXuXHQC8f0MOr5ezaVlTsf/A8pUWoqzyhff++verojkU0U6eY5FHVo2Z8mGbU6nus=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711491126; c=relaxed/simple;
-	bh=CjltGs2WDbODvpUErxnWwWyh+2tdgskx4zYdcdTvReU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Y1HaM1wAoA3Xk4GZ87sPH5rPhl8NuFjaxQSzJu4liFyNm5OJezrQmdWfa+RnhTngXg3bOPI+0IkiK0fefVVvsk5aXgyjVfqNFqn5gI/oyV96chsXu4pLI+eMxWu6KB3spXsJTUBn63kCtcIrnbQP6+bDIY/EN/IhWLu9kIUU7mo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jaXHsYfF; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1711491125; x=1743027125;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=CjltGs2WDbODvpUErxnWwWyh+2tdgskx4zYdcdTvReU=;
-  b=jaXHsYfF9wR7qW0dHV2FoUMDlhdHzYRjgfAMXDuKtFoJJCtHkWzP8b1p
-   lQSC/moCJWCxvtCSsKNuIQC0+Hx3jhRxS9SNiK+Tyw8GR644c9jcj2D+e
-   WJ0yNPXjGy3pMzRxB1k0Gt6PjJ1Yk0E8IOgYbO/9GsZ8jw/FPLgofaFC/
-   0OZWHFFX56Br3jWZ6pfTZiEqQIwyNA3bnxi6fYQc2GbiHckvA83Bj37Vx
-   PSVh5656Z6DlRavp4HyzKq5SP5xakfmtvErBiCBNyU02KZ44VSsNk8+3G
-   6dvN2ILSli6lzamH64IQySOE+yZNn+XXI9Aj01+r3/Qp/EW6oajd24rOY
-   A==;
-X-CSE-ConnectionGUID: TybfpKSVT761VAnS5GuRIg==
-X-CSE-MsgGUID: +RTTUoFYRWq1TOs3oxi73g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11025"; a="7167381"
-X-IronPort-AV: E=Sophos;i="6.07,157,1708416000"; 
-   d="scan'208";a="7167381"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Mar 2024 15:12:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,157,1708416000"; 
-   d="scan'208";a="16483960"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Mar 2024 15:11:59 -0700
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with ESMTP id 0279611F8B1;
-	Wed, 27 Mar 2024 00:11:57 +0200 (EET)
-Date: Tue, 26 Mar 2024 22:11:56 +0000
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-media@vger.kernel.org,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	David Plowman <david.plowman@raspberrypi.com>,
-	Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Naushir Patuck <naush@raspberrypi.com>, kernel-list@raspberrypi.com,
-	linux-rpi-kernel@lists.infradead.org,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	bcm-kernel-feedback-list@broadcom.com,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 08/15] dt-bindings: media: Add bindings for
- bcm2835-unicam
-Message-ID: <ZgNILE-t7orLv72Z@kekkonen.localdomain>
-References: <20240301213231.10340-1-laurent.pinchart@ideasonboard.com>
- <20240301213231.10340-9-laurent.pinchart@ideasonboard.com>
- <ZgHCOySoPhOS0u2M@kekkonen.localdomain>
- <20240325230203.GG23988@pendragon.ideasonboard.com>
+	s=arc-20240116; t=1711491148; c=relaxed/simple;
+	bh=+wYDyMnpKuLqfY43YpqtSm34ANzOiArR8y162hs7Fgw=;
+	h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+	 In-Reply-To:Content-Type; b=BY8qsIzOsPF7xmS8V3u7UIDO9RYDpOYz0MLPVOQXHom7TeqBlWg18DgiCYVcXdXwfwSY15Ro1+ZldcZNtbnHCiZwjG0mpZLwQeVgwWFH+gP2JshIHaGBZ7bSd//HO/mR1e8SlG5NrBHRhYF/qH3zMJ1zqvbo3ip2PCMck9naZ7E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BDGImm8/; arc=none smtp.client-ip=209.85.210.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-6ea8ee55812so3658071b3a.0;
+        Tue, 26 Mar 2024 15:12:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1711491146; x=1712095946; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-language:in-reply-to:mime-version
+         :user-agent:date:message-id:from:references:cc:to:subject:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1bvrBpa6NIqmeIkXane8RW2BCIfL8oLVJSB/0WwZJE4=;
+        b=BDGImm8/XBWbRuy3nrNiT+oxlBMEv6d/KvKQtygvmEUDi56DmOow8x9V+7qdnCQJfw
+         gLKRdep9ADFrxnvv/jBOEP8d2JoLgpjUihBwno8WY2A45ZkTz4v4lw7yYATxfBZc9JUl
+         AOArB8ItirnnOU28k0fLEpeppbR+AulP1NILljj0iacealWWnzOY4wvh966SpfdYplkL
+         PXFFPqHw1u4gzLH9bBHyK2oKlIesuvNlWZeCOiBtFVn1l6M88ifXHvBfoiHoilliK4Ux
+         NtFFDR9sAhaAgCmKAX6f3J5uTLm/IFVwQuOWLTHMjij4QMvvNy+h8pwUG0LDPvPnZnYH
+         VBIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711491146; x=1712095946;
+        h=content-transfer-encoding:content-language:in-reply-to:mime-version
+         :user-agent:date:message-id:from:references:cc:to:subject
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1bvrBpa6NIqmeIkXane8RW2BCIfL8oLVJSB/0WwZJE4=;
+        b=FIFTgTUvRre0bU9QSNfWrB66mV8VPi1smdCHVT/uQhfHXu8ch+I3wWvlquS1qZqObK
+         z0wzx+XcHJUe/evDiwjMtEL2SEYqx6Xk49H4S6SMT4Xg4fOF14MBG+chF575XNr+BKu0
+         qYiyxQUghitHgo0u50KE8fDA22eR+gt7KQeMRwLa1iY7rLoY0+qHumFn+6J9pFycyvoa
+         1B5Cmo/HH+tASqpj4ngZDefVsY6DuJqcoeXX8WuSdtV6FBGB3FnLFrIbB+grSVJNRJPv
+         0BPQhK3fIZ6lSI+LMyNLN3Aaf8bwMn3t6sP9ksp/BfCczAiPOFNrrqHROihn8OMPxHJu
+         7/bA==
+X-Forwarded-Encrypted: i=1; AJvYcCVcBE00g/Vw0su03+6mZgbcRIskfZ62waJs1rYCEdh11gyzOnVyw64Mov1bSvsx0wgJHoGa47OSv0ImralIJdTDokRCC6pqoBXYYxMheig3uIUzdC1LRYXf+AcCIkqFK7Pkl6wU376JjgMS6Efri8guax2qT7azI+Vscw1i4kXmNw==
+X-Gm-Message-State: AOJu0YzAqRbXPe+zf7YWeFYbOXRDfJekUH22PQ5lO0JTQDhgyRdqmtp/
+	AEX1774xktdqKlDMo3lbVRcwzZilctBf/YV9w1EE/tCJb28Qbt5J2EN53YKlU3w=
+X-Google-Smtp-Source: AGHT+IGGeFNHDlhY2bt27k9H3IoMCM376JL/pBz7c2YgVW0if7A3uQaiNEyUhIlMV5hbE/Hj95e6eQ==
+X-Received: by 2002:a05:6a00:2303:b0:6ea:c42f:d75e with SMTP id h3-20020a056a00230300b006eac42fd75emr1855892pfh.11.1711491145682;
+        Tue, 26 Mar 2024 15:12:25 -0700 (PDT)
+Received: from [192.168.0.13] ([172.92.174.232])
+        by smtp.gmail.com with ESMTPSA id r10-20020a62e40a000000b006e6529c7d75sm6516071pfh.3.2024.03.26.15.12.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 26 Mar 2024 15:12:25 -0700 (PDT)
+Subject: Re: [PATCH v2] riscv: dts: starfive: Remove PMIC interrupt info for
+ Visionfive 2 board
+To: Conor Dooley <conor@kernel.org>, Bo Gan <ganboing@gmail.com>
+Cc: kernel@esmil.dk, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+ aou@eecs.berkeley.edu, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Shengyu Qu <wiagn233@outlook.com>, Conor Dooley
+ <conor.dooley@microchip.com>, stable@vger.kernel.org
+References: <TY3P286MB26116B828A34D614C09F4E8898202@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
+ <20240326-create-motivate-2792be1692c5@spud>
+ <f472affe-d1ef-cbdb-b5c5-76f6b3ac78b3@gmail.com>
+ <20240326-ladylike-retold-9034734c2445@spud>
+From: Bo Gan <ganboing@gmail.com>
+Message-ID: <222340e5-b5d7-9abc-57df-ad1478090177@gmail.com>
+Date: Tue, 26 Mar 2024 15:12:13 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240325230203.GG23988@pendragon.ideasonboard.com>
+In-Reply-To: <20240326-ladylike-retold-9034734c2445@spud>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-Hi Laurent,
+On 3/26/24 3:10 PM, Conor Dooley wrote:
+> On Tue, Mar 26, 2024 at 03:06:33PM -0700, Bo Gan wrote:
+>> On 3/26/24 1:37 PM, Conor Dooley wrote:
+>>> From: Conor Dooley <conor.dooley@microchip.com>
+>>>
+>>> On Thu, 07 Mar 2024 20:21:12 +0800, Shengyu Qu wrote:
+>>>> Interrupt line number of the AXP15060 PMIC is not a necessary part of
+>>>> its device tree. And this would cause kernel to try to enable interrupt
+>>>> line 0, which is not expected. So delete this part from device tree.
+>>>>
+>>>>
+>>>
+>>> Applied to riscv-dt-fixes, thanks! And I didn't forget, so I re-wrote
+>>> the commit message to add some more information as promised.
+>>>
+>>> [1/1] riscv: dts: starfive: Remove PMIC interrupt info for Visionfive 2 board
+>>>         https://git.kernel.org/conor/c/0b163f43920d
+>>>
+>>> Thanks,
+>>> Conor.
+>>>
+>> Hi Conor,
+>>
+>> Thank you very much for taking care of this. Actually the PLIC may silently
+>> ignore the enablement of interrupt 0, so the upstream openSBI won't notice
+>> anything. My modified version, however, will deliberately trigger a fault
+>> for all writes to the reserved fields of PLIC, thus catching this issue.
+>>
+>> Hope it can clarify things a bit more.
+> 
+> https://git.kernel.org/conor/c/0f74c64f0a9f
+> 
+> Better?
+> 
+Great! Thanks again.
 
-On Tue, Mar 26, 2024 at 01:02:03AM +0200, Laurent Pinchart wrote:
-> Hi Sakari,
-> 
-> On Mon, Mar 25, 2024 at 06:28:11PM +0000, Sakari Ailus wrote:
-> > On Fri, Mar 01, 2024 at 11:32:23PM +0200, Laurent Pinchart wrote:
-> > > From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> > > 
-> > > Introduce the dt-bindings documentation for bcm2835 CCP2/CSI2 Unicam
-> > > camera interface.
-> > > 
-> > > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> > > Co-developed-by: Naushir Patuck <naush@raspberrypi.com>
-> > > Signed-off-by: Naushir Patuck <naush@raspberrypi.com>
-> > > Co-developed-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
-> > > Signed-off-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
-> > > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > ---
-> > > Changes since v5:
-> > > 
-> > > - Squash MAINTAINERS changes in
-> > > 
-> > > Changes since v3:
-> > > 
-> > > - Make MAINTAINERS its own patch
-> > > - Describe the reg and clocks correctly
-> > > - Use a vendor entry for the number of data lanes
-> > > ---
-> > >  .../bindings/media/brcm,bcm2835-unicam.yaml   | 117 ++++++++++++++++++
-> > >  MAINTAINERS                                   |   6 +
-> > >  2 files changed, 123 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml b/Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml
-> > > new file mode 100644
-> > > index 000000000000..1938ace23b3d
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml
-> > > @@ -0,0 +1,117 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/media/brcm,bcm2835-unicam.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Broadcom BCM283x Camera Interface (Unicam)
-> > > +
-> > > +maintainers:
-> > > +  - Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
-> > > +
-> > > +description: |-
-> > > +  The Unicam block on BCM283x SoCs is the receiver for either
-> > > +  CSI-2 or CCP2 data from image sensors or similar devices.
-> > > +
-> > > +  The main platform using this SoC is the Raspberry Pi family of boards.  On
-> > > +  the Pi the VideoCore firmware can also control this hardware block, and
-> > > +  driving it from two different processors will cause issues.  To avoid this,
-> > > +  the firmware checks the device tree configuration during boot. If it finds
-> > > +  device tree nodes whose name starts with 'csi' then it will stop the firmware
-> > > +  accessing the block, and it can then safely be used via the device tree
-> > > +  binding.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: brcm,bcm2835-unicam
-> > > +
-> > > +  reg:
-> > > +    items:
-> > > +      - description: Unicam block.
-> > > +      - description: Clock Manager Image (CMI) block.
-> > > +
-> > > +  reg-names:
-> > > +    items:
-> > > +      - const: unicam
-> > > +      - const: cmi
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +  clocks:
-> > > +    items:
-> > > +      - description: Clock to drive the LP state machine of Unicam.
-> > > +      - description: Clock for the VPU (core clock).
-> > > +
-> > > +  clock-names:
-> > > +    items:
-> > > +      - const: lp
-> > > +      - const: vpu
-> > > +
-> > > +  power-domains:
-> > > +    items:
-> > > +      - description: Unicam power domain
-> > > +
-> > > +  brcm,num-data-lanes:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    enum: [ 2, 4 ]
-> > > +    description: |
-> > > +      Number of CSI-2 data lanes supported by this Unicam instance. The number
-> > > +      of data lanes actively used is specified with the data-lanes endpoint
-> > > +      property.
-> > > +
-> > > +  port:
-> > > +    $ref: /schemas/graph.yaml#/$defs/port-base
-> > > +    unevaluatedProperties: false
-> > > +
-> > > +    properties:
-> > > +      endpoint:
-> > > +        $ref: /schemas/media/video-interfaces.yaml#
-> > > +        unevaluatedProperties: false
-> > > +
-> > > +        properties:
-> > > +          data-lanes: true
-> > > +
-> > > +        required:
-> > > +          - data-lanes
-> > 
-> > As the device supports multiple data interfaces (at least so it seems when
-> > looking at the driver code), you need to list the bus-type property here,
-> > too.
-> 
-> Good point, I'll add
-> 
->         properties:
-> 	  bus-type:
-> 	    enum: [ 3, 4 ]
-> 	required:
-> 	  - bus-type
-> 
-> Should I also change unevaluatedProperties to additionalProperties for
-> the endpoint node, to reject any other property (and the explicitly list
-> remote-endpoint as an allowed property) ? The result would be 
-> 
->       endpoint:
->         $ref: /schemas/media/video-interfaces.yaml#
->         additionalProperties: false
-> 
->         properties:
->           bus-type:
->             enum: [ 3, 4 ]
-> 
->           data-lanes: true
->           remote-endpoint: true
-> 
->         required:
->           - bus-type
->           - data-lanes
->           - remote-endpoint
-
-Seems good to me.
-
-> 
-> > > +
-> > > +    required:
-> > > +      - endpoint
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - reg-names
-> > > +  - interrupts
-> > > +  - clocks
-> > > +  - clock-names
-> > > +  - power-domains
-> > > +  - brcm,num-data-lanes
-> > > +  - port
-> > > +
-> > > +additionalProperties: False
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/clock/bcm2835.h>
-> > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > > +    #include <dt-bindings/power/raspberrypi-power.h>
-> > > +    csi1: csi@7e801000 {
-> > > +        compatible = "brcm,bcm2835-unicam";
-> > > +        reg = <0x7e801000 0x800>,
-> > > +              <0x7e802004 0x4>;
-> > > +        reg-names = "unicam", "cmi";
-> > > +        interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
-> > > +        clocks = <&clocks BCM2835_CLOCK_CAM1>,
-> > > +                 <&firmware_clocks 4>;
-> > > +        clock-names = "lp", "vpu";
-> > > +        power-domains = <&power RPI_POWER_DOMAIN_UNICAM1>;
-> > > +        brcm,num-data-lanes = <2>;
-> > > +        port {
-> > > +                csi1_ep: endpoint {
-> > > +                        remote-endpoint = <&imx219_0>;
-> > > +                        data-lanes = <1 2>;
-> > > +                };
-> > > +        };
-> > > +    };
-> > > +...
-> > > diff --git a/MAINTAINERS b/MAINTAINERS
-> > > index fada59148cb5..e50a59654e6e 100644
-> > > --- a/MAINTAINERS
-> > > +++ b/MAINTAINERS
-> > > @@ -3997,6 +3997,12 @@ N:	bcm113*
-> > >  N:	bcm216*
-> > >  N:	kona
-> > >  
-> > > +BROADCOM BCM2835 CAMERA DRIVERS
-> > > +M:	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
-> > > +L:	linux-media@vger.kernel.org
-> > > +S:	Maintained
-> > > +F:	Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml
-> > > +
-> > >  BROADCOM BCM47XX MIPS ARCHITECTURE
-> > >  M:	Hauke Mehrtens <hauke@hauke-m.de>
-> > >  M:	Rafał Miłecki <zajec5@gmail.com>
-> 
-> -- 
-> Regards,
-> 
-> Laurent Pinchart
-
--- 
-Regards,
-
-Sakari Ailus
+Bo
 
