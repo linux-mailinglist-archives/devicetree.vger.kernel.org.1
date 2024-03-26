@@ -1,166 +1,116 @@
-Return-Path: <devicetree+bounces-53292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53293-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8AF088BD31
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 10:03:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93F5E88BD43
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 10:05:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9DDE02E61D4
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 09:03:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 839A02E71E3
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 09:05:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A656E40BE6;
-	Tue, 26 Mar 2024 09:02:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F9EA57330;
+	Tue, 26 Mar 2024 09:04:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rQKmnbqd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7BDC41740;
-	Tue, 26 Mar 2024 09:02:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E6294CE18
+	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 09:04:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711443728; cv=none; b=bNMiDdUnZe/XEpFyNqPdOk8hSjui8514DixvWodmbYhVNz+ebx3bX3a+2JhFVJ0W9lLWeT8WEvSOwhTmfAtNx4gfG3yTEJR4UCkSCWfuarb1hC8PyCgb0qs2PFqu6E6AEuAjAJg4MV9/j5kkynPNErjaZkPnIDLPB32ac0h5KSY=
+	t=1711443861; cv=none; b=jF2qQPetoLz2F/I7ZPeTErjbiu4ehPHb4yjyzywJfjFX+nE0fJ2ntnfZDFv/krHKqlIFCnBovHGyaLiIIBaxIqwNaTWXrhKrxbqXIL8hVnMAiU7b+qgRVXKApHvQvKbwLbWwCy5zY1Ab8nlP7Bv0RzYNpCSEZtVRKNYoOrjuJKQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711443728; c=relaxed/simple;
-	bh=bGK/tjyPouBpcr/9GWxrGkfH7GWAsOMrSFXaKmZTAV0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Re7gpOP4FmmvZh+3zTFkKTyrN05yKMl1bTM4l6FDRRjFNMubVlvadI2o0XuUT/omLi5P33U2boXkLsEX6xPJPS3nS92rrVY9oWb020DFLG8g8En3QW8MKgqtCxCGEwbeEfgWsinWKErG1fnJVOWsnjVLIKhf80OFCg+aRpZOtv8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
-Received: from loongson.cn (unknown [112.20.109.198])
-	by gateway (Coremail) with SMTP id _____8BxnusNjwJmAU8eAA--.5126S3;
-	Tue, 26 Mar 2024 17:02:05 +0800 (CST)
-Received: from localhost.localdomain (unknown [112.20.109.198])
-	by localhost.localdomain (Coremail) with SMTP id AQAAf8AxDBMMjwJmwrJoAA--.9838S2;
-	Tue, 26 Mar 2024 17:02:04 +0800 (CST)
-From: Binbin Zhou <zhoubinbin@loongson.cn>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
+	s=arc-20240116; t=1711443861; c=relaxed/simple;
+	bh=ZyvDnyVdYW8mApjviyCj1pFwuScQjCQKI2BuXx5sgvw=;
+	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=k07O9bhyWgOAuNwELKxWdBX0jM2ZGlSd7A5rG3riy+kGmmtwE7GhIpUrmaUMXJ3JKfUcZ1aSruIUbQmNkGlfV/FLy45wxxOetkXgrcIsUYkBCNIt1nXWjCh+hNMTU5Rd7nPC8lP6b83CX8KweH84i54n810UmTJWUIQs54tcQfM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rQKmnbqd; arc=none smtp.client-ip=209.85.208.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-56c2787aff5so734621a12.3
+        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 02:04:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1711443857; x=1712048657; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JUHFACxolYxK4dRg3Sf0j2U2n01l+uu5n940mo+Zokw=;
+        b=rQKmnbqdQHO+Fh9QJXQIwp+GKUpps5x6vM70tfJF9zDSFXS0GtRyEgMBkv31/aydew
+         TXgih7QesKG83xi49w7ZJUIl9UxoR6RkvRQtDdiRMB4hG/oSm142JKY7UDe0uVlBsnhR
+         6OzU9ur+fNWN97qWDcXnsYnDW6ps3qCuW78wagPNtLdbD6q9W6QAeNDitIMCKEULqFlB
+         ZW7yX3Z+SZBy9rNIeY2gtYbCKuLBpbvlJWeumLMZoXgDbAGA5cUOryOqQPkQJ337gGCb
+         uw5iepJ7qwIdWBRJF6kQXdvPXUmEnQd3wcSdvEC6SduL5WKBr237kCbMRA0El2WWs2Tl
+         Mpfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711443857; x=1712048657;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JUHFACxolYxK4dRg3Sf0j2U2n01l+uu5n940mo+Zokw=;
+        b=OiQ3cPm7G36snF8QQPlq3i7d/8QRR1aEjBK6FdskxRKAXBFaaEVcm+fKWRGAk9EW/V
+         Ei3/UEG2yhYPEMcI1zGgKI7Fyj9YEBLrGYUIwv281dRAt6iCjDdeSZwSErKzKgtzdRoK
+         Jk+1Pcn/ng3EwpxVQsDwyOmA5fUy+fXYfjdHhKIeTVCl2Fr/liNpx/zg54PZ5JFImXco
+         vR8QPK9FNU0anCaI7U2KCpR4TtE7ee1wzfOEtWBdRepZWzobveNYqIAq8mKGc0EqyiQa
+         NUa/BN0hJWJ6CyrJEPHve+3aEOp3Pmqnhq35V497AEW5ZR8+i1qt+VAawl3hFSG9F/ps
+         LTjQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWRPx0lkDkifjpabZJd9L8eOsSy2FA5KavaSjAgffznuim/HUmZlTxohXl//8VhG7AXMwYRup85M8GlEqouDnsqovxt7j66Uwc01g==
+X-Gm-Message-State: AOJu0YwLFZj5gt6LFYaDoOVS70k5P5BlzaekEi8N+WRZ89b0+78FlaWt
+	UzH/y/h0zT2nIddw93p93AfSR+EnbMdEGE16om2+qi0WjDmrCnLZU+j5Jsj+Wxs=
+X-Google-Smtp-Source: AGHT+IEvHcy6UDTsdaGFobIClvyRxp2fSbGk49oVaAThiZZUGAXxspDnmzsU3qZha76m4QuIBn8YEA==
+X-Received: by 2002:a17:906:3e0b:b0:a4d:f999:de2d with SMTP id k11-20020a1709063e0b00b00a4df999de2dmr86359eji.8.1711443856748;
+        Tue, 26 Mar 2024 02:04:16 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.222.44])
+        by smtp.gmail.com with ESMTPSA id ao18-20020a170907359200b00a46aba003eesm3973097ejc.215.2024.03.26.02.04.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Mar 2024 02:04:16 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
 	Michael Turquette <mturquette@baylibre.com>,
 	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc: Huacai Chen <chenhuacai@kernel.org>,
-	loongson-kernel@lists.loongnix.cn,
+	linux-samsung-soc@vger.kernel.org,
 	linux-clk@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	Xuerui Wang <kernel@xen0n.name>,
-	loongarch@lists.linux.dev,
-	Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: [PATCH v1 8/8] LoongArch: dts: Add clock support to Loongson-2K2000
-Date: Tue, 26 Mar 2024 17:01:52 +0800
-Message-ID: <0d8d67883f885fb3148d532031db9e18eab112cb.1710926402.git.zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1710926402.git.zhoubinbin@loongson.cn>
-References: <cover.1710926402.git.zhoubinbin@loongson.cn>
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] dt-bindings: clock: samsung,s3c6400-clock: convert to DT Schema
+Date: Tue, 26 Mar 2024 10:04:13 +0100
+Message-Id: <171144376244.95623.15251693618331114140.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240312185035.720491-1-krzysztof.kozlowski@linaro.org>
+References: <20240312185035.720491-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:AQAAf8AxDBMMjwJmwrJoAA--.9838S2
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj93XoW7ur1xuFyxZFWUCw17CF13WrX_yoW8uw18p3
-	srCa1UKr409F1xur98trWUGF1kAF95AFnrWanIkFyUGwnIq34UZr18JF93tF4UXr4fX3yI
-	qrn5Gry29F4UuabCm3ZEXasCq-sJn29KB7ZKAUJUUUUx529EdanIXcx71UUUUU7KY7ZEXa
-	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-	0xBIdaVrnRJUUUBCb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-	0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E
-	14v26r4UJVWxJr1ln4kS14v26r126r1DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6x
-	kI12xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v2
-	6Fy26r45twAv7VC2z280aVAFwI0_Cr0_Gr1UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0x
-	vY0x0EwIxGrwCY1x0262kKe7AKxVWUAVWUtwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE
-	7xkEbVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14v26r1j6r18MI8I3I
-	0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAI
-	cVC0I7IYx2IY67AKxVW7JVWDJwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr1j6F4UJwCI42
-	IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Cr0_Gr1UMIIF0xvEx4A2
-	jsIEc7CjxVAFwI0_Gr1j6F4UJbIYCTnIWIevJa73UjIFyTuYvjxUxNeODUUUU
 
-The module is supported, enable it.
 
-Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
----
- .../boot/dts/loongson-2k2000-ref.dts          |  4 ++++
- arch/loongarch/boot/dts/loongson-2k2000.dtsi  | 19 +++++++++++++++----
- 2 files changed, 19 insertions(+), 4 deletions(-)
+On Tue, 12 Mar 2024 19:50:35 +0100, Krzysztof Kozlowski wrote:
+> Convert Samsung S3C6400/S3C6410 SoC clock controller bindings to DT
+> schema.
+> 
+> 
 
-diff --git a/arch/loongarch/boot/dts/loongson-2k2000-ref.dts b/arch/loongarch/boot/dts/loongson-2k2000-ref.dts
-index dca91caf895e..a7af345b30ea 100644
---- a/arch/loongarch/boot/dts/loongson-2k2000-ref.dts
-+++ b/arch/loongarch/boot/dts/loongson-2k2000-ref.dts
-@@ -39,6 +39,10 @@ linux,cma {
- 	};
- };
- 
-+&clk {
-+	status = "okay";
-+};
-+
- &sata {
- 	status = "okay";
- };
-diff --git a/arch/loongarch/boot/dts/loongson-2k2000.dtsi b/arch/loongarch/boot/dts/loongson-2k2000.dtsi
-index a231949b5f55..605efaba7292 100644
---- a/arch/loongarch/boot/dts/loongson-2k2000.dtsi
-+++ b/arch/loongarch/boot/dts/loongson-2k2000.dtsi
-@@ -6,6 +6,7 @@
- /dts-v1/;
- 
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/clock/loongson,ls2k-clk.h>
- 
- / {
- 	#address-cells = <2>;
-@@ -19,21 +20,22 @@ cpu0: cpu@1 {
- 			compatible = "loongson,la364";
- 			device_type = "cpu";
- 			reg = <0x0>;
--			clocks = <&cpu_clk>;
-+			clocks = <&clk LOONGSON2_NODE_CLK>;
- 		};
- 
- 		cpu1: cpu@2 {
- 			compatible = "loongson,la364";
- 			device_type = "cpu";
- 			reg = <0x1>;
--			clocks = <&cpu_clk>;
-+			clocks = <&clk LOONGSON2_NODE_CLK>;
- 		};
- 	};
- 
--	cpu_clk: cpu-clk {
-+	ref_100m: clock-ref-100m {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
--		clock-frequency = <1400000000>;
-+		clock-frequency = <100000000>;
-+		clock-output-names = "ref_100m";
- 	};
- 
- 	cpuintc: interrupt-controller {
-@@ -51,6 +53,15 @@ bus@10000000 {
- 		#address-cells = <2>;
- 		#size-cells = <2>;
- 
-+		clk: clock-controller@10010480 {
-+			compatible = "loongson,ls2k2000-clk";
-+			reg = <0x0 0x10010480 0x0 0x100>;
-+			#clock-cells = <1>;
-+			clocks = <&ref_100m>;
-+			clock-names = "ref_100m";
-+			status = "disabled";
-+		};
-+
- 		pmc: power-management@100d0000 {
- 			compatible = "loongson,ls2k2000-pmc", "loongson,ls2k0500-pmc", "syscon";
- 			reg = <0x0 0x100d0000 0x0 0x58>;
+Applied with description changes as Conor suggested.
+
+Applied, thanks!
+
+[1/1] dt-bindings: clock: samsung,s3c6400-clock: convert to DT Schema
+      https://git.kernel.org/krzk/linux/c/2125459ced054218fa8cf0170a116e2eeaa0f276
+
+Best regards,
 -- 
-2.43.0
-
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
