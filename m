@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-53232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B0C588BA99
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 07:41:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E67D88BAAF
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 07:46:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E3A31C31ED8
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 06:41:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9D7A2B22779
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 06:46:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A6E674BEB;
-	Tue, 26 Mar 2024 06:41:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3A87823D1;
+	Tue, 26 Mar 2024 06:46:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="viRcSPIf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bvMGDicS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43588A954
-	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 06:41:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A65B54BFF
+	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 06:46:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711435291; cv=none; b=lr6JrXFuAwDqqZj58nAB3WFz9JgBbjMgLML5GIUjMCRoZCAHK+QC2ixdziy3XOFcviQ2csTtSsKVOB6LWw6cCAvPm9vqAjPMzNHitsPDTuVAwguxlGowPsBv60foCeAwnEtnxKMRw7J6EovgF++agl8+4vMuPu7EFCPD2acIsvY=
+	t=1711435565; cv=none; b=s7FSaW5ATgnFIydHm9zokl3Ub6fePKUPLTQFag4zbXsF0jpys/SPvVcviQ2YlDiwg/YCfrvJzjb0+XN52zE95JBgH459jBwbod9ZmOYzD6MjKVLSXdZjAByXaqThoe7+PKpW/zS2VkgrkYkAe0lXwf+SaIUBUZQLFXZYXsLbmds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711435291; c=relaxed/simple;
-	bh=GzDtQK1saFDcFVMOqUaQqDCSX6jUg4+gnXHidKzXjmM=;
+	s=arc-20240116; t=1711435565; c=relaxed/simple;
+	bh=wy+qyXverh7nieHFb0hqrqF24NYE5GQnRrosS8PFLgA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BU65rZQ00W5T4mgDGGaU25T2y7Q31uULiVXXYJUOF0C7knd6Y0pxLoIyvCS/Y8CZ1IjqaKPXL5PzIE3FrMXZBtXiaYPhZW4pekbn7UDzqkwYqju99PiuoMo4fkQKjreLOE/dLNY2f/G3E/Et5DfVovdW2gNd248ApaOuXvyk7Rc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=viRcSPIf; arc=none smtp.client-ip=209.85.218.43
+	 In-Reply-To:Content-Type; b=Kx5DsDn5DTJZr758DQHt3rABAh6HjjuSf2xqi/ISFVR7olxhnwnIjMUDDyhR72VxJ0sebVP/KHz+EdmsDP+WX7u45qduMGk7qT9B7UDuABTZ+pDkBY86kn1h6ms7H8At0YqNgb/c7gkjiXYz4diePEkVVOgHz4slVnWcfqgMQIk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bvMGDicS; arc=none smtp.client-ip=209.85.218.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a4df5bd63fbso18560766b.2
-        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 23:41:29 -0700 (PDT)
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a44f2d894b7so622995966b.1
+        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 23:46:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711435287; x=1712040087; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711435562; x=1712040362; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=GJ2tXKD2WaU+7T+zA/zPQZUuPSPb85vL+vwhd6xl5yo=;
-        b=viRcSPIfeVt5AyJuXyRaLtHRY1hBbjEP3GJLoZ9dLBk1HVP1K8oimbs1PRFk67F8/s
-         uJgdI9q0XmZG7bDz9Ayg9nuoaWOKFX5vmAHOz9dpi+icGA9DiZcq5eK+olYiSECNsZtT
-         R1Ix/eN+zyz9/hXWDDntvbtkcim48GvwLRl2v3a3oxSQ7LQO5AFRTnLMbKrK9PhD661x
-         c8d9rfphVY84p0JHxaH0U8RTkpvruL9l9Zk8C1aqh5672AprWZfdIgmiRjqUohUwmejY
-         plbi1/g4j8XpJReMocw5pXaJReaHoashTD2Q+2RMQTvSq457gjsKqD0Uk32oksz9EcX+
-         9nQQ==
+        bh=BqkpkBz51uO0Tg187W87yjDd9hVH6SR23SGC1N0DFeQ=;
+        b=bvMGDicSJeaujqc13yGfpWUPyho1H/nawVtnNuHkcniGWVRdTLeGeX+CN/88e/AAdO
+         /+7Bp6imXc9FJU74taEHRE0thHd7hwCWW12utKZJVznrEc28fRmLlo4ORjJmQSdIJg/9
+         /k/0fwn50glbPnd8Ny+TYr39YQ2qmu7xBtavbRAW0m4LfykyZZBmtVPNDK/AD/uJ+883
+         StWMmAE+3qYQqXVuBNj/oSdVDwhPq0fY0EUnMe359kHdenVQScUqFvTolkwjTQzQ7T1D
+         BdvyunzDlMjeR0T88OcXM7XqxB2/9AninB10v6bHp587t/GdtJLsBp17QJFOh4h9eN40
+         1PrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711435287; x=1712040087;
+        d=1e100.net; s=20230601; t=1711435562; x=1712040362;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=GJ2tXKD2WaU+7T+zA/zPQZUuPSPb85vL+vwhd6xl5yo=;
-        b=nnRnKK42IeeQClm+oYsv0DohFVyU3fjlKLMtQ+COrJRSJKLH/AQDFHZwU8kMOrbaQU
-         aTpWQBmHLxTyXaIb2RnMQa9YkExm6/LMJdKDQR2VS7YBB1KgnZdMhXZhEtzu4IZEWbyg
-         GX7AT733qvamVJUWptOetpMAgkJJvJYZU/zcbpjZHDUatXEyWAMGWQkTUU9lB4KxXlPN
-         GLNBaewD84ngB2rTJ3T6DAS3Gaf+cpDl8FJXGMbEDSNvku/8iQYZ5vmqKUuQpXsCnZED
-         ipvILDpDwc79Gn9rhUPth739M22ZNbZYzgg3wFpIQvnxItU5nHF5UyxMpX2XbK6UGwuF
-         vUcg==
-X-Forwarded-Encrypted: i=1; AJvYcCXg+YLjOGEBmCNw2TA1VR8OVKyM256KbixC+0Hi3WFVEOhNnmNUBvEDEToMWY9AJg9YOIQNJ3789CCNdNom325IDm6B+rNTrgKmvw==
-X-Gm-Message-State: AOJu0YxYLSByZ563dz6Zlu4EvFifCRrdUvkcUeFPrxC9dvTgL5g6Ar1j
-	3dO4Q2wDJfzDbCHt3CD05VgZUohhtyhE5Zqc6IkNAEx85aJLyPWI3GMfOdfu56w=
-X-Google-Smtp-Source: AGHT+IE6TanRvBgLMYJPbfQxwfB8FYEG/n671HuRgeoIpRop0LuoJyPUnLRs4fffly2ef1u/0Qa+OQ==
-X-Received: by 2002:a17:907:7241:b0:a47:5194:e365 with SMTP id ds1-20020a170907724100b00a475194e365mr5139393ejc.64.1711435287551;
-        Mon, 25 Mar 2024 23:41:27 -0700 (PDT)
+        bh=BqkpkBz51uO0Tg187W87yjDd9hVH6SR23SGC1N0DFeQ=;
+        b=o/02wbc6b1Mh0pKqMpYGX9IKegn4S0SrX7bucxqF1o3uSVakApXoaP4tQFVmWr2KWj
+         MavzjlpTyT8JUiu5LhQYPv+HwbZ4VKOlY4ccwJL75/jtd6UFkfFmW7r/bHhI3CcTtsns
+         w7LskRCpKCmUzMkcHlaSvi3n6bVKIrdqTdXVCWuuryci1JA3IbUebhilZy21wItTDAgC
+         P/lj1J3JzQ62kIB4i+oeZzFPnAxFNQ4lU6xiENcARJub/ixoCBMSt+SqBLrf1NnsZtWa
+         PHKLc6OQhj1oFiKf2nG8Jz+EfmoqTkp15vxLsqJWhwJgXdXfnc0S3ftJTj4znDbsjOXc
+         JN0g==
+X-Gm-Message-State: AOJu0YzmNg5IzQNP+0skLc5Z2P1L2xre8Vi4aAL+maWsVaRUpF9XJstF
+	GaiNlaHAE93SIntflU8ppdFk8pZCkJA5MMVSmAz7WrEAvRfdT/d2gtB0+658WxE=
+X-Google-Smtp-Source: AGHT+IFYH3K+0oaZNzgvZCZBD0SnYiC/s7JItomLcijD+Xhmot7Z1YK+O39UP7P5ARcxq70+D9xC2A==
+X-Received: by 2002:a17:906:1194:b0:a46:ac10:1cde with SMTP id n20-20020a170906119400b00a46ac101cdemr1114377eja.45.1711435562385;
+        Mon, 25 Mar 2024 23:46:02 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.44])
-        by smtp.gmail.com with ESMTPSA id z23-20020a170906271700b00a473766cfeasm3868522ejc.217.2024.03.25.23.41.26
+        by smtp.gmail.com with ESMTPSA id c22-20020a1709060fd600b00a4dacd6b8b3sm947334ejk.68.2024.03.25.23.46.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Mar 2024 23:41:27 -0700 (PDT)
-Message-ID: <b086a02c-624f-4225-a9fb-164095742ce9@linaro.org>
-Date: Tue, 26 Mar 2024 07:41:25 +0100
+        Mon, 25 Mar 2024 23:46:01 -0700 (PDT)
+Message-ID: <9b1a5100-8536-4b59-b2e7-d6ebd2ba9e66@linaro.org>
+Date: Tue, 26 Mar 2024 07:46:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,24 +76,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: arm64: marvell: add solidrun cn9130
- clearfog boards
-To: Josua Mayer <josua@solid-run.com>, Andrew Lunn <andrew@lunn.ch>,
- Gregory Clement <gregory.clement@bootlin.com>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+Subject: =?UTF-8?B?UmU6IOWbnuWkjTogW1BBVENIIHYyIDEvMl0gQVNvQzogZHQtYmluZGlu?=
+ =?UTF-8?Q?gs=3A_Add_bindings_for_Cadence_I2S-MC_controller?=
+To: Xingyu Wu <xingyu.wu@starfivetech.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Claudiu Beznea <Claudiu.Beznea@microchip.com>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Yazan Shhady <yazan.shhady@solid-run.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20240321-cn9130-som-v1-0-711127a409ae@solid-run.com>
- <20240321-cn9130-som-v1-1-711127a409ae@solid-run.com>
- <0f7ca0ed-a1c1-41d2-a1fa-27431d14c056@solid-run.com>
- <e1836cb6-64cd-4866-9c0a-f0dda096aa18@linaro.org>
- <6a6e7c4d-d5fd-42ae-bc3d-a3978d65e8e4@solid-run.com>
+ Conor Dooley <conor.dooley@microchip.com>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+ "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>
+References: <20240320090239.168743-1-xingyu.wu@starfivetech.com>
+ <20240320090239.168743-2-xingyu.wu@starfivetech.com>
+ <9d9efb8a-0b3c-4e7a-8673-07cd3b1f5f87@linaro.org>
+ <NTZPR01MB0956BD6189974378958562D99F35A@NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -141,119 +139,84 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <6a6e7c4d-d5fd-42ae-bc3d-a3978d65e8e4@solid-run.com>
+In-Reply-To: <NTZPR01MB0956BD6189974378958562D99F35A@NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 25/03/2024 21:12, Josua Mayer wrote:
-> Am 25.03.24 um 20:34 schrieb Krzysztof Kozlowski:
->> On 22/03/2024 11:08, Josua Mayer wrote:
->>> Am 21.03.24 um 22:47 schrieb Josua Mayer:
->>>> Add bindings for SolidRun Clearfog boards, using a new SoM based on
->>>> CN9130 SoC.
->>>> The carrier boards are identical to the older Armada 388 based Clearfog
->>>> boards. For consistency the carrier part of compatible strings are
->>>> copied, including the established "-a1" suffix.
->>>>
->>>> Signed-off-by: Josua Mayer <josua@solid-run.com>
->>>> ---
->>>>  .../devicetree/bindings/arm/marvell/armada-7k-8k.yaml        | 12 ++++++++++++
->>>>  1 file changed, 12 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/arm/marvell/armada-7k-8k.yaml b/Documentation/devicetree/bindings/arm/marvell/armada-7k-8k.yaml
->>>> index 16d2e132d3d1..36bdfd1bedd9 100644
->>>> --- a/Documentation/devicetree/bindings/arm/marvell/armada-7k-8k.yaml
->>>> +++ b/Documentation/devicetree/bindings/arm/marvell/armada-7k-8k.yaml
->>>> @@ -82,4 +82,16 @@ properties:
->>>>            - const: marvell,armada-ap807-quad
->>>>            - const: marvell,armada-ap807
->>>>  
->>>> +      - description:
->>>> +          SolidRun CN9130 clearfog family single-board computers
->>>> +        items:
->>>> +          - enum:
->>>> +              - solidrun,clearfog-base-a1
->>>> +              - solidrun,clearfog-pro-a1
->>>> +          - const: solidrun,clearfog-a1
->>>> +          - const: solidrun,cn9130-sr-som
->>>> +          - const: marvell,cn9130
->>>> +          - const: marvell,armada-ap807-quad
->>>> +          - const: marvell,armada-ap807
->>>> +
->>>>  additionalProperties: true
->>> Before merging I would like some feedback about adding
->>> another product later, to ensure the compatibles above
->>> are adequate? In particular:
->>> - sequence of soc, cp, carrier compatibles
->>> - name of som compatible
->>>
->>> Draft for future bindings:
->>>       - description:
->>>           SolidRun CN9130 SoM based single-board computers
->>>           with 1 external CP on the Carrier.
->>>         items:
->>>           - enum:
->>>               - solidrun,cn9131-solidwan
->>>           - const: marvell,cn9131
->>>           - const: solidrun,cn9130-sr-som
->> This does not look correct. cn9131 is not compatible with your som.
-> This is partially my question.
-> I considered changing the som to "cn913x-sr-som".
+On 26/03/2024 07:29, Xingyu Wu wrote:
+>>
+>> On 20/03/2024 10:02, Xingyu Wu wrote:
+>>> Add bindings for the Multi-Channel I2S controller of Cadence.
+
+Your email app responds very weird. You bypassed all possible filters
+and it is simply not visible that you answer to me. You Reply to
+everyone, not to me with Cc to others. There is no standard header whom
+do you quote, e.g. "On 26/03/2024 07:29, Xingyu Wu wrote:"
+
+Please use some decent email system, otherwise I will miss all replies
+from you.
+
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - cdns,i2s-mc
+>>
+>> Why did this appear? Who asked for this? Usually these blocks are not usable on their
+>> own.
 > 
-> The SoM itself is always 9130, it contains the base SoC
-> with 1x AP and 1x CP in a single chip.
-> 9131 and 9132 <happen> on the carrier boards.
+> I wonder if I should keep the original IP compatible. Do I not need it?
 
-No wildcards, but if the SoM name is 9130 then use 9130.
-The problem is that you use cn9130 SoC as fallback.
+As I said, it is not usable on its own, so unless you have other
+arguments then no. But my point was that no one asked for this.
 
 > 
 >>
->>>           - const: marvell,cn9130
->> SoCs are compatible only in some cases, e.g. one is a subset of another
->> like stripped out of modem. Are you sure this is your case?
-> This is more complex, CN9131 and CN9132 are not single SoCs.
-> A "9132" is instantiated by connecting two southbridge chips
-> via a Marvell defined bus, each providing additional IO
-> such as network, i2c, gpio.
+>>> +      - starfive,jh8100-i2s
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  interrupts:
+>>> +    description:
+>>> +      The interrupt line number for the I2S controller. Add this
+>>> +      parameter if the I2S controller that you are using does not
+>>> +      using DMA.
+>>
+>> That's still wrong. You already got comment on this. Either you have interrupt or not.
+>> You do not add interrupts, based on your choice or not of having DMA. Drop the
+>> comment.
 > 
-> Note that even the first, "9130", while a single chip, contains two dies:
-> An "AP" (Application Processor I assume) with very limited IO (1xsdio, 1xi2c),
-> and a "CP" (Communication Processor I assume) with lots of IO.
-> This CP as far as I know today is identical to the southbridges
-> mentioned above.
+> Do I keep this property and drop this description?
 
-OK, but how does it affect compatibility between them? Which parts are
-the same? Or how much is shared?
+Drop description. Keep property, if your hardware has interrupts.
 
+...
+
+>>
+>>> +  - compatible
+>>> +  - reg
+>>> +  - clocks
+>>> +  - clock-names
+>>> +  - resets
+>>> +
+>>> +oneOf:
+>>> +  - required:
+>>> +      - dmas
+>>> +      - dma-names
+>>> +  - required:
+>>> +      - interrupts
+>>
+>> This won't work. Provide both interrupts and dmas, and then test your DTS.
 > 
->>>           - const: marvell,armada-ap807-quad
->>>           - const: marvell,armada-ap807
->> Anyway, 6 compatibles is beyond useful amount. What are you expressing
->> here?
-> I copied this part from the examples earlier in the file, such as:
->       - description: Armada CN9132 SoC with two external CPs
->         items:
->           - const: marvell,cn9132
->           - const: marvell,cn9131
->           - const: marvell,cn9130
->           - const: marvell,armada-ap807-quad
->           - const: marvell,armada-ap807
->>  Why is this even armada ap807?
-> We noticed ap807 != ap806 (cn913x != 8040),
-> because the thermal sensor coefficients converting
-> raw values to celsius differed.
+> I provided both properties in the DTS and test by dtbs_check. Then it printed that:
+> 'More than one condition true in one of shema: ...'
 
-That's also not the best example. Might be correct but also looks
-over-complicated. The point of board-level compatibles is to identify
-machine and its common parts. It has little impact inside of kernel (at
-least should be almost no users inside!), but there can be some users,
-e.g. firmware or user-space.
+Exactly. Having both properties is a correct DTS. Interrupts do not
+disappear just because you decide to describe DMA. It is OS choice what
+to use if both are provided.
 
-This claims that cn9132 is compatible with ap807, so you have exactly
-the same base. The same base is not CPU! It's about the S in SoC, so
-"System". Could firmware use marvell,armada-ap807 compatible to properly
-detect type of system and treat all these boards as ap807?
+
 
 Best regards,
 Krzysztof
