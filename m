@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-53253-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F08DD88BB39
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 08:30:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB0E288BB40
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 08:31:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 494E5B21B95
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 07:30:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 756F129F15B
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 07:31:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82BEB13119F;
-	Tue, 26 Mar 2024 07:30:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98232130AD3;
+	Tue, 26 Mar 2024 07:31:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gzWsWrn8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yIDIqTzi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3448A954
-	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 07:30:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCAC5130A66
+	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 07:31:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711438215; cv=none; b=KrOND7omOOojmpgWWeNLYeC9s2hntzKqLpwaFgdS2WrsJDtPvw8+bneYIpSWwlrY+tkn5C61+56o4itxtiyX24QysHiZslzH8J8yfXuBr6i+3TfbgJgpySP4oGRoTGiwgHsQRnjhH4bkEPFPDhVaggAkY2oTHkSk9s9gcs9dhHA=
+	t=1711438295; cv=none; b=hgVM9eM/SOPWncSJrjbFJSqOF2XDZ+I/Ozepd2Kjm7nhB/x26g+eEpaFuYsx2pNBn9wG1Cjs6mXwQ5R5EWE1g4k/HNowisqMQI8NhtHz7+qdkeLLmvI325UjkD6DccsrcOn+/ttUrBTVoVmDC6x76oiAkGbq/2ieRX8K6cIKWUs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711438215; c=relaxed/simple;
-	bh=qlXHSjD4oRu6T1ULa+mNDp9G2uRL5HO5IKVjGUSBBEE=;
+	s=arc-20240116; t=1711438295; c=relaxed/simple;
+	bh=uw6pUVcKedstnVlPhwP3N1euS9t2MuLFHv/HEf4LhL0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZvBBwAuvVs0c0WVsM3N86raOe/FKYTGO+SOePO3EUOCxkUE6Y3Eb6LxPIom7/Nw3qiSQc9ewYBJCWuhiniVhyW4PTQaRBSZwi+Q3ecSIbRW5CB3SkpW49Bnr9JIN0ogcg20NB7JsemoRpH2d0E34NRLUby+WscI0mGeZ4MlWm1E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gzWsWrn8; arc=none smtp.client-ip=209.85.208.52
+	 In-Reply-To:Content-Type; b=ghYdOMOQoRu+GwfSGO5S/8NiXSmxzso+aMBCVjhINpiC2X1QjSAeKL3ZrOfK7jn684svTC/gD21MEiEfprbdDrZv0nc94XmDeWUS8E3BDRCfmP9L7uirw59AA/0jKlkEzWkV2DEV5bsp5yWVO/j23itCbgHYwZ4wUzsMhGzZYDo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yIDIqTzi; arc=none smtp.client-ip=209.85.218.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-56a2bb1d84eso9117405a12.1
-        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 00:30:12 -0700 (PDT)
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a466a27d30aso635515166b.1
+        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 00:31:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711438211; x=1712043011; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711438292; x=1712043092; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=NS0LFbGO6Diz+O55zW1kIhPFuGDQKse20XAQBsjLplY=;
-        b=gzWsWrn8dAydMAjU7M5cDpcTBdcnHaVjoRdketV9VXwlSsGTNdQIkXLPdc4CEpb+7f
-         sHmRPLiArI51m4RlbuIjbwDb4vQ49AXZK28cTkQ+FbE8Ta9flaCfHb2gyWVbI5/gmqL5
-         RxLekNHaBbwq7/zmwTaWnCUwg5oNL1SxgFBiQ+oJdnxloqbPJyk/0EArPNIbtvagRrOG
-         une/vVqWHx4gyrNATboIKL03rAqhUd9Rh4E1ZOQtxxj0tOrbcIyOREf4wp1zm3O1LM1b
-         Fuaw4wyNd1bHBPI5RhGTuuJT8ueh4sdL6lvMsyJJV/cLgBM3AauOthFrcxR2usx8SpOn
-         BJ7Q==
+        bh=6fcZiRh+bZHcE1xG5b86kocln3sa0d4PQzozc2FOFmc=;
+        b=yIDIqTziaZ6jtd/6r3VFBWu39FqqJ7PAkzQ8Ed4ABkIsSVHIFaZWLGHmBQSRUfe+bJ
+         W3Qm/PzgborhSnCYWT+qGS8NA5eIlssgxpFWE3Ak7fq27SnVNWtPOk1gQaXLWfRjJefj
+         M9bP/2TR9SCC/gLaW383d5GkigUNCYFc11nxGKbLdKXg6SfKReTDJM1E5dJ44EwDT2Iu
+         jpqIK9qjfT5Z22XrnKjN2ofvE9IylcVGf85A8YCicX5SlLHk/W6L3Od0Wr9zsA6a8nov
+         pZ734uTtB+/iIRdoGaCvRJ5sNSIVPiAW/58PLnMMRem/h+pCiJ6w5aME3XoeLoH96COp
+         4oiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711438211; x=1712043011;
+        d=1e100.net; s=20230601; t=1711438292; x=1712043092;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=NS0LFbGO6Diz+O55zW1kIhPFuGDQKse20XAQBsjLplY=;
-        b=lK9pbHvfv0yfb4zM/Oq9SGjkZ3wPWahbK8WePrJbIzG44d79RqLrcVchwDYcxtyoxe
-         a9UX3XkuVy+cBcGzhGR37hYWV5YxNHD5IfLPblAvOTM90P3qoqgTBZVFNymkznmDjZLY
-         VghKA5i4yiAMgcyPfKnD3ouzAWhrNQoW/wACp+AVAykbUB9E+YnJPocld1Rx1PiZDPgZ
-         hJ/3gI7Lzp84bMVCGQQ1Phdn2TM9DtZNEVvNErm+zYWqgTRILWh/FIiVdXXWlHnOGtg2
-         XtgrrLkgg2bqn+2ivD+/Azg5AOOCZGAb7nzq0Z0YOW/AbK1Nsw+oLP2imH0nd2F2OfWi
-         OPWg==
-X-Forwarded-Encrypted: i=1; AJvYcCXyJoZQ6sOvBijIG1Tn+ErpTey+uXFyU0fSUQLiPGzpTEAO8Bp2fX1r23m6pmRbLuSH3dUHcIJZewh1kopw96UdKLeuHYAdRQxS6A==
-X-Gm-Message-State: AOJu0YwWs3BME6Y17X1xjrP70bRFK+QZOmQNWL54/Uww+Hyq1aTvDse9
-	uyqiMMO7EFs12wiXnp08q+EUqz8fuATJDTva9ODLBuPMhf7HRm9KNYDuz/8x0fk=
-X-Google-Smtp-Source: AGHT+IHiCRE6k1Cpx73jh67er/H6/gp+YnVuWHmlblCeMCWF2i9jddFGIkvdgtlrEQ0uNnrlDzqI/A==
-X-Received: by 2002:a50:9343:0:b0:566:59a2:7a10 with SMTP id n3-20020a509343000000b0056659a27a10mr696876eda.1.1711438211145;
-        Tue, 26 Mar 2024 00:30:11 -0700 (PDT)
+        bh=6fcZiRh+bZHcE1xG5b86kocln3sa0d4PQzozc2FOFmc=;
+        b=pTuXeMMAXM/Wjni6xXRx0qIc5YGt2M28c1+URd4PbMohyD8boKCm1nnBgCXNQCTcyf
+         i2n+tQzPJe0f3orAk4+Scp7D5jkIEJzwpn6oxrpp89fBNo7vbKydViWS3VOc1CgYnORB
+         fOLpF3fNtquL5Vv1d3o8r3HEykn/Tqyo4QAgf6ibruGgjobuNz8VWdcRwwvpGESKds24
+         umDu+493365/uLHOKOL1fdDPJwhT7lBPXdMPCwaMpENtDGngl0JqYhcwPXUEhNyw8R7+
+         wgadbozTRbaU7Nh8mZiychnvpDNZmKkzYPdWwLbPTUs7lXS9cUw4w9djtP/Hk3wDwYo0
+         mY8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXVRgXcUC5U/xwsr3orLfWLFvmqOEhRB8sCG/sNR7sHO5QZ+/mHxm/4LaFzgpz/Ro8oPJ8vI3T5/qSx1InrnlRib0St9WrImEe5Aw==
+X-Gm-Message-State: AOJu0YydsmvV/a/Dj7uQvY+VZGJS6vGm4EE05/UmF0uFeFROR8kAecVl
+	GbAIJW7ScLX+UmrK0fpYvET7V1Ldyao0t3GVIVIYnbRjpe9S0o6lmbl1FvWk0zk=
+X-Google-Smtp-Source: AGHT+IH95oH2pyZFEJiXpyyBmmkjKpLkVJcV5N7PEyQyll8Xkw6VIXRaR+x7RgPyAd5hw+PpLL/C3Q==
+X-Received: by 2002:a17:906:fa9a:b0:a46:b809:4b22 with SMTP id lt26-20020a170906fa9a00b00a46b8094b22mr6024332ejb.45.1711438292082;
+        Tue, 26 Mar 2024 00:31:32 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.44])
-        by smtp.gmail.com with ESMTPSA id r1-20020aa7cb81000000b0056c052f9fafsm2969290edt.53.2024.03.26.00.30.09
+        by smtp.gmail.com with ESMTPSA id bn10-20020a170907268a00b00a475301cd82sm2540519ejc.170.2024.03.26.00.31.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Mar 2024 00:30:10 -0700 (PDT)
-Message-ID: <a259fa95-bfc3-4959-a159-8683df473e66@linaro.org>
-Date: Tue, 26 Mar 2024 08:30:08 +0100
+        Tue, 26 Mar 2024 00:31:31 -0700 (PDT)
+Message-ID: <f6d380f9-070e-4c77-9571-3f6f0e7dd21f@linaro.org>
+Date: Tue, 26 Mar 2024 08:31:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,22 +77,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/4] dt-bindings: interconnect: add clock property to
- enable QOS on SC7280
-To: Odelu Kukatla <quic_okukatla@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Georgi Djakov <djakov@kernel.org>,
+Subject: Re: [PATCH v2 3/4] dt-bindings: rtc: digicolor-rtc: move to
+ trivial-rtc
+To: Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
  Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Kees Cook <keescook@chromium.org>, cros-qcom-dts-watchers@chromium.org,
- "Gustavo A . R . Silva" <gustavoars@kernel.org>,
- linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org, quic_rlaggysh@quicinc.com,
- quic_mdtipton@quicinc.com
-References: <20240325181628.9407-1-quic_okukatla@quicinc.com>
- <20240325181628.9407-4-quic_okukatla@quicinc.com>
+ Conor Dooley <conor+dt@kernel.org>, Baruch Siach <baruch@tkos.co.il>
+Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20240325-rtc-yaml-v2-0-ff9f68f43dbc@gmail.com>
+ <20240325-rtc-yaml-v2-3-ff9f68f43dbc@gmail.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -139,54 +134,23 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240325181628.9407-4-quic_okukatla@quicinc.com>
+In-Reply-To: <20240325-rtc-yaml-v2-3-ff9f68f43dbc@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/03/2024 19:16, Odelu Kukatla wrote:
-> Added clock property to enable clocks required for accessing
-> qos registers.
+On 25/03/2024 22:10, Javier Carrasco wrote:
+> Convert existing binding to dtschema to support validation.
 > 
-> Signed-off-by: Odelu Kukatla <quic_okukatla@quicinc.com>
+> This device meets the requirements to be moved to trivial-rtc
+> (compatible, reg and a single interrupt).
+> 
+> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
 > ---
->  .../bindings/interconnect/qcom,sc7280-rpmh.yaml    | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,sc7280-rpmh.yaml b/Documentation/devicetree/bindings/interconnect/qcom,sc7280-rpmh.yaml
-> index b135597d9489..950ecdd5252e 100644
-> --- a/Documentation/devicetree/bindings/interconnect/qcom,sc7280-rpmh.yaml
-> +++ b/Documentation/devicetree/bindings/interconnect/qcom,sc7280-rpmh.yaml
-> @@ -35,6 +35,10 @@ properties:
->    reg:
->      maxItems: 1
->  
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 2
+>  Documentation/devicetree/bindings/rtc/digicolor-rtc.txt | 17 -----------------
+>  Documentation/devicetree/bindings/rtc/trivial-rtc.yaml  |  2 ++
+>  2 files changed, 2 insertions(+), 17 deletions(-)
 
-Why is this flexible? Nothing in commit msg explains that. I gave the
-same talk twice, gave there examples, yet it is not enough...
-
-https://elixir.bootlin.com/linux/v6.8/source/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml#L132
-
-> +
->  required:
->    - compatible
->  
-> @@ -57,6 +61,7 @@ unevaluatedProperties: false
->  
->  examples:
->    - |
-> +    #include <dt-bindings/clock/qcom,gcc-sc7280.h>
->      interconnect {
->          compatible = "qcom,sc7280-clk-virt";
->          #interconnect-cells = <2>;
-> @@ -69,3 +74,12 @@ examples:
->          #interconnect-cells = <2>;
->          qcom,bcm-voters = <&apps_bcm_voter>;
-
-If all devices have clocks, then you could add them here. It seems not
-all of them have clocks...
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
