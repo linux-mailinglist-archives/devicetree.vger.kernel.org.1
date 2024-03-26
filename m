@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-53356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDFCD88C0AB
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 12:31:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 456D188C0AD
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 12:31:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E15051C3B9D2
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 11:31:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 772BA1C259C8
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 11:31:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98F1955E58;
-	Tue, 26 Mar 2024 11:31:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D5C255C1D;
+	Tue, 26 Mar 2024 11:31:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WtPu2Jfo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ich6KpaR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A07DD537F8
-	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 11:31:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4079952F67
+	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 11:31:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711452685; cv=none; b=V9D3TDLulC6LtSUoK5tgYliWAjEZUlghQ3RWrbWOyz4Ggbl066S5c3EDs6ZAr2XuwEIcQLFGczbsj7n1Lk0MuB6DAuv9doFEuV8SSkO+Ke+eiVv4SsyJEyeKu/5BixcI4oWU+9yDejxdho0ar96QoQ0ZjqQw4Hrt0mygLRNT1mA=
+	t=1711452713; cv=none; b=cwwR/WrCucr0Tt7flop6Fn7hX991mNlinCBlNLETBzGxf/vD1982WEdEF8h2uMTZRR7DIxWai7fZLCjvx5pGgu4AHCtcxy7qc2oqEGOETCl5uAZ2yvbhmRPBpPjDyar8eA5cZM87uyDRv9/Cmjbxmh/JcuDMPrLi6x2Z0QK5IAU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711452685; c=relaxed/simple;
-	bh=gdiFA8JUXDACIb1ZE3whn4Tbk48UFrMO3Kz+rHzfM04=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JnkgnZj8W4MGgXaD1nMh939brCbMMKJc9SJBcI1aK30a45cEHfMXQrW3HrOW90h7l+hZGJihek9zdFJ44UQa6G9AGxhL0OA78U3VkmuWzQcIJXjRzJyYZv3vOVxFKaqhkp9UQvgfE/C9A2rAyWpAR9vKg/6OvGokzHWhCjxXTss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WtPu2Jfo; arc=none smtp.client-ip=209.85.218.44
+	s=arc-20240116; t=1711452713; c=relaxed/simple;
+	bh=DztKgRkFupDxj8G7CtqU0mnp7PbuwU3+2bKU2G/eGQs=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Q47lryb7NpLH/LZj38+S1kP9zXG7Eadlzfu4K9/kPHR2cRSDETnzbqddsMkxuJbZdzTqRkUHeHefV7h8JuXVVXvPH7qmqWBb483x7gxGNxGUZC6BqqPfqBk4E/Ms+p3YKBd+j6Gpf5u+9XWBOxWW1M1VhMn6K7RB+ScxCAUxLQA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ich6KpaR; arc=none smtp.client-ip=209.85.218.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a470d7f77eeso682795466b.3
-        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 04:31:22 -0700 (PDT)
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a4a39ab1a10so254211866b.1
+        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 04:31:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711452681; x=1712057481; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=6TiHBhLMtrxG4Kj/hIOTgJQ1RkjuHVilX+bsy0WXGMU=;
-        b=WtPu2JfoLtWYrppfRJPogdnun6AomuL9GzumzLYxG7vh5JvYtHPKr462LriQDfl43n
-         geWS09akTEH+UeKCJYm1SLoUcoYc1igITPw4VMD7A+qyhyvZJodEIyqxJWv37e6qZxqe
-         IqiTIZDYCnZ4i/Jf/8mzPFqDGdwIrkkCt42h/V0Y2YxE29VsxIV1nuv/WjBv0KqKX/qz
-         cYCJ3fWR81j1NTNADiv5t1pAZq++4IAT4xiR6bMyGuJecgfGJPfNbSeD6KTTqo4/bZEB
-         d/ZC4Lp40bQ3iMPsm2EKlXTuDj1CovswR0XzOpovzNhDoNbmtsWKlT/uY+jQw/DmAfVW
-         6LBg==
+        d=linaro.org; s=google; t=1711452710; x=1712057510; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :references:cc:to:from:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=9jVnt7ijfStCPQ5mm4EbTrjW8nLK/RDcAECNI4T/miw=;
+        b=ich6KpaRKGzW01AtZMWVhua8r5ZKD90bvhugtPclddzsPJGPfQpah5ffibm7KME7Cs
+         ci9lccfaKbNjytDedpTnoW5NfS+kcjMyHlRTgFzbMYbYX6dvOUC1EZNj2NbT7EZPh9iq
+         SgbdJWB1cxOZ8wscLVUC9Lz0QZdo9vpuiHPrrwehVBreQxqfk5GrM4qOScJTjHZby3yX
+         rmQ8EFy0mF02n2+UEV40lVKXr8YaVPCsZgInzKBU7SYloDYxjjUa+//Em42FKHyPmYtM
+         wg40GJpfzn/xaIJSH8KMpnwktik35HSpwiK3h7KauF/Nk/PHOII6nT8vOjcmDSLvAZgl
+         dGMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711452681; x=1712057481;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6TiHBhLMtrxG4Kj/hIOTgJQ1RkjuHVilX+bsy0WXGMU=;
-        b=auJYS9D2e+TU5X78PluxBovr79fwP8WwusWhGa8/7amtt4IbIMQytnIk+QMdq4A6Af
-         ZZRDpuDA4zUon6ccnTR4TQrFsDaG1ttAlmMQoo/O/OVP35aUhxbvsNUMqyHiQaM60x27
-         7dRMpsVUbrUQ5S8cjSmwAD5EYDkTGi4Nf0fvdx8MM0KexSPwbHXvM1KeOgVTdyC5z51Q
-         B2ABX+HeQ5nAHJxomcdR9ocrlYhL7JQ+MY07ZPMjCrgdkY9Csfwnf0log9//x7CGpCox
-         fhrkqjLRbvwbNjK/k7+gluafRv/Lxs8xBeKiJdiDbFlqmtZ3L55SbYryAunfdx4cL5dE
-         O18g==
-X-Forwarded-Encrypted: i=1; AJvYcCWfyxsguKpktd5PMgcrTLMmpTjS+s99m6hasiJBoj6da2ypSeXapCZzfXkFAbilwDxnOLUsqzjE45T7lXaclug0lJ8ml6ljKI0SFQ==
-X-Gm-Message-State: AOJu0YySt1bAbVyks3I1+u7O/AhQjAjIJLGL4nlI5NFqw+hwJr/h42PX
-	fXyxrFuIFMkhTVh9quZAP9nnfl0lUPLm0b+PkMAQqUXgWI2sGwNtiSZs9oF9L1I=
-X-Google-Smtp-Source: AGHT+IFuPeRhJNmuBK0vDtgUjM9MnvsrbbO41q3BvDAYXHZuDMXzDqNTRU6iszlhwig3CMcQfVxteg==
-X-Received: by 2002:a17:906:5810:b0:a47:1b77:7c4 with SMTP id m16-20020a170906581000b00a471b7707c4mr7089215ejq.48.1711452680880;
-        Tue, 26 Mar 2024 04:31:20 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1711452710; x=1712057510;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :references:cc:to:from:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9jVnt7ijfStCPQ5mm4EbTrjW8nLK/RDcAECNI4T/miw=;
+        b=cXotyoyFWB1ZUpA57J5k62nU8PYvQzpCIFpuxz3opZGbGcMOfSdR1zWWXlDkwoWjfB
+         fs/7u9FDEh97MpgkBcubiEulTm5ArHDgjIHPJpv/ycTCzBIkh9U1f/ubQ3HS+6QUk77n
+         sY4BqkW7iKf0xkVaruLPTwwrn3WzZxNVnRvvSe42l1T9QjwdOZcEILkjbj/pU20IZ2Ed
+         XKfdtm4tMJzjH8PDed9mvpPmDpUJ8b60v4LUTBhDQMptPXB1tHziuHi8Zf47Lgd3Uyvy
+         3yShCeNuoNW9iY3SOxDI2pyrsCfit+WJlRpCgCdJFJMZ1dfuK66rgj74XhzQeexiFt8t
+         q9Qw==
+X-Forwarded-Encrypted: i=1; AJvYcCVRSgJIUInMBsytKj62vkZAgM5VdyyWvOuhjz2AwDtqvP9ZUKkoAAnCc+cSgHCaPKEK44MvyGpFWsmTcheqPSi44Ous5cRcs4nRAQ==
+X-Gm-Message-State: AOJu0YyVBclEX4iikE8J/1gbqeZ3TgjPCRPEkRmMoEj3YwS4FE3j1Cxi
+	UOlzUvasf9GcedxUKVsCM1aUxsXMPd8CxXVS/Zb+OWj2GDWJCGGI1yNx6bLYjr4=
+X-Google-Smtp-Source: AGHT+IHVP1LN+cxAIBO4tjbnQmLXwg3QkKIwPBuiU3S/GcPWVt12digsWlpeKg5EKOxXts3q0uhDtg==
+X-Received: by 2002:a17:906:c00f:b0:a47:20a1:5a4a with SMTP id e15-20020a170906c00f00b00a4720a15a4amr5903130ejz.23.1711452710512;
+        Tue, 26 Mar 2024 04:31:50 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.44])
-        by smtp.gmail.com with ESMTPSA id e21-20020a170906081500b00a4df251a601sm725639ejd.77.2024.03.26.04.31.19
+        by smtp.gmail.com with ESMTPSA id kz18-20020a17090777d200b00a46bdc6278csm4086945ejc.71.2024.03.26.04.31.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Mar 2024 04:31:20 -0700 (PDT)
-Message-ID: <cf42e020-9a5b-48bb-bc14-c0cc9498627b@linaro.org>
-Date: Tue, 26 Mar 2024 12:31:18 +0100
+        Tue, 26 Mar 2024 04:31:49 -0700 (PDT)
+Message-ID: <0ce9d3dd-6da5-4009-bbfb-022fb6d0d8d4@linaro.org>
+Date: Tue, 26 Mar 2024 12:31:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,26 +77,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/3] dt-bindings: dmaengine: Add dmamux for
- CV18XX/SG200X series SoC
-To: Inochi Amaoto <inochiama@outlook.com>, Vinod Koul <vkoul@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
-Cc: Jisheng Zhang <jszhang@kernel.org>, Liu Gui <kenneth.liu@sophgo.com>,
- Jingbao Qiu <qiujingbao.dlmu@gmail.com>, dlan@gentoo.org,
- dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <IA1PR20MB4953B500D7451964EE37DA4CBB352@IA1PR20MB4953.namprd20.prod.outlook.com>
- <IA1PR20MB4953E2937788D9D92C91ABBBBB352@IA1PR20MB4953.namprd20.prod.outlook.com>
- <57398ee0-212c-4c82-bfed-bf38f4faa111@linaro.org>
- <IA1PR20MB4953EDEEFC3128741F8E152EBB352@IA1PR20MB4953.namprd20.prod.outlook.com>
- <473528ac-dce2-41e3-a6d7-28f8c53a89ef@linaro.org>
- <IA1PR20MB4953517450F0E622A66E9A7DBB352@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Language: en-US
+Subject: Re: [PATCH v2] dt-bindings: serial: actions,owl-uart: convert to
+ dtschema
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Kanak Shilledar <kanakshilledar@gmail.com>
+Cc: krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+ devicetree@vger.kernel.org, daniel.baluta@nxp.com,
+ Kanak Shilledar <kanakshilledar111@protonmail.com>
+References: <20240321084328.200347-1-kanakshilledar@gmail.com>
+ <20240326085814.6343-1-kanakshilledar@gmail.com>
+ <bf26ee6a-50e6-4cfd-ba5d-2772a9e6a176@linaro.org>
+Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -141,99 +132,29 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <IA1PR20MB4953517450F0E622A66E9A7DBB352@IA1PR20MB4953.namprd20.prod.outlook.com>
+In-Reply-To: <bf26ee6a-50e6-4cfd-ba5d-2772a9e6a176@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/03/2024 12:15, Inochi Amaoto wrote:
-> On Tue, Mar 26, 2024 at 09:53:09AM +0100, Krzysztof Kozlowski wrote:
->> On 26/03/2024 08:35, Inochi Amaoto wrote:
->>>>> +
->>>>> +required:
->>>>> +  - '#dma-cells'
->>>>> +  - dma-masters
->>>>> +
->>>>
->>>>
->>>> I don't understand what happened here. Previously you had a child and I
->>>> proposed to properly describe it with $ref.
->>>>
->>>> Now, all children are gone. Binding is supposed to be complete. Based on
->>>> your cover letter, this is not complete, but why? What is missing and
->>>> why it cannot be added?
->>>>
->>>
->>> The binding of syscon is removed due to a usb phy subdevices, which needs 
->>> sometime to figure out the actual property. This is why the syscon binding 
->>> is removed.
->>>
->>> I think it is better to use the origianl syscon series to evolve after
->>> the usb phy binding is submitted. The subdevices of syscon may need
->>> much reverse engineering to know its parameters. So at least for now,
->>> the syscon binding is hard to be complete.
+On 26/03/2024 10:15, Krzysztof Kozlowski wrote:
 >>
->> Some explanation why dma-router is gone would be useful, but fine.
+>> Signed-off-by: Kanak Shilledar <kanakshilledar111@protonmail.com>
+>> ---
+>> Changes in v2
+>> - Added Clock property to fix the warning of `dts/actions/s700-cubieboard7.dtb: 
+>> serial@e0126000: Unevaluated properties are not allowed 
+>> ('clocks' was unexpected)` thrown by `make dtbs_check`
+>> - Changed the compatible identifier for having both the compatible names
+>> earlier was throwing `owl-s500-cubieboard6.dtb: serial@b0120000: compatible:
+>> ['actions,s500-uart', 'actions,owl-uart'] is too long` warning.
+>> - Updated commit message
 >>
 > 
-> OK, I will add some comments on the why it is gone.
-> 
->>>
->>>>
->>>>> +additionalProperties: false
->>>>> +
->>>>> +examples:
->>>>> +  - |
->>>>> +    dma-router {
->>>>> +      compatible = "sophgo,cv1800-dmamux";
->>>>> +      #dma-cells = <2>;
->>>>> +      dma-masters = <&dmac>;
->>>>> +      dma-requests = <8>;
->>>>> +    };
->>>>> diff --git a/include/dt-bindings/dma/cv1800-dma.h b/include/dt-bindings/dma/cv1800-dma.h
->>>>> new file mode 100644
->>>>> index 000000000000..3ce9dac25259
->>>>> --- /dev/null
->>>>> +++ b/include/dt-bindings/dma/cv1800-dma.h
->>>>
->>>> Filename should match bindings filename.
->>>>
->>>
->>> Thanks.
->>>
->>>>
->>>> Anyway, the problem is that it is a dead header. I don't see it being
->>>> used, so it is not a binding.
->>>>
->>>
->>> This header is not used because the dmamux node is not defined at now.
->>
->> In the driver? The binding header is supposed to be used in the driver,
->> otherwise it is not a binding.
->>
-> 
-> The driver does use this file.
+> Do not attach (thread) your patchsets to some other threads (unrelated
+> or older versions). This buries them deep in the mailbox and might
+> interfere with applying entire sets.
 
-I checked and could not find. Please point me to specific parts of the code.
-
-> 
->>> And considering the limitation of this dmamux, maybe only devices that 
->>> require dma as a must can have the dma assigned. 
->>> Due to the fact, I think it may be a long time to wait for this header
->>> to be used as the binding header.
->>
->> I don't understand. You did not provide a single reason why this is a
->> binding. Reason is: mapping IDs between DTS and driver. Where is this
->> reason?
->>
-> 
-> It seems like that I misunderstood something. This file provides one-one
-> mapping between the dma device id and cpuid, which is both used in the
-> dts and driver. For dts, it provides device id and cpu id mapping. And
-> for driver, it is used as the directive to tell how to write the mapping
-> register.
-
-So where is it? I looked for DMA_TDM0_RX - nothing. Then DMA_I2C1_RX -
-nothing. Then any "DMA_" - also looks nothing.
+You ignored this comment.
 
 Best regards,
 Krzysztof
