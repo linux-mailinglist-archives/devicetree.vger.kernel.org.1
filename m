@@ -1,184 +1,154 @@
-Return-Path: <devicetree+bounces-53412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7874088C2D4
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 14:00:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0727588C2E6
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 14:03:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3540E29F854
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 13:00:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B1A34301871
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 13:03:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B2CD6D1D7;
-	Tue, 26 Mar 2024 13:00:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F16F6FE1A;
+	Tue, 26 Mar 2024 13:03:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="0diSzn1L"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fvX+7qv3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 416B11EB56;
-	Tue, 26 Mar 2024 13:00:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB2F128E8;
+	Tue, 26 Mar 2024 13:03:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711458040; cv=none; b=E8B/Qzqg3zn7xyr91kpkrZ6Z2FoFp/Onvxjqbr+agZ360sxGc5HWkzkS9WGdgai3nlgQd7RC7UrnoU/xVTF4YTz0yiMmmNr5bdaRi48Yf0E6WBDeoOG7eH20YeTXTl4mKioXI0h2rI5W9oo+AqWsxsDJGfx946QVwT0sOecdjhI=
+	t=1711458209; cv=none; b=ujtJ/S/67kEtNWJq5PpJ3Jhet+/C3OpY9XFW16UoJBi7Ki5fqlIHQD2Rr3OvRvnCCXv6V5nQAC0/CsCFJ00Y923Me2nAWDnTGpfh5ys+zN5Z5au8uEKpxsug9cuD9ZZUz9u/eNqbZOmT41JwZczIxskalmZpfLa+7iMCYv61EIs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711458040; c=relaxed/simple;
-	bh=xkxdvHTbd8Z8kP9MNS+4DxyaFZLV2iMtZ9unzzpMXdU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MjKtm1IY5/fJ7XfnrI38EB8aGWjS87ZDhejDT/kwaT+oAfnifBIXPdBsCpsOAIvSUMXlJJslZiKqynTsBcB8K1a2aB0BiAzBtuoJayRyjhjbEQ7Rl3HCx4Fgj50ODw81olQI01DYCLOToRo5ov47JH6F4B7KpXvjQ3yAUR3WWtU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=0diSzn1L; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1711458035;
-	bh=xkxdvHTbd8Z8kP9MNS+4DxyaFZLV2iMtZ9unzzpMXdU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=0diSzn1LDvqwQpyAyJVPHUXoFynNcoZHaosB//DJvxMPy54OdzITaEdwWGqAvZaYQ
-	 iUE+XZTGSDQsLSa/20IY31saU3VwsYYGjQcUcz3VQTQHNW55K9+xuSiUDiiLMTagI7
-	 KBMa+EXpA1VvVOlzllJK6XdYsZckgL7xaGqSZCTv6VJ5cP7i3PYMQOuSIhdaAcj7ui
-	 H1pGmCOJgh9dPJqfVk1CBHVKOXLTC5ux2gc07iOBOJ8dqfAYLfFo1pcxmJNpq1U5hu
-	 a/kFGmNQwdiEtvkvpskfTObVbsApj4ddUfOBPKeQ6anzazPtswKAymN1TIP5Gb4/I3
-	 4fgWdTaKz2p4A==
-Received: from mercury (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 4CB613780480;
-	Tue, 26 Mar 2024 13:00:35 +0000 (UTC)
-Received: by mercury (Postfix, from userid 1000)
-	id E107F1060700; Tue, 26 Mar 2024 14:00:34 +0100 (CET)
-Date: Tue, 26 Mar 2024 14:00:34 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org, linux-omap@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: hsi: nokia-modem: convert to YAML
-Message-ID: <6fs52p67hlgvnwfsmbdh3asv4rv3dew5kgbhpcvwbbtkxk4csv@2pbwotxezgs2>
-References: <20240325-hsi-dt-binding-v1-0-88e8e97c3aae@collabora.com>
- <20240325-hsi-dt-binding-v1-2-88e8e97c3aae@collabora.com>
- <58ec79cc-150e-4fef-bb4b-9d29901e9a04@linaro.org>
+	s=arc-20240116; t=1711458209; c=relaxed/simple;
+	bh=+FhhRxT7C84hEImrOqevSzjSw39HhBXEwv19zjNQaIA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=KeIsrTlCd1Hu83O0vhF1ksVsnV9Wwph45iD77w+qRIz94iX/LTCvJgv8ki0E41Sdfdbtm5XlQZtoFjpQQywHirxEm08nwmBcoJl8Q0oEAXQn+KWsxCb0+ZyTHVnuN3kzd/5OUQPdXAHMydS7eMFTMqVEIcLXyjjdYhJBw448I90=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fvX+7qv3; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-513ccc70a6dso9495079e87.1;
+        Tue, 26 Mar 2024 06:03:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1711458206; x=1712063006; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=QYmh51LEOzN+NihFa+3AsPFO3SRwSe2SPndTbPe4Vt0=;
+        b=fvX+7qv3tFVlnUZYzS4WMFTfVxwhP6N0EAQeE1kN4bES4koe58+ZwsPSZzS0U0edVo
+         W+3/qPQulpgfYjmkyIA8uC7knXUUdAe4f9ytOL5O1PCHzhheE5QzXeZa4ymjygGbiIsh
+         J/UH++gQGrkR9Sk95fyusbnJzy5EEXdlLq2bWUi2lqz6OIUy4ObbLAdmQcppb048sAAb
+         6u9eMhePJfgGWRDxy30PLCVPikk7BeqUBCJGuMAyix9AQ2b4kDOWrahiE7Xfw8Dc5ZtV
+         J6CJqGVsOTnzsUFQnHMTPbt9fdKurtOOicfwzwF+CSSXa6HPZsnItFG469xWhD2sBj0Z
+         B+Aw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711458206; x=1712063006;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QYmh51LEOzN+NihFa+3AsPFO3SRwSe2SPndTbPe4Vt0=;
+        b=vLMISqlAP9SB/txQPOjhB9SRH20TDsV7TcQJyZOG2kW9Z8Ld34s0+n774Jh9H73Fa/
+         kXkoLr6B4YRdlQQskfw9D3lD8jDH6AEo/aL/4nNrGctUBkTdKvfNPEVyQZqrVnFq1HU7
+         2v1kVKOcTEoSweDK/D8emzpuI3ymI8Dh9PuI7Petq6bf5qMQLcnP2Sc/hMRN0xdp1ctm
+         ZKYJYNVwpZBzCnLazKyrORo9jZfAkF00ZtLYogSZvryibPcVDEyM2vwhE50LK0S3quw3
+         g5ri/eFcuGJnuzf0cHVZ6KWEforawPZ5OWjFIrJwdquW0WYpA0uG3f/7LUd4e5xKgwIj
+         3HKA==
+X-Forwarded-Encrypted: i=1; AJvYcCV3pfn/7oBcfeSxvUl2Uy9RIspVCw2eeCwODAUS2nZBN0+jVxals9XoCCJTREYTQ9pgzLcoWCf0BcB8SlPrQTZTIQdzMYOHMhLQhS8YIB1bO2e93iB3rq/b3twqzaDaOPTrQ86+1jlmxQ==
+X-Gm-Message-State: AOJu0YxbYH9l195v1BUHla7/YZrVH2v4EfaIIY8XGWPDHq07EWxQKfsv
+	kYrnsm+PKMGeo6jFjilk4CyGyz37f+QukWSW0pQn9LJgMHZq8mC3
+X-Google-Smtp-Source: AGHT+IFODD4Gl0HxVCiF/9V0SOihSYufgOxSUugBuMnHEz6PzbgVoV2LniUHJBJoEck1ggSsemVoxg==
+X-Received: by 2002:a05:6512:21c:b0:513:e031:739a with SMTP id a28-20020a056512021c00b00513e031739amr8039317lfo.22.1711458205516;
+        Tue, 26 Mar 2024 06:03:25 -0700 (PDT)
+Received: from [127.0.1.1] (2a02-8389-41cf-e200-b4b2-cd0d-1ebc-3c05.cable.dynamic.v6.surfer.at. [2a02:8389:41cf:e200:b4b2:cd0d:1ebc:3c05])
+        by smtp.gmail.com with ESMTPSA id wg6-20020a17090705c600b00a4a3580b215sm2206279ejb.80.2024.03.26.06.03.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Mar 2024 06:03:24 -0700 (PDT)
+From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Subject: [PATCH v3 0/4] dt-bindings: rtc: convert multiple devices to
+ dtschema
+Date: Tue, 26 Mar 2024 14:03:22 +0100
+Message-Id: <20240326-rtc-yaml-v3-0-caa430ecace7@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="znisws7tnra4zv4t"
-Content-Disposition: inline
-In-Reply-To: <58ec79cc-150e-4fef-bb4b-9d29901e9a04@linaro.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJrHAmYC/02MywqDMBBFf0Vm3ZRkRlvtqv9RujAvDfgikVAR/
+ 71RKHV5LvecFYLxzgR4ZCt4E11w45CALhmoth4aw5xODMgx54TI/KzYUvcdy+9EVChpKyEg3Sd
+ vrPscqdc7cevCPPrlKEexr78I/SNRMM64KrRAKWRZ6WfT1667qrGHPRLxLBYnEZNobWVvpc1JS
+ 3UWt237ApI2SqzZAAAA
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Baruch Siach <baruch@tkos.co.il>
+Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1711458204; l=2161;
+ i=javier.carrasco.cruz@gmail.com; s=20240312; h=from:subject:message-id;
+ bh=+FhhRxT7C84hEImrOqevSzjSw39HhBXEwv19zjNQaIA=;
+ b=j1MYt5XVObkjpiuxvq5hxLJ9FT6qXILg0SA09+5z4sWxdIc5Y6Jt2Gv/By4Xlc6msaAULUHbv
+ wpvSjLteRGFDXHv0/1y4KIaMuZV8qR2VlY6jLVhpr4kSEWm5AE7XezB
+X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
+ pk=lzSIvIzMz0JhJrzLXI0HAdPwsNPSSmEn6RbS+PTS9aQ=
 
+This series converts the following existing bindings to dtschema:
 
---znisws7tnra4zv4t
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+- armada-380-rtc
+- alphascale,asm9260-rtc
+- digicolor-rtc (moved to trivial-rtc)
+- nxp,lpc1788-rtc
 
-Hi,
+All bindings include at least one compatible that is referenced in the
+existing dts (arch/arm). Those dts could be tested against the new
+bindings.
 
-On Tue, Mar 26, 2024 at 08:21:05AM +0100, Krzysztof Kozlowski wrote:
-> On 25/03/2024 22:45, Sebastian Reichel wrote:
-> > Convert the legacy txt binding to modern YAML.
-> > No semantic change.
-> >=20
-> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > ---
-> >  .../devicetree/bindings/hsi/nokia-modem.txt        |  59 ------------
-> >  .../devicetree/bindings/hsi/nokia-modem.yaml       | 101 +++++++++++++=
-++++++++
-> >  2 files changed, 101 insertions(+), 59 deletions(-)
-> >=20
->=20
->=20
-> > -};
-> > diff --git a/Documentation/devicetree/bindings/hsi/nokia-modem.yaml b/D=
-ocumentation/devicetree/bindings/hsi/nokia-modem.yaml
-> > new file mode 100644
-> > index 000000000000..c57cbcc7b722
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/hsi/nokia-modem.yaml
->=20
-> Filename should match compatibles. nokia,n9-modem.yaml or nokia,modem.yaml
+It might be worth mentioning that the reference to nxp,lpc1788-rtc in
+arch/arm/boot/dts/nxp/lpc/lpc18xx.dtsi also includes another compatible
+called nxp,lpc1850-rtc, which is not documented or supported by existing
+drivers. That generates a warning when testing against nxp,lpc1788-rtc.
 
-Ack, I will switch to nokia,modem.yaml in v2.
+Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+---
+Changes in v3:
+- alphascale-asm9260-rtc: drop unnecessary reg description.
+- nxp,lpc1788-rtc: drop unnecessary reg description.
+- Link to v2: https://lore.kernel.org/r/20240325-rtc-yaml-v2-0-ff9f68f43dbc@gmail.com
 
-> > @@ -0,0 +1,101 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/hsi/nokia-modem.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Nokia modem
-> > +
-> > +maintainers:
-> > +  - Sebastian Reichel <sre@kernel.org>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - nokia,n900-modem
-> > +      - nokia,n950-modem
-> > +      - nokia,n9-modem
-> > +
->=20
-> Aren't hsi-channel-ids related to hsi-channel-names? If so, they
-> should be here with constraints.
+Changes in v2:
+- General: reference to rtc.yaml
+- digicolor-rtc: move to trivial-rtc
+- Link to v1: https://lore.kernel.org/r/20240323-rtc-yaml-v1-0-0c5d12b1b89d@gmail.com
 
-Indeed. I forgot them, since they were not in the old binding :)
-I will constraint them to min/max items 4 in v2.
+---
+Javier Carrasco (4):
+      dt-bindings: rtc: armada-380-rtc: convert to dtschema
+      dt-bindings: rtc: alphascale,asm9260-rtc: convert to dtschema
+      dt-bindings: rtc: digicolor-rtc: move to trivial-rtc
+      dt-bindings: rtc: nxp,lpc1788-rtc: convert to dtschema
 
-> > +  hsi-channel-names:
-> > +    items:
-> > +      - const: mcsaab-control
-> > +      - const: speech-control
-> > +      - const: speech-data
-> > +      - const: mcsaab-data
+ .../bindings/rtc/alphascale,asm9260-rtc.txt        | 19 -------
+ .../bindings/rtc/alphascale,asm9260-rtc.yaml       | 50 +++++++++++++++++++
+ .../devicetree/bindings/rtc/armada-380-rtc.txt     | 24 ---------
+ .../devicetree/bindings/rtc/digicolor-rtc.txt      | 17 -------
+ .../bindings/rtc/marvell,armada-380-rtc.yaml       | 51 +++++++++++++++++++
+ .../devicetree/bindings/rtc/nxp,lpc1788-rtc.txt    | 21 --------
+ .../devicetree/bindings/rtc/nxp,lpc1788-rtc.yaml   | 58 ++++++++++++++++++++++
+ .../devicetree/bindings/rtc/trivial-rtc.yaml       |  2 +
+ 8 files changed, 161 insertions(+), 81 deletions(-)
+---
+base-commit: 4cece764965020c22cff7665b18a012006359095
+change-id: 20240322-rtc-yaml-473335cbf911
 
-[...]
+Best regards,
+-- 
+Javier Carrasco <javier.carrasco.cruz@gmail.com>
 
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    hsi-client {
->=20
-> This should be "modem".
-
-Ack.
-
->=20
-> > +        compatible =3D "nokia,n900-modem";
-> > +
-
-Thanks for the review,
-
--- Sebastian
-
---znisws7tnra4zv4t
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmYCxu0ACgkQ2O7X88g7
-+ppX/hAAhXkf0s9bqwd4TCVkEl7HVkqaHaUsDMZz6WmOTXc22K3BeJ/DGO0vfTU0
-Bb4VEqv8BldN/a2nz6u0AsKVgQ+ca3WYiT2H1O+ykBE5kFSxqzZxY0PNJBmJasLM
-u7YDRQpOFWMcNcDXo1ZFuXwMuomsxw93j+kAMzZtQYk2roQdSFBTatG6Roj1AfcE
-m0NEWgpjteNyx+d2r+zExF/sLEr8/GL4L5erDKETk6uKRoorRUvz+ZI9EBi+7hWM
-RQMBGbBW+kUEDz6YYsI9AFElCBQv1qQwh3cxjUh/gR1ScHkpVYovQ4P0Z0rAyDvh
-rswzG21MnPZNfOPWPhTn9CkZ7qkNw6drCiFNLaPzObhvBm9G6fRZX7CByPqnWQaO
-C2KQXJF+53eWDaRfnftURVdiH/NdgE2q2pw7LG1bUF/wKTqfqN0ARfDQ6JYmWeFG
-K9mIGgZQxhI9etRrlR7k+enFRVM8eJnT524b8cTLhyw4Cv2o3B/avIGxU3bnyTsB
-M3DBYU75Xg1OESy6wTv/noc5thyyCiLJS+uSqcvwyi6UYOBGJFe9O3m1Dz3RA0A7
-c4tzgtrIq8ny5UO6UugOKpyGZd3meYhlyKwpgWdpqGMPgY45mkE091NL/Rki0v+1
-HjwqkxgZ3uEJC9ZfU8LuVFg8q78F61zkj2vADJInlaslT3xkS/o=
-=pXTQ
------END PGP SIGNATURE-----
-
---znisws7tnra4zv4t--
 
