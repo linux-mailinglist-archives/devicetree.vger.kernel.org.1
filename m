@@ -1,179 +1,151 @@
-Return-Path: <devicetree+bounces-53197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A264788B65B
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 01:49:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5A0888B6F4
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 02:36:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4141E1F3C75A
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 00:49:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FA722C812C
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 01:36:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90FF71C2AD;
-	Tue, 26 Mar 2024 00:49:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F27F0208C3;
+	Tue, 26 Mar 2024 01:36:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="fc2yGcbJ"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="itgmM2iL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6E071C2A3;
-	Tue, 26 Mar 2024 00:49:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F1D082D76
+	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 01:36:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711414159; cv=none; b=sP0+CKQNmMA8/QaaXGSoHy29b4XUHz8LhuiMs9s+NtghkBsCetiIw/rX0DOSiHo4O2Yj2LD+r5OCwntnvHQm5ZTjW1pftSq2JTAlmreeiVL3m8n0FkjXfzdcgsqcK6oYjZLi4B3V5D2WppyuNVxyPGRJEutU6hMOexZgrwnhJL8=
+	t=1711416984; cv=none; b=myDzoE4AIwDnYbNri1wi9BAj+42jmOpBUtJ5N6aHuTAmHH4LftA5BDPspQ+Rm2Eq8I4R/DU4wAIHReIlMy2dhWDRKXX/AbaAZiaGnxI82hAlwB2TtdlSxKgy9dJRmE5UPMyMSv1xuIxbwCb/liFDhb7jsrLyLc6x0mfEG5Tk7Vc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711414159; c=relaxed/simple;
-	bh=ZEBOqBaWZq4XTNWGxVaYz12/UskACok8TQyXVE9Od1A=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Frc5yl0LD253MNrOwq8AYFfWQ4xgrqGTt+8+0GwBpYIF7N8eBGfVlZjAApVvpcCJ8kUrBQw1fE9w1WAHWc0RVXEAsgoo8ypqIUIdwiZbKmHNaPzPs5YoaT4n+MXbYf47UNWijj5wDTcyB12GCU9y7IuH15YofgpAZj/MHoVVmXQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=fc2yGcbJ; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1FA9FE0C;
-	Tue, 26 Mar 2024 01:48:44 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1711414124;
-	bh=ZEBOqBaWZq4XTNWGxVaYz12/UskACok8TQyXVE9Od1A=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=fc2yGcbJSQ6S4hPIs9KL5LRd/6tOZQVqt/V4CXUGu9h4sOMft8FdZnM1SxpRNpNJR
-	 NDnHEFq8Wi9I2nYNeTn1dY8oirfQiHjBHxDp1PFgoBDv21ueD7NfNrfBD++J3fG+AS
-	 z5brBJqnBWC0EbYzmAQHDs0FktZA2PwE+bgmuRLU=
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-gpio@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Eric Anholt <eric@anholt.net>,
-	Stefan Wahren <wahrenst@gmx.net>
-Subject: [PATCH 2/2] dt-bindings: arm: bcm: raspberrypi,bcm2835-firmware: Add gpio child node
-Date: Tue, 26 Mar 2024 02:49:02 +0200
-Message-ID: <20240326004902.17054-3-laurent.pinchart@ideasonboard.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240326004902.17054-1-laurent.pinchart@ideasonboard.com>
-References: <20240326004902.17054-1-laurent.pinchart@ideasonboard.com>
+	s=arc-20240116; t=1711416984; c=relaxed/simple;
+	bh=tCQybncCyylSiSFwYBDS7DYwZwG92wpYUyt99WynvKY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KVoHyNUglJ7Hd1KvhkyTArnKRXDuabtx0Xs01X/mU3bRnTAPlMm3UZYGQnVlBE0XXUBGxCXc7rZ9c9+rA356GCTUo0tqNFs2KG6jOin49DPqEXXM8yNdCKT+G2ShKwgQugvwWrb7hV9b05pVLiNGNiCkjBT3Kp2ZFgon87g/WyY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=itgmM2iL; arc=none smtp.client-ip=209.85.160.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-431347c6c99so79611cf.0
+        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 18:36:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1711416982; x=1712021782; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tCQybncCyylSiSFwYBDS7DYwZwG92wpYUyt99WynvKY=;
+        b=itgmM2iLNPYvoW6KnTo8S9KwMp+TjeQvrTiwrnJoVZYEpy9xF9TT5pzionq/1BuMqC
+         SSFGc7E0Z11e3qNfUwb4VKcAKIpUN31ScGWGrJQMp4hr/AoIMHkB1Fi9l9gHmhc2cQ3A
+         ehjNVqUyj6cf+fiCQdNCRoDBsnvSz3mXyLc0g561WUI1riNrGfUMKa26kRpEqDUpJ+vg
+         cN0lMWPy3wkI5ERMJ7zy86ldJ+/+dHtzccXGA/wjTnHXcxbEUO7PzhljkYNX31E96iPr
+         z1mBEEsBQM5u08Z2Q4PRxYnRsnYwg2FpBQTkOAImg62wsy3OIRfehYAMPMTdaLx4N8UO
+         6ifQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711416982; x=1712021782;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=tCQybncCyylSiSFwYBDS7DYwZwG92wpYUyt99WynvKY=;
+        b=W6JllSC3g6l1up12Ap6runKRk2uILZIxLEY84iqYP8z5qtD0sSRuEC5/PhC1b2ju25
+         9e5pddl7pCerBQ/oB7SZOXvTXeuWkkCS7CZJg6Ws4bP1EaEaQ6R3nf7H6UJYsog7R47Z
+         qzCGIw/6LtFYiHGc9TcjfsX7fdouYSQErB3FjZptsQTDo0TPxFMelqk9RYxLPb/Ie6AE
+         Lkd2TdS6UIIBbDhaewv3azJjZO1IIKQ6wqUqTORbyRob2SJdO6IrTiyAwDLd2VG7Ruva
+         /G39BmaC4ij4F1w0X2pEybcsFOjOsXL53Ug4glyjADvIECLM04NpuU3T8UE/xo2KjkK1
+         Vmyg==
+X-Forwarded-Encrypted: i=1; AJvYcCX4F/oIt2R3ZBErUMn8Rmvqo8J9B2eV+ZWLpqh31ey2xEApnVe1HU3upAOGs+weWB4zdzccoNcYtqL12/qq+5crM8jdipFNuttt6g==
+X-Gm-Message-State: AOJu0YwP7w6xZkhpuMbPZMBT83Cs9DAPffjDLCwQs8nkvMpzs86dx7FD
+	pETOEVMyQCfN8tSHalO7r1V21GicrFusMRhDEgfw5/a3ri9+5hEwNHefhz8WbGVILDIuvwGEQ8W
+	TNx7f8BsP++/I5Hq0kx7XcvpETrHIze/WpgOG
+X-Google-Smtp-Source: AGHT+IGgGcwcgUzMgkYI2jlgeKoVTTvtP5lEBpDOK5cAEiTTvk606224kG1I/0QlbKwNkYXw5EAYik7Rk5X48MvaFqk=
+X-Received: by 2002:a05:622a:6114:b0:431:3d4d:92ed with SMTP id
+ hg20-20020a05622a611400b004313d4d92edmr29488qtb.9.1711416982092; Mon, 25 Mar
+ 2024 18:36:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240224052436.3552333-1-saravanak@google.com>
+ <ZfvN5jDrftG-YRG4@titan> <CAGETcx8+vw0Vr0NWzjOAvxAZ07M4U7BWPAgO9avCngW0-9e_kA@mail.gmail.com>
+ <Zf7I65PiOR2wX1Uo@titan> <CAGETcx_=MmfgDajM16iJ4Of9Yr2Sy6ZpU=MyhYgnmOJFUTD_oA@mail.gmail.com>
+ <ZgIZ4LmFOqdiDJBH@titan>
+In-Reply-To: <ZgIZ4LmFOqdiDJBH@titan>
+From: Saravana Kannan <saravanak@google.com>
+Date: Mon, 25 Mar 2024 18:35:45 -0700
+Message-ID: <CAGETcx-Emvu41nB3UDnb4Gh2aJEKu_hFcHX89uWnBTnaqvpN8g@mail.gmail.com>
+Subject: Re: [PATCH] of: property: fw_devlink: Fix stupid bug in
+ remote-endpoint parsing
+To: John Watts <contact@jookia.org>
+Cc: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
+	=?UTF-8?Q?Herv=C3=A9_Codina?= <herve.codina@bootlin.com>, 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, kernel-team@android.com, 
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Unlike the other child nodes of the raspberrypi,bcm2835-firmware device,
-the gpio child is documented in a legacy text-based binding in
-gpio/raspberrypi,firmware-gpio.txt. This causes DT validation failures:
+On Mon, Mar 25, 2024 at 5:42=E2=80=AFPM John Watts <contact@jookia.org> wro=
+te:
+>
+> Hello there,
+>
+> On Mon, Mar 25, 2024 at 03:49:44PM -0700, Saravana Kannan wrote:
+> > Ok, I think I understand now what's going on. fw_devlink does not know
+> > that "sound" device will not populate "multi" as a child device.
+> > Typically in such situations, "sound" would probe as a device and add
+> > its child DT nodes devices. At that point, the cycle is only between
+> > "multi" and "test_codec" and fw_devlink will detect that and not
+> > enforce any ordering. However, in this case, "sound" doesn't have any
+> > child devices and just depends on the remote endpoints directly.
+> >
+> > We already have "ports", "in-ports" and "out-ports". Is there a reason
+> > none of them will work for your use case and it has to be "multi"?
+> > When you use one of those 3 recognized node names, things are handled
+> > correctly.
+>
+> audio-graph-card2 uses 'multi' to define DAI links that have multiple
+> endpoints. It also suports codec2codec and dpcm.
+>
+> > I think the right fix is the use of post-init-providers. Because even
+> > if you do the above, all it does is let fw_devlink see that there's a
+> > cyclic dependency in DT. And it'll stop enforcing the probe and
+> > suspend/resume ordering. Ideally we want to enforce a specific order
+> > here. test_codec first and then sound.
+>
+> Is there a way to do this automatically so all the existing audio-graph-c=
+ard2
+> device trees aren't broken? As it stands it seems like this driver is now
+> broken due to this change.
 
-arch/arm64/boot/dts/broadcom/bcm2711-rpi-4-b.dtb: 'gpio' does not match any of the regexes: 'pinctrl-[0-9]+'
-        from schema $id: http://devicetree.org/schemas/arm/bcm/raspberrypi,bcm2835-firmware.yaml#
+Ok, I have a solution. Have the audio-graph-card2 find the fwnode of
+"multi" and mark it as "not a device" by doing something like this in
+the driver. That should help fw_devlink handle this correctly.
 
-Convert the binding to YAML and move it to
-raspberrypi,bcm2835-firmware.yaml.
+fwnode.flags |=3D FWNODE_FLAG_NOT_DEVICE;
 
-Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
----
- .../arm/bcm/raspberrypi,bcm2835-firmware.yaml | 29 ++++++++++++++++++
- .../gpio/raspberrypi,firmware-gpio.txt        | 30 -------------------
- 2 files changed, 29 insertions(+), 30 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/gpio/raspberrypi,firmware-gpio.txt
+>
+> > Maybe. But the logs would be more helpful.
+>
+> If you have a way for me to get more logs please tell me.
+>
+> > > > post-init-provider =3D <&multi>;
+> >
+> > Did you try this? Did it help?
+> >
+> > -Saravana
+>
+> No I haven't tried this yet. I shall try it soon. But I wouldn't consider
+> this a useful fix as it requires upgrading existing device trees.
 
-diff --git a/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml b/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml
-index dc38f2be7ad6..999e1bc49539 100644
---- a/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml
-+++ b/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml
-@@ -54,6 +54,29 @@ properties:
-       - compatible
-       - "#clock-cells"
- 
-+  gpio:
-+    type: object
-+    additionalProperties: false
-+
-+    properties:
-+      compatible:
-+        const: raspberrypi,firmware-gpio
-+
-+      gpio-controller: true
-+
-+      "#gpio-cells":
-+        const: 2
-+        description:
-+          The first cell is the pin number, and the second cell is used to
-+          specify the gpio polarity (GPIO_ACTIVE_HIGH or GPIO_ACTIVE_LOW).
-+
-+      gpio-line-names: true
-+
-+    required:
-+      - compatible
-+      - gpio-controller
-+      - "#gpio-cells"
-+
-   reset:
-     type: object
-     additionalProperties: false
-@@ -112,6 +135,12 @@ examples:
-             #clock-cells = <1>;
-         };
- 
-+        expgpio: gpio {
-+            compatible = "raspberrypi,firmware-gpio";
-+            gpio-controller;
-+            #gpio-cells = <2>;
-+        };
-+
-         reset: reset {
-             compatible = "raspberrypi,firmware-reset";
-             #reset-cells = <1>;
-diff --git a/Documentation/devicetree/bindings/gpio/raspberrypi,firmware-gpio.txt b/Documentation/devicetree/bindings/gpio/raspberrypi,firmware-gpio.txt
-deleted file mode 100644
-index ce97265e23ba..000000000000
---- a/Documentation/devicetree/bindings/gpio/raspberrypi,firmware-gpio.txt
-+++ /dev/null
-@@ -1,30 +0,0 @@
--Raspberry Pi GPIO expander
--
--The Raspberry Pi 3 GPIO expander is controlled by the VC4 firmware. The
--firmware exposes a mailbox interface that allows the ARM core to control the
--GPIO lines on the expander.
--
--The Raspberry Pi GPIO expander node must be a child node of the Raspberry Pi
--firmware node.
--
--Required properties:
--
--- compatible : Should be "raspberrypi,firmware-gpio"
--- gpio-controller : Marks the device node as a gpio controller
--- #gpio-cells : Should be two.  The first cell is the pin number, and
--  the second cell is used to specify the gpio polarity:
--  0 = active high
--  1 = active low
--
--Example:
--
--firmware: firmware-rpi {
--	compatible = "raspberrypi,bcm2835-firmware";
--	mboxes = <&mailbox>;
--
--	expgpio: gpio {
--		 compatible = "raspberrypi,firmware-gpio";
--		 gpio-controller;
--		 #gpio-cells = <2>;
--	 };
--};
--- 
-Regards,
+Definitely do this though as a forward looking improvement. It'll help
+make the suspend/resume more deterministic and will eventually let
+things happen in an async manner.
 
-Laurent Pinchart
 
+-Saravana
 
