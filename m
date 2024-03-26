@@ -1,116 +1,95 @@
-Return-Path: <devicetree+bounces-53194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8772988B643
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 01:42:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BA0588B657
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 01:49:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B90C71C377CA
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 00:42:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADE3B1C36980
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 00:49:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 064441B949;
-	Tue, 26 Mar 2024 00:42:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A0651BF35;
+	Tue, 26 Mar 2024 00:49:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=jookia.org header.i=@jookia.org header.b="P3v+DbSr"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="LN5TZGHm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-172.mta0.migadu.com (out-172.mta0.migadu.com [91.218.175.172])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 240D718E1E
-	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 00:42:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 183A11BF27;
+	Tue, 26 Mar 2024 00:49:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711413763; cv=none; b=o+87HCL7CBdltV8E9gh+XvW0fEQ6ACtpYKHiKIfUl6CeM9DCPp+8iZHqt9W9oGhAlK3ujc38MvljIHTKNe7UbdFXfRBvNcFw50eZtgg8rxFy1mtufEpKUzH6tuTLG4umAmCb6RL57lT87c6+RqvHXL5viq7tJwpFRPv4Rk3k/TI=
+	t=1711414156; cv=none; b=ixpJcckJCNXlQqPsx7HPzXcTYy/tV/R7ea6U1IZnfnItZNUQA3quCu93pIvQadChUXpiiaRk/QWvVO+yUn3/uY2nvJnGoZD+dahEzcYTchA4zqwVguPBwjN54PgvVnrMkcB/BV6BG2UQNXlF0GB4FOXlBEBUUbbKozAEe5Kgsys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711413763; c=relaxed/simple;
-	bh=4QJ/6/jO0Ghq8D3lI04piss7UYAkTLyaKjBohqFRuak=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PlI+CpSx0Ns95/Umjkh3ySsaSl6gPkvwVt51q8ehQNISGuiRF4Kc6TJ7vUpkjL+6h7YAGM1gp+bTTujD/QAJGOIFnV0WR1ICLN59wt/ZDcl7LMDkXVwbuXfRg9fVZQbjKCOWFG4X8jGmfAP08k7fwGJaCIbgNRnUw65g60U3Fc8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=jookia.org; spf=none smtp.mailfrom=jookia.org; dkim=pass (2048-bit key) header.d=jookia.org header.i=@jookia.org header.b=P3v+DbSr; arc=none smtp.client-ip=91.218.175.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=jookia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=jookia.org
-Date: Tue, 26 Mar 2024 11:42:08 +1100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jookia.org; s=key1;
-	t=1711413759;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=swCBvVxY19q5QCFoCh3CilyHYDojXjj2iBKqZTEVPTk=;
-	b=P3v+DbSrjxwcEzz5xiHAHhnXdU44P5rN3DDSC11hcYlHznJP9DLvYzk2BtIehC52iA5vYU
-	1UehtPVXzvCWfTIqLWEq2QfUOyExwWrQhJFul4/6Hvw0ajVOsU9PpMxZ7kUEd6j1CF89y0
-	fwg+VI73Atfbj3S+gw3eE4WqSXBJ7NSzQ7yBPyajg4Mmq5hkhtXdfYIGWxvnBOtTWFo3mk
-	bOTIZEuwNtWTDll7uk0WYHO1XZeKhyrc3sjapUnl2pKorq6PaV50X/JJ0BlN7EIPKfaBtL
-	V/NiQnFbJhJuIMTw7zqsGuEWg7MZ2tceTPR2W4tHiJqALMV5WIvFzw2BrxCLSg==
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: John Watts <contact@jookia.org>
-To: Saravana Kannan <saravanak@google.com>
-Cc: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
-	=?iso-8859-1?Q?Herv=E9?= Codina <herve.codina@bootlin.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>, kernel-team@android.com,
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] of: property: fw_devlink: Fix stupid bug in
- remote-endpoint parsing
-Message-ID: <ZgIZ4LmFOqdiDJBH@titan>
-References: <20240224052436.3552333-1-saravanak@google.com>
- <ZfvN5jDrftG-YRG4@titan>
- <CAGETcx8+vw0Vr0NWzjOAvxAZ07M4U7BWPAgO9avCngW0-9e_kA@mail.gmail.com>
- <Zf7I65PiOR2wX1Uo@titan>
- <CAGETcx_=MmfgDajM16iJ4Of9Yr2Sy6ZpU=MyhYgnmOJFUTD_oA@mail.gmail.com>
+	s=arc-20240116; t=1711414156; c=relaxed/simple;
+	bh=EC9HhPXerzp5Fo0AF0k/kBYIkC/0aEGnQvwHNhkYz3c=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=P/2e4KWZv+E/EmDnup1n8JjHTKWdXy+xLoJsLKD1xSnWzQmWVSrE+dqW+XA+CU6YeBxTWHSxB9fFZwgdOxqLRQNLkecWnCslWIBuXNibsJ/gXXUtO2NAyevS4zgcM8+Q8S1bSZeQ0jH+PmKobPMQ9femBntGv8XKVj0FFpKcwQs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=LN5TZGHm; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9D95463B;
+	Tue, 26 Mar 2024 01:48:40 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1711414120;
+	bh=EC9HhPXerzp5Fo0AF0k/kBYIkC/0aEGnQvwHNhkYz3c=;
+	h=From:To:Cc:Subject:Date:From;
+	b=LN5TZGHmtFjQ0wccl33XzbHuWR3hJ4+Iw7xEwzqmvSBXjRz1SmcBWHP9ues16wj0R
+	 bgW0XLZXqNyZJvAf1pyEcfc8W4u3iVIV3cKCLGx6ZgwX/ooVZsUnQOKoG0w1ehcpow
+	 sNZU8dKvfqm5OxKINkBxLQP46gvvea5AmHKk2uyI=
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: devicetree@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-gpio@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Eric Anholt <eric@anholt.net>,
+	Stefan Wahren <wahrenst@gmx.net>
+Subject: [PATCH 0/2] dt-bindings: arm: bcm: raspberrypi,bcm2835-firmware: Drive-by fixes
+Date: Tue, 26 Mar 2024 02:49:00 +0200
+Message-ID: <20240326004902.17054-1-laurent.pinchart@ideasonboard.com>
+X-Mailer: git-send-email 2.43.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAGETcx_=MmfgDajM16iJ4Of9Yr2Sy6ZpU=MyhYgnmOJFUTD_oA@mail.gmail.com>
-X-Migadu-Flow: FLOW_OUT
+Content-Transfer-Encoding: 8bit
 
-Hello there,
+Hello,
 
-On Mon, Mar 25, 2024 at 03:49:44PM -0700, Saravana Kannan wrote:
-> Ok, I think I understand now what's going on. fw_devlink does not know
-> that "sound" device will not populate "multi" as a child device.
-> Typically in such situations, "sound" would probe as a device and add
-> its child DT nodes devices. At that point, the cycle is only between
-> "multi" and "test_codec" and fw_devlink will detect that and not
-> enforce any ordering. However, in this case, "sound" doesn't have any
-> child devices and just depends on the remote endpoints directly.
-> 
-> We already have "ports", "in-ports" and "out-ports". Is there a reason
-> none of them will work for your use case and it has to be "multi"?
-> When you use one of those 3 recognized node names, things are handled
-> correctly.
+This small series includes two drive-by fixes to the
+raspberrypi,bcm2835-firmware DT bindings that fix validation errors with
+the Raspberry Pi 4 device tree sources. I noticed those issues when
+working on the Raspberry Pi Unicam driver, but two patches are
+independent of that work, they can thus be applied separately.
 
-audio-graph-card2 uses 'multi' to define DAI links that have multiple
-endpoints. It also suports codec2codec and dpcm.
+Laurent Pinchart (2):
+  dt-bindings: arm: bcm: raspberrypi,bcm2835-firmware: Add missing
+    properties
+  dt-bindings: arm: bcm: raspberrypi,bcm2835-firmware: Add gpio child
+    node
 
-> I think the right fix is the use of post-init-providers. Because even
-> if you do the above, all it does is let fw_devlink see that there's a
-> cyclic dependency in DT. And it'll stop enforcing the probe and
-> suspend/resume ordering. Ideally we want to enforce a specific order
-> here. test_codec first and then sound.
+ .../arm/bcm/raspberrypi,bcm2835-firmware.yaml | 45 +++++++++++++++++++
+ .../gpio/raspberrypi,firmware-gpio.txt        | 30 -------------
+ 2 files changed, 45 insertions(+), 30 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/gpio/raspberrypi,firmware-gpio.txt
 
-Is there a way to do this automatically so all the existing audio-graph-card2
-device trees aren't broken? As it stands it seems like this driver is now
-broken due to this change.
+-- 
+Regards,
 
-> Maybe. But the logs would be more helpful.
+Laurent Pinchart
 
-If you have a way for me to get more logs please tell me.
-
-> > > post-init-provider = <&multi>;
-> 
-> Did you try this? Did it help?
-> 
-> -Saravana
-
-No I haven't tried this yet. I shall try it soon. But I wouldn't consider
-this a useful fix as it requires upgrading existing device trees.
-
-John.
 
