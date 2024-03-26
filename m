@@ -1,210 +1,239 @@
-Return-Path: <devicetree+bounces-53385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C117888C13E
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 12:50:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B72B88C168
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 13:00:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 765802E81C5
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 11:50:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F23122E8739
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 12:00:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72AF16CDAD;
-	Tue, 26 Mar 2024 11:50:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE1B26FE2F;
+	Tue, 26 Mar 2024 12:00:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="efXwt10d"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j69h30g2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A527B6BB5D
-	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 11:50:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4B6470CCB;
+	Tue, 26 Mar 2024 12:00:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711453839; cv=none; b=RWfKm1w+cHfxGIOz18dZrFZEy9QUXwd2ovJNawKoLXu2lQnQ7Vomb0RP4whwE60uIMCtvGUsYoe0CpNNd3EqEfgXZ16JT8+FrfixGaH4ncqR7U669+xxLoGFJEGZE6dIvJ4XUM2vZI5llbHthVXUb72y70MgbybEK55AxTrQEmU=
+	t=1711454435; cv=none; b=NEV8bTJi0ia+L9TsLORFUHYd0XUgm+j7hWsljOQVfWRgcDLOJxRX6eZcDn/6XReVcDI5e2WOtm0T6AQoVO6hIRfgvJy0kYfSxPj3lTlfPOSF/bMnDJ9feW68Pkjn+iluXdQqqUs4UWfDFieQLd8HL1D3I2QbfIgKPBs6Vull9yo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711453839; c=relaxed/simple;
-	bh=zIsRPBERtYd9KT5eFf4SlflyWfRi00voryrIaoJ7HcQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=i43ayJIOKDzbJsY9xRYU7ZTqfTRAegTaNsqgqArbkcDKrrG67ir7PlYx8zC8jfF5q1RcJOi3LDKrn5oOUU3fdTQC683rRTk2cq7Oo4mFrFK+Ucynnzr4Ayb/pvl+BzHHrhhg36Odp/SaR0tyrKq83ry10cbE9yD06c79oZfQvwE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=efXwt10d; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-56bdf81706aso5479306a12.2
-        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 04:50:37 -0700 (PDT)
+	s=arc-20240116; t=1711454435; c=relaxed/simple;
+	bh=QH35J28F0o6z7oCsR7OFqIFLPzX7jsFPWeCeVmDkrNM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ITQzDHNVIWbMZMhz20W9U4rNUTUnQBJtN1b1QhZa96VyqVitn9GsGAYwmi7Hl/PEOw0unDp+ltW1C6ehQqAYUY/i2eX81aoBi15k766AbRztTzKKbDID1wVbNenCOM5yfp6zJDDIBtUNRPETGqUK2UPkFayL6t2i9t1X43YxYLQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=j69h30g2; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a46ea03c2a5so935428866b.1;
+        Tue, 26 Mar 2024 05:00:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711453836; x=1712058636; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=+RQirBONGT7g/mBKFr4U8ujDZu4jx0LwzCH8oxof1pw=;
-        b=efXwt10d+TBl/th7kmwdARkdsJ550WK7fniQuY88pwMOqDEyGqZPepJ+NuG02/w/kV
-         Lzksz8gyOcA6soelNFE1voH5K2gjvbBFfoq2gXapfdCqwqkPQutCqy6GOcEYxU9iaaO1
-         Nd9Dh86DFpjQ0bSCmNJoSLs43tw4GlVh0NQ5ZB27TLQq4MydQ+KIncicELEAxDlqdtNP
-         xv+V8apMvGHRQFwvhAgrXcaf1hulQKcxeDg/KCaFJXJnSCzm9i6CE21GtRK5fy7NvgLk
-         j8L47Pp/lj82jVm3WFHP4jDsmxQqNQM73jKAeqL9RQH4/gRGS0HEf6ybFXichUHoGPLx
-         Yz0w==
+        d=gmail.com; s=20230601; t=1711454432; x=1712059232; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Q+cRXbwSy+kj+jFr9nkKiGYcj2SC4D7bitszSSYK23c=;
+        b=j69h30g23kHviUVZ0Wu04mys49SwIC3A/KezBnWQG4n80vuPrYef0irXXkCi85Okbk
+         ZhuMhYO0RmrhQ5FRJOr0lBs8zeGGPRplvy/Qvw0YLX8G07gdc8MQv2gyS0yjG5wYm4wv
+         3Eodl1P3us8U9DHcatCQpKc4eZ4k8aeth+IfN8R2b1ekytJhyo6ZpD/fydkxMpHByHyd
+         SWi8rGlXlxCGV2UilR5QV0Z6l3wEtNeGSy02tOgHFq+kAsyXRuogY+7syDC/NlAkqDGv
+         Qatykjzlr4NILJGCFkkrMQvL52ETRsYu1cH/iBXce7nmg2EFidryF4ixbhPZrp7lwvVD
+         7BPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711453836; x=1712058636;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+RQirBONGT7g/mBKFr4U8ujDZu4jx0LwzCH8oxof1pw=;
-        b=bUahQNZY17rr28OrFQmEVRI1qX/H/4BSz8b0XOmWXBMnE69YOzRkShM32VG2Aj09LB
-         CbP3wLbbSpn1toSU6Rsyc0zyjNm6MUvt6/zSbSFmWAdRzIQywXRl6hO4EcoUlYSMWeoY
-         UJpW3B4U5sVctMrv4BlONoA7GRAl9zaWVYdz7HMld+a5WfXbgRvD9OauqPMf8RT5DGsv
-         AT1udSQ3Z08AnizfachrBzQTLvy4v7X/Bge4MPqdKa/EE+66X/ywjJqb2qyY89cJBwzM
-         HYb3/tqRla0d9fC83uc7rMzF4eaBto+JaBOQI1FMp5KTM9Ft7YSWc7z0nXa2W1fRtrsi
-         j2pw==
-X-Forwarded-Encrypted: i=1; AJvYcCVeg1UsEOurPdsvVgn+PzgFiiVoUXczWAobvKAfV0C6iFvwfXVQ3SVSrbdbB5CsbbFmmBpkb+5iUZFCcKXx5x5pCBy/BqkIPhkzKg==
-X-Gm-Message-State: AOJu0Yy2LATn1VIfb7OhAA6KpR1kyuxtfquw5fPmoT65YI/XUW+WQdsE
-	wHa9tIJwSI1gC12Cr32sAarNMkSMjPrsUgmqZHYhO0yVNHZlgRfBGWKDT9LleUI=
-X-Google-Smtp-Source: AGHT+IHpoEVb/26aK2O+7U5or3L/IkOBa5iS8jIYohvuDTytIFqlj/I8s6WOjKZTQm/IuKv3EZnZFA==
-X-Received: by 2002:a17:906:2810:b0:a47:2036:dbc4 with SMTP id r16-20020a170906281000b00a472036dbc4mr654986ejc.25.1711453835868;
-        Tue, 26 Mar 2024 04:50:35 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.44])
-        by smtp.gmail.com with ESMTPSA id kq1-20020a170906abc100b00a46a04d7dc4sm4148259ejb.61.2024.03.26.04.50.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Mar 2024 04:50:35 -0700 (PDT)
-Message-ID: <1525c377-af73-4204-8a2b-983c6d99316c@linaro.org>
-Date: Tue, 26 Mar 2024 12:50:33 +0100
+        d=1e100.net; s=20230601; t=1711454432; x=1712059232;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Q+cRXbwSy+kj+jFr9nkKiGYcj2SC4D7bitszSSYK23c=;
+        b=mW1HiGEP597DHD1J8GEWCDRGjOXlW53Gi/ueRxlP04QOvHKeFZxySxPwghKsq58TJD
+         IIKYHuag3LTx31qkcuN6HpPqX8HeZzxHMU6R1HQdnwVi0mqj3bwMW6fD7qkMX7FYFvPV
+         mg6j4vUZGVo4pwH0Gfw1lYwDGapTIe6SsDqJ2+xbzrLprn61t7Um09kEFP0wjop8tOou
+         rGr9IrfIfI2oy6fuVVN7ECaUdyPR0n6MveVN/JcIeqy3WL5mLlClDwHPh6VXbAPBdgq5
+         d4eKsCbaQ9/Jv6gWlsY9BTlyMQi+wd8ldw/tQXkXktwneqgq1DOcx2HzzG+xnBoUxbVY
+         frHQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWqytn26ZxRVJcN/cC8nl98zof3+6xS/n4YNJa5W99Ztw0IH5RnL8kErW4pd6J0xu0KHTw6wCOhvl0thK2s9AJFlPfkKW2pDKxfK1WsWTkp4ODuTqEim3r+5HcDzvoRooHKyjFLqCSO+u9uVoXVojEFiEEe/56JQsasLlU5/LdhVE0d
+X-Gm-Message-State: AOJu0YxgZhDaLGD/DNB2Pcpfc33QxxlISnfVGQTX0hjpDIeHqu3HG/yY
+	rAuGg7gE14bw6HB8/W7kcy1MPaGEpRKwV8H+aoHUdViCUQMeRCMK
+X-Google-Smtp-Source: AGHT+IGTVHhqv1Z3qZT1O+W/QmPwT2rWCjt3Smjij2n/6C0H4oN7ExLhExY+im0uK0tJh985OvfRtg==
+X-Received: by 2002:a17:907:86a5:b0:a46:e672:9619 with SMTP id qa37-20020a17090786a500b00a46e6729619mr1376237ejc.24.1711454431323;
+        Tue, 26 Mar 2024 05:00:31 -0700 (PDT)
+Received: from tom-HP-ZBook-Fury-15-G7-Mobile-Workstation (net-188-217-49-82.cust.vodafonedsl.it. [188.217.49.82])
+        by smtp.gmail.com with ESMTPSA id u13-20020a17090626cd00b00a45200fe2b5sm4128790ejc.224.2024.03.26.05.00.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Mar 2024 05:00:30 -0700 (PDT)
+Date: Tue, 26 Mar 2024 13:00:27 +0100
+From: Tommaso Merciai <tomm.merciai@gmail.com>
+To: Adam Ford <aford173@gmail.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	linux-arm-kernel@lists.infradead.org, marex@denx.de,
+	alexander.stein@ew.tq-group.com, frieder.schrempf@kontron.de,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Liu Ying <victor.liu@nxp.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+	linux-pm@vger.kernel.org
+Subject: Re: [PATCH V8 00/12] soc: imx8mp: Add support for HDMI
+Message-ID: <ZgK42/ODNt7prTvD@tom-HP-ZBook-Fury-15-G7-Mobile-Workstation>
+References: <20240203165307.7806-1-aford173@gmail.com>
+ <ZgHxSHDAt7ytqDC1@tom-HP-ZBook-Fury-15-G7-Mobile-Workstation>
+ <20240325220338.GE23988@pendragon.ideasonboard.com>
+ <ZgJ9P3Wx2A2n9Gt+@tom-HP-ZBook-Fury-15-G7-Mobile-Workstation>
+ <CAHCN7xKWUQwfNmTB_bu4Kqm-b6PSPBHvyf8yfRbL53rB20-=DQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/3] dt-bindings: dmaengine: Add dmamux for
- CV18XX/SG200X series SoC
-To: Inochi Amaoto <inochiama@outlook.com>, Vinod Koul <vkoul@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
-Cc: Jisheng Zhang <jszhang@kernel.org>, Liu Gui <kenneth.liu@sophgo.com>,
- Jingbao Qiu <qiujingbao.dlmu@gmail.com>, dlan@gentoo.org,
- dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <IA1PR20MB4953B500D7451964EE37DA4CBB352@IA1PR20MB4953.namprd20.prod.outlook.com>
- <IA1PR20MB4953E2937788D9D92C91ABBBBB352@IA1PR20MB4953.namprd20.prod.outlook.com>
- <57398ee0-212c-4c82-bfed-bf38f4faa111@linaro.org>
- <IA1PR20MB4953EDEEFC3128741F8E152EBB352@IA1PR20MB4953.namprd20.prod.outlook.com>
- <473528ac-dce2-41e3-a6d7-28f8c53a89ef@linaro.org>
- <IA1PR20MB4953517450F0E622A66E9A7DBB352@IA1PR20MB4953.namprd20.prod.outlook.com>
- <cf42e020-9a5b-48bb-bc14-c0cc9498627b@linaro.org>
- <IA1PR20MB4953EA589A0FF36DC6FCF0E8BB352@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <IA1PR20MB4953EA589A0FF36DC6FCF0E8BB352@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAHCN7xKWUQwfNmTB_bu4Kqm-b6PSPBHvyf8yfRbL53rB20-=DQ@mail.gmail.com>
 
-On 26/03/2024 12:41, Inochi Amaoto wrote:
->>>
->>> The driver does use this file.
->>
->> I checked and could not find. Please point me to specific parts of the code.
->>
+Hi Adam,
+
+On Tue, Mar 26, 2024 at 06:43:26AM -0500, Adam Ford wrote:
+> On Tue, Mar 26, 2024 at 2:46 AM Tommaso Merciai <tomm.merciai@gmail.com> wrote:
+> >
+> > Hi Laurent,
+> >
+> > On Tue, Mar 26, 2024 at 12:03:38AM +0200, Laurent Pinchart wrote:
+> > > Hi Tommaso,
+> > >
+> > > On Mon, Mar 25, 2024 at 10:48:56PM +0100, Tommaso Merciai wrote:
+> > > > Hi Adam, Lucas,
+> > > > Thanks for this series.
+> > > >
+> > > > This series make HDMI work on evk.
+> > > > All is working properly on my side.
+> > > >
+> > > > Tested on: Linux imx8mp-lpddr4-evk 6.9.0-rc1.
+> > > > Hope this help.
+> > > >
+> > > > Tested-by: Tommaso Merciai <tomm.merciai@gmail.com>
+> > >
+> > > The DRM side has been merged already. The only missing patches are for
+> > > the PHY, and the latest version can be found in
+> > > https://lore.kernel.org/linux-phy/20240227220444.77566-1-aford173@gmail.com/.
+> > > You can test that series and send a Tested-by tag. I'm crossing my
+> > > fingers and hoping it will be merged in v6.10.
+> > (same here :) )
+> >
+> > Thanks for sharing! :)
+> >
+> > To be honest I test all this series rebasing my alvium next branch on top of media_stage/master (6.9.0-rc1)
+> > All is working properly on my side.
+> > I found v8 into the commit msg here: https://patches.linaro.org/project/linux-pm/patch/20240203165307.7806-9-aford173@gmail.com/
+> > then I'm thinking this is the latest.
+> >
+> > I'm going to switch to your suggestion that looks more recent :)
 > 
-> In cv1800_dmamux_route_allocate.
->> +	regmap_set_bits(dmamux->regmap,
->> +			DMAMUX_CH_REG(chid),
->> +			DMAMUX_CH_SET(chid, devid));
->> +
->> +	regmap_update_bits(dmamux->regmap, CV1800_SDMA_DMA_INT_MUX,
->> +			   DMAMUX_INT_CH_MASK(chid, cpuid),
->> +			   DMAMUX_INT_CH_BIT(chid, cpuid));
-> 
-> I think this is.
+> Sorry about the confusion.  I was confused by the versioning too when
+> I pulled from different parts of Lucas' stuff.  Since varying
+> components were applied at different times, and the remaining part was
+> based on the wrong starting point and not applied, I reverted back to
+> the versioning of the PHY which was the only remaining part other than
+> device tree stuff.
 
-So where exactly? I don't see any define being used here.
-CV1800_SDMA_DMA_INT_MUX is not in your header. DMAMUX_ is not in your
-header. So what are you pointing?
+No problem, thanks for clarify :)
 
-I don't understand this communication. Are you mocking me here or what?
-It's waste of my time.
+Thanks & Regards,
+Tommaso
 
 > 
->>>
->>>>> And considering the limitation of this dmamux, maybe only devices that 
->>>>> require dma as a must can have the dma assigned. 
->>>>> Due to the fact, I think it may be a long time to wait for this header
->>>>> to be used as the binding header.
->>>>
->>>> I don't understand. You did not provide a single reason why this is a
->>>> binding. Reason is: mapping IDs between DTS and driver. Where is this
->>>> reason?
->>>>
->>>
->>> It seems like that I misunderstood something. This file provides one-one
->>> mapping between the dma device id and cpuid, which is both used in the
->>> dts and driver. For dts, it provides device id and cpu id mapping. And
->>> for driver, it is used as the directive to tell how to write the mapping
->>> register.
->>
->> So where is it? I looked for DMA_TDM0_RX - nothing. Then DMA_I2C1_RX -
->> nothing. Then any "DMA_" - also looks nothing.
->>
-> 
-> It is just the value writed, so I say it is just a one-one mapping.
-> Maybe I misunderstand the binding meaning? Is the binding a mapping 
-> between the dts and something defind in the driver (not the real 
-> device)?
-
-Binding headers contains IDs which are used by the driver and DTS code.
-Hardware constants are not bindings. Register values, addresses,
-whatever hardware is using is not a binding.
-
-
-Best regards,
-Krzysztof
-
+> adam
+> >
+> > Thanks again,
+> > Tommaso
+> >
+> > >
+> > > > On Sat, Feb 03, 2024 at 10:52:40AM -0600, Adam Ford wrote:
+> > > > > The i.MX8M Plus has an HDMI controller, but it depends on two
+> > > > > other systems, the Parallel Video Interface (PVI) and the
+> > > > > HDMI PHY from Samsung. The LCDIF controller generates the display
+> > > > > and routes it to the PVI which converts passes the parallel video
+> > > > > to the HDMI bridge.  The HDMI system has a corresponding power
+> > > > > domain controller whose driver was partially written, but the
+> > > > > device tree for it was never applied, so some changes to the
+> > > > > power domain should be harmless because they've not really been
+> > > > > used yet.
+> > > > >
+> > > > > This series is adapted from multiple series from Lucas Stach with
+> > > > > edits and suggestions from feedback from various series, but it
+> > > > > since it's difficult to use and test them independently,
+> > > > > I merged them into on unified series.  The version history is a
+> > > > > bit ambiguous since different components were submitted at different
+> > > > > times and had different amount of retries.  In an effort to merge them
+> > > > > I used the highest version attempt.
+> > > > >
+> > > > > Adam Ford (3):
+> > > > >   dt-bindings: soc: imx: add missing clock and power-domains to
+> > > > >     imx8mp-hdmi-blk-ctrl
+> > > > >   pmdomain: imx8mp-blk-ctrl: imx8mp_blk: Add fdcc clock to hdmimix
+> > > > >     domain
+> > > > >   arm64: defconfig: Enable DRM_IMX8MP_DW_HDMI_BRIDGE as module
+> > > > >
+> > > > > Lucas Stach (9):
+> > > > >   dt-bindings: phy: add binding for the i.MX8MP HDMI PHY
+> > > > >   phy: freescale: add Samsung HDMI PHY
+> > > > >   arm64: dts: imx8mp: add HDMI power-domains
+> > > > >   arm64: dts: imx8mp: add HDMI irqsteer
+> > > > >   dt-bindings: display: imx: add binding for i.MX8MP HDMI PVI
+> > > > >   drm/bridge: imx: add driver for HDMI TX Parallel Video Interface
+> > > > >   dt-bindings: display: imx: add binding for i.MX8MP HDMI TX
+> > > > >   drm/bridge: imx: add bridge wrapper driver for i.MX8MP DWC HDMI
+> > > > >   arm64: dts: imx8mp: add HDMI display pipeline
+> > > > >
+> > > > >  .../display/bridge/fsl,imx8mp-hdmi-tx.yaml    |  102 ++
+> > > > >  .../display/imx/fsl,imx8mp-hdmi-pvi.yaml      |   84 ++
+> > > > >  .../bindings/phy/fsl,imx8mp-hdmi-phy.yaml     |   62 +
+> > > > >  .../soc/imx/fsl,imx8mp-hdmi-blk-ctrl.yaml     |   22 +-
+> > > > >  arch/arm64/boot/dts/freescale/imx8mp.dtsi     |  145 +++
+> > > > >  arch/arm64/configs/defconfig                  |    1 +
+> > > > >  drivers/gpu/drm/bridge/imx/Kconfig            |   18 +
+> > > > >  drivers/gpu/drm/bridge/imx/Makefile           |    2 +
+> > > > >  drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c  |  207 ++++
+> > > > >  drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c   |  154 +++
+> > > > >  drivers/phy/freescale/Kconfig                 |    6 +
+> > > > >  drivers/phy/freescale/Makefile                |    1 +
+> > > > >  drivers/phy/freescale/phy-fsl-samsung-hdmi.c  | 1075 +++++++++++++++++
+> > > > >  drivers/pmdomain/imx/imx8mp-blk-ctrl.c        |   10 +-
+> > > > >  14 files changed, 1876 insertions(+), 13 deletions(-)
+> > > > >  create mode 100644 Documentation/devicetree/bindings/display/bridge/fsl,imx8mp-hdmi-tx.yaml
+> > > > >  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pvi.yaml
+> > > > >  create mode 100644 Documentation/devicetree/bindings/phy/fsl,imx8mp-hdmi-phy.yaml
+> > > > >  create mode 100644 drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c
+> > > > >  create mode 100644 drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c
+> > > > >  create mode 100644 drivers/phy/freescale/phy-fsl-samsung-hdmi.c
+> > >
+> > > --
+> > > Regards,
+> > >
+> > > Laurent Pinchart
 
