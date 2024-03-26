@@ -1,128 +1,166 @@
-Return-Path: <devicetree+bounces-53264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53265-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4011C88BBC2
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 08:56:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BC3B88BBD9
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 09:02:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BE451C27448
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 07:56:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 564D11C2F127
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 08:02:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DE4C132C1A;
-	Tue, 26 Mar 2024 07:56:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="MtRbwoAX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 097DA132C23;
+	Tue, 26 Mar 2024 08:02:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F8C113281F;
-	Tue, 26 Mar 2024 07:56:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1888018C38;
+	Tue, 26 Mar 2024 08:02:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711439786; cv=none; b=rvDiuuaKcnPx/34jIHNVBYGthhRQmUnQ3X07SSHXHkD1bMTGou9JeN5f4MxixMEPp7GTl0MggzXmBe2gTeker2EBEgpjmCWVXIeCnBsfet2MALB2iPcx4GuguEeuJBHenT2NxWEBfFux8yspy3D8lVKQe5DUVz9ShB07kcbVfQk=
+	t=1711440166; cv=none; b=MNurzVfPocsMdXMMdEbxezIgm9oywaQo6vmIwOg7/+EuXVKCceh+wg7s/QWAMtPHGpuBRAgneUoTkwKSXzpfbgV4IrCPUm2obMxppWFZwNDWZ5RcWiUC2Rd0PwiJGTd1sYIzr6+N9TpyBFL3ItbzstjUgGHwqaGXsKmQ2zL49Nk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711439786; c=relaxed/simple;
-	bh=ZhjPFTOQpzOVcd27gwoGXa9xyp/xBd/MZT46RvxTdVM=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gI571iUWbxRr7h0+PZSnHiFdtWaLZWcHVExzEELmE4uQjxErkIunG1n0a5niEFcm13qvcE9l4ffODkcag3qc2/PWoGxRNy774Ez21Qy2wIP25Guu9aeVyZq25tTEoaZ2TvF4zsGK899NXIKSQ0B7GO7t+zlHTtth8b4/X9fIS3o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=MtRbwoAX; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 6C092E0009;
-	Tue, 26 Mar 2024 07:56:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1711439780;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=q3PckqHmeL8Qlv6PGSssocDsbW2N2t4rB3eMlEpT7SU=;
-	b=MtRbwoAXlKOJXFBo2uw1U3FfF18lh/9Un2QrPY99lbMOggoYxh4YoueN3OlcohCi2Yx0Gt
-	RG3XxXY1xPbGjWLbb+g9yVDEzOT0hE5gbIqOorQx1UtF0HSmgYFpmg59R1SUpD91ifHS+p
-	CxoKnuh6g7K/dpNExERJKrYq/nhKxpupBmWvKB41uSlylTWcNJ9n//izG8ruIcsqBiT5Tt
-	ZZVyosb8aeJp4Beu/PVmJGzJLoHKJGRGHAt11MiG7R15BtQJRRjHUJZm7XoPsntxPuQaZd
-	wCBMkXr3B41DnZdT+XoCjsDFIGsNqqOfI7wzvYDIt0/tA5KGCGwzLafl3w7qvA==
-Date: Tue, 26 Mar 2024 08:56:17 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, Saravana
- Kannan <saravanak@google.com>, Lizhi Hou <lizhi.hou@amd.com>, Max Zhen
- <max.zhen@amd.com>, Sonal Santan <sonal.santan@amd.com>, Stefano Stabellini
- <stefano.stabellini@xilinx.com>, Jonathan Cameron
- <Jonathan.Cameron@huawei.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>,
- Horatiu Vultur <horatiu.vultur@microchip.com>, Steen Hegelund
- <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Nuno Sa <nuno.sa@analog.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, stable@vger.kernel.org
-Subject: Re: [PATCH v6 1/2] driver core: Introduce
- device_link_wait_removal()
-Message-ID: <20240326085617.0cf217d3@bootlin.com>
-In-Reply-To: <2024032548-rope-improper-4f67@gregkh>
-References: <20240325152140.198219-1-herve.codina@bootlin.com>
-	<20240325152140.198219-2-herve.codina@bootlin.com>
-	<2024032548-rope-improper-4f67@gregkh>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1711440166; c=relaxed/simple;
+	bh=05/Cgdd9jcscT26Btc4gZqpr6BtmMg5RiBx3hVkQtFw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tfil6BCUuVUWYT+8GLuWYE34RryTo9kZdxsZp+IzrH/oCHaBttXCp+dxSfmUHjTdy4SLhcmULR4GCqlhChdQ4yFujHq7hO5jr2CvPqbOGSUcgTLrAr4SFwUNz4GtFAUFkin8q9Ha570EZ4Y1VxSd2A51BUoni6wrRK15895vDLk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-60a0579a931so56426387b3.0;
+        Tue, 26 Mar 2024 01:02:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711440163; x=1712044963;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Mckyb96OX2beYcxE9hMgQH/HkyGUUKnyCtMxkXiNMw0=;
+        b=AXSFKJTtVNgqDMImC2Qa89i5HeplDr5eGUOwEXmGLZ1bExSFtQwqEMHPC3FuGQV/d8
+         dGQpUs9x8jKi7SODeF0GIcrSgoa7bCf6uJZv9oEL1tHlqnVoxq2NrxbvRkHt3q87qKqj
+         w+aU6cvF49UQiAv3Ew1oxV9JbVniUOpNkGOkwyzW84Dl/xU9TQHmT6trt2JAmBWkSQac
+         plLW4qV1IFG2FYDs96EBbk9/8eFkEr+ITLnose7jdQP8qMNMGJR2R1lSbfEYjuPPHOaN
+         Lc/dtwDmMMcXPk/DH/EZaO7of14Sh2OAkOMEcRRA84i5IqDED6T+wArHRS3Wy9l15H+T
+         wRhg==
+X-Forwarded-Encrypted: i=1; AJvYcCXWT5h1K8lWD+1OgZhYAEUVjO2ju5i72QaD6mvJyPael9ijGT+nBgbX0nHXprCbDyyAGhaX6RW2eHSfcVpdFM2zFs4ZOxl5c1+vJoc3u8iseK9WBlJUBeQFd/2x5SDOrW8q/Kpfj2yT6M3NoEb81zNJv32YTgyg8ToTB9x0EVx+XLOiSNe/q1X/tyyJGydG8pWuU6OzlbW/Mz2Y+ErTryIS3+jSOaYxHSSM
+X-Gm-Message-State: AOJu0YxTuQf51Qxbd6NrPBJKj6z+c87qq4sSJoIjWtx01SDHg4YepPe8
+	i/f3wK6Vo32uL02/nCMaLzrOo/SI0m6UWnrv/D7s2taYxNdWrS7XjxX9p+Z9fqE=
+X-Google-Smtp-Source: AGHT+IG+g9E2AtI3Nl7Yt/OHW+crCse49TRXi0pzL9yyGovnzdCwMHTHy8+bzyiFkLoI4HPlJEsuHw==
+X-Received: by 2002:a25:a2cf:0:b0:dcc:f0a:e495 with SMTP id c15-20020a25a2cf000000b00dcc0f0ae495mr7011473ybn.3.1711440163606;
+        Tue, 26 Mar 2024 01:02:43 -0700 (PDT)
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
+        by smtp.gmail.com with ESMTPSA id x3-20020a254a03000000b00dc74ac54f5fsm1359771yba.63.2024.03.26.01.02.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 26 Mar 2024 01:02:42 -0700 (PDT)
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-dcc80d6006aso4923416276.0;
+        Tue, 26 Mar 2024 01:02:42 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVig2Hl4uIbhYrjuSElV9VFj4Eka+yyhLGayfzCgYvOcWdkRKsOkflKLjxr8p6gpe1GLtN1VLN8sGW4VENtOmzqu0IXepFp4Qaru2N4AYzW9hVhHCcSJ3CB2g6Ug8z/+Nvsjx0hz0s+grCNVSX24mB/+RMXYYUbCqxihNajEc4AvxOBNSPL6KhRMIXAV8nWWcC61RHAPXDXLADIUTAi/XxGyNq/W21DTXDL
+X-Received: by 2002:a25:838c:0:b0:dcd:ba5a:8704 with SMTP id
+ t12-20020a25838c000000b00dcdba5a8704mr7563802ybk.24.1711440162334; Tue, 26
+ Mar 2024 01:02:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+References: <20240322144355.878930-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240322144355.878930-3-prabhakar.mahadev-lad.rj@bp.renesas.com> <OSAPR01MB15871221D42B6CEAA08168C386362@OSAPR01MB1587.jpnprd01.prod.outlook.com>
+In-Reply-To: <OSAPR01MB15871221D42B6CEAA08168C386362@OSAPR01MB1587.jpnprd01.prod.outlook.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 26 Mar 2024 09:02:29 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXtPPwzgwekKiuNF5MzDvLSOqvBXWgQd4tgPtTnnQp2VQ@mail.gmail.com>
+Message-ID: <CAMuHMdXtPPwzgwekKiuNF5MzDvLSOqvBXWgQd4tgPtTnnQp2VQ@mail.gmail.com>
+Subject: Re: [PATCH v4 2/5] dt-bindings: serial: renesas,scif: Validate
+ 'interrupts' and 'interrupt-names'
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Prabhakar <prabhakar.csengg@gmail.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 25 Mar 2024 19:37:10 +0100
-Greg Kroah-Hartman <gregkh@linuxfoundation.org> wrote:
+Hi Biju,
 
-> On Mon, Mar 25, 2024 at 04:21:25PM +0100, Herve Codina wrote:
-> > The commit 80dd33cf72d1 ("drivers: base: Fix device link removal")
-> > introduces a workqueue to release the consumer and supplier devices used
-> > in the devlink.
-> > In the job queued, devices are release and in turn, when all the
-> > references to these devices are dropped, the release function of the
-> > device itself is called.
-> > 
-> > Nothing is present to provide some synchronisation with this workqueue
-> > in order to ensure that all ongoing releasing operations are done and
-> > so, some other operations can be started safely.
-> > 
-> > For instance, in the following sequence:
-> >   1) of_platform_depopulate()
-> >   2) of_overlay_remove()
-> > 
-> > During the step 1, devices are released and related devlinks are removed
-> > (jobs pushed in the workqueue).
-> > During the step 2, OF nodes are destroyed but, without any
-> > synchronisation with devlink removal jobs, of_overlay_remove() can raise
-> > warnings related to missing of_node_put():
-> >   ERROR: memory leak, expected refcount 1 instead of 2
-> > 
-> > Indeed, the missing of_node_put() call is going to be done, too late,
-> > from the workqueue job execution.
-> > 
-> > Introduce device_link_wait_removal() to offer a way to synchronize
-> > operations waiting for the end of devlink removals (i.e. end of
-> > workqueue jobs).
-> > Also, as a flushing operation is done on the workqueue, the workqueue
-> > used is moved from a system-wide workqueue to a local one.
-> > 
-> > Cc: stable@vger.kernel.org  
-> 
-> Why is this for stable?  You are just adding a new api, no one is using
-> it.
-> 
-> Or if they are, you didn't send me that patch...
+On Mon, Mar 25, 2024 at 5:21=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
+m> wrote:
+> > -----Original Message-----
+> > From: Prabhakar <prabhakar.csengg@gmail.com>
+> > Sent: Friday, March 22, 2024 2:44 PM
+> > Subject: [PATCH v4 2/5] dt-bindings: serial: renesas,scif: Validate 'in=
+terrupts' and 'interrupt-
+> > names'
+> >
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > This commit adds support to validate the 'interrupts' and 'interrupt-na=
+mes'
+> > properties for every supported SoC. This ensures proper handling and co=
+nfiguration of interrupt-
+> > related properties across supported platforms.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > ---
+> > v3->v4
+> > - Reverted back to v2 version of the patch.
+> > - Used suggestion from Krzysztof for interrupts
+> > - Restored RB tag from Geert
+> >
+> > v2->v3
+> > - Listed interrupts and interrupt-names for every SoC in if check
+> > ---
+> >  .../bindings/serial/renesas,scif.yaml         | 73 ++++++++++++++-----
+> >  1 file changed, 55 insertions(+), 18 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/serial/renesas,scif.yaml
+> > b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
+> > index af72c3420453..eb2aa5e75e02 100644
+> > --- a/Documentation/devicetree/bindings/serial/renesas,scif.yaml
+> > +++ b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
+> > @@ -86,11 +86,6 @@ properties:
+> >      oneOf:
+> >        - items:
+> >            - description: A combined interrupt
+> > -      - items:
+> > -          - description: Error interrupt
+> > -          - description: Receive buffer full interrupt
+> > -          - description: Transmit buffer empty interrupt
+> > -          - description: Break interrupt
+> >        - items:
+> >            - description: Error interrupt
+> >            - description: Receive buffer full interrupt @@ -98,21 +93,1=
+7 @@ properties:
+> >            - description: Break interrupt
+> >            - description: Data Ready interrupt
+> >            - description: Transmit End interrupt
+> > +        minItems: 4
+>
+> I think here minItems is 1 as it is either 1 or 4 or 6
 
-The patch 2 in this current series uses the new api.
+The single interrupt is handled by the first case in the oneOf (which
+can probably be simplified by dropping the "items"?).
 
-Best regards,
-Hervé
+Gr{oetje,eeting}s,
 
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
