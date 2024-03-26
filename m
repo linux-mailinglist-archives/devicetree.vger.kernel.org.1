@@ -1,152 +1,99 @@
-Return-Path: <devicetree+bounces-53400-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53402-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16C2D88C207
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 13:25:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9115288C216
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 13:27:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0B482E0332
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 12:25:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C269E1C2B194
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 12:27:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D81F37175D;
-	Tue, 26 Mar 2024 12:25:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E239971B42;
+	Tue, 26 Mar 2024 12:27:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ayg9VoQK"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="f1eXqbhy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7B0B12B6C;
-	Tue, 26 Mar 2024 12:25:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57FA070CDA;
+	Tue, 26 Mar 2024 12:27:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711455926; cv=none; b=H3BdFr28NEYoQ4BBfm+zjVWJfqhG7j2mp2T9knEAy4RdENJIzHqjhyYUnjVRdvLKCm5xhbKfDwnOUyVmgxqrTiQ9K3dU42TfPX02XFMaoWbsRY6fD26UyaGVuLP+ntf0wkCncUeAoXZxiucvKyNXeaz9nbHdCl28H82KzT4ShLU=
+	t=1711456060; cv=none; b=MmJ5PxyY8H4bUh4g2thO0iJA+e68SgHjl2TCGxpR2pNH1dSCzq+8rkFjOjpxPhMkUExj/3I0tJIZgwoiN25M2JO0YXJIa5bg9/+j3py+4uykMYTUbcM7PVpSXvag1iaM1voB4/+upK9YXnuU+XonpbFcpjvX18/xaD/DjYvGdt4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711455926; c=relaxed/simple;
-	bh=ldJ9Nm/iuvd89E7SnQDTNwEFNyi9MnhkhwTmIieqySE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=X4bq//9QVlEAQ0ncPWDyak1wcNs8nYVi7vjaeaqVevs4KA9aYTjC9CSXKZwkEb2gHIfSe3Z1VpuB1EFJF5CrFga/Nd8CIaTQ03lRVpvvR2jTJs6r4OqtIcQYg64xfJarFp3WDXGjrFStVOCFnHrQKh/XGBoC7W4xmnoE/GvHlB4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ayg9VoQK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7865EC43390;
-	Tue, 26 Mar 2024 12:25:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711455926;
-	bh=ldJ9Nm/iuvd89E7SnQDTNwEFNyi9MnhkhwTmIieqySE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ayg9VoQKq7kNzpnfirynX8P2OaEo193Jk44IThRfg0q8hf6nZPxTzTBRN+MPxE35v
-	 +fTgYOFTf6zQMC7SDdfT9389j+AUknSoloeeoDplQI2EFmnPHSFXiusH1P1Clgpf3D
-	 z0/fluuSfahRFboChZu7eM52x+h6X/63I0QM6c3lyvKTVR+ehJ7cenQ2WyJx89m30b
-	 ajPmlzB+4IHPKe/uzz3t990pjIAtME3ASiVfu2pAStdSolXeVNA69sfnO8WI/UBhcU
-	 M6FpZ1P9jeMYwd8WqY6BfPaQ5Mu82jEeLR17AYt68itPakl/c9qzdbHqhf4+ZSvDrl
-	 AKuKUSjVienAg==
-Message-ID: <7567a9b5-fd6d-4729-964e-14c4e129bcd7@kernel.org>
-Date: Tue, 26 Mar 2024 21:25:01 +0900
+	s=arc-20240116; t=1711456060; c=relaxed/simple;
+	bh=8Jl54xlqjwkJWP5PUMyWwqy9IBRiotbXYLdQBgcsjJo=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=kxMGuZx44naak+c7Eiq5Vfzr7/zZlp04rOtiPas1B1AaHGAJTg/MviziotsJz/8c7fXZDjk3jVR7BM6UF2zmxwCc3X+8kPmoxVMyyjXJzJC8nG6y6jzUOsENiHCBSELAf2mG5Gt/4/y89Z459KxCn/bxIaTfBkNoN8XPpADG9gY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=f1eXqbhy; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 42QCRR7d080815;
+	Tue, 26 Mar 2024 07:27:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1711456047;
+	bh=XMIn4Bg0h4wNwem/5Hp295ouaQHawgTd9UzgVAS9LZ8=;
+	h=From:To:CC:Subject:Date;
+	b=f1eXqbhy8Tv2ne/fpJ6An7ULgloUhTkKJ5mfFRou79EgQMkkYFWvx6qtIcpm7+q48
+	 132OzR50MsLWxb2H8L9+qmFzRs8mgcJh7ex13hARTiXFpdte2Qw2XPm0/ufv/qvPxI
+	 0/Y+8tGFapBTqt1Nh8dB16fBYVMHIrDoCvf6PVEk=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 42QCRR4b035160
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 26 Mar 2024 07:27:27 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 26
+ Mar 2024 07:27:27 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 26 Mar 2024 07:27:27 -0500
+Received: from a0497641-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (a0497641-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [172.24.227.36])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 42QCRN2b129435;
+	Tue, 26 Mar 2024 07:27:24 -0500
+From: Neha Malcom Francis <n-francis@ti.com>
+To: <robh@kernel.org>, <conor+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <vigneshr@ti.com>, <nm@ti.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kristo@kernel.org>, <u-kumar1@ti.com>,
+        <n-francis@ti.com>
+Subject: [PATCH 0/4] arm64: dts: ti: k3-j7*: Add missing ESM and watchdog nodes
+Date: Tue, 26 Mar 2024 17:57:19 +0530
+Message-ID: <20240326122723.2329402-1-n-francis@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: ata: ahci-da850: Convert to dtschema
-Content-Language: en-US
-To: Animesh Agarwal <animeshagarwal28@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-ide@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240326121735.11994-1-animeshagarwal28@gmail.com>
-From: Damien Le Moal <dlemoal@kernel.org>
-Organization: Western Digital Research
-In-Reply-To: <20240326121735.11994-1-animeshagarwal28@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 3/26/24 21:17, Animesh Agarwal wrote:
-> Convert the ahci-da850 bindings to DT schema
+Add missing ESM and watchdog nodes for the sake of devicetree completion
+of hardware description w.r.t Linux and ESM and WDT enablement on
+U-Boot. This patch series adds the missing nodes for J721E and J7200.
 
-Missing a period at the end of the sentence.
+Boot logs:
+https://gist.github.com/nehamalcom/5dc94ab60f57df5d515d0a6d0da6e0d1
 
-> 
-> Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
-> ---
->  .../devicetree/bindings/ata/ahci-da850.txt    | 18 ----------
->  .../bindings/ata/ti,da850-ahci.yaml           | 36 +++++++++++++++++++
->  2 files changed, 36 insertions(+), 18 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/ata/ahci-da850.txt
->  create mode 100644 Documentation/devicetree/bindings/ata/ti,da850-ahci.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/ata/ahci-da850.txt b/Documentation/devicetree/bindings/ata/ahci-da850.txt
-> deleted file mode 100644
-> index 5f8193417725..000000000000
-> --- a/Documentation/devicetree/bindings/ata/ahci-da850.txt
-> +++ /dev/null
-> @@ -1,18 +0,0 @@
-> -Device tree binding for the TI DA850 AHCI SATA Controller
-> ----------------------------------------------------------
-> -
-> -Required properties:
-> -  - compatible: must be "ti,da850-ahci"
-> -  - reg: physical base addresses and sizes of the two register regions
-> -         used by the controller: the register map as defined by the
-> -         AHCI 1.1 standard and the Power Down Control Register (PWRDN)
-> -         for enabling/disabling the SATA clock receiver
-> -  - interrupts: interrupt specifier (refer to the interrupt binding)
-> -
-> -Example:
-> -
-> -	sata: sata@218000 {
-> -		compatible = "ti,da850-ahci";
-> -		reg = <0x218000 0x2000>, <0x22c018 0x4>;
-> -		interrupts = <67>;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/ata/ti,da850-ahci.yaml b/Documentation/devicetree/bindings/ata/ti,da850-ahci.yaml
-> new file mode 100644
-> index 000000000000..d54f58c12e78
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/ata/ti,da850-ahci.yaml
-> @@ -0,0 +1,36 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/ata/ti,da850-ahci.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TI DA850 AHCI SATA Controller
-> +
-> +maintainers:
-> +  - Animesh Agarwal <animeshagarwal28@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: ti,da850-ahci
-> +
-> +  reg:
-> +    minItems: 2
-> +    maxItems: 2
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    sata@218000 {
-> +        compatible = "ti,da850-ahci";
-> +        reg = <0x218000 0x2000>, <0x22c018 0x4>;
-> +        interrupts = <67>;
-> +    };
+Neha Malcom Francis (4):
+  arm64: dts: ti: k3-j721e-mcu: Add the WKUP ESM instance
+  arm64: dts: ti: k3-j721e-mcu: Add the MCU domain watchdog instances
+  arm64: dts: ti: k3-j721e-main: Add the MAIN domain watchdog instances
+  arm64: dts: ti: k3-j7200-main: Add the MAIN domain watchdog instances
+
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     | 27 ++++++
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 93 +++++++++++++++++++
+ .../boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      | 31 +++++++
+ 3 files changed, 151 insertions(+)
 
 -- 
-Damien Le Moal
-Western Digital Research
+2.34.1
 
 
