@@ -1,211 +1,178 @@
-Return-Path: <devicetree+bounces-53565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0A8288CBE3
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 19:20:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84D8088CBE9
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 19:22:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D70B1F32404
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 18:20:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4028C2C603A
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 18:22:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8F1E8527A;
-	Tue, 26 Mar 2024 18:20:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20B1586249;
+	Tue, 26 Mar 2024 18:22:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mE1eYCTV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="plQ0Q3rW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 797321CD30;
-	Tue, 26 Mar 2024 18:20:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E25098527A;
+	Tue, 26 Mar 2024 18:22:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711477209; cv=none; b=ijPNzk55pLfSESsarK9VbeC01XuvjAq0Ww/3ngwC51op2cJVx+N1A0vFlq6557Fy83DNMZ0Bm3ATlbCYFKgYb74LFQZD5vlN1S4Yhyz3ffNmr83Jj9umyzyzyK7hvxpfht2yN4Oey5NbHNGaJ0gYTizJzZhCdox07UezpE+fHfg=
+	t=1711477330; cv=none; b=RhkKB3Xoi5turxNF5XotrZq54NutBGuQZ2S0Qez0JoCyk57V1Dfh+hFQcByWz51EQLshQP+jb2LV9H7EmMhOhQH4Yi9nBwhc3eX9fvE2uX5vOD8Z3ANCw1D9PtYC0b8AJKjTzvCi/jAJp/vwXhQgJvUhqDFOwfyrRsTPTONHKrg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711477209; c=relaxed/simple;
-	bh=4m5eEwy1+MBW/gtdTfU2mHFqq/XLYeQEZ/TG3auFMIs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h8bifpuBUQBqwNH1+sS+/oxRiUO1UQy4tM351qZW664dlIqKK5VHUDYL9rJ7KBhoTUHY0XvUR4UTjnfdfy0El1V0lkydDl767YtJj+L9IlG3WnkBKkiuiI9qFbl21LuvvIGzSqANUsmiKksz2XvkI7Xxki22kN1YBKZElk3v9FE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mE1eYCTV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AAB2C433F1;
-	Tue, 26 Mar 2024 18:20:07 +0000 (UTC)
+	s=arc-20240116; t=1711477330; c=relaxed/simple;
+	bh=LmnS6eBvBa5awlBsum9RK+OXNBT2Mr9Z/NCR7y7hu6A=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=VcqHOfXKEy1EwgmxKtQJ/ttVU904i5vo9419/9FXmevxQxlzHVZ+nk3gNQqCaFzYeJ5E0y84v7oBPZ0LvAQNsJ8pCLmThAVBuNmGLuxezUfiwA6+PD8XnoEOuFUorrOuSxjjLkKTxnwF8LRM2eW0d9NXSphVfyQo6vNVzuqxbW4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=plQ0Q3rW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DCA0C43390;
+	Tue, 26 Mar 2024 18:22:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711477209;
-	bh=4m5eEwy1+MBW/gtdTfU2mHFqq/XLYeQEZ/TG3auFMIs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mE1eYCTVAOLE9+u3M1XJE46jxij0JZWVFKLIynCrEtzWLQRBNOPoXheY4s+ZV7MaJ
-	 Xv8f6ch25FA/BK1jxOF/uF1FY+JbTyYyyW0HolxhWT+CrSdGYANR6AtemOF8ahiiWc
-	 85axShKI2S6wdEwhQSSdgdkbnXWyemaVDghGlKBlB8qIbXmC+Uz9EeFoaNX7ytAYpB
-	 5DyYZojLWfGT2zuKW/7/Q4APY2g+vlQIEQAJ2qgCpY/I7LAn5/BaPp0u2DTQmUtdZR
-	 I4BmyEKZibc/IETbxyCpXF0rwqLMCr9J3oTji90rjvwd6sy3oqZ2vhy76vxkCgewMi
-	 XNtwO+nB3pBEw==
-Date: Tue, 26 Mar 2024 18:20:05 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Animesh Agarwal <animeshagarwal28@gmail.com>
-Cc: Herbert Xu <herbert@gondor.apana.org.au>,
-	"David S. Miller" <davem@davemloft.net>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: crypto: ti,omap-sham: Convert to dtschema
-Message-ID: <20240326-spectrum-talon-0fc977c32c5c@spud>
-References: <20240326120107.13442-1-animeshagarwal28@gmail.com>
+	s=k20201202; t=1711477329;
+	bh=LmnS6eBvBa5awlBsum9RK+OXNBT2Mr9Z/NCR7y7hu6A=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=plQ0Q3rWlM3clHWxGS0j9Mk7mdSBHTD0ZOXfg60La0B4Hq0jOPXfiR5EA7BP/7/B7
+	 tNxPajdJpREXd7T3TAWutykFZUn4Lq8eM7uj2ByFVWPZVIGEkxc/Jf1EcGYbydSgcn
+	 1hZbl848ewwXjHMTXAGge7uOyYNRwXQ/Iiai222UUqkFH4b8sm61e0iav0F1qMjbaf
+	 kFT9Szt2coqxjGdZ+aLwrkAGQulqZLynI+n5bMWGwGhbWm9bpcRYd4oAbrfTeGMUAb
+	 4Ep6eFYmdoy1ZmqvCxRTuG6gTeG6GKwJP/SpoS1tEMkgqhKBbfSEyon5/q9+fWysu1
+	 1RdHvA48jhXdw==
+Date: Tue, 26 Mar 2024 18:21:52 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
+ <linux-arm-kernel@lists.infradead.org>, "Trevor Zaharichuk"
+ <trevor@au-zone.com>, Greg Lytle <greg@au-zone.com>, "Lars-Peter Clausen"
+ <lars@metafoo.de>, Rob Herring <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Sean Nyekjaer <sean@geanix.com>, <linux-iio@vger.kernel.org>
+Subject: Re: [PATCH 1/5] dt-bindings: iio: dac: ti,dac5571: Add DAC081C081
+ support
+Message-ID: <20240326182152.03f860e5@jic23-huawei>
+In-Reply-To: <20240326171316.000018f5@Huawei.com>
+References: <20240325203245.31660-1-laurent.pinchart@ideasonboard.com>
+	<20240325203245.31660-2-laurent.pinchart@ideasonboard.com>
+	<20240325204857.4f2fd468@jic23-huawei>
+	<20240325205641.GD23988@pendragon.ideasonboard.com>
+	<20240326152927.00006229@Huawei.com>
+	<20240326165043.GB28895@pendragon.ideasonboard.com>
+	<20240326171316.000018f5@Huawei.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="hn4Xnm/Dw7PYM+ZO"
-Content-Disposition: inline
-In-Reply-To: <20240326120107.13442-1-animeshagarwal28@gmail.com>
-
-
---hn4Xnm/Dw7PYM+ZO
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Mar 26, 2024 at 05:31:00PM +0530, Animesh Agarwal wrote:
-> Convert the OMAP SoC SHA crypto Module bindings to DT Schema.
+On Tue, 26 Mar 2024 17:13:16 +0000
+Jonathan Cameron <Jonathan.Cameron@Huawei.com> wrote:
+
+> On Tue, 26 Mar 2024 18:50:43 +0200
+> Laurent Pinchart <laurent.pinchart@ideasonboard.com> wrote:
 >=20
-> Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
-> ---
->  .../devicetree/bindings/crypto/omap-sham.txt  | 28 ----------
->  .../bindings/crypto/ti,omap-sham.yaml         | 56 +++++++++++++++++++
->  2 files changed, 56 insertions(+), 28 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/crypto/omap-sham.txt
->  create mode 100644 Documentation/devicetree/bindings/crypto/ti,omap-sham=
-=2Eyaml
+> > On Tue, Mar 26, 2024 at 03:29:27PM +0000, Jonathan Cameron wrote: =20
+> > > On Mon, 25 Mar 2024 22:56:41 +0200 Laurent Pinchart wrote:   =20
+> > > > On Mon, Mar 25, 2024 at 08:48:57PM +0000, Jonathan Cameron wrote:  =
+ =20
+> > > > > On Mon, 25 Mar 2024 22:32:41 +0200 Laurent Pinchart wrote:
+> > > > >      =20
+> > > > > > The DAC081C081 is a TI DAC whose software interface is compatib=
+le with
+> > > > > > the DAC5571. It is the 8-bit version of the DAC121C081, already
+> > > > > > supported by the DAC5571 bindings. Extends the bindings to supp=
+ort this
+> > > > > > chip.
+> > > > > >=20
+> > > > > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.=
+com>     =20
+> > > > >=20
+> > > > > Hi Laurent,
+> > > > >=20
+> > > > > Given it's a part number where no one is going to guess it is com=
+patible
+> > > > > with the DAC5571 and that we don't have a history of fallback com=
+patibles
+> > > > > I'm fine with this change, but just wanted to ask is a fallback c=
+ompatible
+> > > > > useful to you to run with older kernels?
+> > > > >=20
+> > > > > I should have noticed when Peter added the dac121c081. If we add =
+a fallback
+> > > > > should do that one as well.     =20
+> > > >=20
+> > > > I've indeed noticed that there should have been a fallback for
+> > > > dac121c081, but didn't stop to ponder why that wasn't the case, and=
+ just
+> > > > went along with the flow :-) I agree a fallback could be useful, wh=
+ich
+> > > > would then allow dropping patch 2/5 from this series (*). I can do =
+so if
+> > > > you prefer.
+> > > >=20
+> > > > * This is not entirely true. While the DAC1081C081 is largely compa=
+tible
+> > > > with the DAC5573, they have different values for one of the power-d=
+own
+> > > > resistors (2.5k=CE=A9 instead of 1k=CE=A9 if I recall correctly). T=
+o be completely
+> > > > accurate, the driver should report that. We could still use the fal=
+lback
+> > > > compatible, reporting the wrong power-down resistor value.   =20
+> > >=20
+> > > Hmm - Would anyone really care about that value being wrong?   =20
+> >=20
+> > I don't have enough expertise with IIO to be sure, but my guess is that
+> > nobody would.
+> >  =20
+> > > I think perhaps that's just about significant enough that maybe a fal=
+lback
+> > > compatible doesn't make sense here.   =20
+> >=20
+> > Then let's keep it simple and just merge this patch as-is ? :-) =20
+> Makes sense. I'm on wrong computer at the moment but will pick it up at
+> weekend if not before.
+Sooner it is.  Applied 1 and 2 to the togreg branch of iio.git and pushed
+out as testing on the extremely unlikely chance that 0-day finds a build
+issue...
+
+I grabbed them today because I have a memory like a gold fish and the thread
+is deep enough that I might skip over later on basis 'it must have outstand=
+ing
+questions' :)
+
+Jonathan
+
 >=20
-> diff --git a/Documentation/devicetree/bindings/crypto/omap-sham.txt b/Doc=
-umentation/devicetree/bindings/crypto/omap-sham.txt
-> deleted file mode 100644
-> index ad9115569611..000000000000
-> --- a/Documentation/devicetree/bindings/crypto/omap-sham.txt
-> +++ /dev/null
-> @@ -1,28 +0,0 @@
-> -OMAP SoC SHA crypto Module
-> -
-> -Required properties:
-> -
-> -- compatible : Should contain entries for this and backward compatible
-> -  SHAM versions:
-> -  - "ti,omap2-sham" for OMAP2 & OMAP3.
-> -  - "ti,omap4-sham" for OMAP4 and AM33XX.
-> -  - "ti,omap5-sham" for OMAP5, DRA7 and AM43XX.
-> -- ti,hwmods: Name of the hwmod associated with the SHAM module
-> -- reg : Offset and length of the register set for the module
-> -- interrupts : the interrupt-specifier for the SHAM module.
-> -
-> -Optional properties:
-> -- dmas: DMA specifiers for the rx dma. See the DMA client binding,
-> -	Documentation/devicetree/bindings/dma/dma.txt
-> -- dma-names: DMA request name. Should be "rx" if a dma is present.
-> -
-> -Example:
-> -	/* AM335x */
-> -	sham: sham@53100000 {
-> -		compatible =3D "ti,omap4-sham";
-> -		ti,hwmods =3D "sham";
-> -		reg =3D <0x53100000 0x200>;
-> -		interrupts =3D <109>;
-> -		dmas =3D <&edma 36>;
-> -		dma-names =3D "rx";
-> -	};
-> diff --git a/Documentation/devicetree/bindings/crypto/ti,omap-sham.yaml b=
-/Documentation/devicetree/bindings/crypto/ti,omap-sham.yaml
-> new file mode 100644
-> index 000000000000..7a2529cc4cae
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/crypto/ti,omap-sham.yaml
-> @@ -0,0 +1,56 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/crypto/ti,omap-sham.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: OMAP SoC SHA crypto Module
-> +
-> +maintainers:
-> +  - Animesh Agarwal <animeshagarwal28@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ti,omap2-sham
-> +      - ti,omap4-sham
-> +      - ti,omap5-sham
-> +
-> +  ti,hwmods:
-> +    description: Name of the hwmod associated with the SHAM module
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    enum: [sham]
-
-Is there really only one value possible here?
-Also, the convention is to put vendor properties like this after more
-common properties like reg, interrupts etc.
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  dmas:
-> +    maxItems: 1
-> +
-> +  dma-names:
-> +    const: rx
-> +
-> +dependencies:
-> +  dmas: [dma-names]
-
-Is this needed? Unless I'm sorely mistaken dt-schema enforces this itself
-(and same for any $foo-names).
-
-Thanks,
-Conor.
-
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - ti,hwmods
-> +  - reg
-> +  - interrupts
-> +
-> +examples:
-> +  - |
-> +    sham@53100000 {
-> +        compatible =3D "ti,omap4-sham";
-> +        ti,hwmods =3D "sham";
-> +        reg =3D <0x53100000 0x200>;
-> +        interrupts =3D <109>;
-> +        dmas =3D <&edma 36>;
-> +        dma-names =3D "rx";
-> +    };
-> --=20
-> 2.44.0
+> Jonathan
+>=20
+>=20
+> >  =20
+> > > > > > ---
+> > > > > >  Documentation/devicetree/bindings/iio/dac/ti,dac5571.yaml | 1 +
+> > > > > >  1 file changed, 1 insertion(+)
+> > > > > >=20
+> > > > > > diff --git a/Documentation/devicetree/bindings/iio/dac/ti,dac55=
+71.yaml b/Documentation/devicetree/bindings/iio/dac/ti,dac5571.yaml
+> > > > > > index 79da0323c327..e59db861e2eb 100644
+> > > > > > --- a/Documentation/devicetree/bindings/iio/dac/ti,dac5571.yaml
+> > > > > > +++ b/Documentation/devicetree/bindings/iio/dac/ti,dac5571.yaml
+> > > > > > @@ -21,6 +21,7 @@ properties:
+> > > > > >        - ti,dac5573
+> > > > > >        - ti,dac6573
+> > > > > >        - ti,dac7573
+> > > > > > +      - ti,dac081c081
+> > > > > >        - ti,dac121c081
+> > > > > > =20
+> > > > > >    reg:     =20
+> >  =20
 >=20
 
---hn4Xnm/Dw7PYM+ZO
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgMR1QAKCRB4tDGHoIJi
-0v54AQC4HWNODH2r8yWAVzjiwAn8PSjSkxuy6RyXjZzUCySwIQD+KpVxdJk4gcUm
-Z6qhpXMYSROaqvxEDe0rIdh1AyGXXQ0=
-=/a36
------END PGP SIGNATURE-----
-
---hn4Xnm/Dw7PYM+ZO--
 
