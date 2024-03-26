@@ -1,94 +1,121 @@
-Return-Path: <devicetree+bounces-53638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53639-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5FF588CF47
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 21:44:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 401D788CF2E
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 21:42:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B10F4B2C364
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 20:42:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D40451F826C1
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 20:42:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A53ED41C68;
-	Tue, 26 Mar 2024 20:37:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0836B13D63B;
+	Tue, 26 Mar 2024 20:41:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RyE0IEcN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lqRdWdbq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 772B81BDE2;
-	Tue, 26 Mar 2024 20:37:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3979113D60B;
+	Tue, 26 Mar 2024 20:41:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711485466; cv=none; b=gngEvpEG/KatebIo5TBohyi6y5DsXF9C1iY/VBJsFngom1oMP1sEr5C4wR52Y2Jmgxil7wX6pENBZynnLRNtyrJr387ANyNJaBuTM26IzCaA+ue8l/WenDq4FX47t8fHobVoB2VihKfiZ98hrxjAkAhhGoeF827dnpQKtYdl/x8=
+	t=1711485714; cv=none; b=GQNFgFSibp8gI+vif/tB14D6nWDIHPjjhpboqTDgaCQ1EmbsCfm1W5hWXQfXilIdwx3F6g0Eaq7Y3BsiJeL5qjNWoQ6qSzLq9in+K0fl6kpHGn3YGlDEt+puxP5vN9h3eve5QZsKAKScmD1tyLtYcsZujs+DloJFB6hc4j0ECiI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711485466; c=relaxed/simple;
-	bh=Q+0/ltytHVNVe17dw4a66rMcIkTyRhhWaQELFnVBTFI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gW3jdXuac645l4R8+ukLYEq5bPwc6tSt5N+pnDYTho1e8StlneWHlb0SorcLfKtUeZViM5thiVpwmfdIV+MQmMhv4q893cZlTCws5sJXx7j11crQ0vCskveGz2DKnh2K2wJYe4PHvz+TeSg+6YfdYpIBLf77dn/V/jHfvcwH45Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RyE0IEcN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18FEEC433C7;
-	Tue, 26 Mar 2024 20:37:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711485466;
-	bh=Q+0/ltytHVNVe17dw4a66rMcIkTyRhhWaQELFnVBTFI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=RyE0IEcNh+PkrmksKPNXCL4zEUBaje+Mc9e8mt4+jSbTMuejZkiWj66j3zNt2kobC
-	 E3cCcMm/QNxYAiwJ96ylGhIbqIKiqOpyqe7+RjfRHHCdDI3Eersk/0GMMzBKA4a15N
-	 7b1+ZZ/xkGc0Ixof4ibRUzrDJxpPO9fKa6DsgQntRZzsWj/50BS+lrj6YVmTAcSDG3
-	 b3BeAQCQYeKPvr923WN0rYDoe+nCeYpwFYtE5h3zf0oTTHZYQr/zC7DnKgyP7d6K0B
-	 Ud3/ffrT9kkR8RS75EhgMz1HGzsMbgC8mdEGHf7s91wPH/X3z1bX9mcO/t6rqPjenf
-	 14Eco3vyLQVYQ==
-From: Conor Dooley <conor@kernel.org>
-To: ganboing@gmail.com,
-	kernel@esmil.dk,
-	robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	paul.walmsley@sifive.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Shengyu Qu <wiagn233@outlook.com>
-Cc: conor@kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	stable@vger.kernel.org
-Subject: Re: [PATCH v2] riscv: dts: starfive: Remove PMIC interrupt info for Visionfive 2 board
-Date: Tue, 26 Mar 2024 20:37:10 +0000
-Message-ID: <20240326-create-motivate-2792be1692c5@spud>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To:  <TY3P286MB26116B828A34D614C09F4E8898202@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
-References:  <TY3P286MB26116B828A34D614C09F4E8898202@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
+	s=arc-20240116; t=1711485714; c=relaxed/simple;
+	bh=k8MNtG6ifWbsFm1GbSUjmweRqYhjjniRQH0dyLaVvds=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GLa35OF7Hf/ndIPyOnKBE22B44XUmVccbtUj9t9npVFluWA4PA7rSTanf66sBQZv5lE5QI0GyKFirmD8QnK1qPgsg5DN3c7GnG9QXPeWlUUiqlTHzJpXOjQsaH2gRB/pHD0xV4psjFwJK3fQtf0WSTEdBFk35yhnv7+IS0O47tg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lqRdWdbq; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a4702457ccbso768844866b.3;
+        Tue, 26 Mar 2024 13:41:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1711485711; x=1712090511; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0gG3X0DxMVLl9Vgs8T7manlOKIHoaQYQVBQdWIT6im8=;
+        b=lqRdWdbqBZNZf7s5Xm8WCNbnDlUnGQP28Uu/VndO70GjilahD1Av1Teeo4rUt0LKQk
+         sxUlCjStNx3w3ZgIHHxDoOCIfepBZs2qHTQQnlNA2v86o2FdpIravzhZq74vHi0a4hlB
+         F96JXMKA3lKr7NKGtzQYW4+57o8HKnI/042anU9ehxMh2FdKFK8bqYBSbzZJWWCVqSng
+         3dHH9Ob7M0B6cc7ikML/auL2+vaofTA8aD8l9M+k7wkXdW5ipfP7BLX5gdI8ZqTZl1Ql
+         pwEqRaastLQx83pvwzN1F3CmC/M0rkzwk6i4AsSINaTuroc0xA+I+/bQGDENqSbaNdT5
+         tbCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711485711; x=1712090511;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0gG3X0DxMVLl9Vgs8T7manlOKIHoaQYQVBQdWIT6im8=;
+        b=sncSF8ITzf1fnkKSi3AdMg93auB/mZtwHFHpUBnG7PXWtxD86Sn3pB8Y3aVbHiRn40
+         MuTKwUeaXqA/UwCwzZ0jSFum+29qa7BXAeNP3BW91ohZAL0K+E2Oc5QYIO/cgwLT91t5
+         MqCkY1rOlYVa2WU+4XexQ2aSZisuIMFE/9dMTqekOobVkX9DM2Mr7Pscxp8sGSBpicM+
+         +S0WIw0i65/XC+Uj8ay4Mg0T0/HiG/drZU0f2mV+wYxhCJdDTUcRY4EqxPzIBub3Ce60
+         QCTn7tp8/LFaOlYCqCcqktMMy9yeVtPeNww5/Dc5vcfIHurEETZZ7L+PahwvYF4Az8OD
+         mu1A==
+X-Forwarded-Encrypted: i=1; AJvYcCW31lzl2bfazQJnX4f7JKD/okZc0Tebf3LWI0myelEwCfHUe0AfWzipb9JFs3OuWpY9IMHMXQ2FBqc5ohn577KXtTMfAD/hglsehSJ2W9tuTI2es9XVuCTWndafVFBaNJdIDQ==
+X-Gm-Message-State: AOJu0YxpcI3k0SuYB7zOdzdpG8isdgJVm5m2654ZpSjV9Bb8333vhBCL
+	XpYoW2RYLZnWLPJYMuIu+V3bVAf3owb79G4zibLYwjBtQNS9kvbR
+X-Google-Smtp-Source: AGHT+IEypnlFtIG2kDP7N68pZyJIm8S0peBBXbq/Q4TOwOfi+eWCvYbwH3Du9xg+37pGSYuMsONMZw==
+X-Received: by 2002:a17:906:275a:b0:a46:3785:4adc with SMTP id a26-20020a170906275a00b00a4637854adcmr7065781ejd.57.1711485710991;
+        Tue, 26 Mar 2024 13:41:50 -0700 (PDT)
+Received: from ?IPV6:2001:1c00:20d:1300:1b1c:4449:176a:89ea? (2001-1c00-020d-1300-1b1c-4449-176a-89ea.cable.dynamic.v6.ziggo.nl. [2001:1c00:20d:1300:1b1c:4449:176a:89ea])
+        by smtp.gmail.com with ESMTPSA id ae12-20020a17090725cc00b00a47522c193asm3282108ejc.196.2024.03.26.13.41.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 26 Mar 2024 13:41:50 -0700 (PDT)
+Message-ID: <9ea90a1a-37b2-4baf-94af-2b89276a625d@gmail.com>
+Date: Tue, 26 Mar 2024 21:41:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=472; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=flQK06d61XVdV/qN2kQBXCsv/i+05oATJwu6J3J8ZbQ=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDGnMht8sb+xIW/FtLUdJRcUiFc0f05m+3Gx+w/aw7q7jx DgD16Y3HaUsDGIcDLJiiiyJt/tapNb/cdnh3PMWZg4rE8gQBi5OAZjIggZGhlPNnIZTlUtfSGmv OneJ52C0zdprSuJrdGt7s1Mn5xwOdWT4yXg2e9+nlZ7VXpOFXZcts+D98fPRZXaOSXZHpnis5Tt kwgcA
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 net-next 1/2] dt-bindings: net: airoha,en8811h: Add
+ en8811h
+To: Rob Herring <robh@kernel.org>
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King
+ <linux@armlinux.org.uk>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Frank Wunderlich <frank-w@public-files.de>,
+ Daniel Golle <daniel@makrotopia.org>, Lucien Jheng
+ <lucien.jheng@airoha.com>, Zhi-Jun You <hujy652@protonmail.com>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240326162305.303598-1-ericwouds@gmail.com>
+ <20240326162305.303598-2-ericwouds@gmail.com>
+ <20240326192939.GA3250777-robh@kernel.org>
+Content-Language: en-US
+From: Eric Woudstra <ericwouds@gmail.com>
+In-Reply-To: <20240326192939.GA3250777-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Conor Dooley <conor.dooley@microchip.com>
+Hi Rob,
 
-On Thu, 07 Mar 2024 20:21:12 +0800, Shengyu Qu wrote:
-> Interrupt line number of the AXP15060 PMIC is not a necessary part of
-> its device tree. And this would cause kernel to try to enable interrupt
-> line 0, which is not expected. So delete this part from device tree.
+On 3/26/24 20:29, Rob Herring wrote:
+> On Tue, Mar 26, 2024 at 05:23:04PM +0100, Eric Woudstra wrote:
+>> Add the Airoha EN8811H 2.5 Gigabit PHY.
+>>
+>> The en8811h phy can be set with serdes polarity reversed on rx and/or tx.
+>>
+>> Signed-off-by: Eric Woudstra <ericwouds@gmail.com>
 > 
-> 
+> Did you change something or forget to add Krzysztof's Reviewed-by?
 
-Applied to riscv-dt-fixes, thanks! And I didn't forget, so I re-wrote
-the commit message to add some more information as promised.
+Nothing has changed in this commit. I was wondering if I should do this,
+so I should have added the Reviewed-by Krzysztof.
 
-[1/1] riscv: dts: starfive: Remove PMIC interrupt info for Visionfive 2 board
-      https://git.kernel.org/conor/c/0b163f43920d
+Best regards,
 
-Thanks,
-Conor.
+Eric Woudstra
 
