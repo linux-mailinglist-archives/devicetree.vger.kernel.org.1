@@ -1,185 +1,97 @@
-Return-Path: <devicetree+bounces-53547-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53549-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ABAC88CA92
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 18:19:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3476E88CABD
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 18:26:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F2D811F82B19
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 17:19:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 668F71C66427
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 17:26:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79E071C6A0;
-	Tue, 26 Mar 2024 17:18:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="raSVCNvJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19F59A95B;
+	Tue, 26 Mar 2024 17:26:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50B9D1CF9B;
-	Tue, 26 Mar 2024 17:18:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14898200CB;
+	Tue, 26 Mar 2024 17:26:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711473530; cv=none; b=DAHY/Y13bZ7PMWMuyFUpUjtEtV73VqdYS3V4W2HX/fn26Vj8f1v3ZTjC0H9liD0ol5ZEvwTjbn3CYWau7PVZz9g74xBlkQAZnm0diFgqw2a3EmfjYJ5yZ5r9F6dn0tfkh110iOczq9ohBvVJ7ch4VGD5DYvpQY2ClektgZyiFuo=
+	t=1711473968; cv=none; b=aZ87cXW8zg227izgsMTFszDG8LZSa76HpJl2yQb5Pkvjr2OCCj3z7DAENOVMECiotGhjWm9NJPsNsEVhCRAIo+Hft2Inmv6A1eZrbcGcydGYdCPBPZGJkVO4XeEO3RXcw82lsn2gjXUzHRWIBooEAetitIPE4gY1xxicDvm9a+k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711473530; c=relaxed/simple;
-	bh=JA/qmHRaIAjWFZrhw5zn3YbHo/eKMDK/V90JzAR7Xo0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=M/S3rXO98Nvf0F0SxRWSQNZFAKAoaA/7K/wdHiiBQrGU9swhhh9rUvsM5Dak53inEqB8pemx5rad481gXXsBJpJxzLJI97UuMwcrj1Bx7kRWXwsKw36i+l2+ZGqTU30kj2ZJI46bvY6p/Pnw8PCjU1AUoZcWLZiEgB24BhyuLwQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=raSVCNvJ; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 825BA63B;
-	Tue, 26 Mar 2024 18:18:14 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1711473494;
-	bh=JA/qmHRaIAjWFZrhw5zn3YbHo/eKMDK/V90JzAR7Xo0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=raSVCNvJiTCvzOeyNblulCOWQntBqj0gEmHgob7QFX5q5VmUY6QVabF0JXV+7Pudh
-	 v806+w1z67L0xQtRRm+pADCC82jKYQl1ZkN1fVELIZSyaQRsA3muQaLewb7UZyMqhe
-	 Sk6Wd3kugaEMigD9ftk4bRfyF8ADkurtqfg5sMHI=
-Date: Tue, 26 Mar 2024 19:18:37 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1711473968; c=relaxed/simple;
+	bh=Ka0BqODwFrLwyN3SMEtrICxiPAvB0WKMvGb82tkKccg=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=C2JSPCH3eJ8xIUQEBkCWsjVdopmioIKCbJRRrvJqKKGTijIKMb9FMrahk1PyhvMmdLuijB347PnZiB9lWwOHOL7JA8y9Cq+vHPalSWj+CUVlMGPZiJGAnShtF00UfbxoM+NPuETQgT9QRA6OgYf75nN1tuyAPbQBKSwRCSUX8Qc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from [194.95.143.137] (helo=phil.dip.tu-dresden.de)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1rpAYb-000658-2p; Tue, 26 Mar 2024 18:25:53 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: Jaroslav Kysela <perex@perex.cz>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: bcm: raspberrypi,bcm2835-firmware:
- Add missing properties
-Message-ID: <20240326171837.GB17067@pendragon.ideasonboard.com>
-References: <20240326004902.17054-1-laurent.pinchart@ideasonboard.com>
- <20240326004902.17054-2-laurent.pinchart@ideasonboard.com>
- <6cc81b1a-12e6-4d81-b6c4-6297c213d5c9@linaro.org>
- <45242028-edf7-49fc-80bf-be9eb242b4cd@gmx.net>
+	Rob Herring <robh+dt@kernel.org>,
+	Mark Brown <broonie@kernel.org>,
+	Takashi Iwai <tiwai@suse.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	alsa-devel@alsa-project.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: (subset) [PATCH v4 0/7] Add support for the internal RK3308 audio codec
+Date: Tue, 26 Mar 2024 18:25:50 +0100
+Message-Id: <171147393346.1162935.3469121716836265382.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20240305-rk3308-audio-codec-v4-0-312acdbe628f@bootlin.com>
+References: <20240305-rk3308-audio-codec-v4-0-312acdbe628f@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <45242028-edf7-49fc-80bf-be9eb242b4cd@gmx.net>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Tue, Mar 26, 2024 at 12:47:34PM +0100, Stefan Wahren wrote:
-> [add Dave since he's working on DMA for Raspberry Pi 4 and maybe have a
-> opinion about this]
+On Tue, 05 Mar 2024 15:36:27 +0100, Luca Ceresoli wrote:
+> This series adds a driver for the internal audio codec of the Rockchip
+> RK3308 SoC, along with some related patches. This codec is internally
+> connected to the I2S peripherals on the same chip, and it has some
+> peculiarities arising from that interconnection.
 > 
-> [drop Emma Anholt old address since she is not involved anymore]
+> For proper bidirectional operation with the internal codec at any possible
+> combination of sampling rates, the I2S peripheral needs two clock sources
+> (tx and rx), while connection with an external codec commonly needs only
+> one.
 > 
-> Am 26.03.24 um 08:06 schrieb Krzysztof Kozlowski:
-> > On 26/03/2024 01:49, Laurent Pinchart wrote:
-> >> The raspberrypi,bcm2835-firmware devices requires a dma-ranges property,
-> >> and, as a result, also needs to specify #address-cells and #size-cells.
-> >> Those properties have been added to thebcm2835-rpi.dtsi in commits
-> >> be08d278eb09 ("ARM: dts: bcm283x: Add cells encoding format to firmware
-> >> bus") and 55c7c0621078 ("ARM: dts: bcm283x: Fix vc4's firmware bus DMA
-> >> limitations"), but the DT bindings haven't been updated, resulting in
-> >> validation errors:
-> >>
-> >> arch/arm64/boot/dts/broadcom/bcm2711-rpi-4-b.dtb: firmware: '#address-cells', '#size-cells', 'dma-ranges', 'gpio' do not match any of the regexes: 'pinctrl-[0-9]+'
-> >>          from schema $id: http://devicetree.org/schemas/arm/bcm/raspberrypi,bcm2835-firmware.yaml#
-> >>
-> >> Fix this by adding the properties to the bindings.
-> >>
-> >> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> >
-> > Children do not perform any IO on their own, because everything is
-> > handled by parent. It is really odd to see dma-ranges without ranges.
-> > Referenced commits might be also wrong.
+> [...]
 
-Comunication with the firmware goes through a mailbox interface, which
-uses DMA transfers. See for instance
+Applied, thanks!
 
-rpi_firmware_transaction(struct rpi_firmware *fw, u32 chan, u32 data)
-{
-	u32 message = MBOX_MSG(chan, data);
-	int ret;
+[5/7] arm64: defconfig: enable Rockchip RK3308 internal audio codec driver
+      commit: 9fdd7b45da18b84d5e7d5a6b8b4b0167910f2d13
+[6/7] arm64: dts: rockchip: add i2s_8ch_2 and i2s_8ch_3
+      commit: b5ffc424360eaced41f405f0e38bcabe61fecf39
+[7/7] arm64: dts: rockchip: add the internal audio codec
+      commit: 30d72458624bb1ba7bab1c7a1d5f4c42f512010c
 
-	WARN_ON(data & 0xf);
-
-	mutex_lock(&transaction_lock);
-	reinit_completion(&fw->c);
-	ret = mbox_send_message(fw->chan, &message);
-	if (ret >= 0) {
-		if (wait_for_completion_timeout(&fw->c, HZ)) {
-			ret = 0;
-		} else {
-			ret = -ETIMEDOUT;
-			WARN_ONCE(1, "Firmware transaction timeout");
-		}
-	} else {
-		dev_err(fw->cl.dev, "mbox_send_message returned %d\n", ret);
-	}
-	mutex_unlock(&transaction_lock);
-
-	return ret;
-}
-
-int rpi_firmware_property_list(struct rpi_firmware *fw,
-			       void *data, size_t tag_size)
-{
-	size_t size = tag_size + 12;
-	u32 *buf;
-	dma_addr_t bus_addr;
-	int ret;
-
-	/* Packets are processed a dword at a time. */
-	if (size & 3)
-		return -EINVAL;
-
-	buf = dma_alloc_coherent(fw->cl.dev, PAGE_ALIGN(size), &bus_addr,
-				 GFP_ATOMIC);
-	if (!buf)
-		return -ENOMEM;
-
-	/* The firmware will error out without parsing in this case. */
-	WARN_ON(size >= 1024 * 1024);
-
-	buf[0] = size;
-	buf[1] = RPI_FIRMWARE_STATUS_REQUEST;
-	memcpy(&buf[2], data, tag_size);
-	buf[size / 4 - 1] = RPI_FIRMWARE_PROPERTY_END;
-	wmb();
-
-	ret = rpi_firmware_transaction(fw, MBOX_CHAN_PROPERTY, bus_addr);
-
-	rmb();
-	memcpy(data, &buf[2], tag_size);
-	if (ret == 0 && buf[1] != RPI_FIRMWARE_STATUS_SUCCESS) {
-		/*
-		 * The tag name here might not be the one causing the
-		 * error, if there were multiple tags in the request.
-		 * But single-tag is the most common, so go with it.
-		 */
-		dev_err(fw->cl.dev, "Request 0x%08x returned status 0x%08x\n",
-			buf[2], buf[1]);
-		ret = -EINVAL;
-	}
-
-	dma_free_coherent(fw->cl.dev, PAGE_ALIGN(size), buf, bus_addr);
-
-	return ret;
-}
-
-fw->cl.dev is the device for the firmware child node. That may be where
-the problem comes from, shouldn't we use the mailbox device for DMA
-mapping ?
-
+Best regards,
 -- 
-Regards,
-
-Laurent Pinchart
+Heiko Stuebner <heiko@sntech.de>
 
