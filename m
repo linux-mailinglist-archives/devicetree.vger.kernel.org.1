@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-53555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C04F88CB39
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 18:46:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A21188CB3F
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 18:47:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88E551C2F738
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 17:46:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A79CC1C2132A
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 17:47:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08C502110B;
-	Tue, 26 Mar 2024 17:46:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBE6D84D3C;
+	Tue, 26 Mar 2024 17:46:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eS1Kh0c/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EDGlAL5g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45E0F1F60A
-	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 17:46:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AF8221344
+	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 17:46:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711475200; cv=none; b=Hof2Wm3XPHvWVTQG9brMYIPbtiOCmNPrP6RPL7mRABxonVYrybJYQdykFiLvjNDK2avAc7+j3ynRBSI71oHqiHHBLf3OjyemhDePnDtRsv2hAxji/BZLWz6EFLnX67vtKelHEJFVzk8zvtkBbiTPgjJDT8YG7kpUkNn7YzENeXQ=
+	t=1711475202; cv=none; b=PJYGY0+OZv9ppyef4PQ6wcsrm+h7VrrzLjTFsmW8FEHtwv7GA2vFKzaHeWDZBJ79CXBApMHpSk6zUJsgbWj2RqgGpyk7swLJE4k1wHAZnG4T/VoG7shPK0DCdG0/pdO/N6w2SYCVlD4oBonqO4ZWZz3u88vKBk4N0TaAh0jIyVg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711475200; c=relaxed/simple;
-	bh=Az76Er8yXjZV/tqoHhSzJRIVBRn0rXo06jGlOz2rx8Q=;
+	s=arc-20240116; t=1711475202; c=relaxed/simple;
+	bh=GDUp9wJ+UoTRfjRoqI2yRMLcZ251pIUop5pxEzpVuSA=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=cPmLAJ4XNewMgXeS8Rhfolcdt4ydvVW7oWqOy/O8LSJGxz1SbRnkBvJ/Nln1qcQH/wJeRu0XGJIAyhf5xQVWkbl5n8/lqoipRxuNx4TwBij0DAb6BjOFRPMw8NTFitCh4CQoWGQxtLOw6VIGPt6g4IDurkLSRmzp0CZIeZh1rr8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eS1Kh0c/; arc=none smtp.client-ip=209.85.208.48
+	 MIME-Version; b=Xo3PyoNoasvfMqckcHAZ/pKk6YzQJjw+Ge9oPdiivs/JcSo4Vn9IrryWpw4fAgv9NanQuoqUPxjSkQyhLTsmTeQVxOEDL9JpDRJ3htrDB9zwAnzdgUKdDunyz+0sKohtV8vLpIEpYAzWtXZnDIXq+f0Ei1a6kXg0taCb4xr16hQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EDGlAL5g; arc=none smtp.client-ip=209.85.208.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-56c08d1e900so3423290a12.3
-        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 10:46:39 -0700 (PDT)
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2d4a901e284so111378641fa.1
+        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 10:46:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711475197; x=1712079997; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711475199; x=1712079999; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=rMq/Chsdogq+cfRuHXND3ep8x+cn4B09GRV/ht38i7U=;
-        b=eS1Kh0c/FOy5NJYA0S6xP7LpznhK0XAGKYzfH0H58he3fORWd8LHvqTDk1wnbl4TXn
-         VpfFCL4d/N/LIQv0lBpyeRaX9lGfaYTuKLyL6VYXHRIZf+dedj7uLKMQXwBVFMQtHu4G
-         ceqPBEmFYxse/yi33Sc1Ht6R2IRtB5+80fyuDw6OFSYPmaitvBcYRvUD3TSON7S50gDE
-         LBgdbyM/aeD7Kmu4p1gNDOtQKd8AVj11eIvdS1nepohMTMGnhGLo3NwBcdioYy+z2P96
-         jX9Z2JelKmm38dIyrxm9tW/Jm1UmqHIiU9h10VvcS40//raXva/y0DCAaiZE7sRNSd6q
-         UcZQ==
+        bh=C14gSplgZGLWljRtlb00xiW+Ox3cRsPiTyqaLpAbCSM=;
+        b=EDGlAL5g1Jx8bB1Of9FgZ8go2VdRt1LLnRIRO2L6e49nKA93A1JuRRAzYoo2NZPRJ6
+         Th48OaLsf2GwjU0T2+hZIcdoy/QLqjx99qbVCfK3IcNI49zwF5tgldYgHJEraEaThLra
+         1i/EUt9hj/DIVmQLko/0hv02eiH14e+HAdI75H7ryfAgb5tgB6T+iGZKCAGt1h7c2el1
+         FK1ECPrOF/f/h1VfoC19ezxr4gKvtlNiPYNxInwnT7aKUVq0YhwshSX1yjVAouXGCVnU
+         pqelCO0k4NNIipo7lxKs3TAm+RfV58Nj49Q+YEc6PETYltVOQxtn5Oz7HR3uLSYJq3kc
+         CLNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711475197; x=1712079997;
+        d=1e100.net; s=20230601; t=1711475199; x=1712079999;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=rMq/Chsdogq+cfRuHXND3ep8x+cn4B09GRV/ht38i7U=;
-        b=ub+UeuEbA/0Fa5rJA8oIgX6n3jk81ynJ+/ZnClIhxslc7OBAc9uIZOiVl22n19apoX
-         JHggyvGiOaL5H25q52jYPbswPIb0ybIKGyqh69uzQ+5ABqWPNGGjAeUhKonIrxu1myS5
-         uZSvCp/vJw7PAoJPEW8bD06CEq4fP3zj9dsau7dLaWfYM64p+qM4QWKazJ5IRtVDgleq
-         Y9MepoW3yCT2RCc7ld/f7ZUjDaonzkdV1itDePrvTr6chxPHp4z13MjLpwv9IuC9sYMS
-         LMp2fZLf/TzAYtmi95MSclyyZzSmWWe3I0uV+/kZi0uvleiUhpwqHcpSkfVT6xpuPNBt
-         +WVg==
-X-Forwarded-Encrypted: i=1; AJvYcCU/NBGb3MguWTfa1WzwX7etQPkMju5grK5rK9FRsIjp1YmS4du29560ZeiO4V28qfQPSyYvdwEldCz+R1xIV8I7khRArJ8QLtPamQ==
-X-Gm-Message-State: AOJu0YwCg37WNlTZmlMq5RlzRG9QsErUxRPlI/Jk53/s60I2eUh58Vcr
-	0i3iKx/Glum5BMXT0m1dKuGzJeIKjP9ZJfVQhJRbBIFvgs0oPUjlreCo7JKA8qw=
-X-Google-Smtp-Source: AGHT+IFsb/a8yspkgTaU63ejswPOvVq7IprH+YwgB965qrt8TOYqeYtYghC4E1sSxqaEMfHnP4XXUw==
-X-Received: by 2002:a17:906:d10d:b0:a47:16d1:113f with SMTP id b13-20020a170906d10d00b00a4716d1113fmr2580119ejz.47.1711475197572;
-        Tue, 26 Mar 2024 10:46:37 -0700 (PDT)
+        bh=C14gSplgZGLWljRtlb00xiW+Ox3cRsPiTyqaLpAbCSM=;
+        b=GbwQ8xQ9mU33J+tGjaLWFQutQaMHRnAO8JHfir2yYubTDGGx0rLEo6udHFQatH6ZIC
+         nl8BRHfQQZ4Plaldyn3FRdNcB8mOcaCPum8VydsAGCmBIVlAgS214tZywYtvSQFZ1+gY
+         PxF+S1DEtWY5aIW7S/rj8mYoqXlQUp13LgC9fhuMuUGi/vV0D06E23c0GN6G5/esXrQI
+         7oLN/zOLNJ5WHqtymeAEWL6yqNM+AE9EGx2nlQqVAQ6tf9C/F47VjdpdFDZo0ik20ZQh
+         4mpAMl9OIS+5jgWN12KczYpfFj6u9EaoXE3friHXyRh+fKxw5z4xpZq5AZRYpDrgCxxl
+         2AGQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUzVb23uc6oxtijFlSrZt8evfztw3LdKrHY0yeYZvwZ0/vDMCwlwc2+1dG6b9ahlgYV8km0XsDP403Xp5TEQISyDY4OsVq1iVaugw==
+X-Gm-Message-State: AOJu0YzL/odXoo3pz1Owq05SDGWq4EKCOoxLo01oiqqrxeH2bZ6sDaSW
+	GBal5L1Rj92oGeUudFGX6goT7UTaXSmo9OURIO2/5g1o5TPIR0qB07OsU9Qzqsk=
+X-Google-Smtp-Source: AGHT+IHpjlYocgfcalACtbl2UwhjQKJtDVwl7I/xmVa1t7F1W8q/ciAzRtEpdbYUZ9Xfi6NEZgRCTA==
+X-Received: by 2002:a2e:b34a:0:b0:2d4:7455:89f6 with SMTP id q10-20020a2eb34a000000b002d4745589f6mr291125lja.40.1711475199130;
+        Tue, 26 Mar 2024 10:46:39 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.222.44])
-        by smtp.gmail.com with ESMTPSA id l19-20020a17090612d300b00a46cffe6d06sm4451438ejb.42.2024.03.26.10.46.36
+        by smtp.gmail.com with ESMTPSA id l19-20020a17090612d300b00a46cffe6d06sm4451438ejb.42.2024.03.26.10.46.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Mar 2024 10:46:37 -0700 (PDT)
+        Tue, 26 Mar 2024 10:46:38 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>,
 	Konrad Dybcio <konrad.dybcio@linaro.org>,
@@ -83,9 +83,9 @@ To: Bjorn Andersson <andersson@kernel.org>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/3] dt-bindings: ufs: qcom: document SC7180 UFS
-Date: Tue, 26 Mar 2024 18:46:31 +0100
-Message-Id: <20240326174632.209745-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 3/3] dt-bindings: ufs: qcom: document SM6125 UFS
+Date: Tue, 26 Mar 2024 18:46:32 +0100
+Message-Id: <20240326174632.209745-3-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240326174632.209745-1-krzysztof.kozlowski@linaro.org>
 References: <20240326174632.209745-1-krzysztof.kozlowski@linaro.org>
@@ -97,94 +97,37 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Document already upstreamed and used Qualcomm SC7180 UFS host controller
-to fix dtbs_check warnings like:
+Document already upstreamed and used Qualcomm SM6125 UFS host controller to fix
+dtbs_check warnings like:
 
-  sc7180-idp.dtb: ufshc@1d84000: compatible:0: 'qcom,sc7180-ufshc' is not one of ...
-  sc7180-idp.dtb: ufshc@1d84000: clocks: [[39, 99], [39, 7], [39, 98], [39, 107], [36, 0], [39, 106], [39, 105]] is too short
-  sc7180-idp.dtb: ufshc@1d84000: clock-names: ['core_clk', 'bus_aggr_clk', 'iface_clk', 'core_clk_unipro', ...] is too short
+  sm6125-xiaomi-laurel-sprout.dtb: ufs@4804000: compatible:0: 'qcom,sm6125-ufshc' is not one of ['qcom,msm8994-ufshc', ...
+  sm6125-xiaomi-laurel-sprout.dtb: ufs@4804000: Unevaluated properties are not allowed ('compatible' was unexpected)
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/ufs/qcom,ufs.yaml     | 34 ++++++++++++++++---
- 1 file changed, 30 insertions(+), 4 deletions(-)
+ Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-index 1ab3d16917ac..7e6d442545ad 100644
+index 7e6d442545ad..cd3680dc002f 100644
 --- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
 +++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-@@ -27,6 +27,7 @@ properties:
-           - qcom,msm8996-ufshc
-           - qcom,msm8998-ufshc
-           - qcom,sa8775p-ufshc
-+          - qcom,sc7180-ufshc
-           - qcom,sc7280-ufshc
-           - qcom,sc8180x-ufshc
+@@ -33,6 +33,7 @@ properties:
            - qcom,sc8280xp-ufshc
-@@ -43,11 +44,11 @@ properties:
-       - const: jedec,ufs-2.0
- 
-   clocks:
--    minItems: 8
-+    minItems: 7
-     maxItems: 11
- 
-   clock-names:
--    minItems: 8
-+    minItems: 7
-     maxItems: 11
- 
-   dma-coherent: true
-@@ -113,6 +114,31 @@ required:
- allOf:
-   - $ref: ufs-common.yaml
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,sc7180-ufshc
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 7
-+          maxItems: 7
-+        clock-names:
-+          items:
-+            - const: core_clk
-+            - const: bus_aggr_clk
-+            - const: iface_clk
-+            - const: core_clk_unipro
-+            - const: ref_clk
-+            - const: tx_lane0_sync_clk
-+            - const: rx_lane0_sync_clk
-+        reg:
-+          maxItems: 1
-+        reg-names:
-+          maxItems: 1
-+
-   - if:
+           - qcom,sdm845-ufshc
+           - qcom,sm6115-ufshc
++          - qcom,sm6125-ufshc
+           - qcom,sm6350-ufshc
+           - qcom,sm8150-ufshc
+           - qcom,sm8250-ufshc
+@@ -243,6 +244,7 @@ allOf:
+           contains:
+             enum:
+               - qcom,sm6115-ufshc
++              - qcom,sm6125-ufshc
+     then:
        properties:
-         compatible:
-@@ -250,7 +276,7 @@ allOf:
-         reg:
-           maxItems: 1
          clocks:
--          minItems: 8
-+          minItems: 7
-           maxItems: 8
-     else:
-       properties:
-@@ -258,7 +284,7 @@ allOf:
-           minItems: 1
-           maxItems: 2
-         clocks:
--          minItems: 8
-+          minItems: 7
-           maxItems: 11
- 
- unevaluatedProperties: false
 -- 
 2.34.1
 
