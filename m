@@ -1,109 +1,132 @@
-Return-Path: <devicetree+bounces-53621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53622-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BE2B88CDAB
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 20:58:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B45388CDBE
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 21:03:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BCA3E1C24800
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 19:58:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 66209B27ABA
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 20:03:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C55EC13D279;
-	Tue, 26 Mar 2024 19:58:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F50013D28E;
+	Tue, 26 Mar 2024 20:03:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="ttpc+Uvr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="t6mXq35j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3859713D26F
-	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 19:58:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A14D63DABE1
+	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 20:02:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711483106; cv=none; b=slN9fTczilUX3cvdxfUaEgLh9Ii6BqSPLTq0c6rd2iaR9VZwO3gAfsVnhnxBDZA/OFfSpQYqRCUuqd53+vOqYGTx5k6EuNNUJwpXOH9v4dRVrrOkE6NHbMMOYA3LmjVIVI3nStzxbQC88dLkIvvHYwg6ygMbaOXFrPMe4bP8N+Q=
+	t=1711483381; cv=none; b=jNUEe9pZVlHOGZ+hhRg/jtTmnN1o3gMGmGHUki2/LfefWG4r/N4OiJ+ZIoYwcRO6nydpOwlG8lQyG5lKb7jNs0mCNHLt+6VGaWCesLZRwEKo/Sd4+ASVXIHYZzcg16zx0ljJ6bOuXaWLnutAVeV1WbqeHjlv6E9Th7Dmd6Ph6Ec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711483106; c=relaxed/simple;
-	bh=xCYO00GEeHZ0vGGTmeWkp874jMs5RtNQgkYQEldVLlk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=UE0PA2Pe80Yp6NMkdVA+X8VjKzy51kPT1YaHSyRyhFdewtfh2Zc7yqvHuTWZot73B7S7bpWnqg4//UZhP8esiSyahAPpOhlMbMfr2c59+Xw9Fem71Fl4+4WfgzDcmPT98mnX89b+77ozSW7UT/lqAC03Bid7VL/yPWN/UXP8emE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=ttpc+Uvr; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id B996B1815;
-	Tue, 26 Mar 2024 20:57:51 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1711483071;
-	bh=xCYO00GEeHZ0vGGTmeWkp874jMs5RtNQgkYQEldVLlk=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ttpc+UvrM33y4lluL0FUDhPTYjb7/nW/T2Ao0Uexem0rXxJu0ZICFI9CZJuuLu1Oj
-	 H6k3GCLbK6TKIALcyyFPPviVhyLWTdJ0+A/cKJfRxVysqq1+IRF6DiYhWbw/AJS7ww
-	 JArVW6tS5P7YrcpBOXSvnhSxNEOJ41UYrJVK9YjE=
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org
-Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Naushir Patuck <naush@raspberrypi.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Nicolas Saenz Julienne <nsaenz@kernel.org>,
-	Ray Jui <rjui@broadcom.com>,
-	Rob Herring <robh@kernel.org>,
-	Scott Branden <sbranden@broadcom.com>,
-	Stefan Wahren <wahrenst@gmx.net>
-Subject: [PATCH v2 3/3] ARM: dts: bcm283x: Drop unneeded properties in the bcm2835-firmware node
-Date: Tue, 26 Mar 2024 21:58:07 +0200
-Message-ID: <20240326195807.15163-4-laurent.pinchart@ideasonboard.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240326195807.15163-1-laurent.pinchart@ideasonboard.com>
-References: <20240326195807.15163-1-laurent.pinchart@ideasonboard.com>
+	s=arc-20240116; t=1711483381; c=relaxed/simple;
+	bh=RWQXQAKN7KVRdFiOpjgCoEEoGNI1cTcKyz/5WyufIYY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=cOQnPRtTNR6ak2BKXleCRLwGPYOzx5V1IJcm/66VesA0zYR81LhfjtwCAKgrkvqEw/jY+kzmeSxKud1Wf/JFt9v8DQ0gGVJxsNE8j/RvlT72IjMpjDcy1BqiOBX4AbedV0r+2yQm8Aqt4pzlQy0Sdx2BP//qB3xsDXkSNMQbSUg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=t6mXq35j; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-515a97846b5so3232208e87.2
+        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 13:02:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1711483378; x=1712088178; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=j2lHV/OHCqfe7Nek5g8QCJ5Ns0UmvS2CSdkqiB49C5E=;
+        b=t6mXq35jMiFGTFHU5ItgoCHBuQ1QeEMYBPM3E/0TR/N7WYWq0mkmgSYZwz2q+t4Rce
+         0w9CfNJ2bRQzrVakmYweh3kMmd/9Z//zwGj5AFRuUlJ5VyuqQRQB9EVod+8JutORoCkt
+         gAEcxhBc+3UbDS+TXcfYW0l/qo9OY+HwNzDJOILnfBS3/D47Fr0Xx3/yJ98jlD51gk5K
+         gCJB4CkKDrZwvokkWe79Ph17Mass+1XZqR5Hktzri1X8AV6I5WQOwUQEY1icROPsuUXl
+         hk9n/sk+1znSf0ZWJ6IFBAkxkZw7LkwEHf++NwaAmwcZxlSGdJDPw65H77vWjpUXYpFf
+         YbQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711483378; x=1712088178;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=j2lHV/OHCqfe7Nek5g8QCJ5Ns0UmvS2CSdkqiB49C5E=;
+        b=SlwpzmCk7lqFXhfw3CChRxGL5RT77nNB0tgWlp8MAmRvTlcR6HgVxsJ1dXGXpI0WAg
+         13AIGAwt0vNtcIgeKZ9881gvYor46FhDaNDjhDVzRW+SNQXIVlCBUtdkHXLk7r3oR+ET
+         Foaz4iLHyQreH6L04hst+B5AGaOkrJVoECRyRpgBwya+bIiPllONv7ATSLpb+dfKLvvP
+         Sw8kwnzjtMsHLNaAAvfwPhASjMf1Fl6LyPau5RdafQ9NztZCojKZcuDWn3rNIz8IBQs1
+         dB0z0l11EuN1nN2KwkXqMaPZ9h6RDDVNGs+dpdQj5N83kSTp2CC0jsc6ZBuZRDNUP6ne
+         uGbw==
+X-Forwarded-Encrypted: i=1; AJvYcCXj0XhFzw1BDIbaWBIhSKxE2XZEA5ES91tdk65hKEsRIs+rZAmo4jthQlv/1O+B9Z16k/TaZ+gbENyNCVOEtoSCNZD8VmU71hVvCA==
+X-Gm-Message-State: AOJu0Yx4zWcDQZ7SEaoeDKltgyDv9FBcKlJdy86475ksj9hd0xPXvCob
+	AH2lSOdTRZUSRmS2qHBUh3GFVwSLXnPm9lzWbab62gW6WRaP35Wl9WxVulDCF1c=
+X-Google-Smtp-Source: AGHT+IGZo3966n6r9TccyzZ0QA/JixvswpLjAc92CRn92e6XWXB6dSZNAnLZOUf4kh4wEQURJripFg==
+X-Received: by 2002:a19:5e58:0:b0:513:a724:3b9f with SMTP id z24-20020a195e58000000b00513a7243b9fmr7416124lfi.7.1711483377475;
+        Tue, 26 Mar 2024 13:02:57 -0700 (PDT)
+Received: from umbar.lan ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id a21-20020ac25e75000000b00515a7984acbsm1279408lfr.94.2024.03.26.13.02.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Mar 2024 13:02:57 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: [PATCH 0/4] arm64: dts: fix several display-related schema
+ warnings
+Date: Tue, 26 Mar 2024 22:02:53 +0200
+Message-Id: <20240326-fd-fix-schema-v1-0-4475d6d6d633@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAO0pA2YC/x2MywqAIBAAfyX23ILPwH4lOliuuYceKEQg/XvSc
+ RhmKhTKTAXGrkKmmwufRwPZd7Amf2yEHBqDEsoIrQaMASM/WNZEu8fFyeiMd1ZqC625MjX7/6b
+ 5fT95QY4XXwAAAA==
+To: Rob Clark <robdclark@gmail.com>, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=798;
+ i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
+ bh=RWQXQAKN7KVRdFiOpjgCoEEoGNI1cTcKyz/5WyufIYY=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmAynw3ac+cfKVGKWXENlS14UmEQ6NE7Jl+Axwr
+ 5bJiyMEMS+JATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZgMp8AAKCRCLPIo+Aiko
+ 1ZKpB/wLHJQ+d79aFqPld+Jyd1moiwje+nvFXrNZvI0OwBY4KfhCPBGJyMCLmbv2MWbfghtwoZC
+ vgLZAzOOzxoZrCcSZCIVxU5Pvh2TeZuj0Ra33TkWVq8pciT54nuX3C+RMGoLIrJ7pULKtgY0EKg
+ NtloV5GhibGmeWDpNMBpfEGHj7EJFUOS+Lv+B0Po5rWooujP8wmquvSB3vyFU1BiSyOxUjjV+9+
+ 8IRq5XoW5JX3pmi/LuG4F/n/CdkjjcPvp+ouXYZZpCham6Cf/AsaLHNLz0/Qr2uAesUHNc9pHo2
+ xpq75TuFHXy0uc56XHQm3FB4id6o2edrSozRii80L06RcHIx
+X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-The firmware node contains a "dma-ranges" property to enable usage of
-the DMA mapping API with its child devices, along with "#address-cells"
-and "#size-cells" properties to support the dma-ranges. This was needed
-due to usage of the incorrect device to perform the DMA mapping in
-drivers. Now that this has been fixed, drop the properties.
+Fix several warnings produced by the display nodes.
 
-This effectively reverts commits be08d278eb09 ("ARM: dts: bcm283x: Add
-cells encoding format to firmware bus") and 55c7c0621078 ("ARM: dts:
-bcm283x: Fix vc4's firmware bus DMA limitations").
-
-Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi | 4 ----
- 1 file changed, 4 deletions(-)
+Dmitry Baryshkov (4):
+      dt-bindings: display/msm: sm8150-mdss: add DP node
+      arm64: dts: qcom: sc8180x: drop legacy property #stream-id-cells
+      arm64: dts: qcom: sc8180x: Drop flags for mdss irqs
+      arm64: dts: qcom: sc8180x: add dp_p1 register blocks to DP nodes
 
-diff --git a/arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi b/arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi
-index f0acc9390f31..761a9da97bd0 100644
---- a/arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi
-+++ b/arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi
-@@ -4,11 +4,7 @@ / {
- 	soc {
- 		firmware: firmware {
- 			compatible = "raspberrypi,bcm2835-firmware", "simple-mfd";
--			#address-cells = <1>;
--			#size-cells = <1>;
--
- 			mboxes = <&mailbox>;
--			dma-ranges;
- 		};
- 
- 		power: power {
+ .../devicetree/bindings/display/msm/qcom,sm8150-mdss.yaml   | 10 ++++++++++
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi                       | 13 +++++++------
+ 2 files changed, 17 insertions(+), 6 deletions(-)
+---
+base-commit: 13ee4a7161b6fd938aef6688ff43b163f6d83e37
+change-id: 20240326-fd-fix-schema-b91f94a95135
+
+Best regards,
 -- 
-Regards,
-
-Laurent Pinchart
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 
