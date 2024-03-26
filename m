@@ -1,286 +1,377 @@
-Return-Path: <devicetree+bounces-53219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36EFF88B8F9
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 04:49:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 171F688BA14
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 06:57:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E10082C2D36
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 03:49:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3AD991C29F36
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 05:57:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44198129A70;
-	Tue, 26 Mar 2024 03:49:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="EDcQYzEt"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6F3212AAD2;
+	Tue, 26 Mar 2024 05:57:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04olkn2037.outbound.protection.outlook.com [40.92.46.37])
+Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2113.outbound.protection.partner.outlook.cn [139.219.146.113])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4C57128823;
-	Tue, 26 Mar 2024 03:49:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.46.37
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8F1F12A177;
+	Tue, 26 Mar 2024 05:57:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.113
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711424955; cv=fail; b=A3MjRDvgzj2V7ND3as/NiHqpaNyLeEyC5I1IknDmNnVRDV5yoJxf9xbO5PQT/8P0S6tOXowA6xs25ZPxoinYNgRP6LY6XrB/4xb102WMHbOgB4v61O9i/es++TMxPXknFIDGdbjhztKdH2tiFXlzrBGYGvLIT60Dg5DpC/kIGPE=
+	t=1711432666; cv=fail; b=ht6FXx9R6VfeujQKryHm8blkVOCocT+n28mkWUlqv2rQBeBW0Xbu1UetexnMX42MXj41h6GNu4WYQuZuBnuGQnnmyFYoehIB6RCeWNo5DJUv25A9ThCjaJoYrtYe17KBeAaC3sraWUsx4gmFO5NNGeX74YaVKr/K4ZBf4FscasI=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711424955; c=relaxed/simple;
-	bh=PzrvRShpMTXcWrwCB0dXqsinyj1PZ0cFCYuW2RmhQO0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=iyzrB9P6WopGfjebLGIaefN/ZWPS0W6ePeqQkrK6d6VXXubLar4FOFyfXuaoKy13upv61f2vkYfgIGzxHoOvKwklbapBCaxH3liDXKU0bfhCJ2glswFPwrh9w0AlvXNxPbzuQx1Mag08X85tLea9DVT1RHKIuVyf5i0KNKmwACs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=EDcQYzEt; arc=fail smtp.client-ip=40.92.46.37
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+	s=arc-20240116; t=1711432666; c=relaxed/simple;
+	bh=QEFJoGztdGQpEOPTzthZxXJJ0yfmzqLsZrnv3gTZ8kw=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=LVr7HlHu8cp82mWDQaCOOsFB0vBqxN5CaJMCgHDmrtoM7Qu51M8IuUaxHm1K+AybmxQJfCv9HY1vMGWMVtQzHeAvzwy0w0MR0ivddLGE0HBdunrV9x2HRAHro7LhA55DvZ4VnxJ3TEXoaIynYpy/RxkoMdZSocPm4daMtPsXrq8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.113
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RB0ulqcQZTT4mfmWEMhOwT0i6uBIiLN6rDdbiyxqBQchTCZnYrzBEdLpyat+8g/JIqchcfSpThj9zE/i4yOGx+7k95C5y4nH8DxE8lPg4RfBzYNiVV2GdqoOEE78/iexItQslICE5+lTuKpcTRwI/NnCFZ2hpEfNCKxyHhzMGzRuw+sDlOByrDd6ic7G7QhWLMimzgaaYkdKUnB8eoCTwMkCxRmjZG3vviy4UZ0LCos6nh6u3GKo8bfpllR7Lxu3GBwKDYZ3+TcOuVFyr17i7CQhM/dI2HUeD5XHNODWqxNpCh0kTliyY4m8+FAZiECyFTP/+X6uC8ErALd5wQBYrg==
+ b=eUFtCZmCcG78OUJJ2x1NMN8f6JNN8aby2Kp+breH2ExSBc8Qx+cU4ISNXYkv6zyUzz6XfVkU0bP2VsKhagUpMEFttax83Alddbhq1CEhpW/MHkRPb8YEW96fZjM9G/lZ4MYr8dC8l6+lnSbqCOAx4XQds55fr4zXA8kYucdpfwnurfYp5trJQh8tSrQk3fvOriPfmZqSUQPcYsHtZvvswLwWfbKX78iUtVuNW+bvt1PRn2vr7/Cr/gsXbGAiv7px4rwO4f+wk074bzcFkxQjgq3vKxhPo5lNdV3lkIulR212toZMQ+8X10Obe0dt4G0YLkWCfkOieQM/A9EiyR14+Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=p5YfOcxJCSWRwShjx3CXCGHIkjc/FH8KTY5PHD74Wjs=;
- b=dLiCM0bTe1rb9F7vpRjXpJXi1DuuPSsB0wKotfJzUdbEsucLsJfoJG03NI2oycRVwQ6xnVgJZbm0WXyyhaNldJwXn/KTmDR0SdoyjL+HNppmTKz2z1iYRbp5uRu1Ypz0c8IP5PzNZfkPHn0CsJL9KRtsOoh+uSUorZclEKjnUokC3gb9xuNGZDfd9OJD/yT2M1/1y7hSDuu0MrPCAYo6AtUf6Gu4xIjSKmD/BKlJKs6Th+sOfoy06Q+nW9MWMyvIJxzhQeEEcB5n2JehZQYINOoZBbg8tm5ot0EDUQFqfUUTcwKv7cF+wXs3pcRNPJP05QIdrI/Oi26xssPTAeA4Lw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=p5YfOcxJCSWRwShjx3CXCGHIkjc/FH8KTY5PHD74Wjs=;
- b=EDcQYzEtE1P8W81vLU6JqRocCZMbk01FJc3F3OLzL1872oUS7nCtftgJlxEBrZcuKsKEGTPwjr7g7P2GdzfYrO2ptAcXJ9K0KcBAi5ona5z2ujMDSaVCUhXDgLFiR0muVjkO9kpFpchcfYmfe5xeOTfBRQ/hTlwQgr6Sc4e6QjV8aegEfZsCPGGqqaufAbiSrt9JtSvr58eV2+jPYAaEAPJx4eWDc+CYGpJ1XBCsB9sqhagTBEob+KbyCJsH5I0bVe+vSuty6BMau9s32s2u4uTdi+DKNeTPQ1GDRRURLEh6kAINhgEHzTgwq3ssLzPvpn5MlF4PXw2sV3dnv5vbbw==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by SJ1PR20MB4883.namprd20.prod.outlook.com (2603:10b6:a03:456::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.24; Tue, 26 Mar
- 2024 03:49:10 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::182f:841b:6e76:b819]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::182f:841b:6e76:b819%2]) with mapi id 15.20.7409.026; Tue, 26 Mar 2024
- 03:49:10 +0000
-Date: Tue, 26 Mar 2024 11:49:15 +0800
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Frank Li <Frank.li@nxp.com>, Inochi Amaoto <inochiama@outlook.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen Wang <unicorn_wang@outlook.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Jisheng Zhang <jszhang@kernel.org>, Liu Gui <kenneth.liu@sophgo.com>, 
-	Jingbao Qiu <qiujingbao.dlmu@gmail.com>, dlan@gentoo.org, dmaengine@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v5 1/3] dt-bindings: dmaengine: Add dmamux for
- CV18XX/SG200X series SoC
+ bh=0VKYOlHx111UP4iIg1zRQqo68TXjfFD47BnZK8wwOSI=;
+ b=IN3S5nsddZiz98SsKPz/gKH5EuOTtYPhWEWhEJB5slmVZS5HDLqDiSBibqW1XZB4OQugvNnKDwRcrn9r5GXoslHJUszzN8mFkNDA0lmH82SCoIVmdN/51MrPI6s53xJwLXF4tn4BGowrMzmJBZEZxuL49/VP0A5gVkVWZlu1zEBfWHCsI2g1J/l+cIVfxpEhoCtyTKgWtyl04cYNHdpb4ipEkT3jCX0k4CetTx3r6CZMp4KY/LZZn8p+r4LCtH5TFpQaiG+EtlHLeIQ66SXLeXb66fpcSLxFhpc16RRMqzGG2pmV3wq9K8wg+9P5l6LqoqQ6hlouQkDsA2SJ+9pOYw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Received: from BJSPR01MB0595.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c211:e::20) by BJSPR01MB0883.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c211:e::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.32; Tue, 26 Mar
+ 2024 05:24:55 +0000
+Received: from BJSPR01MB0595.CHNPR01.prod.partner.outlook.cn
+ ([fe80::d0cf:5e2e:fd40:4aef]) by
+ BJSPR01MB0595.CHNPR01.prod.partner.outlook.cn ([fe80::d0cf:5e2e:fd40:4aef%4])
+ with mapi id 15.20.7409.031; Tue, 26 Mar 2024 05:24:54 +0000
+From: ChunHau Tan <chunhau.tan@starfivetech.com>
+To: Rob Herring <robh@kernel.org>
+CC: "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+	<pabeni@redhat.com>, Emil Renner Berthing <kernel@esmil.dk>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre
+ Torgue <alexandre.torgue@foss.st.com>, Simon Horman <horms@kernel.org>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Andrew Halaney
+	<ahalaney@redhat.com>, Jisheng Zhang <jszhang@kernel.org>,
+	=?iso-8859-1?Q?Uwe_Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>, Russell
+ King <rmk+kernel@armlinux.org.uk>, Leyfoon Tan
+	<leyfoon.tan@starfivetech.com>, JeeHeng Sia <jeeheng.sia@starfivetech.com>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-stm32@st-md-mailman.stormreply.com"
+	<linux-stm32@st-md-mailman.stormreply.com>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-riscv@lists.infradead.org"
+	<linux-riscv@lists.infradead.org>
+Subject: RE: [PATCH v3 1/1] dt-bindings: net: starfive,jh7110-dwmac: Add
+ StarFive JH8100 support
+Thread-Topic: [PATCH v3 1/1] dt-bindings: net: starfive,jh7110-dwmac: Add
+ StarFive JH8100 support
+Thread-Index: AQHafpGsjamK/7T4cUWKv8+vn3wKDLFIpDKAgADW9XA=
+Date: Tue, 26 Mar 2024 05:24:54 +0000
 Message-ID:
- <IA1PR20MB495309ACE73C4308F1329375BB352@IA1PR20MB4953.namprd20.prod.outlook.com>
-References: <IA1PR20MB4953B500D7451964EE37DA4CBB352@IA1PR20MB4953.namprd20.prod.outlook.com>
- <IA1PR20MB4953E2937788D9D92C91ABBBBB352@IA1PR20MB4953.namprd20.prod.outlook.com>
- <ZgJDCL+aq3ZTE6/1@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZgJDCL+aq3ZTE6/1@lizhi-Precision-Tower-5810>
-X-TMN: [mw9wSZjSZKgP+XZvTYYzxcyMX0qfkNAftMfEIDQXQmM=]
-X-ClientProxiedBy: TYCP286CA0151.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:383::8) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <vyzqj6ykjjeb37bh3enxngsevrovixxsqgi22jezbk7pjniqii@x2i6p36zxfyr>
+ <BJSPR01MB0595A42481D25AD7875157199E35A@BJSPR01MB0595.CHNPR01.prod.partner.outlook.cn>
+References: <20240325085131.182657-1-chunhau.tan@starfivetech.com>
+ <20240325085131.182657-2-chunhau.tan@starfivetech.com>
+ <20240325162245.GA4167001-robh@kernel.org>
+In-Reply-To: <20240325162245.GA4167001-robh@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BJSPR01MB0595:EE_|BJSPR01MB0883:EE_
+x-ms-office365-filtering-correlation-id: 17594b98-94fd-445c-86e0-08dc4d5511eb
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ YMSHP0IDPcIQ3qqV3xmkKk4wZ3Eaz2gHFCs78gv/dhQJZRBXSqlBtkhAScr39+D2wlfufWyVtTfjCySZFIctMivx6i8PcbcLPip/SC68J4lT/KXiDIfdNxmJlEt/3+WgkwK7ivochMoCyXbd1NL6E73B9u7VwG4p/6k9wPX79sVETD1Hh0xUTKjdq8mEgmkV8T2IOG5gwT+PQhshKljis18eJ+VJW2RnbgY3+fOL1kCd4rajDIWfdRELybDqBUZNs/6vTu/g4cGSWV1dI6/NLRXXM2YCY6ZB18xQD+KlCfDLg/6t4VWvz4YWJCW2o5SMxqzW5u6qNTy4p6+NPIXWN+ocwl5+O5BTV04/iJfXpqx9pT6v+cMZyov1V/M/K8Q8LYWNUjvUgS+6ILPzjLFq10GfwEWaM5dk+FRdCyziuk0Zc4jmSGwkG5tuY296jfF52/zsq3Bw5htlW9jBBJiONZ1BvkMvannZ+/Ngpc1XlM1YrsR1zLCd+UUOEN6bw6DwC/dkEH28er+tiISjVv3aEJZjO7Ze7X7FHBkYlLYRf4iltASDU0WldTT8Xo4oUbzIiYpo/3j63QYqy4F/rAyoIPqRXTKJpPkwMkr1f7ynYjzZkj7dk5tomflzzICBSZW+
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BJSPR01MB0595.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(41320700004)(7416005)(1800799015)(366007)(38070700009);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-1?Q?+Vge8046VWoyqU9s4i5XR4MsH7R/NQATm+ddg9eyjLW1vtoqTZJzWpFc2E?=
+ =?iso-8859-1?Q?r2dI4rFZ72JkMUTpdlVtlk1AxwPHkdh2M/5ZQhkmfaz1uF66UjRkmyTBYE?=
+ =?iso-8859-1?Q?yEHZLVdAAPeUHT0QND1p3TjQOK0YwCgKxsQi2RuT99ndGxs9+zOxMQuYS3?=
+ =?iso-8859-1?Q?sRQbsBMJcv3VMIPWqjishMJb8O5cqG9q5HYv0+1aqZE9FzO02VhWmQgked?=
+ =?iso-8859-1?Q?vG83uFiDbZtsPnbBDFOanqHmIsoR528fysZnow4o5p5NLtMm+ePfiR1snz?=
+ =?iso-8859-1?Q?wlOUI90vx48zuVKYoxQ3SYVia6VlHjM3aSipPloiJW9ZmjUNLnyn5JEjvc?=
+ =?iso-8859-1?Q?mXbRAcYMzc8OieNezqupzcRUA3ogTwhf9SktZA9tEyQx3kvcMGJlomWYhE?=
+ =?iso-8859-1?Q?opfLcVUwjm7/6/q6yzVgHe/eBogYyg1tlITaKFkk9dSj9bICg5rxKXTW+T?=
+ =?iso-8859-1?Q?zxLHLWMHpwwEY+SgrEaMXupcNfGVOOMpsNFn7PjtmpclU7iD9aqEOKdAc7?=
+ =?iso-8859-1?Q?QdICipI7WoK6hGetLkwHNl7+rXHaTRK97vvg0yRPrSVq5OkxyBlQY++/+H?=
+ =?iso-8859-1?Q?XG3F/oyrvH/Mlr5TBJgeifBDpDZLnlVprNyQfUG7NoUMGhPUGxuoFdFyJ/?=
+ =?iso-8859-1?Q?w4giWrFBFTff1GZwVV+8jqkHUAtgLgIO71RsQpKpC3hR722+KDitpHa4iY?=
+ =?iso-8859-1?Q?jWJeuCIIFLm/u99BGWBCO0zWDlurA9oWdouVm4WejN3lQx66WNWe96HY26?=
+ =?iso-8859-1?Q?3/5ysfx5y2GzXpcEgIlF7ycGnJnNOq5zQ7FECj/h9wL0b1ziXioEfZdE/d?=
+ =?iso-8859-1?Q?foKdrKOmyr6JlnMWVqI8qd5ZgWcqnNMq+QEqcHTqvzgwgPKgpF+5LQXghE?=
+ =?iso-8859-1?Q?kYrU2JVl1nApjl+1tkR9+R/t4Md05G8TB6mb51wGRtv0oQr3AkK5h4ZxOo?=
+ =?iso-8859-1?Q?+nH+G+8o+HTjEvpb2vJVOrO1bdap29noJYycfwqsgwaCSSWnFi9CxD+OeO?=
+ =?iso-8859-1?Q?nDltj37B81h3wJamPScRaLGrGkYmhl9MgXJZk+9vNNs/vxR4te+e6ppbCT?=
+ =?iso-8859-1?Q?GC2bs2hkCfUzAWou7LdUHhb2DUCmq7C9CvL46P8cphV9tp/ha5WqHcdX19?=
+ =?iso-8859-1?Q?RpY2ZwaQd82hdJNgy35vc9VvltRHuaLxUZse1cnIWy5eCpUILzivAQoXv8?=
+ =?iso-8859-1?Q?++Jx1EgSHbEmRG7DOkR5tEpI4qwKU9Gm9dOhGDmq4a5/439yvw1aoKdmOo?=
+ =?iso-8859-1?Q?aM1zhcI+Rf9WCPdRSqMBF8kFP/WOjfQP5dhkl2FSm54YvO+19eBBh4HRYk?=
+ =?iso-8859-1?Q?KkKRpKD7mRm+tfVOqEN4H6qOV8IuZ7CYwFP2jYB9V219qxuGIY1cnZD4kM?=
+ =?iso-8859-1?Q?Ce3k/lHUef/zJaAVC277YumU7UiFeSM/9rhKwDWZEwIiLgNCNq88LnXZ38?=
+ =?iso-8859-1?Q?8YzvmykaOIT+MS1rDBNsvCGU5tGelzmyEBWrFzKuyHIrkTNi10B/7v+mtc?=
+ =?iso-8859-1?Q?CjsZtEMG3o7mSlKqhOfhHoCSwqqAMr9p8dyWJQMhJNpGnf3BrNgfvU1BTd?=
+ =?iso-8859-1?Q?8lqUwMhgG7+ngW2RBcmV4xiD4bG6zGwwjQsbW3UC5IbgnfYTWtxHI1viOx?=
+ =?iso-8859-1?Q?TsjU6cKSqVr1h4nBk11X6avAaT5LqSO47MeNCg8C4utritONtEM8Gjkw?=
+ =?iso-8859-1?Q?=3D=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|SJ1PR20MB4883:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4da90dbf-aedd-4658-3caa-08dc4d47b179
-X-MS-Exchange-SLBlob-MailProps:
-	RlF2DIMZ1qXOkXGJ+Mozsa5bhT5ExeELhvMJURViLdTEECx7fx12iLB70y/l+lS7/0sRFhXvDucEYu/IphHy0Ac/eGgCywhG9zCrq9jg7L+B7foBdii8eKkdzkrFIfSzEa4kaCWGrULbs40V2JS0Wp3WXWC0xPZgvYCFe1ZB+6P3MBO64iFP43Qv7h9JqLA1Vx6+DuQtEJTFyOppM/GocyRiJYVk92Jyy5H2WyFyO61Ym+1FkGRrahpziSWMREcvs6mGzKOqAd41MkhDC1xJ1CViIH9CFbD35yv8Hw3gHH+kud3VfPpzVZ5mKH1OVGjPfBeToJXpZt+zCwPglxWU/zgEIo+CgIyXEBXatR2EbLgcxGU7OXtQyX5yQeF4nZ0rwf/Fh9JoZOksMws6+57FZmjeJCcUgz3w+KAgIYablQzthaAabKmUTGvANCec4+oK7jQvJpP/5ESIg5+Zhk4jvSLYUJ7quweCYgSwna6iSoZBKR92QLPpI1JDDkKRKLSfpfhtV5/da5d2iL82tJMwTds8l5pUkHVkJQ+hZWxP5F6bf71VMrLFsXNL2KDpjuV8py5mYm3+JKl4aNwECVQN9ecOewXJoQQOeo5yR52hEwENfhiCMQ0J1wxDo5Jrq3bBffxvvVEHaFeEliDZnqieDw45Eg8OgqSWc8KLDF3IwRp0lUfizR9INOOYLg0lVlUvubYV6iPrUAnGzjSSxHBe/dyPTiVkY4Vd/qWxqMha2ZDSnEbPZ6EbGxHERtqMyv7PzEhx9R8ok1spMfstl2YHHi2r4Cfrz92seP/czUTRaOI7/S8k74zFxgNxbT4ly3Jbra+uyzT2znXgq3IWPVJ82Ld3PdQ/ibq1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	YOWzGq5yFGa9ikoUj3UlZJzqzfPPQStT4VWyN9CKab107sKEzM7c/0WezGNKPHBg9IxAPFkoPFVczmISfc+o0Oi2d7c9KJ6Z+3lBAyjOXcWuR769RnEVHYTpXgvUqhPcHnZBaU5BpNrToHwd86T4F4GMRDEINsEnFGO/1CU7L0v7FWeUcdjyPhwIV5Tkrfoeob+RypfkBRdkKZ8BXIkTWTpf17oFKzhitCtT7L2xe/ygRytqOppjFdZgVq06ptD4scQrKIKWwRVAyZl9Z6YZCKH2LIPvzl5CAohovKykROLV2Ti8KqXk0RzQ/kgMwLqfBWAGBbtQgF37s3KRH9AKMx/gtpdSckOOporwztdIoXSPEG+JIT++SzKuTS8F6oM7vt73B6I/c4UosNXJ2Gw5CBT41fq61jYxXYj1JYH/ngFPTbiV8emMBNmYQBjbHZUPiETTgTVnM0NkYuGUsYjoMmfzvRLyOcfgFQdOUITxqmcXG91C35l4rwDj0vEpTvWF+aBnSW95XyrL5Od5GkBXrq1IdtCCY8qgFSsCnrpMtNlQ7NK4aFUZOm2InzTvHJ1QWRgWRIdfUl/tnRTPewgGK/e5CupmZZyuIPNbG5X7AwVXw1HIfUDjGrL5XLCaPD5ljnwHlqoKP3WnxyePYlu7ti2v7Vror198684xYD8issJPZCoAIEnUvqe5RkQ9nZqeicVAdSDYqd/Vc7pZB5wrzQ==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?JaWjRDIdofz+dsFB2KIOHCFWI5AACD54Tv5K29nndB87m/HvZsDzSpIVZhF+?=
- =?us-ascii?Q?RtLBAjpAy2HOcs31g/oaKv1RULFeFxvuUImfQYNOZHTvuDsGqUrp77T6f87/?=
- =?us-ascii?Q?ZNWW4BWfirm18AUvVdBCWIjby5RB2c0E/lbdXS79seHhszhaNygHHazLCJMA?=
- =?us-ascii?Q?b+2omgOPJa61eabPGGl7K+z4sbGnD7T+oRyd8sa/PiVyma8smvd7wg14N4Cm?=
- =?us-ascii?Q?w8RfnQ7r2iaQVJRUnJmj0Qoa2YozJ5yD5bY9DpAGREyZN7PkbWNe9Ejywxrf?=
- =?us-ascii?Q?2zhSoasBHxReBvvA4PMBry8ima70Sw5Jj1muhvGQlm5MSaVjDZcSS4kNncwF?=
- =?us-ascii?Q?151PbJ9LgHbgnBBWjirsZfogoQvvBROv3bI5kkFAZc9G88EOnYAlI2ZuIt5N?=
- =?us-ascii?Q?qcX/FtKb+56YprdEb5hUEmuMQ4fHjlsct5WxcLgXTsIFuf+XUfLnYIgkioEp?=
- =?us-ascii?Q?c16q3GtjWIhKcWJyXgmc4/mQPZs498of3T6i5LHwDSBf3a3fScL+t8swDgmP?=
- =?us-ascii?Q?7EdJRVByqG2l1tMEAmcwXVagsDN+Vsmc1h/v8F/E3ZvpZDraP/9wdXjYdh5x?=
- =?us-ascii?Q?Jrn7guaXcUN0oRia+ssS3wH4d4TnPg3fJtaAWu5YLQ+3L777icwiWIjWAErs?=
- =?us-ascii?Q?tUwQpAPSdhV3AnkJd9aUnMcKwH35FBDYu5gSfpd/nc97Z6cDtIJ3Z8c18gur?=
- =?us-ascii?Q?rn9S+fK38OstoRqPfoPmlfixghu0/voVNFiMtZW7N1KCOUFMjLko+KzQ0aZK?=
- =?us-ascii?Q?AgMUMG1QI50EEPlmlZE8Mmd+TUb/2Gb0n7NnYQTNZRDGHnI7SIiQfMM/xyOM?=
- =?us-ascii?Q?rebRBoNtn/qVfJNZ0rjxfqQV846tXx9dPltn8M2nrGdu9NsFhOw3ShjF1Psz?=
- =?us-ascii?Q?l3xTaAfqko78B4cjxXlRw6g4P0rUrDstjO01IsvLnuQUO7qCn9pczWhyLqsW?=
- =?us-ascii?Q?lnrJns+dYbd9p8RqJ+WWo4R7sMBmqBNrwyZQ2O0crqQSCJxYDbcpiW2yLdhF?=
- =?us-ascii?Q?PSfwri7vlDI1P/bBMId4tV/linCfAdNl+BG7nt5+o9JxlMjD8L3oWcODKsDk?=
- =?us-ascii?Q?FHNL2/nXhy+ciBssze0QcCIZkG0fhjE7u6NI9ICyfhNmE/QWahuJ88W8/FGy?=
- =?us-ascii?Q?EExjoQJvvIDdq+dz1XX+6ACpbJ1qAynLdfE62cUsu45GxkMSbirRHgMYsdcC?=
- =?us-ascii?Q?pnP9qgf8GUyC2aa3NxHVky77joC4bQNERsdLtq7bfc8PdEFbnYJNW9OXgKX/?=
- =?us-ascii?Q?FZnoh17+GfY/xQF9ffkz?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4da90dbf-aedd-4658-3caa-08dc4d47b179
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-OriginatorOrg: starfivetech.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2024 03:49:09.8013
+X-MS-Exchange-CrossTenant-AuthSource: BJSPR01MB0595.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-Network-Message-Id: 17594b98-94fd-445c-86e0-08dc4d5511eb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Mar 2024 05:24:54.7414
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR20MB4883
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: U5McUuDFDLNLycKtPBZGlEqTvXW2P+gh3YzRKqf9aifkPixx6xW96Tu3jLxj1zuVQxyRbtSn/gRDN8RVO67aAMNMgPzsF65evVDFLmTjw9I=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BJSPR01MB0883
 
-On Mon, Mar 25, 2024 at 11:37:44PM -0400, Frank Li wrote:
-> On Tue, Mar 26, 2024 at 09:47:03AM +0800, Inochi Amaoto wrote:
-> > The DMA IP of Sophgo CV18XX/SG200X is based on a DW AXI CORE, with
-> > an additional channel remap register located in the top system control
-> > area. The DMA channel is exclusive to each core.
-> > 
-> > Add the dmamux binding for CV18XX/SG200X series SoC
-> > 
-> > Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+
+
+> -----Original Message-----
+> From: Rob Herring <robh@kernel.org>
+> Sent: Tuesday, 26 March, 2024 12:23 AM
+> To: ChunHau Tan <chunhau.tan@starfivetech.com>
+> Cc: David S . Miller <davem@davemloft.net>; Eric Dumazet
+> <edumazet@google.com>; Jakub Kicinski <kuba@kernel.org>; Paolo Abeni
+> <pabeni@redhat.com>; Emil Renner Berthing <kernel@esmil.dk>; Krzysztof
+> Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley
+> <conor+dt@kernel.org>; Maxime Coquelin <mcoquelin.stm32@gmail.com>;
+> Alexandre Torgue <alexandre.torgue@foss.st.com>; Simon Horman
+> <horms@kernel.org>; Bartosz Golaszewski <bartosz.golaszewski@linaro.org>;
+> Andrew Halaney <ahalaney@redhat.com>; Jisheng Zhang <jszhang@kernel.org>;
+> Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>; Russell King
+> <rmk+kernel@armlinux.org.uk>; Leyfoon Tan <leyfoon.tan@starfivetech.com>;
+> JeeHeng Sia <jeeheng.sia@starfivetech.com>; netdev@vger.kernel.org;
+> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
+> linux-stm32@st-md-mailman.stormreply.com;
+> linux-arm-kernel@lists.infradead.org; linux-riscv@lists.infradead.org
+> Subject: Re: [PATCH v3 1/1] dt-bindings: net: starfive,jh7110-dwmac: Add
+> StarFive JH8100 support
+>=20
+> On Mon, Mar 25, 2024 at 01:51:31AM -0700, Tan Chun Hau wrote:
+> > Add StarFive JH8100 dwmac support.
+> > The JH8100 dwmac shares the same driver code as the JH7110 dwmac and
+> > has only one reset signal.
+> >
+> > Please refer to below:
+> >
+> >   JH8100: reset-names =3D "stmmaceth";
+> >   JH7110: reset-names =3D "stmmaceth", "ahb";
+>=20
+> It's debatable whether JH8100 is compatible with JH7110 if the 2nd reset =
+was
+> not optional. I guess if the Linux driver treated it that way, we can get=
+ away with
+> it. It would simplify the conditionals in the schema if the t also treate=
+d the
+> 2nd entry as optional on JH7110 as well.
+
+Yes, Linux driver and snps,dwmac.yaml treated it that way.=20
+please refer to
+https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bind=
+ings/net/snps%2Cdwmac.yaml#L143
+
+>=20
+> >   JH7100: reset-names =3D "ahb";
+> >
+> > Example usage of JH8100 in the device tree:
+> >
+> > gmac0: ethernet@16030000 {
+> >         compatible =3D "starfive,jh8100-dwmac",
+> >                      "starfive,jh7110-dwmac",
+> >                      "snps,dwmac-5.20";
+> >         ...
+> > };
+> >
+> > Signed-off-by: Tan Chun Hau <chunhau.tan@starfivetech.com>
 > > ---
-> >  .../bindings/dma/sophgo,cv1800-dmamux.yaml    | 48 ++++++++++++++++
-> >  include/dt-bindings/dma/cv1800-dma.h          | 55 +++++++++++++++++++
-> 
-> I remember checkpatch.pl require .h have seperate patch.
-> 
-> Frank
+> >  .../devicetree/bindings/net/snps,dwmac.yaml   |  1 +
+> >  .../bindings/net/starfive,jh7110-dwmac.yaml   | 82 +++++++++++++------
+> >  2 files changed, 58 insertions(+), 25 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > index 6b0341a8e0ea..a6d596b7dcf4 100644
+> > --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > @@ -97,6 +97,7 @@ properties:
+> >          - snps,dwxgmac-2.10
+> >          - starfive,jh7100-dwmac
+> >          - starfive,jh7110-dwmac
+> > +        - starfive,jh8100-dwmac
+> >
+> >    reg:
+> >      minItems: 1
+> > diff --git
+> > a/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
+> > b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
+> > index 0d1962980f57..da3cc984fec9 100644
+> > --- a/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
+> > +++ b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
+> > @@ -18,6 +18,7 @@ select:
+> >          enum:
+> >            - starfive,jh7100-dwmac
+> >            - starfive,jh7110-dwmac
+> > +          - starfive,jh8100-dwmac
+> >    required:
+> >      - compatible
+> >
+> > @@ -30,6 +31,10 @@ properties:
+> >        - items:
+> >            - const: starfive,jh7110-dwmac
+> >            - const: snps,dwmac-5.20
+> > +      - items:
+> > +          - const: starfive,jh8100-dwmac
+> > +          - const: starfive,jh7110-dwmac
+> > +          - const: snps,dwmac-5.20
+> >
+> >    reg:
+> >      maxItems: 1
+> > @@ -83,29 +88,13 @@ allOf:
+> >    - if:
+> >        properties:
+> >          compatible:
+> > -          contains:
+> > -            const: starfive,jh7100-dwmac
+> > -    then:
+> > -      properties:
+> > -        interrupts:
+> > -          minItems: 2
+> > -          maxItems: 2
+> > -
+> > -        interrupt-names:
+> > -          minItems: 2
+> > -          maxItems: 2
+> > -
+> > -        resets:
+> > -          maxItems: 1
+> > -
+> > -        reset-names:
+> > -          const: ahb
+> > -
+> > -  - if:
+> > -      properties:
+> > -        compatible:
+> > -          contains:
+> > -            const: starfive,jh7110-dwmac
+> > +          allOf:
+> > +            - contains:
+> > +                enum:
+> > +                  - starfive,jh8100-dwmac
+> > +            - contains:
+> > +                enum:
+> > +                  - starfive,jh7110-dwmac
+>=20
+> There's no need for the 2nd entry. You just need to check
+>=20
+> I would something like this structure:
+>=20
+>   - if:
+>       properties:
+>         compatible:
+>           contains:
+>             const: starfive,jh7100-dwmac
+>=20
+>     then:
+>=20
+>       if:
+>         properties:
+>           compatible:
+>             contains:
+>               const: starfive,jh8100-dwmac
+>       then:
+>         ...
+>       else:
+>         ...
+>=20
 
-checkpatch.pl does not give warning like this.
+Okay, thank you for the feedback.
 
-> 
-> >  2 files changed, 103 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/dma/sophgo,cv1800-dmamux.yaml
-> >  create mode 100644 include/dt-bindings/dma/cv1800-dma.h
-> > 
-> > diff --git a/Documentation/devicetree/bindings/dma/sophgo,cv1800-dmamux.yaml b/Documentation/devicetree/bindings/dma/sophgo,cv1800-dmamux.yaml
-> > new file mode 100644
-> > index 000000000000..d7256646ea26
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/dma/sophgo,cv1800-dmamux.yaml
-> > @@ -0,0 +1,48 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/dma/sophgo,cv1800-dmamux.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >      then:
+> >        properties:
+> >          interrupts:
+> > @@ -117,10 +106,53 @@ allOf:
+> >            maxItems: 3
+> >
+> >          resets:
+> > -          minItems: 2
+> > +          maxItems: 1
+> >
+> >          reset-names:
+> > -          minItems: 2
+> > +          const: stmmaceth
 > > +
-> > +title: Sophgo CV1800/SG200 Series DMA mux
+> > +    else:
+>=20
+> I don't think you need the else. Just do another 'if' entry.
+>=20
+> > +      if:
+> > +        properties:
+> > +          compatible:
+> > +            contains:
+> > +              const: starfive,jh7100-dwmac
+> > +      then:
+> > +        properties:
+> > +          interrupts:
+> > +            minItems: 2
+> > +            maxItems: 2
 > > +
-> > +maintainers:
-> > +  - Inochi Amaoto <inochiama@outlook.com>
+> > +          interrupt-names:
+> > +            minItems: 2
+> > +            maxItems: 2
 > > +
-> > +allOf:
-> > +  - $ref: dma-router.yaml#
+> > +          resets:
+> > +            maxItems: 1
 > > +
-> > +properties:
-> > +  compatible:
-> > +    const: sophgo,cv1800-dmamux
+> > +          reset-names:
+> > +            const: ahb
 > > +
-> > +  reg:
-> > +    items:
-> > +      - description: DMA channal remapping register
-> > +      - description: DMA channel interrupt mapping register
+> > +        if:
+> > +          properties:
+> > +            compatible:
+> > +              contains:
+> > +                const: starfive,jh7110-dwmac
+> > +        then:
+> > +          properties:
+> > +            interrupts:
+> > +              minItems: 3
+> > +              maxItems: 3
 > > +
-> 
-> Look like driver have not use it.
-> 
-
-The driver uses syscon offset to access the registers. This dmamux is
-a subdevice of syscon.
-And this properity, suggested by Rob, is just used to keep DT complete.
-
-> Frank
-> 
-> > +  '#dma-cells':
-> > +    const: 2
-> > +    description:
-> > +      The first cells is device id. The second one is the cpu id.
+> > +            interrupt-names:
+> > +              minItems: 3
+> > +              maxItems: 3
 > > +
-> > +  dma-masters:
-> > +    maxItems: 1
+> > +            resets:
+> > +              minItems: 2
 > > +
-> > +  dma-requests:
-> > +    const: 8
-> > +
-> > +required:
-> > +  - '#dma-cells'
-> > +  - dma-masters
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    dma-router {
-> > +      compatible = "sophgo,cv1800-dmamux";
-> > +      #dma-cells = <2>;
-> > +      dma-masters = <&dmac>;
-> > +      dma-requests = <8>;
-> > +    };
-> > diff --git a/include/dt-bindings/dma/cv1800-dma.h b/include/dt-bindings/dma/cv1800-dma.h
-> > new file mode 100644
-> > index 000000000000..3ce9dac25259
-> > --- /dev/null
-> > +++ b/include/dt-bindings/dma/cv1800-dma.h
-> > @@ -0,0 +1,55 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-> > +
-> > +#ifndef __DT_BINDINGS_DMA_CV1800_H__
-> > +#define __DT_BINDINGS_DMA_CV1800_H__
-> > +
-> > +#define DMA_I2S0_RX		0
-> > +#define DMA_I2S0_TX		1
-> > +#define DMA_I2S1_RX		2
-> > +#define DMA_I2S1_TX		3
-> > +#define DMA_I2S2_RX		4
-> > +#define DMA_I2S2_TX		5
-> > +#define DMA_I2S3_RX		6
-> > +#define DMA_I2S3_TX		7
-> > +#define DMA_UART0_RX		8
-> > +#define DMA_UART0_TX		9
-> > +#define DMA_UART1_RX		10
-> > +#define DMA_UART1_TX		11
-> > +#define DMA_UART2_RX		12
-> > +#define DMA_UART2_TX		13
-> > +#define DMA_UART3_RX		14
-> > +#define DMA_UART3_TX		15
-> > +#define DMA_SPI0_RX		16
-> > +#define DMA_SPI0_TX		17
-> > +#define DMA_SPI1_RX		18
-> > +#define DMA_SPI1_TX		19
-> > +#define DMA_SPI2_RX		20
-> > +#define DMA_SPI2_TX		21
-> > +#define DMA_SPI3_RX		22
-> > +#define DMA_SPI3_TX		23
-> > +#define DMA_I2C0_RX		24
-> > +#define DMA_I2C0_TX		25
-> > +#define DMA_I2C1_RX		26
-> > +#define DMA_I2C1_TX		27
-> > +#define DMA_I2C2_RX		28
-> > +#define DMA_I2C2_TX		29
-> > +#define DMA_I2C3_RX		30
-> > +#define DMA_I2C3_TX		31
-> > +#define DMA_I2C4_RX		32
-> > +#define DMA_I2C4_TX		33
-> > +#define DMA_TDM0_RX		34
-> > +#define DMA_TDM0_TX		35
-> > +#define DMA_TDM1_RX		36
-> > +#define DMA_AUDSRC		37
-> > +#define DMA_SPI_NAND		38
-> > +#define DMA_SPI_NOR		39
-> > +#define DMA_UART4_RX		40
-> > +#define DMA_UART4_TX		41
-> > +#define DMA_SPI_NOR1		42
-> > +
-> > +#define DMA_CPU_A53		0
-> > +#define DMA_CPU_C906_0		1
-> > +#define DMA_CPU_C906_1		2
-> > +
-> > +
-> > +#endif // __DT_BINDINGS_DMA_CV1800_H__
+> > +            reset-names:
+> > +              minItems: 2
+> >
+> >  unevaluatedProperties: false
+> >
 > > --
-> > 2.44.0
-> > 
+> > 2.25.1
+> >
 
