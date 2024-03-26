@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-53410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF90C88C2A1
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 13:53:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14A9788C2B0
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 13:56:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 956A51C29878
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 12:53:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F24511C3FB57
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 12:56:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA0786D1CC;
-	Tue, 26 Mar 2024 12:53:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D63DA6EB4E;
+	Tue, 26 Mar 2024 12:56:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lxkU/d8N"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="o7kq1/no"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5F9D5A0FA
-	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 12:53:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB15A6BFCC
+	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 12:56:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711457594; cv=none; b=YzgvBrfCIcBgE9nmw4jQuZTJF2GlUL25nlpmHF+20ShNAvpGFBrCKgPvfqC0N6Yrp83UY177WezbhlqTSsaKEPJFURy+AKNwLPuvwPz/xZ4yGaL+OoQgDc8oGdH/SLMrMvy9JZOJrF3Pnl5CM9Ok4KzreSF7b+sTdVIasnRDyTM=
+	t=1711457788; cv=none; b=HsxMvCsop3aJs0DeEj3lPecJWuFeDezmSlWq4UtyqR6K2oqY760bcqm2IckyGyNVX3eC3JSzDecTxtAXUWILzxbXwIaVrncxLqtTA5X6fVUnTCXyVL5t1Z9x7JMuX+H0vETTgjsmZCA2F2M26OEYWRO5L4KDjbCvO8KPvxl87Ag=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711457594; c=relaxed/simple;
-	bh=D0gf/IIiOdRrTzQPmEqs6dw22YmfE35wanB04bQzG/0=;
+	s=arc-20240116; t=1711457788; c=relaxed/simple;
+	bh=YwtCMJg1Rfup4NT8V7Oo7K4rKen6x1h2pzIusMuhhp0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FPl2uXjRu6U5K0Fvk/tp+xw+ouM0NmL88jYilG7111XngcAayL9xYnmTpIjUas22RR0H1xh09Y84e+XKDgzefNxok9uBOUbYxvMnV3A1hbqGlx7CWr36t/Yd/ELd6V9S3mju/petYiQEAaEUzIQkKAeSmPuMFxTpzfhjYMTUN4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lxkU/d8N; arc=none smtp.client-ip=209.85.208.44
+	 In-Reply-To:Content-Type; b=ienimvpkzQr+lOyxl1yTVydUmZuP4L1Pc5MxqnLc6Yh1KEe2xnJRBFgRflQcwquMUDIFnM56sSibLPpNK3ngNFzbrZEHG6lqh1zo0LrPCriaojAJIPiflb7UwxoVW2L9wITVhbhw4qIDvuvx0lSzH7yMd7AvEXu4Ojt+hkPIO7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=o7kq1/no; arc=none smtp.client-ip=209.85.218.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-56c1922096cso2196897a12.0
-        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 05:53:12 -0700 (PDT)
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a4734ae95b3so525200166b.0
+        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 05:56:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711457591; x=1712062391; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711457785; x=1712062585; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=jqY7dtezuqLgE8Dj4vNtSyeNX5nIll55/bWPSb26Glw=;
-        b=lxkU/d8NRCqdkLY5I0XLEzx/NmONxDnR5YYdgFYHpZUNqvNm9YXL5SvOzUvAuDESU4
-         vudo5j7/uRajqDH4AW0yFmcPxeuc0Td0RN1BsHkVlE3eZm6uLBYal0Ym5sUM5ogygQ9M
-         q2jhJaVYgx0DNxg0BdH3WK8Mgj4qln7sfSbRnAa6KRFUXIoKSNxnfeogMMPDW8O0Ipcg
-         114gaLM9QSOUanqxZVaumgBn7UcqoWmUJh52H1Z+Hf0XrHwNaGadzLMooLM0sXh5a9fi
-         0wrwM60l1HnH4EFC/vQlOYY60ovq6aL/cIYzj5tkibagxLu6Q0q87udsI7Io3fUYJpbG
-         j7lQ==
+        bh=sT8OjxdUQAjzr/9I2o/yKQ2o8R3+ehvtYWeUDIQGp2Q=;
+        b=o7kq1/noAzjkHEV0L07zOaWm/UR9/+B5i7DSN2hw3ZQFWaRikg4+2f74neOduU0KY/
+         OZ0Sd8su2PBsPRwaxgJy+LuWZzzm2vtwe9vWkjuTC7XMvjCJgODq+usAe7b+OLIKq0av
+         CEf78/2QM1eTdaMvvwecnN709WaZ4Yb11U1BH+kbzk7qhuEnodgPdcMRSvnKu8g7SMLW
+         syfk6B5HVo4Gmd1DGjqwzvuNSN6MHB9UwoyyxIm1KMbcCfwsfFgg8qIWvLTJDkuChbmh
+         8m+rL8SSB4OVh1fwzXEDhaIU+GoqcATqGv6621aev3ecs4JKpajoi2GkqZFOvpt4nmRB
+         9O1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711457591; x=1712062391;
+        d=1e100.net; s=20230601; t=1711457785; x=1712062585;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=jqY7dtezuqLgE8Dj4vNtSyeNX5nIll55/bWPSb26Glw=;
-        b=CDJpaWuGjjEnMLrG28r81Df+vfCOJqespKbnq3ZUH7VI0d2KysVEXo0eFiQHJGI89J
-         BJ8k/qfRHSx+vU4MRQjQidkm2Jt+L3HJ6juoCj7sFeqJVu41e7Mx04VI+rYmmwhdoX6X
-         wABekZBhobf0P476U+jMMRwtgMcc1NtE6TyZdyHcbC7N9l9SU0qw1f6sVWhpjOKi0zGl
-         1JmNpNzB/DjZBtaWIEIkEGcOzHzlABSMK+uf/b5KFfvgHo0bWNpTiGEBki02vSS8gH9h
-         dzbjNrExcXCcU89sz1J5IlcNFJT2c7cWKpxwSb4G01NOle91yPTW4boDYNy9RbMaS3zV
-         BTpA==
-X-Forwarded-Encrypted: i=1; AJvYcCUeyhgkDh082TlfmBB+LrulqEL7U7OYfzEh524Tp58GeozWpckwDhaUtr15k3Du4iGYZMqXen+BcrTKrfd/SQqGD4vXghHaw+eTHQ==
-X-Gm-Message-State: AOJu0YyZafbkcbrEsdiD+QxX7B+pBA2YnH8qqM+7Kh9HAUVDslKm0uvM
-	o0u+oJgxWEzIuugzUkoLPJrx2GtSCrGQDd6BYPDtJy+6TEGNyxmgejHNnMBmun4=
-X-Google-Smtp-Source: AGHT+IHvGrE9FCVBLaz0A22qY2bJudIEne42Hu5s+1uin/aDnnu0wMnBjHUI5mUImBPH6muq7dWg8g==
-X-Received: by 2002:a17:907:7ea7:b0:a47:31c8:81f5 with SMTP id qb39-20020a1709077ea700b00a4731c881f5mr1049303ejc.47.1711457591158;
-        Tue, 26 Mar 2024 05:53:11 -0700 (PDT)
+        bh=sT8OjxdUQAjzr/9I2o/yKQ2o8R3+ehvtYWeUDIQGp2Q=;
+        b=vwFdUfjqpzID30NcEqTMkTFlp2Es2MQwBYZzEBmqmsTzaz7UWp34ohFV377d+JyQBJ
+         zGGdDF7lb+jO3T8vfHk5L3UWIOstNfq4eeLUBYno1a/u2pKjLDc9zkOnvf5soB8cOo6H
+         SVP4Tcsp0IQGbG7k4N9/I2uHMZHpVTa706RxoQzO7gsqv9zJnzJEGcqYzdeDIMuVtBgw
+         PTPzlMW9+n4nstHd7IUdW23mBz/IXxw+RaUq7vEGqXSnM3LEcw3AmuT94+clWre+gUY9
+         4sM8CtEIN69pUPisnTk6k2sUWXVL2+PzahRWlh1xir18KmHeoE+b2oZL0x1YsQrUKQRd
+         3uJg==
+X-Forwarded-Encrypted: i=1; AJvYcCU5G/T1qlZO56xgw+JD5lZBpqICO/y3oHVOyeQL+h/hPai3cQiyd6rtBNJB/735tYUWPDYqY+5ooLjCMEo0uGoXQpC+ARQ/9AhJSA==
+X-Gm-Message-State: AOJu0YxTmrXlqVx+ul/nxMLZUm1uiMHUVtJdTh4i8iIcs0f9kzS7dKdj
+	4thzUTyKJ+IA+jcuLiqu7wzFGAufLVHcpXjFi7vRstoInmW3ITVB9urYWq7VPWo=
+X-Google-Smtp-Source: AGHT+IGwEwrTsGbZnoPQM2wsJJefA/6J2PARa12wK1WZlpE62Ba5CCqMUlaxcnNOMgCIBJTpbgXTLQ==
+X-Received: by 2002:a17:906:66c9:b0:a47:20c3:7c51 with SMTP id k9-20020a17090666c900b00a4720c37c51mr5961573ejp.71.1711457785034;
+        Tue, 26 Mar 2024 05:56:25 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.44])
-        by smtp.gmail.com with ESMTPSA id q11-20020a17090622cb00b00a4655513f0bsm4171767eja.88.2024.03.26.05.53.09
+        by smtp.gmail.com with ESMTPSA id i2-20020a17090639c200b00a471cbc4ddbsm4210480eje.26.2024.03.26.05.56.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Mar 2024 05:53:10 -0700 (PDT)
-Message-ID: <727c3a30-d704-4d28-af40-a01e28ca042e@linaro.org>
-Date: Tue, 26 Mar 2024 13:53:08 +0100
+        Tue, 26 Mar 2024 05:56:24 -0700 (PDT)
+Message-ID: <1c6d995a-b1f1-48ca-b85c-f69071e7e3bb@linaro.org>
+Date: Tue, 26 Mar 2024 13:56:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,17 +77,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/4] virt: vmgenid: add support for devicetree bindings
-To: kernel test robot <lkp@intel.com>, Sudan Landge <sudanl@amazon.com>,
- tytso@mit.edu, Jason@zx2c4.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- sathyanarayanan.kuppuswamy@linux.intel.com, thomas.lendacky@amd.com,
- dan.j.williams@intel.com, devicetree@vger.kernel.org,
+Subject: Re: [PATCH 1/3] dt-bindings: hsi: hsi-client: convert to YAML
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Tony Lindgren <tony@atomide.com>,
+ devicetree@vger.kernel.org, linux-omap@vger.kernel.org,
  linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, graf@amazon.de, dwmw@amazon.co.uk,
- bchalios@amazon.es, xmarcalx@amazon.co.uk
-References: <20240325195306.13133-5-sudanl@amazon.com>
- <202403262047.aZVjmDY5-lkp@intel.com>
+References: <20240325-hsi-dt-binding-v1-0-88e8e97c3aae@collabora.com>
+ <20240325-hsi-dt-binding-v1-1-88e8e97c3aae@collabora.com>
+ <2905247d-03b0-45c1-add5-d3c2a986d87c@linaro.org>
+ <hz4fbdix5yaz2wtdkjkf23pc3m4kbeavynvjagundqvv3bisor@lc7dev4667i5>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -134,40 +134,61 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <202403262047.aZVjmDY5-lkp@intel.com>
+In-Reply-To: <hz4fbdix5yaz2wtdkjkf23pc3m4kbeavynvjagundqvv3bisor@lc7dev4667i5>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/03/2024 13:48, kernel test robot wrote:
-> Hi Sudan,
+On 26/03/2024 13:45, Sebastian Reichel wrote:
 > 
-> kernel test robot noticed the following build errors:
+>> but more importantly: some properties are now excluding each
+>> other.
+> 
+> I think that requirement was already there.
+
+Right.
+
 
 ...
 
->    134		ret = setup_vmgenid_state(state, remapped_ptr);
->    135		if (ret)
->    136			goto out;
->    137	
->    138		state->irq = platform_get_irq(pdev, 0);
->    139		if (state->irq < 0) {
->    140			ret = state->irq;
->    141			goto out;
->    142		}
->    143		pdev->dev.driver_data = state;
->    144	
->    145		ret =  devm_request_irq(&pdev->dev, state->irq,
->    146					vmgenid_of_irq_handler,
->    147					IRQF_SHARED, "vmgenid", &pdev->dev);
->    148		if (ret)
->    149			pdev->dev.driver_data = NULL;
->    150	
->    151	out:
->    152		return ret;
->    153	#else
->  > 154		(void)dev;
+>>> +
+>>> +allOf:
+>>> +  - if:
+>>> +      required:
+>>> +        - hsi-mode
+>>> +    then:
+>>> +      properties:
+>>> +        hsi-rx-mode: false
+>>> +        hsi-tx-mode: false
+>>
+>> I don't understand what you are trying to achieve here and with anyOf.
+>> It looks like just oneOf. OTOH, old binding did not exclude these
+>> properties.
+> 
+> So the anyOf ensures, that either hsi-mode or hsi-rx-mode +
+> hsi-tx-mode are specified. Those properties were previously
 
-So this code was not even built...
+Not entirely. anyOf should succeed also when none of them are present,
+which is not what you want in such case.
+
+> listed as required and they are indeed mandatory by the Linux
+> kernel implementation.
+> 
+> The old binding also has this:
+> 
+> hsi-mode:		May be used ***instead*** hsi-rx-mode and hsi-tx-mode
+> 
+> So it's either hsi-rx-mode + hsi-tx-mode OR hsi-mode, but not
+> all properties at the same time. That's what the allOf ensures:
+> if hsi-mode is specified, then hsi-rx-mode and hsi-tx-mode may
+> not be specified.
+
+Then wouldn't this work for you:
+https://elixir.bootlin.com/linux/v5.17-rc2/source/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml#L91
+?
+
+But if you really want them to be optional but excluding, then simpler
+syntax is:
+https://lore.kernel.org/all/20230118163208.GA117919-robh@kernel.org/
 
 Best regards,
 Krzysztof
