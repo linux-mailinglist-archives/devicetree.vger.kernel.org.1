@@ -1,121 +1,140 @@
-Return-Path: <devicetree+bounces-53279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53281-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8442988BD02
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 10:00:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 832D188BD09
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 10:00:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 399AB1F3C3C5
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 09:00:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E26A2E4947
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 09:00:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD88C182B9;
-	Tue, 26 Mar 2024 09:00:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83EF01BC3F;
+	Tue, 26 Mar 2024 09:00:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VhbUcvXP"
+	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="ZQAP6Bev"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB72540BE6
-	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 09:00:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50D9E3F9ED;
+	Tue, 26 Mar 2024 09:00:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711443611; cv=none; b=L23fiiJCchwwk5/0BKc8yfsTpNxQSk2iRbHQ+ryeBUJbY5ftV9xRBDLIVj/mTpHNTcm+V6v95yHW58L49lUwUTxYlnAx+htsxqCE751G/8I+WgPmpMz4JF5VQi4nDq9Usjrd0lKhVg9OLc7Pqvfv3GTJ8Eg0zC79e6pf77gaikY=
+	t=1711443628; cv=none; b=XMMqAAeCAGwrRO3iQlYyfYbxe6Xj11/TiiHvsAuxoUsWDO9hbxfqze+BzXZ2c7qu32TiNf+v2KT2G0lF+6+TPsLuutgekZWrsdiU0aD49UrDNausvyOldLDmDphd+8zblktfvWGhDaElEAcaqcfAA6mMGsfhJB8ypwQVkcKqIoY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711443611; c=relaxed/simple;
-	bh=aeF2NGTij5If1PKU12QjxNSfCgLheAL5j7HQ6bmibUI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=Zs71z3OwPMuNqrUFrvdrfKIrafuYkFvvodmg13tMa3+e69sPRBIU6htL9pPt31pbHBwuAURcE0JNZ7rQrjH8SJUj5rHn4NyGYMxB3P6z8axQ8qI5h3sMBvqFf6F6RWaNDpJDhjOowIPKs5yLiDFaLoynqbEzfsqOWixfiT8tINs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VhbUcvXP; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-56c08d1e900so2618407a12.3
-        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 02:00:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711443608; x=1712048408; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=F4Nl3F9buqLWWf/KucUiB+H6du4zgHC1jQU4GH+Nt64=;
-        b=VhbUcvXP0S1DEmFQ3hIPaQicYrk5YT7mVSDeN/EqmiOK7pfrNhzk6o2rjLNrErTPNs
-         TqR47sRnL8g/6Ftnuk+EPAGqaafus2/dT0CD+6qlw0dlHBQLuFeAfi/qRzbq2+p8zJ3d
-         xrrwNo9ZzDlDNA6M9SotqRtYg8ei8m6ms6C9qTvoBUtD1i1E4jcqK0MGkUidLjc4sbGo
-         jJP0sGtUOWTjxfc0QZKW7ZzmhZf/SPZSxzkgSJs7FOD0jIba3nlw6yiXZLgoeG6GqnHN
-         HTphWr1FZTR4QxnEWZYv9CiasG2dkQfB0mbnIsGcvlWhuHj8QBjZifGbMCpXoXwEzQPK
-         C53Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711443608; x=1712048408;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=F4Nl3F9buqLWWf/KucUiB+H6du4zgHC1jQU4GH+Nt64=;
-        b=KJWLmuJyBG8at0QZHmK/CX5GmaLmHXUWVXzXZAyYRInVY+bsOkEi79SiTSzeuQ6Vgq
-         u6338/jsf1RjbLakjYPQXKOEtaOpWYZSWFNuoaOmWiWw+d30LR5SPYgj5gLabfUY1buw
-         eJBLnr2ivKIIoDwFxxIvtTmep1sxHVYAA7fTnLJuknb0+QZnIImNPvOKHG64ZdE6UFj4
-         84Hg3RKfVHnZwys2l1f6wkdZVNQ5K8f/xOVXnCsiRb7uQDzLHfjT+7PI/LfFKKm+UEDe
-         gYD03dwZQeSyMW5eh2Zc+md5gIQdk14y4d5NOj7dxx0RSTuZJm+P8uN6cgpmYMcRMm3b
-         yU+A==
-X-Forwarded-Encrypted: i=1; AJvYcCWBsMBjEylQXeTkImkx1MVHXs2lXUlJxWNyMREXOIlLikiWd4fcc+YfBsIG0y7Kh0JMMt702qHfeuT5444TOXstoQwJY4lSvDZEuA==
-X-Gm-Message-State: AOJu0YwCtdwQ+rLoB6tntB4aW9PwoT5ASXujj53o6MWDwnLTem2RRx+V
-	IRX9Ak0q1NNOYT0Tg/Xx2CqwYQzlS0o0PDU1m5Ep5Jznmf0aKusjSTzgtBhPCCY=
-X-Google-Smtp-Source: AGHT+IGHbr/J30tOPNsBgLbO6NK9FwXqFdmdVip9nvl59imBHyDVqix+jCYmkJwMT7KQ8cMPh+dvZA==
-X-Received: by 2002:a17:907:7246:b0:a4d:f7ec:65bd with SMTP id ds6-20020a170907724600b00a4df7ec65bdmr437983ejc.41.1711443607808;
-        Tue, 26 Mar 2024 02:00:07 -0700 (PDT)
-Received: from [127.0.1.1] ([178.197.222.44])
-        by smtp.gmail.com with ESMTPSA id e25-20020a170906845900b00a4673706b4dsm4010129ejy.78.2024.03.26.02.00.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Mar 2024 02:00:06 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Sam Protsenko <semen.protsenko@linaro.org>
-Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Tomasz Figa <tomasz.figa@gmail.com>, 
- linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20240301015118.30072-1-semen.protsenko@linaro.org>
-References: <20240301015118.30072-1-semen.protsenko@linaro.org>
-Subject: Re: [PATCH v4 1/3] clk: samsung: Implement manual PLL control for
- ARM64 SoCs
-Message-Id: <171144360581.95110.13664376466376764034.b4-ty@linaro.org>
-Date: Tue, 26 Mar 2024 10:00:05 +0100
+	s=arc-20240116; t=1711443628; c=relaxed/simple;
+	bh=3Tt1EQy9QY5+yDcNnE7KBJQv3Ctt4dPYPHyySoY5K/I=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=Tk4pIU7pSnl1hFTb1vbckI+BIqB8fmbZgW7RItlqVMVXb9TAj6QsudO4z9V8nR/m6N4MOayoCnwGOSZwGruwl4LrLC7RSjSaq9W6Yng9FD2abmiOASD/3jrGvQTIAt1Ho7AiKMcGzNZy8e2pYs2zYQxQ9iohS6QN6OA50Zbwl7Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=ZQAP6Bev; arc=none smtp.client-ip=188.40.30.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
+	s=default2211; h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:
+	In-Reply-To:From:Subject:Mime-Version:Content-Type:Sender:Reply-To:Content-ID
+	:Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:
+	Resent-Cc:Resent-Message-ID; bh=/djGL67+NWnDPrRkxvM0aNHvT6Zkhfa6nfqpOBGeR24=;
+	b=ZQAP6Bev1yFZGV2AwattLpzK2wPyLfqoq+y8JfWprenE+s1ZPdXI/HTAOqnTku7ATM8ohBDYTmm
+	9x5JylHhVzP/q5QwThubQxd8YqQLqhx8/32X/uoxyd9HaqMauNoOD2fzXDNyNpP2HK1DiOGdnVxFS
+	mAzWqN4cpioxTgcytwZUgc01VQt6njjVf3C1pSeJK4J5oq/jK5+mnLKEtoJSeDHHCqOgLPqNmxhwP
+	OVHTm5OSk2arh3hV94z2ttrkxlxz5VCYjDFWRF8CB8683IUuRoG2xtIThfDPLqyTzytl7IUmrmGYU
+	1y7y1/pJGKtRhHtrenE8n25bLvn06ypdJltQ==;
+Received: from sslproxy07.your-server.de ([78.47.199.104])
+	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <sean@geanix.com>)
+	id 1rp2fM-0009TD-IP; Tue, 26 Mar 2024 10:00:20 +0100
+Received: from [185.17.218.86] (helo=smtpclient.apple)
+	by sslproxy07.your-server.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <sean@geanix.com>)
+	id 1rp2fL-000DcW-2w;
+	Tue, 26 Mar 2024 10:00:19 +0100
+Content-Type: text/plain;
+	charset=us-ascii
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13.0
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.400.31\))
+Subject: Re: [PATCH 2/5] iio: dac: ti-dac5571: Add DAC081C081 support
+From: Sean Nyekjaer <sean@geanix.com>
+In-Reply-To: <20240325203245.31660-3-laurent.pinchart@ideasonboard.com>
+Date: Tue, 26 Mar 2024 10:00:09 +0100
+Cc: devicetree@vger.kernel.org,
+ imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org,
+ Trevor Zaharichuk <trevor@au-zone.com>,
+ Greg Lytle <greg@au-zone.com>,
+ Jonathan Cameron <jic23@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ linux-iio@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <0261441D-46A9-4513-B598-B1204FD86B30@geanix.com>
+References: <20240325203245.31660-1-laurent.pinchart@ideasonboard.com>
+ <20240325203245.31660-3-laurent.pinchart@ideasonboard.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+X-Mailer: Apple Mail (2.3774.400.31)
+X-Authenticated-Sender: sean@geanix.com
+X-Virus-Scanned: Clear (ClamAV 0.103.10/27225/Mon Mar 25 09:30:27 2024)
 
 
-On Thu, 29 Feb 2024 19:51:16 -0600, Sam Protsenko wrote:
-> Some ARM64 Exynos chips are capable to control PLL clocks automatically.
-> For those chips, whether the PLL is controlled automatically or manually
-> is chosen in PLL_CON1 register with next bits:
-> 
->     [28]  ENABLE_AUTOMATIC_CLKGATING
->     [1]   MANUAL_PLL_CTRL
->     [0]   AUTO_PLL_CTRL
-> 
-> [...]
 
-Applied, thanks!
+> On 25 Mar 2024, at 21.32, Laurent Pinchart =
+<laurent.pinchart@ideasonboard.com> wrote:
+>=20
+> The DAC081C081 is a TI DAC whose software interface is compatible with
+> the DAC5571. It is the 8-bit version of the DAC121C081, already
+> supported by the DAC5571 driver. Extends the driver to support this
+> chip.
+>=20
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Reviewed-by: Sean Nyekjaer <sean@geanix.com <mailto:sean@geanix.com>>
+> ---
+> drivers/iio/dac/ti-dac5571.c | 3 +++
+> 1 file changed, 3 insertions(+)
+>=20
+> diff --git a/drivers/iio/dac/ti-dac5571.c =
+b/drivers/iio/dac/ti-dac5571.c
+> index efb1269a77c1..c5162b72951a 100644
+> --- a/drivers/iio/dac/ti-dac5571.c
+> +++ b/drivers/iio/dac/ti-dac5571.c
+> @@ -13,6 +13,7 @@
+>  * https://www.ti.com/lit/ds/symlink/dac5573.pdf
+>  * https://www.ti.com/lit/ds/symlink/dac6573.pdf
+>  * https://www.ti.com/lit/ds/symlink/dac7573.pdf
+> + * https://www.ti.com/lit/ds/symlink/dac081c081.pdf
+>  * https://www.ti.com/lit/ds/symlink/dac121c081.pdf
+>  */
+>=20
+> @@ -386,6 +387,7 @@ static void dac5571_remove(struct i2c_client *i2c)
+> }
+>=20
+> static const struct of_device_id dac5571_of_id[] =3D {
+> + {.compatible =3D "ti,dac081c081", .data =3D =
+&dac5571_spec[single_8bit] },
+> {.compatible =3D "ti,dac121c081", .data =3D =
+&dac5571_spec[single_12bit] },
+> {.compatible =3D "ti,dac5571", .data =3D &dac5571_spec[single_8bit] },
+> {.compatible =3D "ti,dac6571", .data =3D &dac5571_spec[single_10bit] =
+},
+> @@ -401,6 +403,7 @@ static const struct of_device_id dac5571_of_id[] =3D=
+ {
+> MODULE_DEVICE_TABLE(of, dac5571_of_id);
+>=20
+> static const struct i2c_device_id dac5571_id[] =3D {
+> + {"dac081c081", (kernel_ulong_t)&dac5571_spec[single_8bit] },
+> {"dac121c081", (kernel_ulong_t)&dac5571_spec[single_12bit] },
+> {"dac5571", (kernel_ulong_t)&dac5571_spec[single_8bit] },
+> {"dac6571", (kernel_ulong_t)&dac5571_spec[single_10bit] },
+> --=20
+> Regards,
+>=20
+> Laurent Pinchart
+>=20
 
-[1/3] clk: samsung: Implement manual PLL control for ARM64 SoCs
-      https://git.kernel.org/krzk/linux/c/7fa37084061fef80dab81bc062c6ec0fa8c26b2d
-[2/3] clk: samsung: exynos850: Add CMU_CPUCL0 and CMU_CPUCL1
-      https://git.kernel.org/krzk/linux/c/dedf87341ad66fa6889fedcf610b6941d2d3bcb6
-[3/3] arm64: dts: exynos: Add CPU clocks for Exynos850
-      https://git.kernel.org/krzk/linux/c/704094c5981287c85dfdb0bf53abdfcdcc1f8597
-
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
