@@ -1,129 +1,136 @@
-Return-Path: <devicetree+bounces-53470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E23188C66C
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 16:12:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB43A88C674
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 16:13:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9985D1F3758C
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 15:12:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8EB771C2AFB0
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 15:13:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C20EA13C69A;
-	Tue, 26 Mar 2024 15:12:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F5EF13C811;
+	Tue, 26 Mar 2024 15:13:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OnsBfmYQ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YBXNBRT1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AF32762F7;
-	Tue, 26 Mar 2024 15:12:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70D4413C691
+	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 15:13:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711465969; cv=none; b=laRkC1630F4hMHLH7/SamR0l5EP4a2epN23kHVbt4FkxGS7B9TA+qX0Er5pEUo5o0/RNnB9DtdXQxnAB/bjANHYS0yHGKTISTh4fTykok/hI70wZw9lNPVJZ2k75NCj0nV1L8Mf54fpWS1ZzxBvsL9PSI5EtDO/jSKBV/mcNTIM=
+	t=1711465987; cv=none; b=knek9nUgsSmqsp/Q3VuLks8rOMJuuEVhvgZxhW9/v3mqVjLSgXbzWvenR1zRY+3Tw9wkVIODauROfid0n0gcQdnqqBdKLbM7qaOv7HPd7o3r3Q6GGDk3DR45VLTg8dya0PRTkfQmdCXKoU+/0UnfPPW5AFJyyVuUAnK0mWComjU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711465969; c=relaxed/simple;
-	bh=ikOFR/1UVd3fugnFnAzk4C55A/EtnmPKtVt0ZnsoBy4=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
-	 MIME-Version:Content-Type; b=AfPN7K5GX/FTcqwqobMo2TcFe0ai5goSoTaREoo8l1zfC6TiXKya/sWsnrMlB9fRRECjAecw2f1HSyFXLxU80L70Mwkdq2Jpn/Yg5eGOTNvomGn2QXMorma3br4hy6WvDe74kgYVC49HfXCCGFAROJwV4TJ7K+X45ikoVkXj4m4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OnsBfmYQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27B32C433C7;
-	Tue, 26 Mar 2024 15:12:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711465968;
-	bh=ikOFR/1UVd3fugnFnAzk4C55A/EtnmPKtVt0ZnsoBy4=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=OnsBfmYQ3kUcVfwdwLlABczD8xqZdTvhAxEk92k45DN6zQl3R3V8BxEPB52RsIOJU
-	 stjQT1G1rdii90U9qXs98IyMNHaaDTCEQRCjheQiJfv7GsfcP7WTfAP4YJC9bTC3E2
-	 U4oFUkXDi460w83MY86vMBZHhUlFJ0pfP1iQycDWwr8EXMRByqPpmCcdVUZhE/Einj
-	 E6YlO5SgsJNklcUdUcS8LDVPeYonQPsEUDpnoUl37oHfn/onPcn2ao3QZ3HiUzlsRv
-	 MzSCIzTfANfgo2cPdqYHxv5qhQzfesdvGwwYarZJxx3Kfgylj7B1kLIkeyxpS7QNck
-	 r6RdCdboYcXKQ==
-From: Kalle Valo <kvalo@kernel.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Marcel Holtmann <marcel@holtmann.org>,  Luiz Augusto von Dentz
- <luiz.dentz@gmail.com>,  "David S . Miller" <davem@davemloft.net>,  Eric
- Dumazet <edumazet@google.com>,  Jakub Kicinski <kuba@kernel.org>,  Paolo
- Abeni <pabeni@redhat.com>,  Rob Herring <robh@kernel.org>,  Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley
- <conor+dt@kernel.org>,  Bjorn Andersson <andersson@kernel.org>,  Konrad
- Dybcio <konrad.dybcio@linaro.org>,  Liam Girdwood <lgirdwood@gmail.com>,
-  Mark Brown <broonie@kernel.org>,  Catalin Marinas
- <catalin.marinas@arm.com>,  Will Deacon <will@kernel.org>,  Bjorn Helgaas
- <bhelgaas@google.com>,  Saravana Kannan <saravanak@google.com>,  Geert
- Uytterhoeven <geert+renesas@glider.be>,  Arnd Bergmann <arnd@arndb.de>,
-  Neil Armstrong <neil.armstrong@linaro.org>,  Marek Szyprowski
- <m.szyprowski@samsung.com>,  Alex Elder <elder@linaro.org>,  Srini
- Kandagatla <srinivas.kandagatla@linaro.org>,  Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>,  Abel Vesa <abel.vesa@linaro.org>,
-  Manivannan Sadhasivam <mani@kernel.org>,  Lukas Wunner <lukas@wunner.de>,
-  Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-  linux-bluetooth@vger.kernel.org,  netdev@vger.kernel.org,
-  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
-  linux-wireless@vger.kernel.org,  linux-arm-msm@vger.kernel.org,
-  linux-arm-kernel@lists.infradead.org,  linux-pci@vger.kernel.org,
-  linux-pm@vger.kernel.org,  Bartosz Golaszewski
- <bartosz.golaszewski@linaro.org>,  ath11k@lists.infradead.org,  Johan
- Hovold <johan@kernel.org>
-Subject: Re: [PATCH v6 04/16] dt-bindings: net: wireless: qcom,ath11k:
- describe the ath11k on QCA6390
-References: <20240325131624.26023-1-brgl@bgdev.pl>
-	<20240325131624.26023-5-brgl@bgdev.pl> <87r0fy8lde.fsf@kernel.org>
-	<CAMRc=Mc2Tc8oHr5NVo=aHAADkJtGCDAVvJs+7V-19m2zGi-vbw@mail.gmail.com>
-	<87frwe8jiu.fsf@kernel.org>
-	<CAMRc=MdCv+vTMZML-wzRQqZZavquV3DABYM4KYw-HwqS47sTyw@mail.gmail.com>
-Date: Tue, 26 Mar 2024 17:12:40 +0200
-In-Reply-To: <CAMRc=MdCv+vTMZML-wzRQqZZavquV3DABYM4KYw-HwqS47sTyw@mail.gmail.com>
-	(Bartosz Golaszewski's message of "Mon, 25 Mar 2024 17:23:35 +0100")
-Message-ID: <874jct10yf.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	s=arc-20240116; t=1711465987; c=relaxed/simple;
+	bh=fX/nx+m1BFiKiTM4m9sMMyL20OdECnY0LP5bnlLStL4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=DHcrRG88BZL8yGK4oB+eEre5rV/sBc66nfutazx2Cl4X+Q7jgKHrSVssDJBCn9CYqUbkHEK2nc3Lb6Y0t5BfEq7jiRAIjIkgGisaoFrPVL4nYNeYRLcqxh0heRQlmgmk+8+T1cKq9TA5X60J8xmKxm6JS24cAgh/GWwBogJLdO8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YBXNBRT1; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-341cf28e055so1511010f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 08:13:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1711465984; x=1712070784; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MStHYue38iKTpxQ86HVIzIQcYN+5CJRssW0pcCm7KCc=;
+        b=YBXNBRT1dTS/9WLBUt7vCs1TXvEv8DPCDYpIQgQODIgTgOVN4sdsArYILy+u8CPXE1
+         HgT9j+iO9PDFa+hLPzrr743T9S7Q74zIqeYU0uwNso9THQT/hZtoNgEAc7RUGfjTrD/I
+         m5JZT/XJ9HtHAs7UARVRgTUfVJ7vhPXTWc4NPZnP/kV3MqtP0OF4ikXJX9K1QWjhWtjZ
+         93HZP+5ayNlDZzTgZ0OtRvBjfO9sXmfJ00uA6mMhJFIdz+lu7SF6D/zfR2fSR6eHqE74
+         b6va0zp5CTwkrfYf7xC1VjG2OIGTiRnmG6vfdyewMpQIJyhp8g0NoAgx64WddTRMeJHa
+         uhIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711465984; x=1712070784;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MStHYue38iKTpxQ86HVIzIQcYN+5CJRssW0pcCm7KCc=;
+        b=CNOnjH3A2VmJvxCLEJdxLlHTZUU18rZPFYduTsWps7o05AqAePLsJ8R8NRhEsVhy3Y
+         yPTRSvM8BajBQIfoH865URLO7XahQ/+2Z/Q/ZWI3O4SOiryqsOV22Q/sl95U6OGRqiRz
+         a4krK8mYZnIEMqzBDlxHt7bRqjwjd1iNrQC3flYwpJ5UnwI+x/DwNadsdO4RIrMASGKJ
+         VICHUS9YwsZhM4Njrwqg4JzzoQ5Dcx88lNL/SjthIDuSwg0JsNadjFdv0+h6X9/r6P88
+         7r6IYQkCZBRaJc24cJFOjqwbNfzrJTHViVvdOoRNLxmKLvWdcrm0JyJsICyrEhoKXucM
+         qB1A==
+X-Forwarded-Encrypted: i=1; AJvYcCXG0iQZHZsvP24qfANOmj9iNFMYu77S6wtb3byk62unh2VJPkdhh8jIYcBZ5T+4FRBbgMzSL4xnSC+ZQiYbMZHu2IVu1hWIsq6apw==
+X-Gm-Message-State: AOJu0YzsOZbNaw4zGMKsNymQxFY0iVsi9RwCCuQR4c0O3gskfw3oqGz8
+	+F9CZ+IMOieQv0jGgwiAP4wxJRfH01tW4VAytLyG5yowZf3OtPKu2OtuU2la1VU=
+X-Google-Smtp-Source: AGHT+IEA2QG9bjlKNWxsUlcMNUM9UhJrKHhbYNsI2pRHez/p0C8pbYsb3HBt3bxK5PYJlz+og/Y+4g==
+X-Received: by 2002:a05:6000:147:b0:33e:7d7e:9af4 with SMTP id r7-20020a056000014700b0033e7d7e9af4mr7367090wrx.12.1711465983703;
+        Tue, 26 Mar 2024 08:13:03 -0700 (PDT)
+Received: from ta2.c.googlers.com.com (158.100.79.34.bc.googleusercontent.com. [34.79.100.158])
+        by smtp.gmail.com with ESMTPSA id b1-20020a5d40c1000000b0033e7a204dc7sm12325692wrq.32.2024.03.26.08.13.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Mar 2024 08:13:03 -0700 (PDT)
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+To: peter.griffin@linaro.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: alim.akhtar@samsung.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	andre.draszik@linaro.org,
+	willmcvicker@google.com,
+	kernel-team@android.com,
+	Tudor Ambarus <tudor.ambarus@linaro.org>
+Subject: [PATCH v3 0/5] arm64: dts: exynos: gs101: define all PERIC USI nodes
+Date: Tue, 26 Mar 2024 15:12:56 +0000
+Message-ID: <20240326151301.348932-1-tudor.ambarus@linaro.org>
+X-Mailer: git-send-email 2.44.0.396.g6e790dbe36-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Bartosz Golaszewski <brgl@bgdev.pl> writes:
+Hi,
 
->> >> I don't know DT well enough to know what the "required:" above means,
->> >> but does this take into account that there are normal "plug&play" type
->> >> of QCA6390 boards as well which don't need any DT settings?
->> >
->> > Do they require a DT node though for some reason?
->>
->> You can attach the device to any PCI slot, connect the WLAN antenna and
->> it just works without DT nodes. I'm trying to make sure here that basic
->> setup still works.
->>
->
-> Sure, definitely. I there's no DT node, then the binding doesn't apply
-> and the driver (the platform part of it) will not probe.
->
->> Adding also Johan and ath11k list. For example, I don't know what's the
->> plan with Lenovo X13s, will it use this framework? I guess in theory we
->> could have devices which use qcom,ath11k-calibration-variant from DT but
->> not any of these supply properties?
->>
->
-> Good point. I will receive the X13s in a month from now. I do plan on
-> upstreaming correct support for WLAN and BT for it as well.
->
-> I guess we can always relax the requirements once a valid use-case appears?
+The series starts with some trivial cosmetics patches, then defines all
+the PERIC USI nodes.
 
-I think we have such cases already now:
+v3:
+- seems that Andre' already reordered the pinctrl properties, take his
+  patch (first in the series) and rebase my series on top.
+- small updates on commit messages
+- collect R-b tags
 
-$ git grep ath11k-calibration-variant -- arch
-arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts:     qcom,ath11k-calibration-variant = "Fairphone_5";
-arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts:                     qcom,ath11k-calibration-variant = "LE_X13S";
+v2:
+- reverse pinctrl-* lines, first pinctrl-0 then pinctrl-names
+- move the pinctrl-* properties after clocks so that we keep alphabetic
+  order
+- join lines close to 80 chars
+- use alphabetic order for the standard/common properties:
+  address/size-cells, clocks, interrupts, pinctrl
+- collect R-b tags
 
-But please do check that. I'm no DT expert :)
+v1:
+- https://lore.kernel.org/linux-samsung-soc/20240307135248.162752-1-tudor.ambarus@linaro.org/
+- https://lore.kernel.org/linux-samsung-soc/20240307135912.163996-1-tudor.ambarus@linaro.org/
+
+
+André Draszik (1):
+  arm64: dts: exynos: gs101: reorder pinctrl-* properties
+
+Tudor Ambarus (4):
+  arm64: dts: exynos: gs101: move serial_0 pinctrl-0/names to dtsi
+  arm64: dts: exynos: gs101: move pinctrl-* properties after clocks
+  arm64: dts: exynos: gs101: join lines close to 80 chars
+  arm64: dts: exynos: gs101: define all PERIC USI nodes
+
+ .../boot/dts/exynos/google/gs101-oriole.dts   |   4 +-
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi  | 791 +++++++++++++++++-
+ 2 files changed, 780 insertions(+), 15 deletions(-)
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+2.44.0.396.g6e790dbe36-goog
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
