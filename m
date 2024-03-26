@@ -1,146 +1,159 @@
-Return-Path: <devicetree+bounces-53631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 558C388CE1B
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 21:17:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD10988CE34
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 21:21:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A0821C33225
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 20:17:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 09AD81C65ADC
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 20:21:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E07E713D28F;
-	Tue, 26 Mar 2024 20:17:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C693D13D506;
+	Tue, 26 Mar 2024 20:21:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DA2w8bRV"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="QR9hfHKM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5041B2AD2C;
-	Tue, 26 Mar 2024 20:17:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6E6313D250;
+	Tue, 26 Mar 2024 20:21:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711484269; cv=none; b=Q4L2LAOHTMxkiAARozHyd0Pj5etc+/nLKjl1bszQqK1ysKkYb8UXqyt+o5Z673yUOC2JbGwOZy/y5W15UFsv6yDdS0mgta+HVDOox0tJaPVU0DBDG27gXMGbiYHTSxSTmlBy0s7c2I/ldDXvrKWpjp28PXyk7shWWfioWFEso3c=
+	t=1711484482; cv=none; b=Tj1fLprib/WYy8+GeUJQKKUr4LqwH9dccWsd7j1uJ1BvpGq6aUOs49AXumE3EQI1FIzizYDOTsCfsvxvOQU42HGWZ7zr/Qoz9+iMpi0bePVM1Vmy6CFse+QRw/sxf2MHb7Jy6F9WR1I63I0dlrrI+iPk32BQEkFdSuSN3hYNjKg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711484269; c=relaxed/simple;
-	bh=l0PAwS1wlrqxNRSQuJrQPY3+Q45IBLEvftbyUMrb048=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Jb8RQFpZbOtGyoglxPPaJ60Ip3QlSoIZRw9UaaWccK2xDNURLtVj6M/ae+yr375vyp+6LAQ0+Jjq4OSLDD4Wu6CvfxoQX3whM3ZPEJ2skmMIaavmUf/73bxxa/yDkXtbGZ4NjcRT3LAJLiD5bs+wYyGt1eKgF6eN6lKFhFUY3v0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DA2w8bRV; arc=none smtp.client-ip=209.85.128.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-60a046c5262so56857677b3.2;
-        Tue, 26 Mar 2024 13:17:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711484267; x=1712089067; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Rh3YW0AOZPmvBcjKfoYP1w8P/SW8q70+JN9/BHH1CxE=;
-        b=DA2w8bRV5SCFuWH3CARhUfEAofPgnZnmI4mfN13AMAcLPfeMYmYcGys+WPNpg1EEqK
-         fbjDDnrTXyZ+AI23hDjc5sVkIT1nuVlvLFKRMm5eUWsX9vIv2NWKb2IzakDle9mxkuXb
-         fUMq2Z9RylMb9lQaZu03jpMJJqnLxsEouYDK8TxRCwj6tn08cFowyUuWqi/QYdk1xenM
-         rsnNQy15wg20Esoe2RhqPFqYMHfjX+2iqITyU/ICUlfzYpSMAr9gk5j/vFlDCMESW/TP
-         j/+znKWDq0rn4EYOUqJeaSwB1mqcngCLlEPiprJXHutE/eliAHJlW8+C7ELzesD5P5a1
-         UP+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711484267; x=1712089067;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Rh3YW0AOZPmvBcjKfoYP1w8P/SW8q70+JN9/BHH1CxE=;
-        b=ggQ3oOqhhADKRwhxWNaTC0mJcXFoHUHAxsAMcga/iFjFWBcl8R/UcpOeEdVbUXy0PC
-         7pb5PWuSGMpIyH3PymA8vAB5mC4ImLJse+I+Zp6/7JSFu+kJjlEiGMIXPAXe/yneQXxy
-         l926TFqv56yD8RDTnmjqSeeNgYq1Smy/X7dxXYjBwVB6RxWvnxC+6BYEbjh1yJ5yuYiH
-         H07AxJp8PdmCjcr0fbHn1SODtUKm+I0mDqJFD4D1qDSS/ilELncika/8vAwIsKUSt5/T
-         ZXQhAsvDs6h4MdPdi5QZJIdlVK2H12sdgKtLJ7Fv6kj5+Zw/55KijPmHl8JGIJHJZKMt
-         lScA==
-X-Forwarded-Encrypted: i=1; AJvYcCXU0EQYjzAR5DbmcrGq0levPPyszVErgFh69R0n8u5E6Se8Fy4cSXHK2cJsBLzLfXoVr90CU6ApfGRCliLco10uih/TqaO/F4OT+Yx3HwRCXA2c7fCE3akRzTu9cRqnBjzMBaDTjOwAfx+mikOArbGjp36450Esx28xqN7ONoL6pyiBxw==
-X-Gm-Message-State: AOJu0YzI5B72kYCcyiMoUKk5hqrSq8lEBq3PEcv24KE+TIDODFbNEiUN
-	D8wNVMEX302zqB5nliBahEBs7B+dYc5BVg5jCMMyF2wGiAnCb+ZfmA+rzjROfl8O4kBAvVK1btY
-	09ubmS7uHnw11yqzC1ipAoJ/ppjM=
-X-Google-Smtp-Source: AGHT+IEq2DLXMHVyXMCQwnTcmcIMKlEbMRR9WzaSE8uHUUfLZEFBAzdAE0HEkuyUY9Qwy+5HaX/bY7RP0ttLMl20OKA=
-X-Received: by 2002:a25:a2c5:0:b0:dcc:467c:cecb with SMTP id
- c5-20020a25a2c5000000b00dcc467ccecbmr8989710ybn.37.1711484267271; Tue, 26 Mar
- 2024 13:17:47 -0700 (PDT)
+	s=arc-20240116; t=1711484482; c=relaxed/simple;
+	bh=ugkhIh8LPDu6CqWLRYYCLsjM5750dODZnN0y3eIFpKw=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NDnoeSEjBdBKD5yz43AdeZy77yHaN1W8w79f4vnTsFdObTf13hj/yUHKX6KiugAiLl8+6GZ6Tq+gX6N9x1tUldJIPsLrtxOp2eAHh+KiRb2Tcp6v1tdYfo0NHuHrdarB6PaTmOoQ7UJT3M29CYNNncb10Izq3H8Re2Y4BEAJTr0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=QR9hfHKM; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 42QKL5ix059927;
+	Tue, 26 Mar 2024 15:21:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1711484465;
+	bh=FdHAjC/7les37YnkMTaQnJcFGPt0pYqC/e6SnuxXsSE=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=QR9hfHKMbQNi1QYVrr44ZP6S87lmhGk/WN1dCoWOrpsdhU/3QY6XS7XSR1L06jq0H
+	 n6CIAPr3yfUGSiy1S6Uooi4brB21tyD0+wQENKZ7y+kX4mRfoFwXInSWATKRcM6abn
+	 xCi6+9kUDCH+W3GHtnQwtzRtCJ7NF7tPpG+mxqfU=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 42QKL5HV057504
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 26 Mar 2024 15:21:05 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 26
+ Mar 2024 15:21:05 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 26 Mar 2024 15:21:05 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 42QKL5cf002062;
+	Tue, 26 Mar 2024 15:21:05 -0500
+Date: Tue, 26 Mar 2024 15:21:05 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Andrew Davis <afd@ti.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/6] arm64: dts: ti: k3-am65: Remove UART baud rate
+ selection
+Message-ID: <20240326202105.duim7cooxk4dwlz2@makeshift>
+References: <20240326185441.29656-1-afd@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240325153356.46112-1-l.rubusch@gmail.com> <20240325153356.46112-5-l.rubusch@gmail.com>
- <f74a01bd-46a3-46cd-a47a-fcfccd7e4dc6@linaro.org> <CAFXKEHbJ_5unY24aZeutvM-xrjevQ=z7ngDcgwJR=NXzXONx5A@mail.gmail.com>
- <334970e7-2edd-43c8-9f18-b7b3ec5f4d17@linaro.org> <CAFXKEHaEVwiAW9co0+=kZ5w5a8eWg3QL0dmg38bvrmLdnBEA7w@mail.gmail.com>
- <b13ca51c-db57-4a09-b689-cf27265d348f@linaro.org>
-In-Reply-To: <b13ca51c-db57-4a09-b689-cf27265d348f@linaro.org>
-From: Lothar Rubusch <l.rubusch@gmail.com>
-Date: Tue, 26 Mar 2024 21:17:11 +0100
-Message-ID: <CAFXKEHYMiARxrN7=jqnJtEVREseZ-zmZmVeY1uNXZV6viwHbmw@mail.gmail.com>
-Subject: Re: [PATCH v4 4/7] dt-bindings: iio: accel: adxl345: Add spi-3wire
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, eraretuya@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240326185441.29656-1-afd@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Tue, Mar 26, 2024 at 7:30=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 25/03/2024 23:09, Lothar Rubusch wrote:
-> >>
-> >>
-> >>>
-> >>>> the tags. The upstream maintainer will do that for tags received on =
-the
-> >>>> version they apply.
-> >>>>
-> >>>
-> >>> I'm pretty sure we will still see further iterations. So, I apply the
-> >>> tags in the next version, already scheduled. Ok?
-> >>>
-> >>>> https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/proce=
-ss/submitting-patches.rst#L577
-> >>>>
-> >>>
-> >>> Going over the books I feel it does not make sense to still mention
-> >>> feedback ("Reveiewed-by") for the v1 or v2 of the patch here in a v5,
-> >>> does it? Your link mentiones "However if the patch has changed
-> >>
-> >> I don't understand. When did you receive the tag? v3, right? So what d=
-o
-> >> you mean by v1 and v2?
-> >>
-> >
-> > V1: The first version of the 3wire patch. I have split the single
-> > patch upon some feedback (yours?!) - V2... So, my current
-> > interpretation is, that every feedback I need to mention as
-> > Reviewed-by tag, no?
->
-> What? Feedback is not review. It's clearly explained in submitting
-> patches. Please read it.
->
+On 13:54-20240326, Andrew Davis wrote:
+> As described in the binding document for the "current-speed" property:
+> 
+> "This should only be present in case a driver has no chance to know the
+> baud rate of the slave device."
+> 
+> This is not the case for the UART used in K3 devices, the current
+> baud-rate can be calculated from the registers. Having this property
 
-Exactly. My missunderstanding here is this:  Why did you send me a
-reminder that I forgot to add "Reviewed-by" tag in your last mail?
-Could you please clarify your last mail? You wrote:
-"(...)
-This is a friendly reminder during the review process.
+I do not understand the explanation above -> how does one do this?
+If you are talking of the 8250 divider registers, someone has to program
+those - how do you compute the baud rate from registers that aren't
+programmed? Note: I am not commenting on the rationale of removing the
+property, just trying to understand the assertion above.
 
-It looks like you received a tag and forgot to add it.
+> has the effect of actually skipping the baud-rate setup in some drivers
+> as it assumes it will already be set to this rate, which may not always
+> be the case.
+> 
+> It seems this property's purpose was mistaken as selecting the desired
+> baud-rate, which it does not. It would have been wrong to select that
+> here anyway as DT is not the place for configuration, especially when
+> there are already more standard ways to set serial baud-rates.
+> 
+> Signed-off-by: Andrew Davis <afd@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-am65-main.dtsi   | 1 -
+>  arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi    | 1 -
+>  arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi | 1 -
+>  3 files changed, 3 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> index ff857117d7193..670557c89f756 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> @@ -89,7 +89,6 @@ main_uart0: serial@2800000 {
+>  		reg = <0x00 0x02800000 0x00 0x100>;
+>  		interrupts = <GIC_SPI 192 IRQ_TYPE_LEVEL_HIGH>;
+>  		clock-frequency = <48000000>;
+> -		current-speed = <115200>;
+>  		power-domains = <&k3_pds 146 TI_SCI_PD_EXCLUSIVE>;
+>  		status = "disabled";
+>  	};
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
+> index 6ff3ccc39fb44..4f808e5089755 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
+> @@ -43,7 +43,6 @@ mcu_uart0: serial@40a00000 {
+>  		reg = <0x00 0x40a00000 0x00 0x100>;
+>  		interrupts = <GIC_SPI 565 IRQ_TYPE_LEVEL_HIGH>;
+>  		clock-frequency = <96000000>;
+> -		current-speed = <115200>;
+>  		power-domains = <&k3_pds 149 TI_SCI_PD_EXCLUSIVE>;
+>  		status = "disabled";
+>  	};
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
+> index 37527890ddeaf..eee072e44a42f 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
+> @@ -59,7 +59,6 @@ wkup_uart0: serial@42300000 {
+>  		reg = <0x42300000 0x100>;
+>  		interrupts = <GIC_SPI 697 IRQ_TYPE_LEVEL_HIGH>;
+>  		clock-frequency = <48000000>;
+> -		current-speed = <115200>;
+>  		power-domains = <&k3_pds 150 TI_SCI_PD_EXCLUSIVE>;
+>  		status = "disabled";
+>  	};
+> -- 
+> 2.39.2
+> 
 
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, (...)"
-
-AFAIK noone literally had told me: "please add a Reviewed-by me tag",
-or did I miss something? I'm a bit lost here, sorry.
-
-> Best regards,
-> Krzysztof
->
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
