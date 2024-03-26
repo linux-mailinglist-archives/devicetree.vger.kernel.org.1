@@ -1,75 +1,64 @@
-Return-Path: <devicetree+bounces-53659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B06DE88D005
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 22:29:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8D4E88D011
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 22:30:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3DFB1C38260
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 21:29:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9CD291F800A8
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 21:30:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D8A913D61F;
-	Tue, 26 Mar 2024 21:29:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35FE213D63A;
+	Tue, 26 Mar 2024 21:30:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GwSJ65LM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D55E21EF1D;
-	Tue, 26 Mar 2024 21:29:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D3CD13D61C;
+	Tue, 26 Mar 2024 21:30:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711488575; cv=none; b=aKohSaTNrfwkws77JoRMjZyKjq/EWEnnwnKPE5GB8GeQQkHM6t2xOI58BGw+TYIc+L+surC2XT0SZjXIVIh+hyAo5QQ6sm6/8k8aJJhf9e4YBbSWULt/Efvq30rPI79DH+v33hoobqXHWz9cN5mEv17Q/zyHbKcf73HZ3y6jKE4=
+	t=1711488656; cv=none; b=TqkNpF3kDYb7EvrwI68jgcA4laFko/It6x/EiaAEX1rdwXves9XrdMe1t+Q8RaJwRDupbhbaT2ESOPtLSqeftU7SGjiBQf7QkUOQuM45jouzs8VDXPRHpBnL0C+kKMVZRRFsOFW42N1eRUxhZoRSMSvnScWcLLEVxpyB0e/d1zU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711488575; c=relaxed/simple;
-	bh=62GPZHht6GgI2gK0JfrPxZscKZqKq+v0X1W+kOlbbLg=;
+	s=arc-20240116; t=1711488656; c=relaxed/simple;
+	bh=t4eVO8xDzDU1Y35LKgvIqWUq1Xt8ynqtLWNZOdQr6Xg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=k5CmrxEqhw8I7VV2Tr1A08x22nf/eQVDah57zFaVhJom1jllNJPMyh5Ofw+rJn2tnGj2qAYnYmly87ZwD3u+ynRuzu3fFuVGA7gkWLn3q8Enut3BpNzw8eI5QRGrjxmDEy3i0Z5cdR88N82ntYuO5XOeldn1EkpCtgwwkCJAR08=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.96.2)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1rpELV-00030a-3A;
-	Tue, 26 Mar 2024 21:28:38 +0000
-Date: Tue, 26 Mar 2024 21:28:33 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Diping Zhang <diping.zhang@gl-inet.com>,
-	Jianhui Zhao <zhaojh329@gmail.com>,
-	Jieying Zeng <jieying.zeng@gl-inet.com>,
-	Chad Monroe <chad.monroe@adtran.com>,
-	Adam Fox <adam.fox@adtran.com>, John Crispin <john@phrozen.org>,
-	Felix Fietkau <nbd@nbd.name>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=a+J5ssBF8VlbgSSOwQ1PV77IN6TixrFyFkex8i0vsBzRODQ2KnmKOLfe7zK7sw38MmAH7oAw/DUabTfTbZ0Anvf38+XLmZmTMJUWOlc3sgcv9zLm9/UjRGtqV6Aqa2xSYaxaKwdkxCsyQmyHJzCUob/HPSzwwO1mGibPXwTHRbE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GwSJ65LM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 522EBC433C7;
+	Tue, 26 Mar 2024 21:30:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711488655;
+	bh=t4eVO8xDzDU1Y35LKgvIqWUq1Xt8ynqtLWNZOdQr6Xg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GwSJ65LMOtWa1CJvrvfTXZP594whXeCAnZp/Drs1ECQMoMmoNSwm563U5wzHthtmQ
+	 2bJJCbHLDEipof+KwOUlSRAhnfvEfaOeevF7TNOliq6covJ3rmKbsbfcYp+66zLCZg
+	 Jhf9eZq12gYx/us8d0ausMk+zXmqvftyFlDcurj8x4CNy+sCt7bYedUFArLGb4xSNv
+	 HgEaOR56CfE2Pxuh1Zb3hA20P66yBw11YlFZUWOgpshvuMFRvNwGPkQ3j6LfDeEvkM
+	 KdDCY6ZdDHZx5EqNdQgcbj42z5OQ1Mv3S2VuZv7cGi+l9+DK85jfBFaF+vAuKfQy6S
+	 6U0h7n+2cZ/Tw==
+Date: Tue, 26 Mar 2024 16:30:53 -0500
+From: Rob Herring <robh@kernel.org>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Jens Axboe <axboe@kernel.dk>,
-	Dave Chinner <dchinner@redhat.com>, Jan Kara <jack@suse.cz>,
-	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>,
-	Damien Le Moal <dlemoal@kernel.org>,
-	Li Lingfeng <lilingfeng3@huawei.com>,
-	Christian Brauner <brauner@kernel.org>,
-	Christian Heusel <christian@heusel.eu>,
-	Min Li <min15.li@samsung.com>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Avri Altman <avri.altman@wdc.com>, Hannes Reinecke <hare@suse.de>,
-	Christian Loehle <CLoehle@hyperstone.com>,
-	Bean Huo <beanhuo@micron.com>, Yeqi Fu <asuk4.q@gmail.com>,
-	Victor Shih <victor.shih@genesyslogic.com.tw>,
-	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-	Dominique Martinet <dominique.martinet@atmark-techno.com>,
-	"Ricardo B. Marliere" <ricardo@marliere.net>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mmc@vger.kernel.org, linux-block@vger.kernel.org
-Subject: Re: [PATCH 0/8] block: implement NVMEM provider
-Message-ID: <ZgM-AR1BFU_FPaXh@makrotopia.org>
-References: <cover.1711048433.git.daniel@makrotopia.org>
- <20240325151046.GA3591150-robh@kernel.org>
- <ZgGaay6bLFAcCo2E@makrotopia.org>
- <20240326202449.GA3255378-robh@kernel.org>
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Eric Anholt <eric@anholt.net>,
+	Stefan Wahren <wahrenst@gmx.net>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: bcm: raspberrypi,bcm2835-firmware:
+ Add missing properties
+Message-ID: <20240326213053.GA3562515-robh@kernel.org>
+References: <20240326004902.17054-1-laurent.pinchart@ideasonboard.com>
+ <20240326004902.17054-2-laurent.pinchart@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,201 +67,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240326202449.GA3255378-robh@kernel.org>
+In-Reply-To: <20240326004902.17054-2-laurent.pinchart@ideasonboard.com>
 
-Hi Rob,
+On Tue, Mar 26, 2024 at 02:49:01AM +0200, Laurent Pinchart wrote:
+> The raspberrypi,bcm2835-firmware devices requires a dma-ranges property,
+> and, as a result, also needs to specify #address-cells and #size-cells.
+> Those properties have been added to thebcm2835-rpi.dtsi in commits
+> be08d278eb09 ("ARM: dts: bcm283x: Add cells encoding format to firmware
+> bus") and 55c7c0621078 ("ARM: dts: bcm283x: Fix vc4's firmware bus DMA
+> limitations"), but the DT bindings haven't been updated, resulting in
+> validation errors:
 
-On Tue, Mar 26, 2024 at 03:24:49PM -0500, Rob Herring wrote:
-> +boot-architecture list
+I don't understand. We treat no dma-ranges the same as empty dma-ranges 
+(dma-ranges;). If we didn't, *every* DT would be broken.
 
-Good idea, thank you :)
+We should never have dma-ranges without ranges either. 
 
-> 
-> On Mon, Mar 25, 2024 at 03:38:19PM +0000, Daniel Golle wrote:
-> > On Mon, Mar 25, 2024 at 10:10:46AM -0500, Rob Herring wrote:
-> > > On Thu, Mar 21, 2024 at 07:31:48PM +0000, Daniel Golle wrote:
-> > > > On embedded devices using an eMMC it is common that one or more (hw/sw)
-> > > > partitions on the eMMC are used to store MAC addresses and Wi-Fi
-> > > > calibration EEPROM data.
-> > > > 
-> > > > Implement an NVMEM provider backed by a block device as typically the
-> > > > NVMEM framework is used to have kernel drivers read and use binary data
-> > > > from EEPROMs, efuses, flash memory (MTD), ...
-> > > > 
-> > > > In order to be able to reference hardware partitions on an eMMC, add code
-> > > > to bind each hardware partition to a specific firmware subnode.
-> > > > 
-> > > > Overall, this enables uniform handling across practially all flash
-> > > > storage types used for this purpose (MTD, UBI, and now also MMC).
-> > > > 
-> > > > As part of this series it was necessary to define a device tree schema
-> > > > for block devices and partitions on them, which (similar to how it now
-> > > > works also for UBI volumes) can be matched by one or more properties.
-> > > > 
-> > > > ---
-> > > > This series has previously been submitted as RFC on July 19th 2023[1]
-> > > > and most of the basic idea did not change since. Another round of RFC
-> > > > was submitted on March 5th 2024[2] which has received overall positive
-> > > > feedback and only minor corrections have been done since (see
-> > > > changelog below).
-> > > 
-> > > I don't recall giving positive feedback.
-> > > 
-> > > I still think this should use offsets rather than partition specific 
-> > > information. Not wanting to have to update the offsets if they change is 
-> > > not reason enough to not use them.
-> > 
-> > Using raw offsets on the block device (rather than the partition)
-> > won't work for most existing devices and boot firmware out there. They
-> > always reference the partition, usually by the name of a GPT
-> > partition (but sometimes also PARTUUID or even PARTNO) which is then
-> > used in the exact same way as an MTD partition or UBI volume would be
-> > on devices with NOR or NAND flash.
-> 
-> MTD normally uses offsets hence why I'd like some alignment. UBI is 
-> special because raw NAND is, well, special.
-
-I get the point and in a way this is also already intended and
-supported by this series. You can already just add an 'nvmem-layout'
-node directly to a disk device rather than to a partition and define a
-layout in this way.
-
-Making this useful in practice will require some improvements to the
-nvmem system in Linux though, because that currently uses signed 32-bit
-integers as addresses which is not sufficient for the size of the
-user-part of an eMMC. However, that needs to be done then and should
-of course not be read as an excuse.
-
-> 
-> > Just on eMMC we usually use a GPT
-> > or MBR partition table rather than defining partitions in DT or cmdline,
-> > which is rather rare (for historic reasons, I suppose, but it is what it
-> > is now).
-> 
-> Yes, I understand how eMMC works. I don't understand why if you have 
-> part #, uuid, or name you can't get to the offset or vice-versa. You 
-> need only 1 piece of identification to map partition table entries to DT 
-> nodes.
-
-Yes, either of them (or a combination) is fine. In practise I've mostly
-seen PARTNAME as identifier used in userland scripts, and only adding
-this for now will probably cover most devices (and existing boot firmware)
-out there. Notable exceptions are devices which are using MBR partitions
-because the BootROM expects the bootloader to be at the same block as
-we would usually have the primary GPT. In this case we can only use the
-PARTNO, of course, and it stinks.
-MediaTek's MT7623A/N is such an example, but it's a slingly outdated
-and pretty weird niche SoC I admit.
-
-> Sure, offsets can change, but surely the firmware can handle 
-> adjusting the DT? 
-
-Future firmware may be able to do this, of course. Current existing
-firmware already out there on devices such as the quite popular
-GL.iNet MT-6000, Netgear's Orbi and Orbi Pro series as well as all
-Adtran SmartRG devices does not. Updating or changing the boot
-firmware of devices already out there is not intended and quite
-challenging, and will make the device incompatible with its vendor
-firmware. Hence it would be better to support replacing only the
-Linux-based firmware (eg. with OpenWrt or even Debian or any
-general-purpose Linux, the eMMC is large enough...) while not having
-to touch the boot firmware (and risking to brick the device if that
-goes wrong).
-
-Personally, I'm rather burdened and unhappy with vendor attempts to
-have the boot firmware mess around too much in (highly customized,
-downstream) DT, it may look like a good solution at the moment, but
-can totally become an obstacle in an unpredictable future (no offense
-ASUS...)
-
-> 
-> An offset would also work for the case of random firmware data on the 
-> disk that may or may not have a partition associated with it. There are 
-> certainly cases of that. I don't think we have much of a solution for 
-> that other than trying to educate vendors to not do that or OS 
-> installers only supporting installing to something other than eMMC. This 
-> is something EBBR[1] is trying to address.
-
-Absolutely. Actually *early* GL-iNet devices did exactly that: Use the
-eMMC boot hw-partitions to store boot firmware as well as MAC
-addresses and potentially also Wi-Fi calibration data.
-
-The MT-2500 is the example I'm aware of and got sitting on my desk for
-testing with this very series (which allows to also reference eMMC
-hardware partitions, see "[7/8] mmc: block: set fwnode of disk
-devices").
-Unfortunately later devices such the the flag-ship MT-6000 moved MAC
-addresses and WiFi-EEPROMs into a GPT partition on the user-part of
-the eMMC.
-
-> 
-> > Depending on the eMMC chip used, that partition may not even be at the
-> > same offset for different batches of the same device and hence I'd
-> > like to just do it in the same way vendor firmware does it as well.
-> 
-> Often vendor firmware is not a model to follow...
-
-I totally agree. However, I don't see a good reason for not supporting
-those network-appliance-type embedded devices which even ship with
-(outdated, downstream) Linux by default while going through great
-lengths for things like broken ACPI tables in many laptops which
-require lots of work-arounds to have features like suspend-to-disk
-working, or even be able to run Linux at all.
-
-> 
-> > Chad of Adtran has previously confirmed that [1], which was the
-> > positive feedback I was refering to. Other vendors like GL-iNet or
-> > Netgear are doing the exact same thing.
-> > 
-> > As of now, we support this in OpenWrt by adding a lot of
-> > board-specific knowledge to userland, which is ugly and also prevents
-> > using things like PXE-initiated nfsroot on those devices.
-> > 
-> > The purpose of this series is to be able to properly support such devices
-> > (ie. practially all consumer-grade routers out there using an eMMC for
-> > storing firmware).
-> > 
-> > Also, those devices have enough resources to run a general purpose
-> > distribution like Debian instead of OpenWrt, and all the userland
-> > hacks to set MAC addresses and extract WiFi-EEPROM-data in a
-> > board-specific ways will most certainly never find their way into
-> > Debian. It's just not how embedded Linux works, unless you are looking
-> > only at the RaspberryPi which got that data stored in a textfile
-> > which is shipped by the distribution -- something very weird and very
-> > different from literally all of-the-shelf routers, access-points or
-> > switches I have ever seen (and I've seen many). Maybe Felix who has
-> > seen even more of them can tell us more about that.
-> 
-> General purpose distros want to partition the disk themselves. Adding 
-> anything to the DT for disk partitions would require the installer to be 
-> aware of it. There's various distro folks on the boot-arch list, so 
-> maybe one of them can comment.
-
-Usually the installers are already aware to not touch partitions when
-unaware of their purpose. Repartitioning the disk from scratch is not
-what (modern) distributions are doing, at least the EFI System
-partition is kept, as well as typical rescue/recovery partitions many
-vendors put on their (Windows, Mac) laptops to allow to "factory
-reset" them.
-
-Installers usually offer to replace (or resize) the "large" partition
-used by the currently installed OS instead.
-
-And well, the DT reference to a partition holding e.g. MAC addresses
-does make the installer aware of it, obviously.
-
-
-Thank you for the constructive debate!
-
-
-Cheers
-
-
-Daniel
-
-
-> 
-> Rob
-> 
-> [1] https://arm-software.github.io/ebbr/index.html#document-chapter4-firmware-media
+Rob
 
