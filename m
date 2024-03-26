@@ -1,170 +1,222 @@
-Return-Path: <devicetree+bounces-53558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6405C88CB55
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 18:51:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60B9F88CB5B
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 18:51:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 193331F809C1
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 17:51:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 341DCB2AB69
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 17:51:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F0084CE09;
-	Tue, 26 Mar 2024 17:50:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3F3E1F61C;
+	Tue, 26 Mar 2024 17:50:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CVUMWNwA"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="h9Jm6mwr";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="E20CPKPz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from wflow2-smtp.messagingengine.com (wflow2-smtp.messagingengine.com [64.147.123.137])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B02A41CD31
-	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 17:50:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EEC384D0A;
+	Tue, 26 Mar 2024 17:50:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.147.123.137
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711475442; cv=none; b=EyriInfIv8EsS0NvORsy/WgH+A5P3SYKmrikNQB0W/PxcQkBHLQrmkKf8IQ3lceC7KCwa0vwJpZ8xDAJdmnce7OVRGZFYT9TP1SG2mOoyiYxM46w5gFy7T8fmjWliAiEnmMOks5hXO6xnAJrxaqM/Y+UlPhziLBSLG75Wr9/ZkU=
+	t=1711475455; cv=none; b=oaMv69ad3L+7lI3pcgR8ZacpZriJIGUttiOY9tMavIhbxII3cPaGROdZLQUlZGkDm+F/bsGSUY1NpcBRZa2JDmX7l21T1NpBBBOba2v3e0gW0/qEr7P+Us/V5GV1vxH/7eWBtoKa/ymzvVlwkwBwH88Jmo/tqTJtzF65w5hhSoU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711475442; c=relaxed/simple;
-	bh=sd5w0qWqvjNhWDNIAJL9a17DcsCnU7ao9XcHvYDUVfs=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=qnL6JiO9fohk5MVd6VDZxG9H5t7AKkKgdXUBjzb5W2ONBCLmnPm+CmjcUhbO2RMpfGS1hgNTgYR7lFwsaRKR9rbbHWqRiaLSIHz3qlPuP16Y4uZ+uNzlseO+AToVSxZ728M4Mt0ixt02oIvcGgbXNO/en28Cof5sooCiUUjpidQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CVUMWNwA; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a4715991c32so706764966b.1
-        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 10:50:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711475439; x=1712080239; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:from:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=N1d4VruYCFWZM4T5uYHpWSgV6rWwaEi0uyd3VLge4Tk=;
-        b=CVUMWNwA2TfaUx5iy216r1W39K3YlSYxQxiwITWnwc2+aEdHSJMgNSsE1+isWDKV70
-         /xxJDRMFDWKPFt2E01kr6VhbRjAJXSxJZY6WbrPReEVB8MH2MW/q3G8FORh7zHd7Nhu8
-         WWxE8EpY3PxVO4G5IFv5RXbLmXXE98AeFVnhyR+2GqFSUyXLuQeRu00imJ3NfK8FeqvE
-         9I18rn3PP0GWQS+W75lcYRfZ5szF7IkbXaVqA202SCphXHn8MPD+ZmkrcCRsoqeI6DCv
-         XLb/4x8hi4ClTycOvhuQWVVwd/cBBUF/AyyXxDtynLpqc7rmVScncltUbdpI0A1Li51d
-         DE0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711475439; x=1712080239;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:from:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=N1d4VruYCFWZM4T5uYHpWSgV6rWwaEi0uyd3VLge4Tk=;
-        b=wJcYqLrdjNcdMAbqk6s4Qff6LGdIRoh2SvPczLnyMOcVIn4Wq0iE/NIdpsFqZ3gwcT
-         6MAXNg6wT0HGSfEDoi33OmbatmS73E94Cng2U7WQzNkIsf1fSX1KkDFkXrr0B6x4+gCS
-         R+pAhhFUB+wnQ9eIt3CHcpac/NJ6CAt81GI4xQM18JFQf5pnnQllAZgM70UuQ3pmL66d
-         tJ42QzznRNPoohqpAuxP5vB8Ep5gugYD436StzPW7m4+8LIWGGrSMSWabRnri1ZdcT1g
-         HCvL/7RVCRiNq4fleaLXjw363AHNRpM6VJHpvnFps8MCAQa5Ay2jO7houNiU90jkKFY2
-         BxgQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVYh/o34IjzaC+X/Igd7Vd11HzfafLXMSFHDFdk6Lbp/c6+nvIS9rEVjSRhmW/uEvdILz8mi/cXVfOGBr44IIyNDDtiyRn4FPfDXQ==
-X-Gm-Message-State: AOJu0YzJEYouADFn0QP4hAd4SX1qfrre+JXkMJ3C76uZmnx6P8U3ousx
-	6zjxp31l4BwOaQ121UTvf+gTD85DtlVcM0+OL07gdMbU2OgzUEfhxW4p/DPrsnhiJZvOFqYUBO7
-	e
-X-Google-Smtp-Source: AGHT+IELWqHQbZ+fH0diXz/AcE9JrxvloE+lldn1qR/v72ZClVly6EhcqVcwCmZheGpIAWUSIs0RWA==
-X-Received: by 2002:a17:906:3085:b0:a46:d041:28e0 with SMTP id 5-20020a170906308500b00a46d04128e0mr292717ejv.59.1711475439043;
-        Tue, 26 Mar 2024 10:50:39 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.44])
-        by smtp.gmail.com with ESMTPSA id bw2-20020a170906c1c200b00a471b5b25b9sm4438451ejb.127.2024.03.26.10.50.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Mar 2024 10:50:38 -0700 (PDT)
-Message-ID: <5fb55234-4afd-4e6a-9763-4d2e344e0ce6@linaro.org>
-Date: Tue, 26 Mar 2024 18:50:37 +0100
+	s=arc-20240116; t=1711475455; c=relaxed/simple;
+	bh=Jl3WD44odOpmZNm+pOZH2TXGLLjw2ln0as8nNR7HbIc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WMt0s5TpMFnUChM66MBE8PXZQJL9m1sDh/Xy9iSRjn4tm53wWxn252cNuGxzIaA3bouD+YqDsDhtctro6QfBVNfYLYepM58/tUEG8qlf3DZEkg57POT/TBY0IME46Vl9iXAkyVkM+nlJFTlIzU7YRFeN0G4fZwa8DCTUHVCMvK8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=h9Jm6mwr; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=E20CPKPz; arc=none smtp.client-ip=64.147.123.137
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailflow.west.internal (Postfix) with ESMTP id 16A302CC01D7;
+	Tue, 26 Mar 2024 13:50:50 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Tue, 26 Mar 2024 13:50:50 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1711475449;
+	 x=1711479049; bh=gZGDmgj8nj2ad7xBoHJ9IF4hDKH9Qkj1W2vW+FVkizQ=; b=
+	h9Jm6mwrpICI2/wKI4gz3CseRxW0Mw2e5vCO3dwkJUWJMPjwrZ3gkffYUaVPSFm0
+	wbW0QC3aX55QnPJQsFCjMNlyz04Go+NVSGHGgquLxUwf1OWPBlYiXGhOx55J8iMl
+	xdsF0ew5Rc/T3A33lNlFknx099gb1/tbMaTpVKIf1hSva3ITlVLEo9A1yOrN/7uH
+	VDfWrdRR7vRCgd29shXN9EJLAhO9Zo2XAYXxk5wwy4xvQopSL/coDpPu6A3DVX8A
+	OO1iLhPDMTZ/H7H4k2oBVeasmjvDcZm2IYM3TFV62O6n92Z6gc5yRzNGNV1VTnhO
+	O6MeCSf1NfblhRl5o+7KdQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1711475449; x=
+	1711479049; bh=gZGDmgj8nj2ad7xBoHJ9IF4hDKH9Qkj1W2vW+FVkizQ=; b=E
+	20CPKPzsPklW8deVUnvj6Kmfry5tlMwDD9G15cA2+/MPIIcAo+RFJUkigUc1zSPw
+	XI2Rx83uMqLgYsLm/1OHg18XZ8+JsJ9n0QYDaNffevOO2tHh9PwKz4vTgjGWP7Yu
+	py1ulcykWFUBKbCk/HuuPuk2JQbw0VGsr9faYmlK2gTrqqKnVwKitxcPnn0tjd0a
+	dt7uTw3GkvyW5a3Tz5ewYmaqh9eA8lW1+oWvXJeFyCySey89cSfYrgCQAF3U3MiN
+	+TpEN3KRRTorudk0e4+i6Dzt9kOup469eNa54I44x9KEHWRVNlm0izfj3speIqAM
+	vWx5aepYa8u87bBOPdYSg==
+X-ME-Sender: <xms:-AoDZn6sa6O-edLg6eKfVL-TeGLWnavKxsMOOCu-hRZdFn74LT-ROQ>
+    <xme:-AoDZs7B7-EL40OkqLeHLMAU6VoaHJj45OI3HxYdEyKYWR3CHpIgtpaeUUbCQ6GZy
+    uXQuM2Ma2L9S04CAtw>
+X-ME-Received: <xmr:-AoDZufwfOBM-SdU-c9b0GhbFza-HaPHoeb23YCMyLzNFK1JHvgH7rcuisAfBdpz8MLjhX1fXz9KwJ4Ys19bVmx-TUgay3g>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledruddufedguddtiecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpeffhffvvefukfhfgggtugfgjgesthekredttddtjeenucfhrhhomheppfhi
+    khhlrghsucfunpguvghrlhhunhguuceonhhikhhlrghsrdhsohguvghrlhhunhguodhrvg
+    hnvghsrghssehrrghgnhgrthgvtghhrdhsvgeqnecuggftrfgrthhtvghrnhepfefhleel
+    hfffjefgfedugfegjeelhfevheeikefhueelgfdtfeeuhefftddvleeinecuvehluhhsth
+    gvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepnhhikhhlrghsrdhsohgu
+    vghrlhhunhguodhrvghnvghsrghssehrrghgnhgrthgvtghhrdhsvg
+X-ME-Proxy: <xmx:-AoDZoKIeYHmXLyHTTE642Nk6cWnXi-9sjzihBwIB1lCgGdaXLVHEg>
+    <xmx:-AoDZrKvfyGwc2k1EcujBspxbRRs3cPD6YjyIkBVUg2YQAw9uGgDSQ>
+    <xmx:-AoDZhxXNtD0WHs9sUVlU-ADW-cixxYlJW-pexT7-gi-fFcZCdkHtg>
+    <xmx:-AoDZnLQ04HcZ4eItv9cPcrj-HV-Ydyjwi9pW2NQ65IHpNebpevzOw>
+    <xmx:-QoDZj8tNWrvYUu4Kc9H0htXzkG3qg8WWp-aU7k7fePQ-wBfCbxp39AaYEOg1w9Y>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 26 Mar 2024 13:50:48 -0400 (EDT)
+Date: Tue, 26 Mar 2024 18:50:44 +0100
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] arm64: dts: renesas: white-hawk: ethernet: Describe
+ avb1 and avb2
+Message-ID: <20240326175044.GG1108818@ragnatech.se>
+References: <20240309155608.1312784-1-niklas.soderlund+renesas@ragnatech.se>
+ <CAMuHMdXBhpbH2=21e26BeuknpW08eoX_yG4UQg-Ep5TijY3Vfw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: display: rockchip: add missing
- #sound-dai-cells to dw-hdmi
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Heiko Stuebner <heiko@sntech.de>, hjc@rock-chips.com,
- andy.yan@rock-chips.com, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240326172801.1163200-1-heiko@sntech.de>
- <edc0bfa2-7984-4d9d-ba25-4805ee0be679@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <edc0bfa2-7984-4d9d-ba25-4805ee0be679@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMuHMdXBhpbH2=21e26BeuknpW08eoX_yG4UQg-Ep5TijY3Vfw@mail.gmail.com>
 
-On 26/03/2024 18:50, Krzysztof Kozlowski wrote:
-> On 26/03/2024 18:28, Heiko Stuebner wrote:
->> The #sound-dai-cells DT property is required to describe link between
->> the HDMI IP block and the SoC's audio subsystem.
->>
->> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
->> ---
->>  .../devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml | 3 +++
->>  1 file changed, 3 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
->> index af638b6c0d21..3768df80ca7a 100644
->> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
->> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
->> @@ -124,6 +124,9 @@ properties:
->>      description:
->>        phandle to the GRF to mux vopl/vopb.
->>  
->> +  "#sound-dai-cells":
->> +    const: 0
->> +
+Hi Geert,
+
+Thanks for your report.
+
+On 2024-03-26 16:54:49 +0100, Geert Uytterhoeven wrote:
+> Hi Niklas,
 > 
-> Then you miss $ref in allOf to /schemas/sound/dai-common.yaml
+> On Sat, Mar 9, 2024 at 4:56 PM Niklas Söderlund
+> <niklas.soderlund+renesas@ragnatech.se> wrote:
+> > Describe the two Marvel 88Q2110/QFN40 PHYs available on the R-Car V4H
+> > White Hawk RAVB/Ethernet(1000Base-T1) sub-board. The two PHYs are wired
+> > up on the board by default, there is no need to move any resistors which
+> > are needed to access other PHYs available on this sub-board.
+> >
+> > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> 
+> When accidentally booting a kernel without CONFIG_MARVELL_88Q2XXX_PHY=y,
+> I am greeted with the following warning splat (same for the second PHY):
 
-I meant, except your change you should add also above $ref.
+I can reproduce this, but I'm not really sure how to deal with it and 
+it's unrelated to Renesas AVB Ethernet driver.
 
-Best regards,
-Krzysztof
+What happens when when running without CONFIG_MARVELL_88Q2XXX_PHY=y is 
+that the core fallback to use the generic Generic Clause 45 PHY driver.  
+And the generic driver don't work correctly for the PHY on V4H (88Q2110).
 
+The splat happens when the generic driver tries to enable auto 
+negotiation. This is known to be broken for 88Q2110 and the 
+CONFIG_MARVELL_88Q2XXX_PHY=y driver disables this. From 
+marvell-88q2xxx.c
+
+        /* The PHY signalizes it supports autonegotiation. Unfortunately, so
+         * far it was not possible to get a link even when following the init
+         * sequence provided by Marvell. Disable it for now until a proper
+         * workaround is found or a new PHY revision is released.
+         */
+        if (phydev->drv->phy_id == MARVELL_PHY_ID_88Q2110)
+                linkmode_clear_bit(ETHTOOL_LINK_MODE_Autoneg_BIT,
+                                   phydev->supported);
+
+If I hack the generic PHY to also not try auto negotiation the splat go 
+away and the PHY binds using the generic driver. I did not test using it 
+further.
+
+I can't try to submit such a hack as that would break all other PHY 
+where auto negotiation works. So I'm not sure we can do anything about 
+this other than make sure we have the correct PHY drivers around, or use 
+PHYs that works with the Clause 45 specification.
+
+> 
+> -mv88q2110 e6810000.ethernet-ffffffff:00: attached PHY driver
+> (mii_bus:phy_addr=e6810000.ethernet-ffffffff:00, irq=POLL)
+> +Generic Clause 45 PHY e6810000.ethernet-ffffffff:00: attached PHY
+> driver (mii_bus:phy_addr=e6810000.ethernet-ffffffff:00, irq=POLL)
+> +rcar-du feb00000.display: adding to PM domain always-on
+> -mv88q2110 e6820000.ethernet-ffffffff:00: attached PHY driver
+> (mii_bus:phy_addr=e6820000.ethernet-ffffffff:00, irq=POLL)
+> +rcar-du feb00000.display: removing from PM domain always-on
+> +------------[ cut here ]------------
+> +_phy_start_aneg+0x0/0xa8: returned: -22
+> +WARNING: CPU: 2 PID: 55 at drivers/net/phy/phy.c:1262
+> _phy_state_machine+0x120/0x198
+> +Modules linked in:
+> +CPU: 2 PID: 55 Comm: kworker/2:1 Not tainted
+> 6.9.0-rc1-white-hawk-02587-g577b6a49a6d4 #235
+> +Hardware name: Renesas White Hawk CPU and Breakout boards based on
+> r8a779g0 (DT)
+> +Workqueue: events_power_efficient phy_state_machine
+> +pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+> +pc : _phy_state_machine+0x120/0x198
+> +lr : _phy_state_machine+0x120/0x198
+> +sp : ffffffc082dd3d10
+> +x29: ffffffc082dd3d10 x28: ffffff8440089c05 x27: ffffffc081090000
+> +x26: ffffffc080e03008 x25: 0000000000000000 x24: ffffffc0815603d0
+> +x23: ffffffc080e03008 x22: ffffff86bef98100 x21: 0000000000000004
+> +x20: 0000000000000001 x19: ffffff84435b3000 x18: 0000000000000000
+> +x17: 0000000000000000 x16: 0000000000000000 x15: 0720072007320732
+> +x14: 072d0720073a0764 x13: 0720072007320732 x12: 072d0720073a0764
+> +x11: 000000000000033a x10: ffffffc0810b9ac8 x9 : ffffffc081379ca8
+> +x8 : ffffffc082dd3a18 x7 : ffffffc082dd3a20 x6 : 00000000ffff7fff
+> +x5 : c0000000ffff7fff x4 : 0000000000000000 x3 : 0000000000000001
+> +x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffffff8440a98000
+> +Call trace:
+> + _phy_state_machine+0x120/0x198
+> + phy_state_machine+0x2c/0x5c
+> + process_scheduled_works+0x314/0x4d4
+> + worker_thread+0x1b8/0x20c
+> + kthread+0xd8/0xe8
+> + ret_from_fork+0x10/0x20
+> +irq event stamp: 16
+> +hardirqs last  enabled at (15): [<ffffffc080913144>]
+> _raw_spin_unlock_irq+0x2c/0x40
+> +hardirqs last disabled at (16): [<ffffffc08090d434>] __schedule+0x1cc/0x870
+> +softirqs last  enabled at (0): [<ffffffc0800800f8>] copy_process+0x698/0x1924
+> +softirqs last disabled at (0): [<0000000000000000>] 0x0
+> +---[ end trace 0000000000000000 ]---
+> 
+> Is that expected behavior?
+> Thanks!
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
+> -- 
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> 
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
+
+-- 
+Kind Regards,
+Niklas Söderlund
 
