@@ -1,210 +1,284 @@
-Return-Path: <devicetree+bounces-53468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27FFB88C62E
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 16:02:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C67B988C63E
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 16:04:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 454071C635BC
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 15:02:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C6162E611B
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 15:04:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01AEC13CA85;
-	Tue, 26 Mar 2024 15:00:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CEEC13C67C;
+	Tue, 26 Mar 2024 15:04:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gcyKEEem"
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="UITHZG1D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51BC813C82D;
-	Tue, 26 Mar 2024 15:00:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5B8E1CAA5
+	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 15:04:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711465250; cv=none; b=PiJ5wc2NCX8KtLiiRS+1RHCPxIS7ejQkMhRgaTvxB6cOsTz53ScXuJqY91XQbnM8vGqwnvchKi7OjBBgs+gSWTb75cdqaZBqeUvte/ubRzJE0BoMZOx2DrAfi+CS5JlUomgXrzT/j7QnUoit2eImevqnmphmrplJBSyStBYG7Zs=
+	t=1711465475; cv=none; b=i2SO7o9cCg7C4xmWPghlOmJer1xhzj0h3zVXd9UsWK7yv6WhOYYKvNllPaAB1IxIcQIGD0KNuu+lyYFyZ/T5y4TuxJmTfdQWWtNEC7qABDNKHG9ukw3tglc7vk16lRZyDQ9ln4FkulKm7Iu4M5MNmIQJvH7xvkxVMBbq0KLfTH4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711465250; c=relaxed/simple;
-	bh=pdFwi5vtNrKZeNALNYwLixoxGMXi0UyYvxxlVlUCD0M=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=dpkOqHZ9d25a80Qcp4KpCCNU+6FpTWXMV4mTJUod38jEhqAPI+u6J+ORZEAHJ9hp/9D6tURBqiHhH5Gh7EGiURdzOXM9A8p17+k4zgVFeCroeAPaYL9Sk0Hw0s+DJBVywfz+6o/UqxzCFuWQX8qHNudJg9BLQNeNlg/c1PVh0hs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gcyKEEem; arc=none smtp.client-ip=209.85.210.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-6ea9a60f7f5so2481670b3a.3;
-        Tue, 26 Mar 2024 08:00:49 -0700 (PDT)
+	s=arc-20240116; t=1711465475; c=relaxed/simple;
+	bh=MzAKNO9+ujLgaazKPerZu125q6yWmCs2schnRyeP7Ac=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=AAJxtMP/CjdHQz03UiTf0COd/ajpbEOUJg9qUNZGVusaJFRQ72C2nKYOx1lJtgR8c8xcSFc0iB9uzfVNUlle4m8x8f7BtmzHaIoQ8GcHsg6ZrGwEMQI6sbsMsOrYs4Z3Dbl78O1RfKI9elOKBhgoaUsDgBymoI2uKjMxXTeSedc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=UITHZG1D; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4149134390cso1165665e9.2
+        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 08:04:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711465248; x=1712070048; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fxIIBTP4rXppfPhTT/4q0S1EVkuGtE5Ah2bvfj9/Kl4=;
-        b=gcyKEEem0DFob2sI1L0xA6gdTtrEeKTXRMNOy6AmIdu+axpXnt1illAHPVH5ZBEwtR
-         i+Y5vrIgRrk/G56yehIdoMsLOgbMxYYCicMW7UKHaVuwdPRZBoInjcwIzNwSGdn5ZWuc
-         0A6AQiC6A11UoiQPhXflaZiNpYpc1sHwPXbY60SUnR8R26E0DLhT3Bq7xR0F8/lAV/ut
-         O56TGbe/q6sX+R1MGKCVNqj9nKkLJLMYxVg2Wcvs3vERxDtZOjDNBxk5yf1Ngo97Hv2W
-         uJoz6YjOUmOG74nS2mKcjMxaFhoKiVbxuEDrIIoCGkiiNshYE/2dSowJhCPIwYodsBg0
-         XQ5A==
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1711465470; x=1712070270; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Xp0ZqxvoikI/gzbwx7ZxndebT/e0HiSQICaCfy/twKs=;
+        b=UITHZG1DxhnTUkEllqbXObVAYCfA6OQ81GTOyBPQqL5bQlKvWVAcLn6U0K9+JsyVBc
+         lqVPUPYF0mj8ym4Kou0p9HrtxG6DnoTZxECOpfVwRF7tuEUCbvgsbAalfMqYKfuzbPne
+         +mBkgbN4F6+9Qr8AhXbT5ZICQluLfSMO7u0A0UyhF05qVP+JJskOBgbvcoPYMtx6+cJE
+         YxRecvw3thAbAGuycZ2GhFo2xSrfmKCbFJmkohL58gecDkvnlwW+y3dgAjaZ1M70TqO8
+         RiUlbJ6w/qKoPyPitL7vHpq8TczRedwNIoeygaq7OyY53vQKaxEA34y1kHc+Go+cOQCe
+         CfEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711465248; x=1712070048;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fxIIBTP4rXppfPhTT/4q0S1EVkuGtE5Ah2bvfj9/Kl4=;
-        b=xMo/1SmA026zyNvsUZQ6h+FnCYxvj0dPp+krzvLQ0eoM9OodF3+5WuaRO2ygwt9A9l
-         vB0Y9Bz64xLaGSqmMSLaLXwAN0BdHLnvegxYV3cc9LA/W0Sop38k1AFuPggOThiQ2COK
-         YBrIIfDzxuCWA9I2BHtncuMs/aBXH7JlXQ7GnRz8QoilJHBymjvsCEe6F7Psh6m8gOft
-         Pin3DMnkDD2JNqRlwSgJKDP67CZDcAIFr8yWC6Rt50DxEPbpI9DXvrKuxCe2n42ldL82
-         VKzWunA1dHWVyDE7iyA6Ohl4ZcU89EzyRPrsfsVrRwkHKw1Qp9gIRgM+7XXZWWF27E9/
-         H9EA==
-X-Forwarded-Encrypted: i=1; AJvYcCU2eFaWS7wHXOEGdR52axpCbAk7ahZDGKJVEIUaECDvwBWNZFKNDZHkXr6+f488pfCK2qBVpY82ToGkdCQ5yC2QqieIuxRf9Kj3QFznVy2j+CCImXrtqjGgTL/ZIzTcDyEKUEnPTc4LocEJ0/qwJicxNqJOSIyduBo8va191qcf5xhutmaDwW2F
-X-Gm-Message-State: AOJu0YwMGGeGHAW7dcfY0/RUscoTdSVuiaa0Oyfgaw2y35FkYsVLXq68
-	RpssDsTPB9Ch6M1z0F5UNawjImAk/iDHDesRjy744iBZimGzR0kL
-X-Google-Smtp-Source: AGHT+IH1cX47UcVDJeEEPc3BtsiLHnch3pmt/eT/zXRUGHXwiIA0NbF5hbSlAoW8eYDLcPteprOuGw==
-X-Received: by 2002:a05:6a20:6a22:b0:1a3:c3e6:aef7 with SMTP id p34-20020a056a206a2200b001a3c3e6aef7mr7554771pzk.54.1711465248497;
-        Tue, 26 Mar 2024 08:00:48 -0700 (PDT)
-Received: from peter-bmc.dhcpserver.bu9bmc.local (1-34-21-66.hinet-ip.hinet.net. [1.34.21.66])
-        by smtp.gmail.com with ESMTPSA id l27-20020a635b5b000000b005dcbb855530sm7658404pgm.76.2024.03.26.08.00.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Mar 2024 08:00:48 -0700 (PDT)
-From: Peter Yin <peteryin.openbmc@gmail.com>
-To: patrick@stwcx.xyz,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 4/4] drivers: watchdog: ast2500 and ast2600 support bootstatus
-Date: Tue, 26 Mar 2024 23:00:27 +0800
-Message-Id: <20240326150027.3015958-5-peteryin.openbmc@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240326150027.3015958-1-peteryin.openbmc@gmail.com>
-References: <20240326150027.3015958-1-peteryin.openbmc@gmail.com>
+        d=1e100.net; s=20230601; t=1711465470; x=1712070270;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Xp0ZqxvoikI/gzbwx7ZxndebT/e0HiSQICaCfy/twKs=;
+        b=t6F1E4++g0lrFzKE3JAZdSptGNWsEK8T8zNkqcPU0MknD/c0zeJToi9PM+IJg+bBJw
+         e1IpQsn8RqZhnmu9JSRx3qDtY5iGLTSr0RgOrzDYzNbsh4auJEOOCCGBSXTU9k4ZLM70
+         YWgfmKYQkT17wHCCiXJfEJFmT+dCgFC1irbzLvO5804hgf8+3rnYeb56oe7K1xSEGwW0
+         ATY0reP4ZpDdTryDEjJ2rA4y7dCavEPBeYR6d7yzp4rc8+GquH+rbJQ6+9IRcBWOg+Sf
+         X3+kWWiJowIrIu3juYz080Y709SkiAzdzYW4MYAWeyTuJwqfWMsyRlInk378o+Sr3BSG
+         wojQ==
+X-Forwarded-Encrypted: i=1; AJvYcCURhNpkFY7gE4sWC7lye0nCYbPpaxy88hkBSs7NXSWEnJxzloutcWmJUqxVEtlaE0CAZtrbZ8iSdg2D0Qel9FuIhZ54swv9rLESpA==
+X-Gm-Message-State: AOJu0YwjnAkD4YfrHdVcoqt8FhMk6Iz7Hbqj/xxXy5/hcwUiSRZrpXDM
+	oAjTbjuiFZziq0HTnfK8vOMkWSRrJQM5g5c5XazhCQ4ayouNGF3F5LwAgvqSyXg=
+X-Google-Smtp-Source: AGHT+IFGMFihtiw4m95cEeox2j0zeEgiSBGlNyWPJHtAxkpGn8kd+Xf3+XJOwlP4HoqRiME5wwJHMg==
+X-Received: by 2002:a05:600c:4749:b0:414:902c:f8ba with SMTP id w9-20020a05600c474900b00414902cf8bamr1163281wmo.1.1711465469884;
+        Tue, 26 Mar 2024 08:04:29 -0700 (PDT)
+Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id cc6-20020a5d5c06000000b00341d1aa0245sm4103918wrb.106.2024.03.26.08.04.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 26 Mar 2024 08:04:29 -0700 (PDT)
+Message-ID: <243a97b7-c298-4307-9f06-8b3a7c3e24fd@freebox.fr>
+Date: Tue, 26 Mar 2024 16:04:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath10k: add
+ qcom,no-msa-ready-indicator prop
+Content-Language: en-US
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+To: Kalle Valo <kvalo@kernel.org>, Jeff Johnson <quic_jjohnson@quicinc.com>
+Cc: ath10k <ath10k@lists.infradead.org>,
+ wireless <linux-wireless@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
+ Jami Kettunen <jamipkettunen@gmail.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Jeffrey Hugo <quic_jhugo@quicinc.com>, Bjorn Andersson
+ <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>
+References: <14daa98e-7fd3-4ebb-87bb-5d2c1fba679f@freebox.fr>
+ <b8de96c7-cbb6-4a09-a4d4-2c11b3ab3e01@freebox.fr> <871q8wk7o3.fsf@kernel.org>
+ <3392f356-7b19-483d-b9f8-3bd84068fa52@freebox.fr> <87wmqoilzf.fsf@kernel.org>
+ <c58e67e6-6a7f-4963-86b9-580165bf05ba@freebox.fr> <87cyse8j9m.fsf@kernel.org>
+ <6d4b1381-c121-4cda-a8c9-9ccac56bd447@freebox.fr> <87plw87nsc.fsf@kernel.org>
+ <0816f7bb-3c97-4b90-8e19-191552ea6e26@freebox.fr> <87h6hk7aee.fsf@kernel.org>
+ <fb0ffdd9-923a-4191-8304-583243ad528b@freebox.fr>
+In-Reply-To: <fb0ffdd9-923a-4191-8304-583243ad528b@freebox.fr>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add WDIOF_EXTERN1 and WDIOF_CARDRESET bootstatus in ast2600
+On 13/03/2024 16:09, Marc Gonzalez wrote:
 
-Regarding the AST2600 specification, the WDTn Timeout Status Register
-(WDT10) has bit 1 reserved. Bit 1 of the status register indicates
-on ast2500 if the boot was from the second boot source.
-It does not indicate that the most recent reset was triggered by
-the watchdog. The code should just be changed to set WDIOF_CARDRESET
-if bit 0 of the status register is set.
+> I'm still not quite sure where linux-firmware.git fits into all this.
 
-Include SCU register to veriy WDIOF_EXTERN1 in ast2600 SCU74 or
-ast2500 SCU3C when bit1 is set.
+https://packages.debian.org/sid/firmware-atheros
 
-Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
----
- drivers/watchdog/aspeed_wdt.c | 53 ++++++++++++++++++++++++-----------
- 1 file changed, 37 insertions(+), 16 deletions(-)
+As far as I understand, Debian package "firmware-atheros (20230625-2)" includes:
 
-diff --git a/drivers/watchdog/aspeed_wdt.c b/drivers/watchdog/aspeed_wdt.c
-index b4773a6aaf8c..52afc5240b1c 100644
---- a/drivers/watchdog/aspeed_wdt.c
-+++ b/drivers/watchdog/aspeed_wdt.c
-@@ -11,10 +11,12 @@
- #include <linux/io.h>
- #include <linux/kernel.h>
- #include <linux/kstrtox.h>
-+#include <linux/mfd/syscon.h>
- #include <linux/module.h>
- #include <linux/of.h>
- #include <linux/of_irq.h>
- #include <linux/platform_device.h>
-+#include <linux/regmap.h>
- #include <linux/watchdog.h>
+  ath10k/WCN3990/hw1.0/firmware-5.bin
+  ath10k/WCN3990/hw1.0/board-2.bin
+  ath10k/WCN3990/hw1.0/wlanmdsp.mbn
+
+
+# dmesg | grep ' fw '
+[    2.769265] remoteproc remoteproc1: Booting fw image adsp.mdt, size 7260
+[   14.923181] remoteproc remoteproc0: Booting fw image mba.mbn, size 234152
+[   17.087567] ath10k_snoc 18800000.wifi: wifi fw qmi service found
+[   17.087642] ath10k_snoc 18800000.wifi: qmi wifi fw qmi service connected
+[   17.298173] ath10k_snoc 18800000.wifi: boot fw request 'ath10k/WCN3990/hw1.0/board-2.bin': 0
+[   20.995327] ath10k_snoc 18800000.wifi: wifi fw ready event received
+[   21.189610] ath10k_snoc 18800000.wifi: boot fw request 'ath10k/pre-cal-snoc-18800000.wifi.bin': -2
+[   21.195201] ath10k_snoc 18800000.wifi: boot fw request 'ath10k/cal-snoc-18800000.wifi.bin': -2
+[   21.203285] ath10k_snoc 18800000.wifi: trying fw api 6
+[   21.212893] ath10k_snoc 18800000.wifi: boot fw request 'ath10k/WCN3990/hw1.0/firmware-6.bin': -2
+[   21.216866] ath10k_snoc 18800000.wifi: trying fw api 5
+[   21.229645] ath10k_snoc 18800000.wifi: boot fw request 'ath10k/WCN3990/hw1.0/firmware-5.bin': 0
+[   21.230840] ath10k_snoc 18800000.wifi: found fw timestamp 1539237028
+[   21.274453] ath10k_snoc 18800000.wifi: found fw ie wmi op version 4
+[   21.284111] ath10k_snoc 18800000.wifi: found fw ie htt op version 3
+[   21.290301] ath10k_snoc 18800000.wifi: using fw api 5
+[   21.939112] ath10k_snoc 18800000.wifi: qmi fw log request completed, mode: 0
+
+
+$ ./ath10k-fwencoder --info /lib/firmware/ath10k/WCN3990/hw1.0/firmware-5.bin 
+FileSize: 60
+FileCRC32: b3d4b790
+FileMD5: d16e3444f68ee48c548a891b9f9279e1
+Timestamp: 2018-10-11 05:50:28
+Features: wowlan,mgmt-tx-by-ref,non-bmi
+WMIOpVersion: tlv
+HTTOpVersion: tlv
+
+    wowlan,mgmt-tx-by-ref,non-bmi = b6,b18,b19 = 0xc0040
+
+
+
+However, the vendor kernel hard-codes value = 0x82E = b11,b5,b3,b2,b1
+https://git.codelinaro.org/clo/la/kernel/msm-4.4/-/blob/caf_migration/kernel.lnx.4.4.r38-rel/drivers/net/wireless/ath/ath10k/hw.c#L529
+
+WMI_10X (Deprecated)
+HAS_WMI_MGMT_TX
+NO_P2P
+MULTI_VIF_PS_SUPPORT
+SUPPORTS_ADAPTIVE_CCA
+
+
+Not sure which value I should encode for this board's firmware-5.bin ...
+
+I'll try the upstream value.
+
+diff --git a/tools/scripts/ath10k/ath10k-fwencoder b/tools/scripts/ath10k/ath10k-fwencoder
+index ceb26b4..44fef64 100755
+--- a/tools/scripts/ath10k/ath10k-fwencoder
++++ b/tools/scripts/ath10k/ath10k-fwencoder
+@@ -65,7 +65,9 @@ ATH10K_FW_FEATURE_MGMT_TX_BY_REF = 18
+ ATH10K_FW_FEATURE_NON_BMI = 19
+ ATH10K_FW_FEATURE_SINGLE_CHAN_INFO_PER_CHANNEL = 20
+ ATH10K_FW_FEATURE_PEER_FIXED_RATE = 21
+-ATH10K_FW_FEATURE_MAX = 22
++ATH10K_FW_FEATURE_IRAM_RECOVERY = 22
++ATH10K_FW_FEATURE_NO_MSA_READY = 23
++ATH10K_FW_FEATURE_MAX = 24
  
- static bool nowayout = WATCHDOG_NOWAYOUT;
-@@ -65,23 +67,32 @@ MODULE_DEVICE_TABLE(of, aspeed_wdt_of_table);
- #define WDT_RELOAD_VALUE	0x04
- #define WDT_RESTART		0x08
- #define WDT_CTRL		0x0C
--#define   WDT_CTRL_BOOT_SECONDARY	BIT(7)
--#define   WDT_CTRL_RESET_MODE_SOC	(0x00 << 5)
--#define   WDT_CTRL_RESET_MODE_FULL_CHIP	(0x01 << 5)
--#define   WDT_CTRL_RESET_MODE_ARM_CPU	(0x10 << 5)
--#define   WDT_CTRL_1MHZ_CLK		BIT(4)
--#define   WDT_CTRL_WDT_EXT		BIT(3)
--#define   WDT_CTRL_WDT_INTR		BIT(2)
--#define   WDT_CTRL_RESET_SYSTEM		BIT(1)
--#define   WDT_CTRL_ENABLE		BIT(0)
-+#define WDT_CTRL_BOOT_SECONDARY	BIT(7)
-+#define WDT_CTRL_RESET_MODE_SOC	(0x00 << 5)
-+#define WDT_CTRL_RESET_MODE_FULL_CHIP	(0x01 << 5)
-+#define WDT_CTRL_RESET_MODE_ARM_CPU	(0x10 << 5)
-+#define WDT_CTRL_1MHZ_CLK		BIT(4)
-+#define WDT_CTRL_WDT_EXT		BIT(3)
-+#define WDT_CTRL_WDT_INTR		BIT(2)
-+#define WDT_CTRL_RESET_SYSTEM		BIT(1)
-+#define WDT_CTRL_ENABLE		BIT(0)
- #define WDT_TIMEOUT_STATUS	0x10
--#define   WDT_TIMEOUT_STATUS_IRQ		BIT(2)
--#define   WDT_TIMEOUT_STATUS_BOOT_SECONDARY	BIT(1)
-+#define WDT_TIMEOUT_STATUS_IRQ		BIT(2)
-+#define WDT_TIMEOUT_STATUS_BOOT_SECONDARY	BIT(1)
-+#define WDT_TIMEOUT_STATUS_EVENT		BIT(0)
- #define WDT_CLEAR_TIMEOUT_STATUS	0x14
--#define   WDT_CLEAR_TIMEOUT_AND_BOOT_CODE_SELECTION	BIT(0)
-+#define WDT_CLEAR_TIMEOUT_AND_BOOT_CODE_SELECTION	BIT(0)
- #define WDT_RESET_MASK1		0x1c
- #define WDT_RESET_MASK2		0x20
+ feature_map = {
+     'ext-wmi-mgmt-rx': ATH10K_FW_FEATURE_EXT_WMI_MGMT_RX,
+@@ -91,6 +93,8 @@ feature_map = {
+     'non-bmi': ATH10K_FW_FEATURE_NON_BMI,
+     'single-chan-info-per-channel': ATH10K_FW_FEATURE_SINGLE_CHAN_INFO_PER_CHANNEL,
+     'peer-fixed-rate': ATH10K_FW_FEATURE_PEER_FIXED_RATE,
++    'iram-recovery': ATH10K_FW_FEATURE_IRAM_RECOVERY,
++    'no-msa-ready': ATH10K_FW_FEATURE_NO_MSA_READY,
+ }
  
-+/*
-+ * Ast2600 SCU74 bit1 is External reset flag
-+ * Ast2500 SCU3C bit1 is External reset flag
-+ */
-+#define   EXTERN_RESET_FLAG		BIT(1)
-+#define   AST2500_SYSTEM_RESET_EVENT	(0x3C)
-+#define   AST2600_SYSTEM_RESET_EVENT	(0x74)
-+
- /*
-  * WDT_RESET_WIDTH controls the characteristics of the external pulse (if
-  * enabled), specifically:
-@@ -458,15 +469,25 @@ static int aspeed_wdt_probe(struct platform_device *pdev)
- 		writel(duration - 1, wdt->base + WDT_RESET_WIDTH);
- 	}
- 
-+	struct regmap *scu_base = syscon_regmap_lookup_by_phandle(dev->of_node,
-+							     "aspeed,scu");
- 	status = readl(wdt->base + WDT_TIMEOUT_STATUS);
--	if (status & WDT_TIMEOUT_STATUS_BOOT_SECONDARY) {
-+	if (status & WDT_TIMEOUT_STATUS_EVENT)
- 		wdt->wdd.bootstatus = WDIOF_CARDRESET;
- 
--		if (of_device_is_compatible(np, "aspeed,ast2400-wdt") ||
--		    of_device_is_compatible(np, "aspeed,ast2500-wdt"))
--			wdt->wdd.groups = bswitch_groups;
-+	if (of_device_is_compatible(np, "aspeed,ast2600-wdt")) {
-+		regmap_read(scu_base, AST2600_SYSTEM_RESET_EVENT, &status);
-+	} else {
-+		regmap_read(scu_base, AST2500_SYSTEM_RESET_EVENT, &status);
-+		wdt->wdd.groups = bswitch_groups;
- 	}
- 
-+	/*
-+	 * Reset cause by Extern Reset
-+	 */
-+	if (status & EXTERN_RESET_FLAG)
-+		wdt->wdd.bootstatus |= WDIOF_EXTERN1;
-+
- 	dev_set_drvdata(dev, wdt);
- 
- 	return devm_watchdog_register_device(dev, &wdt->wdd);
--- 
-2.25.1
+ # from enum ath10k_fw_wmi_op_version in ath10k/hw.h
+
+
+$ ./ath10k-fwencoder -d --modify --features=wowlan,mgmt-tx-by-ref,non-bmi,no-msa-ready firmware-5.bin 
+DEBUG: adding id 1 len(value) 4padding_len 0
+DEBUG: adding id 2 len(value) 3padding_len 1
+DEBUG: adding id 5 len(value) 4padding_len 0
+DEBUG: adding id 6 len(value) 4padding_len 0
+firmware-5.bin modified: 60 B
+
+$ ./ath10k-fwencoder --info firmware-5.bin 
+FileSize: 60
+FileCRC32: 3ec1ac4b
+FileMD5: dcfd93d86255c481d908af85c30a23b5
+Timestamp: 2024-03-26 13:45:25
+Features: wowlan,mgmt-tx-by-ref,non-bmi,no-msa-ready
+WMIOpVersion: tlv
+HTTOpVersion: tlv
+
+
+Don't know how to say:
+"Use THIS firmware-5.bin for all msm8998 platforms"
+
+
+Testing patch proposed on March 5...
+"Houston, we have a problem."
+
+QMI stuff happens much EARLIER than firmware-5.bin handling.
+(ar->running_fw is still NULL)
+
+
+[   14.547563] ath10k_snoc 18800000.wifi: qmi wifi fw qmi service connected
+[   14.555054] ath10k_snoc 18800000.wifi: qmi indication register request completed
+[   14.561406] ath10k_snoc 18800000.wifi: qmi host capability request completed
+[   14.568365] ath10k_snoc 18800000.wifi: qmi msa mem region 0 addr 0x0x0000000094400000 size 0x4000 flag 0x00000001
+[   14.573775] ath10k_snoc 18800000.wifi: qmi msa mem region 1 addr 0x0x0000000094404000 size 0xfc000 flag 0x00000000
+[   14.583896] ath10k_snoc 18800000.wifi: qmi msa mem info request completed
+[   14.630179] ath10k_snoc 18800000.wifi: qmi msa mem ready request completed
+[   14.681647] ath10k_snoc 18800000.wifi: qmi chip_id 0x30214 chip_family 0x4001 board_id 0xff soc_id 0x40010002
+[   14.681726] ath10k_snoc 18800000.wifi: qmi fw_version 0x100204b2 fw_build_timestamp 2019-09-04 03:01 fw_build_id QC_IMAGE_VERSION_STRING=WLAN.HL.1.0-01202-QCAHLSWMTPLZ-1.221523.2
+*** ATH10K_QMI_EVENT_SERVER_ARRIVE is handled at this point
+[   14.690657] ath10k_snoc 18800000.wifi: DT bdf variant name not set.
+[   14.706423] ath10k_snoc 18800000.wifi: boot using board name 'bus=snoc,qmi-board-id=ff,qmi-chip-id=30214'
+[   14.712587] ath10k_snoc 18800000.wifi: boot using board name 'bus=snoc,qmi-board-id=ff,qmi-chip-id=30214'
+[   14.722309] ath10k_snoc 18800000.wifi: boot using board name 'bus=snoc,qmi-board-id=ff'
+[   14.745634] ath10k_snoc 18800000.wifi: boot fw request 'ath10k/WCN3990/hw1.0/board-2.bin': 0
+... snip boards dump
+[   15.560607] ath10k_snoc 18800000.wifi: boot found match for name 'bus=snoc,qmi-board-id=ff,qmi-chip-id=30214'
+[   15.570590] ath10k_snoc 18800000.wifi: boot found board data for 'bus=snoc,qmi-board-id=ff,qmi-chip-id=30214'
+[   15.580393] ath10k_snoc 18800000.wifi: using board api 2
+[   15.591465] ath10k_snoc 18800000.wifi: qmi bdf download request completed
+[   15.595786] ath10k_snoc 18800000.wifi: qmi cal report request completed
+[   18.667441] ath10k_snoc 18800000.wifi: wifi fw ready event received
+[   18.667519] ath10k_snoc 18800000.wifi: ath10k_snoc_hif_power_up:WCN3990 driver state = 0
+[   18.672579] ath10k_snoc 18800000.wifi: soc power on
+[   18.684550] ath10k_snoc 18800000.wifi: qmi mode 0 config 00000000313ae0ca
+[   18.692591] ath10k_snoc 18800000.wifi: qmi config request completed
+[   18.748262] ath10k_snoc 18800000.wifi: qmi wlan mode req completed: 0
+[   18.748370] ath10k_snoc 18800000.wifi: boot init ce src ring id 0 entries 16 base_addr 00000000b9feff9c
+[   18.753792] ath10k_snoc 18800000.wifi: boot ce dest ring id 1 entries 512 base_addr 000000005f850e88
+[   18.762971] ath10k_snoc 18800000.wifi: boot ce dest ring id 2 entries 64 base_addr 000000002467084e
+[   18.772375] ath10k_snoc 18800000.wifi: boot init ce src ring id 3 entries 32 base_addr 00000000ded78c3f
+[   18.781122] ath10k_snoc 18800000.wifi: boot init ce src ring id 4 entries 2048 base_addr 00000000c9e8883a
+[   18.790482] ath10k_snoc 18800000.wifi: boot ce dest ring id 5 entries 512 base_addr 00000000309e9375
+[   18.800220] ath10k_snoc 18800000.wifi: boot init ce src ring id 7 entries 2 base_addr 00000000e5e3fb73
+[   18.809395] ath10k_snoc 18800000.wifi: boot ce dest ring id 7 entries 2 base_addr 00000000c08890b2
+[   18.818507] ath10k_snoc 18800000.wifi: boot ce dest ring id 8 entries 128 base_addr 000000006af0777e
+[   18.827466] ath10k_snoc 18800000.wifi: boot ce dest ring id 9 entries 512 base_addr 00000000f2c0ce43
+[   18.836770] ath10k_snoc 18800000.wifi: boot ce dest ring id 10 entries 512 base_addr 00000000269a2564
+[   18.845863] ath10k_snoc 18800000.wifi: boot ce dest ring id 11 entries 512 base_addr 00000000f4a8c90e
+[   18.855002] ath10k_snoc 18800000.wifi: Hardware name wcn3990 hw1.0 version 0x8
+[   18.865605] ath10k_snoc 18800000.wifi: boot fw request 'ath10k/pre-cal-snoc-18800000.wifi.bin': -2
+[   18.871747] ath10k_snoc 18800000.wifi: boot fw request 'ath10k/cal-snoc-18800000.wifi.bin': -2
+[   18.880307] ath10k_snoc 18800000.wifi: trying fw api 6
+[   18.889520] ath10k_snoc 18800000.wifi: boot fw request 'ath10k/WCN3990/hw1.0/firmware-6.bin': -2
+[   18.894020] ath10k_snoc 18800000.wifi: trying fw api 5
+*** firmware-5.bin is handled at this point
+[   18.904176] ath10k_snoc 18800000.wifi: boot fw request 'ath10k/WCN3990/hw1.0/firmware-5.bin': 0
+[   18.907802] ath10k_snoc 18800000.wifi: found fw timestamp 1539237028
+[   18.916460] ath10k_snoc 18800000.wifi: found firmware features ie (3 B)
+[   18.923027] ath10k_snoc 18800000.wifi: Enabling feature bit: 6
+[   18.929373] ath10k_snoc 18800000.wifi: Enabling feature bit: 18
+[   18.935279] ath10k_snoc 18800000.wifi: Enabling feature bit: 19
+[   18.941085] ath10k_snoc 18800000.wifi: features
+[   18.946975] ath10k_snoc 18800000.wifi: 00000000: 40 00 0c 00 00 00 00 00                          @.......
+[   18.951534] ath10k_snoc 18800000.wifi: found fw ie wmi op version 4
+[   18.961235] ath10k_snoc 18800000.wifi: found fw ie htt op version 3
+[   18.967390] ath10k_snoc 18800000.wifi: using fw api 5
+
+
+
+I don't know how to solve this problem.
+(If we just skip waiting for MSA_READY, there is no problem)
+
+Kalle, Jeff, do you see a way out of this conundrum?
+
+
+Regards.
 
 
