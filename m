@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-53567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53569-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6244788CBEE
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 19:24:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90B1988CC11
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 19:32:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 789C01C64174
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 18:24:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FDFC1F83DF9
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 18:32:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEFC384FC9;
-	Tue, 26 Mar 2024 18:24:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23EFC1272B5;
+	Tue, 26 Mar 2024 18:32:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b28mlofq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UPBVhnlf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C537A482EE;
-	Tue, 26 Mar 2024 18:24:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB3E2366;
+	Tue, 26 Mar 2024 18:32:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711477471; cv=none; b=trBz0RaUcqB7STOpikY3PLgKsIuZ+ld9akS3ZrHrZAcKF0vNPWDnr1lX7j1uNNZhpbpVdGXkyEjkSNy4NMN6rgalBQD9hSIAIPcuhdQlf7XpAglN1FupfxajPT+rZHPLPk/1AcWt5MicrsFh1wYRxla41kd73tKRkO0nqsRCxkc=
+	t=1711477964; cv=none; b=RG9v0HGbETkSJPfIiLTSPHT7DCJK73VPwSsvX/+Qy25t4XRwhbxWVE5XUhXaflCaa5f36V95Q5ixo1lhpc69GVqjKDG5EdSiEcRNiaB5yFueET3T8spxyBh/Wf/h189t+k+SH9iOOu9txsAgF9vDW9lHQA8uGnTcUr03UFKL8YQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711477471; c=relaxed/simple;
-	bh=3xBRhog27kxC70sDx2aQpj3OzOt3xnmvvAsyDrsmcII=;
+	s=arc-20240116; t=1711477964; c=relaxed/simple;
+	bh=NUM/VQUj1n9cy0CvGlCZX+P9uXr4/dy72JoGSLHufxM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=opll3aHgSXZFlQPhRgsVbfbXfr+12NCtxtaqoaHmd91mZvdaYh8X2Q+7EpEy7J/rf1Uk0kFuE6GaAwLhOPzsNAPQW4+w1uZ46w6k6A7ZO4Dc2p6FIydY+BfVw0hoAVG+uw3YmRgw9UCnNZmXNUZOytYWEIBktO8tH1nUG4RS0Uo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b28mlofq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0572BC433C7;
-	Tue, 26 Mar 2024 18:24:27 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Dl4b3YngjDYlvkXuZeiiFG6n0vmcOq+qfYZ2G+x0rLYOD5YefijSGCxB51zoqQIeoyiYHiNh6vj2F9Skgdo+qtNO4aHX4OslwEjS7RSktYYx1T5kT6mTCp/dRxyLN36lU4zDUvdKGMfSM4T4ZUjrJjcKXooXQ7o1LVGFR0AJi+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UPBVhnlf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 485F5C433F1;
+	Tue, 26 Mar 2024 18:32:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711477471;
-	bh=3xBRhog27kxC70sDx2aQpj3OzOt3xnmvvAsyDrsmcII=;
+	s=k20201202; t=1711477963;
+	bh=NUM/VQUj1n9cy0CvGlCZX+P9uXr4/dy72JoGSLHufxM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=b28mlofqMpgdxgVoQwKl8xE5R3uFIancJn4ehIIqdxVvqItovYRjc0SScholjd/QT
-	 GWuk/KKHJsAkhi505UdUHjsnvpf/1qlIHa0yMn6hV3w11DZOqTFfwSF8X/60t/JQ9/
-	 jc6M4mWwT/YjK+WblM3Aq7Y1INPJmcz45pHvSpcppInNgQz4zB6q0cma1NXVV/0fs4
-	 /I3HB2oSaVfGFVuY9gfatvsW22+uoQV9IEgAL83hxaxaBOPu5Hp4AL+aIYEaQiFfSe
-	 f4PBLdf45fUGRRtaC2HGu1v4CzVhmmyhEilob1839hZkBy0S2pOfWyCSY+FN8PdAkw
-	 7QXys+J0KIVjg==
-Date: Tue, 26 Mar 2024 18:24:25 +0000
+	b=UPBVhnlf3WgVLSfhU2d3qPkER6edrVKGY0wPi+vl9sFQP3kSNWNPDsQ6i4JcXR7vn
+	 WiZwKCOzJ/NuPL5hLeBH97lnMywL0RrCLN6opS+iIlkrJ9Hsf0qpBYCUOHcL2qQKs3
+	 N6vZzXHUZB2Yi0vERUjybqVDqAYHybjE/jXZUFgSwow0x9v4i4E6/If7v9KCzzEq4A
+	 xQq/4w++Jy4axdgvEHOCyY4+UJASVNs2Kqf13epHbcQydYdvhl3ZzbIKUN6NA3ENKC
+	 4WGOAiiFqhAV7nR0nA5o7QAsnpXZbgwgDgvcUfvKwEwgxqBrCPpZ8EG7bHUdAeeFrG
+	 Pmw2uyGN9iV6A==
+Date: Tue, 26 Mar 2024 18:32:39 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Kelly Hung <ppighouse@gmail.com>, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	joel@jms.id.au, andrew@codeconstruct.com.au,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	openbmc@lists.ozlabs.org, kelly_hung@asus.com, Allenyy_Hsu@asus.com,
-	Rob Herring <robh@kernel.org>, Zev Weiss <zweiss@equinix.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v6 1/2] dt-bindings: arm: aspeed: add ASUS X4TF board
-Message-ID: <20240326-april-word-972cd4836e81@spud>
-References: <20240326103549.2413515-1-Kelly_Hung@asus.com>
- <20240326103549.2413515-2-Kelly_Hung@asus.com>
- <32cd6f33-b4e9-4b7a-bcea-b1f2e421d67e@linaro.org>
+To: Tan Chun Hau <chunhau.tan@starfivetech.com>
+Cc: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ley Foon Tan <leyfoon.tan@starfivetech.com>,
+	Jee Heng Sia <jeeheng.sia@starfivetech.com>,
+	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: dma: snps,dw-axi-dmac: Add JH8100
+ support
+Message-ID: <20240326-maternity-alive-6cb8f6b2e037@spud>
+References: <20240326095457.201572-1-chunhau.tan@starfivetech.com>
+ <20240326095457.201572-2-chunhau.tan@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,54 +64,58 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="/q+Q8QflJy7p9izc"
+	protocol="application/pgp-signature"; boundary="hN0bqbopRWGDKaVk"
 Content-Disposition: inline
-In-Reply-To: <32cd6f33-b4e9-4b7a-bcea-b1f2e421d67e@linaro.org>
+In-Reply-To: <20240326095457.201572-2-chunhau.tan@starfivetech.com>
 
 
---/q+Q8QflJy7p9izc
+--hN0bqbopRWGDKaVk
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Mar 26, 2024 at 12:36:50PM +0100, Krzysztof Kozlowski wrote:
-> On 26/03/2024 11:35, Kelly Hung wrote:
-> > Document the new compatibles used on ASUS X4TF.
-> >=20
-> > Signed-off-by: Kelly Hung <Kelly_Hung@asus.com>
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
+On Tue, Mar 26, 2024 at 02:54:56AM -0700, Tan Chun Hau wrote:
+> Add support for StarFive JH8100 SoC in Sysnopsys Designware AXI DMA
+> controller.
+
+Your commit message should explain what makes this incompatible with
+existing devices. That inforatiion does appear to be in the driver
+patch, but should also be here. Otherwise,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
 >=20
-> Where did it happen? Where did you receive this tag? Please provide link
-> to lore.
-
-Robh's bot sent two reports, but I do not see a tag:
-https://lore.kernel.org/all/?q=3Dc%3AKelly_Hung%40asus.com+f%3Arobh
-
-> > Reviewed-by: Zev Weiss <zweiss@equinix.com>
+> Signed-off-by: Tan Chun Hau <chunhau.tan@starfivetech.com>
+> ---
+>  Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 >=20
-> Where did it happen? Where did you receive this tag? Please provide link
-> to lore.
+> diff --git a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml =
+b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
+> index 363cf8bd150d..525f5f3932f5 100644
+> --- a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
+> +++ b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
+> @@ -21,6 +21,7 @@ properties:
+>        - snps,axi-dma-1.01a
+>        - intel,kmb-axi-dma
+>        - starfive,jh7110-axi-dma
+> +      - starfive,jh8100-axi-dma
+> =20
+>    reg:
+>      minItems: 1
+> --=20
+> 2.25.1
+>=20
 
-Zev seems to have left a comment on this, but not provided a tag:
-https://lore.kernel.org/all/20240223220115.GB9299@packtop/
-
-Kelly, it is important that you do not add tags unless someone gives
-them to you explicitly.
-
-Thanks,
-Conor.
-
---/q+Q8QflJy7p9izc
+--hN0bqbopRWGDKaVk
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgMS2QAKCRB4tDGHoIJi
-0sgmAP99qKHB+cAXDMc3qKChE30qQxxp/UYWhpZUny6oL3v5fgD/Vi2hhcCmf16A
-C/hk3u2rhCGbNyawGryEwd6Z81hpgw0=
-=cX+i
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgMUxwAKCRB4tDGHoIJi
+0vGxAP0e/9BfT/Cc5S7oAvgGnrjYwSinfk93mUrAKWU7SUAcWgD9EksxI511Ha//
+B3vFWbGOJJZDcakWwlM9rjiatGEljAQ=
+=Dmpe
 -----END PGP SIGNATURE-----
 
---/q+Q8QflJy7p9izc--
+--hN0bqbopRWGDKaVk--
 
