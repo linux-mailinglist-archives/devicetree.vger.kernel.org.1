@@ -1,96 +1,141 @@
-Return-Path: <devicetree+bounces-53609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0790788CD3B
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 20:32:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE59188CD49
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 20:33:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B40FF307017
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 19:32:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E6861F84727
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 19:33:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B60FF13D240;
-	Tue, 26 Mar 2024 19:32:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H2/Mi6NT"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3057413CFB7;
+	Tue, 26 Mar 2024 19:33:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89AAC380;
-	Tue, 26 Mar 2024 19:32:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C894380;
+	Tue, 26 Mar 2024 19:33:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711481526; cv=none; b=SPSXAZX9aJG+woYSSWT0sSmCM6UspmlMFWFgd3m7v2aJKxF1nWFvrYQcHzUcdAXOkXAaGTPp4rC4yFCixWB85yu0bAUabDE47s0ET3igdGbUWogpSapya1lJdzBBCWZHQUksAM9OqW7TGeisxx+RLLjY7eNmrBNd0OElXICoVzc=
+	t=1711481634; cv=none; b=BLM0wj9iTfiWNvDhBDgtOYXS8+LcbejldK3l3k8HzoDWNcLM8Jm6lOu24MU8agYmeynCegeo0rsxxDJ9Fg/KptTgLOBU9FLs0cRoyr8/5Zh0BEF1gP7/c+r4SvlXoPL28XBiv9RqAfiMxIqqy7hEfn6o2SoduPDO5LXxRqqIhwo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711481526; c=relaxed/simple;
-	bh=rFkeoQf8Rkxl60GNNwUB//zK3YjAfCtCSIFZaTIkbzs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bPSIZ9eso8RfJvAxk2LyJDycDsjdvLw1JKNVf+IxyRWa4UgJsgOotsMMUklHGi1KuCspLROu3H09wPVv2i2zAtb4wLjgSeibMUhmqCTDr53Qy/PsNnSn7bcoNu5PT2u7MJBg6Qa57iNUKfwmC1sJs4MsvLb6BWfmzDpZniAKCmQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H2/Mi6NT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2745C433F1;
-	Tue, 26 Mar 2024 19:32:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711481526;
-	bh=rFkeoQf8Rkxl60GNNwUB//zK3YjAfCtCSIFZaTIkbzs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=H2/Mi6NTN0A31Hem/MaSOiAhV7Jl8h6bObjN0WOaowjpJBrN10gJX6vgqumB7BZSG
-	 dXkMKrLBv8etz0tY+fqXciDw+X/3tHZZQdtr1BdVLSsvzfWAtB2PLycj7H4yvhTMPq
-	 V+CypcJEITaPqL6sWyJTMhqkIAHC1KV19chRxBf5O0ahNKWtssVxhUriOp5qvxnngl
-	 NMqgFDiKL2FsjYEC1tS5vF+mfOPhJRb10gxbCMXywK1WaTQuRJfN76OR6qaL0mge/w
-	 QrBwL8bd1IUBsTeWLAQzFuCqCCyln3rQ4+4CmND338o5PzWXasfyrt/74jE0vX7xpx
-	 gM/j21vi+e92g==
-Date: Tue, 26 Mar 2024 14:32:03 -0500
-From: Rob Herring <robh@kernel.org>
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Stephen Boyd <sboyd@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-	Johan Hovold <johan@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH RESEND v6 0/5] spmi: pmic-arb: Add support for multiple
- buses
-Message-ID: <20240326193203.GA3252922-robh@kernel.org>
-References: <20240326-spmi-multi-master-support-v6-0-1c87d8306c5b@linaro.org>
+	s=arc-20240116; t=1711481634; c=relaxed/simple;
+	bh=r8LUNgZ43DVe/TijpV7enqwPpranuYoML63Rx2D6B9w=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=felkTXoGM/xeJ9jyd4UUePEm52M67CaF3YM5jdJHR7EKXVh+kxN3vRGjQcwFzyShe7UeyGK/Ze6pA/hbisEsd6YiRT4kJXjRn5xHrDnaVtdmSTT2Bnsj1ooBzg23WmLmJEMcVlQ6/rOaWMA1jKMI3T7GTdz4UtQMoLN57Z1uSXU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i53875aaf.versanet.de ([83.135.90.175] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1rpCYM-00076I-Oh; Tue, 26 Mar 2024 20:33:46 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Michael Riesch <michael.riesch@wolfvision.net>,
+ Rob Herring <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH 0/4] arm64: dts: rockchip: add wolfvision pf5 mainboard
+Date: Tue, 26 Mar 2024 20:33:45 +0100
+Message-ID: <2672576.Isy0gbHreE@diego>
+In-Reply-To: <171148006579.3222626.4177463381080253015.robh@kernel.org>
+References:
+ <20240325-feature-wolfvision-pf5-v1-0-5725445f792a@wolfvision.net>
+ <171148006579.3222626.4177463381080253015.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240326-spmi-multi-master-support-v6-0-1c87d8306c5b@linaro.org>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-On Tue, Mar 26, 2024 at 06:28:15PM +0200, Abel Vesa wrote:
-> This RFC prepares for and adds support for 2 buses, which is supported
-> in HW starting with version 7. Until now, none of the currently
-> supported platforms in upstream have used the second bus. The X1E80100
-> platform, on the other hand, needs the second bus for the USB2.0 to work
-> as there are 3 SMB2360 PMICs which provide eUSB2 repeaters and they are
-> all found on the second bus.
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
-> Changes in v6:
-> - Changed the compatible to platform specific (X1E80100) along with the
->   schema. Fixed the spmi buses unit addresses and added the empty ranges
->   property. Added missing properties to the spmi buses and the
->   "unevaluatedProperties: false".
-> - Deprecated the "qcom,bus-id" in the legacy schema.
-> - Changed the driver to check for legacy compatible first
-> - Link to v5: https://lore.kernel.org/r/20240221-spmi-multi-master-support-v5-0-3255ca413a0b@linaro.org
+Am Dienstag, 26. M=E4rz 2024, 20:11:58 CET schrieb Rob Herring:
+>=20
+> On Mon, 25 Mar 2024 15:22:30 +0100, Michael Riesch wrote:
+> > Habidere,
+> >=20
+> > This series adds the device tree for the WolfVision PF5 mainboard, which
+> > serves as base for recent WolfVision products. It features the Rockchip
+> > RK3568 and can be extended with several different extension boards.
+> >=20
+> > The WolfVision PF5 IO Expander is one example of such an extension boar=
+d.
+> > The corresponding device tree overlay is also included in this series.
+> >=20
+> > May this be the beginning of a beautiful friendship :-)
+> >=20
+> > Looking forward to your comments!
+> >=20
+> > Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+> > ---
+> > Michael Riesch (4):
+> >       dt-bindings: add wolfvision vendor prefix
+> >       dt-bindings: arm: rockchip: add wolfvision pf5 mainboard
+> >       arm64: dts: rockchip: add wolfvision pf5 mainboard
+> >       arm64: dts: rockchip: add wolfvision pf5 io expander board
+> >=20
+> >  .../devicetree/bindings/arm/rockchip.yaml          |   5 +
+> >  .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+> >  arch/arm64/boot/dts/rockchip/Makefile              |   2 +
+> >  .../rk3568-wolfvision-pf5-io-expander.dtso         | 137 ++++++
+> >  .../boot/dts/rockchip/rk3568-wolfvision-pf5.dts    | 528 +++++++++++++=
+++++++++
+> >  5 files changed, 674 insertions(+)
+> > ---
+> > base-commit: 4cece764965020c22cff7665b18a012006359095
+> > change-id: 20240325-feature-wolfvision-pf5-5c1924c0389c
+> >=20
+> > Best regards,
+> > --
+> > Michael Riesch <michael.riesch@wolfvision.net>
+> >=20
+> >=20
+> >=20
+>=20
+>=20
+> My bot found new DTB warnings on the .dts files added or changed in this
+> series.
+>=20
+> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> are fixed by another series. Ultimately, it is up to the platform
+> maintainer whether these warnings are acceptable or not. No need to reply
+> unless the platform maintainer has comments.
+>=20
+> If you already ran DT checks and didn't see these error(s), then
+> make sure dt-schema is up to date:
+>=20
+>   pip3 install dtschema --upgrade
+>=20
+>=20
+> New warnings running 'make CHECK_DTBS=3Dy rockchip/rk3568-wolfvision-pf5.=
+dtb' for 20240325-feature-wolfvision-pf5-v1-0-5725445f792a@wolfvision.net:
+>=20
+> arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5.dtb: hdmi@fe0a0000: Un=
+evaluated properties are not allowed ('#sound-dai-cells' was unexpected)
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip=
+,dw-hdmi.yaml#
 
-Where are Krzysztof's Reviewed-by tags?
+just for the record, this is not the fault of the Wolfvision board,
+but caused by an undocumented property in the core hdmi node.
 
-Rob
+I've prepared a fix for the binding in [0], but as Krzysztof noted,
+this patch needs a v2 with a change.
+
+
+Heiko
+
+
+
+[0] https://lore.kernel.org/dri-devel/20240326172801.1163200-1-heiko@sntech=
+=2Ede/
+
+
 
