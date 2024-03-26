@@ -1,121 +1,88 @@
-Return-Path: <devicetree+bounces-53569-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53570-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90B1988CC11
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 19:32:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3307888CC20
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 19:37:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FDFC1F83DF9
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 18:32:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E28FC325771
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 18:37:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23EFC1272B5;
-	Tue, 26 Mar 2024 18:32:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE4CA127B62;
+	Tue, 26 Mar 2024 18:37:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UPBVhnlf"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="0ZdcOjmX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB3E2366;
-	Tue, 26 Mar 2024 18:32:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 936101AAD3;
+	Tue, 26 Mar 2024 18:37:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711477964; cv=none; b=RG9v0HGbETkSJPfIiLTSPHT7DCJK73VPwSsvX/+Qy25t4XRwhbxWVE5XUhXaflCaa5f36V95Q5ixo1lhpc69GVqjKDG5EdSiEcRNiaB5yFueET3T8spxyBh/Wf/h189t+k+SH9iOOu9txsAgF9vDW9lHQA8uGnTcUr03UFKL8YQ=
+	t=1711478250; cv=none; b=bW6I5TXHxHyrKbHlzLTZUJMYCx1tmhs9twqAMHrjVdwcgIYNyVObL9d4MxMc0qr2qn+sRIlHPTjV6fQwdhrCnG+YMcE6cJTx8C7TwExu1WHzt4tF3t/CVPiLMXM0eMKcmOPS6P6Is4W7ztzTK7NdGOj0qtsSJnyPfdKFKYW81xY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711477964; c=relaxed/simple;
-	bh=NUM/VQUj1n9cy0CvGlCZX+P9uXr4/dy72JoGSLHufxM=;
+	s=arc-20240116; t=1711478250; c=relaxed/simple;
+	bh=jNcu09PwbpgDUfxSX3KWA/q7a2HQ9bVBGdbsLOmf3as=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Dl4b3YngjDYlvkXuZeiiFG6n0vmcOq+qfYZ2G+x0rLYOD5YefijSGCxB51zoqQIeoyiYHiNh6vj2F9Skgdo+qtNO4aHX4OslwEjS7RSktYYx1T5kT6mTCp/dRxyLN36lU4zDUvdKGMfSM4T4ZUjrJjcKXooXQ7o1LVGFR0AJi+g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UPBVhnlf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 485F5C433F1;
-	Tue, 26 Mar 2024 18:32:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711477963;
-	bh=NUM/VQUj1n9cy0CvGlCZX+P9uXr4/dy72JoGSLHufxM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UPBVhnlf3WgVLSfhU2d3qPkER6edrVKGY0wPi+vl9sFQP3kSNWNPDsQ6i4JcXR7vn
-	 WiZwKCOzJ/NuPL5hLeBH97lnMywL0RrCLN6opS+iIlkrJ9Hsf0qpBYCUOHcL2qQKs3
-	 N6vZzXHUZB2Yi0vERUjybqVDqAYHybjE/jXZUFgSwow0x9v4i4E6/If7v9KCzzEq4A
-	 xQq/4w++Jy4axdgvEHOCyY4+UJASVNs2Kqf13epHbcQydYdvhl3ZzbIKUN6NA3ENKC
-	 4WGOAiiFqhAV7nR0nA5o7QAsnpXZbgwgDgvcUfvKwEwgxqBrCPpZ8EG7bHUdAeeFrG
-	 Pmw2uyGN9iV6A==
-Date: Tue, 26 Mar 2024 18:32:39 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Tan Chun Hau <chunhau.tan@starfivetech.com>
-Cc: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=KvdWRbqbZeFDjhtTu4L9MHAveNuJC1pR1gka4IjbmZpJWDYoiO7tLhTPzVrxdcd2m1wXH9dmxVjaVl2sX1oC+bGUWPPbD/k2ofXDc4XOU2SzUUn9x+73BY7xytlhkceM9HqnQxPePMdXRXSyh8XdXJOl3gszoqDDUfbqzV77uQU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=0ZdcOjmX; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=5CWKw5nw52Kwv72yE55VlkLBHkrzgJglbFq0H0xGydk=; b=0ZdcOjmXPnPJJ3N8XWJb+DGaAY
+	1dNrhiqjnWADCBCHUVSvFcu89kCTkBB0HT8wngdFziG9WaUsb1BCOqo5nDu99/203kIm4ycFZT7Gf
+	kvpOdyQJslqeycJY8CSbqWegSakTjmyes7DDmOIxsKAbu1rO9tToDXFeQpMEPO/NYZZM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rpBfS-00BJkD-RM; Tue, 26 Mar 2024 19:37:02 +0100
+Date: Tue, 26 Mar 2024 19:37:02 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Eric Woudstra <ericwouds@gmail.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Ley Foon Tan <leyfoon.tan@starfivetech.com>,
-	Jee Heng Sia <jeeheng.sia@starfivetech.com>,
-	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: dma: snps,dw-axi-dmac: Add JH8100
- support
-Message-ID: <20240326-maternity-alive-6cb8f6b2e037@spud>
-References: <20240326095457.201572-1-chunhau.tan@starfivetech.com>
- <20240326095457.201572-2-chunhau.tan@starfivetech.com>
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Frank Wunderlich <frank-w@public-files.de>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Lucien Jheng <lucien.jheng@airoha.com>,
+	Zhi-Jun You <hujy652@protonmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 net-next 1/2] dt-bindings: net: airoha,en8811h: Add
+ en8811h
+Message-ID: <09b42035-2aec-47db-9a94-123bfb946d30@lunn.ch>
+References: <20240326162305.303598-1-ericwouds@gmail.com>
+ <20240326162305.303598-2-ericwouds@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="hN0bqbopRWGDKaVk"
-Content-Disposition: inline
-In-Reply-To: <20240326095457.201572-2-chunhau.tan@starfivetech.com>
-
-
---hN0bqbopRWGDKaVk
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240326162305.303598-2-ericwouds@gmail.com>
 
-On Tue, Mar 26, 2024 at 02:54:56AM -0700, Tan Chun Hau wrote:
-> Add support for StarFive JH8100 SoC in Sysnopsys Designware AXI DMA
-> controller.
+On Tue, Mar 26, 2024 at 05:23:04PM +0100, Eric Woudstra wrote:
+> Add the Airoha EN8811H 2.5 Gigabit PHY.
+> 
+> The en8811h phy can be set with serdes polarity reversed on rx and/or tx.
+> 
+> Signed-off-by: Eric Woudstra <ericwouds@gmail.com>
 
-Your commit message should explain what makes this incompatible with
-existing devices. That inforatiion does appear to be in the driver
-patch, but should also be here. Otherwise,
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
->=20
-> Signed-off-by: Tan Chun Hau <chunhau.tan@starfivetech.com>
-> ---
->  Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml =
-b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-> index 363cf8bd150d..525f5f3932f5 100644
-> --- a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-> +++ b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-> @@ -21,6 +21,7 @@ properties:
->        - snps,axi-dma-1.01a
->        - intel,kmb-axi-dma
->        - starfive,jh7110-axi-dma
-> +      - starfive,jh8100-axi-dma
-> =20
->    reg:
->      minItems: 1
-> --=20
-> 2.25.1
->=20
-
---hN0bqbopRWGDKaVk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgMUxwAKCRB4tDGHoIJi
-0vGxAP0e/9BfT/Cc5S7oAvgGnrjYwSinfk93mUrAKWU7SUAcWgD9EksxI511Ha//
-B3vFWbGOJJZDcakWwlM9rjiatGEljAQ=
-=Dmpe
------END PGP SIGNATURE-----
-
---hN0bqbopRWGDKaVk--
+    Andrew
 
