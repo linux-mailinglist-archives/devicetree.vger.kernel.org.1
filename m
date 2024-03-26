@@ -1,168 +1,536 @@
-Return-Path: <devicetree+bounces-53542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EC8888CA55
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 18:09:44 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40DFA88CA03
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 18:02:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A80541F827D7
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 17:09:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7CC61B26159
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 17:02:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F34BB13CA9F;
-	Tue, 26 Mar 2024 16:56:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74A1D13D53D;
+	Tue, 26 Mar 2024 17:01:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zeu3s1+S"
+	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="pPc216qc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 138EB13CA8F
-	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 16:56:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECA2C13D604
+	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 17:01:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711472209; cv=none; b=VDTPbySWfkoxBuiM+lBKulDDwWWC4xA9hUsK+XFJ7ydn6fpQgvSLTIvE/ckzllSESaspYntZSPpH/R2unf8WTUelcaDAZ0L7EvamDj8HtqF2JuGsNyc9219KEp3cRk4Xrfl2WF/xh7VqSTBqS16RtZoregfgT4UJokG5WQgcpdI=
+	t=1711472484; cv=none; b=JRcGhW3dR2LtcSzDaqzXtBgTPtBStzVOpDKqsYS9KA7I/4zZTgLoRzyAcxC544h4OjwGK/EOrnk0+hhWEctbZ85/179tu1pURmkTZc8CJyCzh7oM4Gs7eKNpwBzCuAM0AhRpCgAY7tzYMqc2f2F6LCI55XLMvsYRXxO8G32RYls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711472209; c=relaxed/simple;
-	bh=MpjDTokvtX1EE6EGgkGbT2jYFu3j8gUVKMk4u80tuOg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oYpUplKVPbeFTe5T5PujVlGDmMWnhVO6GTVdSYw57uWtHIjLw5/88Tkl4shcVNPjJbEWTvrzrW2izTFJYKIXL5xnH3q2Xj9vcWSgf6zPLqE6PLCq9BFgQBRjlQwpWGhnL8+YyUa5L0PRP1DeAil0Sk7r5OZLlNpe7RCYPVmw+MY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zeu3s1+S; arc=none smtp.client-ip=209.85.208.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2d24a727f78so64716771fa.0
-        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 09:56:47 -0700 (PDT)
+	s=arc-20240116; t=1711472484; c=relaxed/simple;
+	bh=WCStSasfGwCi/TEmeHpxR0Uu2h4Ospgi1MMgVboFzIY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WAQnTGnISb1L4Ia0y/oh8wIsQem+bbVFrhuUBM2bDG9pTGryDQi2Tj1ZYUk+0SM+Y7Xh2N/Sjau52aFR/RnCHBxSZc3rpUKd2cJ5lPkW7ZtWzQSmx6Odc3VTDViLOBcPP9VVPk6dIQERRt86P2rFZz5pYK2dyzdy+t3kGdLZXqI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=pPc216qc; arc=none smtp.client-ip=209.85.219.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raspberrypi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
+Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-dd10ebcd702so5914613276.2
+        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 10:01:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711472206; x=1712077006; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=5/8WXXOlm8B5IwH6u3vDD002jtgNLvKBWnXoZGy2nH8=;
-        b=zeu3s1+SaL8CoZvZCnR+WstNnCRuy9n4lvXGvRyfbApSmS3J16VXe1jzF85/fPhHKf
-         1/T64WAhdh8s1Tit7S+Kdz6KQnH4VCZZmmfIr1imIfr29AM6ckMcFLPPwd33qA8zYiyh
-         toFAPIV4R1v63RwK/FGwWnM5T4yx9INkURbMBfurEE9a0SbOIY3aDsvnSERHOB7vlp6c
-         ONVuRMHkMCxH0FWx5yLh/hGUHqNs7yxV5JqxsQP0X38c0yZ3X/JRIftTNW8cYwtV8yfy
-         yTRQR6Lrt3XJX/HGZmmiYm604eDEeclG2BAvNzIoVx2Uh+8SO7vK/z/OpVYqnvtVcyKA
-         gDNw==
+        d=raspberrypi.com; s=google; t=1711472481; x=1712077281; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=rn6b32jy9L1Q1CcsHFyQ93QIJPAnE2SZFJWdx80EvW0=;
+        b=pPc216qc4juBH7uCSoDBTRlNJ2gaAfKWu9wjJhZx7p2btWGq9NbXRL9IQrBi1Pmd7v
+         v4+3mQAqGpzzD1oe+Wa1qufBo4Dx9Aj3ortOlRA87cbn+hAECdwIqRFoU2BJnwe0Bt98
+         8kAONV3NEpJ3nAwM0jrnfPaWEDFjQpW/XRHV0Ki6O6+ua12texfp2JnPzaZblCUCq3lN
+         KZ7IGY8IDsstBQj+zdT10ZKu7GJ5MUmCK/Ob4P4taJacxpdSmmzWbbFng7Wu935PAV9n
+         hrQ7rEjWuVOHkiKCurQcLBELzUBYDV6vO795s/Lt11wGwc+SDlE4pPhFwToLd+PiRex0
+         kqmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711472206; x=1712077006;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5/8WXXOlm8B5IwH6u3vDD002jtgNLvKBWnXoZGy2nH8=;
-        b=nVZ3FfVqOdBiWYpjR2MAuJaUyflQk9xhMNvhpOSUaHc6rIXrRef/5tvkkcG0qVmpdA
-         17eZDekbMJ45Y3s6m+Q2BcvA1aeFgy0PaAzNrOz+YiLXIrSQB5DEi9Nfrbx2alOn/w7E
-         TM7MiUEiI9SWxlFtBxeg+0cYoMFj3mZ0M2clnSaonXbk0aRqdlD1bkyVZXXBjga9y+YX
-         JO7P/JtcWAFN7c350tf/tXPFYmbB3iN9xJxLwN4QBoF6BLP0Yxzak0O0+CjHgS/y86WP
-         bgpd9XE9GHsyuj+xmvQJi4iuH6S8/2L7gLuKBOsTzcyZJ1PrOvPTwkMObdQCGpLCrNO1
-         +uhg==
-X-Forwarded-Encrypted: i=1; AJvYcCWXcpJSs+55XyNt+WWTjZAyIylCITpt5c5idrf40PZQyTKbUtwvjSWyo4UVSNh/q8a/+8/cgfG0zOQxyw/XbIoGbKhoCXjmXwuSlg==
-X-Gm-Message-State: AOJu0Yz5Lc58j9IHOtKbnaVqxEDMdwotpUtgB5Ds29nSoawBd8qNz5Lr
-	KZhePnZhlz0g6KHo8jrz6KDE+ehu6c+TKlO7y5x47HkXkKNcB1jr7zdtnix6CPA=
-X-Google-Smtp-Source: AGHT+IFdFXrpqJBi9ggghgTV04ekiGzgZw4KLrXf8OHueaj+CMenDPKyihhyFJd3ChJvN4toXpaY8Q==
-X-Received: by 2002:a2e:a9a4:0:b0:2d4:9333:8e38 with SMTP id x36-20020a2ea9a4000000b002d493338e38mr2943756ljq.38.1711472206124;
-        Tue, 26 Mar 2024 09:56:46 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.44])
-        by smtp.gmail.com with ESMTPSA id c6-20020a2e6806000000b002d4972b1658sm1871167lja.52.2024.03.26.09.56.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Mar 2024 09:56:45 -0700 (PDT)
-Message-ID: <5c5f1fe3-b517-471c-aa5e-0bbc1645c8fc@linaro.org>
-Date: Tue, 26 Mar 2024 17:56:42 +0100
+        d=1e100.net; s=20230601; t=1711472481; x=1712077281;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rn6b32jy9L1Q1CcsHFyQ93QIJPAnE2SZFJWdx80EvW0=;
+        b=nrQiAqn06q6/aY8iOVVpABLnPJLc6EgyOp/JmWbnjtKazTIPIBksbovyigsXJb2cXA
+         pHRzOrVCIoWJmjxU5zJZwKh8WgHLXKY0wjG5C2SN1Q3lf3nZ2TDnVv5be+utJcnirc0X
+         Vg7wRLiqjlmwUzbkMWZfG/xTITRhbURdVe1kQ7UurTSb3u4WkeVy6hvJ5OyqFWTMoBO9
+         fWtAncK2/YLfN7AY/ZbHFD8yIQ4dDsom0lWRcYNHTfgiRJd5972VQO96eYWqmR6XpeGX
+         VR0Ip6EENW4Sbd3PxJ0lt74rafP6q5Olmd9cThK4ZY301qzAp/yATbh0Sa67ZbC7r+zw
+         NYrA==
+X-Forwarded-Encrypted: i=1; AJvYcCWy4zRTx2ooiU+VHalaP4XaD0BbpBwEBP5N2eeQ6PhQ9957j8sI1DsVPd369j/9ijmv/wKHbbHKfr0jz4T9piVU+aKHpIcGQhnqiA==
+X-Gm-Message-State: AOJu0Yw+d7wKEqBXe4kgTzuizdGz4mRNOtECGfpItjr0AFZYp8kU0a7+
+	k1AktLQoF/I1VVWSuNCSdJ3VFMwGkEJH3FJq7177xl0GaXbPPoLhXbpYgeV7N2EgAwK+utu9683
+	YnvIny1SBq7jr/2BvEZLSILycNUySeGPoN6xpCQ==
+X-Google-Smtp-Source: AGHT+IFF+qsN3HddrYNocQUw5qs1Uglxid7wFNdqg5vj1dWSwcfBHFhwuhElG2CYDWpKvlzLGb2l21UfCSZKq2f2K9I=
+X-Received: by 2002:a25:8447:0:b0:dcc:ec02:38b0 with SMTP id
+ r7-20020a258447000000b00dccec0238b0mr239762ybm.64.1711472480652; Tue, 26 Mar
+ 2024 10:01:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/4] virt: vmgenid: add support for devicetree bindings
-To: "Jason A. Donenfeld" <Jason@zx2c4.com>
-Cc: Sudan Landge <sudanl@amazon.com>, tytso@mit.edu, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- sathyanarayanan.kuppuswamy@linux.intel.com, thomas.lendacky@amd.com,
- dan.j.williams@intel.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, graf@amazon.de, dwmw@amazon.co.uk,
- bchalios@amazon.es, xmarcalx@amazon.co.uk
-References: <20240325195306.13133-1-sudanl@amazon.com>
- <20240325195306.13133-5-sudanl@amazon.com>
- <5ca78fc8-4a53-4f09-878f-4a47875f9de5@linaro.org>
- <ZgLXQ0P8aDl4Xh21@zx2c4.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ZgLXQ0P8aDl4Xh21@zx2c4.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240301213231.10340-1-laurent.pinchart@ideasonboard.com>
+ <20240301213231.10340-10-laurent.pinchart@ideasonboard.com>
+ <ZgHEQTHZlRr_Rz6K@kekkonen.localdomain> <20240326013708.GA31396@pendragon.ideasonboard.com>
+ <CAPY8ntAbw33-4TG3ZyNHZTsJNRa_yxQ=pAdn0meQbeVK95x1Eg@mail.gmail.com> <20240326164250.GA28895@pendragon.ideasonboard.com>
+In-Reply-To: <20240326164250.GA28895@pendragon.ideasonboard.com>
+From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date: Tue, 26 Mar 2024 17:01:05 +0000
+Message-ID: <CAPY8ntAqgaTnp5mRScUc6OjSaHBdvDWPKu==cD-EzPC5-p8nqg@mail.gmail.com>
+Subject: Re: [PATCH v6 09/15] media: bcm2835-unicam: Add support for CCP2/CSI2
+ camera interface
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org, 
+	David Plowman <david.plowman@raspberrypi.com>, 
+	Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>, 
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>, Naushir Patuck <naush@raspberrypi.com>, 
+	kernel-list@raspberrypi.com, linux-rpi-kernel@lists.infradead.org, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui <rjui@broadcom.com>, 
+	Scott Branden <sbranden@broadcom.com>, bcm-kernel-feedback-list@broadcom.com, 
+	Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 26/03/2024 15:10, Jason A. Donenfeld wrote:
-> On Mon, Mar 25, 2024 at 10:51:25PM +0100, Krzysztof Kozlowski wrote:
->>>  		.owner = THIS_MODULE,
->>
->> This is clearly some abandoned driver... sigh... I thought we get rid of
->> all this owner crap. Many years ago. How could it appear back if
->> automated tools report it?
->>
->> Considering how many failures LKP reported for your patchsets, I have
->> real doubts that anyone actually tests this code.
-> 
-> Now you're commenting on the context rather than the patch.
-> 
-> No, this isn't an abandoned driver, no it's not untested. Rather, it's
-> code I maintain, care deeply about, and have a tree that receives quite
-> a bit of testing (random.git) where I'll be taking these OF patches in
-> the case that this patchset improves (and thanks very much for your
+On Tue, 26 Mar 2024 at 16:42, Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> Hi Dave,
+>
+> On Tue, Mar 26, 2024 at 03:23:42PM +0000, Dave Stevenson wrote:
+> > On Tue, 26 Mar 2024 at 01:37, Laurent Pinchart wrote:
+> > > On Mon, Mar 25, 2024 at 06:36:49PM +0000, Sakari Ailus wrote:
+> > > > On Fri, Mar 01, 2024 at 11:32:24PM +0200, Laurent Pinchart wrote:
+> > > > > From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> > > > >
+> > > > > Add a driver for the Unicam camera receiver block on BCM283x processors.
+> > > > > It is represented as two video device nodes: unicam-image and
+> > > > > unicam-embedded which are connected to an internal subdev (named
+> > > > > unicam-subdev) in order to manage streams routing.
+> > > > >
+> > > > > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> > > > > Co-developed-by: Naushir Patuck <naush@raspberrypi.com>
+> > > > > Signed-off-by: Naushir Patuck <naush@raspberrypi.com>
+> > > > > Co-developed-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
+> > > > > Signed-off-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
+> > > > > Co-developed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > >
+> > > > Thanks for submitting this, it's the cleanest and neatest Unicom driver
+> > >
+> > > Unicam, or if you insist Unicorn, but not Unicom :-)
+> > >
+> > > > I've ever seen!
+> > > >
+> > > > Some mostly unimportant comments below, however the bus-type issue needs to
+> > > > be addressed.
+> > > >
+> > > > > ---
+> > > > > Changes since v5:
+> > > > >
+> > > > > - Move to drivers/media/platform/broadcom/
+> > > > > - Port to the upstream V4L2 streams API
+> > > > > - Rebase on latest metadata API proposal
+> > > > > - Add missing error message
+> > > > > - Drop unneeded documentation block for unicam_isr()
+> > > > > - Drop unneeded dev_dbg() and dev_err() messages
+> > > > > - Drop unneeded streams_mask and fmt checks
+> > > > > - Drop unused unicam_sd_pad_is_sink()
+> > > > > - Drop unneeded includes
+> > > > > - Drop v4l2_ctrl_subscribe_event() call
+> > > > > - Use pm_runtime_resume_and_get()
+> > > > > - Indentation and line wrap fixes
+> > > > > - Let the framework set bus_info
+> > > > > - Use v4l2_fwnode_endpoint_parse()
+> > > > > - Fix media device cleanup
+> > > > > - Drop lane reordering checks
+> > > > > - Fix subdev state locking
+> > > > > - Drop extra debug messages
+> > > > > - Move clock handling to runtime PM handlers
+> > > > > - Reorder functions
+> > > > > - Rename init functions for more clarity
+> > > > > - Initialize runtime PM earlier
+> > > > > - Clarify error messages
+> > > > > - Simplify subdev init with local variable
+> > > > > - Fix subdev cleanup
+> > > > > - Fix typos and indentation
+> > > > > - Don't initialize local variables needlessly
+> > > > > - Simplify num lanes check
+> > > > > - Fix metadata handling in subdev set_fmt
+> > > > > - Drop manual fallback to .s_stream()
+> > > > > - Pass v4l2_pix_format to unicam_calc_format_size_bpl()
+> > > > > - Simplify unicam_set_default_format()
+> > > > > - Fix default format settings
+> > > > > - Add busy check in unicam_s_fmt_meta()
+> > > > > - Add missing \n at end of format strings
+> > > > > - Fix metadata handling in subdev set_fmt
+> > > > > - Fix locking when starting streaming
+> > > > > - Return buffers from start streaming fails
+> > > > > - Fix format validation for metadata node
+> > > > > - Use video_device_pipeline_{start,stop}() helpers
+> > > > > - Simplify format enumeration
+> > > > > - Drop unset variable
+> > > > > - Update MAINTAINERS entry
+> > > > > - Update to the upstream v4l2_async_nf API
+> > > > > - Update to the latest subdev routing API
+> > > > > - Update to the latest subdev state API
+> > > > > - Move from subdev .init_cfg() to .init_state()
+> > > > > - Update to the latest videobuf2 API
+> > > > > - Fix v4l2_subdev_enable_streams() error check
+> > > > > - Use correct pad for the connected subdev
+> > > > > - Return buffers to vb2 when start streaming fails
+> > > > > - Improve debugging in start streaming handler
+> > > > > - Simplify DMA address management
+> > > > > - Drop comment about bcm2835-camera driver
+> > > > > - Clarify comments that explain min/max sizes
+> > > > > - Pass v4l2_pix_format to unicam_try_fmt()
+> > > > > - Drop unneeded local variables
+> > > > > - Rename image-related constants and functions
+> > > > > - Turn unicam_fmt.metadata_fmt into bool
+> > > > > - Rename unicam_fmt to unicam_format_info
+> > > > > - Rename unicam_format_info variables to fmtinfo
+> > > > > - Rename unicam_node.v_fmt to fmt
+> > > > > - Add metadata formats for RAW10, RAW12 and RAW14
+> > > > > - Make metadata formats line-based
+> > > > > - Validate format on metadata video device
+> > > > > - Add Co-devlopped-by tags
+> > > > >
+> > > > > Changes since v3:
+> > > > >
+> > > > > - Add the vendor prefix for DT name
+> > > > > - Use the reg-names in DT parsing
+> > > > > - Remove MAINTAINERS entry
+> > > > >
+> > > > > Changes since v2:
+> > > > >
+> > > > > - Change code organization
+> > > > > - Remove unused variables
+> > > > > - Correct the fmt_meta functions
+> > > > > - Rewrite the start/stop streaming
+> > > > >   - You can now start the image node alone, but not the metadata one
+> > > > >   - The buffers are allocated per-node
+> > > > >   - only the required stream is started, if the route exists and is
+> > > > >     enabled
+> > > > > - Prefix the macros with UNICAM_ to not have too generic names
+> > > > > - Drop colorspace support
+> > > > >
+> > > > > Changes since v1:
+> > > > >
+> > > > > - Replace the unicam_{info,debug,error} macros with dev_*()
+> > > > > ---
+> > > > >  MAINTAINERS                                   |    1 +
+> > > > >  drivers/media/platform/Kconfig                |    1 +
+> > > > >  drivers/media/platform/Makefile               |    1 +
+> > > > >  drivers/media/platform/broadcom/Kconfig       |   23 +
+> > > > >  drivers/media/platform/broadcom/Makefile      |    3 +
+> > > > >  .../platform/broadcom/bcm2835-unicam-regs.h   |  255 ++
+> > > > >  .../media/platform/broadcom/bcm2835-unicam.c  | 2607 +++++++++++++++++
+> > > > >  7 files changed, 2891 insertions(+)
+> > > > >  create mode 100644 drivers/media/platform/broadcom/Kconfig
+> > > > >  create mode 100644 drivers/media/platform/broadcom/Makefile
+> > > > >  create mode 100644 drivers/media/platform/broadcom/bcm2835-unicam-regs.h
+> > > > >  create mode 100644 drivers/media/platform/broadcom/bcm2835-unicam.c
+> > > > >
+> > > > > diff --git a/MAINTAINERS b/MAINTAINERS
+> > > > > index e50a59654e6e..cc350729f467 100644
+> > > > > --- a/MAINTAINERS
+> > > > > +++ b/MAINTAINERS
+> > > > > @@ -4002,6 +4002,7 @@ M:    Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
+> > > > >  L: linux-media@vger.kernel.org
+> > > > >  S: Maintained
+> > > > >  F: Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml
+> > > > > +F: drivers/media/platform/bcm2835/
+> > > > >
+> > > > >  BROADCOM BCM47XX MIPS ARCHITECTURE
+> > > > >  M: Hauke Mehrtens <hauke@hauke-m.de>
+> > > > > diff --git a/drivers/media/platform/Kconfig b/drivers/media/platform/Kconfig
+> > > > > index 91e54215de3a..2d79bfc68c15 100644
+> > > > > --- a/drivers/media/platform/Kconfig
+> > > > > +++ b/drivers/media/platform/Kconfig
+> > > > > @@ -67,6 +67,7 @@ source "drivers/media/platform/amlogic/Kconfig"
+> > > > >  source "drivers/media/platform/amphion/Kconfig"
+> > > > >  source "drivers/media/platform/aspeed/Kconfig"
+> > > > >  source "drivers/media/platform/atmel/Kconfig"
+> > > > > +source "drivers/media/platform/broadcom/Kconfig"
+> > > > >  source "drivers/media/platform/cadence/Kconfig"
+> > > > >  source "drivers/media/platform/chips-media/Kconfig"
+> > > > >  source "drivers/media/platform/intel/Kconfig"
+> > > > > diff --git a/drivers/media/platform/Makefile b/drivers/media/platform/Makefile
+> > > > > index 3296ec1ebe16..da17301f7439 100644
+> > > > > --- a/drivers/media/platform/Makefile
+> > > > > +++ b/drivers/media/platform/Makefile
+> > > > > @@ -10,6 +10,7 @@ obj-y += amlogic/
+> > > > >  obj-y += amphion/
+> > > > >  obj-y += aspeed/
+> > > > >  obj-y += atmel/
+> > > > > +obj-y += broadcom/
+> > > > >  obj-y += cadence/
+> > > > >  obj-y += chips-media/
+> > > > >  obj-y += intel/
+> > > > > diff --git a/drivers/media/platform/broadcom/Kconfig b/drivers/media/platform/broadcom/Kconfig
+> > > > > new file mode 100644
+> > > > > index 000000000000..cc2c9afcc948
+> > > > > --- /dev/null
+> > > > > +++ b/drivers/media/platform/broadcom/Kconfig
+> > > > > @@ -0,0 +1,23 @@
+> > > > > +# SPDX-License-Identifier: GPL-2.0
+> > > > > +
+> > > > > +config VIDEO_BCM2835_UNICAM
+> > > > > +   tristate "Broadcom BCM283x/BCM271x Unicam video capture driver"
+> > > > > +   depends on ARCH_BCM2835 || COMPILE_TEST
+> > > > > +   depends on PM
+> > > > > +   depends on VIDEO_DEV
+> > > > > +   select MEDIA_CONTROLLER
+> > > > > +   select V4L2_FWNODE
+> > > > > +   select VIDEO_V4L2_SUBDEV_API
+> > > > > +   select VIDEOBUF2_DMA_CONTIG
+> > > > > +   help
+> > > > > +     Say Y here to enable support for the BCM283x/BCM271x CSI-2 receiver.
+> > > > > +     This is a V4L2 driver that controls the CSI-2 receiver directly,
+> > > > > +     independently from the VC4 firmware.
+> > > > > +
+> > > > > +     This driver is mutually exclusive with the use of bcm2835-camera. The
+> > > > > +     firmware will disable all access to the peripheral from within the
+> > > > > +     firmware if it finds a DT node using it, and bcm2835-camera will
+> > > > > +     therefore fail to probe.
+> > > > > +
+> > > > > +     To compile this driver as a module, choose M here. The module will be
+> > > > > +     called bcm2835-unicam.
+> > > > > diff --git a/drivers/media/platform/broadcom/Makefile b/drivers/media/platform/broadcom/Makefile
+> > > > > new file mode 100644
+> > > > > index 000000000000..03d2045aba2e
+> > > > > --- /dev/null
+> > > > > +++ b/drivers/media/platform/broadcom/Makefile
+> > > > > @@ -0,0 +1,3 @@
+> > > > > +# SPDX-License-Identifier: GPL-2.0
+> > > > > +
+> > > > > +obj-$(CONFIG_VIDEO_BCM2835_UNICAM) += bcm2835-unicam.o
+> > > > > diff --git a/drivers/media/platform/broadcom/bcm2835-unicam-regs.h b/drivers/media/platform/broadcom/bcm2835-unicam-regs.h
+> > > > > new file mode 100644
+> > > > > index 000000000000..84775fd2fac5
+> > > > > --- /dev/null
+> > > > > +++ b/drivers/media/platform/broadcom/bcm2835-unicam-regs.h
+> > > > > @@ -0,0 +1,255 @@
+> > > > > +/* SPDX-License-Identifier: GPL-2.0-only */
+> > > > > +
+> > > > > +/*
+> > > > > + * Copyright (C) 2017-2020 Raspberry Pi Trading.
+> > > >
+> > > > Anything up to 2024?
+> > >
+> > > Not really. The registers haven't really changed :-) I'll update the
+> > > copyright in the .c file though.
+> > >
+> > > > > + * Dave Stevenson <dave.stevenson@raspberrypi.com>
+> > > > > + */
+> > >
+> > > [snip]
+> > >
+> > > > > diff --git a/drivers/media/platform/broadcom/bcm2835-unicam.c b/drivers/media/platform/broadcom/bcm2835-unicam.c
+> > > > > new file mode 100644
+> > > > > index 000000000000..716c89b8a217
+> > > > > --- /dev/null
+> > > > > +++ b/drivers/media/platform/broadcom/bcm2835-unicam.c
+> > > > > @@ -0,0 +1,2607 @@
+> > >
+> > > [snip]
+> > >
+> > > > > +static irqreturn_t unicam_isr(int irq, void *dev)
+> > > > > +{
+> > > > > +   struct unicam_device *unicam = dev;
+> > > > > +   unsigned int lines_done = unicam_get_lines_done(dev);
+> > > > > +   unsigned int sequence = unicam->sequence;
+> > > > > +   unsigned int i;
+> > > > > +   u32 ista, sta;
+> > > > > +   bool fe;
+> > > > > +   u64 ts;
+> > > > > +
+> > > > > +   sta = unicam_reg_read(unicam, UNICAM_STA);
+> > > > > +   /* Write value back to clear the interrupts */
+> > > > > +   unicam_reg_write(unicam, UNICAM_STA, sta);
+> > > > > +
+> > > > > +   ista = unicam_reg_read(unicam, UNICAM_ISTA);
+> > > > > +   /* Write value back to clear the interrupts */
+> > > > > +   unicam_reg_write(unicam, UNICAM_ISTA, ista);
+> > > > > +
+> > > > > +   dev_dbg(unicam->dev, "ISR: ISTA: 0x%X, STA: 0x%X, sequence %d, lines done %d\n",
+> > > > > +           ista, sta, sequence, lines_done);
+> > > > > +
+> > > > > +   if (!(sta & (UNICAM_IS | UNICAM_PI0)))
+> > > > > +           return IRQ_HANDLED;
+> > > > > +
+> > > > > +   /*
+> > > > > +    * Look for either the Frame End interrupt or the Packet Capture status
+> > > > > +    * to signal a frame end.
+> > > > > +    */
+> > > > > +   fe = ista & UNICAM_FEI || sta & UNICAM_PI0;
+> > > > > +
+> > > > > +   /*
+> > > > > +    * We must run the frame end handler first. If we have a valid next_frm
+> > > > > +    * and we get a simultaneout FE + FS interrupt, running the FS handler
+> > > > > +    * first would null out the next_frm ptr and we would have lost the
+> > > > > +    * buffer forever.
+> > > > > +    */
+> > > > > +   if (fe) {
+> > > > > +           /*
+> > > > > +            * Ensure we have swapped buffers already as we can't
+> > > > > +            * stop the peripheral. If no buffer is available, use a
+> > > > > +            * dummy buffer to dump out frames until we get a new buffer
+> > > > > +            * to use.
+> > > > > +            */
+> > > > > +           for (i = 0; i < ARRAY_SIZE(unicam->node); i++) {
+> > > > > +                   if (!unicam->node[i].streaming)
+> > > > > +                           continue;
+> > > > > +
+> > > > > +                   /*
+> > > > > +                    * If cur_frm == next_frm, it means we have not had
+> > > > > +                    * a chance to swap buffers, likely due to having
+> > > > > +                    * multiple interrupts occurring simultaneously (like FE
+> > > > > +                    * + FS + LS). In this case, we cannot signal the buffer
+> > > > > +                    * as complete, as the HW will reuse that buffer.
+> > > > > +                    */
+> > > > > +                   if (unicam->node[i].cur_frm &&
+> > > > > +                       unicam->node[i].cur_frm != unicam->node[i].next_frm)
+> > > > > +                           unicam_process_buffer_complete(&unicam->node[i],
+> > > > > +                                                          sequence);
+> > > > > +                   unicam->node[i].cur_frm = unicam->node[i].next_frm;
+> > > > > +           }
+> > > > > +           unicam->sequence++;
+> > > >
+> > > > Does access to this data need to be serialised somehow.
+> > >
+> > > Given that it's only accessed from the interrupt handler (beside
+> > > start_streaming time, before starting the hardware), I don't think so.
+> > >
+> > > > > +   }
+> > > > > +
+> > > > > +   if (ista & UNICAM_FSI) {
+> > > > > +           /*
+> > > > > +            * Timestamp is to be when the first data byte was captured,
+> > > > > +            * aka frame start.
+> > > > > +            */
+> > > > > +           ts = ktime_get_ns();
+> > > > > +           for (i = 0; i < ARRAY_SIZE(unicam->node); i++) {
+> > > > > +                   if (!unicam->node[i].streaming)
+> > > > > +                           continue;
+> > > > > +
+> > > > > +                   if (unicam->node[i].cur_frm)
+> > > > > +                           unicam->node[i].cur_frm->vb.vb2_buf.timestamp =
+> > > > > +                                                           ts;
+> > > > > +                   else
+> > > > > +                           dev_dbg(unicam->v4l2_dev.dev,
+> > > > > +                                   "ISR: [%d] Dropping frame, buffer not available at FS\n",
+> > > > > +                                   i);
+> > > > > +                   /*
+> > > > > +                    * Set the next frame output to go to a dummy frame
+> > > > > +                    * if we have not managed to obtain another frame
+> > > > > +                    * from the queue.
+> > > > > +                    */
+> > > > > +                   unicam_schedule_dummy_buffer(&unicam->node[i]);
+> > > > > +           }
+> > > > > +
+> > > > > +           unicam_queue_event_sof(unicam);
+> > > > > +   }
+> > > > > +
+> > > > > +   /*
+> > > > > +    * Cannot swap buffer at frame end, there may be a race condition
+> > > > > +    * where the HW does not actually swap it if the new frame has
+> > > > > +    * already started.
+> > > > > +    */
+> > > > > +   if (ista & (UNICAM_FSI | UNICAM_LCI) && !fe) {
+> > > > > +           for (i = 0; i < ARRAY_SIZE(unicam->node); i++) {
+> > > > > +                   if (!unicam->node[i].streaming)
+> > > > > +                           continue;
+> > > > > +
+> > > > > +                   spin_lock(&unicam->node[i].dma_queue_lock);
+> > > > > +                   if (!list_empty(&unicam->node[i].dma_queue) &&
+> > > > > +                       !unicam->node[i].next_frm)
+> > > > > +                           unicam_schedule_next_buffer(&unicam->node[i]);
+> > > > > +                   spin_unlock(&unicam->node[i].dma_queue_lock);
+> > > > > +           }
+> > > > > +   }
+> > > > > +
+> > > > > +   if (unicam_reg_read(unicam, UNICAM_ICTL) & UNICAM_FCM) {
+> > > > > +           /* Switch out of trigger mode if selected */
+> > > > > +           unicam_reg_write_field(unicam, UNICAM_ICTL, 1, UNICAM_TFC);
+> > > > > +           unicam_reg_write_field(unicam, UNICAM_ICTL, 0, UNICAM_FCM);
+> > > > > +   }
+> > > > > +   return IRQ_HANDLED;
+> > > > > +}
+> > > > > +
+> > > > > +static void unicam_set_packing_config(struct unicam_device *unicam)
+> > > > > +{
+> > > > > +   struct unicam_node *node = &unicam->node[UNICAM_IMAGE_NODE];
+> > > > > +   u32 pack, unpack;
+> > > > > +   u32 val;
+> > > > > +
+> > > > > +   if (node->fmt.fmt.pix.pixelformat == node->fmtinfo->fourcc) {
+> > > > > +           unpack = UNICAM_PUM_NONE;
+> > > > > +           pack = UNICAM_PPM_NONE;
+> > > > > +   } else {
+> > > > > +           switch (node->fmtinfo->depth) {
+> > > > > +           case 8:
+> > > > > +                   unpack = UNICAM_PUM_UNPACK8;
+> > > > > +                   break;
+> > > > > +           case 10:
+> > > > > +                   unpack = UNICAM_PUM_UNPACK10;
+> > > > > +                   break;
+> > > > > +           case 12:
+> > > > > +                   unpack = UNICAM_PUM_UNPACK12;
+> > > > > +                   break;
+> > > > > +           case 14:
+> > > > > +                   unpack = UNICAM_PUM_UNPACK14;
+> > > > > +                   break;
+> > > > > +           case 16:
+> > > > > +                   unpack = UNICAM_PUM_UNPACK16;
+> > > > > +                   break;
+> > > > > +           default:
+> > > > > +                   unpack = UNICAM_PUM_NONE;
+> > > > > +                   break;
+> > > > > +           }
+> > > > > +
+> > > > > +           /* Repacking is always to 16bpp */
+> > > > > +           pack = UNICAM_PPM_PACK16;
+> > > >
+> > > > Also 8-bit data?
+> > >
+> > > Not that I know of. The 8-bit entries in unicam_image_formats have no
+> > > .unpacked_fourcc field, so the condition in the if above will always be
+> > > true for those as they can only be selected by setting the pixel format
+> > > to fmtinfo->fourcc.
+> >
+> > Correct.
+> > The unpacking / packing doesn't bit shift, hence 10P can be unpacked
+> > to 10, 12P to 12, and 14P to 14, but there is no 8bit unpacked into
+> > the LSBs of 16 bit words defined as a V4L2 format.
+> >
+> > You can configure packing to produce 10P, 12P, etc, but without the
+> > bitshift it has no real use.
+> >
+> > MSBs get dropped if you try packing to a smaller bit depth than the
+> > source, so packing to 8 bit from any other depth results in unusable
+> > output.
+> >
+> > If being really critical, then there is no point in having the case 8
+> > and case 16 in this switch as they will never be selected.
+>
+> As we have space to spare in the unicam_format_info structure due to
+> padding, I'll move the unpack value there and drop the switch.
 
-I apologize. I jumped too fast to conclusions and missed important point
-- acpi drivers do need to set the owner. I am sorry.
+As it ends up being a 1:1 mapping, that would work.
 
-(platform driver do not need, but that's a different thing)
+Originally I believed unicam did the bit-shifting which made offering
+the flexibility useful, but that proved to be wrong.
 
-Best regards,
-Krzysztof
+  Dave
 
+> > > > > +   }
+> >
+> > <snip>
+>
+> --
+> Regards,
+>
+> Laurent Pinchart
 
