@@ -1,116 +1,115 @@
-Return-Path: <devicetree+bounces-53588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25CA688CC7A
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 19:57:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22BCA88CCC9
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 20:12:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 570871C31225
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 18:57:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5492F1C26EE7
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 19:12:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B51713CC42;
-	Tue, 26 Mar 2024 18:56:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C357313CA98;
+	Tue, 26 Mar 2024 19:11:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QQT9sDZi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TnettQcM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CED533DABF5;
-	Tue, 26 Mar 2024 18:56:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A2AA1272D1;
+	Tue, 26 Mar 2024 19:11:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711479410; cv=none; b=ooJw0eUiCkxd1rxKW8AZKjR47pU7eSQH3mxaECUSlKfqMtHNxbtmxEQKUIIBCid4GYUqFaimJRdYFd8e5fAMksKBtvJmum8aw+e3RNk6gX+HEVAr6WSVV4hNxc9sRlX2ufT/WwUw5pdiBlSWeUoMpDjwYnt7gQH9EcKKxx9xKmY=
+	t=1711480317; cv=none; b=WOyuk2Nq55VlEevZS3YiTOLTJtAQR6RjIbVIHUo1OBwcIyWcFGuNr/RDtwNtwYod2gAwLLU7tGUkI5hZRCDRj0+IoZGokkYgZ+M/5vjHeiFeBdiKBxQl9jIbAY5YRRAaQwDKVb7qmcfOnZM2PlBWAvn9Lt5R7P0WLD0+KoSHCdo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711479410; c=relaxed/simple;
-	bh=ZdLEySwEsWnegupZpT4qm4uyz/jp9tNClkbP41nlTlo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MCNK8Cxs77TvGB9RzbseTI/c+PVW4EpIdFmYwIPPBy3mBwJt24EkTwQS3L497UEyUpVGaYcAsXjA5cLD7sOHf+hI0+WFFUt+y8oCm/vcP6lq8RKbqml8LILzjf/hdaYQR72UBacnqSUDXQCUefkn6uC66NTECQiYpTH/E0rrhPQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QQT9sDZi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B83DCC43390;
-	Tue, 26 Mar 2024 18:56:47 +0000 (UTC)
+	s=arc-20240116; t=1711480317; c=relaxed/simple;
+	bh=EZrkA8k/lLE5hJHBsQBbRLVO8mmgDFjXv/SnhYX5MnY=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=KZzOY+cr0M2OrcwpvefdwhI7k1F4RvCvY7BLxZfNRN0cAo1tW3VXJUlma+rYRrMiM9+q0xnkWJmZzV/S4OHwLHN3Bepbh7Igp+mpMJV+fkwXhCe8pDB6Mv1hZH64b1O+Cxg6oEz9geR43JoQjRvKNY20Ir+84i3T3kwwiXWzkBE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TnettQcM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D68D7C433F1;
+	Tue, 26 Mar 2024 19:11:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711479410;
-	bh=ZdLEySwEsWnegupZpT4qm4uyz/jp9tNClkbP41nlTlo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QQT9sDZiA5tHkxV+fymk7CQNbW/LFcAZ6taHXgIdJAfF3c5uivkNKS3FocGWEfEyx
-	 NgHq78IVr5b07EFelaI25OE8kp2jxG4mRXKNNEupKUOEKjPE6YqL0MmIiYPZoV3HiV
-	 us8EI553UgmFL8VznOPNbXWgMA5y61AJgCVvKkhbepvMRmGAJYy9u8C7Ch9aXa4Sc1
-	 zbdxYu4HA3ckp0JSspvT5MZArm7fONwiPJOkdKVBV/xJcwzihLlM6WjO3vGYEfYvew
-	 mYR18HHRqEPOL233uvhzflI2eV0SlGxgs0KJoycnyTzFw0cS79Mjp7jSu0Gshu6/M7
-	 eFnLPPivi9lpw==
-Date: Tue, 26 Mar 2024 18:56:45 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Yinbo Zhu <zhuyinbo@loongson.cn>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	loongson-kernel@lists.loongnix.cn, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>,
-	loongarch@lists.linux.dev
-Subject: Re: [PATCH v1 5/8] dt-bindings: clock: loongson2: add
- Loongson-2K2000 compatible
-Message-ID: <20240326-pampered-ladylike-d157c60eaa70@spud>
-References: <cover.1710926402.git.zhoubinbin@loongson.cn>
- <3b5d5a11530ca440477c46a1b751a4c8026f00f6.1710926402.git.zhoubinbin@loongson.cn>
+	s=k20201202; t=1711480317;
+	bh=EZrkA8k/lLE5hJHBsQBbRLVO8mmgDFjXv/SnhYX5MnY=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=TnettQcMgC+GPeIX6M3vDm6KlVguwfzIDMU59TcyqH4VvFiJPA4WA/zlnLxZpsbzX
+	 wa13BGPb7IeI73saRTF5+HFwqyZKIKJLr6EROqM+ZneqCGmJ/3DMSMiYGhvEdv4M7O
+	 Sk2CxKResm+1raMxyym/kXTs55CzshgXG0YnJFIFKiBfqF8MRDztPCLPQukATnJy/o
+	 yrDsddROheOso8oiui8DRH0SUPCf/C75nkTo0OAQQVus4Du45HODXQ+BaMXAlnlGpL
+	 1pu4V935oeEAdrhhTqrBkWLMD3f/PFtq1KAp3E6d9nTtSEJuT0rckFZEAMadIBMYzs
+	 vBV86TmCwEGbA==
+Date: Tue, 26 Mar 2024 14:11:55 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="OFe5CZMTprKdPRKa"
-Content-Disposition: inline
-In-Reply-To: <3b5d5a11530ca440477c46a1b751a4c8026f00f6.1710926402.git.zhoubinbin@loongson.cn>
+From: Rob Herring <robh@kernel.org>
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: conor+dt@kernel.org, kernel@collabora.com, devicetree@vger.kernel.org, 
+ sebastian.reichel@collabora.com, heiko@sntech.de, 
+ linux-arm-kernel@lists.infradead.org, boris.brezillon@collabora.com, 
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+In-Reply-To: <0f3759ee390f245dac447bbee038445ddfecbec0.1711383286.git.dsimic@manjaro.org>
+References: <0f3759ee390f245dac447bbee038445ddfecbec0.1711383286.git.dsimic@manjaro.org>
+Message-Id: <171148006524.3222394.1157008244152468379.robh@kernel.org>
+Subject: Re: [PATCH] arm64: dts: rockchip: quartzpro64: Enable the GPU
 
 
---OFe5CZMTprKdPRKa
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Mar 26, 2024 at 05:01:25PM +0800, Binbin Zhou wrote:
-> Add the devicetree compatible for Loongson-2K2000 clocks.
->=20
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+On Mon, 25 Mar 2024 17:19:04 +0100, Dragan Simic wrote:
+> Following the approach used to enable the Mali GPU on the rk3588-evb1, [1]
+> do the same for the Pine64 QuartzPro64, which uses nearly identical hardware
+> design as the RK3588 EVB1.
+> 
+> The slight disadvantage is that the regulator coupling logic requires the
+> regulators to be always on, which is also noted in the comments.  This is
+> obviously something to be improved at some point in the future, but should
+> be fine for now, especially because the QuartzPro64 isn't a battery-powered
+> board, so low power consumption isn't paramount.
+> 
+> [1] https://lore.kernel.org/linux-rockchip/20240325153850.189128-5-sebastian.reichel@collabora.com/
+> 
+> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
 > ---
->  Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.ya=
-ml b/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-> index 83baee40e200..4f79cdb417ab 100644
-> --- a/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-> +++ b/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-> @@ -18,6 +18,7 @@ properties:
->      enum:
->        - loongson,ls2k0500-clk
->        - loongson,ls2k-clk  # This is for Loongson-2K1000
-> +      - loongson,ls2k2000-clk
+>  .../arm64/boot/dts/rockchip/rk3588-quartzpro64.dts | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Thanks,
-Conor.
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
---OFe5CZMTprKdPRKa
-Content-Type: application/pgp-signature; name="signature.asc"
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
------BEGIN PGP SIGNATURE-----
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgMabQAKCRB4tDGHoIJi
-0gHfAQD0eQEFO+wcJjlSXV4bVuLBKpiRJCdOpMVxEwAjkCShRgEAn4L1em/4rIZb
-m9LldlvJ/Jhu1RHGNSXc2y9bZ4SHDww=
-=S9F2
------END PGP SIGNATURE-----
+  pip3 install dtschema --upgrade
 
---OFe5CZMTprKdPRKa--
+
+New warnings running 'make CHECK_DTBS=y rockchip/rk3588-quartzpro64.dtb' for 0f3759ee390f245dac447bbee038445ddfecbec0.1711383286.git.dsimic@manjaro.org:
+
+Error: arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts:288.1-5 Label or path gpu not found
+FATAL ERROR: Syntax error parsing input tree
+make[3]: *** [scripts/Makefile.lib:427: arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dtb] Error 1
+make[2]: *** [scripts/Makefile.build:485: arch/arm64/boot/dts/rockchip] Error 2
+make[2]: Target 'arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dtb' not remade because of errors.
+make[1]: *** [/home/rob/proj/linux-dt-testing/Makefile:1387: rockchip/rk3588-quartzpro64.dtb] Error 2
+make: *** [Makefile:240: __sub-make] Error 2
+make: Target 'rockchip/rk3588-quartzpro64.dtb' not remade because of errors.
+
+
+
+
+
 
