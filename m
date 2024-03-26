@@ -1,108 +1,153 @@
-Return-Path: <devicetree+bounces-53701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A55FF88D178
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 23:46:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCDD388D29F
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 00:11:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FF09323382
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 22:46:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68AD21F39F76
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 23:11:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90BEB13E408;
-	Tue, 26 Mar 2024 22:44:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F09C313D8B5;
+	Tue, 26 Mar 2024 23:10:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ub+5CvSw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BJVGGHD2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C101C13E3FB;
-	Tue, 26 Mar 2024 22:44:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C14C1E494;
+	Tue, 26 Mar 2024 23:10:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711493084; cv=none; b=pQARBSbQhRIp06iXzut74FDX4BlKRveQi+EPtSTIeRc5WZ22nlBnFTzp6/LfUgMEXmHivaiRvAOWDqI+a1nBD8MtY/td64R++CAIO7+AEoAiUMxjGeOUarU5deubQSl+5N0w4vG4ScBZGwyJE+8DlZLWBdcUTGWp1p73k4SwND0=
+	t=1711494656; cv=none; b=HgCCPTwYttrHdQxAyCViK7x9gf1bIGNV6RpVGJ3/ljd4hGKCkCLLua4XlP47tP8KjF1y6eZnoj8/qH3apOyuMHA1bzY1QAT31ivtg/6qOaLNtgmxyHjHsYk77UhchDNF9gfQeBzMOc1eIgkzvX3+dFaYyl24XqICDtbvseD+Nhc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711493084; c=relaxed/simple;
-	bh=21njRGl940sgZBGKPtxjtRnd5br8akhXs+E2HiOd6+A=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dTK+7BUWgqdyX0O468EDlh4jvGCvRrskQn59duDUCUr8o/vXKgJT8kLyW6zDdrjDJM/SpS7fM/f9TLpC7+IGbmTM5maVS0vHqukzAvgiXf4X0MOx4PdHTfe0jM0To+AWg9TH9hmnbAPM7SpJ0IRHXGIdB3fjZMPQ743i4fIPtrk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ub+5CvSw; arc=none smtp.client-ip=209.85.208.180
+	s=arc-20240116; t=1711494656; c=relaxed/simple;
+	bh=iGllS9oXf0zC61pFQfjW6YSpL+0c9JdC0e9B64ib2yo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=RmRvnpPJTEHMxBOaN3MyjzV1Col7hkRb/g+/PcmYiEgU3L98HzDm/OXxXfaUWDz6YF918a+LgmawDhwR1Oa8r9taERqUnXK0hQWjn8U6KGCkrslgnd3lmlK0HnZAOst7srQM8It1DI4/Wu4jL9E3V0fRpL/nYPXKa6CKWpksORQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BJVGGHD2; arc=none smtp.client-ip=209.85.215.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2d094bc2244so79843491fa.1;
-        Tue, 26 Mar 2024 15:44:42 -0700 (PDT)
+Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-5d862e8b163so1289054a12.1;
+        Tue, 26 Mar 2024 16:10:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711493081; x=1712097881; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VHr5651oMEvLdMR3cMJXLfEH9jfz5XxGqogmz27QaOI=;
-        b=Ub+5CvSw+hRp2FPAyoyJUmP1CTPm76Hp4Sr+GBWP0SQ9tFHwfWNDecDfMEXsHebVU6
-         +6/zWWQDKGBNfgtC9eP0fRkAeAn56QgKhvpJGWcZOD042Odad8LdIjOf7P8wf7JQsUMo
-         SHBiwPKkWPcwvmwUGJoHd77Qs9WbYbI1CWikISmJCpS+kAz9qF8s04H1lcy1h2BfL2mw
-         7sPoyvVKZ05ljZ1eUo1sAAaDynQ9DGHZ5IMCYMJGKhnKVuwhRpyo4M57EqGTi9QQGs/V
-         1xMaDYrsIR6JmLpZpDx0ofJTPpjo/tdS6ks5KzqkGzXtk1taj0Dgx6a+JSBwliB8Goo3
-         a0uA==
+        d=gmail.com; s=20230601; t=1711494655; x=1712099455; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1nq0CgX8O+qGAyxnErUu1MNEqe8TDbvktuop+7fB/lw=;
+        b=BJVGGHD2KyMhaxtWWv7/iBuNmrAUaWn0lyL1JIrmIQudYTXoCJntl5d4RVV4mJF5RB
+         XCpxiFXIlL9H7TVMOtG5eE7TSwq0FtpJfuNk1dqZQvelUDEWLp3L1Es/hfcNsq8oLLS+
+         25MqGSSa+UP7eBzg8hK8uDSZDxudWUI/QZ9XrSvBazEIwfFnoo/n1kicUm2vircE9ie7
+         gKzieTjoTKFe5ZYVLZkZT+FdpOJ74RuqR9t4cuXHBAmtAuGpBuv0BK5SuxxYEYxykALi
+         LMauKycONd/f0wO3lMy9Tbm7q3W9aKjYGFLkSYHoSFeIb7PEdhdinpqulCVTb7KqlJDN
+         UiyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711493081; x=1712097881;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VHr5651oMEvLdMR3cMJXLfEH9jfz5XxGqogmz27QaOI=;
-        b=pSvpw1oVNC67RmG3vZG6yPwIsSAto34est3d+aO+9MDTzosyuh4/7LYdCx4Q/kYjuR
-         /M88dPoTk36Eg+veyAju9BCwcdYMpeG28ixEBq0/k34IFNoX1Arsbz+YyzhElAkUTl0/
-         q0jXycDAHJVSy7GPF6P2DIX7x26ZUykZdMub1+9Au3yzG+YyvZhN5B8ABsyLd0RmdOeE
-         9FYX6cJDcICVd75L6mKsTTl+JIl0oxnw59UVwUQeInZxyPiKMHmU4GHmZDpRDPYP/LdH
-         V0td9Bm1VWZR/ZCx1Ha6J2fc8Yg2bwpFjS+uCHbiaHzZzxgjD+klBFkWnBD5gn/HNqs2
-         3WtQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXO/raPVeMWL6gO6swJ/DxWmF7f8tyvi/218sr/kKsK95j05qPbT1mWRnGSFioUb79Pl78tvU7sj818r9OeO8HFDq2ZwFasCL4D+g==
-X-Gm-Message-State: AOJu0YzjwhGY5R1+SL0T+/E7tD1bGSdGwsDep//vYCCIzYU91bAyd6Ui
-	t/8XbFeUBSy4MN4lYN+iBK9i+BnG16MhCKSPqfHeCnGd+rm0sd8Zw8/9Cepv
-X-Google-Smtp-Source: AGHT+IEnYDcAqXAqYEKDNyTaX59nzs/0/ekFbWyysHmdBYKs4D0+MiAouG3YSCYzVoJ9LfnudhXkEw==
-X-Received: by 2002:a2e:7a04:0:b0:2d6:b424:a634 with SMTP id v4-20020a2e7a04000000b002d6b424a634mr6840536ljc.15.1711493080660;
-        Tue, 26 Mar 2024 15:44:40 -0700 (PDT)
-Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id o25-20020a509b19000000b0056bcec9c89esm4786463edi.92.2024.03.26.15.44.39
+        d=1e100.net; s=20230601; t=1711494655; x=1712099455;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1nq0CgX8O+qGAyxnErUu1MNEqe8TDbvktuop+7fB/lw=;
+        b=tWbf3ndWjg/+wReGixUxopIvU0zG4kPrc3rZD8r5y5ClLkwsyWOZ8dTmSPN8B9JzJI
+         YdKQ+AdwZfDqHBWoWb72ZXvVEL9ypX143suOniAQKbBaMIAxzyf5i3BKauHAhTOjig2a
+         YvdcX1TKjk/ItEAtVWJYSRnPsk8vXEpK7wItf5dWQ/uLElMyjb+W/4XBTR36BSkDMGot
+         xCPIEWrJrTcv25rp6xnqX6bpQoUxRHgLr5Hy/0aLf9pzHnUXLeauW8zgNyevbk0HhXfj
+         7TbeDLDHUZN+/OE+kGI7BWO+VMjXRnQTxD1NOCiZ+WZ3ay4kMg1Oy8YhXrDrsCHDrZOP
+         zUqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVKBhx8q2lGy+QBmfT/2YJYZGxkju3f+a4DQBDU7w91lhm2FO12oOUeu65qGuqCfGZsknPbNo4wr+9ObODN2y3SfnQtYKEJYlvWtkW1PqozwICbBepF07qfpxEUcdc4mx/er6nY3eKI
+X-Gm-Message-State: AOJu0Yxk84bPQaUjH+TUdjw2ooSJHsnbD5A407qW0JCYw3F25e5j18l4
+	TnEdQv/aV1XjRyoSdx8Mqw8w70ylXeIKVkGXtrFThg8bicyT0G37
+X-Google-Smtp-Source: AGHT+IFz1qj2sC1j+AnSlwkNmcvkxUaU/LwyJQFNR/G/5LeLEEvOYaoFBN2Xl0uWB1ia2YNmk741Wg==
+X-Received: by 2002:a05:6a20:3d22:b0:1a3:b0a8:fbe9 with SMTP id y34-20020a056a203d2200b001a3b0a8fbe9mr14465817pzi.1.1711494654787;
+        Tue, 26 Mar 2024 16:10:54 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:ebca:2207:7ede:8032])
+        by smtp.gmail.com with ESMTPSA id ks12-20020a170903084c00b001dedfba4c69sm7474505plb.134.2024.03.26.16.10.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Mar 2024 15:44:40 -0700 (PDT)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: linux-kernel@vger.kernel.org, Aren Moynihan <aren@peacevolution.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Chen-Yu Tsai <wens@csie.org>, Pavel Machek <pavel@ucw.cz>,
- devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
- Miles Alan <m@milesalan.com>, Samuel Holland <samuel@sholland.org>,
- linux-arm-kernel@lists.infradead.org, Ondrej Jirman <megi@xff.cz>,
- Aren Moynihan <aren@peacevolution.org>
-Subject:
- Re: [PATCH v3 2/2] arm64: dts: allwinner: pinephone: add multicolor LED node
-Date: Tue, 26 Mar 2024 23:44:39 +0100
-Message-ID: <3796126.kQq0lBPeGt@jernej-laptop>
-In-Reply-To: <20240317004116.1473967-2-aren@peacevolution.org>
-References:
- <20240317004116.1473967-1-aren@peacevolution.org>
- <20240317004116.1473967-2-aren@peacevolution.org>
+        Tue, 26 Mar 2024 16:10:54 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: sakari.ailus@linux.intel.com
+Cc: rmfrfs@gmail.com,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH] media: dt-bindings: ovti,ov2680: Document clock/data-lanes
+Date: Tue, 26 Mar 2024 20:10:33 -0300
+Message-Id: <20240326231033.2048193-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Dne nedelja, 17. marec 2024 ob 01:39:29 CET je Aren Moynihan napisal(a):
-> The red, green, and blue LEDs currently in the device tree represent a
-> single RGB LED on the front of the PinePhone.
-> 
-> Signed-off-by: Aren Moynihan <aren@peacevolution.org>
+From: Fabio Estevam <festevam@denx.de>
 
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+OV2680 has a single data lane MIPI interface.
 
-Best regards,
-Jernej
+Document the clock-lanes and data-lanes properties to avoid
+the following dt-schema warning:
 
+imx7s-warp.dtb: camera@36: port:endpoint: Unevaluated properties are not allowed ('clock-lanes', 'data-lanes' were unexpected)
+	from schema $id: http://devicetree.org/schemas/media/i2c/ovti,ov2680.yaml#
+
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+ .../bindings/media/i2c/ovti,ov2680.yaml       | 19 +++++++++++++++++--
+ 1 file changed, 17 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml
+index cf456f8d9ddc..ae104da067e9 100644
+--- a/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml
+@@ -50,9 +50,22 @@ properties:
+       Definition of the regulator used as digital power supply.
+ 
+   port:
+-    $ref: /schemas/graph.yaml#/properties/port
+     description:
+       A node containing an output port node.
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        unevaluatedProperties: false
++
++        properties:
++          clock-lanes:
++            const: 0
++
++          data-lanes:
++            const: 1
+ 
+ required:
+   - compatible
+@@ -65,7 +78,7 @@ required:
+   - reset-gpios
+   - port
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+@@ -89,6 +102,8 @@ examples:
+                 port {
+                         ov2680_to_mipi: endpoint {
+                                 remote-endpoint = <&mipi_from_sensor>;
++                                clock-lanes = <0>;
++                                data-lanes = <1>;
+                         };
+                 };
+         };
+-- 
+2.34.1
 
 
