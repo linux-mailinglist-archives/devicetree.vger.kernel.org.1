@@ -1,228 +1,148 @@
-Return-Path: <devicetree+bounces-53632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FB6A88CE31
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 21:21:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CEA8D88CE36
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 21:21:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E1F01C65A41
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 20:21:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0BEFD1C63A2F
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 20:21:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2035C13D266;
-	Tue, 26 Mar 2024 20:21:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75B5913D506;
+	Tue, 26 Mar 2024 20:21:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u8DWXsdd"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iLcGReCm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5DC013D250;
-	Tue, 26 Mar 2024 20:21:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90F0813D266;
+	Tue, 26 Mar 2024 20:21:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711484479; cv=none; b=D4eFRcRicasH8n59usSNd43qc40JvCPmU3idAo8e6dAkZZ52u6ZNlTXMAOhHHhubhpxQuCTemVaowzCjHZFHZ63Z0Bsd/hVDxDKr6Huw9zPi4Qo35KWEjzMIMVzElnp+XY8Hv/9ZXTtnWxlHt2zFU9d8w1idEHdK2X46Wow5iVU=
+	t=1711484500; cv=none; b=T8tm+YXcJVaRjAo2d+AaX1MVIS/0ZzmEQbp0mxrmapAF59uNHzryXrJkrmf0Xn4wgytQ8584QKOyvKKAp8U2Np3wChyZ3XSfjKyR2JBigFWzw3xi0TyGoVGpIJrS+PXyRwByFxlb5fZrPoVrlKZ78X810gGLrtQSk+h4u8zxh54=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711484479; c=relaxed/simple;
-	bh=DKZdM9njkjBXtCvH6zuIqfP67yzAUkND2R8WjVveF+A=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=V4/7BcL1vMN0lmP3wewi806fVRHOmoQCddCXKEqAa+bQf0jBpFIqCh5sws1RrzD9Bex54dgtt11y3sL5o5lEprwvGqoR37vjTJ4iev3CnCiQEeMEd6AxhUgCIUjlQE2+P6CTCHDMI1hjmf8ZFvE6KLl8jExmTU0Z3Y/8GCBsLsU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u8DWXsdd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82BAEC433C7;
-	Tue, 26 Mar 2024 20:21:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711484478;
-	bh=DKZdM9njkjBXtCvH6zuIqfP67yzAUkND2R8WjVveF+A=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=u8DWXsddT8c621kDqyxDAHRqxQq4Ke56H2ptu1ZzuOfTIDjyZxqRhDE0g58w2WF63
-	 LNQRLfdRpNrcelyV37lsA2/sptYb0PEhZAROX21/XWVU3Ah3IITZ8JdPxn+YmFycep
-	 UQiXvzEqSjpoJLe/SxD8XSSCuceCWbxqJ07arWBJriTAO+D4JYOH8BoxzpEMRPyvD9
-	 xFth5nPj9QWSzkAdFvi9hgiYYbs1ltRXZJPWduQiFLi4lw8OjRgnlrMraRLHGg5WkQ
-	 YtrRE1p6vgjJJmVEfsP79coyO5FKdn/AhNDLiL021aPveArbgHPoMNzIOdzSI368A+
-	 G+LhoZahs4S/A==
-Date: Tue, 26 Mar 2024 15:21:16 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-	bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, jingoohan1@gmail.com,
-	gustavo.pimentel@synopsys.com, mani@kernel.org,
-	marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2 4/6] PCI: dwc: rcar-gen4: Add a new function pointer
- for other SoC support
-Message-ID: <20240326202116.GA1492492@bhelgaas>
+	s=arc-20240116; t=1711484500; c=relaxed/simple;
+	bh=Zj9xZxiRH621POyDDPfyvBW+CAKirKQUnKHj+jJbDqg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=jtN+NywRAtPuCv0a/O7S0/o6G51AXKBWHOUzb0w3UNj7yXkHTr4psryhj+XyflKiM0Bb/Rl/XarKCvObP8WTZMrBJErhCL0+bueR2oKvlMZzSsZRUIxg5VnvhMFxL5hKO2OWSxDLADduTUk22iD09tP9SSF1dxsVmVej4Dtsm9g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=iLcGReCm; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42QJk031030462;
+	Tue, 26 Mar 2024 20:21:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=arEoGTCZUWCWxutFceAE4m0rRT/rHcBdAsYFinq5huc=; b=iL
+	cGReCm1lly3g04MpHOt5KRGF4FYqket/bQKauEHCn38nZGrmbHRmsfffw+xzsq//
+	IdwmrUQopEO8WUKYE6bAviAuQwLlSLi5U4qKnMTwFjLGfqXvHxZ7KUwopEWWH2oa
+	TLJ4sic+WGlf5GrVzyJIdhLqCyM29x+NmBGyjIdi6jE1/YwUla3KBdgHzKYibmFD
+	mt7zbY7xUBs0bQMnVqOmlVTNK1ySGb8Lh0M53iSlBikOg+7r4i1aUGF+ke6636p6
+	ZPZflfkOY1dZWNYTMdsd8YfyYfLBbcIeFD/4DlHHm3LLDC2SVP2OB3Zw6y1kbG0J
+	J+dHcZ6hiEsqHB02OWcQ==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x3q0n2ngn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 26 Mar 2024 20:21:23 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42QKLMrt011298
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 26 Mar 2024 20:21:22 GMT
+Received: from [10.110.28.48] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 26 Mar
+ 2024 13:21:21 -0700
+Message-ID: <4b7bf7cc-ede6-4c2a-983c-da4c8c09c5d1@quicinc.com>
+Date: Tue, 26 Mar 2024 13:21:20 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240326024540.2336155-5-yoshihiro.shimoda.uh@renesas.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath10k: add
+ qcom,no-msa-ready-indicator prop
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Marc Gonzalez
+	<mgonzalez@freebox.fr>
+CC: Kalle Valo <kvalo@kernel.org>, ath10k <ath10k@lists.infradead.org>,
+        wireless <linux-wireless@vger.kernel.org>,
+        DT <devicetree@vger.kernel.org>,
+        Pierre-Hugues Husson <phhusson@freebox.fr>,
+        Arnaud Vrac <avrac@freebox.fr>,
+        Jami Kettunen <jamipkettunen@gmail.com>,
+        Jeffrey Hugo
+	<quic_jhugo@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad
+ Dybcio" <konrad.dybcio@linaro.org>
+References: <14daa98e-7fd3-4ebb-87bb-5d2c1fba679f@freebox.fr>
+ <b8de96c7-cbb6-4a09-a4d4-2c11b3ab3e01@freebox.fr> <871q8wk7o3.fsf@kernel.org>
+ <3392f356-7b19-483d-b9f8-3bd84068fa52@freebox.fr> <87wmqoilzf.fsf@kernel.org>
+ <c58e67e6-6a7f-4963-86b9-580165bf05ba@freebox.fr> <87cyse8j9m.fsf@kernel.org>
+ <6d4b1381-c121-4cda-a8c9-9ccac56bd447@freebox.fr> <87plw87nsc.fsf@kernel.org>
+ <0816f7bb-3c97-4b90-8e19-191552ea6e26@freebox.fr> <87h6hk7aee.fsf@kernel.org>
+ <fb0ffdd9-923a-4191-8304-583243ad528b@freebox.fr>
+ <243a97b7-c298-4307-9f06-8b3a7c3e24fd@freebox.fr>
+ <9293793d-00e8-42ce-87b2-05abc3b49387@freebox.fr>
+ <CAA8EJppn6M9dpzyu9d283AUtaeN-i-L=-aM5P9BEELXPLFS8YQ@mail.gmail.com>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <CAA8EJppn6M9dpzyu9d283AUtaeN-i-L=-aM5P9BEELXPLFS8YQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: _qISA-bD4TD7kdEs3Ay_IX7kYusR7aIm
+X-Proofpoint-ORIG-GUID: _qISA-bD4TD7kdEs3Ay_IX7kYusR7aIm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-26_08,2024-03-21_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ malwarescore=0 phishscore=0 bulkscore=0 spamscore=0 impostorscore=0
+ priorityscore=1501 clxscore=1011 mlxscore=0 adultscore=0
+ lowpriorityscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2403210001 definitions=main-2403260146
 
-Include the function pointer name in the subject so it's a little more
-specific.
-
-On Tue, Mar 26, 2024 at 11:45:38AM +0900, Yoshihiro Shimoda wrote:
-> This driver can reuse other R-Car Gen4 SoC support. However, some
-> initializing settings differs between r8a779f0 and others. So, add
-> a new function pointer start_link_enable() to support other R-Car
-> Gen4 SoC in the future. No behavior changes.
-
-Make it clear here what the new SoC is.  I think it's r8a779f0, but
-you have to read the patch and look for the new .compatible string to
-figure that out.
-
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> ---
->  drivers/pci/controller/dwc/pcie-rcar-gen4.c | 57 +++++++++++++++++++--
->  1 file changed, 52 insertions(+), 5 deletions(-)
+On 3/26/2024 10:51 AM, Dmitry Baryshkov wrote:
+> On Tue, 26 Mar 2024 at 19:45, Marc Gonzalez <mgonzalez@freebox.fr> wrote:
+>>
+>> [ It has been pointed out to me that the previous message was unclear. ]
+>> [ Below is my 2nd attempt at a clearer message. ]
+>>
+>> Problem: firmware-5.bin has not been parsed yet when we have to handle
+>> the ATH10K_QMI_EVENT_SERVER_ARRIVE case, so we can't rely on feature bits
+>> to work around the lack of MSA_READY indicator.
 > 
-> diff --git a/drivers/pci/controller/dwc/pcie-rcar-gen4.c b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
-> index 0be760ed420b..a37613dd9ff4 100644
-> --- a/drivers/pci/controller/dwc/pcie-rcar-gen4.c
-> +++ b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
-> @@ -53,9 +53,16 @@ struct rcar_gen4_pcie {
->  	void __iomem *base;
->  	struct platform_device *pdev;
->  	enum dw_pcie_device_mode mode;
-> +
-> +	int (*start_link_enable)(struct rcar_gen4_pcie *rcar);
->  };
->  #define to_rcar_gen4_pcie(_dw)	container_of(_dw, struct rcar_gen4_pcie, dw)
->  
-> +struct rcar_gen4_pcie_platdata {
-> +	enum dw_pcie_device_mode mode;
-> +	int (*start_link_enable)(struct rcar_gen4_pcie *rcar);
+> Then, I'd say, we have to resort to the DT property, unless Kalle or
+> Jeff have other proposals.
 
-I think it's confusing to repeat "mode" and "start_link_enable" in
-both rcar_gen4_pcie and rcar_gen4_pcie_platdata.  I know several other
-drivers use this pattern, but I think it is simpler overall to just
-save the pointer directly, e.g.,
+Another option is to follow the downstream driver model and only expect this
+based upon static configuration within the driver.
 
-  imx6_pcie_probe
-    imx6_pcie->drvdata = of_device_get_match_data(dev);
+Downstream driver has:
+	if (priv->device_id == ADRASTEA_DEVICE_ID) {
+		ret = wlfw_msa_mem_info_send_sync_msg(priv);
+		ret = wlfw_msa_ready_send_sync_msg(priv);
+	}
 
-  ls_pcie_probe
-    pcie->drvdata = of_device_get_match_data(dev);
+https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/wlan/platform/-/blob/wlan-platform.lnx.1.0.r4-rel/icnss2/main.c?ref_type=heads#L968
 
-  tegra_pcie_dw_probe
-    data = of_device_get_match_data(dev);
-    pcie->of_data = (struct tegra_pcie_dw_of_data *)data;
+The downstream MSA logic (including some other code that populates MSA-related
+fields in the QMI messages) is only invoked for ADRASTEA_DEVICE_ID.
 
-So I think the best thing would be to add struct
-rcar_gen4_pcie_platdata, *move* rcar_gen4_pcie.mode there, and save a
-pointer to the rcar_gen4_pcie_platdata in struct rcar_gen4_pcie.
+We could introduce a new hw_params parameter to have the same semantics.
 
-That could be its own separate patch, which is nice on its own because
-it gets rid of the (void *) casts in rcar_gen4_pcie_of_match[].
+But I'm OK with the DT option as well.
 
-Then add .start_link_enable() (or .ltssm_enable(), see below) and the
-r8a779f0 bits in another patch.
+Kalle?
 
-> +};
-> +
->  /* Common */
->  static void rcar_gen4_pcie_ltssm_enable(struct rcar_gen4_pcie *rcar,
->  					bool enable)
-> @@ -123,9 +130,13 @@ static int rcar_gen4_pcie_speed_change(struct dw_pcie *dw)
->  static int rcar_gen4_pcie_start_link(struct dw_pcie *dw)
->  {
->  	struct rcar_gen4_pcie *rcar = to_rcar_gen4_pcie(dw);
-> -	int i, changes;
-> +	int i, changes, ret;
->  
-> -	rcar_gen4_pcie_ltssm_enable(rcar, true);
-> +	if (rcar->start_link_enable) {
-> +		ret = rcar->start_link_enable(rcar);
-
-This looks basically like what qcom does:
-
-  qcom_pcie_start_link
-    if (pcie->cfg->ops->ltssm_enable)
-      pcie->cfg->ops->ltssm_enable(pcie)
-
-Can you copy that and use the same name for the pointer and function
-name (.ltssm_enable, .*_ltssm_enable())?
-
-> +		if (ret)
-> +			return ret;
-> +	}
->  
->  	/*
->  	 * Require direct speed change with retrying here if the link_gen is
-> @@ -437,7 +448,10 @@ static void rcar_gen4_remove_dw_pcie_ep(struct rcar_gen4_pcie *rcar)
->  /* Common */
->  static int rcar_gen4_add_dw_pcie(struct rcar_gen4_pcie *rcar)
->  {
-> -	rcar->mode = (uintptr_t)of_device_get_match_data(&rcar->pdev->dev);
-> +	const struct rcar_gen4_pcie_platdata *pd = of_device_get_match_data(&rcar->pdev->dev);
-> +
-> +	rcar->mode = pd->mode;
-> +	rcar->start_link_enable = pd->start_link_enable;
->  
->  	switch (rcar->mode) {
->  	case DW_PCIE_RC_TYPE:
-> @@ -500,14 +514,47 @@ static void rcar_gen4_pcie_remove(struct platform_device *pdev)
->  	rcar_gen4_pcie_unprepare(rcar);
->  }
->  
-> +static int r8a779f0_pcie_start_link_enable(struct rcar_gen4_pcie *rcar)
-> +{
-> +	rcar_gen4_pcie_ltssm_enable(rcar, true);
-
-Previously we called rcar_gen4_pcie_ltssm_enable() for
-"renesas,rcar-gen4-pcie" and "renesas,rcar-gen4-pcie-ep".  But after
-this patch, it looks like we only call it for "renesas,r8a779f0-pcie"
-and "renesas,r8a779f0-pcie-ep"?
-
-> +
-> +	return 0;
-> +}
-> +
-> +static struct rcar_gen4_pcie_platdata platdata_r8a779f0_pcie = {
-> +	.mode = DW_PCIE_RC_TYPE,
-> +	.start_link_enable = r8a779f0_pcie_start_link_enable,
-> +};
-> +
-> +static struct rcar_gen4_pcie_platdata platdata_r8a779f0_pcie_ep = {
-> +	.mode = DW_PCIE_EP_TYPE,
-> +	.start_link_enable = r8a779f0_pcie_start_link_enable,
-> +};
-> +
-> +static struct rcar_gen4_pcie_platdata platdata_rcar_gen4_pcie = {
-> +	.mode = DW_PCIE_RC_TYPE,
-> +};
-> +
-> +static struct rcar_gen4_pcie_platdata platdata_rcar_gen4_pcie_ep = {
-> +	.mode = DW_PCIE_EP_TYPE,
-> +};
-> +
->  static const struct of_device_id rcar_gen4_pcie_of_match[] = {
-> +	{
-> +		.compatible = "renesas,r8a779f0-pcie",
-> +		.data = &platdata_r8a779f0_pcie,
-> +	},
-> +	{
-> +		.compatible = "renesas,r8a779f0-pcie-ep",
-> +		.data = &platdata_r8a779f0_pcie_ep,
-> +	},
->  	{
->  		.compatible = "renesas,rcar-gen4-pcie",
-> -		.data = (void *)DW_PCIE_RC_TYPE,
-> +		.data = &platdata_rcar_gen4_pcie,
->  	},
->  	{
->  		.compatible = "renesas,rcar-gen4-pcie-ep",
-> -		.data = (void *)DW_PCIE_EP_TYPE,
-> +		.data = &platdata_rcar_gen4_pcie_ep,
->  	},
->  	{},
->  };
-> -- 
-> 2.25.1
-> 
+/jeff
 
