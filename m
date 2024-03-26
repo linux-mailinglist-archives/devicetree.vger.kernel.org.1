@@ -1,119 +1,117 @@
-Return-Path: <devicetree+bounces-53585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C19D88CC7E
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 19:57:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E64B88CC77
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 19:57:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DEC8BB2A873
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 18:56:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09C08309755
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 18:57:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCE8D13CC60;
-	Tue, 26 Mar 2024 18:56:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C7AC13C821;
+	Tue, 26 Mar 2024 18:56:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nyEAN5Jy"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="gpEL67fg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FC8113C69D;
-	Tue, 26 Mar 2024 18:56:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C069213C8E4;
+	Tue, 26 Mar 2024 18:56:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711479382; cv=none; b=n0tSDlNb5fRuDOsc+Dc/Eam/TmrafLhaYq2yU2Rb6lPTO8+PlhOk0CPTsRJl0O9yBEgpgrtM1RwDREHUxqIHQtDYoGppt2podo47ImQenJOrjPEqlXR7uJQa5LqYOFUEhpDDteC9maDcMSYwtBW5QUQYhVyAu06ORWEmO6dimtw=
+	t=1711479398; cv=none; b=jp2UYTjO5KYt5lVOfn0MRKJ8j1ki/MY8M7Akg7B6lddclvLU+Pmh8eJNnNhIbHueNoROpCq+jZ3q6Z63fz9QTuFXq8x/XWAuiYgA0AIm8REUsW+Wg+6CKWsZJLd3+rGwJl08d22V242Y5iqRxnFO6iiYPH/yTh+EeYlYRoYnqgY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711479382; c=relaxed/simple;
-	bh=HeSCOyWRkgF4bDb2OVsj+wKkCFrlnU2oRKaZ9XqzH3k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R7EA4BUXSRDWGYKbqIEuyVgeOzxKJKOtvnIK+hjeS8yTTXJgCuaEJJoP+Iy1vMd6rQNBtPAnD+HoQ9hwwMAZtXsQAS/D1s2pKlKdqt1LWWNwhbV1n2mzDhRHQ1u7Ipu1zxXHxeDvpsgdjpsWM9tA6YcMiZgVm2qxj+9BsHG9OOU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nyEAN5Jy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48BF5C43390;
-	Tue, 26 Mar 2024 18:56:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711479382;
-	bh=HeSCOyWRkgF4bDb2OVsj+wKkCFrlnU2oRKaZ9XqzH3k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nyEAN5JyF/m1Qv57aHSYEhlpYY2sILPOwySbnLRpB3T2H7ZkI/4Edsbn51vZGt9Qm
-	 N8SN1oZWC/kIanLsthnJGbKOCLAI47q8lJvaAY9w/97ydQbuR2HHjFvSyWrvxOBdwX
-	 VS7QLI5qW9Y2fFS70gtYYunGmYg7BZZpaqKwrZTRxWivmtmZEoosbEq/rHfVwcNJsW
-	 /u6Ril5qbCOrtX2gtS1UlykL0AD2ol9NVR8+enkCIuOPnmT7QnHRf6aFaixKboeJep
-	 9gyNvhPlP1nxulwWqssFzbC33Y3BvL79IdS0Mfkb5+UnxQut0mdiAZ2EhI3AE9GrHO
-	 ETtgfSEBR65rw==
-Date: Tue, 26 Mar 2024 18:56:17 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Yinbo Zhu <zhuyinbo@loongson.cn>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	loongson-kernel@lists.loongnix.cn, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>,
-	loongarch@lists.linux.dev
-Subject: Re: [PATCH v1 3/8] dt-bindings: clock: loongson2: add
- Loongson-2K0500 compatible
-Message-ID: <20240326-dimmer-undrafted-9cabaaec1abc@spud>
-References: <cover.1710926402.git.zhoubinbin@loongson.cn>
- <7c7728451fdea3977c492f3daee260590af78d16.1710926402.git.zhoubinbin@loongson.cn>
+	s=arc-20240116; t=1711479398; c=relaxed/simple;
+	bh=Z6UlkkledCU4/2smMKSjUnj+jm96rDpmadhXGOBwObU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=CKRiMymlG3eP8oO2ZhigWV0yPu1rHMRv8x7uErU01qb2v+3jNvMOjvhdLJEd+5V6v2GVgESAgb2RKVs5ab6rrSLeAaL3sj/zbScxvSsNKvTiCvuiM2pi5L1ZdRmgkC+u+o/0rZgXFWuaDXFVSXrzCInE9gyOOnqaAMQM40M2rbw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=gpEL67fg; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 42QIuTvw041209;
+	Tue, 26 Mar 2024 13:56:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1711479389;
+	bh=2PvbqEDyejopBiHz9ZvkYFmBzkbgrJNY22MumI3wI9g=;
+	h=From:To:CC:Subject:Date;
+	b=gpEL67fg7ugUKZ2zqhQhoE711vMUibF70qZVFMSN+4e2PksuZjXr/3doRsINg6onQ
+	 vPgbiMVfF0VUDsHAU2JjTf5sM0SA8cEC6KL8acbPV8aynrEl4DkORIg9SKwGoHtnLt
+	 /YHoLYsXv25hUK5ajF4nsNU//zcBSRepHu0k4wWw=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 42QIuTRI101909
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 26 Mar 2024 13:56:29 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 26
+ Mar 2024 13:56:28 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 26 Mar 2024 13:56:28 -0500
+Received: from fllvsmtp7.itg.ti.com ([10.249.42.149])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 42QIuSZ5093125;
+	Tue, 26 Mar 2024 13:56:28 -0500
+From: Andrew Davis <afd@ti.com>
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>
+Subject: [PATCH 1/2] arm64: dts: ti: k3-am65: Add full compatible to SerDes control nodes
+Date: Tue, 26 Mar 2024 13:56:26 -0500
+Message-ID: <20240326185627.29852-1-afd@ti.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="eFlUKDOKmoTO6ljZ"
-Content-Disposition: inline
-In-Reply-To: <7c7728451fdea3977c492f3daee260590af78d16.1710926402.git.zhoubinbin@loongson.cn>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+This matches the binding for this register region which fixes a couple
+DTS check warnings.
 
---eFlUKDOKmoTO6ljZ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+While here trim the leading 0s from the "reg" definition.
 
-On Tue, Mar 26, 2024 at 05:01:02PM +0800, Binbin Zhou wrote:
-> Add the devicetree compatible for Loongson-2K0500 clocks.
->=20
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> ---
->  Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.ya=
-ml b/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-> index 63a59015987e..83baee40e200 100644
-> --- a/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-> +++ b/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-> @@ -16,7 +16,8 @@ description: |
->  properties:
->    compatible:
->      enum:
-> -      - loongson,ls2k-clk
-> +      - loongson,ls2k0500-clk
-> +      - loongson,ls2k-clk  # This is for Loongson-2K1000
+Signed-off-by: Andrew Davis <afd@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-Ah yes, the generic "ls2k" compatibles strike again :)
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+index ff857117d7193..738c5c4acbcd2 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+@@ -483,13 +483,13 @@ scm_conf: scm-conf@100000 {
+ 		ranges = <0x0 0x0 0x00100000 0x1c000>;
+ 
+ 		serdes0_clk: clock@4080 {
+-			compatible = "syscon";
+-			reg = <0x00004080 0x4>;
++			compatible = "ti,am654-serdes-ctrl", "syscon";
++			reg = <0x4080 0x4>;
+ 		};
+ 
+ 		serdes1_clk: clock@4090 {
+-			compatible = "syscon";
+-			reg = <0x00004090 0x4>;
++			compatible = "ti,am654-serdes-ctrl", "syscon";
++			reg = <0x4090 0x4>;
+ 		};
+ 
+ 		serdes_mux: mux-controller {
+-- 
+2.39.2
 
-Thanks,
-Conor.
-
---eFlUKDOKmoTO6ljZ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgMaUQAKCRB4tDGHoIJi
-0iQCAQDlCmyyuYtsHRjUL1psOLIvbbdZiQAV5e5mdGofHGaP+QEAqBFXxrR+h0QL
-QTrlkp/FPyBAkCZoDRYS23vA/77EHQU=
-=f9bv
------END PGP SIGNATURE-----
-
---eFlUKDOKmoTO6ljZ--
 
