@@ -1,105 +1,102 @@
-Return-Path: <devicetree+bounces-53600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53602-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E1CD88CD1E
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 20:24:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BECE188CD1A
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 20:24:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 53BDAB29733
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 19:21:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7515C1F8709D
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 19:24:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5908C13CFB3;
-	Tue, 26 Mar 2024 19:20:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70A2A13D2A5;
+	Tue, 26 Mar 2024 19:23:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eCe7TINc"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="PZhnlhvB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail2.andi.de1.cc (vmd64148.contaboserver.net [161.97.139.27])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C68713C9AA;
-	Tue, 26 Mar 2024 19:20:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B35DF802;
+	Tue, 26 Mar 2024 19:23:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=161.97.139.27
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711480836; cv=none; b=GODNIc3nUICnOzdK/2Pc2k60xOVnEzy1hvZn6rulvJJMzTUZ+D5VglSD7GorO0rs4sljDZZjInzk77JISf7VvzMI+Qxs6CurlQWFDyuE08CvxemSpIR7+JEiyRELo7NggOgffNTKVNvsMDFCdBFHZxTdBOvHNt/4OjTWOmOMrVA=
+	t=1711480993; cv=none; b=QayMoNbxdmQ0B9Bsy20468dQuawsyX9kejWvkYcks8cE+ihz37OKJxO46yQaxE/ETfTNDZ0wSBmKTJV1WbWR5Auocc8YTML9bxU1VDULRp+0WGxs99tnx6NjiLv8LN4zMqV0LkdiK6GfQrxUotLS8I3NjA3nu6L8pT1fY4PYtAo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711480836; c=relaxed/simple;
-	bh=4pVK3zwjf7q3/wKz/a7Bedi8s68WPvTFAqBMDraigKc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QkFAkhKg8/RyslwDBqhWxGenhgjSDYCVvk1yNLnHQnUnWScHOlJIOz+j3+iR8eCrHdJBXRGwzx12cfaQQttChqYfpXMFEfKriQ9nokGByyskAjhopQfkzssVloNLmsn9WZ1JInTeQdBMvNGq6YiMj077jRAfgFZujIZ2Z2uQsGU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eCe7TINc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86D96C433F1;
-	Tue, 26 Mar 2024 19:20:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711480835;
-	bh=4pVK3zwjf7q3/wKz/a7Bedi8s68WPvTFAqBMDraigKc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eCe7TINcTy+1o3JIqbJXojYzmEPUcxoZurMQyELBJWt8YFZgezRoZSdmSfAx7Ld1O
-	 3ycKqWa8N9qaPE0ErPQXt1k27L7joNAi+NeF4foSMdiEWCa+cSsmDWjHocv6i96k5K
-	 2mE3w2jmK9iTcfibNmDuC63Z16znTCwoBIKjNRDY0vD8YVPZab27rnIBrmjfKGgstT
-	 aMdylAK4/cnlGsHHZtPHb9z7p1pmzhZY6gD4ysH9OaEnoTDICtBALUwcqNSrpXBU6T
-	 wdjFDMSWTHhS1Rv6l/63LTR6lTW7Ce7RolYpaTBw+3L7IGgg8ORXExxJgDGTJ6xRaF
-	 g+Fsa2Leg36Fg==
-Date: Tue, 26 Mar 2024 14:20:33 -0500
-From: Rob Herring <robh@kernel.org>
-To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Baruch Siach <baruch@tkos.co.il>, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v3 0/4] dt-bindings: rtc: convert multiple devices to
- dtschema
-Message-ID: <20240326192033.GA3240297-robh@kernel.org>
-References: <20240326-rtc-yaml-v3-0-caa430ecace7@gmail.com>
+	s=arc-20240116; t=1711480993; c=relaxed/simple;
+	bh=kmKZtc5buFmyGG+RNBXpUTXtwNmC+ibxdoCrNE0mBQM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=iR+1MpDj6p4ZauQM7cbQWQD3mIpQysjkYXtTN8uXxVe0qoVMWaeV/UdF3AyKNqdGdFo5ahwzeKVzCgLzilu4uEa8Pxf6PiR0/cs1JrpV9YeuxqWFutIOBQHuIpgcyDMqyOM3w1m/5iy8UFwAdl7ujLo0QWu2eIJrcm46oxm0TX4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=PZhnlhvB; arc=none smtp.client-ip=161.97.139.27
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+Received: from mail.andi.de1.cc ([2a02:c205:3004:2154::1])
+	by mail2.andi.de1.cc with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <andreas@kemnade.info>)
+	id 1rpCO0-003QYP-13;
+	Tue, 26 Mar 2024 20:23:04 +0100
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:MIME-Version:
+	Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=4Lf6XxywsuS4g/Hh5g1Y3WYkx2PBSiqprgPmi50zaLM=; b=PZhnlhvBAlbfj3gz4cpmjyhBr2
+	2vEpBpVVOZXNxJL3blEMPZes6RPxnTMbj3UeaqyAXZAWv6PLDQe69wyjf+L15p1UiNHgBHanrJEPn
+	130WIcTLITNwuBdEQJGogqfHp3iQ8bCL9x2gvuP1NKJXpQPnoMmkgGkBvV7DbdWfnCQ0gj00vbiiH
+	ZPasujwstfhnvfIGxN3wO0ejK2WIivKk/cudv6shafmWpndmStfvHyBlCIdV6qPYultvVBINndHMa
+	zlO42ilgvzp8I22aaKgvrcxEq7RBT+gvCErseBUwGkTcu6ahI0uCt9FXmBFG7w3EBbTqNzWkiQ6Rc
+	tULk5ODA==;
+Received: from p2003010777026a001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:107:7702:6a00:1a3d:a2ff:febf:d33a] helo=aktux)
+	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <andreas@kemnade.info>)
+	id 1rpCNx-0002bW-37;
+	Tue, 26 Mar 2024 20:23:02 +0100
+Received: from andi by aktux with local (Exim 4.96)
+	(envelope-from <andreas@kemnade.info>)
+	id 1rpCNx-001FZ2-1O;
+	Tue, 26 Mar 2024 20:23:01 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: lee@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	mazziesaccount@gmail.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Andreas Kemnade <andreas@kemnade.info>
+Subject: [PATCH v2 0/2] mfd: rohm-bd71828: Add power off
+Date: Tue, 26 Mar 2024 20:22:56 +0100
+Message-Id: <20240326192258.298143-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240326-rtc-yaml-v3-0-caa430ecace7@gmail.com>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Mar 26, 2024 at 02:03:22PM +0100, Javier Carrasco wrote:
-> This series converts the following existing bindings to dtschema:
-> 
-> - armada-380-rtc
-> - alphascale,asm9260-rtc
-> - digicolor-rtc (moved to trivial-rtc)
-> - nxp,lpc1788-rtc
-> 
-> All bindings include at least one compatible that is referenced in the
-> existing dts (arch/arm). Those dts could be tested against the new
-> bindings.
-> 
-> It might be worth mentioning that the reference to nxp,lpc1788-rtc in
-> arch/arm/boot/dts/nxp/lpc/lpc18xx.dtsi also includes another compatible
-> called nxp,lpc1850-rtc, which is not documented or supported by existing
-> drivers. That generates a warning when testing against nxp,lpc1788-rtc.
-> 
-> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-> ---
-> Changes in v3:
-> - alphascale-asm9260-rtc: drop unnecessary reg description.
-> - nxp,lpc1788-rtc: drop unnecessary reg description.
-> - Link to v2: https://lore.kernel.org/r/20240325-rtc-yaml-v2-0-ff9f68f43dbc@gmail.com
-> 
-> Changes in v2:
-> - General: reference to rtc.yaml
-> - digicolor-rtc: move to trivial-rtc
-> - Link to v1: https://lore.kernel.org/r/20240323-rtc-yaml-v1-0-0c5d12b1b89d@gmail.com
-> 
-> ---
-> Javier Carrasco (4):
->       dt-bindings: rtc: armada-380-rtc: convert to dtschema
->       dt-bindings: rtc: alphascale,asm9260-rtc: convert to dtschema
->       dt-bindings: rtc: digicolor-rtc: move to trivial-rtc
->       dt-bindings: rtc: nxp,lpc1788-rtc: convert to dtschema
+Add power off functionality. Marked as RFC because of magic numbers
+without a good source and strange delays. The only information source is
+a vendor kernel.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Changes in v2:
+- style corrections
+- remove unnecessary writes and delays
+- correctly unregister handler
+
+Andreas Kemnade (2):
+  dt-bindings: mfd: Add ROHM BD71828 system-power-controller property
+  mfd: rohm-bd71828: Add power off functionality
+
+ .../bindings/mfd/rohm,bd71828-pmic.yaml       |  2 ++
+ drivers/mfd/rohm-bd71828.c                    | 30 ++++++++++++++++++-
+ 2 files changed, 31 insertions(+), 1 deletion(-)
+
+-- 
+2.39.2
+
 
