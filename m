@@ -1,214 +1,296 @@
-Return-Path: <devicetree+bounces-53324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A1B188BF52
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 11:26:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E66888BF5F
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 11:29:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5DCA51C3867F
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 10:26:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 82CBE1C3D2D5
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 10:29:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59D03679E5;
-	Tue, 26 Mar 2024 10:26:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54D636F06F;
+	Tue, 26 Mar 2024 10:28:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=amperemail.onmicrosoft.com header.i=@amperemail.onmicrosoft.com header.b="PIQj02Tp"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="X1y+P21Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2092.outbound.protection.outlook.com [40.107.93.92])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BE914C3DE;
-	Tue, 26 Mar 2024 10:26:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.93.92
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711448791; cv=fail; b=F1YXYVMckgcVnxeyxtIjnxTE84C2srUmOGuHIJOROlDfIiv9rCTL/CugE5zoID9C6ZRfnBhTMWQmtRkAoHrfU7qjLplpJ2YprnKIStI4pSo6kIHotg3VSS/kmb+Qt41GNmuO7dMwxp2JdcyeEXtHG9cZAc50yAXugu+8oa+msNg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711448791; c=relaxed/simple;
-	bh=IlIG82oDfn6tWKagYksDTdNlMgL40ZBMr9hdDq19KCY=;
-	h=Message-ID:Date:From:Subject:To:Cc:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=ly+6/P+0sfts+7VtlohO7iu2F9Rbo74oVvfmlRj4INaMBdx696RAciIugmpRQ4OOVKa0WjqlHA6UkDzHZmE3Oab06AenbOuRR2pPhPCIYi+j8V9Df1ItmtgdRBQ+DBaqKD1nWy7fQkdrlvvteNQ3Yq0xz+i490t65UWs9Eg097s=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=amperemail.onmicrosoft.com; spf=pass smtp.mailfrom=os.amperecomputing.com; dkim=fail (0-bit key) header.d=amperemail.onmicrosoft.com header.i=@amperemail.onmicrosoft.com header.b=PIQj02Tp reason="key not found in DNS"; arc=fail smtp.client-ip=40.107.93.92
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=amperemail.onmicrosoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=os.amperecomputing.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YsZqwEzlUqJrzIitbOmcbW+k5bddbSvpESWdp10yFEIajyYUr8CymKk1X81/CXWi/IiqKuCbZf/A+sLWkTffFcOfhzB/6t7O2AwM3eY010j+IqQQfKA1Aljw37N87e4Edj2yDRY+VXeXXIOxXJUe4MJTEfc5u67i4zxl3lVXiVMeeflxz/pWhBrU7yC0J0/Z8zepiQ/PueYkoB6IHnjaBWvMjpJ83IHpHDQP1Pb8tm2AuQKmP3dW3tL+gYyH4FKnmKZKjfqwOSZOS6kCCB/txK+JmjlQaGDWXa3mqcwNWXSvBRdmVgrzLt36Hjs3srjky1inqh03NexdKCLrx26pig==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YM2ke7Y57uZbVhFGImSrxWW8NEqe8lwuELwz2mDK/FU=;
- b=aVypU5ElQabzoaPySj5EMRu6k9nTexqebdUGUfdfsv/QDL+q9IKCgcWv6rjh5nE2dkAaprz65Z3K3Kc/PBqprtefCKFIMqYgj9Ppn5c4UTOmzELWaIZiW0MsoPrOC6l4kuPelJrEBoE1mBjfdENzJzDX4cNJ+81+WbHHd8PiwCEYM/60H8VHqlWbgX4RXWvgKjsAoP2EuEpW6M2hAfuuokDDbY+r/cEZeiXOjNCJFFyPCyDilun1PU/SXAC1lUKFWDWhF0NP/XdWW+glOnnkUESh4wqfX3hmRM2fSKcSRJswHSwJqtTQCiHmXiXGN32H4SgdCqMrQm4GIrHlW53UnA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
- header.from=amperemail.onmicrosoft.com; dkim=pass
- header.d=amperemail.onmicrosoft.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amperemail.onmicrosoft.com; s=selector1-amperemail-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YM2ke7Y57uZbVhFGImSrxWW8NEqe8lwuELwz2mDK/FU=;
- b=PIQj02TpA8fO4WasIaBzMeFyiTlz7vHENjfM2/AYXHsk30nIwhADkE5CG0Vf7C4yGmtdaS+r5y1Jncbs2m7XlNH2awVnYY7kcUwJBrZ4gqOKhpk5ACOVWAixhjv8MTuq1X99yRjamFdDvRdN7RALWxD0jyo32TB745+tEa+H0GE=
-Received: from DM6PR01MB5947.prod.exchangelabs.com (2603:10b6:5:1dd::12) by
- BN0PR01MB7166.prod.exchangelabs.com (2603:10b6:408:155::20) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7409.32; Tue, 26 Mar 2024 10:26:26 +0000
-Received: from DM6PR01MB5947.prod.exchangelabs.com
- ([fe80::b557:13cd:8a29:ae08]) by DM6PR01MB5947.prod.exchangelabs.com
- ([fe80::b557:13cd:8a29:ae08%4]) with mapi id 15.20.7409.031; Tue, 26 Mar 2024
- 10:26:26 +0000
-Message-ID: <4bf7984f-5f94-408d-8098-dead1987db62@amperemail.onmicrosoft.com>
-Date: Tue, 26 Mar 2024 17:26:16 +0700
-User-Agent: Mozilla Thunderbird
-From: Chanh Nguyen <chanh@amperemail.onmicrosoft.com>
-Subject: Re: [PATCH 1/3] dt-bindings: hwmon: Add maxim max31790 driver
- bindings
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Chanh Nguyen <chanh@os.amperecomputing.com>, Jean Delvare
- <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Justin Ledford
- <justinledford@google.com>, devicetree@vger.kernel.org,
- linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
- OpenBMC Maillist <openbmc@lists.ozlabs.org>,
- Open Source Submission <patches@amperecomputing.com>
-Cc: Phong Vo <phong@os.amperecomputing.com>,
- Thang Nguyen <thang@os.amperecomputing.com>,
- Quan Nguyen <quan@os.amperecomputing.com>
-References: <20240311111347.23067-1-chanh@os.amperecomputing.com>
- <20240311111347.23067-2-chanh@os.amperecomputing.com>
- <6fb70adb-aa85-4b9c-b093-afa4ec7ed056@linaro.org>
- <ab8b45c5-2ef0-4a87-87bf-f797954b4574@amperemail.onmicrosoft.com>
- <a224e752-d99b-45d3-b5db-761a698c347e@linaro.org>
- <21256600-d94d-4287-b22f-f22258121668@amperemail.onmicrosoft.com>
- <c3f296d2-63b0-493e-a2cd-5010dea84adb@linaro.org>
-Content-Language: en-US
-In-Reply-To: <c3f296d2-63b0-493e-a2cd-5010dea84adb@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SG2PR01CA0189.apcprd01.prod.exchangelabs.com
- (2603:1096:4:189::15) To DM6PR01MB5947.prod.exchangelabs.com
- (2603:10b6:5:1dd::12)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EB436CDA0;
+	Tue, 26 Mar 2024 10:28:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1711448926; cv=none; b=Khj0PfPqlmLAeR6VgUKnXUJRW+KNa8k2HEeMu2B0UZVUpx+zuhHGTbyOgc1q48JEV8yJ9s3nsFKy3lTPVJi6/SfFx1xawRS1JvOpcGJ8yukYJ//0MXoUEEcA27OeUCsX5ueinEPDJBurwiAdwxDLzJjyVchy4NvxpDQNTkRzk3U=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1711448926; c=relaxed/simple;
+	bh=0Bmrd7ZN8wyYmyo7Kcdz4x2kPg+L3MLfwocV9K2yNtA=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=f4EwPXTpgD5tCy48mP45GKFp5TgS+R8wGbzv6z+LDBvMn8jKenfYqQ8esEUyX3Ipu6cnGcTLRpYTnkK6Ay4eiJWP2JjoM/5lppiFFVwqgpKYSwRmi18GDUNWa9KVDXIiMi320Tpc+ICZ2go2A1nsDvb+6QYA8jxk9ox/EGOdhVk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=X1y+P21Q; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42QAQsxr005268;
+	Tue, 26 Mar 2024 10:28:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=ybpj31K
+	eWX7Y0DTtrl3qRhcsAQop7jWUVSOoFMt1edw=; b=X1y+P21QQS1fijYdD5wz05x
+	AXkH0RvcbEsPmHM2rY27F+cbHug3Tt5GUvlUp/TtEMY18DdqhA6MUPz/QRMQszXx
+	HtcBylV/yolz1ddBHb9uF337ca3V5vkwJUpcL9IiAJ45I8+4hyID/JE1k7vgbYWI
+	egtmgOv/kgyoDh0PmeQoE1oEM6AObsJq/ZNlydULhyQEE5w4dOdC6X0g7DB/FD4f
+	dunKlnt/yom3uQTmEEXRZRszbUn1tO+MebC+/8EOR8Aq39hHAfURRYcfl6PkE3ae
+	L1+IaQlOhVt4ExM/rpZCTFUplr2pgkUUXFisJLfGrHsBZ0ri54g07rZK30m//DA=
+	=
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x3s7n0mj5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 26 Mar 2024 10:28:25 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42QASOWu016843
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 26 Mar 2024 10:28:24 GMT
+Received: from hu-kriskura-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Tue, 26 Mar 2024 03:28:18 -0700
+From: Krishna Kurapati <quic_kriskura@quicinc.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring
+	<robh@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+        Wesley Cheng
+	<quic_wcheng@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Felipe Balbi
+	<balbi@kernel.org>, Johan Hovold <johan@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>,
+        Krishna Kurapati
+	<quic_kriskura@quicinc.com>
+Subject: [PATCH v17 0/9] Add multiport support for DWC3 controllers
+Date: Tue, 26 Mar 2024 15:58:00 +0530
+Message-ID: <20240326102809.2940123-1-quic_kriskura@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6PR01MB5947:EE_|BN0PR01MB7166:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	+SmfEDC1OD+hnYIe4uHz1rzuLuue3dCRIuWua5iHi23lSpmlO0vcOccFLEJL2TwgWyw3VjfNQ1MaLv6YXlnVaPLcHLRjoVK64BMzdkXKYrfeSJQ/Q6+dyhKxfQTr7AAyAfVvb0sqSON0jYOQAAj8hN2wbb3wOZ+Hp5x9WyQrKPdcjBHEGtU5nBuNq3HZANII1HlMJmm4L1RrRG7SATelwuHzzy+Bm1XXCY3giub/1MT+JYDetMGnfYuOMvEFi585BnZAkN5gfwt2UkQrLNvsoUUi3apnyg76wb+HvlQGFlICh96j285szM2ZPFqXAeumqilQULW+dhRS9/MFHxbwmLpx1MqVYEsOkSS7QzJxQ3MwhzxhpgVO8kCg7okLIX1ikS+3AGdyGcB8mDYzuLvcnLJyGkGxiYJBN0qvFLjHSwiwN6Ghu5I3dCOCofuS1fO1FQhGTCT5KeCJyydjezGlAKKOfNoc7pOWqyJKskxqQm/AGrGJzNNuULNe4iYtGVYu9L+tLheSmldNeWpbH3FxqEAZZcuH+RFfJX4z8q18i7cWIKL/60iE8qqJ4lCx7uELbdNeNpiBmESlv/apvbumaGK/kI2h/G2483v8GJ3YdcdGf1SDnzmkibxkwuE1etxapCCHl7qMPZhHW1sBcbA8vQ==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR01MB5947.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(7416005)(376005)(1800799015)(921011);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?ZHpPYVNWYitzaTlyVFNFcnBxWThEc3U1KzNKOFIwZGlGY0xMZmRHdytTZzl3?=
- =?utf-8?B?ZW5mM3EzOG1wSEs5RUcxdHl6NGk1RzVaOTZBdko5OVJDRTVBd040SGp2K21H?=
- =?utf-8?B?LzJ0RHNMQ094cHc2eFU5MVRUanNGSWYwVmY5UkFyRWU3dWQ2amJhdktCckox?=
- =?utf-8?B?KzhUVUsxOWVOMk9HNUhSWkU3SkdhNTdVRVNjRURvcDVJRS9Ra2hwWXlvVDFM?=
- =?utf-8?B?WEVCUGt1bm9aRitXK3lnOFlUbHl5UzJzcWh6UDRkcWxhTUZwdlBCVExZQzEw?=
- =?utf-8?B?bW4yRXNsN01ITGdzVTRCZzBDNVNoeURvYVNqbjBwdlBwTVhtQjJEUkdJNHA3?=
- =?utf-8?B?NXNGQXM2eHY2OUtDQ3FhbVRlbEJqVnZ6dnpZR291b2NWdWlaVHhuR0VHemZD?=
- =?utf-8?B?ZGFVRkVTQWNNU2k3U3krNTgxdXI1UUNzeXdqVEQvcTJ3ZGpCdlFtazlyVHlK?=
- =?utf-8?B?ZW9OdS9XV3JxZ3E2QVhFWTBlczlucFVqUEx5eThKNEh2aHlIVXVNVFdYVXVD?=
- =?utf-8?B?Z1JNUXIxZW5OSmY4NkFaUmU2dHA4aXlyRkxwV3B6MDNqazloZXVmbTNUU0hv?=
- =?utf-8?B?SVMzQTZxUHZyWWdKT3FwcUlUUGJTT1NNV1FYNVRYajdab096SDgxMTE3YzNK?=
- =?utf-8?B?Vy9iU25yRVhuZGtiakNwOXI2anEwc0xSVms4aDhCa0Y3WjVMaHY2VUswMC9S?=
- =?utf-8?B?bVdzUkpZK0ZhYzZZdTVIb0YrU1dsaUNOWUxpYjVUWllJdjZPalA5RkZkTlpw?=
- =?utf-8?B?UEkwdnVQSDU5aVBuNGhPRFpUZTBOZEFaZkxOdTBFeUYvYVNqckgzS0sxK0pZ?=
- =?utf-8?B?eVBwa2xKbXNtWFRVdytoeGw1SnlrOUpHZ1Q0blJQMDZrSUVVN0p0Z1FFTGkr?=
- =?utf-8?B?NEIzUm5PdlpETEh0ekJrZnlFak9DYjFPbGQzeFdkMDZGVHRTcnlCVHBhdUZm?=
- =?utf-8?B?aFdNOENIWkZYcDd0R2RmUEpTNXNjU2R5dzRmczQzV01xT0NSV1p5MFYzVk5u?=
- =?utf-8?B?NjZKYS93TnY1Wlp1SGlwSGxPUXVXYm1wMk5wUnJVTk1yL05jTlJKanU3OHFT?=
- =?utf-8?B?ZVRIZ2tKcGZrQUk0dVJBMGVkazZTbXJWV1RXMTJaRjNSTWh2Qkt4V2JoWjg1?=
- =?utf-8?B?V3l5OHFtK2dwQmxFcGMvRCtKOXpsaEZHWndLMG9XOFRHbEQyUGZ0Q0dqTHQ3?=
- =?utf-8?B?Qkd5S1JJcmRHekdCVmFkZE54YXJRaE9XN1lnQ2hzODQwTTZCT0wyYVptMXg0?=
- =?utf-8?B?eGliZFlOMHBQdk9wZk1xM2M3ekNvK0NUU21iM2UvS1VNUis1eDJVWjJHSk94?=
- =?utf-8?B?THpJMlBGV2FSV05XQWQraWJhblhUclFYYTluMVg1Q3NHOGRQd1hZaDlENldW?=
- =?utf-8?B?OXJ3ZDBQalBYMFNRT3hrVG12TXdQK1Y1NStEY2NUeFQ5TWZGRGJVelRpUTJG?=
- =?utf-8?B?OU5seDJVS1ZhVktEVVlsUGZhVnUydVBRdjQ2cG0rN1NJRTdNNlRudkova3pS?=
- =?utf-8?B?YldoS2VFMmgwbE1Va0xzbGo2WEl6QlcvVklsT2dJOHZUbzdDOStBZTNTcS9i?=
- =?utf-8?B?US9rNEcvTU1ZUkowQndPTVNLTk9uVFJkaHZBbFR0MnV4ckxHUkhNcEJ2VStl?=
- =?utf-8?B?anhrNlhOZkFyZG12YWUwSERMUkUzN2lqTnR6d2xISzZuQlkzR1J0aDMzTTV4?=
- =?utf-8?B?NCttL2dYYnhWeFVJZjhZUkwxUUZyeThSMVdqWXZvVmh3R0xUQkhha29PSlFa?=
- =?utf-8?B?V2lnWnVFWmJKVWdYaVVqZmRCRmM0Wnp6bGo5RTlKeUxLZGEzZlZVaXlMTTN3?=
- =?utf-8?B?VzBhbEdZMW1vRjBXdVc2Tll3YUpDSXlwTm8zK3NxT1E4Z3NnVlMzWlpCMlVL?=
- =?utf-8?B?OEhxWWdkZlR4dlkzY082c2FsaUM4NWxQMW1rcWFrRjAxdHdRMERIUVlvOXA0?=
- =?utf-8?B?RllUZ2l0NFJBcW1JOFpzMGZMZGJ2MVFWUGtsRlRoU0FZcGt0c0RXNkNMOGlx?=
- =?utf-8?B?L2Mzd1NqM3RmUVFvb3AyN1JXWmtkREJ3blBiS0RyTC9YL0ZaZXFhZ1EyYjhP?=
- =?utf-8?B?WW45cXNMSFE2KytXQ24xSHJ3Y3hhVGIyY1V5OXd2Z0JGS1I0b2N3Z2NWbEJh?=
- =?utf-8?B?RWYrVmpqVkpQcVBrZm9aYTZIQjFZK1VpVWZRY3BkM0tCbFJabk9QVmZXTndB?=
- =?utf-8?Q?lXdpajiT0bwF6sKaKyeL/O4=3D?=
-X-OriginatorOrg: amperemail.onmicrosoft.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a2e8bc4c-63a5-4cab-f907-08dc4d7f30f8
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR01MB5947.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2024 10:26:26.3707
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: wQChrqjp+0nmW36BQmtZTxhPBJlstBRd/GgJ5LptLOeGqHvCfEx+HZf7Ax6m++sPq8UqY/DQX0kxMGStFPjPLxSCVaJ3gQTjNHMJrAI54UBOAHYaKXyaYUv6UnXljnwn
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0PR01MB7166
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: g0FDJ_u5NGWII0-bQYL2h3lwVj8XMXR6
+X-Proofpoint-ORIG-GUID: g0FDJ_u5NGWII0-bQYL2h3lwVj8XMXR6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-26_04,2024-03-21_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ malwarescore=0 adultscore=0 suspectscore=0 mlxscore=0 priorityscore=1501
+ impostorscore=0 clxscore=1015 phishscore=0 mlxlogscore=999 bulkscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2403210001 definitions=main-2403260071
 
+Currently the DWC3 driver supports only single port controller which
+requires at most two PHYs ie HS and SS PHYs. There are SoCs that has
+DWC3 controller with multiple ports that can operate in host mode.
+Some of the port supports both SS+HS and other port supports only HS
+mode.
 
+This change primarily refactors the Phy logic in core driver to allow
+multiport support with Generic Phy's.
 
-On 25/03/2024 15:32, Krzysztof Kozlowski wrote:
-> On 22/03/2024 10:53, Chanh Nguyen wrote:
->>>>>
->>>>
->>>> Hi Krzysztof,
->>>> I have not yet understood your comment here. Please help give more
->>>> details for my missing! Thank Krzysztof!
->>>
->>> I expect many more properties of a fan controller. Resources (clocks,
->>> PWMs, supplies) and FAN specific properties.
->>>
->>
->> Hi Krzysztof,
->>
->> I'm creating a base binding document for the max31790 driver. I'm basing
->> it on the drivers/hwmon/max31790.c. Currently, the max31790.c driver has
-> 
-> Binding should be based on device (e.g. its datasheet), not the driver.
-> 
+Changes have been tested on  QCOM SoC SA8295P which has 4 ports (2
+are HS+SS capable and 2 are HS only capable).
 
-Thank Krzysztof,
-I'm reading the writing-bindings.rst and I got it for now. I'll make 
-complete binding in patch v2.
+This series depends on removal of ACPI from DWC3 QCOM wrapper [1].
 
-I am very pleased to hear your comments.
+Changes in v17:
+Modified DT handling patch by checking if dp_hs_phy_1 is present
+or not and then going for DT parsing.
 
->> not yet implemented other properties, such as clocks, fan-supply, pwms,
->> etc. So I just introduced the "compatible" and "reg" properties.
->>
->> In the near future, if any other properties are necessary, I think we
->> will implement them in drivers/hwmon/max31790.c then update this binding
->> document.
-> 
-> Please instead read:
-> Documentation/devicetree/bindings/writing-bindings.rst
-> 
->>
->> I look at other binding documents, I also see something similar. They
->> just introduce the "compatible" and "reg" properties.
->>
->> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/hwmon/adi,max31760.yaml
-> 
-> Maybe these devices are similar, maybe not. This should not be excuse to
-> come with really incomplete binding.
-> 
-> ...
-> 
->> I think "fan-controller" is a good node name. Do you think so?
->>
-> 
-> Yes.
-> 
-> Best regards,
-> Krzysztof
-> 
+Changes in v16:
+Removing ACPI has simplified the interrupt reading in wrapper. Also
+the logic to find number of ports is based on dp_hs_phy interrupt check
+in DT. Enabling and disabling interrupts is now done per port. Added
+info on power event irq in commit message.
+
+Changes in v15:
+Added minItems property in qcom,dwc3 bindings as suggested by Rob.
+Retained all RB's/ACK's got in v14.
+
+Changes in v14:
+Moved wrapper binding update to 5th patch in the series as it deals
+with only wakeup and not enumeration. The first part of the series
+deals with enumeration and the next part deals with wakeup.
+Updated commit text for wrapper driver patches.
+Added error checks in get_port_index and setup_irq call which were
+missing in v13.
+Added SOB and CDB tags appropriately for the patches.
+Rebased code on top of latest usb next.
+DT changes have been removed and will be sent as a separate series.
+
+Changes in v13:
+This series is a subset of patches in v11 as the first 3 patches in v11
+have been mereged into usb-next.
+Moved dr_mode property from platform specific files to common sc8280xp DT.
+Fixed function call wrapping, added comments and replaced #defines with
+enum in dwc3-qcom for identifying IRQ index appropriately.
+Fixed nitpicks pointed out in v11 for suspend-resume handling.
+Added reported-by tag for phy refactoring patch as a compile error was
+found by kernel test bot [1].
+Removed reviewed-by tag of maintainer for phy refactoring patch as a minor
+change of increasing phy-names array size by 2-bytes was done to fix
+compilation issue mentioned in [1].
+
+Changes in v12:
+Pushed as a subset of acked but no-yet-merged patches of v11 with intent
+of making rebase of other patches easy. Active reviewers from community
+suggested that it would be better to push the whole series in one go as it
+would give good clarity and context for all the patches in the series.
+So pushed v13 for the same addressing comments received in v11.
+
+Changes in v11:
+Implemented port_count calculation by reading interrupt-names from DT.
+Refactored IRQ handling in dwc3-qcom.
+Moving of macros to xhci-ext-caps.h made as a separate patch.
+Names of interrupts to be displayed on /proc/interrupts set to the ones
+present in DT.
+
+Changes in v10:
+Refactored phy init/exit/power-on/off functions in dwc3 core
+Refactored dwc3-qcom irq registration and handling
+Implemented wakeup for multiport irq's
+Moved few macros from xhci.h to xhci-ext-caps.h
+Fixed nits pointed out in v9
+Fixed Co-developed by and SOB tags in patches 5 and 11
+
+Changes in v9:
+Added IRQ support for DP/DM/SS MP Irq's of SC8280
+Refactored code to read port count by accessing xhci registers
+
+Changes in v8:
+Reorganised code in patch-5
+Fixed nitpicks in code according to comments received on v7
+Fixed indentation in DT patches
+Added drive strength for pinctrl nodes in SA8295 DT
+
+Changes in v7:
+Added power event irq's for Multiport controller.
+Udpated commit text for patch-9 (adding DT changes for enabling first
+port of multiport controller on sa8540-ride).
+Fixed check-patch warnings for driver code.
+Fixed DT binding errors for changes in snps,dwc3.yaml
+Reabsed code on top of usb-next
+
+Changes in v6:
+Updated comments in code after.
+Updated variables names appropriately as per review comments.
+Updated commit text in patch-2 and added additional info as per review
+comments.
+The patch header in v5 doesn't have "PATHCH v5" notation present. Corrected
+it in this version.
+
+Changes in v5:
+Added DT support for first port of Teritiary USB controller on SA8540-Ride
+Added support for reading port info from XHCI Extended Params registers.
+
+Changes in RFC v4:
+Added DT support for SA8295p.
+
+Changes in RFC v3:
+Incase any PHY init fails, then clear/exit the PHYs that
+are already initialized.
+
+Changes in RFC v2:
+Changed dwc3_count_phys to return the number of PHY Phandles in the node.
+This will be used now in dwc3_extract_num_phys to increment num_usb2_phy 
+and num_usb3_phy.
+Added new parameter "ss_idx" in dwc3_core_get_phy_ny_node and changed its
+structure such that the first half is for HS-PHY and second half is for
+SS-PHY.
+In dwc3_core_get_phy, for multiport controller, only if SS-PHY phandle is
+present, pass proper SS_IDX else pass -1.
+
+Tested enumeration interrupt registration on Tertiary controller of
+SA8295 ADP:
+
+/ # lsusb
+Bus 001 Device 001: ID 1d6b:0002
+Bus 001 Device 002: ID 03f0:134a
+Bus 002 Device 001: ID 1d6b:0003
+
+/ # dmesg | grep ports
+[    0.326208] xhci-hcd xhci-hcd.0.auto: Host supports USB 3.1 Enhanced SuperSpeed
+[    0.327065] hub 1-0:1.0: 4 ports detected
+[    0.328289] hub 2-0:1.0: 2 ports detected
+
+/ # cat /proc/interrupts   |grep phy
+162: 0 0 0 0 0 0 0 0       PDC 127 Edge      dp_hs_phy_1
+163: 0 0 0 0 0 0 0 0       PDC 129 Edge      dp_hs_phy_2
+164: 0 0 0 0 0 0 0 0       PDC 131 Edge      dp_hs_phy_3
+165: 0 0 0 0 0 0 0 0       PDC 133 Edge      dp_hs_phy_4
+166: 0 0 0 0 0 0 0 0       PDC 126 Edge      dm_hs_phy_1
+167: 0 0 0 0 0 0 0 0       PDC  16 Level     ss_phy_1
+168: 0 0 0 0 0 0 0 0       PDC 128 Edge      dm_hs_phy_2
+169: 0 0 0 0 0 0 0 0       PDC  17 Level     ss_phy_2
+170: 0 0 0 0 0 0 0 0       PDC 130 Edge      dm_hs_phy_3
+171: 0 0 0 0 0 0 0 0       PDC 132 Edge      dm_hs_phy_4
+173: 0 0 0 0 0 0 0 0       PDC  14 Edge      dp_hs_phy_irq
+174: 0 0 0 0 0 0 0 0       PDC  15 Edge      dm_hs_phy_irq
+175: 0 0 0 0 0 0 0 0       PDC 138 Level     ss_phy_irq
+
+[1]: https://lore.kernel.org/all/20240305093216.3814787-1-quic_kriskura@quicinc.com/
+
+Links to previous versions:
+Link to v16: https://lore.kernel.org/all/20240307062052.2319851-1-quic_kriskura@quicinc.com/
+Link to v15: https://lore.kernel.org/all/20240216005756.762712-1-quic_kriskura@quicinc.com/
+Link to v14: https://lore.kernel.org/all/20240206051825.1038685-1-quic_kriskura@quicinc.com/
+Link to v13: https://lore.kernel.org/all/20231007154806.605-1-quic_kriskura@quicinc.com/
+Link to v12: https://lore.kernel.org/all/20231004165922.25642-1-quic_kriskura@quicinc.com/
+Link to v11: https://lore.kernel.org/all/20230828133033.11988-1-quic_kriskura@quicinc.com/
+Link to v10: https://lore.kernel.org/all/20230727223307.8096-1-quic_kriskura@quicinc.com/
+Link to v9: https://lore.kernel.org/all/20230621043628.21485-1-quic_kriskura@quicinc.com/
+Link to v8: https://lore.kernel.org/all/20230514054917.21318-1-quic_kriskura@quicinc.com/
+Link to v7: https://lore.kernel.org/all/20230501143445.3851-1-quic_kriskura@quicinc.com/
+Link to v6: https://lore.kernel.org/all/20230405125759.4201-1-quic_kriskura@quicinc.com/
+Link to v5: https://lore.kernel.org/all/20230310163420.7582-1-quic_kriskura@quicinc.com/
+Link to RFC v4: https://lore.kernel.org/all/20230115114146.12628-1-quic_kriskura@quicinc.com/
+Link to RFC v3: https://lore.kernel.org/all/1654709787-23686-1-git-send-email-quic_harshq@quicinc.com/#r
+Link to RFC v2: https://lore.kernel.org/all/1653560029-6937-1-git-send-email-quic_harshq@quicinc.com/#r
+
+Krishna Kurapati (9):
+  dt-bindings: usb: Add bindings for multiport properties on DWC3
+    controller
+  usb: dwc3: core: Access XHCI address space temporarily to read port
+    info
+  usb: dwc3: core: Skip setting event buffers for host only controllers
+  usb: dwc3: core: Refactor PHY logic to support Multiport Controller
+  dt-bindings: usb: qcom,dwc3: Add bindings for SC8280 Multiport
+  usb: dwc3: qcom: Add helper function to request wakeup interrupts
+  usb: dwc3: qcom: Refactor IRQ handling in glue driver
+  usb: dwc3: qcom: Enable wakeup for applicable ports of multiport
+  usb: dwc3: qcom: Add multiport suspend/resume support for wrapper
+
+ .../devicetree/bindings/usb/qcom,dwc3.yaml    |  34 ++
+ .../devicetree/bindings/usb/snps,dwc3.yaml    |  13 +-
+ drivers/usb/dwc3/core.c                       | 325 +++++++++++++-----
+ drivers/usb/dwc3/core.h                       |  19 +-
+ drivers/usb/dwc3/drd.c                        |  15 +-
+ drivers/usb/dwc3/dwc3-qcom.c                  | 251 +++++++++-----
+ 6 files changed, 482 insertions(+), 175 deletions(-)
+
+-- 
+2.34.1
+
 
