@@ -1,119 +1,108 @@
-Return-Path: <devicetree+bounces-53698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53701-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48DA788D120
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 23:38:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A55FF88D178
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 23:46:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0210B291235
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 22:38:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FF09323382
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 22:46:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D23313E03D;
-	Tue, 26 Mar 2024 22:37:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90BEB13E408;
+	Tue, 26 Mar 2024 22:44:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="o/fPq/5S"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ub+5CvSw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D25B413DDAA;
-	Tue, 26 Mar 2024 22:37:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C101C13E3FB;
+	Tue, 26 Mar 2024 22:44:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711492663; cv=none; b=kVNySydMHaF084HoKtzfapQU4CTjp6vd/PRRZqefsPzl4kjgo8I+Ssex10Esl2GwI6ugtPbgIsCoSuB680uiFmBug0iay3Z7NEgOKTA1LuUwtcYTF/taDbO+/l+G8OUxaZsYwIDJ1btghwWejV55pPS5ZgjLuXzR+HaEoBhpqV4=
+	t=1711493084; cv=none; b=pQARBSbQhRIp06iXzut74FDX4BlKRveQi+EPtSTIeRc5WZ22nlBnFTzp6/LfUgMEXmHivaiRvAOWDqI+a1nBD8MtY/td64R++CAIO7+AEoAiUMxjGeOUarU5deubQSl+5N0w4vG4ScBZGwyJE+8DlZLWBdcUTGWp1p73k4SwND0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711492663; c=relaxed/simple;
-	bh=vtHSBbG2DXeQb1yPN/j/c2M0hMX/XtE+AuOAzok3w6E=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FaXQnKHkn0lWFT6cw77XDGhn4UyMjarBUC80fF44dvQokSJwBL3zSUHSGe3/VWQCnbQ4yRA1vKu92sM/6lNE811ZFCsCfNitRTqYm0GxeYY/sXOhfTwnC03rprQnVxqb1IHBYk0C1Hue12NgI7Emgw3yxnYeY8MRkEeDFjJptSI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=o/fPq/5S; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 42QMbXD1092778;
-	Tue, 26 Mar 2024 17:37:33 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1711492653;
-	bh=/m8GoNEQsRLxqh9NQPyFQwvDN6J319O/acSr4HwVOVY=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=o/fPq/5SSQ+VArFeDEix1gk/agcwEhg72ojykz+sOWTAgh6n/3WZh5/h4eJCn7JVJ
-	 t42QOhpdioZoPZi76QLJAb1C7doWikG70nA649tXN6eKUgry4hKyPLFz51Qd87r8Yw
-	 oyacQxK8IFs0d/muIS+OEFLJzW0TBZRGW1WYjQF0=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 42QMbXvs045399
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 26 Mar 2024 17:37:33 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 26
- Mar 2024 17:37:33 -0500
-Received: from fllvsmtp8.itg.ti.com (10.64.41.158) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 26 Mar 2024 17:37:33 -0500
-Received: from fllvsmtp8.itg.ti.com ([10.249.42.149])
-	by fllvsmtp8.itg.ti.com (8.15.2/8.15.2) with ESMTP id 42QMbVmb109669;
-	Tue, 26 Mar 2024 17:37:32 -0500
-From: Andrew Davis <afd@ti.com>
-To: Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>
-CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>
-Subject: [PATCH 4/4] dt-bindings: arm: keystone: Remove ti,system-reboot-controller property
-Date: Tue, 26 Mar 2024 17:37:30 -0500
-Message-ID: <20240326223730.54639-5-afd@ti.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240326223730.54639-1-afd@ti.com>
-References: <20240326223730.54639-1-afd@ti.com>
+	s=arc-20240116; t=1711493084; c=relaxed/simple;
+	bh=21njRGl940sgZBGKPtxjtRnd5br8akhXs+E2HiOd6+A=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=dTK+7BUWgqdyX0O468EDlh4jvGCvRrskQn59duDUCUr8o/vXKgJT8kLyW6zDdrjDJM/SpS7fM/f9TLpC7+IGbmTM5maVS0vHqukzAvgiXf4X0MOx4PdHTfe0jM0To+AWg9TH9hmnbAPM7SpJ0IRHXGIdB3fjZMPQ743i4fIPtrk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ub+5CvSw; arc=none smtp.client-ip=209.85.208.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2d094bc2244so79843491fa.1;
+        Tue, 26 Mar 2024 15:44:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1711493081; x=1712097881; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VHr5651oMEvLdMR3cMJXLfEH9jfz5XxGqogmz27QaOI=;
+        b=Ub+5CvSw+hRp2FPAyoyJUmP1CTPm76Hp4Sr+GBWP0SQ9tFHwfWNDecDfMEXsHebVU6
+         +6/zWWQDKGBNfgtC9eP0fRkAeAn56QgKhvpJGWcZOD042Odad8LdIjOf7P8wf7JQsUMo
+         SHBiwPKkWPcwvmwUGJoHd77Qs9WbYbI1CWikISmJCpS+kAz9qF8s04H1lcy1h2BfL2mw
+         7sPoyvVKZ05ljZ1eUo1sAAaDynQ9DGHZ5IMCYMJGKhnKVuwhRpyo4M57EqGTi9QQGs/V
+         1xMaDYrsIR6JmLpZpDx0ofJTPpjo/tdS6ks5KzqkGzXtk1taj0Dgx6a+JSBwliB8Goo3
+         a0uA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711493081; x=1712097881;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VHr5651oMEvLdMR3cMJXLfEH9jfz5XxGqogmz27QaOI=;
+        b=pSvpw1oVNC67RmG3vZG6yPwIsSAto34est3d+aO+9MDTzosyuh4/7LYdCx4Q/kYjuR
+         /M88dPoTk36Eg+veyAju9BCwcdYMpeG28ixEBq0/k34IFNoX1Arsbz+YyzhElAkUTl0/
+         q0jXycDAHJVSy7GPF6P2DIX7x26ZUykZdMub1+9Au3yzG+YyvZhN5B8ABsyLd0RmdOeE
+         9FYX6cJDcICVd75L6mKsTTl+JIl0oxnw59UVwUQeInZxyPiKMHmU4GHmZDpRDPYP/LdH
+         V0td9Bm1VWZR/ZCx1Ha6J2fc8Yg2bwpFjS+uCHbiaHzZzxgjD+klBFkWnBD5gn/HNqs2
+         3WtQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXO/raPVeMWL6gO6swJ/DxWmF7f8tyvi/218sr/kKsK95j05qPbT1mWRnGSFioUb79Pl78tvU7sj818r9OeO8HFDq2ZwFasCL4D+g==
+X-Gm-Message-State: AOJu0YzjwhGY5R1+SL0T+/E7tD1bGSdGwsDep//vYCCIzYU91bAyd6Ui
+	t/8XbFeUBSy4MN4lYN+iBK9i+BnG16MhCKSPqfHeCnGd+rm0sd8Zw8/9Cepv
+X-Google-Smtp-Source: AGHT+IEnYDcAqXAqYEKDNyTaX59nzs/0/ekFbWyysHmdBYKs4D0+MiAouG3YSCYzVoJ9LfnudhXkEw==
+X-Received: by 2002:a2e:7a04:0:b0:2d6:b424:a634 with SMTP id v4-20020a2e7a04000000b002d6b424a634mr6840536ljc.15.1711493080660;
+        Tue, 26 Mar 2024 15:44:40 -0700 (PDT)
+Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
+        by smtp.gmail.com with ESMTPSA id o25-20020a509b19000000b0056bcec9c89esm4786463edi.92.2024.03.26.15.44.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Mar 2024 15:44:40 -0700 (PDT)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: linux-kernel@vger.kernel.org, Aren Moynihan <aren@peacevolution.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Chen-Yu Tsai <wens@csie.org>, Pavel Machek <pavel@ucw.cz>,
+ devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
+ Miles Alan <m@milesalan.com>, Samuel Holland <samuel@sholland.org>,
+ linux-arm-kernel@lists.infradead.org, Ondrej Jirman <megi@xff.cz>,
+ Aren Moynihan <aren@peacevolution.org>
+Subject:
+ Re: [PATCH v3 2/2] arm64: dts: allwinner: pinephone: add multicolor LED node
+Date: Tue, 26 Mar 2024 23:44:39 +0100
+Message-ID: <3796126.kQq0lBPeGt@jernej-laptop>
+In-Reply-To: <20240317004116.1473967-2-aren@peacevolution.org>
+References:
+ <20240317004116.1473967-1-aren@peacevolution.org>
+ <20240317004116.1473967-2-aren@peacevolution.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 
-This property was only ever used in one device. It is no longer needed as
-what it signaled is now default. Remove this unneeded/unused property.
+Dne nedelja, 17. marec 2024 ob 01:39:29 CET je Aren Moynihan napisal(a):
+> The red, green, and blue LEDs currently in the device tree represent a
+> single RGB LED on the front of the PinePhone.
+> 
+> Signed-off-by: Aren Moynihan <aren@peacevolution.org>
 
-Signed-off-by: Andrew Davis <afd@ti.com>
----
- Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml | 5 -----
- 1 file changed, 5 deletions(-)
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-diff --git a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
-index c24ad0968f3ef..7f06b10802449 100644
---- a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
-+++ b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
-@@ -61,10 +61,6 @@ properties:
-   mboxes:
-     minItems: 2
- 
--  ti,system-reboot-controller:
--    description: Determines If system reboot can be triggered by SoC reboot
--    type: boolean
--
-   ti,host-id:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     description: |
-@@ -94,7 +90,6 @@ examples:
-   - |
-     pmmc: system-controller@2921800 {
-       compatible = "ti,k2g-sci";
--      ti,system-reboot-controller;
-       mbox-names = "rx", "tx";
-       mboxes = <&msgmgr 5 2>,
-                <&msgmgr 0 0>;
--- 
-2.39.2
+Best regards,
+Jernej
+
 
 
