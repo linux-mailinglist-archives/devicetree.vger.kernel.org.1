@@ -1,196 +1,123 @@
-Return-Path: <devicetree+bounces-53411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14A9788C2B0
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 13:56:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0F6488C2DA
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 14:01:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F24511C3FB57
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 12:56:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 913E2296CE8
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 13:01:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D63DA6EB4E;
-	Tue, 26 Mar 2024 12:56:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 712676FE1A;
+	Tue, 26 Mar 2024 13:01:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="o7kq1/no"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="iLzYSNvJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB15A6BFCC
-	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 12:56:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A573864A9F;
+	Tue, 26 Mar 2024 13:01:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711457788; cv=none; b=HsxMvCsop3aJs0DeEj3lPecJWuFeDezmSlWq4UtyqR6K2oqY760bcqm2IckyGyNVX3eC3JSzDecTxtAXUWILzxbXwIaVrncxLqtTA5X6fVUnTCXyVL5t1Z9x7JMuX+H0vETTgjsmZCA2F2M26OEYWRO5L4KDjbCvO8KPvxl87Ag=
+	t=1711458063; cv=none; b=idDxYYVIrbD9qmnigleKl+A4gnNsPkadhVj4d9f1360BgZPqUm/F6jQ2+/pJiMtiyiB1XZvWRtVaRmIiVwgtiw0OsemvD5etpxoLwego5iC6IBpklpEsOrcqhUJez9JcPZ6ONV3zlgkX+QBNbwp96nIszSUjoW9R/D4IktPPQYw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711457788; c=relaxed/simple;
-	bh=YwtCMJg1Rfup4NT8V7Oo7K4rKen6x1h2pzIusMuhhp0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ienimvpkzQr+lOyxl1yTVydUmZuP4L1Pc5MxqnLc6Yh1KEe2xnJRBFgRflQcwquMUDIFnM56sSibLPpNK3ngNFzbrZEHG6lqh1zo0LrPCriaojAJIPiflb7UwxoVW2L9wITVhbhw4qIDvuvx0lSzH7yMd7AvEXu4Ojt+hkPIO7Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=o7kq1/no; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a4734ae95b3so525200166b.0
-        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 05:56:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711457785; x=1712062585; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=sT8OjxdUQAjzr/9I2o/yKQ2o8R3+ehvtYWeUDIQGp2Q=;
-        b=o7kq1/noAzjkHEV0L07zOaWm/UR9/+B5i7DSN2hw3ZQFWaRikg4+2f74neOduU0KY/
-         OZ0Sd8su2PBsPRwaxgJy+LuWZzzm2vtwe9vWkjuTC7XMvjCJgODq+usAe7b+OLIKq0av
-         CEf78/2QM1eTdaMvvwecnN709WaZ4Yb11U1BH+kbzk7qhuEnodgPdcMRSvnKu8g7SMLW
-         syfk6B5HVo4Gmd1DGjqwzvuNSN6MHB9UwoyyxIm1KMbcCfwsfFgg8qIWvLTJDkuChbmh
-         8m+rL8SSB4OVh1fwzXEDhaIU+GoqcATqGv6621aev3ecs4JKpajoi2GkqZFOvpt4nmRB
-         9O1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711457785; x=1712062585;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sT8OjxdUQAjzr/9I2o/yKQ2o8R3+ehvtYWeUDIQGp2Q=;
-        b=vwFdUfjqpzID30NcEqTMkTFlp2Es2MQwBYZzEBmqmsTzaz7UWp34ohFV377d+JyQBJ
-         zGGdDF7lb+jO3T8vfHk5L3UWIOstNfq4eeLUBYno1a/u2pKjLDc9zkOnvf5soB8cOo6H
-         SVP4Tcsp0IQGbG7k4N9/I2uHMZHpVTa706RxoQzO7gsqv9zJnzJEGcqYzdeDIMuVtBgw
-         PTPzlMW9+n4nstHd7IUdW23mBz/IXxw+RaUq7vEGqXSnM3LEcw3AmuT94+clWre+gUY9
-         4sM8CtEIN69pUPisnTk6k2sUWXVL2+PzahRWlh1xir18KmHeoE+b2oZL0x1YsQrUKQRd
-         3uJg==
-X-Forwarded-Encrypted: i=1; AJvYcCU5G/T1qlZO56xgw+JD5lZBpqICO/y3oHVOyeQL+h/hPai3cQiyd6rtBNJB/735tYUWPDYqY+5ooLjCMEo0uGoXQpC+ARQ/9AhJSA==
-X-Gm-Message-State: AOJu0YxTmrXlqVx+ul/nxMLZUm1uiMHUVtJdTh4i8iIcs0f9kzS7dKdj
-	4thzUTyKJ+IA+jcuLiqu7wzFGAufLVHcpXjFi7vRstoInmW3ITVB9urYWq7VPWo=
-X-Google-Smtp-Source: AGHT+IGwEwrTsGbZnoPQM2wsJJefA/6J2PARa12wK1WZlpE62Ba5CCqMUlaxcnNOMgCIBJTpbgXTLQ==
-X-Received: by 2002:a17:906:66c9:b0:a47:20c3:7c51 with SMTP id k9-20020a17090666c900b00a4720c37c51mr5961573ejp.71.1711457785034;
-        Tue, 26 Mar 2024 05:56:25 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.44])
-        by smtp.gmail.com with ESMTPSA id i2-20020a17090639c200b00a471cbc4ddbsm4210480eje.26.2024.03.26.05.56.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Mar 2024 05:56:24 -0700 (PDT)
-Message-ID: <1c6d995a-b1f1-48ca-b85c-f69071e7e3bb@linaro.org>
-Date: Tue, 26 Mar 2024 13:56:22 +0100
+	s=arc-20240116; t=1711458063; c=relaxed/simple;
+	bh=xxvJRawpyW3eNtN94M248HISBAJChQIwETjY8F6DX1U=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Bqab7a8C0Qt6BC2u5/dcjiFt/nEgruPQHvFlVgWhphjO2NERnH8EEJJKYA5SAoKoUBv4d1vPWHuQBvbwXo0GQQiCOg0vaiaYLIrIN9djYu7ls/siF8ruDom8lK0NahGYUhKjt9pB3wxO9EYpwdLeQt/Or/7RaKucwz+ay2aaQFs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=iLzYSNvJ; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42QCwvYX028115;
+	Tue, 26 Mar 2024 14:00:16 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=/db77bR
+	vEP4jYO3usvNHt4toe1IvRseqPMS2T/ZuErE=; b=iLzYSNvJlosukfvG0AizBaJ
+	amhux4Y0xAOTGcwKMIGIldiS2vmsAffVQWAHScZED21qjfYoLBCsKlTmzRoJQN8U
+	bHiCo/e1lHcbEHug0PbnrAp9BLrXLA1cicH2P8iQ7FK2KPgyouynX081Yr25Nhju
+	6WCOzZi2WIAXeEFCeVnSOdmPUJtyM+9SMtp6rN6nr7TLXiCpvKk8Nq31vgL8dm2r
+	1uxhTSbZSsS6W8RuqZlMav9wzdfvUCc8OfLLIVYz3Dn6Gyh7Rz66vP4O9+le1TYK
+	+rMLTIoNCA34RBsgD0xAvBwGN1HUJcLaUa3NmMu0NWikKZANvBj4jiV7CBCbLoQ=
+	=
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3x1n39dgf1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 26 Mar 2024 14:00:16 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 1BEBD40048;
+	Tue, 26 Mar 2024 14:00:11 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 04788218631;
+	Tue, 26 Mar 2024 13:58:56 +0100 (CET)
+Received: from localhost (10.201.21.128) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 26 Mar
+ 2024 13:58:55 +0100
+From: Christophe Roullier <christophe.roullier@foss.st.com>
+To: "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni
+	<pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Jose Abreu <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark
+ Brown <broonie@kernel.org>,
+        Christophe Roullier
+	<christophe.roullier@foss.st.com>,
+        Marek Vasut <marex@denx.de>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v4 0/2] Add properties in dwmac-stm32 documentation
+Date: Tue, 26 Mar 2024 13:58:47 +0100
+Message-ID: <20240326125849.226765-1-christophe.roullier@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: hsi: hsi-client: convert to YAML
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Tony Lindgren <tony@atomide.com>,
- devicetree@vger.kernel.org, linux-omap@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240325-hsi-dt-binding-v1-0-88e8e97c3aae@collabora.com>
- <20240325-hsi-dt-binding-v1-1-88e8e97c3aae@collabora.com>
- <2905247d-03b0-45c1-add5-d3c2a986d87c@linaro.org>
- <hz4fbdix5yaz2wtdkjkf23pc3m4kbeavynvjagundqvv3bisor@lc7dev4667i5>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <hz4fbdix5yaz2wtdkjkf23pc3m4kbeavynvjagundqvv3bisor@lc7dev4667i5>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-26_06,2024-03-21_02,2023-05-22_02
 
-On 26/03/2024 13:45, Sebastian Reichel wrote:
-> 
->> but more importantly: some properties are now excluding each
->> other.
-> 
-> I think that requirement was already there.
+Introduce 2 new properties in dwmac-stm32 documentation
 
-Right.
+ - phy-supply: to manage PHY regulator.
+ - st,ext-phyclk: is present since 2020 in driver so need to explain
+   it and avoid dtbs check issue : views/kernel/upstream/net-next/arch/arm/boot/dts/st/stm32mp157c-dk2.dtb: 
+ethernet@5800a000: Unevaluated properties are not allowed 
+('st,ext-phyclk' was unexpected)
+   Furthermore this property will be use in upstream of MP13 dwmac glue. (next step)
 
+V2: - Drop deprecated: property for st,eth-clk-sel and st,eth-ref-clk-sel
+V3: - Rework commit message
+V4: - Fix syntax issue in commit message
 
-...
+Christophe Roullier (2):
+  dt-bindings: net: add phy-supply property for stm32
+  dt-bindings: net: dwmac: Document STM32 property st,ext-phyclk
 
->>> +
->>> +allOf:
->>> +  - if:
->>> +      required:
->>> +        - hsi-mode
->>> +    then:
->>> +      properties:
->>> +        hsi-rx-mode: false
->>> +        hsi-tx-mode: false
->>
->> I don't understand what you are trying to achieve here and with anyOf.
->> It looks like just oneOf. OTOH, old binding did not exclude these
->> properties.
-> 
-> So the anyOf ensures, that either hsi-mode or hsi-rx-mode +
-> hsi-tx-mode are specified. Those properties were previously
+ Documentation/devicetree/bindings/net/stm32-dwmac.yaml | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-Not entirely. anyOf should succeed also when none of them are present,
-which is not what you want in such case.
-
-> listed as required and they are indeed mandatory by the Linux
-> kernel implementation.
-> 
-> The old binding also has this:
-> 
-> hsi-mode:		May be used ***instead*** hsi-rx-mode and hsi-tx-mode
-> 
-> So it's either hsi-rx-mode + hsi-tx-mode OR hsi-mode, but not
-> all properties at the same time. That's what the allOf ensures:
-> if hsi-mode is specified, then hsi-rx-mode and hsi-tx-mode may
-> not be specified.
-
-Then wouldn't this work for you:
-https://elixir.bootlin.com/linux/v5.17-rc2/source/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml#L91
-?
-
-But if you really want them to be optional but excluding, then simpler
-syntax is:
-https://lore.kernel.org/all/20230118163208.GA117919-robh@kernel.org/
-
-Best regards,
-Krzysztof
+-- 
+2.25.1
 
 
