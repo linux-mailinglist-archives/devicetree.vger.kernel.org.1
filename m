@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-53472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74BC188C675
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 16:13:30 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45FA388C67B
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 16:13:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 98B8C1C3DD74
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 15:13:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A1A4AB23F23
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 15:13:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F33E613C826;
-	Tue, 26 Mar 2024 15:13:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B81313C838;
+	Tue, 26 Mar 2024 15:13:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="L1NxEESc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DmGEXlBo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C10F2907
-	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 15:13:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CDCF13C803
+	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 15:13:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711465987; cv=none; b=VxeCjOVqePeSOUzfejcSWGgmfwz0SET8WclQNvB/o5J7Prou0L7ZkguQHwNw+kP7W3YY4J7h5pKGryCTmONFtWOw+H9ucJmNWuGmEsmge5VKAK/AZPAD9iQ6teocU4CDByMP4PvyWCaULT3r/Z27Zq4gIJxgCBQdSNzJa/ttuUU=
+	t=1711465989; cv=none; b=LS5bUJ+n4faRfhDtW7EWyRXh0LvseacJnHTK+jMZP/Na72f+gC/Av2FeIulEwkBoZy9qZge0LdQo0WTIBV1PX5HRDszZKCYOYi2gmqWiRwgHGQL4WsaCYku1sqS2X3MBZroVkU8LktqopAze3ZzlNQeMtQNC/mRaWLdbC/Tdx6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711465987; c=relaxed/simple;
-	bh=VR15R2WP+377srHz2NsdR72PZk2ShcAumCvdNJ/OrpA=;
+	s=arc-20240116; t=1711465989; c=relaxed/simple;
+	bh=yGrckZogUueV/L3Jdeqh6qT0amJGwcUUTNSGaTDxz84=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kTKfYrdAvBSNpdUcgUnBY9mI3xzhe1Fj+wlzlfOR8c3IS68f+GI9GXAUODIdzOGrbh9Mz/z3omoZgqhcw42mOJG7CHoZBzre8Ax0bQubKmYezYBvDup6Jn83Ls6Rtz1Kr3nDoVcWy5GCCFK1l7mdnJLdhTQN1xSCm5pSCFR+gnk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=L1NxEESc; arc=none smtp.client-ip=209.85.128.45
+	 MIME-Version:Content-Type; b=lNtOiKvQaG7fAuTRQodWtO3u+okJDSGOH+HcPKLSOfuLvrqJz5rrSRJs25QOiygbHXnQhQIGxp+/cCovKjOEK1sROwnJUEnnGL1PXvNx2cIc7zE3rgPIi+m3UxRftJxX976hga6urPhBfb5ycnUm7luYmVKcw4YCM0pE4zI4uaM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DmGEXlBo; arc=none smtp.client-ip=209.85.221.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4149134390cso1237235e9.2
-        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 08:13:05 -0700 (PDT)
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3417a3151c4so5076308f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 08:13:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711465984; x=1712070784; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711465985; x=1712070785; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=gn9m+1lA6AcpZGbpMknvvS6Xp0LvUkbLedZBp4mYCns=;
-        b=L1NxEEScKfFmYVoLHmUItezgfxlAsSZzhoGK6TUj7X2onJ81++UxVkyjd3gkFgLsjl
-         Me2UsnFfs5q6LW8eaZe8jqDW/jFK/Y2M2tF2d8cJ1q4sNjFY11saNbZvbkW7B7DiPHuI
-         4mwO4qQpNjvZlk+p8XCAr2u9Ee7aFoiiofxbDLtHlvw4OYjVEU9TknP4BA66BCjyDpim
-         oTdecwkb0Y15YgCvgV4BasGXKutz033WnJX9jwTFRr0ixkEVcwBq4bFXNLAMUPZ0xEiL
-         XoQLiVHBQpoFm4hou7so+Br1LxKoexDlKmuJV8gmDSm2sEVGH9xqop9LqW1T4vWVMBFo
-         Ai1g==
+        bh=MO5kE0efurmStG/GDbYQCR+zDRIBosRyTiryNSDJIgQ=;
+        b=DmGEXlBoTDYTANwuyKxbgHC1qt3+0kJMjarg6xvzl3H+DU35c1REr+9s8YWsZMvyCb
+         m4T093mn9CEeI6uSrCNtTqZTnlVlRAo2YKGem9BTm39uhVCg35EW+D2e+id8FCTQ+Ht6
+         lJEoPlvH/EpBAmPL3tPspCLzsFlle1s9Bvp5fgfLfKsJer372QjF7+1IUNjTi1TUfzOx
+         HTAiiSi2bDLTnX0g1/VN2J2CCe0gBC6W5ITiYGgyBwerFwtf84s0AvyUYv3dIz1T07t4
+         tihRe+xfqk2I9GXc3HLFv5i6cJyvC9O9iSN2nAs0DT4p/8zS0dsNpnv2XUAVNynZ3vWg
+         08Og==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711465984; x=1712070784;
+        d=1e100.net; s=20230601; t=1711465985; x=1712070785;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=gn9m+1lA6AcpZGbpMknvvS6Xp0LvUkbLedZBp4mYCns=;
-        b=YMErC1MHL1GFC+r7jVoRveDYR7FypJbZq1vh1MOlAjBKPuSz9pSfHs3wlCFOyOATL0
-         eE+FP2BMVBpY9fi6UGhMbcQhqo5cnvq/2mVQ/WCSvWCFRjnRfSrci9aSEIzs/bLQpC/o
-         AoiiNY2K3j958cDespsTNZDSWNsv1uKMIadu9A8tPDF8S+v792CgAfjI750nx7CQ7UV5
-         Wq5yvJjlRtKUCwZ0JYKl/ESdNVqZ3G9tEbws4L6mAC31CamNELCHfONxmIvDijMtpJCD
-         Lpr2vOe/mN3KlQLWK3x70xvfl9Kq2n9kQV1TMK/QDNAZOeqWeW/2UtXi2AL0u49lwjQC
-         69Ow==
-X-Forwarded-Encrypted: i=1; AJvYcCVWpQLkTNYfbvaSfbJ08reurpn2NEd8SR6sVlJQoGmnOD8vbGRZYbAXYroV5qu41KFU6AMVAIESG9VdGw7REG26agMN3CEPgDovBQ==
-X-Gm-Message-State: AOJu0YxnethKboImkKVpbEriBjM79176WrL6oDVPYTXA9DnM3J4OYAds
-	sJO3PqtPj9DOQO/syvrxgVn7oON8G6YL/YAZSGvVoTvdtgO5CGTpefnv+81hl80=
-X-Google-Smtp-Source: AGHT+IGB7lFBQVEWs59x6w/DBERXvC6mjvqqcHglQjnQsaK6/Fp0y7bhjtErhQrG4DXYj7M5YgXYqw==
-X-Received: by 2002:a5d:61cc:0:b0:341:be75:5e6c with SMTP id q12-20020a5d61cc000000b00341be755e6cmr1297348wrv.3.1711465984474;
-        Tue, 26 Mar 2024 08:13:04 -0700 (PDT)
+        bh=MO5kE0efurmStG/GDbYQCR+zDRIBosRyTiryNSDJIgQ=;
+        b=AaaHt7/zGpfZBGkuFs/iGnHqw+fZWz2Bhdma5zQE0L7y6lo2Xh9vDMqv2j+v9hJ0JN
+         oLYOC42YpdqRY3IoE/AmcXNPT4LjGdrfX+/82TGHAK+e6796BnpgOYM+3nZn4EifqmVG
+         igqRDEmEF24ATg1PKKJlH98oquSFKOEkS3mm0oFKsZMZI7F000KZo4b0Zl9OQEA3s7pv
+         uCiQivri/5yLNO4fypQeljZW+Nxf/fxM1NuJbO58nXfFSNM63RZigUsLb9tIOq2Rlr1/
+         PNR1MN0rm6ka9uJy25ldr3FGAp4xNBWjKUAIVOg0U6ByEnBACbKuaKfIgKxq2VurBDuF
+         hgTw==
+X-Forwarded-Encrypted: i=1; AJvYcCXkerNi3qo+lWt2L8rcYNyR8lUmIXVGkrfzuO7XjRktB2PySaTohrrxDoOl155JSHzofjpJuu3/tILXi6jMjfdneMrVhbC+XpWXrA==
+X-Gm-Message-State: AOJu0YzbRt6U0+DA7n7FWIo8ZH03GvfrFuMYkTP8e230JjL6YHZJjpmI
+	3qBQ9aeAYBi6LkL32TuQUznbdQ+uagv0rwZhEkHneTsr2Vtt8b/8zK73kuMWT4A=
+X-Google-Smtp-Source: AGHT+IFCi5lrQmSdawcokiQ4q0iepE7NMWfh2zL5b6c/3HGTHoKQfKiR2ttpjovQABe5RFCfi0MjCg==
+X-Received: by 2002:a5d:5051:0:b0:340:5b4:ba31 with SMTP id h17-20020a5d5051000000b0034005b4ba31mr9065045wrt.34.1711465985508;
+        Tue, 26 Mar 2024 08:13:05 -0700 (PDT)
 Received: from ta2.c.googlers.com.com (158.100.79.34.bc.googleusercontent.com. [34.79.100.158])
-        by smtp.gmail.com with ESMTPSA id b1-20020a5d40c1000000b0033e7a204dc7sm12325692wrq.32.2024.03.26.08.13.03
+        by smtp.gmail.com with ESMTPSA id b1-20020a5d40c1000000b0033e7a204dc7sm12325692wrq.32.2024.03.26.08.13.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Mar 2024 08:13:03 -0700 (PDT)
+        Tue, 26 Mar 2024 08:13:04 -0700 (PDT)
 From: Tudor Ambarus <tudor.ambarus@linaro.org>
 To: peter.griffin@linaro.org,
 	robh+dt@kernel.org,
@@ -81,9 +81,9 @@ Cc: alim.akhtar@samsung.com,
 	willmcvicker@google.com,
 	kernel-team@android.com,
 	Tudor Ambarus <tudor.ambarus@linaro.org>
-Subject: [PATCH v3 1/5] arm64: dts: exynos: gs101: reorder pinctrl-* properties
-Date: Tue, 26 Mar 2024 15:12:57 +0000
-Message-ID: <20240326151301.348932-2-tudor.ambarus@linaro.org>
+Subject: [PATCH v3 2/5] arm64: dts: exynos: gs101: move serial_0 pinctrl-0/names to dtsi
+Date: Tue, 26 Mar 2024 15:12:58 +0000
+Message-ID: <20240326151301.348932-3-tudor.ambarus@linaro.org>
 X-Mailer: git-send-email 2.44.0.396.g6e790dbe36-goog
 In-Reply-To: <20240326151301.348932-1-tudor.ambarus@linaro.org>
 References: <20240326151301.348932-1-tudor.ambarus@linaro.org>
@@ -96,57 +96,44 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-From: André Draszik <andre.draszik@linaro.org>
+The pinctrl nodes are coming from the shared gs101-pinctrl.dtsi,
+thus the pinctrl-0/names shall stay in dtsi. Move them.
 
-The Preferred order for these is pinctrl-0 pinctrl-names.
-
-Update the DTSI & DTS accordingly.
-
-Signed-off-by: André Draszik <andre.draszik@linaro.org>
+Reviewed-by: André Draszik <andre.draszik@linaro.org>
+Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
+Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
 Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
 ---
- arch/arm64/boot/dts/exynos/google/gs101-oriole.dts | 4 ++--
- arch/arm64/boot/dts/exynos/google/gs101.dtsi       | 2 +-
- 2 files changed, 3 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/exynos/google/gs101-oriole.dts | 2 --
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi       | 2 ++
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
-index 6ccade2c8cb4..40de2b0aa086 100644
+index 40de2b0aa086..6be15e990b65 100644
 --- a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
 +++ b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
-@@ -29,8 +29,8 @@ chosen {
- 
- 	gpio-keys {
- 		compatible = "gpio-keys";
--		pinctrl-names = "default";
- 		pinctrl-0 = <&key_voldown>, <&key_volup>, <&key_power>;
-+		pinctrl-names = "default";
- 
- 		button-vol-down {
- 			label = "KEY_VOLUMEDOWN";
-@@ -103,8 +103,8 @@ key_power: key-power-pins {
+@@ -103,8 +103,6 @@ key_power: key-power-pins {
  };
  
  &serial_0 {
+-	pinctrl-0 = <&uart0_bus>;
 -	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_bus>;
-+	pinctrl-names = "default";
  	status = "okay";
  };
  
 diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-index 55e6bcb3689e..5868c96c771f 100644
+index 5868c96c771f..a1aff219208a 100644
 --- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
 +++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-@@ -393,8 +393,8 @@ hsi2c_8: i2c@10970000 {
- 				interrupts = <GIC_SPI 642 IRQ_TYPE_LEVEL_HIGH 0>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
--				pinctrl-names = "default";
- 				pinctrl-0 = <&hsi2c8_bus>;
+@@ -424,6 +424,8 @@ serial_0: serial@10a00000 {
+ 				clocks = <&cmu_peric0 CLK_GOUT_PERIC0_PERIC0_TOP1_PCLK_0>,
+ 					 <&cmu_peric0 CLK_GOUT_PERIC0_PERIC0_TOP1_IPCLK_0>;
+ 				clock-names = "uart", "clk_uart_baud0";
++				pinctrl-0 = <&uart0_bus>;
 +				pinctrl-names = "default";
- 				clocks = <&cmu_peric0 CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_7>,
- 					 <&cmu_peric0 CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_7>;
- 				clock-names = "hsi2c", "hsi2c_pclk";
+ 				samsung,uart-fifosize = <256>;
+ 				status = "disabled";
+ 			};
 -- 
 2.44.0.396.g6e790dbe36-goog
 
