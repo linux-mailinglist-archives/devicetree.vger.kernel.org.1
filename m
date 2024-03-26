@@ -1,67 +1,76 @@
-Return-Path: <devicetree+bounces-53269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53270-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68C3988BC2D
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 09:20:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A78D188BC5E
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 09:29:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 001D71F36F89
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 08:20:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D94A41C2F0D5
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 08:29:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47CBA132811;
-	Tue, 26 Mar 2024 08:20:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A181D134724;
+	Tue, 26 Mar 2024 08:28:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="LDm8XQaP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QPX+K2s6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F272E21A0D;
-	Tue, 26 Mar 2024 08:20:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FDA8134422;
+	Tue, 26 Mar 2024 08:28:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711441252; cv=none; b=TgduVlkDqSyhQSUuO5lDmlQug5w96hO3aQ02gk2wNJr9gokLHhXm7L6V9JG4wiIH9SUpmTkUHrtMvCuendjGopJyyFhyu/1P7eNViawh1qPqV1vqZJdbMwDWRf65E8tAB7pv/CApegm9WjWnQpuxfpr1uCXxI/++qZFPx9Cwork=
+	t=1711441712; cv=none; b=apgpVcIwBOAzF844+6yhSBortkIurwKa7OmMXkpRUJEFUI+b8NjQ764gQcel7kJ4OlYG2rP0To5+CXYSZ6o5zx4AHee8UMUpjE7mu/4FKEqpxoquSCDKSu5XiRACCSiyfOaGvfnICnT47GIS1Xs4R+Fe4iXTs1TQ7kwb3m/yTHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711441252; c=relaxed/simple;
-	bh=qz9xGWKw9TwZIZmkOtsqi7+FfSavXvo92wFhs8sRnkQ=;
+	s=arc-20240116; t=1711441712; c=relaxed/simple;
+	bh=rAq3xkAVaETYPSPHUg5emdE8mb8m91SeBHFnjLnSNn8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PEZM9m4sE1BCq2lLuaZ0NdqE2Uh1iWGk8j+z6fEK8qEoKxg3l2hyr/uSM1lbK5MATFj4W8EVJr/+4XNyih4RJCQ+f+Nc1VekxRM/Aa0SvjD9Gdw+fVOCLsEff+QHbKgduf7i1siaty9hFwuWrHFCd7pPWr0ZcBB4eYJhuIGbjVU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=LDm8XQaP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E82CCC433C7;
-	Tue, 26 Mar 2024 08:20:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1711441251;
-	bh=qz9xGWKw9TwZIZmkOtsqi7+FfSavXvo92wFhs8sRnkQ=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=SloYujdLCU+fF3FxFixPxdUOMrLqhMGBudM1MO/ZpMoCjGl2GJGdaPabkB66HHKqX+jdtXJZTWxNaGEPQiBIsBMA/v1QyZxmfNNsDHRgPNxq1mEfOkVm0sobCT0qSbIo7wq/iQsI5Fw5CLZMxwc9SK7yHzUf0YgRf3HJnzTAZhw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QPX+K2s6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0AC61C43390;
+	Tue, 26 Mar 2024 08:28:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711441712;
+	bh=rAq3xkAVaETYPSPHUg5emdE8mb8m91SeBHFnjLnSNn8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LDm8XQaPKUEiClyhmzcOTtjFSd3byVDHpoMPcmb6vbREBzl7cdpjcrT+vH/U0WQbm
-	 LukRcNmEVpHJ0XrmZvUNdLs52U4/MB11/5vIYuawqiNf+jDy9KtUj+wiuFJvpfHLpd
-	 Bj2BoKpm9BYgKf/PeoJcvrCq1NF+vBNnXnNmY1Ec=
-Date: Tue, 26 Mar 2024 09:20:48 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Herve Codina <herve.codina@bootlin.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Lizhi Hou <lizhi.hou@amd.com>, Max Zhen <max.zhen@amd.com>,
-	Sonal Santan <sonal.santan@amd.com>,
-	Stefano Stabellini <stefano.stabellini@xilinx.com>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Allan Nielsen <allan.nielsen@microchip.com>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Steen Hegelund <steen.hegelund@microchip.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Nuno Sa <nuno.sa@analog.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	stable@vger.kernel.org
-Subject: Re: [PATCH v6 1/2] driver core: Introduce device_link_wait_removal()
-Message-ID: <2024032634-suitable-jeeringly-37f2@gregkh>
-References: <20240325152140.198219-1-herve.codina@bootlin.com>
- <20240325152140.198219-2-herve.codina@bootlin.com>
- <20240325164401.GA276583-robh@kernel.org>
+	b=QPX+K2s6Vr6NTDLfB3RrMOcdU+ZZLsM3yi6/UuG1rCLWGYX+tW6sSPLzry0FeTlqg
+	 P/ZWca+hJGB2i/WX4iK9602OM20iNmLSN2gdhbKNT9wIn2yp/uUJy++OrzzRuhRDqs
+	 ggx07RkbJigaK8eTh8Asbbpd29MpB7P34PzZMBU0NzxjJXhXbgvg7/7FZHo/3UTnhK
+	 JcKUrZ8WIA5I0UbhzsY9cEY3gg5rT0w1Stga4RJUAySOJ8nhfubewH1k6a6H283WWC
+	 pyoqRKPvhhYj2tsqznMU3vZqc9g4oP2xVCKmufFZ4UdB+fM6ttcXopv0p6gbxMNZMw
+	 O1nkLix+uYzWA==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1rp2Ag-0000000060q-3Qe3;
+	Tue, 26 Mar 2024 09:28:39 +0100
+Date: Tue, 26 Mar 2024 09:28:38 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Wesley Cheng <quic_wcheng@quicinc.com>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+	linux-kernel@vger.kernel.org, quic_ppratap@quicinc.com,
+	quic_jackp@quicinc.com
+Subject: Re: [PATCH v16 7/9] usb: dwc3: qcom: Refactor IRQ handling in glue
+ driver
+Message-ID: <ZgKHNuziNtBhGO9V@hovoldconsulting.com>
+References: <20240307062052.2319851-1-quic_kriskura@quicinc.com>
+ <20240307062052.2319851-8-quic_kriskura@quicinc.com>
+ <ZgFyukBXIIwZo7v-@hovoldconsulting.com>
+ <50926b91-3c61-4dbf-85c9-7558ab96e628@quicinc.com>
+ <ZgF6zvaT2OkrbkHK@hovoldconsulting.com>
+ <807015d4-c5ed-4e04-9948-fd1ff894a04e@quicinc.com>
+ <ZgHUR-Rk-YzqiTtt@hovoldconsulting.com>
+ <7b4a6d7f-76ad-471f-a178-dc598fbc0e22@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,54 +79,57 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240325164401.GA276583-robh@kernel.org>
+In-Reply-To: <7b4a6d7f-76ad-471f-a178-dc598fbc0e22@quicinc.com>
 
-On Mon, Mar 25, 2024 at 11:44:01AM -0500, Rob Herring wrote:
-> On Mon, Mar 25, 2024 at 04:21:25PM +0100, Herve Codina wrote:
-> > The commit 80dd33cf72d1 ("drivers: base: Fix device link removal")
-> > introduces a workqueue to release the consumer and supplier devices used
-> > in the devlink.
-> > In the job queued, devices are release and in turn, when all the
-> > references to these devices are dropped, the release function of the
-> > device itself is called.
-> > 
-> > Nothing is present to provide some synchronisation with this workqueue
-> > in order to ensure that all ongoing releasing operations are done and
-> > so, some other operations can be started safely.
-> > 
-> > For instance, in the following sequence:
-> >   1) of_platform_depopulate()
-> >   2) of_overlay_remove()
-> > 
-> > During the step 1, devices are released and related devlinks are removed
-> > (jobs pushed in the workqueue).
-> > During the step 2, OF nodes are destroyed but, without any
-> > synchronisation with devlink removal jobs, of_overlay_remove() can raise
-> > warnings related to missing of_node_put():
-> >   ERROR: memory leak, expected refcount 1 instead of 2
-> > 
-> > Indeed, the missing of_node_put() call is going to be done, too late,
-> > from the workqueue job execution.
-> > 
-> > Introduce device_link_wait_removal() to offer a way to synchronize
-> > operations waiting for the end of devlink removals (i.e. end of
-> > workqueue jobs).
-> > Also, as a flushing operation is done on the workqueue, the workqueue
-> > used is moved from a system-wide workqueue to a local one.
-> > 
-> > Cc: stable@vger.kernel.org
-> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> > Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> > Reviewed-by: Nuno Sa <nuno.sa@analog.com>
-> > Reviewed-by: Saravana Kannan <saravanak@google.com>
-> > ---
-> >  drivers/base/core.c    | 26 +++++++++++++++++++++++---
-> >  include/linux/device.h |  1 +
-> >  2 files changed, 24 insertions(+), 3 deletions(-)
+On Tue, Mar 26, 2024 at 01:41:52PM +0530, Krishna Kurapati PSSNV wrote:
+> On 3/26/2024 1:15 AM, Johan Hovold wrote:
 > 
-> Greg, can you ack and I'll take this series.
+> > Just change the logic in dwc3_qcom_find_num_ports() so that it returns 1
+> > if "dp_hs_phy_1" is missing, and otherwise you determine the number of
+> > ports by iterating from 2 to DWC3_MAX_PORTS - 1.
 
-Looks semi-sane:
+> I made this change and it works. Removed any return value check for the 
+> find_num_ports call as it can return only 1/2/3/4 now.
+> 
+> ---
+>      irq = platform_get_irq_byname_optional(pdev, "qusb2_phy");
+>          if (irq > 0)
+>                  return 1;
+> 
+>          irq = platform_get_irq_byname_optional(pdev, "dp_hs_phy_irq");
+>          if (irq > 0)
+>                  return 1;
 
-Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+As I mentioned above, these two lookups are no longer needed and should
+be removed.
+ 
+>          irq = platform_get_irq_byname_optional(pdev, "dp_hs_phy_1");
+>          if (irq <= 0)
+>                  return 1;
+
+Just assume it's a single port controller unless "dp_hs_phy_1" is
+present.
+ 
+>          for (port_index = 1; port_index < DWC3_MAX_PORTS - 1; 
+> port_index++) {
+
+I think this would be more readable if you use port (num) as iterator
+(2..DWC3_MAX_PORTS) as you're returning a number of ports.
+
+>                  sprintf(irq_name, "dp_hs_phy_%d", port_index + 1);
+
+Then this would use just "port";
+
+> 
+>                  irq = platform_get_irq_byname_optional(pdev, irq_name);
+>                  if (irq <= 0)
+>                          return port_index;
+
+And return "port - 1" here.
+
+>          }
+> 
+>          return DWC3_MAX_PORTS;
+
+Johan
 
