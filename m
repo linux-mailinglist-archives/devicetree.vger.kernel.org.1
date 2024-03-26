@@ -1,218 +1,193 @@
-Return-Path: <devicetree+bounces-53276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F95288BCDA
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 09:53:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0275388BCF8
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 09:59:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 897E51F349E2
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 08:53:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB7162E4712
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 08:59:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1897D18AEA;
-	Tue, 26 Mar 2024 08:53:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A44514290;
+	Tue, 26 Mar 2024 08:59:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lbE/HX7R"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X/YN15D+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E31211CBA
-	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 08:53:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3095524A5
+	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 08:58:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711443197; cv=none; b=Vq4ErDN05yZ1II4ryb8dulItT43HMtbXtG7Zj5oBM+T9LQj0LpQqYcahlvJgABbSwWOfCl470lXz57Z2UMLpsxJ2qKUWr+gTu9nxBOEm52zjc1y3W2CtIQ6ElLAgfeQ4p934Wg9PaoI7WPfTpXIB4g7GMvI3kI/3zhvEZhACDsg=
+	t=1711443540; cv=none; b=fypiW8MhoRlc0M/SwMLcWgq5FpthhjtQi+ofRXjVUUh4JAtvYHRAYvGvQdFCTNvo1lEB/gn5e8khYxx1mGF6PDvjyynik6/bxDYFTtG+hirJKNmyuQbFnrTmiN39Y7fNz9rDMMoscs6ETB7/ZUNtEitf8aRBJZui+qsOrZt/ieE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711443197; c=relaxed/simple;
-	bh=/1xJubbp8El0/+Ldwbi471L/TFLWboOUCibvDvftlxk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aSsiG/cHzncxpnZIUQlZ8msDOjhbiDkIfxwfpNILDwwm+GCw/yrWPdVQthJRANhArAYljDTCgT/KIyJb+ShFbdXoFbxOayTR+E8YPuRmhPKfv7V3fjHeNIxJNLkbeYDg4Pa66jKJb05IOA7ysYFBSg/GheFEFgyAq2fAR5eLvA4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lbE/HX7R; arc=none smtp.client-ip=209.85.208.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-56845954ffeso7353247a12.2
-        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 01:53:14 -0700 (PDT)
+	s=arc-20240116; t=1711443540; c=relaxed/simple;
+	bh=61YEpQEctk39+Hl4KBfW0r3rhweEjJ0fJ2B4wH2t85o=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=TxHwV7GE9oQijjRsrssovLwSex8uNUqPTyGOBvZxOg28xC4JZpW7hgU/1Hbh+Km9moRiMAvS74VXy/99gBXgrA01PuqRmYvgpnruOQxvUiWYJYa5sXgKTyIq2BkQPAhkBiITH+Kbb1Eh/q8ma1bDKq0cQT3hxU+wXNxMPvrQAvg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X/YN15D+; arc=none smtp.client-ip=209.85.216.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-29de2dd22d8so2804384a91.2
+        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 01:58:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711443192; x=1712047992; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=A72GqcohDI7Dvn2lSRVPpUnirl+ZJXgMHX/nxLWx5GU=;
-        b=lbE/HX7RtwiHbTXc3k6HwjpE7ZJQyrd8s3lKHTpo+IlQCZLyQRPWaTiYtMsWzPEDxb
-         uWJEb7h3ulaROHCag0tu3dXtflreeBI9mx5jSUuaS1BlT7VdsIitvG4xRxw8tA4ETI+5
-         Z/qeeFGcVRdqgPL8jKNM2GwYMFYm+b2KMLHRnI+O56qRib24SPBeZpQnST/DF0YgVN/3
-         yOhH4T75ZCsJ7eACApNAw3i22O+AdFTCRRZaosVVIrjauUnsUyUbCyOU/R1nU3qP/H5c
-         xzp14O5VKQHjfGbrvaQPAO6KKSeKga2Os5PUecW7rNXYUvOC5umtExd1KzbipcYHJ9og
-         KsRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711443192; x=1712047992;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1711443538; x=1712048338; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=A72GqcohDI7Dvn2lSRVPpUnirl+ZJXgMHX/nxLWx5GU=;
-        b=KytOKPCiI3LjTwvg+s9SH+xFu2adSn9AZhP1Thfgw3f5g2O/5qIaC0IEDmcRel4o0C
-         mgSxkzoE3ONtHiLHfx3CTIzlPGg3UXHB72jAh3514YEkZK0YOAFEDNypLP9CWMiSMQPn
-         TxEQWmbb2rhgk2Br1Eeih1HZeA3AtKgQcehRpUVJ2l49rZnUi9Ospl0/LD3QDkOtBJMm
-         3/TUUIoXiQCcOp/+DZ/jMUJgFOSazMFnxgsrt2iWPFg8AfAz1c7DPKUeR4URKipBstat
-         14YqEi3eeSHx6v6Tdb79yn05nDv/eH+esN3WgytcoqDt/X7SWG1cv3nfYhCnNXAJSyNt
-         QKNg==
-X-Forwarded-Encrypted: i=1; AJvYcCVT9HIWGSONzCbah+qQPeJ1gdpBtj7zmr56YfOtQWxj3ouDDUixh9LMA2JNPy8wqshDOnU+DoOrgCbhln268or5U+D0pxJ2QMANYw==
-X-Gm-Message-State: AOJu0YwxstYn4Jklgl3XZ6VF4tTUcjelJ8p/C1R9hiL9Rsz4xcZU0hgK
-	uYKLkWKrjwfoCFMbseFRKkEJ2CEx4vTw0LyBE4OhzWojV3PUjs8d1+BdB8HghCM=
-X-Google-Smtp-Source: AGHT+IE3GYQsAD0T4ft0yc5Tkehkoxt5puQRArsnAY9e3ACvMoNJJdvAtKPZu6xylnDBmUENUl4fLQ==
-X-Received: by 2002:a50:d697:0:b0:56b:b5d6:1efc with SMTP id r23-20020a50d697000000b0056bb5d61efcmr5823637edi.18.1711443192518;
-        Tue, 26 Mar 2024 01:53:12 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.44])
-        by smtp.gmail.com with ESMTPSA id x19-20020aa7cd93000000b00568c613570dsm3925247edv.79.2024.03.26.01.53.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Mar 2024 01:53:12 -0700 (PDT)
-Message-ID: <473528ac-dce2-41e3-a6d7-28f8c53a89ef@linaro.org>
-Date: Tue, 26 Mar 2024 09:53:09 +0100
+        bh=RlLleca874SAW15+zdkZzOvUXnwsMFHcyNJEuHBwGLg=;
+        b=X/YN15D+zmN7bcllN5hi/mm34VtmOCpULskMBJ0Ojv7k1UDasHx/HxTHNLFXNgVfKg
+         +WPL7JzUNrMl+YHaBPWPizCnUMd7hCPz0GVUSp4bVGCbN4IqDVaDGCLd+ORDp/QSEHg2
+         belkqHe6ai55aKAdJ+zJ6T1+xjvyboAu+L2HBNBPJ9O7zb8I5o8i2XG2BvyGM/oosz3r
+         9h8GkXuxcbC/h79EgNMAKlUJHQiu4WS6miUjGLu0nIg5N5hQT0MeV7e3jfcEofSAphMR
+         3tdim/KZrbZO7yCyqwPe+WRRBlKpRd3s6LMqd/rEUckNyEL4YbKAIViRo38We1OrvviB
+         peng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711443538; x=1712048338;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=RlLleca874SAW15+zdkZzOvUXnwsMFHcyNJEuHBwGLg=;
+        b=AhlDxitp7yfqDEY6zwfNNIFGPVr0vVhhX2gb/4HCCCm/0WI18IPVaEg4y1orMf8lgp
+         yVL1fGyY9uWktz18SV25QUAMptshz4bOzsQV54RJm/fQEHmtLxVYvw50xpSZTrVlDbcF
+         DR67hKx0uYv7ce0IEADXsPAqK60R6Gs0vUUfnfD4LXzKHsgW1CGOi+POMa1IXQgBR0ly
+         YdNqI87K3cqDZIcReM+ZGyQKyXMCo1e3G9pLyVtHichABSqYelJhbmWwRXc81BwdfIwE
+         j7uEhqVQQ7r4FnsRowULfZ+E+GMej+6nQqOWr0pDGD0O5+Ktjkzu0zMe+t9yRnNf4fs0
+         7MFg==
+X-Forwarded-Encrypted: i=1; AJvYcCURL6Bs/KM2ROT/xxFXOCXsDCRcy0XpWhVPt9a8uNRFcOzptbvsSHKC4dAaiBvVBvq8UgNoEshUBxgA9qoVLRNSVPv8jotY7iwTXQ==
+X-Gm-Message-State: AOJu0Yw8q+eh/97x/C6JWOvvUQPs+ixXxOdFEvrwgqJ3B5lz+eFv41vw
+	qne+es7lppibOoJ0knrGgtpdrqc1rH8WwTlpjqiaLALsxyrtsATo
+X-Google-Smtp-Source: AGHT+IHscOscxpDPYCnU1BOdcuBUn7O2gHLxhoFTs8TwFGhgz0g3fnfNIIQKW1sIHK/WTgf/pXzTzA==
+X-Received: by 2002:a17:90a:4985:b0:2a0:8e90:1de0 with SMTP id d5-20020a17090a498500b002a08e901de0mr256772pjh.3.1711443538122;
+        Tue, 26 Mar 2024 01:58:58 -0700 (PDT)
+Received: from localhost.localdomain ([223.178.85.179])
+        by smtp.googlemail.com with ESMTPSA id qd13-20020a17090b3ccd00b002a058159ff8sm4858525pjb.8.2024.03.26.01.58.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Mar 2024 01:58:57 -0700 (PDT)
+From: Kanak Shilledar <kanakshilledar@gmail.com>
+To: 
+Cc: krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	daniel.baluta@nxp.com,
+	Kanak Shilledar <kanakshilledar111@protonmail.com>
+Subject: [PATCH v2] dt-bindings: serial: actions,owl-uart: convert to dtschema
+Date: Tue, 26 Mar 2024 14:28:14 +0530
+Message-Id: <20240326085814.6343-1-kanakshilledar@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240321084328.200347-1-kanakshilledar@gmail.com>
+References: <20240321084328.200347-1-kanakshilledar@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/3] dt-bindings: dmaengine: Add dmamux for
- CV18XX/SG200X series SoC
-To: Inochi Amaoto <inochiama@outlook.com>, Vinod Koul <vkoul@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
-Cc: Jisheng Zhang <jszhang@kernel.org>, Liu Gui <kenneth.liu@sophgo.com>,
- Jingbao Qiu <qiujingbao.dlmu@gmail.com>, dlan@gentoo.org,
- dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <IA1PR20MB4953B500D7451964EE37DA4CBB352@IA1PR20MB4953.namprd20.prod.outlook.com>
- <IA1PR20MB4953E2937788D9D92C91ABBBBB352@IA1PR20MB4953.namprd20.prod.outlook.com>
- <57398ee0-212c-4c82-bfed-bf38f4faa111@linaro.org>
- <IA1PR20MB4953EDEEFC3128741F8E152EBB352@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <IA1PR20MB4953EDEEFC3128741F8E152EBB352@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 26/03/2024 08:35, Inochi Amaoto wrote:
->>> +
->>> +required:
->>> +  - '#dma-cells'
->>> +  - dma-masters
->>> +
->>
->>
->> I don't understand what happened here. Previously you had a child and I
->> proposed to properly describe it with $ref.
->>
->> Now, all children are gone. Binding is supposed to be complete. Based on
->> your cover letter, this is not complete, but why? What is missing and
->> why it cannot be added?
->>
-> 
-> The binding of syscon is removed due to a usb phy subdevices, which needs 
-> sometime to figure out the actual property. This is why the syscon binding 
-> is removed.
-> 
-> I think it is better to use the origianl syscon series to evolve after
-> the usb phy binding is submitted. The subdevices of syscon may need
-> much reverse engineering to know its parameters. So at least for now,
-> the syscon binding is hard to be complete.
+From: Kanak Shilledar <kanakshilledar111@protonmail.com>
 
-Some explanation why dma-router is gone would be useful, but fine.
+Convert the Actions Semi Owl UART to newer DT schema.
+Created DT schema based on the .txt file which had
+`compatible`, `reg` and `interrupts` as the required properties.
+This binding is used by Actions S500 and S700 SoC.
 
-> 
->>
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    dma-router {
->>> +      compatible = "sophgo,cv1800-dmamux";
->>> +      #dma-cells = <2>;
->>> +      dma-masters = <&dmac>;
->>> +      dma-requests = <8>;
->>> +    };
->>> diff --git a/include/dt-bindings/dma/cv1800-dma.h b/include/dt-bindings/dma/cv1800-dma.h
->>> new file mode 100644
->>> index 000000000000..3ce9dac25259
->>> --- /dev/null
->>> +++ b/include/dt-bindings/dma/cv1800-dma.h
->>
->> Filename should match bindings filename.
->>
-> 
-> Thanks.
-> 
->>
->> Anyway, the problem is that it is a dead header. I don't see it being
->> used, so it is not a binding.
->>
-> 
-> This header is not used because the dmamux node is not defined at now.
+Signed-off-by: Kanak Shilledar <kanakshilledar111@protonmail.com>
+---
+Changes in v2
+- Added Clock property to fix the warning of `dts/actions/s700-cubieboard7.dtb: 
+serial@e0126000: Unevaluated properties are not allowed 
+('clocks' was unexpected)` thrown by `make dtbs_check`
+- Changed the compatible identifier for having both the compatible names
+earlier was throwing `owl-s500-cubieboard6.dtb: serial@b0120000: compatible:
+['actions,s500-uart', 'actions,owl-uart'] is too long` warning.
+- Updated commit message
 
-In the driver? The binding header is supposed to be used in the driver,
-otherwise it is not a binding.
 
-> And considering the limitation of this dmamux, maybe only devices that 
-> require dma as a must can have the dma assigned. 
-> Due to the fact, I think it may be a long time to wait for this header
-> to be used as the binding header.
+ .../bindings/serial/actions,owl-uart.txt      | 16 -------
+ .../bindings/serial/actions,owl-uart.yaml     | 46 +++++++++++++++++++
+ 2 files changed, 46 insertions(+), 16 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/serial/actions,owl-uart.txt
+ create mode 100644 Documentation/devicetree/bindings/serial/actions,owl-uart.yaml
 
-I don't understand. You did not provide a single reason why this is a
-binding. Reason is: mapping IDs between DTS and driver. Where is this
-reason?
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/serial/actions,owl-uart.txt b/Documentation/devicetree/bindings/serial/actions,owl-uart.txt
+deleted file mode 100644
+index aa873eada02d..000000000000
+--- a/Documentation/devicetree/bindings/serial/actions,owl-uart.txt
++++ /dev/null
+@@ -1,16 +0,0 @@
+-Actions Semi Owl UART
+-
+-Required properties:
+-- compatible :  "actions,s500-uart", "actions,owl-uart" for S500
+-                "actions,s900-uart", "actions,owl-uart" for S900
+-- reg        :  Offset and length of the register set for the device.
+-- interrupts :  Should contain UART interrupt.
+-
+-
+-Example:
+-
+-		uart3: serial@b0126000 {
+-			compatible = "actions,s500-uart", "actions,owl-uart";
+-			reg = <0xb0126000 0x1000>;
+-			interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+-		};
+diff --git a/Documentation/devicetree/bindings/serial/actions,owl-uart.yaml b/Documentation/devicetree/bindings/serial/actions,owl-uart.yaml
+new file mode 100644
+index 000000000000..095f299a851d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/serial/actions,owl-uart.yaml
+@@ -0,0 +1,46 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/serial/actions,owl-uart.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Actions Semi Owl UART
++
++maintainers:
++  - Kanak Shilledar <kanakshilledar111@protonmail.com>
++
++allOf:
++  - $ref: serial.yaml
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - actions,s500-uart
++          - actions,s900-uart
++      - const: actions,owl-uart
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    serial@b0126000 {
++        compatible = "actions,s500-uart", "actions,owl-uart";
++        reg = <0xb0126000 0x1000>;
++        interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
++    };
+-- 
+2.34.1
 
 
