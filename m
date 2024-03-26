@@ -1,101 +1,89 @@
-Return-Path: <devicetree+bounces-53608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53607-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 773E888CD37
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 20:29:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB99988CD34
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 20:29:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 31F832E8A96
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 19:29:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1259F1C3F10B
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 19:29:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A6BF13D248;
-	Tue, 26 Mar 2024 19:29:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A66113CFB7;
+	Tue, 26 Mar 2024 19:29:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="anJXt3Nf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EA2D13CFB7;
-	Tue, 26 Mar 2024 19:29:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D51EA3DABF5;
+	Tue, 26 Mar 2024 19:29:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711481392; cv=none; b=Wp8DXIr/ieF8TEv5bMABsJB3LvrG3fFDgW/02Cm/Gd0zvV+8DjNGnbAzyJR9FXHVCPheRD1Os81yG5IZAmCFkTb08ujT/c9HLSNdrEa7WEigAxmW6Fb8nyw00cLoqL9wjAhAo2yxMzCDb5Nfszo22FGqhDpP3n2BdurwLifxbaU=
+	t=1711481381; cv=none; b=VJGn3nYIujpEkYs2Oda0Az8hzEKp1ddDy0WYF7tnNRTTfzVHndzuqPpEBy/ab3P3SP3QmRNNwcme+2YgyY2Y7GIzP/AY8ojRRlk0cuqNMPALpdKUDW9xQwKfGUg0m1Lh8NwZgrpZ5PnVoJN/A1sb1B/Ha/1hUZ4GnR/KbwMqWyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711481392; c=relaxed/simple;
-	bh=YW01FOTBgQuTjpZIEOnxXCe1aGb2AMOheChci7COxn8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bhUN4es0UrRY+9q2cRzCtm+0FKHTckISmpQ90O4idS6SSRoIe14Ju2qV4nPizFWJnieWOolKszLuJMRYavhAQ3LYZzxBjnORqKgnQsVywdYVuUYEyj6nCVFoJgt7KnVcJPIddh7AhC4pYN8y3MwOtQ9EuUHHIM2fZtF2VYA69M0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875aaf.versanet.de ([83.135.90.175] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1rpCUM-00073Q-7n; Tue, 26 Mar 2024 20:29:38 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: hjc@rock-chips.com, andy.yan@rock-chips.com, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH] dt-bindings: display: rockchip: add missing #sound-dai-cells to
- dw-hdmi
-Date: Tue, 26 Mar 2024 20:29:37 +0100
-Message-ID: <1994969.8hb0ThOEGa@diego>
-In-Reply-To: <5fb55234-4afd-4e6a-9763-4d2e344e0ce6@linaro.org>
-References:
- <20240326172801.1163200-1-heiko@sntech.de>
- <edc0bfa2-7984-4d9d-ba25-4805ee0be679@linaro.org>
- <5fb55234-4afd-4e6a-9763-4d2e344e0ce6@linaro.org>
+	s=arc-20240116; t=1711481381; c=relaxed/simple;
+	bh=/ZOKKbiOIJidOe7A6Rrw3EBU/sq8/cXDVEmyueoxy48=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hSKXgdrMa4fwCp3KEXGWOUYEBFfQv16wixZ2U6JlAkkgOrls/N6Lf1fhGD3AB0U4xmrD/W0Ieo5MUvFywwUfcUtOhe9aeUb+iSnhO8Yx+IBbpZuAxbVy56B/TPrgbkLfFe+y/qCOyvQtGLwWXScJGUKCBc5AAkdoe33wXMpAqOk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=anJXt3Nf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3ACBDC433C7;
+	Tue, 26 Mar 2024 19:29:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711481381;
+	bh=/ZOKKbiOIJidOe7A6Rrw3EBU/sq8/cXDVEmyueoxy48=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=anJXt3NftnfGovMuRfstSTZlzHtNIpPCUnnrelYgqeDjr45YJ9at+4e3lGKyLpigP
+	 Jn2b6vAKKVIeaqv7E+2SieH+ZTx58fzw9VelBH0X/pazIgpEkbKYn+PuWd4PKeEkjF
+	 8a9MtcHSDRjo8MEXVOZFE6scpJ5hKUiKoGLwHBG88r84y98q4AMTeJjxHnchFN6LoE
+	 v3SGX31OQlpgHKwUikIB1zzma1RZU8P1EIUZjBw1Hpy5XvvBISuvGnuxG5C6KTq3oM
+	 A0K7OBCmspZRxrndkOb1BvfOtu3t9Yz5vxrA6ttG3tFAwnD+pN6l2Eh1r76N8hk8co
+	 ljr4q+T5Fpblw==
+Date: Tue, 26 Mar 2024 14:29:39 -0500
+From: Rob Herring <robh@kernel.org>
+To: Eric Woudstra <ericwouds@gmail.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Frank Wunderlich <frank-w@public-files.de>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Lucien Jheng <lucien.jheng@airoha.com>,
+	Zhi-Jun You <hujy652@protonmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 net-next 1/2] dt-bindings: net: airoha,en8811h: Add
+ en8811h
+Message-ID: <20240326192939.GA3250777-robh@kernel.org>
+References: <20240326162305.303598-1-ericwouds@gmail.com>
+ <20240326162305.303598-2-ericwouds@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240326162305.303598-2-ericwouds@gmail.com>
 
-Am Dienstag, 26. M=E4rz 2024, 18:50:37 CET schrieb Krzysztof Kozlowski:
-> On 26/03/2024 18:50, Krzysztof Kozlowski wrote:
-> > On 26/03/2024 18:28, Heiko Stuebner wrote:
-> >> The #sound-dai-cells DT property is required to describe link between
-> >> the HDMI IP block and the SoC's audio subsystem.
-> >>
-> >> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-> >> ---
-> >>  .../devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml | 3 +++
-> >>  1 file changed, 3 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockch=
-ip,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockch=
-ip,dw-hdmi.yaml
-> >> index af638b6c0d21..3768df80ca7a 100644
-> >> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-h=
-dmi.yaml
-> >> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-h=
-dmi.yaml
-> >> @@ -124,6 +124,9 @@ properties:
-> >>      description:
-> >>        phandle to the GRF to mux vopl/vopb.
-> >> =20
-> >> +  "#sound-dai-cells":
-> >> +    const: 0
-> >> +
-> >=20
-> > Then you miss $ref in allOf to /schemas/sound/dai-common.yaml
->=20
-> I meant, except your change you should add also above $ref.
+On Tue, Mar 26, 2024 at 05:23:04PM +0100, Eric Woudstra wrote:
+> Add the Airoha EN8811H 2.5 Gigabit PHY.
+> 
+> The en8811h phy can be set with serdes polarity reversed on rx and/or tx.
+> 
+> Signed-off-by: Eric Woudstra <ericwouds@gmail.com>
 
-sorry about that, will fix that.
+Did you change something or forget to add Krzysztof's Reviewed-by?
 
-Thanks for the pointer
-Heiko
-
-
-
+> ---
+>  .../bindings/net/airoha,en8811h.yaml          | 56 +++++++++++++++++++
+>  1 file changed, 56 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/airoha,en8811h.yaml
 
