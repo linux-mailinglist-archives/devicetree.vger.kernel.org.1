@@ -1,125 +1,119 @@
-Return-Path: <devicetree+bounces-53282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53284-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90B6288BD0C
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 10:00:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96A1A88BD18
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 10:01:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4BF1C2E49A6
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 09:00:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4EA2C1F3C72A
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 09:01:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05AEC1B299;
-	Tue, 26 Mar 2024 09:00:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="JMrkR3Yu"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C96D21353;
+	Tue, 26 Mar 2024 09:01:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49BDE182AE;
-	Tue, 26 Mar 2024 09:00:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 350784C635;
+	Tue, 26 Mar 2024 09:01:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711443649; cv=none; b=OOml/jmYkjEtLg+Pj/4RXyU0+MWhI6BI/NJe0E5+iOX3dqu6CCjSb8JIzNNRTss7KVNvCpBc45OwTSgR0kZFb5KKrqZy92TMY8aGZbuYFqyxX/zK1Nr1Oz/oD1ZgRnDajJeXtKNHGLzFLvujQHXbPf2scFU6060JSkE84PpFLko=
+	t=1711443684; cv=none; b=PjApBoy0oG3SULS4rPFu+Lpj8GwSoiDBzXvDLwDCxFXpwD17cNfELDz97ntc69tgLy5tV/z8wPSDEhmyfnqVxNQy+4GVts+D8ScIl2ASYBsewnlYB5O4lkt4q4BTkX5H+1e0x5IdfwL/enI5IhqF10w7GFNxWD/MUn9wdQzZiWY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711443649; c=relaxed/simple;
-	bh=+wd5QAkdUVK72DSv5q0YcoVlXQfUUb7wMpvwf+pMKjM=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=EH8eRPMD3OoH3uNOlITdY1DVL/cl39UwkqAMvkyzbdILQGi9XwOwqOuHZBpRXcM8psvScBWgJlyII6ffgqqttK0X37bCZkpwAgn6OUibPakQG8BB1RuQ5Qe5tbRWAmapYmvnWR+M8bscxiXx9jrqyVNfO2z7iFojTQr8UwxKdCk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=JMrkR3Yu; arc=none smtp.client-ip=188.40.30.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
-	s=default2211; h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:
-	In-Reply-To:From:Subject:Mime-Version:Content-Type:Sender:Reply-To:Content-ID
-	:Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:
-	Resent-Cc:Resent-Message-ID; bh=nqsIzUYe4Uyqg7s5Qh9gOSV7VZcuT7RC17INw0URvwA=;
-	b=JMrkR3YuYGk2PvNygRJJI4F+b9l19kd33Q+6fNNGkP+xH1WbH8KFFvveBOglLgqKA2PxHXjTaYu
-	jlQRix5IKkRfF3LS/r9vbM4RJ4yQiQViWYQF9SfR6yHXdwvaSB9SM2P3+j0f/NLIiszPhnTKEmMTV
-	i5ZZxPRqjlzcUa3GMiyyGX5DJvnWcZi0iC+KIWHjyXRlRhx3kZrsQ4vgSkUiF3J9t8r8B48a1guvG
-	GnX/EYFhEKTJYpLVnKWLuSvIhqh93b3yuuQCb5WLHdVKsXm/t5hO6Q7TvEtRnIyCOMuIL+nl5JW95
-	kcXdQkcLYYjeLEpgrSQoDEvRelKXkJli6LZA==;
-Received: from sslproxy07.your-server.de ([78.47.199.104])
-	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <sean@geanix.com>)
-	id 1rp2fl-0009W7-9W; Tue, 26 Mar 2024 10:00:45 +0100
-Received: from [185.17.218.86] (helo=smtpclient.apple)
-	by sslproxy07.your-server.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <sean@geanix.com>)
-	id 1rp2fk-000DcW-1h;
-	Tue, 26 Mar 2024 10:00:44 +0100
-Content-Type: text/plain;
-	charset=us-ascii
+	s=arc-20240116; t=1711443684; c=relaxed/simple;
+	bh=NJwrtuEfUMChW79+WHibj4DuhjOZYYaooKfB0VtC0sA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=kDf9kOV/HSbaqz3Oa6dpMS5Tt1O4Xaza3C9cXLpzs2nVhUDjN9GetS7mcGFnPu1eGskpCuzNQfa9jha+JoraVLUd+GoCKgDNXnGWSry7FDk2O+nq8FrNAdK9GraBnPmJOA6zpp8FeTGNkdBOPJtUF01e4ksazIX9iJKtlnEP8CY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [112.20.109.198])
+	by gateway (Coremail) with SMTP id _____8CxWOjfjgJmgk4eAA--.51772S3;
+	Tue, 26 Mar 2024 17:01:19 +0800 (CST)
+Received: from localhost.localdomain (unknown [112.20.109.198])
+	by localhost.localdomain (Coremail) with SMTP id AQAAf8BxVMzajgJmV7JoAA--.13451S2;
+	Tue, 26 Mar 2024 17:01:16 +0800 (CST)
+From: Binbin Zhou <zhoubinbin@loongson.cn>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Yinbo Zhu <zhuyinbo@loongson.cn>
+Cc: Huacai Chen <chenhuacai@kernel.org>,
+	loongson-kernel@lists.loongnix.cn,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev,
+	Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH v1 0/8] Add Loongson-2k0500 and Loongson-2k2000 clock support
+Date: Tue, 26 Mar 2024 17:00:59 +0800
+Message-ID: <cover.1710926402.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.400.31\))
-Subject: Re: [PATCH 1/5] dt-bindings: iio: dac: ti,dac5571: Add DAC081C081
- support
-From: Sean Nyekjaer <sean@geanix.com>
-In-Reply-To: <20240325203245.31660-2-laurent.pinchart@ideasonboard.com>
-Date: Tue, 26 Mar 2024 10:00:34 +0100
-Cc: devicetree@vger.kernel.org,
- imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org,
- Trevor Zaharichuk <trevor@au-zone.com>,
- Greg Lytle <greg@au-zone.com>,
- Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- linux-iio@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <95E1531C-EC87-4565-AF92-398B9125881F@geanix.com>
-References: <20240325203245.31660-1-laurent.pinchart@ideasonboard.com>
- <20240325203245.31660-2-laurent.pinchart@ideasonboard.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-X-Mailer: Apple Mail (2.3774.400.31)
-X-Authenticated-Sender: sean@geanix.com
-X-Virus-Scanned: Clear (ClamAV 0.103.10/27225/Mon Mar 25 09:30:27 2024)
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:AQAAf8BxVMzajgJmV7JoAA--.13451S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
+X-Coremail-Antispam: 1Uk129KBj93XoW7Wry7Aw1UAFy7Xr1rWFWxGrX_yoW8XF43pa
+	9xuay3tr1DCFy7ZryYqrWUArnY9rW5JF9rZa15Ka4UCrWDZ3Wjq3WxtFyYqFZrZr43A342
+	qr95Gr47CF45CagCm3ZEXasCq-sJn29KB7ZKAUJUUUUx529EdanIXcx71UUUUU7KY7ZEXa
+	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+	0xBIdaVrnRJUUUBIb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+	IYs7xG6rWj6s0DM7CIcVAFz4kK6r126r13M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+	0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
+	xVW8Jr0_Cr1UM2kKe7AKxVWUAVWUtwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07
+	AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWU
+	tVWrXwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7V
+	AKI48JMxkF7I0En4kS14v26r126r1DMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY
+	6r1j6r4UMxCIbckI1I0E14v26r126r1DMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7
+	xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xII
+	jxv20xvE14v26r4j6ryUMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw2
+	0EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x02
+	67AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU8Gii3UUUUU==
 
+Hi all:
 
+As we know, the Loongson-2K family of SoCs (ls2k0500/ls2k1000/ls2k2000)
+have a similar clock structure, and I support them to be configured with
+different parameters (e.g., register offsets, etc.).
 
-> On 25 Mar 2024, at 21.32, Laurent Pinchart =
-<laurent.pinchart@ideasonboard.com> wrote:
->=20
-> The DAC081C081 is a TI DAC whose software interface is compatible with
-> the DAC5571. It is the 8-bit version of the DAC121C081, already
-> supported by the DAC5571 bindings. Extends the bindings to support =
-this
-> chip.
->=20
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Reviewed-by: Sean Nyekjaer <sean@geanix.com>
-> ---
-> Documentation/devicetree/bindings/iio/dac/ti,dac5571.yaml | 1 +
-> 1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/dac/ti,dac5571.yaml =
-b/Documentation/devicetree/bindings/iio/dac/ti,dac5571.yaml
-> index 79da0323c327..e59db861e2eb 100644
-> --- a/Documentation/devicetree/bindings/iio/dac/ti,dac5571.yaml
-> +++ b/Documentation/devicetree/bindings/iio/dac/ti,dac5571.yaml
-> @@ -21,6 +21,7 @@ properties:
->       - ti,dac5573
->       - ti,dac6573
->       - ti,dac7573
-> +      - ti,dac081c081
->       - ti,dac121c081
->=20
->   reg:
-> --=20
-> Regards,
->=20
-> Laurent Pinchart
->=20
+To make it easier to add support for different SoCs, I refactored the
+original driver to make the whole driver as understandable as possible.
 
+Briefly, I have divided all clocks into three categories according to
+their properties and their parent clocks: Independent PLLs, clocks based
+on frequency scales, and clock dividers.
+
+Thanks.
+
+Binbin Zhou (8):
+  dt-bindings: clock: add Loongson-2K expand clock index
+  clk: clk-loongson2: Refactor driver for adding new platforms
+  dt-bindings: clock: loongson2: add Loongson-2K0500 compatible
+  clk: clk-loongson2: Add Loongson-2K0500 clock support
+  dt-bindings: clock: loongson2: add Loongson-2K2000 compatible
+  clk: clk-loongson2: Add Loongson-2K2000 clock support
+  LoongArch: dts: Add clock support to Loongson-2K0500
+  LoongArch: dts: Add clock support to Loongson-2K2000
+
+ .../bindings/clock/loongson,ls2k-clk.yaml     |   4 +-
+ .../boot/dts/loongson-2k0500-ref.dts          |   4 +
+ arch/loongarch/boot/dts/loongson-2k0500.dtsi  |  57 +-
+ .../boot/dts/loongson-2k2000-ref.dts          |   4 +
+ arch/loongarch/boot/dts/loongson-2k2000.dtsi  |  19 +-
+ drivers/clk/clk-loongson2.c                   | 549 ++++++++++--------
+ include/dt-bindings/clock/loongson,ls2k-clk.h |  58 +-
+ 7 files changed, 410 insertions(+), 285 deletions(-)
+
+-- 
+2.43.0
 
 
