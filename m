@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-53249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64D3888BB0F
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 08:18:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FF2D88BB1F
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 08:21:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D2E391F386FF
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 07:18:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4386B1C2AE38
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 07:21:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2597130A6E;
-	Tue, 26 Mar 2024 07:18:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 814A013049B;
+	Tue, 26 Mar 2024 07:21:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wTmiXm2x"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="irltSy6u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA57C12DD8C
-	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 07:18:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C477912AAE6
+	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 07:21:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711437525; cv=none; b=KAWiCmmWhnU8/8F8WHDAY/XafyzFFg/NpRuXbISwm9kuoX1FrjOiFNYmkjDMqRZHR57UtbbbMfAhifK6q5RK1YtbJiInvM2TR8H9tuoyfUz4sGazF8MLqBNnwv+tWrhXwNBkyFyNElzqHrNwFqFcjXnCY79xeOCqopjfDurNMVA=
+	t=1711437670; cv=none; b=py9tUa5QrewhzXWErWLSwRq95YGaHo1hzzO0Ib+KWnxWGBiCw/EsNMo2LLG1waUHZnmJbZY3UJfOZv1rX6MxfqAdWujyA252LGOAGoUu/9Bmcj59J8P8lsviXzCoX7UQpLyE2CNEQnO8JozsFMGsA9jkUnArZFm/L5tguU9mBHE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711437525; c=relaxed/simple;
-	bh=xk5ngh//0etSjxXuZueYUupdxIwqf5DD2o/enmtnOgY=;
+	s=arc-20240116; t=1711437670; c=relaxed/simple;
+	bh=uOBlgB1p9x3JSrqgROMcDWtycb5ZnSgCUHNKiU3W7xo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CbvsEfX4aqHlYum/+JIBzEE+OYkTw0AeOx7t8FOpEzsQk71EN9OaBlPG2vh2Wk4TyFVPHVPxxPzZ+IaRGyS5lQHB2iTE7fYdfQPjQLvmT5fzyqLDKx8k/m+RVnE3YcR+RhbaON57lysZptmDMlZI1Luyf6F2URbZ8nSeHxs/1f4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wTmiXm2x; arc=none smtp.client-ip=209.85.218.54
+	 In-Reply-To:Content-Type; b=D3VrBrzv2l9QRISV/PsnXXl9jyvRvpzFi2glhSsEXEUkYrq6kDmseBbaxqQvnmmtR0AISPVpELdUBvFLYp+rpnmLJR3Sd3aaUdgorDO2f9BbP4EQysYKuodw33/GljZXjo4rFP6qF/A30OaVrKdWzQLyjCnBZOBZY0gZUkWAGrI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=irltSy6u; arc=none smtp.client-ip=209.85.218.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a44f2d894b7so625997966b.1
-        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 00:18:42 -0700 (PDT)
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a4715991c32so616046966b.1
+        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 00:21:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711437521; x=1712042321; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711437667; x=1712042467; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=wst34g7aDI1Y1qIgvRqvSl8QmnnNWUgzQivFPN5vxdg=;
-        b=wTmiXm2xHD2qtb245xRrSjN7976iGaxZkFtIYjk0s+M7OqadnHxbtEhEUvfm26uAHF
-         ol5x0xL3cmbdys0TT7DXLneyZBwnVlSVEJLrdnLP9Kg+qYxMWRp+u4XBQKL7IfqeKXZy
-         SieKGuSR1dH+j8GwDE6FQKlWmkI9MUyU1/CCx3gMsk0EIbP4F9OFK6/4WPrvr6nnc3Cw
-         guxlGNhNcJV+ru64q5KlPbYjIWb/vBlzX+3fUSPhlFuy1uTA79CTHrOnGJSb9qL43XrK
-         jaDro/lGKTh5dAY+y5Z8ZwBcfqWo5nY+u3S5kd7JMZhOGEhhFvUiC2+iQDeJS39N1s2w
-         u5Pw==
+        bh=gQvyjL1JP7dUtLIsTDE7fRpuoDc199wdAbqg5zYn6Ik=;
+        b=irltSy6uJhIHdGcQ5/6QOVc9AwQNO4LxBX2gf/JmXHc4RN4YX+6PcggsiOWogiMR5H
+         je7Qbpw1DGA9H/PyE2wNn8SbCtrMqEgr0Vrjk4PqGE53YYGWH0zUUj6UhtWosuaw9e9D
+         bz42zmAimXkQR0W3frHsAgyw/E8APG74N3xbLvTHBze5QHHn2C9s6X60+pxan7HXK2H3
+         KBqUaeuKwjSRwB19ozg5AxzlaCaBSb1yXEbx4H4d06GVOor3jx37hYsNZvkBSnIOK6Fz
+         f44lHPG8yCXsgxu6Vkidmx1pTMOrl4eSqo8qieXeSSKcZoaYJeWLz3oKiTaV+s9gkSnK
+         Y2tw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711437521; x=1712042321;
+        d=1e100.net; s=20230601; t=1711437667; x=1712042467;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=wst34g7aDI1Y1qIgvRqvSl8QmnnNWUgzQivFPN5vxdg=;
-        b=ncR+/jib3jMd0GMEJFgy68qme/xlTy9vbym+FobuUvdS0kz02ppYEcnAk3oSp75vf9
-         Ovu1Rcx64PtMvZ/6IpZ4XT21B/J7CdETNDjGCUc1QWHjc3pzH4B/YMojeo8m2DgpKRIU
-         K5KX4cs6U6CRw2DU4sy5GO/EFp8z02tmppZW5uHyHBQg1nZ9bxuTG4GS136F/gycdx/w
-         aPy9vdoc9r43uZKzyHH+038a+ZwAHaaQ9bCQGk9VovUr0QtcHjLNJwfYJalFsCMod8sI
-         +ID/pmOXp9XSULTmTJUzjgLnFumE5S7ERr/9JORL/rq0hue9I/SZQzu33paiIkLViI+O
-         bOOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVx7x2aOGWzvciTQb5FEX/2BJw3ux7nYgpk+5J8P7cK+ek+ucLTsvYiCN4r1RSKzhfC45MSpYKWkePcWuNYWEQkwqcsyYrW6Y7sCg==
-X-Gm-Message-State: AOJu0YzZPRrK3hqe71f5r5dJJypUFTdHxTQrA1vDaF5tckT9LBoBoxqZ
-	7Bl/cC3Xa4Oo6K+LhnntP97bTUk4x1xIDxO7GLHFfH1ZqbKPCWbFdFpRFPMPKX4=
-X-Google-Smtp-Source: AGHT+IGuNZrgtLgZJe/8sFakjyicwMckbQoYVPx05H4Gt/Ul9Ig3HIOt4+4rCkA4fdzE4qed436cvg==
-X-Received: by 2002:a17:906:3e53:b0:a47:4896:c4a1 with SMTP id t19-20020a1709063e5300b00a474896c4a1mr1178590eji.42.1711437521041;
-        Tue, 26 Mar 2024 00:18:41 -0700 (PDT)
+        bh=gQvyjL1JP7dUtLIsTDE7fRpuoDc199wdAbqg5zYn6Ik=;
+        b=KaHM1TmxR0HcIenCT+qeHY0oG0/MwEGVh346SPmMTO3WA9wynalj+MHRehHDyL7uyW
+         oVVz9sdpkieyZoU59EZ8/f5vypoSJB9CIG3A5j8EM8p+nXNy/Z+q7pI/nVqwm3K1mSQw
+         rNSSIp7EhybS4Ky2g8ktN3y52CXsh4o2IAM/yvBojCYNh5EloFaGgxY+z6aqv0yFJmG0
+         +mmCWg79HMh1CJYpedcgHTpPdH5R3t6RUQewp5GWczdC1usSTQNc9qby+B0pOUb0X8D+
+         THSMk7u5U56Wva0qgS6VNUWTduwR/j7mJLEKP6DntHwpM7fSh20zCChX2NjKWRazrq2N
+         hXgg==
+X-Forwarded-Encrypted: i=1; AJvYcCV20N1jzrUntqCeoAHC8kSRYLQQNOcTTBAL06oRrHpNRMBcDCZBxqktQAR3ZrA6FQrflDipNOAELsjmOC6Cn/IxGSewzDC+JXJGrw==
+X-Gm-Message-State: AOJu0Ywd50/gFdZV7dpV4kNVyIsWoEr0C5x65jTygmEavU5TwX7KkwWL
+	jmoiHNGk3EvL2aNfdl5+X5f1wfzFaNkrdOOnc4IAzZZI9fri0alncSLJwB8vCgE=
+X-Google-Smtp-Source: AGHT+IEhtVX/jI8OUqRWaBRSZSfUA30w4qKYQxo1re+CTMiluCxWmSEsxrzpWxVNfeEH7B0QJTbfZQ==
+X-Received: by 2002:a17:906:3b92:b0:a47:30b2:3af7 with SMTP id u18-20020a1709063b9200b00a4730b23af7mr6241925ejf.45.1711437667166;
+        Tue, 26 Mar 2024 00:21:07 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.44])
-        by smtp.gmail.com with ESMTPSA id ka17-20020a170907991100b00a472c4b9486sm3883901ejc.84.2024.03.26.00.18.39
+        by smtp.gmail.com with ESMTPSA id cb26-20020a170906a45a00b00a4660dc5174sm3909716ejb.51.2024.03.26.00.21.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Mar 2024 00:18:40 -0700 (PDT)
-Message-ID: <2905247d-03b0-45c1-add5-d3c2a986d87c@linaro.org>
-Date: Tue, 26 Mar 2024 08:18:39 +0100
+        Tue, 26 Mar 2024 00:21:06 -0700 (PDT)
+Message-ID: <58ec79cc-150e-4fef-bb4b-9d29901e9a04@linaro.org>
+Date: Tue, 26 Mar 2024 08:21:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,7 +77,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: hsi: hsi-client: convert to YAML
+Subject: Re: [PATCH 2/3] dt-bindings: hsi: nokia-modem: convert to YAML
 To: Sebastian Reichel <sebastian.reichel@collabora.com>,
  Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -85,7 +85,7 @@ To: Sebastian Reichel <sebastian.reichel@collabora.com>,
 Cc: Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org,
  linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20240325-hsi-dt-binding-v1-0-88e8e97c3aae@collabora.com>
- <20240325-hsi-dt-binding-v1-1-88e8e97c3aae@collabora.com>
+ <20240325-hsi-dt-binding-v1-2-88e8e97c3aae@collabora.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -132,127 +132,118 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240325-hsi-dt-binding-v1-1-88e8e97c3aae@collabora.com>
+In-Reply-To: <20240325-hsi-dt-binding-v1-2-88e8e97c3aae@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 25/03/2024 22:45, Sebastian Reichel wrote:
-> Convert the legacy txt binding to modern YAML and rename from
-> client-devices to hsi-client. No semantic change.
-
-There is semantic change: missing example (which is reasonable for
-shared schema) but more importantly: some properties are now excluding
-each other.
-
+> Convert the legacy txt binding to modern YAML.
+> No semantic change.
 > 
 > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 > ---
+>  .../devicetree/bindings/hsi/nokia-modem.txt        |  59 ------------
+>  .../devicetree/bindings/hsi/nokia-modem.yaml       | 101 +++++++++++++++++++++
+>  2 files changed, 101 insertions(+), 59 deletions(-)
+> 
 
-...
 
-> diff --git a/Documentation/devicetree/bindings/hsi/hsi-client.yaml b/Documentation/devicetree/bindings/hsi/hsi-client.yaml
+> -};
+> diff --git a/Documentation/devicetree/bindings/hsi/nokia-modem.yaml b/Documentation/devicetree/bindings/hsi/nokia-modem.yaml
 > new file mode 100644
-> index 000000000000..df6e1fdd2702
+> index 000000000000..c57cbcc7b722
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hsi/hsi-client.yaml
-> @@ -0,0 +1,84 @@
+> +++ b/Documentation/devicetree/bindings/hsi/nokia-modem.yaml
+
+Filename should match compatibles. nokia,n9-modem.yaml or nokia,modem.yaml
+
+
+> @@ -0,0 +1,101 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/hsi/hsi-client.yaml#
+> +$id: http://devicetree.org/schemas/hsi/nokia-modem.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: HSI bus peripheral
-> +
-> +description:
-> +  Each HSI port is supposed to have one child node, which
-> +  symbols the remote device connected to the HSI port.
+> +title: Nokia modem
 > +
 > +maintainers:
 > +  - Sebastian Reichel <sre@kernel.org>
 > +
 > +properties:
-> +  $nodename:
-> +    const: hsi-client
-
-Why? Does anything depend on this? It breaks generic-node-name rule. It
-seems you need it only to match the schema, but this just point to main
-problem - missing bus schema.
-
+> +  compatible:
+> +    enum:
+> +      - nokia,n900-modem
+> +      - nokia,n950-modem
+> +      - nokia,n9-modem
 > +
-> +  hsi-channel-ids:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    minItems: 1
-> +    maxItems: 8
-> +
+
+Aren't hsi-channel-ids related to hsi-channel-names? If so, they should
+be here with constraints.
+
 > +  hsi-channel-names:
-> +    minItems: 1
-> +    maxItems: 8
+> +    items:
+> +      - const: mcsaab-control
+> +      - const: speech-control
+> +      - const: speech-data
+> +      - const: mcsaab-data
 > +
-> +  hsi-rx-mode:
-> +    enum: [stream, frame]
-> +    description: Receiver Bit transmission mode
+> +  interrupts:
+> +    items:
+> +      - description: modem reset indication
 > +
-> +  hsi-tx-mode:
-> +    enum: [stream, frame]
-> +    description: Transmitter Bit transmission mode
+> +  gpios:
+> +    minItems: 3
+> +    maxItems: 5
 > +
-> +  hsi-mode:
-> +    enum: [stream, frame]
-> +    description:
-> +      May be used instead hsi-rx-mode and hsi-tx-mode if the
-> +      transmission mode is the same for receiver and transmitter.
-> +
-> +  hsi-speed-kbps:
-> +    description: Max bit transmission speed in kbit/s
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  hsi-flow:
-> +    enum: [synchronized, pipeline]
-> +    description: RX flow type
-> +
-> +  hsi-arb-mode:
-> +    enum: [round-robin, priority]
-> +    description: Arbitration mode for TX frame
-> +
-> +additionalProperties: true
+> +  gpio-names:
+> +    items:
+> +      - const: cmt_apeslpx
+> +      - const: cmt_rst_rq
+> +      - const: cmt_en
+> +      - const: cmt_rst
+> +      - const: cmt_bsi
+> +    minItems: 3
 > +
 > +required:
-> +  - compatible
-> +  - hsi-channel-ids
-> +  - hsi-speed-kbps
-> +  - hsi-flow
-> +  - hsi-arb-mode
-> +
-> +anyOf:
-> +  - required:
-> +      - hsi-mode
-> +  - required:
-> +      - hsi-rx-mode
-> +      - hsi-tx-mode
+> +  - gpios
+> +  - gpio-names
+> +  - interrupts
 > +
 > +allOf:
+> +  - $ref: hsi-client.yaml#
 > +  - if:
-> +      required:
-> +        - hsi-mode
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - nokia,n950-modem
+> +              - nokia,n9-modem
 > +    then:
 > +      properties:
-> +        hsi-rx-mode: false
-> +        hsi-tx-mode: false
-
-I don't understand what you are trying to achieve here and with anyOf.
-It looks like just oneOf. OTOH, old binding did not exclude these
-properties.
-
-
-> +  - if:
-> +      required:
-> +        - hsi-rx-mode
-> +    then:
+> +        gpios:
+> +          maxItems: 3
+> +        gpio-names:
+> +          maxItems: 3
+> +    else:
 > +      properties:
-> +        hsi-mode: false
-> 
+> +        gpios:
+> +          minItems: 5
+> +        gpio-names:
+> +          minItems: 5
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    hsi-client {
 
+This should be "modem".
+
+> +        compatible = "nokia,n900-modem";
+> +
 
 
 Best regards,
