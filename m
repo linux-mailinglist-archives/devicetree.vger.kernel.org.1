@@ -1,138 +1,171 @@
-Return-Path: <devicetree+bounces-53374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72AC088C121
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 12:47:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12DF688C124
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 12:48:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A38291C25D72
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 11:47:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E3B31F3DD2B
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 11:48:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC0ED5C8FE;
-	Tue, 26 Mar 2024 11:47:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="Tdux0Hp8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88F2B5CDD9;
+	Tue, 26 Mar 2024 11:48:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 925325810C;
-	Tue, 26 Mar 2024 11:47:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.15
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EA6838FB9;
+	Tue, 26 Mar 2024 11:48:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711453675; cv=none; b=Rusve/FtOfyFA3bEjNuG8e7FLKZ0bm2NszWLjkCyjvDGbZCaMCydLBQY1/bw+NmkKh+OLQflXWuibVKlipG+xoSb03pwfRtNavGMnFm2dvAc5PjWDBz1exCT2Wm1c4GWTIIFM29c0lrfiKqLJi+SJ57WQteRaCmAa8TBRqUrmso=
+	t=1711453724; cv=none; b=Ul3uMIK6Yh90rpIpSnD5EcZf/AAYJhh1urhmKuhI1zZCiod8ig58lY7YlFNoL+WOLvHb9h3RCVMaccT/kOKjfBRqFu350JWAtvUchmN0ikym9IT6uwJ6mU5oHsLUseri8t+To9I7o5dAMRPM6cx5DGRnDsvItHLiH/Y+AjeyXQ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711453675; c=relaxed/simple;
-	bh=mLLbzPWqXCShXr+6AYIKfaKc6jG654PC5mrnkOY5qLI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Dh1LO6/niZfxqwRArG5IkBO7Mgv5pQAaEKgPOrL7viT2UiYS6v9t3wtr3Pn6HlZMsznfQN3XQZdXJX8apUz9f5jBMKw/DYVEUrzQ9IDivPKUgZisEwjV3zXxiwI5rOwskh7F2+Pxk9gn1qOvo4/lC31WOWN8g9jFyS1WqOnu3h0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=Tdux0Hp8; arc=none smtp.client-ip=212.227.15.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1711453655; x=1712058455; i=wahrenst@gmx.net;
-	bh=N6f/j1hvugJht7nU9PzJXYDvvBRoYWFcCZF6PpD/4A4=;
-	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
-	 In-Reply-To;
-	b=Tdux0Hp8WrZs8vQwzzU2WIcKwlFlMpe10zN/x+4b/w2NPCjET8am4A1YVJ+cj1Nl
-	 jV+eF5TsMyKhPoFmwwPX+/GUSKz7BCRVtr9xe6MlUvU7MlS1i1svk6AzebvtfzJ4X
-	 6GdqIxv8RlPQrXr6tWmh+g7uLaIQVxJxyEDOD0VYiDyGGi1erGX1ZshT0bfJA/BBM
-	 mKY9zlSycTD9J/r07KA1SknnB2kx/+qTmL6fsiIzy+b17QA2Xb9ZsZA/hnpsxmCKF
-	 3BpA5uw5GSF/K3tIuYoO5KC2b7HQvJHCPn6PMt0d6baaR+6/dVUP4or1BCPRnsXuv
-	 7aEZS6KtlW8ltSlcZQ==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.167] ([37.4.248.43]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MpUZ4-1seazL2bsa-00pxzP; Tue, 26
- Mar 2024 12:47:35 +0100
-Message-ID: <45242028-edf7-49fc-80bf-be9eb242b4cd@gmx.net>
-Date: Tue, 26 Mar 2024 12:47:34 +0100
+	s=arc-20240116; t=1711453724; c=relaxed/simple;
+	bh=JhI390Gy3PttFitNsIrOZdKppqY+JuSX3Wk1NJicFz8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=tETKaiuMJG419lXguYXzS4xB/iyG/1PtH8Zh8j6yuR+Z0eXkHi/TzY8q5X2qHwafajS04Nlg5AXXOPnwAtaNZkPwkLVWNEuHByURrhA1TybeXD45GokAyVOGMyu0jOkPgmA9rrigjdtDC657FozebqTOdy9g8dMSIYLA72Z7SoI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6FA582F4;
+	Tue, 26 Mar 2024 04:49:15 -0700 (PDT)
+Received: from donnerap.arm.com (donnerap.manchester.arm.com [10.32.100.28])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F120F3F64C;
+	Tue, 26 Mar 2024 04:48:38 -0700 (PDT)
+From: Andre Przywara <andre.przywara@arm.com>
+To: Yangtao Li <tiny.windzz@gmail.com>,
+	Viresh Kumar <vireshk@kernel.org>,
+	Nishanth Menon <nm@ti.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	"Rafael J . Wysocki" <rafael@kernel.org>
+Cc: linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-sunxi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Brandon Cheo Fusi <fusibrandon13@gmail.com>,
+	Martin Botka <martin.botka@somainline.org>,
+	Martin Botka <martin.botka1@gmail.com>,
+	Chris Morgan <macroalpha82@gmail.com>,
+	Ryan Walklin <ryan@testtoast.com>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>
+Subject: [PATCH v3 0/8] cpufreq: sun50i: Add Allwinner H616 support
+Date: Tue, 26 Mar 2024 11:47:35 +0000
+Message-Id: <20240326114743.712167-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: arm: bcm: raspberrypi,bcm2835-firmware:
- Add missing properties
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
- Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc: Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>,
- Scott Branden <sbranden@broadcom.com>,
- Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>
-References: <20240326004902.17054-1-laurent.pinchart@ideasonboard.com>
- <20240326004902.17054-2-laurent.pinchart@ideasonboard.com>
- <6cc81b1a-12e6-4d81-b6c4-6297c213d5c9@linaro.org>
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <6cc81b1a-12e6-4d81-b6c4-6297c213d5c9@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:sFkdjVxCxLwEVxvh/tMZQaKz5ESRm5BSy2RVwrcpgn94EW6rDMF
- MgjIxThREM+jSIeNikhvlM6hc20tbtghCFeqBPBp/CC87HLg6yIYMPPo6nj49r0nvhdClnB
- OtjFwLNVFblYviI+QYwtQ66Mbw93s65DkgHvPTcWaL0bEygYj/qDl6cQlyRbAiPViDXoMRI
- tr5KUXHJPGnct51TMTwEw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:0IOOzE2zISY=;VoanODvOF82VvAMZfHgxHNEhRsQ
- kGIqhjczfnvsix0gw1AqbFR/C1o8tnGyJ1zguFXXUcljDWlIG8pTJ1hN3BHWt/f78FceP3qFT
- yKb5ZmVi+bP876lO2crq3q/xNR2+CwMcWBCXJ8dXlS90Us2za+OcCDfY0o9/u1/6sK1Eb+lu5
- eCKc2+FD6R0YpYJpbSNTjC4JbGCYZAofDSaCJl3qIvQXJmF46ju/WAWZm7ftQSYFT5JTHe1sv
- fPCcbHAWHjJEHj9B/o8l62Jx6gt8WnMct+cAyVAFm1AoZStAfhfgozs6IPPUZI7z045cs9y1N
- 3Y3BEN7wjEDi3kVm47GHqlJGYOO7Z9RBXqfcHtiJuhT1ZaWY2kIAyBRp6gdy6kzngqT3O4RLB
- WbDNOo/R7VwldgYRCoLndC0IMw8b7qKxq/3hwb0hQDmAbfN7iWWOko+QeHRv38WAJ2wldi9TW
- 4tl1Pod957l3EU58xlkoYTkCNltiJ0B5McNbvdDud4Ue5xavfc/kfbCRAtIniG7rELqX5mJjX
- GtjRrPCj5S7IJ3k/CqXtAzUX4c4VRUujFVI8R5tI/efIIxn6v88KKVGOt1tTJT74lWJOryv+S
- PXZeOC+P9jLKUqJyOE0R4akT1eeSexePlq3wiARwo5tDOOYwgPOXEJOMbkClXbYhMwa55DNAf
- 1B4pZAgWuaKZxXm3TmhOKzcdUeum+tjY3+6WQr7L1UWFTWWOcPn4XLy487YYLhlgImjfQg1VO
- 6AAYQpPnZ1aWNr9gFj+Vr7xOWNy6VlUPWUIRekydAffVCAWl/4vwhS5o29CgbkV+eIT+7LGsA
- 7BZTMfbdIcbemOvFzhuuJe9963YiyfpBWads29zVsRfbM=
+Content-Transfer-Encoding: 8bit
 
-[add Dave since he's working on DMA for Raspberry Pi 4 and maybe have a
-opinion about this]
+This series adds cpufreq support to the Allwinner H616 SoC.
+v3 has seen only little changes compared to v2, which contained quite
+some rework of Martin's original series from about half a year ago[1].
+Thanks for the comments on the list, I adjusted the OPP nodes as
+suggested. See below for a changelog.
 
-[drop Emma Anholt old address since she is not involved anymore]
+=================
+The various H616 chips seem to be qualified by production batches, and
+there is a table that translates from some efuses values to actual speed
+bin indexes. Also the die revision has a say here: we can derive this
+from the SoC ID, already provided by TF-A through the SMCCC SoC ID
+interface.
+So while the H6 had explicit speed bin indexes in the efuses, this is
+conceptually not that different, and after refactoring patch 4/8 this
+can be neatly integrated into the existing (H6) sun50i-cpufreq-nvmem
+driver.
+On top of that, not all chips are qualified to reach the full 1.5GHz,
+and the BSP kernel describes different OPPs for each speedbin. This
+requires to add support for the opp-supported-hw DT property, to be
+able to describe those requirements properly.
 
-Am 26.03.24 um 08:06 schrieb Krzysztof Kozlowski:
-> On 26/03/2024 01:49, Laurent Pinchart wrote:
->> The raspberrypi,bcm2835-firmware devices requires a dma-ranges property=
-,
->> and, as a result, also needs to specify #address-cells and #size-cells.
->> Those properties have been added to thebcm2835-rpi.dtsi in commits
->> be08d278eb09 ("ARM: dts: bcm283x: Add cells encoding format to firmware
->> bus") and 55c7c0621078 ("ARM: dts: bcm283x: Fix vc4's firmware bus DMA
->> limitations"), but the DT bindings haven't been updated, resulting in
->> validation errors:
->>
->> arch/arm64/boot/dts/broadcom/bcm2711-rpi-4-b.dtb: firmware: '#address-c=
-ells', '#size-cells', 'dma-ranges', 'gpio' do not match any of the regexes=
-: 'pinctrl-[0-9]+'
->>          from schema $id: http://devicetree.org/schemas/arm/bcm/raspber=
-rypi,bcm2835-firmware.yaml#
->>
->> Fix this by adding the properties to the bindings.
->>
->> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Children do not perform any IO on their own, because everything is
-> handled by parent. It is really odd to see dma-ranges without ranges.
-> Referenced commits might be also wrong.
->
-> Best regards,
-> Krzysztof
->
->
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+Patch 1/8 exports the SoC ID function, so that we can call it from our
+driver. Patch 2/8 blocks the affected SoCs from the generic DT cpufreq
+driver, patch 3/8 adds the DT binding documentation.
+Patch 4/8 refactors the existing speedbin determination for the H6, to
+be able to plug in the H616 version later more easily.
+Patch 5/8 adds support for the opp-supported-hw property. This is done
+in a generic way, so it's usable for other SoCs as well, and the code
+will figure out if the current DT requires use of this feature.
+Patch 6/8 then eventually adds the H616 bits to the driver, and ties
+that to the new compatible string.
+Patch 7/8 add the CPU OPP table as a .dtsi to the DT directory, the
+values in there were taken from the BSP source.
+Patch 8/8 then enables the OPPs for all boards we have DTs for.
+
+Based on v6.9-rc1.
+
+Please have a look!
+
+Cheers,
+Andre
+
+[1] https://lore.kernel.org/linux-sunxi/20230904-cpufreq-h616-v1-0-b8842e525c43@somainline.org/T/#u
+
+Changelog v2 .. v3:
+- rebased on top of v6.9-rc1
+- drop node name suffix from DT bindings
+- drop multiple nodes per frequency in DT bindings example
+- add H700 nvmem value and OPPs
+- print warning for unknown nvmem values
+- add #cooling-cells properties to CPU DT nodes
+- use one DT node per frequency for OPP table entries
+- include OPP table for newly added Longan board
+
+Changelog v1 .. v2:
+- extend commit messages
+- add H618/H700 SoC IDs
+- fix binding compatible enum
+- fix binding documentation
+- allow additional suffix to OPP node name
+- shorten existing DT binding example
+- add another (opp-supported-hw) binding example
+- move speed bin decoding refactoring to separate patch (Brandon)
+- move opp-supported-hw support to separate patch
+- merge opp-supported-hw and microvolt suffix handling
+- rewrite OPP tables without opp-microvolt-speed suffix
+
+Andre Przywara (2):
+  cpufreq: sun50i: Add support for opp_supported_hw
+  arm64: dts: allwinner: h616: enable DVFS for all boards
+
+Brandon Cheo Fusi (1):
+  cpufreq: sun50i: Refactor speed bin decoding
+
+Martin Botka (5):
+  firmware: smccc: Export revision soc_id function
+  cpufreq: dt-platdev: Blocklist Allwinner H616/618 SoCs
+  dt-bindings: opp: Describe H616 OPPs and opp-supported-hw
+  cpufreq: sun50i: Add H616 support
+  arm64: dts: allwinner: h616: Add CPU OPPs table
+
+ .../allwinner,sun50i-h6-operating-points.yaml |  86 ++++----
+ .../sun50i-h616-bigtreetech-cb1.dtsi          |   5 +
+ .../dts/allwinner/sun50i-h616-cpu-opp.dtsi    | 125 +++++++++++
+ .../allwinner/sun50i-h616-orangepi-zero2.dts  |   5 +
+ .../dts/allwinner/sun50i-h616-x96-mate.dts    |   5 +
+ .../arm64/boot/dts/allwinner/sun50i-h616.dtsi |   8 +
+ .../sun50i-h618-longan-module-3h.dtsi         |   5 +
+ .../allwinner/sun50i-h618-orangepi-zero2w.dts |   5 +
+ .../allwinner/sun50i-h618-orangepi-zero3.dts  |   5 +
+ .../sun50i-h618-transpeed-8k618-t.dts         |   5 +
+ drivers/cpufreq/cpufreq-dt-platdev.c          |   3 +
+ drivers/cpufreq/sun50i-cpufreq-nvmem.c        | 197 +++++++++++++++---
+ drivers/firmware/smccc/smccc.c                |   1 +
+ 13 files changed, 378 insertions(+), 77 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h616-cpu-opp.dtsi
+
+-- 
+2.25.1
 
 
