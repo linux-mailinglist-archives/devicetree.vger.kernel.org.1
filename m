@@ -1,142 +1,185 @@
-Return-Path: <devicetree+bounces-53546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53547-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD7CE88CA85
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 18:14:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4ABAC88CA92
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 18:19:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF13D1C65F24
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 17:14:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F2D811F82B19
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 17:19:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D30D1C2AF;
-	Tue, 26 Mar 2024 17:14:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79E071C6A0;
+	Tue, 26 Mar 2024 17:18:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="raSVCNvJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 806B01B28D;
-	Tue, 26 Mar 2024 17:14:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50B9D1CF9B;
+	Tue, 26 Mar 2024 17:18:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711473292; cv=none; b=m9ou40ZaLSjpsR0tu0ICsIHf5679acUZllwV/q25C14fbEgPNfzQX8UJiu5IBBoH98g0LHbQlhVZ7FSXgW0heDH7I/1mwf017jChf9althN9mwgAPCYnQZgSAxW/3U4aAYJZkwS2laNwj99SW9J0SxkOzg3/BWsS+cOeyuWOfBU=
+	t=1711473530; cv=none; b=DAHY/Y13bZ7PMWMuyFUpUjtEtV73VqdYS3V4W2HX/fn26Vj8f1v3ZTjC0H9liD0ol5ZEvwTjbn3CYWau7PVZz9g74xBlkQAZnm0diFgqw2a3EmfjYJ5yZ5r9F6dn0tfkh110iOczq9ohBvVJ7ch4VGD5DYvpQY2ClektgZyiFuo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711473292; c=relaxed/simple;
-	bh=NI17FeW0Q8sWFev8QwGIWlqd+9TikmhqsHuwJEWouZg=;
+	s=arc-20240116; t=1711473530; c=relaxed/simple;
+	bh=JA/qmHRaIAjWFZrhw5zn3YbHo/eKMDK/V90JzAR7Xo0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=l+d8QPEcAQtqla6Kn75FfVRgaeaJPxBDMqkgLTU7Ti9H7LdXQFHbzxSa/rUUEvMLvzziqFgDaXnnDokw3cFNPrRLeebyw33noWhUR2c20vEl/iaG/sHbT6dAaz7vx1hJtVaE/5M8Y+aC4t/yFYmjB7shOH2quAYSqWyi29iD8XQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8D96A2F4;
-	Tue, 26 Mar 2024 10:15:23 -0700 (PDT)
-Received: from e130802.arm.com (e130802.arm.com [10.1.39.41])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3B3213F64C;
-	Tue, 26 Mar 2024 10:14:47 -0700 (PDT)
-Date: Tue, 26 Mar 2024 17:14:38 +0000
-From: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
-To: Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=M/S3rXO98Nvf0F0SxRWSQNZFAKAoaA/7K/wdHiiBQrGU9swhhh9rUvsM5Dak53inEqB8pemx5rad481gXXsBJpJxzLJI97UuMwcrj1Bx7kRWXwsKw36i+l2+ZGqTU30kj2ZJI46bvY6p/Pnw8PCjU1AUoZcWLZiEgB24BhyuLwQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=raSVCNvJ; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 825BA63B;
+	Tue, 26 Mar 2024 18:18:14 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1711473494;
+	bh=JA/qmHRaIAjWFZrhw5zn3YbHo/eKMDK/V90JzAR7Xo0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=raSVCNvJiTCvzOeyNblulCOWQntBqj0gEmHgob7QFX5q5VmUY6QVabF0JXV+7Pudh
+	 v806+w1z67L0xQtRRm+pADCC82jKYQl1ZkN1fVELIZSyaQRsA3muQaLewb7UZyMqhe
+	 Sk6Wd3kugaEMigD9ftk4bRfyF8ADkurtqfg5sMHI=
+Date: Tue, 26 Mar 2024 19:18:37 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Drew.Reed@arm.com,
-	Adam.Johnston@arm.com, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-remoteproc@vger.kernel.org
-Subject: Re: [PATCH 1/3] remoteproc: Add Arm remoteproc driver
-Message-ID: <20240326171438.GA56238@e130802.arm.com>
-References: <20240311114442.GA82865@e130802.arm.com>
- <CANLsYkwReJvB1UWvR5TwtSs-w_VqU45kDSUzuQ0k+waetEn6Yw@mail.gmail.com>
- <20240312173252.GA38992@e130802.arm.com>
- <ZfHTfNx4um8koTlY@p14s>
- <20240313171756.GA82165@e130802.arm.com>
- <ZfMPS+qn0lh5IrS7@p14s>
- <ZfMQyJWTh15P7Ru3@bogus>
- <CANLsYkzdfP8Np-XwPDt=GBNLYiSypd8tNdb29KUwr+tyi7gJEA@mail.gmail.com>
- <20240325171339.GA368569@e130802.arm.com>
- <CANLsYkwOrtXxObL5MKf30OrUYB_uT=DnGEXUtfjH503r_LyMQA@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: bcm: raspberrypi,bcm2835-firmware:
+ Add missing properties
+Message-ID: <20240326171837.GB17067@pendragon.ideasonboard.com>
+References: <20240326004902.17054-1-laurent.pinchart@ideasonboard.com>
+ <20240326004902.17054-2-laurent.pinchart@ideasonboard.com>
+ <6cc81b1a-12e6-4d81-b6c4-6297c213d5c9@linaro.org>
+ <45242028-edf7-49fc-80bf-be9eb242b4cd@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CANLsYkwOrtXxObL5MKf30OrUYB_uT=DnGEXUtfjH503r_LyMQA@mail.gmail.com>
+In-Reply-To: <45242028-edf7-49fc-80bf-be9eb242b4cd@gmx.net>
 
-Hi Mathieu,
-
-> > > > > > > > > > This is an initial patchset for allowing to turn on and off the remote processor.
-> > > > > > > > > > The FW is already loaded before the Corstone-1000 SoC is powered on and this
-> > > > > > > > > > is done through the FPGA board bootloader in case of the FPGA target. Or by the Corstone-1000 FVP model
-> > > > > > > > > > (emulator).
-> > > > > > > > > >
-> > > > > > > > > >From the above I take it that booting with a preloaded firmware is a
-> > > > > > > > > scenario that needs to be supported and not just a temporary stage.
-> > > > > > > >
-> > > > > > > > The current status of the Corstone-1000 SoC requires that there is
-> > > > > > > > a preloaded firmware for the external core. Preloading is done externally
-> > > > > > > > either through the FPGA bootloader or the emulator (FVP) before powering
-> > > > > > > > on the SoC.
-> > > > > > > >
-> > > > > > >
-> > > > > > > Ok
-> > > > > > >
-> > > > > > > > Corstone-1000 will be upgraded in a way that the A core running Linux is able
-> > > > > > > > to share memory with the remote core and also being able to access the remote
-> > > > > > > > core memory so Linux can copy the firmware to. This HW changes are still
-> > > > > > > > This is why this patchset is relying on a preloaded firmware. And it's the step 1
-> > > > > > > > of adding remoteproc support for Corstone.
-> > > > > > > >
-> > > > > > >
-> > > > > > > Ok, so there is a HW problem where A core and M core can't see each other's
-> > > > > > > memory, preventing the A core from copying the firmware image to the proper
-> > > > > > > location.
-> > > > > > >
-> > > > > > > When the HW is fixed, will there be a need to support scenarios where the
-> > > > > > > firmware image has been preloaded into memory?
-> > > > > >
-> > > > > > No, this scenario won't apply when we get the HW upgrade. No need for an
-> > > > > > external entity anymore. The firmware(s) will all be files in the linux filesystem.
-> > > > > >
-> > > > >
-> > > > > Very well.  I am willing to continue with this driver but it does so little that
-> > > > > I wonder if it wouldn't simply be better to move forward with upstreaming when
-> > > > > the HW is fixed.  The choice is yours.
-> > > > >
-> > > >
-> > > > I think Robin has raised few points that need clarification. I think it was
-> > > > done as part of DT binding patch. I share those concerns and I wanted to
-> > > > reaching to the same concerns by starting the questions I asked on corstone
-> > > > device tree changes.
-> > > >
-> > >
-> > > I also agree with Robin's point of view.  Proceeding with an initial
-> > > driver with minimal functionality doesn't preclude having complete
-> > > bindings.  But that said and as I pointed out, it might be better to
-> > > wait for the HW to be fixed before moving forward.
-> >
-> > We checked with the HW teams. The missing features will be implemented but
-> > this will take time.
-> >
-> > The foundation driver as it is right now is still valuable for people wanting to
-> > know how to power control Corstone external systems in a future proof manner
-> > (even in the incomplete state). We prefer to address all the review comments
-> > made so it can be merged. This includes making the DT binding as complete as
-> > possible as you advised. Then, once the HW is ready, I'll implement the comms
-> > and the FW reload part. Is that OK please ?
-> >
+On Tue, Mar 26, 2024 at 12:47:34PM +0100, Stefan Wahren wrote:
+> [add Dave since he's working on DMA for Raspberry Pi 4 and maybe have a
+> opinion about this]
 > 
-> I'm in agreement with that plan as long as we agree the current
-> preloaded heuristic is temporary and is not a valid long term
-> scenario.
+> [drop Emma Anholt old address since she is not involved anymore]
+> 
+> Am 26.03.24 um 08:06 schrieb Krzysztof Kozlowski:
+> > On 26/03/2024 01:49, Laurent Pinchart wrote:
+> >> The raspberrypi,bcm2835-firmware devices requires a dma-ranges property,
+> >> and, as a result, also needs to specify #address-cells and #size-cells.
+> >> Those properties have been added to thebcm2835-rpi.dtsi in commits
+> >> be08d278eb09 ("ARM: dts: bcm283x: Add cells encoding format to firmware
+> >> bus") and 55c7c0621078 ("ARM: dts: bcm283x: Fix vc4's firmware bus DMA
+> >> limitations"), but the DT bindings haven't been updated, resulting in
+> >> validation errors:
+> >>
+> >> arch/arm64/boot/dts/broadcom/bcm2711-rpi-4-b.dtb: firmware: '#address-cells', '#size-cells', 'dma-ranges', 'gpio' do not match any of the regexes: 'pinctrl-[0-9]+'
+> >>          from schema $id: http://devicetree.org/schemas/arm/bcm/raspberrypi,bcm2835-firmware.yaml#
+> >>
+> >> Fix this by adding the properties to the bindings.
+> >>
+> >> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> >
+> > Children do not perform any IO on their own, because everything is
+> > handled by parent. It is really odd to see dma-ranges without ranges.
+> > Referenced commits might be also wrong.
 
-Yes, that's the plan, no problem.
+Comunication with the firmware goes through a mailbox interface, which
+uses DMA transfers. See for instance
 
-Cheers,
-Abdellatif
+rpi_firmware_transaction(struct rpi_firmware *fw, u32 chan, u32 data)
+{
+	u32 message = MBOX_MSG(chan, data);
+	int ret;
+
+	WARN_ON(data & 0xf);
+
+	mutex_lock(&transaction_lock);
+	reinit_completion(&fw->c);
+	ret = mbox_send_message(fw->chan, &message);
+	if (ret >= 0) {
+		if (wait_for_completion_timeout(&fw->c, HZ)) {
+			ret = 0;
+		} else {
+			ret = -ETIMEDOUT;
+			WARN_ONCE(1, "Firmware transaction timeout");
+		}
+	} else {
+		dev_err(fw->cl.dev, "mbox_send_message returned %d\n", ret);
+	}
+	mutex_unlock(&transaction_lock);
+
+	return ret;
+}
+
+int rpi_firmware_property_list(struct rpi_firmware *fw,
+			       void *data, size_t tag_size)
+{
+	size_t size = tag_size + 12;
+	u32 *buf;
+	dma_addr_t bus_addr;
+	int ret;
+
+	/* Packets are processed a dword at a time. */
+	if (size & 3)
+		return -EINVAL;
+
+	buf = dma_alloc_coherent(fw->cl.dev, PAGE_ALIGN(size), &bus_addr,
+				 GFP_ATOMIC);
+	if (!buf)
+		return -ENOMEM;
+
+	/* The firmware will error out without parsing in this case. */
+	WARN_ON(size >= 1024 * 1024);
+
+	buf[0] = size;
+	buf[1] = RPI_FIRMWARE_STATUS_REQUEST;
+	memcpy(&buf[2], data, tag_size);
+	buf[size / 4 - 1] = RPI_FIRMWARE_PROPERTY_END;
+	wmb();
+
+	ret = rpi_firmware_transaction(fw, MBOX_CHAN_PROPERTY, bus_addr);
+
+	rmb();
+	memcpy(data, &buf[2], tag_size);
+	if (ret == 0 && buf[1] != RPI_FIRMWARE_STATUS_SUCCESS) {
+		/*
+		 * The tag name here might not be the one causing the
+		 * error, if there were multiple tags in the request.
+		 * But single-tag is the most common, so go with it.
+		 */
+		dev_err(fw->cl.dev, "Request 0x%08x returned status 0x%08x\n",
+			buf[2], buf[1]);
+		ret = -EINVAL;
+	}
+
+	dma_free_coherent(fw->cl.dev, PAGE_ALIGN(size), buf, bus_addr);
+
+	return ret;
+}
+
+fw->cl.dev is the device for the firmware child node. That may be where
+the problem comes from, shouldn't we use the mailbox device for DMA
+mapping ?
+
+-- 
+Regards,
+
+Laurent Pinchart
 
