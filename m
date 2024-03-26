@@ -1,133 +1,128 @@
-Return-Path: <devicetree+bounces-53263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6364C88BBBF
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 08:56:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4011C88BBC2
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 08:56:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 946CB1C2BEA3
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 07:56:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BE451C27448
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 07:56:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DCE7132807;
-	Tue, 26 Mar 2024 07:56:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DE4C132C1A;
+	Tue, 26 Mar 2024 07:56:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="S4YxDNco"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="MtRbwoAX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF34A4CB2E;
-	Tue, 26 Mar 2024 07:56:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F8C113281F;
+	Tue, 26 Mar 2024 07:56:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711439767; cv=none; b=VpGif0xIPXnj1b+NlRUWzQn2yH4yovlKW/hjGha0cKFpELT2wVmHSpkU9MtgyJzAebhKKPq4hEcMlFVKN2rFDViksunVJTOF+LKQhu7aPCd7z3MDgKRMMN5AHYa2O58Nmf6sJp7wAheoSfuoN/F2KCTkejanKqcaI/nAkWhYwMc=
+	t=1711439786; cv=none; b=rvDiuuaKcnPx/34jIHNVBYGthhRQmUnQ3X07SSHXHkD1bMTGou9JeN5f4MxixMEPp7GTl0MggzXmBe2gTeker2EBEgpjmCWVXIeCnBsfet2MALB2iPcx4GuguEeuJBHenT2NxWEBfFux8yspy3D8lVKQe5DUVz9ShB07kcbVfQk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711439767; c=relaxed/simple;
-	bh=77n1NlsLgQOtQf7Esgl8bEJ1rWyy2eHY3D2N40RUx18=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=LzU5kx9Mp8KWO9IaaS3dkHGn3ygC3bjv4U9+CaJICbmRtB1Z9N9YfG9tJTyVUaBX2nFr8Tr0jnCamXSttAHDtDv3kF8Iwj0oOHkhE27y/X/t3DZZAGJrSNTytzgCGPN9RETb56S7fggiCs7940YYqrdNOzdjLtjfMt8+ga7HcE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=S4YxDNco; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42Q7rht5020463;
-	Tue, 26 Mar 2024 08:55:41 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding:content-type; s=selector1; bh=Na0dP/m
-	dBs4BLxpEYdqbjgbAo3j03TJxGOWuR82MAOQ=; b=S4YxDNcoUGspfJQBA6y8fa1
-	+MNSYdj2PJGI/bQ++DY9JwS3MLd8eUlasogLBsYuZcZrP1+i5P7AY4MulzM47ExC
-	yQNSHCVuLikaRR13vrKMX1uDTwxARNkWcbUH0zNpt2gnWB/63m3hzItYgqpeJ1OF
-	ANqWQX7LHnrbWOuho3Z+Xx6Nh5XD4dyMcddr8I6j2hLJAlNAsjJ86mPEgFHrsOwu
-	7kIUmrq64Z25vCTUvY3iXUq9ZCocdqkc9RZ0OTdDtEcyg8H8va+C17mPNzMWBBpm
-	v7q4ECKQOxU8MTBNYWM0qW/8dlHZiTZlcS0E1+759Ht12cPnG4VEUtA0WB5U/Qg=
-	=
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3x1qa342v7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 26 Mar 2024 08:55:41 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 368DD40046;
-	Tue, 26 Mar 2024 08:55:05 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 85EBB2105BE;
-	Tue, 26 Mar 2024 08:54:41 +0100 (CET)
-Received: from localhost (10.201.20.71) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 26 Mar
- 2024 08:54:41 +0100
-From: <patrice.chotard@foss.st.com>
-To: <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        <alexandre.torgue@foss.st.com>
-CC: <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>
-Subject: [PATCH v2] ARM: dts: stm32: add heartbeat led for stm32mp157c-ed1
-Date: Tue, 26 Mar 2024 08:54:38 +0100
-Message-ID: <20240326075438.2891335-1-patrice.chotard@foss.st.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1711439786; c=relaxed/simple;
+	bh=ZhjPFTOQpzOVcd27gwoGXa9xyp/xBd/MZT46RvxTdVM=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=gI571iUWbxRr7h0+PZSnHiFdtWaLZWcHVExzEELmE4uQjxErkIunG1n0a5niEFcm13qvcE9l4ffODkcag3qc2/PWoGxRNy774Ez21Qy2wIP25Guu9aeVyZq25tTEoaZ2TvF4zsGK899NXIKSQ0B7GO7t+zlHTtth8b4/X9fIS3o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=MtRbwoAX; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 6C092E0009;
+	Tue, 26 Mar 2024 07:56:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1711439780;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=q3PckqHmeL8Qlv6PGSssocDsbW2N2t4rB3eMlEpT7SU=;
+	b=MtRbwoAXlKOJXFBo2uw1U3FfF18lh/9Un2QrPY99lbMOggoYxh4YoueN3OlcohCi2Yx0Gt
+	RG3XxXY1xPbGjWLbb+g9yVDEzOT0hE5gbIqOorQx1UtF0HSmgYFpmg59R1SUpD91ifHS+p
+	CxoKnuh6g7K/dpNExERJKrYq/nhKxpupBmWvKB41uSlylTWcNJ9n//izG8ruIcsqBiT5Tt
+	ZZVyosb8aeJp4Beu/PVmJGzJLoHKJGRGHAt11MiG7R15BtQJRRjHUJZm7XoPsntxPuQaZd
+	wCBMkXr3B41DnZdT+XoCjsDFIGsNqqOfI7wzvYDIt0/tA5KGCGwzLafl3w7qvA==
+Date: Tue, 26 Mar 2024 08:56:17 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, Saravana
+ Kannan <saravanak@google.com>, Lizhi Hou <lizhi.hou@amd.com>, Max Zhen
+ <max.zhen@amd.com>, Sonal Santan <sonal.santan@amd.com>, Stefano Stabellini
+ <stefano.stabellini@xilinx.com>, Jonathan Cameron
+ <Jonathan.Cameron@huawei.com>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>,
+ Horatiu Vultur <horatiu.vultur@microchip.com>, Steen Hegelund
+ <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Nuno Sa <nuno.sa@analog.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, stable@vger.kernel.org
+Subject: Re: [PATCH v6 1/2] driver core: Introduce
+ device_link_wait_removal()
+Message-ID: <20240326085617.0cf217d3@bootlin.com>
+In-Reply-To: <2024032548-rope-improper-4f67@gregkh>
+References: <20240325152140.198219-1-herve.codina@bootlin.com>
+	<20240325152140.198219-2-herve.codina@bootlin.com>
+	<2024032548-rope-improper-4f67@gregkh>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SAFCAS1NODE2.st.com (10.75.90.13) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-26_04,2024-03-21_02,2023-05-22_02
+X-GND-Sasl: herve.codina@bootlin.com
 
-From: Patrice Chotard <patrice.chotard@foss.st.com>
+On Mon, 25 Mar 2024 19:37:10 +0100
+Greg Kroah-Hartman <gregkh@linuxfoundation.org> wrote:
 
-Add heartbeat led for stm32mp157c-ed1.
+> On Mon, Mar 25, 2024 at 04:21:25PM +0100, Herve Codina wrote:
+> > The commit 80dd33cf72d1 ("drivers: base: Fix device link removal")
+> > introduces a workqueue to release the consumer and supplier devices used
+> > in the devlink.
+> > In the job queued, devices are release and in turn, when all the
+> > references to these devices are dropped, the release function of the
+> > device itself is called.
+> > 
+> > Nothing is present to provide some synchronisation with this workqueue
+> > in order to ensure that all ongoing releasing operations are done and
+> > so, some other operations can be started safely.
+> > 
+> > For instance, in the following sequence:
+> >   1) of_platform_depopulate()
+> >   2) of_overlay_remove()
+> > 
+> > During the step 1, devices are released and related devlinks are removed
+> > (jobs pushed in the workqueue).
+> > During the step 2, OF nodes are destroyed but, without any
+> > synchronisation with devlink removal jobs, of_overlay_remove() can raise
+> > warnings related to missing of_node_put():
+> >   ERROR: memory leak, expected refcount 1 instead of 2
+> > 
+> > Indeed, the missing of_node_put() call is going to be done, too late,
+> > from the workqueue job execution.
+> > 
+> > Introduce device_link_wait_removal() to offer a way to synchronize
+> > operations waiting for the end of devlink removals (i.e. end of
+> > workqueue jobs).
+> > Also, as a flushing operation is done on the workqueue, the workqueue
+> > used is moved from a system-wide workqueue to a local one.
+> > 
+> > Cc: stable@vger.kernel.org  
+> 
+> Why is this for stable?  You are just adding a new api, no one is using
+> it.
+> 
+> Or if they are, you didn't send me that patch...
 
-Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
----
+The patch 2 in this current series uses the new api.
 
-V2 changes :
-  _ add color and function properties.
-
- arch/arm/boot/dts/st/stm32mp157c-ed1.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/arch/arm/boot/dts/st/stm32mp157c-ed1.dts b/arch/arm/boot/dts/st/stm32mp157c-ed1.dts
-index 66ed5f9921ba..525d9ca7d576 100644
---- a/arch/arm/boot/dts/st/stm32mp157c-ed1.dts
-+++ b/arch/arm/boot/dts/st/stm32mp157c-ed1.dts
-@@ -10,6 +10,7 @@
- #include "stm32mp15-pinctrl.dtsi"
- #include "stm32mp15xxaa-pinctrl.dtsi"
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
- #include <dt-bindings/mfd/st,stpmic1.h>
- 
- / {
-@@ -24,6 +25,17 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	led {
-+		compatible = "gpio-leds";
-+		led-blue {
-+			gpios = <&gpiod 9 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+			default-state = "off";
-+			function = LED_FUNCTION_HEARTBEAT;
-+			color = <LED_COLOR_ID_BLUE>;
-+		};
-+	};
-+
- 	memory@c0000000 {
- 		device_type = "memory";
- 		reg = <0xC0000000 0x40000000>;
--- 
-2.25.1
+Best regards,
+Hervé
 
 
