@@ -1,244 +1,98 @@
-Return-Path: <devicetree+bounces-53383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53384-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BE9C88C135
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 12:49:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95E6E88C139
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 12:49:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 906AA1C394C7
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 11:49:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C72201C3EC4E
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 11:49:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 394D46BFCB;
-	Tue, 26 Mar 2024 11:49:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D972B6CDA3;
+	Tue, 26 Mar 2024 11:49:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rZHnyN/l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9444B6BFD2;
-	Tue, 26 Mar 2024 11:49:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AACCE548F0;
+	Tue, 26 Mar 2024 11:49:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711453747; cv=none; b=pDfjrkSpaghXeOqOnZ3hAj530N2khR2rMlG2MT6e08TuCfLL4khf+ZOv0UwbqRwamZhLy8xQxL+Bs5s9hugE7fYk+yftTvNdDxt+jebOwwyVOj8N/yd0GNEBStEB8E75clJau5L71AxkOS/qjzJuBQFE4l6YMGVfHwh2XF4SLyA=
+	t=1711453778; cv=none; b=BrLuztPq4+v7c2IIusnvxk2gdRXFD5sriYWLjl8cKoNm/UkztkEkYEQOAHtYlM0R5gSnDI+5pI+E7VXaM8ThtZX1gS5wby60nsKwidc2gyiwdc6J8sV+VZwJUOZRps6fT3ReCHE+UVHLYp8KcHgX66BXPjvzY0AghijTzh6vKnA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711453747; c=relaxed/simple;
-	bh=XhNk0EU5qW4iT/6uCinMLR0F/dKVzKhDelbR2BQVBqw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=akvC7GTdapRhVNoSxHaJ6mZi7KAEgoKj1K8R9LEO/CbWXPn4YBKzC39Nzi9ZuK94jk0K9/Wt0KCtJe0SNZURp3YssKSPR3Q8/rdMz8LABqckaSaNzpe0tm5HshGX9y0DeGDOy8tEES4pwMvXAPO5QcVr0s0ODiqfq216IBtnyuI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C27A62F4;
-	Tue, 26 Mar 2024 04:49:38 -0700 (PDT)
-Received: from donnerap.arm.com (donnerap.manchester.arm.com [10.32.100.28])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A1A913F64C;
-	Tue, 26 Mar 2024 04:49:02 -0700 (PDT)
-From: Andre Przywara <andre.przywara@arm.com>
-To: Yangtao Li <tiny.windzz@gmail.com>,
-	Viresh Kumar <vireshk@kernel.org>,
-	Nishanth Menon <nm@ti.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	"Rafael J . Wysocki" <rafael@kernel.org>
-Cc: linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-sunxi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Brandon Cheo Fusi <fusibrandon13@gmail.com>,
-	Martin Botka <martin.botka@somainline.org>,
-	Martin Botka <martin.botka1@gmail.com>,
-	Chris Morgan <macroalpha82@gmail.com>,
-	Ryan Walklin <ryan@testtoast.com>
-Subject: [PATCH v3 8/8] arm64: dts: allwinner: h616: enable DVFS for all boards
-Date: Tue, 26 Mar 2024 11:47:43 +0000
-Message-Id: <20240326114743.712167-9-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240326114743.712167-1-andre.przywara@arm.com>
-References: <20240326114743.712167-1-andre.przywara@arm.com>
+	s=arc-20240116; t=1711453778; c=relaxed/simple;
+	bh=BFJiq54VJ20G77R+5TuJjaEBvW4xwFaEM9rhhP0Ncb0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=ZeiOkvNmNMbWeZV8Qr1EC9bEW7DeFjpEH7vj4mRdLGkxbzoELinWymDYIIi4yAUoDAfxolNZ61YWg+I6uojWK/7pAemLhZWnmV3TOC8lh/hhmi+PLn6EADnWK4OVTvwXzTO2ONJAZKD16UDHcM+sArlzrOX5qviBMhfmZR+JsSg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rZHnyN/l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E00AC433C7;
+	Tue, 26 Mar 2024 11:49:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711453778;
+	bh=BFJiq54VJ20G77R+5TuJjaEBvW4xwFaEM9rhhP0Ncb0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=rZHnyN/lxkJ4rEPC4b/yDmCFVNZcBBMryLgCqqnuFy+L5PopBPEvkDFxKQbNXZhe1
+	 CzAgNucLOHLSxf0ZOxDDf2FRJQEA+Nvzk0p9npnbmHMzVxhQQzHkyN00i+s+O1gB3K
+	 kThRq2wIvrF49mIjpl8KkuLiuRL/V5oq1cgtfNWSlPKejp52VHRMa4tVnOyS6iVVee
+	 PDjdDTO215U7x0pF0aF7PEOFw1iBflI/mV1GQH2B00pGld+6xZTKXww3xAtUlT/gto
+	 pd2aSLd1sEER8Ooqubtcw+veag0FJnPaUPzEnexz1D06jxhfqsWbGgejX66xYKKbAp
+	 PTnwtrCSsL5Tw==
+From: Mark Brown <broonie@kernel.org>
+To: lgirdwood@gmail.com, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+ conor+dt@kernel.org, Kartik Agarwala <agarwala.kartik@gmail.com>
+Cc: patches@opensource.cirrus.com, linux-sound@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ javier.carrasco.cruz@gmail.com
+In-Reply-To: <20240325181943.116733-1-agarwala.kartik@gmail.com>
+References: <20240325181943.116733-1-agarwala.kartik@gmail.com>
+Subject: Re: [PATCH] ASoC: dt-bindings: wm8974: Convert to dtschema
+Message-Id: <171145377605.25584.16707436600302080995.b4-ty@kernel.org>
+Date: Tue, 26 Mar 2024 11:49:36 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14-dev
 
-With the DT bindings now describing the format of the CPU OPP tables, we
-can include the OPP table in each board's .dts file, and specify the CPU
-power supply.
-This allows to enable DVFS, and get up to 50% of performance benefit in
-the highest OPP, or up to 60% power savings in the lowest OPP, compared
-to the fixed 1GHz @ 1.0V OPP we are running in by default at the moment.
+On Mon, 25 Mar 2024 23:49:42 +0530, Kartik Agarwala wrote:
+> Convert WM8974 audio CODEC bindings from text to dtschema.
+> 
+> 
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
----
- .../boot/dts/allwinner/sun50i-h616-bigtreetech-cb1.dtsi      | 5 +++++
- arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts | 5 +++++
- arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts       | 5 +++++
- .../boot/dts/allwinner/sun50i-h618-longan-module-3h.dtsi     | 5 +++++
- .../arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts | 5 +++++
- arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts | 5 +++++
- .../boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts     | 5 +++++
- 7 files changed, 35 insertions(+)
+Applied to
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1.dtsi
-index af421ba24ce0c..d12b01c5f41b6 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1.dtsi
-@@ -6,6 +6,7 @@
- /dts-v1/;
- 
- #include "sun50i-h616.dtsi"
-+#include "sun50i-h616-cpu-opp.dtsi"
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-@@ -62,6 +63,10 @@ wifi_pwrseq: wifi-pwrseq {
- 	};
- };
- 
-+&cpu0 {
-+	cpu-supply = <&reg_dcdc2>;
-+};
-+
- &mmc0 {
- 	vmmc-supply = <&reg_dldo1>;
- 	/* Card detection pin is not connected */
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
-index b5d713926a341..a360d8567f955 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
-@@ -6,12 +6,17 @@
- /dts-v1/;
- 
- #include "sun50i-h616-orangepi-zero.dtsi"
-+#include "sun50i-h616-cpu-opp.dtsi"
- 
- / {
- 	model = "OrangePi Zero2";
- 	compatible = "xunlong,orangepi-zero2", "allwinner,sun50i-h616";
- };
- 
-+&cpu0 {
-+	cpu-supply = <&reg_dcdca>;
-+};
-+
- &emac0 {
- 	allwinner,rx-delay-ps = <3100>;
- 	allwinner,tx-delay-ps = <700>;
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-index 959b6fd18483b..26d25b5b59e0f 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-@@ -6,6 +6,7 @@
- /dts-v1/;
- 
- #include "sun50i-h616.dtsi"
-+#include "sun50i-h616-cpu-opp.dtsi"
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-@@ -32,6 +33,10 @@ reg_vcc5v: vcc5v {
- 	};
- };
- 
-+&cpu0 {
-+	cpu-supply = <&reg_dcdca>;
-+};
-+
- &ehci0 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-longan-module-3h.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h618-longan-module-3h.dtsi
-index 8c1263a3939e7..e92d150aaf1c1 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h618-longan-module-3h.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-longan-module-3h.dtsi
-@@ -4,6 +4,11 @@
-  */
- 
- #include "sun50i-h616.dtsi"
-+#include "sun50i-h616-cpu-opp.dtsi"
-+
-+&cpu0 {
-+	cpu-supply = <&reg_dcdc2>;
-+};
- 
- &mmc2 {
- 	pinctrl-names = "default";
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts
-index 21ca1977055d9..6a4f0da972330 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts
-@@ -6,6 +6,7 @@
- /dts-v1/;
- 
- #include "sun50i-h616.dtsi"
-+#include "sun50i-h616-cpu-opp.dtsi"
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-@@ -53,6 +54,10 @@ reg_vcc3v3: vcc3v3 {
- 	};
- };
- 
-+&cpu0 {
-+	cpu-supply = <&reg_dcdc2>;
-+};
-+
- &ehci1 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
-index b3b1b8692125f..e1cd7572a14ce 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
-@@ -6,12 +6,17 @@
- /dts-v1/;
- 
- #include "sun50i-h616-orangepi-zero.dtsi"
-+#include "sun50i-h616-cpu-opp.dtsi"
- 
- / {
- 	model = "OrangePi Zero3";
- 	compatible = "xunlong,orangepi-zero3", "allwinner,sun50i-h618";
- };
- 
-+&cpu0 {
-+	cpu-supply = <&reg_dcdc2>;
-+};
-+
- &emac0 {
- 	allwinner,tx-delay-ps = <700>;
- 	phy-mode = "rgmii-rxid";
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
-index ac0a2b7ea6f31..a6458b7a86713 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
-@@ -6,6 +6,7 @@
- /dts-v1/;
- 
- #include "sun50i-h616.dtsi"
-+#include "sun50i-h616-cpu-opp.dtsi"
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-@@ -51,6 +52,10 @@ wifi_pwrseq: wifi_pwrseq {
- 	};
- };
- 
-+&cpu0 {
-+	cpu-supply = <&reg_dcdc2>;
-+};
-+
- &ehci0 {
- 	status = "okay";
- };
--- 
-2.25.1
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/1] ASoC: dt-bindings: wm8974: Convert to dtschema
+      commit: b340f56a74b62d8ce8617650c8ab4a26c87ba5c5
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
