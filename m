@@ -1,98 +1,210 @@
-Return-Path: <devicetree+bounces-53384-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53385-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95E6E88C139
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 12:49:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C117888C13E
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 12:50:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C72201C3EC4E
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 11:49:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 765802E81C5
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 11:50:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D972B6CDA3;
-	Tue, 26 Mar 2024 11:49:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72AF16CDAD;
+	Tue, 26 Mar 2024 11:50:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rZHnyN/l"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="efXwt10d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AACCE548F0;
-	Tue, 26 Mar 2024 11:49:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A527B6BB5D
+	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 11:50:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711453778; cv=none; b=BrLuztPq4+v7c2IIusnvxk2gdRXFD5sriYWLjl8cKoNm/UkztkEkYEQOAHtYlM0R5gSnDI+5pI+E7VXaM8ThtZX1gS5wby60nsKwidc2gyiwdc6J8sV+VZwJUOZRps6fT3ReCHE+UVHLYp8KcHgX66BXPjvzY0AghijTzh6vKnA=
+	t=1711453839; cv=none; b=RWfKm1w+cHfxGIOz18dZrFZEy9QUXwd2ovJNawKoLXu2lQnQ7Vomb0RP4whwE60uIMCtvGUsYoe0CpNNd3EqEfgXZ16JT8+FrfixGaH4ncqR7U669+xxLoGFJEGZE6dIvJ4XUM2vZI5llbHthVXUb72y70MgbybEK55AxTrQEmU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711453778; c=relaxed/simple;
-	bh=BFJiq54VJ20G77R+5TuJjaEBvW4xwFaEM9rhhP0Ncb0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=ZeiOkvNmNMbWeZV8Qr1EC9bEW7DeFjpEH7vj4mRdLGkxbzoELinWymDYIIi4yAUoDAfxolNZ61YWg+I6uojWK/7pAemLhZWnmV3TOC8lh/hhmi+PLn6EADnWK4OVTvwXzTO2ONJAZKD16UDHcM+sArlzrOX5qviBMhfmZR+JsSg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rZHnyN/l; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E00AC433C7;
-	Tue, 26 Mar 2024 11:49:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711453778;
-	bh=BFJiq54VJ20G77R+5TuJjaEBvW4xwFaEM9rhhP0Ncb0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=rZHnyN/lxkJ4rEPC4b/yDmCFVNZcBBMryLgCqqnuFy+L5PopBPEvkDFxKQbNXZhe1
-	 CzAgNucLOHLSxf0ZOxDDf2FRJQEA+Nvzk0p9npnbmHMzVxhQQzHkyN00i+s+O1gB3K
-	 kThRq2wIvrF49mIjpl8KkuLiuRL/V5oq1cgtfNWSlPKejp52VHRMa4tVnOyS6iVVee
-	 PDjdDTO215U7x0pF0aF7PEOFw1iBflI/mV1GQH2B00pGld+6xZTKXww3xAtUlT/gto
-	 pd2aSLd1sEER8Ooqubtcw+veag0FJnPaUPzEnexz1D06jxhfqsWbGgejX66xYKKbAp
-	 PTnwtrCSsL5Tw==
-From: Mark Brown <broonie@kernel.org>
-To: lgirdwood@gmail.com, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
- conor+dt@kernel.org, Kartik Agarwala <agarwala.kartik@gmail.com>
-Cc: patches@opensource.cirrus.com, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- javier.carrasco.cruz@gmail.com
-In-Reply-To: <20240325181943.116733-1-agarwala.kartik@gmail.com>
-References: <20240325181943.116733-1-agarwala.kartik@gmail.com>
-Subject: Re: [PATCH] ASoC: dt-bindings: wm8974: Convert to dtschema
-Message-Id: <171145377605.25584.16707436600302080995.b4-ty@kernel.org>
-Date: Tue, 26 Mar 2024 11:49:36 +0000
+	s=arc-20240116; t=1711453839; c=relaxed/simple;
+	bh=zIsRPBERtYd9KT5eFf4SlflyWfRi00voryrIaoJ7HcQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=i43ayJIOKDzbJsY9xRYU7ZTqfTRAegTaNsqgqArbkcDKrrG67ir7PlYx8zC8jfF5q1RcJOi3LDKrn5oOUU3fdTQC683rRTk2cq7Oo4mFrFK+Ucynnzr4Ayb/pvl+BzHHrhhg36Odp/SaR0tyrKq83ry10cbE9yD06c79oZfQvwE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=efXwt10d; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-56bdf81706aso5479306a12.2
+        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 04:50:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1711453836; x=1712058636; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=+RQirBONGT7g/mBKFr4U8ujDZu4jx0LwzCH8oxof1pw=;
+        b=efXwt10d+TBl/th7kmwdARkdsJ550WK7fniQuY88pwMOqDEyGqZPepJ+NuG02/w/kV
+         Lzksz8gyOcA6soelNFE1voH5K2gjvbBFfoq2gXapfdCqwqkPQutCqy6GOcEYxU9iaaO1
+         Nd9Dh86DFpjQ0bSCmNJoSLs43tw4GlVh0NQ5ZB27TLQq4MydQ+KIncicELEAxDlqdtNP
+         xv+V8apMvGHRQFwvhAgrXcaf1hulQKcxeDg/KCaFJXJnSCzm9i6CE21GtRK5fy7NvgLk
+         j8L47Pp/lj82jVm3WFHP4jDsmxQqNQM73jKAeqL9RQH4/gRGS0HEf6ybFXichUHoGPLx
+         Yz0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711453836; x=1712058636;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+RQirBONGT7g/mBKFr4U8ujDZu4jx0LwzCH8oxof1pw=;
+        b=bUahQNZY17rr28OrFQmEVRI1qX/H/4BSz8b0XOmWXBMnE69YOzRkShM32VG2Aj09LB
+         CbP3wLbbSpn1toSU6Rsyc0zyjNm6MUvt6/zSbSFmWAdRzIQywXRl6hO4EcoUlYSMWeoY
+         UJpW3B4U5sVctMrv4BlONoA7GRAl9zaWVYdz7HMld+a5WfXbgRvD9OauqPMf8RT5DGsv
+         AT1udSQ3Z08AnizfachrBzQTLvy4v7X/Bge4MPqdKa/EE+66X/ywjJqb2qyY89cJBwzM
+         HYb3/tqRla0d9fC83uc7rMzF4eaBto+JaBOQI1FMp5KTM9Ft7YSWc7z0nXa2W1fRtrsi
+         j2pw==
+X-Forwarded-Encrypted: i=1; AJvYcCVeg1UsEOurPdsvVgn+PzgFiiVoUXczWAobvKAfV0C6iFvwfXVQ3SVSrbdbB5CsbbFmmBpkb+5iUZFCcKXx5x5pCBy/BqkIPhkzKg==
+X-Gm-Message-State: AOJu0Yy2LATn1VIfb7OhAA6KpR1kyuxtfquw5fPmoT65YI/XUW+WQdsE
+	wHa9tIJwSI1gC12Cr32sAarNMkSMjPrsUgmqZHYhO0yVNHZlgRfBGWKDT9LleUI=
+X-Google-Smtp-Source: AGHT+IHpoEVb/26aK2O+7U5or3L/IkOBa5iS8jIYohvuDTytIFqlj/I8s6WOjKZTQm/IuKv3EZnZFA==
+X-Received: by 2002:a17:906:2810:b0:a47:2036:dbc4 with SMTP id r16-20020a170906281000b00a472036dbc4mr654986ejc.25.1711453835868;
+        Tue, 26 Mar 2024 04:50:35 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.44])
+        by smtp.gmail.com with ESMTPSA id kq1-20020a170906abc100b00a46a04d7dc4sm4148259ejb.61.2024.03.26.04.50.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 26 Mar 2024 04:50:35 -0700 (PDT)
+Message-ID: <1525c377-af73-4204-8a2b-983c6d99316c@linaro.org>
+Date: Tue, 26 Mar 2024 12:50:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/3] dt-bindings: dmaengine: Add dmamux for
+ CV18XX/SG200X series SoC
+To: Inochi Amaoto <inochiama@outlook.com>, Vinod Koul <vkoul@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
+Cc: Jisheng Zhang <jszhang@kernel.org>, Liu Gui <kenneth.liu@sophgo.com>,
+ Jingbao Qiu <qiujingbao.dlmu@gmail.com>, dlan@gentoo.org,
+ dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <IA1PR20MB4953B500D7451964EE37DA4CBB352@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <IA1PR20MB4953E2937788D9D92C91ABBBBB352@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <57398ee0-212c-4c82-bfed-bf38f4faa111@linaro.org>
+ <IA1PR20MB4953EDEEFC3128741F8E152EBB352@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <473528ac-dce2-41e3-a6d7-28f8c53a89ef@linaro.org>
+ <IA1PR20MB4953517450F0E622A66E9A7DBB352@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <cf42e020-9a5b-48bb-bc14-c0cc9498627b@linaro.org>
+ <IA1PR20MB4953EA589A0FF36DC6FCF0E8BB352@IA1PR20MB4953.namprd20.prod.outlook.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <IA1PR20MB4953EA589A0FF36DC6FCF0E8BB352@IA1PR20MB4953.namprd20.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14-dev
 
-On Mon, 25 Mar 2024 23:49:42 +0530, Kartik Agarwala wrote:
-> Convert WM8974 audio CODEC bindings from text to dtschema.
+On 26/03/2024 12:41, Inochi Amaoto wrote:
+>>>
+>>> The driver does use this file.
+>>
+>> I checked and could not find. Please point me to specific parts of the code.
+>>
 > 
+> In cv1800_dmamux_route_allocate.
+>> +	regmap_set_bits(dmamux->regmap,
+>> +			DMAMUX_CH_REG(chid),
+>> +			DMAMUX_CH_SET(chid, devid));
+>> +
+>> +	regmap_update_bits(dmamux->regmap, CV1800_SDMA_DMA_INT_MUX,
+>> +			   DMAMUX_INT_CH_MASK(chid, cpuid),
+>> +			   DMAMUX_INT_CH_BIT(chid, cpuid));
 > 
+> I think this is.
 
-Applied to
+So where exactly? I don't see any define being used here.
+CV1800_SDMA_DMA_INT_MUX is not in your header. DMAMUX_ is not in your
+header. So what are you pointing?
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+I don't understand this communication. Are you mocking me here or what?
+It's waste of my time.
 
-Thanks!
+> 
+>>>
+>>>>> And considering the limitation of this dmamux, maybe only devices that 
+>>>>> require dma as a must can have the dma assigned. 
+>>>>> Due to the fact, I think it may be a long time to wait for this header
+>>>>> to be used as the binding header.
+>>>>
+>>>> I don't understand. You did not provide a single reason why this is a
+>>>> binding. Reason is: mapping IDs between DTS and driver. Where is this
+>>>> reason?
+>>>>
+>>>
+>>> It seems like that I misunderstood something. This file provides one-one
+>>> mapping between the dma device id and cpuid, which is both used in the
+>>> dts and driver. For dts, it provides device id and cpu id mapping. And
+>>> for driver, it is used as the directive to tell how to write the mapping
+>>> register.
+>>
+>> So where is it? I looked for DMA_TDM0_RX - nothing. Then DMA_I2C1_RX -
+>> nothing. Then any "DMA_" - also looks nothing.
+>>
+> 
+> It is just the value writed, so I say it is just a one-one mapping.
+> Maybe I misunderstand the binding meaning? Is the binding a mapping 
+> between the dts and something defind in the driver (not the real 
+> device)?
 
-[1/1] ASoC: dt-bindings: wm8974: Convert to dtschema
-      commit: b340f56a74b62d8ce8617650c8ab4a26c87ba5c5
+Binding headers contains IDs which are used by the driver and DTS code.
+Hardware constants are not bindings. Register values, addresses,
+whatever hardware is using is not a binding.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Best regards,
+Krzysztof
 
 
