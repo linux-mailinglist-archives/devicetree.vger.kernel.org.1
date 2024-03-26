@@ -1,180 +1,131 @@
-Return-Path: <devicetree+bounces-53615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1E1188CD9A
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 20:55:51 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9537688CDA3
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 20:57:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 804661F681B7
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 19:55:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C61C61C379F2
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 19:57:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A234313D26D;
-	Tue, 26 Mar 2024 19:55:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 927A913D280;
+	Tue, 26 Mar 2024 19:57:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="Wt6eF98S"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xA3G8AJq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 837BA13D255;
-	Tue, 26 Mar 2024 19:55:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C26713D26C
+	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 19:57:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711482947; cv=none; b=W8S2WfJXaIIReBhGG0BlNU6i5THOds5sth0zvuP3QC2C6cKlBhEbt082qOkt6z/BRQns0g4MGzdziA4qq59ifrJRVlOUO8IjH48eAJMjXXMBuGzD8ySfguKTZvkKrrE3eQX1wNfDZrd8NEKzPQZUW221GLqxHK4voF9/ODEU1NU=
+	t=1711483040; cv=none; b=OJH0CHaAAQR5O/R0nisU6BIDhYxkK2bQEYEE+QKt+HOivFD4th7DZfuCFskLX1ayue7Z6dWzh6LUB6erFL8xDeKC/Ywy9YLUGICuVHxK7/xBvorKhvynvSVTtkxABR41a3d4Z/4v2HNG19vhmzI7XnImATzNNpHtP6P6DV9hAoU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711482947; c=relaxed/simple;
-	bh=t7CqjsZ9pZfysEVOI/X9SWqo8ohcJk7OgFJGLNKeMEc=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=jy0HccwkGrscTZFtvqBO9dpjnUbxugJDKdYVj4DgwN4TSx490xMD8cEKWEwnrBT0up59y4BS5Pp7/AsEfWb4AAc/BkSJ3dgsKDpc3YOxVqweMnI6aNUShZZyMEsSuPwQeS1hOiPfOjvdtsvGgQWLaNRAEqWfC1bLiaV6Nb6F6WI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=Wt6eF98S; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1711483040; c=relaxed/simple;
+	bh=2H+94qUfoDYhhZONEATXwrtmuXduQiExbMEmAQ6bX3M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Emzq/XBORlVwMWMNQ/Hx5BKGQnxWHVm57Jm9Qxal+EeYl3u0U3MEkQ+Cgr1M04ql7tBQ+LX2EHuvo6twkIAhBaJApC8aRYI5EBVcCJWzzYyo4Rv/8ZSshPxUoOaOZyWaEPhlMYhjiZ41eadJH5Ydgp0vSCSuE1wm97xP8s2noXE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xA3G8AJq; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a467d8efe78so719865966b.3
+        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 12:57:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1711483036; x=1712087836; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=UMZemv+treJRJZKcndzvb56dHiZdwvWPeQfGgJVwwG0=;
+        b=xA3G8AJq7vHx44Pq3fe5DhK6XN9N6wMyDC0N3fZze5T88C9qxp+xxhoneP68/iL/yj
+         VWUSmhxxuq5CT0cidP4h3nQWiYlZ2Oh3BHptgmqWZ1wAZk42aHQJctKRdC4FBh/89CzF
+         ZK48PW67qllN1fWMW0uem6wNo+eAoyqFSnYtA6uswb9TvkhO3jKGt35lRFT2eq9d9pGy
+         RY7SAGl+AL6dOOJMvcY+1gesmt2qLTD5UiTV5k52c7nW7BYmo8vrmHth2t5mPEMxB/qo
+         YEykDzlO9loWo6gklYer3Wi8AiwbUNnUNs8u1UmFK5afcei9lZQMxze830/HaBCBhS9h
+         ty7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711483036; x=1712087836;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UMZemv+treJRJZKcndzvb56dHiZdwvWPeQfGgJVwwG0=;
+        b=tj8YEAAlp6DahXuz+IkkzoeCoI17dOs4EG7k6mRSjXa8uJxIecsiZidGErom471K+Q
+         EvlG1rwyMaGaSEi4Vv5Ops8CNErG3Pas07tZetMHEKKY0JiyqnVs8fidDMqyeDqtRuyS
+         hEybJDhcTnC9HezXdwyj4DixVrnV+92EWaccsr4Y8V3zMAFuVPDbf7MfOU08pxgi454p
+         NVQX4ntS1RnThSzB7RHx+6SVasM61IS/Pyrnv4wTVGUsdvHdXqyyTg7dKw0K+kAc01fr
+         Lyzw2VzAeS3AeS6gPowipAxl6BigBh4n3OCoIbmzo/+Vlc5cuQfs5wkimOhuTGazWbw3
+         xyaA==
+X-Forwarded-Encrypted: i=1; AJvYcCWX351VsDythfEG9b3JeC1E1P13MurVNRMXMAVDHn2l+LOy5/xEQKNyHaYPW/fJmyvlw0qq7UXphPaszNscjx2urhYekq8dfOoXzw==
+X-Gm-Message-State: AOJu0YzQ6P8BQqb2Odpoy+B5BJsvvAbTk6QMl9kb1aOVz7meN2zB2VWU
+	/82MDp2f2RWnMwNBI+YQunc1K7gKUOmsE3cTpS+FVyYcpVdxY5MX7fYX56nwUJQ=
+X-Google-Smtp-Source: AGHT+IGV8Lxx+KB8zTQRgaBH6RRCSCr9jlkk5+m4uBMdcvsOQYxK7zl7jHLINOfQjQLorKVjX4b3oA==
+X-Received: by 2002:a17:907:970f:b0:a47:4293:947f with SMTP id jg15-20020a170907970f00b00a474293947fmr9602283ejc.8.1711483036185;
+        Tue, 26 Mar 2024 12:57:16 -0700 (PDT)
+Received: from linaro.org ([79.114.172.194])
+        by smtp.gmail.com with ESMTPSA id w17-20020a17090633d100b00a4df82aa6a7sm758313eja.219.2024.03.26.12.57.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Mar 2024 12:57:15 -0700 (PDT)
+Date: Tue, 26 Mar 2024 21:57:14 +0200
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Stephen Boyd <sboyd@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+	Johan Hovold <johan@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH RESEND v6 0/5] spmi: pmic-arb: Add support for multiple
+ buses
+Message-ID: <ZgMomo9Uw19Ll10N@linaro.org>
+References: <20240326-spmi-multi-master-support-v6-0-1c87d8306c5b@linaro.org>
+ <20240326193203.GA3252922-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1711482942;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=aK+zeuu0YN/Z0DLh3IdinoCfvuQvS+27+MOgeO9A3HQ=;
-	b=Wt6eF98SDxyLQr6Okc4sm2GV6BQH6/hFW+ovHSF7ID+oEYB+hSbXCUwv8qlAudRJWUJDNE
-	6GR41G9zyKwulpPei60k3pZQnzVMT3BBtHyVOlG6QuGEZ5ApyGFSmrYREdTdK8wIT2Je1T
-	i8u0oNVqFaIO3kSocywO16HTO/Gvc16y04SoyEqSlGA70SbHFTc2HwirwTqwvfBHBacHPk
-	kcIjW2tzvbT+b6BlDMELsbPOy1KYJJHt1HVL0+tvLOiMMB0+JV+qGBHgkGidlEjdD7UuIZ
-	EQoq34KPbf4Qblp/MsrgH2fejtnuN+/ZRHVa3fsp/cy4MmNfpB+Yr5evKbCtpg==
-Date: Tue, 26 Mar 2024 20:55:40 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: dev@folker-schwesinger.de, Vinod Koul <vkoul@kernel.org>, Kishon Vijay
- Abraham I <kishon@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Chris Ruehl
- <chris.ruehl@gtsys.com.hk>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Christopher Obbard <chris.obbard@collabora.com>,
- Alban Browaeys <alban.browaeys@gmail.com>, Doug Anderson
- <dianders@chromium.org>, Brian Norris <briannorris@chromium.org>, Jensen
- Huang <jensenhuang@friendlyarm.com>, linux-phy@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] phy: rockchip: emmc: Enable pulldown for strobe line
-In-Reply-To: <20240326-tactical-onlooker-3df8d2352dc2@spud>
-References: <20240326-rk-default-enable-strobe-pulldown-v1-0-f410c71605c0@folker-schwesinger.de>
- <20240326-rk-default-enable-strobe-pulldown-v1-1-f410c71605c0@folker-schwesinger.de>
- <20240326-tactical-onlooker-3df8d2352dc2@spud>
-Message-ID: <436f78a981ecba441a0636912ddd1cf2@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240326193203.GA3252922-robh@kernel.org>
 
-Hello Conor and Folker,
+On 24-03-26 14:32:03, Rob Herring wrote:
+> On Tue, Mar 26, 2024 at 06:28:15PM +0200, Abel Vesa wrote:
+> > This RFC prepares for and adds support for 2 buses, which is supported
+> > in HW starting with version 7. Until now, none of the currently
+> > supported platforms in upstream have used the second bus. The X1E80100
+> > platform, on the other hand, needs the second bus for the USB2.0 to work
+> > as there are 3 SMB2360 PMICs which provide eUSB2 repeaters and they are
+> > all found on the second bus.
+> > 
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > ---
+> > Changes in v6:
+> > - Changed the compatible to platform specific (X1E80100) along with the
+> >   schema. Fixed the spmi buses unit addresses and added the empty ranges
+> >   property. Added missing properties to the spmi buses and the
+> >   "unevaluatedProperties: false".
+> > - Deprecated the "qcom,bus-id" in the legacy schema.
+> > - Changed the driver to check for legacy compatible first
+> > - Link to v5: https://lore.kernel.org/r/20240221-spmi-multi-master-support-v5-0-3255ca413a0b@linaro.org
+> 
+> Where are Krzysztof's Reviewed-by tags?
 
-On 2024-03-26 20:46, Conor Dooley wrote:
-> On Tue, Mar 26, 2024 at 07:54:35PM +0100, Folker Schwesinger via B4 
-> Relay wrote:
->> From: Folker Schwesinger <dev@folker-schwesinger.de>
->> 
->> Restore the behavior of the Rockchip kernel that undconditionally
->> enables the internal strobe pulldown.
-> 
-> What do you mean "restore the behaviour of the rockchip kernel"? Did
-> mainline behave the same as the rockchip kernel previously? If not,
-> using "restore" here is misleading. "Unconditionally" is also 
-> incorrect,
-> because you have a property that disables it.
-> 
->> As the DT property rockchip,enable-strobe-pulldown is obsolete now,
->> replace it with a property to disable the internal pulldown.
->> 
->> This fixes I/O errors observed on various Rock Pi 4 and NanoPi4 series
->> boards with some eMMC modules. Other boards may also be affected.
->> 
->> An example of these errors is as follows:
->> 
->> [  290.060817] mmc1: running CQE recovery
->> [  290.061337] blk_update_request: I/O error, dev mmcblk1, sector 
->> 1411072 op 0x1:(WRITE) flags 0x800 phys_seg 36 prio class 0
->> [  290.061370] EXT4-fs warning (device mmcblk1p1): ext4_end_bio:348: 
->> I/O error 10 writing to inode 29547 starting block 176466)
->> [  290.061484] Buffer I/O error on device mmcblk1p1, logical block 
->> 172288
->> 
->> Fixes: 8b5c2b45b8f0 ("phy: rockchip: set pulldown for strobe line in 
->> dts")
->> Signed-off-by: Folker Schwesinger <dev@folker-schwesinger.de>
->> ---
->>  drivers/phy/rockchip/phy-rockchip-emmc.c | 6 +++---
->>  1 file changed, 3 insertions(+), 3 deletions(-)
->> 
->> diff --git a/drivers/phy/rockchip/phy-rockchip-emmc.c 
->> b/drivers/phy/rockchip/phy-rockchip-emmc.c
->> index 20023f6eb994..6e637f3e1b19 100644
->> --- a/drivers/phy/rockchip/phy-rockchip-emmc.c
->> +++ b/drivers/phy/rockchip/phy-rockchip-emmc.c
->> @@ -376,14 +376,14 @@ static int rockchip_emmc_phy_probe(struct 
->> platform_device *pdev)
->>  	rk_phy->reg_offset = reg_offset;
->>  	rk_phy->reg_base = grf;
->>  	rk_phy->drive_impedance = PHYCTRL_DR_50OHM;
->> -	rk_phy->enable_strobe_pulldown = PHYCTRL_REN_STRB_DISABLE;
->> +	rk_phy->enable_strobe_pulldown = PHYCTRL_REN_STRB_ENABLE;
->>  	rk_phy->output_tapdelay_select = PHYCTRL_OTAPDLYSEL_DEFAULT;
->> 
->>  	if (!of_property_read_u32(dev->of_node, "drive-impedance-ohm", 
->> &val))
->>  		rk_phy->drive_impedance = convert_drive_impedance_ohm(pdev, val);
->> 
->> -	if (of_property_read_bool(dev->of_node, 
->> "rockchip,enable-strobe-pulldown"))
->> -		rk_phy->enable_strobe_pulldown = PHYCTRL_REN_STRB_ENABLE;
->> +	if (of_property_read_bool(dev->of_node, 
->> "rockchip,disable-strobe-pulldown"))
->> +		rk_phy->enable_strobe_pulldown = PHYCTRL_REN_STRB_DISABLE;
-> 
-> Unfortunately you cannot do this.
-> Previously no property at all meant disabled and a property was 
-> required
-> to enable it. With this change the absence of a property means that it
-> will be enabled.
-> An old devicetree is that wanted this to be disabled would have no
-> property and will now end up with it enabled. This is an ABI break and 
-> is
-> clearly not backwards compatible, that's a NAK unless it is 
-> demonstrable
-> that noone actually wants to disable it at all.
+Urgh, did "b4 send --resend" which only sent the v5 as it was before the
+Reviewed-by tags have been picked up.
 
-Moreover, as I already explained some time ago, [1] some boards and
-devices are unfortunately miswired, and we don't want to enable the
-DATA STROBE pull-down on such boards.
+My bad.
 
-[1] 
-https://lore.kernel.org/linux-rockchip/ca5b7cad01f645c7c559ab26a8db8085@manjaro.org/#t
+I'll send a v6 with the tags appended.
 
-> If this patch fixes a problem on a board that you have, I would suggest
-> that you add the property to enable it, as the binding tells you to.
 > 
-> Thanks,
-> Conor.
-> 
->>  	if (!of_property_read_u32(dev->of_node, 
->> "rockchip,output-tapdelay-select", &val)) {
->>  		if (val <= PHYCTRL_OTAPDLYSEL_MAXVALUE)
->> 
->> --
->> 2.44.0
->> 
->> 
-> 
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+> Rob
 
