@@ -1,149 +1,102 @@
-Return-Path: <devicetree+bounces-53456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6BD688C573
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 15:42:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8428588C57E
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 15:44:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A4E61F36B6F
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 14:42:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6FF571C62CF2
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 14:44:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9210013C3EE;
-	Tue, 26 Mar 2024 14:42:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B257213C699;
+	Tue, 26 Mar 2024 14:44:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="N7QBY2ec"
+	dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com header.b="PJnIYHx8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 106B813C3E8;
-	Tue, 26 Mar 2024 14:42:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8669213C693;
+	Tue, 26 Mar 2024 14:44:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711464168; cv=none; b=f00aFacUguG0IicA+HeThz/Co8u3qPdl9FxPF2/ZNvmAEr3oqy21ZwdoXnkz+zBkU1MIzWTKiJ+8qVz6ClYUeX2ar8sAgGzVAkTkhhNFDoyrjIYUiTbdwYjwLFUTrWvSoROn4BvwZfhIiikkpQLu7E47yDj0ydDKT7Da+CfMmjk=
+	t=1711464240; cv=none; b=BkQ3NY9mfPMF+1dam7NJhLUMV1Q75b+8g67ig99lDW28yjcUurjvK473iqM4sSNiLrClV4IAY27qFpVat7pK16jSX3A8JK8HRTTw0xTOBCKcgNKcM5Bl/t7desiLAavPWZrQWbveRmQrF+JGP1a6t1P8RSUqscvAi7tBGycwFyQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711464168; c=relaxed/simple;
-	bh=+KV3AdzDzpYqpS+EbXnPmHttAO5r/1XNhRRlBBa+ycs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=TR3HaRpp87LtYxMGwsKaZ07YiX7W3RRZMmnLEBYbUTmuFDglIJqCCj8mN+GTb0KYRaAWn1AOfVtb0lQXPDCKh/fuf01M3/vEDoBl1/ED95Muh6mn/Kv/LimRhWoThznHCOPxnxUUGnuERUOEeMKPagrH8esDtAJIdC7VlhBWAB4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=N7QBY2ec; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42QCBklK007694;
-	Tue, 26 Mar 2024 15:42:16 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	selector1; bh=9pRVmSnmGKK7LB7PnddfDWHBQ6XSXKYj11IRLNtwqSQ=; b=N7
-	QBY2ec7CNT8qV5bVJxFwCDKNtHCHQLL1A2stjMn/y2a4mdDZEu0nBAlJV+jMjui2
-	LYszZwLbZByRXeHRFaejhU3MjTETCjwfNjUV4Njk6S49C7OFaHuZE0vstFESInfg
-	aFKxKYfkE0yQr0qm0EIQkqonrNGxlKa7j1DR0xai5h+k1qWGd0XjS0ljqbziXDH9
-	IXA0/FVPB/FuzD1YgnAEdDcCXk82T1afpRWlcIyoxY10xDZz/x3b7U5N05QolwH1
-	E5JdYkwfgD8f4fw3SFTHtD1z/PVr8jNDN3aCM2bf/IcLIN9I+tesoV12ZYhQlA0L
-	lxrGKJQnhPk5G8mFWXdw==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3x29h5ueb8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 26 Mar 2024 15:42:16 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 119E840044;
-	Tue, 26 Mar 2024 15:42:11 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 5347A220B61;
-	Tue, 26 Mar 2024 15:41:15 +0100 (CET)
-Received: from [10.201.21.128] (10.201.21.128) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 26 Mar
- 2024 15:41:13 +0100
-Message-ID: <a19b20ae-d12a-47c8-9d1f-482a84924e6c@foss.st.com>
-Date: Tue, 26 Mar 2024 15:41:13 +0100
+	s=arc-20240116; t=1711464240; c=relaxed/simple;
+	bh=Yq3xPmqOC+jWpcs6JWkYjALCu081LQFaJBbCO9A5c2E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=l1UpSpCSDMlcUu+cltxqoiPS0DyeKfDnxmsAB/x0aWeHp3P0fbJcuz4WhiGlTV9x13NaxZGd23B0eP/VoBoVMQW4y7JAHyDDllj7MZNIZSGYYr7JQfIz5AO9xv29Qy9bjtRglY4bcVX8UyO6P8j+rBTOAswUX639oiHlMPoK18o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com header.b=PJnIYHx8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DD86C43394;
+	Tue, 26 Mar 2024 14:43:58 +0000 (UTC)
+Authentication-Results: smtp.kernel.org;
+	dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com header.b="PJnIYHx8"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zx2c4.com; s=20210105;
+	t=1711464236;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=QFtO6qgIeS/TrL6O/53SQRKmvPvLZK73MqbCr1eYYds=;
+	b=PJnIYHx8QR58FlkIH8G9EjxJmFe26UWCkDQ2wfcQf9+akz24j234w/Y5esoPePv+euqtXx
+	oB38fCdnbw8HA/CL7slD2bkNq/oYl5jkgNyews8PNgajO4GNeohowJOgnSW0K0JSmH/e6o
+	6WS9b6yav67jBb21t41EFsp/E1nDcc0=
+Received: 
+	by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id 30285613 (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO);
+	Tue, 26 Mar 2024 14:43:56 +0000 (UTC)
+Date: Tue, 26 Mar 2024 15:43:55 +0100
+From: "Jason A. Donenfeld" <Jason@zx2c4.com>
+To: "Landge, Sudan" <sudanl@amazon.co.uk>
+Cc: Rob Herring <robh@kernel.org>, Sudan Landge <sudanl@amazon.com>,
+	tytso@mit.edu, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, sathyanarayanan.kuppuswamy@linux.intel.com,
+	thomas.lendacky@amd.com, dan.j.williams@intel.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	graf@amazon.de, dwmw@amazon.co.uk, bchalios@amazon.es,
+	xmarcalx@amazon.co.uk
+Subject: Re: [PATCH v2 3/4] dt-bindings: rng: Add vmgenid support
+Message-ID: <ZgLfKwp6cSrX7knJ@zx2c4.com>
+References: <20240321025105.53210-1-sudanl@amazon.com>
+ <20240321025105.53210-4-sudanl@amazon.com>
+ <20240325150609.GA3477574-robh@kernel.org>
+ <51403072-f5ca-450e-9206-19ca627ead11@amazon.co.uk>
+ <CAL_JsqKpp+J2a_+wmcaOX8RfTEEyZBESWBX7GWGa_u_5_=4gsg@mail.gmail.com>
+ <96df7e5a-52df-4171-9cd6-78d088a7a1e2@amazon.co.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: net: add phy-supply property for
- stm32
-Content-Language: en-US
-To: Andrew Lunn <andrew@lunn.ch>
-CC: "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet
-	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni
-	<pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Jose Abreu <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
-        Mark
- Brown <broonie@kernel.org>, Marek Vasut <marex@denx.de>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20240326125849.226765-1-christophe.roullier@foss.st.com>
- <20240326125849.226765-2-christophe.roullier@foss.st.com>
- <0e14ad5d-3c25-40ab-981a-fbc4e245fc94@lunn.ch>
-From: Christophe ROULLIER <christophe.roullier@foss.st.com>
-In-Reply-To: <0e14ad5d-3c25-40ab-981a-fbc4e245fc94@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-26_06,2024-03-21_02,2023-05-22_02
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <96df7e5a-52df-4171-9cd6-78d088a7a1e2@amazon.co.uk>
 
+On Tue, Mar 26, 2024 at 01:06:16PM +0000, Landge, Sudan wrote:
+> >>> Does the spec say anything about endianness or access size? DT assumes
+> >>> native endianness by default. We have properties to deal these, but
+> >>> would be better to be explicit if that's defined already.
+> >>>
+> >> The spec doesn't mention anything about the endianness but, I have
+> >> updated the description with some more data.
+> > 
+> > Then what does your driver assume? Microsoft may not have thought
+> > about it because they don't care, but now you want to use DT so you
+> > have to because it is frequently used on BE systems. If we define
+> > something, then there's some hope. Otherwise, it's pretty much a
+> > guarantee folks will do the opposite.
+> > 
+> > Rob
+> The driver does not assume any endianness. To provide more context, The 
+> hypervisor stores a 128bit unique ID at the address pointed by the 
+> "reg"'s 1st cell, driver memcpy's this ID to an internal context and 
+> uses memcmp to compare if the ID is new or old.
+> But yes, it will be good to define a fixed endianness to avoid any 
+> error. I will update the description to use little endian.
 
-On 3/26/24 14:58, Andrew Lunn wrote:
-> On Tue, Mar 26, 2024 at 01:58:48PM +0100, Christophe Roullier wrote:
->> Phandle to a regulator that provides power to the PHY. This
->> regulator will be managed during the PHY power on/off sequence.
->>
->> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
->> ---
->>   Documentation/devicetree/bindings/net/stm32-dwmac.yaml | 3 +++
->>   1 file changed, 3 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/net/stm32-dwmac.yaml b/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
->> index fc8c96b08d7dc..80937b28fa046 100644
->> --- a/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
->> +++ b/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
->> @@ -82,6 +82,9 @@ properties:
->>         Should be phandle/offset pair. The phandle to the syscon node which
->>         encompases the glue register, and the offset of the control register
->>   
->> +  phy-supply:
->> +    description: PHY regulator
-> ~/linux/drivers/net/ethernet/stmicro/stmmac$ grep regulator_get *
-> dwmac-rk.c:	bsp_priv->regulator = devm_regulator_get(dev, "phy");
-> dwmac-sun8i.c:	gmac->regulator = devm_regulator_get_optional(dev, "phy");
-> dwmac-sunxi.c:	gmac->regulator = devm_regulator_get_optional(dev, "phy");
->
-> Maybe i'm missing something, but i don't see an actual implementation
-> of this binding?
->
-> 	Andrew
+It's a 16-byte blob. Why care about endianness at all here? Treat it as
+a byte string, not an integer.
 
-Hi Andrew,
-
-You are right, my next step is to upstream support of Ethernet MP13 glue 
-and some update like Phy regulator support
-
-(it is look like 
-https://lore.kernel.org/linux-arm-kernel/20230928122427.313271-9-christophe.roullier@foss.st.com/)
-
-Regards,
-
-Christophe
-
+Jason
 
