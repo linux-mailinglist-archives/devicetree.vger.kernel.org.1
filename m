@@ -1,214 +1,119 @@
-Return-Path: <devicetree+bounces-53580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8346588CC67
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 19:55:10 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C19D88CC7E
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 19:57:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A47861C3EDC2
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 18:55:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DEC8BB2A873
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 18:56:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 720A513C9DA;
-	Tue, 26 Mar 2024 18:55:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCE8D13CC60;
+	Tue, 26 Mar 2024 18:56:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="xGL6i4J6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nyEAN5Jy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A73E8129E88;
-	Tue, 26 Mar 2024 18:54:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FC8113C69D;
+	Tue, 26 Mar 2024 18:56:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711479301; cv=none; b=RWUHtDpWZpyI4/yebq6QPh9oVbVruYqgPv50chiVFZ4KNUkSG627wb0DDRl7x+DxjoGS7N3ThNpIryT4V7ILnx9aQjvH3YWdPLJMypJUlW2fghVL8iqZ+W6JnwEaLJ0R8hWNqn+7YGpGXzaOLE3qpK5AJy2Lfm42e7q26BPEdoA=
+	t=1711479382; cv=none; b=n0tSDlNb5fRuDOsc+Dc/Eam/TmrafLhaYq2yU2Rb6lPTO8+PlhOk0CPTsRJl0O9yBEgpgrtM1RwDREHUxqIHQtDYoGppt2podo47ImQenJOrjPEqlXR7uJQa5LqYOFUEhpDDteC9maDcMSYwtBW5QUQYhVyAu06ORWEmO6dimtw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711479301; c=relaxed/simple;
-	bh=kZ78PtjvmyUZuECbikY5Q6c2dEWnsP5+9yZeGkjRtCY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nqQd/EE2DUwOHLOs2eTvwv6R8H4AJrSzExe0hYDuezamVDJX2ImVoKB+vG7OgZnbrqfjG8umCgS1wPvIV6n8MJYaS6ujMvsq3gWH4ZkwSeqO+7BIW04FVYuBw3yTuECR6tyHbKWwXHwCdOi7YFQEcmP8elYCyiwOMzXqzHb6AHo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=xGL6i4J6; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 42QIsi8w062545;
-	Tue, 26 Mar 2024 13:54:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1711479284;
-	bh=T8630GWUrbj0zfexpMDHqXLTw8tlD7FeoVbNwa/kyLU=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=xGL6i4J64HBPNmeJUw23aTR8yYLbSsE9CZuzd6a+xq+VNGHOiyxqNlV4U8gL8XvB7
-	 Yo2ZcbgGtLaDaxoprk7PEJSh1ZfAahl443g0QCkT72zaZfsNClmeRv5kwwatJWq5yO
-	 hDTMG45nDUpCVc6BnTSwamWRM+v+p0v6G9D2jlbo=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 42QIsi79120809
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 26 Mar 2024 13:54:44 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 26
- Mar 2024 13:54:44 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 26 Mar 2024 13:54:44 -0500
-Received: from lelvsmtp5.itg.ti.com ([10.249.42.149])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 42QIsfIo091446;
-	Tue, 26 Mar 2024 13:54:43 -0500
-From: Andrew Davis <afd@ti.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>
-Subject: [PATCH 6/6] arm64: dts: ti: k3-j784s4: Remove UART baud rate selection
-Date: Tue, 26 Mar 2024 13:54:41 -0500
-Message-ID: <20240326185441.29656-6-afd@ti.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240326185441.29656-1-afd@ti.com>
-References: <20240326185441.29656-1-afd@ti.com>
+	s=arc-20240116; t=1711479382; c=relaxed/simple;
+	bh=HeSCOyWRkgF4bDb2OVsj+wKkCFrlnU2oRKaZ9XqzH3k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=R7EA4BUXSRDWGYKbqIEuyVgeOzxKJKOtvnIK+hjeS8yTTXJgCuaEJJoP+Iy1vMd6rQNBtPAnD+HoQ9hwwMAZtXsQAS/D1s2pKlKdqt1LWWNwhbV1n2mzDhRHQ1u7Ipu1zxXHxeDvpsgdjpsWM9tA6YcMiZgVm2qxj+9BsHG9OOU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nyEAN5Jy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48BF5C43390;
+	Tue, 26 Mar 2024 18:56:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711479382;
+	bh=HeSCOyWRkgF4bDb2OVsj+wKkCFrlnU2oRKaZ9XqzH3k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nyEAN5JyF/m1Qv57aHSYEhlpYY2sILPOwySbnLRpB3T2H7ZkI/4Edsbn51vZGt9Qm
+	 N8SN1oZWC/kIanLsthnJGbKOCLAI47q8lJvaAY9w/97ydQbuR2HHjFvSyWrvxOBdwX
+	 VS7QLI5qW9Y2fFS70gtYYunGmYg7BZZpaqKwrZTRxWivmtmZEoosbEq/rHfVwcNJsW
+	 /u6Ril5qbCOrtX2gtS1UlykL0AD2ol9NVR8+enkCIuOPnmT7QnHRf6aFaixKboeJep
+	 9gyNvhPlP1nxulwWqssFzbC33Y3BvL79IdS0Mfkb5+UnxQut0mdiAZ2EhI3AE9GrHO
+	 ETtgfSEBR65rw==
+Date: Tue, 26 Mar 2024 18:56:17 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Yinbo Zhu <zhuyinbo@loongson.cn>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	loongson-kernel@lists.loongnix.cn, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev
+Subject: Re: [PATCH v1 3/8] dt-bindings: clock: loongson2: add
+ Loongson-2K0500 compatible
+Message-ID: <20240326-dimmer-undrafted-9cabaaec1abc@spud>
+References: <cover.1710926402.git.zhoubinbin@loongson.cn>
+ <7c7728451fdea3977c492f3daee260590af78d16.1710926402.git.zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="eFlUKDOKmoTO6ljZ"
+Content-Disposition: inline
+In-Reply-To: <7c7728451fdea3977c492f3daee260590af78d16.1710926402.git.zhoubinbin@loongson.cn>
 
-As described in the binding document for the "current-speed" property:
 
-"This should only be present in case a driver has no chance to know the
-baud rate of the slave device."
+--eFlUKDOKmoTO6ljZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-This is not the case for the UART used in K3 devices, the current
-baud-rate can be calculated from the registers. Having this property
-has the effect of actually skipping the baud-rate setup in some drivers
-as it assumes it will already be set to this rate, which may not always
-be the case.
+On Tue, Mar 26, 2024 at 05:01:02PM +0800, Binbin Zhou wrote:
+> Add the devicetree compatible for Loongson-2K0500 clocks.
+>=20
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> ---
+>  Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.ya=
+ml b/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
+> index 63a59015987e..83baee40e200 100644
+> --- a/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
+> +++ b/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
+> @@ -16,7 +16,8 @@ description: |
+>  properties:
+>    compatible:
+>      enum:
+> -      - loongson,ls2k-clk
+> +      - loongson,ls2k0500-clk
+> +      - loongson,ls2k-clk  # This is for Loongson-2K1000
 
-It seems this property's purpose was mistaken as selecting the desired
-baud-rate, which it does not. It would have been wrong to select that
-here anyway as DT is not the place for configuration, especially when
-there are already more standard ways to set serial baud-rates.
+Ah yes, the generic "ls2k" compatibles strike again :)
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Signed-off-by: Andrew Davis <afd@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi       | 10 ----------
- arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi |  2 --
- 2 files changed, 12 deletions(-)
+Thanks,
+Conor.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-index b67c37460a73d..d42f25cacf23d 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-@@ -404,7 +404,6 @@ main_uart0: serial@2800000 {
- 		compatible = "ti,j721e-uart", "ti,am654-uart";
- 		reg = <0x00 0x02800000 0x00 0x200>;
- 		interrupts = <GIC_SPI 192 IRQ_TYPE_LEVEL_HIGH>;
--		current-speed = <115200>;
- 		clocks = <&k3_clks 146 0>;
- 		clock-names = "fclk";
- 		power-domains = <&k3_pds 146 TI_SCI_PD_EXCLUSIVE>;
-@@ -415,7 +414,6 @@ main_uart1: serial@2810000 {
- 		compatible = "ti,j721e-uart", "ti,am654-uart";
- 		reg = <0x00 0x02810000 0x00 0x200>;
- 		interrupts = <GIC_SPI 193 IRQ_TYPE_LEVEL_HIGH>;
--		current-speed = <115200>;
- 		clocks = <&k3_clks 388 0>;
- 		clock-names = "fclk";
- 		power-domains = <&k3_pds 388 TI_SCI_PD_EXCLUSIVE>;
-@@ -426,7 +424,6 @@ main_uart2: serial@2820000 {
- 		compatible = "ti,j721e-uart", "ti,am654-uart";
- 		reg = <0x00 0x02820000 0x00 0x200>;
- 		interrupts = <GIC_SPI 194 IRQ_TYPE_LEVEL_HIGH>;
--		current-speed = <115200>;
- 		clocks = <&k3_clks 389 0>;
- 		clock-names = "fclk";
- 		power-domains = <&k3_pds 389 TI_SCI_PD_EXCLUSIVE>;
-@@ -437,7 +434,6 @@ main_uart3: serial@2830000 {
- 		compatible = "ti,j721e-uart", "ti,am654-uart";
- 		reg = <0x00 0x02830000 0x00 0x200>;
- 		interrupts = <GIC_SPI 195 IRQ_TYPE_LEVEL_HIGH>;
--		current-speed = <115200>;
- 		clocks = <&k3_clks 390 0>;
- 		clock-names = "fclk";
- 		power-domains = <&k3_pds 390 TI_SCI_PD_EXCLUSIVE>;
-@@ -448,7 +444,6 @@ main_uart4: serial@2840000 {
- 		compatible = "ti,j721e-uart", "ti,am654-uart";
- 		reg = <0x00 0x02840000 0x00 0x200>;
- 		interrupts = <GIC_SPI 196 IRQ_TYPE_LEVEL_HIGH>;
--		current-speed = <115200>;
- 		clocks = <&k3_clks 391 0>;
- 		clock-names = "fclk";
- 		power-domains = <&k3_pds 391 TI_SCI_PD_EXCLUSIVE>;
-@@ -459,7 +454,6 @@ main_uart5: serial@2850000 {
- 		compatible = "ti,j721e-uart", "ti,am654-uart";
- 		reg = <0x00 0x02850000 0x00 0x200>;
- 		interrupts = <GIC_SPI 197 IRQ_TYPE_LEVEL_HIGH>;
--		current-speed = <115200>;
- 		clocks = <&k3_clks 392 0>;
- 		clock-names = "fclk";
- 		power-domains = <&k3_pds 392 TI_SCI_PD_EXCLUSIVE>;
-@@ -470,7 +464,6 @@ main_uart6: serial@2860000 {
- 		compatible = "ti,j721e-uart", "ti,am654-uart";
- 		reg = <0x00 0x02860000 0x00 0x200>;
- 		interrupts = <GIC_SPI 198 IRQ_TYPE_LEVEL_HIGH>;
--		current-speed = <115200>;
- 		clocks = <&k3_clks 393 0>;
- 		clock-names = "fclk";
- 		power-domains = <&k3_pds 393 TI_SCI_PD_EXCLUSIVE>;
-@@ -481,7 +474,6 @@ main_uart7: serial@2870000 {
- 		compatible = "ti,j721e-uart", "ti,am654-uart";
- 		reg = <0x00 0x02870000 0x00 0x200>;
- 		interrupts = <GIC_SPI 199 IRQ_TYPE_LEVEL_HIGH>;
--		current-speed = <115200>;
- 		clocks = <&k3_clks 394 0>;
- 		clock-names = "fclk";
- 		power-domains = <&k3_pds 394 TI_SCI_PD_EXCLUSIVE>;
-@@ -492,7 +484,6 @@ main_uart8: serial@2880000 {
- 		compatible = "ti,j721e-uart", "ti,am654-uart";
- 		reg = <0x00 0x02880000 0x00 0x200>;
- 		interrupts = <GIC_SPI 248 IRQ_TYPE_LEVEL_HIGH>;
--		current-speed = <115200>;
- 		clocks = <&k3_clks 395 0>;
- 		clock-names = "fclk";
- 		power-domains = <&k3_pds 395 TI_SCI_PD_EXCLUSIVE>;
-@@ -503,7 +494,6 @@ main_uart9: serial@2890000 {
- 		compatible = "ti,j721e-uart", "ti,am654-uart";
- 		reg = <0x00 0x02890000 0x00 0x200>;
- 		interrupts = <GIC_SPI 249 IRQ_TYPE_LEVEL_HIGH>;
--		current-speed = <115200>;
- 		clocks = <&k3_clks 396 0>;
- 		clock-names = "fclk";
- 		power-domains = <&k3_pds 396 TI_SCI_PD_EXCLUSIVE>;
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-index 77a8d99139ec1..b47338e0f4812 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-@@ -304,7 +304,6 @@ wkup_uart0: serial@42300000 {
- 		compatible = "ti,j721e-uart", "ti,am654-uart";
- 		reg = <0x00 0x42300000 0x00 0x200>;
- 		interrupts = <GIC_SPI 897 IRQ_TYPE_LEVEL_HIGH>;
--		current-speed = <115200>;
- 		clocks = <&k3_clks 397 0>;
- 		clock-names = "fclk";
- 		power-domains = <&k3_pds 397 TI_SCI_PD_EXCLUSIVE>;
-@@ -315,7 +314,6 @@ mcu_uart0: serial@40a00000 {
- 		compatible = "ti,j721e-uart", "ti,am654-uart";
- 		reg = <0x00 0x40a00000 0x00 0x200>;
- 		interrupts = <GIC_SPI 846 IRQ_TYPE_LEVEL_HIGH>;
--		current-speed = <115200>;
- 		clocks = <&k3_clks 149 0>;
- 		clock-names = "fclk";
- 		power-domains = <&k3_pds 149 TI_SCI_PD_EXCLUSIVE>;
--- 
-2.39.2
+--eFlUKDOKmoTO6ljZ
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgMaUQAKCRB4tDGHoIJi
+0iQCAQDlCmyyuYtsHRjUL1psOLIvbbdZiQAV5e5mdGofHGaP+QEAqBFXxrR+h0QL
+QTrlkp/FPyBAkCZoDRYS23vA/77EHQU=
+=f9bv
+-----END PGP SIGNATURE-----
+
+--eFlUKDOKmoTO6ljZ--
 
