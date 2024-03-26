@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-53230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53232-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F60E88BA7F
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 07:35:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B0C588BA99
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 07:41:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D8BCE1F3874A
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 06:35:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E3A31C31ED8
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 06:41:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39E6112AADB;
-	Tue, 26 Mar 2024 06:34:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A6E674BEB;
+	Tue, 26 Mar 2024 06:41:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NiYxGeZU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="viRcSPIf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6C698F66;
-	Tue, 26 Mar 2024 06:34:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43588A954
+	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 06:41:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711434894; cv=none; b=PfM/M8Mqu/63TPvx94SpZ6mx1nYMbeg6n/aIQ6jP9biIk112r7sv3+JX+ZzBIPRKWnAk+jOoobUljzIYyxmO7XuGZFTbD2ccZ6d7Jmig8PUIx9uOTUWA8xrhK/vXdvuS0YPeg4iN8agdQYsMYjgzqROxjfswM001P0I46R734No=
+	t=1711435291; cv=none; b=lr6JrXFuAwDqqZj58nAB3WFz9JgBbjMgLML5GIUjMCRoZCAHK+QC2ixdziy3XOFcviQ2csTtSsKVOB6LWw6cCAvPm9vqAjPMzNHitsPDTuVAwguxlGowPsBv60foCeAwnEtnxKMRw7J6EovgF++agl8+4vMuPu7EFCPD2acIsvY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711434894; c=relaxed/simple;
-	bh=bOy5evgU4v6yztqyxoe3sH61Bpt7cuDbwH1Lus3h1Lo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:In-Reply-To:
-	 From:Content-Type; b=d+KBYw/m3rejUJcBgLQy39CJjkL8luK9qaqVEzYTuzXpZMasTa7KTZJzCMxKktwbqNBeT3rw4gBXnfNZ9dno7h+91al8GSWEv/f7cYYliin41jg1juVYwV+gkPag3I4YA/FWHTrDs85QCyyAO2J/N4Q58VIqDWGZu9t8Ay8ccL8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NiYxGeZU; arc=none smtp.client-ip=209.85.210.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-6e6f69e850bso4545759b3a.0;
-        Mon, 25 Mar 2024 23:34:52 -0700 (PDT)
+	s=arc-20240116; t=1711435291; c=relaxed/simple;
+	bh=GzDtQK1saFDcFVMOqUaQqDCSX6jUg4+gnXHidKzXjmM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BU65rZQ00W5T4mgDGGaU25T2y7Q31uULiVXXYJUOF0C7knd6Y0pxLoIyvCS/Y8CZ1IjqaKPXL5PzIE3FrMXZBtXiaYPhZW4pekbn7UDzqkwYqju99PiuoMo4fkQKjreLOE/dLNY2f/G3E/Et5DfVovdW2gNd248ApaOuXvyk7Rc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=viRcSPIf; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a4df5bd63fbso18560766b.2
+        for <devicetree@vger.kernel.org>; Mon, 25 Mar 2024 23:41:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711434892; x=1712039692; darn=vger.kernel.org;
-        h=content-transfer-encoding:from:in-reply-to:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hzdO8q/x8pJ5/At8ghTUTxm5rg91iM4qz0LztoKnHTQ=;
-        b=NiYxGeZUKudBUr1Xp/0UtmLyVt3A6Din9nKst5vjyGys3FbmsSq+bKXumPTrpzCOHT
-         DAl8iMGK0COoXyKGCBEvwYgyW6HfrAIrzoZEWTbeWoU1iXnUX7fsytxewRPmcs4ymtqq
-         VwD5EUvX7ym3S/OJMqmYfYRb4+HVVKPycE+bOLyorCSWzC5f08PGwiPxf6i9CCUQJOnJ
-         k32pVqIi0rR4m+3fsctFhzzM39cJmUfCPrxjqc6tGn2N0zp+I8Fu2rohbkYJ1nwxWiUu
-         44PICJqINOWT9r/uUT7rBRv0bWmxeMJlthT6ar8LPh9t3Cf6pCCuylhTc8LQ4hx00uMj
-         eMWQ==
+        d=linaro.org; s=google; t=1711435287; x=1712040087; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=GJ2tXKD2WaU+7T+zA/zPQZUuPSPb85vL+vwhd6xl5yo=;
+        b=viRcSPIfeVt5AyJuXyRaLtHRY1hBbjEP3GJLoZ9dLBk1HVP1K8oimbs1PRFk67F8/s
+         uJgdI9q0XmZG7bDz9Ayg9nuoaWOKFX5vmAHOz9dpi+icGA9DiZcq5eK+olYiSECNsZtT
+         R1Ix/eN+zyz9/hXWDDntvbtkcim48GvwLRl2v3a3oxSQ7LQO5AFRTnLMbKrK9PhD661x
+         c8d9rfphVY84p0JHxaH0U8RTkpvruL9l9Zk8C1aqh5672AprWZfdIgmiRjqUohUwmejY
+         plbi1/g4j8XpJReMocw5pXaJReaHoashTD2Q+2RMQTvSq457gjsKqD0Uk32oksz9EcX+
+         9nQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711434892; x=1712039692;
-        h=content-transfer-encoding:from:in-reply-to:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hzdO8q/x8pJ5/At8ghTUTxm5rg91iM4qz0LztoKnHTQ=;
-        b=Hp4OeYv0w/2sXQa3ESQz2U6AKPJVIuimJi0EOcdzE6DrQgZUrOI+3z8d/U+TK9YNlw
-         2OltVNCtaFmbfeSAQc4ppwgrdrBZX5xPVyo+urFbFO/7WCkS4PN4NB4p/PJiwXRlsEa4
-         h5iIHB4RBgyNmLbHLctO6u73ZF7NEPfX64CAkSN61y9hiqSEo8+E6LaPHHNiWI/Ndw6g
-         +OwpE6RDut/4pRZoJbIBmN1QB7bOTlwQJIOuNWlvdisei8xFn2c4kVTFYw+e+P+hJgI3
-         ncvCO2qsCfhpfkV30RPb4zrezAf45wG3B8tEPXdRxof9yCzPrP3ecZLlRd+q6OXkSA/T
-         lSuA==
-X-Forwarded-Encrypted: i=1; AJvYcCXXqo/sJVwq1u5PGcp3iYWL9DsVVfxifPwwhSgAa9vLZd4zj1sdVYnfToGRh7HfJRv0X7KG+hhF8m1gEfjeJmIbWAmFEqOkDrXP2KlVOlv5wikThOOHalLc/FC32xv5XnpwxPW1fFQ2eZktsnyKJrR2+tA4m3mq14eO0gYVJ+3om+meV6aC
-X-Gm-Message-State: AOJu0Yxj0FyAwZcQrwznlVO/R7PVJV2Mg1AkW5NPctl36SN9JeiUIqb9
-	zuLoO6uZRmL8bwX6Cu+Go+oOiqH5DDVjH0GsInNTANzQeBt3maXZ
-X-Google-Smtp-Source: AGHT+IHP7uX/0UbdnkVUeX+Ww/lhu+Gv3sYZNFk7vX47e45rNYpqsObUuYLxIzb/JAz8lk1DeTuWKA==
-X-Received: by 2002:a05:6a20:914f:b0:1a3:c511:34cf with SMTP id x15-20020a056a20914f00b001a3c51134cfmr296578pzc.2.1711434891983;
-        Mon, 25 Mar 2024 23:34:51 -0700 (PDT)
-Received: from [10.7.27.90] ([117.239.226.201])
-        by smtp.gmail.com with ESMTPSA id ka5-20020a056a00938500b006eab499fb50sm1329917pfb.128.2024.03.25.23.34.43
+        d=1e100.net; s=20230601; t=1711435287; x=1712040087;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GJ2tXKD2WaU+7T+zA/zPQZUuPSPb85vL+vwhd6xl5yo=;
+        b=nnRnKK42IeeQClm+oYsv0DohFVyU3fjlKLMtQ+COrJRSJKLH/AQDFHZwU8kMOrbaQU
+         aTpWQBmHLxTyXaIb2RnMQa9YkExm6/LMJdKDQR2VS7YBB1KgnZdMhXZhEtzu4IZEWbyg
+         GX7AT733qvamVJUWptOetpMAgkJJvJYZU/zcbpjZHDUatXEyWAMGWQkTUU9lB4KxXlPN
+         GLNBaewD84ngB2rTJ3T6DAS3Gaf+cpDl8FJXGMbEDSNvku/8iQYZ5vmqKUuQpXsCnZED
+         ipvILDpDwc79Gn9rhUPth739M22ZNbZYzgg3wFpIQvnxItU5nHF5UyxMpX2XbK6UGwuF
+         vUcg==
+X-Forwarded-Encrypted: i=1; AJvYcCXg+YLjOGEBmCNw2TA1VR8OVKyM256KbixC+0Hi3WFVEOhNnmNUBvEDEToMWY9AJg9YOIQNJ3789CCNdNom325IDm6B+rNTrgKmvw==
+X-Gm-Message-State: AOJu0YxYLSByZ563dz6Zlu4EvFifCRrdUvkcUeFPrxC9dvTgL5g6Ar1j
+	3dO4Q2wDJfzDbCHt3CD05VgZUohhtyhE5Zqc6IkNAEx85aJLyPWI3GMfOdfu56w=
+X-Google-Smtp-Source: AGHT+IE6TanRvBgLMYJPbfQxwfB8FYEG/n671HuRgeoIpRop0LuoJyPUnLRs4fffly2ef1u/0Qa+OQ==
+X-Received: by 2002:a17:907:7241:b0:a47:5194:e365 with SMTP id ds1-20020a170907724100b00a475194e365mr5139393ejc.64.1711435287551;
+        Mon, 25 Mar 2024 23:41:27 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.44])
+        by smtp.gmail.com with ESMTPSA id z23-20020a170906271700b00a473766cfeasm3868522ejc.217.2024.03.25.23.41.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Mar 2024 23:34:51 -0700 (PDT)
-Message-ID: <00098337-39e5-4f33-8538-09c9da20022a@gmail.com>
-Date: Tue, 26 Mar 2024 12:04:41 +0530
+        Mon, 25 Mar 2024 23:41:27 -0700 (PDT)
+Message-ID: <b086a02c-624f-4225-a9fb-164095742ce9@linaro.org>
+Date: Tue, 26 Mar 2024 07:41:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,38 +77,185 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ASoC: dt-bindings: wm8974: Convert to dtschema
-Content-Language: en-US, ar-LB
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: patches@opensource.cirrus.com, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- javier.carrasco.cruz@gmail.com
-References: <20240325181943.116733-1-agarwala.kartik@gmail.com>
- <02fc496c-caac-4434-8e18-229074733b1c@linaro.org>
-In-Reply-To: <02fc496c-caac-4434-8e18-229074733b1c@linaro.org>
-From: Kartik Agarwala <agarwala.kartik@gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: arm64: marvell: add solidrun cn9130
+ clearfog boards
+To: Josua Mayer <josua@solid-run.com>, Andrew Lunn <andrew@lunn.ch>,
+ Gregory Clement <gregory.clement@bootlin.com>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Yazan Shhady <yazan.shhady@solid-run.com>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20240321-cn9130-som-v1-0-711127a409ae@solid-run.com>
+ <20240321-cn9130-som-v1-1-711127a409ae@solid-run.com>
+ <0f7ca0ed-a1c1-41d2-a1fa-27431d14c056@solid-run.com>
+ <e1836cb6-64cd-4866-9c0a-f0dda096aa18@linaro.org>
+ <6a6e7c4d-d5fd-42ae-bc3d-a3978d65e8e4@solid-run.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <6a6e7c4d-d5fd-42ae-bc3d-a3978d65e8e4@solid-run.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 3/26/24 1:00 AM, Krzysztof Kozlowski wrote:
-> On 25/03/2024 19:19, Kartik Agarwala wrote:
->> Convert WM8974 audio CODEC bindings from text to dtschema.
+On 25/03/2024 21:12, Josua Mayer wrote:
+> Am 25.03.24 um 20:34 schrieb Krzysztof Kozlowski:
+>> On 22/03/2024 11:08, Josua Mayer wrote:
+>>> Am 21.03.24 um 22:47 schrieb Josua Mayer:
+>>>> Add bindings for SolidRun Clearfog boards, using a new SoM based on
+>>>> CN9130 SoC.
+>>>> The carrier boards are identical to the older Armada 388 based Clearfog
+>>>> boards. For consistency the carrier part of compatible strings are
+>>>> copied, including the established "-a1" suffix.
+>>>>
+>>>> Signed-off-by: Josua Mayer <josua@solid-run.com>
+>>>> ---
+>>>>  .../devicetree/bindings/arm/marvell/armada-7k-8k.yaml        | 12 ++++++++++++
+>>>>  1 file changed, 12 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/arm/marvell/armada-7k-8k.yaml b/Documentation/devicetree/bindings/arm/marvell/armada-7k-8k.yaml
+>>>> index 16d2e132d3d1..36bdfd1bedd9 100644
+>>>> --- a/Documentation/devicetree/bindings/arm/marvell/armada-7k-8k.yaml
+>>>> +++ b/Documentation/devicetree/bindings/arm/marvell/armada-7k-8k.yaml
+>>>> @@ -82,4 +82,16 @@ properties:
+>>>>            - const: marvell,armada-ap807-quad
+>>>>            - const: marvell,armada-ap807
+>>>>  
+>>>> +      - description:
+>>>> +          SolidRun CN9130 clearfog family single-board computers
+>>>> +        items:
+>>>> +          - enum:
+>>>> +              - solidrun,clearfog-base-a1
+>>>> +              - solidrun,clearfog-pro-a1
+>>>> +          - const: solidrun,clearfog-a1
+>>>> +          - const: solidrun,cn9130-sr-som
+>>>> +          - const: marvell,cn9130
+>>>> +          - const: marvell,armada-ap807-quad
+>>>> +          - const: marvell,armada-ap807
+>>>> +
+>>>>  additionalProperties: true
+>>> Before merging I would like some feedback about adding
+>>> another product later, to ensure the compatibles above
+>>> are adequate? In particular:
+>>> - sequence of soc, cp, carrier compatibles
+>>> - name of som compatible
+>>>
+>>> Draft for future bindings:
+>>>       - description:
+>>>           SolidRun CN9130 SoM based single-board computers
+>>>           with 1 external CP on the Carrier.
+>>>         items:
+>>>           - enum:
+>>>               - solidrun,cn9131-solidwan
+>>>           - const: marvell,cn9131
+>>>           - const: solidrun,cn9130-sr-som
+>> This does not look correct. cn9131 is not compatible with your som.
+> This is partially my question.
+> I considered changing the som to "cn913x-sr-som".
+> 
+> The SoM itself is always 9130, it contains the base SoC
+> with 1x AP and 1x CP in a single chip.
+> 9131 and 9132 <happen> on the carrier boards.
+
+No wildcards, but if the SoM name is 9130 then use 9130.
+The problem is that you use cn9130 SoC as fallback.
+
+> 
 >>
->> Signed-off-by: Kartik Agarwala <agarwala.kartik@gmail.com>
+>>>           - const: marvell,cn9130
+>> SoCs are compatible only in some cases, e.g. one is a subset of another
+>> like stripped out of modem. Are you sure this is your case?
+> This is more complex, CN9131 and CN9132 are not single SoCs.
+> A "9132" is instantiated by connecting two southbridge chips
+> via a Marvell defined bus, each providing additional IO
+> such as network, i2c, gpio.
 > 
-> Thank you for your patch. There are no DTS users of this binding, so
-> while such conversions are useful, they have significantly smaller
-> impact. In the future, please consider converting bindings from active
-> platforms (arm64 defconfig, arm multi_v7). This would have significantly
-> bigger impact.
+> Note that even the first, "9130", while a single chip, contains two dies:
+> An "AP" (Application Processor I assume) with very limited IO (1xsdio, 1xi2c),
+> and a "CP" (Communication Processor I assume) with lots of IO.
+> This CP as far as I know today is identical to the southbridges
+> mentioned above.
+
+OK, but how does it affect compatibility between them? Which parts are
+the same? Or how much is shared?
+
 > 
-> See also:
-> https://lore.kernel.org/all/6552bcb8-e046-4882-91da-1094fff3d239@linaro.org/
+>>>           - const: marvell,armada-ap807-quad
+>>>           - const: marvell,armada-ap807
+>> Anyway, 6 compatibles is beyond useful amount. What are you expressing
+>> here?
+> I copied this part from the examples earlier in the file, such as:
+>       - description: Armada CN9132 SoC with two external CPs
+>         items:
+>           - const: marvell,cn9132
+>           - const: marvell,cn9131
+>           - const: marvell,cn9130
+>           - const: marvell,armada-ap807-quad
+>           - const: marvell,armada-ap807
+>>  Why is this even armada ap807?
+> We noticed ap807 != ap806 (cn913x != 8040),
+> because the thermal sensor coefficients converting
+> raw values to celsius differed.
 
-Noted, thanks for letting me know.
+That's also not the best example. Might be correct but also looks
+over-complicated. The point of board-level compatibles is to identify
+machine and its common parts. It has little impact inside of kernel (at
+least should be almost no users inside!), but there can be some users,
+e.g. firmware or user-space.
 
-Regards,
-Kartik Agarwala
+This claims that cn9132 is compatible with ap807, so you have exactly
+the same base. The same base is not CPU! It's about the S in SoC, so
+"System". Could firmware use marvell,armada-ap807 compatible to properly
+detect type of system and treat all these boards as ap807?
+
+Best regards,
+Krzysztof
+
 
