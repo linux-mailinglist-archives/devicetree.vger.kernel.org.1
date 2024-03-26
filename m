@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-53305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CFD888BDB1
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 10:22:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B122288BDAF
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 10:22:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 77944B24253
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 09:22:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 65F571F2E9C3
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 09:22:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA7736F09C;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB4106F514;
 	Tue, 26 Mar 2024 09:20:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iyJRQwgm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ekUqV+Z9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB79B6E61D;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4A3F6EB7A;
 	Tue, 26 Mar 2024 09:20:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711444842; cv=none; b=L78y/DIYWZ5OBErfV/f9X4QX3Akr3Ntx5JYd1NcoKRnrSfgaDc/uj6yHKQtNvX0/kQGkCGJ8J4T+YJ/jEmKj4v2ASNIyDtpCiWSlrfqfgMgY1B0wo1KIfWm8EBM0nmc4pPErqEiGxKwwePfgL9XgR84xIeYTnscYDeSj0djQi9c=
+	t=1711444842; cv=none; b=arRscHEVeajhB2V/S1wo+jxs5cnkQWKCR1LOj5dHcaWvzMCy9ERldCnzliq+u/hGflotjxN67nuGt61+OibptZBWpZp+a3g0Y25ot+uo/X0r+BUWtgK4gX++prdd0f6+P9XgoTSWxVOitizHeCdcOyzfRiBsUunxPvOwVumBeyE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1711444842; c=relaxed/simple;
-	bh=0k3URFJZb18PwpzeMhJ7DF35374xGK50doG0S5Yr3LQ=;
+	bh=VZtwCtv7tOsROgurA3MD2nAvcBs73kPEENCk7foe470=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=IZg52FCoBEj92N4QvTVQ9YswbolWcc5Qa5TBniJQmn+XApm1HidtarV7D3RbKFByFnB+w5MorGu8zNm4LYAhgKkSv2oItsK88JanFWn2AQaWLA+3ZfhkMZkUAitcbdCH8hgD0D9T0IXnP8ollnvmvkG7yA2JGTSDl5aNfVUF1EY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iyJRQwgm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id ED4F5C4AF6D;
-	Tue, 26 Mar 2024 09:20:41 +0000 (UTC)
+	 In-Reply-To:To:Cc; b=kVGJoo4wFhPNq6oI2fVs5dGjI8HUmlAMr/ZgLrhhQhDn+QQPAMK4jEbLjHWVIIqowSSEj3c97kPBFvmj/D9Iij/nDlugH6zQMTa8Is2V5NBXNb8eT8lsFvU8LzlRfLsbSks639yjiOxNeqqlj/gQ0NGAYNRoCM4C2xql7XoGvmM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ekUqV+Z9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 07E2AC4160E;
+	Tue, 26 Mar 2024 09:20:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1711444842;
-	bh=0k3URFJZb18PwpzeMhJ7DF35374xGK50doG0S5Yr3LQ=;
+	bh=VZtwCtv7tOsROgurA3MD2nAvcBs73kPEENCk7foe470=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=iyJRQwgmLYxeiIq5dGrRLOV4TimdM8dEwvmDWwGHb+xx+2eIOXojC8/+i7fIQq19l
-	 d99tEjvL20L2Q2rznzvN5mToWt1V0mnjPm3tFm1ba3vrGQLvyG9zYv8dlB/h61bqnj
-	 +joeDIt2pi+/tedCWIV62ZAo/1ydol9uyaZegm4qNf9DpGGJ1tQFZ2ktwfPxu2T24p
-	 8R/KAWHPhBThbQSVZxmVpFZxuI+duNiugmr/jt809fpS3Lz0wOuZx6gf0lCzCNMVk2
-	 O/VoV4zPeZVgkXCqAQIK6oosFWbE9JdJ6+9Zt5rbwbhyPJhhQUL++rgB0spw/XwjX+
-	 z3WD7d4hHPJdQ==
+	b=ekUqV+Z97A0v4VzAfN68VxvpY4YVXzU5ZFW0gUoAgUN7iU6x0g5TVmbnjRIY0I4K6
+	 fFc0MiStz/W0ORb7LALyY3d2F+79iR0BLFc7ORuaXPVJuiDbDvjmTGo+tAVGY4j+jt
+	 XWLo6DHvz4/ANileJtS3jKow41zBkSbakxea+vkM5bi2PfZl+0yxScxSojvxUMTWH2
+	 FXh4nIXtqEmdoTlQxnq9tb8ZqeLzu/QztGn4n5XTJ36Q4Cx6xjRhYUoPILfHWBUnPg
+	 f2qJiESCJ2lQfYMqHXsV9vQ3FF0G9HRpjabweVy+/M2TIdG2vNAHUeLsq47kkockx+
+	 fD/ENChidruqA==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D5DBACD11DB;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EE273C6FD1F;
 	Tue, 26 Mar 2024 09:20:41 +0000 (UTC)
 From: Nikita Shubin via B4 Relay <devnull+nikita.shubin.maquefel.me@kernel.org>
-Date: Tue, 26 Mar 2024 12:18:45 +0300
-Subject: [PATCH v9 18/38] dt-bindings: mtd: Add ts7200 nand-controller
+Date: Tue, 26 Mar 2024 12:18:47 +0300
+Subject: [PATCH v9 20/38] dt-bindings: ata: Add Cirrus EP93xx
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,24 +55,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240326-ep93xx-v9-18-156e2ae5dfc8@maquefel.me>
+Message-Id: <20240326-ep93xx-v9-20-156e2ae5dfc8@maquefel.me>
 References: <20240326-ep93xx-v9-0-156e2ae5dfc8@maquefel.me>
 In-Reply-To: <20240326-ep93xx-v9-0-156e2ae5dfc8@maquefel.me>
-To: Miquel Raynal <miquel.raynal@bootlin.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+To: Damien Le Moal <dlemoal@kernel.org>, Niklas Cassel <cassel@kernel.org>, 
  Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Nikita Shubin <nikita.shubin@maquefel.me>
-Cc: linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-ide@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.13-dev-e3e53
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1711444837; l=1633;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1711444837; l=1576;
  i=nikita.shubin@maquefel.me; s=20230718; h=from:subject:message-id;
- bh=bq2OLT9jIJx+y3Eu11Bq5qmV15g39ulN9ve41TDPTOE=;
- b=HDCeJdytsWnVI88zE++qKwX81j74oy2uCbPZ6UaMYOAVJiHYoTV3JPTqNgnYv01GkUTbTXf/H+AT
- ++QPQqZPBHtuWuM72zrnsPACvwLBK1m+Rf5J+rKbvVrn6Eewuy5+
+ bh=Li9/TOkn8mbBPPXaTcEctnQvcEznaH6L6jCP3u/Msyk=;
+ b=t8ohdfdkgBithg2G3BaudwFNUuYaMmViWu3R6Kuvu39lwBFn6w8IjEFNhcB0MOoiqZyO6mTM6sEh
+ 9G4CYoLtAyvOGC2v8yk07IN9egJVykfs2fJi2BIJ6Hzabuf3dpVd
 X-Developer-Key: i=nikita.shubin@maquefel.me; a=ed25519;
  pk=vqf5YIUJ7BJv3EJFaNNxWZgGuMgDH6rwufTLflwU9ac=
 X-Endpoint-Received: by B4 Relay for nikita.shubin@maquefel.me/20230718
@@ -82,64 +80,62 @@ Reply-To: nikita.shubin@maquefel.me
 
 From: Nikita Shubin <nikita.shubin@maquefel.me>
 
-Add YAML bindings for ts7200 NAND Controller.
+Add YAML bindings for ep93xx SoC PATA.
 
+Acked-by: Damien Le Moal <dlemoal@kernel.org>
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
 ---
- .../devicetree/bindings/mtd/technologic,nand.yaml  | 45 ++++++++++++++++++++++
- 1 file changed, 45 insertions(+)
+ .../bindings/ata/cirrus,ep9312-pata.yaml           | 42 ++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mtd/technologic,nand.yaml b/Documentation/devicetree/bindings/mtd/technologic,nand.yaml
+diff --git a/Documentation/devicetree/bindings/ata/cirrus,ep9312-pata.yaml b/Documentation/devicetree/bindings/ata/cirrus,ep9312-pata.yaml
 new file mode 100644
-index 000000000000..f9d87c46094b
+index 000000000000..8130923fdc72
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/mtd/technologic,nand.yaml
-@@ -0,0 +1,45 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++++ b/Documentation/devicetree/bindings/ata/cirrus,ep9312-pata.yaml
+@@ -0,0 +1,42 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/mtd/technologic,nand.yaml#
++$id: http://devicetree.org/schemas/ata/cirrus,ep9312-pata.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Technologic Systems NAND controller
++title: Cirrus Logic EP9312 PATA controller
 +
 +maintainers:
-+  - Nikita Shubin <nikita.shubin@maquefel.me>
-+
-+allOf:
-+  - $ref: nand-controller.yaml
++  - Damien Le Moal <dlemoal@kernel.org>
 +
 +properties:
 +  compatible:
 +    oneOf:
-+      - const: technologic,ts7200-nand
++      - const: cirrus,ep9312-pata
 +      - items:
-+          - enum:
-+              - technologic,ts7300-nand
-+              - technologic,ts7260-nand
-+              - technologic,ts7250-nand
-+          - const: technologic,ts7200-nand
++          - const: cirrus,ep9315-pata
++          - const: cirrus,ep9312-pata
 +
 +  reg:
++    maxItems: 1
++
++  interrupts:
 +    maxItems: 1
 +
 +required:
 +  - compatible
 +  - reg
++  - interrupts
 +
-+unevaluatedProperties: false
++additionalProperties: false
 +
 +examples:
 +  - |
-+    nand-controller@60000000 {
-+        compatible = "technologic,ts7200-nand";
-+        reg = <0x60000000 0x8000000>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        nand@0 {
-+           reg = <0>;
-+        };
++    ide@800a0000 {
++        compatible = "cirrus,ep9312-pata";
++        reg = <0x800a0000 0x38>;
++        interrupt-parent = <&vic1>;
++        interrupts = <8>;
++        pinctrl-names = "default";
++        pinctrl-0 = <&ide_default_pins>;
 +    };
 
 -- 
