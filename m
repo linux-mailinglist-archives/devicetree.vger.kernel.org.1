@@ -1,124 +1,181 @@
-Return-Path: <devicetree+bounces-53317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 970F088BEA7
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 11:01:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BF1688BEC2
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 11:07:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 098C5B21219
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 10:01:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F9851C34912
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 10:07:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11920524D0;
-	Tue, 26 Mar 2024 10:01:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BE406BB4E;
+	Tue, 26 Mar 2024 10:06:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="c8BR28o1"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kekSt440"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D25424F88C
-	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 10:01:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7122F679E1;
+	Tue, 26 Mar 2024 10:06:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711447305; cv=none; b=svESB4goCkb+SUr9OU/IyJpOiGNS4RGSMG0eXpHU1JFMFNhRYugXedK6tTxKr4IbXutydIfHogqlJoG9IuJbuT+5moS+BfNuV9Sh9hDZoHM2YJ6w7M0jBEyptyyjvXTswMk7XDJf6HGCFlsVfTjpgTgSmdtJPo34rGoPmPz8lGU=
+	t=1711447613; cv=none; b=JVdXVH14bCQa64TB36WZ1K7+/ZfZE7O2bvN9cPPOLARf138iCRcxb5njpFb28aHxsWonDlkQC/kjbuBMr9pjSnn6dCnyRRToLxwwj70uP88yQfFh8gmQeDgyv/JoDLjOoaNy2MIyVrczBnY1tJleC1MSluAFbzdTMk5Y+CnhRLg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711447305; c=relaxed/simple;
-	bh=wC+CkfzRIQpYUdEINEFhAazEnmsffM+ulB1Y5urq2Vs=;
-	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
-	 To:Date:Message-ID; b=IoZb9R2k5SOfD5hxVRhPrVSEW4ZZTfvzK7w1giRvbDPFwS9jvILCeXMY8jVA73RY+yZnmiO89/s1y8brBJcyDTfSqmvlAvg5+kvoa/kl5k4MPkJvVwhkQ989MEetMZ9PBgkpCybhUL0gGBBAXFe1ttSa8rQq6shhVHfSCDm8Pl4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=c8BR28o1; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (aztw-30-b2-v4wan-166917-cust845.vm26.cable.virginm.net [82.37.23.78])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3180E497;
-	Tue, 26 Mar 2024 11:01:08 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1711447268;
-	bh=wC+CkfzRIQpYUdEINEFhAazEnmsffM+ulB1Y5urq2Vs=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=c8BR28o1ptckZ2kGJ7GqDBLmoqwY2xX8WC+PtvFAA2BmpJ4HlnVUl+NN+NUuFoPEV
-	 YHfVEbOaSXJwmS7UFwJK5XgHAGMJOuzFYGg9AlSHPd2tcUJ+w0J3uUD7VIt8EIcWqQ
-	 Uo0rSbShLVSbXnQqLDs7rbLYdaFzsQT6RZyxQbCc=
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1711447613; c=relaxed/simple;
+	bh=e9rjLhsGUsOfk2IfGhHzXVHO0YjmBd4tuhNPwoR2aA0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=RIs+Nmt0HdCSMGEpqxo+p7sdnUy1UARp4nRI28Iyvj3d1Hvo9594GlwfeUI0gnfDo/yaTuzWBA8peWiWbYYeQKggM+jOghvzis2o7k/npJ1o9SlY3NP9FcPEweu1R7F77SsfxR4fbdWgPERQz5p8hPwytVRwh7Xaa8/tki03hwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kekSt440; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42Q4H3uq021424;
+	Tue, 26 Mar 2024 10:06:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=nl4E2X95msSqYDli7PLf4WrJbHQU3ND3a3UYloS/oY8=; b=ke
+	kSt440rECrd8T6/8n7n9ZQFmXiDICyfH8wsdTwmek1033Dsg8BuM9jGNFritb6s2
+	T33+P1fu9S3vRs7rS9ZYssojKzCpGDoUyKV9ha8WB7Etwrp7imLntJGl+ItpbrSb
+	z/sA8LBlfbYbgjjNywkNxFcab1ayKpiFbATUZQqgWQMMosvqiWF/awGlObxpua6g
+	SSdhupI7rUSl2PCA5EKpL/MvnTZHfhDR+WH0MSdnAVz+GQghSnj06kXqVGTw7wb4
+	ZNoDCsQiInfKFAU2NDYje+RChAWX4lNjxf4PZ1cvS/vVs3+DlNU/Enqd7pbZTQXQ
+	Osnx14AAamMMPVDnVLqw==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x3j54hf6b-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 26 Mar 2024 10:06:38 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42QA6b13017468
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 26 Mar 2024 10:06:37 GMT
+Received: from [10.216.2.127] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 26 Mar
+ 2024 03:06:31 -0700
+Message-ID: <ec3bf11a-0dc2-4313-ba93-c81494c4cc38@quicinc.com>
+Date: Tue, 26 Mar 2024 15:36:27 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20240325225048.1159-1-laurent.pinchart@ideasonboard.com>
-References: <20240325225048.1159-1-laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH] arm64: dts: debix-a: Remove i2c2 from base .dts
-From: Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Jacopo Mondi <jacopo.mondi@ideasonboard.com>, Jacopo Mondi <jacopo@jmondi.org>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Date: Tue, 26 Mar 2024 10:01:36 +0000
-Message-ID: <171144729683.3566204.12672101779935759480@ping.linuxembedded.co.uk>
-User-Agent: alot/0.10
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v16 7/9] usb: dwc3: qcom: Refactor IRQ handling in glue
+ driver
+To: Johan Hovold <johan@kernel.org>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Wesley Cheng
+	<quic_wcheng@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Felipe Balbi
+	<balbi@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_ppratap@quicinc.com>,
+        <quic_jackp@quicinc.com>
+References: <20240307062052.2319851-1-quic_kriskura@quicinc.com>
+ <20240307062052.2319851-8-quic_kriskura@quicinc.com>
+ <ZgFyukBXIIwZo7v-@hovoldconsulting.com>
+ <50926b91-3c61-4dbf-85c9-7558ab96e628@quicinc.com>
+ <ZgF6zvaT2OkrbkHK@hovoldconsulting.com>
+ <807015d4-c5ed-4e04-9948-fd1ff894a04e@quicinc.com>
+ <ZgHUR-Rk-YzqiTtt@hovoldconsulting.com>
+ <7b4a6d7f-76ad-471f-a178-dc598fbc0e22@quicinc.com>
+ <ZgKHNuziNtBhGO9V@hovoldconsulting.com>
+Content-Language: en-US
+From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <ZgKHNuziNtBhGO9V@hovoldconsulting.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: zaJxAJd3PocZS3YQVLxelHTILjtXeGGj
+X-Proofpoint-ORIG-GUID: zaJxAJd3PocZS3YQVLxelHTILjtXeGGj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-26_04,2024-03-21_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 malwarescore=0
+ impostorscore=0 priorityscore=1501 phishscore=0 clxscore=1015
+ lowpriorityscore=0 adultscore=0 spamscore=0 suspectscore=0 mlxlogscore=867
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2403210001 definitions=main-2403260068
 
-Quoting Laurent Pinchart (2024-03-25 22:50:48)
-> From: Jacopo Mondi <jacopo@jmondi.org>
->=20
-> The I2C2 bus is used for the CSI and DSI connectors only, no devices are
-> connected to it on neither the Debix Model A nor its IO board. Remove
-> the bus from the board's .dts and rely on display panel or camera sensor
-> overlsy to enable it when necessary.
-
-s/overlsy/overlays/
 
 
-Reviewed-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
+On 3/26/2024 1:58 PM, Johan Hovold wrote:
+> On Tue, Mar 26, 2024 at 01:41:52PM +0530, Krishna Kurapati PSSNV wrote:
+>> On 3/26/2024 1:15 AM, Johan Hovold wrote:
+>>
+>>> Just change the logic in dwc3_qcom_find_num_ports() so that it returns 1
+>>> if "dp_hs_phy_1" is missing, and otherwise you determine the number of
+>>> ports by iterating from 2 to DWC3_MAX_PORTS - 1.
+> 
+>> I made this change and it works. Removed any return value check for the
+>> find_num_ports call as it can return only 1/2/3/4 now.
+>>
+>> ---
+>>       irq = platform_get_irq_byname_optional(pdev, "qusb2_phy");
+>>           if (irq > 0)
+>>                   return 1;
+>>
+>>           irq = platform_get_irq_byname_optional(pdev, "dp_hs_phy_irq");
+>>           if (irq > 0)
+>>                   return 1;
+> 
+> As I mentioned above, these two lookups are no longer needed and should
+> be removed.
+>   
+>>           irq = platform_get_irq_byname_optional(pdev, "dp_hs_phy_1");
+>>           if (irq <= 0)
+>>                   return 1;
+> 
+> Just assume it's a single port controller unless "dp_hs_phy_1" is
+> present.
+>   
+>>           for (port_index = 1; port_index < DWC3_MAX_PORTS - 1;
+>> port_index++) {
+> 
+> I think this would be more readable if you use port (num) as iterator
+> (2..DWC3_MAX_PORTS) as you're returning a number of ports.
+> 
+>>                   sprintf(irq_name, "dp_hs_phy_%d", port_index + 1);
+> 
+> Then this would use just "port";
+> 
+>>
+>>                   irq = platform_get_irq_byname_optional(pdev, irq_name);
+>>                   if (irq <= 0)
+>>                           return port_index;
+> 
+> And return "port - 1" here.
+> 
+>>           }
+>>
+>>           return DWC3_MAX_PORTS;
 
->=20
-> Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
->  .../boot/dts/freescale/imx8mp-debix-model-a.dts    | 14 --------------
->  1 file changed, 14 deletions(-)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts b/arc=
-h/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-> index 5ac77eaf23d5..26c303b7c7fa 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-> @@ -210,13 +210,6 @@ ldo5: LDO5 {
->         };
->  };
-> =20
-> -&i2c2 {
-> -       clock-frequency =3D <100000>;
-> -       pinctrl-names =3D "default";
-> -       pinctrl-0 =3D <&pinctrl_i2c2>;
-> -       status =3D "okay";
-> -};
-> -
->  &i2c3 {
->         clock-frequency =3D <400000>;
->         pinctrl-names =3D "default";
-> @@ -392,13 +385,6 @@ MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA                     =
-               0x400001c2
->                 >;
->         };
-> =20
-> -       pinctrl_i2c2: i2c2grp {
-> -               fsl,pins =3D <
-> -                       MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL                  =
-               0x400001c2
-> -                       MX8MP_IOMUXC_I2C2_SDA__I2C2_SDA                  =
-               0x400001c2
-> -               >;
-> -       };
-> -
->         pinctrl_i2c3: i2c3grp {
->                 fsl,pins =3D <
->                         MX8MP_IOMUXC_I2C3_SCL__I2C3_SCL                  =
-               0x400001c2
-> --=20
-> Regards,
->=20
-> Laurent Pinchart
->
+Ok,Thanks.
+
+With the above fixed, can I put your RB tag given on [1] or will you be 
+providing another one. Asking because when you gave that RB, this 
+malformed DT thing wasn't there. So wanted to check with you before 
+pushing the code.
+
+[1]: https://lore.kernel.org/all/ZgFyukBXIIwZo7v-@hovoldconsulting.com/
+
+Regards,
+Krishna,
 
