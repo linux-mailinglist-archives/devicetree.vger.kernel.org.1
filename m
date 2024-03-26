@@ -1,82 +1,104 @@
-Return-Path: <devicetree+bounces-53577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7F8788CC53
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 19:48:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C68288CC64
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 19:54:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3BF83B29735
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 18:48:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6E3C307F6B
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 18:54:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 612EA13D280;
-	Tue, 26 Mar 2024 18:47:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 248E113C67E;
+	Tue, 26 Mar 2024 18:54:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RA6SgSHV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GYA3NHSW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F02713CC60;
-	Tue, 26 Mar 2024 18:47:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEDEB3DABF5;
+	Tue, 26 Mar 2024 18:54:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711478856; cv=none; b=ePTvPUIXctcFqHhNwbtLYptJE57QzW8CRvJUfyPvA1htz2Ch5/03qYYQVM9RansNaPR9oU8cIpMnwH5oWRYEQu53SzRDeo5iGO8rKHGbMB/J5jJM8/IOu2U0/gseF9F/Mk2I4omB8JyY/wl2n6LZgDNm85fev8R17QXBzvFS1UY=
+	t=1711479273; cv=none; b=Ykeye5Zc0riw+HK/8XyYJuxB7SRGOUSIwysFyD7RN5gH8IPMxRNYIWirCQROns1Ar1R5sQ5pmPEB1RLBQEVy6pNQ2taFRk+k1TW1XOPqn56slMjplgSOIrdfZ+up+z46d8s4jqlsp4YGdUZlKo76ilPxFqjfyIi1APWYJM9dfgI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711478856; c=relaxed/simple;
-	bh=8FHSNGxQm7QBTQTAwc2r5ZwdqOJ+94idlj4A8yLD6bw=;
+	s=arc-20240116; t=1711479273; c=relaxed/simple;
+	bh=tGfgiG77z8IX9FLQTwqR6BIYgNfoRKojvZtLLr0/uQA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=herKU3nKv7Hpn8GB8a6cmuhY+RHsSrGUua2FeK7CsG46XLRD2DGjDvTKaqZnmINIu9q7Mr9gdFAEwbX2SrjACjoc8HwiexPfoqWWh4wIXcO6ADJRZNU2X28hslKm+OtW/i/L8GFbTyQ0aPt1zqIgjzUSd33Rkhh7Pwf9QdFrf/4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RA6SgSHV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 891AFC433C7;
-	Tue, 26 Mar 2024 18:47:35 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=FBkY5dsUR9+PFzwvj6+itPxf4EzpXNHV65BI5LRTWGb8cq61s9QI+QTLl+ZU0R8NbCxpja2wBnRjEomu1DR9Z74u5XLO3/Kbf7ArYH8w0pr3R7v1pWmWsJGFZyMGe++9I7XZFv73iEZsFuOzvyeCjN9rU4BDAdRb8U0rp2aQVBo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GYA3NHSW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D06F6C433F1;
+	Tue, 26 Mar 2024 18:54:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711478855;
-	bh=8FHSNGxQm7QBTQTAwc2r5ZwdqOJ+94idlj4A8yLD6bw=;
+	s=k20201202; t=1711479272;
+	bh=tGfgiG77z8IX9FLQTwqR6BIYgNfoRKojvZtLLr0/uQA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RA6SgSHVS7EZzjbf3Ox2Dx9xuEj43jIL1s/GhxNT8VyRalMPP+IZ0U5SVf7hXbRiZ
-	 odonEeY/joyiungjBc4WQnT8w2r7PuxR0ZeK6EbPOxcmdcnRZHb3XWIveaoH8ugz0E
-	 7p+h2NTehRuJvXuun7mmbzP6+QfOGwA0T9oNoKyOMRyebViTUQXXm2IE0CZ1ucovqW
-	 HX+hP1bt3jV28HbtaD5BW6Kg+cbdWrUWsUSv563DvPoY1IOaveU+tS8YOxPYuqOvVT
-	 +mcEX0utAoHVihwq0ZRQaGxq+3VfOv2BxxULN6DIFA2vU68LS1l0Sy7btcxRimHYaE
-	 mVboKkibluQaw==
-Date: Tue, 26 Mar 2024 13:47:33 -0500
-From: Rob Herring <robh@kernel.org>
-To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, Baruch Siach <baruch@tkos.co.il>,
+	b=GYA3NHSW8Mk9Y02rQc2/IkqCghEehWti1i0XdhjdPZKEur4T/b3U4Ldzde3Wbytd8
+	 h+F5dYMQEh+uMcQDlLJlnK6+wWUlI95As6mUrhQfO+TdNxkFfeKLUh6Um82u4WT8Pw
+	 I1rmcMj/nff3dP4JMVudG/mvUuDHYU7Y9l32VtYiU/QO/Zhrw3lTdSCN290BQ/d3gw
+	 M+4D4USuzyBMTvouGPY8uRQMJQR3XlqJH0D+qsFVvC/U3qAIQDTgIQvOzmHEB3RmQX
+	 i+juyzOFNkFIAFLxZRzp0XmF8Ur6TOcfOP271P65srKK4mb9WMYa4IOhfMTjtssfEk
+	 L4mqtfW+IIdBQ==
+Date: Tue, 26 Mar 2024 18:54:27 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>
-Subject: Re: [PATCH v2 4/4] dt-bindings: rtc: nxp,lpc1788-rtc: convert to
- dtschema
-Message-ID: <171147885251.3182791.7036006082588130342.robh@kernel.org>
-References: <20240325-rtc-yaml-v2-0-ff9f68f43dbc@gmail.com>
- <20240325-rtc-yaml-v2-4-ff9f68f43dbc@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Yinbo Zhu <zhuyinbo@loongson.cn>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	loongson-kernel@lists.loongnix.cn, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev
+Subject: Re: [PATCH v1 1/8] dt-bindings: clock: add Loongson-2K expand clock
+ index
+Message-ID: <20240326-shifter-zeppelin-1d8616dc82f9@spud>
+References: <cover.1710926402.git.zhoubinbin@loongson.cn>
+ <0cfd237c2c7c1e4f89b6e5f7af0a64d306de1c8f.1710926402.git.zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="bRdTAQrFxCUTITyF"
+Content-Disposition: inline
+In-Reply-To: <0cfd237c2c7c1e4f89b6e5f7af0a64d306de1c8f.1710926402.git.zhoubinbin@loongson.cn>
+
+
+--bRdTAQrFxCUTITyF
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240325-rtc-yaml-v2-4-ff9f68f43dbc@gmail.com>
+
+On Tue, Mar 26, 2024 at 05:01:00PM +0800, Binbin Zhou wrote:
+
+> -#define LOONGSON2_CLK_END				18
 
 
-On Mon, 25 Mar 2024 22:10:11 +0100, Javier Carrasco wrote:
-> Convert existing binding to dtschema to support validation.
-> 
-> This is a direct conversion with no additions.
-> 
-> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-> ---
->  .../devicetree/bindings/rtc/nxp,lpc1788-rtc.txt    | 21 --------
->  .../devicetree/bindings/rtc/nxp,lpc1788-rtc.yaml   | 60 ++++++++++++++++++++++
->  2 files changed, 60 insertions(+), 21 deletions(-)
-> 
+> +#define LOONGSON2_CLK_END	35
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Please just delete this. If you can change it, it is not a binding.
+Just define it in the driver if it is needed there.
 
+Thanks,
+Conor.
+
+--bRdTAQrFxCUTITyF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgMZ4wAKCRB4tDGHoIJi
+0ueCAP9EmF5JTO76DGRqT1zQ5QuMi/98/VJ8LUy1k0LvczdHRQD/cGkdYGmfhbIG
+qaLEAKksA3Zfz4QnPkwAq4NFySpCjgQ=
+=0+yR
+-----END PGP SIGNATURE-----
+
+--bRdTAQrFxCUTITyF--
 
