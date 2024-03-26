@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-53243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E052C88BAFC
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 08:09:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A14F588BAFD
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 08:10:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 101351C2FCEF
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 07:09:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19F211F39FFA
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 07:10:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 287CE12DD8E;
-	Tue, 26 Mar 2024 07:09:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35C0774BEB;
+	Tue, 26 Mar 2024 07:10:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hw0W6ozW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xO+OR17h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CCFA128394
-	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 07:09:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72F5812DD8E
+	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 07:10:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711436993; cv=none; b=RrG5IcKp9NrUynK4AEZ7e8XxUvtKZb0iQ3aUwS4bYmLD3wMwwTHa3O8j4zZ5cAUEo6lHUYB6Y9LgbZ2hMq/Y97DtEy1liP+hILgC8LEIGbL13H2//LJqT4Ktyu+36YkmCD+3kUBU43tYF9BNQo/zBUunn17jIqUVA7r8fwgAuVo=
+	t=1711437020; cv=none; b=RgtmIK9IHjNZ0ewKPl+G0sqiLbGtT1bZnu0MhQORVKAAGft8mFhyhD/Jyxir3cGDk8VadzRmYGbpmCJnFd3sv1OhfHAyFl58WrFwfdIdRW+fcqLfaIQU4patUoUPT4KGix84xhM5vYXIftRFrEaHKUlqxdr9BX4E9FIqQ0WA3no=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711436993; c=relaxed/simple;
-	bh=g2+AF39CAd4oHhBts26Z5bZHPbqAxurIuEBzeiXs52Q=;
+	s=arc-20240116; t=1711437020; c=relaxed/simple;
+	bh=ldjwzhmXb2fBiddczLor8FhiJZ0wc4J/4AFmykR3m6A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lm5697W1CRWGPEeqFMIz49Mz+VPN2/3vD77pRyY5uSrOQb3g9vLkZ+5FmVANLF8UEgeGE5tvJXiGP6QTzUeQTwWtLNZHCjUZ9qWGcyIV3pIX7VoBu1QwogRPZpTyQSgvKALckCXmmstvtaXDFr/9m/D/TCU6XKEzdzBumm/xuNs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hw0W6ozW; arc=none smtp.client-ip=209.85.208.51
+	 In-Reply-To:Content-Type; b=cACzQdttTFL756R8Qq5Db8avNebkRiBI+lxERi8l8alwJzVCXXn4Lg+fdRynzoMGZZ7VTWeswo68WF1j62Uk+xNYuRdoKiUGS3vCKrECbnIJ/MDGv5gwT4QoXtqVJQwCfgpvLFUbUO5EKOCUx6zI8NVVFGvRa2XXsO0wZ4kA8ZM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xO+OR17h; arc=none smtp.client-ip=209.85.218.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-56c2787aff5so596433a12.3
-        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 00:09:50 -0700 (PDT)
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a466a27d30aso633754166b.1
+        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 00:10:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711436989; x=1712041789; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711437017; x=1712041817; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=jkl0qyofTqqEdWRvpRAFACB5BTqxnIP6F+xsdrsHhvI=;
-        b=hw0W6ozWb0z+TYAEeI7K6jG14xrm/jUW3REBsec3YEfuR4EBtDTHgoEz0OisuxYwmV
-         vNsLEKOTXhNyz5r5WMSQ0dSnDVTEz9msMeOXCEaHia1gi0Cd1Q4Be7zgrEZX4Z4lgYty
-         RU/TbFGqm2O7tqQi2zwaXBxqwv6YkVHKaWOSNUQpF69+7i+lObWx3t/yevANGP9XW3lZ
-         tFdDL7F/hf26MTfab+HTk38r5n/Afgcy+tBfO/5aKnItv9odlecG5osRX9BlL9Dkns79
-         LfdugUCSCTJkHnmY6z6szXV7cUtTl/Ul3VnEr611/VCHoTo5ZLJMwCJMlaUIavz7kdLi
-         +YaA==
+        bh=qlmzj0sf1hp2LTTaE1AX/X6FTCE8mv7N2bIgUWEpv0s=;
+        b=xO+OR17hiWmL4zgWA+A7fjdvLc/4dRzDbTlFeEgyIbsedUP3j9LHjF+N8Mb7bVZhdD
+         z+DMS1H35X7ywVlLw3IVF2ZBQgiHpXedmZdRnMhgdYC15C9u24fzp43KwftyK/0l8u6i
+         V8CyXtuQJIXbSDFT3H5oi81xbrqqNVclYb0pNV09CHB6HAdwZlp+ZJZ9fNoMrQG2Vrm1
+         ydgmoK4Jv5SYfBm8pFs3b5Uj4NyAIuEkXvFolJmCtJo6HI3EwKBo6CjC1qtT01dhkPKA
+         VX7ngBahHMsiwk3r57I8YaOufphikk/3iszAXV63Mx4ieR5eszUhYkQvUklPBGhvU7Rh
+         kLLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711436989; x=1712041789;
+        d=1e100.net; s=20230601; t=1711437017; x=1712041817;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=jkl0qyofTqqEdWRvpRAFACB5BTqxnIP6F+xsdrsHhvI=;
-        b=dteZJWyKXNgxhuR0/rzO0Gf+RcQkWBr7gGvhGchywDr++VHyv5IMeSQ5hhLnLyM74Q
-         lBSA6+bfnlPdct7xIuXWGjxNxYDNxiIxPrs3wzT7Mpq9TxBG2xjHioMn00JbmtUcKQTd
-         xYqA5YU+8wWLw8bXHHfGLU7cVjQZM1lcB1BetKxx3BxcLWhOVmFE4T5WXtc6HbmKxB9q
-         9JqXSNlGEKGsuFIIf+l2TipB9I1ew6g9ARU1BEntMNCGp6qo6tpWHkqp2/4pmKCT00xd
-         mX2yzQ7VH8czifGtbZRU1pACQSJJhf4NIsEYx/OPTjAcralDNgNV+9VOUohwOfyCaTe7
-         hMbw==
-X-Forwarded-Encrypted: i=1; AJvYcCV32XWwksN/E2gcGQjuh+2jymvzCoo1ohPUkgryXmhlJi+4mrNa3OV+6zTXpsuCV/JAuU+Du96InD8qZPqKol9sjTjIWNCljZ07ZA==
-X-Gm-Message-State: AOJu0Yx6PBu9T/yjjj/adc750BKDeCsOPGyMzocdcEfp51/xZS7QW+Xc
-	LnYxp+7qKqDMlMHnDoLu+qOvpyn04XejYUJ6KZOAeMfO+DpcZlzMq47Hz1B17gE=
-X-Google-Smtp-Source: AGHT+IGWmrzZ1EP5AVByJP3m5+LuywecgjzSYEz9ZtRWRqVXkHwPVoDiDEWJi1p4nqj/YVYUK5xxLQ==
-X-Received: by 2002:a50:9988:0:b0:566:4a85:ceba with SMTP id m8-20020a509988000000b005664a85cebamr2363606edb.1.1711436989527;
-        Tue, 26 Mar 2024 00:09:49 -0700 (PDT)
+        bh=qlmzj0sf1hp2LTTaE1AX/X6FTCE8mv7N2bIgUWEpv0s=;
+        b=pNkbVRddg7soOpYxr0/tEa55ATR9fLONj+B5lE0dveXjHV+oR7iiW+Z8i9imljCCdJ
+         b37nuf+AdUSYZRlZLt2ds0yICyORrEzCQ5WeUZ22g4p0W4e1hosEX0hdKIjh9HUQ7Nru
+         tSY6DSOaHX7PBt6UtlQ5kgLLS8Ijatan75GIvFlSVe11eCFEE/3vzTYgc+E7FMwU63/M
+         bgMPZqMROYAeQRzywMx8mGSQsKpGU2bHs9FfCQS02dbQc/ICInvyD/CTBTfhpxQPLFDY
+         fQCU7vmZhcOqUNYqu0+onogPrPxP39KK1wHUsiAADHJxlDoTd1RkPtV6fuBb7VX5ld3S
+         VLLw==
+X-Forwarded-Encrypted: i=1; AJvYcCVWCDJqYALF9MId+HMYinVl3tnmqjZkXMisRAWPyRPqmWOeumnozSock0QojfNJW01sGlDMMqrQSzbWRuHI+J+0dh8mgeYLCkwfFw==
+X-Gm-Message-State: AOJu0Yygmi0PaNYAqeFa5UWvxKntdZWbUFzSpdLoJmjsi91a06whASeg
+	NGd1JtT6nOzZSHo6HIJjTVzyzMJZq6o+V8owe5q/ifQmKGOYTQrVAFSjRSoT2wE=
+X-Google-Smtp-Source: AGHT+IFzYiPiCUgiK1lOumfheXscF+WhbmjnXM4eUolE+aiXGLSL0Nk/IZ+ZDM/VJYPEhzXXmW9vNw==
+X-Received: by 2002:a17:906:128d:b0:a47:11a9:9038 with SMTP id k13-20020a170906128d00b00a4711a99038mr6598574ejb.58.1711437016897;
+        Tue, 26 Mar 2024 00:10:16 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.44])
-        by smtp.gmail.com with ESMTPSA id g17-20020a056402091100b0056c0cec810bsm2130837edz.85.2024.03.26.00.09.47
+        by smtp.gmail.com with ESMTPSA id ao18-20020a170907359200b00a46aba003eesm3869801ejc.215.2024.03.26.00.10.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Mar 2024 00:09:49 -0700 (PDT)
-Message-ID: <8f4ef49a-74a1-4e05-a2fa-f6bc29e80c5c@linaro.org>
-Date: Tue, 26 Mar 2024 08:09:46 +0100
+        Tue, 26 Mar 2024 00:10:16 -0700 (PDT)
+Message-ID: <f2abb2ff-93f1-4f5d-9078-36a1be7fba2a@linaro.org>
+Date: Tue, 26 Mar 2024 08:10:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,23 +77,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: arm: bcm: raspberrypi,bcm2835-firmware:
- Add gpio child node
+Subject: Re: [PATCH 3/5] dt-bindings: vendor-prefix: Add prefix for Au-Zone
+ Technologies
 To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org
+Cc: Trevor Zaharichuk <trevor@au-zone.com>, Greg Lytle <greg@au-zone.com>,
+ Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>,
- Scott Branden <sbranden@broadcom.com>,
- Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
- <brgl@bgdev.pl>, Eric Anholt <eric@anholt.net>,
- Stefan Wahren <wahrenst@gmx.net>
-References: <20240326004902.17054-1-laurent.pinchart@ideasonboard.com>
- <20240326004902.17054-3-laurent.pinchart@ideasonboard.com>
+ Conor Dooley <conor+dt@kernel.org>
+References: <20240325203245.31660-1-laurent.pinchart@ideasonboard.com>
+ <20240325203245.31660-4-laurent.pinchart@ideasonboard.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -140,38 +134,20 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240326004902.17054-3-laurent.pinchart@ideasonboard.com>
+In-Reply-To: <20240325203245.31660-4-laurent.pinchart@ideasonboard.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/03/2024 01:49, Laurent Pinchart wrote:
-> Unlike the other child nodes of the raspberrypi,bcm2835-firmware device,
-> the gpio child is documented in a legacy text-based binding in
-> gpio/raspberrypi,firmware-gpio.txt. This causes DT validation failures:
+On 25/03/2024 21:32, Laurent Pinchart wrote:
+> Au-Zone Technologies is a company that designs and manufactures products
+> for AI vision applications. Add a DT vendor prefix for it.
+> 
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
-
-
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      compatible:
-> +        const: raspberrypi,firmware-gpio
-> +
-> +      gpio-controller: true
-> +
-> +      "#gpio-cells":
-> +        const: 2
-> +        description:
-> +          The first cell is the pin number, and the second cell is used to
-> +          specify the gpio polarity (GPIO_ACTIVE_HIGH or GPIO_ACTIVE_LOW).
-> +
-> +      gpio-line-names: true
-
-You could provide here maxItems, if this is known, but it's fine as is
-as well.
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
