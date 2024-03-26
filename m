@@ -1,164 +1,192 @@
-Return-Path: <devicetree+bounces-53651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE62B88CF86
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 22:00:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0918D88CF90
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 22:02:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A4422C7DE7
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 21:00:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 86D032C8039
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 21:02:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96AAE13D532;
-	Tue, 26 Mar 2024 21:00:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD88D12C7FF;
+	Tue, 26 Mar 2024 21:02:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bJ4ybbDM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nVwTIcUc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD60D12B157;
-	Tue, 26 Mar 2024 21:00:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C7C912B157
+	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 21:02:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711486814; cv=none; b=ZETfweHHrpBaDZqNL2k9qaL1KIDjjWLMjTk16bkZmRfwctjI6VVPWCK8sIYiWMxUVN/VJXcEKGER2L2BxePf2XPiT4Os3Vo+csr22z6vDQeYTpqKy6YQaVWILgY4SlxS+uG0vm9tavSKrrMGZKDZap2l9GKEZcGSORnFBaeHFr0=
+	t=1711486953; cv=none; b=dQe3ROWXKgsR9KzlxESx7NSTElTDOac/vhHCUC7osYr5pR1pyF0pTrWRCJUADk+JeIyd228onc6Vng5AheK662xf/oVdbdq6aaEXgGFq1Kwl5OFVqzwRFUvuKcX338QqqRCpM9U6XZClaeaoCaPhnBJeMs/O2WlfjNOmnrIfRW8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711486814; c=relaxed/simple;
-	bh=BMDy0xEWSqRLIBS7dqDM7r65pTCpIKpqHbzXnYc8qSg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FtV1nu8x5u4hEJLotwJnaNrnXHHX3BfcImGci7gg8c8lwSg6ETPWYGpkYO+IHDdWafGTcflQWBsHnnXn1ueZfuLd1kS83nMHulVQEJU5Z2eoGMN/DPDmm/x3SxmrG8iIOpcnqzlqJgH8/Zx6pmo4DTRaBqxuQQMCbgoC58GYMds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bJ4ybbDM; arc=none smtp.client-ip=209.85.219.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-dcc73148611so6699741276.3;
-        Tue, 26 Mar 2024 14:00:12 -0700 (PDT)
+	s=arc-20240116; t=1711486953; c=relaxed/simple;
+	bh=on7uOmWOeWqBAIBMJG/2+F6UGZUMHF6+ikg65Ma31Fg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KkXHwQuIiAv9rNKSy22kgNBAsurBwKB7jfk+kNPCC/2+PxHaeAl/C5kjanNzVagqs1gNvfzubA1xfQnRoewwX+kC35S2A0QNoHfi6Ge4tqQyAPNU6GCCp8pw9G1VNufHBcryCAfHvMQSlWdDpdGDpp4fC82i/Y1fLod1pj0Ozl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nVwTIcUc; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-513da1c1f26so7495582e87.3
+        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 14:02:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711486812; x=1712091612; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FGCp3Hdv4uExC/POBDKFeOwya+tu2FDjTleJp+1lj24=;
-        b=bJ4ybbDMbnyN0AY01ONxvhRhwHZETgbrYY7ZqPMGCGMlHLOsGnkvKB9Wpk8itcGZ00
-         nSV2xLbOXgR1h3+nJOYAAMtt85gq1gmD19hAH2JYtWXExbkN/gLSacD9uLPrYJ4QcEet
-         kKPVpHBStk3xGxDmaWchmGxbknJ+agLajtkmeqQzndEnclVFGulNcJAKYbX7xekZWMHh
-         Pa8P3qgt0QqbyVnqVDYubYQEqIFmbhSmv7LI3mA+UT5UqhP6rl4x7Ef+BZalI08cB4DI
-         MtUKnq/adVAEvwwOidmDwKkjzChte7RrxcCqaSicObwNiTXxVfqL2gzbS0JOzQlDsPQy
-         2Cqg==
+        d=linaro.org; s=google; t=1711486950; x=1712091750; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=09Zf5P5vGBpmvdrWtx4RMS92d4LIttiFFqXDuisdloo=;
+        b=nVwTIcUcBWmpw19MfsTFbDa9g1RT0fjCQE4UVgtF5ofdyFWJhX6L4R+TByF85E6Q74
+         8x+In79VynjQCBElmRfXCF3ofmkHRlRA00hf16CuO8FwGTSZ7zdmNw9Or9y7DA9r7tfY
+         hfjXs62xv7xWcbv5tT/zE4yrKq96ZSBrOPVqlxc/towdqq69NGJRzQfmbzkYENcml2f0
+         MW3Ryjku+pWDB5ZWqyfCaxqa/uH0vmEsbMFzqPM+ehjN9UT3zDHmh4r+Mc6eBiV3Wl/H
+         Bdi3He0xOoVY17MevmEdGMdTdxFUrYY7LOHuCesYQTru4ps9ws8aFTS+Vc/J/O50nA9G
+         s8XQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711486812; x=1712091612;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FGCp3Hdv4uExC/POBDKFeOwya+tu2FDjTleJp+1lj24=;
-        b=kqqtcOQc2R0YJeHLK6X+e55TcbCWHvZwR1KpU0KIXV7dp2gnix4OVD8KDxRCkILxt+
-         n3HIdYHTfDzqQixyylnHq5Va9byU06uKZYo3mrGkedhjXNZ5V7PmFMwIcxaG8mMqYaTj
-         igd6zQEaKLM/3UHxKx6c+obRSM/w9frPPr9HpyuRGyWuy7qmLN4LtcSylborhlMf9lsA
-         +JIlLex4NqkQ2vaHkazbIwg1nV+AUHxsDVXdg+O5FHgcAtpkC+qcNHKbm3bVVAEW81jA
-         HeBCXdx3ouvIp1+xi7zp6TlHNgI3Mywua2rqK0o5Ek+pkm3xIrOpMeSqvV6/fwksvNEs
-         nthw==
-X-Forwarded-Encrypted: i=1; AJvYcCU8O4KBhm9QEe+7qMMqqR4Qev44LAXWw63sdtCXrzf8z5HFuGFLDiIQKmfwiCTgG3h/zZ8DWTvnYJCwxtNsN6EoXMhWcFtMBoaZdAcgNqofrn7q9VWU6A5+RDkxQsf8ciPuRu+/Zu0Hu8St8WCpkGWA5PA+Xlj3O5fV+f/8OE/HM5xQOw==
-X-Gm-Message-State: AOJu0YxGLrNT1EYwihqpP3qPqQnTtVXPct1hFOGGQAGbb8kyiXb0Pa+a
-	qfCzRpPtckfWH9eZ0qqmWGhsKU0XEfuDkN53mRk7Mzps4W9SdHORjkCo9V2aMrC6J6UgoQwDN7w
-	Ybs3mBJ0Ds4p1xTZxjQ/Wb0NtM8Q=
-X-Google-Smtp-Source: AGHT+IGnBS3uYEPzzhWdmO60nBwmDa62VvwywhNlYBEtbXjLv1cMyRZvHokMWD6A29XZ3J9dV656THZwPA8V+zsZvj4=
-X-Received: by 2002:a25:dccd:0:b0:dcc:8d09:c7c4 with SMTP id
- y196-20020a25dccd000000b00dcc8d09c7c4mr2182951ybe.7.1711486810191; Tue, 26
- Mar 2024 14:00:10 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1711486950; x=1712091750;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=09Zf5P5vGBpmvdrWtx4RMS92d4LIttiFFqXDuisdloo=;
+        b=PhFjhBwUVT8LCz3nnRIW7UFhPixqGWR0bAwevHIAnFgNonObdHMfHN/YQ+mQ+PQeSV
+         mUdP9qTf3dptiYTXwpZPdNYFQ2nIvApUasR4jom5XuGI++Lx+9ex9nh4q9UoaXPljiVD
+         2x6BuQnZEOSFrhk7eGvwXo62TgDnZP1PM7nL2MJdHfkShjRRHZ+5shFuVWXOb/R2qHSx
+         AbH/LGqC3SZeBdC7dCPaiWvtvDOcTbFyRLehItHRloIWApydqoDJLJvx4euXJP0707oO
+         uWszBughqos1rSRNXtomGitw/lQg8a+gV/Fc5zCrMOGJNrVelELQbCO4mZTOH0PpEL8m
+         rciQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXvVMrQqq4vOfNaYYnHu1l0RsGkVOmRDAXA9L34ip4a7LYk+LJzvae6j5q4rUmFH3gvoIT/sN9b/Xf41P9rWUUAZLAhq71n+whRLQ==
+X-Gm-Message-State: AOJu0Yyg99a7CKCm5batZZAqnrMM9Ox5YF04d8XPnxdONMBE+qDx/TLs
+	r2aOAjh6PjZgIphGJdUKygxHxwfYDCRcjy/I9zjvutx0/S4hjeol6aCHfAj1IcM=
+X-Google-Smtp-Source: AGHT+IGY+1iLe+1YFwBHQoSnDeRUdrevgbO3flkn+8e6KQZaVK+F/yHcPIiR4gvMFTdxihmoS6apsQ==
+X-Received: by 2002:ac2:4ecf:0:b0:513:e21:2a64 with SMTP id p15-20020ac24ecf000000b005130e212a64mr1645468lfr.31.1711486949970;
+        Tue, 26 Mar 2024 14:02:29 -0700 (PDT)
+Received: from [192.168.92.47] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
+        by smtp.gmail.com with ESMTPSA id x18-20020a170906b09200b00a47df55cf5esm3123065ejy.13.2024.03.26.14.02.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 26 Mar 2024 14:02:29 -0700 (PDT)
+Message-ID: <236a104c-fc16-4b3d-9a00-e16517c00e3a@linaro.org>
+Date: Tue, 26 Mar 2024 22:02:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240325153356.46112-1-l.rubusch@gmail.com> <20240325153356.46112-2-l.rubusch@gmail.com>
- <20240325203155.23ddfe3d@jic23-huawei>
-In-Reply-To: <20240325203155.23ddfe3d@jic23-huawei>
-From: Lothar Rubusch <l.rubusch@gmail.com>
-Date: Tue, 26 Mar 2024 21:59:34 +0100
-Message-ID: <CAFXKEHaQLu9WFJe4r4+QaWO-wjM0hpYkWF_s8NOSh2Hoo5w8FQ@mail.gmail.com>
-Subject: Re: [PATCH v4 1/7] iio: accel: adxl345: Make data_range obsolete
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: lars@metafoo.de, Michael.Hennerich@analog.com, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, eraretuya@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFT 0/7] arm64: qcom: allow up to 4 lanes for the Type-C
+ DisplayPort Altmode
+To: Bjorn Andersson <andersson@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Luca Weiss <luca.weiss@fairphone.com>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Abhinav Kumar
+ <quic_abhinavk@quicinc.com>, linux-arm-msm@vger.kernel.org,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240229-topic-sm8x50-upstream-phy-combo-typec-mux-v1-0-07e24a231840@linaro.org>
+ <CZUHV429NTF7.1GW9TN9NXB4J1@fairphone.com>
+ <7a7aa05f-9ae6-4ca0-a423-224fc78fbd0c@linaro.org>
+ <liah4xvkfattlen7s2zi3vt2bl5pbbxqgig3k5ljqpveoao656@iacnommxkjkt>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <liah4xvkfattlen7s2zi3vt2bl5pbbxqgig3k5ljqpveoao656@iacnommxkjkt>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Mar 25, 2024 at 9:32=E2=80=AFPM Jonathan Cameron <jic23@kernel.org>=
- wrote:
->
-> On Mon, 25 Mar 2024 15:33:50 +0000
-> Lothar Rubusch <l.rubusch@gmail.com> wrote:
->
-> > Replace write() data_format by regmap_update_bits(), because
-> > bus specific pre-configuration may have happened before on
-> > the same register. Changes then need to be masked.
-> >
-> > Remove the data_range field from the struct adxl345_data,
-> > because it is not used anymore.
-> >
-> > Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
-> > ---
-> >  drivers/iio/accel/adxl345_core.c | 9 ++++-----
-> >  1 file changed, 4 insertions(+), 5 deletions(-)
-> >
-> > diff --git a/drivers/iio/accel/adxl345_core.c b/drivers/iio/accel/adxl3=
-45_core.c
-> > index 8bd30a23e..be6758015 100644
-> > --- a/drivers/iio/accel/adxl345_core.c
-> > +++ b/drivers/iio/accel/adxl345_core.c
-> > @@ -42,13 +42,13 @@
-> >  #define ADXL345_DATA_FORMAT_4G               1
-> >  #define ADXL345_DATA_FORMAT_8G               2
-> >  #define ADXL345_DATA_FORMAT_16G              3
-> > +#define ADXL345_DATA_FORMAT_MSK              ~((u8) BIT(6)) /* ignore =
-spi-3wire */
->
-> I'm not keen on seeing masking of a bit we don't yet
-> handle done by value.  Can we instead build this up by what we 'want' to
-> write rather than don't. Will need a few more defines perhaps to cover
-> the masks of SELF_TEST, INT_INVERT, FULL_RES, Justify and Range.
->
+On 16.03.2024 5:01 PM, Bjorn Andersson wrote:
+> On Fri, Mar 15, 2024 at 06:35:15PM +0100, Neil Armstrong wrote:
+>> On 15/03/2024 18:19, Luca Weiss wrote:
+>>> On Thu Feb 29, 2024 at 2:07 PM CET, Neil Armstrong wrote:
+>>>> Register a typec mux in order to change the PHY mode on the Type-C
+>>>> mux events depending on the mode and the svid when in Altmode setup.
+>>>>
+>>>> The DisplayPort phy should be left enabled if is still powered on
+>>>> by the DRM DisplayPort controller, so bail out until the DisplayPort
+>>>> PHY is not powered off.
+>>>>
+>>>> The Type-C Mode/SVID only changes on plug/unplug, and USB SAFE states
+>>>> will be set in between of USB-Only, Combo and DisplayPort Only so
+>>>> this will leave enough time to the DRM DisplayPort controller to
+>>>> turn of the DisplayPort PHY.
+>>>>
+>>>> The patchset also includes bindings changes and DT changes.
+>>>>
+>>>> This has been successfully tested on an SM8550 board, but the
+>>>> Thinkpad X13s deserved testing between non-PD USB, non-PD DisplayPort,
+>>>> PD USB Hubs and PD Altmode Dongles to make sure the switch works
+>>>> as expected.
+>>>>
+>>>> The DisplayPort 4 lanes setup can be check with:
+>>>> $ cat /sys/kernel/debug/dri/ae01000.display-controller/DP-1/dp_debug
+>>>> 	name = msm_dp
+>>>> 	drm_dp_link
+>>>> 		rate = 540000
+>>>> 		num_lanes = 4
+>>>
+>>> Hi Neil,
+>>>
+>>> I tried this on QCM6490/SC7280 which should also support 4-lane DP but I
+>>> haven't had any success so far.
+>>>
+> [..]
+>>> [ 1775.563969] [drm:dp_ctrl_link_train] *ERROR* max v_level reached
+>>> [ 1775.564031] [drm:dp_ctrl_link_train] *ERROR* link training #1 failed. ret=-11
+>>
+>> Interesting #1 means the 4 lanes are not physically connected to the other side,
+>> perhaps QCM6490/SC7280 requires a specific way to enable the 4 lanes in the PHY,
+>> or some fixups in the init tables.
+>>
+> 
+> I tested the same on rb3gen2 (qcs6490) a couple of weeks ago, with the
+> same outcome. Looking at the AUX reads, after switching to 4-lane the
+> link training is failing on all 4 lanes, in contrast to succeeding only
+> on the first 2 if you e.g. forget to mux the other two.
+> 
+> As such, my expectation is that there's something wrong in the QMP PHY
+> (or possibly redriver) for this platform.
 
-Good point. Anyway, there is also an input driver implementation for
-the adxl345, mainly dealing with the interrupt feature as input
-device. Thus, for the iio implementation I would suggest to reduce the
-mask just to cover SELF_TEST and FULL_RES and leave INT_INVERT out. Is
-this ok?
+Do we have any downstream tag where 4lane dp works? I'm willing to believe
+the PHY story..
 
-> >
-> >  #define ADXL345_DEVID                        0xE5
-> >
-> >  struct adxl345_data {
-> >       const struct adxl345_chip_info *info;
-> >       struct regmap *regmap;
-> > -     u8 data_range;
-> >  };
-> >
-> >  #define ADXL345_CHANNEL(index, axis) {                                =
-       \
-> > @@ -219,14 +219,13 @@ int adxl345_core_probe(struct device *dev, struct=
- regmap *regmap)
-> >       data =3D iio_priv(indio_dev);
-> >       data->regmap =3D regmap;
-> >       /* Enable full-resolution mode */
-> > -     data->data_range =3D ADXL345_DATA_FORMAT_FULL_RES;
-> >       data->info =3D device_get_match_data(dev);
-> >       if (!data->info)
-> >               return -ENODEV;
-> >
-> > -     ret =3D regmap_write(data->regmap, ADXL345_REG_DATA_FORMAT,
-> > -                        data->data_range);
-> > -     if (ret < 0)
-> > +     ret =3D regmap_update_bits(regmap, ADXL345_REG_DATA_FORMAT,
-> > +                              ADXL345_DATA_FORMAT_MSK, ADXL345_DATA_FO=
-RMAT_FULL_RES);
-> > +     if (ret)
-> >               return dev_err_probe(dev, ret, "Failed to set data range\=
-n");
-> >
-> >       indio_dev->name =3D data->info->name;
->
+Konrad
 
