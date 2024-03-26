@@ -1,198 +1,169 @@
-Return-Path: <devicetree+bounces-53347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 843F488C01C
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 12:05:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE09788C028
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 12:06:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CA08DB219E8
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 11:05:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 38095B228D1
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 11:06:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E106814AB8;
-	Tue, 26 Mar 2024 11:05:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED9E51BC46;
+	Tue, 26 Mar 2024 11:06:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JA9RMX8o"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="aXb6WYt6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1A6B23D0
-	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 11:05:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51FDF18E25
+	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 11:06:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711451121; cv=none; b=uWm+iVZz3FqgErE7+oJ2oounGp4KxMzYAEUD2ZWR8n5SYaVzYG8YvZb0ZfOlBd09ejz/145+7yJEtz1+o1De8P8nTvKZxJ+w0yYG0yiIJ3HNNlS3e+E+ZSiYXlF1Bc9eJlolnpl+GWLB3DFPjwz68r/5SzxY8Q3x8rio81l65X4=
+	t=1711451181; cv=none; b=GF8L9a7O4K1oCM2GmDTuD1dGGb56KqnK1n135azwLOV4NgdLZBTjmTPtn6hDAq78Hy5QAmNXIApj8cSvPMWIUnfvJBpFXXKClCEkScunKRBTO4j050ch9SKuh7Sfnq6zqTSnuuYm/pBPj3nJxA16uHxD5lUSklYXWCKu62GmR/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711451121; c=relaxed/simple;
-	bh=k0zd+Om/qtRCnmyQcrv1nanffL6bQ6+BEDlt1wM6lC4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=lgXqx0yMrOWIGlHcRR+BhPXRBQWYh4qC1AKAmenYP2RXxcwyCEaNJN58Ac/4XNqMPtmEuVRbTH4KEYtW5ZmSi3rq5j/u1I8VNfYBX1QvvTJYl4Hh6lbYyH/E5+XYfU4tyb6Y5cxIG/0DxB1LBczG1a9q4nrM47AnAY9qhpGHVyU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JA9RMX8o; arc=none smtp.client-ip=209.85.214.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-1e0b213efa3so16699495ad.0
-        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 04:05:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711451119; x=1712055919; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OZf6cOde2Mr6r60uYYaLOE/236WRfxe+eQpSW2yiFfk=;
-        b=JA9RMX8oQ/PK0QvGN8+E5x19/p1ka3vHn3TMgBHcU9+NnMSAsRhLrSAl///EbSTeLu
-         VkvkIDUQvv1oLIJjNUpyKztT9RwxQqUx2+6t7SdXMj0J1TD02gtMeROJ58UqR5RLlfyw
-         ATGIb670FRbVuTPFnPVh0sADvNU6iHGcuO93NN/Jsb1Yhka1YNgj8uVAeKJFysopRsZN
-         fENK7V2zr+SHG5l+n+xYGvd3vZfNdqdNoaLMdjV1Yy/tFvKqbCc8+xG8sGRH1g/ehpI/
-         I6oYHQJPKrAaTU7AgpOQVkbLVCYcdJRGoPoGHRmbyXAwTUv0CzLirEsAchC4YfVVXJTp
-         NAaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711451119; x=1712055919;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OZf6cOde2Mr6r60uYYaLOE/236WRfxe+eQpSW2yiFfk=;
-        b=f8vMFrVH7sgGRD63wJysD5FP3QiUPaG6ycrqdFkUDNWBfdzuK5D1orLzwEO1MSkjsc
-         oJWMNjs4SfQ78nDbrvbp8HiaoBa59R0b22U/tdc0S4Lo4rUJY45FiGg9YGuTJKhcXYy3
-         CSKdeOrAFudg0lsawv4ePRMw1tYEfaeSN82vFHZD1Dp8u5dkpx9RWyqPtHf0NGmlNwlx
-         b3iiPrrmAajbMkxr75kZ/i601xEZvYBZHO0t+7bwPPQGlxLNpssQo72HAkuDnKsVwC9i
-         ZyI99r+rMAgYnWA8oKo4SjVUh8oK1MZ4W1zjv5Mboj4dwP3s/JccO/45tFQ/wRBmWKpx
-         HW8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWv6U/pXJCK4T1GjqEp4QygM77cj1xAh3DZnzpuWAE2tg++dP+gTklFzD+w+zZ3u2zCS1rThxkeEXz0I8B8kjxqVwL3t01k3oHkrQ==
-X-Gm-Message-State: AOJu0YzCEz2xCweysWFxw3105AfyWsAId+jRWuxqkQ8sRH+mLu/cbbe1
-	PV9IqJWDrD5YO1axMEh+u463s/yFcXezjFeY83cDMI93KxLqJWI2hM43Vo3z
-X-Google-Smtp-Source: AGHT+IFqOXsx6yJddJvLhfoEYv7ADsiSG7WH5sJVha3eB3uILc8ZGYjogXaYVnxfE2Jqluth+4eepg==
-X-Received: by 2002:a17:902:f68a:b0:1e0:a678:5b55 with SMTP id l10-20020a170902f68a00b001e0a6785b55mr728293plg.11.1711451119006;
-        Tue, 26 Mar 2024 04:05:19 -0700 (PDT)
-Received: from localhost.localdomain ([223.178.85.179])
-        by smtp.googlemail.com with ESMTPSA id b7-20020a170902d50700b001e0bc64a396sm3877508plg.155.2024.03.26.04.05.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Mar 2024 04:05:18 -0700 (PDT)
-From: Kanak Shilledar <kanakshilledar@gmail.com>
-To: 
-Cc: krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	daniel.baluta@nxp.com,
-	Kanak Shilledar <kanakshilledar111@protonmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3] dt-bindings: serial: actions,owl-uart: convert to dtschema
-Date: Tue, 26 Mar 2024 16:35:06 +0530
-Message-Id: <20240326110506.78408-1-kanakshilledar@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <bf26ee6a-50e6-4cfd-ba5d-2772a9e6a176@linaro.org>
-References: <bf26ee6a-50e6-4cfd-ba5d-2772a9e6a176@linaro.org>
+	s=arc-20240116; t=1711451181; c=relaxed/simple;
+	bh=ldy7Xw7UarvJSibVff5dgyLFqEi23msHxXXSaqS7KrI=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=fSufftnlReL5c+G/tpY45Jij4BnNmJr2FvVI2pLUNisq1e26mY19sxjlWhojaPq0llLq8rasiIOBI3oW6kanFq6EXbfBy6kQY+3x3ql1W1y0MmF2U/MF1Wj92/HLh0zEEzDSMoZ4WuaIFiYa4Zwc87rP/DsQvBPq8Dx5EGLm4kE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=aXb6WYt6; arc=none smtp.client-ip=203.254.224.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20240326110611epoutp0360b0a914e37bf456828da382c9e34167~AS8Xokgc82633026330epoutp03A
+	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 11:06:11 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20240326110611epoutp0360b0a914e37bf456828da382c9e34167~AS8Xokgc82633026330epoutp03A
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1711451171;
+	bh=ldy7Xw7UarvJSibVff5dgyLFqEi23msHxXXSaqS7KrI=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=aXb6WYt6au9wxHsu9pwfBy+z4g9CMc3SFJa8Nz4Rq/lo3haxlNnyRSzPv0QTzcHvR
+	 5/vdvpCZznlxV6NQ/lhNI3nJvnz4yFcONBHrKhFC7Oy0CLxFIzhLOGtVwkXD9hdFSR
+	 PCtFQ2sLUTL7tuTl5lGCiR2rKyLA8omrpFQHhrMA=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTP id
+	20240326110611epcas5p2cdc96cb90fd86075d505bc553f148095~AS8XOYFRL2662026620epcas5p2m;
+	Tue, 26 Mar 2024 11:06:11 +0000 (GMT)
+Received: from epsmgec5p1-new.samsung.com (unknown [182.195.38.180]) by
+	epsnrtp1.localdomain (Postfix) with ESMTP id 4V3n6T2WwSz4x9Ps; Tue, 26 Mar
+	2024 11:06:09 +0000 (GMT)
+Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
+	epsmgec5p1-new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	A0.EC.19431.12CA2066; Tue, 26 Mar 2024 20:06:09 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+	20240326110608epcas5p45d754f5f92d3d14ffa6d765d4f423a78~AS8UdtNrt0288102881epcas5p44;
+	Tue, 26 Mar 2024 11:06:08 +0000 (GMT)
+Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20240326110608epsmtrp2ea8a92593b2c4b65e04d1e10c4100a50~AS8Uc_ylK1665516655epsmtrp2k;
+	Tue, 26 Mar 2024 11:06:08 +0000 (GMT)
+X-AuditID: b6c32a50-f57ff70000004be7-4a-6602ac219b71
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	2A.E7.07541.02CA2066; Tue, 26 Mar 2024 20:06:08 +0900 (KST)
+Received: from INBRO000447 (unknown [107.122.12.5]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20240326110606epsmtip1e237dded34f67ce167b84334ed531a46~AS8SQFkr41339713397epsmtip1e;
+	Tue, 26 Mar 2024 11:06:05 +0000 (GMT)
+From: "Alim Akhtar" <alim.akhtar@samsung.com>
+To: "'Tudor Ambarus'" <tudor.ambarus@linaro.org>,
+	<peter.griffin@linaro.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+Cc: <linux-arm-kernel@lists.infradead.org>,
+	<linux-samsung-soc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <andre.draszik@linaro.org>,
+	<willmcvicker@google.com>, <kernel-team@android.com>
+In-Reply-To: <20240326103620.298298-2-tudor.ambarus@linaro.org>
+Subject: RE: [PATCH v2 1/4] arm64: dts: exynos: gs101: move serial_0
+ pinctrl-0/names to dtsi
+Date: Tue, 26 Mar 2024 16:36:04 +0530
+Message-ID: <000001da7f6d$9a6e65a0$cf4b30e0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQD6o8IeErxKDZrGFPr+Y/HHTXn7CgKkFFLQAv/gtYyy3HNwIA==
+Content-Language: en-us
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrKJsWRmVeSWpSXmKPExsWy7bCmuq7iGqY0g7N/+Cy2vNrMYrFm7zkm
+	i/lHzrFa7NguYtH34iGzxabH11gtLu+aw2Yx4/w+JosNM/6xWLTuPcJu8elWnMWqT/8ZHXg8
+	tu3exuqxYFOpx6ZVnWwed67tYfPYvKTe4/MmuQC2qGybjNTElNQihdS85PyUzLx0WyXv4Hjn
+	eFMzA0NdQ0sLcyWFvMTcVFslF58AXbfMHKADlRTKEnNKgUIBicXFSvp2NkX5pSWpChn5xSW2
+	SqkFKTkFJgV6xYm5xaV56Xp5qSVWhgYGRqZAhQnZGWfW7GQvaOCumLfvA0sD43fOLkYODgkB
+	E4nHN0q7GLk4hAT2MEq83N3LBOF8YpSY8WwGK4TzjVFi6/stQBlOsI6GN6vYIBJ7GSUOte5n
+	hnBeMEo0/9vLBlLFJqArsWNxG1iViMAiRonnZxeCJZgFnjJKHHxpAWJzCthLLJg4kxXEFhaI
+	k7hw7gsziM0ioCrxf8VdsDivgKXE7OuHGSFsQYmTM5+wQMzRlli28DUzxEkKEj+fLgOrFxFw
+	kli9bDMTRI24xMujR9hBjpAQOMAh8fHJYagGF4llj3ewQtjCEq+Ob2GHsKUkPr8D+QAUMh4S
+	i/5IQYQzJN4uX88IYdtLHLgyhwWkhFlAU2L9Ln2IVXwSvb+fMEF08kp0tAlBVKtKNL+7ygJh
+	S0tM7O6GWuohce1nL+MERsVZSB6bheSxWUgemIWwbAEjyypGqdSC4tz01GTTAkPdvNRyeIQn
+	5+duYgSnX62AHYyrN/zVO8TIxMF4iFGCg1lJhLflC0OaEG9KYmVValF+fFFpTmrxIUZTYHBP
+	ZJYSTc4HZoC8knhDE0sDEzMzMxNLYzNDJXHe161zU4QE0hNLUrNTUwtSi2D6mDg4pRqYZszc
+	ueNZyPs/qS8iI9VnvVVpOH5CWNO/xkRPIvYh89M/B7+53Wq+89Dn9D6d3WESb+cYtMrd338h
+	Ok/VfmLSLK+TYS83xM7855my5oD/8tsWHubT1Kzd/arvzDIofh5kUHtwi/GiS3nTJ+yX3TJr
+	w+Pq2NnLta5MLX16z2iDlNCUO3P21Onk6d148WXBF26u1MOK/Gyf6i6sr/BtD/MJ4ehetdvH
+	UqYsdGLI2zyhxU18i/b33Dgprv4+NCI/7WSA9kyTO3lZM6sOJeo9MN8e7ZR8sj/S/dxRJhv+
+	2P8m7l9/HHH0uvg7rMnpHpNnetFCjbvh/1+k/Z8csop3m+d6zxTmbeez3vlv/ayteIbXV4ml
+	OCPRUIu5qDgRAAVJ3QpIBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprHIsWRmVeSWpSXmKPExsWy7bCSnK7CGqY0g4d3+Sy2vNrMYrFm7zkm
+	i/lHzrFa7NguYtH34iGzxabH11gtLu+aw2Yx4/w+JosNM/6xWLTuPcJu8elWnMWqT/8ZHXg8
+	tu3exuqxYFOpx6ZVnWwed67tYfPYvKTe4/MmuQC2KC6blNSczLLUIn27BK6M15P6mApuclYs
+	XLuFqYFxGUcXIyeHhICJRMObVWxdjFwcQgK7GSUePXvGApGQlri+cQI7hC0ssfLfczBbSOAZ
+	o8T5xfogNpuArsSOxW1sILaIwDJGiamfVUEGMQu8ZpT4tPwKC8TUw4wSU5q2MINUcQrYSyyY
+	OJMVxBYWiJF4seY2mM0ioCrxf8VdMJtXwFJi9vXDjBC2oMTJmU/ALmIW0JZ4evMpnL1s4Wtm
+	iOsUJH4+XcYKcYWTxOplm5kgasQlXh49wj6BUXgWklGzkIyahWTULCQtCxhZVjFKphYU56bn
+	JhsWGOallusVJ+YWl+al6yXn525iBEehlsYOxnvz/+kdYmTiYDzEKMHBrCTC2/KFIU2INyWx
+	siq1KD++qDQntfgQozQHi5I4r+GM2SlCAumJJanZqakFqUUwWSYOTqkGpiul/zesFMntUfmg
+	Khu2//kH/wbrIKX8c+ZzGFNnCb74MPnpg8RkbfMpvXGSWpv5th4/I3FvQ+bRM7GK3Awnfhm/
+	ULk2l/0g868zq2p/a2gzHT77ON5lUbDpkS8Lnrk6bhWc1MLLtn4pT/g8qaXzk1VK1Y9+tTKr
+	Sbk00/+0iOGnvy+Lmeddygh792pu8LH866bmgXkuS5YfuXSVKUI86+fmC2LV54rL+Opnd7vN
+	XX3KvEL2qq0S+9OY+i0BC959+xEkItmyz2rlokmnW1cXVf+adXvtvbkPQ6t2SRRtmVGRMZNv
+	06uOrujeVZ9k1K6VV0gE75d192hR3J6e8VhG8N/H28nTknct38r3wUMi1VeJpTgj0VCLuag4
+	EQCd9VS9MQMAAA==
+X-CMS-MailID: 20240326110608epcas5p45d754f5f92d3d14ffa6d765d4f423a78
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20240326103630epcas5p16737d4faf2e8f37a1f6d5fe04dd59133
+References: <20240326103620.298298-1-tudor.ambarus@linaro.org>
+	<CGME20240326103630epcas5p16737d4faf2e8f37a1f6d5fe04dd59133@epcas5p1.samsung.com>
+	<20240326103620.298298-2-tudor.ambarus@linaro.org>
 
-From: Kanak Shilledar <kanakshilledar111@protonmail.com>
+Hi Tudor,
 
-Convert the Actions Semi Owl UART to newer DT schema.
-Created DT schema based on the .txt file which had
-`compatible`, `reg`, `clocks` and `interrupts` as the
-required properties. This binding is used by Actions S500, S700
-and S900 SoC. S700 and S900 use the same UART compatible string.
-Implemented a full node example for the UART, referenced S500 SoC
-devicetree include.
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Kanak Shilledar <kanakshilledar111@protonmail.com>
----
-Changes in v3
-- Updated commit message to make it more verbose
-- Extended the DTS example by adding clocks. Referred the S500.dtsi 
-for adding clocks property.
-- Added Reviewed-by tag
-
- .../bindings/serial/actions,owl-uart.txt      | 16 ------
- .../bindings/serial/actions,owl-uart.yaml     | 50 +++++++++++++++++++
- 2 files changed, 50 insertions(+), 16 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/serial/actions,owl-uart.txt
- create mode 100644 Documentation/devicetree/bindings/serial/actions,owl-uart.yaml
-
-diff --git a/Documentation/devicetree/bindings/serial/actions,owl-uart.txt b/Documentation/devicetree/bindings/serial/actions,owl-uart.txt
-deleted file mode 100644
-index aa873eada02d..000000000000
---- a/Documentation/devicetree/bindings/serial/actions,owl-uart.txt
-+++ /dev/null
-@@ -1,16 +0,0 @@
--Actions Semi Owl UART
--
--Required properties:
--- compatible :  "actions,s500-uart", "actions,owl-uart" for S500
--                "actions,s900-uart", "actions,owl-uart" for S900
--- reg        :  Offset and length of the register set for the device.
--- interrupts :  Should contain UART interrupt.
--
--
--Example:
--
--		uart3: serial@b0126000 {
--			compatible = "actions,s500-uart", "actions,owl-uart";
--			reg = <0xb0126000 0x1000>;
--			interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
--		};
-diff --git a/Documentation/devicetree/bindings/serial/actions,owl-uart.yaml b/Documentation/devicetree/bindings/serial/actions,owl-uart.yaml
-new file mode 100644
-index 000000000000..b163060cdd33
---- /dev/null
-+++ b/Documentation/devicetree/bindings/serial/actions,owl-uart.yaml
-@@ -0,0 +1,50 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/serial/actions,owl-uart.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Actions Semi Owl UART
-+
-+maintainers:
-+  - Kanak Shilledar <kanakshilledar111@protonmail.com>
-+
-+allOf:
-+  - $ref: serial.yaml
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - actions,s500-uart
-+          - actions,s900-uart
-+      - const: actions,owl-uart
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/actions,s500-cmu.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    uart0: serial@b0126000 {
-+        compatible = "actions,s500-uart", "actions,owl-uart";
-+        reg = <0xb0126000 0x1000>;
-+        clocks = <&cmu CLK_UART0>;
-+        interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
-+        status = "disabled";
-+    };
--- 
-2.34.1
-
+> -----Original Message-----
+> From: Tudor Ambarus <tudor.ambarus=40linaro.org>
+> Sent: Tuesday, March 26, 2024 4:06 PM
+> To: peter.griffin=40linaro.org; robh+dt=40kernel.org;
+> krzysztof.kozlowski+dt=40linaro.org; conor+dt=40kernel.org
+> Cc: alim.akhtar=40samsung.com; linux-arm-kernel=40lists.infradead.org; li=
+nux-
+> samsung-soc=40vger.kernel.org; devicetree=40vger.kernel.org; linux-
+> kernel=40vger.kernel.org; andre.draszik=40linaro.org;
+> willmcvicker=40google.com; kernel-team=40android.com; Tudor Ambarus
+> <tudor.ambarus=40linaro.org>
+> Subject: =5BPATCH v2 1/4=5D arm64: dts: exynos: gs101: move serial_0 pinc=
+trl-
+> 0/names to dtsi
+>=20
+> The pinctrl nodes are coming from the shared gs101-pinctrl.dtsi, thus the
+> pinctrl-0/names shall stay in dtsi. Move them.
+>=20
+> While moving, reverse the pinctrl-* lines, first pinctrl-0 then pinctrl-n=
+ames.
+>=20
+> Reviewed-by: Andr=C3=A9=20Draszik=20<andre.draszik=40linaro.org>=0D=0A>=
+=20Signed-off-by:=20Tudor=20Ambarus=20<tudor.ambarus=40linaro.org>=0D=0A>=
+=20---=0D=0AReviewed-by:=20Alim=20Akhtar=20<alim.akhtar=40samsung.com>=0D=
+=0A=0D=0A>=20=20arch/arm64/boot/dts/exynos/google/gs101-oriole.dts=20=7C=20=
+2=20--=0D=0A>=20=20arch/arm64/boot/dts/exynos/google/gs101.dtsi=20=20=20=20=
+=20=20=20=7C=202=20++=0D=0A>=20=202=20files=20changed,=202=20insertions(+),=
+=202=20deletions(-)=0D=0A>=20=0D=0A=0D=0A
 
