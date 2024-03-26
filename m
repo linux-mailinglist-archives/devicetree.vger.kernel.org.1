@@ -1,130 +1,148 @@
-Return-Path: <devicetree+bounces-53511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53512-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36E5C88C74E
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 16:38:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 546A088C78F
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 16:42:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67EC41C3AF3A
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 15:38:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 86C1B1C2B41A
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 15:42:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B890213E406;
-	Tue, 26 Mar 2024 15:33:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A97FF13C9BD;
+	Tue, 26 Mar 2024 15:39:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="dsi7r2vq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K784zjZM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD69513E3E2;
-	Tue, 26 Mar 2024 15:33:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76A0113C811;
+	Tue, 26 Mar 2024 15:39:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711467190; cv=none; b=UQM9lvBcJt/saYzFlrciD0gr1xOOlExPt3Y6f+GAeAVXa2RUASh2/Xsjx1Ik+A13uYyYP5zI8SclkddJ2OlOWRz9Dj5SrEyrO9z4aolObK217O+2ahJcFinkBZqaNZv7n1bmx8bYyWhzMPfe1bFCtyeGcpfQrFySFIXQPI9R6BU=
+	t=1711467570; cv=none; b=NJEZKcOXEcaDAeo8ii3NKjTGKW1LqngaGlrxBIgn8L2Qj3p4uHVxkTX4lOEdbRSvTtMocrkYymNjqguBRfC3pG/HwKFtyK94Yl44gn2uk+VR3jiQnV1HyQGsOSkRU55H8dijHFzazozQ9YKM5jIaTDdMN8jJV88iUYC/jbP/Jp0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711467190; c=relaxed/simple;
-	bh=ASKmb+SEBQEY4yNlx27rQ29qNcsZMWBy2L7Jl0+lRLI=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=amRM94kFB1jynRlafvY8Adpx1B01SYcGbbZpX1vi40Kd6nWj7F/mo/4y9I6AltanTH7ed7DS6iz5r4cA3/dlbKRzxyqD4KXRUYMMqKqe6WgmTdhPYNr/JWbYxRFvZkbdidJkAasNnIpBdEp7K5l8Xt46UNmr/qFg8Hk3+Qir5/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=dsi7r2vq; arc=none smtp.client-ip=45.89.224.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 5C693120002;
-	Tue, 26 Mar 2024 18:33:07 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 5C693120002
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1711467187;
-	bh=A57FStZMZTG57y300fP+OYKnrsCuYIERChukcAKBT4Q=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=dsi7r2vq/YcAqYefeq7dnAjmXgmOEwjSFYGi38H5BAHEskccNQ//t9AWwdT954fpp
-	 UeAB1pKYx0rbn+I8Qmned9VaHzypPBjcLvZtISTl6g3c515PI4vGXeJ3CcaVxDFyY/
-	 B2q3fRDOxFxhVLqaUtHMEDWeoMUWcZzK+QvdRIYochiy/1MrliXKqIVD4fFZNmzpxD
-	 NF+PUNWeBswjBDGMrZkxMC9jbqBzNu1nTfpOrPBNC85vYz99VNQ+WxXEFnVhNe2Q4J
-	 0FkveSe4OsThMtdsfz5nkEZBFnuVY113mGJkKBGCzRAqNVpug7mp7TNkkwbTW6NGpF
-	 tw53tpvF7CBaQ==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue, 26 Mar 2024 18:33:07 +0300 (MSK)
-Received: from user-A520M-DS3H.sigma.sbrf.ru (100.64.160.123) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Tue, 26 Mar 2024 18:33:06 +0300
-From: Alexey Romanov <avromanov@salutedevices.com>
-To: <neil.armstrong@linaro.org>, <clabbe@baylibre.com>,
-	<herbert@gondor.apana.org.au>, <davem@davemloft.net>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <vadim.fedorenko@linux.dev>
-CC: <linux-crypto@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <kernel@salutedevices.com>, Alexey
- Romanov <avromanov@salutedevices.com>
-Subject: [PATCH v6 23/23] arch: arm64: dts: meson: axg: add crypto node
-Date: Tue, 26 Mar 2024 18:32:19 +0300
-Message-ID: <20240326153219.2915080-24-avromanov@salutedevices.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240326153219.2915080-1-avromanov@salutedevices.com>
-References: <20240326153219.2915080-1-avromanov@salutedevices.com>
+	s=arc-20240116; t=1711467570; c=relaxed/simple;
+	bh=9rqG/D6nJZt9xV642EDHpT17xx73w2B042VnTlDF79Q=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=EKfAZLmZ9mbE8fhVoHs/YTv0/yP4Fdg1m9o8K+LJ+dXILTVyh49CHjXc8rAxxePg6q8gGPIV+eb8FuuGd/vIMm1REnKPuYHTAcVpO+zKQ2SgXe66ACgS11FrPPUE9tDe+89DcNzgu6KGnQ7eXKv5VUU3BT6d9o7MFYPy2TnvabM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K784zjZM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2A5FC433F1;
+	Tue, 26 Mar 2024 15:39:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711467569;
+	bh=9rqG/D6nJZt9xV642EDHpT17xx73w2B042VnTlDF79Q=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=K784zjZMCJ6ZkKOl/E9Uu9VbJN9Yh6iAbY5bErnZlt5SdvFlaG5ouyiBfeR4p0MCw
+	 Fr0oWD41SDT96GwQBnNXPifTtQsjMOOZ2TwtzYkdaO9EIBM2EQIMfifwueBXexvscX
+	 5RxRpdGjmo82Jp3DTAVyjd6QOaO3sqcsiWMB8FkmNdTToa6eek5XwoOfB20m/N6yKT
+	 JAPUnGYCto3cUrhUXFUEVsAP3tEnvKNhqfff5yXwZVjQxQjyQOOklVyfwwP57FjC6v
+	 quQCD9xj+Z3SKpdVJVYsQ5KoNOA53+wQZ2nM5E0XA+fKqsyYNbQPt0srQwIL7+cn46
+	 AXSV/7rLpi9Qw==
+Date: Tue, 26 Mar 2024 10:39:28 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 184425 [Mar 26 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 12 0.3.12 d1a01b14eb3fc102c904d35fe6c2622ed2d1c16e, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;salutedevices.com:7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/03/26 13:11:00 #24452135
-X-KSMG-AntiVirus-Status: Clean, skipped
+From: Rob Herring <robh@kernel.org>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: devicetree@vger.kernel.org, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Dent Project <dentproject@linuxfoundation.org>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+ Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
+ Russell King <linux@armlinux.org.uk>, Conor Dooley <conor+dt@kernel.org>, 
+ Jakub Kicinski <kuba@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, Russ Weight <russ.weight@linux.dev>, 
+ "David S. Miller" <davem@davemloft.net>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Oleksij Rempel <o.rempel@pengutronix.de>, Paolo Abeni <pabeni@redhat.com>, 
+ Mark Brown <broonie@kernel.org>, netdev@vger.kernel.org, 
+ linux-doc@vger.kernel.org, Eric Dumazet <edumazet@google.com>, 
+ Luis Chamberlain <mcgrof@kernel.org>, linux-kernel@vger.kernel.org
+In-Reply-To: <20240326-feature_poe-v6-11-c1011b6ea1cb@bootlin.com>
+References: <20240326-feature_poe-v6-0-c1011b6ea1cb@bootlin.com>
+ <20240326-feature_poe-v6-11-c1011b6ea1cb@bootlin.com>
+Message-Id: <171146756753.2253156.218733720090104400.robh@kernel.org>
+Subject: Re: [PATCH net-next v6 11/17] dt-bindings: net: pse-pd: Add
+ another way of describing several PSE PIs
 
-This patch adds a crypto node declaration. With the
-Amlogic crypto driver we can use HW implementation
-of SHA1/224/256 and AES algo.
 
-Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+On Tue, 26 Mar 2024 15:04:48 +0100, Kory Maincent wrote:
+> From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+> 
+> PSE PI setup may encompass multiple PSE controllers or auxiliary circuits
+> that collectively manage power delivery to one Ethernet port.
+> Such configurations might support a range of PoE standards and require
+> the capability to dynamically configure power delivery based on the
+> operational mode (e.g., PoE2 versus PoE4) or specific requirements of
+> connected devices. In these instances, a dedicated PSE PI node becomes
+> essential for accurately documenting the system architecture. This node
+> would serve to detail the interactions between different PSE controllers,
+> the support for various PoE modes, and any additional logic required to
+> coordinate power delivery across the network infrastructure.
+> 
+> The old usage of "#pse-cells" is unsuficient as it carries only the PSE PI
+> index information.
+> 
+> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+> ---
+> 
+> Changes in v3:
+> - New patch
+> 
+> Changes in v4:
+> - Remove $def
+> - Fix pairset-names item list
+> - Upgrade few properties description
+> - Update the commit message
+> 
+> Changes in v5:
+> - Fix yamllint error.
+> - Replace underscore by dash in properties names.
+> - Add polarity-supported property.
+> 
+> Changes in v6:
+> - Reorder the pairset pinout table documentation to shrink the lines size.
+> - Remove pairset and polarity as required fields.
+> - Add vpwr-supply regulator supply.
+> ---
+>  .../bindings/net/pse-pd/pse-controller.yaml        | 102 ++++++++++++++++++++-
+>  1 file changed, 99 insertions(+), 3 deletions(-)
+> 
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index 6d12b760b90f..b19be72abdd6 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -294,6 +294,12 @@ ethmac: ethernet@ff3f0000 {
- 			status = "disabled";
- 		};
- 
-+		crypto: crypto@ff63e000 {
-+			compatible = "amlogic,axg-crypto";
-+			reg = <0x0 0xff63e000 0x0 0x48>;
-+			interrupts = <GIC_SPI 180 IRQ_TYPE_EDGE_RISING>;
-+		};
-+
- 		pcie_phy: phy@ff644000 {
- 			compatible = "amlogic,axg-pcie-phy";
- 			reg = <0x0 0xff644000 0x0 0x1c>;
--- 
-2.34.1
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+
+
+doc reference errors (make refcheckdocs):
+Warning: Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml references a file that doesn't exist: Documentation/networking/pse-pd/pse-pi.rst
+Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml: Documentation/networking/pse-pd/pse-pi.rst
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240326-feature_poe-v6-11-c1011b6ea1cb@bootlin.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
