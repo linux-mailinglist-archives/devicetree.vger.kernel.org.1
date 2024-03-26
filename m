@@ -1,179 +1,167 @@
-Return-Path: <devicetree+bounces-53350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70D8888C02D
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 12:07:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1423488C02A
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 12:07:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A239D1C2CE4D
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 11:07:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 971F21F34D97
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 11:07:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28FF2321B4;
-	Tue, 26 Mar 2024 11:07:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C36114AB8;
+	Tue, 26 Mar 2024 11:07:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b="NxZE38hV"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="ttlT0QYd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mta-64-226.siemens.flowmailer.net (mta-64-226.siemens.flowmailer.net [185.136.64.226])
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A84171BC46
-	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 11:07:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.64.226
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AB735C89
+	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 11:07:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711451242; cv=none; b=DfjAnNQPZ0HOPjqP52neVY7kGA81jcXciuHBDJNYmJq9WHVO17wqB8nVlRgnEqUedltZ1Bso32+hCz04GzL9AgLALrYTvIDZ9m8iw9aegsM4blyB6Nns0C9NABtvDGw3HbfIeBJBvuSgQDh6hC8kRQJOAnSlBgK2grq62U+fDws=
+	t=1711451223; cv=none; b=ex6TnS+vvq5M1IkufGdIb5Z2aHQRxCtMrnFqp/YVXiavVMIlIBIbOuWuk6trYylRrJHPg18LAxFmbErgThW0KVksXdJ0Z1lc77Ga/NshBfhrB96c5ymtg2XPHgkvWku9prDyErgVGxuBfwz3kJ8IgcCQ4zx4uuil8efWs4vkBX0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711451242; c=relaxed/simple;
-	bh=/vMw2qCC/Ah99HVliofDvJtVPRgbrytUvUlzZ7QouTg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=aNfhv2Ih/Qxf6nePO+Nu/WgFQCpJOPcLq2+aXahQwoDsrmfonWX8CYQF6TcnwYSSR8/EOMr5klbIgA6YhNKJTJmm2k+7Y9qVnOj0g22z7osRIyAnQZkZsQab38+t11xOytMeyVmdSTdI72tfjaNXO4lQo5oTYiblnJ3iDV8YqJo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b=NxZE38hV; arc=none smtp.client-ip=185.136.64.226
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
-Received: by mta-64-226.siemens.flowmailer.net with ESMTPSA id 202403261107140c71155f7b2dd89958
-        for <devicetree@vger.kernel.org>;
-        Tue, 26 Mar 2024 12:07:15 +0100
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
- d=siemens.com; i=diogo.ivo@siemens.com;
- h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc:References:In-Reply-To;
- bh=qsn/5Z0uBeHeNKhLSJ/nmRd0suyQe67+872/QeVzwMY=;
- b=NxZE38hVTZMCPuDuMEY4jftRD0k6B74wSbU7DL3v4lU30/kx7Oc1U4QUUC30Dd3D8ZYN9N
- yj7g1d5/1FJdfB9agJuB7wSKfxVmHX4yluksXICqiN45MOrx7puw/8wTpGJsvC6UJ17tEmXc
- JDwIuf+kJ9xxOjdhB3O8ZZ8O/o6pk=;
-From: Diogo Ivo <diogo.ivo@siemens.com>
-To: danishanwar@ti.com,
-	rogerq@kernel.org,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Diogo Ivo <diogo.ivo@siemens.com>,
-	jan.kiszka@siemens.com,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH net-next v5 01/10] dt-bindings: net: Add support for AM65x SR1.0 in ICSSG
-Date: Tue, 26 Mar 2024 11:06:51 +0000
-Message-ID: <20240326110709.26165-2-diogo.ivo@siemens.com>
-In-Reply-To: <20240326110709.26165-1-diogo.ivo@siemens.com>
-References: <20240326110709.26165-1-diogo.ivo@siemens.com>
+	s=arc-20240116; t=1711451223; c=relaxed/simple;
+	bh=JR4ahLYJlXkLatUTLHumrxsRpmnzPs3MZecO9aOx4xo=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=BP3yzGvFbg5VtdigV8haDGNe0JJMzmW0T9EX968Wee/bc7qRT8pYI+jut6L31uuZZG7zk1Ex6cnN0wXMQW3/uL0Miq7QB0evXfQ9iXYwGnLf/IdKHveCDg3oZZBQHWFbbrt2Dr6H6LzAyjb5ZvXbZt3dnkiAiIr8rTtIdjVKGWI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=ttlT0QYd; arc=none smtp.client-ip=203.254.224.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20240326110659epoutp0464f74fffc8d8a50795a2b7c294abe269~AS9EgzTt32896828968epoutp04Y
+	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 11:06:59 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20240326110659epoutp0464f74fffc8d8a50795a2b7c294abe269~AS9EgzTt32896828968epoutp04Y
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1711451220;
+	bh=mwjlYpGY4nLB3O2o4E+bZgW46ONnSikPDPv9BsF/ecM=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=ttlT0QYd2OssdRNoCIW6Sqwr+zWnt5tTFhJ5GSaUzvmMaVd7K+IjOt0Su7DkgxVs7
+	 qABESdJlFpvYoZ9uXmMm0HP+GkYqMsR+JhJ4xuxzWpZ4LTkfNkbKxy/wAml/eTMXGg
+	 U8cR77tkcg8JXqV6ljOspCcs8uA5UzNcaulb6MHQ=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTP id
+	20240326110659epcas5p1f24fcdfd200e41727a0529443c956c48~AS9ECfEgC2640226402epcas5p1o;
+	Tue, 26 Mar 2024 11:06:59 +0000 (GMT)
+Received: from epsmges5p3new.samsung.com (unknown [182.195.38.179]) by
+	epsnrtp4.localdomain (Postfix) with ESMTP id 4V3n7N1mtzz4x9Px; Tue, 26 Mar
+	2024 11:06:56 +0000 (GMT)
+Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
+	epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	32.A3.09665.05CA2066; Tue, 26 Mar 2024 20:06:56 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
+	20240326110655epcas5p36049682faecc7862ae40dca77fe591a7~AS9ArMrDB2186821868epcas5p3E;
+	Tue, 26 Mar 2024 11:06:55 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20240326110655epsmtrp2c84d3ae8b5dcd1d6b5cb5e08421536b7~AS9AqWSSD1747417474epsmtrp2w;
+	Tue, 26 Mar 2024 11:06:55 +0000 (GMT)
+X-AuditID: b6c32a4b-829fa700000025c1-7b-6602ac50156e
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	15.1A.08924.F4CA2066; Tue, 26 Mar 2024 20:06:55 +0900 (KST)
+Received: from INBRO000447 (unknown [107.122.12.5]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20240326110653epsmtip1e154045a00b6bd6d5ee45d4b50dcffab~AS8_7k9x21460414604epsmtip1h;
+	Tue, 26 Mar 2024 11:06:53 +0000 (GMT)
+From: "Alim Akhtar" <alim.akhtar@samsung.com>
+To: "'Tudor Ambarus'" <tudor.ambarus@linaro.org>,
+	<peter.griffin@linaro.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+Cc: <linux-arm-kernel@lists.infradead.org>,
+	<linux-samsung-soc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <andre.draszik@linaro.org>,
+	<willmcvicker@google.com>, <kernel-team@android.com>
+In-Reply-To: <20240326103620.298298-3-tudor.ambarus@linaro.org>
+Subject: RE: [PATCH v2 2/4] arm64: dts: exynos: gs101: order pinctrl-* props
+ alphabetically
+Date: Tue, 26 Mar 2024 16:36:52 +0530
+Message-ID: <000101da7f6d$b6bf63d0$243e2b70$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Flowmailer-Platform: Siemens
-Feedback-ID: 519:519-1320519:519-21489:flowmailer
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQD6o8IeErxKDZrGFPr+Y/HHTXn7CgFYjFPLAb4croOy8N53cA==
+Content-Language: en-us
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrAJsWRmVeSWpSXmKPExsWy7bCmum7AGqY0g/f/OSy2vNrMYrFm7zkm
+	i/lHzrFa7NguYtH34iGzxabH11gtLu+aw2Yx4/w+JosNM/6xWLTuPcJu8elWnMWqT/8ZHXg8
+	tu3exuqxYFOpx6ZVnWwed67tYfPYvKTe4/MmuQC2qGybjNTElNQihdS85PyUzLx0WyXv4Hjn
+	eFMzA0NdQ0sLcyWFvMTcVFslF58AXbfMHKADlRTKEnNKgUIBicXFSvp2NkX5pSWpChn5xSW2
+	SqkFKTkFJgV6xYm5xaV56Xp5qSVWhgYGRqZAhQnZGXcbRQo2cVTcfJrewDiHvYuRk0NCwESi
+	vWMdYxcjF4eQwG5GiRcdE8ASQgKfGCU+tEDZ3xglDjwP6WLkAGvYua8Gon4vo0TPvpssEM4L
+	Ron/cz4wgzSwCehK7FjcxgaSEBFYxCjx/OxCNpAEs8BTRomDLy1AbE4Be4mPJx6BNQgLxEp0
+	bXjHCmKzCKhK/Jn6BKyeV8BSYsOUK1C2oMTJmU9YIObIS2x/O4cZ4gUFiZ9Pl4H1igg4SWz+
+	tguqRlzi5dEj7CBHSAgc4ZB4N2MSI0SDi8Sjb5tZIWxhiVfHt0DDQkri87u9bBBvekgs+iMF
+	Ec6QeLt8PVSrvcSBK3NYQEqYBTQl1u/Sh1jFJ9H7+wkTRCevREebEES1qkTzu6ssELa0xMTu
+	bqilHhL3vnYzT2BUnIXksVlIHpuF5IFZCMsWMLKsYpRMLSjOTU8tNi0wzksth8d1cn7uJkZw
+	0tXy3sH46MEHvUOMTByMhxglOJiVRHhbvjCkCfGmJFZWpRblxxeV5qQWH2I0BYb2RGYp0eR8
+	YNrPK4k3NLE0MDEzMzOxNDYzVBLnfd06N0VIID2xJDU7NbUgtQimj4mDU6qB6eizykPHMxdl
+	uXp+jAybrFHYvo9rt27ktsdBLe4rf5mx6NyRixX38gg2vLCr+W6SNu+00oMTqg+fz/2/d7vK
+	VdOtfBtfKWwPl3xnLO0xYfG11S8OupwqWnTXuvT4Lj2/q/8aLJ/umve+8KfUl1/vk+SucFQ0
+	NL6M+nGtvUTTaI8xz/3fq+ZpLvnnIL1asLF+X95evqSV35Nl1j++e0yjI2L7vfCmeS+r7kuE
+	TA5tXlMWNt88snBCjcMVZxXXnrnubmIsSkGSOxl8nf9P/bHyybxzG9WEfu7IW6i97ODH1uul
+	nl33pkosnJ5+t1X/f1bOlzVLdNYZXpu7bu+Vdx2/dvxYvXNSwPXIeXZ5vi8WvNmgxFKckWio
+	xVxUnAgAjnxLbEMEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprJIsWRmVeSWpSXmKPExsWy7bCSnK7/GqY0g55fOhZbXm1msViz9xyT
+	xfwj51gtdmwXseh78ZDZYtPja6wWl3fNYbOYcX4fk8WGGf9YLFr3HmG3+HQrzmLVp/+MDjwe
+	23ZvY/VYsKnUY9OqTjaPO9f2sHlsXlLv8XmTXABbFJdNSmpOZllqkb5dAlfG3UaRgk0cFTef
+	pjcwzmHvYuTgkBAwkdi5r6aLkYtDSGA3o8TmvYdYuhg5geLSEtc3TmCHsIUlVv57DmYLCTxj
+	lFhxmAPEZhPQldixuI0NxBYRWMYoMfWzKsggZoHXjBKfll9hgZh6mFHi3puFYFM5BewlPp54
+	xAxiCwtES0zeOoMJxGYRUJX4M/UJ2CReAUuJDVOuQNmCEidnPmEBuZRZQE+ibSMjSJhZQF5i
+	+9s5zBDHKUj8fLqMFeIIJ4nN33axQNSIS7w8eoR9AqPwLCSTZiFMmoVk0iwkHQsYWVYxSqYW
+	FOem5xYbFhjmpZbrFSfmFpfmpesl5+duYgTHnpbmDsbtqz7oHWJk4mA8xCjBwawkwtvyhSFN
+	iDclsbIqtSg/vqg0J7X4EKM0B4uSOK/4i94UIYH0xJLU7NTUgtQimCwTB6dUA1NP8fLJwjI1
+	71SrvnEldr9c82yxzYcfNS+LD26qt/p558Gh5sUa/ScT3rZ6X/rJ6LxfibdExFvyoH93z4mt
+	S+d2V9pcVja0lVEROmN82L3+/no/0axCxrbfkW/rfHIfnlmm9o0vbT2/8kb1xwXX1UpZoq9+
+	2Hly5d7Un14/M85ZiMSHy7Bn2zj+Y1m89ZOp+OQnik8PLJyjyfn26cMH9kd2pE48uDvZYvea
+	dw4mOXJX/Q6ECj54e1D9Y/G/WdvcnHq/boup22fBvWpVl0ivgklm/5Ebh5Te1829OK1z6+fp
+	gu+MQzInS5Zz3lLbOVM5XqXJ+Wjo4pemHLOmSbTtDfKVPL+vr8wkf9vykhfGTSeVWIozEg21
+	mIuKEwGoDTS6LAMAAA==
+X-CMS-MailID: 20240326110655epcas5p36049682faecc7862ae40dca77fe591a7
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20240326103630epcas5p23bfd30fb779e2978318575dcbbc2e021
+References: <20240326103620.298298-1-tudor.ambarus@linaro.org>
+	<CGME20240326103630epcas5p23bfd30fb779e2978318575dcbbc2e021@epcas5p2.samsung.com>
+	<20240326103620.298298-3-tudor.ambarus@linaro.org>
 
-Silicon Revision 1.0 of the AM65x came with a slightly different ICSSG
-support: Only 2 PRUs per slice are available and instead 2 additional
-DMA channels are used for management purposes. We have no restrictions
-on specified PRUs, but the DMA channels need to be adjusted.
+Hi Tudor,
 
-Co-developed-by: Jan Kiszka <jan.kiszka@siemens.com>
-Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
-Signed-off-by: Diogo Ivo <diogo.ivo@siemens.com>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-Reviewed-by: Roger Quadros <rogerq@kernel.org>
-Reviewed-by: MD Danish Anwar <danishanwar@ti.com>
----
-Changes in v5: 
- - Added Reviewed-by tag from Danish 
+> -----Original Message-----
+> From: Tudor Ambarus <tudor.ambarus@linaro.org>
+> Sent: Tuesday, March 26, 2024 4:06 PM
+> To: peter.griffin@linaro.org; robh+dt@kernel.org;
+> krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org
+> Cc: alim.akhtar@samsung.com; linux-arm-kernel@lists.infradead.org; linux-
+> samsung-soc@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> kernel@vger.kernel.org; andre.draszik@linaro.org;
+> willmcvicker@google.com; kernel-team@android.com; Tudor Ambarus
+> <tudor.ambarus@linaro.org>
+> Subject: [PATCH v2 2/4] arm64: dts: exynos: gs101: order pinctrl-* props
+> alphabetically
+> 
+> Reverse pinctrl-* lines, first pinctrl-0 then pinctrl-names. Move the
+> pinctrl-* properties after clocks so that we keep alphabetic order and
+align
+> with the other similar definitions.
+> 
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+> ---
+Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
 
-Changes in v4: 
- - Added Reviewed-by tags from Roger and Conor
-
-Changes in v3:
- - Fixed dt_binding_check error by moving allOf
-
-Changes in v2:
- - Removed explicit reference to SR2.0
- - Moved sr1 to the SoC name
- - Expand dma-names list and adjust min/maxItems depending on SR1.0/2.0
-
- .../bindings/net/ti,icssg-prueth.yaml         | 35 +++++++++++++++----
- 1 file changed, 29 insertions(+), 6 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
-index 229c8f32019f..e253fa786092 100644
---- a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
-+++ b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
-@@ -13,14 +13,12 @@ description:
-   Ethernet based on the Programmable Real-Time Unit and Industrial
-   Communication Subsystem.
- 
--allOf:
--  - $ref: /schemas/remoteproc/ti,pru-consumer.yaml#
--
- properties:
-   compatible:
-     enum:
--      - ti,am642-icssg-prueth  # for AM64x SoC family
--      - ti,am654-icssg-prueth  # for AM65x SoC family
-+      - ti,am642-icssg-prueth      # for AM64x SoC family
-+      - ti,am654-icssg-prueth      # for AM65x SoC family
-+      - ti,am654-sr1-icssg-prueth  # for AM65x SoC family, SR1.0
- 
-   sram:
-     $ref: /schemas/types.yaml#/definitions/phandle
-@@ -28,9 +26,11 @@ properties:
-       phandle to MSMC SRAM node
- 
-   dmas:
--    maxItems: 10
-+    minItems: 10
-+    maxItems: 12
- 
-   dma-names:
-+    minItems: 10
-     items:
-       - const: tx0-0
-       - const: tx0-1
-@@ -42,6 +42,8 @@ properties:
-       - const: tx1-3
-       - const: rx0
-       - const: rx1
-+      - const: rxmgm0
-+      - const: rxmgm1
- 
-   ti,mii-g-rt:
-     $ref: /schemas/types.yaml#/definitions/phandle
-@@ -132,6 +134,27 @@ required:
-   - interrupts
-   - interrupt-names
- 
-+allOf:
-+  - $ref: /schemas/remoteproc/ti,pru-consumer.yaml#
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: ti,am654-sr1-icssg-prueth
-+    then:
-+      properties:
-+        dmas:
-+          minItems: 12
-+        dma-names:
-+          minItems: 12
-+    else:
-+      properties:
-+        dmas:
-+          maxItems: 10
-+        dma-names:
-+          maxItems: 10
-+
- unevaluatedProperties: false
- 
- examples:
--- 
-2.44.0
+>  arch/arm64/boot/dts/exynos/google/gs101.dtsi | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> 
 
 
