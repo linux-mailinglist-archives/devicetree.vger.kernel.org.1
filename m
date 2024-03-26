@@ -1,249 +1,159 @@
-Return-Path: <devicetree+bounces-53408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41D5F88C27D
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 13:46:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7126E88C28E
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 13:48:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB819304B29
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 12:46:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 822281C3FCE5
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 12:48:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC96F5C61F;
-	Tue, 26 Mar 2024 12:45:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 330A26D1C1;
+	Tue, 26 Mar 2024 12:48:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="x2NCnf0T"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cKGIHkal"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BB4914A8E;
-	Tue, 26 Mar 2024 12:45:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 747816CDA1;
+	Tue, 26 Mar 2024 12:48:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711457156; cv=none; b=Zgz84EnC3aljxKmngRqWfVBBanzo6lhvgBlNe5BDyAc6rBCHg3vIM8Psl8xQTMFFnTSmbVbmR6j7oC2d3acsy1dGK9Gw8Ak8OYss+4l9pCuSmqqtFGZ3/dY54HR9aL7ABqMHcaZO5WZdVSZdHtXLCUKrjcMymv4VRxvPrNMeSDw=
+	t=1711457333; cv=none; b=Oxzn42t1ey3HipQC2zPxC1nJmGRP2AA3wF8p1nOzc+95Chz9EJ2PV6/hsq/kDGoqxJmvQssA9XBOEfb6K0fmUhW6NVwoVkl+um04of5fTENhNKJBgKZ/NP/KyFVJ0nSDavN3tosqJ/g8l2c4jQaU1D/bbdkZCHhFmwg31n9WO3U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711457156; c=relaxed/simple;
-	bh=kAjbfsWCA0P/0WTi+Ef+KQC9azoUS+EIibi6oFpBxqo=;
+	s=arc-20240116; t=1711457333; c=relaxed/simple;
+	bh=UcNHx2WpgXj9N9ccfcFVrmItxhEccigipIMojc/QEfk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dceU/MRwm/JQvUT8KNiOyhu6nKml9ah7kYNOe5B2nqxIY74kCzlyCZo7YdgyyD18bR/ZGh9o6Sf26ZMLh+OIBw/U1qbFvzsptdjYFr5lA/M2VMySEwbkPTW0+xRmtlhm6e/qPnzhTst3C1rpmAJ1DFGvrOGO57L83SCHSRGkGDc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=x2NCnf0T; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1711457152;
-	bh=kAjbfsWCA0P/0WTi+Ef+KQC9azoUS+EIibi6oFpBxqo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=x2NCnf0TZ+FrTHmf0E7bqYIfH72qz8S3RCLeAVJlk6sbNGsYTba+wb04bwTx9TxoM
-	 El0oxmG+wAK04cWtqxLzsWWQpYftCoQ7I2ReWeeLCYFEWGWb153H6waD7/Cdz9FL26
-	 4SeNZK4n491Zxgx1YWv+7rAFU26EtyZpE6RjZ/9ZOVj4dbzI4Hs7CaDAt8edZyJ6f7
-	 3MHlCirXc3QsAFurX/GOicluCrUcRljYdl/9bLDTis7PrtcsmteMQ1CEX0ReZJwFMN
-	 C3vby2xIroUQv4N0zu/ZdNBKTyxracEJT6ywr2wEoI5rNhLuaEt8eV1bpnc7GfjGD7
-	 hcrkR6hN7gV4g==
-Received: from mercury (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 82AAF378209A;
-	Tue, 26 Mar 2024 12:45:52 +0000 (UTC)
-Received: by mercury (Postfix, from userid 1000)
-	id 198051060700; Tue, 26 Mar 2024 13:45:52 +0100 (CET)
-Date: Tue, 26 Mar 2024 13:45:52 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org, linux-omap@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: hsi: hsi-client: convert to YAML
-Message-ID: <hz4fbdix5yaz2wtdkjkf23pc3m4kbeavynvjagundqvv3bisor@lc7dev4667i5>
-References: <20240325-hsi-dt-binding-v1-0-88e8e97c3aae@collabora.com>
- <20240325-hsi-dt-binding-v1-1-88e8e97c3aae@collabora.com>
- <2905247d-03b0-45c1-add5-d3c2a986d87c@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=HRETYHN6aW1rVxHgnwTnSXm8zb3Vh3F57imYmQDfWLSAjP/KujNKwN2gm3QdkQuPkomyre96EzvnwdASzOSer5wtxlT2KysQBQK4MnZSIajmuy3QtgnoYTZ6+b2dKcggriHoaoMBF5Fy2zBc8gO0V4iNBbsPBQBUdJfCAqZejGw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cKGIHkal; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1711457332; x=1742993332;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=UcNHx2WpgXj9N9ccfcFVrmItxhEccigipIMojc/QEfk=;
+  b=cKGIHkalbfV/IDJrIesJY4nkl8BFOl3FoLzMUUlvOk6+m4ebwLuB2oC0
+   vop99iiy4ENkovEyYix+cf7wsoLJWQSDARdXyj4AxatTu90ka7omfJqHq
+   /TcyB9E6T/vuteQu52FTkPkNKRkZMuzWNIbUR8UoCRmC0cM83KD/MGJgz
+   fSA8Fio7CQignold6v5D6z5C6GR3oDpA3CcJJ1VIKXALYlHZeeaPZy9Ya
+   zOtYctGwR+aXWZlHG/QItLZhNJq1nFmm33H45lo8iBbUvc3R6CeVJE68R
+   Dk80O8S0YN1oK4sDgKpetl4rFCWUn11vpV+ihsTzfuDGIEPhUXKpKuGUm
+   Q==;
+X-CSE-ConnectionGUID: maOtwHYjTm6pzKcWwbzJ5A==
+X-CSE-MsgGUID: QMgyXjsRQXeNwYQTqbbxoA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11024"; a="6693744"
+X-IronPort-AV: E=Sophos;i="6.07,156,1708416000"; 
+   d="scan'208";a="6693744"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Mar 2024 05:48:51 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,156,1708416000"; 
+   d="scan'208";a="20651460"
+Received: from lkp-server01.sh.intel.com (HELO be39aa325d23) ([10.239.97.150])
+  by orviesa004.jf.intel.com with ESMTP; 26 Mar 2024 05:48:47 -0700
+Received: from kbuild by be39aa325d23 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rp6EO-000030-1J;
+	Tue, 26 Mar 2024 12:48:44 +0000
+Date: Tue, 26 Mar 2024 20:48:04 +0800
+From: kernel test robot <lkp@intel.com>
+To: Sudan Landge <sudanl@amazon.com>, tytso@mit.edu, Jason@zx2c4.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, sathyanarayanan.kuppuswamy@linux.intel.com,
+	thomas.lendacky@amd.com, dan.j.williams@intel.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, graf@amazon.de, dwmw@amazon.co.uk,
+	bchalios@amazon.es, xmarcalx@amazon.co.uk
+Subject: Re: [PATCH v3 4/4] virt: vmgenid: add support for devicetree bindings
+Message-ID: <202403262047.aZVjmDY5-lkp@intel.com>
+References: <20240325195306.13133-5-sudanl@amazon.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="5mpopjza7py23aeu"
-Content-Disposition: inline
-In-Reply-To: <2905247d-03b0-45c1-add5-d3c2a986d87c@linaro.org>
-
-
---5mpopjza7py23aeu
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240325195306.13133-5-sudanl@amazon.com>
 
-Hi,
+Hi Sudan,
 
-On Tue, Mar 26, 2024 at 08:18:39AM +0100, Krzysztof Kozlowski wrote:
-> On 25/03/2024 22:45, Sebastian Reichel wrote:
-> > Convert the legacy txt binding to modern YAML and rename from
-> > client-devices to hsi-client. No semantic change.
->=20
-> There is semantic change: missing example (which is reasonable for
-> shared schema)
+kernel test robot noticed the following build errors:
 
-Right, I should have mentioned that.
+[auto build test ERROR on 8e938e39866920ddc266898e6ae1fffc5c8f51aa]
 
-> but more importantly: some properties are now excluding each
-> other.
+url:    https://github.com/intel-lab-lkp/linux/commits/Sudan-Landge/virt-vmgenid-rearrange-code-to-make-review-easier/20240326-035657
+base:   8e938e39866920ddc266898e6ae1fffc5c8f51aa
+patch link:    https://lore.kernel.org/r/20240325195306.13133-5-sudanl%40amazon.com
+patch subject: [PATCH v3 4/4] virt: vmgenid: add support for devicetree bindings
+config: x86_64-rhel-8.3-bpf (https://download.01.org/0day-ci/archive/20240326/202403262047.aZVjmDY5-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240326/202403262047.aZVjmDY5-lkp@intel.com/reproduce)
 
-I think that requirement was already there.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202403262047.aZVjmDY5-lkp@intel.com/
 
-> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > ---
->=20
-> ...
->=20
-> > diff --git a/Documentation/devicetree/bindings/hsi/hsi-client.yaml b/Do=
-cumentation/devicetree/bindings/hsi/hsi-client.yaml
-> > new file mode 100644
-> > index 000000000000..df6e1fdd2702
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/hsi/hsi-client.yaml
-> > @@ -0,0 +1,84 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/hsi/hsi-client.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: HSI bus peripheral
-> > +
-> > +description:
-> > +  Each HSI port is supposed to have one child node, which
-> > +  symbols the remote device connected to the HSI port.
-> > +
-> > +maintainers:
-> > +  - Sebastian Reichel <sre@kernel.org>
-> > +
-> > +properties:
-> > +  $nodename:
-> > +    const: hsi-client
->=20
-> Why? Does anything depend on this? It breaks generic-node-name rule. It
-> seems you need it only to match the schema, but this just point to main
-> problem - missing bus schema.
+All errors (new ones prefixed by >>):
 
-Ah, that's a good point. It makes a lot more sense to get the
-nodename from the actual client. I will work this over.
+   drivers/virt/vmgenid.c: In function 'vmgenid_add_of':
+>> drivers/virt/vmgenid.c:154:15: error: 'dev' undeclared (first use in this function); did you mean 'pdev'?
+     154 |         (void)dev;
+         |               ^~~
+         |               pdev
+   drivers/virt/vmgenid.c:154:15: note: each undeclared identifier is reported only once for each function it appears in
 
-> > +
-> > +  hsi-channel-ids:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > +    minItems: 1
-> > +    maxItems: 8
-> > +
-> > +  hsi-channel-names:
-> > +    minItems: 1
-> > +    maxItems: 8
-> > +
-> > +  hsi-rx-mode:
-> > +    enum: [stream, frame]
-> > +    description: Receiver Bit transmission mode
-> > +
-> > +  hsi-tx-mode:
-> > +    enum: [stream, frame]
-> > +    description: Transmitter Bit transmission mode
-> > +
-> > +  hsi-mode:
-> > +    enum: [stream, frame]
-> > +    description:
-> > +      May be used instead hsi-rx-mode and hsi-tx-mode if the
-> > +      transmission mode is the same for receiver and transmitter.
-> > +
-> > +  hsi-speed-kbps:
-> > +    description: Max bit transmission speed in kbit/s
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +
-> > +  hsi-flow:
-> > +    enum: [synchronized, pipeline]
-> > +    description: RX flow type
-> > +
-> > +  hsi-arb-mode:
-> > +    enum: [round-robin, priority]
-> > +    description: Arbitration mode for TX frame
-> > +
-> > +additionalProperties: true
-> > +
-> > +required:
-> > +  - compatible
-> > +  - hsi-channel-ids
-> > +  - hsi-speed-kbps
-> > +  - hsi-flow
-> > +  - hsi-arb-mode
-> > +
-> > +anyOf:
-> > +  - required:
-> > +      - hsi-mode
-> > +  - required:
-> > +      - hsi-rx-mode
-> > +      - hsi-tx-mode
-> > +
-> > +allOf:
-> > +  - if:
-> > +      required:
-> > +        - hsi-mode
-> > +    then:
-> > +      properties:
-> > +        hsi-rx-mode: false
-> > +        hsi-tx-mode: false
->=20
-> I don't understand what you are trying to achieve here and with anyOf.
-> It looks like just oneOf. OTOH, old binding did not exclude these
-> properties.
 
-So the anyOf ensures, that either hsi-mode or hsi-rx-mode +
-hsi-tx-mode are specified. Those properties were previously
-listed as required and they are indeed mandatory by the Linux
-kernel implementation.
+vim +154 drivers/virt/vmgenid.c
 
-The old binding also has this:
+   121	
+   122	static int vmgenid_add_of(struct platform_device *pdev, struct vmgenid_state *state)
+   123	{
+   124	#if IS_ENABLED(CONFIG_OF)
+   125		void __iomem *remapped_ptr;
+   126		int ret = 0;
+   127	
+   128		remapped_ptr = devm_platform_get_and_ioremap_resource(pdev, 0, NULL);
+   129		if (IS_ERR(remapped_ptr)) {
+   130			ret = PTR_ERR(remapped_ptr);
+   131			goto out;
+   132		}
+   133	
+   134		ret = setup_vmgenid_state(state, remapped_ptr);
+   135		if (ret)
+   136			goto out;
+   137	
+   138		state->irq = platform_get_irq(pdev, 0);
+   139		if (state->irq < 0) {
+   140			ret = state->irq;
+   141			goto out;
+   142		}
+   143		pdev->dev.driver_data = state;
+   144	
+   145		ret =  devm_request_irq(&pdev->dev, state->irq,
+   146					vmgenid_of_irq_handler,
+   147					IRQF_SHARED, "vmgenid", &pdev->dev);
+   148		if (ret)
+   149			pdev->dev.driver_data = NULL;
+   150	
+   151	out:
+   152		return ret;
+   153	#else
+ > 154		(void)dev;
+   155		(void)state;
+   156		return -EINVAL;
+   157	#endif
+   158	}
+   159	
 
-hsi-mode:		May be used ***instead*** hsi-rx-mode and hsi-tx-mode
-
-So it's either hsi-rx-mode + hsi-tx-mode OR hsi-mode, but not
-all properties at the same time. That's what the allOf ensures:
-if hsi-mode is specified, then hsi-rx-mode and hsi-tx-mode may
-not be specified.
-
-> > +  - if:
-> > +      required:
-> > +        - hsi-rx-mode
-> > +    then:
-> > +      properties:
-> > +        hsi-mode: false
-> >=20
-
-Thanks for the review,
-
--- Sebastian
-
---5mpopjza7py23aeu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmYCw3QACgkQ2O7X88g7
-+pr+7hAAm3CgYA0d2i7m5mUghwJdQR87bj9cVe1Dz9KXAp3l8Y3QeDjOSVQokyYF
-p24x7hbHrUUxoaImYiWCR21YmfrToZuAzL6e1M+uLOh0hYamWwTMSbpqzI8xROkx
-eNBLqE5kuqg7zH65RA6GxHZau8JWH3+S7qliQ+DIInXjauS60KBYiKeX96CywxFA
-NpRDb0BUzuLF6vbU4HKnm2etTNLmGuXuZgoDMb9hh6Aw+J1dgYgQ47QZeKgovdWQ
-i9/Enkg8bDkoZx7wrTBl6dNzPXW/EvJw46Pq7e7JPrglVa7BYRwobKh0jnhZ5U2N
-2H/cFiU4vh3e3rXPQPcpWrSiH/qSpzoZEf+lYpJpgyvpQAYkyZLmcL9k0vrl4HOa
-a4QTQEHUgJUGmtLaQ4HWIyrRdop13i+1KO6tEARWO4gKecvMwFYCGvhWm4aLsfOe
-3YJA5fu461yrWDuDvkk2xoqKzW+jIpMkdLKbRd1LGk4lyI3UeEVV6aqFBTFrOsnR
-4UZOgl22tuumLm42hEWwmCUnSzhkfHvCzdTaZJVV4hoGEdYUNnQb0Y1J+V0ulDaQ
-k42by0nXOaAG1RH0gfjV1jNHophd+jMXI/Ku6ZnnS1JW/XaL8YmC0fIhkW0d9L4z
-LxhFboD8M6XTlecvYVbHQ+YnqKsKw5WxBLHhgN3e2nHs656zXIw=
-=9Gsy
------END PGP SIGNATURE-----
-
---5mpopjza7py23aeu--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
