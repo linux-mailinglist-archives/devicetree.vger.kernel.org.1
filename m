@@ -1,148 +1,163 @@
-Return-Path: <devicetree+bounces-53512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53514-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 546A088C78F
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 16:42:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43EF288C82D
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 16:56:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 86C1B1C2B41A
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 15:42:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC9F81F816AA
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 15:56:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A97FF13C9BD;
-	Tue, 26 Mar 2024 15:39:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K784zjZM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BA3A13C8E2;
+	Tue, 26 Mar 2024 15:55:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76A0113C811;
-	Tue, 26 Mar 2024 15:39:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 991A113AD03;
+	Tue, 26 Mar 2024 15:55:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711467570; cv=none; b=NJEZKcOXEcaDAeo8ii3NKjTGKW1LqngaGlrxBIgn8L2Qj3p4uHVxkTX4lOEdbRSvTtMocrkYymNjqguBRfC3pG/HwKFtyK94Yl44gn2uk+VR3jiQnV1HyQGsOSkRU55H8dijHFzazozQ9YKM5jIaTDdMN8jJV88iUYC/jbP/Jp0=
+	t=1711468507; cv=none; b=Io85kPCaKdex7OMsTbxTRqokXyqG4W+D0gYe/vGsn2B4g2VDGTCd1XogZh+KssGSo+b3jg6LMP98fLe+WE8jtQaSKf+NgyHubKzZJj7PtWn3ElCzHCPJXKJA8UPuzeaMs/1Z9nwK/QyC403ADlr2MVmh4S3CdFN/aXEU+ghI0uc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711467570; c=relaxed/simple;
-	bh=9rqG/D6nJZt9xV642EDHpT17xx73w2B042VnTlDF79Q=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=EKfAZLmZ9mbE8fhVoHs/YTv0/yP4Fdg1m9o8K+LJ+dXILTVyh49CHjXc8rAxxePg6q8gGPIV+eb8FuuGd/vIMm1REnKPuYHTAcVpO+zKQ2SgXe66ACgS11FrPPUE9tDe+89DcNzgu6KGnQ7eXKv5VUU3BT6d9o7MFYPy2TnvabM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K784zjZM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2A5FC433F1;
-	Tue, 26 Mar 2024 15:39:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711467569;
-	bh=9rqG/D6nJZt9xV642EDHpT17xx73w2B042VnTlDF79Q=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=K784zjZMCJ6ZkKOl/E9Uu9VbJN9Yh6iAbY5bErnZlt5SdvFlaG5ouyiBfeR4p0MCw
-	 Fr0oWD41SDT96GwQBnNXPifTtQsjMOOZ2TwtzYkdaO9EIBM2EQIMfifwueBXexvscX
-	 5RxRpdGjmo82Jp3DTAVyjd6QOaO3sqcsiWMB8FkmNdTToa6eek5XwoOfB20m/N6yKT
-	 JAPUnGYCto3cUrhUXFUEVsAP3tEnvKNhqfff5yXwZVjQxQjyQOOklVyfwwP57FjC6v
-	 quQCD9xj+Z3SKpdVJVYsQ5KoNOA53+wQZ2nM5E0XA+fKqsyYNbQPt0srQwIL7+cn46
-	 AXSV/7rLpi9Qw==
-Date: Tue, 26 Mar 2024 10:39:28 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1711468507; c=relaxed/simple;
+	bh=rJDyfJ3XSrGmNiRiW+65lbXsRSEddzB5+6+feUOvWYQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gk9RyI1e5UwmJm00bfzYpphcr3qfkfLuhkDNSOrvQ0TeKI+TeONvGxIi4Ey+zmufQm31Ewg+m7LQw08LgCc+DYQIldtIZHZ5rH4adkrSN69tqnpb7t0MfUkSTNuw9+y5AjTZKzV+bOxczXmS/IkpIzvWKrHqN3g126nGzW40+Yo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-609fb19ae76so66132997b3.2;
+        Tue, 26 Mar 2024 08:55:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711468503; x=1712073303;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dj0Lc6+e0UNvbyLGtpCNAT0/T8goedOmII803HBAXng=;
+        b=dDwt1rH3Po62MmTCjehvKESstE1HoicCJLRa94fvR4kLCD+TtFEwP5nt0+lPPfJL+v
+         PJpAdEIgIoMIwoq94Et2FekIslI/2tokXtyVBGLRfftXWnXp5Svwjg+sMwtqCjXh3fKB
+         h8HP4DG05DKDn2a9xAZPsTMfzwAw1rfK/fvTCdn7c+wz7WQLd4J+orA/wDImIZDTCyZF
+         oeiSR9rkT0kLWkrMnqsb4K64D4hEeA82LDnwI8uspVyPVI4tMlfl+6VXQ9lcETdcK3fa
+         z5o0dAw77aUAHElnbODQdbLhcscT9HJFFZe1zRaciZp0CKn+XUUGJ2GmaJBqQsC8v8Uh
+         390w==
+X-Forwarded-Encrypted: i=1; AJvYcCWnVSnh81WhZAc6+HqmB4ngCMJNPC+ZD3bj+hA6eUdIiIB7BRvNtIulFcqG0yvKzeH4jj3vtQPIjZK2MCGno2gg0Q+0tfwd1WTvmyOz60sg59iHFxuzkHH4GuvINu5zaEHxd6VDaWPAn/Nf1n4q
+X-Gm-Message-State: AOJu0Yy8h3lMlr74aPW0qm8F6hsE1nMICYsQlbuRlSwIYPeBBa8b6Xft
+	tmUI/UdVWrqTp4dn/Ye/99Z2LzH1LMeU9wvHEwNcn2a4u7Oj/yVK/Y3JX7ieS7g=
+X-Google-Smtp-Source: AGHT+IEbwp1CeFFJXgx9A2wQqnumn4tMMViP8fOt9qt6YE+CwCTmgVwSCoZw5J/iGASD/Fz942nnMA==
+X-Received: by 2002:a25:800b:0:b0:dcb:ce4a:bc2b with SMTP id m11-20020a25800b000000b00dcbce4abc2bmr33791ybk.51.1711468502650;
+        Tue, 26 Mar 2024 08:55:02 -0700 (PDT)
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
+        by smtp.gmail.com with ESMTPSA id p5-20020a257405000000b00dc6d6dc9771sm1522254ybc.8.2024.03.26.08.55.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 26 Mar 2024 08:55:02 -0700 (PDT)
+Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-dbed0710c74so4784003276.1;
+        Tue, 26 Mar 2024 08:55:02 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWVmwzmz4sFXYpwtAPpzJX2KOlbJZJ/+PASFoBIpbp4JlwJhMIX/it9hMU9YLpiTbMjJbFc7/DWIWXOMz64ImbgCtrVYJ0Uhyaa/hq3oJrEmjY1IFGBn6VMDeBv0xXlsJnshLKZrB2XNT0AoyIu
+X-Received: by 2002:a25:8802:0:b0:dcb:f733:88d8 with SMTP id
+ c2-20020a258802000000b00dcbf73388d8mr65906ybl.11.1711468501748; Tue, 26 Mar
+ 2024 08:55:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: devicetree@vger.kernel.org, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Dent Project <dentproject@linuxfoundation.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
- Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
- Russell King <linux@armlinux.org.uk>, Conor Dooley <conor+dt@kernel.org>, 
- Jakub Kicinski <kuba@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Heiner Kallweit <hkallweit1@gmail.com>, Russ Weight <russ.weight@linux.dev>, 
- "David S. Miller" <davem@davemloft.net>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Oleksij Rempel <o.rempel@pengutronix.de>, Paolo Abeni <pabeni@redhat.com>, 
- Mark Brown <broonie@kernel.org>, netdev@vger.kernel.org, 
- linux-doc@vger.kernel.org, Eric Dumazet <edumazet@google.com>, 
- Luis Chamberlain <mcgrof@kernel.org>, linux-kernel@vger.kernel.org
-In-Reply-To: <20240326-feature_poe-v6-11-c1011b6ea1cb@bootlin.com>
-References: <20240326-feature_poe-v6-0-c1011b6ea1cb@bootlin.com>
- <20240326-feature_poe-v6-11-c1011b6ea1cb@bootlin.com>
-Message-Id: <171146756753.2253156.218733720090104400.robh@kernel.org>
-Subject: Re: [PATCH net-next v6 11/17] dt-bindings: net: pse-pd: Add
- another way of describing several PSE PIs
+References: <20240309155608.1312784-1-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20240309155608.1312784-1-niklas.soderlund+renesas@ragnatech.se>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 26 Mar 2024 16:54:49 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXBhpbH2=21e26BeuknpW08eoX_yG4UQg-Ep5TijY3Vfw@mail.gmail.com>
+Message-ID: <CAMuHMdXBhpbH2=21e26BeuknpW08eoX_yG4UQg-Ep5TijY3Vfw@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: renesas: white-hawk: ethernet: Describe
+ avb1 and avb2
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Niklas,
 
-On Tue, 26 Mar 2024 15:04:48 +0100, Kory Maincent wrote:
-> From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
-> 
-> PSE PI setup may encompass multiple PSE controllers or auxiliary circuits
-> that collectively manage power delivery to one Ethernet port.
-> Such configurations might support a range of PoE standards and require
-> the capability to dynamically configure power delivery based on the
-> operational mode (e.g., PoE2 versus PoE4) or specific requirements of
-> connected devices. In these instances, a dedicated PSE PI node becomes
-> essential for accurately documenting the system architecture. This node
-> would serve to detail the interactions between different PSE controllers,
-> the support for various PoE modes, and any additional logic required to
-> coordinate power delivery across the network infrastructure.
-> 
-> The old usage of "#pse-cells" is unsuficient as it carries only the PSE PI
-> index information.
-> 
-> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
-> ---
-> 
-> Changes in v3:
-> - New patch
-> 
-> Changes in v4:
-> - Remove $def
-> - Fix pairset-names item list
-> - Upgrade few properties description
-> - Update the commit message
-> 
-> Changes in v5:
-> - Fix yamllint error.
-> - Replace underscore by dash in properties names.
-> - Add polarity-supported property.
-> 
-> Changes in v6:
-> - Reorder the pairset pinout table documentation to shrink the lines size.
-> - Remove pairset and polarity as required fields.
-> - Add vpwr-supply regulator supply.
-> ---
->  .../bindings/net/pse-pd/pse-controller.yaml        | 102 ++++++++++++++++++++-
->  1 file changed, 99 insertions(+), 3 deletions(-)
-> 
+On Sat, Mar 9, 2024 at 4:56=E2=80=AFPM Niklas S=C3=B6derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> Describe the two Marvel 88Q2110/QFN40 PHYs available on the R-Car V4H
+> White Hawk RAVB/Ethernet(1000Base-T1) sub-board. The two PHYs are wired
+> up on the board by default, there is no need to move any resistors which
+> are needed to access other PHYs available on this sub-board.
+>
+> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
+se>
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+When accidentally booting a kernel without CONFIG_MARVELL_88Q2XXX_PHY=3Dy,
+I am greeted with the following warning splat (same for the second PHY):
 
-yamllint warnings/errors:
+-mv88q2110 e6810000.ethernet-ffffffff:00: attached PHY driver
+(mii_bus:phy_addr=3De6810000.ethernet-ffffffff:00, irq=3DPOLL)
++Generic Clause 45 PHY e6810000.ethernet-ffffffff:00: attached PHY
+driver (mii_bus:phy_addr=3De6810000.ethernet-ffffffff:00, irq=3DPOLL)
++rcar-du feb00000.display: adding to PM domain always-on
+-mv88q2110 e6820000.ethernet-ffffffff:00: attached PHY driver
+(mii_bus:phy_addr=3De6820000.ethernet-ffffffff:00, irq=3DPOLL)
++rcar-du feb00000.display: removing from PM domain always-on
++------------[ cut here ]------------
++_phy_start_aneg+0x0/0xa8: returned: -22
++WARNING: CPU: 2 PID: 55 at drivers/net/phy/phy.c:1262
+_phy_state_machine+0x120/0x198
++Modules linked in:
++CPU: 2 PID: 55 Comm: kworker/2:1 Not tainted
+6.9.0-rc1-white-hawk-02587-g577b6a49a6d4 #235
++Hardware name: Renesas White Hawk CPU and Breakout boards based on
+r8a779g0 (DT)
++Workqueue: events_power_efficient phy_state_machine
++pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=3D--)
++pc : _phy_state_machine+0x120/0x198
++lr : _phy_state_machine+0x120/0x198
++sp : ffffffc082dd3d10
++x29: ffffffc082dd3d10 x28: ffffff8440089c05 x27: ffffffc081090000
++x26: ffffffc080e03008 x25: 0000000000000000 x24: ffffffc0815603d0
++x23: ffffffc080e03008 x22: ffffff86bef98100 x21: 0000000000000004
++x20: 0000000000000001 x19: ffffff84435b3000 x18: 0000000000000000
++x17: 0000000000000000 x16: 0000000000000000 x15: 0720072007320732
++x14: 072d0720073a0764 x13: 0720072007320732 x12: 072d0720073a0764
++x11: 000000000000033a x10: ffffffc0810b9ac8 x9 : ffffffc081379ca8
++x8 : ffffffc082dd3a18 x7 : ffffffc082dd3a20 x6 : 00000000ffff7fff
++x5 : c0000000ffff7fff x4 : 0000000000000000 x3 : 0000000000000001
++x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffffff8440a98000
++Call trace:
++ _phy_state_machine+0x120/0x198
++ phy_state_machine+0x2c/0x5c
++ process_scheduled_works+0x314/0x4d4
++ worker_thread+0x1b8/0x20c
++ kthread+0xd8/0xe8
++ ret_from_fork+0x10/0x20
++irq event stamp: 16
++hardirqs last  enabled at (15): [<ffffffc080913144>]
+_raw_spin_unlock_irq+0x2c/0x40
++hardirqs last disabled at (16): [<ffffffc08090d434>] __schedule+0x1cc/0x87=
+0
++softirqs last  enabled at (0): [<ffffffc0800800f8>] copy_process+0x698/0x1=
+924
++softirqs last disabled at (0): [<0000000000000000>] 0x0
++---[ end trace 0000000000000000 ]---
 
-dtschema/dtc warnings/errors:
+Is that expected behavior?
+Thanks!
 
+Gr{oetje,eeting}s,
 
-doc reference errors (make refcheckdocs):
-Warning: Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml references a file that doesn't exist: Documentation/networking/pse-pd/pse-pi.rst
-Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml: Documentation/networking/pse-pd/pse-pi.rst
+                        Geert
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240326-feature_poe-v6-11-c1011b6ea1cb@bootlin.com
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
