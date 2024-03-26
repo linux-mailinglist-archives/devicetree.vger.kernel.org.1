@@ -1,178 +1,117 @@
-Return-Path: <devicetree+bounces-53566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53567-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84D8088CBE9
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 19:22:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6244788CBEE
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 19:24:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4028C2C603A
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 18:22:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 789C01C64174
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 18:24:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20B1586249;
-	Tue, 26 Mar 2024 18:22:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEFC384FC9;
+	Tue, 26 Mar 2024 18:24:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="plQ0Q3rW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b28mlofq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E25098527A;
-	Tue, 26 Mar 2024 18:22:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C537A482EE;
+	Tue, 26 Mar 2024 18:24:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711477330; cv=none; b=RhkKB3Xoi5turxNF5XotrZq54NutBGuQZ2S0Qez0JoCyk57V1Dfh+hFQcByWz51EQLshQP+jb2LV9H7EmMhOhQH4Yi9nBwhc3eX9fvE2uX5vOD8Z3ANCw1D9PtYC0b8AJKjTzvCi/jAJp/vwXhQgJvUhqDFOwfyrRsTPTONHKrg=
+	t=1711477471; cv=none; b=trBz0RaUcqB7STOpikY3PLgKsIuZ+ld9akS3ZrHrZAcKF0vNPWDnr1lX7j1uNNZhpbpVdGXkyEjkSNy4NMN6rgalBQD9hSIAIPcuhdQlf7XpAglN1FupfxajPT+rZHPLPk/1AcWt5MicrsFh1wYRxla41kd73tKRkO0nqsRCxkc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711477330; c=relaxed/simple;
-	bh=LmnS6eBvBa5awlBsum9RK+OXNBT2Mr9Z/NCR7y7hu6A=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VcqHOfXKEy1EwgmxKtQJ/ttVU904i5vo9419/9FXmevxQxlzHVZ+nk3gNQqCaFzYeJ5E0y84v7oBPZ0LvAQNsJ8pCLmThAVBuNmGLuxezUfiwA6+PD8XnoEOuFUorrOuSxjjLkKTxnwF8LRM2eW0d9NXSphVfyQo6vNVzuqxbW4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=plQ0Q3rW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DCA0C43390;
-	Tue, 26 Mar 2024 18:22:04 +0000 (UTC)
+	s=arc-20240116; t=1711477471; c=relaxed/simple;
+	bh=3xBRhog27kxC70sDx2aQpj3OzOt3xnmvvAsyDrsmcII=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=opll3aHgSXZFlQPhRgsVbfbXfr+12NCtxtaqoaHmd91mZvdaYh8X2Q+7EpEy7J/rf1Uk0kFuE6GaAwLhOPzsNAPQW4+w1uZ46w6k6A7ZO4Dc2p6FIydY+BfVw0hoAVG+uw3YmRgw9UCnNZmXNUZOytYWEIBktO8tH1nUG4RS0Uo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b28mlofq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0572BC433C7;
+	Tue, 26 Mar 2024 18:24:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711477329;
-	bh=LmnS6eBvBa5awlBsum9RK+OXNBT2Mr9Z/NCR7y7hu6A=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=plQ0Q3rWlM3clHWxGS0j9Mk7mdSBHTD0ZOXfg60La0B4Hq0jOPXfiR5EA7BP/7/B7
-	 tNxPajdJpREXd7T3TAWutykFZUn4Lq8eM7uj2ByFVWPZVIGEkxc/Jf1EcGYbydSgcn
-	 1hZbl848ewwXjHMTXAGge7uOyYNRwXQ/Iiai222UUqkFH4b8sm61e0iav0F1qMjbaf
-	 kFT9Szt2coqxjGdZ+aLwrkAGQulqZLynI+n5bMWGwGhbWm9bpcRYd4oAbrfTeGMUAb
-	 4Ep6eFYmdoy1ZmqvCxRTuG6gTeG6GKwJP/SpoS1tEMkgqhKBbfSEyon5/q9+fWysu1
-	 1RdHvA48jhXdw==
-Date: Tue, 26 Mar 2024 18:21:52 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
- <linux-arm-kernel@lists.infradead.org>, "Trevor Zaharichuk"
- <trevor@au-zone.com>, Greg Lytle <greg@au-zone.com>, "Lars-Peter Clausen"
- <lars@metafoo.de>, Rob Herring <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Sean Nyekjaer <sean@geanix.com>, <linux-iio@vger.kernel.org>
-Subject: Re: [PATCH 1/5] dt-bindings: iio: dac: ti,dac5571: Add DAC081C081
- support
-Message-ID: <20240326182152.03f860e5@jic23-huawei>
-In-Reply-To: <20240326171316.000018f5@Huawei.com>
-References: <20240325203245.31660-1-laurent.pinchart@ideasonboard.com>
-	<20240325203245.31660-2-laurent.pinchart@ideasonboard.com>
-	<20240325204857.4f2fd468@jic23-huawei>
-	<20240325205641.GD23988@pendragon.ideasonboard.com>
-	<20240326152927.00006229@Huawei.com>
-	<20240326165043.GB28895@pendragon.ideasonboard.com>
-	<20240326171316.000018f5@Huawei.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=k20201202; t=1711477471;
+	bh=3xBRhog27kxC70sDx2aQpj3OzOt3xnmvvAsyDrsmcII=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=b28mlofqMpgdxgVoQwKl8xE5R3uFIancJn4ehIIqdxVvqItovYRjc0SScholjd/QT
+	 GWuk/KKHJsAkhi505UdUHjsnvpf/1qlIHa0yMn6hV3w11DZOqTFfwSF8X/60t/JQ9/
+	 jc6M4mWwT/YjK+WblM3Aq7Y1INPJmcz45pHvSpcppInNgQz4zB6q0cma1NXVV/0fs4
+	 /I3HB2oSaVfGFVuY9gfatvsW22+uoQV9IEgAL83hxaxaBOPu5Hp4AL+aIYEaQiFfSe
+	 f4PBLdf45fUGRRtaC2HGu1v4CzVhmmyhEilob1839hZkBy0S2pOfWyCSY+FN8PdAkw
+	 7QXys+J0KIVjg==
+Date: Tue, 26 Mar 2024 18:24:25 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Kelly Hung <ppighouse@gmail.com>, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	joel@jms.id.au, andrew@codeconstruct.com.au,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	openbmc@lists.ozlabs.org, kelly_hung@asus.com, Allenyy_Hsu@asus.com,
+	Rob Herring <robh@kernel.org>, Zev Weiss <zweiss@equinix.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v6 1/2] dt-bindings: arm: aspeed: add ASUS X4TF board
+Message-ID: <20240326-april-word-972cd4836e81@spud>
+References: <20240326103549.2413515-1-Kelly_Hung@asus.com>
+ <20240326103549.2413515-2-Kelly_Hung@asus.com>
+ <32cd6f33-b4e9-4b7a-bcea-b1f2e421d67e@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="/q+Q8QflJy7p9izc"
+Content-Disposition: inline
+In-Reply-To: <32cd6f33-b4e9-4b7a-bcea-b1f2e421d67e@linaro.org>
+
+
+--/q+Q8QflJy7p9izc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, 26 Mar 2024 17:13:16 +0000
-Jonathan Cameron <Jonathan.Cameron@Huawei.com> wrote:
-
-> On Tue, 26 Mar 2024 18:50:43 +0200
-> Laurent Pinchart <laurent.pinchart@ideasonboard.com> wrote:
->=20
-> > On Tue, Mar 26, 2024 at 03:29:27PM +0000, Jonathan Cameron wrote: =20
-> > > On Mon, 25 Mar 2024 22:56:41 +0200 Laurent Pinchart wrote:   =20
-> > > > On Mon, Mar 25, 2024 at 08:48:57PM +0000, Jonathan Cameron wrote:  =
- =20
-> > > > > On Mon, 25 Mar 2024 22:32:41 +0200 Laurent Pinchart wrote:
-> > > > >      =20
-> > > > > > The DAC081C081 is a TI DAC whose software interface is compatib=
-le with
-> > > > > > the DAC5571. It is the 8-bit version of the DAC121C081, already
-> > > > > > supported by the DAC5571 bindings. Extends the bindings to supp=
-ort this
-> > > > > > chip.
-> > > > > >=20
-> > > > > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.=
-com>     =20
-> > > > >=20
-> > > > > Hi Laurent,
-> > > > >=20
-> > > > > Given it's a part number where no one is going to guess it is com=
-patible
-> > > > > with the DAC5571 and that we don't have a history of fallback com=
-patibles
-> > > > > I'm fine with this change, but just wanted to ask is a fallback c=
-ompatible
-> > > > > useful to you to run with older kernels?
-> > > > >=20
-> > > > > I should have noticed when Peter added the dac121c081. If we add =
-a fallback
-> > > > > should do that one as well.     =20
-> > > >=20
-> > > > I've indeed noticed that there should have been a fallback for
-> > > > dac121c081, but didn't stop to ponder why that wasn't the case, and=
- just
-> > > > went along with the flow :-) I agree a fallback could be useful, wh=
-ich
-> > > > would then allow dropping patch 2/5 from this series (*). I can do =
-so if
-> > > > you prefer.
-> > > >=20
-> > > > * This is not entirely true. While the DAC1081C081 is largely compa=
-tible
-> > > > with the DAC5573, they have different values for one of the power-d=
-own
-> > > > resistors (2.5k=CE=A9 instead of 1k=CE=A9 if I recall correctly). T=
-o be completely
-> > > > accurate, the driver should report that. We could still use the fal=
-lback
-> > > > compatible, reporting the wrong power-down resistor value.   =20
-> > >=20
-> > > Hmm - Would anyone really care about that value being wrong?   =20
+On Tue, Mar 26, 2024 at 12:36:50PM +0100, Krzysztof Kozlowski wrote:
+> On 26/03/2024 11:35, Kelly Hung wrote:
+> > Document the new compatibles used on ASUS X4TF.
 > >=20
-> > I don't have enough expertise with IIO to be sure, but my guess is that
-> > nobody would.
-> >  =20
-> > > I think perhaps that's just about significant enough that maybe a fal=
-lback
-> > > compatible doesn't make sense here.   =20
-> >=20
-> > Then let's keep it simple and just merge this patch as-is ? :-) =20
-> Makes sense. I'm on wrong computer at the moment but will pick it up at
-> weekend if not before.
-Sooner it is.  Applied 1 and 2 to the togreg branch of iio.git and pushed
-out as testing on the extremely unlikely chance that 0-day finds a build
-issue...
-
-I grabbed them today because I have a memory like a gold fish and the thread
-is deep enough that I might skip over later on basis 'it must have outstand=
-ing
-questions' :)
-
-Jonathan
-
+> > Signed-off-by: Kelly Hung <Kelly_Hung@asus.com>
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
 >=20
-> Jonathan
->=20
->=20
-> >  =20
-> > > > > > ---
-> > > > > >  Documentation/devicetree/bindings/iio/dac/ti,dac5571.yaml | 1 +
-> > > > > >  1 file changed, 1 insertion(+)
-> > > > > >=20
-> > > > > > diff --git a/Documentation/devicetree/bindings/iio/dac/ti,dac55=
-71.yaml b/Documentation/devicetree/bindings/iio/dac/ti,dac5571.yaml
-> > > > > > index 79da0323c327..e59db861e2eb 100644
-> > > > > > --- a/Documentation/devicetree/bindings/iio/dac/ti,dac5571.yaml
-> > > > > > +++ b/Documentation/devicetree/bindings/iio/dac/ti,dac5571.yaml
-> > > > > > @@ -21,6 +21,7 @@ properties:
-> > > > > >        - ti,dac5573
-> > > > > >        - ti,dac6573
-> > > > > >        - ti,dac7573
-> > > > > > +      - ti,dac081c081
-> > > > > >        - ti,dac121c081
-> > > > > > =20
-> > > > > >    reg:     =20
-> >  =20
->=20
+> Where did it happen? Where did you receive this tag? Please provide link
+> to lore.
 
+Robh's bot sent two reports, but I do not see a tag:
+https://lore.kernel.org/all/?q=3Dc%3AKelly_Hung%40asus.com+f%3Arobh
+
+> > Reviewed-by: Zev Weiss <zweiss@equinix.com>
+>=20
+> Where did it happen? Where did you receive this tag? Please provide link
+> to lore.
+
+Zev seems to have left a comment on this, but not provided a tag:
+https://lore.kernel.org/all/20240223220115.GB9299@packtop/
+
+Kelly, it is important that you do not add tags unless someone gives
+them to you explicitly.
+
+Thanks,
+Conor.
+
+--/q+Q8QflJy7p9izc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgMS2QAKCRB4tDGHoIJi
+0sgmAP99qKHB+cAXDMc3qKChE30qQxxp/UYWhpZUny6oL3v5fgD/Vi2hhcCmf16A
+C/hk3u2rhCGbNyawGryEwd6Z81hpgw0=
+=cX+i
+-----END PGP SIGNATURE-----
+
+--/q+Q8QflJy7p9izc--
 
