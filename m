@@ -1,205 +1,215 @@
-Return-Path: <devicetree+bounces-53446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0573788C4AF
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 15:10:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B818E88C4BC
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 15:12:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2435D1C61164
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 14:10:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3BE0A1F65B4A
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 14:12:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23E8C12DDB9;
-	Tue, 26 Mar 2024 14:07:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D907112C804;
+	Tue, 26 Mar 2024 14:08:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="MNCT7dK6"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="Jnxfms+S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2097.outbound.protection.outlook.com [40.107.8.97])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB5E9128380;
-	Tue, 26 Mar 2024 14:07:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711462032; cv=none; b=bcDSva4Nmz7msPN41XDHlFx9bk04B3rDDDEPbcEFJx7x7YwmqMODt6c79UFnkB51taZzW8OvGo7wzjRkdjMmtxCjDYNIqk1PuI2gvLI5nIOSl1b0uEyEFx9k+yhzNkJPvQVkrAsldJmQ9GSgyWfL6VMD3tBm68Dd2ZQz8q0BjJo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711462032; c=relaxed/simple;
-	bh=MaN4lmkjFkunSKOL0LHCTWZwGrHirAICNbp1KIwx0ts=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SmF5uroa/o2TnFjrIAGAqYJ8LBCcsbd+6XExh0VIpGgC/RR2klMSgPLM25dja6+C3wnR4+aMlLHIhy+HOl5tAUA3T/xPXrrKIzJwf0YtxpiIK9xHulxrMTw75nQ/OBP4hOXsNAPQjtK1FCTu8PgQLofMFvzp41FSbjJ6TCbRWs8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=MNCT7dK6; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1711462026;
-	bh=MaN4lmkjFkunSKOL0LHCTWZwGrHirAICNbp1KIwx0ts=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MNCT7dK62XpPSLOlyY4YN86/RM1dlK42uJoBMr9lUWxquKswuZ8ZqEoGfG36Gnusd
-	 gJpKBmXp2MS0sF5n+TSilS/NcWoIr/4K9lCAiPZA4VCXNObdSJPYZQnX+c/18TW/5Z
-	 +Z7ADfbN/APo3ad0G0bc8jMRCMPHn0x4w9sHjtYdD1I2arb2pfg1lRhVMfZ4tV1S0j
-	 +G5avx5t4tTF0R1qFkRJ+rdfZSP4obCWiciNwsEiR1Cxxl+c96wwslBqco3V2eDXDe
-	 LG/vQ28G8paTdzU/x1mXRGX5PY4Odul0zpkQ/MbIn6iCkEEZwpxJ1M5CXwKDc2K+F5
-	 qXe5Sta3lVrIw==
-Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id EF9D437813D7;
-	Tue, 26 Mar 2024 14:07:02 +0000 (UTC)
-Date: Tue, 26 Mar 2024 10:07:00 -0400
-From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thara Gopinath <thara.gopinath@gmail.com>,
-	Amit Kucheria <amitk@kernel.org>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	stable@vger.kernel.org, Loic Poulain <loic.poulain@linaro.org>
-Subject: Re: [PATCH v2 0/3] QCM2290 LMH
-Message-ID: <33cb5ab6-1b15-4903-a5fa-f0d2f86fb438@notapiano>
-References: <20240308-topic-rb1_lmh-v2-0-bac3914b0fe3@linaro.org>
- <d8ed4e6c-549f-4c04-b38a-2d788df8b707@notapiano>
- <dbe90a1c-bac2-4176-8eba-7ad96a182313@linaro.org>
- <8e0cc005-0b3a-4475-bfe4-82ec46d918a5@notapiano>
- <68dbebe0-acaa-40f0-9a5c-fd49d265ae08@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45DEE12C7EA;
+	Tue, 26 Mar 2024 14:08:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.8.97
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1711462138; cv=fail; b=tXP4HLRgw7Bvtxu7ASFQ8KxWj5gS8jNaeg8aKWrFlWPyFCNDtDKjRDtJdv1fNbLdnbYZTgB5AkNTza2ICSUIKPAAYHzHYTyd3yNbOe1teafwkj1QY4EIwRw0BN+zsT2Huf19hJuPCSuDLvijIIe4qaQNXSwBGIYCb9/uzqoeM6E=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1711462138; c=relaxed/simple;
+	bh=bhqn8mwHkjW8bXgzsfXsHu4b3FAChZJzvQ98BnjjElY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=nzMYUrGPIM1cBCKahWgkRwnkPyrpN+rhRGut+rzHsH5a2yleAKBeXUCFQ78qzgax8U240Pq0nr8VKVqr+By3gD6/bHoOTuHpeZBSQiekUmGwFQzAt9q1UHnOq5SjwvivZNy1JAeT5KmR0/ugNxb4ubhec1w8EYsGTzLuIW+NzAM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=Jnxfms+S; arc=fail smtp.client-ip=40.107.8.97
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JJDG+ZJcqeJ57FKHWeiyMhJDonpfGyBHDQtCSVEyQPTShJNEc2CpR82jz7WFO6knflY1/NibeoG86cuiGQxMijjZ0NZRZvIvBIiZcqDRlKYqhvAF4Dr59ETisuFb8zgufTCIr3DB4znsyNbGX3rBvhsYXjUBdEXHKV2mT/I9MRpFT9KDK4xNySdDX9csggzq0+KUEZvB6uPwahIZ6w5g6OlblXTxwFhFKQySuInb8rTJNIW1ZqQiP8rgNEe9b6RB5LFcpsuR1LgqaKuYnLruy8pm+W0Zol5CAi5tvutR2bMu9o8jgaeSEFUPVJrttTDI9LnK8bI7x0m132hMXLi49w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=HrEx+sFThkFol1/TOMmkTzcizhR8cM+bYPvNy+L2IZ4=;
+ b=Xl11kPSCeEg5MdXB6fsHOVP076QN+tILnYIMT43re67VKbhsweZV+S1x/fvfQzWjClN/cx/47ghhGQuESoTG43L1HefKZkJfHr05mxvkVhh7CwPlbpt+GBS7cR9hunoDkfDwZxVvsE/MqO6T+MejK0yVzxf4q26qHcToaszIfOF2PV/xeAl79rEY/u1jsU+AdtkJXVQkzvJCbxB5ljTtp14AmuoUo/rDtAcK93a/puTuNAnVaiWiNJF1SfqvhmjnTe5KrBGkrnL8Krb4VdlX/iiWGB30hRvgPpU1+gBXxr/6fpTb7r8uAzIwN9/5ID00HuusN7H1U5LI+/Hd1Aoqyw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HrEx+sFThkFol1/TOMmkTzcizhR8cM+bYPvNy+L2IZ4=;
+ b=Jnxfms+S2redX69wvhw1Qwteqz0e8HJ+NBu1mWSYchNqLy/wGSOy5PoQVAjqMb2o609WlFYORTThhywd2GKKaXzAjrXhTkdL6smRrKnyy+oyIhbWwLeOp/73AXfnlpmExFDHSNskUA28WDJlz/zDQzl77T3oU/r/KCfkPvlLSK4=
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by PAXPR04MB8408.eurprd04.prod.outlook.com (2603:10a6:102:1c9::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.32; Tue, 26 Mar
+ 2024 14:08:49 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::3168:91:27c6:edf6]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::3168:91:27c6:edf6%3]) with mapi id 15.20.7409.028; Tue, 26 Mar 2024
+ 14:08:48 +0000
+Date: Tue, 26 Mar 2024 10:08:40 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc: "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+	"kw@linux.com" <kw@linux.com>, "robh@kernel.org" <robh@kernel.org>,
+	"bhelgaas@google.com" <bhelgaas@google.com>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+	"gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
+	"mani@kernel.org" <mani@kernel.org>,
+	"marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: Re: [PATCH v2 6/6] misc: pci_endpoint_test: Add Device ID for R-Car
+ V4H PCIe controller
+Message-ID: <ZgLW6CGYfUW6Uskz@lizhi-Precision-Tower-5810>
+References: <20240326024540.2336155-1-yoshihiro.shimoda.uh@renesas.com>
+ <20240326024540.2336155-7-yoshihiro.shimoda.uh@renesas.com>
+ <ZgI/IGe2L0rJ8SSF@lizhi-Precision-Tower-5810>
+ <TYCPR01MB1104072DA4D6B3DF120A10D0AD8352@TYCPR01MB11040.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <TYCPR01MB1104072DA4D6B3DF120A10D0AD8352@TYCPR01MB11040.jpnprd01.prod.outlook.com>
+X-ClientProxiedBy: SJ0PR03CA0206.namprd03.prod.outlook.com
+ (2603:10b6:a03:2ef::31) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <68dbebe0-acaa-40f0-9a5c-fd49d265ae08@linaro.org>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PAXPR04MB8408:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	pBkoSK+sTjTNkKTB8xasjaaH/2jcbw+3PexEAosAi48JXFSxfm8O078pR1m549JVXB4BYOrHdht4G8m4ihKfKFZdrthj54sG7bQ8FYKGrPFQ5DS32B60MOVBmvFZiNIv1oOk+tg0SkcQIvbrHzjDM14fVdfYzGjjhUoO7qgWyh8BE7qfogIfe+F3TjX1TXPJt36XUqykHoztXK6vzngD1qe4j9bc/QcKeXDLTwhvtYBrevONRFv96t2/WOxj+0h46uUqFlWPLjvqkVLYEvVcwezXy4YqWlCm9QmykrauvLYwapE3IW7Lh5Zeg7yYTAIJUN6vzXRxyRcQZirKnv068P1Ry0CxGz0PUfHJAqIKSYaVRajak3DguY5NyxVj1hWF5h4ob7gMkEJMLRET1hKOUXp1wRt+Snp0hosRR+qqKWb5JEA842HV5K9fQWPLqlmCX4Enwa7rIksd90818xb6f1lXG1q3cIe8LI19GXGIkLfT71wGS+Z1dAhNdYTix8MPg2laK+5tdeCDgmlcYKtsL0AGIBJh7qwI/wrlrciZhlJtC+rSH1zIr8Jf23ztr42YYbBKGVPFoI8dDJh+FyGamP+JTMz2z4nlg19/ZCNPL47vcxh1GabwrNuhGM+8+G2r07SIm8vQsexvyPC7+r0lSKlOlHDH25RgOTXva+WylXGf/pW2kCLiR5jnIiAhOJyVTYrPQdt4YX4MwWFXCdbwSo4fpoHiZSjCd+rn+burf9k=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(1800799015)(7416005)(376005)(52116005)(38350700005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?PVgiMa8t+9xgeFSDoV5+0bh2Km5HEbe+r4keZEuwBA/3J94zKqXrZjzIcuR0?=
+ =?us-ascii?Q?W7JBfS8nNA1BKmfZntum7/T9/8Bz3uD2Rwov+bsfcNZ9SnAFZIBStV528Cfg?=
+ =?us-ascii?Q?oopMEAL84OwLWyWsLHhPrltE3CUuUTFouoBKhuyYrwIowcP/5HgSRUgOE6+u?=
+ =?us-ascii?Q?nccuTxHtZdDqBQbVVvgnHgHQzLvnWyM/SzHlwIcDplGD1sAeJR1OY14dojQe?=
+ =?us-ascii?Q?wDFnO44VQdAwOEbXh1foStpYAvYAXlUJuZ1oDzuhtELEYYTCOKu0eSppnwhb?=
+ =?us-ascii?Q?DN4qeH83zkZlMXF9zqJIwLrR+ewTxAAlIYs0VIQmhRsCHYMUqybe4f4MPR91?=
+ =?us-ascii?Q?c90HeBC7cJ36go+AaWaZ2uD4hHeiVuXIE4NOy18rPTpQlew8FDwtimDM6Vf7?=
+ =?us-ascii?Q?hqvybtDJAVWTjXSPjoi7j+nOBg/3FkAOKOKE890zSG6cIzPR6WLa1pD6fTlQ?=
+ =?us-ascii?Q?QkNeJHCCMsI5w0APqXZmUqj5tgvq09r8bbX/CcN6uVIwxiBiQ7mlQMhuH4fI?=
+ =?us-ascii?Q?Cr3LgsdOYfhOCvsm5B25j4ZwOzA54gD6bKGzeYWMMe9ZInss9XpzjC+feo0K?=
+ =?us-ascii?Q?3AbMIXkhvN6hb4c0Kknz0h+w8bu+Fk3nYmpVYxhu5wBy20GAKrnnHlSRFgaV?=
+ =?us-ascii?Q?vbgf32gD8F7R9OzG2Mqnk6uUmISU6Mn6LrvN2z46yLT8KrSpMHfzb6UmmoLT?=
+ =?us-ascii?Q?hEdgM8xq3HotS9Ry75PrqgCawrY8dR2MdukicKTOl8x3hAj72sAC4qh1gjrH?=
+ =?us-ascii?Q?XGRiKbrHRowP7QjWhMyIZTbycLcXxG/vVwT+vaj6H+oqDvRyJQDWu5G4EQv6?=
+ =?us-ascii?Q?cYf29L2eHTmKHRu3h7KoXxDcBrEGjjelgwFxv6aOckux1XbrSBd9vTyKQ37u?=
+ =?us-ascii?Q?SZk0rjkeRQ3b9R/1x+ynqSxUfx+Ruo4UHImfEWi054wN32DESy/kkuovTHfM?=
+ =?us-ascii?Q?91wVtrj2hZxDrWUECrVkzU5f6tt1y89p4w2aSIYIYYKwFTI/UyQ1IpF02j6+?=
+ =?us-ascii?Q?5NI8Rm7aRlFkp0Sd7c6CMbyOly0KPn9qVqbj5Le13QRTiKQiIvxpjCWAD+yJ?=
+ =?us-ascii?Q?te5a6CmzVfi58KpuogKME2BoXWTwl+xCZXuF/huVp2jLKl0YjWMPx0Yof8tB?=
+ =?us-ascii?Q?EGjLB9mGUHYnaOkZ+bRudk4zH1h70AFfrw87P9lL7OUt3O+8qTUhoXDSZiph?=
+ =?us-ascii?Q?Y5ydnqyf8SqwXL3F79PFZMuxPqOtPwwAL3YKjMxg9n1FpXlp6ShZl9gqCB0e?=
+ =?us-ascii?Q?1rhNcrLjMvZ5EPzkmtOIV/wZ1a79XdYA4f+a8OZnMBUQcROeQtQGtAihU/qt?=
+ =?us-ascii?Q?3H/6C/F9GWvGBN3LAQ5KNrXebQBOeJOT3cFQaKajaDf2yiBGpi+X2fQ/PkM0?=
+ =?us-ascii?Q?pGSdtZR7VjGmTcG35dDAZY1Yb5Cc1mRq+byNg26CPlAOJuEO3Dlg1dKOLgP8?=
+ =?us-ascii?Q?6Mq+J0TDu8MT1vp9jkFoXxEcOAyixD6pdqwNGhUtOStuiZ28KEP2eiDiXUIj?=
+ =?us-ascii?Q?16NX+0IFqu4bWA1u7fv+vdl3llwgj+8PrbWm5qHSk29SrtPGviiHkIqSoZUF?=
+ =?us-ascii?Q?efubfsnWQaCmHrgQEZlwW601DUdnyiBv8n88BJde?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 72962483-59bc-49d8-957b-08dc4d9e4201
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2024 14:08:48.8327
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: sUNTs5iqYPq8cTgs5QElMEXcMT0T1wbXq3paQ6K5qmRyMiKa+y8+CX1+07tWRCS19vwCjjeR2NRWrcU8qGD+eQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8408
 
-On Tue, Mar 26, 2024 at 07:29:17AM +0100, Krzysztof Kozlowski wrote:
-> On 26/03/2024 00:01, Nícolas F. R. A. Prado wrote:
-> > On Mon, Mar 25, 2024 at 08:59:55PM +0100, Krzysztof Kozlowski wrote:
-> >> On 20/03/2024 20:08, Nícolas F. R. A. Prado wrote:
-> >>>> Loic Poulain (1):
-> >>>>       arm64: dts: qcom: qcm2290: Add LMH node
-> >>>>
-> >>>>  Documentation/devicetree/bindings/thermal/qcom-lmh.yaml | 12 ++++++++----
-> >>>>  arch/arm64/boot/dts/qcom/qcm2290.dtsi                   | 14 +++++++++++++-
-> >>>>  drivers/thermal/qcom/lmh.c                              |  3 +++
-> >>>>  3 files changed, 24 insertions(+), 5 deletions(-)
-> >>>
-> >>> Hi,
-> >>>
-> >>> I've started tracking the results of 'make dtbs_check' on linux-next, and I've
-> >>> noticed that on today's next, next-20240320, there's a new warning coming from
-> >>> this. The reason is that the DT change has landed, but the binding has not,
-> >>> since it goes through a separate tree. I thought the binding was supposed to
-> >>> always land before the driver and DT that make use of it, but looking through
-> >>
-> >> There is no such rule. Of course new binding should be documented in
-> >> earlier or the same kernel release cycle as users get in, but it's not a
-> >> requirement.
+On Tue, Mar 26, 2024 at 05:47:23AM +0000, Yoshihiro Shimoda wrote:
+> Hi Frank,
+> 
+> > From: Frank Li, Sent: Tuesday, March 26, 2024 12:21 PM
+>  
+> > On Tue, Mar 26, 2024 at 11:45:40AM +0900, Yoshihiro Shimoda wrote:
+> > > Add Renesas R8A779G0 in pci_device_id table so that pci-epf-test
+> > > can be used for testing PCIe EP on R-Car V4H.
+> > >
+> > > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> > > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > ---
+> > >  drivers/misc/pci_endpoint_test.c | 4 ++++
+> > >  1 file changed, 4 insertions(+)
+> > >
+> > > diff --git a/drivers/misc/pci_endpoint_test.c b/drivers/misc/pci_endpoint_test.c
+> > > index c38a6083f0a7..2fa3c6473c7d 100644
+> > > --- a/drivers/misc/pci_endpoint_test.c
+> > > +++ b/drivers/misc/pci_endpoint_test.c
+> > > @@ -83,6 +83,7 @@
+> > >  #define PCI_DEVICE_ID_RENESAS_R8A774C0		0x002d
+> > >  #define PCI_DEVICE_ID_RENESAS_R8A774E1		0x0025
+> > >  #define PCI_DEVICE_ID_RENESAS_R8A779F0		0x0031
+> > > +#define PCI_DEVICE_ID_RENESAS_R8A779G0		0x0030
+> > >
+> > >  static DEFINE_IDA(pci_endpoint_test_ida);
+> > >
+> > > @@ -1005,6 +1006,9 @@ static const struct pci_device_id pci_endpoint_test_tbl[] = {
+> > >  	{ PCI_DEVICE(PCI_VENDOR_ID_RENESAS, PCI_DEVICE_ID_RENESAS_R8A779F0),
+> > >  	  .driver_data = (kernel_ulong_t)&default_data,
+> > >  	},
+> > > +	{ PCI_DEVICE(PCI_VENDOR_ID_RENESAS, PCI_DEVICE_ID_RENESAS_R8A779G0),
+> > > +	  .driver_data = (kernel_ulong_t)&default_data,
+> > > +	},
 > > 
-> > So, after giving the documentation a second look, I found this:
-> > 
-> > "For new platforms, or additions to existing ones, make dtbs_check should not
-> > add any new warnings."
-> > 
-> > Source: https://www.kernel.org/doc/html/latest/process/maintainer-soc.html#validating-devicetree-files
+> > You use default_data, why need new device_id? I think you can use 0x0031
+> > to do test.
 > 
-> It's just "should"...
+> I thought we can add a new device_id freely like other devices.
+> Since the PCIe controller's endpoint mode can configure the device id,
+> I can use 0x0031 to do test though.
 > 
-> > 
-> > What is not clear there is what the reference point is: is it on linux-next?
-> > Mainline release?
-> 
-> Does it matter? There was never a new warning introduced by this
-> patchset. The patchset itself is correct. No new warnings.
-> 
-> > 
-> > As Konrad pointed out it's tricky (and maybe not worth it) to guarantee this for
-> > linux-next. But for mainline release it seems feasible (and IMO the target, as
-> > after that stability guarantees should apply).
-> 
-> I don't believe in such guarantees. Different maintainers apply patches
-> differently, especially bindings, so this is beyond our control. Often
-> also beyond SoC maintainer control.
-> 
-> > 
-> >>
-> >>
-> >>> the dt-binding documentation pages I couldn't find anything confirming or
-> >>> denying that.
-> >>>
-> >>> I expect this to happen again in the future, which is why I'm reaching out to
-> >>> understand better how to deal with this kind of situation.
-> >>
-> >> Deal as what to do? Are you asking in terms of maintenance of some
-> >> subsystem or sending some patches? In this particular case here, I don't
-> >> think there is anything on your side to deal with.
-> > 
-> > I'm asking what's the most helpful way to you the maintainers for me to report
-> > these failures in the future.
-> 
-> The most effective way is LKP-like or Rob's-bot-like automated replies
-> to original email threads, by testing the original patchset on
-> linux-next. But Rob's bot is actually doing it, just on different base.
-> 
-> Other reports, like for cases when only parts of patch is applied, could
-> be also useful but I am afraid you will generate way too much of them.
-> Binding is supposed to go via subsystem, DTS via SoC, so basically 90%
-> of patchsets might have some sort of delays resulting in dtbs_check
-> false positive warnings.
-> 
-> For my SoC I check my trees, mainline and next, and keep adding list of
-> exceptions for expected issues. What's useful for Qualcomm? Konrad,
+> If such a reusable entry exists, is adding a new device id into the driver prohibited?
 
-Is that list of exceptions in-tree? If there are known false-positives (issues
-that can't be "properly" fixed), they should be public knowledge. And if we all
-collaborate on such a list we can remove the noise from dtbs_check's output so
-it only contains real regressions and a backlog of issues that can be fixed.
+I just think it is not necessary. This list will become longer and longer.
+And difference device id can't help us at all. 
 
-> Bjorn, any thoughts?
-> 
-> Have in mind that expected warnings can be for entire cycle when dealing
-> with technical debt, because DTS goes N+1.
-> 
-> > 
-> > Rob has already automated running dtbs_check for patches coming into the mailing
-> > list. And I have set up KernelCI to run dtbs_check on linux-next in order to
-> > catch any issues that might slip through, or happen during integration of the
-> > trees, etc.
-> > 
-> > Now, if we agree that dtbs_check regressions on linux-next are acceptable, at
-> > least ones like this, where the issue is just synchronization between
-> 
-> Yes and no. True regressions are not acceptable. Expected intermediate
-> regressions as a result of patchset being applying, but not yet fully
-> applied, are OK. Expected regressions for intra-cycle-work are also OK.
+We should use difference production as difference functions, or difference
+configuration.  Such as usb gadget product id, we use 0x4545 for all mass
+storage. 
 
-Got it. So I'll keep KernelCI running dtbs_check and tracking it, but I won't
-report failures caused by partially applied series.
+Using difference devices id for difference function, such as 0x31 for
+ep_test 0x30 for virtual net, 0x29 for virtual console ...
+
+Or using difference devices id indicate some features. For example, use
+0x30 means support write to EP MSI ITS to trigger irq.
+
+Donate a device_id to more valuable things.
+
+Frank
 
 > 
-> > maintainers, then I can simply not report them in the future. But we should
-> > have some point where dtbs_check should not regress, and mainline release seems
-> > the reasonable choice, because if we don't then dtbs_check warnings would just
-> > keep growing forever.
+> Best regards,
+> Yoshihiro Shimoda
 > 
-> I invite therefore to my session:
-> https://eoss24.sched.com/event/1aBEf?iframe=no
-> We'll see if they keep growing :)
-
-I won't be able to attend EOSS, but will catch the recording later ;)
-
-Thanks,
-Nícolas
+> > Frank
+> > 
+> > >  	{ PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_J721E),
+> > >  	  .driver_data = (kernel_ulong_t)&j721e_data,
+> > >  	},
+> > > --
+> > > 2.25.1
+> > >
 
