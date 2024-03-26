@@ -1,165 +1,137 @@
-Return-Path: <devicetree+bounces-53568-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53562-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B804B88CC0B
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 19:31:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6033A88CB78
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 19:04:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72999302063
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 18:31:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 91EF81C25A15
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 18:04:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CA2F1272D1;
-	Tue, 26 Mar 2024 18:31:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DE6620B20;
+	Tue, 26 Mar 2024 18:04:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Houtpz5a"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OhqPwuZT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84CEE84D0D;
-	Tue, 26 Mar 2024 18:31:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 014641C2AF;
+	Tue, 26 Mar 2024 18:04:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711477911; cv=none; b=T94OrGQlIQx/xNAAeFmVB309z8L7E2nfJoP5UWeiWTE2aiCogTiQrhaTX0GMfFvSO6N2ectTcAq/RWEbrO+i/XLR7DW5ImbKwbvjSnyPSjeO4WG1wDAMz8FG1sbvSY+DxEMJcOhk8oU3ahQC4tlB5SOa/8FL1ivJ41jgdb3K/XE=
+	t=1711476293; cv=none; b=LIuD8tXiz1ctkXP3rOxhlzoZYytlSQOaoiIOBkjbNXPRUB9FXGGwkOBcOq6OW7OLEeVcx8LAJborbdZzxbVqgZO18NjZFq/qrStzQ1uaooB9HI1Uxw7wemDGETARcEQ70enx+2KmeYts3kSoRmJ+xiW2SpyN1m67anbzbwdh5K8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711477911; c=relaxed/simple;
-	bh=Hy7edzumEoWeONYYCu1G0+IrMmMDfxYK/QUHU24I/Pk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=RyVS4DiZKjJyZ3KxVaH7cylSpVcEx4QVY+qsTUoTtj11RWFj5rYcihm/SqByEUIMh1KfLocGPZbfABe2DQGI+GCJsENPzAuE8B5pu6PWuw5MORkbD1867xjy//RX4rJspN2+hqcd7t1ksIMJyFnaTYaE7i78b2Q3ALd3SHNRaZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Houtpz5a; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42QG6CL1011820;
-	Tue, 26 Mar 2024 18:02:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:date:subject:mime-version:content-type
-	:content-transfer-encoding:message-id:to:cc; s=qcppdkim1; bh=CLe
-	32OEPO+KVS6LX1ndJG84GupdaXxVbnPB6jH9BUAI=; b=Houtpz5aPGZkHtUop7J
-	R6Hj+jP3cG9jIdgEt000sjfowcFglPUUt3BHAnRJb82SzIbE1OC7tSJYgqewDLMi
-	wTOJSKY527H41fd3RUtFP8urBgjkS0TrH512mQzESSZrDLu+91iUsqOPUN0aWKbL
-	/zlj4B2kXWBxPXst/33BgWJycZUe7/mIlGEX4YivVgwZvIxLKnVIAVvI/Qb4lliy
-	EM53d6YINyjVXJevOPSXqDv/fpMygkwsXrHq1JX8ErfsoyOPQ4KyPSzCS1LTE3WZ
-	DBcn3TGSnQ8L3S4bapRbM8VW2yQv8NtK8REOsbDW5YVTUDuFLp4Wd9uMHKCcy+lg
-	Prw==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x41k68att-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 26 Mar 2024 18:02:31 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42QI2UT3015068
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 26 Mar 2024 18:02:30 GMT
-Received: from [169.254.0.1] (10.49.16.6) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 26 Mar
- 2024 11:02:30 -0700
-From: Bjorn Andersson <quic_bjorande@quicinc.com>
-Date: Tue, 26 Mar 2024 11:02:30 -0700
-Subject: [PATCH] arm64: dts: qcom: qcs6490-rb3gen2: Enable UFS
+	s=arc-20240116; t=1711476293; c=relaxed/simple;
+	bh=FpwR17g2PH56G0XDh6Pi3WB67cdLCnSyZjbxboXsr0w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=h1xPafAie7fDsuf+0O8Hs6Ahv6Nefcio/yyFwhZO3O9+gyGBOHh+PiCJND6Q94P/Bban9JziEnRuO4OVMOp3OWbKyhkjzaC8rO4ahKeBDwI6BdoDlAnhE4GClMaPaGDKu8xnv662CuGk1JyP98y69CkJu4GArg/XKFm78V5Gg8s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OhqPwuZT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14588C433F1;
+	Tue, 26 Mar 2024 18:04:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711476292;
+	bh=FpwR17g2PH56G0XDh6Pi3WB67cdLCnSyZjbxboXsr0w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OhqPwuZTdQ1s7BpgL1VIfuejwlhhnnaQebCxnJRAG0seH7mpEyQLj8LiyS6MhTs3D
+	 lAsHUNE6c5YMjRyPqRfd1SioWqtf+T74GNlkByMBviw6YJiCSjPGxhY8iRV7s+qwcw
+	 qvxfkjefy4d0o2sX9eBnM6zuVZg4clFyVlPCmIJyIxM8jje4z1vxa1H/D7ZoHNxCAe
+	 guE2pbxtTTqlzpZDIeZhzbw08HFzcIv+Jo5mI8SXPjbXWVcQQZBNyz5cPX9gVYg6VV
+	 t3oNj0XtFGgXIuFircYNgE4t+HXmIX9iZSHEVETnqq+FzRLbUdLtwNm0Oh2a/ILudH
+	 H3VeWif2pNhEA==
+Date: Tue, 26 Mar 2024 18:04:46 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Alexey Romanov <avromanov@salutedevices.com>
+Cc: neil.armstrong@linaro.org, clabbe@baylibre.com,
+	herbert@gondor.apana.org.au, davem@davemloft.net,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, khilman@baylibre.com, jbrunet@baylibre.com,
+	martin.blumenstingl@googlemail.com, vadim.fedorenko@linux.dev,
+	linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, kernel@salutedevices.com
+Subject: Re: [PATCH v6 19/23] dt-bindings: crypto: meson: support new SoC's
+Message-ID: <20240326-boneless-patrol-b1156a4be70b@spud>
+References: <20240326153219.2915080-1-avromanov@salutedevices.com>
+ <20240326153219.2915080-20-avromanov@salutedevices.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240326-rb3gen2-ufs-v1-1-8c5c2dae1e64@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIALUNA2YC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIxMDYyMz3aIk4/TUPCPd0rRiXfOUlCQDc0NTc1NTMyWgjoKi1LTMCrBp0bG
- 1tQBGS2bKXQAAAA==
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Bjorn Andersson <quic_bjorande@quicinc.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1711476150; l=1626;
- i=quic_bjorande@quicinc.com; s=20230915; h=from:subject:message-id;
- bh=Hy7edzumEoWeONYYCu1G0+IrMmMDfxYK/QUHU24I/Pk=;
- b=lDO306RXcsUfdGEU/nZkY0RAVYJ6JLaKK3YRNJc/yf9lrJeMOxFZoSkpcRVVKC/lt6NDUd87v
- jYmbjeny+XeB5bTDXzwLLjXDWpoLaOm24XmUbWCMZF4OZWb/yRNSmzZ
-X-Developer-Key: i=quic_bjorande@quicinc.com; a=ed25519;
- pk=VkhObtljigy9k0ZUIE1Mvr0Y+E1dgBEH9WoLQnUtbIM=
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: eNto9_vGL8HkPuqiG2lbeY-eOPn7AEpB
-X-Proofpoint-GUID: eNto9_vGL8HkPuqiG2lbeY-eOPn7AEpB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-26_07,2024-03-21_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 bulkscore=0
- lowpriorityscore=0 clxscore=1011 mlxlogscore=847 priorityscore=1501
- malwarescore=0 phishscore=0 spamscore=0 adultscore=0 suspectscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2403210001 definitions=main-2403260129
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="TsFS7LpYqhJ6X8MW"
+Content-Disposition: inline
+In-Reply-To: <20240326153219.2915080-20-avromanov@salutedevices.com>
 
-The rb3gen2 has UFS memory, adjust the necessary supply voltage and add
-the controller and phy nodes to enable this.
 
-Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 23 +++++++++++++++++++++--
- 1 file changed, 21 insertions(+), 2 deletions(-)
+--TsFS7LpYqhJ6X8MW
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-index 63ebe0774f1d..0177d93ecd1d 100644
---- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-@@ -221,8 +221,8 @@ vreg_l6b_1p2: ldo6 {
- 
- 		vreg_l7b_2p952: ldo7 {
- 			regulator-name = "vreg_l7b_2p952";
--			regulator-min-microvolt = <2400000>;
--			regulator-max-microvolt = <3544000>;
-+			regulator-min-microvolt = <2952000>;
-+			regulator-max-microvolt = <2952000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 		};
- 
-@@ -508,6 +508,25 @@ &usb_1_qmpphy {
- 	status = "okay";
- };
- 
-+&ufs_mem_hc {
-+	reset-gpios = <&tlmm 175 GPIO_ACTIVE_LOW>;
-+	vcc-supply = <&vreg_l7b_2p952>;
-+	vcc-max-microamp = <800000>;
-+	vccq-supply = <&vreg_l9b_1p2>;
-+	vccq-max-microamp = <900000>;
-+	vccq2-supply = <&vreg_l9b_1p2>;
-+	vccq2-max-microamp = <900000>;
-+
-+	status = "okay";
-+};
-+
-+&ufs_mem_phy {
-+	vdda-phy-supply = <&vreg_l10c_0p88>;
-+	vdda-pll-supply = <&vreg_l6b_1p2>;
-+
-+	status = "okay";
-+};
-+
- &wifi {
- 	memory-region = <&wlan_fw_mem>;
- };
+On Tue, Mar 26, 2024 at 06:32:15PM +0300, Alexey Romanov wrote:
+> Now crypto module available at G12A/G12B/S4/A1/SM1/AXG.
+>=20
+> 1. Add new compatibles:
+>   - amlogic,g12a-crypto
+>   - amlogic,axg-crypto
+>   - amlogic,a1-crypto
+>   - amlogic,s4-crypto (uses a1-crypto as fallback)
+>=20
+> 2. Add power-domains in schema.
+>=20
+> Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
+> ---
+>  .../bindings/crypto/amlogic,gxl-crypto.yaml       | 15 +++++++++++++--
+>  1 file changed, 13 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.=
+yaml b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
+> index d3af7b4d5f39..c92edde314aa 100644
+> --- a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
+> +++ b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
+> @@ -11,8 +11,16 @@ maintainers:
+> =20
+>  properties:
+>    compatible:
+> -    items:
+> -      - const: amlogic,gxl-crypto
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - amlogic,s4-crypto
+> +          - const: amlogic,a1-crypto
+> +      - enum:
+> +          - amlogic,gxl-crypto
+> +          - amlogic,axg-crypto
+> +          - amlogic,g12a-crypto
+> +          - amlogic,a1-crypto
+> =20
+>    reg:
+>      maxItems: 1
+> @@ -21,6 +29,9 @@ properties:
+>      items:
+>        - description: Interrupt for flow 0
+> =20
+> +  power-domains:
+> +    maxItems: 1
 
----
-base-commit: 084c8e315db34b59d38d06e684b1a0dd07d30287
-change-id: 20240326-rb3gen2-ufs-7ddb07157556
+Is power-domains valid for the devices that existed prior to your patch?
 
-Best regards,
--- 
-Bjorn Andersson <quic_bjorande@quicinc.com>
+--TsFS7LpYqhJ6X8MW
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgMOPgAKCRB4tDGHoIJi
+0tshAQCtbEqOHiJFUm5lxRMtAn+5YxU2CDgCh0rFA4v9v07M5QEAtxnoZzj0b3c8
+yH8w5AJrE8FRKbXSqTKMNF83M4Te2Qo=
+=OFV3
+-----END PGP SIGNATURE-----
+
+--TsFS7LpYqhJ6X8MW--
 
