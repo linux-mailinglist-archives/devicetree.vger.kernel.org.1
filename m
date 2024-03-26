@@ -1,75 +1,76 @@
-Return-Path: <devicetree+bounces-53250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FF2D88BB1F
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 08:21:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB16A88BB2E
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 08:27:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4386B1C2AE38
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 07:21:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE74B1C2C8EB
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 07:27:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 814A013049B;
-	Tue, 26 Mar 2024 07:21:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5052A130AE4;
+	Tue, 26 Mar 2024 07:27:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="irltSy6u"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ffUg/+24"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C477912AAE6
-	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 07:21:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C6B1130A66
+	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 07:26:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711437670; cv=none; b=py9tUa5QrewhzXWErWLSwRq95YGaHo1hzzO0Ib+KWnxWGBiCw/EsNMo2LLG1waUHZnmJbZY3UJfOZv1rX6MxfqAdWujyA252LGOAGoUu/9Bmcj59J8P8lsviXzCoX7UQpLyE2CNEQnO8JozsFMGsA9jkUnArZFm/L5tguU9mBHE=
+	t=1711438021; cv=none; b=ky3CUw/2wW5t9QS3yeQuiUcZrI6USL+bcG8d7p7KMt3zfVL5pR1TjPo358mpxSF0y0O5wfHaVrqGHlHmgTEzhS+LCV40HtiOfPuvEM4FDaJPgzATpwhgT7a5dYuQvxCf8lGNvl4/90od7hoe0uUq4kmCLQIjuMHSKn/fKyNHAUg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711437670; c=relaxed/simple;
-	bh=uOBlgB1p9x3JSrqgROMcDWtycb5ZnSgCUHNKiU3W7xo=;
+	s=arc-20240116; t=1711438021; c=relaxed/simple;
+	bh=fqZqBjupNkcz7ksn1wgwWbB5zT1rnnmFiojaxsMKakI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=D3VrBrzv2l9QRISV/PsnXXl9jyvRvpzFi2glhSsEXEUkYrq6kDmseBbaxqQvnmmtR0AISPVpELdUBvFLYp+rpnmLJR3Sd3aaUdgorDO2f9BbP4EQysYKuodw33/GljZXjo4rFP6qF/A30OaVrKdWzQLyjCnBZOBZY0gZUkWAGrI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=irltSy6u; arc=none smtp.client-ip=209.85.218.46
+	 In-Reply-To:Content-Type; b=A2TGwRb/V7UiNFlMAabMkXl+mmNEfujsMqn1BTS/QxjxPhkmKEsQwemIchUPrI4d10YI44391q/PBOk2XeJZdoZZV/QlSJ98J8+FBVLndnVXGZg2hwf2XeM0ZbDkTwa3OPDi4CwsSO7YLoj013b4cslVhJTypCL68uSg5TqsB1M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ffUg/+24; arc=none smtp.client-ip=209.85.218.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a4715991c32so616046966b.1
-        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 00:21:08 -0700 (PDT)
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a4715d4c2cbso651120566b.1
+        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 00:26:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711437667; x=1712042467; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711438016; x=1712042816; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=gQvyjL1JP7dUtLIsTDE7fRpuoDc199wdAbqg5zYn6Ik=;
-        b=irltSy6uJhIHdGcQ5/6QOVc9AwQNO4LxBX2gf/JmXHc4RN4YX+6PcggsiOWogiMR5H
-         je7Qbpw1DGA9H/PyE2wNn8SbCtrMqEgr0Vrjk4PqGE53YYGWH0zUUj6UhtWosuaw9e9D
-         bz42zmAimXkQR0W3frHsAgyw/E8APG74N3xbLvTHBze5QHHn2C9s6X60+pxan7HXK2H3
-         KBqUaeuKwjSRwB19ozg5AxzlaCaBSb1yXEbx4H4d06GVOor3jx37hYsNZvkBSnIOK6Fz
-         f44lHPG8yCXsgxu6Vkidmx1pTMOrl4eSqo8qieXeSSKcZoaYJeWLz3oKiTaV+s9gkSnK
-         Y2tw==
+        bh=l8X0sS0ioRZhZHSyCp+sZdAvsMYJwJjOGU3wxVcqyyg=;
+        b=ffUg/+24fnm53ckJ9Tr8DUwxtl6Xzhjo8iez1h3hLJa5PzQUOICxpJgl2x27uMitIt
+         magiCWiDzJjppTycOR+pDMI2Xf8lgXWBEyrRree3b+xl9QDwEDavO4fmeogg33MmOVs/
+         PkJ6K8225OU73+tqygbP9BzDIV/PzwhlVqMmNVfWhNLaDbHUfjk4Z/rbnslquIuTc8QH
+         LMSvkHQvZlnmhP55XzAAXhuo1FDxXYJDnWiHLhO9bNyjTiOfh9NKYDXNiOvIpAsCf56a
+         +F8+oQmZ2SH8OyI9hbmRjSLWsceYY7mR/fPon/m3dWI38T6kpJi7svOiItV6kB32D3N9
+         ezVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711437667; x=1712042467;
+        d=1e100.net; s=20230601; t=1711438016; x=1712042816;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=gQvyjL1JP7dUtLIsTDE7fRpuoDc199wdAbqg5zYn6Ik=;
-        b=KaHM1TmxR0HcIenCT+qeHY0oG0/MwEGVh346SPmMTO3WA9wynalj+MHRehHDyL7uyW
-         oVVz9sdpkieyZoU59EZ8/f5vypoSJB9CIG3A5j8EM8p+nXNy/Z+q7pI/nVqwm3K1mSQw
-         rNSSIp7EhybS4Ky2g8ktN3y52CXsh4o2IAM/yvBojCYNh5EloFaGgxY+z6aqv0yFJmG0
-         +mmCWg79HMh1CJYpedcgHTpPdH5R3t6RUQewp5GWczdC1usSTQNc9qby+B0pOUb0X8D+
-         THSMk7u5U56Wva0qgS6VNUWTduwR/j7mJLEKP6DntHwpM7fSh20zCChX2NjKWRazrq2N
-         hXgg==
-X-Forwarded-Encrypted: i=1; AJvYcCV20N1jzrUntqCeoAHC8kSRYLQQNOcTTBAL06oRrHpNRMBcDCZBxqktQAR3ZrA6FQrflDipNOAELsjmOC6Cn/IxGSewzDC+JXJGrw==
-X-Gm-Message-State: AOJu0Ywd50/gFdZV7dpV4kNVyIsWoEr0C5x65jTygmEavU5TwX7KkwWL
-	jmoiHNGk3EvL2aNfdl5+X5f1wfzFaNkrdOOnc4IAzZZI9fri0alncSLJwB8vCgE=
-X-Google-Smtp-Source: AGHT+IEhtVX/jI8OUqRWaBRSZSfUA30w4qKYQxo1re+CTMiluCxWmSEsxrzpWxVNfeEH7B0QJTbfZQ==
-X-Received: by 2002:a17:906:3b92:b0:a47:30b2:3af7 with SMTP id u18-20020a1709063b9200b00a4730b23af7mr6241925ejf.45.1711437667166;
-        Tue, 26 Mar 2024 00:21:07 -0700 (PDT)
+        bh=l8X0sS0ioRZhZHSyCp+sZdAvsMYJwJjOGU3wxVcqyyg=;
+        b=LghQqCib48VH104LU/Ewb3mt9dPUqaE9/wTExUuolo3SBM68ksFlW99YTy9vOlXOpj
+         sJI5NfhKk1g7UoY15MuL0rnOu1urB50VXhd3bGaA4Yari7Sl7snbjrOVH/a7kBVg+7ue
+         T2hyiLB8fUTNJLsUbuFbZNNi0c70360wk+6erzFoSjkEMS+nPJ+C4P2kyoWSQB74gK12
+         bzqm4rUW5AWaMxeZH7k79mQsTI/DpRpwCcYsUJighclC0eE7znCd4ZOKRqhJHK1wAVig
+         C9LPOO+x/wGjaYXXwcpRj5R9gYzYBrXx1Ov3cJl6D6PbcU1NSvYAf7S1XVciF4qZWj9k
+         mUaw==
+X-Forwarded-Encrypted: i=1; AJvYcCXm/ZgcvFzDWF2Hknbazn8qpZXuS8EjJOr2PqzgSI5VjX+H/Og/1LwwrcRnXsThuEC8WrTCP3eyDCKlP6+S30RmEbF9oPhx8rxTEw==
+X-Gm-Message-State: AOJu0YxSPrTdNdeBqKWnoLXgV7Xt3koX8M3u2FFM66UYRtdgPcfmtl1i
+	PnujAMoI49cEgGjTrp228PNvpAxRJ5S44/5/zViwZlrY/po0903TwQoKYkwyC7PGKEjcmn1qmlH
+	M
+X-Google-Smtp-Source: AGHT+IFJA1GydDkGZE8FU8PnHdXbkqJxy0HtKbTrJpe9g/gXDmcqulXKFzm72AHidqlt3XfGy2GOVg==
+X-Received: by 2002:a17:906:40c9:b0:a4d:f27c:bc3 with SMTP id a9-20020a17090640c900b00a4df27c0bc3mr267095ejk.8.1711438016411;
+        Tue, 26 Mar 2024 00:26:56 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.44])
-        by smtp.gmail.com with ESMTPSA id cb26-20020a170906a45a00b00a4660dc5174sm3909716ejb.51.2024.03.26.00.21.06
+        by smtp.gmail.com with ESMTPSA id hg1-20020a1709072cc100b00a46caa13e63sm3888459ejc.199.2024.03.26.00.26.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Mar 2024 00:21:06 -0700 (PDT)
-Message-ID: <58ec79cc-150e-4fef-bb4b-9d29901e9a04@linaro.org>
-Date: Tue, 26 Mar 2024 08:21:05 +0100
+        Tue, 26 Mar 2024 00:26:55 -0700 (PDT)
+Message-ID: <8cd3158b-ed51-4a1f-a626-fa58c85d4aeb@linaro.org>
+Date: Tue, 26 Mar 2024 08:26:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,7 +78,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: hsi: nokia-modem: convert to YAML
+Subject: Re: [PATCH 3/3] dt-bindings: hsi: omap-ssi: convert to YAML
 To: Sebastian Reichel <sebastian.reichel@collabora.com>,
  Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -85,7 +86,7 @@ To: Sebastian Reichel <sebastian.reichel@collabora.com>,
 Cc: Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org,
  linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20240325-hsi-dt-binding-v1-0-88e8e97c3aae@collabora.com>
- <20240325-hsi-dt-binding-v1-2-88e8e97c3aae@collabora.com>
+ <20240325-hsi-dt-binding-v1-3-88e8e97c3aae@collabora.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -132,40 +133,46 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240325-hsi-dt-binding-v1-2-88e8e97c3aae@collabora.com>
+In-Reply-To: <20240325-hsi-dt-binding-v1-3-88e8e97c3aae@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 25/03/2024 22:45, Sebastian Reichel wrote:
 > Convert the legacy txt binding to modern YAML.
 > No semantic change.
+
+You deprecated a property: ti,hwmods. Also will be one more change:
+ti,ssi-cawake-gpio->gpios
+
 > 
 > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 > ---
->  .../devicetree/bindings/hsi/nokia-modem.txt        |  59 ------------
->  .../devicetree/bindings/hsi/nokia-modem.yaml       | 101 +++++++++++++++++++++
->  2 files changed, 101 insertions(+), 59 deletions(-)
+>  Documentation/devicetree/bindings/hsi/omap-ssi.txt | 102 -----------
+>  .../devicetree/bindings/hsi/ti,omap-ssi.yaml       | 196 +++++++++++++++++++++
+>  2 files changed, 196 insertions(+), 102 deletions(-)
 > 
 
+...
 
-> -};
-> diff --git a/Documentation/devicetree/bindings/hsi/nokia-modem.yaml b/Documentation/devicetree/bindings/hsi/nokia-modem.yaml
+> diff --git a/Documentation/devicetree/bindings/hsi/ti,omap-ssi.yaml b/Documentation/devicetree/bindings/hsi/ti,omap-ssi.yaml
 > new file mode 100644
-> index 000000000000..c57cbcc7b722
+> index 000000000000..eb82f85c25b6
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hsi/nokia-modem.yaml
-
-Filename should match compatibles. nokia,n9-modem.yaml or nokia,modem.yaml
-
-
-> @@ -0,0 +1,101 @@
+> +++ b/Documentation/devicetree/bindings/hsi/ti,omap-ssi.yaml
+> @@ -0,0 +1,196 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/hsi/nokia-modem.yaml#
+> +$id: http://devicetree.org/schemas/hsi/ti,omap-ssi.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Nokia modem
+> +title: SSI Controller on OMAP SoCs
+> +
+> +description:
+> +  OMAP3's Synchronous Serial Interface (SSI) controller implements a
+> +  legacy variant of MIPI's High Speed Synchronous Serial Interface (HSI),
+> +  while the controller found inside OMAP4 is supposed to be fully compliant
+> +  with the HSI standard.
 > +
 > +maintainers:
 > +  - Sebastian Reichel <sre@kernel.org>
@@ -173,77 +180,184 @@ Filename should match compatibles. nokia,n9-modem.yaml or nokia,modem.yaml
 > +properties:
 > +  compatible:
 > +    enum:
-> +      - nokia,n900-modem
-> +      - nokia,n950-modem
-> +      - nokia,n9-modem
+> +      - ti,omap3-ssi
+> +      - ti,omap4-hsi
 > +
-
-Aren't hsi-channel-ids related to hsi-channel-names? If so, they should
-be here with constraints.
-
-> +  hsi-channel-names:
+> +  reg:
 > +    items:
-> +      - const: mcsaab-control
-> +      - const: speech-control
-> +      - const: speech-data
-> +      - const: mcsaab-data
+> +      - description: registers for sys
+> +      - description: registers for gdd
+> +
+> +  reg-names:
+> +    items:
+> +      - const: sys
+> +      - const: gdd
+> +
+> +  ranges: true
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 1
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 3
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    maxItems: 3
 > +
 > +  interrupts:
-> +    items:
-> +      - description: modem reset indication
+> +    maxItems: 1
 > +
-> +  gpios:
-> +    minItems: 3
-> +    maxItems: 5
+> +  interrupt-names:
+> +    const: gdd_mpu
 > +
-> +  gpio-names:
-> +    items:
-> +      - const: cmt_apeslpx
-> +      - const: cmt_rst_rq
-> +      - const: cmt_en
-> +      - const: cmt_rst
-> +      - const: cmt_bsi
-> +    minItems: 3
+> +  ti,hwmods:
+> +    const: ssi
+> +    deprecated: true
+> +
+> +patternProperties:
+> +  "[hs]si-port@[0-9a-f]+":
+
+Does anything actually depends on the name? Can these be "port@[0-9a-f]+"?
+
+> +    type: object
+> +
+
+Drop blank line.
+
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      compatible:
+> +        enum:
+> +          - ti,omap3-ssi-port
+> +          - ti,omap4-hsi-port
+> +
+> +      reg:
+> +        items:
+> +          - description: TX registers
+> +          - description: RX registers
+> +
+> +      reg-names:
+> +        items:
+> +          - const: tx
+> +          - const: rx
+> +
+> +      interrupts:
+> +        items:
+> +          - description: MPU interrupt 0
+> +          - description: MPU interrupt 1
+> +        minItems: 1
+> +
+> +      ti,ssi-cawake-gpio:
+
+ti,ssi-cawake-gpios
+
+> +        description: GPIO signifying CAWAKE events
+> +        maxItems: 1
+> +
+> +      hsi-client:
+> +        type: object
+
+On this level, should be explicit: additionalProperties: true
+
+> +        $ref: /schemas/hsi/hsi-client.yaml#
+> +
+> +    required:
+> +      - compatible
+> +      - reg
+> +      - reg-names
+> +      - interrupts
+> +
+> +    allOf:
+> +      - if:
+> +          properties:
+> +            compatible:
+> +              contains:
+> +                const: ti,omap3-ssi-port
+> +        then:
+> +          properties:
+> +            $nodename:
+> +              pattern: "^ssi-port@(.*)?$"
+> +            interrupts:
+> +              minItems: 2
+> +        else:
+> +          properties:
+> +            $nodename:
+> +              pattern: "^hsi-port@(.*)?$"
+> +            interrupts:
+> +              maxItems: 1
+> +
+> +additionalProperties: false
+
+This goes after allOf: block
+
 > +
 > +required:
-> +  - gpios
-> +  - gpio-names
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - ranges
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - clocks
+> +  - clock-names
 > +  - interrupts
+> +  - interrupt-names
 > +
 > +allOf:
-> +  - $ref: hsi-client.yaml#
 > +  - if:
 > +      properties:
 > +        compatible:
 > +          contains:
-> +            enum:
-> +              - nokia,n950-modem
-> +              - nokia,n9-modem
+> +            const: ti,omap3-ssi
 > +    then:
 > +      properties:
-> +        gpios:
-> +          maxItems: 3
-> +        gpio-names:
-> +          maxItems: 3
+> +        clocks:
+> +          minItems: 3
+> +        clock-names:
+> +          items:
+> +            - const: ssi_ssr_fck
+> +            - const: ssi_sst_fck
+> +            - const: ssi_ick
 > +    else:
 > +      properties:
-> +        gpios:
-> +          minItems: 5
-> +        gpio-names:
-> +          minItems: 5
-> +
-> +unevaluatedProperties: false
+> +        clocks:
+> +          maxItems: 1
+> +        clock-names:
+> +          items:
+> +            - const: hsi_fck
 > +
 > +examples:
 > +  - |
 > +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    hsi-client {
-
-This should be "modem".
-
-> +        compatible = "nokia,n900-modem";
+> +    ssi-controller@48058000 {
+> +        compatible = "ti,omap3-ssi";
+> +        reg = <0x48058000 0x1000>,
+> +              <0x48059000 0x1000>;
+> +        reg-names = "sys", "gdd";
+> +        ranges;
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +        clocks = <&ssi_ssr_fck>,
+> +                 <&ssi_sst_fck>,
+> +                 <&ssi_ick>;
+> +        clock-names = "ssi_ssr_fck",
+> +                      "ssi_sst_fck",
+> +                      "ssi_ick";
+> +        interrupts = <55>;
+> +        interrupt-names = "gdd_mpu";
 > +
+> +        ssi-port@4805a000 {
+> +                compatible = "ti,omap3-ssi-port";
+
+Use 4 spaces for example indentation.
+
+> +                reg = <0x4805a000 0x800>,
 
 
 Best regards,
