@@ -1,139 +1,119 @@
-Return-Path: <devicetree+bounces-53535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53536-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F02788C9CF
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 17:51:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48EA988C9DC
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 17:52:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F2B7E1F82667
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 16:51:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A58E1C63EF5
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 16:52:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 246661C28F;
-	Tue, 26 Mar 2024 16:50:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0521D1C2AF;
+	Tue, 26 Mar 2024 16:52:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="milUpa8T"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="X6UxlCv/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B4E612E75;
-	Tue, 26 Mar 2024 16:50:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 415961BDDC;
+	Tue, 26 Mar 2024 16:52:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711471857; cv=none; b=oM8INb8gzbDl65SQRZLEbHh+QV5orTXe+sogZu7DpQuDY7B5nLTuYVU39fmha0vvI2WOwhSwCuFCmtzCkupb3rJrE0EB0uu397zVTP9+H1WpH8idktcj3QArpQkXiv7ZWlxo7n+3vj+gifngywZ03BjITC/f5uhMyjp+CLRIr3s=
+	t=1711471957; cv=none; b=QZdA+eP17skFBUREJ46v0d0TnARqSbkRrSTnbonMaTJIWRBDkdL0f3JKh4K8wJHdXm8O3RuMfdxktqYZdd7/n47ijClse9hlMD/GCxN7Ke7NLjZRsupFhrfZCVrQ2UlFE/yb142v/9yoYz+mANTnhhyVeA4SR9ei4qHz2yYSNtM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711471857; c=relaxed/simple;
-	bh=AFwsZIFN5v5W4l6gSL6hHE2kQ2JZb5YaRIVIFmnNG2E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QhWZayJSYcxOqFg428mukOOAgblt8YQWKElAS2mBHo6Bq6p8FuLoeq0s7jLDVIOpc12hvEvkBmWFE+LDDhY1YyLKtA0bj4MRRpMCPUa+SLTzNqTpJtR6TY4RPbKF4cR8u3Ror25e4Osf6tBOjnz3qaNpPZGc/gPQU1r/Uh+DD6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=milUpa8T; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 502CE497;
-	Tue, 26 Mar 2024 17:50:20 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1711471820;
-	bh=AFwsZIFN5v5W4l6gSL6hHE2kQ2JZb5YaRIVIFmnNG2E=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=milUpa8TS4hsQHJXSbPDSgc2lv0xGxrggMCHGugFP6uPQfXByX9PW0utWIMprGsS0
-	 BWdDBQLnI7aPyXG5H/xAXhlKK+8Lzhj2c4Z1AVxCR7az00HKLy9GTdwBKQSwNbRdxw
-	 J76mAM/s9G1U9fHBEZ9cQOmcwwJvVvCj3abROIjE=
-Date: Tue, 26 Mar 2024 18:50:43 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	Trevor Zaharichuk <trevor@au-zone.com>,
-	Greg Lytle <greg@au-zone.com>, Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1711471957; c=relaxed/simple;
+	bh=nSq4r4RjZUrOs5YaJtXgzlCcDxFx7tzP4v13Qcx6tx0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=sGmU2BwgdzsVoh1lVzRpiB71B123C+MqQFG868TmUkj99VDiXk+g00wNYyqvhzMgpi7oVpgWFaMdH5A1+qff2tar8sE5HvLu8s0473J9Kydj6vXnlPug6JlEUpZJsFND9wovTCVutSkq1DLa/KCcAPEC28/DbesXE73AsJqAn+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=X6UxlCv/; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1711471953;
+	bh=nSq4r4RjZUrOs5YaJtXgzlCcDxFx7tzP4v13Qcx6tx0=;
+	h=From:To:Cc:Subject:Date:From;
+	b=X6UxlCv/gMLrh81SBwmVexV45x4sbYNlTNqsCcTuzTw22jN4JyCQEDouBR8dl8IIZ
+	 PYogZy++HKCN7tLFAsAYE4d9TUEWZyCM2aT5TLcEkwL9H7dLEvyDXs2I5PFOjRONhN
+	 IRrwPloXlPs81ae1Px7SDcHHauT9uHFu/SwyeqhKB1VHD5UvevcNbosOkh+4pSm72t
+	 W3Mga5EA9ZUuR2zLAo8XfrIfS0eUQmn5vq/BxI26T4JAhCCkBojVxA2OSGptnEdJPm
+	 28kitJIB75lFndepd5q8p5L26OfHSb2ye0QikIS7F9ZZvJ1Whg0wSbMPc8C9VkfEJA
+	 djMhOPc2D9QBA==
+Received: from jupiter.universe (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 69B8F378203E;
+	Tue, 26 Mar 2024 16:52:33 +0000 (UTC)
+Received: by jupiter.universe (Postfix, from userid 1000)
+	id 106E94800CD; Tue, 26 Mar 2024 17:52:33 +0100 (CET)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Heiko Stuebner <heiko@sntech.de>,
+	linux-rockchip@lists.infradead.org
+Cc: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Sean Nyekjaer <sean@geanix.com>,
-	linux-iio@vger.kernel.org
-Subject: Re: [PATCH 1/5] dt-bindings: iio: dac: ti,dac5571: Add DAC081C081
- support
-Message-ID: <20240326165043.GB28895@pendragon.ideasonboard.com>
-References: <20240325203245.31660-1-laurent.pinchart@ideasonboard.com>
- <20240325203245.31660-2-laurent.pinchart@ideasonboard.com>
- <20240325204857.4f2fd468@jic23-huawei>
- <20240325205641.GD23988@pendragon.ideasonboard.com>
- <20240326152927.00006229@Huawei.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Boris Brezillon <boris.brezillon@collabora.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	kernel@collabora.com
+Subject: [PATCH v2 0/4] RK3588 GPU support
+Date: Tue, 26 Mar 2024 17:52:04 +0100
+Message-ID: <20240326165232.73585-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240326152927.00006229@Huawei.com>
 
-On Tue, Mar 26, 2024 at 03:29:27PM +0000, Jonathan Cameron wrote:
-> On Mon, 25 Mar 2024 22:56:41 +0200 Laurent Pinchart wrote:
-> > On Mon, Mar 25, 2024 at 08:48:57PM +0000, Jonathan Cameron wrote:
-> > > On Mon, 25 Mar 2024 22:32:41 +0200 Laurent Pinchart wrote:
-> > >   
-> > > > The DAC081C081 is a TI DAC whose software interface is compatible with
-> > > > the DAC5571. It is the 8-bit version of the DAC121C081, already
-> > > > supported by the DAC5571 bindings. Extends the bindings to support this
-> > > > chip.
-> > > > 
-> > > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>  
-> > > 
-> > > Hi Laurent,
-> > > 
-> > > Given it's a part number where no one is going to guess it is compatible
-> > > with the DAC5571 and that we don't have a history of fallback compatibles
-> > > I'm fine with this change, but just wanted to ask is a fallback compatible
-> > > useful to you to run with older kernels?
-> > > 
-> > > I should have noticed when Peter added the dac121c081. If we add a fallback
-> > > should do that one as well.  
-> > 
-> > I've indeed noticed that there should have been a fallback for
-> > dac121c081, but didn't stop to ponder why that wasn't the case, and just
-> > went along with the flow :-) I agree a fallback could be useful, which
-> > would then allow dropping patch 2/5 from this series (*). I can do so if
-> > you prefer.
-> > 
-> > * This is not entirely true. While the DAC1081C081 is largely compatible
-> > with the DAC5573, they have different values for one of the power-down
-> > resistors (2.5kΩ instead of 1kΩ if I recall correctly). To be completely
-> > accurate, the driver should report that. We could still use the fallback
-> > compatible, reporting the wrong power-down resistor value.
-> 
-> Hmm - Would anyone really care about that value being wrong?
+Hi,
 
-I don't have enough expertise with IIO to be sure, but my guess is that
-nobody would.
+Panthor has landed in linux-next including the DT bindings, so it is
+time to add the necessary DT changes to support the GPU on RK3588.
+This adds support at SoC level and support for the EVB1 as well as
+the Rock 5B, which covers both variants found in RK3588 boards:
 
-> I think perhaps that's just about significant enough that maybe a fallback
-> compatible doesn't make sense here.
+1. Having dedicated regulators for GPU core and GPU memory. This
+   is handled by coupling both regulators.
+2. Having a shared regulator for GPU core and GPU memory.
 
-Then let's keep it simple and just merge this patch as-is ? :-)
+I prepared a branch with the GPU DT changes (and the panthor driver
+changes for testing, consdering they do not clash) based on Heiko's
+for-next branch:
 
-> > > > ---
-> > > >  Documentation/devicetree/bindings/iio/dac/ti,dac5571.yaml | 1 +
-> > > >  1 file changed, 1 insertion(+)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/iio/dac/ti,dac5571.yaml b/Documentation/devicetree/bindings/iio/dac/ti,dac5571.yaml
-> > > > index 79da0323c327..e59db861e2eb 100644
-> > > > --- a/Documentation/devicetree/bindings/iio/dac/ti,dac5571.yaml
-> > > > +++ b/Documentation/devicetree/bindings/iio/dac/ti,dac5571.yaml
-> > > > @@ -21,6 +21,7 @@ properties:
-> > > >        - ti,dac5573
-> > > >        - ti,dac6573
-> > > >        - ti,dac7573
-> > > > +      - ti,dac081c081
-> > > >        - ti,dac121c081
-> > > >  
-> > > >    reg:  
+https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/commits/rk3588-gpu
+
+Changes since PATCHv1:
+ - https://lore.kernel.org/all/20240325153850.189128-1-sebastian.reichel@collabora.com/
+ - remove always-on from the GPU regulator in the Rock 5B patch
+ - add comment to the always-on for the GPU regulators in the EVB1 patch
+ - add explanation for the always-on in the EVB1 commit description
+
+Greetings,
+
+-- Sebastian
+
+Boris Brezillon (3):
+  arm64: dts: rockchip: rk3588: Add GPU nodes
+  arm64: dts: rockchip: rk3588-rock5b: Enable GPU
+  arm64: dts: rockchip: rk3588-evb1: Enable GPU
+
+Sebastian Reichel (1):
+  arm64: defconfig: support Mali CSF-based GPUs
+
+ .../boot/dts/rockchip/rk3588-evb1-v10.dts     | 14 +++++
+ .../boot/dts/rockchip/rk3588-rock-5b.dts      |  5 ++
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 56 +++++++++++++++++++
+ arch/arm64/configs/defconfig                  |  1 +
+ 4 files changed, 76 insertions(+)
 
 -- 
-Regards,
+2.43.0
 
-Laurent Pinchart
 
