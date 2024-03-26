@@ -1,172 +1,139 @@
-Return-Path: <devicetree+bounces-53534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53535-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F198288C9AA
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 17:47:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F02788C9CF
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 17:51:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7197E1F3A236
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 16:47:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F2B7E1F82667
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 16:51:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD980171BB;
-	Tue, 26 Mar 2024 16:46:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 246661C28F;
+	Tue, 26 Mar 2024 16:50:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VSmiSbL1"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="milUpa8T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 667A21C68C;
-	Tue, 26 Mar 2024 16:46:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B4E612E75;
+	Tue, 26 Mar 2024 16:50:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711471619; cv=none; b=NYeeavLxP50e36IK6+AoyYN9dzE2qiFruqD5thR6Fnfjx59AtUqDb8ptcz970U+8wChf6tBQ584iLLqyhv8P3CXv2pCSRVZ6o4+I8LUHS93oIB+Jc/MUk57mDLBNUrUvCUObylGH25CH/wJBxygpiUdD+Oxj3AWTYWBHtblkixU=
+	t=1711471857; cv=none; b=oM8INb8gzbDl65SQRZLEbHh+QV5orTXe+sogZu7DpQuDY7B5nLTuYVU39fmha0vvI2WOwhSwCuFCmtzCkupb3rJrE0EB0uu397zVTP9+H1WpH8idktcj3QArpQkXiv7ZWlxo7n+3vj+gifngywZ03BjITC/f5uhMyjp+CLRIr3s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711471619; c=relaxed/simple;
-	bh=cTcHrvAeiijxWXWyZWDCSqvwzr1pjWo34Vu0hn6R04g=;
+	s=arc-20240116; t=1711471857; c=relaxed/simple;
+	bh=AFwsZIFN5v5W4l6gSL6hHE2kQ2JZb5YaRIVIFmnNG2E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LKBskalx97vb4IwiMQALQE5nK2BSjSV8ShS6CC1t+jVekHDj85coccm5T3X8zAGX/SSuFt4MYe9iGo/fln8UPc/+mkPnATAwuhcBNGnMOfImeTlNAIcQ9Hy6sQj4gRuPczh9NKAI0OlLJWvTW3xfUUDsT28o4jxdZLj563EHchs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VSmiSbL1; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1711471617; x=1743007617;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=cTcHrvAeiijxWXWyZWDCSqvwzr1pjWo34Vu0hn6R04g=;
-  b=VSmiSbL1vuw/pNTE2wnlq4yrv+ckHepcmFuGc8usTpIfNMZ8sn7X51Eg
-   Cn1HXa5du3HrJDOucsPT1Hz83PsgPkS5UMR6/ZQSMfhL88uGTZtoT+fYH
-   Gw+XPMdpxkhx3St5wbwXkdyZGR/rjQnToLRRAXRHroDPUsOj1sNl8oX2b
-   NtMtmheqL47wuoJGKpgD9vIxgOxs5YaB9yjUBM/bJCqtc6huSYtTuySyr
-   RmbAhR6n4HxfRq5cR+VkfKdsD0A42sjbF9ogcGnNx3NsdKy5ag0iKVWkc
-   RODiCKgl5Ti5V7ylBWsjebkSyOdnGiWz158Ta3Duwy9fTjvnWR8Y6oQdI
-   w==;
-X-CSE-ConnectionGUID: tQdDL4ZFQEiTFFGMCeAwQw==
-X-CSE-MsgGUID: 47yctdXfT2KbhAXMNsF6Hg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11025"; a="17167256"
-X-IronPort-AV: E=Sophos;i="6.07,156,1708416000"; 
-   d="scan'208";a="17167256"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Mar 2024 09:46:56 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,156,1708416000"; 
-   d="scan'208";a="15880418"
-Received: from lkp-server01.sh.intel.com (HELO be39aa325d23) ([10.239.97.150])
-  by orviesa010.jf.intel.com with ESMTP; 26 Mar 2024 09:46:52 -0700
-Received: from kbuild by be39aa325d23 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rp9wo-0000EK-09;
-	Tue, 26 Mar 2024 16:46:50 +0000
-Date: Wed, 27 Mar 2024 00:46:40 +0800
-From: kernel test robot <lkp@intel.com>
-To: Sudan Landge <sudanl@amazon.com>, tytso@mit.edu, Jason@zx2c4.com,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, sathyanarayanan.kuppuswamy@linux.intel.com,
-	thomas.lendacky@amd.com, dan.j.williams@intel.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, graf@amazon.de, dwmw@amazon.co.uk,
-	bchalios@amazon.es, xmarcalx@amazon.co.uk
-Subject: Re: [PATCH v3 4/4] virt: vmgenid: add support for devicetree bindings
-Message-ID: <202403270050.wJ0Hd5aB-lkp@intel.com>
-References: <20240325195306.13133-5-sudanl@amazon.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=QhWZayJSYcxOqFg428mukOOAgblt8YQWKElAS2mBHo6Bq6p8FuLoeq0s7jLDVIOpc12hvEvkBmWFE+LDDhY1YyLKtA0bj4MRRpMCPUa+SLTzNqTpJtR6TY4RPbKF4cR8u3Ror25e4Osf6tBOjnz3qaNpPZGc/gPQU1r/Uh+DD6k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=milUpa8T; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 502CE497;
+	Tue, 26 Mar 2024 17:50:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1711471820;
+	bh=AFwsZIFN5v5W4l6gSL6hHE2kQ2JZb5YaRIVIFmnNG2E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=milUpa8TS4hsQHJXSbPDSgc2lv0xGxrggMCHGugFP6uPQfXByX9PW0utWIMprGsS0
+	 BWdDBQLnI7aPyXG5H/xAXhlKK+8Lzhj2c4Z1AVxCR7az00HKLy9GTdwBKQSwNbRdxw
+	 J76mAM/s9G1U9fHBEZ9cQOmcwwJvVvCj3abROIjE=
+Date: Tue, 26 Mar 2024 18:50:43 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	Trevor Zaharichuk <trevor@au-zone.com>,
+	Greg Lytle <greg@au-zone.com>, Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Sean Nyekjaer <sean@geanix.com>,
+	linux-iio@vger.kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: iio: dac: ti,dac5571: Add DAC081C081
+ support
+Message-ID: <20240326165043.GB28895@pendragon.ideasonboard.com>
+References: <20240325203245.31660-1-laurent.pinchart@ideasonboard.com>
+ <20240325203245.31660-2-laurent.pinchart@ideasonboard.com>
+ <20240325204857.4f2fd468@jic23-huawei>
+ <20240325205641.GD23988@pendragon.ideasonboard.com>
+ <20240326152927.00006229@Huawei.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240325195306.13133-5-sudanl@amazon.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240326152927.00006229@Huawei.com>
 
-Hi Sudan,
+On Tue, Mar 26, 2024 at 03:29:27PM +0000, Jonathan Cameron wrote:
+> On Mon, 25 Mar 2024 22:56:41 +0200 Laurent Pinchart wrote:
+> > On Mon, Mar 25, 2024 at 08:48:57PM +0000, Jonathan Cameron wrote:
+> > > On Mon, 25 Mar 2024 22:32:41 +0200 Laurent Pinchart wrote:
+> > >   
+> > > > The DAC081C081 is a TI DAC whose software interface is compatible with
+> > > > the DAC5571. It is the 8-bit version of the DAC121C081, already
+> > > > supported by the DAC5571 bindings. Extends the bindings to support this
+> > > > chip.
+> > > > 
+> > > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>  
+> > > 
+> > > Hi Laurent,
+> > > 
+> > > Given it's a part number where no one is going to guess it is compatible
+> > > with the DAC5571 and that we don't have a history of fallback compatibles
+> > > I'm fine with this change, but just wanted to ask is a fallback compatible
+> > > useful to you to run with older kernels?
+> > > 
+> > > I should have noticed when Peter added the dac121c081. If we add a fallback
+> > > should do that one as well.  
+> > 
+> > I've indeed noticed that there should have been a fallback for
+> > dac121c081, but didn't stop to ponder why that wasn't the case, and just
+> > went along with the flow :-) I agree a fallback could be useful, which
+> > would then allow dropping patch 2/5 from this series (*). I can do so if
+> > you prefer.
+> > 
+> > * This is not entirely true. While the DAC1081C081 is largely compatible
+> > with the DAC5573, they have different values for one of the power-down
+> > resistors (2.5kΩ instead of 1kΩ if I recall correctly). To be completely
+> > accurate, the driver should report that. We could still use the fallback
+> > compatible, reporting the wrong power-down resistor value.
+> 
+> Hmm - Would anyone really care about that value being wrong?
 
-kernel test robot noticed the following build warnings:
+I don't have enough expertise with IIO to be sure, but my guess is that
+nobody would.
 
-[auto build test WARNING on 8e938e39866920ddc266898e6ae1fffc5c8f51aa]
+> I think perhaps that's just about significant enough that maybe a fallback
+> compatible doesn't make sense here.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Sudan-Landge/virt-vmgenid-rearrange-code-to-make-review-easier/20240326-035657
-base:   8e938e39866920ddc266898e6ae1fffc5c8f51aa
-patch link:    https://lore.kernel.org/r/20240325195306.13133-5-sudanl%40amazon.com
-patch subject: [PATCH v3 4/4] virt: vmgenid: add support for devicetree bindings
-config: x86_64-buildonly-randconfig-004-20240326 (https://download.01.org/0day-ci/archive/20240327/202403270050.wJ0Hd5aB-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240327/202403270050.wJ0Hd5aB-lkp@intel.com/reproduce)
+Then let's keep it simple and just merge this patch as-is ? :-)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202403270050.wJ0Hd5aB-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/virt/vmgenid.c: In function 'vmgenid_add_of':
-   drivers/virt/vmgenid.c:154:15: error: 'dev' undeclared (first use in this function); did you mean 'pdev'?
-     154 |         (void)dev;
-         |               ^~~
-         |               pdev
-   drivers/virt/vmgenid.c:154:15: note: each undeclared identifier is reported only once for each function it appears in
-   drivers/virt/vmgenid.c: At top level:
->> drivers/virt/vmgenid.c:60:12: warning: 'setup_vmgenid_state' defined but not used [-Wunused-function]
-      60 | static int setup_vmgenid_state(struct vmgenid_state *state, u8 *next_id)
-         |            ^~~~~~~~~~~~~~~~~~~
->> drivers/virt/vmgenid.c:27:13: warning: 'vmgenid_notify' defined but not used [-Wunused-function]
-      27 | static void vmgenid_notify(struct device *device)
-         |             ^~~~~~~~~~~~~~
-
-
-vim +/setup_vmgenid_state +60 drivers/virt/vmgenid.c
-
-af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23  26  
-fba2c3554a30ca Sudan Landge       2024-03-25 @27  static void vmgenid_notify(struct device *device)
-5eb78dfcd888d3 Sudan Landge       2024-03-25  28  {
-fba2c3554a30ca Sudan Landge       2024-03-25  29  	struct vmgenid_state *state = device->driver_data;
-5eb78dfcd888d3 Sudan Landge       2024-03-25  30  	char *envp[] = { "NEW_VMGENID=1", NULL };
-5eb78dfcd888d3 Sudan Landge       2024-03-25  31  	u8 old_id[VMGENID_SIZE];
-5eb78dfcd888d3 Sudan Landge       2024-03-25  32  
-5eb78dfcd888d3 Sudan Landge       2024-03-25  33  	memcpy(old_id, state->this_id, sizeof(old_id));
-5eb78dfcd888d3 Sudan Landge       2024-03-25  34  	memcpy(state->this_id, state->next_id, sizeof(state->this_id));
-5eb78dfcd888d3 Sudan Landge       2024-03-25  35  	if (!memcmp(old_id, state->this_id, sizeof(old_id)))
-5eb78dfcd888d3 Sudan Landge       2024-03-25  36  		return;
-5eb78dfcd888d3 Sudan Landge       2024-03-25  37  	add_vmfork_randomness(state->this_id, sizeof(state->this_id));
-fba2c3554a30ca Sudan Landge       2024-03-25  38  	kobject_uevent_env(&device->kobj, KOBJ_CHANGE, envp);
-5eb78dfcd888d3 Sudan Landge       2024-03-25  39  }
-5eb78dfcd888d3 Sudan Landge       2024-03-25  40  
-84d2b6732ae89f Sudan Landge       2024-03-25  41  #if IS_ENABLED(CONFIG_ACPI)
-fba2c3554a30ca Sudan Landge       2024-03-25  42  static void vmgenid_acpi_handler(acpi_handle handle, u32 event, void *dev)
-af6b54e2b5baa5 Jason A. Donenfeld 2022-02-23  43  {
-84d2b6732ae89f Sudan Landge       2024-03-25  44  	(void)handle;
-84d2b6732ae89f Sudan Landge       2024-03-25  45  	(void)event;
-fba2c3554a30ca Sudan Landge       2024-03-25  46  	vmgenid_notify(dev);
-fba2c3554a30ca Sudan Landge       2024-03-25  47  }
-84d2b6732ae89f Sudan Landge       2024-03-25  48  #endif
-84d2b6732ae89f Sudan Landge       2024-03-25  49  
-84d2b6732ae89f Sudan Landge       2024-03-25  50  #if IS_ENABLED(CONFIG_OF)
-84d2b6732ae89f Sudan Landge       2024-03-25  51  static irqreturn_t vmgenid_of_irq_handler(int irq, void *dev)
-84d2b6732ae89f Sudan Landge       2024-03-25  52  {
-84d2b6732ae89f Sudan Landge       2024-03-25  53  	(void)irq;
-84d2b6732ae89f Sudan Landge       2024-03-25  54  	vmgenid_notify(dev);
-84d2b6732ae89f Sudan Landge       2024-03-25  55  
-84d2b6732ae89f Sudan Landge       2024-03-25  56  	return IRQ_HANDLED;
-84d2b6732ae89f Sudan Landge       2024-03-25  57  }
-84d2b6732ae89f Sudan Landge       2024-03-25  58  #endif
-fba2c3554a30ca Sudan Landge       2024-03-25  59  
-fba2c3554a30ca Sudan Landge       2024-03-25 @60  static int setup_vmgenid_state(struct vmgenid_state *state, u8 *next_id)
-fba2c3554a30ca Sudan Landge       2024-03-25  61  {
-fba2c3554a30ca Sudan Landge       2024-03-25  62  	if (IS_ERR(next_id))
-fba2c3554a30ca Sudan Landge       2024-03-25  63  		return PTR_ERR(next_id);
-fba2c3554a30ca Sudan Landge       2024-03-25  64  
-fba2c3554a30ca Sudan Landge       2024-03-25  65  	state->next_id = next_id;
-fba2c3554a30ca Sudan Landge       2024-03-25  66  	memcpy(state->this_id, state->next_id, sizeof(state->this_id));
-fba2c3554a30ca Sudan Landge       2024-03-25  67  	add_device_randomness(state->this_id, sizeof(state->this_id));
-fba2c3554a30ca Sudan Landge       2024-03-25  68  	return 0;
-fba2c3554a30ca Sudan Landge       2024-03-25  69  }
-fba2c3554a30ca Sudan Landge       2024-03-25  70  
+> > > > ---
+> > > >  Documentation/devicetree/bindings/iio/dac/ti,dac5571.yaml | 1 +
+> > > >  1 file changed, 1 insertion(+)
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/iio/dac/ti,dac5571.yaml b/Documentation/devicetree/bindings/iio/dac/ti,dac5571.yaml
+> > > > index 79da0323c327..e59db861e2eb 100644
+> > > > --- a/Documentation/devicetree/bindings/iio/dac/ti,dac5571.yaml
+> > > > +++ b/Documentation/devicetree/bindings/iio/dac/ti,dac5571.yaml
+> > > > @@ -21,6 +21,7 @@ properties:
+> > > >        - ti,dac5573
+> > > >        - ti,dac6573
+> > > >        - ti,dac7573
+> > > > +      - ti,dac081c081
+> > > >        - ti,dac121c081
+> > > >  
+> > > >    reg:  
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Regards,
+
+Laurent Pinchart
 
