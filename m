@@ -1,463 +1,886 @@
-Return-Path: <devicetree+bounces-53204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84D5C88B713
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 02:47:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B722088B717
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 02:50:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 13CA81F3E8E3
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 01:47:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 23D8E1F3EA58
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 01:50:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39EF182D76;
-	Tue, 26 Mar 2024 01:47:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3399526296;
+	Tue, 26 Mar 2024 01:50:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="MfLkbSEM"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Z//4hrSG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12olkn2096.outbound.protection.outlook.com [40.92.22.96])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F14EC80C1F;
-	Tue, 26 Mar 2024 01:47:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.22.96
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711417642; cv=fail; b=uYiUVZkIxw2ZGb5CGu1QuXN2j2raveXdHAhNSO2XzgRzqR4uCV3/6w1ksQcct4l63/N4E1g7rx/SGsGvMbJUfEPQhM4UdO8pXQNzT0/zp8T8OKE4//H4VObBSpkOp9MKpOFBBTEkeC5eaCjeMSkS/f3474vB6+AqOLMA5G+I0AY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711417642; c=relaxed/simple;
-	bh=G402pF/C1xwkO3ddF4EGPf1HmaICEsd4RzlLSuDQAzU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=JsgqFPFG/IR1lhuPXN8N2u+5+lFjQUl0u6wJguwOodzVwX0s1Rha+HVnvY5xxa1jomOMWF+OxTOOimq3k5dvsuIy3KUhFUh2GBaWg3wSzbueiVcn0jVsw9wWfhuUlqX7lZ79wpW8KZh4ksiqnHaeIP5EjoNycg8ziRasmRp8EtI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=MfLkbSEM; arc=fail smtp.client-ip=40.92.22.96
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Qv5uCfF5kmbgWR3xddYYDeOmV3jX3PcODDhGW4WCwUJL/wUuUOrLEZv1+TRKa2P2wR9eEToch4teZzW+dxO1X+XNJ5YHtAWT1kachp3r/giBI2RylTcYTEwIJtF/Fe7g0ZK16Pc8LGbDsVYdtqVS5f3WsgN3UiPFQRxM7igo5Nq/gOEzfOA7ZKtk9j6zkBUIMuvwBp5helJi9DQEpmW8gi/LFBDTxMRXpxmC9E7D+LHHYBCpcvlO6M6A4GZclRJbzckvhteQHRC9buC2aH+rJ4x0i7BhBrbXX/LUrp5cJFQ+ytDl1eZN5H1r3JSJOJaIxi+NGRqQkg+Y5hIyMpjVRQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jLMOdrQygst76bvt6bKGJPcelvUQigBt2RtAuf8GQwA=;
- b=ZqMob0bqXzFCfatRJ0nHIzCozpAlSQ9P+Cji024c1dQa0iI0FI3PmOge83EZU2SG/sgyBtpN3c+8SUPHQa0i+geihq/Bt0/JjwTEwHeJLtOd9v7jzmehqjNTQhSU17zFywTS9twD+2/Rc9GRKFIn0t5EiTNK9aAKDRN3NgfzZ7723TjNdxwrzfRAL7R1tXbP7vVt4Fr0TMU1EPplbKoDUHV6ki8iCRmLJnWUADSUNNQXA9xWYn+JLB9Gpof7spUVmbUl/111uKbE7+gtyZ7KQd61H22ASQilJMv2uZ/7x8hS5gb+e4RAIGdIUN74WQGIWFxIKBrdkUovrzoKJqYkQg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jLMOdrQygst76bvt6bKGJPcelvUQigBt2RtAuf8GQwA=;
- b=MfLkbSEM0yiaz8Hs9/CfvqZd+kE/6T0cJY0jGf53FcFNJKPIh0FaC85qaknzVitFWEsot2Q2CN0K6NqNZxN3LnbTFkLNi6pWOOVfobCKMq9xSvJrpMXRJM8Ka1pn9e1ryFg7ri8D+vANCWG9IrJ7B1xVbkmKneeJr/t2VZSbLs1RWTGItDGkc0NhNj65vaThAKECBRBkwF8D33YcNCFJ9TxodQHuHOtxZZdBoAnTeDknATNrABQjxM5PfIKYa79V/OFIhFLYNUYUeoRFbEvgPMzrCLYLA1D3t2CxCeRRC+mRxTs3GjBrKnbg0kW3YDKP9O+CWqQqFhf3Bvu3zsDn1g==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by CH3PR20MB6537.namprd20.prod.outlook.com (2603:10b6:610:154::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.31; Tue, 26 Mar
- 2024 01:47:17 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::182f:841b:6e76:b819]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::182f:841b:6e76:b819%2]) with mapi id 15.20.7409.026; Tue, 26 Mar 2024
- 01:47:17 +0000
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Vinod Koul <vkoul@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D5391CA82;
+	Tue, 26 Mar 2024 01:50:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1711417841; cv=none; b=RZcsY4ditO/QMzmN+Eg/lLWYnhDdS+I8NLzjUYCYw79BOwFZP8Hc4TsBgq5XWzDCfXfEh8TuOisk3UYRbl2Hbj9oUxUQjx5bY+PdTvGj6a7X19Ekvxd6YSCFxAt0qA7Wm3YfJCMKuld4JXEnW76BW0EsEs+TmPzeaIr5JNZwybI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1711417841; c=relaxed/simple;
+	bh=6UIow4+csRwyOyAcgrRNQ5USHkEEGyc8IXkGi2Db+LQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hEFhckpm+o/LyxrlYxMSIxmv/7OxirScnbOAY8PhX9QC9pCQfqz2K/rFEtVjdJb+ClzopGhC2/EWML4K9fbsolCeO0sDYmxcLeQ7+EOoTDiZo3oJUrnyisN7w9UB3y9H2IqkXzP49zXF+XGxQB8kSOO4hpXdzKYX61tA0UTqf/U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Z//4hrSG; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 78D60E0C;
+	Tue, 26 Mar 2024 02:50:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1711417804;
+	bh=6UIow4+csRwyOyAcgrRNQ5USHkEEGyc8IXkGi2Db+LQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Z//4hrSGy/Iye+4s+YJjYysYOAi5u/acZq4k718B2VgNUn1Wes3vuTL2q+JDtLLH/
+	 ZM0LUEDMEa5Bg7rbqwSkiNdE7pczMEem6DsYuLLAP6N6ihc7Lk+OojGuhvJCjhcMUj
+	 yFtPioALix4Nb638rYwMUM4hQqJGJmOREAOtnbuk=
+Date: Tue, 26 Mar 2024 03:50:28 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: linux-media@vger.kernel.org,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	David Plowman <david.plowman@raspberrypi.com>,
+	Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Naushir Patuck <naush@raspberrypi.com>, kernel-list@raspberrypi.com,
+	linux-rpi-kernel@lists.infradead.org,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	bcm-kernel-feedback-list@broadcom.com,
 	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>
-Cc: Jisheng Zhang <jszhang@kernel.org>,
-	Liu Gui <kenneth.liu@sophgo.com>,
-	Jingbao Qiu <qiujingbao.dlmu@gmail.com>,
-	dlan@gentoo.org,
-	dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: [PATCH v5 3/3] dmaengine: add driver for Sophgo CV18XX/SG200X dmamux
-Date: Tue, 26 Mar 2024 09:47:05 +0800
-Message-ID:
- <IA1PR20MB49534FCC5AC11EDB3D74CE0CBB352@IA1PR20MB4953.namprd20.prod.outlook.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <IA1PR20MB4953B500D7451964EE37DA4CBB352@IA1PR20MB4953.namprd20.prod.outlook.com>
-References: <IA1PR20MB4953B500D7451964EE37DA4CBB352@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TMN: [RmjrvbuV6JDAmctJ7cGRxemzpheBgOQKG8AHgNpq6Ng=]
-X-ClientProxiedBy: SI2PR01CA0034.apcprd01.prod.exchangelabs.com
- (2603:1096:4:192::9) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <20240326014707.327110-3-inochiama@outlook.com>
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 09/15] media: bcm2835-unicam: Add support for
+ CCP2/CSI2 camera interface
+Message-ID: <20240326015028.GB31396@pendragon.ideasonboard.com>
+References: <20240301213231.10340-1-laurent.pinchart@ideasonboard.com>
+ <20240301213231.10340-10-laurent.pinchart@ideasonboard.com>
+ <ZgHEQTHZlRr_Rz6K@kekkonen.localdomain>
+ <20240326013708.GA31396@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|CH3PR20MB6537:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5f5a4511-93b1-4382-48dd-08dc4d36ab3e
-X-MS-Exchange-SLBlob-MailProps:
-	7J/vb0KDx3ghsXKwRy/t5h7NdWkXmzB0T5mqelZfSxrF8iYJzzinjnwdw+qKFn1FtVvTbo7Mu1KGBXbm1di+NQPYimvy/8RVu8TpSt9CfR7H6Sp6KauTysJgYFiKSJiWtJh4MekW6HAi6ZuT5+nToJ1TVi4JKB4j1AKLpUbqQlsUzQr4wkABoBjtJxmdYZqrCKsU4Rk6EWqbohfYCbvhXQlrASFXSPUpEec8L0aoHFbdkt1KUOnjLDfpjH31RJ5AN+MHz4fcUEw+jAR97r5s4lAf8B1Z9xxTxWY1XyeuW46PXVT6DN+gPiEfb5wLdkIR+CKF7vhRPtImYm4d6MT998s/hYSpmCWt5Wym+wrhnYcbmLVxjZLqIOYOd6gjEwTTsFzfY+mr6EQAes6ED9Org0EJ5gHIxcNDxyfweZQk5bVW6j512FBERMRUIhQrIvyBH51l22srak3xEhfqqxT2L3zM8bcYnAcIPH5tlfigolT0HvaL4lknAtpV3TU+q5kzToBrTxr2S2ya6VJ+6WDarLxDwo3+NyOfoatCgzXoZNAo0mg6SQ3GWtKcBiq8R1IxpLbofzXl3CnqC64xcQ9y2R25eWFCc1UEYmPh8yKmm/BE9W7ND7Kn7FFXoY91cSMQ75BwdVpak3ydmM35eM3t+wPoourGcYr7OqgynlZRsazreYrptw9FN0qNNuoG37D4d+JcUMgEEQgY7+m4Xl+oLEO08JJ8qwjKKWvYLBic4cT2hOeFeSP5Ra2UhubjULBfiQsiFi0YZQUyaf5WM1BnhddjIK0C3kjPVGWGE1wgaZA=
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	j49TfSXAtpdRffossYF8OwA8JzAL8XaWpYTikigArRjPr59rXYAtwm4GrJblxOnOEVqx34pFYYoYwDtr1Hyubx7aUAIxs7nYT9ow0FCfNYcdahzWhYOasDEEy9PB4w+y3wBDtWDL+1IpBKrXQ7uHCBXEKtPt+4RLv91ICd+9Atd55Y9v7uhs5PRGq7lAj7xHPRqgYkm4Vo7yqTUpDwJoHexwIUtzT9O/sOihnw8YRq8tzYM3KJKt7tcb3i/C8eRXxckRLDkyd92DKFSxQFqDPpcQM0c6KqEBrw6xjl6Mnocdb0kRmb3qS3l7ncuGLsRrxH+1Y/rBebbc2AGA7SeJVvV+B3zPX7+sTpZrI8erSxVP9MAdppAjkwWTa8TE2p+JJVv8kBJUT4bqM2N9XD8v3S2JZ9eTZ2WJ7clL681JCx0JWYMmMBx81/ScSugNAi99hEUwUa6n1MWqaRITFMMsj8sb38TifGPIdATm9ZIAPWgimO2048tU8Zk7dcy106whmoRn65pxiSx36hhIbW3BYg1pZWMboJra7z/BFDanYlnbQxevqYN44RyjwiClNTFt57HMSALfGN+ZYk1RzuLFBf3BgJDmKd3ArsHZIewzuXBKlVDIYLKrSmkBBN0ObDg2
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?bLzwx5Z3memmyawh5yOxVl7bI25oA51hjsdg30q3bqLa3fU6jED22HzNh5ZL?=
- =?us-ascii?Q?jjektEYuixZtukaZB1f194LuDy3K+39UkFFNxCJj9t5Eohz4h1GBhoF80A4i?=
- =?us-ascii?Q?v8u1mD7Aa9el56d97nLjWzsgwyNoBue6L3AW52EY/XlpyiBFRjggGKT8Rk60?=
- =?us-ascii?Q?S0wHgPgTJJG2xH8rVpHoLPQHOmwtEOIUZ5vBcCyvf/ymJ6dDmWKLtIbjvlBL?=
- =?us-ascii?Q?qxe0uCcvMTjTaAmldW1l8mAIIm4V3u8Rn6h8I1MtuKt1O0nyYiwaW49bXFmb?=
- =?us-ascii?Q?4MF4bIwA/QMa8fZhHft+KigJgJyFiPeZmnLD0Wc+B8vkTX3JztH+/nB7Q222?=
- =?us-ascii?Q?IyMXgizX5vMweaQag/un9gWb5OmhtpgadYFCx9hT7UGl/aKv977BXhAVtWSM?=
- =?us-ascii?Q?lLX+6jYezX6EK48d9fS4LJgc+GE04GMT2hICXC8jGvrFCiqYy5nu8YhphVaN?=
- =?us-ascii?Q?pydyXWD4R7gVS9hGG8MTPuP7kfuNKUKDzOKjXrzz4ufMU9UNOh9ktD/UxVkv?=
- =?us-ascii?Q?RNcdzQSkySgVJoXkW2/QdvczN1ika0oYj4UF9OOrFH/owh/VT+VpSJkzYVhf?=
- =?us-ascii?Q?o56QJ2SJg7jrKewhNRDXEULD6qiGjjqqJNtBU/p2RFH0zpGavWdLQIOU8rxq?=
- =?us-ascii?Q?YtW0yWZOJo5itwM1DJItTFNyufB90QgpD+gvFNRlU99RCSeaO1viuth+Ef2e?=
- =?us-ascii?Q?epHLqgOTn2uKuQn+VMGCKJp95M5hanud0Q6j3qSHZ3+pHZuE+2eNkUPItbNX?=
- =?us-ascii?Q?QYI+I1+CfjowxxemWqp8VmILAThEEilLBp7LIQB58VccZMFQm0/yQEs8exYo?=
- =?us-ascii?Q?GF+dFjXF5hK3GsILKYJnC30Xws3jQPwH/JWX0eSe2NRQTPIMB0S6R6oJzEu1?=
- =?us-ascii?Q?w5nd8IWNZytC27KLTzSEZ90nYfMZA1CKUOh2miu0B77sSAigd2BTnjWpc0ne?=
- =?us-ascii?Q?YjB+lMVtOtpiDoQ2y1VlKEUS8vcEapX1DGh3wJJpQNh6ROA7evS8yyakO252?=
- =?us-ascii?Q?jNb6JYz07WdUu7E0f4LZ7uNU56YHIkpUKXsh5unN429x9d6WPj+EYhm527s2?=
- =?us-ascii?Q?vob2Oxeg+1uXXTDL/mU5G55Riu3aaLL7XhPdxQMi4gMGZyN71GfQ8c643Gt5?=
- =?us-ascii?Q?tqfLqqkb146Izn4X/8P6VDrwfH2l4xd8ve1I66UEMhvb0Y7wUN6L+laxNFmj?=
- =?us-ascii?Q?NbUcFfVBiBleEyb8Hsc8ZtMWKnn+Y/HXa38LV2bInXZiqkeoOZ5n7a9t8Y/E?=
- =?us-ascii?Q?Gor/hd1FH4rQA5XlMFb7?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5f5a4511-93b1-4382-48dd-08dc4d36ab3e
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2024 01:47:17.8738
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR20MB6537
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240326013708.GA31396@pendragon.ideasonboard.com>
 
-Sophgo CV18XX/SG200X use DW AXI CORE with a multiplexer for remapping
-its request lines. The multiplexer supports at most 8 request lines.
+On Tue, Mar 26, 2024 at 03:37:09AM +0200, Laurent Pinchart wrote:
+> Hi Sakari,
+> 
+> On Mon, Mar 25, 2024 at 06:36:49PM +0000, Sakari Ailus wrote:
+> > On Fri, Mar 01, 2024 at 11:32:24PM +0200, Laurent Pinchart wrote:
+> > > From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> > > 
+> > > Add a driver for the Unicam camera receiver block on BCM283x processors.
+> > > It is represented as two video device nodes: unicam-image and
+> > > unicam-embedded which are connected to an internal subdev (named
+> > > unicam-subdev) in order to manage streams routing.
+> > > 
+> > > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> > > Co-developed-by: Naushir Patuck <naush@raspberrypi.com>
+> > > Signed-off-by: Naushir Patuck <naush@raspberrypi.com>
+> > > Co-developed-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
+> > > Signed-off-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
+> > > Co-developed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > 
+> > Thanks for submitting this, it's the cleanest and neatest Unicom driver
+> 
+> Unicam, or if you insist Unicorn, but not Unicom :-)
+> 
+> > I've ever seen!
+> > 
+> > Some mostly unimportant comments below, however the bus-type issue needs to
+> > be addressed.
+> > 
+> > > ---
+> > > Changes since v5:
+> > > 
+> > > - Move to drivers/media/platform/broadcom/
+> > > - Port to the upstream V4L2 streams API
+> > > - Rebase on latest metadata API proposal
+> > > - Add missing error message
+> > > - Drop unneeded documentation block for unicam_isr()
+> > > - Drop unneeded dev_dbg() and dev_err() messages
+> > > - Drop unneeded streams_mask and fmt checks
+> > > - Drop unused unicam_sd_pad_is_sink()
+> > > - Drop unneeded includes
+> > > - Drop v4l2_ctrl_subscribe_event() call
+> > > - Use pm_runtime_resume_and_get()
+> > > - Indentation and line wrap fixes
+> > > - Let the framework set bus_info
+> > > - Use v4l2_fwnode_endpoint_parse()
+> > > - Fix media device cleanup
+> > > - Drop lane reordering checks
+> > > - Fix subdev state locking
+> > > - Drop extra debug messages
+> > > - Move clock handling to runtime PM handlers
+> > > - Reorder functions
+> > > - Rename init functions for more clarity
+> > > - Initialize runtime PM earlier
+> > > - Clarify error messages
+> > > - Simplify subdev init with local variable
+> > > - Fix subdev cleanup
+> > > - Fix typos and indentation
+> > > - Don't initialize local variables needlessly
+> > > - Simplify num lanes check
+> > > - Fix metadata handling in subdev set_fmt
+> > > - Drop manual fallback to .s_stream()
+> > > - Pass v4l2_pix_format to unicam_calc_format_size_bpl()
+> > > - Simplify unicam_set_default_format()
+> > > - Fix default format settings
+> > > - Add busy check in unicam_s_fmt_meta()
+> > > - Add missing \n at end of format strings
+> > > - Fix metadata handling in subdev set_fmt
+> > > - Fix locking when starting streaming
+> > > - Return buffers from start streaming fails
+> > > - Fix format validation for metadata node
+> > > - Use video_device_pipeline_{start,stop}() helpers
+> > > - Simplify format enumeration
+> > > - Drop unset variable
+> > > - Update MAINTAINERS entry
+> > > - Update to the upstream v4l2_async_nf API
+> > > - Update to the latest subdev routing API
+> > > - Update to the latest subdev state API
+> > > - Move from subdev .init_cfg() to .init_state()
+> > > - Update to the latest videobuf2 API
+> > > - Fix v4l2_subdev_enable_streams() error check
+> > > - Use correct pad for the connected subdev
+> > > - Return buffers to vb2 when start streaming fails
+> > > - Improve debugging in start streaming handler
+> > > - Simplify DMA address management
+> > > - Drop comment about bcm2835-camera driver
+> > > - Clarify comments that explain min/max sizes
+> > > - Pass v4l2_pix_format to unicam_try_fmt()
+> > > - Drop unneeded local variables
+> > > - Rename image-related constants and functions
+> > > - Turn unicam_fmt.metadata_fmt into bool
+> > > - Rename unicam_fmt to unicam_format_info
+> > > - Rename unicam_format_info variables to fmtinfo
+> > > - Rename unicam_node.v_fmt to fmt
+> > > - Add metadata formats for RAW10, RAW12 and RAW14
+> > > - Make metadata formats line-based
+> > > - Validate format on metadata video device
+> > > - Add Co-devlopped-by tags
+> > > 
+> > > Changes since v3:
+> > > 
+> > > - Add the vendor prefix for DT name
+> > > - Use the reg-names in DT parsing
+> > > - Remove MAINTAINERS entry
+> > > 
+> > > Changes since v2:
+> > > 
+> > > - Change code organization
+> > > - Remove unused variables
+> > > - Correct the fmt_meta functions
+> > > - Rewrite the start/stop streaming
+> > >   - You can now start the image node alone, but not the metadata one
+> > >   - The buffers are allocated per-node
+> > >   - only the required stream is started, if the route exists and is
+> > >     enabled
+> > > - Prefix the macros with UNICAM_ to not have too generic names
+> > > - Drop colorspace support
+> > > 
+> > > Changes since v1:
+> > > 
+> > > - Replace the unicam_{info,debug,error} macros with dev_*()
+> > > ---
+> > >  MAINTAINERS                                   |    1 +
+> > >  drivers/media/platform/Kconfig                |    1 +
+> > >  drivers/media/platform/Makefile               |    1 +
+> > >  drivers/media/platform/broadcom/Kconfig       |   23 +
+> > >  drivers/media/platform/broadcom/Makefile      |    3 +
+> > >  .../platform/broadcom/bcm2835-unicam-regs.h   |  255 ++
+> > >  .../media/platform/broadcom/bcm2835-unicam.c  | 2607 +++++++++++++++++
+> > >  7 files changed, 2891 insertions(+)
+> > >  create mode 100644 drivers/media/platform/broadcom/Kconfig
+> > >  create mode 100644 drivers/media/platform/broadcom/Makefile
+> > >  create mode 100644 drivers/media/platform/broadcom/bcm2835-unicam-regs.h
+> > >  create mode 100644 drivers/media/platform/broadcom/bcm2835-unicam.c
+> > > 
+> > > diff --git a/MAINTAINERS b/MAINTAINERS
+> > > index e50a59654e6e..cc350729f467 100644
+> > > --- a/MAINTAINERS
+> > > +++ b/MAINTAINERS
+> > > @@ -4002,6 +4002,7 @@ M:	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
+> > >  L:	linux-media@vger.kernel.org
+> > >  S:	Maintained
+> > >  F:	Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml
+> > > +F:	drivers/media/platform/bcm2835/
+> > >  
+> > >  BROADCOM BCM47XX MIPS ARCHITECTURE
+> > >  M:	Hauke Mehrtens <hauke@hauke-m.de>
+> > > diff --git a/drivers/media/platform/Kconfig b/drivers/media/platform/Kconfig
+> > > index 91e54215de3a..2d79bfc68c15 100644
+> > > --- a/drivers/media/platform/Kconfig
+> > > +++ b/drivers/media/platform/Kconfig
+> > > @@ -67,6 +67,7 @@ source "drivers/media/platform/amlogic/Kconfig"
+> > >  source "drivers/media/platform/amphion/Kconfig"
+> > >  source "drivers/media/platform/aspeed/Kconfig"
+> > >  source "drivers/media/platform/atmel/Kconfig"
+> > > +source "drivers/media/platform/broadcom/Kconfig"
+> > >  source "drivers/media/platform/cadence/Kconfig"
+> > >  source "drivers/media/platform/chips-media/Kconfig"
+> > >  source "drivers/media/platform/intel/Kconfig"
+> > > diff --git a/drivers/media/platform/Makefile b/drivers/media/platform/Makefile
+> > > index 3296ec1ebe16..da17301f7439 100644
+> > > --- a/drivers/media/platform/Makefile
+> > > +++ b/drivers/media/platform/Makefile
+> > > @@ -10,6 +10,7 @@ obj-y += amlogic/
+> > >  obj-y += amphion/
+> > >  obj-y += aspeed/
+> > >  obj-y += atmel/
+> > > +obj-y += broadcom/
+> > >  obj-y += cadence/
+> > >  obj-y += chips-media/
+> > >  obj-y += intel/
+> > > diff --git a/drivers/media/platform/broadcom/Kconfig b/drivers/media/platform/broadcom/Kconfig
+> > > new file mode 100644
+> > > index 000000000000..cc2c9afcc948
+> > > --- /dev/null
+> > > +++ b/drivers/media/platform/broadcom/Kconfig
+> > > @@ -0,0 +1,23 @@
+> > > +# SPDX-License-Identifier: GPL-2.0
+> > > +
+> > > +config VIDEO_BCM2835_UNICAM
+> > > +	tristate "Broadcom BCM283x/BCM271x Unicam video capture driver"
+> > > +	depends on ARCH_BCM2835 || COMPILE_TEST
+> > > +	depends on PM
+> > > +	depends on VIDEO_DEV
+> > > +	select MEDIA_CONTROLLER
+> > > +	select V4L2_FWNODE
+> > > +	select VIDEO_V4L2_SUBDEV_API
+> > > +	select VIDEOBUF2_DMA_CONTIG
+> > > +	help
+> > > +	  Say Y here to enable support for the BCM283x/BCM271x CSI-2 receiver.
+> > > +	  This is a V4L2 driver that controls the CSI-2 receiver directly,
+> > > +	  independently from the VC4 firmware.
+> > > +
+> > > +	  This driver is mutually exclusive with the use of bcm2835-camera. The
+> > > +	  firmware will disable all access to the peripheral from within the
+> > > +	  firmware if it finds a DT node using it, and bcm2835-camera will
+> > > +	  therefore fail to probe.
+> > > +
+> > > +	  To compile this driver as a module, choose M here. The module will be
+> > > +	  called bcm2835-unicam.
+> > > diff --git a/drivers/media/platform/broadcom/Makefile b/drivers/media/platform/broadcom/Makefile
+> > > new file mode 100644
+> > > index 000000000000..03d2045aba2e
+> > > --- /dev/null
+> > > +++ b/drivers/media/platform/broadcom/Makefile
+> > > @@ -0,0 +1,3 @@
+> > > +# SPDX-License-Identifier: GPL-2.0
+> > > +
+> > > +obj-$(CONFIG_VIDEO_BCM2835_UNICAM) += bcm2835-unicam.o
+> > > diff --git a/drivers/media/platform/broadcom/bcm2835-unicam-regs.h b/drivers/media/platform/broadcom/bcm2835-unicam-regs.h
+> > > new file mode 100644
+> > > index 000000000000..84775fd2fac5
+> > > --- /dev/null
+> > > +++ b/drivers/media/platform/broadcom/bcm2835-unicam-regs.h
+> > > @@ -0,0 +1,255 @@
+> > > +/* SPDX-License-Identifier: GPL-2.0-only */
+> > > +
+> > > +/*
+> > > + * Copyright (C) 2017-2020 Raspberry Pi Trading.
+> > 
+> > Anything up to 2024?
+> 
+> Not really. The registers haven't really changed :-) I'll update the
+> copyright in the .c file though.
+> 
+> > > + * Dave Stevenson <dave.stevenson@raspberrypi.com>
+> > > + */
+> 
+> [snip]
+> 
+> > > diff --git a/drivers/media/platform/broadcom/bcm2835-unicam.c b/drivers/media/platform/broadcom/bcm2835-unicam.c
+> > > new file mode 100644
+> > > index 000000000000..716c89b8a217
+> > > --- /dev/null
+> > > +++ b/drivers/media/platform/broadcom/bcm2835-unicam.c
+> > > @@ -0,0 +1,2607 @@
+> 
+> [snip]
+> 
+> > > +static irqreturn_t unicam_isr(int irq, void *dev)
+> > > +{
+> > > +	struct unicam_device *unicam = dev;
+> > > +	unsigned int lines_done = unicam_get_lines_done(dev);
+> > > +	unsigned int sequence = unicam->sequence;
+> > > +	unsigned int i;
+> > > +	u32 ista, sta;
+> > > +	bool fe;
+> > > +	u64 ts;
+> > > +
+> > > +	sta = unicam_reg_read(unicam, UNICAM_STA);
+> > > +	/* Write value back to clear the interrupts */
+> > > +	unicam_reg_write(unicam, UNICAM_STA, sta);
+> > > +
+> > > +	ista = unicam_reg_read(unicam, UNICAM_ISTA);
+> > > +	/* Write value back to clear the interrupts */
+> > > +	unicam_reg_write(unicam, UNICAM_ISTA, ista);
+> > > +
+> > > +	dev_dbg(unicam->dev, "ISR: ISTA: 0x%X, STA: 0x%X, sequence %d, lines done %d\n",
+> > > +		ista, sta, sequence, lines_done);
+> > > +
+> > > +	if (!(sta & (UNICAM_IS | UNICAM_PI0)))
+> > > +		return IRQ_HANDLED;
+> > > +
+> > > +	/*
+> > > +	 * Look for either the Frame End interrupt or the Packet Capture status
+> > > +	 * to signal a frame end.
+> > > +	 */
+> > > +	fe = ista & UNICAM_FEI || sta & UNICAM_PI0;
+> > > +
+> > > +	/*
+> > > +	 * We must run the frame end handler first. If we have a valid next_frm
+> > > +	 * and we get a simultaneout FE + FS interrupt, running the FS handler
+> > > +	 * first would null out the next_frm ptr and we would have lost the
+> > > +	 * buffer forever.
+> > > +	 */
+> > > +	if (fe) {
+> > > +		/*
+> > > +		 * Ensure we have swapped buffers already as we can't
+> > > +		 * stop the peripheral. If no buffer is available, use a
+> > > +		 * dummy buffer to dump out frames until we get a new buffer
+> > > +		 * to use.
+> > > +		 */
+> > > +		for (i = 0; i < ARRAY_SIZE(unicam->node); i++) {
+> > > +			if (!unicam->node[i].streaming)
+> > > +				continue;
+> > > +
+> > > +			/*
+> > > +			 * If cur_frm == next_frm, it means we have not had
+> > > +			 * a chance to swap buffers, likely due to having
+> > > +			 * multiple interrupts occurring simultaneously (like FE
+> > > +			 * + FS + LS). In this case, we cannot signal the buffer
+> > > +			 * as complete, as the HW will reuse that buffer.
+> > > +			 */
+> > > +			if (unicam->node[i].cur_frm &&
+> > > +			    unicam->node[i].cur_frm != unicam->node[i].next_frm)
+> > > +				unicam_process_buffer_complete(&unicam->node[i],
+> > > +							       sequence);
+> > > +			unicam->node[i].cur_frm = unicam->node[i].next_frm;
+> > > +		}
+> > > +		unicam->sequence++;
+> > 
+> > Does access to this data need to be serialised somehow.
+> 
+> Given that it's only accessed from the interrupt handler (beside
+> start_streaming time, before starting the hardware), I don't think so.
+> 
+> > > +	}
+> > > +
+> > > +	if (ista & UNICAM_FSI) {
+> > > +		/*
+> > > +		 * Timestamp is to be when the first data byte was captured,
+> > > +		 * aka frame start.
+> > > +		 */
+> > > +		ts = ktime_get_ns();
+> > > +		for (i = 0; i < ARRAY_SIZE(unicam->node); i++) {
+> > > +			if (!unicam->node[i].streaming)
+> > > +				continue;
+> > > +
+> > > +			if (unicam->node[i].cur_frm)
+> > > +				unicam->node[i].cur_frm->vb.vb2_buf.timestamp =
+> > > +								ts;
+> > > +			else
+> > > +				dev_dbg(unicam->v4l2_dev.dev,
+> > > +					"ISR: [%d] Dropping frame, buffer not available at FS\n",
+> > > +					i);
+> > > +			/*
+> > > +			 * Set the next frame output to go to a dummy frame
+> > > +			 * if we have not managed to obtain another frame
+> > > +			 * from the queue.
+> > > +			 */
+> > > +			unicam_schedule_dummy_buffer(&unicam->node[i]);
+> > > +		}
+> > > +
+> > > +		unicam_queue_event_sof(unicam);
+> > > +	}
+> > > +
+> > > +	/*
+> > > +	 * Cannot swap buffer at frame end, there may be a race condition
+> > > +	 * where the HW does not actually swap it if the new frame has
+> > > +	 * already started.
+> > > +	 */
+> > > +	if (ista & (UNICAM_FSI | UNICAM_LCI) && !fe) {
+> > > +		for (i = 0; i < ARRAY_SIZE(unicam->node); i++) {
+> > > +			if (!unicam->node[i].streaming)
+> > > +				continue;
+> > > +
+> > > +			spin_lock(&unicam->node[i].dma_queue_lock);
+> > > +			if (!list_empty(&unicam->node[i].dma_queue) &&
+> > > +			    !unicam->node[i].next_frm)
+> > > +				unicam_schedule_next_buffer(&unicam->node[i]);
+> > > +			spin_unlock(&unicam->node[i].dma_queue_lock);
+> > > +		}
+> > > +	}
+> > > +
+> > > +	if (unicam_reg_read(unicam, UNICAM_ICTL) & UNICAM_FCM) {
+> > > +		/* Switch out of trigger mode if selected */
+> > > +		unicam_reg_write_field(unicam, UNICAM_ICTL, 1, UNICAM_TFC);
+> > > +		unicam_reg_write_field(unicam, UNICAM_ICTL, 0, UNICAM_FCM);
+> > > +	}
+> > > +	return IRQ_HANDLED;
+> > > +}
+> > > +
+> > > +static void unicam_set_packing_config(struct unicam_device *unicam)
+> > > +{
+> > > +	struct unicam_node *node = &unicam->node[UNICAM_IMAGE_NODE];
+> > > +	u32 pack, unpack;
+> > > +	u32 val;
+> > > +
+> > > +	if (node->fmt.fmt.pix.pixelformat == node->fmtinfo->fourcc) {
+> > > +		unpack = UNICAM_PUM_NONE;
+> > > +		pack = UNICAM_PPM_NONE;
+> > > +	} else {
+> > > +		switch (node->fmtinfo->depth) {
+> > > +		case 8:
+> > > +			unpack = UNICAM_PUM_UNPACK8;
+> > > +			break;
+> > > +		case 10:
+> > > +			unpack = UNICAM_PUM_UNPACK10;
+> > > +			break;
+> > > +		case 12:
+> > > +			unpack = UNICAM_PUM_UNPACK12;
+> > > +			break;
+> > > +		case 14:
+> > > +			unpack = UNICAM_PUM_UNPACK14;
+> > > +			break;
+> > > +		case 16:
+> > > +			unpack = UNICAM_PUM_UNPACK16;
+> > > +			break;
+> > > +		default:
+> > > +			unpack = UNICAM_PUM_NONE;
+> > > +			break;
+> > > +		}
+> > > +
+> > > +		/* Repacking is always to 16bpp */
+> > > +		pack = UNICAM_PPM_PACK16;
+> > 
+> > Also 8-bit data?
+> 
+> Not that I know of. The 8-bit entries in unicam_image_formats have no
+> .unpacked_fourcc field, so the condition in the if above will always be
+> true for those as they can only be selected by setting the pixel format
+> to fmtinfo->fourcc.
+> 
+> > > +	}
+> > > +
+> > > +	val = 0;
+> > 
+> > You could do initialisation in declaration.
+> 
+> Yes, but I think it's more readable to keep all the code that affects
+> the 'val' variable together.
+> 
+> > > +	unicam_set_field(&val, unpack, UNICAM_PUM_MASK);
+> > > +	unicam_set_field(&val, pack, UNICAM_PPM_MASK);
+> > > +	unicam_reg_write(unicam, UNICAM_IPIPE, val);
+> > > +}
+> > > +
+> > > +static void unicam_cfg_image_id(struct unicam_device *unicam)
+> > > +{
+> > > +	struct unicam_node *node = &unicam->node[UNICAM_IMAGE_NODE];
+> > > +
+> > > +	if (unicam->bus_type == V4L2_MBUS_CSI2_DPHY) {
+> > > +		/* CSI2 mode, hardcode VC 0 for now. */
+> > > +		unicam_reg_write(unicam, UNICAM_IDI0,
+> > > +				 (0 << 6) | node->fmtinfo->csi_dt);
+> > > +	} else {
+> > > +		/* CCP2 mode */
+> > > +		unicam_reg_write(unicam, UNICAM_IDI0,
+> > > +				 0x80 | node->fmtinfo->csi_dt);
+> > > +	}
+> > > +}
+> > > +
+> > > +static void unicam_enable_ed(struct unicam_device *unicam)
+> > > +{
+> > > +	u32 val = unicam_reg_read(unicam, UNICAM_DCS);
+> > > +
+> > > +	unicam_set_field(&val, 2, UNICAM_EDL_MASK);
+> > > +	/* Do not wrap at the end of the embedded data buffer */
+> > > +	unicam_set_field(&val, 0, UNICAM_DBOB);
+> > > +
+> > > +	unicam_reg_write(unicam, UNICAM_DCS, val);
+> > > +}
+> > > +
+> > > +static void unicam_start_rx(struct unicam_device *unicam,
+> > > +			    struct unicam_buffer *buf)
+> > > +{
+> > > +	struct unicam_node *node = &unicam->node[UNICAM_IMAGE_NODE];
+> > > +	int line_int_freq = node->fmt.fmt.pix.height >> 2;
+> > > +	unsigned int i;
+> > > +	u32 val;
+> > > +
+> > > +	if (line_int_freq < 128)
+> > > +		line_int_freq = 128;
+> > 
+> > 	line_int_freq = max(line_int_freq, 128);
+> Ack.
+> 
+> > > +
+> > > +	/* Enable lane clocks */
+> > > +	val = 1;
+> > 
+> > Initialise in the loop initialisation below, I'd say.
+> 
+> How about
+> 
+> 	val = 0x55 & GENMASK(unicam->pipe.num_data_lanes * 2 - 1, 0);
 
-Add driver for Sophgo CV18XX/SG200X DMA multiplexer.
+I meant
 
-Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
----
- drivers/dma/Kconfig         |   9 ++
- drivers/dma/Makefile        |   1 +
- drivers/dma/cv1800-dmamux.c | 268 ++++++++++++++++++++++++++++++++++++
- 3 files changed, 278 insertions(+)
- create mode 100644 drivers/dma/cv1800-dmamux.c
+ 	val = 0x155 & GENMASK(unicam->pipe.num_data_lanes * 2 + 1, 0);
 
-diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
-index 002a5ec80620..cb31520b9f86 100644
---- a/drivers/dma/Kconfig
-+++ b/drivers/dma/Kconfig
-@@ -546,6 +546,15 @@ config PLX_DMA
- 	  These are exposed via extra functions on the switch's
- 	  upstream port. Each function exposes one DMA channel.
+Maybe a comment would be useful ?
 
-+config SOPHGO_CV1800_DMAMUX
-+	tristate "Sophgo CV1800/SG2000 series SoC DMA multiplexer support"
-+	depends on MFD_SYSCON
-+	depends on ARCH_SOPHGO
-+	help
-+	  Support for the DMA multiplexer on Sophgo CV1800/SG2000
-+	  series SoCs.
-+	  Say Y here if your board have this soc.
-+
- config STE_DMA40
- 	bool "ST-Ericsson DMA40 support"
- 	depends on ARCH_U8500
-diff --git a/drivers/dma/Makefile b/drivers/dma/Makefile
-index dfd40d14e408..7465f249ee47 100644
---- a/drivers/dma/Makefile
-+++ b/drivers/dma/Makefile
-@@ -67,6 +67,7 @@ obj-$(CONFIG_PPC_BESTCOMM) += bestcomm/
- obj-$(CONFIG_PXA_DMA) += pxa_dma.o
- obj-$(CONFIG_RENESAS_DMA) += sh/
- obj-$(CONFIG_SF_PDMA) += sf-pdma/
-+obj-$(CONFIG_SOPHGO_CV1800_DMAMUX) += cv1800-dmamux.o
- obj-$(CONFIG_STE_DMA40) += ste_dma40.o ste_dma40_ll.o
- obj-$(CONFIG_STM32_DMA) += stm32-dma.o
- obj-$(CONFIG_STM32_DMAMUX) += stm32-dmamux.o
-diff --git a/drivers/dma/cv1800-dmamux.c b/drivers/dma/cv1800-dmamux.c
-new file mode 100644
-index 000000000000..9c01f157ab97
---- /dev/null
-+++ b/drivers/dma/cv1800-dmamux.c
-@@ -0,0 +1,268 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2023 Inochi Amaoto <inochiama@outlook.com>
-+ */
-+
-+#include <linux/bitops.h>
-+#include <linux/module.h>
-+#include <linux/of_dma.h>
-+#include <linux/of_address.h>
-+#include <linux/of_platform.h>
-+#include <linux/platform_device.h>
-+#include <linux/llist.h>
-+#include <linux/regmap.h>
-+#include <linux/spinlock.h>
-+#include <linux/mfd/syscon.h>
-+
-+#include <soc/sophgo/cv1800-sysctl.h>
-+#include <dt-bindings/dma/cv1800-dma.h>
-+
-+#define DMAMUX_NCELLS			2
-+#define MAX_DMA_MAPPING_ID		DMA_SPI_NOR1
-+#define MAX_DMA_CPU_ID			DMA_CPU_C906_1
-+#define MAX_DMA_CH_ID			7
-+
-+#define DMAMUX_INTMUX_REGISTER_LEN	4
-+#define DMAMUX_NR_CH_PER_REGISTER	4
-+#define DMAMUX_BIT_PER_CH		8
-+#define DMAMUX_CH_MASk			GENMASK(5, 0)
-+#define DMAMUX_INT_BIT_PER_CPU		10
-+#define DMAMUX_CH_UPDATE_BIT		BIT(31)
-+
-+#define DMAMUX_CH_REGPOS(chid) \
-+	((chid) / DMAMUX_NR_CH_PER_REGISTER)
-+#define DMAMUX_CH_REGOFF(chid) \
-+	((chid) % DMAMUX_NR_CH_PER_REGISTER)
-+#define DMAMUX_CH_REG(chid) \
-+	((DMAMUX_CH_REGPOS(chid) * sizeof(u32)) + \
-+	 CV1800_SDMA_DMA_CHANNEL_REMAP0)
-+#define DMAMUX_CH_SET(chid, val) \
-+	(((val) << (DMAMUX_CH_REGOFF(chid) * DMAMUX_BIT_PER_CH)) | \
-+	 DMAMUX_CH_UPDATE_BIT)
-+#define DMAMUX_CH_MASK(chid) \
-+	DMAMUX_CH_SET(chid, DMAMUX_CH_MASk)
-+
-+#define DMAMUX_INT_BIT(chid, cpuid) \
-+	BIT((cpuid) * DMAMUX_INT_BIT_PER_CPU + (chid))
-+#define DMAMUX_INTEN_BIT(cpuid) \
-+	DMAMUX_INT_BIT(8, cpuid)
-+#define DMAMUX_INT_CH_BIT(chid, cpuid) \
-+	(DMAMUX_INT_BIT(chid, cpuid) | DMAMUX_INTEN_BIT(cpuid))
-+#define DMAMUX_INT_MASK(chid) \
-+	(DMAMUX_INT_BIT(chid, DMA_CPU_A53) | \
-+	 DMAMUX_INT_BIT(chid, DMA_CPU_C906_0) | \
-+	 DMAMUX_INT_BIT(chid, DMA_CPU_C906_1))
-+#define DMAMUX_INT_CH_MASK(chid, cpuid) \
-+	(DMAMUX_INT_MASK(chid) | DMAMUX_INTEN_BIT(cpuid))
-+
-+struct cv1800_dmamux_data {
-+	struct dma_router	dmarouter;
-+	struct regmap		*regmap;
-+	spinlock_t		lock;
-+	struct llist_head	free_maps;
-+	struct llist_head	reserve_maps;
-+	DECLARE_BITMAP(mapped_peripherals, MAX_DMA_MAPPING_ID);
-+};
-+
-+struct cv1800_dmamux_map {
-+	struct llist_node node;
-+	unsigned int channel;
-+	unsigned int peripheral;
-+	unsigned int cpu;
-+};
-+
-+static void cv1800_dmamux_free(struct device *dev, void *route_data)
-+{
-+	struct cv1800_dmamux_data *dmamux = dev_get_drvdata(dev);
-+	struct cv1800_dmamux_map *map = route_data;
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&dmamux->lock, flags);
-+
-+	regmap_update_bits(dmamux->regmap,
-+			   DMAMUX_CH_REG(map->channel),
-+			   DMAMUX_CH_MASK(map->channel),
-+			   DMAMUX_CH_UPDATE_BIT);
-+
-+	regmap_update_bits(dmamux->regmap, CV1800_SDMA_DMA_INT_MUX,
-+			   DMAMUX_INT_CH_MASK(map->channel, map->cpu),
-+			   DMAMUX_INTEN_BIT(map->cpu));
-+
-+	spin_unlock_irqrestore(&dmamux->lock, flags);
-+
-+	dev_info(dev, "free channel %u for req %u (cpu %u)\n",
-+		 map->channel, map->peripheral, map->cpu);
-+}
-+
-+static void *cv1800_dmamux_route_allocate(struct of_phandle_args *dma_spec,
-+					  struct of_dma *ofdma)
-+{
-+	struct platform_device *pdev = of_find_device_by_node(ofdma->of_node);
-+	struct cv1800_dmamux_data *dmamux = platform_get_drvdata(pdev);
-+	struct cv1800_dmamux_map *map;
-+	struct llist_node *node;
-+	unsigned long flags;
-+	unsigned int chid, devid, cpuid;
-+	int ret;
-+
-+	if (dma_spec->args_count != DMAMUX_NCELLS) {
-+		dev_err(&pdev->dev, "invalid number of dma mux args\n");
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	devid = dma_spec->args[0];
-+	cpuid = dma_spec->args[1];
-+	dma_spec->args_count = 1;
-+
-+	if (devid > MAX_DMA_MAPPING_ID) {
-+		dev_err(&pdev->dev, "invalid device id: %u\n", devid);
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	if (cpuid > MAX_DMA_CPU_ID) {
-+		dev_err(&pdev->dev, "invalid cpu id: %u\n", cpuid);
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	dma_spec->np = of_parse_phandle(ofdma->of_node, "dma-masters", 0);
-+	if (!dma_spec->np) {
-+		dev_err(&pdev->dev, "can't get dma master\n");
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	spin_lock_irqsave(&dmamux->lock, flags);
-+
-+	if (test_bit(devid, dmamux->mapped_peripherals)) {
-+		llist_for_each_entry(map, dmamux->reserve_maps.first, node) {
-+			if (map->peripheral == devid && map->cpu == cpuid)
-+				goto found;
-+		}
-+
-+		ret = -EINVAL;
-+		goto failed;
-+	} else {
-+		node = llist_del_first(&dmamux->free_maps);
-+		if (!node) {
-+			ret = -ENODEV;
-+			goto failed;
-+		}
-+
-+		map = llist_entry(node, struct cv1800_dmamux_map, node);
-+		llist_add(&map->node, &dmamux->reserve_maps);
-+		set_bit(devid, dmamux->mapped_peripherals);
-+	}
-+
-+found:
-+	chid = map->channel;
-+	map->peripheral = devid;
-+	map->cpu = cpuid;
-+
-+	regmap_set_bits(dmamux->regmap,
-+			DMAMUX_CH_REG(chid),
-+			DMAMUX_CH_SET(chid, devid));
-+
-+	regmap_update_bits(dmamux->regmap, CV1800_SDMA_DMA_INT_MUX,
-+			   DMAMUX_INT_CH_MASK(chid, cpuid),
-+			   DMAMUX_INT_CH_BIT(chid, cpuid));
-+
-+	spin_unlock_irqrestore(&dmamux->lock, flags);
-+
-+	dma_spec->args[0] = chid;
-+
-+	dev_info(&pdev->dev, "register channel %u for req %u (cpu %u)\n",
-+		 chid, devid, cpuid);
-+
-+	return map;
-+
-+failed:
-+	spin_unlock_irqrestore(&dmamux->lock, flags);
-+	of_node_put(dma_spec->np);
-+	dev_err(&pdev->dev, "errno %d\n", ret);
-+	return ERR_PTR(ret);
-+
-+}
-+
-+static int cv1800_dmamux_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct device_node *mux_node = dev->of_node;
-+	struct cv1800_dmamux_data *data;
-+	struct cv1800_dmamux_map *tmp;
-+	struct device *parent = dev->parent;
-+	struct device_node *dma_master;
-+	struct regmap *regmap = NULL;
-+	unsigned int i;
-+
-+	if (!parent)
-+		return -ENODEV;
-+
-+	regmap = device_node_to_regmap(parent->of_node);
-+	if (IS_ERR(regmap))
-+		return PTR_ERR(regmap);
-+
-+	dma_master = of_parse_phandle(mux_node, "dma-masters", 0);
-+	if (!dma_master) {
-+		dev_err(dev, "invalid dma-requests property\n");
-+		return -ENODEV;
-+	}
-+	of_node_put(dma_master);
-+
-+	data = devm_kmalloc(dev, sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	spin_lock_init(&data->lock);
-+	init_llist_head(&data->free_maps);
-+
-+	for (i = 0; i <= MAX_DMA_CH_ID; i++) {
-+		tmp = devm_kmalloc(dev, sizeof(*tmp), GFP_KERNEL);
-+		if (!tmp) {
-+			/* It is OK for not allocating all channel */
-+			dev_warn(dev, "can not allocate channel %u\n", i);
-+			continue;
-+		}
-+
-+		init_llist_node(&tmp->node);
-+		tmp->channel = i;
-+		llist_add(&tmp->node, &data->free_maps);
-+	}
-+
-+	/* if no channel is allocated, the probe must fail */
-+	if (llist_empty(&data->free_maps))
-+		return -ENOMEM;
-+
-+	data->regmap = regmap;
-+	data->dmarouter.dev = dev;
-+	data->dmarouter.route_free = cv1800_dmamux_free;
-+
-+	platform_set_drvdata(pdev, data);
-+
-+	return of_dma_router_register(mux_node,
-+				      cv1800_dmamux_route_allocate,
-+				      &data->dmarouter);
-+}
-+
-+static void cv1800_dmamux_remove(struct platform_device *pdev)
-+{
-+	of_dma_controller_free(pdev->dev.of_node);
-+}
-+
-+static const struct of_device_id cv1800_dmamux_ids[] = {
-+	{ .compatible = "sophgo,cv1800-dmamux", },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, cv1800_dmamux_ids);
-+
-+static struct platform_driver cv1800_dmamux_driver = {
-+	.driver = {
-+		.name = "cv1800-dmamux",
-+		.of_match_table = cv1800_dmamux_ids,
-+	},
-+	.probe = cv1800_dmamux_probe,
-+	.remove_new = cv1800_dmamux_remove,
-+};
-+module_platform_driver(cv1800_dmamux_driver);
-+
-+MODULE_AUTHOR("Inochi Amaoto <inochiama@outlook.com>");
-+MODULE_DESCRIPTION("Sophgo CV1800/SG2000 Series Soc DMAMUX driver");
-+MODULE_LICENSE("GPL");
---
-2.44.0
+	/*
+	 * Enable lane clocks. The register is structured as follows:
+	 *
+	 * [9:8] - DAT3
+	 * [7:6] - DAT2
+	 * [5:4] - DAT1
+	 * [3:2] - DAT0
+	 * [1:0] - CLK
+	 *
+	 * Enabled lane must be set to b01, and disabled lanes to b00. The clock
+	 * lane is always enabled.
+	 */
+	val = 0x155 & GENMASK(unicam->pipe.num_data_lanes * 2 + 1, 0);
 
+> > > +	for (i = 0; i < unicam->active_data_lanes; i++)
+> > > +		val = val << 2 | 1;
+> > > +	unicam_clk_write(unicam, val);
+> > > +
+> > > +	/* Basic init */
+> > > +	unicam_reg_write(unicam, UNICAM_CTRL, UNICAM_MEM);
+> > > +
+> > > +	/* Enable analogue control, and leave in reset. */
+> > > +	val = UNICAM_AR;
+> > > +	unicam_set_field(&val, 7, UNICAM_CTATADJ_MASK);
+> > > +	unicam_set_field(&val, 7, UNICAM_PTATADJ_MASK);
+> > > +	unicam_reg_write(unicam, UNICAM_ANA, val);
+> > > +	usleep_range(1000, 2000);
+> > > +
+> > > +	/* Come out of reset */
+> > > +	unicam_reg_write_field(unicam, UNICAM_ANA, 0, UNICAM_AR);
+> > > +
+> > > +	/* Peripheral reset */
+> > > +	unicam_reg_write_field(unicam, UNICAM_CTRL, 1, UNICAM_CPR);
+> > > +	unicam_reg_write_field(unicam, UNICAM_CTRL, 0, UNICAM_CPR);
+> > > +
+> > > +	unicam_reg_write_field(unicam, UNICAM_CTRL, 0, UNICAM_CPE);
+> > > +
+> > > +	/* Enable Rx control. */
+> > > +	val = unicam_reg_read(unicam, UNICAM_CTRL);
+> > > +	if (unicam->bus_type == V4L2_MBUS_CSI2_DPHY) {
+> > > +		unicam_set_field(&val, UNICAM_CPM_CSI2, UNICAM_CPM_MASK);
+> > > +		unicam_set_field(&val, UNICAM_DCM_STROBE, UNICAM_DCM_MASK);
+> > > +	} else {
+> > > +		unicam_set_field(&val, UNICAM_CPM_CCP2, UNICAM_CPM_MASK);
+> > > +		unicam_set_field(&val, unicam->bus_flags, UNICAM_DCM_MASK);
+> > > +	}
+> > > +	/* Packet framer timeout */
+> > > +	unicam_set_field(&val, 0xf, UNICAM_PFT_MASK);
+> > > +	unicam_set_field(&val, 128, UNICAM_OET_MASK);
+> > > +	unicam_reg_write(unicam, UNICAM_CTRL, val);
+> > > +
+> > > +	unicam_reg_write(unicam, UNICAM_IHWIN, 0);
+> > > +	unicam_reg_write(unicam, UNICAM_IVWIN, 0);
+> > > +
+> > > +	/* AXI bus access QoS setup */
+> > > +	val = unicam_reg_read(unicam, UNICAM_PRI);
+> > > +	unicam_set_field(&val, 0, UNICAM_BL_MASK);
+> > > +	unicam_set_field(&val, 0, UNICAM_BS_MASK);
+> > > +	unicam_set_field(&val, 0xe, UNICAM_PP_MASK);
+> > > +	unicam_set_field(&val, 8, UNICAM_NP_MASK);
+> > > +	unicam_set_field(&val, 2, UNICAM_PT_MASK);
+> > > +	unicam_set_field(&val, 1, UNICAM_PE);
+> > > +	unicam_reg_write(unicam, UNICAM_PRI, val);
+> > > +
+> > > +	unicam_reg_write_field(unicam, UNICAM_ANA, 0, UNICAM_DDL);
+> > > +
+> > > +	/* Always start in trigger frame capture mode (UNICAM_FCM set) */
+> > > +	val = UNICAM_FSIE | UNICAM_FEIE | UNICAM_FCM | UNICAM_IBOB;
+> > > +	unicam_set_field(&val, line_int_freq, UNICAM_LCIE_MASK);
+> > > +	unicam_reg_write(unicam, UNICAM_ICTL, val);
+> > > +	unicam_reg_write(unicam, UNICAM_STA, UNICAM_STA_MASK_ALL);
+> > > +	unicam_reg_write(unicam, UNICAM_ISTA, UNICAM_ISTA_MASK_ALL);
+> > > +
+> > > +	/* tclk_term_en */
+> > > +	unicam_reg_write_field(unicam, UNICAM_CLT, 2, UNICAM_CLT1_MASK);
+> > > +	/* tclk_settle */
+> > > +	unicam_reg_write_field(unicam, UNICAM_CLT, 6, UNICAM_CLT2_MASK);
+> > > +	/* td_term_en */
+> > > +	unicam_reg_write_field(unicam, UNICAM_DLT, 2, UNICAM_DLT1_MASK);
+> > > +	/* ths_settle */
+> > > +	unicam_reg_write_field(unicam, UNICAM_DLT, 6, UNICAM_DLT2_MASK);
+> > > +	/* trx_enable */
+> > > +	unicam_reg_write_field(unicam, UNICAM_DLT, 0, UNICAM_DLT3_MASK);
+> > > +
+> > > +	unicam_reg_write_field(unicam, UNICAM_CTRL, 0, UNICAM_SOE);
+> > > +
+> > > +	/* Packet compare setup - required to avoid missing frame ends */
+> > > +	val = 0;
+> > > +	unicam_set_field(&val, 1, UNICAM_PCE);
+> > > +	unicam_set_field(&val, 1, UNICAM_GI);
+> > > +	unicam_set_field(&val, 1, UNICAM_CPH);
+> > > +	unicam_set_field(&val, 0, UNICAM_PCVC_MASK);
+> > > +	unicam_set_field(&val, 1, UNICAM_PCDT_MASK);
+> > > +	unicam_reg_write(unicam, UNICAM_CMP0, val);
+> > > +
+> > > +	/* Enable clock lane and set up terminations */
+> > > +	val = 0;
+> > > +	if (unicam->bus_type == V4L2_MBUS_CSI2_DPHY) {
+> > > +		/* CSI2 */
+> > > +		unicam_set_field(&val, 1, UNICAM_CLE);
+> > > +		unicam_set_field(&val, 1, UNICAM_CLLPE);
+> > > +		if (!(unicam->bus_flags & V4L2_MBUS_CSI2_NONCONTINUOUS_CLOCK)) {
+> > > +			unicam_set_field(&val, 1, UNICAM_CLTRE);
+> > > +			unicam_set_field(&val, 1, UNICAM_CLHSE);
+> > > +		}
+> > > +	} else {
+> > > +		/* CCP2 */
+> > > +		unicam_set_field(&val, 1, UNICAM_CLE);
+> > > +		unicam_set_field(&val, 1, UNICAM_CLHSE);
+> > > +		unicam_set_field(&val, 1, UNICAM_CLTRE);
+> > > +	}
+> > > +	unicam_reg_write(unicam, UNICAM_CLK, val);
+> > > +
+> > > +	/*
+> > > +	 * Enable required data lanes with appropriate terminations.
+> > > +	 * The same value needs to be written to UNICAM_DATn registers for
+> > > +	 * the active lanes, and 0 for inactive ones.
+> > > +	 */
+> > > +	val = 0;
+> > > +	if (unicam->bus_type == V4L2_MBUS_CSI2_DPHY) {
+> > > +		/* CSI2 */
+> > > +		unicam_set_field(&val, 1, UNICAM_DLE);
+> > > +		unicam_set_field(&val, 1, UNICAM_DLLPE);
+> > > +		if (!(unicam->bus_flags & V4L2_MBUS_CSI2_NONCONTINUOUS_CLOCK)) {
+> > > +			unicam_set_field(&val, 1, UNICAM_DLTRE);
+> > > +			unicam_set_field(&val, 1, UNICAM_DLHSE);
+> > > +		}
+> > > +	} else {
+> > > +		/* CCP2 */
+> > > +		unicam_set_field(&val, 1, UNICAM_DLE);
+> > > +		unicam_set_field(&val, 1, UNICAM_DLHSE);
+> > > +		unicam_set_field(&val, 1, UNICAM_DLTRE);
+> > > +	}
+> > > +	unicam_reg_write(unicam, UNICAM_DAT0, val);
+> > > +
+> > > +	if (unicam->active_data_lanes == 1)
+> > > +		val = 0;
+> > > +	unicam_reg_write(unicam, UNICAM_DAT1, val);
+> > > +
+> > > +	if (unicam->max_data_lanes > 2) {
+> > > +		/*
+> > > +		 * Registers UNICAM_DAT2 and UNICAM_DAT3 only valid if the
+> > > +		 * instance supports more than 2 data lanes.
+> > > +		 */
+> > > +		if (unicam->active_data_lanes == 2)
+> > > +			val = 0;
+> > > +		unicam_reg_write(unicam, UNICAM_DAT2, val);
+> > > +
+> > > +		if (unicam->active_data_lanes == 3)
+> > > +			val = 0;
+> > > +		unicam_reg_write(unicam, UNICAM_DAT3, val);
+> > > +	}
+> > > +
+> > > +	unicam_reg_write(unicam, UNICAM_IBLS,
+> > > +			 node->fmt.fmt.pix.bytesperline);
+> > > +	unicam_wr_dma_addr(&unicam->node[UNICAM_IMAGE_NODE], buf);
+> > > +	unicam_set_packing_config(unicam);
+> > > +	unicam_cfg_image_id(unicam);
+> > > +
+> > > +	val = unicam_reg_read(unicam, UNICAM_MISC);
+> > > +	unicam_set_field(&val, 1, UNICAM_FL0);
+> > > +	unicam_set_field(&val, 1, UNICAM_FL1);
+> > > +	unicam_reg_write(unicam, UNICAM_MISC, val);
+> > > +
+> > > +	/* Enable peripheral */
+> > > +	unicam_reg_write_field(unicam, UNICAM_CTRL, 1, UNICAM_CPE);
+> > > +
+> > > +	/* Load image pointers */
+> > > +	unicam_reg_write_field(unicam, UNICAM_ICTL, 1, UNICAM_LIP_MASK);
+> > > +
+> > > +	/*
+> > > +	 * Enable trigger only for the first frame to
+> > > +	 * sync correctly to the FS from the source.
+> > > +	 */
+> > > +	unicam_reg_write_field(unicam, UNICAM_ICTL, 1, UNICAM_TFC);
+> > > +}
+> 
+> [snip]
+> 
+> > > +static int unicam_async_nf_init(struct unicam_device *unicam)
+> > > +{
+> > > +	struct v4l2_fwnode_endpoint ep = { };
+> > 
+> > If the bus-type property is mandatory and you have no stated defaults
+> > anywhere, this is fine. I.e. all the relevant properties would need to be
+> > mandatory.
+> 
+> They are, as far as I can tell (well, the clock-noncontinuous property
+> is not mandatory, but that's expected as it's a flag).
+> 
+> > > +	struct fwnode_handle *ep_handle;
+> > > +	struct v4l2_async_connection *asc;
+> > > +	int ret;
+> > > +
+> > > +	ret = of_property_read_u32(unicam->dev->of_node, "brcm,num-data-lanes",
+> > > +				   &unicam->max_data_lanes);
+> > > +	if (ret < 0) {
+> > > +		dev_err(unicam->dev, "Missing %s DT property\n",
+> > > +			"brcm,num-data-lanes");
+> > > +		return -EINVAL;
+> > > +	}
+> > > +
+> > > +	/* Get and parse the local endpoint. */
+> > > +	ep_handle = fwnode_graph_get_endpoint_by_id(dev_fwnode(unicam->dev), 0, 0,
+> > > +						    FWNODE_GRAPH_ENDPOINT_NEXT);
+> > > +	if (!ep_handle) {
+> > > +		dev_err(unicam->dev, "No endpoint found\n");
+> > > +		return -ENODEV;
+> > > +	}
+> > > +
+> > > +	ret = v4l2_fwnode_endpoint_parse(ep_handle, &ep);
+> > > +	if (ret) {
+> > > +		dev_err(unicam->dev, "Failed to parse endpoint: %d\n", ret);
+> > > +		goto error;
+> > > +	}
+> > > +
+> > > +	unicam->bus_type = ep.bus_type;
+> > > +
+> > > +	switch (ep.bus_type) {
+> > > +	case V4L2_MBUS_CSI2_DPHY: {
+> > > +		unsigned int num_data_lanes = ep.bus.mipi_csi2.num_data_lanes;
+> > > +
+> > > +		if (num_data_lanes != 1 && num_data_lanes != 2 &&
+> > > +		    num_data_lanes != 4) {
+> > > +			dev_err(unicam->dev, "%u data lanes not supported\n",
+> > > +				num_data_lanes);
+> > > +			goto error;
+> > > +		}
+> > > +
+> > > +		if (num_data_lanes > unicam->max_data_lanes) {
+> > > +			dev_err(unicam->dev,
+> > > +				"Endpoint uses %u data lanes when %u are supported\n",
+> > > +				num_data_lanes, unicam->max_data_lanes);
+> > > +			goto error;
+> > > +		}
+> > > +
+> > > +		unicam->active_data_lanes = num_data_lanes;
+> > > +		unicam->bus_flags = ep.bus.mipi_csi2.flags;
+> > > +		break;
+> > > +	}
+> > > +
+> > > +	case V4L2_MBUS_CCP2:
+> > > +		unicam->max_data_lanes = 1;
+> > > +		unicam->active_data_lanes = 1;
+> > > +		unicam->bus_flags = ep.bus.mipi_csi1.strobe;
+> > > +		break;
+> > > +
+> > > +	default:
+> > > +		/* Unsupported bus type */
+> > > +		dev_err(unicam->dev, "Unsupported bus type %u\n", ep.bus_type);
+> > > +		goto error;
+> > > +	}
+> > > +
+> > > +	/* Initialize and register the async notifier. */
+> > > +	v4l2_async_nf_init(&unicam->notifier, &unicam->v4l2_dev);
+> > > +
+> > > +	asc = v4l2_async_nf_add_fwnode_remote(&unicam->notifier, ep_handle,
+> > > +					      struct v4l2_async_connection);
+> > > +	fwnode_handle_put(ep_handle);
+> > > +	ep_handle = NULL;
+> > > +
+> > > +	if (IS_ERR(asc)) {
+> > > +		ret = PTR_ERR(asc);
+> > > +		dev_err(unicam->dev, "Failed to add entry to notifier: %d\n",
+> > > +			ret);
+> > > +		goto error;
+> > > +	}
+> > > +
+> > > +	unicam->notifier.ops = &unicam_async_ops;
+> > > +
+> > > +	ret = v4l2_async_nf_register(&unicam->notifier);
+> > > +	if (ret) {
+> > > +		dev_err(unicam->dev, "Error registering device notifier: %d\n",
+> > > +			ret);
+> > > +		goto error;
+> > > +	}
+> > > +
+> > > +	return 0;
+> > > +
+> > > +error:
+> > > +	fwnode_handle_put(ep_handle);
+> > > +	return ret;
+> > > +}
+> > > +
+> > > +/* -----------------------------------------------------------------------------
+> > > + * Probe & remove
+> > > + */
+> > > +
+> > > +static int unicam_media_init(struct unicam_device *unicam)
+> > > +{
+> > > +	int ret;
+> > > +
+> > > +	unicam->mdev.dev = unicam->dev;
+> > > +	strscpy(unicam->mdev.model, UNICAM_MODULE_NAME,
+> > > +		sizeof(unicam->mdev.model));
+> > > +	strscpy(unicam->mdev.serial, "", sizeof(unicam->mdev.serial));
+> > 
+> > Isn't the field already zeroed?
+> 
+> Indeed. I'll drop this.
+> 
+> > 
+> > > +	unicam->mdev.hw_revision = 0;
+> > > +
+> > > +	media_device_init(&unicam->mdev);
+> > > +
+> > > +	unicam->v4l2_dev.mdev = &unicam->mdev;
+> > > +
+> > > +	ret = v4l2_device_register(unicam->dev, &unicam->v4l2_dev);
+> > > +	if (ret < 0) {
+> > > +		dev_err(unicam->dev, "Unable to register v4l2 device\n");
+> > > +		goto err_media_cleanup;
+> > > +	}
+> > > +
+> > > +	ret = media_device_register(&unicam->mdev);
+> > > +	if (ret < 0) {
+> > > +		dev_err(unicam->dev,
+> > > +			"Unable to register media-controller device\n");
+> > > +		goto err_v4l2_unregister;
+> > > +	}
+> > > +
+> > > +	return 0;
+> > > +
+> > > +err_v4l2_unregister:
+> > > +	v4l2_device_unregister(&unicam->v4l2_dev);
+> > > +err_media_cleanup:
+> > > +	media_device_cleanup(&unicam->mdev);
+> > > +	return ret;
+> > > +}
+> 
+> [snip]
+
+-- 
+Regards,
+
+Laurent Pinchart
 
