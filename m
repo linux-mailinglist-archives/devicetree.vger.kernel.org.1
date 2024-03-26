@@ -1,166 +1,164 @@
-Return-Path: <devicetree+bounces-53453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C0F988C506
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 15:21:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D1AC88C50C
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 15:23:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF4842E76DD
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 14:21:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 158ED288DB7
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 14:23:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B6B612D766;
-	Tue, 26 Mar 2024 14:20:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61D0512D770;
+	Tue, 26 Mar 2024 14:23:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bbmPwVNX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FhvD/Eqp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ACB86CDD4
-	for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 14:20:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33767535AB;
+	Tue, 26 Mar 2024 14:23:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711462852; cv=none; b=cFGXY2NvzjNYDfoM982TDDe05N9hCIU6Lwl/ntur0ECshUEbW2ypfXfxuIUfeoqfZjLXPQczkIJhDTr6yu3gR3T7IhhHa0QL4nkC2tIpbaGcWAqHJdGB8aoVgutnG53WRzuZlkZ9ZRk7yAhrZYx7hsTbu3B97tX8mw6n356fhqg=
+	t=1711463024; cv=none; b=S+KKEsBgxVZPOUPyC33rZOgOVIM5e2D6GQaigSTMOonGgQeVPaCaJhJyrRo04bojzeIjWeJ3+zx2a58RhRfvv6BAjc7+HTes1np19L8JhM6PU+GKuo+EdXWsAlkD4XWoijQN4aStCzpianvJnViU2AwJ+OpzS8twsFHMtdss4kE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711462852; c=relaxed/simple;
-	bh=zbQD84N+7FiwZVGN4FdwAoTPSjxSngVc8SRGDkRxKT8=;
+	s=arc-20240116; t=1711463024; c=relaxed/simple;
+	bh=nfADaqXf2mRows+WqcUk8dPuz3pddfwkSwgruDyBZBE=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uziWq62gKPL8zm7sRIv3cpN1ONfkHETZr1VdJ8m2ORmSwpJF9EQR1bB8CQoLg3iVg3AnD3lpRxvAwltXRkjDsfzGTnpYB+qbkib/tr11yK8bAorxMU4qZ5WKTOZbYYbNuOGVGp8TFNfagqK4PDhHHKw5d66cW+0HoPHnFpaYqo0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bbmPwVNX; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-56bf6418434so3974799a12.0
-        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 07:20:50 -0700 (PDT)
+	 To:Cc:Content-Type; b=qGqF76tGSNy+uPSeeZxxezGKRI1d5N355UDgkBUIUeVnwbm11Ee7/76f6laK3IJra1QpN5QWpfUcEJgvtynrHOH2e7tgzDRC/n82XKDIGOiF3Ny2G3CKyU77BOkrG5P5DJj+xEKPSrNB/MyXxF54QrtJcwh0t9uodC/QoiywKHI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FhvD/Eqp; arc=none smtp.client-ip=209.85.219.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-69670267e87so23947746d6.3;
+        Tue, 26 Mar 2024 07:23:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711462849; x=1712067649; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=w0pAKQRmRJlibruDxzELT+hsaTaozLHFzCa7oaB4xn8=;
-        b=bbmPwVNXEd/szBZoH1EhEVxstgftUptVmc6d34/st2pIdBYWAjCn96Gncn+Vxu5c4e
-         MNJ4Bi8iEnOOlqBjgeQeRYNG5tS9M9B80FJVtCgiJvDGoZrrSZpQwMd2t5U47EutWzCM
-         MDygHjM58C2qWjF1Q+h4DbWZ+9ZLPl/7DHRH0/5KsB9kQ/BUcvZwaeAE9inM1A+SaXHm
-         YcPuJTWNdujv5sT31GhTvbFje/qpgcc70shaBWZQCByva3DkRctv88cjFfseLjOkxvRf
-         CgiZfeKketgbhNJI46X9BgblqH6Xg7cr16OZZByNXioOgXQBwiXXj105dy/zlTXF8AyW
-         EcDA==
+        d=gmail.com; s=20230601; t=1711463021; x=1712067821; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5WlEltbtsC/qC59Bc8P175TSd5LTY6D+FLI0/UyRfBQ=;
+        b=FhvD/EqpwcEgRfK0qCsY+A3SeGWJMD+MxF2ro9aaCZvbrTfbl+3MdHDpPYMgnMM6EO
+         kQT/BreDhGVGlx0DX27sDjMEV3bjNKTqFL0YGxpNegfIR2SHGgCAjSgUnT6YFe8yfh36
+         o4Ivw5tWnweLddCQW2LqY3o/Ssr80qok6KlYClAp5e4fjSJx53+Sr9tEX0S+yoVfxA37
+         HvYW0y0Urdq/TvAbAT/SS7MaG2MVMtDsKJlNQxhWPJUN9s28DBJZx2KttACpXvoweEUv
+         O1qdOZEjwM6I9QoFhOCObPaI0X2YpUjNTKtOST1QCZO/gfcPektKCqlvER3AxhdGboDE
+         9m/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711462849; x=1712067649;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=w0pAKQRmRJlibruDxzELT+hsaTaozLHFzCa7oaB4xn8=;
-        b=Ak8WzdFwa9IWyIxZ7qQrAxKM4p7g6ebMlQQoMX0589ZT2phlQC5p62IfxFqJPoR+t3
-         ymmaXT346uziXgcYxodCJdE0IFMkGASQ9VJFVNvLjSmLnenrdxxMlNrjd7dxFOuFpEXZ
-         DMfvrvLVssq6rAQN3yoGZIczY4qoWLNYouss7kqOtyUNKKuEM3ZRveBWKi5Mni6Lmkp3
-         sQcHoiQqojPwpsApMBSU7S2PjD0MwdwVzFrANKBKBmAWkEII4DgL45xh5lvZXrCsfv8g
-         TnBL2YRntxCs67oo0Gue7iil5kpv4am6LC/VVD/I5e/M0PAWZ48UMD4JzlO2d5zBpi+2
-         iBZg==
-X-Forwarded-Encrypted: i=1; AJvYcCVfWgnKhWStRYQBNFyO9ubllFo+OKV0iCG8wqSPrjIzh7cwlT2MEO+LZWdlelA5foJRXLL8fIEPM9gdEPiAUU1i4bfPPUQCSGpTvA==
-X-Gm-Message-State: AOJu0YwDXXkloFD6tjLLT0nxq7ytwSiA7H8o3g1L/t5PPnOCoZJ9Vnpw
-	Cir/E7t1BOwYsktTPTI9Sv7nS21RUG0d287w4JFMwauIomjWdthYvtQGJIFOiZq2D49Cqq903cd
-	8/zTReLg8bQGTc0G4U2XUbdk+KQB1xYhTHe/r0Q==
-X-Google-Smtp-Source: AGHT+IHUzEZjvpgRrsCaJghKSKw3iJjB0Ths2J/HVSVaWGgZXcyLBL9k9H9rRvQGerf20MW83Wx/xJluM2WUtm1Yl3c=
-X-Received: by 2002:a50:9f4a:0:b0:56c:19d2:85be with SMTP id
- b68-20020a509f4a000000b0056c19d285bemr3317223edf.11.1711462848915; Tue, 26
- Mar 2024 07:20:48 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1711463021; x=1712067821;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5WlEltbtsC/qC59Bc8P175TSd5LTY6D+FLI0/UyRfBQ=;
+        b=dKzC/wjV0oOIYvGIYJi9tilqWYNuMFe6zOVad7Te345Hr/1aE5fTIN/1PJAgxi9r8S
+         ULcl7cFuCjfMlxyrQtX+IhPn1iOn2zdgbzCV2LuhRIzTDi8vzwOCPALfyg8vVmbK8xj+
+         3mZrnQFUO+hMdFOPyYZfDHd/k2DEcIJasYumgehH6pNe7pGGH9nNzlVZFJDTa8NPXdOx
+         nDHy4vnDW7rvqDHUvhcVDd2GVzB9ItmGg5dK4okqjIm3kw9cmSpl9gZtHYS8cjhgvgKu
+         YhWdOp4ysY+lCc+hBa63H4S9dC5eFVOu6Fgu0fbQz5wwtaMWVVJsKEG1TJxBen5hPBFj
+         cMiw==
+X-Forwarded-Encrypted: i=1; AJvYcCVFTrflgfxk5znPooHDuo3XF9tr8GtGj6bTVbWvEVXaC0x5d767GBlmqj8UE0TDJLtoFdH9dbiucsWh9myOOrYn1ymSXko/X7Ui111W7SKCikZnseFsTp/90OVKGqQHmH+x9LiTdWxUvg==
+X-Gm-Message-State: AOJu0YwnXweoYxuNksDj0zf+sikIoDaEOnEJZyxcfIwVT1c+J6z2wPA1
+	ZmMRyaH5AqKdUb98SsEwA5yT8hnqdbLNWy/CeRc0HaQjxW4zVoZ5tU8J4w1Pf/2gEXh9+Hg8MIL
+	T3+b1zKuWfVWOU7yEPHqRkkx7r8s=
+X-Google-Smtp-Source: AGHT+IHr56kV7LD9oxJmOW0qZMuMob/X0HygPstUJ04N4UdDTgVfZcW/IbbKZ7LbbBreDxz1UiopPy61BvvE+aU7sps=
+X-Received: by 2002:a05:6214:2522:b0:696:76b9:5faa with SMTP id
+ gg2-20020a056214252200b0069676b95faamr10833171qvb.3.1711463020999; Tue, 26
+ Mar 2024 07:23:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240307194026.GA355455@e130802.arm.com> <CANLsYkzA20rQdTM6AOvFK=3o28GvcoRbckL=ri8RegHqyHaiCw@mail.gmail.com>
- <20240311114442.GA82865@e130802.arm.com> <CANLsYkwReJvB1UWvR5TwtSs-w_VqU45kDSUzuQ0k+waetEn6Yw@mail.gmail.com>
- <20240312173252.GA38992@e130802.arm.com> <ZfHTfNx4um8koTlY@p14s>
- <20240313171756.GA82165@e130802.arm.com> <ZfMPS+qn0lh5IrS7@p14s>
- <ZfMQyJWTh15P7Ru3@bogus> <CANLsYkzdfP8Np-XwPDt=GBNLYiSypd8tNdb29KUwr+tyi7gJEA@mail.gmail.com>
- <20240325171339.GA368569@e130802.arm.com>
-In-Reply-To: <20240325171339.GA368569@e130802.arm.com>
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-Date: Tue, 26 Mar 2024 08:20:37 -0600
-Message-ID: <CANLsYkwOrtXxObL5MKf30OrUYB_uT=DnGEXUtfjH503r_LyMQA@mail.gmail.com>
-Subject: Re: [PATCH 1/3] remoteproc: Add Arm remoteproc driver
-To: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
-Cc: Sudeep Holla <sudeep.holla@arm.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Drew.Reed@arm.com, Adam.Johnston@arm.com, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org
+References: <20240325143511.2144768-1-nm@ti.com>
+In-Reply-To: <20240325143511.2144768-1-nm@ti.com>
+From: Robert Nelson <robertcnelson@gmail.com>
+Date: Tue, 26 Mar 2024 09:23:14 -0500
+Message-ID: <CAOCHtYj5gRkTrWiURtnP8o6gW1MVxs2H2gd7Kz4Y8-8_4rNyrA@mail.gmail.com>
+Subject: Re: [PATCH V2] arm64: dts: ti: k3-am625-beagleplay: Use mmc-pwrseq
+ for wl18xx enable
+To: Nishanth Menon <nm@ti.com>
+Cc: Tero Kristo <kristo@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>, 
+	Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh@kernel.org>, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, Shengyu Qu <wiagn233@outlook.com>, 
+	Sukrut Bellary <sukrut.bellary@linux.com>, Javier Martinez Canillas <javierm@redhat.com>, 
+	Bill Mills <bill.mills@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 25 Mar 2024 at 11:13, Abdellatif El Khlifi
-<abdellatif.elkhlifi@arm.com> wrote:
+On Mon, Mar 25, 2024 at 9:35=E2=80=AFAM Nishanth Menon <nm@ti.com> wrote:
 >
-> Hi Mathieu,
+> From: Sukrut Bellary <sukrut.bellary@linux.com>
 >
-> > > > > > > > > This is an initial patchset for allowing to turn on and off the remote processor.
-> > > > > > > > > The FW is already loaded before the Corstone-1000 SoC is powered on and this
-> > > > > > > > > is done through the FPGA board bootloader in case of the FPGA target. Or by the Corstone-1000 FVP model
-> > > > > > > > > (emulator).
-> > > > > > > > >
-> > > > > > > > >From the above I take it that booting with a preloaded firmware is a
-> > > > > > > > scenario that needs to be supported and not just a temporary stage.
-> > > > > > >
-> > > > > > > The current status of the Corstone-1000 SoC requires that there is
-> > > > > > > a preloaded firmware for the external core. Preloading is done externally
-> > > > > > > either through the FPGA bootloader or the emulator (FVP) before powering
-> > > > > > > on the SoC.
-> > > > > > >
-> > > > > >
-> > > > > > Ok
-> > > > > >
-> > > > > > > Corstone-1000 will be upgraded in a way that the A core running Linux is able
-> > > > > > > to share memory with the remote core and also being able to access the remote
-> > > > > > > core memory so Linux can copy the firmware to. This HW changes are still
-> > > > > > > This is why this patchset is relying on a preloaded firmware. And it's the step 1
-> > > > > > > of adding remoteproc support for Corstone.
-> > > > > > >
-> > > > > >
-> > > > > > Ok, so there is a HW problem where A core and M core can't see each other's
-> > > > > > memory, preventing the A core from copying the firmware image to the proper
-> > > > > > location.
-> > > > > >
-> > > > > > When the HW is fixed, will there be a need to support scenarios where the
-> > > > > > firmware image has been preloaded into memory?
-> > > > >
-> > > > > No, this scenario won't apply when we get the HW upgrade. No need for an
-> > > > > external entity anymore. The firmware(s) will all be files in the linux filesystem.
-> > > > >
-> > > >
-> > > > Very well.  I am willing to continue with this driver but it does so little that
-> > > > I wonder if it wouldn't simply be better to move forward with upstreaming when
-> > > > the HW is fixed.  The choice is yours.
-> > > >
-> > >
-> > > I think Robin has raised few points that need clarification. I think it was
-> > > done as part of DT binding patch. I share those concerns and I wanted to
-> > > reaching to the same concerns by starting the questions I asked on corstone
-> > > device tree changes.
-> > >
-> >
-> > I also agree with Robin's point of view.  Proceeding with an initial
-> > driver with minimal functionality doesn't preclude having complete
-> > bindings.  But that said and as I pointed out, it might be better to
-> > wait for the HW to be fixed before moving forward.
+> BeaglePlay SBC[1] has Texas Instrument's WL18xx WiFi chipset[2].
 >
-> We checked with the HW teams. The missing features will be implemented but
-> this will take time.
+> Currently, WLAN_EN is configured as regulator and regulator-always-on.
+> However, the timing and wlan_en sequencing is not correctly modelled.
 >
-> The foundation driver as it is right now is still valuable for people wanting to
-> know how to power control Corstone external systems in a future proof manner
-> (even in the incomplete state). We prefer to address all the review comments
-> made so it can be merged. This includes making the DT binding as complete as
-> possible as you advised. Then, once the HW is ready, I'll implement the comms
-> and the FW reload part. Is that OK please ?
+> This causes the sdio access to fail during runtime-pm power operations
+> saving or during system suspend/resume/hibernation/freeze operations.
+> This is because the WLAN_EN line is not deasserted to low '0' to power
+> down the WiFi. So during restore, the WiFi driver tries to load the FW
+> without following correct power sequence. WLAN_EN =3D> '1'/assert (high)
+> to power-up the chipset.
 >
+> Use mmc-pwrseq-simple to drive TI's WiFi (WL18xx) chipset enable
+> 'WLAN_EN'. mmc-pwrseq-simple provides power sequence flexibility with
+> support for post power-on and power-off delays.
+>
+> Typical log signature that indicates this bug is:
+> wl1271_sdio mmc2:0001:2: sdio write failed (-110)
+>
+> Followed by possibly a kernel warning (depending on firmware present):
+> WARNING: CPU: 1 PID: 45 at drivers/net/wireless/ti/wlcore/sdio.c:123 wl12=
+xx_sdio_raw_write+0xe4/0x168 [wlcore_sdio]
+>
+> [1] https://www.beagleboard.org/boards/beagleplay
+> [2] https://www.ti.com/lit/ds/symlink/wl1807mod.pdf
+>
+> Fixes: f5a731f0787f ("arm64: dts: ti: Add k3-am625-beagleplay")
+> Suggested-by: Shengyu Qu <wiagn233@outlook.com>
+> Signed-off-by: Sukrut Bellary <sukrut.bellary@linux.com>
+> Signed-off-by: Nishanth Menon <nm@ti.com>
 
-I'm in agreement with that plan as long as we agree the current
-preloaded heuristic is temporary and is not a valid long term
-scenario.
+Tested-by: Robert Nelson <robertcnelson@gmail.com>
 
-> Cheers,
-> Abdellatif
+With v6.9.0-rc1 on BeaglePlay..
+
+debian@BeaglePlay-57:~$ uname -r
+6.9.0-rc1-dirty
+debian@BeaglePlay-57:~$ dmesg | grep wl
+[   12.621555] wlcore: wl18xx HW: 183x or 180x, PG 2.2 (ROM 0x11)
+[   12.623215] wlcore: WARNING Detected unconfigured mac address in
+nvs, derive from fuse instead.
+[   12.623253] wlcore: WARNING This default nvs file can be removed
+from the file system
+[   12.630813] wlcore: loaded
+[   13.061833] wlcore: using inverted interrupt logic: 2
+[   13.120366] wlcore: PHY firmware version: Rev 8.2.0.0.243
+[   13.218832] wlcore: firmware booted (Rev 8.9.0.0.83)
+[   13.795189] wlan0: no VHT support on 5 GHz, limiting to HT
+[   13.795232] wlan0: determined local STA to be HT, BW limited to 40 MHz
+[   13.795303] wlan0: determined AP ba:fb:e4:f5:7b:d2 to be HT
+[   13.799461] wlan0: connecting with HT mode, max bandwidth 40 MHz
+[   13.802189] wlan0: authenticate with ba:fb:e4:f5:7b:d2 (local
+address=3D6c:30:2a:2a:84:f0)
+[   13.802246] wlan0: send auth to ba:fb:e4:f5:7b:d2 (try 1/3)
+[   13.873457] wlan0: authenticated
+[   13.873746] wlan0: no VHT support on 5 GHz, limiting to HT
+[   13.873764] wlan0: determined local STA to be HT, BW limited to 40 MHz
+[   13.875500] wlan0: associate with ba:fb:e4:f5:7b:d2 (try 1/3)
+[   13.881981] wlan0: RX AssocResp from ba:fb:e4:f5:7b:d2
+(capab=3D0x1511 status=3D0 aid=3D3)
+[   13.889436] wlan0: associated
+[   13.889660] wlan0: Limiting TX power to 30 (30 - 0) dBm as
+advertised by ba:fb:e4:f5:7b:d2
+[   13.990788] wlcore: Association completed.
+
+--=20
+Robert Nelson
+https://rcn-ee.com/
 
