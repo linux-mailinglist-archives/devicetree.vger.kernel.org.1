@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-53612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F7BE88CD4E
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 20:35:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 776A988CD6F
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 20:46:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 402601C6520F
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 19:35:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 322F929FBBC
+	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 19:46:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C5AF13D246;
-	Tue, 26 Mar 2024 19:35:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B641513D251;
+	Tue, 26 Mar 2024 19:46:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d4yxmGjC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g6x15P3T"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52F73380;
-	Tue, 26 Mar 2024 19:35:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E381481A3;
+	Tue, 26 Mar 2024 19:46:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711481700; cv=none; b=WMXeFEIqqEAi+FTyZtMnQ0Tr638yub8R6NGYBP6jRmbK09ki2duHwNFinPkWAscJ5G/oTv/94FvLnA2Thc3r+GHn2TjkoF7jFrEudkftd3mwomz9syt3S/wOgWCPl8C6YhXwdd8YGYN7qaJ1TgBTMxZHxLXgMtxnymAzWmOqDMo=
+	t=1711482369; cv=none; b=d6ScHGeQtmc+Gr2y0+W2fVyCsMjFCaOU0Q9A0AEgDlXHTbfSHyMZB8Q7psySx8V3Ozbl9avtSoYlw4ZLQnJIP05R9oU9/i1H9L/AM519Vnw6L8Llep0/zGfsIVF/dLVjKA9YOSxNhjqUrFAuuC1pf/EMurMWjizlDlqTCnjJiFE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711481700; c=relaxed/simple;
-	bh=dd88q1ZEU6vWFMFdtX0JYBknro/QldP57SoW9UmINfU=;
+	s=arc-20240116; t=1711482369; c=relaxed/simple;
+	bh=06TMEEjhODfbSDjv9gFoX7ubkfnnvLL8Xxq82XPPGcI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BJZKu/26J/6NGhCOWy06bQ2um4NQ+lIOM/4v5VPPA0E0oGsrAAKtj7N6Q+raEMV2g5xKa1y7FA2pDm1iDS19DdT/gF/NcMVTQwsn+qze3hsItOMor9jtnIHHbfuJXc+kVjVm8qexc9MWEj8ZTdOMi9zDwhpGsaT8S0kigea4AHU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d4yxmGjC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C90AC433F1;
-	Tue, 26 Mar 2024 19:34:56 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=UiwtlCmkKKrx1pbxSDQwCXb+S1q1+DWW7QEvbIsIg6Vr4YXZO6KaWefVsRSrTpIrSNkCuCeKbY0ASnXQyvbWSjmPhnXRSUfRq9roH8zv2z3bviJMfEIVtCHc1OY16GByZa8J4NcCsCH4ET9QMgHiA1Bi/1q58drCER4sevxgrk8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g6x15P3T; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A1A2C43390;
+	Tue, 26 Mar 2024 19:46:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711481699;
-	bh=dd88q1ZEU6vWFMFdtX0JYBknro/QldP57SoW9UmINfU=;
+	s=k20201202; t=1711482369;
+	bh=06TMEEjhODfbSDjv9gFoX7ubkfnnvLL8Xxq82XPPGcI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=d4yxmGjC0N+zEn19fH/1bM+s9IgFIlwD+J2ali8Up/WQDOgW2t8N6shOD8Dr2B2W0
-	 JoDYxTsIEhUlST2ScUZ1Gn7FDik/5JaR+YLrAwSIkmGDb4sfL6xXf6nj7NkAm/igc6
-	 TtxtqWpfUeiJsgTTGid0GDvzTxNBqWsjcRUW1to55B0RNTMzCM+4v18rR2BWivsiOX
-	 x1WcmLakDJOZiLSrqQPUG2QQBv8/+wLw5OvKfl1QjzzPBO5rg2vW8leX4b/77EwWQa
-	 IA1XOQ+7kIkeMy1hOpKn5lU9Fx07ky5ntFqTwYVfPdJyGGFFzlC3Prnimvhl4nAGrf
-	 MVaYQjC2SHQzQ==
-Date: Tue, 26 Mar 2024 19:34:54 +0000
+	b=g6x15P3T/1D5cok+wB8MT33wgFRF7mj3MaVE+NxPaxiptp+GDXhe0NySVkbdXvMuj
+	 Nnetdt5zPMSGu27jzoTrcmqjvHcFMyam0f6IWtDW06MbdtPtxOU3T6syrf/EXAqtRb
+	 wgnXiTgDv05AORB+BUBYkg4gkySnDZh9CTseRoQATOXjcYOi8ACqd2/WcCG2JgT3Sj
+	 BcaY8o2uSLOxS/q9AEBUbDzJNd1ZStJzr+pr3TFo9oLuaqwwWIn1H1uQ9L+N4CxfP0
+	 v5JOTyC2yW+rB6tzapYc3JdRwQwwxYT09dX2AR3l5G7eoaXoee2lzzu+4h390IcePs
+	 07qP2iF5zKEpQ==
+Date: Tue, 26 Mar 2024 19:46:03 +0000
 From: Conor Dooley <conor@kernel.org>
 To: dev@folker-schwesinger.de
 Cc: Vinod Koul <vkoul@kernel.org>,
@@ -59,11 +59,10 @@ Cc: Vinod Koul <vkoul@kernel.org>,
 	linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
 	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/3] devicetree: phy: rockchip-emmc: Document changed
- strobe-pulldown property
-Message-ID: <20240326-shortage-portly-a3ae475b2f78@spud>
+Subject: Re: [PATCH 1/3] phy: rockchip: emmc: Enable pulldown for strobe line
+Message-ID: <20240326-tactical-onlooker-3df8d2352dc2@spud>
 References: <20240326-rk-default-enable-strobe-pulldown-v1-0-f410c71605c0@folker-schwesinger.de>
- <20240326-rk-default-enable-strobe-pulldown-v1-2-f410c71605c0@folker-schwesinger.de>
+ <20240326-rk-default-enable-strobe-pulldown-v1-1-f410c71605c0@folker-schwesinger.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,80 +70,107 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="rZWP/rtpsRtp/vzL"
+	protocol="application/pgp-signature"; boundary="zYLJU3bUGFnj+RDa"
 Content-Disposition: inline
-In-Reply-To: <20240326-rk-default-enable-strobe-pulldown-v1-2-f410c71605c0@folker-schwesinger.de>
+In-Reply-To: <20240326-rk-default-enable-strobe-pulldown-v1-1-f410c71605c0@folker-schwesinger.de>
 
 
---rZWP/rtpsRtp/vzL
+--zYLJU3bUGFnj+RDa
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Mar 26, 2024 at 07:54:36PM +0100, Folker Schwesinger via B4 Relay w=
+On Tue, Mar 26, 2024 at 07:54:35PM +0100, Folker Schwesinger via B4 Relay w=
 rote:
 > From: Folker Schwesinger <dev@folker-schwesinger.de>
-
-The prefix is "dt-bindings" not "devicetree" FYI.
-
 >=20
-> Document the changes regarding the optional strobe-pulldown property.
-> These changes are necessary as the default behavior of the driver was
-> restored to the Rockchip kernel behavior of enabling the internal
-> pulldown by default.
+> Restore the behavior of the Rockchip kernel that undconditionally
+> enables the internal strobe pulldown.
 
-I don't think this is a valid justification, but it'll be easier for me
-to explain this on the driver patch.
+What do you mean "restore the behaviour of the rockchip kernel"? Did
+mainline behave the same as the rockchip kernel previously? If not,
+using "restore" here is misleading. "Unconditionally" is also incorrect,
+because you have a property that disables it.
+
+> As the DT property rockchip,enable-strobe-pulldown is obsolete now,
+> replace it with a property to disable the internal pulldown.
+>=20
+> This fixes I/O errors observed on various Rock Pi 4 and NanoPi4 series
+> boards with some eMMC modules. Other boards may also be affected.
+>=20
+> An example of these errors is as follows:
+>=20
+> [  290.060817] mmc1: running CQE recovery
+> [  290.061337] blk_update_request: I/O error, dev mmcblk1, sector 1411072=
+ op 0x1:(WRITE) flags 0x800 phys_seg 36 prio class 0
+> [  290.061370] EXT4-fs warning (device mmcblk1p1): ext4_end_bio:348: I/O =
+error 10 writing to inode 29547 starting block 176466)
+> [  290.061484] Buffer I/O error on device mmcblk1p1, logical block 172288
+>=20
+> Fixes: 8b5c2b45b8f0 ("phy: rockchip: set pulldown for strobe line in dts")
+> Signed-off-by: Folker Schwesinger <dev@folker-schwesinger.de>
+> ---
+>  drivers/phy/rockchip/phy-rockchip-emmc.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/drivers/phy/rockchip/phy-rockchip-emmc.c b/drivers/phy/rockc=
+hip/phy-rockchip-emmc.c
+> index 20023f6eb994..6e637f3e1b19 100644
+> --- a/drivers/phy/rockchip/phy-rockchip-emmc.c
+> +++ b/drivers/phy/rockchip/phy-rockchip-emmc.c
+> @@ -376,14 +376,14 @@ static int rockchip_emmc_phy_probe(struct platform_=
+device *pdev)
+>  	rk_phy->reg_offset =3D reg_offset;
+>  	rk_phy->reg_base =3D grf;
+>  	rk_phy->drive_impedance =3D PHYCTRL_DR_50OHM;
+> -	rk_phy->enable_strobe_pulldown =3D PHYCTRL_REN_STRB_DISABLE;
+> +	rk_phy->enable_strobe_pulldown =3D PHYCTRL_REN_STRB_ENABLE;
+>  	rk_phy->output_tapdelay_select =3D PHYCTRL_OTAPDLYSEL_DEFAULT;
+> =20
+>  	if (!of_property_read_u32(dev->of_node, "drive-impedance-ohm", &val))
+>  		rk_phy->drive_impedance =3D convert_drive_impedance_ohm(pdev, val);
+> =20
+> -	if (of_property_read_bool(dev->of_node, "rockchip,enable-strobe-pulldow=
+n"))
+> -		rk_phy->enable_strobe_pulldown =3D PHYCTRL_REN_STRB_ENABLE;
+> +	if (of_property_read_bool(dev->of_node, "rockchip,disable-strobe-pulldo=
+wn"))
+> +		rk_phy->enable_strobe_pulldown =3D PHYCTRL_REN_STRB_DISABLE;
+
+Unfortunately you cannot do this.
+Previously no property at all meant disabled and a property was required
+to enable it. With this change the absence of a property means that it
+will be enabled.
+An old devicetree is that wanted this to be disabled would have no
+property and will now end up with it enabled. This is an ABI break and is
+clearly not backwards compatible, that's a NAK unless it is demonstrable
+that noone actually wants to disable it at all.
+
+If this patch fixes a problem on a board that you have, I would suggest
+that you add the property to enable it, as the binding tells you to.
 
 Thanks,
 Conor.
 
->=20
-> Fixes: f34e43f12382 ("devicetree: phy: rockchip-emmc: pulldown property")
-> Signed-off-by: Folker Schwesinger <dev@folker-schwesinger.de>
-> ---
->  Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt =
-b/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
-> index 57d28c0d5696..10c05437f7ab 100644
-> --- a/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
-> +++ b/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
-> @@ -16,8 +16,8 @@ Optional properties:
->   - drive-impedance-ohm: Specifies the drive impedance in Ohm.
->                          Possible values are 33, 40, 50, 66 and 100.
->                          If not set, the default value of 50 will be appl=
-ied.
-> - - rockchip,enable-strobe-pulldown: Enable internal pull-down for the st=
-robe
-> -                                    line.  If not set, pull-down is not =
-used.
-> + - rockchip,disable-strobe-pulldown: Disable internal pull-down for the =
-strobe
-> +                                     line.  If not set, pull-down is use=
-d.
->   - rockchip,output-tapdelay-select: Specifies the phyctrl_otapdlysec reg=
-ister.
->                                      If not set, the register defaults to=
- 0x4.
->                                      Maximum value 0xf.
+>  	if (!of_property_read_u32(dev->of_node, "rockchip,output-tapdelay-selec=
+t", &val)) {
+>  		if (val <=3D PHYCTRL_OTAPDLYSEL_MAXVALUE)
 >=20
 > --=20
 > 2.44.0
 >=20
 >=20
 
---rZWP/rtpsRtp/vzL
+--zYLJU3bUGFnj+RDa
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgMjXgAKCRB4tDGHoIJi
-0gDXAQDsnJ2l1e9/GqPRLAJofwCMnAL+WPP/kMag/2lxXFb3sgD8DaHfe8Mk5FsS
-FcEt/njhjF1n6zYpqFuyWccUhJQdUwc=
-=f9q9
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgMl+wAKCRB4tDGHoIJi
+0hvVAP45y61fo87t2o+BbHPCKNKWjbNdW5YeWmPG1yoleN6xBAEA68Hda2BEZnjb
+dTtJLh0pxzAEeDUfwrA4rNAjq5p49g8=
+=CH3R
 -----END PGP SIGNATURE-----
 
---rZWP/rtpsRtp/vzL--
+--zYLJU3bUGFnj+RDa--
 
