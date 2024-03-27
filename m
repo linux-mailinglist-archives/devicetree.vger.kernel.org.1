@@ -1,156 +1,242 @@
-Return-Path: <devicetree+bounces-53743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B63C88D5D6
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 06:26:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7C1988D528
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 04:46:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D03B1C22609
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 05:26:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA1321C24F8D
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 03:46:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DAEF1170F;
-	Wed, 27 Mar 2024 05:26:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1234222EF4;
+	Wed, 27 Mar 2024 03:46:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=sholland.org header.i=@sholland.org header.b="qW94ZDVW";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="ZQgC6lTc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2096.outbound.protection.partner.outlook.cn [139.219.17.96])
+Received: from fout3-smtp.messagingengine.com (fout3-smtp.messagingengine.com [103.168.172.146])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F5B53DAC14;
-	Wed, 27 Mar 2024 05:26:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.96
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711517204; cv=fail; b=n95OnhnNsJQjij7RxboxLqTwXNDAcR/0/IVQh/A8j780WKCkPLWfX5XKr50NzoSk2EiMWuY8pfA6GVtgNpGWQiDLBNdUXEpejjyOJPVtDvmoHhsLL7fS75EiliS/ge2zHsPluBnpLv2+0UJ+Q63Hu21pcKBOyzG0vfh48zJ9Cfk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711517204; c=relaxed/simple;
-	bh=4EfzZ+J3LtUadzufIba+d9vEgSQTSbnen8UI4pvu0qk=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=jakhfCj07wiKUUhHov/TkLg89jUDDksoPM8O1SCN4q1mKQNx8tK2opGnzOsmL+1XY8KLdHw8KRfotoL1jpMiS3LT1QLmslgGxJng271UblwVMj7q4Rql/+OTbE5z3rx8+ZpsYjxZcHD7NWcHTspzViY0I9WlTDWPIfh8pMPGNRA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.96
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=J0DBr66auWS8Yk+OexvKKwvfix2LDbtcmLuZSyFGTuyhdYRcm+X84B3aELyC8DIE7NkmgLEpq1ztFabbraFiRElD1oBa3w8F4V6sTiQmzvxY519nDSTYu4nT/HufhM6G1p7/B1qaGjQZwYRBVol/vb0yALEk2Y9YX1obdbmHotS+gFSldYdgW0IgnodU8DNjcBIqj2sTrnB1EK30cot370MO/hqJRsJUqwnGBIbYOUPSlPCo7EOAOi9DU8lrWJu6NzaLv9Ek54tH/COiGBxGw85LaK5Gopq0S6Sq0JoRooD51v5yrWHshbkGjKuM9lsLaMEmq+j3KFbI1OvT/pMYnQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EGFwBRqR0Ubnr6Qww0efT6ERK3Tj0upKezJN+tJoDus=;
- b=kg8ix1cWs3dakmnvvFeVSFINY6Px0rCCAqaCETudnzXK0ZrsOFvKMEqxxrNrIHmpj/WfVurk1yhNqviCj+MYMlzmy63teeIz/NShoim+SNKY72FCS1veqdbNCVYzLHaSLVrXBUjNVcauyNcscYdKkad8otu2iOqKp0hBWQ89DP+152w1NgEEArAHIEmYH2bz1onGYAe03x7p0BpVUceccB/Lz25utbKZpB48FStMMm+xCe7x77n4tvoWbrp6Iifh2Y3Q63a4DMUB9UePzp8mv3oLtSnDop+MDmBts4+LVs/1E2Fl4vLT+vRTUPmd7hbJHfa4ATJM/M5PHSb7GJaOzw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=starfivetech.com;
-Received: from BJSPR01MB0595.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c211:e::20) by BJSPR01MB0547.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c211:e::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.33; Wed, 27 Mar
- 2024 02:51:44 +0000
-Received: from BJSPR01MB0595.CHNPR01.prod.partner.outlook.cn
- ([fe80::d0cf:5e2e:fd40:4aef]) by
- BJSPR01MB0595.CHNPR01.prod.partner.outlook.cn ([fe80::d0cf:5e2e:fd40:4aef%4])
- with mapi id 15.20.7409.031; Wed, 27 Mar 2024 02:51:44 +0000
-From: Tan Chun Hau <chunhau.tan@starfivetech.com>
-To: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Ley Foon Tan <leyfoon.tan@starfivetech.com>,
-	Jee Heng Sia <jeeheng.sia@starfivetech.com>,
-	dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] dmaengine: dw-axi-dmac: Add support for StarFive JH8100 DMA
-Date: Tue, 26 Mar 2024 19:51:26 -0700
-Message-Id: <20240327025126.229475-3-chunhau.tan@starfivetech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240327025126.229475-1-chunhau.tan@starfivetech.com>
-References: <20240327025126.229475-1-chunhau.tan@starfivetech.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: NT0PR01CA0025.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c510:c::7) To BJSPR01MB0595.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c211:e::20)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A59624A12;
+	Wed, 27 Mar 2024 03:46:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.146
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1711511193; cv=none; b=llH1drmttjLwtwRPnUsBFkH/P/2ikzW2pjKqBoNj96nq7r9zXb+KbA0gFCq2Ytk7BpRWJOTH1RUocWLLhKxR2Akd4OvTaSrjqwZqliNr8TH+C9Dbmr8buIHMQGTL9TeZaCPL4P8GPfFfF/2a3XWloJqBrcPXEy+c9/akBfalk4U=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1711511193; c=relaxed/simple;
+	bh=ciicCspdRaHnQz/jdjSOPf958AP0f8cdXDGzYOTyj20=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FmZbWmacCAdxsx2lAeEwTLUcrSULDkycPeiKIMOdfTbX+5zTGzpnC11FOz9Yd7jnoLf/EBrnuaTDZIOKBbBfqx9pZV6taPQKqjkYe1oIgLh0CneGlEDsvwHK+MbxEJU51GkgGRhhISLUn+Q9JECJDn71I+9JqkDP0QOjFBeAgQ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sholland.org; spf=pass smtp.mailfrom=sholland.org; dkim=pass (2048-bit key) header.d=sholland.org header.i=@sholland.org header.b=qW94ZDVW; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=ZQgC6lTc; arc=none smtp.client-ip=103.168.172.146
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sholland.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sholland.org
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+	by mailfout.nyi.internal (Postfix) with ESMTP id A481913800E1;
+	Tue, 26 Mar 2024 23:46:29 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Tue, 26 Mar 2024 23:46:29 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm3; t=1711511189;
+	 x=1711597589; bh=xMuO78seROBlDOTM7NoMldv7CeXi6BqoTvO7uXL1+cw=; b=
+	qW94ZDVWCjwTv7HbMBDF+BCZ0rUo+bzt6r91boaLRXEi3qir/8/GvGbbiWeWUoQb
+	P95PXHFSVWMV/Cch8H2YGHDaNpcAtqwfH03NTMcXCSV3bgeS7hCoEV29kuZBxJp2
+	xmYUN62hTR/y6cFOIGm2qBw1Jm5H6c1eI+dJ/05mSICSOIXD+08b2ZC4Ctaup5x4
+	604PjpOGI6x4mfGhPaJC5H1aGTQl53QPJE+AHVUDx7zdrpeV9nQ0dnnf1DDPZo1T
+	opQdzWa0LY1ndv9hz3vVpNg7OTF81uNRw/AzSIuc5mO4UuvS5PtinOsnL8JVN7nK
+	hIuQUTADiXzyEp+OB80erg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1711511189; x=
+	1711597589; bh=xMuO78seROBlDOTM7NoMldv7CeXi6BqoTvO7uXL1+cw=; b=Z
+	QgC6lTc5lR068dsKgyqGXimbXgfd3UFmr/hJHDipoj0vOty6dowP2+YtNyXMhHhS
+	1cu4xXqnnDava2gOHKKDBLLFsaHgEk1qn6FCj6qbc0T2ZcgEyDhJdpwh8wyTyftS
+	JfvVX2tBEhuKgCx4BBmPaH1nr9tSnGm0OS14tX5CJ67x88K/eZWnns6f+DVnNNMg
+	85yw2yTUhSxjPZvqWV1cAJysKmPhuyjBsArM5HKhaa/O0uSnB+RVeewKjcEonmJw
+	QxA3Mek/kSOZfnarmg0i5jTCyHpMImp+L06WPcpthULGQNzYQSZ1e4OqDNVfXB1R
+	mbO+CgE7i9ycTrBHLag9Q==
+X-ME-Sender: <xms:lJYDZiLf3ozVr7HYFM-2PF3ILctvA6SbsBEkT5BdNHFzmZIPxh3a3A>
+    <xme:lJYDZqKpq66UrF9JK3OG7MDm3QKWDxcjdk2ZbjZfGyKpxIraux-luiPxMQCHC4y1y
+    M8A6bOXsZCTAXA49w>
+X-ME-Received: <xmr:lJYDZiseN27AqS-I3GtD4CGmdx6rAgdmNLIeloZTMAp3mtAV6hgrsQzhFtVMBm7Aajg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledruddugedgieegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepkfffgggfuffvvehfhfgjtgfgsehtjeertddtvdejnecuhfhrohhmpefurghm
+    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
+    ggtffrrghtthgvrhhnpeetieekgeeilefgtdfgteejhfevtdfgieekvdffjedvvedvveei
+    veelfeeuhffhfeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
+    hrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
+X-ME-Proxy: <xmx:lJYDZnbmGdFZJg6_paWscor44Iq0QasYMQ4Br7K2DsyJr_PFe0-yiQ>
+    <xmx:lJYDZpboIFLvjzdKYqcERJY9WjBrQsAJn4fl-WCQ_yvmfsWKte8bXg>
+    <xmx:lJYDZjBoKIihBPXBcJDHIUPaVH3U00XZ0Olz_jVGuvijsr7S_w83Vg>
+    <xmx:lJYDZvYNrWVmzzV2qjote1rsCWq-82JmUzwgLKYKfDmpq6N3RO3asg>
+    <xmx:lZYDZtJx1_t_ntArrTjtv10-zLASVcy2VKT57YT6w9mjlacRFglw2w>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 26 Mar 2024 23:46:27 -0400 (EDT)
+Message-ID: <65e86555-761e-4e26-8778-e2452876b5e4@sholland.org>
+Date: Tue, 26 Mar 2024 22:46:27 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BJSPR01MB0595:EE_|BJSPR01MB0547:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0447202d-c34c-42a1-0e94-08dc4e08d646
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	GYNl5/SHBiKMF2CkcFon/t8JSAj/1fP/YsDXj9bXkyckl0lC+ImBYSLj4ZzrdoqU5PktEsOgfBd5+cSvcm9bBDTZXqpenEXb9l/vDITcoB7u4LH0flrJHkwtNgcq7hkvAP71ankCJ5Smo/sj+rvq/afie1Cce1VDts+phqx1us+is5VCwi8G3TbXtz1BZ1m6EXdpND2tAMxHPxPcBu/+j5ZuvGO7fqy3PsWXhZwCPb99ozi9t7jdu40SSYRd2kFxDeyhh/i0NDhTO+wqaY+hzxaUZxyrB/kPAXTBCKTjuoP/PZt8Dz4Nz0xTWnRPJGGg92enJ1VsV1zl0dihv6VaEebcH3ODOaWyIJlqkn3vwHqf12P4aRERjwx9cA/B8Gy1TGyywk7iIaEmDtOThOsrWWy4l5tjH2Q/qbXEYdGjw9iGf+RZZYKAGFcLYm+J+JIaurNpycTdfxhcySr8GT7QuSXkq6YhHnMq8M1M0JN6jskKSpLBnStBqJ/2xSFr2r+cB2kSrUjoNOzJVOYiEOwExbKPfba1M3yjIZDCROW5s+xjsYmyj19sxaBKpCwCs+qOvQw9/pF1Z11+njez9OCCd5pvT2CHDHt6KOiwYcFpwSpkbhes3pgvNen2wSG+1Trk
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BJSPR01MB0595.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(52116005)(41320700004)(366007)(38350700005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?WsDfCM6dnmYqbzNdOmj4wgKeU1jzrLlvkmSxYieubIlskfdDkKNm256hcW+9?=
- =?us-ascii?Q?qb6C3nedyjJnWlaaFf2E/n6q4k2iMcIEkEMRc3iO71jPP8P/cgbCpzjJlmXB?=
- =?us-ascii?Q?h2AGAnkm6mCSFVa3lk1j6skKgJQ0dVBu+L1Cn+tC+HlJk4RVRkU4EwjW8fv7?=
- =?us-ascii?Q?khTMFwP5eCwWZLkYbixAPV5KpfYPwQcZPxPLBAvIjQlOvxVQgZu4ckZbRllA?=
- =?us-ascii?Q?5oSOQffGRl59ryN6ljjZ18t8QEU95oXDL04s4KXG0UuMPCPbfmJFpmzOxLXl?=
- =?us-ascii?Q?lMIuBikO0cXuHJzdynxEO4P4lT0USXjaOyKJdYUgR3aWCsAzjYvRlD4uMarj?=
- =?us-ascii?Q?cecO/N9EklcE9mcuNQ4mt8rBb0rnDtw4Bvb2ogTLWQIT2O1lMfr1wqBH3AfB?=
- =?us-ascii?Q?4FENRBFgfckzPIyECAUrtzwH2lJSIDd97WbcIR5QcvUragDwoNEsE0KNSoUX?=
- =?us-ascii?Q?63YOfja2+EGBMRgcx3kPtMAlLB8e6Tsm25ItFkOGYKlzzwoBdEKhTuqhTs/z?=
- =?us-ascii?Q?aEu9ie4TiZFY86Iz/+zwcbk8o1pDfSGGn1ztJmJMwKZnMsn1ge4OJF6mxJWs?=
- =?us-ascii?Q?BFOZbZaXNn/bsvki6PZS6O3u7U1n893LDWitYhtlTLxqnpfiN0VLp168FsQj?=
- =?us-ascii?Q?n+o+G/viXOKrz5xUPAvNhdcVr/J2ZnH8q+4uc2WP90j0cli2dxbp+52FOFSs?=
- =?us-ascii?Q?2JMrD0GkELqEj2rXErIuMUd+cLoXvEhQ+nTJeGrC1Jow7h8Ymyms3GGJBkAo?=
- =?us-ascii?Q?ePojCO6DGgwy26JHkVwzJ27KOO/V5jm3N2S0JEaxNGPeEfKrs5mZ8+UKyqoY?=
- =?us-ascii?Q?lqXvipCRKkO5oqGGqhwSBvkcHsjtV+TukwS1ECeYkpE+meeu72NpBH1HREMD?=
- =?us-ascii?Q?U8qFXroZwqhugScGl1Pt5x6ypNHa8qk81P+S+8QXb0LrEsjHckTAfEu3+RUl?=
- =?us-ascii?Q?vUwUrREU2J+2Ldk8aeddu8xJnT27u/IUIbMkOERtVhdF/kVG2KZBz2R9W9Tl?=
- =?us-ascii?Q?Q/LiLqnw9iWaUGr9rABGTPN31XQ2zvJ/lNM6bQ1kr9dzjJDptq6alOExRNTW?=
- =?us-ascii?Q?W1wJI9a4UC9pvK5HhH5XgEmJiLIxBXZIxfX6faDKkAXH2iwuZBtumUp0GKrV?=
- =?us-ascii?Q?+a6A5ty0Egcf1ifaNIEQgRKdkNy1O6iOrs6FH7fA8+DljMFMXA3T4mfAcvp5?=
- =?us-ascii?Q?q3/drMu/gRmAJafkGfgkFpPBCztUEVfKqlGhImC/TQdlciTc6ugjsxJ7ayEN?=
- =?us-ascii?Q?/YVeVP/v/gdT3hRqsz2dHfRWPT76p4ev21cj4/292app3B+tcH97ZaLbtdko?=
- =?us-ascii?Q?U/AKQlkzswFaCBVDMyjRHoPLjcaWifdYr6KDoNwb1VG/Th3M47KBYKSn0MQV?=
- =?us-ascii?Q?50rvRDoaXNpGTygKEQont00yvajZRhwEl7G3Fomyg1AnjzfbFW22ZNG7StN7?=
- =?us-ascii?Q?AojTCq6O9i9SS/YwuzxyxkMho4UvG5SWcZF/rblXsi5vyjv/q+6iZ6547gVs?=
- =?us-ascii?Q?Ccns08eoDPvVAzg0B5MxgSbB+qBbbx1JvHafAY4VrdBVOM8gMLPbzYB7Dql7?=
- =?us-ascii?Q?42CUmNV0uDIOTG3NvcBdALR/DrchcDpl5ybTWY+79tBcX2PGSclcZpzZ7/t6?=
- =?us-ascii?Q?ow=3D=3D?=
-X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0447202d-c34c-42a1-0e94-08dc4e08d646
-X-MS-Exchange-CrossTenant-AuthSource: BJSPR01MB0595.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Mar 2024 02:51:44.3773
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: yO9xjQN/EehhluFKYgQUU6Jrlagr38ESUJfpRqgfcfpcxiCyxJpg+DD4oP+w0jye0oY7qNCPNB8TQfBTerC2i7nMnzRS4yX7yCFAPnCCUhk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BJSPR01MB0547
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 6/8] cpufreq: sun50i: Add H616 support
+Content-Language: en-US
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ Brandon Cheo Fusi <fusibrandon13@gmail.com>,
+ Martin Botka <martin.botka@somainline.org>,
+ Martin Botka <martin.botka1@gmail.com>, Chris Morgan
+ <macroalpha82@gmail.com>, Ryan Walklin <ryan@testtoast.com>,
+ Mark Rutland <mark.rutland@arm.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Sudeep Holla <sudeep.holla@arm.com>, Yangtao Li <tiny.windzz@gmail.com>,
+ Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ "Rafael J . Wysocki" <rafael@kernel.org>
+References: <20240326114743.712167-1-andre.przywara@arm.com>
+ <20240326114743.712167-7-andre.przywara@arm.com>
+From: Samuel Holland <samuel@sholland.org>
+In-Reply-To: <20240326114743.712167-7-andre.przywara@arm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-JH8100 requires reset operation only in device probe.
+Hi Andre,
 
-Signed-off-by: Tan Chun Hau <chunhau.tan@starfivetech.com>
----
- drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c | 3 +++
- 1 file changed, 3 insertions(+)
+On 3/26/24 06:47, Andre Przywara wrote:
+> From: Martin Botka <martin.botka@somainline.org>
+> 
+> The Allwinner H616/H618 SoCs have different OPP tables per SoC version
+> and die revision. The SoC version is stored in NVMEM, as before, though
+> encoded differently. The die revision is in a different register, in the
+> SRAM controller. Firmware already exports that value in a standardised
+> way, through the SMCCC SoCID mechanism. We need both values, as some chips
+> have the same SoC version, but they don't support the same frequencies and
+> they get differentiated by the die revision.
+> 
+> Add the new compatible string and tie the new translation function to
+> it. This mechanism not only covers the original H616 SoC, but also its
+> very close sibling SoCs H618 and H700, so add them to the list as well.
+> 
+> Signed-off-by: Martin Botka <martin.botka@somainline.org>
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> ---
+>  drivers/cpufreq/sun50i-cpufreq-nvmem.c | 61 ++++++++++++++++++++++++++
+>  1 file changed, 61 insertions(+)
+> 
+> diff --git a/drivers/cpufreq/sun50i-cpufreq-nvmem.c b/drivers/cpufreq/sun50i-cpufreq-nvmem.c
+> index bd170611c7906..f9e9fc340f848 100644
+> --- a/drivers/cpufreq/sun50i-cpufreq-nvmem.c
+> +++ b/drivers/cpufreq/sun50i-cpufreq-nvmem.c
+> @@ -10,6 +10,7 @@
+>  
+>  #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
+>  
+> +#include <linux/arm-smccc.h>
+>  #include <linux/cpu.h>
+>  #include <linux/module.h>
+>  #include <linux/nvmem-consumer.h>
+> @@ -46,14 +47,71 @@ static u32 sun50i_h6_efuse_xlate(u32 speedbin)
+>  		return 0;
+>  }
+>  
+> +/*
+> + * Judging by the OPP tables in the vendor BSP, the quality order of the
+> + * returned speedbin index is 4 -> 0/2 -> 3 -> 1, from worst to best.
+> + * 0 and 2 seem identical from the OPP tables' point of view.
+> + */
+> +static u32 sun50i_h616_efuse_xlate(u32 speedbin)
+> +{
+> +	int ver_bits = arm_smccc_get_soc_id_revision();
 
-diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-index a86a81ff0caa..abb3523ba8ab 100644
---- a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-+++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-@@ -1653,6 +1653,9 @@ static const struct of_device_id dw_dma_of_id_table[] = {
- 	}, {
- 		.compatible = "starfive,jh7110-axi-dma",
- 		.data = (void *)(AXI_DMA_FLAG_HAS_RESETS | AXI_DMA_FLAG_USE_CFG2),
-+	}, {
-+		.compatible = "starfive,jh8100-axi-dma",
-+		.data = (void *)AXI_DMA_FLAG_HAS_RESETS,
- 	},
- 	{}
- };
--- 
-2.25.1
+This needs a Kconfig dependency on ARM_SMCCC_SOC_ID.
+
+Regards,
+Samuel
+
+> +	u32 value = 0;
+> +
+> +	switch (speedbin & 0xffff) {
+> +	case 0x2000:
+> +		value = 0;
+> +		break;
+> +	case 0x2400:
+> +	case 0x7400:
+> +	case 0x2c00:
+> +	case 0x7c00:
+> +		if (ver_bits != SMCCC_RET_NOT_SUPPORTED && ver_bits <= 1) {
+> +			/* ic version A/B */
+> +			value = 1;
+> +		} else {
+> +			/* ic version C and later version */
+> +			value = 2;
+> +		}
+> +		break;
+> +	case 0x5000:
+> +	case 0x5400:
+> +	case 0x6000:
+> +		value = 3;
+> +		break;
+> +	case 0x5c00:
+> +		value = 4;
+> +		break;
+> +	case 0x5d00:
+> +		value = 0;
+> +		break;
+> +	case 0x6c00:
+> +		value = 5;
+> +		break;
+> +	default:
+> +		pr_warn("sun50i-cpufreq-nvmem: unknown speed bin 0x%x, using default bin 0\n",
+> +			speedbin & 0xffff);
+> +		value = 0;
+> +		break;
+> +	}
+> +
+> +	return value;
+> +}
+> +
+>  static struct sunxi_cpufreq_data sun50i_h6_cpufreq_data = {
+>  	.efuse_xlate = sun50i_h6_efuse_xlate,
+>  };
+>  
+> +static struct sunxi_cpufreq_data sun50i_h616_cpufreq_data = {
+> +	.efuse_xlate = sun50i_h616_efuse_xlate,
+> +};
+> +
+>  static const struct of_device_id cpu_opp_match_list[] = {
+>  	{ .compatible = "allwinner,sun50i-h6-operating-points",
+>  	  .data = &sun50i_h6_cpufreq_data,
+>  	},
+> +	{ .compatible = "allwinner,sun50i-h616-operating-points",
+> +	  .data = &sun50i_h616_cpufreq_data,
+> +	},
+>  	{}
+>  };
+>  
+> @@ -230,6 +288,9 @@ static struct platform_driver sun50i_cpufreq_driver = {
+>  
+>  static const struct of_device_id sun50i_cpufreq_match_list[] = {
+>  	{ .compatible = "allwinner,sun50i-h6" },
+> +	{ .compatible = "allwinner,sun50i-h616" },
+> +	{ .compatible = "allwinner,sun50i-h618" },
+> +	{ .compatible = "allwinner,sun50i-h700" },
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, sun50i_cpufreq_match_list);
 
 
