@@ -1,146 +1,174 @@
-Return-Path: <devicetree+bounces-53911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53912-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D61688EC88
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 18:23:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 130C988EC91
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 18:24:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE9D21C2FC2B
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 17:23:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 453FA1C31CD9
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 17:24:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65D82137764;
-	Wed, 27 Mar 2024 17:23:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37AFF14D45B;
+	Wed, 27 Mar 2024 17:24:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XloCsd3H"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GSQOu+pd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34D6B1304A6;
-	Wed, 27 Mar 2024 17:23:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A8C514D426;
+	Wed, 27 Mar 2024 17:24:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711560213; cv=none; b=MwGS8B7BQo1LdZY0nvO4NlFyf+uvWQRq1CkV8ACTPx6oUoo2FxL3z30q5jgZFC61t4g/GhzBxK7J6Ue3h5FkObKN2hcjpbay4Jtd5JuAkGRy0ghvesQm52wCiNW2y0TOCNawGCg43JW1MJZY8o6rspxHIHbYGuwStj2fuO5eioA=
+	t=1711560282; cv=none; b=Fdj2tvPUdPVNYPsX2ooZo4akm4EYo7bXcLXPmgZkCi/0L/QXfVduktfsrTy3vSwhak14WxoHXSK7CbxdUUt7Yvvou2mReq1TH7PZhmQqOnV3kPFy6uOS3lYXnCLYpsnbOetkX3WdPHkAUeLrh3lDy5GQgJREGTpwBT2bTAzH3GY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711560213; c=relaxed/simple;
-	bh=IVW7vlTiLrTDILy6sOFcmkVPU3+mDVNBvceJINH+rOM=;
+	s=arc-20240116; t=1711560282; c=relaxed/simple;
+	bh=etEwvmr8xb/0bk8xdVXxjqJ52tsDAWEL45d5y1fPL8g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Tw2w7YuD+QQtrPFVaHi3BnF7jq5XDb4BO9wFCAVTLoI2b3P43Nk49qml3zmCpqpuWM20oXUUUiQWCY94WN6s+BggVVqTvYuiFLNrAG6tyXtS+Prh2+d/nij7ZnIORdlYf6T4EiwssZsvTGa45vUHx23Y0xtfvIMpnCwEHPPqbvM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XloCsd3H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FA95C433C7;
-	Wed, 27 Mar 2024 17:23:28 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ds1eTuuUXWNPv5nQcG/X0lElb0Kj7pDCV91dV9IR0Skf48xXGG12tj6JZNFXXjp/EuSXqSr4SPUzPmwiwkYU1xQDKyDWd31i4/Lviq60yeUaGqG0oaDphazs6eaEZTQ9frQMiVqTyLQrdJlo5B1FlREzZkPQwOVY0XTX/S0CcqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GSQOu+pd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60D67C433C7;
+	Wed, 27 Mar 2024 17:24:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711560212;
-	bh=IVW7vlTiLrTDILy6sOFcmkVPU3+mDVNBvceJINH+rOM=;
+	s=k20201202; t=1711560281;
+	bh=etEwvmr8xb/0bk8xdVXxjqJ52tsDAWEL45d5y1fPL8g=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XloCsd3HB0EhyIQa5CzYWfgKyeewc6Oqo0by9UfFEbxWZIexiepINomz0U7NH5PpD
-	 F7bO68lQDu8aBGYCYKPh66JaFzTlN2DyebgDzfYB4hNllLQDTQQJxjeyQ5rsGCWop3
-	 NY2JuvbsjVzpVoLUX2m4D3n/TPYD45DL2vRUvg0QtaVGIeoGYg/860IfICZRzrBHmW
-	 swdOfcf5VB1xJkpsYGQ4LUKJzG0fsn5jzUqOvxKvJVukcS+rdwwTX6aVBmNFHsvWrP
-	 UykPBL0SCRFrQXScdsu6Vh8CVXQmMixz4lSY0QfeN8TIFNjWADxiNWPKZsetBKIVXd
-	 wUw//P4t3xOXQ==
-Date: Wed, 27 Mar 2024 17:23:26 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-Cc: linux-kernel@vger.kernel.org,
-	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	b=GSQOu+pdnlf5J7EOdSMN9x4SGU0C+TbbdSpMxS1tQJlj+d3/Hc6xCFxoGWzjb5Ezp
+	 6ROMzMVPh1TIeq2LyNPdFVWlajotTpxzK5B+HUfllN8hifdgtUMEZkBoKu8YiwtWrc
+	 ULfmCpXWhDu2kRwsXiVo1eSOzwl94M6JVVI8aFiEY7tSim3Mz7r9xBwmnGyBKXw1E2
+	 il+S449VwcNeWXGiqGTN4UxL/6CQwUtZykWMUCtdjk3ffdPsw4uyYwD/3xgQF/pUgw
+	 08lZZ9VlcTebUkeUgVFDyQmumjGi8hd93Ib/9MMhT7acei7lm14jD8OprMfcNB+Lfk
+	 cVz/2VDHkNGtw==
+Date: Wed, 27 Mar 2024 12:24:39 -0500
+From: Rob Herring <robh@kernel.org>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Linus Walleij <linus.walleij@linaro.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, Joerg Roedel <joro@8bytes.org>,
-	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Shreeya Patel <shreeya.patel@collabora.com>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-	linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	iommu@lists.linux.dev
-Subject: Re: [PATCH v2 1/2] media: =?utf-8?Q?dt-bin?=
- =?utf-8?Q?ding=3A_media=3A_Document_rk3588=E2=80=99s?= VEPU121
-Message-ID: <20240327-doze-uncheck-475f3feaee57@spud>
-References: <20240327134115.424846-1-linkmauve@linkmauve.fr>
- <20240327134115.424846-2-linkmauve@linkmauve.fr>
+	Magnus Damm <magnus.damm@gmail.com>,
+	linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [RFC PATCH 02/13] dt-bindings: pinctrl: renesas: Document
+ RZ/V2H(P) SoC
+Message-ID: <20240327172439.GA3664500-robh@kernel.org>
+References: <20240326222844.1422948-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240326222844.1422948-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="4zuSRA0OEooBf1eF"
-Content-Disposition: inline
-In-Reply-To: <20240327134115.424846-2-linkmauve@linkmauve.fr>
-
-
---4zuSRA0OEooBf1eF
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240326222844.1422948-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On Wed, Mar 27, 2024 at 02:41:11PM +0100, Emmanuel Gil Peyrot wrote:
-> This encoder-only device is present four times on this SoC, and should
-> support everything the rk3568 vepu supports (so JPEG, H.264 and VP8
-> encoding).
->=20
-> According to the TRM[1], there is also the VEPU580 encoder which
-> supports H.264 and H.265, and various VDPU* decoders, of which only the
-> VDPU981 is currently supported.  This patch describes only the VEPU121.
->=20
-> [1] https://github.com/FanX-Tek/rk3588-TRM-and-Datasheet
->=20
-> Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+On Tue, Mar 26, 2024 at 10:28:33PM +0000, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> 
+> Add documentation for the pin controller found on the Renesas RZ/V2H(P)
+> (R9A09G057) SoC. Compared to RZ/G2L family of SoCs there are slight
+> differences on the RZ/V2H(P) SoC for pinmuxing.
+> 
+> Also add 'renesas-rzv2h,output-impedance' property. Drive strength
+> setting on RZ/V2H(P) depends on the different power rails which are
+> coming out from the PMIC (connected via i2c). These power rails
+> (required for drive strength) can be 1.2/1.8/3.3V.
+> 
+> Pin are grouped into 4 groups,
+> 
+> Group1: Impedance
+> - 150/75/38/25 ohms (at 3.3 V)
+> - 130/65/33/22 ohms (at 1.8 V)
+> 
+> Group2: Impedance
+> - 50/40/33/25 ohms (at 1.8 V)
+> 
+> Group3: Impedance
+> - 150/75/37.5/25 ohms (at 3.3 V)
+> - 130/65/33/22 ohms (at 1.8 V)
+> 
+> Group4: Impedance
+> - 110/55/30/20 ohms (at 1.8 V)
+> - 150/75/38/25 ohms (at 1.2 V)
+> 
+> 'renesas-rzv2h,output-impedance' property as documented which can be
+> [1, 2, 4, 6] indicates x Value strength.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Looks like the values are x1, x1.5, x3ish, x6...
 
-Thanks,
-Conor.
-
+> 
+> As the power rail information cannot be available very early in the
+> boot process as 'renesas-rzv2h,output-impedance' property is added
+> instead of reusing output-impedance-ohms property.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > ---
->  .../devicetree/bindings/media/rockchip,rk3568-vepu.yaml   | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/media/rockchip,rk3568-vepu=
-=2Eyaml b/Documentation/devicetree/bindings/media/rockchip,rk3568-vepu.yaml
-> index 9d90d8d0565a..4c6cb21da041 100644
-> --- a/Documentation/devicetree/bindings/media/rockchip,rk3568-vepu.yaml
-> +++ b/Documentation/devicetree/bindings/media/rockchip,rk3568-vepu.yaml
-> @@ -15,8 +15,12 @@ description:
-> =20
->  properties:
->    compatible:
-> -    enum:
-> -      - rockchip,rk3568-vepu
-> +    oneOf:
-> +      - const: rockchip,rk3568-vepu
-> +      - items:
-> +          - enum:
-> +              - rockchip,rk3588-vepu121
-> +          - const: rockchip,rk3568-vepu
-> =20
->    reg:
+>  .../pinctrl/renesas,rzg2l-pinctrl.yaml        | 22 +++++++++++++++----
+>  1 file changed, 18 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
+> index 881e992adca3..77f4fc7f4a21 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
+> @@ -26,6 +26,7 @@ properties:
+>                - renesas,r9a07g043-pinctrl # RZ/G2UL{Type-1,Type-2} and RZ/Five
+>                - renesas,r9a07g044-pinctrl # RZ/G2{L,LC}
+>                - renesas,r9a08g045-pinctrl # RZ/G3S
+> +              - renesas,r9a09g057-pinctrl # RZ/V2H(P)
+>  
+>        - items:
+>            - enum:
+> @@ -66,10 +67,14 @@ properties:
 >      maxItems: 1
-> --=20
-> 2.44.0
->=20
+>  
+>    resets:
+> -    items:
+> -      - description: GPIO_RSTN signal
+> -      - description: GPIO_PORT_RESETN signal
+> -      - description: GPIO_SPARE_RESETN signal
+> +    oneOf:
+> +      - items:
+> +          - description: GPIO_RSTN signal
+> +          - description: GPIO_PORT_RESETN signal
+> +          - description: GPIO_SPARE_RESETN signal
+> +      - items:
+> +          - description: PFC main reset
+> +          - description: Reset for the control register related to WDTUDFCA and WDTUDFFCM pins
+>  
+>  additionalProperties:
+>    anyOf:
+> @@ -111,6 +116,15 @@ additionalProperties:
+>          output-high: true
+>          output-low: true
+>          line-name: true
+> +        renesas-rzv2h,output-impedance:
 
---4zuSRA0OEooBf1eF
-Content-Type: application/pgp-signature; name="signature.asc"
+'renesas-rzv2h' is not a vendor.
 
------BEGIN PGP SIGNATURE-----
+That should give you a warning if you actually used this somewhere.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgRWDgAKCRB4tDGHoIJi
-0lutAP9RUO+UBR6Pi5FROQ2xaLNqi5TaQoaK43MSDUy1PTIC0AEA7wsfYNyJUltg
-R8OsUeBnoheFQXxeCQ5knEZaXqMNKQ0=
-=eiO7
------END PGP SIGNATURE-----
+> +          description: |
+> +            Output impedance for pins on RZ/V2H(P) SoC.
+> +            x1: Corresponds to 0 in IOLH register.
+> +            x2: Corresponds to 1 in IOLH register.
+> +            x4: Corresponds to 2 in IOLH register.
+> +            x6: Corresponds to 3 in IOLH register.
 
---4zuSRA0OEooBf1eF--
+Why not just use 0-3 for the values? 
+
+
+> +          $ref: /schemas/types.yaml#/definitions/uint32
+> +          enum: [1, 2, 4, 6]
+>  
+>      - type: object
+>        additionalProperties:
+> -- 
+> 2.34.1
+> 
 
