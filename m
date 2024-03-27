@@ -1,217 +1,249 @@
-Return-Path: <devicetree+bounces-53932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 464BD88EE42
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 19:28:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A51788EE60
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 19:38:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 774451C257C6
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 18:28:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D50C1C2DC4B
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 18:38:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86C7714F9FC;
-	Wed, 27 Mar 2024 18:28:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3F4B14E2FF;
+	Wed, 27 Mar 2024 18:38:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="kPrjvyvv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oy3zhxN7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 552A2130E35;
-	Wed, 27 Mar 2024 18:28:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACB99131BB7;
+	Wed, 27 Mar 2024 18:38:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711564101; cv=none; b=Qbvhl7DOGWTltAv42wXXsDNdSngX6OCbP6umuICWuXz48+Ng6XuJTiupOf3YspDiB9f/oJ6JjC0fHwY80jHNUJrGYaYDv0bXCrKRcNrYkLw76I4LzCeCcmy3h+aQy3kA9dyS0j9Vq3BdlCqwYLDNB8EdZ6NuP8Co7Lt44BxnVSs=
+	t=1711564709; cv=none; b=DKhkVtfzUOAD4V4GxzQwWqjfXTfYgLAVkRsDvnoV84oVRuvLKMLAgByWX2oDid2IzBj6VyCaT5p1gDJhJnut/E2pILwmJyiwy5Xl7cutekAI4KgGH9UzH6eeq3hafm/M0KoTJ41SMfs+HuBOGAV16zd+GF8fvai+4YvP0JpBveY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711564101; c=relaxed/simple;
-	bh=LLnL/dU/nDXok+K+9hwMxPGfmSl7e2k7pYod25SWBfE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=WVcNVmtVgy68pseMpSiJ1rDkFTWtKYpf9o6z3wPiHimdLP+6ithHe8H36O/zSFg7PFslgpZVpDb1T6rRA/rwN1QBo/ToS3eaqmMGlbmvCRRxToUs7q7ZTjr1tJI+i6d/e2Qx5RT9fwroVRYl161+kl3BAdN4Ji5eVrUEZ/ZqAK0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=kPrjvyvv; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 0C6251FAAA;
-	Wed, 27 Mar 2024 19:28:10 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1711564090;
-	bh=XBE7Etg4FHFeDJ4P9UcaubZy83FkhqwTHnNHSjhW2eI=; h=From:To:Subject;
-	b=kPrjvyvvNgVJgvMPX+oDD/FnJmfd5KAsFL9KOPf8NcVWZW2gVZJ8lvWoB43AowIVM
-	 fdHmfNg3FgEPGf2ktbLA6LA4I93QYjie//BzGf6rJxqJzNoSCTsqqAz9tuSeJoUtft
-	 YpEWK7g91A+8rQzWd77jX32ijK7xhEjTqEucpsfz711h4skLcqac/PSguuW0EUx4pX
-	 ev+H4Elp1GWRy761l5B3ryimr3EF1heTw0YwYaE2Yi7jBDh7q6VUu4/sJ0CYhDUkfX
-	 uzLMZsAlV2W9D2qGyvn3H2xIR2/rDXmCQa+zgDF4tFFlQFwEYaj2gZhkHTBvEtwHAF
-	 dRFL7DrcTYYPA==
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 2/2] arm64: dts: ti: k3-am625-verdin: add PCIe reset gpio hog
-Date: Wed, 27 Mar 2024 19:28:01 +0100
-Message-Id: <20240327182801.5997-3-francesco@dolcini.it>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240327182801.5997-1-francesco@dolcini.it>
-References: <20240327182801.5997-1-francesco@dolcini.it>
+	s=arc-20240116; t=1711564709; c=relaxed/simple;
+	bh=KgM0Be4UlmnR5fOPyHIa8AJGd2RzwvmUTfV9COgyBV8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=h5mvW2FBnTLJ9efcwk5SMb9LDoOIh8AmKsz3p8sUatVEn9Sg8yy62PWqNlOMWfvGRhQVbmXNxZ3L3njI4Q4ymmKfwslsN9LVgTX1ZPb/+TNEcBadUy6ZxEPtPrNC9fsPRa6YolRU+g4QgBtNJ2DOzb4Izbgwb9UP+FUcsx5q7OQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oy3zhxN7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32142C43390;
+	Wed, 27 Mar 2024 18:38:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711564709;
+	bh=KgM0Be4UlmnR5fOPyHIa8AJGd2RzwvmUTfV9COgyBV8=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=oy3zhxN7oHwS6aVPED2B2tic9Mpx2q1S0DxMNLULWgO4dlwyk75Sfsh/tmaXPgKfb
+	 3qrM+ak/rKvf/QuTxUAWUcdpnJoHGMMMw1L7r5diW3UrG0/tKXbGEocNMDAUA/mCuw
+	 cbAIgaHlItpZK5XiD4OR0CjauOYsLXKO81wVwt74NTvZihprAbzvcNaEQvzeeb1z5t
+	 5WCCYJpHJewdZCXW3IpiGk9Er/jz5I+LDftm+u9PyFlH3unT8rZv7V6gLwgoKc1jty
+	 RHn/nx2fj+8tx8iQkSnXdV6m0yt6RnaxDybzbe1xKgj4SWHB4GcGnexaNIblAPc0p2
+	 dnEEvJgNK7X8Q==
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-515a97846b5so59059e87.2;
+        Wed, 27 Mar 2024 11:38:29 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVJxp5VFKzVaFe9uuXX+iACXZ1/J3VBl17rK9E4ESrizdBrt07nHVSeu8+e4E9lQCrLIzs+IOscTGYgzci7nG0LT28LnfZt/0ZrlT1wQhGdAJwkkB/f0Y1fMGX8qLLypyqm0ktnsJANNQ==
+X-Gm-Message-State: AOJu0YyylgLkPUKY16gR1LtJFvNdWxugTaqWvQXfVSC/L8oY6Bpi+4lS
+	zwITkvygzPvqjud87zCVMn3vOpqE1RPRzVtkZ7BrmY9P35fVTy6N0WTXSQprBT4pKFDgyrknPbc
+	cCAwFGvwMYG35mIUWLcMCtZKFnw==
+X-Google-Smtp-Source: AGHT+IEmic5Ou4QgBwmLCOvIwIw4VlAXkIQX74r/YTEdTe9CSv0F346hYh3rIrRhLEPzIpmHxsFfIIXFS3YjHZI/e38=
+X-Received: by 2002:ac2:5e32:0:b0:513:d1b6:6f0e with SMTP id
+ o18-20020ac25e32000000b00513d1b66f0emr176749lfg.36.1711564707391; Wed, 27 Mar
+ 2024 11:38:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230317053415.2254616-1-frowand.list@gmail.com>
+ <20230317053415.2254616-2-frowand.list@gmail.com> <886049ed-4f5f-4e17-86f4-1245024ade3a@roeck-us.net>
+ <CAL_JsqKsF53v7d7uZ3XT4kPFy-2FBWHfvKNSFdTx2oZhmSZkDA@mail.gmail.com>
+ <66409df9-6f5f-4fbe-ae7f-47b86665c113@roeck-us.net> <CAL_Jsq+0JHTDmBPr94ZZF_5rtQg14q8OmWH6WpRspjHMX-MZmg@mail.gmail.com>
+ <23ed5bbb-7616-424b-96ee-3fe1c6d8ca89@roeck-us.net> <CAL_JsqJd-upC4TgOwP5-DMXKL+x=X7sGC7qqiy2PTjD6pnSV7Q@mail.gmail.com>
+ <407867d2-2e32-4df4-96ac-f9ae84b44375@roeck-us.net>
+In-Reply-To: <407867d2-2e32-4df4-96ac-f9ae84b44375@roeck-us.net>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Wed, 27 Mar 2024 13:38:13 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJ2DijyKa-WSWdOszZt9UfQbb1MnD2zHh3ywntx6a=N+w@mail.gmail.com>
+Message-ID: <CAL_JsqJ2DijyKa-WSWdOszZt9UfQbb1MnD2zHh3ywntx6a=N+w@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] of: create of_root if no dtb provided
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Stephen Boyd <sboyd@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
+	=?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Lizhi Hou <lizhi.hou@xilinx.com>, Allan Nielsen <allan.nielsen@microchip.com>, 
+	Horatiu Vultur <horatiu.vultur@microchip.com>, 
+	Steen Hegelund <steen.hegelund@microchip.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Francesco Dolcini <francesco.dolcini@toradex.com>
+On Wed, Mar 27, 2024 at 9:40=E2=80=AFAM Guenter Roeck <linux@roeck-us.net> =
+wrote:
+>
+> On 3/27/24 06:11, Rob Herring wrote:
+> > On Wed, Mar 20, 2024 at 3:06=E2=80=AFPM Guenter Roeck <linux@roeck-us.n=
+et> wrote:
+> >>
+> >> On 3/20/24 12:14, Rob Herring wrote:
+> >>> On Mon, Mar 18, 2024 at 4:31=E2=80=AFPM Guenter Roeck <linux@roeck-us=
+.net> wrote:
+> >>>>
+> >>>> On 3/18/24 12:26, Rob Herring wrote:
+> >>>>> +Stephen
+> >>>>>
+> >>>>> On Mon, Mar 18, 2024 at 12:09=E2=80=AFPM Guenter Roeck <linux@roeck=
+-us.net> wrote:
+> >>>>>>
+> >>>>>> Hi,
+> >>>>>>
+> >>>>>> On Fri, Mar 17, 2023 at 12:34:14AM -0500, Frank Rowand wrote:
+> >>>>>>> When enabling CONFIG_OF on a platform where of_root is not popula=
+ted by
+> >>>>>>> firmware, we end up without a root node. In order to apply overla=
+ys and
+> >>>>>>> create subnodes of the root node, we need one. Create this root n=
+ode
+> >>>>>>> by unflattening an empty builtin dtb.
+> >>>>>>>
+> >>>>>>> If firmware provides a flattened device tree (FDT) then the FDT i=
+s
+> >>>>>>> unflattened via setup_arch().  Otherwise setup_of(), which is cal=
+led
+> >>>>>>> immediately after setup_arch(), will create the default root node
+> >>>>>>> if it does not exist.
+> >>>>>>>
+> >>>>>>> Signed-off-by: Frank Rowand <frowand.list@gmail.com>
+> >>>>>>
+> >>>>>> This patch results in a crash on nios2.
+> >>>>>
+> >>>>> This patch was never applied. I assume you meant a later version of=
+ it
+> >>>>> that did get applied.
+> >>>>>
+> >>>>>>
+> >>>>>> Building nios2:10m50-ghrd:10m50_defconfig:10m50_devboard.dts ... r=
+unning ...R failed (crashed)
+> >>>>>
+> >>>>> Booting with DT?
+> >>>>>
+> >>>>>> ------------
+> >>>>>> qemu log:
+> >>>>>> earlycon: uart8250 at MMIO32 0x18001600 (options '')
+> >>>>>> printk: legacy bootconsole [uart8250] enabled
+> >>>>>> Linux version 6.8.0-11409-gf6cef5f8c37f (groeck@desktop) (nios2-li=
+nux-gcc (GCC) 11.4.0, GNU ld (GNU Binutils) 2.40) #1 Sun Mar 17 23:38:59 PD=
+T 2024
+> >>>>>> Kernel panic - not syncing: early_init_dt_alloc_memory_arch: Faile=
+d to allocate 72 bytes align=3D0x40
+> >>>>>> ---[ end Kernel panic - not syncing: early_init_dt_alloc_memory_ar=
+ch: Failed to allocate 72 bytes align=3D0x40 ]---
+> >>>>>
+> >>>>> nios2 looks utterly broken to me. This change should be a nop unles=
+s
+> >>>>> initial_boot_params is NULL. It looks like it is possible for r6 (d=
+tb
+> >>>>> address) to be 0 depending on kconfig options, but that would have
+> >>>>> skipped copying and unflattening which would then panic in
+> >>>>> setup_cpuinfo(). If initial_boot_params is not NULL, then the same
+> >>>>> early_init_dt_alloc_memory_arch() calls should fail when copying th=
+e
+> >>>>> DT. So I don't see how nios2 booting with DT ever worked.
+> >>>>>
+> >>>>
+> >>>> For nios2, in early_init_devtree():
+> >>>>
+> >>>> void __init early_init_devtree(void *params)
+> >>>> {
+> >>>>            __be32 *dtb =3D (u32 *)__dtb_start;
+> >>>>           ...
+> >>>>            if (be32_to_cpu((__be32) *dtb) =3D=3D OF_DT_HEADER)
+> >>>>                    params =3D (void *)__dtb_start;
+> >>>>
+> >>>> That worked fine until this patch. Starting with this patch, __dtb_s=
+tart
+> >>>> always points to a valid empty devicetree blob, which overrides the
+> >>>> devicetree blob passed to early_init_devtree(). This causes the prob=
+lem.
+> >>>
+> >>> With an external DTB, it doesn't boot with or without this patch. It
+> >>> just dies in different spots. Before it just skipped any memory
+> >>
+> >> No, that is incorrect.
+> >
+> > Well, I can tell you it doesn't boot for me. So I must be doing
+> > something different from your setup.
+> >
+>
+> Maybe you have OF_UNITTEST enabled and it indeed results in the
+> problem you mention below. I don't have it enabled because it produces
+> various backtraces which would hide real problems.
 
-Add a GPIO hog to release PCIe reset on the carrier board, this is
-required to use M.2 or mPCIe cards.
+I thought of that, but I don't think I did. What I suspect is the
+external dtb is at address 0.
 
-Verdin AM62 does not have any PCIe interface, however the Verdin family
-has PCIe and normally an M.2 or mPCIe slot is available in the carrier
-board that can be used with cards that use only the USB interface toward
-the host CPU, for example cellular network modem.
+> >> Up to this patch it booted just fine with an
+> >> external dtb using the "-initrd" command line argument, and I explaine=
+d
+> >> to you above why this is the case.
+> >
+> > What does -initrd have to do with anything? Does that shift where the
+> > external dtb is placed or something?
+> >
+>
+> Nothing. I meant to say -dtb.
+>
+> > I think I see the issue. __dtb_start points to the start of *all*
+> > built-in DTBs, not a specific one. In this case, arc, csky, loongarch,
+> > mips, openrisc, riscv, sh, and xtensa may all be broken too (if one
+> > picks the magic combination of booting modes and kconfig options). I
+>
+> No.
+>
+> - arc only picks the internal dtb if use_embedded_dtb is true. This flag
+>    is only set if there is no external dtb, or if the external dtb does
+>    not provide a valid machine description.
 
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
- arch/arm64/boot/dts/ti/k3-am62-verdin-dahlia.dtsi | 8 +++++++-
- arch/arm64/boot/dts/ti/k3-am62-verdin-dev.dtsi    | 8 +++++++-
- arch/arm64/boot/dts/ti/k3-am62-verdin-mallow.dtsi | 8 +++++++-
- arch/arm64/boot/dts/ti/k3-am62-verdin-yavia.dtsi  | 8 +++++++-
- arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi        | 9 +++++++++
- 5 files changed, 37 insertions(+), 4 deletions(-)
+Right, but when it does pick the internal dtb, it is expecting its dtb
+at __dtb_start. What I'm saying is that's never been a good or safe
+assumption. We just happened to add another case to trigger it. The
+only reliable way to get a built-in DTB is if foo.dtb is built-in,
+then use __dtb_foo_begin to get its address. That's what some MIPS
+platforms with multiple DTBs do.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin-dahlia.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin-dahlia.dtsi
-index 6c4cec8728e4..e51fda1127ef 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-verdin-dahlia.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-verdin-dahlia.dtsi
-@@ -160,7 +160,8 @@ &mcu_gpio0 {
- 	pinctrl-0 = <&pinctrl_gpio_1>,
- 		    <&pinctrl_gpio_2>,
- 		    <&pinctrl_gpio_3>,
--		    <&pinctrl_gpio_4>;
-+		    <&pinctrl_gpio_4>,
-+		    <&pinctrl_pcie_1_reset>;
- };
- 
- /* Verdin I2C_3_HDMI */
-@@ -211,6 +212,11 @@ &verdin_gpio_keys {
- 	status = "okay";
- };
- 
-+/* Verdin PCIE_1_RESET# */
-+&verdin_pcie_1_reset_hog {
-+	status = "okay";
-+};
-+
- /* Verdin UART_2 */
- &wkup_uart0 {
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin-dev.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin-dev.dtsi
-index be62648e7818..74eec1a1abca 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-verdin-dev.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-verdin-dev.dtsi
-@@ -181,7 +181,8 @@ &mcu_gpio0 {
- 	pinctrl-0 = <&pinctrl_gpio_1>,
- 		    <&pinctrl_gpio_2>,
- 		    <&pinctrl_gpio_3>,
--		    <&pinctrl_gpio_4>;
-+		    <&pinctrl_gpio_4>,
-+		    <&pinctrl_pcie_1_reset>;
- };
- 
- /* Verdin I2C_3_HDMI */
-@@ -232,6 +233,11 @@ &verdin_gpio_keys {
- 	status = "okay";
- };
- 
-+/* Verdin PCIE_1_RESET# */
-+&verdin_pcie_1_reset_hog {
-+	status = "okay";
-+};
-+
- /* Verdin UART_2 */
- &wkup_uart0 {
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin-mallow.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin-mallow.dtsi
-index cd81a606c435..754216d8ac14 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-verdin-mallow.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-verdin-mallow.dtsi
-@@ -154,7 +154,8 @@ &mcu_gpio0 {
- 	pinctrl-0 = <&pinctrl_gpio_1>,
- 		    <&pinctrl_gpio_2>,
- 		    <&pinctrl_gpio_3>,
--		    <&pinctrl_gpio_4>;
-+		    <&pinctrl_gpio_4>,
-+		    <&pinctrl_pcie_1_reset>;
- };
- 
- /* Verdin I2C_3_HDMI */
-@@ -200,6 +201,11 @@ &verdin_gpio_keys {
- 	status = "okay";
- };
- 
-+/* Verdin PCIE_1_RESET# */
-+&verdin_pcie_1_reset_hog {
-+	status = "okay";
-+};
-+
- /* Verdin UART_2 */
- &wkup_uart0 {
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin-yavia.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin-yavia.dtsi
-index 997dfafd27eb..7372d392ec8a 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-verdin-yavia.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-verdin-yavia.dtsi
-@@ -159,7 +159,8 @@ &mcu_gpio0 {
- 	pinctrl-0 = <&pinctrl_gpio_1>,
- 		    <&pinctrl_gpio_2>,
- 		    <&pinctrl_gpio_3>,
--		    <&pinctrl_gpio_4>;
-+		    <&pinctrl_gpio_4>,
-+		    <&pinctrl_pcie_1_reset>;
- };
- 
- /* Verdin I2C_3_HDMI */
-@@ -205,6 +206,11 @@ &verdin_gpio_keys {
- 	status = "okay";
- };
- 
-+/* Verdin PCIE_1_RESET# */
-+&verdin_pcie_1_reset_hog {
-+	status = "okay";
-+};
-+
- /* Verdin UART_2 */
- &wkup_uart0 {
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
-index e8d8857ad51f..e6c10d23d038 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
-@@ -1407,6 +1407,15 @@ &mcu_gpio0 {
- 		"",
- 		"",
- 		"";
-+
-+	verdin_pcie_1_reset_hog: pcie-1-reset-hog {
-+		gpio-hog;
-+		/* Verdin PCIE_1_RESET# (SODIMM 244) */
-+		gpios = <0 GPIO_ACTIVE_LOW>;
-+		line-name = "PCIE_1_RESET#";
-+		output-low;
-+		status = "disabled";
-+	};
- };
- 
- /* Verdin CAN_2 */
--- 
-2.39.2
+> - openrisc only picks the internal dtb if no external dtb is provided.
+> - riscv only picks the internal dtb if CONFIG_BUILTIN_DTB is enabled.
+> - sh only used the internal dtb if CONFIG_USE_BUILTIN_DTB is enabled.
+> - xtensa only picks the internal dtb if there is no external dtb.
+>
+> However, nios2 picks the internal dtb _even if_ an external dtb
+> is provided if there is an internal dtb. In other words, it prefers
+> the internal dtb over the external dtb. All other architectures
+> prefer the external dtb over the internal dtb.
 
+Thanks for the analysis. I had started and abandoned common support
+(mostly Kconfig options) for built-in dtbs years ago. I decided
+against it because it is not something we want to encourage (as the
+boot dtb). In the meantime, we've gained new architectures that have
+added it. Sigh. So now I'm reconsidering something common (though not
+for v6.9).
+
+>
+> > would expect all these cases have been broken forever if the DT
+> > unittest is enabled as it too adds a built-in dtb. But I would also
+>
+> Even if that is correct for nios2, that hardly seems to be an argument
+> to break nios2 boot with external dtb unconditionally.
+
+That wasn't an argument for breaking it. Using an external dtb should
+really be the default and strongly preferred though.
+
+I'm still not sure how to fix this easily for 6.9. Something like what
+microblaze does which puts the boot dtb under a consistent symbol
+name. Or perhaps we could iterate thru the built-in dtbs and skip ones
+without top-level compatible.
+
+Rob
 
