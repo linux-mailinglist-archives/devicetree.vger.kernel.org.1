@@ -1,113 +1,154 @@
-Return-Path: <devicetree+bounces-53946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCE3D88EEFE
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 20:13:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7356188EF1C
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 20:24:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 172A829F02B
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 19:13:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0DBC29CAA0
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 19:24:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 716C215350B;
-	Wed, 27 Mar 2024 19:11:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DD6C1509A5;
+	Wed, 27 Mar 2024 19:23:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hDCd2SW8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52E6E13E043;
-	Wed, 27 Mar 2024 19:11:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F2323DAC11
+	for <devicetree@vger.kernel.org>; Wed, 27 Mar 2024 19:23:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711566713; cv=none; b=aogD1n7sMgCSidcv9/qgB+Bkkz42oY9kKUGIW3ZAn45I6+whqlaFIs0JeSlgal2ke9VR+dAEGz4YlgRtSChX2En2C9qChOfNegGTaX1hY2iwXEuqUGo3XhYELUnQr3+M8LlmlW4WzcY7Ty1EN8F6IJD4kIrlDtq42PDzNpW1X8c=
+	t=1711567438; cv=none; b=QFyFzVf8VW7LlL41Js4XrZIJbIQBiSz6fOy75k8YB+SYmDAtgEmaVJeyRcMxwlh7l52rc7ulpLw0tIf9TJMnFgIgM+QMgj1OytlQEn4eGklnNN7PmSH2816+htKtZjWlO0AhNn9En05LSdCmiMZ7Zh4FYxTirAzEfG34fKY1y0A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711566713; c=relaxed/simple;
-	bh=8K4YFhR8C6V7MEOUhnFeNGpLwrwArXVCXtTG2QEyaYY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Jufobp79wdoTNoWPIySAnVkG6zj4G4byUDjkmH8EjseL8bwdzJSw62VFEd3z0zFW51+f4Rerty8JOimJqZM4w35d3KBhuUfcL7ho5HMHOMQX8AYPK0SqGrKZ5W1Mx0scGVF3qz6VHbgzBn/gWGJ8sTz74wctSZw0nxry9OadXns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D68A5C433F1;
-	Wed, 27 Mar 2024 19:11:52 +0000 (UTC)
-Received: by mercury (Postfix, from userid 1000)
-	id B46581060DE9; Wed, 27 Mar 2024 20:11:47 +0100 (CET)
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-Date: Wed, 27 Mar 2024 20:11:38 +0100
-Subject: [PATCH v2 7/7] ARM: dts: omap3: use generic node name for hsi
- clients
+	s=arc-20240116; t=1711567438; c=relaxed/simple;
+	bh=vjEvrisXs0PaTIn6yTzeC7Qp/wJlnRMLb5/DytcPMgc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AlmUqpMEGVI1qSfZ0/f52dLTnVzxskRHt+NARRH4ZS0HGKCUxUSCbERAauVCqn+vU5muNXSGoLHjTjQ4m1ZFsveMvM0u9oskaM9pXV/kPr8kNkRmgPz1lFJ8n8wfYsWiR0AsyUwa+YQrwN8NHPHqNvvtitGBS/nUf06u1t0UhMg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hDCd2SW8; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a46ea03c2a5so40731166b.1
+        for <devicetree@vger.kernel.org>; Wed, 27 Mar 2024 12:23:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1711567435; x=1712172235; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=mXh1hk1oPeStdknju80ZXZITRIxNJc+CZyjjCVnDwcI=;
+        b=hDCd2SW8RocW5ld/peH5sWY8+9uXr0ghFmYZGSbbpz0buZLbez2FHtgDBokIgtRHn1
+         zXv/KXedRrpdyiSJLHVjLO++iARqaQ4hVaOxXDsYqN/rt7yAJvyrfejFWQkoVivTZWWV
+         x/CG71f1IuU/gTFYj251Tn/eDg+JWnScrrJXx9WU7Ey7KvZr4F4N1jYMkR3XhdoxKPCT
+         2ewg9YEwFPBPYhu6dRAOaK2ZjmBL02AMS2wuMyWFmLkG3A+f3sAbJQZSPaQ3zu6nPFQn
+         1nB7UAXkPXCIJfyV//o8wo+OKyBoTADKRGDCqkZhaYsV7Ztxe3unOzenhf31XLrOXpmH
+         KhTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711567435; x=1712172235;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mXh1hk1oPeStdknju80ZXZITRIxNJc+CZyjjCVnDwcI=;
+        b=hgD7EL3/iV1zjc5lCvAZ/9lDteJ/C8Xxfqe/4FaQjeC65LyVNQfX/C7SyaFCSRqobt
+         tQKvNjaW+pr06BCKqZ0x0nSfHffoGB/6tBfLlKw5VDJotTk39wl4qY6T/mUR9Dqu281s
+         KbNyxDdTfUfKpBbwl8MKlxr710aVU73OayMsQS+WH8GSeIv8EGeo5ZqTh/SpyozMXoyG
+         5OPt1rpkF40/mYhTr2yHn/IUpaJaP/6Fh3XJ+HbIXhE2ZsD6Qao85TOGgT0VuclF6/6G
+         Wwykx9ekGBteBygbp6gCrti59GyfUFgi4tfyXQ999FyUogZKliTgBeU6qIkJf7q8uS9f
+         oqmw==
+X-Forwarded-Encrypted: i=1; AJvYcCVdhGdq5ZmBWWLOT+qm7OjS7Vn35ES9gnn++gLlKIT7Cq4bUoz6H9y33Yfu6xt/1UktQa+fJ+sfj8N5xKtKk+SdKI4zI6dC/3mLvA==
+X-Gm-Message-State: AOJu0Yx7eMNkAlyLg1kAL2cQTFCBTbrC2pIg59jHNfiU2nCPf0IBaBjT
+	eMrYO2bazUXGBHQkPUMmyXPLiVxW0ZbIBqIu3EwKZdW8RLT3I8aldtE5HxCQepE=
+X-Google-Smtp-Source: AGHT+IGWWBaCyjo8hryoRHrSa9yjNZ26cymjZzL1fb8Jp2J2Fo3NE7EzwYtjC5Qmh4YUteTcnyJNDQ==
+X-Received: by 2002:a17:906:57c7:b0:a47:3cd5:b3f1 with SMTP id u7-20020a17090657c700b00a473cd5b3f1mr182772ejr.35.1711567434658;
+        Wed, 27 Mar 2024 12:23:54 -0700 (PDT)
+Received: from [192.168.92.47] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
+        by smtp.gmail.com with ESMTPSA id i10-20020a170906250a00b00a47459e7371sm5425614ejb.79.2024.03.27.12.23.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Mar 2024 12:23:54 -0700 (PDT)
+Message-ID: <65669ccc-3d95-496f-aa82-4ecbf4c11290@linaro.org>
+Date: Wed, 27 Mar 2024 20:23:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: iommu: arm,smmu-v3: Add SC8280XP
+ compatible
+To: Robin Murphy <robin.murphy@arm.com>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Will Deacon <will@kernel.org>,
+ Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ iommu@lists.linux.dev, Johan Hovold <johan+linaro@kernel.org>
+References: <20231219-topic-8280_smmuv3-v2-0-c67bd3226687@linaro.org>
+ <20231219-topic-8280_smmuv3-v2-1-c67bd3226687@linaro.org>
+ <9b2a681e-1191-4cf7-8da7-14aa2c1fa455@arm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
+ BB/OmIWU6X+LZW6P88ZmHe+KeyABLMP5s1tJNK1j4ntT7mECcWZDzafPWF4F6m4WJOG27kTJ
+ HGWdmtO+RvadOVi6CoUDqALsmfS3MUG5Pj2Ne9+0jRg4hEnB92AyF9rW2G3qisFcwPgvatt7
+ TXD5E38mLyOPOUyXNj9XpDbt1hNwKQfiidmPh5e7VNAWRnW1iCMMoKqzM1Anzq7e5Afyeifz
+ zRcQPLaqrPjnKqZGL2BKQSZDh6NkI5ZLRhhHQf61fkWcUpTp1oDC6jWVfT7hwRVIQLrrNj9G
+ MpPzrlN4YuAqKeIer1FMt8cq64ifgTzxHzXsMcUdclzq2LTk2RXaPl6Jg/IXWqUClJHbamSk
+ t1bfif3SnmhA6TiNvEpDKPiT3IDs42THU6ygslrBxyROQPWLI9IL1y8S6RtEh8H+NZQWZNzm
+ UQ3imZirlPjxZtvz1BtnnBWS06e7x/UEAguj7VHCuymVgpl2Za17d1jj81YN5Rp5L9GXxkV1
+ aUEwONM3eCI3qcYm5JNc5X+JthZOWsbIPSC1Rhxz3JmWIwP1udr5E3oNRe9u2LIEq+wH/toH
+ kpPDhTeMkvt4KfE5m5ercid9+ZXAqoaYLUL4HCEw+HW0DXcKDwARAQABzShLb25yYWQgRHli
+ Y2lvIDxrb25yYWQuZHliY2lvQGxpbmFyby5vcmc+wsGOBBMBCAA4FiEEU24if9oCL2zdAAQV
+ R4cBcg5dfFgFAmQ5bqwCGwMFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AACgkQR4cBcg5dfFjO
+ BQ//YQV6fkbqQCceYebGg6TiisWCy8LG77zV7DB0VMIWJv7Km7Sz0QQrHQVzhEr3trNenZrf
+ yy+o2tQOF2biICzbLM8oyQPY8B///KJTWI2khoB8IJSJq3kNG68NjPg2vkP6CMltC/X3ohAo
+ xL2UgwN5vj74QnlNneOjc0vGbtA7zURNhTz5P/YuTudCqcAbxJkbqZM4WymjQhe0XgwHLkiH
+ 5LHSZ31MRKp/+4Kqs4DTXMctc7vFhtUdmatAExDKw8oEz5NbskKbW+qHjW1XUcUIrxRr667V
+ GWH6MkVceT9ZBrtLoSzMLYaQXvi3sSAup0qiJiBYszc/VOu3RbIpNLRcXN3KYuxdQAptacTE
+ mA+5+4Y4DfC3rUSun+hWLDeac9z9jjHm5rE998OqZnOU9aztbd6zQG5VL6EKgsVXAZD4D3RP
+ x1NaAjdA3MD06eyvbOWiA5NSzIcC8UIQvgx09xm7dThCuQYJR4Yxjd+9JPJHI6apzNZpDGvQ
+ BBZzvwxV6L1CojUEpnilmMG1ZOTstktWpNzw3G2Gis0XihDUef0MWVsQYJAl0wfiv/0By+XK
+ mm2zRR+l/dnzxnlbgJ5pO0imC2w0TVxLkAp0eo0LHw619finad2u6UPQAkZ4oj++iIGrJkt5
+ Lkn2XgB+IW8ESflz6nDY3b5KQRF8Z6XLP0+IEdLOOARkOW7yEgorBgEEAZdVAQUBAQdAwmUx
+ xrbSCx2ksDxz7rFFGX1KmTkdRtcgC6F3NfuNYkYDAQgHwsF2BBgBCAAgFiEEU24if9oCL2zd
+ AAQVR4cBcg5dfFgFAmQ5bvICGwwACgkQR4cBcg5dfFju1Q//Xta1ShwL0MLSC1KL1lXGXeRM
+ 8arzfyiB5wJ9tb9U/nZvhhdfilEDLe0jKJY0RJErbdRHsalwQCrtq/1ewQpMpsRxXzAjgfRN
+ jc4tgxRWmI+aVTzSRpywNahzZBT695hMz81cVZJoZzaV0KaMTlSnBkrviPz1nIGHYCHJxF9r
+ cIu0GSIyUjZ/7xslxdvjpLth16H27JCWDzDqIQMtg61063gNyEyWgt1qRSaK14JIH/DoYRfn
+ jfFQSC8bffFjat7BQGFz4ZpRavkMUFuDirn5Tf28oc5ebe2cIHp4/kajTx/7JOxWZ80U70mA
+ cBgEeYSrYYnX+UJsSxpzLc/0sT1eRJDEhI4XIQM4ClIzpsCIN5HnVF76UQXh3a9zpwh3dk8i
+ bhN/URmCOTH+LHNJYN/MxY8wuukq877DWB7k86pBs5IDLAXmW8v3gIDWyIcgYqb2v8QO2Mqx
+ YMqL7UZxVLul4/JbllsQB8F/fNI8AfttmAQL9cwo6C8yDTXKdho920W4WUR9k8NT/OBqWSyk
+ bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
+ nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
+ izWDgYvmBE8=
+In-Reply-To: <9b2a681e-1191-4cf7-8da7-14aa2c1fa455@arm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240327-hsi-dt-binding-v2-7-110fab4c32ae@collabora.com>
-References: <20240327-hsi-dt-binding-v2-0-110fab4c32ae@collabora.com>
-In-Reply-To: <20240327-hsi-dt-binding-v2-0-110fab4c32ae@collabora.com>
-To: Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>
-Cc: Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org, 
- linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Sebastian Reichel <sebastian.reichel@collabora.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1268;
- i=sebastian.reichel@collabora.com; h=from:subject:message-id;
- bh=8K4YFhR8C6V7MEOUhnFeNGpLwrwArXVCXtTG2QEyaYY=;
- b=owEBbQKS/ZANAwAKAdju1/PIO/qaAcsmYgBmBG9zVErjO87lwBsjYyxEn8oqZ6l2a7ExGGuss
- YmilPZQAjiJAjMEAAEKAB0WIQTvZg0HRj+Lcmp5VBPY7tfzyDv6mgUCZgRvcwAKCRDY7tfzyDv6
- ms5OD/94Zzs90HS6zooUcE0CmRNm9ia+akkjPf1uyyeQWV0CRM04NY+FwZihySdgkSCt3sErhQa
- CSkZQ19HbPK4tham9eFvpjHNNXustDfv2Yfglpr+6lW6aJ4FNlEy1YqlZqTeLA51Q2VIu3r/lqE
- eZEyJCVd7fWxxUPg7wCBqJ384frCXyhWRbDmrYZ5/whuygglaTzAondIvzTu2ryfsWOEiM2Z5bX
- kJyMkWjSxWR8SxUvZbICMB065KAuhar999eSFqVNEOZGkWAKmVikX/wGIVL7av36HAVcISFK4G/
- WvVkZ8jYA8CYk1Pm8Fy/IJueaeamUt8IP+/Gnq3uCvZt5rQnD7zOeoCwJsGeI7Sr+PcNHhpgKXT
- gftpwzcWc8hTSNo95Hg9R5gC2j7c33yGJASf0Gk/QXeGiNzD1tO/R66zx9bIAZZDKH+/aoj6Cj9
- a2Up8jsFRH0r1w0adeT7PRuGWf+vWaIbZueOBAKsySFlR5IEKmDTzMayLcwvA/bDzwUitijXK+Y
- f6vX31oW5/L5ld2O6vjUB5ELebok1o6KKpl2HKuXPZuXPxFGuqn0eI74jePNagiSoMUdLJcBeAg
- wNvx7Z4A+wTO/9cYlNEV2aqckVcQ5lBlX+hoRqQuxAO4AMVYXyyMxNoANUvD8+Syzd0roG2kChW
- IVCbu6zhzeXxuwA==
-X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
- fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
 
-The HSI peripheral node name should reflect the generic type of
-device for the node.
+On 19.03.2024 2:53 PM, Robin Murphy wrote:
+> On 2024-03-09 1:31 pm, Konrad Dybcio wrote:
+>> The smmu-v3 binding currently doesn't differentiate the SoCs it's
+>> implemented on. This is a poor design choice that may bite in the future,
+>> should any quirks surface.
+> 
+> That doesn't seem entirely fair to say - the vast majority of bindings don't have separate compatibles for every known integration of the same implementation in different SoCs. And in this case we don't have per-implementation compatibles for quirks and errata because the implementation is architecturally discoverable from the SMMU_IIDR register.
+> 
+> We have the whole mess for QCom SMMUv2 because the effective *implementation* is a mix of hardware and hypervisor, whose behaviour does seem to vary on almost a per-SoC basis. I'm not at all keen to start repeating that here without very good reason, and that of "documenting" a device which we typically expect to not even be accessible isn't really convincing me...
 
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- arch/arm/boot/dts/ti/omap/omap3-n900.dts     | 2 +-
- arch/arm/boot/dts/ti/omap/omap3-n950-n9.dtsi | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+From my POV as an arch dts maintainer, this often ends up being the only
+way to retroactively add some conditional action into the code - the kernel
+is supposed to be backwards compatible with older device trees.
 
-diff --git a/arch/arm/boot/dts/ti/omap/omap3-n900.dts b/arch/arm/boot/dts/ti/omap/omap3-n900.dts
-index b906b57371ce..bec31faf86db 100644
---- a/arch/arm/boot/dts/ti/omap/omap3-n900.dts
-+++ b/arch/arm/boot/dts/ti/omap/omap3-n900.dts
-@@ -1123,7 +1123,7 @@ &ssi_port1 {
- 
- 	ti,ssi-cawake-gpios = <&gpio5 23 GPIO_ACTIVE_HIGH>; /* 151 */
- 
--	modem: hsi-client {
-+	modem: modem {
- 		compatible = "nokia,n900-modem";
- 
- 		pinctrl-names = "default";
-diff --git a/arch/arm/boot/dts/ti/omap/omap3-n950-n9.dtsi b/arch/arm/boot/dts/ti/omap/omap3-n950-n9.dtsi
-index 6e0db8275227..7e6dbc1968aa 100644
---- a/arch/arm/boot/dts/ti/omap/omap3-n950-n9.dtsi
-+++ b/arch/arm/boot/dts/ti/omap/omap3-n950-n9.dtsi
-@@ -450,7 +450,7 @@ &ssi_port1 {
- 
- 	ti,ssi-cawake-gpios = <&gpio5 23 GPIO_ACTIVE_HIGH>; /* 151 */
- 
--	modem: hsi-client {
-+	modem: modem {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&modem_pins1 &modem_pins2>;
- 
+And so far it's been almost by luck that all of the smmuv3 implementations
+have been a straight copy-and-paste of the reference design (or close enough),
+I don't believe this will be for much longer.
 
--- 
-2.43.0
-
+Konrad
 
