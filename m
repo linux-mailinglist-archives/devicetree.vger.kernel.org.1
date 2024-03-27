@@ -1,220 +1,202 @@
-Return-Path: <devicetree+bounces-53892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 215EC88EAE2
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 17:16:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C66F188EB77
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 17:41:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CDE728406C
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 16:16:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 771592A3894
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 16:41:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0D0612D76A;
-	Wed, 27 Mar 2024 16:16:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5C2D14AD16;
+	Wed, 27 Mar 2024 16:41:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="afq6nzfs"
+	dkim=pass (2048-bit key) header.d=folker-schwesinger.de header.i=@folker-schwesinger.de header.b="osjBcYNJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from www522.your-server.de (www522.your-server.de [195.201.215.122])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B1CE42A91;
-	Wed, 27 Mar 2024 16:16:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 365D0149DEA;
+	Wed, 27 Mar 2024 16:41:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.201.215.122
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711556177; cv=none; b=lO5vQ9Owg8p3Hvs72DSZ2x9lICrOs3YR8ckJc2bP73d1q4/bllIw7U1Ui0ZVxzoXQoreGubZEKA2QLXh2+mrzc2TFV76RiZDYFX+pkXUkE22JxgrmF4LcO6S6yo5br8RgePjGBe6ArrBQtyKLGnAekRgQqyyEhB7/L7PXyJqDp0=
+	t=1711557703; cv=none; b=oXAgY6ppJa+vMRswWPcWBITFH713dZYYicgOjSH4VyrJNYVV9TFjoSQa1nPXJkGstJde3oc93/VBbJt2jm57u/t2DzZj+5xRfyarT6q7bkWgxw85Hjr3ghSQK+YwzszOWO0UQ15Iun30NbbLhP8vU+J6cM1eBJtuaONe2Q3s1Eo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711556177; c=relaxed/simple;
-	bh=On495Vosho8yghuPe/ZcVehrvgix78EySfxCo6i6kY8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z+opMG5L+mMnnm9+EZpVPLYvhXkM+TZ/Oov3Wea/FE2H7hUd1ojdSGt5v8+H6bwfVo3t/puUXt43JPM+5EDVaLj9maqkM70U2YpEhaLpcRItvHrvrKsGJqNFGJVleo0Lg3jcwUWewKJJ4kARuqSHbt6p3IIsE1imUxEmbZhM2zM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=afq6nzfs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5CADC433C7;
-	Wed, 27 Mar 2024 16:16:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711556177;
-	bh=On495Vosho8yghuPe/ZcVehrvgix78EySfxCo6i6kY8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=afq6nzfsTajwNl8LvbUonLyvoZy88ahtEF+Fkmr8Gp55VWkjLs02RvASLRTcGlPw9
-	 A3k0+c1v5Oru+8yj3BFHimVUIVe4OlixbdFKebF2ujjugw6eNhDo/O9u9W8H8tIN3l
-	 YydxW0Vv+8AEQLXDLSm04PLqYwyGSDe6yaspn7eTWUW80gV+PCVCEWC7il7Ul4mNrY
-	 SwqO6F0OkjmS2ihwcJsLxTCZShaQsiShwljjoSa214PxaVDT/DjdHpGCmWS9dlAORe
-	 v7dPwEHLncbOl4VOkta++OzMHyOOBBuAXEiCm2WRsWW2f74aR42cEmKBCqEIFLKCDP
-	 Q2VEXR1vc5xmg==
-Date: Wed, 27 Mar 2024 16:16:07 +0000
-From: Simon Horman <horms@kernel.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Marcel Holtmann <marcel@holtmann.org>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Alex Elder <elder@linaro.org>,
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Abel Vesa <abel.vesa@linaro.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Lukas Wunner <lukas@wunner.de>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-wireless@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH v6 12/16] PCI/pwrctl: add PCI power control core code
-Message-ID: <20240327161607.GQ403975@kernel.org>
-References: <20240325131624.26023-1-brgl@bgdev.pl>
- <20240325131624.26023-13-brgl@bgdev.pl>
+	s=arc-20240116; t=1711557703; c=relaxed/simple;
+	bh=MNOFpOXkMOwWidvj9ganot3yFkYgKYqPs0TUbj4drHQ=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
+	 References:In-Reply-To; b=A+afbpfxb6MZds7KMCYJ0hEpqMLHDpgK3EMp4+UJcAEeQhF/+/i3FECSQlTeqYn+rpfFljqbd/Oc7to2Byuv9SKjckvvKHnOLrItkBySUrkHa3QdWN6L+04NxpYZVR1toeMMyfmMAIsgRNXVfuPjzK03710WFYLnNG7PXk1F1MU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=folker-schwesinger.de; spf=pass smtp.mailfrom=folker-schwesinger.de; dkim=pass (2048-bit key) header.d=folker-schwesinger.de header.i=@folker-schwesinger.de header.b=osjBcYNJ; arc=none smtp.client-ip=195.201.215.122
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=folker-schwesinger.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=folker-schwesinger.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=folker-schwesinger.de; s=default2212; h=In-Reply-To:References:
+	Content-Transfer-Encoding:To:From:Cc:Subject:Message-Id:Date:Content-Type:
+	Mime-Version:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=jVmOJXz8MFZvDytCaXScOnp+CPymaJ0ZJNEjuWISf3k=; b=osjBcYNJq/cKgUy9AWTyY8hS6E
+	E5HLAhY7omewDvChR3tHPmlbqGq5T2YdOAGnaZ5M0cmn71ww8qXth6+OXvYfe1nl+O45vivL9zVmg
+	voHjd5t0NE0wivjq8NEIZKIy7Oz2MkS1388qo4lC0yPTuXHXwqdqU3eo8BjHLq9nnaMx0uGpTch5K
+	ImjEjU+yoH4m/nIVzGrgoiSGYA0A7puBQ7I5mCekHohziTKpaj7atNdUx/yd8nCgejZNEZjHzWS++
+	WrB9zPGqXne7gRdpFt2KxZu7tC4KoBnjhD2RjUDfQsDNASlXkWUhT546ddF5zLe8d+uoAc2gVqzFv
+	DX8I6/yA==;
+Received: from sslproxy07.your-server.de ([78.47.199.104])
+	by www522.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <dev@folker-schwesinger.de>)
+	id 1rpW2I-000Cfv-EQ; Wed, 27 Mar 2024 17:21:58 +0100
+Received: from [185.209.196.215] (helo=localhost)
+	by sslproxy07.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <dev@folker-schwesinger.de>)
+	id 1rpW26-000PGF-0o;
+	Wed, 27 Mar 2024 17:21:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240325131624.26023-13-brgl@bgdev.pl>
+Mime-Version: 1.0
+Content-Type: multipart/signed;
+ boundary=f7cdc72aa3c9a69fa8ec481bcf6809df63323df0173f7777bf3d43c54eaf;
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+Date: Wed, 27 Mar 2024 16:21:45 +0000
+Message-Id: <D04O57YQHYI4.1QNGSVKVT44CS@folker-schwesinger.de>
+Subject: Re: [PATCH 1/3] phy: rockchip: emmc: Enable pulldown for strobe
+ line
+Cc: "Vinod Koul" <vkoul@kernel.org>, "Kishon Vijay Abraham I"
+ <kishon@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>, "Chris Ruehl"
+ <chris.ruehl@gtsys.com.hk>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Christopher Obbard" <chris.obbard@collabora.com>,
+ "Alban Browaeys" <alban.browaeys@gmail.com>, "Doug Anderson"
+ <dianders@chromium.org>, "Brian Norris" <briannorris@chromium.org>, "Jensen
+ Huang" <jensenhuang@friendlyarm.com>, <linux-phy@lists.infradead.org>,
+ <linux-arm-kernel@lists.infradead.org>,
+ <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ <devicetree@vger.kernel.org>
+From: "Folker Schwesinger" <dev@folker-schwesinger.de>
+To: "Dragan Simic" <dsimic@manjaro.org>, "Conor Dooley" <conor@kernel.org>
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: aerc 0.17.0-82-g6ffc0ed5991b
+References: <20240326-rk-default-enable-strobe-pulldown-v1-0-f410c71605c0@folker-schwesinger.de> <20240326-rk-default-enable-strobe-pulldown-v1-1-f410c71605c0@folker-schwesinger.de> <20240326-tactical-onlooker-3df8d2352dc2@spud> <436f78a981ecba441a0636912ddd1cf2@manjaro.org>
+In-Reply-To: <436f78a981ecba441a0636912ddd1cf2@manjaro.org>
+X-Authenticated-Sender: dev@folker-schwesinger.de
+X-Virus-Scanned: Clear (ClamAV 0.103.10/27227/Wed Mar 27 09:33:27 2024)
 
-On Mon, Mar 25, 2024 at 02:16:20PM +0100, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> 
-> Some PCI devices must be powered-on before they can be detected on the
-> bus. Introduce a simple framework reusing the existing PCI OF
-> infrastructure.
-> 
-> The way this works is: a DT node representing a PCI device connected to
-> the port can be matched against its power control platform driver. If
-> the match succeeds, the driver is responsible for powering-up the device
-> and calling pcie_pwrctl_device_set_ready() which will trigger a PCI bus
-> rescan as well as subscribe to PCI bus notifications.
-> 
-> When the device is detected and created, we'll make it consume the same
-> DT node that the platform device did. When the device is bound, we'll
-> create a device link between it and the parent power control device.
-> 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+--f7cdc72aa3c9a69fa8ec481bcf6809df63323df0173f7777bf3d43c54eaf
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-Hi Bartosz,
+Hi Conor and Dragan,
 
-some minor Kernel doc nits from my side.
+thanks for your feedback!
 
-...
+On Tue Mar 26, 2024 at 8:55 PM CET, Dragan Simic wrote:
+> On 2024-03-26 20:46, Conor Dooley wrote:
+> > On Tue, Mar 26, 2024 at 07:54:35PM +0100, Folker Schwesinger via B4
+> > Relay wrote:
+> >> From: Folker Schwesinger <dev@folker-schwesinger.de>
+> >>
+> >> Restore the behavior of the Rockchip kernel that undconditionally
+> >> enables the internal strobe pulldown.
+> >
+> > What do you mean "restore the behaviour of the rockchip kernel"? Did
+> > mainline behave the same as the rockchip kernel previously? If not,
+> > using "restore" here is misleading. "Unconditionally" is also
+> > incorrect,
+> > because you have a property that disables it.
 
-> diff --git a/drivers/pci/pwrctl/core.c b/drivers/pci/pwrctl/core.c
+Apologizes for the misleading commit message. Prior to 5.11 the Linux
+kernel did not touch the pull-down registers. However, it seems the
+register's (factory?) default was set to enable the pull-down. As it
+was mentioned elsewhere that was the configuration recommended by
+Rockchip. The 4.4 vendor (Rockchip) kernel reflects that by enabling the
+pull-down in its kernel.
+Of course, this has nothing to do with the Linux kernel, so "restore"
+was a bad choice here.
 
-...
+I previously had split the driver patch into two separate patches, one
+for changing the default (unconditionally at that point), the other for
+adding the disable property. As both changes were minimal I decided to
+squash the commits. I updated the cover letter, but forgot to update the
+commit message. Sorry.
 
-> +/**
-> + * devm_pci_pwrctl_device_set_ready - Managed variant of
-> + * pci_pwrctl_device_set_ready().
-> + *
+> >> Fixes: 8b5c2b45b8f0 ("phy: rockchip: set pulldown for strobe line in
+> >> dts")
+> >> Signed-off-by: Folker Schwesinger <dev@folker-schwesinger.de>
+> >> ---
+> >>  drivers/phy/rockchip/phy-rockchip-emmc.c | 6 +++---
+> >>  1 file changed, 3 insertions(+), 3 deletions(-)
+> >>
+> >> diff --git a/drivers/phy/rockchip/phy-rockchip-emmc.c
+> >> b/drivers/phy/rockchip/phy-rockchip-emmc.c
+> >> index 20023f6eb994..6e637f3e1b19 100644
+> >> --- a/drivers/phy/rockchip/phy-rockchip-emmc.c
+> >> +++ b/drivers/phy/rockchip/phy-rockchip-emmc.c
+> >> @@ -376,14 +376,14 @@ static int rockchip_emmc_phy_probe(struct
+> >> platform_device *pdev)
+> >>  	rk_phy->reg_offset = reg_offset;
+> >>  	rk_phy->reg_base = grf;
+> >>  	rk_phy->drive_impedance = PHYCTRL_DR_50OHM;
+> >> -	rk_phy->enable_strobe_pulldown = PHYCTRL_REN_STRB_DISABLE;
+> >> +	rk_phy->enable_strobe_pulldown = PHYCTRL_REN_STRB_ENABLE;
+> >>  	rk_phy->output_tapdelay_select = PHYCTRL_OTAPDLYSEL_DEFAULT;
+> >>
+> >>  	if (!of_property_read_u32(dev->of_node, "drive-impedance-ohm",
+> >> &val))
+> >>  		rk_phy->drive_impedance = convert_drive_impedance_ohm(pdev, val);
+> >>
+> >> -	if (of_property_read_bool(dev->of_node,
+> >> "rockchip,enable-strobe-pulldown"))
+> >> -		rk_phy->enable_strobe_pulldown = PHYCTRL_REN_STRB_ENABLE;
+> >> +	if (of_property_read_bool(dev->of_node,
+> >> "rockchip,disable-strobe-pulldown"))
+> >> +		rk_phy->enable_strobe_pulldown = PHYCTRL_REN_STRB_DISABLE;
+> >
+> > Unfortunately you cannot do this.
+> > Previously no property at all meant disabled and a property was
+> > required
+> > to enable it. With this change the absence of a property means that it
+> > will be enabled.
+> > An old devicetree is that wanted this to be disabled would have no
+> > property and will now end up with it enabled. This is an ABI break and
+> > is
+> > clearly not backwards compatible, that's a NAK unless it is
+> > demonstrable
+> > that noone actually wants to disable it at all.
+> >
+>
+> Moreover, as I already explained some time ago, [1] some boards and
+> devices are unfortunately miswired, and we don't want to enable the
+> DATA STROBE pull-down on such boards.
+>
+> [1]
+> https://lore.kernel.org/linux-rockchip/ca5b7cad01f645c7c559ab26a8db8085@manjaro.org/#t
+>
+> > If this patch fixes a problem on a board that you have, I would suggest
+> > that you add the property to enable it, as the binding tells you to.
 
-nit: @dev should be documented here
+I agree, I'll post the patches later.
 
-> + * @pwrctl: PCI power control data
-> + *
-> + * Returns:
-> + * 0 on success, negative error number on error.
-> + */
-> +int devm_pci_pwrctl_device_set_ready(struct device *dev,
-> +				     struct pci_pwrctl *pwrctl)
-> +{
-> +	int ret;
-> +
-> +	ret = pci_pwrctl_device_set_ready(pwrctl);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return devm_add_action_or_reset(dev,
-> +					devm_pci_pwrctl_device_unset_ready,
-> +					pwrctl);
-> +}
-> +EXPORT_SYMBOL_GPL(devm_pci_pwrctl_device_set_ready);
-> +
-> +MODULE_AUTHOR("Bartosz Golaszewski <bartosz.golaszewski@linaro.org>");
-> +MODULE_DESCRIPTION("PCI Device Power Control core driver");
-> +MODULE_LICENSE("GPL");
-> diff --git a/include/linux/pci-pwrctl.h b/include/linux/pci-pwrctl.h
-> new file mode 100644
-> index 000000000000..ae8324ea7eeb
-> --- /dev/null
-> +++ b/include/linux/pci-pwrctl.h
-> @@ -0,0 +1,51 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (C) 2024 Linaro Ltd.
-> + */
-> +
-> +#ifndef __PCI_PWRCTL_H__
-> +#define __PCI_PWRCTL_H__
-> +
-> +#include <linux/notifier.h>
-> +
-> +struct device;
-> +struct device_link;
-> +
-> +/*
-> + * This is a simple framework for solving the issue of PCI devices that require
-> + * certain resources (regulators, GPIOs, clocks) to be enabled before the
-> + * device can actually be detected on the PCI bus.
-> + *
-> + * The idea is to reuse the platform bus to populate OF nodes describing the
-> + * PCI device and its resources, let these platform devices probe and enable
-> + * relevant resources and then trigger a rescan of the PCI bus allowing for the
-> + * same device (with a second associated struct device) to be registered with
-> + * the PCI subsystem.
-> + *
-> + * To preserve a correct hierarchy for PCI power management and device reset,
-> + * we create a device link between the power control platform device (parent)
-> + * and the supplied PCI device (child).
-> + */
-> +
-> +/**
-> + * struct pci_pwrctl - PCI device power control context.
-> + * @dev - Address of the power controlling device.
+Best regards
 
-nit: I think this should be "@dev: " rather than "@dev - "
-     As is, "./scripts/kernel-doc -none" complains.
-> + *
-> + * An object of this type must be allocated by the PCI power control device and
-> + * passed to the pwrctl subsystem to trigger a bus rescan and setup a device
-> + * link with the device once it's up.
-> + */
-> +struct pci_pwrctl {
-> +	struct device *dev;
-> +
-> +	/* Private, don't use. */
+Folker
 
-I think Private needs to be followed by a ':' rather than a ',' to keep
-kernel-doc happy.
 
-> +	struct notifier_block nb;
-> +	struct device_link *link;
-> +};
-> +
-> +int pci_pwrctl_device_set_ready(struct pci_pwrctl *pwrctl);
-> +void pci_pwrctl_device_unset_ready(struct pci_pwrctl *pwrctl);
-> +int devm_pci_pwrctl_device_set_ready(struct device *dev,
-> +				     struct pci_pwrctl *pwrctl);
-> +
-> +#endif /* __PCI_PWRCTL_H__ */
-> -- 
-> 2.40.1
-> 
-> 
+--f7cdc72aa3c9a69fa8ec481bcf6809df63323df0173f7777bf3d43c54eaf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJAEABYKADgWIQQFbmi0A2l3pTuK+esCQHEyPYq7fQUCZgRHmhocZGV2QGZvbGtl
+ci1zY2h3ZXNpbmdlci5kZQAKCRACQHEyPYq7fRamAP9MGs6G0N7CCPyktEFGvWmc
+v++fFAIl9dcZbzwkg9Dj9wD+KrYIRbmeqWtdkS3AfQoBJgBfYClulmn68BrCShah
+EAY=
+=o+ot
+-----END PGP SIGNATURE-----
+
+--f7cdc72aa3c9a69fa8ec481bcf6809df63323df0173f7777bf3d43c54eaf--
 
