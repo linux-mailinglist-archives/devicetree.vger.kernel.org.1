@@ -1,222 +1,91 @@
-Return-Path: <devicetree+bounces-53916-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53917-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1D6488ECDD
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 18:45:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FA6488ED6C
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 19:01:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 00602B2505F
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 17:45:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5191F1C32408
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 18:01:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEB9314EC68;
-	Wed, 27 Mar 2024 17:45:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE443152190;
+	Wed, 27 Mar 2024 17:56:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="WNRsxrqf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gXRuPs6t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DE3614D6EF;
-	Wed, 27 Mar 2024 17:45:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDF4D14D70F;
+	Wed, 27 Mar 2024 17:56:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711561509; cv=none; b=bnXO1SQlylHf8kUEPYVca6HO9eYuT4/IdR38D9WN1B98oS8nYT41YXjli7+NSjTIfVO0I5EqytiDu5ylaLMZaLrXEK8KiB/aq/mgo/3RYA7e1Z7VuTO93E3uzHx1p3nyRlXp0IeNpKMF2t9VpiXKgscwK7EVMzdw8T7OkpKiREs=
+	t=1711562174; cv=none; b=Rr6sgYiw5wiMMB5cfxejC5v3uj/O5ybm3DFwQp15zPnAC1GmZHOVqJev+xDhxVCsMdJU5OwVCJ0tYTbsma9VEXYRoAyqLCJxxuWexvTgvnwJRgZvvLST16svbLFNVu4jfHcR+zkVLHFhA63/Hc75QGuYShHnJC3prw1El13kvEw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711561509; c=relaxed/simple;
-	bh=hX7ksftxhBPlKhJ3ORnpry5arh/EO7LHpHr3IuMRQ5Y=;
+	s=arc-20240116; t=1711562174; c=relaxed/simple;
+	bh=CARL3VpskHXs1C8+zISBJy2R8u90IIDk7xSKp4/PB1Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bpy9h2Joro2SwSJL3Yb20yGHU8YGSi8305jphmpE8zQPyjHI61qIeHCKLLNOOTmYa/16NWoWXBGtQsbt1zHxxAx3VYWigsU+Uwr/QGs5KTsK6WwWWspi4nx1dI3/gAtrmuRpdQZcY2+pxRenActdXg5SMEzLxa/29N68miJTg68=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=WNRsxrqf; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1711561505;
-	bh=hX7ksftxhBPlKhJ3ORnpry5arh/EO7LHpHr3IuMRQ5Y=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=gZo9Jdtkg5oh40RgGtct0IwkH5GUQvtVhK5XZcDd3ONvXpDKHLVvrtd6GIjvLjDPXE81apRFtlftPoooiKjZcRpWf/7/UbqoWcsj9FmXifpKNRnvkvKDu1OrFR7MZCu+BP62bWbqAXJqxAB8hJVRDQBX8Ov4SysZT7OnsXNXsZI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gXRuPs6t; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25EE3C433F1;
+	Wed, 27 Mar 2024 17:56:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711562174;
+	bh=CARL3VpskHXs1C8+zISBJy2R8u90IIDk7xSKp4/PB1Q=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WNRsxrqfn2miKOO53mLdXP1QMBa+zq+Nx417t3L9yo31ttM6hnd2stHiOZbwOuoAo
-	 1TwXsmMscpUYceSUY3+JW123Uf2L+Ws9Bgc/SoCwwVqBFuwF88tluSSUbm6EZejEpM
-	 o1T+2ugLFOU8BGn4VvYMixfllU4I5Bqw2Z3Vs01WHGH9C7Iv0gqHzMH1X1cLQ0kjNX
-	 o7Fv5ewsSuc9C9k6ewJaMLXXfM2u8NP3islICr4+cHuqNyIHKJ6K61HSjrgfKA4sUx
-	 TahG9HxXwWaQ6JtKrWej69c+VC56vP5Qr+T/OjQ4pu4e0K3fGFq86+I6EUW/+Y77Wa
-	 JinYBHFNovDDQ==
-Received: from mercury (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 06A7B3780C13;
-	Wed, 27 Mar 2024 17:45:05 +0000 (UTC)
-Received: by mercury (Postfix, from userid 1000)
-	id A3CED10608D9; Wed, 27 Mar 2024 18:45:04 +0100 (CET)
-Date: Wed, 27 Mar 2024 18:45:04 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-Cc: linux-kernel@vger.kernel.org, 
-	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
-	Robin Murphy <robin.murphy@arm.com>, Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
-	Dragan Simic <dsimic@manjaro.org>, Shreeya Patel <shreeya.patel@collabora.com>, 
-	Chris Morgan <macromorgan@hotmail.com>, Andy Yan <andy.yan@rock-chips.com>, 
-	Nicolas Frattaroli <frattaroli.nicolas@gmail.com>, linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev
-Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add VEPU121 to rk3588
-Message-ID: <b3gjngpu4sszth3ajyowbplqsvu2su3hgktpf3cffopbrawz4y@ddcnnwnlecvq>
-References: <20240327134115.424846-1-linkmauve@linkmauve.fr>
- <20240327134115.424846-3-linkmauve@linkmauve.fr>
+	b=gXRuPs6t0bSxHm22O6CNo4Kkp5D2JX3AjcxLSZ3kXyhEyi2UIsEmVFRTOhvpPRJ/7
+	 fMifnYGT6ixKL6DBXsG0U2PJ4Hj/UO2OOa6DPA/PcFsWKaBhGl4HhWXjcG+X7IoWiy
+	 yug3xt4/SqtnFsyzeJ3wM20n2mmj3ShbaIXs56YW/VaunkK2S6kfEsIpfgnvPI11zf
+	 cgDJm1UrhuC0xNgmZeSTTXCEGUKKMjMOhHY4B/Hjc6muQYzGM8/xNViTMW/aoikhZX
+	 liRX9UQur/rgHgHbECqiz232O331J34x5ppTuEgZ2oJmQq+0LNCQV+24WViVoJdyCm
+	 9ySP9hnevpMLg==
+Date: Wed, 27 Mar 2024 12:56:12 -0500
+From: Rob Herring <robh@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	linux-riscv@lists.infradead.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Jamie Gibbons <jamie.gibbons@microchip.com>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Valentina Fernandez <valentina.fernandezalanis@microchip.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH v1 1/5] dt-bindings: riscv: microchip: document
+ beaglev-fire
+Message-ID: <171156217116.3705201.6521563645353809470.robh@kernel.org>
+References: <20240327-parkway-dodgy-f0fe1fa20892@spud>
+ <20240327-camper-brownnose-6392076d8699@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="3n3gcsm6jabdcoyz"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240327134115.424846-3-linkmauve@linkmauve.fr>
+In-Reply-To: <20240327-camper-brownnose-6392076d8699@spud>
 
 
---3n3gcsm6jabdcoyz
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-On Wed, Mar 27, 2024 at 02:41:12PM +0100, Emmanuel Gil Peyrot wrote:
-> The TRM (version 1.0 page 385) lists five VEPU121 cores, but only four
-> interrupts are listed (on page 24), so I=E2=80=99ve only enabled four of =
-them
-> for now.
->=20
-> Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+On Wed, 27 Mar 2024 12:24:36 +0000, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+> 
+> The BeagleV Fire is a BeagleBone Black form-factor board with a
+> PolarFire SoC.
+> 
+> Link: https://www.beagleboard.org/boards/beaglev-fire
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
+>  Documentation/devicetree/bindings/riscv/microchip.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+Acked-by: Rob Herring <robh@kernel.org>
 
--- Sebastian
-
->  arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 80 +++++++++++++++++++++++
->  1 file changed, 80 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/=
-dts/rockchip/rk3588s.dtsi
-> index 87b83c87bd55..510ed3db9d01 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> @@ -2488,6 +2488,86 @@ gpio4: gpio@fec50000 {
->  		};
->  	};
-> =20
-> +	jpeg_enc0: video-codec@fdba0000 {
-> +		compatible =3D "rockchip,rk3588-vepu121", "rockchip,rk3568-vepu";
-> +		reg =3D <0x0 0xfdba0000 0x0 0x800>;
-> +		interrupts =3D <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH 0>;
-> +		clocks =3D <&cru ACLK_JPEG_ENCODER0>, <&cru HCLK_JPEG_ENCODER0>;
-> +		clock-names =3D "aclk", "hclk";
-> +		iommus =3D <&jpeg_enc0_mmu>;
-> +		power-domains =3D <&power RK3588_PD_VDPU>;
-> +	};
-> +
-> +	jpeg_enc0_mmu: iommu@fdba0800 {
-> +		compatible =3D "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
-> +		reg =3D <0x0 0xfdba0800 0x0 0x40>;
-> +		interrupts =3D <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH 0>;
-> +		clocks =3D <&cru ACLK_JPEG_ENCODER0>, <&cru HCLK_JPEG_ENCODER0>;
-> +		clock-names =3D "aclk", "iface";
-> +		power-domains =3D <&power RK3588_PD_VDPU>;
-> +		#iommu-cells =3D <0>;
-> +	};
-> +
-> +	jpeg_enc1: video-codec@fdba4000 {
-> +		compatible =3D "rockchip,rk3588-vepu121", "rockchip,rk3568-vepu";
-> +		reg =3D <0x0 0xfdba4000 0x0 0x800>;
-> +		interrupts =3D <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH 0>;
-> +		clocks =3D <&cru ACLK_JPEG_ENCODER1>, <&cru HCLK_JPEG_ENCODER1>;
-> +		clock-names =3D "aclk", "hclk";
-> +		iommus =3D <&jpeg_enc1_mmu>;
-> +		power-domains =3D <&power RK3588_PD_VDPU>;
-> +	};
-> +
-> +	jpeg_enc1_mmu: iommu@fdba4800 {
-> +		compatible =3D "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
-> +		reg =3D <0x0 0xfdba4800 0x0 0x40>;
-> +		interrupts =3D <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH 0>;
-> +		clocks =3D <&cru ACLK_JPEG_ENCODER1>, <&cru HCLK_JPEG_ENCODER1>;
-> +		clock-names =3D "aclk", "iface";
-> +		power-domains =3D <&power RK3588_PD_VDPU>;
-> +		#iommu-cells =3D <0>;
-> +	};
-> +
-> +	jpeg_enc2: video-codec@fdba8000 {
-> +		compatible =3D "rockchip,rk3588-vepu121", "rockchip,rk3568-vepu";
-> +		reg =3D <0x0 0xfdba8000 0x0 0x800>;
-> +		interrupts =3D <GIC_SPI 126 IRQ_TYPE_LEVEL_HIGH 0>;
-> +		clocks =3D <&cru ACLK_JPEG_ENCODER2>, <&cru HCLK_JPEG_ENCODER2>;
-> +		clock-names =3D "aclk", "hclk";
-> +		iommus =3D <&jpeg_enc2_mmu>;
-> +		power-domains =3D <&power RK3588_PD_VDPU>;
-> +	};
-> +
-> +	jpeg_enc2_mmu: iommu@fdba8800 {
-> +		compatible =3D "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
-> +		reg =3D <0x0 0xfdba8800 0x0 0x40>;
-> +		interrupts =3D <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH 0>;
-> +		clocks =3D <&cru ACLK_JPEG_ENCODER2>, <&cru HCLK_JPEG_ENCODER2>;
-> +		clock-names =3D "aclk", "iface";
-> +		power-domains =3D <&power RK3588_PD_VDPU>;
-> +		#iommu-cells =3D <0>;
-> +	};
-> +
-> +	jpeg_enc3: video-codec@fdbac000 {
-> +		compatible =3D "rockchip,rk3588-vepu121", "rockchip,rk3568-vepu";
-> +		reg =3D <0x0 0xfdbac000 0x0 0x800>;
-> +		interrupts =3D <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH 0>;
-> +		clocks =3D <&cru ACLK_JPEG_ENCODER3>, <&cru HCLK_JPEG_ENCODER3>;
-> +		clock-names =3D "aclk", "hclk";
-> +		iommus =3D <&jpeg_enc3_mmu>;
-> +		power-domains =3D <&power RK3588_PD_VDPU>;
-> +	};
-> +
-> +	jpeg_enc3_mmu: iommu@fdbac800 {
-> +		compatible =3D "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
-> +		reg =3D <0x0 0xfdbac800 0x0 0x40>;
-> +		interrupts =3D <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH 0>;
-> +		clocks =3D <&cru ACLK_JPEG_ENCODER3>, <&cru HCLK_JPEG_ENCODER3>;
-> +		clock-names =3D "aclk", "iface";
-> +		power-domains =3D <&power RK3588_PD_VDPU>;
-> +		#iommu-cells =3D <0>;
-> +	};
-> +
->  	av1d: video-codec@fdc70000 {
->  		compatible =3D "rockchip,rk3588-av1-vpu";
->  		reg =3D <0x0 0xfdc70000 0x0 0x800>;
-> --=20
-> 2.44.0
->=20
-
---3n3gcsm6jabdcoyz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmYEWyAACgkQ2O7X88g7
-+pp64g//VuBdzDZqo0tjZDv6WWUacbktDLhSTLzmhgvHqXd4ANQlWsPWHs9MxVD2
-Q5llAWFD7WNAXQSAaoUNSCXyC1akYQanSqZMJrDFHbeTFw5lSDVkZZ57TsEchhJv
-CUwulPRlu+zv1gDf3kQNtd7QvWBPimS5gdJf4KnP5rtiLn/ZUZQm7c7XbbNdCxtL
-wwUAHb4JN/DDWlwXhnbdvEfOG7/ejqY2xwxNDPjUxftdVh1w0OZLksUCxYwqfUvd
-dzxry+uCLv94IwLQyOs31vmIy858r0pHo6H6mNfG4dTmp/A1L7MaxXaMy/bO+huk
-obWVHt7AYio8cu4WWWXYN7relACBX8Ktrojo40TQAs1Te581x4vfLMWLu8X6vp/y
-dgsDAQjcrjmfVaFyWStn+5HaUBQNG0IGcvdQ3yWiFCi1qoSMkmLM0lZEJZ/Syq8r
-VKcjw5fkYPxkncvcEIzGsRZ/PUK8zS6ezTUv5+SRBg3PzUNEnS7+Y805VIHczcWy
-+/0GN5ufEIj8yV78Y+L1q2Y7QPteEtAIts+aCGCyXONZeMM2C6MCfr/4CiAEGT99
-rlqUBIqZA11cyyykCtx3FVk1yR8iWeahExJSOrkNxWG9TIRYFPX3BhMWWJDMCgEC
-yPi57J8vQF0ZQS2YE+NBqUuGO+tFJDO/yyCYMMstDV9qJNSAugI=
-=GOki
------END PGP SIGNATURE-----
-
---3n3gcsm6jabdcoyz--
 
