@@ -1,136 +1,90 @@
-Return-Path: <devicetree+bounces-53922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53926-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 524EF88ED9D
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 19:07:07 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1727388EE07
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 19:16:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D77D21F252CF
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 18:07:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 47B111C33303
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 18:16:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FB4814D45F;
-	Wed, 27 Mar 2024 18:07:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7678150985;
+	Wed, 27 Mar 2024 18:14:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I0wk9Ph0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JaEgEDzX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3818B14D447;
-	Wed, 27 Mar 2024 18:07:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BF4E150983;
+	Wed, 27 Mar 2024 18:14:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711562823; cv=none; b=d0CfFefptJclNlmUKe0QER/ajR5Y5eWc4jttG4vB0e2EMvgpY6EldV/GC5+erBV15nn4AS9xQmvKg9UwUVPYpuP7JGC0y+vXgvfvinh4Yg1aZYxLhnpS5Y+m6/hU/nnrXq0eEZnGlTcwISzLVrjJo0Rk1pcXMNT3+zS40e9vAlg=
+	t=1711563293; cv=none; b=jh9xjMshWBmWcMvgI1VT5T9Jg12NcmxSx028Vd/V9N/50aJnOezwxjZBADeWD1+4U/YektjCIH6HSAJh2BDfhJgOEuweaDUx7J1JYe8J9iVfjZhco6JrulCVugVgEeM6cPmuFJW6C4qT2kbPlimHz2V0+ffGOwrTUDxPSLhgqSs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711562823; c=relaxed/simple;
-	bh=/bu3JpKJr0qnVs//UM1Yw62jMcXqbFvPuluMhcemfBk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O19SciHkhazHjwB3JC2BhEfb5KL2WB6HDEUmwst2OyigoF0Ilr04WBTmLzzfp2K0t1tyUN3lsomU1OQaARj/BhmkgvTRkxQUVVxOOvuO33OW69BTcOcYvSZj3BT7T6glb+CZnTkFopaAa2XGX4K/2wr6PS5UPJ9Ux5jzfFpJU1E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I0wk9Ph0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4F87C433A6;
-	Wed, 27 Mar 2024 18:07:00 +0000 (UTC)
+	s=arc-20240116; t=1711563293; c=relaxed/simple;
+	bh=KLbPJmLCts0Ne68/m/5wl8vQWpwEDw1br77DIn3g5Lc=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=uL/LBk0NHYm7VwUQ6kmgNPoCxMJTuRNdUzZkh7JPFMjSGDJQzmhlZdQ1BwAPFNuZraT8dL7jQFQutt418Du1sxnNhp7clUdVtzv2bJR0+YEUa0uk4Fhl416O7zpHT7+rzbFtrTEYjGPXrGQyrTVPTPvFBpWZA1099gQO8a+eUm0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JaEgEDzX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA168C433F1;
+	Wed, 27 Mar 2024 18:14:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711562822;
-	bh=/bu3JpKJr0qnVs//UM1Yw62jMcXqbFvPuluMhcemfBk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=I0wk9Ph0DhJ4VlgbRH0d78KXTKNFsEUmzcYHqfxk5mODxKk7rXnpm0PiYFuMIs6hI
-	 6P6HOATZW6Bh2JmaKrsjSj3pDKSmbdBuVcUpH8yO0c/nir7cEtxxg8HZob7vTKxZG0
-	 wmidW7OSGxrIHc/Bcy5+AMgTFrfbbg7+6WD/0wElzC9hW2mS90RBn9ju1xkQAJ3ll4
-	 +pXN2N7HN/hWdRj/kkTTNmgAHkD8rxhtYLOQ5GF4SCM3wajKaNUqIPkhQqugyTxqFg
-	 N8AF2GxZ4pOotjVpRSMSHfX0PR0hDYZEnWc9eqPAezpJJuoiNae5socdBEdJyus7e/
-	 fF1UJDXmbMJHQ==
-Date: Wed, 27 Mar 2024 18:06:58 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Jisheng Zhang <jszhang@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 6/6] riscv: dts: starfive: add Milkv Mars board device
- tree
-Message-ID: <20240327-cotton-fang-37f6d8fde0e5@spud>
-References: <20240131132600.4067-1-jszhang@kernel.org>
- <20240131132600.4067-7-jszhang@kernel.org>
- <20240206-magma-deem-2c88e45a545a@spud>
+	s=k20201202; t=1711563293;
+	bh=KLbPJmLCts0Ne68/m/5wl8vQWpwEDw1br77DIn3g5Lc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=JaEgEDzXQQD16OJcGASfUkhWovV2ugdotj5Dp5bdXmZyhQINj1tJmigtTkW7c/0JI
+	 TcH/PR0UdNMVmZDcc4hmZ8m9LlyFmYv5rrmxjHgWLgciI/Z+xkHh8aV5Efxvs59iVP
+	 AZC34kXxChmB/gAqKc2mAi8+hB3g5q+ig5MrH7iEeVfqw2iNadzng6rEZyJAZs2KIf
+	 dbLlE6GT4a0TIQ7hNf10shKE8ToEgr6EVQaQri9GHp1Su7QmTiRrDEjCyHB8yEHjwn
+	 XFxR6SdkWvV6iA1b+76bXGqLmZTNlNn3M4rJVEM3JIr0G/Obk29QXo9RB+YD4sLeGj
+	 dmnB1d/fWSP5w==
+Date: Wed, 27 Mar 2024 13:14:51 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc: "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+	"kw@linux.com" <kw@linux.com>, "robh@kernel.org" <robh@kernel.org>,
+	"bhelgaas@google.com" <bhelgaas@google.com>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+	"gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
+	"mani@kernel.org" <mani@kernel.org>,
+	"marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH v2 5/6] PCI: dwc: rcar-gen4: Add support for other R-Car
+ Gen4 PCIe controller
+Message-ID: <20240327181451.GA1531625@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="0VltnKYIOb8VcZm1"
-Content-Disposition: inline
-In-Reply-To: <20240206-magma-deem-2c88e45a545a@spud>
-
-
---0VltnKYIOb8VcZm1
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <TYCPR01MB110402EB3E15B3471C7F526C7D8342@TYCPR01MB11040.jpnprd01.prod.outlook.com>
 
-Yo,
+On Wed, Mar 27, 2024 at 05:32:57AM +0000, Yoshihiro Shimoda wrote:
+> > From: Bjorn Helgaas, Sent: Wednesday, March 27, 2024 5:49 AM
 
-On Tue, Feb 06, 2024 at 07:13:48PM +0000, Conor Dooley wrote:
-> On Wed, Jan 31, 2024 at 09:26:00PM +0800, Jisheng Zhang wrote:
-> > The Milkv Mars is a development board based on the Starfive JH7110 SoC.
-> > The board features:
-> >=20
-> > - JH7110 SoC
-> > - 1/2/4/8 GiB LPDDR4 DRAM
-> > - AXP15060 PMIC
-> > - 40 pin GPIO header
-> > - 3x USB 3.0 host port
-> > - 1x USB 2.0 host port
-> > - 1x M.2 E-Key
-> > - 1x eMMC slot
-> > - 1x MicroSD slot
-> > - 1x QSPI Flash
-> > - 1x 1Gbps Ethernet port
-> > - 1x HDMI port
-> > - 1x 2-lane DSI and 1x 4-lane DSI
-> > - 1x 2-lane CSI
-> >=20
-> > Add the devicetree file describing the currently supported features,
-> > namely PMIC, UART, I2C, GPIO, SD card, QSPI Flash, eMMC and Ethernet.
-> >=20
-> > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
->=20
-> Got a dtbs_check issue in the patchwork CI:
->=20
->   +arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dtb: gmac1-rgmii-rxin-c=
-lock: 'clock-frequency' is a required property
->   +	from schema $id: http://devicetree.org/schemas/clock/fixed-clock.yaml#
->   +arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dtb: gmac1-rmii-refin-c=
-lock: 'clock-frequency' is a required property
->   +	from schema $id: http://devicetree.org/schemas/clock/fixed-clock.yaml#
->=20
-> Can you fix that please? Also, I applied some patches the other day that
-> seem to conflict quite a bit with the common board dts patch. Would you
-> please do a rebase on top of that please?
+> > >  static int rcar_gen4_pcie_get_resources(struct rcar_gen4_pcie *rcar)
+> > >  {
+> > > +	rcar->phy_base = devm_platform_ioremap_resource_byname(rcar->pdev, "phy");
+> > > +	if (IS_ERR(rcar->phy_base))
+> > > +		return PTR_ERR(rcar->base);
+> > 
+> > I don't get it.  This imposes a new requirement (presence of "phy"
+> > resource) on the existing SoCs.  That doesn't sound right.
+> 
+> According to the dt-binding doc, the existing SoCs are also required
+> for the "phy".  That's why I didn't add any condition to simplify
+> the code.
 
-Been going through stuff on my todo list now that the merge window is
-closed. Could you please resend this with the rebase done?
-
-Thanks,
-Conor.
-
---0VltnKYIOb8VcZm1
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgRgQgAKCRB4tDGHoIJi
-0pBPAQCiBXJv2E98EL2KnrNrG4R6lov/fM6sLaACMedaJDc7uQD+L4Rwr/7Nrzcv
-3NycjRUFPZtsx0EM7+vyd1cyKFonnw4=
-=lyg8
------END PGP SIGNATURE-----
-
---0VltnKYIOb8VcZm1--
+Is there anything that enforces that?  Is it possible that DTs exist
+in the field without it?  We don't want to break any existing setup.
 
