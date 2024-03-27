@@ -1,72 +1,85 @@
-Return-Path: <devicetree+bounces-53891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53892-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 532A688EAD5
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 17:14:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 215EC88EAE2
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 17:16:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A9ED02A6362
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 16:14:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CDE728406C
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 16:16:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC21113B2B3;
-	Wed, 27 Mar 2024 16:09:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0D0612D76A;
+	Wed, 27 Mar 2024 16:16:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QfKe9Umm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="afq6nzfs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 936E712EBEE;
-	Wed, 27 Mar 2024 16:09:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B1CE42A91;
+	Wed, 27 Mar 2024 16:16:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711555751; cv=none; b=q71nmb8lmwKrRpmVBtN0O/kgglyv4TashyrueNMX/FAqYcZFpge49Bg3AHgK6MD414XKB6kvbnWkfTHnsrKSl4RK0MsrwqRS2PG+RvLcYuN1RNJsLgHdl71deqEzmePM62++ixky8AdbaabSWxTexsiJszeiKiPVUwcCJAqIvY8=
+	t=1711556177; cv=none; b=lO5vQ9Owg8p3Hvs72DSZ2x9lICrOs3YR8ckJc2bP73d1q4/bllIw7U1Ui0ZVxzoXQoreGubZEKA2QLXh2+mrzc2TFV76RiZDYFX+pkXUkE22JxgrmF4LcO6S6yo5br8RgePjGBe6ArrBQtyKLGnAekRgQqyyEhB7/L7PXyJqDp0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711555751; c=relaxed/simple;
-	bh=7T5BGCgr9wS3JyIXUuZj45o2W4RjyxGPRlRV3KjkiR4=;
+	s=arc-20240116; t=1711556177; c=relaxed/simple;
+	bh=On495Vosho8yghuPe/ZcVehrvgix78EySfxCo6i6kY8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h9kLJ6LFfWK47WXG3itkmVlvh8LxQUWZs6UZKWNSlQ3iSsb/RxjgMBmXng2Vvj86mceDib/skeQh0TC4Z1PWgWwRVfkkXsep502Qmddz1L5YpbaT/oBGjC0Do4bhzvRmSaErrFbxZUqwVMI5i0a4pDo9NZMaclQalCswJHI/QYc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QfKe9Umm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1317C433F1;
-	Wed, 27 Mar 2024 16:09:10 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z+opMG5L+mMnnm9+EZpVPLYvhXkM+TZ/Oov3Wea/FE2H7hUd1ojdSGt5v8+H6bwfVo3t/puUXt43JPM+5EDVaLj9maqkM70U2YpEhaLpcRItvHrvrKsGJqNFGJVleo0Lg3jcwUWewKJJ4kARuqSHbt6p3IIsE1imUxEmbZhM2zM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=afq6nzfs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5CADC433C7;
+	Wed, 27 Mar 2024 16:16:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711555751;
-	bh=7T5BGCgr9wS3JyIXUuZj45o2W4RjyxGPRlRV3KjkiR4=;
+	s=k20201202; t=1711556177;
+	bh=On495Vosho8yghuPe/ZcVehrvgix78EySfxCo6i6kY8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QfKe9Ummb1Wuiv7L+kpncdWozSCKk+PB5D7rWUWkaFNAYfRZn+DbpcVO8s3vi7eib
-	 keLxWh1PKWe1ExQ5TlqVM3uIoz7SWDP//aVLfwNcdej7PmjfdMSr2s5N/8jacJDsFQ
-	 F0O7zMTBXtsW2CVAMdGb4b8792vbVzKZ1F6Mp9ah1dmHgaqsl7QjS139fzp+SmOVPA
-	 YJyXd7N01LS1PLAyLV35txUfhWcm44u/suRDKJuE0azWKWY+acumVfleERK4obiicW
-	 76MqOyHrAFAzNK7zdJEFXasTxmGDMk9ZJ2j4UxXapOCz49IN/Ey6r/pc42SlIiXyVN
-	 M1cdgflipBJ8w==
-Date: Wed, 27 Mar 2024 11:09:08 -0500
-From: Rob Herring <robh@kernel.org>
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
+	b=afq6nzfsTajwNl8LvbUonLyvoZy88ahtEF+Fkmr8Gp55VWkjLs02RvASLRTcGlPw9
+	 A3k0+c1v5Oru+8yj3BFHimVUIVe4OlixbdFKebF2ujjugw6eNhDo/O9u9W8H8tIN3l
+	 YydxW0Vv+8AEQLXDLSm04PLqYwyGSDe6yaspn7eTWUW80gV+PCVCEWC7il7Ul4mNrY
+	 SwqO6F0OkjmS2ihwcJsLxTCZShaQsiShwljjoSa214PxaVDT/DjdHpGCmWS9dlAORe
+	 v7dPwEHLncbOl4VOkta++OzMHyOOBBuAXEiCm2WRsWW2f74aR42cEmKBCqEIFLKCDP
+	 Q2VEXR1vc5xmg==
+Date: Wed, 27 Mar 2024 16:16:07 +0000
+From: Simon Horman <horms@kernel.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Marcel Holtmann <marcel@holtmann.org>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Kocialkowski <contact@paulk.fr>,
-	=?iso-8859-1?Q?Herv=E9?= Codina <herve.codina@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Subject: Re: [PATCH 1/4] dt-bindings: display: bridge: add the Hot-plug MIPI
- DSI connector
-Message-ID: <20240327160908.GA3460963-robh@kernel.org>
-References: <20240326-hotplug-drm-bridge-v1-0-4b51b5eb75d5@bootlin.com>
- <20240326-hotplug-drm-bridge-v1-1-4b51b5eb75d5@bootlin.com>
+	Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Alex Elder <elder@linaro.org>,
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Abel Vesa <abel.vesa@linaro.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Lukas Wunner <lukas@wunner.de>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-wireless@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH v6 12/16] PCI/pwrctl: add PCI power control core code
+Message-ID: <20240327161607.GQ403975@kernel.org>
+References: <20240325131624.26023-1-brgl@bgdev.pl>
+ <20240325131624.26023-13-brgl@bgdev.pl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,67 +88,133 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240326-hotplug-drm-bridge-v1-1-4b51b5eb75d5@bootlin.com>
+In-Reply-To: <20240325131624.26023-13-brgl@bgdev.pl>
 
-On Tue, Mar 26, 2024 at 05:28:11PM +0100, Luca Ceresoli wrote:
-> Add bindings for a physical, hot-pluggable connector allowing the far end
-> of a MIPI DSI bus to be connected and disconnected at runtime.
+On Mon, Mar 25, 2024 at 02:16:20PM +0100, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> ---
->  .../bridge/hotplug-video-connector-dsi.yaml        | 87 ++++++++++++++++++++++
->  MAINTAINERS                                        |  5 ++
->  2 files changed, 92 insertions(+)
+> Some PCI devices must be powered-on before they can be detected on the
+> bus. Introduce a simple framework reusing the existing PCI OF
+> infrastructure.
 > 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/hotplug-video-connector-dsi.yaml b/Documentation/devicetree/bindings/display/bridge/hotplug-video-connector-dsi.yaml
+> The way this works is: a DT node representing a PCI device connected to
+> the port can be matched against its power control platform driver. If
+> the match succeeds, the driver is responsible for powering-up the device
+> and calling pcie_pwrctl_device_set_ready() which will trigger a PCI bus
+> rescan as well as subscribe to PCI bus notifications.
+> 
+> When the device is detected and created, we'll make it consume the same
+> DT node that the platform device did. When the device is bound, we'll
+> create a device link between it and the parent power control device.
+> 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+
+Hi Bartosz,
+
+some minor Kernel doc nits from my side.
+
+...
+
+> diff --git a/drivers/pci/pwrctl/core.c b/drivers/pci/pwrctl/core.c
+
+...
+
+> +/**
+> + * devm_pci_pwrctl_device_set_ready - Managed variant of
+> + * pci_pwrctl_device_set_ready().
+> + *
+
+nit: @dev should be documented here
+
+> + * @pwrctl: PCI power control data
+> + *
+> + * Returns:
+> + * 0 on success, negative error number on error.
+> + */
+> +int devm_pci_pwrctl_device_set_ready(struct device *dev,
+> +				     struct pci_pwrctl *pwrctl)
+> +{
+> +	int ret;
+> +
+> +	ret = pci_pwrctl_device_set_ready(pwrctl);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return devm_add_action_or_reset(dev,
+> +					devm_pci_pwrctl_device_unset_ready,
+> +					pwrctl);
+> +}
+> +EXPORT_SYMBOL_GPL(devm_pci_pwrctl_device_set_ready);
+> +
+> +MODULE_AUTHOR("Bartosz Golaszewski <bartosz.golaszewski@linaro.org>");
+> +MODULE_DESCRIPTION("PCI Device Power Control core driver");
+> +MODULE_LICENSE("GPL");
+> diff --git a/include/linux/pci-pwrctl.h b/include/linux/pci-pwrctl.h
 > new file mode 100644
-> index 000000000000..05beb8aa9ab4
+> index 000000000000..ae8324ea7eeb
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/hotplug-video-connector-dsi.yaml
-> @@ -0,0 +1,87 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/bridge/hotplug-video-connector-dsi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +++ b/include/linux/pci-pwrctl.h
+> @@ -0,0 +1,51 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (C) 2024 Linaro Ltd.
+> + */
 > +
-> +title: Hot-pluggable connector on a MIPI DSI bus
+> +#ifndef __PCI_PWRCTL_H__
+> +#define __PCI_PWRCTL_H__
 > +
-> +maintainers:
-> +  - Luca Ceresoli <luca.ceresoli@bootlin.com>
+> +#include <linux/notifier.h>
 > +
-> +description:
-> +  A bridge representing a physical, hot-pluggable connector on a MIPI DSI
-> +  video bus. The connector splits the video pipeline in a fixed part and a
-> +  removable part.
+> +struct device;
+> +struct device_link;
 > +
-> +  The fixed part of the video pipeline includes all components up to the
-> +  display controller and 0 or more bridges. The removable part includes one
-> +  or more bridges and any other components up to the panel.
+> +/*
+> + * This is a simple framework for solving the issue of PCI devices that require
+> + * certain resources (regulators, GPIOs, clocks) to be enabled before the
+> + * device can actually be detected on the PCI bus.
+> + *
+> + * The idea is to reuse the platform bus to populate OF nodes describing the
+> + * PCI device and its resources, let these platform devices probe and enable
+> + * relevant resources and then trigger a rescan of the PCI bus allowing for the
+> + * same device (with a second associated struct device) to be registered with
+> + * the PCI subsystem.
+> + *
+> + * To preserve a correct hierarchy for PCI power management and device reset,
+> + * we create a device link between the power control platform device (parent)
+> + * and the supplied PCI device (child).
+> + */
 > +
-> +  The removable part of the pipeline can be physically disconnected at any
-> +  moment, making all of its components not usable anymore. The same or a
-> +  different removable part of the pipeline can be reconnected later on.
-> +
-> +  Note that the hotplug-video-connector does not describe video busses
-> +  having native hotplug capabilities in the hardware, such as HDMI.
-> +
-> +properties:
-> +  compatible:
-> +    const: hotplug-video-connector-dsi
+> +/**
+> + * struct pci_pwrctl - PCI device power control context.
+> + * @dev - Address of the power controlling device.
 
-Got a spec for this connector? How do I know if I have one or not?
+nit: I think this should be "@dev: " rather than "@dev - "
+     As is, "./scripts/kernel-doc -none" complains.
+> + *
+> + * An object of this type must be allocated by the PCI power control device and
+> + * passed to the pwrctl subsystem to trigger a bus rescan and setup a device
+> + * link with the device once it's up.
+> + */
+> +struct pci_pwrctl {
+> +	struct device *dev;
+> +
+> +	/* Private, don't use. */
 
-The problem here is what else is on this connector? GPIO controls, 
-power rails, etc.?
+I think Private needs to be followed by a ':' rather than a ',' to keep
+kernel-doc happy.
 
-If this is some kind of standard connector, then we need to be able to 
-remap everything on the connector not just DSI signals. And for that, 
-it's not just DSI signals, so I'd say we would need some sort of generic 
-graph remapping that the core graph code handles transparently.
-
- If it is not standard, then you don't need any remapping and can just 
-use an overlay that connects the ports directly.
-
-Rob
+> +	struct notifier_block nb;
+> +	struct device_link *link;
+> +};
+> +
+> +int pci_pwrctl_device_set_ready(struct pci_pwrctl *pwrctl);
+> +void pci_pwrctl_device_unset_ready(struct pci_pwrctl *pwrctl);
+> +int devm_pci_pwrctl_device_set_ready(struct device *dev,
+> +				     struct pci_pwrctl *pwrctl);
+> +
+> +#endif /* __PCI_PWRCTL_H__ */
+> -- 
+> 2.40.1
+> 
+> 
 
