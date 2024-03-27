@@ -1,146 +1,314 @@
-Return-Path: <devicetree+bounces-53958-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53959-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9051688F0D1
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 22:22:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7627188F0D7
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 22:24:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 24B531F23147
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 21:22:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D57929A4E5
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 21:24:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F3A2153578;
-	Wed, 27 Mar 2024 21:22:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E01D153509;
+	Wed, 27 Mar 2024 21:24:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cXlcGQOX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y6doAP29"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 138F053371
-	for <devicetree@vger.kernel.org>; Wed, 27 Mar 2024 21:22:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2912628366;
+	Wed, 27 Mar 2024 21:24:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711574563; cv=none; b=cRYyrMAVF3b0aSgOwKrMGCriEpWyP57cTUdN2PiaUmfu0RwfqY96iEv41HUsfTvapXTsxM/s4H/OuhXwMvfr36Xq4x8gPzPGb3hu9f4qOlSCvJQNEPKYimHhOx8Y7aSsIaKD1HYJiqVM2J5GKvOBRl3fccSximywpP1zfh7Jt6E=
+	t=1711574689; cv=none; b=IrPFdKWkyD3cEb+W2IbKcR72Mj/txzvRyld95tZl69xgrSB5BHfXjTgoaYZpY6dWmf+QcvhEzgqAdbzXHGE9rRuqbSXbBp6krMAaChxIfgx0OHj0eautEMOaU+W49h2w96nIhZPIP8tO7Aqk+kBwt7zz8hVf1ROCxyBHACH/+eM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711574563; c=relaxed/simple;
-	bh=zwXZFcizE/oIpPUenN3sh8/KZC9xUh/LaMK+UNjBwWc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ULEQWZyhfpRcTLdo4K4ZZsKXPuBPPiwSSyyphdW6+Os+MJfB7MHr40lyNXnjQN5WOq64Tc6UCo95UoaHa9vU6fsFA32WCorRimMHqlyJnmAdoWOpT5ylp7DavNRGIPOZ77bz7NuQM7obi3RxJmujH+eqhWKNLTql+H4hvHBJKhA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cXlcGQOX; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-515c198e835so222263e87.3
-        for <devicetree@vger.kernel.org>; Wed, 27 Mar 2024 14:22:39 -0700 (PDT)
+	s=arc-20240116; t=1711574689; c=relaxed/simple;
+	bh=AT9KFGQQ9sqHmU0GvGUAx/lXcN4gMV2bNh15AQJ+3Ug=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=YWKXFHCFtZKgbLepnaN18GX1KpRHN3bqyOiAmyzlhryj49eRjQRW4Y/MbYwktPx0t+isLa+BhNdWXrlUEExDfUQ1/mu6TZ1TWUUIQJ653C1PkF5SHWlnPQXVWUAQ4jSIzskPlM3Wh/Z31oWgHq6VPoPUHWXs+yEF0AjicErnq38=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y6doAP29; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a4734ae95b3so35726166b.0;
+        Wed, 27 Mar 2024 14:24:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711574558; x=1712179358; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=oALEYX4wCloumYcO5F1iTn4rufRV5N52BfWH35gQd8Q=;
-        b=cXlcGQOXOU7MVYsKaw5Vlbyn92Nfr6JHmueNUy5ed3JG762LMPvjM83Q6w+glKW6TO
-         t9omOW/aTUyfZt9D8z8SndbxJ9DeFhIm52+B1l0fKV6jzGUL4RULiVxIm/8BONpFC+7G
-         vnJeGt+qX6SnqAcqNhleSTKVsB6zhQ1TztdE+Obr3hD9Y8HqZ1Eqexu0FWW36bmTCmDz
-         ZhmotG1iT3/xa+8Tuxjooj1oXxtRX4pgWM5tuSrW+exk8ROEjEX+cCgfEixySc7kBCWl
-         1wfGHCYaddeTvKocxs17rk6MHdP7IGzDcnFpqeutBBH6lxWxlLJKfOgbqeJkX0cPijU/
-         eE9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711574558; x=1712179358;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1711574686; x=1712179486; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=oALEYX4wCloumYcO5F1iTn4rufRV5N52BfWH35gQd8Q=;
-        b=o65BtCggO5x7UbtUE9d1Uvt4rMLbdBEzDb17qh7x4orro3r45C+WjHxHeEkwVa+dD0
-         CcotNmkjRHMX4turJKyFxggv8WxvMSkdrAM5c6Vtu8qNKdMlAbq03l2O7phYmMgioKN6
-         QlFGVggvBiU/BAnP3Vy3a5Ij0ICSZBCuVEFLUZFnKk9ouvRoJJdjzV1S93HESFlsAmNX
-         GD1OrivncvGidBWy6v9dgXVqkB8Rl07XpkyVsta7ZkJmbyyZmiF9UHY7hvLmLRmF36Fs
-         0ntR7yM07n7PXSVHiX6a5yH2gsDfD6KibQd917Ffp3ff9fkyLt/c+tZExnCK+xnANDql
-         JZxQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXXuW5jzilPsfNgc59bdwiRAgKqYYZViNXLYnHjsbWiwZAwPQSrc7HyH1yuRm6dL20LeSFE1r47K5Qdxwe+5viWBcysJm1hdY6jSw==
-X-Gm-Message-State: AOJu0Yw7z1QOexuXzWkg8rr+R706mgys0/dnRzDPU/DJUA2kDolMN1jm
-	/568Rf5EfoFYcyRB03iUJvcELiyZ8n+30oBtYL2hx1LT8cAn26jUmZE8vdloWiw=
-X-Google-Smtp-Source: AGHT+IGgeMEwtinQEW49E32+z5iIKlqj9TXhI5lxYCeye/JWxAG+NNeaLWLiRirjjwew7ciIrnLaLQ==
-X-Received: by 2002:ac2:5a0f:0:b0:512:f6a0:1311 with SMTP id q15-20020ac25a0f000000b00512f6a01311mr452086lfn.47.1711574558059;
-        Wed, 27 Mar 2024 14:22:38 -0700 (PDT)
-Received: from [192.168.92.47] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
-        by smtp.gmail.com with ESMTPSA id jz7-20020a17090775e700b00a4576dd5a8csm5833405ejc.201.2024.03.27.14.22.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Mar 2024 14:22:37 -0700 (PDT)
-Message-ID: <b8217de2-3276-4d98-ab17-f36058c633ca@linaro.org>
-Date: Wed, 27 Mar 2024 22:22:35 +0100
+        bh=1eawYx38ABDnE1SDp1aNunxt7lkWGLWWm8mQqMXuM70=;
+        b=Y6doAP29YpColxQ09v01vFC8mEl0MuMKVDO1Zbjw6TZlsYLYPmL0V176g0BmXm3iv2
+         CQ+2q+tYGWgIERXXKhCFvcHO6Ykv1H4l+08F0PVlo/E5b8o3svjBSG9wqk8tBWZ8gqwS
+         /2nJRrIwkXK52/MCu4tSXnBPeN8UMAUFiiC1xB3WQ4odgv9TI6PBLCVXc1KseA3vPxwG
+         4LnzcXiQ5atNT2qefZcJEDGFXeRhSym0qXsD29SS4YVqCRiz09kxh9boPdw1PvWb1bYc
+         T+b1PgikErQRqYdGTnahk2mlyV92ITiAIsO3djtSBxeMV4AjLiJsI6Y91eLtADsYsZ3u
+         NsWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711574686; x=1712179486;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1eawYx38ABDnE1SDp1aNunxt7lkWGLWWm8mQqMXuM70=;
+        b=GKRa3X6SqBpVgXLMn6q3cWXXSZDsiO2Cz9xoq3zhwImyqzRAdWEKHQVWF4E+yzP2ef
+         CNpTA4Jyb/2L4kjePlMoN9duyCDgCetkDC4azaSuelQFPXErQCw9hrRMu35XaiRcyLP/
+         Rv0dFTqp4DdR8KsmmWvQ61xeP4TTYsEb/M+cWLbWG493IvLgkIbrck0ZIbBLYRgd4U37
+         bOtf9KGvHPtVgFiqpCsxvxgB66ANXHCEDiiMZ1b1VA2Syg60E/L3eqyBWVythn6rEygO
+         Bj7lssY8eCzVDOymIk1J3L6wPK743cA0RHilgN1e+ttU1+qk7MT1j75KVdYjdwrgIpTP
+         BM5A==
+X-Forwarded-Encrypted: i=1; AJvYcCUmm/G4DkysqRIQMzsOOv1s+Cwg8ISZ9L4h0NzBbi6b7VBDjykWx5m4wYZPzSlOJDVHo7RQC3g/zkWr8eYapt/VGn019KidEt9hRQ==
+X-Gm-Message-State: AOJu0YxsAcJfVNIAoG+AJFv6FuXn50GWQwNeWq2u9OyhJyrBkYSlVgVB
+	s747hn88JzLGBC6rE2Tg6WLtVnn1/dz+e2XgjKQdxULa2hOJp/LY
+X-Google-Smtp-Source: AGHT+IGYmY0ghm0yr8Pe9NEizV2ZCw3A+KRCLXyoDjDLsubmZrEcjNQyYa+mH5D0o38fVg9fCSXMwQ==
+X-Received: by 2002:a17:907:7255:b0:a46:be3d:1ed8 with SMTP id ds21-20020a170907725500b00a46be3d1ed8mr539387ejc.54.1711574686294;
+        Wed, 27 Mar 2024 14:24:46 -0700 (PDT)
+Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
+        by smtp.gmail.com with ESMTPSA id i1-20020a170906a28100b00a4668970f74sm5913600ejz.108.2024.03.27.14.24.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Mar 2024 14:24:45 -0700 (PDT)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Yangtao Li <tiny.windzz@gmail.com>, Viresh Kumar <vireshk@kernel.org>,
+ Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Samuel Holland <samuel@sholland.org>,
+ "Rafael J . Wysocki" <rafael@kernel.org>,
+ Andre Przywara <andre.przywara@arm.com>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ Brandon Cheo Fusi <fusibrandon13@gmail.com>,
+ Martin Botka <martin.botka@somainline.org>,
+ Martin Botka <martin.botka1@gmail.com>,
+ Chris Morgan <macroalpha82@gmail.com>, Ryan Walklin <ryan@testtoast.com>
+Subject: Re: [PATCH v3 7/8] arm64: dts: allwinner: h616: Add CPU OPPs table
+Date: Wed, 27 Mar 2024 22:24:44 +0100
+Message-ID: <114106220.nniJfEyVGO@jernej-laptop>
+In-Reply-To: <20240326114743.712167-8-andre.przywara@arm.com>
+References:
+ <20240326114743.712167-1-andre.przywara@arm.com>
+ <20240326114743.712167-8-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/7] clk: qcom: Add Display Clock Controller driver for
- SM7150
-To: Danila Tikhonov <danila@jiaxyga.com>, andersson@kernel.org,
- mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- david@mainlining.org, adrian@travitia.xyz
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240321202814.59835-1-danila@jiaxyga.com>
- <20240321202814.59835-4-danila@jiaxyga.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20240321202814.59835-4-danila@jiaxyga.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 
-On 21.03.2024 9:28 PM, Danila Tikhonov wrote:
-> Add support for the display clock controller found on SM7150.
+Dne torek, 26. marec 2024 ob 12:47:42 CET je Andre Przywara napisal(a):
+> From: Martin Botka <martin.botka@somainline.org>
 > 
-> Co-developed-by: David Wronek <david@mainlining.org>
-> Signed-off-by: David Wronek <david@mainlining.org>
-> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
+> Add an Operating Performance Points table for the CPU cores to enable
+> Dynamic Voltage & Frequency Scaling (DVFS) on the H616.
+> The values were taken from the BSP sources. The (newer) H700 chips we
+> have seen seem to use a separate speed bin, its OPP values were taken
+> from a live system and added to the mix.
+> 
+> Also add the needed cpu_speed_grade nvmem cell and the cooling cells
+> properties, to enable passive cooling.
+> 
+> Signed-off-by: Martin Botka <martin.botka@somainline.org>
+> [Andre: rework to minimise opp-microvolt properties]
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 > ---
+>  .../dts/allwinner/sun50i-h616-cpu-opp.dtsi    | 125 ++++++++++++++++++
+>  .../arm64/boot/dts/allwinner/sun50i-h616.dtsi |   8 ++
+>  2 files changed, 133 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h616-cpu-opp.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-cpu-opp.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616-cpu-opp.dtsi
+> new file mode 100644
+> index 0000000000000..6073fdf672592
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-cpu-opp.dtsi
+> @@ -0,0 +1,125 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +// Copyright (C) 2023 Martin Botka <martin@somainline.org>
+> +
+> +/ {
+> +	cpu_opp_table: opp-table-cpu {
+> +		compatible = "allwinner,sun50i-h616-operating-points";
+> +		nvmem-cells = <&cpu_speed_grade>;
+> +		opp-shared;
+> +
+> +		opp-480000000 {
+> +			opp-hz = /bits/ 64 <480000000>;
+> +			opp-microvolt = <900000>;
 
-Please drop CLK_GET_RATE_NOCACHE as it should not be necessary
-(the rate of the clocks in question should not change without the
-clock framework's knowledge)
+Ideally triplet of voltages should be specified, to support PMIC-less boards,
+but that's unlikely to happen with these SoCs.
 
-I think it looks good otherwise
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-Konrad
+Best regards,
+Jernej
+
+> +			clock-latency-ns = <244144>; /* 8 32k periods */
+> +			opp-supported-hw = <0x3f>;
+> +		};
+> +
+> +		opp-600000000 {
+> +			opp-hz = /bits/ 64 <600000000>;
+> +			opp-microvolt = <900000>;
+> +			clock-latency-ns = <244144>; /* 8 32k periods */
+> +			opp-supported-hw = <0x12>;
+> +		};
+> +
+> +		opp-720000000 {
+> +			opp-hz = /bits/ 64 <720000000>;
+> +			opp-microvolt = <900000>;
+> +			clock-latency-ns = <244144>; /* 8 32k periods */
+> +			opp-supported-hw = <0x2d>;
+> +		};
+> +
+> +		opp-792000000 {
+> +			opp-hz = /bits/ 64 <792000000>;
+> +			opp-microvolt-speed1 = <900000>;
+> +			opp-microvolt-speed4 = <940000>;
+> +			clock-latency-ns = <244144>; /* 8 32k periods */
+> +			opp-supported-hw = <0x12>;
+> +		};
+> +
+> +		opp-936000000 {
+> +			opp-hz = /bits/ 64 <936000000>;
+> +			opp-microvolt = <900000>;
+> +			clock-latency-ns = <244144>; /* 8 32k periods */
+> +			opp-supported-hw = <0x0d>;
+> +		};
+> +
+> +		opp-1008000000 {
+> +			opp-hz = /bits/ 64 <1008000000>;
+> +			opp-microvolt-speed0 = <950000>;
+> +			opp-microvolt-speed1 = <940000>;
+> +			opp-microvolt-speed2 = <950000>;
+> +			opp-microvolt-speed3 = <950000>;
+> +			opp-microvolt-speed4 = <1020000>;
+> +			clock-latency-ns = <244144>; /* 8 32k periods */
+> +			opp-supported-hw = <0x1f>;
+> +		};
+> +
+> +		opp-10320000 {
+> +			opp-hz = /bits/ 64 <1032000000>;
+> +			opp-microvolt = <900000>;
+> +			clock-latency-ns = <244144>; /* 8 32k periods */
+> +			opp-supported-hw = <0x20>;
+> +		};
+> +
+> +		opp-1104000000 {
+> +			opp-hz = /bits/ 64 <1104000000>;
+> +			opp-microvolt-speed0 = <1000000>;
+> +			opp-microvolt-speed2 = <1000000>;
+> +			opp-microvolt-speed3 = <1000000>;
+> +			opp-microvolt-speed5 = <950000>;
+> +			clock-latency-ns = <244144>; /* 8 32k periods */
+> +			opp-supported-hw = <0x2d>;
+> +		};
+> +
+> +		opp-1200000000 {
+> +			opp-hz = /bits/ 64 <1200000000>;
+> +			opp-microvolt-speed0 = <1050000>;
+> +			opp-microvolt-speed1 = <1020000>;
+> +			opp-microvolt-speed2 = <1050000>;
+> +			opp-microvolt-speed3 = <1050000>;
+> +			opp-microvolt-speed4 = <1100000>;
+> +			opp-microvolt-speed5 = <1020000>;
+> +			clock-latency-ns = <244144>; /* 8 32k periods */
+> +			opp-supported-hw = <0x3f>;
+> +		};
+> +
+> +		opp-1320000000 {
+> +			opp-hz = /bits/ 64 <1320000000>;
+> +			opp-microvolt = <1100000>;
+> +			clock-latency-ns = <244144>; /* 8 32k periods */
+> +			opp-supported-hw = <0x1d>;
+> +		};
+> +
+> +		opp-1416000000 {
+> +			opp-hz = /bits/ 64 <1416000000>;
+> +			opp-microvolt = <1100000>;
+> +			clock-latency-ns = <244144>; /* 8 32k periods */
+> +			opp-supported-hw = <0x2d>;
+> +		};
+> +
+> +		opp-1512000000 {
+> +			opp-hz = /bits/ 64 <1512000000>;
+> +			opp-microvolt-speed1 = <1100000>;
+> +			opp-microvolt-speed3 = <1100000>;
+> +			opp-microvolt-speed5 = <1160000>;
+> +			clock-latency-ns = <244144>; /* 8 32k periods */
+> +			opp-supported-hw = <0x2a>;
+> +		};
+> +	};
+> +};
+> +
+> +&cpu0 {
+> +	operating-points-v2 = <&cpu_opp_table>;
+> +};
+> +
+> +&cpu1 {
+> +	operating-points-v2 = <&cpu_opp_table>;
+> +};
+> +
+> +&cpu2 {
+> +	operating-points-v2 = <&cpu_opp_table>;
+> +};
+> +
+> +&cpu3 {
+> +	operating-points-v2 = <&cpu_opp_table>;
+> +};
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+> index b2e85e52d1a12..c0fa466fa9f07 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+> @@ -26,6 +26,7 @@ cpu0: cpu@0 {
+>  			reg = <0>;
+>  			enable-method = "psci";
+>  			clocks = <&ccu CLK_CPUX>;
+> +			#cooling-cells = <2>;
+>  		};
+>  
+>  		cpu1: cpu@1 {
+> @@ -34,6 +35,7 @@ cpu1: cpu@1 {
+>  			reg = <1>;
+>  			enable-method = "psci";
+>  			clocks = <&ccu CLK_CPUX>;
+> +			#cooling-cells = <2>;
+>  		};
+>  
+>  		cpu2: cpu@2 {
+> @@ -42,6 +44,7 @@ cpu2: cpu@2 {
+>  			reg = <2>;
+>  			enable-method = "psci";
+>  			clocks = <&ccu CLK_CPUX>;
+> +			#cooling-cells = <2>;
+>  		};
+>  
+>  		cpu3: cpu@3 {
+> @@ -50,6 +53,7 @@ cpu3: cpu@3 {
+>  			reg = <3>;
+>  			enable-method = "psci";
+>  			clocks = <&ccu CLK_CPUX>;
+> +			#cooling-cells = <2>;
+>  		};
+>  	};
+>  
+> @@ -156,6 +160,10 @@ sid: efuse@3006000 {
+>  			ths_calibration: thermal-sensor-calibration@14 {
+>  				reg = <0x14 0x8>;
+>  			};
+> +
+> +			cpu_speed_grade: cpu-speed-grade@0 {
+> +				reg = <0x0 2>;
+> +			};
+>  		};
+>  
+>  		watchdog: watchdog@30090a0 {
+> 
+
+
+
+
 
