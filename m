@@ -1,123 +1,150 @@
-Return-Path: <devicetree+bounces-53899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ABBE88EBAB
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 17:53:02 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAD9488EBEF
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 17:59:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7CA901C23B7B
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 16:53:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CD26BB281BA
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 16:54:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1517142E9E;
-	Wed, 27 Mar 2024 16:52:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71CE014C5BB;
+	Wed, 27 Mar 2024 16:54:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qDqzBkYR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx01.omp.ru (mx01.omp.ru [90.154.21.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 203E312F5A6
-	for <devicetree@vger.kernel.org>; Wed, 27 Mar 2024 16:52:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=90.154.21.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 420B1131BA6;
+	Wed, 27 Mar 2024 16:54:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711558378; cv=none; b=oTdoi7DtUw2ZYyUEmYehG5OTVPbmu/um6CC6lBwLa8A0iR2CQLhRchc8P1y5Ksd9j7KFQtBc3g9eBfysjRiNSfiT+APZKMB+hyZeSJkE3/zTHmax4G1kIpfjUE6GrYMddp2oUQqFxSd9drgmGATCo/ZPoQJgivRuoJM1d/8LYO0=
+	t=1711558457; cv=none; b=AMlEIVIgEKg12Ol/NPzgK0C+chJizDRoBH3ZB0fla76xlZjRl6py8YRnJhmmXhzZewj/TMtz+yGteN9FR1eGrG6FWOKslyxTlU+vHSOWTErU1PTvxqvutE6nCKLAZa3vTwxASliIKdQnZU/w+iu0n269r7swY9cAg9oN9jj160E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711558378; c=relaxed/simple;
-	bh=Ancvy1XlJLMdRh5scYq0PpszpjsbhBppBJ8qcFaHdSc=;
-	h=From:Subject:To:CC:Message-ID:Date:MIME-Version:Content-Type; b=N+DcZfBA8OhOL430tofRxPAABuxCVCJtrZj0p0iQ/VcXfV9vipU/MG2Us3X89ksb9Datl57o1zd+k+9RYgxBChX8eIdt6ufEZZ256EBbv+42Bw2pwThERSIEt0uQWm9Vo4JUW028z0dOa34ApqF6aqUowopk7pAY/zSu7dCb+V0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=omp.ru; spf=pass smtp.mailfrom=omp.ru; arc=none smtp.client-ip=90.154.21.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=omp.ru
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=omp.ru
-Received: from [192.168.1.105] (31.173.86.12) by msexch01.omp.ru (10.188.4.12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.1258.12; Wed, 27 Mar
- 2024 19:52:50 +0300
-From: Sergey Shtylyov <s.shtylyov@omp.ru>
-Subject: [PATCH] of: module: prevent NULL pointer dereference in vsnprintf()
-To: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
-	<devicetree@vger.kernel.org>, Saravana Kannan <saravanak@google.com>
-CC: <lvc-project@linuxtesting.org>
-Organization: Open Mobile Platform
-Message-ID: <1d211023-3923-685b-20f0-f3f90ea56e1f@omp.ru>
-Date: Wed, 27 Mar 2024 19:52:49 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+	s=arc-20240116; t=1711558457; c=relaxed/simple;
+	bh=YtctpCpdB+VYCu2a9Q5m8T9kdg5d6vQjlyKgCNcle3o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=McRPLP70MW05jgb/WJAYfiMHSc+1jvqUsA7218p8VTno2YIomghj3U8C2oznxFDNlTXMtNsBPtWur0AttXUZSCAiUQJW22tT60zYBof/Gk1GsD+wX6qbhem6EqdPel0N6hPt2YQVQzAWWyL4vwifkbydPt/7yAQDr0SnyhIOfSs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qDqzBkYR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D1B8C433C7;
+	Wed, 27 Mar 2024 16:54:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711558456;
+	bh=YtctpCpdB+VYCu2a9Q5m8T9kdg5d6vQjlyKgCNcle3o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qDqzBkYRpznyWCPMUh8t7LobBrg1hMyymR1es+/eqRzbuTVSpGlZ9heKdm7ri2z1F
+	 vq77gRO9qd9QkpReW+xiXZ0fK8IeRdSbziH3w98yxjKeWwZOKGlgojuJhJuyO2E02T
+	 DkM4sxgwOFE66OYjpxxeQ1nBrwetYVZVME993U4AZnCL9Hlk2KbVRiscw8SzDISDIO
+	 vgrC/jWVjOQi6e7F1xNoV7i1JNAjXn3ko7qbqCPWM1fwiJAskfmRKphNpSGN2YE+5r
+	 ncBJUPKduA3FCoyKNJwE95K6VHSB5tgvvDG50cvRJjGU5R/Lpz8+qS25PktdY0CicD
+	 zKf/TW7TgdSzg==
+Date: Wed, 27 Mar 2024 16:54:12 +0000
+From: Conor Dooley <conor@kernel.org>
+To: ChunHau Tan <chunhau.tan@starfivetech.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	JeeHeng Sia <jeeheng.sia@starfivetech.com>,
+	"dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: dma: snps,dw-axi-dmac: Add JH8100
+ support
+Message-ID: <20240327-skewed-unworn-d70215e3f07b@spud>
+References: <20240327025126.229475-1-chunhau.tan@starfivetech.com>
+ <20240327025126.229475-2-chunhau.tan@starfivetech.com>
+ <6533503e-18e1-4957-96cc-db091e9c46c9@linaro.org>
+ <BJSPR01MB0595D132CB5A072A9E61F9C09E34A@BJSPR01MB0595.CHNPR01.prod.partner.outlook.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: msexch01.omp.ru (10.188.4.12) To msexch01.omp.ru
- (10.188.4.12)
-X-KSE-ServerInfo: msexch01.omp.ru, 9
-X-KSE-AntiSpam-Interceptor-Info: scan successful
-X-KSE-AntiSpam-Version: 6.1.0, Database issued on: 03/27/2024 16:37:47
-X-KSE-AntiSpam-Status: KAS_STATUS_NOT_DETECTED
-X-KSE-AntiSpam-Method: none
-X-KSE-AntiSpam-Rate: 0
-X-KSE-AntiSpam-Info: Lua profiles 184451 [Mar 27 2024]
-X-KSE-AntiSpam-Info: Version: 6.1.0.4
-X-KSE-AntiSpam-Info: Envelope from: s.shtylyov@omp.ru
-X-KSE-AntiSpam-Info: LuaCore: 13 0.3.13
- 9d58e50253d512f89cb08f71c87c671a2d0a1bca
-X-KSE-AntiSpam-Info: {rep_avail}
-X-KSE-AntiSpam-Info: {Tracking_from_domain_doesnt_match_to}
-X-KSE-AntiSpam-Info:
-	127.0.0.199:7.1.2;omp.ru:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1
-X-KSE-AntiSpam-Info: ApMailHostAddress: 31.173.86.12
-X-KSE-AntiSpam-Info: Rate: 0
-X-KSE-AntiSpam-Info: Status: not_detected
-X-KSE-AntiSpam-Info: Method: none
-X-KSE-AntiSpam-Info: Auth:dmarc=temperror header.from=omp.ru;spf=temperror
- smtp.mailfrom=omp.ru;dkim=none
-X-KSE-Antiphishing-Info: Clean
-X-KSE-Antiphishing-ScanningType: Heuristic
-X-KSE-Antiphishing-Method: None
-X-KSE-Antiphishing-Bases: 03/27/2024 16:42:00
-X-KSE-Antivirus-Interceptor-Info: scan successful
-X-KSE-Antivirus-Info: Clean, bases: 3/27/2024 3:07:00 PM
-X-KSE-Attachment-Filter-Triggered-Rules: Clean
-X-KSE-Attachment-Filter-Triggered-Filters: Clean
-X-KSE-BulkMessagesFiltering-Scan-Result: InTheLimit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="0K8lVn5NkQryrHMv"
+Content-Disposition: inline
+In-Reply-To: <BJSPR01MB0595D132CB5A072A9E61F9C09E34A@BJSPR01MB0595.CHNPR01.prod.partner.outlook.cn>
 
-In of_modalias(), we can get passed the str and len parameters which would
-cause a kernel oops in vsnprintf() since it only allows passing a NULL ptr
-when the length is also 0. Also, we need to filter out the negative values
-of the len parameter as these will result in a really huge buffer since
-snprintf() takes size_t parameter while ours is ssize_t...
 
-Found by Linux Verification Center (linuxtesting.org) with the Svace static
-analysis tool.
+--0K8lVn5NkQryrHMv
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Sergey Shtylyov <s.shtylyov@omp.ru>
+On Wed, Mar 27, 2024 at 08:24:01AM +0000, ChunHau Tan wrote:
+>=20
+>=20
+> > -----Original Message-----
+> > From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Sent: Wednesday, 27 March, 2024 3:50 PM
+> > To: ChunHau Tan <chunhau.tan@starfivetech.com>; Eugeniy Paltsev
+> > <Eugeniy.Paltsev@synopsys.com>; Vinod Koul <vkoul@kernel.org>; Rob Herr=
+ing
+> > <robh@kernel.org>; Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.o=
+rg>;
+> > Conor Dooley <conor+dt@kernel.org>
+> > Cc: Leyfoon Tan <leyfoon.tan@starfivetech.com>; JeeHeng Sia
+> > <jeeheng.sia@starfivetech.com>; dmaengine@vger.kernel.org;
+> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
+> > Subject: Re: [PATCH v2 1/2] dt-bindings: dma: snps,dw-axi-dmac: Add JH8=
+100
+> > support
+> >=20
+> > On 27/03/2024 03:51, Tan Chun Hau wrote:
+> > > Add support for StarFive JH8100 SoC in Sysnopsys Designware AXI DMA
+> > > controller.
+> > >
+> > > Both JH8100 and JH7110 require reset operation in device probe.
+> > > However, JH8100 doesn't need to apply different configuration on
+> > > CH_CFG registers.
+> >=20
+> > This is a friendly reminder during the review process.
+> >=20
+> > It looks like you received a tag and forgot to add it.
+> >=20
+> > If you do not know the process, here is a short explanation:
+> > Please add Acked-by/Reviewed-by/Tested-by tags when posting new version=
+s,
+> > under or above your Signed-off-by tag. Tag is "received", when provided=
+ in a
+> > message replied to you on the mailing list. Tools like b4 can help here=
+=2E However,
+> > there's no need to repost patches *only* to add the tags. The upstream
+> > maintainer will do that for tags received on the version they apply.
+> >=20
+> > https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/=
+submitt
+> > ing-patches.rst#L577
+> >=20
+> > If a tag was not added on purpose, please state why and what changed.
+>=20
+> Hi Krzysztof, thank you very much for the feedback,
+> Sorry I overlooked it.
+> Do you prefer I resend V2 patch or send a V3 patch to include the Acked-b=
+y ?
 
----
-The patch is against the for-next branch of Rob Herring's linux-git repo...
+I resent the tag, you do not need to do anything.
 
- drivers/of/module.c |    8 ++++++++
- 1 file changed, 8 insertions(+)
+Thanks,
+Conor.
 
-Index: linux/drivers/of/module.c
-===================================================================
---- linux.orig/drivers/of/module.c
-+++ linux/drivers/of/module.c
-@@ -16,6 +16,14 @@ ssize_t of_modalias(const struct device_
- 	ssize_t csize;
- 	ssize_t tsize;
- 
-+	/*
-+	 * Prevent a kernel oops in vsnprintf() -- it only allows passing a
-+	 * NULL ptr when the length is also 0. Also filter out the negative
-+	 * lengths...
-+	 */
-+	if ((len > 0 && !str) || len < 0)
-+		return -EINVAL;
-+
- 	/* Name & Type */
- 	/* %p eats all alphanum characters, so %c must be used here */
- 	csize = snprintf(str, len, "of:N%pOFn%c%s", np, 'T',
+--0K8lVn5NkQryrHMv
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgRPNAAKCRB4tDGHoIJi
+0nnSAP9BWE0+2dsBJL1vUxw62h2uDxlBC7J4MRQxeyx9dWWR1AD/c9QNihfyYiqb
+gXrjgAjI/mlRlwoCYOSGJE3MYB78fAU=
+=DJMF
+-----END PGP SIGNATURE-----
+
+--0K8lVn5NkQryrHMv--
 
