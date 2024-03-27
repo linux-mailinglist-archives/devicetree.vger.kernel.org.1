@@ -1,63 +1,61 @@
-Return-Path: <devicetree+bounces-53912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 130C988EC91
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 18:24:47 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D576488ECB2
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 18:32:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 453FA1C31CD9
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 17:24:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 25FB7B2166B
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 17:32:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37AFF14D45B;
-	Wed, 27 Mar 2024 17:24:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22B9414D28A;
+	Wed, 27 Mar 2024 17:32:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GSQOu+pd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qwe7dwQ8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A8C514D426;
-	Wed, 27 Mar 2024 17:24:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA88C12A14B;
+	Wed, 27 Mar 2024 17:32:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711560282; cv=none; b=Fdj2tvPUdPVNYPsX2ooZo4akm4EYo7bXcLXPmgZkCi/0L/QXfVduktfsrTy3vSwhak14WxoHXSK7CbxdUUt7Yvvou2mReq1TH7PZhmQqOnV3kPFy6uOS3lYXnCLYpsnbOetkX3WdPHkAUeLrh3lDy5GQgJREGTpwBT2bTAzH3GY=
+	t=1711560755; cv=none; b=Z3Of6hwfuv2OTcS03LZzW9frP4SWiEjzpCqVhZOO+bXmbZVX1KyBetG1niQ6sZe4Tg/Qx3lvV4BVXz4NWCwb5wJ/a5WCHEp6fkpOuI4165y6co0P/LrmiiQJlxuXjNuDnrgtoC0v+jr0/qW6ql3q7Nppvy3d+gLwg9/vrWfbgDs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711560282; c=relaxed/simple;
-	bh=etEwvmr8xb/0bk8xdVXxjqJ52tsDAWEL45d5y1fPL8g=;
+	s=arc-20240116; t=1711560755; c=relaxed/simple;
+	bh=3+VqtmATpJblwRQt9MVkGbCCHJ4KeR0YviYHYv4LBC4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ds1eTuuUXWNPv5nQcG/X0lElb0Kj7pDCV91dV9IR0Skf48xXGG12tj6JZNFXXjp/EuSXqSr4SPUzPmwiwkYU1xQDKyDWd31i4/Lviq60yeUaGqG0oaDphazs6eaEZTQ9frQMiVqTyLQrdJlo5B1FlREzZkPQwOVY0XTX/S0CcqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GSQOu+pd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60D67C433C7;
-	Wed, 27 Mar 2024 17:24:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=FFHddDgc0R9/g7g6xLbno/28ZrBbMJkSY84zN3NTxCkw0c4Z2ltnOnFiutwARtBcFtUX5HZDybSEMspq+JclLGGYH+/IdsIG8U0YC1JjyQIrLzVwYRbLhUIU66G9Don00tDU/uVivXBKT0xT9l9Kjrx9Xg2JBNiRF507UNvnBEM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qwe7dwQ8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 396A4C433C7;
+	Wed, 27 Mar 2024 17:32:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711560281;
-	bh=etEwvmr8xb/0bk8xdVXxjqJ52tsDAWEL45d5y1fPL8g=;
+	s=k20201202; t=1711560754;
+	bh=3+VqtmATpJblwRQt9MVkGbCCHJ4KeR0YviYHYv4LBC4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GSQOu+pdnlf5J7EOdSMN9x4SGU0C+TbbdSpMxS1tQJlj+d3/Hc6xCFxoGWzjb5Ezp
-	 6ROMzMVPh1TIeq2LyNPdFVWlajotTpxzK5B+HUfllN8hifdgtUMEZkBoKu8YiwtWrc
-	 ULfmCpXWhDu2kRwsXiVo1eSOzwl94M6JVVI8aFiEY7tSim3Mz7r9xBwmnGyBKXw1E2
-	 il+S449VwcNeWXGiqGTN4UxL/6CQwUtZykWMUCtdjk3ffdPsw4uyYwD/3xgQF/pUgw
-	 08lZZ9VlcTebUkeUgVFDyQmumjGi8hd93Ib/9MMhT7acei7lm14jD8OprMfcNB+Lfk
-	 cVz/2VDHkNGtw==
-Date: Wed, 27 Mar 2024 12:24:39 -0500
+	b=Qwe7dwQ8aexSMGFGOq7jVjNjV18DghOH/LISpBbFjJI7UDK92aWvKB2T6oE3fIWis
+	 mYvWLE5AeVmBAeh7UjBQOFOtmIDfxEH3xfOO6U0abqnePrtntxaI+rrQiOPfen8cOf
+	 e/AAkjtKPpJERDcVkSR2RanVewGdjaleblntoazWlO0qzV+O7IyJkYIclSCmISFM1F
+	 TcKfgCS/rcH+Tdp8tGQ30ucgET8pnsJP3Qv+dWVXmEtkceaVOTo0N3XXk1KMxY1J6G
+	 r0ZC/OhRhLj6ChfuLhqQt3ToSpBf+eRhIjwPRlO4cK3q12k7M7IkUqgDuHDm1X9N/d
+	 6mCWkSHWO+gGA==
+Date: Wed, 27 Mar 2024 12:32:32 -0500
 From: Rob Herring <robh@kernel.org>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [RFC PATCH 02/13] dt-bindings: pinctrl: renesas: Document
- RZ/V2H(P) SoC
-Message-ID: <20240327172439.GA3664500-robh@kernel.org>
-References: <20240326222844.1422948-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240326222844.1422948-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Seven Lee <wtli@nuvoton.com>
+Cc: supercraig0719@gmail.com, conor+dt@kernel.org, YHCHuang@nuvoton.com,
+	linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	SJLIN0@nuvoton.com, scott6986@gmail.com, perex@perex.cz,
+	tiwai@suse.com, robh+dt@kernel.org, broonie@kernel.org,
+	alsa-devel@alsa-project.org, lgirdwood@gmail.com,
+	dardar923@gmail.com, devicetree@vger.kernel.org, CTLIN0@nuvoton.com,
+	linux-sound@vger.kernel.org, KCHSU0@nuvoton.com
+Subject: Re: [PATCH v5 1/2] ASoC: dt-bindings: Added schema for
+ "nuvoton,nau8325"
+Message-ID: <171156075147.3680539.3171999562825718335.robh@kernel.org>
+References: <20240327075755.3410381-1-wtli@nuvoton.com>
+ <20240327075755.3410381-2-wtli@nuvoton.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,109 +64,29 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240326222844.1422948-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240327075755.3410381-2-wtli@nuvoton.com>
 
-On Tue, Mar 26, 2024 at 10:28:33PM +0000, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> Add documentation for the pin controller found on the Renesas RZ/V2H(P)
-> (R9A09G057) SoC. Compared to RZ/G2L family of SoCs there are slight
-> differences on the RZ/V2H(P) SoC for pinmuxing.
-> 
-> Also add 'renesas-rzv2h,output-impedance' property. Drive strength
-> setting on RZ/V2H(P) depends on the different power rails which are
-> coming out from the PMIC (connected via i2c). These power rails
-> (required for drive strength) can be 1.2/1.8/3.3V.
-> 
-> Pin are grouped into 4 groups,
-> 
-> Group1: Impedance
-> - 150/75/38/25 ohms (at 3.3 V)
-> - 130/65/33/22 ohms (at 1.8 V)
-> 
-> Group2: Impedance
-> - 50/40/33/25 ohms (at 1.8 V)
-> 
-> Group3: Impedance
-> - 150/75/37.5/25 ohms (at 3.3 V)
-> - 130/65/33/22 ohms (at 1.8 V)
-> 
-> Group4: Impedance
-> - 110/55/30/20 ohms (at 1.8 V)
-> - 150/75/38/25 ohms (at 1.2 V)
-> 
-> 'renesas-rzv2h,output-impedance' property as documented which can be
-> [1, 2, 4, 6] indicates x Value strength.
 
-Looks like the values are x1, x1.5, x3ish, x6...
-
+On Wed, 27 Mar 2024 15:57:54 +0800, Seven Lee wrote:
+> Add a DT schema for describing nau8325 audio amplifiers. The key features
+> are as follows:
+>   - Low SPK_VDD Quiescent Current
+>   - Gain Setting with 2-wire interface
+>   - Powerful Stereo Class-D Amplifier
+>   - Low Output Noise
+>   - Low Current Shutdown Mode
+>   - Click-and Pop Suppression
 > 
-> As the power rail information cannot be available very early in the
-> boot process as 'renesas-rzv2h,output-impedance' property is added
-> instead of reusing output-impedance-ohms property.
+> More resources :
+> https://www.nuvoton.com/products/smart-home-audio/audio-amplifiers/class-d-series/nau8325yg/
 > 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Signed-off-by: Seven Lee <wtli@nuvoton.com>
 > ---
->  .../pinctrl/renesas,rzg2l-pinctrl.yaml        | 22 +++++++++++++++----
->  1 file changed, 18 insertions(+), 4 deletions(-)
+>  .../bindings/sound/nuvoton,nau8325.yaml       | 80 +++++++++++++++++++
+>  1 file changed, 80 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/nuvoton,nau8325.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
-> index 881e992adca3..77f4fc7f4a21 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
-> @@ -26,6 +26,7 @@ properties:
->                - renesas,r9a07g043-pinctrl # RZ/G2UL{Type-1,Type-2} and RZ/Five
->                - renesas,r9a07g044-pinctrl # RZ/G2{L,LC}
->                - renesas,r9a08g045-pinctrl # RZ/G3S
-> +              - renesas,r9a09g057-pinctrl # RZ/V2H(P)
->  
->        - items:
->            - enum:
-> @@ -66,10 +67,14 @@ properties:
->      maxItems: 1
->  
->    resets:
-> -    items:
-> -      - description: GPIO_RSTN signal
-> -      - description: GPIO_PORT_RESETN signal
-> -      - description: GPIO_SPARE_RESETN signal
-> +    oneOf:
-> +      - items:
-> +          - description: GPIO_RSTN signal
-> +          - description: GPIO_PORT_RESETN signal
-> +          - description: GPIO_SPARE_RESETN signal
-> +      - items:
-> +          - description: PFC main reset
-> +          - description: Reset for the control register related to WDTUDFCA and WDTUDFFCM pins
->  
->  additionalProperties:
->    anyOf:
-> @@ -111,6 +116,15 @@ additionalProperties:
->          output-high: true
->          output-low: true
->          line-name: true
-> +        renesas-rzv2h,output-impedance:
 
-'renesas-rzv2h' is not a vendor.
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-That should give you a warning if you actually used this somewhere.
-
-> +          description: |
-> +            Output impedance for pins on RZ/V2H(P) SoC.
-> +            x1: Corresponds to 0 in IOLH register.
-> +            x2: Corresponds to 1 in IOLH register.
-> +            x4: Corresponds to 2 in IOLH register.
-> +            x6: Corresponds to 3 in IOLH register.
-
-Why not just use 0-3 for the values? 
-
-
-> +          $ref: /schemas/types.yaml#/definitions/uint32
-> +          enum: [1, 2, 4, 6]
->  
->      - type: object
->        additionalProperties:
-> -- 
-> 2.34.1
-> 
 
