@@ -1,59 +1,67 @@
-Return-Path: <devicetree+bounces-53894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53896-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8484C88EB3B
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 17:28:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 123C288EB83
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 17:44:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E1FD299E78
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 16:28:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 356E71C2DAF1
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 16:44:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B7DC12F58C;
-	Wed, 27 Mar 2024 16:28:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E943E14C5A5;
+	Wed, 27 Mar 2024 16:44:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VMxbb0Y3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FFNTiJF3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3478812DDA7;
-	Wed, 27 Mar 2024 16:28:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCE5C129E81;
+	Wed, 27 Mar 2024 16:44:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711556934; cv=none; b=qxuArM3L5N1ghR0nfpnk6Ts1yv92JlvNUGLFYvraFR2n2oCHspNLbSIQDDqa/jeY8F55yg84iuO4kjz8rrbEeRWgwvZdeeiHbKHD7zjBX+7qaNl7ChWb7bEZpdQcyMwhDD6tVXipH6fjEM3YHryaIvWjQa1l9R+PgbUk1rCamt0=
+	t=1711557854; cv=none; b=D0oe70bxOL8wZ45zMfQRj6fqqrzy39DEXCi8nycM6FaSNazmfGfjUL1HqZp6VLBujYZcXto61denakukYjbWixDtkhojF7P7zKsQqvsSpcB7E3CxWSHz+2DS+qpTTuNw/Cxz9Ep+zHowuRgjj+aM6B46p1YuWqpetc//SkU78e8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711556934; c=relaxed/simple;
-	bh=d9DnxmW+a4P+dEszAOdKuPFSCcl7qq/W+ZbL07RwEwA=;
+	s=arc-20240116; t=1711557854; c=relaxed/simple;
+	bh=aoYiCiiyO7pYp6VIX/CA0s5MidL4feGTZlAq/pcvSIg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cBvHU7PAyI9g61hXT07Px+HsJonVOMnJ/w03rjUzV7xZrKz5iGHCjkeQ4gYkpf4erq43R9n5lyT1r1Qh6k9tkTD89Im7mqAP2Icrgu8YCt5S3woFK9uD858/btOzrVtCoEYqF7oksS3wyC+7ChLJo7SHLsXYoSQuFnRfD/9QssM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VMxbb0Y3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34858C433C7;
-	Wed, 27 Mar 2024 16:28:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ljtC4g1Wh5V5GsoQ7gQdGc49wzqyx5jN0vx4tYAeO8FArfa4+Oelx89gPFbbZX8lX4auiA5UNljXby4mAAX+GUf7l5zQ0pLHr6h5FJU+EeC43R10u0XgajoiHfsXRaYYUGL+tEwi1WclnAjx7ugt9kq+/1uDRpqN4pMTd+QekYU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FFNTiJF3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A16BC433C7;
+	Wed, 27 Mar 2024 16:44:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711556933;
-	bh=d9DnxmW+a4P+dEszAOdKuPFSCcl7qq/W+ZbL07RwEwA=;
+	s=k20201202; t=1711557854;
+	bh=aoYiCiiyO7pYp6VIX/CA0s5MidL4feGTZlAq/pcvSIg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VMxbb0Y3Qa/NNHrKY4OquYcNBThaVfbyHU61upgpTbCcFHlnFasflMqCeESKgyQ4A
-	 tSWfpWgupdbSS8VRsWTXgrUI2cRfVODARZzRVNqQoZl5Izn/lnhpbboebnIBN8fxbv
-	 InDRbXQFjTkFrPvEbUVQM940TJYOd3FxArh/rRuoN/G59hkw1eHpLjXLh0b+MeWh9A
-	 WxMGg8Tv5ReJlytHfW6AtCTbcWSocuF4cnSatbUoF4mf488EL6i+8cYxi9OMVGn5vT
-	 m4pvBPDiuT6fsBMZVvvnS/gJe7egoynptZ1ue20fS32a+ZIRPps2cGtCMBzyj8BIKg
-	 NtqzAhYhauw8A==
-Date: Wed, 27 Mar 2024 16:28:49 +0000
+	b=FFNTiJF39ypF6G0eCQJv0fNbLW3OIQR1cngkruQBkaa5AyuLTgJvpwpFLpbdlmqVg
+	 3OsYiO2XR/JvPBQcOtxOti2uQhQ6YdCVj9gpUpLz2M/jRJvYlVWmwWBUOKVT2TDr46
+	 6j8zP3X/+3aIHk+0c7JOZFfK+JLJUfoH6v4P9G5nVHIP+GhRIrjHj+kzMRknqPCTX4
+	 lnKgLuS2KiLW7A4C94JV0BkygvyQ+FT1lf1wLv9UTDlzTiRuWOHXQaFzHz/2nAcUbO
+	 1DlxWjlb7GTzQ+OlFRK3zHgCIhrh7ZCgwTOXyb66k+hGJg/WrLBJjSGSsd7xYooqS+
+	 0YXm++JeV5lQA==
+Date: Wed, 27 Mar 2024 16:44:09 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Mihai Sain <mihai.sain@microchip.com>
-Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-	claudiu.beznea@tuxon.dev, lgirdwood@gmail.com, broonie@kernel.org,
-	andrei.simion@microchip.com, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 7/7] regulator: mcp16502: Update the names from buck
- regulators
-Message-ID: <20240327-agreed-routine-0cc60186876b@spud>
-References: <20240327101724.2982-1-mihai.sain@microchip.com>
- <20240327101724.2982-8-mihai.sain@microchip.com>
+To: Allen Lin <allencl_lin@hotmail.com>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	Rob Herring <robh@kernel.org>, dmitry.torokhov@gmail.com,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	jikos@kernel.org, benjamin.tissoires@redhat.com,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/4] dt-bindings: input: Add Himax HX83102J touchscreen
+Message-ID: <20240327-pegboard-deodorize-17d8b0f1e31c@spud>
+References: <20240322085606.993896-1-allencl_lin@hotmail.com>
+ <TY0PR06MB56116F0902017225C78EDDDD9E312@TY0PR06MB5611.apcprd06.prod.outlook.com>
+ <20240322-mammary-boil-f9a4c347fba1@spud>
+ <20240322183009.GA1227164-robh@kernel.org>
+ <20240322-rectified-udder-fef9102f58da@spud>
+ <TY0PR06MB56110ADEA805B68BE2B887069E352@TY0PR06MB5611.apcprd06.prod.outlook.com>
+ <20240326-whoever-spotter-1fe7ace35428@wendy>
+ <TY0PR06MB561197578717990F4BEA93D29E352@TY0PR06MB5611.apcprd06.prod.outlook.com>
+ <20240326-granite-snipping-7c8b04480b2e@spud>
+ <TY0PR06MB5611AE812B72B349E85118D59E342@TY0PR06MB5611.apcprd06.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,74 +69,138 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="lqf7Y/CEqKPOGaGb"
+	protocol="application/pgp-signature"; boundary="a19IJaOe3GEmU3EZ"
 Content-Disposition: inline
-In-Reply-To: <20240327101724.2982-8-mihai.sain@microchip.com>
+In-Reply-To: <TY0PR06MB5611AE812B72B349E85118D59E342@TY0PR06MB5611.apcprd06.prod.outlook.com>
 
 
---lqf7Y/CEqKPOGaGb
-Content-Type: text/plain; charset=us-ascii
+--a19IJaOe3GEmU3EZ
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 27, 2024 at 12:17:24PM +0200, Mihai Sain wrote:
-> Use generic names for buck regulators to avoid any confusion.
-> Update the names from buck regulators in order to match
-> the datasheet block diagram for the buck regulators.
+On Wed, Mar 27, 2024 at 03:48:48PM +0800, Allen Lin wrote:
+> Conor Dooley <conor@kernel.org> =E6=96=BC 2024=E5=B9=B43=E6=9C=8827=E6=97=
+=A5 =E9=80=B1=E4=B8=89 =E4=B8=8A=E5=8D=883:28=E5=AF=AB=E9=81=93=EF=BC=9A
+> >
+> > On Tue, Mar 26, 2024 at 06:40:28PM +0800, Allen Lin wrote:
+> > > Conor Dooley <conor.dooley@microchip.com> =E6=96=BC 2024=E5=B9=B43=E6=
+=9C=8826=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=884:48=E5=AF=AB=E9=81=
+=93=EF=BC=9A
+> > > >
+> > > > On Tue, Mar 26, 2024 at 01:46:56PM +0800, Allen Lin wrote:
+> > > > > Conor Dooley <conor@kernel.org> =E6=96=BC 2024=E5=B9=B43=E6=9C=88=
+23=E6=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8A=E5=8D=882:34=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+> > > > > >
+> > > > > > On Fri, Mar 22, 2024 at 01:30:09PM -0500, Rob Herring wrote:
+> > > > > > > On Fri, Mar 22, 2024 at 05:54:08PM +0000, Conor Dooley wrote:
+> > > > > > > > On Fri, Mar 22, 2024 at 04:56:03PM +0800, Allen_Lin wrote:
+> > > > > > > > > Add the HX83102j touchscreen device tree bindings documen=
+ts.
+> > > > > > > > > HX83102j is a Himax TDDI touchscreen controller.
+> > > > > > > > > It's power sequence should be bound with a lcm driver, th=
+us it
+> > > > > > > > > needs to be a panel follower. Others are the same as norm=
+al SPI
+> > > > > > > > > touchscreen controller.
+> > > > > > > > >
+> > > > > > > > > Signed-off-by: Allen_Lin <allencl_lin@hotmail.com>
+> > > > > > > >
+> > > > > > > > note to self/Krzysztof/Rob:
+> > > > > > > > There was a previous attempt at this kind of device. This v=
+ersion looks
+> > > > > > > > better but might be incomplete given there's a bunch more p=
+roperties in
+> > > > > > > > that patchset:
+> > > > > > > > https://lore.kernel.org/all/20231017091900.801989-1-tylor_y=
+ang@himax.corp-partner.google.com/
+> > > > > > >
+> > > > > > > Those don't look like properties we want coming back.
+> > > > > >
+> > > > > > Oh, I don't want most of them coming back either. There are some
+> > > > > > supplies in there though that I think we would like to come bac=
+k, no?
+> > > > > > Maybe this particular device doesn't have any supplies, but tha=
+t doesn't
+> > > > > > really seem credible.
+> > > > >
+> > > > > We will use Firmware-name in Device Tree.
+> > > >
+> > > > > For power supply settings, because there may be other device using
+> > > > > same regulator.
+> > > >
+> > > > If there are other devices using the same regulator is it more
+> > > > important that you document it so that it doesn't get disabled by t=
+he
+> > > > other users.
+> > > >
+> > > > > We plan to define it as an optional property for user to control =
+in
+> > > > > next release.
+> > > >
+> > > > I don't see how the regulator would not be required, the device doe=
+sn't
+> > > > function without power.
+> > > >
+> > > > Thanks,
+> > > > Conor.
+> > >
+> > > I will set power supply as required.
+> > > The description of power supply as below,
+> > >
+> > > properties:
+> > >   vccd-supply:
+> > >     description: A phandle for the regualtor supplying IO power. Shou=
+ld be own
+> > >                  by TPIC only.
+> >
+> > What does "owned by TPIC" only mean? Why would the vccd supply not be
+> > allowed to be shared with another device?
+> >
+> > > This works for TP digital IO only, main power is
+> > >                  given by display part VSP/VSN power source which is =
+controlled
+> > >                  by lcm driver.
+> >
+> > What drivers control things doesn't really matter here, we're just
+> > describing the hardware. If there's another supply to the controller,
+> > then document it too please.
+> >
 >=20
-> Signed-off-by: Mihai Sain <mihai.sain@microchip.com>
+> Below is IC power sequence introduction.
+> https://github.com/HimaxSoftware/Doc/tree/main/Himax_Chipset_Power_Sequen=
+ce
+>=20
+> TDDI IC, which means Touch and Display Driver is integrated in one IC,
+> So some power supplies will be controlled by Display driver.
 
-I know the regulator core will create dummy regulators when they are not
-provided in the devicetree, so I am not 100% on how backwards
-compatibility works here.
-You'll end up with a bunch of dummies and therefore the regulator-names
-and constraints on the regulator will be lost, no?
-Can you explain how is this backwards compatible with the old
-devicetrees?
+If someone was to turn off the supplies, would the touch component stop
+working? The document says that these supplies must be turned on before
+the touch supplies, so I'm going to assume that both are needed for the
+device to function.
 
-Thanks,
+> In yaml Document, can we just list power supplies controlled by touch dri=
+ver?
+
+If the touch part of this device needs the supplies to function, then
+you need to mention them, regardless of where they're controlled. All we
+are doing in the binding is describing the hardware. What drivers do
+what depends entirely on what software you're using.
+
+Cheers,
 Conor.
 
-> ---
->  drivers/regulator/mcp16502.c | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
->=20
-> diff --git a/drivers/regulator/mcp16502.c b/drivers/regulator/mcp16502.c
-> index 0c15a19fe83a..d6fc9f1afaef 100644
-> --- a/drivers/regulator/mcp16502.c
-> +++ b/drivers/regulator/mcp16502.c
-> @@ -468,13 +468,13 @@ static const struct linear_range b234_ranges[] =3D {
-> =20
->  static const struct regulator_desc mcp16502_desc[] =3D {
->  	/* MCP16502_REGULATOR(_name, _id, ranges, regulator_ops, ramp_table) */
-> -	MCP16502_REGULATOR("VDD_IO", BUCK1, b1l12_ranges, mcp16502_buck_ops,
-> +	MCP16502_REGULATOR("BUCK1", BUCK1, b1l12_ranges, mcp16502_buck_ops,
->  			   mcp16502_ramp_b1l12),
-> -	MCP16502_REGULATOR("VDD_DDR", BUCK2, b234_ranges, mcp16502_buck_ops,
-> +	MCP16502_REGULATOR("BUCK2", BUCK2, b234_ranges, mcp16502_buck_ops,
->  			   mcp16502_ramp_b234),
-> -	MCP16502_REGULATOR("VDD_CORE", BUCK3, b234_ranges, mcp16502_buck_ops,
-> +	MCP16502_REGULATOR("BUCK3", BUCK3, b234_ranges, mcp16502_buck_ops,
->  			   mcp16502_ramp_b234),
-> -	MCP16502_REGULATOR("VDD_OTHER", BUCK4, b234_ranges, mcp16502_buck_ops,
-> +	MCP16502_REGULATOR("BUCK4", BUCK4, b234_ranges, mcp16502_buck_ops,
->  			   mcp16502_ramp_b234),
->  	MCP16502_REGULATOR("LDO1", LDO1, b1l12_ranges, mcp16502_ldo_ops,
->  			   mcp16502_ramp_b1l12),
-> --=20
-> 2.44.0
->=20
-
---lqf7Y/CEqKPOGaGb
+--a19IJaOe3GEmU3EZ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgRJQAAKCRB4tDGHoIJi
-0jMkAQC28sZ5rt1TFDBpNnI9RQ9dzDj+9bBym/hmm2MyRGVBHAEA6VY1HcwfphJM
-UohqJE1s3Smp5X8Ku6nzNEe7i/s5Kwk=
-=CGed
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgRM2QAKCRB4tDGHoIJi
+0nq7AQCYmwFi2EIOEwCAHpoLu9PYbV0yhaT7bz5+hHXX3eYJwQEAkY26RWGc0cMH
+XVcM/4tDqLDjGw7jxjUht+B54PxVlQM=
+=4y83
 -----END PGP SIGNATURE-----
 
---lqf7Y/CEqKPOGaGb--
+--a19IJaOe3GEmU3EZ--
 
