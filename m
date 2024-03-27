@@ -1,114 +1,95 @@
-Return-Path: <devicetree+bounces-53716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB41F88D3A5
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 02:16:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50B0188D3CF
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 02:46:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 00AC3B23676
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 01:16:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E435C1F2A766
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 01:46:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F6691B94D;
-	Wed, 27 Mar 2024 01:15:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CD0118E28;
+	Wed, 27 Mar 2024 01:46:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CZm3nTPf"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="SGSYReUx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F7731AAD7;
-	Wed, 27 Mar 2024 01:15:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5724718C36;
+	Wed, 27 Mar 2024 01:46:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711502158; cv=none; b=tPzqWOpuPPxVJsZLA4BUz/TtdgOzoHsnd27LKTMbWci0x80UomV+5qczjmT0YUqVcRr+OASGgIOJFcEosTel2xFBQjmu+4tPIDang7kwDZYjG2DYnLpEQ7flzRfORWWoToIj7B7k152lU67yjPZoieVQNq5uDiGqVgXO0r9DzE8=
+	t=1711503974; cv=none; b=WErRdHrKkSIxkgC4vNa4eO84IeKhI+nHTP47E6gcX6Y/yTl23td/eHOr4xio1ySfIp4Tkt6hCUOWXXlqoeueaMEKfbzpvxRlU6cSpiLB0jl1nJlxZFEdiqgI+enddF3ZMe4eI8xUc4DdMDbBEPoCriXCadWtJCXaaAzKG63e5L4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711502158; c=relaxed/simple;
-	bh=PLidVJaE//HxRhz5H/QzI3/xtp56vRobIOOw6V0NeqA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FoIvdF3Ymer4hH1umLWjXiWvCmF6xoYvkpDduWM7GQBPPWjoE18/mSU1pEUppmSsWvFmFpHh59q/zK/k/yqxgnWpH2cHjfZIL0Fha6qqwUkKIAoWj0ZSLB1vvpmXX22Wu2pxT+8SU3V1w1+Pm7enKmSY1Y1W2H87WRRfwiXgoUQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CZm3nTPf; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2d28051376eso111937201fa.0;
-        Tue, 26 Mar 2024 18:15:56 -0700 (PDT)
+	s=arc-20240116; t=1711503974; c=relaxed/simple;
+	bh=DoCy0+ib6v6kh81I+uYITM62RigPnYRn7LhIetEqj/4=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=S9wwvcRFA3GP2/v9WaJZ3qAtAwrBaOW4aMWX4+Sk0jJeiEqzgqKBLDUdF2i9hlLUKRllIwjJCSQzt9MBI/+FdV0OrKbufWGgKlRDcuytZ+MscWR7WgdoO9RvU4MHemvmRHlk3ivFR1lLkHyYsVPGVUBSD6AsCx0HbY/4fwJ5XLs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=SGSYReUx; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+Received: from [192.168.68.112] (ppp118-210-177-226.adl-adc-lon-bras34.tpg.internode.on.net [118.210.177.226])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id DAF60200DB;
+	Wed, 27 Mar 2024 09:46:06 +0800 (AWST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711502155; x=1712106955; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+OHmV4irZFRN7yhkxXILCmLuBOPWKdOt3kQNZKrG9Qo=;
-        b=CZm3nTPf5ezLJX/SuhuOdezMF+4YaX9J6vfL1aNv1H3Sv3hmTjQ9iYcU+HsimQo5US
-         xfLTRWu1COzozQQ5g1cXuAaJC/S8fzvjRpjTSe3yvEDo0al9VNGOUvj36heQc3YYVbjI
-         XssL2kdKw7y5vkKOoZu6zMuOx28MRYDmG5cnweQkb1JYNZlRwmmL7z8oujCqlVqFDYQ+
-         S2pOGYJACrHVupSFSECqemyAywDaepuf9MX0AqeftseutSGOXyNA59Kp9jgaNXZsWq6j
-         67LcMEEbNfg9DFEWLzge54YWEju1WcHTkWjA3GpGJDxhi0eL2G6cQ6qxJ12Ef95QoYD3
-         2JEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711502155; x=1712106955;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+OHmV4irZFRN7yhkxXILCmLuBOPWKdOt3kQNZKrG9Qo=;
-        b=K+oVX+oJgJzgQHy9vObMCNqVxn2RkYBv3s6oxtmJsfqTGlBztYkEgeZmgkULxNR/wH
-         gRyQJWYixVi7+R0WtBNoMtjc6vaU5jLHXw5wrbeuhgZ9N49JUId2JGp2/PB/mJNlvg9J
-         mrpRs7Y0v6DDHiPYN5ieB6TPOY79T0m43uYOAGpoCR4RllQhM0AD+6qkNorG0/oODOP6
-         4jC6mW72r9AA8Ds3NRQV8B3etIQ7Ty4wACrKwr/kCLRGlEbrhQ1IG+py/BVq+vcFc+AR
-         ZwP2jSRL9ZdIwYT3blVbDiQZpJXMHd9ea0GnJ4TR98OX/somI8wO57NOsbzCC7ZCjBLU
-         oqyw==
-X-Forwarded-Encrypted: i=1; AJvYcCWkFmvbgniQ/caX2Hy2OoRnRjEb3rFYf1VnyqmSEqTXlhI17JPiDwg2/GCbAknQDZdsMw8mbNb1bQ8yVFUV8r5vFC0VlDYyHjYI1SM7SqODWNC2fwDGMKEEGIi3DPqYtGcZJd0miQ==
-X-Gm-Message-State: AOJu0YyPXAp9QCLPtJW28fVtW6px8GERw7buJ1FhvcFsFZzOdVM/zJ9A
-	CzxgSF0MCFs1BcorHpKQbUBmEYhzdQzM93UaCY3giCqJulhvDFyAs2kefHMSM8LWe2a8ShtIu2t
-	CcItwFXsGR9P4Vy1g5ePEMeA16Hw=
-X-Google-Smtp-Source: AGHT+IE6oY27Hvh1xBoRmMHbRBXrUqGabIUdZcpUuNN/8gTJHCNOgWIrkAnYswBuXrHRGBvH38Mqs7Kj5XNZBc+eiQw=
-X-Received: by 2002:a05:651c:10b9:b0:2d6:f408:fafe with SMTP id
- k25-20020a05651c10b900b002d6f408fafemr984912ljn.42.1711502154359; Tue, 26 Mar
- 2024 18:15:54 -0700 (PDT)
+	d=codeconstruct.com.au; s=2022a; t=1711503969;
+	bh=DoCy0+ib6v6kh81I+uYITM62RigPnYRn7LhIetEqj/4=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=SGSYReUx514D/YQ+nPzoRDe+VNpX1+4bd0+sgkj+S9BxnYQlJr28SitJmyf9HXSqJ
+	 cAoo3H4VX01C2Y3o+30J+cacOIZL7GNH7K7do9jakxF8Wi2Jb4UzYEB9ZvM2QElWtl
+	 RUzUAJs8iYHs0R/SNA1sl705EPRdGDdEyibHkwGiit4xrNUq9th6c82i6VQP4If63g
+	 oBuHZ0yU/zev3MWsWtPS/FNHMzEC5u0l98XjYTCpScNnxblbYKLCPnZaL9rdtpWYcV
+	 GkAfxBA5I+XVq6crl/Qy3isW1Ua0niQHTmy4Ezgc+hNAXHVKLTWKxFcou6fgItDI4E
+	 ITJTm7v27wWKw==
+Message-ID: <eb4171d9c46dba2aabca90319028ee6be8c80d55.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v6 0/2] Add Reviewed-by and Acked-by tags
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Kelly Hung <ppighouse@gmail.com>, robh+dt@kernel.org
+Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, joel@jms.id.au, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+	openbmc@lists.ozlabs.org, kelly_hung@asus.com, Allenyy_Hsu@asus.com
+Date: Wed, 27 Mar 2024 12:16:06 +1030
+In-Reply-To: <20240326103549.2413515-1-Kelly_Hung@asus.com>
+References: <20240326103549.2413515-1-Kelly_Hung@asus.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1710926402.git.zhoubinbin@loongson.cn> <0cfd237c2c7c1e4f89b6e5f7af0a64d306de1c8f.1710926402.git.zhoubinbin@loongson.cn>
- <20240326-shifter-zeppelin-1d8616dc82f9@spud>
-In-Reply-To: <20240326-shifter-zeppelin-1d8616dc82f9@spud>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Wed, 27 Mar 2024 07:15:40 +0600
-Message-ID: <CAMpQs4JKYxJQ=+iRW6EqRc4t3wF=eNLVg0Y=943D+X+LmJyG=Q@mail.gmail.com>
-Subject: Re: [PATCH v1 1/8] dt-bindings: clock: add Loongson-2K expand clock index
-To: Conor Dooley <conor@kernel.org>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Yinbo Zhu <zhuyinbo@loongson.cn>, Huacai Chen <chenhuacai@kernel.org>, 
-	loongson-kernel@lists.loongnix.cn, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 27, 2024 at 12:54=E2=80=AFAM Conor Dooley <conor@kernel.org> wr=
-ote:
->
-> On Tue, Mar 26, 2024 at 05:01:00PM +0800, Binbin Zhou wrote:
->
-> > -#define LOONGSON2_CLK_END                            18
->
->
-> > +#define LOONGSON2_CLK_END    35
->
-> Please just delete this. If you can change it, it is not a binding.
-> Just define it in the driver if it is needed there.
+Hi Kelly,
 
-Hi Conor:
+On Tue, 2024-03-26 at 18:35 +0800, Kelly Hung wrote:
+> There are no changes to the Patch file, just the reviewed and acked tags =
+are added.
+> PATCH v5 has been merged into the next branch.
 
-Ok, I will drop it in the next version.
+As others have said, please don't add tags that have not been
+explicitly given for your patches.
 
-Thanks.
-Binbin
->
-> Thanks,
-> Conor.
+Further, if a patch has been added to any upstream "next" branches it's
+not necessary to resend the patches beyond that point, unless there are
+errors that need correcting.
+
+Joel had added an earlier revision of your patches to a branch of
+candidate patches to upstream, and I've updated those in my own that
+I'm maintaining while he's on leave. I'd also added your patches to the
+OpenBMC kernel tree as a consequence, but you shouldn't apply tags to
+your upstream patches that other people didn't provide you on that
+basis.
+
+As for the concerns reported by Rob's bot, I've got a series that
+cleans up many of them. I'm working to find time to send them out.
+Hopefully these help reduce the noise in the future.
+
+Andrew
+
 
