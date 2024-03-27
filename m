@@ -1,471 +1,317 @@
-Return-Path: <devicetree+bounces-53867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF0C288E3B1
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 14:48:00 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4640088E566
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 15:21:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 936362A4FD7
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 13:47:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F0802B332EA
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 14:10:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26C511836C2;
-	Wed, 27 Mar 2024 12:25:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7D68131747;
+	Wed, 27 Mar 2024 12:34:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BE6DnJ3z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WHsjI+Fn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDC7A181CE2;
-	Wed, 27 Mar 2024 12:25:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80182131197;
+	Wed, 27 Mar 2024 12:34:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711542321; cv=none; b=HGIrGTL4DY5oYYjEB5kcDCVV1qq80/la0SoSXsEDp4iyS4uWARFc/mJVVHrZfFvXJ6Tua2yHwxD4kF7cYxltxq3xkDIbh6w1GRZzMPzTwDYhfNwuF4L6TFu9vqtN1Hc8Ke2YoSeUwpGc8oqLWQ2/um/qZ/B9wUob1qbjNeACfGE=
+	t=1711542867; cv=none; b=BLznJS4ZJhs9ecvlhNBQsEWiMCz7nh1MjSYaO6F1P1RIcWTfK1W5MzitgdwLHNW+dyMby/EBp3zZgBrjXNWx+z/aJjmclAV+Zdy3FNlg2GbAirfvnIIxpqwjccIB1W3O3WrKKjk0T4LPUkKNH09c6IBMCjv78AIZ3dkuyffPbOs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711542321; c=relaxed/simple;
-	bh=Fi5YANMykhXfh/CWBHTWx+veKXkxaKsp6BEQ+wOOAdk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ru+DrK+1ywPqszQl75Gry02bMeM3zAu09Bt3i7IjaG7szMSL7XaFDGjrxwsPCMMmbP+T39cRinpkudfPqodrTvjqt90uGVECQZAl/EIJcckMcCnGo9x7kPIO1Tv/ojttANTg6Fw0aMymUaraGJWzLLmvmzO70/qPx/FYFbXFDnI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BE6DnJ3z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85912C43601;
-	Wed, 27 Mar 2024 12:25:17 +0000 (UTC)
+	s=arc-20240116; t=1711542867; c=relaxed/simple;
+	bh=8N3t+CDdKY3YFlH7oaNZFASNnUeM1RCAwnipRrhwJuU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GEusRmpZCL1wWq/9uu0RzKCGRqYlS5pAV8jLolZ/VXMEKxaPOg2/iHvSAtLI8Kn6em1hpukb/LyZk4rourhTqoZDNGbAV7tSOHuuUpv/saR79yzbjSs+h66UH/rEprv5Am7YIKrexqzNjV4kmhLgJb/l2HFu5kH7KoJZx8K0Htg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WHsjI+Fn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE5FEC433C7;
+	Wed, 27 Mar 2024 12:34:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711542320;
-	bh=Fi5YANMykhXfh/CWBHTWx+veKXkxaKsp6BEQ+wOOAdk=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=BE6DnJ3zQ940NFCKlMHYxj5eF9TXRc1Le2NrUQRMiw2Cd3KfJ5zMK/6fYjXSPVehI
-	 zRm88FyCd0hBvDlr6IfDOWyRZDqCQ9OrbbR4X2mWqg4J8xhE7GuBTfh3lnwn+H1Tid
-	 7r9GuyFwt4v+5KSpsnqfohxsssbGUTWCEgjpeHwT8qxGy4qj+tguWyWs/gIpDDH0F4
-	 LrSu5HTLq5JRpT3mKeMjJK8NlBaZvSFW4sMqup7+wALbnXk+fOZ8oZAvt4xPxZRV37
-	 Xb/by73t9T/2L8HkiO79S0/lbjKQfBOcRnKr3I3Sr6fgLFjTO9JqyXnUJq2ks2RfQn
-	 r024H5GsnRovQ==
-From: Conor Dooley <conor@kernel.org>
-To: linux-riscv@lists.infradead.org
-Cc: conor@kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Jamie Gibbons <jamie.gibbons@microchip.com>,
-	Valentina Fernandez <valentina.fernandezalanis@microchip.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org
-Subject: [PATCH v1 5/5] riscv: dts: microchip: add an initial devicetree for the BeagleV Fire
-Date: Wed, 27 Mar 2024 12:24:40 +0000
-Message-ID: <20240327-hurry-escapable-e3212bf3cdd8@spud>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240327-parkway-dodgy-f0fe1fa20892@spud>
-References: <20240327-parkway-dodgy-f0fe1fa20892@spud>
+	s=k20201202; t=1711542866;
+	bh=8N3t+CDdKY3YFlH7oaNZFASNnUeM1RCAwnipRrhwJuU=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=WHsjI+FniF8Z7sOkWvPE0p9O+aVYavDYf9XPeV+3iciywX8W/lv4HDbwn4U8bXqdu
+	 t9UThFGat5QWDAEEdFSDMdFCP+83xuy0zQYv+kRkzTdAUSUPpaI5Pwo0PcGqXN7Z4h
+	 AiB7QOBGfU1jUIPntJBDlxdKY36aoV9onQus2N40KzBrrZ00RAxG6NPutLTmiTOPev
+	 VeDRcgqc0Urq5VRNUdFh2PRbE0Z4kFog0dNgD+pLz1Iu5FUQyT7hp8s860+MoyZIjp
+	 J5r4PQuj6zm5I8zJ3F8uHkn5Bg43XW56RDrJFuL6Sk0ZKXbDmtENJM2UsCnTU4AlRW
+	 VWyG3wXjQ1waQ==
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2d24a727f78so75601501fa.0;
+        Wed, 27 Mar 2024 05:34:26 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUPwcHeuTqI3GlLvlIDIoabS3WCBMTUbJ3LII8X/g5vUQDySb+fWRA9ya77tfpuYxt/ems9Ky2H+lDYMqueD0pIAPHr+ILruJtthgQpo8oC8BxKRxKOhcLNTKaJa3kFQIZrsFOuJs/7oADqmbEQJ6/U1cWZO9eY3MN24v5XZAvOdiii6MInvWx1g3FKkpzEFau/XDPjckdwBn7GXyYEBKOx
+X-Gm-Message-State: AOJu0YwWZLs/t9gxnH/Fwzc0nHblwnaIU+hvWv2HqaGZ1ygtSv4D31v4
+	i12aME69sRK24vw1MsHkylnxKZMrKMzRkXwxhGG8ViExQT/PMh80eURKzS5u/jfJ5Y1NjD3jT4G
+	QFbhoHHa4LrcRmADsi+wNjz712w==
+X-Google-Smtp-Source: AGHT+IGb/tvDk7BPc5ooPMe3vs21TSV/CGNkWTr1j3kZGhTSowTUtnyhhb9eTVfWHGXwW0jFHOVQ8E43Udn54x9e++k=
+X-Received: by 2002:a2e:9c55:0:b0:2d6:c7e5:34d0 with SMTP id
+ t21-20020a2e9c55000000b002d6c7e534d0mr4128198ljj.41.1711542844882; Wed, 27
+ Mar 2024 05:34:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=10766; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=VzkOrHaeB0MJo+Fuu8Q8iocE4H/HvHELUhz5DPz+Uls=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDGksAmyZ0wrjJVa9PrtY7bqA8CefW9NY3iu4hUytzBRXf H6HbeG9jlIWBjEOBlkxRZbE230tUuv/uOxw7nkLM4eVCWQIAxenAEzkRjnDP8UZWr+YD6z5dHfu miq7+znRDZkGm0xmnfxWq12yzFSX8Qwjw4VbweqZ32/0BPwI+HfhhLZV79wA/2Xck60uxmr8bA7 k5AMA
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
+References: <cover.1711048433.git.daniel@makrotopia.org> <20240325151046.GA3591150-robh@kernel.org>
+ <ZgGaay6bLFAcCo2E@makrotopia.org> <20240326202449.GA3255378-robh@kernel.org> <ZgM-AR1BFU_FPaXh@makrotopia.org>
+In-Reply-To: <ZgM-AR1BFU_FPaXh@makrotopia.org>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 27 Mar 2024 07:33:51 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKkr6Nnfwa5HevMhqmgsHDXvXMzMFSzw8tiu6Zwe353dg@mail.gmail.com>
+Message-ID: <CAL_JsqKkr6Nnfwa5HevMhqmgsHDXvXMzMFSzw8tiu6Zwe353dg@mail.gmail.com>
+Subject: Re: [PATCH 0/8] block: implement NVMEM provider
+To: Daniel Golle <daniel@makrotopia.org>, 
+	Architecture Mailman List <boot-architecture@lists.linaro.org>
+Cc: Diping Zhang <diping.zhang@gl-inet.com>, Jianhui Zhao <zhaojh329@gmail.com>, 
+	Jieying Zeng <jieying.zeng@gl-inet.com>, Chad Monroe <chad.monroe@adtran.com>, 
+	Adam Fox <adam.fox@adtran.com>, John Crispin <john@phrozen.org>, Felix Fietkau <nbd@nbd.name>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Ulf Hansson <ulf.hansson@linaro.org>, Jens Axboe <axboe@kernel.dk>, 
+	Dave Chinner <dchinner@redhat.com>, Jan Kara <jack@suse.cz>, 
+	=?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>, 
+	Damien Le Moal <dlemoal@kernel.org>, Li Lingfeng <lilingfeng3@huawei.com>, 
+	Christian Brauner <brauner@kernel.org>, Christian Heusel <christian@heusel.eu>, Min Li <min15.li@samsung.com>, 
+	Adrian Hunter <adrian.hunter@intel.com>, Avri Altman <avri.altman@wdc.com>, 
+	Hannes Reinecke <hare@suse.de>, Christian Loehle <CLoehle@hyperstone.com>, Bean Huo <beanhuo@micron.com>, 
+	Yeqi Fu <asuk4.q@gmail.com>, Victor Shih <victor.shih@genesyslogic.com.tw>, 
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>, 
+	Dominique Martinet <dominique.martinet@atmark-techno.com>, 
+	"Ricardo B. Marliere" <ricardo@marliere.net>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org, 
+	linux-block@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Conor Dooley <conor.dooley@microchip.com>
+On Tue, Mar 26, 2024 at 4:29=E2=80=AFPM Daniel Golle <daniel@makrotopia.org=
+> wrote:
+>
+> Hi Rob,
+>
+> On Tue, Mar 26, 2024 at 03:24:49PM -0500, Rob Herring wrote:
+> > +boot-architecture list
+>
+> Good idea, thank you :)
 
-Add an initial devicetree for the BeagleV Fire. This devicetree differs
-from that in the BeagleBoard BSP as it has a different memory
-configuration, however it will boot on the same FPGA images. PCI is
-disabled for now, as the Linux PCI driver (and the binding) assume
-which root port instance is in use. This will need to be fixed before
-PCI can be enabled.
+Now really adding it. :(
 
-Link: https://www.beagleboard.org/boards/beaglev-fire
-Co-developed-by: Jamie Gibbons <jamie.gibbons@microchip.com>
-Signed-off-by: Jamie Gibbons <jamie.gibbons@microchip.com>
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- arch/riscv/boot/dts/microchip/Makefile        |   1 +
- .../microchip/mpfs-beaglev-fire-fabric.dtsi   | 124 ++++++++++
- .../boot/dts/microchip/mpfs-beaglev-fire.dts  | 223 ++++++++++++++++++
- 3 files changed, 348 insertions(+)
- create mode 100644 arch/riscv/boot/dts/microchip/mpfs-beaglev-fire-fabric.dtsi
- create mode 100644 arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
+Will reply to rest later.
 
-diff --git a/arch/riscv/boot/dts/microchip/Makefile b/arch/riscv/boot/dts/microchip/Makefile
-index e177815bf1a2..f51aeeb9fd3b 100644
---- a/arch/riscv/boot/dts/microchip/Makefile
-+++ b/arch/riscv/boot/dts/microchip/Makefile
-@@ -1,4 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0
-+dtb-$(CONFIG_ARCH_MICROCHIP_POLARFIRE) += mpfs-beaglev-fire.dtb
- dtb-$(CONFIG_ARCH_MICROCHIP_POLARFIRE) += mpfs-icicle-kit.dtb
- dtb-$(CONFIG_ARCH_MICROCHIP_POLARFIRE) += mpfs-m100pfsevp.dtb
- dtb-$(CONFIG_ARCH_MICROCHIP_POLARFIRE) += mpfs-polarberry.dtb
-diff --git a/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire-fabric.dtsi b/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire-fabric.dtsi
-new file mode 100644
-index 000000000000..0abd0dc540be
---- /dev/null
-+++ b/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire-fabric.dtsi
-@@ -0,0 +1,124 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+
-+/ {
-+	fabric_clk3: fabric-clk3 {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <50000000>;
-+	};
-+
-+	fabric_clk1: fabric-clk1 {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <125000000>;
-+	};
-+
-+	fabric-bus@40000000 {
-+		compatible = "simple-bus";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges = <0x0 0x40000000 0x0 0x40000000 0x0 0x20000000>, /* FIC3-FAB */
-+			 <0x0 0x60000000 0x0 0x60000000 0x0 0x20000000>, /* FIC0, LO */
-+			 <0x0 0xe0000000 0x0 0xe0000000 0x0 0x20000000>, /* FIC1, LO */
-+			 <0x20 0x0 0x20 0x0 0x10 0x0>, /* FIC0,HI */
-+			 <0x30 0x0 0x30 0x0 0x10 0x0>; /* FIC1,HI */
-+
-+		cape_gpios_p8: gpio@41100000 {
-+			compatible = "microchip,coregpio-rtl-v3";
-+			reg = <0x0 0x41100000 0x0 0x1000>;
-+			clocks = <&fabric_clk3>;
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			ngpios = <16>;
-+			gpio-line-names = "P8_PIN31", "P8_PIN32", "P8_PIN33", "P8_PIN34",
-+					  "P8_PIN35", "P8_PIN36", "P8_PIN37", "P8_PIN38",
-+					  "P8_PIN39", "P8_PIN40", "P8_PIN41", "P8_PIN42",
-+					  "P8_PIN43", "P8_PIN44", "P8_PIN45", "P8_PIN46";
-+		};
-+
-+		cape_gpios_p9: gpio@41200000 {
-+			compatible = "microchip,coregpio-rtl-v3";
-+			reg = <0x0 0x41200000 0x0 0x1000>;
-+			clocks = <&fabric_clk3>;
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			ngpios = <20>;
-+			gpio-line-names = "P9_PIN11", "P9_PIN12", "P9_PIN13", "P9_PIN14",
-+					  "P9_PIN15", "P9_PIN16", "P9_PIN17", "P9_PIN18",
-+					  "P9_PIN21", "P9_PIN22", "P9_PIN23", "P9_PIN24",
-+					  "P9_PIN25", "P9_PIN26", "P9_PIN27", "P9_PIN28",
-+					  "P9_PIN29", "P9_PIN31", "P9_PIN41", "P9_PIN42";
-+		};
-+
-+		hsi_gpios: gpio@44000000 {
-+			compatible = "microchip,coregpio-rtl-v3";
-+			reg = <0x0 0x44000000 0x0 0x1000>;
-+			clocks = <&fabric_clk3>;
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			ngpios = <20>;
-+			gpio-line-names = "B0_HSIO70N", "B0_HSIO71N", "B0_HSIO83N",
-+					  "B0_HSIO73N_C2P_CLKN", "B0_HSIO70P", "B0_HSIO71P",
-+					  "B0_HSIO83P", "B0_HSIO73N_C2P_CLKP", "XCVR1_RX_VALID",
-+					  "XCVR1_LOCK", "XCVR1_ERROR", "XCVR2_RX_VALID",
-+					  "XCVR2_LOCK", "XCVR2_ERROR", "XCVR3_RX_VALID",
-+					  "XCVR3_LOCK", "XCVR3_ERROR", "XCVR_0B_REF_CLK_PLL_LOCK",
-+					  "XCVR_0C_REF_CLK_PLL_LOCK", "B0_HSIO81N";
-+		};
-+	};
-+
-+	fabric-pcie-bus@3000000000 {
-+		compatible = "simple-bus";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges = <0x0 0x40000000 0x0 0x40000000 0x0 0x20000000>,
-+			 <0x30 0x0 0x30 0x0 0x10 0x0>;
-+
-+		pcie: pcie@3000000000 {
-+			compatible = "microchip,pcie-host-1.0";
-+			#address-cells = <0x3>;
-+			#interrupt-cells = <0x1>;
-+			#size-cells = <0x2>;
-+			device_type = "pci";
-+			reg = <0x30 0x0 0x0 0x8000000>,
-+			      <0x0 0x43000000 0x0 0x10000>;
-+			reg-names = "cfg", "apb";
-+			bus-range = <0x0 0x7f>;
-+			interrupt-parent = <&plic>;
-+			interrupts = <119>;
-+			interrupt-map = <0 0 0 1 &pcie_intc 0>,
-+					<0 0 0 2 &pcie_intc 1>,
-+					<0 0 0 3 &pcie_intc 2>,
-+					<0 0 0 4 &pcie_intc 3>;
-+			interrupt-map-mask = <0 0 0 7>;
-+			clocks = <&ccc_nw CLK_CCC_PLL0_OUT1>,
-+				 <&ccc_nw CLK_CCC_PLL0_OUT3>;
-+			clock-names = "fic1", "fic3";
-+			ranges = <0x43000000 0x0 0x9000000 0x30 0x9000000 0x0 0xf000000>,
-+				 <0x1000000 0x0 0x8000000 0x30 0x8000000 0x0 0x1000000>,
-+				 <0x3000000 0x0 0x18000000 0x30 0x18000000 0x0 0x70000000>;
-+			msi-parent = <&pcie>;
-+			msi-controller;
-+			status = "disabled";
-+
-+			pcie_intc: interrupt-controller {
-+				#address-cells = <0>;
-+				#interrupt-cells = <1>;
-+				interrupt-controller;
-+			};
-+		};
-+	};
-+
-+	refclk_ccc: cccrefclk {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+	};
-+};
-+
-+&ccc_nw {
-+	clocks = <&refclk_ccc>, <&refclk_ccc>, <&refclk_ccc>, <&refclk_ccc>,
-+		 <&refclk_ccc>, <&refclk_ccc>;
-+	clock-names = "pll0_ref0", "pll0_ref1", "pll1_ref0", "pll1_ref1",
-+		      "dll0_ref", "dll1_ref";
-+	status = "okay";
-+};
-diff --git a/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts b/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
-new file mode 100644
-index 000000000000..47cf693beb68
---- /dev/null
-+++ b/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
-@@ -0,0 +1,223 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/* Copyright (c) 2020-2021 Microchip Technology Inc */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include "mpfs.dtsi"
-+#include "mpfs-beaglev-fire-fabric.dtsi"
-+
-+/* Clock frequency (in Hz) of MTIMER */
-+#define MTIMER_FREQ		1000000
-+
-+/ {
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+	model = "BeagleBoard BeagleV-Fire";
-+	compatible = "beagle,beaglev-fire", "microchip,mpfs";
-+
-+	aliases {
-+		serial0 = &mmuart0;
-+		serial1 = &mmuart1;
-+		serial2 = &mmuart2;
-+		serial3 = &mmuart3;
-+		serial4 = &mmuart4;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	cpus {
-+		timebase-frequency = <MTIMER_FREQ>;
-+	};
-+
-+	ddrc_cache_lo: memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x0 0x80000000 0x0 0x40000000>;
-+		status = "okay";
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		hss: hss-buffer@103fc00000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x10 0x3fc00000 0x0 0x400000>;
-+			no-map;
-+		};
-+	};
-+
-+	imx219_clk: camera-clk {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <24000000>;
-+	};
-+
-+	imx219_vana: fixedregulator-0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "imx219_vana";
-+		regulator-min-microvolt = <2800000>;
-+		regulator-max-microvolt = <2800000>;
-+	};
-+
-+	imx219_vdig: fixedregulator-1 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "imx219_vdig";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	imx219_vddl: fixedregulator-2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "imx219_vddl";
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+	};
-+
-+};
-+
-+&gpio2 {
-+	interrupts = <53>, <53>, <53>, <53>,
-+		     <53>, <53>, <53>, <53>,
-+		     <53>, <53>, <53>, <53>,
-+		     <53>, <53>, <53>, <53>,
-+		     <53>, <53>, <53>, <53>,
-+		     <53>, <53>, <53>, <53>,
-+		     <53>, <53>, <53>, <53>,
-+		     <53>, <53>, <53>, <53>;
-+	ngpios=<32>;
-+	gpio-line-names = "P8_PIN3_USER_LED_0", "P8_PIN4_USER_LED_1", "P8_PIN5_USER_LED_2",
-+			  "P8_PIN6_USER_LED_3", "P8_PIN7_USER_LED_4", "P8_PIN8_USER_LED_5",
-+			  "P8_PIN9_USER_LED_6", "P8_PIN10_USER_LED_7", "P8_PIN11_USER_LED_8",
-+			  "P8_PIN12_USER_LED_9", "P8_PIN13_USER_LED_10", "P8_PIN14_USER_LED_11",
-+			  "P8_PIN15", "P8_PIN16", "P8_PIN17", "P8_PIN18", "P8_PIN19", "P8_PIN20",
-+			  "P8_PIN21", "P8_PIN22", "P8_PIN23", "P8_PIN24", "P8_PIN25", "P8_PIN26",
-+			  "P8_PIN27", "P8_PIN28", "P8_PIN29", "P8_PIN30", "M2_W_DISABLE1",
-+			  "M2_W_DISABLE2", "VIO_ENABLE", "SD_DET";
-+	status = "okay";
-+
-+	vio-enable-hog {
-+		gpio-hog;
-+		gpios = <30 30>;
-+		output-high;
-+		line-name = "VIO_ENABLE";
-+	};
-+
-+	sd-det-hog {
-+		gpio-hog;
-+		gpios = <31 31>;
-+		input;
-+		line-name = "SD_DET";
-+	};
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+
-+	eeprom: eeprom@50 {
-+		compatible = "atmel,24c32";
-+		reg = <0x50>;
-+	};
-+
-+	imx219: sensor@10 {
-+		compatible = "sony,imx219";
-+		reg = <0x10>;
-+		clocks = <&imx219_clk>;
-+		VANA-supply = <&imx219_vana>;   /* 2.8v */
-+		VDIG-supply = <&imx219_vdig>;   /* 1.8v */
-+		VDDL-supply = <&imx219_vddl>;   /* 1.2v */
-+
-+		port {
-+			imx219_0: endpoint {
-+				data-lanes = <1 2>;
-+				clock-noncontinuous;
-+				link-frequencies = /bits/ 64 <456000000>;
-+			};
-+		};
-+	};
-+};
-+
-+&mac0 {
-+	status = "okay";
-+	phy-mode = "sgmii";
-+	phy-handle = <&phy0>;
-+	phy0: ethernet-phy@0 {
-+		reg = <0>;
-+	};
-+};
-+
-+&mbox {
-+	status = "okay";
-+};
-+
-+&mmc {
-+	bus-width = <4>;
-+	disable-wp;
-+	cap-sd-highspeed;
-+	cap-mmc-highspeed;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+	sd-uhs-sdr12;
-+	sd-uhs-sdr25;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr104;
-+	status = "okay";
-+};
-+
-+&mmuart0 {
-+	status = "okay";
-+};
-+
-+&mmuart1 {
-+	status = "okay";
-+};
-+
-+&refclk {
-+	clock-frequency = <125000000>;
-+};
-+
-+&refclk_ccc {
-+	clock-frequency = <50000000>;
-+};
-+
-+&rtc {
-+	status = "okay";
-+};
-+
-+&spi0 {
-+	status = "okay";
-+};
-+
-+&spi1 {
-+	status = "okay";
-+};
-+
-+&syscontroller {
-+	microchip,bitstream-flash = <&sys_ctrl_flash>;
-+	status = "okay";
-+};
-+
-+&syscontroller_qspi {
-+	status = "okay";
-+
-+	sys_ctrl_flash: flash@0 { // MT25QL01GBBB8ESF-0SIT
-+		compatible = "jedec,spi-nor";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		spi-max-frequency = <20000000>;
-+		spi-rx-bus-width = <1>;
-+		reg = <0>;
-+	};
-+};
-+
-+&usb {
-+	status = "okay";
-+	dr_mode = "otg";
-+};
--- 
-2.43.0
-
+> >
+> > On Mon, Mar 25, 2024 at 03:38:19PM +0000, Daniel Golle wrote:
+> > > On Mon, Mar 25, 2024 at 10:10:46AM -0500, Rob Herring wrote:
+> > > > On Thu, Mar 21, 2024 at 07:31:48PM +0000, Daniel Golle wrote:
+> > > > > On embedded devices using an eMMC it is common that one or more (=
+hw/sw)
+> > > > > partitions on the eMMC are used to store MAC addresses and Wi-Fi
+> > > > > calibration EEPROM data.
+> > > > >
+> > > > > Implement an NVMEM provider backed by a block device as typically=
+ the
+> > > > > NVMEM framework is used to have kernel drivers read and use binar=
+y data
+> > > > > from EEPROMs, efuses, flash memory (MTD), ...
+> > > > >
+> > > > > In order to be able to reference hardware partitions on an eMMC, =
+add code
+> > > > > to bind each hardware partition to a specific firmware subnode.
+> > > > >
+> > > > > Overall, this enables uniform handling across practially all flas=
+h
+> > > > > storage types used for this purpose (MTD, UBI, and now also MMC).
+> > > > >
+> > > > > As part of this series it was necessary to define a device tree s=
+chema
+> > > > > for block devices and partitions on them, which (similar to how i=
+t now
+> > > > > works also for UBI volumes) can be matched by one or more propert=
+ies.
+> > > > >
+> > > > > ---
+> > > > > This series has previously been submitted as RFC on July 19th 202=
+3[1]
+> > > > > and most of the basic idea did not change since. Another round of=
+ RFC
+> > > > > was submitted on March 5th 2024[2] which has received overall pos=
+itive
+> > > > > feedback and only minor corrections have been done since (see
+> > > > > changelog below).
+> > > >
+> > > > I don't recall giving positive feedback.
+> > > >
+> > > > I still think this should use offsets rather than partition specifi=
+c
+> > > > information. Not wanting to have to update the offsets if they chan=
+ge is
+> > > > not reason enough to not use them.
+> > >
+> > > Using raw offsets on the block device (rather than the partition)
+> > > won't work for most existing devices and boot firmware out there. The=
+y
+> > > always reference the partition, usually by the name of a GPT
+> > > partition (but sometimes also PARTUUID or even PARTNO) which is then
+> > > used in the exact same way as an MTD partition or UBI volume would be
+> > > on devices with NOR or NAND flash.
+> >
+> > MTD normally uses offsets hence why I'd like some alignment. UBI is
+> > special because raw NAND is, well, special.
+>
+> I get the point and in a way this is also already intended and
+> supported by this series. You can already just add an 'nvmem-layout'
+> node directly to a disk device rather than to a partition and define a
+> layout in this way.
+>
+> Making this useful in practice will require some improvements to the
+> nvmem system in Linux though, because that currently uses signed 32-bit
+> integers as addresses which is not sufficient for the size of the
+> user-part of an eMMC. However, that needs to be done then and should
+> of course not be read as an excuse.
+>
+> >
+> > > Just on eMMC we usually use a GPT
+> > > or MBR partition table rather than defining partitions in DT or cmdli=
+ne,
+> > > which is rather rare (for historic reasons, I suppose, but it is what=
+ it
+> > > is now).
+> >
+> > Yes, I understand how eMMC works. I don't understand why if you have
+> > part #, uuid, or name you can't get to the offset or vice-versa. You
+> > need only 1 piece of identification to map partition table entries to D=
+T
+> > nodes.
+>
+> Yes, either of them (or a combination) is fine. In practise I've mostly
+> seen PARTNAME as identifier used in userland scripts, and only adding
+> this for now will probably cover most devices (and existing boot firmware=
+)
+> out there. Notable exceptions are devices which are using MBR partitions
+> because the BootROM expects the bootloader to be at the same block as
+> we would usually have the primary GPT. In this case we can only use the
+> PARTNO, of course, and it stinks.
+> MediaTek's MT7623A/N is such an example, but it's a slingly outdated
+> and pretty weird niche SoC I admit.
+>
+> > Sure, offsets can change, but surely the firmware can handle
+> > adjusting the DT?
+>
+> Future firmware may be able to do this, of course. Current existing
+> firmware already out there on devices such as the quite popular
+> GL.iNet MT-6000, Netgear's Orbi and Orbi Pro series as well as all
+> Adtran SmartRG devices does not. Updating or changing the boot
+> firmware of devices already out there is not intended and quite
+> challenging, and will make the device incompatible with its vendor
+> firmware. Hence it would be better to support replacing only the
+> Linux-based firmware (eg. with OpenWrt or even Debian or any
+> general-purpose Linux, the eMMC is large enough...) while not having
+> to touch the boot firmware (and risking to brick the device if that
+> goes wrong).
+>
+> Personally, I'm rather burdened and unhappy with vendor attempts to
+> have the boot firmware mess around too much in (highly customized,
+> downstream) DT, it may look like a good solution at the moment, but
+> can totally become an obstacle in an unpredictable future (no offense
+> ASUS...)
+>
+> >
+> > An offset would also work for the case of random firmware data on the
+> > disk that may or may not have a partition associated with it. There are
+> > certainly cases of that. I don't think we have much of a solution for
+> > that other than trying to educate vendors to not do that or OS
+> > installers only supporting installing to something other than eMMC. Thi=
+s
+> > is something EBBR[1] is trying to address.
+>
+> Absolutely. Actually *early* GL-iNet devices did exactly that: Use the
+> eMMC boot hw-partitions to store boot firmware as well as MAC
+> addresses and potentially also Wi-Fi calibration data.
+>
+> The MT-2500 is the example I'm aware of and got sitting on my desk for
+> testing with this very series (which allows to also reference eMMC
+> hardware partitions, see "[7/8] mmc: block: set fwnode of disk
+> devices").
+> Unfortunately later devices such the the flag-ship MT-6000 moved MAC
+> addresses and WiFi-EEPROMs into a GPT partition on the user-part of
+> the eMMC.
+>
+> >
+> > > Depending on the eMMC chip used, that partition may not even be at th=
+e
+> > > same offset for different batches of the same device and hence I'd
+> > > like to just do it in the same way vendor firmware does it as well.
+> >
+> > Often vendor firmware is not a model to follow...
+>
+> I totally agree. However, I don't see a good reason for not supporting
+> those network-appliance-type embedded devices which even ship with
+> (outdated, downstream) Linux by default while going through great
+> lengths for things like broken ACPI tables in many laptops which
+> require lots of work-arounds to have features like suspend-to-disk
+> working, or even be able to run Linux at all.
+>
+> >
+> > > Chad of Adtran has previously confirmed that [1], which was the
+> > > positive feedback I was refering to. Other vendors like GL-iNet or
+> > > Netgear are doing the exact same thing.
+> > >
+> > > As of now, we support this in OpenWrt by adding a lot of
+> > > board-specific knowledge to userland, which is ugly and also prevents
+> > > using things like PXE-initiated nfsroot on those devices.
+> > >
+> > > The purpose of this series is to be able to properly support such dev=
+ices
+> > > (ie. practially all consumer-grade routers out there using an eMMC fo=
+r
+> > > storing firmware).
+> > >
+> > > Also, those devices have enough resources to run a general purpose
+> > > distribution like Debian instead of OpenWrt, and all the userland
+> > > hacks to set MAC addresses and extract WiFi-EEPROM-data in a
+> > > board-specific ways will most certainly never find their way into
+> > > Debian. It's just not how embedded Linux works, unless you are lookin=
+g
+> > > only at the RaspberryPi which got that data stored in a textfile
+> > > which is shipped by the distribution -- something very weird and very
+> > > different from literally all of-the-shelf routers, access-points or
+> > > switches I have ever seen (and I've seen many). Maybe Felix who has
+> > > seen even more of them can tell us more about that.
+> >
+> > General purpose distros want to partition the disk themselves. Adding
+> > anything to the DT for disk partitions would require the installer to b=
+e
+> > aware of it. There's various distro folks on the boot-arch list, so
+> > maybe one of them can comment.
+>
+> Usually the installers are already aware to not touch partitions when
+> unaware of their purpose. Repartitioning the disk from scratch is not
+> what (modern) distributions are doing, at least the EFI System
+> partition is kept, as well as typical rescue/recovery partitions many
+> vendors put on their (Windows, Mac) laptops to allow to "factory
+> reset" them.
+>
+> Installers usually offer to replace (or resize) the "large" partition
+> used by the currently installed OS instead.
+>
+> And well, the DT reference to a partition holding e.g. MAC addresses
+> does make the installer aware of it, obviously.
+>
+>
+> Thank you for the constructive debate!
+>
+>
+> Cheers
+>
+>
+> Daniel
+>
+>
+> >
+> > Rob
+> >
+> > [1] https://arm-software.github.io/ebbr/index.html#document-chapter4-fi=
+rmware-media
 
