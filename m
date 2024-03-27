@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-53816-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53817-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D696F88DA33
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 10:23:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31E4888DA38
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 10:24:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E345B1C26222
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 09:23:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6E742B240AD
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 09:24:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61698374EF;
-	Wed, 27 Mar 2024 09:23:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1115B28DDC;
+	Wed, 27 Mar 2024 09:24:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eIMtOwEn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ORXzJ1tC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ECE628DDC
-	for <devicetree@vger.kernel.org>; Wed, 27 Mar 2024 09:23:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B0C53613D
+	for <devicetree@vger.kernel.org>; Wed, 27 Mar 2024 09:24:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711531403; cv=none; b=ltqhNAdagsINyZhUK0T6lf4dKQsWT90WgipkvNkgqeZEMHNZmR/VAdm/lGHbn+2L0sVRr+XfE5U7fcvGnLUsRJRmJxH8ThEozLFzWqwPDEOTI+m4AAoiVWiS1z2zFWHp10Zun2MRy+vasapiXDbKqA6i9CZDofv1O7LH8zfGpSo=
+	t=1711531444; cv=none; b=ggZH4QyhmzmxQSbrcQadfybOqvRh2+xQ63vn3eEAajjDIaNmiIKo2ltJIz9wtVv/VQBDdaBfF/8D7zNVr6P+Hi+VnfrWaP+jJ8TpGNWMnCzSH8YyCMk+Sj2E+gJ4HBfUidpbjSFQIlAb7L+2yQdg2oDmPcmKiZ2s2Jpm0Id5kvE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711531403; c=relaxed/simple;
-	bh=9iX7b9GD7uvh5Hbkv7+dsefgSwYEYSZcj+k4pzrjb9o=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=AvkET5hMQL2P3iL/sKQqwRvB3+IZ6rtuYJdjWHDXDMB8xqOoTK81f6trx0swm7VjctxoLEzHPDuCPArWJTDgFEGlAJ3+lu4+KcZUrUPS9AEa18eSHpNNyNAzfJs54xIz8MdsD11FeR3hRhBy3u4w/aSzITvtelz9aGJG7t6yKCc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eIMtOwEn; arc=none smtp.client-ip=209.85.218.43
+	s=arc-20240116; t=1711531444; c=relaxed/simple;
+	bh=bkoOwCv/XTWP9VmzVwpOstmW1ro23JeyiLdyNeJIdGo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UCvM7KaOykhxxtBnFHqXIa2HBLVAA0rW2pc567GWf9IR8CL9a9GcWD/qPD3ojXAzYIMHoknbmq2eMnyDZYFO/aQ3YcJ6O4k6aqnmr/5k+tj4xiW9wpi8Unn+AfVHuNQhOa7LPNgWlPavgYkF9yp4muqPwJ01z0JAS85e0sA4LS4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ORXzJ1tC; arc=none smtp.client-ip=209.85.208.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a47385a4379so119355966b.0
-        for <devicetree@vger.kernel.org>; Wed, 27 Mar 2024 02:23:21 -0700 (PDT)
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-56bb22ff7baso7641722a12.3
+        for <devicetree@vger.kernel.org>; Wed, 27 Mar 2024 02:24:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711531400; x=1712136200; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:from:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=U9VA56VrFWmCSGuSnKV8c60GKZ/E4BlEsHm8F89QPoQ=;
-        b=eIMtOwEnDVGTaNInTQf7g2bW4W4aWC0e/NDJcumTxm1uT15eA3ERznN24nm1bH/yvq
-         szMNC/933kMw4cAkz0c6Sx3UCSDYJEzzUi+Xdgloc2zpPTAFmVoBR9JvkaYkLdmAKlAh
-         ItioN/SxbNTNZkfxkq0KJxaT4VKnjUotHOJUaCAeG+NVKRTqfF3LMgcD213kSYiaQhJM
-         0BIYyCZBWi5UyvhXagAFlKcQ83AOddzSGym3jAjjLt5lxzjny8655BnYTLGUwU/my9xE
-         CoF8e9FCcVxTo6dmSJckM79pS1DFu2UqdhcYWTo53tHssm/mcAMWdbyuSSnlmmmL/SrW
-         W1XQ==
+        d=linaro.org; s=google; t=1711531441; x=1712136241; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=cTJ3w7P7U+hKgqOO13U5dm12YU1iLhncD8QPeYjqVFk=;
+        b=ORXzJ1tCp114TTcVSZTArZTHXspJck4kjGKvgIq+pF6JIxSOIH20LEqu7GufOWlhwP
+         t0t6SxwBc1oQfARmFyWD08nGfqAvJGlkaXxOyeFwyz2DK38IIbLxxFgdhbctObYgreEu
+         63jeeAacy0wimw0QEDo0tdlIwpLDbnWo2mKjb83Wm7WvcS2BaT1y7bA5ELdq+R8Rjq0n
+         xQfJ0+K35q2C1en/p6z30myaH3EFSnhdb5G6+wP16LptP2Q+rr/00V+sPN2mG5N4Qp4K
+         BnG4AWws9yH9YPbrWugxbXLUMwQ9RhM9f51TBuiBtVXtjK3wW3sgnvxLLwVccrpa7k6v
+         Y+TA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711531400; x=1712136200;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:from:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=U9VA56VrFWmCSGuSnKV8c60GKZ/E4BlEsHm8F89QPoQ=;
-        b=ASgJoRJfxC2fPZ6dbULB9tFkvdAVZqH5ZqwRz1Fyw8huO0Nip6UzdrHqr7TWvdGSyu
-         hD/3uS9r6l3lskJjxUpgcXUA0+DqYZsQZ2Fv8QAVNpZxXMRbI7LOM3LLrZHwCOtqH51I
-         a7RJmIp8N61UxrKJ/tSzQVS04/+KBQOsL/Pl4dFk7STlFVrRzHQRoU0zH3S6rL7IQ2S8
-         ttnHxV2x58kKbN+e+s3wcX+NRwciqILUJ76apYc35Yq259dvnueW6TDh0zt9VWpvQL0q
-         sMj9QKA+qpoScIMzPVS+YnAVSLF5fdNONm66HDARkideebrNWBPwHJ41xt1l1IT9mHNu
-         yMDA==
-X-Gm-Message-State: AOJu0YyVv4/8eA8dbUjZnLItlz8CUHD3VdwY4aTOu3UDgBZ9ffnEQYzK
-	f4OZqAlZsU7nakT96kVFfrHdFYoucBoRShdDBI+24hZ65Yzqo7aG0rAB+s0uIYo=
-X-Google-Smtp-Source: AGHT+IHOTEmL5nnAkaZ43sMnfmXMPzU1hxieecDn0KTOMb9akiksiLfGJLOnOIYjYs+Tzeyvsdi2eA==
-X-Received: by 2002:a17:907:7d8f:b0:a4e:14d:69d6 with SMTP id oz15-20020a1709077d8f00b00a4e014d69d6mr1513670ejc.36.1711531399781;
-        Wed, 27 Mar 2024 02:23:19 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1711531441; x=1712136241;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cTJ3w7P7U+hKgqOO13U5dm12YU1iLhncD8QPeYjqVFk=;
+        b=h5TS3ElWFee9nBHBDcdW304XHABhOKIGLSMffZntq1MQFL70RJyGW7l1a0MCpV67Vg
+         MU7QYUxhwWm8m5zqHSve1mKYbZN3ddMABzxm60UAkHK5ZCzLZiEorQKEXvBF7j0fSwTj
+         XJ7qWPJEs3AC6iD6kTtiE11qAtou2wSxctm7homgZVKcIspV09cUqt+Lb12D/2WrYP0a
+         56BB470lHJyB5DvUyGrny9eF4ZYVVZzfsOZcQXBayDeJl1L1ZEUGfECg6yCfs5V/68gO
+         4vmruHHrFqUT4Xzsa1axTS1kkB/IwMEnvgJGBbjGZR878Qute6O8fHeQilwp1FkUlKyQ
+         gM7w==
+X-Forwarded-Encrypted: i=1; AJvYcCW7z2ExNPMtkmK6SANlT5MtN1rwLVshwRPjowc/qbQqZQbqOcmPnDo9IR7UUv6ivLHQZAd9SkMZ2MfyweGmUmmEQjkxXXSVoXWOgA==
+X-Gm-Message-State: AOJu0YwsZ6vS1MGnu/UUTZcphOPqpKNkGVhnnJyK4RSr8XdO8yt5xrBz
+	SV/PGK664wzlQlZwcWrODT1LLpKTF4ntMO+9onlaXQzG8gxLik1UE1w2ytd+7oA=
+X-Google-Smtp-Source: AGHT+IG0RwG0+H2jhpdsWqWZxbpBKn/+UEcFQnWCYoskwFE7R031tcRGub/KlNQ1BbNLEC86vEgSPQ==
+X-Received: by 2002:a17:906:2898:b0:a47:3b7b:e7a7 with SMTP id o24-20020a170906289800b00a473b7be7a7mr2457501ejd.54.1711531441533;
+        Wed, 27 Mar 2024 02:24:01 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.206.205])
-        by smtp.gmail.com with ESMTPSA id p22-20020a1709060dd600b00a4df7d02395sm1406144eji.86.2024.03.27.02.23.12
+        by smtp.gmail.com with ESMTPSA id ao18-20020a170907359200b00a46aba003eesm5162687ejc.215.2024.03.27.02.23.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Mar 2024 02:23:19 -0700 (PDT)
-Message-ID: <c3ca3d90-898e-44b0-ad0f-dd78c09c5fcd@linaro.org>
-Date: Wed, 27 Mar 2024 10:23:10 +0100
+        Wed, 27 Mar 2024 02:24:01 -0700 (PDT)
+Message-ID: <d213f262-ba0e-4cf8-af0e-66745ffea429@linaro.org>
+Date: Wed, 27 Mar 2024 10:23:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,23 +77,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] dt-bindings: power: Add mediatek larb definition
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: "yu-chang.lee" <yu-chang.lee@mediatek.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+Subject: Re: [PATCH RESEND v6 0/5] spmi: pmic-arb: Add support for multiple
+ buses
+To: Abel Vesa <abel.vesa@linaro.org>, Stephen Boyd <sboyd@kernel.org>,
  Matthias Brugger <matthias.bgg@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
  AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- MandyJH Liu <mandyjh.liu@mediatek.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com, fan.chen@mediatek.com,
- xiufeng.li@mediatek.com
-References: <20240327055732.28198-1-yu-chang.lee@mediatek.com>
- <20240327055732.28198-3-yu-chang.lee@mediatek.com>
- <6dd9959e-f741-47af-b10a-1894f72ae78f@linaro.org>
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+ Johan Hovold <johan@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
+References: <20240326-spmi-multi-master-support-v6-0-1c87d8306c5b@linaro.org>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -137,38 +140,25 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <6dd9959e-f741-47af-b10a-1894f72ae78f@linaro.org>
+In-Reply-To: <20240326-spmi-multi-master-support-v6-0-1c87d8306c5b@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/03/2024 09:39, Krzysztof Kozlowski wrote:
-> On 27/03/2024 06:57, yu-chang.lee wrote:
->> Add Smart Multimedia Interface Local Arbiter to mediatek
->> power domain.
->>
->> Signed-off-by: yu-chang.lee <yu-chang.lee@mediatek.com>
->> ---
->>  .../devicetree/bindings/power/mediatek,power-controller.yaml  | 4 ++++
->>  1 file changed, 4 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
->> index 8985e2df8a56..228c0dec5253 100644
->> --- a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
->> +++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
->> @@ -125,6 +125,10 @@ $defs:
->>          $ref: /schemas/types.yaml#/definitions/phandle
->>          description: phandle to the device containing the SMI register range.
->>  
->> +     mediatek,larb:
->> +        $ref: /schemas/types.yaml#/definitions/phandle
->> +        description: phandle to the device containing the LARB register range.
+On 26/03/2024 17:28, Abel Vesa wrote:
+> This RFC prepares for and adds support for 2 buses, which is supported
+> in HW starting with version 7. Until now, none of the currently
+> supported platforms in upstream have used the second bus. The X1E80100
+> platform, on the other hand, needs the second bus for the USB2.0 to work
+> as there are 3 SMB2360 PMICs which provide eUSB2 repeaters and they are
+> all found on the second bus.
 > 
-> Why do you need it?
-> 
-> Plus I also see mediatek,larbs and mediatek,larb-id... so now we have
-> third one similar.
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+> Changes in v6:
+> - Changed the compatible to platform specific (X1E80100) along with the
+>   schema. Fixed the spmi buses unit addresses and added the empty ranges
 
-... and not even tested!
+Why resending after few days? And why without reviews?
 
 Best regards,
 Krzysztof
