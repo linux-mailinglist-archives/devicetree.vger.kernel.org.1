@@ -1,153 +1,186 @@
-Return-Path: <devicetree+bounces-53702-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53703-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCDD388D29F
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 00:11:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9DA188D308
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 01:05:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68AD21F39F76
-	for <lists+devicetree@lfdr.de>; Tue, 26 Mar 2024 23:11:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 637341F61136
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 00:05:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F09C313D8B5;
-	Tue, 26 Mar 2024 23:10:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B2F77FF;
+	Wed, 27 Mar 2024 00:05:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BJVGGHD2"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="jcXpnBGU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C14C1E494;
-	Tue, 26 Mar 2024 23:10:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF4DA160;
+	Wed, 27 Mar 2024 00:05:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711494656; cv=none; b=HgCCPTwYttrHdQxAyCViK7x9gf1bIGNV6RpVGJ3/ljd4hGKCkCLLua4XlP47tP8KjF1y6eZnoj8/qH3apOyuMHA1bzY1QAT31ivtg/6qOaLNtgmxyHjHsYk77UhchDNF9gfQeBzMOc1eIgkzvX3+dFaYyl24XqICDtbvseD+Nhc=
+	t=1711497929; cv=none; b=DnA5Dd8i7sAqQBk1PYcF3KyQqrjbulfD7KoWDaMP19mmrLFIa22QeIgVeGARm3DcH++JxpCDcyw5P1nlmfwCE6I+wg/4CtnFfpTpS68Z0NHgaV4130KBTSQOTPmcqo2gySvdpeJOu8C06dyvPH+YCy3Q6bH2V0aj1GINpiZWCk0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711494656; c=relaxed/simple;
-	bh=iGllS9oXf0zC61pFQfjW6YSpL+0c9JdC0e9B64ib2yo=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=RmRvnpPJTEHMxBOaN3MyjzV1Col7hkRb/g+/PcmYiEgU3L98HzDm/OXxXfaUWDz6YF918a+LgmawDhwR1Oa8r9taERqUnXK0hQWjn8U6KGCkrslgnd3lmlK0HnZAOst7srQM8It1DI4/Wu4jL9E3V0fRpL/nYPXKa6CKWpksORQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BJVGGHD2; arc=none smtp.client-ip=209.85.215.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-5d862e8b163so1289054a12.1;
-        Tue, 26 Mar 2024 16:10:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711494655; x=1712099455; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=1nq0CgX8O+qGAyxnErUu1MNEqe8TDbvktuop+7fB/lw=;
-        b=BJVGGHD2KyMhaxtWWv7/iBuNmrAUaWn0lyL1JIrmIQudYTXoCJntl5d4RVV4mJF5RB
-         XCpxiFXIlL9H7TVMOtG5eE7TSwq0FtpJfuNk1dqZQvelUDEWLp3L1Es/hfcNsq8oLLS+
-         25MqGSSa+UP7eBzg8hK8uDSZDxudWUI/QZ9XrSvBazEIwfFnoo/n1kicUm2vircE9ie7
-         gKzieTjoTKFe5ZYVLZkZT+FdpOJ74RuqR9t4cuXHBAmtAuGpBuv0BK5SuxxYEYxykALi
-         LMauKycONd/f0wO3lMy9Tbm7q3W9aKjYGFLkSYHoSFeIb7PEdhdinpqulCVTb7KqlJDN
-         UiyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711494655; x=1712099455;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1nq0CgX8O+qGAyxnErUu1MNEqe8TDbvktuop+7fB/lw=;
-        b=tWbf3ndWjg/+wReGixUxopIvU0zG4kPrc3rZD8r5y5ClLkwsyWOZ8dTmSPN8B9JzJI
-         YdKQ+AdwZfDqHBWoWb72ZXvVEL9ypX143suOniAQKbBaMIAxzyf5i3BKauHAhTOjig2a
-         YvdcX1TKjk/ItEAtVWJYSRnPsk8vXEpK7wItf5dWQ/uLElMyjb+W/4XBTR36BSkDMGot
-         xCPIEWrJrTcv25rp6xnqX6bpQoUxRHgLr5Hy/0aLf9pzHnUXLeauW8zgNyevbk0HhXfj
-         7TbeDLDHUZN+/OE+kGI7BWO+VMjXRnQTxD1NOCiZ+WZ3ay4kMg1Oy8YhXrDrsCHDrZOP
-         zUqQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVKBhx8q2lGy+QBmfT/2YJYZGxkju3f+a4DQBDU7w91lhm2FO12oOUeu65qGuqCfGZsknPbNo4wr+9ObODN2y3SfnQtYKEJYlvWtkW1PqozwICbBepF07qfpxEUcdc4mx/er6nY3eKI
-X-Gm-Message-State: AOJu0Yxk84bPQaUjH+TUdjw2ooSJHsnbD5A407qW0JCYw3F25e5j18l4
-	TnEdQv/aV1XjRyoSdx8Mqw8w70ylXeIKVkGXtrFThg8bicyT0G37
-X-Google-Smtp-Source: AGHT+IFz1qj2sC1j+AnSlwkNmcvkxUaU/LwyJQFNR/G/5LeLEEvOYaoFBN2Xl0uWB1ia2YNmk741Wg==
-X-Received: by 2002:a05:6a20:3d22:b0:1a3:b0a8:fbe9 with SMTP id y34-20020a056a203d2200b001a3b0a8fbe9mr14465817pzi.1.1711494654787;
-        Tue, 26 Mar 2024 16:10:54 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:ebca:2207:7ede:8032])
-        by smtp.gmail.com with ESMTPSA id ks12-20020a170903084c00b001dedfba4c69sm7474505plb.134.2024.03.26.16.10.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Mar 2024 16:10:54 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: sakari.ailus@linux.intel.com
-Cc: rmfrfs@gmail.com,
-	robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH] media: dt-bindings: ovti,ov2680: Document clock/data-lanes
-Date: Tue, 26 Mar 2024 20:10:33 -0300
-Message-Id: <20240326231033.2048193-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1711497929; c=relaxed/simple;
+	bh=v9Xd9Dy0I+pZEWtaWeSSZziKCAVjPxpIMJbqBJ+Y/fY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ljHLnaC1I22Tjf/TWfkBA7a2qNggzldHMjdNvFkYd7lJFmSHQcTDjkd0R/FLVvCpr9m24GeNjfZQFdGJtLkjFQHJc/k9QPcycS7jLX6qixU/OR+h2Lbq0j7y+vyg99bJKXkvszgDm2Pk7IXDh7qWD1J8M7NqSQoHSqE1snCgLwY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=jcXpnBGU; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 37860505;
+	Wed, 27 Mar 2024 01:04:47 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1711497887;
+	bh=v9Xd9Dy0I+pZEWtaWeSSZziKCAVjPxpIMJbqBJ+Y/fY=;
+	h=From:To:Cc:Subject:Date:From;
+	b=jcXpnBGU/q0E3smCadFbVW1l/2EgMGkvOkSkV0wiijgJ4DRX6yF746q6Gxap5UETe
+	 fpZUdm2LppsRsMBsVE40qiAOe47Y+aX1JntTAZEbu8ys7bE24mYReD/OrztfOil93p
+	 KdhVAmRm4KOf+Lb0eN2YW7nsA79sfVig65LxkrOs=
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: linux-media@vger.kernel.org
+Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	David Plowman <david.plowman@raspberrypi.com>,
+	Jean-Michel Hautbois <jeanmichel.hautbois@yoseli.org>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Naushir Patuck <naush@raspberrypi.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	kernel-list@raspberrypi.com,
+	linux-rpi-kernel@lists.infradead.org,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	bcm-kernel-feedback-list@broadcom.com,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: [PATCH v8 00/10] media: Add driver for the Raspberry Pi <5 CSI-2 receiver
+Date: Wed, 27 Mar 2024 02:04:58 +0200
+Message-ID: <20240327000510.2541-1-laurent.pinchart@ideasonboard.com>
+X-Mailer: git-send-email 2.43.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-From: Fabio Estevam <festevam@denx.de>
+Hello everybody,
 
-OV2680 has a single data lane MIPI interface.
+This patch series adds a new driver for the BCM2835 (and derivative)
+CCP2/CSI2 camera interface named Unicam. This IP core is found in the
+VC4-based Raspberry Pi, namely the Pi Zero, Pi 3 and Pi 4.
 
-Document the clock-lanes and data-lanes properties to avoid
-the following dt-schema warning:
+Camera support for Raspberry Pi 4 currently relies on a downstream
+Unicam driver that live in the Raspberry Pi kernel tree ([1]). The
+driver uses the V4L2 API, but works around the lack of features in V4L2
+to properly support sensor embedded data. Since the Unicam driver
+development by Raspberry Pi, some of those features have been merged in
+the kernel (namely the V4L2 streams API) or are being developed (namely
+generic metadata formats and subdev internal pads), with patches posted
+for review on the linux-media mailing list ([2]).
 
-imx7s-warp.dtb: camera@36: port:endpoint: Unevaluated properties are not allowed ('clock-lanes', 'data-lanes' were unexpected)
-	from schema $id: http://devicetree.org/schemas/media/i2c/ovti,ov2680.yaml#
+This new upstream driver is based on the downstream code, extensively
+reworked to use the new V4L2 APIs.
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- .../bindings/media/i2c/ovti,ov2680.yaml       | 19 +++++++++++++++++--
- 1 file changed, 17 insertions(+), 2 deletions(-)
+The series is based on a merge of
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml
-index cf456f8d9ddc..ae104da067e9 100644
---- a/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml
-@@ -50,9 +50,22 @@ properties:
-       Definition of the regulator used as digital power supply.
- 
-   port:
--    $ref: /schemas/graph.yaml#/properties/port
-     description:
-       A node containing an output port node.
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-+    additionalProperties: false
-+
-+    properties:
-+      endpoint:
-+        $ref: /schemas/media/video-interfaces.yaml#
-+        unevaluatedProperties: false
-+
-+        properties:
-+          clock-lanes:
-+            const: 0
-+
-+          data-lanes:
-+            const: 1
- 
- required:
-   - compatible
-@@ -65,7 +78,7 @@ required:
-   - reset-gpios
-   - port
- 
--additionalProperties: false
-+unevaluatedProperties: false
- 
- examples:
-   - |
-@@ -89,6 +102,8 @@ examples:
-                 port {
-                         ov2680_to_mipi: endpoint {
-                                 remote-endpoint = <&mipi_from_sensor>;
-+                                clock-lanes = <0>;
-+                                data-lanes = <1>;
-                         };
-                 };
-         };
+- v8 of the generic metadata and internal pads, rebased on v6.9-rc1 ([3])
+- the downstream ISP driver ported to mainline ([4])
+
+with a set of patches for the imx219 driver applied on top. For
+convenience, it can be found in [5]. Note that the ISP driver is getting
+upstreamed separately.
+
+Compared to v7, I have left the imx219 patches out, as they don't need
+to be bundled with the Unicam driver for review. They will be
+resubmitted separately.
+
+The series starts with four patches that add the Unicam driver (04/10),
+with new V4L2 pixel formats (01/10 and 02/10) and DT bindings (03/10).
+The remaining patches cover DT integration (05/10 to 09/10) with a
+sample DT overlay for the IMX219 camera module (10/10).
+
+The patches have been tested on a Raspberry Pi 4 using an IMX219 camera
+module (the Raspberry Pi camera v2), with libcamera. Updates are needed
+to libcamera to use the new V4L2 APIs, patches have been posted to [6].
+For manual testing with media-ctl, corresponding API updates to
+v4l-utils are available at [7].
+
+While more work is needed to be able to merge the generic metadata API
+(namely implementing support for the latest API version in media-ctl and
+v4l2-compliance), I'm happy with the unicam implementation, and I
+believe we're really nearing completion. This series, along with the
+libcamera support, help validating the new kernel APIs. We have reached
+a point where we can start converting other sensor drivers from the
+downstream Raspberry Pi kernel to the standard APIs for embedded data,
+as well as integrating the APIs in the Raspberry Pi 5 CFE driver.
+
+[1] https://github.com/raspberrypi/linux/tree/rpi-6.1.y/drivers/media/platform/bcm2835
+[2] https://lore.kernel.org/linux-media/20240313072516.241106-1-sakari.ailus@linux.intel.com/
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/pinchartl/linux.git/log/?h=rpi/v6.9/metadata/v8
+[4] https://git.kernel.org/pub/scm/linux/kernel/git/pinchartl/linux.git/log/?h=rpi/v6.9/isp/v2
+[5] https://git.kernel.org/pub/scm/linux/kernel/git/pinchartl/linux.git/log/?h=rpi/v6.9/unicam/next
+[6] https://lists.libcamera.org/pipermail/libcamera-devel/2024-March/040711.html
+[7] https://git.linuxtv.org/pinchartl/v4l-utils.git/log/?h=metadata
+
+Dave Stevenson (2):
+  dt-bindings: media: Add bindings for bcm2835-unicam
+  media: bcm2835-unicam: Add support for CCP2/CSI2 camera interface
+
+Jean-Michel Hautbois (3):
+  media: v4l: Add V4L2-PIX-FMT-Y12P format
+  media: v4l: Add V4L2-PIX-FMT-Y14P format
+  ARM: dts: bcm2835: Add Unicam CSI nodes
+
+Laurent Pinchart (3):
+  ARM: dts: bcm2835-rpi: Move firmware-clocks from bcm2711 to bcm2835
+  ARM: dts: bcm2711-rpi-4-b: Add CAM1 regulator
+  [DNI] arm64: dts: broadcom: Add overlay for Raspberry Pi 4B IMX219
+    camera
+
+Uwe Kleine-König (2):
+  ARM: dts: bcm2711-rpi: Add pinctrl-based multiplexing for I2C0
+  ARM: dts: bcm2711-rpi-cm4-io: Add RTC on I2C0
+
+ .../bindings/media/brcm,bcm2835-unicam.yaml   |  127 +
+ .../media/v4l/pixfmt-yuv-luma.rst             |   48 +
+ MAINTAINERS                                   |    7 +
+ .../arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts |    7 +
+ .../boot/dts/broadcom/bcm2711-rpi-cm4-io.dts  |    9 +
+ arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi   |   34 +-
+ arch/arm/boot/dts/broadcom/bcm2711.dtsi       |    8 +
+ arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi   |   19 +
+ arch/arm/boot/dts/broadcom/bcm283x.dtsi       |   24 +
+ arch/arm64/boot/dts/broadcom/Makefile         |    4 +
+ .../dts/broadcom/bcm2711-rpi-4-b-imx219.dtso  |   65 +
+ drivers/media/platform/Kconfig                |    1 +
+ drivers/media/platform/Makefile               |    1 +
+ drivers/media/platform/broadcom/Kconfig       |   23 +
+ drivers/media/platform/broadcom/Makefile      |    3 +
+ .../platform/broadcom/bcm2835-unicam-regs.h   |  246 ++
+ .../media/platform/broadcom/bcm2835-unicam.c  | 2671 +++++++++++++++++
+ drivers/media/v4l2-core/v4l2-ioctl.c          |    2 +
+ include/uapi/linux/videodev2.h                |    2 +
+ 19 files changed, 3296 insertions(+), 5 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml
+ create mode 100644 arch/arm64/boot/dts/broadcom/bcm2711-rpi-4-b-imx219.dtso
+ create mode 100644 drivers/media/platform/broadcom/Kconfig
+ create mode 100644 drivers/media/platform/broadcom/Makefile
+ create mode 100644 drivers/media/platform/broadcom/bcm2835-unicam-regs.h
+ create mode 100644 drivers/media/platform/broadcom/bcm2835-unicam.c
+
+
+base-commit: 37a950b8e140e3bd97d22943ba860542111d64fe
 -- 
-2.34.1
+Regards,
+
+Laurent Pinchart
 
 
