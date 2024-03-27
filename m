@@ -1,204 +1,133 @@
-Return-Path: <devicetree+bounces-53746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5D3788D60B
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 06:50:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3B3888D628
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 06:58:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 537F91F29504
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 05:50:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 315091C241A9
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 05:58:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78B4A1429E;
-	Wed, 27 Mar 2024 05:50:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43DF4225AE;
+	Wed, 27 Mar 2024 05:57:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y2LOMQek"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="HcP1G+T6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03CC94A35;
-	Wed, 27 Mar 2024 05:49:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D06EE572;
+	Wed, 27 Mar 2024 05:57:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711518600; cv=none; b=NiewU+ge+9yCm9ltPE6wBz25Nq0HWOeeUzmiQjFz3ITTitjDoYWDUWH5Ge3XgXEK3BSL+C83VZbMCKJDssFYDhlR1XyOalDRzbfz0EHX5ScjikZMzqaQRfbPaXEZsLJu0l1e/xZWilY3CJE09kx4foCy2yqgphsIcVJh/l1UrUM=
+	t=1711519065; cv=none; b=aaT99o5IenXc6Tq+B2IMqnqofIAqdfBGnrrHDgiRF2QWYUcGvVq8VCOdtPSYhN7sNJZGZYB7DmQ42iJF+XVkn4Ckgn8jlgU0WbuuuONfpsf5OGhP95wGESPLQGVu2LkSr97zi+uOo1LAMwPZBEfbkDZriqFnLHnkEcQMwnBy4T0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711518600; c=relaxed/simple;
-	bh=FHstnsP1SDrBUHQB6q/i/oufx2RAf4ywwFzHK0KTvDg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jX+G3XDLDu4IWCMmzTMK2iIZjHbrkwn5dagfwiB40ImmwHZ2HIooNGi7/StiZQG806Ob/IqvOsfIAgPR+VI0GBuVSmSr3op8r4NvJF+cZGs6sxklejUAu8TUGAO887/+Uycv6azhCDRzRjZS541ICdEi61GcjSgP0sf+3oIpiZw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y2LOMQek; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-1dffa5e3f2dso41460545ad.2;
-        Tue, 26 Mar 2024 22:49:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711518598; x=1712123398; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=P7OYcKJp51JHzqHwSq9XW851pfhTE1Ptp9rlfuz3R/c=;
-        b=Y2LOMQek1HWcsx/2cPHQY85aS0zZn/4lOH9zC7IUr1Ffh7yDYgma3hrBrikIC3ajAq
-         okIllRKD2wYBucAvjSfQFFEkx5EBmDy7/Sdmq/JuZCz4AHWfqwBX3j7wZfwx5msMmlfa
-         VKHRtqHHtIZCLU6wdF4nzJuWZiTOPQsNThT2UKkHtl0QgRagmjJNQGlXwnLX70Uzld/h
-         Q1CXZluJ3FxBtJ0806dyojf4IR5YtGRZC/tbrO5DjL5cf5te/u2J5CEd1VAoC58kiXMC
-         KGWJfXlfILRSV8yHEwj+KOHDlshWWUcqnjoOvH5bGDeamFRNzzs4+pthbh7qtkreTOTk
-         Tyzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711518598; x=1712123398;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=P7OYcKJp51JHzqHwSq9XW851pfhTE1Ptp9rlfuz3R/c=;
-        b=m0gc2RJTp8PAky6S+v0BeRF/zKBUQQzV3S/WX63rGe27yNkaghy5086YMJYqFQHQho
-         fzbpkWqHUw6l18g3NM/Mvz4hPn5oVyXTTOb/9wIXwhoHXkK7OUoyEqd7AS1AodlAle4M
-         MWnFTNwZ4T/YLPiVEk+LlCmVug4JF+zKObbV4jwuRHbHbk3+v1iRAqAWXv4Nxq50UAq/
-         AIUsLSOibpu6YPzMAHwS0HRQyhb0co0QymPHnubRZt/BYwFuixt8mpYI5aiPK/M4I4Es
-         h1Kb+dwNCAUimn6pMUnMTEfc92O1T0787ep8NgoG2suBXr+XH5J+XmHm0wyYxPOmnWKS
-         J9Yw==
-X-Forwarded-Encrypted: i=1; AJvYcCUbAb560ybYVrG6e/r7rsCEYENBRNjuzzL/ZoV2znsUXkLkwgoR8cexjozHDmZWpIQ2UFcB7Rrft47hl1xieMVTQbrf2YKw/JIGMfW3eV0Qk0vpsAumWTnwEctcyUtum4f8zPWMwZ47O5ZXYRRHZfk/ZW/N1Solgod1XffPfQ5viKB6FwVAhw==
-X-Gm-Message-State: AOJu0Yw+w0KItWt+PX08mSZMdLKMUk/kD7XV3mD4JzoNdAA+MsGfInVj
-	Q6rvCRydnIYC7xBs+dnLi7QBWhDHJ+Hm1w0fjho7QrsPUIAQJ+bn
-X-Google-Smtp-Source: AGHT+IGMXSmuZrJ0pAAbisJq5ouEdATuxX9zC6nD4xEns155NaylWRnsFrQ06hSn2zG9SE67Bd4vqg==
-X-Received: by 2002:a17:903:2409:b0:1e0:d630:f18e with SMTP id e9-20020a170903240900b001e0d630f18emr361813plo.14.1711518598242;
-        Tue, 26 Mar 2024 22:49:58 -0700 (PDT)
-Received: from fedora.. ([2409:40f4:37:3d1f:3a25:2b3d:10de:3da2])
-        by smtp.gmail.com with ESMTPSA id l7-20020a170902f68700b001e0b863b815sm5761707plg.96.2024.03.26.22.49.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Mar 2024 22:49:57 -0700 (PDT)
-From: Animesh Agarwal <animeshagarwal28@gmail.com>
-To: 
-Cc: animeshagarwal28@gmail.com,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	"David S. Miller" <davem@davemloft.net>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: crypto: ti,omap-sham: Convert to dtschema
-Date: Wed, 27 Mar 2024 11:19:06 +0530
-Message-ID: <20240327054911.43093-1-animeshagarwal28@gmail.com>
-X-Mailer: git-send-email 2.44.0
+	s=arc-20240116; t=1711519065; c=relaxed/simple;
+	bh=PpaI7Wp5A8h6hPsrg+Tlvy/MQSt7NhClwoEa3xbARaw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=YnhNzIzLfma/bNHBGfdNIL/SO0voNQELLyYbhiCrRxQzIH/2Mpc0mpYx8mOo2TEqmrm8Wyd1EIc7cCCVTXT09e8uoWk+6uxeCJgN4FapYm2CAfnXQdU7/LSoyHnXpJDWV5uyde4feyr4kweH0cpmrD3UwzSR40oHhT8W9pRVHEU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=HcP1G+T6; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: e93d26a0ebfe11eeb8927bc1f75efef4-20240327
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=8IZzO+mOpfrBWdJYvNSqM18e12S2fKclk8r352xBKQY=;
+	b=HcP1G+T6V7iczm9B++VZyr6FhvNgMSScfxNRqezj1cGx39IIuTWlUpZ6p8XnkVLViSJY46K6kCi0FtVe/PhjJ0Ech8RYTHh5+BQ07vMRvQJEKU3xVPZGdlvaNYX7tFTN99vvo53HRyZkbxatvnaaPfzO6yOpqumdqgeBJACNGv8=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.37,REQID:d991b348-9c0f-44e9-bbee-4d919011b753,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:6f543d0,CLOUDID:32e37b85-8d4f-477b-89d2-1e3bdbef96d1,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
+	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: e93d26a0ebfe11eeb8927bc1f75efef4-20240327
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+	(envelope-from <yu-chang.lee@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 481297072; Wed, 27 Mar 2024 13:57:36 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ MTKMBS14N2.mediatek.inc (172.21.101.76) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Wed, 27 Mar 2024 13:57:34 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Wed, 27 Mar 2024 13:57:34 +0800
+From: yu-chang.lee <yu-chang.lee@mediatek.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, "Ulf
+ Hansson" <ulf.hansson@linaro.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	"MandyJH Liu" <mandyjh.liu@mediatek.com>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-pm@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, <fan.chen@mediatek.com>,
+	<xiufeng.li@mediatek.com>, <yu-chang.lee@mediatek.com>
+Subject: [PATCH v2 0/3] pmdomain: mediatek: solve power domain glitch issue
+Date: Wed, 27 Mar 2024 13:57:29 +0800
+Message-ID: <20240327055732.28198-1-yu-chang.lee@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--8.489800-8.000000
+X-TMASE-MatchedRID: 5DngdSbII22YvtVftxNfQUvrB8UvzFr4BdebOqawiLuCsBeCv8CM/Sse
+	9qdFFe49mI8EBZ3uTGtSzpXv5ekotFrgS5K/qcaqDko+EYiDQxFQCOsAlaxN7w6QlBHhBZuwkwm
+	4GnFKyckb7ifYusSVqcMHFIKAT3DiXSJ4c3nT+QcZXJLztZviXLLiLKO9VZOiGNAPebYwJ/sNir
+	voD95MYraIKdGDLjghSHd+RjLgi2MWk4/JZEVmwAPZZctd3P4BSjyMfjCRfaObKItl61J/yZ+in
+	TK0bC9eKrauXd3MZDWyPbu28yjM4gPvrALLbNcROH7ySOIYRUM7/nX4aM2lhoCh/NuaNOQW
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--8.489800-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP:
+	B131BB1C8C2F0B0239F1DB47012190F48CFE42F64402C447803B73104D73C13D2000:8
+X-MTK: N
 
-Convert the OMAP SoC SHA crypto Module bindings to DT Schema.
+Hi,
 
-Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
+This series aims to solve power-off failures and occasional SMI hang issues that
+occur during camera stress tests. The issue arises because, when MTCMOS powers on
+or off, signal glitches are sometimes produced. This is fairly normal, but the 
+software must address it to avoid mistaking the glitch for a transaction signal.
 
----
-Changes in v2:
-- Moved vendor specific property below more common properties.
----
- .../devicetree/bindings/crypto/omap-sham.txt  | 28 ----------
- .../bindings/crypto/ti,omap-sham.yaml         | 56 +++++++++++++++++++
- 2 files changed, 56 insertions(+), 28 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/crypto/omap-sham.txt
- create mode 100644 Documentation/devicetree/bindings/crypto/ti,omap-sham.yaml
+The solutions in these patches can be summarized as follows:
 
-diff --git a/Documentation/devicetree/bindings/crypto/omap-sham.txt b/Documentation/devicetree/bindings/crypto/omap-sham.txt
-deleted file mode 100644
-index ad9115569611..000000000000
---- a/Documentation/devicetree/bindings/crypto/omap-sham.txt
-+++ /dev/null
-@@ -1,28 +0,0 @@
--OMAP SoC SHA crypto Module
--
--Required properties:
--
--- compatible : Should contain entries for this and backward compatible
--  SHAM versions:
--  - "ti,omap2-sham" for OMAP2 & OMAP3.
--  - "ti,omap4-sham" for OMAP4 and AM33XX.
--  - "ti,omap5-sham" for OMAP5, DRA7 and AM43XX.
--- ti,hwmods: Name of the hwmod associated with the SHAM module
--- reg : Offset and length of the register set for the module
--- interrupts : the interrupt-specifier for the SHAM module.
--
--Optional properties:
--- dmas: DMA specifiers for the rx dma. See the DMA client binding,
--	Documentation/devicetree/bindings/dma/dma.txt
--- dma-names: DMA request name. Should be "rx" if a dma is present.
--
--Example:
--	/* AM335x */
--	sham: sham@53100000 {
--		compatible = "ti,omap4-sham";
--		ti,hwmods = "sham";
--		reg = <0x53100000 0x200>;
--		interrupts = <109>;
--		dmas = <&edma 36>;
--		dma-names = "rx";
--	};
-diff --git a/Documentation/devicetree/bindings/crypto/ti,omap-sham.yaml b/Documentation/devicetree/bindings/crypto/ti,omap-sham.yaml
-new file mode 100644
-index 000000000000..d69b50228009
---- /dev/null
-+++ b/Documentation/devicetree/bindings/crypto/ti,omap-sham.yaml
-@@ -0,0 +1,56 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/crypto/ti,omap-sham.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: OMAP SoC SHA crypto Module
-+
-+maintainers:
-+  - Animesh Agarwal <animeshagarwal28@gmail.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,omap2-sham
-+      - ti,omap4-sham
-+      - ti,omap5-sham
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  dmas:
-+    maxItems: 1
-+
-+  dma-names:
-+    const: rx
-+
-+  ti,hwmods:
-+    description: Name of the hwmod associated with the SHAM module
-+    $ref: /schemas/types.yaml#/definitions/string
-+    enum: [sham]
-+
-+dependencies:
-+  dmas: [dma-names]
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - ti,hwmods
-+  - reg
-+  - interrupts
-+
-+examples:
-+  - |
-+    sham@53100000 {
-+        compatible = "ti,omap4-sham";
-+        ti,hwmods = "sham";
-+        reg = <0x53100000 0x200>;
-+        interrupts = <109>;
-+        dmas = <&edma 36>;
-+        dma-names = "rx";
-+    };
+1. Disable the sub-common port after turning off the Larb CG and before turning 
+   off the Larb MTCMOS.
+2. Use CLAMP to disable/enable the SMI common port.
+3. Implement an AXI reset.
+For previous discussion on the direction of the code modifications, please refer
+to: https://lore.kernel.org/linux-arm-kernel/c476cc48-17ec-4e14-98d8-35bdffb5d296@collabora.com/
+
+Change in v2
+ - fix commit title to "pmdomain: mediatek:"
+ - add dt-binding definition
+ - remove unused function
+
+
+yu-chang.lee (3):
+  pmdomain: mediatek: add smi_larb_reset function when power on
+  dt-bindings: power: Add mediatek larb definition
+  pmdomain: mediatek: support smi clamp protection
+
+ .../power/mediatek,power-controller.yaml      |   4 +
+ drivers/pmdomain/mediatek/mt8188-pm-domains.h |  69 ++++++-
+ drivers/pmdomain/mediatek/mtk-pm-domains.c    | 168 ++++++++++++++----
+ drivers/pmdomain/mediatek/mtk-pm-domains.h    |  13 ++
+ 4 files changed, 218 insertions(+), 36 deletions(-)
+
 -- 
-2.44.0
+2.18.0
 
 
