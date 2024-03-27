@@ -1,125 +1,114 @@
-Return-Path: <devicetree+bounces-53715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B03288D394
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 02:02:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB41F88D3A5
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 02:16:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 98B8DB233F6
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 01:02:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 00AC3B23676
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 01:16:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 159AE171AA;
-	Wed, 27 Mar 2024 01:02:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F6691B94D;
+	Wed, 27 Mar 2024 01:15:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="m+uYAlU9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CZm3nTPf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73FE91CD2B
-	for <devicetree@vger.kernel.org>; Wed, 27 Mar 2024 01:02:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F7731AAD7;
+	Wed, 27 Mar 2024 01:15:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711501328; cv=none; b=Pno8dcpLc7YCrBXkLHU1H1JQZavPkH0aVCH6J+tOSzxEk6XJdQDvbHAqLOUgtEO9URSTyRl3CzQKXcs86eKX9Kj6WHaoQ8loEsRR2ZZ8mjEt4xtLE2axKJk2PkWf0q15cKgOwFPN+AL6xuDrQmUIMQa4igl2urtHs4xu5pza66A=
+	t=1711502158; cv=none; b=tPzqWOpuPPxVJsZLA4BUz/TtdgOzoHsnd27LKTMbWci0x80UomV+5qczjmT0YUqVcRr+OASGgIOJFcEosTel2xFBQjmu+4tPIDang7kwDZYjG2DYnLpEQ7flzRfORWWoToIj7B7k152lU67yjPZoieVQNq5uDiGqVgXO0r9DzE8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711501328; c=relaxed/simple;
-	bh=aZdhrcqzRljiIshV2UIRO5p76sa/HVm1n3ssqrX/4oU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=giCWeeeNfwWB8abefEAWXLwO53NqIquyEUnJLstCdOqeL0qbQWG18wTPNZVth8fmlPcbPHhTL+sxH2udzKfBvYn16d6YfuAPRk7XbB0TNZ3/WgyJ7Q+1SRo1PxwgpDj1dpQI7svBL4V3XQeNjl1WD3Zefm1zn45dfyjCem4Azb8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=m+uYAlU9; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id B1F8CB3;
-	Wed, 27 Mar 2024 02:01:32 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1711501292;
-	bh=aZdhrcqzRljiIshV2UIRO5p76sa/HVm1n3ssqrX/4oU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=m+uYAlU9X8MNK93mLvtA1jH2yValjTKKeaG2fpwttSUklnVZGR+4lLGcQo+HRnIiz
-	 z8cR+o/QtWKKS/0pOj2lcdf71yF19wnT4W3HtZ4styFdcHkd1W0PDoiiKLTVBbTgoI
-	 k+4EKU5ONzzTcGQCNrPfF9jmktddBtU92p6/VK4o=
-Date: Wed, 27 Mar 2024 03:01:56 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Trevor Zaharichuk <trevor@au-zone.com>,
-	Greg Lytle <greg@au-zone.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Li Yang <leoyang.li@nxp.com>
-Subject: Re: [PATCH 4/5] dt-bindings: arm: Add Au-Zone Maivin AI Vision
- Starter Kit
-Message-ID: <20240327010156.GD14986@pendragon.ideasonboard.com>
-References: <20240325203245.31660-1-laurent.pinchart@ideasonboard.com>
- <20240325203245.31660-5-laurent.pinchart@ideasonboard.com>
- <75218bd1-0d88-4986-90a6-35f7bdc53918@linaro.org>
+	s=arc-20240116; t=1711502158; c=relaxed/simple;
+	bh=PLidVJaE//HxRhz5H/QzI3/xtp56vRobIOOw6V0NeqA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FoIvdF3Ymer4hH1umLWjXiWvCmF6xoYvkpDduWM7GQBPPWjoE18/mSU1pEUppmSsWvFmFpHh59q/zK/k/yqxgnWpH2cHjfZIL0Fha6qqwUkKIAoWj0ZSLB1vvpmXX22Wu2pxT+8SU3V1w1+Pm7enKmSY1Y1W2H87WRRfwiXgoUQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CZm3nTPf; arc=none smtp.client-ip=209.85.208.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2d28051376eso111937201fa.0;
+        Tue, 26 Mar 2024 18:15:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1711502155; x=1712106955; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+OHmV4irZFRN7yhkxXILCmLuBOPWKdOt3kQNZKrG9Qo=;
+        b=CZm3nTPf5ezLJX/SuhuOdezMF+4YaX9J6vfL1aNv1H3Sv3hmTjQ9iYcU+HsimQo5US
+         xfLTRWu1COzozQQ5g1cXuAaJC/S8fzvjRpjTSe3yvEDo0al9VNGOUvj36heQc3YYVbjI
+         XssL2kdKw7y5vkKOoZu6zMuOx28MRYDmG5cnweQkb1JYNZlRwmmL7z8oujCqlVqFDYQ+
+         S2pOGYJACrHVupSFSECqemyAywDaepuf9MX0AqeftseutSGOXyNA59Kp9jgaNXZsWq6j
+         67LcMEEbNfg9DFEWLzge54YWEju1WcHTkWjA3GpGJDxhi0eL2G6cQ6qxJ12Ef95QoYD3
+         2JEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711502155; x=1712106955;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+OHmV4irZFRN7yhkxXILCmLuBOPWKdOt3kQNZKrG9Qo=;
+        b=K+oVX+oJgJzgQHy9vObMCNqVxn2RkYBv3s6oxtmJsfqTGlBztYkEgeZmgkULxNR/wH
+         gRyQJWYixVi7+R0WtBNoMtjc6vaU5jLHXw5wrbeuhgZ9N49JUId2JGp2/PB/mJNlvg9J
+         mrpRs7Y0v6DDHiPYN5ieB6TPOY79T0m43uYOAGpoCR4RllQhM0AD+6qkNorG0/oODOP6
+         4jC6mW72r9AA8Ds3NRQV8B3etIQ7Ty4wACrKwr/kCLRGlEbrhQ1IG+py/BVq+vcFc+AR
+         ZwP2jSRL9ZdIwYT3blVbDiQZpJXMHd9ea0GnJ4TR98OX/somI8wO57NOsbzCC7ZCjBLU
+         oqyw==
+X-Forwarded-Encrypted: i=1; AJvYcCWkFmvbgniQ/caX2Hy2OoRnRjEb3rFYf1VnyqmSEqTXlhI17JPiDwg2/GCbAknQDZdsMw8mbNb1bQ8yVFUV8r5vFC0VlDYyHjYI1SM7SqODWNC2fwDGMKEEGIi3DPqYtGcZJd0miQ==
+X-Gm-Message-State: AOJu0YyPXAp9QCLPtJW28fVtW6px8GERw7buJ1FhvcFsFZzOdVM/zJ9A
+	CzxgSF0MCFs1BcorHpKQbUBmEYhzdQzM93UaCY3giCqJulhvDFyAs2kefHMSM8LWe2a8ShtIu2t
+	CcItwFXsGR9P4Vy1g5ePEMeA16Hw=
+X-Google-Smtp-Source: AGHT+IE6oY27Hvh1xBoRmMHbRBXrUqGabIUdZcpUuNN/8gTJHCNOgWIrkAnYswBuXrHRGBvH38Mqs7Kj5XNZBc+eiQw=
+X-Received: by 2002:a05:651c:10b9:b0:2d6:f408:fafe with SMTP id
+ k25-20020a05651c10b900b002d6f408fafemr984912ljn.42.1711502154359; Tue, 26 Mar
+ 2024 18:15:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <75218bd1-0d88-4986-90a6-35f7bdc53918@linaro.org>
+References: <cover.1710926402.git.zhoubinbin@loongson.cn> <0cfd237c2c7c1e4f89b6e5f7af0a64d306de1c8f.1710926402.git.zhoubinbin@loongson.cn>
+ <20240326-shifter-zeppelin-1d8616dc82f9@spud>
+In-Reply-To: <20240326-shifter-zeppelin-1d8616dc82f9@spud>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Wed, 27 Mar 2024 07:15:40 +0600
+Message-ID: <CAMpQs4JKYxJQ=+iRW6EqRc4t3wF=eNLVg0Y=943D+X+LmJyG=Q@mail.gmail.com>
+Subject: Re: [PATCH v1 1/8] dt-bindings: clock: add Loongson-2K expand clock index
+To: Conor Dooley <conor@kernel.org>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Yinbo Zhu <zhuyinbo@loongson.cn>, Huacai Chen <chenhuacai@kernel.org>, 
+	loongson-kernel@lists.loongnix.cn, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Krzysztof,
+On Wed, Mar 27, 2024 at 12:54=E2=80=AFAM Conor Dooley <conor@kernel.org> wr=
+ote:
+>
+> On Tue, Mar 26, 2024 at 05:01:00PM +0800, Binbin Zhou wrote:
+>
+> > -#define LOONGSON2_CLK_END                            18
+>
+>
+> > +#define LOONGSON2_CLK_END    35
+>
+> Please just delete this. If you can change it, it is not a binding.
+> Just define it in the driver if it is needed there.
 
-On Tue, Mar 26, 2024 at 08:11:34AM +0100, Krzysztof Kozlowski wrote:
-> On 25/03/2024 21:32, Laurent Pinchart wrote:
-> > The Maivin board is an AI vision starter kit sold by Au-Zone
-> > Technologies, developed in collaboration with Toradex and Vision
-> > Components. It is based on a Toradex Verdin i.MX8MP SoM.
-> > 
-> > Add a corresponding compatible string.
-> > 
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > ---
-> >  Documentation/devicetree/bindings/arm/fsl.yaml | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > index 0027201e19f8..d892c4f9fda3 100644
-> > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > @@ -1064,6 +1064,13 @@ properties:
-> >                - toradex,verdin-imx8mp-wifi  # Verdin iMX8M Plus Wi-Fi / BT Modules
-> >            - const: fsl,imx8mp
-> >  
-> > +      - description: Au-Zone Technologies i.MX8MP-based boards
-> > +        items:
-> > +          - const: au-zone,maivin-starter-kit        # Au-Zone Maivin AI Vision Starter Kit
-> > +          - const: toradex,verdin-imx8mp-nonwifi     # Verdin iMX8M Plus Module without Wi-Fi / BT
-> > +          - const: toradex,verdin-imx8mp             # Verdin iMX8M Plus Module
-> 
-> I think this should be part of existing "Toradex Boards with Verdin
-> iMX8M Plus Modules)", just renamed to "boards using Toradex Verdin ...".
+Hi Conor:
 
-Is this what you have in mind ?
+Ok, I will drop it in the next version.
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index d892c4f9fda3..df5a04ab83a0 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -1106,9 +1106,10 @@ properties:
-           - const: polyhex,imx8mp-debix-som-a       # Polyhex Debix SOM A
-           - const: fsl,imx8mp
-
--      - description: Toradex Boards with Verdin iMX8M Plus Modules
-+      - description: Boards using Toradex Verdin iMX8M Plus Modules
-         items:
-           - enum:
-+              - au-zone,maivin-starter-kit           # Au-Zone Maivin AI Vision Starter Kit
-               - toradex,verdin-imx8mp-nonwifi-dahlia # Verdin iMX8M Plus Module on Dahlia
-               - toradex,verdin-imx8mp-nonwifi-dev    # Verdin iMX8M Plus Module on Verdin Development Board
-               - toradex,verdin-imx8mp-nonwifi-mallow # Verdin iMX8M Plus Module on Mallow
-
--- 
-Regards,
-
-Laurent Pinchart
+Thanks.
+Binbin
+>
+> Thanks,
+> Conor.
 
