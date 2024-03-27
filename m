@@ -1,103 +1,173 @@
-Return-Path: <devicetree+bounces-53871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53872-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F59388E627
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 15:33:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 331C288E671
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 15:38:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8DFD11C2D536
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 14:33:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA62B1F302F1
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 14:38:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E5CB15380E;
-	Wed, 27 Mar 2024 13:05:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AF6E13A3E0;
+	Wed, 27 Mar 2024 13:09:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="JHt2LDub"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Eya9hcjR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail2.andi.de1.cc (vmd64148.contaboserver.net [161.97.139.27])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0F7C15358E;
-	Wed, 27 Mar 2024 13:05:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=161.97.139.27
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A930012F5A9;
+	Wed, 27 Mar 2024 13:09:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711544704; cv=none; b=KDG+TKCDUidK/N+o0uGOhzEk4ilQYBGXweKNQISj86aFhohjVvAPo5zuNCYKWEDoD+0LX+Y916sxNCVkFemfm6jgg+Xvl8eYrHOiA3GUwiFqaW8ZvE3y3nsWKt+QnSkgSWNuDGCwLuhzjBPFiEDoIQy9gKbLKaUaDxFFan3sqMg=
+	t=1711544985; cv=none; b=PGuBZsh3RhY8NwdWqUEoyhn06OkFkEDF/oVVirUrA4ktbwkkJMQSmqCkt6PuKL7XD53W5i0HnWy8Vby0tYNA8PjNeSksVY3cZNWcclDWhEBhKNksdSEEIfSTvrV1acHbvfCbWn4a9jQtbGP88rG8+QBB8Tp4LxACY4RLLf+4j6o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711544704; c=relaxed/simple;
-	bh=f36zv7pQ58Kg3T+FK+BOWk9JDkf2u7A1+u1SLE+NxlM=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HEa5dD6PtIzun/+nia6Q/jC6qbi7BqpQiUkj9hD/w6bxZG9SYXn683nSKfzuleyQBPKSAZgTwTn00+rhSsOGW0Z/VWvawRmB/ZYLJ+yIBesPF+fgMZDMGAq66jqj82qkC6WXLQ9SsiurkmvENCtGtJjobyfQVsysDw+/EYgmRwY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=JHt2LDub; arc=none smtp.client-ip=161.97.139.27
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-Received: from mail.andi.de1.cc ([2a02:c205:3004:2154::1])
-	by mail2.andi.de1.cc with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <andreas@kemnade.info>)
-	id 1rpSxa-003SRi-3C;
-	Wed, 27 Mar 2024 14:04:55 +0100
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:Content-Type:
-	MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=2eyoBfcpiDO1OaNqBSc35WO98gQLM60AXWoakZdtZOo=; b=JHt2LDubk31UTMyoW36VJUYobl
-	a0ZPHRnh8t6POVzBZwcRXikOeu277pJPLqb7PigiYtt2vsg8j87eriKtUKRn9+wQ+XVebF2D4AdoT
-	dYMXsq6IVhNJwtijl6OhzE6wiCNcGUXJTdUm0X7Bm9S8+YzRbrFDUhQAWQw/tieKLnTbYBAhGOvM8
-	BacMrtzgFDyxxRY49xpX+9vTJrWzNLnsetwTJ9B1khHxap4erCPjv2Vkwm3JkxJ1jXIabEwVI/gJX
-	PIgsJfycHr+YMe0BcxCKZdQnUFsB/Djqa5PDbyAiYNDy5pwXLAk31tN6j6yImexNUO1MmcSHnO/sY
-	tlYgOduA==;
-Received: from p2003010777026a001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:107:7702:6a00:1a3d:a2ff:febf:d33a] helo=aktux)
-	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <andreas@kemnade.info>)
-	id 1rpSxY-0004Ok-3C;
-	Wed, 27 Mar 2024 14:04:53 +0100
-Date: Wed, 27 Mar 2024 14:04:51 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: lee@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] mfd: rohm-bd71828: Add power off functionality
-Message-ID: <20240327140451.65ff8e18@aktux>
-In-Reply-To: <815e1cdc-145e-4880-96a0-d9c21308b9b3@gmail.com>
-References: <20240326192258.298143-1-andreas@kemnade.info>
-	<20240326192258.298143-3-andreas@kemnade.info>
-	<815e1cdc-145e-4880-96a0-d9c21308b9b3@gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1711544985; c=relaxed/simple;
+	bh=81ZbrBdYxs8It1E/ipeLp8ojimGjd9cq7crq6evyxB4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DLs7wJ4K0UxPMfqYJJiwbxfDf+rcJj31yhAuYw3QxNpmleIybUjZdHpKclyCD7ruGZnA87s73q+8XSzujp1SSHfFDDx6Lpk1BPWGaqNe1HkSjjmzcb8NvdAe2CBSkZEqNOrkg81UufXrLBCIFo98AsGr/P3pyko56W+cbF6xVAA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Eya9hcjR; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1711544981;
+	bh=81ZbrBdYxs8It1E/ipeLp8ojimGjd9cq7crq6evyxB4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Eya9hcjRh4E3JmnGFEZl3RZ5rtWwXbwJAX/lowaAjLQWPxK7ahAScE24IK3dFEpmj
+	 W8wLJOS3k2bsqiYv0UFXrP+fPrEhRqQGV0x4nhtXQPGzrQxa7jR6q5JwrqfFuZmG3V
+	 MQFgrQZS1NaB8xH7Mu6ftq+yOLac0yaZO8mq4oyatmytOATko54g+7N9zbzGmm7ces
+	 qEB0PWSDfz/Oo9I7bH+V+MlZ/bcyHZPDRhi+kY70h+pyZ8rEhT8hRIFnxBqZmZsJjI
+	 982TJRluzxXmSWVW2sorV4lc9v9ORnv383AtBE0dRzJ2aSzqbEHecQBP7xHNXKcfw9
+	 9t66wdhEpgp2g==
+Received: from mercury (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 9E67537820F3;
+	Wed, 27 Mar 2024 13:09:41 +0000 (UTC)
+Received: by mercury (Postfix, from userid 1000)
+	id 359D410608D9; Wed, 27 Mar 2024 14:09:41 +0100 (CET)
+Date: Wed, 27 Mar 2024 14:09:41 +0100
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Link Mauve <linkmauve@linkmauve.fr>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	linux-kernel@vger.kernel.org, Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Joerg Roedel <joro@8bytes.org>, 
+	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, Dragan Simic <dsimic@manjaro.org>, 
+	Shreeya Patel <shreeya.patel@collabora.com>, Chris Morgan <macromorgan@hotmail.com>, 
+	Andy Yan <andy.yan@rock-chips.com>, Nicolas Frattaroli <frattaroli.nicolas@gmail.com>, 
+	linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev
+Subject: Re: [PATCH 3/4] arm64: dts: rockchip: Add VEPU121 to rk3588
+Message-ID: <lrwxcyc2djqd6u3b2j4whe67o7ukblfqfqlnplajwgmvvgst4e@4z5avent6zmv>
+References: <20240320173736.2720778-1-linkmauve@linkmauve.fr>
+ <20240320173736.2720778-4-linkmauve@linkmauve.fr>
+ <a60f6017-bd19-431e-8cff-7d73f6f114fe@linaro.org>
+ <ZgQTrwOUtdZ1nRs0@desktop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="bqhdij4d5wn3lvmi"
+Content-Disposition: inline
+In-Reply-To: <ZgQTrwOUtdZ1nRs0@desktop>
+
+
+--bqhdij4d5wn3lvmi
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
 Hi,
 
-On Wed, 27 Mar 2024 09:32:29 +0200
-Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+On Wed, Mar 27, 2024 at 01:40:15PM +0100, Link Mauve wrote:
+> On Thu, Mar 21, 2024 at 09:15:38AM +0100, Krzysztof Kozlowski wrote:
+> > On 20/03/2024 18:37, Emmanuel Gil Peyrot wrote:
+> > > The TRM (version 1.0 page 385) lists five VEPU121 cores, but only four
+> > > interrupts are listed (on page 24), so I=E2=80=99ve only enabled four=
+ of them
+> > > for now.
+> > >=20
+> > > Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+> > > ---
+> > >  arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 80 +++++++++++++++++++++=
+++
+> > >  1 file changed, 80 insertions(+)
+> > >=20
+> > > diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/b=
+oot/dts/rockchip/rk3588s.dtsi
+> > > index 2a23b4dc36e4..fe77b56ac9a0 100644
+> > > --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> > > +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> > > @@ -2488,6 +2488,86 @@ gpio4: gpio@fec50000 {
+> > >  		};
+> > >  	};
+> > > =20
+> > > +	jpeg_enc0: video-codec@fdba0000 {
+> > > +		compatible =3D "rockchip,rk3588-vepu121";
+> > > +		reg =3D <0x0 0xfdba0000 0x0 0x800>;
+> > > +		interrupts =3D <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH 0>;
+> > > +		clocks =3D <&cru ACLK_JPEG_ENCODER0>, <&cru HCLK_JPEG_ENCODER0>;
+> > > +		clock-names =3D "aclk", "hclk";
+> > > +		iommus =3D <&jpeg_enc0_mmu>;
+> > > +		power-domains =3D <&power RK3588_PD_VDPU>;
+> > > +	};
+> > > +
+> > > +	jpeg_enc0_mmu: iommu@fdba0800 {
+> > > +		compatible =3D "rockchip,rk3588-iommu";
+> >=20
+> > It does not look like you tested the DTS against bindings. Please run
+> > `make dtbs_check W=3D1` (see
+> > Documentation/devicetree/bindings/writing-schema.rst or
+> > https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-s=
+ources-with-the-devicetree-schema/
+> > for instructions).
+>=20
+> Even on master I get an exception about this unresolvable file:
+> referencing.exceptions.Unresolvable: cache-controller.yaml#
+>=20
+> Yet it seems to be present in only three files, all of them unrelated to
+> the rockchip board I=E2=80=99m interested in (it seems), so I=E2=80=99m n=
+ot sure what to
+> do about that.
 
-> It's worth noting that there is another PMIC, BD71879, which, from the 
-> driver software point of view, should be (almost?) identical to the 
-> BD71828. I believe the BD71828 drivers should work with it as well - if 
-> not out of the box, at least with very minor modifications. 
-> Unfortunately I don't know products where the BD71879 is used or if it 
-> is sold via distributors - so I don't know if adding a DT 
-> compatible/chip type define for it would be beneficial.
+The trace looked like you tried using dt-schema with jsonschema
+version 4.18+, which is known broken:
 
-yes, you already told we thet the BD71828 drivers are compatible with
-the BD71879 and I am using the latter. 
-But that at least should be commented somewhere, so that
-people do not raise questions, like: Do I have some strange board revision,
-etc?
-The most terse form to comment it is a separate dt compatible so we are
-prepare any "almost identical" surprises.
+https://github.com/devicetree-org/dt-schema/issues/109
 
-Regards,
-Andreas
+Greetings,
+
+-- Sebastian
+
+--bqhdij4d5wn3lvmi
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmYEGo4ACgkQ2O7X88g7
++ppnpw/+IYqLzHk0LXotRxxmx2QRAz4gYpFyEku/kt2XkuQwtufZMFEqBQ5hBuzo
+WMGDPKyTGKCUSGzxHo53ZnTsSQ4yvnlYmNJJ+invQuwR0AuN0oUdtU2TqGkTXTH5
+VlCI3DM0yWjJDPE9MEWRj94dAuKJ/+21kYbiKXbsVlZz7vPvS3AMLUChqGzVW29h
+GzwtgqGgwsLQQJnjJQ2MvoBDWqOO5Odg/CRmottxdbmxaHcaQ1shr25plFDjhdf7
+qw+lR2cy64CkkQm8dzeVpoIUrD3Ow2KO4iuxlMkKkMFHvesb7Gxs/WDT4dj4q6yk
+VQZTdxLe790Pq6v2CIDshZTTLpTIiWOL8vFCNVG7Dl6sSzqUliBKnYStPTa8yZbM
+uFBz3GeG+Of8/a/ZetIUJXX5AOTVaSj/DcrbFqy4laQsYLPConDWwU4cDLBSXGy1
+EOJKIaFnBA1zonoUGrKkvxhqcgoriWTVKVpmxkyHp4pW4O/ALldccEisOhpYfq3y
+sfqiCH0aGDi0vR4hu9K8EQB6hyU7rXhC2K5VFmFKbEotcBakhLjd+mPcCpfvlfBp
+rRez6hhL8PDpWPdbS7b4poD0HW5RR3dIgm1shBrr54NVn4wxiVAErRWOaYv+XniH
+yglVBxWtvVeh9Zils+BVcew31B+9CEYMOvd4DUp1f8TluPCZtp0=
+=12dq
+-----END PGP SIGNATURE-----
+
+--bqhdij4d5wn3lvmi--
 
