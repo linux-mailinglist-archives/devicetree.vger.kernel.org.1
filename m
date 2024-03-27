@@ -1,150 +1,121 @@
-Return-Path: <devicetree+bounces-53921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53923-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D22B88EDA8
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 19:08:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18F8A88EDA0
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 19:07:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F1C65B2B896
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 18:04:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D6711C2F3B3
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 18:07:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EA1514F124;
-	Wed, 27 Mar 2024 18:03:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F0D114D281;
+	Wed, 27 Mar 2024 18:07:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UbKfIGdy"
+	dkim=pass (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b="siyrYAwG";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b="Wm/sJgoO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fallback24.i.mail.ru (fallback24.i.mail.ru [79.137.243.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7013214386C;
-	Wed, 27 Mar 2024 18:03:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D33FF131BCF;
+	Wed, 27 Mar 2024 18:07:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.137.243.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711562597; cv=none; b=QAQqHLa4+VkF+Xgnd7M5kqAJQzTvCabp+VpPcskPFS3R2mrMTqQGJ0e0h/vAiwxAcGM4ohEsEWAHW0u3Elvufs8nPUGcq6Jb7GQ6yVTXfy47EyTGo93ieGOQH1So7/TN6AweyP5lgzJ0vNDCJYBW3v+zRamieV82aZR3cqTTvMc=
+	t=1711562831; cv=none; b=jiB/mkUisQ5bP6P0WxJoV/BnhIEx1Sc9BFmDhayOuA2J+4QDPs2s5Q09urN4jIGCGLpjETUGcD35kZLoEWW11bx5aWmoI4+t/7BszTHJQFNaYqKtvKwYHdKGKfCNKyJt5EpSk07XefvGtGlMGH/FM/4i9AO16qGR2BACdQhHwUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711562597; c=relaxed/simple;
-	bh=0O8XCY11WB9l5WV+H/o+LxwXGJuiHlEDHBA2DM0WnNM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PUVKRIvecp1N1UzE8GckzsGTd19H4K1ud1Uaciina12o+CEHSzjYQSXTgrJ/JvZ0ebJHRw7AMAqqM5t+VL7RGRxOCSpy6dm3uo8o1WoJg0k5IYRDrthEFvSBBbshST5Gu6/kUbf8DzKyQj1syYnUIWBKH1Knoy1MlnJsBAPhqio=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UbKfIGdy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD8FBC433C7;
-	Wed, 27 Mar 2024 18:03:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711562596;
-	bh=0O8XCY11WB9l5WV+H/o+LxwXGJuiHlEDHBA2DM0WnNM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UbKfIGdymFcXCV4gfFbDa95Uq9FJ5xB6pOYGVLZYOn9MoYlCbWkgzyyTMaWGK+Jmu
-	 lWXVTGJ0TCUHbYf0uJimJ0scqKUxYXJ/jdb08X5UeYV0iUpkj9+0Tjbwir1SIO+LhY
-	 N6+9aH5PaTWhHaLZo4DNHBy1a70e9zt9dHYIUuYfJTjpri8nOjcYRgW6VhJOSLVTCJ
-	 sJymvBS9NJVlVdRkuedfQtYogCa9EQC4ISQlkI0zJvRwi0WwcTxo287SBxGCMPuDdq
-	 vaAB6IfTkgxrdaRK0nXMCQ7en/W/YXaE3lRkALcV48jwu0bpeOfizgnFFa5b8TxRxI
-	 yEqVCvdk1Fotw==
-Date: Wed, 27 Mar 2024 18:03:11 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Changhuang Liang <changhuang.liang@starfivetech.com>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Jack Zhu <jack.zhu@starfivetech.com>,
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: =?utf-8?B?5Zue5aSNOiDlm57lpI06IFtQQVRD?=
- =?utf-8?Q?H_v1_1=2F2=5D_dt-bindings?= =?utf-8?Q?=3A?= media: starfive: Match
- driver and yaml property names
-Message-ID: <20240327-unlucky-bulge-2bf99a8649be@spud>
-References: <20240119100639.84029-1-changhuang.liang@starfivetech.com>
- <20240119100639.84029-2-changhuang.liang@starfivetech.com>
- <20240119-despair-festival-59ab2d4d896b@wendy>
- <SHXPR01MB0671E2150D9A2707F12E0901F270A@SHXPR01MB0671.CHNPR01.prod.partner.outlook.cn>
- <20240119-preamble-calm-7724e17fcebc@wendy>
- <BJXPR01MB0662E6EEEEF888BD90A1FCE5F275A@BJXPR01MB0662.CHNPR01.prod.partner.outlook.cn>
- <20240122-uncivil-almost-631137081fd9@spud>
+	s=arc-20240116; t=1711562831; c=relaxed/simple;
+	bh=mQIQDbM97VVKGtE6f0hcV7pSxonc/xRXvuH4LyGXWQ4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Q5ABmCCNBiScW72KuxFbltevD/e7yOPRi/QmlDawkBpGdwHYSflgNH1cUxCewPAsRztjg2hyy0GT9Ki4OwooKw7dkqmguGnftSevzzdVPqhoDkZq7i2oCXUAYcyD6381CWg1NqCZgA8GfwxNhQ5Q2VrpZTp+llLt3ZhqtWV6enU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jiaxyga.com; spf=pass smtp.mailfrom=jiaxyga.com; dkim=pass (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b=siyrYAwG; dkim=pass (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b=Wm/sJgoO; arc=none smtp.client-ip=79.137.243.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jiaxyga.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jiaxyga.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=jiaxyga.com; s=mailru;
+	h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:Cc:To:From:From:Subject:Content-Type:Content-Transfer-Encoding:To:Cc; bh=Kl4DAfMrThUTbEpsy8OIaWRx4ECJjsEC+DZgg6JUlFE=;
+	t=1711562828;x=1711652828; 
+	b=siyrYAwG7KDQJcmlpU2fbl27nG5FgzwU/HdlHIUuZWJZbvYLCKaKNg9Y80r+Onb1XG7m3wj+1qtMNJX3PnVL9hjHBoVuLo4l8LJTCz/gW5zAbt4+yaquhmADpTocBowNQv7vdzg0bD4DIr7VkF0UC8rQifXeg+AUECvBQFfL2Lk=;
+Received: from [10.12.4.29] (port=49644 helo=smtp51.i.mail.ru)
+	by fallback24.i.mail.ru with esmtp (envelope-from <danila@jiaxyga.com>)
+	id 1rpXfx-003NBS-8n; Wed, 27 Mar 2024 21:07:01 +0300
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=jiaxyga.com
+	; s=mailru; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
+	Cc:To:From:From:Sender:Reply-To:To:Cc:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive:
+	X-Cloud-Ids:Disposition-Notification-To;
+	bh=Kl4DAfMrThUTbEpsy8OIaWRx4ECJjsEC+DZgg6JUlFE=; t=1711562821; x=1711652821; 
+	b=Wm/sJgoOemmBhF5vww4DNpEpQv+MFE3gSA7kcwzShTGwmMACHt12OrEasDilNYbXqhSIjVP5cpG
+	pgPI9K32WgsAunonTL9EKupkCgBVIwC24c2ep2Z4ZLIOqe6l4wtiFSedOmWiXNqGp6iBNZI8JraYS
+	LexoVKsoroM34gvwMgU=;
+Received: by smtp51.i.mail.ru with esmtpa (envelope-from <danila@jiaxyga.com>)
+	id 1rpXfh-0000000E2q5-0q4E; Wed, 27 Mar 2024 21:06:45 +0300
+From: Danila Tikhonov <danila@jiaxyga.com>
+To: andersson@kernel.org,
+	konrad.dybcio@linaro.org,
+	vkoul@kernel.org,
+	kishon@kernel.org,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Danila Tikhonov <danila@jiaxyga.com>
+Subject: [PATCH 0/2] phy: qcom-qmp-ufs: Add support for SM8475
+Date: Wed, 27 Mar 2024 21:06:40 +0300
+Message-ID: <20240327180642.20146-1-danila@jiaxyga.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="zzCqoLyA9q69ODhP"
-Content-Disposition: inline
-In-Reply-To: <20240122-uncivil-almost-631137081fd9@spud>
+Content-Transfer-Encoding: 8bit
+X-Mailru-Src: smtp
+X-7564579A: EEAE043A70213CC8
+X-77F55803: 4F1203BC0FB41BD92B2F338B3A1B03DBC32C72577B1B4A4B195BE4FF90B52CC2182A05F5380850404C228DA9ACA6FE27D2B3368C890E70B603ED270C30F246C5224714DC9D89A041FEB17DC202E68E303EE2A1A432EA2933
+X-7FA49CB5: FF5795518A3D127A4AD6D5ED66289B5278DA827A17800CE70043D879A87EF1BCEA1F7E6F0F101C67BD4B6F7A4D31EC0BCC500DACC3FED6E28638F802B75D45FF8AA50765F7900637C867FEFF36BCDF178638F802B75D45FF36EB9D2243A4F8B5A6FCA7DBDB1FC311F39EFFDF887939037866D6147AF826D83B0D53EBDBBEB31787CFF83901193707C9582587F0825ED9CC7F00164DA146DAFE8445B8C89999728AA50765F79006375FFD5C25497261569FA2833FD35BB23D2EF20D2F80756B5F868A13BD56FB6657A471835C12D1D977725E5C173C3A84C34964A708C60C975A117882F4460429728AD0CFFFB425014E868A13BD56FB6657D81D268191BDAD3DC09775C1D3CA48CFA281FA8EA08C6015BA3038C0950A5D36C8A9BA7A39EFB766D91E3A1F190DE8FDBA3038C0950A5D36D5E8D9A59859A8B6088EA859A876218C76E601842F6C81A1F004C906525384303E02D724532EE2C3F43C7A68FF6260569E8FC8737B5C2249957A4DEDD2346B42E827F84554CEF50127C277FBC8AE2E8BA83251EDC214901ED5E8D9A59859A8B615F38A1EB2280F99089D37D7C0E48F6C5571747095F342E88FB05168BE4CE3AF
+X-C1DE0DAB: 0D63561A33F958A572F24DCADD00AF615002B1117B3ED696A07DC1F01FB75464E772F934B9BCD185823CB91A9FED034534781492E4B8EEAD5C5DFC4BFF39B799F36E2E0160E5C55395B8A2A0B6518DF68C46860778A80D548E8926FB43031F38
+X-C8649E89: 1C3962B70DF3F0ADE00A9FD3E00BEEDF77DD89D51EBB7742D3581295AF09D3DF87807E0823442EA2ED31085941D9CD0AF7F820E7B07EA4CF962540E96D3749566F3157B2473DCC9B393CF9C2F1A5992CA52A15E792DBBD0575F3776783CA996BF212F37558E72466442710B1986103C2E5E1C781D7312E8BFB0F00F6D3F2FCEA42BF32D1DA1046D202C26D483E81D6BE72B480F99247062FEE42F474E8A1C6FD34D382445848F2F3
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojRawEQSF5UtvrSC67IYQ+kA==
+X-Mailru-Sender: 9EB879F2C80682A09F26F806C7394981DE6AB1E6944A41F4E693A2F4CD4B10000F9BD50AEF180468C84098C9553D294F2C62728BC403A049225EC17F3711B6CF1A6F2E8989E84EC137BFB0221605B344978139F6FA5A77F05FEEDEB644C299C0ED14614B50AE0675
+X-Mras: Ok
+X-7564579A: B8F34718100C35BD
+X-77F55803: 6242723A09DB00B469FED0CC4E03BFC3F7F23553880BB0CD60F3889908575E02049FFFDB7839CE9E088A9832E852848505BC316D8B91A368610446C7B24AE8BF0162CE7EF3E6A363
+X-7FA49CB5: 0D63561A33F958A57EDBABF2EAF213584906D23894274437BBB3F00DD3EAA9B88941B15DA834481FA18204E546F3947C68B9A68E260AC75CF6B57BC7E64490618DEB871D839B7333395957E7521B51C2DFABB839C843B9C08941B15DA834481F8AA50765F7900637DFC0370CCA7FDEF5389733CBF5DBD5E9B5C8C57E37DE458BD96E472CDF7238E0725E5C173C3A84C3F65C0D82C631A427089D37D7C0E48F6C5571747095F342E88FB05168BE4CE3AF
+X-87b9d050: 1
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojRawEQSF5UtujJgOAMFub9A==
+X-Mailru-MI: 8000000000000800
+X-Mras: Ok
 
+This series adds UFS QMP support for Qualcomm SM8475 SoC.
 
---zzCqoLyA9q69ODhP
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+To: Vinod Koul <vkoul@kernel.org>
+To: Kishon Vijay Abraham I <kishon@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: linux-phy@lists.infradead.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
 
-On Mon, Jan 22, 2024 at 08:24:51AM +0000, Conor Dooley wrote:
-> On Mon, Jan 22, 2024 at 01:33:56AM +0000, Changhuang Liang wrote:
-> >=20
-> > > On Fri, Jan 19, 2024 at 12:57:22PM +0000, Changhuang Liang wrote:
-> > > > EXTERNAL EMAIL: Do not click links or open attachments unless you k=
-now
-> > > > the content is safe
-> > > >
-> > > > Hi , Conor
-> > > >
-> > > > > =E4=B8=BB=E9=A2=98: Re: [PATCH v1 1/2] dt-bindings: media: starfi=
-ve: Match driver
-> > > > > and yaml property names
-> > > > >
-> > > > > On Fri, Jan 19, 2024 at 02:06:38AM -0800, Changhuang Liang wrote:
-> > > > > > Drop some unused properties for clocks, resets and interrupts f=
-or
-> > > > > > StarFive JH7110 camera subsystem.
-> > > > >
-> > > > > What do you mean "unused"?
-> > > > >
-> > > > > Do these clocks etc exist but are not used by the driver?
-> > > > >
-> > > > > Or do they not exist at all?
-> > > > >
-> > > > > The two are very different!
-> > >=20
-> > > > These clocks etc exist but are not used by the driver.
-> > >=20
-> > > That's not an acceptable reason for removing them from the binding. I=
-f they
-> > > exist, they should be documented, regardless of whether the driver ma=
-kes use
-> > > of them. NAK.
-> >=20
-> > If so, how to avoid the warning of dtbs_check.
->=20
-> By also adding the clocks, resets and interrupts to the dts.
+Danila Tikhonov (2):
+  dt-bindings: phy: Add QMP UFS PHY comptible for SM8475
+  phy: qcom-qmp-ufs: Add SM8475 support
 
-Going through patchwork stuff now that the merge window is done. I'm
-gonna mark the dts patch as changes requeted. The binding (and dts)
-should describe all of the clocks the hardware has, whether or not you
-choose to use them all in software does not matter. Can you please
-resend the dts patch, with all of the clocks, resets and interrupts
-present?
+ .../phy/qcom,sc8280xp-qmp-ufs-phy.yaml        |  2 +
+ drivers/phy/qualcomm/phy-qcom-qmp-ufs.c       | 71 +++++++++++++++++++
+ 2 files changed, 73 insertions(+)
 
-Thanks,
-Conor.
+-- 
+2.44.0
 
---zzCqoLyA9q69ODhP
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgRfXwAKCRB4tDGHoIJi
-0qQXAQDfBiXwvtzOzuvMjituCroQrHpvVV9xsdNonK911KyCSwEA799G/wBfPBYb
-V3sbl2B9KISp0AvY5FbPCNrcFvvq8Qg=
-=gcwu
------END PGP SIGNATURE-----
-
---zzCqoLyA9q69ODhP--
 
