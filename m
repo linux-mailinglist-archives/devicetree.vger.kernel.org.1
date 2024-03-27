@@ -1,151 +1,145 @@
-Return-Path: <devicetree+bounces-53973-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53975-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5293F88F194
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 23:05:09 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D2E488F198
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 23:05:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 853CF1C27C38
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 22:05:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C15C3B236BB
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 22:05:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C74B15538C;
-	Wed, 27 Mar 2024 22:03:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2B04153807;
+	Wed, 27 Mar 2024 22:05:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YRyZ2gRP"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="jpEO3IH7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 787C51552EB;
-	Wed, 27 Mar 2024 22:03:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20261152DEA
+	for <devicetree@vger.kernel.org>; Wed, 27 Mar 2024 22:04:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711577020; cv=none; b=CjlmS8hpIWaEu4PHPI+qbbFvGx+wy0SsHIW3a+BLbaOr1rtgdtrRMfLbKkXReCFm/1CqXLfZ0RMxk1fLElbb0z9NXY3IOUPvhXuoAF3iUlKE+YQvpRbWbQ23LI+DgPUHYM6ygA6CGGHG08QscoY2JVTOHryHX1qEa9J3pJ1HTZI=
+	t=1711577101; cv=none; b=P/UHkKpDdikLym7N1wOdfxyXUsHEFgROGzHpN1Uc8quQaGsVtxYw7x9g7cJhmLnqepeXWIlgZeViRTGtOkRgkWQ4vL6K3NWZzXbxD1Gh43nYomZmSl16gBajf97R/u7K4uIkyvuS42S+bxse6CiV4s2bthrYqh52yXTdwAqxHw8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711577020; c=relaxed/simple;
-	bh=M6AuuuSxjeMQyVLwZxWmhaaq1eq0ZZCoM/yjkhatSRQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=dkqxveqDklJE8vvUzDJC2PO/EcDbiLen6vIjyPDxCf2cmWD5Y5xwtnGXtHtQA7A0AU5Iyv/9OJYgoiQC0FX5Nh3/HS1nbwHNO8TARYE0QDNkLTLKDTJ+5FD2HN2y8IerQmNxB7nwID1zg3EYUKoHEfNgZTwjSadlf2xz8DIBBdc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YRyZ2gRP; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-513da1c1f26so273538e87.3;
-        Wed, 27 Mar 2024 15:03:38 -0700 (PDT)
+	s=arc-20240116; t=1711577101; c=relaxed/simple;
+	bh=gPMzKze/APBk4x+3lNp5RL2Yfoo33mbd+rjlbOAJCb4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=UuI9HG/046HTyJ9idKavPsdOgqWOseCCe9c0Vdn2luJP7GcjZmkjnfXZucRn/ufgsDJ++ltxxSWTnk/uKWcN5+u552MUg7byv7Jtl1u+4paCSqEFSkNURKZ/FWXbKJr33IKEDxm/wU8vkBUk1wgIk+tjQFUa6/vsai46VR0gKeI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=jpEO3IH7; arc=none smtp.client-ip=209.85.160.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-qt1-f169.google.com with SMTP id d75a77b69052e-431347c6c99so55511cf.0
+        for <devicetree@vger.kernel.org>; Wed, 27 Mar 2024 15:04:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711577016; x=1712181816; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=google.com; s=20230601; t=1711577099; x=1712181899; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=BZUndJ3DD47y3ywaAfiwyQ7ryKmAeKm2Vgw1guGNzKQ=;
-        b=YRyZ2gRPoinKDUCjmMawKZ6VSIkGO4b1zMavBaUtQtNC/g5bUyi59QNxiJJgAvnCK/
-         qq4/t0GLh9vaSBT9YA8OimdDBVB/GmnxRSvbrHrqWxhRiDFFGUFY14GKF6J5bDY00LWN
-         7LCN+LUf3UsGmDNGUr/eb9dOpttSrndJzdSqmAjgL8Uh/2bxX6GbGRCViD4i6QuD31JU
-         olYT4ZM05j/Q2zCBrqokE8E03q0pXbOrn8BQ0YUgRdF1hTWDf66HjYwsLSzM8ZcfF4+Y
-         /b8EMphnL/0mUgmAhdiruRJwx0YDrh6cklP81hJ3yS4zwed28+I684CODAG2xpHPVD+r
-         iyeA==
+        bh=iES3vR+RF71KH0u2f16iuD0GOPYt3AXTbujxgdhI3D4=;
+        b=jpEO3IH7fZGQWRboRVrRWrQzNxCcI9TK6SkvyOw33yr791od3UUvTdDn796Q/jBPDS
+         qxzB6yItyMusIp4/D43dueE6e4OdnTmcemTSk7+nY1jco/JTzk6uLsZqYl4Jwv3qNlcC
+         1GmupYStgiQI60VTQEXwYCVd9Kwdvaqo+MhdJpTvFPmdQ+9CvLAr4J2WeMceGWZRb7/t
+         ezWAedPyDhTe8h3f2N0JOB+8h20a9j+gfEny1IVDoupJNQjgDm4GvJLJb/0F70F8XFgj
+         qWIcztI/ovhVuB5nbKELCunr1MAbmMMs2V6wl9G/P27JXWnz1+4S3AkCDoYb9ntrK/Cz
+         MqzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711577016; x=1712181816;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1711577099; x=1712181899;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=BZUndJ3DD47y3ywaAfiwyQ7ryKmAeKm2Vgw1guGNzKQ=;
-        b=CSmQu/ltjoPUpfy6yMOnVshBYJGwEMrP14FAqFLH+HY18Uv8dynPpp8FwaDXedRzxq
-         ind76Jz7KGJEK8/OzJXtGbnoncSK8Y8WmBzwkFCRswEq/NQg2llspcMH/Qe4/ZBqlrVN
-         QuHHdKOcoQ+lRyzDlXA1dlztZOkEdTebGNfmO29wQOY2/nOT2DhYWlgEjBRIQyaAZssR
-         mWH2Ivxl76leGkKu+KpiHEMyq9jajIjEzgG9AIfB9i1Z+RX6a2hZ/PxdW2d9kSxCY4vb
-         VSt5UlbAxyQxm3vc3xlYFl+kdyCIZvWmA+faNUpRQT3xuG9Iz9pO7oVsn2jtNYyxt8wi
-         kG4Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUVCjpRh69Zm5LnwqoZqioSEjUs+HSJ+v6NSv5X3PtRozF+nOBaf7PMem4KYinb6qcGBjJNlWjGu2A+Vm/r3n0kpjfQ0KF9q1QqdB6hLxueZkr3HKBeZPxnLcl8OPAYkEKjU/I1nYFnsA==
-X-Gm-Message-State: AOJu0YyleuCbVMQhSLwsiNsSlIcM6m32aaEITi/qrtYyHeK8Nj1GS7RO
-	t/syOyDyP4IA3K0hF6V9r43zw5IDoPhTYv9YHb2KRV5TqtXnoBv+
-X-Google-Smtp-Source: AGHT+IH28rgpRyR91X0Tct3qGtcWzyLxHNUYT+ZeaaaAVeqgBmaoWIsnlixLlp7pthnLeGPhuNp0UA==
-X-Received: by 2002:a19:5e58:0:b0:513:a88b:3296 with SMTP id z24-20020a195e58000000b00513a88b3296mr474509lfi.9.1711577016344;
-        Wed, 27 Mar 2024 15:03:36 -0700 (PDT)
-Received: from 51a0132e405f.v.cablecom.net (84-72-156-211.dclient.hispeed.ch. [84.72.156.211])
-        by smtp.gmail.com with ESMTPSA id f25-20020a056402161900b0056bc0c44f02sm59151edv.96.2024.03.27.15.03.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Mar 2024 15:03:35 -0700 (PDT)
-From: Lothar Rubusch <l.rubusch@gmail.com>
-To: lars@metafoo.de,
-	Michael.Hennerich@analog.com,
-	jic23@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org
-Cc: linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	eraretuya@gmail.com,
-	l.rubusch@gmail.com
-Subject: [PATCH v5 7/7] iio: accel: adxl345: Add spi-3wire option
-Date: Wed, 27 Mar 2024 22:03:20 +0000
-Message-Id: <20240327220320.15509-8-l.rubusch@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240327220320.15509-1-l.rubusch@gmail.com>
-References: <20240327220320.15509-1-l.rubusch@gmail.com>
+        bh=iES3vR+RF71KH0u2f16iuD0GOPYt3AXTbujxgdhI3D4=;
+        b=mV+KCMACbVMpIIJXNDCau5jWccSQAz8Vdb3l6kPDqNGxdDTLjrf3Sci4D8r5Oe4Bhh
+         6W12yTWRmHiq2adaoyCVQoBqdKv3Fp2khfkjgVRcUCjGRv17i51m7XiaGCkFAbe0J+Pu
+         Cn0voz+8rpXypQDf/3i3VqK0R9SCgzl1boSdIcO8kxIUVOrms7WU+nscTm/+wisCaKFF
+         MlLlZCz+5/NOjXhZs9P7J9xGMNEczdOIqAl/gUYNhO0IwUFGhfSTkoEDX3Nkzx4WSLQb
+         v72oE/OBUi77LLk3amkm2TK83cj2qBCAIHbyaxTC/qSoiajDmtv+E855LDfurmtTYpdY
+         8COw==
+X-Forwarded-Encrypted: i=1; AJvYcCWti0ldNQzxonoMWY9JiZNgsgVR2vJdcmqBxx/SEMc1FJgyu7iS9X4DHWcQfYAsPgLQYMR/VCvTNudctRAwpwNKRCNaM55dfzeJbw==
+X-Gm-Message-State: AOJu0YyPrQKD66VelL36iUopSoSBmVrOOvYk98oFGy4igDGQ/vLbi/VP
+	YzCYTK1EfS9Rj9UuEGiCSk3xOoC1yQ8zIeIYCAYE2wP6xUw/uKVegAh12Vh77a18qzFJu2O7v7f
+	AUwOgfqP/nfNHCw1EzEVPVSqw0copbX30cjZF
+X-Google-Smtp-Source: AGHT+IFVZWkwZyaj+h/Pt+o2McDIdhkJp2IiST2pz6/7m6zE0/p4FmwQcax8WxgDe+Xi1gDRlePQR7Z0UWf+P9CDI+k=
+X-Received: by 2002:a05:622a:248b:b0:431:542a:38c with SMTP id
+ cn11-20020a05622a248b00b00431542a038cmr79665qtb.28.1711577098817; Wed, 27 Mar
+ 2024 15:04:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1d211023-3923-685b-20f0-f3f90ea56e1f@omp.ru>
+In-Reply-To: <1d211023-3923-685b-20f0-f3f90ea56e1f@omp.ru>
+From: Saravana Kannan <saravanak@google.com>
+Date: Wed, 27 Mar 2024 15:04:20 -0700
+Message-ID: <CAGETcx9pExt-GiBe8KLiFO1biLF77E5pM2C=LR1R7_NdCPyWOA@mail.gmail.com>
+Subject: Re: [PATCH] of: module: prevent NULL pointer dereference in vsnprintf()
+To: Sergey Shtylyov <s.shtylyov@omp.ru>
+Cc: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
+	devicetree@vger.kernel.org, lvc-project@linuxtesting.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add a setup function implementation to the spi module to enable spi-3wire
-as option when specified in the device-tree.
+On Wed, Mar 27, 2024 at 9:52=E2=80=AFAM Sergey Shtylyov <s.shtylyov@omp.ru>=
+ wrote:
+>
+> In of_modalias(), we can get passed the str and len parameters which woul=
+d
+> cause a kernel oops in vsnprintf() since it only allows passing a NULL pt=
+r
+> when the length is also 0. Also, we need to filter out the negative value=
+s
+> of the len parameter as these will result in a really huge buffer since
+> snprintf() takes size_t parameter while ours is ssize_t...
+>
+> Found by Linux Verification Center (linuxtesting.org) with the Svace stat=
+ic
+> analysis tool.
+>
+> Signed-off-by: Sergey Shtylyov <s.shtylyov@omp.ru>
+>
+> ---
+> The patch is against the for-next branch of Rob Herring's linux-git repo.=
+..
+>
+>  drivers/of/module.c |    8 ++++++++
+>  1 file changed, 8 insertions(+)
+>
+> Index: linux/drivers/of/module.c
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> --- linux.orig/drivers/of/module.c
+> +++ linux/drivers/of/module.c
+> @@ -16,6 +16,14 @@ ssize_t of_modalias(const struct device_
+>         ssize_t csize;
+>         ssize_t tsize;
+>
+> +       /*
+> +        * Prevent a kernel oops in vsnprintf() -- it only allows passing=
+ a
+> +        * NULL ptr when the length is also 0. Also filter out the negati=
+ve
+> +        * lengths...
+> +        */
+> +       if ((len > 0 && !str) || len < 0)
+> +               return -EINVAL;
+> +
 
-Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
----
- drivers/iio/accel/adxl345.h     |  2 ++
- drivers/iio/accel/adxl345_spi.c | 12 +++++++++++-
- 2 files changed, 13 insertions(+), 1 deletion(-)
+Even if vsnprintf() didn't oops, the input doesn't make sense. So, I
+think the comment should just say that. Or maybe just delete the
+comment since it'd be redundant at that point.
 
-diff --git a/drivers/iio/accel/adxl345.h b/drivers/iio/accel/adxl345.h
-index 4ea9341d4..e6bc3591c 100644
---- a/drivers/iio/accel/adxl345.h
-+++ b/drivers/iio/accel/adxl345.h
-@@ -30,6 +30,8 @@
- #define ADXL345_POWER_CTL_MEASURE	BIT(3)
- #define ADXL345_POWER_CTL_STANDBY	0x00
- 
-+#define ADXL345_DATA_FORMAT_SPI_3WIRE	BIT(6) /* 3-wire SPI mode */
-+
- #define ADXL345_DATA_FORMAT_RANGE	GENMASK(1, 0) /* Set the g range */
- #define ADXL345_DATA_FORMAT_JUSTIFY	BIT(2) /* Left-justified (MSB) mode */
- #define ADXL345_DATA_FORMAT_FULL_RES	BIT(3) /* Up to 13-bits resolution */
-diff --git a/drivers/iio/accel/adxl345_spi.c b/drivers/iio/accel/adxl345_spi.c
-index 1c0513bd3..f145d5c1d 100644
---- a/drivers/iio/accel/adxl345_spi.c
-+++ b/drivers/iio/accel/adxl345_spi.c
-@@ -20,6 +20,16 @@ static const struct regmap_config adxl345_spi_regmap_config = {
- 	.read_flag_mask = BIT(7) | BIT(6),
- };
- 
-+static int adxl345_spi_setup(struct device *dev, struct regmap *regmap)
-+{
-+	struct spi_device *spi = container_of(dev, struct spi_device, dev);
-+
-+	if (spi->mode & SPI_3WIRE)
-+		return regmap_write(regmap, ADXL345_REG_DATA_FORMAT,
-+				    ADXL345_DATA_FORMAT_SPI_3WIRE);
-+	return 0;
-+}
-+
- static int adxl345_spi_probe(struct spi_device *spi)
- {
- 	struct regmap *regmap;
-@@ -33,7 +43,7 @@ static int adxl345_spi_probe(struct spi_device *spi)
- 	if (IS_ERR(regmap))
- 		return dev_err_probe(&spi->dev, PTR_ERR(regmap), "Error initializing regmap\n");
- 
--	return adxl345_core_probe(&spi->dev, regmap, NULL);
-+	return adxl345_core_probe(&spi->dev, regmap, adxl345_spi_setup);
- }
- 
- static const struct adxl345_chip_info adxl345_spi_info = {
--- 
-2.25.1
+Not a strong opinion.
 
+Acked-by: Saravana Kannan <saravanak@google.com>
+
+-Saravana
+
+>         /* Name & Type */
+>         /* %p eats all alphanum characters, so %c must be used here */
+>         csize =3D snprintf(str, len, "of:N%pOFn%c%s", np, 'T',
 
