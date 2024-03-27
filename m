@@ -1,103 +1,140 @@
-Return-Path: <devicetree+bounces-53953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53954-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB25888F01A
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 21:28:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B455E88F085
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 21:57:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 597791F31030
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 20:28:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 640012A33AF
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 20:57:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78D881514F7;
-	Wed, 27 Mar 2024 20:28:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C041152532;
+	Wed, 27 Mar 2024 20:57:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="C0WAxq46"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RUdwURHu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0993315219F;
-	Wed, 27 Mar 2024 20:28:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA6591534FE;
+	Wed, 27 Mar 2024 20:57:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711571324; cv=none; b=ZKhn93LtHs3Hy70oRzuYxe4iWgmEOfJK6JdmOC6Bs0hGTd13KupwdbN37fdtTRSQf+wzB8qu3osIPWrEqlEtYj6S5WRT3ejfZ5bxp/sAVvUuhL8ilH4ivNvYJKdvqDrIiGBD58bsO4y0xSGzAk2KwEl3Oj4Bz/lt8RrwizL1Njk=
+	t=1711573029; cv=none; b=Jxsx8mu6RFznhGtGTcT5uvpIzTNrIUThnfEjZspu/fX/3pBAhvV/UwvVbQuMRF/HarkMBnwrpHuuum+VsiRD3fkefJFO3LzB/31/6mTS1htt02s4z6go7Kvc7lVEDGMXP3hwK4cfU0gAa1dCcuYGP49CLf15bvHt4gFMqizVaM0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711571324; c=relaxed/simple;
-	bh=aonojdmQzvLRtH+U+Hy1KesphHjqIdhuAzMqQM8S8tw=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=WJXY3BKXsiLXq6Fcn5PoU69jhT/DYQ0rYRl2xrVhwEBBd5GCqHNWC3Y5F3d6Os1/Ft9SrZopBqR/k7OwwrEhwaBdL1heRhBKNiT/fLlsnpAuMIYxhqv/AALkl3jsfbXp+ZPRQpi7AcUehJBUbo+5OjHhOlquxsuBCs46wto8TQQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=C0WAxq46; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1711573029; c=relaxed/simple;
+	bh=ASykyg23JcxT/XGhYWgv+/4msMSXbAY7lg2eIAUlMbM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=lmRQc1KvsxJAldcrow+AMkISKiVsAvjx5EsDiIt4+WmVDu8WuBAemgiznUNCXXpkauESZRLZXa5nF7hkHJjrv3yDkV/CPycxWZw4EZgWM8BQjaPOgLRYV0AzGHR7th7Q3yW4gr9JkWsiWbfdWXKN7TMx/R+7/vcL564W8ojOvI4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RUdwURHu; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a4e0a65f37bso35304866b.0;
+        Wed, 27 Mar 2024 13:57:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1711573026; x=1712177826; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oLxG9EcnVkh0DSQcXX7ogAec3EJe03+5XzYJOhrYVn4=;
+        b=RUdwURHuYYRd8cFLiPzs2Pw4vvRAY2R9cFKuh37/qGg1FT7sS391aiotktgaS2qQj+
+         kzx9V7FTmu8Ue2z2NcXhAOMf+TO4aOPISYl/Ot6tzpfmy0hjqgY9pzSzV9sjMllxhYQY
+         aLCisQhWlXHAlSLsYf6wLn98kfmYklP/5X0wPyWDf5sm1p+j3/gL0hJw1pCN5vA7gyYC
+         W+SjA0JRXKwj5zWKGVaHkfM7cFGin6PRyFpYXUj1JsjEO6gPtmyt2lHAWLXpsNcxR23P
+         8FsQcSBzztU9f6NnhXVPlqqvyOOiO7LuorhvvOStRrm7Z15XN1Z6B2bphxADbmS1SBif
+         QCsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711573026; x=1712177826;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=oLxG9EcnVkh0DSQcXX7ogAec3EJe03+5XzYJOhrYVn4=;
+        b=rjInKsWlKFighuKtoHXRjPPDqpRDvDo1PlrPxTU3C9OKLFUCdqMELZOQUd6sOpLBiF
+         F7on4FulRWnru/U/1I+8vhqjCm41Oit03TfdWMjr6Q3Al0nYzYWdg8aWCootvuIvDkae
+         ffgeA6KohIMnOmj3tFEXs12dZpAzRLmlBa8hWOstwNsTJzdrzqGj6Z8Yj+XkflWdgFwO
+         B8v29UdlfkAEEZiGWMPr828i/9mE6e6oXXeH63sOvu+Dvmk4ESRqeA1GCA5JoK0LDqou
+         dcSK0vrK+9NPuJ/VaLVV0/J92sj4qig7Epj+UKOT81jqckx6lQowEksVhzVSYRPrYylI
+         jQ+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXDCgl+iQNLGnk5L5F53Q37oVGqPYzjlHznwr1cOnglR5u1HX1oAVQwmm5apMHLo0tOdwfWcuj4Zd3CY7jxzypSOdqQkzKnY5oEgA==
+X-Gm-Message-State: AOJu0YweZpFaA3zfRjr7e5kxwo8LOmbZo90V4T56qDOm9rTv9ofLrkse
+	olZe/Yxg/C0hNzTP9+2G9yzl1S/67t+bz28X2eMA0d0tveXSBVmX
+X-Google-Smtp-Source: AGHT+IEgamyfp26jk5puLJyAWoiz0SiekS9aAN+NI95EWS6Ohw6UAKgRKR/78XIAsNl9tlEJTNqMsg==
+X-Received: by 2002:a17:906:c4c:b0:a4d:f7ca:1856 with SMTP id t12-20020a1709060c4c00b00a4df7ca1856mr381084ejf.61.1711573026016;
+        Wed, 27 Mar 2024 13:57:06 -0700 (PDT)
+Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
+        by smtp.gmail.com with ESMTPSA id hg11-20020a1709072ccb00b00a4e03823107sm1231928ejc.210.2024.03.27.13.57.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Mar 2024 13:57:05 -0700 (PDT)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Yangtao Li <tiny.windzz@gmail.com>, Viresh Kumar <vireshk@kernel.org>,
+ Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Samuel Holland <samuel@sholland.org>,
+ "Rafael J . Wysocki" <rafael@kernel.org>,
+ Andre Przywara <andre.przywara@arm.com>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ Brandon Cheo Fusi <fusibrandon13@gmail.com>,
+ Martin Botka <martin.botka@somainline.org>,
+ Martin Botka <martin.botka1@gmail.com>,
+ Chris Morgan <macroalpha82@gmail.com>, Ryan Walklin <ryan@testtoast.com>
+Subject:
+ Re: [PATCH v3 2/8] cpufreq: dt-platdev: Blocklist Allwinner H616/618 SoCs
+Date: Wed, 27 Mar 2024 21:57:04 +0100
+Message-ID: <4334338.ejJDZkT8p0@jernej-laptop>
+In-Reply-To: <20240326114743.712167-3-andre.przywara@arm.com>
+References:
+ <20240326114743.712167-1-andre.przywara@arm.com>
+ <20240326114743.712167-3-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1711571312;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=rgWZAPKKvj7qqanrCLdSrwL14cWosCAVk9cs/TL+9RM=;
-	b=C0WAxq46JpAfxaOMiH1lQSZjMLfUsJvBZwddwICZ9V3X0zmkEkjZTFkT1srbZelkod2ruy
-	1iX6hkuwF3Nw6nlHDhEjN2cu7Xn/b2rKNH7NtzmGqNBz9t1E+Z2I4lKln8831sxu079Qh4
-	JssB7tAb8ioAEn/VRq+1o28BmlCldrahd6evNu6Hw311O1RPiXod+9OC/JUSs0QmkZfJ28
-	8ScY1OTJrrNVDgHIZhN/HYo435dKepgYT4awwm898z3IBLxHJwRYslFMzEGd95Q+qsPPPA
-	Elz3zBIGhcxMUMY7cxY3618LH7eOEwwD9qa935u/rzSbFkYOfHn4P0mSfhsPJA==
-Date: Wed, 27 Mar 2024 21:28:31 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
-Cc: linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- boris.brezillon@collabora.com, linux-kernel@vger.kernel.org,
- kernel@collabora.com, sebastian.reichel@collabora.com
-Subject: Re: [PATCH] arm64: dts: rockchip: quartzpro64: Enable the GPU
-In-Reply-To: <6007945.alqRGMn8q6@diego>
-References: <0f3759ee390f245dac447bbee038445ddfecbec0.1711383286.git.dsimic@manjaro.org>
- <6007945.alqRGMn8q6@diego>
-Message-ID: <e6cb0dea9ea79f989d5a502b5ea6366e@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 
-Hello Heiko,
-
-On 2024-03-27 11:29, Heiko Stübner wrote:
-> Am Montag, 25. März 2024, 17:19:04 CET schrieb Dragan Simic:
->> Following the approach used to enable the Mali GPU on the rk3588-evb1, 
->> [1]
->> do the same for the Pine64 QuartzPro64, which uses nearly identical 
->> hardware
->> design as the RK3588 EVB1.
->> 
->> The slight disadvantage is that the regulator coupling logic requires 
->> the
->> regulators to be always on, which is also noted in the comments.  This 
->> is
->> obviously something to be improved at some point in the future, but 
->> should
->> be fine for now, especially because the QuartzPro64 isn't a 
->> battery-powered
->> board, so low power consumption isn't paramount.
->> 
->> [1] 
->> https://lore.kernel.org/linux-rockchip/20240325153850.189128-5-sebastian.reichel@collabora.com/
->> 
->> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+Dne torek, 26. marec 2024 ob 12:47:37 CET je Andre Przywara napisal(a):
+> From: Martin Botka <martin.botka@somainline.org>
 > 
-> as lore.kernel.org and therefore b4 seems to be on vacation today, you
-> get a very personal "applied" message ;-) .
+> The AllWinner H616 SoC will use the (extended) H6 OPP driver, so add
+> them to the cpufreq-dt blocklist, to not create the device twice.
+> This also affects the closely related sibling SoCs H618 and H700.
 > 
-> So, applied for 6.10 after the core rk3588-gpu-series from Sebastian.
+> Signed-off-by: Martin Botka <martin.botka@somainline.org>
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
-Oh, thank you very much for this special message. :)
+Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+
+Best regards,
+Jernej
+
+> ---
+>  drivers/cpufreq/cpufreq-dt-platdev.c | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/drivers/cpufreq/cpufreq-dt-platdev.c b/drivers/cpufreq/cpufreq-dt-platdev.c
+> index b993a498084bc..86d8baa816795 100644
+> --- a/drivers/cpufreq/cpufreq-dt-platdev.c
+> +++ b/drivers/cpufreq/cpufreq-dt-platdev.c
+> @@ -104,6 +104,9 @@ static const struct of_device_id allowlist[] __initconst = {
+>   */
+>  static const struct of_device_id blocklist[] __initconst = {
+>  	{ .compatible = "allwinner,sun50i-h6", },
+> +	{ .compatible = "allwinner,sun50i-h616", },
+> +	{ .compatible = "allwinner,sun50i-h618", },
+> +	{ .compatible = "allwinner,sun50i-h700", },
+>  
+>  	{ .compatible = "apple,arm-platform", },
+>  
+> 
+
+
+
+
 
