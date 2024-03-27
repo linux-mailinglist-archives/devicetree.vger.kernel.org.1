@@ -1,53 +1,74 @@
-Return-Path: <devicetree+bounces-53758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53759-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CDBB88D6D1
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 07:49:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 939F488D6E5
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 08:01:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A3711C23E56
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 06:49:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BBB451C23272
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 07:01:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3C9121A06;
-	Wed, 27 Mar 2024 06:49:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16A8724B4A;
+	Wed, 27 Mar 2024 07:01:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="sgHADxNv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AZT0put3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 420151DA21
-	for <devicetree@vger.kernel.org>; Wed, 27 Mar 2024 06:49:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C335F1C28F;
+	Wed, 27 Mar 2024 07:01:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711522197; cv=none; b=AdQ2hisfJhMkGX2AIV8bMEjKet1fSAJKuTAqdGTJXKn3VR8wzjt1zn6/AOU2vDX4iZMIfgWnhuQvGrbZemS9cmUCMZD8gsCGA32vZNtjS2+HSu0ibZa1bcP81MrBDkkgjNPvga5OkzYK/OZ1QsCvKuFRXt1NQa01cVvQz7I603g=
+	t=1711522903; cv=none; b=n21IA1iJLBYI1Ig9FZD/TamOZ3y2epw8blGrvJZL29umxKd4gOW/WwpfM8F35NtYpei3QWgKh239q04Qcusfei9GY6+UW0Zq3yHNX8oibZNFKuOnJ0z4dGVOZXhfxwqD5jLaiKypCfG2rZv1v5Kr3wkTJRBlQ96tZUKv9rkWX60=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711522197; c=relaxed/simple;
-	bh=UTpqPZZNZY3TsHVO0dlbqu6GZqXJrj4QlN/NLzxJziY=;
+	s=arc-20240116; t=1711522903; c=relaxed/simple;
+	bh=ZUNWHD+7WlXbZOUiqn2cSoRhOXVS8SMp4w/2KMETPz0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gl6G9S6NIqoenJdoeBbF/srHcE1R453eCHjfA+pMC7lzE/sNcCw6S8i4JkUOFmGN09t9L+DR4/U7Kwkhr/MLq9fEKYbO0ZE+f5B8MLAy8Cpnm7PTJTwtgelJ+ZrJts3xiwewfTzQ/YbpGw8BccivW444LodkUjhdbkco9wAeRl4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=sgHADxNv; arc=none smtp.client-ip=212.227.15.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1711522180; x=1712126980; i=wahrenst@gmx.net;
-	bh=crZuzloAX533dQZNQpboEHs69Fm4Vi8FTrDfuQuo1DI=;
-	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
-	 In-Reply-To;
-	b=sgHADxNv1R2jV7dYW0rusV2TPYvtqGq88W9JJ3DC9PUxegqpT0XXgmf98wq9lZIw
-	 iH1eBbzUpeaUILsqPofEqHj5ZgBGb+vx/FHDx90OwTfkmVHCwRDiGjrxXh7o7MtgS
-	 6WiidxitfM/edforAFxhSNK4slPboCEN+CrYSMiVmuXc4/4bJLYNZNzRNj06VlzJX
-	 upM9aGxUcog4/2Zlw94jiZoxuqko+NHdfWzxVCR0DH5uhWChn9Z38URqJP3rZqSzc
-	 tv9Jq7h9fBE8y8Nsaiu+UI6EEbspRyDOpJ6CWKjQGSdywMc9nGT1Vt9SYlNk93cmK
-	 ohWrvKoARelvZ+pmdw==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.167] ([37.4.248.43]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1N5VHM-1susD00wnq-016wdK; Wed, 27
- Mar 2024 07:49:40 +0100
-Message-ID: <b044eec1-ae64-4de7-9ab0-e3fe756131ef@gmx.net>
-Date: Wed, 27 Mar 2024 07:49:38 +0100
+	 In-Reply-To:Content-Type; b=bYkAcV+dRJxqj6VWuBc+ouT6rsjO4vcbd+UQ8glznOUyVfpkg//lKlsttq9NE+RsWYrf4KkfVVrW8cxIH3PN0+A9qDnPEqqaq0Hu2urjXkjtky8RaV3qUft4K5/Ewy51B02mHPXp1TLt/tm75QkgqYZkfN+qlbSrh8ZsAqPGv9g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AZT0put3; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-512e39226efso4532849e87.0;
+        Wed, 27 Mar 2024 00:01:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1711522898; x=1712127698; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Y+ffpq03Eb9o/yuck3cfOU3kEp3iGIn2GeeKZkYGw3w=;
+        b=AZT0put3j4YhQ61E9J+Esoaa7NRXOhXyihOYJZbPDGa/HQB8/TGqQL0gjdRijGVUdx
+         mAzmDjEtyNGoV0ZbqIKKqa5YA71DIIefsIjEP9gyk4NrIoLX/JrW29EVpWa6oMRBZdy8
+         NOTzEW0b5UAQ5HUl1yi3+8Gn6X6dRlrEm1QImgZxXrjHbJ95Ce5ghJ4Gd5R56ScSsMNM
+         hrSYDe7ICuxrT1R2BNLYsBrcB11KK3OLwzGrnJFsJ/3gDjzx9BYUCHwaIn3LNZ0qS8s8
+         vLIFoooPjxUmgghoAI3+9Dxkcvi4/f4G+y0csx8kkFRe0fqn2IEHUcvuGQyK80DZI0my
+         3kuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711522898; x=1712127698;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y+ffpq03Eb9o/yuck3cfOU3kEp3iGIn2GeeKZkYGw3w=;
+        b=s5OM6BDU4j+ODt+F0Br9sCRd79p5+dxTvUYcOIMg7WXSM1jyWIHlaiHAdDRNDHIx+x
+         kbSK++sVoTl3G6FA0S2U53pQ4IqNPURMAKmbuZg4jv3r0QqxoBsRs/UKsoTqLcPorTwr
+         Th5/YcypDl7EbKaAoVb7F1AdlKjTlww/oY/Eew9gSZcX3Mvd1Ve8aymOyFBZC1Fy4+7y
+         j6u7cDkYQ/fcN/f8s8q4tJZNO6+kdFYFxXbdtf65i1MwidCyb3uTkf8V/OBXZQmJ6IDC
+         mP7LUg8M9fDOGzckMEjgzNfJ/AcnFbSu190xoe+PKybczA4tkATbj89z2oLIt/JcL45z
+         DojA==
+X-Forwarded-Encrypted: i=1; AJvYcCVx+CudxSOG/Kx3BQHJ8q1g5uVpyjKfbTTSDFQfdl58XyHzi5ceIO9C6dJUbXqepBsKmty1ljKgswXzS2N8tzgdpq6l2tFUoK7xSBk6IsEKTuzFfw4z4weQHdoQ8eexnl5GOKht9E7Bjw==
+X-Gm-Message-State: AOJu0YyOAkCVF4wP+f79LjTYDY+f8LE4VAIhrpUmEKOJF5HEY46AEBXc
+	rJnD862lARx5dVFIFoFQiKDwsHgL6p/tz9AywMVUjfAIy+dRAzYQ
+X-Google-Smtp-Source: AGHT+IHO0xxjQHizrwK0YPVuKODJa5GpYkOkyXmB+uJgxZq6GsBUklBzTBqfw1yzr73R/Myr5beN3A==
+X-Received: by 2002:a05:6512:312e:b0:513:a88b:3296 with SMTP id p14-20020a056512312e00b00513a88b3296mr2150994lfd.9.1711522897542;
+        Wed, 27 Mar 2024 00:01:37 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:7426:df00::6? (drtxq0yyyyyyyyyyyyydy-3.rev.dnainternet.fi. [2001:14ba:7426:df00::6])
+        by smtp.gmail.com with ESMTPSA id u12-20020ac243cc000000b00514b4e5d180sm1738128lfl.158.2024.03.27.00.01.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Mar 2024 00:01:37 -0700 (PDT)
+Message-ID: <41c2b68d-0279-484f-8ce2-c1ba040681f9@gmail.com>
+Date: Wed, 27 Mar 2024 09:01:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,89 +76,32 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/3] dt-bindings: arm: bcm:
- raspberrypi,bcm2835-firmware: Drive-by fixes
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Peter Robinson <pbrobinson@gmail.com>, "Ivan T. Ivanov" <iivanov@suse.de>
-Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Naushir Patuck <naush@raspberrypi.com>, Bartosz Golaszewski <brgl@bgdev.pl>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Linus Walleij <linus.walleij@linaro.org>,
- Nicolas Saenz Julienne <nsaenz@kernel.org>, Ray Jui <rjui@broadcom.com>,
- Rob Herring <robh@kernel.org>, Scott Branden <sbranden@broadcom.com>,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-rpi-kernel@lists.infradead.org,
- "u-boot@lists.denx.de" <u-boot@lists.denx.de>
-References: <20240326195807.15163-1-laurent.pinchart@ideasonboard.com>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <20240326195807.15163-1-laurent.pinchart@ideasonboard.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: mfd: Add ROHM BD71828
+ system-power-controller property
+Content-Language: en-US, en-GB
+To: Andreas Kemnade <andreas@kemnade.info>, lee@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20240326192258.298143-1-andreas@kemnade.info>
+ <20240326192258.298143-2-andreas@kemnade.info>
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20240326192258.298143-2-andreas@kemnade.info>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:HTCEyS6nbqrJW2zqbhsneRS9PKm/tLlWHoagAOaiVutERTwDsJ5
- x72E1in5cgJaUOMRhvwrEEd12bm0cFXwtJIe6hQdGPTzwZ7ZFByYHmAM+oUkjorsSPtva3I
- d9GygI5Z19gqYiEq4aXVETw7uzR/U3UnODS+egjCvH+cTg/XROhgfL65T+C2b4I6gH2qQyF
- c6sRf36DkPDqbxkzs9gvg==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:UP68RPxLhm4=;XI8FGkWogFh2WjjrpvRbvgUncrr
- jG4meNcpkNF5nvlJNmPZYOIsP/mGCqn8y2FBjM7r0acfdYYz5wl+ylIeL2SWNwXc3fKXpbTIX
- sxo0RUFAuepu4k+PxAx+6nrpN8tyaL1+ZxUkSRt64pPiffXedWE+wdbDEgIjEYmW7I/HTEuGj
- aelHgGbobWq9nswpYdgziOmP+MzOErylgeLqJqoHVQ0435eEBYi08cEvLfmsVjquIGDhqSTF/
- FzZZa5oCpq8wXtLC4qyBwkv5WRmUysyfA5vCdU6WmfXeomZ7ZKVe6P0MYCxtqOg0iMBpD5chI
- /risVkvS/mgFpAT9WWpbsSnF+dEidzs+OdvWPEXQaVkO92lHpgS2LBdHxJeinmJOI1A0FDB8X
- rZn+FVElCWaiCdbl3tJx2nQbSTjfVAgdIGF6+dkvgH6sPlb/X5JpkjvVevVLQ9gWYGkoius20
- EwY6jBnHUXzGCWyiRMUG4qLsXRCbblckuTUImVCSHmL4r0SxTsbmXg2sU2z3Q/6lacY1XMa8X
- srRZJsCn1KlJTX0JZLiz/s5zIqEXDx/RmbuyteRZEpYl8XV7zdPUzmlhdLV2k6DIVt1SW+fde
- Ido1O2I+LAPBPcIr0PceevJ+IngCbJOkrqmVICu+CD88GQpt1nAJtgl521IrxWyarzSK1NT3r
- aV2GEI9YCUinrW1FxrLsX5uSbHz7YvcrhHlSVqLJ70x6hySCZL9LoHts9xxhSuPMm2Qb4uj1w
- mkS90HeIOfPlakd0SixMjkTpdWSdRxHokmnpF0/EL73ku3BDQfV2lwYX+uh+pT2eMn2LMRDYA
- sBqIPOo+0Md+cUMH5vuvhF8SmJPwUx7zFuIZujnpAgwvU=
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On 3/26/24 21:22, Andreas Kemnade wrote:
+> As the PMIC can power off the system, add the corresponding property.
+> 
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Matti Vaittinen <mazziesaccount@gmail.com>
 
-[add Peter and Ivan]
+-- 
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
 
-Am 26.03.24 um 20:58 schrieb Laurent Pinchart:
-> Hello,
->
-> This small series includes a few drive-by fixes for DT validation
-> errors.
->
-> The first patch has been posted previously in v1 ([1], and now addresses
-> a small review comment. I think it's good to go.
->
-> The next two patches address the same issue as "[PATCH 1/2] dt-bindings:
-> arm: bcm: raspberrypi,bcm2835-firmware: Add missing properties" ([2]),
-> but this time with a (hopefully) correct approach. Patch 2/3 starts by
-> fixing the raspberrypi-bcm2835-firmware driver, removing the need for DT
-> properties that are specified in bcm2835-rpi.dtsi but not documented in
-> the corresponding bindings. Patch 3/3 can then drop those properties,
-> getting rid of the warnings.
-since this series drops properties from the device tree, does anyone
-have the chance to test it with a recent U-Boot?
->
-> [1] https://lore.kernel.org/linux-arm-kernel/20240326004902.17054-3-laur=
-ent.pinchart@ideasonboard.com/
-> [2] https://lore.kernel.org/linux-arm-kernel/20240326004902.17054-2-laur=
-ent.pinchart@ideasonboard.com/
->
-> Laurent Pinchart (3):
->    dt-bindings: arm: bcm: raspberrypi,bcm2835-firmware: Add gpio child
->      node
->    firmware: raspberrypi: Use correct device for DMA mappings
->    ARM: dts: bcm283x: Drop unneeded properties in the bcm2835-firmware
->      node
->
->   .../arm/bcm/raspberrypi,bcm2835-firmware.yaml | 30 +++++++++++++++++++
->   .../gpio/raspberrypi,firmware-gpio.txt        | 30 -------------------
->   arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi   |  4 ---
->   drivers/firmware/raspberrypi.c                |  7 +++--
->   4 files changed, 34 insertions(+), 37 deletions(-)
->   delete mode 100644 Documentation/devicetree/bindings/gpio/raspberrypi,=
-firmware-gpio.txt
->
+~~ When things go utterly wrong vim users can always type :help! ~~
 
 
