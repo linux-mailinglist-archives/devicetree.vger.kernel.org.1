@@ -1,66 +1,67 @@
-Return-Path: <devicetree+bounces-53900-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53901-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAD9488EBEF
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 17:59:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FEE188EBBE
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 17:56:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CD26BB281BA
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 16:54:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E50F1C30688
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 16:56:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71CE014C5BB;
-	Wed, 27 Mar 2024 16:54:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA41414E2D3;
+	Wed, 27 Mar 2024 16:55:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qDqzBkYR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oyHhINfn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 420B1131BA6;
-	Wed, 27 Mar 2024 16:54:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0775149E1A;
+	Wed, 27 Mar 2024 16:55:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711558457; cv=none; b=AMlEIVIgEKg12Ol/NPzgK0C+chJizDRoBH3ZB0fla76xlZjRl6py8YRnJhmmXhzZewj/TMtz+yGteN9FR1eGrG6FWOKslyxTlU+vHSOWTErU1PTvxqvutE6nCKLAZa3vTwxASliIKdQnZU/w+iu0n269r7swY9cAg9oN9jj160E=
+	t=1711558541; cv=none; b=NNYRVXYvPSENBBOT7PBD/E43fCrZKCBkl4F1i4UkspN2jG98l58i899DPugr61zJo+1ZzDsnpYZPjp10rdm9Z9NFpYr6UddUBppMj7KFeZQcrTfxD47cFVmK//ENnoQmeQ2iAttxoq9kpyFOgBUDWchR06NiDivaiBLLhTn29y8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711558457; c=relaxed/simple;
-	bh=YtctpCpdB+VYCu2a9Q5m8T9kdg5d6vQjlyKgCNcle3o=;
+	s=arc-20240116; t=1711558541; c=relaxed/simple;
+	bh=9ybGAgC7s0iD76xqW9MDm9NbgH+kLRTQZGDj+gPL2W0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=McRPLP70MW05jgb/WJAYfiMHSc+1jvqUsA7218p8VTno2YIomghj3U8C2oznxFDNlTXMtNsBPtWur0AttXUZSCAiUQJW22tT60zYBof/Gk1GsD+wX6qbhem6EqdPel0N6hPt2YQVQzAWWyL4vwifkbydPt/7yAQDr0SnyhIOfSs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qDqzBkYR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D1B8C433C7;
-	Wed, 27 Mar 2024 16:54:14 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=LMVXVBpa+m2/k6Vo6U7UzgNqBvA5AO4d1yFuj4r0jq5pX61+8A1d2/fEdJyckNLLBJZsi+yeEhyqLelDDi0eys/sioDxWPM/EUnfGVpt85nSRlNa8axyU5XsyoD8KHVTkX//a9530MafJTUMa9KXgQwxgBhadxx1ejrlY3hqnjY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oyHhINfn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 699EDC433F1;
+	Wed, 27 Mar 2024 16:55:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711558456;
-	bh=YtctpCpdB+VYCu2a9Q5m8T9kdg5d6vQjlyKgCNcle3o=;
+	s=k20201202; t=1711558541;
+	bh=9ybGAgC7s0iD76xqW9MDm9NbgH+kLRTQZGDj+gPL2W0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qDqzBkYRpznyWCPMUh8t7LobBrg1hMyymR1es+/eqRzbuTVSpGlZ9heKdm7ri2z1F
-	 vq77gRO9qd9QkpReW+xiXZ0fK8IeRdSbziH3w98yxjKeWwZOKGlgojuJhJuyO2E02T
-	 DkM4sxgwOFE66OYjpxxeQ1nBrwetYVZVME993U4AZnCL9Hlk2KbVRiscw8SzDISDIO
-	 vgrC/jWVjOQi6e7F1xNoV7i1JNAjXn3ko7qbqCPWM1fwiJAskfmRKphNpSGN2YE+5r
-	 ncBJUPKduA3FCoyKNJwE95K6VHSB5tgvvDG50cvRJjGU5R/Lpz8+qS25PktdY0CicD
-	 zKf/TW7TgdSzg==
-Date: Wed, 27 Mar 2024 16:54:12 +0000
+	b=oyHhINfn6rCRc9UokRscIObGhysCBYNu29sU/QDaRBAZWr70H1wbWhhXDc1YVxvTq
+	 T5i8wGP2XUtgxN8hwdDV5aw4UtMYv4pEVCVujfToYLblLKwTxOHgcNDhyDl6TsCmC9
+	 Usl8v7Q6Z7rTI5H/09rFaRoLyzQdfoki06G7FF4SxPFaSBy6S57qxIE6Yg3kbHMjPM
+	 6BICEg1RgODnhiGfhu8XG9lKTIvdK/q+yN7pkZCQsaQ/5JifYore+lr3i3Yqnb6lXO
+	 JRPMfzJZR/fAhre/SUqgNR/IUEWpWMsNY8t9qZwNPuKQbnXS3FeE8kqSLXe9e+UsSS
+	 fKAmM86YCGEAQ==
+Date: Wed, 27 Mar 2024 16:55:36 +0000
 From: Conor Dooley <conor@kernel.org>
-To: ChunHau Tan <chunhau.tan@starfivetech.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
+To: Binbin Zhou <zhoubb.aaron@gmail.com>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	JeeHeng Sia <jeeheng.sia@starfivetech.com>,
-	"dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: dma: snps,dw-axi-dmac: Add JH8100
- support
-Message-ID: <20240327-skewed-unworn-d70215e3f07b@spud>
-References: <20240327025126.229475-1-chunhau.tan@starfivetech.com>
- <20240327025126.229475-2-chunhau.tan@starfivetech.com>
- <6533503e-18e1-4957-96cc-db091e9c46c9@linaro.org>
- <BJSPR01MB0595D132CB5A072A9E61F9C09E34A@BJSPR01MB0595.CHNPR01.prod.partner.outlook.cn>
+	Yinbo Zhu <zhuyinbo@loongson.cn>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	loongson-kernel@lists.loongnix.cn, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev
+Subject: Re: [PATCH v1 1/8] dt-bindings: clock: add Loongson-2K expand clock
+ index
+Message-ID: <20240327-spree-perjury-f0ac4b8156a8@spud>
+References: <cover.1710926402.git.zhoubinbin@loongson.cn>
+ <0cfd237c2c7c1e4f89b6e5f7af0a64d306de1c8f.1710926402.git.zhoubinbin@loongson.cn>
+ <20240326-shifter-zeppelin-1d8616dc82f9@spud>
+ <CAMpQs4JKYxJQ=+iRW6EqRc4t3wF=eNLVg0Y=943D+X+LmJyG=Q@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,83 +69,50 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="0K8lVn5NkQryrHMv"
+	protocol="application/pgp-signature"; boundary="4smSXZcEuLXSNdWf"
 Content-Disposition: inline
-In-Reply-To: <BJSPR01MB0595D132CB5A072A9E61F9C09E34A@BJSPR01MB0595.CHNPR01.prod.partner.outlook.cn>
+In-Reply-To: <CAMpQs4JKYxJQ=+iRW6EqRc4t3wF=eNLVg0Y=943D+X+LmJyG=Q@mail.gmail.com>
 
 
---0K8lVn5NkQryrHMv
-Content-Type: text/plain; charset=us-ascii
+--4smSXZcEuLXSNdWf
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 27, 2024 at 08:24:01AM +0000, ChunHau Tan wrote:
+On Wed, Mar 27, 2024 at 07:15:40AM +0600, Binbin Zhou wrote:
+> On Wed, Mar 27, 2024 at 12:54=E2=80=AFAM Conor Dooley <conor@kernel.org> =
+wrote:
+> >
+> > On Tue, Mar 26, 2024 at 05:01:00PM +0800, Binbin Zhou wrote:
+> >
+> > > -#define LOONGSON2_CLK_END                            18
+> >
+> >
+> > > +#define LOONGSON2_CLK_END    35
+> >
+> > Please just delete this. If you can change it, it is not a binding.
+> > Just define it in the driver if it is needed there.
 >=20
+> Hi Conor:
 >=20
-> > -----Original Message-----
-> > From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Sent: Wednesday, 27 March, 2024 3:50 PM
-> > To: ChunHau Tan <chunhau.tan@starfivetech.com>; Eugeniy Paltsev
-> > <Eugeniy.Paltsev@synopsys.com>; Vinod Koul <vkoul@kernel.org>; Rob Herr=
-ing
-> > <robh@kernel.org>; Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.o=
-rg>;
-> > Conor Dooley <conor+dt@kernel.org>
-> > Cc: Leyfoon Tan <leyfoon.tan@starfivetech.com>; JeeHeng Sia
-> > <jeeheng.sia@starfivetech.com>; dmaengine@vger.kernel.org;
-> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
-> > Subject: Re: [PATCH v2 1/2] dt-bindings: dma: snps,dw-axi-dmac: Add JH8=
-100
-> > support
-> >=20
-> > On 27/03/2024 03:51, Tan Chun Hau wrote:
-> > > Add support for StarFive JH8100 SoC in Sysnopsys Designware AXI DMA
-> > > controller.
-> > >
-> > > Both JH8100 and JH7110 require reset operation in device probe.
-> > > However, JH8100 doesn't need to apply different configuration on
-> > > CH_CFG registers.
-> >=20
-> > This is a friendly reminder during the review process.
-> >=20
-> > It looks like you received a tag and forgot to add it.
-> >=20
-> > If you do not know the process, here is a short explanation:
-> > Please add Acked-by/Reviewed-by/Tested-by tags when posting new version=
-s,
-> > under or above your Signed-off-by tag. Tag is "received", when provided=
- in a
-> > message replied to you on the mailing list. Tools like b4 can help here=
-=2E However,
-> > there's no need to repost patches *only* to add the tags. The upstream
-> > maintainer will do that for tags received on the version they apply.
-> >=20
-> > https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/=
-submitt
-> > ing-patches.rst#L577
-> >=20
-> > If a tag was not added on purpose, please state why and what changed.
->=20
-> Hi Krzysztof, thank you very much for the feedback,
-> Sorry I overlooked it.
-> Do you prefer I resend V2 patch or send a V3 patch to include the Acked-b=
-y ?
+> Ok, I will drop it in the next version.
 
-I resent the tag, you do not need to do anything.
+With that removed
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
 Thanks,
 Conor.
 
---0K8lVn5NkQryrHMv
+--4smSXZcEuLXSNdWf
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgRPNAAKCRB4tDGHoIJi
-0nnSAP9BWE0+2dsBJL1vUxw62h2uDxlBC7J4MRQxeyx9dWWR1AD/c9QNihfyYiqb
-gXrjgAjI/mlRlwoCYOSGJE3MYB78fAU=
-=DJMF
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgRPiAAKCRB4tDGHoIJi
+0nJ2AQC3w/jh/Fb0k9qAEMQ2PqVtwafqdZodCyOIYk5sPFYCEgEAteETm9FdYDKk
+WF/8+dplwlx1/TBgkIHAhQIyr2fIsgw=
+=X+Ut
 -----END PGP SIGNATURE-----
 
---0K8lVn5NkQryrHMv--
+--4smSXZcEuLXSNdWf--
 
