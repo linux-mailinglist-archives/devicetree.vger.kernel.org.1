@@ -1,132 +1,100 @@
-Return-Path: <devicetree+bounces-53882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C283488E92D
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 16:34:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 463B488E84C
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 16:17:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EB508B2A361
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 15:17:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB63C2C41EC
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 15:17:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B78E113CC76;
-	Wed, 27 Mar 2024 14:50:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4281413DBAC;
+	Wed, 27 Mar 2024 14:50:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="mGgxb37z"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="coELbMe2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 084FE1384B1
-	for <devicetree@vger.kernel.org>; Wed, 27 Mar 2024 14:50:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB4BC12DDAA;
+	Wed, 27 Mar 2024 14:50:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711551004; cv=none; b=rU8XJZWs8oJCfme/DTz5RjA3bIP3CpvhNmjI2fFzvjb4F4z7XfN7ygVh2n0c/0ZUhrisz8+V8Iv8E5YmEbfZL4X1tilxqJ8V2EOE4rKLLuy175DXugsQAiZlTR1+/a23VK1SsURW05YfF1VHbZlcZtK+eA6EDXssrUCEtENaBl4=
+	t=1711551039; cv=none; b=FTx96fE7MAGw3PEdSedS5uL4HljA9z0b7NYSAX8LRw/l36TmuuA+geCkQ7tjGiJDDkw+2sQzVHpW4B+Ho+ZjhZVQ/AUU+mmEvqfOXvM+/ANaNb+cC5pqNOWj8NEENgMJOFO11I79JuMcnOipentXavTL5L2/iSsG5BEIuQEtVuo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711551004; c=relaxed/simple;
-	bh=/wK5/+nOXE7/Fs107JDE5jcfvzpPLAFz1tDW40UkPro=;
+	s=arc-20240116; t=1711551039; c=relaxed/simple;
+	bh=9qX0mAu8p0xLLDTkVjZDR6d85JBmssHRthZYFdFwtKg=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IT2hyGgv/TkbuGRFkHX74fbQq1FEG1bQamFEKi++H3y+vpSfyyuML5pcouAEBv9HkhjgPA1TIrVCDH9vpvYEnuiz9HIIIjbuoqYgU3g//3uZVENfmoMrXoMMBMiog7RlB3fvL6nLExQyrLmJze1wWM8nCqH7VuiJyrKJsm8KHcE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=mGgxb37z; arc=none smtp.client-ip=209.85.219.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raspberrypi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-dcc80d6006aso6440163276.0
-        for <devicetree@vger.kernel.org>; Wed, 27 Mar 2024 07:50:02 -0700 (PDT)
+	 To:Cc:Content-Type; b=QpPNXRE7ArovDhJgVEXgsN7WgMo4HcXLcRtbGcmx8XyZQUJQ/Dwcsli3NJ33BMpdRaPoqnwLCN1xmwkmqIJVu4uVFKwNBo9Ai8QQfzi89anrXRFCIOFxPSc0CGBHMPkkUPEvao4wMRWF5Q39oGGGtYyDMw9JGO+jV7jqiNwAiiU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=coELbMe2; arc=none smtp.client-ip=209.85.216.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-29f8b407610so419174a91.1;
+        Wed, 27 Mar 2024 07:50:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1711551002; x=1712155802; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=1hTYCC8kAqYkgGU/0UM3YkyVpAl3P0m4SRn1E0wt2sY=;
-        b=mGgxb37zV9U38Y2HSHUYskzrOyl7sFLfB4uhkh6e/w19j+3bPoolPYrKgqMvmV8kOj
-         771ZD+sbpazDrHibAoNkS4UhCcIKl7y2iWvvNJIVD8l8JMX4Uq6+CZ7MH63OCXEkgSZQ
-         nhz0crNE28D7Idtt9cIR2XO4mLdG4w2Km6A9KqJvKKUGwEDmcEXu8lupvaOCwyRBUGdO
-         7dof3XludHss0a8oG2z5CgKwVj2w5dm/z+0P/c72sjt+vzjJFOWIw2lAX06d0M/AD89y
-         7AXBk2gt51Qi0kF1uYv0ykV4h2BJMAZDahUiygVgRoQwAt2Foxgwg8aGKpRSJ9yMmaRG
-         R20A==
+        d=gmail.com; s=20230601; t=1711551037; x=1712155837; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9qX0mAu8p0xLLDTkVjZDR6d85JBmssHRthZYFdFwtKg=;
+        b=coELbMe2SXDcGSW2gxJnlB+AEVJ3b4iqFEPVOngoikwmhl1ptKb58lO+5FWQozUn8o
+         3hP8jabVktquKCauGE0T7jvxHHqtVBH43hz1bkhLNLdC50ilPz12kZEIiorM7TQ2VIxu
+         KL+kjmOilI9OZkXjWCB/KNsw37NhNKnWIJyILf4JdGYpYIBkDBEpLs5rldJ772eyky/b
+         Eq78N7iw4B9Wz6qkemCtyJ6ZKVyIshnWAbc8+UPadyMDWcUFGg+eIIUI2f8cRz2VEgD1
+         benEkw9BvSNGk9WFEryvOXMsIHHSZp7BO0NytAwCTNoJ7caEc5UMjsHiu6uVLnoNCOW3
+         QeJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711551002; x=1712155802;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1hTYCC8kAqYkgGU/0UM3YkyVpAl3P0m4SRn1E0wt2sY=;
-        b=Y7Qm97Cwx5i8jfKV7g738gi2oNS3vQLZwZUfYQIJ0DcrWUuxp8E3HQW99V/kHBsk4T
-         0bYp2eMN8peb6kJmJs0OoidRH+F2njUCfK0ZbZ/DkSIw/2ccdDSq8jkIWNC5PSmCEusn
-         +SvSf7KBTLxQLzKbjuGWAgAhe28hocPbIGyamobG9LEcoHzBoH1vj3y50iumyEEPtAFh
-         AeOPPTwwpncwP5ySEDS6zMP1uzUpMAypH+9cDFZtnVXiR5iZvdEzff2EpUK6j5fWF6/a
-         tMhuW2U49A0FtuQbOIzmrTOYtds+gtd+x4PGU7TSqJGmw6Eu+mF2nLCytKM0uSvcUTbX
-         0pKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW0TVQeJiAuECVP+zwxNNShTpmn6s8qXAOQW9Sb26Fx88UZgkD+uU/NPrmAhS2WPVF/tHH9fX6yF0p5Jgx2ON/2NyUbVcKfmDYK1w==
-X-Gm-Message-State: AOJu0YxaYZK0yWyMpNTYcFmwCG4KAFPBj1vQPWV7grCeIFdS84eG5+yv
-	p8+JDSkFyr75fciEbv13pEzf8bVgcJ4BMajctR8YLxsiUBGs9Tipgv8PghII+hNT2NPRKxIl+Rb
-	I2Aiy70HpX5HcrrbrGD2rpYW9xxxhdlwCyDl2dg==
-X-Google-Smtp-Source: AGHT+IFVbWWHx0Ekn2Z0z8sku37fEr9adfRUGe1NbsI/n3+e5rQA8h+TVeJFxP+ayJW42LL2FCDCTYGw7JBYYkjYgfc=
-X-Received: by 2002:a25:8304:0:b0:dca:59a7:896b with SMTP id
- s4-20020a258304000000b00dca59a7896bmr2362757ybk.50.1711551002049; Wed, 27 Mar
- 2024 07:50:02 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1711551037; x=1712155837;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9qX0mAu8p0xLLDTkVjZDR6d85JBmssHRthZYFdFwtKg=;
+        b=T4kts/tLiaWKTZWXeMiesjKq/gc7XVglIX4iT55SvwACOHz9w0vtEtdG6T6kHHkEhJ
+         kyFZWydljwhA+qvgNzGMgZqC3OwqcEfZ9RkeLxD8mP4f3CPPN7o41VF+98R5WyeG7yjU
+         TNvMK4IvfztgSguHRzCC2VlD8u2crnY+1wG5bw8wWS4SoxZK1Ehfva8pUeGoe/oUvP06
+         /khu4ZLEXCpvP9aoL3dzNQB51S494rOc8/bVFsp4EKSMmO10OLhXXMM17aXzO++gusbb
+         1EmvllhZ1whVvQuUdAlCbMVfWN3P4nB1nITcF7qOW5Hr3ISV5bIwBAxEdbGXyy49vEE1
+         es+g==
+X-Forwarded-Encrypted: i=1; AJvYcCV1WY2I07ZbuWrDdvRGcfpXbhs3lRDAKWoNC2Ls/DojIpW+QnHn7okin/p9IKybQZJNxqZGHrFLPB3TTfC4hObLd8WOQuYO1qoedTHOIQOZz0PEY+j9MvEUyx9yLOTgLxQFAtftgmmk
+X-Gm-Message-State: AOJu0YxRwn1DKQd/8uisHGV5dSV1/cq/cayhut81z9fpWqEvNDJSxaat
+	PTjh1+QSlx1L0DT0+K2Xwtc6X8lIstX8TbhPNRkL37lNfEz2QDLl2eurwW4cFK3RTAXpKfgSctn
+	d2GYTEJ2pupHjlimGmdtZ/99/WIc=
+X-Google-Smtp-Source: AGHT+IGh9qzp6ikzanfOv1DCAVwhyw3qPKEghifFyI4QnWRKScb4xT6AlOr6ILBriP68myluG9fW2kzff7PT+lCNVsg=
+X-Received: by 2002:a17:90a:7108:b0:29b:f9be:6b51 with SMTP id
+ h8-20020a17090a710800b0029bf9be6b51mr11665173pjk.4.1711551037165; Wed, 27 Mar
+ 2024 07:50:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240327000510.2541-1-laurent.pinchart@ideasonboard.com> <20240327000510.2541-10-laurent.pinchart@ideasonboard.com>
-In-Reply-To: <20240327000510.2541-10-laurent.pinchart@ideasonboard.com>
-From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Wed, 27 Mar 2024 14:49:45 +0000
-Message-ID: <CAPY8ntA-TDnMKNiMUpZzGYTYZ-7G_KkK7cSBuJeBfjkwXSZ76w@mail.gmail.com>
-Subject: Re: [PATCH v8 09/10] ARM: dts: bcm2711-rpi-4-b: Add CAM1 regulator
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, David Plowman <david.plowman@raspberrypi.com>, 
-	Jean-Michel Hautbois <jeanmichel.hautbois@yoseli.org>, Hans Verkuil <hverkuil-cisco@xs4all.nl>, 
-	Naushir Patuck <naush@raspberrypi.com>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	kernel-list@raspberrypi.com, linux-rpi-kernel@lists.infradead.org, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui <rjui@broadcom.com>, 
-	Scott Branden <sbranden@broadcom.com>, bcm-kernel-feedback-list@broadcom.com, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	devicetree@vger.kernel.org
+References: <20240326231033.2048193-1-festevam@gmail.com> <ZgPtolH796HER4cP@kekkonen.localdomain>
+In-Reply-To: <ZgPtolH796HER4cP@kekkonen.localdomain>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Wed, 27 Mar 2024 11:50:26 -0300
+Message-ID: <CAOMZO5AYjNPWZfy_dN12K9JNwWaWThpMs0W-FzETF5k8fobgeg@mail.gmail.com>
+Subject: Re: [PATCH] media: dt-bindings: ovti,ov2680: Document clock/data-lanes
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: rmfrfs@gmail.com, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	Fabio Estevam <festevam@denx.de>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Laurent
+Hi Sakari,
 
-On Wed, 27 Mar 2024 at 00:05, Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> Add a fixed regulator to model the power supply to the camera connector.
+On Wed, Mar 27, 2024 at 6:58=E2=80=AFAM Sakari Ailus
+<sakari.ailus@linux.intel.com> wrote:
 
-As with the I2C0 mux stuff, this ideally wants to be generic rather
-than 2711 only, but I'm happy to get it merged for Pi4 first and then
-add the others.
+> If there's a single possible configuration only, is this needed? There's =
+no
+> information here which the driver would need.
 
-Reviewed-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Good point.
 
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
->  arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts | 7 +++++++
->  1 file changed, 7 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts b/arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts
-> index d5f8823230db..cfc8cb5e10ba 100644
-> --- a/arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts
-> +++ b/arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts
-> @@ -15,6 +15,13 @@ chosen {
->                 stdout-path = "serial1:115200n8";
->         };
->
-> +       cam1_reg: regulator-cam1 {
-> +               compatible = "regulator-fixed";
-> +               regulator-name = "cam1-reg";
-> +               enable-active-high;
-> +               gpio = <&expgpio 5 GPIO_ACTIVE_HIGH>;
-> +       };
-> +
->         sd_io_1v8_reg: regulator-sd-io-1v8 {
->                 compatible = "regulator-gpio";
->                 regulator-name = "vdd-sd-io";
-> --
-> Regards,
->
-> Laurent Pinchart
->
+In this case, the correct fix would be to remove 'clock-lanes' and
+'data-lanes' from imx7s-warp.dts.
 
