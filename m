@@ -1,140 +1,316 @@
-Return-Path: <devicetree+bounces-53963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2474488F114
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 22:39:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DCC488F172
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 22:57:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8AFAB1F2ABAD
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 21:39:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36A6729F2E7
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 21:57:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94346153565;
-	Wed, 27 Mar 2024 21:39:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F10715357C;
+	Wed, 27 Mar 2024 21:57:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yGJZd8Oi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pRXuVS3/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E02021534E6
-	for <devicetree@vger.kernel.org>; Wed, 27 Mar 2024 21:39:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 686744F208;
+	Wed, 27 Mar 2024 21:57:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711575545; cv=none; b=jLL1Bbqf5G9UFYiFjr0EbPoxUgKpnL+hErs1f8kczVpZTOU25mkJw32njAd5hhW//iLKGLmnxr2S5A8Y5J5BOZi+9s//GhIQqelTiaEWSDvhMzPIxYM6hwbl5zSUd9IaugJ477dLbcpziu8x4HcmuRcp6ejjudul2a4P/LaKcFM=
+	t=1711576644; cv=none; b=UaG7m24mTIP+CBprEkyK7QA2h1lXbT2fVo/vzQm4H+kUsdBJoPS3taJcJ2IZJOe1cpJTc16Sc+tSvMSVlB/cRXC/RbShYyaC4jP6xnEV2IQz8/adTcWoobZLo1CFrfmCoK4tgJ3L6QQjtQ/dkX2jUHAqqkAdJy5RUbkPlob5JT4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711575545; c=relaxed/simple;
-	bh=bu6RxpPz3djudl2ukcas1r/SzQvrd4PByfxE3MOX2nc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IKl8HT9hMSMn0ZNXaFjCgZpxOZrDJnKeD9X2EFkllPe46URZoPZn1LkJqFbGu2OEr96qZtH6jnsokfKx28SLYV5bwhQyjVEP9z034Lha+Mmm8SDCYtISDvhMrbGJ7mwYQhdCJMvCsCOc+0ugC8RP9AcFOxFRxFkPbMKTsItk6Oo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yGJZd8Oi; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2d6c8d741e8so3086381fa.3
-        for <devicetree@vger.kernel.org>; Wed, 27 Mar 2024 14:39:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711575542; x=1712180342; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=QZUBkdVY61Xlb2cgTE2nmUubLiWvg04+qp2XWqnm/Mc=;
-        b=yGJZd8OitfxVI9YtDhLqF+V66mBpH87A3WyfD2g2Zzl/L3ozIBtALYJPqrxD6bd7bj
-         ebfvP2Uj/T0WEJHqcRyDo5TltnIS0LbOfVEneDB+oZj2YNCvQgKSaiTqaAO3FFCPKBUA
-         fvolNDymzfWOek3XC0IVrf2cwlsYIl1FrEbkVYrYDJU2CyoxJ4vBBoihoJ+3PzE7W2Gm
-         dlnThMGY+lFtH9ZyUowSi4iu7OSkrTZUpHNjXFGKUYX/MLRO+vXqD18YTWzb5WXjCvh7
-         iCp3LEkX2XjLUwiGjj8oGba9K9nY6PVYv/qYAI/4FoynrlausruKLOcnAq9gMhD1DAJv
-         k6Wg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711575542; x=1712180342;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QZUBkdVY61Xlb2cgTE2nmUubLiWvg04+qp2XWqnm/Mc=;
-        b=g1V/mZdWYtPoT3/g4BBXt1jvcUaD4KEMfn5Wi/7WPzFMTThXIbdLEnQJjxh5OoGZic
-         oG1M8hVGOmnCcvPNXL2z5Z6GLLqXRDLJ61dfmiHCTfhecieLjQMGOSA9XzN4jz5FLhvj
-         D38hisHr152Zqync4itF9HalVBnXqod4bhb1ZChFcztzlThZs5uFe8Jm4p0nvRl0BlcS
-         lct63jhLpKIFw9tQc9jTzLaCP3g54on1TUsvqrpd3TegJNwfrwQBVqZM0XVBN1hQIX4W
-         2D8/3kbW/K0Z+5OON3MA8QTmUSp8LX06qps19t6P7vDsNzpa2qILgh4lDMJevSE8SRDz
-         2XhA==
-X-Forwarded-Encrypted: i=1; AJvYcCX8R94jLE/wRNTMCsQ3+X3w3fBsasIspe179qfUquM84dDZ+SM68gd29JUJgrGyIE9DEDuUeP0NNsHJ2aOsORCTaibzXftVV52SVQ==
-X-Gm-Message-State: AOJu0Yy+JpS8si1iWpu/JgOPJ13EkSxEenHZAqpKRhzlghW3mPXVRcdy
-	He+PibLYU/mEqbHEC/iYtccT5/XtwD4TjE+0iqkTYgXKiIcsglrYQ6RCD5K9A+0=
-X-Google-Smtp-Source: AGHT+IHaoxkChZu/+Jt0Xrh4sJcV8X/QAzL8iuwzT7IqFsgZ0w8MskfrrQ4N0RuTGIQCbnsSSIbwnQ==
-X-Received: by 2002:a05:6512:535:b0:513:e934:8e34 with SMTP id o21-20020a056512053500b00513e9348e34mr491448lfc.56.1711575541912;
-        Wed, 27 Mar 2024 14:39:01 -0700 (PDT)
-Received: from [192.168.92.47] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
-        by smtp.gmail.com with ESMTPSA id ci8-20020a170907266800b00a4e1aa345f6sm70245ejc.115.2024.03.27.14.39.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Mar 2024 14:39:01 -0700 (PDT)
-Message-ID: <afcbb668-ab9e-4f97-9014-ecbd5170ab92@linaro.org>
-Date: Wed, 27 Mar 2024 22:38:58 +0100
+	s=arc-20240116; t=1711576644; c=relaxed/simple;
+	bh=kckJEpYhHgnCtBplTfHjpMjOocZjkqamf13wWZ8KnGw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=S4eWUNVcianrr86Vv8G8Hn2+GHtFnU8bEwl1hMMWqUzavLKxUDisWec9PNpbBCGWD9XxEMupD5IcuRvtd36noHD32tb67EReyXCoUc9cuvnnyXsjQtDJNtkfZT2a+qW8KPTWdzQi1JFCKXab4VRKUMHQXdJbLLvvhDa2RnnaydE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pRXuVS3/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EF9CC43390;
+	Wed, 27 Mar 2024 21:57:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711576644;
+	bh=kckJEpYhHgnCtBplTfHjpMjOocZjkqamf13wWZ8KnGw=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=pRXuVS3/1JjfYzC2eVhCcfJJeCjDnwdY00NXVwIEIS7zvDJ9tvezBJyu9TNhixL0X
+	 1AjsQSJp/DouC8YbxVsjGz2kBdfzFB4eMKt5YBhuZFUJAPUGkO7VEzXbAZWZ9UwxWX
+	 pDt4/nlkk7tOtdIhT+eByN9jbE3FNXup7G6jYZHATbBKbzE8ogIzbpwrfmg98Irpb5
+	 RzYx0EEbCOm+hcnBiMtEzjNhBLrSm0S7uwHrUqXm/kyw6PMNsiJWvo8oF/1yJW97TL
+	 WFgwdNZRBscAVO+vTlah4k8Jr0AAvtIya+eY0Mm0qY3J7HQ8QyLQ+Jf0GiMfd+P06T
+	 TEXZvk0slWsdQ==
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2d485886545so4047611fa.2;
+        Wed, 27 Mar 2024 14:57:24 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWM2E2jnjHUZLbra701/jJ++SJTC4EM0T/suwcejNpRZC1lh9OnU7sxweizPjt9jUKm5SA7SrMbdi8LU4+C15pQ+vWz6CtvQRYp0B7y6k69R2HkdJC9GDWyI7KroPHMyYvnSYiyR3cgZg==
+X-Gm-Message-State: AOJu0YwtdnizfWbHpEyaGn87SgVa4aimzLYD+rlyNQrs5ReuPUCHdvpU
+	Qp+uIj4qjuRtjfiuHWHGELAuhA9Ej+IoeymeSzjCZvtLi4BxvAE6CSZGgre8CAo2yZH8A+Zt9gE
+	kOCKg1neawoN2BUh4IFd0uNY8jg==
+X-Google-Smtp-Source: AGHT+IF5TLpTdDPxkBcMlw2BkyJcmW0EZYnw6TbOF4oQ4eJk6/hik2QycCw8mbRy1BM1VfoLw+7l8jG+S62JazvnP+4=
+X-Received: by 2002:a2e:a789:0:b0:2d6:f698:7eca with SMTP id
+ c9-20020a2ea789000000b002d6f6987ecamr1471552ljf.5.1711576642517; Wed, 27 Mar
+ 2024 14:57:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] phy: qcom-qmp-ufs: Add SM8475 support
-To: Danila Tikhonov <danila@jiaxyga.com>, andersson@kernel.org,
- vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240327180642.20146-1-danila@jiaxyga.com>
- <20240327180642.20146-3-danila@jiaxyga.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20240327180642.20146-3-danila@jiaxyga.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20230317053415.2254616-1-frowand.list@gmail.com>
+ <20230317053415.2254616-2-frowand.list@gmail.com> <886049ed-4f5f-4e17-86f4-1245024ade3a@roeck-us.net>
+ <CAL_JsqKsF53v7d7uZ3XT4kPFy-2FBWHfvKNSFdTx2oZhmSZkDA@mail.gmail.com>
+ <66409df9-6f5f-4fbe-ae7f-47b86665c113@roeck-us.net> <CAL_Jsq+0JHTDmBPr94ZZF_5rtQg14q8OmWH6WpRspjHMX-MZmg@mail.gmail.com>
+ <23ed5bbb-7616-424b-96ee-3fe1c6d8ca89@roeck-us.net> <CAL_JsqJd-upC4TgOwP5-DMXKL+x=X7sGC7qqiy2PTjD6pnSV7Q@mail.gmail.com>
+ <407867d2-2e32-4df4-96ac-f9ae84b44375@roeck-us.net> <CAL_JsqJ2DijyKa-WSWdOszZt9UfQbb1MnD2zHh3ywntx6a=N+w@mail.gmail.com>
+ <932e8cb7-1874-4c4a-8fee-bc0b9dffe94c@roeck-us.net>
+In-Reply-To: <932e8cb7-1874-4c4a-8fee-bc0b9dffe94c@roeck-us.net>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Wed, 27 Mar 2024 16:56:56 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLA354A5KyQdCApOtqNrV9R239dSBOreODHseRZFU47PQ@mail.gmail.com>
+Message-ID: <CAL_JsqLA354A5KyQdCApOtqNrV9R239dSBOreODHseRZFU47PQ@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] of: create of_root if no dtb provided
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Stephen Boyd <sboyd@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
+	=?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Lizhi Hou <lizhi.hou@xilinx.com>, Allan Nielsen <allan.nielsen@microchip.com>, 
+	Horatiu Vultur <horatiu.vultur@microchip.com>, 
+	Steen Hegelund <steen.hegelund@microchip.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 27.03.2024 7:06 PM, Danila Tikhonov wrote:
-> Add the tables and constants for init sequences for UFS QMP phy found in
-> SM8475 SoC.
-> 
-> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
-> ---
+On Wed, Mar 27, 2024 at 2:47=E2=80=AFPM Guenter Roeck <linux@roeck-us.net> =
+wrote:
+>
+> On Wed, Mar 27, 2024 at 01:38:13PM -0500, Rob Herring wrote:
+> > On Wed, Mar 27, 2024 at 9:40=E2=80=AFAM Guenter Roeck <linux@roeck-us.n=
+et> wrote:
+> > >
+> > > On 3/27/24 06:11, Rob Herring wrote:
+> > > > On Wed, Mar 20, 2024 at 3:06=E2=80=AFPM Guenter Roeck <linux@roeck-=
+us.net> wrote:
+> > > >>
+> > > >> On 3/20/24 12:14, Rob Herring wrote:
+> > > >>> On Mon, Mar 18, 2024 at 4:31=E2=80=AFPM Guenter Roeck <linux@roec=
+k-us.net>
+> > > >>> wrote:
+> > > >>>>
+> > > >>>> On 3/18/24 12:26, Rob Herring wrote:
+> > > >>>>> +Stephen
+> > > >>>>>
+> > > >>>>> On Mon, Mar 18, 2024 at 12:09=E2=80=AFPM Guenter Roeck <linux@r=
+oeck-us.net>
+> > > >>>>> wrote:
+> > > >>>>>>
+> > > >>>>>> Hi,
+> > > >>>>>>
+> > > >>>>>> On Fri, Mar 17, 2023 at 12:34:14AM -0500, Frank Rowand wrote:
+> > > >>>>>>> When enabling CONFIG_OF on a platform where of_root is not
+> > > >>>>>>> populated by firmware, we end up without a root node. In orde=
+r to
+> > > >>>>>>> apply overlays and create subnodes of the root node, we need =
+one.
+> > > >>>>>>> Create this root node by unflattening an empty builtin dtb.
+> > > >>>>>>>
+> > > >>>>>>> If firmware provides a flattened device tree (FDT) then the F=
+DT is
+> > > >>>>>>> unflattened via setup_arch().  Otherwise setup_of(), which is
+> > > >>>>>>> called immediately after setup_arch(), will create the defaul=
+t root
+> > > >>>>>>> node if it does not exist.
+> > > >>>>>>>
+> > > >>>>>>> Signed-off-by: Frank Rowand <frowand.list@gmail.com>
+> > > >>>>>>
+> > > >>>>>> This patch results in a crash on nios2.
+> > > >>>>>
+> > > >>>>> This patch was never applied. I assume you meant a later versio=
+n of
+> > > >>>>> it that did get applied.
+> > > >>>>>
+> > > >>>>>>
+> > > >>>>>> Building nios2:10m50-ghrd:10m50_defconfig:10m50_devboard.dts .=
+..
+> > > >>>>>> running ...R failed (crashed)
+> > > >>>>>
+> > > >>>>> Booting with DT?
+> > > >>>>>
+> > > >>>>>> ------------ qemu log: earlycon: uart8250 at MMIO32 0x18001600
+> > > >>>>>> (options '') printk: legacy bootconsole [uart8250] enabled Lin=
+ux
+> > > >>>>>> version 6.8.0-11409-gf6cef5f8c37f (groeck@desktop) (nios2-linu=
+x-gcc
+> > > >>>>>> (GCC) 11.4.0, GNU ld (GNU Binutils) 2.40) #1 Sun Mar 17 23:38:=
+59 PDT
+> > > >>>>>> 2024 Kernel panic - not syncing: early_init_dt_alloc_memory_ar=
+ch:
+> > > >>>>>> Failed to allocate 72 bytes align=3D0x40 ---[ end Kernel panic=
+ - not
+> > > >>>>>> syncing: early_init_dt_alloc_memory_arch: Failed to allocate 7=
+2
+> > > >>>>>> bytes align=3D0x40 ]---
+> > > >>>>>
+> > > >>>>> nios2 looks utterly broken to me. This change should be a nop u=
+nless
+> > > >>>>> initial_boot_params is NULL. It looks like it is possible for r=
+6 (dtb
+> > > >>>>> address) to be 0 depending on kconfig options, but that would h=
+ave
+> > > >>>>> skipped copying and unflattening which would then panic in
+> > > >>>>> setup_cpuinfo(). If initial_boot_params is not NULL, then the s=
+ame
+> > > >>>>> early_init_dt_alloc_memory_arch() calls should fail when copyin=
+g the
+> > > >>>>> DT. So I don't see how nios2 booting with DT ever worked.
+> > > >>>>>
+> > > >>>>
+> > > >>>> For nios2, in early_init_devtree():
+> > > >>>>
+> > > >>>> void __init early_init_devtree(void *params) { __be32 *dtb =3D (=
+u32
+> > > >>>> *)__dtb_start; ...  if (be32_to_cpu((__be32) *dtb) =3D=3D OF_DT_=
+HEADER)
+> > > >>>> params =3D (void *)__dtb_start;
+> > > >>>>
+> > > >>>> That worked fine until this patch. Starting with this patch,
+> > > >>>> __dtb_start always points to a valid empty devicetree blob, whic=
+h
+> > > >>>> overrides the devicetree blob passed to early_init_devtree(). Th=
+is
+> > > >>>> causes the problem.
+> > > >>>
+> > > >>> With an external DTB, it doesn't boot with or without this patch.=
+ It
+> > > >>> just dies in different spots. Before it just skipped any memory
+> > > >>
+> > > >> No, that is incorrect.
+> > > >
+> > > > Well, I can tell you it doesn't boot for me. So I must be doing som=
+ething
+> > > > different from your setup.
+> > > >
+> > >
+> > > Maybe you have OF_UNITTEST enabled and it indeed results in the probl=
+em you
+> > > mention below. I don't have it enabled because it produces various
+> > > backtraces which would hide real problems.
+> >
+> > I thought of that, but I don't think I did. What I suspect is the exter=
+nal
+> > dtb is at address 0.
 
-Worth mentioning that SM8475 is a respin of SM8450 on a different
-process node, which probably forced some electrical changes.
+Testing again, I built 10m50_defconfig without modification and ran
+qemu (from debian testing):
 
-Konrad
+qemu-system-nios2 -dtb
+.build-nios2/arch/nios2/boot/dts/10m50_devboard.dtb -kernel
+.build-nios2/vmlinux --nographic
+
+I had to enable CONFIG_NIOS2_PASS_CMDLINE (which really means pass
+cmdline, dtb, and initrd from bootloader) and it works and regresses
+as you report.
+
+> > > >> Up to this patch it booted just fine with an external dtb using th=
+e
+> > > >> "-initrd" command line argument, and I explained to you above why =
+this
+> > > >> is the case.
+> > > >
+> > > > What does -initrd have to do with anything? Does that shift where t=
+he
+> > > > external dtb is placed or something?
+> > > >
+> > >
+> > > Nothing. I meant to say -dtb.
+> > >
+> > > > I think I see the issue. __dtb_start points to the start of *all*
+> > > > built-in DTBs, not a specific one. In this case, arc, csky, loongar=
+ch,
+> > > > mips, openrisc, riscv, sh, and xtensa may all be broken too (if one=
+ picks
+> > > > the magic combination of booting modes and kconfig options). I
+> > >
+> > > No.
+> > >
+> > > - arc only picks the internal dtb if use_embedded_dtb is true. This f=
+lag is
+> > > only set if there is no external dtb, or if the external dtb does not
+> > > provide a valid machine description.
+> >
+> > Right, but when it does pick the internal dtb, it is expecting its dtb =
+at
+> > __dtb_start. What I'm saying is that's never been a good or safe assump=
+tion.
+> > We just happened to add another case to trigger it. The only reliable w=
+ay to
+> > get a built-in DTB is if foo.dtb is built-in, then use __dtb_foo_begin =
+to get
+> > its address. That's what some MIPS platforms with multiple DTBs do.
+> >
+>
+> I may be missing something, but it seems to me that most if not all
+> platforms with support for configurable built-in dtbs use __dtb_start
+> to get its address.
+
+That was my concern as that only points to the 1st DTB and nothing
+prevents there being more than one. But I think link order saves all
+of them after all.
+
+> > > - openrisc only picks the internal dtb if no external dtb is provided=
+.  -
+> > > riscv only picks the internal dtb if CONFIG_BUILTIN_DTB is enabled.  =
+- sh
+> > > only used the internal dtb if CONFIG_USE_BUILTIN_DTB is enabled.  - x=
+tensa
+> > > only picks the internal dtb if there is no external dtb.
+> > >
+> > > However, nios2 picks the internal dtb _even if_ an external dtb is pr=
+ovided
+> > > if there is an internal dtb. In other words, it prefers the internal =
+dtb
+> > > over the external dtb. All other architectures prefer the external dt=
+b over
+> > > the internal dtb.
+> >
+> > Thanks for the analysis. I had started and abandoned common support (mo=
+stly
+> > Kconfig options) for built-in dtbs years ago. I decided against it beca=
+use it
+> > is not something we want to encourage (as the boot dtb). In the meantim=
+e,
+> > we've gained new architectures that have added it. Sigh. So now I'm
+> > reconsidering something common (though not for v6.9).
+> >
+> > >
+> > > > would expect all these cases have been broken forever if the DT uni=
+ttest
+> > > > is enabled as it too adds a built-in dtb. But I would also
+> > >
+> > > Even if that is correct for nios2, that hardly seems to be an argumen=
+t to
+> > > break nios2 boot with external dtb unconditionally.
+> >
+> > That wasn't an argument for breaking it. Using an external dtb should r=
+eally
+> > be the default and strongly preferred though.
+> >
+> > I'm still not sure how to fix this easily for 6.9. Something like what
+> > microblaze does which puts the boot dtb under a consistent symbol name.=
+ Or
+> > perhaps we could iterate thru the built-in dtbs and skip ones without
+> > top-level compatible.
+> >
+>
+> I did submit a patch to only override the external dtb if support for the
+> internal dtb is enabled. I copied you on it, so you should have seen it.
+>
+> https://lore.kernel.org/linux-kernel/20240322065419.162416-1-linux@roeck-=
+us.net/
+
+Now reviewed, thanks. Sadly, I rarely see anything outside the normal
+workflow of what I can filter out. I'm copied pretty much 1:1 with
+what is sent to the DT list which is a fire hose.
+
+Rob
 
