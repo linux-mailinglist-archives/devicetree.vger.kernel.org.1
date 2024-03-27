@@ -1,176 +1,276 @@
-Return-Path: <devicetree+bounces-53889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB12F88EAC8
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 17:13:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A24088EAD2
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 17:14:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6102529B29C
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 16:13:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B8F72A607B
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 16:14:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FB6C12FB35;
-	Wed, 27 Mar 2024 16:07:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CA611384A6;
+	Wed, 27 Mar 2024 16:09:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RvW5xy9N"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="YBhZXN0X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38D7B12C552;
-	Wed, 27 Mar 2024 16:07:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 214E212EBEE;
+	Wed, 27 Mar 2024 16:08:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711555672; cv=none; b=eghX7mgOmk4+X1rtVv8jn9724T3XdOFGfrnyhS9+KaILVV4XfSsCYGv52STa5Q0bpDL9cWrD4l3RHPtVbuXMjSRjh4aM1kYA8g/Lhh8qBW6K7N92SDFnk10PQDWTm4Gz1v7KLTM+0gKq5kxKN+XWz62Eb/FCE6EaZBb73QjuKiI=
+	t=1711555743; cv=none; b=W7LK3QSbGdSphhIQocJFXOPfqcGQsGzMG23QaIA+VL4ALgkPaAd1Ii5xkOHVf8mvcsRdLZaWrCKls5LxR15NIjjyDP21KvLYmF9cefEGAWAUeu1gQvf9TipckXkLXVgMEwRZ/kajf+ZKu2We7I7lJDHHtQrvU4iF5umUHGiTyNY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711555672; c=relaxed/simple;
-	bh=qd8XkIwmxLisWezHTIfyREA/lnHyigma5+JJYJQKENI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jMQ8YfQMZ/NpFi2VWWmS7kocVOiyZ9Y5bqepGGqKTldL7S7mkUmhHTvBDm5VaMD2bO+3VyVveFuIyHK9ObYsQMBV5eK2rrMbvOEUeakzr/X5sfh5bXcvw5eGhs4cyWGi8qRj6HrwhQaYW3D5TjDkOMlPp3To2IBoij8dJAj4v8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RvW5xy9N; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-41493e0fbf2so6148495e9.1;
-        Wed, 27 Mar 2024 09:07:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711555668; x=1712160468; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1aoTSdMd/YSVHtvQI+80zrqseLyOiRVNHBsZL+C3hws=;
-        b=RvW5xy9NC8Vd+SXtveFS5UO2zwpzrbBPqenj5P0PgIEIiMWYXpYaUED8mTVhTKS0Tv
-         TR4g56/6UgyVHR+DrQs06hHd0+WrJ227wC330BhkuBXGVVapwUEPfe4NFbkAiHC/HH9B
-         9prXYrEGGlv98eCuwOU95W7eLRhy9R4jezsCUSMFTenJo61kIEoP2GkYNwQWmi6oB9eO
-         yQpoigzKA5ddnfC8nOP9RtZJEbhYBcQl6x02/Kzg1OtSjOzf03LSHn+JLs1vjtKXqQjQ
-         97gMZEaj9p1Tt13U+nlU8AeszjLBZD9KtLmovnvcijBmeO7NjOXbBjx6JkmSTqfDuefL
-         0KqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711555668; x=1712160468;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1aoTSdMd/YSVHtvQI+80zrqseLyOiRVNHBsZL+C3hws=;
-        b=USIb7sb4u0BJtBhMPZLrxzhWNYIarFr7FdspwGcRd7ZQSS6sEdYT56Nr8zmMLrggKI
-         mVLk2hPlGz3AxPjEdeZc9B6tqdLiy0kWWlQtHiRg/aRF1JdpXdggHcMJlYodtqGLgm44
-         6ykPskbBHuivYka3XAcgZDW6nJOEnOw2ZMj+C3pSx9AA01ueQ+OVF1cOecrpUhxGc1g3
-         OhNJmmL7R8FMR/cmPmdneDNClDRiwiPWMJt6xgcseg7KvzrQOwykJk4QGdFa92rxhzBL
-         +fUFsRoCHDkenDE3JAUOiai/t3f4Fw0qdft9NfUhVt65O42tMqFTmKxRZLHCUaLcbCiB
-         mxoQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUrdVkIsAVf4XoBPKUDzUW4QrWsA9hMYDBRiI0pF6yZ7GitHZW7o1e3wTGsC1cJsOWKU6S45v7p9ZpbI/qg6D02CLpmHtlSvS+hMTqJxLVKiNI+FGoJ5v5gwbl3wC4G+KUbAdSw/MUieynDhnyDdtXMjl9jIO1R805Z6NfFgKrL9qp5NP8NKKwh
-X-Gm-Message-State: AOJu0YxTe3Rup9plxdlWsvSEBXB1Ky1YFFUe3Ey75Ob7Pspf8g6eStbB
-	5CaytFRjNS5IJCAXN+NyIMUm/vUu4R0732YFhBKAX2uUErI0B5BOSuSM6GyMU7wlJsYtlbZVp0y
-	JDdTHe4Bjuep3f7JjkVzYPwKQFZw=
-X-Google-Smtp-Source: AGHT+IH7/Jqj90OxYt8pWZTIjiz20FfICzxEflsOFI82rOwXB5yBQWTi+VkGbyeoop7QhohLovTBy7V1DlPYZuwJH3E=
-X-Received: by 2002:a05:600c:1c01:b0:413:ff06:83cd with SMTP id
- j1-20020a05600c1c0100b00413ff0683cdmr344618wms.3.1711555668321; Wed, 27 Mar
- 2024 09:07:48 -0700 (PDT)
+	s=arc-20240116; t=1711555743; c=relaxed/simple;
+	bh=pIKy0yRJNmC01jlpaPcy+yx7OvUQitqodXWNKqAcoAc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=meg2ZzhaLw2mRBP892Tka3gvt8nCFK4EYrrQAjtZOuTyB6cKLyqkmTDcrbSa2kd9nxbYiboq1lyolXV0OB26sZPvWFCq074/7yG7Bzlklmy5UkgVQeEHJzujhjeAAiJb+oOZ1sk1w+JLEM3BTHYaGptufCLm7Ogqs0ZDifHPUIc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=YBhZXN0X; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 9FDCE240006;
+	Wed, 27 Mar 2024 16:08:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1711555732;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=+jkgAP/v9+Siqc6CqYICxsZyvqgYRhV+/aIoRxwwyJA=;
+	b=YBhZXN0X1RSLgvcjwuVb2D5YFbir3khOoiv0JlScOddWzHqPe3coFTrCBu3ckJmeyOwf2m
+	+RCA1J0jjJRKs+xjX0Zr9GVgKiYqVeFZFbk3oZjTx5mhVKFdiLn8+QhZD3YY1iwDLxcXHa
+	1HnWPkcxFDVWnaTilsWQt8AB8lAu4/ezIjbqKDuGJL0kJEuaswR0DRlqs9DRpEQUND45Ex
+	fWiaYVs2SeuZ1pUczBvfolCeW+X09cx/mF5ii90VwCa90N3Lm4Nn+a3+0W9cR8WO6YMDfS
+	1e6nnWayhRdg0usnfv2MxVUyBD0F3K5FFVigceI9VAsg/KAz1lFDO7Ic2XBvWw==
+Date: Wed, 27 Mar 2024 17:08:49 +0100
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent
+ Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
+ <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie
+ <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Kocialkowski <contact@paulk.fr>, =?UTF-8?Q?He?=
+ =?UTF-8?Q?rv=C3=A9?= Codina <herve.codina@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Paul Kocialkowski
+ <paul.kocialkowski@bootlin.com>
+Subject: Re: [PATCH 4/4] drm/bridge: hotplug-bridge: add driver to support
+ hot-pluggable DSI bridges
+Message-ID: <20240327170849.0c14728d@booty>
+In-Reply-To: <20240327-radiant-cherry-myna-25afc4@houat>
+References: <20240326-hotplug-drm-bridge-v1-0-4b51b5eb75d5@bootlin.com>
+	<20240326-hotplug-drm-bridge-v1-4-4b51b5eb75d5@bootlin.com>
+	<20240327-radiant-cherry-myna-25afc4@houat>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240327085330.3281697-1-peteryin.openbmc@gmail.com>
- <20240327085330.3281697-5-peteryin.openbmc@gmail.com> <f0b03c0b-eb54-420e-a4f7-8286e20b9df6@roeck-us.net>
-In-Reply-To: <f0b03c0b-eb54-420e-a4f7-8286e20b9df6@roeck-us.net>
-From: Chia Hsing Yin <peteryin.openbmc@gmail.com>
-Date: Thu, 28 Mar 2024 00:07:37 +0800
-Message-ID: <CAPSyxFQ8Dpks6c17XpF-fw9ppgoKfYfvYADvqVw2PYHNFptWTQ@mail.gmail.com>
-Subject: Re: [PATCH v4 4/4] drivers: watchdog: ast2500 and ast2600 support bootstatus
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: patrick@stwcx.xyz, Wim Van Sebroeck <wim@linux-watchdog.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>, 
-	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-GND-Sasl: luca.ceresoli@bootlin.com
 
-On Wed, Mar 27, 2024 at 11:47=E2=80=AFPM Guenter Roeck <linux@roeck-us.net>=
- wrote:
->
-> On 3/27/24 01:53, Peter Yin wrote:
-> > Add WDIOF_EXTERN1 and WDIOF_CARDRESET bootstatus in ast2600
+Hi Maxime,
+
+On Wed, 27 Mar 2024 13:42:40 +0100
+Maxime Ripard <mripard@kernel.org> wrote:
+
+> On Tue, Mar 26, 2024 at 05:28:14PM +0100, Luca Ceresoli wrote:
+> > This driver implements the point of a DRM pipeline where a connector allows
+> > removal of all the following bridges up to the panel.
+> > 
+> > The DRM subsystem currently allows hotplug of the monitor but not preceding
+> > components. However there are embedded devices where the "tail" of the DRM
+> > pipeline, including one or more bridges, can be physically removed:
+> > 
+> >  .------------------------.
+> >  |   DISPLAY CONTROLLER   |
+> >  | .---------.   .------. |
+> >  | | ENCODER |<--| CRTC | |
+> >  | '---------'   '------' |
+> >  '------|-----------------'
+> >         |
+> >         |               HOTPLUG
+> >         V              CONNECTOR
+> >    .---------.        .--.    .-.        .---------.         .-------.
+> >    | 0 to N  |        | _|   _| |        | 1 to N  |         |       |
+> >    | BRIDGES |--DSI-->||_   |_  |--DSI-->| BRIDGES |--LVDS-->| PANEL |
+> >    |         |        |  |    | |        |         |         |       |
+> >    '---------'        '--'    '-'        '---------'         '-------'
+> > 
+> >  [--- fixed components --]  [----------- removable add-on -----------]
+> > 
+> > This driver supports such devices, where the final segment of a MIPI DSI
+> > bus, including one or more bridges, can be physically disconnected and
+> > reconnected at runtime, possibly with a different model.
+> > 
+> > This implementation supports a MIPI DSI bus only, but it is designed to be
+> > as far as possible generic and extendable to other busses that have no
+> > native hotplug and model ID discovery.
 > >
-> > Regarding the AST2600 specification, the WDTn Timeout Status Register
-> > (WDT10) has bit 1 reserved. Bit 1 of the status register indicates
-> > on ast2500 if the boot was from the second boot source.
-> > It does not indicate that the most recent reset was triggered by
-> > the watchdog. The code should just be changed to set WDIOF_CARDRESET
-> > if bit 0 of the status register is set.
-> >
-> > Include SCU register to veriy WDIOF_EXTERN1 in ast2600 SCU74 or
-> > ast2500 SCU3C when bit1 is set.
-> >
-> > Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
-> > ---
-> >   drivers/watchdog/aspeed_wdt.c | 60 +++++++++++++++++++++++++---------=
--
-> >   1 file changed, 44 insertions(+), 16 deletions(-)
-> >
-> > diff --git a/drivers/watchdog/aspeed_wdt.c b/drivers/watchdog/aspeed_wd=
-t.c
-> > index b4773a6aaf8c..29e9afdee619 100644
-> > --- a/drivers/watchdog/aspeed_wdt.c
-> > +++ b/drivers/watchdog/aspeed_wdt.c
-> > @@ -11,10 +11,12 @@
-> >   #include <linux/io.h>
-> >   #include <linux/kernel.h>
-> >   #include <linux/kstrtox.h>
-> > +#include <linux/mfd/syscon.h>
-> >   #include <linux/module.h>
-> >   #include <linux/of.h>
-> >   #include <linux/of_irq.h>
-> >   #include <linux/platform_device.h>
-> > +#include <linux/regmap.h>
-> >   #include <linux/watchdog.h>
-> >
-> >   static bool nowayout =3D WATCHDOG_NOWAYOUT;
-> > @@ -65,23 +67,32 @@ MODULE_DEVICE_TABLE(of, aspeed_wdt_of_table);
-> >   #define WDT_RELOAD_VALUE    0x04
-> >   #define WDT_RESTART         0x08
-> >   #define WDT_CTRL            0x0C
-> > -#define   WDT_CTRL_BOOT_SECONDARY    BIT(7)
-> > -#define   WDT_CTRL_RESET_MODE_SOC    (0x00 << 5)
-> > -#define   WDT_CTRL_RESET_MODE_FULL_CHIP      (0x01 << 5)
-> > -#define   WDT_CTRL_RESET_MODE_ARM_CPU        (0x10 << 5)
-> > -#define   WDT_CTRL_1MHZ_CLK          BIT(4)
-> > -#define   WDT_CTRL_WDT_EXT           BIT(3)
-> > -#define   WDT_CTRL_WDT_INTR          BIT(2)
-> > -#define   WDT_CTRL_RESET_SYSTEM              BIT(1)
-> > -#define   WDT_CTRL_ENABLE            BIT(0)
-> > +#define WDT_CTRL_BOOT_SECONDARY      BIT(7)
-> > +#define WDT_CTRL_RESET_MODE_SOC      (0x00 << 5)
-> > +#define WDT_CTRL_RESET_MODE_FULL_CHIP        (0x01 << 5)
-> > +#define WDT_CTRL_RESET_MODE_ARM_CPU  (0x10 << 5)
-> > +#define WDT_CTRL_1MHZ_CLK            BIT(4)
-> > +#define WDT_CTRL_WDT_EXT             BIT(3)
-> > +#define WDT_CTRL_WDT_INTR            BIT(2)
-> > +#define WDT_CTRL_RESET_SYSTEM                BIT(1)
-> > +#define WDT_CTRL_ENABLE              BIT(0)
-> >   #define WDT_TIMEOUT_STATUS  0x10
-> > -#define   WDT_TIMEOUT_STATUS_IRQ             BIT(2)
-> > -#define   WDT_TIMEOUT_STATUS_BOOT_SECONDARY  BIT(1)
-> > +#define WDT_TIMEOUT_STATUS_IRQ               BIT(2)
-> > +#define WDT_TIMEOUT_STATUS_BOOT_SECONDARY    BIT(1)
-> > +#define WDT_TIMEOUT_STATUS_EVENT             BIT(0)
-> >   #define WDT_CLEAR_TIMEOUT_STATUS    0x14
-> > -#define   WDT_CLEAR_TIMEOUT_AND_BOOT_CODE_SELECTION  BIT(0)
-> > +#define WDT_CLEAR_TIMEOUT_AND_BOOT_CODE_SELECTION    BIT(0)
-> >   #define WDT_RESET_MASK1             0x1c
-> >   #define WDT_RESET_MASK2             0x20
-> >
->
-> The above bit value defines were indented to show what is
-> registers and what is register bit values. Why are you
-> changing that other than for personal preference ?
->
-> Guenter
->
-Oh! I'm sorry, I didn't realize this was a rule. I thought it was just
-an alignment issue. I will revert it in the next version. Thank you
-for explaining.
+> > This driver does not provide facilities to add and remove the hot-pluggable
+> > components from the kernel: this needs to be done by other means
+> > (e.g. device tree overlay runtime insertion and removal). The
+> > hotplug-bridge gets notified of hot-plugging by the DRM bridge notifier
+> > callbacks after they get added or before they get removed.
+> > 
+> > The hotplug-bridge role is to implement the "hot-pluggable connector" in
+> > the bridge chain. In this position, what the hotplug-bridge should ideally
+> > do is:
+> > 
+> >  * communicate with the previous component (bridge or encoder) so that it
+> >    believes it always has a connected bridge following it and the DRM card
+> >    is always present
+> >  * be notified of the addition and removal of the following bridge and
+> >    attach/detach to/from it
+> >  * communicate with the following bridge so that it will attach and detach
+> >    using the normal procedure (as if the entire pipeline were being created
+> >    or destroyed, not only the tail)
+> >  * expose the "add-on connected/disconnected" status via the DRM connector
+> >    connected/disconnected status, so that users of the DRM pipeline know
+> >    when they can render output on the display
+> > 
+> > However some aspects make it a bit more complex than that. Most notably:
+> > 
+> >  * the next bridge can be probed and removed at any moment and all probing
+> >    sequences need to be handled
+> >  * the DSI host/device registration process, which adds to the DRM bridge
+> >    attach process, makes the initial card registration tricky
+> >  * the need to register and deregister the following bridges at runtime
+> >    without tearing down the whole DRM card prevents using the functions
+> >    that are normally recommended
+> >  * the automatic mechanism to call the appropriate .get_modes operation
+> >    (typically provided by the panel bridge) cannot work as the panel can
+> >    disappear and reappear as a different model, so an ad-hoc lookup is
+> >    needed  
+> 
+> There's several additional hurdles there:
+> 
+>  - You mentioned the connector in your ideal scenario. But as soon as
+>    you remove the last bridge, the connector will probably go away too.
+>    There's two scenarii here then:
+> 
+>    - The driver is ok, and it will stay there until the last user its to
+>      the main DRM device. Which means that if you create a new one,
+>      you'll have the old one and the new one together, but you can't
+>      tell which one you're supposed to use.
+> 
+>    - If the driver isn't ok, the connector will be freed immediately.
+>      There's plenty of lingering pointers in the framework, and
+>      especially the states though, leading to use-after-free errors.
+> 
+>  - So far, we told everyone that the graphics pipeline wasn't going to
+>    change. How do you expect applications to deal with a connector going
+>    away without any regression? I guess the natural thing here would be
+>    to emit a uevent just like we do when the connection status change,
+>    but the thing is: we're doing that for the connector, and the
+>    connector is gone.
+
+Thanks for your feedback. I probably should have discussed this aspect
+in my cover letter, sorry about that, let me amend now.
+
+I think there are two possible approaches.
+
+The first approach is based on removing the drm_connector. My laptop
+uses the i915 driver, and I have observed that attaching/removing a
+USB-C dock with an HDMI connector connected to a monitor, a new
+drm_connector appears/disappears for the card. User space gets notified
+and the external monitor is enabled/disabled, just the way a desktop
+user would expect, so this is possible. I had a look at the driver but
+how this magic happens was not clear to me honestly.
+
+The second approach is simpler and based on keeping the drm_connector
+always instantiated, and it is what this driver does. The drm_connector
+is added by the hotplug-bridge driver in the drm_bridge_funcs.attach op,
+which happens initially, and only removed by drm_bridge_funcs.detach,
+so it is never removed when detaching the _following_ part of the
+pipeline (which the card is unaware of). So the encoder always has a
+drm_connector.
+
+Note when attaching to the downstream bridge we pass the
+DRM_BRIDGE_ATTACH_NO_CONNECTOR flag, which _should_ prevent creation of a
+second connector. I'd expect some drivers to not honour that flag, but
+they can be fixed if needed.
+
+When the tail of the pipeline is connected/removed, the
+hpb->next_bridge pointer becomes valid/NULL. And
+hotplug_bridge_detect() looks at exactly that pointer to return a
+connected or disconnected status.
+
+The result is that when the add-on is connected, 'modetest -c' shows:
+
+  Connectors:
+  id      encoder status          name            size (mm)       modes   encoders
+  37      0       connected       DSI-1           293x165         1       36
+    modes:
+          index name refresh (Hz) hdisp hss hse htot vdisp vss vse vtot
+    #0 1920x1080 60.00 1920 1978 2020 2108 1080 1088 1102 1116 141140 flags: ; type: preferred, driver
+    props:
+  ...
+
+and when it is disconnected, it shows:
+
+  Connectors:
+  id      encoder status          name            size (mm)       modes   encoders
+  37      0       disconnected    DSI-1           0x0             0       36
+    props:
+  ...
+
+weston detects the HPD events from the connector and starts/stops using
+the removable display correctly.
+
+Does this clarify the approach?
+
+I could be missing some aspects of course, especially in case of more
+complex hardware setups than the one I have. However the code in this
+series has been tested for a long time and no memory-safety issue has
+appeared.
+
+> Between the userspace expectations and the memory-safety issue plaguing
+> way too many drivers, I'm not sure this approach can work.
+> 
+> I guess one way to somewhat achieve what you're trying to do would be to
+> introduce the connection status at the bridge level, reflect the
+> aggregate connection status of all bridges on the connector, and make
+> each bridge driver probe its device in the connect hook through DCS or
+> I2C.
+
+I think you mean: keeping all the bridge drivers instantiated, even
+when the physical chip is removed.
+
+This is of course another possible approach. However it would be more
+invasive, forcing bridge drivers to change their current behaviour. And
+it would violate the design that a driver is probed when a device is
+there, and removed when the hardware goes away.
+
+The approach I took firstly allows to have zero modifications to
+existing bridge drivers -- not necessarily the right thing to do, but I
+didn't find any good reason to require that.
+
+Additionally, it is designed to allow removing an add-on having bridge
+XYZ and then plugging in another add-on with bridge ABC, having a
+different driver. Keeping alive the XYZ driver on unplug would not make
+sense in such a case. This is not a tested scenario as I have no
+hardware allowing that, but it is part of the design goals and I see no
+obvious reason it wouldn't work with this patch as is, since the
+downstream bridge driver is removed on disconnect and probed on connect
+for whatever bridge will be connected.
+
+Best regards,
+Luca
+
+-- 
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
