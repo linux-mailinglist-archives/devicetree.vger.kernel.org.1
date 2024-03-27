@@ -1,122 +1,153 @@
-Return-Path: <devicetree+bounces-53807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53813-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A548488D97E
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 09:52:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1631D88D9A9
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 09:56:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 64B991F288E0
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 08:52:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 47AC41C277C7
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 08:56:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9563364A7;
-	Wed, 27 Mar 2024 08:52:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E904374F9;
+	Wed, 27 Mar 2024 08:55:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vPlHszCa"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Lz4iTux/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FE623398B
-	for <devicetree@vger.kernel.org>; Wed, 27 Mar 2024 08:52:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8573828DBC
+	for <devicetree@vger.kernel.org>; Wed, 27 Mar 2024 08:55:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711529535; cv=none; b=JUyjra5iNZg3noCQr1rem3NT/KF69xx6psMH93Uu8H9e7mCxmH3b9gnzw67/LVB/ZiJo9dvz3ryX9IDESOlL7C11M8LKcqK+F4Nqkkt+CHSzVAOUJwysVW6YsS5a0Zq6hW2AaVSMMSget5URyeYEgOQHDUSMuXAN1hgIaXcWiWw=
+	t=1711529708; cv=none; b=LxQrETOrkkryWXPq3g4BIFLQKcnpNxyEzoJQtvEgTgn3iLqt978zH8yI6E0Ark0iKrVH5CoJarApZduPSZD5NiyssI4sn81p4UOL9TH8no2xIfrSeF1791KY6DZA4OVR+O0g+A1MJpQu7i2yjm/ITljQv5Pp6wOflEWGvp9chug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711529535; c=relaxed/simple;
-	bh=iFn6xwlqPNDgTzUBASCRnysiro/0I08ilbuODvY79Gw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LhZOxrv2JkqgHVa/R2W1IW2LG2cudUz379D7VgRm57AC5JIbkyrfMgPmcDqW2CjqyTLSn8GpDdJ/i8y28yvUoJstw0YfIpb/PPPry9le7b62HA57Sz7BlT3nwzeyaGJX+XxwUTyEoO9RUK970IpS9aFXlLgCt4kYa4OBWTzh4wY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vPlHszCa; arc=none smtp.client-ip=209.85.128.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-60a0599f6e5so57581707b3.3
-        for <devicetree@vger.kernel.org>; Wed, 27 Mar 2024 01:52:14 -0700 (PDT)
+	s=arc-20240116; t=1711529708; c=relaxed/simple;
+	bh=eD2FnmLx+X21p+zCd5l4yY/sDK9AVd2VRkFA39qHz8A=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LT8dVHGJHCqjNs6uT/xn/AhNEKXU5PPqUOmEp3Z4CcbCuR1ME2oDuYy92nvcVu1rMzj0HJCyCK2PvP2JAmlsF771QNHl9kWqGM3ZSkGmUlDn1qbFBdPNbOMMPqOha2LxuRdMvW4lds5eO3RCxZDMsZ6QjKyQAJP4nj4bLuevX/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Lz4iTux/; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-6e6b3dc3564so4588029b3a.2
+        for <devicetree@vger.kernel.org>; Wed, 27 Mar 2024 01:55:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711529533; x=1712134333; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=QKDxo5SiDJux2nq6LZtCe3mC0jTYYBUZBjVfmvT96ys=;
-        b=vPlHszCa+kHz5KTLBUTUmMFnQJOWDp7KVdZ+Yzxj92ksyTNSG4rSCXor+oDPaef24P
-         ezlUxWIUufxj67QGvR+hZY6X+0eN6a88egvrZizvmcEquMf2mo0avS+toIYZT4GdLlZU
-         jY+JyFihpa+eVtV65wH9msJ2yni+jrmhfBOYxVBYDGOcDALixpZVu0Pnen7HxN6B9Uyn
-         rVfe5030W/US5k1D30hY/sZXS8mAnf/Wq96pHJ1U2FgA5lVEnRpk+7zDamQRIcSZ7Tnh
-         aWCkDb2E/EltlZm6hekbfR3N2t25VZQsHygTSqYs002lxAHKF+k8NAf06CJnBPCIGERM
-         oKMg==
+        d=chromium.org; s=google; t=1711529707; x=1712134507; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9dKcZjC/OoDiaM+OdJQAME/VGMT+Uf23GJ2KQctLAZo=;
+        b=Lz4iTux/eSh0rfnIqiyh71E62M29pcVk9fdBjaA+/7Jw4YStG2UZQzlF+ZJ1Ozzo/h
+         M8Xai5gBewu4FvG+4+AA7Zg28o5V9YXW4kpVvwNipiNZFn7WDeTGSHylbQC46q57mDBb
+         ff9e307/mtR2sH2baKOsVXBguVQK4yE2s2Bes=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711529533; x=1712134333;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1711529707; x=1712134507;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=QKDxo5SiDJux2nq6LZtCe3mC0jTYYBUZBjVfmvT96ys=;
-        b=Qel4kOo8vMhiw0iRXfftQb08iLiC8gyBSGOHHSHmlyXsmFVTD8MHNZBekZT+GgVT9C
-         Vk11MRKlOWDmzu+mEi0wQ6rxOYgKubcFiksXEU8jakTTSiCqwVQOhDzmqzyzMlXQYFHK
-         qsS/K25tyxSuI1uHxSrXO67UbqbSxQs3KYEndLZMxJjqRxZqpXt2rNrKhVfl24ckSzZe
-         wxrmILTlbfiaFCRoLoerLwWTujMvpCoa7KCqW/i7/rfoJpCT8FvfkmhrqXb+whcT63vw
-         QCtO/OBOeEeRrjZ6qaj0z32e+UuMo82tRKR8zCiTZ6VRAFLyvk+8WmloBOvgq+cMwYbY
-         hLsA==
-X-Forwarded-Encrypted: i=1; AJvYcCXRtGn7Yswi32a9OR8B0XfV6s81lPrO36/at99BR3qs6E2cuux9xa8eH8jV3aGwQbuCgJ2bXSD6STVlIIuY72bLjp2Q3nfHMiwEDA==
-X-Gm-Message-State: AOJu0Yz3EaCVZY/J749mzvH/FQC/2usy+GBaTKTeFJxfFDPW4yLD5CdG
-	09STr5zExsBoQY5YV37gOewdVMWVEf7QN9mb52wcNO5cak76FvCnKuatRMTWkE+NBPM4YunUkOu
-	uCBy3xK7qVUqDxzzm9ZfqjEuSowjvdeaAlTw2aw==
-X-Google-Smtp-Source: AGHT+IHT7KGPtquwpuaNGQTzLwDxTjgBrwNcRbeqAf2i/0d4TNxkYwnbGP08o1u9++zU+7flQ/+MYOMmfXQVv2GFuRs=
-X-Received: by 2002:a05:6902:1366:b0:dcc:a61b:1a72 with SMTP id
- bt6-20020a056902136600b00dcca61b1a72mr1960452ybb.47.1711529533479; Wed, 27
- Mar 2024 01:52:13 -0700 (PDT)
+        bh=9dKcZjC/OoDiaM+OdJQAME/VGMT+Uf23GJ2KQctLAZo=;
+        b=q3KnsT5BkFpqtvs9enNPKGSLJgBg1sFgUHWRR6vAEN4lXgDt25KLkZJ0bz7GkloIyn
+         ZqsaMQxiKALU3pK4wYQ11AQQ82eIG6XC9N4ogYLrmu9jV6gpZDIN+tTWM9OmcLZrlYbR
+         jrBs17evpJ/v6krVESVthVSir8SCEbFv/y8jL5TEnQUS96D5Y+8TCjKclnaxnamGqMjR
+         ULbicoG6MtRZalMFUnaRJFpqaHceQjkgym5VyjsEQHU2Jv8O65GatSzypzffwvQd4pfV
+         MKQs1HIA3I2ePz2Ww3Nv5ZkxtcuT6VudlkK/1ovvUlLBY6BODthC/YWWBk7CUu3zEtsD
+         iV1g==
+X-Forwarded-Encrypted: i=1; AJvYcCXKCHJ2C6aqKGBuXOAFpYTJ/oGueGtt0czFalWM5j6moQ6/2Lk+NaPFLfImdQdTKfAQztySdf05KiT4ydPS+rht8KRIDjbAHK1GFw==
+X-Gm-Message-State: AOJu0YywOlFUFwebylI3gTFtXxEG3NV+NuwFcdFYo2MVQbhKBODNfJkr
+	4ukj9l5vxdoj4Lo7riVbuPShwFMyk0wCqg/lnUXJWV8t2s6phYuG/S5mwiYE7g==
+X-Google-Smtp-Source: AGHT+IFUfIVQvdLysyZn334SAY0D7Vx2KrUYwFkbjwbnUAsEt/qwEP0DXbUtpROi/ojeOIlZdyTbcw==
+X-Received: by 2002:a05:6a00:b48:b0:6e6:946b:a983 with SMTP id p8-20020a056a000b4800b006e6946ba983mr4563684pfo.10.1711529706853;
+        Wed, 27 Mar 2024 01:55:06 -0700 (PDT)
+Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:74c2:3606:170b:52f3])
+        by smtp.gmail.com with ESMTPSA id h7-20020aa79f47000000b006e724ccdc3esm7329514pfr.55.2024.03.27.01.55.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Mar 2024 01:55:06 -0700 (PDT)
+From: Chen-Yu Tsai <wenst@chromium.org>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Chen-Yu Tsai <wenst@chromium.org>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: display: bridge: it6505: Add #sound-dai-cells
+Date: Wed, 27 Mar 2024 16:52:48 +0800
+Message-ID: <20240327085250.3427496-1-wenst@chromium.org>
+X-Mailer: git-send-email 2.44.0.396.g6e790dbe36-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240326-fd-fix-schema-v1-0-4475d6d6d633@linaro.org>
- <20240326-fd-fix-schema-v1-1-4475d6d6d633@linaro.org> <e9ce004a-952a-4a94-abe9-2a8dd96b37fb@linaro.org>
-In-Reply-To: <e9ce004a-952a-4a94-abe9-2a8dd96b37fb@linaro.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 27 Mar 2024 10:52:02 +0200
-Message-ID: <CAA8EJprg55BkRL5KUZ+6gNniq9TZjEem8MLqQdMZcXntvttEVg@mail.gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: display/msm: sm8150-mdss: add DP node
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Wed, 27 Mar 2024 at 10:45, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 26/03/2024 21:02, Dmitry Baryshkov wrote:
-> > diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8150-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8150-mdss.yaml
-> > index c0d6a4fdff97..40b077fb20aa 100644
-> > --- a/Documentation/devicetree/bindings/display/msm/qcom,sm8150-mdss.yaml
-> > +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8150-mdss.yaml
-> > @@ -53,6 +53,16 @@ patternProperties:
-> >        compatible:
-> >          const: qcom,sm8150-dpu
-> >
-> > +  "^displayport-controller@[0-9a-f]+$":
-> > +    type: object
-> > +    additionalProperties: true
-> > +
-> > +    properties:
-> > +      compatible:
-> > +        items:
-> > +          - const: qcom,sm8150-dp
-> > +          - const: qcom,sm8350-dp
->
-> This does not look right. sm8350 has its own mdss binding file.
+The ITE IT6505 display bridge can take one I2S input and transmit it
+over the DisplayPort link.
 
-So just a single entry here, even though SM8150 uses fallback compat string?
+Add #sound-dai-cells (= 0) to the binding for it.
 
+Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+---
+Changes since v1 [1]:
+- Reference /schemas/sound/dai-common.yaml
+- Change "additionalProperties: false" to "unevaluatedProperties: false"
+
+The driver side changes [2] are still being worked on.
+
+[1] https://lore.kernel.org/dri-devel/20240126073511.2708574-1-wenst@chromium.org/
+[2] https://lore.kernel.org/linux-arm-kernel/20230730180803.22570-4-jiaxin.yu@mediatek.com/
+---
+ .../devicetree/bindings/display/bridge/ite,it6505.yaml    | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
+index c9a882ee6d98..c4469f463978 100644
+--- a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
+@@ -9,6 +9,9 @@ title: ITE it6505
+ maintainers:
+   - Allen Chen <allen.chen@ite.com.tw>
+ 
++allOf:
++  - $ref: /schemas/sound/dai-common.yaml#
++
+ description: |
+   The IT6505 is a high-performance DisplayPort 1.1a transmitter,
+   fully compliant with DisplayPort 1.1a, HDCP 1.3 specifications.
+@@ -52,6 +55,9 @@ properties:
+     maxItems: 1
+     description: extcon specifier for the Power Delivery
+ 
++  "#sound-dai-cells":
++    const: 0
++
+   ports:
+     $ref: /schemas/graph.yaml#/properties/ports
+ 
+@@ -105,7 +111,7 @@ required:
+   - extcon
+   - ports
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+
+base-commit: 084c8e315db34b59d38d06e684b1a0dd07d30287
 -- 
-With best wishes
-Dmitry
+2.44.0.396.g6e790dbe36-goog
+
 
