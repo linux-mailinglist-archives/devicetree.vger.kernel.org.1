@@ -1,178 +1,333 @@
-Return-Path: <devicetree+bounces-53737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53738-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A51F888D5AA
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 06:02:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24AD088D5B0
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 06:06:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F0196B22E07
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 05:02:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4804C1C2471D
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 05:06:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD66E4C7C;
-	Wed, 27 Mar 2024 05:02:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DB6D1849;
+	Wed, 27 Mar 2024 05:06:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PaA8PbZZ"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="moSFhoI0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2091.outbound.protection.outlook.com [40.107.114.91])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D7C146AF
-	for <devicetree@vger.kernel.org>; Wed, 27 Mar 2024 05:02:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711515749; cv=none; b=Y2H3b46SoWj5zc3akdSZQve2TgL7Kxl9bmk5yZ6f2GJ0S6McF+omd8SfKojFpkgljspWGmW+/XB8VpQJWRw89hr7180DQPkByTeYVozW6sT1WyY5PAIIAYrAqjIp+g/Rhpz5xPZMLIAwlg6b4rsrGruPY2PDyJ9297zqKcXvRnQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711515749; c=relaxed/simple;
-	bh=us7GSpZRag7HPatHH7mlBYKRW/n4m5FcLgyFeM//xcA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gfbWiO8QFBCVDGxL5jwrvRxhYSAuhok7OPzkUcw8QSFtL20WArUBjPytlGpQ4I/cg5y1v37hbSeOFlAk+e3aM89pFifk7SCCuWhmafzBWaJ0G1be2+SkG/mJAoaRSyYITKbu/fM3/BxPv3+0opZIff9A5B2LPH0Hy6Z1iiA+WQ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PaA8PbZZ; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a4715991c32so752561966b.1
-        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 22:02:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711515746; x=1712120546; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=DMad7CnWZ4A3PC8/xrn6eiPzDrFYjb8dvu+52V2VtsE=;
-        b=PaA8PbZZyv+FR9z+b4VNorizsr254ETpxmwobW/f7NwWMfnkjkJHEHuuk9aPOVLibu
-         +apIcZ2xjFK5L16Ta2e+NWakE9p43c8rkRw464tBocBjwoSNkgzq5qQA3f6HgyMBA/GM
-         GrN6ppGbVDMJEQ9iPKCswdFVkpYdgqzrYplr7+v6e0fUd6wXOTf9X0kYrKRl229pqD2U
-         G2AS/UmN0tGpfwkvwhfPD3Bk4ykvYWs8EFFoQFp1CBWREGKqgK8wMY5/jDLx9DRORVOz
-         bRaNL2u2rl+Ik+KUndOfe1yMPwiUX423tM2qaU4mcdPLxBB6mOuvA6U2sJxMXngjPtr9
-         Hctg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711515746; x=1712120546;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DMad7CnWZ4A3PC8/xrn6eiPzDrFYjb8dvu+52V2VtsE=;
-        b=B/8tr+xE8sW+JUHpqdW4GwBaZcRQkk2Uq6M3TstKJ4YpDyo0t1aXQgeX+t4GsIOYrE
-         feu/zp6TabAq//cRoN2V+gbbg89V5aFHjj5ftiz7H4by9uR7vh1iitjGD4h8pvc7Unwb
-         7VZaDR3NhmusVLDrewS2zxz11fgUG8LO0zpjrgP3dtqamH7epWLFuQ/F8ZjLjThQhuZ2
-         7ftrGUSQ7oT1jacENrk5J4G6Cp5gg7AmGgbJsjx6VEyMFy8g648RXrNDlKM+h8gIs76A
-         QdrQRajZBXGK9tzC2ySm3G5wxe3LbKN9ZaTmAWRa+ja6qWTpCbcco5qTdj2CAPWVT6ct
-         uqQA==
-X-Forwarded-Encrypted: i=1; AJvYcCW+ztCBJpVvxeorQNROn5eb9cubvnKb7t8lQHy8pizNY7GggRfW+6/TqLrkONTkPbwh8IJCneM5WGn2iXwyZoHR1foPcQRp5cHKOQ==
-X-Gm-Message-State: AOJu0YxkGM1PEcxW2JG20EvxPrs2woQtY3HSE/UvOfm5pXMNqtccsODA
-	onhR02X2/0H6BhQFk5z8aCmCL/ezswBhYsrLNQWw2uu1z+XviiDZohExnfpFen0=
-X-Google-Smtp-Source: AGHT+IELsDojqhItkb5A3lwC9RMISJNx3etx74WAKmGHdx36zSFqVjPod3fr23jA118RrCJiOwXxDg==
-X-Received: by 2002:a17:906:f0c4:b0:a46:8c03:b659 with SMTP id dk4-20020a170906f0c400b00a468c03b659mr987686ejb.42.1711515746400;
-        Tue, 26 Mar 2024 22:02:26 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.44])
-        by smtp.gmail.com with ESMTPSA id e9-20020a170906c00900b00a462e166b9bsm4954104ejz.112.2024.03.26.22.02.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Mar 2024 22:02:25 -0700 (PDT)
-Message-ID: <a675f3f1-23cf-4b7c-ac93-437f57e9b48b@linaro.org>
-Date: Wed, 27 Mar 2024 06:02:24 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7311736F;
+	Wed, 27 Mar 2024 05:06:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.114.91
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1711515982; cv=fail; b=gjAaNgkQZFzaRTjEFaNREAOjdX4F9HwrZ8z1yJGupK2s0ipLf+FJzzt9p/A0KnF666VACde2W9vClDlSeNw/Zdk0qmKvvd16rq2/K3DtCi9o8ElLs2IZIzu+lxLIULvM1s8gyoNbqCR21hugzMLPyM7WvCogZS3imLICEN8UX5E=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1711515982; c=relaxed/simple;
+	bh=NTKQUKDzDHTpNy8zE0ot2hwCvepa75i3Y1+HSa0VnIc=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=CvL/XmD4yF4Vfj+8eU4wG3a1Br5YQYMvZ1SUIki6rj9/T19MV5uk5SAJF6Jqmy8WL9W09NWZT9RNv4SjZeBWJU9rWqBnJmyMWUaTFS0m8k6EMGINEzSCkAnvIqhern7GBL+HDBfVFRqL9IP+ETi8l8Uvn9027+0jI0kJbUToLP4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=moSFhoI0; arc=fail smtp.client-ip=40.107.114.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=oYxcKsC2wlLdsK/pzTz2soX9AS04LyPaOwSRm0wacHPjdc4NfImHlC0jRoPQIwn95wizFLFHEQD55ns2OlKCxFixt9ugd1rv93w5Tfp0AzMUk+GfiKriBYx9srw+hSd1QpJrch0cT1k53Sjlq+UqToYIKbVLpkWSDmxwPxzx5l4mz/J71Kec1KC2j+SZOa9Uv4Ra9LqAjai7iCqi635LDe6wegXnaial/bHXHfpDCpZIFr8IqRXTPFmrAkkTQedBQIYI9q9haceXmqC2ZSj3RzH7Qj25yN3KonX+OWKDfTyJEs4perQ5NBVBmmCW12/oduz8sYSq3yzEX8zWjdWwIg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gbmEo4xu3l4YHKaewNqVOpLogKHOAfp1iklVR565EVg=;
+ b=XxNU5R7v83xr02/C1o1GsThKwZjtzQVobCMDZai7Vi9yGhhK2KJ40eObKfgy8rSpUjJi4/xC/QKqOPQwT5/5vP0x9EBXsjWt+8KLFAI+ZSf5M805FjCnOySmVVOpZBstmuB0wv9sqnnMw1DTbjioqU9lgvpQjVa0rfV2GUxjy4+gYUnufkivYVyvVCOFS5EbgYPrg18ghLoEx90f858JAbRRqniHAp4v5lTFNaW7tyCocg218XTcywJL1Kkg1Zg01XWdP5iAkga2LeDEe2seUZ1P5MvgVVXJ3uPDRNW7AKMVUHk1yAKAZIs/TpEhhY2sAsPFBR5NgDui+yME5QQcZA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gbmEo4xu3l4YHKaewNqVOpLogKHOAfp1iklVR565EVg=;
+ b=moSFhoI0BeulnR2iAqCwc4HPSt9pah2TQrv8HFyTGlcbLcXr6J6IMAnF6nXIGnUA/fFmH5mgsUolgPLL8X7kcqo9M8Wrocy/kF4S2CcZjjEHRvJdLI4Pt7k1XHWNvljbyRavdmi5iLy8QdaeKJQskeqKTyHMvmp9WS9vbuAgrvI=
+Received: from TYCPR01MB11040.jpnprd01.prod.outlook.com (2603:1096:400:3a7::6)
+ by OS0PR01MB6178.jpnprd01.prod.outlook.com (2603:1096:604:cd::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.32; Wed, 27 Mar
+ 2024 05:06:17 +0000
+Received: from TYCPR01MB11040.jpnprd01.prod.outlook.com
+ ([fe80::f9d2:106:9dc3:224f]) by TYCPR01MB11040.jpnprd01.prod.outlook.com
+ ([fe80::f9d2:106:9dc3:224f%3]) with mapi id 15.20.7386.023; Wed, 27 Mar 2024
+ 05:06:17 +0000
+From: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To: Bjorn Helgaas <helgaas@kernel.org>
+CC: "lpieralisi@kernel.org" <lpieralisi@kernel.org>, "kw@linux.com"
+	<kw@linux.com>, "robh@kernel.org" <robh@kernel.org>, "bhelgaas@google.com"
+	<bhelgaas@google.com>, "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+	"gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
+	"mani@kernel.org" <mani@kernel.org>, "marek.vasut+renesas@gmail.com"
+	<marek.vasut+renesas@gmail.com>, "linux-pci@vger.kernel.org"
+	<linux-pci@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-renesas-soc@vger.kernel.org"
+	<linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH v2 4/6] PCI: dwc: rcar-gen4: Add a new function pointer
+ for other SoC support
+Thread-Topic: [PATCH v2 4/6] PCI: dwc: rcar-gen4: Add a new function pointer
+ for other SoC support
+Thread-Index: AQHafye/LRWh8FYa3E2pWLMymaVFNbFKd/8AgACPmmA=
+Date: Wed, 27 Mar 2024 05:06:17 +0000
+Message-ID:
+ <TYCPR01MB11040C9899CAD067A7266C5CDD8342@TYCPR01MB11040.jpnprd01.prod.outlook.com>
+References: <20240326024540.2336155-5-yoshihiro.shimoda.uh@renesas.com>
+ <20240326202116.GA1492492@bhelgaas>
+In-Reply-To: <20240326202116.GA1492492@bhelgaas>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYCPR01MB11040:EE_|OS0PR01MB6178:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ uQCR0ywxdvf3AFuDFGSzE7WY/mUvh5ac10W5tiLgD5rnHXMRbr4/6xcq2Vetnbj0c21DmEx//L2blvTyWD4zXaaqMDVjQ+xva8k1lEkqQqi4rXMz1mD5uigViLeEq3osgq1CHkTXib12uNlATVdEuAHrge6//5Iodklja1HgLl5+4/OW5MLiXTPPTDJGC3Q7xcaJWTSINBxwZyKahJ1+WOsqTSnTWi98lL5eM57yQ/k9mQAkcL/2NMAw+gpF/JdzNqJqUhwoZWCjJjDkdL8q0KagvBX/FekuSHMJ7ZgsZtwIFOxzhhhcsShznLKiOkWfc0xfEsF2GMOJAwp7WHacz0G3db6JoDBtR6f1JD5n/pzWBQ9hKmK4nIZPY1D7rY736akycrHfM1TI9omlkFUHDwvytUeLoKfvpUXRIeQ4wZgYUfeh06JCTakbhfdLQ+nF3ai1Lk//LmhK0mHigsT4PcwgSzSnHdQf/HZQDQyNyYc8PwsxRGbw4yPcKtayY/p3+PDoYy7IDQSj8x8AENmv7jVeYBLKqIAsgeAKC5kDqS/8SiQ0FuN/gPaWoGYNI4K1CMkhNa0GJz41p3ovnG+yO5EA6zcqqyGI7cubG/Cpcu0CiKEX/pdvm92XeSpZXJy2rJbFucca8Psi20GFAFtuF+qy+uT4wNblbYi6YSOKM6k=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB11040.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(1800799015)(7416005)(376005);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?vrk8eK+0/MTn0pbu7s35pBFnl4Kg4YlywUyIIOXrHBxj5M1rZ9iKYfOthk5B?=
+ =?us-ascii?Q?IIz7rQ1rhX/kK9up9WZnaWiSr2kBYU06Qv96XFjSBUYQmWhef8sFtmezbiPY?=
+ =?us-ascii?Q?AEuUfwKOBhQNd52TuII8LsGb9RntUEi60BtsMZ6CvVXiT3ag6vsSJKYJzWBD?=
+ =?us-ascii?Q?oTiZNi7Op6Jb2s6HBjXjOC9y1PBllfDwuvFcHsVtPNWyi2UtA3JXSK+LFR45?=
+ =?us-ascii?Q?iG4LUCDa2RSrYFQ8pyEkpUxZ+HKdG7pOwUbNr4RLJhQg7GdnToqmVCFTgYW6?=
+ =?us-ascii?Q?R9isNKtsdYAxMKetKjksz6tgmF7GInYXftqBwSZrGFXrM2Vy1MaOoGfRlYKW?=
+ =?us-ascii?Q?WY2jiQwyLYQYpECfXc59s+waGapsnejSK+rd8KRS+k+TupQ/0RgXssYtRcKp?=
+ =?us-ascii?Q?frjsrLpJyyMh0y7r788ZWEBnl4EgyGmLyfnXtEmYJFLfFtQ7cRrPusjZYzT9?=
+ =?us-ascii?Q?Jvlwuohg08pjGANJm2kYqhDJwTsS7BQu2fJHmUU9l9zpXeIyibdnMdFg7nCi?=
+ =?us-ascii?Q?ZRiY6OyHR16DOPxOPI+3KHsDY+fCir79VZt/a1PCL+xBZhR+nUrwghNGx0wg?=
+ =?us-ascii?Q?WSZX0OkIWLXD+tyGpj0VMSY6M6pGRy1RqRrC99G8aeZERVMQhQ/uphrOR+QU?=
+ =?us-ascii?Q?PmOkvkAGJlFlHnpjjuC2tc6cNp2PQtuYDPitLzeWKkWzXFFyHwNjvzZ+qqAY?=
+ =?us-ascii?Q?RuXDHd+464AkdSLE9BD2sQlAyQV7g/Zg1Z4nu9mvELfLqdModq8Y8rCf3YhI?=
+ =?us-ascii?Q?nf+WDrdKWRLvRJ2OaaKs7cj7ilbvZH2Car/9EApEqbj+oUD3tZzeTdvoBlVj?=
+ =?us-ascii?Q?pkk7BtOnwg+r2SkQM+zC61DycicwfE7ZgbYyUclThLyxVfq2SFq2g8fpUbbH?=
+ =?us-ascii?Q?e55c3gn+D/Y+8yYd8K5uG36xScMjMooTZ9G99l9wSgkLUpiKBFWLcGFHPPZH?=
+ =?us-ascii?Q?x7XYXKROcyxRDD63t7kGKx6zHKOqtHiidSGg6Ues72Gwq5JXSX0cAD9e9FID?=
+ =?us-ascii?Q?5Q//G9p1A5JVZ4SQL371jEX+J+TtV2D9V2PFDbQqnL0r6zCZbOAL2yeuWNg5?=
+ =?us-ascii?Q?BhA7ZzQufwgskLY2lti7hItq0Fiw2jueayuP59pbal4vGHIrDRmvBiBh363m?=
+ =?us-ascii?Q?6dKAyAcQ7kX6mCXRzrLjNshcVEOn4DNYOSTqRrHolVqenXrEzv2pfneG4/Lp?=
+ =?us-ascii?Q?lBZAMZ00prtg1PMQ/rfCbfjkphGMMKkdCbGvTm21t4uVgkzJ9kaI4eunDo9s?=
+ =?us-ascii?Q?25kNbaWvYbYkmlG8wQ8kLCgdr0dIpHevojDXQL5x5d97qdZYG+GQeyH2cAuB?=
+ =?us-ascii?Q?yEgRJBYAN2Ram/DhscWhVuE8RFZ02rUebS8UWxx9FAtx6tMEho6rCWeIisEX?=
+ =?us-ascii?Q?cvX1+X5KSeNKBrZQg5WZSxM8vO/rVv5E37BZzEOEilPoeU12CoIoAJpmJZ9m?=
+ =?us-ascii?Q?9oDhV4eSc9xodMcoIVItSbiYzfWdSQLY1+cfED0MEExTuHVejLKOjL0kIyC2?=
+ =?us-ascii?Q?+js7yd2FZUrgs6hDIDwaV2rc71yNqj9s2JEDAmbfBU1LuIiHVZN/vE1gJeBA?=
+ =?us-ascii?Q?kCKdas7bi+zilt0IjJrcdXmM5O5pw/dKKOuHLlqpDbBXcVfgOpzC6tcL4VDL?=
+ =?us-ascii?Q?Hw=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/7] dt-bindings: iio: accel: adxl345: Add spi-3wire
-To: Lothar Rubusch <l.rubusch@gmail.com>
-Cc: lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, eraretuya@gmail.com
-References: <20240325153356.46112-1-l.rubusch@gmail.com>
- <20240325153356.46112-5-l.rubusch@gmail.com>
- <f74a01bd-46a3-46cd-a47a-fcfccd7e4dc6@linaro.org>
- <CAFXKEHbJ_5unY24aZeutvM-xrjevQ=z7ngDcgwJR=NXzXONx5A@mail.gmail.com>
- <334970e7-2edd-43c8-9f18-b7b3ec5f4d17@linaro.org>
- <CAFXKEHaEVwiAW9co0+=kZ5w5a8eWg3QL0dmg38bvrmLdnBEA7w@mail.gmail.com>
- <b13ca51c-db57-4a09-b689-cf27265d348f@linaro.org>
- <CAFXKEHYMiARxrN7=jqnJtEVREseZ-zmZmVeY1uNXZV6viwHbmw@mail.gmail.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAFXKEHYMiARxrN7=jqnJtEVREseZ-zmZmVeY1uNXZV6viwHbmw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB11040.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 13175fb9-2b12-4e3a-2581-08dc4e1ba292
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Mar 2024 05:06:17.8209
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 6NkYeF4G6GBvKBpQZjQSJSS5zeSoBEjSK4ahLRVVQJzLc0ljGjsbGiK6r/gg1bDlJPKxJySFJkNHgBxmTlbbQBmHsbi+kpNQq+HUh5mfsSxWuJO/TOyLHnMpeWi0Wys1
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS0PR01MB6178
 
-On 26/03/2024 21:17, Lothar Rubusch wrote:
->>>
->>> V1: The first version of the 3wire patch. I have split the single
->>> patch upon some feedback (yours?!) - V2... So, my current
->>> interpretation is, that every feedback I need to mention as
->>> Reviewed-by tag, no?
->>
->> What? Feedback is not review. It's clearly explained in submitting
->> patches. Please read it.
->>
-> 
-> Exactly. My missunderstanding here is this:  Why did you send me a
-> reminder that I forgot to add "Reviewed-by" tag in your last mail?
-> Could you please clarify your last mail? You wrote:
-> "(...)
-> This is a friendly reminder during the review process.
-> 
-> It looks like you received a tag and forgot to add it.
-> 
-> If you do not know the process, here is a short explanation:
-> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-> versions, (...)"
-> 
-> AFAIK noone literally had told me: "please add a Reviewed-by me tag",
-> or did I miss something? I'm a bit lost here, sorry.
-> 
+Hi Bjorn,
 
-What was this then:
+> From: Bjorn Helgaas, Sent: Wednesday, March 27, 2024 5:21 AM
+>=20
+> Include the function pointer name in the subject so it's a little more
+> specific.
 
-https://lore.kernel.org/all/9700cc88-bddb-480d-9417-04b2ff539a2f@linaro.org/
+I got it. I'll change the subject.
+
+> On Tue, Mar 26, 2024 at 11:45:38AM +0900, Yoshihiro Shimoda wrote:
+> > This driver can reuse other R-Car Gen4 SoC support. However, some
+> > initializing settings differs between r8a779f0 and others. So, add
+> > a new function pointer start_link_enable() to support other R-Car
+> > Gen4 SoC in the future. No behavior changes.
+>=20
+> Make it clear here what the new SoC is.  I think it's r8a779f0, but
+> you have to read the patch and look for the new .compatible string to
+> figure that out.
+
+I got it. The new SoC is r8a779g0. So, I should add such description here.
+
+> > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> > ---
+> >  drivers/pci/controller/dwc/pcie-rcar-gen4.c | 57 +++++++++++++++++++--
+> >  1 file changed, 52 insertions(+), 5 deletions(-)
+> >
+> > diff --git a/drivers/pci/controller/dwc/pcie-rcar-gen4.c b/drivers/pci/=
+controller/dwc/pcie-rcar-gen4.c
+> > index 0be760ed420b..a37613dd9ff4 100644
+> > --- a/drivers/pci/controller/dwc/pcie-rcar-gen4.c
+> > +++ b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
+> > @@ -53,9 +53,16 @@ struct rcar_gen4_pcie {
+> >  	void __iomem *base;
+> >  	struct platform_device *pdev;
+> >  	enum dw_pcie_device_mode mode;
+> > +
+> > +	int (*start_link_enable)(struct rcar_gen4_pcie *rcar);
+> >  };
+> >  #define to_rcar_gen4_pcie(_dw)	container_of(_dw, struct rcar_gen4_pcie=
+, dw)
+> >
+> > +struct rcar_gen4_pcie_platdata {
+> > +	enum dw_pcie_device_mode mode;
+> > +	int (*start_link_enable)(struct rcar_gen4_pcie *rcar);
+>=20
+> I think it's confusing to repeat "mode" and "start_link_enable" in
+> both rcar_gen4_pcie and rcar_gen4_pcie_platdata.  I know several other
+> drivers use this pattern, but I think it is simpler overall to just
+> save the pointer directly, e.g.,
+>=20
+>   imx6_pcie_probe
+>     imx6_pcie->drvdata =3D of_device_get_match_data(dev);
+>=20
+>   ls_pcie_probe
+>     pcie->drvdata =3D of_device_get_match_data(dev);
+>=20
+>   tegra_pcie_dw_probe
+>     data =3D of_device_get_match_data(dev);
+>     pcie->of_data =3D (struct tegra_pcie_dw_of_data *)data;
+>=20
+> So I think the best thing would be to add struct
+> rcar_gen4_pcie_platdata, *move* rcar_gen4_pcie.mode there, and save a
+> pointer to the rcar_gen4_pcie_platdata in struct rcar_gen4_pcie.
+
+I got it. I'll modify the patch.
+
+> That could be its own separate patch, which is nice on its own because
+> it gets rid of the (void *) casts in rcar_gen4_pcie_of_match[].
+>=20
+> Then add .start_link_enable() (or .ltssm_enable(), see below) and the
+> r8a779f0 bits in another patch.
+
+I got it. I'll make such a patch at first.
+
+> > +};
+> > +
+> >  /* Common */
+> >  static void rcar_gen4_pcie_ltssm_enable(struct rcar_gen4_pcie *rcar,
+> >  					bool enable)
+> > @@ -123,9 +130,13 @@ static int rcar_gen4_pcie_speed_change(struct dw_p=
+cie *dw)
+> >  static int rcar_gen4_pcie_start_link(struct dw_pcie *dw)
+> >  {
+> >  	struct rcar_gen4_pcie *rcar =3D to_rcar_gen4_pcie(dw);
+> > -	int i, changes;
+> > +	int i, changes, ret;
+> >
+> > -	rcar_gen4_pcie_ltssm_enable(rcar, true);
+> > +	if (rcar->start_link_enable) {
+> > +		ret =3D rcar->start_link_enable(rcar);
+>=20
+> This looks basically like what qcom does:
+>=20
+>   qcom_pcie_start_link
+>     if (pcie->cfg->ops->ltssm_enable)
+>       pcie->cfg->ops->ltssm_enable(pcie)
+>=20
+> Can you copy that and use the same name for the pointer and function
+> name (.ltssm_enable, .*_ltssm_enable())?
+
+Yes, I can. I'll rename the pointer and function.
+
+> > +		if (ret)
+> > +			return ret;
+> > +	}
+> >
+> >  	/*
+> >  	 * Require direct speed change with retrying here if the link_gen is
+> > @@ -437,7 +448,10 @@ static void rcar_gen4_remove_dw_pcie_ep(struct rca=
+r_gen4_pcie *rcar)
+> >  /* Common */
+> >  static int rcar_gen4_add_dw_pcie(struct rcar_gen4_pcie *rcar)
+> >  {
+> > -	rcar->mode =3D (uintptr_t)of_device_get_match_data(&rcar->pdev->dev);
+> > +	const struct rcar_gen4_pcie_platdata *pd =3D of_device_get_match_data=
+(&rcar->pdev->dev);
+> > +
+> > +	rcar->mode =3D pd->mode;
+> > +	rcar->start_link_enable =3D pd->start_link_enable;
+> >
+> >  	switch (rcar->mode) {
+> >  	case DW_PCIE_RC_TYPE:
+> > @@ -500,14 +514,47 @@ static void rcar_gen4_pcie_remove(struct platform=
+_device *pdev)
+> >  	rcar_gen4_pcie_unprepare(rcar);
+> >  }
+> >
+> > +static int r8a779f0_pcie_start_link_enable(struct rcar_gen4_pcie *rcar=
+)
+> > +{
+> > +	rcar_gen4_pcie_ltssm_enable(rcar, true);
+>=20
+> Previously we called rcar_gen4_pcie_ltssm_enable() for
+> "renesas,rcar-gen4-pcie" and "renesas,rcar-gen4-pcie-ep".  But after
+> this patch, it looks like we only call it for "renesas,r8a779f0-pcie"
+> and "renesas,r8a779f0-pcie-ep"?
+
+Yes.
 
 Best regards,
-Krzysztof
+Yoshihiro Shimoda
 
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static struct rcar_gen4_pcie_platdata platdata_r8a779f0_pcie =3D {
+> > +	.mode =3D DW_PCIE_RC_TYPE,
+> > +	.start_link_enable =3D r8a779f0_pcie_start_link_enable,
+> > +};
+> > +
+> > +static struct rcar_gen4_pcie_platdata platdata_r8a779f0_pcie_ep =3D {
+> > +	.mode =3D DW_PCIE_EP_TYPE,
+> > +	.start_link_enable =3D r8a779f0_pcie_start_link_enable,
+> > +};
+> > +
+> > +static struct rcar_gen4_pcie_platdata platdata_rcar_gen4_pcie =3D {
+> > +	.mode =3D DW_PCIE_RC_TYPE,
+> > +};
+> > +
+> > +static struct rcar_gen4_pcie_platdata platdata_rcar_gen4_pcie_ep =3D {
+> > +	.mode =3D DW_PCIE_EP_TYPE,
+> > +};
+> > +
+> >  static const struct of_device_id rcar_gen4_pcie_of_match[] =3D {
+> > +	{
+> > +		.compatible =3D "renesas,r8a779f0-pcie",
+> > +		.data =3D &platdata_r8a779f0_pcie,
+> > +	},
+> > +	{
+> > +		.compatible =3D "renesas,r8a779f0-pcie-ep",
+> > +		.data =3D &platdata_r8a779f0_pcie_ep,
+> > +	},
+> >  	{
+> >  		.compatible =3D "renesas,rcar-gen4-pcie",
+> > -		.data =3D (void *)DW_PCIE_RC_TYPE,
+> > +		.data =3D &platdata_rcar_gen4_pcie,
+> >  	},
+> >  	{
+> >  		.compatible =3D "renesas,rcar-gen4-pcie-ep",
+> > -		.data =3D (void *)DW_PCIE_EP_TYPE,
+> > +		.data =3D &platdata_rcar_gen4_pcie_ep,
+> >  	},
+> >  	{},
+> >  };
+> > --
+> > 2.25.1
+> >
 
