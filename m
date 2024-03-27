@@ -1,185 +1,244 @@
-Return-Path: <devicetree+bounces-53735-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C09088D5A5
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 06:00:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92B9F88D5A7
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 06:02:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D30E429D8D2
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 05:00:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5C321C247A2
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 05:02:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F378C4C81;
-	Wed, 27 Mar 2024 05:00:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 455194A35;
+	Wed, 27 Mar 2024 05:02:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="J9E6vHDM"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="hhs8qYvM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2109.outbound.protection.outlook.com [40.107.114.109])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25EA34C74
-	for <devicetree@vger.kernel.org>; Wed, 27 Mar 2024 05:00:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711515628; cv=none; b=PXxp03qdmnsJJkV0xqjGzryVqw8+xKbdUSqIvyv4d+qRbncj47g1xGj1fKSBMRSI4YZ8Vb8+qWEFvW3jq4Y9RX7GaZUgbuRT5iC3fpMyanTAtXVvaOu6qaCGo7+H6HrqIJdvQJZSUHibPqwWlfCDAcknTCn709sW5jmTr750ZEU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711515628; c=relaxed/simple;
-	bh=1tB9/TGcZQfKPLEH6zLhNDNRniQ5CjzTSsK8wJfxykM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HfD1mkPWorU+OA8NOBiNQMErvTDkIDPM1vaA28+BkN367nGy3QxP1g/yt4ZDtUhNcJYufu3UN6W8hpFrhuOie7ahGMbruo575x9jNDqDecj37na5rKHRL12IlGV32NrLtVHuulPJKTaO9cHHXE1kiU06eH4HMcNA4yikkIwNpTM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=J9E6vHDM; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a47385a4379so86899866b.0
-        for <devicetree@vger.kernel.org>; Tue, 26 Mar 2024 22:00:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711515625; x=1712120425; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Zg4dfQqri/ia1yu4QidX38DydgUabyaSCD5DploC2E8=;
-        b=J9E6vHDM6p8uSRDWfRJ5c51GK2XsqJt81IG011YkVQiZ91oHvlx/Agt7MmVUndFQ/O
-         Vi6kE5wRDouyG6mUVoQaZAH1vYe6fAcKjEs5pSf2+sGVX4Al6Pc9iyMlKeAx4WCA68+9
-         aJjRh7GeXtqhf+synHytcNbV5PazAe5g991HigQw1Jwn8lwwqdnS5PXfjNgLkNND1sbY
-         3LQ9KRgUd2QTyY5O5F1q0EnhDAARckHVL/0440WCoRR/sAl6UVYN4gjJ8/6WUHTtnnRB
-         Wy0lDJ/5FKGAx4J3CLYSplCCqLbu9cTe25YSSGqQgNxOR9kvjZR2oR82orYQoX2qqShu
-         gmLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711515625; x=1712120425;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Zg4dfQqri/ia1yu4QidX38DydgUabyaSCD5DploC2E8=;
-        b=fVMM7CneTPsqp9lV0UaKkOK9y8HqZQW529XmPjfBzRcReW0QQGfWZHf/qrlobkjxDA
-         9T91zvdi0cPds/V6pZ9pix8NvNGjbRflO7pQrdbu1JvcqtfD3ygzy+UAWi3SkzDIVm6G
-         Uxo6gOIGNlq3EEuRbssNTTSbo3rRRE++7bVDmBP7KRO+4rzMIbDgv7eWKGphcsCDYvpr
-         v8cMpcFntl+hqlkmn9CFZC4ylPmyrlX2E0gLxXHP7UBhPzV9Vn86nKH7T9cHv6PCvEol
-         CmTvbqF0MbtZnLxeMkwuQKJq19ThINm1py5IiDEkawhaODr3oFDo7tkk1WVj2ckIIVAs
-         dwhA==
-X-Gm-Message-State: AOJu0YwU3De/6pGse+y3icYIlw8hIv1CeY1a4ChOSBe3b8d0x7eVt/xH
-	Rur+NN68UMnEVTy+lX1HJ0A939nmNt7lSvevd9jQ3azee4Kq6bm+s8zKnNIVjRY=
-X-Google-Smtp-Source: AGHT+IET6EoJhkkfr+BpNrV2kPJiQg58EREqorpBzVCPBiHfSOSuzQLUP6XRj/NFXOBS+qxtMQL9fw==
-X-Received: by 2002:a17:906:e083:b0:a47:2624:4ee8 with SMTP id gh3-20020a170906e08300b00a4726244ee8mr2879681ejb.33.1711515625283;
-        Tue, 26 Mar 2024 22:00:25 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.44])
-        by smtp.gmail.com with ESMTPSA id n16-20020a1709067b5000b00a465a012cf1sm4984885ejo.18.2024.03.26.22.00.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Mar 2024 22:00:24 -0700 (PDT)
-Message-ID: <7679122f-1f3b-436d-9ffd-78bbb98275e6@linaro.org>
-Date: Wed, 27 Mar 2024 06:00:23 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E760C142;
+	Wed, 27 Mar 2024 05:02:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.114.109
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1711515739; cv=fail; b=diieo+5p+NR8bExi9P3+0wBvYE2ySAQsF1HYy0kCVNyk0uXq9luN0BaR8l0EkDjv/92NNZ2Gw6suEsIpWxjGNcFy7I0rxybrbnv8b5H1Uf7KE8yMhWsaJex6jAC1IrZKYExk9OIuMHL8KbnyNpZj+7oE2Wns/HBizugosnn0VX8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1711515739; c=relaxed/simple;
+	bh=L+ElGWhvb3PPevCyFJpbD7h+O45QfBwOx7Q1syeAErE=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=Q3IhhtcNwYQxxbx4kP1CQE2Mx9Jf9zsFawkSv0vTgRXWcbwJr32J4jgy+USB1sLr1Z9MOLdPgYyWFypgMXHd+ewTaT/vainEMtdGTopPXtw141CGtOsj9Lg2AvEPAOAf/bUzes/Sm7LdE7S7t9Tyw0E+VXSNaP1ciIYtwaB1qIo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=hhs8qYvM; arc=fail smtp.client-ip=40.107.114.109
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZJiDX3OnPCdDqzWSqIBjlkv62x3otfdFebyF+fFCD9D9x7E2jxNYODzzt3e76nU6QUzZIGaio1/lLn2QpqgzLpyRqDysu5pyWTwWpdi8ysAjUwR9hTXido0wmJVsmGENYqC6+5OOhG9ZzDNA6b8KZgtHqSjD/OSY6mkhsYO2Q5fthf8iybb3atEiAHqpJJIGJS9vUl1mHB1E0oEcL/uU1hWEH2zwC9dr1k1fwrQ1fNuh2PSCoOjfw6UDotqDsMNsbP538o3PVGb/QSVyZOGh2zLF8rKnvg5fOhB7T+AZTgICEgABelxDJ61gEVHtKmPeE3SFOf7HcA83Qtvud+rrLg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=tFK7GJmoUMRSWjgWbbQ4v5r/X5jBGNeVBLTUeOssGrA=;
+ b=JkVr/UgWrhsfrdW1O6g9LKr2MxKlYopJo/omj+GRupGjUnrz6TBoZ+Zj3BW8ZjMEaUxvAGjmu9ls0U+cmpVf5hjOFRdomMGMCJzuWtBpux6QkFqi/W8sR8xrceivZRbfIoDZfK1/LrJWYfAQz5OQA4aSwjS+dov9l3a0Dj0iJceLpM749iwjAPypT2q0O1/v5suk2htqSTE4qQTlnsMrOcgLfPMXmkUodWWspW6p4MjU0IgbdPW1ja0YFr0/JjuvJiAvj/OvnieI/Zl+SkKueIstUp6clsysPGTH56oALPR11ozbQ2ITDMP1101KukISevZoGnya3Qr9iNyo4ko7lg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tFK7GJmoUMRSWjgWbbQ4v5r/X5jBGNeVBLTUeOssGrA=;
+ b=hhs8qYvMgF8sPz6a1MTvn6bgap9zHVM9Z8YEnczAXJW9LmPWTcBb9QelvzhI5fy+jX+O18n/sef8MU/hHezrYPjHcmDqQG5AMjwatofDZEwYxDEoGTJfPJpT/ROqMTqMYzQRx7hKHN8EsiC2gQ+lXiVmAncSkxJKNEwqRunSDDY=
+Received: from TYCPR01MB11040.jpnprd01.prod.outlook.com (2603:1096:400:3a7::6)
+ by OS0PR01MB6178.jpnprd01.prod.outlook.com (2603:1096:604:cd::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.32; Wed, 27 Mar
+ 2024 05:02:12 +0000
+Received: from TYCPR01MB11040.jpnprd01.prod.outlook.com
+ ([fe80::f9d2:106:9dc3:224f]) by TYCPR01MB11040.jpnprd01.prod.outlook.com
+ ([fe80::f9d2:106:9dc3:224f%3]) with mapi id 15.20.7386.023; Wed, 27 Mar 2024
+ 05:02:12 +0000
+From: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To: Frank Li <Frank.li@nxp.com>
+CC: "lpieralisi@kernel.org" <lpieralisi@kernel.org>, "kw@linux.com"
+	<kw@linux.com>, "robh@kernel.org" <robh@kernel.org>, "bhelgaas@google.com"
+	<bhelgaas@google.com>, "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+	"gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
+	"mani@kernel.org" <mani@kernel.org>, "marek.vasut+renesas@gmail.com"
+	<marek.vasut+renesas@gmail.com>, "linux-pci@vger.kernel.org"
+	<linux-pci@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-renesas-soc@vger.kernel.org"
+	<linux-renesas-soc@vger.kernel.org>, Geert Uytterhoeven
+	<geert+renesas@glider.be>
+Subject: RE: [PATCH v2 6/6] misc: pci_endpoint_test: Add Device ID for R-Car
+ V4H PCIe controller
+Thread-Topic: [PATCH v2 6/6] misc: pci_endpoint_test: Add Device ID for R-Car
+ V4H PCIe controller
+Thread-Index: AQHafye97ZlAwgf9kU+dZUE2YnHEwrFJWvUAgAAmxiCAAI4qAIAA9/nQ
+Date: Wed, 27 Mar 2024 05:02:12 +0000
+Message-ID:
+ <TYCPR01MB110404C21043F7CF7E2939252D8342@TYCPR01MB11040.jpnprd01.prod.outlook.com>
+References: <20240326024540.2336155-1-yoshihiro.shimoda.uh@renesas.com>
+ <20240326024540.2336155-7-yoshihiro.shimoda.uh@renesas.com>
+ <ZgI/IGe2L0rJ8SSF@lizhi-Precision-Tower-5810>
+ <TYCPR01MB1104072DA4D6B3DF120A10D0AD8352@TYCPR01MB11040.jpnprd01.prod.outlook.com>
+ <ZgLW6CGYfUW6Uskz@lizhi-Precision-Tower-5810>
+In-Reply-To: <ZgLW6CGYfUW6Uskz@lizhi-Precision-Tower-5810>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYCPR01MB11040:EE_|OS0PR01MB6178:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ Ci4BFl36ZCaiizBfp0h/3QH3RzJxKC0BBzeG58XXQYhMZK3SYivRDtCXgHwOaApejGpz5oF02gyeYL3ws+b5tyRjbS0O/897DGSC38ZS0dciTr/yp9kMX/YzZ94A1j6ueZ+BAqbAEG+hXfWjXpN1l87Ze+JoU5p3e5cf+2bwR9DA+rwSK/Ni8CvKnptCSXewjMRZ7YLY2rUbihISgACFwpjpGpJKeODsEPUnNKl/Cz/chRld6yBzGp3ebIhQY7ZhJNl/8hRCtfzqkklf9a6bUEzpbzWrc9hSVAYjShO5hvcEOlWj439kHdUMroItjzHmgGKjjcuuRiM9qalJAwLfijnv4j0Hd3Y4t6G8rg5qQBjkn7wzRfhwWZ4peXyx7Zmenf4kYsp0tmmdTtn6fb72/mIcZV3rEcNteI7vNdWmExxOUWF6nBrbwToWxP6MEa9XjR4hjixx1U9i8yNTQ4xacB6OtSC094Y5kMMeRJ0AcofzXpu5TrWbjnFkYk1wbtz0PMOqq2hbcA6b3EGzRgUjuV6cGbGX26+d6AwDviPspvjTyUOIPAURHkzjzWzxQ/U8v4B7zVOpHoAwo64Zxjzrr/loK6HjiSYnm4lwgNBNmtkdblMZ6T14UNzn+AzvzTO6HaD7m3zocV1+sN8XE8gHRXutrHn7H3PK81gdJth9qxQ=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB11040.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(1800799015)(7416005)(376005);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?WFjk7x+yQ+i9yOo8zPf1MUiONSP2g03ljtM1IGwQK7QjmJYcoM0ERJD4NTua?=
+ =?us-ascii?Q?x+Y8Y1fhgOo9EICfWm/RsqcZjk/MTxd1elCvJdksVaeOMjfiBFSmYXZ3CdDp?=
+ =?us-ascii?Q?divjtDjTXb/GtGr/i3KCcR7cQO2Pa7wiq8zfnX5HlrXydS1P5r89sUCuKDfZ?=
+ =?us-ascii?Q?Np4tChqCUnz61vCbE4eTlDjvXIYgrDFbJRcWXOWyxJspayP7/3V/iENl48GB?=
+ =?us-ascii?Q?6Neb6Evl/IebzY0kSePrsYAHA7jsYkiLfQtUIi0CQiETp72/cjbNPQ/9ItEz?=
+ =?us-ascii?Q?98DtWzio4UCaSEoWgM28Od2CuC9zuGzcmQoQ7EXm12b3RXa2pjF00PksmsFK?=
+ =?us-ascii?Q?y78JZryqZxZlnax9vKPfEOaA/f7kjoFpAlb7KGvwn2BbOlEYyzyIKXWqlm8G?=
+ =?us-ascii?Q?12mu0OROql6tEG/n2Ya6DnBe6DrkY0JyW1aYOu3iF3YijxtaAoA1Otsu49Sq?=
+ =?us-ascii?Q?B1t+wm5tM7TpAj/9ZwZNMk6SquLJAxMD++avx3n10T/GVZK3O74Mm1iiM4Oa?=
+ =?us-ascii?Q?JQ2Q2UeTGsoSZlDrxdmXA9u6FYg4wXhbV+xEpStwlgjDsIdGMEEP2FRc8edh?=
+ =?us-ascii?Q?FkTnfZJRWhfFmsZwg7KYKyvf5+lr/arSHzlS9C2Pd10ld04maN8LawJE28ya?=
+ =?us-ascii?Q?nistOoj0YVQXoM2ntWdrTNCx5XpHd5TuWHc8zSqFvUim42N+1XQ3ZNt+hxxj?=
+ =?us-ascii?Q?qnfEvxlE/myGqYoAxM5o3sL1m/gBjIEqO1OQygnTBGJ2r/5SGEIWTCibzpbX?=
+ =?us-ascii?Q?y7oDbkOw5Ut7hKXJA1BRgGzoTmFagQEPmSavm6J45TjKpXBUwzYIUXQrcYIZ?=
+ =?us-ascii?Q?wkw1yNd9dzHCf3iMro41gdrZ8zZ4Evo4x85OCyOe4zf12BuCQyqsAdPv8KX+?=
+ =?us-ascii?Q?n+sPemAuzDCWn+1aGwSo8G1YyzSjciAd4GGjvUeotjdOX9FkyjwyL5ONmzdh?=
+ =?us-ascii?Q?4hsVwlXFrmFIf2bBdxTccFQbNKn7AQqlrYv80mJN9iIT4EE68P/S8xaLFCbn?=
+ =?us-ascii?Q?n8dkfSEizmyaMZKqXdI/yV2QY69+NZYmyvWrsUt3bwb0aA6RCD5eMkk/kTCA?=
+ =?us-ascii?Q?ONc6TFqgFB7xSf3QqKncHFWrHjl0y1FnMP4hFIg0cWow7HYQV0VTFJLo2o+K?=
+ =?us-ascii?Q?l2ix3ej+xycSUmIFfQ74yWeeSlCiBu9PQhgLu3Wfi1YWgYP9y/rpcHsOO/6m?=
+ =?us-ascii?Q?xwPZzNrZPhc40Azh7Vt297+YGkUb9KKpMdR5QSmwplDwx2v7AeRkVIzKU/fN?=
+ =?us-ascii?Q?EQGkPnThnx1C+CeYVj+F/LO1WEXCQzWhdt3tYsyR3NCj4mSL+dlpcclpkXYP?=
+ =?us-ascii?Q?cyqWaETybnqpCBY9IJS2fPMkx+RvzMyTxSom9rQvvFBY6NZnRbMcQrv0AP6F?=
+ =?us-ascii?Q?PPfG7dlO8htioELaveGWDorwnfLsF0H5SIQBsgQmVmX6H0WdrBxao15IlTTd?=
+ =?us-ascii?Q?LBlwGRk8YFC9XbyFopwPy0VbSWwJcoWZtJw/604cxYEpI8c1DUMQ2JId0hWF?=
+ =?us-ascii?Q?nYAphU09nPezkNZ5qXwCf3KrDQN2aqA15R5JA6ASI135ym4TYa3Fjp0Q+ZEJ?=
+ =?us-ascii?Q?AKgOTIgT+ozM0QiSFJa9TtVki+Y6UfeqE6CsdjwjPw19HAdO3MVPhjQyCh2b?=
+ =?us-ascii?Q?bA=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/5] dt-bindings: arm: Add Au-Zone Maivin AI Vision
- Starter Kit
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, Trevor Zaharichuk
- <trevor@au-zone.com>, Greg Lytle <greg@au-zone.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Li Yang <leoyang.li@nxp.com>
-References: <20240325203245.31660-1-laurent.pinchart@ideasonboard.com>
- <20240325203245.31660-5-laurent.pinchart@ideasonboard.com>
- <75218bd1-0d88-4986-90a6-35f7bdc53918@linaro.org>
- <20240327010156.GD14986@pendragon.ideasonboard.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240327010156.GD14986@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB11040.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ebbec26d-8413-488b-0037-08dc4e1b1022
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Mar 2024 05:02:12.1468
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 7GsfeBPTTrKvNTBKKGR1PxVaPTMQQs1Ev8onGYEyHV6IG1MLvrz975LnqQ7xY20LK0SjNt12k98BTjdeShP953wCOa870sdwQoFLK0ysI6JKgSPrT82SVxACq3GvfU/a
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS0PR01MB6178
 
-On 27/03/2024 02:01, Laurent Pinchart wrote:
-> Hi Krzysztof,
-> 
-> On Tue, Mar 26, 2024 at 08:11:34AM +0100, Krzysztof Kozlowski wrote:
->> On 25/03/2024 21:32, Laurent Pinchart wrote:
->>> The Maivin board is an AI vision starter kit sold by Au-Zone
->>> Technologies, developed in collaboration with Toradex and Vision
->>> Components. It is based on a Toradex Verdin i.MX8MP SoM.
->>>
->>> Add a corresponding compatible string.
->>>
->>> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->>> ---
->>>  Documentation/devicetree/bindings/arm/fsl.yaml | 7 +++++++
->>>  1 file changed, 7 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
->>> index 0027201e19f8..d892c4f9fda3 100644
->>> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
->>> @@ -1064,6 +1064,13 @@ properties:
->>>                - toradex,verdin-imx8mp-wifi  # Verdin iMX8M Plus Wi-Fi / BT Modules
->>>            - const: fsl,imx8mp
->>>  
->>> +      - description: Au-Zone Technologies i.MX8MP-based boards
->>> +        items:
->>> +          - const: au-zone,maivin-starter-kit        # Au-Zone Maivin AI Vision Starter Kit
->>> +          - const: toradex,verdin-imx8mp-nonwifi     # Verdin iMX8M Plus Module without Wi-Fi / BT
->>> +          - const: toradex,verdin-imx8mp             # Verdin iMX8M Plus Module
->>
->> I think this should be part of existing "Toradex Boards with Verdin
->> iMX8M Plus Modules)", just renamed to "boards using Toradex Verdin ...".
-> 
-> Is this what you have in mind ?
-> 
+Hi Frank,
 
-Yes.
+> From: Frank Li, Sent: Tuesday, March 26, 2024 11:09 PM
+>=20
+> On Tue, Mar 26, 2024 at 05:47:23AM +0000, Yoshihiro Shimoda wrote:
+> > Hi Frank,
+> >
+> > > From: Frank Li, Sent: Tuesday, March 26, 2024 12:21 PM
+> >
+> > > On Tue, Mar 26, 2024 at 11:45:40AM +0900, Yoshihiro Shimoda wrote:
+> > > > Add Renesas R8A779G0 in pci_device_id table so that pci-epf-test
+> > > > can be used for testing PCIe EP on R-Car V4H.
+> > > >
+> > > > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> > > > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > > ---
+> > > >  drivers/misc/pci_endpoint_test.c | 4 ++++
+> > > >  1 file changed, 4 insertions(+)
+> > > >
+> > > > diff --git a/drivers/misc/pci_endpoint_test.c b/drivers/misc/pci_en=
+dpoint_test.c
+> > > > index c38a6083f0a7..2fa3c6473c7d 100644
+> > > > --- a/drivers/misc/pci_endpoint_test.c
+> > > > +++ b/drivers/misc/pci_endpoint_test.c
+> > > > @@ -83,6 +83,7 @@
+> > > >  #define PCI_DEVICE_ID_RENESAS_R8A774C0		0x002d
+> > > >  #define PCI_DEVICE_ID_RENESAS_R8A774E1		0x0025
+> > > >  #define PCI_DEVICE_ID_RENESAS_R8A779F0		0x0031
+> > > > +#define PCI_DEVICE_ID_RENESAS_R8A779G0		0x0030
+> > > >
+> > > >  static DEFINE_IDA(pci_endpoint_test_ida);
+> > > >
+> > > > @@ -1005,6 +1006,9 @@ static const struct pci_device_id pci_endpoin=
+t_test_tbl[] =3D {
+> > > >  	{ PCI_DEVICE(PCI_VENDOR_ID_RENESAS, PCI_DEVICE_ID_RENESAS_R8A779F=
+0),
+> > > >  	  .driver_data =3D (kernel_ulong_t)&default_data,
+> > > >  	},
+> > > > +	{ PCI_DEVICE(PCI_VENDOR_ID_RENESAS, PCI_DEVICE_ID_RENESAS_R8A779G=
+0),
+> > > > +	  .driver_data =3D (kernel_ulong_t)&default_data,
+> > > > +	},
+> > >
+> > > You use default_data, why need new device_id? I think you can use 0x0=
+031
+> > > to do test.
+> >
+> > I thought we can add a new device_id freely like other devices.
+> > Since the PCIe controller's endpoint mode can configure the device id,
+> > I can use 0x0031 to do test though.
+> >
+> > If such a reusable entry exists, is adding a new device id into the dri=
+ver prohibited?
+>=20
+> I just think it is not necessary. This list will become longer and longer=
+.
+> And difference device id can't help us at all.
 
+I agreed. To record it, I'll make a patch to add such description in the pc=
+i_endpoint_test.c.
+
+> We should use difference production as difference functions, or differenc=
+e
+> configuration.  Such as usb gadget product id, we use 0x4545 for all mass
+> storage.
+
+I see.
+
+> Using difference devices id for difference function, such as 0x31 for
+> ep_test 0x30 for virtual net, 0x29 for virtual console ...
+>=20
+> Or using difference devices id indicate some features. For example, use
+> 0x30 means support write to EP MSI ITS to trigger irq.
+>=20
+> Donate a device_id to more valuable things.
+
+I think so.
 
 Best regards,
-Krzysztof
+Yoshihiro Shimoda
 
+> Frank
+>=20
+> >
+> > Best regards,
+> > Yoshihiro Shimoda
+> >
+> > > Frank
+> > >
+> > > >  	{ PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_J721E),
+> > > >  	  .driver_data =3D (kernel_ulong_t)&j721e_data,
+> > > >  	},
+> > > > --
+> > > > 2.25.1
+> > > >
 
