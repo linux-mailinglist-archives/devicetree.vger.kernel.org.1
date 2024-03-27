@@ -1,144 +1,185 @@
-Return-Path: <devicetree+bounces-53997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4403D88F246
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 23:57:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7EA688F2FE
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 00:23:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC7E21F2BA5F
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 22:57:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 732B51F2C414
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 23:23:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9D2715442B;
-	Wed, 27 Mar 2024 22:57:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 840D915573D;
+	Wed, 27 Mar 2024 23:22:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="crrbfUFt"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b="lk1el4ST"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-108-mta24.mxroute.com (mail-108-mta24.mxroute.com [136.175.108.24])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7ED15B04F;
-	Wed, 27 Mar 2024 22:57:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8361B155732
+	for <devicetree@vger.kernel.org>; Wed, 27 Mar 2024 23:22:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=136.175.108.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711580238; cv=none; b=lanwdxgms/r2m1O2Zh8KmFvq6XZ6JBi9M7Ca0D2Fpk0tK5gxeL8yYjFFD8ftsy0lsYLmNBDSY/cEI859cLKpCLCpGYoyto6pevdkB0hMUW6n9BsSO5u9vSMO1K9KPL7taulf08eJFQOxfa7+J3ba4ojKs7MPLYvYNB6Xijw4N3g=
+	t=1711581767; cv=none; b=hd49nRoAR8pSBgpe1vLJCrkKNG4zRKIQlrsC2fLE7Bkayd3Q4dd8F/htBnPRJYRVmfogYbTIBXL7pbSCAhjOaZrX2VZOUDemyTZI7ISYRATMgggQieZMaBz1kL2UgdkZD9V7pTA4zsXry/P2V+s0N6ht++LC+zCrEXq7NGrqWc8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711580238; c=relaxed/simple;
-	bh=npQsuKJCSjPU1CmK2mJzpdJDvL/vcRiQ7VqJraBwVjk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=TtbAsnuRl/BEWN2ig7h1lyjaqYX/mxHupA/sewnm6euowBugsNfr39zz8yjrMp359bITEZvc3/B3jewa6lf7PDH2JIwvFk76HKMZtmas8nvdQ/Sh7lFp2C50VHwn4fTCy9MXdLgc9/SBi0xVM5WpoV5Ajndg5pDSssX0t8J3sz0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=crrbfUFt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 56FC3C433B2;
-	Wed, 27 Mar 2024 22:57:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711580238;
-	bh=npQsuKJCSjPU1CmK2mJzpdJDvL/vcRiQ7VqJraBwVjk=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=crrbfUFt4FnQpyZ4+QjsvTDSGKm8EyB46er3u95Nn6HudZB4npbee5M0eCrznZUXg
-	 A+ViTPMzInZZqT/3ThzU52pulk/9nH7JflMaxOIm08nFQYW35bL5aVBaeJHEff4+d9
-	 uLzVdQlsd8e4v/lDtDI6gZQRItXH5RIRq58oM/B3BpiKPLHPQHY+8ucAYDaB1ek1EN
-	 3dh0xAtkmp5wnyovWi/fv44Wmgzo675wKp2RIRzgVf78mDbVtJRxOl6AebdRAYzQRL
-	 3I/Vo9CN2dz6+LEgPYrKxBajo0+sr+OUFp8J6kTR3yySGf5hxZaPRhH1bEy9KCEq3T
-	 fb3MGp8jJR8UA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 496B7C47DD9;
-	Wed, 27 Mar 2024 22:57:18 +0000 (UTC)
-From: =?utf-8?q?Andr=C3=A9_Apitzsch_via_B4_Relay?= <devnull+git.apitzsch.eu@kernel.org>
-Date: Wed, 27 Mar 2024 23:51:35 +0100
-Subject: [PATCH 3/3] arm64: dts: qcom: msm8939-longcheer-l9100: Add rear
- flash
+	s=arc-20240116; t=1711581767; c=relaxed/simple;
+	bh=0AR7aTfvPPDRcyFbqZXD6QN2Qvc8q+gNMHQ9U+KtZds=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=G+n3Obfom19mVcm6+NfMBSXzg7WgZwj2nsnevgzGU5Mj3VPkgWZr8ASn+5pab94h36jUjKVV09uoM6w/HUFKWbB94QdQFri2W2rdqn0ae/M5e4/MlMQq5bNJQ+eXfvoQ5D+zk/+i8l/u3JZmyFlJCQ6k9NW5EAvZcFOYk9WSj9M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com; spf=pass smtp.mailfrom=luigi311.com; dkim=pass (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b=lk1el4ST; arc=none smtp.client-ip=136.175.108.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=luigi311.com
+Received: from filter006.mxroute.com ([136.175.111.2] filter006.mxroute.com)
+ (Authenticated sender: mN4UYu2MZsgR)
+ by mail-108-mta24.mxroute.com (ZoneMTA) with ESMTPSA id 18e82343b920003bea.00e
+ for <devicetree@vger.kernel.org>
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+ Wed, 27 Mar 2024 23:17:25 +0000
+X-Zone-Loop: c8a9f86f2d1d44a72fcab7bada50f29055fcb6abfe94
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=luigi311.com; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=tpB1Ez1g+AZl5woGHDYExbL0oNyju9MoU0QRikUtEQY=; b=lk1el4ST7yqVizfHKbtYV9aJEq
+	VN0CnkjuEnrARV9EljdVN4+v08nGOLF1+wD1BBnZJrkyyL6JQlKjunHL97qV/S3EE7jIrybNCX6KZ
+	DcSubBiX74/3/amipO1ix0xsqTuKOqStB7NZuLaJB4EyTjTYxyC5zBP1bs6mUN3Su2At+JsXTiR5N
+	9C6xMZNs6dhg+I2CBoBrslXy+nSFZ2vXJMsFfncF1TVDuRgRrl/9qiCnSinnMHrxU2leToYZRpj0z
+	UuukFjZSmwp8LUeiMh37jXxiu/MW9MXlbLyS15gBcN2PmChPi3DC52bNfLzuu1DMC8FOQlyTMkq5a
+	WfNsz8eQ==;
+From: git@luigi311.com
+To: linux-media@vger.kernel.org
+Cc: dave.stevenson@raspberrypi.com,
+	jacopo.mondi@ideasonboard.com,
+	mchehab@kernel.org,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	sakari.ailus@linux.intel.com,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Luigi311 <git@luigi311.com>
+Subject: [PATCH 00/23] v2: imx258 improvement series
+Date: Wed, 27 Mar 2024 17:16:46 -0600
+Message-ID: <20240327231710.53188-1-git@luigi311.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Message-Id: <20240327-sy7802-v1-3-db74ab32faaf@apitzsch.eu>
-References: <20240327-sy7802-v1-0-db74ab32faaf@apitzsch.eu>
-In-Reply-To: <20240327-sy7802-v1-0-db74ab32faaf@apitzsch.eu>
-To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kees Cook <keescook@chromium.org>, 
- "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1711580236; l=1408;
- i=git@apitzsch.eu; s=20240325; h=from:subject:message-id;
- bh=nJ8Y+0v6j8LoIOHmDYBEGHd/SEM9XgaMCtxGw6/naMk=;
- b=7YhV4IWxeA0uTjafhzehr06WhwClOrLv0Z9w//XgT1anNQEKbXAToFkwKreQMKxwJmYDP48oP
- 4E2F9vOI8xRAc/0N4ULPU7CxQP3nKCjp4dHJID8mzbmDZ+EOCvkaXce
-X-Developer-Key: i=git@apitzsch.eu; a=ed25519;
- pk=wxovcZRfvNYBMcTw4QFFtNEP4qv39gnBfnfyImXZxiU=
-X-Endpoint-Received: by B4 Relay for git@apitzsch.eu/20240325 with
- auth_id=142
-X-Original-From: =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-Reply-To: git@apitzsch.eu
+X-Authenticated-Id: personal@luigi311.com
 
-From: André Apitzsch <git@apitzsch.eu>
+From: Luigi311 <git@luigi311.com>
 
-The phone has a Silergy SY7802 flash LED controller.
+Resend due to email message limits being exceeded.
 
-Signed-off-by: André Apitzsch <git@apitzsch.eu>
----
- .../boot/dts/qcom/msm8939-longcheer-l9100.dts      | 26 ++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+v2 changes:
+- Add use macros patch 
+- Add support for powerdown gpio patch
+- Add support for reset gpio patch
+- Dropped Add support for long exposure modes patch
+- Implemented feedback from Jacopo Mondi
+  - media: i2c: imx258: Add regulator control
+  - media: i2c: imx258: Add support for 24MHz clock
+  - media: i2c: imx258: Add support for running on 2 CSI data lanes
+  - media: i2c: imx258: Add get_selection for pixel array information
+  - media: i2c: imx258: Issue reset before starting streaming
+  - media: i2c: imx258: Set pixel_rate range to the same as the value
+  - dt-bindings: media: imx258: Add alternate compatible strings
+  - media: i2c: imx258: Change register settings for variants of the sensor
+  - media: i2c: imx258: Make HFLIP and VFLIP controls writable
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts b/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
-index e3404c4455cf..528737929274 100644
---- a/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
-@@ -159,6 +159,25 @@ led@2 {
- 			};
- 		};
- 	};
-+
-+	flash-led-controller@53 {
-+		compatible = "silergy,sy7802";
-+		reg = <0x53>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		enable-gpios = <&tlmm 16 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&camera_rear_flash_default>;
-+		pinctrl-names = "default";
-+
-+		led@0 {
-+			reg = <0>;
-+			function = LED_FUNCTION_FLASH;
-+			color = <LED_COLOR_ID_WHITE>;
-+			led-sources = <0>, <1>;
-+		};
-+	};
- };
- 
- &blsp_i2c3 {
-@@ -318,6 +337,13 @@ camera_front_flash_default: camera-front-flash-default-state {
- 		bias-disable;
- 	};
- 
-+	camera_rear_flash_default: camera-rear-flash-default-state {
-+		pins = "gpio9", "gpio16", "gpio51";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
- 	gpio_hall_sensor_default: gpio-hall-sensor-default-state {
- 		pins = "gpio20";
- 		function = "gpio";
+This adds a few more patches and drops one. The long exposure mode patch was
+dropped due to the bug that Jacopo found. The powerdown and reset gpio patches
+were added as that fixes support for the Pinephone Pro, without them the sensor
+doesnt initialize correctly.
+
+Tested on a Pinephone Pro by forcing 24 mhz clock and was able to access all 3
+resolutions. The two lower resolutions had some artifacts but that is expected
+as more changes are required to fix them for the Pinephone Pro specifically,
+kept all registers the same as Dave's original patch since that works on
+dedicated imx258 hardware and the artifacts are PPP specific so it shouldnt be
+a regression.
+
+
+v1
+
+This is a set of patches for imx258 that allow it to work with alternate clock
+frequencies, over either 2 or 4 lanes, and generally adding flexibility to the
+driver.
+
+Tested with an IMX258 module from Soho Enterprises that has a 24MHz oscillator.
+Both 2 and 4 lane configurations work with correct link frequencies and pixel
+rates.
+
+Jacopo has tested on a PinePhone Pro which has an ~19.2MHz clock fed from the SoC,
+He confirms that the two lower resolution modes work, but not the full res mode.
+Comparing to the BSP it looks like they have some weird clock configuration in
+the 4208x3120 mode (nominally 1224Mb/s/lane instead of 1267).
+As it has never previously worked directly with the mainline driver this isn't a
+regression but may indicate that there is a need for support of additional link
+frequencies in the future.
+
+The last patch that makes HFLIP and VFLIP configurable may be contentious as I've
+retained the default configuration of inverted from the original driver. I know
+this was discussed recently, but I can't recall the final outcome.
+
+I am relying on someone from Intel testing this out, as correcting the cropping
+and supporting flips has changed the Bayer order. Seeing as this is all above
+board in V4L2 terms I really hope that the layers above it behave themselves.
+
+Cheers
+  Dave
+
+
+Dave Stevenson (20):
+  media: i2c: imx258: Remove unused defines
+  media: i2c: imx258: Make image geometry meet sensor requirements
+  media: i2c: imx258: Disable digital cropping on binned modes
+  media: i2c: imx258: Remove redundant I2C writes.
+  media: i2c: imx258: Add regulator control
+  media: i2c: imx258: Make V4L2_CID_VBLANK configurable.
+  media: i2c: imx258: Split out common registers from the mode based
+    ones
+  media: i2c: imx258: Add support for 24MHz clock
+  media: i2c: imx258: Add support for running on 2 CSI data lanes
+  media: i2c: imx258: Follow normal V4L2 behaviours for clipping
+    exposure
+  media: i2c: imx258: Add get_selection for pixel array information
+  media: i2c: imx258: Allow configuration of clock lane behaviour
+  media: i2c: imx258: Correct max FRM_LENGTH_LINES value
+  media: i2c: imx258: Issue reset before starting streaming
+  media: i2c: imx258: Set pixel_rate range to the same as the value
+  media: i2c: imx258: Support faster pixel rate on binned modes
+  dt-bindings: media: imx258: Rename to include vendor prefix
+  dt-bindings: media: imx258: Add alternate compatible strings
+  media: i2c: imx258: Change register settings for variants of the
+    sensor
+  media: i2c: imx258: Make HFLIP and VFLIP controls writable
+
+Luigi311 (3):
+  drivers: media: i2c: imx258: Use macros
+  drivers: media: i2c: imx258: Add support for powerdown gpio
+  drivers: media: i2c: imx258: Add support for reset gpio
+
+ .../i2c/{imx258.yaml => sony,imx258.yaml}     |   12 +-
+ MAINTAINERS                                   |    2 +-
+ drivers/media/i2c/imx258.c                    | 1147 +++++++++++------
+ 3 files changed, 744 insertions(+), 417 deletions(-)
+ rename Documentation/devicetree/bindings/media/i2c/{imx258.yaml => sony,imx258.yaml} (88%)
 
 -- 
-2.44.0
-
+2.42.0
 
 
