@@ -1,141 +1,87 @@
-Return-Path: <devicetree+bounces-53877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-53878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB9F888E799
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 16:00:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E15A888E7E9
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 16:08:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6BE551F323FF
-	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 15:00:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 082562C5A5C
+	for <lists+devicetree@lfdr.de>; Wed, 27 Mar 2024 15:08:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3998312E1CC;
-	Wed, 27 Mar 2024 14:11:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2B9913F443;
+	Wed, 27 Mar 2024 14:31:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XwU7YQaN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qVDYdcZs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C6C71327E9;
-	Wed, 27 Mar 2024 14:11:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 723F912FB37;
+	Wed, 27 Mar 2024 14:31:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711548701; cv=none; b=GPszvykbs9HH9uSFvX47R5xqQlDQZo6lbqezSOw9vsteLdlyX2M5XnDG/BfhijK5gvCfNJ/WlI8iWAWmaDyGkU2QNWeDv60nKw0AL1zBpG1ck+Nq1fXEoP+vfm5S4X1buAUsZD3TL2JDXkAiDD0hJ7bYTeJS902VHknTEhGB6W0=
+	t=1711549905; cv=none; b=WApmHqIt7n3wlCqPaD9n8I4xM3IOS3IVgPuRTmewEZJDpA0pjwYambvFoXP1Saua3IudEj6RmXwUepqanSTUCjaofR1oPCQonfjF6JJHhyqJCwHKTTvmhOrdcCIrjES8r/LqnScuPKXalZXzK5jdDDAMeV8vueyU/0ucokrQ8p8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711548701; c=relaxed/simple;
-	bh=SGhC7f/OXl3SNF2nNKvyBrQPvyFTC9D9zvBTzNsTSAI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FF4yTobC0TChDHD9fNuDEy4cATk12XWfXllNoU9tTUd9+eOX3vHpOPlgsQm6XgFaKAwKYIzflR2V2IpXChkdjZ/l86npLCsj+AeunW/j3aPDKjIzElQHiGOiTxBN4V4Su9aN5SbSCooP3QE7QfYbuJ1Gbpjcc+iSLAl7o5pfKYg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XwU7YQaN; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-512b3b04995so3775660e87.3;
-        Wed, 27 Mar 2024 07:11:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711548697; x=1712153497; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IyJDkbjfmOBYuYreKRli55h3QqY7VDOWn83SMTw8obc=;
-        b=XwU7YQaNEnjXB4uAiH4v6y3H5rVwZv/b5Cu2SPdOQ3a5w/sd9g+ozOGeFK+lA6XG47
-         /B23EMVl67HoV31q8AXZUOosCzi8RmCoyjBs4EFyU64nifKCU3cAwO/EUlvJ45w4CWU2
-         n2+6/FHxic+h+c/VOHSRpzt6ROYx/uxVpMz7Ps5euUslyeRO4WO+Cxi3rJTxHupRx5xX
-         T9/JJppgj7mW+KGTT3+9ABThoqI/UWBrFJgjKKMJgrINFHm2FYx8U0BDJrN3ufnsZ3wH
-         mKAJfi4HuN/tAL0p+sT8KYdp7yVQkvg4sYY8zwO9wBQ0sHRlBSnEIQNSK532sozCNknr
-         Mtdw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711548697; x=1712153497;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IyJDkbjfmOBYuYreKRli55h3QqY7VDOWn83SMTw8obc=;
-        b=Er+jUV718VFIAhsf7eY6SFijo01U+3gKHl0RMenLuk6quKqiNYHyZvew1y0TYlDWnO
-         QTk5jcWcUJdQRpkDFsMJ9dA1N0wQ984NM3so7etsNa9zsJZ6FtCwJJmc+Yxwy7Dnxx8F
-         Ig3hVIQEyhLog1DNFK6I+U8OVBQC9AWdafar6c3Mi/1gM8D/aw9OrPMXqikIDwwR1/4U
-         w3AoT/r/pYk30Ujsm6mIILOe5LjV0GvyCjlV9LXhgj64ZZ9GVdlAGxcRTAff8WBMi0cX
-         OxjSLZ64yUtMrONJnegMjYHrbtGiFPrMCoTGY5ME1ADhhA+6qRJMZ6r7Q/PesRTrFhHh
-         7mHA==
-X-Forwarded-Encrypted: i=1; AJvYcCVuy7RZCuQ5HbgdDOkF5KV8yqt4XLOKvbltRV/i1c/xgAkkGE1NFr2BRGBtLaMSPDqfjB3yC4vi6W0vOPsYp3mDDDnNgtzN9lc2kVLBTh/Q1McSLncZ6r8yKQUPwkLiOTUREcOF/3giKA==
-X-Gm-Message-State: AOJu0Yx3bUG+KqHALRDE7rvx3l+ETjb53+L6lV1+15xoSXkzK7M/SMBA
-	8TO/GrkDDB3QiSKWfoe+JkRDj1mh6S+suilrw8x9QbcHPTF33Ptz
-X-Google-Smtp-Source: AGHT+IFnHmjmaTtiFBPUmuK7dtkmFwbJFIBG4stNIA1T2gnG9pi0Ma5TRetOj1+9JKO6OpqRl8wCFg==
-X-Received: by 2002:ac2:48a4:0:b0:515:a6dd:9657 with SMTP id u4-20020ac248a4000000b00515a6dd9657mr1693604lfg.16.1711548697135;
-        Wed, 27 Mar 2024 07:11:37 -0700 (PDT)
-Received: from [192.168.42.63] (mobile-access-6df024-232.dhcp.inet.fi. [109.240.36.232])
-        by smtp.gmail.com with ESMTPSA id br36-20020a056512402400b00515b071bc71sm892262lfb.305.2024.03.27.07.11.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Mar 2024 07:11:36 -0700 (PDT)
-Message-ID: <c6f5a515-61a1-4d87-a029-4000fa96f10e@gmail.com>
-Date: Wed, 27 Mar 2024 16:11:36 +0200
+	s=arc-20240116; t=1711549905; c=relaxed/simple;
+	bh=WSfFHYPX7LiFm5Qc/Sh1jixIZvZpfvnCSHlkNIVG6LU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eqlY4tCxhdfqgI9+m0FFm5Hc51epksvZWsPKj4pzifcdoDV6IaxIT9zbTTc12uaDEwdT8PFgdqueGJKiC+iKIMVbESZQg+UtCaeHCrXekb7d78aI7oGvz0i53F0ahZpXRn2/PxS0olVHJCWouuwuhFE0YrPlp6ZAWoxber+Oz8E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qVDYdcZs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8DA6C43390;
+	Wed, 27 Mar 2024 14:31:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711549905;
+	bh=WSfFHYPX7LiFm5Qc/Sh1jixIZvZpfvnCSHlkNIVG6LU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qVDYdcZsMxwev24HHNXmT2hRITCKPMOqWZCGAM/36OnKO0XEnKJd9oU5d3U0LW7kz
+	 LWuhSCveHFa7unOrGwUrabmzR2dCcSQjrFrCDD59rG86bjyEE4oIXWV2cWtWKSaTrK
+	 FdIGFZXefFzxR35etpZUAgWRuXjLY32Aaa52R4qvuLtAukSZ/oBwwZD7x4WVg85J9c
+	 pOprFar3IwmNrjNSBUTflL+cTrKkV5yQ//diOkCJ7mwXs8Jr6h6h8Dhj/59AVgNsXB
+	 OBdWGAOTlrUQ9nhOBKuYvTEVE1Yfg8HQkhIMsg7FShYIRWwY61iaB9MdVhYoAhEt/m
+	 C7uEbjl4EXWWg==
+Date: Wed, 27 Mar 2024 09:31:42 -0500
+From: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Avri Altman <avri.altman@wdc.com>,
+	Bart Van Assche <bvanassche@acm.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: ufs: qcom: document SC8180X UFS
+Message-ID: <20240327143142.GA3267090-robh@kernel.org>
+References: <20240326174632.209745-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] mfd: rohm-bd71828: Add power off functionality
-Content-Language: en-US, en-GB
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: lee@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240326192258.298143-1-andreas@kemnade.info>
- <20240326192258.298143-3-andreas@kemnade.info>
- <815e1cdc-145e-4880-96a0-d9c21308b9b3@gmail.com>
- <20240327140451.65ff8e18@aktux>
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20240327140451.65ff8e18@aktux>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240326174632.209745-1-krzysztof.kozlowski@linaro.org>
 
-On 3/27/24 15:04, Andreas Kemnade wrote:
-> Hi,
+On Tue, Mar 26, 2024 at 06:46:30PM +0100, Krzysztof Kozlowski wrote:
+> Document already upstreamed and used Qualcomm SC8180x UFS host
+> controller to fix dtbs_check warnings like:
 > 
-> On Wed, 27 Mar 2024 09:32:29 +0200
-> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+>   sc8180x-primus.dtb: ufshc@1d84000: compatible:0: 'qcom,sc8180x-ufshc' is not one of ['qcom,msm8994-ufshc', ... ]
+>   sc8180x-primus.dtb: ufshc@1d84000: Unevaluated properties are not allowed ('compatible' was unexpected)
 > 
->> It's worth noting that there is another PMIC, BD71879, which, from the
->> driver software point of view, should be (almost?) identical to the
->> BD71828. I believe the BD71828 drivers should work with it as well - if
->> not out of the box, at least with very minor modifications.
->> Unfortunately I don't know products where the BD71879 is used or if it
->> is sold via distributors - so I don't know if adding a DT
->> compatible/chip type define for it would be beneficial.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> yes, you already told we thet the BD71828 drivers are compatible with
-> the BD71879 and I am using the latter.
-> But that at least should be commented somewhere, so that
-> people do not raise questions, like: Do I have some strange board revision,
-> etc?
-> The most terse form to comment it is a separate dt compatible so we are
-> prepare any "almost identical" surprises.
+> ---
+> 
+> Rob, considering limbo status of this binding, maybe you can take it
+> directly? Would be the fastest.
 
-I agree. Reason why I haven't done this already is that I don't always 
-(like in this case) know which of the variant are eventually sold. So, 
-it's balancing dance between adding compatibles for ICs that will never 
-been seen by large audience, and missing compatibles for some of the 
-variants.
+Applied for 6.9, thanks.
 
-This is also why I was interested in knowing which variant you had, and 
-where was it used.
-
-But yes, I think that as the BD71879 has obviously been found by a 
-community linux kernel user - it would make sense to add a compatible 
-for it!
-
-Do you feel like adding the compatible 'rohm,bd71879' in 
-rohm,bd71828-pmic.yaml as part of this series(?)
-
-Yours,
-	-- Matti
-
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
-
+Rob
 
