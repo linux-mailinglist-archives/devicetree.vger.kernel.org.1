@@ -1,76 +1,75 @@
-Return-Path: <devicetree+bounces-54088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA54188F971
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 09:03:10 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 103B988F979
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 09:03:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE4B81C2A0FE
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 08:03:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6F253B259E2
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 08:03:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7418E657AE;
-	Thu, 28 Mar 2024 08:01:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F85B53E11;
+	Thu, 28 Mar 2024 08:02:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cRgQ4w19"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="fUZYtRXW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37ED1657B0;
-	Thu, 28 Mar 2024 08:01:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5A3B537E0;
+	Thu, 28 Mar 2024 08:02:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711612881; cv=none; b=jMme6ESJDP9xJzmbGzFEaDqSeQJZI7i3Ku+ez5qqPLfQkBCBhLSBp+28l22SWF/bqzpNOnIKc79m6zIel2C0elY1R3CjR3LtEay1b2ly3c1zfM7mll3Xs6de70G2NWDGkG0E8t9pvA3qrtbcVch4bdUK+9oqy7XpBwSbp5/UGCk=
+	t=1711612935; cv=none; b=Rs8yndrGt44WJNcQ3P2lJOrcecc3Pp0N+Gd0xJJqdiilfzi8YiV0LSrjzGBHoG8A+t0aWPv+U0AAjvvJk1FLqe9oTxdEzlLkPWUp5yAwWMhU3yChxy8RkdmGU4EvHPio3AHkJaohhBvWLGeivLUqIrAj4Sg2cN41aCJxHP9HgHQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711612881; c=relaxed/simple;
-	bh=lnS95bunV/EH9UhcF3G/sCrMeEzpcJBQkovuEjBYQDA=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Nn7lH2oMYwx78qg5cL3sxBpRORPvQ9XADTZYfaJhYe+3xYsuHmue5zVW+AOkaMZCkUUdwMhQvuD6lmu/J17u0Om5G/RWsOuYA9kTJsZBdZpcMs7gIwtSe/Oq913IH0f45cikxWHt6VXeYlOa1vghNiE1aCHsP61SiOaQxJZZg/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cRgQ4w19; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42S6qqCd028045;
-	Thu, 28 Mar 2024 08:01:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	qcppdkim1; bh=9CHl93Q8DRAjWAYjiISTKY13GhosV9C3yA+9XS3PrZ8=; b=cR
-	gQ4w19SfWkN9xcN8GAG2T20HVd2hGpVPg9Wt/J2cnB9vOHSo9DJwHpkSQrkmbKsi
-	0wqFxGhRi6M6QHXQeTtw1L4LLKlgg8tyagw0m3C4JdmQKZHfE5DSDO/uFn1qSvCs
-	4XulNdi3KHzq6sBlsxpfbj69Mk34z2UezfwBIw8bBmpfKfTkRifO6C0TJjv41Af0
-	QwG86st2hApH8JGTZ7lktsDlXgXZmKU5HeRxxHqbp1W6L/cj8r1aD5FE2DjH0sdK
-	kNwxJZF41LfgJ1QzvpelNdU5rbJnCbLI/MiA1Cf3SgWu5ZXvj2c8UvtMGFvnt7gA
-	PtI3Wst7hAMqDLFVJ8zA==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x53nxg8ft-1
+	s=arc-20240116; t=1711612935; c=relaxed/simple;
+	bh=SrdpeFjSHn0LCnvMBJIKDdbpLNAKMxwnnZuXs0WPO/w=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=nMxaZfdJY7/Wh/KlaXfFxPj0E+cg7ksK5h5dtxoLXRF1GL1Zo9V5tiQ50osoZcdP5NPU4WmIQ6oS8UnajkCNi6oMZrsTu279yMa3+TsWnG22wQE1MlmiU2kVEdxRhEDJLxEaBPqKsblbB8KbVzA4NnEHlp0NJGBKjmbiDQYzB1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=fUZYtRXW; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42S20cbJ007927;
+	Thu, 28 Mar 2024 09:01:40 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=B3k9NYQ
+	+W0JovX05lxSOFMRWz6YTKcx+T4goM/utJYs=; b=fUZYtRXWdHKLTsnBLtLfC41
+	A9d0Z0pqU+WM2pMGPSPYfObG2u0azWHtiu9+Wx+1t2YjW776IKo3CRM5i6msA6aZ
+	RWxncsIv76TmXIqnPMB+lpC6C/8VcIzvp4Qkyi0M/CUuoJGYswEgzc+bNP+R6xqj
+	wgSe02V9961lRcB8VTHXQZbEI/oDkBafNxHu4Hb2m64s6mR7WaF2ePUGU5KAGNKR
+	rtqCap8RKiCExXxXeG83oQS4Jwr19KxNbYOvYwJiWByDkEIV89BAPeGtNOW2Kyh8
+	sLrToKtVrmEp4DqB8LRfaVKu5F7Qz1PYDe17+Ima4dGF2nvPpbiAafGtykBPocA=
+	=
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3x1pugrc0b-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 28 Mar 2024 08:01:15 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42S81FoF032666
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 28 Mar 2024 08:01:15 GMT
-Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 28 Mar 2024 01:01:10 -0700
-From: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <djakov@kernel.org>, <dmitry.baryshkov@linaro.org>,
-        <quic_varada@quicinc.com>, <quic_anusha@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>
-Subject: [PATCH v5 5/5] arm64: dts: qcom: ipq9574: Add icc provider ability to gcc
-Date: Thu, 28 Mar 2024 13:29:36 +0530
-Message-ID: <20240328075936.223461-6-quic_varada@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240328075936.223461-1-quic_varada@quicinc.com>
-References: <20240328075936.223461-1-quic_varada@quicinc.com>
+	Thu, 28 Mar 2024 09:01:40 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 4E9E440044;
+	Thu, 28 Mar 2024 09:01:36 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 238F0210743;
+	Thu, 28 Mar 2024 09:01:11 +0100 (CET)
+Received: from localhost (10.201.20.71) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 28 Mar
+ 2024 09:01:10 +0100
+From: <patrice.chotard@foss.st.com>
+To: <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        <alexandre.torgue@foss.st.com>
+CC: <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        Patrice Chotard <patrice.chotard@foss.st.com>
+Subject: [PATCH v1] ARM: dts: stm32: Update button on stm32mp135f-dk
+Date: Thu, 28 Mar 2024 09:01:05 +0100
+Message-ID: <20240328080105.3910099-1-patrice.chotard@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,60 +78,48 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 5LtL_ZPHX62bXERG3HLXtmNbS9LFN_uD
-X-Proofpoint-ORIG-GUID: 5LtL_ZPHX62bXERG3HLXtmNbS9LFN_uD
+X-ClientProxiedBy: SAFCAS1NODE2.st.com (10.75.90.13) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2024-03-28_07,2024-03-27_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- mlxlogscore=999 impostorscore=0 spamscore=0 bulkscore=0 mlxscore=0
- lowpriorityscore=0 priorityscore=1501 phishscore=0 malwarescore=0
- adultscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2403210001 definitions=main-2403280052
 
-IPQ SoCs dont involve RPM in managing NoC related clocks and
-there is no NoC scaling. Linux itself handles these clocks.
-However, these should not be exposed as just clocks and align
-with other Qualcomm SoCs that handle these clocks from a
-interconnect provider.
+From: Patrice Chotard <patrice.chotard@foss.st.com>
 
-Hence include icc provider capability to the gcc node so that
-peripherals can use the interconnect facility to enable these
-clocks.
+On schematics, 2 buttons are available on stm32mp135-dk board:
+  _ button "user1" connected to GPIOA14
+  _ button "user2" connected to GPIOA13
 
-Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+Reflect that on device tree.
+
+Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
 ---
-v2: Fix include file order
-    Move to separate patch
----
- arch/arm64/boot/dts/qcom/ipq9574.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm/boot/dts/st/stm32mp135f-dk.dts | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-index 7f2e5cbf3bbb..5b3e69379b1f 100644
---- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-@@ -8,6 +8,7 @@
+diff --git a/arch/arm/boot/dts/st/stm32mp135f-dk.dts b/arch/arm/boot/dts/st/stm32mp135f-dk.dts
+index 52171214a308..f7e03bc7eccb 100644
+--- a/arch/arm/boot/dts/st/stm32mp135f-dk.dts
++++ b/arch/arm/boot/dts/st/stm32mp135f-dk.dts
+@@ -48,9 +48,15 @@ optee@dd000000 {
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
  
- #include <dt-bindings/clock/qcom,apss-ipq.h>
- #include <dt-bindings/clock/qcom,ipq9574-gcc.h>
-+#include <dt-bindings/interconnect/qcom,ipq9574.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/reset/qcom,ipq9574-gcc.h>
- #include <dt-bindings/thermal/thermal.h>
-@@ -306,6 +307,7 @@ gcc: clock-controller@1800000 {
- 			#clock-cells = <1>;
- 			#reset-cells = <1>;
- 			#power-domain-cells = <1>;
-+			#interconnect-cells = <1>;
+-		button-user {
+-			label = "User-PA13";
++		button-user-1 {
++			label = "User-1";
+ 			linux,code = <BTN_1>;
++			gpios = <&gpioa 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
++		};
++
++		button-user-2 {
++			label = "User-2";
++			linux,code = <BTN_2>;
+ 			gpios = <&gpioa 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
  		};
- 
- 		tcsr_mutex: hwlock@1905000 {
+ 	};
 -- 
-2.34.1
+2.25.1
 
 
