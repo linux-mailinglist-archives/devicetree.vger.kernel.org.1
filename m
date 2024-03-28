@@ -1,208 +1,147 @@
-Return-Path: <devicetree+bounces-54290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71A9D890469
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 17:02:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9237F8904B9
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 17:16:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F21161F23AB5
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 16:02:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B53D31C2233F
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 16:16:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7753C131BDC;
-	Thu, 28 Mar 2024 15:59:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0169B12FB03;
+	Thu, 28 Mar 2024 16:15:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qv48bbru"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b="aWfpoOad"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-108-mta202.mxroute.com (mail-108-mta202.mxroute.com [136.175.108.202])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FB561304A2;
-	Thu, 28 Mar 2024 15:59:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC968131187
+	for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 16:15:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=136.175.108.202
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711641585; cv=none; b=dlxY+c5v5iJGa3WAWKJ3I6odVw0zG4k9vanNT0vKhSweezJDTZSdlR7syWB3SnXyyyFz9K9/ECptv/WXyPm1y4iYEBJ93MJ/uNBA9yx9txa1ZWKLQLAWXPljxHMOIXMlME1Z2p5Bb8mlCB2F8cYx9ggMFFLO82N7yggIg7QJ0vU=
+	t=1711642555; cv=none; b=rkKyUFQNJbqVlOZswSalZ3TAoozKAouydP3m/FE3Sb76hUp/EoqCN6dXChdhoLArVpGue7cZOsYLaw+SX9NrnvDRneDIPP+CY8KlLOihAhqzY6509iOVAGyDqZSMJzscSkSbMyC54HBbRC4hvS5+Ryy7iV29x4tR+PbMKu0Wg7s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711641585; c=relaxed/simple;
-	bh=qyQUoXy023JIBQTtvFF+Bd/yOnnqvkyALUjGrxU1/h0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=JxL5YfLitMg6ckgCjPIFpECI9kOehFp3GxmHDoYkIazagDlMGqPF8doNte9cBWKcgGz77bdwWQ0GQYxnx4ru0SPLfamOD9LwIN0Z5KACTUgHXaX/a5CrGqEkavKzheqDklYUBZiix6NtwVutlJdAmZ1M8XN743ivmqOuJjaIIHo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qv48bbru; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E59B9C433C7;
-	Thu, 28 Mar 2024 15:59:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711641584;
-	bh=qyQUoXy023JIBQTtvFF+Bd/yOnnqvkyALUjGrxU1/h0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=qv48bbruU2M0h8t/1bXyZHf9hHNm2f31cadRKh0DbLd3hq7Bh/N1HtDbFuOSxMqEg
-	 mQrBZ3sHjTnDzJpCsntqgtAquj04hmbcfNS8gUED+2Qnsb0wBbD6tpyHIUf/QJvkVq
-	 PxYjrr2RWSJRgtzZwKpaYVcS4IUivZWB/7ohU3N+DBDPXY/tvNfYvgwR9UDGARMkVk
-	 7N7SCFbiQj2Fs7KR3luENIONQo8UxRRri8mA0PiIVA+IE/T0j/0ksq4le0QyoR19kK
-	 z87MfCAuOFKeQLMLMxUe9mMgjxUDU6vu+pGgRAGDwhZgwX8tZHy0MXilQEBRE5tz92
-	 u++xwi0DOYEcg==
-Date: Thu, 28 Mar 2024 15:59:29 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
-Cc: Nuno Sa via B4 Relay  <devnull+nuno.sa.analog.com@kernel.org>,
- nuno.sa@analog.com, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- Dragos Bogdan <dragos.bogdan@analog.com>, Lars-Peter Clausen
- <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Olivier Moysan <olivier.moysan@foss.st.com>
-Subject: Re: [PATCH 08/10] iio: backend: add new functionality
-Message-ID: <20240328155929.20848a6a@jic23-huawei>
-In-Reply-To: <cec2ac9c67aeae7c59434a86713f35461d171c04.camel@gmail.com>
-References: <20240328-iio-backend-axi-dac-v1-0-afc808b3fde3@analog.com>
-	<20240328-iio-backend-axi-dac-v1-8-afc808b3fde3@analog.com>
-	<20240328151632.298bd95f@jic23-huawei>
-	<cec2ac9c67aeae7c59434a86713f35461d171c04.camel@gmail.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1711642555; c=relaxed/simple;
+	bh=YGOEk9oKZHq64MKnhZtMmCLowNGolRXyvDgx+imDZ0s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IOiomombQRwsI8CeIQn+PP8IB+ECk9bUe/yk2AySxL7BoHwgps8+DN2dBqvWSaEnZkJd3eXhzcwuHYAi6+VyLxcKV4mYW9eEvb1bamntwGckxpxHtfVW66nipk3yQdqrw+Zf5sOQQyQUwDFIzRgYukhg7ZqtA3L1Gh0Glp1Ya40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com; spf=pass smtp.mailfrom=luigi311.com; dkim=pass (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b=aWfpoOad; arc=none smtp.client-ip=136.175.108.202
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=luigi311.com
+Received: from filter006.mxroute.com ([136.175.111.2] filter006.mxroute.com)
+ (Authenticated sender: mN4UYu2MZsgR)
+ by mail-108-mta202.mxroute.com (ZoneMTA) with ESMTPSA id 18e85d89b8a0003bea.011
+ for <devicetree@vger.kernel.org>
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+ Thu, 28 Mar 2024 16:15:49 +0000
+X-Zone-Loop: df2cf0108a2387280fdff4eea9beac6880f438826c80
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=luigi311.com; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+	From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=cwugKwOI6owueldBI/qieNd7LO4DtJURj2EGZCG3x/k=; b=aWfpoOadUR4xHUIzRi70tTlv+/
+	blWiooHO+TqI/ECwvXsh8bJODVu6QbL4BKXe1C/0ZJfJy5n3dOTuLRSto2iucUnQDeGicb4NRqZhp
+	vnmvi7ImWm+XubSyGD2YuU95yIFWU5lQlhKb0xRzhsRXzbOV6BCXO8qCO/Tn4BxDqfij5fKEAavU2
+	1QNVduCGxvYgYuwu3UJ3e5I55Xvqaj7RTLphjVIMjLnbpYS9qdG7w/QYTBZIB9gD635qDn+ZO3O25
+	68ZljAx1ZIEIT7GuFZXS/9ZHQTgPcIP+HFyChMg7fvJ5ArbNtZ+7N7F8P14sqEgnDE4b/lpUI2Taq
+	3Y8+M4KQ==;
+Message-ID: <c6053c86-2ce9-412b-aaee-fbe1ac25b7c2@luigi311.com>
+Date: Thu, 28 Mar 2024 10:15:42 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 17/23] dt-bindings: media: imx258: Rename to include
+ vendor prefix
+Content-Language: en-US
+To: Conor Dooley <conor.dooley@microchip.com>,
+ Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc: Conor Dooley <conor@kernel.org>, git@luigi311.com,
+ linux-media@vger.kernel.org, dave.stevenson@raspberrypi.com,
+ jacopo.mondi@ideasonboard.com, mchehab@kernel.org, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org,
+ s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+ sakari.ailus@linux.intel.com, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240327231710.53188-1-git@luigi311.com>
+ <20240327231710.53188-18-git@luigi311.com>
+ <20240327-ninth-tulip-77191ad10fdd@spud>
+ <0e658ecc-38d2-4d6f-b0cf-f5f3ec32c1b8@luigi311.com>
+ <171161592126.3072637.14564447281929105708@ping.linuxembedded.co.uk>
+ <20240328-prideful-unopposed-e29fcee74c29@wendy>
+From: Luigi311 <personal@luigi311.com>
+In-Reply-To: <20240328-prideful-unopposed-e29fcee74c29@wendy>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-Authenticated-Id: personal@luigi311.com
 
-On Thu, 28 Mar 2024 16:42:38 +0100
-Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
+On 3/28/24 04:15, Conor Dooley wrote:
+> On Thu, Mar 28, 2024 at 08:52:01AM +0000, Kieran Bingham wrote:
+>> Quoting git@luigi311.com (2024-03-28 00:57:34)
+>>> On 3/27/24 17:47, Conor Dooley wrote:
+>>>> On Wed, Mar 27, 2024 at 05:17:03PM -0600, git@luigi311.com wrote:
+>>>>> From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+>>>>>
+>>>>> imx258.yaml doesn't include the vendor prefix of sony, so
+>>>>> rename to add it.
+>>>>> Update the id entry and MAINTAINERS to match.
+>>>>>
+>>>>> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+>>>>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>>>>
+>>>> This is a v1 with my ack, something has gone awry here. It's also
+>>>> missing your signoff. Did you pick up someone else's series?
+>>>
+>>> Yes, this is a continuation of Dave's work. I contacted him directly,
+>>> and he mentioned that he is unable to submit a v2 any time soon and
+>>> was open to someone else continuing it in his stead.
+> 
+> Ah okay. Unfortunately I see so many binding patches pass by that I
+> sometimes forget about what I already reviewed, and I did not
+> remember this one at all.
 
-> On Thu, 2024-03-28 at 15:16 +0000, Jonathan Cameron wrote:
-> > On Thu, 28 Mar 2024 14:22:32 +0100
-> > Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org> wrote:
-> >  =20
-> > > From: Nuno Sa <nuno.sa@analog.com>
-> > >=20
-> > > This adds the needed backend ops for supporting a backend inerfacing
-> > > with an high speed dac. The new ops are:
-> > >=20
-> > > * data_source_set();
-> > > * set_sampling_freq();
-> > > * extend_chan_spec();
-> > > * ext_info_set();
-> > > * ext_info_get().
-> > >=20
-> > > Also to note the new helpers that are meant to be used by the backends
-> > > +		return 0;
-> > > +	/*
-> > > +	 * !\NOTE: this will break as soon as we have multiple backends on =
-one
-> > > +	 * frontend and all of them extend channels. In that case, the core
-> > > +	 * backend code has no way to get the correct backend given the
-> > > +	 * iio device.
-> > > +	 *
-> > > +	 * One solution for this could be introducing a new backend
-> > > +	 * dedicated callback in struct iio_info so we can callback into the
-> > > +	 * frontend so it can give us the right backend given a chan_spec.
-> > > +	 */ =20
-> >=20
-> > Hmm. This is indeed messy.=C2=A0 Could we associate it with the buffer =
-as presuably
-> > a front end with multiple backends is using multiple IIO buffers?
-> >  =20
->=20
-> Hmm, the assumption of having multiple buffers seems plausible to me but =
-considering
-> the example we have in hands it would be cumbersome to get the backend. C=
-onsidering
-> iio_backend_ext_info_get(), how could we get the backend if it was associ=
-ated to one
-> of the IIO buffers? I think we would need more "intrusive" changes to mak=
-e that work
-> or do you have something in mind=3D
+No worries I'm not surprised since i see constant things submitted
+to upstream and v1 was actually sent a year ago so there would be no
+shot that i would remember it either.
 
-Nope. Just trying to get my head around the associations. I hadn't thought =
-about
-how to make that visible in the code.  Probably a callabck anyway.
+> 
+>>> This is my first
+>>> time submitting a patch via a mailing list, so I'm not sure if I'm
+>>> missing something, but I only added my sign off for anything that
+>>> actually included work from my side and not just bringing his patch
+>>> forward to this patch series.
+> 
+> Right. The rules are that you need to add it when you send someone's
+> work, like chain of custody type of thing.
 
-> =20
-> > As you say a dance via the front end would work fine. =20
->=20
-> I'm happy you're also open for a proper solution already. I mention this =
-in the
-> cover. My idea was something like (consider the iio_backend_ext_info_get(=
-)):
->=20
-> if (!indio_dev->info->get_iio_backend())
-> 	return -EOPNOTSUPP;
->=20
-> back =3D indio_dev->info->get_iio_backend(indio_dev, chan_spec);
->=20
-> It would be nice to have some "default/generic" implementation for cases =
-where we
-> only have one backend per frontend so that the frontend would not need to=
- define the
-> callback.
-Agreed - either a default that means if the callback isn't provided we get =
-the
-single backend or if that proves fiddly at least a standard callback we can
-use in all such cases.
+Ohh i see, ok ill go ahead and add my sign off to all the patches then
 
->  =20
-> >=20
-> >  =20
-> > > +	iio_device_set_drvdata(indio_dev, back);
-> > > +
-> > > +	/* Don't allow backends to get creative and force their own handler=
-s */
-> > > +	for (ext_info =3D chan->ext_info; ext_info->name; ext_info++) {
-> > > +		if (ext_info->read !=3D iio_backend_ext_info_get)
-> > > +			return -EINVAL;
-> > > +		if (ext_info->write !=3D iio_backend_ext_info_set)
-> > > +			return -EINVAL;
-> > > +	}
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +EXPORT_SYMBOL_NS_GPL(iio_backend_extend_chan_spec, IIO_BACKEND); =20
-> >  =20
-> > > diff --git a/include/linux/iio/backend.h b/include/linux/iio/backend.h
-> > > index a6d79381866e..09ff2f8f9fd8 100644
-> > > --- a/include/linux/iio/backend.h
-> > > +++ b/include/linux/iio/backend.h
-> > > @@ -4,6 +4,7 @@
-> > > =C2=A0
-> > > =C2=A0#include <linux/types.h>
-> > > =C2=A0
-> > > +struct iio_chan_spec;
-> > > =C2=A0struct fwnode_handle;
-> > > =C2=A0struct iio_backend;
-> > > =C2=A0struct device;
-> > > @@ -15,6 +16,26 @@ enum iio_backend_data_type {
-> > > =C2=A0	IIO_BACKEND_DATA_TYPE_MAX
-> > > =C2=A0};
-> > > =C2=A0
-> > > +enum iio_backend_data_source {
-> > > +	IIO_BACKEND_INTERNAL_CW, =20
-> >=20
-> > CW?=C2=A0 Either expand out what ever that is in definition of add a co=
-mment
-> > at least. =20
->=20
-> Continuous wave :)
 
-Spell that out.
+> 
+>> Your cover letter states v2, but the individual patches do not.
+>>
+>> Add the '-v2' (or, rather, next it will be '-v3') to git format-patch
+>> when you save your series and it will add the version to each patch. You
+>> can also add '-s' to that command I believe to add your SoB to each
+>> patch.
+> 
+> or a rebase will do it with --signoff:
+> https://git-scm.com/docs/git-rebase#Documentation/git-rebase.txt---signoff
 
->=20
-> >  =20
-> > > +	IIO_BACKEND_EXTERNAL, =20
-> > What does external mean in this case? =20
->=20
-> In this particular case comes from a DMA source (IP). I thought external =
-to be more
-> generic but if you prefer, I can do something like IIO_BACKEND_DMA?
+Perfect thanks for the information you two! Ill be sure to use those 
+for the next revision.
 
-So from another IP block?   For that to be reasonably 'generic' we'd need a=
- way
-to known where it was coming from.
-
-Now I remember advantage of reviewing on weekends - fewer replies during th=
-e reviews :)
-
-Jonathan
+> 
+> Cheers,
+> Conor.
 
 
