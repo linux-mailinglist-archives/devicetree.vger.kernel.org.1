@@ -1,140 +1,118 @@
-Return-Path: <devicetree+bounces-54236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54238-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7DAD8900AB
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 14:44:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 734A28900B5
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 14:45:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7275F2850E3
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 13:44:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C0045B22C8C
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 13:45:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A25382883;
-	Thu, 28 Mar 2024 13:44:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6BE6823D9;
+	Thu, 28 Mar 2024 13:45:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="m79MW81C"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="nnuYkOb8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7737E7BAE7;
-	Thu, 28 Mar 2024 13:44:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3769F405FF;
+	Thu, 28 Mar 2024 13:45:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711633463; cv=none; b=RM7d5wl3IbklrUTe8PuAWDXcgkxWuk7gxllhKMlvSWhInWZhHUzIVeK+ooQ8RTS2Nt8ROG2HMlizXM2VjEdSL8QTlIi/suHdyeQ/QuTsREO37iMSezgABuULtc7r9HifCCsG7Nkd+hb840VIObeZxruqGOvTkq7BAmzBbO5JKjs=
+	t=1711633514; cv=none; b=uHPpLpKii5BFxC736Rekhzg6nVQb0cXkPVC7q0+27+Ry0yJnuqeC11FK0DqpUkNZAhmfR7qGSZQ5Sq75N1/QMRJwAbpTS8j5vG6MqMSpiI2T5tSduClNNzKS/kMAoaOAug81fPsNhbtPlRBc1xQT5BPVhuY5EIW8YOnOGJs/pDE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711633463; c=relaxed/simple;
-	bh=1Zt/GNPnr+5CkPkwpfsrDaDy69KR996nG4gXgRgk1IE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Bnk+gCF453imatwkGnkZEAA750+3/NQFdB63W6/usu1exejji33FhmBl+QiXCYkBsgyksgsAl6DB5Ehg0eASb20vrQIJhr5XXzBImKeFv9t0gAh/uBekiXADQs2I55gV3A6rT23zZlopLCYb8DBy+BEVV7IvER5SHD2O2+hGTVI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=m79MW81C; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 0B70B40006;
-	Thu, 28 Mar 2024 13:43:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1711633452;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=PfNHoYf2InNiPGVC9qzo7631eEUXZGyrHux3q5scrBc=;
-	b=m79MW81COP1lStBzobUR/lbuPqe9Bta+GahxCqAPDJXqf6xKNvnwn6EHCJ+KIAHGsH74uq
-	n9ThN05SXJKK1w0GaN4WMkycD04/4b0dc9i/UKqgGHrle44cw9y5QwpLhMfkU4gEqCSXP0
-	ovVwtrPlnNVkR/JbR5V6vUcUfLqr+cias6g2pvNy6Cmt0z/A+Gah+z1Ntvw1X/uJ2adcxW
-	UAf68E5WwOzt0y242sjZreyBhpeL60aEnSnKIcmYzgMqdPuoCEXPjoSEBUZbazgthzCiuN
-	s5QdjnM2IuZymwUcS7W3HwkywqmjdisEzikegeNV+CvX8UkVecYgXtChPPFLBw==
-Date: Thu, 28 Mar 2024 14:43:37 +0100
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, Luis Chamberlain
- <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Oleksij Rempel <o.rempel@pengutronix.de>, Mark Brown <broonie@kernel.org>,
- Frank Rowand <frowand.list@gmail.com>, Heiner Kallweit
- <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, Thomas
- Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- devicetree@vger.kernel.org, Dent Project <dentproject@linuxfoundation.org>
-Subject: Re: [PATCH net-next v6 10/17] net: pse-pd: Add support for PSE PIs
-Message-ID: <20240328144337.4456e596@kmaincent-XPS-13-7390>
-In-Reply-To: <f3bafb50-406b-444a-8411-5ddae8d84c31@lunn.ch>
-References: <20240326-feature_poe-v6-0-c1011b6ea1cb@bootlin.com>
-	<20240326-feature_poe-v6-10-c1011b6ea1cb@bootlin.com>
-	<f3bafb50-406b-444a-8411-5ddae8d84c31@lunn.ch>
-Organization: bootlin
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1711633514; c=relaxed/simple;
+	bh=h92g/6S9MlLT97r+tVZ8qmPtJIxju0jPdq2wEd8Bqwg=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=nJWu/IQFYDe1DXBGWTMoIY97BZdqxOj/kwBT54owSX4u2sbjmGug55r946G4E5QIvsWhXvvnmAEoxcGb0q1EZB6cASxG/uFR6W/Oa2AaZ88RZdAVY887R7y3Xe8vuCXffT2mhYGdWktGTZZz+lkhKJ/tIXJufOcgZAc7MwGFov0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=nnuYkOb8; arc=none smtp.client-ip=37.18.73.165
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 8643F100018;
+	Thu, 28 Mar 2024 16:45:08 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 8643F100018
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1711633508;
+	bh=bxVgZki4tnU752Xc7UAMONAMGx/Fa1Rm1HjeoL827+Y=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=nnuYkOb8h3rQRJ3wZBkfT7Agyq9H1zrL42vxY4bPYIBeSThupI5mw5TIsX8i1uPCW
+	 pZ1PmfBpvCnHtMN8CC6ScFTCSXgslj71rX1L1I70fwsDJ4THMf+ddUGFc0ODRaLu6m
+	 U8jbZrrq7W16vC/btZekrgDYrWbeRSr1lHd+c8D0XaaLFvnYj9ETVff6ckTTW+cLmR
+	 oCFht4mPqidD5yz/+t37ZYwsYHfA9lGertdrzrEEeJO52d6CWgVjNgACB7m4fKqtQc
+	 p+lSYqrOIfSAREDw6kIcZpnb60EF0dhIonm4Nv64UgoYd+x9V25zSLdCFohTrD7UQj
+	 OfJoRog7kyezA==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Thu, 28 Mar 2024 16:45:08 +0300 (MSK)
+Received: from CAB-WSD-L081021.sberdevices.ru (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Thu, 28 Mar 2024 16:45:07 +0300
+From: Dmitry Rokosov <ddrokosov@salutedevices.com>
+To: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
+	<mturquette@baylibre.com>, <khilman@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <glaroque@baylibre.com>,
+	<rafael@kernel.org>, <daniel.lezcano@linaro.org>, <rui.zhang@intel.com>,
+	<lukasz.luba@arm.com>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <kernel@salutedevices.com>, <rockosov@gmail.com>,
+	<linux-amlogic@lists.infradead.org>, <linux-pm@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, Dmitry Rokosov
+	<ddrokosov@salutedevices.com>
+Subject: [PATCH v1 0/3] arm64: dts: amlogic: a1: introduce thermal setup
+Date: Thu, 28 Mar 2024 16:44:36 +0300
+Message-ID: <20240328134459.18446-1-ddrokosov@salutedevices.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: kory.maincent@bootlin.com
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 184470 [Mar 28 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 14 0.3.14 5a0c43d8a1c3c0e5b0916cc02a90d4b950c01f96, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, lore.kernel.org:7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2024/03/28 12:39:00
+X-KSMG-LinksScanning: Clean, bases: 2024/03/28 12:39:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/03/28 10:33:00 #24492761
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-On Thu, 28 Mar 2024 13:24:00 +0100
-Andrew Lunn <andrew@lunn.ch> wrote:
+This patch series introduces thermal sensor declaration to the Meson A1
+common dtsi file. It also sets up thermal zones for the AD402 reference
+board. It depends on the series with A1 thermal support at [1].
 
-> > +.. code-block::
-> > +
-> > +         +-------------+
-> > +         |    PSE PI   |
-> > + 8  -----+                             +-------------+
-> > + 7  -----+                    Rail 1   |
-> > + 6  -----+------+----------------------+
-> > + 5  -----+      |                      |
-> > + 4  -----+     /              Rail 2   |  PSE 1
-> > + 3  -----+----?          +-------------+
-> > + 2  -----+----+---------?              |
-> > + 1  -----+---?                         +-------------+
-> > +         |
-> > +         +-------------+ =20
->=20
-> Is ? a standard markup character? I don't remember seeing it used like
-> this before.
+Links:
+[1] - https://lore.kernel.org/all/20240328133802.15651-1-ddrokosov@salutedevices.com/
 
-It seems the Documentation copy-pasted from Oleksij mail bring me few weird
-characters.
-I will fix it.
+Dmitry Rokosov (3):
+  arm64: dts: amlogic: a1: add cooling-cells for DVFS feature
+  arm64: dts: amlogic: a1: introduce cpu temperature sensor
+  arm64: dts: amlogic: ad402: setup thermal-zones
 
-> > +static int of_load_single_pse_pi_pairset(struct device_node *node,
-> > +					 struct pse_pi *pi,
-> > +					 int pairset_num)
-> > +{
-> > +	struct device_node *pairset_np;
-> > +	const char *name;
-> > +	int ret;
-> > +
-> > +	ret =3D of_property_read_string_index(node, "pairset-names",
-> > +					    pairset_num, &name);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	if (!strcmp(name, "alternative-a")) {
-> > +		pi->pairset[pairset_num].pinout =3D ALTERNATIVE_A;
-> > +	} else if (!strcmp(name, "alternative-b")) {
-> > +		pi->pairset[pairset_num].pinout =3D ALTERNATIVE_B;
-> > +	} else {
-> > +		pr_err("pse: wrong pairset-names value %s\n", name);
-> > +		return -EINVAL; =20
->=20
-> Maybe include the node path in the error message? For a 24 port
-> switch, it will help find a typo in one of the ports. I would do this
-> for all error messages in this code.
+ .../arm64/boot/dts/amlogic/meson-a1-ad402.dts | 45 +++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi     | 14 ++++++
+ 2 files changed, 59 insertions(+)
 
-Ok, I will.
-Thanks for your review!
+-- 
+2.43.0
 
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
 
