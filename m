@@ -1,138 +1,126 @@
-Return-Path: <devicetree+bounces-54272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C8C48902D5
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 16:18:12 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97FE88902DF
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 16:20:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 168CA294216
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 15:18:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8903BB219EA
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 15:20:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11A8F12A14E;
-	Thu, 28 Mar 2024 15:18:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A525181725;
+	Thu, 28 Mar 2024 15:20:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mlNlRLmZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i1qYUUmi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54FA07EF03;
-	Thu, 28 Mar 2024 15:18:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34C0E7E583;
+	Thu, 28 Mar 2024 15:20:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711639089; cv=none; b=taXmDteo81m95Idv1cwZUFS7USAMA7T+6H/7NWbruxIalphXnWYuONdzYiph09Pulih2ncmaqzHrIjAoXiqbUy7MvuJbjr0kRqdfszb/grIqJd2WHQgqAuRXYIV/eGbIRbUfKqE7WDK47M16buwHXImrFvw/vhqd+FQZ+C6J11Y=
+	t=1711639220; cv=none; b=mvyh0b/tcbOuKtIXGB5opTyV/P8V0ZrPY53Jn2PFhrIJej1Dnmrkm9+1zlcdtgdsiJcju96hE7sWxd2ZqGxB2vgg3thMJUISi+v/RP/grRSiOYQS4E/HMsf9ourT9bhYQ34B1rDr7x+MjMEae/OtCmPo2kz0M81WU2m0s6YuO5o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711639089; c=relaxed/simple;
-	bh=ikyIM6Smh2EJLyOtCNeTjLiNuBbusPLjtsKm24aJkxo=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=n9QUhvtKwNpp+wKj3bwDnh33hm56UPeY8nyBVoSEQi22sdKw4lmkDK+Vr9kt2s9pgt+mML3BxhaBTz1TIE+TZVIpuytd6uhYplTdgQnKi8T0iymAvp++MXSgRPKMaZMa9d8i3NETOQKrWsLzhuvo/vziZlRVhwHke5Ku1dqvwJY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mlNlRLmZ; arc=none smtp.client-ip=209.85.167.41
+	s=arc-20240116; t=1711639220; c=relaxed/simple;
+	bh=lx78ueMU3ybsRd2ie/yVOFVz5hFq0sjCDHSdZ+fmqk0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=RGC6ptjJ9jExbAz1UxcbBb9YcHATWvtdrzqTE9NF3uymSF9b2tsHexqyRGFeWtOZCQJ+jtAKa59f0WON7j3P4mlsgdDRAv128Ikn0NHH1XDoThSsR7E8bQUHTjslvett1MbpqGzQ4xr6O1GIrxrmxgEHZtqeBHWKNVob2GAmy58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i1qYUUmi; arc=none smtp.client-ip=209.85.210.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-513d717269fso1197537e87.0;
-        Thu, 28 Mar 2024 08:18:06 -0700 (PDT)
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-6ea7b38f773so235725b3a.0;
+        Thu, 28 Mar 2024 08:20:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711639085; x=1712243885; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=ikyIM6Smh2EJLyOtCNeTjLiNuBbusPLjtsKm24aJkxo=;
-        b=mlNlRLmZ/B6dNSydMT5ZLvM6Tq4icAfaSBXrHpC8qF3H3lirC4xf4V8qBEmZCrF0cn
-         0ZFKzliuU6AqNcfH6lZSwmo99LAFHwjzobyUyqvUwMLME8M5K3j22ARstKe8S7MVBuKO
-         8wpd2e4m1WAQ9+XfGsvjeMsiAuc3+58HsMbqW9OcVAl2kFHyluwSbbIcxuA9B/yX6o5i
-         cKTEHpYDc5swaDoN2aM35XwEsCkRX6nkZWa/ZkInHefGNRbm7BMU8SWvuZNEwP8/5ylg
-         4LWulLNXZpkYwHxyFb2AZY2OY35Y5OuOJAq7pJSVtR6+/1p0pF5OBb7GerxXfRmxHWXP
-         b78A==
+        d=gmail.com; s=20230601; t=1711639218; x=1712244018; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VDlh8QZOxfzH7OHKeOlQuBivsfBTWU+c4hMjaVYdeSo=;
+        b=i1qYUUmiZXvFhUsOLCUuLCJpNIQViUP2D8pitBv3Wamj40fgFiTUwOXvmeWcQTKVj8
+         5vKiUiWqDqgp5kPcBCUANTKpZaYffRzzo9pNxc9TNSZ6Y88QwgBXlNoQc+AezgYx7dkd
+         28Y9xL17gOMswi6wwnhAJo9k5MSSGxkJ39E/uurAy5BdEyPujXS2gH5W3Bpw0GisqI3x
+         iJW+J89/MWSnyiPa4GAvyWVtLhonXDS46qbuXhoiepw4i04bsc7SpONPEQooclh5ojin
+         WywLopGRb+Okoy6XofyNqhB1A1tU677fNlDqu79RiehPGD7cHFA1CE9XAFSCI9AfYa2A
+         q5SA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711639085; x=1712243885;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ikyIM6Smh2EJLyOtCNeTjLiNuBbusPLjtsKm24aJkxo=;
-        b=dUYcCRObsSiCnQMFiSmodOKMTh7o8vD3j4lHjUHR4uaNkj6XN9k1Ih/LASnNkFmiel
-         1Iuo5unFeIrfAVyrunZ66KH+SUXRJz4CsTxdVP+j6N99SwG5tP7vL3HA2avy4FEzbYnX
-         o4ZYSTHYiYxysGBJVaR1EA6EPdYgtRUwMg4zAJxbqZIyHibP2Y9WT0QjY7F5Mko4v+YZ
-         lMGwx0FcPiijCmKYGJygB6GPLK/bdpTZDpFAjqfJG4LADuoT+JvRM+5FSWK/IyHe818y
-         pySA03sbx1j/FonoInoRm5s+/Dp9uc6Io2orWqE6pzBYKRtOS1cceamPcSKw0E9/6WqC
-         57Hg==
-X-Forwarded-Encrypted: i=1; AJvYcCXyZWUMt6gfjDW2g4ikVuz9HNkE8TdvCQbLbE7ZTg3d9/tJFdZaD/OKMKDAIAFnpDTJVY+9/y55iPGOX0h+JM1q6kGzm84BU98udtaoS+u9h6rkbTxvvIAQ+N9NxSRscpdvfLxXLA==
-X-Gm-Message-State: AOJu0YzFkvNBS7ZYRC0FKZvjm03OB8EDEHy1zvSSzuq3POoKxg17608c
-	PQnVedkZ7r3lCePbx7AiAWyi3pTrrgey9XOFAM7H/0tYfXKFMa8F
-X-Google-Smtp-Source: AGHT+IEApEjj8x7yLg1UdNvseEsXFjK4OpXQc8XbDzSW+camPpR2PUz0b8rskSWJUivQbE6VEjhqiw==
-X-Received: by 2002:a05:6512:3285:b0:513:c658:799b with SMTP id p5-20020a056512328500b00513c658799bmr2010931lfe.55.1711639085048;
-        Thu, 28 Mar 2024 08:18:05 -0700 (PDT)
-Received: from ?IPv6:2001:a61:343e:8301:d737:22b0:7431:8d01? ([2001:a61:343e:8301:d737:22b0:7431:8d01])
-        by smtp.gmail.com with ESMTPSA id bv4-20020a170907934400b00a4e2ad2cef0sm201014ejc.203.2024.03.28.08.18.04
+        d=1e100.net; s=20230601; t=1711639218; x=1712244018;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VDlh8QZOxfzH7OHKeOlQuBivsfBTWU+c4hMjaVYdeSo=;
+        b=HDSm1RZwSxxojWjuDrosUdfx9qYhCOtS/4QVISIAoo8K5Gd1D7NCyP0hbaTPnEk/Bc
+         2hgqpo39QqLzChnRoiI9Gm2kIqZbFDMqOuoVod+S8IYIB+bj98k5hpXzfOmPCW9DtNLX
+         xYb64naFZwEbwVLr6RHJWfAIb6kcp4iuY9MgGZc97IA2w/PcmahPpW5vnBqDcCJlCcS9
+         PUTk6rBkj2VW0/5oGr2/rNKKTkZkB7tb/mVnigexqV6fSvnxP+YB5cWnvCca0tf6AHbc
+         C2o1n1dZTGvVM1q2LE/kNzvoKNBcRHuImeMv6p9BCu0Tl5ODwRCrEpNxzSr1QAEbPFte
+         6Qhg==
+X-Forwarded-Encrypted: i=1; AJvYcCU0oGPp7/FitGayxDNnFOeWhOr2Ei9huyv/YLnt+XcFbzlUb0ZHl4oMsTLIIE1xqHBSkS0wqck1/n8Z2z0IpPi+1xG7jTwth4jKr9W/uamJdbcHnqTEPnXQAlLM9uKlxnGc6w==
+X-Gm-Message-State: AOJu0YxTkaYY6eNoIv8iAqqNbJi//uOHPnv96fzN/5fjArSs587KNv2Y
+	2/XYaTxBNPYamGKB8cAiUS/oBzPr1kfqN+Pdef1X39WbYJcwGFoL
+X-Google-Smtp-Source: AGHT+IHX3RYb+V0FstTFGsMqchayvFhdq4FA1/ADFGTZbNSW5ZMHVQdXk5BUBR3XJRufLE9pJf5xTQ==
+X-Received: by 2002:a05:6a00:4f96:b0:6e7:7bd3:f69a with SMTP id ld22-20020a056a004f9600b006e77bd3f69amr3539359pfb.2.1711639218405;
+        Thu, 28 Mar 2024 08:20:18 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:918f:1fce:e47c:7f91])
+        by smtp.gmail.com with ESMTPSA id w8-20020a056a0014c800b006eac4b45a88sm1529251pfu.90.2024.03.28.08.20.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Mar 2024 08:18:04 -0700 (PDT)
-Message-ID: <d30c43f7f9d2db5b9c0e779d99f029da1a751636.camel@gmail.com>
-Subject: Re: [PATCH 01/10] iio: buffer: add helper for setting direction
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, Nuno Sa via B4 Relay
-	 <devnull+nuno.sa.analog.com@kernel.org>
-Cc: nuno.sa@analog.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org,  Dragos Bogdan <dragos.bogdan@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>
-Date: Thu, 28 Mar 2024 16:18:04 +0100
-In-Reply-To: <20240328143652.068492d0@jic23-huawei>
-References: <20240328-iio-backend-axi-dac-v1-0-afc808b3fde3@analog.com>
-	 <20240328-iio-backend-axi-dac-v1-1-afc808b3fde3@analog.com>
-	 <20240328143652.068492d0@jic23-huawei>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+        Thu, 28 Mar 2024 08:20:17 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: shawnguo@kernel.org
+Cc: sakari.ailus@linux.intel.com,
+	hdegoede@redhat.com,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>,
+	stable@vger.kernel.org
+Subject: [PATCH] ARM: dts: imx7s-warp: Pass OV2680 link-frequencies
+Date: Thu, 28 Mar 2024 12:19:54 -0300
+Message-Id: <20240328151954.2517368-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-On Thu, 2024-03-28 at 14:36 +0000, Jonathan Cameron wrote:
-> On Thu, 28 Mar 2024 14:22:25 +0100
-> Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org> wrote:
->=20
-> > From: Nuno Sa <nuno.sa@analog.com>
-> >=20
-> > Simple helper for setting the buffer direction when it's allocated usin=
-g
-> > iio_dmaengine_buffer_alloc().
-> >=20
-> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-> I wonder if we should align with the approach for triggered-buffers with =
-and _ext
-> form of the registration function that takes a direction.=C2=A0 It seems =
-odd to allocate
-> one then change the direction.
->=20
+From: Fabio Estevam <festevam@denx.de>
 
-I agree it feels odd but I did not wanted to include buffer_impl.h in place=
-s that
-should not have it :)
+Since commit 63b0cd30b78e ("media: ov2680: Add bus-cfg / endpoint
+property verification") the ov2680 no longer probes on a imx7s-warp7:
 
-This patchseries adds the direction to devm_iio_dmaengine_buffer_setup(). M=
-aybe what
-we need is to have a non devm variant iio_dmaengine_buffer_setup() and turn
-iio_dmaengine_buffer_alloc() static again. Maybe that would make things a b=
-it more
-consistent.=C2=A0In fact looking closer into that file, I would get rid of:
+ov2680 1-0036: error -EINVAL: supported link freq 330000000 not found
+ov2680 1-0036: probe with driver ov2680 failed with error -22
 
-devm_iio_dmaengine_buffer_alloc() and __devm_iio_dmaengine_buffer_free()=C2=
-=A0
+Fix it by passing the required 'link-frequencies' property as
+recommended by:
 
-and have:
+https://www.kernel.org/doc/html/v6.9-rc1/driver-api/media/camera-sensor.html#handling-clocks
 
-devm_iio_dmaengine_buffer_setup() and iio_dmaengine_buffer_setup() that mak=
-e use of
-iio_dmaengine_buffer_free() and iio_dmaengine_buffer_alloc().=20
+Cc: stable@vger.kernel.org
+Fixes: 63b0cd30b78e ("media: ov2680: Add bus-cfg / endpoint property verification") 
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+ arch/arm/boot/dts/nxp/imx/imx7s-warp.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-I think it would make more sense like the above. Thoughts?
-
-- Nuno S=C3=A1
+diff --git a/arch/arm/boot/dts/nxp/imx/imx7s-warp.dts b/arch/arm/boot/dts/nxp/imx/imx7s-warp.dts
+index ba7231b364bb..7bab113ca6da 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx7s-warp.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx7s-warp.dts
+@@ -210,6 +210,7 @@ ov2680_to_mipi: endpoint {
+ 				remote-endpoint = <&mipi_from_sensor>;
+ 				clock-lanes = <0>;
+ 				data-lanes = <1>;
++				link-frequencies = /bits/ 64 <330000000>;
+ 			};
+ 		};
+ 	};
+-- 
+2.34.1
 
 
