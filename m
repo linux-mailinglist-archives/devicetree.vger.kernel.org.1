@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-54244-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54245-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64DBE890143
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 15:09:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47E8889014B
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 15:10:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D015F1F25259
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 14:09:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 49B541C2B4C3
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 14:10:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25EFB83A14;
-	Thu, 28 Mar 2024 14:08:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55C3982D7F;
+	Thu, 28 Mar 2024 14:08:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PedZMalN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="teyg8IDT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09EEC82880
-	for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 14:08:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57AE681AD0
+	for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 14:08:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711634909; cv=none; b=K1t5i4S233Q5SfEXNFMGHEFdBGZevkQ/BTQ3tB08qQDowwo/3hloaFwvRrNli4YVTkC4ARM/yZ+uv0rzR99v2vBhXiky7Lqb78FdQAOHGR7no/ZGhc2yfJQeQuRt9c6DqPpkYz/de9aIg7jI9Cu8txJwX67eLVurww7rwei5ARc=
+	t=1711634927; cv=none; b=ph5shG4n+6Naowref8SAgyQVTMqslZwDppWcpk6RLe7yDjO121uqJp2ZUsFKotbM6m29iSjYPP9x+kmcH4THsh+nsvIKylJ2O35ZTxXt3VRZkP5vvHSJP15r+o4iFuDsTRMUDMhWVMSkAeQZE6wJdNCI76wetZSyUI/688KEjbk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711634909; c=relaxed/simple;
-	bh=iIk+LivIXLBnAMRG08/c+OxE8ONUviqrsw9EWVPDFJE=;
+	s=arc-20240116; t=1711634927; c=relaxed/simple;
+	bh=gy+79Ap55O5yFgH4vL0r2LFOc+Gja/OVumf4JwlTh5M=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=PPro90ClTvDWp+y9i95ZXBWA036/8Gk93acRuK8SS6vakgVBwk+NbK4IORY/Lh99MOZnIVvhzIU0YHCtGX7t0Um+9YgK9uhqx178yB6w1T5arYQLhEMM/pTbUBprwzxyObq6la8leQO/J3YHy8iwWm9EP/vs8Llqpk86HMORGPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PedZMalN; arc=none smtp.client-ip=209.85.208.171
+	 In-Reply-To:Content-Type; b=CKeK/py71bfvxe/WJ8ApW1Mqf8P0ZuII6e8VEqONNdihefQQYu3JrkF3dCq0HIiBPDV9JNg7y9lDVwfa+cnxbk37ld+/p04+RLfSQDO1sTqcMx/duLtYL60IWeVEbOT+hd5tReERJQGgQ52CnwjD3+fIaiTUjPH1YTBQ3WGJFOA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=teyg8IDT; arc=none smtp.client-ip=209.85.221.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2d6fd3cfaa6so13794121fa.2
-        for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 07:08:26 -0700 (PDT)
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-33ed4dd8659so1355756f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 07:08:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711634905; x=1712239705; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711634924; x=1712239724; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=KldVMMTU4wvemf1droJVFNbQxm8DF8GfwQOLOEUBIRI=;
-        b=PedZMalNsSOcEFDP3JYaOVBA+tOQqexDVmrI3LFG0z0q1EBXjMUo5dxaZ2zaEaQwUo
-         8ij4iLQcZGjkpjgw5Z3VI49ZPzZ+le6rUkh+Vbj+sfdpzv3URfQYdze6L090MS+ldtST
-         PQyx1bKUbIPA5MhWNA08KXos45knTZpcLsXd5Vy+m2NBL63PWsH3WtGaPWw4JCyJUio6
-         9TL8++5GMOObUNgn8pj3T2yFn0GbyXwqYwjW8H8JsODUy2G61yhngK8eEu0fOsRSEmI4
-         ntQacs+/a5RiSvw2ODwnz/4Mo1G0T8NXbeubPeTvYI3ECxpyYUx24ThaUVS2rESUSfX3
-         ning==
+        bh=3YqEn6nGpQ+ZQnytWZdjBha5P7xeBVM99EE9tBd3Qr0=;
+        b=teyg8IDT8y8GzuNfTdoz9d1Ijo/XRt67t8eSm7IpNrRbj0Pv3qOCu0/oNDYSPUk+Gd
+         tf5JFTa0Buxwt1zyZhvbZRLzizaKJwVt1PU+RWJnkLCmWG3ez0MgZpJWpuSL78wNU6Ff
+         Pqet8VX6NLOD9f8lBm9U7AmnAuFHanoKw+RMSAZz+83lbVwVLZahxBtP4Mc7sBFv+ChX
+         lKpynoIp3wCXyLOgwjEG0wWNwLDKE7JJCumSkbtjEdAJfFCKpl7Y/cvUnsfsUQ/CDBlD
+         y7vtnvjrPG8BV06SsCniSsjg30M9Jhj0V+ZovJLsPtdVcPH7tzR5oPsazQWoB7MwK+xR
+         k0EQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711634905; x=1712239705;
+        d=1e100.net; s=20230601; t=1711634924; x=1712239724;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=KldVMMTU4wvemf1droJVFNbQxm8DF8GfwQOLOEUBIRI=;
-        b=mrgtQBvOw08GvY+R0Qw8/MsydO5AqxGajMOfWrGzx8JpVyAQOhlSjmw0Kn6LjHWmrS
-         07m6aJThUjrs8epX2ZFxbVnGrCY8teAnWrJly4chtCmuEWosFjRET4G58lc5eyFN9Cvf
-         ajiw+GVTOk21EIGtM3LGFBqdc4UX8S1uyhA5Wov5Nb7lNgxNWM5toe+9MTuM4aMc5Cg8
-         ID46UUU5ddyGYFK6wlWVh+uT6weS1f6raz5wO5Gd1uvFNiYuXeuC9JSIYLJ8PrlcDOAE
-         Qa8QMr6ENEfjJhQNJFiDIBMWCjCWhMa9L4FeMiko9+T0qhfipYdb93LUYu2nxr6zQ98W
-         mizQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVbCYtv/MkLI/+AzBdz/VSnZkgdET0ROIFYbmMzAgBVeaS8Dq4sqSN/t+D9BKsxFJm/hSwMXV3FhVNYM9XvcfAf+qxrt6UScD/O4w==
-X-Gm-Message-State: AOJu0YyJ4VeZEU0TbipWOkTZVtPsJ9KKHWvjv10X6xkydr1xBMXhqUW4
-	tzF7AQnkOkHfZ4CyzDpZH98jvZNy4fkEd4W7B4pdb0voca9Y9VCwHOECvK74zW4=
-X-Google-Smtp-Source: AGHT+IFzi5IGT2Or39luIJGiqxag++Cnfv2uvw0ITZd6e/aW+yO5N1QhpGpdl7mOdWQlSPUri5HLMw==
-X-Received: by 2002:a05:651c:324:b0:2d3:2ecf:c26a with SMTP id b4-20020a05651c032400b002d32ecfc26amr1523605ljp.13.1711634905209;
-        Thu, 28 Mar 2024 07:08:25 -0700 (PDT)
+        bh=3YqEn6nGpQ+ZQnytWZdjBha5P7xeBVM99EE9tBd3Qr0=;
+        b=PNUN25A2JSqHcd13DeEJXwkR5tI8hXr7otnKhbWHJN4H0JH3x6Y9sgFQaSnHpFJcW+
+         fV0pe9D/imQiEhQnHlkw4Y2hS83WFMXXVP68spuW1UvGpcd2gSNtXvb3QgS2I/HCF3iw
+         jaQVBn68C3VjGzlKN3eB4oSiKhsKuQysVdaf0pgFgZsGO8F5d1zxgvFpRpKP5cUTxuWV
+         L5CKmaLhwFAqcgE3to+RgLoDJPD9Widr6nD3wksKYGTjZBH65HzjKStLvIZswEnOWKos
+         WA4EM+4NfjI4rxQZBs3zcYineVe7781d5nkMLsXNq9DrH3sg63CbNOY9iZXNbHJeu0D1
+         X5Yg==
+X-Forwarded-Encrypted: i=1; AJvYcCX8eZoJJViMzqnYimyGuqXG4fUmvKdDX/CbKWog6PF0Wj5ovSz0Q0ijkNfkKmDmNjfNzvCYxUslQSzbxy7AWfaQIAqL0Szpqj8hPA==
+X-Gm-Message-State: AOJu0YzsU+6ypR1Ud83H0klDopbxr18ETB1Aft/eQS6pmvLiQS1NcyAy
+	yfbqESOIKbyZIQANRE0DYbKQU43dzmGPembksHZa9d2wi4Q0hdYoYGS6VlDuEDk=
+X-Google-Smtp-Source: AGHT+IEC/GG3oRm4e7tBnbj5LOOMmvI8qJFpOtXQq9ZDhffYLQtVrVE6USAKpfkizGiK660to9vDdA==
+X-Received: by 2002:a5d:44cf:0:b0:33e:c68d:d536 with SMTP id z15-20020a5d44cf000000b0033ec68dd536mr1904760wrr.15.1711634923800;
+        Thu, 28 Mar 2024 07:08:43 -0700 (PDT)
 Received: from [192.168.7.190] (82-64-249-211.subs.proxad.net. [82.64.249.211])
-        by smtp.gmail.com with ESMTPSA id g8-20020a05600c310800b0041488cfd0fesm5549851wmo.28.2024.03.28.07.08.23
+        by smtp.gmail.com with ESMTPSA id du9-20020a0560000d4900b00341bdd87fcasm1824861wrb.103.2024.03.28.07.08.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Mar 2024 07:08:24 -0700 (PDT)
-Message-ID: <39ae48ba-02a0-4f68-b0a2-e03272fd50a0@linaro.org>
-Date: Thu, 28 Mar 2024 15:08:23 +0100
+        Thu, 28 Mar 2024 07:08:43 -0700 (PDT)
+Message-ID: <b893fe72-d315-4069-9e57-17e797121639@linaro.org>
+Date: Thu, 28 Mar 2024 15:08:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,8 +80,8 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: neil.armstrong@linaro.org
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v1 2/2] thermal: amlogic: support A1 SoC family Thermal
- Sensor controller
+Subject: Re: [PATCH v1 1/3] arm64: dts: amlogic: a1: add cooling-cells for
+ DVFS feature
 To: Dmitry Rokosov <ddrokosov@salutedevices.com>, jbrunet@baylibre.com,
  mturquette@baylibre.com, khilman@baylibre.com,
  martin.blumenstingl@googlemail.com, glaroque@baylibre.com,
@@ -92,8 +92,8 @@ Cc: kernel@salutedevices.com, rockosov@gmail.com,
  linux-amlogic@lists.infradead.org, linux-pm@vger.kernel.org,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org
-References: <20240328133802.15651-1-ddrokosov@salutedevices.com>
- <20240328133802.15651-3-ddrokosov@salutedevices.com>
+References: <20240328134459.18446-1-ddrokosov@salutedevices.com>
+ <20240328134459.18446-2-ddrokosov@salutedevices.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -120,53 +120,41 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20240328133802.15651-3-ddrokosov@salutedevices.com>
+In-Reply-To: <20240328134459.18446-2-ddrokosov@salutedevices.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 28/03/2024 14:37, Dmitry Rokosov wrote:
-> In comparison to other Amlogic chips, there is one key difference.
-> The offset for the sec_ao base, also known as u_efuse_off, is special,
-> while other aspects remain the same.
+On 28/03/2024 14:44, Dmitry Rokosov wrote:
+> It's used for CPU with DVFS feature to specify minimum and maximum
+> cooling state used in the reference.
+> Without these values DVFS will not work and dtbs_check will raise the
+> error.
 > 
 > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
 > ---
->   drivers/thermal/amlogic_thermal.c | 10 ++++++++++
->   1 file changed, 10 insertions(+)
+>   arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 2 ++
+>   1 file changed, 2 insertions(+)
 > 
-> diff --git a/drivers/thermal/amlogic_thermal.c b/drivers/thermal/amlogic_thermal.c
-> index 5877cde25b79..1d23afd32013 100644
-> --- a/drivers/thermal/amlogic_thermal.c
-> +++ b/drivers/thermal/amlogic_thermal.c
-> @@ -222,6 +222,12 @@ static const struct amlogic_thermal_data amlogic_thermal_g12a_ddr_param = {
->   	.regmap_config = &amlogic_thermal_regmap_config_g12a,
->   };
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> index fbee986421f1..f65d4a77ee52 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> @@ -32,6 +32,7 @@ cpu0: cpu@0 {
+>   			reg = <0x0 0x0>;
+>   			enable-method = "psci";
+>   			next-level-cache = <&l2>;
+> +			#cooling-cells = <2>;
+>   		};
 >   
-> +static const struct amlogic_thermal_data amlogic_thermal_a1_cpu_param = {
-> +	.u_efuse_off = 0x114,
-> +	.calibration_parameters = &amlogic_thermal_g12a,
-> +	.regmap_config = &amlogic_thermal_regmap_config_g12a,
-> +};
-> +
->   static const struct of_device_id of_amlogic_thermal_match[] = {
->   	{
->   		.compatible = "amlogic,g12a-ddr-thermal",
-> @@ -231,6 +237,10 @@ static const struct of_device_id of_amlogic_thermal_match[] = {
->   		.compatible = "amlogic,g12a-cpu-thermal",
->   		.data = &amlogic_thermal_g12a_cpu_param,
->   	},
-> +	{
-> +		.compatible = "amlogic,a1-cpu-thermal",
-> +		.data = &amlogic_thermal_a1_cpu_param,
-> +	},
->   	{ /* sentinel */ }
->   };
->   MODULE_DEVICE_TABLE(of, of_amlogic_thermal_match);
+>   		cpu1: cpu@1 {
+> @@ -40,6 +41,7 @@ cpu1: cpu@1 {
+>   			reg = <0x0 0x1>;
+>   			enable-method = "psci";
+>   			next-level-cache = <&l2>;
+> +			#cooling-cells = <2>;
+>   		};
+>   
+>   		l2: l2-cache0 {
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-
-Keep it even it you change the compatible,
-
-Thanks,
-Neil
 
