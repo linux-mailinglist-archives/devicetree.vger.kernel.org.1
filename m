@@ -1,63 +1,76 @@
-Return-Path: <devicetree+bounces-54366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10479890B6D
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 21:37:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 005B4890BB7
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 21:43:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 410BF1C240DE
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 20:37:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 204F41C30B5D
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 20:43:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57B4E12F379;
-	Thu, 28 Mar 2024 20:37:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2929413AA41;
+	Thu, 28 Mar 2024 20:42:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M91K4TnG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eCKfMmIy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F0AD46BF;
-	Thu, 28 Mar 2024 20:37:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0BE913AA38;
+	Thu, 28 Mar 2024 20:42:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711658236; cv=none; b=dP/74f2EhktnedUdM/4RcEl2cP/lZU4bmcnB2BcGf87VGsAavWMvMnkqaqjID+eGLZEviZ9k9QV4DVqKn6QZOHPNqMOmlDvSvLSkI/MAPjc4hYjwm4JzDdFEIOY2oGGpAr22z9aTxC3h1WWC0+xZnXMKLa11NRNXqvbnttifQhU=
+	t=1711658525; cv=none; b=tzgn/7uYHDxeee5lcq26Oz1M2kMY/JN9VZT4zNsbxnftmg8z75hK5kyNajJqYITc1j8hmCu24IsYcysHijEEkLQ44mGCI/Iv0tGwtppqcJqIeZWx/87wnwzf/llmACzpJBjUEQzax4CIXOapgWV+BMlBMxeruGUYAJNhQzbFOvY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711658236; c=relaxed/simple;
-	bh=o3TMU6J+1La8rLs2zcigdVj1AgPp6xVFZzSdMIJZ+dg=;
+	s=arc-20240116; t=1711658525; c=relaxed/simple;
+	bh=rM8n3YOTnCn+b3NkFrXziIWASxMBnWFMCbr5eWXy4fQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e9mKGUfXFSraGg6AeccuWVKq6fOAaHd6ks+9Rj1699/mOiOnGKjHWVf0dHIRxbullG3WuUs9ZKqKVlC7IHIJyh0UD/YiB1/MiF4rCN6htH+6T2J7AR0VibzMMkg2qP67mpz/nRAQzOY/ynrR78hmJRWwwpQU9X1QYapz6rBUZtM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M91K4TnG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C2B2C433C7;
-	Thu, 28 Mar 2024 20:37:15 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lEX3L3ueLH/uCgtTzeYXtieO+AUFu9u3V5lzPewScz9XRFN6xZeA/+lsRqXtit851NdF2SavdP3CbGsvrB246uBCoRJDCuEu6AXqhDwHryLN52sN+Zv+0sL+3JugrUgp46BSdx6PnG33BqQxf5ExKHg4sPMxWuHaGM0KK2KqdfI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eCKfMmIy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 529E7C433F1;
+	Thu, 28 Mar 2024 20:42:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711658235;
-	bh=o3TMU6J+1La8rLs2zcigdVj1AgPp6xVFZzSdMIJZ+dg=;
+	s=k20201202; t=1711658524;
+	bh=rM8n3YOTnCn+b3NkFrXziIWASxMBnWFMCbr5eWXy4fQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=M91K4TnGiHgnYf7fli2rIaNCPFSkgB6FKdjUAO5LIu+nLxhre2FmA5y0q+G5YL4e6
-	 MiTAjHYTr1oxozM2m47RyyTZJ/LT5eG4uPj2MAyGRBedG6rcsR5Tax0POrIqgAoMyU
-	 LKosAXuzI2Uy4snnO31W2VpbtqGm1tCav8w8LVxJNoRhfxmAtOS1HfewJiBVSdspFY
-	 EC3ZzPqtPr9KcLWvpsmo5rzrdvQonI72X/tvdCOqtD8Sh92lPUEqy+SU2V6MiK52AD
-	 +eMkSrIuaBew8BqY8qbXt9b8o7KxmCl99ESbA45vXyLDpOJr9RApK8z2FR4V2aPbqu
-	 GVrhTPC293Q1A==
-Date: Thu, 28 Mar 2024 15:37:13 -0500
+	b=eCKfMmIyqhMxnN9hRe0xLCa/LyjUmNY2MvusUKazaWaaOAtQttZ2yJQppDwWNeWSY
+	 8/9Ls0Cj8Vifsj0NXSNo3xnwcOutw9Hagr8f/fc5U7nulSiBYAIe/NQBWgbyaA95oW
+	 HKVIQYpFXkB2emfilRKSPMLl5o+83DX8oI+Mtc1L1gglh25Q54dQDWr1tn6wB9YOoc
+	 6EKhNwVL49ZanIg67nYxH/hPGKlRctXBAr81YlKk03TsOQyzSNJvRFTRCBkP5zsxox
+	 w0WwuqDPSrXGdp1SYh1Oe4wYrRl7IsrX/R/x8N0IjC5ewjbCh7WHMAIJ8d5W8PB9uY
+	 bhjFQ8EACrNwA==
+Date: Thu, 28 Mar 2024 15:42:02 -0500
 From: Rob Herring <robh@kernel.org>
-To: Simon Glass <sjg@chromium.org>
-Cc: Michael Walle <mwalle@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Vignesh Raghavendra <vigneshr@ti.com>, devicetree@vger.kernel.org,
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Tan Chun Hau <chunhau.tan@starfivetech.com>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Emil Renner Berthing <kernel@esmil.dk>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	U-Boot Mailing List <u-boot@lists.denx.de>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-	linux-mtd@lists.infradead.org,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>, linux-kernel@vger.kernel.org,
-	Tom Rini <trini@konsulko.com>
-Subject: Re: [PATCH v10 2/2] dt-bindings: mtd: fixed-partition: Add binman
- compatibles
-Message-ID: <171165823084.305347.5584935515178377776.robh@kernel.org>
-References: <20240326200645.1182803-1-sjg@chromium.org>
- <20240326200645.1182803-2-sjg@chromium.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Simon Horman <horms@kernel.org>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Andrew Halaney <ahalaney@redhat.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	Russell King <rmk+kernel@armlinux.org.uk>,
+	Ley Foon Tan <leyfoon.tan@starfivetech.com>,
+	Jee Heng Sia <jeeheng.sia@starfivetech.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v5 1/1] dt-bindings: net: starfive,jh7110-dwmac: Add
+ StarFive JH8100 support
+Message-ID: <20240328204202.GA308290-robh@kernel.org>
+References: <20240327015750.226349-1-chunhau.tan@starfivetech.com>
+ <20240327015750.226349-2-chunhau.tan@starfivetech.com>
+ <31ac366d-bfa6-4c99-a04d-ab9fb029da7e@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,60 +79,97 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240326200645.1182803-2-sjg@chromium.org>
+In-Reply-To: <31ac366d-bfa6-4c99-a04d-ab9fb029da7e@linaro.org>
 
+On Wed, Mar 27, 2024 at 08:54:30AM +0100, Krzysztof Kozlowski wrote:
+> On 27/03/2024 02:57, Tan Chun Hau wrote:
+> > Add StarFive JH8100 dwmac support.
+> > The JH8100 dwmac shares the same driver code as the JH7110 dwmac
+> > and has only one reset signal.
+> > 
+> > Please refer to below:
+> > 
+> >   JH8100: reset-names = "stmmaceth";
+> >   JH7110: reset-names = "stmmaceth", "ahb";
+> >   JH7100: reset-names = "ahb";
+> > 
+> > Example usage of JH8100 in the device tree:
+> > 
+> > gmac0: ethernet@16030000 {
+> >         compatible = "starfive,jh8100-dwmac",
+> >                      "starfive,jh7110-dwmac",
+> >                      "snps,dwmac-5.20";
+> >         ...
+> > };
+> > 
+> > Signed-off-by: Tan Chun Hau <chunhau.tan@starfivetech.com>
+> > ---
+> >  .../devicetree/bindings/net/snps,dwmac.yaml   |  1 +
+> >  .../bindings/net/starfive,jh7110-dwmac.yaml   | 29 +++++++++++++++----
+> >  2 files changed, 25 insertions(+), 5 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > index 6b0341a8e0ea..a6d596b7dcf4 100644
+> > --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > @@ -97,6 +97,7 @@ properties:
+> >          - snps,dwxgmac-2.10
+> >          - starfive,jh7100-dwmac
+> >          - starfive,jh7110-dwmac
+> > +        - starfive,jh8100-dwmac
+> 
+> I think that's not needed. You have there already your fallback.
+> 
+> >  
+> >    reg:
+> >      minItems: 1
+> > diff --git a/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
+> > index 0d1962980f57..5805a58c55d1 100644
+> > --- a/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
+> > +++ b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
+> > @@ -18,6 +18,7 @@ select:
+> >          enum:
+> >            - starfive,jh7100-dwmac
+> >            - starfive,jh7110-dwmac
+> > +          - starfive,jh8100-dwmac
+> 
+> Same here, even more obvious.
 
-On Tue, 26 Mar 2024 14:06:45 -0600, Simon Glass wrote:
-> Add two compatibles for binman entries, as a starting point for the
-> schema.
+Agreed.
+
 > 
-> Note that, after discussion on v2, we decided to keep the existing
-> meaning of label so as not to require changes to existing userspace
-> software when moving to use binman nodes to specify the firmware
-> layout.
+> >    required:
+> >      - compatible
+> >  
+> > @@ -30,6 +31,10 @@ properties:
+> >        - items:
+> >            - const: starfive,jh7110-dwmac
+> >            - const: snps,dwmac-5.20
+> > +      - items:
+> > +          - const: starfive,jh8100-dwmac
+> > +          - const: starfive,jh7110-dwmac
+> > +          - const: snps,dwmac-5.20
+> >  
+> >    reg:
+> >      maxItems: 1
+> > @@ -116,11 +121,25 @@ allOf:
+> >            minItems: 3
+> >            maxItems: 3
+> >  
+> > -        resets:
+> > -          minItems: 2
+> > -
+> > -        reset-names:
+> > -          minItems: 2
+> > +      if:
 > 
-> Note also that, after discussion on v6, we decided to use the same
-> 'fixed-partition' schema for the binman features, so this version
-> adds a new 'binman.yaml' file providing the new compatibles to the
-> existing partition.yaml binding.
-> 
-> Signed-off-by: Simon Glass <sjg@chromium.org>
-> ---
-> 
-> Changes in v10:
-> - Drop binman,entry since it is likely not necessary
-> - Put the description back
-> 
-> Changes in v8:
-> - Switch the patch ordering so the partition change comes first
-> 
-> Changes in v7:
-> - Adjust MAINTAINERS entry
-> - Put compatible strings into the 'fixed-partition' binding
-> 
-> Changes in v5:
-> - Add mention of why 'binman' is the vendor
-> - Drop  'select: false'
-> - Tidy up the compatible setings
-> - Use 'tfa-bl31' instead of 'atf-bl31'
-> 
-> Changes in v4:
-> - Correct selection of multiple compatible strings
-> 
-> Changes in v3:
-> - Drop fixed-partitions from the example
-> - Use compatible instead of label
-> 
-> Changes in v2:
-> - Use plain partition@xxx for the node name
-> 
->  .../bindings/mtd/partitions/binman.yaml       | 53 +++++++++++++++++++
->  .../bindings/mtd/partitions/partition.yaml    | 21 ++++++++
->  MAINTAINERS                                   |  5 ++
->  3 files changed, 79 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/binman.yaml
-> 
+> I would personally avoid nesting if within if. It gets unreadable.
+> Although Rob did not comment on this one, so I guess it is fine.
+
+I normally agree, but here I suggested it as it looked to be the 
+simplest option.
+
+With the 2 other comments addressed,
 
 Reviewed-by: Rob Herring <robh@kernel.org>
-
 
