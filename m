@@ -1,131 +1,160 @@
-Return-Path: <devicetree+bounces-54156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54157-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88F0A88FBED
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 10:45:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44BB288FBF2
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 10:46:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 279761F2B940
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 09:45:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AEE721F2C6C9
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 09:46:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 971E656776;
-	Thu, 28 Mar 2024 09:45:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90E0E64CE9;
+	Thu, 28 Mar 2024 09:45:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="3xQDVLEf"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="LfyYda0F";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="U8nfyePA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from wflow8-smtp.messagingengine.com (wflow8-smtp.messagingengine.com [64.147.123.143])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 586272C857;
-	Thu, 28 Mar 2024 09:45:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D0F22C857;
+	Thu, 28 Mar 2024 09:45:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.147.123.143
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711619135; cv=none; b=jsm27rUecAlFECeD+KjAa+UmGNyfGpOPcBB57x3mZAciYDFW9UvkgYy//mt0zqlRBx41hccGoobTgqWpXT9mCGBJIcSTWBO/+Y8aR6jdgFrM+g2AfFgaYmuXL58L0L4xV6v3KntfwMU3Cdoz4fGAi+2LpHQ87Ri73JNdlVRUqNM=
+	t=1711619158; cv=none; b=pAb0sHmN48Y3ofc7pOuX7Xc+bqrdV0SrVaio2zvcCg3xpofWttcgiJF2+6R2fXVbyWG1Azkf5/daDVVx4PnXRt9XH+XBxzJJwlCj9AhPY/4jOJPXmBscSHeJyWm67UxaGjc+uQqI8IW/JfFlPlq/FQvC3eMqy4wutmyL+a++eDk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711619135; c=relaxed/simple;
-	bh=5tBKdNjgA112C6yUADCH8f/d5+zC1lfyCJEurrd4pX4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Ajr9dIgxr5UKplE+s9Qu/7wIaQt5DdsNzFY+Zdbas43lJgVA6REm9116dO7bZrN/ULgSVl38+x7W3kbICDmVTHtJWfqN0wDrf40kOwiuwtVZlU0QfOfPxwskXNF9kjnCHqwQPGw1wy0ER6+wAXsrfNleBI76vKvO76efYJF/GxU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=3xQDVLEf; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42S8gi6q019082;
-	Thu, 28 Mar 2024 10:45:08 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	selector1; bh=fBvwDKAkM/EeDqB/A8FS0TYlA1qn2SCYEb8fk+04rLI=; b=3x
-	QDVLEf3zvQOUUQrewTSp+3ruCIBkLXn2JR9ohG/+e0SLYSfHUKHXKWRgZieWwSqk
-	75iiX0gC5Dki3UY2ldzxlxv403K71mH3MzRYQD24LB4n26q9X/VLMyafvE79G80n
-	XwMFRqsHMs6qawlqmCpdL5Owd6YisWWGQpGHyeiRFkbXqk0SSfD1pLlWF8WcQL6V
-	6H/TUCn1xTGikl6anbSTFKtYuxmM89bMFVzzH+Eu3GG11liIf/VsmfY9COSr7Ipl
-	iVNewF9Kogco1rHLQQ1zR1/Q6WGfiCw+4lMnMDmwCcmF6XX7N7i9JR8ZbTRx0rsJ
-	5BkAkt+S8B7M8Hl9/z5A==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3x1ncm9d0u-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 28 Mar 2024 10:45:08 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 7560140044;
-	Thu, 28 Mar 2024 10:45:04 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 88813214D23;
-	Thu, 28 Mar 2024 10:44:41 +0100 (CET)
-Received: from [10.201.20.71] (10.201.20.71) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 28 Mar
- 2024 10:44:41 +0100
-Message-ID: <361a9874-2a41-4b8e-9910-67dff9daad14@foss.st.com>
-Date: Thu, 28 Mar 2024 10:44:40 +0100
+	s=arc-20240116; t=1711619158; c=relaxed/simple;
+	bh=vYw2zfrzxzlI6F0HNal+2PFuEQnRtbtOCvAcnyyolLk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DlBqPSSw4t/lxDYe5SDvvxqU6vkuXAZ55VLbKR0B+9vl73wUAC4lvyb+bifTfDd4yoHSa+61mgQaeOb0FUqUs2hUuJ8xgirPjBq3t8GcJqVt+BQ9TL1AwKkoJ6k2Orfu+lL7nE+Ccm8KANzA30vlxabr82+65Ac7/dEGbt2EIoE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=LfyYda0F; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=U8nfyePA; arc=none smtp.client-ip=64.147.123.143
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+	by mailflow.west.internal (Postfix) with ESMTP id 9CE692CC0329;
+	Thu, 28 Mar 2024 05:45:52 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute1.internal (MEProxy); Thu, 28 Mar 2024 05:45:53 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1711619152;
+	 x=1711622752; bh=CQCmVmeY0w/oD6haN/Pv1pQc8Cmiyv6cnQX0+bpjZ2U=; b=
+	LfyYda0F+XxodMlFr/SKl3AnmLNSkDuCvpN5PtRPLzzHdSRNjV4DpU6McccV0iuO
+	tD/QKkXaR+FEWH7NRjwRTZYlETNML/3up7lwTmiXeb81+f++IKm8VI6YBMcyO4nK
+	D3nCWAj4Mmy61nvdD+l5emB0YlqsubmxrnZlfJXtZbhna2VCMHkKBbmMFcrbKhAK
+	gX1JVdC0GI9doA1re7faCWjPGdCXIRQPRu6VXpBoxIMRuieys4Rp0pQGBzMTT4/7
+	SmgvFCt+e9vjTXxtgezxifwG7inuv5NJEVL8nsubuiljcL+vcyyVixsG5AwYb4GL
+	L/Ec1bfb/sDTA5xlPB+j8Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1711619152; x=
+	1711622752; bh=CQCmVmeY0w/oD6haN/Pv1pQc8Cmiyv6cnQX0+bpjZ2U=; b=U
+	8nfyePA2GtFXmD3TDCbhiJ4bx1e54/3LOyNvba3jsu/9gjfJ0kZ1ojJZpsoyb/bV
+	2d3IldcG6ofGK7LPxHckXVuFYmtKINfk5M3qxh89xwaRxKLRKuC6QRkpKbW8AU/2
+	KZB7h+e0BwGLmHaOo7KxjqrJTPF8LLA/x0heka63NBOFlPJB/HI+C7u3irLxCTO1
+	EcMDm8nTzgYAHapInW53y4ojwhlW3koj6w4rE7IVYxQr/1+7trUdN/PYf7dOmhHO
+	e8H+bgyKqJlfYRMc0LtjPy2XgNP9IVbiqtPIAIxh/7gVIIVckCAIToDwXAl8Kwbq
+	C5wDFjQPK23GoPPCfN+sw==
+X-ME-Sender: <xms:TjwFZhKkDa4AQsQqX84frHAHAK4lLAaGQgiqQyS7JwHwKTWI9yEX2g>
+    <xme:TjwFZtIjxYHJwY3HyyF0O8yxhBK-ZOgMz4lfbkUg2FXTxqCHEIIw6-hsB3m8NSTAt
+    Vbeez3AeeCC02FF_uc>
+X-ME-Received: <xmr:TjwFZptEF3hzSwXT7QxjpBcKaqBnOB7JTNG4VRRuf1LMEGKpAJtCJzQuHLI4Eul2AA0AQ7hMlRKRTNmlWlCBQFY_6fMpH7o>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrudduledgtdehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvfevuffkfhggtggugfgjsehtkeertddttdejnecuhfhrohhmpefpihhk
+    lhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhouggvrhhluhhnugdorhgvnh
+    gvshgrshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrghtthgvrhhnpeefhfellefh
+    ffejgfefudfggeejlefhveehieekhfeulefgtdefueehffdtvdelieenucevlhhushhtvg
+    hrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehnihhklhgrshdrshhouggv
+    rhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgv
+X-ME-Proxy: <xmx:TjwFZibkUvcJy8aORoNspduOcN0X1nzmZ47SLRIgU_PyaSz0GjhPig>
+    <xmx:TjwFZoYMkUq2W5h6PvJFVzVqG7yJbQ2fMTQ9cju5bLGMVEvIOy4PGA>
+    <xmx:TjwFZmBVcVFbHQUA6gfT4i8_izpw401SDpCGul7b5CrMYepaTXzgKQ>
+    <xmx:TjwFZmYrE-czMreDEPxvOD0qX83_5Xid1W6Mo9D-d_eGdxDS5EGR9A>
+    <xmx:TzwFZlJWBtkZB_vPqwQmD3vq9aYZN82A4_hfar72yWKS-rWIk6M20wZDMqSWK0d9>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 28 Mar 2024 05:45:49 -0400 (EDT)
+Date: Thu, 28 Mar 2024 10:45:46 +0100
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Sergey Shtylyov <s.shtylyov@omp.ru>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: linux-renesas-soc@vger.kernel.org
+Subject: Re: [net-next,v4 0/2] ravb: Support describing the MDIO bus
+Message-ID: <20240328094546.GI1108818@ragnatech.se>
+References: <20240325153451.2366083-1-niklas.soderlund+renesas@ragnatech.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] ARM: dts: stm32: Update button on stm32mp135f-dk
-Content-Language: en-US
-To: <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        <alexandre.torgue@foss.st.com>
-CC: <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20240328080105.3910099-1-patrice.chotard@foss.st.com>
-From: Patrice CHOTARD <patrice.chotard@foss.st.com>
-In-Reply-To: <20240328080105.3910099-1-patrice.chotard@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-28_09,2024-03-27_01,2023-05-22_02
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240325153451.2366083-1-niklas.soderlund+renesas@ragnatech.se>
 
-This patch must be dropped, i made a mistake.
+Hi netdev,
 
-Sorry
-Patrice
+This series was marked as Deferred in patchwork. I just wonder why that 
+is? Patch 1/2 touches bindings so it could go thru the Renesas tree but 
+patch 2/2 touches the driver and depends on 1/2. Should not this whole 
+series go thru net-next?
 
-On 3/28/24 09:01, patrice.chotard@foss.st.com wrote:
-> From: Patrice Chotard <patrice.chotard@foss.st.com>
+I fear it might have been flagged as Deferred as v3 was posted on the 
+same day net-next closed and was therefore closed as Deferred.
+
+On 2024-03-25 16:34:49 +0100, Niklas Söderlund wrote:
+> Hello,
 > 
-> On schematics, 2 buttons are available on stm32mp135-dk board:
->   _ button "user1" connected to GPIOA14
->   _ button "user2" connected to GPIOA13
+> This series adds support to the binding and driver of the Renesas
+> Ethernet AVB to described the MDIO bus. Currently the driver uses the OF
+> node of the device itself when registering the MDIO bus. This forces any
+> MDIO bus properties the MDIO core should react on to be set on the
+> device OF node. This is confusing and non of the MDIO bus properties are
+> described in the Ethernet AVB bindings.
 > 
-> Reflect that on device tree.
+> Patch 1/2 extends the bindings with an optional mdio child-node to the
+> device that can be used to contain the MDIO bus settings. While patch
+> 2/2 changes the driver to use this node (if present) when registering
+> the MDIO bus.
 > 
-> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
-> ---
->  arch/arm/boot/dts/st/stm32mp135f-dk.dts | 10 ++++++++--
->  1 file changed, 8 insertions(+), 2 deletions(-)
+> If the new optional mdio child-node is not present the driver fallback
+> to the old behavior and uses the device OF node like before. This change
+> is fully backward compatible with existing usage of the bindings.
 > 
-> diff --git a/arch/arm/boot/dts/st/stm32mp135f-dk.dts b/arch/arm/boot/dts/st/stm32mp135f-dk.dts
-> index 52171214a308..f7e03bc7eccb 100644
-> --- a/arch/arm/boot/dts/st/stm32mp135f-dk.dts
-> +++ b/arch/arm/boot/dts/st/stm32mp135f-dk.dts
-> @@ -48,9 +48,15 @@ optee@dd000000 {
->  	gpio-keys {
->  		compatible = "gpio-keys";
->  
-> -		button-user {
-> -			label = "User-PA13";
-> +		button-user-1 {
-> +			label = "User-1";
->  			linux,code = <BTN_1>;
-> +			gpios = <&gpioa 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-> +		};
-> +
-> +		button-user-2 {
-> +			label = "User-2";
-> +			linux,code = <BTN_2>;
->  			gpios = <&gpioa 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
->  		};
->  	};
+> For changelog see individual patches.
+> 
+> Niklas Söderlund (2):
+>   dt-bindings: net: renesas,etheravb: Add optional MDIO bus node
+>   ravb: Add support for an optional MDIO mode
+> 
+>  .../devicetree/bindings/net/renesas,etheravb.yaml    | 12 ++++++++++--
+>  drivers/net/ethernet/renesas/ravb_main.c             |  9 ++++++++-
+>  2 files changed, 18 insertions(+), 3 deletions(-)
+> 
+> -- 
+> 2.44.0
+> 
+
+-- 
+Kind Regards,
+Niklas Söderlund
 
