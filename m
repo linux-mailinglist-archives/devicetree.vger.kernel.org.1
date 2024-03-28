@@ -1,158 +1,344 @@
-Return-Path: <devicetree+bounces-54279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54280-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ED50890320
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 16:34:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0FC589032A
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 16:36:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EFEB2B22444
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 15:34:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 59E801F2320D
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 15:36:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0217B12F38D;
-	Thu, 28 Mar 2024 15:34:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 907B912F598;
+	Thu, 28 Mar 2024 15:35:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FwkfVc8b"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ObwMSR1Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 458EA32C92
-	for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 15:34:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6731032C92;
+	Thu, 28 Mar 2024 15:35:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711640082; cv=none; b=BRkk8Cx/dCvBtFM03oSU4X1u8aN3qYSoBufGJyKiI2lYj1naDksHx/PqXwmuNx78dytvVGNRBLNMH/Lmxup/lh1FDZ+WkGi+biNU6SEEmMpNec/hvWYkTMeM8YxAC/o5karYgiV5dbiF6aE4FwIDkuQp9EpIg1ekG0NkaU+2Q38=
+	t=1711640158; cv=none; b=q1fyLI8RQqYOL25lbqjcl0nsEB/l24yHxHDoRLp5yXa2ChTE1nBAHAjg1NeLSkmxyQq34HHrgfBGcKG4yib62ntQwj+BdI0VOU66nB66kVBp8LOb05Qe5iMvlIPVaZsySuipiEsUhtUzbwuAlpF8EGbX4TstzHRpmbSDHPZ/CQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711640082; c=relaxed/simple;
-	bh=7eKzfYn8Y0OHXo6ZzMF+F2RG+B/o3HUZemwxG799TYc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K8uXH3Qo7fAMoBWsI6lfwZC20xJX9H1ynubwzMOtjLztdgQVv9TZCFF2Hlp5c9J2vfOeSRTQI9sGRtvWvTKs+nVKzoM52yUZdzHspo4KfedodyXjeXtR7NgwIP+uAzeJ/kD2O83f7rXS/te4zPww+9K3H6vyYWAdHJZAjBxy+wM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FwkfVc8b; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-56bb22ff7baso1258571a12.3
-        for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 08:34:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711640080; x=1712244880; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=RfWKKt2eV/02zOeFoWUCxZZDJeMFYtZCYwbKheGjbEI=;
-        b=FwkfVc8bpRppvn7MxJqTou+TrZgGfdpDdsAsJa7zeA3FQuab0tVL6tKPR3864oreEF
-         XTsxNeq5bu93hRDtkKYOykadtnn1FzjJJUw/Z1RAcOWxP6WCBUwZpQTOhIcrYsaobcuK
-         9SC28+wl55GqDkBRcW3TnwlI6cqSOMu8pEdHukYf6EeqRj3X9yztsr5KGMgGKSGd0yYM
-         H4mcUBDUUhpuiuL7QD7O92A3rJUYjnrNl7QXAczTlaD18QsmU+M0TO1xoLocmdrQhu42
-         baC87rDHV5aVfD2bngu7m6r//9u6Efxqj9r7SgXm/SjToOq9A+GjSYSxRExAUMjTLwrW
-         enwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711640080; x=1712244880;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RfWKKt2eV/02zOeFoWUCxZZDJeMFYtZCYwbKheGjbEI=;
-        b=ZoFRRw+2+v4WnrD5cYEg6DOCzKJF4VvEz2VBp+kmXYNSaxvjh7eABskvCcAyJh5WUt
-         9IZ0B4Cf6i6PkOJTQGdJHaLcrCOIaZuRJnQfSWpLCRZvsw9o7NxNCbkD6My6TkWkeh6v
-         GU4ggGwWexIDkTMK5+gnqxCYtVhDCcSDled8pHivpVLERlg4sNRscXZxsl6u7yCVft0b
-         fn4NtiBF63nRg2WSi9NMiXfrA6KWDELLO+Mc1XIvDwUgHwHHJWA8cNfLgZ2Q8pfqPeV3
-         kMwsvEUVvF2gQGz7kQdE1YoYU2IXlsZvOZcwrO5Q30EUqdixDIjM1tTIm3dyycOcHlcz
-         C3Qg==
-X-Forwarded-Encrypted: i=1; AJvYcCWcPRNsew2OK6mRisl306O/B5D3G2G8/7dg8W/dnJ0hDMTYAmjZGeBVgZTjM4PysLFN++VhBVqXNlSfCXPgMbijt0QN28KjpZ4NRw==
-X-Gm-Message-State: AOJu0YwhC0WoH03oxa5vIiDJ3YcTYd9pC+FeeXWXJijcwsKVgoRyP4AT
-	JCQDpAU37Et5JOUz3wEmaJlEtck8MfLIOHY9xGODYcYkbcqUi63X8pSo+T8UTIw=
-X-Google-Smtp-Source: AGHT+IG8F+QcLObQ++fc7pdWTkqZt13SbAvns5rQJONkxwaI3w+8TYNvHiwOOpZ+BlXvv8Kn229T2w==
-X-Received: by 2002:a50:8ac5:0:b0:56b:c32b:2dd1 with SMTP id k5-20020a508ac5000000b0056bc32b2dd1mr2331787edk.33.1711640079753;
-        Thu, 28 Mar 2024 08:34:39 -0700 (PDT)
-Received: from [192.168.92.47] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
-        by smtp.gmail.com with ESMTPSA id en9-20020a056402528900b005697d77570dsm940422edb.66.2024.03.28.08.34.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Mar 2024 08:34:38 -0700 (PDT)
-Message-ID: <6b77633e-c501-4488-9b10-1881cfbf6f2c@linaro.org>
-Date: Thu, 28 Mar 2024 16:34:36 +0100
+	s=arc-20240116; t=1711640158; c=relaxed/simple;
+	bh=sXB+7F4XXRpdbPTK7HeGR8q7l0GJ15LLgUihn+lpo84=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=LpEU8yCYI3zflNz5xG86GJ9FsZFyObXQ4bZCyAsgsoM+sS+n7KPu5Yk4AxnHr71ud9MSKYDMX4DR5oELRXCLN23cu+LTgMb1ZzFFZCA3A0zjqbcg0BnwFdck3c3ISYq5/Zfw+VgklLHaNaSSJdB9LVCxt7Jza+NLWbKv8jz9Xbw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ObwMSR1Y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4920C43399;
+	Thu, 28 Mar 2024 15:35:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711640157;
+	bh=sXB+7F4XXRpdbPTK7HeGR8q7l0GJ15LLgUihn+lpo84=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=ObwMSR1YjVvpEYqNsGoGnwg/yZUC6AsbdUlaOFLQJMQlfJ1rGOvxWBQZxV1jez3Vb
+	 bGda4l+zxdXjvrhIlOR8AAAqEyvbn536Sv7jt9D26FIOiDaGvJ5Mcj3xNcJba4W5Li
+	 lpVJRfUsgUPL04lEexYZ9oNxQfAeA8qx34+zHutzUM+3ivne0wvoZccxQgG5RNe4fn
+	 1EbLOYqDrge1oObQPMaA5qDK6qzdm7ZVscuad8cwR6aXnzIvcGzqxNplg4j0t2KsTw
+	 ZS8gmsSeqKzds7eYT1o9d/gPWCRWKuQqG9CIdioddlMdTgqam4eCK1MRcix4cBsbA7
+	 EcyzT0JugXN7g==
+Date: Thu, 28 Mar 2024 15:35:42 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>
+Cc: nuno.sa@analog.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, Dragos Bogdan <dragos.bogdan@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>
+Subject: Re: [PATCH 09/10] iio: dac: add support for AXI DAC IP core
+Message-ID: <20240328153542.7ddb897c@jic23-huawei>
+In-Reply-To: <20240328-iio-backend-axi-dac-v1-9-afc808b3fde3@analog.com>
+References: <20240328-iio-backend-axi-dac-v1-0-afc808b3fde3@analog.com>
+	<20240328-iio-backend-axi-dac-v1-9-afc808b3fde3@analog.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: arm: qcom: Add Samsung Galaxy Z Fold5
-To: Alexandru Serdeliuc <serdeliuk@yahoo.com>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240328-dt-bindings-arm-qcom-add-support-for-samsung-galaxy-zfold5-v1-1-cb612e3ade18@yahoo.com>
- <ca4ed5e3-32ea-451a-82ca-25fba07877dc@linaro.org>
- <33e23d1c-5b6f-4111-9631-0f8db1100d0c@yahoo.com>
- <8e09b779-a18f-46b4-926c-40e2a5782d85@linaro.org>
- <20620ab0-5024-439e-943b-ab12d35a60d8@yahoo.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20620ab0-5024-439e-943b-ab12d35a60d8@yahoo.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 28.03.2024 4:10 PM, Alexandru Serdeliuc wrote:
-> Hi Konrad,
-> 
-> Thanks, I unfortunately sent the patch 2 prior seeing your reply.
-> 
-> The warning was this one which says that i need to send the mods separately in two patches:
-> 
->>>>
-> 
->>>>WARNING: DT binding docs and includes should be a separate patch. See: Documentation/devicetree/bindings/submitting-patches.rst
+On Thu, 28 Mar 2024 14:22:33 +0100
+Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org> wrote:
 
-Hm, if they were two separate patches, this is a false-positive. Could you
-push the branch somewhere, so that we can report it to checkpatch maintainers?
-
+> From: Nuno Sa <nuno.sa@analog.com>
 > 
->>>>
+> Support the Analog Devices Generic AXI DAC IP core. The IP core is used
+> for interfacing with digital-to-analog (DAC) converters that require either
+> a high-speed serial interface (JESD204B/C) or a source synchronous parallel
+> interface (LVDS/CMOS). Typically (for such devices) SPI will be used for
+> configuration only, while this IP core handles the streaming of data into
+> memory via DMA.
 > 
-> 
-> I suppose that me sending two separate patches was not good, how i can fix this?
+> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
 
-Please pick them both onto a single branch and send together as a series,
-with a revision bump (v2) and mention that you made no changes other than
-combining the two in the cover letter.
 
-Konrad
+A few minor things inline, but mostly seems fine to me.
+
+Jonathan
+
+
+...
+
+> diff --git a/drivers/iio/dac/adi-axi-dac.c b/drivers/iio/dac/adi-axi-dac.c
+> new file mode 100644
+> index 000000000000..0022ecb4e4bb
+> --- /dev/null
+> +++ b/drivers/iio/dac/adi-axi-dac.c
+
+
+> +
+> +enum {
+> +	AXI_DAC_FREQ_TONE_1,
+> +	AXI_DAC_FREQ_TONE_2,
+> +	AXI_DAC_SCALE_TONE_1,
+> +	AXI_DAC_SCALE_TONE_2,
+> +	AXI_DAC_PHASE_TONE_1,
+> +	AXI_DAC_PHASE_TONE_2,
+> +};
+> +
+> +static int __axi_dac_frequency_get(struct axi_dac_state *st, unsigned int chan,
+> +				   unsigned int tone, unsigned int *freq)
+> +{
+> +	u32 reg, raw;
+> +	int ret;
+> +
+> +	if (!st->dac_clk) {
+> +		dev_err(st->dev, "Sampling rate is 0...\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (tone == AXI_DAC_FREQ_TONE_1)
+
+Given this is matching 2 out of enum with other values, it would be more
+locally readable as a switch statement with an error returning default.
+Then we wouldn't need to look at the caller.
+
+Or at the caller convert from the enum to 0,1 for all these functions.
+
+
+
+> +		reg = AXI_DAC_REG_CHAN_CNTRL_2(chan);
+> +	else
+> +		reg = AXI_DAC_REG_CHAN_CNTRL_4(chan);
+> +
+> +	ret = regmap_read(st->regmap, reg, &raw);
+> +	if (ret)
+> +		return ret;
+> +
+> +	raw = FIELD_GET(AXI_DAC_FREQUENCY, raw);
+> +	*freq = DIV_ROUND_CLOSEST_ULL(raw * st->dac_clk, BIT(16));
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static int axi_dac_scale_set(struct axi_dac_state *st,
+> +			     const struct iio_chan_spec *chan,
+> +			     const char *buf, size_t len, unsigned int tone)
+> +{
+> +	int integer, frac, scale;
+> +	u32 raw = 0, reg;
+> +	int ret;
+> +
+> +	ret = iio_str_to_fixpoint(buf, 100000, &integer, &frac);
+> +	if (ret)
+> +		return ret;
+> +
+> +	scale = integer * MEGA + frac;
+> +	if (scale <= -2 * (int)MEGA || scale >= 2 * (int)MEGA)
+> +		return -EINVAL;
+> +
+> +	/*  format is 1.1.14 (sign, integer and fractional bits) */
+> +	if (scale < 0) {
+> +		raw = FIELD_PREP(AXI_DAC_SCALE_SIGN, 1);
+> +		scale *= -1;
+> +	}
+> +
+> +	raw |= div_u64((u64)scale * AXI_DAC_SCALE_INT, MEGA);
+> +
+> +	if (tone == AXI_DAC_SCALE_TONE_1)
+> +		reg = AXI_DAC_REG_CHAN_CNTRL_1(chan->channel);
+> +	else
+> +		reg = AXI_DAC_REG_CHAN_CNTRL_3(chan->channel);
+> +
+> +	guard(mutex)(&st->lock);
+> +	ret = regmap_write(st->regmap, reg, raw);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* synchronize channels */
+> +	ret = regmap_set_bits(st->regmap, AXI_DAC_REG_CNTRL_1, AXI_DAC_SYNC);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return len;
+> +}
+> +
+> +static int axi_dac_phase_set(struct axi_dac_state *st,
+> +			     const struct iio_chan_spec *chan,
+> +			     const char *buf, size_t len, unsigned int tone)
+> +{
+> +	int integer, frac, phase;
+> +	u32 raw, reg;
+> +	int ret;
+> +
+> +	ret = iio_str_to_fixpoint(buf, 100000, &integer, &frac);
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	phase = integer * MEGA + frac;
+> +	if (phase < 0 || phase > AXI_DAC_2_PI_MEGA)
+> +		return -EINVAL;
+> +
+> +	raw = DIV_ROUND_CLOSEST_ULL((u64)phase * U16_MAX, AXI_DAC_2_PI_MEGA);
+> +
+> +	if (tone == AXI_DAC_PHASE_TONE_1)
+Preference for a switch so it's clear there are only 2 choices.
+> +		reg = AXI_DAC_REG_CHAN_CNTRL_2(chan->channel);
+> +	else
+> +		reg = AXI_DAC_REG_CHAN_CNTRL_4(chan->channel);
+> +
+> +	guard(mutex)(&st->lock);
+> +	ret = regmap_update_bits(st->regmap, reg, AXI_DAC_PHASE,
+> +				 FIELD_PREP(AXI_DAC_PHASE, raw));
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* synchronize channels */
+> +	ret = regmap_set_bits(st->regmap, AXI_DAC_REG_CNTRL_1, AXI_DAC_SYNC);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return len;
+> +}
+> +
+> +static int axi_dac_ext_info_set(struct iio_backend *back, uintptr_t private,
+> +				const struct iio_chan_spec *chan,
+> +				const char *buf, size_t len)
+> +{
+> +	struct axi_dac_state *st = iio_backend_get_priv(back);
+> +
+> +	switch (private) {
+> +	case AXI_DAC_FREQ_TONE_1:
+> +	case AXI_DAC_FREQ_TONE_2:
+
+Same as the get path - convert to which tone here so that the enum becomes
+a tone index for the functions called and the mapping to that single enum
+is kept clear of the lower level code.
+
+> +		return axi_dac_frequency_set(st, chan, buf, len, private);
+> +	case AXI_DAC_SCALE_TONE_1:
+> +	case AXI_DAC_SCALE_TONE_2:
+> +		return axi_dac_scale_set(st, chan, buf, len, private);
+> +	case AXI_DAC_PHASE_TONE_1:
+> +	case AXI_DAC_PHASE_TONE_2:
+> +		return axi_dac_phase_set(st, chan, buf, len, private);
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+> +
+> +static int axi_dac_ext_info_get(struct iio_backend *back, uintptr_t private,
+> +				const struct iio_chan_spec *chan, char *buf)
+> +{
+> +	struct axi_dac_state *st = iio_backend_get_priv(back);
+> +
+> +	switch (private) {
+> +	case AXI_DAC_FREQ_TONE_1:
+> +	case AXI_DAC_FREQ_TONE_2:
+> +		return axi_dac_frequency_get(st, chan, buf, private);
+I'd break out private as an unsigned int here and then - AXI_DAC_FREQ_TONE_1
+so that it is just which tone for all the calls made from here.
+Similar for the following ones.
+
+> +	case AXI_DAC_SCALE_TONE_1:
+> +	case AXI_DAC_SCALE_TONE_2:
+> +		return axi_dac_scale_get(st, chan, buf, private);
+> +	case AXI_DAC_PHASE_TONE_1:
+> +	case AXI_DAC_PHASE_TONE_2:
+> +		return axi_dac_phase_get(st, chan, buf, private);
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+> +
+> +static const struct iio_chan_spec_ext_info axi_dac_ext_info[] = {
+> +	IIO_BACKEND_EX_INFO("frequency0", IIO_SEPARATE, AXI_DAC_FREQ_TONE_1),
+> +	IIO_BACKEND_EX_INFO("frequency1", IIO_SEPARATE, AXI_DAC_FREQ_TONE_2),
+> +	IIO_BACKEND_EX_INFO("scale0", IIO_SEPARATE, AXI_DAC_SCALE_TONE_1),
+> +	IIO_BACKEND_EX_INFO("scale1", IIO_SEPARATE, AXI_DAC_SCALE_TONE_2),
+> +	IIO_BACKEND_EX_INFO("phase0", IIO_SEPARATE, AXI_DAC_PHASE_TONE_1),
+> +	IIO_BACKEND_EX_INFO("phase1", IIO_SEPARATE, AXI_DAC_PHASE_TONE_2),
+> +	{}
+> +};
+> +
+> +static int axi_dac_extend_chan(struct iio_backend *back,
+> +			       struct iio_chan_spec *chan)
+> +{
+> +	struct axi_dac_state *st = iio_backend_get_priv(back);
+> +
+> +	if (chan->type != IIO_ALTVOLTAGE)
+> +		return -EINVAL;
+> +	if (st->reg_config & AXI_DDS_DISABLE)
+> +		/* nothing to extend */
+> +		return 0;
+> +
+> +	chan->ext_info = axi_dac_ext_info;
+> +
+> +	return 0;
+> +}
+
+> +static int axi_dac_set_sample_rate(struct iio_backend *back, unsigned int chan,
+> +				   u64 sample_rate)
+> +{
+> +	struct axi_dac_state *st = iio_backend_get_priv(back);
+> +	unsigned int freq;
+> +	int ret, tone;
+> +
+> +	if (!sample_rate)
+> +		return -EINVAL;
+> +	if (st->reg_config & AXI_DDS_DISABLE)
+> +		/* nothing to care if DDS is disabled */
+Rephrase this.  Is the point that the sample rate has no meaning without DDS or
+that it has meaning but nothing to do here?
+> +		return 0;
+> +
+> +	guard(mutex)(&st->lock);
+> +	/*
+> +	 * If dac_clk is 0 then this must be the first time we're being notified
+> +	 * about the interface sample rate. Hence, just update our internal
+> +	 * variable and bail... If it's not 0, then we get the current DDS
+> +	 * frequency (for the old rate) and update the registers for the new
+> +	 * sample rate.
+> +	 */
+> +	if (!st->dac_clk) {
+> +		st->dac_clk = sample_rate;
+> +		return 0;
+> +	}
+> +
+> +	for (tone = 0; tone <= AXI_DAC_FREQ_TONE_2; tone++) {
+> +		ret = __axi_dac_frequency_get(st, chan, tone, &freq);
+> +		if (ret)
+> +			return ret;
+> +
+> +		ret = __axi_dac_frequency_set(st, chan, sample_rate, tone, freq);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	st->dac_clk = sample_rate;
+> +
+> +	return 0;
+> +}
+
 
