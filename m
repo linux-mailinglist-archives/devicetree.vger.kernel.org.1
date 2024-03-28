@@ -1,129 +1,131 @@
-Return-Path: <devicetree+bounces-54074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54075-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5D9C88F865
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 08:08:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BD4988F873
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 08:18:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3FCBF1F24B59
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 07:08:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 15932294447
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 07:18:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00C683FB91;
-	Thu, 28 Mar 2024 07:08:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 501BF50A80;
+	Thu, 28 Mar 2024 07:17:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=folker-schwesinger.de header.i=@folker-schwesinger.de header.b="l0gc7oAI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VYVaxlFb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www522.your-server.de (www522.your-server.de [195.201.215.122])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB5F01E89C;
-	Thu, 28 Mar 2024 07:08:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.201.215.122
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 978662C856
+	for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 07:17:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711609717; cv=none; b=DB4e+gqEx4eVnBwi+bfKG49KFmkHBk1DNK40d+uj0YFglwxuZ+xKFWytt7MZuIGc77+HGTm3Jd73emnWoaYjY1BRFkXsD05xqs0EOIyv2sXJOzoh/c8DMldYJEfsidVputMwcSTnH4DaBWRHNuSFoRr4/bTST7wzrzwI5zy5QI0=
+	t=1711610279; cv=none; b=h7Ac4wIJKDX+2l2K1IICm6Sf0qZDdNmXURh6hukgWgWi/2Ck5E3oVXOvDT/W9FAxiu4fZnsDzFBFPEq1OcXJwzkGbTrUvm80fyysxzpU6wbNLyJyv5+egPNXoxrlkoB34Bc8hwxuA91DLAe0L5gTlVnYjEruuFg3loE4p/OXXzo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711609717; c=relaxed/simple;
-	bh=NLxYzsGbGFyjFImux9Rc3XPHCem2ccxWyYmv24Ct/2E=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
-	 References:In-Reply-To; b=Xq5UAkiTETwPlZ+1wjVl4+svEclINjcTd+fS89Rh0a49Q9LLJpuA7e5lX/3QwhAN3RK6VC4f1TusSnfj/jNlgOHpkSX9rdW5xZReqbjGLIk0rOtvPkbRf6oafzCA9vFys4EaHBon3Xz4TbMnJKWJ7iYKphL9zhYgU9q2KIfC3u4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=folker-schwesinger.de; spf=pass smtp.mailfrom=folker-schwesinger.de; dkim=pass (2048-bit key) header.d=folker-schwesinger.de header.i=@folker-schwesinger.de header.b=l0gc7oAI; arc=none smtp.client-ip=195.201.215.122
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=folker-schwesinger.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=folker-schwesinger.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=folker-schwesinger.de; s=default2212; h=In-Reply-To:References:To:From:Cc:
-	Subject:Message-Id:Date:Content-Type:Mime-Version:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=LE+PCSOHRzOHjXaYAf54q5i1UdCGrlB6HB15OyYUkrg=; b=l0gc7oAIJqWk9rBkCtBf3gqvab
-	Hv/NY3RfPnvnJJpYc+dUCASxCy6FhVwV5Z7vKtv0CJAknRcRFCpMJQCC8JmBxNDs0imyo8DbTUcQp
-	6sfyinvlWthNZ79UWnQk9BP886NW06lrqRfW6jb/lfC1QyjuSi/DOH9enK6mURBRkEKAMXSRr6sbI
-	pwruCcVT6QxuFA/wZqBuTU7LnoGVtiXFnfniU0YX0N9NjH/2jrWui05fWZ0PSH6E3EdQ1yylJMFca
-	N0LZGqE1d7d5NuxkovX+A6AuBMozX/dC35Ben1Re0gnT74c1TJQU4r21oeTyUmof/VzC79ckpVQLD
-	nCN7f2Pg==;
-Received: from sslproxy06.your-server.de ([78.46.172.3])
-	by www522.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <dev@folker-schwesinger.de>)
-	id 1rpjsD-000Nm2-5j; Thu, 28 Mar 2024 08:08:29 +0100
-Received: from [185.204.1.225] (helo=localhost)
-	by sslproxy06.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <dev@folker-schwesinger.de>)
-	id 1rpjs6-000Gud-4q; Thu, 28 Mar 2024 08:08:28 +0100
+	s=arc-20240116; t=1711610279; c=relaxed/simple;
+	bh=e3TsQW5CY+DiFJrBUgx3tqgW0jRYzt0+Fwa8TDWMo50=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ss88EFy73ZS+3vQs0NfhNrYYIuUB0nPHJh3FSurpH3Bc+hB06XYY+YXbvENSfS1ZK0EtEyK/JY0eir/yb7MLYGz4b+DUkT3P2fnzVov/YhnktgV5wbkwrB2ArDprXd/pqkP5qgS+ingXrEcnfbDgF9/Rm3bD9UI+UDMyt3V4MDs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VYVaxlFb; arc=none smtp.client-ip=209.85.219.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-dcc80d6006aso597156276.0
+        for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 00:17:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1711610276; x=1712215076; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=6ihW+00hHUH2XZI6tZKebUjXbUcr4a+DW8yDOiac6M4=;
+        b=VYVaxlFblLvWF1hleSptMIwbPIwY7o/rc4bHGu8RB/E713yfdlV4dEP2WMlxvvswj2
+         B/GjqKAyBahBqu9KJT+P9MxSLNuVn3Y4wpyaaVfvNSRVVtT7WGygk74Cy+oMYKTWtiTv
+         qD2OqZmF/WvmWY5cx/OnmO1dJVVCPK2OqdeN9sE6NWV1QXLTS2u8Sfh++IsS4UkQm89p
+         Qlqm4x3zoHgExB6AYG8+rin6r6MqTX2YPhWTZnFd69p670rqQENKZh4cYRPN0c4SVS6o
+         LB00KViCYDSY2a/dLXPnix2DDqDdLoobxtG+znPD/eUMEUEbUPim61xWi57MVTCs4ix3
+         2ojw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711610276; x=1712215076;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6ihW+00hHUH2XZI6tZKebUjXbUcr4a+DW8yDOiac6M4=;
+        b=Zk6646c/bcQU6qFsQfLyz1cSeXCaygQf97wPLKpbMLVJiI8he/gMTaEBfoXcjp5/pd
+         Y6jRrpne+HLQpGwJQRiYACI46O9qTdlXxL3mH8tMWxpyimoWRXDczeU6uqEO4v5xdwNl
+         u+0pGaHI8ozPrZ1bP9dhyQIPbMNrRPqkGkuS+Cjc26YO1pnku3GyiLrtMEbIEk0Ayifa
+         q3ZNcXkT5q2oOdZ+kyz+pL1Yg4MMmXt3d6VH4Y0ojoUv6VucM7f2GXo3p8/w5TwArMur
+         GUPTqaM4D/Hop29kmn3wo4njz9a3zVHpVx27mw3ltjzXqPrBXkE4m8jZ2TNjZyqQSRcQ
+         qVIw==
+X-Forwarded-Encrypted: i=1; AJvYcCWRgZMSMplQObo2JXeg8Ve3biZBpw4GS9Ajxb9vPvxi0K+S8mtO46fpQGs4gpvYopkS+1VpIx7azdnWvOf20KzNI5IVyhBa4/D/Hg==
+X-Gm-Message-State: AOJu0YzEmSFj2lZukhG+8vn4T3wbh1Rr79aVhuy81Bfw7lt1Zq463orK
+	bq5B9xsZGtFnyD8oOPQul0gZJXA5RdkEeLopZKDxkS9iwC6N1DXW4tDtuRv2reuWDLNdWGh9Nvb
+	ensZJEJ5Zp2MTE737jeMWbLdPOEsVQoHXLzzXTg==
+X-Google-Smtp-Source: AGHT+IEh7ltdvjmqokZX1mqaVmTxtOfiE1W0lZY/2IXhSyRr8yXSFfBb7Z2USzLFbbSRnmfNcqF7FjfSn9MSZjkmb5M=
+X-Received: by 2002:a25:3109:0:b0:dc6:d093:8622 with SMTP id
+ x9-20020a253109000000b00dc6d0938622mr1819201ybx.15.1711610276654; Thu, 28 Mar
+ 2024 00:17:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: multipart/signed;
- boundary=685e7272893909941bbddb0bb8d364638ad9500b3f9d32cffeb73f746d40;
- micalg=pgp-sha512; protocol="application/pgp-signature"
-Date: Thu, 28 Mar 2024 07:08:20 +0000
-Message-Id: <D05701GE187C.3VLOERXP8B3NR@folker-schwesinger.de>
-Subject: Re: [PATCH 1/2] arm64: dts: rockchip: Add enable-strobe-pulldown to
- emmc phy on ROCK Pi 4
-Cc: "Vinod Koul" <vkoul@kernel.org>, "Yogesh Hegde" <yogi.kernel@gmail.com>,
- "Heiko Stuebner" <heiko@sntech.de>, "Chris Ruehl"
- <chris.ruehl@gtsys.com.hk>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Dragan Simic" <dsimic@manjaro.org>, "Christopher
- Obbard" <chris.obbard@collabora.com>,
- <linux-arm-kernel@lists.infradead.org>,
- <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- <devicetree@vger.kernel.org>
-From: "Folker Schwesinger" <dev@folker-schwesinger.de>
-To: <wens@kernel.org>
-X-Mailer: aerc 0.17.0-82-g6ffc0ed5991b
-References: <20240327192641.14220-1-dev@folker-schwesinger.de>
- <20240327192641.14220-2-dev@folker-schwesinger.de>
- <CAGb2v64cF2fuW7vKq_=AhY+ciAp8t=fxT23AFJWB1qOv1xWuNw@mail.gmail.com>
-In-Reply-To: <CAGb2v64cF2fuW7vKq_=AhY+ciAp8t=fxT23AFJWB1qOv1xWuNw@mail.gmail.com>
-X-Authenticated-Sender: dev@folker-schwesinger.de
-X-Virus-Scanned: Clear (ClamAV 0.103.10/27227/Wed Mar 27 09:33:27 2024)
+MIME-Version: 1.0
+References: <20240326-rb3gen2-dp-connector-v2-0-a9f1bc32ecaf@quicinc.com>
+ <20240326-rb3gen2-dp-connector-v2-2-a9f1bc32ecaf@quicinc.com>
+ <CAA8EJpoe7A94608V1GdQ-oU9UXagHPm0mVBUe4Yxi=HF2pMd7w@mail.gmail.com> <zsjzysb7h3wi3cfpaozl46l4jnsd7e3lxttzm5vptozjx24cqo@vqmyhl65q7ay>
+In-Reply-To: <zsjzysb7h3wi3cfpaozl46l4jnsd7e3lxttzm5vptozjx24cqo@vqmyhl65q7ay>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 28 Mar 2024 09:17:45 +0200
+Message-ID: <CAA8EJppCuoOnaB03GsjXGYSs5Q9iQ2uXHWQqfkPA5jKzdHc8NQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/6] arm64: dts: qcom: qcs6490-rb3gen2: Add DP output
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Bjorn Andersson <quic_bjorande@quicinc.com>, cros-qcom-dts-watchers@chromium.org, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 
---685e7272893909941bbddb0bb8d364638ad9500b3f9d32cffeb73f746d40
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-
-On Thu Mar 28, 2024 at 6:39 AM CET, Chen-Yu Tsai wrote:
-> > @@ -648,7 +649,8 @@ &saradc {
-> >  &sdhci {
-> >         max-frequency = <150000000>;
-> >         bus-width = <8>;
-> > -       mmc-hs200-1_8v;
+On Thu, 28 Mar 2024 at 05:07, Bjorn Andersson <andersson@kernel.org> wrote:
 >
-> Shouldn't this be kept around? The node should list all supported modes,
-> not just the highest one. Same for the other patch.
+> On Thu, Mar 28, 2024 at 03:51:54AM +0200, Dmitry Baryshkov wrote:
+> > On Wed, 27 Mar 2024 at 04:04, Bjorn Andersson <quic_bjorande@quicinc.com> wrote:
+> > >
+> > > The RB3Gen2 board comes with a mini DP connector, describe this, enable
+> > > MDSS, DP controller and the PHY that drives this.
+> > >
+> > > Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> > > ---
+> > >  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 40 ++++++++++++++++++++++++++++
+> > >  1 file changed, 40 insertions(+)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> > > index 63ebe0774f1d..f90bf3518e98 100644
+> > > --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> > > +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> > > @@ -39,6 +39,20 @@ chosen {
+> > >                 stdout-path = "serial0:115200n8";
+> > >         };
+> > >
+> > > +       dp-connector {
+> > > +               compatible = "dp-connector";
+> > > +               label = "DP";
+> > > +               type = "mini";
+> > > +
+> > > +               hpd-gpios = <&tlmm 60 GPIO_ACTIVE_HIGH>;
+> >
+> > Is it the standard hpd gpio? If so, is there any reason for using it
+> > through dp-connector rather than as a native HPD signal?
+> >
 >
+> I added it because you asked for it. That said, I do like having it
+> clearly defined in the devicetree.
 
-This is not necessary, mmc-hs400-1_8v implicitly activates the
-corresponding HS200 capability, see drivers/mmc/core/host.c:
-
-if (device_property_read_bool(dev, "mmc-hs200-1_8v"))
-	host->caps2 |= MMC_CAP2_HS200_1_8V_SDR;
-/* ... */
-if (device_property_read_bool(dev, "mmc-hs400-1_8v"))
-	host->caps2 |= MMC_CAP2_HS400_1_8V | MMC_CAP2_HS200_1_8V_SDR;
-
-Kind regards
-
-Folker
+I asked for the dp-connector device, not for the HPD function change.
 
 
---685e7272893909941bbddb0bb8d364638ad9500b3f9d32cffeb73f746d40
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJAEABYKADgWIQQFbmi0A2l3pTuK+esCQHEyPYq7fQUCZgUXZhocZGV2QGZvbGtl
-ci1zY2h3ZXNpbmdlci5kZQAKCRACQHEyPYq7fRRlAPsHldRKc1S1b2zdwEFymTnt
-XA+bgHUm8ffUEy+vUfQWbQEA6YyYuwS22VINEn1TKGAClheEqRN7FIjoWeLPq8Kx
-QQQ=
-=Vc3P
------END PGP SIGNATURE-----
-
---685e7272893909941bbddb0bb8d364638ad9500b3f9d32cffeb73f746d40--
+-- 
+With best wishes
+Dmitry
 
