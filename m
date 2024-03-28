@@ -1,150 +1,123 @@
-Return-Path: <devicetree+bounces-54352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 255B889094B
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 20:34:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67301890955
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 20:38:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D330B291662
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 19:34:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F9011C230A1
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 19:38:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9566C137746;
-	Thu, 28 Mar 2024 19:34:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C72E80BE0;
+	Thu, 28 Mar 2024 19:37:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="fg1ZtSMj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Oij9zdN5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F3C6374EF
-	for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 19:34:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D25201EA6E;
+	Thu, 28 Mar 2024 19:37:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711654448; cv=none; b=Pzvf1MU9chPB6BxveGZhMximABFYZdHNEdgtU9HSEnrh6Jne5Z13PY7qxTaVZHLFivF69o1uJ9vIL/JaRT3kRIsxQgoKdAR+eJ2P8D2gQ6jJlkss0sTflCLD5uIk//z5XaRg97rsYD60/hOzfgtmII0VBFf2kFpFGNzUneaKUIo=
+	t=1711654678; cv=none; b=mTdqi9ZVw4/JtsKHrQeJq5Tj2A4oYYzDtGYjKasLbST8IUyiBfTGmpKGhc5wE9VNoQHCpYKZ1d8xiIgMypVovNJe9C0gZHE+B4IFaVzCY8YIid2Iv79p788GEdUCahbkLj2v35oLbNLdsQX5ajml93YtS++g0M4ztzVUCpoHrww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711654448; c=relaxed/simple;
-	bh=dTm7d/6PkkPdAmbdGkKYEnUZfhBeyHqXVigZlqrvcDE=;
-	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ppr/u4PhLaODUQMpeRSeZXa15+bdKOoE5l/Sjenb7nWp5gxVrudrIjms89rhLRtqjCTEAYx8Gb3eoCkN7hZrkMNXNdI7iV8fGEzMH9kI3+U2BYi5JXTJ027i3txT1XNOpedZ/RF7tNPaflmbKVt3AWLYBUjPhu8son6uTxCCdGI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=fg1ZtSMj; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-1e0fa980d55so12213565ad.3
-        for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 12:34:06 -0700 (PDT)
+	s=arc-20240116; t=1711654678; c=relaxed/simple;
+	bh=y/b4xYUnvZR2AqHFoYx6ytBmSp6Erv+XATgcP3Dubbk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=nFtRnbCPGOrRJBFVSoD2MJly7kKxEJEEN7fKvQiwxdN4jnFeLYWwU9T8aXWig0E+s4ls5QsaYeVKxeXxuhEoBpsmgXyIMQLyBrY6hspbj4ubc4eu1SvvvDgJZjlJb3uY173MT9DmrwNxQOdl/X5WBimQKr6s32FmVjC4Lz6yD3M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Oij9zdN5; arc=none smtp.client-ip=209.85.219.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f44.google.com with SMTP id 6a1803df08f44-6963c0c507eso13297866d6.1;
+        Thu, 28 Mar 2024 12:37:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1711654446; x=1712259246; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:to:from:date:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XFkewoBSuuA+NyCvB5QMwy0Z4HM+U6hdKrpuaoxhXDE=;
-        b=fg1ZtSMjcdTkYC860F391Q9mrZutJfc/jIZRizWeIS9pECU7BeDkwTSzoJYXN0p8wh
-         uyh/NdQ3AU2/cx/4GVQWWecUZLtBJRJICaHFUvvVk1CoZteO12m9YBIUiLHsBCBsDNp+
-         vBD3AdkUeLY8dwE6m2BGq9cvO3T5uzLp6Mg5jkz+a4mWyavgURCMt+jJ+PBwp99JvxnJ
-         dM+mT3l5eNX2z7pVEPRvd9U+nC+aiU9eLs+Wx3ByLq/S7Fc9rfGG4pm0Nai0T3r7lJXH
-         XCKAX6HZDktIicrQpNzFDCSIbrPvRlsCnk5V5HpOckqlmxYjDp+ji5sVqKxOeAnrV0nt
-         UEXQ==
+        d=gmail.com; s=20230601; t=1711654676; x=1712259476; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=y/b4xYUnvZR2AqHFoYx6ytBmSp6Erv+XATgcP3Dubbk=;
+        b=Oij9zdN5FHSoT/F/7ndrJSf0ROO9T3otue/dYecf9XLnVw7Y6vRxFfU0phviwwqMrl
+         TCkm9iLDFFz6oEd16RBjhFw2y5bCFYmOa4JcQSiMPkTE2ZKCSgpDN8oI0PchhGvfSA6v
+         Ljt2oRB11IA06+qiNw3k8zm+Tont81StR9qFy8gDePz/Ug+aCKVAEY656ep9EMeBS502
+         jo0k2SPIAMlsutuenDjppuWF0C9OeKEsUoTmkPytMg2wuJdtTX2m9Y298eWokla54p8r
+         n16Nn/2giFLnurpfbRZo8qijdB3Wj0spr68QTzGHM8Ve9iCWLZgqYIM/hfgsCVk48uLR
+         89Zw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711654446; x=1712259246;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XFkewoBSuuA+NyCvB5QMwy0Z4HM+U6hdKrpuaoxhXDE=;
-        b=qc8ho8LjAZsVWbamKtuhE5QtYgIo5xnqUBC6AzmSGOHw8yaCi9nto4Tqxp5Agj1wkS
-         LvrqL4+UIcy2zOhfuLZadsM8km/kV2Ozxf0P5u8jkdYGjYS51J+zAqvfPlDkMMOl8OYB
-         Nkqg8IDnj9zQE8oPB11EYE9xtcuhk/gQ3OA3uh0WzCOaWI1Ks3e1xDNXE4Fl3s4faIWp
-         A0690jMhxfhsbc98RALHvjE7WXq8n7xfPF6BrPaixjZ5fore5/HcdxYHdpHIgodvTVZ/
-         WSQPem+uvTvLnJBwzUl6xzeCOPouwVF1l/tWn6QDkEkc8AnyP+XeC9zkLGhKYyH9E8jE
-         0GIA==
-X-Forwarded-Encrypted: i=1; AJvYcCVDLzD66C5xMCLjm6Es8g+4mlCIfDJZGNFn8c39zOFeZhktZKICyAhrFP9+T45RbLu+ozY7B6cnIYX58UgcxOO/7/lPrPxInjkaog==
-X-Gm-Message-State: AOJu0Yw6CkjjKBosNY1BJBqy8Mf1j9pwQBhDC6ny+odim0WBa90ZFbvQ
-	JoTEUuwUmXYaly5waq6UfI+YU3PyyaUlpnYxksR7mKeOprxt5SDL8v6WvfY+TQg=
-X-Google-Smtp-Source: AGHT+IHmXFP8K6LroTZXQuV0pdXoRjq0VtE44n+b5oHqeJDoRGPeWBgHtYgVGum7hQezukzxvp3Wiw==
-X-Received: by 2002:a17:902:a388:b0:1dd:b3ef:4528 with SMTP id x8-20020a170902a38800b001ddb3ef4528mr429956pla.52.1711654446258;
-        Thu, 28 Mar 2024 12:34:06 -0700 (PDT)
-Received: from debug.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id o8-20020a170902d4c800b001e0b76bcfa5sm1995555plg.54.2024.03.28.12.34.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Mar 2024 12:34:05 -0700 (PDT)
-Date: Thu, 28 Mar 2024 12:34:03 -0700
-From: Deepak Gupta <debug@rivosinc.com>
-To: Samuel Holland <samuel.holland@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	linux-kernel@vger.kernel.org, tech-j-ext@lists.risc-v.org,
-	Conor Dooley <conor@kernel.org>, kasan-dev@googlegroups.com,
-	Evgenii Stepanov <eugenis@google.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Andrew Jones <ajones@ventanamicro.com>, Guo Ren <guoren@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Paul Walmsley <paul.walmsley@sifive.com>
-Subject: Re: [RISC-V] [tech-j-ext] [RFC PATCH 5/9] riscv: Split per-CPU and
- per-thread envcfg bits
-Message-ID: <ZgXGKxp0KAQI/+NC@debug.ba.rivosinc.com>
-References: <20240319215915.832127-1-samuel.holland@sifive.com>
- <20240319215915.832127-6-samuel.holland@sifive.com>
- <CAKC1njSg9-hJo6hibcM9a-=FUmMWyR39QUYqQ1uwiWhpBZQb9A@mail.gmail.com>
- <40ab1ce5-8700-4a63-b182-1e864f6c9225@sifive.com>
- <17C0CB122DBB0EAE.6770@lists.riscv.org>
+        d=1e100.net; s=20230601; t=1711654676; x=1712259476;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=y/b4xYUnvZR2AqHFoYx6ytBmSp6Erv+XATgcP3Dubbk=;
+        b=g0nuh3H345PnAIcEj/gm3TiHy4SXgi32ONMstmdFKvsCjzjScktMwz4duwMKCLhobV
+         h/GtZLzxzuIHFzugQ187FIz8TWpOZTsIehWrh7TJ3poiqxNuEhG2uhzsziWkygUZXkZT
+         MmT4UA41AhBEvSGYNx09FLfK5tf2GvnRqPSYRGXPohYr8r8tn+IcrNNjNOHkV9BLi+Ns
+         r94Wz4pUEDtTR0yzIGg1WvB/xJphsQUh0/zexryKIDmD8s+rw754GcuqQI+jKJ5oYTdo
+         /VhIapqoQs2ea5/vMtIFfpitVVZsCjqWeCotNZZgnFmPva1wOvGGnA5I7RCU2fJRT/Gx
+         9mQw==
+X-Forwarded-Encrypted: i=1; AJvYcCWX59Hg7SaCItJuRUo9YA6BzwsuG4ij1U5y4pg0dYHfS9CPxdHj6dF8XtRIn33R+MaLfIvUT723fidRfUC45g2uNftAp5O26XzfCx4DK3lcc/nCiGqlb6zlWJt3HQgcJVav+sRq5dvOWA==
+X-Gm-Message-State: AOJu0YxuXSOGe9l5mQwim/5EzBm/k5u2eCuI7kWrheqpjYT9wjdzG0VO
+	hGlMsfBHqn1GiJM9ESJfm+u5o1slKCGz0I9GgmkkN87TyawA6toEYeXvUz42lKrFCMtxVSi38rv
+	32psaAK8lPQv2SdO0vQXmuWwQ3f8=
+X-Google-Smtp-Source: AGHT+IGVM5PXHNySYzAHCaoUocLXKnVjvFp7o+JfhXyoWthzaOLZx2m6VnOdX6eZRyUKh9LSRB66s8lF2s9NDUErMgA=
+X-Received: by 2002:a05:6214:1551:b0:696:a330:ce5 with SMTP id
+ t17-20020a056214155100b00696a3300ce5mr847432qvw.20.1711654675710; Thu, 28 Mar
+ 2024 12:37:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <17C0CB122DBB0EAE.6770@lists.riscv.org>
+References: <CAOCHtYiSYat771sfx-Pdv59GDUBH_TzqkxUM+BMf0Q7Z0KEC9A@mail.gmail.com>
+ <5C54919E-EBD5-4A16-821F-5146659CCD1D@beagleboard.org>
+In-Reply-To: <5C54919E-EBD5-4A16-821F-5146659CCD1D@beagleboard.org>
+From: Robert Nelson <robertcnelson@gmail.com>
+Date: Thu, 28 Mar 2024 14:37:28 -0500
+Message-ID: <CAOCHtYgy9UzNALjvhKo2uNGO8xW=V-3=3a_AmQ6oJMP1tDrFVw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: ti: Add k3-j722s-beagley-ai
+To: Jason Kridner <jkridner@beagleboard.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Nishanth Menon <nm@ti.com>, Jared McArthur <j-mcarthur@ti.com>, 
+	Deepak Khatri <lorforlinux@beagleboard.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 27, 2024 at 06:58:45PM -0700, Deepak Gupta via lists.riscv.org wrote:
->On Tue, Mar 19, 2024 at 7:21 PM Samuel Holland
-><samuel.holland@sifive.com> wrote:
->>
->> >         else
->> >                 regs->status |= SR_UXL_64;
->> >  #endif
->> > +       current->thread_info.envcfg = ENVCFG_BASE;
->> >  }
->> >
->> > And instead of context switching in `_switch_to`,
->> > In `entry.S` pick up `envcfg` from `thread_info` and write it into CSR.
->>
->> The immediate reason is that writing envcfg in ret_from_exception() adds cycles
->> to every IRQ and system call exit, even though most of them will not change the
->> envcfg value. This is especially the case when returning from an IRQ/exception
->> back to S-mode, since envcfg has zero effect there.
->>
+On Thu, Mar 28, 2024 at 2:26=E2=80=AFPM Jason Kridner <jkridner@beagleboard=
+.org> wrote:
 >
->A quick observation:
->So I tried this on my setup. When I put `senvcfg` writes in
->`__switch_to ` path, qemu suddenly
->just tanks and takes a lot of time to boot up as opposed to when
->`senvcfg` was in trap return path.
->In my case entire userspace (all processes) have cfi enabled for them
->via `senvcfg` and it gets
->context switched. Not sure it's specific to my setup. I don't think it
->should be an issue on actual
->hardware.
 >
->Still debugging why it slows down my qemu drastically when same writes
->to same CSR
->are moved from `ret_from_exception` to `switch_to`
+>
+> > On Mar 28, 2024, at 9:16=E2=80=AFAM, Robert Nelson <robertcnelson@gmail=
+.com> wrote:
+> >
+> > =EF=BB=BFOn Thu, Mar 28, 2024 at 2:12=E2=80=AFPM Robert Nelson <robertc=
+nelson@gmail.com> wrote:
+> >>
+> >> BeagleBoard.org BeagleY-AI is an easy to use, affordable open source
+> >> hardware single board computer based on the Texas Instruments AM67A,
+> >> which features a quad-core 64-bit Arm CPU subsystem, 2 general-purpose
+> >> digital-signal-processors (DSP) and matrix-multiply-accelerators (MMA)=
+,
+> >> GPU, vision and deep learning accelerators, and multiple Arm Cortex-R5
+> >> cores for low-power, low-latency GPIO control.
+> >>
+> >> https://beagley-ai.org/
+> >> https://openbeagle.org/beagley-ai/beagley-ai
+> >
+> > @Jason Kridner we need this to become public when you are ready ^ ;)
+> >
+>
+> Did I mess up? Should already be public. We should make a github.com mirr=
+or though for up-time/visibility/bandwidth.
 
-Nevermind and sorry for the bother. An issue on my setup.
+Thanks Jason, it seems to work in incognito mode now, so we are good!
 
->
->
->-=-=-=-=-=-=-=-=-=-=-=-
->Links: You receive all messages sent to this group.
->View/Reply Online (#680): https://lists.riscv.org/g/tech-j-ext/message/680
->Mute This Topic: https://lists.riscv.org/mt/105033914/7300952
->Group Owner: tech-j-ext+owner@lists.riscv.org
->Unsubscribe: https://lists.riscv.org/g/tech-j-ext/unsub [debug@rivosinc.com]
->-=-=-=-=-=-=-=-=-=-=-=-
->
->
+Regards,
+
+--=20
+Robert Nelson
+https://rcn-ee.com/
 
