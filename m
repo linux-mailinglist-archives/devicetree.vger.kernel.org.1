@@ -1,115 +1,86 @@
-Return-Path: <devicetree+bounces-54173-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54169-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEEDE88FC8A
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 11:10:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8862488FC45
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 10:58:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DEA121C2C2A7
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 10:10:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 20F72B21951
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 09:58:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9D7C7C097;
-	Thu, 28 Mar 2024 10:10:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gv874rs7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55B13605A4;
+	Thu, 28 Mar 2024 09:58:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F1587B3EB;
-	Thu, 28 Mar 2024 10:10:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36FA455769;
+	Thu, 28 Mar 2024 09:58:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711620646; cv=none; b=ZcW7LkMdW3Ai2vbt8n0DHfHuRkhGMem675uTsmDlQAzTe0lbBvGp3A1cYlIIFQ48NuduWBFN87+AABWMAV9nMLzPcLtJ3kAgyLUqogKxMsTaTBXbfRyPeyRtq7VeKkboTstCrcWOJ5j1R+2OAbgIlIsgddEpKSHISen0eB54kRo=
+	t=1711619931; cv=none; b=KGpgJngumfby/KwJw8gcwfGhCvmJeptadQqqmfzisQvxAYLgi1kbK7SNz1l0JByth15I4dCNTRFzrzQpK4hrldknd6JfFNFq12wMYuN/MLURAW26JatmaNVoYYSj+wRbW2GqYQDp8F6ZT9OfVh7x1AgT5oKa8dyCifpB7bc7PBw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711620646; c=relaxed/simple;
-	bh=4OFMzfSjsi+Q3F9miHZNiDNu34RwznmjJpdOMvmx/K0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HYwf59CpmF/Qrneos68P2MV6mXUueKpyYwttKgjPWTyYGG8VWmrE9M/YCVB5KagE2eeeBw0y7VxPpTGhDpXXKLedcQAi1znOTQfSd8Ox+eeB/nfk7qYTvcMOQyeHOtdr9qrgC/O4lD8n20/aZZiMgINZf2Blv4L0iogkGILq7os=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gv874rs7; arc=none smtp.client-ip=209.85.219.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-dcc80d6004bso734807276.0;
-        Thu, 28 Mar 2024 03:10:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711620644; x=1712225444; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4OFMzfSjsi+Q3F9miHZNiDNu34RwznmjJpdOMvmx/K0=;
-        b=gv874rs7ergRs+0qgBG3IaU6XJg2G1WvAVoWvPsKm2+t+kvHXf8Nk91rvdp64Lh+us
-         7YsW82YHBq7GASi+D4Iz+0c0EqdXpxHJG88cXenAg+019XM5Ig1eyOD1PRFvliTNmqCJ
-         oyrsebU9QWThbs9lRyxpPPDrxGcSYnIi0yyCMLekqSUJOHi4231ZtBUPXpEGODmzWpJh
-         zhCawFYos3xJkUqhTDTHvh6JE9UvUlUmT/+TUs7yOzbawW7kicXoDR0oJXy0rpYAagwe
-         OOMwOyYgeXiL9E5b89RRmdJZt9wUeSwY2WBymy7ovnlLm6ES3u8o3NcH75M/PAaxKFyL
-         aCQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711620644; x=1712225444;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4OFMzfSjsi+Q3F9miHZNiDNu34RwznmjJpdOMvmx/K0=;
-        b=l4Gco9/MlEZ8LMki2xzYKgr/VjwMgxkGZbbEn+a4AuH+UduHqMwTYezQNPA5S7g4Ab
-         QsaUtRHT9bGp7wQdtH0ZpjjXosDtPuzqcpEaxGCZX8R5qIy6aHXdJZh1e/A4R3xYqvZn
-         /2vtZ1zgC/brmF8d8pu1q+/3XzhN1tfaMcMYkfLma8pJdry3imbqS9MoqM81Vr5s3zLB
-         Cpfv+A0bPac4i4M/9WYVjloh2tF4illG5JKAY+0GheK1uJQVgSrFwjx31IMh0r8vMYSO
-         o2Rf2zkxD9NSjd2hyrx9BNildPs/ypywKmkTnrLCrROBPePC+5octVoMEFX5N0EmoICo
-         vC/g==
-X-Forwarded-Encrypted: i=1; AJvYcCWPLedpUSs37uMKYqHCE1JVp267/rsmkRW1l4VlMj9CGLODoM9xTpB64AuxKLkUC7r0gp+Wm+zwiPPYxY3uJ4OLZw2DGVH4uhVI0y0BujLYJmIDmWQAxce7aVi0GteyMNDi+I3dUYCCMoQjiIB/uuirykW0bxzuuFg0Fdt736u4nSc/tA==
-X-Gm-Message-State: AOJu0Yy5zcKotsaYdre+D8GJLyKvhXbm6exntiBjxn9J5LOFHhSHQQ/p
-	uMzVqHKEdk1QaRaC4L8neyWQHKc5XU8mo8PHFMkUcsTFavwOkHCFdLd7b0bc5Gvfp1/ZSfgRqSc
-	Zl6xg0RnDXQmQdKkaBNdmwFaBD08=
-X-Google-Smtp-Source: AGHT+IFukCslxPd/D0/jvlNCrO+ycmsage3+usxF2H6UDkL4liECpcOIMAqmKRuAcfwWuukRPEjBvZXrFUP4B28rsAk=
-X-Received: by 2002:a25:8606:0:b0:dc2:2d75:5fde with SMTP id
- y6-20020a258606000000b00dc22d755fdemr2282719ybk.29.1711620644317; Thu, 28 Mar
- 2024 03:10:44 -0700 (PDT)
+	s=arc-20240116; t=1711619931; c=relaxed/simple;
+	bh=LR01KxWnPZWOqIcA1p8pdeTLxQFRQRqlaLiwBVcMWjY=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=GpFZ+gOZiL3HulnNbXkJavSkFLTG3vM8NoiZgYsTzx97qlH2YLSW3RHoD7w2vpqx8q5Hjx5F9Ft2nmLGSsdTXgSRYi7do/RNJwjbtvA6gEFEIWCzWfZT3PZIgZcbDPvbeIBoOoZ9QnYRJvQyLvARpAB7ZTuwsReSyyxN29Rprak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D925C433F1;
+	Thu, 28 Mar 2024 09:58:46 +0000 (UTC)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: peter.griffin@linaro.org, robh+dt@kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: alim.akhtar@samsung.com, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, andre.draszik@linaro.org, 
+ willmcvicker@google.com, kernel-team@android.com
+In-Reply-To: <20240326151301.348932-1-tudor.ambarus@linaro.org>
+References: <20240326151301.348932-1-tudor.ambarus@linaro.org>
+Subject: Re: [PATCH v3 0/5] arm64: dts: exynos: gs101: define all PERIC USI
+ nodes
+Message-Id: <171161992678.13192.16312850568393488957.b4-ty@linaro.org>
+Date: Thu, 28 Mar 2024 10:58:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240327220320.15509-1-l.rubusch@gmail.com> <20240327220320.15509-5-l.rubusch@gmail.com>
- <9ab1fc70-fd01-437b-9020-49618924ab30@linaro.org>
-In-Reply-To: <9ab1fc70-fd01-437b-9020-49618924ab30@linaro.org>
-From: Lothar Rubusch <l.rubusch@gmail.com>
-Date: Thu, 28 Mar 2024 10:57:43 +0100
-Message-ID: <CAFXKEHboRLGwLMKk19Az3gA2eYAZwbSKaZbFY=9U-8H915+r0Q@mail.gmail.com>
-Subject: Re: [PATCH v5 4/7] dt-bindings: iio: accel: adxl345: Add spi-3wire
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, eraretuya@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13.0
 
-On Thu, Mar 28, 2024 at 10:22=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 27/03/2024 23:03, Lothar Rubusch wrote:
-> > Add spi-3wire because the device allows to be configured for spi 3-wire
-> > communication.
-> >
-> > Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
->
-> I don't understand why after my last message you still ignore my
-> feedback, but fine. I'll ignore this patchset.
 
-This is sad. I refrased the comment to the patch and tried to stress
-more on the device instead of the driver. Wasn't this the point of
-your criticism to the patch?
+On Tue, 26 Mar 2024 15:12:56 +0000, Tudor Ambarus wrote:
+> The series starts with some trivial cosmetics patches, then defines all
+> the PERIC USI nodes.
+> 
+> v3:
+> - seems that Andre' already reordered the pinctrl properties, take his
+>   patch (first in the series) and rebase my series on top.
+> - small updates on commit messages
+> - collect R-b tags
+> 
+> [...]
 
-So, instead of answering to your last email, I posted the modified
-patch as answer. I think I considered your feedback to the best of my
-understanding. I'm sorry, it is certainly not my intention to ignore
-you. I appreciate your direct feedback.
+Applied, thanks!
 
-I'll write an answer to the last email right away.
+[1/5] arm64: dts: exynos: gs101: reorder pinctrl-* properties
+      https://git.kernel.org/krzk/linux/c/7d7df014617ba8df7fbdacac54cafe0d13573dcb
+[2/5] arm64: dts: exynos: gs101: move serial_0 pinctrl-0/names to dtsi
+      https://git.kernel.org/krzk/linux/c/73618dfa705dc8f993a6829c895eaf5af8402ceb
+[3/5] arm64: dts: exynos: gs101: move pinctrl-* properties after clocks
+      https://git.kernel.org/krzk/linux/c/d978c70e8d4775c62db21f85947d12b4f874104a
+[4/5] arm64: dts: exynos: gs101: join lines close to 80 chars
+      https://git.kernel.org/krzk/linux/c/028a87e91fcd8c485afcf8bd0d26ae34a0872438
+[5/5] arm64: dts: exynos: gs101: define all PERIC USI nodes
+      https://git.kernel.org/krzk/linux/c/a45c3a9b1ef9571741d40bf10f22ce3c60bc5111
 
-> Best regards,
-> Krzysztof
->
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
