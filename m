@@ -1,129 +1,136 @@
-Return-Path: <devicetree+bounces-54160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2896088FBFF
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 10:49:33 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D056688FC19
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 10:51:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A2071C2B0A5
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 09:49:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F036B21B80
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 09:51:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3F25657CE;
-	Thu, 28 Mar 2024 09:49:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1880A7BAE5;
+	Thu, 28 Mar 2024 09:51:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="m+kIphZG"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VMZTHzrQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F82A651B3
-	for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 09:49:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F142657DF;
+	Thu, 28 Mar 2024 09:51:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711619363; cv=none; b=fHFOWZTBwBWUutfTs44NrNdxYUILDy6iObOFPV/izllScjqp36cu2UAkAdxvOnxrZseXyOF2zWckUymGmTg5EOl5y0/O9xA6d9XqhVlIT3DesF2eBpY3+sSDWCmgFH9J8NpzOnguA/TvswHvFhS5y7jAnwM3jqQJ5kDudjpPOM4=
+	t=1711619479; cv=none; b=Tlde+PuWpI/nEQP5w1PGN330R/QvgPAn+NQO6Qx/DvSIFCaxwFWnZaZC8oIorqRGGfYeE/8TRamfgiOPqk0+2xcLz8LlcjaLRYRBm2zqBFox3X63o2n0l59Xyup6LOObSdLk+VLR54H1VGFaoK05U/AWJnl3zfub0j8pEg3H8EE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711619363; c=relaxed/simple;
-	bh=NGAu0Wues6upFNlxfKrI9TDym/OgXLE2E4Jz/pnzxis=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=dqps6WEfazrEb+syM0fm07xZ7ingPtRL1vzCRuHKi0mRkQP+hFsgH2XFBjZW14xsq6XS0SR2E/nUszFbQbqFQodMzt7z8eZ7/1lFZM9WyFrL7777o/01ywuJtdrIj7le/vWRk+0mDoeOkJqRYGsP2rVPTXC+flkT5Viy0HaWArA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=m+kIphZG; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a46a7208eedso105182766b.0
-        for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 02:49:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1711619360; x=1712224160; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=s2FlcFMwv9/mxZZUbTMV8sm8mZF2ziq8g+DEQybJDFU=;
-        b=m+kIphZGysprPE69JLfucvUfx8YVagZTGnFKino86wl2sfLIT5cFasJgkSnJAQEl22
-         cH4+i7tkd7CxHhpZlwDV8auDxJ+GMg7Gpn7SRoCwjCQ/kzhuA/kR0SYR5xwh3R6Wmv5L
-         VCxv+GtERDajDWYLn3VEvBQhMrgXol+qSc4dEiCL9kvPfByWv29tL/nZKVUtR2y0ae79
-         jeU4hxazH2wHNbmleWbghqCViIh4JGXQLoZlQLJssfSGe/1jpFsW61RTsCNEcg8OVmdj
-         MyZJg6OTbmmT+JUFQynVVf+aQQf7Xjp+thSmjm2aGSzl4hTq2WPY2I89eYWYCuXsB0uM
-         Sw/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711619360; x=1712224160;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=s2FlcFMwv9/mxZZUbTMV8sm8mZF2ziq8g+DEQybJDFU=;
-        b=iKBSrqmhh62o8sMFoibXmqcauc6Sq+ej3exGxXLu97xhtHamSKuaR1/QGgtXZS1QA8
-         qjcCLqpHExQiFeYUjKhbSXrZcIroXVzcP3YAb+RdJMTiypFiMpp40/QSQu/eGujoNZNZ
-         oK9enOLib55KMNWfuP5ggZ8xu/x+canWpxayFMd/Ep7K/4E93kyHnZHIE7Jj5GI4DTKM
-         Y4sInY/m8SzCmP4oOP8CUZkaQSYNJJosOd8PKh5K4G3g53XPRUoGSc1RJzXm/0X1oN8o
-         p7gCXi+C47Ief77R4INsArxxIioc/zdSvK1zin0ahjx4MqP0qdGb6hzs4YgHeuHP79mL
-         wCFg==
-X-Forwarded-Encrypted: i=1; AJvYcCXNX95EtwZMRGi50teq8csYHpP6iuN7aEThTWpWje7iOxgC6iVBZRxZAPKjrhytmKsPvtz7WXEEDqE2mdLihsXnjpgd0dfBIfqrmw==
-X-Gm-Message-State: AOJu0YxOeme7R8YQztn/NiW5hi0cgsg3pwUOwVOcNdkgMMOmglRMHC76
-	Tfvyq0XGkRhD+dPxklB5z0Lxa7acTF+HiIhsgtIDwHpIhCIgiWBH66hsmVQOZk0=
-X-Google-Smtp-Source: AGHT+IHQj43uF1oRw2agLwmax83BUP4TUUSTe802FM7CxRtHEbgYpfc/GypNFhLDLarI2m22J/4eHg==
-X-Received: by 2002:a17:906:26db:b0:a46:8c40:7a3a with SMTP id u27-20020a17090626db00b00a468c407a3amr1170962ejc.26.1711619360465;
-        Thu, 28 Mar 2024 02:49:20 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id cd1-20020a170906b34100b00a4a396ba54asm555999ejb.93.2024.03.28.02.49.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Mar 2024 02:49:20 -0700 (PDT)
+	s=arc-20240116; t=1711619479; c=relaxed/simple;
+	bh=dmJQuzuTv7qtd0Egsch88hhsMYO6t/lsMl5eID3n1+A=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=MqgIWdyo9Fj8OkA8I1tXptV2m48X2UBgH/FSEEqnffP09TQOX7G05c3Yxwzi+Zr+hLUQv97yQvCBVAgzYqqn5UgRZlo7VkSfXnnjpPKthAlarkPKgE4yP6AfYZkzRvCVOUUGid4e9kC26ndUbDPRDjtFLKvZISw91yuhtHCe7WE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=VMZTHzrQ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42S9pAES020942;
+	Thu, 28 Mar 2024 09:51:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=STjd2lI
+	jolqXQuuf3EMmg2wIG0RNi33p443oS4piWuU=; b=VMZTHzrQ8z/nvm5iBiMe/RD
+	aUjKpv0NI4qTccXB8ku2BMbu0W6X2e6pKL5HInIHbh4K31nodb07fKvRLs3dBFIb
+	MVFXFGQYdFx9nii2y3ryAjR1TbeoS8oVu0H1619EDrfNKbyQnCfE2YUgif05gGGK
+	Gz2xxvk2FOjKFlnJFIwqML7NHMfg2hXBDeJZd8oMjzPx7W4Oi4ARZNvGSr31dr0T
+	BvpUUPt2hNRaC4KPos9atJ7H+L5JA9pu8B5PsKKsHIdCkkvTT2dONa+QNSPxL6sl
+	gPbEpfoUJcWsfYUfo+qCIdGDLDZIm8NyxFzqfwPUri21md0FMZneNl7mCNQQkBw=
+	=
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x4u1wtss6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 28 Mar 2024 09:51:10 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42S9p9sd019991
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 28 Mar 2024 09:51:09 GMT
+Received: from hu-sibis-blr.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Thu, 28 Mar 2024 02:51:03 -0700
+From: Sibi Sankar <quic_sibis@quicinc.com>
+To: <sudeep.holla@arm.com>, <cristian.marussi@arm.com>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <jassisinghbrar@gmail.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
+CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <quic_rgottimu@quicinc.com>,
+        <quic_kshivnan@quicinc.com>, <quic_sibis@quicinc.com>,
+        <conor+dt@kernel.org>, <quic_gkohli@quicinc.com>,
+        <quic_nkela@quicinc.com>, <quic_psodagud@quicinc.com>
+Subject: [PATCH 0/5] qcom: x1e80100: Enable CPUFreq
+Date: Thu, 28 Mar 2024 15:20:39 +0530
+Message-ID: <20240328095044.2926125-1-quic_sibis@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 28 Mar 2024 10:49:19 +0100
-Message-Id: <D05AFAI1G7CY.3EURGL4VGKHB@fairphone.com>
-Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
- <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
- <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: display: msm: dp-controller: document
- SM8250 compatible
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Luca Weiss" <luca.weiss@fairphone.com>, "Rob Clark"
- <robdclark@gmail.com>, "Abhinav Kumar" <quic_abhinavk@quicinc.com>, "Dmitry
- Baryshkov" <dmitry.baryshkov@linaro.org>, "Sean Paul" <sean@poorly.run>,
- "Marijn Suijten" <marijn.suijten@somainline.org>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
- <airlied@gmail.com>, "Daniel Vetter" <daniel@ffwll.ch>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Kuogee Hsieh" <quic_khsieh@quicinc.com>, "Krishna Manikandan"
- <quic_mkrishn@quicinc.com>, "Bjorn Andersson" <andersson@kernel.org>,
- "Konrad Dybcio" <konrad.dybcio@linaro.org>
-X-Mailer: aerc 0.15.2
-References: <20240328-sm6350-dp-v1-0-215ca2b81c35@fairphone.com>
- <20240328-sm6350-dp-v1-1-215ca2b81c35@fairphone.com>
-In-Reply-To: <20240328-sm6350-dp-v1-1-215ca2b81c35@fairphone.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: g_SSgvyePb39rRVbz_AVB0TjYAj_pQG_
+X-Proofpoint-GUID: g_SSgvyePb39rRVbz_AVB0TjYAj_pQG_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-28_09,2024-03-27_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 adultscore=0
+ malwarescore=0 impostorscore=0 mlxscore=0 clxscore=1011 priorityscore=1501
+ bulkscore=0 suspectscore=0 lowpriorityscore=0 spamscore=0 mlxlogscore=982
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2403210001
+ definitions=main-2403280066
 
-Stupid typo in subject, should of course be SM6350, not SM8250.
+This series enables CPUFreq support on the X1E SoC using the SCMI perf
+protocol. This was originally part of the RFC: firmware: arm_scmi:
+Qualcomm Vendor Protocol [1]. I've split it up so that this part can
+land earlier.
 
-On Thu Mar 28, 2024 at 10:42 AM CET, Luca Weiss wrote:
-> Add the compatible string for the DisplayPort controller on SM6350 which
-> is compatible with the one on SM8350.
->
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
->  Documentation/devicetree/bindings/display/msm/dp-controller.yaml | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.=
-yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> index ae53cbfb2193..97993feda193 100644
-> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> @@ -29,6 +29,7 @@ properties:
->            - qcom,sm8650-dp
->        - items:
->            - enum:
-> +              - qcom,sm6350-dp
->                - qcom,sm8150-dp
->                - qcom,sm8250-dp
->                - qcom,sm8450-dp
+RFC:
+* Use x1e80100 as the fallback for future SoCs using the cpucp-mbox
+  controller. [Krzysztoff/Konrad/Rob]
+* Use chan->lock and chan->cl to detect if the channel is no longer
+  Available. [Dmitry]
+* Use BIT() instead of using manual shifts. [Dmitry]
+* Don't use integer as a pointer value. [Dmitry]
+* Allow it to default to of_mbox_index_xlate. [Dmitry]
+* Use devm_of_iomap. [Dmitry]
+* Use module_platform_driver instead of module init/exit. [Dmitry]
+* Get channel number using mailbox core (like other drivers) and
+  further simplify the driver by dropping setup_mbox func.
+
+[1]: https://lore.kernel.org/lkml/20240117173458.2312669-1-quic_sibis@quicinc.com/#r
+
+Other relevant Links:
+https://lore.kernel.org/lkml/be2e475a-349f-4e98-b238-262dd7117a4e@linaro.org/
+
+Sibi Sankar (5):
+  dt-bindings: mailbox: qcom: Add CPUCP mailbox controller bindings
+  mailbox: Add support for QTI CPUCP mailbox controller
+  arm64: dts: qcom: x1e80100: Resize GIC Redistributor register region
+  arm64: dts: qcom: x1e80100: Add cpucp mailbox and sram nodes
+  arm64: dts: qcom: x1e80100: Enable cpufreq
+
+ .../bindings/mailbox/qcom,cpucp-mbox.yaml     |  49 +++++
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi        |  55 ++++-
+ drivers/mailbox/Kconfig                       |   8 +
+ drivers/mailbox/Makefile                      |   2 +
+ drivers/mailbox/qcom-cpucp-mbox.c             | 205 ++++++++++++++++++
+ 5 files changed, 318 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
+ create mode 100644 drivers/mailbox/qcom-cpucp-mbox.c
+
+-- 
+2.34.1
 
 
