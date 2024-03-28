@@ -1,95 +1,122 @@
-Return-Path: <devicetree+bounces-54171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DB2188FC64
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 11:06:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38C6F88FCD4
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 11:22:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 490AA2956A8
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 10:06:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E7934298E0C
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 10:22:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 235BF524BD;
-	Thu, 28 Mar 2024 10:06:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3887C7BB13;
+	Thu, 28 Mar 2024 10:22:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DmT/LzuK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from abb.hmeau.com (abb.hmeau.com [144.6.53.87])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84FC553804;
-	Thu, 28 Mar 2024 10:06:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=144.6.53.87
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 134435FB8B;
+	Thu, 28 Mar 2024 10:22:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711620375; cv=none; b=AXRlhScg0CmOJDlgTzOBpXq2Upjo6eWb+Z5kRQHyTtRxzecgm6Gpc996VQGb+MmDRJiDOAt21giVsk/APB1haEiN/YRIA4KRHDVvssGiIXw9KjZJd7DMKAQsmsAisDzGwytsv7/ESIhkI2aqcUmmTIGZtU1LT/5GKdgtwgELNNE=
+	t=1711621336; cv=none; b=rYqMWzbp4OzUZplsxER526DqLnc9ljRwfEmA7UpCoUw7U01+0AJLlhXg6E+qtGyswBmbs/FOJPUmkqOJHiApRCViPLkWhHZ4ZXwftWo970XRz4W0D293VpX/gZXIzM8z80UDB2Vd7wNsRUbptrS2DNJqYBHWtKq5nOYqlMrXGdA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711620375; c=relaxed/simple;
-	bh=4dG8UhkcaQYzhOF03nvm3E5xZ94yc0It4+G2sZOnS6k=;
+	s=arc-20240116; t=1711621336; c=relaxed/simple;
+	bh=SKKICtTKjPR9yyFA9IuYbQmFcXbc8Pa5AvB15RTwNp4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c+p2kILkvV0JE9Lupxm5tPhsAr1midKPe2tWaEWehzXlhnoa8wKB4BRjtplaQQzH2lVIohF/C/SfiJ+IxoKSqemhyJJwYskkakLup5gJGbbXn0eDVMa+a7jqiGauRxEiZYRTC9rAXVkYd/ee1Uyd3S07OEWmkVoWwoPhhjhrEbY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; arc=none smtp.client-ip=144.6.53.87
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-	by formenos.hmeau.com with smtp (Exim 4.94.2 #2 (Debian))
-	id 1rpmdb-00C7Dr-R3; Thu, 28 Mar 2024 18:05:36 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Thu, 28 Mar 2024 18:05:52 +0800
-Date: Thu, 28 Mar 2024 18:05:52 +0800
-From: Herbert Xu <herbert@gondor.apana.org.au>
-To: Akhil R <akhilrajeev@nvidia.com>
-Cc: davem@davemloft.net, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, thierry.reding@gmail.com, jonathanh@nvidia.com,
-	catalin.marinas@arm.com, will@kernel.org, mperttunen@nvidia.com,
-	airlied@gmail.com, daniel@ffwll.ch, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v6 3/5] crypto: tegra: Add Tegra Security Engine driver
-Message-ID: <ZgVBAFmfK7GKgmYi@gondor.apana.org.au>
-References: <20240319082306.34716-1-akhilrajeev@nvidia.com>
- <20240319082306.34716-4-akhilrajeev@nvidia.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=vCZ8DwEe74IFG5P/IM9kzm9de1DdJq3O6vbpyjVWrwUL/bO22qd5DLTH3iyKgNhmxBGHIrH40+MDUEB/3dfLHUquGB6gxMC8J9+c5zkRCc8yLgXqgt4/VqxNvpwX16guDr3HZhtOlzFj/UCPoGD1nnstYSvp6VSQ9Zi44OXrLXc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DmT/LzuK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71B0EC433F1;
+	Thu, 28 Mar 2024 10:22:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711621335;
+	bh=SKKICtTKjPR9yyFA9IuYbQmFcXbc8Pa5AvB15RTwNp4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DmT/LzuK8Fhxhn89z1WozrQ/vfZaBQGm57L9S0wsjaPNyYz6AQO3EqPfXp8TuADjJ
+	 KnCLjXcivr/1Hr8aM3VmUtioJMSoavC1Nube1XBSrhmISzzMJg30vz7+iqmWvHBC8X
+	 sxKFI1uxKzbv6cqT9PpjkYWl8Pqb1L1Uw256dz0SgFReghmPCs/XV5sBs2P1dtah75
+	 GeAWD+sPu0cPRAVKf2kCsjqWBlVZtmUgDQ7ONtaa8mA10usHQd8zOIuz0HMY9Omtou
+	 83F2BWfm4T2roHfl/obPuBRkV3dq3WjYeRaoBNRT5+gf47zl6zlQhf96tBmLF1t3Kz
+	 QuG1Vm4/TF4Hg==
+Date: Thu, 28 Mar 2024 18:08:58 +0800
+From: Jisheng Zhang <jszhang@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 6/6] riscv: dts: starfive: add Milkv Mars board device
+ tree
+Message-ID: <ZgVBurohYRDzFjgb@xhacker>
+References: <20240131132600.4067-1-jszhang@kernel.org>
+ <20240131132600.4067-7-jszhang@kernel.org>
+ <20240206-magma-deem-2c88e45a545a@spud>
+ <20240327-cotton-fang-37f6d8fde0e5@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240319082306.34716-4-akhilrajeev@nvidia.com>
+In-Reply-To: <20240327-cotton-fang-37f6d8fde0e5@spud>
 
-On Tue, Mar 19, 2024 at 01:53:04PM +0530, Akhil R wrote:
->
-> +		.alg.skcipher.op.do_one_request	= tegra_aes_do_one_req,
-> +		.alg.skcipher.base = {
-> +			.init = tegra_aes_cra_init,
-> +			.exit = tegra_aes_cra_exit,
-> +			.setkey = tegra_aes_setkey,
-> +			.encrypt = tegra_aes_encrypt,
-> +			.decrypt = tegra_aes_decrypt,
-> +			.min_keysize = AES_MIN_KEY_SIZE,
-> +			.max_keysize = AES_MAX_KEY_SIZE,
-> +			.ivsize	= AES_BLOCK_SIZE,
-> +			.base = {
-> +				.cra_name = "ofb(aes)",
-> +				.cra_driver_name = "ofb-aes-tegra",
-> +				.cra_priority = 500,
-> +				.cra_flags = CRYPTO_ALG_TYPE_SKCIPHER | CRYPTO_ALG_ASYNC,
-> +				.cra_blocksize = AES_BLOCK_SIZE,
-> +				.cra_ctxsize = sizeof(struct tegra_aes_ctx),
-> +				.cra_alignmask = 0xf,
-> +				.cra_module = THIS_MODULE,
-> +			},
-> +		}
-> +	}, {
+On Wed, Mar 27, 2024 at 06:06:58PM +0000, Conor Dooley wrote:
+> Yo,
+> 
+> On Tue, Feb 06, 2024 at 07:13:48PM +0000, Conor Dooley wrote:
+> > On Wed, Jan 31, 2024 at 09:26:00PM +0800, Jisheng Zhang wrote:
+> > > The Milkv Mars is a development board based on the Starfive JH7110 SoC.
+> > > The board features:
+> > > 
+> > > - JH7110 SoC
+> > > - 1/2/4/8 GiB LPDDR4 DRAM
+> > > - AXP15060 PMIC
+> > > - 40 pin GPIO header
+> > > - 3x USB 3.0 host port
+> > > - 1x USB 2.0 host port
+> > > - 1x M.2 E-Key
+> > > - 1x eMMC slot
+> > > - 1x MicroSD slot
+> > > - 1x QSPI Flash
+> > > - 1x 1Gbps Ethernet port
+> > > - 1x HDMI port
+> > > - 1x 2-lane DSI and 1x 4-lane DSI
+> > > - 1x 2-lane CSI
+> > > 
+> > > Add the devicetree file describing the currently supported features,
+> > > namely PMIC, UART, I2C, GPIO, SD card, QSPI Flash, eMMC and Ethernet.
+> > > 
+> > > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> > 
+> > Got a dtbs_check issue in the patchwork CI:
+> > 
+> >   +arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dtb: gmac1-rgmii-rxin-clock: 'clock-frequency' is a required property
+> >   +	from schema $id: http://devicetree.org/schemas/clock/fixed-clock.yaml#
+> >   +arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dtb: gmac1-rmii-refin-clock: 'clock-frequency' is a required property
+> >   +	from schema $id: http://devicetree.org/schemas/clock/fixed-clock.yaml#
+> > 
+> > Can you fix that please? Also, I applied some patches the other day that
+> > seem to conflict quite a bit with the common board dts patch. Would you
+> > please do a rebase on top of that please?
+> 
+> Been going through stuff on my todo list now that the merge window is
+> closed. Could you please resend this with the rebase done?
 
-OFB no longer exists in the kernel.  Please remove all traces of it
-from your driver.
+Thanks for the reminding, I will rebase on 6.9-rc1 then send out the
+patches.
 
-Also please ensure that yuor driver passes the extra fuzz tests.
+> 
+> Thanks,
+> Conor.
 
-Thanks,
--- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+
 
