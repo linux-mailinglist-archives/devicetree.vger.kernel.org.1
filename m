@@ -1,111 +1,139 @@
-Return-Path: <devicetree+bounces-54199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB3A988FE91
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 13:03:40 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9CCC88FEE1
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 13:24:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F7AE293F98
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 12:03:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 799C8B2201E
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 12:24:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC9467D417;
-	Thu, 28 Mar 2024 12:03:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CB397E0E9;
+	Thu, 28 Mar 2024 12:24:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CTITSUoj"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="cgii5U/Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FA9E43ABE;
-	Thu, 28 Mar 2024 12:03:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4F2F7F485;
+	Thu, 28 Mar 2024 12:24:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711627415; cv=none; b=Kel7dRxyoMltVn/+HICb8BxEk36ffOUOkR38A3p7ixckL3VAWrOf69BVzMK47zbOt+y+sQOPc9ND22agl9t2lmXBeF6w7FBLKIPcLguU7ufWn0TgSZy33DDTj8/NwSQ2E5Lf1aEZy2YJDnibgU4yxTWDKXBO3fkr4uJCKySNBFs=
+	t=1711628659; cv=none; b=HMinkxwEPBcXU1gVL0bi9eo6o64hrA51Fc2WOT3easX0c+Gd3l60t9oGPufXcB3fa5swCy2bao7fjF1sGGsmx3u9Xru1N7MNH0L+BETiXYPfTXlcpE15QKtaPpMzpnEJSXZR0BgZVVdTaXyBO8nfWVcTAGAu+6wEcRWrl18U3nM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711627415; c=relaxed/simple;
-	bh=ftAi0138ljeybsCkA3p2TsAqoWmZb2V8KjzoPIukDkY=;
+	s=arc-20240116; t=1711628659; c=relaxed/simple;
+	bh=+KCpP6QH6INCKmhY3rhkXinCYArDLnJgU17pzm7N1sM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LFBAaJEziu65Ak3myrfMspCzFP/f9T5d21x3mD0lNzsJV6hF3BdPkOK48cqtgKbPyz8SascSDNvrkORuNJF62z6W9JKgjytFDc4qs9yfyhWlehEGDA9ZFUoUMuoNe5i+BLzBIwmbWqmeT+HXkEPKIfaM/AMuL7u+1zcZFZpjl0E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CTITSUoj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E19BC433F1;
-	Thu, 28 Mar 2024 12:03:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711627415;
-	bh=ftAi0138ljeybsCkA3p2TsAqoWmZb2V8KjzoPIukDkY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CTITSUojfmL0QlCbb0gXnBadPu3eZ1mEGnEUggOhx6hAPXuzr6DWg/p5xHLL7F5dp
-	 21D3HwDhdniSffz69djLfuzgiRBX446JxR5288pRPaaYZBcYPG9mrWULd7HizmEkVr
-	 pDkt63Tz6AKuBL1MMgiA5OdVC2txUtV28GA5fmhPmBtdlJfRtVUVAIy6y6SeSeWk0I
-	 CexovdNTwSrf9Pi9PVzdCOjax6p/MNikaA6kADIRd4z4J5t3I4VnHP63m2HTYYG4bT
-	 0/XfCsR0jPtXdAZL3ZnFGWR427QIEEPUNI3nHdgf3lC6sGEqEbJKIHybHwxvNzDSeE
-	 R7ymhIV1S2e1w==
-Date: Thu, 28 Mar 2024 12:03:29 +0000
-From: Lee Jones <lee@kernel.org>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=VNpbRZhDoQ6LcwddvRm++hGPNBTDwn0Ct9l91p75f6K1SaRN34V844ato4/h+BpagLPd2JxBeuKlwo6p+bTnFTTyiSOc3svdZEXgINMo0U6vs0T99IAOjZfVtQtSr7LC/TSrrBRHgpSdhEHWb4qeu/ycVvxBLglJ8/nkq9GkSIQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=cgii5U/Z; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=8unRPUJ/5NLXOy2GV/8QQoMtBxlZYcDA0JkZRYJPSXM=; b=cgii5U/Zdj30Vfz4+zeTdE+LAO
+	Wceqxp0Y0bklH/H+HFEbAhSOhK2yWdOTmvX32t8UmGpSJt1/nccyQcBHCZ5/PtoRNu2W0zBDiFgBS
+	uZ6w8TsaVbd2TYRFQVJeVLfxqWZ9cohtpMU1DECoc1qdqcn2V7Lkq74uvf9RJ7ltp+f4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rponY-00BUi7-46; Thu, 28 Mar 2024 13:24:00 +0100
+Date: Thu, 28 Mar 2024 13:24:00 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Luis Chamberlain <mcgrof@kernel.org>,
+	Russ Weight <russ.weight@linux.dev>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Samuel Holland <samuel@sholland.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
-	Ryan Walklin <ryan@testtoast.com>
-Subject: Re: [GIT PULL] Immutable branch between MFD and Regulator due for
- the v6.9 merge window:wq
-Message-ID: <20240328120329.GF13211@google.com>
-References: <20240310010211.28653-1-andre.przywara@arm.com>
- <20240328095631.GW13211@google.com>
- <20240328111108.5ddfa073@minigeek.lan>
- <20240328120011.GE13211@google.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	Mark Brown <broonie@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+	Dent Project <dentproject@linuxfoundation.org>
+Subject: Re: [PATCH net-next v6 10/17] net: pse-pd: Add support for PSE PIs
+Message-ID: <f3bafb50-406b-444a-8411-5ddae8d84c31@lunn.ch>
+References: <20240326-feature_poe-v6-0-c1011b6ea1cb@bootlin.com>
+ <20240326-feature_poe-v6-10-c1011b6ea1cb@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240328120011.GE13211@google.com>
+In-Reply-To: <20240326-feature_poe-v6-10-c1011b6ea1cb@bootlin.com>
 
-On Thu, 28 Mar 2024, Lee Jones wrote:
+> +.. code-block::
+> +
+> +         +-------------+
+> +         |    PSE PI   |
+> + 8  -----+                             +-------------+
+> + 7  -----+                    Rail 1   |
+> + 6  -----+------+----------------------+
+> + 5  -----+      |                      |
+> + 4  -----+     /              Rail 2   |  PSE 1
+> + 3  -----+----?          +-------------+
+> + 2  -----+----+---------?              |
+> + 1  -----+---?                         +-------------+
+> +         |
+> +         +-------------+
 
-> On Thu, 28 Mar 2024, Andre Przywara wrote:
-> 
-> > On Thu, 28 Mar 2024 09:56:31 +0000
-> > Lee Jones <lee@kernel.org> wrote:
-> > 
-> > Hi Lee,
-> > 
-> > many thanks for picking this up!
-> > 
-> > > Enjoy!
-> > > 
-> > > The following changes since commit 4cece764965020c22cff7665b18a012006359095:
-> > > 
-> > >   Linux 6.9-rc1 (2024-03-24 14:10:05 -0700)
-> > > 
-> > > are available in the Git repository at:
-> > > 
-> > >   git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git ib-mfd-regulator-v6.9
-> > > 
-> > > for you to fetch changes up to d2ac3df75c3a995064cfac0171e082a30d8c4c66:
-> > > 
-> > >   regulator: axp20x: add support for the AXP717 (2024-03-28 09:51:03 +0000)
-> > > 
-> > > ----------------------------------------------------------------
-> > > Immutable branch between MFD and Regulator due for the v6.9 merge window
-> > 
-> > Did you mean v6.10 merge window? Or is there a plan to merge this into
-> > 6.9 still?
-> 
-> Yes - off-by-one!
+Is ? a standard markup character? I don't remember seeing it used like
+this before.
 
-Just recreated ib-mfd-regulator-v6.10 for all the OCD types (like me!).
+Maybe offset the connection for pins 1 and 2 from that of 3. I mean:
 
--- 
-Lee Jones [李琼斯]
+> + 4  -----+     /              Rail 2   |  PSE 1
+> + 3  -----+----?          +-------------+
+> + 2  -----+--------+-----?              |
+> + 1  -----+-------?                     +-------------+
+
+You version is a little ambiguous, pins 1, 2 & 3 could be
+interconnected at the +.  The text does however make it clear they are
+not, but i don't see any harm in making the diagram clearer.
+
+> +static int of_load_single_pse_pi_pairset(struct device_node *node,
+> +					 struct pse_pi *pi,
+> +					 int pairset_num)
+> +{
+> +	struct device_node *pairset_np;
+> +	const char *name;
+> +	int ret;
+> +
+> +	ret = of_property_read_string_index(node, "pairset-names",
+> +					    pairset_num, &name);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!strcmp(name, "alternative-a")) {
+> +		pi->pairset[pairset_num].pinout = ALTERNATIVE_A;
+> +	} else if (!strcmp(name, "alternative-b")) {
+> +		pi->pairset[pairset_num].pinout = ALTERNATIVE_B;
+> +	} else {
+> +		pr_err("pse: wrong pairset-names value %s\n", name);
+> +		return -EINVAL;
+
+Maybe include the node path in the error message? For a 24 port
+switch, it will help find a typo in one of the ports. I would do this
+for all error messages in this code.
+
+Please add my Reviewed-by on the next version.
+
+       Andrew
 
