@@ -1,134 +1,95 @@
-Return-Path: <devicetree+bounces-54170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54171-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDAE588FC4C
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 11:00:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DB2188FC64
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 11:06:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B25E1F2FA90
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 10:00:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 490AA2956A8
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 10:06:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A81DC651AE;
-	Thu, 28 Mar 2024 10:00:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="l/zXdZcw"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 235BF524BD;
+	Thu, 28 Mar 2024 10:06:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from abb.hmeau.com (abb.hmeau.com [144.6.53.87])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A5991E861;
-	Thu, 28 Mar 2024 10:00:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84FC553804;
+	Thu, 28 Mar 2024 10:06:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=144.6.53.87
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711620037; cv=none; b=bLhM2ZrPKbBhQMkNvEgtiXg+h6xEDRSduiczK+KoR/fbTTFG+k+hOWNpuJbgTA+ouGaCnFHe9+pfiIylWjfHn/KJEBjmqLOSRhSgT44ddUHctq04m8I2ve/XTCy8KnfSl1ggVqXrrPaQ5tlh0wK8Jt/YfY6eG8dkw2mhnilBasw=
+	t=1711620375; cv=none; b=AXRlhScg0CmOJDlgTzOBpXq2Upjo6eWb+Z5kRQHyTtRxzecgm6Gpc996VQGb+MmDRJiDOAt21giVsk/APB1haEiN/YRIA4KRHDVvssGiIXw9KjZJd7DMKAQsmsAisDzGwytsv7/ESIhkI2aqcUmmTIGZtU1LT/5GKdgtwgELNNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711620037; c=relaxed/simple;
-	bh=Emrrp4t1Me2Gws3cn87MMVbQOlKKudRm3ej2wUakzUY=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mtB/aPnp/lZtAFPIKnRXb75GYkTN6J/UW8jU+uFrZMUvi31CdHDk72TRCynMmGo6hfStIRk2sx1NznwZJmXZFyUK/ypiJAsNzJMQKNt7l3wU6sRbfLwwSJmkEXlKTVUIOhw8DC3LzybQq5eyZWIZevTjWNKnHtu7pG2m9+TmMW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=l/zXdZcw; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42S9xeaI014834;
-	Thu, 28 Mar 2024 10:00:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=qcppdkim1; bh=PmY3Bf684EtzVI98XVg2D
-	Tqw4xfM4PdBGIOA1wwdRmo=; b=l/zXdZcw+h2F5vQ5dDfRqcf6ScXoZM8fhVlhe
-	SLpjxQvQt+S8UKJ4qcYpuuqP2AnEcYZHheTkl4MwDxJcY45F2S5kr+xpt5O5fP4E
-	cMWu/YTpBs+N0BXiFiCxtCIsezidVKA6Vg9P7GrwldWp5w2KxQK8f+e5cmzpcWdG
-	F3WmKQpxBKBo1w/GB5IRG0mgvCRDwms6IaRL8Dhjs49KwmeTrEM9omz+WXjv7oGy
-	2Puz2A3XAe2bJC6c6bi+WZkooTSBMNbuyaj/1kX81RNUhjei3Yesf7I7/KQYm3TP
-	/PiFLOFodjy668W5yWLUz/jjnLTgrkutDGYr+S12tEBQXyTVg==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x53nxgpxw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 28 Mar 2024 10:00:31 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42SA0Uej019574
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 28 Mar 2024 10:00:30 GMT
-Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 28 Mar 2024 03:00:25 -0700
-Date: Thu, 28 Mar 2024 15:30:21 +0530
-From: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <djakov@kernel.org>, <quic_anusha@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>
-Subject: Re: [PATCH v4 2/3] clk: qcom: add IPQ9574 interconnect clocks support
-Message-ID: <ZgU/tcAE7x4MBdx7@hu-varada-blr.qualcomm.com>
-References: <20240327081850.2924870-1-quic_varada@quicinc.com>
- <20240327081850.2924870-3-quic_varada@quicinc.com>
- <CAA8EJpoFw3Qyq+NRffe5HBUbCfdYv03oWgoUwkB6pbdVrF6LEg@mail.gmail.com>
+	s=arc-20240116; t=1711620375; c=relaxed/simple;
+	bh=4dG8UhkcaQYzhOF03nvm3E5xZ94yc0It4+G2sZOnS6k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=c+p2kILkvV0JE9Lupxm5tPhsAr1midKPe2tWaEWehzXlhnoa8wKB4BRjtplaQQzH2lVIohF/C/SfiJ+IxoKSqemhyJJwYskkakLup5gJGbbXn0eDVMa+a7jqiGauRxEiZYRTC9rAXVkYd/ee1Uyd3S07OEWmkVoWwoPhhjhrEbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; arc=none smtp.client-ip=144.6.53.87
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
+Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
+	by formenos.hmeau.com with smtp (Exim 4.94.2 #2 (Debian))
+	id 1rpmdb-00C7Dr-R3; Thu, 28 Mar 2024 18:05:36 +0800
+Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Thu, 28 Mar 2024 18:05:52 +0800
+Date: Thu, 28 Mar 2024 18:05:52 +0800
+From: Herbert Xu <herbert@gondor.apana.org.au>
+To: Akhil R <akhilrajeev@nvidia.com>
+Cc: davem@davemloft.net, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, thierry.reding@gmail.com, jonathanh@nvidia.com,
+	catalin.marinas@arm.com, will@kernel.org, mperttunen@nvidia.com,
+	airlied@gmail.com, daniel@ffwll.ch, linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v6 3/5] crypto: tegra: Add Tegra Security Engine driver
+Message-ID: <ZgVBAFmfK7GKgmYi@gondor.apana.org.au>
+References: <20240319082306.34716-1-akhilrajeev@nvidia.com>
+ <20240319082306.34716-4-akhilrajeev@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAA8EJpoFw3Qyq+NRffe5HBUbCfdYv03oWgoUwkB6pbdVrF6LEg@mail.gmail.com>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: mPntLGzbq1JEOFupbpa7dIGTRZFOS6Zp
-X-Proofpoint-ORIG-GUID: mPntLGzbq1JEOFupbpa7dIGTRZFOS6Zp
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-28_09,2024-03-27_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- mlxlogscore=925 impostorscore=0 spamscore=0 bulkscore=0 mlxscore=0
- lowpriorityscore=0 priorityscore=1501 phishscore=0 malwarescore=0
- adultscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2403210001 definitions=main-2403280067
+In-Reply-To: <20240319082306.34716-4-akhilrajeev@nvidia.com>
 
-On Wed, Mar 27, 2024 at 10:49:56AM +0200, Dmitry Baryshkov wrote:
-> On Wed, 27 Mar 2024 at 10:21, Varadarajan Narayanan
-> <quic_varada@quicinc.com> wrote:
-> >
-> > Unlike MSM platforms that manage NoC related clocks and scaling
-> > from RPM, IPQ SoCs dont involve RPM in managing NoC related
-> > clocks and there is no NoC scaling.
-> >
-> > However, there is a requirement to enable some NoC interface
-> > clocks for accessing the peripheral controllers present on
-> > these NoCs. Though exposing these as normal clocks would work,
-> > having a minimalistic interconnect driver to handle these clocks
-> > would make it consistent with other Qualcomm platforms resulting
-> > in common code paths. This is similar to msm8996-cbf's usage of
-> > icc-clk framework.
-> >
-> > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> > ---
-> > v4: Use clk_hw instead of indices
-> >     Do icc register in qcom_cc_probe() call stream
-> >     Add icc clock info to qcom_cc_desc structure
-> > v3: Use indexed identifiers here to avoid confusion
-> >     Fix error messages and move to common.c
-> > v2: Move DTS to separate patch
-> >     Update commit log
-> >     Auto select CONFIG_INTERCONNECT & CONFIG_INTERCONNECT_CLK to fix build error
-> > ---
-> >  drivers/clk/qcom/Kconfig       |  2 ++
-> >  drivers/clk/qcom/common.c      | 34 ++++++++++++++++++++-
-> >  drivers/clk/qcom/common.h      |  4 ++-
-> >  drivers/clk/qcom/gcc-ipq9574.c | 54 ++++++++++++++++++++++++++++++++++
+On Tue, Mar 19, 2024 at 01:53:04PM +0530, Akhil R wrote:
+>
+> +		.alg.skcipher.op.do_one_request	= tegra_aes_do_one_req,
+> +		.alg.skcipher.base = {
+> +			.init = tegra_aes_cra_init,
+> +			.exit = tegra_aes_cra_exit,
+> +			.setkey = tegra_aes_setkey,
+> +			.encrypt = tegra_aes_encrypt,
+> +			.decrypt = tegra_aes_decrypt,
+> +			.min_keysize = AES_MIN_KEY_SIZE,
+> +			.max_keysize = AES_MAX_KEY_SIZE,
+> +			.ivsize	= AES_BLOCK_SIZE,
+> +			.base = {
+> +				.cra_name = "ofb(aes)",
+> +				.cra_driver_name = "ofb-aes-tegra",
+> +				.cra_priority = 500,
+> +				.cra_flags = CRYPTO_ALG_TYPE_SKCIPHER | CRYPTO_ALG_ASYNC,
+> +				.cra_blocksize = AES_BLOCK_SIZE,
+> +				.cra_ctxsize = sizeof(struct tegra_aes_ctx),
+> +				.cra_alignmask = 0xf,
+> +				.cra_module = THIS_MODULE,
+> +			},
+> +		}
+> +	}, {
 
-Have addressed the comments and posted v5.
-Kindly review.
+OFB no longer exists in the kernel.  Please remove all traces of it
+from your driver.
 
-Thanks
-Varada
+Also please ensure that yuor driver passes the extra fuzz tests.
+
+Thanks,
+-- 
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
 
