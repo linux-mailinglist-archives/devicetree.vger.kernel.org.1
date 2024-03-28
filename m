@@ -1,61 +1,57 @@
-Return-Path: <devicetree+bounces-54193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CECB488FE37
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 12:37:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60E4288FE46
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 12:44:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E944E1C21D77
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 11:37:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 963D72944A4
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 11:44:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79B867E58C;
-	Thu, 28 Mar 2024 11:37:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 251C47D06B;
+	Thu, 28 Mar 2024 11:44:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J7uMJjyR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q0V87NQs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B1C7374F9;
-	Thu, 28 Mar 2024 11:37:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAD8D524BD;
+	Thu, 28 Mar 2024 11:44:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711625852; cv=none; b=CRWn6pskGkRZugffrCI+9a6dQMNkh6xDlZpybe+t31xly7Sy7vQDLKvCjEOUDfTC34kk2CwB3wcB9+IVrItkkZUWjmP9Qmxro5tl8IVKbIEmxwhX+EZ0nVYYq6Am84OhoQmn/tp5O6PomhSPakgM4WXcsgVoMtQPNKcrei5p+3E=
+	t=1711626277; cv=none; b=lNu2OOXF03J24e1dSaGTTUghjRSb1IoDs1IVbrE0vxnSIG0A6O02i2vt/VGv+czBqyYQUejLopQoz6IFTBUt7uILK1e06Ynlta9s4jrtlO70GoDwQUN3VWEuyqvMcjSNgnRr7idhJQcoZMZ30PWovsOUU5PMA8h7LBqos8h/LwY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711625852; c=relaxed/simple;
-	bh=PVbCQcBD9CWn/gNAbIGipQTz8wnyniImrlBgL0zkhjw=;
+	s=arc-20240116; t=1711626277; c=relaxed/simple;
+	bh=p/l9VIkENyT1OmY25HO3ekE387A0ApR8Gsw/jiLAWK4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IfFrn9ZK28RrjQ/fWbiWPbnlLCrRnOiRzoWhS9kqkatJKuvxnSbcZKlBzJYcSaHIHlLcGsGNEcH75x038S8E2mdmSc29iZRH4k8VED5sIM/xyJ694PjWW5kk9QJlGfLWxrjo+cjhEVHuzVfsbRDX8m8IirCdnQ8/5vdjhjm++fk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J7uMJjyR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2206EC433C7;
-	Thu, 28 Mar 2024 11:37:27 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PwOVAMHauvCn6QAHEAnst39zmDPMRMwpiMec7PbNYWdyHXcdR4Z516icFBo8r4oB5k0+7cFUjDeKIYgk8NKt2b9PwxgYLHvcIqlo6P/b32ke4C5FzPfq7QjvTGLbjYzURgfEBwVMQ+CaKcdLtXSd1xgSYaYNxuPxxYDabXIrtLM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q0V87NQs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30767C433C7;
+	Thu, 28 Mar 2024 11:44:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711625851;
-	bh=PVbCQcBD9CWn/gNAbIGipQTz8wnyniImrlBgL0zkhjw=;
+	s=k20201202; t=1711626276;
+	bh=p/l9VIkENyT1OmY25HO3ekE387A0ApR8Gsw/jiLAWK4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=J7uMJjyRckdKZmMRdYNjQ7wUziTu9fqjJYx9lm0PzzjjqYb3/imPJtrkbwmxHidrs
-	 2pqpPaAvH/1mJ22XEtyQxLKt/GJyZd+tuOHleveFBqrp5wUEdZVpYfnTt9iXDkUBBj
-	 P+WXZaWVYJOlR0qVK5RZPP1KH3SY8dAzLpZxROH9gRFr0ZqPf7yBj43v6qoAyqU5Pw
-	 K8TXc6il04eknWpAT7jnwaYHAi3qTXBEnAOWIyzzUGHK3I7w0bVKU93UVzNU82DPKu
-	 yizSp53bq538s9z6mUtDCFCuk/83Tu7T8qeVzN73hYU5B9jvFgvtHRQAeUW9uIeGVz
-	 DV+8ZifBpt+DQ==
-Date: Thu, 28 Mar 2024 11:37:25 +0000
+	b=q0V87NQsRixWt0dPQUP4wiEyCTi3RQUbUoHlZ3YjUUIytF9cN3IV4nx/CKutUGrZd
+	 t2xT/a1e3It5eNYhj0gf4BeFdtMOYYlE83J0xxW9SxuZa/XdcC63gS1fa2ga2ul0Em
+	 VheHSyLmCG3tlqmpnuNAkqX6j0UikLoMYtnAx/c0F58ldKXIFUYApS7lN7uM2sJ0cd
+	 TpIKG6eQGPCX5G134LP4947KkSFfWk4mUFHtl0+U9oZbxoEtnF2gsbpGM3hd/Xxtm2
+	 z+2EL4LxOPRbfi9ZVnCAezY7g2PnAaxm2KVWn0WqXvqfo1PvnVt0Vss7QMpWHugHKt
+	 v6PDqDCiHXFXA==
+Date: Thu, 28 Mar 2024 11:44:31 +0000
 From: Lee Jones <lee@kernel.org>
-To: Bhargav Raviprakash <bhargav.r@ltts.com>
-Cc: linux-kernel@vger.kernel.org, m.nirmaladevi@ltts.com,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, jpanis@baylibre.com,
-	devicetree@vger.kernel.org, arnd@arndb.de,
-	gregkh@linuxfoundation.org, lgirdwood@gmail.com, broonie@kernel.org,
-	linus.walleij@linaro.org, linux-gpio@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, nm@ti.com, vigneshr@ti.com,
-	kristo@kernel.org, eblanc@baylibre.com
-Subject: Re: [PATCH v4 03/11] mfd: tps6594: add regmap config in match data
-Message-ID: <20240328113725.GA13211@google.com>
-References: <20240320102559.464981-1-bhargav.r@ltts.com>
- <20240320102559.464981-4-bhargav.r@ltts.com>
+To: James Ogletree <jogletre@opensource.cirrus.com>
+Cc: dmitry.torokhov@gmail.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	broonie@kernel.org, jeff@labundy.com, patches@opensource.cirrus.com,
+	linux-sound@vger.kernel.org, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v10 0/5] Add support for CS40L50
+Message-ID: <20240328114431.GC13211@google.com>
+References: <20240320192956.2395731-1-jogletre@opensource.cirrus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,174 +61,94 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240320102559.464981-4-bhargav.r@ltts.com>
+In-Reply-To: <20240320192956.2395731-1-jogletre@opensource.cirrus.com>
 
-On Wed, 20 Mar 2024, Bhargav Raviprakash wrote:
+On Wed, 20 Mar 2024, James Ogletree wrote:
 
-> Introduces a new struct tps6594_match_data. This struct holds fields for
-> chip id and regmap config. Using this struct in of_device_id data field.
-> This helps in adding support for TPS65224 PMIC.
+> Changes in v10:
+> - Minor refactoring and logical improvements all around
+> - Renamed and added supplies
 > 
-> Signed-off-by: Bhargav Raviprakash <bhargav.r@ltts.com>
-> Acked-by: Julien Panis <jpanis@baylibre.com>
-> ---
->  drivers/mfd/tps6594-i2c.c   | 24 ++++++++++++++++--------
->  drivers/mfd/tps6594-spi.c   | 24 ++++++++++++++++--------
->  include/linux/mfd/tps6594.h | 11 +++++++++++
->  3 files changed, 43 insertions(+), 16 deletions(-)
-
-Mostly fine, just a couple of nits.
-
-Firstly the subject lines for the entire set are inconsistent.
-
-Please use the style set by the subsystem:
-
-  `git log --oneline -- <subsystem>` is your friend.
-
-> diff --git a/drivers/mfd/tps6594-i2c.c b/drivers/mfd/tps6594-i2c.c
-> index c125b474b..9e2ed48b7 100644
-> --- a/drivers/mfd/tps6594-i2c.c
-> +++ b/drivers/mfd/tps6594-i2c.c
-> @@ -192,10 +192,16 @@ static const struct regmap_config tps6594_i2c_regmap_config = {
->  	.write = tps6594_i2c_write,
->  };
->  
-> +static const struct tps6594_match_data match_data[] = {
-> +	[TPS6594] = {TPS6594, &tps6594_i2c_regmap_config},
-> +	[TPS6593] = {TPS6593, &tps6594_i2c_regmap_config},
-> +	[LP8764] = {LP8764, &tps6594_i2c_regmap_config},
-
-Spaces after the '{' and before the '}' please.
-> +};
-> +
->  static const struct of_device_id tps6594_i2c_of_match_table[] = {
-> -	{ .compatible = "ti,tps6594-q1", .data = (void *)TPS6594, },
-> -	{ .compatible = "ti,tps6593-q1", .data = (void *)TPS6593, },
-> -	{ .compatible = "ti,lp8764-q1",  .data = (void *)LP8764,  },
-> +	{ .compatible = "ti,tps6594-q1", .data = &match_data[TPS6594], },
-> +	{ .compatible = "ti,tps6593-q1", .data = &match_data[TPS6593], },
-> +	{ .compatible = "ti,lp8764-q1",  .data = &match_data[LP8764], },
->  	{}
->  };
->  MODULE_DEVICE_TABLE(of, tps6594_i2c_of_match_table);
-> @@ -205,6 +211,7 @@ static int tps6594_i2c_probe(struct i2c_client *client)
->  	struct device *dev = &client->dev;
->  	struct tps6594 *tps;
->  	const struct of_device_id *match;
-> +	const struct tps6594_match_data *mdata;
->  
->  	tps = devm_kzalloc(dev, sizeof(*tps), GFP_KERNEL);
->  	if (!tps)
-> @@ -216,14 +223,15 @@ static int tps6594_i2c_probe(struct i2c_client *client)
->  	tps->reg = client->addr;
->  	tps->irq = client->irq;
->  
-> -	tps->regmap = devm_regmap_init(dev, NULL, client, &tps6594_i2c_regmap_config);
-> -	if (IS_ERR(tps->regmap))
-> -		return dev_err_probe(dev, PTR_ERR(tps->regmap), "Failed to init regmap\n");
-> -
->  	match = of_match_device(tps6594_i2c_of_match_table, dev);
->  	if (!match)
->  		return dev_err_probe(dev, -EINVAL, "Failed to find matching chip ID\n");
-> -	tps->chip_id = (unsigned long)match->data;
-> +	mdata = (struct tps6594_match_data *)match->data;
-
-What happens when you drop this case?
-
-I was under the impression this was not required when casting from (void *)
-
-> +	tps->chip_id = mdata->chip_id;
-> +
-> +	tps->regmap = devm_regmap_init(dev, NULL, client, mdata->config);
-> +	if (IS_ERR(tps->regmap))
-> +		return dev_err_probe(dev, PTR_ERR(tps->regmap), "Failed to init regmap\n");
-
-"initialise"
-
->  
->  	crc8_populate_msb(tps6594_i2c_crc_table, TPS6594_CRC8_POLYNOMIAL);
->  
-> diff --git a/drivers/mfd/tps6594-spi.c b/drivers/mfd/tps6594-spi.c
-> index 5afb1736f..82a1c02e3 100644
-> --- a/drivers/mfd/tps6594-spi.c
-> +++ b/drivers/mfd/tps6594-spi.c
-> @@ -77,10 +77,16 @@ static const struct regmap_config tps6594_spi_regmap_config = {
->  	.use_single_write = true,
->  };
->  
-> +static const struct tps6594_match_data match_data[] = {
-> +	[TPS6594] = {TPS6594, &tps6594_spi_regmap_config},
-> +	[TPS6593] = {TPS6593, &tps6594_spi_regmap_config},
-> +	[LP8764] = {LP8764, &tps6594_spi_regmap_config},
-
-As above.
-
-> +};
-> +
->  static const struct of_device_id tps6594_spi_of_match_table[] = {
-> -	{ .compatible = "ti,tps6594-q1", .data = (void *)TPS6594, },
-> -	{ .compatible = "ti,tps6593-q1", .data = (void *)TPS6593, },
-> -	{ .compatible = "ti,lp8764-q1",  .data = (void *)LP8764,  },
-> +	{ .compatible = "ti,tps6594-q1", .data = &match_data[TPS6594], },
-> +	{ .compatible = "ti,tps6593-q1", .data = &match_data[TPS6593], },
-> +	{ .compatible = "ti,lp8764-q1",  .data = &match_data[LP8764], },
->  	{}
->  };
->  MODULE_DEVICE_TABLE(of, tps6594_spi_of_match_table);
-> @@ -90,6 +96,7 @@ static int tps6594_spi_probe(struct spi_device *spi)
->  	struct device *dev = &spi->dev;
->  	struct tps6594 *tps;
->  	const struct of_device_id *match;
-> +	const struct tps6594_match_data *mdata;
->  
->  	tps = devm_kzalloc(dev, sizeof(*tps), GFP_KERNEL);
->  	if (!tps)
-> @@ -101,14 +108,15 @@ static int tps6594_spi_probe(struct spi_device *spi)
->  	tps->reg = spi_get_chipselect(spi, 0);
->  	tps->irq = spi->irq;
->  
-> -	tps->regmap = devm_regmap_init(dev, NULL, spi, &tps6594_spi_regmap_config);
-> -	if (IS_ERR(tps->regmap))
-> -		return dev_err_probe(dev, PTR_ERR(tps->regmap), "Failed to init regmap\n");
-> -
->  	match = of_match_device(tps6594_spi_of_match_table, dev);
->  	if (!match)
->  		return dev_err_probe(dev, -EINVAL, "Failed to find matching chip ID\n");
-> -	tps->chip_id = (unsigned long)match->data;
-> +	mdata = (struct tps6594_match_data *)match->data;
-> +	tps->chip_id = mdata->chip_id;
-> +
-> +	tps->regmap = devm_regmap_init(dev, NULL, spi, mdata->config);
-> +	if (IS_ERR(tps->regmap))
-> +		return dev_err_probe(dev, PTR_ERR(tps->regmap), "Failed to init regmap\n");
->  
->  	crc8_populate_msb(tps6594_spi_crc_table, TPS6594_CRC8_POLYNOMIAL);
->  
-> diff --git a/include/linux/mfd/tps6594.h b/include/linux/mfd/tps6594.h
-> index 16543fd4d..d781e0fe3 100644
-> --- a/include/linux/mfd/tps6594.h
-> +++ b/include/linux/mfd/tps6594.h
-> @@ -1337,6 +1337,17 @@ struct tps6594 {
->  	struct regmap_irq_chip_data *irq_data;
->  };
->  
-> +/**
-> + * struct tps6594_match_data - of match data of PMIC
-> + *
-> + * @chip_id: chip ID of PMIC
-> + * @config: regmap config of PMIC
-> + */
-> +struct tps6594_match_data {
-> +	unsigned long chip_id;
-> +	const struct regmap_config *config;
-> +};
-> +
->  extern const struct regmap_access_table tps6594_volatile_table;
->  extern const struct regmap_access_table tps65224_volatile_table;
->  
-> -- 
-> 2.25.1
+> Changes in v9:
+> - Fixed empty struct by utilizing cs_dsp's post_run callback
+> - Style fixes in MFD driver
 > 
+> Changes in v8:
+> - set_sysclk() -> set_bclk_ratio()
+> - Added ID table to codec driver
+> - Style improvements
+> - Fixed ordering of new write sequence operations
+> 
+> Changes in v7:
+> - Fixed sparse warning
+> - Moved write sequences to private data structure
+> - Logical and style improvements in write sequence interface
+> 
+> Changes in v6:
+> - Updated write sequencer interface to be control-name based
+> - Fixed a race condition and non-handling of repeats in playback callback
+> - Stylistic and logical improvements all around
+> 
+> Changes in v5:
+> - Added a codec sub-device to support I2S streaming
+> - Moved write sequencer code from cirrus_haptics to cs_dsp
+> - Reverted cirrus_haptics library; future Cirrus input
+>   drivers will export and utilize cs40l50_vibra functions
+> - Added more comments
+> - Many small stylistic and logical improvements
+> 
+> Changes in v4:
+> - Moved from Input to MFD
+> - Moved common Cirrus haptic functions to a library
+> - Incorporated runtime PM framework
+> - Many style improvements
+> 
+> Changes in v3:
+> - YAML formatting corrections
+> - Fixed typo in MAINTAINERS
+> - Used generic node name "haptic-driver"
+> - Fixed probe error code paths
+> - Switched to "sizeof(*)"
+> - Removed tree reference in MAINTAINERS
+> 
+> Changes in v2:
+> - Fixed checkpatch warnings
+> 
+> James Ogletree (5):
+>   firmware: cs_dsp: Add write sequence interface
+>   dt-bindings: input: cirrus,cs40l50: Add initial DT binding
+>   mfd: cs40l50: Add support for CS40L50 core driver
+>   Input: cs40l50 - Add support for the CS40L50 haptic driver
+>   ASoC: cs40l50: Support I2S streaming to CS40L50
+> 
+>  .../bindings/input/cirrus,cs40l50.yaml        |  68 +++
+>  MAINTAINERS                                   |  12 +
+>  drivers/firmware/cirrus/cs_dsp.c              | 278 +++++++++
+>  drivers/input/misc/Kconfig                    |  10 +
+>  drivers/input/misc/Makefile                   |   1 +
+>  drivers/input/misc/cs40l50-vibra.c            | 577 ++++++++++++++++++
+>  drivers/mfd/Kconfig                           |  30 +
+>  drivers/mfd/Makefile                          |   4 +
+>  drivers/mfd/cs40l50-core.c                    | 570 +++++++++++++++++
+>  drivers/mfd/cs40l50-i2c.c                     |  68 +++
+>  drivers/mfd/cs40l50-spi.c                     |  68 +++
+>  include/linux/firmware/cirrus/cs_dsp.h        |  27 +
+>  include/linux/mfd/cs40l50.h                   | 137 +++++
+>  sound/soc/codecs/Kconfig                      |  11 +
+>  sound/soc/codecs/Makefile                     |   2 +
+>  sound/soc/codecs/cs40l50-codec.c              | 308 ++++++++++
+>  16 files changed, 2171 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/cirrus,cs40l50.yaml
+>  create mode 100644 drivers/input/misc/cs40l50-vibra.c
+>  create mode 100644 drivers/mfd/cs40l50-core.c
+>  create mode 100644 drivers/mfd/cs40l50-i2c.c
+>  create mode 100644 drivers/mfd/cs40l50-spi.c
+>  create mode 100644 include/linux/mfd/cs40l50.h
+>  create mode 100644 sound/soc/codecs/cs40l50-codec.c
+
+MFD part looks okay.
+
+I need Acks from all of the other maintainers before I can process the set.
 
 -- 
 Lee Jones [李琼斯]
