@@ -1,112 +1,82 @@
-Return-Path: <devicetree+bounces-54241-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54242-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B9278900BC
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 14:46:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EA0D8900D7
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 14:55:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 15365294B22
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 13:46:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 55C491C28A5D
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 13:55:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CA9680BF4;
-	Thu, 28 Mar 2024 13:45:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99D337E118;
+	Thu, 28 Mar 2024 13:55:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dBe+Yn3L"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="B2GyGhGb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 131BA11CA9;
-	Thu, 28 Mar 2024 13:45:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from mail-177132.yeah.net (mail-177132.yeah.net [123.58.177.132])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4060314294;
+	Thu, 28 Mar 2024 13:55:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711633534; cv=none; b=r37jiDkhSGh/vpSJA0fr7iwuA4YOaU1swujhaTaznMFLpcPUXWiudi5e2hCIR9Kce7ZqF+nZhfT8bmeQDgvsYYHUMlWdA4RjEm0p2/CnGtBGCJzM56kz/WBIpE1JuIcsZJqTTL4lpXd1qefbPeskh5qQaxXrJtk4HNNOTFMMzP0=
+	t=1711634116; cv=none; b=WZ6/Bnw1l1IabIA8odxlZx3Pc7+wUbTEP0QbdQZOR6aQMlSlQgEUfepXePQpYIDsoR/Xx+DeCEy2aOmOXHlgwg1UfBtI83wyXPzyePgOwzNF1oXFi15wXvObf4x363L7eLjYUSMwSpXqZi+0TuYQZK9ice5ovwaN7vXLSU1dT2U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711633534; c=relaxed/simple;
-	bh=MFAXdOaG8IIYPpPqn+fadq88X4T0bNFsHUij/Byl2l8=;
+	s=arc-20240116; t=1711634116; c=relaxed/simple;
+	bh=DfrrIRMhf7F8dxUPrgdMEfjKADIvaXWsP4TCkcLf8oU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SRKn3+CRVgecsgrSThEihB1InWQ5mi5d+MKgB7iFhX4DE3Tv4KPuzAlTduWbvEPTLFZJMk56e3enjLhQKGFXSyQblpMROlVdqsA/XFPtb3XkYmPnK9KTPeNIYVDgDhZi/dCJDyafRbE9Z2o08o5rtL8FN3VZY1BICCdDdLlNSUY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dBe+Yn3L; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 149B2C433C7;
-	Thu, 28 Mar 2024 13:45:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711633533;
-	bh=MFAXdOaG8IIYPpPqn+fadq88X4T0bNFsHUij/Byl2l8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dBe+Yn3LhADOFryjYxU0YHm2Ov3d36otcpmHlaE6/JXWkUaNe51GLtPOobxKTcWPX
-	 dcxIvvhctvJ54NbEOiDazdjSRY+/Te9yOKpWLcbd0Haaao7WGkSv7dTme0HzzAZGit
-	 pi6kp97eOCNY+tr1b8k8i6WTIjliXvDy+ULv8stjOaq7eKkixq+vaZB0BAnUiawUVN
-	 a1l5w+OV3v4Pw9YaW9clwc15VG7Lx8WD1vjb9GGkK+RAIvGr17g7kNi4oW7UKVQMUB
-	 SEUwnXUpMp81sIqF+qH2aCZW8MFOlgWFEJ7vOMSCgUGzZgKcBCPM28VpEiCnGk84zQ
-	 gHDeRactzp+ig==
-Date: Thu, 28 Mar 2024 13:45:28 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Mihai Sain <mihai.sain@microchip.com>, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-	claudiu.beznea@tuxon.dev, lgirdwood@gmail.com,
-	andrei.simion@microchip.com, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 7/7] regulator: mcp16502: Update the names from buck
- regulators
-Message-ID: <aed9c6f0-a33f-4d2d-ad5c-2a5589483afa@sirena.org.uk>
-References: <20240327101724.2982-1-mihai.sain@microchip.com>
- <20240327101724.2982-8-mihai.sain@microchip.com>
- <20240327-agreed-routine-0cc60186876b@spud>
+	 Content-Type:Content-Disposition:In-Reply-To; b=GEyS0GKjnyPVkDS9txmRLS1jWbm+Acnv6+77/DQhj2FGnlDpGKxGMkyLZW7wSsWvyWdqNjd/uXymft9HsVFNNpuKcsZ52MTO6zFWfhtftnaftx238n95OZfx0KSCgRV4Cp+wlDyxT4Al3wz4mPmJvq+zF7K/o9KWo+C0AiX6NQY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=B2GyGhGb; arc=none smtp.client-ip=123.58.177.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=7HuHZRVaWONhQpUVLGaH8mCBo7oDHLgcq9J6Ysi17V0=;
+	b=B2GyGhGbnijYUIE6ovaPBfHzlyeGNvjf5Hhrjr8xzi9lf6SKybB5fCzs2nsSwP
+	8yRBh9ydcmcMzpDLlDtl85B3L+9oYj7BH7B362RxH/J9yoXxb/KNunXRYX4qiDyw
+	N+hCK6djPwQlH1MPT/ayTcKoR+M5tH4kvAtUz6U8IMvfM=
+Received: from dragon (unknown [183.213.196.225])
+	by smtp2 (Coremail) with SMTP id C1UQrACX_heAdgVmyl1aAg--.12337S3;
+	Thu, 28 Mar 2024 21:54:09 +0800 (CST)
+Date: Thu, 28 Mar 2024 21:54:07 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Sebastian Reichel <sre@kernel.org>
+Cc: Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, imx@lists.linux.dev,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Dong Aisheng <aisheng.dong@nxp.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Stefan Wahren <wahrenst@gmx.net>
+Subject: Re: [PATCH v5 6/6] ARM: dts: imx: Add UNI-T UTi260B thermal camera
+ board
+Message-ID: <ZgV2fyfV5/SW/v+x@dragon>
+References: <20240226212740.2019837-1-sre@kernel.org>
+ <20240226212740.2019837-7-sre@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="3xvy50Unb7ZcoSWS"
-Content-Disposition: inline
-In-Reply-To: <20240327-agreed-routine-0cc60186876b@spud>
-X-Cookie: Yes, but which self do you want to be?
-
-
---3xvy50Unb7ZcoSWS
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <20240226212740.2019837-7-sre@kernel.org>
+X-CM-TRANSID:C1UQrACX_heAdgVmyl1aAg--.12337S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUIzB-DUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiGBCvZV6NnpnNkwACsK
 
-On Wed, Mar 27, 2024 at 04:28:49PM +0000, Conor Dooley wrote:
-> On Wed, Mar 27, 2024 at 12:17:24PM +0200, Mihai Sain wrote:
+On Mon, Feb 26, 2024 at 10:26:28PM +0100, Sebastian Reichel wrote:
+> Add DT for the UNI-T UTi260B handheld thermal camera.
+> 
+> Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
+> Signed-off-by: Sebastian Reichel <sre@kernel.org>
 
-> > Use generic names for buck regulators to avoid any confusion.
-> > Update the names from buck regulators in order to match
-> > the datasheet block diagram for the buck regulators.
+Applied, thanks!
 
-> I know the regulator core will create dummy regulators when they are not
-> provided in the devicetree, so I am not 100% on how backwards
-> compatibility works here.
-> You'll end up with a bunch of dummies and therefore the regulator-names
-> and constraints on the regulator will be lost, no?
-> Can you explain how is this backwards compatible with the old
-> devicetrees?
-
-It quite simply isn't backwards compatible.  The original driver looks
-to be pretty broken but this breaks compatibility, we'd need a
-transition plan of some kind which probably needs some core work to cope
-with fallback names.
-
---3xvy50Unb7ZcoSWS
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmYFdHcACgkQJNaLcl1U
-h9BZ6Qf7BKNHdl8v6RMF5pRZyZ7vMKhs3CzyTeHe56lT/zejkrG4sHEsOQmV0dEG
-gVWKyDlpXzD+z5yrfTxadrPb3u72NEnFS0PEMBh0WgyuJ6YSVy8QaQe6jvKeJlMY
-+jsh7bXzm9YKiBVya1gudts97wrILFiI54yEpsHt+hAyVHiQkaoceEAwMRoprUJR
-3nxMQIn/fUIAsXCtEjPHHFGDCu6EjsHVS7pU0D/6gasATd++yCdnWgSk3GBR6HOV
-ahuAjSBE09Nws1mo275I83sFix1FyemBdxvual2iRBekMpTyl4hsz3EhuhU6o6bW
-My2Qzamr67YowDrsd2oEqYGVTJuBoQ==
-=t1ua
------END PGP SIGNATURE-----
-
---3xvy50Unb7ZcoSWS--
 
