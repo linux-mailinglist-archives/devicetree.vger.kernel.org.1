@@ -1,203 +1,318 @@
-Return-Path: <devicetree+bounces-54114-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97D5C88FADB
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 10:14:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3764388FAFB
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 10:19:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4BC3A298C04
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 09:14:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B3FD1C2D2AF
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 09:19:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9919654664;
-	Thu, 28 Mar 2024 09:14:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OH80L1Pm"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 549BD64CE1;
+	Thu, 28 Mar 2024 09:19:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2114.outbound.protection.partner.outlook.cn [139.219.146.114])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEDC35FB8C
-	for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 09:14:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711617264; cv=none; b=VKOEQJdofxepretpUUcEblgNNgWaUHkwjAxlp98PaM69qlFuotCqLCmF2PCbAbJSsFQna3jg3UTvi48U/tbS6Dhubw83P457MWl9tLGmIKnRafQHtCZsWQeJSYekxg+SujT/WNrUF2huBmRl+Qm2ALrkwlRNEAvpr1ViZydtRxQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711617264; c=relaxed/simple;
-	bh=lrFfsBE8SNHNpE0GWqb+vFLJEah/81JylKDe/YcmDyc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kU9W7j1wHjlaGL47h1Wh4NfJ+LHt1SZ00tnlOS8HO5uUeTQVlOed3WfpO44IKAu9jKJiwnA041f+12JZMhD+kq22m8MtbEidFQ0j9FIRlxo9r16ry5iYVvmBek+SyUjdLOVsCQpbL8PcjTxwkE3c3pQWdX9IlUyOhNdhkgRKkQo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OH80L1Pm; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-33ed7ba1a42so432339f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 02:14:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711617261; x=1712222061; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Dn2TKuOzYzu1YNu0SEpdtuh1RniZXi87HtRvpP+WrdA=;
-        b=OH80L1PmERmoLwxZ2JOM5vzi3zMxsWm3N2UHdiCXfOYqI+810sHG/JAcgWCjgz+8gv
-         Ckp6N8ltvC5Wmv91t+A+YHFylNjX0CjB46eH13TeEVCKLde7SzC8fD64iTz8aGjG1ume
-         CGcYdd4c9E6HyA19RK79Dm03cID0nOvXEqzIoVt1/ChMp6EwBuoflXzN5+NeQapteP3b
-         ObHwjT9mVwKBN37QxHxlYE+bF4EcOYHBBVMVhSUr9k+Nra0a9AhArWkzTJqasFYgaWL9
-         rtTIGcXt0+Bmn4c0mhzuH7LlLzzC9UfAs48jfHgPdHpephgZlJnjJO7Iye4PkLIYuCpM
-         +rgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711617261; x=1712222061;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Dn2TKuOzYzu1YNu0SEpdtuh1RniZXi87HtRvpP+WrdA=;
-        b=UU36sjBETsFsj8fMic2eX+k/Up5oagRVAJnCWL9nshyX7DvC9WTJ5pUb2JUs8oVFow
-         40hcUaWsDNBuNCRrPimSUoJPuZsY78fEcSy9lVF28sj56Pn9DV/z9ISz1ClPHkLTBkvd
-         hr7spTQK8JYjuO1sg+QsV6BWUzzXWUOimimdBhC56gzr7g+aTYs3UJ9INFKglB5sJdOh
-         Q7HPG+MbhipiTriL3pCGv7Cq2DKkqWVOmKSJwaG0WQDYo9FRamMS48iS/AsgTdiDXMfJ
-         bQY92SYaJ+et5Ek9ScCDJgRfa29yLRpgzOWl32nAv08EAAtd0x+UednGSot1r+jGZMIB
-         5C/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWN9mB1gz6gVylhQOL/YRbe/AXe2ufKKzxxdNsYvkkP0ydVHHMKKwZoOXINkyiuf+hLt7VaxcIqSrWwgurx02NkCm+Yx1Bmr+GFGA==
-X-Gm-Message-State: AOJu0YxatSKdccziZ1mlQXqy3KXGDCtbcR0B/NtFn96/B1d+HEqbGpCL
-	3cICAyGcYHQCtWWgXyISCPT+AHjJ7DUHTXoFzMlVxf79BNSOB3zPjiExi24q98c=
-X-Google-Smtp-Source: AGHT+IGm9r4lCtfs1iCP9mMlNtyIqCOzVFD2wnYmgyoumpE5k7PEtlNd2UVIYM1FDvHe8dV3F3OBCw==
-X-Received: by 2002:a5d:690c:0:b0:33d:d7be:3bec with SMTP id t12-20020a5d690c000000b0033dd7be3becmr1930909wru.58.1711617261329;
-        Thu, 28 Mar 2024 02:14:21 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.148])
-        by smtp.gmail.com with ESMTPSA id bq21-20020a5d5a15000000b00341cb22a8d4sm1212605wrb.108.2024.03.28.02.14.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Mar 2024 02:14:20 -0700 (PDT)
-Message-ID: <539eaf79-cff5-4bb7-84c8-7c9943c6d8ae@linaro.org>
-Date: Thu, 28 Mar 2024 10:14:19 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06E0A56B77;
+	Thu, 28 Mar 2024 09:18:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.114
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1711617541; cv=fail; b=SRx3mKKES3NvXog6wjBcj67AcUr6aJmWuIczMWV3u7beDfk/wv+lrzdTMar0+d5qrJt4WI2tbPnO1LHlFcdohkidY1PjpvLyE97Hg37DldrQSqmbBowsoFetsmQCMznG7EvXZMn23xvNlfG5TSHw7VeGBmMDYCtSxQYDkpbvlFc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1711617541; c=relaxed/simple;
+	bh=VFsrcZbLyoBvo/3iGfpesvcryOHX/DZDmEPwkiJRv3k=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=uE0uROvUL7s8WH/C0morCTeklEq8UvuKeCvRxTkV5u0vKKP7azpyM31CGfHDVJmagf9Y9+/PpUfITZB56gD5EGe7LrjcPIA1CAYlgFInHiZEtEKa7xZGTznvc9arbSiyxDgiPF2nzEcQUTpoSvrYHil62z9n799++yWREoBsfbs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.114
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=OHWdXw/EX14yjTSDYybNOqJ0ksh7JwSueYa8cZvEQniTEPsclLhtUhNBl2z31pnqnWHXcsQn5sbLEiy9XrqyR1SpEl6pCq4VbSTV9vjz5kXK5WQoOGtnW4B6MMuAjYZSzdQyinWRMg3gCji8J+R2lC+ghS2OfTNV0XIioUmPKYb93GdliLfJlMXCk1YXJjoTPG06fMtAI9jd/uQdEr5OvwYqCbZKu+78N88tZdBIXauLalowwQK5RZwjF2Y3t6xBniTTr01wI8KKyqUomC40tPg7s1AgU7ZnF8sbNn5EyhhYrwZ8D8QCZcjEnBctqHNJ3SgJr1vpUByiQLI0/lclzg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5T8FHX0DwGXCxCXym/es8g1xTLkFdPwYZuF4DyTZlTk=;
+ b=NH1GOOUfbDRKPHJhPyzNpd4IRvpBE++C2BaUJqhAZIt37+StdmazQRHpjh8dJbp2AM2RpbFsGaynzZG1XVm2U3jK9mjTr/vA0QodIiUakeMQqZpffwFw4gKnxS408WxQKPvXDrDDTO1UpHuYvdj9BeLnBgf7lA8bW/tuo2ynNWpdaL+G87ySMKjjMVKtuSEy3nnwYhdqOoLNv/GVg8FkHYWjWLYTBn5p9mOhPXp2fVtrkGAn2veYmXdJDHHDkoYFJQ3EZwdBCz0qyBFxv6GnKYvfXVIv+TNTqh0wHEgJWz5QDhx+wqo4RXtiutl6tDneQVq/zBdCVX4tZzSUuKhG/g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+Received: from SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c311:25::15) by SHXPR01MB0496.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c311:1f::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.32; Thu, 28 Mar
+ 2024 09:18:44 +0000
+Received: from SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
+ ([fe80::c738:9e6b:f92e:8bb9]) by
+ SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn ([fe80::c738:9e6b:f92e:8bb9%6])
+ with mapi id 15.20.7409.031; Thu, 28 Mar 2024 09:18:44 +0000
+From: Minda Chen <minda.chen@starfivetech.com>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Conor Dooley <conor@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-pci@vger.kernel.org,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Mason Huo <mason.huo@starfivetech.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Kevin Xie <kevin.xie@starfivetech.com>,
+	Minda Chen <minda.chen@starfivetech.com>
+Subject: [PATCH v16 00/22] Refactoring Microchip PCIe driver and add StarFive PCIe
+Date: Thu, 28 Mar 2024 17:18:13 +0800
+Message-Id: <20240328091835.14797-1-minda.chen@starfivetech.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-ClientProxiedBy: NT0PR01CA0020.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510:c::16) To SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c311:25::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: arm64: marvell: add solidrun cn9130
- clearfog boards
-To: Josua Mayer <josua@solid-run.com>, Andrew Lunn <andrew@lunn.ch>,
- Gregory Clement <gregory.clement@bootlin.com>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Yazan Shhady <yazan.shhady@solid-run.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20240321-cn9130-som-v1-0-711127a409ae@solid-run.com>
- <20240321-cn9130-som-v1-1-711127a409ae@solid-run.com>
- <0f7ca0ed-a1c1-41d2-a1fa-27431d14c056@solid-run.com>
- <e1836cb6-64cd-4866-9c0a-f0dda096aa18@linaro.org>
- <6a6e7c4d-d5fd-42ae-bc3d-a3978d65e8e4@solid-run.com>
- <b086a02c-624f-4225-a9fb-164095742ce9@linaro.org>
- <6af08a38-5239-4f5f-9e87-108e3400a6e6@solid-run.com>
- <62242f04-c18d-4da0-bd40-1be26886e41a@linaro.org>
- <1153cdd4-ed86-4a1f-ae4d-d9da1161f763@solid-run.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <1153cdd4-ed86-4a1f-ae4d-d9da1161f763@solid-run.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SHXPR01MB0863:EE_|SHXPR01MB0496:EE_
+X-MS-Office365-Filtering-Correlation-Id: de834a9e-1fd9-4e37-ceaa-08dc4f0810b5
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	ntAFqw3q7MlqfNu8vViuJnFCzDLE1+DYSQ974i0SujQClSoWyUaSA1oWJJoH+K9wkKDtzUac1j9Y8Tqk37LItc3novZgAbAekLj94CKJisqgeRpkKaL9CWZVXqH39gdc06Ov8HXdDBRuntgufgTi5EoBKiATToqPaLF2tkt/+aX5/sueK78yqWva49YR7npe8PiZuEFJkIu/RfW9J2fd/15dwEkDPylfJyGdk4rXqE7Hq1/wFsjDmfDBQ8S0RBRag/XjiVXannHPvVFChlgw8Qmj/sDqhNHMI5QSpvDoq0NLqz6SVEfKqQ4NDdzjw+zNapeMKx6w1pfjwFUeEmZwNKQd4K7UwH6uvoAqWY50aAR7q9kSAOxLAghfOEnLAdYgDrrfgx7NxgoClDVw0aoI3zCe865TVspaUBKQOYKNQneHV1DSr1w6y4Jrsfx68PtQQaO362gBojM8fmw+Q1KF2+1kllaYkP17JulRqowaS5UDGM7z62q+5mTL19OQZ79mjRrZ+57595TNrDU0tIEv+FBZY6+yR/5kXIPixRWbU4HZuGCHB1BM2Z3lrQNbP+BSvLW/+WDLsmVloOy0ru3qgyWvnMzl0aRX0R+yT7ZF6pD0lbDpV+dodF9/vAC+GJGa
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(52116005)(1800799015)(7416005)(41320700004)(366007)(38350700005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?5xoef7pKPRIBXP5Lzxi5o5BM1nCXrPWdYyBAMlL6K8YEp/TL1X57btnx/km0?=
+ =?us-ascii?Q?uvCbpLxDDu+lQMQMevQ1yyBL4o+tT08xfuPS4JOc/yEsIL5I8V9CbGfbF2CE?=
+ =?us-ascii?Q?4FtEPF6nWkhL9FdSQ2uT4nwKIdGA4Yu1fwG3DmqwSuvGMVtpN7Ih23Ty+mjV?=
+ =?us-ascii?Q?IFSqp299HCbv0HbkZA5+EAxkpKwDqVacmkcQbg5qshKMhcCxqDtseewOmTab?=
+ =?us-ascii?Q?bknwvxAxV8sPyMjVHfDW9CLfnrPf3QLIXtUr+UXHze+SdbzuFTq5Cakc1cUp?=
+ =?us-ascii?Q?phCjFTCiSHlGp22u0JK5XOAc3CvvSAZfsQJRolGdeu3MgMY1sYyLAxe+9qJp?=
+ =?us-ascii?Q?WTdrxs4AwDkKDS3ixWsiMupE78yA2H/zGz+O7jvscUhMpPGuOegZUfPFEsxn?=
+ =?us-ascii?Q?uTU4+qjTr9s4BJ5ei4r/JEqXWS29wfEllBA1ZCsqMN9NVfKXbJAis8IOvrb8?=
+ =?us-ascii?Q?ZhDrQHNDToa27Q+a6kQIhY736DilDur8lMxk2IsLarE2mxe5jiMuHZ7hVnPV?=
+ =?us-ascii?Q?o6Wrn/e+V52sZHRx50GV+OxLvVGuuw6fnH4OvjexUZEGILA3QCOlwSnTzXsQ?=
+ =?us-ascii?Q?9vVqFtmfdKuIoP1lIyHJYDuJZBTXhV2GPvJjtdLUJpweSGwUc9AwWQseVVfK?=
+ =?us-ascii?Q?9SxiZqjH0ii8Ynys6s/JAcppjFlTeEUk5ZIwPsI2s7RyoMuOqQxnTiVGCUbo?=
+ =?us-ascii?Q?MZv5Y08xzIXif2B2PoTfinHxYuNyXDIYa7igSspW1hMbRVut3xUlFtmvfwJ5?=
+ =?us-ascii?Q?HteiU/52+mHH8zw1y4xDjZK7QOVhWurpQeU+fGn65s9iYengR1t0lpd6OklO?=
+ =?us-ascii?Q?lqIP75Izi7I4+7qdvPQBsIjK1y6D35I9UIvind6i/c1Q8hYYOR0mxe/D5hmy?=
+ =?us-ascii?Q?MOXSwHlT3Ym3EA/WD/ABV0lltZPjx9BDl9bMQ1SA1ChOPN5bOc+VIxYYufJE?=
+ =?us-ascii?Q?ni3CYqtTG39Yj/lwHeKvmWgr9HV/8g/iQODjby96YX4lACMGXXVIwBfxMZXy?=
+ =?us-ascii?Q?Juxmqf0ghFOzFUnZs5eIo1Oil5W/cvt9hCbIS86FhKXXLmXNHi6qLlnLgJne?=
+ =?us-ascii?Q?UxkCzfw6uw4pEsaeNBnTz8ypegdFMefPAUwV4RGEfeP6+1b8LEwXAmfzWc5L?=
+ =?us-ascii?Q?0C8CixSuhGFZ8QJuTwaemGiux4PtDCNyB4OYix15DfxtBLrCyFkkdKWSajtQ?=
+ =?us-ascii?Q?7pNpERw5vyu3m1u6sLsfBUJm6+wNblyUvj4PHzXrBJPh4G6h6I1gEbVQMP+Z?=
+ =?us-ascii?Q?Q/TGPkUcK9eoYY19b9tpLN6C6c3+h+ISUo3fqHog3XAQflSymemqYgh4gNsT?=
+ =?us-ascii?Q?G5w8aqJhxPmHnVyrfqmJOtSoVkQyF+k3LfU0k49Wv/fn1fYqQADQV8ZTcqJJ?=
+ =?us-ascii?Q?mutyGw1+LSA9o9P+mo+uiTQVn1MOrPn4v+PYO15Hwb/y6YecWmwYuIDG8hJr?=
+ =?us-ascii?Q?wtsTskAX+tistOsdmYBY9VsdyjhlQB2CVclKbYBtmTIwDWyhfI0vhrVucnce?=
+ =?us-ascii?Q?s4xEX8cZnhlPGAqYwOON7W53t4siUkcZVTTNctYb1r9wvlcJj/w6038ZhA0A?=
+ =?us-ascii?Q?T7BiSHa7kUkQNI8D/OvIDvr4mSpFvar6mUzw/G9DJYF88ilcQ959d/EamHzp?=
+ =?us-ascii?Q?yQ=3D=3D?=
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: de834a9e-1fd9-4e37-ceaa-08dc4f0810b5
+X-MS-Exchange-CrossTenant-AuthSource: SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2024 09:18:43.9741
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: JQxdJkz4atBvwUcB9mayHV0Z9kfb4qoD9L0qmdemkVrMii+fUtzZjaH78NLxOih36SGmmaf0uxLBF4DtW6O8oNDhP/rX7iuWC22OZxxf/vM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SHXPR01MB0496
 
-On 27/03/2024 11:55, Josua Mayer wrote:
+This patchset final purpose is add PCIe driver for StarFive JH7110 SoC.
+JH7110 using PLDA XpressRICH PCIe IP. Microchip PolarFire Using the
+same IP and have commit their codes, which are mixed with PLDA
+controller codes and Microchip platform codes.
 
->>
->> I don't even understand what is your case.
-> I see :(
-> Yes there is a disconnect *somewhere*.
-> 
+For re-use the PLDA controller codes, I request refactoring microchip
+codes, move PLDA common codes to PLDA files.
+Desigware and Cadence is good example for refactoring codes.
 
-Your way of quoting, including removing blank lines, weird wrapping,
-does not make it easy to answer anything here. Use decent email client
-which solves all these problems.
+----------------------------------------------------------
+The refactoring patches total number is 16,(patch 1-16)
+which do NOT contain changing logic of codes.
 
-> I shall try again:
-> Marvell is selling two chips:
-> 1. CN9130, High-Performance Multi-Core CPU, System on Chip
-> (can be used alone)
+These patches just contain three type basic operations.
+(rename, modify codes to support starfive platform, and moving to common file)
+If these patched are all be reviewed. They can be accepted first.
 
-So this is the main SoC?
+Refactoring patches can be devided to different groups
+1. (patch 1- 3 is the prepare work of refactoring)
+patch1 is move PLDA XpressRICH PCIe host common properties dt-binding
+       docs from microchip,pcie-host.yaml
+patch2 is move PolarFire codes to PLDA directory.
+patch3 is move PLDA IP register macros to plda-pcie.h
 
-> 2. 88F8215, SouthBridge Communication Processor, System on Chip
-> (only usable in combination with a CN9130)
-> 
-> Now, in terms of compatible string, what happens when a board
-> has multiples of these?
+2. (patch4 - 6 is processing and re-use PCIe host instance)
+patch4 is add bridge_addr field to PCIe host instance.
+patch5 is rename data structure in microchip codes.
+patch6 is moving two data structures to head file
 
-Multiple of CN9130? 2x CN9130? Nothing happens, does not really matter.
-Anyway the compatible is just to uniquely identify the device for users,
-not represent some programming model, because there is no programming
-model of a board.
+3. (patch 7 - 9 are for re-use two PCIe setup function)
+patch7 is rename two setup functions in microchip codes, prepare to move
+to common file.
+patch8 is change the arguments of plda_pcie_setup_iomems()
+patch9 is move the two setup functions to common file pcie-plda-host.c
 
-> 
->> What is 9131 and 9132?
-> I have no idea who came up with 9131 and 9132.
-> But explanation is given by Grzegorz Jaszczyk <jaz@semihalf.com>
-> when he submitted cn9131-db.dts (Marvell evaluation board):
-> 
-> Extend the support of the CN9130 by adding an external CP115.
-> The last number indicates how many external CP115 are used.
+4.(patch 10 - 16 are for re-use interupt processing codes)
+patch10 is rename the IRQ related functions, prepare to move to
+pcie-plda-host.c
+patch 11 - 15 is modify the interrupt event codes, preparing for support starfive
+and microchip two platforms.
+patch16 is move IRQ related functions to pcie-plda-host.c
 
-You use the compatibles in your patchset, so you should know, not me. I
-have zero knowledge, also actually almost zero interest, in learning
-your particular platform. I tried to fixup some bindings and maintainers
-for Marvell: failed with not really helpful comments. Therefore I don't
-care anymore about Marvell.
+------------------------------------------------------------
+The remainder patches (patch 17 -22) are not refactoring patch.
+They are for adding StarFive codes and dont modify the microchip's
+codes.
 
-You or your platform maintainers should know what is this about and come
-with explanation to the community.
+patch17 is Add event bitmap for mask unused/unimpementes interrupts
+patch18 is Add host init/deinit functions.
+patch19 is add StarFive JH7110 PCIe dt-binding doc.
+patch20 is Add a PCIe delay time macro
+patch21 is add StarFive JH7110 Soc PCIe driver code.
+qurik).
+patch22 is Starfive dts config
 
-Best regards,
-Krzysztof
+This patchset is base on v6.9-rc1
+
+previous version:
+v10:https://patchwork.kernel.org/project/linux-pci/cover/20231031115430.113586-1-minda.chen@starfivetech.com/
+v11:https://patchwork.kernel.org/project/linux-pci/cover/20231115114912.71448-1-minda.chen@starfivetech.com/
+v12:https://patchwork.kernel.org/project/linux-pci/cover/20231206105839.25805-1-minda.chen@starfivetech.com/
+v13:https://patchwork.kernel.org/project/linux-pci/cover/20231214072839.2367-1-minda.chen@starfivetech.com/
+v14:https://patchwork.kernel.org/project/linux-pci/cover/20240129005854.3554-1-minda.chen@starfivetech.com/
+v15:https://patchwork.kernel.org/project/linux-pci/cover/20240227103522.80915-1-minda.chen@starfivetech.com/
+
+change:
+  v16: 
+    modify the patch 3 - 9 commit message. (follow Lorrenzo's review comments)
+    Update the MAINTAINER in correct patch.
+    Add more comments in Starfive pcie driver to explain the pcie setting.(patch 21)
+    Remove v15 patch 22. We will get the delay time errdata or find a correct fix method.
+
+  v15: 
+     resend: rebase on v6.8-rc6
+     Add new patch 22.(A workaround to JH7110 PCIe quirk).
+
+  v14:
+   resend: correct some commit messages. base on v6.8-rc1
+   Add a new patch 17. Add interrupt eventmap to mask non-implemented or unused interrupt.
+   patch3: rename the PLDA interrupts macro name.
+   patch9: remove the redundant head file.
+   patch10,11: modify the commit message suggested by Lorrenzo.
+   patch12: modify the commit message.
+   patch14, 15: PLDA codes will handle DMA interrupts. Modify the commit message. 
+   patch18 remove plda default events. This is implemented by vendor.
+   patch21 Add plda_event instance stf_pcie_event.
+
+  v13:
+   patch14: 1. Add plda_get_event() function. This can be compare with mc_get_event() easily and 
+		track the codes changes in case in the future..
+            2. The host event_ops is directly set to plda host port.
+	    3. Setting default host event_ops instead of checking event ops.
+   patch15:1. Add PLDA event irq_chip instead of event_domain_ops, The
+		event_domain_ops can be re-used.
+            2. The host event irq_chip is directly set to plda host port.
+	    3. Add PLDA event irqchip ops codes.
+            4. Remove Conor's review tag due to whole patch have been changed.
+   patch16: Also move the new added PLDA event codes.
+   patch18: Add plda host init and deinit function only.
+
+  v12:
+   patch18: modify the commit message and add starfive review tag.
+   Add PCIE_RESET_CONFIG_DEVICE_WAIT_MS to patch 19.
+   patch21: Add disable runtime pm function in starfive_pcie_remove()
+            Add "depens on ARCH_STARFIVE || COMPILE_TEST" in Starfive PCie Kconfig
+
+  v11:
+     check and modify some commit messages again.
+     All the codes are the same with v10.   
+
+  v10:
+   All the commit message set to fit in 75 columns.
+   All the codes fit in less than 80 colunms.
+   patch 14: 
+	Commit message changes suggested by Conor.
+   patch 21:
+        Add 100 ms delay macro to pci.h
+	generic phy pointer related codes moving to pcie-starfive.c
+	This patch Change pcie-starfive only, bus_ops move to patch 16.
+	Some Codes changes suggested by Bjorn.
+
+
+Kevin Xie (1):
+  PCI: Add PCIE_RESET_CONFIG_DEVICE_WAIT_MS waiting time value
+
+Minda Chen (21):
+  dt-bindings: PCI: Add PLDA XpressRICH PCIe host common properties
+  PCI: microchip: Move pcie-microchip-host.c to plda directory
+  PCI: microchip: Move PLDA IP register macros to pcie-plda.h
+  PCI: microchip: Add bridge_addr field to struct mc_pcie
+  PCI: microchip: Rename two PCIe data structures
+  PCI: microchip: Move PCIe host data structures to plda-pcie.h
+  PCI: microchip: Rename two setup functions
+  PCI: microchip: Change the argument of plda_pcie_setup_iomems()
+  PCI: microchip: Move setup functions to pcie-plda-host.c
+  PCI: microchip: Rename interrupt related functions
+  PCI: microchip: Add num_events field to struct plda_pcie_rp
+  PCI: microchip: Add request_event_irq() callback function
+  PCI: microchip: Add INTx and MSI event num to struct plda_event
+  PCI: microchip: Add get_events() callback and add PLDA get_event()
+  PCI: microchip: Add event irqchip field to host port and add PLDA
+    irqchip
+  PCI: microchip: Move IRQ functions to pcie-plda-host.c
+  PCI: plda: Add event bitmap field to struct plda_pcie_rp
+  PCI: plda: Add host init/deinit and map bus functions
+  dt-bindings: PCI: Add StarFive JH7110 PCIe controller
+  PCI: starfive: Add JH7110 PCIe controller
+  riscv: dts: starfive: add PCIe dts configuration for JH7110
+
+ .../bindings/pci/microchip,pcie-host.yaml     |  55 +-
+ .../pci/plda,xpressrich3-axi-common.yaml      |  75 ++
+ .../bindings/pci/starfive,jh7110-pcie.yaml    | 120 ++++
+ MAINTAINERS                                   |  19 +-
+ .../jh7110-starfive-visionfive-2.dtsi         |  64 ++
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |  86 +++
+ drivers/pci/controller/Kconfig                |   9 +-
+ drivers/pci/controller/Makefile               |   2 +-
+ drivers/pci/controller/plda/Kconfig           |  30 +
+ drivers/pci/controller/plda/Makefile          |   4 +
+ .../{ => plda}/pcie-microchip-host.c          | 615 ++---------------
+ drivers/pci/controller/plda/pcie-plda-host.c  | 651 ++++++++++++++++++
+ drivers/pci/controller/plda/pcie-plda.h       | 273 ++++++++
+ drivers/pci/controller/plda/pcie-starfive.c   | 488 +++++++++++++
+ drivers/pci/pci.h                             |  16 +
+ 15 files changed, 1891 insertions(+), 616 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/plda,xpressrich3-axi-common.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml
+ create mode 100644 drivers/pci/controller/plda/Kconfig
+ create mode 100644 drivers/pci/controller/plda/Makefile
+ rename drivers/pci/controller/{ => plda}/pcie-microchip-host.c (54%)
+ create mode 100644 drivers/pci/controller/plda/pcie-plda-host.c
+ create mode 100644 drivers/pci/controller/plda/pcie-plda.h
+ create mode 100644 drivers/pci/controller/plda/pcie-starfive.c
+
+
+base-commit: 4cece764965020c22cff7665b18a012006359095
+-- 
+2.17.1
 
 
