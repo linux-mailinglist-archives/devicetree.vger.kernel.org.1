@@ -1,120 +1,109 @@
-Return-Path: <devicetree+bounces-54328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D90388907F8
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 19:06:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD7E5890880
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 19:47:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E70D6B21F43
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 18:06:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 888952937FC
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 18:47:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E55321311BD;
-	Thu, 28 Mar 2024 18:06:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CA7212F38B;
+	Thu, 28 Mar 2024 18:47:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UT0VdSwQ"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="iiBvDFW7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7189F44365
-	for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 18:06:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBAE6131E59
+	for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 18:47:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711649161; cv=none; b=tbSBjVPAW+yQLgy0ewgguCPbnqbhkwnETVVznpTjbnb/ITyWl6pGnyiUGBSlde+T1x2Gg1zxIEop8buWa/Qa5YcIf9pqPCjApgP34f8CisN4JRIIBq0XtIRwjV2dTQpJI68DXc2uloMN7vse3R0iyWtxa8NUV0exwxKU9SuPDu8=
+	t=1711651628; cv=none; b=ezU6oZx/qOKEJJrgMU45Wc6i2NLS7QVnDqClp9PXjjcRBeau59dv44S1RHHVGmO05CJW8mN8cR4iuhIbEtOg7Ds4NoNrYCQBSJYz75rqtIanmmSXWDJkzmaYO0N4LNzzHjYfgL7WEn2MRKCsjfCkOekNjbCFniHOxF1S4gAr9uI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711649161; c=relaxed/simple;
-	bh=qscsAbt40/gPl52rNo4WQoaER2qxQL2qTuz6RBrwmTw=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=RK+PGkhAHICLY86GOwRmlggKsRHWPhDBLEE6kSCOQK0RzIlBHKUa7Xorb6VfVCgY57JPpEcln3fprHYhoTvRmOueyVR+IUZ7P6zzedCMZKgGoa8E903D0JwdHDLHHmlKIuMrrytcBKSSlA8W4ziYhyKqFPsPNubYYvVPRfJiVgA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UT0VdSwQ; arc=none smtp.client-ip=209.85.210.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-6e69a9c0eaeso733857a34.3
-        for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 11:06:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711649159; x=1712253959; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ek5wO3LM3gGmqgT3OwHpdUS57Kk7r4zUT9EM6m/kBdI=;
-        b=UT0VdSwQnJFnHwwWdvWWrAjZqpkBH+TQifLacA15cj9BCOBth2U7xUCvmiFcEQkgJM
-         4I+BT9ph0oeuW+u4KV/N9GkfZewqEDBK5jy9mQKntTRN2Di0H4/qytUigVTEwdtmVvDO
-         DD+UxSTeE42CT7OF7EGj5j0ZgKHqOXXwsEtH0A/evTa4thpD6e3yWKGuVwRYytwV2+zJ
-         kRaqZ1sC0Uhzar5eaOOhqGiNmm3F5fgdNfAA8FIEY98ZMKWOOTeshkJWeGOZmFUk2zLX
-         dN4tdZ1zr0QUpfzTzol2oilJ2ZqbUdXWegQ6mX1CkEGrrdycFYSPgnm4/vYem/nX190c
-         YVPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711649159; x=1712253959;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ek5wO3LM3gGmqgT3OwHpdUS57Kk7r4zUT9EM6m/kBdI=;
-        b=l45gpRtUrdAxNVmtZ8uNYlgFLCIbW8xMrQCQ19OnlqyGqo9nr24IDulQG1j6V9pQyC
-         //R5qfIBupah/DQ1Vti+Jta4jvFI6A57HHI4MVQvqIunpw8Ap6Z/2/5Iv0C01Md9wjhh
-         6qDgD/hO+LoSRliEwvShXdTw2lmyIwYSCbgFWjmGUd+hkEOet2KeQF/FC834j/Gx0GpN
-         FA4mjbOC3lOdCgs/SulZLxDdBqVMXcdjJKJ49DZxjmhNJ0ns8xBYhD7lSWE8Cn3wC6TF
-         6l9sGmarUBKuEb3AnjImVlTLctO1VG+4THQULXz0n4lEGiguE7N1tZo1aHg38Tm+3uJu
-         2AUQ==
-X-Gm-Message-State: AOJu0YzkZgnYFJ83AWJ3rU3Xz/bOwa6YVED7QRiOBfKjUhrlG9DGsWaO
-	6S71AeZRHgK2wRz7ax5LBDUsApv8GtTFfXx7+/PZ4TPX8Yfi0VOq
-X-Google-Smtp-Source: AGHT+IEfHD7GQesgpsHHesu6fwh/997Z91EzpeVi+1/3m3wiNcMuX28CSm3m4gywzDkMi6pLp3cQcw==
-X-Received: by 2002:a05:6830:1202:b0:6e6:ff6d:986d with SMTP id r2-20020a056830120200b006e6ff6d986dmr2878825otp.19.1711649159512;
-        Thu, 28 Mar 2024 11:05:59 -0700 (PDT)
-Received: from localhost.localdomain ([75.28.21.198])
-        by smtp.gmail.com with ESMTPSA id l7-20020a9d7347000000b006e68a501dfasm323840otk.75.2024.03.28.11.05.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Mar 2024 11:05:59 -0700 (PDT)
-From: Chris Morgan <macroalpha82@gmail.com>
-To: linux-rockchip@lists.infradead.org
-Cc: devicetree@vger.kernel.org,
-	jagan@edgeble.ai,
-	heiko@sntech.de,
-	conor+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	robh@kernel.org,
-	sebastian.reichel@collabora.com,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH] arm64: dts: rockchip: Enable device-tree overlay support for select devices
-Date: Thu, 28 Mar 2024 13:05:51 -0500
-Message-Id: <20240328180551.361381-1-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1711651628; c=relaxed/simple;
+	bh=3wAbjSX4gI12GIM0sF/0pFowiqfzf6hHIw5V82h8tzA=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=qWwJSIKtFBN323kw/w7lv6NEX0h1tXefJzuQbB+j57q5R9Rgs13vLYshmhloSw2OZ71K+KU/8zMIKo0uCbSWB6/2i/k0MTiyMpRaw9B1omsw1zr5dQqMjZ6+BQFW2WdUq1gUIRE4eFhibzQOGAkXBmEIuzDtSMmeBbrGNdynfWI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=iiBvDFW7; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1711651623;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=04gC6M2/0Frg2J9tfUX7YFGcmkAM74zOf2GeQerrMBk=;
+	b=iiBvDFW7WH2Ry+jnvZYF4HkPmGtZNDYzO58jJ50XUsCq6SkKD3QSeL1ff88tce90naaXe5
+	pwO0iVYRi2WLjDOJL3BAESOKfUM4Uw4DhOsmLBGWWNxuwbzU52FbxpH83Kn+IMiF9zperi
+	p5VXvPgBr2vGa1FL7U6rOcmq5I4gw5hUF3svzpfaN6OOeXpOT1vOfC4tf8BDoKeUcZVnIv
+	0+EYtj90kXZ4eTYJBOtl0M7qLXSBc51zsg7VYIYSzaNU4d6vnf7hi5vo6tgfMwAECf2TfX
+	7PDEEGvJhsss4HTxhmh9pdgC7/J52qcPuQKtO+4hII12KGZwOYxZGtlURXiz/w==
+Date: Thu, 28 Mar 2024 19:47:03 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ jagan@edgeble.ai, heiko@sntech.de, conor+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, robh@kernel.org,
+ sebastian.reichel@collabora.com, Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Enable device-tree overlay support
+ for select devices
+In-Reply-To: <20240328180551.361381-1-macroalpha82@gmail.com>
+References: <20240328180551.361381-1-macroalpha82@gmail.com>
+Message-ID: <f948555d4a283a8c77a35090b4319433@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-From: Chris Morgan <macromorgan@hotmail.com>
+Hello Chris,
 
-Add the '-@' DTC option for the Rock 5B and Indiedroid Nova devices.
-These two devices are relatively new both with external GPIO headers
-for expansion. This does impact the filesize of the DTB substantially.
+On 2024-03-28 19:05, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
+> 
+> Add the '-@' DTC option for the Rock 5B and Indiedroid Nova devices.
+> These two devices are relatively new both with external GPIO headers
+> for expansion. This does impact the filesize of the DTB substantially.
 
-rk3588-rock-5b.dtb		75352 -> 150094 bytes
-rk3588s-indiedroid-nova.dtb	69507 -> 136739 bytes
+I think that enabling this should be either left to Linux distributions,
+to be enabled for all the dtbs they ship, which they already do, or be
+enabled by us for all Rockchip DTs, instead of for enabling it just for
+some boards.  However, I think that leaving it to Linux distributions is
+the preferred way.
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
----
- arch/arm64/boot/dts/rockchip/Makefile | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index f906a868b71a..26f306db0aea 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -1,4 +1,9 @@
- # SPDX-License-Identifier: GPL-2.0
-+
-+# Enable support for external device-tree overlays
-+DTC_FLAGS_rk3588-rock-5b			:= -@
-+DTC_FLAGS_rk3588s-indiedroid-nova		:= -@
-+
- dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-evb.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-engicam-px30-core-ctouch2.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-engicam-px30-core-ctouch2-of10.dtb
--- 
-2.34.1
-
+> rk3588-rock-5b.dtb		75352 -> 150094 bytes
+> rk3588s-indiedroid-nova.dtb	69507 -> 136739 bytes
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/Makefile | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/Makefile
+> b/arch/arm64/boot/dts/rockchip/Makefile
+> index f906a868b71a..26f306db0aea 100644
+> --- a/arch/arm64/boot/dts/rockchip/Makefile
+> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> @@ -1,4 +1,9 @@
+>  # SPDX-License-Identifier: GPL-2.0
+> +
+> +# Enable support for external device-tree overlays
+> +DTC_FLAGS_rk3588-rock-5b			:= -@
+> +DTC_FLAGS_rk3588s-indiedroid-nova		:= -@
+> +
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-evb.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-engicam-px30-core-ctouch2.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-engicam-px30-core-ctouch2-of10.dtb
 
