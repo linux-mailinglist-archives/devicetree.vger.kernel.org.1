@@ -1,268 +1,155 @@
-Return-Path: <devicetree+bounces-54281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9651089032E
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 16:37:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 933198903A0
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 16:43:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B7E7F1C27064
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 15:37:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C49961C2E143
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 15:43:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C870581AB1;
-	Thu, 28 Mar 2024 15:37:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52A65131734;
+	Thu, 28 Mar 2024 15:42:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=yahoo.com header.i=@yahoo.com header.b="pF4/p4E3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sonic309-20.consmr.mail.ne1.yahoo.com (sonic309-20.consmr.mail.ne1.yahoo.com [66.163.184.146])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 960363DAC13;
-	Thu, 28 Mar 2024 15:37:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCAF41311B5
+	for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 15:42:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=66.163.184.146
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711640244; cv=none; b=qk0NCfKT63/39eXJAslyUFDZ1pS1uCB9+AvzMeokNMpOHfdGW3PoA3B77glwjUgZjFzPi1Hmfn7SOKX5gueckl1jME231qRqABlbWK8JhC1GAY2jc0cd1W+745Dy9PlMboUU1I19XJ738tIuvurtfCrzhRPJ4jqFhYkyQ2CXTPI=
+	t=1711640546; cv=none; b=ixiByQ3AKGQFSyPnnRALT29Bzx1326B+DQjeRZameNgcsRpdVWjb1a5dTrefn+8kr6/u5uBUBwSNSqBhwePfqQVvqCe9Zle2BwS8rO8AxIUbYHv4wHcJSBPjvN69Wp4uwbQLSXQAwnqi/wVZFtVIKzDVidLJ35VR+L4jlgB23fo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711640244; c=relaxed/simple;
-	bh=M1/MI7ctmoanaJzMS8Vaa21avZdB8bKDRkpxkpFOS8Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=duoNiSJMi4Nd9lcUzIxdRVE/TJsg961wOyhOq7mmyWhSiEOyeMxslBhYxXUvP0avr54munlknbN2pdP2Upqiz5OtKNfVA16WVe/Lbx5UaqbNRF3kcEDqUXnFbQ7DrkpU8jG/EDl6CUhewvs0/X/Gs+Q+r/o3DgdUEEisoP8objw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE36FC433F1;
-	Thu, 28 Mar 2024 15:37:20 +0000 (UTC)
-Date: Thu, 28 Mar 2024 11:40:04 -0400
-From: Steven Rostedt <rostedt@goodmis.org>
-To: Yi-De Wu <yi-de.wu@mediatek.com>
-Cc: Yingshiuan Pan <yingshiuan.pan@mediatek.com>, Ze-Yu Wang
- <ze-yu.wang@mediatek.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Catalin Marinas
- <catalin.marinas@arm.com>, Wihl Deacon <will@kernel.org>, "Masami
- Hiramatsu" <mhiramat@kernel.org>, Mathieu Desnoyers
- <mathieu.desnoyers@efficios.com>, Richard Cochran
- <richardcochran@gmail.com>, Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-doc@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-trace-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
- <linux-mediatek@lists.infradead.org>, David Bradil <dbrazdil@google.com>,
- Trilok Soni <quic_tsoni@quicinc.com>, Jade Shih <jades.shih@mediatek.com>,
- Ivan Tseng <ivan.tseng@mediatek.com>, My Chuang <my.chuang@mediatek.com>,
- Shawn Hsiao <shawn.hsiao@mediatek.com>, PeiLun Suei
- <peilun.suei@mediatek.com>, Liju Chen <liju-clr.chen@mediatek.com>, "Willix
- Yeh" <chi-shen.yeh@mediatek.com>, Kevenny Hsieh
- <kevenny.hsieh@mediatek.com>
-Subject: Re: [PATCH v8 19/20] virt: geniezone: Add tracing support for hyp
- call and vcpu exit_reason
-Message-ID: <20240328114004.5793230a@gandalf.local.home>
-In-Reply-To: <20231228105147.13752-20-yi-de.wu@mediatek.com>
-References: <20231228105147.13752-1-yi-de.wu@mediatek.com>
-	<20231228105147.13752-20-yi-de.wu@mediatek.com>
-X-Mailer: Claws Mail 3.19.1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1711640546; c=relaxed/simple;
+	bh=MbvAGUiXSvOGQ3dOWrP2pyz/s+XjyL3psabKCvzg9bk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WGpxFanQNKI/RO7I72NXUFNPB5RO5bx+PDPiCBvTYEeAU2gqk+CAUDw3S3axL3MMa7ZNogSy5XYufSl/KGfS6BVC20KQI3GBeTGZoHCoDtHuaM+kzBnzUxKPkRFPmhXCeocqICliCjdSTflPD3sii+r8PB/ILJiZ5hcbXgsbS9Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=yahoo.com; spf=pass smtp.mailfrom=yahoo.com; dkim=pass (2048-bit key) header.d=yahoo.com header.i=@yahoo.com header.b=pF4/p4E3; arc=none smtp.client-ip=66.163.184.146
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=yahoo.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1711640544; bh=8KAmCtUE8gnQ2PyujWn9R/x/xEPLjt7lw5xVuWHClLs=; h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To; b=pF4/p4E3Gu9tZnZfK0FrsJu9yXkZGQ41MgMh/9+PJhLGeKy+sA/W37+ynGxr2F43BBp36XgpmwX0gTfhv7aAL7cJDwm6AURtOK2yWnC2rYm+LKbwcL6QDMd/kUuKK+NGDMJMRZkVFur6sVPnTF/Gs1NWzHv7y+nkf4TAT5X1P1XizF3ou+vg/1EL6d2KbGaB2QxCFTuNPm9+ibxaqTXsITQbK4ifpnx8j+t1IgpEY3dnl0CTB3pmqsm6RIJEACQ6mmWcL9eL/wbUW1fM0YEWr2ayJW6SImKhX4RlsT0ydxaihqiu37U1xtV7ndBoE1mgwqg3cw/z5Qw/K7UxR3QW7Q==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1711640544; bh=d/Rr+FpnJGDwk1EXAVSf9Rf0yIQZ/Ypxjn2HaBBsUie=; h=X-Sonic-MF:Date:Subject:To:From:From:Subject; b=UwpFLJcHOog4V1RZC5j3Ha36WjRVgch9ryS6qUNNdZeV+RSftGJcvH8/l3BD5y1r9y4i3/0OOkWvYquFELo0efi/Dh0cxW70OO2Tmb6Sxr5cWD9UqltkZ4K15psLcodRXazGE/Aw1rT/S7KQpt5cxSIcitVDT9IPmEQCjqkvFK7n0V93XDND+d4YTXBPSEfqne4hXSt+2PHqy25JFY5ZlPt1V7QKM6CU0z7OfUlh0w5JpxrnI944iJ+8LWhZ7Lqs5fRI02rUPzU/0MZwmaJxrXhfXL2BDfpUnQKjsz+frsu0j/eTM4FwS3IcGckBUyHKBe+KMGcnuVFJDqgG7AE82A==
+X-YMail-OSG: 3DXuDaoVM1n0o3ZKO95C1_zSwKdScpHpCUz9x38raS.NOvRK2JB_FIhqAXydzCc
+ b2qNe2ajJWRKjxZjvKqtaRnY7Zbb6.KoHxF_VfjbtzAvZBXBwrw0v4JZtSYa1hn3t9UgBvviou3v
+ ZELplXYpFH3qyvuXK7w2BCO7sl2do8_eTiMpXdFHta2oWq.shjQ1NL.j56gOuij5HVbAo2nSiwDZ
+ c_FohEXpNyOzEjbe44eUhTZY_fZ9PLc6SaQVvBwYgl01pgY9TqZEWOvojB2xyLuxhwvjD8MprL1L
+ i6D4iOTHBxU0_0hvldX5VmmWectUy3gPbn6vSpR4_3HPaw_IzU5VG0jiT57DZIeKTijFrnlQPDPZ
+ l_wPHsxZnavW6.xqbhAB4WaWVPOL.CUQjNCsqO8g9GA7ecKaPGwt68m6EodN1qD3tHXmGKKelpnq
+ b464CIEUF7zV.Cqbo4FhoChlB.60Z3thrvw8pA6UVaOSIAghseiEju4zNaqgIq_fVLyATebtQ.8V
+ 8v._cCQX5O0Ucxlazsg7aJcNMRqj9i7tLYCxIX6YmhBi47VQZa58NS90oCx163cij7zhF2TccP_k
+ E_QeiHCnBNhxzYd6LrtJ60HXuW56iLaFVuU15Mlt4ynSJjf4qhIVHfBwkcnIRVKSHUT.ewFHbdeC
+ PQWoYbrAE..qmvqCmElg5Fz9F1jgnRvcJnlOIWQgFkqdJoRnrULEL19jXRKiq2gNyBeJBAs48Imp
+ ng7Ry2xWlYDhUaLj91OVtBNiC3VSyYpjXS_3syHRt3f8cRl9cHDd1RHOtDLBWeDotVdi8W9RDqkx
+ PPIUGPOT26MGNM23H7nDOX87vZff.LzFeaqO3ZmNKjGCkNWoXAIICIBbvrSVuLMEfLdWDKbzQQJ9
+ f7.7Wc8cJsew1YKFTOrM5yqeFDtZ5fscMD2dFJ50i3m2lxwnYfHtLs6D7lHJHNMO35wFtBbrzPlN
+ y5Eomsh373O86D56fff1VC4w3iYxyN1JUhhatVQtAOVFoqOlBE.7t14wz17LhOlmMnfZzFlQ1SNA
+ B1oGTINZOzZYb.m3Wij_sVeHwi41aq9Vx0KdW4WSskOxZtp.HfY1lJlsJRU8hoU5mfcFHsMngqt3
+ ZUDDI37kuuxYIgLLy3XZdr2diFZ8PxK0qA3_2r2oSUeQ1XB9x5MHDbojy7mtmBU7NlqGTao9Hg4O
+ .kFe3OOeNPOUAJD0BSqLuf_kIEADZE0iUuzQHpgyj_3QBOKDqjFz_MLgLdVIUlK60WiJy0PBPaBj
+ 2lwJKDlFTMz0INlaoxhMiIEzv0qebdwMJs4NANo68_9.tMuUimQQ.XHpMIur1pHKSnBXI7jeh10a
+ 5G3CF7jpcgrWvt7hQ_aDrZ_akfT2hWCingRs_k6GAapHVbS_.Oo2Zmbaw_J8WC2oTmHoKxOudF6r
+ fKkjYrI4NMBqySTWgv1Qunm0VhVv2gwDYndoQmmVkOrEZGpq9G0RgUT_GoczbswbOGCEfaU5cJko
+ 4hSZJQ4TM0ri8K3gd2l_h.A9cwHHe5SLa6SPj2erM.v7xvrDKIRaspm49jDT4PCNm3lZyjzNie.b
+ 1.phU4Q2IbrfcxrNI5NGePY0WlLmo8BUXeWMRdUoFURdKtzbae_ZUHUHhg7KX64U20henhS27ECI
+ VVzPaI5xYwzNaiQcaSyS5_iYFSqyESYkRE0IcLkthEtU2B97mmsr19ZvRNwwRnLwjvT3lOhE99fG
+ AIFilJYaO3nYgJwRxS6jqiv6Lm8_KaXCkincLSUnl8b5nWrABmqUVeiNZf9E4O20_RnsqVNPIjN0
+ uT7C_lfdOPAj0sjsW_uDDH8BtbDEvi4mBla_kiDyzVT5hR.zRqywyUA5X1dt9C2WW1YHIxYZvgbK
+ __J9YkSD.FjV372tmZZ4hjNg9Bi5IZDJwYLIAuv4Kt7nqHrMgPBgg72dbKnO2ncrq_EtU0TLOMnB
+ lebgkUIYoB.p5k6_GrjENa5aJ4r8ZsBoRPTvW0CqjKrh6Q_jbknrr3zjJlZMHXoOUN93MzTH0_yE
+ Yxf5_QU_NjL6HAxC7Tek3XWZCXJ1k92NGJ_JaMoP1vwXzMt1pcpdaFga9Fj6tNyPah_3TVF8G1aJ
+ An._F4of3q2SmJa73UkX1LBsUz1cdrTXuKIn6lykAfwFfUacXqfS97pATGE5nBAXgEHc1mybEEZ_
+ bOjza_iZp5VuvRyVkTqUzHI58AcqDd.3p0xIt4PCDHOGoD6FfynBNniFwLeRnoLmqhaJyo59zrx2
+ lQd1lvLHfWOHE3ZknjtQsc5sEq2U8q19tPPwx9PUcS_.E7Jejhuugx1BIpmh4UIAS0RBsDeM-
+X-Sonic-MF: <serdeliuk@yahoo.com>
+X-Sonic-ID: 0bef8a4c-a425-4fd8-8c27-cbb2ff12f9ce
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic309.consmr.mail.ne1.yahoo.com with HTTP; Thu, 28 Mar 2024 15:42:24 +0000
+Received: by hermes--production-ir2-7bc88bfc75-6cqn4 (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 236232f6d2287374960a372f2be4808b;
+          Thu, 28 Mar 2024 15:42:19 +0000 (UTC)
+Message-ID: <2795b3b7-5eea-489b-8bbd-9e2ad406f67c@yahoo.com>
+Date: Thu, 28 Mar 2024 16:42:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: arm: qcom: Add Samsung Galaxy Z Fold5
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240328-dt-bindings-arm-qcom-add-support-for-samsung-galaxy-zfold5-v1-1-cb612e3ade18@yahoo.com>
+ <ca4ed5e3-32ea-451a-82ca-25fba07877dc@linaro.org>
+ <33e23d1c-5b6f-4111-9631-0f8db1100d0c@yahoo.com>
+ <8e09b779-a18f-46b4-926c-40e2a5782d85@linaro.org>
+ <20620ab0-5024-439e-943b-ab12d35a60d8@yahoo.com>
+ <6b77633e-c501-4488-9b10-1881cfbf6f2c@linaro.org>
+Content-Language: en-US
+From: Alexandru Serdeliuc <serdeliuk@yahoo.com>
+In-Reply-To: <6b77633e-c501-4488-9b10-1881cfbf6f2c@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Mailer: WebService/1.1.22205 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
 
-On Thu, 28 Dec 2023 18:51:46 +0800
-Yi-De Wu <yi-de.wu@mediatek.com> wrote:
+Is there anything I need to do to sent them as a series? Or only modify 
+all 3 files on a new branch and send them as a new patch?
 
-> Add tracepoints for hypervisor calls and VCPU exit reasons in GenieZone
-> driver. It aids performance debugging by providing more information
-> about hypervisor operations and VCPU behavior.
-> 
-> Command Usage:
-> echo geniezone:* >> /sys/kernel/tracing/set_event
-> echo 1 > /sys/kernel/tracing/tracing_on
-> echo 0 > /sys/kernel/tracing/tracing_on
-> cat /sys/kernel/tracing/trace
-> 
-> For example:
-> crosvm_vcpu0-4838 [004] ..... 76053.536034: mtk_hypcall_enter: id=0xbb001005
-> crosvm_vcpu0-4838 [004] ..... 76053.540039: mtk_hypcall_leave: id=0xbb001005 invalid=0
-> crosvm_vcpu0-4838 [004] ..... 76053.540040: mtk_vcpu_exit: vcpu exit_reason=0x92920003
+The situation can be replicated easy, modify the  following  two files
 
-Cleaning out patchwork, I noticed this patch.
-
-You can make the above more informative by having it output:
-
- crosvm_vcpu0-4838 [004] ..... 76053.540040: mtk_vcpu_exit: vcpu exit_reason=IRQ
-
-
-> 
-> This example tracks a hypervisor function call by an ID (`0xbb001005`)
-> from initiation to termination, which is supported (invalid=0). A vCPU
-> exit is triggered by an Interrupt Request (IRQ) (exit reason: 0x92920003).
-> 
-> /* VM exit reason */
-> enum {
-> 	GZVM_EXIT_UNKNOWN = 0x92920000,
-> 	GZVM_EXIT_MMIO = 0x92920001,
-> 	GZVM_EXIT_HYPERCALL = 0x92920002,
-> 	GZVM_EXIT_IRQ = 0x92920003,
-> 	GZVM_EXIT_EXCEPTION = 0x92920004,
-> 	GZVM_EXIT_DEBUG = 0x92920005,
-> 	GZVM_EXIT_FAIL_ENTRY = 0x92920006,
-> 	GZVM_EXIT_INTERNAL_ERROR = 0x92920007,
-> 	GZVM_EXIT_SYSTEM_EVENT = 0x92920008,
-> 	GZVM_EXIT_SHUTDOWN = 0x92920009,
-> 	GZVM_EXIT_GZ = 0x9292000a,
-> };
-> 
-> Signed-off-by: Liju-clr Chen <liju-clr.chen@mediatek.com>
-> Signed-off-by: Yi-De Wu <yi-de.wu@mediatek.com>
-> ---
->  arch/arm64/geniezone/vm.c          |  5 +++
->  drivers/virt/geniezone/gzvm_vcpu.c |  3 ++
->  include/trace/events/geniezone.h   | 54 ++++++++++++++++++++++++++++++
->  3 files changed, 62 insertions(+)
->  create mode 100644 include/trace/events/geniezone.h
-> 
-> diff --git a/arch/arm64/geniezone/vm.c b/arch/arm64/geniezone/vm.c
-> index a9d264bbb3b1..5667643251b5 100644
-> --- a/arch/arm64/geniezone/vm.c
-> +++ b/arch/arm64/geniezone/vm.c
-> @@ -7,6 +7,8 @@
->  #include <linux/err.h>
->  #include <linux/uaccess.h>
->  
-> +#define CREATE_TRACE_POINTS
-> +#include <trace/events/geniezone.h>
->  #include <linux/gzvm.h>
->  #include <linux/gzvm_drv.h>
->  #include "gzvm_arch_common.h"
-> @@ -33,7 +35,10 @@ int gzvm_hypcall_wrapper(unsigned long a0, unsigned long a1,
->  			 unsigned long a6, unsigned long a7,
->  			 struct arm_smccc_res *res)
->  {
-> +	trace_mtk_hypcall_enter(a0);
->  	arm_smccc_hvc(a0, a1, a2, a3, a4, a5, a6, a7, res);
-> +	trace_mtk_hypcall_leave(a0, (res->a0 != ERR_NOT_SUPPORTED) ? 0 : 1);
-> +
->  	return gzvm_err_to_errno(res->a0);
->  }
->  
-> diff --git a/drivers/virt/geniezone/gzvm_vcpu.c b/drivers/virt/geniezone/gzvm_vcpu.c
-> index 86c690749277..138ec064596b 100644
-> --- a/drivers/virt/geniezone/gzvm_vcpu.c
-> +++ b/drivers/virt/geniezone/gzvm_vcpu.c
-> @@ -10,6 +10,8 @@
->  #include <linux/mm.h>
->  #include <linux/platform_device.h>
->  #include <linux/slab.h>
-> +
-> +#include <trace/events/geniezone.h>
->  #include <linux/gzvm_drv.h>
->  
->  /* maximum size needed for holding an integer */
-> @@ -103,6 +105,7 @@ static long gzvm_vcpu_run(struct gzvm_vcpu *vcpu, void __user *argp)
->  
->  	while (!need_userspace && !signal_pending(current)) {
->  		gzvm_arch_vcpu_run(vcpu, &exit_reason);
-> +		trace_mtk_vcpu_exit(exit_reason);
->  
->  		switch (exit_reason) {
->  		case GZVM_EXIT_MMIO:
-> diff --git a/include/trace/events/geniezone.h b/include/trace/events/geniezone.h
-> new file mode 100644
-> index 000000000000..1fa44f9c4b3c
-> --- /dev/null
-> +++ b/include/trace/events/geniezone.h
-> @@ -0,0 +1,54 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (c) 2023 MediaTek Inc.
-> + */
-> +
-> +#undef TRACE_SYSTEM
-> +#define TRACE_SYSTEM geniezone
-> +
-> +#define _TRACE_GENIEZONE_H
-> +
-> +#include <linux/tracepoint.h>
-
-#define GZVM_EXIT_REASONS	\
-	EM(UNKNOWN)		\
-	EM(MMIO)		\
-	EM(HYPERCALL)		\
-	EM(IRQ)			\
-	EM(EXCEPTION)		\
-	EM(DEBUG)		\
-	EM(FAIL_ENTRY)		\
-	EM(INTERNAL_ERROR)	\
-	EM(SYSTEM_EVENT)	\
-	EM(SHUTDOWN)		\
-	EMe(GZ)
-
-#undef EM
-#undef EMe
-#define EM(a) TRACE_DEFINE_ENUM(GZVM_EXIT_##a);
-#define EMe(a) TRACE_DEFINE_ENUM(GZVM_EXIT_##a);
-
-GZVM_EXIT_REASONS
-
-#undef EM
-#undef EMe
-
-#define EM(a)       { GZVM_EXIT_##a, #a },
-#define EMe(a)      { GZVM_EXIT_##a, #a }
-
-> +
-> +TRACE_EVENT(mtk_hypcall_enter,
-> +	    TP_PROTO(unsigned long id),
-> +
-> +	    TP_ARGS(id),
-> +
-> +	    TP_STRUCT__entry(__field(unsigned long, id)),
-> +
-> +	    TP_fast_assign(__entry->id = id;),
-> +
-> +	    TP_printk("id=0x%lx", __entry->id)
-> +);
-> +
-> +TRACE_EVENT(mtk_hypcall_leave,
-> +	    TP_PROTO(unsigned long id, unsigned long invalid),
-> +
-> +	    TP_ARGS(id, invalid),
-> +
-> +	    TP_STRUCT__entry(__field(unsigned long, id)
-> +			     __field(unsigned long, invalid)
-> +	    ),
-> +
-> +	    TP_fast_assign(__entry->id = id;
-> +			   __entry->invalid = invalid;
-> +	    ),
-> +
-> +	    TP_printk("id=0x%lx invalid=%lu", __entry->id, __entry->invalid)
-> +);
-> +
-> +TRACE_EVENT(mtk_vcpu_exit,
-> +	    TP_PROTO(unsigned long exit_reason),
-> +
-> +	    TP_ARGS(exit_reason),
-> +
-> +	    TP_STRUCT__entry(__field(unsigned long, exit_reason)),
-> +
-> +	    TP_fast_assign(__entry->exit_reason = exit_reason;),
-> +
-> +	    TP_printk("vcpu exit_reason=0x%lx", __entry->exit_reason)
-
-	    TP_printk("vcpu exit_reason=0x%lx",
-		__print_symbolic(__entry->exit_reason, GZVM_EXIT_REASONS))
+Documentation/devicetree/bindings/arm/qcom.yaml
+arch/arm64/boot/dts/qcom/Makefile
 
 
-And instead of having the cryptic enum values printed, you will have human
-readable reasons.
+Then  generate the pach and check, will show this
+$ ./scripts/checkpatch.pl 
+/tmp/tosend2/0001-arm64-dts-qcom-add-support-for-samsung-galaxy-z-fold5.eml
+WARNING: Missing commit description - Add an appropriate one
 
--- Steve
+WARNING: DT binding docs and includes should be a separate patch. See: 
+Documentation/devicetree/bindings/submitting-patches.rst
+
+WARNING: added, moved or deleted file(s), does MAINTAINERS need updating?
+#59:
+new file mode 100644
+
+total: 0 errors, 3 warnings, 630 lines checked
+
+NOTE: For some of the reported defects, checkpatch may be able to
+       mechanically convert to the typical style using --fix or 
+--fix-inplace.
+
+/tmp/tosend2/0001-arm64-dts-qcom-add-support-for-samsung-galaxy-z-fold5.eml 
+has style problems, please review.
+
+NOTE: If any of the errors are false positives, please report
+       them to the maintainer, see CHECKPATCH in MAINTAINERS.
 
 
-> +);
-> +
-> +/* This part must be outside protection */
-> +#include <trace/define_trace.h>
 
+On 28/3/24 16:34, Konrad Dybcio wrote:
+> On 28.03.2024 4:10 PM, Alexandru Serdeliuc wrote:
+>> Hi Konrad,
+>>
+>> Thanks, I unfortunately sent the patch 2 prior seeing your reply.
+>>
+>> The warning was this one which says that i need to send the mods separately in two patches:
+>>
+>>>>> WARNING: DT binding docs and includes should be a separate patch. See: Documentation/devicetree/bindings/submitting-patches.rst
+> Hm, if they were two separate patches, this is a false-positive. Could you
+> push the branch somewhere, so that we can report it to checkpatch maintainers?
+>
+>>
+>> I suppose that me sending two separate patches was not good, how i can fix this?
+> Please pick them both onto a single branch and send together as a series,
+> with a revision bump (v2) and mention that you made no changes other than
+> combining the two in the cover letter.
+>
+> Konrad
 
