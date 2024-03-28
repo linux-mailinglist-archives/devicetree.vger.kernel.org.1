@@ -1,74 +1,52 @@
-Return-Path: <devicetree+bounces-54186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54187-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC73C88FD3F
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 11:40:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B36188FD4D
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 11:45:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6B994B21F35
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 10:40:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9AEF71C28BA6
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 10:45:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E880F7CF17;
-	Thu, 28 Mar 2024 10:40:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jnQC3/xR"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0038E7CF18;
+	Thu, 28 Mar 2024 10:45:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from abb.hmeau.com (abb.hmeau.com [144.6.53.87])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B872B53818;
-	Thu, 28 Mar 2024 10:40:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ECEF65191;
+	Thu, 28 Mar 2024 10:45:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=144.6.53.87
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711622418; cv=none; b=TAuL2LiXoBXucvNhEyn5iQ7MBg2mP4aeHmtGP/TzsYTKd3jz3KoLWrgzyT/ZVjm+nO6QSmhLgyfkGwx56poLs1SHorWcehSBmmP2UtjxAVFe6ZETS932tyJ+rnqapvFyaaR1tqFUd9U0HrdvN2MYxypTiG08zyrTZljTN5E+vHA=
+	t=1711622746; cv=none; b=oGL6hJODJPwwf21+vjZKXvOJham+bi+63PKRftN99PuBvFc0zkeu245XayuPss2gdrauEcW8UillXHoTj/ZO1u556UUF07gDdxV4HuEHWhlGr95il88W4HJOuBHEYB+5jk5U0BPxy2AUhVbPZcPAkkXQhfFKE37gGwqWaG9lCH8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711622418; c=relaxed/simple;
-	bh=PFuuAQ7UAQDLr/XGux3xSP9ZSukNKrAk400GL4pCeaI=;
+	s=arc-20240116; t=1711622746; c=relaxed/simple;
+	bh=MoAnRl3IeEv27R1vGNGWDYEqdwTApYI/tUA3MxViRqY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ly40ZBRCKkE9RqDoshebxLl+hrPQjZSclpv2/0xDuJb3pofasKUyNz0N8qzcON+sgCLfcHm8Q/1pddv06I0B2nPGowjaoFUal9aqx+uEE1hzxul4hmtTtEQ0eH7cUjTTBN3MB+uyCuTSMPfRVbG9qIAsBxqthQmsBerjENk0igI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jnQC3/xR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB5A1C43390;
-	Thu, 28 Mar 2024 10:40:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711622418;
-	bh=PFuuAQ7UAQDLr/XGux3xSP9ZSukNKrAk400GL4pCeaI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jnQC3/xRFP0QVRTUNeZoU1I3y8WHjbeIbClQXTonCmY0HLKChE2JxhC2ZI9JRCgfA
-	 NsA6JUXigjuchixlHKDNcyFGz2h3qHBDpNK9DAJH0sobRXcnBUhjHot8kJeLULLZfS
-	 QTGKC2O1nCFR9+NpZOlVU20eRPehWrlyvtgpewgsZOhwTLYckAp/CXSZYnIP8ttyEf
-	 N1oViVVNkjowwegTIg86IwVEnnzzNj04FUM01Vsve/wE6zDEfAZvDGaFqDBCfpi84S
-	 v0xHNCGlLZAHHhPnYRS0eBiHgv9n7z30A2d7fCmNG19ev5aZMWXgXd8M2DG7V/eN2n
-	 9PuxhiYvhX5lA==
-Date: Thu, 28 Mar 2024 10:40:11 +0000
-From: Simon Horman <horms@kernel.org>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Luis Chamberlain <mcgrof@kernel.org>,
-	Russ Weight <russ.weight@linux.dev>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=d+tsaXVlugwSJseZ6CwZcfAFxvvjD1dQhSEpvexy3PJb1aGW0p/01jJg4EBO0T5OQ7MMsZuitD8v7QOUxLE8z2feqiKLH9bw0KpchwNwJJD0Hgyp6fqSSP1bkZOVp0iyiBqyeYMI6bK8ODJdrnWY8vm0qrRsV/ub6pOyaisIp/Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; arc=none smtp.client-ip=144.6.53.87
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
+Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
+	by formenos.hmeau.com with smtp (Exim 4.94.2 #2 (Debian))
+	id 1rpnG5-00C8CW-2d; Thu, 28 Mar 2024 18:45:22 +0800
+Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Thu, 28 Mar 2024 18:45:37 +0800
+Date: Thu, 28 Mar 2024 18:45:37 +0800
+From: Herbert Xu <herbert@gondor.apana.org.au>
+To: Jia Jie Ho <jiajie.ho@starfivetech.com>
+Cc: "David S . Miller" <davem@davemloft.net>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	Mark Brown <broonie@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-	Dent Project <dentproject@linuxfoundation.org>
-Subject: Re: [PATCH net-next v6 10/17] net: pse-pd: Add support for PSE PIs
-Message-ID: <20240328104011.GY403975@kernel.org>
-References: <20240326-feature_poe-v6-0-c1011b6ea1cb@bootlin.com>
- <20240326-feature_poe-v6-10-c1011b6ea1cb@bootlin.com>
- <20240328103322.GX403975@kernel.org>
+	Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+	Vinod Koul <vkoul@kernel.org>, linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	dmaengine@vger.kernel.org
+Subject: Re: [PATCH v4 0/7] crypto: starfive: Add support for JH8100
+Message-ID: <ZgVKUbHQA5sznpDV@gondor.apana.org.au>
+References: <20240305071006.2181158-1-jiajie.ho@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,56 +55,61 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240328103322.GX403975@kernel.org>
+In-Reply-To: <20240305071006.2181158-1-jiajie.ho@starfivetech.com>
 
-On Thu, Mar 28, 2024 at 10:33:22AM +0000, Simon Horman wrote:
-> On Tue, Mar 26, 2024 at 03:04:47PM +0100, Kory Maincent wrote:
-> > From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+On Tue, Mar 05, 2024 at 03:09:59PM +0800, Jia Jie Ho wrote:
+> This patch series add driver support for StarFive JH8100 SoC crypto
+> engine. Patch 1 adds compatible string and update irq descriptions for
+> JH8100 device. Subsequent patches update current driver implementations
+> to support both 7110 and 8100 variants.
+> 
+> v3->v4:
+> - Updated interrupts descriptions for jh8100-crypto compatible. (Rob)
+> - Added patch 3 to skip unneeded key freeing for RSA module.
+> 
+> v2->v3:
+> - Use of device data instead of #ifdef CONFIG_ for different device
+>   variants.
+> - Updated dt bindings compatible and interrupts descriptions.
+> - Added patch 4 to support hardware quirks for dw-axi-dmac driver.
+> 
+> v1->v2:
+> - Resolved build warnings reported by kernel test robot
+>   https://lore.kernel.org/oe-kbuild-all/202312170614.24rtwf9x-lkp@intel.com/
+> 
+> Jia Jie Ho (7):
+>   dt-bindings: crypto: starfive: Add jh8100 support
+>   crypto: starfive: Update hash dma usage
+>   crypto: starfive: Skip unneeded key free
+>   crypto: starfive: Use dma for aes requests
+>   dmaengine: dw-axi-dmac: Support hardware quirks
+>   crypto: starfive: Add sm3 support for JH8100
+>   crypto: starfive: Add sm4 support for JH8100
+> 
+>  .../crypto/starfive,jh7110-crypto.yaml        |   30 +-
+>  drivers/crypto/starfive/Kconfig               |   30 +-
+>  drivers/crypto/starfive/Makefile              |    5 +-
+>  drivers/crypto/starfive/jh7110-aes.c          |  592 ++++++---
+>  drivers/crypto/starfive/jh7110-cryp.c         |   77 +-
+>  drivers/crypto/starfive/jh7110-cryp.h         |  114 +-
+>  drivers/crypto/starfive/jh7110-hash.c         |  316 +++--
+>  drivers/crypto/starfive/jh7110-rsa.c          |    3 +
+>  drivers/crypto/starfive/jh8100-sm3.c          |  544 ++++++++
+>  drivers/crypto/starfive/jh8100-sm4.c          | 1119 +++++++++++++++++
+>  .../dma/dw-axi-dmac/dw-axi-dmac-platform.c    |   32 +-
+>  drivers/dma/dw-axi-dmac/dw-axi-dmac.h         |    2 +
+>  include/linux/dma/dw_axi.h                    |   11 +
+>  13 files changed, 2437 insertions(+), 438 deletions(-)
+>  create mode 100644 drivers/crypto/starfive/jh8100-sm3.c
+>  create mode 100644 drivers/crypto/starfive/jh8100-sm4.c
+>  create mode 100644 include/linux/dma/dw_axi.h
+> 
+> -- 
+> 2.34.1
 
-...
-
-> > diff --git a/include/linux/pse-pd/pse.h b/include/linux/pse-pd/pse.h
-> 
-> ...
-> 
-> > @@ -73,11 +103,11 @@ struct pse_control;
-> >   * @pse_control_head: head of internal list of requested PSE controls
-> >   * @dev: corresponding driver model device struct
-> >   * @of_pse_n_cells: number of cells in PSE line specifiers
-> > - * @of_xlate: translation function to translate from specifier as found in the
-> > - *            device tree to id as given to the PSE control ops
-> >   * @nr_lines: number of PSE controls in this controller device
-> >   * @lock: Mutex for serialization access to the PSE controller
-> >   * @types: types of the PSE controller
-> > + * @pi: table of PSE PIs described in this controller device
-> > + * @of_legacy: flag set if the pse_pis devicetree node is not used
-> 
-> nit: it looks line the documentation didn't keep up with the
->      structure during development: @no_of_pse_pi should be
->      documented instead of @of_legacy.
-
-There seem to be some similar minor problems in
-[PATCH net-next v6 13/17] net: pse-pd: Use regulator framework within PSE framework
-
-./scripts/kernel-doc -none is your friend here.
-
-> 
-> >   */
-> >  struct pse_controller_dev {
-> >  	const struct pse_controller_ops *ops;
-> > @@ -86,11 +116,11 @@ struct pse_controller_dev {
-> >  	struct list_head pse_control_head;
-> >  	struct device *dev;
-> >  	int of_pse_n_cells;
-> > -	int (*of_xlate)(struct pse_controller_dev *pcdev,
-> > -			const struct of_phandle_args *pse_spec);
-> >  	unsigned int nr_lines;
-> >  	struct mutex lock;
-> >  	enum ethtool_pse_types types;
-> > +	struct pse_pi *pi;
-> > +	bool no_of_pse_pi;
-> >  };
-> 
-> ...
-> 
+Patches 1-4 applied.  Thanks.
+-- 
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
 
