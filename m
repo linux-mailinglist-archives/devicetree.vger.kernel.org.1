@@ -1,198 +1,131 @@
-Return-Path: <devicetree+bounces-54056-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54057-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94CE688F551
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 03:24:32 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10D5888F560
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 03:29:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B935B1C27EDB
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 02:24:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 89961B246CF
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 02:29:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 506833BBDE;
-	Thu, 28 Mar 2024 02:22:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0B3725757;
+	Thu, 28 Mar 2024 02:29:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PdCn67Y6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GXHc8PNx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6C363BBE6;
-	Thu, 28 Mar 2024 02:22:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A212D374D2;
+	Thu, 28 Mar 2024 02:29:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711592575; cv=none; b=i+oMvwKJudVGtXSWAkvYSmYdMHit6NB0UVxkTvyEiT2I2KvXD5WIHpf9qHYk+S1fC2XbkwCyEzv+CoTOu+Us6J9G5Hw7i4MLKN7IDTAxCrCP0mxTwmQyDM0Gnu9Nz6/8iByIjUxTvIQ2gBIb3rbuki9CBQDt2LMjCqy+OhbOous=
+	t=1711592946; cv=none; b=TmeOSGlGicvVC7jc4IYOf2xZNbmGTebeIYvTXAprW2klhrR4vA6oNgz36xNE1NVJ3ryE1DCdf8yMiCQIJTfGabGj59cyy/pvTbD5MMVknu2S5z7BPevPxSuAwbylvZSZzrLIKbB8qQcLduYSNIwunIFTs8VwCyf+M8m7X4JkN3A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711592575; c=relaxed/simple;
-	bh=Txw5w1mXvAlE3ttKOsRB1KC6yqApC7+pEpAOdfCaZNg=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=p6bLjZizRJXDTCaskTJEsp+YxqzbwsjZj7yY0gI5FL1efep1Co9Lz72cKZ1UwhNsVbuQfjhDv5Q6ilj8OTvFaDtRbNG63l+OmVUhK91exKT4sCgQiiC2NnCLP3glgNuYmy/7vSyopPqlCUrST+PmDaH503DZKxJBVUL4FnVbqJM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PdCn67Y6; arc=none smtp.client-ip=209.85.210.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-6e709e0c123so483712b3a.1;
-        Wed, 27 Mar 2024 19:22:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711592573; x=1712197373; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pTnAwOa2uvPcM/ekFIY9I6q6Jkplpwwz1KPt6Wpm9+I=;
-        b=PdCn67Y6d+JJCwJvJQ3zXSJBp+5qwsesAJLn7a6SsnNtdYuX0/W5cvogCpkTmzGQko
-         SkIxQpwjYCl076BUxUVlnkt2jervBtl0IuAYTuZ8/9mHVgnKO7rK9QZbOOHbpixkxQkx
-         qPBBXVsHfGjydG2CDGyggrAAjOwFKcDuZWNwzOWGUeWVu1Vx4cjRfj9nOMT8JWgbjT+q
-         fT0ghGy2iuqmkwEWy6dQt8haUGaIeWNpPa1gjmRWiM85wToqIKyA1qe12snMwf8F63S9
-         fg7uZy8tT6RmR7Y1BkrSskBFZ9EZwrI7NzsrYbN1tX5JHXVonq6HNRPXel+4LShVfTVy
-         LcRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711592573; x=1712197373;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pTnAwOa2uvPcM/ekFIY9I6q6Jkplpwwz1KPt6Wpm9+I=;
-        b=rz05bjzRmNI5C3rrQoutXVyw8YQmTHzMkQSbGshWMp8urucmL0pnpk52c6nSvjXt/1
-         wKZj5UPs8i4wFJdnw6UTvv+OjSms+p1wd6vcioC/LG/ZnySHEuQZvIOTziOzoR9S8+CF
-         y3eVCYT76SYOFdg2TTYSBwMVJFgxO8tcKdTjfp/fzYCbNhCxmdNuoNhHMYZJrgO4gjv3
-         xcEPYHcp2kfoT9u57+US67zG9HWaPyvgiQG4X7gU4/h0I24xyUf7mVhuIOhRVOF1FxJL
-         lLE5yJCUXvpsEK20L2zfXWroVuNP5i5GCgHb/5kvMS713HPt5BWer0f8SkOJL8KawE/l
-         0TKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUwsWKnHg01GpHlFl286D9IXEtSSeCi/LGG3KgqYhkiAJ2lsE2+cCRH/b2sYogxek6BJm37zN5KziEkkiSKyq8d8zheFg+odddwyAoKftsPORZnDULQXL6VBpXEGr72vLIpoxlvWlq+drX+wL73OhdwzwkZOpR0hJ35ZT0u3vsXBWOno575UoQb
-X-Gm-Message-State: AOJu0Yz/PGUekI5YRR2/6YSYkaOaQHIXa4QMQkpn4JM4SoaUSQOg2+cu
-	g3kfAIlD9LpexhqYJRXctyuE9UD3D8hUzWNkHDnKzPT8eEx4rl84
-X-Google-Smtp-Source: AGHT+IHyluQj3/cCpsmHi5qOqzz/QMCSs1jG33c9hrW1m6MP1TsWwfE6CQM9fOkeDUivtVwLq6k/8A==
-X-Received: by 2002:a05:6a00:4b4a:b0:6ea:c634:ca0f with SMTP id kr10-20020a056a004b4a00b006eac634ca0fmr1790243pfb.21.1711592573087;
-        Wed, 27 Mar 2024 19:22:53 -0700 (PDT)
-Received: from peter-bmc.dhcpserver.bu9bmc.local (2001-b400-e355-7eb0-17c6-c47d-d4ee-f9e8.emome-ip6.hinet.net. [2001:b400:e355:7eb0:17c6:c47d:d4ee:f9e8])
-        by smtp.gmail.com with ESMTPSA id d25-20020aa78699000000b006ea858ea901sm229256pfo.210.2024.03.27.19.22.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Mar 2024 19:22:52 -0700 (PDT)
-From: Peter Yin <peteryin.openbmc@gmail.com>
-To: patrick@stwcx.xyz,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v6 4/4] drivers: watchdog: ast2500 and ast2600 support bootstatus
-Date: Thu, 28 Mar 2024 10:22:31 +0800
-Message-Id: <20240328022231.3649741-5-peteryin.openbmc@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240328022231.3649741-1-peteryin.openbmc@gmail.com>
-References: <20240328022231.3649741-1-peteryin.openbmc@gmail.com>
+	s=arc-20240116; t=1711592946; c=relaxed/simple;
+	bh=rHtUyom4X7jUcKQsE0lSv2b4fCRidQ44ktbNU1WEOlo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZX+Z7Iq0quIAaTMWAhCB7FgNzaQ2KOlZd5R2fqUaulPM4meyj/Bat5iZu1n+1ZaCGSpc9cftT7glrc/MA8XlMsQprYmiu6eah46GauosrAdxAfLDQmX1mriaep7LRBUZaotCF1sMY8F/0cXPkKLM31LxmM61N7kBNaA0gp1h/OY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GXHc8PNx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BB5FC433F1;
+	Thu, 28 Mar 2024 02:29:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711592946;
+	bh=rHtUyom4X7jUcKQsE0lSv2b4fCRidQ44ktbNU1WEOlo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GXHc8PNx6iNLSZNvfMq4guVnP1fINDyusRbqdOYJsoz9DstfsEfi/s8yCIwfWtuBj
+	 Si6aizraugxnkHgi+FuxUgfAaPbjCKqSbdqtgzhcIsWK+yqZbR5gSRsp9a89LorGyl
+	 z2CCS/mnyh9gifYnqx/vG9pndtekE29ZCxIRveRw759rlnvuoomB5wKklbQp85/yA6
+	 90p+HA2g5tWgJw+Q+Jbdi4jcFgRPARJqRT8mQThqOLtsHwEBjT+mgV965JWBGdSr4Y
+	 eaMMiEfNUIEPEl1zR2Bv3xaJQPxZ+werBi4i0mxJF86rF7F4QAN56C7YkP+HHzXBPr
+	 mHBdZ0aCOOq8w==
+Date: Wed, 27 Mar 2024 21:29:03 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Maximilian Luz <luzmaximilian@gmail.com>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sc8180x: Fix ss_phy_irq for secondary
+ USB controller
+Message-ID: <g2zfjcidsmaybwd6dzsrhcour2qxklv4r35d3va7txdk6lwfi3@sw2sslg4jnqi>
+References: <20240328022224.336938-1-luzmaximilian@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240328022224.336938-1-luzmaximilian@gmail.com>
 
-Add WDIOF_EXTERN1 and WDIOF_CARDRESET bootstatus in ast2600
+On Thu, Mar 28, 2024 at 03:21:57AM +0100, Maximilian Luz wrote:
+> The ACPI DSDT of the Surface Pro X (SQ2) specifies the interrupts for
+> the secondary UBS controller as
+> 
+>     Name (_CRS, ResourceTemplate ()
+>     {
+>         Interrupt (ResourceConsumer, Level, ActiveHigh, Shared, ,, )
+>         {
+>             0x000000AA,
+>         }
+>         Interrupt (ResourceConsumer, Level, ActiveHigh, SharedAndWake, ,, )
+>         {
+>             0x000000A7,     // hs_phy_irq: &intc GIC_SPI 136
+>         }
+>         Interrupt (ResourceConsumer, Level, ActiveHigh, SharedAndWake, ,, )
+>         {
+>             0x00000228,     // ss_phy_irq: &pdc 40
+>         }
+>         Interrupt (ResourceConsumer, Edge, ActiveHigh, SharedAndWake, ,, )
+>         {
+>             0x0000020A,     // dm_hs_phy_irq: &pdc 10
+>         }
+>         Interrupt (ResourceConsumer, Edge, ActiveHigh, SharedAndWake, ,, )
+>         {
+>             0x0000020B,     // dp_hs_phy_irq: &pdc 11
+>         }
+>     })
+> 
+> Generally, the interrupts above 0x200 map to the PDC interrupts (as used
+> in the devicetree) as ACPI_NUMBER - 0x200. Note that this lines up with
+> dm_hs_phy_irq and dp_hs_phy_irq (as well as the interrupts for the
+> primary USB controller).
+> 
+> Based on the snippet above, ss_phy_irq should therefore be PDC 40 (=
+> 0x28) and not PDC 7. The latter is according to ACPI instead used as
+> ss_phy_irq for port 0 of the multiport USB controller). Fix this by
+> setting ss_phy_irq to '&pdc 40'.
+> 
+> Fixes: b080f53a8f44 ("arm64: dts: qcom: sc8180x: Add remoteprocs, wifi and usb nodes")
+> Signed-off-by: Maximilian Luz <luzmaximilian@gmail.com>
 
-Regarding the AST2600 specification, the WDTn Timeout Status Register
-(WDT10) has bit 1 reserved. Bit 1 of the status register indicates
-on ast2500 if the boot was from the second boot source.
-It does not indicate that the most recent reset was triggered by
-the watchdog. The code should just be changed to set WDIOF_CARDRESET
-if bit 0 of the status register is set.
+Reviewed-by: Bjorn Andersson <andersson@kernel.org>
 
-Include SCU register to veriy WDIOF_EXTERN1 in ast2600 SCU74 or
-ast2500 SCU3C when bit1 is set.
+Regards,
+Bjorn
 
-Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
----
- drivers/watchdog/aspeed_wdt.c | 35 +++++++++++++++++++++++++++++++----
- 1 file changed, 31 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/watchdog/aspeed_wdt.c b/drivers/watchdog/aspeed_wdt.c
-index b4773a6aaf8c..0e7ef860cbdc 100644
---- a/drivers/watchdog/aspeed_wdt.c
-+++ b/drivers/watchdog/aspeed_wdt.c
-@@ -11,10 +11,12 @@
- #include <linux/io.h>
- #include <linux/kernel.h>
- #include <linux/kstrtox.h>
-+#include <linux/mfd/syscon.h>
- #include <linux/module.h>
- #include <linux/of.h>
- #include <linux/of_irq.h>
- #include <linux/platform_device.h>
-+#include <linux/regmap.h>
- #include <linux/watchdog.h>
- 
- static bool nowayout = WATCHDOG_NOWAYOUT;
-@@ -77,11 +79,19 @@ MODULE_DEVICE_TABLE(of, aspeed_wdt_of_table);
- #define WDT_TIMEOUT_STATUS	0x10
- #define   WDT_TIMEOUT_STATUS_IRQ		BIT(2)
- #define   WDT_TIMEOUT_STATUS_BOOT_SECONDARY	BIT(1)
-+#define   WDT_TIMEOUT_STATUS_EVENT		BIT(0)
- #define WDT_CLEAR_TIMEOUT_STATUS	0x14
- #define   WDT_CLEAR_TIMEOUT_AND_BOOT_CODE_SELECTION	BIT(0)
- #define WDT_RESET_MASK1		0x1c
- #define WDT_RESET_MASK2		0x20
- 
-+/*
-+ * Ast2600 SCU74 bit1 is External reset flag
-+ * Ast2500 SCU3C bit1 is External reset flag
-+ */
-+#define AST2500_SYSTEM_RESET_EVENT	0x3C
-+#define AST2600_SYSTEM_RESET_EVENT	0x74
-+#define   EXTERN_RESET_FLAG		BIT(1)
- /*
-  * WDT_RESET_WIDTH controls the characteristics of the external pulse (if
-  * enabled), specifically:
-@@ -330,6 +340,11 @@ static int aspeed_wdt_probe(struct platform_device *pdev)
- 	if (IS_ERR(wdt->base))
- 		return PTR_ERR(wdt->base);
- 
-+	struct regmap *scu_base = syscon_regmap_lookup_by_phandle(dev->of_node,
-+							     "aspeed,scu");
-+	if (IS_ERR(scu_base))
-+		return PTR_ERR(scu_base);
-+
- 	wdt->wdd.info = &aspeed_wdt_info;
- 
- 	if (wdt->cfg->irq_mask) {
-@@ -459,14 +474,26 @@ static int aspeed_wdt_probe(struct platform_device *pdev)
- 	}
- 
- 	status = readl(wdt->base + WDT_TIMEOUT_STATUS);
--	if (status & WDT_TIMEOUT_STATUS_BOOT_SECONDARY) {
-+	if (status & WDT_TIMEOUT_STATUS_EVENT)
- 		wdt->wdd.bootstatus = WDIOF_CARDRESET;
- 
--		if (of_device_is_compatible(np, "aspeed,ast2400-wdt") ||
--		    of_device_is_compatible(np, "aspeed,ast2500-wdt"))
--			wdt->wdd.groups = bswitch_groups;
-+	if (of_device_is_compatible(np, "aspeed,ast2600-wdt")) {
-+		ret = regmap_read(scu_base,
-+				  AST2600_SYSTEM_RESET_EVENT,
-+				  &status);
-+	} else {
-+		ret = regmap_read(scu_base,
-+				  AST2500_SYSTEM_RESET_EVENT,
-+				  &status);
-+		wdt->wdd.groups = bswitch_groups;
- 	}
- 
-+	/*
-+	 * Reset cause by Extern Reset
-+	 */
-+	if (status & EXTERN_RESET_FLAG && !ret)
-+		wdt->wdd.bootstatus |= WDIOF_EXTERN1;
-+
- 	dev_set_drvdata(dev, wdt);
- 
- 	return devm_watchdog_register_device(dev, &wdt->wdd);
--- 
-2.25.1
-
+> ---
+>  arch/arm64/boot/dts/qcom/sc8180x.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc8180x.dtsi b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
+> index 32afc78d5b769..053f7861c3cec 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8180x.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
+> @@ -2701,7 +2701,7 @@ usb_sec: usb@a8f8800 {
+>  			resets = <&gcc GCC_USB30_SEC_BCR>;
+>  			power-domains = <&gcc USB30_SEC_GDSC>;
+>  			interrupts-extended = <&intc GIC_SPI 136 IRQ_TYPE_LEVEL_HIGH>,
+> -					      <&pdc 7 IRQ_TYPE_LEVEL_HIGH>,
+> +					      <&pdc 40 IRQ_TYPE_LEVEL_HIGH>,
+>  					      <&pdc 10 IRQ_TYPE_EDGE_BOTH>,
+>  					      <&pdc 11 IRQ_TYPE_EDGE_BOTH>;
+>  			interrupt-names = "hs_phy_irq", "ss_phy_irq",
+> -- 
+> 2.44.0
+> 
 
