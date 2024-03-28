@@ -1,75 +1,76 @@
-Return-Path: <devicetree+bounces-54101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8679788FA68
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 09:53:43 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6DA288FA72
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 09:54:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 10C061F2484D
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 08:53:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C82DCB26AEA
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 08:54:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4F0C6519F;
-	Thu, 28 Mar 2024 08:52:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9053454BE7;
+	Thu, 28 Mar 2024 08:54:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rj/mWA8p"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="v9lzhoU/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 881DF65191
-	for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 08:52:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 000BC2E645
+	for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 08:54:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711615945; cv=none; b=TYj8XA6mM5oDCxev3R6sKN/s/ziltWQX6IuFW0YJXdc06qW4alpN6i+Z+SsdST5cYb5NzNnX4Km5Ucu1qdP4+Dsw6Dbt+SAvoICfjHO+hd5Y63QANW7QKSQC92YiTTMovOf7UgZi8jumQBaAAawFJ7Fd84XSDlUWHvxuBlnc3EQ=
+	t=1711616066; cv=none; b=tLaKYaFi9cgdPxw30VfYwYBINnV3ydVFIL2MHgeJ7fFyantzu9zRXss97xe47xoApMLReLTQVY/hzhylU2Tkgov+va9UKXFWjjUCpKcS/ajOA9vDLiXZOLdtj0ZpXNoXI62STfxzv93/fINgIp9vAMUPa4zTEc4Tcp+CCplkO80=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711615945; c=relaxed/simple;
-	bh=ChxjiAPwIJAoMLWvSyvtBLUuuJR3I+RKCIHsWyF8tDk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=thiuK19sFWVZAOilyU2Exn1zCr+mJKC+wZDiIbVBkdRfNmOqhKVAZFV6hN694ellCEO1XEt3XexLbxHB/34tLdWvZRJtiVGd6NwrQ78UmuxcD9EUZMB6KZ2y6hdqRaIynhiz7rNOx15A6Or6uE7NO5heUYuvPxcpXzM3kMSPE+8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rj/mWA8p; arc=none smtp.client-ip=209.85.221.45
+	s=arc-20240116; t=1711616066; c=relaxed/simple;
+	bh=ZAjDv+8I1mJ8G/NPZ4kRVngMBY6TQmnkMW7G+NgNAh8=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=dneZUGRJEc1dYwZh0UMVaH5T4Ae5Y4qAkQQdK2/U88IKhlq4EMtLb6uAOSphz0lm8e4QFnxw13NRaPDSG/93CuTgvvmGt+L52LlATweI0br4nrsZ4ClneokGIeqlb3ItEwfyAlthQHa8NfBtD72GXZVQQQTQi4h2I9ROgbIWyxA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=v9lzhoU/; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-341e3682c78so338939f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 01:52:23 -0700 (PDT)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-415455fc8e8so1997305e9.2
+        for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 01:54:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711615942; x=1712220742; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=zPYjukiTakqXaBTdtaepVTDOm2SsVNFnM6RyH2/1aQ0=;
-        b=rj/mWA8piQ9hR8B1HhwNb7jshD5tWjcER8vUkrz08dUW2JmdOD4Hg1rMTeRcyBIYjY
-         Q8Q1zwsn9AALbaDPYqXCleuq8iGxj5EhyaEXRNrvMgtdv+QfACf7onTq9qo+/3FRBqc6
-         66q897PQqiFm0nq7ICtqH+z/MWNOf5kdctLfqS05ZkmKhwK4KHsMc2MgK/ASP3Z91TpE
-         smrysuHZsavq3yVpjcMVW1yLq+KMl+RT5aE8bQZE3zpzsmdtFKg18H8/pbe439o9qG53
-         1L7wqVLlzGnVzGN1Ba3KBa2Q5PzL+Zu8il1XJ60Hx293vZcMTY9R1DoWFEP9MDNXHi5d
-         cL+w==
+        d=linaro.org; s=google; t=1711616062; x=1712220862; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Yty+7IW9qqNwqwNJtGSHLkt6EXl35mjOJg4EN6IRHIU=;
+        b=v9lzhoU/WEGh4jqJvWufa+SW6SQTWisDw6EXmtFPs/klGvGB4+vNfaOEt3Y2x7wwr7
+         QxTfJOeVtun1HbFco+SrM0HEaH9+S7UKrzV+QtBCXSio7Ye7iJlF6kNVpmCvH9WStxoM
+         6svICcgVXGEcE6t59pjP5HBLpqsqMOYjYrt0IOKy5OiPMt2WLOhDqwBjm02UsoSM7fV1
+         Z+kKv5ja3Y84KpMAW3jWVD7z/DdbhQTrtCYz3qjp2HNxUgtlDNvawdp5YcghLCSu/2vX
+         lwDtoNIB23nVOBAcYWTgcqZitd4wnZtLPnKzeQtn10ExR9uoZ4xv1QP/JthAR/qlIZBW
+         zApA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711615942; x=1712220742;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zPYjukiTakqXaBTdtaepVTDOm2SsVNFnM6RyH2/1aQ0=;
-        b=vWZdyvLUvEQpZDf642Dvy80cIpngc/XpD0IZYtnfekp//zYUdOKuKNVcJdb2X7OEtr
-         PhicZpq++OsQgSe90F/Ia0M2rRa8qAIQlJTqcoBDfVZ9etJbs6BVk6ME0bgrBBXNJU5Z
-         OnInvzQxj2w9vxPcYO2mZXnyyZlv02QIpNJQq20S4PBccZ5DwXyruJAfCn+TP3BtRtuU
-         36e4zCKCJuJbMUamCLL5EcioX30ySpspTYTp2v/MNt6gzpMT7Asip/7qUJmU4q3bUIYF
-         8zGOA1zR9zJQHdoufCVjH6vskDt5Jax18eKuGed++t4PZjOVNcXMdhBs26ENf+acByX5
-         X6NA==
-X-Forwarded-Encrypted: i=1; AJvYcCVDZATvCboxev1Q3G2Ntkkk1mRBDkt2dVX2+U3Lb4hKO1gN8FuS1p/CED/T8GZaIqNbF0UwzSHMXyj6GoswYFNLggG0m9Lu7/pxQw==
-X-Gm-Message-State: AOJu0YwoM5NngkjJWT2ivmcbdAbj2D6Gj5dLB5MkMbPAzJ8L+FEZfoPO
-	1vQhS6NBVyjKEUQctVSw+MXKZsEwT+JZPi7t6gGy+kGCgFMyQ0olw2wS7V8eW6k=
-X-Google-Smtp-Source: AGHT+IHzq/DkX1mQgyKwyLbrkwPXY9N1nuYOMcKmFgvdM0fybQQIm4ZFa6cnU75qQRsOsahfuax9Vw==
-X-Received: by 2002:a5d:5043:0:b0:341:bf1e:45a5 with SMTP id h3-20020a5d5043000000b00341bf1e45a5mr1247456wrt.46.1711615941979;
-        Thu, 28 Mar 2024 01:52:21 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.148])
-        by smtp.gmail.com with ESMTPSA id dz16-20020a0560000e9000b0033dedd63382sm1148785wrb.101.2024.03.28.01.52.20
+        d=1e100.net; s=20230601; t=1711616062; x=1712220862;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Yty+7IW9qqNwqwNJtGSHLkt6EXl35mjOJg4EN6IRHIU=;
+        b=d6ezaKyzUw4C10uM6pLX0m7DqHk8/W7cZiibzZ1MJ2JoA74cI8fWcciJO5sWSlWjs6
+         fgd2dqFg2ab5wIKmEV/R6KEkmf0pUokQ2DR+RQ8X9/PUI4r8zXas8IpvOWKTeaFlMxDL
+         9oOFzBd/6vxAQ2Oy/qH3BF4El+vzrX1r16uVjR7bPG/3Bgsbnn47IH+kQlk2YxaC6qID
+         MTIwCOXscckD2kOJJjAtSWPnOskNO7dQTvLPBiO5IC2g8DfFGN/9pvhfxl3Yv8mT1zV8
+         XICyVAWnJsEVAMjJ0DfudDV82glw0i8KJFWxrzPELy0+Ugem6kSlwUDzEFD0YMVXDeCg
+         5H/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWUDAAb5QwxX5X/fzJJifPLgIBeQgNp39Akb1XT9VpMCzG7nv/n+2MIU/d61wkRyf5vkl+98JLL3K9qv2XMvEvCOU6KwBs+LTUIIA==
+X-Gm-Message-State: AOJu0Yyy/b1wyYzG2t2VKcK3e0hgdrdEjkhdhDhm+yTVD2gqe6/Fxdjj
+	ua49AhP8t2w6Aw2DosHcAH8x+L6oG8rc6IBdXbHQtiRxtM5NoEaCbmDDvQUQtlE=
+X-Google-Smtp-Source: AGHT+IGhNmd4eosIUt8hQTsfXrAFZtWrwXc4JyihDC4LrVrFfCvzlvTm8CR/aKVaG8qZSxA9zhE01A==
+X-Received: by 2002:a5d:6651:0:b0:341:bdf0:f86e with SMTP id f17-20020a5d6651000000b00341bdf0f86emr1497687wrw.67.1711616062183;
+        Thu, 28 Mar 2024 01:54:22 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:6306:1c7a:72c2:892a? ([2a01:e0a:982:cbb0:6306:1c7a:72c2:892a])
+        by smtp.gmail.com with ESMTPSA id g1-20020adfa481000000b00341e7e52802sm1169999wrb.92.2024.03.28.01.54.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Mar 2024 01:52:21 -0700 (PDT)
-Message-ID: <4937df72-9efb-45c5-9c46-2a9d3ec8887f@linaro.org>
-Date: Thu, 28 Mar 2024 09:52:20 +0100
+        Thu, 28 Mar 2024 01:54:21 -0700 (PDT)
+Message-ID: <56f4f0eb-7c6b-459a-bf90-1493e14fc106@linaro.org>
+Date: Thu, 28 Mar 2024 09:54:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,97 +78,270 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: ufs: qcom: document SC7180 UFS
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH RESEND v6 4/5] spmi: pmic-arb: Make core resources
+ acquiring a version operation
+To: Abel Vesa <abel.vesa@linaro.org>, Stephen Boyd <sboyd@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
  Konrad Dybcio <konrad.dybcio@linaro.org>,
- Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
- Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
- linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240326174632.209745-1-krzysztof.kozlowski@linaro.org>
- <20240326174632.209745-2-krzysztof.kozlowski@linaro.org>
- <20240328035909.GB3212@thinkpad>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240328035909.GB3212@thinkpad>
-Content-Type: text/plain; charset=UTF-8
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+ Johan Hovold <johan@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
+References: <20240326-spmi-multi-master-support-v6-0-1c87d8306c5b@linaro.org>
+ <20240326-spmi-multi-master-support-v6-4-1c87d8306c5b@linaro.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20240326-spmi-multi-master-support-v6-4-1c87d8306c5b@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 28/03/2024 04:59, Manivannan Sadhasivam wrote:
->>    - if:
->>        properties:
->>          compatible:
->> @@ -250,7 +276,7 @@ allOf:
->>          reg:
->>            maxItems: 1
->>          clocks:
->> -          minItems: 8
->> +          minItems: 7
->>            maxItems: 8
->>      else:
->>        properties:
->> @@ -258,7 +284,7 @@ allOf:
->>            minItems: 1
->>            maxItems: 2
->>          clocks:
->> -          minItems: 8
->> +          minItems: 7
+On 26/03/2024 17:28, Abel Vesa wrote:
+> Rather than setting up the core, obsrv and chnls in probe by using
+> version specific conditionals, add a dedicated "get_core_resources"
+> version specific op and move the acquiring in there.
 > 
-> I'm getting confused by the clock requirements for qcom,ice. Why does specifying
-> the qcom,ice phandle require these clocks? These are the UFSHC clocks and
-> already defined above.
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+>   drivers/spmi/spmi-pmic-arb.c | 113 +++++++++++++++++++++++++++----------------
+>   1 file changed, 70 insertions(+), 43 deletions(-)
+> 
+> diff --git a/drivers/spmi/spmi-pmic-arb.c b/drivers/spmi/spmi-pmic-arb.c
+> index 38fed8a585fe..188252bfb95f 100644
+> --- a/drivers/spmi/spmi-pmic-arb.c
+> +++ b/drivers/spmi/spmi-pmic-arb.c
+> @@ -203,6 +203,7 @@ struct spmi_pmic_arb {
+>    */
+>   struct pmic_arb_ver_ops {
+>   	const char *ver_str;
+> +	int (*get_core_resources)(struct platform_device *pdev, void __iomem *core);
+>   	int (*init_apid)(struct spmi_pmic_arb *pmic_arb, int index);
+>   	int (*ppid_to_apid)(struct spmi_pmic_arb *pmic_arb, u16 ppid);
+>   	/* spmi commands (read_cmd, write_cmd, cmd) functionality */
+> @@ -956,6 +957,19 @@ static int pmic_arb_init_apid_min_max(struct spmi_pmic_arb *pmic_arb)
+>   	return 0;
+>   }
+>   
+> +static int pmic_arb_get_core_resources_v1(struct platform_device *pdev,
+> +					  void __iomem *core)
+> +{
+> +	struct spmi_pmic_arb *pmic_arb = platform_get_drvdata(pdev);
+> +
+> +	pmic_arb->wr_base = core;
+> +	pmic_arb->rd_base = core;
+> +
+> +	pmic_arb->max_periphs = PMIC_ARB_MAX_PERIPHS;
+> +
+> +	return 0;
+> +}
+> +
+>   static int pmic_arb_init_apid_v1(struct spmi_pmic_arb *pmic_arb, int index)
+>   {
+>   	u32 *mapping_table;
+> @@ -1063,6 +1077,33 @@ static u16 pmic_arb_find_apid(struct spmi_pmic_arb *pmic_arb, u16 ppid)
+>   	return apid;
+>   }
+>   
+> +static int pmic_arb_get_obsrvr_chnls_v2(struct platform_device *pdev)
+> +{
+> +	struct spmi_pmic_arb *pmic_arb = platform_get_drvdata(pdev);
+> +
+> +	pmic_arb->rd_base = devm_platform_ioremap_resource_byname(pdev, "obsrvr");
+> +	if (IS_ERR(pmic_arb->rd_base))
+> +		return PTR_ERR(pmic_arb->rd_base);
+> +
+> +	pmic_arb->wr_base = devm_platform_ioremap_resource_byname(pdev, "chnls");
+> +	if (IS_ERR(pmic_arb->wr_base))
+> +		return PTR_ERR(pmic_arb->wr_base);
+> +
+> +	return 0;
+> +}
+> +
+> +static int pmic_arb_get_core_resources_v2(struct platform_device *pdev,
+> +					  void __iomem *core)
+> +{
+> +	struct spmi_pmic_arb *pmic_arb = platform_get_drvdata(pdev);
+> +
+> +	pmic_arb->core = core;
+> +
+> +	pmic_arb->max_periphs = PMIC_ARB_MAX_PERIPHS;
+> +
+> +	return pmic_arb_get_obsrvr_chnls_v2(pdev);
+> +}
+> +
+>   static int pmic_arb_ppid_to_apid_v2(struct spmi_pmic_arb *pmic_arb, u16 ppid)
+>   {
+>   	u16 apid_valid;
+> @@ -1246,6 +1287,18 @@ static int pmic_arb_offset_v5(struct spmi_pmic_arb *pmic_arb, u8 sid, u16 addr,
+>   	return offset;
+>   }
+>   
+> +static int pmic_arb_get_core_resources_v7(struct platform_device *pdev,
+> +					  void __iomem *core)
+> +{
+> +	struct spmi_pmic_arb *pmic_arb = platform_get_drvdata(pdev);
+> +
+> +	pmic_arb->core = core;
+> +
+> +	pmic_arb->max_periphs = PMIC_ARB_MAX_PERIPHS_V7;
+> +
+> +	return pmic_arb_get_obsrvr_chnls_v2(pdev);
+> +}
+> +
+>   /*
+>    * Only v7 supports 2 buses. Each bus will get a different apid count, read
+>    * from different registers.
+> @@ -1469,6 +1522,7 @@ pmic_arb_apid_owner_v7(struct spmi_pmic_arb *pmic_arb, u16 n)
+>   
+>   static const struct pmic_arb_ver_ops pmic_arb_v1 = {
+>   	.ver_str		= "v1",
+> +	.get_core_resources	= pmic_arb_get_core_resources_v1,
+>   	.init_apid		= pmic_arb_init_apid_v1,
+>   	.ppid_to_apid		= pmic_arb_ppid_to_apid_v1,
+>   	.non_data_cmd		= pmic_arb_non_data_cmd_v1,
+> @@ -1484,6 +1538,7 @@ static const struct pmic_arb_ver_ops pmic_arb_v1 = {
+>   
+>   static const struct pmic_arb_ver_ops pmic_arb_v2 = {
+>   	.ver_str		= "v2",
+> +	.get_core_resources	= pmic_arb_get_core_resources_v2,
+>   	.init_apid		= pmic_arb_init_apid_v1,
+>   	.ppid_to_apid		= pmic_arb_ppid_to_apid_v2,
+>   	.non_data_cmd		= pmic_arb_non_data_cmd_v2,
+> @@ -1499,6 +1554,7 @@ static const struct pmic_arb_ver_ops pmic_arb_v2 = {
+>   
+>   static const struct pmic_arb_ver_ops pmic_arb_v3 = {
+>   	.ver_str		= "v3",
+> +	.get_core_resources	= pmic_arb_get_core_resources_v2,
+>   	.init_apid		= pmic_arb_init_apid_v1,
+>   	.ppid_to_apid		= pmic_arb_ppid_to_apid_v2,
+>   	.non_data_cmd		= pmic_arb_non_data_cmd_v2,
+> @@ -1514,6 +1570,7 @@ static const struct pmic_arb_ver_ops pmic_arb_v3 = {
+>   
+>   static const struct pmic_arb_ver_ops pmic_arb_v5 = {
+>   	.ver_str		= "v5",
+> +	.get_core_resources	= pmic_arb_get_core_resources_v2,
+>   	.init_apid		= pmic_arb_init_apid_v5,
+>   	.ppid_to_apid		= pmic_arb_ppid_to_apid_v5,
+>   	.non_data_cmd		= pmic_arb_non_data_cmd_v2,
+> @@ -1529,6 +1586,7 @@ static const struct pmic_arb_ver_ops pmic_arb_v5 = {
+>   
+>   static const struct pmic_arb_ver_ops pmic_arb_v7 = {
+>   	.ver_str		= "v7",
+> +	.get_core_resources	= pmic_arb_get_core_resources_v7,
+>   	.init_apid		= pmic_arb_init_apid_v7,
+>   	.ppid_to_apid		= pmic_arb_ppid_to_apid_v5,
+>   	.non_data_cmd		= pmic_arb_non_data_cmd_v2,
+> @@ -1565,16 +1623,6 @@ static int spmi_pmic_arb_probe(struct platform_device *pdev)
+>   	pmic_arb = spmi_controller_get_drvdata(ctrl);
+>   	pmic_arb->spmic = ctrl;
+>   
+> -	/*
+> -	 * Please don't replace this with devm_platform_ioremap_resource() or
+> -	 * devm_ioremap_resource().  These both result in a call to
+> -	 * devm_request_mem_region() which prevents multiple mappings of this
+> -	 * register address range.  SoCs with PMIC arbiter v7 may define two
+> -	 * arbiter devices, for the two physical SPMI interfaces, which  share
+> -	 * some register address ranges (i.e. "core", "obsrvr", and "chnls").
+> -	 * Ensure that both devices probe successfully by calling devm_ioremap()
+> -	 * which does not result in a devm_request_mem_region() call.
+> -	 */
 
-I am also confused, but I did not change that logic. I don't think that
-it is anyway useful, but that separate topic from this patch.
+Can you explain in the commit message why you remove this comment ?
 
-Best regards,
-Krzysztof
+>   	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "core");
+>   	core = devm_ioremap(&ctrl->dev, res->start, resource_size(res));
+>   	if (IS_ERR(core))
+> @@ -1584,44 +1632,23 @@ static int spmi_pmic_arb_probe(struct platform_device *pdev)
+>   
+>   	hw_ver = readl_relaxed(core + PMIC_ARB_VERSION);
+>   
+> -	if (hw_ver < PMIC_ARB_VERSION_V2_MIN) {
+> +	if (hw_ver < PMIC_ARB_VERSION_V2_MIN)
+>   		pmic_arb->ver_ops = &pmic_arb_v1;
+> -		pmic_arb->wr_base = core;
+> -		pmic_arb->rd_base = core;
+> -	} else {
+> -		pmic_arb->core = core;
+> -
+> -		if (hw_ver < PMIC_ARB_VERSION_V3_MIN)
+> -			pmic_arb->ver_ops = &pmic_arb_v2;
+> -		else if (hw_ver < PMIC_ARB_VERSION_V5_MIN)
+> -			pmic_arb->ver_ops = &pmic_arb_v3;
+> -		else if (hw_ver < PMIC_ARB_VERSION_V7_MIN)
+> -			pmic_arb->ver_ops = &pmic_arb_v5;
+> -		else
+> -			pmic_arb->ver_ops = &pmic_arb_v7;
+> -
+> -		res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
+> -						   "obsrvr");
+> -		pmic_arb->rd_base = devm_ioremap(&ctrl->dev, res->start,
+> -						 resource_size(res));
+> -		if (IS_ERR(pmic_arb->rd_base))
+> -			return PTR_ERR(pmic_arb->rd_base);
+> -
+> -		res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
+> -						   "chnls");
+> -		pmic_arb->wr_base = devm_ioremap(&ctrl->dev, res->start,
+> -						 resource_size(res));
+> -		if (IS_ERR(pmic_arb->wr_base))
+> -			return PTR_ERR(pmic_arb->wr_base);
+> -	}
+> +	else if (hw_ver < PMIC_ARB_VERSION_V3_MIN)
+> +		pmic_arb->ver_ops = &pmic_arb_v2;
+> +	else if (hw_ver < PMIC_ARB_VERSION_V5_MIN)
+> +		pmic_arb->ver_ops = &pmic_arb_v3;
+> +	else if (hw_ver < PMIC_ARB_VERSION_V7_MIN)
+> +		pmic_arb->ver_ops = &pmic_arb_v5;
+> +	else
+> +		pmic_arb->ver_ops = &pmic_arb_v7;
+>   
+>   	dev_info(&ctrl->dev, "PMIC arbiter version %s (0x%x)\n",
+>   		 pmic_arb->ver_ops->ver_str, hw_ver);
+>   
+> -	if (hw_ver < PMIC_ARB_VERSION_V7_MIN)
+> -		pmic_arb->max_periphs = PMIC_ARB_MAX_PERIPHS;
+> -	else
+> -		pmic_arb->max_periphs = PMIC_ARB_MAX_PERIPHS_V7;
+> +	err = pmic_arb->ver_ops->get_core_resources(pdev, core);
+> +	if (err)
+> +		return err;
+>   
+>   	err = pmic_arb->ver_ops->init_apid(pmic_arb, 0);
+>   	if (err)
+> 
 
+With that added:
+
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
