@@ -1,175 +1,138 @@
-Return-Path: <devicetree+bounces-54062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5161488F708
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 06:15:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A8CA88F758
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 06:39:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD2C11F24A2A
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 05:15:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 435C628EF96
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 05:39:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C791E3FBA9;
-	Thu, 28 Mar 2024 05:15:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8F354645B;
+	Thu, 28 Mar 2024 05:39:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dAqHRhnZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AR4OYyaz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF43418026;
-	Thu, 28 Mar 2024 05:15:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFBB53FBA7;
+	Thu, 28 Mar 2024 05:39:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711602919; cv=none; b=GYG2gkotPT7EhY8sS5Tvc71ygcc6aqXwnNkkWJVX5+HvXnhUMlln5XwBpzJGL3yyACYSzWS78Oc6mZNwGefVjlHNZzSkOUDJ5bg8QwyckWoxKn2Or+gVVSqfD65pUy/ABz30JmF5nmKmnp+7egTYpf08R1vMbrInIGnKQ58riZY=
+	t=1711604356; cv=none; b=WKeAoMDuKl8R4P4yJialjLEIvc8POg4GbJ12zClhf+a395HDkOnKAsfvMjtF0TWd/WY+dAHvq3QFjKH3Hdj7347/HOduKdpCJejOmE6h+nONccWmPKF5377bAe+RmwRhN89X5nRlGQiFKRtNBl/yisAuYxuEBfVAd79x2hNII1g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711602919; c=relaxed/simple;
-	bh=SDm1WUJOozAhagrXoYdXg9RSn/CTnbRjqTHIIL8O57I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lXQLjN4rzZx2pz5LHupLr+VQx+1W7IXaeTqJfd3+qo/tLBQXwvsIoq8JzgGb8YG7mbw8CYEmCKlIuPE2ymm544+zgwbupFzNs+heHQ2PkfUJWKXArZUIpX50SLiMdYIjaj5cY9TRQGdzWzPShTQlEVjIqQOwREn/VyZQNPpLCmk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dAqHRhnZ; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2d4886a1cb4so6577001fa.0;
-        Wed, 27 Mar 2024 22:15:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711602916; x=1712207716; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BWrmw61dLt1m0KvK8rpCl4hVDCE+Bi3t+dQ5mux0DuE=;
-        b=dAqHRhnZ+WJTLFtXNhEaCu6EmESM+JDbmusW2M/iY2kKqdsQOKv4nnIxqYKs8X+6Zl
-         pJVqqMd6aouSrfhQ8PfdKk/FTbaYH2dWdY5DkGDVcSUGp3q8UTXdLYsYXy136saUqKU9
-         glQ13pAU588SsIS51S7pC0unWe7t/BKYPFW1nv7OEWaPg/MmqBIxyg4PwFGjw9TlSo7s
-         G77IhaPVe2+8Ty6jDPf+xA9uDe4Ncv0oNjNG3igGLjx6VI0xxfR0DvvlYMi6WtwBO4wl
-         /8mF8RfDTBkh6sLHpyA/GiT7W5YRTb1ik6RC1CzWXVsEJCbf9GkZg5eJF3hO9hCIQo/w
-         X7Vg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711602916; x=1712207716;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BWrmw61dLt1m0KvK8rpCl4hVDCE+Bi3t+dQ5mux0DuE=;
-        b=ipZecEIlmpMAVd01EwG+mPW5n98khsI/j9loM+xlk6zPzD883YBsIcUMDHh4bWFhXZ
-         HQsc+V7aYB/biqyLhwMwtZ0ICKNf7FdQzbmmfnbgiWXerhUGGrsuUVoJ8uK2WRh9TCNG
-         DRL2HwJaiIF1f82BsDVrfx0u2gUPtOBPf49fb2p5tSKf9TzTpvj+DnB+OyfG5hMdtmy4
-         pfOW+uRhLs7WNT6IgWB1p1fgtgSWW7VfVfLskTnqFheUx2NLnEvJZr0UgdrJDGJIXKtI
-         VWZ0B5putwv1AIgB6Mu4EF556QAPVzyfoxCdE5cHoP9966vNh2cbzMNpmrZ5SJ80R9se
-         7oYw==
-X-Forwarded-Encrypted: i=1; AJvYcCXANovr7T/4vubmureK0vefkDDrQ7/aLxfksNx8TJKHS/eu+cusdpyeIyFBpRnOAvgU+e5U/asroRm8T9YEKr0RvI8AssQvBMvQMzckGJdeZDwPu0vOaRYgTDFEcrJcr2Aq9T5qbSKYOw==
-X-Gm-Message-State: AOJu0Yx6EHdU1FTQErGogNgtnepP0UvdyiDOMbfUdtgkjC2FPWjePWpO
-	6rA6/hgdosprBqV99iAIXGbDw6y9Z9aAAnlibO8lGCvuZtKESsti
-X-Google-Smtp-Source: AGHT+IEFH/Jy5ULJDduNo75nbO6sOQ5MrFRQJ7zmT79iZdRCBF1lus9zpFK9O2+292nH1b8gY9DTbA==
-X-Received: by 2002:a2e:3615:0:b0:2d6:c94d:94c2 with SMTP id d21-20020a2e3615000000b002d6c94d94c2mr1427438lja.46.1711602915799;
-        Wed, 27 Mar 2024 22:15:15 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:7426:df00::6? (drtxq0yyyyyyyyyyyyydy-3.rev.dnainternet.fi. [2001:14ba:7426:df00::6])
-        by smtp.gmail.com with ESMTPSA id p18-20020a2eb992000000b002d0f0f5e395sm99427ljp.47.2024.03.27.22.15.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Mar 2024 22:15:15 -0700 (PDT)
-Message-ID: <dec94ef3-5c5f-4b7f-baba-f76ac36b9627@gmail.com>
-Date: Thu, 28 Mar 2024 07:15:14 +0200
+	s=arc-20240116; t=1711604356; c=relaxed/simple;
+	bh=1TbVjwG6FjPG/Z+RHTuE5W+27StHygVuGEX2BEaRZIQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kNg0CmXVLoRshmWs2HW0vVK3SnAnjwreftxKQX0GS8rmGnKeniE5c8QjCiuJGV7/aTe2HwWkzCuBcREkMhcF13z0yWVSYPmJ/yh36oh1jVUruyqW5XeQzD7gvhiDBBHCcUzPHt1yeUuznHgt7sT1YSFQbOWpbGl8iSkRCPFbwvU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AR4OYyaz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AF8EC433B2;
+	Thu, 28 Mar 2024 05:39:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711604356;
+	bh=1TbVjwG6FjPG/Z+RHTuE5W+27StHygVuGEX2BEaRZIQ=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+	b=AR4OYyazeXF+nobr/ZHjH1xHqId0IihH3wDnZu58NmTUN8qUbZnULVfxduNtn4RNj
+	 A+QXAVhj/cxydxEEOjGVMngiqE5wUxh4YSnl+qj226koCR9aiVKhc+VLYBTLPk/GXw
+	 KnUt0bG/hba5VuK9cMKjdjmHpQxlwCmzYmS80xv34YeNcyhEjSabxXsJcT6f5gQV7d
+	 BoG9LB1TAYMZlQcFmUqPbgT6tTBPcxLFcYvTkLaAHV9/ftuCxQMTesUWOvksfqFJBp
+	 ce/J8F6NlhI4h4pXNGDWZ3NCCsTp6bSwJyOI6i+avQsPeBEgrmEGR0lwPHQRrEHsls
+	 3Zk6jxRbtYXVw==
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2d46dd5f222so7451341fa.1;
+        Wed, 27 Mar 2024 22:39:16 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXw9B30hY6hDzShBkN9Usiyjm1fk/D0knLeB+M4oEjExManYscmxyw3YuSxHd55L6HFB6f87Y4Gptyf0L4RvnATwsco2x8pUII763BBMbQMXgorFXAp0WBAZhOGYZIngTsEuACwb02H9w==
+X-Gm-Message-State: AOJu0YxaKqyhxvI1nw9yCkG1J0qXtYWtQ1NnbjY3yCXTS+MWsKgsXqK7
+	kmFVYnc2kd5oGU9myIDlShKIsjG/F2v+AbPvAW8Dmg/hFmW2Xl4M+zK23sQ6KvxxGgFamNHgvBg
+	KEpcSrIgdQ2jPOrOH6hSkljooBtM=
+X-Google-Smtp-Source: AGHT+IHNSdF8hndCSvCQ2ourQ5vvSJzuTkZn1875zvnJtAV/TEo1f+17uBEMHEz4TNCvw6DWTrnRTDW1SKXSjV/JKIY=
+X-Received: by 2002:a2e:9d96:0:b0:2d4:7a3:67a7 with SMTP id
+ c22-20020a2e9d96000000b002d407a367a7mr1272069ljj.22.1711604354573; Wed, 27
+ Mar 2024 22:39:14 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] mfd: rohm-bd71828: Add power off functionality
-Content-Language: en-US, en-GB
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: lee@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240326192258.298143-1-andreas@kemnade.info>
- <20240326192258.298143-3-andreas@kemnade.info>
- <815e1cdc-145e-4880-96a0-d9c21308b9b3@gmail.com>
- <20240327140451.65ff8e18@aktux>
- <c6f5a515-61a1-4d87-a029-4000fa96f10e@gmail.com>
- <20240327230252.0535e895@aktux>
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20240327230252.0535e895@aktux>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240327192641.14220-1-dev@folker-schwesinger.de> <20240327192641.14220-2-dev@folker-schwesinger.de>
+In-Reply-To: <20240327192641.14220-2-dev@folker-schwesinger.de>
+Reply-To: wens@kernel.org
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Thu, 28 Mar 2024 13:39:02 +0800
+X-Gmail-Original-Message-ID: <CAGb2v64cF2fuW7vKq_=AhY+ciAp8t=fxT23AFJWB1qOv1xWuNw@mail.gmail.com>
+Message-ID: <CAGb2v64cF2fuW7vKq_=AhY+ciAp8t=fxT23AFJWB1qOv1xWuNw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: rockchip: Add enable-strobe-pulldown to
+ emmc phy on ROCK Pi 4
+To: Folker Schwesinger <dev@folker-schwesinger.de>
+Cc: Vinod Koul <vkoul@kernel.org>, Yogesh Hegde <yogi.kernel@gmail.com>, 
+	Heiko Stuebner <heiko@sntech.de>, Chris Ruehl <chris.ruehl@gtsys.com.hk>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Dragan Simic <dsimic@manjaro.org>, 
+	Christopher Obbard <chris.obbard@collabora.com>, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Morning Andreas,
+On Thu, Mar 28, 2024 at 4:33=E2=80=AFAM Folker Schwesinger
+<dev@folker-schwesinger.de> wrote:
+>
+> Commit 8b5c2b45b8f0 disabled the internal pull-down for the strobe line
+> causing I/O errors in HS400 mode for various eMMC modules.
+>
+> Enable the internal strobe pull-down for ROCK Pi 4 boards. Also re-enable
+> HS400 mode, that was replaced with HS200 mode as a workaround for the
+> stability issues in:
+> cee572756aa2 ("arm64: dts: rockchip: Disable HS400 for eMMC on ROCK Pi 4"=
+).
+>
+> This was tested on ROCK 4SE and ROCK Pi 4B+.
+>
+> Fixes: 8b5c2b45b8f0 ("phy: rockchip: set pulldown for strobe line in dts"=
+)
+> Signed-off-by: Folker Schwesinger <dev@folker-schwesinger.de>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi b/arch/ar=
+m64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+> index 281a12180703..b9d6284bb804 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+> @@ -194,6 +194,7 @@ &cpu_b1 {
+>  };
+>
+>  &emmc_phy {
+> +       rockchip,enable-strobe-pulldown;
+>         status =3D "okay";
+>  };
+>
+> @@ -648,7 +649,8 @@ &saradc {
+>  &sdhci {
+>         max-frequency =3D <150000000>;
+>         bus-width =3D <8>;
+> -       mmc-hs200-1_8v;
 
-On 3/28/24 00:02, Andreas Kemnade wrote:
-> Hi Matti,
-> 
-> On Wed, 27 Mar 2024 16:11:36 +0200
-> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
-> 
->> On 3/27/24 15:04, Andreas Kemnade wrote:
->>> Hi,
->>>
->>> On Wed, 27 Mar 2024 09:32:29 +0200
->>> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
->>>    
->>>> It's worth noting that there is another PMIC, BD71879, which, from the
->>>> driver software point of view, should be (almost?) identical to the
->>>> BD71828. I believe the BD71828 drivers should work with it as well - if
->>>> not out of the box, at least with very minor modifications.
->>>> Unfortunately I don't know products where the BD71879 is used or if it
->>>> is sold via distributors - so I don't know if adding a DT
->>>> compatible/chip type define for it would be beneficial.
->>>
->>> yes, you already told we thet the BD71828 drivers are compatible with
->>> the BD71879 and I am using the latter.
->>> But that at least should be commented somewhere, so that
->>> people do not raise questions, like: Do I have some strange board revision,
->>> etc?
->>> The most terse form to comment it is a separate dt compatible so we are
->>> prepare any "almost identical" surprises.
->>
->> I agree. Reason why I haven't done this already is that I don't always
->> (like in this case) know which of the variant are eventually sold. So,
->> it's balancing dance between adding compatibles for ICs that will never
->> been seen by large audience, and missing compatibles for some of the
->> variants.
->>
->> This is also why I was interested in knowing which variant you had, and
->> where was it used.
->>
-> I have found it in the Kobo Clara 2E ebook reader.
-> Kobo seems to switch from RC5T619 to BD71879.
-> The Kobo Nia rev C also has that one.
-> Kobo Libra 2 has several hardware revs out in the wild, some of them
-> with the BD71879.
+Shouldn't this be kept around? The node should list all supported modes,
+not just the highest one. Same for the other patch.
 
-Thanks for the info :) It's a shame we so rarely know where things we 
-work for are used. I always find news like this interesting.
+ChenYu
 
->> But yes, I think that as the BD71879 has obviously been found by a
->> community linux kernel user - it would make sense to add a compatible
->> for it!
->>
->> Do you feel like adding the compatible 'rohm,bd71879' in
->> rohm,bd71828-pmic.yaml as part of this series(?)
-> 
-> Do we want a separate chip_type now? Or do we want to add it later if
-> we ever see a difference. My personal opinion is to wait until there is
-> really a need.
-
-Using the BD71828 chip_id for BD71879 in the MFD driver is fine to me. A 
-comment saying they seem "functionally equivalent" can be added to 
-explain this choice.
-
-> If we do not need it, then it is a different series I think but sure
-> I will produce such a patch.
-
-Great, thanks! I think it's clearer to have it as own patch, but I think 
-it fits in the same series - what suits you best. (Don't know if Lee or 
-DT peeps have different opinion.)
-
-Yours,
-	-- Matti
-
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
-
+> +       mmc-hs400-1_8v;
+> +       mmc-hs400-enhanced-strobe;
+>         non-removable;
+>         status =3D "okay";
+>  };
+> --
+> 2.44.0
+>
+>
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
 
