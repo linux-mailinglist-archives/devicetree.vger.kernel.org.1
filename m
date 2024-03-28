@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-54105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88DE688FA85
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 09:58:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB0BB88FA99
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 10:01:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 288FA1F2488A
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 08:58:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2AA4D1F217A1
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 09:01:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30CA92E645;
-	Thu, 28 Mar 2024 08:58:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F54756441;
+	Thu, 28 Mar 2024 09:01:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ie1uGaH2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FVW2inD8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50C4C4F890
-	for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 08:57:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ECEC5789B
+	for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 09:01:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711616280; cv=none; b=UGc49lKjmwf4Qh3/QtyDC0aSVWR0kvoImuaRn3nOqOoo4fHiC4Fj5CQGqhcRN60+boUaTwSFVvvmBv8xq+RNumfVnGWnAvY1zrUFKdBGaCG6AYKYVDQSxdunWuVa31a9SAhDZn7IWUoja+6hs97+QwJYRK8fwuwjdIYFp73CL5w=
+	t=1711616512; cv=none; b=KFdy+2KOLvGTJffj+rTKXUo8+JIi4VdPNKa+23G5YzDct/4hNiYiizFYkScooETj6tJiFEI+pTPKXWkKTyheV7lfi4g39qrpdpiFqLM82moOXls6hrYbWBm9CnkJTz0iab0MkWTbwXNARi5ylahgODbCqGAofOC/N9IhrCuyMPM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711616280; c=relaxed/simple;
-	bh=ooRUq2ddQ1vPC7829e2Ird4axfo+2+6ZaBjqXrgySis=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rHY8WJTTr0sC0agQtdCq1fKi2uAZZT4PKDXBOfiVE1RxO0FHlyJSlzeb3vyOktFsXx9Pq65XCFJwGji0XqRTh5Ng8/HlCcHbNSEZcnwo3SSlWJfZic61J+rIJvmZq0QZ3RqREpCtxaGMNW9vd192roKeuvIR0W3heVYaTbpj5tA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ie1uGaH2; arc=none smtp.client-ip=209.85.221.44
+	s=arc-20240116; t=1711616512; c=relaxed/simple;
+	bh=dSvrPxa6WCXN3w4zl3cUnWipLNJXSrXaKQdnNQrMO1o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=D8abIX0vn2hGtBy9t2up/wgHAZDFsw8pNPcGf0RK74Eo5XKcR6ZNM0sOZWAp8BIhm3f0no6LNrKCSlR7A7Ag6ZWiWTVDmfXSNO0XsD3N0TQ9R/NEcWHGMaFYvf3FBWGr90nxlOjBuyfNGypOuhbo+UaOubVZzRUJo3VPTjQPB6s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FVW2inD8; arc=none smtp.client-ip=209.85.128.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3416df43cabso466966f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 01:57:58 -0700 (PDT)
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4149746f80aso4882415e9.1
+        for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 02:01:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711616277; x=1712221077; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711616507; x=1712221307; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=NRShXC1zO3OpW0uGpvJKq5K43bHvLfKJ1qejl8dVl2Q=;
-        b=ie1uGaH2IAswfA94nIFxAzoOiQhv9oQ7Z325ANg3IJtoc1CdVy8A4u3almucFDAG0j
-         0tWcnXJGUtU1mioXlnNFSKWqv53hNT8uPvET4K7yb2zlqZMu9fIkYiuZCM/nR0QzYtA1
-         jSkvlJe85ISkejMnwgBu+BHH5nSVJdWf7J+/nsuqRkmpr7elLGyZ8oQrMx8OOl/4nQXt
-         6vvF66yWrMGODUQN5uadlCDwv8yipfOr1HAe65T4RMMDullfgevXiuuox+GFJ8jkMtQ6
-         J/bYK9AbG9EG9VOMH5iLHwMTUpictQSsEkzzMoI7s4/DvhQRQ2bsSl73Ic92XpafWp7o
-         hmfg==
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=ojQNUSQIFFG++1GZDeRJjvpciqnPUaIAnOJ9p1+1Mag=;
+        b=FVW2inD8k00FBxETFpOZqV4bRyB/zZoSHplfvzEq8J51PqwaOMJCXnZjrKcEL8nssP
+         bEr8ehXap4y+oO1eA2mygeywZOqLMowha2ksExauOOwiHpYrXMMp+3iZ4BaaDlkVrxjU
+         CLU+H7YF5oN+Tztjqa/LUaOge+rQqxK3rnXQ0d+JnOB93G9dWLHsMCVxo21ISauEm8vU
+         Z9KcdqJMT5mpH1bZreKrgRiwMo95Y+fmLMIWOqXO1jo3nXhcwxZKqb80h7pOtC9SJYbX
+         Jh3p9v1BTTWsasccT+wqQfbAmEoJYqx4W/t0AaU2Xxm5qPReyoYvI14eC1KBkVjqnvEo
+         nLVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711616277; x=1712221077;
+        d=1e100.net; s=20230601; t=1711616507; x=1712221307;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NRShXC1zO3OpW0uGpvJKq5K43bHvLfKJ1qejl8dVl2Q=;
-        b=Co0fdHHsyTwDZqRq2f+r1VnPD+SNDH9Y9MFxiny/QLP/3oYRj7O2aKbDSOiVewqOCS
-         Rq3uGhCHYdKe7ex5dT7Ahgc/Xgs3D3E/sTqexro2v28Pxs0defCrliPN3DkTCeFpDGML
-         q0IOiB2iIym5ropogzHtUPR5SgX2hzRrs3SCiCln1ct7ojjXB9JnkdoRJZELfiC8PyG9
-         pxL2kmykToc5QPCQ4Zo2T5g5jnM+2m92c1iI8GtM5xJu6LJ4aaT4LDOccjZNEnp4hR/k
-         MBhbbKuMUQTzwV/wH1CmCsWMR7qY6jF3lZHH529t+ds0JbOf+w5v1MPsRm9A+HgFafoH
-         6Hlg==
-X-Forwarded-Encrypted: i=1; AJvYcCWWdPKadoRn/cM2+kTJh4JYtU8WeUDJWPS+g5+t04j3EY/RSkzPMI+J5LkdOqRMk1Byq4lspPk5sQKgC0HCaFxQbt2EvgCKr/hTMw==
-X-Gm-Message-State: AOJu0Yy3Jh6fR9qMN3FYjj318a91KLWqew9PBIVohZnL499g5C6e5s7S
-	Vjycoj4zHEvKkZajvMPkuSSKu9U4hK5jTtzOvrWXw4KHvji3ZgsN8RJZPsDTJf8=
-X-Google-Smtp-Source: AGHT+IGClEr9Xl46lzchyoUADhh1NeJly47SViYywtFBwPicFQjYByaG0eB1JYYqM2Y+qq5k+R9jQw==
-X-Received: by 2002:a05:600c:154a:b0:414:71d8:9c87 with SMTP id f10-20020a05600c154a00b0041471d89c87mr1668021wmg.19.1711616276716;
-        Thu, 28 Mar 2024 01:57:56 -0700 (PDT)
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ojQNUSQIFFG++1GZDeRJjvpciqnPUaIAnOJ9p1+1Mag=;
+        b=Gp9Uzch7vWt1HK82HUytanLD2lO5HMIBC7XK68TvQiCBvpid5oFzK3Ht8KqDSgc3fr
+         1nBg9mYWlNdlb/GDC6tmJ18KPwT2THAQvm7Hs++juA7XDDWwl9U+gemzxesQyFBUhzyE
+         SjulmoPRDXNTU4AWfq4qJIa4gHaoM8B+oCCsqZZemPCgTrRjWMdOFelKczaeu5AN6aSG
+         2AQcogMlE6M81rGGo4KFfmfKidy+Q0GJwsvQ/TukESSCWKlqpwkAaOZ6xq4bBhhTOddO
+         jcDeqPci4aNoxzw24jhsDLEwthyaWNaXZGBvdVds98NPKstj12Grv5nIlBYYyNfKZBSX
+         Iiag==
+X-Forwarded-Encrypted: i=1; AJvYcCWIIqaiIyB15QGuqN66OXiNmbFXMVS/lzrW6Fj52gFK+ZfO/jRvUv8vGeZj8MImJrm1hbwVMC7+ZSR/p4kHDmFfedL2Il305aHlzw==
+X-Gm-Message-State: AOJu0Yx3ppLZYhSf9Kf+YJ5vQaWs11D3M/UWo3oyk3M39YHmCFTkhny7
+	6hLN3kKAl8JtnkZGed7TRzyxujH+LGbaYY+COQ9uG03nWzLfS90K8TR8ZNga+tQ=
+X-Google-Smtp-Source: AGHT+IGEUgdRPIM5y9jOXcxiqCueL/Y86qKN+/+Jit5kxPav10LkDzha4OlzWPC1QuwzziLrP5yFMw==
+X-Received: by 2002:a05:600c:3505:b0:414:63c6:8665 with SMTP id h5-20020a05600c350500b0041463c68665mr2153970wmq.2.1711616507497;
+        Thu, 28 Mar 2024 02:01:47 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.148])
-        by smtp.gmail.com with ESMTPSA id l6-20020a05600c4f0600b0041469869d11sm4703990wmq.47.2024.03.28.01.57.55
+        by smtp.gmail.com with ESMTPSA id iv16-20020a05600c549000b004146a1bf590sm4717532wmb.32.2024.03.28.02.01.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Mar 2024 01:57:56 -0700 (PDT)
-Message-ID: <5b917ec7-f8f8-489c-a804-70ea603262dd@linaro.org>
-Date: Thu, 28 Mar 2024 09:57:54 +0100
+        Thu, 28 Mar 2024 02:01:46 -0700 (PDT)
+Message-ID: <cff5e036-7f7c-4270-be0c-f49b196a502b@linaro.org>
+Date: Thu, 28 Mar 2024 10:01:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,15 +77,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: ti,pcm1681: Convert to dtschema
-To: Animesh Agarwal <animeshagarwal28@gmail.com>
-Cc: Shenghao Ding <shenghao-ding@ti.com>, Kevin Lu <kevin-lu@ti.com>,
- Baojun Xu <baojun.xu@ti.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [RFC PATCH v2 3/5] dt-bindings: clock: meson: document A1 SoC
+ audio clock controller driver
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, alsa-devel@alsa-project.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240328014029.9710-1-animeshagarwal28@gmail.com>
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20240328010831.884487-1-jan.dakinevich@salutedevices.com>
+ <20240328010831.884487-4-jan.dakinevich@salutedevices.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -132,95 +138,194 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240328014029.9710-1-animeshagarwal28@gmail.com>
+In-Reply-To: <20240328010831.884487-4-jan.dakinevich@salutedevices.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/03/2024 02:40, Animesh Agarwal wrote:
-> Convert the Texas Instruments PCM1681 bindings to DT schema.
+On 28/03/2024 02:08, Jan Dakinevich wrote:
+> Add device tree bindings for A1 SoC audio clock and reset controllers.
 > 
-> Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
+> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
 > ---
->  .../devicetree/bindings/sound/ti,pcm1681.txt  | 15 --------
->  .../devicetree/bindings/sound/ti,pcm1681.yaml | 35 +++++++++++++++++++
->  2 files changed, 35 insertions(+), 15 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/ti,pcm1681.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/ti,pcm1681.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/ti,pcm1681.txt b/Documentation/devicetree/bindings/sound/ti,pcm1681.txt
-> deleted file mode 100644
-> index 4df17185ab80..000000000000
-> --- a/Documentation/devicetree/bindings/sound/ti,pcm1681.txt
-> +++ /dev/null
-> @@ -1,15 +0,0 @@
-> -Texas Instruments PCM1681 8-channel PWM Processor
-> -
-> -Required properties:
-> -
-> - - compatible:		Should contain "ti,pcm1681".
-> - - reg:			The i2c address. Should contain <0x4c>.
-> -
-> -Examples:
-> -
-> -	i2c_bus {
-> -		pcm1681@4c {
-> -			compatible = "ti,pcm1681";
-> -			reg = <0x4c>;
-> -		};
-> -	};
-> diff --git a/Documentation/devicetree/bindings/sound/ti,pcm1681.yaml b/Documentation/devicetree/bindings/sound/ti,pcm1681.yaml
-> new file mode 100644
-> index 000000000000..4093d0ff654d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/ti,pcm1681.yaml
-> @@ -0,0 +1,35 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/ti,pcm1681.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Texas Instruments PCM1681 8-channel PWM Processor
+
+> +title: Amlogic A1 Audio Clock Control Unit and Reset Controller
 > +
 > +maintainers:
-> +  - Animesh Agarwal <animeshagarwal28@gmail.com>
-
-Why not existing driver maintainers? Do you have this device? Or use it,
-or care in terms of your projects?
-
+> +  - Neil Armstrong <neil.armstrong@linaro.org>
+> +  - Jerome Brunet <jbrunet@baylibre.com>
+> +  - Jan Dakinevich <jan.dakinevich@salutedevices.com>
 > +
 > +properties:
 > +  compatible:
-> +    const: ti,pcm1681
+> +    enum:
+> +      - amlogic,a1-audio-clkc
+> +      - amlogic,a1-audio2-clkc
+
+What is "2"?
+
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  '#reset-cells':
+> +    const: 1
 > +
 > +  reg:
 > +    maxItems: 1
 > +
+> +  clocks:
+> +    minItems: 6
+> +    maxItems: 7
+> +
+> +  clock-names:
+> +    minItems: 6
+> +    maxItems: 7
+> +
 > +required:
 > +  - compatible
+> +  - '#clock-cells'
 > +  - reg
+> +  - clocks
+> +  - clock-names
 > +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - amlogic,a1-audio-clkc
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: input core clock
+> +            - description: input main peripheral bus clock
+> +            - description: input dds_in
+> +            - description: input fixed pll div2
+> +            - description: input fixed pll div3
+> +            - description: input hifi_pll
+> +            - description: input oscillator (usually at 24MHz)
+> +        clocks-names:
+> +          items:
+> +            - const: core
+> +            - const: pclk
+> +            - const: dds_in
+> +            - const: fclk_div2
+> +            - const: fclk_div3
+> +            - const: hifi_pll
+> +            - const: xtal
+> +      required:
+> +        - '#reset-cells'
+> +    else:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: input main peripheral bus clock
+> +            - description: input dds_in
+> +            - description: input fixed pll div2
+> +            - description: input fixed pll div3
+> +            - description: input hifi_pll
+> +            - description: input oscillator (usually at 24MHz)
+> +        clock-names:
+> +          items:
+> +            - const: pclk
+> +            - const: dds_in
+> +            - const: fclk_div2
+> +            - const: fclk_div3
+> +            - const: hifi_pll
+> +            - const: xtal
 
-Missing dai-cells, $ref to dai-common and unevaluatedProperties: false,
-just like in other simple DAI devices. Mention briefly in the commit msg
-adding these ("Make bindings complete by adding #sound-dai-cells").
+#reset-cells: false
 
+> +
 > +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
+> +    #include <dt-bindings/clock/amlogic,a1-pll-clkc.h>
+> +    #include <dt-bindings/clock/amlogic,a1-peripherals-clkc.h>
+> +    #include <dt-bindings/clock/amlogic,a1-audio-clkc.h>
+> +    audio {
+
+If there is going to be any new version/resend:
+soc {
+
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
 > +
-> +        pcm1681@4c {
+> +        clkc_audio: audio-clock-controller@fe050000 {
 
-Datasheet says it is dac, but we usually call it "audio-codec".
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+So: clock-controller
 
-> +            compatible = "ti,pcm1681";
-> +            reg = <0x4c>;
+> +                compatible = "amlogic,a1-audio-clkc";
+> +                reg = <0x0 0xfe050000 0x0 0xb0>;
+> +                #clock-cells = <1>;
+> +                #reset-cells = <1>;
+> +                clocks = <&clkc_audio2 AUD2_CLKID_AUDIOTOP>,
+> +                         <&clkc_periphs CLKID_AUDIO>,
+> +                         <&clkc_periphs CLKID_DDS_IN>,
+> +                         <&clkc_pll CLKID_FCLK_DIV2>,
+> +                         <&clkc_pll CLKID_FCLK_DIV3>,
+> +                         <&clkc_pll CLKID_HIFI_PLL>,
+> +                         <&xtal>;
+> +                clock-names = "core",
+> +                              "pclk",
+> +                              "dds_in",
+> +                              "fclk_div2",
+> +                              "fclk_div3",
+> +                              "hifi_pll",
+> +                              "xtal";
+> +        };
+> +
+> +        clkc_audio2: audio-clock-controller@fe054800 {
+
+clock-controller
+(so I expect resend)
+
+> +                compatible = "amlogic,a1-audio2-clkc";
+> +                reg = <0x0 0xfe054800 0x0 0x20>;
+> +                #clock-cells = <1>;
+> +                clocks = <&clkc_periphs CLKID_AUDIO>,
+> +                         <&clkc_periphs CLKID_DDS_IN>,
+> +                         <&clkc_pll CLKID_FCLK_DIV2>,
+> +                         <&clkc_pll CLKID_FCLK_DIV3>,
+> +                         <&clkc_pll CLKID_HIFI_PLL>,
+> +                         <&xtal>;
+> +                clock-names = "pclk",
+> +                              "dds_in",
+> +                              "fclk_div2",
+> +                              "fclk_div3",
+> +                              "hifi_pll",
+> +                              "xtal";
 > +        };
 > +    };
+> diff --git a/include/dt-bindings/clock/amlogic,a1-audio-clkc.h b/include/dt-bindings/clock/amlogic,a1-audio-clkc.h
+> new file mode 100644
+> index 000000000000..b30df3b1ae08
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/amlogic,a1-audio-clkc.h
+> @@ -0,0 +1,122 @@
+> +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+> +/*
+> + * Copyright (c) 2024, SaluteDevices. All Rights Reserved.
+> + *
+> + * Author: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+> + */
+> +
+> +#ifndef __A1_AUDIO_CLKC_BINDINGS_H
+> +#define __A1_AUDIO_CLKC_BINDINGS_H
+> +
+> +#define AUD_CLKID_DDR_ARB		1
+> +#define AUD_CLKID_TDMIN_A		2
+> +#define AUD_CLKID_TDMIN_B		3
+> +#define AUD_CLKID_TDMIN_LB		4
+
+Why both clock controllers have the same clocks? This is confusing. It
+seems you split same block into two!
 
 Best regards,
 Krzysztof
