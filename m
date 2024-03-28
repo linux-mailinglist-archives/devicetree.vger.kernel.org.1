@@ -1,159 +1,308 @@
-Return-Path: <devicetree+bounces-54354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 135B989096B
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 20:41:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A35789098A
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 20:45:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 15BBA1C2C82E
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 19:41:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 96BF11F22D75
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 19:45:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 228E413248F;
-	Thu, 28 Mar 2024 19:41:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD3DD1386A1;
+	Thu, 28 Mar 2024 19:44:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kaA9Q3h4"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="SQroCiKF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com [209.85.221.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 701641849;
-	Thu, 28 Mar 2024 19:40:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D045D1384B1;
+	Thu, 28 Mar 2024 19:44:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711654860; cv=none; b=n+00L757N3vT1dZ82YdB3MOdwSfoospGHoxMUWUMLIaS0khyDCncM+yfoWz1HspulBqPej4M2WKiKCLMxmZH6UBePKjNdpJdxUCxtvxCgHV8way5NTenBFRIaxnT21aWPr/ZcG4k671BZ8FFW5nleeptDp0M6jlaqN2ud7AHCdI=
+	t=1711655099; cv=none; b=rKkAXpSy8iW/jZSLBIL7ROTVQJEjWnedNDm+5idGbknf4Bxo5DWRtF9OsBSHUpyJKE9khqfB0s1frnrtCLVfOupqmSEAqlFaXjkUPazswtRbnvmB2vcwKT+k3okzO2PMsP5XP2ckrF/4fwHNm8ly419TUEAMpOwmxLDO2xgt/zg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711654860; c=relaxed/simple;
-	bh=+3NWWwXtkzvrmA576fnyloztaGBywL+XKq+YksdA5gQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qHDj/yQVgG6GaPJlEoUIAFSKe1lc8CGfwP9G+eSe9AJvOKUuRw4DfGmBVAOi1OYoc7i47o25Gymm6o/wheYEd04wsUMUmk4yXBN1J/Be/F+jQPajk4Yx6Hwi4tAYiusTWIKgb9Zn6OtGGRp+R5pKWLYqVyXLodOYUb8fQSCLNV0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kaA9Q3h4; arc=none smtp.client-ip=209.85.221.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f182.google.com with SMTP id 71dfb90a1353d-4d438e141d5so714815e0c.0;
-        Thu, 28 Mar 2024 12:40:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711654857; x=1712259657; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pGCaq9OrigqbkBbwFdgSJ7iz+P7VgNUODi7EL0TTbPM=;
-        b=kaA9Q3h42sLRsltH3mK4bf+Kysp/vEkP2EoztKKfGf4F4xo6le+/mbcT4YLDaCYv6Z
-         xyRCPRRVYeFeLtWk60JRQo/lhm0nVbAhWwQdEyuJnCQ5FDVND7S6fF/lESZh8AuAEglD
-         U5rHDu9EO38SqP7eEn3ts72lj4BNehdOye1oINE4wx1KUm189/ee4LkA6rD0DGLNJmC+
-         SKi87e9FI4Wkw1Ts62f9Pta9G9aT1yB2xZRb8KwCWW2yUnbXQy4G33SLOJKEwEa4h5YX
-         IpJgUApWG5cCCjpunC0CbLCFKtnk7uSvKiCvxuSjCLl37Y8abg1i/SJ6qikSxLAIA+eJ
-         3Gyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711654857; x=1712259657;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pGCaq9OrigqbkBbwFdgSJ7iz+P7VgNUODi7EL0TTbPM=;
-        b=a3s489Fbi4hZfjyX/B0EKYrhCm1t3VuQs570uBZTQCl31R2SPSsrdiKvd8pudOzjBx
-         wXI6pTPTISpwU3jOt/is6cC6Qm8WaJSl0+eVmiN9fccXoJGgPZN92iz7AywAKzrxi1oE
-         2h4TyqZN4soRrKPv0SqhnLShTQhWljzSh7Al5RhhPGFbT1aNurlrlvcN2Y7Qdi7i+XjH
-         RbbF7/Grlq6HugKq181Wd3nSuo9fc3LIAhsXkPE3ZB89V5pAuszm3MfqmeQCzkovpD6T
-         wuAMUp9jknOFj3z2Q58t4iTlFmGMca30Tu7OZLCXtJNiwsVyt48XfT08MetR0LTelxdP
-         CrGg==
-X-Forwarded-Encrypted: i=1; AJvYcCU+nzXZJ9kY0ZKk29e1ABHDbAnsnGpfFLM1Q+wWuFcJkBW1QOsw2UH9oWE52rJlV3BjmQcKFxpMAUz32imU8kEFgVg9OK1p5oOzvXxfFd0KdOY2AQ5pP3NkkP8QB93HmgWoJhhE5Sa0PW5KToP9RJmDEd9pBxbXfuWUuN+xdkoMlTonsENPBIggZpE/YT9n86drMwA0phvXEsrTVRvzAVxfLZENcx94wg==
-X-Gm-Message-State: AOJu0YyEFheS7pG4zIkBH9fn3j9FjjOfXf2bgvMXLfTTC3ZXZQ2mKKZy
-	GC20hOjHjnUGRcUW5UsNipqMfHhTX/u98H51iq2VifWd3MgEZr3flsUqtiH6l6IJhHZOtoG/Ohn
-	scYD7hQ3XVt16n4chIV3glVm8xic=
-X-Google-Smtp-Source: AGHT+IGGIZX5yS8mpZls/4SrlztMQeLHRiz+4BGAHryeTkdghkFMlHhUz+zkCt0bmRB5EW/857MaTjogeo0ycR0LGVQ=
-X-Received: by 2002:a05:6122:2806:b0:4c8:df97:139d with SMTP id
- en6-20020a056122280600b004c8df97139dmr2962055vkb.2.1711654857269; Thu, 28 Mar
- 2024 12:40:57 -0700 (PDT)
+	s=arc-20240116; t=1711655099; c=relaxed/simple;
+	bh=lPxTjZUe7eZRPis+mB9P6t4Gh6SB0PqP8x+MqW3MjYc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=ZYgsKjIZ1ZSAVgnFTI7z1C6lFMaLgXvyWvLf9AC8UXdU2+/blHvLq1nr0HJGmZOsPvemoM2OQ++gsF2WDUE+1pWv24Vnrnv95RsgUY6DH09gMbxhHq0YOoASlmpLN89n9pLezWEsRUTHnTWBv2fuxJUJ9SxswWQdqIdz2/vEKzI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=sberdevices.ru; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=SQroCiKF; arc=none smtp.client-ip=37.18.73.165
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sberdevices.ru
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id ACE01100011;
+	Thu, 28 Mar 2024 22:44:53 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru ACE01100011
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1711655093;
+	bh=m0xMJsrom0saG660a9og6h3GiS585KUQVZD10EtLm4c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=SQroCiKF+YF/1tcLgcnxlC7Ala04oJF47du+bYXjDFdlVON8UQboEWtBtpOGLq4NH
+	 xPMa2qMrIkroGs7P4Pz8tIROHODoXy5ZU+8MJrXKKq+DEnBeOjFxS52d5PyZ6d5d6K
+	 LvJWJXbiz44mVE3sHqiIe2Cji8a6KNA1ofPGs85TkWx0qzte8srHpTu1iSiPhqqdLj
+	 Ktbi8vOE+uwCDxnXBeRp+daR8V9fwpbt55jm3mL7OpIS0S2GVEuQ26TD/Hnu17WgXk
+	 uWS0DnndO2t0bjqnzTHZPjK6csWynWM8nRiuWoY4EBv242+nIeDah19rUBg/eE4moz
+	 4Zi69xr29EhaA==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Thu, 28 Mar 2024 22:44:53 +0300 (MSK)
+Received: from [172.28.160.49] (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Thu, 28 Mar 2024 22:44:53 +0300
+Message-ID: <9ce24f8d-5800-4604-abb4-5586d6c385e0@salutedevices.com>
+Date: Thu, 28 Mar 2024 22:43:41 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240326222844.1422948-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240326222844.1422948-8-prabhakar.mahadev-lad.rj@bp.renesas.com> <c200e87e-1c65-4926-9307-16229e90594e@tuxon.dev>
-In-Reply-To: <c200e87e-1c65-4926-9307-16229e90594e@tuxon.dev>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Thu, 28 Mar 2024 19:40:31 +0000
-Message-ID: <CA+V-a8vcyxrEmHrhgwDf2bhL1QpiXW6r1+aoH3my3uAJZfCtQA@mail.gmail.com>
-Subject: Re: [RFC PATCH 07/13] pinctrl: renesas: pinctrl-rzg2l: Validate power
- registers for SD and ETH
-To: claudiu beznea <claudiu.beznea@tuxon.dev>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Linus Walleij <linus.walleij@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH v2 3/5] dt-bindings: clock: meson: document A1 SoC
+ audio clock controller driver
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, Michael
+ Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>
+References: <20240328010831.884487-1-jan.dakinevich@salutedevices.com>
+ <20240328010831.884487-4-jan.dakinevich@salutedevices.com>
+ <cff5e036-7f7c-4270-be0c-f49b196a502b@linaro.org>
+From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+In-Reply-To: <cff5e036-7f7c-4270-be0c-f49b196a502b@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 184478 [Mar 28 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 14 0.3.14 5a0c43d8a1c3c0e5b0916cc02a90d4b950c01f96, {Tracking_smtp_not_equal_from}, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, sberdevices.ru:5.0.1,7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;devicetree-specification.readthedocs.io:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;127.0.0.199:7.1.2;salutedevices.com:7.1.1, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2024/03/28 18:21:00
+X-KSMG-LinksScanning: Clean, bases: 2024/03/28 18:21:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/03/28 18:13:00 #24496606
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-Hi Claudiu,
 
-Thank you for the review.
 
-On Thu, Mar 28, 2024 at 8:01=E2=80=AFAM claudiu beznea <claudiu.beznea@tuxo=
-n.dev> wrote:
->
-> Hi, Prabhakar,
->
-> On 27.03.2024 00:28, Prabhakar wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > On RZ/V2H(P) SoC, the power registers for SD and ETH do not exist,
-> > resulting in invalid register offsets. Ensure that the register offsets
-> > are valid before any read/write operations are performed. If the power
-> > registers are not available, both SD and ETH will be set to -EINVAL.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > ---
-> >  drivers/pinctrl/renesas/pinctrl-rzg2l.c | 16 ++++++++++------
-> >  1 file changed, 10 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/drivers/pinctrl/renesas/pinctrl-rzg2l.c b/drivers/pinctrl/=
-renesas/pinctrl-rzg2l.c
-> > index 348fdccaff72..705372faaeff 100644
-> > --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> > +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> > @@ -184,8 +184,8 @@
-> >   */
-> >  struct rzg2l_register_offsets {
-> >       u16 pwpr;
-> > -     u16 sd_ch;
-> > -     u16 eth_poc;
-> > +     int sd_ch;
-> > +     int eth_poc;
-> >  };
-> >
-> >  /**
-> > @@ -2567,8 +2567,10 @@ static int rzg2l_pinctrl_suspend_noirq(struct de=
-vice *dev)
-> >       rzg2l_pinctrl_pm_setup_dedicated_regs(pctrl, true);
-> >
-> >       for (u8 i =3D 0; i < 2; i++) {
-> > -             cache->sd_ch[i] =3D readb(pctrl->base + SD_CH(regs->sd_ch=
-, i));
-> > -             cache->eth_poc[i] =3D readb(pctrl->base + ETH_POC(regs->e=
-th_poc, i));
-> > +             if (regs->sd_ch !=3D -EINVAL)
->
-> As of my knowledge, the current users of this driver uses SD and ETH
-> offsets different from zero. To avoid populating these values for all the
-> SoCs and avoid increasing the size of these fields I think you can add
-> checks like these:
->
-> if (regs->sd_ch)
->         // set sd_ch
->
-Agreed.
+On 3/28/24 12:01, Krzysztof Kozlowski wrote:
+> On 28/03/2024 02:08, Jan Dakinevich wrote:
+>> Add device tree bindings for A1 SoC audio clock and reset controllers.
+>>
+>> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+>> ---
+> 
+>> +title: Amlogic A1 Audio Clock Control Unit and Reset Controller
+>> +
+>> +maintainers:
+>> +  - Neil Armstrong <neil.armstrong@linaro.org>
+>> +  - Jerome Brunet <jbrunet@baylibre.com>
+>> +  - Jan Dakinevich <jan.dakinevich@salutedevices.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - amlogic,a1-audio-clkc
+>> +      - amlogic,a1-audio2-clkc
+> 
+> What is "2"?
+> 
 
->
-> Same for the rest.
->
-OK.
+This is the second clock controller. I couldn't think of a better name.
 
-Cheers,
-Prabhakar
+> If there is going to be any new version/resend:
+
+Definitely, this is not the final version. Thank you for comments!
+
+
+>> +
+>> +  '#clock-cells':
+>> +    const: 1
+>> +
+>> +  '#reset-cells':
+>> +    const: 1
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    minItems: 6
+>> +    maxItems: 7
+>> +
+>> +  clock-names:
+>> +    minItems: 6
+>> +    maxItems: 7
+>> +
+>> +required:
+>> +  - compatible
+>> +  - '#clock-cells'
+>> +  - reg
+>> +  - clocks
+>> +  - clock-names
+>> +
+>> +allOf:
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - amlogic,a1-audio-clkc
+>> +    then:
+>> +      properties:
+>> +        clocks:
+>> +          items:
+>> +            - description: input core clock
+>> +            - description: input main peripheral bus clock
+>> +            - description: input dds_in
+>> +            - description: input fixed pll div2
+>> +            - description: input fixed pll div3
+>> +            - description: input hifi_pll
+>> +            - description: input oscillator (usually at 24MHz)
+>> +        clocks-names:
+>> +          items:
+>> +            - const: core
+>> +            - const: pclk
+>> +            - const: dds_in
+>> +            - const: fclk_div2
+>> +            - const: fclk_div3
+>> +            - const: hifi_pll
+>> +            - const: xtal
+>> +      required:
+>> +        - '#reset-cells'
+>> +    else:
+>> +      properties:
+>> +        clocks:
+>> +          items:
+>> +            - description: input main peripheral bus clock
+>> +            - description: input dds_in
+>> +            - description: input fixed pll div2
+>> +            - description: input fixed pll div3
+>> +            - description: input hifi_pll
+>> +            - description: input oscillator (usually at 24MHz)
+>> +        clock-names:
+>> +          items:
+>> +            - const: pclk
+>> +            - const: dds_in
+>> +            - const: fclk_div2
+>> +            - const: fclk_div3
+>> +            - const: hifi_pll
+>> +            - const: xtal
+> 
+> #reset-cells: false
+> 
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/amlogic,a1-pll-clkc.h>
+>> +    #include <dt-bindings/clock/amlogic,a1-peripherals-clkc.h>
+>> +    #include <dt-bindings/clock/amlogic,a1-audio-clkc.h>
+>> +    audio {
+> 
+> If there is going to be any new version/resend:
+> soc {
+> 
+>> +        #address-cells = <2>;
+>> +        #size-cells = <2>;
+>> +
+>> +        clkc_audio: audio-clock-controller@fe050000 {
+> 
+> Node names should be generic. See also an explanation and list of
+> examples (not exhaustive) in DT specification:
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> So: clock-controller
+> 
+>> +                compatible = "amlogic,a1-audio-clkc";
+>> +                reg = <0x0 0xfe050000 0x0 0xb0>;
+>> +                #clock-cells = <1>;
+>> +                #reset-cells = <1>;
+>> +                clocks = <&clkc_audio2 AUD2_CLKID_AUDIOTOP>,
+>> +                         <&clkc_periphs CLKID_AUDIO>,
+>> +                         <&clkc_periphs CLKID_DDS_IN>,
+>> +                         <&clkc_pll CLKID_FCLK_DIV2>,
+>> +                         <&clkc_pll CLKID_FCLK_DIV3>,
+>> +                         <&clkc_pll CLKID_HIFI_PLL>,
+>> +                         <&xtal>;
+>> +                clock-names = "core",
+>> +                              "pclk",
+>> +                              "dds_in",
+>> +                              "fclk_div2",
+>> +                              "fclk_div3",
+>> +                              "hifi_pll",
+>> +                              "xtal";
+>> +        };
+>> +
+>> +        clkc_audio2: audio-clock-controller@fe054800 {
+> 
+> clock-controller
+> (so I expect resend)
+> 
+>> +                compatible = "amlogic,a1-audio2-clkc";
+>> +                reg = <0x0 0xfe054800 0x0 0x20>;
+>> +                #clock-cells = <1>;
+>> +                clocks = <&clkc_periphs CLKID_AUDIO>,
+>> +                         <&clkc_periphs CLKID_DDS_IN>,
+>> +                         <&clkc_pll CLKID_FCLK_DIV2>,
+>> +                         <&clkc_pll CLKID_FCLK_DIV3>,
+>> +                         <&clkc_pll CLKID_HIFI_PLL>,
+>> +                         <&xtal>;
+>> +                clock-names = "pclk",
+>> +                              "dds_in",
+>> +                              "fclk_div2",
+>> +                              "fclk_div3",
+>> +                              "hifi_pll",
+>> +                              "xtal";
+>> +        };
+>> +    };
+>> diff --git a/include/dt-bindings/clock/amlogic,a1-audio-clkc.h b/include/dt-bindings/clock/amlogic,a1-audio-clkc.h
+>> new file mode 100644
+>> index 000000000000..b30df3b1ae08
+>> --- /dev/null
+>> +++ b/include/dt-bindings/clock/amlogic,a1-audio-clkc.h
+>> @@ -0,0 +1,122 @@
+>> +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+>> +/*
+>> + * Copyright (c) 2024, SaluteDevices. All Rights Reserved.
+>> + *
+>> + * Author: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+>> + */
+>> +
+>> +#ifndef __A1_AUDIO_CLKC_BINDINGS_H
+>> +#define __A1_AUDIO_CLKC_BINDINGS_H
+>> +
+>> +#define AUD_CLKID_DDR_ARB		1
+>> +#define AUD_CLKID_TDMIN_A		2
+>> +#define AUD_CLKID_TDMIN_B		3
+>> +#define AUD_CLKID_TDMIN_LB		4
+> 
+> Why both clock controllers have the same clocks? This is confusing. It
+> seems you split same block into two!
+> 
+> Best regards,
+> Krzysztof
+> 
+
+-- 
+Best regards
+Jan Dakinevich
 
