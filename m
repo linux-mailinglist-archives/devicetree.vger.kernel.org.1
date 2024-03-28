@@ -1,150 +1,116 @@
-Return-Path: <devicetree+bounces-54254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 936D18901B7
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 15:29:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A4758901E1
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 15:34:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B4DB81C24003
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 14:29:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6BDF31C2CE83
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 14:34:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1764985649;
-	Thu, 28 Mar 2024 14:29:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6499312F380;
+	Thu, 28 Mar 2024 14:32:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="oMB4Ha4F"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nvW1KE+9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE0687E775;
-	Thu, 28 Mar 2024 14:29:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37C3142061;
+	Thu, 28 Mar 2024 14:32:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711636154; cv=none; b=V5G5P4SQQnhwXJdaFmGPmhrTn+ZVHluq+33W+asxmhysDrGtWH51G9sqqPVxgKXoHfoOyKLGGlVLOyJ0AE/juUraSdCaoCsjILKcG5lEl6GasSiGHhD+EjCZZkQPQwxeemBs/2eP+QN/nrwPbhLHBX+6bXNdn7J01TGfUGH+fJ8=
+	t=1711636342; cv=none; b=T0OA4yWB2fwfUFfyoTri3uHnpw33BfyH1EfnRESsh4PdnZCxMreu5xT1tl9duXohib8d0sBbKWO/bP2WrRIKAobjqZXWZXmcYu4OpxCSQ0Lj99bI+5N/EYWYd/JL/9ADBt6bX/wRDoaifyCLvLY8rvAvsDNsYDOwvTHVnuZD+eo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711636154; c=relaxed/simple;
-	bh=RgIsN2+9YTTR8Ah5iuVZwz4NadsK+VqbP0f38xQ2Pe4=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O3B+wQ6Can2tLtiFmKMwAnpEdcp/P0ZZtw4t3Sh8yG337awVERJzXboLTqv5l7GnSVMr59uBQS4umedm+pBRn0Vf7w8hguLOCxWR6oAm+yOWk2m8efcURTmWAAWCfVZJTj4/ozJSfjpVX69g37XNu+vxqCwy36YyigEkISS49x8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=oMB4Ha4F; arc=none smtp.client-ip=37.18.73.165
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id DEDE310000E;
-	Thu, 28 Mar 2024 17:29:06 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru DEDE310000E
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1711636146;
-	bh=evQRgmgfpBfE7ABI70oDODcWR8kPQd8V040QqDbhPSQ=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=oMB4Ha4FC7ybfhcUSoswKvOJhUj29Bq5Rd7h9qEdYDfmYH7X6DJiSC3G3MjYM3NY2
-	 Q6AEQZ0Uehd+MoAVb6NF6Tc+smi0HRsRNtne5+hMWylFb81NajdGQTQnMX7Pa3ljjk
-	 7cydUzFlqQR/nVUHzL8PYiEArvuxzgVzoOznVGd5UsK2045PhR3qTFE72O4+sRZmVQ
-	 Y2NkNOLFaYacssXKdGiaIv5mGrUwvEYWoel4FmFgrNEwJECRldQ2PWBrU16zqCosGq
-	 pi/X9Z3buwa97hVkDR2yKV5KCw2wbBVA9UJj7F+ovgEgl2yFMDJPAlAE1G4W4WbGKG
-	 d/kIiQbh6xIbA==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Thu, 28 Mar 2024 17:29:06 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m02.sberdevices.ru
- (172.16.192.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 28 Mar
- 2024 17:29:06 +0300
-Date: Thu, 28 Mar 2024 17:29:06 +0300
-From: Dmitry Rokosov <ddrokosov@salutedevices.com>
-To: <neil.armstrong@linaro.org>
-CC: <jbrunet@baylibre.com>, <mturquette@baylibre.com>, <khilman@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <glaroque@baylibre.com>,
-	<rafael@kernel.org>, <daniel.lezcano@linaro.org>, <rui.zhang@intel.com>,
-	<lukasz.luba@arm.com>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<kernel@salutedevices.com>, <rockosov@gmail.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-pm@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v1 1/2] dt-bindings: thermal: amlogic: add support for A1
- thermal sensor
-Message-ID: <20240328142818.5mnktmaq2dctos6o@CAB-WSD-L081021>
-References: <20240328133802.15651-1-ddrokosov@salutedevices.com>
- <20240328133802.15651-2-ddrokosov@salutedevices.com>
- <19897482-2fa1-4688-aeec-855123558374@linaro.org>
+	s=arc-20240116; t=1711636342; c=relaxed/simple;
+	bh=DniBv7HDuOSFJ9Q/K/rkEYhPtiwkAM9wDfWrElmwlbM=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=V9/kIokIuLHVy0j5j1MGuDWXvcoxHVVXmIcwNWYiPOUzfDJMhm83hmJWAWur6yKZRoobi4YonEh5RGwwsxgfLAw7mU+LArGqFXB4hlP4Z3tDZSp9QcD8+VMdq7F1+vIw32p4YR+f2u0GoGZMu0A/gksdNWuHYpufLKws4kRciLg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nvW1KE+9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id A04D9C433F1;
+	Thu, 28 Mar 2024 14:32:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711636341;
+	bh=DniBv7HDuOSFJ9Q/K/rkEYhPtiwkAM9wDfWrElmwlbM=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=nvW1KE+9FE0GhHRQIATdCjTTgBBITil9f1CWyHaYGjAgwuPPZ6NTGa+eTUMepBmdo
+	 AW26qtGpKx9GY94U86oDEy3SniVBDdNo42uNTncueyCdTD1iU4c67bzrGTk8+6tOuy
+	 gGF0iSNBqxn3/WeYggTzJGRPjj0VwqFO8lW3EHJ6gemLnrroZg2AW8dzJwkQjHDlN7
+	 g5LzMD1b8tKh1Y/dWJcdziMsKvdQW5qpDOXxG2Q3pHXhRpKbfLm+aypl/kpy4ZgIbG
+	 PXs55R6f+rJCzkI2RUH+VZKuZTlggBhkOM9BKC++oiUhFp6qcEpQStaGCDX9BzvUmI
+	 yJ6DN4D5+xryw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 86769CD1283;
+	Thu, 28 Mar 2024 14:32:21 +0000 (UTC)
+From: Alexandru Marc Serdeliuc via B4 Relay <devnull+serdeliuk.yahoo.com@kernel.org>
+Date: Thu, 28 Mar 2024 15:31:54 +0100
+Subject: [PATCH] dt-bindings: arm: qcom: Add Samsung Galaxy Z Fold5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <19897482-2fa1-4688-aeec-855123558374@linaro.org>
-User-Agent: NeoMutt/20220415
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 184473 [Mar 28 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 14 0.3.14 5a0c43d8a1c3c0e5b0916cc02a90d4b950c01f96, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;100.64.160.123:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/03/28 12:54:00 #24494464
-X-KSMG-AntiVirus-Status: Clean, skipped
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240328-dt-bindings-arm-qcom-add-support-for-samsung-galaxy-zfold5-v1-1-cb612e3ade18@yahoo.com>
+X-B4-Tracking: v=1; b=H4sIAFl/BWYC/x3Nyw6CMBBA0V8hXTtJRUysv2JcDH05CX04AwQl/
+ LuNy7O5d1fimbyoe7cr9isJldxwPnXKvjBHD+SaVa/7QV/6G7gZRsqOchRATvC2JQE6B7LUWni
+ GUBgEkyw5QsQJtw98Q5ncFbQxg9XGttao2qCyD7T954/ncfwAtNAm74wAAAA=
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Alexandru Marc Serdeliuc <serdeliuk@yahoo.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1711636340; l=1106;
+ i=serdeliuk@yahoo.com; s=20240326; h=from:subject:message-id;
+ bh=IpQsriBYvSNLQMd2YJDhHVpK6OXYCGczgxGgUDxifKw=;
+ b=Z4u1H1PWLX9nzxHNm1NxgRKIFZIAJe45DtsuFdFLAk59N198RnTlEnBQXghV2Try2UAsBPFQx
+ C9trdRB/AT4AnGa0/edd20Wic9fm4u6aQ+D37uW+jv726xKpDaUko4b
+X-Developer-Key: i=serdeliuk@yahoo.com; a=ed25519;
+ pk=aWyveUE11qfDOOlRIFayXukrNn39BvZ9k9uq94dAsgY=
+X-Endpoint-Received: by B4 Relay for serdeliuk@yahoo.com/20240326 with
+ auth_id=147
+X-Original-From: Alexandru Marc Serdeliuc <serdeliuk@yahoo.com>
+Reply-To: serdeliuk@yahoo.com
 
-Hello Neil,
+From: Alexandru Marc Serdeliuc <serdeliuk@yahoo.com>
 
-Thank you for quick feedback.
+This documents Samsung Galaxy Z Fold5 (samsung,q5q)
+which is a foldable phone by Samsung based on the sm8550 SoC.
 
-On Thu, Mar 28, 2024 at 03:07:52PM +0100, neil.armstrong@linaro.org wrote:
-> Hi,
-> 
-> On 28/03/2024 14:37, Dmitry Rokosov wrote:
-> > Provide right compatible properties for Amlogic A1 Thermal Sensor
-> > controller. A1 family supports only one thermal node - CPU thermal
-> > sensor.
-> > 
-> > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
-> > ---
-> >   .../bindings/thermal/amlogic,thermal.yaml          | 14 +++++++++-----
-> >   1 file changed, 9 insertions(+), 5 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml b/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
-> > index 20f8f9b3b971..0e7f6568d385 100644
-> > --- a/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
-> > +++ b/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
-> > @@ -13,11 +13,15 @@ description: Binding for Amlogic Thermal
-> >   properties:
-> >     compatible:
-> > -    items:
-> > -      - enum:
-> > -          - amlogic,g12a-cpu-thermal
-> > -          - amlogic,g12a-ddr-thermal
-> > -      - const: amlogic,g12a-thermal
-> > +    oneOf:
-> > +      - items:
-> > +          - enum:
-> > +              - amlogic,g12a-cpu-thermal
-> > +              - amlogic,g12a-ddr-thermal
-> > +          - const: amlogic,g12a-thermal
-> > +      - items:
-> > +          - const: amlogic,a1-cpu-thermal
-> > +          - const: amlogic,a1-thermal
-> 
-> In this case you can just use "amlogic,a1-cpu-thermal" or "amlogic,a1-thermal", no need for a fallback.
+Signed-off-by: Alexandru Marc Serdeliuc <serdeliuk@yahoo.com>
+---
+This documents Samsung Galaxy Z Fold5 (samsung,q5q)
+which is a foldable phone by Samsung based on the sm8550 SoC.
+---
+ Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Okay, I will send v2 with only one compatible w/o fallback.
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index 66beaac60e1d..dea2a23b8fc2 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -1003,6 +1003,7 @@ properties:
+               - qcom,sm8550-hdk
+               - qcom,sm8550-mtp
+               - qcom,sm8550-qrd
++              - samsung,q5q
+           - const: qcom,sm8550
+ 
+       - items:
 
+---
+base-commit: 4cece764965020c22cff7665b18a012006359095
+change-id: 20240328-dt-bindings-arm-qcom-add-support-for-samsung-galaxy-zfold5-0994c09c202b
+
+Best regards,
 -- 
-Thank you,
-Dmitry
+Alexandru Marc Serdeliuc <serdeliuk@yahoo.com>
+
+
 
