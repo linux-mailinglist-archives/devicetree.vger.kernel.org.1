@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-54389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54390-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CAB7890CD2
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 23:00:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6710890CE3
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 23:04:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F4341C2D09A
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 22:00:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 15C01B228CE
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 22:04:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B68613B783;
-	Thu, 28 Mar 2024 22:00:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 538AC13A411;
+	Thu, 28 Mar 2024 22:04:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sEAvUCG5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="B3tNMQ0p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C12F313AD05
-	for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 22:00:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 697643BBCA
+	for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 22:04:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711663233; cv=none; b=YBzRmRDieZeXEsZv2s3/WWpZkaAZZ+7olEZ8mkR6kNA8UwLJaNs9TUW0IR6Rfgi54CQt8GaaLa9MlEJAxBMBBdHa84ZmUWlaRbREkKOwJtIlczq1P295syXcgSYL88OyB0aA10JamcgABQtdCjHaXGgSaH/TpOB7SAIqQGcLkWA=
+	t=1711663470; cv=none; b=u7rh443TbRmFweduJ1gPohp7IM798B9hS846fg1CCMOgH2ib0B8AR+0vtT6lSqpHeIlubFstzbmTaa4rOi7y/aDBBPdjLE/4661h1QuaYtj0pm5o9+tjB6GbtXswwaOBzrLX4D5pE1jswodftSP8P+AVGcWaHQD7gur1oL4yCoU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711663233; c=relaxed/simple;
-	bh=OnsfEWGxjPhenLXNPPgn/fTxfEbTRbr9ba77sLH2j5s=;
+	s=arc-20240116; t=1711663470; c=relaxed/simple;
+	bh=VCwJTtiiY7WEuYXWzicU9Cc87Qe/77hc+Jz/hGhHhGc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Kopm2XELsZJKvTbFbwIEBVjiz4T/7IwAt9DeBRB1cA2Fi/ag9x+dv805+kpE9FxmduKZZ9AD0SXjri/h6XSu3pLwDWFH9ojCNuJcvelKH/tvM0rDznH3F4oQSDOSzHggDsYSMwPi+7VH5uEScMvKoOJj/IpoRnHBzLBw+1odjTY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sEAvUCG5; arc=none smtp.client-ip=209.85.128.50
+	 In-Reply-To:Content-Type; b=dJ9eEfj0resnovPXGtXUsdSWXvrGWWHQ9czHEhIPApefw7BFc7PEhn+QDY9T5L2hpbS+Rm0GRarK1d7h1bdvb2ZaMcbKd61v7+LtlixQdcbVpw9evcTlMzcYR+dmx77yd6tb/ZE8gBn8wP4uU/3J3L49Dfct0qBIJv8Ltu4KS9M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=B3tNMQ0p; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-41543b772e6so11560095e9.2
-        for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 15:00:30 -0700 (PDT)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4148d1b4a26so9981835e9.1
+        for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 15:04:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711663229; x=1712268029; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711663467; x=1712268267; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=+UXpLDzEJhLrG5sKF75pz/iotzbUX0jhYNPtvtcn7a8=;
-        b=sEAvUCG5N2cox9IWHgC0U/0Vs0MNGPGyBaYtLmiYjHnzjazJ5mPA+tcyiNfKD9d4/T
-         LVC+3Hca98qUzxcyn6oSEENvMDNn74GVP2yxUD0P3WdBhXpmO1nmtsQ/ylqU0soyWlgv
-         cpVZSivpiAiwhImxPUKauwLyMbK6TxaoN+JrzUv3u2VU3/FgWrmDBF6nBN+mBBdR4otc
-         Eov471CCi+WHkn+WriRXefk13klv3yN8T55XQG2P0Biruz9x4y5ckIn72HMUvSnPVS7f
-         E9iJS2YoOF/o6E6AVl4vFDdXY+/YkWnb3zR5Tp83vUesRbgLHskwGO8aoULF9N7UNVza
-         oeAw==
+        bh=ypfd+bmo6jMb2EEsebi5TR/ZD591w/8g8DGjFqDFAoc=;
+        b=B3tNMQ0p9fndoC5FrE8RI2iBKM4KBvS/3jgMZoaHE8WgMbRyC97PDetZS8UZq2h2J8
+         ZiDkeQJuiP3oXJNdCp97IAd9jJfgP60uyAIA2Q75L8rHVVef791gPIlXBxH/+pohn7bJ
+         qdjI6hFekuXom9gHo1Z0KpUsVjaa4E9otagkH+/yF4oa1XqiPk4DyA9PGWVCjKf374cK
+         trxy5fkmnbbwCeXKbHIWO6i0l9yqdgDKg781ISHGVfe7LdmHys6bUviAXD5iWW2aI2Tm
+         cL/1+z2eNWxhhXkuqi7y9YZpVSKw6cGElDtwEgXOox6wDLrGDbrz5gi93uFOEajHsuwo
+         c8+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711663229; x=1712268029;
+        d=1e100.net; s=20230601; t=1711663467; x=1712268267;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=+UXpLDzEJhLrG5sKF75pz/iotzbUX0jhYNPtvtcn7a8=;
-        b=l6iGbqSSH/jlolOf9E/E7lrwXRgtg0d9byJORV+baD3hdSIuQG0PSGpllPDM9x3a7m
-         fgygOStr59skQfuZPMYszDYraX1TfroLvCALD9p4fr2qXIROuvT2OKg9oEizsEaLdWKr
-         kTtMhqQLyja54Rgrq6xEI/jjH1bp2CyUwG9P35dno+Xj41ZqSBsIG/TuHYqCUdfVtxxd
-         KnYQHijBFs2qnBzeFDNXttQeR2IyI0eQ1mIcJTRHFxiTvyVOgya3zbb37zMJpEuNhWTQ
-         Tx/mhBRLevE+M/e1l2vO0mxJb3i+0IJbSPASh0Jk1FEvvgG67Qux7U7e8R30N2pcA2Ry
-         m21Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUihvHa9XqMuprY/wxF5Q9KQNEjJzi0oeLoyPtWjkHyearEPWfZDTv+jwXIpPaxNigjMfFYDueLyfJ7Q2npm1xVaWs2Yu1XGsQmGg==
-X-Gm-Message-State: AOJu0YzlnczmKPuQiNWL5XjJHE5d9aVoJm+xK4DE/tBkzwcMHaCnROaw
-	Nbx8jZWLpP6OCWml9dvzmLBcB+bn3KWty+W/0yecnaP8PEoUVwjBCoEVOz9d05o=
-X-Google-Smtp-Source: AGHT+IHksJkhKrH5njNeiv6zhPfLLsMVt8hDw8dLc+YeObfnbywVwkOis4YCll41OGC8zaz2+3zjDA==
-X-Received: by 2002:a5d:49ca:0:b0:341:ab13:6d50 with SMTP id t10-20020a5d49ca000000b00341ab136d50mr241818wrs.28.1711663229613;
-        Thu, 28 Mar 2024 15:00:29 -0700 (PDT)
+        bh=ypfd+bmo6jMb2EEsebi5TR/ZD591w/8g8DGjFqDFAoc=;
+        b=tyajgyjI8/tLFnXKUzDl4bTJ17TIxavI1qEFnXYKZVyY868EwXtYM5FNMKcHvn/1LR
+         zmfLGx5TnVUYa4s3K3S+1gOZCTHcAR+sWUcPwsvDkahGKCdsGSLonRtxsUEiv5IvFA6W
+         ocMMID7Brq7ZAYW7yeRWfdEvxiwhVXAlpswwfJfnvxlMDaOjLUYoDj8CMJLXm5mVrHlZ
+         ELMtfxrVDmRDYrtoZN1heIFNw2q7O55NyKhgJLSANHs5d5TLtX2IQJaoD12A4jegecIR
+         s52r88EzZbS6vAKxxnhLaj+7DobEW7AKe8ojvqXS4LQZbuDMsZS3GpSl2xLxJyJIpadi
+         pkiQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXtojWhAB0MC7WLARpXE8Zvj1QhRH7coOF9+DZBTRFKYYpSVdCbi7Ckcl4noKdG8dpmwbdHWucFI9re0xKm0ezht86WmxsMc22tEg==
+X-Gm-Message-State: AOJu0YyjWaM6aKMq0330e+xv6R45rOPbhiEjNooiXxWglecVE0UfK35+
+	fqoPTW/537UixSmIl6t7QmjIZO/QbSnElSWSvp+yzMccEOvVhIbqWfucI60DAOg=
+X-Google-Smtp-Source: AGHT+IG0vBp8WUYFNFGTPcds9EdIpizj6Y82sZXySRfMYcQjj+qxHjoMrKd+Y5fllMeuuD9V7RrzQA==
+X-Received: by 2002:a05:600c:214f:b0:415:4824:3686 with SMTP id v15-20020a05600c214f00b0041548243686mr384164wml.25.1711663466748;
+        Thu, 28 Mar 2024 15:04:26 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.50])
-        by smtp.gmail.com with ESMTPSA id co20-20020a0560000a1400b0034334af2957sm1241600wrb.37.2024.03.28.15.00.28
+        by smtp.gmail.com with ESMTPSA id g16-20020a05600c311000b004148670f9ecsm3558278wmo.23.2024.03.28.15.04.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Mar 2024 15:00:28 -0700 (PDT)
-Message-ID: <4babcbcd-d123-4725-b1bc-1edd7269900b@linaro.org>
-Date: Thu, 28 Mar 2024 23:00:27 +0100
+        Thu, 28 Mar 2024 15:04:26 -0700 (PDT)
+Message-ID: <a6728917-b756-430a-905c-f458fe41b998@linaro.org>
+Date: Thu, 28 Mar 2024 23:04:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,14 +77,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: arm: Add Emcraft Systems i.MX8M Plus
- NavQ+ Kit
+Subject: Re: [PATCH 3/3] arm64: dts: freescale: Add device tree for Emcraft
+ Systems NavQ+ Kit
 To: Gilles Talis <gilles.talis@gmail.com>, devicetree@vger.kernel.org,
  imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
 Cc: conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, robh@kernel.org,
  shawnguo@kernel.org, festevam@gmail.com, alex@voxelbotics.com
 References: <20240328202320.187596-1-gilles.talis@gmail.com>
- <20240328202320.187596-3-gilles.talis@gmail.com>
+ <20240328202320.187596-4-gilles.talis@gmail.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -131,17 +131,144 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240328202320.187596-3-gilles.talis@gmail.com>
+In-Reply-To: <20240328202320.187596-4-gilles.talis@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 28/03/2024 21:23, Gilles Talis wrote:
-> Add DT compatible string for Emcraft NavQ+ kit based on
-> the i.MX8M Plus SoC from NXP
+> The Emcraft Systems NavQ+ kit is a mobile robotics platform
+> based on NXP i.MX8 MPlus SoC.
+> 
+> The following interfaces and devices are enabled:
+> - eMMC
+> - Gigabit Ethernet
+> - RTC
+> - SD-Card
+> - UART console
 > 
 > Signed-off-by: Gilles Talis <gilles.talis@gmail.com>
+> ---
+>  arch/arm64/boot/dts/freescale/Makefile        |   1 +
+>  .../arm64/boot/dts/freescale/imx8mp-navqp.dts | 435 ++++++++++++++++++
+>  2 files changed, 436 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-navqp.dts
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+> index 045250d0a040..bf99864c0bc4 100644
+> --- a/arch/arm64/boot/dts/freescale/Makefile
+> +++ b/arch/arm64/boot/dts/freescale/Makefile
+> @@ -166,6 +166,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-dhcom-pdk3.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-icore-mx8mp-edimm2.2.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-msc-sm2s-ep1.dtb
+> +dtb-$(CONFIG_ARCH_MXC) += imx8mp-navqp.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revb-hdmi.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revb-lt6.dtb
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-navqp.dts b/arch/arm64/boot/dts/freescale/imx8mp-navqp.dts
+> new file mode 100644
+> index 000000000000..8182e71008f8
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-navqp.dts
+> @@ -0,0 +1,435 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright 2021 Emcraft Systems
+> + * Copyright 2024 Gilles Talis <gilles.talis@gmail.com>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include "imx8mp.dtsi"
+> +
+> +/ {
+> +	model = "Emcraft Systems i.MX8MPlus NavQ+ Kit";
+> +	compatible = "emcraft,imx8mp-navqp", "fsl,imx8mp";
+> +
+> +	chosen {
+> +		stdout-path = &uart2;
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_gpio_led>;
+> +
+> +		status {
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+
+> +			label = "status";
+
+Please provide color and function properties, if reasonable, and then
+remove label property.
+
+> +			gpios = <&gpio3 16 GPIO_ACTIVE_HIGH>;
+> +			default-state = "on";
+> +		};
+> +	};
+> +
+
+...
+
+> +	pinctrl_i2c6: i2c6grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_UART4_RXD__I2C6_SCL				0x400001c3
+> +			MX8MP_IOMUXC_UART4_TXD__I2C6_SDA				0x400001c3
+> +		>;
+> +	};
+> +
+> +	pinctrl_pmic: pmicirq {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_GPIO1_IO03__GPIO1_IO03				0x41
+> +		>;
+> +	};
+> +
+> +	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_SD2_RESET_B__GPIO2_IO19				0x41
+> +		>;
+> +	};
+> +
+> +	pinctrl_uart2: uart2grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX				0x49
+> +			MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX				0x49
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc2: usdhc2grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK				0x190
+> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD				0x1d0
+> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0				0x1d0
+> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1				0x1d0
+> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2				0x1d0
+> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3				0x1d0
+> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT				0xc1
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc2_100mhz: usdhc2grp-100mhz {
+
+Hm, you upstreamed something based on downstream source. Please avoid
+that. Instead take upstream, clean DTS and customize it to your needs.
+Otherwise you send patch with the same issues we fixed.
+
+Standard form letter:
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+
+Nodes end on 'grp' I believe.
+
 
 Best regards,
 Krzysztof
