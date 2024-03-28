@@ -1,105 +1,122 @@
-Return-Path: <devicetree+bounces-54359-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54360-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3B06890A5B
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 20:58:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C3DC890A9A
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 21:06:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C9B12991D9
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 19:58:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B793229373C
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 20:06:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A53713A407;
-	Thu, 28 Mar 2024 19:55:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25B1E137C4A;
+	Thu, 28 Mar 2024 20:06:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LCPwoLDJ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="N80juSaU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F55B1327FC;
-	Thu, 28 Mar 2024 19:55:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E72AB7460;
+	Thu, 28 Mar 2024 20:06:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711655714; cv=none; b=GhjqSprrJbmo4yHeB0SBqz+yGCFZ+TQstNu28OamQAKULYvWJZDCZKkx5v1aKG8HNh2unCyGIADIQYFexgJSokPJSLA88akuK/yUsU3b2YMPKZHnQRm8XVneLwdPO9r+/4pLwSjagSyc2BEEIgnGWICpxgcozXWF1kx0C2e3ecM=
+	t=1711656402; cv=none; b=nWwY4iROyiWMn1i6bo24dgpmIgfzorGXSLL/f+QxHu4vQbpBGRrsZ6Kj4RXRS36R8wveecramNzjuo7t947fSL3DsdDD8p5+rsfdNLo8motIMEeam0nUEh6SGWcMuVl15TJTVKYqQmKUuAwA0+IrlWppfJLXJ/AHS150KSQxsLo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711655714; c=relaxed/simple;
-	bh=Dyq24aNRTpRP2AlBrzBlIY42U6Q43vHXCPypw35SFNM=;
+	s=arc-20240116; t=1711656402; c=relaxed/simple;
+	bh=nkIjd0IXCVDR6LITaen5NTM7zN+lmF4nDqCRUBJ5Urs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EyHYg+dDae3Q+UGWDjU5tplQe5ChiEeaojPKTzZ/JdH9NZ4aLqR/RmMs7J1SU/PxmvoVpvGu+sVDOcv03bb5iJuk9JIGjmdgIFfAvxnMRTdhFTZ42FaXd15nMAx9s+9T7pNAcIlNAMHaYEr5FYcm/7KTdUp3L+LPsUhn447GygM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LCPwoLDJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D21ECC433F1;
-	Thu, 28 Mar 2024 19:55:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711655713;
-	bh=Dyq24aNRTpRP2AlBrzBlIY42U6Q43vHXCPypw35SFNM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LCPwoLDJ99lEB9KPJBDfak4y/Mx034iYfykx3FUVUwFuL5qwiNm39VeNOcUP0rl/J
-	 2kXOfH/qsfHsDwgyGVxVZ90kAfXdd8ZNDYu8SOmhruDoYXnZDaLNCbujaEwg/bkOoN
-	 fzjJsfUZmey5dtYiCxleOndfjM1EBD+4ATMS036t98Q2gJsYfWpqi7ClgTbW2uj9eP
-	 L8bO/SKaP9RxYAO+9mt7TLq/hu7WQID25CpjnhZH5O0bohIiBe0z5pr3ypC1KjiMx9
-	 jlHnzz2a3s71Mg2NtP9x32GpC7mmqRAxnntLNwcZ7yVDeURiH2QXFtq4b6eHub4fdc
-	 LGabLtH0ukZLQ==
-Date: Thu, 28 Mar 2024 19:55:07 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Bhargav Raviprakash <bhargav.r@ltts.com>
-Cc: linux-kernel@vger.kernel.org, m.nirmaladevi@ltts.com, lee@kernel.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, jpanis@baylibre.com,
-	devicetree@vger.kernel.org, arnd@arndb.de,
-	gregkh@linuxfoundation.org, lgirdwood@gmail.com,
-	linus.walleij@linaro.org, linux-gpio@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, nm@ti.com, vigneshr@ti.com,
-	kristo@kernel.org, eblanc@baylibre.com
-Subject: Re: [PATCH v5 09/11] regulator: tps6594-regulator: Add TI TPS65224
- PMIC regulators
-Message-ID: <3e6d7c20-766c-4d27-aa10-f30f30cbd646@sirena.org.uk>
-References: <20240328124016.161959-1-bhargav.r@ltts.com>
- <20240328124016.161959-10-bhargav.r@ltts.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=nQ+mxNTQAB2ogMhBIw5Xat2Vqov0m1zUdnImex8+uivZ1dfcqpWzgaZPtuWb9P8DFBpxyIczqDJ1ekDnANRiUxrp3M4e/7gG9E5sUDaaFLnyAedT9LayWRjd+8Hh3+M7gSQMhxjMFptvZh3G212T7b8JZDw+L6vw0DW3LXxCz4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=N80juSaU; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1711656400; x=1743192400;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=nkIjd0IXCVDR6LITaen5NTM7zN+lmF4nDqCRUBJ5Urs=;
+  b=N80juSaUn/hDbvCxuO9rfs0Vawpu8ZJwkSOCJ4K064g9FHr2U+opgw8p
+   qi5R703q2EU2pr/rd4HuLhHhGxIpShkolg/A7dcFDJAIgO7RmxGOTEF5U
+   ql63nT9cg/BC7MDaY5kZXXS5oXRQrN3S7rpNiVjHXHUwjAE/8nXj+pHxf
+   9zdHl7ouWIdCkRpzl3mJAsLYrq/GlWsHlPimc4e0x+dvMe4SsNGQUeZ8c
+   y4S5C+oUZqZUUSKqK706FJ6On85G4w5dKbjOme3VUHNWAswQ34xy1J2hH
+   ywL3nqkFvR1Wh4W2S4XmSv7XKytYU7Q80hk3fNhih8b6lkVqnOXtEBk4T
+   A==;
+X-CSE-ConnectionGUID: Qy6iz0wpR+WaSBn8YbkyZw==
+X-CSE-MsgGUID: TbuzdmD9R4mHymLC5OnS5Q==
+X-IronPort-AV: E=McAfee;i="6600,9927,11027"; a="7030086"
+X-IronPort-AV: E=Sophos;i="6.07,162,1708416000"; 
+   d="scan'208";a="7030086"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Mar 2024 13:06:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,162,1708416000"; 
+   d="scan'208";a="16786652"
+Received: from lkp-server01.sh.intel.com (HELO be39aa325d23) ([10.239.97.150])
+  by fmviesa006.fm.intel.com with ESMTP; 28 Mar 2024 13:06:21 -0700
+Received: from kbuild by be39aa325d23 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rpw0w-0002UQ-2z;
+	Thu, 28 Mar 2024 20:06:18 +0000
+Date: Fri, 29 Mar 2024 04:05:34 +0800
+From: kernel test robot <lkp@intel.com>
+To: git@luigi311.com, linux-media@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, dave.stevenson@raspberrypi.com,
+	jacopo.mondi@ideasonboard.com, mchehab@kernel.org, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, sakari.ailus@linux.intel.com,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Luigi311 <git@luigi311.com>
+Subject: Re: [PATCH 18/23] dt-bindings: media: imx258: Add alternate
+ compatible strings
+Message-ID: <202403290352.sV38QfhQ-lkp@intel.com>
+References: <20240327231710.53188-19-git@luigi311.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="+rxx+apRdHZ17chU"
-Content-Disposition: inline
-In-Reply-To: <20240328124016.161959-10-bhargav.r@ltts.com>
-X-Cookie: Yes, but which self do you want to be?
-
-
---+rxx+apRdHZ17chU
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240327231710.53188-19-git@luigi311.com>
 
-On Thu, Mar 28, 2024 at 06:10:14PM +0530, Bhargav Raviprakash wrote:
-> From: Nirmala Devi Mal Nadar <m.nirmaladevi@ltts.com>
->=20
-> Add support for TPS65224 regulators (bucks and LDOs) to TPS6594 driver as
-> they have significant functional overlap. TPS65224 PMIC has 4 buck
-> regulators and 3 LDOs. BUCK12 can operate in dual phase.
-> The output voltages are configurable and are meant to supply power to the
-> main processor and other components.
+Hi,
 
-Reviewed-by: Mark Brown <broonie@kernel.org>
+kernel test robot noticed the following build warnings:
 
---+rxx+apRdHZ17chU
-Content-Type: application/pgp-signature; name="signature.asc"
+[auto build test WARNING on media-tree/master]
+[also build test WARNING on linuxtv-media-stage/master linus/master v6.9-rc1 next-20240328]
+[cannot apply to sailus-media-tree/streams]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
------BEGIN PGP SIGNATURE-----
+url:    https://github.com/intel-lab-lkp/linux/commits/git-luigi311-com/media-i2c-imx258-Remove-unused-defines/20240328-072629
+base:   git://linuxtv.org/media_tree.git master
+patch link:    https://lore.kernel.org/r/20240327231710.53188-19-git%40luigi311.com
+patch subject: [PATCH 18/23] dt-bindings: media: imx258: Add alternate compatible strings
+compiler: loongarch64-linux-gcc (GCC) 13.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20240329/202403290352.sV38QfhQ-lkp@intel.com/reproduce)
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmYFyxoACgkQJNaLcl1U
-h9AmSAf9FWOqRdRhslGis6k+Eil3DKdDypYcR3ewj1nJ7vbgnlf4rhQqNIPn19ne
-LW1mI7b6FfOIirklxrnGRMMiLRqQDAAgO3no0wSVpPDm8+iYdwyQUxL0eMw0lRrC
-OdEorwSOP2WDNunmAj5qTWvaUZrJTvOVZSoucRjywwBMMLMQk5hoEU6ro47Su6c5
-qi13BPGjphA4cxNRP5SVPv53jNUKKMMYNrrgKG42CZQOiEQjO4G1/TfGLCVN+TOI
-Lae3gQsCqO29pt8peeO5N2qUvuUJAuVQTb+6p+9qFweFz7CkpP5CZrM0OtpXRevs
-t6jySrmy1q8uzRSBjIp6dbiiV9SDsw==
-=/eiv
------END PGP SIGNATURE-----
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202403290352.sV38QfhQ-lkp@intel.com/
 
---+rxx+apRdHZ17chU--
+dtcheck warnings: (new ones prefixed by >>)
+>> Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml: properties:compatible: [{'enum': ['sony,imx258', 'sony,imx258-pdaf']}] is not of type 'object', 'boolean'
+   	from schema $id: http://json-schema.org/draft-07/schema#
+>> Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml: properties:compatible: [{'enum': ['sony,imx258', 'sony,imx258-pdaf']}] is not of type 'object', 'boolean'
+   	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+--
+>> Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml: ignoring, error in schema: properties: compatible
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
