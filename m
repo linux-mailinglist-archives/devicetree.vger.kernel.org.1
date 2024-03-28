@@ -1,117 +1,99 @@
-Return-Path: <devicetree+bounces-54068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 613BE88F7DD
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 07:28:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B462088F816
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 07:50:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B48328F16B
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 06:28:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 457F828DD28
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 06:50:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EEEE4EB42;
-	Thu, 28 Mar 2024 06:28:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8FC04F5EC;
+	Thu, 28 Mar 2024 06:50:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pdYeJAAP"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="UeAbq32Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3233CF503;
-	Thu, 28 Mar 2024 06:28:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from mail-177132.yeah.net (mail-177132.yeah.net [123.58.177.132])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28473386;
+	Thu, 28 Mar 2024 06:50:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711607317; cv=none; b=MlrrAVn4IO/lAMv6YxvWkZQEQ9IPevZJGVhddZDNN1Knh07YhNbnTm5mwEY96pkGw8sBhV6r1tlDNjeCb5ftEstm3ZELdnD+b0YyzsVt4UzTs5sPF6q3Da4sC3rh2uL9yej7WtLlrD/RqfiEvv2ub6tJ+dODAf9cxayFSQm8Ifs=
+	t=1711608614; cv=none; b=IYzwVQNBNa4wYurWXLN2k6pDnDSOj/NeKqmLsZNV9bs9ssS9aOBP+yjVJpuLQoN3DZpZPAjJ/kUmxuhv/sAzYoGyuwBnIMVbWieaKbNNLg1aJtjgxYQOIZZkOnWt01/JsnqWJBB/wncjIvTlRPE48U5JPw6656R0xzmfMtf7W0c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711607317; c=relaxed/simple;
-	bh=alkregifthNoKgf0knvmSztmwMl6qxa+qfrKKKmyuOY=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=IINmrbXjiW8tTEyU23aHPxuvbg3E6KNeVQFzwh5ymYyiKxA9LwCFP4jyCGnRrzWAOIVRSmLFe2jMVVWFFbh2a/Km/BeYG6DB8jFW7t7zCXwHDk3hJJFyJEQvBeT0gADN3X8BlcfXib6Qa/FSeam6NMYIuF6w3ITeMyLGaLaBEZk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pdYeJAAP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8414C433F1;
-	Thu, 28 Mar 2024 06:28:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711607316;
-	bh=alkregifthNoKgf0knvmSztmwMl6qxa+qfrKKKmyuOY=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:From;
-	b=pdYeJAAPvle33p3XncMyP/d/A165zS0CTX+VwrnSAVDMgWuHaJWudMfJHD6qKcbql
-	 AOd2aNGZstAVTuHPVChrrB90F3wcr7ruu3czVfVHXij/MJ6wgSoh3Ugz1cDDHGryCD
-	 59Y3hjOMK4BfQ6/qN946LnUfViCeYC1cwtnT9/0Y1tUBe1lYQa8o2i3CshS82BtfjI
-	 4R9xSLqXW/jX3JnUsTk2MIp3qR3Si1BD033rvl0Hhrq4bNZ2y5l6hSqSo/JWzZVg0N
-	 ECwMNdRcINOFXUKSbTNQL6YPTFwBwqeELBjSVGbyvSlPahXavufap/O+M8QAInwjJd
-	 E5e5ddZYZAKxA==
-Date: Thu, 28 Mar 2024 06:28:32 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Changhuang Liang <changhuang.liang@starfivetech.com>
-CC: Conor Dooley <conor.dooley@microchip.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Jack Zhu <jack.zhu@starfivetech.com>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: =?UTF-8?Q?Re=3A_=E5=9B=9E=E5=A4=8D=3A_=E5=9B=9E=E5=A4=8D=3A_?=
- =?UTF-8?Q?=E5=9B=9E=E5=A4=8D=3A_=5BPATCH_v?=
- =?UTF-8?Q?1_1/2=5D_dt-bindings=3A_medi?=
- =?UTF-8?Q?a=3A_starfive=3A_Match_driver_and_yaml_property_names?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <SHXPR01MB0671EA5AED87CE14113148E7F23BA@SHXPR01MB0671.CHNPR01.prod.partner.outlook.cn>
-References: <20240119100639.84029-1-changhuang.liang@starfivetech.com> <20240119100639.84029-2-changhuang.liang@starfivetech.com> <20240119-despair-festival-59ab2d4d896b@wendy> <SHXPR01MB0671E2150D9A2707F12E0901F270A@SHXPR01MB0671.CHNPR01.prod.partner.outlook.cn> <20240119-preamble-calm-7724e17fcebc@wendy> <BJXPR01MB0662E6EEEEF888BD90A1FCE5F275A@BJXPR01MB0662.CHNPR01.prod.partner.outlook.cn> <20240122-uncivil-almost-631137081fd9@spud> <20240327-unlucky-bulge-2bf99a8649be@spud> <SHXPR01MB0671EA5AED87CE14113148E7F23BA@SHXPR01MB0671.CHNPR01.prod.partner.outlook.cn>
-Message-ID: <C3D2F0B5-CB35-488E-842E-D049CA067475@kernel.org>
+	s=arc-20240116; t=1711608614; c=relaxed/simple;
+	bh=RN8R+2Bx93C58W1vJP5YX6XlUXPug8ucJerzaITw4BU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JHfq+nPk6t4vyXkdqs6zTsHMoRnu5pmuAaZhBiJYZzO7G/DmuYE4yegMx0vpeQMVQBN6YaQud5R/bzzkAHhfe/8my98PwSLUIfhip/s4KoeHklRJsDxcALk07cVMO/IICR9SuRrjzRVZnXwMbj9FfRrRqJuLYJKwp9nDA3OrSyk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=UeAbq32Q; arc=none smtp.client-ip=123.58.177.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=tSkiYsm4pDu47eWsaJ3ZWcRIMjz3TMoXclE8uV647yk=;
+	b=UeAbq32Qtqwkg3fMxSNUclzzR6l2ob3VQJrNgRefoPY292PlVbWh7CJdRaaQVF
+	iippjvr6nigu/D7jaAQEW8Ogu5hNVweLYnGgZ2rV4TXi3H975ChhrIyNhzuzIcWV
+	rn3f3LUTLkubbfhwlJa/mwIqJ2PNoQWhGGP9Cm/cNs7pU=
+Received: from dragon (unknown [183.213.196.225])
+	by smtp2 (Coremail) with SMTP id C1UQrAD3H1BBEAVmnM1UAg--.36602S3;
+	Thu, 28 Mar 2024 14:37:56 +0800 (CST)
+Date: Thu, 28 Mar 2024 14:37:53 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>
+Cc: Chester Lin <chester62515@gmail.com>, Andreas Farber <afaerber@suse.de>,
+	Matthias Brugger <mbrugger@suse.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, NXP S32 Linux Team <s32@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+Subject: Re: [PATCH v2 0/2] add uSDHC and SCMI nodes to the S32G2 SoC
+Message-ID: <ZgUQQVGJGtQnFT5p@dragon>
+References: <20240122140602.1006813-1-ghennadi.procopciuc@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240122140602.1006813-1-ghennadi.procopciuc@oss.nxp.com>
+X-CM-TRANSID:C1UQrAD3H1BBEAVmnM1UAg--.36602S3
+X-Coremail-Antispam: 1Uf129KBjvdXoWruF4fKr45Gr1fXw48Ar4fZrb_yoWxCFg_ur
+	W8K3yrC348JFZ7J3ZYka1DAF4UGFW09r18KrZ7Ww4Iqr9xtFs5tFs8K3yrXrWYk3WfKF9a
+	yF15tr4DZr43ujkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUnYhF7UUUUU==
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiDQSvZVszXW7RXgAAsX
 
+On Mon, Jan 22, 2024 at 04:05:59PM +0200, Ghennadi Procopciuc wrote:
+> From: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+> 
+> This patchset adds device tree support for S32G2 SCMI firmware and uSDHC
+> node. The SCMI clock IDs are based on a downstream version of the TF-A
+> stored on GitHub [0].
+> 
+> I can send the patches individually if you prefer that instead of
+> submitting them all at once.??
+> 
+> [0] https://github.com/nxp-auto-linux/arm-trusted-firmware
+> 
+> Changes in v2:
+>  - The SCMI clock bindings header has been removed.
+> 
+> Ghennadi Procopciuc (2):
+>   arm64: dts: s32g: add SCMI firmware node
+>   arm64: dts: s32g: add uSDHC node
 
+Applied both, thanks!
 
-On 28 March 2024 01:06:42 GMT, Changhuang Liang <changhuang=2Eliang@starfi=
-vetech=2Ecom> wrote:
->Hi, Conor,
->
->> On Mon, Jan 22, 2024 at 08:24:51AM +0000, Conor Dooley wrote:
->[=2E=2E=2E]
->> > > > > > Do these clocks etc exist but are not used by the driver?
->> > > > > >
->> > > > > > Or do they not exist at all?
->> > > > > >
->> > > > > > The two are very different!
->> > > >
->> > > > > These clocks etc exist but are not used by the driver=2E
->> > > >
->> > > > That's not an acceptable reason for removing them from the
->> > > > binding=2E If they exist, they should be documented, regardless o=
-f
->> > > > whether the driver makes use of them=2E NAK=2E
->> > >
->> > > If so, how to avoid the warning of dtbs_check=2E
->> >
->> > By also adding the clocks, resets and interrupts to the dts=2E
->>=20
->> Going through patchwork stuff now that the merge window is done=2E I'm =
-gonna
->> mark the dts patch as changes requeted=2E The binding (and dts) should
->> describe all of the clocks the hardware has, whether or not you choose =
-to use
->> them all in software does not matter=2E Can you please resend the dts p=
-atch,
->> with all of the clocks, resets and interrupts present?
->>=20
->
->You have applied the dts patch=2E
->https://lore=2Ekernel=2Eorg/all/20240219032741=2E18387-1-changhuang=2Elia=
-ng@starfivetech=2Ecom/
-
-Oh, sorry for the noise then=2E I guess I was
-mislead by patchwork marking this as new :)
 
