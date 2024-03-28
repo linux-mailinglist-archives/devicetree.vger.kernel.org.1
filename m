@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-54374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7A26890C19
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 22:01:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E4E0890C1B
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 22:01:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3BE11C2B352
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 21:01:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57E552A7EEA
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 21:01:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB53A65190;
-	Thu, 28 Mar 2024 21:01:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB2BE13A3FF;
+	Thu, 28 Mar 2024 21:01:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="diHMXmWj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CTCRzxxi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EA39380;
-	Thu, 28 Mar 2024 21:01:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C46C3380;
+	Thu, 28 Mar 2024 21:01:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711659664; cv=none; b=fynsDE2T3SDA9gWZsw6+FBcZIYV+n6HVGyx4oe/pTNrVR4wVmiyB7EszK1iO3P5csZWZAyYnEzGUWfNFKg9JsJDvutSfXKYyp77DcUNmS1fZ/P7+cMR6M/OMCURDI1/yj2Q3NOI12MJdkfrc4SbxynJ8d13gB+9rWk93wAHO1zw=
+	t=1711659666; cv=none; b=YbMMpkgXXHLPEW6TLANo65Kn0fUk2FlhLl1j7+aGh+SSi6QjUkTKDkkMVUohOKhCorXoryDUw2dAuxoD+ab89Okd8k1TLnfaE2KLd5Y+f3n9TFctbbyqkF/0CheG1xu3BuYrPT9iEtrcQ22aPReJEqziA5o3M9JXMl2FkrAFyBI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711659664; c=relaxed/simple;
-	bh=s87B919J/IE988PjAPhqMvTH41tTdROEkf+az6h6LiY=;
+	s=arc-20240116; t=1711659666; c=relaxed/simple;
+	bh=gv7eh1jsoxw/Jco25MILAZOk0GfG/Bj+t92VgU+wtcA=;
 	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=ePhVffVEEilzepzh4cPzVN01uiMs9SaTTF7MyAAOt3eFBBH5JipNGaw2tMWU7RN6CWuNfCc+uKAO1ty0hLyipValn5NoJXeh1g/Hf0isSjft974ZnlAKDqfUZXGrCAZZwvCoydO8FU1Cld59EISzEm8/bCbsUrHSvrFfY6kNnl4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=diHMXmWj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9963C433F1;
-	Thu, 28 Mar 2024 21:01:03 +0000 (UTC)
+	 Message-Id:Subject; b=eGvEisOOj77Ca+DWpOAXThsIT1ex0MT7t5xADjf1pEtJASD0kLHRbKMWntcZNfYQ/GPwB5AqtRljiNuGOyH9lU1VDqJpoIekka4Rch9tPeofvvp+AEuD7W1dANWq0r3mczuddNEyEsICFZw2iOPwSJ9QiGlaOuZj5WNFivLzQ+4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CTCRzxxi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38E51C433C7;
+	Thu, 28 Mar 2024 21:01:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711659664;
-	bh=s87B919J/IE988PjAPhqMvTH41tTdROEkf+az6h6LiY=;
+	s=k20201202; t=1711659666;
+	bh=gv7eh1jsoxw/Jco25MILAZOk0GfG/Bj+t92VgU+wtcA=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=diHMXmWjisB0rrKfVKpzn+Xqv27dlxAYzkHVq/gL+zM27vwGRJgf7MftmssCwx78Q
-	 l9Xt4C+J98a7QXotzvU+54TrJISxAAlr2TNdBSzqCpSIqv+CJBetHBGQiiVJd+9fmV
-	 /99eJBsUTKyKoxUalYXwyyJfFNYA6FEm0X34xHfzUVG2zpveiYRkc/iNuRP95hPwJ9
-	 byhVETM9RfEcjZedDvt5V8QlCp+1Wiv8jqL0KNEgysfYQ6yqy3uIRdKjPSyYYXWPeB
-	 E87FA5EA/+Bc6zYRQuD+UEjdMmBWw5Q+e2PZ27GRDP03MCSzSbkciIpVntHUYW/wFY
-	 B7XQ/eOvHnrAw==
-Date: Thu, 28 Mar 2024 16:01:02 -0500
+	b=CTCRzxxiGSjqnPTo3dwmkDphATEUj8SsJj4JPl9ANLHFwSFcdntpGD9GkFg65E8H1
+	 SDUtkWI3AUpyZ88uhTSLaTXv7teADDRua6UTFl/Oi/OqwOds39vB1XjUb8O4hHe0de
+	 M9bIvJ3zRCoc8D1ZhwZgdtKD5tR8nN67y+nP46Uynj++Ogc5/FH1cbPjCbnFJg5yya
+	 pRBAAO8PisV6yCW3ENL4cJr5FP707ReYUGdiSDilAc+aSMPSGf2VcV00Hsnx3TJr8W
+	 JaULCMZw2/o8LpScKRL+KbEHkuFm5r420tpY7abnfzPf4xcud1v5xPSEmJgI5B4NbF
+	 eodxW7DbA/IHA==
+Date: Thu, 28 Mar 2024 16:01:05 -0500
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,36 +51,32 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: Rob Herring <robh@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: Fabio Estevam <festevam@denx.de>, linux-arm-kernel@lists.infradead.org, 
- sakari.ailus@linux.intel.com, stable@vger.kernel.org, hdegoede@redhat.com, 
- devicetree@vger.kernel.org, shawnguo@kernel.org, conor+dt@kernel.org, 
- krzysztof.kozlowski+dt@linaro.org
-In-Reply-To: <20240328151954.2517368-1-festevam@gmail.com>
-References: <20240328151954.2517368-1-festevam@gmail.com>
-Message-Id: <171165955888.338117.15736314486472326706.robh@kernel.org>
-Subject: Re: [PATCH] ARM: dts: imx7s-warp: Pass OV2680 link-frequencies
+To: Robert Nelson <robertcnelson@gmail.com>
+Cc: Jared McArthur <j-mcarthur@ti.com>, 
+ Jason Kridner <jkridner@beagleboard.org>, 
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ Nishanth Menon <nm@ti.com>, Deepak Khatri <lorforlinux@beagleboard.org>, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20240328191205.82295-1-robertcnelson@gmail.com>
+References: <20240328191205.82295-1-robertcnelson@gmail.com>
+Message-Id: <171165955921.338133.1794503768806521684.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: ti: Add BeagleY-AI
 
 
-On Thu, 28 Mar 2024 12:19:54 -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
+On Thu, 28 Mar 2024 14:12:04 -0500, Robert Nelson wrote:
+> This board is based on ti,j722s
 > 
-> Since commit 63b0cd30b78e ("media: ov2680: Add bus-cfg / endpoint
-> property verification") the ov2680 no longer probes on a imx7s-warp7:
+> https://beagley-ai.org/
+> https://openbeagle.org/beagley-ai/beagley-ai
 > 
-> ov2680 1-0036: error -EINVAL: supported link freq 330000000 not found
-> ov2680 1-0036: probe with driver ov2680 failed with error -22
-> 
-> Fix it by passing the required 'link-frequencies' property as
-> recommended by:
-> 
-> https://www.kernel.org/doc/html/v6.9-rc1/driver-api/media/camera-sensor.html#handling-clocks
-> 
-> Cc: stable@vger.kernel.org
-> Fixes: 63b0cd30b78e ("media: ov2680: Add bus-cfg / endpoint property verification")
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
+> CC: Rob Herring <robh@kernel.org>
+> CC: Nishanth Menon <nm@ti.com>
+> CC: Jared McArthur <j-mcarthur@ti.com>
+> CC: Jason Kridner <jkridner@beagleboard.org>
+> CC: Deepak Khatri <lorforlinux@beagleboard.org>
 > ---
->  arch/arm/boot/dts/nxp/imx/imx7s-warp.dts | 1 +
+>  Documentation/devicetree/bindings/arm/ti/k3.yaml | 1 +
 >  1 file changed, 1 insertion(+)
 > 
 
@@ -99,10 +95,10 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y nxp/imx/imx7s-warp.dtb' for 20240328151954.2517368-1-festevam@gmail.com:
+New warnings running 'make CHECK_DTBS=y ti/k3-j722s-beagley-ai.dtb' for 20240328191205.82295-1-robertcnelson@gmail.com:
 
-arch/arm/boot/dts/nxp/imx/imx7s-warp.dtb: camera@36: port:endpoint: Unevaluated properties are not allowed ('clock-lanes', 'data-lanes', 'link-frequencies' were unexpected)
-	from schema $id: http://devicetree.org/schemas/media/i2c/ovti,ov2680.yaml#
+arch/arm64/boot/dts/ti/k3-j722s-beagley-ai.dtb: pinctrl@f4000: 'vdd-3v3-sd-pins-default' does not match any of the regexes: '-pins(-[0-9]+)?$|-pin$', 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/pinctrl/pinctrl-single.yaml#
 
 
 
