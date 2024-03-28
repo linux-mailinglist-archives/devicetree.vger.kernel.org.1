@@ -1,143 +1,109 @@
-Return-Path: <devicetree+bounces-54339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C82B8908E7
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 20:13:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B4CB8908F1
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 20:16:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 058A9294640
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 19:13:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 945A41F26F3C
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 19:16:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5658E137C22;
-	Thu, 28 Mar 2024 19:13:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E07A137930;
+	Thu, 28 Mar 2024 19:16:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="boDSLKJt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Wa+m6+Zi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5722130A54;
-	Thu, 28 Mar 2024 19:13:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A0FD13790B;
+	Thu, 28 Mar 2024 19:16:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711653217; cv=none; b=PSbeZUeaB4e0tn1PBNRbHXm7AiFTNHiyg0QbXNwA+0ZPpEYqeiz8zZZP3PU+0fAkz2TTmSR6gCsiNAxRnzoCWOUtSlUEeLJZXaACHYluQASyzYOKddfOiVtw4+HJAiMqthVmJU5hypqnNzih4mUSjsYsg9gmhNOurS1SjzsoIbo=
+	t=1711653370; cv=none; b=Ck8NfRy25yJNlBOFK4HpJJrsHW9p2hrLC4HEMwMFLmqdd4cs0VOqSv+or8sGU4rDnroeEjhHxWXdjsOXVCokWiFMTBf7XiWmB9zlunZFKP4UCXMdhqysr8YTBCpe6LPENukJhD68Z29YwlLIetNNRtBTKaU52PF2phiaGAy4GuI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711653217; c=relaxed/simple;
-	bh=xjn9DRXg0PxHasT20GZ2Eovvdr4ihurWpS/1lm7ZVyw=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=h6WHnqLN7j+WA0OdkTr4GNz+Fa6rj3PoaY/UROYkYpE6hd4d3bFlazrT7QgEtOGfyln0oRIwuJ8v9p/gUPtx7dCGKrxWozEyyL0phR41tgAWC+CgxRXWLXyUmIAme3iVMghcJ62XwVMQpx1KdB0FZMc6IoQLF3Nq75clbG49Xy4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=boDSLKJt; arc=none smtp.client-ip=45.89.224.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 4CD02120005;
-	Thu, 28 Mar 2024 22:13:31 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 4CD02120005
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1711653211;
-	bh=OpsGFI4AB8/F54l0oI8YXsgaWWxapVihfAczEHmbJxc=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=boDSLKJtz53S5gfNoeeWNZERPcL8BH509Y74DErvlqwdw+M0ZL54RVBWAIo/jRMOr
-	 zU4NE0ZGAzW7Tb4ZnUyFoz5CLYcMAjnoP2NLC19wG3DGWIy3sBCRHAWvTWUsD8bJFH
-	 KQda/lZgP72a0T4f44vo2CppIJSp4oqU6ne6JvWIr8k3FwDoSWAl7bRcSlEg4L5ZIz
-	 7DncGRTd0YR1NYIU1L7FLvyjKMQP+qzaQRyg3Gx4CAl6cWWNIYLoeK7wdhuoT+IbHw
-	 Kgp0vMbYZPGsVhvrziQoUdECkjQmPB1lbpEGvm6rcGLzOijwqsuAIBSYRDb871PVRh
-	 GpOzeVrgg6vMA==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Thu, 28 Mar 2024 22:13:31 +0300 (MSK)
-Received: from CAB-WSD-L081021.sberdevices.ru (100.64.160.123) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 28 Mar 2024 22:13:30 +0300
-From: Dmitry Rokosov <ddrokosov@salutedevices.com>
-To: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
-	<mturquette@baylibre.com>, <khilman@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <glaroque@baylibre.com>,
-	<rafael@kernel.org>, <daniel.lezcano@linaro.org>, <rui.zhang@intel.com>,
-	<lukasz.luba@arm.com>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <kernel@salutedevices.com>, <rockosov@gmail.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-pm@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, Dmitry Rokosov
-	<ddrokosov@salutedevices.com>
-Subject: [PATCH v2 2/2] thermal: amlogic: support A1 SoC family Thermal Sensor controller
-Date: Thu, 28 Mar 2024 22:13:11 +0300
-Message-ID: <20240328191322.17551-3-ddrokosov@salutedevices.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240328191322.17551-1-ddrokosov@salutedevices.com>
-References: <20240328191322.17551-1-ddrokosov@salutedevices.com>
+	s=arc-20240116; t=1711653370; c=relaxed/simple;
+	bh=9Lgv0V7X4JpFVS6gpkChpJio0Trbpgps85IWj8gCbhM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EfPs51unCTMvjEvkIrvkSV06XFkrDo6Vwruemew/54nRkYXMt69KZEaFAThMPbsAJJEm+xjazGur/dobWRVzJS31U3CMGo/c9g1oI2RLN86qVRLScuykKiaKL79VvCJz+ThJsqBkkFBPaNGvUIQyxvBmA8lkfjQPXhDoATSSAI8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Wa+m6+Zi; arc=none smtp.client-ip=209.85.219.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f50.google.com with SMTP id 6a1803df08f44-690be110d0dso7394056d6.3;
+        Thu, 28 Mar 2024 12:16:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1711653368; x=1712258168; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9Lgv0V7X4JpFVS6gpkChpJio0Trbpgps85IWj8gCbhM=;
+        b=Wa+m6+Zit5RrC7da8xkMnqvc2/Xrsij64z+RdqAVBWxLeej+Ti9G6/oDPIn4s4KoqW
+         Y4OujmENKNe9IWZ6oAbcWdT3fLvBkgc7JjqARf8n+y6lh2h6SZQp9CWD66HEx1rrt2XN
+         iKtTs3OetJxJK4ovYijGFRDXNZj1fDSnL03xT5abbYrVSm4xaI2tK2dzSFvQy1lNwErs
+         jLRIuOf5FOmdn7vw9ym+bcVAo9+VkkWfOCpVBXUR3D4MxhXBFoONwxxHH8OZvn1LsbW4
+         2flIb5PSVDaol+3UcEPjnNDiB8O1y3cOGa5EI9DqGiBh+6JF38mlYNr4nle9PEUV85P4
+         sMrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711653368; x=1712258168;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9Lgv0V7X4JpFVS6gpkChpJio0Trbpgps85IWj8gCbhM=;
+        b=CuZyAarqxeu/TOO8gUTkeMh3blM6r6cw0l1ue3Z8BnXrcUMOPlq0R7kiIPTf28pzIp
+         q29WVYuONOzGqCGfNhlYRrlBzxzERDpDhI9Yqaj3+Cxt4q6ZwrFOtMju0imzYsNqSvOP
+         ldO8IrQeOiXUqcqk76iXfNH8+0ixctU04LeGRI8cQI6s7KhhN0c4f89XZ0o+Vdty6ulb
+         WJfWLQJraCVauYZeLzBTv/bqDk9HzHTNde97DCuw31/8YVUCJnbAhalkoGucjTo11QiY
+         +CRCwBRBGp+VCLgzcqPzi67hYxfhTLW9r6OmkLRVUa6pUY7HbbJuH/A1SXodWL2hLFEd
+         aVDQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVjkHmrQ7/8kLYCisod/vsV6MqWhbir8C1Bw3KZgd6CWcmtYYekNYDhbaPwcusa3kvXhSOv1oUQT9hCvA4oefR90Kon+9OIam+o/OL2h86OF/sXgynEPd3FOM9eyQoc+e0xJOLr0KY/ew==
+X-Gm-Message-State: AOJu0YzOT4vX0c5Z/WC1mGTn1yOiVFdv/EGwOsKejDkCX0gotuxpFm2U
+	fgkMOsm3F8gNkseZMMnbn8JH/FUJaMt4KXUVNQxAhRtxv9/lo8RwAlKQKa/yKStiw+zPeBQXRXE
+	uIiImX7WVZCsa3UEhjQ7qhnQpkF1vTJ+NCFU=
+X-Google-Smtp-Source: AGHT+IGoq/C70EcDddBRk46x0pF+WHP98cR4N2Udzd6XL+evhCo+RhymPI2X1noY93YiN54R+wumOFnJfECgqCxnbZ0=
+X-Received: by 2002:a05:6214:2b47:b0:696:5363:7787 with SMTP id
+ jy7-20020a0562142b4700b0069653637787mr135402qvb.62.1711653368006; Thu, 28 Mar
+ 2024 12:16:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 184477 [Mar 28 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 14 0.3.14 5a0c43d8a1c3c0e5b0916cc02a90d4b950c01f96, {Tracking_from_domain_doesnt_match_to}, smtp.sberdevices.ru:7.1.1,5.0.1;salutedevices.com:7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/03/28 18:13:00 #24496606
-X-KSMG-AntiVirus-Status: Clean, skipped
+References: <20240328191205.82295-1-robertcnelson@gmail.com> <20240328191205.82295-2-robertcnelson@gmail.com>
+In-Reply-To: <20240328191205.82295-2-robertcnelson@gmail.com>
+From: Robert Nelson <robertcnelson@gmail.com>
+Date: Thu, 28 Mar 2024 14:15:41 -0500
+Message-ID: <CAOCHtYiSYat771sfx-Pdv59GDUBH_TzqkxUM+BMf0Q7Z0KEC9A@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: ti: Add k3-j722s-beagley-ai
+To: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Cc: Nishanth Menon <nm@ti.com>, Jared McArthur <j-mcarthur@ti.com>, 
+	Jason Kridner <jkridner@beagleboard.org>, Deepak Khatri <lorforlinux@beagleboard.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-In comparison to other Amlogic chips, there is one key difference.
-The offset for the sec_ao base, also known as u_efuse_off, is special,
-while other aspects remain the same.
+On Thu, Mar 28, 2024 at 2:12=E2=80=AFPM Robert Nelson <robertcnelson@gmail.=
+com> wrote:
+>
+> BeagleBoard.org BeagleY-AI is an easy to use, affordable open source
+> hardware single board computer based on the Texas Instruments AM67A,
+> which features a quad-core 64-bit Arm CPU subsystem, 2 general-purpose
+> digital-signal-processors (DSP) and matrix-multiply-accelerators (MMA),
+> GPU, vision and deep learning accelerators, and multiple Arm Cortex-R5
+> cores for low-power, low-latency GPIO control.
+>
+> https://beagley-ai.org/
+> https://openbeagle.org/beagley-ai/beagley-ai
 
-Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- drivers/thermal/amlogic_thermal.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+@Jason Kridner we need this to become public when you are ready ^ ;)
 
-diff --git a/drivers/thermal/amlogic_thermal.c b/drivers/thermal/amlogic_thermal.c
-index 5877cde25b79..1d23afd32013 100644
---- a/drivers/thermal/amlogic_thermal.c
-+++ b/drivers/thermal/amlogic_thermal.c
-@@ -222,6 +222,12 @@ static const struct amlogic_thermal_data amlogic_thermal_g12a_ddr_param = {
- 	.regmap_config = &amlogic_thermal_regmap_config_g12a,
- };
- 
-+static const struct amlogic_thermal_data amlogic_thermal_a1_cpu_param = {
-+	.u_efuse_off = 0x114,
-+	.calibration_parameters = &amlogic_thermal_g12a,
-+	.regmap_config = &amlogic_thermal_regmap_config_g12a,
-+};
-+
- static const struct of_device_id of_amlogic_thermal_match[] = {
- 	{
- 		.compatible = "amlogic,g12a-ddr-thermal",
-@@ -231,6 +237,10 @@ static const struct of_device_id of_amlogic_thermal_match[] = {
- 		.compatible = "amlogic,g12a-cpu-thermal",
- 		.data = &amlogic_thermal_g12a_cpu_param,
- 	},
-+	{
-+		.compatible = "amlogic,a1-cpu-thermal",
-+		.data = &amlogic_thermal_a1_cpu_param,
-+	},
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, of_amlogic_thermal_match);
--- 
-2.43.0
+Boot log:
 
+https://gist.github.com/RobertCNelson/9db8ea04848e7ce2ca52c038fab0e1b7
+
+--=20
+Robert Nelson
+https://rcn-ee.com/
 
