@@ -1,91 +1,108 @@
-Return-Path: <devicetree+bounces-54176-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54177-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F14988FCBB
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 11:17:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 482EA88FCC7
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 11:20:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CD4C4B23083
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 10:17:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 76D481C2EF09
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 10:20:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10FE77D061;
-	Thu, 28 Mar 2024 10:16:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B745C58231;
+	Thu, 28 Mar 2024 10:20:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RPa5VPxI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa2.ltts.com (unknown [14.140.155.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C02455C3C;
-	Thu, 28 Mar 2024 10:16:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=14.140.155.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 441D21EA8F;
+	Thu, 28 Mar 2024 10:20:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711621016; cv=none; b=C6+aG4LjHhUb5XPtf6aawhfeDgzQbORiWyiXGpEw6+ehUO/OuSnf64QABsH2ym8XGwZNHahFU6ArJ7oNHt5mn1/5WYSciR6vZd4pZT2pvsyLFxp8i8AhzaVODJh2ufA8QMc8d4VSN2kgQ7imipsUOk1HzcHcRQYv8FusGByHe0Y=
+	t=1711621240; cv=none; b=maJXbdRan2qqK4BVrawagdqQ1fTFvdfcj9sKjWMJPexOC+5wv2pOImD3bx2qMEGfa6b5OfmbiGMcT8oi7YJrtdFO0HWOs3HNXi/LoxVJ+eDGXV7S2m3jJ+Y3/GKen2E2Vlc3M7phwzOOmzlYdHmVqmZuICKZ2vjbwbVedxYUXXE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711621016; c=relaxed/simple;
-	bh=RCifofXQJmYOX/loLRJBDORorzU/xHKu1Zqk4In1r1A=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=pxdQ2CiwkXICxbtSGhTNJ9E1PhRyMEYpMywOqwa3EwkKk5/mf4Xs2oRZ5qpqXu9MJfmfuYF7f9Ws+lMevC8hvxTTWWFazNJ3Y4wfGpchzXKbp+SjFIIvZCl2Q0zbkdP6FJ08jKobezvdUF81nmEjsD7aMLEzbbHP516RW2ZQAW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ltts.com; spf=pass smtp.mailfrom=ltts.com; arc=none smtp.client-ip=14.140.155.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ltts.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ltts.com
-IronPort-SDR: siBrV/GRU4tROfmdsRhausV0kzp2F9d9mAAoWZ6PlIzZ7cVAbJCZlxQ6rHX9i7WN2G+WAPfj9D
- otBjLtVqty4A==
-Received: from unknown (HELO localhost.localdomain) ([192.168.34.55])
-  by esa2.ltts.com with ESMTP; 28 Mar 2024 15:46:42 +0530
-From: Bhargav Raviprakash <bhargav.r@ltts.com>
-To: broonie@kernel.org
-Cc: arnd@arndb.de,
-	bhargav.r@ltts.com,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	eblanc@baylibre.com,
-	gregkh@linuxfoundation.org,
-	jpanis@baylibre.com,
-	kristo@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	lee@kernel.org,
-	lgirdwood@gmail.com,
-	linus.walleij@linaro.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-gpio@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	m.nirmaladevi@ltts.com,
-	nm@ti.com,
-	robh+dt@kernel.org,
-	vigneshr@ti.com
-Subject: Re: [PATCH v4 09/11] regulator: tps6594-regulator: Add TI TPS65224 PMIC regulators
-Date: Thu, 28 Mar 2024 15:46:31 +0530
-Message-Id: <20240328101631.146291-1-bhargav.r@ltts.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <a3ec3c14-eed3-429d-b3f6-0764bcfb8dc4@sirena.org.uk>
-References: <a3ec3c14-eed3-429d-b3f6-0764bcfb8dc4@sirena.org.uk>
+	s=arc-20240116; t=1711621240; c=relaxed/simple;
+	bh=dFfbT4R29DplG5nbWguPk4hVE2SH+TwGco0Cl6FKVvg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EOfytt33MDqR63YcxTiGAmAD5ZR/iSL0YuGQ4wmzERnK+FzVkXIYoT6SD23LJZg7H6dd823C0r6KHIxHUQLcgnb14fubx4dE3QA10VsQhbl+1vBiSrtu1MjU1DrY3zPUXOhvdfqyyHlXltlUN+Cpkvot3YEOrMAvQVuwnEdvXGk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RPa5VPxI; arc=none smtp.client-ip=209.85.128.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-609fc742044so9152767b3.1;
+        Thu, 28 Mar 2024 03:20:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1711621238; x=1712226038; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dFfbT4R29DplG5nbWguPk4hVE2SH+TwGco0Cl6FKVvg=;
+        b=RPa5VPxIMo6KzMl7VVNc6fYxpg1W68GUlmVc5vGB6/zTDeAhzGppcS0tzfMVIhJgWd
+         l0Lq7hzGsJBLFpuIcPtZ3LhV7QWZv4lL6MSePmfrBg+WQyjBBJLoG7zid6B31MIeBsVo
+         5HruhtJHsXL8UYAPSW82Ok/uWVX4p0tqs4P9O8SUrVJgHRfgDh+fikcWb3+8gozplRS5
+         q2XqXLjeOT/lVpVQsvgt3pGhTRpzx2j3AeYZ+KYLHnKu8F1QYWOkkv4Auf9mXKihahy4
+         MHqQQVIgbSPblF1yBKIcUh81xah5g7zhHLLdRJRr015IqcpRjzlppO1nbIdF7QX638IU
+         +RUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711621238; x=1712226038;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dFfbT4R29DplG5nbWguPk4hVE2SH+TwGco0Cl6FKVvg=;
+        b=db4gW9UuICNSkFwKh0pcnIeemsvtSZiD/39fSC5EhNDqmoa+DysAshZ4scy+fMp3rP
+         qnieQaoQi/7BvoxRpKe4/dAAL7qQm+wrbFj/44RcSEKPcNmfO/wVVMB+I1LdX7VGoAzV
+         ksfS59M+7c8La6pdUgYG3POK1nUDd+qlgnwf4rd3Nxsnxr9AaL0UgFdZ8tRCBAfL9jjo
+         oFyB3YnanaM7SW2Om2QHgM1j7XZyOnBNraJwTo3+sbR5vT27quyZBYquGbRl14CK9cVC
+         Tl9dUe2tfpokF9/2uHxr91w/IQG1D/61JLYVGUhewx7mYSfa4ZhDutoiLU/rKEbuht8f
+         uhNA==
+X-Forwarded-Encrypted: i=1; AJvYcCVGxxKVbwTpiF8OLTvpURHTWc0r4TOsnh91QJwiGsU5S1c/XDmtAwg4X5gH8Hy4znAQ4fsiDZo9b7E2GRombux08GNtQIuQJL9sCcZaNr212jj44my9KcAqd9CcP0ABILIIIKATeK09TZ7I6qN0JgY8X3XAUT/M0wAcZS9085U1kA5lNQ==
+X-Gm-Message-State: AOJu0Yzlj9GIgLTZrCTD/JnzuUJyxXPhYLPkHOmBPKWO25GbkPFOeC1G
+	58TT96bW7lnSAgLcb9Cvhj0xxOkWiozKCtTweq+hB7Mys+0AScFIfA7G9Ov91zzeDYDrp+u2e5x
+	Oso7qz+uSwOxBx/aT0UorsJUUg9w=
+X-Google-Smtp-Source: AGHT+IFi3DZWKmlRmlJDkasacGqfWkgcDy+WQNzg9p8xoAOHDvfmaJ3gX6Rg4YeK1AS1UxcZIQliUbOdK/3N0aQIv/Q=
+X-Received: by 2002:a25:81d1:0:b0:dd1:6fab:81e4 with SMTP id
+ n17-20020a2581d1000000b00dd16fab81e4mr2315769ybm.37.1711621238324; Thu, 28
+ Mar 2024 03:20:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240327220320.15509-1-l.rubusch@gmail.com> <20240327220320.15509-5-l.rubusch@gmail.com>
+ <9ab1fc70-fd01-437b-9020-49618924ab30@linaro.org>
+In-Reply-To: <9ab1fc70-fd01-437b-9020-49618924ab30@linaro.org>
+From: Lothar Rubusch <l.rubusch@gmail.com>
+Date: Thu, 28 Mar 2024 11:20:02 +0100
+Message-ID: <CAFXKEHainYo6esvdy5-hMppPk_WNbXWQKA8Np4Vsxh9KPrrwTw@mail.gmail.com>
+Subject: Re: [PATCH v5 4/7] dt-bindings: iio: accel: adxl345: Add spi-3wire
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, eraretuya@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Thu, Mar 28, 2024 at 10:22=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 27/03/2024 23:03, Lothar Rubusch wrote:
+> > Add spi-3wire because the device allows to be configured for spi 3-wire
+> > communication.
+> >
+> > Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
+>
+> I don't understand why after my last message you still ignore my
+> feedback, but fine. I'll ignore this patchset.
+>
 
-On Wed, 20 Mar 2024 16:38:20 +0000, Mark Brown wrote:
-> On Wed, Mar 20, 2024 at 03:55:57PM +0530, Bhargav Raviprakash wrote:
-> 
-> > +static struct tps6594_regulator_irq_type tps65224_buck1_irq_types[] = {
-> > +	{ TPS65224_IRQ_NAME_BUCK1_UVOV, "BUCK1", "voltage out of range",
-> > +	  REGULATOR_EVENT_OVER_VOLTAGE_WARN },
-> > +};
-> 
-> These all look like they should be _REGULATION_OUT given that the
-> interrupt names are _UVOV which look like they could be either under or
-> over voltage.
-> 
-> Otherwise this all looks good.
+I'm sorry. I found it now. Please ignore my last v5. I'll repatch an
+adjusted v6.
 
-Thanks for the feedback! We will fix it in the next version.
-
-Regards,
-Bhargav
+> Best regards,
+> Krzysztof
+>
 
