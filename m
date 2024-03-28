@@ -1,284 +1,203 @@
-Return-Path: <devicetree+bounces-54113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F100D88FACC
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 10:10:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97D5C88FADB
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 10:14:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D7461C21EFD
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 09:10:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4BC3A298C04
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 09:14:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B869A55C3C;
-	Thu, 28 Mar 2024 09:10:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9919654664;
+	Thu, 28 Mar 2024 09:14:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cwxLd6NP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OH80L1Pm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00690225A8
-	for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 09:10:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEDC35FB8C
+	for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 09:14:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711617046; cv=none; b=p3eV8kRMywAMSE5qLEe+5p0JqeVYu/oEHYvnR37phy9te1+cDW6AaUm2+MVV4ps+RMgbne6cVgbuqP23Delec4bEXI/a8u2B8ofVL6M7Fsw0rpWF2vdn26VEk5e1CAF0B+03Fs2G3NctpleQW34rkJJUeSmoWPWsdkBXovO8+CU=
+	t=1711617264; cv=none; b=VKOEQJdofxepretpUUcEblgNNgWaUHkwjAxlp98PaM69qlFuotCqLCmF2PCbAbJSsFQna3jg3UTvi48U/tbS6Dhubw83P457MWl9tLGmIKnRafQHtCZsWQeJSYekxg+SujT/WNrUF2huBmRl+Qm2ALrkwlRNEAvpr1ViZydtRxQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711617046; c=relaxed/simple;
-	bh=zs1W41ONFASJqBRMmOeY3SJDp6Omt2dZKibNGDwafio=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=N2e0HRDnLnPqzhPrP3dGIEFPPVXHMqlPy/W61EZYoO0R2GMSmxcIHdR8MK6u8RNNB+ob0HcUmr83t7vLkrcR8815tkPeDngPIURvfN2XMgPQM0ruCfCJiCiuwl4RGso1eNfyMfHceKP4DcQW1fQJHTY4BUZPmdK6/DGv8RmvOiM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cwxLd6NP; arc=none smtp.client-ip=209.85.219.182
+	s=arc-20240116; t=1711617264; c=relaxed/simple;
+	bh=lrFfsBE8SNHNpE0GWqb+vFLJEah/81JylKDe/YcmDyc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kU9W7j1wHjlaGL47h1Wh4NfJ+LHt1SZ00tnlOS8HO5uUeTQVlOed3WfpO44IKAu9jKJiwnA041f+12JZMhD+kq22m8MtbEidFQ0j9FIRlxo9r16ry5iYVvmBek+SyUjdLOVsCQpbL8PcjTxwkE3c3pQWdX9IlUyOhNdhkgRKkQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OH80L1Pm; arc=none smtp.client-ip=209.85.221.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-db3a09e96daso686610276.3
-        for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 02:10:44 -0700 (PDT)
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-33ed7ba1a42so432339f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 02:14:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711617044; x=1712221844; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9KhmQXbbvltdCLYtd5UE/LLG4WE9XPPqX5yUaWcDs3Y=;
-        b=cwxLd6NPI1eNzGiErfL1Q+YGBlrXLxHbmXr7q40B7o7s1K9F6dxP1vdxqijjATRvWE
-         LBTvRHCKbiDti29VEwrYppEzu0/JS/rUmi9t6ef1ALLXGnwOkdOZjTpWN3UQHj+AHelN
-         /SmboOk6pKD5MX8l5vKB16rFjfEKkIP9QJa04q0mlGhmOTuPClAKyFcPGmTn5wQi21vY
-         Rbtpxoqvo2MK92ebPtTSgK/0sQJQI2htqiWOQ1d49X4B/FZawk1TDxyXY1AQuXqLhjKg
-         36AzJA5Hvs6F9sqygkwl97MX28etdOojdjz8PryOHi9fBFWQZ7UUXyxhra61ljTTKPdU
-         l57g==
+        d=linaro.org; s=google; t=1711617261; x=1712222061; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Dn2TKuOzYzu1YNu0SEpdtuh1RniZXi87HtRvpP+WrdA=;
+        b=OH80L1PmERmoLwxZ2JOM5vzi3zMxsWm3N2UHdiCXfOYqI+810sHG/JAcgWCjgz+8gv
+         Ckp6N8ltvC5Wmv91t+A+YHFylNjX0CjB46eH13TeEVCKLde7SzC8fD64iTz8aGjG1ume
+         CGcYdd4c9E6HyA19RK79Dm03cID0nOvXEqzIoVt1/ChMp6EwBuoflXzN5+NeQapteP3b
+         ObHwjT9mVwKBN37QxHxlYE+bF4EcOYHBBVMVhSUr9k+Nra0a9AhArWkzTJqasFYgaWL9
+         rtTIGcXt0+Bmn4c0mhzuH7LlLzzC9UfAs48jfHgPdHpephgZlJnjJO7Iye4PkLIYuCpM
+         +rgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711617044; x=1712221844;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9KhmQXbbvltdCLYtd5UE/LLG4WE9XPPqX5yUaWcDs3Y=;
-        b=wmwoXPDmQGvG5dcNNsFmb5qpOpcT0J0s9RzQY6e9XJUQfa2KPe18vKF2OlOPid2dOX
-         J5HFVYIP93GXbGoi6MBG6YdStiAma2GWOQ9KDDDaRLniBrmbDhwyArRxguaD+E0AqvCJ
-         ZFReDhNs1qhqz/+8/Nw7MKuEGStBmT4HJ3Ij5Q9hs+F6B68nWqt3tru4vpKrwmrGkcOy
-         AwnhrnvDUW0oHjNA0Knj6Vkc5Cz26S2Zwx2Yhr+yO72R46pE4GY8+g7iekU11qLWZLrH
-         uEqUEZPIbws5TSS3lgz6bLc1wVIrQ8dkdwg2lW2BfVaqBEdpw0y8qH8ZLUOPc/RuWN25
-         F2IA==
-X-Forwarded-Encrypted: i=1; AJvYcCV+4+pHoNl1qkqImEkoN6/ZTOx6QQTpKoeiwdbT+md0hQjSxcO2wmcbN8VG7OjldyVB/IZGj8jbwjR9H7HWUtz/c8Rm5YOtzw2GzQ==
-X-Gm-Message-State: AOJu0YzuwnfQryJanQ+iep9erB0dk8bhmEEiE9PZkJxxEdmkTtcbwxTW
-	lXJPO8zNMyADvKUU5SmjykPe9RGjvrCy52KMlH994iUijS3fTB4/n0XM+TovBpTsAZADnIfFRJv
-	WislckZYjf5Mogd5vDMr0hdTFKgMJJCFlB4KhgQ==
-X-Google-Smtp-Source: AGHT+IE/An0AbYWd/vynrRp8DTmGveyGGpQEeSo55JBojQnvTdoXVkDFJynntDgoXapBblKZSyiQw6tIneF8Q5a7YVE=
-X-Received: by 2002:a25:6c54:0:b0:dc7:140:8c0c with SMTP id
- h81-20020a256c54000000b00dc701408c0cmr2153996ybc.23.1711617043928; Thu, 28
- Mar 2024 02:10:43 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1711617261; x=1712222061;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Dn2TKuOzYzu1YNu0SEpdtuh1RniZXi87HtRvpP+WrdA=;
+        b=UU36sjBETsFsj8fMic2eX+k/Up5oagRVAJnCWL9nshyX7DvC9WTJ5pUb2JUs8oVFow
+         40hcUaWsDNBuNCRrPimSUoJPuZsY78fEcSy9lVF28sj56Pn9DV/z9ISz1ClPHkLTBkvd
+         hr7spTQK8JYjuO1sg+QsV6BWUzzXWUOimimdBhC56gzr7g+aTYs3UJ9INFKglB5sJdOh
+         Q7HPG+MbhipiTriL3pCGv7Cq2DKkqWVOmKSJwaG0WQDYo9FRamMS48iS/AsgTdiDXMfJ
+         bQY92SYaJ+et5Ek9ScCDJgRfa29yLRpgzOWl32nAv08EAAtd0x+UednGSot1r+jGZMIB
+         5C/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWN9mB1gz6gVylhQOL/YRbe/AXe2ufKKzxxdNsYvkkP0ydVHHMKKwZoOXINkyiuf+hLt7VaxcIqSrWwgurx02NkCm+Yx1Bmr+GFGA==
+X-Gm-Message-State: AOJu0YxatSKdccziZ1mlQXqy3KXGDCtbcR0B/NtFn96/B1d+HEqbGpCL
+	3cICAyGcYHQCtWWgXyISCPT+AHjJ7DUHTXoFzMlVxf79BNSOB3zPjiExi24q98c=
+X-Google-Smtp-Source: AGHT+IGm9r4lCtfs1iCP9mMlNtyIqCOzVFD2wnYmgyoumpE5k7PEtlNd2UVIYM1FDvHe8dV3F3OBCw==
+X-Received: by 2002:a5d:690c:0:b0:33d:d7be:3bec with SMTP id t12-20020a5d690c000000b0033dd7be3becmr1930909wru.58.1711617261329;
+        Thu, 28 Mar 2024 02:14:21 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.148])
+        by smtp.gmail.com with ESMTPSA id bq21-20020a5d5a15000000b00341cb22a8d4sm1212605wrb.108.2024.03.28.02.14.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Mar 2024 02:14:20 -0700 (PDT)
+Message-ID: <539eaf79-cff5-4bb7-84c8-7c9943c6d8ae@linaro.org>
+Date: Thu, 28 Mar 2024 10:14:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240313035719.768469-1-ychuang570808@gmail.com> <20240313035719.768469-4-ychuang570808@gmail.com>
-In-Reply-To: <20240313035719.768469-4-ychuang570808@gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Thu, 28 Mar 2024 10:10:33 +0100
-Message-ID: <CACRpkdYnG+SgrgAWW8+qdiBwO5d+nE8g_31Evyw0pA2dXz3BPw@mail.gmail.com>
-Subject: Re: [PATCH v6 3/3] pinctrl: nuvoton: Add ma35d1 pinctrl and GPIO driver
-To: Jacky Huang <ychuang570808@gmail.com>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	p.zabel@pengutronix.de, j.neuschaefer@gmx.net, 
-	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	ychuang3@nuvoton.com, schung@nuvoton.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: arm64: marvell: add solidrun cn9130
+ clearfog boards
+To: Josua Mayer <josua@solid-run.com>, Andrew Lunn <andrew@lunn.ch>,
+ Gregory Clement <gregory.clement@bootlin.com>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Yazan Shhady <yazan.shhady@solid-run.com>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20240321-cn9130-som-v1-0-711127a409ae@solid-run.com>
+ <20240321-cn9130-som-v1-1-711127a409ae@solid-run.com>
+ <0f7ca0ed-a1c1-41d2-a1fa-27431d14c056@solid-run.com>
+ <e1836cb6-64cd-4866-9c0a-f0dda096aa18@linaro.org>
+ <6a6e7c4d-d5fd-42ae-bc3d-a3978d65e8e4@solid-run.com>
+ <b086a02c-624f-4225-a9fb-164095742ce9@linaro.org>
+ <6af08a38-5239-4f5f-9e87-108e3400a6e6@solid-run.com>
+ <62242f04-c18d-4da0-bd40-1be26886e41a@linaro.org>
+ <1153cdd4-ed86-4a1f-ae4d-d9da1161f763@solid-run.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <1153cdd4-ed86-4a1f-ae4d-d9da1161f763@solid-run.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Jacky,
+On 27/03/2024 11:55, Josua Mayer wrote:
 
-overall this looks very good.
+>>
+>> I don't even understand what is your case.
+> I see :(
+> Yes there is a disconnect *somewhere*.
+> 
 
-On Wed, Mar 13, 2024 at 4:57=E2=80=AFAM Jacky Huang <ychuang570808@gmail.co=
-m> wrote:
+Your way of quoting, including removing blank lines, weird wrapping,
+does not make it easy to answer anything here. Use decent email client
+which solves all these problems.
 
+> I shall try again:
+> Marvell is selling two chips:
+> 1. CN9130, High-Performance Multi-Core CPU, System on Chip
+> (can be used alone)
 
-> From: Jacky Huang <ychuang3@nuvoton.com>
->
-> Add common pinctrl and GPIO driver for Nuvoton MA35 series SoC, and
-> add support for ma35d1 pinctrl.
->
-> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
-(...)
-> +static int ma35_pinmux_set_mux(struct pinctrl_dev *pctldev, unsigned int=
- selector,
-> +                              unsigned int group)
-> +{
-> +       struct ma35_pinctrl *npctl =3D pinctrl_dev_get_drvdata(pctldev);
-> +       struct ma35_pin_group *grp =3D &npctl->groups[group];
-> +       struct ma35_pin_setting *setting =3D grp->settings;
-> +       u32 i, regval;
-> +
-> +       dev_dbg(npctl->dev, "enable function %s group %s\n",
-> +               npctl->functions[selector].name, npctl->groups[group].nam=
-e);
-> +
-> +       for (i =3D 0; i < grp->npins; i++) {
-> +               regmap_read(npctl->regmap, setting->offset, &regval);
-> +               regval &=3D ~GENMASK(setting->shift + 3, setting->shift);
+So this is the main SoC?
 
-Add a comment explaining why you add +3
+> 2. 88F8215, SouthBridge Communication Processor, System on Chip
+> (only usable in combination with a CN9130)
+> 
+> Now, in terms of compatible string, what happens when a board
+> has multiples of these?
 
-> +static int ma35_gpio_core_direction_in(struct gpio_chip *gc, unsigned in=
-t gpio)
-> +{
-> +       struct ma35_pin_bank *bank =3D gpiochip_get_data(gc);
-> +       void __iomem *reg_mode =3D bank->reg_base + MA35_GP_REG_MODE;
-> +       unsigned long flags;
-> +       unsigned int regval;
-> +
-> +       spin_lock_irqsave(&bank->lock, flags);
-> +
-> +       regval =3D readl(reg_mode);
-> +       regval &=3D ~GENMASK(gpio * 2 + 1, gpio * 2);
-> +       regval |=3D MA35_GP_MODE_INPUT << gpio * 2;
+Multiple of CN9130? 2x CN9130? Nothing happens, does not really matter.
+Anyway the compatible is just to uniquely identify the device for users,
+not represent some programming model, because there is no programming
+model of a board.
 
-Here the first time you do this magic explain in a comment why you
-use *2+1 and *2 overall (I guess two bits per line).
+> 
+>> What is 9131 and 9132?
+> I have no idea who came up with 9131 and 9132.
+> But explanation is given by Grzegorz Jaszczyk <jaz@semihalf.com>
+> when he submitted cn9131-db.dts (Marvell evaluation board):
+> 
+> Extend the support of the CN9130 by adding an external CP115.
+> The last number indicates how many external CP115 are used.
 
-> +static int ma35_gpio_core_get(struct gpio_chip *gc, unsigned int gpio)
-> +{
-> +       struct ma35_pin_bank *bank =3D gpiochip_get_data(gc);
-> +
-> +       return readl(bank->reg_base + MA35_PIN_MAP_BASE + gpio * 4);
+You use the compatibles in your patchset, so you should know, not me. I
+have zero knowledge, also actually almost zero interest, in learning
+your particular platform. I tried to fixup some bindings and maintainers
+for Marvell: failed with not really helpful comments. Therefore I don't
+care anymore about Marvell.
 
-Here add a comment explaining the *4
-I guess one 32-bit register per pin?
+You or your platform maintainers should know what is this about and come
+with explanation to the community.
 
-> +static int ma35_irq_irqtype(struct irq_data *d, unsigned int type)
-> +{
-> +       struct ma35_pin_bank *bank =3D gpiochip_get_data(irq_data_get_irq=
-_chip_data(d));
-> +       void __iomem *reg_itype =3D bank->reg_base + MA35_GP_REG_INTTYPE;
-> +       void __iomem *reg_ien =3D bank->reg_base + MA35_GP_REG_INTEN;
-> +       unsigned int num =3D (d->hwirq);
-> +
-> +       if (type =3D=3D IRQ_TYPE_PROBE) {
-> +               writel(readl(reg_itype) & ~BIT(num), reg_itype);
-> +               writel(readl(reg_ien) | BIT(num) | BIT(num + 16), reg_ien=
-);
-> +               bank->irqtype &=3D ~BIT(num);
-> +               bank->irqinten |=3D BIT(num) | BIT(num + 16);
-> +               return 0;
-> +       }
-> +
-> +       if (type & IRQ_TYPE_LEVEL_MASK) {
-> +               writel(readl(reg_itype) | BIT(num), reg_itype);
-> +               writel(readl(reg_ien) & ~(BIT(num) | BIT(num + 16)), reg_=
-ien);
-> +               bank->irqtype |=3D BIT(num);
-> +               bank->irqinten &=3D ~(BIT(num) | BIT(num + 16));
-> +               if (type =3D=3D IRQ_TYPE_LEVEL_HIGH) {
-> +                       writel(readl(reg_ien) | BIT(num + 16), reg_ien);
-> +                       bank->irqinten |=3D BIT(num + 16);
-> +                       return 0;
-> +               }
-> +
-> +               if (type =3D=3D IRQ_TYPE_LEVEL_LOW) {
-> +                       writel(readl(reg_ien) | BIT(num), reg_ien);
-> +                       bank->irqinten |=3D BIT(num);
-> +                       return 0;
-> +               }
-> +
-> +       } else {
-> +               writel(readl(reg_itype) & ~BIT(num), reg_itype);
-> +               bank->irqtype &=3D ~BIT(num);
-> +
-> +               if (type & IRQ_TYPE_EDGE_RISING) {
-> +                       writel(readl(reg_ien) | BIT(num + 16), reg_ien);
-> +                       bank->irqinten |=3D BIT(num + 16);
-> +
-> +               } else {
-> +                       writel(readl(reg_ien) & ~BIT(num + 16), reg_ien);
-> +                       bank->irqinten &=3D ~BIT(num + 16);
-> +               }
-> +
-> +               if (type & IRQ_TYPE_EDGE_FALLING) {
-> +                       writel(readl(reg_ien) | BIT(num), reg_ien);
-> +                       bank->irqinten |=3D BIT(num);
-> +
-> +               } else {
-> +                       writel(readl(reg_ien) & ~BIT(num), reg_ien);
-> +                       bank->irqinten &=3D ~BIT(num);
-> +               }
-> +       }
-> +       return 0;
-> +}
+Best regards,
+Krzysztof
 
-I don't understand why you don't set the irq_handler:
-irq_set_handler_locked(d, handle_edge_irq);
-irq_set_handler_locked(d, handle_level_irq);
-
-It seems you are not handling IRQ_TYPE_EDGE_BOTH?
-What happens if both rising and falling is specified simultaneously?
-
-The if/else nesting is hard to read.
-switch (type) {
-        case IRQ_TYPE_EDGE_BOTH:
-(...)
-        case IRQ_TYPE_EDGE_RISING:
-(...)
-
-See drivers/gpio/gpio-ftgpio010.c for an example.
-
-Have you checked that handling edge and level IRQs really work
-as expected?
-
-> +static int ma35_gpiolib_register(struct platform_device *pdev, struct ma=
-35_pinctrl *npctl)
-> +{
-> +       struct ma35_pin_ctrl *ctrl =3D npctl->ctrl;
-> +       struct ma35_pin_bank *bank =3D ctrl->pin_banks;
-> +       int ret;
-> +       int i;
-> +
-> +       for (i =3D 0; i < ctrl->nr_banks; ++i, ++bank) {
-> +               if (!bank->valid) {
-> +                       dev_warn(&pdev->dev, "bank %s is not valid\n",
-> +                                bank->np->name);
-> +                       continue;
-> +               }
-> +               bank->irqtype =3D 0;
-> +               bank->irqinten =3D 0;
-> +               bank->chip.label =3D bank->name;
-> +               bank->chip.of_gpio_n_cells =3D 2;
-> +               bank->chip.parent =3D &pdev->dev;
-> +               bank->chip.request =3D ma35_gpio_core_to_request;
-> +               bank->chip.direction_input =3D ma35_gpio_core_direction_i=
-n;
-> +               bank->chip.direction_output =3D ma35_gpio_core_direction_=
-out;
-> +               bank->chip.get =3D ma35_gpio_core_get;
-> +               bank->chip.set =3D ma35_gpio_core_set;
-> +               bank->chip.base =3D -1;
-> +               bank->chip.ngpio =3D bank->nr_pins;
-> +               bank->chip.can_sleep =3D false;
-> +               spin_lock_init(&bank->lock);
-> +
-> +               if (bank->irq > 0) {
-> +                       struct gpio_irq_chip *girq;
-> +
-> +                       girq =3D &bank->chip.irq;
-> +                       gpio_irq_chip_set_chip(girq, &ma35_gpio_irqchip);
-> +                       girq->parent_handler =3D ma35_irq_demux_intgroup;
-> +                       girq->num_parents =3D 1;
-> +
-> +                       girq->parents =3D devm_kcalloc(&pdev->dev, 1, siz=
-eof(*girq->parents),
-> +                                                    GFP_KERNEL);
-> +                       if (!girq->parents)
-> +                               return -ENOMEM;
-> +
-> +                       girq->parents[0] =3D bank->irq;
-> +                       girq->default_type =3D IRQ_TYPE_NONE;
-> +                       girq->handler =3D handle_level_irq;
-
-Does this really work for the edge IRQs?
-
-I recommend setting this to handle_bad_irq and assign the right
-handler in .set_type().
-
-Yours,
-Linus Walleij
 
