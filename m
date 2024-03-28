@@ -1,76 +1,59 @@
-Return-Path: <devicetree+bounces-54367-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54368-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 005B4890BB7
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 21:43:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4E6C890BBA
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 21:43:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 204F41C30B5D
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 20:43:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 743F329F6F8
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 20:43:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2929413AA41;
-	Thu, 28 Mar 2024 20:42:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A47913B5A8;
+	Thu, 28 Mar 2024 20:42:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eCKfMmIy"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="eX9yxJbt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0BE913AA38;
-	Thu, 28 Mar 2024 20:42:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59EEB13B5A5;
+	Thu, 28 Mar 2024 20:42:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711658525; cv=none; b=tzgn/7uYHDxeee5lcq26Oz1M2kMY/JN9VZT4zNsbxnftmg8z75hK5kyNajJqYITc1j8hmCu24IsYcysHijEEkLQ44mGCI/Iv0tGwtppqcJqIeZWx/87wnwzf/llmACzpJBjUEQzax4CIXOapgWV+BMlBMxeruGUYAJNhQzbFOvY=
+	t=1711658530; cv=none; b=o9unHw79SspaD49KsSPYqQPYIgm6OgP2ysN/J57cvrweJpRrjkJQ1ULNMFOpDJPA8zEDaBHgahikcRKrfVGUUvv2DKC5RGiXyNoz9aP7e1d8N573kNpsKFzo5wXZjoBUpkHgzrllCwnnX5egfZjrjMABRro302fCqo+Bsy53n6c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711658525; c=relaxed/simple;
-	bh=rM8n3YOTnCn+b3NkFrXziIWASxMBnWFMCbr5eWXy4fQ=;
+	s=arc-20240116; t=1711658530; c=relaxed/simple;
+	bh=+HIOS8a83qbeGCOPKAbZZoTpQVUPkpo/hpaOEwep9rk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lEX3L3ueLH/uCgtTzeYXtieO+AUFu9u3V5lzPewScz9XRFN6xZeA/+lsRqXtit851NdF2SavdP3CbGsvrB246uBCoRJDCuEu6AXqhDwHryLN52sN+Zv+0sL+3JugrUgp46BSdx6PnG33BqQxf5ExKHg4sPMxWuHaGM0KK2KqdfI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eCKfMmIy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 529E7C433F1;
-	Thu, 28 Mar 2024 20:42:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711658524;
-	bh=rM8n3YOTnCn+b3NkFrXziIWASxMBnWFMCbr5eWXy4fQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eCKfMmIyqhMxnN9hRe0xLCa/LyjUmNY2MvusUKazaWaaOAtQttZ2yJQppDwWNeWSY
-	 8/9Ls0Cj8Vifsj0NXSNo3xnwcOutw9Hagr8f/fc5U7nulSiBYAIe/NQBWgbyaA95oW
-	 HKVIQYpFXkB2emfilRKSPMLl5o+83DX8oI+Mtc1L1gglh25Q54dQDWr1tn6wB9YOoc
-	 6EKhNwVL49ZanIg67nYxH/hPGKlRctXBAr81YlKk03TsOQyzSNJvRFTRCBkP5zsxox
-	 w0WwuqDPSrXGdp1SYh1Oe4wYrRl7IsrX/R/x8N0IjC5ewjbCh7WHMAIJ8d5W8PB9uY
-	 bhjFQ8EACrNwA==
-Date: Thu, 28 Mar 2024 15:42:02 -0500
-From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Tan Chun Hau <chunhau.tan@starfivetech.com>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Simon Horman <horms@kernel.org>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Andrew Halaney <ahalaney@redhat.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	Russell King <rmk+kernel@armlinux.org.uk>,
-	Ley Foon Tan <leyfoon.tan@starfivetech.com>,
-	Jee Heng Sia <jeeheng.sia@starfivetech.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v5 1/1] dt-bindings: net: starfive,jh7110-dwmac: Add
- StarFive JH8100 support
-Message-ID: <20240328204202.GA308290-robh@kernel.org>
-References: <20240327015750.226349-1-chunhau.tan@starfivetech.com>
- <20240327015750.226349-2-chunhau.tan@starfivetech.com>
- <31ac366d-bfa6-4c99-a04d-ab9fb029da7e@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=FZniAxpz+foNYkCjTtxPj3fJ0yviF/qHLFCSXxVHUJMu1oV9iEKrSqWhAqS8KwGtoeTtcH97yt4BI9+buxz32/BCG/b6EYWJPYNDhHiwPE1S+jB/ePDDd3qYOnEtpXwfcZ2QL0tjSKUZpj/2FQYI1/3I9pCevvvmOX9fW6o3p0Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=eX9yxJbt; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=uEm8VM3dhyaO0sA74NgEX/NlJOhtIxbD417AOzJOEt8=; b=eX9yxJbtoa/noO/t+6UnGL3qPL
+	5jy/azB/jxuLWJvRgTnNcqAB/s+piqr4fRdaQL5Ym1mmYIm5pRVpcIbj15fQTNVqnjxVgN8B6qhhZ
+	cxeDi2bHVrHUAnl+C928Ip/2bdHqCGZuAbKUj2mnvZF3WAZQQfZEBIfvLCQDRZII5fmE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rpwZY-00BZR9-NI; Thu, 28 Mar 2024 21:42:04 +0100
+Date: Thu, 28 Mar 2024 21:42:04 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Gilles Talis <gilles.talis@gmail.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, conor+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, robh@kernel.org,
+	shawnguo@kernel.org, festevam@gmail.com, alex@voxelbotics.com
+Subject: Re: [PATCH 3/3] arm64: dts: freescale: Add device tree for Emcraft
+ Systems NavQ+ Kit
+Message-ID: <147dfc5e-91e5-4ad4-b818-f6717e62df45@lunn.ch>
+References: <20240328202320.187596-1-gilles.talis@gmail.com>
+ <20240328202320.187596-4-gilles.talis@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,97 +62,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <31ac366d-bfa6-4c99-a04d-ab9fb029da7e@linaro.org>
+In-Reply-To: <20240328202320.187596-4-gilles.talis@gmail.com>
 
-On Wed, Mar 27, 2024 at 08:54:30AM +0100, Krzysztof Kozlowski wrote:
-> On 27/03/2024 02:57, Tan Chun Hau wrote:
-> > Add StarFive JH8100 dwmac support.
-> > The JH8100 dwmac shares the same driver code as the JH7110 dwmac
-> > and has only one reset signal.
-> > 
-> > Please refer to below:
-> > 
-> >   JH8100: reset-names = "stmmaceth";
-> >   JH7110: reset-names = "stmmaceth", "ahb";
-> >   JH7100: reset-names = "ahb";
-> > 
-> > Example usage of JH8100 in the device tree:
-> > 
-> > gmac0: ethernet@16030000 {
-> >         compatible = "starfive,jh8100-dwmac",
-> >                      "starfive,jh7110-dwmac",
-> >                      "snps,dwmac-5.20";
-> >         ...
-> > };
-> > 
-> > Signed-off-by: Tan Chun Hau <chunhau.tan@starfivetech.com>
-> > ---
-> >  .../devicetree/bindings/net/snps,dwmac.yaml   |  1 +
-> >  .../bindings/net/starfive,jh7110-dwmac.yaml   | 29 +++++++++++++++----
-> >  2 files changed, 25 insertions(+), 5 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > index 6b0341a8e0ea..a6d596b7dcf4 100644
-> > --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > @@ -97,6 +97,7 @@ properties:
-> >          - snps,dwxgmac-2.10
-> >          - starfive,jh7100-dwmac
-> >          - starfive,jh7110-dwmac
-> > +        - starfive,jh8100-dwmac
-> 
-> I think that's not needed. You have there already your fallback.
-> 
-> >  
-> >    reg:
-> >      minItems: 1
-> > diff --git a/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
-> > index 0d1962980f57..5805a58c55d1 100644
-> > --- a/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
-> > +++ b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
-> > @@ -18,6 +18,7 @@ select:
-> >          enum:
-> >            - starfive,jh7100-dwmac
-> >            - starfive,jh7110-dwmac
-> > +          - starfive,jh8100-dwmac
-> 
-> Same here, even more obvious.
+> +&eqos {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_eqos>;
+> +	phy-mode = "rgmii-id";
+> +	phy-handle = <&ethphy0>;
+> +	status = "okay";
+> +
+> +	mdio {
+> +		compatible = "snps,dwmac-mdio";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		ethphy0: ethernet-phy@0 {
+> +			compatible = "ethernet-phy-ieee802.3-c22";
+> +			reg = <0>;
+> +			reset-gpios = <&gpio4 22 GPIO_ACTIVE_LOW>;
+> +			reset-assert-us = <1000>;
+> +			reset-deassert-us = <10000>;
+> +			qca,disable-smarteee;
+> +			qca,disable-hibernation-mode;
+> +			vddio-supply = <&vddio>;
+> +
+> +			vddio: vddio-regulator {
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +			};
 
-Agreed.
+Please could you explain what this last node is doing.
 
-> 
-> >    required:
-> >      - compatible
-> >  
-> > @@ -30,6 +31,10 @@ properties:
-> >        - items:
-> >            - const: starfive,jh7110-dwmac
-> >            - const: snps,dwmac-5.20
-> > +      - items:
-> > +          - const: starfive,jh8100-dwmac
-> > +          - const: starfive,jh7110-dwmac
-> > +          - const: snps,dwmac-5.20
-> >  
-> >    reg:
-> >      maxItems: 1
-> > @@ -116,11 +121,25 @@ allOf:
-> >            minItems: 3
-> >            maxItems: 3
-> >  
-> > -        resets:
-> > -          minItems: 2
-> > -
-> > -        reset-names:
-> > -          minItems: 2
-> > +      if:
-> 
-> I would personally avoid nesting if within if. It gets unreadable.
-> Although Rob did not comment on this one, so I guess it is fine.
-
-I normally agree, but here I suggested it as it looked to be the 
-simplest option.
-
-With the 2 other comments addressed,
-
-Reviewed-by: Rob Herring <robh@kernel.org>
+       Andrew
 
