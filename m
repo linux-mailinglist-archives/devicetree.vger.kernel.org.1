@@ -1,173 +1,175 @@
-Return-Path: <devicetree+bounces-54292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54293-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02CB88904BD
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 17:16:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAE8F8904CF
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 17:18:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D8121F26851
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 16:16:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 391A8B2406F
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 16:18:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63C5B12BF39;
-	Thu, 28 Mar 2024 16:16:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE4F7131BBB;
+	Thu, 28 Mar 2024 16:18:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a5dwj2gd"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="J7yL1gUo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87FD057889
-	for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 16:16:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3628512FB3B;
+	Thu, 28 Mar 2024 16:17:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711642581; cv=none; b=LrBY+rrDH20K5RRKNT5ZsJ5+aCAUQV4kr1jUkwe5+/PDC50PBa7bCM5RgfUB8Pe6kCdPC1X5gGa8nGM06ApMw1chA/jFIhVIGJ187uZ5jkkL50oOf7qfR25WeCA7Z6me7EaTHcKIaHltivRTk7kvTCt8cQPJGcbL7nRQLzi3yIQ=
+	t=1711642681; cv=none; b=MjIfBF3FbZGVXWU5jmBvS0r4kvSyOJ+R1IyYhWVWdWhkTKJxOli+2fmD9sMTWoOCdSri5DZOIoWu98OaM/ciM/qEOxiGEffHyeWzprWbXin5LQA51o6rnW58CNElGGJkcqT1KgzYvDqueonT56bij+nOc07rBS+sZKprFYTAmog=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711642581; c=relaxed/simple;
-	bh=Q77ebNP8k5nDYzLkeIAD1Snfdt/pFWInqzdIcP5qPeU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FUshtfawqQ+fb52riagcb68rGWFNsGflHzLFBeDj4Xf5iJuiI/W6+s8MDkoEWLTVMbkzG1nwLPg7z6WsTfw14QcWaHYOdbsGrVnXwDOSuCodVdqExZaQDltIfJdxvhAibVN8bZsMRQQsNEhxS4zMtkU7drTEirihMT2S8HDoiT8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=a5dwj2gd; arc=none smtp.client-ip=209.85.208.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2d228a132acso13474151fa.0
-        for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 09:16:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711642578; x=1712247378; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=choVS2l7j9v8YZ4XB6cn6HH4AXOKlJetjKz9GMOi3i0=;
-        b=a5dwj2gdVnVZTeB49FTupTDajoW/mbUaFuh6NCgmkurANp7YAVa87MsY7XzipU6tRa
-         bMFfj3gdIq4kWKRIehaAuYxJvp4xyQwI5FmkeXU4YTnvGGVuOsEC63g4ZJCYtudmZt74
-         N6RgGsmCGSUu2Np4+N5IKrCzLzoAF5G7Bxs3UpwvlahQl1a1ePJTGlmntO5oM2eDCrh4
-         Y7MORb9TY75xG+DXcJb3HIV+qxa/D5+p5FFB5P4hG4+TY5xhmyDM87pF3M1Bgj+EGJkz
-         Or0gOrHiwt3AYEa8LFJsJYa3YlF/EO6RFs+Z0egciAgZsb1aKQVz0uC+YDSICHgT9pOP
-         A53w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711642578; x=1712247378;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=choVS2l7j9v8YZ4XB6cn6HH4AXOKlJetjKz9GMOi3i0=;
-        b=d/Eh99StNGxELu7yZNTu+hd1ZmyHbRRIQaF2u2KSQJdo8/2HJHcrk1FCafRgbhFm7s
-         MnzGpqmxdoKHLIK5z0svOrQ5SA3ujvl7lCu5eWNNsHfTqdHG7gTuvv4Cbd8U+YAH3sj7
-         qiWJWiUNCkXsCl4pZP5bP7iHqluagzNF9FqrztGAFKz8D2trEj6Yfc4NcsDfRejG+Hk6
-         99c8dT4m/X6bciB1U22l3IQ1Vucyg2KvZd5x+/4dTDsK9Vt9HZfu8SpUQ/18Qo6pct4K
-         JuemOGiIFTFQEIpsLcLgndsltTCCnIli9oRCZ3kR/09ps/zEmFeFDnGHyNPhl/aT5A/v
-         3WwQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVSRksJ3sc/JXj7M79QxR+6VxRulov3aNOzSC6FILhgvfsRw6Wm4iZ0kG7m0iK1GmfoTuHcszrxQ6R1MOQV/LmG39k+rt7r3CHUmA==
-X-Gm-Message-State: AOJu0YzTudAniZ7KqNHZz1EOVddzu16Df6YEkBNCUM+b9QFtViKYvAIU
-	tNiHcBHQ/SBFuHEDFAGV3oLM7QrKJcfZmrfD2aHhg6QdWsdfWXf0x3sDE4XB3Wg=
-X-Google-Smtp-Source: AGHT+IHCfBE2md8mspyKXhaadpdAdtYooolQXavVjt8w2vbgfwVwHRxfZPv+lc+rTUN5hh/uqO8tPA==
-X-Received: by 2002:a2e:7d12:0:b0:2d6:d4ca:fa8b with SMTP id y18-20020a2e7d12000000b002d6d4cafa8bmr3137950ljc.34.1711642577650;
-        Thu, 28 Mar 2024 09:16:17 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.50])
-        by smtp.gmail.com with ESMTPSA id j8-20020a05600c190800b0041496b92502sm4551244wmq.31.2024.03.28.09.16.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Mar 2024 09:16:17 -0700 (PDT)
-Message-ID: <ccd0a1e1-5a37-4dd3-9ec3-4e9e42050cff@linaro.org>
-Date: Thu, 28 Mar 2024 17:16:14 +0100
+	s=arc-20240116; t=1711642681; c=relaxed/simple;
+	bh=CUt5KfeP+l5yUe9HnF3DHAzsNYXwbmVH7ufJpBD+/Ns=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=u4qRlAZj/Zr3FM8/D6PUIoM/1Vepce1d9YHU8W98v+WKlDjnSwzq2FVfMeSQJJdxbWsFWltcKe502tsfJzQE6O5TAV0G7CoAdCeHHPtaxShnSv+ksdcOap3/3IA0D7rYaOLZOnkDCs3WnktI1AY8hWb6nSGga8rdaPsSUedhzC4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=J7yL1gUo; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=7mAyGOzTn2Y/okweEUHaGbm55gJwqANfs4q2cLyLvHU=; b=J7yL1gUohhm9vn127Rxrx6UJFQ
+	RdbnX4GBzGg8Ios3r1ooX3nLAV15QTHr3PDOr8NFkYRR4NkyXcUNKHI9rMRFhfQ1YrfKggoSqEO4y
+	aqPlMuKnbCOonQOiztV/DZUOTr6yCrldw6Kii8wBujpWu2b2QqnjPdhYNLUdTbHxSqG0=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rpsRj-00BWOM-N0; Thu, 28 Mar 2024 17:17:43 +0100
+Date: Thu, 28 Mar 2024 17:17:43 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Luis Chamberlain <mcgrof@kernel.org>,
+	Russ Weight <russ.weight@linux.dev>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	Mark Brown <broonie@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+	Dent Project <dentproject@linuxfoundation.org>
+Subject: Re: [PATCH net-next v6 17/17] net: pse-pd: Add TI TPS23881 PSE
+ controller driver
+Message-ID: <0cc9923f-2907-471e-81b0-2ca01a6e8c79@lunn.ch>
+References: <20240326-feature_poe-v6-0-c1011b6ea1cb@bootlin.com>
+ <20240326-feature_poe-v6-17-c1011b6ea1cb@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: arm: qcom: Add Samsung Galaxy Z Fold5
-To: serdeliuk@yahoo.com, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240328-dt-bindings-arm-qcom-add-support-for-samsung-galaxy-zfold5-v1-1-cb612e3ade18@yahoo.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240328-dt-bindings-arm-qcom-add-support-for-samsung-galaxy-zfold5-v1-1-cb612e3ade18@yahoo.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240326-feature_poe-v6-17-c1011b6ea1cb@bootlin.com>
 
-On 28/03/2024 15:31, Alexandru Marc Serdeliuc via B4 Relay wrote:
-> From: Alexandru Marc Serdeliuc <serdeliuk@yahoo.com>
-> 
-> This documents Samsung Galaxy Z Fold5 (samsung,q5q)
-> which is a foldable phone by Samsung based on the sm8550 SoC.
-> 
-> Signed-off-by: Alexandru Marc Serdeliuc <serdeliuk@yahoo.com>
-> ---
-> This documents Samsung Galaxy Z Fold5 (samsung,q5q)
-> which is a foldable phone by Samsung based on the sm8550 SoC.
+> +static int
+> +tps23881_get_unused_chan(struct tps23881_port_matrix port_matrix[TPS23881_MAX_CHANS],
+> +			 int port_cnt)
+> +{
+> +	bool used;
+> +	int i, j;
+> +
+> +	for (i = 0; i < TPS23881_MAX_CHANS; i++) {
+> +		used = false;
+> +
+> +		for (j = 0; j < port_cnt; j++) {
+> +			if (port_matrix[j].hw_chan[0] == i) {
+> +				used = true;
+> +				break;
+> +			}
+> +
+> +			if (port_matrix[j].is_4p &&
+> +			    port_matrix[j].hw_chan[1] == i) {
+> +				used = true;
+> +				break;
+> +			}
+> +		}
+> +
+> +		if (!used)
+> +			return i;
+> +	}
+> +
+> +	return -1;
 
-Please always send DTS and its binding together.
+nitpick: Return -ENODEV.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +	while (cnt_4ch_grp1 < 4) {
+> +		ret = tps23881_get_unused_chan(tmp_port_matrix, port_cnt);
+> +		if (ret < 0) {
+> +			pr_err("tps23881: port matrix issue, no chan available\n");
+> +			return -ENODEV;
 
+and then just returns ret.
 
----
+> +static int
+> +tps23881_set_ports_conf(struct tps23881_priv *priv,
+> +			struct tps23881_port_matrix port_matrix[TPS23881_MAX_CHANS])
+> +{
+> +	struct i2c_client *client = priv->client;
+> +	int i, ret;
+> +	u16 val;
+> +
+> +	/* Set operating mode */
+> +	ret = i2c_smbus_write_word_data(client, TPS23881_REG_OP_MODE, 0xaaaa);
 
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
+Could you add some #defines here? This is semiauto i think?
 
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Disable DC disconnect */
+> +	ret = i2c_smbus_write_word_data(client, TPS23881_REG_DIS_EN, 0x0);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Set port power allocation */
+> +	val = 0;
+> +	for (i = 0; i < TPS23881_MAX_CHANS; i++) {
+> +		if (!port_matrix[i].exist)
+> +			continue;
+> +
+> +		if (port_matrix[i].is_4p)
+> +			val |= 0xf << ((port_matrix[i].lgcl_chan[0] / 2) * 4);
+> +		else
+> +			val |= 0x3 << ((port_matrix[i].lgcl_chan[0] / 2) * 4);
+> +	}
+> +	ret = i2c_smbus_write_word_data(client, TPS23881_REG_PORT_POWER, val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Enable detection and classification */
+> +	val = 0;
+> +	for (i = 0; i < TPS23881_MAX_CHANS; i++) {
+> +		if (!port_matrix[i].exist)
+> +			continue;
+> +
+> +		val |= BIT(port_matrix[i].lgcl_chan[0]) |
+> +		       BIT(port_matrix[i].lgcl_chan[0] + 4);
+> +		if (port_matrix[i].is_4p)
+> +			val |= BIT(port_matrix[i].lgcl_chan[1]) |
+> +			       BIT(port_matrix[i].lgcl_chan[1] + 4);
+> +	}
+> +	ret = i2c_smbus_write_word_data(client, TPS23881_REG_DET_CLA_EN, 0xffff);
 
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+This looks odd. You calculate val, and then don't use it?
 
-Best regards,
-Krzysztof
-
+     Andrew
 
