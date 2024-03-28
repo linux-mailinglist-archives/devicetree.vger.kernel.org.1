@@ -1,123 +1,159 @@
-Return-Path: <devicetree+bounces-54353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54354-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67301890955
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 20:38:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 135B989096B
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 20:41:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F9011C230A1
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 19:38:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 15BBA1C2C82E
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 19:41:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C72E80BE0;
-	Thu, 28 Mar 2024 19:37:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 228E413248F;
+	Thu, 28 Mar 2024 19:41:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Oij9zdN5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kaA9Q3h4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
+Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com [209.85.221.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D25201EA6E;
-	Thu, 28 Mar 2024 19:37:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 701641849;
+	Thu, 28 Mar 2024 19:40:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711654678; cv=none; b=mTdqi9ZVw4/JtsKHrQeJq5Tj2A4oYYzDtGYjKasLbST8IUyiBfTGmpKGhc5wE9VNoQHCpYKZ1d8xiIgMypVovNJe9C0gZHE+B4IFaVzCY8YIid2Iv79p788GEdUCahbkLj2v35oLbNLdsQX5ajml93YtS++g0M4ztzVUCpoHrww=
+	t=1711654860; cv=none; b=n+00L757N3vT1dZ82YdB3MOdwSfoospGHoxMUWUMLIaS0khyDCncM+yfoWz1HspulBqPej4M2WKiKCLMxmZH6UBePKjNdpJdxUCxtvxCgHV8way5NTenBFRIaxnT21aWPr/ZcG4k671BZ8FFW5nleeptDp0M6jlaqN2ud7AHCdI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711654678; c=relaxed/simple;
-	bh=y/b4xYUnvZR2AqHFoYx6ytBmSp6Erv+XATgcP3Dubbk=;
+	s=arc-20240116; t=1711654860; c=relaxed/simple;
+	bh=+3NWWwXtkzvrmA576fnyloztaGBywL+XKq+YksdA5gQ=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=nFtRnbCPGOrRJBFVSoD2MJly7kKxEJEEN7fKvQiwxdN4jnFeLYWwU9T8aXWig0E+s4ls5QsaYeVKxeXxuhEoBpsmgXyIMQLyBrY6hspbj4ubc4eu1SvvvDgJZjlJb3uY173MT9DmrwNxQOdl/X5WBimQKr6s32FmVjC4Lz6yD3M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Oij9zdN5; arc=none smtp.client-ip=209.85.219.44
+	 To:Cc:Content-Type; b=qHDj/yQVgG6GaPJlEoUIAFSKe1lc8CGfwP9G+eSe9AJvOKUuRw4DfGmBVAOi1OYoc7i47o25Gymm6o/wheYEd04wsUMUmk4yXBN1J/Be/F+jQPajk4Yx6Hwi4tAYiusTWIKgb9Zn6OtGGRp+R5pKWLYqVyXLodOYUb8fQSCLNV0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kaA9Q3h4; arc=none smtp.client-ip=209.85.221.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f44.google.com with SMTP id 6a1803df08f44-6963c0c507eso13297866d6.1;
-        Thu, 28 Mar 2024 12:37:56 -0700 (PDT)
+Received: by mail-vk1-f182.google.com with SMTP id 71dfb90a1353d-4d438e141d5so714815e0c.0;
+        Thu, 28 Mar 2024 12:40:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711654676; x=1712259476; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1711654857; x=1712259657; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=y/b4xYUnvZR2AqHFoYx6ytBmSp6Erv+XATgcP3Dubbk=;
-        b=Oij9zdN5FHSoT/F/7ndrJSf0ROO9T3otue/dYecf9XLnVw7Y6vRxFfU0phviwwqMrl
-         TCkm9iLDFFz6oEd16RBjhFw2y5bCFYmOa4JcQSiMPkTE2ZKCSgpDN8oI0PchhGvfSA6v
-         Ljt2oRB11IA06+qiNw3k8zm+Tont81StR9qFy8gDePz/Ug+aCKVAEY656ep9EMeBS502
-         jo0k2SPIAMlsutuenDjppuWF0C9OeKEsUoTmkPytMg2wuJdtTX2m9Y298eWokla54p8r
-         n16Nn/2giFLnurpfbRZo8qijdB3Wj0spr68QTzGHM8Ve9iCWLZgqYIM/hfgsCVk48uLR
-         89Zw==
+        bh=pGCaq9OrigqbkBbwFdgSJ7iz+P7VgNUODi7EL0TTbPM=;
+        b=kaA9Q3h42sLRsltH3mK4bf+Kysp/vEkP2EoztKKfGf4F4xo6le+/mbcT4YLDaCYv6Z
+         xyRCPRRVYeFeLtWk60JRQo/lhm0nVbAhWwQdEyuJnCQ5FDVND7S6fF/lESZh8AuAEglD
+         U5rHDu9EO38SqP7eEn3ts72lj4BNehdOye1oINE4wx1KUm189/ee4LkA6rD0DGLNJmC+
+         SKi87e9FI4Wkw1Ts62f9Pta9G9aT1yB2xZRb8KwCWW2yUnbXQy4G33SLOJKEwEa4h5YX
+         IpJgUApWG5cCCjpunC0CbLCFKtnk7uSvKiCvxuSjCLl37Y8abg1i/SJ6qikSxLAIA+eJ
+         3Gyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711654676; x=1712259476;
+        d=1e100.net; s=20230601; t=1711654857; x=1712259657;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=y/b4xYUnvZR2AqHFoYx6ytBmSp6Erv+XATgcP3Dubbk=;
-        b=g0nuh3H345PnAIcEj/gm3TiHy4SXgi32ONMstmdFKvsCjzjScktMwz4duwMKCLhobV
-         h/GtZLzxzuIHFzugQ187FIz8TWpOZTsIehWrh7TJ3poiqxNuEhG2uhzsziWkygUZXkZT
-         MmT4UA41AhBEvSGYNx09FLfK5tf2GvnRqPSYRGXPohYr8r8tn+IcrNNjNOHkV9BLi+Ns
-         r94Wz4pUEDtTR0yzIGg1WvB/xJphsQUh0/zexryKIDmD8s+rw754GcuqQI+jKJ5oYTdo
-         /VhIapqoQs2ea5/vMtIFfpitVVZsCjqWeCotNZZgnFmPva1wOvGGnA5I7RCU2fJRT/Gx
-         9mQw==
-X-Forwarded-Encrypted: i=1; AJvYcCWX59Hg7SaCItJuRUo9YA6BzwsuG4ij1U5y4pg0dYHfS9CPxdHj6dF8XtRIn33R+MaLfIvUT723fidRfUC45g2uNftAp5O26XzfCx4DK3lcc/nCiGqlb6zlWJt3HQgcJVav+sRq5dvOWA==
-X-Gm-Message-State: AOJu0YxuXSOGe9l5mQwim/5EzBm/k5u2eCuI7kWrheqpjYT9wjdzG0VO
-	hGlMsfBHqn1GiJM9ESJfm+u5o1slKCGz0I9GgmkkN87TyawA6toEYeXvUz42lKrFCMtxVSi38rv
-	32psaAK8lPQv2SdO0vQXmuWwQ3f8=
-X-Google-Smtp-Source: AGHT+IGVM5PXHNySYzAHCaoUocLXKnVjvFp7o+JfhXyoWthzaOLZx2m6VnOdX6eZRyUKh9LSRB66s8lF2s9NDUErMgA=
-X-Received: by 2002:a05:6214:1551:b0:696:a330:ce5 with SMTP id
- t17-20020a056214155100b00696a3300ce5mr847432qvw.20.1711654675710; Thu, 28 Mar
- 2024 12:37:55 -0700 (PDT)
+        bh=pGCaq9OrigqbkBbwFdgSJ7iz+P7VgNUODi7EL0TTbPM=;
+        b=a3s489Fbi4hZfjyX/B0EKYrhCm1t3VuQs570uBZTQCl31R2SPSsrdiKvd8pudOzjBx
+         wXI6pTPTISpwU3jOt/is6cC6Qm8WaJSl0+eVmiN9fccXoJGgPZN92iz7AywAKzrxi1oE
+         2h4TyqZN4soRrKPv0SqhnLShTQhWljzSh7Al5RhhPGFbT1aNurlrlvcN2Y7Qdi7i+XjH
+         RbbF7/Grlq6HugKq181Wd3nSuo9fc3LIAhsXkPE3ZB89V5pAuszm3MfqmeQCzkovpD6T
+         wuAMUp9jknOFj3z2Q58t4iTlFmGMca30Tu7OZLCXtJNiwsVyt48XfT08MetR0LTelxdP
+         CrGg==
+X-Forwarded-Encrypted: i=1; AJvYcCU+nzXZJ9kY0ZKk29e1ABHDbAnsnGpfFLM1Q+wWuFcJkBW1QOsw2UH9oWE52rJlV3BjmQcKFxpMAUz32imU8kEFgVg9OK1p5oOzvXxfFd0KdOY2AQ5pP3NkkP8QB93HmgWoJhhE5Sa0PW5KToP9RJmDEd9pBxbXfuWUuN+xdkoMlTonsENPBIggZpE/YT9n86drMwA0phvXEsrTVRvzAVxfLZENcx94wg==
+X-Gm-Message-State: AOJu0YyEFheS7pG4zIkBH9fn3j9FjjOfXf2bgvMXLfTTC3ZXZQ2mKKZy
+	GC20hOjHjnUGRcUW5UsNipqMfHhTX/u98H51iq2VifWd3MgEZr3flsUqtiH6l6IJhHZOtoG/Ohn
+	scYD7hQ3XVt16n4chIV3glVm8xic=
+X-Google-Smtp-Source: AGHT+IGGIZX5yS8mpZls/4SrlztMQeLHRiz+4BGAHryeTkdghkFMlHhUz+zkCt0bmRB5EW/857MaTjogeo0ycR0LGVQ=
+X-Received: by 2002:a05:6122:2806:b0:4c8:df97:139d with SMTP id
+ en6-20020a056122280600b004c8df97139dmr2962055vkb.2.1711654857269; Thu, 28 Mar
+ 2024 12:40:57 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CAOCHtYiSYat771sfx-Pdv59GDUBH_TzqkxUM+BMf0Q7Z0KEC9A@mail.gmail.com>
- <5C54919E-EBD5-4A16-821F-5146659CCD1D@beagleboard.org>
-In-Reply-To: <5C54919E-EBD5-4A16-821F-5146659CCD1D@beagleboard.org>
-From: Robert Nelson <robertcnelson@gmail.com>
-Date: Thu, 28 Mar 2024 14:37:28 -0500
-Message-ID: <CAOCHtYgy9UzNALjvhKo2uNGO8xW=V-3=3a_AmQ6oJMP1tDrFVw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: ti: Add k3-j722s-beagley-ai
-To: Jason Kridner <jkridner@beagleboard.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Nishanth Menon <nm@ti.com>, Jared McArthur <j-mcarthur@ti.com>, 
-	Deepak Khatri <lorforlinux@beagleboard.org>
+References: <20240326222844.1422948-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240326222844.1422948-8-prabhakar.mahadev-lad.rj@bp.renesas.com> <c200e87e-1c65-4926-9307-16229e90594e@tuxon.dev>
+In-Reply-To: <c200e87e-1c65-4926-9307-16229e90594e@tuxon.dev>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Thu, 28 Mar 2024 19:40:31 +0000
+Message-ID: <CA+V-a8vcyxrEmHrhgwDf2bhL1QpiXW6r1+aoH3my3uAJZfCtQA@mail.gmail.com>
+Subject: Re: [RFC PATCH 07/13] pinctrl: renesas: pinctrl-rzg2l: Validate power
+ registers for SD and ETH
+To: claudiu beznea <claudiu.beznea@tuxon.dev>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Linus Walleij <linus.walleij@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Mar 28, 2024 at 2:26=E2=80=AFPM Jason Kridner <jkridner@beagleboard=
-.org> wrote:
->
->
->
-> > On Mar 28, 2024, at 9:16=E2=80=AFAM, Robert Nelson <robertcnelson@gmail=
-.com> wrote:
-> >
-> > =EF=BB=BFOn Thu, Mar 28, 2024 at 2:12=E2=80=AFPM Robert Nelson <robertc=
-nelson@gmail.com> wrote:
-> >>
-> >> BeagleBoard.org BeagleY-AI is an easy to use, affordable open source
-> >> hardware single board computer based on the Texas Instruments AM67A,
-> >> which features a quad-core 64-bit Arm CPU subsystem, 2 general-purpose
-> >> digital-signal-processors (DSP) and matrix-multiply-accelerators (MMA)=
-,
-> >> GPU, vision and deep learning accelerators, and multiple Arm Cortex-R5
-> >> cores for low-power, low-latency GPIO control.
-> >>
-> >> https://beagley-ai.org/
-> >> https://openbeagle.org/beagley-ai/beagley-ai
-> >
-> > @Jason Kridner we need this to become public when you are ready ^ ;)
-> >
->
-> Did I mess up? Should already be public. We should make a github.com mirr=
-or though for up-time/visibility/bandwidth.
+Hi Claudiu,
 
-Thanks Jason, it seems to work in incognito mode now, so we are good!
+Thank you for the review.
 
-Regards,
+On Thu, Mar 28, 2024 at 8:01=E2=80=AFAM claudiu beznea <claudiu.beznea@tuxo=
+n.dev> wrote:
+>
+> Hi, Prabhakar,
+>
+> On 27.03.2024 00:28, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > On RZ/V2H(P) SoC, the power registers for SD and ETH do not exist,
+> > resulting in invalid register offsets. Ensure that the register offsets
+> > are valid before any read/write operations are performed. If the power
+> > registers are not available, both SD and ETH will be set to -EINVAL.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> >  drivers/pinctrl/renesas/pinctrl-rzg2l.c | 16 ++++++++++------
+> >  1 file changed, 10 insertions(+), 6 deletions(-)
+> >
+> > diff --git a/drivers/pinctrl/renesas/pinctrl-rzg2l.c b/drivers/pinctrl/=
+renesas/pinctrl-rzg2l.c
+> > index 348fdccaff72..705372faaeff 100644
+> > --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> > +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> > @@ -184,8 +184,8 @@
+> >   */
+> >  struct rzg2l_register_offsets {
+> >       u16 pwpr;
+> > -     u16 sd_ch;
+> > -     u16 eth_poc;
+> > +     int sd_ch;
+> > +     int eth_poc;
+> >  };
+> >
+> >  /**
+> > @@ -2567,8 +2567,10 @@ static int rzg2l_pinctrl_suspend_noirq(struct de=
+vice *dev)
+> >       rzg2l_pinctrl_pm_setup_dedicated_regs(pctrl, true);
+> >
+> >       for (u8 i =3D 0; i < 2; i++) {
+> > -             cache->sd_ch[i] =3D readb(pctrl->base + SD_CH(regs->sd_ch=
+, i));
+> > -             cache->eth_poc[i] =3D readb(pctrl->base + ETH_POC(regs->e=
+th_poc, i));
+> > +             if (regs->sd_ch !=3D -EINVAL)
+>
+> As of my knowledge, the current users of this driver uses SD and ETH
+> offsets different from zero. To avoid populating these values for all the
+> SoCs and avoid increasing the size of these fields I think you can add
+> checks like these:
+>
+> if (regs->sd_ch)
+>         // set sd_ch
+>
+Agreed.
 
---=20
-Robert Nelson
-https://rcn-ee.com/
+>
+> Same for the rest.
+>
+OK.
+
+Cheers,
+Prabhakar
 
