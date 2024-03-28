@@ -1,108 +1,95 @@
-Return-Path: <devicetree+bounces-54269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54270-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E908F8902C4
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 16:12:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A52708902CB
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 16:14:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 513331F2361A
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 15:12:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C86CA1C2B2E2
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 15:14:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78A4512F375;
-	Thu, 28 Mar 2024 15:12:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4CDB7F470;
+	Thu, 28 Mar 2024 15:14:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="K0Sgsalk"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="WlX/2cBq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D67DF12E1F3
-	for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 15:12:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AA0F52F6D;
+	Thu, 28 Mar 2024 15:14:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711638723; cv=none; b=BfFQeSWohV7ur7qD7IgxfcxRing4RmekpvMMEPWrusgE11NiRPbsP6cREQsgwVCX9OvrbPjnQ3eOPcHQVhnoqXcqvKt5ILi4S0iULg8ef6HMgpx0K6ftT5U6MsEmUfQIEd1F4ZqOXd9K4wicw79zWagQVjfCXqIufV3IhgIgs8s=
+	t=1711638890; cv=none; b=QJLb06iiM+4nr/xz/8Yo1iiyEdA1VzxNProcywsODNRDQXrJ/B/XjWsTNcv7b+rUTo4IHaY63iZdiyX4YLst4YJj7Qy5luzgkj57vOPR/oJX57OaIqmR7PKC3cW8ONufpckkZFCAr9u03xcneCBHqJxIMnzg1niJVW6UYDFtuoI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711638723; c=relaxed/simple;
-	bh=4Pw+pFI94Xaxlpp7zHktGYlCAl2z0xnGa/oih8dZYgc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZLQVag20SqdYTW6vGt2eFO7BCLj8A1dmFK8SpeM2yAqsvPQH7oJegN6APIbsptL9Yo+KrC/SZndahgKOf6hOAnO6ABxp6j6PUHdO30DLoUnwe35/+ITFSJxxcCo5QxQ8pXVyL3LaoDMjPoL10TosxNoCcP4J3H7i6LcBTIa8A+c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=K0Sgsalk; arc=none smtp.client-ip=209.85.219.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-dcc73148611so1150425276.3
-        for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 08:12:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711638720; x=1712243520; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=K1dRERqIwvawP6yvst+7RzsJv2Gfa3ZP4TWtYVKk144=;
-        b=K0SgsalkI2tp6jrsOrtUEBk4vsiHwmRqWTO7fVoOG0lc/f2FOsoyJXSJwFt5N9LYWJ
-         OgFKevD3POjo9Qt093Bc5CPHw/ZFi4XlY3fNG2c4dZg6dT2oq6cB2BbMH6PpQRYo7c/e
-         JGRuzOzotJK3LxC03d9jC6DDAfRTRU4yH4ew/RruKqxDS4cey6V+0iifKP5kN/hTBtJe
-         fzuDZ6MaF/vdn7JcWhNGLIv7dIObgpKM9iYnNjxjphP325BU2YTEwbXO4n6vMfX3YG9H
-         2vht0iSadDy9gcZlJrtdc2SFOSs92G+RvSaaX04ZkS/io75llyh7ZZiHwYofgwQ0fnAB
-         JJ6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711638720; x=1712243520;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=K1dRERqIwvawP6yvst+7RzsJv2Gfa3ZP4TWtYVKk144=;
-        b=ezxYOtqDvUJxj6dmy1X8KM+9/fLhbgu3ThzP87Fx8Hj/TTi8APHCq4LukOe3lskLZ8
-         Ls3EABEFPeUr6kSDMPmm4niXENLdmrzwXjPHlLV086s/TBc9J71GhtvIZuDLXQvy58nM
-         AiNeC17GJKMkBEWhky7n1HCdVSSgs6+6SQ2eBng4bDuEWTttc+uJ5WogzA8VDnjH84SK
-         lAWz7rZynqPrCELkqttctPPNNpYnaL7iBA15kBtxnOzRSO00xtLyq0zLI87hKmafkK8M
-         IwuMt7qFcO62zFMJSzkLCv+XomRcxBMBIFjgSLz2QajyZ+6ZSNiqGuNg1moPDcMPyWD8
-         3GSg==
-X-Forwarded-Encrypted: i=1; AJvYcCUa+npU3g95MhyB9/h07+ndoe28tcYikoUiqoLkuA5e50w+zfFlDgnjBpJVBWNuFsHbZBW/jySNQAnB/+NGoXHMmkdqBn1bE/qafw==
-X-Gm-Message-State: AOJu0YxJMV9WrxfmhI8XOD/9WE5/6ysHhQphxUcIdIwVV1A/ZCd41VyO
-	WG9KiiWY2xhr28/Xw5t7I6iIafypIdzhDCNl8agoTcLmBBFLSr9KD3Yz/3vEJiw34aEHagzbQyh
-	ntEM4pT0WBXrXdx7oTmxXoCR+aprP1C/BnhUMpQ==
-X-Google-Smtp-Source: AGHT+IGrkzP9Sxso9Vjo20YSLlSXYjup2Hg+RTtCFuuy76qY0UhZk+SCGzz1Uxer7GzjgHrcr7xJIaioiBDkEDXa2kE=
-X-Received: by 2002:a25:db85:0:b0:dd1:7128:617b with SMTP id
- g127-20020a25db85000000b00dd17128617bmr3216871ybf.38.1711638719977; Thu, 28
- Mar 2024 08:11:59 -0700 (PDT)
+	s=arc-20240116; t=1711638890; c=relaxed/simple;
+	bh=wQl8JadLGD/UpwqI1pz8/BgAhD6z6Ea3ShYQFSrM3t8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kU7T2Q7mrhGqTeLQWuAxMsM8LC1ZYh75cdA0eWc4YCkzuooU5rcgFWVxBCG8UsyUrk8xAfXwULVPp0Vh0fLfvAVum6T3t49+dh5v61sZScNEqD4WLbRrLBydbA0dlHWwXWA3xd/FRDJaROKdxJXwithkjP506JQnhLxk2jD3mD4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=WlX/2cBq; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=3lQVREUvlIEOSbuRrYEdom3TYDgdOz5t4a+/ATxhCXA=; b=WlX/2cBqydrlop2isJqyS3MtVL
+	ijF7uSGgHhujYK9jKaO3KlhytHRQQeVMc26fvzTA54neIHRM9YWPfDUSNkGZMs+OQO+TrNj8jV4S5
+	LFHmTIkEgZnyjQqb08LSR4huzKSGzm83BxykL/StK5BwKCzT/YMckmGkz60Hf8/RCO+Q=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rprSZ-00BVle-Lg; Thu, 28 Mar 2024 16:14:31 +0100
+Date: Thu, 28 Mar 2024 16:14:31 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Luis Chamberlain <mcgrof@kernel.org>,
+	Russ Weight <russ.weight@linux.dev>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	Mark Brown <broonie@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+	Dent Project <dentproject@linuxfoundation.org>
+Subject: Re: [PATCH net-next v6 12/17] net: pse-pd: Add support for
+ setup_pi_matrix callback
+Message-ID: <dfbe8337-d1ef-4654-84a6-47b3a425c73e@lunn.ch>
+References: <20240326-feature_poe-v6-0-c1011b6ea1cb@bootlin.com>
+ <20240326-feature_poe-v6-12-c1011b6ea1cb@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240328-sm6350-dp-v1-0-215ca2b81c35@fairphone.com> <20240328-sm6350-dp-v1-3-215ca2b81c35@fairphone.com>
-In-Reply-To: <20240328-sm6350-dp-v1-3-215ca2b81c35@fairphone.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 28 Mar 2024 17:11:49 +0200
-Message-ID: <CAA8EJpp1XEh1CR8898HnStWizcgByREGk-2ae_Yr2xTvcrEbag@mail.gmail.com>
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm6350: Add DisplayPort controller
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Kuogee Hsieh <quic_khsieh@quicinc.com>, 
-	Krishna Manikandan <quic_mkrishn@quicinc.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, ~postmarketos/upstreaming@lists.sr.ht, 
-	phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240326-feature_poe-v6-12-c1011b6ea1cb@bootlin.com>
 
-On Thu, 28 Mar 2024 at 11:43, Luca Weiss <luca.weiss@fairphone.com> wrote:
->
-> Add the node for the DisplayPort controller found on the SM6350 SoC.
->
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
->  arch/arm64/boot/dts/qcom/sm6350.dtsi | 88 ++++++++++++++++++++++++++++++++++++
->  1 file changed, 88 insertions(+)
->
+On Tue, Mar 26, 2024 at 03:04:49PM +0100, Kory Maincent wrote:
+> From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+> 
+> Implement setup_pi_matrix callback to configure the PSE PI matrix. This
+> functionality is invoked before registering the PSE and following the core
+> parsing of the pse_pis devicetree subnode.
+> 
+> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
--- 
-With best wishes
-Dmitry
+    Andrew
 
