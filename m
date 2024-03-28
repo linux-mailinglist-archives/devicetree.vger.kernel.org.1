@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-54097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A76F88FA35
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 09:44:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFEF688FA47
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 09:50:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AAF561F2898A
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 08:44:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF24E29BEEF
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 08:50:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAA053F9DE;
-	Thu, 28 Mar 2024 08:44:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DAC151C5F;
+	Thu, 28 Mar 2024 08:50:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kRxcCeyL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KXaf481e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB1AF3C0B
-	for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 08:44:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84BB7381DE
+	for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 08:50:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711615485; cv=none; b=oPzwu21q8dVpH4vqotHBmqYOFNHisuD3v0QN9RL5fJz6LpSBxcyOe9sYr794e1wJ/DOLtHJfV+Qt8fue99nJZJPYADVrnML65WTLquQBKMUs/vAkI5MpX923+wPktKOKWzIBFn66jjvKjCejULeGLqj7w0J/WR7NhnBUI9gaeE4=
+	t=1711615822; cv=none; b=BQzZr7BN8g0BL/k4YNtl9sZhH5J35qf5Q6HsklRlVegGNjfkZXlMp3vTJzZ0bhUBiMy9j4mGlFd77JYUaVWZB4IXbXYrSYk48yig9k9gyQ5bLphJdnA60/rT5qpVNvdnYISUpe59IowpOXKUcGGNO3eCEZxrCDJ7yvcxQWtOUwI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711615485; c=relaxed/simple;
-	bh=2bipewHiWc20IPVmt/h+G6sEVSbPUHGeRr02tRHiUS8=;
+	s=arc-20240116; t=1711615822; c=relaxed/simple;
+	bh=A0R6lmR1m+yAfOyrg4Hmzgx1/lM9XoICSF/GiNOEEd0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GmKDzMNme30Nfl0zqlEcc57KacoIZ4CbpDh3ykJ55H33phRtQQmQgz9x+hKpSpPYGteM4taJeVxyowXBFICgrXvCOByS2l1X7Oap5KKAQJKR1izj9kvEtPs/+HtfGsgjwsboDwJYbk00wbGqj4jJKobmlZSZBrwziQdpP49YdoE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kRxcCeyL; arc=none smtp.client-ip=209.85.167.44
+	 In-Reply-To:Content-Type; b=d3sb0l1S0zV2J/4ENR9Eg6U47IKZ8rz29lewPbGWkRrcJzJWiHQ/zsJ58wO5ygLSOABmxHVmvfX+CfkZFa8Tl1cIcZGFa3JcwVqQfLIdN88Mo4il38JmnFBrlUxp4CI4aHvYThozNsKjxEfbm+j5Ke6j0sh/OrUPJDpFh9lTma8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KXaf481e; arc=none smtp.client-ip=209.85.221.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-515caffe2bcso116683e87.0
-        for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 01:44:43 -0700 (PDT)
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-33ed4dd8659so1134222f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 01:50:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711615482; x=1712220282; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711615819; x=1712220619; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Vm8neqGmCcwB+1XXAd9zMCmUPIcIdZmM13yfXwpV3mY=;
-        b=kRxcCeyLN1QK3yYV9aDHj4pGRIl0YC+pIHYLxP9LKAxwghXy2ZL2G4j9V9TEs7BQUy
-         PF3EzaGr6VNa+Nr8fPde/8eGb9GvKJ4791Skw8HiQqjtacRABq/tXMg05Zm/3ZKOyy86
-         3y1W530VkJLfXKy8DqDjPvnbhp3fJCMvOEqIE4KX9qCg3ESXaotOA9rKSnO9zZrPONy1
-         0xzvI2D95nGE49KLvFWc4G0nBEhzNWBzuwv9DnFtYrHcoY7Mp8eZ0U9Gu3ma+lXUhoiM
-         nlgZ+dcmade/m4N7Mlo+wNJE3LqMqgbK8srGxGPUDqp7ROSIm806YKuQ6EJJQfFvndFQ
-         cWWQ==
+        bh=oZ+YBLkNV6VEF2rUgGOJxYuEYM/uMvvAYGZ9fwfCJXw=;
+        b=KXaf481ejzp4bbnckOJKMGotwe5DDEoy6qxFqc4RbWO105c8Dv6y1WHLI1foQIGmpV
+         Y2JsQFfxkRwS6aQzenBfm7xSvzR8FM+IFp+mZoiN7C/pQ853MUdlqdwL5b1km9LEPVkC
+         1kU0weqyYdnbRxD+BLLskEWgqmhhx8yPoEVGxt7SzIMeAMdW4kpBYvOxxhkgrOGduCLw
+         DOmrYgb5noKDACmYRymLkdGaX3Z/xSq3dDE8MGzukYVvwH17WN0CnKbrTRIvTh3r4j+g
+         ryiNViGtSyD1aBUxPy3jR2fb8EdTnT4uCqpcMuSKfMor9jDm0C0Fd9qUKNp/SACA9P8A
+         Nl2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711615482; x=1712220282;
+        d=1e100.net; s=20230601; t=1711615819; x=1712220619;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Vm8neqGmCcwB+1XXAd9zMCmUPIcIdZmM13yfXwpV3mY=;
-        b=TNpuM8wCSGVip1NSqlnuakhM6UPalsekk+txyRUu/ORJgQMEW17BDXQMwEBo/9d0dU
-         WUEC1NwM+o46AAcFLGOvR2yQwZEFoVSOlz3QTlGySVWIZhAR4bmC1DrrYYqJ0gsK2f5k
-         3wZWz7a666XLaunGfM5ia2gtJ82gIY2TTl7d86G+AJbmkxYbq9/O9I0UxwgfQeHMpoc7
-         f7nDYsaKd85q4UeieAtWQEw8IupyrErJ18F1nl1s9NOTuu+faOkikq7ZmSY7Wsxm16qr
-         yq2pGGBj76uFY0sD8MwQA5dpZbnh3cYEJV7ROXa+kojc3S7hmMObR0v2jt1HF6l4bBAa
-         NKRA==
-X-Forwarded-Encrypted: i=1; AJvYcCXcEc9vHXOeumTqZfxISaXpvSxo3ajbio1NbR+jTtTRn4lO7RfWD7xcIxSr80S0ydodj809dun9e4CpDfsQVgI0phybnW9MIqjaSQ==
-X-Gm-Message-State: AOJu0YyjyK1O1/WUBjKKJH9YCqAA/X8j5s4/u7ujZEL+SE2zkkcoAf5X
-	1CdpN5Lbdp79IAGC0j3UA53oN35/hVAZIlg1swCz/P0pVn2H3k4X4gP3XSrUcdk=
-X-Google-Smtp-Source: AGHT+IF3v72Lsejp74D9eHW05mq25ZXi+byMrEtB0ZgKT2QsyLHkbdos75fog2sbl9TVdTwjfx7xYQ==
-X-Received: by 2002:ac2:5b4c:0:b0:513:d49a:7a0d with SMTP id i12-20020ac25b4c000000b00513d49a7a0dmr1170137lfp.42.1711615482135;
-        Thu, 28 Mar 2024 01:44:42 -0700 (PDT)
+        bh=oZ+YBLkNV6VEF2rUgGOJxYuEYM/uMvvAYGZ9fwfCJXw=;
+        b=cYTpA7daJDW3WFrc7MP5KVJVdMKHqDUoJ/SsoXwX1YqgmVD652qe8x3d0ZtNRQm4O6
+         xu6RfjvsRox6AncbPQoNb3rb+ywu6XvmwFqD4UJ5RXKqK4KU5z/vL4NvvpsfC1HD4kq3
+         TgvkDMLKkWdGCPERfyI+DN3g0MFrt+Rq+kHVsj2pa0NkntGOtD7ENb2XMcv+mYT+Xnsh
+         ooeVi+pWSd60ijTD+Y9N8zNVmnk1vMmdg0qEtA6K8nCVL3dRyxL3KEY4tvT56p0/uVtY
+         Elv9UK9qRbKsJo94znT0tbs9IzsUSGX9oYKq5u59DnetW61gDjJcfnTsHRxUmSI+plH9
+         F+TA==
+X-Gm-Message-State: AOJu0Yy294kmzQTFgfZw+oMfuwa4avPKdeJvAMUHLcjR7FgSsvVujXpA
+	3zmUZi/fwGKSPEcN4HnEVQctCX/V5iataSLNJMIOiN8gFRN120ChUdpZCykgm7M=
+X-Google-Smtp-Source: AGHT+IHtezabxk0LaPOL3zQ45H75rf+nCNsKrfQeSAmSXeRy5hUrXy9WJyMTcEop3ixcKCztrypIPg==
+X-Received: by 2002:a5d:540b:0:b0:341:a63c:58bc with SMTP id g11-20020a5d540b000000b00341a63c58bcmr1177900wrv.2.1711615818960;
+        Thu, 28 Mar 2024 01:50:18 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.148])
-        by smtp.gmail.com with ESMTPSA id fj3-20020a05600c0c8300b00414896b61e4sm4712117wmb.16.2024.03.28.01.44.40
+        by smtp.gmail.com with ESMTPSA id dv10-20020a0560000d8a00b00341ce1b64f0sm1156645wrb.17.2024.03.28.01.50.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Mar 2024 01:44:41 -0700 (PDT)
-Message-ID: <12b911fb-ba8e-4fbc-bc7c-4de3a45d4581@linaro.org>
-Date: Thu, 28 Mar 2024 09:44:39 +0100
+        Thu, 28 Mar 2024 01:50:18 -0700 (PDT)
+Message-ID: <ace20109-fc4e-43f6-b82b-2ae7c2905b99@linaro.org>
+Date: Thu, 28 Mar 2024 09:50:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,40 +76,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] dt-bindings: power: Add mediatek larb definition
-To: =?UTF-8?B?WXUtY2hhbmcgTGVlICjmnY7nprnnkosp?= <Yu-chang.Lee@mediatek.com>,
- "amergnat@baylibre.com" <amergnat@baylibre.com>
-Cc: "linux-mediatek@lists.infradead.org"
- <linux-mediatek@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
- =?UTF-8?B?TWFuZHlKSCBMaXUgKOWKieS6uuWDlik=?= <MandyJH.Liu@mediatek.com>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>,
- "robh@kernel.org" <robh@kernel.org>,
- =?UTF-8?B?WGl1ZmVuZyBMaSAo5p2O56eA5bOwKQ==?= <Xiufeng.Li@mediatek.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
- =?UTF-8?B?RmFuIENoZW4gKOmZs+WHoSk=?= <fan.chen@mediatek.com>,
- "angelogioacchino.delregno@collabora.com"
- <angelogioacchino.delregno@collabora.com>
-References: <20240327055732.28198-1-yu-chang.lee@mediatek.com>
- <20240327055732.28198-3-yu-chang.lee@mediatek.com>
- <6dd9959e-f741-47af-b10a-1894f72ae78f@linaro.org>
- <c3ca3d90-898e-44b0-ad0f-dd78c09c5fcd@linaro.org>
- <f3eedfb3495bb9c28b5cbf466387c24822c5b6f6.camel@mediatek.com>
- <7ff9c4c7-3b56-4a5b-95b7-c37cbf8bcd6d@linaro.org>
- <b957b072d5d88ed315982e914a7f700e0ccafb83.camel@mediatek.com>
- <038ccb20-71cb-40d2-9720-ce1a0d3eac8c@linaro.org>
- <7f24ca2806a7199e4de6fad17b8dc1f127c82180.camel@mediatek.com>
- <c59f2f33-ad6b-469d-96be-9345920370b4@linaro.org>
- <CAFGrd9qZhObQXvm2_abqaX83xMLqxjQETB2=wXpobDWU1CnvkA@mail.gmail.com>
- <3b04c5344435cdb941b5d132e8f5fbfdf9188d67.camel@mediatek.com>
+Subject: Re: [PATCH v2 0/2] Add board-id support for multiple DT selection
+To: Amrit Anand <quic_amrianan@quicinc.com>, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, agross@kernel.org,
+ andersson@kernel.org, konrad.dybcio@linaro.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, kernel@quicinc.com, peter.griffin@linaro.org,
+ caleb.connolly@linaro.org, linux-riscv@lists.infradead.org,
+ chrome-platform@lists.linux.dev, linux-mediatek@lists.infradead.org
+References: <1710418312-6559-1-git-send-email-quic_amrianan@quicinc.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -157,52 +131,36 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <3b04c5344435cdb941b5d132e8f5fbfdf9188d67.camel@mediatek.com>
+In-Reply-To: <1710418312-6559-1-git-send-email-quic_amrianan@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 28/03/2024 07:06, Yu-chang Lee (李禹璋) wrote:
-> On Wed, 2024-03-27 at 12:55 +0100, Alexandre Mergnat wrote:
->>  	 
->> External email : Please do not click links or open attachments until
->> you have verified the sender or the content.
->>  Hello Yu-chang Lee,
->>
->> SMI LARB must have a power domain, according to "mediatek,smi-
->> larb.yaml"
->> Now you try to create a link from power domain to larb.
->>
->> Here is my understanding: when you enable/disable power domain, the
->> larb linked to this power domain may have an issue. Then you want to
->> retrieve de LARB linked to the power domain though the dts to manage
->> the LARB. 
+On 14/03/2024 13:11, Amrit Anand wrote:
+> The software packages are shipped with multiple device tree blobs supporting
+> multiple boards. For instance, suppose we have 3 SoC, each with 4 boards supported,
+> along with 2 PMIC support for each case which would lead to total of 24 DTB files.
+> Along with these configurations, OEMs may also add certain additional board variants.
+> Hence, a mechanism is required to pick the correct DTB for the board on which the
+> software package is deployed. Introduce a unique property for adding board identifiers
+> to device trees. Here, board-id property provides a mechanism for Qualcomm based
+> bootloaders to select the appropriate DTB.
 > 
-> Yes, this is what I am trying to do.
+> Isn't that what the compatible property is for?
+> -----------------------------------------------
+> The compatible property can be used for board matching, but requires
+> bootloaders and/or firmware to maintain a database of possible strings
+> to match against or have complex compatible string parsing and matching.
+> Compatible string matching becomes complicated when there are multiple
+> versions of the same board. It becomes difficult for the device tree
+> selection mechanism to recognize the right DTB to pick, with minor
+> differences in compatible strings.
 > 
->> IMHO, using the dts to have this information into the power
->> driver isn't necessary and may introduce some bugs if the LARB node
->> and power node in the DTS aren't aligned.
->>
->> It seems not implemented today but during the LARB probe, it should
->> "subscribe" to the linked power domain. Then, when the power domain
->> status is changing, it is able to "notify" (callback) the LARB, then
->> implement the good stuff to handle this power domain status change
->> into LARB driver.
->>
-> 
-> The problem with this method and why "smi clamp" is in power domain
-> driver is that our HW designer gave us a programming guide strictly
-> states the sequence of what we need to do to power on/off power domain.
-> Using callback, this sequence is no longer guaranteed and the side
-> effect is unknown... 
-> 
-> So I would like to stick with adding larbs just like smi into powe
+> The solution proposed here is simpler to implement and doesn't require the need
+> to update bootloader for every new board.
 
-You want your power domain driver to poke, asynchronously, without
-locking into registers of another device. And how does this not cause
-issues?
-
-No, work with your hardware engineers or Linux engineers on sane behavior.
+One of the concerns you got in v1 was: show us second user, so I believe
+in your interest is to Cc other platform maintainers which could support
+this idea.
 
 Best regards,
 Krzysztof
