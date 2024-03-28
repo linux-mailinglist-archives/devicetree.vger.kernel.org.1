@@ -1,218 +1,227 @@
-Return-Path: <devicetree+bounces-54380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54385-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26675890C5D
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 22:17:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E72A7890C79
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 22:28:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D0607291D17
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 21:17:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A42729237E
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 21:28:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCBF213A27E;
-	Thu, 28 Mar 2024 21:17:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4E6513AA4E;
+	Thu, 28 Mar 2024 21:28:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="pVGmHZDG"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="pcWtuIDa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38E2141A80;
-	Thu, 28 Mar 2024 21:17:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D7D013A244
+	for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 21:28:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711660666; cv=none; b=iEARIy2Tsi8+DNRXThmcTB3FxpChlgasSJfay4aTcYrXmm0g6XZ/SbluouhooPTvFWqNcEocDSEJ6ZL8VS5IwZqzoO7EoRRSDwxFMYEm8dtrcEBNIx0WR353IJeSGeTN9ONarXZrHxgDKagJRQUz6flNAWsRos6J+/qEulNUeKg=
+	t=1711661302; cv=none; b=ixzVuN/ovSunlHbDGkO9v1B5v+fPoOeHRtfSad/B5tteU4GXP6mPB1/zl3MHg+GgJGKqZ8W5ze4KZyQpBcefVGXwtC8S9YbeHlz+6sOJ0Dx2Kl5bqe1TYTvzAR52DOMr7GgANsRztQogbkuCNldErb6Ozu6SOjT8B2kklOqThtU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711660666; c=relaxed/simple;
-	bh=7Tk4v9rU4cp8O26lvJbATJhcSQxE9d5DNyvx1SOGOLE=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HXosH1JjSZ9/Re6MFu6aHGAVORKiZRNVMA8A7iWNARWWfsXxRaZK4tedGYSAA0+8+Hnz6cu25l5iAwlolNMTmNzv3sLw2NvV0jJXk2hsc2U9x4HmECo/uv8s5fK3Anj5LE7GrvR+O852RKTQvtCdJZrbMdjQop7lqOSTb2qgd3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=pVGmHZDG; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42SIJ2KR003277;
-	Thu, 28 Mar 2024 21:16:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	qcppdkim1; bh=zvJ0vhX7wfZ6zdugc4E4PLPb1HUs3ONWnc6z4J9p1ZY=; b=pV
-	GmHZDG1mADpzP6mjW9TW14aC2Ikm38r0SAtkaiCiGc9aSkjLonitPlQOoWA5yxBL
-	I2gFEH3qZwrLnthVKH5XFNonlEAID01uX4HL2six6Q6a/+B2GyAJjZ07Zf0Z7EdY
-	BOGY6D/k+Ds2fEIEebL6B6t7o9vu4m4o65Zv2JKEPlHOjCPqyY59sH4w+LIV8hxo
-	/khQvkD+1V2bCu3XwXRQ9/0gF3Jtx+p9dIRgqUxiihEEt0qTWU35PvlGTxzOsyci
-	WK2wGPO6cpbxnA9OOLAQTgHWtMfKsR7rLGJ9SJwDG78moMh6xqV34GpXDZ3Umk7I
-	Nh3WH3r8DUmZtM4NRoGw==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x53nxjg6p-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 28 Mar 2024 21:16:36 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42SLGZO4012363
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 28 Mar 2024 21:16:36 GMT
-Received: from hu-obabatun-lv.qualcomm.com (10.49.16.6) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 28 Mar 2024 14:16:32 -0700
-From: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
-To: <catalin.marinas@arm.com>, <will@kernel.org>, <robh+dt@kernel.org>,
-        <frowand.list@gmail.com>, <vgupta@kernel.org>, <arnd@arndb.de>,
-        <olof@lixom.net>, <soc@kernel.org>, <guoren@kernel.org>,
-        <monstr@monstr.eu>, <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>,
-        <dinguyen@kernel.org>, <chenhuacai@kernel.org>,
-        <tsbogend@alpha.franken.de>, <jonas@southpole.se>,
-        <stefan.kristiansson@saunalahti.fi>, <shorne@gmail.com>,
-        <mpe@ellerman.id.au>, <ysato@users.sourceforge.jp>, <dalias@libc.org>,
-        <glaubitz@physik.fu-berlin.de>, <richard@nod.at>,
-        <anton.ivanov@cambridgegreys.com>, <johannes@sipsolutions.net>,
-        <chris@zankel.net>, <jcmvbkbc@gmail.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <kernel@quicinc.com>, Oreoluwa Babatunde <quic_obabatun@quicinc.com>
-Subject: [PATCH v5 4/4] of: reserved_mem: Rename fdt_* functions to refelct use of unflatten_devicetree APIs
-Date: Thu, 28 Mar 2024 14:15:43 -0700
-Message-ID: <20240328211543.191876-5-quic_obabatun@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240328211543.191876-1-quic_obabatun@quicinc.com>
-References: <20240328211543.191876-1-quic_obabatun@quicinc.com>
+	s=arc-20240116; t=1711661302; c=relaxed/simple;
+	bh=Mdr43Xs70/jkD3vHSHG6rkd8UAawVU82XRKfqKy5tSc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Mpk2g3wJ5W2DYEtKfbF6lCcBkxTp53pNXfR1C6EerDz4fSkiARzBIj5F+OL5i4oNcvX7Asgx4Y81wW3CMyHLpKnkN0AJUezHKj8qdQktOp0B7NKTT/Ay50LPAntu/HX6m6tB95CuV7OYL/l7/rPIWvyl4eyij6oU6ltQqWNe8S8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=pcWtuIDa; arc=none smtp.client-ip=185.125.188.122
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com [209.85.221.70])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id D922342498
+	for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 21:28:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1711661297;
+	bh=5ko95O3gC1sLJn6IH23zULppCGnOBuRUTKkxrCf7TS4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type;
+	b=pcWtuIDaQUv5XW/NB3YB6ANX511yskKICJiFeLCcyukLTZUW8iih2qaLQYKuCyF7u
+	 rvN0nfb9yxwFOCMWZXwNo5sGubB7VU5vHJ2SV2JOs/bFQzq3WHcjdRaa2UYxhD3gWe
+	 3i1PjykFImlhZn7dtNrVvpNI3jRJOc8uY7FgcpFz1crhq1vYONBtewpw5xUWaohhaX
+	 E+AEvyXoFHUMsyA45OcWaudYLwEpoPWAHnY78g5xsfUzrFB2EyJp+LgMwG+aWrjDpY
+	 NkKMvoNafz9b7m2xjq9QobtnK9XFUokv4u4mmqKNqIlXKzfAmiTZnuHJ7+i+HoC2jD
+	 8Ch7O22XyuhdQ==
+Received: by mail-wr1-f70.google.com with SMTP id ffacd0b85a97d-33ec0700091so764429f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 14:28:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711661297; x=1712266097;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5ko95O3gC1sLJn6IH23zULppCGnOBuRUTKkxrCf7TS4=;
+        b=X7OuQ9B8m+zAS0FJPz1XjMEPD99ZOFbddZaU0m5Ni91nOO0/SyCv2NRQ2LY9FfEZvQ
+         8rnrpJGQBoTBjX/R6jtjYlFMc+9vaci2mO90R9kFcbzFwjFogaIWJIuyArB3qAVaPlsx
+         1ziBs9aeZmyIuxKfZhBtv5E+9JliTZDXV9xzymnhNYzIpGrSwG2ScR0fNk6gErFQVDsw
+         SloxKePtPt/2GqIFR+7kssaYJX68nhDnXL9Hy5HISGMSDhaFMr746hsTbfZ/yEnCp/1v
+         iAHt1sDBf3xKYZ1IlN8TAnsmD1J+2N48UWKerhfc5Ze85daM41rD5km+gVKrXOMqwH/S
+         mVDg==
+X-Forwarded-Encrypted: i=1; AJvYcCW8gufjtUpRfSMexd99A/pTvQzkPw+/MIxgrh62E639roIEHBTuRO7w6JKA2UOd+5rC+doGCvKO04X6zefJcM/ptSsnHqLfeomppg==
+X-Gm-Message-State: AOJu0YyHnhjo7+YaZqCtuUjPG/SaSNyYviw0BwxAdEuqOSZweIl2mrnQ
+	zz6DdKN3/RYGVY2L3Jvf30G+Dt7oLGEE7hj+seQEDKUBRRzew9aw0R7qgbxN6RgJNRhP7MsSWDW
+	1a1/dbain6uo9wRl/wGCII4PZtPdxnOeaNkk/4gheJsgMhwHQo3sgrUNroD0lL2nd1fxJTjdZMv
+	o=
+X-Received: by 2002:adf:f28a:0:b0:341:ddd9:c034 with SMTP id k10-20020adff28a000000b00341ddd9c034mr147973wro.65.1711661296798;
+        Thu, 28 Mar 2024 14:28:16 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG3aWLpJ7UToopXtObbatmYTPGekahPHltbJUAha1+RnYVQUR9NuugKZrIExJ3M4EMn+YHwyw==
+X-Received: by 2002:adf:f28a:0:b0:341:ddd9:c034 with SMTP id k10-20020adff28a000000b00341ddd9c034mr147960wro.65.1711661296382;
+        Thu, 28 Mar 2024 14:28:16 -0700 (PDT)
+Received: from [192.168.123.161] (ip-062-143-245-032.um16.pools.vodafone-ip.de. [62.143.245.32])
+        by smtp.gmail.com with ESMTPSA id gb17-20020a056000459100b003432db356easm2622729wrb.98.2024.03.28.14.28.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Mar 2024 14:28:15 -0700 (PDT)
+Message-ID: <43918921-0d05-41d3-a19b-f137314e868d@canonical.com>
+Date: Thu, 28 Mar 2024 22:28:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 6/6] riscv: dts: starfive: add Milkv Mars board device
+ tree
+To: Jisheng Zhang <jszhang@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Emil Renner Berthing <kernel@esmil.dk>, linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Conor Dooley <conor@kernel.org>, Aurelien Jarno <aurelien@aurel32.net>
+References: <20240131132600.4067-1-jszhang@kernel.org>
+ <20240131132600.4067-7-jszhang@kernel.org>
+ <20240206-magma-deem-2c88e45a545a@spud>
+Content-Language: en-US
+From: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+In-Reply-To: <20240206-magma-deem-2c88e45a545a@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: EoxbyCpQiIhXCrV0MxNXBG7mGSeJY2OE
-X-Proofpoint-ORIG-GUID: EoxbyCpQiIhXCrV0MxNXBG7mGSeJY2OE
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-28_17,2024-03-28_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- mlxlogscore=999 impostorscore=0 spamscore=0 bulkscore=0 mlxscore=0
- lowpriorityscore=0 priorityscore=1501 phishscore=0 malwarescore=0
- adultscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2403210001 definitions=main-2403280152
 
-Rename the relevant fdt_* functions to a new naming scheme, dt_*, to
-reflect the use of the unflatten_devicetree APIs to scan through the
-reserved memory regions defined in the DT.
+On 2/6/24 20:13, Conor Dooley wrote:
+> On Wed, Jan 31, 2024 at 09:26:00PM +0800, Jisheng Zhang wrote:
+>> The Milkv Mars is a development board based on the Starfive JH7110 SoC.
+>> The board features:
+>>
+>> - JH7110 SoC
+>> - 1/2/4/8 GiB LPDDR4 DRAM
+>> - AXP15060 PMIC
+>> - 40 pin GPIO header
+>> - 3x USB 3.0 host port
+>> - 1x USB 2.0 host port
+>> - 1x M.2 E-Key
+>> - 1x eMMC slot
+>> - 1x MicroSD slot
+>> - 1x QSPI Flash
+>> - 1x 1Gbps Ethernet port
+>> - 1x HDMI port
+>> - 1x 2-lane DSI and 1x 4-lane DSI
+>> - 1x 2-lane CSI
+>>
+>> Add the devicetree file describing the currently supported features,
+>> namely PMIC, UART, I2C, GPIO, SD card, QSPI Flash, eMMC and Ethernet.
+>>
+>> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> 
+> Got a dtbs_check issue in the patchwork CI:
+> 
+>    +arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dtb: gmac1-rgmii-rxin-clock: 'clock-frequency' is a required property
+>    +	from schema $id: http://devicetree.org/schemas/clock/fixed-clock.yaml#
+>    +arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dtb: gmac1-rmii-refin-clock: 'clock-frequency' is a required property
+>    +	from schema $id: http://devicetree.org/schemas/clock/fixed-clock.yaml#
+> 
+> Can you fix that please? Also, I applied some patches the other day that
+> seem to conflict quite a bit with the common board dts patch. Would you
+> please do a rebase on top of that please?
+> 
+> Cheers,
+> Conor.
+> 
+>> ---
+>>   arch/riscv/boot/dts/starfive/Makefile         |  1 +
+>>   .../boot/dts/starfive/jh7110-milkv-mars.dts   | 35 +++++++++++++++++++
+>>   2 files changed, 36 insertions(+)
+>>   create mode 100644 arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
+>>
+>> diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/starfive/Makefile
+>> index 0141504c0f5c..2fa0cd7f31c3 100644
+>> --- a/arch/riscv/boot/dts/starfive/Makefile
+>> +++ b/arch/riscv/boot/dts/starfive/Makefile
+>> @@ -8,5 +8,6 @@ DTC_FLAGS_jh7110-starfive-visionfive-2-v1.3b := -@
+>>   dtb-$(CONFIG_ARCH_STARFIVE) += jh7100-beaglev-starlight.dtb
+>>   dtb-$(CONFIG_ARCH_STARFIVE) += jh7100-starfive-visionfive-v1.dtb
+>>   
+>> +dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-mars.dtb
+>>   dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-v1.2a.dtb
+>>   dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-v1.3b.dtb
+>> diff --git a/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts b/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
+>> new file mode 100644
+>> index 000000000000..de600e799e7d
+>> --- /dev/null
+>> +++ b/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
+>> @@ -0,0 +1,35 @@
+>> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+>> +/*
+>> + * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
+>> + */
+>> +
+>> +/dts-v1/;
+>> +#include "jh7110-visionfive2-mars-common.dtsi"
+>> +
+>> +/ {
+>> +	model = "Milk-V Mars";
+>> +	compatible = "milkv,mars", "starfive,jh7110";
+>> +};
+>> +
+>> +&gmac0 {
+>> +	starfive,tx-use-rgmii-clk;
+>> +	assigned-clocks = <&aoncrg JH7110_AONCLK_GMAC0_TX>;
+>> +	assigned-clock-parents = <&aoncrg JH7110_AONCLK_GMAC0_RMII_RTX>;
+>> +};
+>> +
+>> +
+>> +&phy0 {
+>> +	motorcomm,tx-clk-adj-enabled;
+>> +	motorcomm,tx-clk-10-inverted;
+>> +	motorcomm,tx-clk-100-inverted;
+>> +	motorcomm,tx-clk-1000-inverted;
+>> +	motorcomm,rx-clk-drv-microamp = <3970>;
+>> +	motorcomm,rx-data-drv-microamp = <2910>;
+>> +	rx-internal-delay-ps = <1500>;
+>> +	tx-internal-delay-ps = <1500>;
+>> +};
+>> +
+>> +&mmc1 {
+>> +	disable-wp;
 
-Signed-off-by: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
----
- drivers/of/fdt.c             |  2 +-
- drivers/of/of_private.h      |  2 +-
- drivers/of/of_reserved_mem.c | 22 +++++++++++-----------
- 3 files changed, 13 insertions(+), 13 deletions(-)
+Due to which difference is 'disable-wp' necessary for the Mars board and 
+not necessary for the VisionFive 2 board?
 
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index 527e6bc1c096..7e1baf443286 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -1259,7 +1259,7 @@ void __init unflatten_device_tree(void)
- 	unittest_unflatten_overlay_base();
- 
- 	/* initialize the reserved memory regions */
--	fdt_init_reserved_mem();
-+	dt_init_reserved_mem();
- }
- 
- /**
-diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
-index 9ea250b80657..75726feac881 100644
---- a/drivers/of/of_private.h
-+++ b/drivers/of/of_private.h
-@@ -177,7 +177,7 @@ static inline struct device_node *__of_get_dma_parent(const struct device_node *
- #endif
- 
- int fdt_scan_reserved_mem(void);
--void fdt_init_reserved_mem(void);
-+void dt_init_reserved_mem(void);
- 
- bool of_fdt_device_is_available(const void *blob, unsigned long node);
- 
-diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-index 68d1f4cca4bb..3ae5918a0024 100644
---- a/drivers/of/of_reserved_mem.c
-+++ b/drivers/of/of_reserved_mem.c
-@@ -97,10 +97,10 @@ static void __init alloc_reserved_mem_array(void)
- }
- 
- /*
-- * fdt_reserved_mem_save_node() - save fdt node for second pass initialization
-+ * dt_reserved_mem_save_node() - save the device_node for second pass initialization
-  */
--static void __init fdt_reserved_mem_save_node(struct device_node *node, const char *uname,
--					      phys_addr_t base, phys_addr_t size)
-+static void __init dt_reserved_mem_save_node(struct device_node *node, const char *uname,
-+					     phys_addr_t base, phys_addr_t size)
- {
- 	struct reserved_mem *rmem = &reserved_mem[reserved_mem_count];
- 
-@@ -224,16 +224,16 @@ static int __init __dt_reserved_mem_check_root(struct device_node *node)
- }
- 
- /**
-- * fdt_scan_reserved_mem_reg_nodes() - Store info for the "reg" defined
-+ * dt_scan_reserved_mem_reg_nodes() - Store info for the "reg" defined
-  * reserved memory regions.
-  *
-  * This function is used to scan through the DT and store the
-  * information for the reserved memory regions that are defined using
-  * the "reg" property. The region node number, name, base address, and
-  * size are all stored in the reserved_mem array by calling the
-- * fdt_reserved_mem_save_node() function.
-+ * dt_reserved_mem_save_node() function.
-  */
--static void __init fdt_scan_reserved_mem_reg_nodes(void)
-+static void __init dt_scan_reserved_mem_reg_nodes(void)
- {
- 	int t_len = (dt_root_addr_cells + dt_root_size_cells) * sizeof(__be32);
- 	struct device_node *node, *child;
-@@ -277,7 +277,7 @@ static void __init fdt_scan_reserved_mem_reg_nodes(void)
- 		size = dt_mem_next_cell(dt_root_size_cells, &prop);
- 
- 		if (size)
--			fdt_reserved_mem_save_node(child, uname, base, size);
-+			dt_reserved_mem_save_node(child, uname, base, size);
- 	}
- }
- 
-@@ -475,7 +475,7 @@ static int __init __reserved_mem_alloc_size(unsigned long node, const char *unam
- 		       uname, (unsigned long)(size / SZ_1M));
- 		return -ENOMEM;
- 	}
--	fdt_reserved_mem_save_node(NULL, uname, base, size);
-+	dt_reserved_mem_save_node(NULL, uname, base, size);
- 	return 0;
- }
- 
-@@ -559,15 +559,15 @@ static void __init __rmem_check_for_overlap(void)
- }
- 
- /**
-- * fdt_init_reserved_mem() - allocate and init all saved reserved memory regions
-+ * dt_init_reserved_mem() - allocate and init all saved reserved memory regions
-  */
--void __init fdt_init_reserved_mem(void)
-+void __init dt_init_reserved_mem(void)
- {
- 	int i;
- 
- 	alloc_reserved_mem_array();
- 
--	fdt_scan_reserved_mem_reg_nodes();
-+	dt_scan_reserved_mem_reg_nodes();
- 
- 	/* check for overlapping reserved regions */
- 	__rmem_check_for_overlap();
--- 
-2.34.1
+>> +	cd-gpios = <&sysgpio 41 GPIO_ACTIVE_LOW>;
+
+On my VisionFive 2 1.2B, and 1.3A boards GPIO 41 reflects if an SD-card 
+is inserted (as shown in U-Boot by gpio status -a). So shouldn't this 
+value be moved to the common include 
+"jh7110-visionfive2-mars-common.dtsi" and broken-cd removed from the 
+VisionFive2 board?
+
+https://doc-en.rvspace.org/VisionFive2/PDF/SCH_RV002_V1.2A_20221216.pdf
+has a line
+
+     GPIO41 | SD_SDIO0_CD_GPIO41 | Micro SD：J10
+
+Best regards
+
+Heinrich
+
+>> +};
+>> -- 
+>> 2.43.0
 
 
