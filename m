@@ -1,116 +1,120 @@
-Return-Path: <devicetree+bounces-54255-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54256-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A4758901E1
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 15:34:39 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C691C890205
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 15:37:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6BDF31C2CE83
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 14:34:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 568EDB2187A
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 14:37:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6499312F380;
-	Thu, 28 Mar 2024 14:32:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 120E91E89C;
+	Thu, 28 Mar 2024 14:37:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nvW1KE+9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QwcGbyZx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37C3142061;
-	Thu, 28 Mar 2024 14:32:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCF10FC11;
+	Thu, 28 Mar 2024 14:37:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711636342; cv=none; b=T0OA4yWB2fwfUFfyoTri3uHnpw33BfyH1EfnRESsh4PdnZCxMreu5xT1tl9duXohib8d0sBbKWO/bP2WrRIKAobjqZXWZXmcYu4OpxCSQ0Lj99bI+5N/EYWYd/JL/9ADBt6bX/wRDoaifyCLvLY8rvAvsDNsYDOwvTHVnuZD+eo=
+	t=1711636628; cv=none; b=iK1+Jkv9EGVek+Bbl2pYtnflY9P+RfRzy2sZ7uFNjvbUM5uIApEh2yG16XKvNYIY7ceqwdiIg1DXJS8+N+5BmL0h1F2RmvfBaVsyCoTwCzoWSH2kv3UmsnYsAIMYx7XO7ZvlZLf+2lXaFc9eLY2YK4HaJVnyFgHq4oup4muKyxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711636342; c=relaxed/simple;
-	bh=DniBv7HDuOSFJ9Q/K/rkEYhPtiwkAM9wDfWrElmwlbM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=V9/kIokIuLHVy0j5j1MGuDWXvcoxHVVXmIcwNWYiPOUzfDJMhm83hmJWAWur6yKZRoobi4YonEh5RGwwsxgfLAw7mU+LArGqFXB4hlP4Z3tDZSp9QcD8+VMdq7F1+vIw32p4YR+f2u0GoGZMu0A/gksdNWuHYpufLKws4kRciLg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nvW1KE+9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A04D9C433F1;
-	Thu, 28 Mar 2024 14:32:21 +0000 (UTC)
+	s=arc-20240116; t=1711636628; c=relaxed/simple;
+	bh=5zoVivMz85j/bcpvjJ4VaqnSEkFXMxa/yb3WBm5WSYg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=EwJIQ9VrueA0PPWa+X+FanSjj4MrlTZyJQ+twijQ5ub9MWZsSjU0w4OJUwQ+2Qtl8krelWbl2bkovUhgfa38dNDhMLpJVfFkJOPOt69TLA7pI/+O34juRAG2iM+N6yaHDL5zVjuFZeCB9od7q2ilr6aKpW004P7ftlOVNJ2LDW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QwcGbyZx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57702C433F1;
+	Thu, 28 Mar 2024 14:37:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711636341;
-	bh=DniBv7HDuOSFJ9Q/K/rkEYhPtiwkAM9wDfWrElmwlbM=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=nvW1KE+9FE0GhHRQIATdCjTTgBBITil9f1CWyHaYGjAgwuPPZ6NTGa+eTUMepBmdo
-	 AW26qtGpKx9GY94U86oDEy3SniVBDdNo42uNTncueyCdTD1iU4c67bzrGTk8+6tOuy
-	 gGF0iSNBqxn3/WeYggTzJGRPjj0VwqFO8lW3EHJ6gemLnrroZg2AW8dzJwkQjHDlN7
-	 g5LzMD1b8tKh1Y/dWJcdziMsKvdQW5qpDOXxG2Q3pHXhRpKbfLm+aypl/kpy4ZgIbG
-	 PXs55R6f+rJCzkI2RUH+VZKuZTlggBhkOM9BKC++oiUhFp6qcEpQStaGCDX9BzvUmI
-	 yJ6DN4D5+xryw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 86769CD1283;
-	Thu, 28 Mar 2024 14:32:21 +0000 (UTC)
-From: Alexandru Marc Serdeliuc via B4 Relay <devnull+serdeliuk.yahoo.com@kernel.org>
-Date: Thu, 28 Mar 2024 15:31:54 +0100
-Subject: [PATCH] dt-bindings: arm: qcom: Add Samsung Galaxy Z Fold5
+	s=k20201202; t=1711636628;
+	bh=5zoVivMz85j/bcpvjJ4VaqnSEkFXMxa/yb3WBm5WSYg=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=QwcGbyZxuGgS7Wp0lja1CwfgNgBeUhjei85a900IkaKZjDyDXvkZeBafSbRfO6nsk
+	 HfG3W0yWw7WscIXFxWUQ+g61LDCZ/xVqH/cdy0ys7mcBKARbS+bJml/GFdGNwEhiW5
+	 F6nMV+cpfvlqMOOVkhyRFpdhxSNrAXyJE6++cYncOoUc+NPkIRRDCoWb5e8Kt8B/b9
+	 CV4MJd5qlWMGrXYcNhQuBVspoBT3unhyA8mhEdk6XMaGlB1M93zY2pMqcbxR4+snb6
+	 frywkMOYMzs1zoE/kd7FYRpOPXAz0Xj4wEXiLOiMbkYLlzos1Hi0MWMjIr98VFjFMR
+	 s145ZqrFOKBnA==
+Date: Thu, 28 Mar 2024 14:36:52 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>
+Cc: nuno.sa@analog.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, Dragos Bogdan <dragos.bogdan@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>
+Subject: Re: [PATCH 01/10] iio: buffer: add helper for setting direction
+Message-ID: <20240328143652.068492d0@jic23-huawei>
+In-Reply-To: <20240328-iio-backend-axi-dac-v1-1-afc808b3fde3@analog.com>
+References: <20240328-iio-backend-axi-dac-v1-0-afc808b3fde3@analog.com>
+	<20240328-iio-backend-axi-dac-v1-1-afc808b3fde3@analog.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240328-dt-bindings-arm-qcom-add-support-for-samsung-galaxy-zfold5-v1-1-cb612e3ade18@yahoo.com>
-X-B4-Tracking: v=1; b=H4sIAFl/BWYC/x3Nyw6CMBBA0V8hXTtJRUysv2JcDH05CX04AwQl/
- LuNy7O5d1fimbyoe7cr9isJldxwPnXKvjBHD+SaVa/7QV/6G7gZRsqOchRATvC2JQE6B7LUWni
- GUBgEkyw5QsQJtw98Q5ncFbQxg9XGttao2qCyD7T954/ncfwAtNAm74wAAAA=
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Alexandru Marc Serdeliuc <serdeliuk@yahoo.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1711636340; l=1106;
- i=serdeliuk@yahoo.com; s=20240326; h=from:subject:message-id;
- bh=IpQsriBYvSNLQMd2YJDhHVpK6OXYCGczgxGgUDxifKw=;
- b=Z4u1H1PWLX9nzxHNm1NxgRKIFZIAJe45DtsuFdFLAk59N198RnTlEnBQXghV2Try2UAsBPFQx
- C9trdRB/AT4AnGa0/edd20Wic9fm4u6aQ+D37uW+jv726xKpDaUko4b
-X-Developer-Key: i=serdeliuk@yahoo.com; a=ed25519;
- pk=aWyveUE11qfDOOlRIFayXukrNn39BvZ9k9uq94dAsgY=
-X-Endpoint-Received: by B4 Relay for serdeliuk@yahoo.com/20240326 with
- auth_id=147
-X-Original-From: Alexandru Marc Serdeliuc <serdeliuk@yahoo.com>
-Reply-To: serdeliuk@yahoo.com
 
-From: Alexandru Marc Serdeliuc <serdeliuk@yahoo.com>
+On Thu, 28 Mar 2024 14:22:25 +0100
+Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org> wrote:
 
-This documents Samsung Galaxy Z Fold5 (samsung,q5q)
-which is a foldable phone by Samsung based on the sm8550 SoC.
+> From: Nuno Sa <nuno.sa@analog.com>
+> 
+> Simple helper for setting the buffer direction when it's allocated using
+> iio_dmaengine_buffer_alloc().
+> 
+> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+I wonder if we should align with the approach for triggered-buffers with and _ext
+form of the registration function that takes a direction.  It seems odd to allocate
+one then change the direction.
 
-Signed-off-by: Alexandru Marc Serdeliuc <serdeliuk@yahoo.com>
----
-This documents Samsung Galaxy Z Fold5 (samsung,q5q)
-which is a foldable phone by Samsung based on the sm8550 SoC.
----
- Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Jonathan
 
-diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-index 66beaac60e1d..dea2a23b8fc2 100644
---- a/Documentation/devicetree/bindings/arm/qcom.yaml
-+++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-@@ -1003,6 +1003,7 @@ properties:
-               - qcom,sm8550-hdk
-               - qcom,sm8550-mtp
-               - qcom,sm8550-qrd
-+              - samsung,q5q
-           - const: qcom,sm8550
- 
-       - items:
-
----
-base-commit: 4cece764965020c22cff7665b18a012006359095
-change-id: 20240328-dt-bindings-arm-qcom-add-support-for-samsung-galaxy-zfold5-0994c09c202b
-
-Best regards,
--- 
-Alexandru Marc Serdeliuc <serdeliuk@yahoo.com>
-
+> ---
+>  drivers/iio/industrialio-buffer.c | 7 +++++++
+>  include/linux/iio/buffer.h        | 3 +++
+>  2 files changed, 10 insertions(+)
+> 
+> diff --git a/drivers/iio/industrialio-buffer.c b/drivers/iio/industrialio-buffer.c
+> index 1d950a3e153b..4b1ca6ad86ee 100644
+> --- a/drivers/iio/industrialio-buffer.c
+> +++ b/drivers/iio/industrialio-buffer.c
+> @@ -1956,6 +1956,13 @@ void iio_buffer_put(struct iio_buffer *buffer)
+>  }
+>  EXPORT_SYMBOL_GPL(iio_buffer_put);
+>  
+> +void iio_buffer_set_dir(struct iio_buffer *buffer,
+> +			enum iio_buffer_direction dir)
+> +{
+> +	buffer->direction = dir;
+> +}
+> +EXPORT_SYMBOL_GPL(iio_buffer_set_dir);
+> +
+>  /**
+>   * iio_device_attach_buffer - Attach a buffer to a IIO device
+>   * @indio_dev: The device the buffer should be attached to
+> diff --git a/include/linux/iio/buffer.h b/include/linux/iio/buffer.h
+> index 418b1307d3f2..7e70bb5adc01 100644
+> --- a/include/linux/iio/buffer.h
+> +++ b/include/linux/iio/buffer.h
+> @@ -55,4 +55,7 @@ bool iio_validate_scan_mask_onehot(struct iio_dev *indio_dev,
+>  int iio_device_attach_buffer(struct iio_dev *indio_dev,
+>  			     struct iio_buffer *buffer);
+>  
+> +void iio_buffer_set_dir(struct iio_buffer *buffer,
+> +			enum iio_buffer_direction dir);
+> +
+>  #endif /* _IIO_BUFFER_GENERIC_H_ */
+> 
 
 
