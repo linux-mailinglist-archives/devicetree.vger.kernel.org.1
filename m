@@ -1,124 +1,94 @@
-Return-Path: <devicetree+bounces-54287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 141CA8903EA
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 16:54:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8FD1890413
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 16:58:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C95D290758
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 15:54:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 71787290A2F
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 15:58:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 685E012F38F;
-	Thu, 28 Mar 2024 15:54:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC52E12F385;
+	Thu, 28 Mar 2024 15:57:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Alh1k5Le"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="E4Meh/Zd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4149EFC11;
-	Thu, 28 Mar 2024 15:54:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACD7980600;
+	Thu, 28 Mar 2024 15:57:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711641287; cv=none; b=YhqwRPtEdTqf1/3Bu5lY84OR4iZ3d8s3Q850oAjSxCQSdCbcdTHvUnZSOwfgZxFjRS9TLeWR1EE9GJ0I6H8AcFuGi0pejlZdcWQcaEUpFeuTl4yWIKJuwrS7J7raEexA23nDoXhlQVkpfLKGrpgIon78f+/xC0ATcbncQdbvqhw=
+	t=1711641476; cv=none; b=WZ/0YlH7YZc4d+oWy9QWrfrf82gbVWjXCWu15ZE/kTDTHmfKKJsooH0xAhM31spPjU8EAOnMnkiFBTmMil4Vt+zb9Fn89wkNmuZPf+NOoqOiZdvoKF9tPx/knoKR6vTlOm17IZnSJRtiHiO/d9K7ZZi5cty/RcNRk9eVav4ZlUc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711641287; c=relaxed/simple;
-	bh=0Ip6Yql/K2NvP/eZeQvhfJEuMRg5fxViNOWR9VYL7Cg=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qmP1KhGKEGGZuBIrmoVUowLk4572upB0MvW9s7msxJIeQvx6SjUC/56ZlsZVewTzgIvofPtmWObGeStmvoZPPA/BTjwKd92kHL+p58Hk1ICu4/p/c0ilZI9qeC0UBglEti84V63gr+5J87VR40L3qgU0toF9IdgoFXqppqLXFmg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Alh1k5Le; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88420C433F1;
-	Thu, 28 Mar 2024 15:54:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711641286;
-	bh=0Ip6Yql/K2NvP/eZeQvhfJEuMRg5fxViNOWR9VYL7Cg=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Alh1k5LeE+XO95Jb6CAzZkOKIuHKtStI5JaAmZRH2+j/Ci8gKN7BoHexYuX8e94Fa
-	 QMEPl08RViEXaX6itqDiKW7c3+Mkz/8lsaCSXiPVLN2dRNa622SUsIYpkqhqsuGs3k
-	 rRWNHuch4hRXyIZ2Zllg6ALa7xKm6LswJjsqU4QD9iuQA9jnLjMkP7Haq5YkTvF/Yq
-	 kf4ZgFPqPE5HmFd2mS9Lb/PhtcFFtZwnwWC0abW2Yd77vCUi/mXP9DKDepP6HCiw7s
-	 nM18sQjePQqzZnrfcZfLnf4fa+0zXP4NcS1edEsZaGMmkmp6dNfj9/9kcbcBX//JKU
-	 bal6JmiVvqJiw==
-Date: Thu, 28 Mar 2024 15:54:31 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
-Cc: Nuno Sa via B4 Relay  <devnull+nuno.sa.analog.com@kernel.org>,
- nuno.sa@analog.com, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- Dragos Bogdan <dragos.bogdan@analog.com>, Lars-Peter Clausen
- <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Olivier Moysan <olivier.moysan@foss.st.com>
-Subject: Re: [PATCH 01/10] iio: buffer: add helper for setting direction
-Message-ID: <20240328155431.55c1f435@jic23-huawei>
-In-Reply-To: <d30c43f7f9d2db5b9c0e779d99f029da1a751636.camel@gmail.com>
-References: <20240328-iio-backend-axi-dac-v1-0-afc808b3fde3@analog.com>
-	<20240328-iio-backend-axi-dac-v1-1-afc808b3fde3@analog.com>
-	<20240328143652.068492d0@jic23-huawei>
-	<d30c43f7f9d2db5b9c0e779d99f029da1a751636.camel@gmail.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1711641476; c=relaxed/simple;
+	bh=TsgynE1Z1ea236ytOWruUmpnyZ59M0GcPjqf7T4u/7s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MEvw3g0vyiHrggR3Fsty/OibGYcEnt/xiVRkYNf3GMehTgfW+JqQZCdV+gatC/v7BtvBGgnWGoPqmq1rbhS+u6+UlDrpBSEnWfAB9sghACzEwfHKpJJWE+jwZ+bZ6PK7x3jg8qWqerW1RJj+83Wq2gCyNISnutaez+X4poeQwFk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=E4Meh/Zd; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=bQeCpSDvW7FHpBaWzmqcrN/15zgwrjbHzsI9L73N2h0=; b=E4Meh/ZdA95KvDDeafTp1aL4+S
+	OjoYUZxE5ys07uDUDjKM6JquUiUF0nT/WpQJ4KwU/j0/Azmk81JO+2j/5FxA5nbRYCc9VO4d7utSM
+	ywbjF+euM9WgmjKJESxRQLi+dbw7yhTYERBsosjUv9G/KtTwpGDMkwjf1+l+Le6mzPZA=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rps8H-00BW2E-SU; Thu, 28 Mar 2024 16:57:37 +0100
+Date: Thu, 28 Mar 2024 16:57:37 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Luis Chamberlain <mcgrof@kernel.org>,
+	Russ Weight <russ.weight@linux.dev>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	Mark Brown <broonie@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+	Dent Project <dentproject@linuxfoundation.org>
+Subject: Re: [PATCH net-next v6 15/17] net: pse-pd: Add PD692x0 PSE
+ controller driver
+Message-ID: <7c45a0b5-5a6e-4609-b052-243d26a797d8@lunn.ch>
+References: <20240326-feature_poe-v6-0-c1011b6ea1cb@bootlin.com>
+ <20240326-feature_poe-v6-15-c1011b6ea1cb@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240326-feature_poe-v6-15-c1011b6ea1cb@bootlin.com>
 
-On Thu, 28 Mar 2024 16:18:04 +0100
-Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
+On Tue, Mar 26, 2024 at 03:04:52PM +0100, Kory Maincent wrote:
+> From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+> 
+> Add a new driver for the PD692x0 I2C Power Sourcing Equipment controller.
+> This driver only support i2c communication for now.
+> 
+> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
 
-> On Thu, 2024-03-28 at 14:36 +0000, Jonathan Cameron wrote:
-> > On Thu, 28 Mar 2024 14:22:25 +0100
-> > Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org> wrote:
-> >  =20
-> > > From: Nuno Sa <nuno.sa@analog.com>
-> > >=20
-> > > Simple helper for setting the buffer direction when it's allocated us=
-ing
-> > > iio_dmaengine_buffer_alloc().
-> > >=20
-> > > Signed-off-by: Nuno Sa <nuno.sa@analog.com> =20
-> > I wonder if we should align with the approach for triggered-buffers wit=
-h and _ext
-> > form of the registration function that takes a direction.=C2=A0 It seem=
-s odd to allocate
-> > one then change the direction.
-> >  =20
->=20
-> I agree it feels odd but I did not wanted to include buffer_impl.h in pla=
-ces that
-> should not have it :)
->=20
-> This patchseries adds the direction to devm_iio_dmaengine_buffer_setup().=
- Maybe what
-> we need is to have a non devm variant iio_dmaengine_buffer_setup() and tu=
-rn
-> iio_dmaengine_buffer_alloc() static again. Maybe that would make things a=
- bit more
-> consistent.=C2=A0In fact looking closer into that file, I would get rid o=
-f:
->=20
-> devm_iio_dmaengine_buffer_alloc() and __devm_iio_dmaengine_buffer_free()=
-=C2=A0
->=20
-> and have:
->=20
-> devm_iio_dmaengine_buffer_setup() and iio_dmaengine_buffer_setup() that m=
-ake use of
-> iio_dmaengine_buffer_free() and iio_dmaengine_buffer_alloc().=20
->=20
-> I think it would make more sense like the above. Thoughts?
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-Sounds reasonable to me
-
-Jonathan
-
->=20
-> - Nuno S=C3=A1
->=20
-
+    Andrew
 
