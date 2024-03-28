@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-54139-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54140-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7284988FB7A
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 10:30:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB8ED88FB7D
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 10:30:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 940AFB24E5A
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 09:30:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CB3F11C2E0D3
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 09:30:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E7CF34545;
-	Thu, 28 Mar 2024 09:30:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F024B2AD1C;
+	Thu, 28 Mar 2024 09:30:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="p2mHAKvg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="l/ke1REg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E71992594
-	for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 09:30:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D8A750277
+	for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 09:30:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711618232; cv=none; b=JgQS8syz0EWBR0I0xoHuv4R4hLqWfP2I0GvHm8YmpM3ECET8zVRe6jRg1aXBF7IA76mczOKJ8FBEg8vD5orRHv2ElCH+vOmefO8/7NJNaF2pq4tSshspMBHifzGcBzCnMF0x0TpK/Md1WIQthOYy9pJCsQG7devKzt9r4FrZyXk=
+	t=1711618244; cv=none; b=t7qto0yWWl+y1Tar6FX5uHTq04dccU6lXrj8Y5+UmF7Phbg9wHVc/zkOgLvJDLthmUSRAcyIflfgcK8r9P1Zrvu+OLnWYr3NfKc7hbmo+/veq19n2h9dEFTAgpauSXEnpXAii/1XGikWGm0aICEN+PUoo7htngasuxppCeqLAYI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711618232; c=relaxed/simple;
-	bh=VKWm4uTo8irKKgcUZgBcqCGSUyd80eLZPc4Kyu53nXg=;
+	s=arc-20240116; t=1711618244; c=relaxed/simple;
+	bh=qNEk2QTMWT7pE7NcGsScoyYwZsN/HGsrUwmknZUKB1k=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eJpUEkgmuggyTm3Dgu75n2kLfobPywfaodIjeV93ngKn2p+TjVjPYj+JXSfwe8f9xaSYVyy3KQu6kDpTjLYj4SW7YYLI/Dy0kOIeC7631JMwCZ6rbohET1ctpVt8+HWnJwKikX7DFCWn2bjoR8KOd/8s13OgP+/ZNIQo9aFG7oM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=p2mHAKvg; arc=none smtp.client-ip=209.85.221.48
+	 In-Reply-To:Content-Type; b=p/MG7G5xlgQqi0PLjzj0PPo4BxvtD1r7/ZX0y33B2g3ntoNIlQG48o5Sn8mO/cZLkJ/OrjvLNkitN4clM6cPKiqBY1r29/lLuh3YJw/qs/5yVSK2q82v+VHZ23Rsk6U5h9WP1OVPLP5ven4IL9rU46qzYW+8KB/voDhpRlAlU3k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=l/ke1REg; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-341730bfc46so434276f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 02:30:30 -0700 (PDT)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-41493e0fbf2so5100925e9.1
+        for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 02:30:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711618229; x=1712223029; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711618241; x=1712223041; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=kiCNfFZh0nkvi1SPgsZIulG33GHq+ALEc35b2BSjdd8=;
-        b=p2mHAKvgA1eeoMkjxRx9Mr3pPTQ3OAzs80MjxBynBDsiZmOfKi3Ms9wSD+OlEPTS4D
-         wxPC+pWKQUtit3ZSRypy1z/ZQ5DbSfiI8hcpRYYveIMkxM7VBBtIP3tptMflZWTgI4zk
-         Hu7zOeOZH42QWhmu3OlxGQY4PNJ9Uqi8oMBeGml1jEQYBBAyC9APmHbRfhxCQsrkUWIz
-         Xsm1/fIcmS8loD/FbeFbGrsHhDMmZrGRWj/iUuwesW1M2xxXmhDCzMnr4elm7kP4CGA3
-         BEBxfARKr0SmEzjBJjkPsO9xjkpkbjGTDpguRHiNCIeO8AL31s8r31O9sYYbFigEAVfh
-         GgRw==
+        bh=5zLV5Gl5gwlKCsD3kw1kz6Pu3G+4FAslKmMOi1/R37E=;
+        b=l/ke1REgAws6ipwQieMBLZSTRTf33UIiiVKE9asfMZsJ/yLh1Jj+14CfidUFcG56ty
+         InwAn9ffSMEON5yNGkmMRQ2CCKtUUq0F/WZYKbi6cBs7SKm+gHIER2Nc4xv8RmTUpCL9
+         il8ar9cn5qQHqCH3fSoxInG2ZrYyrihyK4cuq9jz58rgVjkLv+tLeumvhJDI8PziBVZ+
+         DT8b4J2FXAc8/YAFYZ5OJ0CyOZmPSb69uFtZMA0drv0qdHJPgBwU8IC26uLDT4yBKgzw
+         TJ/YEY8eEs062yyspb5nt7TIXrsWRcp33xYBBqYxebpkHvhCmlVSESjmspWyqNs7fJzJ
+         djfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711618229; x=1712223029;
+        d=1e100.net; s=20230601; t=1711618241; x=1712223041;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=kiCNfFZh0nkvi1SPgsZIulG33GHq+ALEc35b2BSjdd8=;
-        b=vcJucOvWJCRzsHUgjvFt7e5s5RcTit2a/k2oqmqDyHSPkHk7+J5OVewScFQoUN1nDy
-         kbzmwAnUouz2c6Komcv9iQloKvO9xP0FLVPl8hc+8W45t7QKiHqdiT7D1q7id/CInLmc
-         /MFmlAN6GOe6uEftQu+7SN8qydsJiX61TIqr2eNQZCJo+gFIL9U99PIddebLn+ZUAuV+
-         ewBf4l12kAIwc6CS1MxIxuIxtxIZ376bb7YbrqPyLKGc4B5ntkkki5aRHuzK5mGyw4xk
-         /iRnPeOHp9CPkDQznklq3LrPRWyCZU0TizijjVEV99t0NQdo45oUaiSbUntDCF2xP1KR
-         9AeA==
-X-Forwarded-Encrypted: i=1; AJvYcCXnsoHgBjueUpTkrnMn0DHFdpSvQRl+dgY+bZibvTzVHCdCqixpPXSBPUeNGpAxE/aCsdJZwUQFqlOoZo5lE36tox0uqlT/zfwZZw==
-X-Gm-Message-State: AOJu0YxqxJvxsR+WaYwXcgNxwPzJQl4CmCV0BcxpXcxjKSfp+fKhJ/i3
-	EPLfYsUqP5xnm4kVuS3WWYoAQfJzS2ZKjhokP+/COV5jKApr5Txq/0DK9XQBVQ4=
-X-Google-Smtp-Source: AGHT+IGNmIsLG4rtYVAIDr3d69lyAr7e+sdkXQvqqE8ACJYDaH8wRMfa04CF/vm+rEubbsyo5Io4HQ==
-X-Received: by 2002:a05:6000:18c5:b0:33e:d86e:c020 with SMTP id w5-20020a05600018c500b0033ed86ec020mr1320546wrq.35.1711618229353;
-        Thu, 28 Mar 2024 02:30:29 -0700 (PDT)
+        bh=5zLV5Gl5gwlKCsD3kw1kz6Pu3G+4FAslKmMOi1/R37E=;
+        b=bdsya/VGptlssjfacg+ofOentjuF9cZIMOz0jBZPqIyp/siAoUK/3v4I2pI09SDXB/
+         MLfyeczsa6ByFO3aIAOEaDqwsRcs/0gkgUcKp1fBQcN4uhFoWMsUhbWsQzta52Fbnuwo
+         c0mjJbsRi8F66E7htkoWj5puMhCX8L2ehL3ahhhj8pQ2L3qb6TStlGGiGEfxC4RmTQXk
+         0dIvF9G8It108xG0NtmQlR5G8dCX5rai7EfFDZ70Q9Z3hEGxkbnpRo0uxAvDtmztb4Cz
+         qsUcvzARrzx5zitc0cAW21hSAs+H1pIQOKkyNleezxGAds3oCEIFr3VQKYDJlePlTwTF
+         o9WA==
+X-Forwarded-Encrypted: i=1; AJvYcCWeGhqlqGCqwHzfm2ofcYBXiEUCgVnn+iE1LYyV1PssC7M+6Tc9sNJvnwLuKLJ/QV5aa4D84mv7qCTps23mXYWyK0mPPAK6krhqHg==
+X-Gm-Message-State: AOJu0YyoNHnecc+PtOePWA/gvheIhxeXcnbiTLutGJnfj3iGB2LzFm3n
+	RBx34yI8W6YQfqXyNE6F9NfiBmrQ26ntZPEPdTPI2Y/AwzRsToxtgOXZ/rYTAyI=
+X-Google-Smtp-Source: AGHT+IHVYxVYtdSjcJTl74MiA1N51ClccEj2TIRNuYqY07qAFOHuTGo/Y4+g/ZSDV5llROp9pOfsXw==
+X-Received: by 2002:a05:600c:4fd2:b0:412:c858:fdfb with SMTP id o18-20020a05600c4fd200b00412c858fdfbmr1743633wmq.17.1711618241659;
+        Thu, 28 Mar 2024 02:30:41 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.148])
-        by smtp.gmail.com with ESMTPSA id bn22-20020a056000061600b00341e2738eb4sm1248823wrb.95.2024.03.28.02.30.28
+        by smtp.gmail.com with ESMTPSA id bi25-20020a05600c3d9900b00415481edde3sm726781wmb.9.2024.03.28.02.30.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Mar 2024 02:30:28 -0700 (PDT)
-Message-ID: <d7fcd15a-8fca-4652-aa63-e01113ef8325@linaro.org>
-Date: Thu, 28 Mar 2024 10:30:27 +0100
+        Thu, 28 Mar 2024 02:30:41 -0700 (PDT)
+Message-ID: <c310acda-c41b-4b67-9b26-18db3397031e@linaro.org>
+Date: Thu, 28 Mar 2024 10:30:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,7 +77,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/7] dt-bindings: hsi: omap-ssi: convert to YAML
+Subject: Re: [PATCH v2 4/7] ARM: dts: omap4: fix hsi-port node name
 To: Sebastian Reichel <sebastian.reichel@collabora.com>,
  Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -85,7 +85,7 @@ To: Sebastian Reichel <sebastian.reichel@collabora.com>,
 Cc: Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org,
  linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20240327-hsi-dt-binding-v2-0-110fab4c32ae@collabora.com>
- <20240327-hsi-dt-binding-v2-3-110fab4c32ae@collabora.com>
+ <20240327-hsi-dt-binding-v2-4-110fab4c32ae@collabora.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -132,95 +132,20 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240327-hsi-dt-binding-v2-3-110fab4c32ae@collabora.com>
+In-Reply-To: <20240327-hsi-dt-binding-v2-4-110fab4c32ae@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 27/03/2024 20:11, Sebastian Reichel wrote:
-> Convert the legacy txt binding to modern YAML.
-> There are a couple of semantic changes:
->  - hsi-port@<addr> and ssi-port@<addr> node name
->    changed to port@<addr>
->  - ti,hwmods was marked as deprecated. This is supposed to go away
->    once OMAP3 gets the same treatment as OMAP4.
->  - changed ti,cawake-gpio to ti,cawake-gpios
->  - describe peripheral requirements for the port node
+> The DT binding specifies, that the node names for the HSI ports should
+> be just 'port@<address>' instead of 'hsi-port@<address>'.
 > 
 > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-...
+> ---
+>  arch/arm/boot/dts/ti/omap/omap4-l4.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 
-> +
-> +  interrupt-names:
-> +    const: gdd_mpu
-> +
-> +  ti,hwmods:
-> +    const: ssi
-> +    deprecated: true
-> +
-> +patternProperties:
-> +  "port@[0-9a-f]+":
-
-Missing ^ and $.
-
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      compatible:
-> +        enum:
-> +          - ti,omap3-ssi-port
-> +          - ti,omap4-hsi-port
-> +
-> +      reg:
-> +        items:
-> +          - description: TX registers
-> +          - description: RX registers
-> +
-> +      reg-names:
-> +        items:
-> +          - const: tx
-> +          - const: rx
-> +
-> +      interrupts:
-> +        items:
-> +          - description: MPU interrupt 0
-> +          - description: MPU interrupt 1
-> +        minItems: 1
-> +
-> +      ti,ssi-cawake-gpios:
-> +        description: GPIO signifying CAWAKE events
-> +        maxItems: 1
-> +
-> +    patternProperties:
-> +      "^(modem|mcu)$":
-> +        type: object
-
-additionalProperties: true
-(I think I mentioned it last time)
-
-> +        $ref: /schemas/hsi/hsi-client.yaml#
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - reg-names
-> +      - interrupts
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - ranges
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - clocks
-> +  - clock-names
-> +  - interrupts
-> +  - interrupt-names
-
-Rest looks good, thanks. With these two changes:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
