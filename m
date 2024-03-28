@@ -1,174 +1,148 @@
-Return-Path: <devicetree+bounces-54315-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54316-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B70A8906E7
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 18:10:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FFBB8906F4
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 18:11:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A7409B2532D
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 17:10:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2067EB2812E
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 17:11:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEC8E433BF;
-	Thu, 28 Mar 2024 17:07:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A28857FBBA;
+	Thu, 28 Mar 2024 17:09:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="D4TOsC4u"
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="VPUpwU4I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B2AA3BBDE;
-	Thu, 28 Mar 2024 17:07:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 456BE5A4C4
+	for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 17:09:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711645646; cv=none; b=Xg3g0/k4E2EOinzgOsn8ZEzmu3kPuRaW0f5WvH1Or/pYdXtqpSwU84JpYaIy/zYWjo23F4dhajZK/cEuwAInav2Y4pYSRoeBJEN2jLCpxrBr4AKsQMMRIJi/onOzm0gOIqj4LA9N8kPyIUxTrOauxNrIVgf6uGWF5dZhJLdhbx0=
+	t=1711645796; cv=none; b=ZaEYOYOzsFHYXKWaIOdZsxrfkIt1Xp2jPltftRIaJ0TuzHN2bFVP0Mzh1bX2VVy/boI+Uu8mlaVQ6Fbz9rXEfAffnZ7Fow+n/Sr9PO2MK27EKF3eaiAAghLpgVbOKu19qxPN0yb8pb5+dJ3j4eRMAgRHYHglbCs6eKmITlmigZo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711645646; c=relaxed/simple;
-	bh=6RQDoGeT546Pixy+4SXFxoN5IeqOGhhfiLlcwZ1C7v4=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=XooakCZMl+YbESaDGiiLzG3RnTAGu/1HjbqPelZCZbZceKwxjxjlAhPDP4gVOD3J/JjcmTOOoRQYPlEHvPg5INZWoen/5hI0yWhrZVNR57J49nZ4o5jfhEn2yFVK3b0O0rPNCWR8n8sBzPr2C3u04wvA20LXlAcnEi8H92y99bg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=D4TOsC4u; arc=none smtp.client-ip=209.85.208.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2d485886545so19131401fa.2;
-        Thu, 28 Mar 2024 10:07:24 -0700 (PDT)
+	s=arc-20240116; t=1711645796; c=relaxed/simple;
+	bh=4aGtlYQa6LOd2OEmaA7FHOw6SQYqs0vT1Qz4Tis7MSs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lIqit4bkXDjXBsHyZt/nFM6sLQ2lF/1lOc0al0nQzt9usAn1BCYLMRSnn80tMeT5lYCp311tiTHIQXmdUtpxuLg3ZRLAZEZTWPd80G/F+Oqmgln02uS6iLqOUMAEnR6f5vEslSlzK19bNsMwIZnQjDDMXnXOdv4s4zrUsNt0IgM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=VPUpwU4I; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-414a2679222so7481855e9.1
+        for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 10:09:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711645643; x=1712250443; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=6RQDoGeT546Pixy+4SXFxoN5IeqOGhhfiLlcwZ1C7v4=;
-        b=D4TOsC4uazCP1AdIxcB83L5IkaZGM+PhyZFYEwFzGdui8Eizd2SEFek3PQa7Gjx5em
-         t1yRgwcfClP7UzL0Hr5xOSG5nMl9pzQ9JVdGYwrB29AuKgJ5tI7N5iXt9GODb/iLrcDF
-         gwhcX3zE4ayjlzgCHJ5skC7kKvGo7pgOPxjpsLptFC0FpbNwKIIrYUuAB3AlOPegJskB
-         JezbJJ+h8RYesegqnxPXgP95wBNB/CxwuMij4c0FjA0F46zOmMz8CkAZdKAnCqjqFvWR
-         U6b4L1wW5Scx52seB+NAyqnALElPK+QV0v7PzYKjU9ucgcQvmMBX51qx8OTpTfdUpr63
-         sj3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711645643; x=1712250443;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1711645788; x=1712250588; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6RQDoGeT546Pixy+4SXFxoN5IeqOGhhfiLlcwZ1C7v4=;
-        b=h6vc/cnmZwQAeBkIxkogY3EEmyQJcJlOD9pbqz1k2RqZZn2YB4wAjw97vqnFrZpy1+
-         oVarEi4HDAQGfI5WE0anldNMgfiVzMZg4MIBggfwcs9wwwKW0K5+Yrs/jggBJnA3qg8Q
-         iGur3+81TJSZ87QCU6+qxb2cLghhRrauXDCLW2wD7os8oYFpKO7Xh0qJLMiU/mxAiwnC
-         FAGpdpSHDrB21cbKI2EYRpghuuvGwh2QuxKDwc8N/JQyHix3iA8ACSIAEMWYZxtC9yXN
-         vzqd9ZL5Q43P5XdroeNoGKG87okcDjIUnx56wqCtWFaxyRAvUnWGaFMKvC+Eo7wyJXuo
-         X3tg==
-X-Forwarded-Encrypted: i=1; AJvYcCVeuXbDEtP3tENbNXkHQGun2YrlZlQpr4yWAmZchgcSqFaXRoG6E/c7YRRRvx6lvfEk808s45YuvGBOnrSL2KOsceR2reGCcmKANC7woPcOei/QP98T+Nts9Tq0XOZ+0IxaLpW09cz/FTA3FmbjI9vLr6Fs00ssXVMKBBW9xXWOajpEpw==
-X-Gm-Message-State: AOJu0YzroxUvm0nnZGYPB1/9hEyb+fVTSO4KAHU+VxgWMaQL0twvwJc+
-	/s/L62MpC08DpRZMm6GlYEEfHKuqPH79mP4zhdvYnzt5S7kUVMuU+iYJPl/ydlE=
-X-Google-Smtp-Source: AGHT+IF19/bTSLmocLvHDNnbKFhlGwux/gbwAyZC0eU4UfCDTw3v32QFG8iLu+fAymtIhkqZwx6Fxg==
-X-Received: by 2002:a2e:819a:0:b0:2d6:a11f:b4b2 with SMTP id e26-20020a2e819a000000b002d6a11fb4b2mr2996588ljg.25.1711645642712;
-        Thu, 28 Mar 2024 10:07:22 -0700 (PDT)
-Received: from ?IPv6:2001:a61:343e:8301:d737:22b0:7431:8d01? ([2001:a61:343e:8301:d737:22b0:7431:8d01])
-        by smtp.gmail.com with ESMTPSA id bk5-20020a170907360500b00a46b4c09670sm942429ejc.131.2024.03.28.10.07.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Mar 2024 10:07:22 -0700 (PDT)
-Message-ID: <f0f985b272af85aea912479ced50ff52f29506b1.camel@gmail.com>
-Subject: Re: [PATCH v4 0/6] iio: temperature: ltc2983: small improvements
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, Nuno Sa via B4 Relay
-	 <devnull+nuno.sa.analog.com@kernel.org>
-Cc: nuno.sa@analog.com, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org,  devicetree@vger.kernel.org, Lars-Peter Clausen
- <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
- Olivier Moysan <olivier.moysan@foss.st.com>, Jyoti Bhayana
- <jbhayana@google.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Thu, 28 Mar 2024 18:07:21 +0100
-In-Reply-To: <20240328165650.1d8d4216@jic23-huawei>
-References: <20240328-ltc2983-misc-improv-v4-0-0cc428c07cd5@analog.com>
-	 <20240328165650.1d8d4216@jic23-huawei>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+        bh=y8/g+cHkPSXhHlEKcSVfgwp5KAJjPgctuVitEMx931o=;
+        b=VPUpwU4I2a1Do4aFNdRh5a63esOYYUo4RY9x2pYYPz0rW0e0OePa96Ae1Fn+87NzjE
+         C70CVl2i3EgQlrlInY47WgkAJNMeBu9PYH0d6IRYF/pBo8KJ/YLE/ZIuF3ydE1aDqn46
+         REZrGLZO0LqVbzxWiO0Pi2B1Fb06baU0NjlaTHLt6xvO+HVaPDzXjTii0BplnmJ3XSR+
+         t/yuKlbMZlk/k+Bsjy4k0vsGMT4S7vI3y28hkTWErDO5CCUWPzYKiOaAjHFvzoOPXQ7B
+         noU0k252QBDvakeYGRscsgJck2ZVUzksxYRu7MpoM5hj307Lrw+T97Z6i+1HPdbkM3Nw
+         FeqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711645788; x=1712250588;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=y8/g+cHkPSXhHlEKcSVfgwp5KAJjPgctuVitEMx931o=;
+        b=bXdjubpAxesKd9nZupUlbm8CKD73VDJ+Rq1H7a7hJ5Q9EYzR3HIIa7ssmqv7I0sxWT
+         Pg3oEsUldT0+6qQFF9o0v1PagvpJXbZMYlbXnUpFmVta2uq6IbjNEe8cjwosiQ4j/7mo
+         6WJT4HoJVyKTgJFObtlB4ZlIRNUh5Nv/+Uefg7ZYDcbz1TfXW2gA+MqTlvo9snuTr7nB
+         WfLDWoGoMQ/K1sGO/yv3x2QZ7SOZV3JWqHFsolJBc6Z5hGwfmnTyrmY9IANGqN9pCpnW
+         VUJyKsdSq3kPf1m744obGpsiK0dwAuo2KIsZ1zRI8LvGuSYTkZCarbNRkXsUIdB1Y2mf
+         yHLA==
+X-Forwarded-Encrypted: i=1; AJvYcCXFaRa8wpHzAU5IiIhImA3zQWl3lgtZwlKoF6A3/tYrd3dlWmCAGQ2wz8rSYMp1/doe5vud0utxPwqmGSDlk66OboYDqF9Y8i0pSQ==
+X-Gm-Message-State: AOJu0YzHq+CRF+/K/DHOzHF7A+2MbP9tc8fTF/c8UqVWT2ruSrCw9Kiq
+	75otkPmvktp+g06yovHCdK8JsYSPw/lcHE45JVuY2a+hu+o/ItREy77q+753VYM=
+X-Google-Smtp-Source: AGHT+IHOl+8pLp638KlWCuohcoJcoPfMOHatFiZG43JVDO7VUY/xCGKW1oVbaGfCkvHbEXNELOF7jw==
+X-Received: by 2002:a05:600c:3ba6:b0:415:43f2:332b with SMTP id n38-20020a05600c3ba600b0041543f2332bmr2148445wms.2.1711645788367;
+        Thu, 28 Mar 2024 10:09:48 -0700 (PDT)
+Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id o10-20020a05600c510a00b004148a5e3188sm5997405wms.25.2024.03.28.10.09.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Mar 2024 10:09:47 -0700 (PDT)
+Message-ID: <c908125e-84fb-42f3-bbb5-3d4a909038d8@freebox.fr>
+Date: Thu, 28 Mar 2024 18:09:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath10k: add
+ qcom,no-msa-ready-indicator prop
+Content-Language: en-US
+To: Kalle Valo <kvalo@kernel.org>, Jeff Johnson <quic_jjohnson@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: ath10k <ath10k@lists.infradead.org>,
+ wireless <linux-wireless@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
+ Jami Kettunen <jamipkettunen@gmail.com>,
+ Jeffrey Hugo <quic_jhugo@quicinc.com>, Bjorn Andersson
+ <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>
+References: <14daa98e-7fd3-4ebb-87bb-5d2c1fba679f@freebox.fr>
+ <b8de96c7-cbb6-4a09-a4d4-2c11b3ab3e01@freebox.fr> <871q8wk7o3.fsf@kernel.org>
+ <3392f356-7b19-483d-b9f8-3bd84068fa52@freebox.fr> <87wmqoilzf.fsf@kernel.org>
+ <c58e67e6-6a7f-4963-86b9-580165bf05ba@freebox.fr> <87cyse8j9m.fsf@kernel.org>
+ <6d4b1381-c121-4cda-a8c9-9ccac56bd447@freebox.fr> <87plw87nsc.fsf@kernel.org>
+ <0816f7bb-3c97-4b90-8e19-191552ea6e26@freebox.fr> <87h6hk7aee.fsf@kernel.org>
+ <fb0ffdd9-923a-4191-8304-583243ad528b@freebox.fr>
+ <243a97b7-c298-4307-9f06-8b3a7c3e24fd@freebox.fr>
+ <9293793d-00e8-42ce-87b2-05abc3b49387@freebox.fr>
+ <CAA8EJppn6M9dpzyu9d283AUtaeN-i-L=-aM5P9BEELXPLFS8YQ@mail.gmail.com>
+ <4b7bf7cc-ede6-4c2a-983c-da4c8c09c5d1@quicinc.com>
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+In-Reply-To: <4b7bf7cc-ede6-4c2a-983c-da4c8c09c5d1@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, 2024-03-28 at 16:56 +0000, Jonathan Cameron wrote:
-> On Thu, 28 Mar 2024 17:22:00 +0100
-> Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org> wrote:
->=20
-> > The v4 introduces an new dev_errp_probe() helper to deal with cases
-> > where we want to return error pointers. The refactor in the IIO ltc2983
-> > is an heavy user of the pattern and was the main motivation for this.
-> >=20
-> > Also added two new patches so we have three users of the new
-> > dev_errp_probe() helper.=20
->=20
-> Probably better to do this as 2 series. The other ltc2983 changes in one =
-series
-> and one with a cover letter title that will get noticed by
-> those who care about dev_printk helpers.
->=20
+On 26/03/2024 21:21, Jeff Johnson wrote:
 
-That makes sense, yes.
+> On 3/26/2024 10:51 AM, Dmitry Baryshkov wrote:
+> 
+>> On Tue, 26 Mar 2024 at 19:45, Marc Gonzalez wrote:
+>>> 
+>>> [ It has been pointed out to me that the previous message was unclear. ]
+>>> [ Below is my 2nd attempt at a clearer message. ]
+>>> 
+>>> Problem: firmware-5.bin has not been parsed yet when we have to handle
+>>> the ATH10K_QMI_EVENT_SERVER_ARRIVE case, so we can't rely on feature bits
+>>> to work around the lack of MSA_READY indicator.
+>> 
+>> Then, I'd say, we have to resort to the DT property, unless Kalle or
+>> Jeff have other proposals.
+> 
+> Another option is to follow the downstream driver model and only expect this
+> based upon static configuration within the driver.
+> 
+> Downstream driver has:
+> 	if (priv->device_id == ADRASTEA_DEVICE_ID) {
+> 		ret = wlfw_msa_mem_info_send_sync_msg(priv);
+> 		ret = wlfw_msa_ready_send_sync_msg(priv);
+> 	}
+> 
+> https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/wlan/platform/-/blob/wlan-platform.lnx.1.0.r4-rel/icnss2/main.c?ref_type=heads#L968
+> 
+> The downstream MSA logic (including some other code that populates MSA-related
+> fields in the QMI messages) is only invoked for ADRASTEA_DEVICE_ID.
+> 
+> We could introduce a new hw_params parameter to have the same semantics.
+> 
+> But I'm OK with the DT option as well.
+> 
+> Kalle?
 
-- Nuno S=C3=A1
+I'll send a v2 series with the DT option + setting the quirk flag for
+all msm8998 devices. I'll include msm8998 board maintainers for feedback.
 
-> From a quick look the content of the patches is fine.
->=20
-> Jonathan
->=20
-> >=20
-> > ---
-> > Changes in v4:
-> > - Link to v3:
-> > https://lore.kernel.org/r/20240301-ltc2983-misc-improv-v3-0-c09516ac0ef=
-c@analog.com
-> > - Patch 1
-> > =C2=A0* New patch
-> > - Patch 2
-> > =C2=A0* Use dev_errp_probe() instead of local variant
-> > - Patch 5
-> > =C2=A0* New patch
-> > - Patch 6
-> > =C2=A0* New patch
-> >=20
-> > ---
-> > Nuno Sa (6):
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 printk: add new dev_errp_probe() helper
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 iio: temperature: ltc2983: convert to de=
-v_err_probe()
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dt-bindings: iio: temperature: ltc2983: =
-document power supply
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 iio: temperature: ltc2983: support vdd r=
-egulator
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 iio: backend: make use dev_errp_probe()
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 iio: common: scmi_iio: convert to dev_er=
-r_probe()
-> >=20
-> > =C2=A0.../bindings/iio/temperature/adi,ltc2983.yaml=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0=C2=A0 4 +
-> > =C2=A0drivers/iio/common/scmi_sensors/scmi_iio.c=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 45 ++--
-> > =C2=A0drivers/iio/industrialio-backend.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=
-=C2=A0 8 +-
-> > =C2=A0drivers/iio/temperature/ltc2983.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | =
-260 ++++++++++-----------
-> > =C2=A0include/linux/dev_printk.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 5 +
-> > =C2=A05 files changed, 151 insertions(+), 171 deletions(-)
-> > ---
-> > base-commit: 27eea4778db8268cd6dc80a5b853c599bd3099f1
-> > change-id: 20240227-ltc2983-misc-improv-d9c4a3819b1f
-> > --
-> >=20
-> > Thanks!
-> > - Nuno S=C3=A1
-> >=20
-> >=20
->=20
+Regards
+
 
 
