@@ -1,123 +1,140 @@
-Return-Path: <devicetree+bounces-54251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83C7589017F
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 15:19:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 969D98901A0
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 15:21:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3EC7A294DE4
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 14:19:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 507362971DF
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 14:21:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25E9A126F33;
-	Thu, 28 Mar 2024 14:19:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3B4112D74B;
+	Thu, 28 Mar 2024 14:21:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="hs3RqxMJ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="RHUE3lO8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D887126F19;
-	Thu, 28 Mar 2024 14:19:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DA7112A157;
+	Thu, 28 Mar 2024 14:21:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711635552; cv=none; b=OhDqPdPmsZmAW2fQnDuSBDrOXF249A0uKgv30+Bi0zZxBoPUSG8zs9sNu7nlZ3NB7r4+4TtJp/SKftGZ5nNhCg+FnBmy/gX+Wml29wiXAINg8hho4xsAegHDmFIoXKp3sJJY+eVu4refBpLLl9n/OwLUOmqrX+TH1115t49bR4E=
+	t=1711635664; cv=none; b=rJ/d9wofLZku17Kk1hQPHyCYdvj2wy1NATn7s8O3aFe2YT3KLQrO0/u+6Aopd28NCRfJJPXlKQCSrINPW7AvWwmBJ2gz2r/Ymi1n0nFv1SK9eX9/1zwYV65W8guLG6cKveDgDTOMxobohRSHaUjI1JQyV6prLNxnNNvVYYFS2iE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711635552; c=relaxed/simple;
-	bh=nZyYoG1hcN9sZV1x6eeJSQ7WJTnGbfV5shTYRE57f+k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=P23BBOM+fRKnMOQ/qNdcX4cNPPYbvWO3hettLa8juE+6nMtZcUZdWPLJUbLFuwAuUWxg7f/+c1Id0KIwn5zO3E81+c6dy52kHUQQGHRZPRm2TCdu9sCsP9Gktqgf1bdR+494TsoCWaUZQV3Hq2/L4ajo97zdaVuFoTJgDJrGfLw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=hs3RqxMJ; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 2FBB68818C;
-	Thu, 28 Mar 2024 15:19:04 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1711635545;
-	bh=SonutgD18/IvJSdqtAfr8jPeMT+pqsEe9jBU5XMTvVM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hs3RqxMJQCoEI9woF3jNnqv5D63sMTWJjGzivOtDRxDy2hrbQeSd7eSwq7O6GgRC0
-	 xaOgPFJVGNvbkgDPdfPH7WEBN83mQhn2m+ViwPZEZAF5/FwwM7JgCL7wCxACaGR03J
-	 l/8aEwaAXPvaaOKTnHuKLpUhAj3b39PsM67Q09qLJW6wsm2NFscYMT6ccD2NVxU/df
-	 GJc4OAWnxF5RmGXXjR/VpLiR70+M/hugonzdB3zGJyr3j5r6kB8eACLloha5PyXXEN
-	 Up6lSzcfFAMheNlq0c+0vsVsnlL3o/GNGtIiF6xKhO8UrpHIA1DAQmi+00rM8RjCOA
-	 evKusuNNo5nNg==
-Message-ID: <480d4064-b553-4005-ad98-499a862703ff@denx.de>
-Date: Thu, 28 Mar 2024 15:19:03 +0100
+	s=arc-20240116; t=1711635664; c=relaxed/simple;
+	bh=JfRqZIJmC4PjPJChHR0VcjE2fBSwvEm7Ufw1q6CvlgU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=QDUbV/tTXOSgqS7yfHRoXpDy/3r9jp92fPCtjsymmkPtJPEheKFqhGXn4kyAJOyrLyiV3+u/Sqerv8a7+/6e/YdgJUA6/bq+EIgoBeWwZeuk0VwLSDWiFF9KsJ/vsAvRTpdgNM801ENjfC2p6+ZFYMa867idK9sBfV7YEwmoKr4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=RHUE3lO8; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id BE24BC0005;
+	Thu, 28 Mar 2024 14:20:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1711635653;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=JfRqZIJmC4PjPJChHR0VcjE2fBSwvEm7Ufw1q6CvlgU=;
+	b=RHUE3lO8NtqEgRc3pjmj5y2bQA9xBIQMm9X2ZtXnFQA1dIekleMA6uXYAOllJWrfLVdOPP
+	BCYGUxPetyp53sqdouL5ZtlcI+19d/z7BSVmn+ZR4iI7YfhUr8Ka9mbo/MdAX0BLlVNPBb
+	EGRc3a8KGHoaZBGlWFuYe7PdUP7opIOVdCXqFzUeL+T9i0RFi/OOmx3OS2Npr1DkA+AJaw
+	U36MGbbB9D5A7tNDwdZgu2UjdSa3sN7D5G8zKPMESdoo8uvPHsMqVKTpz0ISRY2n8y7D8W
+	mXj/iQepjdQ0ZTL8qBk5rrXDYfws0JMVnUuNOSV+nZBkV/uQLXtQFIHWRxtZjw==
+Date: Thu, 28 Mar 2024 15:20:46 +0100
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, Thomas
+ Petazzoni <thomas.petazzoni@bootlin.com>, Dent Project
+ <dentproject@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>, Russell
+ King <linux@armlinux.org.uk>, Conor Dooley <conor+dt@kernel.org>, Jakub
+ Kicinski <kuba@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Heiner Kallweit
+ <hkallweit1@gmail.com>, Russ Weight <russ.weight@linux.dev>, "David S.
+ Miller" <davem@davemloft.net>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, Oleksij Rempel <o.rempel@pengutronix.de>,
+ Paolo Abeni <pabeni@redhat.com>, Mark Brown <broonie@kernel.org>,
+ netdev@vger.kernel.org, linux-doc@vger.kernel.org, Eric Dumazet
+ <edumazet@google.com>, Luis Chamberlain <mcgrof@kernel.org>,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v6 11/17] dt-bindings: net: pse-pd: Add another
+ way of describing several PSE PIs
+Message-ID: <20240328152046.0b908024@kmaincent-XPS-13-7390>
+In-Reply-To: <5230d786-44a8-45a0-ab0d-e1aa4ab6a836@lunn.ch>
+References: <20240326-feature_poe-v6-0-c1011b6ea1cb@bootlin.com>
+	<20240326-feature_poe-v6-11-c1011b6ea1cb@bootlin.com>
+	<171146756753.2253156.218733720090104400.robh@kernel.org>
+	<5230d786-44a8-45a0-ab0d-e1aa4ab6a836@lunn.ch>
+Organization: bootlin
+X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/1] dt-bindings: net: dwmac: Document STM32 property
- st,ext-phyclk
-To: Christophe Roullier <christophe.roullier@foss.st.com>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Richard Cochran <richardcochran@gmail.com>, Jose Abreu
- <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240328140803.324141-1-christophe.roullier@foss.st.com>
- <20240328140803.324141-2-christophe.roullier@foss.st.com>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <20240328140803.324141-2-christophe.roullier@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: kory.maincent@bootlin.com
 
-On 3/28/24 3:08 PM, Christophe Roullier wrote:
+On Thu, 28 Mar 2024 13:32:09 +0100
+Andrew Lunn <andrew@lunn.ch> wrote:
 
-[...]
+> On Tue, Mar 26, 2024 at 10:39:28AM -0500, Rob Herring wrote:
+> >=20
+> > On Tue, 26 Mar 2024 15:04:48 +0100, Kory Maincent wrote: =20
+> > > From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+> > >=20
+> > > PSE PI setup may encompass multiple PSE controllers or auxiliary circ=
+uits
+> > > that collectively manage power delivery to one Ethernet port.
+> > > Such configurations might support a range of PoE standards and require
+> > > the capability to dynamically configure power delivery based on the
+> > > operational mode (e.g., PoE2 versus PoE4) or specific requirements of
+> > > connected devices. In these instances, a dedicated PSE PI node becomes
+> > > essential for accurately documenting the system architecture. This no=
+de
+> > > would serve to detail the interactions between different PSE controll=
+ers,
+> > > the support for various PoE modes, and any additional logic required =
+to
+> > > coordinate power delivery across the network infrastructure.
+> > >=20
+> > > The old usage of "#pse-cells" is unsuficient as it carries only the P=
+SE PI
+> > > index information.
+> > >=20
+> > > Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+> > > --- =20
+> > My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_chec=
+k'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> >=20
+> > yamllint warnings/errors:
+> >=20
+> > dtschema/dtc warnings/errors:
+> >=20
+> >=20
+> > doc reference errors (make refcheckdocs):
+> > Warning: Documentation/devicetree/bindings/net/pse-pd/pse-controller.ya=
+ml
+> > references a file that doesn't exist:
+> > Documentation/networking/pse-pd/pse-pi.rst
+> > Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:
+> > Documentation/networking/pse-pd/pse-pi.rst =20
+>=20
+> Is this a false positive?
 
-> | RMII    |    -   |     eth-ck    |      eth-ck        |       n/a        |
-> |         |        | st,ext-phyclk | st,eth-ref-clk-sel |                  |
-> |         |        |               | or st,ext-phyclk   |                  |
-> 
-> ---------------------------------------------------------------------------
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
-> ---
->   Documentation/devicetree/bindings/net/stm32-dwmac.yaml | 7 +++++++
->   1 file changed, 7 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/stm32-dwmac.yaml b/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
-> index fc8c96b08d7dc..b35eae80ed6ac 100644
-> --- a/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
-> @@ -82,6 +82,13 @@ properties:
->         Should be phandle/offset pair. The phandle to the syscon node which
->         encompases the glue register, and the offset of the control register
->   
-> +st,ext-phyclk:
+I suppose so as the file is added in the patch 10.
 
-Don't you need two spaces in front of the 'st,' here ?
-
-> +    description:
-> +      set this property in RMII mode when you have PHY without crystal 50MHz and want to
-> +      select RCC clock instead of ETH_REF_CLK. OR in RGMII mode when you want to select
-> +      RCC clock instead of ETH_CLK125.
-> +    type: boolean
-> +
-
-With that fixed:
-
-Reviewed-by: Marek Vasut <marex@denx.de>
+Regards,
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
