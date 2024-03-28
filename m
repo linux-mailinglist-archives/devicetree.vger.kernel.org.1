@@ -1,129 +1,131 @@
-Return-Path: <devicetree+bounces-54249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D5C9890162
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 15:12:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A27A5890169
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 15:14:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AE7DC1C21CCA
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 14:12:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 41C6C1F26D51
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 14:14:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EB3580630;
-	Thu, 28 Mar 2024 14:12:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="heqTYfw0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 040727FBA9;
+	Thu, 28 Mar 2024 14:14:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E6DE38DD3;
-	Thu, 28 Mar 2024 14:12:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E44C814294;
+	Thu, 28 Mar 2024 14:14:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711635135; cv=none; b=fLX6n96ee0M4zCQsgsJiDMAolz2ahyhJ5SrTeslbu1zmwhqx15kM7uoV4Poh/7qXgokgCxNdx/gbP6P7Oh9Gvbh9ub/T9rKN3giXegOH/BWXmWs1X+j9ei3X8LZ6m8Ei8vv50F+7hP9UmaQHgJpsGgNtYVPNIzWGkulwOLoz4QY=
+	t=1711635253; cv=none; b=gbCbA+fOBmw0aApEBzHRANuLeVHe745R16Qvw4gFLKmY0Jhw0JeWIrHwxskDdC1sK9q42ZwMHXtP44Q8v42dsZK7pytvfstOpYc8vaqjG51dhSaMJmRps+6+6vf42rljiwx+4gEt5ZIcX0tgpasfipyabuXTIz6MNKjGqnnunso=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711635135; c=relaxed/simple;
-	bh=N73FyYVIwU1aQ5B7RLMkc8kTKoTgUfb0356Wdb9jvAs=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mEpzcprtLvU+ZH5hx3MwKxETrCf0Z3081ZB26zKP27hxBCCAQ7kINiKnHatwx2RXVGCZatrxvXXnTQaClZEa/IMyRUajY0BGItcygr6Go5ruATpLrdqS7aSWsVoAC/cdO6WimSuwuRbkELjbOQqHLYKzXsNL1/9KdgsuD6k7GEw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=heqTYfw0; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id A2565E0003;
-	Thu, 28 Mar 2024 14:12:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1711635130;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=qPvrMdzqZGQ79Z3edf3fjAc6pl+px1KzSmmY1ZbPWAs=;
-	b=heqTYfw03rMT1SbHkAhcDgnFcNThWbRAxvPQoPfciRCREpiJSdz64KJhXYgOy+/5Y1eRD8
-	51l5bejeWt+SDupnZWXiCX/rg4Ulm0a9Yp97NL0JswuOWt6UzwtS5wyjQR3QNZKZzDk1N9
-	mNnqpu2L+SsKChaa0lOAUtx1FKD/du2QyWmjFnRNt/YIo60a9BrXew9QTdoTrGjLzP2K0/
-	Ey1dZ9H+BXuTL5fu4WMthssWr6ooRtk0ANtfUHxj8eUH3e+WJnR0dVz4IH9nJr0pApv3G8
-	FssU5wwLtRs2sdviyyf9uzAdiBgyQ0ntw1HdTkgs5euFy5+j0BcWROIe2G+MVw==
-Date: Thu, 28 Mar 2024 15:12:04 +0100
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Simon Horman <horms@kernel.org>
-Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, Luis Chamberlain
- <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Oleksij Rempel <o.rempel@pengutronix.de>, Mark Brown <broonie@kernel.org>,
- Frank Rowand <frowand.list@gmail.com>, Andrew Lunn <andrew@lunn.ch>, Heiner
- Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- devicetree@vger.kernel.org, Dent Project <dentproject@linuxfoundation.org>
-Subject: Re: [PATCH net-next v6 10/17] net: pse-pd: Add support for PSE PIs
-Message-ID: <20240328144819.7fd927fe@kmaincent-XPS-13-7390>
-In-Reply-To: <20240328104011.GY403975@kernel.org>
-References: <20240326-feature_poe-v6-0-c1011b6ea1cb@bootlin.com>
-	<20240326-feature_poe-v6-10-c1011b6ea1cb@bootlin.com>
-	<20240328103322.GX403975@kernel.org>
-	<20240328104011.GY403975@kernel.org>
-Organization: bootlin
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1711635253; c=relaxed/simple;
+	bh=aHiAHQZ4NABASJrYqh8ebkIampi71CgvClYUPY03YUQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=AiCh8qTyKvN7YHUztruo22jr3og+g1TCaVTVrguhSCv4Q2Oam7EljPmLcAfJbgzoNOM4KC8VSUCvpKySTi/951ycThhVufvskAf1yt3PfGhN9YQ+bIfMV6PgSnENTEvhncor/qEQ7NQtnadNy4blyr1Q3koniX1wsxw8Ir6ivaQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-dcd7c526cc0so969315276.1;
+        Thu, 28 Mar 2024 07:14:11 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711635250; x=1712240050;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4NefUZqr+Yfj8Qez7QQphPqdSKucudQKpoHbpjj/G5I=;
+        b=pQ91T2CR07oeEsCc9BdxYATtIcoUrUsbgH2N9S+cRpHoymRXhIuzcgXgHOpiIvUuXR
+         5I0crJGQNYv9FIuPB34FfiCd2cqOqsjEXLP0O4hu1IOyOzaNf8IRS2bVBDrqVymvD5cj
+         eaScmUPIXm4Zx+I1nctvVNqNR9e0Ep/Kr1onvtAosWUXg5T0Y72M1f+NWtxI5cBx4Gav
+         bKK4DFeS1PZ0DHatrJLRquBmETct2f84NpDgmtM9q+Xh35eRTMa8/sxVxxCPvCMVj9ZX
+         DFW22oRtCSOi8D3KaVL8ixes9bhO0f7GuPQ07bCXh9H7Bos18xTmyD8Y7FFistNrbOq5
+         h0jg==
+X-Forwarded-Encrypted: i=1; AJvYcCU/THNq4a9naDxLR0OxrKjeQc6VV/iN+uddXlT5t14ZMhg2ZxHcb7+bxKFcBF1vwoZv5N0fvncNIoLnS3K584VQWfJ6T9UnkBplmz8rZrnlK/PqOYGwI+9Pjm+bWGbkihEA7Qjbayd18qQBxkR7UpgDO4r7evYWqQObCtJauqmMGuf87BLZMJSLj24jEBvyqiisQJM7jo3mI559K7S3ClcKgi7VTOirXA==
+X-Gm-Message-State: AOJu0YwF1vhlBbFUdRrJzEejMEqosNtBRuHEeLjxb2VqdMzQwonE57rm
+	pg8DNP/n9SnRjKILVgQCyiJwxc/jUdln+agL64G5kl3b7fukspVBhKlS4zw6tNw=
+X-Google-Smtp-Source: AGHT+IEM3zssbWOSnDMrjyNKrON0pNmD2juCMJCOs6F4V4C3Sl2CLvlLZkgK76K0PWAovpQeiWOy8Q==
+X-Received: by 2002:a25:a290:0:b0:dcc:a446:553 with SMTP id c16-20020a25a290000000b00dcca4460553mr2759135ybi.57.1711635249889;
+        Thu, 28 Mar 2024 07:14:09 -0700 (PDT)
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
+        by smtp.gmail.com with ESMTPSA id p15-20020a25818f000000b00dce0a67ac8bsm304046ybk.23.2024.03.28.07.14.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Mar 2024 07:14:09 -0700 (PDT)
+Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-dcc4de7d901so915906276.0;
+        Thu, 28 Mar 2024 07:14:09 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCW7xbfqe46XVmSa/BltuNY40XqQVNM5lrIWhcQ8iJWq5jkPxsZx8Om/aL0O2Ojqnoq3zUQsJw8o+6IJQ8ZY5ee0xazn+yrZ8wKLna8WtXF4Y14GngOHeAi2VK7RekV7xuuJNPd0+Why/kVu/4jjmAjctS/fL9L4Mhxj4pX8d4plOS78SEvYBg+eORehxnJsPfxUn22kMadu+zShP8Pi1DrXHn4FgWJ5qw==
+X-Received: by 2002:a25:bc49:0:b0:dcd:5e5d:4584 with SMTP id
+ d9-20020a25bc49000000b00dcd5e5d4584mr3267859ybk.34.1711635249059; Thu, 28 Mar
+ 2024 07:14:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+References: <20240326222844.1422948-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240326222844.1422948-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240326222844.1422948-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 28 Mar 2024 15:13:56 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWdaiSer10agMytpv9h_gb4bEpEHjThDwRkMShXkKMxzA@mail.gmail.com>
+Message-ID: <CAMuHMdWdaiSer10agMytpv9h_gb4bEpEHjThDwRkMShXkKMxzA@mail.gmail.com>
+Subject: Re: [RFC PATCH 06/13] pinctrl: renesas: pinctrl-rzg2l: Make cfg to
+ u64 in struct rzg2l_variable_pin_cfg
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: kory.maincent@bootlin.com
 
-On Thu, 28 Mar 2024 10:40:11 +0000
-Simon Horman <horms@kernel.org> wrote:
+Hi Prabhakar,
 
-> On Thu, Mar 28, 2024 at 10:33:22AM +0000, Simon Horman wrote:
-> > On Tue, Mar 26, 2024 at 03:04:47PM +0100, Kory Maincent wrote: =20
-> > > From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com> =20
->=20
-> ...
->=20
-> > > diff --git a/include/linux/pse-pd/pse.h b/include/linux/pse-pd/pse.h =
-=20
-> >=20
-> > ...
-> >  =20
-> > > @@ -73,11 +103,11 @@ struct pse_control;
-> > >   * @pse_control_head: head of internal list of requested PSE controls
-> > >   * @dev: corresponding driver model device struct
-> > >   * @of_pse_n_cells: number of cells in PSE line specifiers
-> > > - * @of_xlate: translation function to translate from specifier as fo=
-und
-> > > in the
-> > > - *            device tree to id as given to the PSE control ops
-> > >   * @nr_lines: number of PSE controls in this controller device
-> > >   * @lock: Mutex for serialization access to the PSE controller
-> > >   * @types: types of the PSE controller
-> > > + * @pi: table of PSE PIs described in this controller device
-> > > + * @of_legacy: flag set if the pse_pis devicetree node is not used =
-=20
-> >=20
-> > nit: it looks line the documentation didn't keep up with the
-> >      structure during development: @no_of_pse_pi should be
-> >      documented instead of @of_legacy. =20
->=20
-> There seem to be some similar minor problems in
-> [PATCH net-next v6 13/17] net: pse-pd: Use regulator framework within PSE
-> framework
->=20
-> ./scripts/kernel-doc -none is your friend here.
+On Tue, Mar 26, 2024 at 11:30=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.=
+com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Now that we have updated the macro PIN_CFG_MASK to allow for the maximum
+> configuration bits, update the size of 'cfg' to 'u64' in the
+> 'struct rzg2l_variable_pin_cfg'.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Oh didn't know about it, thanks!
+Thanks for your patch!
 
-Regards,
+> --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> @@ -241,7 +241,7 @@ struct rzg2l_dedicated_configs {
+>   * @pin: port pin
+>   */
+>  struct rzg2l_variable_pin_cfg {
+> -       u32 cfg:20;
+> +       u64 cfg:46;
+>         u32 port:5;
+>         u32 pin:3;
+
+Doesn't this store the 46 cfg bits in a 64-bit word, and the 8 port
+and pin bits in a different 32-bit word?  Worse, you'll get 4 bytes
+of padding at the end of the structure.
+Changing the port and pin to u64 should make sure everything is
+stored together in a single 64-bit word.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 --=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
