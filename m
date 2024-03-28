@@ -1,88 +1,111 @@
-Return-Path: <devicetree+bounces-54373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A6D9890C0C
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 21:54:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7A26890C19
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 22:01:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3A170B250CA
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 20:54:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3BE11C2B352
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 21:01:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62AE3139D04;
-	Thu, 28 Mar 2024 20:54:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB53A65190;
+	Thu, 28 Mar 2024 21:01:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E3GmzLix"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="diHMXmWj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 370284594C;
-	Thu, 28 Mar 2024 20:54:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EA39380;
+	Thu, 28 Mar 2024 21:01:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711659288; cv=none; b=CfKRkrGZNMj3HWoHNsJp4O6Bb7tq+pbaiJocZ4SFOHfAk9sKhk6cBjSpVHRRVY9bcQEzvQJWze5GVdvZ0+xlNlmiXvqfbWKrCXCwhee6YjGVW+vGo/d0x/xjYxiEWP/VEXROopRUHoHG9dOCeLn7aZvpxJ8OslOenwQTII+eoBQ=
+	t=1711659664; cv=none; b=fynsDE2T3SDA9gWZsw6+FBcZIYV+n6HVGyx4oe/pTNrVR4wVmiyB7EszK1iO3P5csZWZAyYnEzGUWfNFKg9JsJDvutSfXKYyp77DcUNmS1fZ/P7+cMR6M/OMCURDI1/yj2Q3NOI12MJdkfrc4SbxynJ8d13gB+9rWk93wAHO1zw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711659288; c=relaxed/simple;
-	bh=tnxhmYo+aIMTZ7hUCuZ2Munr4Hlnba/v6s+s7n46tus=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A9n4RmCYAFnECA3fqARWYThwCGL5r/G4NYXLvsvOoWepcEl80z1/HggrWctNPkVYEtpiHo4pXWUyaqZFolgc0PYraNKa6aqnJ2uWQarKBADLNJmlYXbroLe6W1qwzpNCmBcMAqTbGR1Cu2MPEAoJek3FkrpX0TIM5Hus2F42a80=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E3GmzLix; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80063C433C7;
-	Thu, 28 Mar 2024 20:54:47 +0000 (UTC)
+	s=arc-20240116; t=1711659664; c=relaxed/simple;
+	bh=s87B919J/IE988PjAPhqMvTH41tTdROEkf+az6h6LiY=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=ePhVffVEEilzepzh4cPzVN01uiMs9SaTTF7MyAAOt3eFBBH5JipNGaw2tMWU7RN6CWuNfCc+uKAO1ty0hLyipValn5NoJXeh1g/Hf0isSjft974ZnlAKDqfUZXGrCAZZwvCoydO8FU1Cld59EISzEm8/bCbsUrHSvrFfY6kNnl4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=diHMXmWj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9963C433F1;
+	Thu, 28 Mar 2024 21:01:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711659287;
-	bh=tnxhmYo+aIMTZ7hUCuZ2Munr4Hlnba/v6s+s7n46tus=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=E3GmzLix6HyR/Kt7l8QmDD8iTZjBz8uo08lYmxs+Y21ilofyVZylnVhbG0PJ9cK7R
-	 D5X+799u/SI2BvGrnqVsvm76+PhszXExERgvTzOS3inUd89xlPDaDK3zn4soHNVaA7
-	 CCOwIgP/3avvMJ9xdvIg49oARvRD5VhRtc4XBvFgB2VIlVL/t7U+H0j0fn7CXgEI1j
-	 NKOHHGONygPwTUGqPoikDRB4ecmEwWH6AMWiypMb1prpegBTb9T6WpnDUpi21TRvNU
-	 8PkHNZNCoJIr09Prj+S1WRssGOmVS8JCensZDPETPYP1Zdv/KQjYmgfkeZ9NL4ILfu
-	 ob7iK/ebgVS0A==
-Date: Thu, 28 Mar 2024 15:54:45 -0500
-From: Rob Herring <robh@kernel.org>
-To: Sibi Sankar <quic_sibis@quicinc.com>
-Cc: sudeep.holla@arm.com, cristian.marussi@arm.com, andersson@kernel.org,
-	konrad.dybcio@linaro.org, jassisinghbrar@gmail.com,
-	krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	quic_rgottimu@quicinc.com, quic_kshivnan@quicinc.com,
-	conor+dt@kernel.org, quic_gkohli@quicinc.com,
-	quic_nkela@quicinc.com, quic_psodagud@quicinc.com
-Subject: Re: [PATCH 1/5] dt-bindings: mailbox: qcom: Add CPUCP mailbox
- controller bindings
-Message-ID: <20240328205445.GA326382-robh@kernel.org>
-References: <20240328095044.2926125-1-quic_sibis@quicinc.com>
- <20240328095044.2926125-2-quic_sibis@quicinc.com>
+	s=k20201202; t=1711659664;
+	bh=s87B919J/IE988PjAPhqMvTH41tTdROEkf+az6h6LiY=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=diHMXmWjisB0rrKfVKpzn+Xqv27dlxAYzkHVq/gL+zM27vwGRJgf7MftmssCwx78Q
+	 l9Xt4C+J98a7QXotzvU+54TrJISxAAlr2TNdBSzqCpSIqv+CJBetHBGQiiVJd+9fmV
+	 /99eJBsUTKyKoxUalYXwyyJfFNYA6FEm0X34xHfzUVG2zpveiYRkc/iNuRP95hPwJ9
+	 byhVETM9RfEcjZedDvt5V8QlCp+1Wiv8jqL0KNEgysfYQ6yqy3uIRdKjPSyYYXWPeB
+	 E87FA5EA/+Bc6zYRQuD+UEjdMmBWw5Q+e2PZ27GRDP03MCSzSbkciIpVntHUYW/wFY
+	 B7XQ/eOvHnrAw==
+Date: Thu, 28 Mar 2024 16:01:02 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240328095044.2926125-2-quic_sibis@quicinc.com>
+From: Rob Herring <robh@kernel.org>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: Fabio Estevam <festevam@denx.de>, linux-arm-kernel@lists.infradead.org, 
+ sakari.ailus@linux.intel.com, stable@vger.kernel.org, hdegoede@redhat.com, 
+ devicetree@vger.kernel.org, shawnguo@kernel.org, conor+dt@kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org
+In-Reply-To: <20240328151954.2517368-1-festevam@gmail.com>
+References: <20240328151954.2517368-1-festevam@gmail.com>
+Message-Id: <171165955888.338117.15736314486472326706.robh@kernel.org>
+Subject: Re: [PATCH] ARM: dts: imx7s-warp: Pass OV2680 link-frequencies
 
-On Thu, Mar 28, 2024 at 03:20:40PM +0530, Sibi Sankar wrote:
-> Add devicetree binding for CPUSS Control Processor (CPUCP) mailbox
-> controller.
+
+On Thu, 28 Mar 2024 12:19:54 -0300, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 > 
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> Since commit 63b0cd30b78e ("media: ov2680: Add bus-cfg / endpoint
+> property verification") the ov2680 no longer probes on a imx7s-warp7:
+> 
+> ov2680 1-0036: error -EINVAL: supported link freq 330000000 not found
+> ov2680 1-0036: probe with driver ov2680 failed with error -22
+> 
+> Fix it by passing the required 'link-frequencies' property as
+> recommended by:
+> 
+> https://www.kernel.org/doc/html/v6.9-rc1/driver-api/media/camera-sensor.html#handling-clocks
+> 
+> Cc: stable@vger.kernel.org
+> Fixes: 63b0cd30b78e ("media: ov2680: Add bus-cfg / endpoint property verification")
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
 > ---
+>  arch/arm/boot/dts/nxp/imx/imx7s-warp.dts | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> rfc:
 
-rfc is not a version, but a "state of the patch" tag. This should be v2.
 
-> * Use x1e80100 as the fallback for future SoCs using the cpucp-mbox
->   controller. [Krzysztoff/Konrad/Rob]
-> 
->  .../bindings/mailbox/qcom,cpucp-mbox.yaml     | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y nxp/imx/imx7s-warp.dtb' for 20240328151954.2517368-1-festevam@gmail.com:
+
+arch/arm/boot/dts/nxp/imx/imx7s-warp.dtb: camera@36: port:endpoint: Unevaluated properties are not allowed ('clock-lanes', 'data-lanes', 'link-frequencies' were unexpected)
+	from schema $id: http://devicetree.org/schemas/media/i2c/ovti,ov2680.yaml#
+
+
+
+
+
 
