@@ -1,149 +1,239 @@
-Return-Path: <devicetree+bounces-54192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5638F88FE2C
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 12:35:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CECB488FE37
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 12:37:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D612A1F278D8
-	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 11:35:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E944E1C21D77
+	for <lists+devicetree@lfdr.de>; Thu, 28 Mar 2024 11:37:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A20EC7E76D;
-	Thu, 28 Mar 2024 11:35:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79B867E58C;
+	Thu, 28 Mar 2024 11:37:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uGowiHBZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J7uMJjyR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40C727E577
-	for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 11:35:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B1C7374F9;
+	Thu, 28 Mar 2024 11:37:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711625703; cv=none; b=fosqXIy9L4TdNXZ+1IhYJROaihMKJ73ao76SNu0RuIiSC7wVzzJw5ZMtQsHim2IFRcNL580t1yUDhzTOv3mqFokPAD6dr7sICWdauNM0QpJ6+mVWOSDdcOF1Cgg5c/g2ofRr5lfG5TM8zzLnQ5CtWnL14b+lTdMRuL8XFKl+JCw=
+	t=1711625852; cv=none; b=CRWn6pskGkRZugffrCI+9a6dQMNkh6xDlZpybe+t31xly7Sy7vQDLKvCjEOUDfTC34kk2CwB3wcB9+IVrItkkZUWjmP9Qmxro5tl8IVKbIEmxwhX+EZ0nVYYq6Am84OhoQmn/tp5O6PomhSPakgM4WXcsgVoMtQPNKcrei5p+3E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711625703; c=relaxed/simple;
-	bh=A85NO3GuJGIEgVHxuKDR9DvSDks+EZA1nKTEWk8Lv4Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YGwOt6Yzv6QlR/rOObN5LWB2rZJ3aIU43K1hrfdCxLW5bb+NlORf11hck6/QqJzhalHo4GKqhDLc6/bvmrZxC/GwxB1ST4o2ui0InkXvD4RZzgqukn2Xfk2U8ebBllPOSwsH2+idb3N0/aOF5RUh5ISqyjlU2+tEpnq0xzXt1ls=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uGowiHBZ; arc=none smtp.client-ip=209.85.128.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-609fd5fbe50so9083687b3.0
-        for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 04:35:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711625700; x=1712230500; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=uKdOl+ZPDpQ1XBpBggubYicwCcuMa2xVA3/erDfXR9E=;
-        b=uGowiHBZFKJqWZ8qqhUTH32KfO2liJdQK30V2inCZgh6+wEANOMvDXYOZiXE9byxqx
-         ieFot05qCCbrQg//UA0E81pU3dNHHFfrBt8pkxOp07CkY7K2x7VaD5/5UK5EFfVKm8mu
-         hOHgLwvPJuUIIPszgDHzCU24R2ri4xTXwlL2zo335ZpypPCNs1lGe6nJsacU9bSHdzbF
-         DJRG0xbAobACjk+Yeh7JHupcmr6Q4/tdom7JJsJxS5bSM36UhJLzo+hOyTHFAf5eHfor
-         7bRytBKJFMdojyfQyjjNArwKrhJJvXOPYB6qCjgffY9sthqpQ/vJ810mWUpGMM89x02e
-         HooQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711625700; x=1712230500;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uKdOl+ZPDpQ1XBpBggubYicwCcuMa2xVA3/erDfXR9E=;
-        b=hcv8xystBLrmqajm2/UF8Fl5zAS/yHmJVDXg25rOvxpdOfMShS3QMA9QlbKBmBWywP
-         4D7B+QryMnrKcCUtJLIPlByoTRaX8TbLuOTM1aGMx9Mo2gpKsYWNEc1X68d+SFotmA9l
-         M/LXp4WNuL8sMtQmm76+m1Tf7aeRMjxYeMuow0wc0e1qvx6+0BPV721k1IBWQ89Cf9+r
-         3csX1v0QJtcA+7VxUJIiINrZLAHX5epljg8+azxoXInMjapiVFLiStRnoiZXJZPM+gj0
-         mW822AMea5P5MDVxzCszFSo6pkxurB10hcFKXrGn+cRy9bsFm2u3ih9ch1tNDjus0PMU
-         4rrg==
-X-Forwarded-Encrypted: i=1; AJvYcCXzP5OhQsKUzYAiSaoSrlhgV/NqCmuC6bpoQ98nNFPjaO54g8EIuzv+tPNkPnRna9x6UY+hH9hkv0Y5qiTIhep/2Xqwx2cZOV2xtg==
-X-Gm-Message-State: AOJu0Ywyiq98iaXerOikpM3gDokD1+/zH1S3KEa7Vk/efJwTgy46aXgV
-	/z2W2/sLQ7ZNANOUM9eQgyzXr5DcM2vfRa1mENa/pjWd5Jd4dS4jIQHqPS8nfHLhyBwGKySc/RE
-	eQeUlrx/x9+Ej39/8UDVjIFsfeQTLGOfDEBNj4g==
-X-Google-Smtp-Source: AGHT+IGnoGpPr3UcM4Apg1Tfk5iNCNNv25l96KvLbBz0pE2CnQ50PhdP+ephBw4Zs05Nr88aGxHSyFjgFN0/kXITE6w=
-X-Received: by 2002:a25:680f:0:b0:dc7:4800:c758 with SMTP id
- d15-20020a25680f000000b00dc74800c758mr2595759ybc.10.1711625700140; Thu, 28
- Mar 2024 04:35:00 -0700 (PDT)
+	s=arc-20240116; t=1711625852; c=relaxed/simple;
+	bh=PVbCQcBD9CWn/gNAbIGipQTz8wnyniImrlBgL0zkhjw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IfFrn9ZK28RrjQ/fWbiWPbnlLCrRnOiRzoWhS9kqkatJKuvxnSbcZKlBzJYcSaHIHlLcGsGNEcH75x038S8E2mdmSc29iZRH4k8VED5sIM/xyJ694PjWW5kk9QJlGfLWxrjo+cjhEVHuzVfsbRDX8m8IirCdnQ8/5vdjhjm++fk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J7uMJjyR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2206EC433C7;
+	Thu, 28 Mar 2024 11:37:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711625851;
+	bh=PVbCQcBD9CWn/gNAbIGipQTz8wnyniImrlBgL0zkhjw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=J7uMJjyRckdKZmMRdYNjQ7wUziTu9fqjJYx9lm0PzzjjqYb3/imPJtrkbwmxHidrs
+	 2pqpPaAvH/1mJ22XEtyQxLKt/GJyZd+tuOHleveFBqrp5wUEdZVpYfnTt9iXDkUBBj
+	 P+WXZaWVYJOlR0qVK5RZPP1KH3SY8dAzLpZxROH9gRFr0ZqPf7yBj43v6qoAyqU5Pw
+	 K8TXc6il04eknWpAT7jnwaYHAi3qTXBEnAOWIyzzUGHK3I7w0bVKU93UVzNU82DPKu
+	 yizSp53bq538s9z6mUtDCFCuk/83Tu7T8qeVzN73hYU5B9jvFgvtHRQAeUW9uIeGVz
+	 DV+8ZifBpt+DQ==
+Date: Thu, 28 Mar 2024 11:37:25 +0000
+From: Lee Jones <lee@kernel.org>
+To: Bhargav Raviprakash <bhargav.r@ltts.com>
+Cc: linux-kernel@vger.kernel.org, m.nirmaladevi@ltts.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, jpanis@baylibre.com,
+	devicetree@vger.kernel.org, arnd@arndb.de,
+	gregkh@linuxfoundation.org, lgirdwood@gmail.com, broonie@kernel.org,
+	linus.walleij@linaro.org, linux-gpio@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, nm@ti.com, vigneshr@ti.com,
+	kristo@kernel.org, eblanc@baylibre.com
+Subject: Re: [PATCH v4 03/11] mfd: tps6594: add regmap config in match data
+Message-ID: <20240328113725.GA13211@google.com>
+References: <20240320102559.464981-1-bhargav.r@ltts.com>
+ <20240320102559.464981-4-bhargav.r@ltts.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240326103620.298298-1-tudor.ambarus@linaro.org> <20240326103620.298298-4-tudor.ambarus@linaro.org>
-In-Reply-To: <20240326103620.298298-4-tudor.ambarus@linaro.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Thu, 28 Mar 2024 11:34:49 +0000
-Message-ID: <CADrjBPq2xUpeLRNEsfa-R5wm4aVFr=joUuH1AtrixtAb9wWsig@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] arm64: dts: exynos: gs101: join lines close to 80 chars
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	alim.akhtar@samsung.com, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, andre.draszik@linaro.org, 
-	willmcvicker@google.com, kernel-team@android.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240320102559.464981-4-bhargav.r@ltts.com>
 
-Hi Tudor,
+On Wed, 20 Mar 2024, Bhargav Raviprakash wrote:
 
-On Tue, 26 Mar 2024 at 10:36, Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
->
-> These lines fit 81 characters, which is pretty close to 80.
-> Join the lines.
->
-> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+> Introduces a new struct tps6594_match_data. This struct holds fields for
+> chip id and regmap config. Using this struct in of_device_id data field.
+> This helps in adding support for TPS65224 PMIC.
+> 
+> Signed-off-by: Bhargav Raviprakash <bhargav.r@ltts.com>
+> Acked-by: Julien Panis <jpanis@baylibre.com>
 > ---
+>  drivers/mfd/tps6594-i2c.c   | 24 ++++++++++++++++--------
+>  drivers/mfd/tps6594-spi.c   | 24 ++++++++++++++++--------
+>  include/linux/mfd/tps6594.h | 11 +++++++++++
+>  3 files changed, 43 insertions(+), 16 deletions(-)
 
-Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
+Mostly fine, just a couple of nits.
 
->  arch/arm64/boot/dts/exynos/google/gs101.dtsi | 12 ++++--------
->  1 file changed, 4 insertions(+), 8 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-> index cfb3ddc7f885..690deca37e4f 100644
-> --- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-> +++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-> @@ -374,8 +374,7 @@ pinctrl_peric0: pinctrl@10840000 {
->                 };
->
->                 usi8: usi@109700c0 {
-> -                       compatible = "google,gs101-usi",
-> -                                    "samsung,exynos850-usi";
-> +                       compatible = "google,gs101-usi", "samsung,exynos850-usi";
->                         reg = <0x109700c0 0x20>;
->                         ranges;
->                         #address-cells = <1>;
-> @@ -403,8 +402,7 @@ hsi2c_8: i2c@10970000 {
->                 };
->
->                 usi_uart: usi@10a000c0 {
-> -                       compatible = "google,gs101-usi",
-> -                                    "samsung,exynos850-usi";
-> +                       compatible = "google,gs101-usi", "samsung,exynos850-usi";
->                         reg = <0x10a000c0 0x20>;
->                         ranges;
->                         #address-cells = <1>;
-> @@ -419,8 +417,7 @@ usi_uart: usi@10a000c0 {
->                         serial_0: serial@10a00000 {
->                                 compatible = "google,gs101-uart";
->                                 reg = <0x10a00000 0xc0>;
-> -                               interrupts = <GIC_SPI 634
-> -                                             IRQ_TYPE_LEVEL_HIGH 0>;
-> +                               interrupts = <GIC_SPI 634 IRQ_TYPE_LEVEL_HIGH 0>;
->                                 clocks = <&cmu_peric0 CLK_GOUT_PERIC0_PERIC0_TOP1_PCLK_0>,
->                                          <&cmu_peric0 CLK_GOUT_PERIC0_PERIC0_TOP1_IPCLK_0>;
->                                 clock-names = "uart", "clk_uart_baud0";
-> @@ -454,8 +451,7 @@ pinctrl_peric1: pinctrl@10c40000 {
->                 };
->
->                 usi12: usi@10d500c0 {
-> -                       compatible = "google,gs101-usi",
-> -                                    "samsung,exynos850-usi";
-> +                       compatible = "google,gs101-usi", "samsung,exynos850-usi";
->                         reg = <0x10d500c0 0x20>;
->                         ranges;
->                         #address-cells = <1>;
-> --
-> 2.44.0.396.g6e790dbe36-goog
->
+Firstly the subject lines for the entire set are inconsistent.
+
+Please use the style set by the subsystem:
+
+  `git log --oneline -- <subsystem>` is your friend.
+
+> diff --git a/drivers/mfd/tps6594-i2c.c b/drivers/mfd/tps6594-i2c.c
+> index c125b474b..9e2ed48b7 100644
+> --- a/drivers/mfd/tps6594-i2c.c
+> +++ b/drivers/mfd/tps6594-i2c.c
+> @@ -192,10 +192,16 @@ static const struct regmap_config tps6594_i2c_regmap_config = {
+>  	.write = tps6594_i2c_write,
+>  };
+>  
+> +static const struct tps6594_match_data match_data[] = {
+> +	[TPS6594] = {TPS6594, &tps6594_i2c_regmap_config},
+> +	[TPS6593] = {TPS6593, &tps6594_i2c_regmap_config},
+> +	[LP8764] = {LP8764, &tps6594_i2c_regmap_config},
+
+Spaces after the '{' and before the '}' please.
+> +};
+> +
+>  static const struct of_device_id tps6594_i2c_of_match_table[] = {
+> -	{ .compatible = "ti,tps6594-q1", .data = (void *)TPS6594, },
+> -	{ .compatible = "ti,tps6593-q1", .data = (void *)TPS6593, },
+> -	{ .compatible = "ti,lp8764-q1",  .data = (void *)LP8764,  },
+> +	{ .compatible = "ti,tps6594-q1", .data = &match_data[TPS6594], },
+> +	{ .compatible = "ti,tps6593-q1", .data = &match_data[TPS6593], },
+> +	{ .compatible = "ti,lp8764-q1",  .data = &match_data[LP8764], },
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, tps6594_i2c_of_match_table);
+> @@ -205,6 +211,7 @@ static int tps6594_i2c_probe(struct i2c_client *client)
+>  	struct device *dev = &client->dev;
+>  	struct tps6594 *tps;
+>  	const struct of_device_id *match;
+> +	const struct tps6594_match_data *mdata;
+>  
+>  	tps = devm_kzalloc(dev, sizeof(*tps), GFP_KERNEL);
+>  	if (!tps)
+> @@ -216,14 +223,15 @@ static int tps6594_i2c_probe(struct i2c_client *client)
+>  	tps->reg = client->addr;
+>  	tps->irq = client->irq;
+>  
+> -	tps->regmap = devm_regmap_init(dev, NULL, client, &tps6594_i2c_regmap_config);
+> -	if (IS_ERR(tps->regmap))
+> -		return dev_err_probe(dev, PTR_ERR(tps->regmap), "Failed to init regmap\n");
+> -
+>  	match = of_match_device(tps6594_i2c_of_match_table, dev);
+>  	if (!match)
+>  		return dev_err_probe(dev, -EINVAL, "Failed to find matching chip ID\n");
+> -	tps->chip_id = (unsigned long)match->data;
+> +	mdata = (struct tps6594_match_data *)match->data;
+
+What happens when you drop this case?
+
+I was under the impression this was not required when casting from (void *)
+
+> +	tps->chip_id = mdata->chip_id;
+> +
+> +	tps->regmap = devm_regmap_init(dev, NULL, client, mdata->config);
+> +	if (IS_ERR(tps->regmap))
+> +		return dev_err_probe(dev, PTR_ERR(tps->regmap), "Failed to init regmap\n");
+
+"initialise"
+
+>  
+>  	crc8_populate_msb(tps6594_i2c_crc_table, TPS6594_CRC8_POLYNOMIAL);
+>  
+> diff --git a/drivers/mfd/tps6594-spi.c b/drivers/mfd/tps6594-spi.c
+> index 5afb1736f..82a1c02e3 100644
+> --- a/drivers/mfd/tps6594-spi.c
+> +++ b/drivers/mfd/tps6594-spi.c
+> @@ -77,10 +77,16 @@ static const struct regmap_config tps6594_spi_regmap_config = {
+>  	.use_single_write = true,
+>  };
+>  
+> +static const struct tps6594_match_data match_data[] = {
+> +	[TPS6594] = {TPS6594, &tps6594_spi_regmap_config},
+> +	[TPS6593] = {TPS6593, &tps6594_spi_regmap_config},
+> +	[LP8764] = {LP8764, &tps6594_spi_regmap_config},
+
+As above.
+
+> +};
+> +
+>  static const struct of_device_id tps6594_spi_of_match_table[] = {
+> -	{ .compatible = "ti,tps6594-q1", .data = (void *)TPS6594, },
+> -	{ .compatible = "ti,tps6593-q1", .data = (void *)TPS6593, },
+> -	{ .compatible = "ti,lp8764-q1",  .data = (void *)LP8764,  },
+> +	{ .compatible = "ti,tps6594-q1", .data = &match_data[TPS6594], },
+> +	{ .compatible = "ti,tps6593-q1", .data = &match_data[TPS6593], },
+> +	{ .compatible = "ti,lp8764-q1",  .data = &match_data[LP8764], },
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, tps6594_spi_of_match_table);
+> @@ -90,6 +96,7 @@ static int tps6594_spi_probe(struct spi_device *spi)
+>  	struct device *dev = &spi->dev;
+>  	struct tps6594 *tps;
+>  	const struct of_device_id *match;
+> +	const struct tps6594_match_data *mdata;
+>  
+>  	tps = devm_kzalloc(dev, sizeof(*tps), GFP_KERNEL);
+>  	if (!tps)
+> @@ -101,14 +108,15 @@ static int tps6594_spi_probe(struct spi_device *spi)
+>  	tps->reg = spi_get_chipselect(spi, 0);
+>  	tps->irq = spi->irq;
+>  
+> -	tps->regmap = devm_regmap_init(dev, NULL, spi, &tps6594_spi_regmap_config);
+> -	if (IS_ERR(tps->regmap))
+> -		return dev_err_probe(dev, PTR_ERR(tps->regmap), "Failed to init regmap\n");
+> -
+>  	match = of_match_device(tps6594_spi_of_match_table, dev);
+>  	if (!match)
+>  		return dev_err_probe(dev, -EINVAL, "Failed to find matching chip ID\n");
+> -	tps->chip_id = (unsigned long)match->data;
+> +	mdata = (struct tps6594_match_data *)match->data;
+> +	tps->chip_id = mdata->chip_id;
+> +
+> +	tps->regmap = devm_regmap_init(dev, NULL, spi, mdata->config);
+> +	if (IS_ERR(tps->regmap))
+> +		return dev_err_probe(dev, PTR_ERR(tps->regmap), "Failed to init regmap\n");
+>  
+>  	crc8_populate_msb(tps6594_spi_crc_table, TPS6594_CRC8_POLYNOMIAL);
+>  
+> diff --git a/include/linux/mfd/tps6594.h b/include/linux/mfd/tps6594.h
+> index 16543fd4d..d781e0fe3 100644
+> --- a/include/linux/mfd/tps6594.h
+> +++ b/include/linux/mfd/tps6594.h
+> @@ -1337,6 +1337,17 @@ struct tps6594 {
+>  	struct regmap_irq_chip_data *irq_data;
+>  };
+>  
+> +/**
+> + * struct tps6594_match_data - of match data of PMIC
+> + *
+> + * @chip_id: chip ID of PMIC
+> + * @config: regmap config of PMIC
+> + */
+> +struct tps6594_match_data {
+> +	unsigned long chip_id;
+> +	const struct regmap_config *config;
+> +};
+> +
+>  extern const struct regmap_access_table tps6594_volatile_table;
+>  extern const struct regmap_access_table tps65224_volatile_table;
+>  
+> -- 
+> 2.25.1
+> 
+
+-- 
+Lee Jones [李琼斯]
 
