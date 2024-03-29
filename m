@@ -1,158 +1,81 @@
-Return-Path: <devicetree+bounces-54482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66060891450
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 08:29:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3165891499
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 08:55:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D02D2891DC
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 07:29:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81FF6288169
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 07:55:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24F6F4436D;
-	Fri, 29 Mar 2024 07:26:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="q9KYzPmV"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 757F540869;
+	Fri, 29 Mar 2024 07:55:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B234640852;
-	Fri, 29 Mar 2024 07:26:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0637839AF2;
+	Fri, 29 Mar 2024 07:55:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711697187; cv=none; b=hw6Eis9ddJb9IwD2cv+WrzkxEgnn3ggAGYt54NetTIUX2no+Qrv0lhTaC+E5WVBzbiJIvjMpiaLQysG1JxwHd770r0LyUJHdm1b/q8aDwKBYYlSxZoRZslPS3kXXSgQ5MgGh57+kr4yI6ZvJX+kDedmgKjv3cgW5fKfFcadPR2I=
+	t=1711698936; cv=none; b=jH7Du7kWcuFjdR9tGDhVKY/tyLYPySMXbQSoj0E3b6SvF5DWGzqlSC+nuHs67PJJa0YZq7TtYu/HkjKSZvToOA4Q8STQYH9omToNZuLd9+wl7AQcSkqQyImIoEERu7e9JYiM7v9E+c6PzAyvwapZLZj1GCOXSid06SnQPc08T4g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711697187; c=relaxed/simple;
-	bh=bInZpQe27T+FP7otvnqd8TxPV4Zh13QdnbFoeMPgJnc=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eENRMVkbYq0Ozk126qilqOn8vnqfbV0JoR/eKYpsdKXVETtdecyS5UKOqPO2VsixeRY8cHbpY3eohIsJcaUAL0650rRGo3ZD6Ky4pa1pBOc1DO8djG6pkN3YaZLCtmRqcOv45EDzuuHsmkBVbYlLSmYaXF/XLFhSY51t1mbEMJo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=q9KYzPmV; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1711697184; x=1743233184;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=bInZpQe27T+FP7otvnqd8TxPV4Zh13QdnbFoeMPgJnc=;
-  b=q9KYzPmVJjrJ6tgXYfLM0nykx+0MF85Rv9lRi5SK4IlswgbmhkfvpkU1
-   McZnx1IyjywhW5dOhKUiDz/GYTG5lhKOpC8z/eLroZ2E3dNbOdE4dc0Sx
-   CoQYB1SdH2Uud/yTiymvOP7RFYNJkYnOWMq9kpmSTTTz1obfHZI/eeWhL
-   kndenZr2p7+q6SLDRTRiSav3rYwG2B8fTT8xWvhCQfj9Yr5NrRZORoGDm
-   axA2QjRMetVFd7MbTexiRrdvy3hwf5j8IFtHXTN5d8Fnz1CaJaKV+OGOD
-   kLrwA7mokw6PLG5tkRX9l5VAMPE8t22/nfeLGPiJZsp6kDMAQZ5Lv2HUh
-   Q==;
-X-CSE-ConnectionGUID: 15IXURycT2uyFkZ6j12usw==
-X-CSE-MsgGUID: 3NX0TeF6T2SxAshBbDmoVA==
-X-IronPort-AV: E=Sophos;i="6.07,164,1708412400"; 
-   d="asc'?scan'208";a="18569006"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 29 Mar 2024 00:26:21 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 29 Mar 2024 00:25:57 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex03.mchp-main.com (10.10.85.151)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Fri, 29 Mar 2024 00:25:45 -0700
-Date: Fri, 29 Mar 2024 07:24:57 +0000
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Deepak Gupta <debug@rivosinc.com>
-CC: <paul.walmsley@sifive.com>, <rick.p.edgecombe@intel.com>,
-	<broonie@kernel.org>, <Szabolcs.Nagy@arm.com>, <kito.cheng@sifive.com>,
-	<keescook@chromium.org>, <ajones@ventanamicro.com>, <cleger@rivosinc.com>,
-	<atishp@atishpatra.org>, <alex@ghiti.fr>, <bjorn@rivosinc.com>,
-	<alexghiti@rivosinc.com>, <samuel.holland@sifive.com>, <palmer@sifive.com>,
-	<conor@kernel.org>, <linux-doc@vger.kernel.org>,
-	<linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-mm@kvack.org>,
-	<linux-arch@vger.kernel.org>, <linux-kselftest@vger.kernel.org>,
-	<corbet@lwn.net>, <tech-j-ext@lists.risc-v.org>, <palmer@dabbelt.com>,
-	<aou@eecs.berkeley.edu>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <oleg@redhat.com>,
-	<akpm@linux-foundation.org>, <arnd@arndb.de>, <ebiederm@xmission.com>,
-	<Liam.Howlett@oracle.com>, <vbabka@suse.cz>, <lstoakes@gmail.com>,
-	<shuah@kernel.org>, <brauner@kernel.org>, <andy.chiu@sifive.com>,
-	<jerry.shih@sifive.com>, <hankuan.chen@sifive.com>,
-	<greentime.hu@sifive.com>, <evan@rivosinc.com>, <xiao.w.wang@intel.com>,
-	<charlie@rivosinc.com>, <apatel@ventanamicro.com>,
-	<mchitale@ventanamicro.com>, <dbarboza@ventanamicro.com>,
-	<sameo@rivosinc.com>, <shikemeng@huaweicloud.com>, <willy@infradead.org>,
-	<vincent.chen@sifive.com>, <guoren@kernel.org>, <samitolvanen@google.com>,
-	<songshuaishuai@tinylab.org>, <gerg@kernel.org>, <heiko@sntech.de>,
-	<bhe@redhat.com>, <jeeheng.sia@starfivetech.com>, <cyy@cyyself.name>,
-	<maskray@google.com>, <ancientmodern4@gmail.com>, <mathis.salmen@matsal.de>,
-	<cuiyunhui@bytedance.com>, <bgray@linux.ibm.com>, <mpe@ellerman.id.au>,
-	<baruch@tkos.co.il>, <alx@kernel.org>, <david@redhat.com>,
-	<catalin.marinas@arm.com>, <revest@chromium.org>, <josh@joshtriplett.org>,
-	<shr@devkernel.io>, <deller@gmx.de>, <omosnace@redhat.com>,
-	<ojeda@kernel.org>, <jhubbard@nvidia.com>
-Subject: Re: [PATCH v2 04/27] riscv: zicfiss/zicfilp enumeration
-Message-ID: <20240329-condition-morse-c3d02720853a@wendy>
-References: <20240329044459.3990638-1-debug@rivosinc.com>
- <20240329044459.3990638-5-debug@rivosinc.com>
+	s=arc-20240116; t=1711698936; c=relaxed/simple;
+	bh=9RbpFOmZNtG+oc8wrHRkcj9NkTXvGKOwACb0jmOWopY=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=VIGy8T09bY6+rYi52diQlhDZ4xw4Y5wesAGK8iltwABwKtVlCOTpazzCfmQWa7eUOI/swbRChAbeOlNhUJW/4EOf5X3CdL5V7y4D80L6NHTbsHjPkQgivyqTFJ2v5doUoca7b+5P4y7KFC0KoVgV9zFOo8UN9a2jCnL5Yvx0jQw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 01E5F1A0923;
+	Fri, 29 Mar 2024 08:48:32 +0100 (CET)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id ABF8E1A02BF;
+	Fri, 29 Mar 2024 08:48:31 +0100 (CET)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id BBCE2183ACAC;
+	Fri, 29 Mar 2024 15:48:29 +0800 (+08)
+From: Richard Zhu <hongxing.zhu@nxp.com>
+To: vkoul@kernel.org,
+	kishon@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	frank.li@nxp.com
+Cc: hongxing.zhu@nxp.com,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	kernel@pengutronix.de,
+	linux-imx@nxp.com
+Subject: [RFC 0/3] Add i.MX8Q HSIO PHY driver support
+Date: Fri, 29 Mar 2024 15:31:30 +0800
+Message-Id: <1711697493-16151-1-git-send-email-hongxing.zhu@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="kiXl0dlDZ9ZIiu8P"
-Content-Disposition: inline
-In-Reply-To: <20240329044459.3990638-5-debug@rivosinc.com>
 
---kiXl0dlDZ9ZIiu8P
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+i.MX8Q HSIO module has PHY and mix control regions.
+This patch-set adds i.MX8Q HSIO PHY driver support, and provides
+standard PHY phandles that can be used by i.MX8Q PCIe or
+SATA driver later.
 
-On Thu, Mar 28, 2024 at 09:44:36PM -0700, Deepak Gupta wrote:
-> Adds description in dt-bindings (extensions.yaml)
->=20
-> This patch adds support for detecting zicfiss and zicfilp. zicfiss and zi=
-cfilp
-> stands for unprivleged integer spec extension for shadow stack and branch
-> tracking on indirect branches, respectively.
->=20
-> This patch looks for zicfiss and zicfilp in device tree and accordinlgy l=
-ights
-> up bit in cpu feature bitmap. Furthermore this patch adds detection utili=
-ty
-> functions to return whether shadow stack or landing pads are supported by
-> cpu.
->=20
-> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
-> ---
+[RFC 1/3] dt-bindings: phy: Add i.MX8Q HSIO SerDes PHY binding
+[RFC 2/3] dt-bindings: phy: phy-imx8-pcie: Add binding for i.MX8Q
+[RFC 3/3] phy: freescale: imx8q-hsio: Add i.MX8Q HSIO PHY driver
 
->  .../devicetree/bindings/riscv/extensions.yaml       | 10 ++++++++++
+Documentation/devicetree/bindings/phy/fsl,imx8q-hsio.yaml | 143 ++++++++++++++++++++++++
+drivers/phy/freescale/Kconfig                             |   8 ++
+drivers/phy/freescale/Makefile                            |   1 +
+drivers/phy/freescale/phy-fsl-imx8q-hsio.c                | 518 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+include/dt-bindings/phy/phy-imx8-pcie.h                   |  26 +++++
+5 files changed, 696 insertions(+)
 
-Checkpatch should have told you that bindings changes need to be in
-separate patches.
-
-Thanks,
-Conor.
-
->  arch/riscv/include/asm/cpufeature.h                 | 13 +++++++++++++
->  arch/riscv/include/asm/hwcap.h                      |  2 ++
->  arch/riscv/include/asm/processor.h                  |  1 +
->  arch/riscv/kernel/cpufeature.c                      |  2 ++
-
---kiXl0dlDZ9ZIiu8P
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgZsvgAKCRB4tDGHoIJi
-0iYTAQD/x2jCSMw3PvwFsNJ6v7adg+YdWitg5NvBburVYvIikAEA0Qu7dWdDtcJk
-H0K8lWXiWqqumgSgXhcWgk/Gp2U1igQ=
-=0twh
------END PGP SIGNATURE-----
-
---kiXl0dlDZ9ZIiu8P--
 
