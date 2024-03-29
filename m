@@ -1,266 +1,171 @@
-Return-Path: <devicetree+bounces-54681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54682-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1A54892203
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 18:00:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3800892260
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 18:06:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CBAEA1C23FB2
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 17:00:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A0BD28B056
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 17:06:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4D0A85633;
-	Fri, 29 Mar 2024 17:00:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84356137755;
+	Fri, 29 Mar 2024 17:03:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nDOGqfJS"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="e1feYB+J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D90633CC4;
-	Fri, 29 Mar 2024 17:00:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C21A613792C
+	for <devicetree@vger.kernel.org>; Fri, 29 Mar 2024 17:03:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711731641; cv=none; b=YxA4oW1f9flYyfWR0LwKXAw7gHwx6uzTz4wLQyZ6aUDCJh/PpNppObIEJqBXgne8waYQsjWn5OwCsO31fn2HELbaoesXhq4FKt7JUZ95Z4eMAWdfj8ekSu+vu9wZt+YaxrOcIOKITMJegl3aSZex9Qqmdr1qNki4j4UZKVsKvHU=
+	t=1711731807; cv=none; b=uYEqYoVW/gBHCRgySs/kHMGRtkOV3QeEK45C+97g2O9gwHFMoU+gWE+liW8tU7Tx/JBFbtE+vW3doXY4l1yeEkqeajJfzjElADWzvPtljuf5Xr+QT8oc2s2fWlgePsu76XtmYxS2bgA34mCAAx65dMT20ZuxDoU9udagxx2ve98=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711731641; c=relaxed/simple;
-	bh=iV56zgBWXBOye2nA5+pTdyz84vnPkMVcgqGSOiaWdR4=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=QLi9ONdryU/NJZbrgE5pCQYbhxq8zjEXSRSBI8aj5A1qLaj3gbekQWkXYyO2WVkrie827sioCXhcHG99AT6wbPa+PPSsbWKhf+TTcDXY9h7UtKMtG9s+RRflEMCiM40fMrwcY/NgZfOQq1zCsDlI50ij0fW1onO1IdqPD1m1x7Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nDOGqfJS; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1711731640; x=1743267640;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=iV56zgBWXBOye2nA5+pTdyz84vnPkMVcgqGSOiaWdR4=;
-  b=nDOGqfJSw/yveUPE66A30wy19Wx5nXlc4T2y8UYx7OhWNKEFULa8CBJ+
-   m2qxnBGPwFyNZ8fkyiVDumXDAe+7RnBZrXxekaVVfvSDoRdJlUZbKPVw1
-   +LlA8k0D/hEGLcISL7rYlTl+FQCUO66M5vBQQjzDFdsFfZFLsKs/to93+
-   N+KlbIz947x64mxu5gEqHGllEX0mUJ24u62l38Db8oBhV1qSAmGM5g4P7
-   DCRngSPvjJQFfksQCz2fxg3I26Bf2ZPhs+xKSdxvDkVJa+9bebNbwwsaJ
-   BYqzacfWNKCazSsdQc9m29clWyGd/CuwHbXgYIp2Zr1GltgPMj+NslmB8
-   Q==;
-X-CSE-ConnectionGUID: MgXgekE9SbalRu3b7YM32Q==
-X-CSE-MsgGUID: iUrhyUZlSOyE1nMXc85CHg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11028"; a="7519770"
-X-IronPort-AV: E=Sophos;i="6.07,165,1708416000"; 
-   d="scan'208";a="7519770"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Mar 2024 10:00:39 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,165,1708416000"; 
-   d="scan'208";a="17065468"
-Received: from test2-linux-lab.an.intel.com ([10.122.105.166])
-  by fmviesa006.fm.intel.com with ESMTP; 29 Mar 2024 10:00:38 -0700
-From: matthew.gerlach@linux.intel.com
-To: joyce.ooi@intel.com,
-	bhelgaas@google.com,
-	lpieralisi@kernel.org,
-	kw@linux.com,
-	robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Matthew Gerlach <matthew.gerlach@linux.intel.com>
-Subject: [PATCH] dt-bindings: pci: altera: covert to yaml
-Date: Fri, 29 Mar 2024 12:00:31 -0500
-Message-Id: <20240329170031.3379524-1-matthew.gerlach@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1711731807; c=relaxed/simple;
+	bh=o/C6dae7jOY8iuNBHN66mzmA+BPRJePNpdA84Uzcaj8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=uEIjJoUG3K3fhTT4HSNyiSYBVVl3rZsIs2Q8iCqd8adYWLO1mCnp3sdMkNR5TY+XewIAxUmXXonrQbpPQSIYRGZYNcx4mWe8pLmTf9w90JY42Vkwa9Djf8Pcy0cTgS6VHhGsq45qoSQOKRJlbdMfxHUDt4ROeg4PxBaNqsPVyI4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=e1feYB+J; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42TGGbL7015962;
+	Fri, 29 Mar 2024 17:03:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=mYHS1PYzPXAOWSxRoqYUORZgaQti8trOY34IHxsOj3A=; b=e1
+	feYB+J2VLeslO1PZqLUqLbrfxvh/CHvTWO01bifi8425rn+rNg5LU0onM/HZCfFp
+	MjyxgnCOH1+v5E4MjjzBRGemQV8PL/n991UlADjd8PCr6/JpxCO3RXDlRTpjjYnf
+	fiASMfVlEbumvuitaaDxN9Za906JOrdhXjFmwsWn23o9dcnNtzJ+WGkBq0LhjRCT
+	0uEc4/F0u2W7ENOUUiPJCvml0SFlGAzToDux0NS4UadrawXQhYvfeLHt0klemMUa
+	d0BmtTzSH48Bs8wFm5mZEpWV41MTM/j0KwpPwaTrOQhKilIbfKR8FjeMRSd7pfLf
+	QgVu2JCqdP2MwGwFJM4A==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x5vn98r4k-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 29 Mar 2024 17:03:06 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42TH35X5015920
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 29 Mar 2024 17:03:05 GMT
+Received: from [10.71.108.229] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 29 Mar
+ 2024 10:03:05 -0700
+Message-ID: <a278e765-c300-42d7-aabe-0457508a70b2@quicinc.com>
+Date: Fri, 29 Mar 2024 10:03:04 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] drm/panel: simple: Add missing Innolux G121X1-L03
+ format, flags, connector
+Content-Language: en-US
+To: Marek Vasut <marex@denx.de>, <dri-devel@lists.freedesktop.org>
+CC: Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
+        David
+ Airlie <airlied@gmail.com>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Neil
+ Armstrong <neil.armstrong@linaro.org>,
+        Rob Herring <robh@kernel.org>, Sam
+ Ravnborg <sam@ravnborg.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>, <devicetree@vger.kernel.org>
+References: <20240328102746.17868-1-marex@denx.de>
+ <20240328102746.17868-2-marex@denx.de>
+From: Jessica Zhang <quic_jesszhan@quicinc.com>
+In-Reply-To: <20240328102746.17868-2-marex@denx.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: f4-KCHl2X8rho_g4ATxAKoCDPlO9fehG
+X-Proofpoint-GUID: f4-KCHl2X8rho_g4ATxAKoCDPlO9fehG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-29_13,2024-03-28_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
+ mlxscore=0 clxscore=1011 adultscore=0 priorityscore=1501 mlxlogscore=999
+ phishscore=0 impostorscore=0 malwarescore=0 suspectscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2403210001 definitions=main-2403290150
 
-From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
 
-Covert the device tree bindings for the Altera Root
-Port controller from text to yaml.
 
-Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
----
- .../devicetree/bindings/pci/altera-pcie.txt   |  50 ---------
- .../bindings/pci/altr,pcie-root-port.yaml     | 106 ++++++++++++++++++
- 2 files changed, 106 insertions(+), 50 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/pci/altera-pcie.txt
- create mode 100644 Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
+On 3/28/2024 3:27 AM, Marek Vasut wrote:
+> The .bpc = 6 implies .bus_format = MEDIA_BUS_FMT_RGB666_1X7X3_SPWG ,
+> add the missing bus_format. Add missing connector type and bus_flags
+> as well.
+> 
+> Documentation [1] 1.4 GENERAL SPECIFICATI0NS indicates this panel is
+> capable of both RGB 18bit/24bit panel, the current configuration uses
+> 18bit mode, .bus_format = MEDIA_BUS_FMT_RGB666_1X7X3_SPWG , .bpc = 6.
+> 
+> Support for the 24bit mode would require another entry in panel-simple
+> with .bus_format = MEDIA_BUS_FMT_RGB666_1X7X4_SPWG and .bpc = 8, which
+> is out of scope of this fix.
+> 
+> [1] https://www.distec.de/fileadmin/pdf/produkte/TFT-Displays/Innolux/G121X1-L03_Datasheet.pdf
 
-diff --git a/Documentation/devicetree/bindings/pci/altera-pcie.txt b/Documentation/devicetree/bindings/pci/altera-pcie.txt
-deleted file mode 100644
-index 816b244a221e..000000000000
---- a/Documentation/devicetree/bindings/pci/altera-pcie.txt
-+++ /dev/null
-@@ -1,50 +0,0 @@
--* Altera PCIe controller
--
--Required properties:
--- compatible :	should contain "altr,pcie-root-port-1.0" or "altr,pcie-root-port-2.0"
--- reg:		a list of physical base address and length for TXS and CRA.
--		For "altr,pcie-root-port-2.0", additional HIP base address and length.
--- reg-names:	must include the following entries:
--		"Txs": TX slave port region
--		"Cra": Control register access region
--		"Hip": Hard IP region (if "altr,pcie-root-port-2.0")
--- interrupts:	specifies the interrupt source of the parent interrupt
--		controller.  The format of the interrupt specifier depends
--		on the parent interrupt controller.
--- device_type:	must be "pci"
--- #address-cells:	set to <3>
--- #size-cells:		set to <2>
--- #interrupt-cells:	set to <1>
--- ranges:	describes the translation of addresses for root ports and
--		standard PCI regions.
--- interrupt-map-mask and interrupt-map: standard PCI properties to define the
--		mapping of the PCIe interface to interrupt numbers.
--
--Optional properties:
--- msi-parent:	Link to the hardware entity that serves as the MSI controller
--		for this PCIe controller.
--- bus-range:	PCI bus numbers covered
--
--Example
--	pcie_0: pcie@c00000000 {
--		compatible = "altr,pcie-root-port-1.0";
--		reg = <0xc0000000 0x20000000>,
--			<0xff220000 0x00004000>;
--		reg-names = "Txs", "Cra";
--		interrupt-parent = <&hps_0_arm_gic_0>;
--		interrupts = <0 40 4>;
--		interrupt-controller;
--		#interrupt-cells = <1>;
--		bus-range = <0x0 0xFF>;
--		device_type = "pci";
--		msi-parent = <&msi_to_gic_gen_0>;
--		#address-cells = <3>;
--		#size-cells = <2>;
--		interrupt-map-mask = <0 0 0 7>;
--		interrupt-map = <0 0 0 1 &pcie_0 1>,
--			            <0 0 0 2 &pcie_0 2>,
--			            <0 0 0 3 &pcie_0 3>,
--			            <0 0 0 4 &pcie_0 4>;
--		ranges = <0x82000000 0x00000000 0x00000000 0xc0000000 0x00000000 0x10000000
--			  0x82000000 0x00000000 0x10000000 0xd0000000 0x00000000 0x10000000>;
--	};
-diff --git a/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml b/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
-new file mode 100644
-index 000000000000..8f1ad1362ad1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
-@@ -0,0 +1,106 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright (C) 2024, Intel Corporation
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/altr,pcie-root-port.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Altera PCIe Root Port
-+
-+maintainers:
-+  - Matthew Gerlach <matthew.gerlach@linux.intel.com>
-+
-+allOf:
-+  - $ref: /schemas/pci/pci-bus.yaml#
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - altr,pcie-root-port-1.0
-+          - altr,pcie-root-port-2.0
-+
-+  reg:
-+    minItems: 2
-+    maxItems: 3
-+
-+  reg-names:
-+    description:
-+      TX slave port region (Txs)
-+      Control register access region (Cra)
-+      Hard IP region if altr,pcie-root-port-2.0 (Hip)
-+
-+    items:
-+      - const: Txs
-+      - const: Cra
-+      - const: Hip
-+    minItems: 2
-+
-+  device_type:
-+    const: pci
-+
-+  "#address-cells":
-+    const: 3
-+
-+  "#size-cells":
-+    const: 2
-+
-+  interrupts:
-+    minItems: 1
-+
-+  interrupt-map-mask:
-+    items:
-+      - const: 0
-+      - const: 0
-+      - const: 0
-+      - const: 7
-+
-+  interrupt-map:
-+    maxItems: 4
-+
-+  "#interrupt-cells":
-+    const: 1
-+
-+  msi-parent:
-+    description: Link to the hardware entity that serves as the MSI controller.
-+
-+  bus-range:
-+    description: PCI bus numbers covered.
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - device_type
-+  - "#address-cells"
-+  - "#size-cells"
-+  - interrupts
-+  - interrupt-map
-+  - interrupt-map-mask
-+  - "#interrupt-cells"
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    pcie_0: pcie@c00000000 {
-+        compatible = "altr,pcie-root-port-1.0";
-+        reg = <0xc0000000 0x20000000>,
-+            <0xff220000 0x00004000>;
-+        reg-names = "Txs", "Cra";
-+        interrupt-parent = <&hps_0_arm_gic_0>;
-+        interrupts = <0 40 4>;
-+        #interrupt-cells = <1>;
-+        bus-range = <0x0 0xFF>;
-+        device_type = "pci";
-+        msi-parent = <&msi_to_gic_gen_0>;
-+        #address-cells = <3>;
-+        #size-cells = <2>;
-+        interrupt-map-mask = <0 0 0 7>;
-+        interrupt-map = <0 0 0 1 &pcie_intc 1>,
-+                        <0 0 0 2 &pcie_intc 2>,
-+                        <0 0 0 3 &pcie_intc 3>,
-+                        <0 0 0 4 &pcie_intc 4>;
-+        ranges = <0x82000000 0x00000000 0x00000000 0xc0000000 0x00000000 0x10000000
-+              0x82000000 0x00000000 0x10000000 0xd0000000 0x00000000 0x10000000>;
-+    };
--- 
-2.34.1
+Hi Marek,
 
+Acked-by: Jessica Zhang <quic_jesszhan@quicinc.com>
+
+Thanks,
+
+Jessica Zhang
+
+> 
+> Fixes: f8fa17ba812b ("drm/panel: simple: Add support for Innolux G121X1-L03")
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Jessica Zhang <quic_jesszhan@quicinc.com>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: devicetree@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> ---
+>   drivers/gpu/drm/panel/panel-simple.c | 3 +++
+>   1 file changed, 3 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+> index d9ddef0e675a7..d4c30a86d15d6 100644
+> --- a/drivers/gpu/drm/panel/panel-simple.c
+> +++ b/drivers/gpu/drm/panel/panel-simple.c
+> @@ -2618,6 +2618,9 @@ static const struct panel_desc innolux_g121x1_l03 = {
+>   		.unprepare = 200,
+>   		.disable = 400,
+>   	},
+> +	.bus_format = MEDIA_BUS_FMT_RGB666_1X7X3_SPWG,
+> +	.bus_flags = DRM_BUS_FLAG_DE_HIGH,
+> +	.connector_type = DRM_MODE_CONNECTOR_LVDS,
+>   };
+>   
+>   static const struct display_timing innolux_g156hce_l01_timings = {
+> -- 
+> 2.43.0
+> 
 
