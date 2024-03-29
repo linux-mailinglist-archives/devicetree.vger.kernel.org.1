@@ -1,111 +1,130 @@
-Return-Path: <devicetree+bounces-54478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB18D8913D1
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 07:36:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E61CC891414
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 08:20:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7165A1F22EB0
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 06:36:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4ED1EB21CE1
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 07:20:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4648D2B9A2;
-	Fri, 29 Mar 2024 06:36:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5D303FE2B;
+	Fri, 29 Mar 2024 07:20:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="Ay1mw+WD"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Qdb8I3mt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79901249F7
-	for <devicetree@vger.kernel.org>; Fri, 29 Mar 2024 06:36:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1866739FD8;
+	Fri, 29 Mar 2024 07:20:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711694192; cv=none; b=K7W6ChmjRLX6mFYyFFI/YvGhY831XnXG9rZ3/1aadpEUX5ckYxBm1UwqMLN6VH1N/KG50BRtqBBEX66dq204r8cvDlnwOw+4GQcacDAjQtOPwr1NdA8NJlDMG4qBT9xBdUuM6AiAHLfoSaMiespVcl4o5ZdK2uIaKse91n1gnTQ=
+	t=1711696837; cv=none; b=XOqw0K2OviNyHkNYBtrHWr+MCGYWSIUcyzKQ9NJYfENUz1YS08W2xfA2sAfxP99OhWSd/mqL8vkrmPK3GHFa0wzcgSgAcijF+DeW49gISQxGMlLrTssx6sB4eBvPGT7Q8DWlxqSrMYYrrFk13tSYrjFeEDB+1ddWrQkykR1LsuI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711694192; c=relaxed/simple;
-	bh=zvuXhVzKRKNmjsXHGNO71Xw7k2AL7GmRkRL9GC6fsuw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SEc1BP6QibBP2BNHFfzhdsBGstmCgDqQqPBSvQg/q+cLVcwLmU+cZPHYbTIe5r/xQvSvIDxUDDgZQBZsBrCo1lli2o0MFHdbTOefNxeAS9KD/I2dGhoruf1D1pGFyGxSWi6FfJgcNWTTU4bRLb+LPdNvByW0Jn+p09BzqOy7Y9M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=Ay1mw+WD; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-341d730bdfcso1474139f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 23:36:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1711694189; x=1712298989; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=43xZx60rfZWmX/MW6KInTEWOudBJZZMkJu12Y5dNCZU=;
-        b=Ay1mw+WD5UM8yLaWezfd9y8AEU3ImzlCFbk9BuyIWsAoszrdlIGHbAG4JvrSGIhB22
-         yZyZX1e6vyYmpuHsq6ZQlFcGZTZyQoWkBWYUJ+wBmfOjtIB8s+AB8GGpnXvkKf7V0ZOM
-         Yv6baXkQH+CLCawSJodgtYPbwGMXtUh/T0p0jGRdgs9WTyVK1rdxHYEDT8E3WnnrOgcr
-         0lOKi5pgcP6j01rXAB8IW5JE73tcTKWcPai+oZnZOluLmJueXvdKOTKqdVSTG8zbRVJ4
-         nRqmRJLjqj7S6oV5O8pf/RVYP0rWaoF0aHvpHLJ5HzYuqi3InjUe/MDtxMltod2gbFiq
-         xDaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711694189; x=1712298989;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=43xZx60rfZWmX/MW6KInTEWOudBJZZMkJu12Y5dNCZU=;
-        b=n2qiULlspXJX/GRVa4BJntowBP2vZamDJs0kUzltd2HpyBdoYwG+sBjceEhal/3CLM
-         ZPWaLi+F2ZP8/BbQEeLEAM0S7Uuor6LWkPfpc6cLwLdInjCQxa+tdxgr9QD4POIKU2tg
-         4slOb8sM8BBmMj/ogJA92xXHbEqU+WwGXw8cZINca0hauEfVUxn5IqZaa6UR/QbXvk/k
-         V4kQhe8yzpfBTvS3Q5S/hl8JjEd0ktVkkzotZSDk5KoUHZUCFU9bFoSbvckZC3Giw+Iy
-         jXwxSf9ZNc22nDw5UrNvZvROCe4WgTBTM3PlDTTGj1zjwwv8WubI0DbLaskf5hfgVN3O
-         zgfQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVGgX7P445aforP7ekBJYo3xqFtZYvtIKnpFLp9raQB2DbiOsAejbv7H/HNrbHAcP2zJuFdJ0xhhA1JJv0H6C8y+jKIXJQiQaQ1Pw==
-X-Gm-Message-State: AOJu0Yz1w3o6Uj7RrxHnrjHamYBQqm9p8+eOE7i/DsiLOt10cQXbqnLg
-	7EkCw+ji8UjO4u2HTWaq2nbImviyLzF7EAUp6/mAF6cUS4ZO4xSBC7oTHQUmCes=
-X-Google-Smtp-Source: AGHT+IEVLeAaHFiI4gvE43nlAphVjGnGp98O60VdyrE/01nb5Rcj1iSVPlTnLH+WsyKz1julrP/fFg==
-X-Received: by 2002:a5d:4b8a:0:b0:33e:7f65:bb7b with SMTP id b10-20020a5d4b8a000000b0033e7f65bb7bmr820243wrt.5.1711694188839;
-        Thu, 28 Mar 2024 23:36:28 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.147])
-        by smtp.gmail.com with ESMTPSA id bp29-20020a5d5a9d000000b00341d28586afsm3494618wrb.2.2024.03.28.23.36.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Mar 2024 23:36:28 -0700 (PDT)
-Message-ID: <16dc5bd3-9231-474d-8056-d7b0240716de@tuxon.dev>
-Date: Fri, 29 Mar 2024 08:36:26 +0200
+	s=arc-20240116; t=1711696837; c=relaxed/simple;
+	bh=vzmPmJeJUxq5/BxD3bs1AX/uEs3Ldk2UfdR7q7RIaqM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gJ0L6OXSRrHsABe8tvIdE2J4KunnnQ+lWn6FVOCc2HWeVoLmPNb0PuRnfz9kC5AO8Of+X7RiqNRemt9ljy7TkhZ8l5km9FgRNIFjwImOSQJRVs2A92ozkIjgAIVcrGSNzFwi4EsLJ52GiwhF2T+ydCTJWHVj/hsvFxP+Pm20Ua8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Qdb8I3mt; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42T1xp1V019589;
+	Fri, 29 Mar 2024 07:20:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=3rUcGkP
+	kSK5xD+ct0f6cwMGcLbiakbm2DQyntW9fjKI=; b=Qdb8I3mtxP427P+750jSECI
+	SnbnwLwBSBtT8wWxwQK0h0uYVa04TuXEN4cfWqXEwIp+Vj52nH+sc1YVr6TK0Vmq
+	h077NuOTEsb/WLYwKPbMCu1yXcQzCyZTUrhWgUm8LjJxCEz72Wr8feFtRGruTszP
+	WP9PvDiGC3LgR/JTNnKrIc1splGW0O+lFOPbrYmI7lo2yVgd57KjPM/OgSPJkL6V
+	ah36JrrI3LUoyKqjTyDlFH/IelkBPU/yX9a04mk0SLsbrR4Lc6g94rQBnQ3dhZw8
+	8tPbnL1ZpRNwN/TRUb7yLLV5Sf5jM6H07qLEvYsoKlaZUH4Xt6SPN3AZgwMxe8Q=
+	=
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x5fs895pq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 29 Mar 2024 07:20:04 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42T7K3jK018851
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 29 Mar 2024 07:20:03 GMT
+Received: from hu-kriskura-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Fri, 29 Mar 2024 00:19:58 -0700
+From: Krishna Kurapati <quic_kriskura@quicinc.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Bjorn Helgaas <bhelgaas@google.com>, Kyle
+ Tso <kyletso@google.com>,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        "Heikki Krogerus" <heikki.krogerus@linux.intel.com>,
+        <u.kleine-koenig@pengutronix.de>,
+        AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>
+CC: <devicetree@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_ppratap@quicinc.com>,
+        <quic_jackp@quicinc.com>, Krishna Kurapati <quic_kriskura@quicinc.com>
+Subject: [RFC PATCH 0/2] Add gpio-usb-c-connector compatible
+Date: Fri, 29 Mar 2024 12:49:46 +0530
+Message-ID: <20240329071948.3101882-1-quic_kriskura@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 13/13] pinctrl: renesas: pinctrl-rzg2l: Add support
- for RZ/V2H SoC
-Content-Language: en-US
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
- linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20240326222844.1422948-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240326222844.1422948-14-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <25bc9ceb-c5cb-40a2-8c3d-d9666b88546c@tuxon.dev>
- <CA+V-a8uegButH84aUY1N+0GzZx2LkRBTxNtg7y1Y-cUvvFfJpw@mail.gmail.com>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <CA+V-a8uegButH84aUY1N+0GzZx2LkRBTxNtg7y1Y-cUvvFfJpw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: BtrgVd0-GHri3_cLMixRc9KjVDQY6PPq
+X-Proofpoint-ORIG-GUID: BtrgVd0-GHri3_cLMixRc9KjVDQY6PPq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-29_06,2024-03-28_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
+ priorityscore=1501 phishscore=0 mlxlogscore=408 spamscore=0 suspectscore=0
+ mlxscore=0 adultscore=0 malwarescore=0 impostorscore=0 clxscore=1011
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2403210001 definitions=main-2403290061
 
+QDU1000 IDP [1] has a Type-c connector and supports USB 3.0.
+However it relies on usb-conn-gpio driver to read the vbus and id
+gpio's and provide role switch. However the driver currently has
+only gpio-b-connector compatible present in ID table. Adding that
+in DT would mean that the device supports Type-B connector and not
+Type-c connector. Thanks to Dmitry Baryshkov for pointing it out [2].
 
+This series intends to add that compatible in driver and bindings
+so that it can be used in QDU1000 IDP DT.
 
-On 28.03.2024 21:51, Lad, Prabhakar wrote:
->>> +static void rzv2h_pinctrl_pm_setup_pfc(struct rzg2l_pinctrl *pctrl)
->> Have you managed to test this?
->>
-> No S2R isn't tested and is just added for completeness, I wonder if we
-> should have a SoC specific flag "pm_supported" for this, as apart from
-> RZ/G3S  nothing has been tested I believe?
+[1]: https://lore.kernel.org/all/20240319091020.15137-3-quic_kbajaj@quicinc.com/
+[2]: https://lore.kernel.org/all/CAA8EJprXPvji8TgZu1idH7y4GtHtD4VmQABFBcRt-9BQaCberg@mail.gmail.com/
 
-Yes, only RZ/G3S PM has been tested.
+Krishna Kurapati (2):
+  dt-bindings: connector: Add gpio-usb-c-connector compatible
+  usb: common: usb-conn-gpio: Update ID table to add usb-c connector
+
+ Documentation/devicetree/bindings/connector/usb-connector.yaml | 3 +++
+ drivers/usb/common/usb-conn-gpio.c                             | 1 +
+ 2 files changed, 4 insertions(+)
+
+-- 
+2.34.1
+
 
