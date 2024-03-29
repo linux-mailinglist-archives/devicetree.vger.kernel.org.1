@@ -1,99 +1,113 @@
-Return-Path: <devicetree+bounces-54655-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54656-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF27789209C
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 16:39:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3DFE8920CB
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 16:47:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 25454B37187
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 15:18:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 65B66B36376
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 15:19:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE00B1C0DC6;
-	Fri, 29 Mar 2024 14:59:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDBFE85298;
+	Fri, 29 Mar 2024 15:04:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="eWbYRLHL"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="LsNdJ1Lt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E4091C0DC1;
-	Fri, 29 Mar 2024 14:59:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55F791C0DF0;
+	Fri, 29 Mar 2024 15:04:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711724387; cv=none; b=Oe66fWlg57b+OlF0rv7oWdMy5kFA2ySOVmQO5xtpJQ2jp+BEW3btzK+nwpouxxVJK3RpN1bgVxB866AMX0b9+n1utDLyLejmVhwQ2jk4B74IKQ2sVi7puieTZ1/IeDC6zmhuPnLqFZmQclpOzef3/D/F/b9LU5HYuF/jrselv8M=
+	t=1711724694; cv=none; b=IlZH3657twegKr73ekRtNroEIRjp/1k7GwLGw9jDr3HWg0c3fzZPi0Hk8HVAO9npYi+gM1oqkar4Jqncwk04Lo9yxTPWdLnyivvUv7sOblI1dfaM2r+sRPGRvigYC9Wr4928LedyudjEvB/zg7Mc1CK1BW/Y+XmLNBcZmljXk48=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711724387; c=relaxed/simple;
-	bh=/cnZPytqdSf2fPiiQIi+nxR0VnEYwIU/ZwaQvIe58a8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aoBxEEnnisFt420+Nc+nlFuyZ6/W6lLWLqW9XCMmBSxmS5G8pkGtPw00IIa5Y8/08afqwE7RDbA+HtX39uRr8yT0RusOzx0qssv/LM2f7euCJqU6DYU8/+TYEY2EyP+CYeVV3yeMCZnQvzQIUD/vCp954evof18+f3AiBjsLo0c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=eWbYRLHL; arc=none smtp.client-ip=217.70.183.197
+	s=arc-20240116; t=1711724694; c=relaxed/simple;
+	bh=QPr73epDnfNI9hRAKDsQGY9i3JJUvUIidZoLlIKWyZk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=jtu/NgmqF5wDafDcNp5CmDOBcNoQ4+VzsxcGLz9eYF/Kk9EWoiTVaioN44VxcRfWBuJxCaBZniy6IjxMt5c0RgFdWLTvgqaCVQn/xZ5tMCA25u0wvmVROgetk78RoLty5IOhB/CxRNeRuuJ/mjxVdR1zW1PoTOc1fYojQBTbOng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=LsNdJ1Lt; arc=none smtp.client-ip=217.70.183.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id B42721C0008;
-	Fri, 29 Mar 2024 14:59:42 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 2FD9560007;
+	Fri, 29 Mar 2024 15:04:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1711724383;
+	t=1711724684;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=xRLX1mOYv+/ZWVopFYct6o5hS3M6WhMcK4LW4QwDZPU=;
-	b=eWbYRLHLuPtxt5wGda0VtJW/5ksJQrWTjaz/yqhEfo0SnG3JOIPBzSyfv2ntDm6jtUfYql
-	kYLoa829e52ULwFroeqxH28LTT4qqi/OIIYPgPoFIschBy1kT8zoT+iBt5gMNTNgAS71zX
-	pogyY5lbWxaSlgxw0jLmZ5Zy2kZF2bmPZDCADaJgQQ11XfMhkbRU51KYiA8UXV86MZCobW
-	KTvey2LaSoK+hIMb2MDksTCsm/ZDmByh1vTdFt8FMfU9Ka93PuhYaYz6l1YlOb9XHQ9Esf
-	PZfgwGDIaJqR1pPyac4fbFJNUjC08ukPWwet7HxI3RVnOt+r/FQvv9HbuDBv6g==
-Date: Fri, 29 Mar 2024 15:59:42 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Baruch Siach <baruch@tkos.co.il>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v3 0/4] dt-bindings: rtc: convert multiple devices to
- dtschema
-Message-ID: <171172436464.1832232.15920674758394192653.b4-ty@bootlin.com>
-References: <20240326-rtc-yaml-v3-0-caa430ecace7@gmail.com>
+	bh=QPr73epDnfNI9hRAKDsQGY9i3JJUvUIidZoLlIKWyZk=;
+	b=LsNdJ1Lt0oJ9z0mqz6TlbRI8l1mbDgKIJ5zzl1ossv03wcL9woRWFh0Gs6Y9IS6u8yP+Px
+	feUGQi6RcodKm4JuX4SmPB6VcliyuE8qbxiqqaIHt3T59gAu2qHrmZ8rsGWDECrKXCecX4
+	VDS/Cs+qOCwzdBYXDm4frT8frQL1XzXx3xsMYhvop37l58/1Ler289gm9xR+nPBn+ZPAhY
+	I08bFEm98VVZuCNWibrS/bcgr+Y+tzdLCAz6IJQG6ok0viZfUfY60mGt1R+8jjseSb432x
+	E/FLe3PPXfkaBmFlgNtS+QIckH/IyKpmto5Y6MPAUPKBXNLYMlmzdSNGZHPgXw==
+Date: Fri, 29 Mar 2024 16:04:42 +0100
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, Luis Chamberlain
+ <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Oleksij Rempel <o.rempel@pengutronix.de>, Mark Brown <broonie@kernel.org>,
+ Frank Rowand <frowand.list@gmail.com>, Andrew Lunn <andrew@lunn.ch>, Heiner
+ Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ devicetree@vger.kernel.org, Dent Project <dentproject@linuxfoundation.org>
+Subject: Re: [PATCH net-next v6 13/17] net: pse-pd: Use regulator framework
+ within PSE framework
+Message-ID: <20240329160442.0333a117@kmaincent-XPS-13-7390>
+In-Reply-To: <20240326-feature_poe-v6-13-c1011b6ea1cb@bootlin.com>
+References: <20240326-feature_poe-v6-0-c1011b6ea1cb@bootlin.com>
+	<20240326-feature_poe-v6-13-c1011b6ea1cb@bootlin.com>
+Organization: bootlin
+X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240326-rtc-yaml-v3-0-caa430ecace7@gmail.com>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: kory.maincent@bootlin.com
 
-On Tue, 26 Mar 2024 14:03:22 +0100, Javier Carrasco wrote:
-> This series converts the following existing bindings to dtschema:
-> 
-> - armada-380-rtc
-> - alphascale,asm9260-rtc
-> - digicolor-rtc (moved to trivial-rtc)
-> - nxp,lpc1788-rtc
-> 
-> [...]
+On Tue, 26 Mar 2024 15:04:50 +0100
+Kory Maincent <kory.maincent@bootlin.com> wrote:
 
-Applied, thanks!
+> From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+>=20
+> Integrate the regulator framework to the PSE framework for enhanced
+> access to features such as voltage, power measurement, and limits, which
+> are akin to regulators. Additionally, PSE features like port priorities
+> could potentially enhance the regulator framework. Note that this
+> integration introduces some implementation complexity, including wrapper
+> callbacks, but the potential benefits make it worthwhile.
+>=20
+> Regulator are using enable counter with specific behavior.
+> Two calls to regulator_disable will trigger kernel warnings.
+> If the counter exceeds one, regulator_disable call won't disable the
+> PSE PI. These behavior isn't suitable for PSE control.
+> Added a boolean 'enabled' state to prevent multiple calls to
+> regulator_enable/disable. These calls will only be called from PSE
+> framework as it won't have any regulator children, therefore no mutex are
+> needed to safeguards this boolean.
+>=20
+> regulator_get needs the consumer device pointer. Use PSE as regulator
+> provider and consumer device until we have RJ45 ports represented in
+> the Kernel.
 
-[1/4] dt-bindings: rtc: armada-380-rtc: convert to dtschema
-      https://git.kernel.org/abelloni/c/c3c50e7df39b
-[2/4] dt-bindings: rtc: alphascale,asm9260-rtc: convert to dtschema
-      https://git.kernel.org/abelloni/c/432008d2f766
-[3/4] dt-bindings: rtc: digicolor-rtc: move to trivial-rtc
-      https://git.kernel.org/abelloni/c/971e7303f472
-[4/4] dt-bindings: rtc: nxp,lpc1788-rtc: convert to dtschema
-      https://git.kernel.org/abelloni/c/7918a220d210
+Oleksij, could you verify this patch does not break pse_regulator driver?
 
-Best regards,
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
+Regards,
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
 https://bootlin.com
 
