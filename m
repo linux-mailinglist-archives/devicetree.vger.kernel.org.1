@@ -1,174 +1,284 @@
-Return-Path: <devicetree+bounces-54658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54661-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E039892076
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 16:31:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3D8A892086
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 16:34:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CC1D3B285A0
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 15:25:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C780E1C2917E
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 15:34:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 498B212F370;
-	Fri, 29 Mar 2024 15:22:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3768386;
+	Fri, 29 Mar 2024 15:34:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="C6sUdxHW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QjJU9m/m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A46ECF9E9;
-	Fri, 29 Mar 2024 15:22:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A781E1C0DD1;
+	Fri, 29 Mar 2024 15:34:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711725740; cv=none; b=aeSsZL2jTpPP9PUAvg5kouhc7fojYl+GFh0CYERGw+Ajdn0wv5PsP+ytCX0aqJ2h+1WVIMbkyBAbPONsI+KVtsCRX14Fr5TmfrBQ6WrY5cWraMxB6uWkULxY1c5xDeEkptJpoIGLpKQk9l+QH8ZGHOx0HWtN42zkLvYmE79kGk8=
+	t=1711726491; cv=none; b=JtDvkLlQBnfuipYDTT6mmOCLAi5ufAY753qk5VcfIAc3nm3DJOOXRuk6t3iMcp95TuJLsvfX4V3HmhiCQ++G7v1BSTu3a4w8TOX7mdDcWZml5AjO6OWwaFo3bccKi9XIpIdBCmQWnuPfSUlx8KapVbKRdD9ZJwwJfJTP5YD2f58=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711725740; c=relaxed/simple;
-	bh=CPdim7s26yphD7b0ErzsbyCimLm+mDyaUbh0CjU5i9U=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=Nu5kcDcurT3TScXi/wGyMHxL2/T7UUfkT8Y3JySxJ29dgkJ1nba8FG/xLSokyJkqEbRo+r9GQ9IuC8zVOvhBLZgNIJECRztJa4r3+My3LVSzwkvi1QzNXJPG1389V65MJVf+RrqeRo6KNt8N3kA36rqOJ/StKR/vzXdOn7HZpwA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=C6sUdxHW; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42TFHKv7025257;
-	Fri, 29 Mar 2024 15:22:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references; s=
-	qcppdkim1; bh=ZWrHJ6/VHAQJK74+CAVwY/oGStgz8dZeIS3kJ8cS3RU=; b=C6
-	sUdxHWENUQn2r5zA8kXXqzJvdrE6G+jJBFi56A9V0rKXs8cmJCrgNgPJKFAGQ3KA
-	UezkWmcg3ULkEOn7wORqP+xx5i/a4cbfyz3hHZpFOL5QL7/LDfnwlqBEK8UxFb4t
-	WBHzrePdGIfTfJKdDRBTwDp/4YWkIHfjYVyZ6b4WII6WlTqiDaOJPkcUecQ5vafM
-	jcN6BLQT03cPsZFF+Hjz7H0ET/GHdyrt5w9BxUWWJCbgovlVIACTs//yMLkrEduY
-	HrlywK5uiBQRHyOEu9OvXrKJrc/QHD98ldIIX9f8/5iRDvaJi74KYOssK/1UpRuq
-	bTe2eO8iP68DPQ9sonpw==
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x5xcy08k6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 29 Mar 2024 15:22:12 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 42TFM8TQ008964;
-	Fri, 29 Mar 2024 15:22:08 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 3x1r5mk6jj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-	Fri, 29 Mar 2024 15:22:08 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 42TFM80l008954;
-	Fri, 29 Mar 2024 15:22:08 GMT
-Received: from hu-sgudaval-hyd.qualcomm.com (hu-msarkar-hyd.qualcomm.com [10.213.111.194])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 42TFM8Zc008953;
-	Fri, 29 Mar 2024 15:22:08 +0000
-Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3891782)
-	id 6FDA23C2F; Fri, 29 Mar 2024 20:52:07 +0530 (+0530)
-From: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-To: andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, konrad.dybcio@linaro.org,
-        manivannan.sadhasivam@linaro.org
-Cc: quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
-        quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
-        quic_krichai@quicinc.com, quic_vbadigan@quicinc.com,
-        quic_schintav@quicinc.com, Mrinmay Sarkar <quic_msarkar@quicinc.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>, linux-pci@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v10 3/3] arm64: dts: qcom: sa8775p: Add ep pcie0 controller node
-Date: Fri, 29 Mar 2024 20:51:57 +0530
-Message-Id: <1711725718-6362-4-git-send-email-quic_msarkar@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1711725718-6362-1-git-send-email-quic_msarkar@quicinc.com>
-References: <1711725718-6362-1-git-send-email-quic_msarkar@quicinc.com>
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 4qFLPRtPqcSf2im-7Qb_CX5N-af9X3x1
-X-Proofpoint-ORIG-GUID: 4qFLPRtPqcSf2im-7Qb_CX5N-af9X3x1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-29_13,2024-03-28_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- mlxlogscore=999 adultscore=0 malwarescore=0 mlxscore=0 priorityscore=1501
- spamscore=0 phishscore=0 impostorscore=0 bulkscore=0 lowpriorityscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2403210001 definitions=main-2403290135
+	s=arc-20240116; t=1711726491; c=relaxed/simple;
+	bh=GyTVYnt7AdG3Dd44z6wHTNuYouzZBSyQzP189+huJ7k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UqXbbK5Vh7l6IWnUcwx4mM/5DtVBKZaOZH4WSc4PWEJXbnoK6yRwPAI4pmqNVyUQEhdDeLrGgD/Q1YxupsVeeWpta8c7zUVDs3ELca9A3o40Uz8zD4ekFGHAEz3AUAc9tCicqApSB2Lv41izwS8nNfBzokTF0DzB/nNf/eZWaY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QjJU9m/m; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 992A3C433C7;
+	Fri, 29 Mar 2024 15:34:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711726491;
+	bh=GyTVYnt7AdG3Dd44z6wHTNuYouzZBSyQzP189+huJ7k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QjJU9m/mkyOFhkRCA3eJtctpC15kQZZyLV2FpaKA4Od00iBfjRX3Xyhy8dqdHIOmS
+	 dVAwt8VDJA029Z4Mpzbr+uJWHUgwdNHL4Yy6glRiUhQa+5D0+TU4HRpPyS4dGM0kd4
+	 bdbmMee/ruAWf4KYzi557+z+z8RsyV2yHmtN/dQt27nWiZ1tQ9Lb4TFdFFBvxNmmdn
+	 yo0ToNWIjPPtktsbg3G44YDGY5QJJuT2j2UxLTcZiFNMfchRtznSSZi9VgKCl5SFsL
+	 /WlSTbKdjAdZxNsCjvtMZPFSbIjVQkntohO7CV5F6nVQrstf3uhhJwt/kRyk41CGsP
+	 VSkeCUImnc0zw==
+Date: Fri, 29 Mar 2024 15:34:46 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Richard Zhu <hongxing.zhu@nxp.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	frank.li@nxp.com, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+	linux-imx@nxp.com
+Subject: Re: [PATCH v1 1/3] dt-bindings: phy: Add i.MX8Q HSIO SerDes PHY
+ binding
+Message-ID: <20240329-phony-capsule-4e6a07a05771@spud>
+References: <1711699790-16494-1-git-send-email-hongxing.zhu@nxp.com>
+ <1711699790-16494-2-git-send-email-hongxing.zhu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="cs7IEpTE45To2XyQ"
+Content-Disposition: inline
+In-Reply-To: <1711699790-16494-2-git-send-email-hongxing.zhu@nxp.com>
 
-Add ep pcie dtsi node for pcie0 controller found on sa8775p platform.
-It supports gen4 and x2 link width. Limiting the speed to Gen3 due to
-stability issues.
 
-Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- arch/arm64/boot/dts/qcom/sa8775p.dtsi | 46 +++++++++++++++++++++++++++++++++++
- 1 file changed, 46 insertions(+)
+--cs7IEpTE45To2XyQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-index 231cea1..d9802027 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -3679,6 +3679,52 @@
- 		status = "disabled";
- 	};
- 
-+	pcie0_ep: pcie-ep@1c00000 {
-+		compatible = "qcom,sa8775p-pcie-ep";
-+		reg = <0x0 0x01c00000 0x0 0x3000>,
-+		      <0x0 0x40000000 0x0 0xf20>,
-+		      <0x0 0x40000f20 0x0 0xa8>,
-+		      <0x0 0x40001000 0x0 0x4000>,
-+		      <0x0 0x40200000 0x0 0x100000>,
-+		      <0x0 0x01c03000 0x0 0x1000>,
-+		      <0x0 0x40005000 0x0 0x2000>;
-+		reg-names = "parf", "dbi", "elbi", "atu", "addr_space",
-+			    "mmio", "dma";
-+
-+		clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
-+			<&gcc GCC_PCIE_0_CFG_AHB_CLK>,
-+			<&gcc GCC_PCIE_0_MSTR_AXI_CLK>,
-+			<&gcc GCC_PCIE_0_SLV_AXI_CLK>,
-+			<&gcc GCC_PCIE_0_SLV_Q2A_AXI_CLK>;
-+
-+		clock-names = "aux",
-+			      "cfg",
-+			      "bus_master",
-+			      "bus_slave",
-+			      "slave_q2a";
-+
-+		interrupts = <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 630 IRQ_TYPE_LEVEL_HIGH>;
-+
-+		interrupt-names = "global", "doorbell", "dma";
-+
-+		interconnects = <&pcie_anoc MASTER_PCIE_0 0 &mc_virt SLAVE_EBI1 0>,
-+				<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_PCIE_0 0>;
-+		interconnect-names = "pcie-mem", "cpu-pcie";
-+
-+		iommus = <&pcie_smmu 0x0000 0x7f>;
-+		resets = <&gcc GCC_PCIE_0_BCR>;
-+		reset-names = "core";
-+		power-domains = <&gcc PCIE_0_GDSC>;
-+		phys = <&pcie0_phy>;
-+		phy-names = "pciephy";
-+		max-link-speed = <3>; /* FIXME: Limiting the Gen speed due to stability issues */
-+		num-lanes = <2>;
-+
-+		status = "disabled";
-+	};
-+
- 	pcie0_phy: phy@1c04000 {
- 		compatible = "qcom,sa8775p-qmp-gen4x2-pcie-phy";
- 		reg = <0x0 0x1c04000 0x0 0x2000>;
--- 
-2.7.4
+On Fri, Mar 29, 2024 at 04:09:48PM +0800, Richard Zhu wrote:
+> Add i.MX8QM and i.MX8QXP HSIO SerDes PHY binding.
+> - Use the controller ID to specify which controller is binded to the
+> PHY.
+> - Introduce one HSIO configuration, mandatory required to set
+> "PCIE_AB_SELECT" and "PHY_X1_EPCS_SEL" during the initialization.
+>=20
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> ---
+>  .../bindings/phy/fsl,imx8q-hsio.yaml          | 143 ++++++++++++++++++
+>  1 file changed, 143 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/fsl,imx8q-hsio.=
+yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8q-hsio.yaml b/=
+Documentation/devicetree/bindings/phy/fsl,imx8q-hsio.yaml
+> new file mode 100644
+> index 000000000000..506551d4d94a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/fsl,imx8q-hsio.yaml
+> @@ -0,0 +1,143 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/fsl,imx8q-hsio.yaml#
 
+Why doesn't the filename match a compatible?
+
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale i.MX8Q SoC series HSIO SERDES PHY
+> +
+> +maintainers:
+> +  - Richard Zhu <hongxing.zhu@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fsl,imx8qxp-serdes
+> +      - fsl,imx8qm-serdes
+> +  reg:
+> +    minItems: 4
+> +    maxItems: 4
+> +
+> +  "#phy-cells":
+> +    const: 3
+> +    description: |
+> +      The first number defines the ID of the PHY contained in the HSIO m=
+acro.
+> +      The second defines controller ID binded to the PHY. The third defi=
+nes the
+> +      HSIO configuratons refer to the different use cases. They are defi=
+ned in
+> +      dt-bindings/phy/phy-imx8-pcie.h
+> +
+> +  reg-names:
+> +    items:
+> +      - const: reg
+> +      - const: phy
+> +      - const: ctrl
+> +      - const: misc
+> +
+> +  clocks:
+> +    minItems: 5
+> +    maxItems: 14
+> +
+> +  clock-names:
+> +    minItems: 5
+> +    maxItems: 14
+> +
+> +  fsl,refclk-pad-mode:
+> +    description: |
+> +      Specifies the mode of the refclk pad used. It can be UNUSED(PHY
+> +      refclock is derived from SoC internal source), INPUT(PHY refclock
+> +      is provided externally via the refclk pad) or OUTPUT(PHY refclock
+> +      is derived from SoC internal source and provided on the refclk pad=
+).
+> +      Refer include/dt-bindings/phy/phy-imx8-pcie.h for the constants
+> +      to be used.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 0, 1, 2 ]
+
+Why do we need numbers and a header here at all? The enum should be an
+enum of strings input, output & unused. Oh and "unused" can just be
+dropped, and not having the property at all would mean "unused".
+
+> +
+> +  power-domains:
+> +    description: |
+> +      i.MX8Q HSIO SerDes power domains. i.MX8QXP has one SerDes power do=
+mains.
+> +      And i.MX8QM has two.
+
+The text description here can go, your constrains communicate this.
+
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#phy-cells"
+> +  - clocks
+> +  - clock-names
+> +  - fsl,refclk-pad-mode
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,imx8qxp-serdes
+> +    then:
+> +      properties:
+> +        clock-names:
+> +          items:
+> +            - const: apb_pclk0
+> +            - const: pclk0
+
+Why would you have different ordering for the two devices?
+
+> +            - const: phy0_crr
+> +            - const: ctl0_crr
+> +            - const: misc_crr
+> +        power-domains:
+> +          minItems: 1
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,imx8qm-serdes
+> +    then:
+> +      properties:
+> +        clock-names:
+> +          items:
+> +            - const: pclk0
+> +            - const: pclk1
+> +            - const: apb_pclk0
+> +            - const: apb_pclk1
+> +            - const: pclk2
+> +            - const: epcs_tx
+> +            - const: epcs_rx
+> +            - const: apb_pclk2
+> +            - const: phy0_crr
+> +            - const: phy1_crr
+> +            - const: ctl0_crr
+> +            - const: ctl1_crr
+> +            - const: ctl2_crr
+> +            - const: misc_crr
+> +        power-domains:
+> +          minItems: 2
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/imx8-clock.h>
+> +    #include <dt-bindings/clock/imx8-lpcg.h>
+> +    #include <dt-bindings/firmware/imx/rsrc.h>
+> +    #include <dt-bindings/phy/phy-imx8-pcie.h>
+> +
+> +    serdes: phy@5f1a0000 {
+
+Drop the unused label please.
+
+> +            compatible =3D "fsl,imx8qxp-serdes";
+> +            reg =3D <0x5f1a0000 0x10000>,
+> +                  <0x5f120000 0x10000>,
+> +                  <0x5f140000 0x10000>,
+> +                  <0x5f160000 0x10000>;
+> +            reg-names =3D "reg", "phy", "ctrl", "misc";
+> +            clocks =3D <&phyx1_lpcg IMX_LPCG_CLK_0>,
+> +                     <&phyx1_lpcg IMX_LPCG_CLK_4>,
+> +                     <&phyx1_crr1_lpcg IMX_LPCG_CLK_4>,
+> +                     <&pcieb_crr3_lpcg IMX_LPCG_CLK_4>,
+> +                     <&misc_crr5_lpcg IMX_LPCG_CLK_4>;
+> +            clock-names =3D "apb_pclk0", "pclk0", "phy0_crr", "ctl0_crr",
+> +                          "misc_crr";
+> +            power-domains =3D <&pd IMX_SC_R_SERDES_1>;
+> +            #phy-cells =3D <3>;
+
+> +            status =3D "disabled";
+
+Drop this status.
+
+Cheers,
+Conor.
+
+> +    };
+> +...
+> --=20
+> 2.37.1
+>=20
+
+--cs7IEpTE45To2XyQ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgbflgAKCRB4tDGHoIJi
+0v6bAQDGLQBWxukAIrpMH4pQ8yeDJcd+eREanS8LcXD2Cb58MQD9HSfsSoQREccM
+9JP9ZptFGr/5xY9XNxrVwOQBr7oWzQ8=
+=7OBA
+-----END PGP SIGNATURE-----
+
+--cs7IEpTE45To2XyQ--
 
