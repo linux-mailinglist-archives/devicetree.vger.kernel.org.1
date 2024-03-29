@@ -1,61 +1,64 @@
-Return-Path: <devicetree+bounces-54615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B5DF891D7B
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 15:19:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 503E4891D97
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 15:21:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3CA121C27790
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 14:18:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0AA85280C8E
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 14:21:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED76E14AD30;
-	Fri, 29 Mar 2024 12:46:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7031E238199;
+	Fri, 29 Mar 2024 12:46:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W6pz1coR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H5xzePVx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C09DB22BF61;
-	Fri, 29 Mar 2024 12:46:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45B88238193;
+	Fri, 29 Mar 2024 12:46:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711716373; cv=none; b=QYe/BuovkkiT9nGLzlN3Looc/TOmF99iEn+NcGRe1W6HdUprIw7hcu2boCGCeSVHatHkO1yNf1wTsoFaodpjGt3ym0uhyOMOils7A6/3ke5BPIKfba3By29fMcPa4P0w6EiuzPaXX6lPLYnJWylup0EgsLGEDaUUDH7gQbPBn1o=
+	t=1711716393; cv=none; b=BwElqX3fyBLMGy9OeOtvvPhfHMg+we0JOKL42JFONvLFdhwb+lYjMhAl8kvMCYKYEVLecXb1P00O9sdh+8C2Drq7hOiakW88xZBJXmxkLwYYJUbVJtbVqGNgFTEt5KndJTKzdE4O3sXP36iYQ0W27dNcAoAEGo331t5JFKmY4zg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711716373; c=relaxed/simple;
-	bh=wBIl6iQn8dGuig7/GIxe4/ELuK8o053YSZQT2q6DHWM=;
+	s=arc-20240116; t=1711716393; c=relaxed/simple;
+	bh=XHHcbiSrNTwKbYxM5W9y+dP0VAGaaEp7rtcy3Rj1pQg=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=JhXjeDSykGEjRuTfJDFq345GN4sdWaK4gUH3YUI+BpSYHVv+L/b6aJnpZ/XK6G83FylRddxEmv/JuBzUK0+URtEyF4ZsuCnXQqhmqEAmI6HaWxoIPDGmMvXujdQEt87+SPbwygsnHdJD/uE+jnAPxtVqpGrBQ+4dPt/2orv+hGM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W6pz1coR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E3CEC433B2;
-	Fri, 29 Mar 2024 12:46:12 +0000 (UTC)
+	 MIME-Version; b=ZJOdjlaZoebD54zAattGdVHxJWpKP22K0gTyf2x0BrzzUN+RUR1k0F64g9vnWFJildUGKnveJYynUK5Ho7i8DLzPeigqdCsdkbZ/9LeFioXtJyY+5NweJh82tId5EcmwpGI2Nk9RGPyfZEBS75O3GaGnmygBfDd2XZxZFutglek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H5xzePVx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5898C433F1;
+	Fri, 29 Mar 2024 12:46:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711716373;
-	bh=wBIl6iQn8dGuig7/GIxe4/ELuK8o053YSZQT2q6DHWM=;
+	s=k20201202; t=1711716393;
+	bh=XHHcbiSrNTwKbYxM5W9y+dP0VAGaaEp7rtcy3Rj1pQg=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=W6pz1coROI3aF1UtzNJvElSo/dR4tOs9q9J8Bt3JmBvgbmmIGPVk0agN33okJOiCY
-	 W1GlCYqUTzm2mH3m5WNzrw2CTkwZYnvyN18d4IKcOY+6OTdlVCKUMbgiggU14R41iM
-	 skwA8MPwiANU8O4QgTfDnufA5TR1r2HVhsGrcR8e8x1qeuuX0p2rBuAhF+emh0wPDg
-	 UuyU7RH67UTd9uARVszDKh4t9jOmEtNLySvNxXJpeo7DiFcEh13glflJLssTeF2zEg
-	 6ruM7WDh2uwCfHbF5x013cDKEgQ8x6zFPAnd4Soz4p+9DrnBMtlKmM7SQEk07j5FM+
-	 2WnFIz6F9SNJg==
+	b=H5xzePVxME4Ug0uo/crHjc7GVnLy89sH+cttu3O1wYaRnF5Wp2Wmk8JB6Qf4xiVhd
+	 JCpnuBdmP2laCrcgZanHv8lG3sMAcnT1dS7iYxlsNXejDmcfUlo25g/L+iAtn75UJ9
+	 P8SV87fZXPutMyO9xh4oBP36Uujk9eXvvgPr+kNc9sE96UCKRROEeknLQiCVtfZ+CU
+	 ohmgSORVEechVn7m/T1tpnEiOmTdi/XUbOQrSGw4PWReanF6d055PJ/SDhoo3OY0q0
+	 H4+65xUZpYX2KKaAumdgkY/ZH48Vxqw67z87Oc+ZLAHXOH4eZ6Sn9qWWESkIDSRh/2
+	 QflrWEOIRztQA==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
+Cc: Johan Jonker <jbx6244@gmail.com>,
+	Heiko Stuebner <heiko@sntech.de>,
 	Sasha Levin <sashal@kernel.org>,
-	konrad.dybcio@linaro.org,
 	robh@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
 	conor+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.1 05/52] arm64: dts: qcom: sda660-ifc6560: enable USB 3.0 PHY
-Date: Fri, 29 Mar 2024 08:44:59 -0400
-Message-ID: <20240329124605.3091273-5-sashal@kernel.org>
+	dsimic@manjaro.org,
+	jonas@kwiboo.se,
+	shironeko@tesaguri.club,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: [PATCH AUTOSEL 6.1 15/52] arm64: dts: rockchip: fix rk3328 hdmi ports node
+Date: Fri, 29 Mar 2024 08:45:09 -0400
+Message-ID: <20240329124605.3091273-15-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240329124605.3091273-1-sashal@kernel.org>
 References: <20240329124605.3091273-1-sashal@kernel.org>
@@ -70,47 +73,47 @@ X-Patchwork-Hint: Ignore
 X-stable-base: Linux 6.1.83
 Content-Transfer-Encoding: 8bit
 
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+From: Johan Jonker <jbx6244@gmail.com>
 
-[ Upstream commit 319a12e7c399df4316f54f6cc83cd6cdffb4ec4a ]
+[ Upstream commit 1d00ba4700d1e0f88ae70d028d2e17e39078fa1c ]
 
-The Inforce IFC6560 board actually has USB SS lines routed to the USB-C
-connector. Enable USB 3.0 PHY and SS mode for the USB3 host.
+Fix rk3328 hdmi ports node so that it matches the
+rockchip,dw-hdmi.yaml binding.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Link: https://lore.kernel.org/r/20240116-sdm660-usb3-support-v1-4-2fbd683aea77@linaro.org
-Signed-off-by: Bjorn Andersson <andersson@kernel.org>
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+Link: https://lore.kernel.org/r/e5dea3b7-bf84-4474-9530-cc2da3c41104@gmail.com
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts | 11 +++++------
- 1 file changed, 5 insertions(+), 6 deletions(-)
+ arch/arm64/boot/dts/rockchip/rk3328.dtsi | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts b/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
-index f824036871cc1..2128a90e7ef97 100644
---- a/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
-+++ b/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
-@@ -452,16 +452,15 @@ &usb2_dwc3 {
- };
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+index 905a50aa5dc38..d42846efff2fe 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+@@ -741,11 +741,20 @@ hdmi: hdmi@ff3c0000 {
+ 		status = "disabled";
  
- &usb3 {
--	qcom,select-utmi-as-pipe-clk;
--
- 	status = "okay";
- };
- 
- &usb3_dwc3 {
--	maximum-speed = "high-speed";
--	phys = <&qusb2phy0>;
--	phy-names = "usb2-phy";
--
- 	dr_mode = "peripheral";
- 	extcon = <&extcon_usb>;
- };
+ 		ports {
+-			hdmi_in: port {
++			#address-cells = <1>;
++			#size-cells = <0>;
 +
-+&usb3_qmpphy {
-+	vdda-phy-supply = <&vreg_l1b_0p925>;
-+	status = "okay";
-+};
++			hdmi_in: port@0 {
++				reg = <0>;
++
+ 				hdmi_in_vop: endpoint {
+ 					remote-endpoint = <&vop_out_hdmi>;
+ 				};
+ 			};
++
++			hdmi_out: port@1 {
++				reg = <1>;
++			};
+ 		};
+ 	};
+ 
 -- 
 2.43.0
 
