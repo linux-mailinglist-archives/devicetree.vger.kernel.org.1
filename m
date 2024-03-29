@@ -1,133 +1,123 @@
-Return-Path: <devicetree+bounces-54462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA60E89131D
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 06:15:55 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4974C891331
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 06:32:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C4C91C22614
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 05:15:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CDB68B229DB
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 05:32:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4710A3B2BE;
-	Fri, 29 Mar 2024 05:15:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13A0E3BBFD;
+	Fri, 29 Mar 2024 05:32:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="jpvfRixe"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="e0JUcaSR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4704374F1
-	for <devicetree@vger.kernel.org>; Fri, 29 Mar 2024 05:15:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 695B53BBE8;
+	Fri, 29 Mar 2024 05:32:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711689352; cv=none; b=g0P16WyU4cI+GCslpukQos86KPyJmIOsl/dikmwujfabycimoaGm9ttocvBxXZHYmTP+7xTGjkLR4T381YvJqHW3GjoxM2PKIWquuULjOlFKoDrnTsCfRZiyXKlQOJkBLTDfRVCKQYin07UboXLtFuV0poZ75pXV8sT8jKnYCTc=
+	t=1711690330; cv=none; b=BvoO7qGasAz/n+n40KNWCnfxtcRKlfQ8F9uOVKalahXMbx8LJNFh9kj16asJcZuSQwoqwx6QUwW0WPqanZEjcDBe65f8lZFjW29Syo/ocVQA5/3MLDLkn4jlb/ufHuskOrp6BfdfozmLLFX4ABVcObHFsM1ra7fh+sE/cKAaq5Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711689352; c=relaxed/simple;
-	bh=SA5bcVE32KgGG5TtTqzFEWB8zyElCwHL0lTeALGfaJE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VTeJisg+X+5b5E7NVGquYkND5MLNyOAEkAXo7xbxiq/zavcBrDXnHMzEdE4D7GD3dvGWDYFF+oa3EFHW7ripmU9+LmpI5Bq4D9tM3CWTQ0vxieF3tqZIearh/0VAxUEwCbMJyAcamJ1GT4z0uEtgiTw6JAO+ZFp9RCYloxeSM0Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=jpvfRixe; arc=none smtp.client-ip=209.85.128.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-609fb0450d8so18466627b3.0
-        for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 22:15:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1711689350; x=1712294150; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SA5bcVE32KgGG5TtTqzFEWB8zyElCwHL0lTeALGfaJE=;
-        b=jpvfRixeJ1lib6rBDNJy3VtVIMgHg7aEwv2m+DZQBf+is6lPnAGqroYCRFzmYeAv8s
-         fE7KKFwXFJnuedXoGUse6o2OxYHgP2U7iZc5cNFuO9AS8hsTaIO+wxv9nNouQYOzkZv1
-         4m7eF2IRCQprDUkTJMIki+D9bYD9yFsMPGZ2IOJKU0Odcn5BwTM7ecViqJnt5D1zN6vr
-         LUXAXolN7Rkdo/9Ioldd8ai797kBcHGSLpsVhN+Yi6vvHaTBFhcLrTpWev0qy6DssQ3U
-         Qw3jWLgprqRsAT3ZyQTgp3h7VVUFsA0XRLMKltM5ar2fv/3OEXtQ6dsk54QxMG4mwa5b
-         OxnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711689350; x=1712294150;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SA5bcVE32KgGG5TtTqzFEWB8zyElCwHL0lTeALGfaJE=;
-        b=gEfMR6LPzfUOA6kL3gG+RQgIbcXTa/oXOpSJpq8XW4jy43Vt/Kh847mVCJPPmRFPJk
-         1I4jhCFMMzgtT5aAhrebmA6L02hiVVB6p5BpoqRyZbiBZvdh8XiTIjaHvHUnccelDGXN
-         EyDGN1qpS9RdRmZVDQY2GyCjLQtnQ8Mq8z6AFRGDq6jzoaUI+NHWlje8+Hn4mYLL1qJf
-         rN0HMW7/V5SJ5RS6Vnc2OUh+lRtk6Tabj7sLH0HVhAkM+4GfS6l9YsFU6AWWEdIhpuFT
-         dkahFt1OepdZvoat4+p1dwaIXQUMesiKUtLMvm7i4Hq67ych2XB9bBu9TYoH3vSS/QCT
-         DEow==
-X-Forwarded-Encrypted: i=1; AJvYcCWj64gku8bwuP9KLTKYkM6Mw8ra28kw458Hyyl1fUXmugOJCb/CN3MaPouAUqqzje4rSnNFdjiQHhZ4VJJJmUdXIPcNOYKZxECoRQ==
-X-Gm-Message-State: AOJu0YyQ0su/LNIr+T1ADn5xe6QASbeoW/KIatvdodoe8O4dh2ehmrJk
-	4akIMKJnzy/FtzQqoL2rk1C41+K0NooIVZn8QxOlNbccmZpP66sJAB2aI7jVfXRy9foPcAXE1yY
-	jDqYes7NjeWSUtUc0wIjZsxb19drUDC8Q7cO/4Q==
-X-Google-Smtp-Source: AGHT+IEKGRQwrWyCqxzJ0SB08UytfQ1UABftg33xsS/BUh/oR9gt6JPV6v/mkEdtL2mGt8izQHtaPErdxwMk9zmhQVo=
-X-Received: by 2002:a0d:f184:0:b0:608:5dfc:1336 with SMTP id
- a126-20020a0df184000000b006085dfc1336mr1323243ywf.39.1711689349755; Thu, 28
- Mar 2024 22:15:49 -0700 (PDT)
+	s=arc-20240116; t=1711690330; c=relaxed/simple;
+	bh=UgAzys+A3Ct9KXhz17x1cUouk22XzMXeBwW0gKTCSVg=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=PMBtPJSQWck8ajjQCn/Ocp/ArZ1awLlw9FUtXt7HMKQ+mfCR12gf3mC1YvPF56sR4j0/W75P/oWPTWj8dHxBZcSXC8dk2F1kDAD18Z4lxaaAN+3T/IZMNcvs/8kE+QngdJYC/NtTqi/OWR/mAFQxxaeG0ZT+XcGpZQDREOojbxY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=e0JUcaSR; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 42T5VueI026879;
+	Fri, 29 Mar 2024 00:31:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1711690316;
+	bh=5lksTCQRb+IpwWrjwgj+d/p3OjVbx/lb5zxF1JmKpyk=;
+	h=From:To:CC:Subject:Date;
+	b=e0JUcaSR8Cb7F2KhZVnyTpxOFfcq2c932h74cPCliQ/9uDy6xdTIiB+ayNnO6JuCI
+	 JRx5o8uNAEBL2cmbm1RlzVcYq66nYHITeNqYhDvLYRekiAw5gHHHQ4K5UEKpFRCGZu
+	 k2UFcb9XPAIx9WjiYTdLMuBZegFneEsW3h2bLw98=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 42T5VuBj082193
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 29 Mar 2024 00:31:56 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 29
+ Mar 2024 00:31:55 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 29 Mar 2024 00:31:55 -0500
+Received: from localhost (chintan-thinkstation-p360-tower.dhcp.ti.com [172.24.227.220])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 42T5Vsf0028006;
+	Fri, 29 Mar 2024 00:31:55 -0500
+From: Chintan Vankar <c-vankar@ti.com>
+To: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh@kernel.org>, Tero
+ Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth
+ Menon <nm@ti.com>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <s-vadapalli@ti.com>,
+        Chintan Vankar
+	<c-vankar@ti.com>
+Subject: [PATCH v6 0/5] Add CPSW2G and CPSW9G nodes for J784S4
+Date: Fri, 29 Mar 2024 11:01:25 +0530
+Message-ID: <20240329053130.2822129-1-c-vankar@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240329044459.3990638-1-debug@rivosinc.com> <20240329044459.3990638-12-debug@rivosinc.com>
-In-Reply-To: <20240329044459.3990638-12-debug@rivosinc.com>
-From: Deepak Gupta <debug@rivosinc.com>
-Date: Thu, 28 Mar 2024 22:15:40 -0700
-Message-ID: <CAKC1njTheY9+gRFgiWaA8fG5hiOFXqESz7eGDbhHhDZC7Kignw@mail.gmail.com>
-Subject: Re: [PATCH v2 11/27] riscv mmu: teach pte_mkwrite to manufacture
- shadow stack PTEs
-To: paul.walmsley@sifive.com, rick.p.edgecombe@intel.com, broonie@kernel.org, 
-	Szabolcs.Nagy@arm.com, kito.cheng@sifive.com, keescook@chromium.org, 
-	ajones@ventanamicro.com, conor.dooley@microchip.com, cleger@rivosinc.com, 
-	atishp@atishpatra.org, alex@ghiti.fr, bjorn@rivosinc.com, 
-	alexghiti@rivosinc.com, samuel.holland@sifive.com, conor@kernel.org, 
-	linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-mm@kvack.org, 
-	linux-arch@vger.kernel.org, linux-kselftest@vger.kernel.org
-Cc: corbet@lwn.net, tech-j-ext@lists.risc-v.org, palmer@dabbelt.com, 
-	aou@eecs.berkeley.edu, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	oleg@redhat.com, akpm@linux-foundation.org, arnd@arndb.de, 
-	ebiederm@xmission.com, Liam.Howlett@oracle.com, vbabka@suse.cz, 
-	lstoakes@gmail.com, shuah@kernel.org, brauner@kernel.org, 
-	andy.chiu@sifive.com, jerry.shih@sifive.com, hankuan.chen@sifive.com, 
-	greentime.hu@sifive.com, evan@rivosinc.com, xiao.w.wang@intel.com, 
-	charlie@rivosinc.com, apatel@ventanamicro.com, mchitale@ventanamicro.com, 
-	dbarboza@ventanamicro.com, sameo@rivosinc.com, shikemeng@huaweicloud.com, 
-	willy@infradead.org, vincent.chen@sifive.com, guoren@kernel.org, 
-	samitolvanen@google.com, songshuaishuai@tinylab.org, gerg@kernel.org, 
-	heiko@sntech.de, bhe@redhat.com, jeeheng.sia@starfivetech.com, 
-	cyy@cyyself.name, maskray@google.com, ancientmodern4@gmail.com, 
-	mathis.salmen@matsal.de, cuiyunhui@bytedance.com, bgray@linux.ibm.com, 
-	mpe@ellerman.id.au, baruch@tkos.co.il, alx@kernel.org, david@redhat.com, 
-	catalin.marinas@arm.com, revest@chromium.org, josh@joshtriplett.org, 
-	shr@devkernel.io, deller@gmx.de, omosnace@redhat.com, ojeda@kernel.org, 
-	jhubbard@nvidia.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Thu, Mar 28, 2024 at 9:46=E2=80=AFPM Deepak Gupta <debug@rivosinc.com> w=
-rote:
->
-> pte_mkwrite creates PTEs with WRITE encodings for underlying arch. Underl=
-ying
-> arch can have two types of writeable mappings. One that can be written us=
-ing
-> regular store instructions. Another one that can only be written using sp=
-ecialized
-> store instructions (like shadow stack stores). pte_mkwrite can select wri=
-te PTE
-> encoding based on VMA range.
->
-> On riscv, presence of only VM_WRITE in vma->vm_flags means it's a shadow =
-stack.
->
-> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
->
-> rebase with a30f0ca0fa31cdb2ac3d24b7b5be9e3ae75f4175
->
-hmm.. Note to self:
-Missed removing this lingering commit message. Will remove it in the
-next version.
+This series adds device-tree nodes for CPSW2G and CPSW9G instance
+of the CPSW Ethernet Switch on TI's J784S4 SoC. Additionally,
+two device-tree overlays are also added:
+1. QSGMII mode with the CPSW9G instance via the ENET EXPANSION 1
+   connector.
+2. USXGMII mode with MAC Ports 1 and 2 of the CPSW9G instance via
+   ENET EXPANSION 1 and 2 connectors, configured in fixed-link
+   mode of operation at 5Gbps link speed.
+
+Link to v5:
+https://lore.kernel.org/r/20240314072129.1520475-1-c-vankar@ti.com/
+
+Changes from v5 to v6:
+- Updated order of properties in Device Nodes based on
+  https://docs.kernel.org/devicetree/bindings/dts-coding-style.html#order-of-properties-in-device-node
+
+Chintan Vankar (1):
+  arm64: dts: ti: k3-j784s4-evm: Add alias for MCU CPSW2G
+
+Siddharth Vadapalli (4):
+  arm64: dts: ti: k3-j784s4-main: Add CPSW2G and CPSW9G nodes
+  arm64: dts: ti: k3-j784s4-evm: Enable Main CPSW2G node and add aliases
+    for it
+  arm64: dts: ti: k3-j784s4: Add overlay to enable QSGMII mode with
+    CPSW9G
+  arm64: dts: ti: k3-j784s4: Add overlay for dual port USXGMII mode
+
+ arch/arm64/boot/dts/ti/Makefile               |  11 +-
+ .../ti/k3-j784s4-evm-quad-port-eth-exp1.dtso  | 147 ++++++++++++++
+ .../ti/k3-j784s4-evm-usxgmii-exp1-exp2.dtso   |  81 ++++++++
+ arch/arm64/boot/dts/ti/k3-j784s4-evm.dts      |  51 +++++
+ arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi    | 187 ++++++++++++++++++
+ 5 files changed, 476 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-evm-quad-port-eth-exp1.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-evm-usxgmii-exp1-exp2.dtso
+
+-- 
+2.34.1
+
 
