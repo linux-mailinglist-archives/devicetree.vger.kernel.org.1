@@ -1,68 +1,61 @@
-Return-Path: <devicetree+bounces-54573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7FE5891A0C
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 13:52:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92586891A1A
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 13:53:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 58D821F27B7A
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 12:52:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EC6C285427
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 12:53:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAD921552EB;
-	Fri, 29 Mar 2024 12:30:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 535A7155751;
+	Fri, 29 Mar 2024 12:30:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DeVxHDTh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lKFvYkyI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 822C2154C1A;
-	Fri, 29 Mar 2024 12:30:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A1D815574D;
+	Fri, 29 Mar 2024 12:30:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711715428; cv=none; b=tqWKMMWTNKBNlPmqaWCss1GIoO1tEmEovoDytv8ttZVUBtHiaOZac8jP67tY7HG6TQuTY6jDGeTx2N4LS/ke6YNPJMwbYLieMPNPLPLvpR9bK9lXN2QwiVbAab9OT/CE2ZM83HPTF2sX0OJO1xv60iuuIu8qpzAKPqH7WcpNgMQ=
+	t=1711715438; cv=none; b=JDbp7H+4FeIrY/PPWToIx7Th0Lk4t9NaR5tmKP+EdHy53alLtTPq6BNg6Kq8W0Ri+g3bStj7KOuFvyJNgaXDgql7L2rXUV9VdJgmgdOKlu/seewJYo0oOH5qG/mbtnhX+IwQGviwHBztIMJ+o0NGJkQUSAkGsYPvo37WTeKuiFw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711715428; c=relaxed/simple;
-	bh=7c9SL6HaFtqcj1ILppO2zgC9RFH/L+E/p3c7nIcweV0=;
+	s=arc-20240116; t=1711715438; c=relaxed/simple;
+	bh=3N9khgHtFIEgjgZuj7xDwjlZxq4GJFMytHxppSbxm08=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=jYLMvSlW3yHlDYqaEBvWxpOuH5ZQMnvUU6NlQtwxd4SB0c0qpkj6l4QIhUvjpWofUzk3uk8uOZRS6eBFcBuKJzrZxBQPsI1c6eHKd6u77OwpsSYbGySteIK3HbUGIjqNvBrKFp0LQv3rq3v+UoeCxJDQoAVZZ5VGTksn2PvQ4Xg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DeVxHDTh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C099C433C7;
-	Fri, 29 Mar 2024 12:30:26 +0000 (UTC)
+	 MIME-Version; b=cfkC6Vyfa9eX3B0I9NjAdHCuX9Otnvaq0BGAhDpAFyp0mQLnwOiFnsE6IK4GbRjPPdtpGxaYz8PFEd6uyEXp/LOhsaGIxP92IO6IcKasVnWX6qIwyGUBI3ex5toMkb9a2/rCtfVE+BUxm1TB4jAFCyUlNNXriXNNrH7252OKPhQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lKFvYkyI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8B87C43390;
+	Fri, 29 Mar 2024 12:30:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711715428;
-	bh=7c9SL6HaFtqcj1ILppO2zgC9RFH/L+E/p3c7nIcweV0=;
+	s=k20201202; t=1711715438;
+	bh=3N9khgHtFIEgjgZuj7xDwjlZxq4GJFMytHxppSbxm08=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=DeVxHDThPTgMe3cHHVSxNJEVIPnfXcNJVJocjJlBntLLZS9DiaizNhRHkuBMLAXQu
-	 QvvR1JKLNuY6a13JErY4mnvtXMZLqsxJwJ840eWNmgOsA57hLXVpbLl1OZb1oLsIGQ
-	 Ndo0KNwHsH2NlmYPYhKIxGvajk9ABbFVQ0izb63Lp9QC9hjJ5K8YPDSBYsAYiuvV/h
-	 2OcU8uzKtsGycgEmW6qgWaqUq5u4sjXZfx6011uGEBDOd8WUya03TPXEZhBmNTOzgC
-	 YB9NAK8mLZX/zS+lA043moIfGLsQAoIe/eTXaN9ox/KAzX+NzQHj28VwY2ZE8RTEz6
-	 nFhVk+qxj9zaw==
+	b=lKFvYkyIBAvfMM1r8dlRdHjJG7x30AgUWsD6Oc3zIjROlaqRpd5PM3LBw/g6u+CV3
+	 cYF0zoKenQTJ+m8zID+jxV2j62oXKskrdLlWMxtV+8XYJLKPfSFp9Ehw3AoI5PbOP2
+	 x3nHCwxbHKsrXLuwbjeeRKKs7KHq5L/uXqbeOaMC5loUo4tgz9Yxi1ooJ/vNdbop/S
+	 pJim2eShypk5sJSjtyVxmL94ZBnbsE4qRN4koJ3qHTVtrswUMIhsCtFJOiV6UEouPB
+	 6URwfbqc3Qj2o1+f2O4mf8akCXSfQ4oEuTu9nSMrNL23WPg4s/mT0jy6MH817nVg58
+	 DNYirPyy94OqA==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Johan Jonker <jbx6244@gmail.com>,
-	Heiko Stuebner <heiko@sntech.de>,
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
 	Sasha Levin <sashal@kernel.org>,
+	konrad.dybcio@linaro.org,
 	robh@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
 	conor+dt@kernel.org,
-	dsimic@manjaro.org,
-	jonas@kwiboo.se,
-	lukasz.luba@arm.com,
-	chris.obbard@collabora.com,
-	rick.wertenbroek@gmail.com,
-	s.hauer@pengutronix.de,
-	knaerzche@gmail.com,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: [PATCH AUTOSEL 6.6 18/52] arm64: dts: rockchip: fix rk3399 hdmi ports node
-Date: Fri, 29 Mar 2024 08:28:48 -0400
-Message-ID: <20240329122956.3083859-18-sashal@kernel.org>
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.6 22/52] arm64: dts: sc8280xp: correct DMIC2 and DMIC3 pin config node names
+Date: Fri, 29 Mar 2024 08:28:52 -0400
+Message-ID: <20240329122956.3083859-22-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240329122956.3083859-1-sashal@kernel.org>
 References: <20240329122956.3083859-1-sashal@kernel.org>
@@ -77,63 +70,58 @@ X-Patchwork-Hint: Ignore
 X-stable-base: Linux 6.6.23
 Content-Transfer-Encoding: 8bit
 
-From: Johan Jonker <jbx6244@gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-[ Upstream commit f051b6ace7ffcc48d6d1017191f167c0a85799f6 ]
+[ Upstream commit 61474b18e762671a69b2df9665f3cec5c87a38af ]
 
-Fix rk3399 hdmi ports node so that it matches the
-rockchip,dw-hdmi.yaml binding.
+Correct the TLMM pin configuration and muxing node names used for DMIC2
+and DMIC3 (dmic01 -> dmic23).  This has no functional impact, but
+improves code readability and avoids any confusion when reading the DTS.
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-Link: https://lore.kernel.org/r/a6ab6f75-3b80-40b1-bd30-3113e14becdd@gmail.com
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Link: https://lore.kernel.org/r/20240212172335.124845-1-krzysztof.kozlowski@linaro.org
+Signed-off-by: Bjorn Andersson <andersson@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/rockchip/rk3399.dtsi | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 2 +-
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi                     | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-index 4a3d0af5ecfe2..fb1ea84c2b14f 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-@@ -1953,6 +1953,7 @@ simple-audio-card,codec {
- 	hdmi: hdmi@ff940000 {
- 		compatible = "rockchip,rk3399-dw-hdmi";
- 		reg = <0x0 0xff940000 0x0 0x20000>;
-+		reg-io-width = <4>;
- 		interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH 0>;
- 		clocks = <&cru PCLK_HDMI_CTRL>,
- 			 <&cru SCLK_HDMI_SFR>,
-@@ -1961,13 +1962,16 @@ hdmi: hdmi@ff940000 {
- 			 <&cru PLL_VPLL>;
- 		clock-names = "iahb", "isfr", "cec", "grf", "ref";
- 		power-domains = <&power RK3399_PD_HDCP>;
--		reg-io-width = <4>;
- 		rockchip,grf = <&grf>;
- 		#sound-dai-cells = <0>;
- 		status = "disabled";
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+index f2055899ae7ae..4669af3fdb75e 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
++++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+@@ -1201,7 +1201,7 @@ &usb_1_role_switch {
+ };
  
- 		ports {
--			hdmi_in: port {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			hdmi_in: port@0 {
-+				reg = <0>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
+ &vamacro {
+-	pinctrl-0 = <&dmic01_default>, <&dmic02_default>;
++	pinctrl-0 = <&dmic01_default>, <&dmic23_default>;
+ 	pinctrl-names = "default";
  
-@@ -1980,6 +1984,10 @@ hdmi_in_vopl: endpoint@1 {
- 					remote-endpoint = <&vopl_out_hdmi>;
+ 	vdd-micb-supply = <&vreg_s10b>;
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+index b8081513176ac..f4dbb69b4ff37 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+@@ -2977,7 +2977,7 @@ data-pins {
  				};
  			};
-+
-+			hdmi_out: port@1 {
-+				reg = <1>;
-+			};
- 		};
- 	};
  
+-			dmic02_default: dmic02-default-state {
++			dmic23_default: dmic23-default-state {
+ 				clk-pins {
+ 					pins = "gpio8";
+ 					function = "dmic2_clk";
+@@ -2993,7 +2993,7 @@ data-pins {
+ 				};
+ 			};
+ 
+-			dmic02_sleep: dmic02-sleep-state {
++			dmic23_sleep: dmic23-sleep-state {
+ 				clk-pins {
+ 					pins = "gpio8";
+ 					function = "dmic2_clk";
 -- 
 2.43.0
 
