@@ -1,126 +1,104 @@
-Return-Path: <devicetree+bounces-54627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4880189204D
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 16:22:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F079F891F6A
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 16:04:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0D299B2E4B3
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 15:00:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A619E1F30BCF
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 15:04:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26B8F13DDDA;
-	Fri, 29 Mar 2024 13:02:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D784D15531D;
+	Fri, 29 Mar 2024 13:24:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rnplus.nl header.i=@rnplus.nl header.b="fBVHIO8h"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="N8cvRHyP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.rnplus.nl (mail.rnplus.nl [178.251.25.70])
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B803D13D8BF
-	for <devicetree@vger.kernel.org>; Fri, 29 Mar 2024 13:02:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.251.25.70
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87CA425777;
+	Fri, 29 Mar 2024 13:24:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711717349; cv=none; b=ukU2JOZTEHb7LCYshF7dM2q9If/Vn1Cq7A3aB8l2h9OySDs8oYXM1me0QENgYNa2XhYsSwpU87Zblan/OH+jWZnNuaxtBsZuF02aMHdRRE4EyN7M2fQ3d6GOH9aqhD3Zz/eKYUT6BqiNMnaV/a80dYlegEkKMCmOCiztuGv72uo=
+	t=1711718653; cv=none; b=J9sSjPE/PIWueRrf3mc0Gz+doWHXM23cwayy/7d7ofclr+k6fYRInM6THrGQq7UDfE1Z0zaJrE9flVcLU1KcVxY77kramIb1cmwm4v0erc/MrJM97rfZ+8goNCRYtUWDMKCArHFQT+Ay3/mJVdmXWFQegfT8KHUHuVFPDWpLv38=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711717349; c=relaxed/simple;
-	bh=5PYPUmi19U+0jj9vdpCCTkSTJgKRWQ8R0dIQUA2UZbQ=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=FlP6RgxRklZcJyoPfStzyqlJ9TzS7pPrdGUdDWu8pzj2B8CXdcByJ4RBMAKJ9TQZOMg7912a2DtkpYEcIfZOYneEGXdrGgH8ViFeyT2yR7skJasmObvrqA9aiLM4zxeU50pVlMKb7Gxn2vqPY0nCmKTjFI2kv91cpMuhYCEE6sY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rnplus.nl; spf=pass smtp.mailfrom=rnplus.nl; dkim=pass (1024-bit key) header.d=rnplus.nl header.i=@rnplus.nl header.b=fBVHIO8h; arc=none smtp.client-ip=178.251.25.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rnplus.nl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rnplus.nl
-Received: from localhost (unknown [127.0.0.1])
-	by mail.rnplus.nl (Postfix) with ESMTP id 6C0AD37948E
-	for <devicetree@vger.kernel.org>; Fri, 29 Mar 2024 13:05:46 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at rnplus.nl
-Received: from mail.rnplus.nl ([127.0.0.1])
-	by localhost (mail.rnplus.nl [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id AD36HnZ4zBol for <devicetree@vger.kernel.org>;
-	Fri, 29 Mar 2024 14:05:46 +0100 (CET)
-Received: from localhost.localdomain (184-179-179-143.ftth.glasoperator.nl [143.179.179.184])
-	by mail.rnplus.nl (Postfix) with ESMTPSA id 0672237947A;
-	Fri, 29 Mar 2024 14:05:25 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=rnplus.nl; s=dkim;
-	t=1711717526; bh=5PYPUmi19U+0jj9vdpCCTkSTJgKRWQ8R0dIQUA2UZbQ=;
-	h=From:To:Subject:Date:In-Reply-To:References;
-	b=fBVHIO8hCb0A1p99N4Btml3jm86eC3uivf3DR0owUhSW/RIz4SyzKyclEFfEIRA9N
-	 e4bGLksiqZcXJvb1IK9ksr7jtCAnTY7rp5VYUzdcER72DPzZimAZz46tVqaI5MTp/Y
-	 Ug/v3hWNqdjOfWBLFEBcORdoxnLk+ecl5Kk3gwto=
-From: Renze Nicolai <renze@rnplus.nl>
-To: linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-aspeed@lists.ozlabs.org,
-	arnd@arndb.de,
-	olof@lixom.net,
-	soc@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	joel@jms.id.au,
-	andrew@aj.id.au,
-	renze@rnplus.nl
-Subject: [PATCH 2/3] ARM: dts: Disable unused ADC channels for Asrock X570D4U BMC
-Date: Fri, 29 Mar 2024 14:01:40 +0100
-Message-ID: <20240329130152.878944-3-renze@rnplus.nl>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240329130152.878944-1-renze@rnplus.nl>
-References: <20240329130152.878944-1-renze@rnplus.nl>
+	s=arc-20240116; t=1711718653; c=relaxed/simple;
+	bh=v8mIn4wI6Nk8yWeAoiTyvSclm6AdbmqShOByjQ1EiZc=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=FG/cnH8YZZ1I2yrbos280NLbVVeD+xqcLXGlfKGVSEos1i/dqAuIdY8SYO7NzFSwgabwrXi9lgtMXRCDvn6hxLUyTpz5EGbQVENJNgUrewl7pJzOnBHD8Ks7k2DFCP6b6OdLup0ouQUP6D4B+mgyTBbtkuIOqflgds38If3mjB0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=N8cvRHyP; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id DFE1FE0008;
+	Fri, 29 Mar 2024 13:24:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1711718648;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Z8zwe634gu5wQNCVCxvtpKe0aX4n7o17eGhcQXcT/N4=;
+	b=N8cvRHyPJgw5j5LKkih7d26o4xz2NIuPQNXKFj8uupd470/nXWH0scfZaHHEl3j9CKrBex
+	Pbskzy//s8gOQPW0Q9RyQ6c6e6pf+5HxiHLme7pdkxLnOW5BEkSDlSNai8dTMispVpfws/
+	hLchxIIMJdRL9lZzAYWvm3+M0LJCFePBNb3hgl4yEe6YKKbSw+vwZuovy5Yywy4bpJw4mb
+	KIdJHjIhBxrWkPrLV2Q9PnSYK7cgJP063BauaJRtBMkA4rsytPkNKxJG5OQUu7EsZeBmQ5
+	XyV61Cs61Per8cmpSkvlDdInL17uL9nbTK8mu1ED+Jqje3CvdwTG/6T7JXVqIA==
+Message-ID: <106a9957-cf7f-4789-8edc-fdc641cd854a@bootlin.com>
+Date: Fri, 29 Mar 2024 14:24:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 13/13] ASoC: ti: davinci-i2s: Opitonally drive DX pin
+ during capture streams
+From: Bastien Curutchet <bastien.curutchet@bootlin.com>
+To: =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, herve.codina@bootlin.com,
+ christophercordahi@nanometrics.ca
+References: <20240315112745.63230-1-bastien.curutchet@bootlin.com>
+ <20240315112745.63230-14-bastien.curutchet@bootlin.com>
+ <00182d1d-ef29-457f-9e3e-6e9b57592118@gmail.com>
+ <0bb26153-8bcb-475f-8892-5eb925fec538@bootlin.com>
+ <7925bbe5-17e8-42cb-a5f0-4f3e06810a90@gmail.com>
+ <d20dc37c-13fa-43d1-af52-dce8d8dcdd75@gmail.com>
+ <5467add6-0099-4e54-a4f7-12aa149d03c7@bootlin.com>
+ <e6994ff1-6c32-4dac-846a-5f4f18b2f996@gmail.com>
+ <16e6cded-33c1-408c-9bfc-b0b9a8da4cbf@bootlin.com>
+Content-Language: en-US
+In-Reply-To: <16e6cded-33c1-408c-9bfc-b0b9a8da4cbf@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-GND-Sasl: bastien.curutchet@bootlin.com
 
-This commit disables unused ADC channels and labels the ADC channels used with their function.
+Hi Péter,
 
-Signed-off-by: Renze Nicolai <renze@rnplus.nl>
----
- .../dts/aspeed/aspeed-bmc-asrock-x570d4u.dts  | 29 +++++++++----------
- 1 file changed, 13 insertions(+), 16 deletions(-)
+>> Can you use aplay /dev/zero and a DT property to select T1 framing for
+>> the playback? Or that would be too coarse for timing the start of
+>> playback and capture?
+>>
+> 
+> That's a good idea, thank you. I'll try this and come back to you.
+> 
+>
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x570d4u.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x570d4u.dts
-index 34bc382bf492..e93c2f0b8414 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x570d4u.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x570d4u.dts
-@@ -358,20 +358,17 @@ fan@5 {
- &adc {
- 	status = "okay";
- 	pinctrl-names = "default";
--	pinctrl-0 = <&pinctrl_adc0_default
--				&pinctrl_adc1_default
--				&pinctrl_adc2_default
--				&pinctrl_adc3_default
--				&pinctrl_adc4_default
--				&pinctrl_adc5_default
--				&pinctrl_adc6_default
--				&pinctrl_adc7_default
--				&pinctrl_adc8_default
--				&pinctrl_adc9_default
--				&pinctrl_adc10_default
--				&pinctrl_adc11_default
--				&pinctrl_adc12_default
--				&pinctrl_adc13_default
--				&pinctrl_adc14_default
--				&pinctrl_adc15_default>;
-+	pinctrl-0 = <&pinctrl_adc0_default       /* 3VSB */
-+			&pinctrl_adc1_default    /* 5VSB */
-+			&pinctrl_adc2_default    /* VCPU */
-+			&pinctrl_adc3_default    /* VSOC */
-+			&pinctrl_adc4_default    /* VCCM */
-+			&pinctrl_adc5_default    /* APU-VDDP */
-+			&pinctrl_adc6_default    /* PM-VDD-CLDO */
-+			&pinctrl_adc7_default    /* PM-VDDCR-S5 */
-+			&pinctrl_adc8_default    /* PM-VDDCR */
-+			&pinctrl_adc9_default    /* VBAT */
-+			&pinctrl_adc10_default   /* 3V */
-+			&pinctrl_adc11_default   /* 5V */
-+			&pinctrl_adc12_default>; /* 12V */
- };
--- 
-2.44.0
+I tried it and it works fine, thank you.
 
+We still need to run some performance tests before fully adopting it but
+anyway I'll send a new iteration of the patch series that drops the
+drive-dx part and just keeps a DT property to select T1 framing.
+
+Best regards,
+Bastien
 
