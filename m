@@ -1,190 +1,108 @@
-Return-Path: <devicetree+bounces-54502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A19BD891551
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 10:02:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2953C891599
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 10:17:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 25FAB1F22907
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 09:02:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D3042285A37
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 09:17:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F03B72E642;
-	Fri, 29 Mar 2024 09:02:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E68603BBC7;
+	Fri, 29 Mar 2024 09:17:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="aQlaMaCh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eJ3y7ki+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F3842576F
-	for <devicetree@vger.kernel.org>; Fri, 29 Mar 2024 09:02:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA8BE39FD1;
+	Fri, 29 Mar 2024 09:17:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711702963; cv=none; b=eSt8VwW0VxF+6bpD2dMcqGxMO3sIl2ZRPHokLpaPD2XpgJPYn9Z9If/j/upaDjdkX0WOCnUyWJNZStrUQwG99lYLG1umMhhTnb907n61eMtXP5pkeNsSDkKmiziR+uTa87wAufaUYTvmMSMptLzpAVtSLTx28WqT9SoW9VE7rvM=
+	t=1711703855; cv=none; b=ftgU+riw/CFSS5uZututxGHmg91zMN3ABdql5OaP8+G4CY9CFybr8WHUXFzJIxXhhwYRBaYlBjJVTWKwre6r3cVZ5UM1qedYuY1OdLjPwjIJTR6Cuhc4gfFFNjyerP13xVDTNJ0sOxgDA+n/KxWotndSctlIObcZMsEyvKu6Xg4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711702963; c=relaxed/simple;
-	bh=2Zf6R6CkxmywhczgQqEZn7MwHGL6FseyM974DXmnTHk=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
-	 References:In-Reply-To; b=heOH0Q2z1irh6IUFeJm4dD2IAKyXWUdHBK6cVr5l6eK1D+3qGKJ7l8R+bvOZIwdyGpjTqIzVVmAJn12pr70y7WcHwWUxtSQR+P+SzO3h5BgsQOgvghDz2FEd13BZ+QOhP/YOZbIsej4h5/FyKclDqw24BiPBCSTbwJHgtbiprXE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=aQlaMaCh; arc=none smtp.client-ip=209.85.208.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5688eaf1165so2394737a12.1
-        for <devicetree@vger.kernel.org>; Fri, 29 Mar 2024 02:02:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1711702960; x=1712307760; darn=vger.kernel.org;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/kJ07VpxBwuIm+C747GAvreUMoyvQyj4KBvI0bB+Uzs=;
-        b=aQlaMaChlqZLgNMrRR//nqXZA339Pk95vx19E3iAhym81R4Tzhv9dvj1L0Otd1Q9jo
-         IJFqSIb6h9HOjECNUJCA1f9tt4buUCfsL8wsUTXhXsizJMKIHYgSGvY4vQXdbAVPmA51
-         zBk9eKhdDN1OhvXdF548yIMTVyUdsTtepEC4Z9PcVtRLWFICwgUXHhGfBOYctfZlpSvv
-         veXAlK12PZBUao5czn4Qf5x9AIquQYkqRCDMfWCYJz4mAbDv8jHkGCRapcc2E9dP6aFW
-         ryUcVC8999Jl8lGBHzr0t8uy38YGTV6zaicrAhVqVy8z057j6NJKGRnbq833Lp1bMM/5
-         DVwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711702960; x=1712307760;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=/kJ07VpxBwuIm+C747GAvreUMoyvQyj4KBvI0bB+Uzs=;
-        b=GCP/Fso8sKT7J89/QnUZsQXrK3EKTUHfEmZJtQYSTxaqrHjRQnDm62K34/JcciPtO1
-         AF/amcapXe6pZrahhLE9pAfWxNOKDwQjjak5U5Q1l+ZlfeTZraTxDCb8NsgnRiAcS+X7
-         SB1CAIvlTRf5F7LSot6bcOWNlI8eop0COR3sJyjHysG8Dz3N7hC/l0/jBKHP6yTME9Yz
-         nvqjqEcxDr7+RRJ2R2oA+hVOlRIVTiJrrqWjy6b3sbYYkrZC0Gps9/gT6Mvf5q8zsDE3
-         AYKtosgzqRuRWRrz1Kifu9pf6ROoey25AFfhVCip2mW6gFLpQc52aODzRHt4aWixqNkr
-         3U7w==
-X-Forwarded-Encrypted: i=1; AJvYcCXCWTGw6qMMIpCvFzZIDJfLfxWsSgBFAclzcx0HLupDzd9rY4dPjR89XoatMTPYy+d1D+W57Tw+ezMH0BVNk7Mm32t1fdLibLykpA==
-X-Gm-Message-State: AOJu0YxJpPJm61KWmziUk+ncG6UVT0HwwRDaNRAKxjERGlnpHocswVx4
-	ZwS4kSpzJE3RKVV05o6uCPpJLbiIO8BaJ+oq+eMpKt+awJdxpj77cY72Bt9t0wI=
-X-Google-Smtp-Source: AGHT+IEtXOU314+1cqrx8WlAN41P0sJaaz6HVv7Pvuse+LMvU2V1oey2adNfDS+zVoFYLe2kFcwhTw==
-X-Received: by 2002:a50:c351:0:b0:567:56a4:3940 with SMTP id q17-20020a50c351000000b0056756a43940mr1190062edb.19.1711702960448;
-        Fri, 29 Mar 2024 02:02:40 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id b20-20020aa7cd14000000b0056bf9b4ec32sm1816243edw.78.2024.03.29.02.02.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Mar 2024 02:02:40 -0700 (PDT)
+	s=arc-20240116; t=1711703855; c=relaxed/simple;
+	bh=n/GJizp9nm7qN6fx85RRF4G4vfz5pWZJJrrOuOIEosg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=APn5Oq+c9FIQ6jIzukIwsyYXS6cPOtXniDjOsd6m7C9iAdYNDzRwnTgknm5CWDm8vxC+En9SlVzzcFgoC+nativzITcSO/vinfJMHXtda70gDeoRfo8gKH4tJ4igWY2ddhJd5g68uS9fl1LCjRHPI1bH55R3CEdxCNNTFtOu4mw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eJ3y7ki+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 35670C433F1;
+	Fri, 29 Mar 2024 09:17:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711703855;
+	bh=n/GJizp9nm7qN6fx85RRF4G4vfz5pWZJJrrOuOIEosg=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=eJ3y7ki+MaVUSZJhPrwMD8Je0tVbXfWz0LDEfN2I3oRJm8zZxmV4F47yFPx37jHwy
+	 +xYDGX6BVWwtQ1805osK9E4am/m/B+t86/zo2ejv7JLMRujMucFvk7uQnfksys8sa0
+	 w67YcoVt96rWkLbOh2HbN8TPYiXiwgjvgOugw0oqwSUf3yPa/bgaDd06qXW943FbgJ
+	 ySyz9g3dfu8ViepGEiwFQRrb6AxiEbmDCK+5BEZIx+0utHuY9SIVTwDa/1ZfVTFaC9
+	 ea7DvDCTeYZ250tn/k4kLPdWjD9JBuDMnVbgd5PPLQEunHLFochH0xz9CR7OlTxT/K
+	 OrJbRqkHJ5XUg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1AF66CD11DD;
+	Fri, 29 Mar 2024 09:17:35 +0000 (UTC)
+From: Kelvin Zhang via B4 Relay <devnull+kelvin.zhang.amlogic.com@kernel.org>
+Subject: [PATCH 0/3] Add support for Amlogic T7 Reset
+Date: Fri, 29 Mar 2024 17:17:12 +0800
+Message-Id: <20240329-t7-reset-v1-0-4c6e2e68359e@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 29 Mar 2024 10:02:39 +0100
-Message-Id: <D064242SMIVM.1GUC1I9GE9IGC@fairphone.com>
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Konrad Dybcio" <konrad.dybcio@linaro.org>, "Bjorn Andersson"
- <andersson@kernel.org>, "Neil Armstrong" <neil.armstrong@linaro.org>
-Cc: "Vinod Koul" <vkoul@kernel.org>, "Kishon Vijay Abraham I"
- <kishon@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Abhinav Kumar" <quic_abhinavk@quicinc.com>,
- <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH RFT 0/7] arm64: qcom: allow up to 4 lanes for the Type-C
- DisplayPort Altmode
-X-Mailer: aerc 0.15.2
-References: <20240229-topic-sm8x50-upstream-phy-combo-typec-mux-v1-0-07e24a231840@linaro.org> <CZUHV429NTF7.1GW9TN9NXB4J1@fairphone.com> <7a7aa05f-9ae6-4ca0-a423-224fc78fbd0c@linaro.org> <liah4xvkfattlen7s2zi3vt2bl5pbbxqgig3k5ljqpveoao656@iacnommxkjkt> <236a104c-fc16-4b3d-9a00-e16517c00e3a@linaro.org>
-In-Reply-To: <236a104c-fc16-4b3d-9a00-e16517c00e3a@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABiHBmYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDYyNL3RJz3aLU4tQS3TQL81QLYxOztMSUJCWg8oKi1LTMCrBR0bG1tQB
+ 080UQWgAAAA==
+To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Zelong Dong <zelong.dong@amlogic.com>, 
+ Kelvin Zhang <kelvin.zhang@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1711703853; l=866;
+ i=kelvin.zhang@amlogic.com; s=20240329; h=from:subject:message-id;
+ bh=n/GJizp9nm7qN6fx85RRF4G4vfz5pWZJJrrOuOIEosg=;
+ b=2HDdcu8bHK28/Vw6Upe0zpsGUXqXEi9POhJTjRSNSmOBU3TqML/IbpwEUaPrQTa6cUJL5+rk5
+ +Z9Y3JC24v2CfMsbzDGndOgSjtVeZCAMsQG6uX4CC8Pxmf6XUIMMBaA
+X-Developer-Key: i=kelvin.zhang@amlogic.com; a=ed25519;
+ pk=pgnle7HTNvnNTcOoGejvtTC7BJT30HUNXfMHRRXSylI=
+X-Endpoint-Received: by B4 Relay for kelvin.zhang@amlogic.com/20240329 with
+ auth_id=148
+X-Original-From: Kelvin Zhang <kelvin.zhang@amlogic.com>
+Reply-To: kelvin.zhang@amlogic.com
 
-On Tue Mar 26, 2024 at 10:02 PM CET, Konrad Dybcio wrote:
-> On 16.03.2024 5:01 PM, Bjorn Andersson wrote:
-> > On Fri, Mar 15, 2024 at 06:35:15PM +0100, Neil Armstrong wrote:
-> >> On 15/03/2024 18:19, Luca Weiss wrote:
-> >>> On Thu Feb 29, 2024 at 2:07 PM CET, Neil Armstrong wrote:
-> >>>> Register a typec mux in order to change the PHY mode on the Type-C
-> >>>> mux events depending on the mode and the svid when in Altmode setup.
-> >>>>
-> >>>> The DisplayPort phy should be left enabled if is still powered on
-> >>>> by the DRM DisplayPort controller, so bail out until the DisplayPort
-> >>>> PHY is not powered off.
-> >>>>
-> >>>> The Type-C Mode/SVID only changes on plug/unplug, and USB SAFE state=
-s
-> >>>> will be set in between of USB-Only, Combo and DisplayPort Only so
-> >>>> this will leave enough time to the DRM DisplayPort controller to
-> >>>> turn of the DisplayPort PHY.
-> >>>>
-> >>>> The patchset also includes bindings changes and DT changes.
-> >>>>
-> >>>> This has been successfully tested on an SM8550 board, but the
-> >>>> Thinkpad X13s deserved testing between non-PD USB, non-PD DisplayPor=
-t,
-> >>>> PD USB Hubs and PD Altmode Dongles to make sure the switch works
-> >>>> as expected.
-> >>>>
-> >>>> The DisplayPort 4 lanes setup can be check with:
-> >>>> $ cat /sys/kernel/debug/dri/ae01000.display-controller/DP-1/dp_debug
-> >>>> 	name =3D msm_dp
-> >>>> 	drm_dp_link
-> >>>> 		rate =3D 540000
-> >>>> 		num_lanes =3D 4
-> >>>
-> >>> Hi Neil,
-> >>>
-> >>> I tried this on QCM6490/SC7280 which should also support 4-lane DP bu=
-t I
-> >>> haven't had any success so far.
-> >>>
-> > [..]
-> >>> [ 1775.563969] [drm:dp_ctrl_link_train] *ERROR* max v_level reached
-> >>> [ 1775.564031] [drm:dp_ctrl_link_train] *ERROR* link training #1 fail=
-ed. ret=3D-11
-> >>
-> >> Interesting #1 means the 4 lanes are not physically connected to the o=
-ther side,
-> >> perhaps QCM6490/SC7280 requires a specific way to enable the 4 lanes i=
-n the PHY,
-> >> or some fixups in the init tables.
-> >>
-> >=20
-> > I tested the same on rb3gen2 (qcs6490) a couple of weeks ago, with the
-> > same outcome. Looking at the AUX reads, after switching to 4-lane the
-> > link training is failing on all 4 lanes, in contrast to succeeding only
-> > on the first 2 if you e.g. forget to mux the other two.
-> >=20
-> > As such, my expectation is that there's something wrong in the QMP PHY
-> > (or possibly redriver) for this platform.
->
-> Do we have any downstream tag where 4lane dp works? I'm willing to believ=
-e
-> the PHY story..
+Add a new compatible and device node for Amlogic T7 Reset.
 
-Just tested on Fairphone 5 downstream and 4 lane appears to work there.
-This is with an USB-C to HDMI adapter that only does HDMI.
+Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
+---
+Zelong Dong (3):
+      dt-bindings: reset: Add Amlogic T7 Reset Controller
+      reset: reset-meson: add support for Amlogic T7 SoC Reset Controller
+      arm64: dts: amlogic: add reset controller for Amlogic T7 SoC
 
-FP5:/ # cat /sys/kernel/debug/drm_dp/dp_debug
-        state=3D0x20a5
-        link_rate=3D270000
-        num_lanes=3D4
-        resolution=3D2560x1440@60Hz
-        pclock=3D241500KHz
-        bpp=3D24
-        test_req=3DDP_LINK_STATUS_UPDATED
-        lane_count=3D4
-        bw_code=3D10
-        v_level=3D0
-        p_level=3D0
+ .../bindings/reset/amlogic,meson-reset.yaml        |   1 +
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi        |   7 +
+ drivers/reset/reset-meson.c                        |   6 +
+ include/dt-bindings/reset/amlogic,t7-reset.h       | 197 +++++++++++++++++++++
+ 4 files changed, 211 insertions(+)
+---
+base-commit: a6bd6c9333397f5a0e2667d4d82fef8c970108f2
+change-id: 20240329-t7-reset-f87e8346fadb
 
-Sources are here:
-https://gerrit-public.fairphone.software/plugins/gitiles/kernel/msm-5.4/+/r=
-efs/heads/odm/rc/target/13/fp5
-And probably more importantly techpack/display:
-https://gerrit-public.fairphone.software/plugins/gitiles/platform/vendor/op=
-ensource/display-drivers/+/refs/heads/odm/rc/target/13/fp5
-Dts if useful:
-https://gerrit-public.fairphone.software/plugins/gitiles/kernel/msm-extra/d=
-evicetree/+/refs/heads/kernel/13/fp5
+Best regards,
+-- 
+Kelvin Zhang <kelvin.zhang@amlogic.com>
 
-Regards
-Luca
-
->
-> Konrad
 
 
