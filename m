@@ -1,106 +1,110 @@
-Return-Path: <devicetree+bounces-54427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EA348911FA
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 04:27:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1036B89122D
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 04:49:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 53C021F22C19
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 03:27:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 32FF81C22F9D
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 03:49:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B44438F87;
-	Fri, 29 Mar 2024 03:27:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69A1639FD4;
+	Fri, 29 Mar 2024 03:49:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZdA+CtW4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i3iISElt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AFC137165;
-	Fri, 29 Mar 2024 03:27:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD1121DA4D;
+	Fri, 29 Mar 2024 03:49:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711682844; cv=none; b=qVWo3iTDAhoQvF3Fcvwx4FZ3mz9cT9ZsCiUkOI99zJ5ugfEOQd0TynKZRgQWlmdDA+WptZwqv1o/cNt8LPjGpiIRNcOm5L2H6/ZAVzDTa0cmbbMan6xLTjyQ151K+NdpUEYkBGS/ZPCdi8Am5/7ZMg6xRkXxHXVuaNwChHhNOK4=
+	t=1711684167; cv=none; b=dD77QxaGJoZkqtC4Paev9MLF+RbuJIIRGLfCa/gmtf8T/JpJ6dtD4ozxTrMAzMiMVm8VHkbZ5eCMbtTGrnuj6rzs1hF7XT4VoKOa8VnXyIYazQ0o1nyvAUC2NPwhYB92bD4LVO3Ixc3KOznU1Hk8UamWJcP/ZIAy8nXCLvCjm9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711682844; c=relaxed/simple;
-	bh=XBq7FAybfYroiUaOkqQ3iC8DyKkn51xgtrLSf+qdjHA=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=e9oS7Snp7bR4hn7x0VAsK5B4Lhohcn9dsuPy0JMBSVbvAFXs2+GGMoDhQcyiM54qYMFU5/ls6igFj33hVPm5oORCkomnBubOgaEvLqZrUBvt9hodtqQMe6SWxzGjh+eMWK6jzlINBsKHBWY20wYVbHuA/H3R9puXKE9L+eAFUD4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZdA+CtW4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 411BBC433C7;
-	Fri, 29 Mar 2024 03:27:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711682843;
-	bh=XBq7FAybfYroiUaOkqQ3iC8DyKkn51xgtrLSf+qdjHA=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=ZdA+CtW4oY+yEwX6Dm9kleIytrg9GiQhcUWg7JwWD4ChR05odzEMLEqbtMU6N9iPU
-	 +KU+8FrfGcVnw+jsZEHJOprtzaSmRSmG/3Ug4iiG+8KFs7b41e0gRMkwjK0U8rJYdh
-	 jgTJYTknlff0yujt1Ljv0T8nl7Iufr/ACtIlrwdv1CMHqsmRpIKjTLjiRKaSkIkXKL
-	 SYf/6A1l2rMp/I1GzTp89uf7FLLQxH70IfhjSCQl0dtGZQLqELvJ92695MhkGedZ7u
-	 eR6aqA3IT4/V1No8i7lCLkyF9wpZowAOjRg9VHaa8YxtcTmk5KOnzR6lDMZRWLF4cJ
-	 aNJ6gHyEtTM8g==
-Date: Thu, 28 Mar 2024 22:27:22 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1711684167; c=relaxed/simple;
+	bh=rbYNru4FvZk9/qOjGtXreS+71shEPoNntVgIjjLgs3Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=uWVEqGR3VVLGolJNLKpoEIOF8cvcCDAAu0dE2XirxMmRH2QqY52zfdkEz5KNmBfrvlAgabIpO7jd8qZywP2rRcv3JT1jvz/PClnxAXw2EeDgWzlC+v4wlE6mZqG5DL67KQ2uBcEyQChNRBfHGpnRszuUN6b3JmfkQFYukVI0qOo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i3iISElt; arc=none smtp.client-ip=209.85.161.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f50.google.com with SMTP id 006d021491bc7-5a522ae3747so721733eaf.1;
+        Thu, 28 Mar 2024 20:49:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1711684165; x=1712288965; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rbYNru4FvZk9/qOjGtXreS+71shEPoNntVgIjjLgs3Q=;
+        b=i3iISElt9bZINTFR/6KkisXu99/RDm5d7LtGz19WERl+zZ5x6lU1OcKKa5rtL2UM6a
+         47SHgd4/nwkPOFyMlb/P/L9Y5YkMpL5CNGL3lvqFjNcE+wyzqWQLyMzBElke2vTHLFWc
+         1rFsyqM4yGyLDMh7bnNJT4+cvUH+ny1sgc2fRt6+1EBnSbTC4isl47vKtRAWZLU1S6S8
+         qgdm7qaDBWvyUmjpt2J6hC0JDtL2UoAeTbatS2XAje+nsSalcLJzYxDaiXauI/NEeQM9
+         AfdbQoif+VZg1q7KcGvUdgHe3dyjUz6CtFC9aoH48voyVIiPazochwjv6LcUTHd0lsst
+         PfYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711684165; x=1712288965;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rbYNru4FvZk9/qOjGtXreS+71shEPoNntVgIjjLgs3Q=;
+        b=N6AWNOAB/akqRicEfrRFzly2SMSAR8aEcW124AdUxDJBWwYitwjedZpgc0u200Jn0E
+         k/V+zCQxOoMoQsp/gCqY2aYB0dRZU10WW+uBqaK8rkKQgdp3oFi3jIlJBRRQ5ZklIGfk
+         ux0KHyowqp2DE5k0B6gOOc/vHMmYxTA64ER9EyJrAbW4RvDFxY5gy/IA4SZJ+ZkWuCPu
+         6q6p4OP+PB9tBazejQSJri73arkC2IVvShkoEsJdez7ja9hzbEVOilI4NOX45UONpXPK
+         mSOrWZ6Qyb/z9RFDRiRBdRFogvlWaT6JON++9s+C9mhHJMMNoQFUo30RTvb1e0dWArCM
+         gxPA==
+X-Forwarded-Encrypted: i=1; AJvYcCVm/2/8YVJP27VvdONNbhDPibe4yQBJHu3npL7QgloDXEYGquj2B/9gdb4cga6MGr2boPBH8ALBcqrN8dhHKPXKt2TORCXg1vd8Gx1Jfc6s1M0qTUawt/qwokI0oi/93dvXtddY65hx+A==
+X-Gm-Message-State: AOJu0YwrBbx8NMBSJ77gFUJEA2EvH15GrwgQ6rzjEnFOGUm9iPFBnyM3
+	O1i9RYDxvASlNJtXZJYtaJNF/ZNSy9NOq2RM9saQAeIuooeCMJWFnSjmMoNclwuPinruuKzh7Ds
+	fJaYMqjmjy5e/BVJAgbeYaCjFCKo=
+X-Google-Smtp-Source: AGHT+IGY696uQzEFN9nM4AzEb0MgJ37NkFzNoqo9gX0ZSgGVDWoHvK0+IqwNyDR0VO7NoE+/Zw1U+8f4i1NvVIgNIgQ=
+X-Received: by 2002:a05:6870:972b:b0:229:7f31:6877 with SMTP id
+ n43-20020a056870972b00b002297f316877mr552817oaq.4.1711684164989; Thu, 28 Mar
+ 2024 20:49:24 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Qingfang Deng <dqfext@gmail.com>
-Cc: Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- linux-spi@vger.kernel.org, Qingfang Deng <qingfang.deng@siflower.com.cn>
-In-Reply-To: <20240329015147.1481349-1-dqfext@gmail.com>
-References: <20240329015147.1481349-1-dqfext@gmail.com>
-Message-Id: <171168284116.1622438.12291948892971487712.robh@kernel.org>
-Subject: Re: [RFC PATCH 1/2] spi: dt-bindings: add Siflower Quad SPI
- controller
+References: <20240328014029.9710-1-animeshagarwal28@gmail.com> <5b917ec7-f8f8-489c-a804-70ea603262dd@linaro.org>
+In-Reply-To: <5b917ec7-f8f8-489c-a804-70ea603262dd@linaro.org>
+From: Animesh Agarwal <animeshagarwal28@gmail.com>
+Date: Fri, 29 Mar 2024 09:19:13 +0530
+Message-ID: <CAE3Oz80_GuCJLNSPz1AL194-jFKPowxkJ852T90CjGfP+=nYfQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: ti,pcm1681: Convert to dtschema
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Shenghao Ding <shenghao-ding@ti.com>, Kevin Lu <kevin-lu@ti.com>, Baojun Xu <baojun.xu@ti.com>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	alsa-devel@alsa-project.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, Mar 28, 2024 at 2:27=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> Why not existing driver maintainers? Do you have this device? Or use it,
+> or care in terms of your projects?
 
-On Fri, 29 Mar 2024 09:51:46 +0800, Qingfang Deng wrote:
-> From: Qingfang Deng <qingfang.deng@siflower.com.cn>
-> 
-> Add YAML devicetree bindings for Siflower Quad SPI controller.
-> 
-> Signed-off-by: Qingfang Deng <qingfang.deng@siflower.com.cn>
-> ---
->  .../bindings/spi/siflower,qspi.yaml           | 54 +++++++++++++++++++
->  1 file changed, 54 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/spi/siflower,qspi.yaml
-> 
+I'll change it to the current maintainers of the bindings.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> Missing dai-cells, $ref to dai-common and unevaluatedProperties: false,
+> just like in other simple DAI devices. Mention briefly in the commit msg
+> adding these ("Make bindings complete by adding #sound-dai-cells").
 
-yamllint warnings/errors:
+Sure, I'll add it.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/spi/siflower,qspi.example.dtb: spi@c200000: reg: [[0, 203423744], [0, 4096]] is too long
-	from schema $id: http://devicetree.org/schemas/spi/siflower,qspi.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/spi/siflower,qspi.example.dtb: spi@c200000: Unevaluated properties are not allowed ('reg' was unexpected)
-	from schema $id: http://devicetree.org/schemas/spi/siflower,qspi.yaml#
+> Datasheet says it is dac, but we usually call it "audio-codec".
+>
 
-doc reference errors (make refcheckdocs):
+Noted.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240329015147.1481349-1-dqfext@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Thanks and Regards,
+Animesh Agarwal
 
