@@ -1,65 +1,54 @@
-Return-Path: <devicetree+bounces-54425-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CA0C8911E2
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 04:20:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CFE38911ED
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 04:24:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E185B22CDD
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 03:20:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7E1DD1C2491F
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 03:24:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AD71383BF;
-	Fri, 29 Mar 2024 03:19:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86E5614295;
+	Fri, 29 Mar 2024 03:24:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="Kxoaro4C"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="TQri5zDn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-177131.yeah.net (mail-177131.yeah.net [123.58.177.131])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6A5B364D4;
-	Fri, 29 Mar 2024 03:19:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C811339FD0;
+	Fri, 29 Mar 2024 03:24:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711682398; cv=none; b=BHY3p53gcFsP7wFV9dcXwLaKhUOie3G6+e59GOaadMzu4BaMd0pBS4UMkJde+DR8yUaIQ4UmhqZ74CleJU6Pk3RD/Whghczo5wo2irKA56FLy3L/0pfhjyRkVQFKLUEdtah3VVr2MnGsGjDUrq3+KvFWi9blZT+3pF8nLFlOQFk=
+	t=1711682650; cv=none; b=MU8RXtqWRntadE47ODwwSDjIMOK9svk8QFILuUpSR4qH81Z6kEJcI4b2kVd7Sn1dq0ODL30OPiI90OSl8zGJJdIJN36BFurMssIbfJ2Iu3joesBqSb1YYwsU9g55Y4SBSvAojB0DHaBqRuKBCm028iHQxhrIMTpn3ea97yJaBEI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711682398; c=relaxed/simple;
-	bh=exObhU+NPhsrphGqdTFlopH3qXjgSIhlXiSsXlX2p5o=;
+	s=arc-20240116; t=1711682650; c=relaxed/simple;
+	bh=6dJL1D7UqTajmrxtnZU3ug4y1I0kNUUl8J/sMQzaJeA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Kegl/xptCTHy0hf4nvP05v/w0TxrFxCP5VnIdlUu1/QjgU9Vb0sop7S5AD/1gHUUPliAjb1PooQH8QhYceAqMsfAaFq8BZBKooXysWR11uC7qYKjfkppi1J2/IijZYL26blji3ylcMNKn6Vq98+mmRnyc8WAhYGXAnSuvng8DQs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=Kxoaro4C; arc=none smtp.client-ip=123.58.177.131
+	 Content-Type:Content-Disposition:In-Reply-To; b=VJvgYT1sWPbvpHDWUxmSIwMLhmI4394eP6C1m60UxkH3mx9XlDtDRIk9UZSCKKSyI1bsgWZzBXrDpjTLu9OSaQVZzqIJcZNciszT3H69rIpLKjQO9+hHBqROVicY/kD0+JBlnUzYf5tl+/B7pArBgZhf5FYcxf0vXCd0Z6EEPbQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=TQri5zDn; arc=none smtp.client-ip=123.58.177.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=h8cOZy/XmPaW8U15xIsY8Qi7DKjXQPidiqYs2w/rIm8=;
-	b=Kxoaro4CBxsiMM6cSL7pQIQDb5AumCfW9J3fXMxkI3yX69GQt46stjvHdr7egl
-	L4q6mwLTvWR6DUPs4hxhr99/RxA1vd5iYbtUuKeE0g8E8wli0n0Xc/JqPYiwzCms
-	CBjCZ5DZg77H88HU7RikpCvJVrJ4j07QvM+ZjQIb5OItg=
+	Content-Type; bh=BwtKXj6fz1tZH4QtdmnZ4cjHjRThN0Q2/L9jVyMVD/Q=;
+	b=TQri5zDnt3xgpcxJAhRlyjxJHo6KaGLD1QKjX7E20vSEjkkl+ovDaNl3btzJdf
+	/5bh+wG84qcbQ12YYMnY/IWCrmnPzDergVzXfkBkjc6Esr1Bub/205CK5rzIAKtd
+	8fxpU7BaW2TsDm5T3cA50TJ1K/Mmh4yiEY+wwnrlWFve8=
 Received: from dragon (unknown [183.213.196.225])
-	by smtp1 (Coremail) with SMTP id ClUQrAAXnw4yMwZmLmJdAQ--.20927S3;
-	Fri, 29 Mar 2024 11:19:15 +0800 (CST)
-Date: Fri, 29 Mar 2024 11:19:14 +0800
+	by smtp1 (Coremail) with SMTP id ClUQrAD3_3YjNAZmM3RdAQ--.43665S3;
+	Fri, 29 Mar 2024 11:23:16 +0800 (CST)
+Date: Fri, 29 Mar 2024 11:23:15 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Adam Ford <aford173@gmail.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
-	aford@beaconembedded.com, Lucas Stach <l.stach@pengutronix.de>,
-	Marek Vasut <marex@denx.de>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V7 3/6] arm64: dts: imx8mp: add HDMI power-domains
-Message-ID: <ZgYzMirCta6FbD0I@dragon>
-References: <20240227220444.77566-1-aford173@gmail.com>
- <20240227220444.77566-4-aford173@gmail.com>
+To: Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+	kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, shengjiu.wang@gmail.com
+Subject: Re: [PATCH v3 0/3] Add HDMI and PDM sound card for imx8mp-evk
+Message-ID: <ZgY0I5ollcmcmuQu@dragon>
+References: <1709091013-14026-1-git-send-email-shengjiu.wang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,23 +57,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240227220444.77566-4-aford173@gmail.com>
-X-CM-TRANSID:ClUQrAAXnw4yMwZmLmJdAQ--.20927S3
+In-Reply-To: <1709091013-14026-1-git-send-email-shengjiu.wang@nxp.com>
+X-CM-TRANSID:ClUQrAD3_3YjNAZmM3RdAQ--.43665S3
 X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUVaZXUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiDROwZVszXXHD-QAAsx
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUswZ2UUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiFQSwZV6NnA3F6gAAsp
 
-On Tue, Feb 27, 2024 at 04:04:37PM -0600, Adam Ford wrote:
-> From: Lucas Stach <l.stach@pengutronix.de>
+On Wed, Feb 28, 2024 at 11:30:10AM +0800, Shengjiu Wang wrote:
+> Add HDMI and PDM sound card
 > 
-> This adds the PGC and HDMI blk-ctrl nodes providing power control for
-> HDMI subsystem peripherals.
+> changes in v3:
+> - split imx8mp and imx8mp-evk changes for HDMI audio. 
 > 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> Tested-by: Marek Vasut <marex@denx.de>
-> Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> changes in v2:
+> - remove 'status' in sound-hdmi
+> 
+> Shengjiu Wang (3):
+>   arm64: dts: imx8mp: Add AUD2HTX device node
+>   arm64: dts: imx8mp-evk: Add HDMI audio sound card support
+>   arm64: dts: imx8mp-evk: Add PDM micphone sound card support
 
-Applied 3 ~ 6, thanks!
+Applied all, thanks!
 
 
