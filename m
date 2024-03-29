@@ -1,427 +1,166 @@
-Return-Path: <devicetree+bounces-54694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B1618923CA
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 20:01:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE7BA8923D5
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 20:06:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A60D71F2285B
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 19:01:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47CF61F232F2
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 19:06:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76C463B293;
-	Fri, 29 Mar 2024 19:01:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE7E785629;
+	Fri, 29 Mar 2024 19:06:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="inTMR2Ax"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fgw20-7.mail.saunalahti.fi (fgw20-7.mail.saunalahti.fi [62.142.5.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AB3E4AEED
-	for <devicetree@vger.kernel.org>; Fri, 29 Mar 2024 19:00:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.142.5.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A7C56A010
+	for <devicetree@vger.kernel.org>; Fri, 29 Mar 2024 19:06:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711738861; cv=none; b=NFEOCIykzDiqDeRnhktWs393N8jsIZgTTvTVTYGu2S6JaIKVnEI/SgF4nLXFjn7Ls8j8yXzL+fyV/LtLDh1S1tMHQ1YhOAM0p7wpXCnL2ek4tmwjyGhmHvDp0L7cBpEtyejNUwrjkCdv5Q/E+HciGgBCdg427iQ7PBLc7YkNsI4=
+	t=1711739209; cv=none; b=et14dwVIEswhdrJ+2Qkq/UGB7W0P0jEvZhP217RgaS2YgOqqolkU+UT9Zu1RZN2gqzCPBxS7xcpY87NoAaQcl/aR0tqnuhhtFaVrKfIgiVOTLtoZucnAC+H2z1NMcCh9GtDXxSem77pD7ATenfBVctpLWYEpJzZo8RPEvszmtMk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711738861; c=relaxed/simple;
-	bh=GsKkA//w/F6p1DceLlnK3us287Q2nZOD7ADya93kfKs=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jf4rcmMoGNPlr++PijvX0+nOY+B1J3zmcjRmS0FMo3rlhgYVMRGu/LD2gJUGnvJdhVMLCBZWCpQKRRATLd5GzP895T2QA9vyrKn5bWujp34ELAA5s2OK0naJIvN/rWsGQA3L7r6dp9A5+edIRHAb/a7YKwvVeEg+dgAmsEYh5wg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=62.142.5.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
-Received: from localhost (88-113-26-217.elisa-laajakaista.fi [88.113.26.217])
-	by fgw20.mail.saunalahti.fi (Halon) with ESMTP
-	id a7c36e9b-edfe-11ee-b3cf-005056bd6ce9;
-	Fri, 29 Mar 2024 21:00:49 +0200 (EET)
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Fri, 29 Mar 2024 21:00:48 +0200
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Sudeep Holla <sudeep.holla@arm.com>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Dan Carpenter <dan.carpenter@linaro.org>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Peng Fan <peng.fan@nxp.com>,
-	Oleksii Moisieiev <oleksii_moisieiev@epam.com>
-Subject: Re: [PATCH v6 3/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
- protocol basic support
-Message-ID: <ZgcP4IkTQGks9ehH@surfacebook.localdomain>
-References: <20240323-pinctrl-scmi-v6-0-a895243257c0@nxp.com>
- <20240323-pinctrl-scmi-v6-3-a895243257c0@nxp.com>
+	s=arc-20240116; t=1711739209; c=relaxed/simple;
+	bh=Lpa/0EbpcSgU2C8N8Q28pKWafOZU+ilY+53iyrQPmBc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=RnObfDEWwAV7nFasaHM9oGXA8pG9qBY6kKhxrC/NTvaQqxxUyi4IoKqF42wMFdxvPifEKAidrG7YTpjkFHtQYGxzJq/OohengEPpUKLgFUJUj6aMuGCTC+LOswvPl6QmyPTbhjWUI0jvIeUrbPw9lVlyFki89B/PTTObUPN0afo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=inTMR2Ax; arc=none smtp.client-ip=209.85.208.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2d46dd5f222so33514751fa.1
+        for <devicetree@vger.kernel.org>; Fri, 29 Mar 2024 12:06:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1711739202; x=1712344002; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rWS9d526Zrdj4YY+GMvBiR62zSADNrt4nDy1cYfB8Ug=;
+        b=inTMR2AxLSaNWuA/6Rj9p6PNAbuSpwMyPKaw2SDajZQHFSzIczBuYbYkJ9/M7+rrlh
+         VNOALLkewyd2J/wdw4D/JL1rgUlIGY6R1WTHJa1001oZ8Blw16zroGQDpAuS8LVzmiSn
+         sICiUEo1Afl4h4X9byMAuGU2tA+nEVdhU+Jd+cVU9xvHoUP1OKKKWLTmfzcSGnoKpPU5
+         Tg4O6S6RmyTDMBFxut81hyMQ66YZuqFmuWvHorn8WsegQYxlflYXN7HMWFmK/9mNJeJE
+         yC2msO8sTpoulkoNuOGSTCmms530H0Lcm+h1QZM3/4JJznHnlQA4FQAVzb0kdkBlafSE
+         RDWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711739202; x=1712344002;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rWS9d526Zrdj4YY+GMvBiR62zSADNrt4nDy1cYfB8Ug=;
+        b=S1j8oj8vokZ8qS3vsHg2XzGJ81kAOmz0zh9B4sZDZMXPb8pIdOvb7pzxeJewR6pA9w
+         N+kmR4qNT2JAClIUZ6n5Ws2t0EixBJ6fjw5P+N9ZhPMHSzGzEZuj+r06MFyyCx9DOrir
+         o7fGXektK4R/suKwxp1gnSI1t6uSlDCDHZIsLWcAzv/DKKWWoEg1IY/5Vv9pAMvYwSDl
+         T8lAwMG4SIiJVPGk+zrco/r0L8abGXb9iVK3oG0/qA5T3upLG+WUqTrf4/7QUmnIeZ73
+         lCwk8bSFeSDydi3IfQA6T/7iXz1efSZeuZNvrITF/dgag6dpGlojvebWMNTClA2RfrqX
+         jaOw==
+X-Forwarded-Encrypted: i=1; AJvYcCXoi9dGJgwogloZUu3siZ3mtz15YRT+IXtzvtqc8rhFyj5zBTNsyhD5qVR3rU++gd3g6uUScWOziZnk9IJ7aCcXY8ACPGz21/rvkA==
+X-Gm-Message-State: AOJu0Yx0qG0E5b+AgqYHRL1QsUxyX8QwdxzOYwY88fbH0NcHJesnbzTm
+	zF+hyQgRsuMOsYgzEliDd5ta/KSBFgLcWmEIu6La7n1FML48XbOGHfGfU9PqkTCXidCIMdmSaU9
+	LCz4R1h4CbZR6s0+TQHxoity/u7h44WgNJ8V7rQ==
+X-Google-Smtp-Source: AGHT+IEncymz1fIe4aZNkqHiPFrFp27C+k10VmKIwyn8D6GDdQiCa+4mGHs+YiOjdBifpHBiIJIOFraWKU96UpARd3U=
+X-Received: by 2002:a2e:a4d5:0:b0:2d6:a244:1ba4 with SMTP id
+ p21-20020a2ea4d5000000b002d6a2441ba4mr1664064ljm.33.1711739202463; Fri, 29
+ Mar 2024 12:06:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240323-pinctrl-scmi-v6-3-a895243257c0@nxp.com>
+References: <20240328-iio-backend-axi-dac-v1-0-afc808b3fde3@analog.com> <20240328-iio-backend-axi-dac-v1-7-afc808b3fde3@analog.com>
+In-Reply-To: <20240328-iio-backend-axi-dac-v1-7-afc808b3fde3@analog.com>
+From: David Lechner <dlechner@baylibre.com>
+Date: Fri, 29 Mar 2024 14:06:31 -0500
+Message-ID: <CAMknhBHA3LOhZicUCG32RyiV4+OROJymzm0Qc=wqhfo3u=8vnQ@mail.gmail.com>
+Subject: Re: [PATCH 07/10] dt-bindings: iio: dac: add bindings doc for AD9739A
+To: nuno.sa@analog.com
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	Dragos Bogdan <dragos.bogdan@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Sat, Mar 23, 2024 at 08:15:16PM +0800, Peng Fan (OSS) kirjoitti:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Add basic implementation of the SCMI v3.2 pincontrol protocol.
-
-...
-
->  scmi-transport-$(CONFIG_ARM_SCMI_TRANSPORT_VIRTIO) += virtio.o
->  scmi-transport-$(CONFIG_ARM_SCMI_TRANSPORT_OPTEE) += optee.o
->  scmi-protocols-y = base.o clock.o perf.o power.o reset.o sensors.o system.o voltage.o powercap.o
-
-Actually you want to have := here.
-
-> +scmi-protocols-y += pinctrl.o
-
-
-
->  scmi-module-objs := $(scmi-driver-y) $(scmi-protocols-y) $(scmi-transport-y)
-
-Side note: The -objs has to be -y
-
-...
-
-> +#include <linux/module.h>
-> +#include <linux/scmi_protocol.h>
-> +#include <linux/slab.h>
-
-This is semi-random list of headers. Please, follow IWYU principle
-(include what you use). There are a lot of inclusions I see missing
-(just in the context of this page I see bits.h, types.h, and
- asm/byteorder.h).
-
-...
-
-> +enum scmi_pinctrl_protocol_cmd {
-> +	PINCTRL_ATTRIBUTES = 0x3,
-> +	PINCTRL_LIST_ASSOCIATIONS = 0x4,
-> +	PINCTRL_SETTINGS_GET = 0x5,
-> +	PINCTRL_SETTINGS_CONFIGURE = 0x6,
-> +	PINCTRL_REQUEST = 0x7,
-> +	PINCTRL_RELEASE = 0x8,
-> +	PINCTRL_NAME_GET = 0x9,
-> +	PINCTRL_SET_PERMISSIONS = 0xa
-
-Leave trailing comma as it's not a termination.
-
-> +};
-
-...
-
-> +static int scmi_pinctrl_attributes_get(const struct scmi_protocol_handle *ph,
-> +				       struct scmi_pinctrl_info *pi)
-> +{
-> +	int ret;
-> +	struct scmi_xfer *t;
-> +	struct scmi_msg_pinctrl_protocol_attributes *attr;
+On Thu, Mar 28, 2024 at 8:23=E2=80=AFAM Nuno Sa via B4 Relay
+<devnull+nuno.sa.analog.com@kernel.org> wrote:
+>
+> From: Nuno Sa <nuno.sa@analog.com>
+>
+> This adds the bindings documentation for the 14 bit
+> RF Digital-to-Analog converter.
+>
+> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> ---
+>  .../devicetree/bindings/iio/dac/adi,ad9739a.yaml   | 88 ++++++++++++++++=
+++++++
+>  MAINTAINERS                                        |  8 ++
+>  2 files changed, 96 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad9739a.yaml b=
+/Documentation/devicetree/bindings/iio/dac/adi,ad9739a.yaml
+> new file mode 100644
+> index 000000000000..24bcec763a9b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad9739a.yaml
+> @@ -0,0 +1,88 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/dac/adi,ad9739a.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	ret = ph->xops->xfer_get_init(ph, PROTOCOL_ATTRIBUTES, 0, sizeof(*attr),
-> +				      &t);
-
-This looks much better on a single line.
-
-> +	if (ret)
-> +		return ret;
+> +title: Analog Devices AD9739A RF DAC
 > +
-> +	attr = t->rx.buf;
+> +maintainers:
+> +  - Dragos Bogdan <dragos.bogdan@analog.com>
+> +  - Nuno Sa <nuno.sa@analog.com>
 > +
-> +	ret = ph->xops->do_xfer(ph, t);
-> +	if (!ret) {
-> +		pi->nr_functions = GET_FUNCTIONS_NR(attr->attributes_high);
-> +		pi->nr_groups = GET_GROUPS_NR(attr->attributes_low);
-> +		pi->nr_pins = GET_PINS_NR(attr->attributes_low);
-> +	}
+> +description: |
+> +  The AD9739A is a 14-bit, 2.5 GSPS high performance RF DACs that are ca=
+pable
+> +  of synthesizing wideband signals from dc up to 3 GHz.
 > +
-> +	ph->xops->xfer_put(ph, t);
-> +	return ret;
-> +}
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad=
+9737a_9739a.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,ad9739a
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
 
-...
-
-> +	ret = ph->xops->xfer_get_init(ph, PINCTRL_ATTRIBUTES, sizeof(*tx),
-> +				      sizeof(*rx), &t);
-
-Possible to have on a single line (if you use relaxed 100 limit).
-Or (re)split it more logically:
-
-	ret = ph->xops->xfer_get_init(ph, PINCTRL_ATTRIBUTES,
-				      sizeof(*tx), sizeof(*rx), &t);
-
-> +	if (ret)
-> +		return ret;
-
-...
-
-> +	/*
-> +	 * If supported overwrite short name with the extended one;
-> +	 * on error just carry on and use already provided short name.
-> +	 */
-> +	if (!ret && ext_name_flag)
-
-Please, use standard pattern, i.e.
-
-	if (ret)
-		return ret;
-
-> +		ph->hops->extended_name_get(ph, PINCTRL_NAME_GET, selector,
-> +					    (u32 *)&type, name,
-
-Why is an explicit casting needed?
-
-> +					    SCMI_MAX_STR_SIZE);
-> +	return ret;
-
-...
-
-> +	iter = ph->hops->iter_response_init(ph, &ops, size,
-> +					    PINCTRL_LIST_ASSOCIATIONS,
-> +					    sizeof(struct scmi_msg_pinctrl_list_assoc),
-> +					    &ipriv);
+I also see an IRQ pin on the datasheet. Do we need an interrupts
+property for that?
 
 > +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  vdd_3_3-supply:
+> +    description: 3.3V Digital input supply.
 
-Redundant blank line.
-
-> +	if (IS_ERR(iter))
-> +		return PTR_ERR(iter);
-
-...
-
-> +	if (p->flag == 1)
-> +		attributes |= FIELD_PREP(SKIP_CONFIGS_MASK, desc_index);
-> +	else if (!p->flag)
-
-Be consistent, i.e. if (p->flag == 0)
-
-> +		attributes |= FIELD_PREP(CONFIG_TYPE_MASK, p->config_types[0]);
-
-...
-
-> +		st->num_remaining = le32_get_bits(r->num_configs,
-> +						  GENMASK(31, 24));
-
-One line?
-
-...
-
-> +	if (!p->flag) {
-> +		if (p->config_types[0] !=
-> +		    le32_get_bits(r->configs[st->loop_idx * 2], GENMASK(7, 0)))
-> +			return -EINVAL;
-> +	} else if (p->flag == 1) {
-> +		p->config_types[st->desc_index + st->loop_idx] =
-> +			le32_get_bits(r->configs[st->loop_idx * 2],
-> +				      GENMASK(7, 0));
-
-With a temporary variable for r->configs[st->loop_idx * 2] the above can be
-written in much better way.
-
-> +	} else if (p->flag == 2) {
-> +		return 0;
-> +	}
-
-> +	p->config_values[st->desc_index + st->loop_idx] =
-> +		le32_to_cpu(r->configs[st->loop_idx * 2 + 1]);
-
-For the sake of consistency with the above suggestion also temporary for next
-config value.
-
-...
-
-> +	iter = ph->hops->iter_response_init(ph, &ops, 1, PINCTRL_SETTINGS_GET,
-> +					    sizeof(struct scmi_msg_settings_get),
-> +					    &ipriv);
+vdd33-supply would better match the datasheet name
 
 > +
-
-Redundant blank line.
-
-> +	if (IS_ERR(iter))
-> +		return PTR_ERR(iter);
-
-...
-
-> +static int scmi_pinctrl_get_group_info(const struct scmi_protocol_handle *ph,
-> +				       u32 selector,
-> +				       struct scmi_group_info *group)
-> +{
-> +	int ret;
-
-> +	if (!group)
-> +		return -EINVAL;
-
-When the above is not a dead code?
-
-> +	ret = scmi_pinctrl_attributes(ph, GROUP_TYPE, selector,
-> +				      group->name,
-> +				      &group->nr_pins);
-> +	if (ret)
-> +		return ret;
+> +  vdd-supply:
+> +    description: 1.8V Digital input supply.
 > +
-> +	if (!group->nr_pins) {
-> +		dev_err(ph->dev, "Group %d has 0 elements", selector);
-> +		return -ENODATA;
-> +	}
+> +  vdda-supply:
+> +    description: 3.3V Analog input supply.
 > +
-> +	group->group_pins = kmalloc_array(group->nr_pins,
-> +					  sizeof(*group->group_pins),
-> +					  GFP_KERNEL);
-> +	if (!group->group_pins)
-> +		return -ENOMEM;
-> +
-> +	ret = scmi_pinctrl_list_associations(ph, selector, GROUP_TYPE,
-> +					     group->nr_pins, group->group_pins);
-> +	if (ret) {
-> +		kfree(group->group_pins);
-> +		return ret;
-> +	}
-> +
-> +	group->present = true;
-> +	return 0;
-> +}
+> +  vddc-supply:
+> +    description: 1.8V Clock input supply.
 
-...
-
-> +		ret = scmi_pinctrl_get_group_info(ph, selector,
-> +						  &pi->groups[selector]);
-
-One line?
-
-> +		if (ret)
-> +			return ret;
-
-...
-
-> +	ret = scmi_pinctrl_attributes(ph, FUNCTION_TYPE, selector,
-> +				      func->name,
-> +				      &func->nr_groups);
-
-At least last two lines can be joined.
-
-> +	if (ret)
-> +		return ret;
-
-...
-
-> +	ret = scmi_pinctrl_attributes(ph, PIN_TYPE, selector,
-> +				      pin->name, NULL);
-
-It's pleany of room on the previous line.
-
-> +	if (ret)
-> +		return ret;
-
-...
-
-> +		ret = scmi_pinctrl_get_pin_info(ph, selector,
-> +						&pi->pins[selector]);
-
-Ditto.
-
-> +		if (ret)
-> +			return ret;
-
-...
-
-> +static int scmi_pinctrl_protocol_init(const struct scmi_protocol_handle *ph)
-> +{
-> +	int ret;
-> +	u32 version;
-> +	struct scmi_pinctrl_info *pinfo;
-> +
-> +	ret = ph->xops->version_get(ph, &version);
-> +	if (ret)
-> +		return ret;
-> +
-> +	dev_dbg(ph->dev, "Pinctrl Version %d.%d\n",
-> +		PROTOCOL_REV_MAJOR(version), PROTOCOL_REV_MINOR(version));
-> +
-> +	pinfo = devm_kzalloc(ph->dev, sizeof(*pinfo), GFP_KERNEL);
-
-Huh?!
-
-Please, get yourself familiar with the scope of devm APIs.
-
-> +	if (!pinfo)
-> +		return -ENOMEM;
-> +
-> +	ret = scmi_pinctrl_attributes_get(ph, pinfo);
-> +	if (ret)
-> +		return ret;
-> +
-> +	pinfo->pins = devm_kcalloc(ph->dev, pinfo->nr_pins,
-> +				   sizeof(*pinfo->pins),
-> +				   GFP_KERNEL);
-> +	if (!pinfo->pins)
-> +		return -ENOMEM;
-> +
-> +	pinfo->groups = devm_kcalloc(ph->dev, pinfo->nr_groups,
-> +				     sizeof(*pinfo->groups),
-> +				     GFP_KERNEL);
-> +	if (!pinfo->groups)
-> +		return -ENOMEM;
-> +
-> +	pinfo->functions = devm_kcalloc(ph->dev, pinfo->nr_functions,
-> +					sizeof(*pinfo->functions),
-> +					GFP_KERNEL);
-> +	if (!pinfo->functions)
-> +		return -ENOMEM;
-> +
-> +	pinfo->version = version;
-> +
-> +	return ph->set_priv(ph, pinfo, version);
-> +}
-> +
-> +static int scmi_pinctrl_protocol_deinit(const struct scmi_protocol_handle *ph)
-> +{
-> +	int i;
-> +	struct scmi_pinctrl_info *pi = ph->get_priv(ph);
-> +
-> +	for (i = 0; i < pi->nr_groups; i++) {
-> +		if (pi->groups[i].present) {
-> +			kfree(pi->groups[i].group_pins);
-> +			pi->groups[i].present = false;
-> +		}
-> +	}
-> +
-> +	for (i = 0; i < pi->nr_functions; i++) {
-> +		if (pi->functions[i].present) {
-> +			kfree(pi->functions[i].groups);
-
-This is wrong in conjunction with the above.
-
-> +			pi->functions[i].present = false;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-
-...
-
-> +static const struct scmi_protocol scmi_pinctrl = {
-> +	.id = SCMI_PROTOCOL_PINCTRL,
-> +	.owner = THIS_MODULE,
-> +	.instance_init = &scmi_pinctrl_protocol_init,
-> +	.instance_deinit = &scmi_pinctrl_protocol_deinit,
-> +	.ops = &pinctrl_proto_ops,
-> +	.supported_version = SCMI_PROTOCOL_SUPPORTED_VERSION,
-> +};
-
-> +
-
-Redundant blank line.
-
-> +DEFINE_SCMI_PROTOCOL_REGISTER_UNREGISTER(pinctrl, scmi_pinctrl)
-
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+I see a VREF voltage reference input in the datasheet. Do we need a vref-su=
+pply?
 
