@@ -1,82 +1,106 @@
-Return-Path: <devicetree+bounces-54426-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54427-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CFE38911ED
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 04:24:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EA348911FA
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 04:27:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7E1DD1C2491F
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 03:24:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 53C021F22C19
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 03:27:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86E5614295;
-	Fri, 29 Mar 2024 03:24:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B44438F87;
+	Fri, 29 Mar 2024 03:27:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="TQri5zDn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZdA+CtW4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-177131.yeah.net (mail-177131.yeah.net [123.58.177.131])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C811339FD0;
-	Fri, 29 Mar 2024 03:24:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.131
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AFC137165;
+	Fri, 29 Mar 2024 03:27:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711682650; cv=none; b=MU8RXtqWRntadE47ODwwSDjIMOK9svk8QFILuUpSR4qH81Z6kEJcI4b2kVd7Sn1dq0ODL30OPiI90OSl8zGJJdIJN36BFurMssIbfJ2Iu3joesBqSb1YYwsU9g55Y4SBSvAojB0DHaBqRuKBCm028iHQxhrIMTpn3ea97yJaBEI=
+	t=1711682844; cv=none; b=qVWo3iTDAhoQvF3Fcvwx4FZ3mz9cT9ZsCiUkOI99zJ5ugfEOQd0TynKZRgQWlmdDA+WptZwqv1o/cNt8LPjGpiIRNcOm5L2H6/ZAVzDTa0cmbbMan6xLTjyQ151K+NdpUEYkBGS/ZPCdi8Am5/7ZMg6xRkXxHXVuaNwChHhNOK4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711682650; c=relaxed/simple;
-	bh=6dJL1D7UqTajmrxtnZU3ug4y1I0kNUUl8J/sMQzaJeA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VJvgYT1sWPbvpHDWUxmSIwMLhmI4394eP6C1m60UxkH3mx9XlDtDRIk9UZSCKKSyI1bsgWZzBXrDpjTLu9OSaQVZzqIJcZNciszT3H69rIpLKjQO9+hHBqROVicY/kD0+JBlnUzYf5tl+/B7pArBgZhf5FYcxf0vXCd0Z6EEPbQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=TQri5zDn; arc=none smtp.client-ip=123.58.177.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=BwtKXj6fz1tZH4QtdmnZ4cjHjRThN0Q2/L9jVyMVD/Q=;
-	b=TQri5zDnt3xgpcxJAhRlyjxJHo6KaGLD1QKjX7E20vSEjkkl+ovDaNl3btzJdf
-	/5bh+wG84qcbQ12YYMnY/IWCrmnPzDergVzXfkBkjc6Esr1Bub/205CK5rzIAKtd
-	8fxpU7BaW2TsDm5T3cA50TJ1K/Mmh4yiEY+wwnrlWFve8=
-Received: from dragon (unknown [183.213.196.225])
-	by smtp1 (Coremail) with SMTP id ClUQrAD3_3YjNAZmM3RdAQ--.43665S3;
-	Fri, 29 Mar 2024 11:23:16 +0800 (CST)
-Date: Fri, 29 Mar 2024 11:23:15 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-	kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, shengjiu.wang@gmail.com
-Subject: Re: [PATCH v3 0/3] Add HDMI and PDM sound card for imx8mp-evk
-Message-ID: <ZgY0I5ollcmcmuQu@dragon>
-References: <1709091013-14026-1-git-send-email-shengjiu.wang@nxp.com>
+	s=arc-20240116; t=1711682844; c=relaxed/simple;
+	bh=XBq7FAybfYroiUaOkqQ3iC8DyKkn51xgtrLSf+qdjHA=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=e9oS7Snp7bR4hn7x0VAsK5B4Lhohcn9dsuPy0JMBSVbvAFXs2+GGMoDhQcyiM54qYMFU5/ls6igFj33hVPm5oORCkomnBubOgaEvLqZrUBvt9hodtqQMe6SWxzGjh+eMWK6jzlINBsKHBWY20wYVbHuA/H3R9puXKE9L+eAFUD4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZdA+CtW4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 411BBC433C7;
+	Fri, 29 Mar 2024 03:27:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711682843;
+	bh=XBq7FAybfYroiUaOkqQ3iC8DyKkn51xgtrLSf+qdjHA=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=ZdA+CtW4oY+yEwX6Dm9kleIytrg9GiQhcUWg7JwWD4ChR05odzEMLEqbtMU6N9iPU
+	 +KU+8FrfGcVnw+jsZEHJOprtzaSmRSmG/3Ug4iiG+8KFs7b41e0gRMkwjK0U8rJYdh
+	 jgTJYTknlff0yujt1Ljv0T8nl7Iufr/ACtIlrwdv1CMHqsmRpIKjTLjiRKaSkIkXKL
+	 SYf/6A1l2rMp/I1GzTp89uf7FLLQxH70IfhjSCQl0dtGZQLqELvJ92695MhkGedZ7u
+	 eR6aqA3IT4/V1No8i7lCLkyF9wpZowAOjRg9VHaa8YxtcTmk5KOnzR6lDMZRWLF4cJ
+	 aNJ6gHyEtTM8g==
+Date: Thu, 28 Mar 2024 22:27:22 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1709091013-14026-1-git-send-email-shengjiu.wang@nxp.com>
-X-CM-TRANSID:ClUQrAD3_3YjNAZmM3RdAQ--.43665S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUswZ2UUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiFQSwZV6NnA3F6gAAsp
+From: Rob Herring <robh@kernel.org>
+To: Qingfang Deng <dqfext@gmail.com>
+Cc: Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ linux-spi@vger.kernel.org, Qingfang Deng <qingfang.deng@siflower.com.cn>
+In-Reply-To: <20240329015147.1481349-1-dqfext@gmail.com>
+References: <20240329015147.1481349-1-dqfext@gmail.com>
+Message-Id: <171168284116.1622438.12291948892971487712.robh@kernel.org>
+Subject: Re: [RFC PATCH 1/2] spi: dt-bindings: add Siflower Quad SPI
+ controller
 
-On Wed, Feb 28, 2024 at 11:30:10AM +0800, Shengjiu Wang wrote:
-> Add HDMI and PDM sound card
-> 
-> changes in v3:
-> - split imx8mp and imx8mp-evk changes for HDMI audio. 
-> 
-> changes in v2:
-> - remove 'status' in sound-hdmi
-> 
-> Shengjiu Wang (3):
->   arm64: dts: imx8mp: Add AUD2HTX device node
->   arm64: dts: imx8mp-evk: Add HDMI audio sound card support
->   arm64: dts: imx8mp-evk: Add PDM micphone sound card support
 
-Applied all, thanks!
+On Fri, 29 Mar 2024 09:51:46 +0800, Qingfang Deng wrote:
+> From: Qingfang Deng <qingfang.deng@siflower.com.cn>
+> 
+> Add YAML devicetree bindings for Siflower Quad SPI controller.
+> 
+> Signed-off-by: Qingfang Deng <qingfang.deng@siflower.com.cn>
+> ---
+>  .../bindings/spi/siflower,qspi.yaml           | 54 +++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/spi/siflower,qspi.yaml
+> 
+
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/spi/siflower,qspi.example.dtb: spi@c200000: reg: [[0, 203423744], [0, 4096]] is too long
+	from schema $id: http://devicetree.org/schemas/spi/siflower,qspi.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/spi/siflower,qspi.example.dtb: spi@c200000: Unevaluated properties are not allowed ('reg' was unexpected)
+	from schema $id: http://devicetree.org/schemas/spi/siflower,qspi.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240329015147.1481349-1-dqfext@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
