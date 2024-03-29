@@ -1,141 +1,113 @@
-Return-Path: <devicetree+bounces-54584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54581-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 084B5891B27
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 14:19:17 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7D76891B12
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 14:17:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B24101F27FB0
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 13:19:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E2E7FB26553
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 13:17:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC43616F0E8;
-	Fri, 29 Mar 2024 12:34:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DAFB16D30E;
+	Fri, 29 Mar 2024 12:34:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I39JAF9G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sztq18cL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 908F91411FB;
-	Fri, 29 Mar 2024 12:34:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E907C6A34B;
+	Fri, 29 Mar 2024 12:34:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711715659; cv=none; b=rp4rq1aMouNHUR/5hCfAU8FpvmVPrAzQe1HFLvR3A1rd3ayzMnHs2mC9DOJmXLiKUmIdC5mbNbFxTcQ+y/MWoCUy1t02t4ud7q/rxpOlAjnrf9aWuWPJaXJLlMkoZVxZ5/w74GcxFOIaK9bkribyVztPrPhf0bA0kEkXEKz/dpE=
+	t=1711715646; cv=none; b=UQt0+wAi5qccxk+cHI6N/RGu2f/2z9FMf3aWnwf7Gl2EgZX7YHbZyddvuYild86OQvEabIvg7gcA4jNdXU2hXMBjA5gNAYdzQA4UVu9IZGHe5rNcLuf+steLNsCWZaHlUw95DvJYusRIZm1gvGkEpABiDpVSBduYaZ/nJz6WgI8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711715659; c=relaxed/simple;
-	bh=mnvBdOWr2dTaO6J2yotkR/heUcAFjGhxaYEUT9or5M4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=hsyKzlYqFZ7Fku7MweAQQrXhEBGL90mSXrHZPHgINUhvsdCQLcWG9yFGvejCKBGDTLeI9tG1WLK1DZGhSQTL8qsTU3dyDtcZ/K4HLk0BTbFw1EJFSs4PcanCKfb2vdOEmjYt7VFmv9KZ4IQRlJFnlZ3Vd9bB6HBZQSTWCN471Rs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I39JAF9G; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 803BDC43399;
-	Fri, 29 Mar 2024 12:34:17 +0000 (UTC)
+	s=arc-20240116; t=1711715646; c=relaxed/simple;
+	bh=IILtF9tSsWuvGOpEPCx8H2bDnQGM42QHz2TEYyNEtMs=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=rRBqS5pLoLMSmUJHMaJhmXBPLe4EvFJUJtHoLCjC5+/zV8g6UQSdFUSSdb6MvIUQfKTYpTrXY+f1tmI6/fMrHTBoWXMAF5L+yrfg+K9RdQfRno/MKRPSovRTE/P8Ul+Qw1mWSnLVozgn72LbxIoMpKyhRSCvCLgFJillES+Qm7g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sztq18cL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39541C433F1;
+	Fri, 29 Mar 2024 12:34:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711715659;
-	bh=mnvBdOWr2dTaO6J2yotkR/heUcAFjGhxaYEUT9or5M4=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=I39JAF9G6ibyD6+BycrgzDFzfO7tkW1FA/wByUo+qkz0iR8HnzeFBsHTmwz5s5Zht
-	 8vi4zpazSC6k1YqyVKphxhREIe8kWQDuUYUpqgwpG5X5aBf+k+QoorvmocWF/aRrRg
-	 wyPdhf77jYd/VMxsj9GGCfWgBJiUfuESZf22/nzHW39gt3EIgfAPRRz3eSYRz6hoH3
-	 9UDM97as58J0XzWCV+asOlQyKjEEYyIksxC0C5EbZm3Exthle2GYALfrYCk8zwbv0b
-	 cSrxqyEfr484QJelNoBRxQfka9EGn5wT6vzZviHIEERLo44u1opB/mgZMoiX8WWSb3
-	 Nz+rLSluMNk/w==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: Johan Jonker <jbx6244@gmail.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Sasha Levin <sashal@kernel.org>,
-	robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	dsimic@manjaro.org,
-	quentin.schulz@theobroma-systems.com,
-	jonas@kwiboo.se,
-	lukasz.luba@arm.com,
-	rick.wertenbroek@gmail.com,
-	s.hauer@pengutronix.de,
-	chris.obbard@collabora.com,
-	knaerzche@gmail.com,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.10 07/17] arm64: dts: rockchip: fix rk3399 hdmi ports node
-Date: Fri, 29 Mar 2024 08:33:46 -0400
-Message-ID: <20240329123405.3086155-7-sashal@kernel.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240329123405.3086155-1-sashal@kernel.org>
-References: <20240329123405.3086155-1-sashal@kernel.org>
+	s=k20201202; t=1711715645;
+	bh=IILtF9tSsWuvGOpEPCx8H2bDnQGM42QHz2TEYyNEtMs=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=sztq18cLNMkWSlCr7Tgtuvt2ijOxcVa0KBn9XnbWMmhZbpZpGBO0n2clnMq/+wI/D
+	 VZPpkx4ewaXfNtzWS7y4pzccBJIRQzRTf4zuvhjoWiGKdeserypZ+mGNZxZQAoKhKn
+	 IiIxlHkabRQeZ7AVww86vGUhjj6DEqy4aeo5cVpaD220EOnS5zSDbMUZVjeZwORcQR
+	 b3D6YcVmXmIoxA9jo9bjDWI72LWsbsx0u0ef+DH/xYT3dafi4yi96YhtS6YeJf2dN6
+	 ZAUlAp/n8VRxA7Tmn/yQ4et4SK826fapc6XyBiAeS3DlR791XLRudqZf6u52uBuO06
+	 SCGbjyXJNuOhg==
+From: Mark Brown <broonie@kernel.org>
+To: Seven Lee <wtli@nuvoton.com>
+Cc: lgirdwood@gmail.com, alsa-devel@alsa-project.org, 
+ devicetree@vger.kernel.org, linux-sound@vger.kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org, 
+ robh+dt@kernel.org, conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com, 
+ YHCHuang@nuvoton.com, KCHSU0@nuvoton.com, CTLIN0@nuvoton.com, 
+ SJLIN0@nuvoton.com, scott6986@gmail.com, supercraig0719@gmail.com, 
+ dardar923@gmail.com
+In-Reply-To: <20240327075755.3410381-1-wtli@nuvoton.com>
+References: <20240327075755.3410381-1-wtli@nuvoton.com>
+Subject: Re: [PATCH v5 0/2] ASoC: nau8325: Modify driver code and dtschema.
+Message-Id: <171171564196.7557.2053181572527484871.b4-ty@kernel.org>
+Date: Fri, 29 Mar 2024 12:34:01 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 5.10.214
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14-dev
 
-From: Johan Jonker <jbx6244@gmail.com>
+On Wed, 27 Mar 2024 15:57:53 +0800, Seven Lee wrote:
+> Revise properties description and use standard units in dtschema.
+> The unit conversion driver based on the attribute must also be
+> changed accordingly.
+> 
+> Change:
+> V1 -> V2:
+> - Revise the driver description part for the C++ comment.
+> - In the nau8325_clkdet_put function, modify the max variable to hard code.
+> - Removed "Clock Detection" switch control.
+> - modify the "ALC Enable" switch name.
+> - Revise the dtschema for "nuvoton,dac-vref".
+> 
+> [...]
 
-[ Upstream commit f051b6ace7ffcc48d6d1017191f167c0a85799f6 ]
+Applied to
 
-Fix rk3399 hdmi ports node so that it matches the
-rockchip,dw-hdmi.yaml binding.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-Link: https://lore.kernel.org/r/a6ab6f75-3b80-40b1-bd30-3113e14becdd@gmail.com
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm64/boot/dts/rockchip/rk3399.dtsi | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
+Thanks!
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-index 3180f576ed02e..e2515218ff734 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-@@ -1769,6 +1769,7 @@ simple-audio-card,codec {
- 	hdmi: hdmi@ff940000 {
- 		compatible = "rockchip,rk3399-dw-hdmi";
- 		reg = <0x0 0xff940000 0x0 0x20000>;
-+		reg-io-width = <4>;
- 		interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH 0>;
- 		clocks = <&cru PCLK_HDMI_CTRL>,
- 			 <&cru SCLK_HDMI_SFR>,
-@@ -1777,13 +1778,16 @@ hdmi: hdmi@ff940000 {
- 			 <&cru PLL_VPLL>;
- 		clock-names = "iahb", "isfr", "cec", "grf", "vpll";
- 		power-domains = <&power RK3399_PD_HDCP>;
--		reg-io-width = <4>;
- 		rockchip,grf = <&grf>;
- 		#sound-dai-cells = <0>;
- 		status = "disabled";
- 
- 		ports {
--			hdmi_in: port {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			hdmi_in: port@0 {
-+				reg = <0>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 
-@@ -1796,6 +1800,10 @@ hdmi_in_vopl: endpoint@1 {
- 					remote-endpoint = <&vopl_out_hdmi>;
- 				};
- 			};
-+
-+			hdmi_out: port@1 {
-+				reg = <1>;
-+			};
- 		};
- 	};
- 
--- 
-2.43.0
+[1/2] ASoC: dt-bindings: Added schema for "nuvoton,nau8325"
+      commit: 2e4c003b3672085267a358ebf82129b4e08dd64f
+[2/2] ASoC: nau8325: new driver
+      commit: c0a3873b9938bfaa77bd337cad33266a50a6583f
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
