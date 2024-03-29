@@ -1,222 +1,244 @@
-Return-Path: <devicetree+bounces-54486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54491-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7D98891480
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 08:46:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B934E8914EE
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 08:59:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47A3F1F22FBB
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 07:46:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC2EB1C23BA6
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 07:59:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEF05446A4;
-	Fri, 29 Mar 2024 07:46:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA987446B3;
+	Fri, 29 Mar 2024 07:58:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="I91P/lLq"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="cvhrZWSP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED04341208
-	for <devicetree@vger.kernel.org>; Fri, 29 Mar 2024 07:46:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 974EA3B78E;
+	Fri, 29 Mar 2024 07:58:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711698362; cv=none; b=BSUtgof12up/de0Gsm/EdYXEJbrKuv5tvHfg6M3Ng684ytcaSr3BUgXO7/3t1zvIdu8VtFrkNq50RxVT0/6klqiFe3jcItaaiA5qS+wMHRyUs+A1KZeqiv8mEbXCsMenQZeRcIOxJb3W+uNqVlO8RGFm1hpz8Gge37u3kKiiKE8=
+	t=1711699135; cv=none; b=MkovHR/X4byqRCurghL970pc/5M3e4bu0KzR3ZIxulps34PwYaWY96Cag10mV9Nkd7aqUe+PoBzEi91EecWEEYYFv1jt8jpHYmkxPlhLbrLuq/428y2IAfnUsPhMW9TmGMpcnh3hqkx2z44ROmNbRw++aoYvwdubZrZkh6sg6yI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711698362; c=relaxed/simple;
-	bh=n21rq1fCcOmI3LogGCsxivAQaiA2nOT681cDr3he6c0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=pvj7ogTV+aQsRZ0CS7boUsSQmX5sJUb1QH4ZFX5xhWmVbX1FnDh5cs8WYPQG7CPQ4OobF9DQ6ID3oFx/YpmSffATdwF/hs6fYKOA2pw0Iv8Cn4QyAnl9aF93cBocF8fOsFuSsunGne9B8dB+sjtHgcpf9E4aIGuDGs4T0y9VB4U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=I91P/lLq; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a466fc8fcccso223318866b.1
-        for <devicetree@vger.kernel.org>; Fri, 29 Mar 2024 00:46:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1711698359; x=1712303159; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lcotkK4GO99SFGIIH8jXD+5kvmn1tNTmHBz7CWYrF30=;
-        b=I91P/lLqOM6tmjHySPQ/xXKvsC/CtoEgiawiWFAqkVcGgKc1XShfsWkIfl4aM+ydiX
-         Pzvpv40Wgzpaqg0KFE9kxutXawBhH6IDIpnJgCL+H2hQLnNJvhyQxcSj8ui46ami9sw8
-         5DL4DBIWkZvyhVbAOm/n40ZR19BOLjkaoc316yQ+92mXYzNFHZAZCJzmXQm4tKNqpt5Q
-         iwdxHI7wvbsrg6kcfRXgv4kZPT8+n9zsrVEVJrusSkA93/gTPxPV8zMir6cCh6zxrEyj
-         9k6cWSHVoI1grlOjafzlVVtlfaX9G+lTgfWjK2NIFYRS2vgxUzQFZZUUThk8UTcazDLp
-         EOMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711698359; x=1712303159;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lcotkK4GO99SFGIIH8jXD+5kvmn1tNTmHBz7CWYrF30=;
-        b=IG/YXVjOxsAaDcni6StUR6++Kc7YADq5tPv+Bd4ct1eJd9PfIOJSi+nXSM45lK29LI
-         fmB0NJHpz0pLhEuypbpj1v8vYHI7j8yFNQlwJb7iIMLUVdX9L24D3hySwEBzr1zFTvbu
-         Ad2Zu2OaICpkvqNkO9/hPPd8OK9skFWIrhXfhJWaBXemaVVHUhSlKrpp0TUonLBBpRyr
-         3S7S0GgntzBmoWCN4KH0LKjUp6zXr1FT9MkwRTQmsKMQPhtf76G47SUpbHLaDdmHyfvc
-         8bXmIKYRVmADB1X22ORQVp5YuGvD6HTwzMro2jDR/7IMplP9f3WHsqBFhPhF13iwBBQj
-         l9Lg==
-X-Forwarded-Encrypted: i=1; AJvYcCW/LwHGl/Pm5+hA6+HRg+IU6qL9n8AOOEzKQ7xrAXZ5K67rzUk0MHWdIIHxFLw70ifypI/J7GOhXzCrSCBcYc0Dp0ndFqqhMxqx3g==
-X-Gm-Message-State: AOJu0Yy2mecNt45ke0qCPwXiEhMcsdM/Cw4Yk1uil9OS5HYcrclZY/kS
-	NhVIFFFOuvhiY0yMK/ZtE3L1fxkOMpxMMoKaaOBVHTnuDKAdI73FuJkEhMY7M34=
-X-Google-Smtp-Source: AGHT+IE24627ppy3W0EYA3xkVYAvPY4pdoTFgJaCVO/S+vc52RfohmJ4tnXqThQoPHfY+9NaDMJ7Ng==
-X-Received: by 2002:a17:906:a88a:b0:a47:5265:9aac with SMTP id ha10-20020a170906a88a00b00a4752659aacmr859536ejb.55.1711698359536;
-        Fri, 29 Mar 2024 00:45:59 -0700 (PDT)
-Received: from otso.luca.vpn.lucaweiss.eu (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id l9-20020a1709060cc900b00a4e24d259edsm1382737ejh.167.2024.03.29.00.45.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Mar 2024 00:45:58 -0700 (PDT)
-From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Fri, 29 Mar 2024 08:45:56 +0100
-Subject: [PATCH v2 3/3] arm64: dts: qcom: sm6350: Add DisplayPort
- controller
+	s=arc-20240116; t=1711699135; c=relaxed/simple;
+	bh=yBqdFYWJ7meNuEn1L+kQXqFNRWSolH3SOPxtgfU/HK8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uEeliS1vbSc9qhFXoZFUH47Il+JsyRDEHvBykRLbDPawxgSQMOD9671IRIYnjycZGLsF8P7GwhRSPYZq4MHNk7Oq53/TVoxOL08uI6hHj8k4gFtTEO64aLwyiBs4IORfhZPWdL1GbwP1WwNK5Jdrjip/N5HfZd+inEtFlDrNZsY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=cvhrZWSP; arc=none smtp.client-ip=46.19.9.99
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+	s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=VB+uYV6z1osfsY3qvVmgNrhkcULtGFhdn5kc4Qzej/U=; b=cvhrZWSPR+Yv98T3SACOGJoTbj
+	/92sDiJPAIdKFqbQpQFDxMGds6Uuaeq2/bq2G7ogYz0lhvXlUFmMJYmVfB24YK2oxkIoBS7oGwP6H
+	f3SuFIA1xiz8tK2pps/Xz9w3rPTyNkw2YAbbCzeQ8vOaQ7ZX10a5GJmpvcPmkmExS522ncxG91xoJ
+	6ztsz0ABBW+TDQ/u4xJw9f+6TjnMnq8uEmQ87toUtLjaes0+PPk9H0of8LUj1k2xnDYqVQKh41Ojh
+	ykIg9heBPjNsW++47JxBTJmOqRwi/aXWC3zLxoe10Zr/eWzPhKJuxbmCypAq/3ojpIWAypOqgLykp
+	28fVe3nQ==;
+Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:57518 helo=[192.168.69.116])
+	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	(Exim 4.96.2)
+	(envelope-from <primoz.fiser@norik.com>)
+	id 1rq78Q-009wAj-2G;
+	Fri, 29 Mar 2024 08:58:46 +0100
+Message-ID: <d9a233d6-95cd-4901-9c06-d8319f2eb3b4@norik.com>
+Date: Fri, 29 Mar 2024 08:58:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240329-sm6350-dp-v2-3-e46dceb32ef5@fairphone.com>
-References: <20240329-sm6350-dp-v2-0-e46dceb32ef5@fairphone.com>
-In-Reply-To: <20240329-sm6350-dp-v2-0-e46dceb32ef5@fairphone.com>
-To: Rob Clark <robdclark@gmail.com>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kuogee Hsieh <quic_khsieh@quicinc.com>, 
- Krishna Manikandan <quic_mkrishn@quicinc.com>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
-X-Mailer: b4 0.13.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [Upstream] [PATCH 0/2] i.MX93 ADC calibration settings
+Content-Language: en-US
+To: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+Cc: Andrej Picej <andrej.picej@norik.com>, Jonathan Cameron
+ <jic23@kernel.org>, devicetree@vger.kernel.org, conor+dt@kernel.org,
+ lars@metafoo.de, krzysztof.kozlowski+dt@linaro.org, imx@lists.linux.dev,
+ linux-iio@vger.kernel.org, festevam@gmail.com, s.hauer@pengutronix.de,
+ upstream@lists.phytec.de, linux-kernel@vger.kernel.org, haibo.chen@nxp.com,
+ kernel@pengutronix.de, shawnguo@kernel.org, robh@kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20240320100407.1639082-1-andrej.picej@norik.com>
+ <20240324135559.1640551d@jic23-huawei>
+ <3423ea96-859d-4c4b-a9a7-e0d9c3c00727@norik.com>
+ <44ac8977-cf98-46a5-be15-1bec330c6a2e@norik.com>
+ <20240325144555.00002d16@Huawei.com>
+From: Primoz Fiser <primoz.fiser@norik.com>
+Organization: Norik systems d.o.o.
+In-Reply-To: <20240325144555.00002d16@Huawei.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: primoz.fiser@norik.com
+X-Authenticated-Sender: cpanel.siel.si: primoz.fiser@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-Add the node for the DisplayPort controller found on the SM6350 SoC.
+Hi Jonathan,
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
----
- arch/arm64/boot/dts/qcom/sm6350.dtsi | 88 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 88 insertions(+)
+On 25. 03. 24 15:45, Jonathan Cameron wrote:
+> On Mon, 25 Mar 2024 09:55:23 +0100
+> Primoz Fiser <primoz.fiser@norik.com> wrote:
+> 
+>> Hi Jonathan,
+>>
+>> On 25. 03. 24 09:32, Andrej Picej wrote:
+>>> Hi Jonathan,
+>>>
+>>> On 24. 03. 24 14:55, Jonathan Cameron wrote:  
+>>>> On Wed, 20 Mar 2024 11:04:04 +0100
+>>>> Andrej Picej <andrej.picej@norik.com> wrote:
+>>>>  
+>>>>> Hi all,
+>>>>>
+>>>>> we had some problems with failing ADC calibration on the i.MX93 boards.
+>>>>> Changing default calibration settings fixed this. The board where this
+>>>>> patches are useful is not yet upstream but will be soon (hopefully).  
+>>>>
+>>>> Tell us more.  My initial instinct is that this shouldn't be board
+>>>> specific.
+>>>> What's the trade off we are making here?  Time vs precision of
+>>>> calibration or
+>>>> something else?  If these are set to a level by default that doesn't work
+>>>> for our board, maybe we should just change them for all devices?
+>>>>  
+>>
+>> The imx93_adc driver is quite new.
+>>
+>> If you look at line #162, you will find a comment by the original author:
+>>
+>>> 	/*
+>>> 	 * TODO: we use the default TSAMP/NRSMPL/AVGEN in MCR,
+>>> 	 * can add the setting of these bit if need in future.
+>>> 	 */  
+>>
+>> URL:
+>> https://github.com/torvalds/linux/blob/master/drivers/iio/adc/imx93_adc.c#L162
+>>
+>> So, for most use-cases the default setting should work, but why not make
+>> them configurable?
+>>
+>> So this patch-series just implement what was missing from the beginning
+>> / was planned for later.
+> Hi Primoz,
+> 
+> I doubt anyone reviewed the comment closely enough to say if what it was
+> suggesting was sensible or not, so the fact it was listed as a todo
+> doesn't directly impact this discussion.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-index 24bcec3366ef..d7cf4b5ceea6 100644
---- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-@@ -2033,6 +2033,14 @@ dpu_intf1_out: endpoint {
- 							remote-endpoint = <&mdss_dsi0_in>;
- 						};
- 					};
-+
-+					port@2 {
-+						reg = <2>;
-+
-+						dpu_intf0_out: endpoint {
-+							remote-endpoint = <&mdss_dp_in>;
-+						};
-+					};
- 				};
- 
- 				mdp_opp_table: opp-table {
-@@ -2070,6 +2078,86 @@ opp-560000000 {
- 				};
- 			};
- 
-+			mdss_dp: displayport-controller@ae90000 {
-+				compatible = "qcom,sm6350-dp", "qcom,sm8350-dp";
-+				reg = <0 0xae90000 0 0x200>,
-+				      <0 0xae90200 0 0x200>,
-+				      <0 0xae90400 0 0x600>,
-+				      <0 0xae91000 0 0x400>,
-+				      <0 0xae91400 0 0x400>;
-+				interrupt-parent = <&mdss>;
-+				interrupts = <12>;
-+				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+					 <&dispcc DISP_CC_MDSS_DP_AUX_CLK>,
-+					 <&dispcc DISP_CC_MDSS_DP_LINK_CLK>,
-+					 <&dispcc DISP_CC_MDSS_DP_LINK_INTF_CLK>,
-+					 <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK>;
-+				clock-names = "core_iface",
-+					      "core_aux",
-+					      "ctrl_link",
-+					      "ctrl_link_iface",
-+					      "stream_pixel";
-+
-+				assigned-clocks = <&dispcc DISP_CC_MDSS_DP_LINK_CLK_SRC>,
-+						  <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK_SRC>;
-+				assigned-clock-parents = <&usb_1_qmpphy QMP_USB43DP_DP_LINK_CLK>,
-+							 <&usb_1_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>;
-+
-+				phys = <&usb_1_qmpphy QMP_USB43DP_DP_PHY>;
-+				phy-names = "dp";
-+
-+				#sound-dai-cells = <0>;
-+
-+				operating-points-v2 = <&dp_opp_table>;
-+				power-domains = <&rpmhpd SM6350_CX>;
-+
-+				status = "disabled";
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+
-+						mdss_dp_in: endpoint {
-+							remote-endpoint = <&dpu_intf0_out>;
-+						};
-+					};
-+
-+					port@1 {
-+						reg = <1>;
-+
-+						mdss_dp_out: endpoint {
-+						};
-+					};
-+				};
-+
-+				dp_opp_table: opp-table {
-+					compatible = "operating-points-v2";
-+
-+					opp-160000000 {
-+						opp-hz = /bits/ 64 <160000000>;
-+						required-opps = <&rpmhpd_opp_low_svs>;
-+					};
-+
-+					opp-270000000 {
-+						opp-hz = /bits/ 64 <270000000>;
-+						required-opps = <&rpmhpd_opp_svs>;
-+					};
-+
-+					opp-540000000 {
-+						opp-hz = /bits/ 64 <540000000>;
-+						required-opps = <&rpmhpd_opp_svs_l1>;
-+					};
-+
-+					opp-810000000 {
-+						opp-hz = /bits/ 64 <810000000>;
-+						required-opps = <&rpmhpd_opp_nom>;
-+					};
-+				};
-+			};
-+
- 			mdss_dsi0: dsi@ae94000 {
- 				compatible = "qcom,sm6350-dsi-ctrl", "qcom,mdss-dsi-ctrl";
- 				reg = <0 0x0ae94000 0 0x400>;
+I agree.
+
+However on the other hand, since we stumbled upon a use-case that
+requires adjusting the driver provided default settings of the i.MX93
+ADC, this TODO to us is and was a clear indication from the original
+author that the driver needs little TLC.
+
+Anyhow, a stance from the author/NXP would be highly welcoming in this
+situation.
+
+BR,
+Primoz
+
+
+> 
+>>
+>> BR,
+>> Primoz
+>>
+>>
+>>>
+>>> So we have two different boards with the same SoC. On one, the
+>>> calibration works with the default values, on the second one the
+>>> calibration fails, which makes the ADC unusable. What the ADC lines
+>>> measure differ between the boards though. But the implementation is
+>>> nothing out of the ordinary.
+>>>
+>>> We tried different things but the only thing that helped is to use
+>>> different calibration properties. We tried deferring the probe and
+>>> calibration until later boot and after boot, but it did not help.
+>>>
+>>> In the Reference Manual [1] (chapter 72.5.1) it is written:
+>>>   
+>>>> 4. Configure desired calibration settings (default values kept for
+>>>> highest accuracy maximum time).  
+>>>
+>>> So your assumption is correct, longer calibration time (more averaging
+>>> samples) -> higher precision. The default values go for a high accuracy.
+>>> And since we use a NRSMPL (Number of Averaging Samples) of 32 instead of
+>>> default 512, we reduce the accuracy so the calibration values pass the
+>>> internal defined limits.
+> 
+> Ouch.  Let me try to dig into this. Is this effectively relaxing the
+> constraints? I guess because a value that is perhaps always biased one way
+> is considered within bounds if those acceptable bounds are wider because
+> of lower precision?
+> 
+> I was assuming it was the other way around and the device had fixed constraint
+> limits and you needed to take more samples due to higher noise. Seems the
+> opposite is true here and that worries me.
+> 
+> I'll definitely need input from NXP on this as a workaround and their
+> strong support to consider it.
+> 
+>>>
+>>> I'm not sure that changing default values is the right solution here. We
+>>> saw default values work with one of the boards. And since the NXP kept
+>>> these values adjustable I think there is a reason behind it.
+> 
+> I'd assume trade off between time and calibration precision, not the
+> sort of use I think you are describing.
+> 
+>>>
+>>> Note: When I say one of the boards I mean one board form. So same board
+>>> version, but different HW.
+> 
+> Superficially I'm struggling to not see this as broken hardware that it
+> is out of expected tolerances in some fashion.  Maybe I misunderstood
+> the issue.
+> 
+> Jonathan
+> 
+>>>
+>>> Best regards,
+>>> Andrej
+>>>
+>>> [1] i.MX 93 Applications Processor Reference Manual, Rev. 4, 12/2023
+>>> _______________________________________________
+>>> upstream mailing list
+>>> upstream@lists.phytec.de
+>>> http://lists.phytec.de/cgi-bin/mailman/listinfo/upstream  
+>>
+>>
+>> _______________________________________________
+>> linux-arm-kernel mailing list
+>> linux-arm-kernel@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
 
 -- 
-2.44.0
+Primoz Fiser                    | phone: +386-41-390-545
+<tel:+386-41-390-545> |
+---------------------------------------------------------|
+Norik systems d.o.o.            | https://www.norik.com
+<https://www.norik.com>  |
+Your embedded software partner  | email: info@norik.com
+<mailto:info@norik.com> |
+Slovenia, EU                    | phone: +386-41-540-545
+<tel:+386-41-540-545> |
 
 
