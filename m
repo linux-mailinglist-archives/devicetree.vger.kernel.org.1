@@ -1,460 +1,188 @@
-Return-Path: <devicetree+bounces-54419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E7AF891158
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 03:09:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12D398911A6
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 03:24:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0470728CF74
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 02:09:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD42B28CE63
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 02:24:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52CDC3BBD5;
-	Fri, 29 Mar 2024 02:04:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE36D11720;
+	Fri, 29 Mar 2024 02:24:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="m3d2YSVx"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="SyHPPCvq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10olkn2053.outbound.protection.outlook.com [40.92.41.53])
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2109.outbound.protection.outlook.com [40.107.114.109])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 368633C467;
-	Fri, 29 Mar 2024 02:04:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.41.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73F1F64C;
+	Fri, 29 Mar 2024 02:24:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.114.109
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711677889; cv=fail; b=uJDn4zFXeJ0oHF9PJcW7khDxjkEBWDDlfYUJKoaDZf4GUhi9tClIkMJFO7eOZx/oiBLnup1nUwM6ULM5qRkfNQtJp0tKzBNwsZF5Y1Qd5ROixcKZWQgYd9ZvPX9yN0TFqlAOjlpZpx+LSGQschCksNKu8jyrXipc7ywE1LTxR1k=
+	t=1711679084; cv=fail; b=XTayVLfurfEsIgz0C4+mfuhwNAwt7RhcXH6s2OH4TuEAuJ+kh66RUK49DhT0lOx282Yc2yBL2+8EMawkTJhCAVHFUAk3r+lFi6fqw6g0dhoC/J2EkRkxQ2ADGQIDgPzEiLi/riDDJlwq1DXMto4ceL60vYDCtUFBMnMIgel/Nao=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711677889; c=relaxed/simple;
-	bh=KJXl47hSTOc7cR5oqxO/ihC9iDNpncvnfeZEDWhqZy4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=gmycXL+uncoPKXkHYiFqV9jQLXxlzY4YoTLsrlSJlUfro7txufIwu/OgjnSNN1LVR/Sg1e28gW7VO3JHZMKc6kFU9Ma1JJvxYe0ce3zvhdZtKfwRcJQUUWlmALRjOcV/fdtsD+M+1oyKI+aZiTbdn6jCw2/IZDxzV5aaF5V5EYw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=m3d2YSVx; arc=fail smtp.client-ip=40.92.41.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+	s=arc-20240116; t=1711679084; c=relaxed/simple;
+	bh=alSX7eWNXkdxl4kTND3EUcGzzz7uyMWsdc/wwRVhGtc=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=lczhu3X2YDrjG9VToyuDhAD3uvONbiYn3D8/Gxcx+b8sv/ExYXjZtDQrUD+DsqHRuFpe0D8L5xXK/i61l3y9fBK2g1tDcUBYDh5bXwS3gRP259/k3g9xu6TAIsLgQpSsMkZTldCiNm0vUKv2QFXTzx/lYrz4e8GSjC4v7eYTa6g=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=SyHPPCvq; arc=fail smtp.client-ip=40.107.114.109
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jWw+tbhl6haJzszC3Yq4OgK6zqFaVSHENo96mkvtL8LzXyjF5BFIRfyh4V7YJh/DacW7EJwPAxVKAt+UUAUoUpTxJOLYFN3ayVgLxfAGSVduMSBphsF+Lg2WaTGPwUUxOdtGxTNXEnCsxuaSjpksUnchmdWhDXya09y/5b0fEtnlzStkN8wr4wjBoJ15pDbIwVUQ/+o+knltvACC3ZGW+FdHG5GuqNOi6KOZA0MdaehFYDIQcWUVP+Ag2pqukfhGZnaWB8w0gzZpxA9zMdPRKGHLORdAGM6UVFT2ohpQsGLF8wx5oSiMMYuo8bOt24SsnOtA2A+O8IzTWiB6barg8g==
+ b=VpwgweKD+6Q9Js+4SomiquFVYpBg5Sg4+j5mr2BYucYaJFiqTzWMFP6Y83mHkmmKUtXE04LJJX38q48KQF9ouSed6ePVjoZBWjYe+YNyqnhWTIyNl3KmjEYqkz6Q7kDW9hS8bSvszCoti1CQsq70057o3bIL4qQZ0PZPevBDdTtUFOWbZKLroSORbTN6MR6s2HcihjgEIi+ScS0roL6BXMPzRAj31baU4itsBz/J9MID0f0ChfKje4Gucy/s5SVRuHV6y0Uiz261wx+TESWpbvHzSqLtMtD1XQfWUw0hdPRobmmDUaFxitUYoSna97baIJG2LnOGv63zyh9N538Jgw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LYPL93Q2yyLjYm6Mfe5wKfxUzkPTz0G+zo6DKWPjJEY=;
- b=fvQPAH44wDuv9HvIHDIJSk7iVHTt5blSEk8hqT6R/tHDC+lwwam1pb/MT6cAzsr+VmFNP57Y9vchvrBAOs7+jq8NwKhK1oG/mINBLx9Q5P8gCs5MWH0RINIBAWwo+ArZknrKQc1Kq6ZUfzzM8IzK67HPy76Qxr4cJp5vqdLShVYS2lMw2milvcqyv9t8my5sVdVkQwvx/2RuS+9Memdq3Uzn206+HxHhpkAxh7Nef/4Z9pwZs9iK3c89JGuQNjQHAAPdH+OErjPnfBXr2QYyQyk3bEtomkAl9jl6pF/bYI1WdMyjtVbB2FMuuJp0Mf1wXO+EI6c6mOQvpYYJOJ1UVA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ bh=K0Q1I+yKJqyKOmzflgsZv2s8SZhrcxZy4f/wrPgwczY=;
+ b=fuSBhrQjd0fP8EZq7hjNqBQY+C+aTabzEGbJtYpTDpWoGPuyD4QWpv/+Vc260d2l4npKxdluSS9ytsf/yATyXPc0FqDXIUJObRDQzvHR/mHQLHJ8bKJeeBVqNRIaB3+4uN7T6HyjtJmpzKLU4V8gx2zKeV1vDSTKo163ywelpIW+9sFL3VeWBCBJ7zqtomTRLEQPiPimutLVPFJxBlcxKX8B6ntoxjFCjZDMp76E/YMSF8m1Y4P3qYtjEJaMuxYsbwPGLM7UwOQOBklS7YY5qzfeIgfn/Fz0PrfJaNDpulqQIR5MgKx8XzNkGluuL0lfytjcKz1oG0pX6sXnmkxHTg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LYPL93Q2yyLjYm6Mfe5wKfxUzkPTz0G+zo6DKWPjJEY=;
- b=m3d2YSVxU95rtC6p0pttgdVcqXz/P/cT/JiXgpNrdBEqmVYu71wb+iuQasi0YEaGKy7+lHNnVbPhdmMmy4rgSwhNFZQoL468iSS9APn4f6lXyKHaL2MfqoVXjT+l3gw14VBpji9B9Gl2kVIt+ssq4ONpiKZ4AYUQrm4ms41/O7ybiQ+Ohfh8v76s06Nxo4/UEQv5peTCErcMYpd69YzX9oXBNI8eiLb6hnNug0GersBY5HzU56LpodCe2t2cyoZQDjtc4Z5rJTjOAYuj+v14ssoIa9NwMTWIF9ZlMeRUxgVLm1lSDyT3dMwVNkJ0ObDN1XjYpLwJjL2et1AtRZoZ1w==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by SA1PR20MB5151.namprd20.prod.outlook.com (2603:10b6:806:256::5) with
+ bh=K0Q1I+yKJqyKOmzflgsZv2s8SZhrcxZy4f/wrPgwczY=;
+ b=SyHPPCvq+RRPK2lT4qbHSW+J8R1dB49mbYd9fY3LWwxEGKQaDLNLREu3cG0ZrUE5JlGrKw3KryH4tIjE+pnaKtTPIXNrNwqLRkRHTsB3dzt9PUpXUUQX+83KfUWylgGPwR5oZhwggz0yoV23aC1yRK4zScQWns2SH8xBPUz2uKY=
+Received: from TYCPR01MB11040.jpnprd01.prod.outlook.com (2603:1096:400:3a7::6)
+ by TYAPR01MB5546.jpnprd01.prod.outlook.com (2603:1096:404:8037::11) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.39; Fri, 29 Mar
- 2024 02:04:44 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::182f:841b:6e76:b819]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::182f:841b:6e76:b819%2]) with mapi id 15.20.7409.039; Fri, 29 Mar 2024
- 02:04:44 +0000
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Vinod Koul <vkoul@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>
-Cc: Jisheng Zhang <jszhang@kernel.org>,
-	Liu Gui <kenneth.liu@sophgo.com>,
-	Jingbao Qiu <qiujingbao.dlmu@gmail.com>,
-	dlan@gentoo.org,
-	dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: [PATCH v6 3/3] dmaengine: add driver for Sophgo CV18XX/SG200X dmamux
-Date: Fri, 29 Mar 2024 10:04:39 +0800
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.40; Fri, 29 Mar
+ 2024 02:24:39 +0000
+Received: from TYCPR01MB11040.jpnprd01.prod.outlook.com
+ ([fe80::f9d2:106:9dc3:224f]) by TYCPR01MB11040.jpnprd01.prod.outlook.com
+ ([fe80::f9d2:106:9dc3:224f%3]) with mapi id 15.20.7386.023; Fri, 29 Mar 2024
+ 02:24:38 +0000
+From: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To: Bjorn Helgaas <helgaas@kernel.org>
+CC: "lpieralisi@kernel.org" <lpieralisi@kernel.org>, "kw@linux.com"
+	<kw@linux.com>, "robh@kernel.org" <robh@kernel.org>, "bhelgaas@google.com"
+	<bhelgaas@google.com>, "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+	"gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
+	"mani@kernel.org" <mani@kernel.org>, "marek.vasut+renesas@gmail.com"
+	<marek.vasut+renesas@gmail.com>, "linux-pci@vger.kernel.org"
+	<linux-pci@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-renesas-soc@vger.kernel.org"
+	<linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH v2 5/6] PCI: dwc: rcar-gen4: Add support for other R-Car
+ Gen4 PCIe controller
+Thread-Topic: [PATCH v2 5/6] PCI: dwc: rcar-gen4: Add support for other R-Car
+ Gen4 PCIe controller
+Thread-Index: AQHafye+eT6AlZmhy0218gL98LfreLFKf6kAgACLGuCAANw/gIACGsNw
+Date: Fri, 29 Mar 2024 02:24:38 +0000
 Message-ID:
- <IA1PR20MB4953AE1184DD09F9203C665CBB3A2@IA1PR20MB4953.namprd20.prod.outlook.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <IA1PR20MB4953F0FAED4373660C7873A2BB3A2@IA1PR20MB4953.namprd20.prod.outlook.com>
-References: <IA1PR20MB4953F0FAED4373660C7873A2BB3A2@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TMN: [vN8Ey4A2F70K2YWSVmrGUoJqrJujnmeeoOoZSwls9mw=]
-X-ClientProxiedBy: TYAPR01CA0178.jpnprd01.prod.outlook.com
- (2603:1096:404:ba::22) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <20240329020442.373744-3-inochiama@outlook.com>
+ <TYCPR01MB110400CF3EB245339D00544F3D83A2@TYCPR01MB11040.jpnprd01.prod.outlook.com>
+References:
+ <TYCPR01MB110402EB3E15B3471C7F526C7D8342@TYCPR01MB11040.jpnprd01.prod.outlook.com>
+ <20240327181451.GA1531625@bhelgaas>
+In-Reply-To: <20240327181451.GA1531625@bhelgaas>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYCPR01MB11040:EE_|TYAPR01MB5546:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ /YlKOJdkJanZuN4VqG+2SoKiVjqNmAUicxMCzos66kI8riEJMsKh1IloRCvuG+4bQWd1lDiRtajReRQk84sX5D9OQHD2Nu3DXlfowCyxNEeCL7tXSrsGuvj9Hs0FIVkmrCFVqKBb+0KDrHsihZbtcHq8nAMfvKXXDSdQKcnW+gQ3xk0BzAxSiaRTEvkhr6Fs02x6LYrtLD3dmqlV9FtnUDLiQz2a1xV4T82X7rI6TVCvpqzDGhhKVZrRiaeoYJXw0eD18Dy1WiiIVJLuOA+r9tsDKhyWOKH2J+Xkmhv61tx4IY24a8g2twl+T46UpBtQ5eXcbea92WaCDcWf/YSGjwfRZwuX+vCbpXEWRldk52VW1lRxnJbN+9TgXDTn+8VIecvA1PSJhMohOGVBTbwlMNvrfu0SUFxZw8+yP0szj5oiPhPae5GSIliZ8VBwmHxjVzLK9Q1kNxIv7tVv/5x9Nm2Bh5eeuRWlyE8E7GhmKTrDPv1VmalmmEY2krHjQgVFYpSf+mkDjquyko/0DLa7IhdR5BO5GPS+wMSwXOA3RDeMnWz++bUkS7uNOoVjYrULn63cxqK9vhGEMFk6VLi/EmBTGge/CJV7ju2TL2U5Xz4=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB11040.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(1800799015)(376005)(366007);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?VxSSKgq5cwWbHC4vqBR9G5ktinrkMTVhFlVzXk3r+XS2E1ywD/bMMkp8Hei1?=
+ =?us-ascii?Q?vwGAPrhwM/LGVYEawZxGORCSvKa7RnDCAr9OLbcRDAMB/z9972YJpbl3dGij?=
+ =?us-ascii?Q?5vPTTT/ePrNahCCo4Dm4K9X15GFJw6W/2twlMbu8JHzwhwPLxRMYvLh2Wy/T?=
+ =?us-ascii?Q?xnbTd7z+b+hOs4/qwcs4l0ts0AlZpYOV3v5UyN++ajGpTDEI1uqfM1TLlnSw?=
+ =?us-ascii?Q?GrVWfVuKpcbidcA+hznHRTGbQHNW8xrEQaxrtCxsxq5A3gkquhaQrn5FRlRD?=
+ =?us-ascii?Q?YctBNujCEWNJIFiEgioBKLjBqNHVdX7CckLhqIUg/lc9LwNn31u1dy2MTFHU?=
+ =?us-ascii?Q?MOwIdh/wJoh+WqGwxEsk6/76AklyTI5nRUiS7+ktm92Rerv70ZRCyjz4LDwe?=
+ =?us-ascii?Q?jK3tr2P93AHhiWsOkW6jOoAtQFzOppSrEThaCjJDNYolm5uls0zxmWnBiApV?=
+ =?us-ascii?Q?JrJJt8EtWLLRiPZTGRZ5OQH9z6fY5lCQPMyA6rN/dxv0WhIUgOCj++R2tibE?=
+ =?us-ascii?Q?5Bd5owSRKNL0GOUrl+sMFlW0fjpwuJ7KcGsT0Pn3M35lQo2TUjtK4qYbvWEb?=
+ =?us-ascii?Q?Kkv0bDH/u9Dh6BSuFglPdRO/3rkV/+rNVMTkrelNyq3XCLa3RC/7ArHCTKL7?=
+ =?us-ascii?Q?T+Z3hHdSiSAZcWn2gT43aN3K4Izwv9LAw9yPxn9SyNTzD9N0JK9BheJlf5sF?=
+ =?us-ascii?Q?A/IBdBfdtzwAGD2PcKHaiwthpyN2+Al3cEDVU5ko6u9ZI+/rLrfo56ZZe9Gt?=
+ =?us-ascii?Q?UbrO0m20y5z7vErzsL1/plPLxtMXmJnky47+NCT60YFBtSmEys5RevYuTn+a?=
+ =?us-ascii?Q?SRKBuA8aCkcYbq9VnSGHKjOa8U3ysOY3qd8fMSJUJQ0XFHOzMd6vV+i4O0IO?=
+ =?us-ascii?Q?P7ywOcC4c9KudpTOVmroO7RucGA6P0udwffUWkZ4SbP6enqqRwZDdymK+N/T?=
+ =?us-ascii?Q?TXr6EXwlJP1ZKMvAaEkzl1Y8QO8n2Zg5EHYmnsVgEz3kRbuJSXOJn//h+UqE?=
+ =?us-ascii?Q?ajLD8vEya23oX7le30ESVnvFyTyWdNvLHSt/ITd2TDtsru+1fQvGdX4JeFnv?=
+ =?us-ascii?Q?TndGqHORo6Ql9UsI9hesAeXTSL5itpI9WwijHRCx9/vI3cC2VUa4wg+t5Jme?=
+ =?us-ascii?Q?gUGNAMbU/vo9FvR7jKaPGB20b4UTTfAnI/Ru8KUW0jZZGXiqV/iFjK0SNhC0?=
+ =?us-ascii?Q?JDsJWC/VqCmEcaawgHz1N2+O9VvyqlQ3PgjJsCBZzjW4uOo/2J8Ondi7JErv?=
+ =?us-ascii?Q?wKZc8g8ZtLQyODtK8uhREjzAI1QYdqiKIo1WHPIlRDa02IdLFYv1SkokUUB0?=
+ =?us-ascii?Q?S4l51DROUo7mls3Dm75s8oilYcqTueWfNIFVRJCSAQ+C5WixJKYjK0H3qBsa?=
+ =?us-ascii?Q?hXKrJR2uajS7l+ADvnIBGM7hl0klRLac4ji02W7C11HsaaZWMqaBzOg0eI1R?=
+ =?us-ascii?Q?i5it/o5jw6ktRjcfL1SuQHjWUy2YvTBYQi+gco+AmRxbIqbl53+hawjyEwep?=
+ =?us-ascii?Q?TnOOu3ngO+bR08H93xnfmMtAQhWK4Tr5nak0AFhCtYGDdVCNR3O40uOlCphr?=
+ =?us-ascii?Q?wW9eipQacnrHo1w54TihHLWUR5yc9aMx/sdgDISquCFVdwyPpMhXD1HWHzH0?=
+ =?us-ascii?Q?wIwULlhg2gN3JJ0HKT0cMCDCnTLfEXX+TGE+qaW2k40voVkEMmWY0Mvn8K9B?=
+ =?us-ascii?Q?/p9mAg=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|SA1PR20MB5151:EE_
-X-MS-Office365-Filtering-Correlation-Id: 686b6348-c143-4a50-0870-08dc4f949a51
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	1PyfZl9Ln7By8Ifd94KIUos+Zz7lhI4amKd+jUmoy4i8H30VIB6TCuk+nWc3d5pBemL5HXSh3PnYykn/WasenLTFhLZs75w/GaAg7aVjkToMQbBt8DCSwVGFqWaVglJ9trz5A61lpTw2i0hWcxtEXSimZgkFbbv5OVxYSSHO4zm4lXFON3KcoobMuIeSETZLVLP0AL3s+tkuyCn4DLlEa2HR2WZOKQj/tkPg/WhjsSpHvlEguukIPxcy4tM/K0Gf3qhmxZrIPw5W/n72w8iImYvOqR30rreWA+DswkwugylZ83bhRyV31qubH9uo3M+LkQ7CYjt0NFxHd59siqD+jUnZ79dfBEVhDtkT/rpeWurDiwYyid+YeI2ofJXMfAwROyS5f/TF2xxyeDl9jlR1BKZARD/aTZRr/wSa3MzzPMVFB//qUD4xcUhOC2u+qqG+K9Rul3zfeIfif8XyIXgGfEBC31rttTc45/Ded50Ja8vxYS1Ze4+e6Xk+vP3sX4/SWKRxHj5VJCn9rbc0qU7Vr46lzxGy2ZnuAC/jth8NepFnwIAez1oLsxzDoWPSz1GEJuiPJEIp2GdqLK6gjUwX2XVaP4XyPYCHvT4xTikT4CiC5N1+fn1O5CaZQHNQSe0d
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?lLowN0TIMaHHi1Tk39gZ0l6uUdonl7CjJX11EsJxMEhv9rh3dm8l29lB30Pu?=
- =?us-ascii?Q?BKfMLHzk4ZA721uB1pBaq2YQPQqzsHuuyaBiBoeGnqVAGrvMx3P5RuSDaddE?=
- =?us-ascii?Q?L363niyStEpTzbQ6gF+ig0YTSHtho78N2ox1+CHGQcgoV7aDh7Xr4gYLayCj?=
- =?us-ascii?Q?KlVGzO16Pf1xhElKWcY10l6prS8Bzxzqm3KJvDAQdrOqIf8TlKIGYbEaBBgk?=
- =?us-ascii?Q?L49aQeG3DJ6t5BdTVMLTyYcJ1umlBRcJGyZJbgYYxs79PCPbQNfM9EkTRyEt?=
- =?us-ascii?Q?LZJoQD4vwNG0/5Z9DbZLo4j0nvvWMxa7GMAF8hpD8DJ++NxZpyw4RMFS8IKj?=
- =?us-ascii?Q?0R92d3SCJ2shLpb7OGo21Ih9XYgNV7XsmEoMcEOAaUgPTd/nXZd0xFSeCIV2?=
- =?us-ascii?Q?+uxnRtcD18tRgGY610GO9GP4bwFd2g2GWKL0M4qJl/7sXiDyb1ggplCcnDkQ?=
- =?us-ascii?Q?TxrXIKDNVXe3b49q4gc97hWXw2h2tGyEv6WymoXtIp73sTWevbEUgr4UyOoV?=
- =?us-ascii?Q?EfsvHe4ceT50dAWRpeMoJlUm25VIyt84oJfg+yKLTDUoV1XWRJLnW6zz5izD?=
- =?us-ascii?Q?ISnwpqu4O7xkLVnuNDkkbazyBBX6nhY+1STjDDliaCTQ2Uxk0r0tLnif3YFE?=
- =?us-ascii?Q?3farErrRqmt4d/WL9454YDkKdm3izGXdixBe0YjTu3b8cHeZ7acjev1emroH?=
- =?us-ascii?Q?LIdMNAcWC5ZNa5W8A+LcuQNfEEegoaKyyWp6OqCJtAJP4mN8iPi+bZ8cuVFR?=
- =?us-ascii?Q?yPIXTmQvwOapUCMK8CrVhpD2imWFDk/oO7S3dtzlir04/qponf/5q1fV+uHN?=
- =?us-ascii?Q?c1IczkurrIKoZexSU2oSSrWxVwbVPgp0o0lJ8X/IG4wA7jppzq49ii2bXiyg?=
- =?us-ascii?Q?VQFZ3Ej8Lkk5UyJYANLZx2y3yWWLWcBp3GgEnmzzQjejdLUdd7ckKyYhlLal?=
- =?us-ascii?Q?EEDSscyrAMid+kXjr4ncOoEUuYoVSW0jiPcwVNpuHmuOXABZdGrF+cMPwrtL?=
- =?us-ascii?Q?k4UcnycLQM7N+H2bdtsK5qDxNXScpN7R4eQZyFA3f6YqKMHqZr0ZvUV8UbMj?=
- =?us-ascii?Q?yhntpJn/ro2Z2t+AgPchugfv9aoA5mnejBV2EesY8pUPgRllJljIvnlw//hu?=
- =?us-ascii?Q?fgb8H+I/IyxrJsrZXF1QDRMxER2I/hxnLw3rBnbv75IuZu2dZBRGoAEMwqRp?=
- =?us-ascii?Q?4yc4YUsL6HsrubZpAipRbKyZ31MTtO8sfzZhb2/LsUpbC8xAAP40B35OB3GJ?=
- =?us-ascii?Q?nnlxSp0up9kiyKbm0ivE?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 686b6348-c143-4a50-0870-08dc4f949a51
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-OriginatorOrg: renesas.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Mar 2024 02:04:44.5312
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB11040.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 15446c42-cc81-4ca1-a66b-08dc4f97625a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Mar 2024 02:24:38.7984
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR20MB5151
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: cEVZofUnjpE827rGiKmlMO9N0HwGsUw3Mk5R7G/i1Q6Uc6d2lcHQaItpVJ55cr6dTwXLdzIEJscuC1Qdej01/tQfHHLyRC2q+kKItdetEcdmc1q5aYw8Btul23YnwBeN
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYAPR01MB5546
 
-Sophgo CV18XX/SG200X use DW AXI CORE with a multiplexer for remapping
-its request lines. The multiplexer supports at most 8 request lines.
+Hi Bjorn,
 
-Add driver for Sophgo CV18XX/SG200X DMA multiplexer.
+> From: Bjorn Helgaas, Sent: Thursday, March 28, 2024 3:15 AM
+>=20
+> On Wed, Mar 27, 2024 at 05:32:57AM +0000, Yoshihiro Shimoda wrote:
+> > > From: Bjorn Helgaas, Sent: Wednesday, March 27, 2024 5:49 AM
+>=20
+> > > >  static int rcar_gen4_pcie_get_resources(struct rcar_gen4_pcie *rca=
+r)
+> > > >  {
+> > > > +	rcar->phy_base =3D devm_platform_ioremap_resource_byname(rcar->pd=
+ev, "phy");
+> > > > +	if (IS_ERR(rcar->phy_base))
+> > > > +		return PTR_ERR(rcar->base);
+> > >
+> > > I don't get it.  This imposes a new requirement (presence of "phy"
+> > > resource) on the existing SoCs.  That doesn't sound right.
+> >
+> > According to the dt-binding doc, the existing SoCs are also required
+> > for the "phy".  That's why I didn't add any condition to simplify
+> > the code.
+>=20
+> Is there anything that enforces that?  Is it possible that DTs exist
+> in the field without it?  We don't want to break any existing setup.
 
-Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
----
- drivers/dma/Kconfig         |   9 ++
- drivers/dma/Makefile        |   1 +
- drivers/dma/cv1800-dmamux.c | 267 ++++++++++++++++++++++++++++++++++++
- 3 files changed, 277 insertions(+)
- create mode 100644 drivers/dma/cv1800-dmamux.c
+Using make dtbs_check can detect an error if the "phy" doesn't exist like b=
+elow:
 
-diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
-index 002a5ec80620..cb31520b9f86 100644
---- a/drivers/dma/Kconfig
-+++ b/drivers/dma/Kconfig
-@@ -546,6 +546,15 @@ config PLX_DMA
- 	  These are exposed via extra functions on the switch's
- 	  upstream port. Each function exposes one DMA channel.
+/home/shimoda/development/linux/linux/arch/arm64/boot/dts/renesas/r8a779f0-=
+spider.dtb: pcie@e65d0000: reg-names:5: 'phy' was expected
+        from schema $id: http://devicetree.org/schemas/pci/rcar-gen4-pci-ho=
+st.yaml#
 
-+config SOPHGO_CV1800_DMAMUX
-+	tristate "Sophgo CV1800/SG2000 series SoC DMA multiplexer support"
-+	depends on MFD_SYSCON
-+	depends on ARCH_SOPHGO
-+	help
-+	  Support for the DMA multiplexer on Sophgo CV1800/SG2000
-+	  series SoCs.
-+	  Say Y here if your board have this soc.
-+
- config STE_DMA40
- 	bool "ST-Ericsson DMA40 support"
- 	depends on ARCH_U8500
-diff --git a/drivers/dma/Makefile b/drivers/dma/Makefile
-index dfd40d14e408..7465f249ee47 100644
---- a/drivers/dma/Makefile
-+++ b/drivers/dma/Makefile
-@@ -67,6 +67,7 @@ obj-$(CONFIG_PPC_BESTCOMM) += bestcomm/
- obj-$(CONFIG_PXA_DMA) += pxa_dma.o
- obj-$(CONFIG_RENESAS_DMA) += sh/
- obj-$(CONFIG_SF_PDMA) += sf-pdma/
-+obj-$(CONFIG_SOPHGO_CV1800_DMAMUX) += cv1800-dmamux.o
- obj-$(CONFIG_STE_DMA40) += ste_dma40.o ste_dma40_ll.o
- obj-$(CONFIG_STM32_DMA) += stm32-dma.o
- obj-$(CONFIG_STM32_DMAMUX) += stm32-dmamux.o
-diff --git a/drivers/dma/cv1800-dmamux.c b/drivers/dma/cv1800-dmamux.c
-new file mode 100644
-index 000000000000..709414898b67
---- /dev/null
-+++ b/drivers/dma/cv1800-dmamux.c
-@@ -0,0 +1,267 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2023 Inochi Amaoto <inochiama@outlook.com>
-+ */
-+
-+#include <linux/bitops.h>
-+#include <linux/module.h>
-+#include <linux/of_dma.h>
-+#include <linux/of_address.h>
-+#include <linux/of_platform.h>
-+#include <linux/platform_device.h>
-+#include <linux/llist.h>
-+#include <linux/regmap.h>
-+#include <linux/spinlock.h>
-+#include <linux/mfd/syscon.h>
-+
-+#include <soc/sophgo/cv1800-sysctl.h>
-+
-+#define DMAMUX_NCELLS			2
-+#define MAX_DMA_MAPPING_ID		42
-+#define MAX_DMA_CPU_ID			2
-+#define MAX_DMA_CH_ID			7
-+
-+#define DMAMUX_INTMUX_REGISTER_LEN	4
-+#define DMAMUX_NR_CH_PER_REGISTER	4
-+#define DMAMUX_BIT_PER_CH		8
-+#define DMAMUX_CH_MASk			GENMASK(5, 0)
-+#define DMAMUX_INT_BIT_PER_CPU		10
-+#define DMAMUX_CH_UPDATE_BIT		BIT(31)
-+
-+#define DMAMUX_CH_REGPOS(chid) \
-+	((chid) / DMAMUX_NR_CH_PER_REGISTER)
-+#define DMAMUX_CH_REGOFF(chid) \
-+	((chid) % DMAMUX_NR_CH_PER_REGISTER)
-+#define DMAMUX_CH_REG(chid) \
-+	((DMAMUX_CH_REGPOS(chid) * sizeof(u32)) + \
-+	 CV1800_SDMA_DMA_CHANNEL_REMAP0)
-+#define DMAMUX_CH_SET(chid, val) \
-+	(((val) << (DMAMUX_CH_REGOFF(chid) * DMAMUX_BIT_PER_CH)) | \
-+	 DMAMUX_CH_UPDATE_BIT)
-+#define DMAMUX_CH_MASK(chid) \
-+	DMAMUX_CH_SET(chid, DMAMUX_CH_MASk)
-+
-+#define DMAMUX_INT_BIT(chid, cpuid) \
-+	BIT((cpuid) * DMAMUX_INT_BIT_PER_CPU + (chid))
-+#define DMAMUX_INTEN_BIT(cpuid) \
-+	DMAMUX_INT_BIT(8, cpuid)
-+#define DMAMUX_INT_CH_BIT(chid, cpuid) \
-+	(DMAMUX_INT_BIT(chid, cpuid) | DMAMUX_INTEN_BIT(cpuid))
-+#define DMAMUX_INT_MASK(chid) \
-+	(DMAMUX_INT_BIT(chid, 0) | \
-+	 DMAMUX_INT_BIT(chid, 1) | \
-+	 DMAMUX_INT_BIT(chid, 2))
-+#define DMAMUX_INT_CH_MASK(chid, cpuid) \
-+	(DMAMUX_INT_MASK(chid) | DMAMUX_INTEN_BIT(cpuid))
-+
-+struct cv1800_dmamux_data {
-+	struct dma_router	dmarouter;
-+	struct regmap		*regmap;
-+	spinlock_t		lock;
-+	struct llist_head	free_maps;
-+	struct llist_head	reserve_maps;
-+	DECLARE_BITMAP(mapped_peripherals, MAX_DMA_MAPPING_ID);
-+};
-+
-+struct cv1800_dmamux_map {
-+	struct llist_node node;
-+	unsigned int channel;
-+	unsigned int peripheral;
-+	unsigned int cpu;
-+};
-+
-+static void cv1800_dmamux_free(struct device *dev, void *route_data)
-+{
-+	struct cv1800_dmamux_data *dmamux = dev_get_drvdata(dev);
-+	struct cv1800_dmamux_map *map = route_data;
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&dmamux->lock, flags);
-+
-+	regmap_update_bits(dmamux->regmap,
-+			   DMAMUX_CH_REG(map->channel),
-+			   DMAMUX_CH_MASK(map->channel),
-+			   DMAMUX_CH_UPDATE_BIT);
-+
-+	regmap_update_bits(dmamux->regmap, CV1800_SDMA_DMA_INT_MUX,
-+			   DMAMUX_INT_CH_MASK(map->channel, map->cpu),
-+			   DMAMUX_INTEN_BIT(map->cpu));
-+
-+	spin_unlock_irqrestore(&dmamux->lock, flags);
-+
-+	dev_info(dev, "free channel %u for req %u (cpu %u)\n",
-+		 map->channel, map->peripheral, map->cpu);
-+}
-+
-+static void *cv1800_dmamux_route_allocate(struct of_phandle_args *dma_spec,
-+					  struct of_dma *ofdma)
-+{
-+	struct platform_device *pdev = of_find_device_by_node(ofdma->of_node);
-+	struct cv1800_dmamux_data *dmamux = platform_get_drvdata(pdev);
-+	struct cv1800_dmamux_map *map;
-+	struct llist_node *node;
-+	unsigned long flags;
-+	unsigned int chid, devid, cpuid;
-+	int ret;
-+
-+	if (dma_spec->args_count != DMAMUX_NCELLS) {
-+		dev_err(&pdev->dev, "invalid number of dma mux args\n");
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	devid = dma_spec->args[0];
-+	cpuid = dma_spec->args[1];
-+	dma_spec->args_count = 1;
-+
-+	if (devid > MAX_DMA_MAPPING_ID) {
-+		dev_err(&pdev->dev, "invalid device id: %u\n", devid);
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	if (cpuid > MAX_DMA_CPU_ID) {
-+		dev_err(&pdev->dev, "invalid cpu id: %u\n", cpuid);
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	dma_spec->np = of_parse_phandle(ofdma->of_node, "dma-masters", 0);
-+	if (!dma_spec->np) {
-+		dev_err(&pdev->dev, "can't get dma master\n");
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	spin_lock_irqsave(&dmamux->lock, flags);
-+
-+	if (test_bit(devid, dmamux->mapped_peripherals)) {
-+		llist_for_each_entry(map, dmamux->reserve_maps.first, node) {
-+			if (map->peripheral == devid && map->cpu == cpuid)
-+				goto found;
-+		}
-+
-+		ret = -EINVAL;
-+		goto failed;
-+	} else {
-+		node = llist_del_first(&dmamux->free_maps);
-+		if (!node) {
-+			ret = -ENODEV;
-+			goto failed;
-+		}
-+
-+		map = llist_entry(node, struct cv1800_dmamux_map, node);
-+		llist_add(&map->node, &dmamux->reserve_maps);
-+		set_bit(devid, dmamux->mapped_peripherals);
-+	}
-+
-+found:
-+	chid = map->channel;
-+	map->peripheral = devid;
-+	map->cpu = cpuid;
-+
-+	regmap_set_bits(dmamux->regmap,
-+			DMAMUX_CH_REG(chid),
-+			DMAMUX_CH_SET(chid, devid));
-+
-+	regmap_update_bits(dmamux->regmap, CV1800_SDMA_DMA_INT_MUX,
-+			   DMAMUX_INT_CH_MASK(chid, cpuid),
-+			   DMAMUX_INT_CH_BIT(chid, cpuid));
-+
-+	spin_unlock_irqrestore(&dmamux->lock, flags);
-+
-+	dma_spec->args[0] = chid;
-+
-+	dev_info(&pdev->dev, "register channel %u for req %u (cpu %u)\n",
-+		 chid, devid, cpuid);
-+
-+	return map;
-+
-+failed:
-+	spin_unlock_irqrestore(&dmamux->lock, flags);
-+	of_node_put(dma_spec->np);
-+	dev_err(&pdev->dev, "errno %d\n", ret);
-+	return ERR_PTR(ret);
-+
-+}
-+
-+static int cv1800_dmamux_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct device_node *mux_node = dev->of_node;
-+	struct cv1800_dmamux_data *data;
-+	struct cv1800_dmamux_map *tmp;
-+	struct device *parent = dev->parent;
-+	struct device_node *dma_master;
-+	struct regmap *regmap = NULL;
-+	unsigned int i;
-+
-+	if (!parent)
-+		return -ENODEV;
-+
-+	regmap = device_node_to_regmap(parent->of_node);
-+	if (IS_ERR(regmap))
-+		return PTR_ERR(regmap);
-+
-+	dma_master = of_parse_phandle(mux_node, "dma-masters", 0);
-+	if (!dma_master) {
-+		dev_err(dev, "invalid dma-requests property\n");
-+		return -ENODEV;
-+	}
-+	of_node_put(dma_master);
-+
-+	data = devm_kmalloc(dev, sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	spin_lock_init(&data->lock);
-+	init_llist_head(&data->free_maps);
-+
-+	for (i = 0; i <= MAX_DMA_CH_ID; i++) {
-+		tmp = devm_kmalloc(dev, sizeof(*tmp), GFP_KERNEL);
-+		if (!tmp) {
-+			/* It is OK for not allocating all channel */
-+			dev_warn(dev, "can not allocate channel %u\n", i);
-+			continue;
-+		}
-+
-+		init_llist_node(&tmp->node);
-+		tmp->channel = i;
-+		llist_add(&tmp->node, &data->free_maps);
-+	}
-+
-+	/* if no channel is allocated, the probe must fail */
-+	if (llist_empty(&data->free_maps))
-+		return -ENOMEM;
-+
-+	data->regmap = regmap;
-+	data->dmarouter.dev = dev;
-+	data->dmarouter.route_free = cv1800_dmamux_free;
-+
-+	platform_set_drvdata(pdev, data);
-+
-+	return of_dma_router_register(mux_node,
-+				      cv1800_dmamux_route_allocate,
-+				      &data->dmarouter);
-+}
-+
-+static void cv1800_dmamux_remove(struct platform_device *pdev)
-+{
-+	of_dma_controller_free(pdev->dev.of_node);
-+}
-+
-+static const struct of_device_id cv1800_dmamux_ids[] = {
-+	{ .compatible = "sophgo,cv1800-dmamux", },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, cv1800_dmamux_ids);
-+
-+static struct platform_driver cv1800_dmamux_driver = {
-+	.driver = {
-+		.name = "cv1800-dmamux",
-+		.of_match_table = cv1800_dmamux_ids,
-+	},
-+	.probe = cv1800_dmamux_probe,
-+	.remove_new = cv1800_dmamux_remove,
-+};
-+module_platform_driver(cv1800_dmamux_driver);
-+
-+MODULE_AUTHOR("Inochi Amaoto <inochiama@outlook.com>");
-+MODULE_DESCRIPTION("Sophgo CV1800/SG2000 Series Soc DMAMUX driver");
-+MODULE_LICENSE("GPL");
---
-2.44.0
+So, I believe that this can enforce that in review process at least.
+Now arch/arm64/boot/dts/renesas/r8a779f0.dtsi has the pcie compatible,
+and all pcie nodes in the dtsi have "phy". So, this patch will not break an=
+y existing setup.
+
+Best regards,
+Yoshihiro Shimoda
 
 
