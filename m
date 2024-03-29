@@ -1,79 +1,87 @@
-Return-Path: <devicetree+bounces-54465-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E8C5891335
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 06:32:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F71B891357
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 06:47:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2DB261F22204
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 05:32:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A7AE2891ED
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 05:47:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11D0D3BBF6;
-	Fri, 29 Mar 2024 05:32:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ACAA3C6AB;
+	Fri, 29 Mar 2024 05:47:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="oo/extyM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iSR/FECW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 368A33EA92;
-	Fri, 29 Mar 2024 05:32:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41A753C482;
+	Fri, 29 Mar 2024 05:47:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711690336; cv=none; b=dl++vKDotKfSEFG2rZA8J71oPEz/96jh7iy9wsv+zMYUIN2i+PtI8g2OqCJ0a7vub46j3n/kp0SBzJzb7fb2CcBi4ZDTTpH/urtlCLaZqt+xAMXOI7VdbPm9L+RZoHk5KvaDgJP38gWvKSuhQSRzvMq6U1eCXZVoLk7I6HEetbM=
+	t=1711691227; cv=none; b=ozvVxQgKik1qqPIuKbo+QRZRAsAe/tdlo5t2galcP70tE5u6Ynn31JC7pDueCJooPLbzNnoFw6DipdzJ1OVSMIyCNKYoIzeTRV0A4mVJqWvepn03h/jiJquSpYVzp+UeRDp22EMyRTdxu6atEjgF1WboLv4DIkkKvyOXIOx9S2M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711690336; c=relaxed/simple;
-	bh=fPSTd3E9vT5XAtMWPJSGLfWid5Xsmh0/t0CaJdJkYfw=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=km6arkBM82b+CSCvQ/jlFC1VbRD6qpqztmjB1Bd++SE/LI8Kvwz/C4Vqzq7hyn05XaVJjBlB5bd9OapD2ruB3xaRDVnlduNL8H21G/xXUwGgmldhzbIXVoxIV4DIzJLpWJJCqhZyG26Tjla2ei436c9mTpdhPcriklbcpnxFfE8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=oo/extyM; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 42T5W30D065285;
-	Fri, 29 Mar 2024 00:32:03 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1711690323;
-	bh=gokzMs7KhXVFBe4lvSvEkJY1RLon4TGO+ZGA7mN+Mro=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=oo/extyMg+ZKJntkaNEXdvbNnVc557uJ3TAPYsepPttuR9CHimC4fjSg9LybUThX2
-	 70sa3rOi60bGRcYV/3qzXZFn7x6oWadou8Vb3p4EJTFSraBvB50yDBAr2uT8Vfmksi
-	 EpQyUnjW+80PxpEmsS2zCS+mUs5LATUV8VQEYab4=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 42T5W3oo034063
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 29 Mar 2024 00:32:03 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 29
- Mar 2024 00:32:03 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 29 Mar 2024 00:32:03 -0500
-Received: from localhost (chintan-thinkstation-p360-tower.dhcp.ti.com [172.24.227.220])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 42T5W2Jk108804;
-	Fri, 29 Mar 2024 00:32:03 -0500
-From: Chintan Vankar <c-vankar@ti.com>
-To: Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh@kernel.org>, Tero
- Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth
- Menon <nm@ti.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <s-vadapalli@ti.com>,
-        Chintan Vankar
-	<c-vankar@ti.com>
-Subject: [PATCH v6 5/5] arm64: dts: ti: k3-j784s4: Add overlay for dual port USXGMII mode
-Date: Fri, 29 Mar 2024 11:01:30 +0530
-Message-ID: <20240329053130.2822129-6-c-vankar@ti.com>
+	s=arc-20240116; t=1711691227; c=relaxed/simple;
+	bh=wBp+ceh/Gi5LnHoDZJeLCQWxE+UPBatPPcYDpPIISaQ=;
+	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=odnzvtNLVmqSL93wrojoz8KOdOWTH6bCwsX4dp460wkjLSeW9yAoSeQ11xslxHvWmo3dNiMWx2swLBHaS2DBGGMaN59DySs/qed2JxbY3lJQYJEosbXJkzUq9qCPM8V3hgUQWAMOSkZAqbrO9udUg0DBJerWHYteD3Rk1B5aru8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iSR/FECW; arc=none smtp.client-ip=209.85.214.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-1e2266655b1so6404465ad.2;
+        Thu, 28 Mar 2024 22:47:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1711691224; x=1712296024; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=A2mjGX0SMVp3aAe3JX3OUIFGC3HtwxrC9WrcrOvDfNY=;
+        b=iSR/FECWCTwtuTixMIv1Ec8OQO4/+bXHGQx4QRida+IgRKwD+LSVkWGqmJMl0eJV7Q
+         5NK590WyMnyji0n3UMiPLBSH8Xcs/vqGGrKDW0KR56ID+lHpn5IFoa4QPEh7qU6WLlIi
+         yRNKQtCAuZKZ8IcsbfM8c4erewTcUuKqVzLRpBkSK5tHBH6BoV5ezngxoCCJX9FJ43tG
+         BuviFVgqlNHg9PZfw+x/SGwaZhhgRrbmsqjNws+qjoRmodOEQVFcgD+9a3k+P1K+wPqX
+         t48d3eXiQoZnuaZdupj23hAGU2gQG6H060SnC4sXuy7wsHGVNhvfmWsnuQH1Djj+Feud
+         twiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711691224; x=1712296024;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=A2mjGX0SMVp3aAe3JX3OUIFGC3HtwxrC9WrcrOvDfNY=;
+        b=xJAseVLtAXF4ueAlCdvhxlThnzcd5J0GNbWq2XuL0TKSQktIEZWEf+bJYL5O+k+/Ij
+         YM0aEBhT3PlbEGIVCX9hKhK/2dSVWKex8KHsVKf33mOJjdvg2KIYE0ofGW+zLLsCUwQb
+         ZK/PUjhiQCdSUuMIrSHlwhPbb/AnnDZC3E1YHUf66UzEOoH64Al+UfPd3Ar963Pebbwe
+         NXLL3UbX84Q4w2knuKp8nsw7KaA0vV9pzXVtUErkLRAIhe3dvPvW4SvsX4/8Z11XZAR7
+         PHbVY6tbJLn01Qi+NTWXYENsWtWNuelQ48SEwHu6dsNWkMqB2nad1+dDc350lOaO/gtG
+         xNow==
+X-Forwarded-Encrypted: i=1; AJvYcCVaNjgGYoiDPqX0m54PKMa6RWtncPFUV24TeD6g7r2tOdz5oSDXgw743D54D0NwhhSHSHnCowyBDyw0PA1/yHaXEeYtxq57qYmTJqXx/5ol1G7UfHp+fl/uwLouq8PLq69lW/YB7NifJtLsIGYmKXHR2hoTFoQBpt0vUcHije2cyaPs0g==
+X-Gm-Message-State: AOJu0YwFJ1qZadaaDSOF2YD7dVewr2W33DsQ6isZxFoyshmGVcrvDXie
+	yQoWHVP/lzRZjkVX2xhZcwDOnUYB18nWgJrf/bX7iwx2PWz+fmTE
+X-Google-Smtp-Source: AGHT+IH/JkdGkpoouYO3YvvMDfxjKrOGwB1PvpruKzfCExMM9LyDsN4kDmn0bP6vCuJx5y3lpFCn/Q==
+X-Received: by 2002:a17:903:2ca:b0:1e1:a54:1fe8 with SMTP id s10-20020a17090302ca00b001e10a541fe8mr1907625plk.53.1711691224520;
+        Thu, 28 Mar 2024 22:47:04 -0700 (PDT)
+Received: from gmail.com ([2a09:bac5:6249:183c::26a:10])
+        by smtp.gmail.com with ESMTPSA id d5-20020a170902654500b001e0b3b0e03dsm2679363pln.208.2024.03.28.22.47.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Mar 2024 22:47:04 -0700 (PDT)
+From: Qingfang Deng <dqfext@gmail.com>
+To: Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Qingfang Deng <qingfang.deng@siflower.com.cn>,
+	linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [RFC PATCH v2 1/2] spi: dt-bindings: add Siflower Quad SPI controller
+Date: Fri, 29 Mar 2024 13:46:56 +0800
+Message-Id: <20240329054657.1602450-1-dqfext@gmail.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240329053130.2822129-1-c-vankar@ti.com>
-References: <20240329053130.2822129-1-c-vankar@ti.com>
+In-Reply-To: <20240329015147.1481349-1-dqfext@gmail.com>
+References: <20240329015147.1481349-1-dqfext@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,153 +89,79 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
+From: Qingfang Deng <qingfang.deng@siflower.com.cn>
 
-The CPSW9G instance of the CPSW Ethernet Switch supports USXGMII mode
-with MAC Ports 1 and 2 of the instance, which are connected to ENET
-Expansion 1 and ENET Expansion 2 slots on the EVM respectively, through
-the Serdes2 instance of the SERDES.
+Add YAML devicetree bindings for Siflower Quad SPI controller.
 
-Enable CPSW9G MAC Ports 1 and 2 in fixed-link configuration USXGMII mode
-at 5 Gbps each.
-
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-Signed-off-by: Chintan Vankar <c-vankar@ti.com>
+Signed-off-by: Qingfang Deng <qingfang.deng@siflower.com.cn>
 ---
+v2: fix dt_binding_check reported errors
 
-Link to v5:
-https://lore.kernel.org/r/20240314072129.1520475-6-c-vankar@ti.com/
+ .../bindings/spi/siflower,qspi.yaml           | 54 +++++++++++++++++++
+ 1 file changed, 54 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/spi/siflower,qspi.yaml
 
-Changes from v5 to v6:
-- Updated order of properties in Device Nodes based on
-  https://docs.kernel.org/devicetree/bindings/dts-coding-style.html#order-of-properties-in-device-node
-
- arch/arm64/boot/dts/ti/Makefile               |  6 +-
- .../ti/k3-j784s4-evm-usxgmii-exp1-exp2.dtso   | 81 +++++++++++++++++++
- 2 files changed, 86 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-evm-usxgmii-exp1-exp2.dtso
-
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index f8e47278df43..2d798ef415e4 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -101,6 +101,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am69-sk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-quad-port-eth-exp1.dtbo
-+dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-usxgmii-exp1-exp2.dtbo
- 
- # Build time test only, enabled by CONFIG_OF_ALL_DTBS
- k3-am625-beagleplay-csi2-ov5640-dtbs := k3-am625-beagleplay.dtb \
-@@ -148,6 +149,8 @@ k3-j721s2-evm-pcie1-ep-dtbs := k3-j721s2-common-proc-board.dtb \
- 	k3-j721s2-evm-pcie1-ep.dtbo
- k3-j784s4-evm-quad-port-eth-exp1-dtbs := k3-j784s4-evm.dtb \
- 	k3-j784s4-evm-quad-port-eth-exp1.dtbo
-+k3-j784s4-evm-usxgmii-exp1-exp2.dtbs := k3-j784s4-evm.dtb \
-+	k3-j784s4-evm-usxgmii-exp1-exp2.dtbo
- dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
- 	k3-am625-beagleplay-csi2-tevi-ov5640.dtb \
- 	k3-am625-sk-csi2-imx219.dtb \
-@@ -169,7 +172,8 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
- 	k3-j721e-evm-pcie0-ep.dtb \
- 	k3-j721e-sk-csi2-dual-imx219-dtbs \
- 	k3-j721s2-evm-pcie1-ep.dtb \
--	k3-j784s4-evm-quad-port-eth-exp1.dtb
-+	k3-j784s4-evm-quad-port-eth-exp1.dtb \
-+	k3-j784s4-evm-usxgmii-exp1-exp2.dtb
- 
- # Enable support for device-tree overlays
- DTC_FLAGS_k3-am625-beagleplay += -@
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm-usxgmii-exp1-exp2.dtso b/arch/arm64/boot/dts/ti/k3-j784s4-evm-usxgmii-exp1-exp2.dtso
+diff --git a/Documentation/devicetree/bindings/spi/siflower,qspi.yaml b/Documentation/devicetree/bindings/spi/siflower,qspi.yaml
 new file mode 100644
-index 000000000000..d5f8c8531923
+index 000000000000..15ce25a2176a
 --- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm-usxgmii-exp1-exp2.dtso
-@@ -0,0 +1,81 @@
-+/* SPDX-License-Identifier: GPL-2.0-only OR MIT */
-+/**
-+ * DT Overlay for CPSW9G in dual port fixed-link USXGMII mode using ENET-1
-+ * and ENET-2 Expansion slots of J784S4 EVM.
-+ *
-+ * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
-+ */
++++ b/Documentation/devicetree/bindings/spi/siflower,qspi.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/spi/siflower,qspi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+/dts-v1/;
-+/plugin/;
++title: Siflower Quad Serial Peripheral Interface (QSPI)
 +
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/phy/phy-cadence.h>
-+#include <dt-bindings/phy/phy.h>
++maintainers:
++  - Qingfang Deng <qingfang.deng@siflower.com.cn>
 +
-+#include "k3-serdes.h"
++allOf:
++  - $ref: spi-controller.yaml#
 +
-+&{/} {
-+	aliases {
-+		ethernet1 = "/bus@100000/ethernet@c000000/ethernet-ports/port@1";
-+		ethernet2 = "/bus@100000/ethernet@c000000/ethernet-ports/port@2";
-+		ethernet3 = "/bus@100000/ethernet@c200000/ethernet-ports/port@1";
-+	};
-+};
++properties:
++  compatible:
++    const: siflower,qspi
 +
-+&main_cpsw0 {
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
++  reg:
++    maxItems: 1
 +
-+&main_cpsw0_port1 {
-+	phy-mode = "usxgmii";
-+	mac-address = [00 00 00 00 00 00];
-+	phys = <&cpsw0_phy_gmii_sel 1>, <&serdes2_usxgmii_link>;
-+	phy-names = "mac", "serdes";
-+	status = "okay";
-+	fixed-link {
-+		speed = <5000>;
-+		full-duplex;
-+	};
-+};
++  clocks:
++    maxItems: 1
 +
-+&main_cpsw0_port2 {
-+	phy-mode = "usxgmii";
-+	mac-address = [00 00 00 00 00 00];
-+	phys = <&cpsw0_phy_gmii_sel 2>, <&serdes2_usxgmii_link>;
-+	phy-names = "mac", "serdes";
-+	status = "okay";
-+	fixed-link {
-+		speed = <5000>;
-+		full-duplex;
-+	};
-+};
++  interrupts:
++    maxItems: 1
 +
-+&serdes_wiz2 {
-+	assigned-clock-parents = <&k3_clks 406 9>; /* Use 156.25 MHz clock for USXGMII */
-+	status = "okay";
-+};
++  '#address-cells':
++    const: 1
 +
-+&serdes2 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
++  '#size-cells':
++    const: 0
 +
-+	serdes2_usxgmii_link: phy@2 {
-+		reg = <2>;
-+		cdns,num-lanes = <2>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_USXGMII>;
-+		resets = <&serdes_wiz2 3>, <&serdes_wiz2 4>;
-+	};
-+};
++required:
++  - compatible
++  - reg
++  - clocks
++  - '#address-cells'
++  - '#size-cells'
 +
-+&serdes_ln_ctrl {
-+	idle-states = <J784S4_SERDES0_LANE0_PCIE1_LANE0>, <J784S4_SERDES0_LANE1_PCIE1_LANE1>,
-+		      <J784S4_SERDES0_LANE2_IP3_UNUSED>, <J784S4_SERDES0_LANE3_USB>,
-+		      <J784S4_SERDES1_LANE0_PCIE0_LANE0>, <J784S4_SERDES1_LANE1_PCIE0_LANE1>,
-+		      <J784S4_SERDES1_LANE2_PCIE0_LANE2>, <J784S4_SERDES1_LANE3_PCIE0_LANE3>,
-+		      <J784S4_SERDES2_LANE0_IP2_UNUSED>, <J784S4_SERDES2_LANE1_IP2_UNUSED>,
-+		      <J784S4_SERDES2_LANE2_QSGMII_LANE1>, <J784S4_SERDES2_LANE3_QSGMII_LANE2>;
-+};
++unevaluatedProperties: false
++
++examples:
++  - |
++    spi@c200000 {
++      compatible = "siflower,qspi";
++      reg = <0xc200000 0x1000>;
++      clocks = <&apb_clk>;
++      interrupts = <39>;
++      pinctrl-names = "default";
++      pinctrl-0 = <&spi0_pins>;
++      #address-cells = <1>;
++      #size-cells = <0>;
++    };
 -- 
 2.34.1
 
