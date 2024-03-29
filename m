@@ -1,166 +1,522 @@
-Return-Path: <devicetree+bounces-54695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54698-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE7BA8923D5
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 20:06:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F230C8923E0
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 20:11:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47CF61F232F2
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 19:06:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83801285A38
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 19:11:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE7E785629;
-	Fri, 29 Mar 2024 19:06:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59D7013AA5D;
+	Fri, 29 Mar 2024 19:10:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="inTMR2Ax"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b="OHr+0XMy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+Received: from mail-108-mta175.mxroute.com (mail-108-mta175.mxroute.com [136.175.108.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A7C56A010
-	for <devicetree@vger.kernel.org>; Fri, 29 Mar 2024 19:06:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B89C139CEB
+	for <devicetree@vger.kernel.org>; Fri, 29 Mar 2024 19:10:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=136.175.108.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711739209; cv=none; b=et14dwVIEswhdrJ+2Qkq/UGB7W0P0jEvZhP217RgaS2YgOqqolkU+UT9Zu1RZN2gqzCPBxS7xcpY87NoAaQcl/aR0tqnuhhtFaVrKfIgiVOTLtoZucnAC+H2z1NMcCh9GtDXxSem77pD7ATenfBVctpLWYEpJzZo8RPEvszmtMk=
+	t=1711739434; cv=none; b=lUc1YOh5ocpXpIRZycNUJa+uhJ3PJKdSX0Erezr3bbwcZu+Z/BrYv6E2mSHlP0bW2an9nvvhc6yv2t9X6VkwyUfyy0dh1D0wdSXPz4N828Q0oruo1zo736LR/hxFI2n684IEOGMfgtegP+sbf4tzG8Xaub0HGWV7SX/kKuaqOzY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711739209; c=relaxed/simple;
-	bh=Lpa/0EbpcSgU2C8N8Q28pKWafOZU+ilY+53iyrQPmBc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RnObfDEWwAV7nFasaHM9oGXA8pG9qBY6kKhxrC/NTvaQqxxUyi4IoKqF42wMFdxvPifEKAidrG7YTpjkFHtQYGxzJq/OohengEPpUKLgFUJUj6aMuGCTC+LOswvPl6QmyPTbhjWUI0jvIeUrbPw9lVlyFki89B/PTTObUPN0afo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=inTMR2Ax; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2d46dd5f222so33514751fa.1
-        for <devicetree@vger.kernel.org>; Fri, 29 Mar 2024 12:06:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1711739202; x=1712344002; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rWS9d526Zrdj4YY+GMvBiR62zSADNrt4nDy1cYfB8Ug=;
-        b=inTMR2AxLSaNWuA/6Rj9p6PNAbuSpwMyPKaw2SDajZQHFSzIczBuYbYkJ9/M7+rrlh
-         VNOALLkewyd2J/wdw4D/JL1rgUlIGY6R1WTHJa1001oZ8Blw16zroGQDpAuS8LVzmiSn
-         sICiUEo1Afl4h4X9byMAuGU2tA+nEVdhU+Jd+cVU9xvHoUP1OKKKWLTmfzcSGnoKpPU5
-         Tg4O6S6RmyTDMBFxut81hyMQ66YZuqFmuWvHorn8WsegQYxlflYXN7HMWFmK/9mNJeJE
-         yC2msO8sTpoulkoNuOGSTCmms530H0Lcm+h1QZM3/4JJznHnlQA4FQAVzb0kdkBlafSE
-         RDWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711739202; x=1712344002;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rWS9d526Zrdj4YY+GMvBiR62zSADNrt4nDy1cYfB8Ug=;
-        b=S1j8oj8vokZ8qS3vsHg2XzGJ81kAOmz0zh9B4sZDZMXPb8pIdOvb7pzxeJewR6pA9w
-         N+kmR4qNT2JAClIUZ6n5Ws2t0EixBJ6fjw5P+N9ZhPMHSzGzEZuj+r06MFyyCx9DOrir
-         o7fGXektK4R/suKwxp1gnSI1t6uSlDCDHZIsLWcAzv/DKKWWoEg1IY/5Vv9pAMvYwSDl
-         T8lAwMG4SIiJVPGk+zrco/r0L8abGXb9iVK3oG0/qA5T3upLG+WUqTrf4/7QUmnIeZ73
-         lCwk8bSFeSDydi3IfQA6T/7iXz1efSZeuZNvrITF/dgag6dpGlojvebWMNTClA2RfrqX
-         jaOw==
-X-Forwarded-Encrypted: i=1; AJvYcCXoi9dGJgwogloZUu3siZ3mtz15YRT+IXtzvtqc8rhFyj5zBTNsyhD5qVR3rU++gd3g6uUScWOziZnk9IJ7aCcXY8ACPGz21/rvkA==
-X-Gm-Message-State: AOJu0Yx0qG0E5b+AgqYHRL1QsUxyX8QwdxzOYwY88fbH0NcHJesnbzTm
-	zF+hyQgRsuMOsYgzEliDd5ta/KSBFgLcWmEIu6La7n1FML48XbOGHfGfU9PqkTCXidCIMdmSaU9
-	LCz4R1h4CbZR6s0+TQHxoity/u7h44WgNJ8V7rQ==
-X-Google-Smtp-Source: AGHT+IEncymz1fIe4aZNkqHiPFrFp27C+k10VmKIwyn8D6GDdQiCa+4mGHs+YiOjdBifpHBiIJIOFraWKU96UpARd3U=
-X-Received: by 2002:a2e:a4d5:0:b0:2d6:a244:1ba4 with SMTP id
- p21-20020a2ea4d5000000b002d6a2441ba4mr1664064ljm.33.1711739202463; Fri, 29
- Mar 2024 12:06:42 -0700 (PDT)
+	s=arc-20240116; t=1711739434; c=relaxed/simple;
+	bh=Un4X+zLJJzLHrv4Esu2U8j+M9ttjSq9ZkaMCRhBS3s4=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=jYTdTd7VzIS/DTorhRmzKrFg0z5EyeeZDTACizeh8ll5tvZBxj1/U5Lrch0Z3BeJfxY/W0TAmqlNMvaj0k63PgjIJLsycY7KzOOXjOgHdhbYtHl20zqSsnbWfo1h6+ZczjRuxaKzJlKEtYF3tv2lX0PyUYqsJhK+it082HF3W1c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com; spf=pass smtp.mailfrom=luigi311.com; dkim=pass (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b=OHr+0XMy; arc=none smtp.client-ip=136.175.108.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=luigi311.com
+Received: from filter006.mxroute.com ([136.175.111.2] filter006.mxroute.com)
+ (Authenticated sender: mN4UYu2MZsgR)
+ by mail-108-mta175.mxroute.com (ZoneMTA) with ESMTPSA id 18e8b9ee2cb0003bea.00e
+ for <devicetree@vger.kernel.org>
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+ Fri, 29 Mar 2024 19:10:29 +0000
+X-Zone-Loop: 15b2126e8c6cf875c60d15cd312e274ce65946358e23
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=luigi311.com; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+	References:Cc:To:From:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=IApkkPTo8C0uLvOUcCMGQzyR6HCobhZf4BEPJELUSSw=; b=OHr+0XMyeW7XRNih8ByfCThZ9u
+	PxafA1LNfuZxyxEGUTS8V7qrEhDBvwX9+9RcSAhnrWq52vCN0Chtatk/tiDskMD1aWg/m585K/69P
+	BT6lkPucJye6UPdt2SkZtrN4urxQBVHBL83Iyas3iWoyNG5pKlB394yllnqPsPTYUXnlnbT8cc5PZ
+	dUSkFYWeWvQ0/tfh/pVHYw76cpxNjAV6KnqPj0NAAsX/P0F8A4RXZXNOiPsPzHezsFGBC7FBrL+nv
+	x3sMMovwWFZJN9Kb03pww2ORznODSzfRcSlEaF3zz8L7yEPO8BHHoBihbbHuLdh6qoke85oOHK4MS
+	podH2GBA==;
+Message-ID: <9560bfd2-5fe0-43fa-a61f-b58f44c2cbb7@luigi311.com>
+Date: Fri, 29 Mar 2024 13:10:25 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240328-iio-backend-axi-dac-v1-0-afc808b3fde3@analog.com> <20240328-iio-backend-axi-dac-v1-7-afc808b3fde3@analog.com>
-In-Reply-To: <20240328-iio-backend-axi-dac-v1-7-afc808b3fde3@analog.com>
-From: David Lechner <dlechner@baylibre.com>
-Date: Fri, 29 Mar 2024 14:06:31 -0500
-Message-ID: <CAMknhBHA3LOhZicUCG32RyiV4+OROJymzm0Qc=wqhfo3u=8vnQ@mail.gmail.com>
-Subject: Re: [PATCH 07/10] dt-bindings: iio: dac: add bindings doc for AD9739A
-To: nuno.sa@analog.com
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	Dragos Bogdan <dragos.bogdan@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 09/23] media: i2c: imx258: Add support for running on 2
+ CSI data lanes
+Content-Language: en-US
+From: Luigi311 <git@luigi311.com>
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: linux-media@vger.kernel.org, dave.stevenson@raspberrypi.com,
+ jacopo.mondi@ideasonboard.com, mchehab@kernel.org, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org,
+ s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240327231710.53188-1-git@luigi311.com>
+ <20240327231710.53188-10-git@luigi311.com>
+ <ZgUoH4mhl3Ol280r@kekkonen.localdomain>
+ <493be807-819b-4871-a996-cbe0dd020065@luigi311.com>
+In-Reply-To: <493be807-819b-4871-a996-cbe0dd020065@luigi311.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authenticated-Id: git@luigi311.com
 
-On Thu, Mar 28, 2024 at 8:23=E2=80=AFAM Nuno Sa via B4 Relay
-<devnull+nuno.sa.analog.com@kernel.org> wrote:
->
-> From: Nuno Sa <nuno.sa@analog.com>
->
-> This adds the bindings documentation for the 14 bit
-> RF Digital-to-Analog converter.
->
-> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-> ---
->  .../devicetree/bindings/iio/dac/adi,ad9739a.yaml   | 88 ++++++++++++++++=
-++++++
->  MAINTAINERS                                        |  8 ++
->  2 files changed, 96 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad9739a.yaml b=
-/Documentation/devicetree/bindings/iio/dac/adi,ad9739a.yaml
-> new file mode 100644
-> index 000000000000..24bcec763a9b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad9739a.yaml
-> @@ -0,0 +1,88 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/dac/adi,ad9739a.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices AD9739A RF DAC
-> +
-> +maintainers:
-> +  - Dragos Bogdan <dragos.bogdan@analog.com>
-> +  - Nuno Sa <nuno.sa@analog.com>
-> +
-> +description: |
-> +  The AD9739A is a 14-bit, 2.5 GSPS high performance RF DACs that are ca=
-pable
-> +  of synthesizing wideband signals from dc up to 3 GHz.
-> +
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad=
-9737a_9739a.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,ad9739a
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
+On 3/28/24 17:42, Luigi311 wrote:
+> On 3/28/24 02:19, Sakari Ailus wrote:
+>> Hi Luigi311, Dave,
+>>
+>> On Wed, Mar 27, 2024 at 05:16:55PM -0600, git@luigi311.com wrote:
+>>> From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+>>>
+>>> Extends the driver to also support 2 data lanes.
+>>> Frame rates are obviously more restricted on 2 lanes, but some
+>>> hardware simply hasn't wired more up.
+>>>
+>>> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+>>> Signed-off-by: Luigi311 <git@luigi311.com>
+>>> ---
+>>>  drivers/media/i2c/imx258.c | 214 ++++++++++++++++++++++++++++++++-----
+>>>  1 file changed, 190 insertions(+), 24 deletions(-)
+>>>
+>>> diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
+>>> index 6ee7de079454..c65b9aad3b0a 100644
+>>> --- a/drivers/media/i2c/imx258.c
+>>> +++ b/drivers/media/i2c/imx258.c
+>>> @@ -86,12 +86,18 @@ struct imx258_reg_list {
+>>>  	const struct imx258_reg *regs;
+>>>  };
+>>>  
+>>> +enum {
+>>> +	IMX258_2_LANE_MODE,
+>>> +	IMX258_4_LANE_MODE,
+>>> +	IMX258_LANE_CONFIGS,
+>>> +};
+>>> +
+>>>  /* Link frequency config */
+>>>  struct imx258_link_freq_config {
+>>>  	u32 pixels_per_line;
+>>>  
+>>>  	/* PLL registers for this link frequency */
+>>> -	struct imx258_reg_list reg_list;
+>>> +	struct imx258_reg_list reg_list[IMX258_LANE_CONFIGS];
+>>>  };
+>>>  
+>>>  /* Mode : resolution and related config&values */
+>>> @@ -111,8 +117,34 @@ struct imx258_mode {
+>>>  	struct imx258_reg_list reg_list;
+>>>  };
+>>>  
+>>> -/* 4208x3120 needs 1267Mbps/lane, 4 lanes */
+>>> -static const struct imx258_reg mipi_1267mbps_19_2mhz[] = {
+>>> +/*
+>>> + * 4208x3120 @ 30 fps needs 1267Mbps/lane, 4 lanes.
+>>> + * To avoid further computation of clock settings, adopt the same per
+>>> + * lane data rate when using 2 lanes, thus allowing a maximum of 15fps.
+>>> + */
+>>> +static const struct imx258_reg mipi_1267mbps_19_2mhz_2l[] = {
+>>> +	{ 0x0136, 0x13 },
+>>> +	{ 0x0137, 0x33 },
+>>> +	{ 0x0301, 0x0A },
+>>> +	{ 0x0303, 0x02 },
+>>> +	{ 0x0305, 0x03 },
+>>> +	{ 0x0306, 0x00 },
+>>> +	{ 0x0307, 0xC6 },
+>>> +	{ 0x0309, 0x0A },
+>>> +	{ 0x030B, 0x01 },
+>>> +	{ 0x030D, 0x02 },
+>>> +	{ 0x030E, 0x00 },
+>>> +	{ 0x030F, 0xD8 },
+>>> +	{ 0x0310, 0x00 },
+>>> +
+>>> +	{ 0x0114, 0x01 },
+>>> +	{ 0x0820, 0x09 },
+>>> +	{ 0x0821, 0xa6 },
+>>> +	{ 0x0822, 0x66 },
+>>> +	{ 0x0823, 0x66 },
+>>> +};
+>>> +
+>>> +static const struct imx258_reg mipi_1267mbps_19_2mhz_4l[] = {
+>>>  	{ 0x0136, 0x13 },
+>>>  	{ 0x0137, 0x33 },
+>>>  	{ 0x0301, 0x05 },
+>>> @@ -126,16 +158,18 @@ static const struct imx258_reg mipi_1267mbps_19_2mhz[] = {
+>>>  	{ 0x030E, 0x00 },
+>>>  	{ 0x030F, 0xD8 },
+>>>  	{ 0x0310, 0x00 },
+>>> +
+>>> +	{ 0x0114, 0x03 },
+>>>  	{ 0x0820, 0x13 },
+>>>  	{ 0x0821, 0x4C },
+>>>  	{ 0x0822, 0xCC },
+>>>  	{ 0x0823, 0xCC },
+>>>  };
+>>>  
+>>> -static const struct imx258_reg mipi_1272mbps_24mhz[] = {
+>>> +static const struct imx258_reg mipi_1272mbps_24mhz_2l[] = {
+>>>  	{ 0x0136, 0x18 },
+>>>  	{ 0x0137, 0x00 },
+>>> -	{ 0x0301, 0x05 },
+>>> +	{ 0x0301, 0x0a },
+>>>  	{ 0x0303, 0x02 },
+>>>  	{ 0x0305, 0x04 },
+>>>  	{ 0x0306, 0x00 },
+>>> @@ -146,13 +180,59 @@ static const struct imx258_reg mipi_1272mbps_24mhz[] = {
+>>>  	{ 0x030E, 0x00 },
+>>>  	{ 0x030F, 0xD8 },
+>>>  	{ 0x0310, 0x00 },
+>>> +
+>>> +	{ 0x0114, 0x01 },
+>>>  	{ 0x0820, 0x13 },
+>>>  	{ 0x0821, 0x4C },
+>>>  	{ 0x0822, 0xCC },
+>>>  	{ 0x0823, 0xCC },
+>>>  };
+>>>  
+>>> -static const struct imx258_reg mipi_640mbps_19_2mhz[] = {
+>>> +static const struct imx258_reg mipi_1272mbps_24mhz_4l[] = {
+>>> +	{ 0x0136, 0x18 },
+>>> +	{ 0x0137, 0x00 },
+>>> +	{ 0x0301, 0x05 },
+>>> +	{ 0x0303, 0x02 },
+>>> +	{ 0x0305, 0x04 },
+>>> +	{ 0x0306, 0x00 },
+>>> +	{ 0x0307, 0xD4 },
+>>> +	{ 0x0309, 0x0A },
+>>> +	{ 0x030B, 0x01 },
+>>> +	{ 0x030D, 0x02 },
+>>> +	{ 0x030E, 0x00 },
+>>> +	{ 0x030F, 0xD8 },
+>>> +	{ 0x0310, 0x00 },
+>>> +
+>>> +	{ 0x0114, 0x03 },
+>>> +	{ 0x0820, 0x13 },
+>>> +	{ 0x0821, 0xE0 },
+>>> +	{ 0x0822, 0x00 },
+>>> +	{ 0x0823, 0x00 },
+>>> +};
+>>> +
+>>> +static const struct imx258_reg mipi_640mbps_19_2mhz_2l[] = {
+>>> +	{ 0x0136, 0x13 },
+>>> +	{ 0x0137, 0x33 },
+>>> +	{ 0x0301, 0x05 },
+>>> +	{ 0x0303, 0x02 },
+>>> +	{ 0x0305, 0x03 },
+>>> +	{ 0x0306, 0x00 },
+>>> +	{ 0x0307, 0x64 },
+>>> +	{ 0x0309, 0x0A },
+>>> +	{ 0x030B, 0x01 },
+>>> +	{ 0x030D, 0x02 },
+>>> +	{ 0x030E, 0x00 },
+>>> +	{ 0x030F, 0xD8 },
+>>> +	{ 0x0310, 0x00 },
+>>> +
+>>> +	{ 0x0114, 0x01 },
+>>> +	{ 0x0820, 0x05 },
+>>> +	{ 0x0821, 0x00 },
+>>> +	{ 0x0822, 0x00 },
+>>> +	{ 0x0823, 0x00 },
+>>> +};
+>>> +
+>>> +static const struct imx258_reg mipi_640mbps_19_2mhz_4l[] = {
+>>>  	{ 0x0136, 0x13 },
+>>>  	{ 0x0137, 0x33 },
+>>>  	{ 0x0301, 0x05 },
+>>> @@ -166,13 +246,37 @@ static const struct imx258_reg mipi_640mbps_19_2mhz[] = {
+>>>  	{ 0x030E, 0x00 },
+>>>  	{ 0x030F, 0xD8 },
+>>>  	{ 0x0310, 0x00 },
+>>> +
+>>> +	{ 0x0114, 0x03 },
+>>> +	{ 0x0820, 0x0A },
+>>> +	{ 0x0821, 0x00 },
+>>> +	{ 0x0822, 0x00 },
+>>> +	{ 0x0823, 0x00 },
+>>> +};
+>>> +
+>>> +static const struct imx258_reg mipi_642mbps_24mhz_2l[] = {
+>>> +	{ 0x0136, 0x18 },
+>>> +	{ 0x0137, 0x00 },
+>>> +	{ 0x0301, 0x0A },
+>>> +	{ 0x0303, 0x02 },
+>>> +	{ 0x0305, 0x04 },
+>>> +	{ 0x0306, 0x00 },
+>>> +	{ 0x0307, 0x6B },
+>>> +	{ 0x0309, 0x0A },
+>>> +	{ 0x030B, 0x01 },
+>>> +	{ 0x030D, 0x02 },
+>>> +	{ 0x030E, 0x00 },
+>>> +	{ 0x030F, 0xD8 },
+>>> +	{ 0x0310, 0x00 },
+>>> +
+>>> +	{ 0x0114, 0x01 },
+>>>  	{ 0x0820, 0x0A },
+>>>  	{ 0x0821, 0x00 },
+>>>  	{ 0x0822, 0x00 },
+>>>  	{ 0x0823, 0x00 },
+>>>  };
+>>>  
+>>> -static const struct imx258_reg mipi_642mbps_24mhz[] = {
+>>> +static const struct imx258_reg mipi_642mbps_24mhz_4l[] = {
+>>>  	{ 0x0136, 0x18 },
+>>>  	{ 0x0137, 0x00 },
+>>>  	{ 0x0301, 0x05 },
+>>> @@ -186,6 +290,8 @@ static const struct imx258_reg mipi_642mbps_24mhz[] = {
+>>>  	{ 0x030E, 0x00 },
+>>>  	{ 0x030F, 0xD8 },
+>>>  	{ 0x0310, 0x00 },
+>>> +
+>>> +	{ 0x0114, 0x03 },
+>>>  	{ 0x0820, 0x0A },
+>>>  	{ 0x0821, 0x00 },
+>>>  	{ 0x0822, 0x00 },
+>>> @@ -240,7 +346,6 @@ static const struct imx258_reg mode_common_regs[] = {
+>>>  	{ 0x5F05, 0xED },
+>>>  	{ 0x0112, 0x0A },
+>>>  	{ 0x0113, 0x0A },
+>>> -	{ 0x0114, 0x03 },
+>>>  	{ 0x0342, 0x14 },
+>>>  	{ 0x0343, 0xE8 },
+>>>  	{ 0x0344, 0x00 },
+>>> @@ -359,11 +464,13 @@ enum {
+>>>  
+>>>  /*
+>>>   * pixel_rate = link_freq * data-rate * nr_of_lanes / bits_per_sample
+>>> - * data rate => double data rate; number of lanes => 4; bits per pixel => 10
+>>> + * data rate => double data rate;
+>>> + * number of lanes => (configurable 2 or 4);
+>>> + * bits per pixel => 10
+>>>   */
+>>> -static u64 link_freq_to_pixel_rate(u64 f)
+>>> +static u64 link_freq_to_pixel_rate(u64 f, unsigned int nlanes)
+>>>  {
+>>> -	f *= 2 * 4;
+>>> +	f *= 2 * nlanes;
+>>>  	do_div(f, 10);
+>>>  
+>>>  	return f;
+>>> @@ -393,15 +500,27 @@ static const struct imx258_link_freq_config link_freq_configs_19_2[] = {
+>>>  	[IMX258_LINK_FREQ_1267MBPS] = {
+>>>  		.pixels_per_line = IMX258_PPL_DEFAULT,
+>>>  		.reg_list = {
+>>> -			.num_of_regs = ARRAY_SIZE(mipi_1267mbps_19_2mhz),
+>>> -			.regs = mipi_1267mbps_19_2mhz,
+>>> +			[IMX258_2_LANE_MODE] = {
+>>> +				.num_of_regs = ARRAY_SIZE(mipi_1267mbps_19_2mhz_2l),
+>>> +				.regs = mipi_1267mbps_19_2mhz_2l,
+>>> +			},
+>>> +			[IMX258_4_LANE_MODE] = {
+>>> +				.num_of_regs = ARRAY_SIZE(mipi_1267mbps_19_2mhz_4l),
+>>> +				.regs = mipi_1267mbps_19_2mhz_4l,
+>>> +			},
+>>>  		}
+>>>  	},
+>>>  	[IMX258_LINK_FREQ_640MBPS] = {
+>>>  		.pixels_per_line = IMX258_PPL_DEFAULT,
+>>>  		.reg_list = {
+>>> -			.num_of_regs = ARRAY_SIZE(mipi_640mbps_19_2mhz),
+>>> -			.regs = mipi_640mbps_19_2mhz,
+>>> +			[IMX258_2_LANE_MODE] = {
+>>> +				.num_of_regs = ARRAY_SIZE(mipi_640mbps_19_2mhz_2l),
+>>> +				.regs = mipi_640mbps_19_2mhz_2l,
+>>> +			},
+>>> +			[IMX258_4_LANE_MODE] = {
+>>> +				.num_of_regs = ARRAY_SIZE(mipi_640mbps_19_2mhz_4l),
+>>> +				.regs = mipi_640mbps_19_2mhz_4l,
+>>> +			},
+>>>  		}
+>>>  	},
+>>>  };
+>>> @@ -410,15 +529,27 @@ static const struct imx258_link_freq_config link_freq_configs_24[] = {
+>>>  	[IMX258_LINK_FREQ_1267MBPS] = {
+>>>  		.pixels_per_line = IMX258_PPL_DEFAULT,
+>>>  		.reg_list = {
+>>> -			.num_of_regs = ARRAY_SIZE(mipi_1272mbps_24mhz),
+>>> -			.regs = mipi_1272mbps_24mhz,
+>>> +			[IMX258_2_LANE_MODE] = {
+>>> +				.num_of_regs = ARRAY_SIZE(mipi_1272mbps_24mhz_2l),
+>>> +				.regs = mipi_1272mbps_24mhz_2l,
+>>> +			},
+>>> +			[IMX258_4_LANE_MODE] = {
+>>> +				.num_of_regs = ARRAY_SIZE(mipi_1272mbps_24mhz_4l),
+>>> +				.regs = mipi_1272mbps_24mhz_4l,
+>>> +			},
+>>>  		}
+>>>  	},
+>>>  	[IMX258_LINK_FREQ_640MBPS] = {
+>>>  		.pixels_per_line = IMX258_PPL_DEFAULT,
+>>>  		.reg_list = {
+>>> -			.num_of_regs = ARRAY_SIZE(mipi_642mbps_24mhz),
+>>> -			.regs = mipi_642mbps_24mhz,
+>>> +			[IMX258_2_LANE_MODE] = {
+>>> +				.num_of_regs = ARRAY_SIZE(mipi_642mbps_24mhz_2l),
+>>> +				.regs = mipi_642mbps_24mhz_2l,
+>>> +			},
+>>> +			[IMX258_4_LANE_MODE] = {
+>>> +				.num_of_regs = ARRAY_SIZE(mipi_642mbps_24mhz_4l),
+>>> +				.regs = mipi_642mbps_24mhz_4l,
+>>> +			},
+>>>  		}
+>>>  	},
+>>>  };
+>>> @@ -477,6 +608,7 @@ struct imx258 {
+>>>  
+>>>  	const struct imx258_link_freq_config *link_freq_configs;
+>>>  	const s64 *link_freq_menu_items;
+>>> +	unsigned int nlanes;
+>>>  
+>>>  	/*
+>>>  	 * Mutex for serialized access:
+>>> @@ -782,7 +914,7 @@ static int imx258_set_pad_format(struct v4l2_subdev *sd,
+>>>  		__v4l2_ctrl_s_ctrl(imx258->link_freq, mode->link_freq_index);
+>>>  
+>>>  		link_freq = imx258->link_freq_menu_items[mode->link_freq_index];
+>>> -		pixel_rate = link_freq_to_pixel_rate(link_freq);
+>>> +		pixel_rate = link_freq_to_pixel_rate(link_freq, imx258->nlanes);
+>>>  		__v4l2_ctrl_s_ctrl_int64(imx258->pixel_rate, pixel_rate);
+>>>  		/* Update limits and set FPS to default */
+>>>  		vblank_def = imx258->cur_mode->vts_def -
+>>> @@ -811,11 +943,13 @@ static int imx258_start_streaming(struct imx258 *imx258)
+>>>  {
+>>>  	struct i2c_client *client = v4l2_get_subdevdata(&imx258->sd);
+>>>  	const struct imx258_reg_list *reg_list;
+>>> +	const struct imx258_link_freq_config *link_freq_cfg;
+>>>  	int ret, link_freq_index;
+>>>  
+>>>  	/* Setup PLL */
+>>>  	link_freq_index = imx258->cur_mode->link_freq_index;
+>>> -	reg_list = &imx258->link_freq_configs[link_freq_index].reg_list;
+>>> +	link_freq_cfg = &imx258->link_freq_configs[link_freq_index];
+>>> +	reg_list = &link_freq_cfg->reg_list[imx258->nlanes == 2 ? 0 : 1];
+>>>  	ret = imx258_write_regs(imx258, reg_list->regs, reg_list->num_of_regs);
+>>>  	if (ret) {
+>>>  		dev_err(&client->dev, "%s failed to set plls\n", __func__);
+>>> @@ -1033,9 +1167,11 @@ static int imx258_init_controls(struct imx258 *imx258)
+>>>  		vflip->flags |= V4L2_CTRL_FLAG_READ_ONLY;
+>>>  
+>>>  	pixel_rate_max =
+>>> -		link_freq_to_pixel_rate(imx258->link_freq_menu_items[0]);
+>>> +		link_freq_to_pixel_rate(imx258->link_freq_menu_items[0],
+>>> +					imx258->nlanes);
+>>>  	pixel_rate_min =
+>>> -		link_freq_to_pixel_rate(imx258->link_freq_menu_items[1]);
+>>> +		link_freq_to_pixel_rate(imx258->link_freq_menu_items[1],
+>>> +					imx258->nlanes);
+>>>  	/* By default, PIXEL_RATE is read only */
+>>>  	imx258->pixel_rate = v4l2_ctrl_new_std(ctrl_hdlr, &imx258_ctrl_ops,
+>>>  				V4L2_CID_PIXEL_RATE,
+>>> @@ -1132,6 +1268,10 @@ static int imx258_get_regulators(struct imx258 *imx258,
+>>>  static int imx258_probe(struct i2c_client *client)
+>>>  {
+>>>  	struct imx258 *imx258;
+>>> +	struct fwnode_handle *endpoint;
+>>> +	struct v4l2_fwnode_endpoint ep = {
+>>> +		.bus_type = V4L2_MBUS_CSI2_DPHY
+>>> +	};
+>>>  	int ret;
+>>>  	u32 val = 0;
+>>>  
+>>> @@ -1172,13 +1312,35 @@ static int imx258_probe(struct i2c_client *client)
+>>>  		return -EINVAL;
+>>>  	}
+>>>  
+>>> +	endpoint = fwnode_graph_get_next_endpoint(dev_fwnode(&client->dev), NULL);
+>>> +	if (!endpoint) {
+>>> +		dev_err(&client->dev, "Endpoint node not found\n");
+>>> +		return -EINVAL;
+>>> +	}
+>>> +
+>>> +	ret = v4l2_fwnode_endpoint_alloc_parse(endpoint, &ep);
+>>
+>> Here you're obtaining the list of supported link frequencies from the
+>> firmware but it is not validated (nor it was validated by the driver
+>> previously). I'd regard that a driver bug but fixing it at this point could
+>> introduce adverse effects elsewhere.
+>>
+>> I think what I'd do here is that I'd ignore the issue if there are no
+>> frequencies defined for the endpoint but if there are, then enable only
+>> those that are listed in the endpoint.
+>>
+>> Could you add a patch to do this, please? v4l2_link_freq_to_bitmap() has
+>> been recently added to facilitate this.
+>>
+> 
+> I can give this a try, it would be similar to this patch that you submitted
+> earlier for the imx319 here
+> https://github.com/torvalds/linux/commit/726a09c1b6890887b7388745a26c8e93867780ca
+> right? 
+> 
 
-I also see an IRQ pin on the datasheet. Do we need an interrupts
-property for that?
+I believe I got this implemented, added in that v4l2_link_freq_to_bitmap()
+and it failed to probe the imx258 device due to missing frequencies so I
+checked the device dts and the imx258 had no link-frequencies specified so
+added in 321000000 and 636000000 to match the 24mhz and it worked, I then
+swapped it over to bogus numbers 311000000 and 626000000 and it complained
+about no matching link frequencies found so it failed to probe. Looks
+like its working with that new function now. Will include in next revision
 
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +
-> +  vdd_3_3-supply:
-> +    description: 3.3V Digital input supply.
+>>> +	fwnode_handle_put(endpoint);
+>>> +	if (ret) {
+>>> +		dev_err(&client->dev, "Parsing endpoint node failed\n");
+>>> +		return ret;
+>>> +	}
+>>> +
+>>> +	/* Get number of data lanes */
+>>> +	imx258->nlanes = ep.bus.mipi_csi2.num_data_lanes;
+>>> +	if (imx258->nlanes != 2 && imx258->nlanes != 4) {
+>>> +		dev_err(&client->dev, "Invalid data lanes: %u\n",
+>>> +			imx258->nlanes);
+>>> +		ret = -EINVAL;
+>>> +		goto error_endpoint_free;
+>>> +	}
+>>> +
+>>>  	/* Initialize subdev */
+>>>  	v4l2_i2c_subdev_init(&imx258->sd, client, &imx258_subdev_ops);
+>>>  
+>>>  	/* Will be powered off via pm_runtime_idle */
+>>>  	ret = imx258_power_on(&client->dev);
+>>>  	if (ret)
+>>> -		return ret;
+>>> +		goto error_endpoint_free;
+>>>  
+>>>  	/* Check module identity */
+>>>  	ret = imx258_identify_module(imx258);
+>>> @@ -1211,6 +1373,7 @@ static int imx258_probe(struct i2c_client *client)
+>>>  	pm_runtime_set_active(&client->dev);
+>>>  	pm_runtime_enable(&client->dev);
+>>>  	pm_runtime_idle(&client->dev);
+>>> +	v4l2_fwnode_endpoint_free(&ep);
+>>>  
+>>>  	return 0;
+>>>  
+>>> @@ -1223,6 +1386,9 @@ static int imx258_probe(struct i2c_client *client)
+>>>  error_identify:
+>>>  	imx258_power_off(&client->dev);
+>>>  
+>>> +error_endpoint_free:
+>>> +	v4l2_fwnode_endpoint_free(&ep);
+>>> +
+>>>  	return ret;
+>>>  }
+>>>  
+>>
+> 
 
-vdd33-supply would better match the datasheet name
-
-> +
-> +  vdd-supply:
-> +    description: 1.8V Digital input supply.
-> +
-> +  vdda-supply:
-> +    description: 3.3V Analog input supply.
-> +
-> +  vddc-supply:
-> +    description: 1.8V Clock input supply.
-
-I see a VREF voltage reference input in the datasheet. Do we need a vref-su=
-pply?
 
