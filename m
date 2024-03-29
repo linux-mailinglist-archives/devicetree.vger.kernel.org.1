@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-54699-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54700-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15841892437
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 20:28:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F32EF89245D
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 20:39:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7F774B245C2
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 19:28:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6B931B2453A
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 19:39:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5472A13341C;
-	Fri, 29 Mar 2024 19:27:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9766F139566;
+	Fri, 29 Mar 2024 19:39:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kxcmKyo8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oJ02VNEm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E59E1386DC
-	for <devicetree@vger.kernel.org>; Fri, 29 Mar 2024 19:27:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2A513B78E
+	for <devicetree@vger.kernel.org>; Fri, 29 Mar 2024 19:39:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711740471; cv=none; b=Y/YRs/ohcKtVPNrhpEzdrS3JOFMabnthwRQvwQlvLttCgJRUoFca3dYkXGDTu0jnvc1ubrMzaC+lZDdUl7BWRTfzidMlbPhJ01jUEmw2+SGoZGrYa8Lroaehkuc52TN33Zp4mrjsuEMBvtkr6zJKn3fxxcUXdIjqCRwXW/rr9dc=
+	t=1711741159; cv=none; b=F+ItGijGh6YTCInRrN/ZpZDNtGuSWAR9MdI7YUfvOKqHXVxAqS0VDIiB9mJJjEYWfXokjLNaihML2yNFZBtJ6Kn/dHIyWiaFdEFWW7XDU72QuPi/VX2NBG8Y5DT74lhUpQdJDkDfPsdmBQCDq+1G4AmG94HJM6cfeCIGcWmChpc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711740471; c=relaxed/simple;
-	bh=HQu5RRVz47jUdl+Bxn7MiN5S9bgEl42EXv8NwJt6Wow=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=E/uRl3MoI9dzuuJd/+AZriU1k68bQvltMwIZpN951Z9qPIyY3yvO01+pm+XycOgZAKkumEJA2ZMga4HTFeayIGgGCjQRfVwcgkDfh6UdAZ0u2nxfPoch6BqvCYVv5e73YMzIrbMHNqsQYRMJ+nH9lUE29qDyhrnaxRCXLKO+afU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kxcmKyo8; arc=none smtp.client-ip=209.85.128.51
+	s=arc-20240116; t=1711741159; c=relaxed/simple;
+	bh=CrStgvXaTGcmXplcd8wi6e4lUZGlX8xL6hhMYZE04tA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SMLXYT3QtZ3rcUH5N+6hUqT5b2HnS07SKZzMR5L75Ka88iYRA0JajdkylE0xPTvfueTDSTSwkaUYTqrpojltn09jtdAAlhN+vcCIafmgZNt8L9R3hVJrb/yYJHub5b4VM+hJGUZXsxlesd7NFgwscfk817WBY0XzmEiG0mh2yGc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oJ02VNEm; arc=none smtp.client-ip=209.85.221.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-41495dcea8eso15480505e9.3
-        for <devicetree@vger.kernel.org>; Fri, 29 Mar 2024 12:27:49 -0700 (PDT)
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3416a975840so1731920f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 29 Mar 2024 12:39:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711740468; x=1712345268; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711741156; x=1712345956; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=ypH1YCAf8GB4uY1YvbslKIBvLhcq3mEbEzkW3A0+meY=;
-        b=kxcmKyo83US51szYlhKSYPQmbwbLWaLBbEuB6Fy+sbILF1zuIgHx36v+F4kQGfeVwg
-         IV4HzCfdCQAIurHS9ZGrIV5SqOg/ze7GAB0gTq6SWj2VEqhK4zm9lMubdEu1mpkAheqd
-         v24gpHhFAHlTjPlyW5xPviZg/EZAxGmDjka6wFzvswB9FvX7XR/c/h9M8boWqBdRWW+X
-         QUpxKHxfmahnXqcdkQA7dNUdPWdlLJ6ZrZV4OA1UyglZbZYpzexJSvBzFs1KBRbjGTkK
-         BI1oYF4/oNf+pl/KMBi0rIGgF91rlah29fOdV5n0nRY8h2V0IKe+/fQS9M34SQXUJVej
-         a1PQ==
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=1TEWjSar5WnoW3LAFrt1vpueSTUj98QnSodEzXmvlKQ=;
+        b=oJ02VNEmAi4WEFWRRz6TDOF3ENj1tA5gu4SROuhzQnaZMgdziT4qwP6i2u94vWCx1b
+         UT6X6eiPhtrQUzvF/OqEs5SGoBhvJen0yrcWn9thJ9uvLBhd8CP5q8ICQ2gGzOyIxMSH
+         +QQamCkhRf6ZLTIXJ91ZpDQUdhTpqVnOOyTfPVGyhiPvN+JULgaeHhRPP/35NuFu45uZ
+         E+NqfDtprRqkaduhYSniPsPAOjD8YiRsvhQKlcOEzRGeS/eTN4tp2b1RXputMJ0Za32V
+         tGv7dUPKJO64etRdfBZSdZU1XHgk8+KiBRWNZ2J8LXenO5UF65Wcm6qvXYA0sl3SdmgL
+         A/Ew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711740468; x=1712345268;
+        d=1e100.net; s=20230601; t=1711741156; x=1712345956;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ypH1YCAf8GB4uY1YvbslKIBvLhcq3mEbEzkW3A0+meY=;
-        b=YOYWywDQRTwZbP5+Pm5Yw46cLIF+9BPYbDUPfoZ/zvzrcfI6bvEIHtQDZNpqCCDCfc
-         ApX5c2XZdL2CWX7/5UicPcWdUQO/dSN9o522Xln2kcINkPLxYYprpSTEIvzGAD9Clpg4
-         J9+j7DH2MvqgWJytELMDqiqvug2eAs8mYfFJV6++6v9paFOhkWkwYoXGpIxdSomYfi8g
-         BHUtbLSEgRtwo0+wqJUGsZQv0OyZLMhwild0atKuDbzM7NFueJHZH2rGi7wlSZ31L8H7
-         +5Eh+wGhwMRXl93t3NFNRYzWzNlDUJnGB4hJjSqCFq5l1GleRtK6UKAyjFcX4EZAtBuR
-         7KmA==
-X-Forwarded-Encrypted: i=1; AJvYcCUqXcMbByjMkyAq3pPiSL7M2i2emFYofJs8Dy3F4eMOdDni/Om6rJ1dcRCpDPsjw6ZYz67lTmJLnPOZFWzLN/3Lbh3oMtiGPj9g9w==
-X-Gm-Message-State: AOJu0Yx6gY1oZNdHvjmxB9CB7S8EKgQwhlqqUAxOSJK1vvz2IQWGNoC3
-	hXUswgC7kMrKe4SdEJfuEItOWKdobih3AjBP1dHwg1npaTJLZd2B5lSK0TIFHic=
-X-Google-Smtp-Source: AGHT+IFU5eq/3/POHnnKuPASTFQW+rfsPzR0soL9KpW9Y3B6mgDpecIBRzjTWMbYFtBtQZDBXZtEfA==
-X-Received: by 2002:a05:600c:470e:b0:414:9141:14ba with SMTP id v14-20020a05600c470e00b00414914114bamr2490718wmo.22.1711740467493;
-        Fri, 29 Mar 2024 12:27:47 -0700 (PDT)
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1TEWjSar5WnoW3LAFrt1vpueSTUj98QnSodEzXmvlKQ=;
+        b=nUN2AfHvFZZcoXOYTD2BhNiq+Pukycc9j38ssnEYB5CCW8/T5cNp9BtUxXkg/1P3se
+         SgeOWAR6PTTdQyuI/7kNwiNGnZlaHfThZuILmOjIs+A64B0pnXvqGhXv54Dhj+QWzPIC
+         WoihKlLJtFt41h6a5WgpVMS0iv4Oq1kkS5Kg317v9Amr6T44Mkb0hJlTE4iXDd8VELeT
+         uGfjVezPj2ZOtgBEo7yMX1HQEQQ1D3lF6D9zv3qPM6JW2v/cDidQBR+DaM01RYtX9jy2
+         MbXQ8axAe4R50DDwfddtgOAtswURShBEzeBfDfpnoV0Qj0xeA7Ysq95urIzeA+XUBH1Q
+         pWPw==
+X-Gm-Message-State: AOJu0YwBolN8pBCj6/5YWGi3aCQpB0RHYLv862nSlEAGG784Us5NhC57
+	L6p9KpMglZkNcGoAwpl14z/Fo6e0on+rn7xJftZh4gdiK2ZYU3pSu2M5Cvz73eM=
+X-Google-Smtp-Source: AGHT+IFCe3Mu1Zh5e8D3zZ/2Q8YlZ3Cmb9W8UIRY+BPhjG9i1laMsXQkMJCR84DFSERK3xtlj6jryw==
+X-Received: by 2002:a5d:4142:0:b0:343:35ae:e7a3 with SMTP id c2-20020a5d4142000000b0034335aee7a3mr2253745wrq.32.1711741155957;
+        Fri, 29 Mar 2024 12:39:15 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id l6-20020a05600c4f0600b0041469869d11sm9342245wmq.47.2024.03.29.12.27.45
+        by smtp.gmail.com with ESMTPSA id d13-20020adfe88d000000b0033e5c54d0d9sm4801452wrm.38.2024.03.29.12.39.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Mar 2024 12:27:46 -0700 (PDT)
-Message-ID: <bfa6150b-e27e-41c3-a1a7-41e46f52f6ea@linaro.org>
-Date: Fri, 29 Mar 2024 20:27:44 +0100
+        Fri, 29 Mar 2024 12:39:15 -0700 (PDT)
+Message-ID: <927ad2cb-3b41-4eda-b930-856be64ae9ba@linaro.org>
+Date: Fri, 29 Mar 2024 20:39:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,13 +76,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: pci: altera: covert to yaml
-To: matthew.gerlach@linux.intel.com, joyce.ooi@intel.com,
- bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240329170031.3379524-1-matthew.gerlach@linux.intel.com>
+Subject: Re: [PATCH 1/3] dt-bindings: reset: Add Amlogic T7 Reset Controller
+To: kelvin.zhang@amlogic.com, Philipp Zabel <p.zabel@pengutronix.de>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Zelong Dong <zelong.dong@amlogic.com>
+References: <20240329-t7-reset-v1-0-4c6e2e68359e@amlogic.com>
+ <20240329-t7-reset-v1-1-4c6e2e68359e@amlogic.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -130,180 +135,63 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240329170031.3379524-1-matthew.gerlach@linux.intel.com>
+In-Reply-To: <20240329-t7-reset-v1-1-4c6e2e68359e@amlogic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/03/2024 18:00, matthew.gerlach@linux.intel.com wrote:
-> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+On 29/03/2024 10:17, Kelvin Zhang via B4 Relay wrote:
+> From: Zelong Dong <zelong.dong@amlogic.com>
 > 
-> Covert the device tree bindings for the Altera Root
-> Port controller from text to yaml.
+> Add a new compatible and the related header file
+> for Amlogic T7 Reset Controller.
 > 
-> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+> Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
 > ---
+>  .../bindings/reset/amlogic,meson-reset.yaml        |   1 +
+>  include/dt-bindings/reset/amlogic,t7-reset.h       | 197 +++++++++++++++++++++
+>  2 files changed, 198 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+> index f0c6c0df0ce3..fefe343e5afe 100644
+> --- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+> +++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+> @@ -19,6 +19,7 @@ properties:
+>        - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
+>        - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
+>        - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
+> +      - amlogic,t7-reset # Reset Controller on T7 and compatible SoCs
+>  
 
-...
+If there is going to be any resend, please drop the comment. It's not
+really helpful and makes it trickier to read.
 
-> diff --git a/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml b/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
+>    reg:
+>      maxItems: 1
+> diff --git a/include/dt-bindings/reset/amlogic,t7-reset.h b/include/dt-bindings/reset/amlogic,t7-reset.h
 > new file mode 100644
-> index 000000000000..8f1ad1362ad1
+> index 000000000000..ca4a832eeeec
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
-> @@ -0,0 +1,106 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright (C) 2024, Intel Corporation
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/altr,pcie-root-port.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +++ b/include/dt-bindings/reset/amlogic,t7-reset.h
+> @@ -0,0 +1,197 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+> +/*
+> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
+> + */
 > +
-> +title: Altera PCIe Root Port
+> +#ifndef _DT_BINDINGS_AMLOGIC_T7_RESET_H
+> +#define _DT_BINDINGS_AMLOGIC_T7_RESET_H
 > +
-> +maintainers:
-> +  - Matthew Gerlach <matthew.gerlach@linux.intel.com>
-> +
-> +allOf:
-> +  - $ref: /schemas/pci/pci-bus.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - altr,pcie-root-port-1.0
-> +          - altr,pcie-root-port-2.0
-> +
-> +  reg:
-> +    minItems: 2
-> +    maxItems: 3
-> +
-> +  reg-names:
-> +    description:
-> +      TX slave port region (Txs)
-> +      Control register access region (Cra)
-> +      Hard IP region if altr,pcie-root-port-2.0 (Hip)
+> +/* RESET0 */
+> +/*					0-3	*/
 
-All these go to reg as description of items.
+I assume this matches existing drivers which do not use IDs but map the
+binding to hardware value? I remember we talked about changing it, so if
+something happened about this and it could be changed: please change.
 
-Both - reg and reg-names - need constraints per variant in
-allOf:if:then:. Move allOf: to bottom of file, just like example-schema
-is showing.
+Otherwise, it's fine:
 
-
-> + 
-> +    items:
-> +      - const: Txs
-> +      - const: Cra
-> +      - const: Hip
-> +    minItems: 2
-> +
-> +  device_type:
-> +    const: pci
-
-I don't think you need it.
-
-> +
-> +  "#address-cells":
-> +    const: 3
-
-Drop
-
-> +
-> +  "#size-cells":
-> +    const: 2
-
-Drop
-
-> +
-> +  interrupts:
-> +    minItems: 1
-
-This should be maxItems.
-
-> +
-> +  interrupt-map-mask:
-> +    items:
-> +      - const: 0
-> +      - const: 0
-> +      - const: 0
-> +      - const: 7
-
-I guess as well.
-
-> +
-> +  interrupt-map:
-> +    maxItems: 4
-> +
-> +  "#interrupt-cells":
-> +    const: 1
-
-Drop
-
-> +
-> +  msi-parent:
-> +    description: Link to the hardware entity that serves as the MSI controller.
-
-Just true.
-
-Please open existing, recent PCI bindings and look how it is done.
-
-> +
-> +  bus-range:
-> +    description: PCI bus numbers covered.
-
-Drop
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - device_type
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - interrupts
-> +  - interrupt-map
-> +  - interrupt-map-mask
-> +  - "#interrupt-cells"
-
-This also needs cleaning.
-
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    pcie_0: pcie@c00000000 {
-> +        compatible = "altr,pcie-root-port-1.0";
-> +        reg = <0xc0000000 0x20000000>,
-> +            <0xff220000 0x00004000>;
-
-Misaligned.
-
-> +        reg-names = "Txs", "Cra";
-> +        interrupt-parent = <&hps_0_arm_gic_0>;
-> +        interrupts = <0 40 4>;
-
-Use defines for common constnats.
-
-> +        #interrupt-cells = <1>;
-> +        bus-range = <0x0 0xFF>;
-
-Lowercase hex
-
-> +        device_type = "pci";
-> +        msi-parent = <&msi_to_gic_gen_0>;
-> +        #address-cells = <3>;
-> +        #size-cells = <2>;
-> +        interrupt-map-mask = <0 0 0 7>;
-> +        interrupt-map = <0 0 0 1 &pcie_intc 1>,
-> +                        <0 0 0 2 &pcie_intc 2>,
-> +                        <0 0 0 3 &pcie_intc 3>,
-> +                        <0 0 0 4 &pcie_intc 4>;
-> +        ranges = <0x82000000 0x00000000 0x00000000 0xc0000000 0x00000000 0x10000000
-> +              0x82000000 0x00000000 0x10000000 0xd0000000 0x00000000 0x10000000>;
-
-Misaligned.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
