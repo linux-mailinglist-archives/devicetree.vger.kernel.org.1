@@ -1,395 +1,218 @@
-Return-Path: <devicetree+bounces-54604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54591-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2EDA891C89
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 14:52:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BEBC891BC6
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 14:33:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 252A51F2250F
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 13:52:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CDF71C26871
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 13:33:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9105A189A53;
-	Fri, 29 Mar 2024 12:42:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFD881465B2;
+	Fri, 29 Mar 2024 12:40:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Nm+Bbixr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="da6CrC5I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 474C9188A9E
-	for <devicetree@vger.kernel.org>; Fri, 29 Mar 2024 12:42:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A21B51465AB;
+	Fri, 29 Mar 2024 12:40:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711716145; cv=none; b=bH2MhjFsChkgpHP7dAeb+9UeRWTxH0kWQ82ifq6z95pFmyzPc1N5O+IyqjcwGKJkaXNl6KESSM4Tt+OC6D/XPB8U5VUcdsho17I9HIk/hj9WKvu89Cbg+F8EB1Hehz3bJ9TtGXWc4CszjaaFnBfKJy+YVCqEuevi6wHUo/lK1u0=
+	t=1711716008; cv=none; b=ok3yxt/rXamV1y0pKBjo1msUtQePLs/V8+GWTx7RM/eq8ctYBtLeViokxzmie1aprqaNAUHmvP78/vUo5GiW6gLt1k30DjaKY5oN6cv1v8tdSk6x6CuKYNGoRoNTRttJPxafgwPNPQdP23ZmqtNtT5UgLhaT+6ZiwJNNIbMCqSY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711716145; c=relaxed/simple;
-	bh=aW75Pf5PCkrJMf1ksZuRg3I8Ka7EdMqN9hNvjaTVqXo=;
-	h=References:From:To:Cc:Subject:Date:In-reply-to:Message-ID:
-	 MIME-Version:Content-Type; b=kuQRVNhsVD+/KMu7QHl6mIDM1fvK6Vb/L2s99yzOaUodXfBDtf5THEJahouadx2T5M8fRMG2QDtMUreRxmSg7lQpDOPDgCbrDPBuperVni1nPtwwGJg0xaBrST0I5jqozKmcewbeNDK18ubSwjozq9TDrGS28CNYAfC2UK3Rrq0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Nm+Bbixr; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-33ff53528ceso1295111f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 29 Mar 2024 05:42:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1711716139; x=1712320939; darn=vger.kernel.org;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=gxIUq/XIwTd2Gc2JEpjZeBosj5SKpZKViU9S1xrv8oA=;
-        b=Nm+BbixrmM+RP2kZGcbe1iIHKgatd/epCXiAdEvPZERhP/5f/AUMY5jagbn0f7TzPF
-         O2KL5sk9Jhm5kfHa1E+7m3m9DgYf2REO92BZPuu+HAKe6qKVrG9A9lWCQ0kAW1ujtqoL
-         yN/sAIUys2Dka/1N1BeBdOAMoBmSTG6e6spePGQG7Hs5gsjX3CzlrzxRPjNrnm7XYaJs
-         mMLez4rrCwcDZrPu6+3i8C/EgciUorLuummVhNlMrAxUcfd4JtR8dsCEsWtGy2SlInvu
-         ZiUHYpsVZVELUrcaCn6/dg2KJ0QIG9Cgo7vXoWNFgqRd0s4dHWBmJh3zC0myN0LqK0Mg
-         5HDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711716139; x=1712320939;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gxIUq/XIwTd2Gc2JEpjZeBosj5SKpZKViU9S1xrv8oA=;
-        b=YVzkDOpm9DRQagaeK7Sy1qYrpVSSUIvTUcDQWMMx7X3itlte9M6FzfR7DN64PBYnPb
-         pemKEAwQcr+HrAaOOitJZoHKg4dob2yG/+v5HRfLjLNeht9PR/k3Iyi2F9qq/SFWh4ti
-         2lbbLEVRl6buNDjWWX9iO6SLK2kHyFkYqALl9hUXpSezcKEBv0aNJYOPAI1YbgRywoFu
-         Qof6BweApiIKYxWOIf1RFlGzmBCpBqdJtg03vzY15493HthleM7pORdi0+JWhPiEQUlH
-         uBA19iKVxz57sIn36UytgbZwZ0xdqg/YCmElOATE/csnfLdiCI2q9U0CaPZk9kTN84uB
-         We7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUS+EEPz2ueOGcgzrzZEvzjILpviV+qdHbpP5pYpaHVYalILLBocW6/NNSKgk0xR0qSD3DxDtXFPakUJTVBurit7qnU5V5PxgLVMQ==
-X-Gm-Message-State: AOJu0YwcDSNFGBGNJSuMB+y7OwHomNoKF5EJ9eWx1UO/jYb0gw7OIy/X
-	Lw+xRpTzWQ31OJ4KZ1aZXbTS4vYMT86ZrjGHxwrLZHJyokykmkww4dtLneisWpE=
-X-Google-Smtp-Source: AGHT+IFmRrWRL7hTq/l4Iz/3FrZli79Wex7IvqjNpeiE1QS/yuVWtde+4D/dIohJP9FpdUBEQoTyuw==
-X-Received: by 2002:adf:f18f:0:b0:341:a640:b516 with SMTP id h15-20020adff18f000000b00341a640b516mr1257720wro.70.1711716139601;
-        Fri, 29 Mar 2024 05:42:19 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:f8f5:63d4:de5b:e4de])
-        by smtp.gmail.com with ESMTPSA id ch9-20020a5d5d09000000b0034330c9eccasm3640999wrb.79.2024.03.29.05.42.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Mar 2024 05:42:19 -0700 (PDT)
-References: <20240325-amlogic-v6-4-upstream-dsi-ccf-vim3-v11-0-04f55de44604@linaro.org>
- <20240325-amlogic-v6-4-upstream-dsi-ccf-vim3-v11-3-04f55de44604@linaro.org>
-User-agent: mu4e 1.10.8; emacs 29.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Nicolas Belin <nbelin@baylibre.com>,
- Jagan Teki <jagan@amarulasolutions.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v11 3/7] clk: meson: g12a: make VCLK2 and ENCL clock
- path configurable by CCF
-Date: Fri, 29 Mar 2024 13:35:11 +0100
-In-reply-to: <20240325-amlogic-v6-4-upstream-dsi-ccf-vim3-v11-3-04f55de44604@linaro.org>
-Message-ID: <1jv8558b11.fsf@starbuckisacylon.baylibre.com>
+	s=arc-20240116; t=1711716008; c=relaxed/simple;
+	bh=0Unq+1iE7ipc/KKZheYH+mrLHQ+V8/V5iM4qZIxwmTM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=ar1Y15oNXm2JTvmMRT8C3g6dUqlQDC4Cg4tz84R2TPfVObpN89sNeRWB5q/kB/0iZ9us8JZ69Xmbhysu1ybxr5LhNYJxKpXj86Zy+mLfGl3gy8WStx+CjlwiYgVtd4cmQ/xSxlUIKqaXmtfHKKcp7w6PPWsZ1TMHGaYnDecgqjI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=da6CrC5I; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A7F1C43394;
+	Fri, 29 Mar 2024 12:40:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711716008;
+	bh=0Unq+1iE7ipc/KKZheYH+mrLHQ+V8/V5iM4qZIxwmTM=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=da6CrC5IhYcZH5873WJ7wgarKOm0Dq2E/V/8kROPyX3L9Jql0/naWY+iCO+0acDMP
+	 xnabL3zA7YnbQOQlSbJta3EDDhZqB4ysfeuyQfuJ11UwqY7f0UwaLDlVHOXZawW4XG
+	 E9mNY266Pa42xVBbvw2xe3nR2ljR3mxcDPEraF3ob9IIDcYIBUDJQ73X5jaiqUILOg
+	 kS/K7+nguSrW8plOEpaaBIJsnOkeP5KcAjIFeKqL7cvRnmMIqDao8Cl8Um1tayHqXw
+	 cquV2wkwhmfeZf3B3zHw9gSzCiHtemRDMYrazA4eQOuXqlH150I4CeIt5C3vTi7mRO
+	 as8kzzlO9Oa5Q==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Sasha Levin <sashal@kernel.org>,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.8 11/98] arm64: dts: qcom: sdm630: add USB QMP PHY support
+Date: Fri, 29 Mar 2024 08:36:42 -0400
+Message-ID: <20240329123919.3087149-11-sashal@kernel.org>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240329123919.3087149-1-sashal@kernel.org>
+References: <20240329123919.3087149-1-sashal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 6.8.2
+Content-Transfer-Encoding: 8bit
 
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-On Mon 25 Mar 2024 at 12:09, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+[ Upstream commit bb5009a24ec3f2f2ec1e2ed7b8a5dcde9a9e28d9 ]
 
-> In order to setup the DSI clock, let's make the unused VCLK2 clock path
-> configuration via CCF.
->
-> The nocache option is removed from following clocks:
-> - vclk2_sel
-> - vclk2_input
-> - vclk2_div
-> - vclk2
-> - vclk_div1
-> - vclk2_div2_en
-> - vclk2_div4_en
-> - vclk2_div6_en
-> - vclk2_div12_en
-> - vclk2_div2
-> - vclk2_div4
-> - vclk2_div6
-> - vclk2_div12
-> - cts_encl_sel
->
-> vclk2 and vclk2_div uses the newly introduced vclk regmap driver
-> to handle the enable and reset bits.
->
-> In order to set a rate on cts_encl via the vclk2 clock path,
-> the NO_REPARENT flag is set on cts_encl_sel & vclk2_sel in order
-> to keep CCF from selection a parent.
-> The parents of cts_encl_sel & vclk2_sel are expected to be defined
-> in DT or manually set by the display driver at some point.
->
-> The following clock scheme is to be used for DSI:
->
-> xtal
-> \_ gp0_pll_dco
->    \_ gp0_pll
->       |- vclk2_sel
->       |  \_ vclk2_input
->       |     \_ vclk2_div
->       |        \_ vclk2
->       |           \_ vclk2_div1
->       |              \_ cts_encl_sel
->       |                 \_ cts_encl	-> to VPU LCD Encoder
->       |- mipi_dsi_pxclk_sel
->       \_ mipi_dsi_pxclk_div
->          \_ mipi_dsi_pxclk		-> to DSI controller
->
-> The mipi_dsi_pxclk_div is set as bypass with a single /1 entry in div_table
-> in order to use the same GP0 for mipi_dsi_pxclk and vclk2_input.
->
-> The SET_RATE_PARENT is only set on the mipi_dsi_pxclk_sel clock so the
-> DSI bitclock is the reference base clock to calculate the vclk2_div value
-> when pixel clock is set on the cts_encl endpoint.
->
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  drivers/clk/meson/Kconfig |  1 +
->  drivers/clk/meson/g12a.c  | 72 ++++++++++++++++++++++++++++++++++-------------
->  2 files changed, 53 insertions(+), 20 deletions(-)
->
-> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
-> index 8a9823789fa3..59a40a49f8e1 100644
-> --- a/drivers/clk/meson/Kconfig
-> +++ b/drivers/clk/meson/Kconfig
-> @@ -144,6 +144,7 @@ config COMMON_CLK_G12A
->  	select COMMON_CLK_MESON_EE_CLKC
->  	select COMMON_CLK_MESON_CPU_DYNDIV
->  	select COMMON_CLK_MESON_VID_PLL_DIV
-> +	select COMMON_CLK_MESON_VCLK
->  	select MFD_SYSCON
->  	help
->  	  Support for the clock controller on Amlogic S905D2, S905X2 and S905Y2
-> diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
-> index 90f4c6103014..083882e53b65 100644
-> --- a/drivers/clk/meson/g12a.c
-> +++ b/drivers/clk/meson/g12a.c
-> @@ -22,6 +22,7 @@
->  #include "clk-regmap.h"
->  #include "clk-cpu-dyndiv.h"
->  #include "vid-pll-div.h"
-> +#include "vclk.h"
->  #include "meson-eeclk.h"
->  #include "g12a.h"
->  
-> @@ -3165,7 +3166,7 @@ static struct clk_regmap g12a_vclk2_sel = {
->  		.ops = &clk_regmap_mux_ops,
->  		.parent_hws = g12a_vclk_parent_hws,
->  		.num_parents = ARRAY_SIZE(g12a_vclk_parent_hws),
-> -		.flags = CLK_SET_RATE_NO_REPARENT | CLK_GET_RATE_NOCACHE,
-> +		.flags = CLK_SET_RATE_NO_REPARENT,
->  	},
->  };
->  
-> @@ -3193,7 +3194,6 @@ static struct clk_regmap g12a_vclk2_input = {
->  		.ops = &clk_regmap_gate_ops,
->  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2_sel.hw },
->  		.num_parents = 1,
-> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
->  	},
->  };
->  
-> @@ -3215,19 +3215,32 @@ static struct clk_regmap g12a_vclk_div = {
->  };
->  
->  static struct clk_regmap g12a_vclk2_div = {
-> -	.data = &(struct clk_regmap_div_data){
-> -		.offset = HHI_VIID_CLK_DIV,
-> -		.shift = 0,
-> -		.width = 8,
-> +	.data = &(struct meson_vclk_div_data){
-> +		.div = {
-> +			.reg_off = HHI_VIID_CLK_DIV,
-> +			.shift   = 0,
-> +			.width   = 8,
-> +		},
-> +		.enable = {
-> +			.reg_off = HHI_VIID_CLK_DIV,
-> +			.shift   = 16,
-> +			.width   = 1,
-> +		},
-> +		.reset = {
-> +			.reg_off = HHI_VIID_CLK_DIV,
-> +			.shift   = 17,
-> +			.width   = 1,
-> +		},
-> +		.flags = CLK_DIVIDER_ROUND_CLOSEST,
->  	},
->  	.hw.init = &(struct clk_init_data){
->  		.name = "vclk2_div",
-> -		.ops = &clk_regmap_divider_ops,
-> +		.ops = &meson_vclk_div_ops,
->  		.parent_hws = (const struct clk_hw *[]) {
->  			&g12a_vclk2_input.hw
->  		},
->  		.num_parents = 1,
-> -		.flags = CLK_GET_RATE_NOCACHE,
-> +		.flags = CLK_SET_RATE_GATE,
->  	},
->  };
->  
-> @@ -3246,16 +3259,24 @@ static struct clk_regmap g12a_vclk = {
->  };
->  
->  static struct clk_regmap g12a_vclk2 = {
-> -	.data = &(struct clk_regmap_gate_data){
-> -		.offset = HHI_VIID_CLK_CNTL,
-> -		.bit_idx = 19,
-> +	.data = &(struct meson_vclk_gate_data){
-> +		.enable = {
-> +			.reg_off = HHI_VIID_CLK_CNTL,
-> +			.shift   = 19,
-> +			.width   = 1,
-> +		},
-> +		.reset = {
-> +			.reg_off = HHI_VIID_CLK_CNTL,
-> +			.shift   = 15,
-> +			.width   = 1,
-> +		},
->  	},
->  	.hw.init = &(struct clk_init_data) {
->  		.name = "vclk2",
-> -		.ops = &clk_regmap_gate_ops,
-> +		.ops = &meson_vclk_gate_ops,
->  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2_div.hw },
->  		.num_parents = 1,
-> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
-> +		.flags = CLK_SET_RATE_PARENT,
->  	},
->  };
->  
-> @@ -3339,7 +3360,7 @@ static struct clk_regmap g12a_vclk2_div1 = {
->  		.ops = &clk_regmap_gate_ops,
->  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
->  		.num_parents = 1,
-> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
-> +		.flags = CLK_SET_RATE_PARENT,
->  	},
->  };
->  
-> @@ -3353,7 +3374,7 @@ static struct clk_regmap g12a_vclk2_div2_en = {
->  		.ops = &clk_regmap_gate_ops,
->  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
->  		.num_parents = 1,
-> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
-> +		.flags = CLK_SET_RATE_PARENT,
->  	},
->  };
->  
-> @@ -3367,7 +3388,7 @@ static struct clk_regmap g12a_vclk2_div4_en = {
->  		.ops = &clk_regmap_gate_ops,
->  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
->  		.num_parents = 1,
-> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
-> +		.flags = CLK_SET_RATE_PARENT,
->  	},
->  };
->  
-> @@ -3381,7 +3402,7 @@ static struct clk_regmap g12a_vclk2_div6_en = {
->  		.ops = &clk_regmap_gate_ops,
->  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
->  		.num_parents = 1,
-> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
-> +		.flags = CLK_SET_RATE_PARENT,
->  	},
->  };
->  
-> @@ -3395,7 +3416,7 @@ static struct clk_regmap g12a_vclk2_div12_en = {
->  		.ops = &clk_regmap_gate_ops,
->  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
->  		.num_parents = 1,
-> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
-> +		.flags = CLK_SET_RATE_PARENT,
->  	},
->  };
->  
-> @@ -3461,6 +3482,7 @@ static struct clk_fixed_factor g12a_vclk2_div2 = {
->  			&g12a_vclk2_div2_en.hw
->  		},
->  		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
->  	},
->  };
->  
-> @@ -3474,6 +3496,7 @@ static struct clk_fixed_factor g12a_vclk2_div4 = {
->  			&g12a_vclk2_div4_en.hw
->  		},
->  		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
->  	},
->  };
->  
-> @@ -3487,6 +3510,7 @@ static struct clk_fixed_factor g12a_vclk2_div6 = {
->  			&g12a_vclk2_div6_en.hw
->  		},
->  		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
->  	},
->  };
->  
-> @@ -3500,6 +3524,7 @@ static struct clk_fixed_factor g12a_vclk2_div12 = {
->  			&g12a_vclk2_div12_en.hw
->  		},
->  		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
->  	},
->  };
->  
-> @@ -3561,7 +3586,7 @@ static struct clk_regmap g12a_cts_encl_sel = {
->  		.ops = &clk_regmap_mux_ops,
->  		.parent_hws = g12a_cts_parent_hws,
->  		.num_parents = ARRAY_SIZE(g12a_cts_parent_hws),
-> -		.flags = CLK_SET_RATE_NO_REPARENT | CLK_GET_RATE_NOCACHE,
-> +		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT,
->  	},
->  };
->  
-> @@ -3717,15 +3742,22 @@ static struct clk_regmap g12a_mipi_dsi_pxclk_sel = {
->  		.ops = &clk_regmap_mux_ops,
->  		.parent_hws = g12a_mipi_dsi_pxclk_parent_hws,
->  		.num_parents = ARRAY_SIZE(g12a_mipi_dsi_pxclk_parent_hws),
-> -		.flags = CLK_SET_RATE_NO_REPARENT,
-> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
->  	},
->  };
->  
-> +/* Force as bypass by forcing a single /1 table entry, and not rely of boot value */
+Define USB3 QMP PHY presend on the SDM630 / SDM660 platforms. Enable it by
+default in the USB3 host, but (for compatibility), force USB 2.0 mode
+for all defined boards. The boards should opt-in to enable USB 3.0
+support.
 
-The comment here is not entirely accurate.
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Link: https://lore.kernel.org/r/20240116-sdm660-usb3-support-v1-3-2fbd683aea77@linaro.org
+Signed-off-by: Bjorn Andersson <andersson@kernel.org>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ .../boot/dts/qcom/sda660-inforce-ifc6560.dts  |  6 ++++
+ .../dts/qcom/sdm630-sony-xperia-nile.dtsi     |  6 ++++
+ arch/arm64/boot/dts/qcom/sdm630.dtsi          | 36 ++++++++++++++-----
+ .../boot/dts/qcom/sdm660-xiaomi-lavender.dts  |  6 ++++
+ 4 files changed, 46 insertions(+), 8 deletions(-)
 
-The table below will actually force to only use a 1 divider on
-.set_rate(), not on boot, AFAICT.
-
-The boot value will stay in the register until the first call to set_rate().
-
-Considering this is quite fragile as it is, It would be nice to prefix
-the updated comment with "FIXME"
-
-> +static const struct clk_div_table g12a_mipi_dsi_pxclk_div_table[] = {
-> +	{ .val = 0, .div = 1 },
-> +	{ /* sentinel */ },
-> +};
-> +
->  static struct clk_regmap g12a_mipi_dsi_pxclk_div = {
->  	.data = &(struct clk_regmap_div_data){
->  		.offset = HHI_MIPIDSI_PHY_CLK_CNTL,
->  		.shift = 0,
->  		.width = 7,
-> +		.table = g12a_mipi_dsi_pxclk_div_table,
->  	},
->  	.hw.init = &(struct clk_init_data){
->  		.name = "mipi_dsi_pxclk_div",
-
-
+diff --git a/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts b/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
+index 2ed39d402d3f6..21fae799c816a 100644
+--- a/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
++++ b/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
+@@ -454,10 +454,16 @@ &usb2_dwc3 {
+ };
+ 
+ &usb3 {
++	qcom,select-utmi-as-pipe-clk;
++
+ 	status = "okay";
+ };
+ 
+ &usb3_dwc3 {
++	maximum-speed = "high-speed";
++	phys = <&qusb2phy0>;
++	phy-names = "usb2-phy";
++
+ 	dr_mode = "peripheral";
+ 	extcon = <&extcon_usb>;
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
+index 87d0293c728d8..f06a9f0cf97c1 100644
+--- a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
+@@ -658,10 +658,16 @@ cam_vdig_default: cam-vdig-default-state {
+ };
+ 
+ &usb3 {
++	qcom,select-utmi-as-pipe-clk;
++
+ 	status = "okay";
+ };
+ 
+ &usb3_dwc3 {
++	maximum-speed = "high-speed";
++	phys = <&qusb2phy0>;
++	phy-names = "usb2-phy";
++
+ 	dr_mode = "peripheral";
+ 	extcon = <&extcon_usb>;
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+index 513fe5e76b688..28489fb58b200 100644
+--- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+@@ -1286,7 +1286,6 @@ usb3: usb@a8f8800 {
+ 			interrupt-names = "hs_phy_irq", "ss_phy_irq";
+ 
+ 			power-domains = <&gcc USB_30_GDSC>;
+-			qcom,select-utmi-as-pipe-clk;
+ 
+ 			resets = <&gcc GCC_USB_30_BCR>;
+ 
+@@ -1297,17 +1296,38 @@ usb3_dwc3: usb@a800000 {
+ 				snps,dis_u2_susphy_quirk;
+ 				snps,dis_enblslpm_quirk;
+ 
+-				/*
+-				 * SDM630 technically supports USB3 but I
+-				 * haven't seen any devices making use of it.
+-				 */
+-				maximum-speed = "high-speed";
+-				phys = <&qusb2phy0>;
+-				phy-names = "usb2-phy";
++				phys = <&qusb2phy0>, <&usb3_qmpphy>;
++				phy-names = "usb2-phy", "usb3-phy";
+ 				snps,hird-threshold = /bits/ 8 <0>;
+ 			};
+ 		};
+ 
++		usb3_qmpphy: phy@c010000 {
++			compatible = "qcom,sdm660-qmp-usb3-phy";
++			reg = <0x0c010000 0x1000>;
++
++			clocks = <&gcc GCC_USB3_PHY_AUX_CLK>,
++				 <&gcc GCC_USB3_CLKREF_CLK>,
++				 <&gcc GCC_USB_PHY_CFG_AHB2PHY_CLK>,
++				 <&gcc GCC_USB3_PHY_PIPE_CLK>;
++			clock-names = "aux",
++				      "ref",
++				      "cfg_ahb",
++				      "pipe";
++			clock-output-names = "usb3_phy_pipe_clk_src";
++			#clock-cells = <0>;
++			#phy-cells = <0>;
++
++			resets = <&gcc GCC_USB3_PHY_BCR>,
++				 <&gcc GCC_USB3PHY_PHY_BCR>;
++			reset-names = "phy",
++				      "phy_phy";
++
++			qcom,tcsr-reg = <&tcsr_regs_1 0x6b244>;
++
++			status = "disabled";
++		};
++
+ 		qusb2phy0: phy@c012000 {
+ 			compatible = "qcom,sdm660-qusb2-phy";
+ 			reg = <0x0c012000 0x180>;
+diff --git a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
+index 3c47410ba94c0..7167f75bced3f 100644
+--- a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
++++ b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
+@@ -413,10 +413,16 @@ &tlmm {
+ };
+ 
+ &usb3 {
++	qcom,select-utmi-as-pipe-clk;
++
+ 	status = "okay";
+ };
+ 
+ &usb3_dwc3 {
++	maximum-speed = "high-speed";
++	phys = <&qusb2phy0>;
++	phy-names = "usb2-phy";
++
+ 	dr_mode = "peripheral";
+ 	extcon = <&extcon_usb>;
+ };
 -- 
-Jerome
+2.43.0
+
 
