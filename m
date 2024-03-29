@@ -1,125 +1,166 @@
-Return-Path: <devicetree+bounces-54503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54507-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9ADE891597
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 10:17:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A72F58915B5
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 10:25:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 898A51F22C3F
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 09:17:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1EBAD1F22BDB
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 09:25:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1E6F3B1B2;
-	Fri, 29 Mar 2024 09:17:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 284793C082;
+	Fri, 29 Mar 2024 09:25:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AZpEFsqy"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mAI+6F8z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA854EAD7;
-	Fri, 29 Mar 2024 09:17:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23013BA4D
+	for <devicetree@vger.kernel.org>; Fri, 29 Mar 2024 09:25:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711703855; cv=none; b=u/rJTdb0usTrFV+/AxTYhMOBElPevJaHJoTRCJNPDwQzeUoUILsoX5QArO0Z0BuyJSIOEupsNAufK0+YOgdgBT4hxp5nM5oEU47VRIcQO3+I8bq2GO4c7wT7EeD4Tpw2ehQA3/9llFEPtQQK+CeFN5X7fb33xEUQ60lce3+od+M=
+	t=1711704335; cv=none; b=sG2K4iQeTj4m9203HmS0SV6WnnBxCm2JD6zZMp7VaDvzfoVQ7GbWzfNnwp5ukMrLyYL0KOtxaL/iHIcQUIZfuXPI09IKoyh6HZYALcZQhQXffdmgrbteqdZGH2+ji3ye4psh/RPk8D1X+k0Ob4mm7lrpDjyCTVwID6d5FAkTH9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711703855; c=relaxed/simple;
-	bh=stRn40k3Wznn/gwcVteftCGGh9Q8iyBgC3XO/vR9ah4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=jQNFGENlGp11cW7OSKutofGPsfrVwViTW7Xbe/lENwMamhM6gOKY5IIiwXmk3cc2dafhWzoPplp0b5dkK7FxzIj8SM+sTdxgwoiwZKv3aa2esZjlbkn5cX0F1hNuFpuBlfbjG6VyJ0gEpgrxIL+cxfKaB4pBGIfwTtUh6tv7+34=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AZpEFsqy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 64F85C433B1;
-	Fri, 29 Mar 2024 09:17:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711703855;
-	bh=stRn40k3Wznn/gwcVteftCGGh9Q8iyBgC3XO/vR9ah4=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=AZpEFsqyYwMBCtFoX62cC5ri85w8HDkTs8aNFFzgLxCRTyYZip4k9Psofp2kT1e9r
-	 XR5azjAXVmHcBXg5HW16Y27uSEHC/xTAdq1+ufUPQwnj9P26o73e03WvD1VWHv5O7u
-	 /BKch4lSUmsawiqXvVYS8nAOaV86bLtOGUt2GS9CZHMileOrw6Ijl9bfP406mPx/8p
-	 cUR0zcfHDKkMUXJaxhNAc9M2vSq3J4Qyxh1lkVNcZ+GyZME/a6CgzKDosvqQTeY6S0
-	 SsSvmQ/lWgv2gZSMDK+NX/EZbR7mrbs4D5trnUo/zSlAA7QpcT5AdH+zTRBDR3PG2P
-	 HgA7WRGfWnF0Q==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 59311CD128E;
-	Fri, 29 Mar 2024 09:17:35 +0000 (UTC)
-From: Kelvin Zhang via B4 Relay <devnull+kelvin.zhang.amlogic.com@kernel.org>
-Date: Fri, 29 Mar 2024 17:17:15 +0800
-Subject: [PATCH 3/3] arm64: dts: amlogic: add reset controller for Amlogic
- T7 SoC
+	s=arc-20240116; t=1711704335; c=relaxed/simple;
+	bh=dZMd+hjwWBu0w3Nr26MjlG54+9irZNQQ5J2LGMlr7cM=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=muw1s0qvjKNzHZYKmrE7tKRYPWNSXf/PAD8gXESIcHBuXAEMpYLoAkHIu7Hq6FcnG5f8gs1jEshQ8YVDSsIVu2ms245X5X1tayRkEmr8UcE1U3jHoNrqyHmiM8mlcCBJvn79Fz98aujf6R0LdMbd8I9g4/L6HFAb5wzE9khAP4M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mAI+6F8z; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-341b9f6fb2eso1191801f8f.2
+        for <devicetree@vger.kernel.org>; Fri, 29 Mar 2024 02:25:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1711704331; x=1712309131; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GEQURDN2hc0rSK6rdl4NmLGBAAhTVwyKdlzTTBj2f1Y=;
+        b=mAI+6F8zjKJ9QZ6icpJr1kulzBogw8afqLcl1BnCfe86M4vnnmlPsgV7eB/idRXS3u
+         1r1c1hSEmiWQ9kgwae4WEzj+AhumoJVQgWwcb7PSEJvwUp7+wH7OJIsALroAnpx4dxf4
+         iRBq7pFx9UKCrzCV1V8czS4UGLU4uKrnFiyk9JYWmVMYsxEv5cL+zF9r4LOfBDbfoCNc
+         2mPHKCTSstamp1Eh5pJWxOkWqXXMuMriUXj/PMyehYgHY2V4VcIPwyS0ubLB9LST8yha
+         zoYkiAnIc9upxv7O12pu4jUT1wCCwKzD58fyLfdvoHcr7AGcGJKkc4DJWu2cYv2rfk2u
+         GY4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711704331; x=1712309131;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=GEQURDN2hc0rSK6rdl4NmLGBAAhTVwyKdlzTTBj2f1Y=;
+        b=N7Hy4+SXpEbc+CIwrptS/Gx2kjZLx4jgLyabQwcJ1v2FzF9diaFVQ1o46nztMuGee2
+         G+0D7ndaqIEiKVeKLMnkFlAGIa5yLFH99mB4H1zXl84a/tddIvZtxNPpBYo19VGHvJLD
+         K/4p2+lJctxvt6JlApe5v715X3A3GhdLP9BoeYqpFBxXl64OMZT8CxvWwHJJJcJu2MWE
+         EhMuJXoAHLOmP6d1+L7WgoiW/4PfgUrd3/ZXbFYnl5QMIUuq1+wtvbOdCGD19ToQnLIB
+         P4IgYmiQohldFv6Ywxrad9yK89yP4kDoOkQMmrl4VB21LEGrR5STQFaD8dcoUuXogep1
+         tEsQ==
+X-Gm-Message-State: AOJu0YwWEc6480wmkk/fHd/F9cbeS2ptrYU9ZAvXwTkYY7RM71J+JVKc
+	CzjVjJZ6/SDuEt84VnXh2IYhRg7rAwabNYWHBeQz2Rtyvmu0hyeTBWje50D/TdI=
+X-Google-Smtp-Source: AGHT+IHMYXV+HQAfMGTkNrpH0Nc8z57jRzmZssTg62uPFuuEAS0jJ9N+Vu7WdhPYRHT4wOscd1BfoA==
+X-Received: by 2002:adf:ea0a:0:b0:343:2e06:9a10 with SMTP id q10-20020adfea0a000000b003432e069a10mr1254676wrm.15.1711704331306;
+        Fri, 29 Mar 2024 02:25:31 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:3cd8:c97b:1468:c232? ([2a01:e0a:982:cbb0:3cd8:c97b:1468:c232])
+        by smtp.gmail.com with ESMTPSA id n3-20020a5d67c3000000b00341ddb65b07sm3742703wrw.63.2024.03.29.02.25.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Mar 2024 02:25:30 -0700 (PDT)
+Message-ID: <15e3114d-0446-4668-83a9-1d28d50f4eb9@linaro.org>
+Date: Fri, 29 Mar 2024 10:25:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240329-t7-reset-v1-3-4c6e2e68359e@amlogic.com>
-References: <20240329-t7-reset-v1-0-4c6e2e68359e@amlogic.com>
-In-Reply-To: <20240329-t7-reset-v1-0-4c6e2e68359e@amlogic.com>
-To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 2/3] reset: reset-meson: add support for Amlogic T7 SoC
+ Reset Controller
+To: kelvin.zhang@amlogic.com, Philipp Zabel <p.zabel@pengutronix.de>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Zelong Dong <zelong.dong@amlogic.com>, 
- Kelvin Zhang <kelvin.zhang@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1711703853; l=1108;
- i=kelvin.zhang@amlogic.com; s=20240329; h=from:subject:message-id;
- bh=nQ6i4onLrotYFoJPFCF0uK2+BCj3hGBC1C42Lz/v9h4=;
- b=Jaw99hNZQkkHxQBjC35M3u7xduE2mi1d6p+mbAr75eUopJQwluSwKkTVhFrdm2MgKnxJglndn
- fc86fr2K0poCv4GnbrE3ablxTtxcKSl1DfbTwZmXw38Wpr62LNNX5tb
-X-Developer-Key: i=kelvin.zhang@amlogic.com; a=ed25519;
- pk=pgnle7HTNvnNTcOoGejvtTC7BJT30HUNXfMHRRXSylI=
-X-Endpoint-Received: by B4 Relay for kelvin.zhang@amlogic.com/20240329 with
- auth_id=148
-X-Original-From: Kelvin Zhang <kelvin.zhang@amlogic.com>
-Reply-To: kelvin.zhang@amlogic.com
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Zelong Dong <zelong.dong@amlogic.com>
+References: <20240329-t7-reset-v1-0-4c6e2e68359e@amlogic.com>
+ <20240329-t7-reset-v1-2-4c6e2e68359e@amlogic.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20240329-t7-reset-v1-2-4c6e2e68359e@amlogic.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Zelong Dong <zelong.dong@amlogic.com>
+On 29/03/2024 10:17, Kelvin Zhang via B4 Relay wrote:
+> From: Zelong Dong <zelong.dong@amlogic.com>
+> 
+> There are 7 sets of Reset Source in Amlogic T7 SoC Reset Controller,
+> and the offset between base and level registers is 0x40.
+> Add a new compatible string and struct meson_reset_param to support
+> the reset controller on T7 SoC.
+> 
+> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+> Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
+> ---
+>   drivers/reset/reset-meson.c | 6 ++++++
+>   1 file changed, 6 insertions(+)
+> 
+> diff --git a/drivers/reset/reset-meson.c b/drivers/reset/reset-meson.c
+> index f78be97898bc..1e9fca3e30e8 100644
+> --- a/drivers/reset/reset-meson.c
+> +++ b/drivers/reset/reset-meson.c
+> @@ -102,6 +102,11 @@ static const struct meson_reset_param meson_s4_param = {
+>   	.level_offset	= 0x40,
+>   };
+>   
+> +static const struct meson_reset_param t7_param = {
+> +	.reg_count      = 7,
+> +	.level_offset   = 0x40,
+> +};
+> +
+>   static const struct of_device_id meson_reset_dt_ids[] = {
+>   	 { .compatible = "amlogic,meson8b-reset",    .data = &meson8b_param},
+>   	 { .compatible = "amlogic,meson-gxbb-reset", .data = &meson8b_param},
+> @@ -109,6 +114,7 @@ static const struct of_device_id meson_reset_dt_ids[] = {
+>   	 { .compatible = "amlogic,meson-a1-reset",   .data = &meson_a1_param},
+>   	 { .compatible = "amlogic,meson-s4-reset",   .data = &meson_s4_param},
+>   	 { .compatible = "amlogic,c3-reset",   .data = &meson_s4_param},
+> +	 { .compatible = "amlogic,t7-reset",   .data = &t7_param},
+>   	 { /* sentinel */ },
+>   };
+>   MODULE_DEVICE_TABLE(of, meson_reset_dt_ids);
+> 
 
-Add the reset controller device of Amlogic T7 SoC family
-
-Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
-Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-index 5248bdf824ea..e94bb85b5292 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-@@ -5,6 +5,7 @@
- 
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/power/amlogic,t7-pwrc.h>
-+#include <dt-bindings/reset/amlogic,t7-reset.h>
- 
- / {
- 	interrupt-parent = <&gic>;
-@@ -149,6 +150,12 @@ apb4: bus@fe000000 {
- 			#size-cells = <2>;
- 			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
- 
-+			reset: reset-controller@2000 {
-+				compatible = "amlogic,t7-reset";
-+				reg = <0x0 0x2000 0x0 0x98>;
-+				#reset-cells = <1>;
-+			};
-+
- 			watchdog@2100 {
- 				compatible = "amlogic,t7-wdt";
- 				reg = <0x0 0x2100 0x0 0x10>;
-
--- 
-2.37.1
-
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
