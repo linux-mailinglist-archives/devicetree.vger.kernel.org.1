@@ -1,161 +1,266 @@
-Return-Path: <devicetree+bounces-54680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B8EF8921FD
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 17:56:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1A54892203
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 18:00:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 045762859D1
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 16:56:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CBAEA1C23FB2
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 17:00:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C17CB7E108;
-	Fri, 29 Mar 2024 16:56:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4D0A85633;
+	Fri, 29 Mar 2024 17:00:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cJ5kh/eF"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nDOGqfJS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94DAC136E01;
-	Fri, 29 Mar 2024 16:56:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D90633CC4;
+	Fri, 29 Mar 2024 17:00:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711731369; cv=none; b=qsFs/zd/S9xfVw8F+TV9LgwTxba6E96bWDuZxBaS5Qj1ubplY3PADA5WE+qEqzhvcFkQtRYXh7ShCTea/lfkGkLYnSDs6wQsNBmbWqNVj96kLKla3iraa6hYnxS/UZhFfqbtH2rr0OJzB/L56dZxrQk8MB0DrC3jYsSoPJMw8LE=
+	t=1711731641; cv=none; b=YxA4oW1f9flYyfWR0LwKXAw7gHwx6uzTz4wLQyZ6aUDCJh/PpNppObIEJqBXgne8waYQsjWn5OwCsO31fn2HELbaoesXhq4FKt7JUZ95Z4eMAWdfj8ekSu+vu9wZt+YaxrOcIOKITMJegl3aSZex9Qqmdr1qNki4j4UZKVsKvHU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711731369; c=relaxed/simple;
-	bh=isBCBT3seLZHai1OgzPx3zwWr4nR668ZJ3SMftDDp6g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e9JA8JdPw6KqBrpIY9pXMYvbEQs3MUKMrqQskz/eiEXcg0mutRw53ntwlvEemGzCVsjT32CCCr3ecEO7UCrQWREdnLCeJpNdP25y3br4CQk5URtGVRfLEsLKuh0b9KCri0WwLX11FrH8g82zF36jVJak4hszoinLR9V0DA97oeA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cJ5kh/eF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6422C433C7;
-	Fri, 29 Mar 2024 16:56:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711731369;
-	bh=isBCBT3seLZHai1OgzPx3zwWr4nR668ZJ3SMftDDp6g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cJ5kh/eFxvCB7x0HP9o7GJ025aeWR+BDUKfpEeIIYigLiXrGXi/gyZYGwm1M0wIw5
-	 RZ7k6YyugQtGNOCHPSI/Q4LFhlBCbcdGgTklkcpMx2V6f1IKOTHs3ZB7QZp5eTIoi3
-	 u69yhID5We6VtYO8ucXLvNOvfoHL49CS+sepNyKzW/J+NZiNXTMRZZ5eCqZ31Td+68
-	 NorqtgqaNH6A+ShOFysLPth9FfYCFQRw+4Ee/lBwRRpg+k7tLDNIGmNb8Tw1HHP4OY
-	 JF+SGtwvPX0HWLRAzSBautwu9NJ3voJxFVUp7Q4aSyekrr0TY8y9HkKV0JlF4BXBmG
-	 VMUerY5p90Fgw==
-Date: Fri, 29 Mar 2024 22:26:05 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	s=arc-20240116; t=1711731641; c=relaxed/simple;
+	bh=iV56zgBWXBOye2nA5+pTdyz84vnPkMVcgqGSOiaWdR4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=QLi9ONdryU/NJZbrgE5pCQYbhxq8zjEXSRSBI8aj5A1qLaj3gbekQWkXYyO2WVkrie827sioCXhcHG99AT6wbPa+PPSsbWKhf+TTcDXY9h7UtKMtG9s+RRflEMCiM40fMrwcY/NgZfOQq1zCsDlI50ij0fW1onO1IdqPD1m1x7Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nDOGqfJS; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1711731640; x=1743267640;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=iV56zgBWXBOye2nA5+pTdyz84vnPkMVcgqGSOiaWdR4=;
+  b=nDOGqfJSw/yveUPE66A30wy19Wx5nXlc4T2y8UYx7OhWNKEFULa8CBJ+
+   m2qxnBGPwFyNZ8fkyiVDumXDAe+7RnBZrXxekaVVfvSDoRdJlUZbKPVw1
+   +LlA8k0D/hEGLcISL7rYlTl+FQCUO66M5vBQQjzDFdsFfZFLsKs/to93+
+   N+KlbIz947x64mxu5gEqHGllEX0mUJ24u62l38Db8oBhV1qSAmGM5g4P7
+   DCRngSPvjJQFfksQCz2fxg3I26Bf2ZPhs+xKSdxvDkVJa+9bebNbwwsaJ
+   BYqzacfWNKCazSsdQc9m29clWyGd/CuwHbXgYIp2Zr1GltgPMj+NslmB8
+   Q==;
+X-CSE-ConnectionGUID: MgXgekE9SbalRu3b7YM32Q==
+X-CSE-MsgGUID: iUrhyUZlSOyE1nMXc85CHg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11028"; a="7519770"
+X-IronPort-AV: E=Sophos;i="6.07,165,1708416000"; 
+   d="scan'208";a="7519770"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Mar 2024 10:00:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,165,1708416000"; 
+   d="scan'208";a="17065468"
+Received: from test2-linux-lab.an.intel.com ([10.122.105.166])
+  by fmviesa006.fm.intel.com with ESMTP; 29 Mar 2024 10:00:38 -0700
+From: matthew.gerlach@linux.intel.com
+To: joyce.ooi@intel.com,
+	bhelgaas@google.com,
+	lpieralisi@kernel.org,
+	kw@linux.com,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFT 3/7] phy: qcom: qmp-combo: introduce QPHY_MODE
-Message-ID: <ZgbypXhhTGep1r8-@matsya>
-References: <20240229-topic-sm8x50-upstream-phy-combo-typec-mux-v1-0-07e24a231840@linaro.org>
- <20240229-topic-sm8x50-upstream-phy-combo-typec-mux-v1-3-07e24a231840@linaro.org>
+Cc: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+Subject: [PATCH] dt-bindings: pci: altera: covert to yaml
+Date: Fri, 29 Mar 2024 12:00:31 -0500
+Message-Id: <20240329170031.3379524-1-matthew.gerlach@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240229-topic-sm8x50-upstream-phy-combo-typec-mux-v1-3-07e24a231840@linaro.org>
+Content-Transfer-Encoding: 8bit
 
-On 29-02-24, 14:07, Neil Armstrong wrote:
-> Introduce an enum for the QMP Combo PHY modes, use it in the
-> QMP commmon phy init function and default to COMBO mode.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 41 +++++++++++++++++++++++++++----
->  1 file changed, 36 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-> index 3721bbea9eae..ac5d528fd7a1 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-> @@ -61,6 +61,12 @@
->  
->  #define PHY_INIT_COMPLETE_TIMEOUT		10000
->  
-> +enum qphy_mode {
-> +	QPHY_MODE_COMBO = 0,
-> +	QPHY_MODE_DP_ONLY,
-> +	QPHY_MODE_USB_ONLY,
-> +};
-> +
->  /* set of registers with offsets different per-PHY */
->  enum qphy_reg_layout {
->  	/* PCS registers */
-> @@ -1491,6 +1497,7 @@ struct qmp_combo {
->  
->  	struct mutex phy_mutex;
->  	int init_count;
-> +	enum qphy_mode init_mode;
->  
->  	struct phy *usb_phy;
->  	enum phy_mode mode;
-> @@ -2531,12 +2538,33 @@ static int qmp_combo_com_init(struct qmp_combo *qmp, bool force)
->  	if (qmp->orientation == TYPEC_ORIENTATION_REVERSE)
->  		val |= SW_PORTSELECT_VAL;
->  	writel(val, com + QPHY_V3_DP_COM_TYPEC_CTRL);
-> -	writel(USB3_MODE | DP_MODE, com + QPHY_V3_DP_COM_PHY_MODE_CTRL);
->  
-> -	/* bring both QMP USB and QMP DP PHYs PCS block out of reset */
-> -	qphy_clrbits(com, QPHY_V3_DP_COM_RESET_OVRD_CTRL,
-> -			SW_DPPHY_RESET_MUX | SW_DPPHY_RESET |
-> -			SW_USB3PHY_RESET_MUX | SW_USB3PHY_RESET);
-> +	switch (qmp->init_mode) {
-> +		case QPHY_MODE_COMBO:
+From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
 
-Case should be at same indent as switch :-) coding style 101
+Covert the device tree bindings for the Altera Root
+Port controller from text to yaml.
 
-> +			writel(USB3_MODE | DP_MODE, com + QPHY_V3_DP_COM_PHY_MODE_CTRL);
-> +
-> +			/* bring both QMP USB and QMP DP PHYs PCS block out of reset */
-> +			qphy_clrbits(com, QPHY_V3_DP_COM_RESET_OVRD_CTRL,
-> +					SW_DPPHY_RESET_MUX | SW_DPPHY_RESET |
-> +					SW_USB3PHY_RESET_MUX | SW_USB3PHY_RESET);
-> +			break;
-> +
-> +		case QPHY_MODE_DP_ONLY:
-> +			writel(DP_MODE, com + QPHY_V3_DP_COM_PHY_MODE_CTRL);
-> +
-> +			/* bring QMP DP PHY PCS block out of reset */
-> +			qphy_clrbits(com, QPHY_V3_DP_COM_RESET_OVRD_CTRL,
-> +					SW_DPPHY_RESET_MUX | SW_DPPHY_RESET);
-> +			break;
-> +
-> +		case QPHY_MODE_USB_ONLY:
-> +			writel(USB3_MODE, com + QPHY_V3_DP_COM_PHY_MODE_CTRL);
-> +
-> +			/* bring QMP USB PHY PCS block out of reset */
-> +			qphy_clrbits(com, QPHY_V3_DP_COM_RESET_OVRD_CTRL,
-> +					SW_USB3PHY_RESET_MUX | SW_USB3PHY_RESET);
-> +			break;
-> +	}
->  
->  	qphy_clrbits(com, QPHY_V3_DP_COM_SWI_CTRL, 0x03);
->  	qphy_clrbits(com, QPHY_V3_DP_COM_SW_RESET, SW_RESET);
-> @@ -3545,6 +3573,9 @@ static int qmp_combo_probe(struct platform_device *pdev)
->  	if (ret)
->  		goto err_node_put;
->  
-> +	/* Set PHY_MODE as combo by default */
-> +	qmp->init_mode = QPHY_MODE_COMBO;
-> +
->  	qmp->usb_phy = devm_phy_create(dev, usb_np, &qmp_combo_usb_phy_ops);
->  	if (IS_ERR(qmp->usb_phy)) {
->  		ret = PTR_ERR(qmp->usb_phy);
-> 
-> -- 
-> 2.34.1
+Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+---
+ .../devicetree/bindings/pci/altera-pcie.txt   |  50 ---------
+ .../bindings/pci/altr,pcie-root-port.yaml     | 106 ++++++++++++++++++
+ 2 files changed, 106 insertions(+), 50 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pci/altera-pcie.txt
+ create mode 100644 Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
 
+diff --git a/Documentation/devicetree/bindings/pci/altera-pcie.txt b/Documentation/devicetree/bindings/pci/altera-pcie.txt
+deleted file mode 100644
+index 816b244a221e..000000000000
+--- a/Documentation/devicetree/bindings/pci/altera-pcie.txt
++++ /dev/null
+@@ -1,50 +0,0 @@
+-* Altera PCIe controller
+-
+-Required properties:
+-- compatible :	should contain "altr,pcie-root-port-1.0" or "altr,pcie-root-port-2.0"
+-- reg:		a list of physical base address and length for TXS and CRA.
+-		For "altr,pcie-root-port-2.0", additional HIP base address and length.
+-- reg-names:	must include the following entries:
+-		"Txs": TX slave port region
+-		"Cra": Control register access region
+-		"Hip": Hard IP region (if "altr,pcie-root-port-2.0")
+-- interrupts:	specifies the interrupt source of the parent interrupt
+-		controller.  The format of the interrupt specifier depends
+-		on the parent interrupt controller.
+-- device_type:	must be "pci"
+-- #address-cells:	set to <3>
+-- #size-cells:		set to <2>
+-- #interrupt-cells:	set to <1>
+-- ranges:	describes the translation of addresses for root ports and
+-		standard PCI regions.
+-- interrupt-map-mask and interrupt-map: standard PCI properties to define the
+-		mapping of the PCIe interface to interrupt numbers.
+-
+-Optional properties:
+-- msi-parent:	Link to the hardware entity that serves as the MSI controller
+-		for this PCIe controller.
+-- bus-range:	PCI bus numbers covered
+-
+-Example
+-	pcie_0: pcie@c00000000 {
+-		compatible = "altr,pcie-root-port-1.0";
+-		reg = <0xc0000000 0x20000000>,
+-			<0xff220000 0x00004000>;
+-		reg-names = "Txs", "Cra";
+-		interrupt-parent = <&hps_0_arm_gic_0>;
+-		interrupts = <0 40 4>;
+-		interrupt-controller;
+-		#interrupt-cells = <1>;
+-		bus-range = <0x0 0xFF>;
+-		device_type = "pci";
+-		msi-parent = <&msi_to_gic_gen_0>;
+-		#address-cells = <3>;
+-		#size-cells = <2>;
+-		interrupt-map-mask = <0 0 0 7>;
+-		interrupt-map = <0 0 0 1 &pcie_0 1>,
+-			            <0 0 0 2 &pcie_0 2>,
+-			            <0 0 0 3 &pcie_0 3>,
+-			            <0 0 0 4 &pcie_0 4>;
+-		ranges = <0x82000000 0x00000000 0x00000000 0xc0000000 0x00000000 0x10000000
+-			  0x82000000 0x00000000 0x10000000 0xd0000000 0x00000000 0x10000000>;
+-	};
+diff --git a/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml b/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
+new file mode 100644
+index 000000000000..8f1ad1362ad1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
+@@ -0,0 +1,106 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright (C) 2024, Intel Corporation
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/altr,pcie-root-port.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Altera PCIe Root Port
++
++maintainers:
++  - Matthew Gerlach <matthew.gerlach@linux.intel.com>
++
++allOf:
++  - $ref: /schemas/pci/pci-bus.yaml#
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - altr,pcie-root-port-1.0
++          - altr,pcie-root-port-2.0
++
++  reg:
++    minItems: 2
++    maxItems: 3
++
++  reg-names:
++    description:
++      TX slave port region (Txs)
++      Control register access region (Cra)
++      Hard IP region if altr,pcie-root-port-2.0 (Hip)
++
++    items:
++      - const: Txs
++      - const: Cra
++      - const: Hip
++    minItems: 2
++
++  device_type:
++    const: pci
++
++  "#address-cells":
++    const: 3
++
++  "#size-cells":
++    const: 2
++
++  interrupts:
++    minItems: 1
++
++  interrupt-map-mask:
++    items:
++      - const: 0
++      - const: 0
++      - const: 0
++      - const: 7
++
++  interrupt-map:
++    maxItems: 4
++
++  "#interrupt-cells":
++    const: 1
++
++  msi-parent:
++    description: Link to the hardware entity that serves as the MSI controller.
++
++  bus-range:
++    description: PCI bus numbers covered.
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - device_type
++  - "#address-cells"
++  - "#size-cells"
++  - interrupts
++  - interrupt-map
++  - interrupt-map-mask
++  - "#interrupt-cells"
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    pcie_0: pcie@c00000000 {
++        compatible = "altr,pcie-root-port-1.0";
++        reg = <0xc0000000 0x20000000>,
++            <0xff220000 0x00004000>;
++        reg-names = "Txs", "Cra";
++        interrupt-parent = <&hps_0_arm_gic_0>;
++        interrupts = <0 40 4>;
++        #interrupt-cells = <1>;
++        bus-range = <0x0 0xFF>;
++        device_type = "pci";
++        msi-parent = <&msi_to_gic_gen_0>;
++        #address-cells = <3>;
++        #size-cells = <2>;
++        interrupt-map-mask = <0 0 0 7>;
++        interrupt-map = <0 0 0 1 &pcie_intc 1>,
++                        <0 0 0 2 &pcie_intc 2>,
++                        <0 0 0 3 &pcie_intc 3>,
++                        <0 0 0 4 &pcie_intc 4>;
++        ranges = <0x82000000 0x00000000 0x00000000 0xc0000000 0x00000000 0x10000000
++              0x82000000 0x00000000 0x10000000 0xd0000000 0x00000000 0x10000000>;
++    };
 -- 
-~Vinod
+2.34.1
+
 
