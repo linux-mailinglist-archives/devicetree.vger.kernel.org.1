@@ -1,62 +1,61 @@
-Return-Path: <devicetree+bounces-54593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86AFF891BCF
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 14:33:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6BA8891BF6
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 14:38:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 07A0AB25462
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 13:33:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7AD311F2932F
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 13:38:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5DC7176FDC;
-	Fri, 29 Mar 2024 12:40:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E98A179647;
+	Fri, 29 Mar 2024 12:40:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VpmibIrG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IDNvvYaG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8DE8176FD5;
-	Fri, 29 Mar 2024 12:40:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 012C5179642;
+	Fri, 29 Mar 2024 12:40:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711716012; cv=none; b=ifgCIWpAhbsZ2wXKmE6jUYRT2CEI5+HaSCby1bAsfzXUFNsBzjPptQLbg8KMQmo8hVS5uNcpOojRV+8wJ8Yv9S7+8uPVhX971nYVAyd4WBLQur9WTwQccfeBGvXTcaFZj8kf4OHyFp3gWb27nI5ZNmkAOr+Hs8ax9SqDeutDp+U=
+	t=1711716053; cv=none; b=r9j3XrbNJoIICOYaDp3ODPrRJtQCNmbShp/PB2NQ8z/rjK/CGRZR0BWFVPJt7MjgitS3lbWb6dVI+TCQQhTGe/yikRL3YlbT+iMIa8fEIoZ+I9IfuIVntcKDsU2bonPY3gBJZA2eVOOylotrJQXWfTQvAWPM6p7xXBbf/gSj1Gc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711716012; c=relaxed/simple;
-	bh=yYW3e9AMlBSHzJkJoAc0wxNP8CWlh2H0TvfQaDrp55A=;
+	s=arc-20240116; t=1711716053; c=relaxed/simple;
+	bh=4RMOa72KKzmhh+jE1nxP1CER4E3Wa2YBrXuinwX99So=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=FDwcF7fEpYPgZYUqXvCRpqx21FnHoJQnVxsRXKS6ORvalTwrMfunsli9KQz1gHwr233YtRXEugBqouIDuxjf/UUf3DgyAJ7cRf1KbI0f2ayAs9jP1NDlfI7nSD/+2cs11mDlhsxermC+kb/hkpu9x6QYXcKZp+SNTAkuLXRZNos=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VpmibIrG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0187CC433F1;
-	Fri, 29 Mar 2024 12:40:10 +0000 (UTC)
+	 MIME-Version; b=U0PxWgs9j7bKCgT34oU+f6lwzb4f6fT2nRO113deN/fdHJzgxTkf8cBWgJhUodlZVcqQCorliM595JHCsGPfWFoE/s+SZGWLROCaM3N5SxGdzmhHaPnqsbSxlS/MvNb5azORbxXqF6Otr02Ca37UNfUfJhaCHtB9jURetYSvf28=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IDNvvYaG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64AC9C433C7;
+	Fri, 29 Mar 2024 12:40:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711716012;
-	bh=yYW3e9AMlBSHzJkJoAc0wxNP8CWlh2H0TvfQaDrp55A=;
+	s=k20201202; t=1711716052;
+	bh=4RMOa72KKzmhh+jE1nxP1CER4E3Wa2YBrXuinwX99So=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=VpmibIrGaOUJlSEp00zkhIGa+lNBIPLNwweQb9uxW12QKVIykGrg/NKlvYO05p4Wc
-	 IBgCaaIii7h91Yy7W4zomSpUy3Ca7jwwBBtc4ji0vs2MBJ9rUzJWT4J5u3RCK8Fg7a
-	 DIVDutVqYDM5DS290P9zHTffWHOQi0vDIEYbHOz4WjmMyEcWqBSzL/+MmpgwnFXniM
-	 JnK6MhNcx7rSXX55EQ0BH8OHWJWlNONAXhBt0VPURfdw1r0cwh25Abxe3rkOY7aqlp
-	 tJkvUBCL1WP+q3/dz1A3/TrBuJN2JORmTlrlG7ACzibv17ykEt/I+RVCEDTP2l1O6m
-	 8VCmA1m2/34tg==
+	b=IDNvvYaGt85WtS0aS6x1+gXs3VD10W/Zpfj15uAOIk11ees/m2jV72MsThhWDi+NN
+	 Hh7TYVOxzMCtwwnarZxv/FGALIyTEDzEX2pMJ7hSNAMEfPkwkDUnYOOEWrFp7s1IwJ
+	 Sm0A0QOKB814fhFsNxzV4QsBlEbxRouDiL0cWmkQ8OPrgh4oXfPFYw9i3YQ7kZq6Bq
+	 OcnMjxoQbLmKC6OXKYkIBILhbiwkwEK98iRGqWCQSZRnimpFrKRdsFiKH2Rkh49Ftf
+	 UdMNAKOyS7IP1Z/3jwANv2etA2gZwcxLsZFJzTU8ao/nc2RCD3kIzL1RqRGtxM/76x
+	 tVxv3C/jH9xaQ==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Joe Mason <buddyjojo06@outlook.com>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	David Wronek <davidwronek@gmail.com>,
-	Bjorn Andersson <andersson@kernel.org>,
+Cc: Johan Jonker <jbx6244@gmail.com>,
+	Heiko Stuebner <heiko@sntech.de>,
 	Sasha Levin <sashal@kernel.org>,
 	robh@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
 	conor+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.8 13/98] arm64: dts: qcom: Add support for Xiaomi Redmi Note 9S
-Date: Fri, 29 Mar 2024 08:36:44 -0400
-Message-ID: <20240329123919.3087149-13-sashal@kernel.org>
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: [PATCH AUTOSEL 6.8 29/98] ARM: dts: rockchip: fix rk3288 hdmi ports node
+Date: Fri, 29 Mar 2024 08:37:00 -0400
+Message-ID: <20240329123919.3087149-29-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240329123919.3087149-1-sashal@kernel.org>
 References: <20240329123919.3087149-1-sashal@kernel.org>
@@ -71,59 +70,68 @@ X-Patchwork-Hint: Ignore
 X-stable-base: Linux 6.8.2
 Content-Transfer-Encoding: 8bit
 
-From: Joe Mason <buddyjojo06@outlook.com>
+From: Johan Jonker <jbx6244@gmail.com>
 
-[ Upstream commit 6016fb7c91f72f4afbb4017e13cd91954d0f1a9b ]
+[ Upstream commit 585e4dc07100a6465b3da8d24e46188064c1c925 ]
 
-Add a device tree for the Xiaomi Redmi Note 9S (curtana) phone, based on
-sm7125-xiaomi-common.dtsi.
+Fix rk3288 hdmi ports node so that it matches the
+rockchip,dw-hdmi.yaml binding with some reordering
+to align with the (new) documentation about
+property ordering.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Joe Mason <buddyjojo06@outlook.com>
-Signed-off-by: David Wronek <davidwronek@gmail.com>
-Link: https://lore.kernel.org/r/20240121-sm7125-upstream-v4-8-f7d1212c8ebb@gmail.com
-Signed-off-by: Bjorn Andersson <andersson@kernel.org>
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+Link: https://lore.kernel.org/r/cc3a9b4f-076d-4660-b464-615003b6a066@gmail.com
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/qcom/Makefile                |  1 +
- .../boot/dts/qcom/sm7125-xiaomi-curtana.dts      | 16 ++++++++++++++++
- 2 files changed, 17 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sm7125-xiaomi-curtana.dts
+ arch/arm/boot/dts/rockchip/rk3288.dtsi | 16 +++++++++++++---
+ 1 file changed, 13 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 39889d5f8e123..2e6984bbbb836 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -210,6 +210,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-sony-xperia-seine-pdx201.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-xiaomi-laurel-sprout.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm6350-sony-xperia-lena-pdx213.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm6375-sony-xperia-murray-pdx225.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sm7125-xiaomi-curtana.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm7125-xiaomi-joyeuse.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm7225-fairphone-fp4.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-hdk.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sm7125-xiaomi-curtana.dts b/arch/arm64/boot/dts/qcom/sm7125-xiaomi-curtana.dts
-new file mode 100644
-index 0000000000000..12f517a8492c3
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sm7125-xiaomi-curtana.dts
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2023, Joe Mason <buddyjojo06@outlook.com>
-+ */
+diff --git a/arch/arm/boot/dts/rockchip/rk3288.dtsi b/arch/arm/boot/dts/rockchip/rk3288.dtsi
+index ead343dc3df10..3f1d640afafae 100644
+--- a/arch/arm/boot/dts/rockchip/rk3288.dtsi
++++ b/arch/arm/boot/dts/rockchip/rk3288.dtsi
+@@ -1240,27 +1240,37 @@ hdmi: hdmi@ff980000 {
+ 		compatible = "rockchip,rk3288-dw-hdmi";
+ 		reg = <0x0 0xff980000 0x0 0x20000>;
+ 		reg-io-width = <4>;
+-		#sound-dai-cells = <0>;
+-		rockchip,grf = <&grf>;
+ 		interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
+ 		clocks = <&cru  PCLK_HDMI_CTRL>, <&cru SCLK_HDMI_HDCP>, <&cru SCLK_HDMI_CEC>;
+ 		clock-names = "iahb", "isfr", "cec";
+ 		power-domains = <&power RK3288_PD_VIO>;
++		rockchip,grf = <&grf>;
++		#sound-dai-cells = <0>;
+ 		status = "disabled";
+ 
+ 		ports {
+-			hdmi_in: port {
++			#address-cells = <1>;
++			#size-cells = <0>;
 +
-+/dts-v1/;
++			hdmi_in: port@0 {
++				reg = <0>;
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
 +
-+#include "sm7125-xiaomi-common.dtsi"
+ 				hdmi_in_vopb: endpoint@0 {
+ 					reg = <0>;
+ 					remote-endpoint = <&vopb_out_hdmi>;
+ 				};
 +
-+/ {
-+	model = "Xiaomi Redmi Note 9S";
-+	compatible = "xiaomi,curtana", "qcom,sm7125";
+ 				hdmi_in_vopl: endpoint@1 {
+ 					reg = <1>;
+ 					remote-endpoint = <&vopl_out_hdmi>;
+ 				};
+ 			};
 +
-+	/* required for bootloader to select correct board */
-+	qcom,board-id = <0x20022 1>;
-+};
++			hdmi_out: port@1 {
++				reg = <1>;
++			};
+ 		};
+ 	};
+ 
 -- 
 2.43.0
 
