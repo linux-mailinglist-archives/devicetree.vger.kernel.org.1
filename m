@@ -1,170 +1,203 @@
-Return-Path: <devicetree+bounces-54672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F3E48921A5
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 17:32:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 589288921B2
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 17:38:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6448C1F25008
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 16:32:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B7C11C26334
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 16:38:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AA3B2562E;
-	Fri, 29 Mar 2024 16:32:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8C0D85924;
+	Fri, 29 Mar 2024 16:37:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hBbaHKKl"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="OFEC+6Gk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2099.outbound.protection.outlook.com [40.107.20.99])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CC512BB18
-	for <devicetree@vger.kernel.org>; Fri, 29 Mar 2024 16:32:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711729966; cv=none; b=uiZYutST/aXMi4rmv+bkxcirxMCt4kmb/RQdCOl43sXwo/6y2XXmnwM4LfyHv7M6RHvYlCUsjJi+us7sOO4yUHXbX8YEwNYu9NtrRoPaLOq/hJO5sLfSjiCaHCNYFPKFyOUxVNyGQpEQQaICEkVdBbay2n4KGJFKrSfpSA+fz3U=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711729966; c=relaxed/simple;
-	bh=E3HGZbY6E3H/SomNIQGH3/DUr3KviIz8/9DkXlQJ8E4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jL2V2jHXU/2227B2p1nxSV3BX64A6b5DW+ZM1kmvVO4gycMdsqzljCPH/o/iKs0udVFvkxP0oq3aebTydXgV6QOM7bd04yA67X6MthDRE8mDrl/04n2F09Dz5XH/9dJmPIN3tejM1sikRlq5Epjp33xF2AG88eJLhY6zeVZKy1Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hBbaHKKl; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a4644bde1d4so272671966b.3
-        for <devicetree@vger.kernel.org>; Fri, 29 Mar 2024 09:32:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711729962; x=1712334762; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=N2QgqTKjYeMV4wupX3c1M3yXu+BukxhArfbC4mqtySY=;
-        b=hBbaHKKl9h+4ibmGMTVbY3VO5ZIE4I4Mc66qMgKryVSILDsEdikWqmZfeACfICBnV/
-         3KGtanmaPnNmJoAJAHUe0XB3tNKkLEIxZl90HMxhudNVNp2i6w3QT9zqTSR+TYaRu1FN
-         XlP5gV9BwX7qOauZ7Drq/zQs+NUuXtldtl27ALwr/sO1ywm1X6rFOEZtr3kpkJ6Us3WN
-         jnaX0zevuk38JLQpIcnOi3Uw9sGTGDc7uTjyjp9OIaRbZ8IHLhbl3UET4PZUgrOgCDo5
-         JTItjFGfQILhXq/B9/fhKFTIXaNQEORER/iYubpcHFoeubM8+zseioKwd98DL80jIZZK
-         sn3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711729962; x=1712334762;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=N2QgqTKjYeMV4wupX3c1M3yXu+BukxhArfbC4mqtySY=;
-        b=RO7DUiQ+b/a2VzXLw5HDVdk9yZmv3fcNWsLtHRDEejAWD5kBy5/yupKmZBBo2rSxKL
-         53/KgBH8o76l9oUiX57DkapOI6Andh0QzVmzQx5brMA9n9HrjIbhO6WOokIXw1OvD8zS
-         gLziDo/ZuGvIt7UGa4esBLTXAp2mLme7ZbR3fC/warDzJVUgRGZc0AzqCnB5lkZkaoMG
-         sbmTPE+xywZmermPtpK3cWOOeSoPhAI8b4sr7RYMMmLJ2Vw2i1ygZHDMw040j2rF9iAa
-         gWOv1MrejLy7mb2q/Db0ikbORx/y42vFt/eVuDeDA2Zin6FX9MTTf/ZZwMdqTyjIRG5A
-         EpIg==
-X-Forwarded-Encrypted: i=1; AJvYcCUEh7RQKLVwTRCgnElMLALqBgurqBew0JM7ua6lJXPOEHjeSK/uV4zMA6zYwj1hwnTpwvFCr2IsWqTkN108m4mWVSGz4cswddl6Qg==
-X-Gm-Message-State: AOJu0Yzev4JC6xM1Z4qzaSAEq20nkchU04MCnj5LwlR/xBwlr0SvospA
-	IB3DQ3wI4s32FKslibvxslQ/PArxf5Njk7k1/GLktEnhWihJrmOcgeJ1AZzHTfE=
-X-Google-Smtp-Source: AGHT+IGu63POJ6YHNg71abi2Y6v6vkpEJuMdYhaSnyay7s2ilQzvpFifN7/DQE4ir9OfMsCUJbqRRw==
-X-Received: by 2002:a17:906:39c6:b0:a4e:26a4:bc36 with SMTP id i6-20020a17090639c600b00a4e26a4bc36mr1698829eje.7.1711729962342;
-        Fri, 29 Mar 2024 09:32:42 -0700 (PDT)
-Received: from linaro.org ([79.114.172.194])
-        by smtp.gmail.com with ESMTPSA id dl5-20020a170907944500b00a4e28b2639asm1607642ejc.209.2024.03.29.09.32.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Mar 2024 09:32:41 -0700 (PDT)
-Date: Fri, 29 Mar 2024 18:32:40 +0200
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Stephen Boyd <sboyd@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-	Johan Hovold <johan@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH RESEND v6 3/5] spmi: pmic-arb: Make the APID init a
- version operation
-Message-ID: <ZgbtKNEJS/m8OQzt@linaro.org>
-References: <20240326-spmi-multi-master-support-v6-0-1c87d8306c5b@linaro.org>
- <20240326-spmi-multi-master-support-v6-3-1c87d8306c5b@linaro.org>
- <9af9cfd1-38c7-4f38-a652-fd046f427f98@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77203130AD4;
+	Fri, 29 Mar 2024 16:37:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.99
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1711730254; cv=fail; b=t9/QTonURNB9g7mvCGLz57OYHwtseqTZ2SEhD+zzYHPWQwpHImYQKN9NxBunthydusB50HUcdTuAJQ0nwpp3caTLIC+pNiSLpmRnQzFmKSrCT80XqJGplKX7Qhi0pgAJ+Cf45VZTfZ2y+xsMYStWZa8wRPNLkwF8n0Q5XWBcSIc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1711730254; c=relaxed/simple;
+	bh=XDD6z5YkiufYBOOnE4NWCJDp6EnGkMNgflhetVZIkUs=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=gbqaoejpCnjl2aHCfme0hEY89ucKRLgIpdmlm3SBF6LKWyRPSx2iN1dfcbS3ehV/696muBlBlO0jQOXiQaQ9o+IIaRmTcoxfR1tS7pGYi+8CfW8Aak4Pf+bR7WFmOrV2yDezzMv7vuDP7SOMKnkv6FuZF+WZItMba43uZsdEyO4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=OFEC+6Gk; arc=fail smtp.client-ip=40.107.20.99
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=a/+zTO3qg/CqM1JHZih+Smd5TRx1+j62WMEARyj9pNhchErzKGAJJwfcRgYeUWWKGdkWG7J0byA1uuUoeJ6WT9mgaaYwfhX+OciNhzoQhXyY2znwG6Go4j30KXjWaJ0AMvMJs+s2fS2JolnWh88ocQ3dVjgyLutP2BX8mH6Ub9FQHg2jybEEN/CDK6TH1W/lawJUIQQVFOrENWQ2NBzQSz2CWdR5Vbx4o4ddIa1plvbZGZ7BkdByVlVRILka0qnGxeIMt/H9BL4GRaN+cHfmglgQcqqYWsY/d2wlrcounTdCE6qH15flo0z7VBCdNWyNCjVnf9HO8cfajTZrH1xJiA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=smi2INGDHl3HdyjfZ9kUbhwBMsoC4NH0qj3a1IXRqdk=;
+ b=i/4r2jzBvt4RJy4KU4Byt/WTM2kbAsUYvktdVhHlkWg6ZmpK/brzVlWc24zLSEtvhUdYoqU/7f63f13tlNYldgZmvyjDibugvX6dlQH3NcdyjsRv0MUt3NluIgLaNi+H/ta/y9+oMz2dGccYGsR07dDxSunvtrsU/+ftJeEARBtQySmX2S8+DIMWjlKAD8MxZ3I2qkiMCzLseiEBnVm7QD/pUtUjEm7x3Xm5ugx6YueGafLPHoBMDMTuIOgOofGCul4vl+xM8XlNU8KMrHRghodTM/wFt7N7l0swc+4XJInlp3e4GZTPuNiWiA5/Tf8k5NRu2zHzPguo7QmYzwWrvg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=smi2INGDHl3HdyjfZ9kUbhwBMsoC4NH0qj3a1IXRqdk=;
+ b=OFEC+6Gka651TtPsQT9FOev4mns7oe0iTZYX14JOfnUThjz7HMhlUuAirfzdem81OkseaEzvCt/stdKwY6OLvMd26Fgqo3ixgRyUuRoCuaJlhVxuuVCkzNqtwRPeV8xdxPTLnXMTqRL2FxHHQwW+TDN2kI1LL0cY5WS+bgcbUNE=
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by DBBPR04MB7577.eurprd04.prod.outlook.com (2603:10a6:10:206::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.26; Fri, 29 Mar
+ 2024 16:37:28 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::3168:91:27c6:edf6]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::3168:91:27c6:edf6%3]) with mapi id 15.20.7409.039; Fri, 29 Mar 2024
+ 16:37:27 +0000
+From: Frank Li <Frank.Li@nxp.com>
+Subject: [PATCH v4 0/4] arm64: dts: imx8: add cm40 and cm40_uart
+Date: Fri, 29 Mar 2024 12:37:04 -0400
+Message-Id: <20240329-m4_lpuart-v4-0-c11d9ca2a317@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADDuBmYC/23MTQ6CMBCG4auQrq1ppy1QV97DGFNgkCbykxYbD
+ OHuFjZg4vKbzPPOxKOz6MklmYnDYL3tuzjkKSFlY7onUlvFTYCBZAA5beXjNbyNG6lgmeYlE1C
+ DIfF/cFjbaWvd7nE31o+9+2zpwNfrv0rglFGNqZZZgVxhdu2m4Vz2LVkbAXYnGBwdRJdro7QCJ
+ kWR/jpxdOroRHRKg0wF1rwC2N2yLF9znnIBEAEAAA==
+To: Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Frank Li <Frank.Li@nxp.com>, Dong Aisheng <aisheng.dong@nxp.com>, 
+ Alexander Stein <alexander.stein@ew.tq-group.com>, 
+ Alice Guo <alice.guo@nxp.com>, Peng Fan <peng.fan@nxp.com>
+X-Mailer: b4 0.13-dev-e586c
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1711730244; l=1575;
+ i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
+ bh=XDD6z5YkiufYBOOnE4NWCJDp6EnGkMNgflhetVZIkUs=;
+ b=wadA35W3zB2bxHsq1OTDQEkjBsy2n+miNdExOrLXNq4zQB+bPePD3m/73MaDgfXXzdnkfwYTw
+ zi8RAD/s63lCOaMYjPYmqRE9XRCrQGXtwsyKzIYnR0RB9XjkwI25apd
+X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
+ pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
+X-ClientProxiedBy: BYAPR11CA0056.namprd11.prod.outlook.com
+ (2603:10b6:a03:80::33) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9af9cfd1-38c7-4f38-a652-fd046f427f98@linaro.org>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DBBPR04MB7577:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	/oOkkp2ckuJ6A9VRhvpqOhg3yC8cIcHv0TLiFOd6XcVuVFMjuvH3AMfnR5PRr+N/o66+OKvtKN5fsqEBltSwG9/ueYBkxMsW43O03jucQcVb/bfzzTe0MXy3muIVqcuGjKBrqvSQDUQ7vkps6pcjCsUQc6ny7BaPb3rVojPD0WVkSDphdjiRjoDaPut869eYF2pvrLO79KdrIQvWD0ljJYAdJviEBQyo7G9CUFasAIK1vewN/8Ix97hbBFh5ffiEpgYfUEJeIceJoya/JeXyNLPazgk13camrdMRO9mB+PD+9NbqyzabxCzmbztwWdEksL3CKWxflACDXdBdphv1fPuqoogQnwJEW7bNLxmWL+Wi0vMwnSfl7IUgnasdCzEkwVeHOGHdQpqUnKbMhgAZveDapw7yDWwKh875AW89tG45DMWJHLGbGW9ajbLrjaEicezad9KBYCLg9U+hDImMVDmX1qRr5eF7CgLFlPJPZqEA7w0+ghgJEefxTpRDLj3HwD7uYmaQOKB8vUaqxRzcaWmYZBciRJmndZ/o2qsagSB8ZuTOY7ESr5lnhp6zSAxIPpdK0n7BkzhlRzxBkRCh9Pfw3sOdP/pqkCbHFKKrontKPy9eC8Ad+ylPgh3G6H26qB/ncEYkDbTfQf7x0GlEer2AIKSBgxOy1wgnt2ZSy60=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(52116005)(1800799015)(376005)(7416005)(38350700005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?NU1FZ2NyNkJ4aHFiY1BNTzIzdEJtTi9sVDF5R0k0MitBLzJLU3B5a3FRbTRw?=
+ =?utf-8?B?cXdKT0VwYUNBQ0JOQVFNU1REOWg5UW1BYkNIcm54YWllUXU5UTZDQXUxeXNo?=
+ =?utf-8?B?SUNzRFlBM2V2WWkwaGJWVmQ2L3F1di9xUStGdXlLb1Q5TWRkcDlhTUxkZCsw?=
+ =?utf-8?B?R1VpVXpWMitxVzRNV0grQTJveTBUMVNFWHNEaWdCWTVZN0kwS2JVeEdLbWhu?=
+ =?utf-8?B?SDl1ejYyczF4SFZKMUlGVk4wZGgweTZSUlFoeGVmK2xMd3lMTWFIR1grdGI0?=
+ =?utf-8?B?Y2VHTHJ2NGpZUnRWeU1xelZ0TUxLS3RJeDl1UlNJd2VKTGNwc2JzWlFqcThJ?=
+ =?utf-8?B?WTBoaXk0OWFhSDdpS1h2RktvTnE1eTl6c0l3ZEdsUFNHR3ZOSmo3TTR2VCsv?=
+ =?utf-8?B?ZkdqTjFEQ09mazljMk0vckhWclY2NVovS1JHZ1QvRTh5VzcvUlFydStuSkFu?=
+ =?utf-8?B?a00rSUI3MUxpUE5tbzhMZk84WUFZTnVPVFliQXZtc05Wa2lFcGh4ODRDUW5p?=
+ =?utf-8?B?YUQ5MXBkeHQrQTlkZGFjUE5OSEE4a25pb3k2QUtMd0srU3cvV3laRTdCUmxT?=
+ =?utf-8?B?TTRWL242TCtwVnQ3SXhTTS8yS2hpS3pUeUR0ajJRS2twSFh0ZFRrb0huMHd2?=
+ =?utf-8?B?T3hFQXJnY09BODZKL1dMTi9ibUhITjlrSmVienRaTWxmUVdQVEcrWEVtdWlD?=
+ =?utf-8?B?ZFUwamg1YVJLTmR1MDBGbnNxT0VmMXBUUldqd01XQnIwVnIrcEFvOFNQakIy?=
+ =?utf-8?B?anZpVk5SZVlhSGpETWJYdUcxdzRLSThObXNMMytsTXlRSGs3ZzQra1ZQRHNT?=
+ =?utf-8?B?bGhEV3p5ckJwS3JKRzFOQ00xcHJmOUtPQnNuZ0todEljV29vT3ZySDJpMmdi?=
+ =?utf-8?B?bEMvam0vZjJtc1BKV2lXVG03d25oeThwTmtqNll5OTBybDN6eWUwTE5LWU5k?=
+ =?utf-8?B?bVo0RVE0aHByOHNzL1JwOFJjWTI5U040dUhjTHM2WndLTkVkbkw4cDlvS2hm?=
+ =?utf-8?B?d1JXY3Z1TURFSUhDWkZHNXNYQTBGYW80MVQ3SiszamVMaVB2d1FTOFpZUHNw?=
+ =?utf-8?B?Zy9uUStCUkx3K0EvVnlPaHFYVHQ1UkpsMFRDeEgxbU5RRVhXY1I0a21pUnBO?=
+ =?utf-8?B?YmtTYkpqM0RKOWNkUW9STFlUeGxPbUxycHRCSHlKeW54TkNrSlh0SmxQa0hP?=
+ =?utf-8?B?b3ZFT1NQbnMwUmpzd1daUDdlekVBNEtPSkloNjV6dDk5Z01HYzVwOG1oUUNm?=
+ =?utf-8?B?SEJmTjhpUjI0Nmw5TGJsSGx2NXVoNzhMYytXc2ZlOFk0ZEl2R2prK2ZxVmRZ?=
+ =?utf-8?B?bTQvNFN5QUM4OFYvOEhLVVhsejdhNGN5YVp1ZGRSNEhhZjlVWUlwajVWT2Vk?=
+ =?utf-8?B?YjVKb09yNCtrazFmMkRXdTJ1ZGtUaWQrb1VYcGdXNVhxM2xabmV1S1dybm5D?=
+ =?utf-8?B?Q0c3SzczeFBkNTBYNmNoaDQwQlVpbzdqNmU0LzJpU1daUmR0cGNGS1l0VXI0?=
+ =?utf-8?B?UkFTd3BPb01KS2RXc2lZdzE4TXArRHZ6eUw1NFYyYWFaRXR5dzNrQjF6MjVn?=
+ =?utf-8?B?NEdUakR3TnM5dFZEZkY4NlEvZGkxUTA4TFdWd2hocFF2L2xISVYyZjQ3UkZW?=
+ =?utf-8?B?UnQ2bWR3eVF5M3F5dThTcUptNzdwdWtNSkRRMWdKZVNLSnlSUzc1VzJraFd0?=
+ =?utf-8?B?d2dYVTFkMEs5ZmtKdWxpNldPOWxiZzlpRUpOS3BwbjFaZ2M0TWxpMDlGUzZx?=
+ =?utf-8?B?MUd5SUJrRzBJTCsvb1ZHTEZtdWgxcjB4VTNpazVlS1g3QlQzQlZmZmtlcUVq?=
+ =?utf-8?B?dDZ2NlZJc3BxRTRubi9jWWxtamZMNjBtamlJR3NFRzhXdmpuVHM3SDRYUFhO?=
+ =?utf-8?B?N216NUUxcS93cHE3OGRJMjdXa1FGZ2dza3NkYjB3OXJ0Y2FFMVpZOGtsMWlI?=
+ =?utf-8?B?QW40dG1SZlZ0T0Z1bHlvUlFVaThxSUhJOThVelp1a3hiMHVsMDJhdndpYUFr?=
+ =?utf-8?B?N3hVbFlSQnowaVpjdWREbVk5UUp3emxVRHNRUEFtdXJmM1M4K3N3QjYxaVhl?=
+ =?utf-8?B?MnErdkV5Ti9rN1hHaEhDQVVyOVJwRGpnN0hnN08zbzZqRTMyQjRKeXhWWU51?=
+ =?utf-8?Q?nOeoYaDnIy/lko5BrqlNj87hg?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 379de647-aa9f-4c9c-47de-08dc500e8564
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Mar 2024 16:37:27.8505
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: sLGEHu43ifEWCxprzwnsTLy/5EeW9Mwr8MMufQMHpPt8n1MdsGmoraP+lISYwDk1ALiBUJcji70SOllv3jADRA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7577
 
-On 24-03-28 09:51:49, Neil Armstrong wrote:
-> On 26/03/2024 17:28, Abel Vesa wrote:
-> > Rather than using conditionals in probe function, add the APID init
-> > as a version specific operation. Due to v7, which supports multiple
-> > buses, pass on the bus index to be used for sorting out the apid base
-> > and count.
-> > 
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > ---
-> >   drivers/spmi/spmi-pmic-arb.c | 199 +++++++++++++++++++++++++++----------------
-> >   1 file changed, 124 insertions(+), 75 deletions(-)
-> > 
-> > diff --git a/drivers/spmi/spmi-pmic-arb.c b/drivers/spmi/spmi-pmic-arb.c
-> > index 9ed1180fe31f..38fed8a585fe 100644
-> > --- a/drivers/spmi/spmi-pmic-arb.c
-> > +++ b/drivers/spmi/spmi-pmic-arb.c
-> > @@ -183,6 +183,7 @@ struct spmi_pmic_arb {
-> >    * struct pmic_arb_ver_ops - version dependent functionality.
-> >    *
-> >    * @ver_str:		version string.
-> > + * @init_apid:		finds the apid base and count
-> >    * @ppid_to_apid:	finds the apid for a given ppid.
-> >    * @non_data_cmd:	on v1 issues an spmi non-data command.
-> >    *			on v2 no HW support, returns -EOPNOTSUPP.
-> > @@ -202,6 +203,7 @@ struct spmi_pmic_arb {
-> >    */
-> >   struct pmic_arb_ver_ops {
-> >   	const char *ver_str;
-> > +	int (*init_apid)(struct spmi_pmic_arb *pmic_arb, int index);
-> >   	int (*ppid_to_apid)(struct spmi_pmic_arb *pmic_arb, u16 ppid);
-> >   	/* spmi commands (read_cmd, write_cmd, cmd) functionality */
-> >   	int (*offset)(struct spmi_pmic_arb *pmic_arb, u8 sid, u16 addr,
-> > @@ -942,6 +944,38 @@ static int qpnpint_irq_domain_alloc(struct irq_domain *domain,
-> >   	return 0;
-> >   }
-> > +static int pmic_arb_init_apid_min_max(struct spmi_pmic_arb *pmic_arb)
-> > +{
-> > +	/*
-> > +	 * Initialize max_apid/min_apid to the opposite bounds, during
-> > +	 * the irq domain translation, we are sure to update these
-> > +	 */
-> > +	pmic_arb->max_apid = 0;
-> > +	pmic_arb->min_apid = pmic_arb->max_periphs - 1;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int pmic_arb_init_apid_v1(struct spmi_pmic_arb *pmic_arb, int index)
-> > +{
-> > +	u32 *mapping_table;
-> > +
-> > +	if (index) {
-> > +		dev_err(&pmic_arb->spmic->dev, "Unsupported buses count %d detected\n",
-> > +			index);
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	mapping_table = devm_kcalloc(&pmic_arb->spmic->dev, pmic_arb->max_periphs,
-> > +				     sizeof(*mapping_table), GFP_KERNEL);
-> > +	if (!mapping_table)
-> > +		return -ENOMEM;
-> > +
-> > +	pmic_arb->mapping_table = mapping_table;
-> 
-> Can you specify in the spmi_pmic_arb->mapping_table struct documentation the mapping_table
-> is only used in v1 ? or even better rename it to mapping_table_v1
-> 
+Add cm40 subsystem.
+Add cm40_lpuart and lpurt1 for 8dxl evk boards.
 
-Actually the mapping_table is used on version 1 through 3.
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+Changes in v4:
+- fixed lpcg index.
+- fixed typo 'informaiton'.
+- fixed fixregulator name
+- Link to v3: https://lore.kernel.org/r/20240305-m4_lpuart-v3-0-592463ef1d22@nxp.com
+
+Changes in v3:
+- Add Alexander review tags
+- move interrupt-parent below range.
+- move interrupt-parent before interrutps at intmux node
+- Link to v2: https://lore.kernel.org/r/20240302-m4_lpuart-v2-0-89a5952043b6@nxp.com
+
+Changes in v2:
+- commit message "Adding" to Add
+- fixed regulator@101 warning
+- remove 'modem reset'
+- order nodes by access
+- move interrupt-parent under top bus
+- clean up other dtb check warning
+- Link to v1: https://lore.kernel.org/r/20240228-m4_lpuart-v1-0-9e6947be15e7@nxp.com
+
+---
+Alice Guo (1):
+      arm64: dts: imx8dxl: add lpuart device in cm40 subsystem
+
+Dong Aisheng (1):
+      arm64: dts: imx8: add cm40 subsystem dtsi
+
+Frank Li (2):
+      arm64: dts: imx8dxl: update cm40 irq number information
+      dts: arm64: imx8dxl-evk: add lpuart1 and cm40 uart
+
+ arch/arm64/boot/dts/freescale/imx8-ss-cm40.dtsi | 91 +++++++++++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8dxl-evk.dts   | 37 ++++++++++
+ arch/arm64/boot/dts/freescale/imx8dxl.dtsi      | 13 ++++
+ arch/arm64/boot/dts/freescale/imx8qxp.dtsi      |  1 +
+ 4 files changed, 142 insertions(+)
+---
+base-commit: 9acc053fc8f256959e849cb6588a054074daebcd
+change-id: 20240228-m4_lpuart-30791c032f2a
+
+Best regards,
+---
+Frank Li <Frank.Li@nxp.com>
+
 
