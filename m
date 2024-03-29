@@ -1,308 +1,166 @@
-Return-Path: <devicetree+bounces-54493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54498-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8424891516
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 09:17:51 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE65189153F
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 09:54:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A5C9287B58
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 08:17:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C0961C21DDC
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 08:54:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 171E847F47;
-	Fri, 29 Mar 2024 08:17:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F3852C6A9;
+	Fri, 29 Mar 2024 08:54:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ba8FkR0U"
+	dkim=pass (1024-bit key) header.d=nuvoton.com header.i=@nuvoton.com header.b="FpBGnWAC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2045.outbound.protection.outlook.com [40.107.255.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DAF7249ED;
-	Fri, 29 Mar 2024 08:17:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711700267; cv=none; b=PvzS8PJs72f14sRgvPJeAYyz5/GevKtphTLtpUx53JnkYUA+LyobgtzibarRh43uCApKL7euHju1nXUVfVtgTNfQPhhyQsOMF46/Q9BQKvBRniL0Jpb2j8lcNFNSnVtN9+mIo/PSOIp48Gn+OaaSE+ItRYsVr3ta8iia6XwSv+w=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711700267; c=relaxed/simple;
-	bh=xcI33/1wG7Kt9NX9R3scZ3uOF9kigUKYPJzA7QpnciQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kyMZj9mUChYDItH1P3Eh83WPJUYVxTXZlVTZKAdbcZyRF40yArlwvd6pKIB+NlHc6XVZS90+FK4cl5PP/S46j5fdYJmuW+d5vB+stAOzVn5Eln7dU1bqeJaovIAl+HjgUFhhepXwK6ZRDpCj1z+S5iKQhOEh4SW2Ws4g9N56rj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ba8FkR0U; arc=none smtp.client-ip=209.85.210.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-6eae2b57ff2so787851b3a.2;
-        Fri, 29 Mar 2024 01:17:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711700264; x=1712305064; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=FO9tV3Xn+H5beEgAxwVhgbmhSxv5Ufnf/uazK/ynCgc=;
-        b=ba8FkR0Ul1VjK6Y+z/ERVKgEs7TTZC7UYBfrbFYQmomHu5HZqzB/drf1VBmaSKlP9a
-         scs6921t6emn7vRyjw+HTf0l67W2f3v81Qd7QjT9K0FOb1dviczxoGhzrF81A0YBlPya
-         4dMdduRYa/ZvHS15T/61hAUOi85tYZqDm93G8dISphYJ6dqC0mecjl9y5KgcRFhxQUiq
-         ECOLomLh+TDNAgFRwkK2DpTvqizOWybsMWYE9M6/nATVitU4+tNTYmGBX4u9uv55cGEu
-         78rYkGtZGYUGescuNIWMmIZsEmBr9ja8GgLD1ygoSL9uWSTp6Nl8BhdRah4isCRAeC/3
-         nE7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711700264; x=1712305064;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FO9tV3Xn+H5beEgAxwVhgbmhSxv5Ufnf/uazK/ynCgc=;
-        b=h2LmF1nmrKZdxAp5uRjJ1J2JU+Twc6LzOCBXe9ktkNAQcdGSRk5ScdUSHTGbiUj2R9
-         EFsANVYTngw7ZfBVX9JRz4x8DGQ8kpq1uEsWX1HQCZNrbq0CY91Opm8MGkx8kJM7MScG
-         7tcG53JXLb3fny+k1cq9aNHdfQ/Ge05+/FvIC9gy2pE0Y+dNw5KmEdDnQT1rTK3I4pug
-         FMaWUjyPtCcVEwU8M9ujRywqKIr2UcTYSYZ+2Ld1QYaIWwEK/ofoc+Qj7Kn3g/TvzJIZ
-         8g89fkjLfOYzSUuT1R4JgL6YglRAE0ekg9DrByYDbShkKElqhQBOr9kv7jsUPFb02Bvn
-         MmAw==
-X-Forwarded-Encrypted: i=1; AJvYcCWdC6IN26YEVSSkD84s59efFB6oKdDZsXf7QseToBgBa5D6SFiDunfRipuLt2m4yCFoL1zevghnqdB4Ds1kFvdkBsEVOWb0hgf1Q8Nk20eC4zp9l1kgS9rup/j2i3SWjWNJW7nXZ+7f9FYN7u1EEINVBe1Vuol+ZoTzf/xeeQVcco8HUYk=
-X-Gm-Message-State: AOJu0YxFDjPPLvhzQEyMGBsq6mGSe9JSg2ADlb1bprwNXVSgOpK6SJiO
-	CpO+JCxvwEQrxOYpS6I0c3ORXTKqWFlsNsWXF1tu8xh9wkVHNu2XASlRHSWA
-X-Google-Smtp-Source: AGHT+IGrWLGrCMmOqVpiFcT4g1I5JXdy19B2EPJ2VkIa2LhwPNd5vqTRTYCemyJ/a61nIuwaXik/sg==
-X-Received: by 2002:a05:6a00:3a22:b0:6ea:e2d8:468 with SMTP id fj34-20020a056a003a2200b006eae2d80468mr1711036pfb.26.1711700264472;
-        Fri, 29 Mar 2024 01:17:44 -0700 (PDT)
-Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id fj33-20020a056a003a2100b006e57247f4e5sm2569841pfb.8.2024.03.29.01.17.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Mar 2024 01:17:44 -0700 (PDT)
-Message-ID: <c39611b6-25ab-425b-8a16-9f700086e6eb@gmail.com>
-Date: Fri, 29 Mar 2024 16:17:40 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73FFA2B9C1;
+	Fri, 29 Mar 2024 08:54:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.255.45
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1711702458; cv=fail; b=JDFd/PEAZFi2TOaLhdwwxEGxhvUEytWvtH6vVl6Qd84qPbNpcU+FS+5eOKMWYrFvDj2eJA2IWhZZaA1DSmvO5f8ihINFMlYvProBk06hSV4PVmDyXvAtFC2WF58VPyPi5A35VOh0Mo+9KpW0StKPnIYe7CKFfOP5DZijJNzaubA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1711702458; c=relaxed/simple;
+	bh=elK9dPQh82rKrjqcskRYGcWphIglW3mh3olZxurtHTM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=syhB4CVkM+NRXUH9/YUMPEeuzyu5C7ItDAhclWcJ3hpIFTKgd8r3S1QP3Ohrqyvb0yPHHfvRwOn3tvW9ve0oKUEdjFt8nXSiTju817uqhAdeWy6hs4g33j+RvugYMs0Vi1k5FYMTvTLfTynGYx5W1hi1tzOj0CSsZiYHFkd4z78=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nuvoton.com; spf=pass smtp.mailfrom=nuvoton.com; dkim=pass (1024-bit key) header.d=nuvoton.com header.i=@nuvoton.com header.b=FpBGnWAC; arc=fail smtp.client-ip=40.107.255.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nuvoton.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nuvoton.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Hpmraq3d+2Cr/6KqBkcbZO4iIKHkOtMze4gq/czpA47mbnnt5KoFzvcrGBNMpE414x/9HKZvQZBBiUzsyGk6L4e/j7jVR2vbzApGT1iAR0iwIUTCmZA+541vGI58GxCEVp0vHoVz0zUPH0dpI1Uv/11NnmS+26PL+GDyzUbdBGONbNy0MpfqJyFcrRD099vW1L/sKUZL0u1jgAahQgXMZTku/hwnWwAt7au0RYwKJwxPhpfKsf7oC0bnhci7LSN4wmhavbL6Sw5tx6zw7goIqLbCjva+dG864YOo4QHJ9d3Y9J3sWbLSJ0iyGtjmXGUhT6cCvR9BEKTLr1Ro/xlVhw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=N/cr16lwQLz3Sgrz63Rg8aRYwNOwAWjC8jzIZXsvJ2M=;
+ b=YUGLVR0ZtY0EwWQ4z00F/TByVY45rEVNSVV1wnfyhIsFK76YqoJoulm7gUvDrbqPW3fqtRyXdtq0NcEEzOl/xjH5jUNBC8/Ovx6OMsyW+syRdoMa7tjL/bb7sQGrjUOudRy8wGqF3mm98t2/jgHTw5eTWZSBnCBx60vEASnU1gPNJ4DsCM4TA6XzkGBLMt6FrGASOoY4heLLV+e/BF9XJdW59l7fUqbMahPF3sgc3qvSUnqWPMP7ETk43TWos5bh39OnQ6/wEQ5k5/CfhmDlNxynCeAVRaugqRN4akzAuuvAxNVAWfxfowPgB6NVvvp7euzJidGXR+d5fMITMfz2tA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 175.98.123.7) smtp.rcpttodomain=kernel.org smtp.mailfrom=nuvoton.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=nuvoton.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nuvoton.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=N/cr16lwQLz3Sgrz63Rg8aRYwNOwAWjC8jzIZXsvJ2M=;
+ b=FpBGnWAC6X+SWDxcsjHGs5huo7oCe/UVO/Z4dxaHnPJbeK0P9nmD434akCCtLrv4w3QEl3S6IiVbi6weNFjGaqKZF4/MI9htx8rCajlAjrjap8QpTfpxVEz1xhIZSHOM+aSYBrd6Xbsj6Uv9id2iCHbrOdWOdafSr2Kb/jYDx9M=
+Received: from PS1PR01CA0008.apcprd01.prod.exchangelabs.com
+ (2603:1096:300:75::20) by TYSPR03MB8630.apcprd03.prod.outlook.com
+ (2603:1096:405:8b::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.32; Fri, 29 Mar
+ 2024 08:54:10 +0000
+Received: from HK2PEPF00006FB3.apcprd02.prod.outlook.com
+ (2603:1096:300:75:cafe::84) by PS1PR01CA0008.outlook.office365.com
+ (2603:1096:300:75::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.40 via Frontend
+ Transport; Fri, 29 Mar 2024 08:54:09 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 175.98.123.7)
+ smtp.mailfrom=nuvoton.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nuvoton.com;
+Received-SPF: Pass (protection.outlook.com: domain of nuvoton.com designates
+ 175.98.123.7 as permitted sender) receiver=protection.outlook.com;
+ client-ip=175.98.123.7; helo=NTHCCAS02.nuvoton.com; pr=C
+Received: from NTHCCAS02.nuvoton.com (175.98.123.7) by
+ HK2PEPF00006FB3.mail.protection.outlook.com (10.167.8.9) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7409.10 via Frontend Transport; Fri, 29 Mar 2024 08:54:09 +0000
+Received: from NTHCCAS01.nuvoton.com (10.1.8.28) by NTHCCAS02.nuvoton.com
+ (10.1.9.121) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.14; Fri, 29 Mar
+ 2024 16:54:08 +0800
+Received: from localhost.localdomain (10.11.36.27) by NTHCCAS01.nuvoton.com
+ (10.1.8.28) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
+ Transport; Fri, 29 Mar 2024 16:54:08 +0800
+From: Seven Lee <wtli@nuvoton.com>
+To: <broonie@kernel.org>
+CC: <lgirdwood@gmail.com>, <alsa-devel@alsa-project.org>,
+	<devicetree@vger.kernel.org>, <linux-sound@vger.kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <linux-kernel@vger.kernel.org>,
+	<robh+dt@kernel.org>, <conor+dt@kernel.org>, <perex@perex.cz>,
+	<tiwai@suse.com>, <YHCHuang@nuvoton.com>, <KCHSU0@nuvoton.com>,
+	<CTLIN0@nuvoton.com>, <SJLIN0@nuvoton.com>, <wtli@nuvoton.com>,
+	<scott6986@gmail.com>, <supercraig0719@gmail.com>, <dardar923@gmail.com>
+Subject: [PATCH v6 0/2] ASoC: nau8325: Modify driver code and dtschema.
+Date: Fri, 29 Mar 2024 16:54:00 +0800
+Message-ID: <20240329085402.3424749-1-wtli@nuvoton.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 3/3] pinctrl: nuvoton: Add ma35d1 pinctrl and GPIO
- driver
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, p.zabel@pengutronix.de, j.neuschaefer@gmx.net,
- linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- ychuang3@nuvoton.com, schung@nuvoton.com
-References: <20240313035719.768469-1-ychuang570808@gmail.com>
- <20240313035719.768469-4-ychuang570808@gmail.com>
- <CACRpkdYnG+SgrgAWW8+qdiBwO5d+nE8g_31Evyw0pA2dXz3BPw@mail.gmail.com>
-Content-Language: en-US
-From: Jacky Huang <ychuang570808@gmail.com>
-In-Reply-To: <CACRpkdYnG+SgrgAWW8+qdiBwO5d+nE8g_31Evyw0pA2dXz3BPw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NotSetDelaration: True
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: HK2PEPF00006FB3:EE_|TYSPR03MB8630:EE_
+X-MS-Office365-Filtering-Correlation-Id: e94dcb8d-2ea4-4b18-1db9-08dc4fcdcc77
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	8ogltWQ7XP8WYJed0vuNY7Fay71WiaNbnqcfy5MGoQNyGbhcLy+A9URvEXJvFQ6Xp22pqE6clpLD0OqECesaouuNE+LgwjLE7cM4NSldImOdLP8mCPry0IlXczKriVEvUr1E8dUfgBBeStl+a3gme+R1v1NH59bIUpfSwAvlO4BO54cclttwh7z7viG9EyrnSb6I8yZl9SsPXsLacSnk2TeeMFt+G+6gOmk7tkIOTxv/iXQlmDe/f2W8C2uzgKV59JFH4dGgsNSdT7ykxzHwhm45HwAkIWjPad3KJJvb8Nsc47u5z5SuuvJ823UGvRw1IFHKEdQeWRZZTITIfWMczeZ2qZOUA5lr+Aj/dEKqR5oRAJp2FuwPGupdDMh90dCrIiwNlJCl8Nr2QX2TXwEXdr13nwFY3rSeJQLqSgz+BHbPck5vcUpn7bP+HmrJrNuBYZggnqQhPHVW+izyKRh68fO19fGHdQ49DT5vjj8ZjxGLg8biN4G6yIOKMMkYItiBdOgCcnh4yAtViaeHQuANT+ZHndWD1t30DR+uSCuVsbhZzBpCq/tYKN5GBDnuHdfWAqg28JGctaNOHOw5J0XjBpkFnY2hM0CjFClDVoopMY91dAc6S6DKgw7uEv2AlWLXr9uPr7SYuAsGJLQ36KvUUNDoyONA5R7fO5OtZQNlkyvsb/jdBq4qBzndg6BG/Sr/PIR+ZVU9HItmPJROk8eyS/JaD5TvM4Pa+8oXHPMIM4ZcIHVoA3iXn+w426cJRS1y
+X-Forefront-Antispam-Report:
+	CIP:175.98.123.7;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:NTHCCAS02.nuvoton.com;PTR:175-98-123-7.static.tfn.net.tw;CAT:NONE;SFS:(13230031)(7416005)(376005)(36860700004)(1800799015)(82310400014);DIR:OUT;SFP:1101;
+X-OriginatorOrg: nuvoton.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Mar 2024 08:54:09.6703
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e94dcb8d-2ea4-4b18-1db9-08dc4fcdcc77
+X-MS-Exchange-CrossTenant-Id: a3f24931-d403-4b4a-94f1-7d83ac638e07
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=a3f24931-d403-4b4a-94f1-7d83ac638e07;Ip=[175.98.123.7];Helo=[NTHCCAS02.nuvoton.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	HK2PEPF00006FB3.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR03MB8630
 
+Revise properties description and use standard units in dtschema.
+The unit conversion driver based on the attribute must also be
+changed accordingly.
 
-Dear Linus,
+Change:
+V1 -> V2:
+- Revise the driver description part for the C++ comment.
+- In the nau8325_clkdet_put function, modify the max variable to hard code.
+- Removed "Clock Detection" switch control.
+- modify the "ALC Enable" switch name.
+- Revise the dtschema for "nuvoton,dac-vref".
 
-Thanks for your review.
+V2 -> V3:
+- Properties use standard unit suffixes.
+- Modify the enum definition.
+- Driver code should be used dev_dbg().
 
+V3 -> V4:
+- Properties use standard unit suffixes.
+- Modify the enum definition.
 
-On 2024/3/28 下午 05:10, Linus Walleij wrote:
-> Hi Jacky,
->
-> overall this looks very good.
->
-> On Wed, Mar 13, 2024 at 4:57 AM Jacky Huang <ychuang570808@gmail.com> wrote:
->
->
->> From: Jacky Huang <ychuang3@nuvoton.com>
->>
->> Add common pinctrl and GPIO driver for Nuvoton MA35 series SoC, and
->> add support for ma35d1 pinctrl.
->>
->> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
-> (...)
->> +static int ma35_pinmux_set_mux(struct pinctrl_dev *pctldev, unsigned int selector,
->> +                              unsigned int group)
->> +{
->> +       struct ma35_pinctrl *npctl = pinctrl_dev_get_drvdata(pctldev);
->> +       struct ma35_pin_group *grp = &npctl->groups[group];
->> +       struct ma35_pin_setting *setting = grp->settings;
->> +       u32 i, regval;
->> +
->> +       dev_dbg(npctl->dev, "enable function %s group %s\n",
->> +               npctl->functions[selector].name, npctl->groups[group].name);
->> +
->> +       for (i = 0; i < grp->npins; i++) {
->> +               regmap_read(npctl->regmap, setting->offset, &regval);
->> +               regval &= ~GENMASK(setting->shift + 3, setting->shift);
-> Add a comment explaining why you add +3
+V4 -> V5:
+- Properties use standard unit suffixes for vref-impedance and dac-vref.
+- Revise the enum definition.
+- Modify the code related to properties usage in the NAU8325 codec driver.
+- Re-arrange header files in alphabetical order.
 
-The pinmux selection is 4 bits. I will use a constant for the bitmask 
-width instead.
+V5 -> V6:
+- Revise the nau8325_dac_oversampl_enum structure definition.
 
->
->> +static int ma35_gpio_core_direction_in(struct gpio_chip *gc, unsigned int gpio)
->> +{
->> +       struct ma35_pin_bank *bank = gpiochip_get_data(gc);
->> +       void __iomem *reg_mode = bank->reg_base + MA35_GP_REG_MODE;
->> +       unsigned long flags;
->> +       unsigned int regval;
->> +
->> +       spin_lock_irqsave(&bank->lock, flags);
->> +
->> +       regval = readl(reg_mode);
->> +       regval &= ~GENMASK(gpio * 2 + 1, gpio * 2);
->> +       regval |= MA35_GP_MODE_INPUT << gpio * 2;
-> Here the first time you do this magic explain in a comment why you
-> use *2+1 and *2 overall (I guess two bits per line).
+Seven Lee (2):
+  ASoC: dt-bindings: Added schema for "nuvoton,nau8325"
+  ASoC: nau8325: new driver
 
-Yes, it is two bits per pin. I will add a comment to explain this.
+ .../bindings/sound/nuvoton,nau8325.yaml       |  80 ++
+ sound/soc/codecs/nau8325.c                    | 900 ++++++++++++++++++
+ sound/soc/codecs/nau8325.h                    | 391 ++++++++
+ 3 files changed, 1371 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/nuvoton,nau8325.yaml
+ create mode 100644 sound/soc/codecs/nau8325.c
+ create mode 100644 sound/soc/codecs/nau8325.h
 
->> +static int ma35_gpio_core_get(struct gpio_chip *gc, unsigned int gpio)
->> +{
->> +       struct ma35_pin_bank *bank = gpiochip_get_data(gc);
->> +
->> +       return readl(bank->reg_base + MA35_PIN_MAP_BASE + gpio * 4);
-> Here add a comment explaining the *4
-> I guess one 32-bit register per pin?
-
-Yes, it maps one 32-bit register to a gpio pin.
-I will add a comment to explain this.
-
->> +static int ma35_irq_irqtype(struct irq_data *d, unsigned int type)
->> +{
->> +       struct ma35_pin_bank *bank = gpiochip_get_data(irq_data_get_irq_chip_data(d));
->> +       void __iomem *reg_itype = bank->reg_base + MA35_GP_REG_INTTYPE;
->> +       void __iomem *reg_ien = bank->reg_base + MA35_GP_REG_INTEN;
->> +       unsigned int num = (d->hwirq);
->> +
->> +       if (type == IRQ_TYPE_PROBE) {
->> +               writel(readl(reg_itype) & ~BIT(num), reg_itype);
->> +               writel(readl(reg_ien) | BIT(num) | BIT(num + 16), reg_ien);
->> +               bank->irqtype &= ~BIT(num);
->> +               bank->irqinten |= BIT(num) | BIT(num + 16);
->> +               return 0;
->> +       }
->> +
->> +       if (type & IRQ_TYPE_LEVEL_MASK) {
->> +               writel(readl(reg_itype) | BIT(num), reg_itype);
->> +               writel(readl(reg_ien) & ~(BIT(num) | BIT(num + 16)), reg_ien);
->> +               bank->irqtype |= BIT(num);
->> +               bank->irqinten &= ~(BIT(num) | BIT(num + 16));
->> +               if (type == IRQ_TYPE_LEVEL_HIGH) {
->> +                       writel(readl(reg_ien) | BIT(num + 16), reg_ien);
->> +                       bank->irqinten |= BIT(num + 16);
->> +                       return 0;
->> +               }
->> +
->> +               if (type == IRQ_TYPE_LEVEL_LOW) {
->> +                       writel(readl(reg_ien) | BIT(num), reg_ien);
->> +                       bank->irqinten |= BIT(num);
->> +                       return 0;
->> +               }
->> +
->> +       } else {
->> +               writel(readl(reg_itype) & ~BIT(num), reg_itype);
->> +               bank->irqtype &= ~BIT(num);
->> +
->> +               if (type & IRQ_TYPE_EDGE_RISING) {
->> +                       writel(readl(reg_ien) | BIT(num + 16), reg_ien);
->> +                       bank->irqinten |= BIT(num + 16);
->> +
->> +               } else {
->> +                       writel(readl(reg_ien) & ~BIT(num + 16), reg_ien);
->> +                       bank->irqinten &= ~BIT(num + 16);
->> +               }
->> +
->> +               if (type & IRQ_TYPE_EDGE_FALLING) {
->> +                       writel(readl(reg_ien) | BIT(num), reg_ien);
->> +                       bank->irqinten |= BIT(num);
->> +
->> +               } else {
->> +                       writel(readl(reg_ien) & ~BIT(num), reg_ien);
->> +                       bank->irqinten &= ~BIT(num);
->> +               }
->> +       }
->> +       return 0;
->> +}
-> I don't understand why you don't set the irq_handler:
-> irq_set_handler_locked(d, handle_edge_irq);
-> irq_set_handler_locked(d, handle_level_irq);
-
-I will add the irq_set_handler_locked().
-> It seems you are not handling IRQ_TYPE_EDGE_BOTH?
-> What happens if both rising and falling is specified simultaneously?
->
-> The if/else nesting is hard to read.
-> switch (type) {
->          case IRQ_TYPE_EDGE_BOTH:
-> (...)
->          case IRQ_TYPE_EDGE_RISING:
-> (...)
->
-> See drivers/gpio/gpio-ftgpio010.c for an example.
-
-We'll refer to this driver to modify our code.
-
-> Have you checked that handling edge and level IRQs really work
-> as expected?
-
-This driver works with edge or level IRQs in linux-5.10, and some 
-modifications
-have been made for upstream. We'll verify if it also works in linux-6.9.
-
->> +static int ma35_gpiolib_register(struct platform_device *pdev, struct ma35_pinctrl *npctl)
->> +{
->> +       struct ma35_pin_ctrl *ctrl = npctl->ctrl;
->> +       struct ma35_pin_bank *bank = ctrl->pin_banks;
->> +       int ret;
->> +       int i;
->> +
->> +       for (i = 0; i < ctrl->nr_banks; ++i, ++bank) {
->> +               if (!bank->valid) {
->> +                       dev_warn(&pdev->dev, "bank %s is not valid\n",
->> +                                bank->np->name);
->> +                       continue;
->> +               }
->> +               bank->irqtype = 0;
->> +               bank->irqinten = 0;
->> +               bank->chip.label = bank->name;
->> +               bank->chip.of_gpio_n_cells = 2;
->> +               bank->chip.parent = &pdev->dev;
->> +               bank->chip.request = ma35_gpio_core_to_request;
->> +               bank->chip.direction_input = ma35_gpio_core_direction_in;
->> +               bank->chip.direction_output = ma35_gpio_core_direction_out;
->> +               bank->chip.get = ma35_gpio_core_get;
->> +               bank->chip.set = ma35_gpio_core_set;
->> +               bank->chip.base = -1;
->> +               bank->chip.ngpio = bank->nr_pins;
->> +               bank->chip.can_sleep = false;
->> +               spin_lock_init(&bank->lock);
->> +
->> +               if (bank->irq > 0) {
->> +                       struct gpio_irq_chip *girq;
->> +
->> +                       girq = &bank->chip.irq;
->> +                       gpio_irq_chip_set_chip(girq, &ma35_gpio_irqchip);
->> +                       girq->parent_handler = ma35_irq_demux_intgroup;
->> +                       girq->num_parents = 1;
->> +
->> +                       girq->parents = devm_kcalloc(&pdev->dev, 1, sizeof(*girq->parents),
->> +                                                    GFP_KERNEL);
->> +                       if (!girq->parents)
->> +                               return -ENOMEM;
->> +
->> +                       girq->parents[0] = bank->irq;
->> +                       girq->default_type = IRQ_TYPE_NONE;
->> +                       girq->handler = handle_level_irq;
-> Does this really work for the edge IRQs?
->
-> I recommend setting this to handle_bad_irq and assign the right
-> handler in .set_type().
->
-> Yours,
-> Linus Walleij
-
-OK, I will fix it.
-
-
-Best Regards,
-Jacky Huang
-
-
-
+-- 
+2.25.1
 
 
