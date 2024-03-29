@@ -1,104 +1,115 @@
-Return-Path: <devicetree+bounces-54631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F079F891F6A
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 16:04:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA982891F8E
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 16:07:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A619E1F30BCF
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 15:04:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6448128C23B
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 15:07:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D784D15531D;
-	Fri, 29 Mar 2024 13:24:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B43AB14387E;
+	Fri, 29 Mar 2024 13:36:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="N8cvRHyP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E5O8A5+e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87CA425777;
-	Fri, 29 Mar 2024 13:24:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8730152F72;
+	Fri, 29 Mar 2024 13:36:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711718653; cv=none; b=J9sSjPE/PIWueRrf3mc0Gz+doWHXM23cwayy/7d7ofclr+k6fYRInM6THrGQq7UDfE1Z0zaJrE9flVcLU1KcVxY77kramIb1cmwm4v0erc/MrJM97rfZ+8goNCRYtUWDMKCArHFQT+Ay3/mJVdmXWFQegfT8KHUHuVFPDWpLv38=
+	t=1711719375; cv=none; b=DJv0riplocISZ2KqBapjH9PGOgO39UAoUazHd8oOxRaeKdsfd4nZxhsljrFn9whvBZtP/d7em0POMgEcEJ0p1ySItmzl96ueh0J4UP41BhToFO8JAk5yA1v1atIJJ/jv0S22DmEqIw9apXsWQIeQGb4p47A8F3ini8sKjyqjj3w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711718653; c=relaxed/simple;
-	bh=v8mIn4wI6Nk8yWeAoiTyvSclm6AdbmqShOByjQ1EiZc=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=FG/cnH8YZZ1I2yrbos280NLbVVeD+xqcLXGlfKGVSEos1i/dqAuIdY8SYO7NzFSwgabwrXi9lgtMXRCDvn6hxLUyTpz5EGbQVENJNgUrewl7pJzOnBHD8Ks7k2DFCP6b6OdLup0ouQUP6D4B+mgyTBbtkuIOqflgds38If3mjB0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=N8cvRHyP; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id DFE1FE0008;
-	Fri, 29 Mar 2024 13:24:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1711718648;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Z8zwe634gu5wQNCVCxvtpKe0aX4n7o17eGhcQXcT/N4=;
-	b=N8cvRHyPJgw5j5LKkih7d26o4xz2NIuPQNXKFj8uupd470/nXWH0scfZaHHEl3j9CKrBex
-	Pbskzy//s8gOQPW0Q9RyQ6c6e6pf+5HxiHLme7pdkxLnOW5BEkSDlSNai8dTMispVpfws/
-	hLchxIIMJdRL9lZzAYWvm3+M0LJCFePBNb3hgl4yEe6YKKbSw+vwZuovy5Yywy4bpJw4mb
-	KIdJHjIhBxrWkPrLV2Q9PnSYK7cgJP063BauaJRtBMkA4rsytPkNKxJG5OQUu7EsZeBmQ5
-	XyV61Cs61Per8cmpSkvlDdInL17uL9nbTK8mu1ED+Jqje3CvdwTG/6T7JXVqIA==
-Message-ID: <106a9957-cf7f-4789-8edc-fdc641cd854a@bootlin.com>
-Date: Fri, 29 Mar 2024 14:24:07 +0100
+	s=arc-20240116; t=1711719375; c=relaxed/simple;
+	bh=jnwxTsD0edotBFz3w9snQJc1F0VCr5E8otP3pm+q3rM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ushz3QfFhLmxj6/1+VohNIkrVQhajDAcKJrA+wnctXkpjqnkys7L9Dv6PJIyAB0qNYdBYHynC38oSbtU/aXcm9kPehgk8n9hcNs4KL9yWyYaGDNQMMWFPpKyq90+jn23YBCXBj3kSFUh/KdyC7HBj7diDQH3eUw7rJddAsWfPhw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E5O8A5+e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54D93C433C7;
+	Fri, 29 Mar 2024 13:36:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711719375;
+	bh=jnwxTsD0edotBFz3w9snQJc1F0VCr5E8otP3pm+q3rM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=E5O8A5+e3T43C4JS0f9c3DLZ9ZjXZy3qEsRyEXX6aPW8BQiW5BoK+MPaqWwr88DUh
+	 2YfchZgt+RbH4RumlTdWmx+3JghKVlgyRQHvi/rCRQWqVTQ0MVWZN6LPdaDSqAi44b
+	 qKoIGqZcdpQ1eMbM30rb4H2UCLQ87ebkutaTdCRgMjDr9kL0deJtx7fx6t1sCviAQw
+	 I1xPsFwQ/Kjv4JH2fJ4ohOI/vKXFQbQpkmIVVrMvLY3BQnjcibWNy8SkSDXp/C/Ug2
+	 JSPrLcpih4WomBB0W7jmCoewNHmNoGZYeFO9Qg1kxBQEEX/fuM4dxAXz4K6639zNy9
+	 tNbiDn3C2Vrzw==
+Date: Fri, 29 Mar 2024 13:36:07 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Xingyu Wu <xingyu.wu@starfivetech.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Claudiu Beznea <Claudiu.Beznea@microchip.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+	"linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>
+Subject: Re: =?utf-8?B?5Zue5aSNOiBbUEFUQ0ggdjIgMS8y?= =?utf-8?Q?=5D_ASoC?=
+ =?utf-8?Q?=3A?= dt-bindings: Add bindings for Cadence I2S-MC controller
+Message-ID: <ZgbDx6oD+mMUIvH1@finisterre.sirena.org.uk>
+References: <20240320090239.168743-1-xingyu.wu@starfivetech.com>
+ <20240320090239.168743-2-xingyu.wu@starfivetech.com>
+ <9d9efb8a-0b3c-4e7a-8673-07cd3b1f5f87@linaro.org>
+ <NTZPR01MB0956BD6189974378958562D99F35A@NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn>
+ <9b1a5100-8536-4b59-b2e7-d6ebd2ba9e66@linaro.org>
+ <NTZPR01MB0956230296D881F112F92D119F35A@NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn>
+ <16f72b4a-2aa9-49d5-a4aa-ed94eea1f32a@linaro.org>
+ <NTZPR01MB09563633F5C3B5FBC95D61289F3AA@NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn>
+ <7b4a35d0-6764-4c6a-9f1d-57481324c680@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 13/13] ASoC: ti: davinci-i2s: Opitonally drive DX pin
- during capture streams
-From: Bastien Curutchet <bastien.curutchet@bootlin.com>
-To: =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, herve.codina@bootlin.com,
- christophercordahi@nanometrics.ca
-References: <20240315112745.63230-1-bastien.curutchet@bootlin.com>
- <20240315112745.63230-14-bastien.curutchet@bootlin.com>
- <00182d1d-ef29-457f-9e3e-6e9b57592118@gmail.com>
- <0bb26153-8bcb-475f-8892-5eb925fec538@bootlin.com>
- <7925bbe5-17e8-42cb-a5f0-4f3e06810a90@gmail.com>
- <d20dc37c-13fa-43d1-af52-dce8d8dcdd75@gmail.com>
- <5467add6-0099-4e54-a4f7-12aa149d03c7@bootlin.com>
- <e6994ff1-6c32-4dac-846a-5f4f18b2f996@gmail.com>
- <16e6cded-33c1-408c-9bfc-b0b9a8da4cbf@bootlin.com>
-Content-Language: en-US
-In-Reply-To: <16e6cded-33c1-408c-9bfc-b0b9a8da4cbf@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: bastien.curutchet@bootlin.com
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="iIGHYhhokfc75u7X"
+Content-Disposition: inline
+In-Reply-To: <7b4a35d0-6764-4c6a-9f1d-57481324c680@linaro.org>
+X-Cookie: You might have mail.
 
-Hi Péter,
 
->> Can you use aplay /dev/zero and a DT property to select T1 framing for
->> the playback? Or that would be too coarse for timing the start of
->> playback and capture?
->>
-> 
-> That's a good idea, thank you. I'll try this and come back to you.
-> 
->
+--iIGHYhhokfc75u7X
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-I tried it and it works fine, thank you.
+On Fri, Mar 29, 2024 at 12:42:22PM +0100, Krzysztof Kozlowski wrote:
 
-We still need to run some performance tests before fully adopting it but
-anyway I'll send a new iteration of the patch series that drops the
-drive-dx part and just keeps a DT property to select T1 framing.
+> I stated and I keep my statement that such block is usually not usable
+> on its own and always needs some sort of quirks or SoC-specific
+> implementation. At least this is what I saw in other similar cases, but
+> not exactly I2S.
 
-Best regards,
-Bastien
+I wouldn't be so pessimistic, especially not for I2S - a good portion of
+quirks there are extra features rather than things needed for basic
+operation, a lot of things that might in the past have been quirks for
+basic operation are these days hidden behind the DT bindings.
+
+--iIGHYhhokfc75u7X
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmYGw8QACgkQJNaLcl1U
+h9AoCQf/b7CetVNUQ04OVH9f281N1evjEGVDKNvmj8TAvLEoUEG4P3QSQCXLRTFL
+XCqgLAxCUPBrhC1vZfv7x1NMf6FZtqXyP9O7mW6DwydE8RGlKZM+G0TrP3mkLs8g
+y6+3eKFU0bo2GJTgJRsVtNtLNzTXsTUGO/tU9khE7a3mJImQucQlJJ57EG/qMxXa
+As1WC+LHJ4fGYDQFYBEaL5kvjCd/K4/nxrUQIR5GGMpM4q8/MHNcvDVXColvnACD
+ts0VNnwgkNiNEHiarjuIq1Lsx3kfPLCeVu3sbydAzszYi/mSC2AIcvzFqUCwy8Y4
+SnpWS7wTOxtWTnqr1WykCbx0Tf7cDQ==
+=kO0w
+-----END PGP SIGNATURE-----
+
+--iIGHYhhokfc75u7X--
 
