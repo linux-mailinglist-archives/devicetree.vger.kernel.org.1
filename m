@@ -1,430 +1,427 @@
-Return-Path: <devicetree+bounces-54692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 228188923B1
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 19:55:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B1618923CA
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 20:01:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D58BD286F44
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 18:55:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A60D71F2285B
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 19:01:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B219613B2B1;
-	Fri, 29 Mar 2024 18:54:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CMmwwoWl"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76C463B293;
+	Fri, 29 Mar 2024 19:01:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fgw20-7.mail.saunalahti.fi (fgw20-7.mail.saunalahti.fi [62.142.5.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6603A12F5A4
-	for <devicetree@vger.kernel.org>; Fri, 29 Mar 2024 18:54:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AB3E4AEED
+	for <devicetree@vger.kernel.org>; Fri, 29 Mar 2024 19:00:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.142.5.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711738496; cv=none; b=NA63mzMAxB9t+CpFwpN14yzzMM5OcRwGzdnNkic+eqmQzQ117T8Hi4rVGnvnwQ32eO7/WmrOj/4pWL/BL0nWvSi6zR9gaAtkTxMVwJA84GUSkagNvWj4Zwn+hiVfCLWwZ60AmfOHse8hGRpB09RNZD4jaYPjpVFXMv+VWQf5joc=
+	t=1711738861; cv=none; b=NFEOCIykzDiqDeRnhktWs393N8jsIZgTTvTVTYGu2S6JaIKVnEI/SgF4nLXFjn7Ls8j8yXzL+fyV/LtLDh1S1tMHQ1YhOAM0p7wpXCnL2ek4tmwjyGhmHvDp0L7cBpEtyejNUwrjkCdv5Q/E+HciGgBCdg427iQ7PBLc7YkNsI4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711738496; c=relaxed/simple;
-	bh=kiFNbFrr2cHRGI8Y32geRObZcge4BmsO3+tXioPlQw4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=WEj81ADJUtBbSsoeuzgssuEJbjqUKj1FAP4IJcLgaJ2Ujm0h1KPPV1vJFqB5PV0K5ucmWTjizNR9w5yQLQnabxgWvJfPX/dj5yjqdkAAuIW5otAzYKrwAPcW85T6GcTyfHGqgbUwY+UnVzIqzpuDKY6Yam0LxZkcPsXWdzaYxGg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CMmwwoWl; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a4644bde1d4so287934766b.3
-        for <devicetree@vger.kernel.org>; Fri, 29 Mar 2024 11:54:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711738492; x=1712343292; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gDWmNiwFaDyG4eVDcOJIipMcHBjPEMX/8w3VIoSj37Y=;
-        b=CMmwwoWlrFp/xdb4Q33XMk+aQ8PL7meSZKfVUtlIbWBdEUew9ag2hejot+wQgxxetB
-         xKjW7imndMs981JHAJkAgqUJz9DU7Xemgyui1uJ6kLAE6D3DPz9GROI1TbKNJ6SY2Dhc
-         gZAcjg+ntTInO8ILcEyUobhxb6hhqPDMiDN5IDzkHtPf4Xv7QmmzOW/FrB4BWsjAAdWT
-         byEcVFQUay9zrPu1YidcV0JNGHMUrg0PLOk1lzz7xFQ6+oUSD1LNqZcSWYGAwh3+SpQt
-         E6/MiaTwzd5pyGwrxhC+wYhw6HjqX6QMD0gPvd+aU0wdwz+W61/Hygb2E/q4BUt5wfhm
-         uatg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711738492; x=1712343292;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gDWmNiwFaDyG4eVDcOJIipMcHBjPEMX/8w3VIoSj37Y=;
-        b=k9AaYGKyT5kDz15uyH5w3BN6mAboH8FO8Hef1ZXgp3ntnj2tnMNGK/DhQ0LZOM1wcF
-         UvciL//WolGmvGtBg8u/Qkp59nJ10dGF9PaJeXTMTQGEJuGnq1FWBQQtu5GYBDKWtVCg
-         Cl727xRuWFGPZpnO7URtXGTLx1gVdZBd2gU78zs9ARWQwBvSoqkvCN5ShBOEdsmE1n+g
-         RmJDaKp9J3G+iZUTp/m7jnQDotRnzDyllTom+wqvH6uJ+qyq8snRmyzTQPuFYgVIg0cy
-         jifvy6juzv6bhQ8WvZSfaaKFHjo5HcVppeNe2v8vh+dP61aXb3tZplr2jA8krOcSd4rL
-         d/6w==
-X-Forwarded-Encrypted: i=1; AJvYcCVKR0GqX0i7yghMjXova+mDsVH9anF81SeWs2uU76Uyc3PYdU3lgfFFgnjdPhSc9PR0DLl07QKuyqxVYs+aorqnzla8GKgytNv3pA==
-X-Gm-Message-State: AOJu0YxqydJU04IxV7Rk+/s5/EDH1S9qLhXHA65dcaF8J25uIKUnDhrT
-	JxKLVhZXnMlZFYX93LSG6uWcZbveoge1iAoV9GK8bLNRt88VJctDaRsf24wEE9+iV+MAi8O6A1B
-	5
-X-Google-Smtp-Source: AGHT+IEtKEI1LK9lS1mHVw1CNmNQ33IUOsSWQyQtYl0YqK2TB+8vPQKsER18RfjFqRKtZmrSueU3Tw==
-X-Received: by 2002:a17:907:7248:b0:a4e:4350:3b3a with SMTP id ds8-20020a170907724800b00a4e43503b3amr604914ejc.60.1711738492180;
-        Fri, 29 Mar 2024 11:54:52 -0700 (PDT)
-Received: from [127.0.1.1] ([79.114.172.194])
-        by smtp.gmail.com with ESMTPSA id gl20-20020a170906e0d400b00a46c39e6a47sm2235618ejb.148.2024.03.29.11.54.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Mar 2024 11:54:51 -0700 (PDT)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Fri, 29 Mar 2024 20:54:23 +0200
-Subject: [PATCH v7 6/6] spmi: pmic-arb: Add multi bus support
+	s=arc-20240116; t=1711738861; c=relaxed/simple;
+	bh=GsKkA//w/F6p1DceLlnK3us287Q2nZOD7ADya93kfKs=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Jf4rcmMoGNPlr++PijvX0+nOY+B1J3zmcjRmS0FMo3rlhgYVMRGu/LD2gJUGnvJdhVMLCBZWCpQKRRATLd5GzP895T2QA9vyrKn5bWujp34ELAA5s2OK0naJIvN/rWsGQA3L7r6dp9A5+edIRHAb/a7YKwvVeEg+dgAmsEYh5wg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=62.142.5.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
+Received: from localhost (88-113-26-217.elisa-laajakaista.fi [88.113.26.217])
+	by fgw20.mail.saunalahti.fi (Halon) with ESMTP
+	id a7c36e9b-edfe-11ee-b3cf-005056bd6ce9;
+	Fri, 29 Mar 2024 21:00:49 +0200 (EET)
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Fri, 29 Mar 2024 21:00:48 +0200
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Sudeep Holla <sudeep.holla@arm.com>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Dan Carpenter <dan.carpenter@linaro.org>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Peng Fan <peng.fan@nxp.com>,
+	Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+Subject: Re: [PATCH v6 3/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
+ protocol basic support
+Message-ID: <ZgcP4IkTQGks9ehH@surfacebook.localdomain>
+References: <20240323-pinctrl-scmi-v6-0-a895243257c0@nxp.com>
+ <20240323-pinctrl-scmi-v6-3-a895243257c0@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240329-spmi-multi-master-support-v7-6-7b902824246c@linaro.org>
-References: <20240329-spmi-multi-master-support-v7-0-7b902824246c@linaro.org>
-In-Reply-To: <20240329-spmi-multi-master-support-v7-0-7b902824246c@linaro.org>
-To: Stephen Boyd <sboyd@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
- Johan Hovold <johan@kernel.org>, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
- Abel Vesa <abel.vesa@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=9932; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=kiFNbFrr2cHRGI8Y32geRObZcge4BmsO3+tXioPlQw4=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBmBw5wmKqlBnGcmeFRd+VPQ2FIeVnh7xAj2hE5P
- 1xfqvfLhuaJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZgcOcAAKCRAbX0TJAJUV
- VgttD/4xWJelpoSyHqTyDbdFlLRkyQUAcHCnevhPtmBJNrAdG8olNyVCTHD8Zgmkwi2hTO/INbP
- 6aVYK9UMhvBAjLxEizLYZJOJj8h841CPzHCyQUFnPwDpgtHLfTSSqViD2UR9k3kNvqOEg2fdTt4
- dF5bm4JgWn8Q6IvvqbHFFSjNWf84xwABYNuZeFhyMZKJx/Q9mQXKs57U92Q4H/Yz141LHavtbgb
- AQIEm7n3CcsVFuEt27D1wam5E8BIbR4kr3njpm+mLKR3yjD2o5lHwA0fCmzdqxonx71xF1hYp8D
- T4tuqf76OrXHGIISJUFvo4zmoadjRJ0iVb1Lxfm2X8u3hYnMA9uJKRPoIv3CD9SG3hyayc6507A
- pDsIvgQ6mMv5BGZvxQGPZAF5BN3G5gZrUTRnEnCzDZLghtgj34FCinwS3dkjb4IztalXTeE4+F7
- pruaIcNfhkHMXvRBU0v0UuvgckIu66dpmmo1t/eDqet98NkVyQrNQ2wfmDc+BL5ngPYRP85SeV0
- ey9Cs1RL1t8ysKAk1fHGyG7g6tSU9ZfDP3ZKpi5z5tioJ8fUgoj0G0nSwKblO7ZLcCVZt8zXRir
- eSzYb+Di00H1+UlltQl6SGuSsNlefLZ9KMy/JvFPPfOq5p7qnJrA9F/uVtZs+MQhG4XeLnQLg4K
- IZ9bCoWuAgLrZjw==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240323-pinctrl-scmi-v6-3-a895243257c0@nxp.com>
 
-Starting with HW version 7, there are actually two separate buses
-(with two separate sets of wires). So add support for the second bus.
-The first platform that needs this support for the second bus is the
-Qualcomm X1 Elite, so add the compatible for it as well.
+Sat, Mar 23, 2024 at 08:15:16PM +0800, Peng Fan (OSS) kirjoitti:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> Add basic implementation of the SCMI v3.2 pincontrol protocol.
 
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
- drivers/spmi/spmi-pmic-arb.c | 138 +++++++++++++++++++++++++++++++++++++------
- 1 file changed, 120 insertions(+), 18 deletions(-)
+...
 
-diff --git a/drivers/spmi/spmi-pmic-arb.c b/drivers/spmi/spmi-pmic-arb.c
-index 19ff8665f3d9..56f2b3190d82 100644
---- a/drivers/spmi/spmi-pmic-arb.c
-+++ b/drivers/spmi/spmi-pmic-arb.c
-@@ -13,6 +13,7 @@
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/of.h>
-+#include <linux/of_address.h>
- #include <linux/of_irq.h>
- #include <linux/platform_device.h>
- #include <linux/slab.h>
-@@ -95,6 +96,8 @@ enum pmic_arb_channel {
- 	PMIC_ARB_CHANNEL_OBS,
- };
- 
-+#define PMIC_ARB_MAX_BUSES		2
-+
- /* Maximum number of support PMIC peripherals */
- #define PMIC_ARB_MAX_PERIPHS		512
- #define PMIC_ARB_MAX_PERIPHS_V7		1024
-@@ -148,6 +151,7 @@ struct spmi_pmic_arb;
-  * @min_apid:		minimum APID (used for bounding IRQ search)
-  * @max_apid:		maximum APID
-  * @irq:		PMIC ARB interrupt.
-+ * @id:			unique ID of the bus
-  */
- struct spmi_pmic_arb_bus {
- 	struct spmi_pmic_arb	*pmic_arb;
-@@ -165,6 +169,7 @@ struct spmi_pmic_arb_bus {
- 	u16			min_apid;
- 	u16			max_apid;
- 	int			irq;
-+	u8			id;
- };
- 
- /**
-@@ -179,7 +184,8 @@ struct spmi_pmic_arb_bus {
-  * @ee:			the current Execution Environment
-  * @ver_ops:		version dependent operations.
-  * @max_periphs:	Number of elements in apid_data[]
-- * @bus:		per arbiter bus instance
-+ * @buses:		per arbiter buses instances
-+ * @buses_available:	number of buses registered
-  */
- struct spmi_pmic_arb {
- 	void __iomem		*rd_base;
-@@ -191,7 +197,8 @@ struct spmi_pmic_arb {
- 	u8			ee;
- 	const struct pmic_arb_ver_ops *ver_ops;
- 	int			max_periphs;
--	struct spmi_pmic_arb_bus *bus;
-+	struct spmi_pmic_arb_bus *buses[PMIC_ARB_MAX_BUSES];
-+	int			buses_available;
- };
- 
- /**
-@@ -219,7 +226,7 @@ struct spmi_pmic_arb {
- struct pmic_arb_ver_ops {
- 	const char *ver_str;
- 	int (*get_core_resources)(struct platform_device *pdev, void __iomem *core);
--	int (*init_apid)(struct spmi_pmic_arb_bus *bus);
-+	int (*init_apid)(struct spmi_pmic_arb_bus *bus, int index);
- 	int (*ppid_to_apid)(struct spmi_pmic_arb_bus *bus, u16 ppid);
- 	/* spmi commands (read_cmd, write_cmd, cmd) functionality */
- 	int (*offset)(struct spmi_pmic_arb_bus *bus, u8 sid, u16 addr,
-@@ -308,8 +315,8 @@ static int pmic_arb_wait_for_done(struct spmi_controller *ctrl,
- 			}
- 
- 			if (status & PMIC_ARB_STATUS_FAILURE) {
--				dev_err(&ctrl->dev, "%s: %#x %#x: transaction failed (%#x)\n",
--					__func__, sid, addr, status);
-+				dev_err(&ctrl->dev, "%s: %#x %#x: transaction failed (%#x) reg: 0x%x\n",
-+					__func__, sid, addr, status, offset);
- 				WARN_ON(1);
- 				return -EIO;
- 			}
-@@ -325,8 +332,8 @@ static int pmic_arb_wait_for_done(struct spmi_controller *ctrl,
- 		udelay(1);
- 	}
- 
--	dev_err(&ctrl->dev, "%s: %#x %#x: timeout, status %#x\n",
--		__func__, sid, addr, status);
-+	dev_err(&ctrl->dev, "%s: %#x %#x %#x: timeout, status %#x\n",
-+		__func__, bus->id, sid, addr, status);
- 	return -ETIMEDOUT;
- }
- 
-@@ -1005,11 +1012,17 @@ static int pmic_arb_get_core_resources_v1(struct platform_device *pdev,
- 	return 0;
- }
- 
--static int pmic_arb_init_apid_v1(struct spmi_pmic_arb_bus *bus)
-+static int pmic_arb_init_apid_v1(struct spmi_pmic_arb_bus *bus, int index)
- {
- 	struct spmi_pmic_arb *pmic_arb = bus->pmic_arb;
- 	u32 *mapping_table;
- 
-+	if (index) {
-+		dev_err(&bus->spmic->dev, "Unsupported buses count %d detected\n",
-+			index);
-+		return -EINVAL;
-+	}
-+
- 	mapping_table = devm_kcalloc(&bus->spmic->dev, pmic_arb->max_periphs,
- 				     sizeof(*mapping_table), GFP_KERNEL);
- 	if (!mapping_table)
-@@ -1252,11 +1265,17 @@ static int pmic_arb_offset_v2(struct spmi_pmic_arb_bus *bus, u8 sid, u16 addr,
- 	return 0x1000 * pmic_arb->ee + 0x8000 * apid;
- }
- 
--static int pmic_arb_init_apid_v5(struct spmi_pmic_arb_bus *bus)
-+static int pmic_arb_init_apid_v5(struct spmi_pmic_arb_bus *bus, int index)
- {
- 	struct spmi_pmic_arb *pmic_arb = bus->pmic_arb;
- 	int ret;
- 
-+	if (index) {
-+		dev_err(&bus->spmic->dev, "Unsupported buses count %d detected\n",
-+			index);
-+		return -EINVAL;
-+	}
-+
- 	bus->base_apid = 0;
- 	bus->apid_count = readl_relaxed(pmic_arb->core + PMIC_ARB_FEATURES) &
- 					   PMIC_ARB_FEATURES_PERIPH_MASK;
-@@ -1328,6 +1347,50 @@ static int pmic_arb_get_core_resources_v7(struct platform_device *pdev,
- 	return pmic_arb_get_obsrvr_chnls_v2(pdev);
- }
- 
-+/*
-+ * Only v7 supports 2 buses. Each bus will get a different apid count, read
-+ * from different registers.
-+ */
-+static int pmic_arb_init_apid_v7(struct spmi_pmic_arb_bus *bus, int index)
-+{
-+	struct spmi_pmic_arb *pmic_arb = bus->pmic_arb;
-+	int ret;
-+
-+	if (index == 0) {
-+		bus->base_apid = 0;
-+		bus->apid_count = readl_relaxed(pmic_arb->core + PMIC_ARB_FEATURES) &
-+						   PMIC_ARB_FEATURES_PERIPH_MASK;
-+	} else if (index == 1) {
-+		bus->base_apid = readl_relaxed(pmic_arb->core + PMIC_ARB_FEATURES) &
-+						  PMIC_ARB_FEATURES_PERIPH_MASK;
-+		bus->apid_count = readl_relaxed(pmic_arb->core + PMIC_ARB_FEATURES1) &
-+						   PMIC_ARB_FEATURES_PERIPH_MASK;
-+	} else {
-+		dev_err(&bus->spmic->dev, "Unsupported buses count %d detected\n",
-+			bus->id);
-+		return -EINVAL;
-+	}
-+
-+	if (bus->base_apid + bus->apid_count > pmic_arb->max_periphs) {
-+		dev_err(&bus->spmic->dev, "Unsupported APID count %d detected\n",
-+			bus->base_apid + bus->apid_count);
-+		return -EINVAL;
-+	}
-+
-+	ret = pmic_arb_init_apid_min_max(bus);
-+	if (ret)
-+		return ret;
-+
-+	ret = pmic_arb_read_apid_map_v5(bus);
-+	if (ret) {
-+		dev_err(&bus->spmic->dev, "could not read APID->PPID mapping table, rc= %d\n",
-+			ret);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
- /*
-  * v7 offset per ee and per apid for observer channels and per apid for
-  * read/write channels.
-@@ -1580,7 +1643,7 @@ static const struct pmic_arb_ver_ops pmic_arb_v5 = {
- static const struct pmic_arb_ver_ops pmic_arb_v7 = {
- 	.ver_str		= "v7",
- 	.get_core_resources	= pmic_arb_get_core_resources_v7,
--	.init_apid		= pmic_arb_init_apid_v5,
-+	.init_apid		= pmic_arb_init_apid_v7,
- 	.ppid_to_apid		= pmic_arb_ppid_to_apid_v5,
- 	.non_data_cmd		= pmic_arb_non_data_cmd_v2,
- 	.offset			= pmic_arb_offset_v7,
-@@ -1604,6 +1667,7 @@ static int spmi_pmic_arb_bus_init(struct platform_device *pdev,
- 				  struct device_node *node,
- 				  struct spmi_pmic_arb *pmic_arb)
- {
-+	int bus_index = pmic_arb->buses_available;
- 	struct spmi_pmic_arb_bus *bus;
- 	struct device *dev = &pdev->dev;
- 	struct spmi_controller *ctrl;
-@@ -1622,7 +1686,7 @@ static int spmi_pmic_arb_bus_init(struct platform_device *pdev,
- 
- 	bus = spmi_controller_get_drvdata(ctrl);
- 
--	pmic_arb->bus = bus;
-+	pmic_arb->buses[bus_index] = bus;
- 
- 	bus->ppid_to_apid = devm_kcalloc(dev, PMIC_ARB_MAX_PPID,
- 					 sizeof(*bus->ppid_to_apid),
-@@ -1665,12 +1729,13 @@ static int spmi_pmic_arb_bus_init(struct platform_device *pdev,
- 	bus->cnfg = cnfg;
- 	bus->irq = irq;
- 	bus->spmic = ctrl;
-+	bus->id = bus_index;
- 
--	ret = pmic_arb->ver_ops->init_apid(bus);
-+	ret = pmic_arb->ver_ops->init_apid(bus, bus_index);
- 	if (ret)
- 		return ret;
- 
--	dev_dbg(&pdev->dev, "adding irq domain\n");
-+	dev_dbg(&pdev->dev, "adding irq domain for bus %d\n", bus_index);
- 
- 	bus->domain = irq_domain_add_tree(dev->of_node,
- 					  &pmic_arb_irq_domain_ops, bus);
-@@ -1683,14 +1748,53 @@ static int spmi_pmic_arb_bus_init(struct platform_device *pdev,
- 					 pmic_arb_chained_irq, bus);
- 
- 	ctrl->dev.of_node = node;
-+	dev_set_name(&ctrl->dev, "spmi-%d", bus_index);
- 
- 	ret = devm_spmi_controller_add(dev, ctrl);
- 	if (ret)
- 		return ret;
- 
-+	pmic_arb->buses_available++;
-+
- 	return 0;
- }
- 
-+static int spmi_pmic_arb_register_buses(struct spmi_pmic_arb *pmic_arb,
-+					struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct device_node *node = dev->of_node;
-+	struct device_node *child;
-+	int ret;
-+
-+	/* legacy mode doesn't provide child node for the bus */
-+	if (of_device_is_compatible(node, "qcom,spmi-pmic-arb"))
-+		return spmi_pmic_arb_bus_init(pdev, node, pmic_arb);
-+
-+	for_each_available_child_of_node(node, child) {
-+		if (of_node_name_eq(child, "spmi")) {
-+			ret = spmi_pmic_arb_bus_init(pdev, child, pmic_arb);
-+			if (ret)
-+				return ret;
-+		}
-+	}
-+
-+	return ret;
-+}
-+
-+static void spmi_pmic_arb_deregister_buses(struct spmi_pmic_arb *pmic_arb)
-+{
-+	int i;
-+
-+	for (i = 0; i < PMIC_ARB_MAX_BUSES; i++) {
-+		struct spmi_pmic_arb_bus *bus = pmic_arb->buses[i];
-+
-+		irq_set_chained_handler_and_data(bus->irq,
-+						 NULL, NULL);
-+		irq_domain_remove(bus->domain);
-+	}
-+}
-+
- static int spmi_pmic_arb_probe(struct platform_device *pdev)
- {
- 	struct spmi_pmic_arb *pmic_arb;
-@@ -1761,21 +1865,19 @@ static int spmi_pmic_arb_probe(struct platform_device *pdev)
- 
- 	pmic_arb->ee = ee;
- 
--	return spmi_pmic_arb_bus_init(pdev, dev->of_node, pmic_arb);
-+	return spmi_pmic_arb_register_buses(pmic_arb, pdev);
- }
- 
- static void spmi_pmic_arb_remove(struct platform_device *pdev)
- {
- 	struct spmi_pmic_arb *pmic_arb = platform_get_drvdata(pdev);
--	struct spmi_pmic_arb_bus *bus = pmic_arb->bus;
- 
--	irq_set_chained_handler_and_data(bus->irq,
--					 NULL, NULL);
--	irq_domain_remove(bus->domain);
-+	spmi_pmic_arb_deregister_buses(pmic_arb);
- }
- 
- static const struct of_device_id spmi_pmic_arb_match_table[] = {
- 	{ .compatible = "qcom,spmi-pmic-arb", },
-+	{ .compatible = "qcom,x1e80100-spmi-pmic-arb", },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, spmi_pmic_arb_match_table);
+>  scmi-transport-$(CONFIG_ARM_SCMI_TRANSPORT_VIRTIO) += virtio.o
+>  scmi-transport-$(CONFIG_ARM_SCMI_TRANSPORT_OPTEE) += optee.o
+>  scmi-protocols-y = base.o clock.o perf.o power.o reset.o sensors.o system.o voltage.o powercap.o
+
+Actually you want to have := here.
+
+> +scmi-protocols-y += pinctrl.o
+
+
+
+>  scmi-module-objs := $(scmi-driver-y) $(scmi-protocols-y) $(scmi-transport-y)
+
+Side note: The -objs has to be -y
+
+...
+
+> +#include <linux/module.h>
+> +#include <linux/scmi_protocol.h>
+> +#include <linux/slab.h>
+
+This is semi-random list of headers. Please, follow IWYU principle
+(include what you use). There are a lot of inclusions I see missing
+(just in the context of this page I see bits.h, types.h, and
+ asm/byteorder.h).
+
+...
+
+> +enum scmi_pinctrl_protocol_cmd {
+> +	PINCTRL_ATTRIBUTES = 0x3,
+> +	PINCTRL_LIST_ASSOCIATIONS = 0x4,
+> +	PINCTRL_SETTINGS_GET = 0x5,
+> +	PINCTRL_SETTINGS_CONFIGURE = 0x6,
+> +	PINCTRL_REQUEST = 0x7,
+> +	PINCTRL_RELEASE = 0x8,
+> +	PINCTRL_NAME_GET = 0x9,
+> +	PINCTRL_SET_PERMISSIONS = 0xa
+
+Leave trailing comma as it's not a termination.
+
+> +};
+
+...
+
+> +static int scmi_pinctrl_attributes_get(const struct scmi_protocol_handle *ph,
+> +				       struct scmi_pinctrl_info *pi)
+> +{
+> +	int ret;
+> +	struct scmi_xfer *t;
+> +	struct scmi_msg_pinctrl_protocol_attributes *attr;
+> +
+> +	ret = ph->xops->xfer_get_init(ph, PROTOCOL_ATTRIBUTES, 0, sizeof(*attr),
+> +				      &t);
+
+This looks much better on a single line.
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	attr = t->rx.buf;
+> +
+> +	ret = ph->xops->do_xfer(ph, t);
+> +	if (!ret) {
+> +		pi->nr_functions = GET_FUNCTIONS_NR(attr->attributes_high);
+> +		pi->nr_groups = GET_GROUPS_NR(attr->attributes_low);
+> +		pi->nr_pins = GET_PINS_NR(attr->attributes_low);
+> +	}
+> +
+> +	ph->xops->xfer_put(ph, t);
+> +	return ret;
+> +}
+
+...
+
+> +	ret = ph->xops->xfer_get_init(ph, PINCTRL_ATTRIBUTES, sizeof(*tx),
+> +				      sizeof(*rx), &t);
+
+Possible to have on a single line (if you use relaxed 100 limit).
+Or (re)split it more logically:
+
+	ret = ph->xops->xfer_get_init(ph, PINCTRL_ATTRIBUTES,
+				      sizeof(*tx), sizeof(*rx), &t);
+
+> +	if (ret)
+> +		return ret;
+
+...
+
+> +	/*
+> +	 * If supported overwrite short name with the extended one;
+> +	 * on error just carry on and use already provided short name.
+> +	 */
+> +	if (!ret && ext_name_flag)
+
+Please, use standard pattern, i.e.
+
+	if (ret)
+		return ret;
+
+> +		ph->hops->extended_name_get(ph, PINCTRL_NAME_GET, selector,
+> +					    (u32 *)&type, name,
+
+Why is an explicit casting needed?
+
+> +					    SCMI_MAX_STR_SIZE);
+> +	return ret;
+
+...
+
+> +	iter = ph->hops->iter_response_init(ph, &ops, size,
+> +					    PINCTRL_LIST_ASSOCIATIONS,
+> +					    sizeof(struct scmi_msg_pinctrl_list_assoc),
+> +					    &ipriv);
+
+> +
+
+Redundant blank line.
+
+> +	if (IS_ERR(iter))
+> +		return PTR_ERR(iter);
+
+...
+
+> +	if (p->flag == 1)
+> +		attributes |= FIELD_PREP(SKIP_CONFIGS_MASK, desc_index);
+> +	else if (!p->flag)
+
+Be consistent, i.e. if (p->flag == 0)
+
+> +		attributes |= FIELD_PREP(CONFIG_TYPE_MASK, p->config_types[0]);
+
+...
+
+> +		st->num_remaining = le32_get_bits(r->num_configs,
+> +						  GENMASK(31, 24));
+
+One line?
+
+...
+
+> +	if (!p->flag) {
+> +		if (p->config_types[0] !=
+> +		    le32_get_bits(r->configs[st->loop_idx * 2], GENMASK(7, 0)))
+> +			return -EINVAL;
+> +	} else if (p->flag == 1) {
+> +		p->config_types[st->desc_index + st->loop_idx] =
+> +			le32_get_bits(r->configs[st->loop_idx * 2],
+> +				      GENMASK(7, 0));
+
+With a temporary variable for r->configs[st->loop_idx * 2] the above can be
+written in much better way.
+
+> +	} else if (p->flag == 2) {
+> +		return 0;
+> +	}
+
+> +	p->config_values[st->desc_index + st->loop_idx] =
+> +		le32_to_cpu(r->configs[st->loop_idx * 2 + 1]);
+
+For the sake of consistency with the above suggestion also temporary for next
+config value.
+
+...
+
+> +	iter = ph->hops->iter_response_init(ph, &ops, 1, PINCTRL_SETTINGS_GET,
+> +					    sizeof(struct scmi_msg_settings_get),
+> +					    &ipriv);
+
+> +
+
+Redundant blank line.
+
+> +	if (IS_ERR(iter))
+> +		return PTR_ERR(iter);
+
+...
+
+> +static int scmi_pinctrl_get_group_info(const struct scmi_protocol_handle *ph,
+> +				       u32 selector,
+> +				       struct scmi_group_info *group)
+> +{
+> +	int ret;
+
+> +	if (!group)
+> +		return -EINVAL;
+
+When the above is not a dead code?
+
+> +	ret = scmi_pinctrl_attributes(ph, GROUP_TYPE, selector,
+> +				      group->name,
+> +				      &group->nr_pins);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!group->nr_pins) {
+> +		dev_err(ph->dev, "Group %d has 0 elements", selector);
+> +		return -ENODATA;
+> +	}
+> +
+> +	group->group_pins = kmalloc_array(group->nr_pins,
+> +					  sizeof(*group->group_pins),
+> +					  GFP_KERNEL);
+> +	if (!group->group_pins)
+> +		return -ENOMEM;
+> +
+> +	ret = scmi_pinctrl_list_associations(ph, selector, GROUP_TYPE,
+> +					     group->nr_pins, group->group_pins);
+> +	if (ret) {
+> +		kfree(group->group_pins);
+> +		return ret;
+> +	}
+> +
+> +	group->present = true;
+> +	return 0;
+> +}
+
+...
+
+> +		ret = scmi_pinctrl_get_group_info(ph, selector,
+> +						  &pi->groups[selector]);
+
+One line?
+
+> +		if (ret)
+> +			return ret;
+
+...
+
+> +	ret = scmi_pinctrl_attributes(ph, FUNCTION_TYPE, selector,
+> +				      func->name,
+> +				      &func->nr_groups);
+
+At least last two lines can be joined.
+
+> +	if (ret)
+> +		return ret;
+
+...
+
+> +	ret = scmi_pinctrl_attributes(ph, PIN_TYPE, selector,
+> +				      pin->name, NULL);
+
+It's pleany of room on the previous line.
+
+> +	if (ret)
+> +		return ret;
+
+...
+
+> +		ret = scmi_pinctrl_get_pin_info(ph, selector,
+> +						&pi->pins[selector]);
+
+Ditto.
+
+> +		if (ret)
+> +			return ret;
+
+...
+
+> +static int scmi_pinctrl_protocol_init(const struct scmi_protocol_handle *ph)
+> +{
+> +	int ret;
+> +	u32 version;
+> +	struct scmi_pinctrl_info *pinfo;
+> +
+> +	ret = ph->xops->version_get(ph, &version);
+> +	if (ret)
+> +		return ret;
+> +
+> +	dev_dbg(ph->dev, "Pinctrl Version %d.%d\n",
+> +		PROTOCOL_REV_MAJOR(version), PROTOCOL_REV_MINOR(version));
+> +
+> +	pinfo = devm_kzalloc(ph->dev, sizeof(*pinfo), GFP_KERNEL);
+
+Huh?!
+
+Please, get yourself familiar with the scope of devm APIs.
+
+> +	if (!pinfo)
+> +		return -ENOMEM;
+> +
+> +	ret = scmi_pinctrl_attributes_get(ph, pinfo);
+> +	if (ret)
+> +		return ret;
+> +
+> +	pinfo->pins = devm_kcalloc(ph->dev, pinfo->nr_pins,
+> +				   sizeof(*pinfo->pins),
+> +				   GFP_KERNEL);
+> +	if (!pinfo->pins)
+> +		return -ENOMEM;
+> +
+> +	pinfo->groups = devm_kcalloc(ph->dev, pinfo->nr_groups,
+> +				     sizeof(*pinfo->groups),
+> +				     GFP_KERNEL);
+> +	if (!pinfo->groups)
+> +		return -ENOMEM;
+> +
+> +	pinfo->functions = devm_kcalloc(ph->dev, pinfo->nr_functions,
+> +					sizeof(*pinfo->functions),
+> +					GFP_KERNEL);
+> +	if (!pinfo->functions)
+> +		return -ENOMEM;
+> +
+> +	pinfo->version = version;
+> +
+> +	return ph->set_priv(ph, pinfo, version);
+> +}
+> +
+> +static int scmi_pinctrl_protocol_deinit(const struct scmi_protocol_handle *ph)
+> +{
+> +	int i;
+> +	struct scmi_pinctrl_info *pi = ph->get_priv(ph);
+> +
+> +	for (i = 0; i < pi->nr_groups; i++) {
+> +		if (pi->groups[i].present) {
+> +			kfree(pi->groups[i].group_pins);
+> +			pi->groups[i].present = false;
+> +		}
+> +	}
+> +
+> +	for (i = 0; i < pi->nr_functions; i++) {
+> +		if (pi->functions[i].present) {
+> +			kfree(pi->functions[i].groups);
+
+This is wrong in conjunction with the above.
+
+> +			pi->functions[i].present = false;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static const struct scmi_protocol scmi_pinctrl = {
+> +	.id = SCMI_PROTOCOL_PINCTRL,
+> +	.owner = THIS_MODULE,
+> +	.instance_init = &scmi_pinctrl_protocol_init,
+> +	.instance_deinit = &scmi_pinctrl_protocol_deinit,
+> +	.ops = &pinctrl_proto_ops,
+> +	.supported_version = SCMI_PROTOCOL_SUPPORTED_VERSION,
+> +};
+
+> +
+
+Redundant blank line.
+
+> +DEFINE_SCMI_PROTOCOL_REGISTER_UNREGISTER(pinctrl, scmi_pinctrl)
+
 
 -- 
-2.34.1
+With Best Regards,
+Andy Shevchenko
+
 
 
