@@ -1,225 +1,111 @@
-Return-Path: <devicetree+bounces-54477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78F368913B7
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 07:22:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB18D8913D1
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 07:36:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B12AEB23E73
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 06:22:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7165A1F22EB0
+	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 06:36:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 591273BB55;
-	Fri, 29 Mar 2024 06:22:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4648D2B9A2;
+	Fri, 29 Mar 2024 06:36:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PjLWRFHh"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="Ay1mw+WD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B40023FE4F;
-	Fri, 29 Mar 2024 06:22:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79901249F7
+	for <devicetree@vger.kernel.org>; Fri, 29 Mar 2024 06:36:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711693328; cv=none; b=MxosWAJEKyUeddgRfKGR3mfiQ1lfQIXbntw9dgRpSY9bDHhokvjuieqK19nI+0aJoBYkdq86qgOdrxDiAglnzch7EFVZ+FYpOu99fAwt0V4oAxlS+Hua2VNGCjkfyYhuRCh+dHv/SbHrxuet1JOoF2arvf2uElu8dofOs9CHJzM=
+	t=1711694192; cv=none; b=K7W6ChmjRLX6mFYyFFI/YvGhY831XnXG9rZ3/1aadpEUX5ckYxBm1UwqMLN6VH1N/KG50BRtqBBEX66dq204r8cvDlnwOw+4GQcacDAjQtOPwr1NdA8NJlDMG4qBT9xBdUuM6AiAHLfoSaMiespVcl4o5ZdK2uIaKse91n1gnTQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711693328; c=relaxed/simple;
-	bh=Kct7Pjk1WKf/K8JXQ51OPs2q82g4Vs270HKxVBz7YVU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Jo7lW3EFuR5xPuWm57IShfDvcLYANwHJid6x4qxS30omsMbRpGEB9g95jWbCX5+LRBCJp+R4u76USE6xXFdVv1k1DyPtDtQpBsP61xHF8g8OYWOPpQ9dpDx+N6wBjWo+tW1uPTh8BquDeeDjNeTYiHmV1B2LmMo1XKX0hM2HiPQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PjLWRFHh; arc=none smtp.client-ip=209.85.160.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-229d01e81f1so908904fac.2;
-        Thu, 28 Mar 2024 23:22:06 -0700 (PDT)
+	s=arc-20240116; t=1711694192; c=relaxed/simple;
+	bh=zvuXhVzKRKNmjsXHGNO71Xw7k2AL7GmRkRL9GC6fsuw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SEc1BP6QibBP2BNHFfzhdsBGstmCgDqQqPBSvQg/q+cLVcwLmU+cZPHYbTIe5r/xQvSvIDxUDDgZQBZsBrCo1lli2o0MFHdbTOefNxeAS9KD/I2dGhoruf1D1pGFyGxSWi6FfJgcNWTTU4bRLb+LPdNvByW0Jn+p09BzqOy7Y9M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=Ay1mw+WD; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-341d730bdfcso1474139f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 28 Mar 2024 23:36:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711693326; x=1712298126; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YPRTTnRNGB6MC8MgLxeQqBqXiKf58UGvbzByUZNl4Io=;
-        b=PjLWRFHhQ4Sq9sICl9wBInuoY47OjDUJ/1bmz//xJAxEr65g50d8arXwBNPFXMv1E0
-         bGWbgzTt9GN0XJqcVpwHPcIxYOyvXgGOSCnBNYQ9kEvmMf+hzewcWRJ1PPkfeowocmtD
-         fbU4oyCQ3iTeMaoDgPUmLmsqL2IQKegStSCFKCpzNkORVm41TiJpWE9Qe1NYoMSEhU1f
-         qDs77YikekGwd2Uqru7nA9EmHHglxbd9gGjGC3S2QuZav1xGiwW3ZQGbtprZm9W60V0q
-         08uYjv+DLcEhtsBmJ6Ii3mWhm3LPTL+76mXHLVx6wTZs+vJL7I3FTUlDefl0GfRPn5R1
-         yd1g==
+        d=tuxon.dev; s=google; t=1711694189; x=1712298989; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=43xZx60rfZWmX/MW6KInTEWOudBJZZMkJu12Y5dNCZU=;
+        b=Ay1mw+WD5UM8yLaWezfd9y8AEU3ImzlCFbk9BuyIWsAoszrdlIGHbAG4JvrSGIhB22
+         yZyZX1e6vyYmpuHsq6ZQlFcGZTZyQoWkBWYUJ+wBmfOjtIB8s+AB8GGpnXvkKf7V0ZOM
+         Yv6baXkQH+CLCawSJodgtYPbwGMXtUh/T0p0jGRdgs9WTyVK1rdxHYEDT8E3WnnrOgcr
+         0lOKi5pgcP6j01rXAB8IW5JE73tcTKWcPai+oZnZOluLmJueXvdKOTKqdVSTG8zbRVJ4
+         nRqmRJLjqj7S6oV5O8pf/RVYP0rWaoF0aHvpHLJ5HzYuqi3InjUe/MDtxMltod2gbFiq
+         xDaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711693326; x=1712298126;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YPRTTnRNGB6MC8MgLxeQqBqXiKf58UGvbzByUZNl4Io=;
-        b=vXQstyyTCaO5Fj3MStaGgIc60Of3Hdk9iRwa9aQW2cQ8L2TN85N7icHmQFcAF89MUX
-         MgdxWvjQL6k/KZOjvpJvJs1JMQbaYuiC10biMOsbKoPLAh3oW3uNoO8BkilkC0PucXPf
-         7GPPZXIlslEYsUj0bUht6oq8kk1fjJNsOzrd4pzf0mP5fIVexFUBMkcOFjAN1C9p7EkL
-         M9HK1KLVUZpYhGa7IWTdy9UNrWFOMxKXkzf24swq6xvacPp+8Q52N0t+yfzDN/7SZIRt
-         eQW1OhmxUGf+BN+XjJZm0rhCGtDmKX7r1HIN/KQy1THnftIr6yL8+F4pYDysNVDNpYWm
-         +exg==
-X-Forwarded-Encrypted: i=1; AJvYcCWequJ4cTTcRSYgsbJsEnQs3ocowLmHWtnjOzrwjX0Ct5EvqwEvfCYCRmdgaQBXcxmXMR+xzdh9MrUk1CmPR8JHSKhpzumyH0x0CQVg5suomNacGaONRJ56+FvdCEkDCw8U6Q81iH+SW9zr20+lEUTTGOfYA51uJO/DEnY6LrrIX2Qwxw==
-X-Gm-Message-State: AOJu0Yyts/+CL324+E5u3G7AAyAJqs3zP5q/B6VnWL//i62CjMsv6raY
-	UkzXxN6xw16HTJLUNFoC2yZGBWa3R4z7McMgQFkaGcXayDfdyUMA
-X-Google-Smtp-Source: AGHT+IFfKEV6h5Gw0WJIq9oU8ZXTVVdJrpoffjn8gZvwWlpJ2sPuHTHLS00yMZSya2NF4n05nQWr6g==
-X-Received: by 2002:a05:6870:f68b:b0:22b:5bc1:66e7 with SMTP id el11-20020a056870f68b00b0022b5bc166e7mr1384174oab.11.1711693325826;
-        Thu, 28 Mar 2024 23:22:05 -0700 (PDT)
-Received: from localhost.localdomain ([122.8.183.87])
-        by smtp.gmail.com with ESMTPSA id m40-20020a05683032a800b006e6bf2cc882sm521325ott.26.2024.03.28.23.22.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Mar 2024 23:22:05 -0700 (PDT)
-From: Chen Wang <unicornxw@gmail.com>
-To: aou@eecs.berkeley.edu,
-	chao.wei@sophgo.com,
-	conor@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	mturquette@baylibre.com,
-	palmer@dabbelt.com,
-	paul.walmsley@sifive.com,
-	richardcochran@gmail.com,
-	robh+dt@kernel.org,
-	sboyd@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	haijiao.liu@sophgo.com,
-	xiaoguang.xing@sophgo.com,
-	guoren@kernel.org,
-	jszhang@kernel.org,
-	inochiama@outlook.com,
-	samuel.holland@sifive.com
-Cc: Chen Wang <unicorn_wang@outlook.com>
-Subject: [PATCH v13 5/5] riscv: dts: add clock generator for Sophgo SG2042 SoC
-Date: Fri, 29 Mar 2024 14:21:58 +0800
-Message-Id: <f4934589ebc3a393c270bb9e5ab7493f57af3c38.1711692169.git.unicorn_wang@outlook.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1711692169.git.unicorn_wang@outlook.com>
-References: <cover.1711692169.git.unicorn_wang@outlook.com>
+        d=1e100.net; s=20230601; t=1711694189; x=1712298989;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=43xZx60rfZWmX/MW6KInTEWOudBJZZMkJu12Y5dNCZU=;
+        b=n2qiULlspXJX/GRVa4BJntowBP2vZamDJs0kUzltd2HpyBdoYwG+sBjceEhal/3CLM
+         ZPWaLi+F2ZP8/BbQEeLEAM0S7Uuor6LWkPfpc6cLwLdInjCQxa+tdxgr9QD4POIKU2tg
+         4slOb8sM8BBmMj/ogJA92xXHbEqU+WwGXw8cZINca0hauEfVUxn5IqZaa6UR/QbXvk/k
+         V4kQhe8yzpfBTvS3Q5S/hl8JjEd0ktVkkzotZSDk5KoUHZUCFU9bFoSbvckZC3Giw+Iy
+         jXwxSf9ZNc22nDw5UrNvZvROCe4WgTBTM3PlDTTGj1zjwwv8WubI0DbLaskf5hfgVN3O
+         zgfQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVGgX7P445aforP7ekBJYo3xqFtZYvtIKnpFLp9raQB2DbiOsAejbv7H/HNrbHAcP2zJuFdJ0xhhA1JJv0H6C8y+jKIXJQiQaQ1Pw==
+X-Gm-Message-State: AOJu0Yz1w3o6Uj7RrxHnrjHamYBQqm9p8+eOE7i/DsiLOt10cQXbqnLg
+	7EkCw+ji8UjO4u2HTWaq2nbImviyLzF7EAUp6/mAF6cUS4ZO4xSBC7oTHQUmCes=
+X-Google-Smtp-Source: AGHT+IEVLeAaHFiI4gvE43nlAphVjGnGp98O60VdyrE/01nb5Rcj1iSVPlTnLH+WsyKz1julrP/fFg==
+X-Received: by 2002:a5d:4b8a:0:b0:33e:7f65:bb7b with SMTP id b10-20020a5d4b8a000000b0033e7f65bb7bmr820243wrt.5.1711694188839;
+        Thu, 28 Mar 2024 23:36:28 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.147])
+        by smtp.gmail.com with ESMTPSA id bp29-20020a5d5a9d000000b00341d28586afsm3494618wrb.2.2024.03.28.23.36.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Mar 2024 23:36:28 -0700 (PDT)
+Message-ID: <16dc5bd3-9231-474d-8056-d7b0240716de@tuxon.dev>
+Date: Fri, 29 Mar 2024 08:36:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 13/13] pinctrl: renesas: pinctrl-rzg2l: Add support
+ for RZ/V2H SoC
+Content-Language: en-US
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
+ linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20240326222844.1422948-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240326222844.1422948-14-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <25bc9ceb-c5cb-40a2-8c3d-d9666b88546c@tuxon.dev>
+ <CA+V-a8uegButH84aUY1N+0GzZx2LkRBTxNtg7y1Y-cUvvFfJpw@mail.gmail.com>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <CA+V-a8uegButH84aUY1N+0GzZx2LkRBTxNtg7y1Y-cUvvFfJpw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Chen Wang <unicorn_wang@outlook.com>
 
-Add clock generator node to device tree for SG2042, and enable clock for
-uart.
 
-Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
-Reviewed-by: Guo Ren <guoren@kernel.org>
----
- .../boot/dts/sophgo/sg2042-milkv-pioneer.dts  | 12 +++++
- arch/riscv/boot/dts/sophgo/sg2042.dtsi        | 49 ++++++++++++++++++-
- 2 files changed, 60 insertions(+), 1 deletion(-)
+On 28.03.2024 21:51, Lad, Prabhakar wrote:
+>>> +static void rzv2h_pinctrl_pm_setup_pfc(struct rzg2l_pinctrl *pctrl)
+>> Have you managed to test this?
+>>
+> No S2R isn't tested and is just added for completeness, I wonder if we
+> should have a SoC specific flag "pm_supported" for this, as apart from
+> RZ/G3S  nothing has been tested I believe?
 
-diff --git a/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts b/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-index 49b4b9c2c101..80cb017974d8 100644
---- a/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-+++ b/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-@@ -14,6 +14,18 @@ chosen {
- 	};
- };
- 
-+&cgi_main {
-+	clock-frequency = <25000000>;
-+};
-+
-+&cgi_dpll0 {
-+	clock-frequency = <25000000>;
-+};
-+
-+&cgi_dpll1 {
-+	clock-frequency = <25000000>;
-+};
-+
- &uart0 {
- 	status = "okay";
- };
-diff --git a/arch/riscv/boot/dts/sophgo/sg2042.dtsi b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-index 81fda312f988..8aab027cf730 100644
---- a/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-@@ -4,8 +4,10 @@
-  */
- 
- /dts-v1/;
-+#include <dt-bindings/clock/sophgo,sg2042-clkgen.h>
-+#include <dt-bindings/clock/sophgo,sg2042-pll.h>
-+#include <dt-bindings/clock/sophgo,sg2042-rpgate.h>
- #include <dt-bindings/interrupt-controller/irq.h>
--
- #include <dt-bindings/reset/sophgo,sg2042-reset.h>
- 
- #include "sg2042-cpus.dtsi"
-@@ -20,12 +22,54 @@ aliases {
- 		serial0 = &uart0;
- 	};
- 
-+	cgi_main: oscillator0 {
-+		compatible = "fixed-clock";
-+		clock-output-names = "cgi_main";
-+		#clock-cells = <0>;
-+	};
-+
-+	cgi_dpll0: oscillator1 {
-+		compatible = "fixed-clock";
-+		clock-output-names = "cgi_dpll0";
-+		#clock-cells = <0>;
-+	};
-+
-+	cgi_dpll1: oscillator2 {
-+		compatible = "fixed-clock";
-+		clock-output-names = "cgi_dpll1";
-+		#clock-cells = <0>;
-+	};
-+
- 	soc: soc {
- 		compatible = "simple-bus";
- 		#address-cells = <2>;
- 		#size-cells = <2>;
- 		ranges;
- 
-+		pllclk: clock-controller@70300100c0 {
-+			compatible = "sophgo,sg2042-pll";
-+			reg = <0x70 0x300100c0 0x0 0x40>;
-+			clocks = <&cgi_main>, <&cgi_dpll0>, <&cgi_dpll1>;
-+			#clock-cells = <1>;
-+		};
-+
-+		rpgate: clock-controller@7030010368 {
-+			compatible = "sophgo,sg2042-rpgate";
-+			reg = <0x70 0x30010368 0x0 0x98>;
-+			clocks = <&clkgen GATE_CLK_RP_CPU_NORMAL>;
-+			#clock-cells = <1>;
-+		};
-+
-+		clkgen: clock-controller@7030012000 {
-+			compatible = "sophgo,sg2042-clkgen";
-+			reg = <0x70 0x30012000 0x0 0x1000>;
-+			clocks = <&pllclk MPLL_CLK>,
-+				 <&pllclk FPLL_CLK>,
-+				 <&pllclk DPLL0_CLK>,
-+				 <&pllclk DPLL1_CLK>;
-+			#clock-cells = <1>;
-+		};
-+
- 		clint_mswi: interrupt-controller@7094000000 {
- 			compatible = "sophgo,sg2042-aclint-mswi", "thead,c900-aclint-mswi";
- 			reg = <0x00000070 0x94000000 0x00000000 0x00004000>;
-@@ -341,6 +385,9 @@ uart0: serial@7040000000 {
- 			interrupt-parent = <&intc>;
- 			interrupts = <112 IRQ_TYPE_LEVEL_HIGH>;
- 			clock-frequency = <500000000>;
-+			clocks = <&clkgen GATE_CLK_UART_500M>,
-+				 <&clkgen GATE_CLK_APB_UART>;
-+			clock-names = "baudclk", "apb_pclk";
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
- 			resets = <&rstgen RST_UART0>;
--- 
-2.25.1
-
+Yes, only RZ/G3S PM has been tested.
 
