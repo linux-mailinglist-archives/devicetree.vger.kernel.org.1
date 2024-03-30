@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-54857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54858-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97CE5892C98
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 19:40:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA50A892CA0
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 19:42:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 24CED1F215C1
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 18:40:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47A731F231EA
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 18:42:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E26D5335DB;
-	Sat, 30 Mar 2024 18:40:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C757D3D0C4;
+	Sat, 30 Mar 2024 18:42:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ovRKAunK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rrMzuvjA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0D061E865
-	for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 18:40:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B723F1DFD8
+	for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 18:42:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711824026; cv=none; b=Oz+9CME5WlBOT/QS8u8mCvlXtRMiXAreLyu+3IqZgAnkxZME/wZqW+NmEOJeLIRJ2CuZ/KJTeT6ubllZ806PRx5gaLjo799YrgUX2vq5UprVGHjehLeaOHpb8kc2rmKGTz6eWB+YQMOCCH+a6vPH07z0O8by9+YJXlpPycxTaLw=
+	t=1711824130; cv=none; b=noceyd77Up7ZmYJgle7Qgi6nbgIrcQlAufmTcoE5LvtBP8MSL1Grlgu8Gw3IJ4GuHtuHDjKpJgovBzh5+ipQA+5NmeIvRM8jIZLNDYSD+6QEbT8L0PYWC8IZAktKmFAp5tjKJLG1f6fBWwMESOtQ4c6casbaFwYTA8P9jiSQg/E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711824026; c=relaxed/simple;
-	bh=N2ieWKwF/s/SRgPfVie63l9DGnTbBJVt+ugqWhTyPp4=;
+	s=arc-20240116; t=1711824130; c=relaxed/simple;
+	bh=vaxfMlkCFBAyU9A6NWMaloTZz+NYjMmryUmHuhDKtrQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qOisqyxuQSQvuFzubzobIP23h1E71tFuwSNE3DVfqJnfg4sjIApuy9qlw+XZ9lr4TanVxqbCmecN0CuNvylDeVEeL9lJNLgXHmE4fKMYb2lozgTEdjdjjXWGygg0x3NstSOHmNS/F1mIlG0kM4E3HdQxyEny2JUupR4si/FP+14=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ovRKAunK; arc=none smtp.client-ip=209.85.208.170
+	 In-Reply-To:Content-Type; b=EYb+xul2KL05jsZrCCtSVSyPTMtZdp7O4IsfN3lTUowwBDbRvYV5cPTApn5OdsHyTPsiI4pRu8wXVTCV1pBYm2t6Wo0GgujdqJOq1X9Gw21WnIAfqBR9YbzvXlwqcPR/PoEbkSAZ+L7pEZKIzbYQ6Lb32MXCM/hqrPHXRX8BSC8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rrMzuvjA; arc=none smtp.client-ip=209.85.128.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2d68651e253so41805401fa.0
-        for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 11:40:24 -0700 (PDT)
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4155819f710so5001875e9.2
+        for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 11:42:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711824023; x=1712428823; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711824126; x=1712428926; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=A3VqCu8McawT5v2srPzwVC1CxiNRKF4OzinQo91YGYM=;
-        b=ovRKAunKXv25YFrKvZpRWuJUxrXDA/xU4eb93PBEajSnCdebqVbothQ70PnbJoE/pm
-         CuF6lk/2MB73hZ/5mOg32dQI5uv4fNq81nepDYnXT7z/D/wSCVYG4mr+LjN4m0GfGvwC
-         0laCy1VOmzMnau9XOiOoXCgsG6+/81eUTHS+akK9Pe49LFteT/PQuX4N2h5WDiiRHjg7
-         28ZGUlFGBipO14R2GJ+KOsCJu9URaYxjvhzkDlrrq5sQLfGM40+xgfK3+nG+oBcK7Ax2
-         fm/GP0ust/L3tuoxkoIdSif33yfCdoc0ssH3QzetP+47WiWPPAqz4AadjP2qSMZeGSpa
-         BJdQ==
+        bh=bGfQYGPavWP1V2uL0DkxTrollseu1eXm9PXycD1dsJk=;
+        b=rrMzuvjA6i24cXSW2wOQP/vVz108j9FKg6/UPFnR8PmkIub63Hji4bjOZa+GNFy7ng
+         3Wz0E4nvosovp+iYpFWL4UVIyaIbGWC7r8u87rIAT+/PkdBqyE45DhbSXEvwalOerYWj
+         vVbjIudAXHFmVVaeX9QPetOIfPzY+u6fcvmydDWOQ5VxnRN6Im32/ln+MsdKfKjz66zv
+         oQlZe9TUCdXHm2cXSJsgpv8Xmir6ek6BPPEb/auOYfnBVHoBMEg4vCKsModFCegTRm82
+         2DYAKDSvnXampKsVSh3Tu9xBdENSJ7w+b+XLMdGiAXq9FeElW4na7Y349/VeSr2/03Vm
+         VyEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711824023; x=1712428823;
+        d=1e100.net; s=20230601; t=1711824126; x=1712428926;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=A3VqCu8McawT5v2srPzwVC1CxiNRKF4OzinQo91YGYM=;
-        b=gT5HQ2iuXYzFDrUf1qH6KCyJTo0yLDOxvWAFFty6Wo2MrwrbT7aXMhLEu0pVCIHW1U
-         OGUveo2bBiZ50tcSW2B/FEWaNbd4V2o8TQNhrMtWWw8GDuILXr2mJJ/oN5rKDBt/aMWR
-         3Tn8lsUa5L0s8a139Sj07tEJL5R2WJypua4fdvbhS2qX1HY6zdWficjJfNr0OEjnkDlI
-         2jVwKXlfUe5PNpbCIGdGlja/oHaBqIINyRuXuvnkfO23ToOHFuGVtEaGUz7aI38wj6Jf
-         Q8XQDEMEwQYaMe6hiERDRBGWmzmaAfBUU1xH53C5M85IH17fiq5CKYxGUikSwVW6jKXu
-         Vehg==
-X-Forwarded-Encrypted: i=1; AJvYcCVPa2OtQJ1hG844qEYwTxuscQ63tS06Z+F9Q+irpCejA7Qa9n420hdBIQoXLKkmzTA2gCR9fOVPr1L9z9hBp1dMoa3YWHVI5deDRg==
-X-Gm-Message-State: AOJu0YwMo//xOejTV7cWhexIfqLqsrp+HxY8PfZ7mPKJtuQA11Ef98AY
-	xcIBi4smhTrSlrIV2MT77lm/44TGalR6chI0n+W7LQPlRbuAJZbyQuw7quj0h3U=
-X-Google-Smtp-Source: AGHT+IFAV3o4UY/hu5H0Wy2QF9GFBHA3ATanZSUry4YleUZP9Co40bCkswGTtms9hcvOo/OKxYMGzg==
-X-Received: by 2002:a05:651c:1401:b0:2d7:16f6:f678 with SMTP id u1-20020a05651c140100b002d716f6f678mr2611136lje.15.1711824022831;
-        Sat, 30 Mar 2024 11:40:22 -0700 (PDT)
+        bh=bGfQYGPavWP1V2uL0DkxTrollseu1eXm9PXycD1dsJk=;
+        b=G7rAKX/7ApQ0g8IjXQN4ltqDQROF0IIUx49molUNQaqI/7bPG5NpeR9RABO+2/PiFA
+         LnBzjePrdWlL7jCtGWVTpTWMohz40ydc3Df5y15uUUS7PbDjV3j5IbPQ7xUegroSZUKc
+         yKI0COMLjX7xhRWG+mMji3lGcnESwCg3M/MhDYGaOBIdodG3DvfwGtztAiB9npudmwmY
+         2Rl53KlvFOkAkp9V1B61qgir6ShlE12vS0J4Q1tvkm/oA9Tuo58qLMhaV48r3SdNzP8y
+         l/FsnIpJbAyZ/kOuEb06fs8VfIzLFqtk/ASaMmdu7rb9sv2gv3sDk7Q5BSnRlyr0tu87
+         GUog==
+X-Forwarded-Encrypted: i=1; AJvYcCUrh7ohrgrxKarbAlG3mqb7PaUgVX6VCh6kKKww9no1UprT1ll3snHNN6ciwRSMQGWGILlUXf2sOcLA6aqjxvKJxl3CCs1LqJKCYA==
+X-Gm-Message-State: AOJu0Yy+fPo/lGZN8b1rhAk15qnpYTTH/YKCD/8sxdjO5/BIlQc0AytF
+	ZBB6kz+2p9NgBMQb0UHVS7RKN+KNlUPns6cIxu/vuE9XMfj2blQgahMm6SR6IaM=
+X-Google-Smtp-Source: AGHT+IFrKjvRaQeZ5Vm9UZ8uA+9teyc8CH705lm5YgMaMcD3cHTCbFoOjUsX1AbbW7LVFQQzIhCQIA==
+X-Received: by 2002:a05:600c:4443:b0:414:846:4469 with SMTP id v3-20020a05600c444300b0041408464469mr4989993wmn.38.1711824126110;
+        Sat, 30 Mar 2024 11:42:06 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id h11-20020a05600c314b00b0041490467febsm12416252wmo.38.2024.03.30.11.40.21
+        by smtp.gmail.com with ESMTPSA id u22-20020a05600c139600b00414906f1ea1sm9230407wmf.17.2024.03.30.11.42.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 30 Mar 2024 11:40:22 -0700 (PDT)
-Message-ID: <46b065d1-82d7-4a15-9de2-1e0bdd2a9085@linaro.org>
-Date: Sat, 30 Mar 2024 19:40:20 +0100
+        Sat, 30 Mar 2024 11:42:05 -0700 (PDT)
+Message-ID: <a11c2adf-d72f-4385-a59e-ce640b8bb7d3@linaro.org>
+Date: Sat, 30 Mar 2024 19:42:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,24 +77,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/1] dt-bindings: net: dwmac: Document STM32 property
- st,ext-phyclk
-To: Christophe Roullier <christophe.roullier@foss.st.com>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: msm8916/8216-samsung-fortuna: Add
+ samsung,fortuna binding
+To: Raymond Hackley <raymondhackley@protonmail.com>,
+ linux-kernel@vger.kernel.org
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Richard Cochran <richardcochran@gmail.com>, Jose Abreu
- <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Marek Vasut <marex@denx.de>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240328140803.324141-1-christophe.roullier@foss.st.com>
- <20240328140803.324141-2-christophe.roullier@foss.st.com>
+ Conor Dooley <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>,
+ Nikita Travkin <nikita@trvn.ru>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <20240326141222.200452-1-raymondhackley@protonmail.com>
+ <20240326141222.200452-2-raymondhackley@protonmail.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -141,62 +135,40 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240328140803.324141-2-christophe.roullier@foss.st.com>
+In-Reply-To: <20240326141222.200452-2-raymondhackley@protonmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/03/2024 15:08, Christophe Roullier wrote:
-> The Linux kernel dwmac-stm32 driver currently supports three DT
-> properties used to configure whether PHY clock are generated by
-> the MAC or supplied to the MAC from the PHY.
+On 26/03/2024 15:12, Raymond Hackley wrote:
+> Add common binding samsung,fortuna used by the following
+> Samsung Galaxy Grand Prime devices:
+> - SM-G530FZ (msm8916-samsung-grandprimelte)
+> - SM-G530H  (msm8216-samsung-fortuna3g)
+> - SM-G530W  (msm8916-gprimeltecan)
 > 
-> Originally there were two properties, st,eth-clk-sel and
-> st,eth-ref-clk-sel, each used to configure MAC clocking in
-> different bus mode and for different MAC clock frequency.
-> Since it is possible to determine the MAC 'eth-ck' clock
-> frequency from the clock subsystem and PHY bus mode from
-> the 'phy-mode' property, two disparate DT properties are
-> no longer required to configure MAC clocking.
+> Signed-off-by: Raymond Hackley <raymondhackley@protonmail.com>
+> ---
+>  arch/arm64/boot/dts/qcom/msm8216-samsung-fortuna3g.dts     | 2 +-
+>  arch/arm64/boot/dts/qcom/msm8916-samsung-gprimeltecan.dts  | 2 +-
+>  arch/arm64/boot/dts/qcom/msm8916-samsung-grandprimelte.dts | 2 +-
+>  3 files changed, 3 insertions(+), 3 deletions(-)
 > 
-> Linux kernel commit 1bb694e20839 ("net: ethernet: stmmac: simplify phy modes management for stm32")
-> introduced a third, unified, property st,ext-phyclk. This property
-> covers both use cases of st,eth-clk-sel and st,eth-ref-clk-sel DT
-> properties, as well as a new use case for 25 MHz clock generated
-> by the MAC.
-> 
-> The third property st,ext-phyclk is so far undocumented,
-> document it.
-> 
-> Below table summarizes the clock requirement and clock sources for
-> supported PHY interface modes.
->  __________________________________________________________________________
-> |PHY_MODE | Normal | PHY wo crystal|   PHY wo crystal   |No 125Mhz from PHY|
-> |         |        |      25MHz    |        50MHz       |                  |
-> 
-> ---------------------------------------------------------------------------
-> |  MII    |    -   |     eth-ck    |        n/a         |       n/a        |
-> |         |        | st,ext-phyclk |                    |                  |
-> 
-> ---------------------------------------------------------------------------
-> |  GMII   |    -   |     eth-ck    |        n/a         |       n/a        |
-> |         |        | st,ext-phyclk |                    |                  |
-> 
-> ---------------------------------------------------------------------------
-> | RGMII   |    -   |     eth-ck    |        n/a         |      eth-ck      |
-> |         |        | st,ext-phyclk |                    | st,eth-clk-sel or|
-> |         |        |               |                    | st,ext-phyclk    |
-> 
-> ---------------------------------------------------------------------------
-> | RMII    |    -   |     eth-ck    |      eth-ck        |       n/a        |
-> |         |        | st,ext-phyclk | st,eth-ref-clk-sel |                  |
-> |         |        |               | or st,ext-phyclk   |                  |
-> 
-> ---------------------------------------------------------------------------
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
+> diff --git a/arch/arm64/boot/dts/qcom/msm8216-samsung-fortuna3g.dts b/arch/arm64/boot/dts/qcom/msm8216-samsung-fortuna3g.dts
+> index 366914be7d53..877fd2d7bb57 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8216-samsung-fortuna3g.dts
+> +++ b/arch/arm64/boot/dts/qcom/msm8216-samsung-fortuna3g.dts
+> @@ -6,6 +6,6 @@
+>  
+>  / {
+>  	model = "Samsung Galaxy Grand Prime (SM-G530H)";
+> -	compatible = "samsung,fortuna3g", "qcom,msm8916";
+> +	compatible = "samsung,fortuna3g", "samsung,fortuna", "qcom,msm8916";
 
-Can you please start testing patches *before* sending them?
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
 
 Best regards,
 Krzysztof
