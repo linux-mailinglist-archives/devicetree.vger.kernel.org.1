@@ -1,101 +1,151 @@
-Return-Path: <devicetree+bounces-54828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE959892B9E
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 15:53:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C44A1892BAC
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 16:00:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6D1E7B20F6D
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 14:53:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 45DD91F21E3B
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 15:00:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 375BD36AEC;
-	Sat, 30 Mar 2024 14:53:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF06D383BF;
+	Sat, 30 Mar 2024 15:00:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="AgKIFxWL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QfeLH+E/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD8311C0DEF;
-	Sat, 30 Mar 2024 14:53:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03AC036AE4
+	for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 15:00:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711810403; cv=none; b=VrO6J8Hi+SBymX6+G5k3Ud8x7blzHf4q7Un8U6HDTfCcAzT4feZ1IAepX0YzqrNRbWaj6sVRlwcJW0hQh2XaqpefkR4Sl2gkocyv4v1p3KRon1liM9mPgLHk8XrtVDkI9/lTyxhV5mKiovFXgO/D2P2uamXtEBKUKCzDezwG5NM=
+	t=1711810851; cv=none; b=cckkP70YXNhh1mX3uZIqfl69G5/sWilauHRpkjwam57BBMQHl/w0MruYLLuchFOXs7dAQjYIeZIGaTrzMOj4jLaIfwAKMSY3Q1IUt6mhVXfL8y2DYMIqHT5F9TKcurRhnsveNurpKDoIKXPIgchQ5BXewYBtlg8Y60SXAAeHOmM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711810403; c=relaxed/simple;
-	bh=gJx0oB7ZzuoCNKkwsr1UzGLJ3CRfFELmHureG9uOYGw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oDelDfSdHTx21mIJ0hem715uqMg/JEbBvu+QI/n4j2Dk5mc8GbK+VtSdOJISO50a39BBZcXcTZecoAszKR55fvrHsgPXRjIkkmjNpNVTs/51Np0JtRcq77T52D8q+mY13M2OFNo9qBat6UJf/PFGufjBrguPYjOpPuK3LA1Ni/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=AgKIFxWL; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=caGVOX2RZ69c4hjscPFCuCKDrFK7z35V6qvgjgO6mvs=; b=AgKIFxWLgU4PMlGPkeuWts4Sdx
-	C1uk2GClcr5WI35QPJ/c+zppgblTWKdov5NwQ4Y/rlf4kRO+pXEefeYiuH/9vvqcMMhtsW5bKoOSc
-	ptiP23T99yvkYQ4yFYT1LkW6GjFn1aaNnXMQ/2LbdTSWKkldN1777vtFbSTbTQ5A4V60=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rqa4f-00Bj1W-9i; Sat, 30 Mar 2024 15:52:49 +0100
-Date: Sat, 30 Mar 2024 15:52:49 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Luis Chamberlain <mcgrof@kernel.org>,
-	Russ Weight <russ.weight@linux.dev>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	Mark Brown <broonie@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-	Dent Project <dentproject@linuxfoundation.org>
-Subject: Re: [PATCH net-next v6 17/17] net: pse-pd: Add TI TPS23881 PSE
- controller driver
-Message-ID: <8186fea6-c1f4-403b-b717-83c1dd3ad826@lunn.ch>
-References: <20240326-feature_poe-v6-0-c1011b6ea1cb@bootlin.com>
- <20240326-feature_poe-v6-17-c1011b6ea1cb@bootlin.com>
- <6bbc6b86-3947-4679-ac0b-fde50129d0f6@lunn.ch>
- <20240329155657.7939ac4b@kmaincent-XPS-13-7390>
+	s=arc-20240116; t=1711810851; c=relaxed/simple;
+	bh=TbTHOui9nRbzInfWv54rG7ybH2YP9w+pNQe9Uik8Gy0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=OsViVWVHiarDSIGRXSSGOY2yh8zIJiezq1ZUfNnT6FXY6TD25BdZ5qnjzjaM2Su5/lrMriKzKFbE5q3ApxXw5vwVFGWYl4Prgn8nNBp9KxCMIb65su8tJIjMMXLb8PnQuQwqxDf5vyUJoyCYuH8YcO5COGIvzXxOOLdmOzj7B4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QfeLH+E/; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-513d3746950so3434764e87.1
+        for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 08:00:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1711810848; x=1712415648; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qeFUNYhrsBvDmXfNh3GP5CFwWeV+2KjCY5GUTF19i58=;
+        b=QfeLH+E/0W3Tz09xNlq+WsZ7hpSn9HaIJZ8eXtmZmIGN+QXZHOISiboi/4GVrpUF7p
+         NOW+IRhqs8glaas/mEw4NapMALdBKPC3s7ikjak08WIJlzzs2YB+GypK3bgCFrcO2oPy
+         ANANNN2AYVubRy8P6XmrxEz6E+ZX4Bajl/Xif8tPVizRQY68kXPfbY7Uycte8K621bTJ
+         5j58wcs1xKM7tj3D7SkBKdmm3737Y+N1V+yyF+YIKP/qRqSo2CaG4H1NOEkBT5olzK2t
+         VLodHMAKIrLIHeM/dj3cApcPoOV9sxWB8dnKEJLkWGRtp2oiLr7o9w3P8HJA1FBBWGhW
+         QDQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711810848; x=1712415648;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qeFUNYhrsBvDmXfNh3GP5CFwWeV+2KjCY5GUTF19i58=;
+        b=SipII37zXcjhZlPrehZNeDxZx2Pqww75rO7bhtT4bKjmIlBab/LAjO9VkbbJwVyJfm
+         VerHZoqPJy6elwMP5ywy48xMv/orf/rYdU83pgw0DoEZGuU57s4kC856gN6w6qCMUDHy
+         gcWi9GQWE9DvvihZmdiTn7SdKYLNByyPA5IWAZa/2JP/+65GoYqEYDwgAl+Wo44n5ojJ
+         El3LGwMDn0Lt+6wW6LSqqdxid8BxouOSFaXWq5c5Q2btmRO0/D2O/sLzm8LQNn67i5rN
+         gXOIC8R6Lev08XexJL4wr1Bsp2vpQGM29mvVBYVf9yX3731MHskJxO7uXbTvdBm4Fq7N
+         5Q2Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXnIR95wm9yujnOZm9yXyzVamOxkzWsl2NlnScFgZAcyWpXuqnBVeK8KWp2PBn8xS5ht2h59iAO6tiD04LtQt88eXQWoT5MFbKNug==
+X-Gm-Message-State: AOJu0YyUtzURCS84+acld25NbVhY8vBR6nXpihg+DvA5AUf3F+rUuxlj
+	rbcFeuNtgl83+x8bHdS1KF1WwcFLuuqRjjORbG9wHHmI/MUQKlQMUtCYt4w3kaA=
+X-Google-Smtp-Source: AGHT+IHN7f4UYparBiAGyFZQsvMsLXikA/nW80TyS4l4HLUhBjxfSbN21Vqi/NPZ7qlAf4/qE6rLmQ==
+X-Received: by 2002:ac2:58f2:0:b0:513:3d26:7cc6 with SMTP id v18-20020ac258f2000000b005133d267cc6mr2848569lfo.15.1711810847829;
+        Sat, 30 Mar 2024 08:00:47 -0700 (PDT)
+Received: from umbar.lan ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id j5-20020a056512344500b00515d205a6f0sm496199lfr.29.2024.03.30.08.00.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 30 Mar 2024 08:00:47 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: [PATCH v2 0/3] drm/panel: add support for LG SW43408 panel
+Date: Sat, 30 Mar 2024 17:00:45 +0200
+Message-Id: <20240330-lg-sw43408-panel-v2-0-293a58717b38@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240329155657.7939ac4b@kmaincent-XPS-13-7390>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAB0pCGYC/32NTQrCMBBGr1Jm7Uh+obryHtJFbCfpQElKIlEpv
+ buxB3D5Hnzv26BQZipw7TbIVLlwig3UqYNxdjEQ8tQYlFBGaC1wCVheRhvR4+oiLfiwVnkj5Wg
+ 1QZutmTy/j+R9aDxzeab8OR6q/Nk/sSpRoLe2F368eDW528LR5XROOcCw7/sXkSIEILEAAAA=
+To: Sumit Semwal <sumit.semwal@linaro.org>, 
+ Caleb Connolly <caleb.connolly@linaro.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ Vinod Koul <vkoul@kernel.org>, Caleb Connolly <caleb@connolly.tech>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1736;
+ i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
+ bh=TbTHOui9nRbzInfWv54rG7ybH2YP9w+pNQe9Uik8Gy0=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmCCkeW9RMtkNd3jg/F4YF3+7GbRlOaHo4dt3gG
+ f5lWmdi9/uJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZggpHgAKCRCLPIo+Aiko
+ 1aABCACVd6NQSpXlyfAImYk+V5+sCXVWy/Cu78jlO/LPhB1OjoR5DQ/YwVOttpOAg7b5pZ5dd3I
+ faWpAQ32mUBBtU091NXtPFmAZVmbrjplgCg8HQ3CSuAq266/Y7b5NpwEPLe2u8sGL0sB+EjyDeu
+ Jj9uD9DMDDmAS8ju3jFcWEkehWec1SHrJe97vzFWa9iDp3I8uDC80MXXYSAjdZbzL7fud6GPbcC
+ LRMfhO7q38gMBkBys2rirGZhoH5gaxbRzel22HcaIXCGGRSnw1ZtiFFZtvfLvrpTNIsVeGLY+Q/
+ q/ccLjijPHfpvLswPPiYTttJM7pdyO1DVcrICuq1NRTZFqQy
+X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-On Fri, Mar 29, 2024 at 03:56:57PM +0100, Kory Maincent wrote:
-> On Thu, 28 Mar 2024 17:24:17 +0100
-> Andrew Lunn <andrew@lunn.ch> wrote:
-> 
-> > > +static int tps23881_flash_fw_part(struct i2c_client *client,
-> > > +				  const char *fw_name,
-> > > +				  const struct tps23881_fw_conf *fw_conf)  
-> > 
-> > Does the device actually have flash? Or is this just downloading to
-> > SRAM?
-> 
-> It is downloading to SRAM.
+The LG SW43408 panel is used on Google Pixel3 devices. For a long time
+we could not submit the driver, as the panel was not coming up from the
+reset. The panel seems to be picky about some of the delays during init
+and it also uses non-standard payload for MIPI_DSI_COMPRESSION_MODE.
 
-So maybe rename these functions.
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+Changes in v2:
+- Removed formatting char from schema (Krzysztof)
+- Moved additionalProperties after required (Krzysztof)
+- Added example to the schema (Krzysztof)
+- Removed obsolete comment in the commit message (Marijn)
+- Moved DSC params to the panel struct (Marijn)
+- Changed dsc_en to be an array (Marijn)
+- Added comment regiarding slice_width and slice_count (Marijn)
+- Link to v1: https://lore.kernel.org/r/20240330-lg-sw43408-panel-v1-0-f5580fc9f2da@linaro.org
 
-	Andrew
+---
+Dmitry Baryshkov (1):
+      drm/mipi-dsi: add mipi_dsi_compression_mode_raw()
+
+Sumit Semwal (2):
+      dt-bindings: panel: Add LG SW43408 MIPI-DSI panel
+      drm: panel: Add LG sw43408 panel driver
+
+ .../bindings/display/panel/lg,sw43408.yaml         |  62 ++++
+ MAINTAINERS                                        |   8 +
+ drivers/gpu/drm/drm_mipi_dsi.c                     |  34 ++-
+ drivers/gpu/drm/panel/Kconfig                      |  11 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-lg-sw43408.c           | 321 +++++++++++++++++++++
+ include/drm/drm_mipi_dsi.h                         |   1 +
+ 7 files changed, 430 insertions(+), 8 deletions(-)
+---
+base-commit: 13ee4a7161b6fd938aef6688ff43b163f6d83e37
+change-id: 20240330-lg-sw43408-panel-b552f411c53e
+
+Best regards,
+-- 
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
 
