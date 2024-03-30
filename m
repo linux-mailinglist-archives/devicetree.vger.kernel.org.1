@@ -1,195 +1,75 @@
-Return-Path: <devicetree+bounces-54804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FC20892AB7
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 12:17:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D275892AD2
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 12:32:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 73BF01C20D69
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 11:17:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A4F7282E0F
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 11:32:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B53D7364AA;
-	Sat, 30 Mar 2024 11:17:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FB102C69C;
+	Sat, 30 Mar 2024 11:32:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VReKCeJA"
+	dkim=pass (1024-bit key) header.d=6tel.net header.i=@6tel.net header.b="UPQkPCkM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from forward501b.mail.yandex.net (forward501b.mail.yandex.net [178.154.239.145])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFF32BE6F;
-	Sat, 30 Mar 2024 11:17:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D48D2BB1E;
+	Sat, 30 Mar 2024 11:32:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.154.239.145
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711797451; cv=none; b=OgfaGFU51IcfvciMiR9/Njs7IoOUDl71CRGzTxF6FNvfyFyfgeeinNjY7bFOJUEtVCO3DGMq+uo8WHlfUAhyP3Zsi/FEj6sY+q5Sg66LbV/JJk72lFW1DqEE4zTpPNI7xndJjgciJkbzBSduvJ+NFC33cE//CRDcusYUaqslsRA=
+	t=1711798324; cv=none; b=mgDi4mrZZvCxNPVu1Zo9ecpZQhKz1zW3CJ4A3+DqZWlvnCoVC6F1YRW2cU8DjzRBdsjVUyarjmx9/zV4BfvL5JnYGtCfMaIQjJG0QhEC2MX1S/KuVmSD26kP5Qr9jTgFNGjNa+sAkzh+n+kOjvL1/6tBgVuIhc3UEPkXNtN1Kl0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711797451; c=relaxed/simple;
-	bh=1+FLZf8NhvSoHU8Nxo8s7Kl4QOIlI88wna7RvTeNLVs=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fJZMgKX2/nrQ7851t+Howa7UW0hfjuTgK00DozM8QHv4s9y35SROBXiitosrB1NSxXvEpaJnifUal0Nbrz8zRRghZ524BVCua25TycBX+F40A37oFblzwVnu3DmvYCQovyS1v4KNUNnHRroYYRB/ndPRfCxsDmzhErkgcSVtyOI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=VReKCeJA; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42UB2ird009029;
-	Sat, 30 Mar 2024 11:17:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=qcppdkim1; bh=3TKL+TXri2fej1BIbvxO9
-	46yNIpK8+nMHxirlzT443g=; b=VReKCeJArHG2CwWfu+MDFuGBDqW5DAYZaUgRU
-	sy94CSQ6sqvaf7UBDhsQIeIEGS7eLNe+jg7TWr/LTVQZSTBe8SWGKHLFVR4O1/dJ
-	OAgLWdSOIPIySRHtaFrCSnL49kLEL1D4Ph63+AOtZo4TIu4DLkL8WLJPN0vhhxo1
-	J3IZbZAxmWrjSCrqAjdJ2eMYyYCWWzj4Q2oNGnPsVGh+h/TDt4krhzJgRgA/sRVZ
-	GmxFKNZnVi0ZbmmnLQxqf11gKtn/nv6lwg3YVKP6KqxQ9TxWlnx01E69t0buVifp
-	F88boLkzLemuhnGF9c6LC7w8b2/fBDIC5NFkxbxnpdSD0z8xA==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x6bwx0pht-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 30 Mar 2024 11:17:23 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42UBHMAm008748
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 30 Mar 2024 11:17:22 GMT
-Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Sat, 30 Mar 2024 04:17:18 -0700
-Date: Sat, 30 Mar 2024 16:47:14 +0530
-From: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC: Stephen Boyd <sboyd@kernel.org>, <andersson@kernel.org>,
-        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <djakov@kernel.org>, <dmitry.baryshkov@linaro.org>,
-        <konrad.dybcio@linaro.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <mturquette@baylibre.com>, <quic_anusha@quicinc.com>,
-        <robh@kernel.org>
-Subject: Re: [PATCH v5 4/5] clk: qcom: ipq9574: Use icc-clk for enabling NoC
- related clocks
-Message-ID: <Zgf0uia7Wbj1y2zg@hu-varada-blr.qualcomm.com>
-References: <20240328075936.223461-1-quic_varada@quicinc.com>
- <20240328075936.223461-5-quic_varada@quicinc.com>
- <95f4e99a60cc97770fc3cee850b62faf.sboyd@kernel.org>
- <ZgaeGZL7QXh75aSA@hu-varada-blr.qualcomm.com>
- <031d0a35-b192-4161-beef-97b89d5d1da6@linaro.org>
- <Zgfbs5SFN2cA0gSK@hu-varada-blr.qualcomm.com>
- <5570c921-0103-4e92-be9a-da9c1b7cbd79@linaro.org>
+	s=arc-20240116; t=1711798324; c=relaxed/simple;
+	bh=k+xr2CdgZbDES1PB5EMb0dI+5hlK5uhxDTWonGxYilo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=jzcSJ+uidbNUJgQur6saJoA41y4za8ZI/ru+CY6ImIrt76fQA2r8+ruN3UvWtLIvNis2Ia1gsQ7lLNNYWy0FpUpE/Fyw0ZwLiP/rE1R6BvGZbnI6XpRnkvOHpEOWNf5i8ihpcIjRHsvNXF4GP9RGmnR9XtcLJ+b7TiwRh8rdq6w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=6tel.net; spf=pass smtp.mailfrom=6tel.net; dkim=pass (1024-bit key) header.d=6tel.net header.i=@6tel.net header.b=UPQkPCkM; arc=none smtp.client-ip=178.154.239.145
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=6tel.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=6tel.net
+Received: from mail-nwsmtp-smtp-production-main-38.myt.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-38.myt.yp-c.yandex.net [IPv6:2a02:6b8:c12:4619:0:640:d09:0])
+	by forward501b.mail.yandex.net (Yandex) with ESMTPS id 461EA60BBA;
+	Sat, 30 Mar 2024 14:25:22 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-38.myt.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id 2PN5co9OdCg0-dHeX0PRv;
+	Sat, 30 Mar 2024 14:25:21 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=6tel.net; s=mail;
+	t=1711797921; bh=k+xr2CdgZbDES1PB5EMb0dI+5hlK5uhxDTWonGxYilo=;
+	h=Message-ID:Date:In-Reply-To:Cc:Subject:References:To:From;
+	b=UPQkPCkMo7OuVDyefhG9qHvu8iT8D4vBlUHzNcUCcbfW8KNh6Q1TMjk3rt0gKJhm6
+	 p62vKdOuLiyDOOOcRbzxeJEJtE0mCHMKSVrQW7fdkYU1cOvl/7QJ7c1LVDC0wg/Ldq
+	 BwHPerOWEJm40sQuzOO6KS+g6+33jceNMCvOAf10=
+Authentication-Results: mail-nwsmtp-smtp-production-main-38.myt.yp-c.yandex.net; dkim=pass header.i=@6tel.net
+From: efectn@6tel.net
+To: heiko@sntech.de
+Cc: conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	efectn@protonmail.com,
+	krzysztof.kozlowski+dt@linaro.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	robh+dt@kernel.org,
+	sebastian.reichel@collabora.com
+Subject: [PATCH 1/9] arm64: dts: rockchip: Add cpu regulators and vcc5v0_sys to Khadas Edge 2
+Date: Sat, 30 Mar 2024 14:25:02 +0300
+Message-ID: <20240330112502.223828-1-efectn@6tel.net>
+X-Mailer: git-send-email 2.44.0
+In-Reply-To: <5a7bd2cd8703e51382abfc11242de59d45286477.1708381247.git.efectn@protonmail.com>
+References: <5a7bd2cd8703e51382abfc11242de59d45286477.1708381247.git.efectn@protonmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <5570c921-0103-4e92-be9a-da9c1b7cbd79@linaro.org>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: tbBmwQ2gj3N-Y0uKE7iNBCDhhfSpYCBc
-X-Proofpoint-ORIG-GUID: tbBmwQ2gj3N-Y0uKE7iNBCDhhfSpYCBc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-30_07,2024-03-28_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 clxscore=1015
- spamscore=0 suspectscore=0 adultscore=0 lowpriorityscore=0 impostorscore=0
- bulkscore=0 malwarescore=0 mlxscore=0 mlxlogscore=865 priorityscore=1501
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2403210001
- definitions=main-2403300092
+Content-Transfer-Encoding: 8bit
 
-On Sat, Mar 30, 2024 at 11:28:09AM +0100, Krzysztof Kozlowski wrote:
-> On 30/03/2024 10:30, Varadarajan Narayanan wrote:
-> > On Fri, Mar 29, 2024 at 01:10:03PM +0100, Krzysztof Kozlowski wrote:
-> >> On 29/03/2024 11:55, Varadarajan Narayanan wrote:
-> >>>>> +
-> >>>>> +enum {
-> >>>>> +       ICC_ANOC_PCIE0,
-> >>>>> +       ICC_SNOC_PCIE0,
-> >>>>> +       ICC_ANOC_PCIE1,
-> >>>>> +       ICC_SNOC_PCIE1,
-> >>>>> +       ICC_ANOC_PCIE2,
-> >>>>> +       ICC_SNOC_PCIE2,
-> >>>>> +       ICC_ANOC_PCIE3,
-> >>>>> +       ICC_SNOC_PCIE3,
-> >>>>> +       ICC_SNOC_USB,
-> >>>>> +       ICC_ANOC_USB_AXI,
-> >>>>> +       ICC_NSSNOC_NSSCC,
-> >>>>> +       ICC_NSSNOC_SNOC_0,
-> >>>>> +       ICC_NSSNOC_SNOC_1,
-> >>>>> +       ICC_NSSNOC_PCNOC_1,
-> >>>>> +       ICC_NSSNOC_QOSGEN_REF,
-> >>>>> +       ICC_NSSNOC_TIMEOUT_REF,
-> >>>>> +       ICC_NSSNOC_XO_DCD,
-> >>>>> +       ICC_NSSNOC_ATB,
-> >>>>> +       ICC_MEM_NOC_NSSNOC,
-> >>>>> +       ICC_NSSNOC_MEMNOC,
-> >>>>> +       ICC_NSSNOC_MEM_NOC_1,
-> >>>>> +};
-> >>>>
-> >>>> Are these supposed to be in a dt-binding header?
-> >>>
-> >>> Since these don't directly relate to the ids in the dt-bindings
-> >>> not sure if they will be permitted there. Will move and post a
-> >>> new version and get feedback.
-> >>
-> >> You can answer this by yourself by looking at your DTS. Do you use them
-> >> as well in the DTS?
-> >
-> > I can use them in the DTS. The icc-clk framework automatically
-> > creates master and slave nodes as 'n' and 'n+1'. Hence I can have
-> > something like this in the dt-bindings include file
-> >
-> > 	#define ICC_ANOC_PCIE0		0
-> > 	#define ICC_SNOC_PCIE0		1
-> > 		.
-> > 		.
-> > 		.
-> > 	#define ICC_NSSNOC_MEM_NOC_1	20
-> >
-> > 	#define MASTER(x)	((ICC_ ## x) * 2)
-> > 	#define SLAVE(x)	(MASTER(x) + 1)
->
-> I don't understand this or maybe I misunderstood the purpose of this
-> define. It does not matter if you "can" use something in DT. The
-> question is: do you use them.
+Hi Heiko,
 
-Yes. It will be used fot the pcie nodes. These defines are for
-specifying the endpoints. The icc driver identifies a path that
-can connect these endpoints. The peripheral drivers' DT nodes
-will make use of these defines.
-
-> >> It's a pity we see here only parts of DTS, instead of full interconnect
-> >> usage.
-> >
-> > Unfortunately cannot include the pcie dts changes with this
-> > patch, but you can refer to them at https://lore.kernel.org/linux-arm-msm/20230519090219.15925-5-quic_devipriy@quicinc.com/
-> >
-> > The above macros will be used in the pcie node as follows
-> >
-> > pcie0: pci@28000000 {
-> > 	compatible = "qcom,pcie-ipq9574";
-> > 	. . .
-> > 	interconnects = <&gcc MASTER(ANOC_PCIE0) &gcc SLAVE(ANOC_PCIE0)>,
-> > 			<&gcc MASTER(SNOC_PCIE0) &gcc SLAVE(SNOC_PCIE0)>;
-> > 	interconnect-names = "pcie-mem", "cpu-pcie";
->
-> Then why did you add header which is not used?
-
-Since they are a part of the interconnect driver. The peripherals
-that use the interconnects will make use of them to specify the
-endpoints. After changing per Boyd's comments, the header will
-be used from gcc driver. Will post a new version. Kindly review
-that.
-
-Thanks
-Varada
-
-> I will respond there...
->
-> Best regards,
-> Krzysztof
->
+Sorry if i bother you. Can you review the series? If there is a problem i will send the v2.
 
