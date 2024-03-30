@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-54856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA2DA892C93
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 19:37:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97CE5892C98
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 19:40:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 612BB1F22E1B
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 18:37:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 24CED1F215C1
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 18:40:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B386722093;
-	Sat, 30 Mar 2024 18:36:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E26D5335DB;
+	Sat, 30 Mar 2024 18:40:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WKAbD/D8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ovRKAunK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BCEF1DDF1
-	for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 18:36:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0D061E865
+	for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 18:40:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711823818; cv=none; b=GfQk1c50Mit+mDWxAHubWLa/vZWt3dbAAh3sVpqRrfd2pB5Gn1yHRGjYQPAOXMppf7Vk7fDUiNSp6u0mtIr0GyFvS5Rq6qQyOdehDNbYHsgMo9nGdrbOMK8iR9CGGq99lyR7Yfcpf/yGZOMMhK7wvG7mBMjpA1uLbVTB0TOdCJQ=
+	t=1711824026; cv=none; b=Oz+9CME5WlBOT/QS8u8mCvlXtRMiXAreLyu+3IqZgAnkxZME/wZqW+NmEOJeLIRJ2CuZ/KJTeT6ubllZ806PRx5gaLjo799YrgUX2vq5UprVGHjehLeaOHpb8kc2rmKGTz6eWB+YQMOCCH+a6vPH07z0O8by9+YJXlpPycxTaLw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711823818; c=relaxed/simple;
-	bh=mMHX/D7lliivA6UWGEQ+mSk0LY+Wg5ljj95nA7UCmE0=;
+	s=arc-20240116; t=1711824026; c=relaxed/simple;
+	bh=N2ieWKwF/s/SRgPfVie63l9DGnTbBJVt+ugqWhTyPp4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Hl/uZvayFmMKHUBk7Ni6nO+u2MO0ldmMX6Z++HFIbbIwUoDylQEJo5g3XuQLBMP3VqZEVp3Nam228EOE+2ZJIY7EgJRuzokl1Jh7F9dKBoCoAwx2wM/SIForDluTx3zWQMGZKL+kIJ5zmP5661qMTRtBmcY4VhJNEEKoAKtHFQw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WKAbD/D8; arc=none smtp.client-ip=209.85.128.51
+	 In-Reply-To:Content-Type; b=qOisqyxuQSQvuFzubzobIP23h1E71tFuwSNE3DVfqJnfg4sjIApuy9qlw+XZ9lr4TanVxqbCmecN0CuNvylDeVEeL9lJNLgXHmE4fKMYb2lozgTEdjdjjXWGygg0x3NstSOHmNS/F1mIlG0kM4E3HdQxyEny2JUupR4si/FP+14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ovRKAunK; arc=none smtp.client-ip=209.85.208.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4154464f150so14620135e9.0
-        for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 11:36:56 -0700 (PDT)
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2d68651e253so41805401fa.0
+        for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 11:40:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711823815; x=1712428615; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711824023; x=1712428823; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=2epNLcqYlDDxFlqorb7Cjat3BktL4sasPGtCRb+vLrQ=;
-        b=WKAbD/D8LsQsykF1lz+B2JOa1bV1BY2jHzY2GGMZCZL56kDvVy2ZIriFySc8PQT3DJ
-         w/85xXp9II8wGHoJSt2t+Oey+Hevfax1bBmAh+E7Jb+Rva038XnMW1OPjj80czHHPb1H
-         JFCAhGmZOFeKGkYL9V3XMMfWIo2B0hzqWTLOx4vWAL+ZOOcvVM4GM6ihF5ACAnV/VgEk
-         Oxxg16sD3SSgBQl+0zqPHBzoqePnIBp0xoW+Lu5p5GqG60e/3+1RQUHfd3WjtparFeZk
-         3jwJx+VA7a01DAcWrnq61LyW7cNxyxU1LMOFxGrlWmD2D0yzQiVLrbkqhhCSumzF03SN
-         mlCg==
+        bh=A3VqCu8McawT5v2srPzwVC1CxiNRKF4OzinQo91YGYM=;
+        b=ovRKAunKXv25YFrKvZpRWuJUxrXDA/xU4eb93PBEajSnCdebqVbothQ70PnbJoE/pm
+         CuF6lk/2MB73hZ/5mOg32dQI5uv4fNq81nepDYnXT7z/D/wSCVYG4mr+LjN4m0GfGvwC
+         0laCy1VOmzMnau9XOiOoXCgsG6+/81eUTHS+akK9Pe49LFteT/PQuX4N2h5WDiiRHjg7
+         28ZGUlFGBipO14R2GJ+KOsCJu9URaYxjvhzkDlrrq5sQLfGM40+xgfK3+nG+oBcK7Ax2
+         fm/GP0ust/L3tuoxkoIdSif33yfCdoc0ssH3QzetP+47WiWPPAqz4AadjP2qSMZeGSpa
+         BJdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711823815; x=1712428615;
+        d=1e100.net; s=20230601; t=1711824023; x=1712428823;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=2epNLcqYlDDxFlqorb7Cjat3BktL4sasPGtCRb+vLrQ=;
-        b=v0kGYeULmgeJScfE2lJ0w6VYyjoXQAqAJa4yyknNa450xqjXsNvWcZvaW27afEJSoO
-         QiiAjrmgdSa8YmhXShTdSNnNrhVL3/O70ra4ebp5TCC6ln+V92Di/fMI06UAC2zqVTUe
-         FuNAXvG5kfPjqd227zBfPsWNxGdwYyjPhmT4xU5V8mpxs6PaUl599VO5CFUa/+NWLZb3
-         Oz2IIKlyY6DcJcuHmF0Mvp4Oqv6MR7nY9sQruJ4qQnFp7Ct1zP9eslZ1aG77eUd5PnbK
-         NeRCN2GifsWp1I/xN6YSwi7vy7bi/f+BUVrNWCCCT6fRWA4TDgJR1eZxBmQ504zNdAsj
-         MiDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWQtlR2DK5PaCg8HAKz+aiGR9m8Kq3A8b1XKC+/T6HXOhZWkqimqGyJ6/1gL1gmsGbRn+S5VssmsG0UaEnY/J4EYOKKn6EHnCvvGA==
-X-Gm-Message-State: AOJu0Yx2A9F8q27DrLSib6fSldUnyuMHPbgRtdr7f/XKdFfFKQF8DIko
-	NZN/21KzgTCnJF6paGJkg++g3t0kNdVYxeXoTpvfhRMD0QQPW6GCMVn8tc/JsfU=
-X-Google-Smtp-Source: AGHT+IFnVFj7i3GEZdjCS5RRUzI2AJw0B5Vjpn+qZ4xY+uoBiHeOJ0ETODeVEXt0VqNUBa9c3fyCAw==
-X-Received: by 2002:a05:600c:1c27:b0:414:37f:18dc with SMTP id j39-20020a05600c1c2700b00414037f18dcmr7990830wms.1.1711823814939;
-        Sat, 30 Mar 2024 11:36:54 -0700 (PDT)
+        bh=A3VqCu8McawT5v2srPzwVC1CxiNRKF4OzinQo91YGYM=;
+        b=gT5HQ2iuXYzFDrUf1qH6KCyJTo0yLDOxvWAFFty6Wo2MrwrbT7aXMhLEu0pVCIHW1U
+         OGUveo2bBiZ50tcSW2B/FEWaNbd4V2o8TQNhrMtWWw8GDuILXr2mJJ/oN5rKDBt/aMWR
+         3Tn8lsUa5L0s8a139Sj07tEJL5R2WJypua4fdvbhS2qX1HY6zdWficjJfNr0OEjnkDlI
+         2jVwKXlfUe5PNpbCIGdGlja/oHaBqIINyRuXuvnkfO23ToOHFuGVtEaGUz7aI38wj6Jf
+         Q8XQDEMEwQYaMe6hiERDRBGWmzmaAfBUU1xH53C5M85IH17fiq5CKYxGUikSwVW6jKXu
+         Vehg==
+X-Forwarded-Encrypted: i=1; AJvYcCVPa2OtQJ1hG844qEYwTxuscQ63tS06Z+F9Q+irpCejA7Qa9n420hdBIQoXLKkmzTA2gCR9fOVPr1L9z9hBp1dMoa3YWHVI5deDRg==
+X-Gm-Message-State: AOJu0YwMo//xOejTV7cWhexIfqLqsrp+HxY8PfZ7mPKJtuQA11Ef98AY
+	xcIBi4smhTrSlrIV2MT77lm/44TGalR6chI0n+W7LQPlRbuAJZbyQuw7quj0h3U=
+X-Google-Smtp-Source: AGHT+IFAV3o4UY/hu5H0Wy2QF9GFBHA3ATanZSUry4YleUZP9Co40bCkswGTtms9hcvOo/OKxYMGzg==
+X-Received: by 2002:a05:651c:1401:b0:2d7:16f6:f678 with SMTP id u1-20020a05651c140100b002d716f6f678mr2611136lje.15.1711824022831;
+        Sat, 30 Mar 2024 11:40:22 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id h9-20020a05600c314900b004147b824b08sm9302259wmo.7.2024.03.30.11.36.52
+        by smtp.gmail.com with ESMTPSA id h11-20020a05600c314b00b0041490467febsm12416252wmo.38.2024.03.30.11.40.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 30 Mar 2024 11:36:54 -0700 (PDT)
-Message-ID: <98a5c1b4-b508-45ed-8719-149ec960250c@linaro.org>
-Date: Sat, 30 Mar 2024 19:36:52 +0100
+        Sat, 30 Mar 2024 11:40:22 -0700 (PDT)
+Message-ID: <46b065d1-82d7-4a15-9de2-1e0bdd2a9085@linaro.org>
+Date: Sat, 30 Mar 2024 19:40:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,23 +77,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] dt-bindings: aspeed: Add eSPI controller
-To: Manojkiran Eda <manojkiran.eda@gmail.com>, patrick.rudolph@9elements.com,
- chiawei_wang@aspeedtech.com, ryan_chen@aspeedtech.com,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
- linux-mtd@lists.infradead.org
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
- miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
- jk@codeconstruct.com.au, openbmc@lists.ozlabs.org, broonie@kernel.org,
- linux-spi@vger.kernel.org
-References: <20240319093405.39833-1-manojkiran.eda@gmail.com>
- <20240319093405.39833-5-manojkiran.eda@gmail.com>
- <bad5df79-e040-4868-9db6-701110894ea3@linaro.org>
- <a9faa9b4-9bf6-49b6-b7eb-f642e2d261c3@gmail.com>
- <f2a487c4-eba3-4a78-9a14-67c8754c8b61@linaro.org>
- <582c276c-ea2f-456c-9bf9-47e39289a0b6@gmail.com>
+Subject: Re: [PATCH v5 1/1] dt-bindings: net: dwmac: Document STM32 property
+ st,ext-phyclk
+To: Christophe Roullier <christophe.roullier@foss.st.com>,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Richard Cochran <richardcochran@gmail.com>, Jose Abreu
+ <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Marek Vasut <marex@denx.de>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240328140803.324141-1-christophe.roullier@foss.st.com>
+ <20240328140803.324141-2-christophe.roullier@foss.st.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -140,107 +141,62 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <582c276c-ea2f-456c-9bf9-47e39289a0b6@gmail.com>
+In-Reply-To: <20240328140803.324141-2-christophe.roullier@foss.st.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/03/2024 12:33, Manojkiran Eda wrote:
->>>>> +    description: Controls the flash channel of eSPI hardware
->>>> That explains nothing. Unless you wanted to use here MTD bindings.
->>>>
->>>> This binding did not improve much. I don't understand why this is not
->>>> SPI (nothing in commit msg, nothing in description), what is eSPI,
->>>
->>> eSPI uses Peripheral, Virtual Wire, Out of Band, and Flash Access
->>> channels to communicate different sets of data.
->>
->> And what are these channels? What does it mean a "channel"? Is it just
->> how you organize transfers and classes of devices? Or some sort of
->> addressable instance on the bus?
->>
+On 28/03/2024 15:08, Christophe Roullier wrote:
+> The Linux kernel dwmac-stm32 driver currently supports three DT
+> properties used to configure whether PHY clock are generated by
+> the MAC or supplied to the MAC from the PHY.
 > 
-> Yes, an espi channel provides a means to allow multiple independent 
-> flows of traffic to share the same physical bus. Each of the channels 
-> has its own dedicated resources such as queue and flow control.
-
-Resources as queue and flow-control? Where are they defined in
-Devicetree? Which binding?
-
+> Originally there were two properties, st,eth-clk-sel and
+> st,eth-ref-clk-sel, each used to configure MAC clocking in
+> different bus mode and for different MAC clock frequency.
+> Since it is possible to determine the MAC 'eth-ck' clock
+> frequency from the clock subsystem and PHY bus mode from
+> the 'phy-mode' property, two disparate DT properties are
+> no longer required to configure MAC clocking.
 > 
->> The channels feel like some sort of software or logical concept, not
->> physical. Physical would be endpoint with peripheral. Or flash memory.
+> Linux kernel commit 1bb694e20839 ("net: ethernet: stmmac: simplify phy modes management for stm32")
+> introduced a third, unified, property st,ext-phyclk. This property
+> covers both use cases of st,eth-clk-sel and st,eth-ref-clk-sel DT
+> properties, as well as a new use case for 25 MHz clock generated
+> by the MAC.
 > 
-> A channel is a logical communication pathway or interface between the 
-> chipset and peripheral devices. The concept of channels in the ESPI 
-> protocol helps organize and manage different types of communication 
-> between the chipset and peripherals. Each channel may have its own set 
-> of protocols, data transfer rates, and supported features, tailored to 
-> the requirements of the devices it serves.
+> The third property st,ext-phyclk is so far undocumented,
+> document it.
 > 
->> How do they fit here?
+> Below table summarizes the clock requirement and clock sources for
+> supported PHY interface modes.
+>  __________________________________________________________________________
+> |PHY_MODE | Normal | PHY wo crystal|   PHY wo crystal   |No 125Mhz from PHY|
+> |         |        |      25MHz    |        50MHz       |                  |
 > 
-> I am not sure I understand, can you please elaborate ?
-
-All this suggests channel is programming aspect of your device thus does
-not have to be represented in DT. I don't know, come with any DT
-property to back up your case...
-
-So far I see only interrupts and clocks, but then I would claim these
-could be part of parent node.
-
-Rob said it last time: your split of nodes looks artificial and it all
-looks like one node.
-
-Your DTS reg like:
-	reg = <0x0 0x800>,<0x0 0x4000000>;
-proves it. I don't know if this is just bug in your code or some silly
-DTS just to create fake children. :/
-
+> ---------------------------------------------------------------------------
+> |  MII    |    -   |     eth-ck    |        n/a         |       n/a        |
+> |         |        | st,ext-phyclk |                    |                  |
 > 
->>>
->>>    * The *Peripheral* Channel is used for communication between eSPI host
->>>      bridge located on the master side and eSPI endpoints located on the
->>>      slave side. LPC Host and LPC Peripherals are an example of eSPI host
->>>      bridge and eSPI endpoints respectively.
->>>    * *Virtual Wire* Channel: The Virtual Wire channel is used to
->>>      communicate the state of sideband pins or GPIO tunneled through eSPI
->>>      as in-band messages. Serial IRQ interrupts are communicated through
->>>      this channel as in-band messages.
->>>    * *OOB* Channel: The SMBus packets are tunneled through eSPI as
->>>      Out-Of-Band (OOB) messages. The whole SMBus packet is embedded
->>>      inside the eSPI OOB message as data.
->>>    * *Flash Access* Channel: The Flash Access channel provides a path
->>>      allowing the flash components to be shared run-time between chipset
->>>      and the eSPI slaves that require flash accesses such as EC (Embedded
->>>      Controller) and BMC.
->>
->> Please make binding complete, so define all of the channels.
+> ---------------------------------------------------------------------------
+> |  GMII   |    -   |     eth-ck    |        n/a         |       n/a        |
+> |         |        | st,ext-phyclk |                    |                  |
 > 
+> ---------------------------------------------------------------------------
+> | RGMII   |    -   |     eth-ck    |        n/a         |      eth-ck      |
+> |         |        | st,ext-phyclk |                    | st,eth-clk-sel or|
+> |         |        |               |                    | st,ext-phyclk    |
 > 
-> I would like to inquire about the rationale behind this request. Based 
+> ---------------------------------------------------------------------------
+> | RMII    |    -   |     eth-ck    |      eth-ck        |       n/a        |
+> |         |        | st,ext-phyclk | st,eth-ref-clk-sel |                  |
+> |         |        |               | or st,ext-phyclk   |                  |
+> 
+> ---------------------------------------------------------------------------
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
 
-Rationale - writing bindings document.
-https://elixir.bootlin.com/linux/v6.9-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst#L17
-
-
-> on previous feedback received from the upstream efforts 
-> [https://lore.kernel.org/openbmc/HK0PR06MB37798462D17443C697433D7191D09@HK0PR06MB3779.apcprd06.prod.outlook.com/], 
-> suggestions were made to model the flash channel by utilizing the mtd 
-> subsystem, the virtual wire channel by utilizing the GPIO subsystem, and 
-> to consider the OOB channel as a type of i2c device, thereby allowing it 
-> to be utilized by the existing in-kernel MCTP subsystem, among others. 
-> My intention was to prioritize upstreaming the flash channel binding, 
-> along with its driver code, before proceeding to address other channels. 
-
-Just to clarify: I don't care about drivers and we do not talk about
-them here.
-
-> I am curious to understand if it is a strict requirement to have the 
-> complete binding upstreamed before addressing the device drivers code.
-
-What if your other "devices" or "channels" are entirely different and
-binding would just not work? Or how can we understand the design if you
-upstream only part of it?
+Can you please start testing patches *before* sending them?
 
 Best regards,
 Krzysztof
