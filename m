@@ -1,80 +1,78 @@
-Return-Path: <devicetree+bounces-54753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EB47892816
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 01:31:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD15789287B
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 01:51:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22C12281B4F
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 00:31:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EEAFF1F21E03
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 00:51:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C94E47EC;
-	Sat, 30 Mar 2024 00:31:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC5A97F8;
+	Sat, 30 Mar 2024 00:51:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="l/GU0cHL"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="haU03qxE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1083F17CD;
-	Sat, 30 Mar 2024 00:31:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 060EE7E2;
+	Sat, 30 Mar 2024 00:51:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711758679; cv=none; b=jPRYOa1pZb5xXyRVHiCt8Y4rfDZ4hrL3kjqRg9TVczb5lANAix04kKL/hA1emqJFzCTtBOPbESgWGA/hZ/sxTln1EAB6x/6W9rPPDWy6wCK6Gamg+2XrRQaDwgYdo0PVoXphJT/r9fA6KrKMNOpjHxFdmtr7KYsmk+mRdr33+z8=
+	t=1711759879; cv=none; b=rPLTkdSkkXYbTSIShxKWdMNnyvp7KyrgQxfNcPNGv6KM1F/gY5vvg0zzzIR3QamP/WHrKiL3A7Tppt81O0U9z3/eh0oVXg7F4TN0uNruyxUbo7UiGwUa9HMcGsk+NwLtjdrJ1UeKXLZmlwYaWTTiMzFpyUTv6sRWdCTUqqrFH2c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711758679; c=relaxed/simple;
-	bh=7YZ2emKoPRQ2Oh1HSYDBnvLIiVwOATZLjFZIyAOLekY=;
+	s=arc-20240116; t=1711759879; c=relaxed/simple;
+	bh=ODnfLfkBj5ljw1xXMK6fJA76YDJnmnHivymq9LFP4Do=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KFfyiNNd7X2drPjiWcwBOOBCiavjGYb8OqWmxgKkt0zni72zK/iUpEH0mhOeQ97UZgw2RSsFS8XMygvXEvHpK3/nT41q2lkf9Varp+DDttnuyY661UKynM7fC/Z/t6K3HRW5Qqi7TGvUQAIgo0ckVFrC6cMVevw3ui+dEhGsJ2M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=l/GU0cHL; arc=none smtp.client-ip=198.175.65.19
+	 Content-Type:Content-Disposition:In-Reply-To; b=obLzZrNXTXy3/0YJaRQl4spVflMxVlBp0mn74NIkvVnlpOwtF1R+pJ3YJ34oRuPBi+1l1mEzWBgW9SE25LUDMOkjxlkFUEgxeDFe5aITaFbXRrA7R6CPd35xeLS0C/8XBKg5cRqLMVK6q5bDmy572HEfccE+QC48QYaomFxZnAE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=haU03qxE; arc=none smtp.client-ip=198.175.65.21
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1711758677; x=1743294677;
+  t=1711759878; x=1743295878;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=7YZ2emKoPRQ2Oh1HSYDBnvLIiVwOATZLjFZIyAOLekY=;
-  b=l/GU0cHL8soqEEbc8gHM8kmlGkX9/ba/CLb6TbNgzpErBTiw0QuYI7kM
-   W5LJkHIOxgZXu0GcgZr1mVEZCI5N6phBZoFY070wTOaC4et7l+Vk1iXTW
-   1mv633GbkuEIzXfxYRLt587/x0oXGGCAdfjcgMbWKOmJ/AUSFxVHIYGxz
-   /c2M3nup2U22wjlagvYfiZQszOw87pSeZRkcA3/01/7nmO5QgLE/nhDZF
-   iVi30p9+JZJ/PMY1LDhTXGEvEGOFBreRyLn/S0Nl0ySmnBZDV7pdH/q6i
-   Llow5aK2UGN4uJLyaNbNHknROrQF3wX/YYSy+SBuoUoSeGtx52BkWW9Lf
-   Q==;
-X-CSE-ConnectionGUID: lqb4HQbBQ4mIqBWBrAci0Q==
-X-CSE-MsgGUID: DtyxbnqTQb2j9A/P8Cj3IQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11028"; a="6801836"
+  bh=ODnfLfkBj5ljw1xXMK6fJA76YDJnmnHivymq9LFP4Do=;
+  b=haU03qxE+o1z+PhWJnhJVzm99N6zw/sPmZyTcBr4rfZaEO+IQdnQStx1
+   P43e9UDvx93mM1Y0CCeWY8rJMd6+igrUMGODlEXYQ1BhJVYb8FbdTToPn
+   bo1PuB6r8K44XiWJ19BGVz45qcGeZpL0GUiiVnA1qg0LCcgWqL+3HvIVa
+   Dj56YLzLgt3OoXIl6Dch1X0rhPXZuJRSGaTEuFRjZJHpCRb92fFkuGjlN
+   umNwIS/Z+qDpaaIoGHgO4zomPbYnujGHaUuwDwqq6W9KPlNvFdN+LaQXR
+   //o8dSV7BgIdQebiVMg/UuuIAQpyNidm+KwNDG90nMt99KZPcx84n86Vh
+   A==;
+X-CSE-ConnectionGUID: M+Ui7euPR7ayiazuMSgrfg==
+X-CSE-MsgGUID: lZYH3KpHRHyRTFJIfEdXfg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11028"; a="6893849"
 X-IronPort-AV: E=Sophos;i="6.07,166,1708416000"; 
-   d="scan'208";a="6801836"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Mar 2024 17:31:16 -0700
+   d="scan'208";a="6893849"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Mar 2024 17:51:18 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.07,166,1708416000"; 
-   d="scan'208";a="21768159"
+   d="scan'208";a="16950694"
 Received: from lkp-server01.sh.intel.com (HELO be39aa325d23) ([10.239.97.150])
-  by orviesa003.jf.intel.com with ESMTP; 29 Mar 2024 17:31:13 -0700
+  by orviesa010.jf.intel.com with ESMTP; 29 Mar 2024 17:51:14 -0700
 Received: from kbuild by be39aa325d23 with local (Exim 4.96)
 	(envelope-from <lkp@intel.com>)
-	id 1rqMcn-0003mQ-2h;
-	Sat, 30 Mar 2024 00:31:09 +0000
-Date: Sat, 30 Mar 2024 08:30:25 +0800
+	id 1rqMwB-0003ny-14;
+	Sat, 30 Mar 2024 00:51:11 +0000
+Date: Sat, 30 Mar 2024 08:51:08 +0800
 From: kernel test robot <lkp@intel.com>
-To: git@luigi311.com, linux-media@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, dave.stevenson@raspberrypi.com,
-	jacopo.mondi@ideasonboard.com, mchehab@kernel.org, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, sakari.ailus@linux.intel.com,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
+To: Richard Zhu <hongxing.zhu@nxp.com>, vkoul@kernel.org, kishon@kernel.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, frank.li@nxp.com
+Cc: oe-kbuild-all@lists.linux.dev, hongxing.zhu@nxp.com,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Luigi311 <git@luigi311.com>
-Subject: Re: [PATCH 18/23] dt-bindings: media: imx258: Add alternate
- compatible strings
-Message-ID: <202403300820.NEs0EOr7-lkp@intel.com>
-References: <20240327231710.53188-19-git@luigi311.com>
+	kernel@pengutronix.de, linux-imx@nxp.com
+Subject: Re: [PATCH v1 3/3] phy: freescale: imx8q-hsio: Add i.MX8Q HSIO PHY
+ driver support
+Message-ID: <202403300825.mjcHpoRu-lkp@intel.com>
+References: <1711699790-16494-4-git-send-email-hongxing.zhu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,38 +81,74 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240327231710.53188-19-git@luigi311.com>
+In-Reply-To: <1711699790-16494-4-git-send-email-hongxing.zhu@nxp.com>
 
-Hi,
+Hi Richard,
 
-kernel test robot noticed the following build warnings:
+kernel test robot noticed the following build errors:
 
-[auto build test WARNING on media-tree/master]
-[also build test WARNING on linuxtv-media-stage/master linus/master v6.9-rc1 next-20240328]
-[cannot apply to sailus-media-tree/streams]
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.9-rc1 next-20240328]
 [If your patch is applied to the wrong git tree, kindly drop us a note.
 And when submitting patch, we suggest to use '--base' as documented in
 https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/git-luigi311-com/media-i2c-imx258-Remove-unused-defines/20240328-072629
-base:   git://linuxtv.org/media_tree.git master
-patch link:    https://lore.kernel.org/r/20240327231710.53188-19-git%40luigi311.com
-patch subject: [PATCH 18/23] dt-bindings: media: imx258: Add alternate compatible strings
-compiler: loongarch64-linux-gcc (GCC) 13.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20240330/202403300820.NEs0EOr7-lkp@intel.com/reproduce)
+url:    https://github.com/intel-lab-lkp/linux/commits/Richard-Zhu/dt-bindings-phy-Add-i-MX8Q-HSIO-SerDes-PHY-binding/20240329-162937
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/1711699790-16494-4-git-send-email-hongxing.zhu%40nxp.com
+patch subject: [PATCH v1 3/3] phy: freescale: imx8q-hsio: Add i.MX8Q HSIO PHY driver support
+config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20240330/202403300825.mjcHpoRu-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240330/202403300825.mjcHpoRu-lkp@intel.com/reproduce)
 
 If you fix the issue in a separate patch/commit (i.e. not just a new version of
 the same patch/commit), kindly add following tags
 | Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202403300820.NEs0EOr7-lkp@intel.com/
+| Closes: https://lore.kernel.org/oe-kbuild-all/202403300825.mjcHpoRu-lkp@intel.com/
 
-dtcheck warnings: (new ones prefixed by >>)
->> Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml: properties:compatible: [{'enum': ['sony,imx258', 'sony,imx258-pdaf']}] is not of type 'object', 'boolean'
-   	from schema $id: http://json-schema.org/draft-07/schema#
->> Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml: properties:compatible: [{'enum': ['sony,imx258', 'sony,imx258-pdaf']}] is not of type 'object', 'boolean'
-   	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
---
->> Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml: ignoring, error in schema: properties: compatible
+All errors (new ones prefixed by >>):
+
+   drivers/phy/freescale/phy-fsl-imx8q-hsio.c: In function 'imx8q_hsio_set_mode':
+>> drivers/phy/freescale/phy-fsl-imx8q-hsio.c:367:15: error: implicit declaration of function 'FIELD_PREP' [-Werror=implicit-function-declaration]
+     367 |         val = FIELD_PREP(MODE_MASK, val);
+         |               ^~~~~~~~~~
+   cc1: some warnings being treated as errors
+
+
+vim +/FIELD_PREP +367 drivers/phy/freescale/phy-fsl-imx8q-hsio.c
+
+   355	
+   356	static int imx8q_hsio_set_mode(struct phy *phy, enum phy_mode mode,
+   357					   int submode)
+   358	{
+   359		u32 val;
+   360		struct imx8q_hsio_lane *lane = phy_get_drvdata(phy);
+   361		struct imx8q_hsio_priv *priv = lane->priv;
+   362	
+   363		if (lane->lane_mode != mode)
+   364			return -EINVAL;
+   365	
+   366		val = (mode == PHY_MODE_PCIE) ? MODE_PCIE : MODE_SATA;
+ > 367		val = FIELD_PREP(MODE_MASK, val);
+   368		regmap_update_bits(priv->phy, lane->phy_off + CTRL0, MODE_MASK, val);
+   369	
+   370		switch (submode) {
+   371		case PHY_MODE_PCIE_RC:
+   372			val = FIELD_PREP(DEVICE_TYPE_MASK, PCI_EXP_TYPE_ROOT_PORT);
+   373			break;
+   374		case PHY_MODE_PCIE_EP:
+   375			val = FIELD_PREP(DEVICE_TYPE_MASK, PCI_EXP_TYPE_ENDPOINT);
+   376			break;
+   377		default: /* Support only PCIe EP and RC now. */
+   378			return 0;
+   379		}
+   380		if (submode)
+   381			regmap_update_bits(priv->ctrl, lane->ctrl_off + CTRL0,
+   382					   DEVICE_TYPE_MASK, val);
+   383	
+   384		return 0;
+   385	}
+   386	
 
 -- 
 0-DAY CI Kernel Test Service
