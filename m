@@ -1,153 +1,131 @@
-Return-Path: <devicetree+bounces-54815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6162892AF9
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 12:55:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A10DB892B07
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 12:58:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A80B283241
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 11:55:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D852282E61
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 11:58:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 944D6364AA;
-	Sat, 30 Mar 2024 11:55:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1054D38DE5;
+	Sat, 30 Mar 2024 11:58:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UvXoTf1n"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="m3qiuv6J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA3332C698
-	for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 11:55:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A363C38DDC;
+	Sat, 30 Mar 2024 11:58:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711799707; cv=none; b=l+TvQF+HCz1S3f38SzccxV8UKxkvUXCYhaTdyAw/6i4CFb+HCNXUrQtdgeIfwWG23Z++SEUr90XUdtKkjmz5Yn8/z7Yv0g2Zj+BySdMtPKJKUHk2/CuoApIRVQLahl44l1WBYvWaC5eAoTYM77CZXNSFQPn9z2ZB4F8YgTLL11o=
+	t=1711799919; cv=none; b=MLH3+5tGpqnHUr9pZub2NJvHfJPPNyWrnB39ku+18bawxiqPX0UViCRZke2+PR785UCRQDZIwQ1oWDNxEPcjd443MoE/dnHx9dK7wT0ImxlPA5WaozX37KNdSSEDuM4NIwrqyvZ/ceHScbZYO4gSFtrsUrGQymB7Wo7YcecTdEw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711799707; c=relaxed/simple;
-	bh=odNClCCwpkLw9wKjz152aW1v5DzQvCntcOnjkm7Ig2Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=G77oU2hE8bxdRXTUB3EnfRtejYOgLyTytzPfuMLqG021jH0yrILrLlvYu+YIBAJWm4u6b8XLmevA8M2uaJxHm0Wxt15S3rTgMprCkVn6yYmS9ydiWVtx4m99bEGnY8rWeMwwcH5HFNSe8vSb60GFLrk5EgBUAAH+zFALfqMDV90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UvXoTf1n; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-415584360c0so2520945e9.1
-        for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 04:55:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711799704; x=1712404504; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=WjwkFSyggfb/IneOT5QbxikxYOb6z+1M4edmPCTKFGA=;
-        b=UvXoTf1notq0tQ8Z93cXQh0lj7xpaCjktZK/DLaWXBN2LMO04yIcuGU01t1P03YlTz
-         cMaEZ1fGSnJO50JFYNuN8XezdM31pIkANdxfX5sT3CLmoOxxaoiC8qEC0VSTINX5arWz
-         a5k+SU2MZoLQnVuPJYLnYJppIo0JVuCANVexgi3eSBNANI56pVpMef/i9Ps9JlqpAdWQ
-         OkQaus0FMZrAEjcIZuB/teORmKohbaOB2+As1zuQXSDkqpcntkfvw+QBUVDkpXnYaqhR
-         4V2nW2jf2XLWFBrmprK0gwlOvL8kIHxBDrhWC8yAb3T2Qzrlad7jg3MOL0jIPsPNTkch
-         XIyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711799704; x=1712404504;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WjwkFSyggfb/IneOT5QbxikxYOb6z+1M4edmPCTKFGA=;
-        b=vs+jMOsSAOHzfyRa9VTz4LwYin9iTCuehjC1p4QNX6516kE/YTjcnMzKd21bL4yuoG
-         /hLN2yTIlGUE8EFnX8+Eq03uugDGeFgJ6rsOioEeSpKi6WTWXPfPeqdWn34GTMBEuQZp
-         v5+aZ37OgrUoOWAlhUEpxdaYH2zqeIxcoFQzl1aVtTaTmB/nYx8zTPx3OQkGjDArspeh
-         Vvv6qmrZsvw/z2Z10T540YA0h79dGmyGCTVKFDvIEu7AKvBcADD53t8lcjpoJ4NK+ZA1
-         tW32w1379El1XRPxnia8iCABF6L3odiOIHzH2R6JFjfVhb521tYfY9ozhu2qgS/Jthll
-         IwYw==
-X-Forwarded-Encrypted: i=1; AJvYcCXWs/aAcihrzkkoK4mxsQMVoZA8/QyK8oUsnb4maBUZT6kqukot4WLGf6K/vILxfy5DvW2g1lNfCD0CtqZFF+9M1uMiqWLyYlOA/Q==
-X-Gm-Message-State: AOJu0YxEbHD9liZlIH+aE+QsbdZTZBpn+mVV7uAfhoQlvxhezfwxwj5J
-	sloR20nqABTp3FKo0jH4MP8OHVjqrAtKBX+rSxhII3LIRNnI3aXxRWwE4G7UT+8=
-X-Google-Smtp-Source: AGHT+IFfQYaNBZ+ZOr/faGVoG1gzsPj6yaAaFQbc0Gca7PfcwAFqpkRFa9oGVJaCh4h1CXvdrOSxgw==
-X-Received: by 2002:a05:600c:5253:b0:414:8a7b:481b with SMTP id fc19-20020a05600c525300b004148a7b481bmr3316704wmb.31.1711799704132;
-        Sat, 30 Mar 2024 04:55:04 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id z2-20020a05600c0a0200b00415515263b4sm4168289wmp.7.2024.03.30.04.55.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 30 Mar 2024 04:55:03 -0700 (PDT)
-Message-ID: <0b5997e9-97b3-4863-87d0-b70e9d051d42@linaro.org>
-Date: Sat, 30 Mar 2024 12:55:01 +0100
+	s=arc-20240116; t=1711799919; c=relaxed/simple;
+	bh=ynfTQ/GVycFwNXOPFSe6F0brkpnNBWsKnsVlyJvCxJE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=U28qVO+cpz0uk3BduDvy6kk62IDbn+WXCPW5TbM5D9+6d/0+fQ44Xfay9+hrS2Y7Mj5QYrqG97rao3F8D3Y7sU5FvplCSGca/z+6FWoGW9np6PPRkgqp/6cgC0X0+d/GKpAu0Yqxp2kDVix/m8tNMZydN6Pa9zjGiGFzPTkrh4Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=m3qiuv6J; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1711799916; x=1743335916;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ynfTQ/GVycFwNXOPFSe6F0brkpnNBWsKnsVlyJvCxJE=;
+  b=m3qiuv6JhVTcRCBoUSmri3xcu54TsZ8Z4sZ31keiDoP1Jif+i/tL/oMR
+   a02vwR1z8SlmHXQdOLd49CcKt+l3xwYVapoN1dN/5D7orWtFdqev2W8pH
+   H6mJYEdQwD4gISnfRxpSbkzueNTRIfgXuo0Qd3SNG0bbUdUH1tFfnRBSI
+   Mmlbe+SWNqZ7BI9qxIts2BXmtWhjmmhry+XRtgLjqvtLJkcRi/krfUX/B
+   HZ8TGI3Cdl5YvT9EPbxkgxPAqyHmqMt99UaLUNVtNtwrcbcJkIAP+RwRj
+   4hX+oj+/EAimr7WoTUi6aGs3m+GKrOxUv68CW8S/Whz8ejYi5L0Wf5ZC2
+   Q==;
+X-CSE-ConnectionGUID: IRqAldnrRdmu1RXH9IfrZA==
+X-CSE-MsgGUID: 4jUVBjVFQkOvFZJlAP3zvg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11028"; a="18120529"
+X-IronPort-AV: E=Sophos;i="6.07,166,1708416000"; 
+   d="scan'208";a="18120529"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Mar 2024 04:58:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,166,1708416000"; 
+   d="scan'208";a="17292158"
+Received: from lkp-server01.sh.intel.com (HELO be39aa325d23) ([10.239.97.150])
+  by fmviesa009.fm.intel.com with ESMTP; 30 Mar 2024 04:58:30 -0700
+Received: from kbuild by be39aa325d23 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rqXLv-0004EM-2E;
+	Sat, 30 Mar 2024 11:58:27 +0000
+Date: Sat, 30 Mar 2024 19:58:21 +0800
+From: kernel test robot <lkp@intel.com>
+To: wefu@redhat.com, jszhang@kernel.org, guoren@kernel.org,
+	conor@kernel.org, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, jic23@kernel.org,
+	lars@metafoo.de, andriy.shevchenko@linux.intel.com,
+	nuno.sa@analog.com, marcelo.schmitt@analog.com,
+	bigunclemax@gmail.com, marius.cristea@microchip.com,
+	fr0st61te@gmail.com, okan.sahin@analog.com,
+	marcus.folkesson@gmail.com, schnelle@linux.ibm.com, lee@kernel.org,
+	mike.looijmans@topic.nl
+Cc: oe-kbuild-all@lists.linux.dev, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, Wei Fu <wefu@redhat.com>
+Subject: Re: [PATCH 3/3] dt-bindings: adc: Document XuanTie TH1520 ADC
+Message-ID: <202403301900.9wSnTE6y-lkp@intel.com>
+References: <20240329200241.4122000-4-wefu@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [v1 0/3] Add i.MX8Q HSIO PHY driver support
-To: Richard Zhu <hongxing.zhu@nxp.com>, vkoul@kernel.org, kishon@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- frank.li@nxp.com
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- kernel@pengutronix.de, linux-imx@nxp.com
-References: <1711699790-16494-1-git-send-email-hongxing.zhu@nxp.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <1711699790-16494-1-git-send-email-hongxing.zhu@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240329200241.4122000-4-wefu@redhat.com>
 
-On 29/03/2024 09:09, Richard Zhu wrote:
-> v1 changes:
-> - Rebase to the 6.9-rc1, and constify of_phandle_args in xlate.
-> No other changes.
-> 
+Hi,
 
-I found some RFC of this... confusing so:
-1. v1 is the first version. If you send RFC, that RFC is v1, so anything
-newer is v2 or whatever.
+kernel test robot noticed the following build warnings:
 
-2. One patchset per 24h. Give people chance to actually review your code.
+[auto build test WARNING on jic23-iio/togreg]
+[also build test WARNING on robh/for-next linus/master v6.9-rc1 next-20240328]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Best regards,
-Krzysztof
+url:    https://github.com/intel-lab-lkp/linux/commits/wefu-redhat-com/drivers-iio-adc-Add-XuanTie-TH1520-ADC-driver/20240330-041029
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+patch link:    https://lore.kernel.org/r/20240329200241.4122000-4-wefu%40redhat.com
+patch subject: [PATCH 3/3] dt-bindings: adc: Document XuanTie TH1520 ADC
+compiler: loongarch64-linux-gcc (GCC) 13.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20240330/202403301900.9wSnTE6y-lkp@intel.com/reproduce)
 
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202403301900.9wSnTE6y-lkp@intel.com/
+
+dtcheck warnings: (new ones prefixed by >>)
+>> Documentation/devicetree/bindings/iio/adc/thead,th1520.yaml:45:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
+--
+>> Documentation/devicetree/bindings/iio/adc/thead,th1520.yaml:45:1: found a tab character where an indentation space is expected
+--
+>> Documentation/devicetree/bindings/iio/adc/thead,th1520.yaml: ignoring, error parsing file
+
+vim +45 Documentation/devicetree/bindings/iio/adc/thead,th1520.yaml
+
+    41	
+    42	examples:
+    43	  - |
+    44	    adc: adc@0xfffff51000 {
+  > 45		compatible = "thead,th1520-adc";
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
