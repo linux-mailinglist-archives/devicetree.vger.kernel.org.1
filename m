@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-54762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E12D892926
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 04:59:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02912892923
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 04:59:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B7A771F21FB6
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 03:59:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83D5B28368D
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 03:59:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A85E8F47;
-	Sat, 30 Mar 2024 03:59:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F4D78821;
+	Sat, 30 Mar 2024 03:59:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QNXtpUBL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yX3NSfMs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5410679C2
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E7EB79E0
 	for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 03:59:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711771174; cv=none; b=TBKTwBZqGOyAOGZGOWMtOcCVs7pXElfS3usCbk0ctuG4tmttbLopn+35JflHWWf/2pItux7djtOXP5mvcwRqjpeQCBPdOdwkS1QSZmfAk1jGb5LeE4bcWqc5GFik66kCmcWDa8ngUJn0mJbk+9vN47VsUIqfP0xyTqPkb8UHJWU=
+	t=1711771174; cv=none; b=bhrIVDPgMxzswhGioC23V2iGmHtnNKtsENfNDNLPzMpRB2UiyaQpvX/opohlqFfcTUTxR42ZMMLJuEXopV4oQBrMgYmSHMLfWoeWjeDYRcfVqt7Uuoo+Stw61+x3EwCjARPJiGz8O/U67JBuYV7oUJIGlx5ckJ0RmSzgZ1A00IA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1711771174; c=relaxed/simple;
-	bh=HVQQ/1Sqaeom6RrFBW54Crl9fEDAeeQFXdkKvNlg5mU=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=qLb58tWTbpTV5nAVHMPFAre1AmaS7Ijtltr4kUWQm3tGiIRbe0TaAqL2kbi76bCmsgHSgLKnlyWOBvf+Jbn3kqMMK+BxmV5sU55sPwpqX2MHAWAQZnarD5fdGZfaapjNvj3vl1py09aVUiJabl6nc5JpZJ23zAG0IiKZTuw3adA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QNXtpUBL; arc=none smtp.client-ip=209.85.167.48
+	bh=0TS/PBZqHhbO4PC1chvE0gJF6KfO5JaOJ80vREZUMSw=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=iC/waf/a+9mN8Y9xvem+BxJjFCvP/j6seiAiimSbVyVvlqCEjIZimk+BtZeBy1S3qi2zNJgMa1cOYTiaqf2A/sDoaEQlug5Fx8/Bjr/M7867PdVTmLulK1NpLRA0ovML46lyDSpKOMy2lzmWXGDvUsIfQzdRFBWawfpHVkvsdAY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yX3NSfMs; arc=none smtp.client-ip=209.85.167.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-515a97846b5so2581280e87.2
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-513d247e3c4so2389677e87.0
         for <devicetree@vger.kernel.org>; Fri, 29 Mar 2024 20:59:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711771170; x=1712375970; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=V/KyYTez7Ham6RArqjYsAGdRx6I3CfaIBG2n577n7v0=;
-        b=QNXtpUBLHZugTJXF79Q12RS1j/sw9g89w9NaxBbzlJXt4lL4qprmSGzD4bMqIpG6FR
-         4XaGOlmjw+HMF153uu6Fl2M8R4J/IQGkLUleFaKykIThHHVcB2yC99mq0C0m9iyMtsvU
-         3fmFLmpD22myrTBf7xe08XCyGP3Vm/vJsPkTHCFVktR1DAP3DD8Ll5kgDh+TirQHwBFt
-         itugFTRVpVHr4kUgxIs9n7j+d6DiWn4ChJYUK4cum2ozfqSsjLmfP3BGnOoqkUAUGYMk
-         ct2u1+pwIK3BbRCeSiB0kC1AJ3gTPsOlZYcqHyLkhLOJ5tNmJwWJ8wOVAqK6wnTKtoUj
-         9daA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711771170; x=1712375970;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1711771171; x=1712375971; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=V/KyYTez7Ham6RArqjYsAGdRx6I3CfaIBG2n577n7v0=;
-        b=XfrlH6UjYe2Iliz6O/qf/crrAlOIWbp7PQVtywJ1f0ddqCPpZOffIaMoleO9z0VvQP
-         L04vSNQhH0UjmdWfulCazd02SulR39s053jaZxEgUdUhpnUfk6iWX2kTRO/z4RDJnQCq
-         u85RdsVWHenAFvAuUueJAnNQSQqEM2AtQrwx/gybUMpjewvmP+eni7rddKUpGw3JNXQO
-         Umfv1tGUpOEeutbOuHIAjm0lPkttwyqKRtT8gkqWDVYPPC4Knnz62rRfPPe/NzA4xzpa
-         0mx3y7boXWez8Tgy3TVm9B5EBM0QeowuDO2QiYlzyJkF2435dDwbQ/udA66sL9WszBQt
-         Fj7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXHn4bxSBAmi4IiglgrWJHG3PerzYzVRsA/ENFKdxIm/PEKcgLmgiQy4ocNeOldzHtlaeBDxhB8oCnNZLig9z5aaSoGv7pIjOJ7UA==
-X-Gm-Message-State: AOJu0Yy+WIENEkOuWdSnDDgn3+Ms3I9h4gMv2EbJ4Q4WOzzUCgLPOcyP
-	sNImKTCGzT4ZEXgtMDp2GgMiG56ahQmQ1bzJuv+n9ZfkPpflLwENi5Pzugf6sSM=
-X-Google-Smtp-Source: AGHT+IGQmXGXUknN+Wj2FG7n6iWPBgprhcqnpU4Z7Jb+uCSYuzieUgOOjoMlqaa84Q2JHfEIdl2+hw==
-X-Received: by 2002:a05:6512:1307:b0:513:4f60:82c4 with SMTP id x7-20020a056512130700b005134f6082c4mr2915403lfu.3.1711771170376;
-        Fri, 29 Mar 2024 20:59:30 -0700 (PDT)
+        bh=nEHv7161rF10nD2iZaJbFgvPRz2VUElIFclun8j93Iw=;
+        b=yX3NSfMsc1FZcHp3FchjJ8MZtF8CIUZfs+T4I+f1q2KWrknQJPo8XN63SnHQ9qkRqP
+         Guhw0r11Ir2m9OkyjO5PNH8QasBwkp1gEdgzUmlYJGsNP9lcNiWmsDkehzu12lyVQiz+
+         p0BIX1Yx+3wCEcSmVcIpp81rd1YBOgv4uSl4HaBBTpKfcXwxChBSCYlt51howHQEj1OQ
+         vOTMsMQLBQd5MHi8KmvFyI774h8+5DzVD9oEhisH8uXiLaQXGYzNa9sIgFISlEESToLw
+         y52heSqjEaYlc9DgDde1FYb0mcRmdeYgXMFGt0uxjggUK4cyxyPEGRZfa3Z1i2Wwfpag
+         ueQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711771171; x=1712375971;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nEHv7161rF10nD2iZaJbFgvPRz2VUElIFclun8j93Iw=;
+        b=AG888WUbNFWFNF1cVP411KtDBsgSSpkhRF3udR6HwKjQ8CUmYl2SEJRGAWDcD1e2V6
+         5MHUbnu28y1w9pCrVuFmMzFaXLg2SK9V9G5/Vw6G6l9d4IPZbAjAgPeV5WmINVfoND+q
+         vqb5veIt078ThYOrpAnaOp0yjnRroI3UZH4oNRdpj0C1KIfxYPhZAhjJXQI3ldsBBArU
+         jaaNbrwj7ThxhU0jImR/i5ZqEwmMyQjbY27n8PM5dqSK6BZg0WBOuwzcoSIcQjlqUEOz
+         I2noqHqTD3keAmqo+T/DRFozby4pcxauh0E6KilZ0WGDxGHMo+1t1yMpjlOIRdeKuixs
+         9XCw==
+X-Forwarded-Encrypted: i=1; AJvYcCU3B3RG5ZmVAkKiMZTq1cj2EWaU1Vijw420nUwUno7SulfHKqYuyUnsvE1jtA5b868h4NMKh2v2pmnNGko+Pf3SvaCJQDww9v64SQ==
+X-Gm-Message-State: AOJu0Yy4VGmqx2W+OSn9oyslpuFDurMaDz/2Fj2+EOfSGpo+ll/LPDoS
+	8DTEvQKCFz/HDZWZPGN3S/Q6oW7Kff/vh9tNKQb4ML9H55HWw96Y9IehA1wBqfU=
+X-Google-Smtp-Source: AGHT+IE1ThAnidcAuJUVgaWX29h3ZaFTTmFMn3wvVDDkWWIpuaRfERN6frP0sFDgQn0vjwNXMb6wXw==
+X-Received: by 2002:a05:6512:3b8d:b0:513:922a:4334 with SMTP id g13-20020a0565123b8d00b00513922a4334mr1661298lfv.1.1711771171043;
+        Fri, 29 Mar 2024 20:59:31 -0700 (PDT)
 Received: from umbar.lan ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id br2-20020a056512400200b00515d1393f3csm423957lfb.104.2024.03.29.20.59.29
+        by smtp.gmail.com with ESMTPSA id br2-20020a056512400200b00515d1393f3csm423957lfb.104.2024.03.29.20.59.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Fri, 29 Mar 2024 20:59:30 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: [PATCH 0/3] drm/panel: add support for LG SW43408 panel
-Date: Sat, 30 Mar 2024 05:59:27 +0200
-Message-Id: <20240330-lg-sw43408-panel-v1-0-f5580fc9f2da@linaro.org>
+Date: Sat, 30 Mar 2024 05:59:28 +0200
+Subject: [PATCH 1/3] dt-bindings: panel: Add LG SW43408 MIPI-DSI panel
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,9 +78,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAB+OB2YC/x3MTQqAIBBA4avIrBvwF6KrRAurqQbERKEC6e5Jy
- 2/xXoVCmanAICpkurjwGRtUJ2A5fNwJeW0GLbWVxkgMO5bbGit7TD5SwNk5vVmlFmcIWpYybfz
- 8y3F63w9k14blYgAAAA==
+Message-Id: <20240330-lg-sw43408-panel-v1-1-f5580fc9f2da@linaro.org>
+References: <20240330-lg-sw43408-panel-v1-0-f5580fc9f2da@linaro.org>
+In-Reply-To: <20240330-lg-sw43408-panel-v1-0-f5580fc9f2da@linaro.org>
 To: Sumit Semwal <sumit.semwal@linaro.org>, 
  Caleb Connolly <caleb.connolly@linaro.org>, 
  Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -94,47 +95,78 @@ Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
  Vinod Koul <vkoul@kernel.org>, Caleb Connolly <caleb@connolly.tech>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1250;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1583;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=HVQQ/1Sqaeom6RrFBW54Crl9fEDAeeQFXdkKvNlg5mU=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmB44hgrh2oy+/fGY8pSaDoMtDIh0OTOsGKIq/J
- gzwpsBOeeqJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZgeOIQAKCRCLPIo+Aiko
- 1dxCB/4unCfNUOHubbbTywYo1qg6QGSV/hNj4aNbERch4zIqmSeAdnCJ+jhqqI8JVTf9p/K8eGy
- Imft1WGaRzBE4/Mz6X7eYHg0bAnxSKiTcJ/fWjgXUelBwcBhujJdnV/QwD1/31TJwKPTZ8ndtas
- xFvdOUxYLfRSiLCVBha6RHugPSV6jGnORHIa/75nDD0QeieoGUG1hNHNLI27t967xu+PabyHw1N
- dF0xhIyiw7lH3v+3kRnAOUfXusPAFWH6I7KiaUnVfUiI2FV1mAIBVQe3sIepOOqkLjfQUNqQIKz
- Q45lS/fx23lgfYel7BCBih5vpKbUipfx78y05cbBmelONARu
+ bh=LJ+girYe4vykYjxl7S4n4qmMz70uzdqbzojIgAwohpA=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmB44hkYXDEZ4U1NN773kLK8OhcQ/ESozP9fWl1
+ 6XuWJvjcSuJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZgeOIQAKCRCLPIo+Aiko
+ 1YwHCACTsVHb+AVpPFVAJZeqrxDPnebzaXXZ/O+m+gWCihSTksXW7Gac675ctl4z+1HouDBncPg
+ c8NqCesf1zSkhB6cZ9frhnjvw0ruayMxBT5Zc4BRNohFGv7Urz6TZ1/++ylmGBCZVpvvvEIiP4O
+ 1dkz1t1/EH6Vn3l9deKIiHqsVZxErRmZHWU96y95BJJc6Fd3dwlipgy6iSBZJorrrokMw5E2gTJ
+ IdnD2wX3506sW1Vq0T80gc35BydEVKi502pYN2itI8nv5pHrMvyeEEnZLMqp9s4I02EgxoSAhWI
+ zDqreN34UTlIpRoy5sWYQ2kmxkIVp1GoEnkdCHNr886ueVko
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-The LG SW43408 panel is used on Google Pixel3 devices. For a long time
-we could not submit the driver, as the panel was not coming up from the
-reset. The panel seems to be picky about some of the delays during init
-and it also uses non-standard payload for MIPI_DSI_COMPRESSION_MODE.
+From: Sumit Semwal <sumit.semwal@linaro.org>
 
+LG SW43408 is 1080x2160, 4-lane MIPI-DSI panel present on Google Pixel 3
+phones.
+
+Signed-off-by: Vinod Koul <vkoul@kernel.org>
+Signed-off-by: Sumit Semwal <sumit.semwal@linaro.org>
+[caleb: convert to yaml]
+Signed-off-by: Caleb Connolly <caleb@connolly.tech>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
-Dmitry Baryshkov (1):
-      drm/mipi-dsi: add mipi_dsi_compression_mode_raw()
+ .../bindings/display/panel/lg,sw43408.yaml         | 37 ++++++++++++++++++++++
+ 1 file changed, 37 insertions(+)
 
-Sumit Semwal (2):
-      dt-bindings: panel: Add LG SW43408 MIPI-DSI panel
-      drm: panel: Add LG sw43408 panel driver
+diff --git a/Documentation/devicetree/bindings/display/panel/lg,sw43408.yaml b/Documentation/devicetree/bindings/display/panel/lg,sw43408.yaml
+new file mode 100644
+index 000000000000..f3c9c9343c4f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/lg,sw43408.yaml
+@@ -0,0 +1,37 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/lg,sw43408.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: LG SW43408 1080x2160 DSI panel
++
++maintainers:
++  - Caleb Connolly <caleb.connolly@linaro.org>
++
++description: |
++  This panel is used on the Pixel 3, it is a 60hz OLED panel which
++  required DSC (Display Stream Compression) and has rounded corners.
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++  compatible:
++    items:
++      - const: lg,sw43408
++
++  reg: true
++  port: true
++  vddi-supply: true
++  vpnl-supply: true
++  reset-gpios: true
++
++additionalProperties: false
++
++required:
++  - compatible
++  - vddi-supply
++  - vpnl-supply
++  - reset-gpios
++...
 
- .../bindings/display/panel/lg,sw43408.yaml         |  37 +++
- MAINTAINERS                                        |   8 +
- drivers/gpu/drm/drm_mipi_dsi.c                     |  34 ++-
- drivers/gpu/drm/panel/Kconfig                      |  11 +
- drivers/gpu/drm/panel/Makefile                     |   1 +
- drivers/gpu/drm/panel/panel-lg-sw43408.c           | 322 +++++++++++++++++++++
- include/drm/drm_mipi_dsi.h                         |   1 +
- 7 files changed, 406 insertions(+), 8 deletions(-)
----
-base-commit: 13ee4a7161b6fd938aef6688ff43b163f6d83e37
-change-id: 20240330-lg-sw43408-panel-b552f411c53e
-
-Best regards,
 -- 
-Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+2.39.2
 
 
