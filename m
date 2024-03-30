@@ -1,95 +1,116 @@
-Return-Path: <devicetree+bounces-54926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54937-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DC838933AA
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 18:46:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FB0E893440
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 19:01:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D4C11F2061E
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 16:46:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AAE1CB250AC
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 17:01:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CF3F14D71E;
-	Sun, 31 Mar 2024 16:38:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 338351465A2;
+	Sun, 31 Mar 2024 16:42:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QriMG5bP"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UQNzZuDF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from a.mx.secunet.com (a.mx.secunet.com [62.96.220.36])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 680F614D434;
-	Sun, 31 Mar 2024 16:38:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3067B145FE0;
+	Sun, 31 Mar 2024 16:42:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=62.96.220.36
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711903112; cv=fail; b=ey/4ANJgikqEQ2zYgyWIiDiAH8zJC5kq1xWwBMnnPs5LgUSOdYAvKy2EZrSIxep0jZAIljfxG6fxckYLnRw/6aFYJ9Il/qqFkC5EE3OJa5Mz0oDYLMtJymFMEQuVD7l77FMk4tboxO5sYvOVPPhp2maxdWzpv0TaDtstnHoSPM0=
+	t=1711903324; cv=fail; b=FbKBzeX3+Gm/JHQWPa/q1MbXzbfCL2AvUIe0JDPtIRF2kw1FMRcBpvFO11OQvfZGfJE/QHW3BkPqVBJG8V52n1DBKrBEtqjbjumuasnba7AQ/kvEbHToJ64Km5MuRDMrxhjA5buAokcIjuw+dFWyvWL4PE3dv39dYXy9YUdzzTY=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711903112; c=relaxed/simple;
-	bh=zeKKmfiPhv7ZDxdmh8DHrc6KvFoCLxDqV++HNXxHp7c=;
-	h=Content-Type:MIME-Version:Subject:From:Message-ID:Date:References:
-	 In-Reply-To:To:Cc; b=N+8ahLCXxvT6WO2zirLbLOrSO8HjY85Q0SQG8hAf+6012WbFIjgB6oPBr9JrbQxkO5rYxt9HOAHqGifBMW6pRBmra4uUn0chAzRZ0vXdGm4SKvfOBwBhD4/OqSyBnYcWOzWRdAXEne+JCA6NTf1v08MQ1/nC4lV+0471qol0IeE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; dkim=fail (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QriMG5bP reason="signature verification failed"; arc=none smtp.client-ip=10.30.226.201; arc=fail smtp.client-ip=62.96.220.36
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
+	s=arc-20240116; t=1711903324; c=relaxed/simple;
+	bh=hDskNYVNkcabhlJ/P/r27gZ0SZBEUJm2K50pq3H0LI4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=J1EkGHIrplIR1IX03GvKRn9UL7C1b3FWLwXml4hOM/CgT96eGsx9nvd4/wXyzylKb//e0Qy7Azey+XpRCX0qIy/vrNTQ8gVKP1I5VhTAt3mhcU5bJiTo6GkfCDUqwIbSXn6NqcXsaudGGvKYFWHCG2Z9/gIXouoH+SwGyHo/J30=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org; spf=fail smtp.mailfrom=linaro.org; dkim=fail (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UQNzZuDF reason="signature verification failed"; arc=none smtp.client-ip=209.85.221.44; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; arc=fail smtp.client-ip=62.96.220.36
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=linaro.org
 Received: from localhost (localhost [127.0.0.1])
-	by a.mx.secunet.com (Postfix) with ESMTP id D3E9B2083E;
-	Sun, 31 Mar 2024 18:38:27 +0200 (CEST)
+	by a.mx.secunet.com (Postfix) with ESMTP id 07B9120184;
+	Sun, 31 Mar 2024 18:42:00 +0200 (CEST)
 X-Virus-Scanned: by secunet
 Received: from a.mx.secunet.com ([127.0.0.1])
 	by localhost (a.mx.secunet.com [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Mv0wT67bn7g9; Sun, 31 Mar 2024 18:38:24 +0200 (CEST)
+	with ESMTP id BGXC7R3Qr9vC; Sun, 31 Mar 2024 18:41:59 +0200 (CEST)
 Received: from mailout2.secunet.com (mailout2.secunet.com [62.96.220.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by a.mx.secunet.com (Postfix) with ESMTPS id 7CDC0207BB;
-	Sun, 31 Mar 2024 18:38:24 +0200 (CEST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 a.mx.secunet.com 7CDC0207BB
+	by a.mx.secunet.com (Postfix) with ESMTPS id 6F1F9207D1;
+	Sun, 31 Mar 2024 18:41:59 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 a.mx.secunet.com 6F1F9207D1
 Received: from cas-essen-01.secunet.de (unknown [10.53.40.201])
-	by mailout2.secunet.com (Postfix) with ESMTP id 6EBCF800050;
-	Sun, 31 Mar 2024 18:38:24 +0200 (CEST)
+	by mailout2.secunet.com (Postfix) with ESMTP id 5895A80005E;
+	Sun, 31 Mar 2024 18:41:59 +0200 (CEST)
 Received: from mbx-essen-01.secunet.de (10.53.40.197) by
  cas-essen-01.secunet.de (10.53.40.201) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Sun, 31 Mar 2024 18:38:24 +0200
+ 15.1.2507.35; Sun, 31 Mar 2024 18:41:59 +0200
 Received: from Pickup by mbx-essen-01.secunet.de with Microsoft SMTP Server id
- 15.1.2507.17; Sun, 31 Mar 2024 16:36:17 +0000
-X-sender: <netdev+bounces-83482-peter.schumann=secunet.com@vger.kernel.org>
-X-Receiver: <peter.schumann@secunet.com>
- ORCPT=rfc822;peter.schumann@secunet.com NOTIFY=NEVER;
- X-ExtendedProps=BQAVABYAAgAAAAUAFAARAJ05ab4WgQhHsqdZ7WUjHykPADUAAABNaWNyb3NvZnQuRXhjaGFuZ2UuVHJhbnNwb3J0LkRpcmVjdG9yeURhdGEuSXNSZXNvdXJjZQIAAAUAagAJAAEAAAAAAAAABQAWAAIAAAUAQwACAAAFAEYABwADAAAABQBHAAIAAAUAEgAPAGAAAAAvbz1zZWN1bmV0L291PUV4Y2hhbmdlIEFkbWluaXN0cmF0aXZlIEdyb3VwIChGWURJQk9IRjIzU1BETFQpL2NuPVJlY2lwaWVudHMvY249UGV0ZXIgU2NodW1hbm41ZTcFAAsAFwC+AAAAQ5IZ35DtBUiRVnd98bETxENOPURCNCxDTj1EYXRhYmFzZXMsQ049RXhjaGFuZ2UgQWRtaW5pc3RyYXRpdmUgR3JvdXAgKEZZRElCT0hGMjNTUERMVCksQ049QWRtaW5pc3RyYXRpdmUgR3JvdXBzLENOPXNlY3VuZXQsQ049TWljcm9zb2Z0IEV4Y2hhbmdlLENOPVNlcnZpY2VzLENOPUNvbmZpZ3VyYXRpb24sREM9c2VjdW5ldCxEQz1kZQUADgARAC7JU/le071Fhs0mWv1VtVsFAB0ADwAMAAAAbWJ4LWVzc2VuLTAxBQA8AAIAAA8ANgAAAE1pY3Jvc29mdC5FeGNoYW5nZS5UcmFuc3BvcnQuTWFpbFJlY2lwaWVudC5EaXNwbGF5TmFtZQ8ADwAAAFNjaHVtYW5uLCBQZXRlcgUADAACAAAFAGwAAgAABQBYABcASAAAAJ05ab4WgQhHsqdZ7WUjHylDTj1TY2h1bWFubiBQZXRlcixPVT1Vc2VycyxPVT1NaWdyYXRpb24sREM9c2VjdW5ldCxEQz1kZQUAJgACAAEFACIADwAxAAAAQXV0b1Jlc3BvbnNlU3VwcHJlc3M6IDANClRyYW5zbWl0SGlzdG9yeTogRmFsc
-	2UNCg8ALwAAAE1pY3Jvc29mdC5FeGNoYW5nZS5UcmFuc3BvcnQuRXhwYW5zaW9uR3JvdXBUeXBlDwAVAAAATWVtYmVyc0dyb3VwRXhwYW5zaW9uBQAjAAIAAQ==
+ 15.1.2507.17; Sun, 31 Mar 2024 16:37:02 +0000
+X-sender: <linux-kernel+bounces-125634-steffen.klassert=secunet.com@vger.kernel.org>
+X-Receiver: <steffen.klassert@secunet.com>
+ ORCPT=rfc822;steffen.klassert@secunet.com;
+ X-ExtendedProps=BQAVABYAAgAAAAUAFAARAPDFCS25BAlDktII2g02frgPADUAAABNaWNyb3NvZnQuRXhjaGFuZ2UuVHJhbnNwb3J0LkRpcmVjdG9yeURhdGEuSXNSZXNvdXJjZQIAAAUAagAJAAEAAAAAAAAABQAWAAIAAAUAQwACAAAFAEYABwADAAAABQBHAAIAAAUAEgAPAGIAAAAvbz1zZWN1bmV0L291PUV4Y2hhbmdlIEFkbWluaXN0cmF0aXZlIEdyb3VwIChGWURJQk9IRjIzU1BETFQpL2NuPVJlY2lwaWVudHMvY249U3RlZmZlbiBLbGFzc2VydDY4YwUACwAXAL4AAACheZxkHSGBRqAcAp3ukbifQ049REI2LENOPURhdGFiYXNlcyxDTj1FeGNoYW5nZSBBZG1pbmlzdHJhdGl2ZSBHcm91cCAoRllESUJPSEYyM1NQRExUKSxDTj1BZG1pbmlzdHJhdGl2ZSBHcm91cHMsQ049c2VjdW5ldCxDTj1NaWNyb3NvZnQgRXhjaGFuZ2UsQ049U2VydmljZXMsQ049Q29uZmlndXJhdGlvbixEQz1zZWN1bmV0LERDPWRlBQAOABEABiAS9uuMOkqzwmEZDvWNNQUAHQAPAAwAAABtYngtZXNzZW4tMDIFADwAAgAADwA2AAAATWljcm9zb2Z0LkV4Y2hhbmdlLlRyYW5zcG9ydC5NYWlsUmVjaXBpZW50LkRpc3BsYXlOYW1lDwARAAAAS2xhc3NlcnQsIFN0ZWZmZW4FAAwAAgAABQBsAAIAAAUAWAAXAEoAAADwxQktuQQJQ5LSCNoNNn64Q049S2xhc3NlcnQgU3RlZmZlbixPVT1Vc2VycyxPVT1NaWdyYXRpb24sREM9c2VjdW5ldCxEQz1kZQUAJgACAAEFACIADwAxAAAAQXV0b1Jlc3BvbnNlU3VwcHJlc3M6IDANClRyYW5zbWl0SGlzdG9ye
+	TogRmFsc2UNCg8ALwAAAE1pY3Jvc29mdC5FeGNoYW5nZS5UcmFuc3BvcnQuRXhwYW5zaW9uR3JvdXBUeXBlDwAVAAAATWVtYmVyc0dyb3VwRXhwYW5zaW9uBQAjAAIAAQ==
 X-CreatedBy: MSExchange15
-X-HeloDomain: b.mx.secunet.com
-X-ExtendedProps: BQBjAAoAWUmmlidQ3AgFAGEACAABAAAABQA3AAIAAA8APAAAAE1pY3Jvc29mdC5FeGNoYW5nZS5UcmFuc3BvcnQuTWFpbFJlY2lwaWVudC5Pcmdhbml6YXRpb25TY29wZREAAAAAAAAAAAAAAAAAAAAAAAUASQACAAEFAAQAFCABAAAAGgAAAHBldGVyLnNjaHVtYW5uQHNlY3VuZXQuY29tBQAGAAIAAQUAKQACAAEPAAkAAABDSUF1ZGl0ZWQCAAEFAAIABwABAAAABQADAAcAAAAAAAUABQACAAEFAGIACgBkAAAAzYoAAAUAZAAPAAMAAABIdWI=
+X-HeloDomain: a.mx.secunet.com
+X-ExtendedProps: BQBjAAoAWIOmlidQ3AgFAGEACAABAAAABQA3AAIAAA8APAAAAE1pY3Jvc29mdC5FeGNoYW5nZS5UcmFuc3BvcnQuTWFpbFJlY2lwaWVudC5Pcmdhbml6YXRpb25TY29wZREAAAAAAAAAAAAAAAAAAAAAAAUASQACAAEFAAQAFCABAAAAHAAAAHN0ZWZmZW4ua2xhc3NlcnRAc2VjdW5ldC5jb20FAAYAAgABBQApAAIAAQ8ACQAAAENJQXVkaXRlZAIAAQUAAgAHAAEAAAAFAAMABwAAAAAABQAFAAIAAQUAYgAKACEAAADYigAABQBkAA8AAwAAAEh1Yg==
 X-Source: SMTP:Default MBX-ESSEN-02
-X-SourceIPAddress: 62.96.220.37
-X-EndOfInjectedXHeaders: 12131
+X-SourceIPAddress: 62.96.220.36
+X-EndOfInjectedXHeaders: 17954
 X-Virus-Scanned: by secunet
-Received-SPF: Pass (sender SPF authorized) identity=mailfrom; client-ip=139.178.88.99; helo=sv.mirrors.kernel.org; envelope-from=netdev+bounces-83482-peter.schumann=secunet.com@vger.kernel.org; receiver=peter.schumann@secunet.com 
-DKIM-Filter: OpenDKIM Filter v2.11.0 b.mx.secunet.com 9D6E3200BB
-Authentication-Results: b.mx.secunet.com;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QriMG5bP"
-X-Original-To: netdev@vger.kernel.org
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received-SPF: Pass (sender SPF authorized) identity=mailfrom; client-ip=139.178.88.99; helo=sv.mirrors.kernel.org; envelope-from=linux-kernel+bounces-125634-steffen.klassert=secunet.com@vger.kernel.org; receiver=steffen.klassert@secunet.com 
+DKIM-Filter: OpenDKIM Filter v2.11.0 a.mx.secunet.com 5156320872
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal: i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711752631; cv=none; b=eLispVzL4Rucdj5yrzfRgnSRePLp+Y1FD2BRZyUX76ykzaZw7VHi9YXASU31baAxoYFmxYlpOQR4UYS8gEjEpjt1zGwq62prz06qhAHc+483Hh1xmTXYFXP7I4YViQd6l9vns1N932S+E0brudJT0ir0I9KRIrHiq60XZoaVoX0=
+	t=1711789509; cv=none; b=jVxLiQBaz2kUFNd6cZzx2WTEtBSZTsHRuJ17M+VaMxz6f4H6itBy5O2gUnyOitRgS2V/mX2nn+3kY5xsfdWmXkYYbbcPZ3TbJqJd3O9BKHmWMTATZygN+zZQossm9ujrE5tiyfhsX+VxhFwxRadeHkajlR4FrEuDCb+WJ5PhLPc=
 ARC-Message-Signature: i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711752631; c=relaxed/simple;
-	bh=1rWdaEawfYR3LfAF31PiRtpuMF8rLJZ44iKkxh0MscI=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=Xg3OsV9Hn217vm8daSQu1usYD3ksPWTEpVZ2YL8e46SgPg+BrESFujNuqbVuhFeJowZ00pl26chFLpmFOjszBnk+xcfKA2Lv8VGoUK8QewV5y96v44UHH8h1j3HJYz3vCS+bWN/aej6pX4824HBLNpa31QWPvcxKcQWmCuSFNkM=
-ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QriMG5bP; arc=none smtp.client-ip=10.30.226.201
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711752630;
-	bh=1rWdaEawfYR3LfAF31PiRtpuMF8rLJZ44iKkxh0MscI=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=QriMG5bPxFDJal3+iK1Pb0iH9WyOvvWgwweQ2/D86v3oy/13nMNRcnZgIMYLJopSY
-	 7KLJczmMCVMHyE0HUKo16Zlrh+oM1jIPi5sy2qLvR1xNCT85FR5iD28bsq3bhCic2E
-	 9agT52MvYHoRihMvi5B1sSF3/Py9XPrQj9IBRigclTJz6rtPhf6vSl/5FSEsRqKbd5
-	 AG+Y/Btm/xHAuRSBzBp5kwOLojbL6e2YNlyWE+0YcxgNg53lc484ELHLR7HwPJHh3Q
-	 zxW5r1DkUTeEdz0tQrKVSD3O2p8NxXZGc3WAWBi8z8L8dwVHWkG0HVZicER5qqp8k6
-	 laI6AElXluGGw==
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1711789509; c=relaxed/simple;
+	bh=BRPSbu5SXLCSBTdAcz9esHtN7vO2IfNM9BQEiL1ym18=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=PRwH45OKBlGzMdPXtgS5taLQxFoTtjC75gxk3PXe2n7ztSryct/Qhnv2RUua39lIWuTCvep6wgzQZyu82XRmP70SCFrIqqt13guvpuEeeQj18Y+UxAbNMN1qfZgY+audtkYlB6mcQdigRzO6yr4bPTukgNdHNCV+i32QdArEXOQ=
+ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UQNzZuDF; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1711789506; x=1712394306; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=cjfde955e+AfD7bCuWniLgBVv4tolPtzhxIYBfKnkBs=;
+        b=UQNzZuDFtYsY1n/UKACajuGM4Ydes01PQR60kumU3NuhxsK8Ypjtt/Upq/OzRMk1q9
+         oy+pH/25kUe8ZBtnDB9AU3jY9TRyzOSdY5bsXecMnhiV73yvhOyI8GokWn/2EIk7Zey1
+         Q1dgzg/CREMXB3jMwXVGsxINeJ7mDDAR+AG2K7rhB6D2w+fjOPAIxyIfLDPVQHShMBER
+         luVVJr4g6ztXPXAup+oEIZgAkJUSNJyvZ1bWixyePmjq9QXHeknA2ZME4OGWjUh52Rya
+         fLvekdaNC/Q2oJFlzT8BxnmCKYG47I84ngGG0GCwQ/OA3ARxsisY960cN2ZDEHboJRRs
+         VtwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711789506; x=1712394306;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cjfde955e+AfD7bCuWniLgBVv4tolPtzhxIYBfKnkBs=;
+        b=ZTXS9iCLI6dTiyWAFlH452rUXGjAfzZjAjdUlIdEcuHS4q/vK/ouav6JV8I7UehJus
+         o+VlLBuZdwhHgQQ4lBnnI9LdtUO4P+mmttOotPwoLbnLUK0fBbQu8zb84OJHIblbuxf9
+         xJNTa8kr/e8eSViIuuAOQyN4+nnKVQmvuxtdn2YKFPC+roIs7MQ2jCksp49I2c2YkSu9
+         47PXcuL8zmUh1ImD/BwIpl92MNO22Y4dzLmEiGnk1yaGdSAA4jG7/Dkts0wRq+H2g3UD
+         eqE55Ud7K2V7M3s9AXeC14WNnTUyFxRBLMcsSmbyuN5OK5+fnxL8TCXyb+s3hZ9HKLkd
+         eu+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUqP4Q11XYIWuhn0oaZeE6mXwouj1tYgyT6Zn316S7eEiWvTniLC5mx3THUDtubyqV0ayiSYRDAIGGS05Hx6p7p7O2Fd9Zvwu4CvOr0
+X-Gm-Message-State: AOJu0Yw5lZ/0P0KUGX2MdsW1+AgMbLiEOebSS9EQI/nYdZztyhBh9DBq
+	QBzWAtn/5h4JuryLchwv7DKdcFsQ+c7JE59yZE1wrBCzewHC5aiJlgZW/v/HRj0=
+X-Google-Smtp-Source: AGHT+IG2+IzU78xgARzqG1oeVmcbSAccuJka4sSnj1FR48vqsvncAIv0oanr1fRTfha5FvmBhLc2Gw==
+X-Received: by 2002:a5d:6451:0:b0:341:b9ee:753d with SMTP id d17-20020a5d6451000000b00341b9ee753dmr2716884wrw.53.1711789505556;
+        Sat, 30 Mar 2024 02:05:05 -0700 (PDT)
+Message-ID: <36547f9d-1331-4e9d-96dd-a36bd64c7cbf@linaro.org>
+Date: Sat, 30 Mar 2024 10:05:03 +0100
 Precedence: bulk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -97,316 +118,116 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: pm6150: correct Type-C compatible
+To: Gabor Juhos <j4g8y7@gmail.com>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Danila Tikhonov <danila@jiaxyga.com>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240328074544.5076-1-krzysztof.kozlowski@linaro.org>
+ <7f28584c-0e9a-44bf-b0c1-7f7a2acfb847@gmail.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <7f28584c-0e9a-44bf-b0c1-7f7a2acfb847@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v6 0/1] Add property in dwmac-stm32 documentation
-From: patchwork-bot+netdevbpf@kernel.org
-Message-ID: <171175263052.1693.263504657362042828.git-patchwork-notify@kernel.org>
-Date: Fri, 29 Mar 2024 22:50:30 +0000
-References: <20240328185337.332703-1-christophe.roullier@foss.st.com>
-In-Reply-To: <20240328185337.332703-1-christophe.roullier@foss.st.com>
-To: Christophe Roullier <christophe.roullier@foss.st.com>
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
- richardcochran@gmail.com, joabreu@synopsys.com, lgirdwood@gmail.com,
- broonie@kernel.org, marex@denx.de, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 X-EXCLAIMER-MD-CONFIG: 2c86f778-e09b-4440-8b15-867914633a10
 
-Hello:
-
-This patch was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
-
-On Thu, 28 Mar 2024 19:53:36 +0100 you wrote:
-> Introduce property in dwmac-stm32 documentation
+On 30/03/2024 08:07, Gabor Juhos wrote:
+> 2024. 03. 28. 8:45 keltez=C3=A9ssel, Krzysztof Kozlowski =C3=ADrta:
+>> The first part of the compatible of Type-C node misses ending quote,
+>> thus we have one long compatible consisting of two compatible strings
+>> leading to dtbs_check warnings:
+>>
+>>   sc7180-idp.dtb: usb-vbus-regulator@1100: compatible:0: 'qcom,pm6150-vb=
+us-reg,\n qcom,pm8150b-vbus-reg' does not match '^[a-zA-Z0-9][a-zA-Z0-9,+\\=
+-._/]+$'
+>>   sc7180-idp.dtb: /soc@0/spmi@c440000/pmic@0/usb-vbus-regulator@1100: fa=
+iled to match any schema with compatible: ['qcom,pm6150-vbus-reg,\n        =
+  qcom,pm8150b-vbus-reg']
+>>
+>> Reported-by: Rob Herring <robh@kernel.org>
+>> Fixes: f81c2f01cad6 ("arm64: dts: qcom: pm6150: define USB-C related blo=
+cks")
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>  arch/arm64/boot/dts/qcom/pm6150.dtsi | 4 ++--
+>>  1 file changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/pm6150.dtsi b/arch/arm64/boot/dts/=
+qcom/pm6150.dtsi
+>> index 11158c2bd524..b20a639cddf3 100644
+>> --- a/arch/arm64/boot/dts/qcom/pm6150.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/pm6150.dtsi
+>> @@ -71,8 +71,8 @@ pm6150_vbus: usb-vbus-regulator@1100 {
+>>  		};
+>> =20
+>>  		pm6150_typec: typec@1500 {
+>> -			compatible =3D "qcom,pm6150-typec,
+>> -				      qcom,pm8150b-typec";
+>> +			compatible =3D "qcom,pm6150-typec",
+>> +				     "qcom,pm8150b-typec";
 >=20
->  - st,ext-phyclk: is present since 2020 in driver so need to explain
->    it and avoid dtbs check issue : views/kernel/upstream/net-next/arch/ar=
-m/boot/dts/st/stm32mp157c-dk2.dtb:
-> ethernet@5800a000: Unevaluated properties are not allowed
-> ('st,ext-phyclk' was unexpected)
->    Furthermore this property will be use in upstream of MP13 dwmac glue. =
-(next step)
+> The warning in the commit description is related to the
+> 'usb-vbus-regulator@1100' node, whereas this fixes the compatible of a di=
+fferent
+> one.
 >=20
-> [...]
+> Did you want to fix both?
 
-Here is the summary with links:
-  - [v6,1/1] dt-bindings: net: dwmac: Document STM32 property st,ext-phyclk
-    https://git.kernel.org/netdev/net-next/c/929107d3d2a3
+D'oh! There are two of them! Thanks for the catch. Yes, I want to fix
+both of them :)
 
-You are awesome, thank you!
---=20
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
-
-X-sender: <linux-kernel+bounces-125481-steffen.klassert=3Dsecunet.com@vger.=
-kernel.org>
-X-Receiver: <steffen.klassert@secunet.com> ORCPT=3Drfc822;steffen.klassert@=
-secunet.com NOTIFY=3DNEVER; X-ExtendedProps=3DBQAVABYAAgAAAAUAFAARAPDFCS25B=
-AlDktII2g02frgPADUAAABNaWNyb3NvZnQuRXhjaGFuZ2UuVHJhbnNwb3J0LkRpcmVjdG9yeURh=
-dGEuSXNSZXNvdXJjZQIAAAUAagAJAAEAAAAAAAAABQAWAAIAAAUAQwACAAAFAEYABwADAAAABQB=
-HAAIAAAUAEgAPAGIAAAAvbz1zZWN1bmV0L291PUV4Y2hhbmdlIEFkbWluaXN0cmF0aXZlIEdyb3=
-VwIChGWURJQk9IRjIzU1BETFQpL2NuPVJlY2lwaWVudHMvY249U3RlZmZlbiBLbGFzc2VydDY4Y=
-wUACwAXAL4AAACheZxkHSGBRqAcAp3ukbifQ049REI2LENOPURhdGFiYXNlcyxDTj1FeGNoYW5n=
-ZSBBZG1pbmlzdHJhdGl2ZSBHcm91cCAoRllESUJPSEYyM1NQRExUKSxDTj1BZG1pbmlzdHJhdGl=
-2ZSBHcm91cHMsQ049c2VjdW5ldCxDTj1NaWNyb3NvZnQgRXhjaGFuZ2UsQ049U2VydmljZXMsQ0=
-49Q29uZmlndXJhdGlvbixEQz1zZWN1bmV0LERDPWRlBQAOABEABiAS9uuMOkqzwmEZDvWNNQUAH=
-QAPAAwAAABtYngtZXNzZW4tMDIFADwAAgAADwA2AAAATWljcm9zb2Z0LkV4Y2hhbmdlLlRyYW5z=
-cG9ydC5NYWlsUmVjaXBpZW50LkRpc3BsYXlOYW1lDwARAAAAS2xhc3NlcnQsIFN0ZWZmZW4FAAw=
-AAgAABQBsAAIAAAUAWAAXAEoAAADwxQktuQQJQ5LSCNoNNn64Q049S2xhc3NlcnQgU3RlZmZlbi=
-xPVT1Vc2VycyxPVT1NaWdyYXRpb24sREM9c2VjdW5ldCxEQz1kZQUAJgACAAEFACIADwAxAAAAQ=
-XV0b1Jlc3BvbnNlU3VwcHJlc3M6IDANClRyYW5zbWl0SGlzdG9yeTogRmFsc2UNCg8ALwAAAE1p=
-Y3Jvc29mdC5FeGNoYW5nZS5UcmFuc3BvcnQuRXhwYW5zaW9uR3JvdXBUeXBlDwAVAAAATWVtYmV=
-yc0dyb3VwRXhwYW5zaW9uBQAjAAIAAQ=3D=3D
-X-CreatedBy: MSExchange15
-X-HeloDomain: b.mx.secunet.com
-X-ExtendedProps: BQBjAAoAWUmmlidQ3AgFAGEACAABAAAABQA3AAIAAA8APAAAAE1pY3Jvc2=
-9mdC5FeGNoYW5nZS5UcmFuc3BvcnQuTWFpbFJlY2lwaWVudC5Pcmdhbml6YXRpb25TY29wZREAA=
-AAAAAAAAAAAAAAAAAAAAAUASQACAAEFAAQAFCABAAAAHAAAAHN0ZWZmZW4ua2xhc3NlcnRAc2Vj=
-dW5ldC5jb20FAAYAAgABBQApAAIAAQ8ACQAAAENJQXVkaXRlZAIAAQUAAgAHAAEAAAAFAAMABwA=
-AAAAABQAFAAIAAQUAYgAKAGUAAADNigAABQBkAA8AAwAAAEh1Yg=3D=3D
-X-Source: SMTP:Default MBX-ESSEN-02
-X-SourceIPAddress: 62.96.220.37
-X-EndOfInjectedXHeaders: 12168
-Received: from cas-essen-01.secunet.de (10.53.40.201) by
- mbx-essen-02.secunet.de (10.53.40.198) with Microsoft SMTP Server
- (version=3DTLS1_2, cipher=3DTLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.37; Fri, 29 Mar 2024 23:50:58 +0100
-Received: from b.mx.secunet.com (62.96.220.37) by cas-essen-01.secunet.de
- (10.53.40.201) with Microsoft SMTP Server (version=3DTLS1_2,
- cipher=3DTLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Fronte=
-nd
- Transport; Fri, 29 Mar 2024 23:50:58 +0100
-Received: from localhost (localhost [127.0.0.1])
-	by b.mx.secunet.com (Postfix) with ESMTP id 51EB6202E4
-	for <steffen.klassert@secunet.com>; Fri, 29 Mar 2024 23:50:58 +0100 (CET)
-X-Virus-Scanned: by secunet
-X-Spam-Flag: NO
-X-Spam-Score: -5.399
-X-Spam-Level:
-X-Spam-Status: No, score=3D-5.399 tagged_above=3D-999 required=3D2.1
-	tests=3D[BAYES_00=3D-1.9, DKIMWL_WL_HIGH=3D-0.099, DKIM_SIGNED=3D0.1,
-	DKIM_VALID=3D-0.1, DKIM_VALID_AU=3D-0.1, MAILING_LIST_MULTI=3D-1,
-	RCVD_IN_DNSWL_MED=3D-2.3, SPF_HELO_NONE=3D0.001, SPF_PASS=3D-0.001]
-	autolearn=3Dunavailable autolearn_force=3Dno
-Authentication-Results: a.mx.secunet.com (amavisd-new);
-	dkim=3Dpass (2048-bit key) header.d=3Dkernel.org
-Received: from b.mx.secunet.com ([127.0.0.1])
-	by localhost (a.mx.secunet.com [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id QAo-ZgBbYr2Z for <steffen.klassert@secunet.com>;
-	Fri, 29 Mar 2024 23:50:57 +0100 (CET)
-Received-SPF: Pass (sender SPF authorized) identity=3Dmailfrom; client-ip=
-=3D147.75.199.223; helo=3Dny.mirrors.kernel.org; envelope-from=3Dlinux-kern=
-el+bounces-125481-steffen.klassert=3Dsecunet.com@vger.kernel.org; receiver=
-=3Dsteffen.klassert@secunet.com=20
-DKIM-Filter: OpenDKIM Filter v2.11.0 b.mx.secunet.com 5F257200BB
-Authentication-Results: b.mx.secunet.com;
-	dkim=3Dpass (2048-bit key) header.d=3Dkernel.org header.i=3D@kernel.org he=
-ader.b=3D"QriMG5bP"
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223=
-])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by b.mx.secunet.com (Postfix) with ESMTPS id 5F257200BB
-	for <steffen.klassert@secunet.com>; Fri, 29 Mar 2024 23:50:57 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.2=
-5.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 27A8F1C21134
-	for <steffen.klassert@secunet.com>; Fri, 29 Mar 2024 22:50:56 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD84C13E6BB;
-	Fri, 29 Mar 2024 22:50:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=3Dpass (2048-bit key) header.d=3Dkernel.org header.i=3D@kernel.org he=
-ader.b=3D"QriMG5bP"
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.or=
-g [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61D1613D62A;
-	Fri, 29 Mar 2024 22:50:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=3Dnone smtp.client-ip=
-=3D10.30.226.201
-ARC-Seal: i=3D1; a=3Drsa-sha256; d=3Dsubspace.kernel.org; s=3Darc-20240116;
-	t=3D1711752631; cv=3Dnone; b=3DeLispVzL4Rucdj5yrzfRgnSRePLp+Y1FD2BRZyUX76y=
-kzaZw7VHi9YXASU31baAxoYFmxYlpOQR4UYS8gEjEpjt1zGwq62prz06qhAHc+483Hh1xmTXYFX=
-P7I4YViQd6l9vns1N932S+E0brudJT0ir0I9KRIrHiq60XZoaVoX0=3D
-ARC-Message-Signature: i=3D1; a=3Drsa-sha256; d=3Dsubspace.kernel.org;
-	s=3Darc-20240116; t=3D1711752631; c=3Drelaxed/simple;
-	bh=3D1rWdaEawfYR3LfAF31PiRtpuMF8rLJZ44iKkxh0MscI=3D;
-	h=3DContent-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=3DXg3OsV9Hn217vm8daSQu1usYD3ksPWTEpVZ2YL8e46SgPg+BrE=
-SFujNuqbVuhFeJowZ00pl26chFLpmFOjszBnk+xcfKA2Lv8VGoUK8QewV5y96v44UHH8h1j3HJY=
-z3vCS+bWN/aej6pX4824HBLNpa31QWPvcxKcQWmCuSFNkM=3D
-ARC-Authentication-Results: i=3D1; smtp.subspace.kernel.org; dkim=3Dpass (2=
-048-bit key) header.d=3Dkernel.org header.i=3D@kernel.org header.b=3DQriMG5=
-bP; arc=3Dnone smtp.client-ip=3D10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 8AA7FC43609;
-	Fri, 29 Mar 2024 22:50:30 +0000 (UTC)
-DKIM-Signature: v=3D1; a=3Drsa-sha256; c=3Drelaxed/simple; d=3Dkernel.org;
-	s=3Dk20201202; t=3D1711752630;
-	bh=3D1rWdaEawfYR3LfAF31PiRtpuMF8rLJZ44iKkxh0MscI=3D;
-	h=3DSubject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=3DQriMG5bPxFDJal3+iK1Pb0iH9WyOvvWgwweQ2/D86v3oy/13nMNRcnZgIMYLJopSY
-	 7KLJczmMCVMHyE0HUKo16Zlrh+oM1jIPi5sy2qLvR1xNCT85FR5iD28bsq3bhCic2E
-	 9agT52MvYHoRihMvi5B1sSF3/Py9XPrQj9IBRigclTJz6rtPhf6vSl/5FSEsRqKbd5
-	 AG+Y/Btm/xHAuRSBzBp5kwOLojbL6e2YNlyWE+0YcxgNg53lc484ELHLR7HwPJHh3Q
-	 zxW5r1DkUTeEdz0tQrKVSD3O2p8NxXZGc3WAWBi8z8L8dwVHWkG0HVZicER5qqp8k6
-	 laI6AElXluGGw=3D=3D
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.loc=
-aldomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 8=
-16E5D2D0EB;
-	Fri, 29 Mar 2024 22:50:30 +0000 (UTC)
-Content-Type: text/plain; charset=3D"utf-8"
-Precedence: bulk
-X-Mailing-List: linux-kernel@vger.kernel.org
-List-Id: <linux-kernel.vger.kernel.org>
-List-Subscribe: <mailto:linux-kernel+subscribe@vger.kernel.org>
-List-Unsubscribe: <mailto:linux-kernel+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v6 0/1] Add property in dwmac-stm32 documentation
-From: patchwork-bot+netdevbpf@kernel.org
-Message-ID: <171175263052.1693.263504657362042828.git-patchwork-notify@kern=
-el.org>
-Date: Fri, 29 Mar 2024 22:50:30 +0000
-References: <20240328185337.332703-1-christophe.roullier@foss.st.com>
-In-Reply-To: <20240328185337.332703-1-christophe.roullier@foss.st.com>
-To: Christophe Roullier <christophe.roullier@foss.st.com>
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.c=
-om,
- richardcochran@gmail.com, joabreu@synopsys.com, lgirdwood@gmail.com,
- broonie@kernel.org, marex@denx.de, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Return-Path: linux-kernel+bounces-125481-steffen.klassert=3Dsecunet.com@vge=
-r.kernel.org
-X-MS-Exchange-Organization-OriginalArrivalTime: 29 Mar 2024 22:50:58.3672
- (UTC)
-X-MS-Exchange-Organization-Network-Message-Id: d4d0ffc8-2bb7-4705-a7dd-08dc=
-5042b329
-X-MS-Exchange-Organization-OriginalClientIPAddress: 62.96.220.37
-X-MS-Exchange-Organization-OriginalServerIPAddress: 10.53.40.201
-X-MS-Exchange-Organization-Cross-Premises-Headers-Processed: cas-essen-01.s=
-ecunet.de
-X-MS-Exchange-Organization-OrderedPrecisionLatencyInProgress: LSRV=3Dmbx-es=
-sen-02.secunet.de:TOTAL-HUB=3D0.387|SMR=3D0.325(SMRDE=3D0.004|SMRC=3D0.320(=
-SMRCL=3D0.101|X-SMRCR=3D0.320))|CAT=3D0.060(CATOS=3D0.001
- |CATRESL=3D0.028(CATRESLP2R=3D0.002)|CATORES=3D0.029(CATRS=3D0.028(CATRS-I=
-ndex
- Routing Agent=3D0.027 )));2024-03-29T22:50:58.771Z
-X-MS-Exchange-Forest-ArrivalHubServer: mbx-essen-02.secunet.de
-X-MS-Exchange-Organization-AuthSource: cas-essen-01.secunet.de
-X-MS-Exchange-Organization-AuthAs: Anonymous
-X-MS-Exchange-Organization-FromEntityHeader: Internet
-X-MS-Exchange-Organization-OriginalSize: 7690
-X-MS-Exchange-Organization-HygienePolicy: Standard
-X-MS-Exchange-Organization-MessageLatency: SRV=3Dcas-essen-01.secunet.de:TO=
-TAL-FE=3D0.017|SMR=3D0.008(SMRPI=3D0.006(SMRPI-FrontendProxyAgent=3D0.006))=
-|SMS=3D0.009
-X-MS-Exchange-Organization-Recipient-Limit-Verified: True
-X-MS-Exchange-Organization-TotalRecipientCount: 1
-X-MS-Exchange-Organization-Rules-Execution-History: 0b0cf904-14ac-4724-8bdf=
--482ee6223cf2%%%fd34672d-751c-45ae-a963-ed177fcabe23%%%d8080257-b0c3-47b4-b=
-0db-23bc0c8ddb3c%%%95e591a2-5d7d-4afa-b1d0-7573d6c0a5d9%%%f7d0f6bc-4dcc-487=
-6-8c5d-b3d6ddbb3d55%%%16355082-c50b-4214-9c7d-d39575f9f79b
-X-MS-Exchange-Forest-RulesExecuted: mbx-essen-02
-X-MS-Exchange-Organization-RulesExecuted: mbx-essen-02
-X-MS-Exchange-Forest-IndexAgent-0: AQ0CZW4AAUADAAAPAAADH4sIAAAAAAAEAF1TX2/b=
-NhA/2ZJsK9E6bB
- j2entqgtmSbC9tIwxFH4qt3RBswLKHoegDLXERIYkURMpqvvM+xI6U
- k6WDBVom737/jv4nfMebRuVxFEe3ldDYMVNUODKNrOsawUs0CiU3JT
- +m9LWR/JNJ7oTBi5YJeRlHh3v8hdXDAX8VhZC6Fvgj/WJvat5L3iSq
- v3vt0H+TeFsNa9y9whvW4y7b/YDb6/xqn+9f4PfZNsvwXg049spwan
- iN76XpVTkUHLtedbw39ygklmPLio027X6HpSqGlkvDjFCSWmwXblCb
- NYncdNV90dQ5WlM911SHWkiCI+rMQfXiyHvU1t/kk3/qGnLlcBDJJJ
- MlsqMSJZbmoLGoeFEToB445ngUfNTp5DMdOm16ztrHkFLWFxUtbXpQ
- yqSl0ak2qRPedturl8WmrHcJwTqz3FQWx7y5epVlLMuyHP+U/MiagR
- nSdkpAcBpLz1EqkkZjG3lpmy+ef2b5uRvfQCI6XlD35cnPT0NvWVpF
- CMbN+iHXUTQNHjgOmttgHryg+htvft/up9Dxrhl4ghfWHGXMu8tT5B
- +SJPloR/yOEzLhEgvqoW1Zb6FNhY2QtSafdjofji/W23T7kRLdHIQs
- hbzTub1h+UST49vTWPGP2xua8qPKz0xaMMTKmE7naUoXMvnvwqX/u6
- 9pkV7vrrfZy3Jf7tjeSv2LrppNko1cq5avSTOTtb2B38XRZhNHbzk1
- lzQ5Wswa3yPFwfCgTBJHD6w1cSV0CfVTbvcHGlVfp91oyyvTNpbRfg
- ACiHwIAgjn4C9gOYN56MHXsFjCag6BDwvaodMllXnwDIIQFnNY0Sad
- zjw4o8e++74XLAGW3iqwmBaNkFcQLV1xYMtC2o/hW9vrQQR+6OiINP
- BCH4BkWHbHOL0v4AtHRFDhJDKwxfAzhKFTSA/tW3a3UvEz+HIOS3cU
- ncF5BGe076zFT3lpJ4KvqIAaJ5CJiNZJ8ERH9n0bwjePBaTWHcUzj8
- DA82Z2hfnM5UCkc3tqtbnQVk9Iz0n5laN2GZ5WQvNgdm5lTzpXLj2b
- dmypyZctIBxa55SAB1unwT/NwqeQrdR/AY8Sojk5BQAAAQrVATw/eG
- 1sIHZlcnNpb249IjEuMCIgZW5jb2Rpbmc9InV0Zi0xNiI/Pg0KPEVt
- YWlsU2V0Pg0KICA8VmVyc2lvbj4xNS4wLjAuMDwvVmVyc2lvbj4NCi
- AgPEVtYWlscz4NCiAgICA8RW1haWwgU3RhcnRJbmRleD0iODMiPg0K
- ICAgICAgPEVtYWlsU3RyaW5nPmt1YmFAa2VybmVsLm9yZzwvRW1haW
- xTdHJpbmc+DQogICAgPC9FbWFpbD4NCiAgPC9FbWFpbHM+DQo8L0Vt
- YWlsU2V0PgEL+gI8P3htbCB2ZXJzaW9uPSIxLjAiIGVuY29kaW5nPS
- J1dGYtMTYiPz4NCjxVcmxTZXQ+DQogIDxWZXJzaW9uPjE1LjAuMC4w
- PC9WZXJzaW9uPg0KICA8VXJscz4NCiAgICA8VXJsIFN0YXJ0SW5kZX
- g9IjcwMSIgVHlwZT0iVXJsIj4NCiAgICAgIDxVcmxTdHJpbmc+aHR0
- cHM6Ly9naXQua2VybmVsLm9yZy9uZXRkZXYvbmV0LW5leHQvYy85Mj
- kxMDdkM2QyYTM8L1VybFN0cmluZz4NCiAgICA8L1VybD4NCiAgICA8
- VXJsIFN0YXJ0SW5kZXg9IjgxOSIgVHlwZT0iVXJsIj4NCiAgICAgID
- xVcmxTdHJpbmc+aHR0cHM6Ly9rb3JnLmRvY3Mua2VybmVsLm9yZy9w
- YXRjaHdvcmsvcHdib3QuaHRtbDwvVXJsU3RyaW5nPg0KICAgIDwvVX
- JsPg0KICA8L1VybHM+DQo8L1VybFNldD4BDOgDPD94bWwgdmVyc2lv
- bj0iMS4wIiBlbmNvZGluZz0idXRmLTE2Ij8+DQo8Q29udGFjdFNldD
- 4NCiAgPFZlcnNpb24+MTUuMC4wLjA8L1ZlcnNpb24+DQogIDxDb250
- YWN0cz4NCiAgICA8Q29udGFjdCBTdGFydEluZGV4PSI2NyI+DQogIC
- AgICA8UGVyc29uIFN0YXJ0SW5kZXg9IjY3Ij4NCiAgICAgICAgPFBl
- cnNvblN0cmluZz5KYWt1YiBLaWNpbnNraTwvUGVyc29uU3RyaW5nPg
- 0KICAgICAgPC9QZXJzb24+DQogICAgICA8RW1haWxzPg0KICAgICAg
- ICA8RW1haWwgU3RhcnRJbmRleD0iODMiPg0KICAgICAgICAgIDxFbW
- FpbFN0cmluZz5rdWJhQGtlcm5lbC5vcmc8L0VtYWlsU3RyaW5nPg0K
- ICAgICAgICA8L0VtYWlsPg0KICAgICAgPC9FbWFpbHM+DQogICAgIC
- A8Q29udGFjdFN0cmluZz5KYWt1YiBLaWNpbnNraSAmbHQ7a3ViYUBr
- ZXJuZWwub3JnPC9Db250YWN0U3RyaW5nPg0KICAgIDwvQ29udGFjdD
- 4NCiAgPC9Db250YWN0cz4NCjwvQ29udGFjdFNldD4BDs8BUmV0cmll
- dmVyT3BlcmF0b3IsMTAsMDtSZXRyaWV2ZXJPcGVyYXRvciwxMSwxO1
- Bvc3REb2NQYXJzZXJPcGVyYXRvciwxMCwwO1Bvc3REb2NQYXJzZXJP
- cGVyYXRvciwxMSwwO1Bvc3RXb3JkQnJlYWtlckRpYWdub3N0aWNPcG
- VyYXRvciwxMCwwO1Bvc3RXb3JkQnJlYWtlckRpYWdub3N0aWNPcGVy
- YXRvciwxMSwwO1RyYW5zcG9ydFdyaXRlclByb2R1Y2VyLDIwLDEz
-X-MS-Exchange-Forest-IndexAgent: 1 2145
-X-MS-Exchange-Forest-EmailMessageHash: B35CD68A
-X-MS-Exchange-Forest-Language: en
-X-MS-Exchange-Organization-Processed-By-Journaling: Journal Agent
-
-Hello:
-
-This patch was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
-
-On Thu, 28 Mar 2024 19:53:36 +0100 you wrote:
-> Introduce property in dwmac-stm32 documentation
->=20
->  - st,ext-phyclk: is present since 2020 in driver so need to explain
->    it and avoid dtbs check issue : views/kernel/upstream/net-next/arch/ar=
-m/boot/dts/st/stm32mp157c-dk2.dtb:
-> ethernet@5800a000: Unevaluated properties are not allowed
-> ('st,ext-phyclk' was unexpected)
->    Furthermore this property will be use in upstream of MP13 dwmac glue. =
-(next step)
->=20
-> [...]
-
-Here is the summary with links:
-  - [v6,1/1] dt-bindings: net: dwmac: Document STM32 property st,ext-phyclk
-    https://git.kernel.org/netdev/net-next/c/929107d3d2a3
-
-You are awesome, thank you!
---=20
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+Best regards,
+Krzysztof
 
 
 
