@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-54806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94DD3892AD5
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 12:32:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2029892AD8
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 12:34:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E82BCB21752
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 11:32:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 881DD283060
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 11:34:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 984C72DF73;
-	Sat, 30 Mar 2024 11:32:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B16E62C69C;
+	Sat, 30 Mar 2024 11:33:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u8z7K6AG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nCKU7T9U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39AA72C861
-	for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 11:32:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBC13BE6F
+	for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 11:33:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711798344; cv=none; b=Ba/rudpC43ceYihTeHbJbGNYdEtA1MsNk7PaA6BjQ5Wv0GujbVYqfaKRu7Cx0/UoLrEck8S3RP5XeXcOXlOKWQAjigZ3wBKCrRfGjMIIcwx82E6YprLudsJC7N0oIsQOvJEC9L41PlEGh1Ub5MKIwlXJ1YOCf9kU0NY6tYqFOzE=
+	t=1711798438; cv=none; b=bqXpguHQitqyzyN+76tnuzoBEYhmXCECJcXZSxGdo8WnXw/uLq+dqXGGmwcAeqyChe1ZWfi9HcoBRADrUoP14wBbDEcfrbHQGT4ZFYHoGY/v6LlPF7qR8ZRkSZHZbxnH/PcuXHOFfHtmWgi2aJ8+PsHY8wiSCBaT95RDrFwFFK0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711798344; c=relaxed/simple;
-	bh=SCB34xXRysolROT1e0/g2zjuIVTPAdaBlQmpSA/32G8=;
+	s=arc-20240116; t=1711798438; c=relaxed/simple;
+	bh=l5xIvAlUlvTR322cG9gHCXBT6iC/tG6s0rNkqv/fbrg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GVbi79UjZDQwipK85M/YxdVQGp89bXgelJCXpKS6UNxrJh3Mufow8BPZvfPCccIgbSYkVrtFuwjgyDNpjcMoWyR4KrsC6KnEctz1KD8unjgRSqrgN/+riHwWwU7smUyOQDaRdf1Ub68hH1liLNwkJ5Q2VnhHkcl0Ejn9K72M/WA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=u8z7K6AG; arc=none smtp.client-ip=209.85.221.54
+	 In-Reply-To:Content-Type; b=q50IG+DoIa+jQ6Zfa/rWVxKjzu/MwvxqCxIYsvq0SxyxnjMgu9mxqVlMgE5Jp1QzDlFcQ7B2V52HDWzfijNnQB1K+ewuR+csBvY1LHYmqbi7NTGdLhkGMW3ZYMhp5C3o3Kz3UK7BXOiTmRBrw9ULoDPCXKcCItmenc6ZNYNfJs0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nCKU7T9U; arc=none smtp.client-ip=209.85.208.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-34261edaf7eso1876311f8f.1
-        for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 04:32:21 -0700 (PDT)
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2d47a92cfefso32075941fa.1
+        for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 04:33:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711798340; x=1712403140; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711798435; x=1712403235; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=ExUXrTD223tXybDLDyrKC0GoudjtX3ivRD1n/3oKum4=;
-        b=u8z7K6AGI70CpD7ndxkx1htcBe3T11D54w5mFmkDmu5NZFBTNQiubBg7S/2U5t3pF0
-         9kW0hAuNiyGElujR5sWpftctHU+BfJKQZFiKES9FavJOuBVVp3Ywfg2oMCrTmgkRo0GZ
-         eBBfO/9YkUI0TPIfeqN2anCm/e+DFZ1YNhDhMM7/LVj7Y7ZcRPSZI0uASVNqx6Vls2oa
-         viR8qUug1POIP4fB0SmjX702t9lXHahVr6SO1YgxY+CLVncMCqd6UeXTMQjy5NlVPPQA
-         qLwJIsQcIooiwBsvl7DlvR2h9mkvAou5hQITU9KANGbfAptuXfqCj5yrwfBfg2Xk7O89
-         OWGA==
+        bh=ZKuP23ycho2oA2KCvhT0ZMyIBbVELVhTwKe1JYrHv94=;
+        b=nCKU7T9UOfdglfm1lmyi2I2dr2sgrUuCpWrkZWDyLi4TzjBJtK+XdiTss2BZp4WHW3
+         TaxxdHBh6ANUqrsgg49uSN8R7odty966RgF5lE4AykLed3q67STwtqGXw8zY4OSW5EQT
+         B16OkczVYdMIxpe6sPul+Bhve2BjpR4qa+4vB9YW3V8NfmBfXjNltLqdAqjiw9tUywd1
+         4sD6xi1jILtdPZxYwQdRlrOrseaxrZq4fbkAob/Je90Q2ZJCbYLcL88YIk9PIxWTG2xR
+         ggYGa27mWZFz09Qjs9n/3aap7IWhga/E6XRduAV0jR7WwPEzkYADhlFl61xcPNZUzsy6
+         +Tfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711798340; x=1712403140;
+        d=1e100.net; s=20230601; t=1711798435; x=1712403235;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ExUXrTD223tXybDLDyrKC0GoudjtX3ivRD1n/3oKum4=;
-        b=XycmzBR2B24QzSNGx7GpxiUs+05OGy7SCuZMM1+ORhHmPm+JeOZgWNtSvI6A/8VZCA
-         OkAt87xuFvnJ+LxnzaAR69+ehXq84PdlhBcJIEPzXME07AbP2VESOUp+0rTvgBfDFIgF
-         m76YoiDqJfgC5FJRFqXeBu0fv4hnkercY9dY+axYJKcl3Idme3xYPyPPdsh2sEFWHdfa
-         9UrZ56tzvXwuFbRChYYt7kSA0OwvkTX9BYMadDSG1CM55F85EC7iXD1d6i9IhI2mw5MK
-         DCoC6Tod+kB9q2/O864hHHfJQkBY559g+4hdisSnj4EePdrj/SpeESZQkj9ecpjHFA9M
-         drRQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVisA+Uaea6Zrh9ws438/oAUhY2rneavNfuGtChuD+o21OpkVYIbijSUgd77zf4s9cPn/azegHcnJ4wkdhiQwniuqNKEZFRAERG0w==
-X-Gm-Message-State: AOJu0YysGqxmeRKqeHP74GPjnOo+lINkifI9BlPEihFUPrcShogU29Wr
-	bnWM0ve4hKFhYXIdf883+mPA0jYJDH1BCvoqZ5J30AfDlrKlOSOqE1zMFQGmxkk=
-X-Google-Smtp-Source: AGHT+IFeu4kXmFYvt1Y18lPopMZ7wbgsqLziOo9FSHh28YmffHROHB5lILCoUUKExx6KsWDzE/Ijyw==
-X-Received: by 2002:adf:ec84:0:b0:33e:d244:9c62 with SMTP id z4-20020adfec84000000b0033ed2449c62mr2515319wrn.68.1711798340511;
-        Sat, 30 Mar 2024 04:32:20 -0700 (PDT)
+        bh=ZKuP23ycho2oA2KCvhT0ZMyIBbVELVhTwKe1JYrHv94=;
+        b=WwK99lnbvBCLE9K01PLr6CeyFAuGkmymaZwk4q9dzK6dgajRF0KTfSkymnnWFYT415
+         TroUN5Pdba6qSQDxfo9m2TDbtXC/pDCnTnAWEvsvwOBOTjh/5YNdF31VvjTrEgq/xMUN
+         0GAKam2SWMp0J6U9haDeBx7P/9frATpTbNxzohg/zAX9JUdSaNnVzm2wVC7OcW+65zF7
+         pvrzJ2GS06SAs8gq+dQ+2Rzz5cJd+2dZToPBBby7vMq2HnqC9FL06XfWwo70RbhP+lRc
+         xbtQAjgp9DCGwXDkyfd9AEZTxMqSgEagYUhAuCfZwNhD286kD4v3slkn1RCCigrglIYJ
+         nxAQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV9kq8Y+WoOkJ5WCAgTxdlaz9DAejvyupJZe9P5l8SVPI5XwDmBiujY17iHL21cWr4hCshG+QDEa4w9E9vVmvGpDa/8waf3IOLb6w==
+X-Gm-Message-State: AOJu0YwxVj04Rr7qqiR8NeaIuEieA5AWOEO4kmytuAbRKzZ8Te05xWtw
+	Hq630qPLVa4Tti20PpZNIaWGkpKpnxDVoZNRQxZ7nA2SeVrWv0jHiGvaphjQbiQ=
+X-Google-Smtp-Source: AGHT+IHFn0qQ/U7hs4+G1h1XSH2b8K/o2HHnoLDjyqL36pwa8qo5uKiLnqQ+10AAaVarFdluT+rTIw==
+X-Received: by 2002:a05:651c:198e:b0:2d6:c001:d8b with SMTP id bx14-20020a05651c198e00b002d6c0010d8bmr3602180ljb.5.1711798435010;
+        Sat, 30 Mar 2024 04:33:55 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id s7-20020adfecc7000000b0033e239040d8sm6239107wro.84.2024.03.30.04.32.19
+        by smtp.gmail.com with ESMTPSA id h11-20020a05600c314b00b0041490467febsm11368698wmo.38.2024.03.30.04.33.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 30 Mar 2024 04:32:19 -0700 (PDT)
-Message-ID: <52f49ae7-e15a-4aaf-b66d-42895e8352de@linaro.org>
-Date: Sat, 30 Mar 2024 12:32:18 +0100
+        Sat, 30 Mar 2024 04:33:54 -0700 (PDT)
+Message-ID: <7bd584b0-46e1-4dcb-a402-80784f7d11b7@linaro.org>
+Date: Sat, 30 Mar 2024 12:33:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,14 +77,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] spi: cadence: Add new bindings documentation for
- Cadence XSPI
+Subject: Re: [PATCH 2/5] spi: cadence: Add Marvell IP modification changes
 To: Witold Sadowski <wsadowski@marvell.com>, linux-kernel@vger.kernel.org,
  linux-spi@vger.kernel.org, devicetree@vger.kernel.org
 Cc: broonie@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
  conor+dt@kernel.org, pthombar@cadence.com
 References: <20240329194849.25554-1-wsadowski@marvell.com>
- <20240329194849.25554-2-wsadowski@marvell.com>
+ <20240329194849.25554-3-wsadowski@marvell.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -131,47 +130,60 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240329194849.25554-2-wsadowski@marvell.com>
+In-Reply-To: <20240329194849.25554-3-wsadowski@marvell.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 29/03/2024 20:48, Witold Sadowski wrote:
-> Add new bindings:
->  - mrvl,xspi-nor compatible string
->    Compatible string to enable Marvell XSPI modification
->  - Multiple PHY configuration registers
->  - base for xfer register set
+> Add support for Marvell IP modification - clock divider,
+> and PHY config, and IRQ clearing.
+> Clock divider block is build into Cadence XSPI controller
+> and is connected directly to 800MHz clock.
+> As PHY config is not set directly in IP block, driver can
+> load custom PHY configuration values.
+> To correctly clear interrupt in Marvell implementation
+> MSI-X must be cleared too.
+
+Please wrap commit message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+
 > 
 > Signed-off-by: Witold Sadowski <wsadowski@marvell.com>
-
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching.
-
-
 > ---
->  .../devicetree/bindings/spi/cdns,xspi.yaml    | 84 ++++++++++++++++++-
->  1 file changed, 83 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/cdns,xspi.yaml b/Documentation/devicetree/bindings/spi/cdns,xspi.yaml
-> index eb0f92468185..d1fde8d4e9b8 100644
-> --- a/Documentation/devicetree/bindings/spi/cdns,xspi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/cdns,xspi.yaml
-> @@ -20,23 +20,74 @@ allOf:
+
+
+> +
+> +static bool cdns_xspi_get_hw_overlay(struct platform_device *pdev)
+> +{
+> +	int err;
+> +
+> +	err = device_property_match_string(&pdev->dev,
+> +					   "compatible", "mrvl,xspi-nor");
+
+No, do not add matching in some random parts of the code, but use driver
+match/data from ID table.
+
+....
+
 >  
->  properties:
->    compatible:
-> -    const: cdns,xspi-nor
-> +    - const: cdns,xspi-nor
-> +    - const: mrvl,xspi-nor
+> +	cdns_xspi_print_phy_config(cdns_xspi);
+>  	ret = cdns_xspi_controller_init(cdns_xspi);
+>  	if (ret) {
+>  		dev_err(dev, "Failed to initialize controller\n");
+> @@ -613,6 +911,9 @@ static const struct of_device_id cdns_xspi_of_match[] = {
+>  	{
+>  		.compatible = "cdns,xspi-nor",
+>  	},
+> +	{
+> +		.compatible = "mrvl,xspi-nor",
 
-It does not look like you tested the bindings, at least after quick
-look. Please run `make dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
-Maybe you need to update your dtschema and yamllint.
+This falsely suggest they are compatible :/
 
-There is a lot of things happening here, but I won't perform review if
-the code was never tested. Sorry, please test before sending.
+> +	},
+>  	{ /* end of table */}
+>  };
+>  MODULE_DEVICE_TABLE(of, cdns_xspi_of_match);
 
 Best regards,
 Krzysztof
