@@ -1,97 +1,114 @@
-Return-Path: <devicetree+bounces-54933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54943-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AB4389341B
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 18:56:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA1488934B9
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 19:12:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F40152863BC
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 16:56:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 803AE286ECA
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 17:12:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 826B8148854;
-	Sun, 31 Mar 2024 16:41:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9937314A612;
+	Sun, 31 Mar 2024 16:44:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="buDtfqkv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from a.mx.secunet.com (a.mx.secunet.com [62.96.220.36])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF2CC1474D1;
-	Sun, 31 Mar 2024 16:40:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 560B41482FC;
+	Sun, 31 Mar 2024 16:44:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=62.96.220.36
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711903260; cv=fail; b=VCm/AH6Qm55VjKOyX8ja3g0yV2Hu7pVUrNsrQtgfoHame5iq5CS7nF91WjGvTHiO0FFhDWmat6TR8lzLMbyFoM2NV71+Jm13EmVmXf6Ouqi0Rjqpz9urZY6hS1BnUT+3qnj1JVhZR/0bUkTEE5/bF/GOwkTF1e+jdBL9zGy8V4I=
+	t=1711903484; cv=fail; b=AbNuCzna6C4kRGiUgGxNjEqDCgEG4xipuc6Fadkas9zMpWtg4mw5ZWZ2XilA9iCXrYZ2rziMxzxT5doS0c9tawoePPW/W0WoMAwKYpiCT52YKBGM6wh4WRwZMuKqy6jJVYq/6XJsYFyh1pBPUJsp1t7zwxOBRXsopaAN//CVXKQ=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711903260; c=relaxed/simple;
-	bh=Sfv61GuqN9EjrEx8j81lakykRn8nhWIo5beb5aUP+Mk=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=moVrkPu1fw+D5Mgid0rml3Sb7s8bKUCwEglCLIYwMN6dRWvpI+mTaFWffTsb+wXA8Dn7sHgSQ01ZJSiKHKyUqVN4qrtcksZIJoYLATB6Hz9X5ECTLKUb2CUE8rYGx9ifgP2wrjidLKK1gwi6AVwzXLfjvQOMxvBE0zQuZb2tWSA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com; spf=fail smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=fail smtp.client-ip=62.96.220.36
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=arm.com
+	s=arc-20240116; t=1711903484; c=relaxed/simple;
+	bh=PVVuSm2i/BrAi3YIHH//s+w5qN2c55N1o8exyPZvdcs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sPOhhRZHGvGi7Tt8cap1qi3Nuczfk/qcbvqMxkSe4Oxt7K7sKFYic33B2SZxZtG8fSWFR2um9YyWkeIgSQ+3U6dmF40ZaRqTFQvwirETsP0PLEcNiL80MxVFo6Bf9CTf/1W1oV+6asU1vPfyvFgFvM0gyOJIA3dsfaG9ZDBzQ5U=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=fail smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=buDtfqkv; arc=none smtp.client-ip=209.85.128.48; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; arc=fail smtp.client-ip=62.96.220.36
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=freebox.fr
 Received: from localhost (localhost [127.0.0.1])
-	by a.mx.secunet.com (Postfix) with ESMTP id 423CA207E4;
-	Sun, 31 Mar 2024 18:40:56 +0200 (CEST)
+	by a.mx.secunet.com (Postfix) with ESMTP id 17BE9208C8;
+	Sun, 31 Mar 2024 18:44:40 +0200 (CEST)
 X-Virus-Scanned: by secunet
 Received: from a.mx.secunet.com ([127.0.0.1])
 	by localhost (a.mx.secunet.com [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id RoABDqTHBZ5U; Sun, 31 Mar 2024 18:40:55 +0200 (CEST)
+	with ESMTP id rRGMypGShgVr; Sun, 31 Mar 2024 18:44:39 +0200 (CEST)
 Received: from mailout1.secunet.com (mailout1.secunet.com [62.96.220.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by a.mx.secunet.com (Postfix) with ESMTPS id 7DE67201E5;
-	Sun, 31 Mar 2024 18:40:55 +0200 (CEST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 a.mx.secunet.com 7DE67201E5
+	by a.mx.secunet.com (Postfix) with ESMTPS id 798C22083B;
+	Sun, 31 Mar 2024 18:44:39 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 a.mx.secunet.com 798C22083B
 Received: from cas-essen-01.secunet.de (unknown [10.53.40.201])
-	by mailout1.secunet.com (Postfix) with ESMTP id 6EB6D80005E;
-	Sun, 31 Mar 2024 18:40:55 +0200 (CEST)
+	by mailout1.secunet.com (Postfix) with ESMTP id 6BE98800061;
+	Sun, 31 Mar 2024 18:44:39 +0200 (CEST)
 Received: from mbx-essen-01.secunet.de (10.53.40.197) by
  cas-essen-01.secunet.de (10.53.40.201) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Sun, 31 Mar 2024 18:40:55 +0200
+ 15.1.2507.35; Sun, 31 Mar 2024 18:44:39 +0200
 Received: from Pickup by mbx-essen-01.secunet.de with Microsoft SMTP Server id
- 15.1.2507.17; Sun, 31 Mar 2024 16:37:05 +0000
-X-sender: <linux-kernel+bounces-125898-steffen.klassert=secunet.com@vger.kernel.org>
-X-Receiver: <steffen.klassert@secunet.com> ORCPT=rfc822;steffen.klassert@secunet.com
+ 15.1.2507.17; Sun, 31 Mar 2024 16:37:06 +0000
+X-sender: <linux-wireless+bounces-5642-peter.schumann=secunet.com@vger.kernel.org>
+X-Receiver: <peter.schumann@secunet.com> ORCPT=rfc822;peter.schumann@secunet.com
 X-CreatedBy: MSExchange15
 X-HeloDomain: mbx-essen-01.secunet.de
-X-ExtendedProps: BQBjAAoA1mQFfe5Q3AgFADcAAgAADwA8AAAATWljcm9zb2Z0LkV4Y2hhbmdlLlRyYW5zcG9ydC5NYWlsUmVjaXBpZW50Lk9yZ2FuaXphdGlvblNjb3BlEQAAAAAAAAAAAAAAAAAAAAAADwA/AAAATWljcm9zb2Z0LkV4Y2hhbmdlLlRyYW5zcG9ydC5EaXJlY3RvcnlEYXRhLk1haWxEZWxpdmVyeVByaW9yaXR5DwADAAAATG93
+X-ExtendedProps: BQBjAAoAR2UFfe5Q3AgFADcAAgAADwA8AAAATWljcm9zb2Z0LkV4Y2hhbmdlLlRyYW5zcG9ydC5NYWlsUmVjaXBpZW50Lk9yZ2FuaXphdGlvblNjb3BlEQAAAAAAAAAAAAAAAAAAAAAADwA/AAAATWljcm9zb2Z0LkV4Y2hhbmdlLlRyYW5zcG9ydC5EaXJlY3RvcnlEYXRhLk1haWxEZWxpdmVyeVByaW9yaXR5DwADAAAATG93
 X-Source: SMTP:Default MBX-ESSEN-02
 X-SourceIPAddress: 10.53.40.197
-X-EndOfInjectedXHeaders: 8542
+X-EndOfInjectedXHeaders: 11510
 X-Virus-Scanned: by secunet
-Received-SPF: Pass (sender SPF authorized) identity=mailfrom; client-ip=147.75.80.249; helo=am.mirrors.kernel.org; envelope-from=linux-kernel+bounces-125898-steffen.klassert=secunet.com@vger.kernel.org; receiver=steffen.klassert@secunet.com 
-DKIM-Filter: OpenDKIM Filter v2.11.0 a.mx.secunet.com 4E0B02076B
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received-SPF: Pass (sender SPF authorized) identity=mailfrom; client-ip=147.75.80.249; helo=am.mirrors.kernel.org; envelope-from=linux-wireless+bounces-5642-peter.schumann=secunet.com@vger.kernel.org; receiver=peter.schumann@secunet.com 
+DKIM-Filter: OpenDKIM Filter v2.11.0 b.mx.secunet.com C963C2025D
+Authentication-Results: b.mx.secunet.com;
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="buDtfqkv"
+X-Original-To: linux-wireless@vger.kernel.org
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal: i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711834844; cv=none; b=T16REM/JeJLpoXc7ElgL45TTWtiTMgynPrFBf46tlGF8vXCCm43+k5UkrSBfltzvdOj6XZjQGnnl38I8eOJmUER9LEmKMlrOcJ5UtCFoT2G2GqfSJEMd1AQnU2cmd+F/xgql5JQa5/FsWa14+2Xmv9mwG03Jta4Uudu6R246STw=
+	t=1711836289; cv=none; b=cxSuHTsUBGViFoyTNjRzDp3H9Kwbj+reYllOOmJrolDaxQxVO6RpMFPBmKUF1hgNRSVBVaZ/VZxx6pv0UgdBilHTPujciCmbedQyCk24yuukfO/WKQA5603x4IoM27rCuVzyBo+TUIhSlAy1JYDVLtl6yaKj1itpYb21EPIvcq8=
 ARC-Message-Signature: i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711834844; c=relaxed/simple;
-	bh=Sfv61GuqN9EjrEx8j81lakykRn8nhWIo5beb5aUP+Mk=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=eWiqO4Ji2EjrulhkN2iHrQdRuXu/yWIUA6mtsi+f+X6Ke/TUpqBVJ58ftB0LVu0Xd1QNYulCWla19cKKMW8iJ+xEhB3K/hdVeD0yV3Bd0Bhs+HPKulDrlxDl5gS5Yztast1Bs9ZVDRIUg8SD/Zahm92liwU2qYbZOMQJltrxgJ0=
-ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Date: Sat, 30 Mar 2024 21:40:22 +0000
-From: Andre Przywara <andre.przywara@arm.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC: Chen-Yu Tsai <wens@csie.org>, Lee Jones <lee@kernel.org>, Liam Girdwood
-	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-sunxi@lists.linux.dev>, Jernej Skrabec
-	<jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, "Ryan
- Walklin" <ryan@testtoast.com>, Chris Morgan <macroalpha82@gmail.com>
-Subject: Re: [PATCH 2/4] dt-bindings: mfd: x-powers,axp152: add boost
- regulator
-Message-ID: <20240330213331.68a2c145@minigeek.lan>
-In-Reply-To: <0b53cf44-b5ca-4ccc-9912-777b85f1bcbd@linaro.org>
-References: <20240329235033.25309-1-andre.przywara@arm.com>
-	<20240329235033.25309-3-andre.przywara@arm.com>
-	<0b53cf44-b5ca-4ccc-9912-777b85f1bcbd@linaro.org>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+	s=arc-20240116; t=1711836289; c=relaxed/simple;
+	bh=PVVuSm2i/BrAi3YIHH//s+w5qN2c55N1o8exyPZvdcs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rXxJ8ehiIYQuPPVOoWlRmKCBNgGKmpf3LZTAVNmG5JfZGIa5jUle/+kteleEus7vNFQ+14NUcQwfE0pLSmp9Gidq+C+h0z+kbFbfUZaddK0TWZVh6YZMLog+b1af/mY7NleL9z29xg7qzt121bBfv491q8wQoES3suBLIOk9CWQ=
+ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=buDtfqkv; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1711836286; x=1712441086; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SGCYWWp9GMIyWYRiLUIkswqhBEjJW45xVVdYqohDnyQ=;
+        b=buDtfqkvqBxlLnqS65zqJ/cACtrKMeM9fj5jx5lMWTOMOcuIYa0nfXs2Z+dl71xqT2
+         oR1oCdo2BGufKALhmivXoJzSHgFcROcJPMM6+L0YPnNOHmlUzb9e9OENal6o2lfc1gC4
+         Jm1fVicJtjJCR4SPRJZnnZH6ndOzeX8WjMWzWh+FKCZOdkFTy9awAAYUySDQWy1sGGw6
+         E1Ry+70LUA/XxJropwgjZ+yoazuCAPGNRhhfBJ/XZgHdgqoedABv9ts0SkcJJ+v+dwDa
+         LJrHmLFtCIhUUcP8mX1tKu4AeS+KZSNi9P9OhpIM/sBgzUYy0IdUA18MXyoCVhVEEGh/
+         Mpzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711836286; x=1712441086;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SGCYWWp9GMIyWYRiLUIkswqhBEjJW45xVVdYqohDnyQ=;
+        b=j4CfW+yg5gOT01ML00GldAirFyRq+yZPOJ2S2Q9cDckHwTjj6PGxKrPx0W1zKZKvAK
+         v2+2jT6QYuqauGNDi/GCE5dFsGdqTnyzVVjuaKFswrFEuYhEmJ708EbiwPsR5NA1uNGg
+         AoAglFWT9Hx/a3vUjAlRyE2DT6/2GL8kWSwbYCew2m3etYo8Jc7PtD3XtHT2xKZAncu3
+         6qFILGXnoqEHSAfeoSG2sddTI22eokB1oIvzmrJtxRQBXMA8HUr9aBszJkMt2FqErdEH
+         kBsKsyq6soYTNthhHKaxFx77hDCI5TRJOzEPyRUwSTHZko4XqL8sPK1UVtWEqfy4r3n+
+         jh3g==
+X-Gm-Message-State: AOJu0YxAojMb4cx1xRrAL1eMEYS4DwajL847oeZeSPYIT+Y8Mww6UHCX
+	by8+b5fNRcHMef+idnad7vsHw2rJto50ypALr89O8L1qYcJgMapi0eOrXN/AeVE=
+X-Google-Smtp-Source: AGHT+IHQblUi6EhvJVc2vxBWhRa0CSocPGwpe4Y/225yNjIZknidoGHYR6Qi/0vpH2PCTsPbf1WZ4Q==
+X-Received: by 2002:a05:600c:3d99:b0:415:475c:2cb7 with SMTP id bi25-20020a05600c3d9900b00415475c2cb7mr6808179wmb.3.1711836285597;
+        Sat, 30 Mar 2024 15:04:45 -0700 (PDT)
+Message-ID: <ea18f91a-710a-4eac-903d-90928caa3090@freebox.fr>
+Date: Sat, 30 Mar 2024 23:04:44 +0100
 Precedence: bulk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -99,55 +116,77 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: net: wireless: ath10k: add
+ qcom,no-msa-ready-indicator prop
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Kalle Valo <kvalo@kernel.org>, Jeff Johnson <quic_jjohnson@quicinc.com>,
+ ath10k <ath10k@lists.infradead.org>
+Cc: wireless <linux-wireless@vger.kernel.org>, DT
+ <devicetree@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Jami Kettunen <jamipkettunen@gmail.com>,
+ Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+References: <fd26ce4a-a9f3-4ada-8d46-ed36fb2456ca@freebox.fr>
+ <84f20fb5-5d48-419c-8eff-d7044afb81c0@freebox.fr>
+ <72c162cc-45e0-48b6-8d90-d59fac299375@linaro.org>
+ <6bd3db0f-2e18-4ad1-abc2-f59c6acc8037@linaro.org>
+Content-Language: en-US
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+In-Reply-To: <6bd3db0f-2e18-4ad1-abc2-f59c6acc8037@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: 2c86f778-e09b-4440-8b15-867914633a10
 
-On Sat, 30 Mar 2024 10:30:05 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+On 30/03/2024 19:23, Krzysztof Kozlowski wrote:
 
-Hi,
-
-> On 30/03/2024 00:50, Andre Przywara wrote:
-> > The X-Powers AXP717 contains a boost regulator, that it meant to provide
-> > the 5V USB VBUS voltage when the devices operates on battery.
-> > 
-> > Add the name "boost" to the regexp describing the allowed node names,
-> > to allow the regulator to be described in the devicetree.
-> > 
-> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> > ---
-> >  Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml b/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
-> > index b8e8db0d58e9c..14ab367fc8871 100644
-> > --- a/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
-> > +++ b/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
-> > @@ -274,7 +274,7 @@ properties:
-> >            Defines the work frequency of DC-DC in kHz.
-> >  
-> >      patternProperties:
-> > -      "^(([a-f])?ldo[0-9]|dcdc[0-7a-e]|ldo(_|-)io(0|1)|(dc1)?sw|rtc(_|-)ldo|cpusldo|drivevbus|dc5ldo)$":
-> > +      "^(([a-f])?ldo[0-9]|dcdc[0-7a-e]|ldo(_|-)io(0|1)|(dc1)?sw|rtc(_|-)ldo|cpusldo|drivevbus|dc5ldo|boost)$":  
+> On 30/03/2024 19:20, Krzysztof Kozlowski wrote:
 > 
-> That's not an easy to read regex...
+>> On 28/03/2024 18:36, Marc Gonzalez wrote:
+>> 
+>>> The ath10k driver waits for an "MSA_READY" indicator
+>>> to complete initialization. If the indicator is not
+>>> received, then the device remains unusable.
+>>>
+>>> cf. ath10k_qmi_driver_event_work()
+>>>
+>>> Several msm8998-based devices are affected by this issue.
+>>> Oddly, it seems safe to NOT wait for the indicator, and
+>>> proceed immediately when QMI_EVENT_SERVER_ARRIVE.
+>>
+>> This is v2, so where is the changelog?
+> 
+> Expecting reviewer to dig previous discussions will not help your case.
+> It helps reviewers if you provide necessary information, like resolution
+> of previous discussion in the changelog.
+> 
+> I dig the previous discussion, since you did not mention it here, and it
+> seems you entirely ignored its outcome. That's not a DT property.
+> 
+> NAK, sorry. Please go back to v1 and read the comments you got there.
 
-TBH regexps are the least of my problems when reading bindings ;-)
+My apologies for omitting the changelog.
 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+And I don't blame you for missing the thread's resolution,
+since I made a bit of a mess of it with my various messages.
 
-Thanks!
+The firmware-5.bin approach was deemed DOA since these files
+are parsed too late with respect to the required work-around.
+Thus, we went back to either DT or a to-be-written system used
+in the vendor driver.
 
-> If driver does not depend on _, please consider dropping (_|-).
+Jeff Johnson (one of the maintainers) concluded with:
+"But I'm OK with the DT option as well. Kalle?"
 
-The drivers (checked both Linux and FreeBSD) do look for a specific
-string, but it's the real old regulators that used ldo_io[01] and
-rtc_ldo, all the "newer" ones use a dash. Since this binding covers all
-of them, we can't drop this from this regexp, but rest assured we only
-go with dashes for new and upcoming devices.
+Thus, I spun v2 to get Kalle's Ack, and more crucially to give
+a heads-up to the msm8998 users my patch would impact.
 
-Thanks,
-Andre
+Regards
+
 
 
