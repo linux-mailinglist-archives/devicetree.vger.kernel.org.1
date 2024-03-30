@@ -1,57 +1,74 @@
-Return-Path: <devicetree+bounces-54786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D98F89298E
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 07:42:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A6178929A1
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 08:07:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CAC001F21C84
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 06:42:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7F539B22568
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 07:07:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F88264B;
-	Sat, 30 Mar 2024 06:42:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 070EA15CE;
+	Sat, 30 Mar 2024 07:07:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b="EPFeAfPy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NeyEXKqN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-108-mta234.mxroute.com (mail-108-mta234.mxroute.com [136.175.108.234])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79891364
-	for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 06:42:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=136.175.108.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48A877FB;
+	Sat, 30 Mar 2024 07:07:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711780968; cv=none; b=l90osv4YytV3yqXV9rCsg2Rr8HnxGLnO0DBOiNAlTmD8hJCamAef37KPnHB0R2vlw1jbMgT3/fDgFC7X35XHxAg8gRiKjYXH+fQ2rhX9JTb7NcMIfyBwt3Grbo9BZrZxyUSCpceVcgf0Ajn71ZvQp/yVb7qSNS0ousVujFYg1UU=
+	t=1711782441; cv=none; b=uY9be6TA5YgBR1vdjV9O1UprbpD+Yt706tDSgMnZEqrN9gl3y1RrVvylv/b2KVZp7A2/2jJJzDQ9FMEoFRDMjF4yJ6W+AIHd20jHurL8RdT9H33kuOXSV04FO3242RMypGrl11L8meAuyP/rAjKGdWNsknmGpwmdoXXa1/lYsXI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711780968; c=relaxed/simple;
-	bh=7xQ2ivu2mBMwc/QcrA9WEVxtlT624ZOcdgV5t+SROSY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oJuj1+MvLjNSNPc3z5yiSIfd3a6qacjA5Wm81DrUic9EU3QcfKuaxzsuG14Feuz0BHlq7QXmD/Ef8PMnj+0OyZ5Fzx0rMqyk4CC+37BQep4TV8W/P72R2XvQknVYffl4CVtQavNexpt3YQB72zkK2EQ1e7Z1KTmLwRIEeT+wZ44=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com; spf=pass smtp.mailfrom=luigi311.com; dkim=pass (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b=EPFeAfPy; arc=none smtp.client-ip=136.175.108.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=luigi311.com
-Received: from filter006.mxroute.com ([136.175.111.2] filter006.mxroute.com)
- (Authenticated sender: mN4UYu2MZsgR)
- by mail-108-mta234.mxroute.com (ZoneMTA) with ESMTPSA id 18e8e13daea0003bea.00f
- for <devicetree@vger.kernel.org>
- (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
- Sat, 30 Mar 2024 06:37:29 +0000
-X-Zone-Loop: 83e0a395b2bdc0e8a2b3fccfc238e6db67364d4c6623
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=luigi311.com; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
-	From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=c9wu6uz4/TTP9Z+1HqEXwIpJ2llylWk7CQEZxnmbusM=; b=EPFeAfPycmHXeSVlr523htye6T
-	Vx4kZ+cOB9WGn55EZoSuasplHVbboila5B5NZXOKxR2ccL9VYQDMYhYAX9La8vcoblZqzfr+3/cr3
-	DV3rKeYUY1yGH7gOUODXE3TlQnN1Q3zIlgUB+0SygJU/E1C5qiS2RmLAYXPH6ctjeH8vVqe6kJsK8
-	asr3L1cG0Ba1WJgmztOC+95wTgvuHIVRNdBdGH68TIa8cFGr9AEucjFbUiEeJFs3b7rIGihf0O33Z
-	EdjShJNMZigpD8dlP/SY1mJitBc7PPskavs+ptZPIMMxvD62/IY+0wkrWv9FDAcXE21P01qfjvB5g
-	HD1+X3VQ==;
-Message-ID: <91e71e28-5149-4041-a928-064448df93ab@luigi311.com>
-Date: Sat, 30 Mar 2024 00:37:24 -0600
+	s=arc-20240116; t=1711782441; c=relaxed/simple;
+	bh=DfKe1GaAeO1jSPZfHRONUECzOmyixsLd6boX2xS42Hs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=dYQyR/cLKPGvKbl3909fyViErfkt31yBbkJgAiU6SmEhe4juZwvvxObv6e7o2CF1dQVVnzJ1//CpsEJHw9ObgceKIJ8yCWWjW/N1s2jux9wvNn38vAfMcQltmUE2npd+xzfvisUfiPHEMRMaD4Uw3X4YNAMpm2CrEK2nnHgYYp4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NeyEXKqN; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a466fc8fcccso328923866b.1;
+        Sat, 30 Mar 2024 00:07:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1711782439; x=1712387239; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nckLeDqGhSQaqNal+sJU1eNl+/6Kt+Tu4bK8s4J+tVs=;
+        b=NeyEXKqNbpSZqQdkx4eXQV4GEHa4AHnO2H+mh49jerAkN7M+KiwdtDpoG4n4KpCklG
+         uINAQQwVkwdvTp0kXkDW7paGgoyLe2UpDNBuYQ6YH76zkcnko6eawEPWCJoSne81tm/5
+         i7UMcw+0/Qz2r5yQJ+9IkAPAYatW5MJh38Nz1TSQLpuQnHQ1YaKK8LjxVCcVzkMS8q0F
+         SWlMx9d41xvUVPz+GbLTHNEAguQZH5mWwyqVoO1lS0n6qQeZqxvkXnWfuLwWxW22upBJ
+         7IB8Aum8OkYjeLf9km2bMvQ2s1iPfoAaQAs8RXvmLHzPdodXUyINNojak/osw22EEmWE
+         fj2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711782439; x=1712387239;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nckLeDqGhSQaqNal+sJU1eNl+/6Kt+Tu4bK8s4J+tVs=;
+        b=Yqrhxr4LH/MO/GFK4v/Xjuc2V941+s8C9pK1Fb4Xhfp/K4mn1hf+Hdp5LtfK0HL4Rh
+         T4ueQFURX5BG4IxU2rkvKvbKDC3nNhoXaxbnsywiPud9QZNxx+0OTCUKUvPPCyXYiy80
+         Uvzkefs+BqxM693D+CoHZI3Ksk1x2mc3ji/kM1v709zdlYsNu9fldLdqWYnf2OI36vGB
+         XnsP7bNIbXggNrYz2ySKQ4nKU/KDZZ93IbUR5RHLMA96AnRo27D+x3DmKs7RDwelDe8h
+         NBj2zFWMW0wMXB3wH1G3h9rDHl3j6C3MtFFbZbAKh++peaTXZvV2w1aOn+2nNR1RHlp9
+         Lrww==
+X-Forwarded-Encrypted: i=1; AJvYcCWYOjQ5RDdWXfYo/D1tyDLU2/mGy7zmwSHozSGrZDA3XSpDgD7MGzqEUp6sRztDiaXb0Hu+i0O35b1wqkVAAO/8Io3SWkANgUU3eUgfj36rDXi04sj9SURz07DP7LO3r6mcGaXS05a1k36G05J2XLG8ZUziqjvQ8z5quQv9SSZhU+6yesExdLs=
+X-Gm-Message-State: AOJu0Yzxu8TiYNFtnKa27NoCR82yhDSwDr65KgRJOgWyAOyrtWVdHQvr
+	w5xLaf087xxU/MVl/+zyqmn+YHESiO8OutoP9AB8QdqYfqYXTcVie+fxIR7x
+X-Google-Smtp-Source: AGHT+IEZKo3sEI9j0pgyjhXR0Dis29fDjDPCuR8TI/LqmJF0b4bRohk7FKqThfOON2B2k1sCZwVTdg==
+X-Received: by 2002:a17:906:57cc:b0:a4e:488d:aa90 with SMTP id u12-20020a17090657cc00b00a4e488daa90mr672540ejr.74.1711782438510;
+        Sat, 30 Mar 2024 00:07:18 -0700 (PDT)
+Received: from [192.168.20.170] (57657817.catv.pool.telekom.hu. [87.101.120.23])
+        by smtp.gmail.com with ESMTPSA id p6-20020a170906a00600b00a46d04b6117sm2789504ejy.64.2024.03.30.00.07.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 30 Mar 2024 00:07:18 -0700 (PDT)
+Message-ID: <7f28584c-0e9a-44bf-b0c1-7f7a2acfb847@gmail.com>
+Date: Sat, 30 Mar 2024 08:07:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,35 +76,57 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/23] v2: imx258 improvement series
-Content-Language: en-US
-To: Dang Huynh <danct12@riseup.net>, linux-media@vger.kernel.org
-Cc: dave.stevenson@raspberrypi.com, jacopo.mondi@ideasonboard.com,
- mchehab@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
- kernel@pengutronix.de, festevam@gmail.com, sakari.ailus@linux.intel.com,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240327231710.53188-1-git@luigi311.com>
- <4599295.LvFx2qVVIh@melttower>
-From: Luigi311 <git@luigi311.com>
-In-Reply-To: <4599295.LvFx2qVVIh@melttower>
+Subject: Re: [PATCH] arm64: dts: qcom: pm6150: correct Type-C compatible
+Content-Language: hu
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Danila Tikhonov <danila@jiaxyga.com>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240328074544.5076-1-krzysztof.kozlowski@linaro.org>
+From: Gabor Juhos <j4g8y7@gmail.com>
+In-Reply-To: <20240328074544.5076-1-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Authenticated-Id: git@luigi311.com
 
-On 3/29/24 21:51, Dang Huynh wrote:
-> On Wednesday, March 27, 2024 11:16:46 PM UTC git@luigi311.com wrote:
->> From: Luigi311 <git@luigi311.com>
+2024. 03. 28. 8:45 keltezéssel, Krzysztof Kozlowski írta:
+> The first part of the compatible of Type-C node misses ending quote,
+> thus we have one long compatible consisting of two compatible strings
+> leading to dtbs_check warnings:
 > 
-> The Linux kernel does not allow anonymous (or pseudonymous) contributions. You 
-> should use your real first and last name.
+>   sc7180-idp.dtb: usb-vbus-regulator@1100: compatible:0: 'qcom,pm6150-vbus-reg,\n qcom,pm8150b-vbus-reg' does not match '^[a-zA-Z0-9][a-zA-Z0-9,+\\-._/]+$'
+>   sc7180-idp.dtb: /soc@0/spmi@c440000/pmic@0/usb-vbus-regulator@1100: failed to match any schema with compatible: ['qcom,pm6150-vbus-reg,\n          qcom,pm8150b-vbus-reg']
 > 
-> See section 1.5 in "A guide to the Kernel Development Process":
-> https://www.kernel.org/doc/html/v6.8/process/1.Intro.html#licensing
+> Reported-by: Rob Herring <robh@kernel.org>
+> Fixes: f81c2f01cad6 ("arm64: dts: qcom: pm6150: define USB-C related blocks")
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/pm6150.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> 
+> diff --git a/arch/arm64/boot/dts/qcom/pm6150.dtsi b/arch/arm64/boot/dts/qcom/pm6150.dtsi
+> index 11158c2bd524..b20a639cddf3 100644
+> --- a/arch/arm64/boot/dts/qcom/pm6150.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/pm6150.dtsi
+> @@ -71,8 +71,8 @@ pm6150_vbus: usb-vbus-regulator@1100 {
+>  		};
+>  
+>  		pm6150_typec: typec@1500 {
+> -			compatible = "qcom,pm6150-typec,
+> -				      qcom,pm8150b-typec";
+> +			compatible = "qcom,pm6150-typec",
+> +				     "qcom,pm8150b-typec";
 
-Ok I've changed my sign off to my real first and last name for the
-next revision
+The warning in the commit description is related to the
+'usb-vbus-regulator@1100' node, whereas this fixes the compatible of a different
+one.
+
+Did you want to fix both?
+
+Regards,
+Gabor
 
