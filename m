@@ -1,131 +1,197 @@
-Return-Path: <devicetree+bounces-54816-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A10DB892B07
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 12:58:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4971F892B48
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 14:13:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D852282E61
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 11:58:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A08751F21CB8
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 13:13:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1054D38DE5;
-	Sat, 30 Mar 2024 11:58:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19D631D68F;
+	Sat, 30 Mar 2024 13:13:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="m3qiuv6J"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="s4j9+5zN";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="T332CDzy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from flow7-smtp.messagingengine.com (flow7-smtp.messagingengine.com [103.168.172.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A363C38DDC;
-	Sat, 30 Mar 2024 11:58:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB0281FB5;
+	Sat, 30 Mar 2024 13:13:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711799919; cv=none; b=MLH3+5tGpqnHUr9pZub2NJvHfJPPNyWrnB39ku+18bawxiqPX0UViCRZke2+PR785UCRQDZIwQ1oWDNxEPcjd443MoE/dnHx9dK7wT0ImxlPA5WaozX37KNdSSEDuM4NIwrqyvZ/ceHScbZYO4gSFtrsUrGQymB7Wo7YcecTdEw=
+	t=1711804409; cv=none; b=X9Ltip7zthj9aqpST+wx2sE85OL4e1dv4iGo1bJYPymg4sFydx0aNaC8r9mlYq4oZ+aK1nNb60wrIfNHCYsMaHn2QMscWel8wPjEHYYTXdhB3Mim+UEjha/3Rmg1dZ4rwwroEppBzZ34ApMgzrX0xmAbn1zUmhCYqeNSSpo6xeY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711799919; c=relaxed/simple;
-	bh=ynfTQ/GVycFwNXOPFSe6F0brkpnNBWsKnsVlyJvCxJE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U28qVO+cpz0uk3BduDvy6kk62IDbn+WXCPW5TbM5D9+6d/0+fQ44Xfay9+hrS2Y7Mj5QYrqG97rao3F8D3Y7sU5FvplCSGca/z+6FWoGW9np6PPRkgqp/6cgC0X0+d/GKpAu0Yqxp2kDVix/m8tNMZydN6Pa9zjGiGFzPTkrh4Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=m3qiuv6J; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1711799916; x=1743335916;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ynfTQ/GVycFwNXOPFSe6F0brkpnNBWsKnsVlyJvCxJE=;
-  b=m3qiuv6JhVTcRCBoUSmri3xcu54TsZ8Z4sZ31keiDoP1Jif+i/tL/oMR
-   a02vwR1z8SlmHXQdOLd49CcKt+l3xwYVapoN1dN/5D7orWtFdqev2W8pH
-   H6mJYEdQwD4gISnfRxpSbkzueNTRIfgXuo0Qd3SNG0bbUdUH1tFfnRBSI
-   Mmlbe+SWNqZ7BI9qxIts2BXmtWhjmmhry+XRtgLjqvtLJkcRi/krfUX/B
-   HZ8TGI3Cdl5YvT9EPbxkgxPAqyHmqMt99UaLUNVtNtwrcbcJkIAP+RwRj
-   4hX+oj+/EAimr7WoTUi6aGs3m+GKrOxUv68CW8S/Whz8ejYi5L0Wf5ZC2
-   Q==;
-X-CSE-ConnectionGUID: IRqAldnrRdmu1RXH9IfrZA==
-X-CSE-MsgGUID: 4jUVBjVFQkOvFZJlAP3zvg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11028"; a="18120529"
-X-IronPort-AV: E=Sophos;i="6.07,166,1708416000"; 
-   d="scan'208";a="18120529"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Mar 2024 04:58:35 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,166,1708416000"; 
-   d="scan'208";a="17292158"
-Received: from lkp-server01.sh.intel.com (HELO be39aa325d23) ([10.239.97.150])
-  by fmviesa009.fm.intel.com with ESMTP; 30 Mar 2024 04:58:30 -0700
-Received: from kbuild by be39aa325d23 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rqXLv-0004EM-2E;
-	Sat, 30 Mar 2024 11:58:27 +0000
-Date: Sat, 30 Mar 2024 19:58:21 +0800
-From: kernel test robot <lkp@intel.com>
-To: wefu@redhat.com, jszhang@kernel.org, guoren@kernel.org,
-	conor@kernel.org, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, jic23@kernel.org,
-	lars@metafoo.de, andriy.shevchenko@linux.intel.com,
-	nuno.sa@analog.com, marcelo.schmitt@analog.com,
-	bigunclemax@gmail.com, marius.cristea@microchip.com,
-	fr0st61te@gmail.com, okan.sahin@analog.com,
-	marcus.folkesson@gmail.com, schnelle@linux.ibm.com, lee@kernel.org,
-	mike.looijmans@topic.nl
-Cc: oe-kbuild-all@lists.linux.dev, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, Wei Fu <wefu@redhat.com>
-Subject: Re: [PATCH 3/3] dt-bindings: adc: Document XuanTie TH1520 ADC
-Message-ID: <202403301900.9wSnTE6y-lkp@intel.com>
-References: <20240329200241.4122000-4-wefu@redhat.com>
+	s=arc-20240116; t=1711804409; c=relaxed/simple;
+	bh=oYWNSLB7Z3OmKkRKaMdt+xkwR1s947tnLcLU8T4RTrU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=A+MGrDpKH4eFNwmmnDrY1yESgFCJgICElw2WPUziiTdXmwB2ISQwVb7hH/l97xvffCiwww6oKpOwdB0NPFJy1pvwE9w2Mq2bxWN+/akEqJ3Iakn+HiBh2npfl0BkNlD56HZXD0Sl6Xn3vM7WN/hltLcAfIJifTTr7j3U+wOk7Bo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=s4j9+5zN; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=T332CDzy; arc=none smtp.client-ip=103.168.172.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+	by mailflow.nyi.internal (Postfix) with ESMTP id 6C2B7200215;
+	Sat, 30 Mar 2024 09:13:22 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute1.internal (MEProxy); Sat, 30 Mar 2024 09:13:22 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:message-id:mime-version:reply-to
+	:subject:subject:to:to; s=fm1; t=1711804402; x=1711808002; bh=DH
+	XZ2gkIcVCkQdzHyEOYWm/LRH13Sc+9ts+wLRwRTE4=; b=s4j9+5zN9N2Oy5Wqb8
+	16YQluyk3DEE+/Kc7VcyV7GgnsAFssOD6UUAWA+Duh9DzU8us0RWQXOyRlG0t3zu
+	RamIKWUeCeWsJDx576RlAlyJTizC+LcyOYC6ryhQInQs1Z5Jm5pizoOgA7S/2Kxt
+	oadd4N/6PqvO3k8TGhQPYND7U+QfJXoLSzMpMta2JxCjNqgZCVAW3XKB+GM3Kq2T
+	jMx5loESWFPVvAMnHRiWucQi4K9j2Ko1dW4SPvAUhAD38E9B6P3n8bvB7qI+lFhh
+	pkelvNpM+WDFc1PDK8cE675fUyfOefWpXED4t4j3p4b6EVRppehy09ZbQnhZR5C2
+	Ve6Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm2; t=1711804402; x=1711808002; bh=DHXZ2gkIcVCkQ
+	dzHyEOYWm/LRH13Sc+9ts+wLRwRTE4=; b=T332CDzybdOPUGRlmaDKfrA1hAED8
+	gR/BWTgcmwkOe/U0VpYLzk9xYuAk6VTGkLsnEWGLhjRoC/XMUUniTgb3kqiruvuq
+	F4rbd5JEv0vF51iojqiXKcFZfk/+Mr/L55QxXJnQmLNBe8UvujFiVh3dT11+6JQz
+	4GCaFVLN2cfw2e+v4F/dY8uEHpwrzPBv1+qXaOW3VGRtDNAHf6Ut4yAkv0DpAspD
+	BGGHcitbs8HEgclm6wuf6oRUI+C4HzAR/Dj378Mdndd8jO8aQuyJpAZoNE4Xqw6z
+	ck2XDUP3emSCQRgNYP+aRF0jd7mPROuQfmrH9X3GydKvdKGtY/6QWp+7w==
+X-ME-Sender: <xms:8Q8IZjvHBFzNn1XsPUf7WqtF07UZZ_NmTS5jiJ4juis3mqC1wrLB0Q>
+    <xme:8Q8IZkfyYZU63a5yS8cMODWdwY15vU400YDoTIjgrmlOvhynUcqRc0vcLufL1-NMi
+    9Byb-TOs-a_ztAhT9U>
+X-ME-Received: <xmr:8Q8IZmxKNH0ANM3d0qv2nny-gXcdIMyFHRFheqQm3sbeFDgsiviqJSKv04R_IjXV1oNkiXw2WFzqYWtbKqIyd6pbY1e5-srewbSz>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledruddvhedgvdeiucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvvefufffkofggtgfgsehtkeertdertdejnecuhfhrohhmpefpihhklhgr
+    shcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhouggvrhhluhhnugdorhgvnhgvsh
+    grshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrghtthgvrhhnpeehudelteetkefg
+    ffefudefuedvjeeivdekhfevieefgeffheeltddvvefhfeetgeenucevlhhushhtvghruf
+    hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehnihhklhgrshdrshhouggvrhhl
+    uhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgv
+X-ME-Proxy: <xmx:8Q8IZiMklNKIFXsjhLoJVAWfsTb-331eBq9-kEyoKFUFmOWtPYZKiA>
+    <xmx:8Q8IZj-ZEqgeVBJ8_Q-WmARCvPkwyh0vg4Q4nNjuT21_PZh6wfDNEw>
+    <xmx:8Q8IZiV2lK7WlSjHPGsDZO-P0WfYli8i_iLmKSFo0HwI8uvZ7vpSgg>
+    <xmx:8Q8IZkcdFSrK11KRr6YFQM4t7f4h29wE6RPWj5-LGUXcCGWwBl0yhw>
+    <xmx:8g8IZnXEr36MyWR291UoN0yIS9SwkuBUHS348t3HJ8JIsheerXEJlpD3pRI>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 30 Mar 2024 09:13:19 -0400 (EDT)
+From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Sergey Shtylyov <s.shtylyov@omp.ru>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: linux-renesas-soc@vger.kernel.org,
+	=?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+	Rob Herring <robh@kernel.org>
+Subject: [net-next,v2] dt-bindings: net: renesas,ethertsn: Create child-node for MDIO bus
+Date: Sat, 30 Mar 2024 14:12:28 +0100
+Message-ID: <20240330131228.1541227-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240329200241.4122000-4-wefu@redhat.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi,
+The bindings for Renesas Ethernet TSN was just merged in v6.9 and the
+design for the bindings followed that of other Renesas Ethernet drivers
+and thus did not force a child-node for the MDIO bus. As there
+are no upstream drivers or users of this binding yet take the
+opportunity to correct this and force the usage of a child-node for the
+MDIO bus.
 
-kernel test robot noticed the following build warnings:
+Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+* Changes since v1
+- Expand on history in commit message.
 
-[auto build test WARNING on jic23-iio/togreg]
-[also build test WARNING on robh/for-next linus/master v6.9-rc1 next-20240328]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Hello,
 
-url:    https://github.com/intel-lab-lkp/linux/commits/wefu-redhat-com/drivers-iio-adc-Add-XuanTie-TH1520-ADC-driver/20240330-041029
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-patch link:    https://lore.kernel.org/r/20240329200241.4122000-4-wefu%40redhat.com
-patch subject: [PATCH 3/3] dt-bindings: adc: Document XuanTie TH1520 ADC
-compiler: loongarch64-linux-gcc (GCC) 13.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20240330/202403301900.9wSnTE6y-lkp@intel.com/reproduce)
+The Ethernet TSN driver is still in review and have not been merged and
+no usage of the bindings are merged either. So while this breaks the
+binding it effects no one. So we can correct this mistake without
+breaking any use-cases before we need to support any backward
+compatibility.
+---
+ .../bindings/net/renesas,ethertsn.yaml        | 33 ++++++++-----------
+ 1 file changed, 14 insertions(+), 19 deletions(-)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202403301900.9wSnTE6y-lkp@intel.com/
-
-dtcheck warnings: (new ones prefixed by >>)
->> Documentation/devicetree/bindings/iio/adc/thead,th1520.yaml:45:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
---
->> Documentation/devicetree/bindings/iio/adc/thead,th1520.yaml:45:1: found a tab character where an indentation space is expected
---
->> Documentation/devicetree/bindings/iio/adc/thead,th1520.yaml: ignoring, error parsing file
-
-vim +45 Documentation/devicetree/bindings/iio/adc/thead,th1520.yaml
-
-    41	
-    42	examples:
-    43	  - |
-    44	    adc: adc@0xfffff51000 {
-  > 45		compatible = "thead,th1520-adc";
-
+diff --git a/Documentation/devicetree/bindings/net/renesas,ethertsn.yaml b/Documentation/devicetree/bindings/net/renesas,ethertsn.yaml
+index ea35d19be829..b4680a1d0a06 100644
+--- a/Documentation/devicetree/bindings/net/renesas,ethertsn.yaml
++++ b/Documentation/devicetree/bindings/net/renesas,ethertsn.yaml
+@@ -71,16 +71,8 @@ properties:
+     enum: [0, 2000]
+     default: 0
+ 
+-  '#address-cells':
+-    const: 1
+-
+-  '#size-cells':
+-    const: 0
+-
+-patternProperties:
+-  "^ethernet-phy@[0-9a-f]$":
+-    type: object
+-    $ref: ethernet-phy.yaml#
++  mdio:
++    $ref: /schemas/net/mdio.yaml#
+     unevaluatedProperties: false
+ 
+ required:
+@@ -94,8 +86,7 @@ required:
+   - resets
+   - phy-mode
+   - phy-handle
+-  - '#address-cells'
+-  - '#size-cells'
++  - mdio
+ 
+ additionalProperties: false
+ 
+@@ -122,14 +113,18 @@ examples:
+         tx-internal-delay-ps = <2000>;
+         phy-handle = <&phy3>;
+ 
+-        #address-cells = <1>;
+-        #size-cells = <0>;
++        mdio {
++            #address-cells = <1>;
++            #size-cells = <0>;
+ 
+-        phy3: ethernet-phy@3 {
+-            compatible = "ethernet-phy-ieee802.3-c45";
+-            reg = <0>;
+-            interrupt-parent = <&gpio4>;
+-            interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+             reset-gpios = <&gpio1 23 GPIO_ACTIVE_LOW>;
++            reset-post-delay-us = <4000>;
++
++            phy3: ethernet-phy@0 {
++                compatible = "ethernet-phy-ieee802.3-c45";
++                reg = <0>;
++                interrupt-parent = <&gpio4>;
++                interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
++            };
+         };
+     };
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.44.0
+
 
