@@ -1,69 +1,71 @@
-Return-Path: <devicetree+bounces-54819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BD23892B66
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1F1F892B67
 	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 14:34:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AEA861F21DC9
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3DA71C21019
 	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 13:34:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39A79219F0;
-	Sat, 30 Mar 2024 13:34:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCF332555B;
+	Sat, 30 Mar 2024 13:34:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NAzdlbD2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jhugOw8V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86BD614A96
-	for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 13:34:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CC3222F19
+	for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 13:34:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711805663; cv=none; b=lT+r8cEBx59XjFB0E9fq6VtfSJLb2nW65UVZU6zeGc7ccI70Kd0GDchPQ1+H6xq0meZDG31EqIb7ms/VZKOzkyRxBqQP8Z9V7Ans3b4Cgx7KNmXbrOebSetcAtRHLtY67hQD8kVLCnQKrJOhrW27jHyWr0ZRAVti/fg7JDdidDU=
+	t=1711805665; cv=none; b=f5DR53Tg1RClZnIasliIa1TFnVO5kaluLY0F4AwKjIuy9jg26X5wN20o65DImIImYMpaIp7EY+izLm56C/ebGyGeUyDl9j0lgx2PneIfuvgTQR8arJy0zaH7f8rYYaQ5ehdYbxhjldz3jwZfs+uqTJzTe0CPHQSQjMnHy+bfH+c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711805663; c=relaxed/simple;
-	bh=b5BAnNAzuVJGQLT54cg66vEhDR5t6XTVi+TumuM+TWE=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=cinNKjCKBJJNyjyzrO1NwJcqCihvAyUeE+A/mzW/bcpMAhvc1w9i9AyysjNe50sIVaXvRkJ7BynhGtljWikpYYdbWJOCP+vKCEblHi0CATxOKSGf7cjyii8Um93oOyRmJ1V6U7jXzF9vc7SAYBmcU+10Liqug1zG+lJLd0sQLN4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NAzdlbD2; arc=none smtp.client-ip=209.85.221.52
+	s=arc-20240116; t=1711805665; c=relaxed/simple;
+	bh=LGw6kak4lZFihhndUY61EFLYz8x56qhQ5QE0nUpuhjo=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=hMaCjNNXH8XMFcf1JvwX560bvGLLuccyjZrYYFKsT6ypTvdP/aPE7tsw7brl9lwwnm3H8MAa48U7X/ygPhgMIruBx+YdT/B53mUNQBH6Bd/hdVhOnlf/gvWiVQpf5I/577vBA7tLrp2HleFuLhwCMjGU0iEV74MLtfC4zPhN+yg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jhugOw8V; arc=none smtp.client-ip=209.85.128.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-34005b5927eso1999135f8f.1
-        for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 06:34:21 -0700 (PDT)
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-415446af364so13109355e9.0
+        for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 06:34:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711805659; x=1712410459; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=grJR46I+1DnHyZ0Zjw+rpwAPFOhrK7vpoH0EHH9w4rk=;
-        b=NAzdlbD22hlggdpqNn+tTIdkDFxRA+G292tYNudYMWfY4FRTdM0ywvTdCv0JDLBddI
-         y2EZY4oseYdWHBwsjRu0CwIOS8SwxWkurkaaXurV/OGr5QYRepSDypkpAtDCkW+LoeOW
-         2e5Cd8OK2kxKVRseyR/96eBpDqlp/VacqsTVZeHNG86e/YGjR6T3i0RCPfZDXlAH5n27
-         /+B69iSTsdPoKM4m7HqsWwZWAC2bFEugk5VBlQrj7Tm4gmaDhNZWftG9Drk9jlaxL6ZX
-         jeV6gZtsbJpDqZW49SNte2NIksbOH0l06p0h8kpKo9+wnGDC97QtdcB+AnDb9OoDAYKO
-         8fyQ==
+        d=gmail.com; s=20230601; t=1711805662; x=1712410462; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hwVvoPowNn0OI3aCiowgffdI708sY5tNSiLWt+MX6xI=;
+        b=jhugOw8VXcsSOxIoZmV0I3p5TR2ampI4h2QxHTaYNdNORhZPzkpNtB07gTZ+UdGGKK
+         H52j3rHJ/JE0hOl3ZaWuXm0un21afgVOkf1yzUzEJGTAqk6VwB+wzUnocIFkFEvaXlaf
+         uJcxmQTmfxJUFFW1svRzED29/iGZEZWWDHVjUyZFL3264GoL1V1FgrsMr1HXpyggRwQY
+         UAJ0A6GQjbuyW9NphH8j/HB1V9CWsSqpR70I69ks9cWVam+9b4qRx3qQFnUhF7kK9zNw
+         /9v85kk7p7T9KaQgF11QegeNOSp4xsNP4db2lMua0aViFtd709WWQUfBshIhlmTeF+NC
+         Bk9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711805659; x=1712410459;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=grJR46I+1DnHyZ0Zjw+rpwAPFOhrK7vpoH0EHH9w4rk=;
-        b=ljDKrlBsOu5lxXTkYfkDdfVTnejoeuk8KQwJmbxknsMZFl6sIL8PSvdZUjgRpsNQSN
-         LkdcifjqEY2+vUXS/XH71C4OpQ0ah5z+nEMwGAZtBA9YSdzmwLPnr7gMYD7BJHudnQz6
-         IOV3CXt9uESvofMcOErmVryLv5rzjTF1kbvw+U2Snq/OOPl7WSoRl8p6a/mCgOs5gZ5/
-         k4erUyFsQ/5Lk3WmXVnEJ/Ogho79BfCdmx+vP4UxwxN+/3ohroDQy2J661PXZ0TzEHto
-         inq5g+E4kjt38OBb3W5opT8q1uosp/L8/eA/T5Z42elYRKfzIukqdy58uWrsOsSMv6y6
-         oESg==
-X-Gm-Message-State: AOJu0YybWpLTWyxJXoSCNbfKGLDnrLkBLoB91AqaNtVpmuN9Hrg7fu1g
-	BS5n/KXMUBTwPpRyFfWXsx8W67ki2PtSyzoNOF0Fhj+1SAtR+ZKV0XEls3JmYbBinw==
-X-Google-Smtp-Source: AGHT+IFoId/XoC9DHDtyTSxWYNrcu16tiyTKfEXlXUPQFq1Kcj1yzBvpm8MrLWmUQk090mPex2Ug+A==
-X-Received: by 2002:a5d:474a:0:b0:33d:2071:9b85 with SMTP id o10-20020a5d474a000000b0033d20719b85mr2881980wrs.19.1711805659388;
-        Sat, 30 Mar 2024 06:34:19 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1711805662; x=1712410462;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=hwVvoPowNn0OI3aCiowgffdI708sY5tNSiLWt+MX6xI=;
+        b=S5o77KmcyA6KJko6hZuAn8gGFGHkq6D/H5PDKiUAlUymG7T2HTtowmbjKi+ZE0klOV
+         DG2t/4CZWCFlmWAv8DCiAimvTyLAHELtP9T/gTOOoGp9EQUCkzY3tgb4Ca5SmjG/ojhd
+         K9PdJYslS0hcowYxsPpQK6iYt8/1udjDi5T5j/tuo/uurkgIs1uSv38YyyuzrGa4CQlK
+         96l7iH+6z3UmcXBnEVgbipQgx5bnW6u6rXBNboYQVamUBLxkXRLCrfvYP/NI82YszWcN
+         dJHM242DJEkomSyztF+7wDpmx1omRz1vrtwJpfboQV3vz9oJ8RAJmru0TqV2vh1bEChm
+         /cng==
+X-Gm-Message-State: AOJu0Yya9wffHuCeXfSgZruPicUd5MTG6SdLaLKmEDSppDJ2N2w/cm5i
+	d19lJDzS6U82jBVWn1b8B2HnJIv9tXp9DVMPi/TowRHGhZO3RlOei7C2Nv3ZWvzi3A==
+X-Google-Smtp-Source: AGHT+IHh9DQvqoy8Dp3di8r3TZhfjeHHkmjziX1hFRPX9T94+4F4w2FRwgmkStv6sOb068nXquIpew==
+X-Received: by 2002:adf:cc92:0:b0:341:8a0a:a354 with SMTP id p18-20020adfcc92000000b003418a0aa354mr3626691wrj.5.1711805662301;
+        Sat, 30 Mar 2024 06:34:22 -0700 (PDT)
 Received: from gilles-Precision-3571.lan ([2605:59c8:6662:b310:962a:f8cf:49d0:f63e])
-        by smtp.gmail.com with ESMTPSA id dw11-20020a0560000dcb00b00341c7129e28sm6454869wrb.91.2024.03.30.06.34.16
+        by smtp.gmail.com with ESMTPSA id dw11-20020a0560000dcb00b00341c7129e28sm6454869wrb.91.2024.03.30.06.34.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 30 Mar 2024 06:34:18 -0700 (PDT)
+        Sat, 30 Mar 2024 06:34:22 -0700 (PDT)
 From: Gilles Talis <gilles.talis@gmail.com>
 To: devicetree@vger.kernel.org,
 	imx@lists.linux.dev,
@@ -75,11 +77,14 @@ Cc: conor+dt@kernel.org,
 	festevam@gmail.com,
 	alex@voxelbotics.com,
 	andrew@lunn.ch,
-	Gilles Talis <gilles.talis@gmail.com>
-Subject: [PATCH v2 0/3] Add support for Emcraft Systems NavQ+ kit
-Date: Sat, 30 Mar 2024 09:34:07 -0400
-Message-Id: <20240330133410.41408-1-gilles.talis@gmail.com>
+	Gilles Talis <gilles.talis@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 1/3] dt-bindings: vendor-prefixes: Add Emcraft Systems
+Date: Sat, 30 Mar 2024 09:34:08 -0400
+Message-Id: <20240330133410.41408-2-gilles.talis@gmail.com>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20240330133410.41408-1-gilles.talis@gmail.com>
+References: <20240330133410.41408-1-gilles.talis@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,38 +93,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Hello
+Add an entry for Emcraft Systems (https://www.emcraft.com/)
 
-This series adds a device tree file for the Emcraft Systems NavQ+ kit [1]
-
-The first patch adds a new vendor prefix for Emcraft Systems
-The second one adds the board to the arm/fsl.yaml DT bindings.
-Last patch adds device tree file for the kit.
-
-[1] https://www.emcraft.com/products/1222
-
-Changes in v2:
-- Add Acked-by review tags
-- Fixed device tree warnings reported by dtbs_check
-- Reworked leds node
-- Remove unused i2c6 pinctrl entry
-- Removed unused regulator node in Ethernet entry
-- Link to v1: https://lore.kernel.org/imx/20240328202320.187596-1-gilles.talis@gmail.com/
+Signed-off-by: Gilles Talis <gilles.talis@gmail.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
-Gilles Talis (3):
-  dt-bindings: vendor-prefixes: Add Emcraft Systems
-  dt-bindings: arm: Add Emcraft Systems i.MX8M Plus NavQ+ Kit
-  arm64: dts: freescale: Add device tree for Emcraft Systems NavQ+ Kit
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
- .../devicetree/bindings/arm/fsl.yaml          |   1 +
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../arm64/boot/dts/freescale/imx8mp-navqp.dts | 424 ++++++++++++++++++
- 4 files changed, 428 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-navqp.dts
-
-
-base-commit: 4cece764965020c22cff7665b18a012006359095
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index b97d298b3eb6..8b978c6f1dfd 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -438,6 +438,8 @@ patternProperties:
+     description: Dongguan EmbedFire Electronic Technology Co., Ltd.
+   "^embest,.*":
+     description: Shenzhen Embest Technology Co., Ltd.
++  "^emcraft,.*":
++    description: Emcraft Systems
+   "^emlid,.*":
+     description: Emlid, Ltd.
+   "^emmicro,.*":
 -- 
 2.39.2
 
