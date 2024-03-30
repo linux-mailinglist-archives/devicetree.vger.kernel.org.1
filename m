@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-54854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAD16892C65
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 19:25:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A7B8892C67
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 19:27:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3D2D1C21633
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 18:25:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD1101F21797
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 18:27:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDD1A3DB89;
-	Sat, 30 Mar 2024 18:25:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80C583FB81;
+	Sat, 30 Mar 2024 18:27:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bUTRq6ed"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WQVHCSat"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F8033C6BA
-	for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 18:25:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFB4C3C6BA
+	for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 18:27:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711823123; cv=none; b=WhPOZSbbZ0ueK1W8nQ7oHp2NAfy2Mp6kQQRWKgI80/8zCZhQD66gQc16vEKM2VTAxNihbTUvwELT8opqO+f/YHQJtc48HtJYn9/xaFnbRIdnCI+xJHpgADpzf1vLps1Abwl6j6xIsT2LaRP76pe/nZ97okH5aDp0AqA/KRH130s=
+	t=1711823244; cv=none; b=YKmvA7dWOhkGDkLGcQAP2VxuwqtEkj7Bt1nGI5sHu0Rpl6SsHH6lL62WMI/7elStqka9LTM0rrpXLI2WAGeiOl/wCbnNv4WyJMRPgdiF2yWRxDsnHB0OIZpC5krncwMtDCMQdfEkvbAgONzorLt7wwt9/hM0zuhrFFa+/fwGGKY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711823123; c=relaxed/simple;
-	bh=/PJ3fgUbQWv+geuh9uSTxU/zg8NZn4MTTbDZIm+PVh0=;
+	s=arc-20240116; t=1711823244; c=relaxed/simple;
+	bh=ZcF6DXL6Jqknzp4rsGCK0o8MjJ3yHTV356kYaRoxftM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VoNWT8yatf4i55T1uBGw1cTR16T/xJs0VDaE/quhgo9OkavEElTZEc/PgDps7H0VgRRTDVUHo5Ecy/k1smGIkusXACzM8V9zhMn9uap5Ir563VdEGSEDTNlxGDXFa5Vy6t56fEM4s58HR1hKSnhkz+SYm/mYr3oLMxKfCUdFdl8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bUTRq6ed; arc=none smtp.client-ip=209.85.128.51
+	 In-Reply-To:Content-Type; b=IQif3a5dhYu3eynd/t0IM7rzDXBA7UZCLzsMzzlCVNHwpg6g4Za28lfQusthHuYnGnAdC0Nh6dqIsM+GhDX8bg+cf3IbQ0KzADq4pi9jio4kZCkup1Y7Gvr0gtuHt/KT1oWoIVvalnjXyxRU0d3FugDKrnPy2Cl3J4pi4iUOjiE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WQVHCSat; arc=none smtp.client-ip=209.85.167.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-41545616455so16566815e9.0
-        for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 11:25:22 -0700 (PDT)
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-513e134f73aso3735865e87.2
+        for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 11:27:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711823121; x=1712427921; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711823241; x=1712428041; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=fDDmwuWWSJG6xpxvPQpbEyYcFaaw39BGjUoX/smOF24=;
-        b=bUTRq6eddGgK44Q+b6IQmPgDg8qh6MC+6uTpQULa/+Vbr9x00RMbQ1ged/01jRk7n7
-         NWpAlvPsPHuu3veK056KGvppRcjbIzWMhRQQOSK1wXTVrdHtkMQ3wTg2PRx2SYjEYErk
-         ntMgtHsjdLaEaG7epDQyMrrIgfR8X1uPA4ppoCrzDq9gvQmu4at6VwtJW9CLhe/VFmRl
-         ylmWJ/zNMhWBmvsTuvY4avC45OlC7sZA3o2S+pL1pU3q3CSY4P0Dd/UO9iASPo1Ba3M0
-         gf+DRaBQBNn4SEm0n/HbwO1zLyXtUtxGUi1V0KLxcfLlkRk3j9uLTQlomPvHZII4i5mg
-         vZIA==
+        bh=5bTndhJzEIWh7zZXM9YxuiXtTvYUAbMeMHmhiDbOjqs=;
+        b=WQVHCSatges6eHl9/dED4veS93qvieziNSBn+wrn6jYcYpvGtjUAIIkz2BBzzmOnVn
+         G++FnCrGYE+c7u1BhKADUMDuO5Y+IdwTTKo9RXoGPTgpYSV9Z+0aynJWCpL956KnqQkv
+         INkyS49oT+4yDSCKkxJGRfKecyWZgq+rvc6+MKcJYpzWxigDDIJ0unLUt8TlOaZ1K/Yb
+         sthfF4GSFedlxJjxG2Ox/wSvxFiyM+Kh6y1x+TR9oxiVnvNZZNY3XHe1cE1Zb2/kFA8k
+         YJl9qPNmXS048DZRhXiPNqTbhnBk6ZXNjwJ3+DmLPdziypFfEXB3Uv65xdLyM7UGx2tE
+         9fiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711823121; x=1712427921;
+        d=1e100.net; s=20230601; t=1711823241; x=1712428041;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=fDDmwuWWSJG6xpxvPQpbEyYcFaaw39BGjUoX/smOF24=;
-        b=KpEBwpdhUMXS47UsSMfYznscEY7qjJiISXjnONjLXKhQNwlUdkFSEGCR/o0gd0vyN+
-         pkThPN7+xxqutSkXd2Akxq+vzD1OS+S3MuQjk4znbTQJfIQTSRZreuYc49ZRIWtp2STs
-         ecSRPyAh4YJlPkj+VcaDVXDjhG1Jv/eISddVgk+pYSIyuo2zVpPG4ySTE7JbQFKbMzfr
-         LQlBI4JoSmWUPUKKpiY4JffZkmIz8ZQQp5A4PwFqMiN7D2NGq6mj9Km4dhHX5QNAy+w1
-         kFaA64M5vqzFcml5qjcwuI6ue6/3j2XxgRR12EKu501nqW53rwklSVme94HWznshTjDY
-         lg1g==
-X-Forwarded-Encrypted: i=1; AJvYcCV7wY1JsKeA5itsV7JKtazI2aPBc5QYGU1xVj18YJ+qwh8BSdQAXpYzQVBXXUQDqe498JOMf2RNr/IUrASy4CKQcvhnA5feDa4CNw==
-X-Gm-Message-State: AOJu0YyyNImH/x8VO/dkChWqtC8ckg9zDOuVqDiWTyucuvj4YfLlC+1f
-	h2tQUi0RoDHmvX98vwPoNxINztB5JMUtLY97KgSyE0OmlvS+W3Kv+QjP8pmkR/g=
-X-Google-Smtp-Source: AGHT+IFOXPHUIS1t7liuKs60tQnJJgOmMCf1jreAedAPibbc/pYaEEzuDGlebBtYMEix5uRkZXyyng==
-X-Received: by 2002:a05:600c:1d1d:b0:414:897b:bc2b with SMTP id l29-20020a05600c1d1d00b00414897bbc2bmr3510265wms.33.1711823120668;
-        Sat, 30 Mar 2024 11:25:20 -0700 (PDT)
+        bh=5bTndhJzEIWh7zZXM9YxuiXtTvYUAbMeMHmhiDbOjqs=;
+        b=HWEMnl/7qozeUDKtN2AjR51yxjK36FdMV6l+cYYf+VM7ubSLl77d/Ck58MUP90qQd1
+         9VtRPHfZu8MnWiM5mfBoZsjhwBIkWL8gw7M0teNhIm+tHJIBJt0uKkCAvdy4bGkn4z6X
+         3XJC9Rwx3l/ZbMTfg4nDHu3iBnOcfXXjD2jNrzTeCvqC36UtnXpyo0fwOM0rIZ6N/RVx
+         nfHxj7ffdk/aOT5QW3NA0343WLK0AKUGC5pgDFBn7lthTimGrHUAFE1/kLkAVqjFaUAf
+         I5ohsK9vJwmbusq5EAOnZWhVCEom8loTtAhI96jIB+GMLVp3Tx8GEoHvQOooQ2PnaPyQ
+         0fRQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVRQkS+JSVrG5RpSPZ1BWK4n9YRWmnGEDWVCY+tPSn2rr/Y6nz9+3ryiV0wXMZiUpQPP7I/5nwheavVxSSvXd4AW3wr6+4W1iqNLw==
+X-Gm-Message-State: AOJu0YworxrzGZQC5PwJTgqGzssYTO3zEKvYX7bsBLq4RBzZzTTsI4lS
+	RJx00ZrE2Pir/H6EaFH6xlXFYOAbM0/Xi2x5WfKO8gLlK+MqGpjd87LD6qmbba4=
+X-Google-Smtp-Source: AGHT+IERrZaE0gKYNQH5mDQcltj1MBqsSIQJHOUeIXgrAwOC7Owr1QHqvwnJ5LkkOpzBtGASGQSdtA==
+X-Received: by 2002:a19:f802:0:b0:513:e27c:78f0 with SMTP id a2-20020a19f802000000b00513e27c78f0mr4183709lff.46.1711823241031;
+        Sat, 30 Mar 2024 11:27:21 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id t14-20020a05600c450e00b004148b9272a7sm9366640wmo.0.2024.03.30.11.25.19
+        by smtp.gmail.com with ESMTPSA id bi25-20020a05600c3d9900b00415481edde3sm8307223wmb.9.2024.03.30.11.27.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 30 Mar 2024 11:25:20 -0700 (PDT)
-Message-ID: <252618e8-9e80-4774-a96c-caa7f838ef01@linaro.org>
-Date: Sat, 30 Mar 2024 19:25:18 +0100
+        Sat, 30 Mar 2024 11:27:20 -0700 (PDT)
+Message-ID: <3d876e90-4821-4c00-b880-6966b53c70a7@linaro.org>
+Date: Sat, 30 Mar 2024 19:27:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,22 +77,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: msm8998: set
- qcom,no-msa-ready-indicator for wifi
-To: Marc Gonzalez <mgonzalez@freebox.fr>, Kalle Valo <kvalo@kernel.org>,
- Jeff Johnson <quic_jjohnson@quicinc.com>, ath10k <ath10k@lists.infradead.org>
-Cc: wireless <linux-wireless@vger.kernel.org>, DT
- <devicetree@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH 07/10] dt-bindings: iio: dac: add bindings doc for AD9739A
+To: David Lechner <dlechner@baylibre.com>, nuno.sa@analog.com
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ Dragos Bogdan <dragos.bogdan@analog.com>, Jonathan Cameron
+ <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Jami Kettunen <jamipkettunen@gmail.com>,
- Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-References: <fd26ce4a-a9f3-4ada-8d46-ed36fb2456ca@freebox.fr>
- <5cdad89c-282a-4df5-a286-b8404bc4dd81@freebox.fr>
+ Olivier Moysan <olivier.moysan@foss.st.com>
+References: <20240328-iio-backend-axi-dac-v1-0-afc808b3fde3@analog.com>
+ <20240328-iio-backend-axi-dac-v1-7-afc808b3fde3@analog.com>
+ <CAMknhBHA3LOhZicUCG32RyiV4+OROJymzm0Qc=wqhfo3u=8vnQ@mail.gmail.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -139,37 +136,27 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <5cdad89c-282a-4df5-a286-b8404bc4dd81@freebox.fr>
+In-Reply-To: <CAMknhBHA3LOhZicUCG32RyiV4+OROJymzm0Qc=wqhfo3u=8vnQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/03/2024 18:39, Marc Gonzalez wrote:
-> The ath10k driver waits for an "MSA_READY" indicator
-> to complete initialization. If the indicator is not
-> received, then the device remains unusable.
+On 29/03/2024 20:06, David Lechner wrote:
 > 
-> cf. ath10k_qmi_driver_event_work()
+>> +
+>> +  reset-gpios:
+>> +    maxItems: 1
+>> +
+>> +  vdd_3_3-supply:
+>> +    description: 3.3V Digital input supply.
 > 
-> Several msm8998-based devices are affected by this issue.
-> Oddly, it seems safe to NOT wait for the indicator, and
-> proceed immediately when QMI_EVENT_SERVER_ARRIVE.
-> 
-> Jeff Johnson wrote:
-> 
->   The feedback I received was "it might be ok to change all ath10k qmi
->   to skip waiting for msa_ready", and it was pointed out that ath11k
->   (and ath12k) do not wait for it.
-> 
->   However with so many deployed devices, "might be ok" isn't a strong
->   argument for changing the default behavior.
-> 
+> vdd33-supply would better match the datasheet name
 
-I think you got pretty clear comments:
+And would conform to coding style. No underscores in names.
 
-"This sounds more like a firmware feature, not a hardware feature."
+Nuno,
+To avoid comments like this one, please read and follow DTS coding style
+when you work with DTS or Devicetree bindings.
 
-"This is why having this property in DT does not look right
-place for this."
 
 Best regards,
 Krzysztof
