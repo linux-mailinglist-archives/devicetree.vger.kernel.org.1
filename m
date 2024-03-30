@@ -1,294 +1,260 @@
-Return-Path: <devicetree+bounces-54757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54758-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 153C28928C5
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 02:33:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B539A8928D0
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 03:02:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 32E571C21074
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 01:33:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F0E451F21DDA
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 02:02:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEADC1877;
-	Sat, 30 Mar 2024 01:33:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB59515CB;
+	Sat, 30 Mar 2024 02:02:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="y4jl9Crp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67A2717CD
-	for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 01:33:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711762383; cv=none; b=p6HQoqW6oodM+cqMEulCJijDpsj1/dV1rUT7PO4eOzsRRLEMPzFuy5z3B+ng1J/5uzVi/i0jFyGLNRJLWQ3QHT8deccHbkgyLgQixd7vfwo+ZkgKSd+ITfyr+4CC/BfJaofjyW02al97ctcFRYX07vbE+Hk5durYci4F6WOLxLc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711762383; c=relaxed/simple;
-	bh=1ojR1tTFz2u9nHuAuXRMt2ZljLtkMCOlzjOtHqzNH0o=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=EuTGGWPEVpXOU+MFmpek+MrewKpFrXwQfrZ8FagQbMe7si9/04eK2APaQRcVw4BePJmxX4FbXmhsMV6+j1jC5kFCR4Ehptq8cbber1l6WvfJtXdMNKE5Ebcfdgr4NRk6Zir2nE3iNBSIKB5KC/M4/Jc0j8+ftf+m9esNa9eB81M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D9A831480;
-	Fri, 29 Mar 2024 18:33:33 -0700 (PDT)
-Received: from localhost.localdomain (unknown [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8BD843F64C;
-	Fri, 29 Mar 2024 18:32:59 -0700 (PDT)
-From: Andre Przywara <andre.przywara@arm.com>
-To: Chen-Yu Tsai <wens@csie.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>
-Cc: devicetree@vger.kernel.org,
-	linux-sunxi@lists.linux.dev
-Subject: [PATCH 2/2] arm64: dts: allwinner: Add Tanix TX1 support
-Date: Sat, 30 Mar 2024 01:32:43 +0000
-Message-Id: <20240330013243.17943-3-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.35.8
-In-Reply-To: <20240330013243.17943-1-andre.przywara@arm.com>
-References: <20240330013243.17943-1-andre.przywara@arm.com>
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2118.outbound.protection.outlook.com [40.107.223.118])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B073D15C9;
+	Sat, 30 Mar 2024 02:02:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.223.118
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1711764148; cv=fail; b=vBNZdPSA0IpdExxiZiG3MGkmYvgBUVy1XCnEZ+PrCmAL1RrHLsWX/V8LAk4Z/P1/uoqtTOCL3Wmqm6IJj6494JaX+9WsqDGvj4jhzK/NEmu3OaQYkn5SGbAl7jblf5yTd7+YIELZf3eeLfT8sKNn2wTHrILZR4NYlS6LRqT9JZU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1711764148; c=relaxed/simple;
+	bh=aFrdI/+a9fd20Ujis877H7/rItG9XCCE15Dl4ufR0HI=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=QXIuJdK6ibp3aLcOc8ugD7dioNEn91fzXVLts67QTicIVBBWWH/64bSfbC2AR1EjdJbSroBsmANx+LYc/Ai+sgVrhOZzlSwVJeJu2uMaQz0SV/zL7jNfA5J5v/PcdtdZpuXs53AozBs33NTYsFtiku9GoIWziPamWsfwhyX2AM8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=y4jl9Crp; arc=fail smtp.client-ip=40.107.223.118
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RizkHLvXtw5YCNpeH7yQf7jWVJEiGC8XKi0cniipfpFgvjgQNfL1EHPBdhcofeH5SmAuArmBGSWHsIvwbxTOzagqadLH4G4dQppL4CkBs/PRPfI4bZ1kKAFzuYcIApwtOm8PArl/v2UTjnxNXdnhiNQEC/vemv+Q0y47cCvUlQAVkPOd6STRCQKXE/2dvZpV59cxddCiZp0oYBUgNPwX9d9JGw2iwUCco+GyP0aa/eNEQpJQLvxIgpsKXZPAvkqiPMJmmwtjPioA99p/EdzqBbk9Ck6gQ0Q2odEGqsbnL5qG/DtYXjSSk3QgLFhgTipt6gkBC3UgAXWaFvuJRNv2GQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=aFrdI/+a9fd20Ujis877H7/rItG9XCCE15Dl4ufR0HI=;
+ b=g6xF34NdptKLVEeBGO2X+AgWEmCePc5cmlSFbpPKHAA53KwOV0aV9PZ2fGvU2VcEYRe60h2F2Z9rZJnmGteLivW4T5h/mDw3keAA/UBVUhGgYUIu6mlufNGun/P8watKzHXKSnewnUQDgxXVNym7BMDPHUmbIBwieikK3NAyTQWKBrYdEoRlirAzWW/cXUAydpm1+dBAYo5JFFBg9RQL23qjg6uy9tV9OTvkfyoXAvIWPRpWR4G9Ba31213jTSH3LA3DgbCG72SWaL6XYlktv5fV9jdnFnByQWSBGwDqLVjSgNb5SRYM9Pcni5hMAxBaH60k21CHVphX8455Pybx1A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=aFrdI/+a9fd20Ujis877H7/rItG9XCCE15Dl4ufR0HI=;
+ b=y4jl9CrpkmKqXvEdDhEp4yJk3YTav1DPvvGfLVlAbw5Fdr9wqp71hJwF6pm/ZitEA8CfZ6pcO5HfPAqSb/O3C50HAYHat91/oRt74u0YVjS/UiRMqLw74h9PUsEl+UF+BKLcAXEvD8J+wjQ3lz6saJ8holAZrLrdLGl1b5/Hjq8=
+Received: from MW4PR12MB7165.namprd12.prod.outlook.com (2603:10b6:303:21b::14)
+ by BY5PR12MB4068.namprd12.prod.outlook.com (2603:10b6:a03:203::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.41; Sat, 30 Mar
+ 2024 02:02:15 +0000
+Received: from MW4PR12MB7165.namprd12.prod.outlook.com
+ ([fe80::e039:187d:47be:afb7]) by MW4PR12MB7165.namprd12.prod.outlook.com
+ ([fe80::e039:187d:47be:afb7%4]) with mapi id 15.20.7409.031; Sat, 30 Mar 2024
+ 02:02:15 +0000
+From: "Klymenko, Anatoliy" <Anatoliy.Klymenko@amd.com>
+To: Conor Dooley <conor@kernel.org>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Laurent Pinchart
+	<laurent.pinchart@ideasonboard.com>, Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>, "Simek, Michal" <michal.simek@amd.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Jonas Karlman
+	<jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Rob Herring
+	<robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Tomi Valkeinen
+	<tomi.valkeinen@ideasonboard.com>, "dri-devel@lists.freedesktop.org"
+	<dri-devel@lists.freedesktop.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-media@vger.kernel.org"
+	<linux-media@vger.kernel.org>
+Subject: RE: [PATCH v3 8/9] dt-bindings: xlnx: Add VTC and TPG bindings
+Thread-Topic: [PATCH v3 8/9] dt-bindings: xlnx: Add VTC and TPG bindings
+Thread-Index:
+ AQHae9CWOJYT8G1vaUajPKAdUatgu7FDRIUAgADPWeCAAQwKAIAIv8BAgAEJYoCAAKRcwA==
+Date: Sat, 30 Mar 2024 02:02:15 +0000
+Message-ID:
+ <MW4PR12MB7165E47719C72CD5CEB68218E6392@MW4PR12MB7165.namprd12.prod.outlook.com>
+References: <20240321-dp-live-fmt-v3-0-d5090d796b7e@amd.com>
+ <20240321-dp-live-fmt-v3-8-d5090d796b7e@amd.com>
+ <a82d525c-737a-4ac4-9d71-e88f4ba69ea1@linaro.org>
+ <MW4PR12MB7165889CE7F27A3F0B29DC7EE6312@MW4PR12MB7165.namprd12.prod.outlook.com>
+ <c0d70ba9-34ef-4121-834d-4d107f03d7f0@linaro.org>
+ <MW4PR12MB716570A3676218F0C6375E37E63A2@MW4PR12MB7165.namprd12.prod.outlook.com>
+ <20240329-overture-tank-d20888f2cb6e@spud>
+In-Reply-To: <20240329-overture-tank-d20888f2cb6e@spud>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MW4PR12MB7165:EE_|BY5PR12MB4068:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ RJibeOS7pyKaKGmMCJaeZJiGIOXWEOtXM2YcsSDzbo48N2oDBzvSaQ2HYbPaA4Ed8WKfArwiR6AltgxqEC8ihNeDAA4qI1XfyLTd3rbvI8P3yajPGXGuGIC/Z1x0LzUu6wve3qZWrEdzWCAoW8V6he8d3Zr2obxBlpa13C99xPDnaffesXEhag7UgufOPr2yteZX/inG5SnZun6SgLdLa2aDpo094JuQzVhJpXptuA+YiS5r9pKRDoPIR/LQw30AkFl6+gtSAGY4dWkqRMgm9d0vfcgcqLSwwFzk2PUGg7lvLpIuSt50OPCE9n2TZc+JjCK3eD41cd7rWHT+5fxXI5o/u5fQ3AGDybPfpH6cGYMpCHv5Xe0Hut7647oTfY0kaYsTGO9fqu05XUfkcnSxPqPzQW2m4YSsmZRzrBPJPyR1OuJyJM3/HC8XS9YAqL6nB2cC4jlRUg2jLTQqNxA5f3+39xeb+s0OkA1eYbFfK0UgRTybbq+FMBv2C6Nq0feaFhYMg9ucLOjJhxzlcCJlHNtTImzxk8yJcfeJYcVJmXlpD7F0PGPw9Y89155u3swh/I4HLbH8A850Ie+YTZopGLSqjLxDnmkP/i2EDxrfz03A7eBxj0yF55UTUKJv+McnB7qRYMxLmOKId4tQ/M67wWyzkDUicp3Q93DQ1ig1v88=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW4PR12MB7165.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(1800799015)(7416005)(366007);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?PCdvyZBcoJwxbz6H/JuA1UcBsBO5CCm4pg57WINkuMNoERhDiT9n5QOeGp7u?=
+ =?us-ascii?Q?7u0V39JfFncoQAo7j+G8Zs+jpsBW/LA0WqCz2ekBpvJMCPWjqcP6bnGsuvji?=
+ =?us-ascii?Q?RMhVutwYuH2ak7d6UyZYQ+Rj7qoIGtSdlu79XYYcd7YSn8dtRQrN2Ycj0ncN?=
+ =?us-ascii?Q?2c1tdgSuulVzkZK0mbQVLT/PE+2ZtBGEABtIVnJcuc+HYFHMBwhy6K2gPKh9?=
+ =?us-ascii?Q?GBFGKdF5LqSCs1Cpc3FZifFBub8LpwRd3Nvcf8qHrRx2p5npRy5LFGcia6sf?=
+ =?us-ascii?Q?kbssyj7KbYqoQh36ZphS7a8u5g0JR5S2sBrZWPGVvlG7IU6MNcigZg1pFbF/?=
+ =?us-ascii?Q?u+OjC3vkoOe7NpJX8irCgGWFSUQZZhXKuh4Wpj7N2t8ccdwSplcUWn+j4G5Y?=
+ =?us-ascii?Q?x/VlnhOFf9eiFq2KZGfqob1dKgaYGzF970cN2DvTQFOgJXT+b652qrDrDkcA?=
+ =?us-ascii?Q?JRgjgJQX74wARSCt+0Dw3dkxuHMb7Q4NBy8GHQclQJBIMdPq8rZ7o6/qyIo2?=
+ =?us-ascii?Q?tTAb5MjDUhbotsADAzyf+i8Iw0NCRRi1BWmhLXbQ2ZTKUEX+hJ2x44N+1jIn?=
+ =?us-ascii?Q?0YuC9BwISnCuoJitVgpvM6DFUnJ+VBKCnOPTQN+yBntHnSdslviMEwPVjXrT?=
+ =?us-ascii?Q?ijzekrzfjOeYn/LaEaHovUP1L85fG+Ix+Uf+k2/wkzRJAKKOjToLG81Vvrea?=
+ =?us-ascii?Q?Rg38CQYO77oZzaR3vQqqWM8F/pb5YtAY6s5IH007naEuEogpDCHcF0PgJlBI?=
+ =?us-ascii?Q?w4zIAZXfXD6GDdyDpJDGDNS8L8pXIh1MdM9b1QCr0TyAsAaij9as4EIqThel?=
+ =?us-ascii?Q?2OZyLWQvOFEmsZBg87gZaONTr8JMk7Ej3x2IX0TvtronQLPXzmaaqJsyjiRo?=
+ =?us-ascii?Q?/KBxsX0/Xkl9vuIssT0SZaVz1wOpcYExUrJyzHiax5a/+QFZs0n94B/wsOhK?=
+ =?us-ascii?Q?B/k18KL88jxpLsxK+sDnz3VSRSHHXjjTZiG+mW6CvefVpG7OvMnFC0szH7Xg?=
+ =?us-ascii?Q?8Jc924BlkYzuumnGek/L3nHX2AVKCFz+3WQvKw6XEBjvJLuzT9xRW9tOBD1M?=
+ =?us-ascii?Q?ryiJMeMrHZLqnpXbPz88HHLgEfIO/o2LIJtyUU+LnqkCte2jrFXtrfnUPbXC?=
+ =?us-ascii?Q?S1QvjvcsXpLXGlAw/GPV7MOe3n+xmRoaFo8JnCZeOrw8FC3+z1PdnTnAQB3w?=
+ =?us-ascii?Q?GWctnBJCWIULIqTKf6z2jEHsDq4/b8FaIQcqxo+dxaO/W/N7f6bON0XpatAR?=
+ =?us-ascii?Q?ivT6MLGJwdvTQw96t+d1ukIgBMenppNFZT0b4BtVo4QwaFhbjxQVLZxi+2UE?=
+ =?us-ascii?Q?rOhHRI85YeV/Nqg92hrXlzM4qGgQiQ9eEfvjzGrWKjCJoeThAB2o+CQb0HA1?=
+ =?us-ascii?Q?/sxkFJ7y57hcEMHOZaSWrb0SnW01aG/ME32gaoayTmpZVZbMaMjJ1lM8URnt?=
+ =?us-ascii?Q?DyU/Qy2oTHqYht9EoQ2wJEOYVhbn1wJHgAbxn8L6o7ndXe2pt2Y44FTWnyt1?=
+ =?us-ascii?Q?82aQ4YXhuG6iZJ26325aXCy/zT7D7ia7A+Zs0umGmh4KekFxotkdQ4PaY905?=
+ =?us-ascii?Q?GFsVyas4yBEPC45YMqQ=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MW4PR12MB7165.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6c45a82d-3a99-4d84-ffbe-08dc505d6bf0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Mar 2024 02:02:15.2277
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: a22Zv405TSk+Pa75bdaXjgDdNP6dLL+RGijPGg+UM3Ak/haHbxBFGxSka1bxWInOzAHrUwB6WrFgcpMWcb3ALw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4068
 
-The Tanix TX1 is a tiny TV box with the Allwinner H313 SoC. The box
-features no Ethernet or an SD card slot, which makes booting from it
-somewhat interesting: Pressing the hidden FEL button and using a USB-A
-to USB-A cable to upload code from a host PC is one way to run mainline.
-The box features:
-	- Allwinner H313 SoC (4 * Arm Cortex-A53 cores)
-	- 1 or 2 GB DRAM
-	- 8 or 16 GB eMMC flash
-	- SCI S9082H WiFi chip
-	- HDMI port
-	- one USB 2.0 port
-	- 3.5mm AV port
-	- barrel plug 5V DC input via barrel plug
 
-The devicetree covers most peripherals.
-The eMMC did not work properly in HS200 speed mode, so this mode property
-is omitted. HS-DDR seems to work fine.
-The blue LED is connected to the same GPIO pin as the red LED, just
-using the opposite polarity. Apparently there is no way of describing
-this in DT, so the red LED is omitted.
-Next to the FEL button is a hidden button, that can be pushed by using
-something like a paperclip, through the ventilation vents of the case.
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
----
- arch/arm64/boot/dts/allwinner/Makefile        |   1 +
- .../dts/allwinner/sun50i-h313-tanix-tx1.dts   | 184 ++++++++++++++++++
- 2 files changed, 185 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h313-tanix-tx1.dts
+> -----Original Message-----
+> From: Conor Dooley <conor@kernel.org>
+> Sent: Friday, March 29, 2024 8:47 AM
+> To: Klymenko, Anatoliy <Anatoliy.Klymenko@amd.com>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>; Laurent Pinchar=
+t
+> <laurent.pinchart@ideasonboard.com>; Maarten Lankhorst
+> <maarten.lankhorst@linux.intel.com>; Maxime Ripard
+> <mripard@kernel.org>; Thomas Zimmermann <tzimmermann@suse.de>;
+> David Airlie <airlied@gmail.com>; Daniel Vetter <daniel@ffwll.ch>; Simek,
+> Michal <michal.simek@amd.com>; Andrzej Hajda
+> <andrzej.hajda@intel.com>; Neil Armstrong <neil.armstrong@linaro.org>;
+> Robert Foss <rfoss@kernel.org>; Jonas Karlman <jonas@kwiboo.se>; Jernej
+> Skrabec <jernej.skrabec@gmail.com>; Rob Herring <robh+dt@kernel.org>;
+> Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley
+> <conor+dt@kernel.org>; Mauro Carvalho Chehab <mchehab@kernel.org>;
+> Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>; dri-
+> devel@lists.freedesktop.org; linux-arm-kernel@lists.infradead.org; linux-
+> kernel@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> media@vger.kernel.org
+> Subject: Re: [PATCH v3 8/9] dt-bindings: xlnx: Add VTC and TPG bindings
+>=20
+> On Fri, Mar 29, 2024 at 12:38:33AM +0000, Klymenko, Anatoliy wrote:
+> > Thank you for the feedback.
+> > > From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > > Subject: Re: [PATCH v3 8/9] dt-bindings: xlnx: Add VTC and TPG bindin=
+gs
+> > > On 22/03/2024 20:12, Klymenko, Anatoliy wrote:
+> > > >> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > > >> On 21/03/2024 21:43, Anatoliy Klymenko wrote:
+> > > >>> diff --git a/include/dt-bindings/media/media-bus-format.h
+> > > >>> b/include/dt-
+> > > >> bindings/media/media-bus-format.h
+> > > >>> new file mode 100644
+> > > >>> index 000000000000..60fc6e11dabc
+> > > >>> --- /dev/null
+> > > >>> +++ b/include/dt-bindings/media/media-bus-format.h
+> > > >>> @@ -0,0 +1,177 @@
+> > > >>> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+> > > >>> +/*
+> > > >>> + * Media Bus API header
+> > > >>> + *
+> > > >>> + * Copyright (C) 2009, Guennadi Liakhovetski
+> > > >>> +<g.liakhovetski@gmx.de>
+> > > >>> + *
+> > > >>> + * This program is free software; you can redistribute it and/or
+> > > >>> +modify
+> > > >>> + * it under the terms of the GNU General Public License version =
+2
+> > > >>> +as
+> > > >>> + * published by the Free Software Foundation.
+> > > >>
+> > > >> That's not true. Your SPDX tells something entirely different.
+> > > >>
+> > > >
+> > > > Thank you - I'll see how to fix it.
+> > > >
+> > > >> Anyway, you did not explain why you need to copy anything anywhere=
+.
+> > > >>
+> > > >> Specifically, random hex values *are not bindings*.
+> > > >>
+> > > >
+> > > > The same media bus format values are being used by the reference
+> > > > driver in patch #9. And, as far as I know, we cannot use headers fr=
+om
+> > > > Linux API headers directly (at least I
+> > >
+> > > I don't understand what does it mean. You can use in your driver
+> whatever
+> > > headers you wish, I don't care about them.
+> > >
+> > >
+> > > noticed the same pattern in ../dt-bindings/sdtv-standarts.h for insta=
+nce).
+> > > What would be the best approach to reusing the same defines on DT and
+> > > driver sides from your point of view? Symlink maybe?
+> > > >
+> > >
+> > > Wrap your messages to match mailing list discussion style. There are =
+no
+> > > defines used in DT. If there are, show me them in *THIS* or other
+> > > *upstreamed* (being upstreamed) patchset.
+> > >
+> >
+> > Sorry, I didn't explain properly what I'm trying to achieve. I need to
+> > create a DT node property that represents video signal format, one of
+> > MEDIA_BUS_FMT_* from include/uapi/linux/media-bus-format.h. It would
+> be
+> > nice to reuse the same symbolic values in the device tree. What is the
+> > best approach here? Should I create a separate header in
+> > include/dt-bindings with the same or similar (to avoid multiple
+> > definition errors) defines, or is it better to create a symlink to
+> > media-bus-format.h like include/dt-bindings/linux-event-codes.h?
+>=20
+> Isn't there already a property for this, described in
+> Documentation/devicetree/bindings/media/xilinx/video.txt
+> ?
 
-diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-index 294921f12b738..c8ac2823677f2 100644
---- a/arch/arm64/boot/dts/allwinner/Makefile
-+++ b/arch/arm64/boot/dts/allwinner/Makefile
-@@ -39,6 +39,7 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-model-b.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
-+dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h313-tanix-tx1.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-bigtreetech-cb1-manta.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-bigtreetech-pi.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h313-tanix-tx1.dts b/arch/arm64/boot/dts/allwinner/sun50i-h313-tanix-tx1.dts
-new file mode 100644
-index 0000000000000..622f4290057a8
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h313-tanix-tx1.dts
-@@ -0,0 +1,184 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2024 Arm Ltd.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sun50i-h616.dtsi"
-+#include "sun50i-h616-cpu-opp.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/input/linux-event-codes.h>
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	model = "Tanix TX1";
-+	compatible = "oranth,tanix-tx1", "allwinner,sun50i-h616";
-+
-+	aliases {
-+		serial0 = &uart0;
-+		ethernet0 = &sdio_wifi;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		key {
-+			label = "hidden";
-+			linux,code = <BTN_0>;
-+			gpios = <&pio 7 9 GPIO_ACTIVE_LOW>; /* PH9 */
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			function = LED_FUNCTION_POWER;
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&pio 7 6 GPIO_ACTIVE_HIGH>; /* PH6 */
-+			default-state = "on";
-+		};
-+	};
-+
-+	wifi_pwrseq: pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		clocks = <&rtc CLK_OSC32K_FANOUT>;
-+		clock-names = "ext_clock";
-+		pinctrl-0 = <&x32clk_fanout_pin>;
-+		pinctrl-names = "default";
-+		reset-gpios = <&pio 6 18 GPIO_ACTIVE_LOW>; /* PG18 */
-+	};
-+
-+	reg_vcc5v: vcc5v {
-+		/* board wide 5V supply directly from the DC input */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc-5v";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&reg_dcdc2>;
-+};
-+
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+&ir {
-+	status = "okay";
-+};
-+
-+&mmc1 {
-+	vmmc-supply = <&reg_dldo1>;
-+	vqmmc-supply = <&reg_aldo1>;
-+	mmc-pwrseq = <&wifi_pwrseq>;
-+	bus-width = <4>;
-+	non-removable;
-+	status = "okay";
-+
-+	sdio_wifi: wifi@1 {
-+		reg = <1>;
-+	};
-+};
-+
-+&mmc2 {
-+	vmmc-supply = <&reg_dldo1>;
-+	vqmmc-supply = <&reg_aldo1>;
-+	bus-width = <8>;
-+	non-removable;
-+	max-frequency = <100000000>;
-+	cap-mmc-hw-reset;
-+	mmc-ddr-1_8v;
-+	status = "okay";
-+};
-+
-+&ohci0 {
-+	status = "okay";
-+};
-+
-+&pio {
-+	vcc-pc-supply = <&reg_aldo1>;
-+	vcc-pf-supply = <&reg_dldo1>;
-+	vcc-pg-supply = <&reg_aldo1>;
-+	vcc-ph-supply = <&reg_dldo1>;
-+	vcc-pi-supply = <&reg_dldo1>;
-+};
-+
-+&r_i2c {
-+	status = "okay";
-+
-+	axp313: pmic@36 {
-+		compatible = "x-powers,axp313a";
-+		reg = <0x36>;
-+		#interrupt-cells = <1>;
-+		interrupt-controller;
-+
-+		vin1-supply = <&reg_vcc5v>;
-+		vin2-supply = <&reg_vcc5v>;
-+		vin3-supply = <&reg_vcc5v>;
-+
-+		regulators {
-+			/* Supplies VCC-PLL, so needs to be always on. */
-+			reg_aldo1: aldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcc1v8";
-+			};
-+
-+			/* Supplies VCC-IO, so needs to be always on. */
-+			reg_dldo1: dldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc3v3";
-+			};
-+
-+			reg_dcdc1: dcdc1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <990000>;
-+				regulator-name = "vdd-gpu-sys";
-+			};
-+
-+			reg_dcdc2: dcdc2 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <1120000>;
-+				regulator-name = "vdd-cpu";
-+			};
-+
-+			reg_dcdc3: dcdc3 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <1200000>;
-+				regulator-name = "vdd-dram";
-+			};
-+		};
-+	};
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_ph_pins>;
-+	status = "okay";
-+};
-+
-+&usbotg {
-+	dr_mode = "host";       /* USB A type receptable */
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	status = "okay";
-+};
--- 
-2.35.8
-
+Those properties are very similar, indeed but not exactly the same. The
+one you noticed maps Xilinx video data format on AXI4-Stream transport
+that covers color space and chroma subsampling only. The rest of the
+signal attributes are either conventional or left out. MEDIA_BUS_FMT_*
+collection is more specific and embeds additional information about
+video signals, like bits per component and component ordering.
 
