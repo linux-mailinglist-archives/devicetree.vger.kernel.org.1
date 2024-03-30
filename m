@@ -1,114 +1,122 @@
-Return-Path: <devicetree+bounces-54752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 727158927ED
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 00:51:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EB47892816
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 01:31:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05B43283C49
-	for <lists+devicetree@lfdr.de>; Fri, 29 Mar 2024 23:51:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22C12281B4F
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 00:31:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B99FE13FD6B;
-	Fri, 29 Mar 2024 23:50:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C94E47EC;
+	Sat, 30 Mar 2024 00:31:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="l/GU0cHL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E99813F44E;
-	Fri, 29 Mar 2024 23:50:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1083F17CD;
+	Sat, 30 Mar 2024 00:31:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711756258; cv=none; b=G0lzZA0/GKD1Ij8uO/qFeLXIS+ckV82fP8GwISmNVYouiS2FS7uSGfEMc9dDRfO56Ayyrwxf+L90XK6CeZHQKG93NFeJ/7YBm/hdOVR3Rfqp1K5lHxWGVO4ReBURQNBa5fdlQzRejGzOqstiCDzFo8mJjHVlLkOV7ZYT9qxno+w=
+	t=1711758679; cv=none; b=jPRYOa1pZb5xXyRVHiCt8Y4rfDZ4hrL3kjqRg9TVczb5lANAix04kKL/hA1emqJFzCTtBOPbESgWGA/hZ/sxTln1EAB6x/6W9rPPDWy6wCK6Gamg+2XrRQaDwgYdo0PVoXphJT/r9fA6KrKMNOpjHxFdmtr7KYsmk+mRdr33+z8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711756258; c=relaxed/simple;
-	bh=gzR5Vir/b6qMXe+daHd5TmgU6Hf11gWLwyKoQMzbRxg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=g+YMURDC64bme+8L0Rs3xAKyhaKSjf5zPhvCBlG2AfqUeSuCjnZ1LQnzs2NCJ0Zr7Kw1Sd6Homsm6vAL6HLvyGPYSwI5w5icEGuMXXYCJklQVy6VeTtz/ybDN/4Ioay9eAC6ZU5VCJo6ChrfA4AAdXOKA/c0Xi5EHCvvdhoCnR0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BB97712FC;
-	Fri, 29 Mar 2024 16:51:29 -0700 (PDT)
-Received: from localhost.localdomain (unknown [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B3B5B3F64C;
-	Fri, 29 Mar 2024 16:50:54 -0700 (PDT)
-From: Andre Przywara <andre.przywara@arm.com>
-To: Chen-Yu Tsai <wens@csie.org>,
-	Lee Jones <lee@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-sunxi@lists.linux.dev,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Ryan Walklin <ryan@testtoast.com>,
-	Chris Morgan <macroalpha82@gmail.com>
-Subject: [PATCH 4/4] regulator: axp20x: AXP717: Add boost regulator
-Date: Fri, 29 Mar 2024 23:50:33 +0000
-Message-Id: <20240329235033.25309-5-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.35.8
-In-Reply-To: <20240329235033.25309-1-andre.przywara@arm.com>
-References: <20240329235033.25309-1-andre.przywara@arm.com>
+	s=arc-20240116; t=1711758679; c=relaxed/simple;
+	bh=7YZ2emKoPRQ2Oh1HSYDBnvLIiVwOATZLjFZIyAOLekY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KFfyiNNd7X2drPjiWcwBOOBCiavjGYb8OqWmxgKkt0zni72zK/iUpEH0mhOeQ97UZgw2RSsFS8XMygvXEvHpK3/nT41q2lkf9Varp+DDttnuyY661UKynM7fC/Z/t6K3HRW5Qqi7TGvUQAIgo0ckVFrC6cMVevw3ui+dEhGsJ2M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=l/GU0cHL; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1711758677; x=1743294677;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=7YZ2emKoPRQ2Oh1HSYDBnvLIiVwOATZLjFZIyAOLekY=;
+  b=l/GU0cHL8soqEEbc8gHM8kmlGkX9/ba/CLb6TbNgzpErBTiw0QuYI7kM
+   W5LJkHIOxgZXu0GcgZr1mVEZCI5N6phBZoFY070wTOaC4et7l+Vk1iXTW
+   1mv633GbkuEIzXfxYRLt587/x0oXGGCAdfjcgMbWKOmJ/AUSFxVHIYGxz
+   /c2M3nup2U22wjlagvYfiZQszOw87pSeZRkcA3/01/7nmO5QgLE/nhDZF
+   iVi30p9+JZJ/PMY1LDhTXGEvEGOFBreRyLn/S0Nl0ySmnBZDV7pdH/q6i
+   Llow5aK2UGN4uJLyaNbNHknROrQF3wX/YYSy+SBuoUoSeGtx52BkWW9Lf
+   Q==;
+X-CSE-ConnectionGUID: lqb4HQbBQ4mIqBWBrAci0Q==
+X-CSE-MsgGUID: DtyxbnqTQb2j9A/P8Cj3IQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11028"; a="6801836"
+X-IronPort-AV: E=Sophos;i="6.07,166,1708416000"; 
+   d="scan'208";a="6801836"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Mar 2024 17:31:16 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,166,1708416000"; 
+   d="scan'208";a="21768159"
+Received: from lkp-server01.sh.intel.com (HELO be39aa325d23) ([10.239.97.150])
+  by orviesa003.jf.intel.com with ESMTP; 29 Mar 2024 17:31:13 -0700
+Received: from kbuild by be39aa325d23 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rqMcn-0003mQ-2h;
+	Sat, 30 Mar 2024 00:31:09 +0000
+Date: Sat, 30 Mar 2024 08:30:25 +0800
+From: kernel test robot <lkp@intel.com>
+To: git@luigi311.com, linux-media@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, dave.stevenson@raspberrypi.com,
+	jacopo.mondi@ideasonboard.com, mchehab@kernel.org, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, sakari.ailus@linux.intel.com,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Luigi311 <git@luigi311.com>
+Subject: Re: [PATCH 18/23] dt-bindings: media: imx258: Add alternate
+ compatible strings
+Message-ID: <202403300820.NEs0EOr7-lkp@intel.com>
+References: <20240327231710.53188-19-git@luigi311.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240327231710.53188-19-git@luigi311.com>
 
-The AXP717 also contains an adjustable boost regulator, to provide the
-5V USB VBUS rail when running on battery.
+Hi,
 
-Add the regulator description that states the voltage range this
-regulator can cover.
+kernel test robot noticed the following build warnings:
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
----
- drivers/regulator/axp20x-regulator.c | 4 ++++
- include/linux/mfd/axp20x.h           | 1 +
- 2 files changed, 5 insertions(+)
+[auto build test WARNING on media-tree/master]
+[also build test WARNING on linuxtv-media-stage/master linus/master v6.9-rc1 next-20240328]
+[cannot apply to sailus-media-tree/streams]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/drivers/regulator/axp20x-regulator.c b/drivers/regulator/axp20x-regulator.c
-index 3907606b091f6..71407c5810941 100644
---- a/drivers/regulator/axp20x-regulator.c
-+++ b/drivers/regulator/axp20x-regulator.c
-@@ -143,6 +143,7 @@
- #define AXP717_DCDC3_NUM_VOLTAGES	103
- #define AXP717_DCDC_V_OUT_MASK		GENMASK(6, 0)
- #define AXP717_LDO_V_OUT_MASK		GENMASK(4, 0)
-+#define AXP717_BOOST_V_OUT_MASK		GENMASK(7, 4)
- 
- #define AXP803_PWR_OUT_DCDC1_MASK	BIT_MASK(0)
- #define AXP803_PWR_OUT_DCDC2_MASK	BIT_MASK(1)
-@@ -829,6 +830,9 @@ static const struct regulator_desc axp717_regulators[] = {
- 	AXP_DESC(AXP717, CPUSLDO, "cpusldo", "vin1", 500, 1400, 50,
- 		 AXP717_CPUSLDO_CONTROL, AXP717_LDO_V_OUT_MASK,
- 		 AXP717_LDO1_OUTPUT_CONTROL, BIT(4)),
-+	AXP_DESC(AXP717, BOOST, "boost", "vin1", 4550, 5510, 64,
-+		 AXP717_BOOST_CONTROL, AXP717_BOOST_V_OUT_MASK,
-+		 AXP717_MODULE_EN_CONTROL, BIT(4)),
- };
- 
- /* DCDC ranges shared with AXP813 */
-diff --git a/include/linux/mfd/axp20x.h b/include/linux/mfd/axp20x.h
-index 4dad54fdf67ee..5e86b976c4caa 100644
---- a/include/linux/mfd/axp20x.h
-+++ b/include/linux/mfd/axp20x.h
-@@ -486,6 +486,7 @@ enum {
- 	AXP717_CLDO3,
- 	AXP717_CLDO4,
- 	AXP717_CPUSLDO,
-+	AXP717_BOOST,
- 	AXP717_REG_ID_MAX,
- };
- 
+url:    https://github.com/intel-lab-lkp/linux/commits/git-luigi311-com/media-i2c-imx258-Remove-unused-defines/20240328-072629
+base:   git://linuxtv.org/media_tree.git master
+patch link:    https://lore.kernel.org/r/20240327231710.53188-19-git%40luigi311.com
+patch subject: [PATCH 18/23] dt-bindings: media: imx258: Add alternate compatible strings
+compiler: loongarch64-linux-gcc (GCC) 13.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20240330/202403300820.NEs0EOr7-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202403300820.NEs0EOr7-lkp@intel.com/
+
+dtcheck warnings: (new ones prefixed by >>)
+>> Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml: properties:compatible: [{'enum': ['sony,imx258', 'sony,imx258-pdaf']}] is not of type 'object', 'boolean'
+   	from schema $id: http://json-schema.org/draft-07/schema#
+>> Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml: properties:compatible: [{'enum': ['sony,imx258', 'sony,imx258-pdaf']}] is not of type 'object', 'boolean'
+   	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+--
+>> Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml: ignoring, error in schema: properties: compatible
+
 -- 
-2.35.8
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
