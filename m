@@ -1,37 +1,38 @@
-Return-Path: <devicetree+bounces-54756-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 794B48928C4
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 02:33:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DF298928C3
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 02:33:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E0201F226DE
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 01:33:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AD6F828387B
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 01:33:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C8111860;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B82F10FF;
 	Sat, 30 Mar 2024 01:33:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72BD515C9
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72C0A15CB
 	for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 01:33:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711762383; cv=none; b=nZtcQ317MCb0jMw/5Cnr+syEEFyQzhfLanlaBMHgmbE7eGeV+4qq2zFB1Y/QwaiCetlV6Aqq+V08plf+5dCZGx1R5cDvevcMMUzVjDzGnWeaxYPnEfZW/T5hHYwsjLOKZYdduFJXy2Ndt484Jet++VNey5VsrY27sly9bvpy2yE=
+	t=1711762383; cv=none; b=jgu5SekRmSIR8kRHzQbiRtrtU2U5N5z/tTVR9hKpvBmcvqE6zfdrww+exS3Py1ArKgyeNbkAOM1XltZStHaeSlEUOALIbtGDutM9Fu9q4+H2q/SjLjuufQwehc4GnpobtFai4iFeS4SYanoCYxzV8fkHl3e38U5taMcsyK4VbaE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1711762383; c=relaxed/simple;
-	bh=ekNwagqEyCufCNtUolTlbriGRcBAFkOw5ZW+vUHM44s=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Mj+dQNCiP5ezPNkBoFW+DifMnFJ/81nKzQ7DFvktJHECoKxJnNT06tGIC/LPnGFRENOEXYGdqtt7n65bqt3eN16aD0e7or3NCezXeDlQsg6oVsbgeKX0Ly/mKOSZ6+QH987Pca27FAwyyucRYRVzuP/B/YecAXks7hAyWSaVvBk=
+	bh=8eRdaSls3FrU4yMnvU39DnhH/3rXTbbSA9qXjdBXEkI=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=SXRbICiQhRjvHvEf5wUYkNOP14CpJKiQdlNM6ziax985I8u1P0MyF5hp8qtB/EiawSr6IB43M/oF/6bER5C9k6pijuzQHu8IzesJ4NtG0yrOinkFV1n0+H819Z4gEue6Xj8SZzU4ql0ShD2y3qXHZAmeMGM9MvHCBCmRCOusQM8=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CB135FEC;
-	Fri, 29 Mar 2024 18:33:30 -0700 (PDT)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 54B7F12FC;
+	Fri, 29 Mar 2024 18:33:32 -0700 (PDT)
 Received: from localhost.localdomain (unknown [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7B5C83F64C;
-	Fri, 29 Mar 2024 18:32:56 -0700 (PDT)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 078043F64C;
+	Fri, 29 Mar 2024 18:32:57 -0700 (PDT)
 From: Andre Przywara <andre.przywara@arm.com>
 To: Chen-Yu Tsai <wens@csie.org>,
 	Rob Herring <robh@kernel.org>,
@@ -41,10 +42,12 @@ To: Chen-Yu Tsai <wens@csie.org>,
 	Samuel Holland <samuel@sholland.org>
 Cc: devicetree@vger.kernel.org,
 	linux-sunxi@lists.linux.dev
-Subject: [PATCH 0/2] arm64: dts: allwinner: Add Tanix TX1 support
-Date: Sat, 30 Mar 2024 01:32:41 +0000
-Message-Id: <20240330013243.17943-1-andre.przywara@arm.com>
+Subject: [PATCH 1/2] dt-bindings: arm: sunxi: document Tanix TX1 name
+Date: Sat, 30 Mar 2024 01:32:42 +0000
+Message-Id: <20240330013243.17943-2-andre.przywara@arm.com>
 X-Mailer: git-send-email 2.35.8
+In-Reply-To: <20240330013243.17943-1-andre.przywara@arm.com>
+References: <20240330013243.17943-1-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,39 +56,35 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Tanix TX1 is a tiny TV box (60% of a credit card) with an Allwinner
-H313 SoC. This seems to be the same as the H616, just the "bad bin"
-version, limited to 1.3 GHz.
-The box has no Ethernet or SD card slot, which makes booting from it
-somewhat interesting: Pressing the hidden FEL button and using a USB-A
-to USB-A cable to upload code from a host PC is one way to run mainline.
-The box features a minimal set of peripherals: one USB port, 8 or 16GB
-of eMMC, an HDMI port and an (unsupported) SCI S9082H WiFi chip.
+The Tanix TX1 is a tiny TV box with the Allwinner H313 SoC, a lower bin
+version of the Allwinner H616. It comes with no SD card slot or Ethernet
+port.
 
-Patch 1 adds the DT binding for the board compatible, I refrained from
-using the H313 name here, since it seems to be functionally identical to
-the H616.
-Patch 2 adds the devicetree.
+Add the board/SoC compatible string pair to the list of known boards.
+Since the H313 does not look different from a software point of view,
+we keep the H616 compatible string.
 
-There is a blue and a red LED, both connected to the same GPIO pin, but
-with different polarities, so it's only either one of them enabled.
-I did not find a way to describe this in DT, so I omitted the red LED.
+Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+---
+ Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Please have a look!
-
-Cheers,
-Andre
-
-Andre Przywara (2):
-  dt-bindings: arm: sunxi: document Tanix TX1 name
-  arm64: dts: allwinner: Add Tanix TX1 support
-
- .../devicetree/bindings/arm/sunxi.yaml        |   5 +
- arch/arm64/boot/dts/allwinner/Makefile        |   1 +
- .../dts/allwinner/sun50i-h313-tanix-tx1.dts   | 184 ++++++++++++++++++
- 3 files changed, 190 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h313-tanix-tx1.dts
-
+diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+index 6fe137605ba53..9530235941cc3 100644
+--- a/Documentation/devicetree/bindings/arm/sunxi.yaml
++++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+@@ -865,6 +865,11 @@ properties:
+           - const: t95,t95max-axp313
+           - const: allwinner,sun50i-h616
+ 
++      - description: Tanix TX1
++        items:
++          - const: oranth,tanix-tx1
++          - const: allwinner,sun50i-h616
++
+       - description: Tanix TX6
+         items:
+           - const: oranth,tanix-tx6
 -- 
 2.35.8
 
