@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-54855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A7B8892C67
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 19:27:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA2DA892C93
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 19:37:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD1101F21797
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 18:27:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 612BB1F22E1B
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 18:37:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80C583FB81;
-	Sat, 30 Mar 2024 18:27:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B386722093;
+	Sat, 30 Mar 2024 18:36:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WQVHCSat"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WKAbD/D8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFB4C3C6BA
-	for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 18:27:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BCEF1DDF1
+	for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 18:36:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711823244; cv=none; b=YKmvA7dWOhkGDkLGcQAP2VxuwqtEkj7Bt1nGI5sHu0Rpl6SsHH6lL62WMI/7elStqka9LTM0rrpXLI2WAGeiOl/wCbnNv4WyJMRPgdiF2yWRxDsnHB0OIZpC5krncwMtDCMQdfEkvbAgONzorLt7wwt9/hM0zuhrFFa+/fwGGKY=
+	t=1711823818; cv=none; b=GfQk1c50Mit+mDWxAHubWLa/vZWt3dbAAh3sVpqRrfd2pB5Gn1yHRGjYQPAOXMppf7Vk7fDUiNSp6u0mtIr0GyFvS5Rq6qQyOdehDNbYHsgMo9nGdrbOMK8iR9CGGq99lyR7Yfcpf/yGZOMMhK7wvG7mBMjpA1uLbVTB0TOdCJQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711823244; c=relaxed/simple;
-	bh=ZcF6DXL6Jqknzp4rsGCK0o8MjJ3yHTV356kYaRoxftM=;
+	s=arc-20240116; t=1711823818; c=relaxed/simple;
+	bh=mMHX/D7lliivA6UWGEQ+mSk0LY+Wg5ljj95nA7UCmE0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IQif3a5dhYu3eynd/t0IM7rzDXBA7UZCLzsMzzlCVNHwpg6g4Za28lfQusthHuYnGnAdC0Nh6dqIsM+GhDX8bg+cf3IbQ0KzADq4pi9jio4kZCkup1Y7Gvr0gtuHt/KT1oWoIVvalnjXyxRU0d3FugDKrnPy2Cl3J4pi4iUOjiE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WQVHCSat; arc=none smtp.client-ip=209.85.167.48
+	 In-Reply-To:Content-Type; b=Hl/uZvayFmMKHUBk7Ni6nO+u2MO0ldmMX6Z++HFIbbIwUoDylQEJo5g3XuQLBMP3VqZEVp3Nam228EOE+2ZJIY7EgJRuzokl1Jh7F9dKBoCoAwx2wM/SIForDluTx3zWQMGZKL+kIJ5zmP5661qMTRtBmcY4VhJNEEKoAKtHFQw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WKAbD/D8; arc=none smtp.client-ip=209.85.128.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-513e134f73aso3735865e87.2
-        for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 11:27:22 -0700 (PDT)
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4154464f150so14620135e9.0
+        for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 11:36:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711823241; x=1712428041; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711823815; x=1712428615; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=5bTndhJzEIWh7zZXM9YxuiXtTvYUAbMeMHmhiDbOjqs=;
-        b=WQVHCSatges6eHl9/dED4veS93qvieziNSBn+wrn6jYcYpvGtjUAIIkz2BBzzmOnVn
-         G++FnCrGYE+c7u1BhKADUMDuO5Y+IdwTTKo9RXoGPTgpYSV9Z+0aynJWCpL956KnqQkv
-         INkyS49oT+4yDSCKkxJGRfKecyWZgq+rvc6+MKcJYpzWxigDDIJ0unLUt8TlOaZ1K/Yb
-         sthfF4GSFedlxJjxG2Ox/wSvxFiyM+Kh6y1x+TR9oxiVnvNZZNY3XHe1cE1Zb2/kFA8k
-         YJl9qPNmXS048DZRhXiPNqTbhnBk6ZXNjwJ3+DmLPdziypFfEXB3Uv65xdLyM7UGx2tE
-         9fiQ==
+        bh=2epNLcqYlDDxFlqorb7Cjat3BktL4sasPGtCRb+vLrQ=;
+        b=WKAbD/D8LsQsykF1lz+B2JOa1bV1BY2jHzY2GGMZCZL56kDvVy2ZIriFySc8PQT3DJ
+         w/85xXp9II8wGHoJSt2t+Oey+Hevfax1bBmAh+E7Jb+Rva038XnMW1OPjj80czHHPb1H
+         JFCAhGmZOFeKGkYL9V3XMMfWIo2B0hzqWTLOx4vWAL+ZOOcvVM4GM6ihF5ACAnV/VgEk
+         Oxxg16sD3SSgBQl+0zqPHBzoqePnIBp0xoW+Lu5p5GqG60e/3+1RQUHfd3WjtparFeZk
+         3jwJx+VA7a01DAcWrnq61LyW7cNxyxU1LMOFxGrlWmD2D0yzQiVLrbkqhhCSumzF03SN
+         mlCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711823241; x=1712428041;
+        d=1e100.net; s=20230601; t=1711823815; x=1712428615;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=5bTndhJzEIWh7zZXM9YxuiXtTvYUAbMeMHmhiDbOjqs=;
-        b=HWEMnl/7qozeUDKtN2AjR51yxjK36FdMV6l+cYYf+VM7ubSLl77d/Ck58MUP90qQd1
-         9VtRPHfZu8MnWiM5mfBoZsjhwBIkWL8gw7M0teNhIm+tHJIBJt0uKkCAvdy4bGkn4z6X
-         3XJC9Rwx3l/ZbMTfg4nDHu3iBnOcfXXjD2jNrzTeCvqC36UtnXpyo0fwOM0rIZ6N/RVx
-         nfHxj7ffdk/aOT5QW3NA0343WLK0AKUGC5pgDFBn7lthTimGrHUAFE1/kLkAVqjFaUAf
-         I5ohsK9vJwmbusq5EAOnZWhVCEom8loTtAhI96jIB+GMLVp3Tx8GEoHvQOooQ2PnaPyQ
-         0fRQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVRQkS+JSVrG5RpSPZ1BWK4n9YRWmnGEDWVCY+tPSn2rr/Y6nz9+3ryiV0wXMZiUpQPP7I/5nwheavVxSSvXd4AW3wr6+4W1iqNLw==
-X-Gm-Message-State: AOJu0YworxrzGZQC5PwJTgqGzssYTO3zEKvYX7bsBLq4RBzZzTTsI4lS
-	RJx00ZrE2Pir/H6EaFH6xlXFYOAbM0/Xi2x5WfKO8gLlK+MqGpjd87LD6qmbba4=
-X-Google-Smtp-Source: AGHT+IERrZaE0gKYNQH5mDQcltj1MBqsSIQJHOUeIXgrAwOC7Owr1QHqvwnJ5LkkOpzBtGASGQSdtA==
-X-Received: by 2002:a19:f802:0:b0:513:e27c:78f0 with SMTP id a2-20020a19f802000000b00513e27c78f0mr4183709lff.46.1711823241031;
-        Sat, 30 Mar 2024 11:27:21 -0700 (PDT)
+        bh=2epNLcqYlDDxFlqorb7Cjat3BktL4sasPGtCRb+vLrQ=;
+        b=v0kGYeULmgeJScfE2lJ0w6VYyjoXQAqAJa4yyknNa450xqjXsNvWcZvaW27afEJSoO
+         QiiAjrmgdSa8YmhXShTdSNnNrhVL3/O70ra4ebp5TCC6ln+V92Di/fMI06UAC2zqVTUe
+         FuNAXvG5kfPjqd227zBfPsWNxGdwYyjPhmT4xU5V8mpxs6PaUl599VO5CFUa/+NWLZb3
+         Oz2IIKlyY6DcJcuHmF0Mvp4Oqv6MR7nY9sQruJ4qQnFp7Ct1zP9eslZ1aG77eUd5PnbK
+         NeRCN2GifsWp1I/xN6YSwi7vy7bi/f+BUVrNWCCCT6fRWA4TDgJR1eZxBmQ504zNdAsj
+         MiDQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWQtlR2DK5PaCg8HAKz+aiGR9m8Kq3A8b1XKC+/T6HXOhZWkqimqGyJ6/1gL1gmsGbRn+S5VssmsG0UaEnY/J4EYOKKn6EHnCvvGA==
+X-Gm-Message-State: AOJu0Yx2A9F8q27DrLSib6fSldUnyuMHPbgRtdr7f/XKdFfFKQF8DIko
+	NZN/21KzgTCnJF6paGJkg++g3t0kNdVYxeXoTpvfhRMD0QQPW6GCMVn8tc/JsfU=
+X-Google-Smtp-Source: AGHT+IFnVFj7i3GEZdjCS5RRUzI2AJw0B5Vjpn+qZ4xY+uoBiHeOJ0ETODeVEXt0VqNUBa9c3fyCAw==
+X-Received: by 2002:a05:600c:1c27:b0:414:37f:18dc with SMTP id j39-20020a05600c1c2700b00414037f18dcmr7990830wms.1.1711823814939;
+        Sat, 30 Mar 2024 11:36:54 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id bi25-20020a05600c3d9900b00415481edde3sm8307223wmb.9.2024.03.30.11.27.19
+        by smtp.gmail.com with ESMTPSA id h9-20020a05600c314900b004147b824b08sm9302259wmo.7.2024.03.30.11.36.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 30 Mar 2024 11:27:20 -0700 (PDT)
-Message-ID: <3d876e90-4821-4c00-b880-6966b53c70a7@linaro.org>
-Date: Sat, 30 Mar 2024 19:27:18 +0100
+        Sat, 30 Mar 2024 11:36:54 -0700 (PDT)
+Message-ID: <98a5c1b4-b508-45ed-8719-149ec960250c@linaro.org>
+Date: Sat, 30 Mar 2024 19:36:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,19 +77,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 07/10] dt-bindings: iio: dac: add bindings doc for AD9739A
-To: David Lechner <dlechner@baylibre.com>, nuno.sa@analog.com
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- Dragos Bogdan <dragos.bogdan@analog.com>, Jonathan Cameron
- <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Olivier Moysan <olivier.moysan@foss.st.com>
-References: <20240328-iio-backend-axi-dac-v1-0-afc808b3fde3@analog.com>
- <20240328-iio-backend-axi-dac-v1-7-afc808b3fde3@analog.com>
- <CAMknhBHA3LOhZicUCG32RyiV4+OROJymzm0Qc=wqhfo3u=8vnQ@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] dt-bindings: aspeed: Add eSPI controller
+To: Manojkiran Eda <manojkiran.eda@gmail.com>, patrick.rudolph@9elements.com,
+ chiawei_wang@aspeedtech.com, ryan_chen@aspeedtech.com,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+ linux-mtd@lists.infradead.org
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
+ miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+ jk@codeconstruct.com.au, openbmc@lists.ozlabs.org, broonie@kernel.org,
+ linux-spi@vger.kernel.org
+References: <20240319093405.39833-1-manojkiran.eda@gmail.com>
+ <20240319093405.39833-5-manojkiran.eda@gmail.com>
+ <bad5df79-e040-4868-9db6-701110894ea3@linaro.org>
+ <a9faa9b4-9bf6-49b6-b7eb-f642e2d261c3@gmail.com>
+ <f2a487c4-eba3-4a78-9a14-67c8754c8b61@linaro.org>
+ <582c276c-ea2f-456c-9bf9-47e39289a0b6@gmail.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -136,27 +140,107 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAMknhBHA3LOhZicUCG32RyiV4+OROJymzm0Qc=wqhfo3u=8vnQ@mail.gmail.com>
+In-Reply-To: <582c276c-ea2f-456c-9bf9-47e39289a0b6@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/03/2024 20:06, David Lechner wrote:
+On 28/03/2024 12:33, Manojkiran Eda wrote:
+>>>>> +    description: Controls the flash channel of eSPI hardware
+>>>> That explains nothing. Unless you wanted to use here MTD bindings.
+>>>>
+>>>> This binding did not improve much. I don't understand why this is not
+>>>> SPI (nothing in commit msg, nothing in description), what is eSPI,
+>>>
+>>> eSPI uses Peripheral, Virtual Wire, Out of Band, and Flash Access
+>>> channels to communicate different sets of data.
+>>
+>> And what are these channels? What does it mean a "channel"? Is it just
+>> how you organize transfers and classes of devices? Or some sort of
+>> addressable instance on the bus?
+>>
 > 
->> +
->> +  reset-gpios:
->> +    maxItems: 1
->> +
->> +  vdd_3_3-supply:
->> +    description: 3.3V Digital input supply.
+> Yes, an espi channel provides a means to allow multiple independent 
+> flows of traffic to share the same physical bus. Each of the channels 
+> has its own dedicated resources such as queue and flow control.
+
+Resources as queue and flow-control? Where are they defined in
+Devicetree? Which binding?
+
 > 
-> vdd33-supply would better match the datasheet name
+>> The channels feel like some sort of software or logical concept, not
+>> physical. Physical would be endpoint with peripheral. Or flash memory.
+> 
+> A channel is a logical communication pathway or interface between the 
+> chipset and peripheral devices. The concept of channels in the ESPI 
+> protocol helps organize and manage different types of communication 
+> between the chipset and peripherals. Each channel may have its own set 
+> of protocols, data transfer rates, and supported features, tailored to 
+> the requirements of the devices it serves.
+> 
+>> How do they fit here?
+> 
+> I am not sure I understand, can you please elaborate ?
 
-And would conform to coding style. No underscores in names.
+All this suggests channel is programming aspect of your device thus does
+not have to be represented in DT. I don't know, come with any DT
+property to back up your case...
 
-Nuno,
-To avoid comments like this one, please read and follow DTS coding style
-when you work with DTS or Devicetree bindings.
+So far I see only interrupts and clocks, but then I would claim these
+could be part of parent node.
 
+Rob said it last time: your split of nodes looks artificial and it all
+looks like one node.
+
+Your DTS reg like:
+	reg = <0x0 0x800>,<0x0 0x4000000>;
+proves it. I don't know if this is just bug in your code or some silly
+DTS just to create fake children. :/
+
+> 
+>>>
+>>>    * The *Peripheral* Channel is used for communication between eSPI host
+>>>      bridge located on the master side and eSPI endpoints located on the
+>>>      slave side. LPC Host and LPC Peripherals are an example of eSPI host
+>>>      bridge and eSPI endpoints respectively.
+>>>    * *Virtual Wire* Channel: The Virtual Wire channel is used to
+>>>      communicate the state of sideband pins or GPIO tunneled through eSPI
+>>>      as in-band messages. Serial IRQ interrupts are communicated through
+>>>      this channel as in-band messages.
+>>>    * *OOB* Channel: The SMBus packets are tunneled through eSPI as
+>>>      Out-Of-Band (OOB) messages. The whole SMBus packet is embedded
+>>>      inside the eSPI OOB message as data.
+>>>    * *Flash Access* Channel: The Flash Access channel provides a path
+>>>      allowing the flash components to be shared run-time between chipset
+>>>      and the eSPI slaves that require flash accesses such as EC (Embedded
+>>>      Controller) and BMC.
+>>
+>> Please make binding complete, so define all of the channels.
+> 
+> 
+> I would like to inquire about the rationale behind this request. Based 
+
+Rationale - writing bindings document.
+https://elixir.bootlin.com/linux/v6.9-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst#L17
+
+
+> on previous feedback received from the upstream efforts 
+> [https://lore.kernel.org/openbmc/HK0PR06MB37798462D17443C697433D7191D09@HK0PR06MB3779.apcprd06.prod.outlook.com/], 
+> suggestions were made to model the flash channel by utilizing the mtd 
+> subsystem, the virtual wire channel by utilizing the GPIO subsystem, and 
+> to consider the OOB channel as a type of i2c device, thereby allowing it 
+> to be utilized by the existing in-kernel MCTP subsystem, among others. 
+> My intention was to prioritize upstreaming the flash channel binding, 
+> along with its driver code, before proceeding to address other channels. 
+
+Just to clarify: I don't care about drivers and we do not talk about
+them here.
+
+> I am curious to understand if it is a strict requirement to have the 
+> complete binding upstreamed before addressing the device drivers code.
+
+What if your other "devices" or "channels" are entirely different and
+binding would just not work? Or how can we understand the design if you
+upstream only part of it?
 
 Best regards,
 Krzysztof
