@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-54847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E742892C52
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 19:11:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E2B9892C54
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 19:11:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D1D51F22E08
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 18:11:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F01F1F22A3D
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 18:11:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54CFD3FB2C;
-	Sat, 30 Mar 2024 18:11:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98CE93C6BA;
+	Sat, 30 Mar 2024 18:11:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UwWLEZ7e"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ijToAzLB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E99E2AF13
-	for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 18:10:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D78A03BBDB
+	for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 18:11:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711822262; cv=none; b=GqXeWkL7JM2JPf6Dib/63L+Jp6MhRHUlfywIh+bqke0QR6yRMfWf6cjlCRkjX2cZfQrpCwLS4o5+Gzn3BkCMgHEKl7XjwTBYgJHznE90a7VABYTWQAZ4xA0hM8x9SFOW666/jA1Fq5AbLe+p8hzmGibBdRRJ1bddII9fLN9jX30=
+	t=1711822309; cv=none; b=SObECsuO0z9MsHABMOOaEqU8Y7JSVZUYtJLRlJsFyitPBekRhknPIJCyTo81CqBw8JvKo2m8HOcUY9Qx6KbZSEllQRjHOxDNx/kby6FxcRzOk1urzf1BNIXOMI3PmNhvFhN2kgpJkXVfDnMbOf48U0BsMAW0GRN5Mh8Wq9LIGSI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711822262; c=relaxed/simple;
-	bh=gGWtJStY0jzHlXUNZ/qFEKVUAZbJEmuy2Rf+iVSRPpo=;
+	s=arc-20240116; t=1711822309; c=relaxed/simple;
+	bh=uKmnAYsXvFgZ7Q0n32Ejd9rCgsyZG49+pZPlHoVVOY0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SWuQVjEXh5G/vWvh5YGxIdmC3BhxrrJ2iZS3qQPPnlFZIP1IlrdfYzpAjWUQi9WX+O096V9kByG0rfVVliQ7KiDsSdTmP99HtRq0eiTWb+iyHLGInRl3eqdwuY986GC4BpX+Dm1fwa0TM4240oHfnMaE4JT9h4i7WqaVJX3gp2I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UwWLEZ7e; arc=none smtp.client-ip=209.85.221.41
+	 In-Reply-To:Content-Type; b=ZlFFy5tjR/9IiIsMDvaPLG7vlQl6CGEgRSENKrcBqehNfrP7fAVQ6tnFk3nEsls7PodBysCtj2aWOT0qkO/hI/M7zzSfzh05sMxDHzVQ2AQ2xG62S78v6MCOGddJebchJhk536GBeXpQDiTx/21HDPDNDWLtrsJTkBZf7C489lc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ijToAzLB; arc=none smtp.client-ip=209.85.221.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-341b9f6fb2eso2023061f8f.2
-        for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 11:10:59 -0700 (PDT)
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3433e518c78so549778f8f.1
+        for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 11:11:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711822258; x=1712427058; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711822306; x=1712427106; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=87ffxS2Z4k6pRWwiORZe6AOO57FJg09xK1iXk/x6q88=;
-        b=UwWLEZ7eVXbJTXRBz0PJCBT0pAN1ONKhOIoi5iZ0KywaZiMzwYFF/QTeg+5wA+vpr8
-         DejMWA79w6qxypNy01R9GuaS5nM1dHy54m13IeROW3SA6hbmIk+jCLSSaZMaNJkExPTP
-         A9lxEDe1Ur62DLzNi0NaAPGpou1ggx4ecwqzl4MEc4ftaLef4f4jYkigexWa19PbspR8
-         AH3S8cnMhrYo9S6n3ZJsUq3Jdf0UqTN0bLWffzXNSHfcZrKuouNtFmuaS6n6SMcKVzqQ
-         jcB4Q+Fk6HwjIpLRB+ladmM7dqhPbyN7bURebl2TgBykwYe9J5r8nmKmmKkdHGMD4ABM
-         YQFA==
+        bh=G6FfSFT0iQhQsIxQCkilA3RrGtXMgyj7X9sH1RGa6Iw=;
+        b=ijToAzLBQ8LOdBCIEDKLQY7jkkZMgiY3rprN/oqeGQDmE0b3uKbC5A0DYJuLR+wZr/
+         5RYA0ksYvMCBlGc24fpY9kw2AAWhsFWLJhznpg+irIQJGzid3MKx8UCIt4BsHjjpM4ve
+         HIjoCcpvWzvXRSYJOWOfwHFr5nYMOIQcjP4a5MpCDDpO81GMzeWOlLBimPbwOC3EX/fH
+         EWpCx7Q6bUXADasENT3Xat4tT9kav72w5FkFeFHH9jfjIlq4JBMNAIXDVv3Gi78PzTKn
+         vwRcHvinkPNxUkgyD860gftfmJolQbmaQKZDRSreZ5HXC7a5x6gMqfr1CJjkNdICxoxs
+         Xs0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711822258; x=1712427058;
+        d=1e100.net; s=20230601; t=1711822306; x=1712427106;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=87ffxS2Z4k6pRWwiORZe6AOO57FJg09xK1iXk/x6q88=;
-        b=OK4JbzFJKq3OgN1KTPJPTjECYWBK9kQR4piVGastIVRwgiig7HfCQgdcl8kTp8XOyM
-         uJCmHXuqDiKgnc1cZ76VW7OHl0dXChBlzisFMUMrDZc18YHcqV9ExEYs4IBsIgZcO//p
-         3J7UTMVbEIXos9/1EjyCDiIKcze9x2LKAUXK0sou72FkqsVSVfcMIM/OAUF8ZFAS3BN6
-         svCGtQuAElG0Z5HBJkTnKt/XuKyiKZjrvT3EbKI+Ne+th/bLqihIuPbFRtrItTzuWOlJ
-         5966QEkSChMkI86c0TXePRqMG6xzY++AWspnRMyr0sDu/Ao37OhW1qwsnF7eNbw4yTmZ
-         5Itw==
-X-Forwarded-Encrypted: i=1; AJvYcCWp9dEXiZfJLjkoAAbtITOHuFtVNUnaK9jyAoAPfqb/rQTMuGxgQDh9DfsUvH6ey7cH06a4AvNUud1VzRIzRSfptPLLVDzP3VQHiQ==
-X-Gm-Message-State: AOJu0YwQpicI7SNSNFDRRX/LeM+J/gvgOtCYQnQc+zBTG74Cqo2refTs
-	M5hAdHihdm4pCe/DC2Fo1TAJ0Xq9MDyQkqICe+WK4HHC3V+BlPSLxThBdD0XivY=
-X-Google-Smtp-Source: AGHT+IHSf24MHXCFM2oQnqc68fb0JfkbU/gQmTyhVXOzuBlSPPZgAtBdkIdsxpek5LvHWlT7coitEw==
-X-Received: by 2002:a5d:4a41:0:b0:341:cf18:70b3 with SMTP id v1-20020a5d4a41000000b00341cf1870b3mr4563234wrs.27.1711822257669;
-        Sat, 30 Mar 2024 11:10:57 -0700 (PDT)
+        bh=G6FfSFT0iQhQsIxQCkilA3RrGtXMgyj7X9sH1RGa6Iw=;
+        b=ZWZ4tai9q6Cgf4WnpbrjCnTjytrG+ClIJMwuY45EDWwkO1LHN4zbprhhkOPURtbOmX
+         9hqBCVPeVeTPd1aydPh/o+lWpShYcKCM+RSJuOp37QE7MLZ3ZGk0y0hPlg/CfDKJdQUp
+         4/NBk/RqVHsE0CWhJn2adNJqJrfelXOkLS5as8uS+X9Qqtv+NjjDdvLb7zTP9T8fIcY4
+         81K89reLnX7klmR1RxsMhTtlvQJJZKxkzjzL6sHSjdvlz+ITQah5NlnUMQfx6cEPst78
+         xmjSEyGy6PhPaQpWxs1B1gRFcL063E2a108on8/nBNfPwTxjzJpmSvfABzRBKFyArKwv
+         qXIg==
+X-Gm-Message-State: AOJu0YwT0TnEUZnszz+mAqR+F1krkNztjUF1jZ+CjLPVPa5cGKfMHNx5
+	py87ae5eKoB0FACa5YkJGdx96woMMXXQ8J44WvXFVgLyjQl+NJs9McTc1pZuvSY=
+X-Google-Smtp-Source: AGHT+IHGNzzOcrsjxFkI3C0f3COW5wlxqzJ99dai1JoJ7cSUkHlMboIodgKoDG6p2Ld/MTdnLd8y1w==
+X-Received: by 2002:a5d:5281:0:b0:33d:754c:8daf with SMTP id c1-20020a5d5281000000b0033d754c8dafmr3980386wrv.10.1711822306407;
+        Sat, 30 Mar 2024 11:11:46 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id ce8-20020a5d5e08000000b003433e4c6d43sm3312954wrb.32.2024.03.30.11.10.55
+        by smtp.gmail.com with ESMTPSA id dp18-20020a0560000c9200b00341de138a2esm6976538wrb.94.2024.03.30.11.11.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 30 Mar 2024 11:10:56 -0700 (PDT)
-Message-ID: <e1a013e3-52df-441c-b0b0-06b6a877f151@linaro.org>
-Date: Sat, 30 Mar 2024 19:10:54 +0100
+        Sat, 30 Mar 2024 11:11:45 -0700 (PDT)
+Message-ID: <91d398c5-c564-4889-a45a-fcf8d805bde8@linaro.org>
+Date: Sat, 30 Mar 2024 19:11:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,23 +76,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: panel: Add LG SW43408 MIPI-DSI panel
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Caleb Connolly <caleb.connolly@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+Subject: Re: [PATCH 1/2] dt-bindings: arm: sunxi: document Tanix TX1 name
+To: Andre Przywara <andre.przywara@arm.com>, Chen-Yu Tsai <wens@csie.org>,
  Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- Vinod Koul <vkoul@kernel.org>, Caleb Connolly <caleb@connolly.tech>
-References: <20240330-lg-sw43408-panel-v2-0-293a58717b38@linaro.org>
- <20240330-lg-sw43408-panel-v2-1-293a58717b38@linaro.org>
+ Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>
+Cc: devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev
+References: <20240330013243.17943-1-andre.przywara@arm.com>
+ <20240330013243.17943-2-andre.przywara@arm.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -140,24 +131,23 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240330-lg-sw43408-panel-v2-1-293a58717b38@linaro.org>
+In-Reply-To: <20240330013243.17943-2-andre.przywara@arm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 30/03/2024 16:00, Dmitry Baryshkov wrote:
-> From: Sumit Semwal <sumit.semwal@linaro.org>
+On 30/03/2024 02:32, Andre Przywara wrote:
+> The Tanix TX1 is a tiny TV box with the Allwinner H313 SoC, a lower bin
+> version of the Allwinner H616. It comes with no SD card slot or Ethernet
+> port.
 > 
-> LG SW43408 is 1080x2160, 4-lane MIPI-DSI panel present on Google Pixel 3
-> phones.
+> Add the board/SoC compatible string pair to the list of known boards.
+> Since the H313 does not look different from a software point of view,
+> we keep the H616 compatible string.
 > 
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> Signed-off-by: Sumit Semwal <sumit.semwal@linaro.org>
-> [caleb: convert to yaml]
-> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 > ---
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
