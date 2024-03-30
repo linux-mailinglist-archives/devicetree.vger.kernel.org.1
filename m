@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-54809-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54810-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7222E892ADF
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 12:37:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0BA7892AE4
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 12:42:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B51A7B218DE
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 11:37:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F9DC1F21274
+	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 11:42:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CD972C86A;
-	Sat, 30 Mar 2024 11:37:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0FC62C68A;
+	Sat, 30 Mar 2024 11:42:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IslaWJbb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HT4JrJGm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6C2A2030A
-	for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 11:37:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBDBB36AE4
+	for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 11:42:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711798637; cv=none; b=b2nHpXqNpV9e+E+g5I2M1y80cIWTKuGPVw+YBFz4O2H98oFazLzsZvl3wOQ8jYSEwT+FkLQMYUcUmtjwmKbSY+hwk00OxK41HmrfPCzd2KneohtjGnVe3ChNBJsunHkDq/y5zGf2kDPpgfpzs5ZPYipMOyMjwW4JjA0UIxM449Y=
+	t=1711798939; cv=none; b=XNJofOXa7/UlRD+vfniwM+7fSkXQAJ++kj5dq/jy1+bmwpys7JPdMZGmDXkzPjSe6yMigYA/vgm2WlLplcXMrdcp6LywyaOxi5qSkMR9JXMg2gZyqjip2MNRm8hHrN9k9Bpq6P58s26tpvMSD2W4Y8iHnVurzwOk6HzFjBq76M4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711798637; c=relaxed/simple;
-	bh=hy2qgMgAHhQOeKPDPHmM9vIwdjhxLTzWi28efjHX5YA=;
+	s=arc-20240116; t=1711798939; c=relaxed/simple;
+	bh=phvGZ09GCCEeBwb0R2IVJ0+92/CIeeuWJyklwGXtw+A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=M8r4ZDwBB/61VJBSb/qKtlcGOsFEwSGF8Trm5fIJt00v868L/WOZSULEByAtaxeaH2QemxAtxC15aItCG80lWSkuWnzgAUu8w1lDDBwbXvaLQuYB36rkqYRo84+EVo8dFkNBG8zm6UM4ZyFagCcPgdnmnj3ac0yqoKdGCl6kPdA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IslaWJbb; arc=none smtp.client-ip=209.85.128.43
+	 In-Reply-To:Content-Type; b=QRcltkTUlunVDxoV0tK7nhYA83G4ClWKCxVlyGwgx+SZOQw4yVnog7snDtsdYd0DyhaIiGErlunfyam10G0g9wt5BSYveRQbg6PL67aozcXCNupvusvk4m8PHxlSo60qLh3CkwOa+Ywz4oCc8didtBxpZS69wCJN7SJFyiB5WLo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HT4JrJGm; arc=none smtp.client-ip=209.85.128.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-415446af364so12813585e9.0
-        for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 04:37:15 -0700 (PDT)
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-41553f150b9so8254415e9.1
+        for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 04:42:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711798634; x=1712403434; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711798936; x=1712403736; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=hy2qgMgAHhQOeKPDPHmM9vIwdjhxLTzWi28efjHX5YA=;
-        b=IslaWJbb4nBm2VIfLk2Q/PNNfMc3hQJ4cI7QaWtZUrskrbRuvwx/TopX8Kp9/EgqRC
-         hloj7hietSyL+un5w4xFOWS3l5M/GqFEpFxzII2ofUPG8awfRp6b+g3LeGT3IcLE3EWn
-         CwiMZcPZy8YRx8M92p3QrftKFf/w3ml+cpfZc+uASdbwfaxWwaN47aoUXS6hhCNmOn6D
-         KrHiHfiHiE1pG0phcqdh1tUef2ex/wBl2YYeSH70gd4GXiN6CuV8Q9qya05oYnsOnTMw
-         B/marfPQBvZaDswvT2vcgJwu09MPb9aEVOQyrp9KYbw2gWQw7EKUaZWORkLia/IpkMAQ
-         YsIQ==
+        bh=wMESD1A5qcJKQru//VVRS6eiwJM8A7WAsmOSDt4Z5PM=;
+        b=HT4JrJGmAStS3Aw7mArwhI4+zL3AmaBb9nWNi0/hvYbEVsoRb0orFEeM7nsyIgnYVc
+         P+s34dlq6F1BmL9fBzAbVKjUjq9ZvpsUICGgATFtrNzLKK8YI1ODcf5sp43WlJwAUWr1
+         Oty3MCdJKkcbJwc2i6TwQTckKQQO6g2+AvH8DgdHMoaUlZMaN0Ydc5YnwW9Hlpi+eeQp
+         QavSpCZrVnzyp4k4eAi6pOQPq1jXTtbjIIzIYNSWJYdPjj/kSE3z4gvC69NzzFTsYgnw
+         aDIXlkw0cgxcjf9fY1P7YUqysf0LcPRgtLKOn1R0rkwlw48gkvmMuyvqsA3qbef1IsbW
+         qFnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711798634; x=1712403434;
+        d=1e100.net; s=20230601; t=1711798936; x=1712403736;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=hy2qgMgAHhQOeKPDPHmM9vIwdjhxLTzWi28efjHX5YA=;
-        b=UjwJFGJyhINQ3RohyTTCkPkqhEe04tOJXkSyrWXZxqDYZb3ZCQYRfbQhYqkSVNOgE5
-         q9M01hFVhWbGCSPg4EHZFxqZE8BVox4pPhZ2Vl8b2Uoom8RBFLjirDc1Aw9KlxSSVePT
-         TU38jsYcYuTY2kBCbzr7i6QRohu2UBW0GoMNiOOeyICRVaWOjVRR1LRIl5m9R+xTltKg
-         PpEvNe+1jW3PZOaGhbBq+iF9JD0KpILkKGdv16VmdZc2+M5UC4gdlzH3E0S3kQz12+sE
-         OIUIJi6PCWo5m6X/eDRIpe7NIvxHW4yAartioFfXY/S9Au3rhh4CXgycMlAEtBW4N43E
-         aPbA==
-X-Forwarded-Encrypted: i=1; AJvYcCXLo2vWyhzVKvoMtom7RusY6jsYS9SSF/NVRCRRMV8iLN4CJOyXfU6M7RBoWKD129JJShcgYpHHOzgdlHSsVoaEvoDJkXjqyGd0Vg==
-X-Gm-Message-State: AOJu0Yzsnk6nx/KitXV+QzilzfgD/ewHkaU5/HOxKa4LpTE1GHLzxY8Q
-	e5Ek+XptrAlJhN7khqS36HYo26j5CSSRvG2eIgYCnYDdDPmP8GHJaDdjTwEKWSc=
-X-Google-Smtp-Source: AGHT+IEfJolMS2yHw+nio3/Pr69CVOXA6Q+0qaqf8jKtTSo/3LWaawa/wYZAbdwCk/TOmzQzQFQmYA==
-X-Received: by 2002:a05:6000:ca:b0:341:7295:4b8b with SMTP id q10-20020a05600000ca00b0034172954b8bmr6530668wrx.1.1711798634220;
-        Sat, 30 Mar 2024 04:37:14 -0700 (PDT)
+        bh=wMESD1A5qcJKQru//VVRS6eiwJM8A7WAsmOSDt4Z5PM=;
+        b=inlBvUffWyAOvrLbVNHliuJDt4CgRb2IkoAYjMv2KGMl74x3rEIkGOMrHj/FvMW66D
+         cDyweLddzyZWY97Pd65USFXfRbsAUkYAQwnrQzpWeT2aufaQWwmW6VpclPqIAeMWvrnd
+         MWq22Ij0wU4+Br+htdRRoL3d6XMBSVdtfCdmY84Z/KPZhsKpE507PGD9/qHAnizceU8M
+         XMGaU/lEw+hdCDyD5f70+Bu55JRpx5PTf4gwz6EiFnz32SDhghrtJvA2lcBjqjYsZiV1
+         qXWjsh6sAl/M/TyQOiZLg3BdVVRCKhXCN3ETmnoAiV4NX/3U8dVcPAVyCVd0Nr867dEO
+         RjuQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUDiemo4stlHU+unXO3pwtK9X9C7EcZJCykye0jONxBLv6x8KA65ZpsIkr3XInX0JwcJ82by8AxlbKb5e/6fFmmjFSvP0RujrYqEQ==
+X-Gm-Message-State: AOJu0YwIWeYIDyh5opbul8oyiob7O0iXf8QXGnT5XFVuARkajTuGJePH
+	Cj9SqrHvlq3Dhuhejj9nZNqoqnzJn9sXxWaG8PlXg77LlsJizS2Lyopn3QKGaxQ=
+X-Google-Smtp-Source: AGHT+IFL+wkmVxWISulNpDXstMTMHOiTNijaEFzURCA6rgOYygUuwW6ze3Z6sTAaPKmF3MWTfSf4dg==
+X-Received: by 2002:a05:600c:4449:b0:413:f3c4:4d95 with SMTP id v9-20020a05600c444900b00413f3c44d95mr4040548wmn.10.1711798936233;
+        Sat, 30 Mar 2024 04:42:16 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id o12-20020a5d4a8c000000b0033e7b05edf3sm6249509wrq.44.2024.03.30.04.37.12
+        by smtp.gmail.com with ESMTPSA id n18-20020a05600c4f9200b004148c3685ffsm8349161wmq.3.2024.03.30.04.42.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 30 Mar 2024 04:37:13 -0700 (PDT)
-Message-ID: <718b64e8-a4c6-4789-ba9c-be6877e3f154@linaro.org>
-Date: Sat, 30 Mar 2024 12:37:12 +0100
+        Sat, 30 Mar 2024 04:42:15 -0700 (PDT)
+Message-ID: <4a7b6d14-1857-47de-bb30-31aee8a00164@linaro.org>
+Date: Sat, 30 Mar 2024 12:42:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,13 +77,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] cadence-xspi: Add xfer capabilities
-To: Witold Sadowski <wsadowski@marvell.com>, linux-kernel@vger.kernel.org,
- linux-spi@vger.kernel.org, devicetree@vger.kernel.org
-Cc: broonie@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, pthombar@cadence.com
-References: <20240329194849.25554-1-wsadowski@marvell.com>
- <20240329194849.25554-6-wsadowski@marvell.com>
+Subject: Re: [PATCH v4 0/5] LLCC: Support for Broadcast_AND region
+To: Unnathi Chalicheemala <quic_uchalich@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel@quicinc.com
+References: <20240329-llcc-broadcast-and-v4-0-107c76fd8ceb@quicinc.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -130,27 +132,45 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240329194849.25554-6-wsadowski@marvell.com>
+In-Reply-To: <20240329-llcc-broadcast-and-v4-0-107c76fd8ceb@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/03/2024 20:48, Witold Sadowski wrote:
-> Add support for iMRVL xfer hw_overlay of Cadence xSPI
-> block.
-> MRVL Xfer overlay extend xSPI capabilities, to support
-> non-memory SPI operations.
-> With generic xSPI command it allows to create any
-> required SPI transaction
+On 29/03/2024 22:53, Unnathi Chalicheemala wrote:
+> This series adds:
+> 1. Device tree register mapping for Broadcast_AND region in SM8450,
+> SM8550, SM8650.
+> 2. LLCC driver updates to reflect addition of Broadcast_AND regmap.
+> 
+> To support CSR programming, a broadcast interface is used to program all
+> channels in a single command. Until SM8450 there was only one broadcast
+> region (Broadcast_OR) used to broadcast write and check for status bit
+> 0. From SM8450 onwards another broadcast region (Broadcast_AND) has been
+> added which checks for status bit 1.
+> 
+> This series updates the device trees from SM8450 onwards to have a
+> mapping to this Broadcast_AND region. It also updates the llcc_drv_data
+> structure with a regmap for Broadcast_AND region and corrects the
+> broadcast region used to check for status bit 1.
 
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching.
+Your way of sending patches makes it difficult for us to review them.
 
-Please wrap commit message according to Linux coding style / submission
-process (neither too early nor over the limit):
-https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+b4 diff -C '<20240329-llcc-broadcast-and-v4-0-107c76fd8ceb@quicinc.com>'
+Grabbing thread from
+lore.kernel.org/all/20240329-llcc-broadcast-and-v4-0-107c76fd8ceb@quicinc.com/t.mbox.gz
+Checking for older revisions
+  Added from v3: 5 patches
+---
+Analyzing 39 messages in the thread
+Preparing fake-am for v3: dt-bindings: arm: msm: Add llcc Broadcast_AND
+register
+ERROR: v3 series incomplete; unable to create a fake-am range
+---
+Could not create fake-am range for lower series v3
 
-... and build your code because this does not compile. :(
+
+Please reach internally within Qualcomm to get some guidance how to
+properly set up your work environment.
 
 Best regards,
 Krzysztof
