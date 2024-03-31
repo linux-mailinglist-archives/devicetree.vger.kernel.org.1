@@ -1,136 +1,127 @@
-Return-Path: <devicetree+bounces-54899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A688989318B
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 14:01:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA97A893194
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 14:47:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FA0F1F215F5
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 12:01:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 391621F21263
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 12:47:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA754144310;
-	Sun, 31 Mar 2024 12:01:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E39AD143C75;
+	Sun, 31 Mar 2024 12:47:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="JTL8Gjmv"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="seHIEUu0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2119.outbound.protection.outlook.com [40.107.104.119])
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2097.outbound.protection.outlook.com [40.107.6.97])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFF3B290A;
-	Sun, 31 Mar 2024 12:01:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.104.119
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 763541C0DF1;
+	Sun, 31 Mar 2024 12:47:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.6.97
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711886508; cv=fail; b=Lvi53HUIqes+EBNx85BEBxc8F8FHwvtyh4QWuWY9mQhDuvxt+OnTepAPi+BXoeYfcm0R8nnDCUHvBmSIz1AwJ0HIsyX7aZNQw+F63uHaqifXOMCt/NsO3nyi1dbtwQzuEYxhKeYxdFhhEbrJTguX49yK0vfdnvSJSjM8xZ+NrtM=
+	t=1711889233; cv=fail; b=cP42rVIzFxA7tYV1DadZhXifhdBmOu2R/zqr3kdrrqgjvokMYMHTBetsTkpRxSaSz+2cJfBYNu4Fvj8oULv7JArGo9UljjO+9uoY5thWCO2y5MT6G/eVQAzbbbPrgmhNVspKcZ240S5uxfn86+4e0f5wCHj/G92/JxepYu7n3RI=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711886508; c=relaxed/simple;
-	bh=8U970gqcEZAoyQdbKC43hqGB8wfAC90zoeWELHfY9GI=;
+	s=arc-20240116; t=1711889233; c=relaxed/simple;
+	bh=51WNL5hovF5lNn12ghNulTG893hEDw1AOKrC58wHWQs=;
 	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=flSn0z2JonLFCbAkjNBuh8kkSI7czatzEzGWGFIW1KzdaB2+1QF5RMBJS3bKgYasuiTenQfyPj+te021bIvyWJ4y7aRzmTVOw9TjETSGPGCt8wyXIuSN94J/gySZ12FPKc+axY1K+ZD/Q2Yf5865DXJ4do9aMm/ybM3DkXUlpxM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=JTL8Gjmv; arc=fail smtp.client-ip=40.107.104.119
+	 Content-Type:MIME-Version; b=ABN5KyQmTh03/s7T9iroy2Bg3+PnxKav6hR5lQJ5v5ZUbKstT7c2ALl8NQETeHdYS7ZB3ywAVuBdp3g6HPkO/bS0HO2DxNn4kR4/I60ecyGVT+MTxh7oPiS+Q6FswX8QzXGt0CX9JbzocnQ6E7USX6xzYS2vxivsEwsg1T1hP3U=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=seHIEUu0; arc=fail smtp.client-ip=40.107.6.97
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mXGzhz5wYM26EQWjBISqa1iTPOaLm7cBJIL5f2TnvW0yHkFJ52gueNu7GW3oDuGdImVAdBU6QhZufSknnY8Y8VJisVwl0LlETtD3zIqIwEgmRr7eSpdIFh/ovVhgbAIKfxZslctj9EtGia/UPNcOoDF1hDjlXtX3P1Unnk0XrDP6EoYAF1u1PRPOgays2zxTpbMV92pQPQaxacwWglJ2js9p/Ky+JDETagE8bQkfX9N7BY22eNa60G4A/FT10JZTVI8sHH2nsEOwuFm8BkpfO4+uYxe79dxNmbJC+KouY/Laufumkkskaf2spWDLyjaUtiNwPeqm6jTci8iiJ7qQbg==
+ b=lZCYLr64BJXTlrYf0RjClnT2qXvpiKcSbaaVbdgCZ/j6EKa+dsq3LZ4FRAAFwcloGsFzVNYe6SNJaMyrcc+EFfIVyH8nTtipHwsjXj4idFJVpQguvXF6KRcjgHvM2dt87Psx2r2MaZ5+o3Yuj5f+8nO/wqXyNqd5fV7upsT7/CkMYHNTVVfrvJf9NU8hsktTH3+hNM1D2Ka7h2auPOsq40VN9sob5vqUpSgSipORp6qaGUpEy7IAfLceoqYJ9WWdDuWouNIFiUPxKOcEQe40KyeE9MEIuTWLswr2vow5bk+HwTL51VYuuximh7lC2NLKbNwG3SoA0l50oG521wGsng==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8U970gqcEZAoyQdbKC43hqGB8wfAC90zoeWELHfY9GI=;
- b=arOqx2fgIkjSHmFfpCRy/Hn54KYKDkPXHZfhot88OlYnRGWYkYURNoKO6NMIftEaeBeF8YjfJGh2UhwDBTTxa/5igOckPjquvkn+PVlB1eAbhnrzIpLNavOSQNpwe2pmXGCIcdNEPEwp8iK+fDv8tUN4E2spqye8xMUimhTHKXzzVpDKKnO5XTvpr79oM2cNKdlxdhZS548Ytj4yshCmPXDvENGRnZQB9IDKbb/o8rRj8/5GCq2H7ja0mF+gnUnvrRQPEXMA4yAh/FrOQKic9wBx0kf/bNbmnfiq7uUQqjh0XJ27nTMRafES3Tvo5Jmk/2lQlzHL1oQgWgidzeEX8Q==
+ bh=eMPPTj8+ku+xFg3h1OA9sKhlB+vQ3TzdCiuFXhVe76M=;
+ b=I/wRO04erWTpyXWPPT71+zmMZANVfC0ilV5hv+RwxTyVifXo4tObnuBE14lDjU+VgkHPzsOmIbAYo9rjXkwdPbXHSehupYCno22hciY3xXNCD1lUEsC44HbUbPXVkiAWYcthxK19GBTW8u4HCSfVzzkVzfUIJmZCFvSTaD0cLhRC1OrzvS10NhpuThWLSO790VHHqps5QA+ANs9SiFf29HXhKKlb0kAGt/uoZ6YcteT8hZV0CQuRFgTeYbUgUq3DhOnETNCcHyrOn/innSaWbT5gVuJhKaHQCItmLUWgIjGYfmyl7ljcwty2miDo4dafb7DGO1Wptq5+S2XBoXZGhg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8U970gqcEZAoyQdbKC43hqGB8wfAC90zoeWELHfY9GI=;
- b=JTL8GjmvWl72xPoH6tKqdOMu3ZoTJPXaVOjOFaf0LpUdikwuoi1eFijppuQNpNzLuvDGjtB3br3EhZIKURwo2mVgJ4D6IgubKOHrZPOffgAHcYAh20jxfpyAe9zXSb0OxRLoDDSjnLfpKeDZy+L7EVJl7dDuIAROS/QKucL/BW4=
+ bh=eMPPTj8+ku+xFg3h1OA9sKhlB+vQ3TzdCiuFXhVe76M=;
+ b=seHIEUu0P2Wumt5/r5jXrkK1YzN3mackmQKPf/umtMWAF5PZchj4owy7oLQLsF3dvW9lPa6FmQMXzkWr06FSw3HM9+lIAsFusrQ84HuNNRgQLLmA9wz6DPy6w3E6kzfuCP/yw9xphJX9qUDnQMksNUPfp6sXnEdosI61mnKcRLY=
 Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by DB8PR04MB6875.eurprd04.prod.outlook.com (2603:10a6:10:11f::11) with
+ by VI1PR04MB7022.eurprd04.prod.outlook.com (2603:10a6:800:126::21) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Sun, 31 Mar
- 2024 12:01:44 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.45; Sun, 31 Mar
+ 2024 12:47:08 +0000
 Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
  ([fe80::d30b:44e7:e78e:662d]) by DU0PR04MB9417.eurprd04.prod.outlook.com
  ([fe80::d30b:44e7:e78e:662d%4]) with mapi id 15.20.7386.037; Sun, 31 Mar 2024
- 12:01:44 +0000
+ 12:47:07 +0000
 From: Peng Fan <peng.fan@nxp.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, "Peng Fan (OSS)"
-	<peng.fan@oss.nxp.com>, Michael Turquette <mturquette@baylibre.com>, Stephen
- Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
-	<festevam@gmail.com>, Abel Vesa <abelvesa@kernel.org>
-CC: "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+To: Dan Carpenter <dan.carpenter@linaro.org>, "Peng Fan (OSS)"
+	<peng.fan@oss.nxp.com>
+CC: Sudeep Holla <sudeep.holla@arm.com>, Cristian Marussi
+	<cristian.marussi@arm.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
 	"linux-arm-kernel@lists.infradead.org"
 	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v5 4/4] clk: imx: add i.MX95 BLK CTL clk driver
-Thread-Topic: [PATCH v5 4/4] clk: imx: add i.MX95 BLK CTL clk driver
-Thread-Index: AQHafb8P7Z/0BgtsqUOmutQIflELULFI2PwAgAjxd8A=
-Date: Sun, 31 Mar 2024 12:01:44 +0000
+	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-gpio@vger.kernel.org"
+	<linux-gpio@vger.kernel.org>, Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+Subject: RE: [PATCH v6 3/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
+ protocol basic support
+Thread-Topic: [PATCH v6 3/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
+ protocol basic support
+Thread-Index: AQHafRqyofu9Mu9OLUiaociI+9q/i7FLbcGAgAZqduA=
+Date: Sun, 31 Mar 2024 12:47:07 +0000
 Message-ID:
- <DU0PR04MB941774D0A1CD037AB7108AAF88382@DU0PR04MB9417.eurprd04.prod.outlook.com>
-References: <20240324-imx95-blk-ctl-v5-0-7a706174078a@nxp.com>
- <20240324-imx95-blk-ctl-v5-4-7a706174078a@nxp.com>
- <d3770f5e-f3cc-40fd-a211-b229be46d974@linaro.org>
-In-Reply-To: <d3770f5e-f3cc-40fd-a211-b229be46d974@linaro.org>
+ <DU0PR04MB94170E50A016CA5AAB971D4488382@DU0PR04MB9417.eurprd04.prod.outlook.com>
+References: <20240323-pinctrl-scmi-v6-0-a895243257c0@nxp.com>
+ <20240323-pinctrl-scmi-v6-3-a895243257c0@nxp.com>
+ <4879ad5d-165c-4118-81f7-8f6348a5a5d4@moroto.mountain>
+In-Reply-To: <4879ad5d-165c-4118-81f7-8f6348a5a5d4@moroto.mountain>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach:
 X-MS-TNEF-Correlator:
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|DB8PR04MB6875:EE_
+x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|VI1PR04MB7022:EE_
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
 x-microsoft-antispam-message-info:
- HIl4CoAQ0AZ//Gmpnu1reo85VG320aMEIbcz6YNH+U3KBTpav8KdOb8mIvXe22SrO3hiylG5n+RSdVgtspiZ6Eq7WZMFpRjYPJ3z2DZr7LkHkyDtvY5uvCdRquCvXmKfHD0IhWxk9Kuf6JIeHWVS3YcIw7iV15uJjAcjRaceIHvLV2+Soei47ycoOeQoLoKIUcFGZSwZ+PiWyC1Gc1Sp5UAnbljs7yW3TPEw7BU4+MvPzC5NCPEoXwEdNdy/NqkAkELLb/4sjMkLsxlEGZ+vuvgzzj9m0/ZMFrc2g4ptY9hSUlbjWMckoGWKFofqMCZ9+7jhz5bihF3Q+oz/DLttxxjkjzt0T+PXNEEHtnqMDDxaZ8VZ5xWMEaHhHmNLorub8X1foHpMQp3lY/1+fNaJo/j+KdumsgUwmxBSj2dsvvxPBowBSGMdaArc7ub6qI/UNdHhIDJg2qknZJSugNUL9PDjIFU0Xn8Nz4yAdgZyiSkDrDegfqkiKezbCf/fbZ30Xvk/TA9iU29nWtdeK8NZQTs8DinalZe5oMGavszsga65EsNWuMpSiXvK8lXdaoKomwBLQfOPCANWpJuUARTfXAroNy9EESTwjy4ClY/Yu/iRN8vEp6ZnqeBmvT4ViWytBVt8Jds6R12qoP+9pvvIkhL2yJ2jBPVfbfdr40p03zSB5Ox4RSNdxz9qnYqtSf7Z2V7f7Gnr9aGxrA6f+8qQUg==
+ Ub/i1u4m9bEAv0xP8yRFIHpd5IrGNR5SswEuQ7OuxzUqStBlcuPHkybi6pcT3+3B741CN3IAq0c6o1rNwzAfDQ7xPaceL2eOIfAVDhHuZ34hJ8ad0L6t1fjnFf8kLDYiSGAGwSFvZ1Na+VkcfpMfDLodbmxI9widCj0oNkWW/hmlt+piFbvNtFqDuS4PHTojJ1QJVhVHBnd3o0P+rG9WhR/eIqPjQKA7v7n5JpfmSSb+gJAd8KJzJT0yrfWQsvw3+nhDOZ3ijwqXxBWo/rAID62p8AlWhdFAXXvAQEhHfjPilxox0r8HfmzG+eGzIbHpNXHztA446R+cZX68432p5psA8FWJI3sHeEim/47Gt8S8XTRfSIWOg8wOHA9I/359daY/WvocEwPBV/KiusfaHOCTwUb2L6aL9PL94Qvn8aslh41dhJqjSoKnpKLRRrKw0p2Rddz4VwG2kOAJ0EzLR/aggWGwtalRP+XaMPDJOunCF+6cfo5vJGPWYu6P7McvXvA9GeV1GLlagBveV811CRzoOu36bQ/rspMipaE8XVOYuV5LGmbvtFk7uJAzAPJdUVaTynNxyQML5vacuanqR7Bauh6AcvYpr4P6mFw3jibRznoyxQRXHC9pDf6dZ+8keWJLoYk59zgIE6/3aJIYtkDIGoXicnhTjDrIunX7U08=
 x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(7416005)(376005)(366007)(921011);DIR:OUT;SFP:1102;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(1800799015)(376005)(7416005);DIR:OUT;SFP:1102;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?YmZIcmJtdU1oZzk3czBoYjA4ckpwZGNDV0l0cGNKdldybDN4bEZkOXo0bXcr?=
- =?utf-8?B?SUhHa1J5UUxyYllBZlpUR24vam1XdlIwTDU0VVI0V2h2ZGIxSHJMK3Q4bHAv?=
- =?utf-8?B?MVJQTmNhc1ZqdVZjeERQWmc3aWhDSytQdnV0R0dFcnFsdUl1Y3c2VVRVVEhL?=
- =?utf-8?B?dVlsd0Y0QzFwa0lDWGt6MWxGVk5yTEpoSEQydGZtT0FzY0dObDdGT3VjK3Jr?=
- =?utf-8?B?QTB2S084SWVDNDRvcFlNcFoveHlURmR6MEFLcnNqa3VZWHN0U0hUWmlxWDhP?=
- =?utf-8?B?Mnhka200d0lqbUJjdjdMNkxiSmdVODdpdlFrTUw1dC9WcGlYK3M3NHVjaFoz?=
- =?utf-8?B?UEllQTkwd3o3VW5BSWxVVFV6alE5TUpSR0UrUnA1aGFEK0JuTDc0SUdRSzlM?=
- =?utf-8?B?LzJDU1NvbzNKQ1N2ZFhTbEFOOHZ0eDZvWk5Jdm5yQk1sUWlrbXJOTW03SWtU?=
- =?utf-8?B?WmcvS2VtMFZlMmEvZkkzanNyektYWWhDVFdHa2pMdFlIckFxR3F6UnJzMGpQ?=
- =?utf-8?B?OElkalhsenZQajlJMkpTSHlWSnJQb1VmZDlYNnZsaWw1U2U4eW0xdXlUYitW?=
- =?utf-8?B?L0FWZ3J0b1Y5am55SVlLRk5LRnNVd2RCRUxjVXBzRDJaWGluMVRUd29qODBF?=
- =?utf-8?B?TVU1dHdjQ0dWTE9Uc2N3MnRwUDZwZlJkNTBMSEI3K0RQWWRrRXpJb3RBQmdh?=
- =?utf-8?B?MHNlU1phZ3EycXpJY1Z0UFkrUXRpU1F0ZTEvYmRkeHJNVmkySTMrNGsvRjdC?=
- =?utf-8?B?SjRCTk9SYWJTYUdDaTNLMW9YKys1bmpUeFdsVFhIaEtGWVdzcGNIT25ieUtl?=
- =?utf-8?B?RDE1VEZqc29RbDROQ2dqbXh4dmN1TFk4bDhTcEY5cVNQOW1zeXYwVVhhcFha?=
- =?utf-8?B?cE94bkoyRUgwT3VWOUdjZ25UNDJqbEVzNzJIOU14RWR4Z0Z5anFCb3NRVnhK?=
- =?utf-8?B?cGFMbU50eVIvbGFRbGF0QWprbmgwVjB2d1pib1RMeWRtTm9weldYMmVXMmNX?=
- =?utf-8?B?cHVkWEtkYTZEMFpQK0RWUFUzRGpicGpxSWtOWVVoZmdRQ2wrSVJPV0xacHRa?=
- =?utf-8?B?aGpyV3ZzcG5oUC9sTmJTQXgydUNtejA4cndrZHJpZ1c2QlY1VmkyZXdzT2s5?=
- =?utf-8?B?UkZzQWRoTDNWTE5IWksyTkFpQ3lRbkdjcnZoSHZOODNsYVNub0d4T1FaRHZv?=
- =?utf-8?B?N3k4NFZiSjNaYitTaFpwQlhWNUxUSXZGVnBCMzM2aGVGTkpCZUw1aUMvbDVP?=
- =?utf-8?B?d2hjY25YMUtGQzQwWWFsb0s4bUcvYW1yeUwydk9jdzRxM3FNY01BS05qSEIw?=
- =?utf-8?B?c3Zsc2lHdmxhbWNjTDM5S3JBQzNLRTBOTmozYWtKRld2U1hYZ3M4VUJwd21r?=
- =?utf-8?B?b3hsWHBWcm1HNEY3T2JnSTlsblZVcDJKWXE0WUpWSzBDU1AyZXRXL1k5bUxl?=
- =?utf-8?B?eThRZXUzUmlPU3Y3aWRrVEdmcEZLN2ZoNmdqbVRFS0Rva3pnWC9obUsxeXdt?=
- =?utf-8?B?dXp3dkxTNTJQOW12SUpTb2lFYzJ4ZGxkaERyMUVBamJCVmhUWU1wVkNVMFRE?=
- =?utf-8?B?Q3RXeURPMUg1NEx4VzJjSWFxOGNFWHpFRU1rdDJXWTdyQ21rZE5PcW9tdUVS?=
- =?utf-8?B?enRwb0sxQ3VUeVovcG1xdHJ1dWVIcWhoSENPQjdGeWgvU3g5NktTWWFiVTRt?=
- =?utf-8?B?QlN5a0FSYkExMjJ4TTBBc2JTMW80R002NUYwVGNTQlI3T1BnOGtqeXJiZUNh?=
- =?utf-8?B?U0JLQzVEcUlncnNMSVFiVFZPd29LdVBDSkU1R3FyMFNXcnFzajdJRmIyVzM1?=
- =?utf-8?B?R0RtRFhiaDJqY1lmWTA2bFQ1Yy9kYXJCdFZFRXJrYVBFSDVVSVRyUEJNT2pC?=
- =?utf-8?B?bjRKYUU3U0cxYlgwQ3hrcXdRQlVBblpKK2FwWUxEcUpJSmxBd2ZWUzNMM05B?=
- =?utf-8?B?TVY1QTlXNFRrZWlMUkJuZnlyQkZXU01MVUw2dWdld21Hd3ZuRFFVeXU1UlY0?=
- =?utf-8?B?dmZhZzRxMjNTTFhiWUVvVVJNVFVtaUtaRmpjKzZEc29MOEYraloyRnBhLzBQ?=
- =?utf-8?B?dTR3Wm5IRGJrU1dkdHRYTG8wMlBCUWU3TlRPOWQxLzkxOElwQ2U5a1ArUzYr?=
- =?utf-8?Q?rhxA=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ =?us-ascii?Q?C3fK37y0jjJm8xFudvuad+swbeR2izsJFXYLp/bFKst+zdEdk5Ughco7YeYq?=
+ =?us-ascii?Q?oZUXG1Mf5Bmy6Y+5BCdnOoAGU/fR6e/cr9H3BKv70X/eVakkBqzZVQO04At0?=
+ =?us-ascii?Q?RmpJ3lvPxJ4OybPbx2bcrst76l6ecAdlnUzT+diKCVQMasZ8FPoVTBIHMNig?=
+ =?us-ascii?Q?tRzx37DsVNVJ/wp/laYYBjRApR3TJ8BZx2VkbVBxzl3+n56q+Zt3myO1TN9r?=
+ =?us-ascii?Q?uhAZL7jhkMLLp7q/fahXT9pzq8X30SMHPlko8rYkB8emZHFbKaTqexNXobxR?=
+ =?us-ascii?Q?syXEmvqRwKxLnc8dRXPqZiLKKMLhH7mnQFVuL9anLHlEFcbFNyXLHSE2fMOj?=
+ =?us-ascii?Q?b9A+74eyAGp5gEFg9XoIq2EDXxiIVPwpAfh8FAvrWTyJxygYfts/GoM9wQCV?=
+ =?us-ascii?Q?NQIMbbQ+hfQkHxidYKO7bb1cLYK8ctM2gI2U6lWXsUZOK0/OvbCae2Q6rEes?=
+ =?us-ascii?Q?hWdG0XqkOnrjOSzlWcZtFUs9gqMJT7oimA5pzCtzxKnQ/99SUkyHT/r7/E3a?=
+ =?us-ascii?Q?K2wLaths2Phr9EWHwr/yarNrjWS04f/In2gJuhZZ+JGiQqqk+F8vEmKEMG4t?=
+ =?us-ascii?Q?BANStxt2V+pXHt7DG/WaO1GMtZdWexkT66JBCF4z+3aiffQiAKhWEAzAO0pQ?=
+ =?us-ascii?Q?F9a5kzGRQHkrhE71hI9Cb1p2mJumjB6lFYhs4rQDAJ+c6VAtAiXtRIzUSrYa?=
+ =?us-ascii?Q?IPFzt3iHhBQwzUjGeENdpYIqa4VQ18Q/uh7Ow1o6ZmMA9cE6wIpPuAp96XZn?=
+ =?us-ascii?Q?evNmoshkRy6zHBHeyUtClF0GvW53hcA7+jYdZ+xr6XVEh8YNd0GsC48sNWod?=
+ =?us-ascii?Q?4L/HZ14epthdUDAc5lM1npDX1Bww8CuZ61MYKc8QPqaq6WqUBYNOscy8Z/6T?=
+ =?us-ascii?Q?/Z2jOLLk95WwSUa8NWhoidE2g0nAoXBv1NYmHzLdfh78Vj375R1oMR6XStOi?=
+ =?us-ascii?Q?XixQ9C6oCzIFooDFn5jpgy6AvQJiSJcgcXbpOLXalVdQco0l8WiGRx07D4HX?=
+ =?us-ascii?Q?i5X51iYWysdsDPRJ9Eyn9usXvR+u3bBGisRThB7clJ6x9xS0ipb+wcTIRkIP?=
+ =?us-ascii?Q?0OtIodKh3ywfoPp14/F3z83hUU35hEKZZZi/8+3FaCjZQN4dlvDYTCeZYFly?=
+ =?us-ascii?Q?EzVsRI0aJig1wxqtketALOeXOGhMYyTZIZY9VUx0MRU5PTlEIeA7zq6wpu+s?=
+ =?us-ascii?Q?hBIzclXiJr0N//kYrvk4W7TRh6bRNFazkGLFu1qy7niG6+ouKYVNSTmYH3af?=
+ =?us-ascii?Q?pyqV+/gr7YFwQRztmkkD8QFmnrE5rqd2G31xgoEyM3ClYXnGO9J6h1MnNI0z?=
+ =?us-ascii?Q?jMNGxydkS9T5ZJ4is+xk+rVFZObdU7aL5Uyq0CPLL3IReYB71Kckc7VpHzE6?=
+ =?us-ascii?Q?Hk9/BCARue2st1ii9uZ7cGqIH7++J1VU8CeoEi8wQ4n5cXHnpyFDNZYHF4Kb?=
+ =?us-ascii?Q?XuXYvx56FFQZ8zB6p5fVKn+j9lsfOANDSNRt8GbiNmwivQBHsI68IRCsc0BW?=
+ =?us-ascii?Q?e+2SmBvnF9Blya35FwqBEkVpefZ0avxQJsu9GXJeqt+7G3QmkoLnMoPQku8Y?=
+ =?us-ascii?Q?JfIZID1zw6YeWUmDmNY=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -140,35 +131,166 @@ MIME-Version: 1.0
 X-OriginatorOrg: nxp.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 556a98c1-6d46-4aec-9b55-08dc517a55a3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Mar 2024 12:01:44.4365
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5272c5d8-3a0f-47fe-e81a-08dc5180acf4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Mar 2024 12:47:07.8723
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 9wR3/kHrLl+lOSlKfnamf/v5JuulTee/2DaUSo9AikEHT/Sfto+TO0qIi2RBig4iphdi8GUp0B8wdMPFwBlGCA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6875
+X-MS-Exchange-CrossTenant-userprincipalname: W8l9Sy9cb2boJAptqa39bWARx9ZdcpkQwxMfwuNlIv4SEZF//TVdmmx6QW4zY6SuLB2a9glc5P0X55K8ZC1mFw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB7022
 
-PiBTdWJqZWN0OiBSZTogW1BBVENIIHY1IDQvNF0gY2xrOiBpbXg6IGFkZCBpLk1YOTUgQkxLIENU
-TCBjbGsgZHJpdmVyDQo+IA0KPiBPbiAyNC8wMy8yMDI0IDA4OjUyLCBQZW5nIEZhbiAoT1NTKSB3
-cm90ZToNCj4gPiBGcm9tOiBQZW5nIEZhbiA8cGVuZy5mYW5AbnhwLmNvbT4NCj4gPg0KPiANCj4g
-Li4uDQo+IA0KPiA+ICsNCj4gPiArc3RhdGljIGNvbnN0IHN0cnVjdCBvZl9kZXZpY2VfaWQgaW14
-OTVfYmNfb2ZfbWF0Y2hbXSA9IHsNCj4gPiArCXsgLmNvbXBhdGlibGUgPSAibnhwLGlteDk1LWNh
-bWVyYS1jc3IiLCAuZGF0YSA9ICZjYW1ibGtfZGV2X2RhdGEgfSwNCj4gPiArCXsgLmNvbXBhdGli
-bGUgPSAibnhwLGlteDk1LWRpc3BsYXktbWFzdGVyLWNzciIsIH0sDQo+ID4gKwl7IC5jb21wYXRp
-YmxlID0gIm54cCxpbXg5NS1sdmRzLWNzciIsIC5kYXRhID0gJmx2ZHNfY3NyX2Rldl9kYXRhIH0s
-DQo+ID4gKwl7IC5jb21wYXRpYmxlID0gIm54cCxpbXg5NS1kaXNwbGF5LWNzciIsIC5kYXRhID0N
-Cj4gJmRpc3BtaXhfY3NyX2Rldl9kYXRhIH0sDQo+ID4gKwl7IC5jb21wYXRpYmxlID0gIm54cCxp
-bXg5NS12cHUtY3NyIiwgLmRhdGEgPSAmdnB1YmxrX2Rldl9kYXRhIH0sDQo+ID4gKwl7IC8qIFNl
-bnRpbmVsICovIH0sDQo+ID4gK307DQo+ID4gK01PRFVMRV9ERVZJQ0VfVEFCTEUob2YsIGlteDk1
-X2JjX29mX21hdGNoKTsNCj4gPiArDQo+ID4gK3N0YXRpYyBzdHJ1Y3QgcGxhdGZvcm1fZHJpdmVy
-IGlteDk1X2JjX2RyaXZlciA9IHsNCj4gPiArCS5wcm9iZSA9IGlteDk1X2JjX3Byb2JlLA0KPiA+
-ICsJLmRyaXZlciA9IHsNCj4gPiArCQkubmFtZSA9ICJpbXg5NS1ibGstY3RsIiwNCj4gPiArCQku
-b2ZfbWF0Y2hfdGFibGUgPSBvZl9tYXRjaF9wdHIoaW14OTVfYmNfb2ZfbWF0Y2gpLA0KPiANCj4g
-RHJvcCBvZl9tYXRjaF9wdHIoKSwgY2F1c2VzIHdhcm5pbmdzLiBGcm9tIHdoZXJlIGRpZCB5b3Ug
-Y29weSBzdWNoIGNvZGU/DQo+IFdoaWNoIG1haW5saW5lIGRyaXZlciBoYXMgc3VjaCBwYXR0ZXJu
-Pw0KDQpJIHJlY2FsbCB0aGF0IHdoZW4gQ09NUElMRV9URVNUIGlzIHNlbGVjdGVkLCBPRiBpcyBu
-b3Qgc2VsZWN0ZWQsIGtlcm5lbA0Kcm9ib3QgcmVwb3J0cyB3YXJuaW5nLiBUaGlzIG1heSBub3Qg
-YmUgdHJ1ZSBub3cuDQoNCkkgY291bGQgZHJvcCBpdCBpbiB2Ni4NCg0KVGhhbmtzLA0KUGVuZy4N
-Cg0KPiANCj4gQmVzdCByZWdhcmRzLA0KPiBLcnp5c3p0b2YNCg0K
+Hi Dan,
+
+> Subject: Re: [PATCH v6 3/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
+> protocol basic support
+>=20
+> Looks really nice.  Just a few small comments below.
+>=20
+> On Sat, Mar 23, 2024 at 08:15:16PM +0800, Peng Fan (OSS) wrote:
+> > +
+> > +struct scmi_msg_func_set {
+> > +	__le32 identifier;
+> > +	__le32 function_id;
+> > +	__le32 flags;
+> > +};
+>=20
+> This scmi_msg_func_set struct is unused.  Delete.
+>=20
+> > +static void
+> > +iter_pinctrl_settings_get_prepare_message(void *message, u32 desc_inde=
+x,
+> > +					  const void *priv)
+> > +{
+> > +	struct scmi_msg_settings_get *msg =3D message;
+> > +	const struct scmi_settings_get_ipriv *p =3D priv;
+> > +	u32 attributes;
+> > +
+> > +	attributes =3D FIELD_PREP(CONFIG_FLAG_MASK, p->flag) |
+> > +		     FIELD_PREP(SELECTOR_MASK, p->type);
+> > +
+> > +	if (p->flag =3D=3D 1)
+> > +		attributes |=3D FIELD_PREP(SKIP_CONFIGS_MASK, desc_index);
+> > +	else if (!p->flag)
+>=20
+> This is a nit-pick but could you change these !p->flag conditions to
+> p->flag =3D=3D 0?  It's a number zero, not a bool.
+>=20
+> > +		attributes |=3D FIELD_PREP(CONFIG_TYPE_MASK, p-
+> >config_types[0]);
+> > +
+> > +	msg->attributes =3D cpu_to_le32(attributes);
+> > +	msg->identifier =3D cpu_to_le32(p->selector); }
+> > +
+> > +static int
+> > +iter_pinctrl_settings_get_update_state(struct scmi_iterator_state *st,
+> > +				       const void *response, void *priv) {
+> > +	const struct scmi_resp_settings_get *r =3D response;
+> > +	struct scmi_settings_get_ipriv *p =3D priv;
+> > +
+> > +	if (p->flag =3D=3D 1) {
+> > +		st->num_returned =3D le32_get_bits(r->num_configs,
+> GENMASK(7, 0));
+> > +		st->num_remaining =3D le32_get_bits(r->num_configs,
+> > +						  GENMASK(31, 24));
+> > +	} else {
+> > +		st->num_returned =3D 1;
+> > +		st->num_remaining =3D 0;
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int
+> > +iter_pinctrl_settings_get_process_response(const struct
+> scmi_protocol_handle *ph,
+> > +				       const void *response,
+> > +				       struct scmi_iterator_state *st,
+> > +				       void *priv)
+> > +{
+> > +	const struct scmi_resp_settings_get *r =3D response;
+> > +	struct scmi_settings_get_ipriv *p =3D priv;
+> > +
+> > +	if (!p->flag) {
+>=20
+>=20
+> if (p->flag =3D=3D 0) {
+>=20
+> > +		if (p->config_types[0] !=3D
+> > +		    le32_get_bits(r->configs[st->loop_idx * 2], GENMASK(7, 0)))
+> > +			return -EINVAL;
+> > +	} else if (p->flag =3D=3D 1) {
+> > +		p->config_types[st->desc_index + st->loop_idx] =3D
+> > +			le32_get_bits(r->configs[st->loop_idx * 2],
+> > +				      GENMASK(7, 0));
+> > +	} else if (p->flag =3D=3D 2) {
+> > +		return 0;
+> > +	}
+> > +
+> > +	p->config_values[st->desc_index + st->loop_idx] =3D
+> > +		le32_to_cpu(r->configs[st->loop_idx * 2 + 1]);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int
+> > +scmi_pinctrl_settings_get(const struct scmi_protocol_handle *ph, u32
+> selector,
+> > +			  enum scmi_pinctrl_selector_type type,
+> > +			  enum scmi_pinctrl_conf_type config_type,
+> > +			  u32 *config_value)
+> > +{
+> > +	int ret;
+> > +	void *iter;
+> > +	struct scmi_iterator_ops ops =3D {
+> > +		.prepare_message =3D
+> iter_pinctrl_settings_get_prepare_message,
+> > +		.update_state =3D iter_pinctrl_settings_get_update_state,
+> > +		.process_response =3D
+> iter_pinctrl_settings_get_process_response,
+> > +	};
+> > +	struct scmi_settings_get_ipriv ipriv =3D {
+> > +		.selector =3D selector,
+> > +		.type =3D type,
+> > +		.flag =3D 0,
+>=20
+> ->flag should be 0-2.
+>=20
+> > +		.config_types =3D &config_type,
+> > +		.config_values =3D config_value,
+> > +	};
+> > +
+> > +	if (!config_value || type =3D=3D FUNCTION_TYPE)
+>              ^^^^^^^^^^^^
+> config_value should be optional for flag =3D=3D 2.
+
+As Cristian replied, I would keep it as is until we have a case in
+linux that need flag =3D=3D 2.
+
+Thanks,
+Peng
+
+>=20
+> regards,
+> dan carpenter
+>=20
+> > +		return -EINVAL;
+> > +
+> > +	ret =3D scmi_pinctrl_validate_id(ph, selector, type);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	iter =3D ph->hops->iter_response_init(ph, &ops, 1,
+> PINCTRL_SETTINGS_GET,
+> > +					    sizeof(struct
+> scmi_msg_settings_get),
+> > +					    &ipriv);
+> > +
+> > +	if (IS_ERR(iter))
+> > +		return PTR_ERR(iter);
+> > +
+> > +	return ph->hops->iter_response_run(iter);
+> > +}
+> > +
+
 
