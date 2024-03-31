@@ -1,236 +1,147 @@
-Return-Path: <devicetree+bounces-54869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59E84892E65
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 05:26:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E9CE892E6D
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 05:49:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 490DA1C2099B
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 03:26:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 99C0C1F21778
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 03:49:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85B09138E;
-	Sun, 31 Mar 2024 03:26:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8743223A6;
+	Sun, 31 Mar 2024 03:48:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="CZy4sLvw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Jbomr4GU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A42B15A5;
-	Sun, 31 Mar 2024 03:26:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94D0415BB
+	for <devicetree@vger.kernel.org>; Sun, 31 Mar 2024 03:48:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711855579; cv=none; b=UN4Z+4QpcfhpeX/06Hyh7j/feyuOxu6BnzG1srRKT+lkBbPT9JLsvjFgzhxzjaQyMRUqMAL1T9fOwlaRfIHuH+fZxymbNsJOEyUWR3QTrszPsPNUdYwYJM0aZRnoDAsVwu/UtPRkXf0ZrmYHZgHB2AcZuJBE3C6x15jRQWYEzzs=
+	t=1711856938; cv=none; b=NnuY/lQql2tAWXRWX8Sv2jqwavT5L6K7AWSJ483omKTtu41FKsa2kbtde4ojgW3MRDdVzmymfW1xmiHbRfzTQ6zrUI8xftX39//dkhRKMdnKgj3KkUfnTILuO4DYt9phlvt115ZOmQxis7xruSJEJyYJhbRUEIwYLdkkhK716Hc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711855579; c=relaxed/simple;
-	bh=mcOlxyFsflrwoL63B7r2X+EHxgx+Zstva2sSGp2qJjg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eOHmrgc6Tcdopdz9uGbg5/5k7ZOxe/IAgrkLcGE+ep0/wmRZkP9txKgEg8SLVCxoWzDhCJuK57xKqshg2vse2a+U+AIR81+d9lvF8VG7S1Nv/8R/WHoixIHCY5fDctYPlDQ+rL+dxqStc7o7fEAe0qRnPMFqMbCX1RlJ1qRwAyo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=CZy4sLvw; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1711855576; x=1743391576;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=mcOlxyFsflrwoL63B7r2X+EHxgx+Zstva2sSGp2qJjg=;
-  b=CZy4sLvw31/6k8LJBmxkgUy2mLG84IWAq95N79WW81obgocTBGYmiXkj
-   9YDqlbD05IYcxrv4IMJkMturYvVVEpmizEN91T44GmVz1Yya8yzgrNvka
-   Z/lD8kBQmybphu3S2nN/qOFOanGhcfYDDKYJDO6VEoZ7UA44i6R+vsAdw
-   ogL+7kcG0xaqGZte4rJ2YWmBNI66CqWED4imBy9opoShJAeg4UmYj3GNw
-   0lj7hQ+OVfKHzVxe32EHayPU3z+OxPaoi9Dfps6Zjp8xZBuBP0OZ8+sYf
-   7aFLBlHQQacnlxQ5f/ltBZvkjajt3uignEPz9CPbZts3S65PCp2xwTtjH
-   A==;
-X-CSE-ConnectionGUID: aXUUi6lES8yR9wX5GnDhbw==
-X-CSE-MsgGUID: fXPPYzYsQU6UPvIs/Ltrrw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11029"; a="18146966"
-X-IronPort-AV: E=Sophos;i="6.07,169,1708416000"; 
-   d="scan'208";a="18146966"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Mar 2024 20:26:16 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,169,1708416000"; 
-   d="scan'208";a="22050680"
-Received: from lkp-server01.sh.intel.com (HELO 3d808bfd2502) ([10.239.97.150])
-  by orviesa005.jf.intel.com with ESMTP; 30 Mar 2024 20:26:13 -0700
-Received: from kbuild by 3d808bfd2502 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rqlpi-0000ka-2S;
-	Sun, 31 Mar 2024 03:26:10 +0000
-Date: Sun, 31 Mar 2024 11:25:52 +0800
-From: kernel test robot <lkp@intel.com>
-To: Witold Sadowski <wsadowski@marvell.com>, linux-kernel@vger.kernel.org,
-	linux-spi@vger.kernel.org, devicetree@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, broonie@kernel.org, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	pthombar@cadence.com, Witold Sadowski <wsadowski@marvell.com>
-Subject: Re: [PATCH 5/5] cadence-xspi: Add xfer capabilities
-Message-ID: <202403311133.jOI5kbg4-lkp@intel.com>
-References: <20240329194849.25554-6-wsadowski@marvell.com>
+	s=arc-20240116; t=1711856938; c=relaxed/simple;
+	bh=zITN5QCuHU4iazyacuTNUaT5peRKBGD8ThRsb06PYa4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=aqUCO+gKGKjnPqZIKamI6xMfEJjYvmo8OBc1M5nOrn5uQWYK8uJVt7ri55S3lBsT3xTpdTposn9KoACUil4fF0JKctcu3UN8/UG1r98dKhlNceu9LELDGxY0K1uPun03QKQAC13042dxIF9SHmrV64p0QhISkQYpdo/JoekAAwY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Jbomr4GU; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-516a8c4c7e5so22336e87.2
+        for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 20:48:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1711856935; x=1712461735; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zcIjjhGkDyyDCmij+4AjyM4XF0koXXrr0CGroKIQa6Q=;
+        b=Jbomr4GU689Pw9KtPY9ePVtn9nsYFKoje/0oya1x6YLuciGMqqG58XfwfpHgFeJuQm
+         fItwTfKnywb3bWr7Q+jdTkHDfFqui5YsfOu/P7K7AaW/JevBVylesXK7DpwqDzF9dK7r
+         KUcJcA//xk5fVUtlS5m4CmdQsnp2Byfc3mgWQS8Tf8ZWvd5YJ/16tZN1NpoSZ01a4/yV
+         OLppm9td5wby3OIE/HtcLQv94mCV697T2YL5PxugOEOVgznpj82+9pPb7/P6mCqeUpNc
+         9Avx2gt/fokAYwMO6jI6R0rH1sv51a4saBQOHTPVcEm6+PQw9HzasbwRXAO28nYdblwk
+         3zFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711856935; x=1712461735;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zcIjjhGkDyyDCmij+4AjyM4XF0koXXrr0CGroKIQa6Q=;
+        b=g6HFDEC4HHDZ5MGL6f0ME5bpVxk3kmiGkuziGbVc9xEYXXaetYJojlvDYSXQRlfNce
+         qHc4CoBJlCXxmADMp5R985IgC0GwZxanQdd/1Utw/BbGYnVulaOIv2L9JQUZQccM/x7H
+         4bSuzZbyHJl4CItVZepTnLSB+9hn9Yxjl9PGKEUcR5n5GX4QLaPEIcpPnMxNac48xAK2
+         RJg+GipiladxF43XggLvQtQMUtqPNcgiiKEmqyFK0Dhk+sq54+PBEqRoWcaHRp/Bf/yk
+         NM6AYztFDbQhRp+gc/A2yf5iuffzRWW9Oz6ZgIxzFPqrxu4EMPtJoh73dYWWo1p2vtFz
+         vNNw==
+X-Forwarded-Encrypted: i=1; AJvYcCU7iammvcq2CLavuOTAM8aKjz2AIIxRLzxf1oEqiVChoPs10H+KOzYNKW3GoiTILDunrAZ45A6k0WyTjRxvLWcynvk6lOKASaDctA==
+X-Gm-Message-State: AOJu0YzCWNInR3ZNpxPl8vg8PSDt8X9wpkHHezjqUH6smfGAwufr/4xz
+	kg2BXhV8LcMMA6qAxnmiMcsJHtolR/kCmfaZNqojNkFegJz6ZpH0Ek0UIswufd4=
+X-Google-Smtp-Source: AGHT+IHjk5nGn7N0C4MLENt1cn/5oIuuRjcIGBL/HM2cUva877hwBY+UBY8U73oWesoqDCmCHm36xQ==
+X-Received: by 2002:a05:6512:21ca:b0:516:a04f:d528 with SMTP id d10-20020a05651221ca00b00516a04fd528mr1345352lft.1.1711856934399;
+        Sat, 30 Mar 2024 20:48:54 -0700 (PDT)
+Received: from umbar.lan ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id k9-20020ac257c9000000b00515ce9f4a2bsm762980lfo.35.2024.03.30.20.48.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 30 Mar 2024 20:48:53 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: [PATCH v2 0/7] arm64: dts: qcom: fix description of the Type-C
+ signals
+Date: Sun, 31 Mar 2024 06:48:50 +0300
+Message-Id: <20240331-typec-fix-sm8250-v2-0-857acb6bd88e@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240329194849.25554-6-wsadowski@marvell.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACLdCGYC/32NSw7CMAxEr1J5jVFit/xW3AN1EYJpLUFSJVVFV
+ fXuhB6A5ZvRvFkgS1LJcKkWSDJp1hgK0K4C37vQCeqjMJCh2jARjvMgHp/6wfw+UWOQ2ddHZ9i
+ Z5gBlNiQp7aa8tYV7zWNM8/Yw2V/6RzZZNGidJ7ozs7jz9aXBpbiPqYN2XdcvEr1LubEAAAA=
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1896;
+ i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
+ bh=zITN5QCuHU4iazyacuTNUaT5peRKBGD8ThRsb06PYa4=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmCN0ku8vvVs1wO4dZSIogpuWosaNLyJX3YVTVH
+ uJ5mU3zEVSJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZgjdJAAKCRCLPIo+Aiko
+ 1eilB/sFjKCQyiT7xLUKnK8PDHMxOqrcGMsV2D7RDiK2ChQQ5VexgJOiFKxg6Qo/yLQHZMlcdbd
+ k7QoBK+o7su0Mnzl8o/w1gOUgePNqOUqL8GZ/cybxPRMLKPV5hoZks8HoIt4+FvbC4vItSeCUqu
+ FNTo3gSJl6f/Flxykmzt8bJvL3ZJzMcT2yK7mt+dahiwkqzj1/gIdf0+Q0cwl88TeX9tHVIqKpP
+ T0c4ic6ejGpZ18HDftZdjmF4VodByWhhdjkmNgOWFppc7tS1I7Boej3M8O/2fTLwnUd7sNb17k6
+ OIR+9qIKCL7Mm7DNVjlKBjzknS8kb0WsyHF4Fb01IWBF1/Gi
+X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-Hi Witold,
+Rename the HS link between usb-c-connector and the DWC3 USB controller.
+Add missing graph connection between the QMP PHY and DWC3 USB
+controller.
 
-kernel test robot noticed the following build warnings:
+Reported-by: Luca Weiss <luca.weiss@fairphone.com>
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+Changes in v2:
+- Fixed other platforms in addition to sm8250 (Bryan)
+- Link to v1: https://lore.kernel.org/r/20240322-typec-fix-sm8250-v1-0-1ac22b333ea9@linaro.org
 
-[auto build test WARNING on broonie-spi/for-next]
-[also build test WARNING on linus/master v6.9-rc1 next-20240328]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+---
+Dmitry Baryshkov (7):
+      arm64: dts: qcom: sm8250: describe HS signals properly
+      arm64: dts: qcom: sm8250: add a link between DWC3 and QMP PHY
+      arm64: dts: qcom: sc8180x: switch USB+DP QMP PHYs to new bindings
+      arm64: dts: qcom: sc8180x: describe USB signals properly
+      arm64: dts: qcom: sc8280xp: describe USB signals properly
+      arm64: dts: qcom: x1e80100: describe USB signals properly
+      arm64: dts: qcom: sm8150-hdk: rename Type-C HS endpoints
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Witold-Sadowski/spi-cadence-Add-new-bindings-documentation-for-Cadence-XSPI/20240330-035124
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-patch link:    https://lore.kernel.org/r/20240329194849.25554-6-wsadowski%40marvell.com
-patch subject: [PATCH 5/5] cadence-xspi: Add xfer capabilities
-config: x86_64-randconfig-123-20240331 (https://download.01.org/0day-ci/archive/20240331/202403311133.jOI5kbg4-lkp@intel.com/config)
-compiler: gcc-7 (Ubuntu 7.5.0-6ubuntu2) 7.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240331/202403311133.jOI5kbg4-lkp@intel.com/reproduce)
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts           |   8 +-
+ .../arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts |  16 +-
+ arch/arm64/boot/dts/qcom/sc8180x-primus.dts        |  20 +--
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi              | 164 ++++++++++-----------
+ arch/arm64/boot/dts/qcom/sc8280xp-crd.dts          |  20 +--
+ .../dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts     |  20 +--
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi             |  54 ++++++-
+ arch/arm64/boot/dts/qcom/sm8150-hdk.dts            |   4 +-
+ .../boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi  |   8 +-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi               |  24 ++-
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi             | 149 ++++++++++++++++++-
+ 11 files changed, 340 insertions(+), 147 deletions(-)
+---
+base-commit: 13ee4a7161b6fd938aef6688ff43b163f6d83e37
+change-id: 20240322-typec-fix-sm8250-33c47a03a056
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202403311133.jOI5kbg4-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/spi/spi-cadence-xspi.c: In function 'cdns_xspi_setup':
-   drivers/spi/spi-cadence-xspi.c:892:36: error: implicit declaration of function 'spi_master_get_devdata'; did you mean 'spi_mem_get_drvdata'? [-Werror=implicit-function-declaration]
-     struct cdns_xspi_dev *cdns_xspi = spi_master_get_devdata(spi_dev->master);
-                                       ^~~~~~~~~~~~~~~~~~~~~~
-                                       spi_mem_get_drvdata
-   drivers/spi/spi-cadence-xspi.c:892:66: error: 'struct spi_device' has no member named 'master'
-     struct cdns_xspi_dev *cdns_xspi = spi_master_get_devdata(spi_dev->master);
-                                                                     ^~
-   drivers/spi/spi-cadence-xspi.c: In function 'cdns_xspi_transfer_one_message_b0':
->> drivers/spi/spi-cadence-xspi.c:1029:36: warning: initialization makes pointer from integer without a cast [-Wint-conversion]
-     struct cdns_xspi_dev *cdns_xspi = spi_master_get_devdata(master);
-                                       ^~~~~~~~~~~~~~~~~~~~~~
->> drivers/spi/spi-cadence-xspi.c:1035:11: warning: initialization makes integer from pointer without a cast [-Wint-conversion]
-     int cs = spi->chip_select;
-              ^~~
-   drivers/spi/spi-cadence-xspi.c: At top level:
-   drivers/spi/spi-cadence-xspi.c:1242:0: error: unterminated #ifdef
-    #ifdef CONFIG_OF
-    
-   cc1: some warnings being treated as errors
-
-
-vim +1029 drivers/spi/spi-cadence-xspi.c
-
-  1025	
-  1026	int cdns_xspi_transfer_one_message_b0(struct spi_controller *master,
-  1027						   struct spi_message *m)
-  1028	{
-> 1029		struct cdns_xspi_dev *cdns_xspi = spi_master_get_devdata(master);
-  1030		struct spi_device *spi = m->spi;
-  1031		struct spi_transfer *t = NULL;
-  1032	
-  1033		const int max_len = XFER_QWORD_BYTECOUNT * XFER_QWORD_COUNT;
-  1034		int current_cycle_count;
-> 1035		int cs = spi->chip_select;
-  1036		int cs_change = 0;
-  1037	
-  1038		/* Enable xfer state machine */
-  1039		if (!cdns_xspi->xfer_in_progress) {
-  1040			u32 xfer_control = readl(cdns_xspi->xferbase + SPIX_XFER_FUNC_CTRL);
-  1041	
-  1042			cdns_xspi->current_xfer_qword = 0;
-  1043			cdns_xspi->xfer_in_progress = true;
-  1044			xfer_control |= (XFER_RECEIVE_ENABLE |
-  1045					 XFER_CLK_CAPTURE_POL |
-  1046					 XFER_FUNC_START |
-  1047					 XFER_SOFT_RESET |
-  1048					 FIELD_PREP(XFER_CS_N_HOLD, (1 << cs)));
-  1049			xfer_control &= ~(XFER_FUNC_ENABLE | XFER_CLK_DRIVE_POL);
-  1050			writel(xfer_control, cdns_xspi->xferbase + SPIX_XFER_FUNC_CTRL);
-  1051		}
-  1052	
-  1053		list_for_each_entry(t, &m->transfers, transfer_list) {
-  1054			u8 *txd = (u8 *) t->tx_buf;
-  1055			u8 *rxd = (u8 *) t->rx_buf;
-  1056			u8 data[10];
-  1057			u32 cmd_regs[6];
-  1058	
-  1059			if (!txd)
-  1060				txd = data;
-  1061	
-  1062			cdns_xspi->in_buffer = txd + 1;
-  1063			cdns_xspi->out_buffer = txd + 1;
-  1064	
-  1065			while (t->len) {
-  1066	
-  1067				current_cycle_count = t->len > max_len ? max_len : t->len;
-  1068	
-  1069				if (current_cycle_count < 10) {
-  1070					cdns_xspi_prepare_generic(cs, txd, current_cycle_count,
-  1071								  false, cmd_regs);
-  1072					cdns_xspi_trigger_command(cdns_xspi, cmd_regs);
-  1073					if (cdns_xspi_stig_ready(cdns_xspi, true))
-  1074						return -EIO;
-  1075				} else {
-  1076					cdns_xspi_prepare_generic(cs, txd, 1, true, cmd_regs);
-  1077					cdns_xspi_trigger_command(cdns_xspi, cmd_regs);
-  1078					cdns_xspi_prepare_transfer(cs, 1, current_cycle_count - 1,
-  1079								   cmd_regs);
-  1080					cdns_xspi_trigger_command(cdns_xspi, cmd_regs);
-  1081					if (cdns_xspi_sdma_ready(cdns_xspi, true))
-  1082						return -EIO;
-  1083					cdns_xspi_sdma_handle(cdns_xspi);
-  1084					if (cdns_xspi_stig_ready(cdns_xspi, true))
-  1085						return -EIO;
-  1086	
-  1087					cdns_xspi->in_buffer += current_cycle_count;
-  1088					cdns_xspi->out_buffer += current_cycle_count;
-  1089				}
-  1090	
-  1091				if (rxd) {
-  1092					int j;
-  1093	
-  1094					for (j = 0; j < current_cycle_count / 8; j++)
-  1095						cdns_xspi_read_single_qword(cdns_xspi, &rxd);
-  1096					cdns_xspi_finish_read(cdns_xspi, &rxd, current_cycle_count);
-  1097				} else {
-  1098					cdns_xspi->current_xfer_qword += current_cycle_count /
-  1099									 XFER_QWORD_BYTECOUNT;
-  1100					if (current_cycle_count % XFER_QWORD_BYTECOUNT)
-  1101						cdns_xspi->current_xfer_qword++;
-  1102	
-  1103					cdns_xspi->current_xfer_qword %= XFER_QWORD_COUNT;
-  1104				}
-  1105				cs_change = t->cs_change;
-  1106				t->len -= current_cycle_count;
-  1107			}
-  1108		}
-  1109	
-  1110		if (!cs_change) {
-  1111			u32 xfer_control = readl(cdns_xspi->xferbase + SPIX_XFER_FUNC_CTRL);
-  1112	
-  1113			xfer_control &= ~(XFER_RECEIVE_ENABLE |
-  1114					  XFER_SOFT_RESET);
-  1115			writel(xfer_control, cdns_xspi->xferbase + SPIX_XFER_FUNC_CTRL);
-  1116			cdns_xspi->xfer_in_progress = false;
-  1117		}
-  1118	
-  1119		m->status = 0;
-  1120		spi_finalize_current_message(master);
-  1121	
-  1122		return 0;
-  1123	}
-  1124	
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
 
