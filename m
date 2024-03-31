@@ -1,315 +1,236 @@
-Return-Path: <devicetree+bounces-54867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54869-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48CAA892E4B
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 04:20:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59E84892E65
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 05:26:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F18BB2821BA
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 02:20:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 490DA1C2099B
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 03:26:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B55810E3;
-	Sun, 31 Mar 2024 02:20:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85B09138E;
+	Sun, 31 Mar 2024 03:26:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="UuJ6hGoi"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="CZy4sLvw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43E751392;
-	Sun, 31 Mar 2024 02:20:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A42B15A5;
+	Sun, 31 Mar 2024 03:26:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711851613; cv=none; b=V5/wWMTkr6Gx2WolTE5nigFmq+wDaIqe5XOHGWd3m0Y/U6ipZQ8IznQiXSJZVTyYckLnE3RQ7+59G4A2jCqpYrd0fFiE9CCgIRccZObGuZyfPN/M+C4fgSOg7LVMadoPvufAFtV+4gmKqN+PlJEiwApHpiZNw6anpsO0LY1AFko=
+	t=1711855579; cv=none; b=UN4Z+4QpcfhpeX/06Hyh7j/feyuOxu6BnzG1srRKT+lkBbPT9JLsvjFgzhxzjaQyMRUqMAL1T9fOwlaRfIHuH+fZxymbNsJOEyUWR3QTrszPsPNUdYwYJM0aZRnoDAsVwu/UtPRkXf0ZrmYHZgHB2AcZuJBE3C6x15jRQWYEzzs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711851613; c=relaxed/simple;
-	bh=MwMJOjgHILYZFyDCR9iKGokGU70gWlzqvpAn5lnWWkk=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jYhSJrsiRPRmFhV17vOWbDpMfiwrQxM6yXo+cXTsWgFV5tiii9Y+dOw32j6lZUWjf2zjYPYLllpEuvKfoHlQuesL5X05x+F90SO8HYhc/e1Lf9lc1uHNVWsv26nKsTVoI2fbkbTrkT4aooP96HszPW0JTnPItLhjse+UP/wBTx0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=UuJ6hGoi; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 42V2JH2p034965;
-	Sat, 30 Mar 2024 21:19:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1711851557;
-	bh=ShhlOSTiFM3SPc7uwKwQY9MDvdp8JGOj/Po2m4q01X8=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=UuJ6hGoijsIDk9spuGoQP53Et/is7RtTVSCz90ec7tWIctJ0OfuL8dJIV/1jsez2t
-	 KzraTfmVkEJZZrE4jpoDJ3WxOsyAIJBwYuB5F4sA+DetwiGiMnS6Ua4cySrO7ccW6l
-	 rh+i6eUE3rPT54sH3sjJIEJPTd4DKGH8IxBkc4Ec=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 42V2JHDh032351
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sat, 30 Mar 2024 21:19:17 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 30
- Mar 2024 21:19:17 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sat, 30 Mar 2024 21:19:17 -0500
-Received: from LT5CG31242FY.dhcp.ti.com ([10.250.160.249])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 42V2IcmD106026;
-	Sat, 30 Mar 2024 21:19:10 -0500
-From: Shenghao Ding <shenghao-ding@ti.com>
-To: <linux-kernel@vger.kernel.org>
-CC: <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <perex@perex.cz>, <tiwai@suse.com>, <13916275206@139.com>,
-        <mohit.chawla@ti.com>, <soyer@irl.hu>, <jkhuang3@ti.com>,
-        <tiwai@suse.de>, <pdjuandi@ti.com>, <manisha.agrawal@ti.com>,
-        <s-hari@ti.com>, <aviel@ti.com>, <hnagalla@ti.com>, <praneeth@ti.com>,
-        <Baojun.Xu@fpt.com>, Shenghao Ding
-	<shenghao-ding@ti.com>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v7 4/4] ASoc: dt-bindings: PCM6240: Add initial DT binding
-Date: Sun, 31 Mar 2024 10:18:34 +0800
-Message-ID: <20240331021835.1470-5-shenghao-ding@ti.com>
-X-Mailer: git-send-email 2.33.0.windows.2
-In-Reply-To: <20240331021835.1470-1-shenghao-ding@ti.com>
-References: <20240331021835.1470-1-shenghao-ding@ti.com>
+	s=arc-20240116; t=1711855579; c=relaxed/simple;
+	bh=mcOlxyFsflrwoL63B7r2X+EHxgx+Zstva2sSGp2qJjg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eOHmrgc6Tcdopdz9uGbg5/5k7ZOxe/IAgrkLcGE+ep0/wmRZkP9txKgEg8SLVCxoWzDhCJuK57xKqshg2vse2a+U+AIR81+d9lvF8VG7S1Nv/8R/WHoixIHCY5fDctYPlDQ+rL+dxqStc7o7fEAe0qRnPMFqMbCX1RlJ1qRwAyo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=CZy4sLvw; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1711855576; x=1743391576;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=mcOlxyFsflrwoL63B7r2X+EHxgx+Zstva2sSGp2qJjg=;
+  b=CZy4sLvw31/6k8LJBmxkgUy2mLG84IWAq95N79WW81obgocTBGYmiXkj
+   9YDqlbD05IYcxrv4IMJkMturYvVVEpmizEN91T44GmVz1Yya8yzgrNvka
+   Z/lD8kBQmybphu3S2nN/qOFOanGhcfYDDKYJDO6VEoZ7UA44i6R+vsAdw
+   ogL+7kcG0xaqGZte4rJ2YWmBNI66CqWED4imBy9opoShJAeg4UmYj3GNw
+   0lj7hQ+OVfKHzVxe32EHayPU3z+OxPaoi9Dfps6Zjp8xZBuBP0OZ8+sYf
+   7aFLBlHQQacnlxQ5f/ltBZvkjajt3uignEPz9CPbZts3S65PCp2xwTtjH
+   A==;
+X-CSE-ConnectionGUID: aXUUi6lES8yR9wX5GnDhbw==
+X-CSE-MsgGUID: fXPPYzYsQU6UPvIs/Ltrrw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11029"; a="18146966"
+X-IronPort-AV: E=Sophos;i="6.07,169,1708416000"; 
+   d="scan'208";a="18146966"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Mar 2024 20:26:16 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,169,1708416000"; 
+   d="scan'208";a="22050680"
+Received: from lkp-server01.sh.intel.com (HELO 3d808bfd2502) ([10.239.97.150])
+  by orviesa005.jf.intel.com with ESMTP; 30 Mar 2024 20:26:13 -0700
+Received: from kbuild by 3d808bfd2502 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rqlpi-0000ka-2S;
+	Sun, 31 Mar 2024 03:26:10 +0000
+Date: Sun, 31 Mar 2024 11:25:52 +0800
+From: kernel test robot <lkp@intel.com>
+To: Witold Sadowski <wsadowski@marvell.com>, linux-kernel@vger.kernel.org,
+	linux-spi@vger.kernel.org, devicetree@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, broonie@kernel.org, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	pthombar@cadence.com, Witold Sadowski <wsadowski@marvell.com>
+Subject: Re: [PATCH 5/5] cadence-xspi: Add xfer capabilities
+Message-ID: <202403311133.jOI5kbg4-lkp@intel.com>
+References: <20240329194849.25554-6-wsadowski@marvell.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240329194849.25554-6-wsadowski@marvell.com>
 
-PCM6240 family chips are popular among audio customers, in spite of only a
-portion of the functionality of codec, such as ADC or DAC, and so on, for
-different Specifications, range from Personal Electric to Automotive
-Electric, even some professional fields. Yet their audio performance is far
-superior to the codec's, and cost is lower than codec, and much easier to
-program than codec.
+Hi Witold,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+kernel test robot noticed the following build warnings:
 
-Signed-off-by: Shenghao Ding <shenghao-ding@ti.com>
+[auto build test WARNING on broonie-spi/for-next]
+[also build test WARNING on linus/master v6.9-rc1 next-20240328]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
----
-Change in v7:
- - Rewrite the subject to match something similar to other commits.
- - And none of them are compatible with something.
- - minItems, then maxItems.
- - Drop reset-gpios description
- - Remove the repeated reg descriptions and reg constraints.
- - Drop redundant spaces.
- - Add missing line breaks between blocks and additionalProperties.
- - Correct compatibility issue on adc6120 and pcm6240.
- - All these chips have only a portion of the functionality of codec,
-   such as ADC or DAC, and so on, but their audio performance is far
-   superior to the codec's, and cost is lower than codec, and much easier
-   to program than codec. Simply one or two register settings can enable
-   them to work. Init for these chips are hardware reset or software reset.
-   As to some audio filter params for internal filters, it is up to the
-   special user cases, which can be saved into the bin file. The default
-   value also can work well.
- - Add blank line before reg.
- - remove unneeded items and if branches.
- - Add missing compatible devices, such as adc6120, etc.
- - Add necessary people into the list for DTS review
- - correct misaligned.
- - simplify the compatibility
- - remove sound-name-prefix and revert back
- - Add review information
----
- .../devicetree/bindings/sound/ti,pcm6240.yaml | 177 ++++++++++++++++++
- 1 file changed, 177 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/ti,pcm6240.yaml
+url:    https://github.com/intel-lab-lkp/linux/commits/Witold-Sadowski/spi-cadence-Add-new-bindings-documentation-for-Cadence-XSPI/20240330-035124
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+patch link:    https://lore.kernel.org/r/20240329194849.25554-6-wsadowski%40marvell.com
+patch subject: [PATCH 5/5] cadence-xspi: Add xfer capabilities
+config: x86_64-randconfig-123-20240331 (https://download.01.org/0day-ci/archive/20240331/202403311133.jOI5kbg4-lkp@intel.com/config)
+compiler: gcc-7 (Ubuntu 7.5.0-6ubuntu2) 7.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240331/202403311133.jOI5kbg4-lkp@intel.com/reproduce)
 
-diff --git a/Documentation/devicetree/bindings/sound/ti,pcm6240.yaml b/Documentation/devicetree/bindings/sound/ti,pcm6240.yaml
-new file mode 100644
-index 000000000000..dd5b08e3d7a1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/ti,pcm6240.yaml
-@@ -0,0 +1,177 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2022 - 2024 Texas Instruments Incorporated
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/ti,pcm6240.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments PCM6240 Family Audio ADC/DAC
-+
-+maintainers:
-+  - Shenghao Ding <shenghao-ding@ti.com>
-+
-+description: |
-+  The PCM6240 Family is a big family of Audio ADC/DAC for
-+  different Specifications, range from Personal Electric
-+  to Automotive Electric, even some professional fields.
-+
-+  Specifications about the audio chip can be found at:
-+    https://www.ti.com/lit/gpn/tlv320adc3120
-+    https://www.ti.com/lit/gpn/tlv320adc5120
-+    https://www.ti.com/lit/gpn/tlv320adc6120
-+    https://www.ti.com/lit/gpn/dix4192
-+    https://www.ti.com/lit/gpn/pcm1690
-+    https://www.ti.com/lit/gpn/pcm3120-q1
-+    https://www.ti.com/lit/gpn/pcm3140-q1
-+    https://www.ti.com/lit/gpn/pcm5120-q1
-+    https://www.ti.com/lit/gpn/pcm6120-q1
-+    https://www.ti.com/lit/gpn/pcm6260-q1
-+    https://www.ti.com/lit/gpn/pcm9211
-+    https://www.ti.com/lit/gpn/pcmd3140
-+    https://www.ti.com/lit/gpn/pcmd3180
-+    https://www.ti.com/lit/gpn/taa5212
-+    https://www.ti.com/lit/gpn/tad5212
-+
-+properties:
-+  compatible:
-+    description: |
-+      ti,adc3120: Stereo-channel, 768-kHz, Burr-Brown™ audio analog-to-
-+      digital converter (ADC) with 106-dB SNR.
-+
-+      ti,adc5120: 2-Channel, 768-kHz, Burr-Brown™ Audio ADC with 120-dB SNR.
-+
-+      ti,adc6120: Stereo-channel, 768-kHz, Burr-Brown™ audio analog-to-
-+      digital converter (ADC) with 123-dB SNR.
-+
-+      ti,dix4192: 216-kHz digital audio converter with Quad-Channel In
-+      and One-Channel Out.
-+
-+      ti,pcm1690: Automotive Catalog 113dB SNR 8-Channel Audio DAC with
-+      Differential Outputs.
-+
-+      ti,pcm3120: Automotive, stereo, 106-dB SNR, 768-kHz, low-power
-+      software-controlled audio ADC.
-+
-+      ti,pcm3140: Automotive, Quad-Channel, 768-kHz, Burr-Brown™ Audio ADC
-+      with 106-dB SNR.
-+
-+      ti,pcm5120: Automotive, stereo, 120-dB SNR, 768-kHz, low-power
-+      software-controlled audio ADC.
-+
-+      ti,pcm5140: Automotive, Quad-Channel, 768-kHz, Burr-Brown™ Audio ADC
-+      with 120-dB SNR.
-+
-+      ti,pcm6120: Automotive, stereo, 123-dB SNR, 768-kHz, low-power
-+      software-controlled audio ADC.
-+
-+      ti,pcm6140: Automotive, Quad-Channel, 768-kHz, Burr-Brown™ Audio ADC
-+      with 123-dB SNR.
-+
-+      ti,pcm6240: Automotive 4-ch audio ADC with integrated programmable mic
-+      bias, boost and input diagnostics.
-+
-+      ti,pcm6260: Automotive 6-ch audio ADC with integrated programmable mic
-+      bias, boost and input diagnostics.
-+
-+      ti,pcm9211: 216-kHz digital audio converter With Stereo ADC and
-+      Routing.
-+
-+      ti,pcmd3140: Four-channel PDM-input to TDM or I2S output converter.
-+
-+      ti,pcmd3180: Eight-channel pulse-density-modulation input to TDM or
-+      I2S output converter.
-+
-+      ti,taa5212: Low-power high-performance stereo audio ADC with 118-dB
-+      dynamic range.
-+
-+      ti,tad5212: Low-power stereo audio DAC with 120-dB dynamic range.
-+    oneOf:
-+      - items:
-+          - enum:
-+              - ti,adc3120
-+              - ti,adc5120
-+              - ti,pcm3120
-+              - ti,pcm5120
-+              - ti,pcm6120
-+          - const: ti,adc6120
-+      - items:
-+          - enum:
-+              - ti,pcmd512x
-+              - ti,pcm9211
-+              - ti,taa5212
-+              - ti,tad5212
-+          - const: ti,adc6120
-+      - items:
-+          - enum:
-+              - ti,pcm3140
-+              - ti,pcm5140
-+              - ti,dix4192
-+              - ti,pcm6140
-+              - ti,pcm6260
-+          - const: ti,pcm6240
-+      - items:
-+          - enum:
-+              - ti,pcmd3140
-+              - ti,pcmd3180
-+              - ti,pcm1690
-+              - ti,taa5412
-+              - ti,tad5412
-+          - const: ti,pcm6240
-+      - enum:
-+          - ti,adc6120
-+          - ti,pcm6240
-+
-+  reg:
-+    description:
-+      I2C address, in multiple pcmdevices case, all the i2c address
-+      aggregate as one Audio Device to support multiple audio slots.
-+    minItems: 1
-+    maxItems: 4
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+    description:
-+      Invalid only for ti,pcm1690 because of no INT pin.
-+
-+  '#sound-dai-cells':
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - ti,pcm1690
-+    then:
-+      properties:
-+        interrupts: false
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+   #include <dt-bindings/gpio/gpio.h>
-+   i2c {
-+     /* example for two devices with interrupt support */
-+     #address-cells = <1>;
-+     #size-cells = <0>;
-+     pcm6240: audio-codec@48 {
-+       compatible = "ti,pcm6240";
-+       reg = <0x48>, /* primary-device */
-+             <0x4b>; /* secondary-device */
-+       #sound-dai-cells = <0>;
-+       reset-gpios = <&gpio1 10 GPIO_ACTIVE_HIGH>;
-+       interrupt-parent = <&gpio1>;
-+       interrupts = <15>;
-+     };
-+   };
-+...
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202403311133.jOI5kbg4-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/spi/spi-cadence-xspi.c: In function 'cdns_xspi_setup':
+   drivers/spi/spi-cadence-xspi.c:892:36: error: implicit declaration of function 'spi_master_get_devdata'; did you mean 'spi_mem_get_drvdata'? [-Werror=implicit-function-declaration]
+     struct cdns_xspi_dev *cdns_xspi = spi_master_get_devdata(spi_dev->master);
+                                       ^~~~~~~~~~~~~~~~~~~~~~
+                                       spi_mem_get_drvdata
+   drivers/spi/spi-cadence-xspi.c:892:66: error: 'struct spi_device' has no member named 'master'
+     struct cdns_xspi_dev *cdns_xspi = spi_master_get_devdata(spi_dev->master);
+                                                                     ^~
+   drivers/spi/spi-cadence-xspi.c: In function 'cdns_xspi_transfer_one_message_b0':
+>> drivers/spi/spi-cadence-xspi.c:1029:36: warning: initialization makes pointer from integer without a cast [-Wint-conversion]
+     struct cdns_xspi_dev *cdns_xspi = spi_master_get_devdata(master);
+                                       ^~~~~~~~~~~~~~~~~~~~~~
+>> drivers/spi/spi-cadence-xspi.c:1035:11: warning: initialization makes integer from pointer without a cast [-Wint-conversion]
+     int cs = spi->chip_select;
+              ^~~
+   drivers/spi/spi-cadence-xspi.c: At top level:
+   drivers/spi/spi-cadence-xspi.c:1242:0: error: unterminated #ifdef
+    #ifdef CONFIG_OF
+    
+   cc1: some warnings being treated as errors
+
+
+vim +1029 drivers/spi/spi-cadence-xspi.c
+
+  1025	
+  1026	int cdns_xspi_transfer_one_message_b0(struct spi_controller *master,
+  1027						   struct spi_message *m)
+  1028	{
+> 1029		struct cdns_xspi_dev *cdns_xspi = spi_master_get_devdata(master);
+  1030		struct spi_device *spi = m->spi;
+  1031		struct spi_transfer *t = NULL;
+  1032	
+  1033		const int max_len = XFER_QWORD_BYTECOUNT * XFER_QWORD_COUNT;
+  1034		int current_cycle_count;
+> 1035		int cs = spi->chip_select;
+  1036		int cs_change = 0;
+  1037	
+  1038		/* Enable xfer state machine */
+  1039		if (!cdns_xspi->xfer_in_progress) {
+  1040			u32 xfer_control = readl(cdns_xspi->xferbase + SPIX_XFER_FUNC_CTRL);
+  1041	
+  1042			cdns_xspi->current_xfer_qword = 0;
+  1043			cdns_xspi->xfer_in_progress = true;
+  1044			xfer_control |= (XFER_RECEIVE_ENABLE |
+  1045					 XFER_CLK_CAPTURE_POL |
+  1046					 XFER_FUNC_START |
+  1047					 XFER_SOFT_RESET |
+  1048					 FIELD_PREP(XFER_CS_N_HOLD, (1 << cs)));
+  1049			xfer_control &= ~(XFER_FUNC_ENABLE | XFER_CLK_DRIVE_POL);
+  1050			writel(xfer_control, cdns_xspi->xferbase + SPIX_XFER_FUNC_CTRL);
+  1051		}
+  1052	
+  1053		list_for_each_entry(t, &m->transfers, transfer_list) {
+  1054			u8 *txd = (u8 *) t->tx_buf;
+  1055			u8 *rxd = (u8 *) t->rx_buf;
+  1056			u8 data[10];
+  1057			u32 cmd_regs[6];
+  1058	
+  1059			if (!txd)
+  1060				txd = data;
+  1061	
+  1062			cdns_xspi->in_buffer = txd + 1;
+  1063			cdns_xspi->out_buffer = txd + 1;
+  1064	
+  1065			while (t->len) {
+  1066	
+  1067				current_cycle_count = t->len > max_len ? max_len : t->len;
+  1068	
+  1069				if (current_cycle_count < 10) {
+  1070					cdns_xspi_prepare_generic(cs, txd, current_cycle_count,
+  1071								  false, cmd_regs);
+  1072					cdns_xspi_trigger_command(cdns_xspi, cmd_regs);
+  1073					if (cdns_xspi_stig_ready(cdns_xspi, true))
+  1074						return -EIO;
+  1075				} else {
+  1076					cdns_xspi_prepare_generic(cs, txd, 1, true, cmd_regs);
+  1077					cdns_xspi_trigger_command(cdns_xspi, cmd_regs);
+  1078					cdns_xspi_prepare_transfer(cs, 1, current_cycle_count - 1,
+  1079								   cmd_regs);
+  1080					cdns_xspi_trigger_command(cdns_xspi, cmd_regs);
+  1081					if (cdns_xspi_sdma_ready(cdns_xspi, true))
+  1082						return -EIO;
+  1083					cdns_xspi_sdma_handle(cdns_xspi);
+  1084					if (cdns_xspi_stig_ready(cdns_xspi, true))
+  1085						return -EIO;
+  1086	
+  1087					cdns_xspi->in_buffer += current_cycle_count;
+  1088					cdns_xspi->out_buffer += current_cycle_count;
+  1089				}
+  1090	
+  1091				if (rxd) {
+  1092					int j;
+  1093	
+  1094					for (j = 0; j < current_cycle_count / 8; j++)
+  1095						cdns_xspi_read_single_qword(cdns_xspi, &rxd);
+  1096					cdns_xspi_finish_read(cdns_xspi, &rxd, current_cycle_count);
+  1097				} else {
+  1098					cdns_xspi->current_xfer_qword += current_cycle_count /
+  1099									 XFER_QWORD_BYTECOUNT;
+  1100					if (current_cycle_count % XFER_QWORD_BYTECOUNT)
+  1101						cdns_xspi->current_xfer_qword++;
+  1102	
+  1103					cdns_xspi->current_xfer_qword %= XFER_QWORD_COUNT;
+  1104				}
+  1105				cs_change = t->cs_change;
+  1106				t->len -= current_cycle_count;
+  1107			}
+  1108		}
+  1109	
+  1110		if (!cs_change) {
+  1111			u32 xfer_control = readl(cdns_xspi->xferbase + SPIX_XFER_FUNC_CTRL);
+  1112	
+  1113			xfer_control &= ~(XFER_RECEIVE_ENABLE |
+  1114					  XFER_SOFT_RESET);
+  1115			writel(xfer_control, cdns_xspi->xferbase + SPIX_XFER_FUNC_CTRL);
+  1116			cdns_xspi->xfer_in_progress = false;
+  1117		}
+  1118	
+  1119		m->status = 0;
+  1120		spi_finalize_current_message(master);
+  1121	
+  1122		return 0;
+  1123	}
+  1124	
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
