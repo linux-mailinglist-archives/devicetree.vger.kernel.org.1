@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-54965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54968-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 012E68935DB
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 22:29:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 133E68935F3
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 23:11:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 889201F22556
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 20:29:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C2B79281F53
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 21:11:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 070F1148305;
-	Sun, 31 Mar 2024 20:29:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3EBC148857;
+	Sun, 31 Mar 2024 21:10:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EgIVhD2P"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="F85BJ1JD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BD1F147C97
-	for <devicetree@vger.kernel.org>; Sun, 31 Mar 2024 20:29:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7083A148318
+	for <devicetree@vger.kernel.org>; Sun, 31 Mar 2024 21:10:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711916958; cv=none; b=SkuIr3IanxmoLw/LpsWLQW9mOCGzfLIBWtAeiiMTqaPT/OqFQlU+oqtfUFf004vLKAbFK4ScGALJHJ5Q14kbUu1GFGCY83mds1uTBJWgcqxYBtHPiwzZaOZ4FaHTpvuNcGe5g9hMCQcQ0iFazFdxaqPJx4dABiCPPmQvrsgnuZQ=
+	t=1711919448; cv=none; b=k4/crTILx9JCPlxyHDGg1J9dJnGrZK5J00NY9H7LIf5nUxUaxT4gUzGMjedWqEmQjJPiuR68+z0KEDemAs4s/Xm5wGroJzbQD7cd3SXmkmk/O0hOalDoVkOnXi23eYWlmnYJCYK5HcGzMCx+316qTZMRNQH4vz1jJpvXMQapEyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711916958; c=relaxed/simple;
-	bh=5YQu6iei1O3icFERDmvk1l0kTnnJ0t2qf5um+94Fdg0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=kn/+Ux/+sdHl2yxNSOhHYOnV5hbkUja3+JTEUxX3MDVDVfiDqfhDEWaxo2dM7ugZRjMIIyFEQ/ug6/6wBQKU7fu1JImx4fhVRTOuoyCxUVKWDCVS6tHGwE1hC6mGN/AYsKya6/u17zFmK9vhUceHR/PtIpmKyl3bpOYeCekowdg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EgIVhD2P; arc=none smtp.client-ip=209.85.167.54
+	s=arc-20240116; t=1711919448; c=relaxed/simple;
+	bh=/bUJ2vZiRJ1BUQBh6+bQarLWjKMSmzFMhLsh609vsNk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=gBUBWfSle0v88xOhPar31ygyau3QkfxS7r8vjIhfP98Jc9WOmkNDYuQFE6ZnE5qAb4PF1h/jE1clpvKyi0+pTpRXNO8tF3sFViMcTKZZ+KB4mKG11xEdDRHaPyFOA64XeTeGKnr9j7GjPM+RiqW6OziMjpv5bbPhLIlb1F15gLU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=F85BJ1JD; arc=none smtp.client-ip=209.85.208.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-513d23be0b6so3821737e87.0
-        for <devicetree@vger.kernel.org>; Sun, 31 Mar 2024 13:29:16 -0700 (PDT)
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2d717603aa5so29036181fa.0
+        for <devicetree@vger.kernel.org>; Sun, 31 Mar 2024 14:10:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711916955; x=1712521755; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+v9GTIZDIAWX08FzKTARGqVQVzeSJaMCtOVkVitqgmc=;
-        b=EgIVhD2PpM7aKKVZSAi7fFRx2KQPKzv/GKE5bUIpb/NeQE0j5zIFGrJilaYq4VgmQv
-         fCvnjztVctZaAa6t0STGxvlxRSmqb+80E+bE4m7cUAKd2SxoSyEjtgWrBJd9d85Q2L9o
-         EWNZICR9CZvNgZn9lyfnYdxLSGKxP7RfK4G84M42ZicTKIWXZ9iUyKPwwlSTMM9n5gyt
-         vcrCK8JeDSBOl8QGSvcdiXx1cEjR/Dt/coO2Idx3EnqdiLpckfPeAA6qbTRo2/GPQEGQ
-         xlqBZUtqABotRPo7s3VoEnxsgste4OyoNuDMshCewCNchTZ+TbJ5SHfNBja9DE5Uv2eo
-         ULoQ==
+        d=linaro.org; s=google; t=1711919443; x=1712524243; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qDNTwOGu14ahbhHwBh83VA/OwiG9cy/4b9joLOffRjU=;
+        b=F85BJ1JDnCe9dt3GJVRB+UMciptU4X8GYmjO9EltmXi7nOqT406ibkZ014SzxyyVXi
+         orcTQ4SNOyNiF0kHocNtuPegp+A6a8PO0tRfIo/8yDS2OfvM3PKS3PQBML2lk42M+aht
+         PMq6AbdGHhW5fEFN4Y9y7gzDzMEZ/PP7pLp2H5HtHHOsSJVROTAHtJBoYHeOiUMF0laD
+         oazWzf42/0QpJShF3lRMQ0BSrWPzDuwAxgXN47YYyBgZoGa8fJOl3M/NMxSARfG++dTh
+         NbAwJXSeBQaG7FWVY/YHldROamYLjNZHOUK7W735LsG3MoUPttcsNOxGGyRKd00DodsV
+         O0mA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711916955; x=1712521755;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+v9GTIZDIAWX08FzKTARGqVQVzeSJaMCtOVkVitqgmc=;
-        b=Mflrl/+hSV89onNdmHmRDsajjTaHco1uU2aUyySdb53XU2Wr5abJpxrm8CRjFxXjVX
-         Eu7k0psP7TUm+bneMtANa8t4VCrj227mEhhBJRxVuZWl6Owwo3psQuxO66ZE72JNV0E/
-         8ZxUdakLpLcT33bx/kieo4nU/ZvC8yZDASY2q4LNX2pNJ8CDoXWqVJc1K7NK0ljAzcu5
-         FJh3BlO7gMlJSgk0p5XSKV75mOv125/66lARYZyX+mYR8GfX9lBrSXZ3W6XLJqCm3LIc
-         QzJjAxpkN4edCQQduHUiWdK8Kz5nKn1K24n78tEC5SAONgazQaxAuJbeFEEvauWERJbP
-         IHbQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXiLOP+CdheydRA9gISg+cE5n2+fLWU0BV1MbpjUhzOD9xVzfddnmQJlJXCm1zfZCAkAwRn831GsS2ZqfIVZnhOvh7GdBBtIikd0g==
-X-Gm-Message-State: AOJu0YxG1TjJ2GdMO5/VM7dwFikfZUtkahm6VESv9Ow3J+jnQbmm4NBl
-	YgmxHstOBfDgFnPV8/5l4OkZdgBPLN1Rxw5KsDI3pB9fhh8TqtNQMKUJNqDyNQ0=
-X-Google-Smtp-Source: AGHT+IE3dsaZsU0ynBFh7eT7zhvlqvKfwqYNj4h+qdo+iuTj8Q2UMpieGDvwPHTYdOFd6ciMJdrZ9A==
-X-Received: by 2002:ac2:51a5:0:b0:515:c615:ce23 with SMTP id f5-20020ac251a5000000b00515c615ce23mr5780599lfk.22.1711916955358;
-        Sun, 31 Mar 2024 13:29:15 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1711919443; x=1712524243;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qDNTwOGu14ahbhHwBh83VA/OwiG9cy/4b9joLOffRjU=;
+        b=PPhR1hnusHYPqwNTw7jI5xg9N75eXn/2TGBlsX241Cs0Tx9RFrjcDRcTUrpjW1NCmP
+         1HQ0ATB81HMnKUivo1hdgqtsXGDxcuMdrl+qOPNkPCPqHUvojr52YlQnZapEkXPqGyEC
+         HxrMIcoMTkn0N/zZPMP/3t6z57EvNimF0r10mDICMPBwKbFKZeA9HYkhJBP4SaJ0ip9I
+         Eq4rNresCbVKj04wBsaZFamUkGqXI23jJ1TwGTSQdwtN6ITF//YpA6xoEfc7yh/71TO5
+         H6N8+VmP4SlUrV5FRyhnFCPT2EudAD2Mns766/B1HjAH08WzYR4S7Tx1ZTYgnQGeApuV
+         DZ9A==
+X-Forwarded-Encrypted: i=1; AJvYcCVnqe3joAhIeXdPtOIoXu2CGrfRehNqzuC2ti3EamHRBMm5tQyMTO9U/D4Ca09hhuumIK2xt9343VvUGIjNf/GEFprqKWCaAnQpng==
+X-Gm-Message-State: AOJu0YyyDusco7+3mMfv9y/o98KKV9RuEpmRyMhBzz9fVwo4m94kOgN8
+	iHO3Msyj3JEPGl+9XFPJRwkyWqrLLzdYzlJamV2CueQ6SIDZ5V792j/aulC9paj6HNonVXtg+OK
+	j
+X-Google-Smtp-Source: AGHT+IEPx+7koAEy9piLri51NuxAiKN7NMUIFB2su1AyCZ/FuZ4h+3UN9IFj/2mN2a/LzgwynuFmrA==
+X-Received: by 2002:ac2:5fb1:0:b0:516:a010:f1c0 with SMTP id s17-20020ac25fb1000000b00516a010f1c0mr2165696lfe.63.1711919443389;
+        Sun, 31 Mar 2024 14:10:43 -0700 (PDT)
 Received: from umbar.lan ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id y25-20020a197519000000b00513cfc2a7aesm1237276lfe.71.2024.03.31.13.29.14
+        by smtp.gmail.com with ESMTPSA id i1-20020a0565123e0100b00515cd1d5c99sm1033553lfv.85.2024.03.31.14.10.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 31 Mar 2024 13:29:15 -0700 (PDT)
+        Sun, 31 Mar 2024 14:10:43 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Sun, 31 Mar 2024 23:29:09 +0300
-Subject: [PATCH v2 12/12] drm/imx: move imx_drm_connector_destroy to
- imx-tve
+Subject: [PATCH 0/3] arm64: dts: qcom: msm8996: enable fastrpc and
+ glink-edge
+Date: Mon, 01 Apr 2024 00:10:41 +0300
+Message-Id: <20240401-msm8996-remoteproc-v1-0-f02ab47fc728@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,101 +79,53 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240331-drm-imx-cleanup-v2-12-d81c1d1c1026@linaro.org>
-References: <20240331-drm-imx-cleanup-v2-0-d81c1d1c1026@linaro.org>
-In-Reply-To: <20240331-drm-imx-cleanup-v2-0-d81c1d1c1026@linaro.org>
-To: Philipp Zabel <p.zabel@pengutronix.de>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, 
+X-B4-Tracking: v=1; b=H4sIAFHRCWYC/x3MPQqAMAxA4atIZgu1/mC9ijjUGDVDW0lFBPHuF
+ sdveO+BRMKUYCgeELo4cQwZVVkA7i5spHjJBqNNo2ujlU++t7ZTQj6edEhEtSLOaOa2IVdBDg+
+ hle9/Ok7v+wH2Yff9ZAAAAA==
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: Chris Healy <cphealy@gmail.com>, dri-devel@lists.freedesktop.org, 
- devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+ Conor Dooley <conor+dt@kernel.org>, 
+ Mathieu Poirier <mathieu.poirier@linaro.org>, 
+ Sibi Sankar <quic_sibis@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2503;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=779;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=5YQu6iei1O3icFERDmvk1l0kTnnJ0t2qf5um+94Fdg0=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmCceQDf+olRh9QfALPc+aBKfyzH5lo75neZO7G
- 9G/c0G65EuJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZgnHkAAKCRCLPIo+Aiko
- 1a3kB/9PCf+qZk6BU9uNm4Mq6b6l9aQ1snWLpd5Ocn28EkiTCxoVc7+x/jVRyrbJOf4CizSpcN4
- ahurpK9t+VYswcda71cQTvEEn0yhiUyWAuDObsaFkm5tzVSAuS91s1JFeU+ya3lffWXzV6RqgGY
- CLSiOEl9XV1T6ncjZPjgioIMS7a+2QnMvzCaobKIqdp58Ku/IyhAdOk2CqnZEd6XjG1dNoeZacb
- qbGt9CrEp7uvvf7znqrphQ7pFAu1EjhOBPJqCLV8wJgJsgAwlOqyGLzVnjkyvEJF/gJp46VRISr
- C813XA47F0iXhSoBO/vRA3tmI3DiCh+Gb88qe3xGNAFnNCSn
+ bh=/bUJ2vZiRJ1BUQBh6+bQarLWjKMSmzFMhLsh609vsNk=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmCdFSLc0+lMGfK8fGM2T9IMHyyu/gOaHRVLGHr
+ mYLirWJ0XmJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZgnRUgAKCRCLPIo+Aiko
+ 1XREB/90yxp/NoMGbtzkgCoNM8Jvkvhdv4iQ2ofeKDbxSei5H5zZFM7ZeTbxLse4RM0BiLJULCt
+ zFVN993xR9iK6OY7gG6mG4X44gm0LoFjlCo3kWmwplPvdCdX608m6UK3fPRV/m/Ilc00NGWYPY9
+ pnqzqELlZpp5om6oEDG8byMhlQcAdC170S1UTWoBl2BKUYbO6FAuxtznyNNdwbenGw7H3KZwRvS
+ 7nxiIMfCBVC14oxwHInafk8++IQrKmfHo7B4/eApejvJ5KO9twtdMdy7z3dWw6Gyp6JVtxMNKli
+ uHyRzrfugeXZ1nC16KyhFGeqBsgBF4/C3X+IC8JRq6a5XgwU
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-The imx-tve driver is the only remaining user of
-imx_drm_connector_destroy(). Move the function to imx-tve.c
+Enable the FastRPC and glink-edge nodes on MSM8996 platform. Tested on
+APQ8096 Dragonboard820c.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/gpu/drm/imx/ipuv3/imx-drm-core.c | 7 -------
- drivers/gpu/drm/imx/ipuv3/imx-drm.h      | 2 --
- drivers/gpu/drm/imx/ipuv3/imx-tve.c      | 8 +++++++-
- 3 files changed, 7 insertions(+), 10 deletions(-)
+Dmitry Baryshkov (2):
+      dt-bindings: remoteproc: qcom,msm8996-mss-pil: allow glink-edge on msm8996
+      arm64: dts: qcom: msm8996: add glink-edge nodes
 
-diff --git a/drivers/gpu/drm/imx/ipuv3/imx-drm-core.c b/drivers/gpu/drm/imx/ipuv3/imx-drm-core.c
-index 4cfabcf7375a..189d395349b8 100644
---- a/drivers/gpu/drm/imx/ipuv3/imx-drm-core.c
-+++ b/drivers/gpu/drm/imx/ipuv3/imx-drm-core.c
-@@ -34,13 +34,6 @@ module_param(legacyfb_depth, int, 0444);
- 
- DEFINE_DRM_GEM_DMA_FOPS(imx_drm_driver_fops);
- 
--void imx_drm_connector_destroy(struct drm_connector *connector)
--{
--	drm_connector_unregister(connector);
--	drm_connector_cleanup(connector);
--}
--EXPORT_SYMBOL_GPL(imx_drm_connector_destroy);
--
- static int imx_drm_atomic_check(struct drm_device *dev,
- 				struct drm_atomic_state *state)
- {
-diff --git a/drivers/gpu/drm/imx/ipuv3/imx-drm.h b/drivers/gpu/drm/imx/ipuv3/imx-drm.h
-index e01f026047de..0c85bf83ffbf 100644
---- a/drivers/gpu/drm/imx/ipuv3/imx-drm.h
-+++ b/drivers/gpu/drm/imx/ipuv3/imx-drm.h
-@@ -25,8 +25,6 @@ extern struct platform_driver ipu_drm_driver;
- int imx_drm_encoder_parse_of(struct drm_device *drm,
- 	struct drm_encoder *encoder, struct device_node *np);
- 
--void imx_drm_connector_destroy(struct drm_connector *connector);
--
- int ipu_planes_assign_pre(struct drm_device *dev,
- 			  struct drm_atomic_state *state);
- 
-diff --git a/drivers/gpu/drm/imx/ipuv3/imx-tve.c b/drivers/gpu/drm/imx/ipuv3/imx-tve.c
-index b49bddb85535..a5118504b522 100644
---- a/drivers/gpu/drm/imx/ipuv3/imx-tve.c
-+++ b/drivers/gpu/drm/imx/ipuv3/imx-tve.c
-@@ -307,9 +307,15 @@ static int imx_tve_atomic_check(struct drm_encoder *encoder,
- 	return 0;
- }
- 
-+static void imx_tve_connector_destroy(struct drm_connector *connector)
-+{
-+	drm_connector_unregister(connector);
-+	drm_connector_cleanup(connector);
-+}
-+
- static const struct drm_connector_funcs imx_tve_connector_funcs = {
- 	.fill_modes = drm_helper_probe_single_connector_modes,
--	.destroy = imx_drm_connector_destroy,
-+	.destroy = imx_tve_connector_destroy,
- 	.reset = drm_atomic_helper_connector_reset,
- 	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
- 	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
+Srinivas Kandagatla (1):
+      arm64: dts: msm8996: add fastrpc nodes
 
+ .../bindings/remoteproc/qcom,msm8996-mss-pil.yaml  |  1 -
+ arch/arm64/boot/dts/qcom/msm8996.dtsi              | 79 ++++++++++++++++++++++
+ 2 files changed, 79 insertions(+), 1 deletion(-)
+---
+base-commit: 13ee4a7161b6fd938aef6688ff43b163f6d83e37
+change-id: 20240320-msm8996-remoteproc-fccbc2b54ea1
+
+Best regards,
 -- 
-2.39.2
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 
