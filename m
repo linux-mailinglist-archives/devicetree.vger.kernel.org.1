@@ -1,76 +1,75 @@
-Return-Path: <devicetree+bounces-54958-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D39418935D0
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 22:29:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83F2D8935D2
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 22:29:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 02F5E1C216FB
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 20:29:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AEE49B21125
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 20:29:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 641D31487D4;
-	Sun, 31 Mar 2024 20:29:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F40D61487D0;
+	Sun, 31 Mar 2024 20:29:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vBFj2nM/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xmAfihk7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44B8A147C75
-	for <devicetree@vger.kernel.org>; Sun, 31 Mar 2024 20:29:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDFAE1487D6
+	for <devicetree@vger.kernel.org>; Sun, 31 Mar 2024 20:29:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711916954; cv=none; b=j0GV2+BUjWOdMHnYBZ2kFv+tOlwytF2MTU84tD+Wq+3h8DwkPxhfxsXU++wjK6AyxPGnGI7xvLTc7wp6HTT69pjiWKLeP7hCBsAgbjoe7EalA6jbCbaWdWTOCGMsvvJi+F6ZhYj8m1dlkj90MaFv0mFL/vniFlk1dOooCW8LUa0=
+	t=1711916953; cv=none; b=YboneT5B1E1orZGPx82ZryHa1iMTDeh8teUeL+Ttw8/CpsUkevMGbaDmnekudjLXjnrScpAiiuNzlKjs9A+aBh6QyJqWudUzPf581UvIIxVZIB2VYVAfZHfWv5tX3GvZyq+46GM7kPm+wSIp5V7ovKjwcsVzZgiY8B/OuhrgCyE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711916954; c=relaxed/simple;
-	bh=Q3tsX2NxDW1TnkNSTRHZJWIJp8sJ+Hj1Kz/G4qOQ9+Q=;
+	s=arc-20240116; t=1711916953; c=relaxed/simple;
+	bh=yY+O3A74gJfvweSEVBsGsRQtsdkU2oXgLZzLvkdvTv4=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=RM8aEDHJMe8PwkvuqbgDPH1DkMzTorS9dMzaXfRouLFzMyAvDcw/t5blXshMmp0ruUC28ZgNTjh/lyPbe4sxn/0GtWWkbQ4k8AMJn3IP8ZmanYuGOrG/ZaCIdkKyx56Gl98mUgayneAI/p0s0Kft5MEKEW/7BMBXNa3wb4f53TY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vBFj2nM/; arc=none smtp.client-ip=209.85.167.48
+	 In-Reply-To:To:Cc; b=EyzI1r1ADuqYjakcPmDnlGquXuFnCUM2z2j+C3t5YjEuFJ5CBVoeSqptVFfHgcXGzFmyLPGfjG82hw0hWGTEIEG0w9W/MtB1/r+5dNh+0HO5PRG/J4gRvY78ASTfVvSMwGIZsNjIPKCThxDbdE6Ub41SBLNs+g5JFBLs3Bf2M/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xmAfihk7; arc=none smtp.client-ip=209.85.167.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-515c50dc2afso3808409e87.1
-        for <devicetree@vger.kernel.org>; Sun, 31 Mar 2024 13:29:10 -0700 (PDT)
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-513d23be0b6so3821692e87.0
+        for <devicetree@vger.kernel.org>; Sun, 31 Mar 2024 13:29:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711916949; x=1712521749; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711916950; x=1712521750; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=2KzzvmMhfp7akZBSkslfuhmya0L5lQxB1AJ+Wft0o54=;
-        b=vBFj2nM/liP0qtAmJWRmlkaeOiEXE9Z6lp4E48pYiVRUUEMwwKNuUgnxsHSokJ0dbK
-         MVsPwpqTL6BRUnwWCSusv6ztEPOHbFMf4uUrGNyt3GGAXAgNe/c3PWJF0FJi0giutXeV
-         uRsiLeVWkDylRf7f2TAVee2ydcQ5IRuLGV7Vu7ZcHYI2EeVLA55pMAzQEmQj4ZQQJHI9
-         KKG4r/6eDN6uTuA2JW+vItXySuvKpkx5vmkIF1Mxl9TzoIgHbTku2zI3Jmk7xg3Ke92D
-         2xkLAu76711UtnInjrN9H1NEMRPIb0VUWIOclAEX5icIzMyIYirQSgrULzKrjYgU1y/a
-         pANg==
+        bh=Wz3UhJ4xYSdgm48WihXb5Ur775HB6HGFpy/cnlygSBk=;
+        b=xmAfihk7+BHxL+U27r0XvjfHzQ+E1na5S4zZgpV3m0HEl2ZfsGAUXj04zajYeyLidH
+         eq2ZXokkO49Yk4gPouaVpV/0RGoONkRhpqZLkDdHBLzS/0wYtitf8SLBau1H+hvCIHbJ
+         C/7A0ZbBSxDQJ0ekBDmJhfhwHltwbKYqTtJVnp0BAsFe5Rk6gd+K9bAYkvyqdJkA/ica
+         1Zx/STvHY6ncdU/iXW4v8KXJinkybKrYAlZ9fBrdG9lURMyQtqjN4jXvSN2TUi/wA1zT
+         5AsPMtThmtHomPw2wQpwJe4b42IbAVwUxYK4IXfiLbbVAKe6PqtImEXarCVMrZMg8vgY
+         82Wg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711916949; x=1712521749;
+        d=1e100.net; s=20230601; t=1711916950; x=1712521750;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=2KzzvmMhfp7akZBSkslfuhmya0L5lQxB1AJ+Wft0o54=;
-        b=Le+ZyR6/CXBLqzGorKG37R1tIB0qONzIbdVfg4vsJPKMWxl3LvmyhMULjCWKK+712+
-         cWzyPGRP8UTnKC7SjxtrpdZAW2IeyODEweBTZ3MhmEbixKKf1x7mT3Ii3V3ovvN8JTBp
-         sROXLR7UREMXB4dwwMOyvzyL5z+IJBVCxw/fCIYaPkWjAFNSxZ+Qi3Vo8jCZae38sI3k
-         SRxfb4cwkICDeVJx4+wssjVOB0Z2Q3ock2FxUEGb5AxvR2cxtEBfDsidtbd3y7r3hoQ5
-         KlGB5J9Lheo0N9jScNpTIw0ZbDYE8TGt2VCi/mZ2hWWT2R3IqoI320RWKfNJ8InQeH9h
-         lwvQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVXhN4oBfWLYVfnZu7USS8k5CZKaSbUlZFd67UfhbzY7fRV9ocJGYqei2EPbWMWGwRb39C4gYarioOlYiqk+r8oWAun/oAhvLHsgg==
-X-Gm-Message-State: AOJu0YwMdZwyr63fwBWGvvndlrEDZaOJaVVHEO5daqrN8A8IcXjF8C/p
-	T3tHYWEHDVlp0h2KEE3jFygF4RcE9ymMHP/vAFRy7aZfpjDoV/q0OM1MUveDP8c=
-X-Google-Smtp-Source: AGHT+IFlkJbTHllJhmxuQLe8rza7jxEC5/tq80FTXBgl9MrRzWWrHRQfdLsjPQ9eVX4jnPTBNpNLUg==
-X-Received: by 2002:a19:6a10:0:b0:513:aef9:5401 with SMTP id u16-20020a196a10000000b00513aef95401mr5436071lfu.66.1711916949484;
-        Sun, 31 Mar 2024 13:29:09 -0700 (PDT)
+        bh=Wz3UhJ4xYSdgm48WihXb5Ur775HB6HGFpy/cnlygSBk=;
+        b=F0WiBxTYvyMv66ijW+RXCa/ZQMuPfgKr76blNfEG0nG/7Kx/Fcr2/+AgATJB3Pq6jl
+         c8sJNyxXqkGN8/ONlTD5Pl2gpzj8RHZ/XfdYnmyXqR4KvIajHQTyRN8HLQwMyvi5NeS8
+         xagZxMd+Gy4cNH2jmwjYKwH9OLSLBLSzA0kZpN9pfQYMOjUweLb+6zl0Uzm2dO/jzhAP
+         bJzEFAzPuimRZ1LzuHoHOU+1MpD23VeNPJx/RucU4R7TYXBcncBGgkJ1SZPeWwPcxwCw
+         +mC5VUCmeAX9m+QF51IYR0oeWspwiZBZ/Ezb4STvu6yIZCDj8j9P97ZwWulfjxVmHhAX
+         DvIw==
+X-Forwarded-Encrypted: i=1; AJvYcCXD5y/FH1DPraETRZOXfnftAkrokPlTHjPCMv4Q/J8FJp5Z/4RHk3bI/mfI31FkIsVp4146ytHxwJrJHZSQUacwU/nsHZS3xZIr+Q==
+X-Gm-Message-State: AOJu0YwHEBhaImu8eLjRIdIO0hnfQHkJ4BJWwq7zO7ZkoEmwNkd8uFDX
+	Kvk50Ja3EX9Nzx/KgsQabvKHK3WHqQ7GVoN8TyXiRLPXgXn5G6HU/LY8ik6j1UI=
+X-Google-Smtp-Source: AGHT+IEHzVhYaRRfQunRUBg2nCTXUyrkKpKE02mf9SlmjzQqNUi1YakpduPB5hr25gvxrP4GEqAn5A==
+X-Received: by 2002:a05:6512:3102:b0:515:a360:1d92 with SMTP id n2-20020a056512310200b00515a3601d92mr6829117lfb.67.1711916950154;
+        Sun, 31 Mar 2024 13:29:10 -0700 (PDT)
 Received: from umbar.lan ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id y25-20020a197519000000b00513cfc2a7aesm1237276lfe.71.2024.03.31.13.29.08
+        by smtp.gmail.com with ESMTPSA id y25-20020a197519000000b00513cfc2a7aesm1237276lfe.71.2024.03.31.13.29.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 31 Mar 2024 13:29:08 -0700 (PDT)
+        Sun, 31 Mar 2024 13:29:09 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Sun, 31 Mar 2024 23:29:01 +0300
-Subject: [PATCH v2 04/12] drm/imx: parallel-display: drop edid override
- support
+Date: Sun, 31 Mar 2024 23:29:02 +0300
+Subject: [PATCH v2 05/12] drm/imx: ldb: drop custom EDID support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,7 +78,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240331-drm-imx-cleanup-v2-4-d81c1d1c1026@linaro.org>
+Message-Id: <20240331-drm-imx-cleanup-v2-5-d81c1d1c1026@linaro.org>
 References: <20240331-drm-imx-cleanup-v2-0-d81c1d1c1026@linaro.org>
 In-Reply-To: <20240331-drm-imx-cleanup-v2-0-d81c1d1c1026@linaro.org>
 To: Philipp Zabel <p.zabel@pengutronix.de>, 
@@ -97,85 +96,98 @@ Cc: Chris Healy <cphealy@gmail.com>, dri-devel@lists.freedesktop.org,
  linux-arm-kernel@lists.infradead.org, 
  Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2276;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2635;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=Q3tsX2NxDW1TnkNSTRHZJWIJp8sJ+Hj1Kz/G4qOQ9+Q=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmCcePmSKVxsfb2BiMoKNsmfnhrGb3P7osuWj7O
- 9DlQcsEYQuJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZgnHjwAKCRCLPIo+Aiko
- 1Qq2CACzcRHGJvXSJ7Ml0+GAsmRZ4aF7aq9y0LhhBKlCwrSYCrgMog440nF/nbZUYZiK8u/syu7
- X7M9jd37lBHflsClDpkrCAJAFgL8Hy1OrsgnkPfJcJGNqR/ReWQeiIw+nvjFjw82vTwVdbH0g2L
- v+7eIkFQJRCLM73SR0E0NEkn/asUVzqJH4GCtRJGk795BuD5Yh/al4Noqb7JNS6+/5o79bnEYqF
- YcexNCg3EklMvns+D8cGpuavkOoPp87gn18lL6wGJCeewjR8Z6Y4Cv97kxpChprIzs3uAK+XbJL
- Ueb7+4iT2BBwCcNThuXHvZBvxBNr3Z+G/ZsWs8lNmtlT6Czi
+ bh=yY+O3A74gJfvweSEVBsGsRQtsdkU2oXgLZzLvkdvTv4=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmCcePbH5Zjxnk0aodoAfmic8b1WXU85H/o8MAs
+ QI1cw0GV9KJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZgnHjwAKCRCLPIo+Aiko
+ 1eExB/9cHiJt7nCx5nPTg7TnqIDd4FGePmdaBsugHRvPqtnlcVLqQdlMqObc2812P0w01JTq4wx
+ FGg2hfiOrpEzl7cNzqiXOeUbLkjCUG9nR78g74zKhuQM/OdwCSbiZ13rXNdWsDTheAeKPgWI0VY
+ k4SMxFvLfT5xNiILgF5szhgNToFdF7Qsji5jH52IHwvWRnnkXvQS2jZnY0fv4NTgkryrDK7QcN4
+ ETbkPipoMRHe8pVtl2vYcqyTCh75mwlkUrQBRLiyoC71/K15SIcl8KMvH2038c2KeetqGZEGDFD
+ 3V878u/Mos78tzrehAXNkCNSNFiS/wlAbD/ZvShtWwTiB/GX
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-None of the in-kernel DT files ever used edid override with the
-fsl-imx-drm driver. In case the EDID needs to be specified manually, DRM
-core allows one to either override it via the debugfs or to load it via
-request_firmware by using DRM_LOAD_EDID_FIRMWARE. In all other cases
-EDID and/or modes are to be provided as a part of the panel driver.
-
-Drop support for the edid property.
+Bindings for the imx-ldb never allowed specifying the EDID in DT. None
+of the existing DT files use it. Drop it now in favour of using debugfs
+overrides or the drm.edid_firmware support.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/gpu/drm/imx/ipuv3/parallel-display.c | 13 -------------
- 1 file changed, 13 deletions(-)
+ drivers/gpu/drm/imx/ipuv3/imx-ldb.c | 27 ++++++++++-----------------
+ 1 file changed, 10 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/imx/ipuv3/parallel-display.c b/drivers/gpu/drm/imx/ipuv3/parallel-display.c
-index 55dedd73f528..4d17fb96e77c 100644
---- a/drivers/gpu/drm/imx/ipuv3/parallel-display.c
-+++ b/drivers/gpu/drm/imx/ipuv3/parallel-display.c
-@@ -16,7 +16,6 @@
- 
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_bridge.h>
--#include <drm/drm_edid.h>
- #include <drm/drm_managed.h>
- #include <drm/drm_of.h>
- #include <drm/drm_panel.h>
-@@ -34,7 +33,6 @@ struct imx_parallel_display_encoder {
- 
- struct imx_parallel_display {
- 	struct device *dev;
+diff --git a/drivers/gpu/drm/imx/ipuv3/imx-ldb.c b/drivers/gpu/drm/imx/ipuv3/imx-ldb.c
+index 71d70194fcbd..1924d8921c62 100644
+--- a/drivers/gpu/drm/imx/ipuv3/imx-ldb.c
++++ b/drivers/gpu/drm/imx/ipuv3/imx-ldb.c
+@@ -72,7 +72,6 @@ struct imx_ldb_channel {
+ 	struct device_node *child;
+ 	struct i2c_adapter *ddc;
+ 	int chno;
 -	void *edid;
- 	u32 bus_format;
- 	u32 bus_flags;
  	struct drm_display_mode mode;
-@@ -62,11 +60,6 @@ static int imx_pd_connector_get_modes(struct drm_connector *connector)
+ 	int mode_valid;
+ 	u32 bus_format;
+@@ -142,13 +141,16 @@ static int imx_ldb_connector_get_modes(struct drm_connector *connector)
  	if (num_modes > 0)
  		return num_modes;
  
--	if (imxpd->edid) {
--		drm_connector_update_edid_property(connector, imxpd->edid);
--		num_modes = drm_add_edid_modes(connector, imxpd->edid);
--	}
--
- 	if (np) {
- 		struct drm_display_mode *mode = drm_mode_create(connector->dev);
- 		int ret;
-@@ -312,9 +305,7 @@ static int imx_pd_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
- 	struct device_node *np = dev->of_node;
--	const u8 *edidp;
- 	struct imx_parallel_display *imxpd;
--	int edid_len;
- 	int ret;
- 	u32 bus_format = 0;
- 	const char *fmt;
-@@ -329,10 +320,6 @@ static int imx_pd_probe(struct platform_device *pdev)
- 	if (ret && ret != -ENODEV)
- 		return ret;
+-	if (!imx_ldb_ch->edid && imx_ldb_ch->ddc)
+-		imx_ldb_ch->edid = drm_get_edid(connector, imx_ldb_ch->ddc);
++	if (imx_ldb_ch->ddc) {
++		const struct drm_edid *edid = drm_edid_read_ddc(connector,
++								imx_ldb_ch->ddc);
  
--	edidp = of_get_property(np, "edid", &edid_len);
--	if (edidp)
--		imxpd->edid = devm_kmemdup(dev, edidp, edid_len, GFP_KERNEL);
+-	if (imx_ldb_ch->edid) {
+-		drm_connector_update_edid_property(connector,
+-							imx_ldb_ch->edid);
+-		num_modes = drm_add_edid_modes(connector, imx_ldb_ch->edid);
++		if (edid) {
++			drm_edid_connector_update(connector, edid);
++			drm_edid_free(edid);
++
++			return drm_edid_connector_add_modes(connector);
++		}
+ 	}
+ 
+ 	if (imx_ldb_ch->mode_valid) {
+@@ -553,7 +555,6 @@ static int imx_ldb_panel_ddc(struct device *dev,
+ 		struct imx_ldb_channel *channel, struct device_node *child)
+ {
+ 	struct device_node *ddc_node;
+-	const u8 *edidp;
+ 	int ret;
+ 
+ 	ddc_node = of_parse_phandle(child, "ddc-i2c-bus", 0);
+@@ -567,17 +568,10 @@ static int imx_ldb_panel_ddc(struct device *dev,
+ 	}
+ 
+ 	if (!channel->ddc) {
+-		int edid_len;
 -
- 	ret = of_property_read_string(np, "interface-pix-fmt", &fmt);
- 	if (!ret) {
- 		if (!strcmp(fmt, "rgb24"))
+ 		/* if no DDC available, fallback to hardcoded EDID */
+ 		dev_dbg(dev, "no ddc available\n");
+ 
+-		edidp = of_get_property(child, "edid", &edid_len);
+-		if (edidp) {
+-			channel->edid = kmemdup(edidp, edid_len, GFP_KERNEL);
+-			if (!channel->edid)
+-				return -ENOMEM;
+-		} else if (!channel->panel) {
++		if (!channel->panel) {
+ 			/* fallback to display-timings node */
+ 			ret = of_get_drm_display_mode(child,
+ 						      &channel->mode,
+@@ -744,7 +738,6 @@ static void imx_ldb_remove(struct platform_device *pdev)
+ 	for (i = 0; i < 2; i++) {
+ 		struct imx_ldb_channel *channel = &imx_ldb->channel[i];
+ 
+-		kfree(channel->edid);
+ 		i2c_put_adapter(channel->ddc);
+ 	}
+ 
 
 -- 
 2.39.2
