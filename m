@@ -1,104 +1,81 @@
-Return-Path: <devicetree+bounces-54883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54884-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49CD989311A
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 11:28:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22283893131
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 12:26:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74F041C211AA
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 09:28:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5F321F21C82
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 10:26:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 717C074431;
-	Sun, 31 Mar 2024 09:28:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b="SYbvsV0Q"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5AA476048;
+	Sun, 31 Mar 2024 10:26:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36D468BE8;
-	Sun, 31 Mar 2024 09:28:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82B52EEC0;
+	Sun, 31 Mar 2024 10:26:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711877300; cv=none; b=oIP4Q2rl9dtis1lUD7oVVd6aVZy3YZ5tUKDJgaWH4zMa1AypYlxifRmeIyZxGoxUJNFEh6azfA6xP8Q2kyGpZrsxpojxJpuwsnoXPvvs+MYcqn3pGOVW09eSKZfISRd/IriPo6CMZRlIL+iwl3lT+SQ5RCTsSwz0XmOiCs06Wig=
+	t=1711880773; cv=none; b=HyrqipNXG4RmEjPFEIrZ0IJ9TnqnRVlJgvcC0sh+Ql54fsGKAsr0w2lyVLIKgRM7/rqd74g/FPvuaTYUzBM/HyQv5i5iqCptyGTG8L5NsuXWPpTRHeMuNIl0Tj+nMcjeErobfWnVbj3bCs6X4xchOSAnhWcRLirhy+enreku9jE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711877300; c=relaxed/simple;
-	bh=atHYMADKrIyGgNKWVLwIwluYpFa44DQ3VN+kH8YnIRk=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=Lh/Su0HJovMkTY7VKMVuYiAuO73CNLOp4Ha05gmJf76OYmaUTJSb/vpegZUyUZsAuuII5A6eCYxNXuc3R/6K5EMe+6owPAXkusiTzFKzke7xJeFQRbVa3oJpVuEUt0KaQgD75eVUK4pM4BeonKqdOdOXBCw/gwf+RtTBiL/pcb0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com; spf=pass smtp.mailfrom=arinc9.com; dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b=SYbvsV0Q; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arinc9.com
-Received: by mail.gandi.net (Postfix) with ESMTPA id 088D240002;
-	Sun, 31 Mar 2024 09:28:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
-	t=1711877290;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=7fryVNeKcFi90zGkyiXh+sDRmYe0qNq3h58tPTD/nTY=;
-	b=SYbvsV0QOW5SIxArNvayTkUOk1Iu/7frW4lonHhDTt9QJbYqJjwak/raLpyUYHV9mYoVX+
-	VSrTjlHuSWJIprEyNU3wP6MLKjsty5nII0og5SPfkenzTGwLrmCzE4nJnV+t5n2bJpIIep
-	NgwWzc0MLvcN1VY4x0nE4DJKzkr9VtSpYWR6diqPfCEtu2s/PU85OgLxFn0M5XRtJTKRdS
-	vgK4UjBWF+FF7wnKvTdUkOFXLpnTef8ChLPno3paxPaNsNB3FE2zTc5LK5qeh2AUDhAQpv
-	IExxVs4vthw95Exeg8CZa5UwC5LMDnPWXDXu9uaPhO5TAuL6nJ1Rm61JMfgkqg==
+	s=arc-20240116; t=1711880773; c=relaxed/simple;
+	bh=6AKqxBQuhOwbqisg4ObQCrFphRBbPTiioJp5iOpryvc=;
+	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Rvk6U9n7bsyVc/FmBM8HzpZWxTIlL+Pzh+GxaRKzecH7LIsuqjz8k3s9qT7eET/kTdKei3gx7fRXlDicxbeHVy405j0kjf2N5sA7rGR1Q2HZWfCXUWMjC7Vwx5M3Cr5P8Yz5xFnU08rBBRibyFr10M1AUQXIWqKFLaF/d/iUJ/k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17277C433F1;
+	Sun, 31 Mar 2024 10:26:08 +0000 (UTC)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+	Tony Lindgren <tony@atomide.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	linux-omap@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-am62p5-sk: minor whitespace cleanup
+Date: Sun, 31 Mar 2024 12:26:03 +0200
+Message-Id: <171188072142.23696.6709925029705971875.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240208105146.128645-1-krzysztof.kozlowski@linaro.org>
+References: <20240208105146.128645-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Sun, 31 Mar 2024 12:28:08 +0300
-From: arinc.unal@arinc9.com
-To: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>
-Cc: mithat.guner@xeront.com, erkin.bozoglu@xeront.com,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 0/2] Set PHY address of MT7531 switch to 0x1f on MediaTek
- arm64 boards
-In-Reply-To: <20240314-for-mediatek-mt7531-phy-address-v1-0-52f58db01acd@arinc9.com>
-References: <20240314-for-mediatek-mt7531-phy-address-v1-0-52f58db01acd@arinc9.com>
-Message-ID: <ff196055-ecd8-4563-bc01-ff2533a07109@arinc9.com>
-X-Sender: arinc.unal@arinc9.com
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-GND-Sasl: arinc.unal@arinc9.com
 
-On 14.03.2024 15:20, Arınç ÜNAL via B4 Relay wrote:
-> Hello.
-> 
-> This is a small patch series setting the PHY address of MT7531 to 0x1f 
-> on
-> all boards that have the switch.
-> 
-> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
-> ---
-> Arınç ÜNAL (2):
->        arm64: dts: mediatek: mt7622: set PHY address of MT7531 switch 
-> to 0x1f
->        arm64: dts: mediatek: mt7986: set PHY address of MT7531 switch 
-> to 0x1f
-> 
->   arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts | 4 ++--
->   arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts             | 4 ++--
->   arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts | 4 ++--
->   arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts             | 4 ++--
->   arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts             | 4 ++--
->   5 files changed, 10 insertions(+), 10 deletions(-)
-> ---
-> base-commit: ba90af39ba57b3fe3ecfdba0c87a80d20c7b788d
-> change-id: 20240314-for-mediatek-mt7531-phy-address-9d0b4cfeca21
-> 
-> Best regards,
 
-Reminder that this patch series is waiting.
+On Thu, 08 Feb 2024 11:51:45 +0100, Krzysztof Kozlowski wrote:
+> The DTS code coding style expects exactly one space before '{'
+> character.
+> 
+> 
 
-Arınç
+This is waiting on the lists for almost two months, so I just picked it up. Let
+me know if anyone prefers to take it instead.
+
+Applied, thanks!
+
+[1/2] arm64: dts: ti: k3-am62p5-sk: minor whitespace cleanup
+      https://git.kernel.org/krzk/linux-dt/c/9d0ee097b3e5873e4e98770b94f11481f485e7c9
+[2/2] ARM: dts: ti: omap: minor whitespace cleanup
+      https://git.kernel.org/krzk/linux-dt/c/021bc7094e8c8ac1380527d3f53561c9a234a190
+
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
