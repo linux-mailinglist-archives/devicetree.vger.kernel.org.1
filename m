@@ -1,204 +1,119 @@
-Return-Path: <devicetree+bounces-54863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6390892D9C
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 23:21:29 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89C3E892E45
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 04:20:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9A531C20E8D
-	for <lists+devicetree@lfdr.de>; Sat, 30 Mar 2024 22:21:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 31B75B217AC
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 02:20:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FCE24DA10;
-	Sat, 30 Mar 2024 22:21:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 694C710E3;
+	Sun, 31 Mar 2024 02:19:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S7jYKe8m"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="rQmPuSUa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B27C717D2
-	for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 22:21:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BCADA5F;
+	Sun, 31 Mar 2024 02:19:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711837281; cv=none; b=oXW6axyo+Rt2X9d6Klv0UYdbhWeOkhtsooxG28FbF7du058IWC2HYLL2GfwPEAvQyq0P+0BCODjIPZ8EL5iyn0jqkgMe9bvcQr1EoXcJGQI/nYEw35eSTgrX6/dL6Uh+6otm+ngtP087BBBBsD3Gf1Pt0L81Tj/B14eZGmGWYiI=
+	t=1711851594; cv=none; b=F9A40dHtBdCI/T+rCbGZneRNh8c+mhnBnxdEUy6wzSoTuIKzF70DpZa25VFQoIlp5fSgeEUb7Mkbk7hPaTPCUhvWVsyCz3NPKMkfW8sqkXLkxIuEuLfYeqdyvAsQHLwQBHDmff1eOtN8J8CsKjFonEcPFYD71BiDk9amGHz2pMk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711837281; c=relaxed/simple;
-	bh=Oc9kcICFBM05I/E/I4AVoBzP2f/9gloPVHobW/2H4Sc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=HhqwkxYhZ9gDDSQZIvglYTKryLmpiCRosUG56IhQE1mKhPEF3nzmTZLi5ziK3aKHs+Ue4frcqr42jz2NlcliOwYBt2joAvWE4/+xuUr/CmAdX9Grs/l1F/vugl8ppugjO1hu1PXmUbhVU6A3Cg5eIkJ8S91vbQiSTB8L17mCf3M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=S7jYKe8m; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-513d247e3c4so2833134e87.0
-        for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 15:21:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711837277; x=1712442077; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=0XPGOUCDwaV1EzZ064paZOD8RnQFs1ddJgtwbPEEUz4=;
-        b=S7jYKe8msBG0Hsn9CYMRKdMJJSwT1C1KDhNhWuJJHVT+tL8mNXWKFyF+N0xZnPGV7w
-         Bk395XN7yob2caKMRGEHJe6VxJAokee7Kuj72ZuuItUajPwWtTCX/PtXOjRFqsIhxjts
-         WKUR6aB21G3DVDKrpcp8XrK9Cxw26zWJvuIGkjkr16KV03F3awH9lwtKlw4fenCUcdO3
-         LU3p253gOI4kwjlGq6OetGqNdKqLFLukYdPM/lNlK7YfHvzfBF8Z5O570IQA8o7szYfn
-         WLR+DJOlOy6aCjAf/IRfozcLCEQurAHZMiYsp9nOqaxvRboDSJywiCRgfsnf4iyxjfLJ
-         UmHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711837277; x=1712442077;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0XPGOUCDwaV1EzZ064paZOD8RnQFs1ddJgtwbPEEUz4=;
-        b=pbLRsP4HwwuOjXz66cAsvnqkRytzuA3/QPevjKn6MBjf7A72H1oIt2+hi4hOfJYIWR
-         y/d0IWIkTKHhhjyuzv0n3NjjOYbww3xUJzx3kTLybdwBfSg4FClVHJqBjO8K1ags/s0w
-         pqDTt6/uwYJCuF+NLlMlT7wivmtowTIoy27PMeJ0EqavBWoAnyowCtBB1fVk+ANWRRn8
-         M25LAfVw49O9PF2g754M4xpXanK9nNMl3oCAOk3V433yXaRufIb5IN6YrqCvNwn6pvHy
-         ZXxmUP36xjHuQt8qPQt+Hj0uJwPK4KoAi3lDamVRsJRaUtTfgqQ2/ZZ5DptrUgTWAMVi
-         DrqQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW33m7dYugB8CVzC7yLHhKWYf029g2w2zS20N3c2mv505FTRpSOnkNzbgMCNiN1KOq6wPzPI1OrxGELMvGbNHNy+Ntwa1LNFxSrTg==
-X-Gm-Message-State: AOJu0YxtrO2Dq9X/bcfoh16n8ZwNK/Wx/3F12fAW/tcbSUlelpLiwK/b
-	fx7AB/lT8FWGl9aCSDj5Er3U0+7mMdyY5xQ6cTzz0hqKDIkaTgUeWiJVCyday6mllnMR20EF3m+
-	G
-X-Google-Smtp-Source: AGHT+IF+x3Qdox2g6SjvSt6ZfLOJ3gFe7c5YL+555P/qahnN8Eg7hcDHoGbL+RaMts29GpUddkiBTg==
-X-Received: by 2002:a05:6512:3d1b:b0:516:9f65:fcf with SMTP id d27-20020a0565123d1b00b005169f650fcfmr965650lfv.26.1711837276931;
-        Sat, 30 Mar 2024 15:21:16 -0700 (PDT)
-Received: from umbar.lan ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id j18-20020a056512399200b00514b6e2fd49sm993992lfu.169.2024.03.30.15.21.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 30 Mar 2024 15:21:16 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Sun, 31 Mar 2024 00:21:15 +0200
-Subject: [PATCH v2] dt-bindings: usb: qcom,pmic-typec: update example to
- follow connector schema
+	s=arc-20240116; t=1711851594; c=relaxed/simple;
+	bh=yomuf4wkK7hH4Up2rIVQWisnRt7HZ+ENL8Z1fLklLBE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=q5VycOxnz09pfV00AuVgOD2blCQnwsHASOyo2UVraSYRNsMtG0ZGVxijIWdA+guAk+sbIa/hCMTUtC6llzAL5QmmHpwgkoqPH/IBmNRUCu/btCY8MQw9WFvUU0j3Q9kyn/MRML5xDGZ3QE4c4xwITR4Ezaq1YYwPzrvCg9CTQE4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=rQmPuSUa; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 42V2Ikea068473;
+	Sat, 30 Mar 2024 21:18:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1711851526;
+	bh=E9jrArP2IKtmwsCk5q7YN2on1sNGXBccHWbEIEhgr2g=;
+	h=From:To:CC:Subject:Date;
+	b=rQmPuSUaHSu730vdzCd0OQH7rdUqCFEl8st9M7HPjPrfGbHBAGC/onI16xVRsXf6m
+	 YKyb8scrt9bbBX2/oPuIo7BkKgviX5fi7q7wp+kgGFU6mdtbY19Qhr0v3KDzUamsdL
+	 cxXOAqjDZZl0P5reaJ1K+k/t0+R649z+MqqqIchg=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 42V2IkTx076791
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Sat, 30 Mar 2024 21:18:46 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 30
+ Mar 2024 21:18:45 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Sat, 30 Mar 2024 21:18:45 -0500
+Received: from LT5CG31242FY.dhcp.ti.com ([10.250.160.249])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 42V2Icm9106026;
+	Sat, 30 Mar 2024 21:18:39 -0500
+From: Shenghao Ding <shenghao-ding@ti.com>
+To: <linux-kernel@vger.kernel.org>
+CC: <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <perex@perex.cz>, <tiwai@suse.com>, <13916275206@139.com>,
+        <mohit.chawla@ti.com>, <soyer@irl.hu>, <jkhuang3@ti.com>,
+        <tiwai@suse.de>, <pdjuandi@ti.com>, <manisha.agrawal@ti.com>,
+        <s-hari@ti.com>, <aviel@ti.com>, <hnagalla@ti.com>, <praneeth@ti.com>,
+        <Baojun.Xu@fpt.com>, Shenghao Ding
+	<shenghao-ding@ti.com>
+Subject: [PATCH v7 0/4] mixer-test report
+Date: Sun, 31 Mar 2024 10:18:30 +0800
+Message-ID: <20240331021835.1470-1-shenghao-ding@ti.com>
+X-Mailer: git-send-email 2.33.0.windows.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240331-typec-fix-example-v2-1-f56fffe4f37c@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAFqQCGYC/32NSQ6DMBAEv4LmnIm8kIWc8o+Ig7EnMBKxLRshE
- OLvcXhAjtWtrt4gU2LK8Kg2SDRz5uALqFMFdjC+J2RXGJRQtdBK4bRGsvjmBWkxnzgSatd0kqy
- 5X7SDsouJSn04X23hgfMU0npczPKX/rPNEgVeOyGtrm+1bOg5sjcpnEPqod33/QuTXSVvswAAA
- A==
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Luca Weiss <luca.weiss@fairphone.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3401;
- i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=Oc9kcICFBM05I/E/I4AVoBzP2f/9gloPVHobW/2H4Sc=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmCJBcricaIiHddrBejVu6XApq90lPrz+UyzOaL
- MmslELd922JATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZgiQXAAKCRCLPIo+Aiko
- 1SnyCACjI3jZcyF8lv/PfbC7h7LpkxjJVFoEqIGjQQ0uJNVnplc27e2UQGG1fpyLbbDQgQEUwP3
- rmurUTUJveKBLHSQJ1fs80Qe9/ZNBZ2YLRBE/vEA5u/RXkKoGSiSgOlSbLk4i2IfXTXWPKHsAyz
- 84sJQUpm5yIxaBu8NrAeYw0NnaoMBJEVcJsgrDuGpKUUUhB7FW8fApu+0yroEiMyrtN63xcUV2v
- O2bGuho1A5A6REMw/Xtdr15nkzJC6mbjYg6PxDPL+qy61fuiLlzvN0XxZ/N60JZf39D5ne95O7k
- euRzdwIcCJFYFyYsOMyDhOhTuzIBm0hasGa5sU32VgH8Umna
-X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Update Qualcomm PMIC Type-C examples to follow the USB-C connector
-schema. The USB-C connector should have three ports (USB HS @0,
-SSTX/RX @1 and SBU @2 lanes). Reorder ports accordingly and add SBU port
-connected to the SBU mux (e.g. FSA4480).
+*** BLURB HERE ***
+mixer-test report:
+ root@am335x-evm:/bin# mixer-test
+ TAP version 13
+ # Card 0 - TI BeagleBone Black (TI BeagleBone Black)
+ 1..7
+ ok 1 get_value.0.0
+ # 0.0 pcmd3180-i2c-2 Profile id
+ ok 2 name.0.0
+ ok 3 write_default.0.0
+ ok 4 write_valid.0.0
+ ok 5 write_invalid.0.0
+ ok 6 event_missing.0.0
+ ok 7 event_spurious.0.0
+ # Totals: pass:7 fail:0 xfail:0 xpass:0 skip:0 error:0
+ root@am335x-evm:/bin#
 
-Fixes: 00bb478b829e ("dt-bindings: usb: Add Qualcomm PMIC Type-C")
-Reported-by: Luca Weiss <luca.weiss@fairphone.com>
-Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
-Update examples to follow usb-c-connector schema wrt. ports definitions.
----
-Changes in v2:
-- Dropped patch removing the role-switching port. We do not use it, but
-  it can become useful by other designs.
-- Link to v1: https://lore.kernel.org/r/20240322-typec-fix-example-v1-0-6b01c347419e@linaro.org
----
- .../devicetree/bindings/usb/qcom,pmic-typec.yaml   | 34 +++++++++++++++++-----
- 1 file changed, 26 insertions(+), 8 deletions(-)
+Shenghao Ding (4):
+  ASoc: PCM6240: Create PCM6240 Family driver code
+  ASoc: PCM6240: Create header file for PCM6240 Family driver code
+  ASoc: PCM6240: Add compile item for PCM6240 Family driver
+  ASoc: dt-bindings: PCM6240: Add initial DT binding
 
-diff --git a/Documentation/devicetree/bindings/usb/qcom,pmic-typec.yaml b/Documentation/devicetree/bindings/usb/qcom,pmic-typec.yaml
-index d9694570c419..fe757619e535 100644
---- a/Documentation/devicetree/bindings/usb/qcom,pmic-typec.yaml
-+++ b/Documentation/devicetree/bindings/usb/qcom,pmic-typec.yaml
-@@ -192,15 +192,22 @@ examples:
- 
-                     port@0 {
-                         reg = <0>;
--                        pmic_typec_mux_out: endpoint {
--                            remote-endpoint = <&usb_phy_typec_mux_in>;
-+                        pmic_typec_hs_in: endpoint {
-+                            remote-endpoint = <&usb_hs_out>;
-                         };
-                     };
- 
-                     port@1 {
-                         reg = <1>;
--                        pmic_typec_role_switch_out: endpoint {
--                            remote-endpoint = <&usb_role_switch_in>;
-+                        pmic_typec_ss_in: endpoint {
-+                            remote-endpoint = <&usb_phy_typec_ss_out>;
-+                        };
-+                    };
-+
-+                    port@2 {
-+                        reg = <2>;
-+                        pmic_typec_sbu: endpoint {
-+                            remote-endpoint = <&usb_mux_sbu>;
-                         };
-                     };
-                 };
-@@ -212,8 +219,8 @@ examples:
-         dr_mode = "otg";
-         usb-role-switch;
-         port {
--            usb_role_switch_in: endpoint {
--                remote-endpoint = <&pmic_typec_role_switch_out>;
-+            usb_hs_out: endpoint {
-+                remote-endpoint = <&pmic_typec_hs_in>;
-             };
-         };
-     };
-@@ -221,8 +228,19 @@ examples:
-     usb-phy {
-         orientation-switch;
-         port {
--            usb_phy_typec_mux_in: endpoint {
--                remote-endpoint = <&pmic_typec_mux_out>;
-+            usb_phy_typec_ss_out: endpoint {
-+                remote-endpoint = <&pmic_typec_ss_in>;
-+            };
-+        };
-+    };
-+
-+    usb-mux {
-+        orientation-switch;
-+        mode-switch;
-+
-+        port {
-+            usb_mux_sbu: endpoint {
-+                remote-endpoint = <&pmic_typec_sbu>;
-             };
-         };
-     };
+ .../devicetree/bindings/sound/ti,pcm6240.yaml |  177 ++
+ sound/soc/codecs/Kconfig                      |   10 +
+ sound/soc/codecs/Makefile                     |    2 +
+ sound/soc/codecs/pcm6240.c                    | 2071 +++++++++++++++++
+ sound/soc/codecs/pcm6240.h                    |  236 ++
+ 5 files changed, 2496 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/ti,pcm6240.yaml
+ create mode 100644 sound/soc/codecs/pcm6240.c
+ create mode 100644 sound/soc/codecs/pcm6240.h
 
----
-base-commit: 13ee4a7161b6fd938aef6688ff43b163f6d83e37
-change-id: 20240322-typec-fix-example-3d9b1eca853d
-
-Best regards,
 -- 
-Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+2.34.1
 
 
