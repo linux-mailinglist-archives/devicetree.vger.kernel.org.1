@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-54873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB79C892E76
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 05:49:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9154B892E78
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 05:49:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C68EDB21643
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 03:49:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48D2F282424
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 03:49:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF5718BE0;
-	Sun, 31 Mar 2024 03:49:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC9379479;
+	Sun, 31 Mar 2024 03:49:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XfXgtR57"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vztLru8H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86EF81396
-	for <devicetree@vger.kernel.org>; Sun, 31 Mar 2024 03:48:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E1C64688
+	for <devicetree@vger.kernel.org>; Sun, 31 Mar 2024 03:48:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711856940; cv=none; b=qlmMGAmAu4ec7dXXHEXTXpe9Jafba5zus5mJ+inHhy4PY5ecBfdFYxeOZNWiaRVshuVom/jujq0A8G33IOS8qvAYejT57d3NMpD7rT0yk5GdB9cMzIP2JJ3k4ee5lzuXDScdnYI3+T664XO9SS88YIlF4+k8R+8OlV9w5nuQKNQ=
+	t=1711856941; cv=none; b=iPua1L9Ng7tJtTlnkRXTIX00ghwol+SW8tDPJP3OO/DJUjZ6YRlyAD5O+uxJFWBuMVkSMUU6CTdgvEvH32PE8fTBR6BaiRPmwF1qkZjhxKwGbwztc6VHT1xx8XBffRPxrUSiQgIccOINVgBdUb9QsIekBYX6TROlMWmLdorr4YI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711856940; c=relaxed/simple;
-	bh=7EfGB7yMpXjvioQX1Rm4KbJ/AxGqyNRro4p3nMwNvYk=;
+	s=arc-20240116; t=1711856941; c=relaxed/simple;
+	bh=RGkOQsCllQ1jYfPhrj6TQaocgy7wfyKr0BnEC9y7evA=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=JFOLG8LnPykpGKeYYDAffw/JWd/jTrMf47suX86bzCjLMRG0rLhlMgqtw1xFzXsrhRHu1MdIIO+GHbdbtDp2KUfhYpm38OG0PPHY6udv6hNiSTqLU4OapHao6qN1lTGH1YJ//ImEHbxZWR+RzbFIiKK+GL/++a97wxGG/rT0r9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XfXgtR57; arc=none smtp.client-ip=209.85.167.49
+	 In-Reply-To:To:Cc; b=I9k2iEgyjL3aWwi6vBiEPKu0/aAh9W4kJX/qvSJC6cM1rKb5eyiza6oIz0j5XJvK4uafcefZ/IyyJDdtOEJxj5t5p5SVxCCoGcfGxABQJlrNfVwS9A5Bj7iP8lnZc0SKlX58Ix3xi1FMNAzQP7HtrHsC3DSLeeu1fZ1vrAfx68M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vztLru8H; arc=none smtp.client-ip=209.85.167.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-513d212f818so3427124e87.2
-        for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 20:48:58 -0700 (PDT)
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-513cf9bacf1so3769289e87.0
+        for <devicetree@vger.kernel.org>; Sat, 30 Mar 2024 20:48:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1711856937; x=1712461737; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=0Y3Kfoqzh4vQdnhmhi8JCYRXAxYg/BtE6kzbs+VhT7c=;
-        b=XfXgtR57HfAHDsOvz2HpmgNPP1ssyUFpRgF3IXOy4RNBFEcsWPc9t/X8tdrPbxi/Ch
-         L+iUCt7in6mcX6ZWUq6Ri4mmWZ1DKB8lZitsX6nIOQQjneAOx96owHKH6VlByjkSSKjQ
-         1Xr9eU5FB3fp6k3rksARiOUhZpnKk9U37K/90UbDYliK9XrzW2FFEJiK6TmGgCFqACvl
-         EuUmzzT5iGUHjRe/a2uLiIgQ01r8qbHr7rDHgHARFvN+iMR38fsvJiy2Htmwfz6/HpC0
-         oZ0JdOcBHqvino/nQ5TXcQ1j60TU3Uwx15alGM+15YGIsl+76+y/m2fVn9JdU6UkvIbz
-         YP1Q==
+        bh=Vf293Z1jWjZ4tIcNIs1kYj2icD3MR7alx33L+RV9QBA=;
+        b=vztLru8H/ia4Ul992GGg651Sc/GrkEhulF5dcVRU2SBdIfAlukhA0rEYCIMc5CObPv
+         icUcZxDg5DDh/wTz+X+kqw5NT0EgVlPaQRvnWFmveURtpJmdiaK51aDaIoND/qROJAXU
+         IWIr5tkgOJYNAMhY3CGUzqqNODWEcwoifHHNsWMXlhL++YzalybqiPr+QAEIi5k/nRcW
+         bvz4Lrgwlojt36seD6wJwiE/YM9aeFRh0732brj2v6SoS53Etv/inJmf4S8/e1k0jehN
+         xd0kJdPThB/P8a+Hq9NO343xRj5xn++HbnOt2GuPEHVv1XiRWu+zEvHvoWn9zLZlHDJS
+         73rg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1711856937; x=1712461737;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=0Y3Kfoqzh4vQdnhmhi8JCYRXAxYg/BtE6kzbs+VhT7c=;
-        b=wmux0tBdWrUfyR1JwlwsXq43YF7hhspB16vPQKa9B9Tfgb6mz6R63RindwVwvishfs
-         E3Ief/I/bqao87ccAy2sGX6i5rnfp1Gn43MOMnCbYgGAHs89SbHfpoYVkGHm/9Uj56RN
-         /SarLkMA26VnCCRQGw2HHtyiiiXbMZUp54hYIpUUkp6GXVqyMia0FYGd7jSF7s8BScKN
-         zV3egmF7zlS92JMpjuV2YJ8zXm1dA6vffYiVtvzAItywY5UU/dPZ8lVQLrwyOLu4BJcm
-         H9pIdhn3ycz/AEl/E6APpgsqnbjS/FgLunmmuZL79Himul7b/+6XGy3Y54iuBf24a6pW
-         vpmA==
-X-Forwarded-Encrypted: i=1; AJvYcCUJddmfGkvowzNkQafI/cNCaeK+NRzlyC4StLNm8Iyy5ybuWeHhHHxL1fJRjDe7auwdAUN1BmERWrwbgi7sgTNjlz/6r9L7vaPG8Q==
-X-Gm-Message-State: AOJu0Yz2J+repekANa/9tnlePJXV69DZiIWmyrFb3+n3b/RStey7Mtcy
-	oWDeuEF3ZAc3lLg08t4J+wFRlJFUhQohL9NVR8KOpnkT+spWxhhUWRsmSs/yMfA=
-X-Google-Smtp-Source: AGHT+IGjGZyuSXqa1dUNjuuUsixOj8hsFbiTi7Xa0rfvK8aIVB2Iz49ByhpTc7vHL+OEENUBVikqWQ==
-X-Received: by 2002:ac2:5967:0:b0:515:8564:28c8 with SMTP id h7-20020ac25967000000b00515856428c8mr3869538lfp.67.1711856936838;
-        Sat, 30 Mar 2024 20:48:56 -0700 (PDT)
+        bh=Vf293Z1jWjZ4tIcNIs1kYj2icD3MR7alx33L+RV9QBA=;
+        b=mfcmq2P3CNLyRvZgDwqsRYhOys7dH0t6aKf1r9N3hzwWtMKxDsqIs6nHUtEGPZ7ATq
+         6E2oJLCGuC/nEJKPHFTmCUalPVPv0TosZJCnHCwG0GR/sPNFzfwBtZm6bGbVZD+dBAMN
+         GJzaKx1+HzSchegOhs72z4HfO14Egb5cVVdNIw4LELuEmDT/8X6uxJ8kdYYCt/DoilHf
+         7+RscY9bAOshaDfF+n1Y72IN7mFHu4bkRxgLUFnKc8ZXUjblCNGHK/JYlTMTKhpPC5iY
+         5Kn0R6cGGjY6KpxsgdxPkP5R7ogG745d92Eu1gOtoNruWgGanA4zGQA2i+0x7nTNCSYS
+         OhNA==
+X-Forwarded-Encrypted: i=1; AJvYcCUbuwMOf9mRQD21W4axac7HkB8t0uHWn/SaCXqc8x3xtDyFmsmYLbIQ3U9afe3zbtHVDjIv71dC6ueR9O/jLRb/kPk539qEk4NWCg==
+X-Gm-Message-State: AOJu0Yz27fCpUaWutMIv8s7cgCX2dPfeW4CgQ+7cPM6h7cKcvAyW3VFf
+	LtuOkxZZZEuoxjHSQFp0ls9t/9US31WMFRZaPNPFIO2KFh78fAUggb45+CSr5Js=
+X-Google-Smtp-Source: AGHT+IG+QlAYyeq5q7IAE1VUglDS5ZGVj7bZFm7QWz87R3EDOqqkLqa1EzsJtjYyiFp7Ngp7M/ObCg==
+X-Received: by 2002:a05:6512:3d90:b0:515:c195:d6b8 with SMTP id k16-20020a0565123d9000b00515c195d6b8mr5132608lfv.60.1711856937471;
+        Sat, 30 Mar 2024 20:48:57 -0700 (PDT)
 Received: from umbar.lan ([192.130.178.91])
         by smtp.gmail.com with ESMTPSA id k9-20020ac257c9000000b00515ce9f4a2bsm762980lfo.35.2024.03.30.20.48.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 30 Mar 2024 20:48:56 -0700 (PDT)
+        Sat, 30 Mar 2024 20:48:57 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Sun, 31 Mar 2024 06:48:53 +0300
-Subject: [PATCH v2 3/7] arm64: dts: qcom: sc8180x: switch USB+DP QMP PHYs
- to new bindings
+Date: Sun, 31 Mar 2024 06:48:54 +0300
+Subject: [PATCH v2 4/7] arm64: dts: qcom: sc8180x: describe USB signals
+ properly
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,7 +79,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240331-typec-fix-sm8250-v2-3-857acb6bd88e@linaro.org>
+Message-Id: <20240331-typec-fix-sm8250-v2-4-857acb6bd88e@linaro.org>
 References: <20240331-typec-fix-sm8250-v2-0-857acb6bd88e@linaro.org>
 In-Reply-To: <20240331-typec-fix-sm8250-v2-0-857acb6bd88e@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -91,253 +91,228 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>, 
  Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7314;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5234;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=7EfGB7yMpXjvioQX1Rm4KbJ/AxGqyNRro4p3nMwNvYk=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmCN0kmRlru3z7W/EQJ1pjMDWDYzAqUFK28kj/B
- gnu4uEseqWJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZgjdJAAKCRCLPIo+Aiko
- 1fvyB/0dRs9XxVkYHWdBpUSVhGvi6TQ45UtXZhwWGd5o+SK5HqekFeVhhaVxOhNqnWmWZfNbSpB
- dNTEZeE7ZFCMwJKpOa7LXcqx5olagaLjPboXKlI61+z4hfrzwq+erqQN9yrtxrimKF9jNV1O90j
- 9RoiIKTtwF+crgNPURfnBpzwgylQgNmr3eRqGbJjiADvaTbWlUXSkUFvbrg9wNkLX4eIIHfMDSl
- q1d/UhkLiaUCNsbM6DPUOTrGTObZZ9uJf5MYlyZAiRuXPJzpZH1om3RBlPX1kAGTF8uLgKSOmEa
- 6gG1O7E/NXdUiIg0C8Mbm4Caqclov50i10fqdHpwQhpRCpz2
+ bh=RGkOQsCllQ1jYfPhrj6TQaocgy7wfyKr0BnEC9y7evA=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmCN0kox7dM4i18BAYWHmXL7xoWVpD/PB9I6Akm
+ WuS4MUpn7eJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZgjdJAAKCRCLPIo+Aiko
+ 1UrMCACJ5ETJYWdNrzXrmnCkKdo9786SEIeX2mmS8ENaPriggO5nHuiaHHvSo/VBIuaE9V7+uZx
+ S4w7sOr8T532woE/5YPf4lGc1SjccjPUh5cS0sNBoNeUGgIFacMB8RvGzv8PpspASX6NNLam9Gu
+ uc133JbQ7IqsR5b4UpaTuI/bcqAKI9FlrANkfekSWWznGluOzGEIq3A1jgyQ0aM9Is4FyYHLq5U
+ vhOvvF228hsnJY8QAG5ZR4esrbUxOLam3YbCZ1/q5vzaXYqoPxlxfoMu/JaD1hJ6i1hjRCfIHQS
+ KuhRltpDYXZqfFvJPGobHgJHrK16sWtTGWFN6QRUp82SjAwJ
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-To follow other Qualcomm platforms, update QMP USB+DP PHYs to use newer
-bindings rather than old bindings which had PHYs as subdevices.
+Follow example of other platforms. Rename HS graph nodes to contain
+'dwc3_hs' and link SS lanes from DWC3 controllers to QMP PHYs.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sc8180x.dtsi | 122 ++++++++++++----------------------
- 1 file changed, 41 insertions(+), 81 deletions(-)
+ .../arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts | 16 ++++----
+ arch/arm64/boot/dts/qcom/sc8180x-primus.dts        | 20 +++++-----
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi              | 46 +++++++++++++++++++---
+ 3 files changed, 58 insertions(+), 24 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts b/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
+index 6f2e1c732ed3..93846ff42606 100644
+--- a/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
++++ b/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
+@@ -66,7 +66,7 @@ port@0 {
+ 					reg = <0>;
+ 
+ 					pmic_glink_con0_hs: endpoint {
+-						remote-endpoint = <&usb_prim_role_switch>;
++						remote-endpoint = <&usb_prim_dwc3_hs>;
+ 					};
+ 				};
+ 
+@@ -101,7 +101,7 @@ port@0 {
+ 					reg = <0>;
+ 
+ 					pmic_glink_con1_hs: endpoint {
+-						remote-endpoint = <&usb_sec_role_switch>;
++						remote-endpoint = <&usb_sec_dwc3_hs>;
+ 					};
+ 				};
+ 
+@@ -580,6 +580,10 @@ &usb_prim_dwc3 {
+ 	dr_mode = "host";
+ };
+ 
++&usb_prim_dwc3_hs {
++	remote-endpoint = <&pmic_glink_con0_hs>;
++};
++
+ &usb_prim_qmpphy_dp_in {
+ 	remote-endpoint = <&mdss_dp0_out>;
+ };
+@@ -588,8 +592,8 @@ &usb_prim_qmpphy_out {
+ 	remote-endpoint = <&pmic_glink_con0_ss>;
+ };
+ 
+-&usb_prim_role_switch {
+-	remote-endpoint = <&pmic_glink_con0_hs>;
++&usb_sec_dwc3_hs {
++	remote-endpoint = <&pmic_glink_con1_hs>;
+ };
+ 
+ &usb_sec_hsphy {
+@@ -617,10 +621,6 @@ &usb_sec_qmpphy_out {
+ 	remote-endpoint = <&pmic_glink_con1_ss>;
+ };
+ 
+-&usb_sec_role_switch {
+-	remote-endpoint = <&pmic_glink_con1_hs>;
+-};
+-
+ &usb_sec {
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sc8180x-primus.dts b/arch/arm64/boot/dts/qcom/sc8180x-primus.dts
+index bfee60c93ccc..65d923497a05 100644
+--- a/arch/arm64/boot/dts/qcom/sc8180x-primus.dts
++++ b/arch/arm64/boot/dts/qcom/sc8180x-primus.dts
+@@ -71,7 +71,7 @@ port@0 {
+ 					reg = <0>;
+ 
+ 					pmic_glink_con0_hs: endpoint {
+-						remote-endpoint = <&usb_prim_role_switch>;
++						remote-endpoint = <&usb_prim_dwc3_hs>;
+ 					};
+ 				};
+ 
+@@ -106,7 +106,7 @@ port@0 {
+ 					reg = <0>;
+ 
+ 					pmic_glink_con1_hs: endpoint {
+-						remote-endpoint = <&usb_sec_role_switch>;
++						remote-endpoint = <&usb_sec_dwc3_hs>;
+ 					};
+ 				};
+ 
+@@ -648,6 +648,10 @@ &usb_prim_dwc3 {
+ 	dr_mode = "host";
+ };
+ 
++&usb_prim_dwc3_hs {
++	remote-endpoint = <&pmic_glink_con0_hs>;
++};
++
+ &usb_prim_qmpphy_dp_in {
+ 	remote-endpoint = <&mdss_dp0_out>;
+ };
+@@ -656,10 +660,6 @@ &usb_prim_qmpphy_out {
+ 	remote-endpoint = <&pmic_glink_con0_ss>;
+ };
+ 
+-&usb_prim_role_switch {
+-	remote-endpoint = <&pmic_glink_con0_hs>;
+-};
+-
+ &usb_sec_hsphy {
+ 	vdda-pll-supply = <&vreg_l5e_0p88>;
+ 	vdda18-supply = <&vreg_l12a_1p8>;
+@@ -685,10 +685,6 @@ &usb_sec_qmpphy_out {
+ 	remote-endpoint = <&pmic_glink_con1_ss>;
+ };
+ 
+-&usb_sec_role_switch {
+-	remote-endpoint = <&pmic_glink_con1_hs>;
+-};
+-
+ &usb_sec {
+ 	status = "okay";
+ };
+@@ -697,6 +693,10 @@ &usb_sec_dwc3 {
+ 	dr_mode = "host";
+ };
+ 
++&usb_sec_dwc3_hs {
++	remote-endpoint = <&pmic_glink_con1_hs>;
++};
++
+ &wifi {
+ 	memory-region = <&wlan_mem>;
+ 
 diff --git a/arch/arm64/boot/dts/qcom/sc8180x.dtsi b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-index 32afc78d5b76..a4931b5ee86c 100644
+index a4931b5ee86c..59bb844ed432 100644
 --- a/arch/arm64/boot/dts/qcom/sc8180x.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-@@ -12,6 +12,7 @@
- #include <dt-bindings/interconnect/qcom,osm-l3.h>
- #include <dt-bindings/interconnect/qcom,sc8180x.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/phy/phy-qcom-qmp.h>
- #include <dt-bindings/power/qcom-rpmpd.h>
- #include <dt-bindings/soc/qcom,rpmh-rsc.h>
- #include <dt-bindings/thermal/thermal.h>
-@@ -2472,28 +2473,25 @@ usb_sec_hsphy: phy@88e3000 {
- 			status = "disabled";
- 		};
+@@ -2508,7 +2508,9 @@ port@0 {
+ 				port@1 {
+ 					reg = <1>;
  
--		usb_prim_qmpphy: phy@88e9000 {
-+		usb_prim_qmpphy: phy@88e8000 {
- 			compatible = "qcom,sc8180x-qmp-usb3-dp-phy";
--			reg = <0 0x088e9000 0 0x18c>,
--			      <0 0x088e8000 0 0x38>,
--			      <0 0x088ea000 0 0x40>;
--			reg-names = "reg-base", "dp_com";
-+			reg = <0 0x088e8000 0 0x3000>;
-+
- 			clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
--				 <&rpmhcc RPMH_CXO_CLK>,
- 				 <&gcc GCC_USB3_PRIM_CLKREF_CLK>,
--				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>;
-+				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
-+				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
- 			clock-names = "aux",
--				      "ref_clk_src",
- 				      "ref",
--				      "com_aux";
-+				      "com_aux",
-+				      "usb3_pipe";
-+
- 			resets = <&gcc GCC_USB3_DP_PHY_PRIM_SP0_BCR>,
- 				 <&gcc GCC_USB3_PHY_PRIM_SP0_BCR>;
- 			reset-names = "phy", "common";
- 
- 			#clock-cells = <1>;
--			#address-cells = <2>;
--			#size-cells = <2>;
--			ranges;
-+			#phy-cells = <1>;
- 
- 			status = "disabled";
- 
-@@ -2507,59 +2505,38 @@ port@0 {
- 					usb_prim_qmpphy_out: endpoint {};
+-					usb_prim_qmpphy_usb_ss_in: endpoint {};
++					usb_prim_qmpphy_usb_ss_in: endpoint {
++						remote-endpoint = <&usb_prim_dwc3_ss>;
++					};
  				};
  
-+				port@1 {
-+					reg = <1>;
-+
-+					usb_prim_qmpphy_usb_ss_in: endpoint {};
-+				};
-+
  				port@2 {
- 					reg = <2>;
+@@ -2553,7 +2555,9 @@ port@0 {
+ 				port@1 {
+ 					reg = <1>;
  
- 					usb_prim_qmpphy_dp_in: endpoint {};
- 				};
- 			};
--
--			usb_prim_ssphy: usb3-phy@88e9200 {
--				reg = <0 0x088e9200 0 0x200>,
--				      <0 0x088e9400 0 0x200>,
--				      <0 0x088e9c00 0 0x218>,
--				      <0 0x088e9600 0 0x200>,
--				      <0 0x088e9800 0 0x200>,
--				      <0 0x088e9a00 0 0x100>;
--				#phy-cells = <0>;
--				clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
--				clock-names = "pipe0";
--				clock-output-names = "usb3_prim_phy_pipe_clk_src";
--			};
--
--			usb_prim_dpphy: dp-phy@88ea200 {
--				reg = <0 0x088ea200 0 0x200>,
--				      <0 0x088ea400 0 0x200>,
--				      <0 0x088eaa00 0 0x200>,
--				      <0 0x088ea600 0 0x200>,
--				      <0 0x088ea800 0 0x200>;
--				#clock-cells = <1>;
--				#phy-cells = <0>;
--			};
- 		};
- 
- 		usb_sec_qmpphy: phy@88ee000 {
- 			compatible = "qcom,sc8180x-qmp-usb3-dp-phy";
--			reg = <0 0x088ee000 0 0x18c>,
--			      <0 0x088ed000 0 0x10>,
--			      <0 0x088ef000 0 0x40>;
--			reg-names = "reg-base", "dp_com";
-+			reg = <0 0x088ed000 0 0x3000>;
-+
- 			clocks = <&gcc GCC_USB3_SEC_PHY_AUX_CLK>,
--				 <&rpmhcc RPMH_CXO_CLK>,
- 				 <&gcc GCC_USB3_SEC_CLKREF_CLK>,
--				 <&gcc GCC_USB3_SEC_PHY_COM_AUX_CLK>;
-+				 <&gcc GCC_USB3_SEC_PHY_COM_AUX_CLK>,
-+				 <&gcc GCC_USB3_SEC_PHY_PIPE_CLK>;
- 			clock-names = "aux",
--				      "ref_clk_src",
- 				      "ref",
--				      "com_aux";
-+				      "com_aux",
-+				      "usb3_pipe";
- 			resets = <&gcc GCC_USB3_DP_PHY_SEC_BCR>,
- 				 <&gcc GCC_USB3_PHY_SEC_BCR>;
- 			reset-names = "phy", "common";
- 
- 			#clock-cells = <1>;
--			#address-cells = <2>;
--			#size-cells = <2>;
--			ranges;
-+			#phy-cells = <1>;
- 
- 			status = "disabled";
- 
-@@ -2573,37 +2550,18 @@ port@0 {
- 					usb_sec_qmpphy_out: endpoint {};
+-					usb_sec_qmpphy_usb_ss_in: endpoint {};
++					usb_sec_qmpphy_usb_ss_in: endpoint {
++						remote-endpoint = <&usb_sec_dwc3_ss>;
++					};
  				};
  
-+				port@1 {
-+					reg = <1>;
-+
-+					usb_sec_qmpphy_usb_ss_in: endpoint {};
-+				};
-+
  				port@2 {
- 					reg = <2>;
- 
- 					usb_sec_qmpphy_dp_in: endpoint {};
- 				};
- 			};
--
--			usb_sec_ssphy: usb3-phy@88e9200 {
--				reg = <0 0x088ee200 0 0x200>,
--				      <0 0x088ee400 0 0x200>,
--				      <0 0x088eec00 0 0x218>,
--				      <0 0x088ee600 0 0x200>,
--				      <0 0x088ee800 0 0x200>,
--				      <0 0x088eea00 0 0x100>;
--				#phy-cells = <0>;
--				clocks = <&gcc GCC_USB3_SEC_PHY_PIPE_CLK>;
--				clock-names = "pipe0";
--				clock-output-names = "usb3_sec_phy_pipe_clk_src";
--			};
--
--			usb_sec_dpphy: dp-phy@88ef200 {
--				reg = <0 0x088ef200 0 0x200>,
--				      <0 0x088ef400 0 0x200>,
--				      <0 0x088efa00 0 0x200>,
--				      <0 0x088ef600 0 0x200>,
--				      <0 0x088ef800 0 0x200>;
--				#clock-cells = <1>;
--				#phy-cells = <0>;
--				clock-output-names = "qmp_dptx1_phy_pll_link_clk",
--						     "qmp_dptx1_phy_pll_vco_div_clk";
--			};
- 		};
- 
- 		system-cache-controller@9200000 {
-@@ -2672,7 +2630,7 @@ usb_prim_dwc3: usb@a600000 {
- 				iommus = <&apps_smmu 0x140 0>;
- 				snps,dis_u2_susphy_quirk;
- 				snps,dis_enblslpm_quirk;
--				phys = <&usb_prim_hsphy>, <&usb_prim_ssphy>;
-+				phys = <&usb_prim_hsphy>, <&usb_prim_qmpphy QMP_USB43DP_USB3_PHY>;
+@@ -2633,8 +2637,23 @@ usb_prim_dwc3: usb@a600000 {
+ 				phys = <&usb_prim_hsphy>, <&usb_prim_qmpphy QMP_USB43DP_USB3_PHY>;
  				phy-names = "usb2-phy", "usb3-phy";
  
- 				port {
-@@ -2729,7 +2687,7 @@ usb_sec_dwc3: usb@a800000 {
- 				iommus = <&apps_smmu 0x160 0>;
- 				snps,dis_u2_susphy_quirk;
- 				snps,dis_enblslpm_quirk;
--				phys = <&usb_sec_hsphy>, <&usb_sec_ssphy>;
-+				phys = <&usb_sec_hsphy>, <&usb_sec_qmpphy QMP_USB43DP_USB3_PHY>;
+-				port {
+-					usb_prim_role_switch: endpoint {
++				ports {
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					port@0 {
++						reg = <0>;
++
++						usb_prim_dwc3_hs: endpoint {
++						};
++					};
++
++					port@1 {
++						reg = <1>;
++
++						usb_prim_dwc3_ss: endpoint {
++							remote-endpoint = <&usb_prim_qmpphy_usb_ss_in>;
++						};
+ 					};
+ 				};
+ 			};
+@@ -2690,8 +2709,23 @@ usb_sec_dwc3: usb@a800000 {
+ 				phys = <&usb_sec_hsphy>, <&usb_sec_qmpphy QMP_USB43DP_USB3_PHY>;
  				phy-names = "usb2-phy", "usb3-phy";
  
- 				port {
-@@ -3046,9 +3004,10 @@ mdss_dp0: displayport-controller@ae90000 {
- 
- 				assigned-clocks = <&dispcc DISP_CC_MDSS_DP_LINK_CLK_SRC>,
- 						  <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK_SRC>;
--				assigned-clock-parents = <&usb_prim_dpphy 0>, <&usb_prim_dpphy 1>;
-+				assigned-clock-parents = <&usb_prim_qmpphy QMP_USB43DP_DP_LINK_CLK>,
-+							 <&usb_prim_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>;
- 
--				phys = <&usb_prim_dpphy>;
-+				phys = <&usb_prim_qmpphy QMP_USB43DP_DP_PHY>;
- 				phy-names = "dp";
- 
- 				#sound-dai-cells = <0>;
-@@ -3122,9 +3081,10 @@ mdss_dp1: displayport-controller@ae98000 {
- 
- 				assigned-clocks = <&dispcc DISP_CC_MDSS_DP_LINK1_CLK_SRC>,
- 						  <&dispcc DISP_CC_MDSS_DP_PIXEL2_CLK_SRC>;
--				assigned-clock-parents = <&usb_sec_dpphy 0>, <&usb_sec_dpphy 1>;
-+				assigned-clock-parents = <&usb_sec_qmpphy QMP_USB43DP_DP_LINK_CLK>,
-+							 <&usb_sec_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>;
- 
--				phys = <&usb_sec_dpphy>;
-+				phys = <&usb_sec_qmpphy QMP_USB43DP_DP_PHY>;
- 				phy-names = "dp";
- 
- 				#sound-dai-cells = <0>;
-@@ -3268,10 +3228,10 @@ dispcc: clock-controller@af00000 {
- 			reg = <0 0x0af00000 0 0x20000>;
- 			clocks = <&rpmhcc RPMH_CXO_CLK>,
- 				 <&sleep_clk>,
--				 <&usb_prim_dpphy 0>,
--				 <&usb_prim_dpphy 1>,
--				 <&usb_sec_dpphy 0>,
--				 <&usb_sec_dpphy 1>,
-+				 <&usb_prim_qmpphy QMP_USB43DP_DP_LINK_CLK>,
-+				 <&usb_prim_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>,
-+				 <&usb_sec_qmpphy QMP_USB43DP_DP_LINK_CLK>,
-+				 <&usb_sec_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>,
- 				 <&edp_phy 0>,
- 				 <&edp_phy 1>;
- 			clock-names = "bi_tcxo",
+-				port {
+-					usb_sec_role_switch: endpoint {
++				ports {
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					port@0 {
++						reg = <0>;
++
++						usb_sec_dwc3_hs: endpoint {
++						};
++					};
++
++					port@1 {
++						reg = <1>;
++
++						usb_sec_dwc3_ss: endpoint {
++							remote-endpoint = <&usb_sec_qmpphy_usb_ss_in>;
++						};
+ 					};
+ 				};
+ 			};
 
 -- 
 2.39.2
