@@ -1,141 +1,192 @@
-Return-Path: <devicetree+bounces-54901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8A738931A9
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 15:21:56 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE2118931B2
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 15:28:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B6B001C2090F
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 13:21:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2402FB2133F
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 13:28:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF3421448C8;
-	Sun, 31 Mar 2024 13:21:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11C62144D0D;
+	Sun, 31 Mar 2024 13:28:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="MgU90BNE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a4svRyaG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0B6675813;
-	Sun, 31 Mar 2024 13:21:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7227C1448FF
+	for <devicetree@vger.kernel.org>; Sun, 31 Mar 2024 13:28:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711891311; cv=none; b=IuxmJ6iXDDcr2wHZWOtQS+PRLP5pUJauianhLptqQuTyWMxagSViuvPPdhZNbdCObvq5hTWILimiXwwx2r0iUI1ciyC60fhzPoNNQynoyp8KHLxe3VwkyU1cJ9G5o7Hkrzm9qvrI0VKoj/CF3w5kEqbmhpx6RX/mOI0mSuVfFbE=
+	t=1711891710; cv=none; b=LW1aWJaZeOwaml/XmDktq7mgMOafYyCt3gjSHFoS3qG11v5448Nlf7nfihbz/ejFM5swrqLuW1NM48o5/KoOATEPRZsHLGOyOkWEBPSQj245KrY7nCLeGZrBoxvlSThpsuypDDOIfY9UW4dN2YeG3CKXiOAJBu23lgwNid3KGQY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711891311; c=relaxed/simple;
-	bh=JP6BXX6OedKFrU6XpFRibCbkdjCzL/Y2Jmj83p3ihuU=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=GpF2jFZp0xsDZiV1kFPYZm9LTGEn+pDYQ6MiMEM76oBxI7KHU9eP72WXbbIcJb+jIbqpDiNy8Hcbedkf0a9CV800NHHvSnLfvDymdBzFR+XUSuvdUSqtHzhHh6y71mALetBOdHSFtq47BDOtNJMlcWXdHuVlCik7m7paoeCd3Ik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=MgU90BNE; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 42VDKdtX050242;
-	Sun, 31 Mar 2024 08:20:39 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1711891239;
-	bh=JP6BXX6OedKFrU6XpFRibCbkdjCzL/Y2Jmj83p3ihuU=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=MgU90BNEIzlW+PqPvgMx3gCqc+oGSMX6w9IRvH16r2tTtVb+fCUMn/G+b3ulb9NEs
-	 GbAldXp6uGPPGlHP7/KXIeJDFLgCvgWWfMaw0MniiEvA/zXr4btAIMQ3nwRJu1A8Pi
-	 b0MjWz7iDQHb82ZzJ/fkbSXKWZfPA8Ywf/kBQ1pw=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 42VDKdtG054458
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sun, 31 Mar 2024 08:20:39 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 31
- Mar 2024 08:20:38 -0500
-Received: from DLEE101.ent.ti.com ([fe80::91ee:60bc:bfb7:851c]) by
- DLEE101.ent.ti.com ([fe80::91ee:60bc:bfb7:851c%18]) with mapi id
- 15.01.2507.023; Sun, 31 Mar 2024 08:20:38 -0500
-From: "Ding, Shenghao" <shenghao-ding@ti.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-CC: "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "broonie@kernel.org"
-	<broonie@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "linux-sound@vger.kernel.org"
-	<linux-sound@vger.kernel.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-        "perex@perex.cz" <perex@perex.cz>, "tiwai@suse.com" <tiwai@suse.com>,
-        "13916275206@139.com"
-	<13916275206@139.com>,
-        "Chawla, Mohit" <mohit.chawla@ti.com>, "soyer@irl.hu"
-	<soyer@irl.hu>,
-        "Huang, Jonathan" <jkhuang3@ti.com>, "tiwai@suse.de"
-	<tiwai@suse.de>,
-        "Djuandi, Peter" <pdjuandi@ti.com>,
-        "Agrawal, Manisha"
-	<manisha.agrawal@ti.com>,
-        "Hari, Raj" <s-hari@ti.com>, "Yashar, Avi"
-	<aviel@ti.com>,
-        "Nagalla, Hari" <hnagalla@ti.com>,
-        "Bajjuri, Praneeth"
-	<praneeth@ti.com>,
-        "Baojun.Xu@fpt.com" <Baojun.Xu@fpt.com>,
-        Rob Herring
-	<robh@kernel.org>
-Subject: RE: [EXTERNAL] Re: [PATCH v7 4/4] ASoc: dt-bindings: PCM6240: Add
- initial DT binding
-Thread-Topic: [EXTERNAL] Re: [PATCH v7 4/4] ASoc: dt-bindings: PCM6240: Add
- initial DT binding
-Thread-Index: AQHagxHV9XLbizAWqEeASPd4Xd549bFR1MsA////weA=
-Date: Sun, 31 Mar 2024 13:20:38 +0000
-Message-ID: <41797fe7d5bb41b4bdea4ee7f4957291@ti.com>
-References: <20240331021835.1470-1-shenghao-ding@ti.com>
- <20240331021835.1470-5-shenghao-ding@ti.com>
- <cc7a60c3-4a1e-4f32-b6ef-4a41d5c48eaf@linaro.org>
-In-Reply-To: <cc7a60c3-4a1e-4f32-b6ef-4a41d5c48eaf@linaro.org>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1711891710; c=relaxed/simple;
+	bh=iVUbrnhkh7lCb9dc6PK79+UXJfu78dkuVC2Z89ZQfOg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=DO43ZPHRdFGgkIMR1XeaIEtZIQ9x/jufsPDdAWtR4X4Rwe/ZNqK174BJaxa0OAOCjThG9pnnjniAJR1TA96ycAnGZlUOJ3K7r2elsY6DTcopx2UZ4SLm6vVyYaE5oeQS/0MpamPpC98S8eM6VaFNelYY85QpOzXCF5VOyuIwcbU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=a4svRyaG; arc=none smtp.client-ip=209.85.160.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-2228c4c5ac3so2054103fac.0
+        for <devicetree@vger.kernel.org>; Sun, 31 Mar 2024 06:28:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1711891707; x=1712496507; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=QHXObRow5eQZD5bl0iC6Ixk4r7YkM2d02GXT5vu0dko=;
+        b=a4svRyaGTwuAN0GU7HH23hnfBIJafYBMAN1WW1WWLlDHDQ9BEFgd56g9TYGSr6pv0m
+         cBJsf/MYy2nuxrLo3xMJmkCnIHKksxU18aWlilgQUQZXMq6rhgV3yg6iqxT+h9W54Mzw
+         oxdaw5/DGQlHQ8FPS0Y3TXegX+ZwPuDCdElCqU1YcyWlmcHP5K9ktKjI9euQu7b3h81X
+         e221EFOFDXXJPkS+15p4Thhr7/jrptyFnofiGahCVGBy9eT/8AvDzrs271uNUwstGqab
+         28/fyaR9r6kp9Kev62skOXAQ50+2ODvacV2JbMjBMKuo5Ueqr0/zGF3+20BuDrzrME12
+         v8EQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711891707; x=1712496507;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QHXObRow5eQZD5bl0iC6Ixk4r7YkM2d02GXT5vu0dko=;
+        b=B7xzLhejT1shk/cQwmgNfoHJvaBnT/aTGLeAXJgd5+e2GAS3hqroF/+UPimiS5I0hY
+         v1gT/svM/HG1+mghFBgv/OUam2f6xqH05iFH0Y5VKs+gcwj3bYN1xmIDrMQendihyaN+
+         Cu3MWewLsJb4e8esM3c75k0BzJAVarQ54o4+eJpFxzIPgkM09LnrOO/R7KIqAfg9t6vY
+         qM72IjItkguExYXfpsnkZONkjxcFkQ1yDh/W0LIqTc5cSKIxatEkkOHdpMUIIoTrmC/n
+         icj4tF8hFxfmjNZORIythXyBm2oJ+oPZyZXIxfE326WsBm3D/kpy5/HCyDZw7SJXKB0v
+         QAOw==
+X-Forwarded-Encrypted: i=1; AJvYcCX982sjP3mqh83tyBUOXpmT/uIUZ9e68YCqdNzveoua67BUGYneG/Ui6+WEOHyTe6KBPvUuPRt1LSJs9nR4zz6KofbKAtFR2ior1A==
+X-Gm-Message-State: AOJu0YyqdWmiYbsGDSI8E4Lraw7W4cgIX7pNYU3UwdBYvBc0LPeW4Cda
+	ZWvoxp7qetL8IBQ6pL9Q/kFad7hnl3lNEMlgAogud/fwOMHGZ727
+X-Google-Smtp-Source: AGHT+IEu8ZbA7VLgg6z+8SIwlkgAi1EFOHOIOV8qf64875m6IGhMp74utZnfb+yGBY1Nv5lhjydrOw==
+X-Received: by 2002:a05:6871:741f:b0:22a:16ad:372f with SMTP id nw31-20020a056871741f00b0022a16ad372fmr7414212oac.9.1711891707301;
+        Sun, 31 Mar 2024 06:28:27 -0700 (PDT)
+Received: from localhost.localdomain ([223.178.85.37])
+        by smtp.googlemail.com with ESMTPSA id q19-20020a62e113000000b006e5a3db5875sm6297001pfh.13.2024.03.31.06.28.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 31 Mar 2024 06:28:26 -0700 (PDT)
+From: Kanak Shilledar <kanakshilledar@gmail.com>
+To: 
+Cc: krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	daniel.baluta@nxp.com,
+	Kanak Shilledar <kanakshilledar111@protonmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v4] dt-bindings: serial: actions,owl-uart: convert to dtschema
+Date: Sun, 31 Mar 2024 18:58:11 +0530
+Message-Id: <20240331132811.12060-1-kanakshilledar@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-SGkgS3J6eXN6dG9mDQpBbnN3ZXIgaW5saW5lDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0t
-DQo+IEZyb206IEtyenlzenRvZiBLb3psb3dza2kgPGtyenlzenRvZi5rb3psb3dza2lAbGluYXJv
-Lm9yZz4NCj4gU2VudDogU3VuZGF5LCBNYXJjaCAzMSwgMjAyNCA0OjE1IFBNDQo+IFRvOiBEaW5n
-LCBTaGVuZ2hhbyA8c2hlbmdoYW8tZGluZ0B0aS5jb20+OyBsaW51eC1rZXJuZWxAdmdlci5rZXJu
-ZWwub3JnDQo+IENjOiBsZ2lyZHdvb2RAZ21haWwuY29tOyBicm9vbmllQGtlcm5lbC5vcmc7IHJv
-YmgrZHRAa2VybmVsLm9yZzsNCj4ga3J6eXN6dG9mLmtvemxvd3NraStkdEBsaW5hcm8ub3JnOyBj
-b25vcitkdEBrZXJuZWwub3JnOyBsaW51eC0NCj4gc291bmRAdmdlci5rZXJuZWwub3JnOyBkZXZp
-Y2V0cmVlQHZnZXIua2VybmVsLm9yZzsgcGVyZXhAcGVyZXguY3o7DQo+IHRpd2FpQHN1c2UuY29t
-OyAxMzkxNjI3NTIwNkAxMzkuY29tOyBDaGF3bGEsIE1vaGl0DQo+IDxtb2hpdC5jaGF3bGFAdGku
-Y29tPjsgc295ZXJAaXJsLmh1OyBIdWFuZywgSm9uYXRoYW4NCj4gPGpraHVhbmczQHRpLmNvbT47
-IHRpd2FpQHN1c2UuZGU7IERqdWFuZGksIFBldGVyIDxwZGp1YW5kaUB0aS5jb20+Ow0KPiBBZ3Jh
-d2FsLCBNYW5pc2hhIDxtYW5pc2hhLmFncmF3YWxAdGkuY29tPjsgSGFyaSwgUmFqIDxzLWhhcmlA
-dGkuY29tPjsNCj4gWWFzaGFyLCBBdmkgPGF2aWVsQHRpLmNvbT47IE5hZ2FsbGEsIEhhcmkgPGhu
-YWdhbGxhQHRpLmNvbT47IEJhamp1cmksDQo+IFByYW5lZXRoIDxwcmFuZWV0aEB0aS5jb20+OyBC
-YW9qdW4uWHVAZnB0LmNvbTsgUm9iIEhlcnJpbmcNCj4gPHJvYmhAa2VybmVsLm9yZz4NCj4gU3Vi
-amVjdDogW0VYVEVSTkFMXSBSZTogW1BBVENIIHY3IDQvNF0gQVNvYzogZHQtYmluZGluZ3M6IFBD
-TTYyNDA6IEFkZA0KPiBpbml0aWFsIERUIGJpbmRpbmcNCj4gDQouLi4uLi4uLi4uLi4uLi4uLi4u
-Li4uLi4uLi4uLg0KPiA+ICAtIHJlbW92ZSB1bm5lZWRlZCBpdGVtcyBhbmQgaWYgYnJhbmNoZXMu
-DQo+ID4gIC0gQWRkIG1pc3NpbmcgY29tcGF0aWJsZSBkZXZpY2VzLCBzdWNoIGFzIGFkYzYxMjAs
-IGV0Yy4NCj4gPiAgLSBBZGQgbmVjZXNzYXJ5IHBlb3BsZSBpbnRvIHRoZSBsaXN0IGZvciBEVFMg
-cmV2aWV3DQo+ID4gIC0gY29ycmVjdCBtaXNhbGlnbmVkLg0KPiA+ICAtIHNpbXBsaWZ5IHRoZSBj
-b21wYXRpYmlsaXR5DQo+ID4gIC0gcmVtb3ZlIHNvdW5kLW5hbWUtcHJlZml4IGFuZCByZXZlcnQg
-YmFjaw0KPiA+ICAtIEFkZCByZXZpZXcgaW5mb3JtYXRpb24NCj4gDQo+IEFsbCB0aGVzZSBjaGFu
-Z2VzIGluIHY3IGFuZCB5b3Ugc3RpbGwga2VwdCBSb2IncyByZXZpZXc/IEkgdGhpbmsgZWl0aGVy
-IHJldmlldw0KPiB3YXMgbm90IGdpdmVuIG9yIHlvdXIgY2hhbmdlbG9nIGlzIGp1c3QgaW5jb3Jy
-ZWN0Lg0KU2luY2UgUm9iJ3MgcmV2aWV3LCBub3RoaW5nIGNoYW5nZWQgaW4geWFtbC4gRXZlbiBp
-biB0aGlzIHBhdGNoLCBvbmx5IHJlbW92ZWQga2NvbnRyb2wgaW50ZXJmYWNlcw0KaW4gdGhlIGNv
-ZGUgYW5kIGFkZGVkIHRoZSBtaXhlci10ZXN0IHJlcG9ydCBpbiBjb3Zlci1sZXR0ZXIgYXMgTWFy
-ayBzdWdnZXN0ZWQsIHdoaWNoIGlzIG5vIGVmZmVjdA0Kb24geWFtbCBmaWxlLg0KPiANCj4gDQo+
-IA0KPiBCZXN0IHJlZ2FyZHMsDQo+IEtyenlzenRvZg0KDQo=
+From: Kanak Shilledar <kanakshilledar111@protonmail.com>
+
+Convert the Actions Semi Owl UART to newer DT schema.
+Created DT schema based on the .txt file which had
+`compatible`, `reg` and `interrupts` as the
+required properties. This binding is used by Actions S500, S700
+and S900 SoC. S700 and S900 use the same UART compatible string.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Kanak Shilledar <kanakshilledar111@protonmail.com>
+---
+Changes in v4
+- added `clocks` property to fix warning of 'clocks' was unexpected
+while running `make dtbs_check`. `clocks` property was not defined
+in the original .txt file. `clocks` property is removed from the
+required section.
+- added `clocks` property in example
+- extended the devicetree with clocks node
+---
+ .../bindings/serial/actions,owl-uart.txt      | 16 -------
+ .../bindings/serial/actions,owl-uart.yaml     | 48 +++++++++++++++++++
+ 2 files changed, 48 insertions(+), 16 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/serial/actions,owl-uart.txt
+ create mode 100644 Documentation/devicetree/bindings/serial/actions,owl-uart.yaml
+
+diff --git a/Documentation/devicetree/bindings/serial/actions,owl-uart.txt b/Documentation/devicetree/bindings/serial/actions,owl-uart.txt
+deleted file mode 100644
+index aa873eada02d..000000000000
+--- a/Documentation/devicetree/bindings/serial/actions,owl-uart.txt
++++ /dev/null
+@@ -1,16 +0,0 @@
+-Actions Semi Owl UART
+-
+-Required properties:
+-- compatible :  "actions,s500-uart", "actions,owl-uart" for S500
+-                "actions,s900-uart", "actions,owl-uart" for S900
+-- reg        :  Offset and length of the register set for the device.
+-- interrupts :  Should contain UART interrupt.
+-
+-
+-Example:
+-
+-		uart3: serial@b0126000 {
+-			compatible = "actions,s500-uart", "actions,owl-uart";
+-			reg = <0xb0126000 0x1000>;
+-			interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+-		};
+diff --git a/Documentation/devicetree/bindings/serial/actions,owl-uart.yaml b/Documentation/devicetree/bindings/serial/actions,owl-uart.yaml
+new file mode 100644
+index 000000000000..ab1c4514ae93
+--- /dev/null
++++ b/Documentation/devicetree/bindings/serial/actions,owl-uart.yaml
+@@ -0,0 +1,48 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/serial/actions,owl-uart.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Actions Semi Owl UART
++
++maintainers:
++  - Kanak Shilledar <kanakshilledar111@protonmail.com>
++
++allOf:
++  - $ref: serial.yaml
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - actions,s500-uart
++          - actions,s900-uart
++      - const: actions,owl-uart
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/actions,s500-cmu.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    uart0: serial@b0126000 {
++        compatible = "actions,s500-uart", "actions,owl-uart";
++        reg = <0xb0126000 0x1000>;
++        clocks = <&cmu CLK_UART0>;
++        interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
++    };
+-- 
+2.34.1
+
 
