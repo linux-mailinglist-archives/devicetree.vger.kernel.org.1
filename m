@@ -1,143 +1,163 @@
-Return-Path: <devicetree+bounces-54909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61021893229
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 18:01:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45BD28931F6
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 16:21:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E24821F21A6F
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 16:01:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8F9E2B210FE
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 14:21:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53CC4145347;
-	Sun, 31 Mar 2024 16:01:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDD55144D3E;
+	Sun, 31 Mar 2024 14:20:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QriMG5bP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NYKHmwAP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from a.mx.secunet.com (a.mx.secunet.com [62.96.220.36])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2DB6145340;
-	Sun, 31 Mar 2024 16:01:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=62.96.220.36
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711900898; cv=pass; b=pD8Uvo+Fu735KWGeahlOeDbqpwxlVdLO6dGvzSUZk2+u2smMy7K2mCyNOvAOQkmx0MxTZ6g6oLI1/hrO88/i6bVqlHhXl/PbMTSwm88jLLWIx4A8IyBdztWASEcmAeg0snvLOMFpPCoBw0WEJmTT2wEcoos6zKVPzYL+y59E91s=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711900898; c=relaxed/simple;
-	bh=1rWdaEawfYR3LfAF31PiRtpuMF8rLJZ44iKkxh0MscI=;
-	h=Content-Type:MIME-Version:Subject:From:Message-ID:Date:References:
-	 In-Reply-To:To:Cc; b=BXnUfc8M215Lp4CF3t2NUkEtfQYj3TdrFFkYNuTfPV0P/zuYpHtRLKTHYaA6bf9StZ1cnS8qkyb8faA8CDmIkLIvqUdgheqDXz3FjJZ69XlZcTw6T+VKX6deYVU2Gh2RF1BGKtJSV7aZZPYqa3p+2jVxjE++igaAKLyjmg7YYnI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QriMG5bP; arc=none smtp.client-ip=10.30.226.201; arc=pass smtp.client-ip=62.96.220.36
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
-Received: from localhost (localhost [127.0.0.1])
-	by a.mx.secunet.com (Postfix) with ESMTP id DE28A20799;
-	Sun, 31 Mar 2024 18:01:33 +0200 (CEST)
-X-Virus-Scanned: by secunet
-Received: from a.mx.secunet.com ([127.0.0.1])
-	by localhost (a.mx.secunet.com [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id MONWvnqNRudz; Sun, 31 Mar 2024 18:01:32 +0200 (CEST)
-Received: from mailout2.secunet.com (mailout2.secunet.com [62.96.220.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by a.mx.secunet.com (Postfix) with ESMTPS id 942FE207D8;
-	Sun, 31 Mar 2024 18:01:32 +0200 (CEST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 a.mx.secunet.com 942FE207D8
-Received: from cas-essen-01.secunet.de (unknown [10.53.40.201])
-	by mailout2.secunet.com (Postfix) with ESMTP id 8663A80004A;
-	Sun, 31 Mar 2024 18:01:32 +0200 (CEST)
-Received: from mbx-essen-01.secunet.de (10.53.40.197) by
- cas-essen-01.secunet.de (10.53.40.201) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Sun, 31 Mar 2024 18:01:32 +0200
-Received: from Pickup by mbx-essen-01.secunet.de with Microsoft SMTP Server id
- 15.1.2507.17; Sun, 31 Mar 2024 15:52:41 +0000
-X-sender: <netdev+bounces-83482-steffen.klassert=secunet.com@vger.kernel.org>
-X-Receiver: <steffen.klassert@secunet.com>
- ORCPT=rfc822;steffen.klassert@secunet.com NOTIFY=NEVER;
- X-ExtendedProps=BQAVABYAAgAAAAUAFAARAPDFCS25BAlDktII2g02frgPADUAAABNaWNyb3NvZnQuRXhjaGFuZ2UuVHJhbnNwb3J0LkRpcmVjdG9yeURhdGEuSXNSZXNvdXJjZQIAAAUAagAJAAEAAAAAAAAABQAWAAIAAAUAQwACAAAFAEYABwADAAAABQBHAAIAAAUAEgAPAGIAAAAvbz1zZWN1bmV0L291PUV4Y2hhbmdlIEFkbWluaXN0cmF0aXZlIEdyb3VwIChGWURJQk9IRjIzU1BETFQpL2NuPVJlY2lwaWVudHMvY249U3RlZmZlbiBLbGFzc2VydDY4YwUACwAXAL4AAACheZxkHSGBRqAcAp3ukbifQ049REI2LENOPURhdGFiYXNlcyxDTj1FeGNoYW5nZSBBZG1pbmlzdHJhdGl2ZSBHcm91cCAoRllESUJPSEYyM1NQRExUKSxDTj1BZG1pbmlzdHJhdGl2ZSBHcm91cHMsQ049c2VjdW5ldCxDTj1NaWNyb3NvZnQgRXhjaGFuZ2UsQ049U2VydmljZXMsQ049Q29uZmlndXJhdGlvbixEQz1zZWN1bmV0LERDPWRlBQAOABEABiAS9uuMOkqzwmEZDvWNNQUAHQAPAAwAAABtYngtZXNzZW4tMDIFADwAAgAADwA2AAAATWljcm9zb2Z0LkV4Y2hhbmdlLlRyYW5zcG9ydC5NYWlsUmVjaXBpZW50LkRpc3BsYXlOYW1lDwARAAAAS2xhc3NlcnQsIFN0ZWZmZW4FAAwAAgAABQBsAAIAAAUAWAAXAEoAAADwxQktuQQJQ5LSCNoNNn64Q049S2xhc3NlcnQgU3RlZmZlbixPVT1Vc2VycyxPVT1NaWdyYXRpb24sREM9c2VjdW5ldCxEQz1kZQUAJgACAAEFACIADwAxAAAAQXV0b1Jlc3BvbnNlU3VwcHJlc3M6IDANClRyYW5zbWl0SGlzdG9ye
-	TogRmFsc2UNCg8ALwAAAE1pY3Jvc29mdC5FeGNoYW5nZS5UcmFuc3BvcnQuRXhwYW5zaW9uR3JvdXBUeXBlDwAVAAAATWVtYmVyc0dyb3VwRXhwYW5zaW9uBQAjAAIAAQ==
-X-CreatedBy: MSExchange15
-X-HeloDomain: b.mx.secunet.com
-X-ExtendedProps: BQBjAAoA+Q1rGbMv3AgFAGEACAABAAAABQA3AAIAAA8APAAAAE1pY3Jvc29mdC5FeGNoYW5nZS5UcmFuc3BvcnQuTWFpbFJlY2lwaWVudC5Pcmdhbml6YXRpb25TY29wZREAAAAAAAAAAAAAAAAAAAAAAAUASQACAAEFAAQAFCABAAAAHAAAAHN0ZWZmZW4ua2xhc3NlcnRAc2VjdW5ldC5jb20FAAYAAgABBQApAAIAAQ8ACQAAAENJQXVkaXRlZAIAAQUAAgAHAAEAAAAFAAMABwAAAAAABQAFAAIAAQUAYgAKAHcAAADMigAABQBkAA8AAwAAAEh1Yg==
-X-Source: SMTP:Default MBX-ESSEN-01
-X-SourceIPAddress: 62.96.220.37
-X-EndOfInjectedXHeaders: 12207
-X-Virus-Scanned: by secunet
-Received-SPF: Pass (sender SPF authorized) identity=mailfrom; client-ip=147.75.199.223; helo=ny.mirrors.kernel.org; envelope-from=netdev+bounces-83482-steffen.klassert=secunet.com@vger.kernel.org; receiver=steffen.klassert@secunet.com 
-DKIM-Filter: OpenDKIM Filter v2.11.0 b.mx.secunet.com E4B95200BB
-Authentication-Results: b.mx.secunet.com;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QriMG5bP"
-X-Original-To: netdev@vger.kernel.org
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD932144D2A;
+	Sun, 31 Mar 2024 14:20:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal: i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711752631; cv=none; b=eLispVzL4Rucdj5yrzfRgnSRePLp+Y1FD2BRZyUX76ykzaZw7VHi9YXASU31baAxoYFmxYlpOQR4UYS8gEjEpjt1zGwq62prz06qhAHc+483Hh1xmTXYFXP7I4YViQd6l9vns1N932S+E0brudJT0ir0I9KRIrHiq60XZoaVoX0=
-ARC-Message-Signature: i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711752631; c=relaxed/simple;
-	bh=1rWdaEawfYR3LfAF31PiRtpuMF8rLJZ44iKkxh0MscI=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=Xg3OsV9Hn217vm8daSQu1usYD3ksPWTEpVZ2YL8e46SgPg+BrESFujNuqbVuhFeJowZ00pl26chFLpmFOjszBnk+xcfKA2Lv8VGoUK8QewV5y96v44UHH8h1j3HJYz3vCS+bWN/aej6pX4824HBLNpa31QWPvcxKcQWmCuSFNkM=
-ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QriMG5bP; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1711894856; cv=none; b=h/r98nbj1q+G8lH8n7zYae2C+2YmUAmZAjV83iPxwzWLULchc1zUGKg35Kia/qJykidalxxzSOJu9VWsB2+7Kez2QazY8vRQFUePJt09VgN7plgTcWmqglO2Jhvbch9I8Lpg9QXoU2ZexDK7rl5hODQRPwVkPdYufwndCRYWeaY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1711894856; c=relaxed/simple;
+	bh=MhZ+GNwAIgsUTcIkXuF7X0kiB2apEfQgvIGqYvrAc/Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=f1hTiyoaVHJbCIUgxf4qlw80U2pBmzILrs7ANe0U6jNHr1BX/CNOykv2cMGW5NQIOmWMrktwqEWrSSOX+ak8XSo/gIdlJcZo9uoVCUnWk8FvIr2973LkEJX5UXK9aMnOmmBvgFg5Q5jrdykWd51IAOIGPZAYdjZGgC2H9/VJ+RA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NYKHmwAP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C19DBC433F1;
+	Sun, 31 Mar 2024 14:20:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711752630;
-	bh=1rWdaEawfYR3LfAF31PiRtpuMF8rLJZ44iKkxh0MscI=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=QriMG5bPxFDJal3+iK1Pb0iH9WyOvvWgwweQ2/D86v3oy/13nMNRcnZgIMYLJopSY
-	 7KLJczmMCVMHyE0HUKo16Zlrh+oM1jIPi5sy2qLvR1xNCT85FR5iD28bsq3bhCic2E
-	 9agT52MvYHoRihMvi5B1sSF3/Py9XPrQj9IBRigclTJz6rtPhf6vSl/5FSEsRqKbd5
-	 AG+Y/Btm/xHAuRSBzBp5kwOLojbL6e2YNlyWE+0YcxgNg53lc484ELHLR7HwPJHh3Q
-	 zxW5r1DkUTeEdz0tQrKVSD3O2p8NxXZGc3WAWBi8z8L8dwVHWkG0HVZicER5qqp8k6
-	 laI6AElXluGGw==
-Content-Type: text/plain; charset="utf-8"
-Precedence: bulk
+	s=k20201202; t=1711894856;
+	bh=MhZ+GNwAIgsUTcIkXuF7X0kiB2apEfQgvIGqYvrAc/Y=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=NYKHmwAPHxH908yfjReJj3s5LqlkFu+hqeyf6R3JKvUdwJ2CxXP7G65iuUi98d5YE
+	 jGuAeo74BElsHwjXvbUi0r4VNa0h1JXBXSnauW2Xmb1dxLXVVqz997lKns1jG+/WvB
+	 kOiHNL/OHMjOcDr6uYlFYx/ym10GPbiPlbdiNtznO72r5jMj1+klBA3Fn2SREW1odh
+	 qL8k9KboyXDlnUDBXpl2OXQifFiV3OeKnAZ5qj1GVR6nQa0Xmd9GCQiWrKqjQwcRVk
+	 Dk3ZgLZBqjSR1vri/hGvOnhoJChXxCjExYp8hn7C48tVwElLLYH8gYzDJDjUQgRwp8
+	 Mr8t4UnXpcCgQ==
+Date: Sun, 31 Mar 2024 15:20:42 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+Cc: Dominique Martinet <dominique.martinet@atmark-techno.com>, David Lechner
+ <dlechner@baylibre.com>, Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>, Syunya Ohshio
+ <syunya.ohshio@atmark-techno.com>, Guido =?UTF-8?B?R8O8bnRoZXI=?=
+ <agx@sigxcpu.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] iio: industrialio-core: look for aliases to request
+ device index
+Message-ID: <20240331152042.394b4289@jic23-huawei>
+In-Reply-To: <20240318122953.000013f3@Huawei.com>
+References: <20240228051254.3988329-1-dominique.martinet@atmark-techno.com>
+	<7f03bb12-0976-4cb7-9ca9-4e4e28170bdd@linaro.org>
+	<Zd7hSOw3_zosyrn3@atmark-techno.com>
+	<daed8ada-9e01-41ad-82af-5da5cbbc865c@linaro.org>
+	<Zd7qz1Qte8HWieF_@atmark-techno.com>
+	<20240228142441.00002a79@Huawei.com>
+	<Zd_zB_ymxkx0HB3q@atmark-techno.com>
+	<ZfPg-nMANUtBlr6S@atmark-techno.com>
+	<CAMknhBG_kJx8JPvTBQo7zpy3mFAkUjZpRY3DLBfXt+39nRJWiA@mail.gmail.com>
+	<ZfejyEvPIncygKJ9@atmark-techno.com>
+	<20240318122953.000013f3@Huawei.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v6 0/1] Add property in dwmac-stm32 documentation
-From: patchwork-bot+netdevbpf@kernel.org
-Message-ID: <171175263052.1693.263504657362042828.git-patchwork-notify@kernel.org>
-Date: Fri, 29 Mar 2024 22:50:30 +0000
-References: <20240328185337.332703-1-christophe.roullier@foss.st.com>
-In-Reply-To: <20240328185337.332703-1-christophe.roullier@foss.st.com>
-To: Christophe Roullier <christophe.roullier@foss.st.com>
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
- richardcochran@gmail.com, joabreu@synopsys.com, lgirdwood@gmail.com,
- broonie@kernel.org, marex@denx.de, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-X-EXCLAIMER-MD-CONFIG: 2c86f778-e09b-4440-8b15-867914633a10
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hello:
+On Mon, 18 Mar 2024 12:29:53 +0000
+Jonathan Cameron <Jonathan.Cameron@Huawei.com> wrote:
 
-This patch was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
-
-On Thu, 28 Mar 2024 19:53:36 +0100 you wrote:
-> Introduce property in dwmac-stm32 documentation
+> On Mon, 18 Mar 2024 11:15:36 +0900
+> Dominique Martinet <dominique.martinet@atmark-techno.com> wrote:
 > 
->  - st,ext-phyclk: is present since 2020 in driver so need to explain
->    it and avoid dtbs check issue : views/kernel/upstream/net-next/arch/arm/boot/dts/st/stm32mp157c-dk2.dtb:
-> ethernet@5800a000: Unevaluated properties are not allowed
-> ('st,ext-phyclk' was unexpected)
->    Furthermore this property will be use in upstream of MP13 dwmac glue. (next step)
+> > David Lechner wrote on Fri, Mar 15, 2024 at 10:53:36AM -0500:  
+> > > How about using udev rules to create symlinks for each device based on
+> > > the label attribute? No changes to the kernel are needed.    
+> > 
+> > Right, it's definitely possible to make symlinks for each "device" -- my
+> > patch comment links to such an udev script "solution":
+> > https://git.toradex.com/cgit/meta-toradex-bsp-common.git/tree/recipes-core/udev/files/verdin-imx8mm/toradex-adc.sh?h=kirkstone-6.x.y
+> > (the script is launched by udev here:
+> > https://git.toradex.com/cgit/meta-toradex-bsp-common.git/tree/recipes-core/udev/files/verdin-imx8mm/99-toradex.rules
+> > )
+> > 
+> > My conceptual problem with this is that this makes symlinks in /dev to
+> > files in /sys and it feels like we're crossing boundaries.
+> > As far as I can tell there is no way for userspace to create arbitrary
+> > symlinks in /sys, so I think we could have an interface more
+> > user-friendly by allowing paths to be static for users with multiple
+> > devices.
+> > (I guess that's a weak argument given e.g. disks etc will also have an
+> > unreliable name in /sys in the general case, but simple programs don't
+> > interact with them in /sys and can use stable links in /dev so my
+> > expectations here aren't quite the same)
+> > 
+> > 
+> > Ultimately, the problem might run deeper in that we're having userspace
+> > interact with the device through /sys and not the /dev char dev... As
+> > far as I could see /dev/iio:deviceX only allows reading buffered values
+> > and doesn't have any ioctl or other way of reading immediate values as
+> > is possible in /sys though, so that'd require quite a bit of work to
+> > duplicate the interface there...  
 > 
-> [...]
+> Don't.  The sysfs interface as only control is entirely intentional and
+> we do not want IOCTL based duplication.
+> 
+> Just addressing this bit as I'm still a bit snowed under to think about this
+> more generally.
+> 
 
-Here is the summary with links:
-  - [v6,1/1] dt-bindings: net: dwmac: Document STM32 property st,ext-phyclk
-    https://git.kernel.org/netdev/net-next/c/929107d3d2a3
+Hi, got back to this finally...
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+So the problems compared to other 'alias' users is that IIO is a bit more
+complex than for example LEDs.  A single DT node/compatible (or equivalent) can
+result in a 1+ IIO devices and 1+ triggers. Triggers can also be instantiated
+via configfs (technically devices can as well but we can ignore that).
+Any alias scheme needs to work for all these options. To my mind that makes
+it a userspace problem, not something the kernel can deal with in generic
+enough way. I think that all IIO devices have ways to stability identify them
+(label, or parent devices)
+
+There is an approximate equivalent of DT alias entries in SMBIOS but
+I suspect not all ACPI platforms will provide that (it's typically used for
+stable disk / network device naming on complex servers).
+
+So I've messed around a bit and can think of various possible options to make
+this simpler.
+1) Use a tmpfs mount and link from that.
+   Now we 'could' put an alias directory somewhere under /sys/bus/iio/ that
+   is a mount point created via sysfs_create_mount_point() - I abused the
+   /sys/kernel/debug directory to test this (unmounted debugfs and mounted
+   a tmpfs).  That would provide somewhere in sysfs that allows suitable
+   links. However, this is unusual so likely to be controversial.
+2) Alternatively the relevant platform could create one of these somewhere
+   outside of sysfs and use udev rules to create the links.
+3) Stick to the oddity of doing it under /dev/
+4) Access the things in the first place via more stable paths?
+  /sys/bus/i2c/devices/i2c-0/0-0008/iio\:device?/ etc 
+   Relying on the alias support for i2c bus numbering to make that stable should work
+   and if you are sure there will only be one entry (most devices) that matches
+   the wild card, should be easy enough to use in scripts.
+
+My personal preference is this last option.  Basically if you want stable paths
+don't use /sys/bus/iio/devices/ to get them.
+
+Jonathan
+
 
 
 
