@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-54951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99D108935A9
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 21:53:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 741A78935AD
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 21:55:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BDD181C216C5
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 19:53:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 032461F224B1
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 19:55:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 594601474D2;
-	Sun, 31 Mar 2024 19:53:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1225A1474D8;
+	Sun, 31 Mar 2024 19:54:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aetAEn/e"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HCInhGQC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CF6B146D75
-	for <devicetree@vger.kernel.org>; Sun, 31 Mar 2024 19:53:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 405BD146D75
+	for <devicetree@vger.kernel.org>; Sun, 31 Mar 2024 19:54:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711914825; cv=none; b=tBjN3scuftkQak1/A0u8zgTSak94J5Y1LSmO71cQqUVyNZ43w95OEsS+x4WP7s2l9gsVwaoZ8OcoEHr/ijDds0DQo8eRX90fpz3xINtVYjc+zQmvt6IrwG6ZyRMdIPRG75wIKOu5MnDSHy+PSSFhR9MJJmH/eySLtkDLOtPGEYI=
+	t=1711914895; cv=none; b=fjU7eoOlJphM5ZQtgwoukE23MCU46pW+n3+Rpk+mKMoK3nSFWZ/bDF+2ptEtrJyO+x68XeDa6pBAtzI3yM8VvfV0RZH3FZmBop8EEcOHi+xe/MbZ7lAAIOqAX66UD0vghRcZ1mFcncKZ0+9GPD/WW2vQPS4Q6vMH3yoNau9OkdI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711914825; c=relaxed/simple;
-	bh=86E79lBADpkhatxugvZKRP6tnDy5hZGpVtOTbREHzf4=;
+	s=arc-20240116; t=1711914895; c=relaxed/simple;
+	bh=Jzbz8f+asRwDfPaf0P1sWmtFFFlnMg/Wnkm1RR3ybDU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=F7lBIME90NdHibQUsOuEd0uMsRaJdg2JDtKGWMaRa523Fb07Fk2YildVXBjYnL5KZlkKXA4tmMABL2sXWuoIdAAebCCpbPKyHZV0J7I+CAvGrkm+4GVJ1W367TPOEi42wGEL9JUYQ7I5082Vjn1EKnSSM4DR5gMeRnKONoU9qEo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aetAEn/e; arc=none smtp.client-ip=209.85.208.53
+	 In-Reply-To:Content-Type; b=M9I/cQvugfnE1RZz06GGKVoinv31AtvYcEgFWaFTwD4ocE3ZdeStpYj1gVJ1tltiskQIIENcRnxAQHnc2XHcsPq0qvcdmubtpqWZ3iRDePXoLb3l3GY2Qe/6LjI9onBNNO0CZ4WwU6TuyVuxk5PLn3eLq18vgHpzA42JU1bD0gs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HCInhGQC; arc=none smtp.client-ip=209.85.218.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-566e869f631so3447826a12.0
-        for <devicetree@vger.kernel.org>; Sun, 31 Mar 2024 12:53:43 -0700 (PDT)
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a46de423039so196134666b.0
+        for <devicetree@vger.kernel.org>; Sun, 31 Mar 2024 12:54:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711914822; x=1712519622; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711914891; x=1712519691; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=bRzhiBeUjd+mUeMOnyzOzBUEf3I5ECrDUeyDnQ05+p8=;
-        b=aetAEn/eH11ZhOO4pQ4zfwf1bCby5wodcrkWs3lWMercMM6oPumV2/ni8qwGbMAtMz
-         jygOYKojCspXYKXLj9HzwCU0xJJ893SryUh/we4ldr+p7ZuWB1y+waGu3kKp6jqJ9BW5
-         nlZqdbB5UWEYBLPi+DZUJLsjN/n3xS2ZGByUr0YaLz0LvG4Pr98Kk/4EjVsL1uYus4z8
-         DMnUEs6yrRpdJqE/y4DJIAe63WqavBSJGRQTGQkH4vS1EtmN7iyzJg2+ywu3CzFTGSUk
-         HhtdG6yASgnFUyu1KLD2AjdGOx2/oKqeZ2/qPl/YuoFNA7WuOaDx/T/jvHgfi2AcBedq
-         NqAw==
+        bh=dvwWr31vSJ/AJpCkPGPl6xx7EMANSuQoqg5qdfd34Ng=;
+        b=HCInhGQC6MMHxZHD7dHlHiNYaLrYzQh+sDvoqYtMQevVJTbw9qabe65O4R0FgzyllB
+         gQf2waBYiIJ9AvMBfs5oXlJixNkB6oODDjHHrQGhfvmdQU5PzmEFDf7+yAT4LSVRtPpg
+         AYcAlnKY+sabS1Cs/tp4T8zr88u+R3nkO/1x4aakjwc0JX42HBwnKnDbM7RccoUypowk
+         cJRi+X8j+0a/ipePG21QODWa6NKUMTM+BBzfO3pDzgawbUis0EFEEAtYMbqOcz2oUs9f
+         HmamH2xsjYPPtVPQzBfIIb+CWC4jaWmmFPDGShKcdFRYpu5WuDXYAZeYmuIAoS4RsN0P
+         SsgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711914822; x=1712519622;
+        d=1e100.net; s=20230601; t=1711914891; x=1712519691;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=bRzhiBeUjd+mUeMOnyzOzBUEf3I5ECrDUeyDnQ05+p8=;
-        b=myVxGoSSfdY6dNqA1TGyMFtCIXeCNh1mXeqAbKa5a5w2WLXMKPzpmpzKTFCRkao3G6
-         /XAnqOrtduTfa1xBru3UWB560aCLLt9LXszZkzF13zZpTbp/ErKMjB7R85yG9L3cgkNy
-         +O+kjqRde7iE5opNli3MBkA8hq46Fhtiz1Ax+U2f8TLmtrIPCsSTvles8eobJpemipw8
-         rOoKoRrGKmTNXfCMk3iNAjWTyCmc2ahdLcenn9BZ2Bv97wdNsT+w0HB9Dqj7mkI1xeN9
-         COzKFv0381sACU4RUnY7kNmo4FnhN/OD+NwPoCl12OHZEa1SiysPlAENtYUqHwXM3QgS
-         vq1g==
-X-Forwarded-Encrypted: i=1; AJvYcCUrg+v2RFiRBSEJZxQ6vQtTvqKXcRJ0elwXwXFXxzQhsvBkN+o+fZZgJF8qRExXD98+h3NkoGuGpB0TsRJelVaIxcxwLP5mSjn6mg==
-X-Gm-Message-State: AOJu0YxprT6dMNbat5T8vsWYM49VeUvsiUoOcNk/dT4EDEOTWmbYA5Nr
-	1R3u0twDRJgICuSojEZTOqXj63dgCvnEhsHsxaCA3eyDeqRvZU1HBPz+Sctmb28=
-X-Google-Smtp-Source: AGHT+IGn6zFCTs4ZtvnaVuPzUlhajsp4FwGqiYJeYJjaYN8e8wZH5rRehMeDlZjR6yT5MsypVMoMCw==
-X-Received: by 2002:a50:8d07:0:b0:56c:17be:5b03 with SMTP id s7-20020a508d07000000b0056c17be5b03mr5746372eds.36.1711914821803;
-        Sun, 31 Mar 2024 12:53:41 -0700 (PDT)
+        bh=dvwWr31vSJ/AJpCkPGPl6xx7EMANSuQoqg5qdfd34Ng=;
+        b=hhb+cB24j5AnRHxt8Au67CwY1mi1Y9uFT53XkaMtkx8gJ36fHuGHuRbLsA7+J7iinz
+         wgbaSJuWNY+Sja20kxLXPs1HWrXz6T8d8MRirll4c73kvk/9j462R+/DeLAslb2T2TF5
+         AmUEygksWuAYB50jGXAwlRuCCJGyLZWVgcBgDLX48xkB4WIZNFIMRh+J9SSTaGhIH+Yz
+         SttyBCsCjXrstrULFjYOfXR1LnuQnHay1T4TJ1lJzBrVxeXxPtFRMvVAkGNyobLmVChA
+         5U7165wn6SIZa7WoBMH6XdLg5+YJ/qvyyrftEpZIsf1HK7M5u0l9vyn9QDTab0g0UJ4n
+         rN7A==
+X-Forwarded-Encrypted: i=1; AJvYcCXV41ka4FseNc36CCahSB5BW6dLF1pr++oACEEwGf50U7cxmStrMXQCAFbEpfgr2uXuz6uDLKQ6B6+h4A09muSWqMdHlg+pLtW77Q==
+X-Gm-Message-State: AOJu0YyF5AoYze9oxcX2EX+Hr6Dr5SHPsLoOpSeb7U5rmLTwOlXKq7Op
+	bRXxhXjpuOUUHt+oG5P4UPV41a7TXtIJaKL7d0U4rtV2V6Hot6rxKyUt6eHTxPw=
+X-Google-Smtp-Source: AGHT+IHw5HwImYZkbQ92gsxdUhbrZOCRehj28uNyM++lfjdBeaqnyrQW9NZNX9SiEwSBLi+Ha2bUPg==
+X-Received: by 2002:a50:d482:0:b0:56b:a8ea:9642 with SMTP id s2-20020a50d482000000b0056ba8ea9642mr6554715edi.14.1711914891647;
+        Sun, 31 Mar 2024 12:54:51 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id f5-20020a05640214c500b0056bf7f92346sm4747110edx.50.2024.03.31.12.53.40
+        by smtp.gmail.com with ESMTPSA id 11-20020a0564021f4b00b0056c36b2f6f4sm4670627edz.59.2024.03.31.12.54.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 31 Mar 2024 12:53:41 -0700 (PDT)
-Message-ID: <e9809695-760e-42d2-a79c-bc2d4debdc32@linaro.org>
-Date: Sun, 31 Mar 2024 21:53:39 +0200
+        Sun, 31 Mar 2024 12:54:51 -0700 (PDT)
+Message-ID: <1ee97afd-2d64-469b-b85c-58a1f1fd59ea@linaro.org>
+Date: Sun, 31 Mar 2024 21:54:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,7 +77,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 0/4] Add support i.MX95 BLK CTL module clock features
+Subject: Re: [PATCH v5 1/4] dt-bindings: clock: support i.MX95 BLK CTL module
 To: Peng Fan <peng.fan@nxp.com>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
  Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
  <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -93,8 +93,9 @@ Cc: "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
  <linux-arm-kernel@lists.infradead.org>,
  "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 References: <20240324-imx95-blk-ctl-v5-0-7a706174078a@nxp.com>
- <ce1b814a-6b1b-4773-ad29-b572d00f56c9@linaro.org>
- <DU0PR04MB9417426E1F8EA9560213E58488382@DU0PR04MB9417.eurprd04.prod.outlook.com>
+ <20240324-imx95-blk-ctl-v5-1-7a706174078a@nxp.com>
+ <1709e7df-268b-4da6-a75d-9d7ce80d9a41@linaro.org>
+ <DU0PR04MB94171DDC725D52E66DF3A77F88382@DU0PR04MB9417.eurprd04.prod.outlook.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -141,34 +142,30 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <DU0PR04MB9417426E1F8EA9560213E58488382@DU0PR04MB9417.eurprd04.prod.outlook.com>
+In-Reply-To: <DU0PR04MB94171DDC725D52E66DF3A77F88382@DU0PR04MB9417.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 31/03/2024 14:00, Peng Fan wrote:
->> Subject: Re: [PATCH v5 0/4] Add support i.MX95 BLK CTL module clock
->> features
+On 31/03/2024 13:58, Peng Fan wrote:
+>>> +    const: 1
+>>> +    description:
+>>> +      The clock consumer should specify the desired clock by having the
+>> clock
+>>> +      ID in its "clocks" phandle cell. See
+>>> +      include/dt-bindings/clock/nxp,imx95-clock.h
 >>
->> On 24/03/2024 08:51, Peng Fan (OSS) wrote:
->>> i.MX95's several MIXes has BLK CTL module which could be used for clk
->>> settings, QoS settings, Misc settings for a MIX. This patchset is to
->>> add the clk feature support, including dt-bindings
->>>
->>> Signed-off-by: Peng Fan <peng.fan@nxp.com>
->>> ---
->>> Changes in v5:
->>> - Merge bindings except the one has mux-controller
->>> - Separate clock ID headers in a separate patch per Rob's comments
->>
->> Where did he suggest it?
+>> In such case, put header as your first patch in the patchset. I don't understand
+>> why it was split in the first place...
 > 
-> See https://lore.kernel.org/all/20240315165422.GA1472059-robh@kernel.org/
-> 
+> Rob gave a comment in v4, so I split the headers.
+> "
+> If this number can change, then it is not ABI and doesn't go in this 
+> header. With that dropped,
+> "
 
-He said under specific line about one specific define. There is
-absolutely nothing about splitting the header into new patch.
-
-NAK
+Nothing here speaks about splitting headers. Absolutely NOTHING. Rob
+commented that you added number which can change, thus this is not a
+binding.
 
 Best regards,
 Krzysztof
