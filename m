@@ -1,296 +1,141 @@
-Return-Path: <devicetree+bounces-54900-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54901-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA97A893194
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 14:47:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8A738931A9
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 15:21:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 391621F21263
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 12:47:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B6B001C2090F
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 13:21:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E39AD143C75;
-	Sun, 31 Mar 2024 12:47:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF3421448C8;
+	Sun, 31 Mar 2024 13:21:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="seHIEUu0"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="MgU90BNE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2097.outbound.protection.outlook.com [40.107.6.97])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 763541C0DF1;
-	Sun, 31 Mar 2024 12:47:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.6.97
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711889233; cv=fail; b=cP42rVIzFxA7tYV1DadZhXifhdBmOu2R/zqr3kdrrqgjvokMYMHTBetsTkpRxSaSz+2cJfBYNu4Fvj8oULv7JArGo9UljjO+9uoY5thWCO2y5MT6G/eVQAzbbbPrgmhNVspKcZ240S5uxfn86+4e0f5wCHj/G92/JxepYu7n3RI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711889233; c=relaxed/simple;
-	bh=51WNL5hovF5lNn12ghNulTG893hEDw1AOKrC58wHWQs=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0B6675813;
+	Sun, 31 Mar 2024 13:21:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1711891311; cv=none; b=IuxmJ6iXDDcr2wHZWOtQS+PRLP5pUJauianhLptqQuTyWMxagSViuvPPdhZNbdCObvq5hTWILimiXwwx2r0iUI1ciyC60fhzPoNNQynoyp8KHLxe3VwkyU1cJ9G5o7Hkrzm9qvrI0VKoj/CF3w5kEqbmhpx6RX/mOI0mSuVfFbE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1711891311; c=relaxed/simple;
+	bh=JP6BXX6OedKFrU6XpFRibCbkdjCzL/Y2Jmj83p3ihuU=;
 	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=ABN5KyQmTh03/s7T9iroy2Bg3+PnxKav6hR5lQJ5v5ZUbKstT7c2ALl8NQETeHdYS7ZB3ywAVuBdp3g6HPkO/bS0HO2DxNn4kR4/I60ecyGVT+MTxh7oPiS+Q6FswX8QzXGt0CX9JbzocnQ6E7USX6xzYS2vxivsEwsg1T1hP3U=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=seHIEUu0; arc=fail smtp.client-ip=40.107.6.97
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lZCYLr64BJXTlrYf0RjClnT2qXvpiKcSbaaVbdgCZ/j6EKa+dsq3LZ4FRAAFwcloGsFzVNYe6SNJaMyrcc+EFfIVyH8nTtipHwsjXj4idFJVpQguvXF6KRcjgHvM2dt87Psx2r2MaZ5+o3Yuj5f+8nO/wqXyNqd5fV7upsT7/CkMYHNTVVfrvJf9NU8hsktTH3+hNM1D2Ka7h2auPOsq40VN9sob5vqUpSgSipORp6qaGUpEy7IAfLceoqYJ9WWdDuWouNIFiUPxKOcEQe40KyeE9MEIuTWLswr2vow5bk+HwTL51VYuuximh7lC2NLKbNwG3SoA0l50oG521wGsng==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eMPPTj8+ku+xFg3h1OA9sKhlB+vQ3TzdCiuFXhVe76M=;
- b=I/wRO04erWTpyXWPPT71+zmMZANVfC0ilV5hv+RwxTyVifXo4tObnuBE14lDjU+VgkHPzsOmIbAYo9rjXkwdPbXHSehupYCno22hciY3xXNCD1lUEsC44HbUbPXVkiAWYcthxK19GBTW8u4HCSfVzzkVzfUIJmZCFvSTaD0cLhRC1OrzvS10NhpuThWLSO790VHHqps5QA+ANs9SiFf29HXhKKlb0kAGt/uoZ6YcteT8hZV0CQuRFgTeYbUgUq3DhOnETNCcHyrOn/innSaWbT5gVuJhKaHQCItmLUWgIjGYfmyl7ljcwty2miDo4dafb7DGO1Wptq5+S2XBoXZGhg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eMPPTj8+ku+xFg3h1OA9sKhlB+vQ3TzdCiuFXhVe76M=;
- b=seHIEUu0P2Wumt5/r5jXrkK1YzN3mackmQKPf/umtMWAF5PZchj4owy7oLQLsF3dvW9lPa6FmQMXzkWr06FSw3HM9+lIAsFusrQ84HuNNRgQLLmA9wz6DPy6w3E6kzfuCP/yw9xphJX9qUDnQMksNUPfp6sXnEdosI61mnKcRLY=
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by VI1PR04MB7022.eurprd04.prod.outlook.com (2603:10a6:800:126::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.45; Sun, 31 Mar
- 2024 12:47:08 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::d30b:44e7:e78e:662d]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::d30b:44e7:e78e:662d%4]) with mapi id 15.20.7386.037; Sun, 31 Mar 2024
- 12:47:07 +0000
-From: Peng Fan <peng.fan@nxp.com>
-To: Dan Carpenter <dan.carpenter@linaro.org>, "Peng Fan (OSS)"
-	<peng.fan@oss.nxp.com>
-CC: Sudeep Holla <sudeep.holla@arm.com>, Cristian Marussi
-	<cristian.marussi@arm.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-gpio@vger.kernel.org"
-	<linux-gpio@vger.kernel.org>, Oleksii Moisieiev <oleksii_moisieiev@epam.com>
-Subject: RE: [PATCH v6 3/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
- protocol basic support
-Thread-Topic: [PATCH v6 3/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
- protocol basic support
-Thread-Index: AQHafRqyofu9Mu9OLUiaociI+9q/i7FLbcGAgAZqduA=
-Date: Sun, 31 Mar 2024 12:47:07 +0000
-Message-ID:
- <DU0PR04MB94170E50A016CA5AAB971D4488382@DU0PR04MB9417.eurprd04.prod.outlook.com>
-References: <20240323-pinctrl-scmi-v6-0-a895243257c0@nxp.com>
- <20240323-pinctrl-scmi-v6-3-a895243257c0@nxp.com>
- <4879ad5d-165c-4118-81f7-8f6348a5a5d4@moroto.mountain>
-In-Reply-To: <4879ad5d-165c-4118-81f7-8f6348a5a5d4@moroto.mountain>
-Accept-Language: en-US
+	 Content-Type:MIME-Version; b=GpF2jFZp0xsDZiV1kFPYZm9LTGEn+pDYQ6MiMEM76oBxI7KHU9eP72WXbbIcJb+jIbqpDiNy8Hcbedkf0a9CV800NHHvSnLfvDymdBzFR+XUSuvdUSqtHzhHh6y71mALetBOdHSFtq47BDOtNJMlcWXdHuVlCik7m7paoeCd3Ik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=MgU90BNE; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 42VDKdtX050242;
+	Sun, 31 Mar 2024 08:20:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1711891239;
+	bh=JP6BXX6OedKFrU6XpFRibCbkdjCzL/Y2Jmj83p3ihuU=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To;
+	b=MgU90BNEIzlW+PqPvgMx3gCqc+oGSMX6w9IRvH16r2tTtVb+fCUMn/G+b3ulb9NEs
+	 GbAldXp6uGPPGlHP7/KXIeJDFLgCvgWWfMaw0MniiEvA/zXr4btAIMQ3nwRJu1A8Pi
+	 b0MjWz7iDQHb82ZzJ/fkbSXKWZfPA8Ywf/kBQ1pw=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 42VDKdtG054458
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Sun, 31 Mar 2024 08:20:39 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 31
+ Mar 2024 08:20:38 -0500
+Received: from DLEE101.ent.ti.com ([fe80::91ee:60bc:bfb7:851c]) by
+ DLEE101.ent.ti.com ([fe80::91ee:60bc:bfb7:851c%18]) with mapi id
+ 15.01.2507.023; Sun, 31 Mar 2024 08:20:38 -0500
+From: "Ding, Shenghao" <shenghao-ding@ti.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+CC: "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "broonie@kernel.org"
+	<broonie@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "linux-sound@vger.kernel.org"
+	<linux-sound@vger.kernel.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        "perex@perex.cz" <perex@perex.cz>, "tiwai@suse.com" <tiwai@suse.com>,
+        "13916275206@139.com"
+	<13916275206@139.com>,
+        "Chawla, Mohit" <mohit.chawla@ti.com>, "soyer@irl.hu"
+	<soyer@irl.hu>,
+        "Huang, Jonathan" <jkhuang3@ti.com>, "tiwai@suse.de"
+	<tiwai@suse.de>,
+        "Djuandi, Peter" <pdjuandi@ti.com>,
+        "Agrawal, Manisha"
+	<manisha.agrawal@ti.com>,
+        "Hari, Raj" <s-hari@ti.com>, "Yashar, Avi"
+	<aviel@ti.com>,
+        "Nagalla, Hari" <hnagalla@ti.com>,
+        "Bajjuri, Praneeth"
+	<praneeth@ti.com>,
+        "Baojun.Xu@fpt.com" <Baojun.Xu@fpt.com>,
+        Rob Herring
+	<robh@kernel.org>
+Subject: RE: [EXTERNAL] Re: [PATCH v7 4/4] ASoc: dt-bindings: PCM6240: Add
+ initial DT binding
+Thread-Topic: [EXTERNAL] Re: [PATCH v7 4/4] ASoc: dt-bindings: PCM6240: Add
+ initial DT binding
+Thread-Index: AQHagxHV9XLbizAWqEeASPd4Xd549bFR1MsA////weA=
+Date: Sun, 31 Mar 2024 13:20:38 +0000
+Message-ID: <41797fe7d5bb41b4bdea4ee7f4957291@ti.com>
+References: <20240331021835.1470-1-shenghao-ding@ti.com>
+ <20240331021835.1470-5-shenghao-ding@ti.com>
+ <cc7a60c3-4a1e-4f32-b6ef-4a41d5c48eaf@linaro.org>
+In-Reply-To: <cc7a60c3-4a1e-4f32-b6ef-4a41d5c48eaf@linaro.org>
+Accept-Language: en-US, zh-CN
 Content-Language: en-US
 X-MS-Has-Attach:
 X-MS-TNEF-Correlator:
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|VI1PR04MB7022:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- Ub/i1u4m9bEAv0xP8yRFIHpd5IrGNR5SswEuQ7OuxzUqStBlcuPHkybi6pcT3+3B741CN3IAq0c6o1rNwzAfDQ7xPaceL2eOIfAVDhHuZ34hJ8ad0L6t1fjnFf8kLDYiSGAGwSFvZ1Na+VkcfpMfDLodbmxI9widCj0oNkWW/hmlt+piFbvNtFqDuS4PHTojJ1QJVhVHBnd3o0P+rG9WhR/eIqPjQKA7v7n5JpfmSSb+gJAd8KJzJT0yrfWQsvw3+nhDOZ3ijwqXxBWo/rAID62p8AlWhdFAXXvAQEhHfjPilxox0r8HfmzG+eGzIbHpNXHztA446R+cZX68432p5psA8FWJI3sHeEim/47Gt8S8XTRfSIWOg8wOHA9I/359daY/WvocEwPBV/KiusfaHOCTwUb2L6aL9PL94Qvn8aslh41dhJqjSoKnpKLRRrKw0p2Rddz4VwG2kOAJ0EzLR/aggWGwtalRP+XaMPDJOunCF+6cfo5vJGPWYu6P7McvXvA9GeV1GLlagBveV811CRzoOu36bQ/rspMipaE8XVOYuV5LGmbvtFk7uJAzAPJdUVaTynNxyQML5vacuanqR7Bauh6AcvYpr4P6mFw3jibRznoyxQRXHC9pDf6dZ+8keWJLoYk59zgIE6/3aJIYtkDIGoXicnhTjDrIunX7U08=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(1800799015)(376005)(7416005);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?C3fK37y0jjJm8xFudvuad+swbeR2izsJFXYLp/bFKst+zdEdk5Ughco7YeYq?=
- =?us-ascii?Q?oZUXG1Mf5Bmy6Y+5BCdnOoAGU/fR6e/cr9H3BKv70X/eVakkBqzZVQO04At0?=
- =?us-ascii?Q?RmpJ3lvPxJ4OybPbx2bcrst76l6ecAdlnUzT+diKCVQMasZ8FPoVTBIHMNig?=
- =?us-ascii?Q?tRzx37DsVNVJ/wp/laYYBjRApR3TJ8BZx2VkbVBxzl3+n56q+Zt3myO1TN9r?=
- =?us-ascii?Q?uhAZL7jhkMLLp7q/fahXT9pzq8X30SMHPlko8rYkB8emZHFbKaTqexNXobxR?=
- =?us-ascii?Q?syXEmvqRwKxLnc8dRXPqZiLKKMLhH7mnQFVuL9anLHlEFcbFNyXLHSE2fMOj?=
- =?us-ascii?Q?b9A+74eyAGp5gEFg9XoIq2EDXxiIVPwpAfh8FAvrWTyJxygYfts/GoM9wQCV?=
- =?us-ascii?Q?NQIMbbQ+hfQkHxidYKO7bb1cLYK8ctM2gI2U6lWXsUZOK0/OvbCae2Q6rEes?=
- =?us-ascii?Q?hWdG0XqkOnrjOSzlWcZtFUs9gqMJT7oimA5pzCtzxKnQ/99SUkyHT/r7/E3a?=
- =?us-ascii?Q?K2wLaths2Phr9EWHwr/yarNrjWS04f/In2gJuhZZ+JGiQqqk+F8vEmKEMG4t?=
- =?us-ascii?Q?BANStxt2V+pXHt7DG/WaO1GMtZdWexkT66JBCF4z+3aiffQiAKhWEAzAO0pQ?=
- =?us-ascii?Q?F9a5kzGRQHkrhE71hI9Cb1p2mJumjB6lFYhs4rQDAJ+c6VAtAiXtRIzUSrYa?=
- =?us-ascii?Q?IPFzt3iHhBQwzUjGeENdpYIqa4VQ18Q/uh7Ow1o6ZmMA9cE6wIpPuAp96XZn?=
- =?us-ascii?Q?evNmoshkRy6zHBHeyUtClF0GvW53hcA7+jYdZ+xr6XVEh8YNd0GsC48sNWod?=
- =?us-ascii?Q?4L/HZ14epthdUDAc5lM1npDX1Bww8CuZ61MYKc8QPqaq6WqUBYNOscy8Z/6T?=
- =?us-ascii?Q?/Z2jOLLk95WwSUa8NWhoidE2g0nAoXBv1NYmHzLdfh78Vj375R1oMR6XStOi?=
- =?us-ascii?Q?XixQ9C6oCzIFooDFn5jpgy6AvQJiSJcgcXbpOLXalVdQco0l8WiGRx07D4HX?=
- =?us-ascii?Q?i5X51iYWysdsDPRJ9Eyn9usXvR+u3bBGisRThB7clJ6x9xS0ipb+wcTIRkIP?=
- =?us-ascii?Q?0OtIodKh3ywfoPp14/F3z83hUU35hEKZZZi/8+3FaCjZQN4dlvDYTCeZYFly?=
- =?us-ascii?Q?EzVsRI0aJig1wxqtketALOeXOGhMYyTZIZY9VUx0MRU5PTlEIeA7zq6wpu+s?=
- =?us-ascii?Q?hBIzclXiJr0N//kYrvk4W7TRh6bRNFazkGLFu1qy7niG6+ouKYVNSTmYH3af?=
- =?us-ascii?Q?pyqV+/gr7YFwQRztmkkD8QFmnrE5rqd2G31xgoEyM3ClYXnGO9J6h1MnNI0z?=
- =?us-ascii?Q?jMNGxydkS9T5ZJ4is+xk+rVFZObdU7aL5Uyq0CPLL3IReYB71Kckc7VpHzE6?=
- =?us-ascii?Q?Hk9/BCARue2st1ii9uZ7cGqIH7++J1VU8CeoEi8wQ4n5cXHnpyFDNZYHF4Kb?=
- =?us-ascii?Q?XuXYvx56FFQZ8zB6p5fVKn+j9lsfOANDSNRt8GbiNmwivQBHsI68IRCsc0BW?=
- =?us-ascii?Q?e+2SmBvnF9Blya35FwqBEkVpefZ0avxQJsu9GXJeqt+7G3QmkoLnMoPQku8Y?=
- =?us-ascii?Q?JfIZID1zw6YeWUmDmNY=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5272c5d8-3a0f-47fe-e81a-08dc5180acf4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Mar 2024 12:47:07.8723
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: W8l9Sy9cb2boJAptqa39bWARx9ZdcpkQwxMfwuNlIv4SEZF//TVdmmx6QW4zY6SuLB2a9glc5P0X55K8ZC1mFw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB7022
 
-Hi Dan,
-
-> Subject: Re: [PATCH v6 3/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
-> protocol basic support
->=20
-> Looks really nice.  Just a few small comments below.
->=20
-> On Sat, Mar 23, 2024 at 08:15:16PM +0800, Peng Fan (OSS) wrote:
-> > +
-> > +struct scmi_msg_func_set {
-> > +	__le32 identifier;
-> > +	__le32 function_id;
-> > +	__le32 flags;
-> > +};
->=20
-> This scmi_msg_func_set struct is unused.  Delete.
->=20
-> > +static void
-> > +iter_pinctrl_settings_get_prepare_message(void *message, u32 desc_inde=
-x,
-> > +					  const void *priv)
-> > +{
-> > +	struct scmi_msg_settings_get *msg =3D message;
-> > +	const struct scmi_settings_get_ipriv *p =3D priv;
-> > +	u32 attributes;
-> > +
-> > +	attributes =3D FIELD_PREP(CONFIG_FLAG_MASK, p->flag) |
-> > +		     FIELD_PREP(SELECTOR_MASK, p->type);
-> > +
-> > +	if (p->flag =3D=3D 1)
-> > +		attributes |=3D FIELD_PREP(SKIP_CONFIGS_MASK, desc_index);
-> > +	else if (!p->flag)
->=20
-> This is a nit-pick but could you change these !p->flag conditions to
-> p->flag =3D=3D 0?  It's a number zero, not a bool.
->=20
-> > +		attributes |=3D FIELD_PREP(CONFIG_TYPE_MASK, p-
-> >config_types[0]);
-> > +
-> > +	msg->attributes =3D cpu_to_le32(attributes);
-> > +	msg->identifier =3D cpu_to_le32(p->selector); }
-> > +
-> > +static int
-> > +iter_pinctrl_settings_get_update_state(struct scmi_iterator_state *st,
-> > +				       const void *response, void *priv) {
-> > +	const struct scmi_resp_settings_get *r =3D response;
-> > +	struct scmi_settings_get_ipriv *p =3D priv;
-> > +
-> > +	if (p->flag =3D=3D 1) {
-> > +		st->num_returned =3D le32_get_bits(r->num_configs,
-> GENMASK(7, 0));
-> > +		st->num_remaining =3D le32_get_bits(r->num_configs,
-> > +						  GENMASK(31, 24));
-> > +	} else {
-> > +		st->num_returned =3D 1;
-> > +		st->num_remaining =3D 0;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int
-> > +iter_pinctrl_settings_get_process_response(const struct
-> scmi_protocol_handle *ph,
-> > +				       const void *response,
-> > +				       struct scmi_iterator_state *st,
-> > +				       void *priv)
-> > +{
-> > +	const struct scmi_resp_settings_get *r =3D response;
-> > +	struct scmi_settings_get_ipriv *p =3D priv;
-> > +
-> > +	if (!p->flag) {
->=20
->=20
-> if (p->flag =3D=3D 0) {
->=20
-> > +		if (p->config_types[0] !=3D
-> > +		    le32_get_bits(r->configs[st->loop_idx * 2], GENMASK(7, 0)))
-> > +			return -EINVAL;
-> > +	} else if (p->flag =3D=3D 1) {
-> > +		p->config_types[st->desc_index + st->loop_idx] =3D
-> > +			le32_get_bits(r->configs[st->loop_idx * 2],
-> > +				      GENMASK(7, 0));
-> > +	} else if (p->flag =3D=3D 2) {
-> > +		return 0;
-> > +	}
-> > +
-> > +	p->config_values[st->desc_index + st->loop_idx] =3D
-> > +		le32_to_cpu(r->configs[st->loop_idx * 2 + 1]);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int
-> > +scmi_pinctrl_settings_get(const struct scmi_protocol_handle *ph, u32
-> selector,
-> > +			  enum scmi_pinctrl_selector_type type,
-> > +			  enum scmi_pinctrl_conf_type config_type,
-> > +			  u32 *config_value)
-> > +{
-> > +	int ret;
-> > +	void *iter;
-> > +	struct scmi_iterator_ops ops =3D {
-> > +		.prepare_message =3D
-> iter_pinctrl_settings_get_prepare_message,
-> > +		.update_state =3D iter_pinctrl_settings_get_update_state,
-> > +		.process_response =3D
-> iter_pinctrl_settings_get_process_response,
-> > +	};
-> > +	struct scmi_settings_get_ipriv ipriv =3D {
-> > +		.selector =3D selector,
-> > +		.type =3D type,
-> > +		.flag =3D 0,
->=20
-> ->flag should be 0-2.
->=20
-> > +		.config_types =3D &config_type,
-> > +		.config_values =3D config_value,
-> > +	};
-> > +
-> > +	if (!config_value || type =3D=3D FUNCTION_TYPE)
->              ^^^^^^^^^^^^
-> config_value should be optional for flag =3D=3D 2.
-
-As Cristian replied, I would keep it as is until we have a case in
-linux that need flag =3D=3D 2.
-
-Thanks,
-Peng
-
->=20
-> regards,
-> dan carpenter
->=20
-> > +		return -EINVAL;
-> > +
-> > +	ret =3D scmi_pinctrl_validate_id(ph, selector, type);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	iter =3D ph->hops->iter_response_init(ph, &ops, 1,
-> PINCTRL_SETTINGS_GET,
-> > +					    sizeof(struct
-> scmi_msg_settings_get),
-> > +					    &ipriv);
-> > +
-> > +	if (IS_ERR(iter))
-> > +		return PTR_ERR(iter);
-> > +
-> > +	return ph->hops->iter_response_run(iter);
-> > +}
-> > +
-
+SGkgS3J6eXN6dG9mDQpBbnN3ZXIgaW5saW5lDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0t
+DQo+IEZyb206IEtyenlzenRvZiBLb3psb3dza2kgPGtyenlzenRvZi5rb3psb3dza2lAbGluYXJv
+Lm9yZz4NCj4gU2VudDogU3VuZGF5LCBNYXJjaCAzMSwgMjAyNCA0OjE1IFBNDQo+IFRvOiBEaW5n
+LCBTaGVuZ2hhbyA8c2hlbmdoYW8tZGluZ0B0aS5jb20+OyBsaW51eC1rZXJuZWxAdmdlci5rZXJu
+ZWwub3JnDQo+IENjOiBsZ2lyZHdvb2RAZ21haWwuY29tOyBicm9vbmllQGtlcm5lbC5vcmc7IHJv
+YmgrZHRAa2VybmVsLm9yZzsNCj4ga3J6eXN6dG9mLmtvemxvd3NraStkdEBsaW5hcm8ub3JnOyBj
+b25vcitkdEBrZXJuZWwub3JnOyBsaW51eC0NCj4gc291bmRAdmdlci5rZXJuZWwub3JnOyBkZXZp
+Y2V0cmVlQHZnZXIua2VybmVsLm9yZzsgcGVyZXhAcGVyZXguY3o7DQo+IHRpd2FpQHN1c2UuY29t
+OyAxMzkxNjI3NTIwNkAxMzkuY29tOyBDaGF3bGEsIE1vaGl0DQo+IDxtb2hpdC5jaGF3bGFAdGku
+Y29tPjsgc295ZXJAaXJsLmh1OyBIdWFuZywgSm9uYXRoYW4NCj4gPGpraHVhbmczQHRpLmNvbT47
+IHRpd2FpQHN1c2UuZGU7IERqdWFuZGksIFBldGVyIDxwZGp1YW5kaUB0aS5jb20+Ow0KPiBBZ3Jh
+d2FsLCBNYW5pc2hhIDxtYW5pc2hhLmFncmF3YWxAdGkuY29tPjsgSGFyaSwgUmFqIDxzLWhhcmlA
+dGkuY29tPjsNCj4gWWFzaGFyLCBBdmkgPGF2aWVsQHRpLmNvbT47IE5hZ2FsbGEsIEhhcmkgPGhu
+YWdhbGxhQHRpLmNvbT47IEJhamp1cmksDQo+IFByYW5lZXRoIDxwcmFuZWV0aEB0aS5jb20+OyBC
+YW9qdW4uWHVAZnB0LmNvbTsgUm9iIEhlcnJpbmcNCj4gPHJvYmhAa2VybmVsLm9yZz4NCj4gU3Vi
+amVjdDogW0VYVEVSTkFMXSBSZTogW1BBVENIIHY3IDQvNF0gQVNvYzogZHQtYmluZGluZ3M6IFBD
+TTYyNDA6IEFkZA0KPiBpbml0aWFsIERUIGJpbmRpbmcNCj4gDQouLi4uLi4uLi4uLi4uLi4uLi4u
+Li4uLi4uLi4uLg0KPiA+ICAtIHJlbW92ZSB1bm5lZWRlZCBpdGVtcyBhbmQgaWYgYnJhbmNoZXMu
+DQo+ID4gIC0gQWRkIG1pc3NpbmcgY29tcGF0aWJsZSBkZXZpY2VzLCBzdWNoIGFzIGFkYzYxMjAs
+IGV0Yy4NCj4gPiAgLSBBZGQgbmVjZXNzYXJ5IHBlb3BsZSBpbnRvIHRoZSBsaXN0IGZvciBEVFMg
+cmV2aWV3DQo+ID4gIC0gY29ycmVjdCBtaXNhbGlnbmVkLg0KPiA+ICAtIHNpbXBsaWZ5IHRoZSBj
+b21wYXRpYmlsaXR5DQo+ID4gIC0gcmVtb3ZlIHNvdW5kLW5hbWUtcHJlZml4IGFuZCByZXZlcnQg
+YmFjaw0KPiA+ICAtIEFkZCByZXZpZXcgaW5mb3JtYXRpb24NCj4gDQo+IEFsbCB0aGVzZSBjaGFu
+Z2VzIGluIHY3IGFuZCB5b3Ugc3RpbGwga2VwdCBSb2IncyByZXZpZXc/IEkgdGhpbmsgZWl0aGVy
+IHJldmlldw0KPiB3YXMgbm90IGdpdmVuIG9yIHlvdXIgY2hhbmdlbG9nIGlzIGp1c3QgaW5jb3Jy
+ZWN0Lg0KU2luY2UgUm9iJ3MgcmV2aWV3LCBub3RoaW5nIGNoYW5nZWQgaW4geWFtbC4gRXZlbiBp
+biB0aGlzIHBhdGNoLCBvbmx5IHJlbW92ZWQga2NvbnRyb2wgaW50ZXJmYWNlcw0KaW4gdGhlIGNv
+ZGUgYW5kIGFkZGVkIHRoZSBtaXhlci10ZXN0IHJlcG9ydCBpbiBjb3Zlci1sZXR0ZXIgYXMgTWFy
+ayBzdWdnZXN0ZWQsIHdoaWNoIGlzIG5vIGVmZmVjdA0Kb24geWFtbCBmaWxlLg0KPiANCj4gDQo+
+IA0KPiBCZXN0IHJlZ2FyZHMsDQo+IEtyenlzenRvZg0KDQo=
 
