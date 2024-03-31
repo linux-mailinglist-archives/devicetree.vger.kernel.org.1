@@ -1,58 +1,76 @@
-Return-Path: <devicetree+bounces-54878-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54879-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 636C9892ECE
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 09:17:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C082892EDE
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 09:36:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 953A71C20B4F
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 07:17:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 887A9B213B8
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 07:36:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FB5979CC;
-	Sun, 31 Mar 2024 07:17:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 507E58BE0;
+	Sun, 31 Mar 2024 07:36:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="p0K703y1"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KCelxfRY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFA1B2F3B;
-	Sun, 31 Mar 2024 07:17:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ED6279F6;
+	Sun, 31 Mar 2024 07:36:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711869445; cv=none; b=URiIMmqg3vMhLCPF9eYcYfECIz/8h5qgSKfXojPEbiMli8G+bUo/fvX+lpBTbj1aiH6CQwQL8dJ9zccFG0cRs4yQ78oxewAc8GoS1DOzxry8qIkhR32aH3L2Y5e56mzkzMppb4FroBqRcSkFdb2MJDtesr3JMLzmvyK9GK9RJKU=
+	t=1711870585; cv=none; b=utSWIt+1PDsj/xCnFU67ffxATHKxu+saRBmS6223AKYcRKVn7mW9asKYCKD5F/ydsDh28BN5x6V0Ujn38eDW+gWQpsYmWVZnQIJsMOoetxi9uXM9LGVZC17TirGrDXg59/GlqOIKzXGqF3V1nfFoYd3MpEhSQefkDDyz37u9Sv4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711869445; c=relaxed/simple;
-	bh=ynEEvfZfM0Uvl7G9oYl7YDpYAQvFFwcG5qLQbWzN4Tw=;
+	s=arc-20240116; t=1711870585; c=relaxed/simple;
+	bh=2FJ006BEJLemfnHq9sEkcgZYK5aGXcw7l0gXyJsqfZU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PkMeU64h4ZoduPUpE2whIoVclOwTuvDkOHkdrsJluCMckqV/Hp3rCibkHe2G7zITGDVL11AX2aPyFk/UPaLsyRdoizg/FqC6ddTOEMdi6Ee9wijxCVpQJ99BQ3Mt2dP5FkY75LzPXjLrI3NgJYiERxYBYDMgt9Zdeg7XN95Xn0o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=p0K703y1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9ECD0C433F1;
-	Sun, 31 Mar 2024 07:17:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1711869444;
-	bh=ynEEvfZfM0Uvl7G9oYl7YDpYAQvFFwcG5qLQbWzN4Tw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=p0K703y1ptIrBg6wSmIE2iJATRRk+tuDS7C4g0yH7VF+WjMxh4jJBcxnbmARGkU0v
-	 RjK8m1E7iNw6y9t4+0Nwlgr8qM1YGbpaBKRF2+FZLztwRaEzEHsp4tGR/aosV6qdd6
-	 YADyRuIiqGwQ7PLMdeFOSjvqIZctA0adkvhEEwIs=
-Date: Sun, 31 Mar 2024 09:17:20 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
-Subject: Re: [PATCH v2] dt-bindings: usb: qcom,pmic-typec: update example to
- follow connector schema
-Message-ID: <2024033109-reporter-blooming-5217@gregkh>
-References: <20240331-typec-fix-example-v2-1-f56fffe4f37c@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=KH4R4JVrrxD7HrAcDrDCRm+rbt0RoxN1TepirVCbA7Y0y/Jor7FUS8odqZIOJefoL7tY0BQcSZrJMN3SptukbuORQs6Vw72fVczCxfZqYyyC92z2NKSQCjiGqI2RaOD+9tFmFgHULaQC0TZDqAvFvrQyGv3SVr6UnXdfWoRHItY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KCelxfRY; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1711870582; x=1743406582;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=2FJ006BEJLemfnHq9sEkcgZYK5aGXcw7l0gXyJsqfZU=;
+  b=KCelxfRY2jReKV4vK7od7wTEA5xSjl18jMuPVSDk9DUrAAQv618ccb/+
+   JNanVMtOiSxo82gjVF0SVypHl6H4Rg+1RVR/LkcU5r4Ej8TYMBwbYdHOe
+   pxq2VDEmVOMHv0k+AIE9QiuATdUpXQMwqQgwlpnFRj40YoVG7W45FWq5D
+   4yszmFb6bScWI0L5YY4J0F/1cGnVqk2SCEUjZJTLbXESIlskEZ1ruegD+
+   VbKXulm8iHuUWjN2I9hbOXe2Uw20jP+mlAnsBU1f+KObw9nRYSoK5GRGg
+   DKPKwEJcKp+wIgkGeQOfI5OHijRXO1c4U/6YnDULmDUUtxX83cWcjvp0W
+   Q==;
+X-CSE-ConnectionGUID: boeED+VRS/WFvhNvBcpxQw==
+X-CSE-MsgGUID: TJoUbWT6QwGKNGPHANG2uQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11029"; a="7136288"
+X-IronPort-AV: E=Sophos;i="6.07,169,1708416000"; 
+   d="scan'208";a="7136288"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Mar 2024 00:36:22 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,169,1708416000"; 
+   d="scan'208";a="40537962"
+Received: from lkp-server01.sh.intel.com (HELO 3d808bfd2502) ([10.239.97.150])
+  by fmviesa002.fm.intel.com with ESMTP; 31 Mar 2024 00:36:19 -0700
+Received: from kbuild by 3d808bfd2502 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rqpjk-0000u2-2N;
+	Sun, 31 Mar 2024 07:36:16 +0000
+Date: Sun, 31 Mar 2024 15:35:49 +0800
+From: kernel test robot <lkp@intel.com>
+To: Witold Sadowski <wsadowski@marvell.com>, linux-kernel@vger.kernel.org,
+	linux-spi@vger.kernel.org, devicetree@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, broonie@kernel.org, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	pthombar@cadence.com, Piyush Malgujar <pmalgujar@marvell.com>,
+	Witold Sadowski <wsadowski@marvell.com>
+Subject: Re: [PATCH 4/5] driver: spi: cadence: Add ACPI support
+Message-ID: <202403311503.5rYNyUzp-lkp@intel.com>
+References: <20240329194849.25554-5-wsadowski@marvell.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,49 +79,87 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240331-typec-fix-example-v2-1-f56fffe4f37c@linaro.org>
+In-Reply-To: <20240329194849.25554-5-wsadowski@marvell.com>
 
-On Sun, Mar 31, 2024 at 12:21:15AM +0200, Dmitry Baryshkov wrote:
-> Update Qualcomm PMIC Type-C examples to follow the USB-C connector
-> schema. The USB-C connector should have three ports (USB HS @0,
-> SSTX/RX @1 and SBU @2 lanes). Reorder ports accordingly and add SBU port
-> connected to the SBU mux (e.g. FSA4480).
-> 
-> Fixes: 00bb478b829e ("dt-bindings: usb: Add Qualcomm PMIC Type-C")
-> Reported-by: Luca Weiss <luca.weiss@fairphone.com>
-> Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
-> Update examples to follow usb-c-connector schema wrt. ports definitions.
-> ---
+Hi Witold,
 
-Hi,
+kernel test robot noticed the following build errors:
 
-This is the friendly patch-bot of Greg Kroah-Hartman.  You have sent him
-a patch that has triggered this response.  He used to manually respond
-to these common problems, but in order to save his sanity (he kept
-writing the same thing over and over, yet to different people), I was
-created.  Hopefully you will not take offence and will fix the problem
-in your patch and resubmit it so that it can be accepted into the Linux
-kernel tree.
+[auto build test ERROR on broonie-spi/for-next]
+[also build test ERROR on linus/master v6.9-rc1 next-20240328]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-You are receiving this message because of the following common error(s)
-as indicated below:
+url:    https://github.com/intel-lab-lkp/linux/commits/Witold-Sadowski/spi-cadence-Add-new-bindings-documentation-for-Cadence-XSPI/20240330-035124
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+patch link:    https://lore.kernel.org/r/20240329194849.25554-5-wsadowski%40marvell.com
+patch subject: [PATCH 4/5] driver: spi: cadence: Add ACPI support
+config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20240331/202403311503.5rYNyUzp-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240331/202403311503.5rYNyUzp-lkp@intel.com/reproduce)
 
-- You have marked a patch with a "Fixes:" tag for a commit that is in an
-  older released kernel, yet you do not have a cc: stable line in the
-  signed-off-by area at all, which means that the patch will not be
-  applied to any older kernel releases.  To properly fix this, please
-  follow the documented rules in the
-  Documentation/process/stable-kernel-rules.rst file for how to resolve
-  this.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202403311503.5rYNyUzp-lkp@intel.com/
 
-If you wish to discuss this problem further, or you have questions about
-how to resolve this issue, please feel free to respond to this email and
-Greg will reply once he has dug out from the pending patches received
-from other developers.
+All errors (new ones prefixed by >>):
 
-thanks,
+   drivers/spi/spi-cadence-xspi.c: In function 'mrvl_ioreadq':
+   drivers/spi/spi-cadence-xspi.c:535:14: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     535 |         if (((uint64_t)buf % 8) == 0) {
+         |              ^
+   drivers/spi/spi-cadence-xspi.c:537:36: error: implicit declaration of function 'readq'; did you mean 'readb'? [-Werror=implicit-function-declaration]
+     537 |                         *buf64++ = readq(addr);
+         |                                    ^~~~~
+         |                                    readb
+   drivers/spi/spi-cadence-xspi.c: In function 'mrvl_iowriteq':
+   drivers/spi/spi-cadence-xspi.c:559:14: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     559 |         if (((uint64_t)buf % 8) == 0) {
+         |              ^
+   drivers/spi/spi-cadence-xspi.c:561:25: error: implicit declaration of function 'writeq'; did you mean 'writel'? [-Werror=implicit-function-declaration]
+     561 |                         writeq(*buf64++, addr);
+         |                         ^~~~~~
+         |                         writel
+   drivers/spi/spi-cadence-xspi.c: In function 'cdns_xspi_setup':
+   drivers/spi/spi-cadence-xspi.c:869:43: error: implicit declaration of function 'spi_master_get_devdata'; did you mean 'spi_mem_get_drvdata'? [-Werror=implicit-function-declaration]
+     869 |         struct cdns_xspi_dev *cdns_xspi = spi_master_get_devdata(spi_dev->master);
+         |                                           ^~~~~~~~~~~~~~~~~~~~~~
+         |                                           spi_mem_get_drvdata
+   drivers/spi/spi-cadence-xspi.c:869:73: error: 'struct spi_device' has no member named 'master'
+     869 |         struct cdns_xspi_dev *cdns_xspi = spi_master_get_devdata(spi_dev->master);
+         |                                                                         ^~
+   drivers/spi/spi-cadence-xspi.c: At top level:
+>> drivers/spi/spi-cadence-xspi.c:993: error: unterminated #ifdef
+     993 | #ifdef CONFIG_OF
+         | 
+   cc1: some warnings being treated as errors
 
-greg k-h's patch email bot
+
+vim +993 drivers/spi/spi-cadence-xspi.c
+
+   986	
+   987	static const struct acpi_device_id cdns_xspi_acpi_match[] = {
+   988		{"cdns,xspi-nor", 0},
+   989		{"mrvl,xspi-nor", 0},
+   990		{},
+   991	};
+   992	MODULE_DEVICE_TABLE(acpi, cdns_xspi_acpi_match);
+ > 993	#ifdef CONFIG_OF
+   994	static const struct of_device_id cdns_xspi_of_match[] = {
+   995		{
+   996			.compatible = "cdns,xspi-nor",
+   997		},
+   998		{
+   999			.compatible = "mrvl,xspi-nor",
+  1000		},
+  1001		{ /* end of table */}
+  1002	};
+  1003	MODULE_DEVICE_TABLE(of, cdns_xspi_of_match);
+  1004	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
