@@ -1,191 +1,124 @@
-Return-Path: <devicetree+bounces-54969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE7B98935F6
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 23:11:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BC5E8935FE
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 23:40:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D23A11C212B0
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 21:11:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18B071F21D89
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 21:40:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8916614900B;
-	Sun, 31 Mar 2024 21:10:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49730757EF;
+	Sun, 31 Mar 2024 21:40:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kpkz7zYt"
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="hGGKROHL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58A63148827
-	for <devicetree@vger.kernel.org>; Sun, 31 Mar 2024 21:10:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70CE61C0DD9;
+	Sun, 31 Mar 2024 21:40:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711919449; cv=none; b=S1/FiwSJXygdrMmTUtdSSUIeNrALT5POAJ2x5+/UL4y5xxqJV7fOQd6ppZ2CX75zRJUxiK9lHs1mB5eMoIfoTnGrUrpINKXGKTP2lbojSFtwRHETQEbswvFMiE1qzwcsyZx0PrcxaN3PxdYRbMbQhUiK9YYr3kI1LGsi4yrGoLk=
+	t=1711921227; cv=none; b=HGHClFSnjnnb/4jAlfHpUv96xx9Zbbgr3igt6MLFYoHzdrxAKPncn1IWgOg+YrJpyMiSFEk8PaIdohv27gu09j4Krc9LqCinnHyf0QjPRdTqMWjBeY8THjJdxygnz9sOlrO9NzpAbS4dpPG40lMO82ejeJ0ueKCf2fk50yMtDKI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711919449; c=relaxed/simple;
-	bh=dcd535qx8Msn/2joEysg6oy8R8v/M5uKoR2/EcmwORs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=IQd/kWSERNZZbOnEumnlqmXKOQcRJQF5pZJe30ecd+lBvbyTyyGWc1QgF7X5SRsy1eDT6BkPb65Kdr9mQhde3bQY7nXSOwQhbMBKpjMqjFIRaOFfjKLusUMO2IwNp88OdQQKFKS3K0ibtMMQLkwRsdMBX3w58jRPQAnFW7GHNNc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kpkz7zYt; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-515a81928a1so5577623e87.3
-        for <devicetree@vger.kernel.org>; Sun, 31 Mar 2024 14:10:47 -0700 (PDT)
+	s=arc-20240116; t=1711921227; c=relaxed/simple;
+	bh=hG6ggvtVUcMqrtmz7yHqFSaOMOGmX9esE9uhSYVoWZY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hcsQK5WCZTCvmLV2AkTRnCfER7THT/JCuIK+eEox4L2aD2H3AmmTC9GOMNlSxplZdw+GNCXJz+7rQDzx69OMX9pkfks+WmkblG/0LWkU+b87nSErPJQ9pJ6vcwPxcIXh8eYrGotonpOsAxoEK/uC5r9TPAu5Vq4/d9tvkIXV2fM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=hGGKROHL; arc=none smtp.client-ip=209.85.214.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-1e0189323b4so23869725ad.1;
+        Sun, 31 Mar 2024 14:40:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711919445; x=1712524245; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tv40XznBi1vAVfYC8yDgaimDwP+pONYwDVmAMHNv9eo=;
-        b=kpkz7zYtjDFDkH0gtwG16IIjfMOSkbx2FH1GyShJfd8jWCaPqpX99WxRKoszBS9AII
-         Heebvuzz6QbUYN2TOwZdhAhmb2HCQWQWtA9cmA9QzHVNPgqeF91+bJ1c6KdEdcPFG6RO
-         GZBfHDj3VYxMYd8NY1Vo7nm8kozjkHvOafNCjP45Vz9RtLOmkk+8g1cmqWLbEiaTqwH2
-         6Ae0irQGSFrswmd53GBGVN2OsTPXou3/sJaTUPzEhAKrT3WRN6CMP8Ijhb8I/h2okWAY
-         ebEoN6CLDNp/EjNoiz5CMx9gUves68AtmvoQz/zIFi9+a0NBVHG7EuXpupx0FcZFw9g5
-         Te7A==
+        d=googlemail.com; s=20230601; t=1711921225; x=1712526025; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6bOAMX8CDxRFe75wZuJ9Z2dq25ZmCynlaxMc7spfxAM=;
+        b=hGGKROHLfYmgrBH6aG8SPBlpuJIHMeB6Xvr6r1wm2HSiZ39hbuC9bfF1S+dRWQaunA
+         DzbCio1F4IfyTOhl2aLQc5Ii6h5t9NTWMvmljY1qK92bd2o3HZjWBf1RJnhjKnujLeEB
+         Q8FKymdPCJ4CcqbTsHEnQ6XNulZE8F37xKbKzQ3JcJoJSTh4P/6JUprjEyhbV2VnY24w
+         zz7L1kmG2qrB1t/O2G838svBrtZS0jty99o7hQQKAmdB19uHa53qDdI/hi1+u1i+Tc9/
+         RWrzWJADTe/PRXag6lGR2Es/FH61XoOoMyO8oAJ7CE+BeS+eVTnM/fpTsVSvcnwPqm37
+         8NPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711919445; x=1712524245;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1711921225; x=1712526025;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=tv40XznBi1vAVfYC8yDgaimDwP+pONYwDVmAMHNv9eo=;
-        b=IMHaJDsTXYmR9Na8zjNJLittzgQ2SlW2AenmO5FBfaJunNp8mLATTYCCoSkAMiUSpr
-         ab4E6MUbrchWtwOHtyNV2s+Bj8lRe21jiMI0PvqUrbI9VvpAQu/DGLrAfwyWpnoWBf1i
-         P6pk4FEq0yszgXEftl2tZTyWj7/bmgOINrNXdqN1I5hiPrMh9cnzZWF0UNq62aPQSrZm
-         nmZs2CShjj/biZmzFbdE8NWbQQRvdVHnz2ZX6xQCKXT6UgOZUSKX/GAwusTfW97MzuOo
-         CQQ2NpKruWEHVHmMlGzlm+5eOMHaVb9i+gB3OgW1hOjrvL4bYA4snkfqfpmnDAEO23gk
-         oHyA==
-X-Forwarded-Encrypted: i=1; AJvYcCUqVcnOvvU9eLjr/wYGZIjknXTvFdlyt3gCDKEJQxxEVG3n89xhp0gP58HhSRx9cN5zPpnp+qqI54fLv1oPpdoOLHNI0JpCW4LWHQ==
-X-Gm-Message-State: AOJu0YyOUUp/qLUVAsGqtpCEDzhRE67iPgr+T/4vcy0oJ4s2kmKDfEQc
-	CkV3aJ8QUFLcXqdIAfSnWskAK0C6cA7+jupCICCiXJ+s0HbI183yV4PV2iTvYINHoY5SrleC2yj
-	p
-X-Google-Smtp-Source: AGHT+IFEA6uS3gqEQZKPe7rHhz7PcpsOExfg+q36ngAJUhw0UQI9/RUO1kh75TNk4okzdxKG3QkPEg==
-X-Received: by 2002:ac2:4579:0:b0:515:a665:94ba with SMTP id k25-20020ac24579000000b00515a66594bamr6365939lfm.19.1711919445254;
-        Sun, 31 Mar 2024 14:10:45 -0700 (PDT)
-Received: from umbar.lan ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id i1-20020a0565123e0100b00515cd1d5c99sm1033553lfv.85.2024.03.31.14.10.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 31 Mar 2024 14:10:44 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 01 Apr 2024 00:10:44 +0300
-Subject: [PATCH 3/3] arm64: dts: msm8996: add fastrpc nodes
+        bh=6bOAMX8CDxRFe75wZuJ9Z2dq25ZmCynlaxMc7spfxAM=;
+        b=dxAYiKXdykIXBVxPYFal6tZZDUxvS79Z8faatzyK59CgRzr6ljWQeL9qPINIh165Wh
+         N7dU+pZrHL0dZjFhep1C6QZA9WvQ18QrABFltVDWeHD9VwEjLWIAPl6eiGhnnnKpTUU9
+         GukMVHSN3AdLOZOvP6wdqY1zUF6MtScf7PZ++I42/SkROzUmCObS9xlG5nAmHUcO4xqZ
+         SonKVILZ6OuTsn6clh4N2ldtyUzH8wGbnJbABv67xQL6dybAjtrSDxqIIECvcNuG9OHr
+         XuhdnzsVnalTrvKHfUMJnYn5Ap7JLoo+r3ojPfGKEj6YFnpBp28ntyN0TY/wapVFDw+6
+         SPNA==
+X-Forwarded-Encrypted: i=1; AJvYcCXs5jTyaQkAzLhHcH5pm9+IOwHPHYQDOdQWlZ/9ykbbufoVTgORGHdzIuYYN2O0f1Pa7ftoUWZpA/JJ/GKy/Xd82gfW5CjkXXiUdowsE/xydXGJiyQIZEKtsiBcJe0EAC9AR8wPRmKD1bM1eowUkOGgbW9Q2rN+ffglNVcHTksaMiuHpw==
+X-Gm-Message-State: AOJu0YzLxhb8TbTLfn2vdPxSKZ8E4pwE/xc+gdzR0/KU0g++KEZFR+pu
+	HMH0DIpMQUqkRBbJRIOGKY4JwfSA8iaIBlcK6vFIA3TXjbrLrQBnoTx8LHVJ4OekdTRtClKbtpL
+	sM9ymoR3cSnQaPoMl++Y/LZ70IRw=
+X-Google-Smtp-Source: AGHT+IFiqj4SbYwzxlpmSNvPFU6oA3OXhWytg+jzKWNJs6wKOMo0mOw5iOQRrId8XNfTznU7DImuvdgTgbvN4vcPI8c=
+X-Received: by 2002:a17:903:94b:b0:1e2:3719:43f5 with SMTP id
+ ma11-20020a170903094b00b001e2371943f5mr9219842plb.14.1711921224652; Sun, 31
+ Mar 2024 14:40:24 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240401-msm8996-remoteproc-v1-3-f02ab47fc728@linaro.org>
-References: <20240401-msm8996-remoteproc-v1-0-f02ab47fc728@linaro.org>
-In-Reply-To: <20240401-msm8996-remoteproc-v1-0-f02ab47fc728@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Mathieu Poirier <mathieu.poirier@linaro.org>, 
- Sibi Sankar <quic_sibis@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1962;
- i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=R83XHWqBdDfp1V5QidoEvj366WRCJE4TWSgKYBFj4mM=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmCdFSEpANkDeJuHAzZi0bHTkDFQFhz6m7XPlqp
- MbDtLV7cG2JATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZgnRUgAKCRCLPIo+Aiko
- 1UMhB/wNkIWNf90ULFC2acFs7yEMVOGV9Svch/GGuBeq7iQ0n1d7babLHSycAhEHoa9Tk8vIRtE
- 2Jj02nsc2UsLQF4tkHFyn889T6jmJeWQ2QUCPBlxLYT4ApkOVE2Kr6a2enFNVEl90s29PghkDpZ
- NuMTZv0RZk2WCMfueAxfBrsNC+R7uYjx7vx2DvE/4qh5dJjrUuVImvE/wR0blLbJHZyoHaOITpo
- ol4Hz1CxKQxQKpBer3KS77gwkT4U5cRPugmxSrPyNsUmgc1VxuVr/HQqGzvodXNBNlUepntLcut
- ae0TqG9K9c5NFIdpclWru0xHcEEqz9nXBNZYS3CvvZ6yx4B+
-X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+References: <20240329205904.25002-1-ddrokosov@salutedevices.com> <20240329205904.25002-7-ddrokosov@salutedevices.com>
+In-Reply-To: <20240329205904.25002-7-ddrokosov@salutedevices.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sun, 31 Mar 2024 23:40:13 +0200
+Message-ID: <CAFBinCCC5KK-4_w41B-+ZJ3zdZckq_EDuAW+Kak2C0Ow8uuD6Q@mail.gmail.com>
+Subject: Re: [PATCH v1 6/6] clk: meson: a1: add Amlogic A1 CPU clock
+ controller driver
+To: Dmitry Rokosov <ddrokosov@salutedevices.com>
+Cc: neil.armstrong@linaro.org, jbrunet@baylibre.com, mturquette@baylibre.com, 
+	sboyd@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	khilman@baylibre.com, kernel@salutedevices.com, rockosov@gmail.com, 
+	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Hi Dmitry,
 
-The ADSP provides fastrpc/compute capabilities. Enable support for the
-fastrpc on this DSP.
+On Fri, Mar 29, 2024 at 9:59=E2=80=AFPM Dmitry Rokosov
+<ddrokosov@salutedevices.com> wrote:
+[...]
+> +static struct clk_regmap cpu_fclk =3D {
+> +       .data =3D &(struct clk_regmap_mux_data) {
+> +               .offset =3D CPUCTRL_CLK_CTRL0,
+> +               .mask =3D 0x1,
+> +               .shift =3D 10,
+> +       },
+> +       .hw.init =3D &(struct clk_init_data) {
+> +               .name =3D "cpu_fclk",
+> +               .ops =3D &clk_regmap_mux_ops,
+> +               .parent_hws =3D (const struct clk_hw *[]) {
+> +                       &cpu_fsel0.hw,
+> +                       &cpu_fsel1.hw,
+Have you considered the CLK_SET_RATE_GATE flag for &cpu_fsel0.hw and
+&cpu_fsel1.hw and then dropping the clock notifier below?
+We use that approach with the Mali GPU clock on other SoCs, see for
+example commit 8daeaea99caa ("clk: meson: meson8b: make the CCF use
+the glitch-free mali mux").
+It may differ from what Amlogic does in their BSP, but I don't think
+that there's any harm (if it works in general) because CCF (common
+clock framework) will set all clocks in the "inactive" tree and then
+as a last step just change the mux (&cpu_fclk.hw). So at no point in
+time will we get any other rate than a) the original CPU clock rate
+before the rate change b) the new desired CPU clock rate. This is
+because we have two symmetric clock trees.
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 57 +++++++++++++++++++++++++++++++++++
- 1 file changed, 57 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index 7ae499fa7d91..cf7ab01f3af6 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -3545,6 +3545,63 @@ q6routing: routing {
- 						};
- 					};
- 				};
-+
-+				fastrpc {
-+					compatible = "qcom,fastrpc";
-+					qcom,smd-channels = "fastrpcsmd-apps-dsp";
-+					label = "adsp";
-+					qcom,non-secure-domain;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					cb@8 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <8>;
-+						iommus = <&lpass_q6_smmu 8>;
-+					};
-+
-+					cb@9 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <9>;
-+						iommus = <&lpass_q6_smmu 9>;
-+					};
-+
-+					cb@10 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <10>;
-+						iommus = <&lpass_q6_smmu 10>;
-+					};
-+
-+					cb@11 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <11>;
-+						iommus = <&lpass_q6_smmu 11>;
-+					};
-+
-+					cb@12 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <12>;
-+						iommus = <&lpass_q6_smmu 12>;
-+					};
-+
-+					cb@5 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <5>;
-+						iommus = <&lpass_q6_smmu 5>;
-+					};
-+
-+					cb@6 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <6>;
-+						iommus = <&lpass_q6_smmu 6>;
-+					};
-+
-+					cb@7 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <7>;
-+						iommus = <&lpass_q6_smmu 7>;
-+					};
-+				};
- 			};
- 		};
- 
-
--- 
-2.39.2
-
+Best regards,
+Martin
 
