@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-54949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54950-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC7AB8935A4
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 21:50:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 905F08935A7
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 21:52:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C38A61C213A7
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 19:50:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2D901C216E0
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 19:52:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90D271474B7;
-	Sun, 31 Mar 2024 19:50:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 572261474D2;
+	Sun, 31 Mar 2024 19:52:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="n7Ob6lcH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eWCTGzAo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F8DB290A
-	for <devicetree@vger.kernel.org>; Sun, 31 Mar 2024 19:50:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56C031474CB
+	for <devicetree@vger.kernel.org>; Sun, 31 Mar 2024 19:52:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711914650; cv=none; b=VtgVFTnYILjbhb1gOegW/tUeZCI74aGP3cpNJAnn+Y+lhhRGaaaMSe15kkXutMxHM18bmvbpd7upmt1R5axAxAwFXuMz2NS3Oy7JFv/OSU23DYNVIGJYXf2w2gP+QVhTCXFh2JB3SxIMC/FA2Wh26ouctF+gfzs8ObToqSUlChQ=
+	t=1711914771; cv=none; b=AkzK1cxWxTsfDCQQHRGjlgKhx9Jg7sGTmbkeV5RQ9aEyHdCtEXDrkSeSjb2xmJ0a6vuDw4u3qq8N1L7BDk42NGY8o4llsWxlSVulRVDmZ7g/0tCGSF68VIRuefcqWKpWd5YqO5U9zhNxu72upNnSrwAGa4ip+guQcxoP4Ho+9HU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711914650; c=relaxed/simple;
-	bh=olDlnNWaxZ+Q6JxOUBf1m3IK0XC+lV8zWmnq19eEL4E=;
+	s=arc-20240116; t=1711914771; c=relaxed/simple;
+	bh=EbTkIL/swUomdW9wMjBymcbkcR+Wh85BPB4Hiv4GyIk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PCwb6ldoP7vn4zSb7jc60uqrrEanNZIHCWe4qow2ipH07mcZhdCNqp/UsZ/1sZt/PpnshNVwWFWLslsSiMIZdatauPRMUsE4CSYHaWp1vV72/voy5DGOw7mVmOIAb9E29j1nr6zYRILV2WxzHvhmq41HBFd2iS3gx2fSKuodZf0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=n7Ob6lcH; arc=none smtp.client-ip=209.85.167.48
+	 In-Reply-To:Content-Type; b=QvNnsGN5WzcopT+8mibIHIdtEvhs0O1XQdMxvxl16GFVamSWzZRWnNPE4Ky5t1lhVUNta3lceLsOvARg+d0oqZ3ZbEAytRXrDa+Yfe3j5gb1PzO/ZmzpwK4UKkplwYowPEeO3vqoOvok4CxJtA3MFpd+caQy7BO2qs+sVmfxGaw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eWCTGzAo; arc=none smtp.client-ip=209.85.208.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-513d599dbabso4388469e87.1
-        for <devicetree@vger.kernel.org>; Sun, 31 Mar 2024 12:50:48 -0700 (PDT)
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2d718efedb2so36679371fa.0
+        for <devicetree@vger.kernel.org>; Sun, 31 Mar 2024 12:52:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711914647; x=1712519447; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711914767; x=1712519567; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Mv408eiOFJL43mCJW20ls45DY73nM7/9K+nAGuogfxE=;
-        b=n7Ob6lcHATlqlyRbspISIhH+YYSQhIiDf13IvamW2ZSQDUCRa7ouyAEw548on2TGv9
-         1vlX5e3FMmFlJLhj0NHEYQpsNMwSyASzZOYm7ygHRWVwpuM+7v0ej7go0mjC3f8Vr87L
-         VY+xcWR5DdHp4pZXFK3XrKlUXbLT1aiA5uUc6DWL1wuypfghMEhCohZXqGZmbloYn33N
-         ahfXfyrcAfS82LsbUyy7r4nuZTpRHNJnaAXADYFhEOBS2VyDYBp5CprfvGmvzqmC0lu8
-         hYv+cVaQzyo32nEk1pgMd7qGlARXOY/YVUlaoscMr+dlKWPlO3zyqRu3xMNrY52rFb8C
-         6vbQ==
+        bh=nEq5in0z0f4vlhEZW9aTuX+Y1gknTX4JajMY0JG06rs=;
+        b=eWCTGzAo+OARMbFjfhmKlImQJ1gACaiCG60T2ORWjoaBXr6CTUvpQDTJW4saHpj2vl
+         6UAmeF2e4k7IIbU68URZR02INWU6Zu+YVjm26K7UFsc/A2TYnFJz4rN+8QKFlM5yKUGp
+         sIDYR+Ksa/VufEKZuMcvkDk2XygPV8yGvC/bZuz0OVcnwvzf1CWWTsBDzrWWcAvdeMor
+         wSQTo5pmN49+RZ8g6VDvbcKzip/ls/Ae2TS0AJDE/mGQch38MV3KBXug+qYyaSQ6xmRI
+         vrACr3U4n8rUNhJuNxGap6P2FKqQ7RPwxGKN/3DZBM17IdNRwudGRGaV5hcXqJoFY1HQ
+         wNCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711914647; x=1712519447;
+        d=1e100.net; s=20230601; t=1711914767; x=1712519567;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Mv408eiOFJL43mCJW20ls45DY73nM7/9K+nAGuogfxE=;
-        b=xRHAV4XC9IJd6wzLmN+ih9c30+5/dKy36KrK0ZNM9GTIvcqvYVtPYjba0xc8NA1BOi
-         z6WPv7TogNHmZrmwrWMENaPyddTLpDaTtrE5a/AOWtMp3BXyIX1N0PFQ6rj8A4wl51Dq
-         e0USSgOt5ZWpf+Aq4Qpy2fNkGO1bMlEAwxw3rrPjeYRnjhdfL6dLT3v3u0eiYw0Itpgs
-         XY4b94z4QuChqvSuTuPsoJFMeUxbWAn1/BXZcmgIarwtbXpcncsvKZBCB1XnW9pSqa7a
-         X3K8y2xKD0V42eLgxXHZa0KUnnopwzLx5qp6YmBVvOk19SfB/gt9495/lHvJSl9vSZOt
-         UvsQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWa69hdI/ljYvs757ymg5ji4v+RnDXmlDgZJfcQ/M+QvXKGvrNYF+14vMR9tXwym8F8+bsOMhc16DT0AiO2MyDP79ZN3IBCdZhrDw==
-X-Gm-Message-State: AOJu0Ywyldo1OBnkp+Vg2LuYxTXqEIIqH6DCn+Lwo/L4jgh3ldn3dNXC
-	ljjrr+kKd5tCVRo4xMH+B9Lm4oax8vsb2AwsiR+z9H4bYamvHN8o7GHuMrbrE5c=
-X-Google-Smtp-Source: AGHT+IEgzJSU7esQjbZNDXfiZ7a4OGn3ue6VOHaIiZkp0i93nfVf1Xro233OSfxtwOFAcJq9nxBpxA==
-X-Received: by 2002:ac2:558a:0:b0:515:cbf1:9fda with SMTP id v10-20020ac2558a000000b00515cbf19fdamr5694144lfg.61.1711914646518;
-        Sun, 31 Mar 2024 12:50:46 -0700 (PDT)
+        bh=nEq5in0z0f4vlhEZW9aTuX+Y1gknTX4JajMY0JG06rs=;
+        b=vjR+Wf0EzzBDlgb6xY0CWLPEfKS3wzagJ2K12RukQa2DrH0OllcobY3Kv2KRglTP07
+         g/t6m3eI5NRx7q6VF4eQ7fj4sGqVdEjs+j31I1umqlj6AbmMPBrb1LKygfz2jwxPMO0C
+         qWWlk9+tF9zirFhvS+JCx84Bqa2g1UB/qRQjWDpXdK1p3Ha4TbiRfI4xVTNYfdAvuc24
+         Ex/4o8rbdlN1JhWglA23DmCc8msir2TXdSn4YyHoh7kUNBqXmKYPxoEBFWkILZRBo98+
+         SlNiNJJm5PVGEz98UA2BbK3yMj9ah+EY9f+BEbspNUZVzzVvGq5bpqDCCdy/G7r0N4JR
+         aqAQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUvzq53gBSiMo7k7Hj0tgBoPBS2YE6d4iXd757hEaPYNpE9txbnTLzxctm1cP2JJIufsyvShmW/CHcU2bj1GWUNKBNf9fSTHKQIHQ==
+X-Gm-Message-State: AOJu0YylFYVoUDDxV3eQJmVppHU5Evsj7CXY9XK2z42MzCKhSVKII8Y+
+	1FIQrpFTlKLmTt6N5TuO09LIiygEScDpmr1PVGEqRUAlyOqJPHoOFk+eorRE8yk=
+X-Google-Smtp-Source: AGHT+IEd0KTvxBQTNGk8inkxfvQV4qJPxaIOeWoWJQ237yA4vryNoS4fW54OHBuBpV3qMPD2rcjxeA==
+X-Received: by 2002:a2e:3209:0:b0:2d4:aa55:72db with SMTP id y9-20020a2e3209000000b002d4aa5572dbmr5960652ljy.19.1711914767471;
+        Sun, 31 Mar 2024 12:52:47 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id w20-20020a170906481400b00a46aab70226sm4480758ejq.180.2024.03.31.12.50.45
+        by smtp.gmail.com with ESMTPSA id r17-20020a056402019100b0056c4a0ccaacsm4654926edv.83.2024.03.31.12.52.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 31 Mar 2024 12:50:46 -0700 (PDT)
-Message-ID: <ad63db04-a0ad-4dd2-b61b-4c47deabc0fd@linaro.org>
-Date: Sun, 31 Mar 2024 21:50:44 +0200
+        Sun, 31 Mar 2024 12:52:46 -0700 (PDT)
+Message-ID: <eedeb8d5-3076-4e19-b935-813a341864e0@linaro.org>
+Date: Sun, 31 Mar 2024 21:52:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,13 +77,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4] dt-bindings: serial: actions,owl-uart: convert to
- dtschema
-To: Kanak Shilledar <kanakshilledar@gmail.com>
-Cc: krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
- devicetree@vger.kernel.org, daniel.baluta@nxp.com,
- Kanak Shilledar <kanakshilledar111@protonmail.com>
-References: <20240331132811.12060-1-kanakshilledar@gmail.com>
+Subject: Re: [PATCH v5 4/4] clk: imx: add i.MX95 BLK CTL clk driver
+To: Peng Fan <peng.fan@nxp.com>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Abel Vesa <abelvesa@kernel.org>
+Cc: "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20240324-imx95-blk-ctl-v5-0-7a706174078a@nxp.com>
+ <20240324-imx95-blk-ctl-v5-4-7a706174078a@nxp.com>
+ <d3770f5e-f3cc-40fd-a211-b229be46d974@linaro.org>
+ <DU0PR04MB941774D0A1CD037AB7108AAF88382@DU0PR04MB9417.eurprd04.prod.outlook.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -130,78 +142,49 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240331132811.12060-1-kanakshilledar@gmail.com>
+In-Reply-To: <DU0PR04MB941774D0A1CD037AB7108AAF88382@DU0PR04MB9417.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 31/03/2024 15:28, Kanak Shilledar wrote:
-> From: Kanak Shilledar <kanakshilledar111@protonmail.com>
+On 31/03/2024 14:01, Peng Fan wrote:
+>> Subject: Re: [PATCH v5 4/4] clk: imx: add i.MX95 BLK CTL clk driver
+>>
+>> On 24/03/2024 08:52, Peng Fan (OSS) wrote:
+>>> From: Peng Fan <peng.fan@nxp.com>
+>>>
+>>
+>> ...
+>>
+>>> +
+>>> +static const struct of_device_id imx95_bc_of_match[] = {
+>>> +	{ .compatible = "nxp,imx95-camera-csr", .data = &camblk_dev_data },
+>>> +	{ .compatible = "nxp,imx95-display-master-csr", },
+>>> +	{ .compatible = "nxp,imx95-lvds-csr", .data = &lvds_csr_dev_data },
+>>> +	{ .compatible = "nxp,imx95-display-csr", .data =
+>> &dispmix_csr_dev_data },
+>>> +	{ .compatible = "nxp,imx95-vpu-csr", .data = &vpublk_dev_data },
+>>> +	{ /* Sentinel */ },
+>>> +};
+>>> +MODULE_DEVICE_TABLE(of, imx95_bc_of_match);
+>>> +
+>>> +static struct platform_driver imx95_bc_driver = {
+>>> +	.probe = imx95_bc_probe,
+>>> +	.driver = {
+>>> +		.name = "imx95-blk-ctl",
+>>> +		.of_match_table = of_match_ptr(imx95_bc_of_match),
+>>
+>> Drop of_match_ptr(), causes warnings. From where did you copy such code?
+>> Which mainline driver has such pattern?
 > 
-> Convert the Actions Semi Owl UART to newer DT schema.
-> Created DT schema based on the .txt file which had
-> `compatible`, `reg` and `interrupts` as the
-> required properties. This binding is used by Actions S500, S700
-> and S900 SoC. S700 and S900 use the same UART compatible string.
+> I recall that when COMPILE_TEST is selected, OF is not selected, kernel
+> robot reports warning. This may not be true now.
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-I explicitly asked you to drop my tag. Last time I raised the problem
-that you implement some other changes and do not implement what reviewer
-is asking for. It seems this continues the pattern.
-
-
-> Signed-off-by: Kanak Shilledar <kanakshilledar111@protonmail.com>
-> ---
-> Changes in v4
-> - added `clocks` property to fix warning of 'clocks' was unexpected
-> while running `make dtbs_check`. `clocks` property was not defined
-> in the original .txt file. `clocks` property is removed from the
-> required section.
-> - added `clocks` property in example
-> - extended the devicetree with clocks node
-
-Please keep the reset of the changelog.
-
-You had two other versions, what was changing? Why this is not even
-correct? Your v4 did not add clocks to the example. It was already in v3.
-
-How can we know what you changed here if this changelog is totally
-mixing everything from all changes?
-
-Please read this carefully and read the feedback carefully. Then create
-changelogs which represent REAL CHANGES, like:
-https://lore.kernel.org/all/20240210-topic-8280_pcie-v3-0-ee7af6f892a0@linaro.org/
-
-If someone asks you to drop the tag, you MUST drop the tag.
-
-The patch is fine though, so I would give Review tag now. Keep above for
-future and no need to resend just to fix it. If you send or resend, then
-fix the changelog.
-
-FWIW
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-BUT, your patch won't be applied... because you decided not to CC
-maintainers. I have no clue how or why did you come up with such Cc
-list. There is a guideline in your project, whether this is GSoC or
-mentorship or whatever, how to send patches. Please read carefully this
-guideline.
-
-Standard form letter:
-
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC (and consider --no-git-fallback argument). It might
-happen, that command when run on an older kernel, gives you outdated
-entries. Therefore please be sure you base your patches on recent Linux
-kernel.
-
-Tools like b4 or scripts/get_maintainer.pl provide you proper list of
-people, so fix your workflow. Tools might also fail if you work on some
-ancient tree (don't, instead use mainline), work on fork of kernel
-(don't, instead use mainline) or you ignore some maintainers (really
-don't). Just use b4 and everything should be fine, although remember
-about `b4 prep --auto-to-cc` if you added new patches to the patchset.
+This itself was never true. Any compilation, not robots, which you can
+test by yourself will report warnings if your code is not correct. Don't
+use random C syntax to suppress warnings, but actually something which
+will work. of_match_ptr does not make sense without maybe_unused or
+ifdef. But anyway of_match_ptr is not recommended.
 
 Best regards,
 Krzysztof
