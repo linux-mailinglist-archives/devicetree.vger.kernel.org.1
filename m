@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-54948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54949-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C4B68935A2
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 21:42:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC7AB8935A4
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 21:50:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BDA341C21323
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 19:42:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C38A61C213A7
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 19:50:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA9E51474B5;
-	Sun, 31 Mar 2024 19:42:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90D271474B7;
+	Sun, 31 Mar 2024 19:50:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KADc3Rq9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="n7Ob6lcH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94CD61E520
-	for <devicetree@vger.kernel.org>; Sun, 31 Mar 2024 19:42:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F8DB290A
+	for <devicetree@vger.kernel.org>; Sun, 31 Mar 2024 19:50:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711914152; cv=none; b=cNu99LgId05SjHazZX3l4M5/Dnl0hqK5TgUwdvubXtPsnXQ1ReBuH9jEvQf2hvDVRRUwTscaKZc9bphv4NFg0xmWri7fFtXvPjtusqn3gn7pM8FdbvH/74+6aw2fpWWG45EyxbjTCmJTn0VRrPFLww9CDXLzRO9PhpPCo3/PXSA=
+	t=1711914650; cv=none; b=VtgVFTnYILjbhb1gOegW/tUeZCI74aGP3cpNJAnn+Y+lhhRGaaaMSe15kkXutMxHM18bmvbpd7upmt1R5axAxAwFXuMz2NS3Oy7JFv/OSU23DYNVIGJYXf2w2gP+QVhTCXFh2JB3SxIMC/FA2Wh26ouctF+gfzs8ObToqSUlChQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711914152; c=relaxed/simple;
-	bh=4O449uDER9hGB7jNnSl8M++gFxwsOoKdZ44vmu91USg=;
+	s=arc-20240116; t=1711914650; c=relaxed/simple;
+	bh=olDlnNWaxZ+Q6JxOUBf1m3IK0XC+lV8zWmnq19eEL4E=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uikzNpaHH9EQGPMjTh904xxMk8OlXLoJXKaKxYPSEaYRzjtTpUi9JbbdLp4KUdHBrZxKyfvDqW2NOneg1WGDOb/rKFdUJ390NIi7HSQYkziVmFd00do0QQPIsLtt/uJqurf7SW6SPg77K8tf3IQep9MN1RFC//r7F7C/ONBFNCg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KADc3Rq9; arc=none smtp.client-ip=209.85.128.52
+	 In-Reply-To:Content-Type; b=PCwb6ldoP7vn4zSb7jc60uqrrEanNZIHCWe4qow2ipH07mcZhdCNqp/UsZ/1sZt/PpnshNVwWFWLslsSiMIZdatauPRMUsE4CSYHaWp1vV72/voy5DGOw7mVmOIAb9E29j1nr6zYRILV2WxzHvhmq41HBFd2iS3gx2fSKuodZf0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=n7Ob6lcH; arc=none smtp.client-ip=209.85.167.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4156643abeeso971875e9.1
-        for <devicetree@vger.kernel.org>; Sun, 31 Mar 2024 12:42:30 -0700 (PDT)
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-513d599dbabso4388469e87.1
+        for <devicetree@vger.kernel.org>; Sun, 31 Mar 2024 12:50:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711914149; x=1712518949; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711914647; x=1712519447; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=fgvq99cXWyahdPEeRKbwLZ856Z/nFUREvqBsKFF2cmM=;
-        b=KADc3Rq9UV+RO7D8mWm+yhiGj4GvQ5qGGhbrecKklaFccATa3kMc7IQfb7ki7cdpux
-         9iPz3qgQw9d364yU3e0F9uXgjJCm9qZJeWvbWCg+kCZZRmHrCVvNbJ6FMNeMoKVvTT10
-         3m+x/QlCoDH3j0OmB3LbyBTINWH8TWp1ZimndNe6ImsOS3LbnCq6P/b70VkHCLOvVT+M
-         xt7l1UURIEiE+/s36hAD7z5LD75RBbqBDrOS4jr1p0nVIIKiVxSZg9a+d2/ZSE/djDQG
-         i4Yo5pWWhVK173fAwB/Ev/yYnTo2g4iIILrNoFAxllqnkNnsq6cG5ypEfj1/qrYFXgdZ
-         Uw0g==
+        bh=Mv408eiOFJL43mCJW20ls45DY73nM7/9K+nAGuogfxE=;
+        b=n7Ob6lcHATlqlyRbspISIhH+YYSQhIiDf13IvamW2ZSQDUCRa7ouyAEw548on2TGv9
+         1vlX5e3FMmFlJLhj0NHEYQpsNMwSyASzZOYm7ygHRWVwpuM+7v0ej7go0mjC3f8Vr87L
+         VY+xcWR5DdHp4pZXFK3XrKlUXbLT1aiA5uUc6DWL1wuypfghMEhCohZXqGZmbloYn33N
+         ahfXfyrcAfS82LsbUyy7r4nuZTpRHNJnaAXADYFhEOBS2VyDYBp5CprfvGmvzqmC0lu8
+         hYv+cVaQzyo32nEk1pgMd7qGlARXOY/YVUlaoscMr+dlKWPlO3zyqRu3xMNrY52rFb8C
+         6vbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711914149; x=1712518949;
+        d=1e100.net; s=20230601; t=1711914647; x=1712519447;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=fgvq99cXWyahdPEeRKbwLZ856Z/nFUREvqBsKFF2cmM=;
-        b=kgcG8+HxBEnkVIdDzNpg27tPmzDFJlDVMKDOAZFJffkfbPVgUUmpHWlh2YOuh61hkx
-         nSN/5JThA713+iRrDXrI+RHz6MqUF3deN9cRcpvMXrQxtu0cbagUAuq4RlTtFeXtGMzI
-         oYkqvtB07VHY9/WrCGLE+3t9sEkFJuEhp7oVIHrikigo6w5U9tM28TmCcG7XzRObefvX
-         qmSkUizCadPoozjhE5k2kAcZcNElNBLKD8e1Uf+FPn0GgbyKsgciGHiTiQgtHhJ0I6UO
-         2MrY5nx/xbDEnGAnmZI4Ve5GTCjQhNDwCRfFIcDtq0IP3P3BQzw81OSbcAorDPBcdgBh
-         Ni4g==
-X-Forwarded-Encrypted: i=1; AJvYcCVB9Y1w7ySkqjY1eR9fnmjuRhN1b3JYRUqaF25Yi095L7Bdvl4poiiT/Qp61TDrOFXxAI7X+HCfk2C/FzxagprjCp03TYyO/3mFPw==
-X-Gm-Message-State: AOJu0YxLD4ufYJ+Gt74M3aM4DYIRy+Vakq6zssRgzDDQyAL8xgIMKYNd
-	SPR7wH2BUNoHmJlCFVXzXS0vmZUmJTDCWtQwV2/Seib2IVmhe9XSVDEvJlx7IvE=
-X-Google-Smtp-Source: AGHT+IHMVRY4AMMDLr8mhs443QG4RDXTDC48pOBBpX6fpAmTnJdu5OwIkBcdfJjYnRG5qvNENBO7Og==
-X-Received: by 2002:a05:600c:1907:b0:414:8aaa:acb5 with SMTP id j7-20020a05600c190700b004148aaaacb5mr5360354wmq.16.1711914148801;
-        Sun, 31 Mar 2024 12:42:28 -0700 (PDT)
+        bh=Mv408eiOFJL43mCJW20ls45DY73nM7/9K+nAGuogfxE=;
+        b=xRHAV4XC9IJd6wzLmN+ih9c30+5/dKy36KrK0ZNM9GTIvcqvYVtPYjba0xc8NA1BOi
+         z6WPv7TogNHmZrmwrWMENaPyddTLpDaTtrE5a/AOWtMp3BXyIX1N0PFQ6rj8A4wl51Dq
+         e0USSgOt5ZWpf+Aq4Qpy2fNkGO1bMlEAwxw3rrPjeYRnjhdfL6dLT3v3u0eiYw0Itpgs
+         XY4b94z4QuChqvSuTuPsoJFMeUxbWAn1/BXZcmgIarwtbXpcncsvKZBCB1XnW9pSqa7a
+         X3K8y2xKD0V42eLgxXHZa0KUnnopwzLx5qp6YmBVvOk19SfB/gt9495/lHvJSl9vSZOt
+         UvsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWa69hdI/ljYvs757ymg5ji4v+RnDXmlDgZJfcQ/M+QvXKGvrNYF+14vMR9tXwym8F8+bsOMhc16DT0AiO2MyDP79ZN3IBCdZhrDw==
+X-Gm-Message-State: AOJu0Ywyldo1OBnkp+Vg2LuYxTXqEIIqH6DCn+Lwo/L4jgh3ldn3dNXC
+	ljjrr+kKd5tCVRo4xMH+B9Lm4oax8vsb2AwsiR+z9H4bYamvHN8o7GHuMrbrE5c=
+X-Google-Smtp-Source: AGHT+IEgzJSU7esQjbZNDXfiZ7a4OGn3ue6VOHaIiZkp0i93nfVf1Xro233OSfxtwOFAcJq9nxBpxA==
+X-Received: by 2002:ac2:558a:0:b0:515:cbf1:9fda with SMTP id v10-20020ac2558a000000b00515cbf19fdamr5694144lfg.61.1711914646518;
+        Sun, 31 Mar 2024 12:50:46 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id u8-20020a05600c19c800b0041478393b8fsm15444996wmq.42.2024.03.31.12.42.26
+        by smtp.gmail.com with ESMTPSA id w20-20020a170906481400b00a46aab70226sm4480758ejq.180.2024.03.31.12.50.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 31 Mar 2024 12:42:28 -0700 (PDT)
-Message-ID: <b26314d1-a059-4fd8-b52a-1234606bb7e5@linaro.org>
-Date: Sun, 31 Mar 2024 21:42:25 +0200
+        Sun, 31 Mar 2024 12:50:46 -0700 (PDT)
+Message-ID: <ad63db04-a0ad-4dd2-b61b-4c47deabc0fd@linaro.org>
+Date: Sun, 31 Mar 2024 21:50:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,30 +77,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [EXTERNAL] Re: [PATCH v7 4/4] ASoc: dt-bindings: PCM6240: Add
- initial DT binding
-To: "Ding, Shenghao" <shenghao-ding@ti.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Cc: "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
- "broonie@kernel.org" <broonie@kernel.org>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "perex@perex.cz" <perex@perex.cz>, "tiwai@suse.com" <tiwai@suse.com>,
- "13916275206@139.com" <13916275206@139.com>,
- "Chawla, Mohit" <mohit.chawla@ti.com>, "soyer@irl.hu" <soyer@irl.hu>,
- "Huang, Jonathan" <jkhuang3@ti.com>, "tiwai@suse.de" <tiwai@suse.de>,
- "Djuandi, Peter" <pdjuandi@ti.com>, "Agrawal, Manisha"
- <manisha.agrawal@ti.com>, "Hari, Raj" <s-hari@ti.com>,
- "Yashar, Avi" <aviel@ti.com>, "Nagalla, Hari" <hnagalla@ti.com>,
- "Bajjuri, Praneeth" <praneeth@ti.com>, "Baojun.Xu@fpt.com"
- <Baojun.Xu@fpt.com>, Rob Herring <robh@kernel.org>
-References: <20240331021835.1470-1-shenghao-ding@ti.com>
- <20240331021835.1470-5-shenghao-ding@ti.com>
- <cc7a60c3-4a1e-4f32-b6ef-4a41d5c48eaf@linaro.org>
- <41797fe7d5bb41b4bdea4ee7f4957291@ti.com>
+Subject: Re: [PATCH v4] dt-bindings: serial: actions,owl-uart: convert to
+ dtschema
+To: Kanak Shilledar <kanakshilledar@gmail.com>
+Cc: krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+ devicetree@vger.kernel.org, daniel.baluta@nxp.com,
+ Kanak Shilledar <kanakshilledar111@protonmail.com>
+References: <20240331132811.12060-1-kanakshilledar@gmail.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -147,47 +130,78 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <41797fe7d5bb41b4bdea4ee7f4957291@ti.com>
+In-Reply-To: <20240331132811.12060-1-kanakshilledar@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 31/03/2024 15:20, Ding, Shenghao wrote:
-> Hi Krzysztof
-> Answer inline
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: Sunday, March 31, 2024 4:15 PM
->> To: Ding, Shenghao <shenghao-ding@ti.com>; linux-kernel@vger.kernel.org
->> Cc: lgirdwood@gmail.com; broonie@kernel.org; robh+dt@kernel.org;
->> krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org; linux-
->> sound@vger.kernel.org; devicetree@vger.kernel.org; perex@perex.cz;
->> tiwai@suse.com; 13916275206@139.com; Chawla, Mohit
->> <mohit.chawla@ti.com>; soyer@irl.hu; Huang, Jonathan
->> <jkhuang3@ti.com>; tiwai@suse.de; Djuandi, Peter <pdjuandi@ti.com>;
->> Agrawal, Manisha <manisha.agrawal@ti.com>; Hari, Raj <s-hari@ti.com>;
->> Yashar, Avi <aviel@ti.com>; Nagalla, Hari <hnagalla@ti.com>; Bajjuri,
->> Praneeth <praneeth@ti.com>; Baojun.Xu@fpt.com; Rob Herring
->> <robh@kernel.org>
->> Subject: [EXTERNAL] Re: [PATCH v7 4/4] ASoc: dt-bindings: PCM6240: Add
->> initial DT binding
->>
-> .............................
->>>  - remove unneeded items and if branches.
->>>  - Add missing compatible devices, such as adc6120, etc.
->>>  - Add necessary people into the list for DTS review
->>>  - correct misaligned.
->>>  - simplify the compatibility
->>>  - remove sound-name-prefix and revert back
->>>  - Add review information
->>
->> All these changes in v7 and you still kept Rob's review? I think either review
->> was not given or your changelog is just incorrect.
-> Since Rob's review, nothing changed in yaml. Even in this patch, only removed kcontrol interfaces
-> in the code and added the mixer-test report in cover-letter as Mark suggested, which is no effect
-> on yaml file.
+On 31/03/2024 15:28, Kanak Shilledar wrote:
+> From: Kanak Shilledar <kanakshilledar111@protonmail.com>
+> 
+> Convert the Actions Semi Owl UART to newer DT schema.
+> Created DT schema based on the .txt file which had
+> `compatible`, `reg` and `interrupts` as the
+> required properties. This binding is used by Actions S500, S700
+> and S900 SoC. S700 and S900 use the same UART compatible string.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Then for the future, please use some reasonable format of changelog, e.g.:
+I explicitly asked you to drop my tag. Last time I raised the problem
+that you implement some other changes and do not implement what reviewer
+is asking for. It seems this continues the pattern.
+
+
+> Signed-off-by: Kanak Shilledar <kanakshilledar111@protonmail.com>
+> ---
+> Changes in v4
+> - added `clocks` property to fix warning of 'clocks' was unexpected
+> while running `make dtbs_check`. `clocks` property was not defined
+> in the original .txt file. `clocks` property is removed from the
+> required section.
+> - added `clocks` property in example
+> - extended the devicetree with clocks node
+
+Please keep the reset of the changelog.
+
+You had two other versions, what was changing? Why this is not even
+correct? Your v4 did not add clocks to the example. It was already in v3.
+
+How can we know what you changed here if this changelog is totally
+mixing everything from all changes?
+
+Please read this carefully and read the feedback carefully. Then create
+changelogs which represent REAL CHANGES, like:
 https://lore.kernel.org/all/20240210-topic-8280_pcie-v3-0-ee7af6f892a0@linaro.org/
+
+If someone asks you to drop the tag, you MUST drop the tag.
+
+The patch is fine though, so I would give Review tag now. Keep above for
+future and no need to resend just to fix it. If you send or resend, then
+fix the changelog.
+
+FWIW
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+BUT, your patch won't be applied... because you decided not to CC
+maintainers. I have no clue how or why did you come up with such Cc
+list. There is a guideline in your project, whether this is GSoC or
+mentorship or whatever, how to send patches. Please read carefully this
+guideline.
+
+Standard form letter:
+
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC (and consider --no-git-fallback argument). It might
+happen, that command when run on an older kernel, gives you outdated
+entries. Therefore please be sure you base your patches on recent Linux
+kernel.
+
+Tools like b4 or scripts/get_maintainer.pl provide you proper list of
+people, so fix your workflow. Tools might also fail if you work on some
+ancient tree (don't, instead use mainline), work on fork of kernel
+(don't, instead use mainline) or you ignore some maintainers (really
+don't). Just use b4 and everything should be fine, although remember
+about `b4 prep --auto-to-cc` if you added new patches to the patchset.
 
 Best regards,
 Krzysztof
