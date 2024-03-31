@@ -1,169 +1,109 @@
-Return-Path: <devicetree+bounces-54887-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-54888-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E03D9893142
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 12:50:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 166A2893148
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 12:56:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6AC451F21889
-	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 10:50:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 274CB1C21078
+	for <lists+devicetree@lfdr.de>; Sun, 31 Mar 2024 10:56:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD5D3143C6D;
-	Sun, 31 Mar 2024 10:50:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9523A143C73;
+	Sun, 31 Mar 2024 10:56:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="J866AfAt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ABVlfCbw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9836143868
-	for <devicetree@vger.kernel.org>; Sun, 31 Mar 2024 10:50:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 682BB40C1F;
+	Sun, 31 Mar 2024 10:56:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711882219; cv=none; b=otMGGAkE6pm3ta3swWMrIKkmSREA/LX7cYSI/P6zcFHmfboTZ57/5bU01knYIhIkhmHvUueCJzojVS8qGzk4kz3isTMu7rU5sD+C3N8gqQMwMDQX0kOZUoEZpNuisJ5FzTIaKdiYQi0VIUljm0IZALlIBg1CUfNUR/K6nJ0YcGU=
+	t=1711882601; cv=none; b=HGDVbGxUTMlX0ba6TpKk22dNKC9fEjY4tvvrIhXjQYH04vkv0z4NIiC2Qtp0A2pAarZsPHxP8U36fU1oBCOwaJxRgqoo48iCjhbwZEp5I3q0DEEbGyNNcjKpu/l+Dq9P6vO49elzB0DOTzDUJ5NSawpBFacg4k+ANGPmm29bWi4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711882219; c=relaxed/simple;
-	bh=n52/TaY7VCE+/UjSpoZvuW/A5WwyBho/pE3jBvoUxD0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Vd7QDEH/oyEXEsjZOpsz8kU8xW8LTZhlTfTdT9UPCU9MXxaDw3CTELso0bA1YXMSc+O1TlirY7VQNYAL449zUWzV1eB+GXXRuFLXBll/waORIQJN4OD1cAyjNvq+d+iOMxICTbnEYNf2YhpphzGdqLVg8gglRqIq1Ot6VtV5r4E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=J866AfAt; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-341c9926f98so2111514f8f.1
-        for <devicetree@vger.kernel.org>; Sun, 31 Mar 2024 03:50:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711882216; x=1712487016; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Iw8cYxFNoNw77A6XLeJUnmwJS3BqDiKpqdroebaYF84=;
-        b=J866AfAto/16CL8bJxb5vTS0gULBUz5C5WGu1rPcDdB1lNvjSb1AKQtB/22kUEbEUU
-         GuvBSy0qaiwhkAs29MdEgcDY8dUzS0w7lnnv3McOmSdIMOP+CC2umo9NAjtDrcKzuTEv
-         0F1JenKkgvtZYe1nURM/Ez1ROipI+/LB+OYpoXP39Imn3NoD1zN9bBhwiElrN3MWg6Vp
-         lBFsXqM2jQhCIOCvADmRMhgWGb1KJZLhwFHcTW1DgfjPzpEg7MHs3nCTRPp2BF9hifwo
-         zfcQtMJBCigKB5RRLjNpMYpnKGLUU4o8D90Zq5q6WhN96l2gHeMhjN+IfjVXOuk7z5wM
-         rRIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711882216; x=1712487016;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Iw8cYxFNoNw77A6XLeJUnmwJS3BqDiKpqdroebaYF84=;
-        b=YokUfUsVxNkYpdrh3yHPpq+/lSN66xIX5Atq6+vA0Ox+HzsGTVpUQLg76uGGVpiYyM
-         XfaS4qgecRjhKlbqsRFbDHZRhBh5wbUFisUsE+/i5PVoALLMn34dYnarBejMrTJFExrv
-         yNEKnq3x+2nwEKZbQE/WwGi5sOHKp3Y0F8PPdDtj8qKHWWfkcKRVZE4ZtUskEqZFeQzf
-         XS6BvKKFF6a0H2/J/TOFldLcPRHv07G/OgQ4UtBftJzbgTzDpWnf6BtvgQmVwNxi4Ytr
-         xBrjPSARbCoxMdxgfATPZS9e7o3u3jOtAmVtdxov7sa97Gk++OzxlsKBGHTIGfMHj0Lh
-         o8zQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUx0qYiOSCUlucjdiLDb/tVKSyqy42RA5kMr8CdNKkYr6/vph1xP4o0Hqsdab6sR+jqtxPPKGmMEeHXLRYVqDs/CkiiMkTH2uMseg==
-X-Gm-Message-State: AOJu0YxY6DlGJxCImCrTSHooheZhO7SqIUMTsFSy/eYTtQJ91sKCbbMV
-	6e/dE2sYnLZYbdA06D4epHlH4LxxR5H/ZKUKycgFzSpTUkow1uPVg/Rzt9AIRwQ=
-X-Google-Smtp-Source: AGHT+IGUUgr6cBEnD2tCmXSr4pwM67vErUoxFoA+3T6ptqYl/6tb8BTV9jUL9ZHzS76Rs6JqQBzW8w==
-X-Received: by 2002:a5d:5f49:0:b0:341:a63a:d253 with SMTP id cm9-20020a5d5f49000000b00341a63ad253mr4914259wrb.53.1711882216232;
-        Sun, 31 Mar 2024 03:50:16 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id b14-20020adff90e000000b0033e745b8bcfsm8629606wrr.88.2024.03.31.03.50.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 31 Mar 2024 03:50:15 -0700 (PDT)
-Message-ID: <2d938d7d-74a3-43af-9de3-c8f584826d32@linaro.org>
-Date: Sun, 31 Mar 2024 12:50:14 +0200
+	s=arc-20240116; t=1711882601; c=relaxed/simple;
+	bh=3JA8zXWvxduJPtSIA4N0SAo+czSCUXl4wrmxDz54JAg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=A5aUFe1uzpPv6lwEhSQY3bXTKeUTlf6DpiM18adPRDNHxeIWB6h+Ks4S4G1mtsPAsDAJfmmBn81G9/x/4I2JGWQ3j8ap+D7Je57Q0mniREA00UaY6mcr5c3uVVUf5ghxcbf7Z5PmzzC3mlJpT4bWdDxwbkf+HLUnyKW8eVpZUdk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ABVlfCbw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 001B5C433F1;
+	Sun, 31 Mar 2024 10:56:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711882601;
+	bh=3JA8zXWvxduJPtSIA4N0SAo+czSCUXl4wrmxDz54JAg=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=ABVlfCbwMiW/9N4ITnMIQxVipnhX3WCOEcm5TLDqwm/gl7AqAADEMFWrXpueCob2r
+	 0DefuuurTABydQhoRV81V/zBVsde3CW0qfvWMVhymniBPeTzaKH75sUkCcaj3aL6ox
+	 7Qxbd+gW/EG35pflYh5oacEnij+YVMv0xV2/XQbTSHHxmm+yc4FWhH+SiEaOVbxe6J
+	 d56fmXDWF8nftG9FD4u9Nkk8m+MyFVraaJebONX1ZJxpd4D+BvyBvdJBRc0jDnVMN1
+	 uoza2+I5K+j10U124LlneqIUVnjo6v1vEC8U/0tzpwnDQTfvL0K7XupCBj3nCq23T0
+	 dhvuYFXVLOCJg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E3A06CD128A;
+	Sun, 31 Mar 2024 10:56:40 +0000 (UTC)
+From: Alexandru Marc Serdeliuc via B4 Relay <devnull+serdeliuk.yahoo.com@kernel.org>
+Subject: [PATCH v3 0/2] Samsung Galaxy Z Fold5 initial support
+Date: Sun, 31 Mar 2024 12:56:38 +0200
+Message-Id: <20240331-samsung-galaxy-zfold5-q5q-v3-0-17ae8d0a9fba@yahoo.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] spi: cadence: Add Marvell IP modification changes
-To: Witold Sadowski <wsadowski@marvell.com>, linux-kernel@vger.kernel.org,
- linux-spi@vger.kernel.org, devicetree@vger.kernel.org
-Cc: broonie@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, pthombar@cadence.com
-References: <20240329194849.25554-1-wsadowski@marvell.com>
- <20240329194849.25554-3-wsadowski@marvell.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240329194849.25554-3-wsadowski@marvell.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGZBCWYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyjHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDY2ND3eLE3OLSvHTd9MScxIpK3aq0/JwUU91C00LdVOM0YxOLNDMTc1N
+ zJaD+gqLUtMwKsNnRsbW1ABNhBOJrAAAA
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Alexandru Marc Serdeliuc <serdeliuk@yahoo.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1711882599; l=884;
+ i=serdeliuk@yahoo.com; s=20240326; h=from:subject:message-id;
+ bh=3JA8zXWvxduJPtSIA4N0SAo+czSCUXl4wrmxDz54JAg=;
+ b=aDq6wusCtpMghuggUJWzAmv91MkJfuMGcoau1D3E95KEyBKJtJ9oK6lw6cLQ4OZDBtiQdC54p
+ iWgCy20wZV4BQxlAEf220eEyC68d7ITJVC67iRmpLT1zdSFwa5aMIP5
+X-Developer-Key: i=serdeliuk@yahoo.com; a=ed25519;
+ pk=aWyveUE11qfDOOlRIFayXukrNn39BvZ9k9uq94dAsgY=
+X-Endpoint-Received: by B4 Relay for serdeliuk@yahoo.com/20240326 with
+ auth_id=147
+X-Original-From: Alexandru Marc Serdeliuc <serdeliuk@yahoo.com>
+Reply-To: serdeliuk@yahoo.com
 
-On 29/03/2024 20:48, Witold Sadowski wrote:
-> Add support for Marvell IP modification - clock divider,
-> and PHY config, and IRQ clearing.
-> Clock divider block is build into Cadence XSPI controller
-> and is connected directly to 800MHz clock.
-> As PHY config is not set directly in IP block, driver can
-> load custom PHY configuration values.
-> To correctly clear interrupt in Marvell implementation
-> MSI-X must be cleared too.
-> 
-> Signed-off-by: Witold Sadowski <wsadowski@marvell.com>
-> ---
->  drivers/spi/spi-cadence-xspi.c | 311 ++++++++++++++++++++++++++++++++-
+This documents and add intial dts support for Samsung Galaxy Z Fold5 (samsung,q5q)
+which is a foldable phone by Samsung based on the sm8550 SoC.
 
-You already sent this patchset, so this is not v1. Please version your
-patches correctly. b4 does it automatically.
+Currently working features:
+- Framebuffer
+- UFS
+- i2c
+- Buttons
 
-You also received last time feedback which it seems you just ignored.
-You did not respond to any of the feedback and I do not see it being
-addressed here.
+Signed-off-by: Alexandru Marc Serdeliuc <serdeliuk@yahoo.com>
+---
+Alexandru Marc Serdeliuc (2):
+      dt-bindings: arm: qcom: Document the Samsung Galaxy Z Fold5
+      arm64: dts: qcom: sm8550: Add support for Samsung Galaxy Z Fold5
 
-That's not how collaboration in upstream projects work. Don't just
-ignore reviews you receive. Please carefully read:
-
-https://elixir.bootlin.com/linux/v6.9-rc1/source/Documentation/process/submitting-patches.rst
-
-There is also entire section about this particular issue - responding to
-reviewers.
+ Documentation/devicetree/bindings/arm/qcom.yaml |   1 +
+ arch/arm64/boot/dts/qcom/Makefile               |   1 +
+ arch/arm64/boot/dts/qcom/sm8550-samsung-q5q.dts | 582 ++++++++++++++++++++++++
+ 3 files changed, 584 insertions(+)
+---
+base-commit: 4cece764965020c22cff7665b18a012006359095
+change-id: 20240331-samsung-galaxy-zfold5-q5q-e3f348f64757
 
 Best regards,
-Krzysztof
+-- 
+Alexandru Marc Serdeliuc <serdeliuk@yahoo.com>
+
 
 
