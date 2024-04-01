@@ -1,117 +1,115 @@
-Return-Path: <devicetree+bounces-55037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55038-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55583893A7C
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 13:05:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 653E8893A86
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 13:10:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 094C8281EFD
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 11:05:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DAD83B2130E
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 11:10:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA0721CD22;
-	Mon,  1 Apr 2024 11:04:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF81A200D4;
+	Mon,  1 Apr 2024 11:10:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j8IZSuox"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="lpLFpz1f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B12E71CA80;
-	Mon,  1 Apr 2024 11:04:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2478A171C1;
+	Mon,  1 Apr 2024 11:10:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711969499; cv=none; b=FphI3xT9CvQY47TE2juV+x1hHdVqPDo3GFbdSf2mlBQQu3/YchiTdvlsCzP8pLCqCJ/hmWi3Lln5BjNiSN6xgW6iR+T45b5uCyXRqlfWwz4WBkk+9G+kbAfxQQ1QKAl5lOHicU5jpOlScfVAqDndpqE7AMUDBFRxmuhJypMfTCo=
+	t=1711969826; cv=none; b=PcFuPFuQtHJXUM72i7LoFdkFjG3pmuG0y7karglw+Q3OqQrRYuoZwAI7G2+qivMhMfiReC1AKSgsts8dcuqALPp+UEwEoKivrZOaX1pSJnpacbBqs84e5nqwntvvt943vy2b1JSlIoduK9XMIWREDzZbxeo3KS0VtfYEVKdAM/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711969499; c=relaxed/simple;
-	bh=wbtZnZNRzG00lE4ZHsrFfChA6qI7zlnMd624QHakRZg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kicn6YwmqMSnFnevCpEkEV0cwgdSI7ZB7RpBR+59qH1QhUSzbpm9ugcT5lJbR7dTxiPxky2SbrhnCiz9F8CC6WDqmnuUb4UTxuWQUS70xwkrv01SGPmkZbmzeWgW7ZLh26C5VpawrP5MMa6Du0Br/4wF31QthRmiPq5VknEiyA4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j8IZSuox; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F7D7C433F1;
-	Mon,  1 Apr 2024 11:04:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711969499;
-	bh=wbtZnZNRzG00lE4ZHsrFfChA6qI7zlnMd624QHakRZg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=j8IZSuoxRJhu8qiI0bvQ+KWX6aLPoUDgT3FtRXWU+bZh4L9xCMQEI/6vN6WqgI37L
-	 z/kNP6h8fxKgpwky/MZdfAWNdc/fnk4zlwhQVKAuz1auK4cbo8TPCKNdTiCjlaYQZB
-	 osrOZw2s6AmpsFek5BgxBr35oNUfjFg4In1VJtRilRNrZMicJyNoa1M/LmRqDCbDIs
-	 NjxtWEfbRv7EP4N1Hmk2pUrNmfSCKdTsPFDm5ibu2W6TR3NQEN0tET23tFwQLFLBzQ
-	 QWtPGxdTu8QOiFRiAvsPXiNm5La3P950PAFt/74dc7+FMZIPBjqom9BsA7LUOsy+iv
-	 NmOyB7Tr9dsnw==
-Date: Mon, 1 Apr 2024 12:04:55 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: inv.git-commit@tdk.com, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	lars@metafoo.de, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
-Subject: Re: [PATCH 2/2] dt-bindings: iio: imu: add icm42688 inside
- inv_icm42600
-Message-ID: <20240401-marshy-derby-e22a469dd555@spud>
-References: <20240329151535.712827-1-inv.git-commit@tdk.com>
- <20240329151535.712827-3-inv.git-commit@tdk.com>
- <20240329-fifth-earpiece-78daf4d943ce@spud>
- <20240330161012.0b49846a@jic23-huawei>
+	s=arc-20240116; t=1711969826; c=relaxed/simple;
+	bh=jXPaO+i+Lw710s/JiXZf6r82g0i1A7AaxWvqDCwkkOQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=EPRnB+66NY5hBBoyZJSSfDuWC+Bx+6fsJ5MY/YGeOoMLExuMpVHIpR2SzXqjrmSjGSBdtMElqZs0F4ObCPgf3YGEGphMGKX7zJTHephlPD9ph0otPY5WKI59rbjh+2QmHZOC4dOoQHZfkxOtMQnQf8xroj0MkV6dGvJFqbj6Duo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=lpLFpz1f; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 431B9utw045139;
+	Mon, 1 Apr 2024 06:09:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1711969796;
+	bh=OHVLNNuVDONKMS47YizWE9mpzvg3Fyk8qUd4xbzSgbQ=;
+	h=From:To:CC:Subject:Date;
+	b=lpLFpz1fFO/ugHdyXI6gx0Tm/5t1bI8LC56m3Nt8j7a0ZEikz4KNAAnjrUk4FBzg3
+	 wyYoeSxNZGnCqNahmWTNx4uyIqp8m4knDrwzKvPjeuIbvG7VPaXFmzP16yo1ib6jV3
+	 tk8f3WXxGTR9wNQOYip8DlthZ02eGqXRTMZVMo5s=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 431B9utS099052
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 1 Apr 2024 06:09:56 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 1
+ Apr 2024 06:09:56 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 1 Apr 2024 06:09:56 -0500
+Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [172.24.227.9])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 431B9p8x034988;
+	Mon, 1 Apr 2024 06:09:52 -0500
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: <lpieralisi@kernel.org>, <kw@linux.com>, <robh@kernel.org>,
+        <bhelgaas@google.com>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <kishon@kernel.org>
+CC: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <srk@ti.com>, <s-vadapalli@ti.com>
+Subject: [PATCH v3] dt-bindings: PCI: ti,j721e-pci-host: Add device-id for TI's J784S4 SoC
+Date: Mon, 1 Apr 2024 16:39:51 +0530
+Message-ID: <20240401110951.3816291-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="JM0RkxI3fhX4QnJ4"
-Content-Disposition: inline
-In-Reply-To: <20240330161012.0b49846a@jic23-huawei>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+Add the device-id of 0xb012 for the PCIe controller on the J784S4 SoC as
+described in the CTRL_MMR_PCI_DEVICE_ID register's PCI_DEVICE_ID_DEVICE_ID
+field. The Register descriptions and the Technical Reference Manual for
+J784S4 SoC can be found at: https://www.ti.com/lit/zip/spruj52
 
---JM0RkxI3fhX4QnJ4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+Acked-by: Rob Herring <robh@kernel.org>
+---
 
-On Sat, Mar 30, 2024 at 04:10:12PM +0000, Jonathan Cameron wrote:
-> On Fri, 29 Mar 2024 15:49:26 +0000
-> Conor Dooley <conor@kernel.org> wrote:
->=20
-> > On Fri, Mar 29, 2024 at 03:15:35PM +0000, inv.git-commit@tdk.com wrote:
-> > > From: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
-> > >=20
-> > > Add bindings for ICM-42688-P chip.
-> > >=20
-> > > Signed-off-by: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com=
-> =20
-> >=20
-> > My initial thought was that you're missing a sign-off, but is
-> > "inv.git-commit@tdk.com" some system you have to bypass corporate email
-> > garbage?
->=20
-> Common enough setup, as long as the From: line matches the sign-off, git =
-will
-> ignore the email address used to send it when the patch is applied.
+This patch is based on linux-next tagged next-20240328.
+v2:
+https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240115055236.1840255-1-s-vadapalli@ti.com/
+Changes since v2:
+- Rebased on next-20240328.
 
-Yeah, I know how it works, I do it all the time. Even found, or rather
-caused, a b4 bug where it would use the sending email in the eventual
-commit rather than the author:
-https://lore.kernel.org/tools/20230310192652.ymac3w2lucfdf34p@meerkat.local/
+Regards,
+Siddharth.
 
-I'm just double checking that there's not a missing signoff. When I've
-seen these corp-email-bypass accounts before people set a proper "from"
-in git send-email so there's a name in it: "A Dev <inv.git-commit@tdk.com>"
+ Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
---JM0RkxI3fhX4QnJ4
-Content-Type: application/pgp-signature; name="signature.asc"
+diff --git a/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml b/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
+index b7a534cef24d..0b1f21570ed0 100644
+--- a/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
++++ b/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
+@@ -68,6 +68,7 @@ properties:
+       - 0xb00d
+       - 0xb00f
+       - 0xb010
++      - 0xb012
+       - 0xb013
+ 
+   msi-map: true
+-- 
+2.40.1
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgqU1wAKCRB4tDGHoIJi
-0mx2AQCw3AX3o7N04ZQGuKrZUA7QMBjJ16z+Wc8PN3g4BZwoggEAip0s/vx2YKD2
-FEJIJRvZt4AlQbPJZwvIRjSQVh5Fsg4=
-=CSLb
------END PGP SIGNATURE-----
-
---JM0RkxI3fhX4QnJ4--
 
