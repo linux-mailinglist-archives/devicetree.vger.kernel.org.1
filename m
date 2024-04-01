@@ -1,63 +1,61 @@
-Return-Path: <devicetree+bounces-55036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 611B9893A74
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 12:57:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55583893A7C
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 13:05:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC6AC1F21510
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 10:57:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 094C8281EFD
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 11:05:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACF871F600;
-	Mon,  1 Apr 2024 10:57:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA0721CD22;
+	Mon,  1 Apr 2024 11:04:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c/djbk+g"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j8IZSuox"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7941B1119E;
-	Mon,  1 Apr 2024 10:57:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B12E71CA80;
+	Mon,  1 Apr 2024 11:04:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711969032; cv=none; b=aDU7H4wU/tgMDJw9MO+agb2DBa3QN1NASwfk2sryDpIcJFSG//BSBFEetf/y7G/RwxEJSpSYM7+3ORHzdFUrFzd4g9a58tM9HDkFsCj8UR0CpGBB9d1OVLD+c/82RCXYKyUlHi08nGzWQ/aSmkAZ/5OoXCR8G7v/lP8pw4CEPxk=
+	t=1711969499; cv=none; b=FphI3xT9CvQY47TE2juV+x1hHdVqPDo3GFbdSf2mlBQQu3/YchiTdvlsCzP8pLCqCJ/hmWi3Lln5BjNiSN6xgW6iR+T45b5uCyXRqlfWwz4WBkk+9G+kbAfxQQ1QKAl5lOHicU5jpOlScfVAqDndpqE7AMUDBFRxmuhJypMfTCo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711969032; c=relaxed/simple;
-	bh=jRpsWbogVcg8DoKpQah04JxMdsxc7vRxdIryL7nab6M=;
+	s=arc-20240116; t=1711969499; c=relaxed/simple;
+	bh=wbtZnZNRzG00lE4ZHsrFfChA6qI7zlnMd624QHakRZg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Rzq3RUqxr9XGCMO+5vJb3Amt6xRlixmKadLIzLjyEmct+Q/BANDEItDHPNHGcA8DyzXoqm7mPEHDW8Ce2XKt2xm97rNjY7P53+n7hq4+Vkp+AYaxD3DrhQvnyZFhI/uzJoenqjm/rkxDztYfl2DRiuEgann377tbUJ9yh+JQmbU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c/djbk+g; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F3B3C433C7;
-	Mon,  1 Apr 2024 10:57:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=kicn6YwmqMSnFnevCpEkEV0cwgdSI7ZB7RpBR+59qH1QhUSzbpm9ugcT5lJbR7dTxiPxky2SbrhnCiz9F8CC6WDqmnuUb4UTxuWQUS70xwkrv01SGPmkZbmzeWgW7ZLh26C5VpawrP5MMa6Du0Br/4wF31QthRmiPq5VknEiyA4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j8IZSuox; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F7D7C433F1;
+	Mon,  1 Apr 2024 11:04:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711969032;
-	bh=jRpsWbogVcg8DoKpQah04JxMdsxc7vRxdIryL7nab6M=;
+	s=k20201202; t=1711969499;
+	bh=wbtZnZNRzG00lE4ZHsrFfChA6qI7zlnMd624QHakRZg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=c/djbk+ghlpRgAenqvHBKE4TEWj87ADVeCFBn3COGbgOd7/Vswne2os0bEPG4LWWi
-	 YN/IaR8x6cc63nvEloNlErjooCpL6BuMTIdhbvxxoYBbX6AhAh9D3RwxZnUSgk/sFU
-	 PlCN6kqEY5pz9inQ7ioBKU9iD0g9SnY2phljw+qM/qqQU5srjbPvJ9HrqvcgfVSRqg
-	 JFW/FnBdk8l1oXTnXdVZ8emdeavgqncqKvTmgh8SqX3Cl0oGSjXtx6vv5uLe8WJHlh
-	 5/TF6Vw9ThXY665tYa30gjpfX7+Zd/RZSkLakO+pS1W8Z+bFJHmraYbc1NHZflpmoj
-	 01NKbbHUWs4Qw==
-Date: Mon, 1 Apr 2024 11:57:07 +0100
+	b=j8IZSuoxRJhu8qiI0bvQ+KWX6aLPoUDgT3FtRXWU+bZh4L9xCMQEI/6vN6WqgI37L
+	 z/kNP6h8fxKgpwky/MZdfAWNdc/fnk4zlwhQVKAuz1auK4cbo8TPCKNdTiCjlaYQZB
+	 osrOZw2s6AmpsFek5BgxBr35oNUfjFg4In1VJtRilRNrZMicJyNoa1M/LmRqDCbDIs
+	 NjxtWEfbRv7EP4N1Hmk2pUrNmfSCKdTsPFDm5ibu2W6TR3NQEN0tET23tFwQLFLBzQ
+	 QWtPGxdTu8QOiFRiAvsPXiNm5La3P950PAFt/74dc7+FMZIPBjqom9BsA7LUOsy+iv
+	 NmOyB7Tr9dsnw==
+Date: Mon, 1 Apr 2024 12:04:55 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
-Subject: Re: [PATCH v2] dt-bindings: usb: qcom,pmic-typec: update example to
- follow connector schema
-Message-ID: <20240401-ridden-handpick-2185d8dd02f6@spud>
-References: <20240331-typec-fix-example-v2-1-f56fffe4f37c@linaro.org>
- <2024033109-reporter-blooming-5217@gregkh>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: inv.git-commit@tdk.com, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	lars@metafoo.de, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+Subject: Re: [PATCH 2/2] dt-bindings: iio: imu: add icm42688 inside
+ inv_icm42600
+Message-ID: <20240401-marshy-derby-e22a469dd555@spud>
+References: <20240329151535.712827-1-inv.git-commit@tdk.com>
+ <20240329151535.712827-3-inv.git-commit@tdk.com>
+ <20240329-fifth-earpiece-78daf4d943ce@spud>
+ <20240330161012.0b49846a@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,70 +63,55 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="PJKCTyDDSgQqIlcd"
+	protocol="application/pgp-signature"; boundary="JM0RkxI3fhX4QnJ4"
 Content-Disposition: inline
-In-Reply-To: <2024033109-reporter-blooming-5217@gregkh>
+In-Reply-To: <20240330161012.0b49846a@jic23-huawei>
 
 
---PJKCTyDDSgQqIlcd
+--JM0RkxI3fhX4QnJ4
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Mar 31, 2024 at 09:17:20AM +0200, Greg Kroah-Hartman wrote:
-> On Sun, Mar 31, 2024 at 12:21:15AM +0200, Dmitry Baryshkov wrote:
-> > Update Qualcomm PMIC Type-C examples to follow the USB-C connector
-> > schema. The USB-C connector should have three ports (USB HS @0,
-> > SSTX/RX @1 and SBU @2 lanes). Reorder ports accordingly and add SBU port
-> > connected to the SBU mux (e.g. FSA4480).
+On Sat, Mar 30, 2024 at 04:10:12PM +0000, Jonathan Cameron wrote:
+> On Fri, 29 Mar 2024 15:49:26 +0000
+> Conor Dooley <conor@kernel.org> wrote:
+>=20
+> > On Fri, Mar 29, 2024 at 03:15:35PM +0000, inv.git-commit@tdk.com wrote:
+> > > From: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+> > >=20
+> > > Add bindings for ICM-42688-P chip.
+> > >=20
+> > > Signed-off-by: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com=
+> =20
 > >=20
-> > Fixes: 00bb478b829e ("dt-bindings: usb: Add Qualcomm PMIC Type-C")
-> > Reported-by: Luca Weiss <luca.weiss@fairphone.com>
-> > Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> > Update examples to follow usb-c-connector schema wrt. ports definitions.
-> > ---
+> > My initial thought was that you're missing a sign-off, but is
+> > "inv.git-commit@tdk.com" some system you have to bypass corporate email
+> > garbage?
 >=20
-> Hi,
->=20
-> This is the friendly patch-bot of Greg Kroah-Hartman.  You have sent him
-> a patch that has triggered this response.  He used to manually respond
-> to these common problems, but in order to save his sanity (he kept
-> writing the same thing over and over, yet to different people), I was
-> created.  Hopefully you will not take offence and will fix the problem
-> in your patch and resubmit it so that it can be accepted into the Linux
-> kernel tree.
->=20
-> You are receiving this message because of the following common error(s)
-> as indicated below:
->=20
-> - You have marked a patch with a "Fixes:" tag for a commit that is in an
->   older released kernel, yet you do not have a cc: stable line in the
->   signed-off-by area at all, which means that the patch will not be
->   applied to any older kernel releases.  To properly fix this, please
->   follow the documented rules in the
->   Documentation/process/stable-kernel-rules.rst file for how to resolve
->   this.
->=20
-> If you wish to discuss this problem further, or you have questions about
-> how to resolve this issue, please feel free to respond to this email and
-> Greg will reply once he has dug out from the pending patches received
-> from other developers.
+> Common enough setup, as long as the From: line matches the sign-off, git =
+will
+> ignore the email address used to send it when the patch is applied.
 
-I'm not sure that something updating the example like this needs to go
-to stable in the first place.
+Yeah, I know how it works, I do it all the time. Even found, or rather
+caused, a b4 bug where it would use the sending email in the eventual
+commit rather than the author:
+https://lore.kernel.org/tools/20230310192652.ymac3w2lucfdf34p@meerkat.local/
 
---PJKCTyDDSgQqIlcd
+I'm just double checking that there's not a missing signoff. When I've
+seen these corp-email-bypass accounts before people set a proper "from"
+in git send-email so there's a name in it: "A Dev <inv.git-commit@tdk.com>"
+
+--JM0RkxI3fhX4QnJ4
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgqTAwAKCRB4tDGHoIJi
-0o+3AQD8d/HFel0B33OnmX67qk+scHD8c2BNetJjW+qY+jRRxQEAwn45hbTGUfQw
-VuD6+9irOwAu5NYApjR2fFjnA4BcsQE=
-=l7ox
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgqU1wAKCRB4tDGHoIJi
+0mx2AQCw3AX3o7N04ZQGuKrZUA7QMBjJ16z+Wc8PN3g4BZwoggEAip0s/vx2YKD2
+FEJIJRvZt4AlQbPJZwvIRjSQVh5Fsg4=
+=CSLb
 -----END PGP SIGNATURE-----
 
---PJKCTyDDSgQqIlcd--
+--JM0RkxI3fhX4QnJ4--
 
