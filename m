@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-55023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55024-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21E688939CC
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 11:53:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A3098939D4
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 11:57:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 456301C215E4
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 09:53:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC3971C21754
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 09:57:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0962010A31;
-	Mon,  1 Apr 2024 09:53:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEC0E10A12;
+	Mon,  1 Apr 2024 09:57:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xFlM4/Zf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YiZ4sCAx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46D2C10A11
-	for <devicetree@vger.kernel.org>; Mon,  1 Apr 2024 09:53:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E12F11119E
+	for <devicetree@vger.kernel.org>; Mon,  1 Apr 2024 09:57:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711965208; cv=none; b=e/PfGjFTTUNHqUFpuNQ/R5OSUD/LQbpOgGSCAOMqgtZuWmuCMh6jNYk9A8rDPAPsBaEvDBLGizUIMXJasys85qTor+TaCViFTgSsjbCL318186W73C0Vk3KDGr0+BTDhCMfKGsvS8ucLsDhkT7FyX/okMW7scKy1pErS5vVEQZs=
+	t=1711965429; cv=none; b=eP7vEIAP/JOdH6EhHDUy8CWKfDdHeFHz7YHF4BGJhi0a8SMcYohrk8Dxc8J9F6+tRmwpfrpzCwlBFC60spZ3YZWdjVEJHaFWUmADzVoPmMaoq5ECibMIz4L3nF3UZI5SCfyb+TKrgMXPYwOJgoftd2KxaJ6nO2hsh6eEi9jLfyw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711965208; c=relaxed/simple;
-	bh=wSeSHSkxSv9BKdY7p7/IgD++XClDcXUT1bBvWMVGO38=;
+	s=arc-20240116; t=1711965429; c=relaxed/simple;
+	bh=MXrD1XHlk4Ri6wS4xrNFVm5EmsePQ4GsEKWiZrbMOcE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pRFZ53ZF/KJEkz6zP1uHuTScYjSyZbjmT+28qZJb5NXWb7JEvA8a5xK2n9P0LHYUYc3Okc6iK0PJV7oninopY+rasIam/6Qe7Go8mxXuuW6le8aG4BFFpi5GutGjJBcRHLlBtUg2TxjLn4ib70QSXsyh1JBBL4SZsDWhpmlcn6Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xFlM4/Zf; arc=none smtp.client-ip=209.85.218.53
+	 In-Reply-To:Content-Type; b=tWT1cS9r2Fbnpy815ETaylgDEdLC9RhymdhUdgG+/zForBCzpd1ruHaM9MzxXH9h0mD8egMOx/15mbPsH3PcByyuV4o9FzIGzb79YOEWAEhA0GCiOwE2xWPp0Bzupyo6t5tNAoiKngMZbFSrnsshmVWdELTk+2yOHC8x/Rt2cfU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YiZ4sCAx; arc=none smtp.client-ip=209.85.208.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a4e5ee91879so123797466b.3
-        for <devicetree@vger.kernel.org>; Mon, 01 Apr 2024 02:53:27 -0700 (PDT)
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-56bf6591865so5584508a12.0
+        for <devicetree@vger.kernel.org>; Mon, 01 Apr 2024 02:57:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711965206; x=1712570006; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1711965426; x=1712570226; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=vJLSReGupxbDND1LJRyaZWMTkBhBt3K2g1xwcsN8FhE=;
-        b=xFlM4/ZfLzunLDqzvNDpvR8ibnhbjBrEm6FjEgIZa66HcLZ68WMlb+CeaMhEiuY/uk
-         8H0duaNSUT96jjlZQyO5CFECORnRlxnEgRnB3U5WMSn37chDZppMmqN5Z7Me5tcLLHK6
-         YGwFaTSyu1SMm30MZX5J1koA0Y39+QB/ymc9YrGA90m5RHsqrvr9CTgu2Z+4jKgWAqPp
-         G76il3IYHw4XSb888wiDDfM49WCRclqyg7waszvlfmvtNRu0y9sPwWJ3vRT88QuY51xe
-         2H1Ar90HbK+lkbB6TZjV0giMJbT8dN2BKv7n2mOmhkB408MIRhg+lDLgBEZE3kb933Bn
-         ldqQ==
+        bh=pNxyOU0TK6s/eBpUUq++3gl10VSUBotVXGhvU/SrY8M=;
+        b=YiZ4sCAxPNHqrn4uGboIVKQzzhQ83lKCVdh1ScnYhis928Vz0u2bJsRcSkt4sl0BFu
+         7fCYnsdCRAG1b543izb4QszBkwlLPxuq2MF/dtgiXiXOGyYTdot3WQKquvBqQkeIaJdv
+         tsKAW1PKfDo0UHF7K+EEYr12Ll3eMM1tTqalNakZbPHthn+uEOSSvMEldIOjrnFh9dad
+         nP+7DSg9QRTlheK3C+ua+ddEgBVqWOQgJvQ3NgDaMFKDJI2losMT4qRAwJcaK1JdwVZt
+         PEDTAykOM1YiPTUkL4NgxrdQAZczBHAzsQG1wPXwaG8tDyjHO+LIPya0+SrdqSaYIgBK
+         P6qQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711965206; x=1712570006;
+        d=1e100.net; s=20230601; t=1711965426; x=1712570226;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=vJLSReGupxbDND1LJRyaZWMTkBhBt3K2g1xwcsN8FhE=;
-        b=UHnZe1l5iyCImv56MuNY7jZRAeXOewSdNJmWndY7ljmP7vbDBcRuMredKarxlJKY31
-         rBve5TROScpRVQbzbHW2tYDgkjNDlvPARgcG+o+d6cMdet7BeAJIlxOEX6pyhuWFD2i8
-         ugsHivlR8v4sR2ghm7hnJGH70rNWFtZOwDAuOUKnoeQJBUxpN68pfP5NLuyAZ7+5HJ/M
-         qgzWL87aaNVsyOUOJnAmVQWqTaNZu+6pvKhB1NlihOF4FMSf9iM6OBUbyR4gv1A4PrcB
-         +1YVQOxRCsy4pqjY39/Va/jYcY5j2mKFRMx5UGjRkm63bjxJMCG1bUXWGSpJhrdqe1xc
-         hjfg==
-X-Forwarded-Encrypted: i=1; AJvYcCWqUiYkNQKZy5WB3tJ5y9GEbJAYnEGL8xRVY0eQCRR6GkNyVcZqwrWLEUfDU/mZQlHN2tHIPORsWrJXLLmApVNrgX0U1Lcs5S1p/Q==
-X-Gm-Message-State: AOJu0YwP48v+zxj8a2C2O2GbFlbl+EbQ2H2d/i5v3sIPbg/F3utPfLx9
-	gNp16oO7YABnC9F2ZLZp4HLtyzpd1vtyJvwuPB1sJNGkBwohPaPrm0Mq8/iFr9g=
-X-Google-Smtp-Source: AGHT+IGlxvnPlf1UH1BJckd0vZiim7UTtYPcuL+ImBTiKtID4vuz/fJ7QgvzVi6FU4o6qJBrqYu+tQ==
-X-Received: by 2002:a17:906:751:b0:a47:533b:10 with SMTP id z17-20020a170906075100b00a47533b0010mr5339129ejb.62.1711965205410;
-        Mon, 01 Apr 2024 02:53:25 -0700 (PDT)
+        bh=pNxyOU0TK6s/eBpUUq++3gl10VSUBotVXGhvU/SrY8M=;
+        b=sWbKhB9Y4Rg4xkLtiYKGN3xADj50k3eR08QI38H6KYYmTkmkIJCrYSbkU9xMXSdB4E
+         ZfAPQ+ZCIBx5WGSvHwOw0J0n7kE5/aO+3DdIa7PqMWQowhCrM4lyBhRdVnI191xM8qo6
+         YZtuF4Zdm29Rf0Ae4mEiVJ7gz2htMezyFdf3XSqiz1rXRwQgPa5FbGawxsilSACvr3YO
+         m054ZQbgobbirkT5Ew/WNabg9+i4P58y/lJQP978tCWSp6aQuFwx+FnleYkINktcdjmf
+         b9oiwmgRD0XjVVkvYa+o9NQN13uu8WERGTHLLiKfGHvLo8UTn12MMrvoWuqeAjntvEYF
+         U3eg==
+X-Forwarded-Encrypted: i=1; AJvYcCULIW+/bn9kV/F/b1RuxL4yxGamDfpE5/loYcSF38bco6u4t3rpOziOKq3atTNTLCg7k4DKoLeZzdb/nkRwc4yievld6KMNdhH3hA==
+X-Gm-Message-State: AOJu0Yyku3TsEsLxMhS7s0vNsjrxEgRoOBB7jB21ehttK4ebIFS+HOvD
+	Wq8ct2yjM/o0vkwFfu+0mIzy4SgCiIxbj1VyW7Pbi+aBqDGDB+bwCy5ljiMYG4k=
+X-Google-Smtp-Source: AGHT+IECEoyLtT4w3AH+Zhlt29Dbm0o4hodOjNAf1JlCMoNXW4dToGYBgYKyLMxIUAmDZuq/EoVoSg==
+X-Received: by 2002:a17:906:39c6:b0:a4e:2686:4f1b with SMTP id i6-20020a17090639c600b00a4e26864f1bmr5397597eje.2.1711965426168;
+        Mon, 01 Apr 2024 02:57:06 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id v18-20020a170906339200b00a4df78425dbsm5065880eja.36.2024.04.01.02.53.24
+        by smtp.gmail.com with ESMTPSA id y17-20020a170906071100b00a4e6626ae21sm1395816ejb.0.2024.04.01.02.57.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Apr 2024 02:53:24 -0700 (PDT)
-Message-ID: <7d344878-867f-4a03-90b7-a61c3fff0fce@linaro.org>
-Date: Mon, 1 Apr 2024 11:53:23 +0200
+        Mon, 01 Apr 2024 02:57:05 -0700 (PDT)
+Message-ID: <518f04ea-7ff6-4568-be76-60276d18b209@linaro.org>
+Date: Mon, 1 Apr 2024 11:57:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,17 +77,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 1/2] spi: dt-bindings: add Siflower Quad SPI
- controller
-To: Qingfang Deng <dqfext@gmail.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2 17/18] dt-bindings: pci: rockchip,rk3399-pcie-ep: Add
+ ep-gpios property
+To: Damien Le Moal <dlemoal@kernel.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
+ <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
+ Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Qingfang Deng <qingfang.deng@siflower.com.cn>, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240329015147.1481349-1-dqfext@gmail.com>
- <261f2995-b279-48bc-b9d4-023a8a705857@linaro.org>
- <CALW65jZoU8ChPg+e-5T4+ZmS2=g8O3wL96mjaRAPbomHJhg4gg@mail.gmail.com>
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Cc: linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Rick Wertenbroek <rick.wertenbroek@gmail.com>,
+ Wilfred Mallawa <wilfred.mallawa@wdc.com>, Niklas Cassel <cassel@kernel.org>
+References: <20240330041928.1555578-1-dlemoal@kernel.org>
+ <20240330041928.1555578-18-dlemoal@kernel.org>
+ <b020b74e-8ae1-448a-9d47-6c9bb13735f9@linaro.org>
+ <c75cb54a-61c7-4bc3-978e-8a28dde93b08@kernel.org>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -134,35 +142,50 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CALW65jZoU8ChPg+e-5T4+ZmS2=g8O3wL96mjaRAPbomHJhg4gg@mail.gmail.com>
+In-Reply-To: <c75cb54a-61c7-4bc3-978e-8a28dde93b08@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 01/04/2024 05:36, Qingfang Deng wrote:
-> Hi Krzysztof,
-> 
-> On Sun, Mar 31, 2024 at 1:42 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->> On 29/03/2024 02:51, Qingfang Deng wrote:
->>> Add YAML devicetree bindings for Siflower Quad SPI controller.
+On 01/04/2024 01:06, Damien Le Moal wrote:
+> On 3/30/24 18:16, Krzysztof Kozlowski wrote:
+>> On 30/03/2024 05:19, Damien Le Moal wrote:
+>>> From: Wilfred Mallawa <wilfred.mallawa@wdc.com>
+>>>
+>>> Describe the `ep-gpios` property which is used to map the PERST# input
+>>> signal for endpoint mode.
+>>>
+>>> Signed-off-by: Wilfred Mallawa <wilfred.mallawa@wdc.com>
+>>> Signed-off-by: Damien Le Moal <dlemoal@kernel.org>
+>>> ---
+>>>  .../devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml       | 3 +++
+>>>  1 file changed, 3 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml
+>>> index 6b62f6f58efe..9331d44d6963 100644
+>>> --- a/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml
+>>> +++ b/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml
+>>> @@ -30,6 +30,9 @@ properties:
+>>>      maximum: 32
+>>>      default: 32
+>>>  
+>>> +  ep-gpios:
+>>> +    description: Input GPIO configured for the PERST# signal.
 >>
->> Describe the hardware. What is this Siflower?
+>> Missing maxItems. But more important: why existing property perst-gpios,
+>> which you already have there in common schema, is not correct for this case?
 > 
-> It's a new RISC-V SoC which hasn't been upstreamed yet.
-> 
->>> +properties:
->>> +  compatible:
->>> +    const: siflower,qspi
->>
->> Except that this was not tested, aren't you adding it for some SoC? If
->> so, then you miss here SoC part.
-> 
-> I should add the "siflower" prefix to
-> Documentation/devicetree/bindings/vendor-prefixes.yaml, right?
+> I am confused... Where do you find perst-gpios defined for the rk3399 ?
+> Under Documentation/devicetree/bindings/pci/, the only schema I see using
+> perst-gpios property are for the qcom (Qualcomm) controllers.
 
-Isn't it already there? Then obvious you must, but that was not the
-point. Please read writing-bindings document. Compatibles should be SoC
-specific, not generic. "qspi" is generic.
+You are right, it's so far only in Qualcomm.
+
+> The RC bindings for the rockchip rk3399 PCIe controller
+> (pci/rockchip,rk3399-pcie.yaml) already define the ep-gpios property. So if
+
+Any reason why this cannot be named like GPIO? Is there already a user
+of this in Linux kernel? Commit msg says nothing about this, so that's
+why I would expect name matching the signal.
 
 Best regards,
 Krzysztof
