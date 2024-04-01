@@ -1,78 +1,129 @@
-Return-Path: <devicetree+bounces-55191-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7035F8946CD
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 23:55:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D05489472A
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 00:12:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CBEC1F22598
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 21:55:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 070E7B21508
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 22:12:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87C9655C1A;
-	Mon,  1 Apr 2024 21:55:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D411C55C3C;
+	Mon,  1 Apr 2024 22:11:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtprelay06.ispgateway.de (smtprelay06.ispgateway.de [80.67.31.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D591153E35;
-	Mon,  1 Apr 2024 21:55:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24D6F4683;
+	Mon,  1 Apr 2024 22:11:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.67.31.103
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712008546; cv=none; b=uDjUrwwzP2C+8NIOYaLsBvTc/LI0uj1+128ZlF4dSBoOd1NeORAerSvCvaBvDCzyxLm/g5bg4A2awdOL4K4kVn3O/HGBEWpcXmoC6uk6asoXdEWRHK2wLHjVsBXUXqvt3ov2YspAc6XGpAr1NDpVt2f9ffm4WX/oR9S+Lqla45Y=
+	t=1712009515; cv=none; b=jqaYBC7D91jE1wcuCj47ph2v+tyg+s/Xn3pefJy4QMML6L1ess+d6/Qrx+HHF8aNYtM6drQYJkTIASIqn7E6ShrNdFRiQzy5TF4+sKmY6RSPMd1aIZgm8P3eoRNB3oqZmY++gicUET5rJsOWZxgvQVSQ3VIzUVnh8ooFwwd2Gic=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712008546; c=relaxed/simple;
-	bh=LTftMlGxCD8/c1Ci2D5IeJwheFCcyUEqDSnN2mUJtDw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=q4rgCiHQHyrlSZhXsJ1Cqs3AnZ6II+DB0zoa2lfvpYTBndow4DqpCnfOr/Hca6kHQe0Np4E06JgqxgipS/U0KrI3F0PifSQphXzaMZGvSfKNjhuaoG0DWN9b6AVNvx24BvUJFEi62KVDj7NHHp5cz6TvY3p4aYvp2hPVRgbj0vI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875aaf.versanet.de ([83.135.90.175] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1rrPcu-0008FL-2Q; Mon, 01 Apr 2024 23:55:36 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: devicetree@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	linux-arm-kernel@lists.infradead.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org
-Cc: Heiko Stuebner <heiko@sntech.de>
-Subject: Re: [PATCH] arm64: dts: rockchip: drop panel port unit address in GRU Scarlet
-Date: Mon,  1 Apr 2024 23:55:32 +0200
-Message-Id: <171200852039.1394042.12669558185744659181.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240401140939.97808-1-krzk@kernel.org>
-References: <20240401140939.97808-1-krzk@kernel.org>
+	s=arc-20240116; t=1712009515; c=relaxed/simple;
+	bh=gZIvbC9QcJ+z4erMfxk2BKLYyhXqYUfIhZMoeDsxtTk=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=fkB88N5Cd6ccW24DHzmPtYsqPtjznrs2hSX14hvFBvH8WxTaAi8Ry8irCpo7yFYwtTdiZYvds2NWGKBdwHXTNp0MGmIrMR9bBy58ZPzL0P42fwPYDaubFpp8VQeXkDBlR7INGnZRNuEMNQ6rgGfcfpoUg9b2Od/CuPeqtsch+kM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=apitzsch.eu; spf=pass smtp.mailfrom=apitzsch.eu; arc=none smtp.client-ip=80.67.31.103
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=apitzsch.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=apitzsch.eu
+Received: from [92.206.191.65] (helo=note-book.lan)
+	by smtprelay06.ispgateway.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.97.1)
+	(envelope-from <git@apitzsch.eu>)
+	id 1rrPsV-000000008VN-0dPK;
+	Tue, 02 Apr 2024 00:11:43 +0200
+Message-ID: <e842cda99206852bce7f7acc99d5dd360e313639.camel@apitzsch.eu>
+Subject: Re: [PATCH v2 0/3] Add sy7802 flash led driver
+From: =?ISO-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>
+To: Trilok Soni <quic_tsoni@quicinc.com>
+Cc: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+  Conor Dooley <conor+dt@kernel.org>, Kees Cook <keescook@chromium.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, Bjorn Andersson
+ <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+ linux-leds@vger.kernel.org,  devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,  linux-hardening@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org,  ~postmarketos/upstreaming@lists.sr.ht,
+ phone-devel@vger.kernel.org
+Date: Tue, 02 Apr 2024 00:11:41 +0200
+In-Reply-To: <d2de0a0e-6cbe-3472-0a84-797f827ac635@quicinc.com>
+References: <20240401-sy7802-v2-0-1138190a7448@apitzsch.eu>
+	 <d2de0a0e-6cbe-3472-0a84-797f827ac635@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.0 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-Df-Sender: YW5kcmVAYXBpdHpzY2guZXU=
 
-On Mon, 1 Apr 2024 16:09:39 +0200, Krzysztof Kozlowski wrote:
-> Panel port does not have "reg", thus it should not have unit address, as
-> reported by dtc W=1 warning:
-> 
->   rk3399-gru-scarlet.dtsi:666.32-668.7: Warning (unit_address_vs_reg): /dsi@ff960000/panel@0/ports/port@1/endpoint@1: node has a unit name, but no reg or ranges property
-> 
-> 
+Am Montag, dem 01.04.2024 um 14:45 -0700 schrieb Trilok Soni:
+> On 4/1/2024 2:23 PM, Andr=C3=A9 Apitzsch via B4 Relay wrote:
+> > This series introduces a driver for the Silergy SY7802 charge pump
+> > used
+> > in the BQ Aquaris M5 and X5 smartphones.
+> >=20
+> > The implementation is based on information extracted from
+> > downstream as
+> > the datasheet provided by a distributor of the hardware didn't
+> > include
+> > any information about the i2c register description.
+> >=20
+> > Signed-off-by: Andr=C3=A9 Apitzsch <git@apitzsch.eu>
+>=20
+>=20
+> Is this the right email address? "From" shows
+> devnull+git.apitzsch.eu@kernel.org.=20
+>=20
+This was created by b4 using the web submission endpoint.
 
-Applied, thanks!
+Andr=C3=A9
 
-[1/1] arm64: dts: rockchip: drop panel port unit address in GRU Scarlet
-      commit: 4ddc13461740308d3133c2defda97d9e3a30ede8
+> > ---
+> > Changes in v2:
+> > - bindings: remove unneeded allOf
+> > - bindings: example: move flash-led-controller under i2c node to
+> > fix
+> > =C2=A0 check error
+> > - Cc to phone-devel
+> > - Link to v1:
+> > https://lore.kernel.org/r/20240327-sy7802-v1-0-db74ab32faaf@apitzsch.eu
+> >=20
+> > ---
+> > Andr=C3=A9 Apitzsch (3):
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dt-bindings: leds: Add Silergy SY7802 fl=
+ash LED
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 leds: sy7802: Add support for Silergy SY=
+7802 flash LED
+> > controller
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 arm64: dts: qcom: msm8939-longcheer-l910=
+0: Add rear flash
+> >=20
+> > =C2=A0.../devicetree/bindings/leds/silergy,sy7802.yaml=C2=A0=C2=A0 | 10=
+0 ++++
+> > =C2=A0.../boot/dts/qcom/msm8939-longcheer-l9100.dts=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 |=C2=A0 26 +
+> > =C2=A0drivers/leds/flash/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 11 +
+> > =C2=A0drivers/leds/flash/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
+> > =C2=A0drivers/leds/flash/leds-sy7802.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ | 532
+> > +++++++++++++++++++++
+> > =C2=A05 files changed, 670 insertions(+)
+> > ---
+> > base-commit: a6bd6c9333397f5a0e2667d4d82fef8c970108f2
+> > change-id: 20240325-sy7802-f40fc6f56525
+> >=20
+> > Best regards,
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
 
