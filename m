@@ -1,61 +1,62 @@
-Return-Path: <devicetree+bounces-55056-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55057-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8A84893BA7
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 15:56:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7302D893BB1
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 15:59:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C07FB211D8
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 13:56:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A49B31C20999
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 13:59:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9B033FE54;
-	Mon,  1 Apr 2024 13:56:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFA873FBBD;
+	Mon,  1 Apr 2024 13:59:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dxp575dQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kCnUH7D7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5B023FB1E;
-	Mon,  1 Apr 2024 13:56:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6E833F8F1;
+	Mon,  1 Apr 2024 13:59:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711979799; cv=none; b=KGaW/50g74zK4BT4HegxG+nnUDCNlIRp5G7lL5+gUtzMNFTYPtuCmyx7NOgHj1jLlhp15X9GU0y66LRe5LBfIfMEAacUYtPN8flwRXXIc73Xttd3W+7NfeSNrX/zKN/jgA+qhH9cIHtMYJ1H40ODrSQuB97wQ+UjDP9jxN8eu/8=
+	t=1711979990; cv=none; b=b4zBFKnUePODtYCngDEEzNyCMp2l+wYz4Vaho+NP6WEcCKdMSrdzIbaGxWf2Sv5d2eXgZfGM9lHieRQHo8IGmUtfT73iX6usIyBjwuvsoAi4s7CmTv4ms6xXQuP4CcHCju7HOmZAAzYL9ex265FfCd6H/ZoSCr/q+TyHEYdSeCY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711979799; c=relaxed/simple;
-	bh=SB286+nY7DQGLoaBo1jo/XJvyvYzcBgrwXpwBgupmWM=;
+	s=arc-20240116; t=1711979990; c=relaxed/simple;
+	bh=sV0XZSPvZPbAbNUqylJMx3DNrWErD8RB4RKfAswervc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=okeW6jGjK8uV6A+J2tDcZjTVPHh9nR8T/1OXpPtAx4RPw1gc9mZbkSKt0UHZaULTy05WPU3x0v6+Uef3KO2PmDzOuOUWGwPQld4BYbSTogxZ8ZVO2CPd7eY3ENB76uPVf6mlIpdUKP50vo0okfHJdFrcDa/h6ayMVFAfUYxXlS4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dxp575dQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06E18C43390;
-	Mon,  1 Apr 2024 13:56:38 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=dES7nVkyFXJguXqREh2PV5lC4PT9neORlpIUVhCKKfeOLIeG9dpbAZ7B35ssI8ewX723T08tnly8jLH2nQgiVHL5AufTrIVYQ5AsuYmwPBEYc3Cmn0fAAgpN7Z0XbMFeHHwBtFF7raB4Xk1pVkZZ1bZsPBHySVzI9BdsCzWBVbM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kCnUH7D7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15547C433F1;
+	Mon,  1 Apr 2024 13:59:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711979799;
-	bh=SB286+nY7DQGLoaBo1jo/XJvyvYzcBgrwXpwBgupmWM=;
+	s=k20201202; t=1711979990;
+	bh=sV0XZSPvZPbAbNUqylJMx3DNrWErD8RB4RKfAswervc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dxp575dQiKZXAdercVf8cUDwWfKwEI6IqLjDU0pN3iKC0OrWxwjzbb0sw0uNSB2su
-	 DPVp94ewBebNT2v7SyvuYfXsqUtZpuUvIwWT6EtFTNIZpVf/zF7D0puWN82DDXTa6Q
-	 Kpubtuqo9ATNQorO7++V53Rx8U58e13DUolQFy9a7g0XztCd9yAtBGZ70qTnVn534V
-	 mzlsyll3/cmjN5WycpuflvPpxhB+kKCL1N70VmsHaxLPjc6UjtiLJo3Cr1rEybUnEb
-	 i3tJWsVtJV6N59bCi3vYfRUQQWBcdPctEdOXf4zm4Aqec43LuDYbhXz0mgM8gHMD3z
-	 3jWM2YyadVUzQ==
-Date: Mon, 1 Apr 2024 08:56:37 -0500
+	b=kCnUH7D7idhMJd/3gXXoIZ9GCJg2XQkKNCPdzCnVtNQKOk1FAbd98Jy5cXV2lJfBF
+	 Cq/Lp6I8MDPsPWJtj4X4pcGLYWs4LZy0JQH9hEFJgKRkZdJux7vK8a9SXcsEny813o
+	 5Mop/WBQnSINVJwyiiZ9qbshUmq7YwwHCpx4YiM+nE4QbLa1deOr0aYvTnsXX6xxp3
+	 /kF0S2bQ86o+V+Kv4td6L6P1FHn+pHJncVEOS5AstrVt25HVRnigzGXc6M7vCMmgRD
+	 8aDefFLEUq4OREfT6H0IN6bujZ71dx6Y6ouHJNlyxx9lXRAaTvz+nsfP2cm5wcClyW
+	 zhtt0gbvG7x9Q==
+Date: Mon, 1 Apr 2024 08:59:48 -0500
 From: Rob Herring <robh@kernel.org>
-To: Peter Yin <peteryin.openbmc@gmail.com>
-Cc: patrick@stwcx.xyz, Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
+To: Nuno Sa <nuno.sa@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	Dragos Bogdan <dragos.bogdan@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 3/4] dt-bindings: watchdog: aspeed-wdt: Add aspeed,scu
-Message-ID: <20240401135637.GA342928-robh@kernel.org>
-References: <20240328022231.3649741-1-peteryin.openbmc@gmail.com>
- <20240328022231.3649741-4-peteryin.openbmc@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Olivier Moysan <olivier.moysan@foss.st.com>
+Subject: Re: [PATCH 06/10] dt-bindings: iio: dac: add bindings doc for AXI
+ DAC driver
+Message-ID: <20240401135948.GA349128-robh@kernel.org>
+References: <20240328-iio-backend-axi-dac-v1-0-afc808b3fde3@analog.com>
+ <20240328-iio-backend-axi-dac-v1-6-afc808b3fde3@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,35 +65,113 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240328022231.3649741-4-peteryin.openbmc@gmail.com>
+In-Reply-To: <20240328-iio-backend-axi-dac-v1-6-afc808b3fde3@analog.com>
 
-On Thu, Mar 28, 2024 at 10:22:30AM +0800, Peter Yin wrote:
-> To use the SCU register to obtain reset flags for supporting
-> bootstatus.
-> 
-> Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
+On Thu, Mar 28, 2024 at 02:22:30PM +0100, Nuno Sa wrote:
+> This adds the bindings documentation for the AXI DAC driver.
+
+Bindings are for h/w blocks, not 'drivers'.
+
+Reword the subject to only say 'bindings' once.
+
+
+> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
 > ---
->  Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt | 4 ++++
->  1 file changed, 4 insertions(+)
+>  .../devicetree/bindings/iio/dac/adi,axi-dac.yaml   | 62 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  7 +++
+>  2 files changed, 69 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt b/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
-> index 3208adb3e52e..80a1f58b5a2e 100644
-> --- a/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
-> +++ b/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
-> @@ -8,6 +8,8 @@ Required properties:
+> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
+> new file mode 100644
+> index 000000000000..1018fd274f04
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
+> @@ -0,0 +1,62 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/dac/adi,axi-dac.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices AXI DAC IP core
+> +
+> +maintainers:
+> +  - Nuno Sa <nuno.sa@analog.com>
+> +
+> +description: |
+> +  Analog Devices Generic AXI DAC IP core for interfacing a DAC device
+> +  with a high speed serial (JESD204B/C) or source synchronous parallel
+> +  interface (LVDS/CMOS).
+> +  Usually, some other interface type (i.e SPI) is used as a control
+> +  interface for the actual DAC, while this IP core will interface
+> +  to the data-lines of the DAC and handle the streaming of data into
+> +  memory via DMA.
+> +
+> +  https://wiki.analog.com/resources/fpga/docs/axi_dac_ip
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,axi-dac-9.1.b
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  dmas:
+> +    maxItems: 1
+> +
+> +  dma-names:
+> +    items:
+> +      - const: tx
+
+You don't need *-names if there is only 1 entry.
+
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  '#io-backend-cells':
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - dmas
+> +  - reg
+> +  - clocks
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    dac@44a00000 {
+> +        compatible = "adi,axi-dac-9.1.b";
+> +        reg = <0x44a00000 0x10000>;
+> +        dmas = <&tx_dma 0>;
+> +        dma-names = "tx";
+> +        #io-backend-cells = <0>;
+> +        clocks = <&axi_clk>;
+> +    };
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index a7287cf44869..2137eb452376 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1399,6 +1399,13 @@ F:	sound/soc/codecs/adav*
+>  F:	sound/soc/codecs/sigmadsp.*
+>  F:	sound/soc/codecs/ssm*
 >  
->   - reg: physical base address of the controller and length of memory mapped
->     region
-> + - aspeed,scu: a reference to the System Control Unit node of the Aspeed
-> +   SOC.
-
-You cannot add new required properties as that is an ABI break.
-
-If there's only 1 SCU instance, you can just fetch its node by 
-compatible with no DT change.
-
-What's the plan for converting this binding to schema? This is the 2nd 
-new property in 6 months.
-
-Rob
+> +ANALOG DEVICES INC AXI DAC DRIVER
+> +M:	Nuno Sa <nuno.sa@analog.com>
+> +L:	linux-iio@vger.kernel.org
+> +S:	Supported
+> +W:	https://ez.analog.com/linux-software-drivers
+> +F:	Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
+> +
+>  ANALOG DEVICES INC DMA DRIVERS
+>  M:	Lars-Peter Clausen <lars@metafoo.de>
+>  S:	Supported
+> 
+> -- 
+> 2.44.0
+> 
 
