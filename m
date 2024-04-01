@@ -1,62 +1,61 @@
-Return-Path: <devicetree+bounces-55096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CFE6893C61
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 16:53:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7617B893C69
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 16:57:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2BAEB1F223B7
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 14:53:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09C572816B4
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 14:57:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DB8B446AE;
-	Mon,  1 Apr 2024 14:53:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA31344C84;
+	Mon,  1 Apr 2024 14:57:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="CSMXS/oX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gYEoLEsX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81306446B4;
-	Mon,  1 Apr 2024 14:53:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE97240872;
+	Mon,  1 Apr 2024 14:57:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711983202; cv=none; b=FuG+LAKnqxwiDmHyTc9S4r6wCPmU6AfIlpsTT+5iq41JkWFXtmbg+n1c4o5Zvb/iQLUpRZSTU3NnWp8ZMVk2DSmlX/lSFLSlv3Ane4mjcfuB4+2I82o628Zc0KHC/CYv2+gL4lj/Zcv573eVY9BE/WN+z2sCQiOZF/IGJTLk9/c=
+	t=1711983471; cv=none; b=oY7Lz22sV4q1Mgf9SONteHGSpw5cB7H/uXtI1B41wIwCL3dbD7ZVyPIELnT/h/OMbcKctruszcsATseqMd/tLGeri915Iw1bVGftrAzpFZC8pC35f82rNymRF2J+hIB/ZXQdWpXBRGNXQA5juIzT8V+OtN8R5ekAmEgJM0CFroo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711983202; c=relaxed/simple;
-	bh=yloUbEiMF310IOcwHWkZeGYQdWnRad/t8yaPC4hBQco=;
+	s=arc-20240116; t=1711983471; c=relaxed/simple;
+	bh=s/Kq0rz7zLu9YXogoVE0wyeYA30vKKY0Jd2nsR5FfWE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rHC4bbqAMX7nbAkhEzhCNhQktLK6ACCwIDMX7LY7D5F1G5GdljaYhQvzkbT00IVu70+XwMuZwHZDdUtz9ANfsk9vcJ0mEk4cccDtKxE9irkW+EVmSyfgVFcerRYkPPRPdyU62fqwunBA33IYICpZffDpnMbpk6ZXDLwtOE1k88Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=CSMXS/oX; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=SUYqqJRgXGf9mQerq1K5Az97AxxYJNUyDS5cN1Mc7Vs=; b=CSMXS/oXFaI/OUAWuuyMHfmdXM
-	dCJDxRC72tUGrABO58Edyb72+pXPCvWeyAqRLnH2ePn9mGerVyyxWG9dlvtd8vLxkpFqu3WTfWGht
-	rC0vBwnxtzJjSXDCLxRPyORwlsAndOkb2WMYsPfib+hfrwBLTPngWq+xY3FVTFU4hfPQ=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rrJ2A-00BrcD-H9; Mon, 01 Apr 2024 16:53:14 +0200
-Date: Mon, 1 Apr 2024 16:53:14 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Gregory Clement <gregory.clement@bootlin.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 6/6] arm64: dts: marvell: cn9130-crb: drop unneeded
- "status"
-Message-ID: <a74a10bc-19f3-489a-962d-dcf483c53bd2@lunn.ch>
-References: <20240401141051.98233-1-krzk@kernel.org>
- <20240401141051.98233-6-krzk@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=eunr/9dCJmDpahVCT8kz3s1fc7aD4i7oqwtDU00WWCpKCJw7zOoTRaJlwszbuiCHD2lH/6aR0uan9eaOHN/SLbF1yPCbO0bkzSHd4iBaUQbMdfX7aMDYh+DCSKrG5jChcr1YoQZX8YssiqFPciO58ao/hoUgtdVVcDKEGZyHoHI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gYEoLEsX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 296C3C433C7;
+	Mon,  1 Apr 2024 14:57:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711983471;
+	bh=s/Kq0rz7zLu9YXogoVE0wyeYA30vKKY0Jd2nsR5FfWE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gYEoLEsXkFl7p10gvrZ1Wk5QHBxQVt+EFOdrWhph1e9/qsMyGexSBW6NZ1o1ruMN0
+	 alFvVY1mFnaOMYx/EiL3ikLRN1Drv0Vfv3BWicg2qPUaHmNnvFppBpgEUF+m+y1xDf
+	 6WXsYJf9iLDB/hKVCqsKvFSNeHKmo0NvhZFyz4pL5ZM14W8PWzbOZYOJ87z0K5SAXG
+	 SYxDA4MEMYO+pYyhOWBJ6sjaTeVNE5NUKmWwiwY485YvOM8vAw+yuYe8vAcLMBxkfC
+	 +Nv/PVRxS6w8SqOhin72KVz0oV+csNZj3QCEuRPDxvG6HD/+ZBVVc0GGxU3Aa+pAt/
+	 FUYPe1vdfDKvQ==
+Date: Mon, 1 Apr 2024 09:57:49 -0500
+From: Rob Herring <robh@kernel.org>
+To: Dmitry Rokosov <ddrokosov@salutedevices.com>
+Cc: sboyd@kernel.org, neil.armstrong@linaro.org, jbrunet@baylibre.com,
+	khilman@baylibre.com, rockosov@gmail.com, linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	kernel@salutedevices.com, devicetree@vger.kernel.org,
+	linux-amlogic@lists.infradead.org, robh+dt@kernel.org,
+	mturquette@baylibre.com, linux-arm-kernel@lists.infradead.org,
+	martin.blumenstingl@googlemail.com
+Subject: Re: [PATCH v1 5/6] dt-bindings: clock: meson: add A1 CPU clock
+ controller bindings
+Message-ID: <171198346654.607486.15665713709092404506.robh@kernel.org>
+References: <20240329205904.25002-1-ddrokosov@salutedevices.com>
+ <20240329205904.25002-6-ddrokosov@salutedevices.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,14 +64,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240401141051.98233-6-krzk@kernel.org>
+In-Reply-To: <20240329205904.25002-6-ddrokosov@salutedevices.com>
 
-On Mon, Apr 01, 2024 at 04:10:51PM +0200, Krzysztof Kozlowski wrote:
-> Devices are enabled by default.
+
+On Fri, 29 Mar 2024 23:58:45 +0300, Dmitry Rokosov wrote:
+> Add the documentation and dt bindings for Amlogic A1 CPU clock
+> controller.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> This controller consists of the general 'cpu_clk' and two main parents:
+> 'cpu fixed clock' and 'syspll'. The 'cpu fixed clock' is an internal
+> fixed clock, while the 'syspll' serves as an external input from the A1
+> PLL clock controller.
+> 
+> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+> ---
+>  .../bindings/clock/amlogic,a1-cpu-clkc.yaml   | 64 +++++++++++++++++++
+>  .../dt-bindings/clock/amlogic,a1-cpu-clkc.h   | 19 ++++++
+>  2 files changed, 83 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-cpu-clkc.yaml
+>  create mode 100644 include/dt-bindings/clock/amlogic,a1-cpu-clkc.h
+> 
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-    Andrew
 
