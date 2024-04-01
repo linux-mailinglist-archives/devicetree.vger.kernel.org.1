@@ -1,105 +1,83 @@
-Return-Path: <devicetree+bounces-55099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55107-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DD57893C87
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 17:03:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF07D893CAB
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 17:12:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5736D282A90
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 15:03:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8CDD282A00
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 15:12:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1157645948;
-	Mon,  1 Apr 2024 15:03:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1376846535;
+	Mon,  1 Apr 2024 15:12:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QFE/cmz3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AyzAwaz5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB7A64501C;
-	Mon,  1 Apr 2024 15:03:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBD044597F;
+	Mon,  1 Apr 2024 15:12:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711983810; cv=none; b=UeE8JK2zfCzJW25JN/Yt1HtUD5cqYhtvCbn7XspG4Cjrl2+6GSJEp+5A1XmpPOwoZuPnYw8heHgqbMDrm5Dz03DXJhn5fzzMpwIS46fDJ4BiqB6ZJsMdynOlv/5uoMY9XR0FeXfZ2tV7rDRt3xqYgQqgpUaI/dJDkB3VwQmiSMM=
+	t=1711984325; cv=none; b=rLvfJBO5lpH8GW3tLcDJAm6KG6blbWoldMQY3Q94EWg7gjLzaW6mNzBY8n3Db5rrSQhXfC0I8lBtXFn2lNB/aXHU1O7ouuVjC2gIFLWOpmJjt3luuphjQxIya107vx//QlSzLvFLPStLjRs1+cFgopy1Thilz5Ve4uYRs31TkVg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711983810; c=relaxed/simple;
-	bh=0BjhkJZo1GGrBFIuI2O8IflDs/9gbR3k2FcSw6QU9G8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rvu+1a44/oN0RRKrVn40kUSvJUoiaaoQKsG6tEuye7rD+NKNpMBrqvuGTAVeGXGOAEzwnLVxRKgaFLcVMbrktEtmG+gxIzKTcdXI4YNKWOddXbp8JIyT/4R+dVtJ5601mZvIjlGzg+89vqv83GA3btq4mkGUbndfH0cb/L0Rcf0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QFE/cmz3; arc=none smtp.client-ip=209.85.216.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-2a1f8308532so1068304a91.1;
-        Mon, 01 Apr 2024 08:03:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711983808; x=1712588608; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ze4P2kj5+cKm0E+fPR6OILfVwR9k2qDZCBLpSr+WBq8=;
-        b=QFE/cmz32ZPBaCFzkVz/uon1jizSw7ECHq2ii6Glg5z6JjsPvBgJzSVr3CGMPbznH4
-         Il1APpDRxYmJEEcsXsmLkEoD/8ZihmAFrbCojg4uTlsx4nbkyUpqBfOGIzQR/b1q2+HG
-         t+Dk2gQZ/shpziZ0q90ednti4pH+iqxMgHfXtOvw3FSNwVklwvhRtolLVvehK2DW+53c
-         taUHiOXjd4YplKl7HNSgS2Fc2j9fVKtN1iI4Cimk8BM+a1YYbylupbRd9PUaPBCo67CE
-         +tluZAcQN8rMuTFOFm8twvTa1+95gm10H/bgeFAg6NpQga0En0kSlbwD4HD/ZKyK9Tgr
-         htQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711983808; x=1712588608;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ze4P2kj5+cKm0E+fPR6OILfVwR9k2qDZCBLpSr+WBq8=;
-        b=FhaBtJt8C4crK5XMkGuq/Z4AxMid6rTP6/EuCTrp0MvfXtgQlleChdonN6f1i7mRfs
-         556QC7x/pYt7tj1NogXnRbTVMlUQmhS0/7CfUMiooGTRusm92Io5HrQYZpexPxXVOPVb
-         cX/2n93Q2kNS3qFThzRw2MnPnSm2mJnjZDm6UxnNVHaiAsmROYf9q7IJ68R5Ug/gVl8i
-         hy53IfJAEv3WABtLneGAsqOT8E1iqOc5cgo8Et0wH6XS5UNSj1/JEFFQYE5z1nO0b53v
-         TpOkyHNZJtt9lu/4Y5lERpfo8enL0jNKo7uys0tjDFngg9BqdXT/jU8mxQL+DKUpURvM
-         Je7w==
-X-Forwarded-Encrypted: i=1; AJvYcCVrZzig2rI3UR6zq0h+/+9zxArnKPc2Q8l4VJNbZHQjpqN/YhCCUir8L70OXTva9T+rEa5jXcJR2pZl53RlOgN7DnziwNYs9U255IohJl0GKIGFJhrxm9JxHiV+t9pQt+hH9M+QvX6g
-X-Gm-Message-State: AOJu0YyfYBmtJvKIlZWSTC8I+B89PEI4MgSCLb/+ij55ifAKuI9FB7Zw
-	Cb5ZPTtxirkuvtDXmFKuutrCwWGeSLAiiy5RT6r5xda1w7yoaMJB+8JglndTrJ0Pwi4ELPAF/qI
-	XNm/5jWBink4XkhGK8dWkbtmsMUaoNVM3aQI=
-X-Google-Smtp-Source: AGHT+IEhAYLQ64iN3FASx25YizKuW8GqC49Qof31l7E8u7oVmoRIQRr8smI5IT7tmr72GpPyC+U1wQcxISRNzGtJngk=
-X-Received: by 2002:a17:90a:688d:b0:2a0:2605:69be with SMTP id
- a13-20020a17090a688d00b002a0260569bemr9866428pjd.2.1711983808058; Mon, 01 Apr
- 2024 08:03:28 -0700 (PDT)
+	s=arc-20240116; t=1711984325; c=relaxed/simple;
+	bh=3EAO1J65Wl7XzU3Ij5uOQDQQ0Ix7O8zlrSVRpexM9Yw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pdaol83JqPg2p2EEWjzQMqc1qV3ESEZSGPy67+GcbnvnUBZpJ24HbDOEb24Lqe8eEcb8uaK6Ud8QsMevQHVvndPMo0kJxtJ7GUN+tWQoFBYwFxfHM6TCPdvhIk3v5jqVNLhbkB1OyshPmVhoRHx0jexEfG3HsHZymNexVBE7xVc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AyzAwaz5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 923DBC433C7;
+	Mon,  1 Apr 2024 15:12:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711984324;
+	bh=3EAO1J65Wl7XzU3Ij5uOQDQQ0Ix7O8zlrSVRpexM9Yw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AyzAwaz52gGHI7ImRb7JkTloJ+3B9Jnxr9WZOLqKJ7kKVNt4thbjQTt+yvyaUe5DF
+	 jp3/oALGuO1vsLT7/8YUFq4X1WWPSAVB53jplzL54FVglqqfgghzdV9FlnONZmQgBX
+	 V4Wlkk26dSqfAofP11GM3IABlLWc1D8GR8XGAHQAE2v1IaeSiWx7ki2BcoO5M9ZVo3
+	 QrtjiSfMe+OwDpxJ7jXO8eZx/ci2IcbU50Jbh7mX6I1NofFzhBcm6bJo5fImysEKxK
+	 PpsmPPqCr+JufQKqOhpfsA6F0/ZJlhzPiaRccFy9MAcO7U0Q7ROYFVJnK6JGDIVkJT
+	 XNQV0gRqkEPHg==
+Date: Mon, 1 Apr 2024 10:12:02 -0500
+From: Rob Herring <robh@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Sibi Sankar <quic_sibis@quicinc.com>, linux-kernel@vger.kernel.org,
+	linux-remoteproc@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: remoteproc: qcom,msm8996-mss-pil: allow
+ glink-edge on msm8996
+Message-ID: <171198431941.704045.10589765467149815176.robh@kernel.org>
+References: <20240401-msm8996-remoteproc-v1-0-f02ab47fc728@linaro.org>
+ <20240401-msm8996-remoteproc-v1-1-f02ab47fc728@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240326231033.2048193-1-festevam@gmail.com> <ZgPtolH796HER4cP@kekkonen.localdomain>
- <CAOMZO5AYjNPWZfy_dN12K9JNwWaWThpMs0W-FzETF5k8fobgeg@mail.gmail.com> <ZgSeACFfBAmOPXdt@kekkonen.localdomain>
-In-Reply-To: <ZgSeACFfBAmOPXdt@kekkonen.localdomain>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Mon, 1 Apr 2024 12:03:15 -0300
-Message-ID: <CAOMZO5BGYhnhOrBRS9zBeYYJFHXnQkqZCAV2wGtdpmiA3HZTqA@mail.gmail.com>
-Subject: Re: [PATCH] media: dt-bindings: ovti,ov2680: Document clock/data-lanes
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: rmfrfs@gmail.com, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	Fabio Estevam <festevam@denx.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240401-msm8996-remoteproc-v1-1-f02ab47fc728@linaro.org>
 
-Hi Sakari,
 
-On Wed, Mar 27, 2024 at 7:30=E2=80=AFPM Sakari Ailus
-<sakari.ailus@linux.intel.com> wrote:
+On Mon, 01 Apr 2024 00:10:42 +0300, Dmitry Baryshkov wrote:
+> MSM8996 has limited glink support, allow glink-edge node on MSM8996
+> platform.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml | 1 -
+>  1 file changed, 1 deletion(-)
+> 
 
-> > In this case, the correct fix would be to remove 'clock-lanes' and
-> > 'data-lanes' from imx7s-warp.dts.
->
-> Agreed.
+Acked-by: Rob Herring <robh@kernel.org>
 
-I tried removing 'clock-lanes' and  'data-lanes', but it did not work:
-
-ov2680 1-0036: error -EINVAL: only a 1-lane CSI2 config is supported
-ov2680 1-0036: probe with driver ov2680 failed with error -22
-
-I will send a v2 that documents 'clock-lanes', 'data-lanes', and
-'link-frequencies'.
 
