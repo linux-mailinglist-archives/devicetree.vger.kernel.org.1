@@ -1,85 +1,83 @@
-Return-Path: <devicetree+bounces-54998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55000-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 778248938D4
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 10:13:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF4288938DD
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 10:19:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED7D51F21217
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 08:13:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93F5228175F
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 08:19:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8D0EBE5A;
-	Mon,  1 Apr 2024 08:13:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56119C8DE;
+	Mon,  1 Apr 2024 08:18:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WbPiyms8"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="E0FhWtPN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail2.andi.de1.cc (vmd64148.contaboserver.net [161.97.139.27])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38DBE8BF0;
-	Mon,  1 Apr 2024 08:13:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDE79BE4C;
+	Mon,  1 Apr 2024 08:18:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=161.97.139.27
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711959229; cv=none; b=nRA/n/p2RG/xdeiAozY8gWn4EZTPrZY1WmB5tLC9nTq9j4AsqG95urDltp65aCtNIvyGkK3Yg939d0Z3r/6BpthQ/vxAAJj4D5ppFGyRE9e9AAldZEBKllIqK2kUIHjPafjNNPVxdULEe1154Qjh4Pw0PCyyVMqK7i95pIR+Jh0=
+	t=1711959530; cv=none; b=fP9UN009ne54EiJy9KGvVziH9rpqYwQZJGTlef72qeldCwg4yrJ8z+vmnXds6COcYzHQdERhMcqHW5bPj1qD9Yekn2uky+cN9dAZEWVcSG0I9SMQwgrh7z7QD+mUuq78KF1klrQuPkHqfnmwrIT1s7PhUTo95Ubq94vW9y/EblM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711959229; c=relaxed/simple;
-	bh=EmOBM/0uJprbcekt/hql8SXwoNf6xXb8BYAWyWp7SoQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=kyOGAyxsPRCY1BIbOVnQ2kn8CKAemi9t70yo3ny3y4HyrSCQ4bZoa5MnhA8msvl6IRm6gvTZiheHDi6NgnwGX836yziLcAeIv1qfXe/JMzofH3Wiq0IjOtHOmOCN7My6QRgfgIuuy2LONNAAuHbXquBY3xCuxApUi1cIl20+nF0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WbPiyms8; arc=none smtp.client-ip=209.85.161.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f44.google.com with SMTP id 006d021491bc7-5a7a4119d02so950063eaf.1;
-        Mon, 01 Apr 2024 01:13:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711959226; x=1712564026; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Cej9zpiWpk2htv89hye5Ck+sNEHdHBz2DKWSX4aWhq4=;
-        b=WbPiyms8mQ8KonqQPEttbw43kZX733zDIY+GdqGKY9UJOUD+u8xFcg2aeIZz7CxcZ0
-         XMuHPck95ucRTzkdDKv5/xfrCZptvrp+AO+R5M/PeVbvir7VCB+OwzdoDsPs0vTaiKGm
-         K74d3vhatmLQNbh2AH7IMbVDb8byQF6Im4qKcqmgTnUB1JgkLGBHNSsbnIwWvOb5jWn+
-         s3YCgC3tcxdkiG1cb3uhqKjU5BeycZ65nPddCNIH8jvGVYDcOZNh/3SNi48xTBI/QhcZ
-         Sp/D0qj2j/S02hDp9cuIkd7fnKiOTgT6wFfpX14mS36uyI+wsWT7VHCaUx/a4gKkokIu
-         oSmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711959226; x=1712564026;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Cej9zpiWpk2htv89hye5Ck+sNEHdHBz2DKWSX4aWhq4=;
-        b=VYOMzkRFcG43RERzMIY6eC7C6yN4A5FT/g2lIdmfgWxRQpiW0GYMFwx3LHvH0yEcW4
-         DWf3ie1CMDbwmOABbtV32JzmAZLE/9usH1d+DImzAKFOs9NzqzP/snnYM7xTtOM28GdH
-         1N3DEtzsfV21W/fEFK9EyIPmWo7NPD9EQPueLexyqHhdbPWSywuO8xb0Wbxf+6vqlqrZ
-         N5uwjcemG6LT57Ugfz2ms7knwdkyAsiPy3MxNQVn4y+yKbwjF25EpJD6tSEQrvtdebcz
-         8bs4CTxmS9CAQ6mWRqdXaiC9iubD1DxbgKIMhFc6TFhJWGt7kxkIeG/Xmb5gqn5axA7x
-         OQpg==
-X-Forwarded-Encrypted: i=1; AJvYcCU/AI8YUwV68uy0QR6wzBW2mkOmQPvit04p0k7sWHhQfDk+uiNfF3CHBBBY7obuyP32e5eDuTehi78KM0PpLEf7aXCmvvXGl5UGQEwg
-X-Gm-Message-State: AOJu0YwVJrGmJHn3RNh6OQjC8hOK9+T9SDou+3IvHViZPO7Zz3AmJRVn
-	Kwau5R99UWCN+JLEh/yCZtWbiub6msXs+iYBQ8dhphww8Hk4tVIuIEhOeWkuEwppXA==
-X-Google-Smtp-Source: AGHT+IHT7Kfi3nG9Qctt4Fkkm+M8SUzv6s58mZxn7nhIPocD64H3r6VAmceDyGR2xHIKzH3DHuqwAw==
-X-Received: by 2002:a05:6870:6e17:b0:229:f7fc:54aa with SMTP id qt23-20020a0568706e1700b00229f7fc54aamr10183931oab.5.1711959226268;
-        Mon, 01 Apr 2024 01:13:46 -0700 (PDT)
-Received: from localhost.localdomain ([221.220.133.103])
-        by smtp.gmail.com with ESMTPSA id r1-20020aa78441000000b006e69a142458sm7262817pfn.213.2024.04.01.01.13.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Apr 2024 01:13:45 -0700 (PDT)
-From: Jianfeng Liu <liujianfeng1994@gmail.com>
-To: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: robh@kernel.org,
+	s=arc-20240116; t=1711959530; c=relaxed/simple;
+	bh=RalONbHJmjL+5dC6j9f7WkhK0rfe+l8VIoPe6ry5m+o=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version; b=tO0ojZ10TPuPoxHdBGlnd7fWcwpy3IK6at8AZQPENjWH4sILqqsqPfS4sBZKp722KR77T0vrZjTTmmMawHsZ1+a/1XcyjfQNUTJofKoKkjJJqnW48HyOM+0INWvSuf95hhC2Hdi/yBIpsQoMUehVglSMFLF+iKcjKVL+Iwrg4UI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=E0FhWtPN; arc=none smtp.client-ip=161.97.139.27
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+Received: from mail.andi.de1.cc ([2a02:c205:3004:2154::1])
+	by mail2.andi.de1.cc with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <andreas@kemnade.info>)
+	id 1rrCsI-003hxX-2o;
+	Mon, 01 Apr 2024 10:18:38 +0200
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:MIME-Version:
+	Message-Id:Date:Subject:To:From:Sender:Reply-To:Cc:Content-Type:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=matAENjD3Sff8egEAIeTHD8iydE2FAZ42pT+Mb7DKIo=; b=E0FhWtPNWyOeG0OVnjy/ib27pB
+	wMRNgiJKSDOas2ukg+bkXWMQb2/Py/jAJAZq843x1lyO4uQFOIpTWlYVafJLi/FaOuswqBMTZ7ano
+	vvUW2BavHNbXMuHjMoEb95xXfw8bZuP/bCLfQdY759RL0LFZOnpj/4SFAO9bQjkz4FeVd76UtEhBo
+	pgkuonYWVcvYvbisNUViwUmQrZ0HkinGKZRAs/YIO3kLtfcu6CtBS0rnmakWHuuaZmzStoC2f5GKv
+	66QlnYuGq/nf7Bhe/gBE4DeEwEjgskjDouxoakCMNFaILTiR+sjC6Ecm3WwN8TQWaXlB4xsNCzniG
+	PsHox9NQ==;
+Received: from p2003010777026a001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:107:7702:6a00:1a3d:a2ff:febf:d33a] helo=aktux)
+	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <andreas@kemnade.info>)
+	id 1rrCsB-000Fdf-2I;
+	Mon, 01 Apr 2024 10:18:32 +0200
+Received: from andi by aktux with local (Exim 4.96)
+	(envelope-from <andreas@kemnade.info>)
+	id 1rrCsB-001uqP-1y;
+	Mon, 01 Apr 2024 10:18:31 +0200
+From: Andreas Kemnade <andreas@kemnade.info>
+To: dmitry.torokhov@gmail.com,
+	robh@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
 	conor+dt@kernel.org,
-	heiko@sntech.de,
-	sfr@canb.auug.org.au,
-	liujianfeng1994@gmail.com
-Subject: [PATCH] arm64: dts: rockchip: remove startup-delay-us from vcc3v3_pcie2x1l0 on rock-5b
-Date: Mon,  1 Apr 2024 16:13:02 +0800
-Message-Id: <20240401081302.942742-1-liujianfeng1994@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	lee@kernel.org,
+	alexandre.belloni@bootlin.com,
+	wim@linux-watchdog.org,
+	linux@roeck-us.net,
+	andreas@kemnade.info,
+	linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-rtc@vger.kernel.org,
+	linux-watchdog@vger.kernel.org,
+	sre@kernel.org
+Subject: [PATCH v3] dt-bindings: mfd: twl: Convert trivial subdevices to json-schema
+Date: Mon,  1 Apr 2024 10:18:31 +0200
+Message-Id: <20240401081831.456828-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,32 +86,186 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Property startup-delay-us is copied from vendor dts and it will
-make kernel not detect pcie wifi device. If I run command:
-"echo 1 > /sys/bus/pci/rescan", pcie wifi device is detected, but
-my wifi device RTL8822CE failed to load driver. Another device
-RTL8723BE can load driver but no wifi signal is detected.
+Convert subdevices with just an interrupt and compatbile to
+json-schema and wire up already converted subdevices.
+RTC is available in all variants, so allow it unconditionally.
+GPADC binding for TWL603X uses two different compatibles, so
+specify just the compatible and do not include it.
 
-Removing this property will fix issues above.
-
-Signed-off-by: Jianfeng Liu <liujianfeng1994@gmail.com>
+Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+Acked-by: Guenter Roeck <linux@roeck-us.net>
 ---
- arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 1 -
- 1 file changed, 1 deletion(-)
+Changes in v3:
+- added Ack
+  (apparantly many recipients did not receive the V2 patch,
+   so there is a need for a resend)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-index d6bf2ee07..a9af654a0 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-@@ -76,7 +76,6 @@ vcc3v3_pcie2x1l0: vcc3v3-pcie2x1l0-regulator {
- 		regulator-boot-on;
- 		regulator-min-microvolt = <3300000>;
- 		regulator-max-microvolt = <3300000>;
--		startup-delay-us = <50000>;
- 		vin-supply = <&vcc5v0_sys>;
- 	};
+Changes in v2:
+- style cleanup
+- absolute paths
+- unevalutedProperties instead of additionalProperties
+  due to not accepting things in if: clauses without it
 
---
-2.34.1
+ .../bindings/input/twl4030-pwrbutton.txt      | 21 ------
+ .../devicetree/bindings/mfd/ti,twl.yaml       | 72 ++++++++++++++++++-
+ .../devicetree/bindings/rtc/twl-rtc.txt       | 11 ---
+ .../bindings/watchdog/twl4030-wdt.txt         | 10 ---
+ 4 files changed, 71 insertions(+), 43 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/input/twl4030-pwrbutton.txt
+ delete mode 100644 Documentation/devicetree/bindings/rtc/twl-rtc.txt
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/twl4030-wdt.txt
+
+diff --git a/Documentation/devicetree/bindings/input/twl4030-pwrbutton.txt b/Documentation/devicetree/bindings/input/twl4030-pwrbutton.txt
+deleted file mode 100644
+index 6c201a2ba8acf..0000000000000
+--- a/Documentation/devicetree/bindings/input/twl4030-pwrbutton.txt
++++ /dev/null
+@@ -1,21 +0,0 @@
+-Texas Instruments TWL family (twl4030) pwrbutton module
+-
+-This module is part of the TWL4030. For more details about the whole
+-chip see Documentation/devicetree/bindings/mfd/ti,twl.yaml.
+-
+-This module provides a simple power button event via an Interrupt.
+-
+-Required properties:
+-- compatible: should be one of the following
+-   - "ti,twl4030-pwrbutton": For controllers compatible with twl4030
+-- interrupts: should be one of the following
+-   - <8>: For controllers compatible with twl4030
+-
+-Example:
+-
+-&twl {
+-	twl_pwrbutton: pwrbutton {
+-		compatible = "ti,twl4030-pwrbutton";
+-		interrupts = <8>;
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/mfd/ti,twl.yaml b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+index 52ed228fb1e7e..c2357fecb56cc 100644
+--- a/Documentation/devicetree/bindings/mfd/ti,twl.yaml
++++ b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+@@ -15,6 +15,67 @@ description: |
+   USB transceiver or Audio amplifier.
+   These chips are connected to an i2c bus.
+ 
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: ti,twl4030
++    then:
++      properties:
++        madc:
++          type: object
++          $ref: /schemas/iio/adc/ti,twl4030-madc.yaml
++          unevaluatedProperties: false
++
++        bci:
++          type: object
++          $ref: /schemas/power/supply/twl4030-charger.yaml
++          unevaluatedProperties: false
++
++        pwrbutton:
++          type: object
++          additionalProperties: false
++          properties:
++            compatible:
++              const: ti,twl4030-pwrbutton
++            interrupts:
++              items:
++                - items:
++                    const: 8
++
++        watchdog:
++          type: object
++          additionalProperties: false
++          properties:
++            compatible:
++              const: ti,twl4030-wdt
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: ti,twl6030
++    then:
++      properties:
++        gpadc:
++          type: object
++          properties:
++            compatible:
++              const: ti,twl6030-gpadc
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: ti,twl6032
++    then:
++      properties:
++        gpadc:
++          type: object
++          properties:
++            compatible:
++              const: ti,twl6032-gpadc
++
+ properties:
+   compatible:
+     description:
+@@ -42,7 +103,16 @@ properties:
+   "#clock-cells":
+     const: 1
+ 
+-additionalProperties: false
++  rtc:
++    type: object
++    additionalProperties: false
++    properties:
++      compatible:
++        const: ti,twl4030-rtc
++      interrupts:
++        maxItems: 1
++
++unevaluatedProperties: false
+ 
+ required:
+   - compatible
+diff --git a/Documentation/devicetree/bindings/rtc/twl-rtc.txt b/Documentation/devicetree/bindings/rtc/twl-rtc.txt
+deleted file mode 100644
+index 8f9a94f2f8969..0000000000000
+--- a/Documentation/devicetree/bindings/rtc/twl-rtc.txt
++++ /dev/null
+@@ -1,11 +0,0 @@
+-* Texas Instruments TWL4030/6030 RTC
+-
+-Required properties:
+-- compatible : Should be "ti,twl4030-rtc"
+-- interrupts : Should be the interrupt number.
+-
+-Example:
+-	rtc {
+-		compatible = "ti,twl4030-rtc";
+-		interrupts = <11>;
+-	};
+diff --git a/Documentation/devicetree/bindings/watchdog/twl4030-wdt.txt b/Documentation/devicetree/bindings/watchdog/twl4030-wdt.txt
+deleted file mode 100644
+index 80a37193c0b86..0000000000000
+--- a/Documentation/devicetree/bindings/watchdog/twl4030-wdt.txt
++++ /dev/null
+@@ -1,10 +0,0 @@
+-Device tree bindings for twl4030-wdt driver (TWL4030 watchdog)
+-
+-Required properties:
+-	compatible = "ti,twl4030-wdt";
+-
+-Example:
+-
+-watchdog {
+-	compatible = "ti,twl4030-wdt";
+-};
+-- 
+2.39.2
 
 
