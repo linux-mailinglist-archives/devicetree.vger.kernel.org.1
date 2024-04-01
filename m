@@ -1,68 +1,85 @@
-Return-Path: <devicetree+bounces-55119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AC0C893CFC
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 17:40:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29B57893D05
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 17:44:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C7DC1C21A3E
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 15:39:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B22121F22AB0
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 15:44:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 760AD482E4;
-	Mon,  1 Apr 2024 15:38:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 713324644E;
+	Mon,  1 Apr 2024 15:44:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CjVuAT65"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="He9+V9K2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 500C451021;
-	Mon,  1 Apr 2024 15:38:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 012453FBBD;
+	Mon,  1 Apr 2024 15:44:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711985915; cv=none; b=bvZncEItJZyYuEmtJdYBUzj0gqk/bKoPphWv81aQZ+pFlKi5Ev+TRzPQzp34I4boaKL+InY55y0nAp4K4TyiKA8EBPP3lkKvdLiVqvOQaC6S7UmSJZC577nRNkHa8lX+3W6wxacFblDx675hU4+BN0C/9GAAReTCFerB6tj51ls=
+	t=1711986256; cv=none; b=NhreeRiKPsMdHNfh1tomwJm9iZJZnjIh8r8QpxfuUUndZ5S8C0i8WvcpAKMwimzVsdrEvHUPUJKQXqFaCb3ySohqb9CWMY6QGOPLbi21WRfj398xSk+8Hd2BwNHwO92VOYaWYzX2cncaiPAvDSL6OMnKpkYpvzjtCuSQ6QK47Uo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711985915; c=relaxed/simple;
-	bh=JgLPnjcMi+cgOhiaoTMdhKoBzbHBbs/okfQQvGNTcdo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=MsAYIPjqvZ82ZBM1znHdvmXUukw7kyyb3jsOCzS9y3LZdoT3Xz2rnfHpDz7NkdJm1J1lI6HKcyjfxhEKb51k+8mqLUJsff3GVQt7kT86UctDZ9Y8yspUFh3DrLGUjBqnEpVbtQRqzGTcHLn2N+PUAVuSpPl9x5WNuMxa1IW/OZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CjVuAT65; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81A64C433F1;
-	Mon,  1 Apr 2024 15:38:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711985914;
-	bh=JgLPnjcMi+cgOhiaoTMdhKoBzbHBbs/okfQQvGNTcdo=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=CjVuAT65buqs99kvAaD4vV94P1Z5W+QmUpw+nssp3dWlIHCTFraFjdqPWWxVQRGw3
-	 m3lUXSpzMVIk6ozny/7UwF2viG+zgGQtd+fGPLA4vaqg1C+8iVV+7wt5MofHNXZwW4
-	 CoL6sFuScW9fV+I+45WhBZ/yg3rRAjXCHJvyajrbeOtHlmFwdouhYy1fqGwDq8iTsW
-	 7WBET5EkFWOoZujUtfi0s4NpRcp5vk93+WdHm443aqw0rK7OU1bS8fbman6M4eOc36
-	 pp7Dp6yOI1+ieVWPUXOj4hAvphsLiK/zsHx34SDS2WWQNAE0WWu6EJk+ynNlsteIH1
-	 jX7CX5Zq5WG6g==
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Conor Dooley <conor@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Lars Povlsen <lars.povlsen@microchip.com>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	UNGLinuxDriver@microchip.com,
-	"David S. Miller" <davem@davemloft.net>,
-	Bjarni Jonasson <bjarni.jonasson@microchip.com>,
-	linux-arm-kernel@lists.infradead.org,
+	s=arc-20240116; t=1711986256; c=relaxed/simple;
+	bh=B42QTMoZxD4hJkKRaHX5hqfPha/2Aav3eyvZORC/vio=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=kSBkxm8JDec6cxqgbYrC8I0H5zt1naOQ85CTOoGROFocljC7t8QYtIv0YrkCOtohraAkihmHFb4gqT0XIFBkd7QSV4XKBz8DZ3XZDf92ap3iVpYxB8uOUF635SBhmNV27pyjxT7aYZS7ksrp1CfmWmyB3liS5nn85ScoUmVemPQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=He9+V9K2; arc=none smtp.client-ip=209.85.215.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-5d862e8b163so865792a12.1;
+        Mon, 01 Apr 2024 08:44:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1711986254; x=1712591054; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xwHb/m/hP9fiBWpaFCh5QcRA0pMEoYocev1FpzFn82o=;
+        b=He9+V9K2uiVYmD+WUqWGbiIN0le6u3IMWFE8NBztkYfY20KmBukPOig1sn5Ocm+dD/
+         IxRAsGsL1bkbSshhYQQy188CKLLxY4q+YmmITy4BmJseqUIaOEcubrdzs5nuqyOeaMHa
+         r8ysnf5f4ppt3nTIWIVdAsneg3qxnyx09+4tl/ohA8SHKjO59hQeO3xKLbTbdPdFAyGN
+         0b59Oq/Akddj/3rzmbYvGFCjTmhMv/9h4u+z3LRnfeH6Uj6YYItwstfrq2YgAQP/vE1C
+         De9Ku33hyov+DtBzDoULo06hrZjjkapJ3IZQ4tvOc5EC2NQFaLlNouNUFnGV5MlSWR0x
+         G4dw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711986254; x=1712591054;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xwHb/m/hP9fiBWpaFCh5QcRA0pMEoYocev1FpzFn82o=;
+        b=bga0SzZeeO3VD1lDo2GE8GxHpeyXspr5meMU0MMAxLvL6nNcDsN3wUDGe3hosK0F1W
+         sQxqcyj6NbdM25n2e/hXOENoyIFvUDZ0tyVWuOB/z2kXAT2OmdYNUP7JDyFLcYr1JdcZ
+         16RICmQXBSe8FRn1r6UfpSwOX8jUlzgOP/W+KoTWTs0LDiz1VQ8/zrXzmM0a26bC71rv
+         64eUHkwAMgToTeT0QNx3PBPrcP3okdleRyALUGDpEqRpMJgmeyThwi1Aned6Se1AOSqU
+         OtfyCbCWsQOq63YFI1pi0jFJoKJ5Y70oRMNyUK/CWJeepp9gHqkf5rQ64nfKQ47IohZE
+         hjvw==
+X-Forwarded-Encrypted: i=1; AJvYcCUQtDcwNAORpgmWJkm2RNCB/UqZh63pcWVJBdI6K0WIqJMBxzRryAvwriuIT++2hhz6BHLXfFuuP+aJhNdhRQg++ilx/NU52Vg5wTP8ToEBfOmnD/DTacPsgr2L05LjYVtdctIcal1p
+X-Gm-Message-State: AOJu0YwmmLRAIq50p6r1XjD+hV9lQ/rVTpFS8W5wM3GYMH2yFYjSQhNS
+	6bdzkp2BGPsAzsQWlSH2Tll29CgeczQXDHMylohc9iQsu01HC3jc
+X-Google-Smtp-Source: AGHT+IGUVTuBEuSUn8CA8hrbpvOqWP0fFytA3SYaY3gXA7PJemahFJr/4OMERoBAClT6cXOrdVN5yA==
+X-Received: by 2002:a17:902:b092:b0:1e0:c887:f938 with SMTP id p18-20020a170902b09200b001e0c887f938mr10770942plr.3.1711986254171;
+        Mon, 01 Apr 2024 08:44:14 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:a943:2baf:4369:df34])
+        by smtp.gmail.com with ESMTPSA id f7-20020a170902684700b001dedfba4c69sm9202270pln.134.2024.04.01.08.44.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Apr 2024 08:44:13 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: sakari.ailus@linux.intel.com
+Cc: rmfrfs@gmail.com,
+	laurent.pinchart@ideasonboard.com,
+	hansg@kernel.org,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	linux-media@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH RFT 10/10] arm64: dts: microchip: sparx5_pcb135: drop duplicated NOR flash
-Date: Mon,  1 Apr 2024 17:37:40 +0200
-Message-Id: <20240401153740.123978-10-krzk@kernel.org>
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH v2] media: dt-bindings: ovti,ov2680: Document more properties
+Date: Mon,  1 Apr 2024 12:43:41 -0300
+Message-Id: <20240401154341.3173872-1-festevam@gmail.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240401153740.123978-1-krzk@kernel.org>
-References: <20240401153740.123978-1-krzk@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,52 +88,70 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Since beginning the DTS extended the SPI0 in two places adding two SPI
-muxes, each with same SPI NOR flash.  Both used exactly the same
-chip-selects, so this was clearly buggy code.  Without checking in
-datasheet, assume device has only one SPI NOR flash, so code was
-duplicated.
+From: Fabio Estevam <festevam@denx.de>
 
-Fixes dtc W=1 warnings:
+OV2680 has a single data lane MIPI interface.
 
-  sparx5_pcb135_board.dtsi:92.10-96.4: Warning (unique_unit_address_if_enabled): /axi@600000000/spi@600104000/flash@0: duplicate unit-address (also used in node /axi@600000000/spi@600104000/spi@0)
+Document the clock-lanes and data-lanes properties to avoid
+the following dt-schema warning:
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+imx7s-warp.dtb: camera@36: port:endpoint: Unevaluated properties are not allowed ('clock-lanes', 'data-lanes' were unexpected)
+	from schema $id: http://devicetree.org/schemas/media/i2c/ovti,ov2680.yaml#
 
+While at it, also document the link-frequencies property as recommended
+by the following document:
+
+https://www.kernel.org/doc/html/v6.9-rc1/driver-api/media/camera-sensor.html#handling-clocks
+
+Signed-off-by: Fabio Estevam <festevam@denx.de>
 ---
+Changes since v1:
+- Keep the existing 'additionalProperties: false'. (Krzysztof)
+- Also document link-frequencies.
 
-Not tested on hardware
----
- .../boot/dts/microchip/sparx5_pcb135_board.dtsi  | 16 ----------------
- 1 file changed, 16 deletions(-)
+ .../bindings/media/i2c/ovti,ov2680.yaml       | 20 ++++++++++++++++++-
+ 1 file changed, 19 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi b/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi
-index 20016efb3656..d64e642e3873 100644
---- a/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi
-@@ -96,22 +96,6 @@ flash@0 {
- 	};
- };
+diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml
+index cf456f8d9ddc..a1cb08283818 100644
+--- a/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml
+@@ -50,9 +50,24 @@ properties:
+       Definition of the regulator used as digital power supply.
  
--&spi0 {
--	status = "okay";
--	spi@0 {
--		compatible = "spi-mux";
--		mux-controls = <&mux>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--		reg = <0>; /* CS0 */
--		flash@9 {
--			compatible = "jedec,spi-nor";
--			spi-max-frequency = <8000000>;
--			reg = <0x9>; /* SPI */
--		};
--	};
--};
--
- &sgpio1 {
- 	status = "okay";
- 	microchip,sgpio-port-ranges = <24 31>;
+   port:
+-    $ref: /schemas/graph.yaml#/properties/port
+     description:
+       A node containing an output port node.
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        unevaluatedProperties: false
++
++        properties:
++          clock-lanes:
++            const: 0
++
++          data-lanes:
++            const: 1
++
++          link-frequencies: true
+ 
+ required:
+   - compatible
+@@ -89,6 +104,9 @@ examples:
+                 port {
+                         ov2680_to_mipi: endpoint {
+                                 remote-endpoint = <&mipi_from_sensor>;
++                                clock-lanes = <0>;
++                                data-lanes = <1>;
++                                link-frequencies = /bits/ 64 <330000000>;
+                         };
+                 };
+         };
 -- 
 2.34.1
 
