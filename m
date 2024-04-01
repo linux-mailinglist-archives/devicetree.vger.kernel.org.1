@@ -1,309 +1,155 @@
-Return-Path: <devicetree+bounces-55170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55171-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC8678945F2
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 22:25:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 923DD894600
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 22:33:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C7C91C21952
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 20:25:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 29FFD1F223F8
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 20:33:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4D535381A;
-	Mon,  1 Apr 2024 20:25:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCA8553361;
+	Mon,  1 Apr 2024 20:33:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="F5zHUrJJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vFvTVURC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 902F446535;
-	Mon,  1 Apr 2024 20:25:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC149D535
+	for <devicetree@vger.kernel.org>; Mon,  1 Apr 2024 20:33:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712003125; cv=none; b=g67ftFdpgl4kLs3H+v9ynJ4j30yXNIS4sNziFg6UUbaqeUiv9f51TmlRplgCLTqYDOtueDIIOxecLVNxFEcglq2pXMQYktTdPdEtc/fapQAOscdyurTkFcPazEFGZxxoi28UaytdQYOqt2UiFG7t+SvVYvtISRR6X3UAQIVrapQ=
+	t=1712003626; cv=none; b=fp71lAEfDx8rJ42WQFySJNvGYD+N0QjfodI8Nw5LNsY/lC/s9fxdGShtV5cgvV+ch7ODUe7XwnO4NHyfllPqoG0LwOwY1eUQkFS/y8yGNMPeqD6JlHKI46ADq04+m0leYzwMtFzPi9EXJUYYfm8EAEhLCVhppgb7KgY2MAq1IgQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712003125; c=relaxed/simple;
-	bh=CvWR4wz2QN3K88UxICPNN1tDin69DPFPxypKgy4+mHM=;
-	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=f7qyiShtIsJFRxr3TW13LyLbhtjYcFycS2441YTizbouh9+Fb6E3X3FP2EeJSMTF1b1cWpK5zc3hlOv+8pmT+wGQd2cZcQvCPrGzQahMGGGnZPRCgm7LEsBEwhcNadosmTvVYue8p/idFgLv+4oJVbII9lh9j01ABX3lDOqs+8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=F5zHUrJJ; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1712003123; x=1743539123;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=CvWR4wz2QN3K88UxICPNN1tDin69DPFPxypKgy4+mHM=;
-  b=F5zHUrJJdPTgWXEHIoPxpRQUTqJqJY6S2U/8Yc3kBzzPvGAR/4vPbnPm
-   wdvE97Kv/P9XqnbhoXpsAUZG9AxHmS+5Pt3qrIjb3m/mhUu9pTOC17IGv
-   M6QxwHqH7m1epBZFMJWAHgCJUOE3k1cDWMw4pz1clZWfHj7+rK2TAv4Ti
-   4oi2K+dIbm2rcfcLsMtt+b0H0bulQgl7dhlj75pZdkgzOuwv0aDqAG6I1
-   ODtktwmItu6JX0+w8yzrNKlkhqiIWBY0ENAY42TgQpwqHGPQxB8J07kGh
-   QOKtjvFTvjRRAvaCAQd4tZfgWNqepzGesiGeBmKXorXAXntIGU1vB7Na7
-   g==;
-X-CSE-ConnectionGUID: s1auBxXjTmCVtkgNChi2lw==
-X-CSE-MsgGUID: CqW5D2GTSAWubJbPP5snOQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11031"; a="7081836"
-X-IronPort-AV: E=Sophos;i="6.07,173,1708416000"; 
-   d="scan'208";a="7081836"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Apr 2024 13:25:22 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,173,1708416000"; 
-   d="scan'208";a="22516384"
-Received: from sj-4150-psse-sw-opae-dev2.sj.intel.com ([10.233.115.162])
-  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Apr 2024 13:25:23 -0700
-Date: Mon, 1 Apr 2024 13:25:13 -0700 (PDT)
-From: matthew.gerlach@linux.intel.com
-X-X-Sender: mgerlach@sj-4150-psse-sw-opae-dev2
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-cc: joyce.ooi@intel.com, bhelgaas@google.com, lpieralisi@kernel.org, 
-    kw@linux.com, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-    conor+dt@kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-    linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: pci: altera: covert to yaml
-In-Reply-To: <bfa6150b-e27e-41c3-a1a7-41e46f52f6ea@linaro.org>
-Message-ID: <alpine.DEB.2.22.394.2404011306560.362977@sj-4150-psse-sw-opae-dev2>
-References: <20240329170031.3379524-1-matthew.gerlach@linux.intel.com> <bfa6150b-e27e-41c3-a1a7-41e46f52f6ea@linaro.org>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+	s=arc-20240116; t=1712003626; c=relaxed/simple;
+	bh=yzl3goeSmHuxekh8j1nwToQpTeHL6BZ3u1FULJIKq10=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=NRhYOvhr45/7u7u/Hz71iqkxL6yw1+X6WoSoH+zg1KT8RUmzQTaYukRqp8+vq2i+6y+3qZGL2bljhImzm5yIpl24jzefl7CVWWyqbDl1UGRPpr6ipR7xPdE4vjwDtRHdyDJL2ZDNd9GmuYTRPYCTY8kOgwnH5nT4ybeT5BRqz0g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vFvTVURC; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-515a68d45faso4786780e87.3
+        for <devicetree@vger.kernel.org>; Mon, 01 Apr 2024 13:33:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712003623; x=1712608423; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wlaXjLO3lJw1mdJDgOpmPIwDq+5gWC5iSvOljuMWC/s=;
+        b=vFvTVURCoYl1Z9iJ62ZYGua0ezFUe2UUjutB9enHA48qCDUc0ll/kbKRoS8VhsuWWc
+         TnDK1tv9K2MRl2fNx+fwY7EiSzn2waWBfw+o6yuFx9auaIjucLDLIKVZPN7+8BL9snKy
+         ALF0hJIBAOgJo8VGPMHePZt65xGCphqBZI926CPfTAqW1CW6QhEzdAmt4jM2Dxadqxee
+         kzwvn/f8hLPP7hnGOKyge1vze+3Krmb2OY6qUhqqSNTO5vWitfhts4cKMWW+UM6HoiV6
+         WdQI/4chPBmlKy/OKcg8St1M8+RNVvJwr5CQ3F7UfFtJ1jR2YYyh9w74a/cq/4DlZVvG
+         Kx5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712003623; x=1712608423;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wlaXjLO3lJw1mdJDgOpmPIwDq+5gWC5iSvOljuMWC/s=;
+        b=iCULk/i/qlqn1ziPpCT8ZJPpRyZ23vmGcYiHJDnrYDCLXPsQxYH2apNIR7x/kw7Bpw
+         IHrYdK8qIB2oN796Aba0nvq6WfzmO3uLGimOuqKxlrEaXHQBUdoMRyjsoFezOjsXRi3o
+         ysbdhmFqOKSxL4SjHu4v/J5LEi318VcX1hBZKUcxS9n8JKkwOMH8/NsxLr00aBgPdQ5o
+         +HHJChFrR6mJwujgrHShTg1ZX/M3RNsVi3zJrWJtnuWoz0F0GvjQ83wSIVvmAs/bASdI
+         ixtV5638bFNe1fVGOdEMdfYDxiVJSC6HamvI689ryD4Z/OeQ+0Y05n7EFX+45dTSH4Za
+         Psjg==
+X-Forwarded-Encrypted: i=1; AJvYcCURivMWnh6LqlyEu7L4FaU7scWW0YeInqjIS7glkmo0pf/MozmFgDrk7aYEPi1UTqMjXMuwm7wQ5fyQOu959/bRMwdq4F1JfCdX1A==
+X-Gm-Message-State: AOJu0YzUfgIwHcrKUL8ibPALtIjwfou7dtUTWSKb/2F7M5syFymnSMH2
+	0esfftQKZg6JPRt1aLQbYDxCTGWEcrmP8ac1t8CmztA01C6qnL0sxEQpkPrvX0s=
+X-Google-Smtp-Source: AGHT+IGA1rc9IfVZxEDlIfv8mUTWYpSnRFaiJzJr90xIO/AooxbhkfnfLYzgq8nWO68x1QTh7PDuFg==
+X-Received: by 2002:ac2:58cc:0:b0:516:9ee2:9977 with SMTP id u12-20020ac258cc000000b005169ee29977mr4024200lfo.33.1712003622850;
+        Mon, 01 Apr 2024 13:33:42 -0700 (PDT)
+Received: from umbar.lan ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id j11-20020ac2550b000000b00515a6e4bdbdsm1478342lfk.250.2024.04.01.13.33.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Apr 2024 13:33:42 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: [PATCH v3 0/9] arm64: dts: qcom: fix description of the Type-C
+ signals
+Date: Mon, 01 Apr 2024 23:33:39 +0300
+Message-Id: <20240401-typec-fix-sm8250-v3-0-604dce3ad103@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACMaC2YC/33NzQrCMAzA8VcZPVtpk31UT76HeGi7uBV0He0oj
+ rF3t9tJQTz+E/LLwiIFR5Gdi4UFSi46P+TAQ8Fsr4eOuGtzMxBQCgTg0zyS5Xf34vGpoBIc0Za
+ NFqhFVbN8NgbK25283nL3Lk4+zPuHJLfpHyxJLrjUFsAgIunT5eEGHfzRh45tWoIPAeUPAbKgq
+ kZbU5tWKfoS1nV9Aw2MQtXzAAAA
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2267;
+ i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
+ bh=yzl3goeSmHuxekh8j1nwToQpTeHL6BZ3u1FULJIKq10=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmCxok7Qc+ahBwgQptj/bJdLDpoeNelEUlm7uFQ
+ zN+rOvGp9iJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZgsaJAAKCRCLPIo+Aiko
+ 1SA1B/9Ck4E3hM5XDzjEFGlOQ1hH1RaOORV5rHciU2HPIzQGad+Bf/kL9ZD/+MOtxAXllonwp2d
+ 7K4prBgQg8G3xMEfih4AbFlVHRA5mZyqC5b4VXzHf/GjO30Avj53+6zU3L+vzGcdmHwfn0KmA4q
+ Q6wUpxj6/jYOp+Ih3hpfdqnBqLPCaLvg9RBzBQqPATP5DJsV97WvM4Y/ax1AGANImiQxCndHO0u
+ sai8PPZzO4mwDGNvGFU969IXtq7wvpBBfMS1hVPPMD0zF7O9Ii1Z75FiBTbsUG1q3Pw9PxUQ9tD
+ Rha30wupABEmOFFOtLaMdiMKQDjszMadmpp8MEImc8FyBAdV
+X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
+Rename the HS link between usb-c-connector and the DWC3 USB controller.
+Add missing graph connection between the QMP PHY and DWC3 USB
+controller.
 
+Reported-by: Luca Weiss <luca.weiss@fairphone.com>
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+Changes in v3:
+- Fixed dispcc bindings / clock inputs on sc8180x (Rob Herring)
+- Link to v2: https://lore.kernel.org/r/20240331-typec-fix-sm8250-v2-0-857acb6bd88e@linaro.org
 
-On Fri, 29 Mar 2024, Krzysztof Kozlowski wrote:
+Changes in v2:
+- Fixed other platforms in addition to sm8250 (Bryan)
+- Link to v1: https://lore.kernel.org/r/20240322-typec-fix-sm8250-v1-0-1ac22b333ea9@linaro.org
 
-> On 29/03/2024 18:00, matthew.gerlach@linux.intel.com wrote:
->> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
->>
->> Covert the device tree bindings for the Altera Root
->> Port controller from text to yaml.
->>
->> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
->> ---
->
-> ...
->
->> diff --git a/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml b/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
->> new file mode 100644
->> index 000000000000..8f1ad1362ad1
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
->> @@ -0,0 +1,106 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +# Copyright (C) 2024, Intel Corporation
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/altr,pcie-root-port.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Altera PCIe Root Port
->> +
->> +maintainers:
->> +  - Matthew Gerlach <matthew.gerlach@linux.intel.com>
->> +
->> +allOf:
->> +  - $ref: /schemas/pci/pci-bus.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - enum:
->> +          - altr,pcie-root-port-1.0
->> +          - altr,pcie-root-port-2.0
->> +
->> +  reg:
->> +    minItems: 2
->> +    maxItems: 3
->> +
->> +  reg-names:
->> +    description:
->> +      TX slave port region (Txs)
->> +      Control register access region (Cra)
->> +      Hard IP region if altr,pcie-root-port-2.0 (Hip)
->
-> All these go to reg as description of items.
->
-> Both - reg and reg-names - need constraints per variant in
-> allOf:if:then:. Move allOf: to bottom of file, just like example-schema
-> is showing.
+---
+Dmitry Baryshkov (9):
+      dt-bindings: clk: qcom,dispcc-sm8x50: describe additional DP clocks
+      arm64: dts: qcom: sc8180x: correct dispcc clocks
+      arm64: dts: qcom: sm8250: describe HS signals properly
+      arm64: dts: qcom: sm8250: add a link between DWC3 and QMP PHY
+      arm64: dts: qcom: sc8180x: switch USB+DP QMP PHYs to new bindings
+      arm64: dts: qcom: sc8180x: describe USB signals properly
+      arm64: dts: qcom: sc8280xp: describe USB signals properly
+      arm64: dts: qcom: x1e80100: describe USB signals properly
+      arm64: dts: qcom: sm8150-hdk: rename Type-C HS endpoints
 
-I understand. I added a constraint and moved allOf: to bottom of file, 
-just like the example-schema is showing.
+ .../bindings/clock/qcom,dispcc-sm8x50.yaml         |  28 ++++
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts           |   8 +-
+ .../arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts |  16 +-
+ arch/arm64/boot/dts/qcom/sc8180x-primus.dts        |  20 +--
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi              | 182 ++++++++++-----------
+ arch/arm64/boot/dts/qcom/sc8280xp-crd.dts          |  20 +--
+ .../dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts     |  20 +--
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi             |  54 +++++-
+ arch/arm64/boot/dts/qcom/sm8150-hdk.dts            |   4 +-
+ .../boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi  |   8 +-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi               |  24 ++-
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi             | 149 ++++++++++++++++-
+ 12 files changed, 380 insertions(+), 153 deletions(-)
+---
+base-commit: a6bd6c9333397f5a0e2667d4d82fef8c970108f2
+change-id: 20240322-typec-fix-sm8250-33c47a03a056
 
->
->
->> +
->> +    items:
->> +      - const: Txs
->> +      - const: Cra
->> +      - const: Hip
->> +    minItems: 2
->> +
->> +  device_type:
->> +    const: pci
->
-> I don't think you need it.
+Best regards,
+-- 
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-I removed it.
-
->
->> +
->> +  "#address-cells":
->> +    const: 3
->
-> Drop
-
-Dropped
-
->
->> +
->> +  "#size-cells":
->> +    const: 2
->
-> Drop
-
-Dropped
-
->
->> +
->> +  interrupts:
->> +    minItems: 1
->
-> This should be maxItems.
-
-I changed it to maxItems
-
->
->> +
->> +  interrupt-map-mask:
->> +    items:
->> +      - const: 0
->> +      - const: 0
->> +      - const: 0
->> +      - const: 7
->
-> I guess as well.
->
->> +
->> +  interrupt-map:
->> +    maxItems: 4
->> +
->> +  "#interrupt-cells":
->> +    const: 1
->
-> Drop
-
-If I remove "#interrupt-cells", then I get the following error:
-/home/mgerlach/git/linux-next/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml: 
-properties: '#interrupt-cells' is a dependency of 'interrupt-map'
- 	from schema $id: 
-http://devicetree.org/meta-schemas/interrupts.yaml#
-
->
->> +
->> +  msi-parent:
->> +    description: Link to the hardware entity that serves as the MSI controller.
->
-> Just true.
->
-> Please open existing, recent PCI bindings and look how it is done.
-
-I see a couple of examples of the following:
-
-   msi-parent: true
-
-
->
->> +
->> +  bus-range:
->> +    description: PCI bus numbers covered.
->
-> Drop
-
-Dropped.
-
->
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - reg-names
->> +  - device_type
->> +  - "#address-cells"
->> +  - "#size-cells"
->> +  - interrupts
->> +  - interrupt-map
->> +  - interrupt-map-mask
->> +  - "#interrupt-cells"
->
-> This also needs cleaning.
-
-I removed Dropped items.
-
->
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    pcie_0: pcie@c00000000 {
->> +        compatible = "altr,pcie-root-port-1.0";
->> +        reg = <0xc0000000 0x20000000>,
->> +            <0xff220000 0x00004000>;
->
-> Misaligned.
-
-I fixed the alignments.
-
->
->> +        reg-names = "Txs", "Cra";
->> +        interrupt-parent = <&hps_0_arm_gic_0>;
->> +        interrupts = <0 40 4>;
->
-> Use defines for common constnats.
-
-I added constants from arm_gic.h and irq.h.
-
->
->> +        #interrupt-cells = <1>;
->> +        bus-range = <0x0 0xFF>;
->
-> Lowercase hex
-
-I changed to lower case.
-
->
->> +        device_type = "pci";
->> +        msi-parent = <&msi_to_gic_gen_0>;
->> +        #address-cells = <3>;
->> +        #size-cells = <2>;
->> +        interrupt-map-mask = <0 0 0 7>;
->> +        interrupt-map = <0 0 0 1 &pcie_intc 1>,
->> +                        <0 0 0 2 &pcie_intc 2>,
->> +                        <0 0 0 3 &pcie_intc 3>,
->> +                        <0 0 0 4 &pcie_intc 4>;
->> +        ranges = <0x82000000 0x00000000 0x00000000 0xc0000000 0x00000000 0x10000000
->> +              0x82000000 0x00000000 0x10000000 0xd0000000 0x00000000 0x10000000>;
->
-> Misaligned.
->
->
-> Best regards,
-> Krzysztof
->
->
-
-Thank you for the timely and thorough review. Version 2 of the patch will 
-be submitted soon.
-
-Matthew Gerlach
 
