@@ -1,227 +1,148 @@
-Return-Path: <devicetree+bounces-55012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55014-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4411E893914
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 10:39:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DBFC893933
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 11:05:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 679811C20EF8
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 08:39:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8AC2B2814EB
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 09:05:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29040E559;
-	Mon,  1 Apr 2024 08:39:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6DCDDF59;
+	Mon,  1 Apr 2024 09:05:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YLKVOU1F"
+	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="KJ/RMJWN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2040.outbound.protection.outlook.com [40.107.117.40])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE7FDBA49;
-	Mon,  1 Apr 2024 08:39:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711960780; cv=none; b=htkjAv4AkcT/tLOYW3MobmyRrRCD3xKPggvbXtdMxGc50LMHz+zwhapbSKprPGqM3OolKfiqMWPNA9DyBGntMMrsnwm/YA4NAaqAAoYKgXhoA+qjY0Jw5QQHiBR+mwPvMeRKorD0RpMKFZ7fxT0If2c4FjBx5TYuVYf5TISsGxI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711960780; c=relaxed/simple;
-	bh=T0Mfp3WVqeIB8i82ULSnxmrq7ZBFSs8aBDtdvf2WgnI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ogszAJh7ohuhXDTcqbCqUrwn1Eh5ghGWTSVbV+0fKcFcCgLx9V/5MHzJfFOXuo7XsRwX9ZarlbIn8FF/fdUtWuRuGRdmUKgoZ35JPrZuIoKcxfnPWZEeTdYfqlGWZa4x5S+/C8co+TmiU9cw6tnrVHLz823x/jhp1qBowT7UMTY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YLKVOU1F; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 993A6C433B2;
-	Mon,  1 Apr 2024 08:39:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711960779;
-	bh=T0Mfp3WVqeIB8i82ULSnxmrq7ZBFSs8aBDtdvf2WgnI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=YLKVOU1FX0386yqcsNvKVWx7DGKQ8Rkqlor+hgTHggLLHD9D6IPZJIEMK0I0Xfv/M
-	 Tt36eg6xRKPPDdDv2QJioAX6qbyTuUI/i99bVczTVzYN8CT8cKRM7h7V4Nq6ZenuJ9
-	 nHuHtyEYx+R3DDdFSnPnMMpZB+zrXJG0tAlXaPhR0rvsZFdaU+YjtYunMM/nYkZnBN
-	 x/jqN6JKG3f/gma0upLW3BoKaBfqglra29M4YQviHgJ+whI6byrq7PqTBqWvaSQ84d
-	 DEe8OEqLFlwDoQEuo9PbZZoWQbCxqUglEAY5sPqTF4DhVK7gPesn5/xPb97bKhe1ce
-	 HtcC+q4QczBUw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8C88ACD1292;
-	Mon,  1 Apr 2024 08:39:39 +0000 (UTC)
-From: Fenglin Wu via B4 Relay <devnull+quic_fenglinw.quicinc.com@kernel.org>
-Date: Mon, 01 Apr 2024 16:38:52 +0800
-Subject: [PATCH v8 3/3] input: pm8xxx-vibrator: add new SPMI vibrator
- support
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 068B923AD;
+	Mon,  1 Apr 2024 09:05:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.117.40
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1711962318; cv=fail; b=MJmXsjQgrfPqyvkKHyVZjsf3l7OiX1V/rXBD0BufFZf2Yqiy+XLdp6mag2cy+YiGhXlNdVBHHSD7Kl2datYV513OHVlk1ohR/mu0BFyyw/d6zmKVpGP1PtzBtUDXbLev4NwFBNzESVwLanTFnX8jKor78cvMQ0LWMFpztVFLr4A=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1711962318; c=relaxed/simple;
+	bh=BaBJpThT90Qc1gk789LPNU5CryQ4X1+BKheu+AuiYzA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=pCj4iJKH537DrER2OYU3w1nbXUmPR3pbbkZ+MXKqze+d3ElB8syJUkh/LVX6P1Y1rfB/wyvHJaP7wqR3z3I8Mn7Vnnpe6VQCzxJF9V63R2/8Aw0f+Lp7aIvraEoSc7DIMu+UK0QmxVzwHEldByRbXdSoFPc2NU+4LB2PJzMUr+o=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Wiwynn.com; spf=pass smtp.mailfrom=wiwynn.com; dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b=KJ/RMJWN; arc=fail smtp.client-ip=40.107.117.40
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Wiwynn.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wiwynn.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Q1zWC3qntVl8UxJN4QTSlYJ891mYJ8wKOr9QVlHYaODlZaW/sYsp5OnDh6e23yBqzphRDeZAWYyOpVkX2dkmAorF+/MFCYr9yL+EwosbnzdpuQasxE8BO58d7BqrT0r5dSAWPZFMIgNUNg7wN+A7iYyoNk9rPgcn7+uSDibY/MICLywAVNP4cAdYIIibmaVMLVeCf53ckxGVXhIy/V2zAa1lwrG2mp4LGTgqZjqwouZBcD3LTq7FmtFDDeMNFPBiuPvCDfJiS/0D5c/tfmq6HP1X0u5dmUnTxD7043Rz8NfYfTReThpuL12mtdBxBZlQY+0TkPWiZhCXWu5Qf34xGw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LNaTRdZSUzm2QXrYxi3weRbkR/sAovtVLZcT9wPZtwQ=;
+ b=LueT6kYDcZUuQB7PU2UeYNb2wRLE1sw7HkCEt3KvmzvYycwqyGGZwtVdhZBeY3G+sr4cHWfuz4nGu5OOgGbtXi583Q4z6VixLh9X5C8d9MdzMkuFWiR2i4MeYOcZBgFFyTGbPUItuysvZUaKvGToSHdwrCUMFQyNqHWExMGR4gQmZBjWcIGYsoFGraadb9+cRAk2QT7BHOqjD9x2i2ZriTcAIEDofZ1k2gPviBXMIEv+cBWr6v/GuHj37WsBzX4N21W0Icqj0OJAObfOHa7jMp4PJaFDLmzMOMXX0BL4w8+fFtNf382opHgXeC6GJ16PFnJ2DfVpnWt0A082KYnaMA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=wiwynn.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LNaTRdZSUzm2QXrYxi3weRbkR/sAovtVLZcT9wPZtwQ=;
+ b=KJ/RMJWNVEEVPdoN46LClsx3tYkT57hiTQ1o65MaVrxxUOBM327tkdc0G6e1WrCYqakTKpwIMKq6UpKghdlMMhNvm+WVM1UpmGxpykeRO3l6hKsYH9+6ZcTmXu/FYo1zAXmPOoxnahy7U+J68llZXjq3lNZ+3DSReV134q1JzoQCGJleb/MWDFzjZZFAGn0dY7Hm+bE1irb8RVTKj0SFSE/rYKPeyNtV3LYzXu5b+MZWaj+b9qnMPeNCXnzfzhaxs+u3PlBgvCi3DKDEIOY+aXy+zWFZQs3RHdSzTc7yQ0OdeYiOWKSilVbqcLMIbMHMOd/FPlC4iRw9QPNdixkZ5Q==
+Received: from PS2PR02CA0026.apcprd02.prod.outlook.com (2603:1096:300:59::14)
+ by TYSPR04MB7237.apcprd04.prod.outlook.com (2603:1096:400:470::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.45; Mon, 1 Apr
+ 2024 09:05:13 +0000
+Received: from HK2PEPF00006FB3.apcprd02.prod.outlook.com
+ (2603:1096:300:59:cafe::4a) by PS2PR02CA0026.outlook.office365.com
+ (2603:1096:300:59::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46 via Frontend
+ Transport; Mon, 1 Apr 2024 09:05:13 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
+ smtp.mailfrom=Wiwynn.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=Wiwynn.com;
+Received-SPF: Fail (protection.outlook.com: domain of Wiwynn.com does not
+ designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.20.1.79; helo=localhost.localdomain;
+Received: from localhost.localdomain (211.20.1.79) by
+ HK2PEPF00006FB3.mail.protection.outlook.com (10.167.8.9) with Microsoft SMTP
+ Server id 15.20.7452.22 via Frontend Transport; Mon, 1 Apr 2024 09:05:12
+ +0000
+From: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
+To: patrick@stwcx.xyz,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1] Revise duty cycle for SMB9 and SMB10
+Date: Mon,  1 Apr 2024 17:05:09 +0800
+Message-Id: <20240401090509.2338027-1-Delphine_CC_Chiu@Wiwynn.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240401-pm8xxx-vibrator-new-design-v8-3-6f2b8b03b4c7@quicinc.com>
-References: <20240401-pm8xxx-vibrator-new-design-v8-0-6f2b8b03b4c7@quicinc.com>
-In-Reply-To: <20240401-pm8xxx-vibrator-new-design-v8-0-6f2b8b03b4c7@quicinc.com>
-To: kernel@quicinc.com, Andy Gross <agross@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-input@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Fenglin Wu <quic_fenglinw@quicinc.com>
-X-Mailer: b4 0.13-dev-83828
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1711960777; l=4499;
- i=quic_fenglinw@quicinc.com; s=20240327; h=from:subject:message-id;
- bh=KTKY6pvIVjfzHLnLf3c7IEWevUabtEPHzFZQuRWIpJU=;
- b=ckVKAUUpGCn6CBayzxswtJaUk5uvqlZf+zx9drwGyK2zmg6H1U8+Ut4ZTH/kV736rxzpAAEkH
- LCPWeKoHWJ4ACwQDB112nC5c+5VNwiXlyj3hTRLn9/A8i+MDAt/7QVQ
-X-Developer-Key: i=quic_fenglinw@quicinc.com; a=ed25519;
- pk=BF8SA4IVDk8/EBCwlBehKtn2hp6kipuuAuDAHh9s+K4=
-X-Endpoint-Received: by B4 Relay for quic_fenglinw@quicinc.com/20240327
- with auth_id=146
-X-Original-From: Fenglin Wu <quic_fenglinw@quicinc.com>
-Reply-To: quic_fenglinw@quicinc.com
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: HK2PEPF00006FB3:EE_|TYSPR04MB7237:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 59b18d5c-b658-492f-f709-08dc522ad699
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	8MLNlkeVbdHWI8Vz7S1WUYF1PY2IaPpPLsz2/3J/7Hsrnd2SSZYZA9TL3Nr6+j/ySk48LxH6peUXtuR6ajbigC1UvUcpJ9IDdMFfUnxfQtsIx172bz7IqsaN8+hv+S4W7Cfpo1TjYo+NK+sZrm80rupexoUmcu3M7yk+f28JwSmsp1DtPlucy8r3iqjQnCs1tpffj+X81WZmacgaf3tLobLz7EcvSz4L6VcsenZzTd3aOMJjq26Jb3VzIZQmwaTqM8HMcRXrN5mnqDPH7DGW84lIB+pwbZp1CJXj5Ei6kqey1rv8j9iMCs86Q8pHB0d73gqbyaKwX/9oYF+pADMzE7vaH1WAQ7PA/+aze7fIQDpQlC3Jv42WIOaJrdYnOwASnQCRIO3Ul28OE1cCFw8hA+e5W6kZP7OcNx8llY6csy0lDJoSta3I59eJKFaZMZfdzkrZ287WOJv9X1g3Jh+cFQBXw7/zv1XvmP4i3qMENDCcw11ueD54L0QbX5/M8++IaI5l3VL+POqEmnlWU8HX3q6fE9aw9MqWtBBeXBWOFSW/7WjBhIVZy5wy6BwL9h1DwqTdl4DAZrSjHdUV07gepqPyvVm7Y+e59shAWNXTsu8y84yAg6cR6ocYn8lRtxh/d+KIypF8qd+yyDoMrmR/CoMVyMNSusmUWJYa0Pux4PZJTMPdst1XHDRoO58R2ttIooyd9Nk/Oyd4xSTwf5L+GvIrun9Buxk2uxlEQwoN1UgzbV0IsitEoVhlQ1DIUxEH
+X-Forefront-Antispam-Report:
+	CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230031)(7416005)(376005)(82310400014)(36860700004)(1800799015);DIR:OUT;SFP:1101;
+X-OriginatorOrg: wiwynn.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Apr 2024 09:05:12.0255
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 59b18d5c-b658-492f-f709-08dc522ad699
+X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
+X-MS-Exchange-CrossTenant-AuthSource:
+	HK2PEPF00006FB3.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR04MB7237
 
-From: Fenglin Wu <quic_fenglinw@quicinc.com>
+ARM: dts: aspeed: yosemite4:
+Revise duty cycle for SMB9 and SMB10 to 40:60
+To meet 400kHz-i2c clock low time spec (> 1.3 us).
 
-Add support for a new SPMI vibrator module which is very similar
-to the vibrator module inside PM8916 but has a finer drive voltage
-step and different output voltage range, its drive level control
-is expanded across 2 registers. The vibrator module can be found
-in following Qualcomm PMICs: PMI632, PM7250B, PM7325B, PM7550BA.
-
-Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
+Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
 ---
- drivers/input/misc/pm8xxx-vibrator.c | 49 +++++++++++++++++++++++++++++-------
- 1 file changed, 40 insertions(+), 9 deletions(-)
+ arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/input/misc/pm8xxx-vibrator.c b/drivers/input/misc/pm8xxx-vibrator.c
-index 3b6a2e949f30..59548cd9331c 100644
---- a/drivers/input/misc/pm8xxx-vibrator.c
-+++ b/drivers/input/misc/pm8xxx-vibrator.c
-@@ -12,9 +12,9 @@
- #include <linux/regmap.h>
- #include <linux/slab.h>
- 
--#define VIB_MAX_LEVEL_mV	(3100)
--#define VIB_MIN_LEVEL_mV	(1200)
--#define VIB_MAX_LEVELS		(VIB_MAX_LEVEL_mV - VIB_MIN_LEVEL_mV)
-+#define VIB_MAX_LEVEL_mV(vib)	(vib->drv2_addr ? (3544) : (3100))
-+#define VIB_MIN_LEVEL_mV(vib)	(vib->drv2_addr ? (1504) : (1200))
-+#define VIB_MAX_LEVELS(vib)	(VIB_MAX_LEVEL_mV(vib) - VIB_MIN_LEVEL_mV(vib))
- 
- #define MAX_FF_SPEED		0xff
- 
-@@ -25,6 +25,9 @@ struct pm8xxx_regs {
- 	unsigned int drv_offset;
- 	unsigned int drv_mask;
- 	unsigned int drv_shift;
-+	unsigned int drv2_offset;
-+	unsigned int drv2_mask;
-+	unsigned int drv2_shift;
- 	unsigned int drv_en_manual_mask;
- };
- 
-@@ -44,6 +47,18 @@ static struct pm8xxx_regs pm8916_regs = {
- 	.drv_en_manual_mask = 0,
- };
- 
-+static struct pm8xxx_regs pmi632_regs = {
-+	.enable_offset = 0x46,
-+	.enable_mask = BIT(7),
-+	.drv_offset = 0x40,
-+	.drv_mask = 0xFF,
-+	.drv_shift = 0,
-+	.drv2_offset = 0x41,
-+	.drv2_mask = 0x0F,
-+	.drv2_shift = 8,
-+	.drv_en_manual_mask = 0,
-+};
-+
- /**
-  * struct pm8xxx_vib - structure to hold vibrator data
-  * @vib_input_dev: input device supporting force feedback
-@@ -52,6 +67,7 @@ static struct pm8xxx_regs pm8916_regs = {
-  * @regs: registers' info
-  * @enable_addr: vibrator enable register
-  * @drv_addr: vibrator drive strength register
-+ * @drv2_addr: vibrator drive strength upper byte register
-  * @speed: speed of vibration set from userland
-  * @active: state of vibrator
-  * @level: level of vibration to set in the chip
-@@ -64,6 +80,7 @@ struct pm8xxx_vib {
- 	const struct pm8xxx_regs *regs;
- 	unsigned int enable_addr;
- 	unsigned int drv_addr;
-+	unsigned int drv2_addr;
- 	int speed;
- 	int level;
- 	bool active;
-@@ -92,6 +109,16 @@ static int pm8xxx_vib_set(struct pm8xxx_vib *vib, bool on)
- 
- 	vib->reg_vib_drv = val;
- 
-+	if (regs->drv2_mask) {
-+		if (on)
-+			val = (vib->level << regs->drv2_shift) & regs->drv2_mask;
-+		else
-+			val = 0;
-+		rc = regmap_write(vib->regmap, vib->drv2_addr, val);
-+		if (rc < 0)
-+			return rc;
-+	}
-+
- 	if (regs->enable_mask)
- 		rc = regmap_update_bits(vib->regmap, vib->enable_addr,
- 					regs->enable_mask, on ? ~0 : 0);
-@@ -114,19 +141,22 @@ static void pm8xxx_work_handler(struct work_struct *work)
- 		return;
- 
- 	/*
--	 * pmic vibrator supports voltage ranges from 1.2 to 3.1V, so
-+	 * pmic vibrator supports voltage ranges from MIN_LEVEL to MAX_LEVEL, so
- 	 * scale the level to fit into these ranges.
- 	 */
- 	if (vib->speed) {
- 		vib->active = true;
--		vib->level = ((VIB_MAX_LEVELS * vib->speed) / MAX_FF_SPEED) +
--						VIB_MIN_LEVEL_mV;
--		vib->level /= 100;
-+		vib->level = ((VIB_MAX_LEVELS(vib) * vib->speed) / MAX_FF_SPEED) +
-+						VIB_MIN_LEVEL_mV(vib);
- 	} else {
- 		vib->active = false;
--		vib->level = VIB_MIN_LEVEL_mV / 100;
-+		vib->level = VIB_MIN_LEVEL_mV(vib);
-+
- 	}
- 
-+	if (!vib->drv2_addr)
-+		vib->level /= 100;
-+
- 	pm8xxx_vib_set(vib, vib->active);
- }
- 
-@@ -202,7 +232,7 @@ static int pm8xxx_vib_probe(struct platform_device *pdev)
- 
- 	vib->enable_addr = reg_base + regs->enable_offset;
- 	vib->drv_addr = reg_base + regs->drv_offset;
--
-+	vib->drv2_addr = reg_base + regs->drv2_offset;
- 	/* operate in manual mode */
- 	error = regmap_read(vib->regmap, vib->drv_addr, &val);
- 	if (error < 0)
-@@ -256,6 +286,7 @@ static const struct of_device_id pm8xxx_vib_id_table[] = {
- 	{ .compatible = "qcom,pm8058-vib", .data = &pm8058_regs },
- 	{ .compatible = "qcom,pm8921-vib", .data = &pm8058_regs },
- 	{ .compatible = "qcom,pm8916-vib", .data = &pm8916_regs },
-+	{ .compatible = "qcom,pmi632-vib", .data = &pmi632_regs },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, pm8xxx_vib_id_table);
-
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+index 64075cc41d92..b3a2aa8f53a5 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+@@ -257,6 +257,7 @@ power-sensor@40 {
+ &i2c8 {
+ 	status = "okay";
+ 	bus-frequency = <400000>;
++	i2c-clk-high-min-percent = <40>;
+ 	i2c-mux@70 {
+ 		compatible = "nxp,pca9544";
+ 		idle-state = <0>;
+@@ -268,6 +269,7 @@ i2c-mux@70 {
+ &i2c9 {
+ 	status = "okay";
+ 	bus-frequency = <400000>;
++	i2c-clk-high-min-percent = <40>;
+ 	i2c-mux@71 {
+ 		compatible = "nxp,pca9544";
+ 		idle-state = <0>;
 -- 
 2.25.1
-
 
 
