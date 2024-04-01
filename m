@@ -1,142 +1,162 @@
-Return-Path: <devicetree+bounces-55180-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55181-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45E83894619
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 22:35:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C15F7894627
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 22:44:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3EDB2830AF
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 20:35:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5BBBC1F220A3
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 20:44:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E82258226;
-	Mon,  1 Apr 2024 20:33:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E617C42072;
+	Mon,  1 Apr 2024 20:44:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lJFdxoSl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bCSbRpX1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FF5656B8C
-	for <devicetree@vger.kernel.org>; Mon,  1 Apr 2024 20:33:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B76321EB31;
+	Mon,  1 Apr 2024 20:44:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712003633; cv=none; b=N4HPGLHurgX2poA4UXa3MYE8R+s/TRSS7dbdGcf5RoioH3XxyQd+3fnMKzZlMg5q7HeZDUmY/Dx1cjmfQfW8IMhVJHsPCL75fEZl0pYqyWKd4S0tVSDXQuXLwRscJbDhHT0DM/e7S7ICQvD/Wv+3fzofiGJ3r9I5k4Hy8gE1kK0=
+	t=1712004240; cv=none; b=WyMDEcQJBO5sUhenjIVRbtUEMCJ14ND9eEI5jyHDMUgm+9lb8WebPFLUkKusKYAHPnhiN0gKWNdSgJISVqMyjFP6zFv8f8354/ONOvyzv4Hl3eAcAaWAzFtljpRzN6N9ZjPssluN/GgyoifHt6gVRnzgvZ+Tu8dmAorm/GePgP0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712003633; c=relaxed/simple;
-	bh=+m4KcknPtPtiYtZonTjzGx6OYYK5R2lRlFqksVKoy6E=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=AtZtGCwy9/mIxxyrdjP1kg37kTIbbKnp+v7AoJaQuPSb09elZcTdLB72uWDo431PqmdGUFZXUXASqOV2dh823rbYEmBVgMcDBKssfa0ZeTBEshHAF2qB9tlwARrb4mNqYplnHcbUgC6B9OoKI6ahUaFBDeeJfRKy2Z8lHY56bLA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lJFdxoSl; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-513dc9d6938so5359087e87.2
-        for <devicetree@vger.kernel.org>; Mon, 01 Apr 2024 13:33:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712003629; x=1712608429; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QA39XfS6kFKT4ejZVfv3YPVU/6vd+JV/fWoR8cy3Hug=;
-        b=lJFdxoSlm/M0aZoVMaULjVN3txSdpIH/3YcqThTKXHk9sUVS1uin2sD0+HbLJcBZEH
-         PLBQXPzZaQJ7JCWvsrJTlIErjfaOzxcPNEQDuHYleqQt0S3JdG7yMiGNDNU2mqCHrWxg
-         ptvnOxGH8ifGYsnnzL0yrssZdOyQbtHaDVc4wPsF02BGlPZR6dSjqmCC2++RtcXe00vv
-         g+l+45ZnBjdDT5kbv/NFGr1QHa3Um4OuRxNj0gtboyKnLFVjZ8fy4lRKHd0lPrFDWBVW
-         1/cX2EUIuLyuVCMQh0lPRljrF0Dt5VnwJLl/GupH4uyvLtJkx5sjyOlES32Z6Z/Ldn5i
-         aAUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712003629; x=1712608429;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QA39XfS6kFKT4ejZVfv3YPVU/6vd+JV/fWoR8cy3Hug=;
-        b=kunrDk4HWS7/idTZ8hsWLODNGb9PZ9cHwOO+G26Y5xaiOZdL1xKzboxwoYNsH2onw1
-         jqtdi1LTiekx16q/5a4TLt+NW5DXmpuVF+GsRM4b99AaiTgbgsA/7Kh3iSzruFWIF38q
-         haVE9reDVQCyttsnnrHEoB/w6OFEHPsVeuUF7hqhPZB8CbkZ62xpZiesJP+r0tJyBbx0
-         QUsLst7J540+VHBYqNVIP5O4qGonjewv6SHLR3xtldkTDnM3CF48e82owq9c0BEZc7Vy
-         lIP53n9Bsg6IEwe7+Uvr65hglhlRvKmJ2efQySect9lV906qDxrnEsqQLMTOF6xLt4AR
-         EJTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV8NuEX3OgBWwWOtysXsDRO2pCObzDutn9xmfeWOXffh16Pz9qUU4qYxl91zor24FPetigfmANbIxD7dVDMCuc4m9+x/vpYmKuDAw==
-X-Gm-Message-State: AOJu0YyjXac7NiQQjbduvFQ02sW0gEGeBdzcqfccqdchngm9qz/auLCX
-	R4bDOaAHtxlmhLaKv6jh3iIKGlslzE9lwCl/sbxrNdE5GmhpMd8yPdA/HJU0bG4=
-X-Google-Smtp-Source: AGHT+IEX2xucaNOqEi45e6rA7xWiaBbHHqTl57NjxOHbuJYOV2LS1R05RrcHUWwFbQgnVwIACR9hfA==
-X-Received: by 2002:a05:6512:3e4:b0:515:ccd8:37c2 with SMTP id n4-20020a05651203e400b00515ccd837c2mr6005739lfq.44.1712003629119;
-        Mon, 01 Apr 2024 13:33:49 -0700 (PDT)
-Received: from umbar.lan ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id j11-20020ac2550b000000b00515a6e4bdbdsm1478342lfk.250.2024.04.01.13.33.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Apr 2024 13:33:48 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 01 Apr 2024 23:33:48 +0300
-Subject: [PATCH v3 9/9] arm64: dts: qcom: sm8150-hdk: rename Type-C HS
- endpoints
+	s=arc-20240116; t=1712004240; c=relaxed/simple;
+	bh=PbWJ4zFdnAhUsADey3LkEStZEZuTOSuvaXwBHAs8Hr4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HimMGQIzENzqW54OMLkYyRQ6BrMdhvl4oc9G9SaBLGo2rPagHHcDenRg0vvgDgWeHQo8HoQkPJ07/pUMyuxlonRsNw7v4coItzy6zoOtYvNjiND4TRQhGXXsFLU+DrGXaKuP40LJgGgVsApxMxqJ1fJrDBtSP9kz83pIXMDiKx4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bCSbRpX1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A9DAC433F1;
+	Mon,  1 Apr 2024 20:44:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712004240;
+	bh=PbWJ4zFdnAhUsADey3LkEStZEZuTOSuvaXwBHAs8Hr4=;
+	h=From:To:Cc:Subject:Date:From;
+	b=bCSbRpX1FdqEtSkCsK5Qq6d5phY2G8Tm8eayj3N23DC/LYiz3AV38rV4+M6GFwapH
+	 CTp6RFi/2511ccrU3R44+pACYW47QHouai/AGB+UIuUUe4lzL1d6ZTN7qteihruKzz
+	 c5a51RajNe8wz97cSgHxO2aXp1KZ7rh8uc0dmmuaO+cph3xDGkd3IaQr/yy3getaAG
+	 SyiJNaxAl7l/sR1kJSXtd0dF8etP8m+poFPAtt/nZV7znsHZ6hnP55ECxZa8h1V7YL
+	 Uw7l+zD3Y8Vluiv2ITLC9bJQ8QCKAGiM1cBFSyIipg8G2ZL4joArXpq/IgYSL7xl24
+	 0jFKYlxvHzxeA==
+From: Rob Herring <robh@kernel.org>
+To: Viresh Kumar <vireshk@kernel.org>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Viresh Kumar <viresh.kumar@linaro.org>,
+	Serge Semin <fancer.lancer@gmail.com>,
+	dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: dma: snps,dma-spear1340: Fix data{-,_}width schema
+Date: Mon,  1 Apr 2024 15:43:53 -0500
+Message-ID: <20240401204354.1691845-1-robh@kernel.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240401-typec-fix-sm8250-v3-9-604dce3ad103@linaro.org>
-References: <20240401-typec-fix-sm8250-v3-0-604dce3ad103@linaro.org>
-In-Reply-To: <20240401-typec-fix-sm8250-v3-0-604dce3ad103@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=948;
- i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=+m4KcknPtPtiYtZonTjzGx6OYYK5R2lRlFqksVKoy6E=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmCxomu5aU5NG+Z/64wI5iPLxDf2d2pJXxtC/9V
- Rx789XMZ+WJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZgsaJgAKCRCLPIo+Aiko
- 1W9oB/4wBdn4/QHKK+hmLb6lInouPt5uF6PHRC0lKI3zIsxUg16wXXI51U/eaV/RNDk9pdHaLT2
- cOAt0rJnUmgWfnPWEay58qAIQvzAsCrrcWzaa1nxo1b6l77uZiPOS2Q2WjUe/Bodju8/nO/lOAK
- Bp4IJsH/hI5PJxhM3OrE/3Vb843jIurkukowYDFHkLW3optfQyWNSA4K6q0dTvOpwEGR1unUtQ9
- qkVDpDGcLTwEnhwmEKJqzYecFpVqA6h3i1bC+UQHJngXJkCEAN3y1yrbidup8fJybfWBIBRZaMw
- KoPnzwMlDq2mGU0o7eeJqeF2tCOieBcQVC0svm+3y/5XIszQ
-X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+Content-Transfer-Encoding: 8bit
 
-Follow other Qualcomm platforms and rename pm8150b_role_switch_in to
-pm8150_hs_in. Corresponding port is described as HS port rather than
-role switching.
+'data-width' and 'data_width' properties are defined as arrays, but the
+schema is defined as a matrix. That works currently since everything gets
+decoded in to matrices, but that is internal to dtschema and could change.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
+Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- arch/arm64/boot/dts/qcom/sm8150-hdk.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+v2:
+ - Make 'minItems' explicit. This works around a bug in dtschema, and is
+   also preferred.
+ - Add tags
+---
+ .../bindings/dma/snps,dma-spear1340.yaml      | 42 +++++++++----------
+ 1 file changed, 21 insertions(+), 21 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150-hdk.dts b/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
-index de670b407ef1..857ccc5de085 100644
---- a/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
-@@ -556,7 +556,7 @@ ports {
+diff --git a/Documentation/devicetree/bindings/dma/snps,dma-spear1340.yaml b/Documentation/devicetree/bindings/dma/snps,dma-spear1340.yaml
+index 5da8291a7de0..c21a4f073f6c 100644
+--- a/Documentation/devicetree/bindings/dma/snps,dma-spear1340.yaml
++++ b/Documentation/devicetree/bindings/dma/snps,dma-spear1340.yaml
+@@ -93,10 +93,10 @@ properties:
+   data-width:
+     $ref: /schemas/types.yaml#/definitions/uint32-array
+     description: Data bus width per each DMA master in bytes.
++    minItems: 1
++    maxItems: 4
+     items:
+-      maxItems: 4
+-      items:
+-        enum: [4, 8, 16, 32]
++      enum: [4, 8, 16, 32]
  
- 			port@0 {
- 				reg = <0>;
--				pm8150b_role_switch_in: endpoint {
-+				pm8150b_hs_in: endpoint {
- 					remote-endpoint = <&usb_1_dwc3_hs>;
- 				};
- 			};
-@@ -703,7 +703,7 @@ &usb_1_dwc3 {
- };
+   data_width:
+     $ref: /schemas/types.yaml#/definitions/uint32-array
+@@ -106,28 +106,28 @@ properties:
+       deprecated. It' usage is discouraged in favor of data-width one. Moreover
+       the property incorrectly permits to define data-bus width of 8 and 16
+       bits, which is impossible in accordance with DW DMAC IP-core data book.
++    minItems: 1
++    maxItems: 4
+     items:
+-      maxItems: 4
+-      items:
+-        enum:
+-          - 0 # 8 bits
+-          - 1 # 16 bits
+-          - 2 # 32 bits
+-          - 3 # 64 bits
+-          - 4 # 128 bits
+-          - 5 # 256 bits
+-        default: 0
++      enum:
++        - 0 # 8 bits
++        - 1 # 16 bits
++        - 2 # 32 bits
++        - 3 # 64 bits
++        - 4 # 128 bits
++        - 5 # 256 bits
++      default: 0
  
- &usb_1_dwc3_hs {
--	remote-endpoint = <&pm8150b_role_switch_in>;
-+	remote-endpoint = <&pm8150b_hs_in>;
- };
+   multi-block:
+     $ref: /schemas/types.yaml#/definitions/uint32-array
+     description: |
+       LLP-based multi-block transfer supported by hardware per
+       each DMA channel.
++    minItems: 1
++    maxItems: 8
+     items:
+-      maxItems: 8
+-      items:
+-        enum: [0, 1]
+-        default: 1
++      enum: [0, 1]
++      default: 1
  
- &usb_1_dwc3_ss {
-
+   snps,max-burst-len:
+     $ref: /schemas/types.yaml#/definitions/uint32-array
+@@ -138,11 +138,11 @@ properties:
+       will be from 1 to max-burst-len words. It's an array property with one
+       cell per channel in the units determined by the value set in the
+       CTLx.SRC_TR_WIDTH/CTLx.DST_TR_WIDTH fields (data width).
++    minItems: 1
++    maxItems: 8
+     items:
+-      maxItems: 8
+-      items:
+-        enum: [4, 8, 16, 32, 64, 128, 256]
+-        default: 256
++      enum: [4, 8, 16, 32, 64, 128, 256]
++      default: 256
+ 
+   snps,dma-protection-control:
+     $ref: /schemas/types.yaml#/definitions/uint32
 -- 
-2.39.2
+2.43.0
 
 
