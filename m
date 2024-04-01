@@ -1,152 +1,159 @@
-Return-Path: <devicetree+bounces-55140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7294C894444
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 19:24:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76EBB894451
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 19:28:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2DB5A281AD9
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 17:24:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A82521C21532
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 17:28:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DF174CE13;
-	Mon,  1 Apr 2024 17:22:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B1F54CDEC;
+	Mon,  1 Apr 2024 17:28:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="ePLJZ08v"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="HeCE9IWT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 423194C60C;
-	Mon,  1 Apr 2024 17:22:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4B2D48CDD;
+	Mon,  1 Apr 2024 17:28:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711992170; cv=none; b=b01QH7F9vrCgOf4vmBEj7qmvE0mjiXubcD25m3cSo/33ymPaWVRi19/SBw/ZAM6K6iiwDTlGFu4faBdAxuwuxaiOcC3g2FIwiYePXmcfnGU6C0qEUWb+NLxVQBmGx7slc5r3gRXHs79WOfwUcGSJ5CxK//9u0tBQHyHsA6BP7cc=
+	t=1711992522; cv=none; b=iozEb5SSWZymE88gk+lJm0Zs/TDv6P9tEcpZdT4xF9cs+707wg6sAo4X9GEUMgUzKcWEdzRgqIB+9nIqfaZkogGNosfzqQRcsOY4SI+MRi1CcHDsals3/iwFeb8Hmj/Zxr2WwH9KZYPMx5JrKaFpzRL/1CvbWbhMyaeWgHhRzfc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711992170; c=relaxed/simple;
-	bh=zHbbCSOPyTCqPdUXRwDlup/1JNlur6S+ULZXs+kmzok=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dssyXM82KR3LS1wTE2MEwDFOzWLW+fQ682CwkgxXJwdkzKjO5qimzGiZka1YS5N1qlRa7KNlpETNtrYoHrkc0PcvuRQY7SPQPH5n0fSqU9EdlIkMU2npZOTp7JTcMwTE1VxZP+KJ3TDmahReLP+RTglxegMoQeHc5Cmk3okhKWw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=ePLJZ08v; arc=none smtp.client-ip=45.89.224.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 4EBEC120003;
-	Mon,  1 Apr 2024 20:22:44 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 4EBEC120003
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1711992164;
-	bh=tl1k+GzwBoZHvPC5wGd0gk/FR6ibdQtoq6i6yG3MDtE=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=ePLJZ08v9l/Hp7+tshkLyConpJh3/E7UlPychQ8v4envB4os0v896owqaCmUZBjPw
-	 CASP3Kvn8yjDiOVNug2zR0XVFAP5hfsR2f70JK4yUprzcIq+X0EfxdpSH+mXgwuB5P
-	 9//DgLEl4FR7a0j5vgchoors49NzStQuA6+XtIawT/vGj/MGbgaQehjcYjwt2LM20g
-	 rtq+7EgaEMsCG/LVOtZKVkUAMpAFl8cIcHkxzsdjEWYVb3CApexAknmGL033IXoPJZ
-	 oX41ydw3Fjehxdcd681iiS8shzVEnB4Du+a1Y2CiY1y11Ylv1lpuvDO32cgmzFb4JG
-	 psrARtLC41j3w==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Mon,  1 Apr 2024 20:22:44 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m02.sberdevices.ru
- (172.16.192.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 1 Apr
- 2024 20:22:43 +0300
-Date: Mon, 1 Apr 2024 20:22:43 +0300
-From: Dmitry Rokosov <ddrokosov@salutedevices.com>
-To: Rob Herring <robh@kernel.org>
-CC: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
-	<mturquette@baylibre.com>, <sboyd@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <kernel@salutedevices.com>,
-	<rockosov@gmail.com>, <linux-amlogic@lists.infradead.org>,
-	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v1 1/6] dt-bindings: clock: meson: a1: pll: introduce new
- syspll bindings
-Message-ID: <20240401172243.zuvj6d6ptkrt6p33@CAB-WSD-L081021>
-References: <20240329205904.25002-1-ddrokosov@salutedevices.com>
- <20240329205904.25002-2-ddrokosov@salutedevices.com>
- <20240401142011.GA537763-robh@kernel.org>
+	s=arc-20240116; t=1711992522; c=relaxed/simple;
+	bh=H0hssSsyJSJLxkXL5lGTv9x13z+xtSpWrqhRuPazvNs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rgH+Fdfd9Lq1Lw0YlacyPa+VbY5pcwy8MRz+AWju8G4DHjFz1Yy9BX4tZseQiuvW0O/bH/uLK/Vv5Gk77YaMJGtu2b8PWGuWwq5HUtTGJPLL7q7IOCTTYwaGEzDptBwR25/ZZuw0K0DCSLgSvmLbg95KBbUHl0wzkXoU63r4zPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=HeCE9IWT; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6754F250;
+	Mon,  1 Apr 2024 19:28:02 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1711992482;
+	bh=H0hssSsyJSJLxkXL5lGTv9x13z+xtSpWrqhRuPazvNs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HeCE9IWT9Wrdto2KdMcsEuGLSpll1kzIgE+RvyXUqWV6Y3BaddDJBUg22G+cGAX7E
+	 bz8BwVridXhphX8P5pBkL68D3AL1X+PPMly/K8Rt0rCXDx1pQG8aDeajlsQOYyNXdW
+	 xP8osJGV05O/d1jxBgdUUVvTRh3t6hOsH1Tcj9jY=
+Date: Mon, 1 Apr 2024 20:28:26 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: sakari.ailus@linux.intel.com, rmfrfs@gmail.com, hansg@kernel.org,
+	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH v2] media: dt-bindings: ovti,ov2680: Document more
+ properties
+Message-ID: <20240401172826.GG8623@pendragon.ideasonboard.com>
+References: <20240401154341.3173872-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240401142011.GA537763-robh@kernel.org>
-User-Agent: NeoMutt/20220415
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 184515 [Apr 01 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 14 0.3.14 5a0c43d8a1c3c0e5b0916cc02a90d4b950c01f96, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;100.64.160.123:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1;lore.kernel.org:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2024/04/01 16:37:00
-X-KSMG-LinksScanning: Clean, bases: 2024/04/01 16:36:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/01 15:13:00 #24563578
-X-KSMG-AntiVirus-Status: Clean, skipped
+In-Reply-To: <20240401154341.3173872-1-festevam@gmail.com>
 
-Hello Rob,
+Hi Fabio,
 
-On Mon, Apr 01, 2024 at 09:20:11AM -0500, Rob Herring wrote:
-> On Fri, Mar 29, 2024 at 11:58:41PM +0300, Dmitry Rokosov wrote:
-> > The 'syspll' PLL is a general-purpose PLL designed specifically for the
-> > CPU clock. It is capable of producing output frequencies within the
-> > range of 768MHz to 1536MHz.
-> > 
-> > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
-> > ---
-> >  .../devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml     | 7 +++++--
-> >  include/dt-bindings/clock/amlogic,a1-pll-clkc.h            | 2 ++
-> >  2 files changed, 7 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
-> > index a59b188a8bf5..fbba57031278 100644
-> > --- a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
-> > +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
-> > @@ -26,11 +26,13 @@ properties:
-> >      items:
-> >        - description: input fixpll_in
-> >        - description: input hifipll_in
-> > +      - description: input syspll_in
-> >  
-> >    clock-names:
-> >      items:
-> >        - const: fixpll_in
-> >        - const: hifipll_in
-> > +      - const: syspll_in
+Thank you for the patch.
+
+On Mon, Apr 01, 2024 at 12:43:41PM -0300, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 > 
-> A new required entry is an ABI break. Please state why that's ok or make 
-> it optional (minItems: 2).
+> OV2680 has a single data lane MIPI interface.
+> 
+> Document the clock-lanes and data-lanes properties to avoid
+> the following dt-schema warning:
+> 
+> imx7s-warp.dtb: camera@36: port:endpoint: Unevaluated properties are not allowed ('clock-lanes', 'data-lanes' were unexpected)
+> 	from schema $id: http://devicetree.org/schemas/media/i2c/ovti,ov2680.yaml#
+> 
+> While at it, also document the link-frequencies property as recommended
+> by the following document:
+> 
+> https://www.kernel.org/doc/html/v6.9-rc1/driver-api/media/camera-sensor.html#handling-clocks
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> ---
+> Changes since v1:
+> - Keep the existing 'additionalProperties: false'. (Krzysztof)
+> - Also document link-frequencies.
+> 
+>  .../bindings/media/i2c/ovti,ov2680.yaml       | 20 ++++++++++++++++++-
+>  1 file changed, 19 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml
+> index cf456f8d9ddc..a1cb08283818 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml
+> @@ -50,9 +50,24 @@ properties:
+>        Definition of the regulator used as digital power supply.
+>  
+>    port:
+> -    $ref: /schemas/graph.yaml#/properties/port
+>      description:
+>        A node containing an output port node.
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: /schemas/media/video-interfaces.yaml#
+> +        unevaluatedProperties: false
 
-Unfortunatelly, it cannot be optional. I've explained here why:
+I recommend using
 
-https://lore.kernel.org/all/20240401171933.bqmjsuanqsjvjosn@CAB-WSD-L081021/
+        additionalProperties: false
 
-"""
-The clock source sys_pll_div16, being one of the GEN clock parents,
-plays a crucial role and cannot be tagged as "optional". Unfortunately,
-it was not implemented earlier due to the cpu clock ctrl driver's
-pending status on the TODO list.
-"""
+as the bindings shouldn't allow all the other properties defined in
+video-interfaces.yaml that are not applicable for this device. It will
+require adding
 
-Could you please provide guidance on whether there is any alternative
-approach that could potentially make it possible?
+          remote-endpoint: true
+
+to the properties below.
+
+> +
+> +        properties:
+> +          clock-lanes:
+> +            const: 0
+> +
+> +          data-lanes:
+> +            const: 1
+
+I see there's an ongoing discussion in v1 about these two properties,
+I'll let Sakari and you figure it out :-)
+
+> +
+> +          link-frequencies: true
+
+I think this one should one marked as mandatory.
+
+>  
+>  required:
+>    - compatible
+> @@ -89,6 +104,9 @@ examples:
+>                  port {
+>                          ov2680_to_mipi: endpoint {
+>                                  remote-endpoint = <&mipi_from_sensor>;
+> +                                clock-lanes = <0>;
+> +                                data-lanes = <1>;
+> +                                link-frequencies = /bits/ 64 <330000000>;
+>                          };
+>                  };
+>          };
 
 -- 
-Thank you,
-Dmitry
+Regards,
+
+Laurent Pinchart
 
