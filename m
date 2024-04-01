@@ -1,62 +1,63 @@
-Return-Path: <devicetree+bounces-55035-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55036-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69288893A4C
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 12:46:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 611B9893A74
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 12:57:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 991BE1C20F3D
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 10:46:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC6AC1F21510
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 10:57:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55EB01CA94;
-	Mon,  1 Apr 2024 10:46:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACF871F600;
+	Mon,  1 Apr 2024 10:57:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jQfWYBBF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c/djbk+g"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B3CD1CD14;
-	Mon,  1 Apr 2024 10:46:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7941B1119E;
+	Mon,  1 Apr 2024 10:57:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711968390; cv=none; b=re+SksTrc+1MDeNEs4KVAlUBsywUklgfXCLeFDPAr923mHBC4kT6BFzERYDzq28L8L8SqHq4yYYF2ZtP9hrLVb89160aYIGuDpRBBN89GPS8AFwodEevHS783oNoIBqrSi/Q5NH7PMBE8j1I85SouohhIccaFx9sOC0Q99Ebt/g=
+	t=1711969032; cv=none; b=aDU7H4wU/tgMDJw9MO+agb2DBa3QN1NASwfk2sryDpIcJFSG//BSBFEetf/y7G/RwxEJSpSYM7+3ORHzdFUrFzd4g9a58tM9HDkFsCj8UR0CpGBB9d1OVLD+c/82RCXYKyUlHi08nGzWQ/aSmkAZ/5OoXCR8G7v/lP8pw4CEPxk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711968390; c=relaxed/simple;
-	bh=a2WtB0xmwYiuyFKbZJQ/GO/AdCnqXgqBpGtmMe1gRPI=;
+	s=arc-20240116; t=1711969032; c=relaxed/simple;
+	bh=jRpsWbogVcg8DoKpQah04JxMdsxc7vRxdIryL7nab6M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QDJMe8Hc/ZZDdcUnJyH5V/CjbI0LFVaGmqTFtx6aTOxg2CWCU2b/aAwx/zztZp3jtwv0Q3eASyFXNUx2QwrVwHHPI0V8M1DaELfMfUla4SekgtrFEp5u6xqwXa1FXCoHR6XbQAIMHAHLN16vTswBPh5tFoXNOFksYAV3B26/F+w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jQfWYBBF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4AE5C433F1;
-	Mon,  1 Apr 2024 10:46:26 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Rzq3RUqxr9XGCMO+5vJb3Amt6xRlixmKadLIzLjyEmct+Q/BANDEItDHPNHGcA8DyzXoqm7mPEHDW8Ce2XKt2xm97rNjY7P53+n7hq4+Vkp+AYaxD3DrhQvnyZFhI/uzJoenqjm/rkxDztYfl2DRiuEgann377tbUJ9yh+JQmbU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c/djbk+g; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F3B3C433C7;
+	Mon,  1 Apr 2024 10:57:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711968389;
-	bh=a2WtB0xmwYiuyFKbZJQ/GO/AdCnqXgqBpGtmMe1gRPI=;
+	s=k20201202; t=1711969032;
+	bh=jRpsWbogVcg8DoKpQah04JxMdsxc7vRxdIryL7nab6M=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jQfWYBBFzaLYXE7DeTkiqLBkfo6HAHbqV8fN5MJuFoZ4tnCOly8RDrQiXqJ4lFW72
-	 2vH/i3MuU3ixylhRKBQGXBeEvxQfb3HzqfIfi7ypEWB5kG672tXR6S0JXIcAg4bJ+X
-	 doVzlxVhgryHJFaLGN/XoypfjZ5retg+l3Rq4Yk2jY3sPvovt0qZyZdv6HGHfJRY1u
-	 v4uX1xrLmvV6PQo+FW6+EqsNF5tyyal5gDaaDxkUnsjEgFqoMAgqyVoF80fY21X3p3
-	 Z2p3uW1MG561hLNqZ+zwVJ5HxUWvtj8KkdptvVRNkPNEUV8KP/AkO46mnO3N2iLCIN
-	 ubCI4hNhZB0Xg==
-Date: Mon, 1 Apr 2024 11:46:24 +0100
+	b=c/djbk+ghlpRgAenqvHBKE4TEWj87ADVeCFBn3COGbgOd7/Vswne2os0bEPG4LWWi
+	 YN/IaR8x6cc63nvEloNlErjooCpL6BuMTIdhbvxxoYBbX6AhAh9D3RwxZnUSgk/sFU
+	 PlCN6kqEY5pz9inQ7ioBKU9iD0g9SnY2phljw+qM/qqQU5srjbPvJ9HrqvcgfVSRqg
+	 JFW/FnBdk8l1oXTnXdVZ8emdeavgqncqKvTmgh8SqX3Cl0oGSjXtx6vv5uLe8WJHlh
+	 5/TF6Vw9ThXY665tYa30gjpfX7+Zd/RZSkLakO+pS1W8Z+bFJHmraYbc1NHZflpmoj
+	 01NKbbHUWs4Qw==
+Date: Mon, 1 Apr 2024 11:57:07 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Shawn Lin <shawn.lin@rock-chips.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
-	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: PCI: rockchip,rk3399-pcie: add missing
- maxItems to ep-gpios
-Message-ID: <20240401-sarcastic-polka-81ca81834df9@spud>
-References: <20240401100058.15749-1-krzysztof.kozlowski@linaro.org>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
+Subject: Re: [PATCH v2] dt-bindings: usb: qcom,pmic-typec: update example to
+ follow connector schema
+Message-ID: <20240401-ridden-handpick-2185d8dd02f6@spud>
+References: <20240331-typec-fix-example-v2-1-f56fffe4f37c@linaro.org>
+ <2024033109-reporter-blooming-5217@gregkh>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,40 +65,70 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="u7S0YdhFapcdCqCC"
+	protocol="application/pgp-signature"; boundary="PJKCTyDDSgQqIlcd"
 Content-Disposition: inline
-In-Reply-To: <20240401100058.15749-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <2024033109-reporter-blooming-5217@gregkh>
 
 
---u7S0YdhFapcdCqCC
+--PJKCTyDDSgQqIlcd
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Apr 01, 2024 at 12:00:58PM +0200, Krzysztof Kozlowski wrote:
-> Properties with GPIOs should define number of actual GPIOs, so add
-> missing maxItems to ep-gpios.  Otherwise multiple GPIOs could be
-> provided which is not a true hardware description.
+On Sun, Mar 31, 2024 at 09:17:20AM +0200, Greg Kroah-Hartman wrote:
+> On Sun, Mar 31, 2024 at 12:21:15AM +0200, Dmitry Baryshkov wrote:
+> > Update Qualcomm PMIC Type-C examples to follow the USB-C connector
+> > schema. The USB-C connector should have three ports (USB HS @0,
+> > SSTX/RX @1 and SBU @2 lanes). Reorder ports accordingly and add SBU port
+> > connected to the SBU mux (e.g. FSA4480).
+> >=20
+> > Fixes: 00bb478b829e ("dt-bindings: usb: Add Qualcomm PMIC Type-C")
+> > Reported-by: Luca Weiss <luca.weiss@fairphone.com>
+> > Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> > Update examples to follow usb-c-connector schema wrt. ports definitions.
+> > ---
 >=20
-> Fixes: aa222f9311e1 ("dt-bindings: PCI: Convert Rockchip RK3399 PCIe to D=
-T schema")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Hi,
+>=20
+> This is the friendly patch-bot of Greg Kroah-Hartman.  You have sent him
+> a patch that has triggered this response.  He used to manually respond
+> to these common problems, but in order to save his sanity (he kept
+> writing the same thing over and over, yet to different people), I was
+> created.  Hopefully you will not take offence and will fix the problem
+> in your patch and resubmit it so that it can be accepted into the Linux
+> kernel tree.
+>=20
+> You are receiving this message because of the following common error(s)
+> as indicated below:
+>=20
+> - You have marked a patch with a "Fixes:" tag for a commit that is in an
+>   older released kernel, yet you do not have a cc: stable line in the
+>   signed-off-by area at all, which means that the patch will not be
+>   applied to any older kernel releases.  To properly fix this, please
+>   follow the documented rules in the
+>   Documentation/process/stable-kernel-rules.rst file for how to resolve
+>   this.
+>=20
+> If you wish to discuss this problem further, or you have questions about
+> how to resolve this issue, please feel free to respond to this email and
+> Greg will reply once he has dug out from the pending patches received
+> from other developers.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+I'm not sure that something updating the example like this needs to go
+to stable in the first place.
 
-Thanks,
-Conor.
-
---u7S0YdhFapcdCqCC
+--PJKCTyDDSgQqIlcd
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgqQgAAKCRB4tDGHoIJi
-0irkAPwOsdu8M3R5EyKevxY92LnAR66NRpxZx3MMNUD+tVGVnQD8D3TuY38mYuNa
-AeXjIBpXUtGDUwlr4Ch10HFNdOcndQ4=
-=HnPg
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgqTAwAKCRB4tDGHoIJi
+0o+3AQD8d/HFel0B33OnmX67qk+scHD8c2BNetJjW+qY+jRRxQEAwn45hbTGUfQw
+VuD6+9irOwAu5NYApjR2fFjnA4BcsQE=
+=l7ox
 -----END PGP SIGNATURE-----
 
---u7S0YdhFapcdCqCC--
+--PJKCTyDDSgQqIlcd--
 
