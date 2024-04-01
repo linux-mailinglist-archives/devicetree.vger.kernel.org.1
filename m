@@ -1,100 +1,98 @@
-Return-Path: <devicetree+bounces-55055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 980E1893B9B
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 15:52:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8A84893BA7
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 15:56:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D0A8CB2178B
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 13:52:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C07FB211D8
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 13:56:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F1D93FBA4;
-	Mon,  1 Apr 2024 13:52:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9B033FE54;
+	Mon,  1 Apr 2024 13:56:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="GEvqxBlB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dxp575dQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42CD53FB8E;
-	Mon,  1 Apr 2024 13:52:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5B023FB1E;
+	Mon,  1 Apr 2024 13:56:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711979552; cv=none; b=XGgSRQmBQ7JoK5TCj09eXDlmOxGCdPdFDsiNgIq8xsVn0+GGjs6KW8RW4s6ou0MksHgzHZbsN/+jKcKwYVQ1K2C+w840AoN2DlrwdazhKfCExFUr3CklF4s+D97WRpEGxsu0RUAqAO5P0/XxWIPOohHjQrvgGd8kTh2YaFoCyL8=
+	t=1711979799; cv=none; b=KGaW/50g74zK4BT4HegxG+nnUDCNlIRp5G7lL5+gUtzMNFTYPtuCmyx7NOgHj1jLlhp15X9GU0y66LRe5LBfIfMEAacUYtPN8flwRXXIc73Xttd3W+7NfeSNrX/zKN/jgA+qhH9cIHtMYJ1H40ODrSQuB97wQ+UjDP9jxN8eu/8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711979552; c=relaxed/simple;
-	bh=x4zTKubFtBTcQ2cSUnrgIDMP9d4ehF2w18B5zKaS3xM=;
+	s=arc-20240116; t=1711979799; c=relaxed/simple;
+	bh=SB286+nY7DQGLoaBo1jo/XJvyvYzcBgrwXpwBgupmWM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CEXSZLi7XNibsLbysZbDxuDTGMMQkSP9s0DLTorKrHtPLw6Dm94jqAaqrUGSKI9ZeaFPX4f5L10PeR3dWMxDl+Wzwbb2zBlHE9l19SvZPyMJw+UCeqypdvWHCOwmQqRQbtWV3VxSB4yrQ+8p5/eH22WQLtWbiPAik4KFhiTlI/Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=GEvqxBlB; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id EB108250;
-	Mon,  1 Apr 2024 15:51:49 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1711979510;
-	bh=x4zTKubFtBTcQ2cSUnrgIDMP9d4ehF2w18B5zKaS3xM=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=okeW6jGjK8uV6A+J2tDcZjTVPHh9nR8T/1OXpPtAx4RPw1gc9mZbkSKt0UHZaULTy05WPU3x0v6+Uef3KO2PmDzOuOUWGwPQld4BYbSTogxZ8ZVO2CPd7eY3ENB76uPVf6mlIpdUKP50vo0okfHJdFrcDa/h6ayMVFAfUYxXlS4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dxp575dQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06E18C43390;
+	Mon,  1 Apr 2024 13:56:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711979799;
+	bh=SB286+nY7DQGLoaBo1jo/XJvyvYzcBgrwXpwBgupmWM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GEvqxBlBeGmInPWI1eWzSqbLVZxVwN5fYeOAwBR6t6u9b4PAoGQ/brkQIqwD4F/sx
-	 Vt7utkRXCeJG0wXzf7zoAwMbVLhwh5oWHZB3NbIAP8Mdyumi+fISfHwhEgZ70lDqyC
-	 SlpglQPsy4s1P4+N7Lgp22Cf2H2iDch40C8MAIBo=
-Date: Mon, 1 Apr 2024 16:52:16 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: linux-media@vger.kernel.org,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	David Plowman <david.plowman@raspberrypi.com>,
-	Jean-Michel Hautbois <jeanmichel.hautbois@yoseli.org>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Naushir Patuck <naush@raspberrypi.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	kernel-list@raspberrypi.com, linux-rpi-kernel@lists.infradead.org,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	bcm-kernel-feedback-list@broadcom.com,
-	Conor Dooley <conor+dt@kernel.org>,
+	b=dxp575dQiKZXAdercVf8cUDwWfKwEI6IqLjDU0pN3iKC0OrWxwjzbb0sw0uNSB2su
+	 DPVp94ewBebNT2v7SyvuYfXsqUtZpuUvIwWT6EtFTNIZpVf/zF7D0puWN82DDXTa6Q
+	 Kpubtuqo9ATNQorO7++V53Rx8U58e13DUolQFy9a7g0XztCd9yAtBGZ70qTnVn534V
+	 mzlsyll3/cmjN5WycpuflvPpxhB+kKCL1N70VmsHaxLPjc6UjtiLJo3Cr1rEybUnEb
+	 i3tJWsVtJV6N59bCi3vYfRUQQWBcdPctEdOXf4zm4Aqec43LuDYbhXz0mgM8gHMD3z
+	 3jWM2YyadVUzQ==
+Date: Mon, 1 Apr 2024 08:56:37 -0500
+From: Rob Herring <robh@kernel.org>
+To: Peter Yin <peteryin.openbmc@gmail.com>
+Cc: patrick@stwcx.xyz, Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 09/15] media: bcm2835-unicam: Add support for
- CCP2/CSI2 camera interface
-Message-ID: <20240401135216.GF8623@pendragon.ideasonboard.com>
-References: <20240324220854.15010-1-laurent.pinchart@ideasonboard.com>
- <20240324220854.15010-10-laurent.pinchart@ideasonboard.com>
- <b4506224-b75a-49d8-8651-a48f39149d52@ideasonboard.com>
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 3/4] dt-bindings: watchdog: aspeed-wdt: Add aspeed,scu
+Message-ID: <20240401135637.GA342928-robh@kernel.org>
+References: <20240328022231.3649741-1-peteryin.openbmc@gmail.com>
+ <20240328022231.3649741-4-peteryin.openbmc@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <b4506224-b75a-49d8-8651-a48f39149d52@ideasonboard.com>
+In-Reply-To: <20240328022231.3649741-4-peteryin.openbmc@gmail.com>
 
-On Wed, Mar 27, 2024 at 01:21:09PM +0200, Tomi Valkeinen wrote:
-> On 25/03/2024 00:08, Laurent Pinchart wrote:
-> > From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> > 
-> > Add a driver for the Unicam camera receiver block on BCM283x processors.
-> > It is represented as two video device nodes: unicam-image and
-> > unicam-embedded which are connected to an internal subdev (named
-> > unicam-subdev) in order to manage streams routing.
+On Thu, Mar 28, 2024 at 10:22:30AM +0800, Peter Yin wrote:
+> To use the SCU register to obtain reset flags for supporting
+> bootstatus.
 > 
-> Shouldn't this driver call get_frame_desc somewhere to get the VC and DT 
-> for the streams?
+> Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt b/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
+> index 3208adb3e52e..80a1f58b5a2e 100644
+> --- a/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
+> +++ b/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
+> @@ -8,6 +8,8 @@ Required properties:
+>  
+>   - reg: physical base address of the controller and length of memory mapped
+>     region
+> + - aspeed,scu: a reference to the System Control Unit node of the Aspeed
+> +   SOC.
 
-Generally speaking, yes. In practice, configuring the DT from the frame
-descriptor is probably not very useful, as CSI-2 sources that transmit
-image data using a DT that doesn't correspond to the media bus code are
-not very common and I don't expect this to be needed for unicam.
-Configuring the VC, on the other hand, seems to me like a better use
-case. I will add get_frame_desc support for the next version.
+You cannot add new required properties as that is an ABI break.
 
--- 
-Regards,
+If there's only 1 SCU instance, you can just fetch its node by 
+compatible with no DT change.
 
-Laurent Pinchart
+What's the plan for converting this binding to schema? This is the 2nd 
+new property in 6 months.
+
+Rob
 
