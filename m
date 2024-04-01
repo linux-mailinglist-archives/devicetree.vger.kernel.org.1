@@ -1,211 +1,339 @@
-Return-Path: <devicetree+bounces-55030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D283C893A0D
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 12:11:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C7EA893A2E
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 12:29:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 108211C211FE
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 10:11:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9D21AB219A3
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 10:29:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C00A14ABA;
-	Mon,  1 Apr 2024 10:10:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BpQ6uj5+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E23E6171CE;
+	Mon,  1 Apr 2024 10:29:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [5.144.164.163])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F215134B7;
-	Mon,  1 Apr 2024 10:10:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0C4E10A03
+	for <devicetree@vger.kernel.org>; Mon,  1 Apr 2024 10:29:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.144.164.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711966255; cv=none; b=JaJGmO9B4cZNMSIuyR8ink9awagLUqto6ZklMfbvVWVIOwOGH6RidbfsCy3OUQN3JF6TbOUHXqKk7Mp5ILNOs4z2eZeouLkOZxZhtGhD/m/MVCR6U4OkbZlgsrKQ23h6L0UO6qMRkQJ5V7uFzavqdsF+LEI0UYD0grbI42e+RuE=
+	t=1711967392; cv=none; b=dICwgfdx7DuJ26MRE9b5x2H2lcFHDSqr/hoBPjrSHgpqpOVPZiq6rmuXjgS+mdsgRFHzWCeF/mu2M35/fKphLZCnQxmWl5dQVG38HzrY9G+7Jmjox4Bf9hFrgYDJ4mXCCLcF2X483W/YpeClDuyRXuQuO7kCA1dZqUIz+uSE+bY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711966255; c=relaxed/simple;
-	bh=6UGLqY9odgzIryo++HHG92e44N/TaIRCAft0GJGAV94=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=KSNy9LLviklrfOQ6SSjNkvM89aWCi/tB7VoAOMWGdWy86cXFhqWuC0dJZkQlkN6euHZjVLyPsjhgf17fahJqtgoB0ZZ2+mTfP6ZE5vVo/LLm7pIKE6xjwIkeXHsAH3LMp4sAZsofwonc6YV8BNi+FUACeA6ZWTYCTfpbG6bBsCk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BpQ6uj5+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 185EEC43142;
-	Mon,  1 Apr 2024 10:10:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711966255;
-	bh=6UGLqY9odgzIryo++HHG92e44N/TaIRCAft0GJGAV94=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=BpQ6uj5+YpkoDAkec+fiSN0D3db8DTNxr8cjDO+8cNg+PYc1hItriDMBxpcN08nN5
-	 mJjmCvYs3DhT/Ldoy+fJeh3iqwkH+/JIqoN/d/XIQE7aMiaFZys/C0py6Wt6DqRtjt
-	 hiLaBEOkaGygQgoWs96awpX0v4dDEJCuIMX8THg2VtKPj6lEI8UvUjyh73qyoFvNPQ
-	 0ehg2zj0cbshbzgc3M/MOYr/GtQrj8SFL/E7u4Hd7sRCsLRbBaidFpVXRfbIU4ElQ6
-	 e+9CJlDIgZ1znBxebqwN6IebTIq5/aiq5/lY5Ha2ZmC3M9M2yieHtWcWdt8x5pEV0Z
-	 P5xIqgYGovrCg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0AB26CD1288;
-	Mon,  1 Apr 2024 10:10:55 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Mon, 01 Apr 2024 18:10:53 +0800
-Subject: [PATCH v3 5/5] arm64: dts: add support for A5 based Amlogic AV400
+	s=arc-20240116; t=1711967392; c=relaxed/simple;
+	bh=E2wylmEub0/+aLi/zFFLJj9ZtgqpNAZ2P2Pfi8wm4qs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=u0F9LRT49KRQ64lInnir1JtEn1NKfUgmepChPUWLYBkPKQthFs9dNNely9Yv+LF/XXhvszMcSEPYfofzUSpQ+WjAKVkj1eFj8ju8fwWQWn3sk7ku+KMwyovg4Z1elZ/5tWf1PvwkYpsMYH2Y8JNAktflmD9+F1akG3klRoA1CEI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org; spf=pass smtp.mailfrom=somainline.org; arc=none smtp.client-ip=5.144.164.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=somainline.org
+Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by m-r1.th.seeweb.it (Postfix) with ESMTPSA id D945F1FAC1;
+	Mon,  1 Apr 2024 12:29:40 +0200 (CEST)
+Date: Mon, 1 Apr 2024 12:29:39 +0200
+From: Marijn Suijten <marijn.suijten@somainline.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Sumit Semwal <sumit.semwal@linaro.org>, 
+	Caleb Connolly <caleb.connolly@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, Vinod Koul <vkoul@kernel.org>, 
+	Caleb Connolly <caleb@connolly.tech>
+Subject: Re: [PATCH 3/3] drm: panel: Add LG sw43408 panel driver
+Message-ID: <fn3r4ykwxvgf4ujmpevpsrcwmwzpjl5bhcp6ekyebowgf4rpz3@fyxcwjgn6abg>
+References: <20240330-lg-sw43408-panel-v1-0-f5580fc9f2da@linaro.org>
+ <20240330-lg-sw43408-panel-v1-3-f5580fc9f2da@linaro.org>
+ <554zkisebym7gbbom3657ws7kqvyidggfmcvetjm6vrnwts3gl@l53hejt72b5q>
+ <CAA8EJpowdjcN8KzGRVLrGx8L8Fi5Drs-C62VZKd5VbmDHsCg+Q@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240401-basic_dt-v3-5-cb29ae1c16da@amlogic.com>
-References: <20240401-basic_dt-v3-0-cb29ae1c16da@amlogic.com>
-In-Reply-To: <20240401-basic_dt-v3-0-cb29ae1c16da@amlogic.com>
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-serial@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1711966253; l=3327;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=Dl4srjRZCo288fxVGeVbl9OCj623WT1z94/SvifjCLU=;
- b=7eYoRxg8m6HkOJPtSq+qik4iXOON1xb7oHenYqzrID0UuQUnaAjlRLb9MxU8Hc4eB1PS574N9
- Hk6QWjRAG/HC7IKjGZZWEVNWAIWnDo2hN3aKKoOEheeE4vIcR4MiUDQ
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Reply-To: xianwei.zhao@amlogic.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAA8EJpowdjcN8KzGRVLrGx8L8Fi5Drs-C62VZKd5VbmDHsCg+Q@mail.gmail.com>
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+On 2024-03-30 16:37:08, Dmitry Baryshkov wrote:
+> On Sat, 30 Mar 2024 at 12:27, Marijn Suijten
+> <marijn.suijten@somainline.org> wrote:
+> >
+> > On 2024-03-30 05:59:30, Dmitry Baryshkov wrote:
+> > > From: Sumit Semwal <sumit.semwal@linaro.org>
+> > >
+> > > LG SW43408 is 1080x2160, 4-lane MIPI-DSI panel, used in some Pixel3
+> > > phones.
+> > >
+> > > Whatever init sequence we have for this panel isn't capable of
+> > > initialising it completely, toggling the reset gpio ever causes the
+> > > panel to die. Until this is resolved we avoid resetting the panel. The
+> >
+> > Are you sure it is avoided?  This patch seems to be toggling reset_gpio in
+> > sw43408_prepare()?
+> >
+> > > disable/unprepare functions only put the panel to sleep mode and
+> > > disable the backlight.
+> > >
+> > > Signed-off-by: Sumit Semwal <sumit.semwal@linaro.org>
+> > > [vinod: Add DSC support]
+> > > Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> > > [caleb: cleanup and support turning off the panel]
+> > > Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+> > > [DB: partially rewrote the driver and fixed DSC programming]
+> > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > > ---
+> > >  MAINTAINERS                              |   8 +
+> > >  drivers/gpu/drm/panel/Kconfig            |  11 ++
+> > >  drivers/gpu/drm/panel/Makefile           |   1 +
+> > >  drivers/gpu/drm/panel/panel-lg-sw43408.c | 322 +++++++++++++++++++++++++++++++
+> > >  4 files changed, 342 insertions(+)
+> > >
+> > > diff --git a/MAINTAINERS b/MAINTAINERS
+> > > index 4b511a55101c..f4cf7ee97376 100644
+> > > --- a/MAINTAINERS
+> > > +++ b/MAINTAINERS
+> > > @@ -6755,6 +6755,14 @@ S:     Maintained
+> > >  F:   Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
+> > >  F:   drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
+> > >
+> > > +DRM DRIVER FOR LG SW43408 PANELS
+> > > +M:   Sumit Semwal <sumit.semwal@linaro.org>
+> > > +M:   Caleb Connolly <caleb.connolly@linaro.org>
+> > > +S:   Maintained
+> > > +T:   git git://anongit.freedesktop.org/drm/drm-misc
+> > > +F:   Documentation/devicetree/bindings/display/panel/lg,sw43408.yaml
+> > > +F:   drivers/gpu/drm/panel/panel-lg-sw43408.c
+> > > +
+> > >  DRM DRIVER FOR LOGICVC DISPLAY CONTROLLER
+> > >  M:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > >  S:   Supported
+> > > diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+> > > index d037b3b8b999..f94c702735cb 100644
+> > > --- a/drivers/gpu/drm/panel/Kconfig
+> > > +++ b/drivers/gpu/drm/panel/Kconfig
+> > > @@ -335,6 +335,17 @@ config DRM_PANEL_LG_LG4573
+> > >         Say Y here if you want to enable support for LG4573 RGB panel.
+> > >         To compile this driver as a module, choose M here.
+> > >
+> > > +config DRM_PANEL_LG_SW43408
+> > > +     tristate "LG SW43408 panel"
+> > > +     depends on OF
+> > > +     depends on DRM_MIPI_DSI
+> > > +     depends on BACKLIGHT_CLASS_DEVICE
+> > > +     help
+> > > +       Say Y here if you want to enable support for LG sw43408 panel.
+> > > +       The panel has a 1080x2160 resolution and uses
+> > > +       24 bit RGB per pixel. It provides a MIPI DSI interface to
+> > > +       the host and has a built-in LED backlight.
+> > > +
+> > >  config DRM_PANEL_MAGNACHIP_D53E6EA8966
+> > >       tristate "Magnachip D53E6EA8966 DSI panel"
+> > >       depends on OF && SPI
+> > > diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
+> > > index f156d7fa0bcc..a75687d13caf 100644
+> > > --- a/drivers/gpu/drm/panel/Makefile
+> > > +++ b/drivers/gpu/drm/panel/Makefile
+> > > @@ -34,6 +34,7 @@ obj-$(CONFIG_DRM_PANEL_LEADTEK_LTK050H3146W) += panel-leadtek-ltk050h3146w.o
+> > >  obj-$(CONFIG_DRM_PANEL_LEADTEK_LTK500HD1829) += panel-leadtek-ltk500hd1829.o
+> > >  obj-$(CONFIG_DRM_PANEL_LG_LB035Q02) += panel-lg-lb035q02.o
+> > >  obj-$(CONFIG_DRM_PANEL_LG_LG4573) += panel-lg-lg4573.o
+> > > +obj-$(CONFIG_DRM_PANEL_LG_SW43408) += panel-lg-sw43408.o
+> > >  obj-$(CONFIG_DRM_PANEL_MAGNACHIP_D53E6EA8966) += panel-magnachip-d53e6ea8966.o
+> > >  obj-$(CONFIG_DRM_PANEL_NEC_NL8048HL11) += panel-nec-nl8048hl11.o
+> > >  obj-$(CONFIG_DRM_PANEL_NEWVISION_NV3051D) += panel-newvision-nv3051d.o
+> > > diff --git a/drivers/gpu/drm/panel/panel-lg-sw43408.c b/drivers/gpu/drm/panel/panel-lg-sw43408.c
+> > > new file mode 100644
+> > > index 000000000000..365d25e14d54
+> > > --- /dev/null
+> > > +++ b/drivers/gpu/drm/panel/panel-lg-sw43408.c
+> > > @@ -0,0 +1,322 @@
+> > > +// SPDX-License-Identifier: GPL-2.0+
+> > > +/*
+> > > + * Copyright (C) 2019-2024 Linaro Ltd
+> > > + * Author: Sumit Semwal <sumit.semwal@linaro.org>
+> > > + *    Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > > + */
+> > > +
+> > > +#include <linux/backlight.h>
+> > > +#include <linux/delay.h>
+> > > +#include <linux/gpio/consumer.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/of.h>
+> > > +#include <linux/regulator/consumer.h>
+> > > +
+> > > +#include <video/mipi_display.h>
+> > > +
+> > > +#include <drm/drm_mipi_dsi.h>
+> > > +#include <drm/drm_panel.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > > +#include <drm/display/drm_dsc.h>
+> > > +#include <drm/display/drm_dsc_helper.h>
+> > > +
+> > > +#define NUM_SUPPLIES 2
+> > > +
+> > > +struct sw43408_panel {
+> > > +     struct drm_panel base;
+> > > +     struct mipi_dsi_device *link;
+> > > +
+> > > +     const struct drm_display_mode *mode;
+> > > +
+> > > +     struct regulator_bulk_data supplies[NUM_SUPPLIES];
+> > > +
+> > > +     struct gpio_desc *reset_gpio;
+> > > +};
+> > > +
+> > > +static inline struct sw43408_panel *to_panel_info(struct drm_panel *panel)
+> > > +{
+> > > +     return container_of(panel, struct sw43408_panel, base);
+> > > +}
+> > > +
+> > > +static int sw43408_unprepare(struct drm_panel *panel)
+> > > +{
+> > > +     struct sw43408_panel *ctx = to_panel_info(panel);
+> > > +     int ret;
+> > > +
+> > > +     ret = mipi_dsi_dcs_set_display_off(ctx->link);
+> > > +     if (ret < 0)
+> > > +             dev_err(panel->dev, "set_display_off cmd failed ret = %d\n", ret);
+> > > +
+> > > +     ret = mipi_dsi_dcs_enter_sleep_mode(ctx->link);
+> > > +     if (ret < 0)
+> > > +             dev_err(panel->dev, "enter_sleep cmd failed ret = %d\n", ret);
+> > > +
+> > > +     msleep(100);
+> > > +
+> > > +     gpiod_set_value(ctx->reset_gpio, 1);
+> > > +
+> > > +     return regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
+> > > +}
+> > > +
+> > > +static int sw43408_program(struct drm_panel *panel)
+> > > +{
+> > > +     struct sw43408_panel *ctx = to_panel_info(panel);
+> > > +     struct drm_dsc_picture_parameter_set pps;
+> > > +     u8 dsc_en = 0x11;
+> >
+> > Yeah, this is completely strange. Bit 0, 0x1, is to enable DSC which is
+> > normal. 0x10 however, which is bit 4, selects PPS table 2.  Do you ever set
+> > pps_identifier in struct drm_dsc_picture_parameter_set to 2?  Or is the table
+> > that you send below bogus and/or not used?  Maybe the Driver IC on the other
+> > end of the DSI link has a default PPS table with identifier 2 that works out of
+> > the box?
+> 
+> Note, MIPI standard also requires two bytes argument. I suspect that
+> LG didn't fully follow the standard here.
 
-Amlogic A5 is an application processor designed for smart audio
-and IoT applications.
+Have you read this command from downstream DTS, or have you tried sending 2
+bytes and seen the panel breaking?  The second byte is marked as reserved and
+should be equal to 0; if the Driver IC is okay with sending either 1 or 2 bytes
+I'd strive to stick with the defined length of 2 bytes for this DCS.
 
-Add basic support for the A5 based Amlogic AV400 board, which describes
-the following components: CPU, GIC, IRQ, Timer and UART.
-These are capable of booting up into the serial console.
+Have you played around with the PPS table?  What if you change
+drm_dsc_picture_paremeter_set::pps_identifier to the second table, will the
+panel stop working as expected again?  This could indicate that the PPS that is
+sent is incorrect (even though the information in the original DSC config was
+enough to set up the DPU and DSI correctly).
 
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/Makefile               |  1 +
- .../boot/dts/amlogic/amlogic-a5-a113x2-av400.dts   | 42 ++++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi        | 40 +++++++++++++++++++++
- 3 files changed, 83 insertions(+)
+According to the DSI spec it is allowed to have a pre-stored/pre-programmed
+PPS table, which could be used here making the current call to
+mipi_dsi_picture_parameter_set() useless and "confusing"?
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 9a50ec11bb8d..154c9efb26e4 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -1,5 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_MESON) += amlogic-a4-a113l2-ba400.dtb
-+dtb-$(CONFIG_ARCH_MESON) += amlogic-a5-a113x2-av400.dtb
- dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409.dtb
- dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-an400.dtb
- dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-khadas-vim4.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a5-a113x2-av400.dts b/arch/arm64/boot/dts/amlogic/amlogic-a5-a113x2-av400.dts
-new file mode 100644
-index 000000000000..11d8b88c1ce5
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a5-a113x2-av400.dts
-@@ -0,0 +1,42 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
-+ */
-+
-+/dts-v1/;
-+
-+#include "amlogic-a5.dtsi"
-+
-+/ {
-+	model = "Amlogic A113X2 av400 Development Board";
-+	compatible = "amlogic,av400", "amlogic,a5";
-+	interrupt-parent = <&gic>;
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	aliases {
-+		serial0 = &uart_b;
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x40000000>;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		/* 10 MiB reserved for ARM Trusted Firmware */
-+		secmon_reserved: secmon@5000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x0 0x05000000 0x0 0xa00000>;
-+			no-map;
-+		};
-+	};
-+};
-+
-+&uart_b {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-new file mode 100644
-index 000000000000..43f68a7da2f7
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-@@ -0,0 +1,40 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
-+ */
-+
-+#include "amlogic-a4-common.dtsi"
-+/ {
-+	cpus {
-+		#address-cells = <2>;
-+		#size-cells = <0>;
-+
-+		cpu0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x0>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu1: cpu@100 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x100>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu2: cpu@200 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x200>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu3: cpu@300 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x300>;
-+			enable-method = "psci";
-+		};
-+	};
-+};
+> Basically that's the reason why I went for the _raw function instead
+> of adding PPS and codec arguments to the existing function.
+> 
+> >
+> > > +     mipi_dsi_dcs_write_seq(ctx->link, MIPI_DCS_SET_GAMMA_CURVE, 0x02);
+> > > +
+> > > +     mipi_dsi_dcs_set_tear_on(ctx->link, MIPI_DSI_DCS_TEAR_MODE_VBLANK);
+> > > +
+> > > +     mipi_dsi_dcs_write_seq(ctx->link, 0x53, 0x0c, 0x30);
+> > > +     mipi_dsi_dcs_write_seq(ctx->link, 0x55, 0x00, 0x70, 0xdf, 0x00, 0x70, 0xdf);
+> > > +     mipi_dsi_dcs_write_seq(ctx->link, 0xf7, 0x01, 0x49, 0x0c);
+> > > +
+> > > +     mipi_dsi_dcs_exit_sleep_mode(ctx->link);
+> > > +
+> > > +     msleep(135);
+> > > +
+> > > +     mipi_dsi_compression_mode_raw(ctx->link, &dsc_en, 1);
+> >
+> > Even though I think we should change this function to describe the known
+> > bit layout of command 0x7 per the VESA DSI spec, for now replace 1 with
+> > sizeof(dsc_en)?
+> 
+> If dsc_en were an array, it would have been a proper thing. Maybe I
+> should change it to the array to remove confusion.
 
--- 
-2.37.1
+It should work even with a single byte, just to clarify to readers that the 3rd
+argument is the byte-size of the input.
 
+> > > +     mipi_dsi_dcs_write_seq(ctx->link, 0xb0, 0xac);
+> > > +     mipi_dsi_dcs_write_seq(ctx->link, 0xe5,
+> > > +                            0x00, 0x3a, 0x00, 0x3a, 0x00, 0x0e, 0x10);
+> > > +     mipi_dsi_dcs_write_seq(ctx->link, 0xb5,
+> > > +                            0x75, 0x60, 0x2d, 0x5d, 0x80, 0x00, 0x0a, 0x0b,
+> > > +                            0x00, 0x05, 0x0b, 0x00, 0x80, 0x0d, 0x0e, 0x40,
+> > > +                            0x00, 0x0c, 0x00, 0x16, 0x00, 0xb8, 0x00, 0x80,
+> > > +                            0x0d, 0x0e, 0x40, 0x00, 0x0c, 0x00, 0x16, 0x00,
+> > > +                            0xb8, 0x00, 0x81, 0x00, 0x03, 0x03, 0x03, 0x01,
+> > > +                            0x01);
+> > > +     msleep(85);
+> > > +     mipi_dsi_dcs_write_seq(ctx->link, 0xcd,
+> > > +                            0x00, 0x00, 0x00, 0x19, 0x19, 0x19, 0x19, 0x19,
+> > > +                            0x19, 0x19, 0x19, 0x19, 0x19, 0x19, 0x19, 0x19,
+> > > +                            0x16, 0x16);
+> > > +     mipi_dsi_dcs_write_seq(ctx->link, 0xcb, 0x80, 0x5c, 0x07, 0x03, 0x28);
+> > > +     mipi_dsi_dcs_write_seq(ctx->link, 0xc0, 0x02, 0x02, 0x0f);
+> > > +     mipi_dsi_dcs_write_seq(ctx->link, 0x55, 0x04, 0x61, 0xdb, 0x04, 0x70, 0xdb);
+> > > +     mipi_dsi_dcs_write_seq(ctx->link, 0xb0, 0xca);
+> > > +
+> > > +     mipi_dsi_dcs_set_display_on(ctx->link);
+> >
+> > Any specific reason to not have the (un)blanking sequence in the enable/disable
+> > callbacks and leaving display configuration in (un)prepare?
+> 
+> We are back to the question on when it's fine to send the commands. I
+> think the current agreement is to send everything in the
+> prepare/unprepare, because of some strange hosts.
 
+For my panel drivers I'm sticking with having `post-on` commands (from
+downstream) in `enable/disable`, which is typically only `set_display_on`.  In
+hopes of proposing a `prepare_atomic()` some time to allow mode selection.
+
+In a short test on recent -next I am once again allowed to send DSI commands in
+both .disable and .unprepare, making both functions a "clean" inverse of .enable
+and .prepare respectively.
+
+> > > +     msleep(50);
+> > > +
+> > > +     ctx->link->mode_flags &= ~MIPI_DSI_MODE_LPM;
+> > > +
+> > > +     drm_dsc_pps_payload_pack(&pps, ctx->link->dsc);
+> > > +     mipi_dsi_picture_parameter_set(ctx->link, &pps);
+> >
+> > I'm always surprised why this is sent _after_ turning the display on (unblanking
+> > it).  Wouldn't that cause unnecessary corruption?
+> 
+> No idea. I followed the dowsntream command sequences here. Most likely
+> the panel is not fully on until it receives the full frame to be
+> displayed.
+
+According to the DSI spec a PPS update is allowed to happen every frame, and
+(for cmdmode panels) will take effect after the next TE trigger.  Unsure if a TE
+event happens before the first frame, otherwise this may start taking effect
+on the second frame onwards only.
+
+If there's no corruption on the first frame there might be a pre-programmed PPS
+table in slot 2, supporting the theory above.
+
+- Marijn
 
