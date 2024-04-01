@@ -1,184 +1,163 @@
-Return-Path: <devicetree+bounces-55148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5882D8944FC
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 20:48:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2728894530
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 21:05:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D52E281EAF
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 18:48:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A8E6C1F21D01
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 19:05:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 446E943AD6;
-	Mon,  1 Apr 2024 18:48:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8233751C2C;
+	Mon,  1 Apr 2024 19:05:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ncyYBgv0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ee6yWxd6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 774BE22085
-	for <devicetree@vger.kernel.org>; Mon,  1 Apr 2024 18:48:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 029A542056;
+	Mon,  1 Apr 2024 19:05:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711997332; cv=none; b=HD1GgQVxoSxPtmaLGDmCjt1rJ3v4yNiqDMjWhUPE68koOzFSdRGtIbjRoSxXKQwGurvSDvXJ97F+xpo5pY+MOYfiJu6p1+DIedvOoEXT2CtsS22+kd3eGZnvx3TE2+1eyt87ALO1j3UYd6KzLDzwjtnaOZtd9w1ahKRHZBB9Zek=
+	t=1711998317; cv=none; b=XY+VgGfE7pSLUthD7f+rUKX68qo0cmsWOiHm2Hr92NJ8uDLgiyQVJcwSwQBc4hXXZdZFlpbnVitIUrpPa3SgCDJx/vP3JOsahabKSEy7h2eA0xRBastM5jaUkg7R7MuzkGA7/YnEoWOVzcEA7Ktl5T8zPeDHxuub/wpx0kTehsk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711997332; c=relaxed/simple;
-	bh=k7oaUCZYi+tFu3mnwGC2mP0W7sg5b2RBuxNglUKI9GM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YJ4atvpLnGbrZkaUOKrYSZo4Jh6wiswZcxHyewnKmnAyYZJtEODPPstuqK/1py/L6aZ+KOx3cbBjf7gZKXQ443xTkp37esuM66Ws9mzqnHwq0avkatblW53cyupRaona4dvX/s9ffILjjkfZxz9fmnL3oTkS+tJxd1gHotbIkI0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ncyYBgv0; arc=none smtp.client-ip=209.85.219.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-dc6cbe1ac75so3151236276.1
-        for <devicetree@vger.kernel.org>; Mon, 01 Apr 2024 11:48:50 -0700 (PDT)
+	s=arc-20240116; t=1711998317; c=relaxed/simple;
+	bh=+XWJd1bhwKxzKzaOcGtEQd0pvgQjznCPHF9HOwPXbnE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=XHLlxjzHSu7wIgTc5iaVZ2hfnZYq4kfU6IS0IoxFyAzkxVU/k5R3zQN2nOvKUD06IPhanS9x0GsfIM5YsMZAdqNVXA6PksfgC/kbiBGRMvXuubj0pgBixPOEn3jSa60GN7Et8FG372pCuDaSygOdsB/WlZZzacTm/ThjctYl7vs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ee6yWxd6; arc=none smtp.client-ip=209.85.216.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-2a1f8308532so1118841a91.1;
+        Mon, 01 Apr 2024 12:05:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711997329; x=1712602129; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NcJHXP6yoVOVq/0bTdnc0kU73nmqwp/JtuZqTmV7YiM=;
-        b=ncyYBgv04M6+IaU/aF9R++tmo5O1bf5bVkunC2O6vl8olSlKMx7IiD6bGCQ/A6c2Tn
-         JSczL4q3p27ASMLNS8+u+iUjtHxgixr6yXdhyczps40JlYZUwkfRrkDnVBqvtBqwsCnO
-         5ZbXS18asxuWZc1jftklXoNksODzZ/8++YrnECnz8F+IDo+jRhks8iJuwkOmZ9YSXoqW
-         abqo3OLOnXdV3KQDUyn1tDpvASRAE2omR6A5HhVgTAdTIHWFTDgayMrorFR58avF0OYP
-         BxTJqe0A8VbFvFFhwOBdbV/5mn8scUlbtMSbHYPyotcvUsg/wfksRnkr7eOxP9wsLEXQ
-         +/Bg==
+        d=gmail.com; s=20230601; t=1711998315; x=1712603115; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SKNknUsjYFnDupFH8suX/KPJglcBLz4PZF0b49s9YRk=;
+        b=ee6yWxd6A/JwbUXFoSDC0nrYgXmQVTzfkCamJCSkVZi98ljLjtA3zs9h+IMBOx23J1
+         0DavB2ocKNykHmckrO2s1LZBXxoP0JtLV9XsqYk2RhM9FxWKh70G4NYvxNdJ4nUx3tC8
+         MCYt56m5CRuiutJT1UNP1OOImmT5RphukCoS6qSKC+GKq9g43kPV7jNGFEC3D46lc0jv
+         7hq+CamPOwoXBci9vZZR/+mWBhPYWKZCIjqT6DEO5Ej4Ve0T9rv3bHgkR9uyn4lkkQF/
+         ItBuevRLm8FqsK4HUu4rkcnGwxQVVDYEU3z6RgMIWzBGbAUzr+ukXkZjXMFiI9F+1+Od
+         Bzfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711997329; x=1712602129;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NcJHXP6yoVOVq/0bTdnc0kU73nmqwp/JtuZqTmV7YiM=;
-        b=eidmZJpLedI7hc24Zq88MGjTYUlrG1GDyqn0rg3BA2hz9B+5XGJurlkss+WiurjlVz
-         EHJpQT9ZhkOVg+RpIIF6sC9QPEon5GTcSOdc2E3+GkxB9FQ0+GfHtTpBqHaIPN2A1MCN
-         RXscBkVkxop2yo2xCIa44X0pdQF80xHb+6OquBcanLTBuy80UMEEG1BIf58Ulhe+50Ra
-         z9wMh0F5d+jk73IvGjMfFlDxvwoCQjbR6pMSX2FCVaKpjXWgu6rbAx23tTfjx4fbiZna
-         5XzQOP4DNFasoy0HttZMGxD6XaSCiGCJUVeSxGy1n1rs9QeymEdk/wrfexd1Sdb+kPIo
-         CUnQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXR3e2bDlaZ9rNYppj3nxbtwxr5ODXmy50rkwSPPrQzvemLeLmnAUjhlomN8ZPE9rA/miJhKfXSFWQKOBKHB9NiWa/tX6rEQPi/gQ==
-X-Gm-Message-State: AOJu0YyJVbSn3Bv1oleWCwd3281WkFx1+adowzCCWTDno96f79yurbR7
-	1trdOnAZrJ3FCNYhClzkH2JdfXTrmUNmkg70Cvcpyt1D/o1QqorUE6mW1RsiByXBfHTy0ycsYeX
-	HJYlDmXQOspi60w/KjnmnE13zFm64T7nMSqeVsA==
-X-Google-Smtp-Source: AGHT+IGuFi2qpwA8GW313d/Qlxd28TYnQmccY50m6PgePIkbBZYHq7P54q4cGA9c4m2MocI5lTc9YyYGxyOpaQB897U=
-X-Received: by 2002:a5b:845:0:b0:dc6:f0ac:6b53 with SMTP id
- v5-20020a5b0845000000b00dc6f0ac6b53mr6523459ybq.15.1711997329387; Mon, 01 Apr
- 2024 11:48:49 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1711998315; x=1712603115;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SKNknUsjYFnDupFH8suX/KPJglcBLz4PZF0b49s9YRk=;
+        b=eZpkpepeh5LvsxPACA1XncPWz9uOJ9dxhjgLcNCsDTIT8ouVXzZ02wIgMI8xaLIMB3
+         CbEEoHK40h0y6TC0OS/iYbwZAowu8wZfynQeNPqjPU8i+024Zog5c4r6GjndRkqVJzWD
+         enLqSTbueSod8LfcuYTRIDZamkjnKCJIyYLuFjAU3VX459Pm3TfnVkyUnjlyZw8SCaEw
+         94mtIA6SyNOFOdmcY/QMsOZ/pRugW+0z56iiNOHtHR5Af7mY2Cb95HTu8MEEBjidFVAq
+         U3kr6SQpcfmZNOqshanx5IYAKvMhEM3sG8HHOd+ukQNC7rrRbxaU1VvK3nrtb69Y+7QC
+         QaKA==
+X-Forwarded-Encrypted: i=1; AJvYcCUL+XVypxKeOojt+uKldZcveEu5c2GPJPFlR84XO4eZDZrK/u3fATFHfuQrtOlWJ0AYw/3cJFQ1iiiZwTl84ucOZ+sWHI9ua4MT8cqOHIzLSRzjcPPWyNLtJ4Abfl+48jJ0VuyMsfHq
+X-Gm-Message-State: AOJu0YyAz8uXGC4ON8isw8Ih/jFJKbajL85TrBzzJ6lSaZRhoPHFVPxJ
+	aSo3wB5J5kmdbClmBPOOvcNSBVRPQKO3CeWw6TgxQckJcDqKQADb
+X-Google-Smtp-Source: AGHT+IGDYwYJAw6UVTWdc+oYoyqEHxhrSD8q1vgSvF1w2Rj4jy9W8rq0Zt+2wVgWNlBR/a+Rt+9Dzw==
+X-Received: by 2002:a17:90a:f0ce:b0:2a2:2ee9:beb8 with SMTP id fa14-20020a17090af0ce00b002a22ee9beb8mr6032627pjb.4.1711998315227;
+        Mon, 01 Apr 2024 12:05:15 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:a943:2baf:4369:df34])
+        by smtp.gmail.com with ESMTPSA id u13-20020a17090a890d00b002a056551c1dsm8122836pjn.6.2024.04.01.12.05.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Apr 2024 12:05:14 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: sakari.ailus@linux.intel.com
+Cc: rmfrfs@gmail.com,
+	laurent.pinchart@ideasonboard.com,
+	hansg@kernel.org,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH v3] media: dt-bindings: ovti,ov2680: Document more properties
+Date: Mon,  1 Apr 2024 16:05:06 -0300
+Message-Id: <20240401190506.3238885-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240331-typec-fix-sm8250-v2-0-857acb6bd88e@linaro.org> <171198916314.1093638.15006189720750656914.robh@kernel.org>
-In-Reply-To: <171198916314.1093638.15006189720750656914.robh@kernel.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 1 Apr 2024 21:48:38 +0300
-Message-ID: <CAA8EJpp0dvvM=02r3L+Hztb--inJLPJX+BhGrNB8xhdFiKDF_w@mail.gmail.com>
-Subject: Re: [PATCH v2 0/7] arm64: dts: qcom: fix description of the Type-C signals
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Luca Weiss <luca.weiss@fairphone.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Mon, 1 Apr 2024 at 19:36, Rob Herring <robh@kernel.org> wrote:
->
->
-> On Sun, 31 Mar 2024 06:48:50 +0300, Dmitry Baryshkov wrote:
-> > Rename the HS link between usb-c-connector and the DWC3 USB controller.
-> > Add missing graph connection between the QMP PHY and DWC3 USB
-> > controller.
-> >
-> > Reported-by: Luca Weiss <luca.weiss@fairphone.com>
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> > Changes in v2:
-> > - Fixed other platforms in addition to sm8250 (Bryan)
-> > - Link to v1: https://lore.kernel.org/r/20240322-typec-fix-sm8250-v1-0-=
-1ac22b333ea9@linaro.org
-> >
-> > ---
-> > Dmitry Baryshkov (7):
-> >       arm64: dts: qcom: sm8250: describe HS signals properly
-> >       arm64: dts: qcom: sm8250: add a link between DWC3 and QMP PHY
-> >       arm64: dts: qcom: sc8180x: switch USB+DP QMP PHYs to new bindings
-> >       arm64: dts: qcom: sc8180x: describe USB signals properly
-> >       arm64: dts: qcom: sc8280xp: describe USB signals properly
-> >       arm64: dts: qcom: x1e80100: describe USB signals properly
-> >       arm64: dts: qcom: sm8150-hdk: rename Type-C HS endpoints
-> >
-> >  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts           |   8 +-
-> >  .../arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts |  16 +-
-> >  arch/arm64/boot/dts/qcom/sc8180x-primus.dts        |  20 +--
-> >  arch/arm64/boot/dts/qcom/sc8180x.dtsi              | 164 ++++++++++---=
---------
-> >  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts          |  20 +--
-> >  .../dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts     |  20 +--
-> >  arch/arm64/boot/dts/qcom/sc8280xp.dtsi             |  54 ++++++-
-> >  arch/arm64/boot/dts/qcom/sm8150-hdk.dts            |   4 +-
-> >  .../boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi  |   8 +-
-> >  arch/arm64/boot/dts/qcom/sm8250.dtsi               |  24 ++-
-> >  arch/arm64/boot/dts/qcom/x1e80100.dtsi             | 149 +++++++++++++=
-+++++-
-> >  11 files changed, 340 insertions(+), 147 deletions(-)
-> > ---
-> > base-commit: 13ee4a7161b6fd938aef6688ff43b163f6d83e37
-> > change-id: 20240322-typec-fix-sm8250-33c47a03a056
-> >
-> > Best regards,
-> > --
-> > Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> >
-> >
-> >
->
->
-> My bot found new DTB warnings on the .dts files added or changed in this
-> series.
->
-> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-> are fixed by another series. Ultimately, it is up to the platform
-> maintainer whether these warnings are acceptable or not. No need to reply
-> unless the platform maintainer has comments.
->
-> If you already ran DT checks and didn't see these error(s), then
-> make sure dt-schema is up to date:
->
->   pip3 install dtschema --upgrade
->
->
-> New warnings running 'make CHECK_DTBS=3Dy qcom/qrb5165-rb5.dtb qcom/sc818=
-0x-lenovo-flex-5g.dtb qcom/sc8180x-primus.dtb qcom/sc8280xp-crd.dtb qcom/sc=
-8280xp-lenovo-thinkpad-x13s.dtb qcom/sm8150-hdk.dtb' for 20240331-typec-fix=
--sm8250-v2-0-857acb6bd88e@linaro.org:
->
-> arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dtb: clock-controller@af0=
-0000: clocks: [[41, 0], [42], [95, 1], [95, 2], [99, 1], [99, 2], [125, 0],=
- [125, 1]] is too long
->         from schema $id: http://devicetree.org/schemas/clock/qcom,dispcc-=
-sm8x50.yaml#
-> arch/arm64/boot/dts/qcom/sc8180x-primus.dtb: clock-controller@af00000: cl=
-ocks: [[41, 0], [42], [97, 1], [97, 2], [101, 1], [101, 2], [127, 0], [127,=
- 1]] is too long
->         from schema $id: http://devicetree.org/schemas/clock/qcom,dispcc-=
-sm8x50.yaml#
+From: Fabio Estevam <festevam@denx.de>
 
-I don' t think it's new, it just had PHY indices changed. But let's
-fix it anyway.
+OV2680 has a single data lane MIPI interface.
 
->
->
->
->
->
+Document the clock-lanes and data-lanes properties to avoid
+the following dt-schema warning:
 
+imx7s-warp.dtb: camera@36: port:endpoint: Unevaluated properties are not allowed ('clock-lanes', 'data-lanes' were unexpected)
+	from schema $id: http://devicetree.org/schemas/media/i2c/ovti,ov2680.yaml#
 
---=20
-With best wishes
-Dmitry
+While at it, also document the link-frequencies property as recommended
+by the following document:
+
+https://www.kernel.org/doc/html/v6.9-rc1/driver-api/media/camera-sensor.html#handling-clocks
+
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+Changes since v2:
+- Use additionalProperties: false (Laurent).
+- Mark link-frequencies as mandatory. (Laurent).
+
+ .../bindings/media/i2c/ovti,ov2680.yaml       | 25 ++++++++++++++++++-
+ 1 file changed, 24 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml
+index cf456f8d9ddc..6ae7d4457536 100644
+--- a/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml
+@@ -50,9 +50,29 @@ properties:
+       Definition of the regulator used as digital power supply.
+ 
+   port:
+-    $ref: /schemas/graph.yaml#/properties/port
+     description:
+       A node containing an output port node.
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        additionalProperties: false
++
++        properties:
++          clock-lanes:
++            const: 0
++
++          data-lanes:
++            const: 1
++
++          link-frequencies: true
++
++          remote-endpoint: true
++
++        required:
++          - link-frequencies
+ 
+ required:
+   - compatible
+@@ -89,6 +109,9 @@ examples:
+                 port {
+                         ov2680_to_mipi: endpoint {
+                                 remote-endpoint = <&mipi_from_sensor>;
++                                clock-lanes = <0>;
++                                data-lanes = <1>;
++                                link-frequencies = /bits/ 64 <330000000>;
+                         };
+                 };
+         };
+-- 
+2.34.1
+
 
