@@ -1,138 +1,117 @@
-Return-Path: <devicetree+bounces-55205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B646389477F
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 00:55:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B84B189478A
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 01:05:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E27711C219E1
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 22:55:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E933E1C21FFE
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 23:05:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4356C5674A;
-	Mon,  1 Apr 2024 22:55:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B96C556B64;
+	Mon,  1 Apr 2024 23:05:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="oum5Y+Kt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BoabbMPU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 914575644E;
-	Mon,  1 Apr 2024 22:55:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58904D28D;
+	Mon,  1 Apr 2024 23:05:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712012139; cv=none; b=WJXaWDq0VPOZ5H095PgeVftplTcJj6XOEBThUTBPSqhnY8ouiQ3xiVgIeBq0tjGagQLdu4qqbRLcbLEPnlUxx+z9x9UqW8nyHgT/3AxLwh3G8W4xGS2UGBmFTzqm/n7c3NCdff+g2lwH/WDCbhoIqETj9FPFPx3a7jmMOif4zoY=
+	t=1712012709; cv=none; b=mWbxC8zVGsT/piH8xDal/NImhO+NT+JkQXDl8zMmYZcIVu1UKr9zjqpYsHmIkiTL+RVCvBJmtrWVEmwWLhcoTLriNQieYdSvtaqHFjb1zTvzUsEYDMeU+F/WLn+rn2Do2hoW6g0V1PYQWkmQp7fs7SHjrD0jgli/ziWtuh6ksB4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712012139; c=relaxed/simple;
-	bh=x3ePgie20BKz3/0JgExygH6c+y0Q/ablqbQfmT/CvFM=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=StBuOmcpeQjjgFWm4SfLW2cVrKWBzjOE20tJhQElfFOFRhVuNGoQFW70Pc+B5g67nkSHrN6w9l+kAX3DRzIk6vbQNCjxCJqOwA4sfLFMPKkgOj+MK0GNdg6bdQZ13dDBB0keyjCP+L4GAoyBFsdzhZn09kXePe1eLiSYIcU5al0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=oum5Y+Kt; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 431LfiNu006910;
-	Mon, 1 Apr 2024 22:55:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=qcppdkim1; bh=sGn7IBkoj6U5EbmA4fihg
-	co2JtnZzSxt6wX7u+QxBfg=; b=oum5Y+KtDn5Bu2vhXXTzUkECVGb0FTz7Jiejb
-	zmBfPdrrbOTjElQpQ3TqdtxoUf0IGWf6kXbGctnJv7VbdBKE2mS8jh7y3f2K3tVf
-	XeeRw2HurdnRf63maIWMsJ2l3cRfFA4X4qE57Eyox0uVpYCg20FVSquD+NvEyGZT
-	UL+Q8DDZ5XN4Avkj+Qa8zG2B9C7tVP6s2+5wOR/9Ae1u4MoK8IYQzIniGtIVCSPL
-	IyQuhIe72fr6UfJf9a+Qw6FXVsMzVPPtQ/WXx/GrLpYrGlz/qPpSnJ4xbt/mDDbO
-	dOkNzPyJ6b4LEymi2yIqAO38ht+YkeVwgPGYmBTdhmkk/T7Zw==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x803d8ujt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 01 Apr 2024 22:55:31 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 431MtVJY008535
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 1 Apr 2024 22:55:31 GMT
-Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.4; Mon, 1 Apr 2024 15:55:30 -0700
-Date: Mon, 1 Apr 2024 15:55:29 -0700
-From: Bjorn Andersson <quic_bjorande@quicinc.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Komal Bajaj <quic_kbajaj@quicinc.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Amrit Anand <quic_amrianan@quicinc.com>
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: qdu1000-idp: enable USB nodes
-Message-ID: <Zgs7Yau1/jYvys4i@hu-bjorande-lv.qualcomm.com>
-References: <20240319091020.15137-1-quic_kbajaj@quicinc.com>
- <20240319091020.15137-3-quic_kbajaj@quicinc.com>
- <CAA8EJprXPvji8TgZu1idH7y4GtHtD4VmQABFBcRt-9BQaCberg@mail.gmail.com>
+	s=arc-20240116; t=1712012709; c=relaxed/simple;
+	bh=4nfQ3VKgAVCoMffKoucpw3WN+zAqPsrt0JARR6EFVJI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DiRM8LQAUT92WTDvtKVrCQol5QiHOuwyKkPcHdR3YDk6tXLwsur6dcs0Ll+cRlQ4Bti1LazOMDiIRSFnTUC52xRkIsxq/zQoNg6Wme30EIAkBIkGl/zyBGBZe91Owy5gPg0oRwt/zwevN4kAI1BnHRaS6u3C5xityUoVMhKjyTo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BoabbMPU; arc=none smtp.client-ip=209.85.210.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-6ea7eff5f3cso748054b3a.0;
+        Mon, 01 Apr 2024 16:05:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1712012708; x=1712617508; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2Ns3vmg+RhBRNwgNneyJSa4OOrkY3KigKEhbkR8ToKM=;
+        b=BoabbMPUra2n0Pn+URwSKOAQaSu/M6MS4tNkv2qc1fF0OK4/7VHcjbQZB21GzMpzjf
+         8J4EvXwL2PXPGKP5c1PQjEj1jBwzL8HYOESpnX6Nxl6toIZH0PIIPvDYeAcC/zBaqB4G
+         9P9LUS2DHjJeR7ESGN5LXanwDw9CLBG9zTxzi3h6Bi9Tf2H1mUFCSVJ8z4OF+oXDAbOP
+         PyILHhZsvKSe3BpSM9JFJ25QeribC3F1P9Gwm6MT0LUGfuqxp1XIL8bjSPCf1xozobED
+         6J+95TSgtVobOsBQzNLAldJzqaxazZ09zh9athOFYW25FS/c7dCIDwMkCTHQgEIJpbDA
+         EN7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712012708; x=1712617508;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2Ns3vmg+RhBRNwgNneyJSa4OOrkY3KigKEhbkR8ToKM=;
+        b=Awcqe/7VVlSSedR+G4ZiFJkUEMWwgho7xS9JSDduwQ9B3ALS4rp4xWYXAKA1UgrHWc
+         kYzmWPZhEV9Z9U8QZ5hLXreGtVODY2GrxoLys1gKz43UwCRAFEOrDCBHSmCB/jCcTe/g
+         ow6RKiua2yck650k4W3YdpGt4qgCPjbeIBFb1wQFTNxlnkI3GCcCAx+pwYbvew4eaVT+
+         BATccQOHSSzARZReWmcVkhsVJRKiox586pK6Jz1J45pLNexMl/dZnFVeoBriLAxh4FLl
+         pJMel4Ges4ZbYWo8qoTa2U5pRHmUVenz0Kp/w9YCHgZhArz6z66RHEx6R6KaGyZJP6dc
+         WvKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXHsKgD2tF5pMlVchcEStZ0ANRpsdX+gzZq3R61DQfpHyzRKrkrTLXdQfa8YdsAXvazdyJjCj5sRoj8YXT/Jj06xy65m3mSUuzZQHJk46CkeN2OJBTSatkKRsd5CAxRR8Y7gIZnYnKPK/WfFfo3SQyAI9b3zPd77ujddqxWgibHDA==
+X-Gm-Message-State: AOJu0Yw2cz0ac+QMuxJLVPLzczGJrng/Z4tTkD6/yzpITu+Z675DqE+O
+	C3CbYIJuY2gsbOSt+JfFZRI3mYXPL6fgRt/T2O+0W/UzQyQxER2TEHy2B6Pl+P0BVHCIVLXivPp
+	JLvZL4BT46YGyeAtUXnTAm+iJfyc=
+X-Google-Smtp-Source: AGHT+IF55TrHPzAh4Iwu94EBfsDCHNPepD+JsBP4CbULZpvEhvY5U5aHOBdIVoo6WwWNJ/ZYLwaKDnlZZRg97KINu1Q=
+X-Received: by 2002:a05:6a20:7345:b0:1a3:c603:61d4 with SMTP id
+ v5-20020a056a20734500b001a3c60361d4mr14923368pzc.3.1712012707679; Mon, 01 Apr
+ 2024 16:05:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <CAA8EJprXPvji8TgZu1idH7y4GtHtD4VmQABFBcRt-9BQaCberg@mail.gmail.com>
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: E59YW7_rvDS6jE2ikFvPW9_UiCNBzOJV
-X-Proofpoint-GUID: E59YW7_rvDS6jE2ikFvPW9_UiCNBzOJV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-01_16,2024-04-01_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 clxscore=1011
- mlxscore=0 spamscore=0 adultscore=0 malwarescore=0 priorityscore=1501
- impostorscore=0 lowpriorityscore=0 phishscore=0 mlxlogscore=784
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2403210001 definitions=main-2404010160
+References: <20240401-dts_fix-v1-0-8c51ce52d411@nxp.com> <20240401-dts_fix-v1-1-8c51ce52d411@nxp.com>
+In-Reply-To: <20240401-dts_fix-v1-1-8c51ce52d411@nxp.com>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Mon, 1 Apr 2024 20:04:56 -0300
+Message-ID: <CAOMZO5AJrQ5jyV4A-tvX93-R0_nEWpEO9YY3f5DpeXaAFO4cSA@mail.gmail.com>
+Subject: Re: [PATCH 1/7] arm64: dts: imx8-ss-lsio: fix pwm lpcg indices
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, NXP Linux Team <linux-imx@nxp.com>, 
+	Marcel Ziswiler <marcel.ziswiler@toradex.com>, 
+	Philippe Schenker <philippe.schenker@toradex.com>, 
+	Max Krummenacher <max.krummenacher@toradex.com>, 
+	Alexander Stein <alexander.stein@ew.tq-group.com>, Joakim Zhang <qiangqing.zhang@nxp.com>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Mar 19, 2024 at 11:52:15AM +0200, Dmitry Baryshkov wrote:
-> On Tue, 19 Mar 2024 at 11:11, Komal Bajaj <quic_kbajaj@quicinc.com> wrote:
-> >
-> > Enable both USB controllers and associated hsphy and qmp phy
-> > nodes on QDU1000 IDP. Add the usb type B port linked with the
-> > DWC3 USB controller switched to OTG mode and tagged with
-> > usb-role-switch.
-> >
-> > Co-developed-by: Amrit Anand <quic_amrianan@quicinc.com>
-> > Signed-off-by: Amrit Anand <quic_amrianan@quicinc.com>
-> > Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
-> > ---
-> >  arch/arm64/boot/dts/qcom/qdu1000-idp.dts | 65 ++++++++++++++++++++++++
-> >  1 file changed, 65 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
-> > index 89b84fb0f70a..26442e707b5e 100644
-> > --- a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
-> > +++ b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
-> > @@ -46,6 +46,33 @@ ppvar_sys: ppvar-sys-regulator {
-> >                 regulator-boot-on;
-> >         };
-> >
-> > +       usb_conn_gpio: usb-conn-gpio {
-> > +               compatible = "gpio-usb-b-connector";
-> 
-> If this board has only a USB-B connector, can it really handle USB 3.0?
-> 
+On Mon, Apr 1, 2024 at 7:25=E2=80=AFPM Frank Li <Frank.Li@nxp.com> wrote:
+>
+> lpcg's arg0 should use clock indices instead of index.
+>
+> pwm0_lpcg: clock-controller@5d400000 {
+>         ...                                                // Col1  Col2
+>         clocks =3D <&clk IMX_SC_R_PWM_0 IMX_SC_PM_CLK_PER>,  // 0     0
+>                  <&clk IMX_SC_R_PWM_0 IMX_SC_PM_CLK_PER>,  // 1     1
+>                  <&clk IMX_SC_R_PWM_0 IMX_SC_PM_CLK_PER>,  // 2     4
+>                  <&lsio_bus_clk>,                          // 3     5
+>                  <&clk IMX_SC_R_PWM_0 IMX_SC_PM_CLK_PER>;  // 4     6
+>         clock-indices =3D <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_1>,
+>                         <IMX_LPCG_CLK_4>, <IMX_LPCG_CLK_5>,
+>                         <IMX_LPCG_CLK_6>;
+> };
+>
+> Col1: index, which exited dts try to get.
 
-Here's a USB 3.0 Type-B cable, so no problem there:
-https://en.wikipedia.org/wiki/USB_hardware#/media/File:USB_3.0_plug,_type_B_-_1709.jpg
+I cannot understand this sentence, sorry.
 
+> Col2: actual index in lpcg driver.
 
-@Komal, please confirm that this is the connector you have on the IDP?
-
-Regards,
-Bjorn
+You should not describe DT in terms of Linux driver.
 
