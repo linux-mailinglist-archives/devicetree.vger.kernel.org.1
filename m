@@ -1,207 +1,129 @@
-Return-Path: <devicetree+bounces-54999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55001-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B43278938DA
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 10:18:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 278278938ED
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 10:24:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C12D2B21002
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 08:18:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D14EE1F213EF
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 08:24:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C37BC129;
-	Mon,  1 Apr 2024 08:18:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=atmark-techno.com header.i=@atmark-techno.com header.b="IkJWzBqd";
-	dkim=pass (2048-bit key) header.d=atmark-techno.com header.i=@atmark-techno.com header.b="DCdK1Kxc"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA24AC133;
+	Mon,  1 Apr 2024 08:24:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from gw2.atmark-techno.com (gw2.atmark-techno.com [35.74.137.57])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FFE5B671
-	for <devicetree@vger.kernel.org>; Mon,  1 Apr 2024 08:18:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=35.74.137.57
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CD39C121;
+	Mon,  1 Apr 2024 08:24:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711959528; cv=none; b=hpyAEVFg7TxAnxju+ZB8iy2obmk/24v35dsRB9gFngrIjCW5xRdtJbXn6xn0rP2n7xPKwjCrrU/hEzVmmWeCJsqcmXSROGm3r0f5PgOG4m64MOI3nVGf15kwLmYTQG0r6NUZQPc9nYYcS1mzeEAgXxDDTJBYUUdKhHzBnJEAjIo=
+	t=1711959862; cv=none; b=Xze2cOMQGz5g73geXEKG/mZHpMROM82i1spG3VrkWJj40x++BerNCt6kjTY7NBWQD01RVXUcygVQofsu4SQJ7OtCku3oIHimL8/rH4mhRWo9axkgDQePtdD75JEHcv0SsSLB/0tAIlYfaXO5fonKOwwxkX5vhQoAydcVE0cYItI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711959528; c=relaxed/simple;
-	bh=66DvLelDFwRcnBMioM5AmrRxjKQUmhBf29UewNpcIVw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=T+i3M0UQlomsTBOaySUA5aRD3iOOyI3lFxvFwYZCdz+7uPHI3wlbaAGfDuanahsPhQ+rWU7kydUIHkS1jwRf7ROPoIamliDwSzyMtGdX5IjH+5bWBg3LnkH2HMqLaGHDb5GyHM3e74TsMtzWFh/vAF1/AQaPmsLsdROajAIFFYQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=atmark-techno.com; spf=pass smtp.mailfrom=atmark-techno.com; dkim=pass (2048-bit key) header.d=atmark-techno.com header.i=@atmark-techno.com header.b=IkJWzBqd; dkim=pass (2048-bit key) header.d=atmark-techno.com header.i=@atmark-techno.com header.b=DCdK1Kxc; arc=none smtp.client-ip=35.74.137.57
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=atmark-techno.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=atmark-techno.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=atmark-techno.com;
-	s=gw2_bookworm; t=1711959526;
-	bh=66DvLelDFwRcnBMioM5AmrRxjKQUmhBf29UewNpcIVw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IkJWzBqd2in4l2HPnhAUc3wDkiiTGY25A4vayFeVWmH8qyKFQAJvqndP1pYMiSbBg
-	 MLo8A8cr7iJGOeZDmucJpV8RtdPSR3s0Wc3EKo6HkO2GCEMJ6RbFw8/FLE85JrNHG3
-	 2rvRcXa8E1OGgP5W4DNfrP5wjfTN5U4PCKkYgbCFQIQqNrcqH+D7ooxlWnFkYbMA3q
-	 uLBuMeVWEdZ83MFA72nQz+FjGQJshkCCQcFkUh9Xf6eT7moH0xaia7Is4M3dovaxAd
-	 VNXJAnZAWx8E1mgaRYFCosm91OvQYHCbL2CSNkpqLP9lJhAMTkQpGQkl6XnLjeR42G
-	 A8zweuNSb40Kg==
-Received: from gw2.atmark-techno.com (localhost [127.0.0.1])
-	by gw2.atmark-techno.com (Postfix) with ESMTP id 55A7A1E1
-	for <devicetree@vger.kernel.org>; Mon,  1 Apr 2024 17:18:46 +0900 (JST)
-Authentication-Results: gw2.atmark-techno.com;
-	dkim=pass (2048-bit key; unprotected) header.d=atmark-techno.com header.i=@atmark-techno.com header.a=rsa-sha256 header.s=google header.b=DCdK1Kxc;
-	dkim-atps=neutral
-Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
-	by gw2.atmark-techno.com (Postfix) with ESMTPS id D3D1A17D
-	for <devicetree@vger.kernel.org>; Mon,  1 Apr 2024 17:18:44 +0900 (JST)
-Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-6ea81047ee9so2831817b3a.0
-        for <devicetree@vger.kernel.org>; Mon, 01 Apr 2024 01:18:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=atmark-techno.com; s=google; t=1711959524; x=1712564324; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1/NnmyzP61r7am8Gc9zbH47jhDXOCLB/VPtXTUd0Z2c=;
-        b=DCdK1Kxc91dSnlFZIk1axx36zplI/Ycveu64YBotYF+TwuzSkas7dygF9u0V7NBXRS
-         EpuPCLjpO6xcjc+KNAUDwtiMRgStqWRlDZ+eqj2NRddcPZ1bjUodVwNg8XYuSHe7pUKE
-         7Hg3i7MBX5MkHT518gUnOKd4zjJ5XuHnUjArZwGLQxaDJMLgkmM+UF5NM0x8tFY510EJ
-         Q8+GEYKxqWeXIykANRPhkdqYXxiwLenOHv16UnwJBvyrF0ag3ptl8yKDMvTU7LnLUtPb
-         oZ8q66369fKotYnX5VjDf1FinMo0WJr3WG5eHDSJYEd1C1E3D/Di6h2RlGwVMzu1QBuP
-         f72g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711959524; x=1712564324;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1/NnmyzP61r7am8Gc9zbH47jhDXOCLB/VPtXTUd0Z2c=;
-        b=wiL+V8FEjSI/dScBi3mRvPyWh9dvd6LR4ALIaUwTg9wrP8p9RxDo+5TFD6GT6Ivd3R
-         sCaCJH7xDy51OB4+K0CcSODMEVkCWs7i8MDv7BbpQFkgTMB2rozL26lOfLjgxXgZLUBN
-         A+0FzxlZt0cI2MmV0bbNs6yiDBPjWzidvjQPa0uWwwyefXOWfSSxuLWwoaK6cy7iytK2
-         0PZGVB9IVlzcqTsTIOqG8MD/129dPqhFXCQ2e4piJGa8W4xpzdj50joX3DupEBbFLOV/
-         AnMSxJCKrAV5q22/dCKPcPDOV59euY6Id3HT0QmQ0YkDMe3T4AXHbCULAOevltsdw97s
-         1w1Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWoJeRGMquXuYoPGnTZkyPwLUg/R0o2/J2xTLm1XJrzmL2Zo0ixOikZ8jdC+S4oOh8eCBeD9oUOrr+rAVt1dwO5XmTvI+hGljmb8g==
-X-Gm-Message-State: AOJu0YxktnQxNGvRzI+b/zW4pyD+JNsXxWNvW3PSPOaLXF7WbmK40xlK
-	EFkoYUU/oXcJQCQDVHLmlfbJ81dfDxBTvIqW4081xhkxcD6khhczt9T/Mth7hwNRDTW6R4q9pkh
-	jkyPqnZ/PgZkzO06iRh+zRiDnOjAKWK8UiiwsyDZjJMDz1oAnLWPrWns1+zP9
-X-Received: by 2002:a05:6a00:1aca:b0:6ea:c156:f8dd with SMTP id f10-20020a056a001aca00b006eac156f8ddmr8433680pfv.11.1711959523807;
-        Mon, 01 Apr 2024 01:18:43 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFUOFo3lcIWy6cV0KUo99q6VRaAg/6jkt8RGIUrUCXrkXL5ImRZ1Ye/dwYJDu34C94yrI7EsQ==
-X-Received: by 2002:a05:6a00:1aca:b0:6ea:c156:f8dd with SMTP id f10-20020a056a001aca00b006eac156f8ddmr8433666pfv.11.1711959523405;
-        Mon, 01 Apr 2024 01:18:43 -0700 (PDT)
-Received: from pc-0182.atmarktech (117.209.187.35.bc.googleusercontent.com. [35.187.209.117])
-        by smtp.gmail.com with ESMTPSA id ey12-20020a056a0038cc00b006eaaaf5e0a8sm7325409pfb.71.2024.04.01.01.18.42
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 01 Apr 2024 01:18:43 -0700 (PDT)
-Received: from martinet by pc-0182.atmarktech with local (Exim 4.96)
-	(envelope-from <martinet@pc-zest>)
-	id 1rrCsM-00D4ZH-00;
-	Mon, 01 Apr 2024 17:18:42 +0900
-Date: Mon, 1 Apr 2024 17:18:31 +0900
-From: Dominique Martinet <dominique.martinet@atmark-techno.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	David Lechner <dlechner@baylibre.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Syunya Ohshio <syunya.ohshio@atmark-techno.com>,
-	Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
+	s=arc-20240116; t=1711959862; c=relaxed/simple;
+	bh=L12lUHlozcoVb+KBswLm5T+95y+6c1clmdhh8enkvVo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=lADfBcboaXnXLxHgzjsN4qZ2JbrUlL8oDfVMh20c9yo5Xfz90hVvscicmBcoKGWXWoWysrTxhJHAuFuuVjuxdmozkiozW1oQwp9FjfBG9vVDitFTnPTHaWJiqQD/UhZ3JRAKMktLZWHcsR057N6nTSTaK8IZRGSbXRA2mGT7JSs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [112.20.109.80])
+	by gateway (Coremail) with SMTP id _____8CxG+ksbwpm0eghAA--.59680S3;
+	Mon, 01 Apr 2024 16:24:12 +0800 (CST)
+Received: from localhost.localdomain (unknown [112.20.109.80])
+	by localhost.localdomain (Coremail) with SMTP id AQAAf8CxaRInbwpm_yZwAA--.10527S2;
+	Mon, 01 Apr 2024 16:24:08 +0800 (CST)
+From: Binbin Zhou <zhoubinbin@loongson.cn>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] iio: industrialio-core: look for aliases to request
- device index
-Message-ID: <Zgpt136Q2rGL-cl_@atmark-techno.com>
-References: <Zd7hSOw3_zosyrn3@atmark-techno.com>
- <daed8ada-9e01-41ad-82af-5da5cbbc865c@linaro.org>
- <Zd7qz1Qte8HWieF_@atmark-techno.com>
- <20240228142441.00002a79@Huawei.com>
- <Zd_zB_ymxkx0HB3q@atmark-techno.com>
- <ZfPg-nMANUtBlr6S@atmark-techno.com>
- <CAMknhBG_kJx8JPvTBQo7zpy3mFAkUjZpRY3DLBfXt+39nRJWiA@mail.gmail.com>
- <ZfejyEvPIncygKJ9@atmark-techno.com>
- <20240318122953.000013f3@Huawei.com>
- <20240331152042.394b4289@jic23-huawei>
+	Conor Dooley <conor+dt@kernel.org>,
+	Yinbo Zhu <zhuyinbo@loongson.cn>
+Cc: Huacai Chen <chenhuacai@kernel.org>,
+	loongson-kernel@lists.loongnix.cn,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev,
+	Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH v2 0/8] Add Loongson-2k0500 and Loongson-2k2000 clock support
+Date: Mon,  1 Apr 2024 16:23:52 +0800
+Message-ID: <cover.1711504700.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240331152042.394b4289@jic23-huawei>
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:AQAAf8CxaRInbwpm_yZwAA--.10527S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
+X-Coremail-Antispam: 1Uk129KBj93XoW7Wry7Aw1UAFy7Xr1rWFWxGrX_yoW8AF4Upa
+	nxuay3Gr1DKF1xZryYqrWUArn5u3y5JasrXa15G34UCr4DC3Wjqa1xt3WYqFZrZr43Aa42
+	qr95Gr47CF4UCagCm3ZEXasCq-sJn29KB7ZKAUJUUUUx529EdanIXcx71UUUUU7KY7ZEXa
+	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+	0xBIdaVrnRJUUUBIb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1q6r4UM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+	0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
+	xVW8Jr0_Cr1UM2kKe7AKxVWUAVWUtwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07
+	AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWU
+	tVWrXwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7V
+	AKI48JMxkF7I0En4kS14v26r126r1DMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY
+	6r1j6r4UMxCIbckI1I0E14v26r126r1DMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7
+	xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xII
+	jxv20xvE14v26r4j6ryUMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw2
+	0EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x02
+	67AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU14v3UUUUUU==
 
-Jonathan Cameron wrote on Sun, Mar 31, 2024 at 03:20:42PM +0100:
-> Hi, got back to this finally...
+Hi all:
 
-Thank you for taking the time to express your thoughts!
+As we know, the Loongson-2K family of SoCs (ls2k0500/ls2k1000/ls2k2000)
+have a similar clock structure, and I support them to be configured with
+different parameters (e.g., register offsets, etc.).
 
-> So the problems compared to other 'alias' users is that IIO is a bit more
-> complex than for example LEDs.  A single DT node/compatible (or equivalent) can
-> result in a 1+ IIO devices and 1+ triggers.
+To make it easier to add support for different SoCs, I refactored the
+original driver to make the whole driver as understandable as possible.
 
-Right. I'm no longer really arguing for it at this point, but for
-comparison in the patch I sent, the alias sets the start of the idr for
-the device index, so if you have a driver that creates two IIO devices
-you could just "reserve" two for this DT node and assuming the order
-within this node is constant you'd still get constant numbering, so I
-think it still somewhat holds up here.
+Briefly, I have divided all clocks into three categories according to
+their properties and their parent clocks: Independent PLLs, clocks based
+on frequency scales, and clock dividers.
 
-For triggers though the numbers are separate and it wouldn't make sense
-to use the same alias, if we wanted a coherent design with this we'd
-need to add a second alias (such as iio_trigger = ..), but that makes
-much less sense to me given they're also likely to be dynamically
-instancied via configfs from what I've seen; I wouldn't want to do this
-kind of mapping, so I agree with you.
+Thanks.
 
-> So I've messed around a bit and can think of various possible options to make
-> this simpler.
-> 1) Use a tmpfs mount and link from that.
->    Now we 'could' put an alias directory somewhere under /sys/bus/iio/ that
->    is a mount point created via sysfs_create_mount_point() - I abused the
->    /sys/kernel/debug directory to test this (unmounted debugfs and mounted
->    a tmpfs).  That would provide somewhere in sysfs that allows suitable
->    links. However, this is unusual so likely to be controversial.
+----
+V2:
+patch(1/8):
+ - Drop LOONGSON2_CLK_END, for it is not a binding.
+patch(1/8)(3/8)(5/8):
+ - Add Acked-by tag from Conor, Thanks.
 
-Agreed that's probably not something we want to put our hands into.
+Link to V1:
+https://lore.kernel.org/all/cover.1710926402.git.zhoubinbin@loongson.cn/
 
-> 2) Alternatively the relevant platform could create one of these somewhere
->    outside of sysfs and use udev rules to create the links.
+Binbin Zhou (8):
+  dt-bindings: clock: add Loongson-2K expand clock index
+  clk: clk-loongson2: Refactor driver for adding new platforms
+  dt-bindings: clock: loongson2: add Loongson-2K0500 compatible
+  clk: clk-loongson2: Add Loongson-2K0500 clock support
+  dt-bindings: clock: loongson2: add Loongson-2K2000 compatible
+  clk: clk-loongson2: Add Loongson-2K2000 clock support
+  LoongArch: dts: Add clock support to Loongson-2K0500
+  LoongArch: dts: Add clock support to Loongson-2K2000
 
-I'm not sure I understood this one, something akin to the udev rules
-I've showed that made links to the /sys iio device in /dev?
-"relevant platform" here would be vendors?
+ .../bindings/clock/loongson,ls2k-clk.yaml     |   4 +-
+ .../boot/dts/loongson-2k0500-ref.dts          |   4 +
+ arch/loongarch/boot/dts/loongson-2k0500.dtsi  |  57 +-
+ .../boot/dts/loongson-2k2000-ref.dts          |   4 +
+ arch/loongarch/boot/dts/loongson-2k2000.dtsi  |  19 +-
+ drivers/clk/clk-loongson2.c                   | 549 ++++++++++--------
+ include/dt-bindings/clock/loongson,ls2k-clk.h |  56 +-
+ 7 files changed, 408 insertions(+), 285 deletions(-)
 
-> 3) Stick to the oddity of doing it under /dev/
-> 4) Access the things in the first place via more stable paths?
->   /sys/bus/i2c/devices/i2c-0/0-0008/iio\:device?/ etc 
->    Relying on the alias support for i2c bus numbering to make that stable should work
->    and if you are sure there will only be one entry (most devices) that matches
->    the wild card, should be easy enough to use in scripts.
-> 
-> My personal preference is this last option.  Basically if you want stable paths
-> don't use /sys/bus/iio/devices/ to get them.
-
-Hmm, I wouldn't call that path stable given the '?' portion can change,
-but at least that certainly is a single glob away so it's definitely
-simpler than checking every labels all the time.
-
-My second nitpick with this is that while these paths are stable for a
-given kernel version, but we've had some paths changes over many years
-(not sure if it was 3.14 or 4.9 but one of these perhaps didn't have
-/sys/devices/platform yet? and things got moved there at some point with
-some subtle name changes, breaking a couple of scripts).
-OTOH /sys/bus/iio/devices feels less likely to change, but I guess this
-is something that'd come up on tests when preparing a new kernel anyway,
-so this is probably acceptable; I'm just thinking out loud.
-
-
-With that said I can't think of anything that'd work everywhere either,
-so I guess we can stick to the status-quo and I'll rediscuss what we
-want to do with coworkers.
-
-
-Thanks,
 -- 
-Dominique
-
+2.43.0
 
 
