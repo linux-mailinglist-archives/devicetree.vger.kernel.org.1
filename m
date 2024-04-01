@@ -1,61 +1,56 @@
-Return-Path: <devicetree+bounces-55182-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55183-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5862189462C
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 22:44:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 953A5894641
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 22:50:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A47F1C217CB
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 20:44:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C63101C210ED
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 20:50:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6286D53E12;
-	Mon,  1 Apr 2024 20:44:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA54850271;
+	Mon,  1 Apr 2024 20:50:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IdUfLDKO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qN34Hj7Q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 393B029CFA;
-	Mon,  1 Apr 2024 20:44:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B83774E1D5;
+	Mon,  1 Apr 2024 20:50:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712004283; cv=none; b=FD5WJKTe2apmOT3XYNfETZnuHRBR/C4qMfIyw6RZ8r3FnjZhImA6P4cYomZwJRSfNmJp1Aq3zw3UkDQPf7HzORbC9YuJ/oE4X5IXXzUiTS4xUnpnpi0VnCPb5B6OApfCUoGdYJYRytXff+LvU3gEoohYA6QrctihyCQQfrt7qZ8=
+	t=1712004607; cv=none; b=hWIgGIs0dyNqXVmRbbTUWFBTS2VhSak1W3xdCNaa0Z3bDF5IMrOQ20IFCLdKm6oX5GhyAFErciGBxH7cdCRoXAccJ8D9BJALxbeNJFfbtlfgGLak9kUG6yPaFEp9AKphgwRyggis+oIL0Jnecx/1Go0VmxxZ8jTRGHgi6QE+tWE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712004283; c=relaxed/simple;
-	bh=VVC52MCSMpHW2Q5JNIbH9ASpsjq2s/1rwQrg66hgqU0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=l5X+MdWBjZxPCncjLAn4oKhLfgDA9ZhAhxpp/DcZ0RRsJl+mhqzK4Y1yxy6bPGiCZmeHm3r98szfF7rfDPHcCZ9gZpPMw7pWSfDJCaTkY6LIFzD1DTxJMmAi+4KuBF9dFLSIgzt4qpomCcf9SWRzrht2BMJaCD+2HGQbh71xWMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IdUfLDKO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C93CC433F1;
-	Mon,  1 Apr 2024 20:44:42 +0000 (UTC)
+	s=arc-20240116; t=1712004607; c=relaxed/simple;
+	bh=yIx+UD6lf8yLqkorOuqWQO92jCJ0l41vcQ1dggv5Vbo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bb9tMTgPJ+0t9AcIghzooCrq21sMgjZkbIKiCElRZYTesBqGkq9CcMp0GSJQxd2nEZbZgBuwJFqYz610+csq4hj77yFnyPepd3A2N/Sl7HwM2uM2zXC5F8qazFVu3kYTJQJFTbBGu/ZOTR9o7JbgbMhzLq27TTvjhAMo0LNxtdM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qN34Hj7Q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F32CC433C7;
+	Mon,  1 Apr 2024 20:50:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712004282;
-	bh=VVC52MCSMpHW2Q5JNIbH9ASpsjq2s/1rwQrg66hgqU0=;
+	s=k20201202; t=1712004607;
+	bh=yIx+UD6lf8yLqkorOuqWQO92jCJ0l41vcQ1dggv5Vbo=;
 	h=From:To:Cc:Subject:Date:From;
-	b=IdUfLDKOz0fjUNbZPxGNFtaTkVLTNUMzPeafgY8xENuPsHc+FqNXK8Ph0PrEOvEJQ
-	 qb7NiG2TLMLsTpt62YkzJpwLc9e/etfCXPk8i2JhBTLS+H18UaAgOZSKWB9T1CgWBi
-	 RpPbzJhBV40CyFVWZBH9OfycK57Sav6w8W1Vf9KWlOoP84n4necekWijMb7XG8MfOt
-	 0mfI327V9aP8htlaYKjtbkmciQjVo9sIvJBieLWtsULUBTHR4SRKEkTD6cFo9x63tB
-	 qrQlaLopXn81ilQ8Kzex8vM+edDTplZIgbMpgYTJU/vGRCnMndQ+XSjwgxoQrHc+pC
-	 dmr3B3xr1au0A==
+	b=qN34Hj7QQ56j7lJaBBh0SaEaHBKLsMXdc4Nl9FSLl2Xf8KkmhIHUCNs3J3k0q5v3K
+	 CMB0Ieixm0jU9EfagM3eZIkRLe1EdqqnTSJI0ElKG5HXC2r6ucMFvfrxCmzM9/xlbC
+	 wqbX9LGVdO++0uS/bt5+fBnyhkI2jMfmWrLWNa2oH2lF/PRBKrMaO5P1MfW/d+mp3s
+	 vhk31rOSkAri2OXwBg74r38tpSjV56jFsbTX51X541sC++pS+WD2jy8Og+rADBQ433
+	 oylCSEqF9S3Xy528AkTiJstErWh6jo/IxU/CNZFHOLVbSMS+CJ+YjHTZZ8oSJ+vw1T
+	 7SoFRZTK5rMrg==
 From: Rob Herring <robh@kernel.org>
-To: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>
-Cc: netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH net-next] dt-bindings: net: snps,dwmac: Align 'snps,priority' type definition
-Date: Mon,  1 Apr 2024 15:44:22 -0500
-Message-ID: <20240401204422.1692359-2-robh@kernel.org>
+Subject: [PATCH] dt-bindings: rockchip: grf: Add missing type to 'pcie-phy' node
+Date: Mon,  1 Apr 2024 15:49:58 -0500
+Message-ID: <20240401204959.1698106-1-robh@kernel.org>
 X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -65,39 +60,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-'snps,priority' is also defined in dma/snps,dw-axi-dmac.yaml as a
-uint32-array. It's preferred to have a single type for a given property
-name, so update the type in snps,dwmac schema to match.
+'pcie-phy' is missing any type. Add 'type: object' to indicate it's a
+node.
 
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- Documentation/devicetree/bindings/net/snps,dwmac.yaml | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ Documentation/devicetree/bindings/soc/rockchip/grf.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-index 6b0341a8e0ea..15073627c53a 100644
---- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-@@ -242,7 +242,8 @@ properties:
-             type: boolean
-             description: Multicast & Broadcast Packets
-           snps,priority:
--            $ref: /schemas/types.yaml#/definitions/uint32
-+            $ref: /schemas/types.yaml#/definitions/uint32-array
-+            maxItems: 1
-             description: Bitmask of the tagged frames priorities assigned to the queue
-         allOf:
-           - if:
-@@ -393,7 +394,8 @@ properties:
-             $ref: /schemas/types.yaml#/definitions/uint32
-             description: max read outstanding req. limit
-           snps,priority:
--            $ref: /schemas/types.yaml#/definitions/uint32
-+            $ref: /schemas/types.yaml#/definitions/uint32-array
-+            maxItems: 1
-             description:
-               Bitmask of the tagged frames priorities assigned to the queue.
-               When a PFC frame is received with priorities matching the bitmask,
+diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+index 0b87c266760c..79798c747476 100644
+--- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
++++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+@@ -171,6 +171,7 @@ allOf:
+           unevaluatedProperties: false
+ 
+         pcie-phy:
++          type: object
+           description:
+             Documentation/devicetree/bindings/phy/rockchip-pcie-phy.txt
+ 
 -- 
 2.43.0
 
