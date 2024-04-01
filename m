@@ -1,62 +1,57 @@
-Return-Path: <devicetree+bounces-55072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55073-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F6BB893BEC
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 16:11:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74D44893BF1
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 16:11:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D998C1F22219
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 14:11:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A3921F21A31
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 14:11:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52F2A46B9F;
-	Mon,  1 Apr 2024 14:10:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A3FA42076;
+	Mon,  1 Apr 2024 14:10:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r7svPTqD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ll19echC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2962C46B83;
-	Mon,  1 Apr 2024 14:10:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72F2B4206B;
+	Mon,  1 Apr 2024 14:10:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711980606; cv=none; b=cL1mZjklxNEm0bU87WHbMMRSdupVcZ3MvWY5QDSmUBfxI3QN94fEzjNuzQuNbgwLl4HfAUjbXxHeGwIopOjzeS+VkLlSB4k6HwC35VE12klbjBLCyVwkjp0IrI2KtaYRqTw2aRNl1b4xyhb5mxcCqwGpaCf3yYqOH2WDGqz/gEI=
+	t=1711980630; cv=none; b=GtSBZOqFwIjChkX8iPeAOVYqjwM07/7yJdBhi7b4scATIOU11g/+wTvC4W0dw6RLDDWLD7PbtYQUcmcXoLPpzgGvmR1J22Lqbu9ub+SujbNvnRrfPbZbIUh2OGLPV6BrpxZfDFfihNxCHIxjL3SHi155GC4IKyXf1mefjckqEGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711980606; c=relaxed/simple;
-	bh=s+VMLYn4VwvUWk5qv97RydvWaUtFdZIEyPisNb4S4Ik=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=HHf5xIi0RgNbp7fTUtKFmu7Bz86QbdXLFXIB+594L81hmDc9UJrhCtgi+mROnn8MWZyHdAFN9WUJRpJRFwf5mDCWxstIW82O44Y3fshCDKI0zXSwnvY7jKD7uWJTX53hJkXJAQmv+lfM0uGwMp0uhtxGNetibkrBaapkLhrS8Cc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r7svPTqD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A71FCC433B2;
-	Mon,  1 Apr 2024 14:10:03 +0000 (UTC)
+	s=arc-20240116; t=1711980630; c=relaxed/simple;
+	bh=Laz6b4ZNO3NIb2vOEm+kujYn+MoE/n6//P01xV2m5dw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ZS5Bkx+b6XXexbsZ/IV4rZULtkHYKxuxP7iPaFNm/CBq+zm3ZIyvpSziLp574DaiupwdL8nctUMA1t2uwNv5Rj5pOB5jZ5tPO0UsMkdchxo1TErByy/vraBemvv3cjjEzm9dYXMBkUV5AIRoznPCLb5D8N59bx3nqQQ4BMj1f/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ll19echC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE011C433C7;
+	Mon,  1 Apr 2024 14:10:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711980606;
-	bh=s+VMLYn4VwvUWk5qv97RydvWaUtFdZIEyPisNb4S4Ik=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=r7svPTqDIQnwmuUtReWYIvUDjQumRR1g+zU99K/irhaRI8DiavEYZRCyrAMwdD08J
-	 Bh+oapgLvQxwYhxKjbY/pqpRjb9efyTgdTgzXQI7GKXNBXYgjgLMRio6NUzjcWY80h
-	 CUfeKZnVav6YJ+ejhjd8lyLN4Ej/wwaxevM0JHxvtQ+Dq5avRyajMMSt/pFuAqTZNT
-	 9R4pL2GiG+RFgFJR0bzYRLuQiaBJ4rPcKqcFQ2bha6ql+hQdrsmhdwdnw6f8Guuqr/
-	 lN/+f/WLSrM6PMVptHA8uokbOWFEBf2KVV6OccQUXGiI9JE3nEy9vfadEwyJTXSaH7
-	 ryQQ5XSPYt5rQ==
+	s=k20201202; t=1711980630;
+	bh=Laz6b4ZNO3NIb2vOEm+kujYn+MoE/n6//P01xV2m5dw=;
+	h=From:To:Cc:Subject:Date:From;
+	b=Ll19echC7Z2wVivFpBsL0mQ4xHB7HMJs39/NSx19LgB4eXxUjWn6haXcOOUYXI/Pv
+	 0fIUR8kkDeR9jObK5ZRvqyJabaFQtBb0afVanqnRqyltO9sx4Mdizv/cackZUV8wX9
+	 9QfhIYt1sU1NKiGsQwxdVwXLT8py+uh8wa5fc6HX7QEZzH4pKqg0JxMby1E39P8D25
+	 Iz43qtpWQTPkZys18lXRHsCswLkz4o6C6UpiTXlSGk3GpOoGGTGiJVGgABizS+Ot3f
+	 UiVVh+D/tSdjYj5LEIf9J8sp+JSCelwBjdrv6GWP7Ij9eknDuBL6dElIwAqAQe0gYt
+	 abAaN71G2yyAw==
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Rob Herring <robh@kernel.org>,
+To: Dinh Nguyen <dinguyen@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-	Masami Hiramatsu <mhiramat@kernel.org>,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH 4/4] arm64: dts: uniphier: ld20-global: drop audio codec port unit address
-Date: Mon,  1 Apr 2024 16:09:52 +0200
-Message-Id: <20240401140952.97923-4-krzk@kernel.org>
+Subject: [PATCH 1/4] arm64: dts: stratix10: socdk: drop unneeded flash address/size-cells
+Date: Mon,  1 Apr 2024 16:10:22 +0200
+Message-Id: <20240401141025.98125-1-krzk@kernel.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240401140952.97923-1-krzk@kernel.org>
-References: <20240401140952.97923-1-krzk@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,29 +60,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Audio codec port does not have "reg", thus it should not have unit
-address, as reported by dtc W=1 warning:
+Flash node uses single "partition" node to describe partitions, so
+remove deprecated address/size-cells properties to also fix dtc W=1
+warnings:
 
-  uniphier-ld20-global.dts:127.10-132.5: Warning (unit_address_vs_reg): /soc@0/i2c@58780000/tas5707@1b/port@0: node has a unit name, but no reg or ranges property
+  socfpga_stratix10_socdk.dts:182.10-211.4: Warning (avoid_unnecessary_addr_size): /soc@0/spi@ff8d2000/flash@0: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
 
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 ---
- arch/arm64/boot/dts/socionext/uniphier-ld20-global.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/socionext/uniphier-ld20-global.dts b/arch/arm64/boot/dts/socionext/uniphier-ld20-global.dts
-index a4c86137f424..79f6db2455c1 100644
---- a/arch/arm64/boot/dts/socionext/uniphier-ld20-global.dts
-+++ b/arch/arm64/boot/dts/socionext/uniphier-ld20-global.dts
-@@ -124,7 +124,7 @@ audio-codec@1b {
- 		PVDD_C-supply = <&amp_vcc_reg>;
- 		PVDD_D-supply = <&amp_vcc_reg>;
- 
--		port@0 {
-+		port {
- 			tas_speaker: endpoint {
- 				dai-format = "i2s";
- 				remote-endpoint = <&i2s_hpcmout1>;
+diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
+index 26173f0b0051..4eee777ef1a1 100644
+--- a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
++++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
+@@ -180,8 +180,6 @@ rtc@68 {
+ &qspi {
+ 	status = "okay";
+ 	flash@0 {
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+ 		compatible = "micron,mt25qu02g", "jedec,spi-nor";
+ 		reg = <0>;
+ 		spi-max-frequency = <100000000>;
 -- 
 2.34.1
 
