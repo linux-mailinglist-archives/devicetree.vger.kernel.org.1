@@ -1,143 +1,135 @@
-Return-Path: <devicetree+bounces-55144-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AD24894489
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 19:56:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92B6C8944BE
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 20:23:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1999D2826A0
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 17:56:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 09D041F21E5F
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 18:23:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F3AE4D5A1;
-	Mon,  1 Apr 2024 17:56:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2671D524C4;
+	Mon,  1 Apr 2024 18:23:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="La2OO3yl"
+	dkim=pass (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b="rGiJUWy2";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b="xyl5F/SX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fallback23.i.mail.ru (fallback23.i.mail.ru [79.137.243.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F35884D5A0
-	for <devicetree@vger.kernel.org>; Mon,  1 Apr 2024 17:56:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE4A54F1E5;
+	Mon,  1 Apr 2024 18:23:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.137.243.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711994170; cv=none; b=jLU0cvWVprubs/+/fll9lJzX+XehbCyXnnFm7EPy0H+x/z/+DKyBPtor8ZWj1yJJP6OXV3f/zr1LOkdHMquNa6jlXwMIcT+8vsEktwzimmmaO9V8NqlUGHUkKWPagPd7mMELsdDS4fdfcpZKEOdvtgH8v5Jq/SmnsnT84T6hPgM=
+	t=1711995793; cv=none; b=kAn7PnmY/7Mac+P+5/aE8Ej+BCawpSwzJNqZqAEa++zEpmZ13UpIsyCxjd85XC/rNW6KheFWwMU0137dnKVLJh+2FRwT1mgGW5xuOzwXCPxf7HGi5IaVxGvxLWJUa2MP5R7jEO89l2gx6sf988ZUEVSSCskfLauSpz/E0RmBE9A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711994170; c=relaxed/simple;
-	bh=fJ3mDYlOFdsxP5e3NSHYMyBrX3fsoPQq5tmWrO4oCpg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=siqZ6DSlAAl8Z36iF+s97fXZjmkGKP5yFJnK+rojJhAF+/fKB1tiJ7PavZh8z7wyx89z+TFoYI92PIyUQ9e8tTXZNk+mXoPsiBoIfV7iXi4/SYwUZoE1hah48NOcPjlngfjOxFbW9VJmVZgab/lvzbAoSeMiuqZRGLqHWkDU8kk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=La2OO3yl; arc=none smtp.client-ip=209.85.128.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-60a068e26d8so44092107b3.3
-        for <devicetree@vger.kernel.org>; Mon, 01 Apr 2024 10:56:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1711994167; x=1712598967; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ayg8yEodnyIkhrNKh0vWxZ555hD22ZpFvhWL8Rikvao=;
-        b=La2OO3ylCdYIFPVA3jXXm6oenj1aweY8q87bO0Ib7DBSHhMrxT73tScAvjg9KbUwW0
-         518LczmaGyah+E4JgHdbyxSrUF7++zrIMRmAz3vwvAKSPtw2Xyj1XUXZVGCMkv4JHUsD
-         YjJdUKFNzF69ThurIJ5lf/FkYzA7dtzXcvQ1g5e/pesIoj6hyrQuRQ048q3QvC09HO3R
-         eUWrQIxib3Byc4A00Ravnsuxe+AwBFz8bDbgl5CnoMCMthovkO3h7GIztw2ZenYFjvJr
-         ThW8Vd9nQVB5AcrRvzh/ynAwsYoStF5n6zoone9flnGkSMCOasQth32PaBDuBu1OLGzs
-         jBmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711994167; x=1712598967;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ayg8yEodnyIkhrNKh0vWxZ555hD22ZpFvhWL8Rikvao=;
-        b=kCpMDri52VraIFgISEO/Xm6YDp+d8Vb9ZNmVkfv1Qrr1CMdWciXuJWX6k+qv2+6D9m
-         iWrWubt0ijl6FruAPrpvu3RZ1i8PPRwNt43JbE4bg3lL3eSD0OqNzgM40sdr0IDqBvHM
-         a8f23xECeMEqKvOcNJ6qvptJsYLCXLTyvRD+ly2D6MbZTXjNMl5jlKLlhfsu8ZsE7X31
-         /flYmMc2mIolviqPms7AWsd/glGKfSnpi5wjy2IcoFhm3fkoItQh8aVrTvEobGUTVHL5
-         d2EQLLUE8+lM9cw4TLdmp9TXIwcVqOBZSNKcCbG1obY7yl9ooGE70+vdJcQxQ1W5gZMV
-         wIhg==
-X-Forwarded-Encrypted: i=1; AJvYcCVBFycH9P3GjXPteLwQFesXoNLusxTBToL+qQ82qPzcoQ0l1MfR5OMfWWFtDVWAywIUsh9krukDFcD7F8DoJPM35jT5XCPcWOyfqA==
-X-Gm-Message-State: AOJu0YyGVBBX6s3u9MfDq+WLrS7cZBRHpj4CIeDLa+INLJ8J212mnbu2
-	56dScgvJKrEWVuCaWzVdFsGDxSVEmHK/OdQLV0Da/1xcV86XaWs1EFJFNkt9bcm3xwY2STfk1kf
-	kimLAR1HB57UGybqmOP7KVKULPT9CFcXvaXrybQ==
-X-Google-Smtp-Source: AGHT+IHbNEbSTz8DBCYKR9MqO/caPtbEZWICPniiYQejcusJBa6iSdkbnh9sfMt7GjtTJc/3SigyJ/z+M6qQOU/SrM8=
-X-Received: by 2002:a0d:c984:0:b0:611:a5b:337f with SMTP id
- l126-20020a0dc984000000b006110a5b337fmr9528979ywd.10.1711994165573; Mon, 01
- Apr 2024 10:56:05 -0700 (PDT)
+	s=arc-20240116; t=1711995793; c=relaxed/simple;
+	bh=YUtnO/HRuRkk2kX8LJRlnCGpFK7W9keZuPRRh9eedas=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TAD632T/Z2Kap388PZnuz6eAvY+eO0ZOZ1nK9FjAtucIiil8W/sB0hVvHw0czrPejTN8M3yAVGUi3P0G0/gpbXNXTtIwAF9SVguEDdfo+M5MtPrYxgrZ8MjrTl8XjwuZpfC63ffrTv3heFbOMW+iAkQlrAQQZ0DhiBeReTI3R/g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jiaxyga.com; spf=pass smtp.mailfrom=jiaxyga.com; dkim=pass (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b=rGiJUWy2; dkim=pass (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b=xyl5F/SX; arc=none smtp.client-ip=79.137.243.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jiaxyga.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jiaxyga.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=jiaxyga.com; s=mailru;
+	h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:Cc:To:From:From:Subject:Content-Type:Content-Transfer-Encoding:To:Cc; bh=ShGyo1CUXQ5HPR3+k6tqEEBbNMUAZ7JWfYNb5Y/jwgo=;
+	t=1711995791;x=1712085791; 
+	b=rGiJUWy2vPO1OxJ1CvUK15eJfepzmT6FFU+ejL58TshwmN7gb/VniULD/z+jx9q09SMHW4x49FWEjGGCkapZBPWRVYLROjuSoi58tQ+NKTatGOFMcnak5RLwV2nAMs2Qj0iRB+Mhy0kKy+xKf66Er8waS7LehOnBHUzkCPmvRmk=;
+Received: from [10.12.4.7] (port=60032 helo=smtp33.i.mail.ru)
+	by fallback23.i.mail.ru with esmtp (envelope-from <danila@jiaxyga.com>)
+	id 1rrMJB-009y8P-Ud; Mon, 01 Apr 2024 21:23:02 +0300
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=jiaxyga.com
+	; s=mailru; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
+	Cc:To:From:From:Sender:Reply-To:To:Cc:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive:
+	X-Cloud-Ids:Disposition-Notification-To;
+	bh=ShGyo1CUXQ5HPR3+k6tqEEBbNMUAZ7JWfYNb5Y/jwgo=; t=1711995781; x=1712085781; 
+	b=xyl5F/SXJK7c1K5tn+IHz4aSxqpRlRAoK9wPakvXfLfmblc6N7SDNWp3M6ViCtzZ6CDUwP9dHjM
+	1dOPsI2kmzfKXSM+ZY6Ps6UrMZB4fTRS2lmHlhUCdZaLgKozyhAe45nVOyv4KJ6Gt/GL8ffYd7FuK
+	fgbZe9ybTmQuZUScy+w=;
+Received: by smtp33.i.mail.ru with esmtpa (envelope-from <danila@jiaxyga.com>)
+	id 1rrMIt-00000002IQ2-1ZbC; Mon, 01 Apr 2024 21:22:44 +0300
+From: Danila Tikhonov <danila@jiaxyga.com>
+To: andersson@kernel.org,
+	konrad.dybcio@linaro.org,
+	vkoul@kernel.org,
+	kishon@kernel.org,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	cros-qcom-dts-watchers@chromium.org,
+	manivannan.sadhasivam@linaro.org,
+	davidwronek@gmail.com
+Cc: linux-arm-msm@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Danila Tikhonov <danila@jiaxyga.com>
+Subject: [PATCH 0/2] phy: qcom-qmp-ufs: Fix PHY QMP clocks for SC7180
+Date: Mon,  1 Apr 2024 21:22:38 +0300
+Message-ID: <20240401182240.55282-1-danila@jiaxyga.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240329044459.3990638-1-debug@rivosinc.com> <20240329044459.3990638-28-debug@rivosinc.com>
- <4b38393a-f69d-4a77-a896-b6cd42c7edcf@collabora.com> <CAKC1njQ_RU=uHhrna=MFVdjAMjjQNqZWnkjPoJvO7CxtPMeNuQ@mail.gmail.com>
- <ef72ae20-6b68-496a-a819-8818ade0d433@collabora.com> <CAKC1njQj7GfkdE1HJD54utkoPqJXyqMeoXOxa6ActqZ-fSDuKQ@mail.gmail.com>
-In-Reply-To: <CAKC1njQj7GfkdE1HJD54utkoPqJXyqMeoXOxa6ActqZ-fSDuKQ@mail.gmail.com>
-From: Deepak Gupta <debug@rivosinc.com>
-Date: Mon, 1 Apr 2024 10:55:54 -0700
-Message-ID: <CAKC1njR3+mxZHEig8iZo+=0k_VFWg9ZYO3pzGi6s=uLZ5hOkKw@mail.gmail.com>
-Subject: Re: [PATCH v2 27/27] kselftest/riscv: kselftest for user mode cfi
-To: Muhammad Usama Anjum <usama.anjum@collabora.com>
-Cc: paul.walmsley@sifive.com, rick.p.edgecombe@intel.com, broonie@kernel.org, 
-	Szabolcs.Nagy@arm.com, kito.cheng@sifive.com, keescook@chromium.org, 
-	ajones@ventanamicro.com, conor.dooley@microchip.com, cleger@rivosinc.com, 
-	atishp@atishpatra.org, alex@ghiti.fr, bjorn@rivosinc.com, 
-	alexghiti@rivosinc.com, samuel.holland@sifive.com, conor@kernel.org, 
-	linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-mm@kvack.org, 
-	linux-arch@vger.kernel.org, linux-kselftest@vger.kernel.org, corbet@lwn.net, 
-	tech-j-ext@lists.risc-v.org, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, oleg@redhat.com, 
-	akpm@linux-foundation.org, arnd@arndb.de, ebiederm@xmission.com, 
-	Liam.Howlett@oracle.com, vbabka@suse.cz, lstoakes@gmail.com, shuah@kernel.org, 
-	brauner@kernel.org, andy.chiu@sifive.com, jerry.shih@sifive.com, 
-	hankuan.chen@sifive.com, greentime.hu@sifive.com, evan@rivosinc.com, 
-	xiao.w.wang@intel.com, charlie@rivosinc.com, apatel@ventanamicro.com, 
-	mchitale@ventanamicro.com, dbarboza@ventanamicro.com, sameo@rivosinc.com, 
-	shikemeng@huaweicloud.com, willy@infradead.org, vincent.chen@sifive.com, 
-	guoren@kernel.org, samitolvanen@google.com, songshuaishuai@tinylab.org, 
-	gerg@kernel.org, heiko@sntech.de, bhe@redhat.com, 
-	jeeheng.sia@starfivetech.com, cyy@cyyself.name, maskray@google.com, 
-	ancientmodern4@gmail.com, mathis.salmen@matsal.de, cuiyunhui@bytedance.com, 
-	bgray@linux.ibm.com, mpe@ellerman.id.au, baruch@tkos.co.il, alx@kernel.org, 
-	david@redhat.com, catalin.marinas@arm.com, revest@chromium.org, 
-	josh@joshtriplett.org, shr@devkernel.io, deller@gmx.de, omosnace@redhat.com, 
-	ojeda@kernel.org, jhubbard@nvidia.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Mailru-Src: smtp
+X-7564579A: B8F34718100C35BD
+X-77F55803: 4F1203BC0FB41BD9D135BF24EC7C3B8467D85483E9EA2C72D4DE81C4A4EEAA95182A05F5380850402B52B0DDFBE73495F378A8CA21F699D64179DF9C447BBFCD754E9BE2FEC5E1B818FB9CDCE596FCA9
+X-7FA49CB5: FF5795518A3D127A4AD6D5ED66289B5278DA827A17800CE77633BACAB33B9508C2099A533E45F2D0395957E7521B51C2CFCAF695D4D8E9FCEA1F7E6F0F101C6778DA827A17800CE721AF84DC1D70954DEA1F7E6F0F101C6723150C8DA25C47586E58E00D9D99D84E1BDDB23E98D2D38B73AB1701401CD871F6D061299D4DFACDFCDFBA1F025B8584A17D34953EC636E0A471835C12D1D9774AD6D5ED66289B5278DA827A17800CE7820CF4CC0E318EFB9FA2833FD35BB23D2EF20D2F80756B5F868A13BD56FB6657A471835C12D1D977725E5C173C3A84C37EF884183F8E4D67117882F4460429728AD0CFFFB425014E868A13BD56FB6657D81D268191BDAD3DC09775C1D3CA48CFA4DC95554899BC9EBA3038C0950A5D36C8A9BA7A39EFB766D91E3A1F190DE8FDBA3038C0950A5D36D5E8D9A59859A8B6D4C4ECAC619A54F376E601842F6C81A1F004C906525384303E02D724532EE2C3F43C7A68FF6260569E8FC8737B5C22494854413538E1713FE827F84554CEF50127C277FBC8AE2E8BA83251EDC214901ED5E8D9A59859A8B6A8DADCFA31BDB70175ECD9A6C639B01B4E70A05D1297E1BBCB5012B2E24CD356
+X-C1DE0DAB: 0D63561A33F958A53162F1C686CC645C5002B1117B3ED696AA99809DCD2E960B30C8F815570A3530823CB91A9FED034534781492E4B8EEADB71243024C627CEAC79554A2A72441328621D336A7BC284946AD531847A6065A535571D14F44ED41
+X-C8649E89: 1C3962B70DF3F0ADE00A9FD3E00BEEDF77DD89D51EBB7742D3581295AF09D3DF87807E0823442EA2ED31085941D9CD0AF7F820E7B07EA4CFEA8A2686A51622C3E5B9F373AF52626300E8ADEC78EC0D7DC2807A2F3F6B43D1E80DAFFC47B24EFF58CF1FE2B37DBE10001FABD5F0BBD70D66FC8896552336569188EE975B8B1B39457F7985AD47CF5C02C26D483E81D6BE72B480F99247062FEE42F474E8A1C6FD34D382445848F2F3
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojZkLXUwYT7t9vcwvJsGGJ/Q==
+X-Mailru-Sender: 9EB879F2C80682A09F26F806C739498113902588151D385CEA62B7A4765414871F283CC98C034A737BFAD2062C45D6D62C62728BC403A049225EC17F3711B6CF1A6F2E8989E84EC137BFB0221605B344978139F6FA5A77F05FEEDEB644C299C0ED14614B50AE0675
+X-Mras: Ok
+X-7564579A: B8F34718100C35BD
+X-77F55803: 6242723A09DB00B469FED0CC4E03BFC3F7F23553880BB0CD60F3889908575E02049FFFDB7839CE9E676DC208F0F4A05787DBD83E3C3C6ADC3723A190316B2DE923FA25777803A10D
+X-7FA49CB5: 0D63561A33F958A5839001B5FD176FC06B951A06F851E1BE35B5EAECE2A4CD458941B15DA834481FA18204E546F3947C07E7064A143892FBF6B57BC7E64490618DEB871D839B7333395957E7521B51C2DFABB839C843B9C08941B15DA834481F8AA50765F79006377827508AE46B0BF5389733CBF5DBD5E9B5C8C57E37DE458BD96E472CDF7238E0725E5C173C3A84C34B556A7116F344E835872C767BF85DA2F004C90652538430E4A6367B16DE6309
+X-87b9d050: 1
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojZkLXUwYT7t9Tv9QF8esWHA==
+X-Mailru-MI: 8000000000000800
+X-Mras: Ok
 
-On Mon, Apr 1, 2024 at 10:34=E2=80=AFAM Deepak Gupta <debug@rivosinc.com> w=
-rote:
->
-> On Mon, Apr 1, 2024 at 2:48=E2=80=AFAM Muhammad Usama Anjum
-> <usama.anjum@collabora.com> wrote:
-> >
-> > >>> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
-> > >>> ---
-> > >>>  tools/testing/selftests/riscv/Makefile        |   2 +-
-> > >>>  tools/testing/selftests/riscv/cfi/Makefile    |  10 +
-> > >>>  .../testing/selftests/riscv/cfi/cfi_rv_test.h |  85 ++++
-> > >>>  .../selftests/riscv/cfi/riscv_cfi_test.c      |  91 +++++
-> > >>>  .../testing/selftests/riscv/cfi/shadowstack.c | 376 ++++++++++++++=
-++++
-> > >>>  .../testing/selftests/riscv/cfi/shadowstack.h |  39 ++
-> > >> Please add generated binaries in the .gitignore files.
-> > >
-> > > hmm...
-> > > I don't see binary as part of the patch. Which file are you referring
-> > > to here being binary?
-> > shadowstack would be generated by the build. Create a .gitignore file a=
-nd
-> > add it there. For example, look at
-> > tools/testing/selftests/riscv/vector/.gitignore to understand.
->
-> It's `shadowstack.c` (a C source file) and not a binary file.
+This series of patches is based on the series from Manivannan:
+https://lore.kernel.org/all/20240131-ufs-phy-clock-v3-0-58a49d2f4605@linaro.org/
 
-Nevermind. I think what you want me to do is add a rule in `.gitignore`.
-I was thinking otherwise (that somehow you're seeing a binary file in
-patch set).
+Patch from David adding a UFS nodes for SC7180(SM7125):
+https://lore.kernel.org/all/20240121-sm7125-upstream-v4-6-f7d1212c8ebb@gmail.com/
 
-Thanks. Will do that in the next iteration.
+The patch submitted by David and a series of patches submitted by Manivannan
+were both applied at approximately the same time. As a result, David's patch
+did not include this change.
+
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+To: Vinod Koul <vkoul@kernel.org>
+To: Kishon Vijay Abraham I <kishon@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: cros-qcom-dts-watchers@chromium.org
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: David Wronek <davidwronek@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: linux-phy@lists.infradead.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
+
+Danila Tikhonov (2):
+  dt-bindings: phy: qmp-ufs: Fix PHY clocks for SC7180
+  arm64: dts: qcom: sc7180: Fix UFS PHY clocks
+
+ .../bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml          | 1 +
+ arch/arm64/boot/dts/qcom/sc7180.dtsi                     | 9 ++++++---
+ 2 files changed, 7 insertions(+), 3 deletions(-)
+
+-- 
+2.44.0
+
 
