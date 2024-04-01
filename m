@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-55209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A341D8947C9
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 01:36:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D8568947D3
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 01:40:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CDDF11C20B91
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 23:36:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5E6871C21899
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 23:40:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F035556B89;
-	Mon,  1 Apr 2024 23:36:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ADC456B95;
+	Mon,  1 Apr 2024 23:40:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OI1ECswy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WsmTklMs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C63DF2E822;
-	Mon,  1 Apr 2024 23:36:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BC8656760;
+	Mon,  1 Apr 2024 23:40:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712014611; cv=none; b=lsotWodds4syCToTH2PyjXShz9PVJomN9QEvMnu/r8gNjXdN0wJjESIarWnvAMVutwZeMh6bf6hiDuSwGbT5u2R5yuTAJJ/z8TGMra0NALz0cXh+R/kKlILsLWNTfj7hmLmX4AL09uzf32E89R2EhHxCny6KjzL1XzOoxy16M1E=
+	t=1712014814; cv=none; b=NQuM6kuL7yYHvj1FY+hlzpBKlv6/aCGhUCjAJYzxVkV5fB7daozclq6eowKwEEnVRphfmqiZ6pVlgBZN7JcbGGqlcJiR+p6y+cNJ0FIXIo1w+P5VaajnCpmdNRDWuzPI53oiN6L7tBM739XsYhqq6JWOmwc6F0H+gh89btb5d0A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712014611; c=relaxed/simple;
-	bh=8wQEbHsfIcXr4dr2XxcWj3nO0LM8qgHsZ3uOarKVfQ8=;
+	s=arc-20240116; t=1712014814; c=relaxed/simple;
+	bh=7ZzuN0E5FJAIusgfFsV6NIYO/Dp9pbGAoWrIo0VHKN4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FHRVzzYvRJPb34ps628wpBoIjV6SSxMcNzHUASmrV2QgPzMIcMnR+NQ92oNHAoDDSsOmagVwNDtHJ88Yy+0GGM2mXYzOJsKCellWV3kybrqsqur+dQN3/ige21SjhCGAwd5Z0EilZ66JZUB2EgrYIwY6sfpW7tuGSiFPCXDmGNk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OI1ECswy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1324CC433F1;
-	Mon,  1 Apr 2024 23:36:48 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=gZCzH61aurB5Dce9b0+9ojJdCP4BdptV2O3vTRiR9ZBdMl3BvsX6toJSdmmY70tm6HVvQOW5Z9jz7+LbkMzEkHtGLmTyGJxIx1jMekEmEFdiuZeD4t5JyY1BaoKxCblZ9YrG12huZth1njnZNp1AMpsY1W8X+twweTEb6GfX+sg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WsmTklMs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9F42C433F1;
+	Mon,  1 Apr 2024 23:40:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712014611;
-	bh=8wQEbHsfIcXr4dr2XxcWj3nO0LM8qgHsZ3uOarKVfQ8=;
+	s=k20201202; t=1712014813;
+	bh=7ZzuN0E5FJAIusgfFsV6NIYO/Dp9pbGAoWrIo0VHKN4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OI1ECswy95ztWR1qMgjtRvTP+YtC/H3AmmZiGQn2J+eI8zEOG1rPCP7A37qpNwBLE
-	 et5TTtnKjWCoiVC75z+lA94ahzdQ2s4Xrhezz8feT00f6X61oHBT9acQ4pXOBqCoBZ
-	 rnh49TrrW2yhX9kjwStf9gQGEz7FpSBbZCz1pUUojkwL/xVwPCJGcdW3S9q4P2jIpG
-	 rjs2GACJ/gKERLUohzcvvGo8N7otb7TN2YtxiVdtRjqawmjaIMePq76Nt1DeQdCzZ9
-	 9YqEk1ICTdeu3AHyzLkn337YjnDgQiapEy41C3z7dkdhXhkULVeo+Vjd20RDzw0k5l
-	 bIOJT/gVmGVng==
-Message-ID: <49ecab2e-8f36-47be-a1b0-1bb0089dab0f@kernel.org>
-Date: Tue, 2 Apr 2024 08:36:47 +0900
+	b=WsmTklMsOOFb6FOOI7d+qMoyUjFrdfhPMc2XYpW9zvfgomkDzk3iijWjXP4+YX9wO
+	 A8pd8mDnAsy7u1GKgaR2OcxqEuqJj8AjxuEfNeUNI3+nSwbKT5YtUx33d2Ad6KXf3X
+	 FJDZHZnHUBr3os4zRbT4mBp0T5U7GXIFF2MoYrOlOTLH+xxy2pL/lQNGE4ug1e8XMN
+	 rn9QqtS+0N4CyOJ9lqvbDUsvXrl14JIsieQ5CQUpfxHy6DfkYiDQ80Ii5iHY57w59/
+	 CT04eNIXUHy646qvwGsW1v32rFrA43JFTUjMauMTw98ZQolLodIM3FNQ1qYP15DCNV
+	 ocDgkx8RWB+yQ==
+Message-ID: <d5429736-8305-4afe-89a8-fe62907616e1@kernel.org>
+Date: Tue, 2 Apr 2024 08:40:11 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,88 +50,112 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 17/18] dt-bindings: pci: rockchip,rk3399-pcie-ep: Add
- ep-gpios property
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
- <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
- Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v3] dt-bindings: ata: ahci-da850: Convert to dtschema
+To: Animesh Agarwal <animeshagarwal28@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Cc: linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Rick Wertenbroek <rick.wertenbroek@gmail.com>,
- Wilfred Mallawa <wilfred.mallawa@wdc.com>, Niklas Cassel <cassel@kernel.org>
-References: <20240330041928.1555578-1-dlemoal@kernel.org>
- <20240330041928.1555578-18-dlemoal@kernel.org>
- <b020b74e-8ae1-448a-9d47-6c9bb13735f9@linaro.org>
- <c75cb54a-61c7-4bc3-978e-8a28dde93b08@kernel.org>
- <518f04ea-7ff6-4568-be76-60276d18b209@linaro.org>
+ Conor Dooley <conor+dt@kernel.org>, linux-ide@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240327064354.17384-1-animeshagarwal28@gmail.com>
 Content-Language: en-US
 From: Damien Le Moal <dlemoal@kernel.org>
 Organization: Western Digital Research
-In-Reply-To: <518f04ea-7ff6-4568-be76-60276d18b209@linaro.org>
+In-Reply-To: <20240327064354.17384-1-animeshagarwal28@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 4/1/24 18:57, Krzysztof Kozlowski wrote:
-> On 01/04/2024 01:06, Damien Le Moal wrote:
->> On 3/30/24 18:16, Krzysztof Kozlowski wrote:
->>> On 30/03/2024 05:19, Damien Le Moal wrote:
->>>> From: Wilfred Mallawa <wilfred.mallawa@wdc.com>
->>>>
->>>> Describe the `ep-gpios` property which is used to map the PERST# input
->>>> signal for endpoint mode.
->>>>
->>>> Signed-off-by: Wilfred Mallawa <wilfred.mallawa@wdc.com>
->>>> Signed-off-by: Damien Le Moal <dlemoal@kernel.org>
->>>> ---
->>>>  .../devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml       | 3 +++
->>>>  1 file changed, 3 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml
->>>> index 6b62f6f58efe..9331d44d6963 100644
->>>> --- a/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml
->>>> +++ b/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml
->>>> @@ -30,6 +30,9 @@ properties:
->>>>      maximum: 32
->>>>      default: 32
->>>>  
->>>> +  ep-gpios:
->>>> +    description: Input GPIO configured for the PERST# signal.
->>>
->>> Missing maxItems. But more important: why existing property perst-gpios,
->>> which you already have there in common schema, is not correct for this case?
->>
->> I am confused... Where do you find perst-gpios defined for the rk3399 ?
->> Under Documentation/devicetree/bindings/pci/, the only schema I see using
->> perst-gpios property are for the qcom (Qualcomm) controllers.
+On 3/27/24 15:43, Animesh Agarwal wrote:
+> Convert the ahci-da850 bindings to DT schema.
 > 
-> You are right, it's so far only in Qualcomm.
-> 
->> The RC bindings for the rockchip rk3399 PCIe controller
->> (pci/rockchip,rk3399-pcie.yaml) already define the ep-gpios property. So if
-> 
-> Any reason why this cannot be named like GPIO? Is there already a user
-> of this in Linux kernel? Commit msg says nothing about this, so that's
-> why I would expect name matching the signal.
+> Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
 
-The RC-mode PCIe controller node of the rk3399 DTS already defines the ep-gpios
-property for RC side PERST# signal handling. So we simply reused the exact same
-name to be consistent between RC and EP. I personnally have no preferences. If
-there is an effort to rename such signal with some preferred pattern, I will
-follow. For the EP node, there was no PERST signal handling in the driver and
-no property defined for it, so any name is fine. "perst-gpios" would indeed be
-a better name, but again, given that the RC controller node has ep-gpios, we
-reused that. What is your recommendation here ?
+Krzysztof, Rob,
+
+Are you OK with this patch ?
 
 > 
-> Best regards,
-> Krzysztof
+> ---
+> Changes in v3:
+> - Fixed line length issue on line 20
+> - Removed unneccessary '|' character
+> Changes in v2:
+> - Added description for reg property items.
+> ---
+>  .../devicetree/bindings/ata/ahci-da850.txt    | 18 ---------
+>  .../bindings/ata/ti,da850-ahci.yaml           | 39 +++++++++++++++++++
+>  2 files changed, 39 insertions(+), 18 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/ata/ahci-da850.txt
+>  create mode 100644 Documentation/devicetree/bindings/ata/ti,da850-ahci.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/ata/ahci-da850.txt b/Documentation/devicetree/bindings/ata/ahci-da850.txt
+> deleted file mode 100644
+> index 5f8193417725..000000000000
+> --- a/Documentation/devicetree/bindings/ata/ahci-da850.txt
+> +++ /dev/null
+> @@ -1,18 +0,0 @@
+> -Device tree binding for the TI DA850 AHCI SATA Controller
+> ----------------------------------------------------------
+> -
+> -Required properties:
+> -  - compatible: must be "ti,da850-ahci"
+> -  - reg: physical base addresses and sizes of the two register regions
+> -         used by the controller: the register map as defined by the
+> -         AHCI 1.1 standard and the Power Down Control Register (PWRDN)
+> -         for enabling/disabling the SATA clock receiver
+> -  - interrupts: interrupt specifier (refer to the interrupt binding)
+> -
+> -Example:
+> -
+> -	sata: sata@218000 {
+> -		compatible = "ti,da850-ahci";
+> -		reg = <0x218000 0x2000>, <0x22c018 0x4>;
+> -		interrupts = <67>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/ata/ti,da850-ahci.yaml b/Documentation/devicetree/bindings/ata/ti,da850-ahci.yaml
+> new file mode 100644
+> index 000000000000..ce13c76bdffb
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/ata/ti,da850-ahci.yaml
+> @@ -0,0 +1,39 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/ata/ti,da850-ahci.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI DA850 AHCI SATA Controller
+> +
+> +maintainers:
+> +  - Animesh Agarwal <animeshagarwal28@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: ti,da850-ahci
+> +
+> +  reg:
+> +    items:
+> +      - description: Address and size of the register map as defined by the AHCI 1.1 standard.
+> +      - description:
+> +          Address and size of Power Down Control Register (PWRDN) for enabling/disabling the SATA clock
+> +          receiver.
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    sata@218000 {
+> +        compatible = "ti,da850-ahci";
+> +        reg = <0x218000 0x2000>, <0x22c018 0x4>;
+> +        interrupts = <67>;
+> +    };
 
 -- 
 Damien Le Moal
