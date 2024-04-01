@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-55095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55096-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9841893C5C
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 16:52:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CFE6893C61
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 16:53:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7501E2821E4
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 14:52:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2BAEB1F223B7
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 14:53:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5DFB446A2;
-	Mon,  1 Apr 2024 14:52:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DB8B446AE;
+	Mon,  1 Apr 2024 14:53:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="APoNXS7i"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="CSMXS/oX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29A4D44367;
-	Mon,  1 Apr 2024 14:52:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81306446B4;
+	Mon,  1 Apr 2024 14:53:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711983159; cv=none; b=i/mytGqFewTZGNYsAk3zggsUXVO3NHprqpql5C0/ukazOPFduCM8fuPVIyLMDCrmqpQuD3snqMP+37lVTA5xNWxY+X4CrZYThvyH/L3TCGlvI5dpfLpbv1o50SdNqaoA7X8eKXv6hV2qxBYu6DvE6x218WYB5PGIizQbFwgEihY=
+	t=1711983202; cv=none; b=FuG+LAKnqxwiDmHyTc9S4r6wCPmU6AfIlpsTT+5iq41JkWFXtmbg+n1c4o5Zvb/iQLUpRZSTU3NnWp8ZMVk2DSmlX/lSFLSlv3Ane4mjcfuB4+2I82o628Zc0KHC/CYv2+gL4lj/Zcv573eVY9BE/WN+z2sCQiOZF/IGJTLk9/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711983159; c=relaxed/simple;
-	bh=hCCMDoVs9hwlaIgpLalvIN8iuYSg1bwiHL2O6nBWr4Y=;
+	s=arc-20240116; t=1711983202; c=relaxed/simple;
+	bh=yloUbEiMF310IOcwHWkZeGYQdWnRad/t8yaPC4hBQco=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ticQzVauDylcAM6TLzSdJAE7Euq8yw/v+8qfZlTFg33sm4+heyWIuG/MIGFUcMdTzaMur5SgLfjyUK4tvePTuzY2u/IUxwHObX2hkzx0DH5+PEeaP2g0CUyqnXAR4ESeKaO3ZzkWdOs9i60RtD8EFw7DzHMXr1gkH/lyjcvYxJY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=APoNXS7i; arc=none smtp.client-ip=156.67.10.101
+	 Content-Type:Content-Disposition:In-Reply-To; b=rHC4bbqAMX7nbAkhEzhCNhQktLK6ACCwIDMX7LY7D5F1G5GdljaYhQvzkbT00IVu70+XwMuZwHZDdUtz9ANfsk9vcJ0mEk4cccDtKxE9irkW+EVmSyfgVFcerRYkPPRPdyU62fqwunBA33IYICpZffDpnMbpk6ZXDLwtOE1k88Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=CSMXS/oX; arc=none smtp.client-ip=156.67.10.101
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
@@ -36,13 +36,13 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
 	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
 	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=VO5BT6laMwQjJkCJwR4qE81BL69+Osp3rzopB62pODA=; b=APoNXS7iDJxM1bJsk/Gir/IDBm
-	efwypmZVLv6q6MvWijb8/ed6zEBg5KKlV9biQf7IjOcownf1O1+l4jVh/3npRDZn2BRnTHCiZLHLG
-	/mqW1pRtyTidM75tMiORlYtXERyz66yFxZeermwrQOQLrPrvcfj2MyCjz4AxO8yo9zKk=;
+	bh=SUYqqJRgXGf9mQerq1K5Az97AxxYJNUyDS5cN1Mc7Vs=; b=CSMXS/oXFaI/OUAWuuyMHfmdXM
+	dCJDxRC72tUGrABO58Edyb72+pXPCvWeyAqRLnH2ePn9mGerVyyxWG9dlvtd8vLxkpFqu3WTfWGht
+	rC0vBwnxtzJjSXDCLxRPyORwlsAndOkb2WMYsPfib+hfrwBLTPngWq+xY3FVTFU4hfPQ=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
 	(envelope-from <andrew@lunn.ch>)
-	id 1rrJ1U-00BrbM-K1; Mon, 01 Apr 2024 16:52:32 +0200
-Date: Mon, 1 Apr 2024 16:52:32 +0200
+	id 1rrJ2A-00BrcD-H9; Mon, 01 Apr 2024 16:53:14 +0200
+Date: Mon, 1 Apr 2024 16:53:14 +0200
 From: Andrew Lunn <andrew@lunn.ch>
 To: Krzysztof Kozlowski <krzk@kernel.org>
 Cc: Gregory Clement <gregory.clement@bootlin.com>,
@@ -52,11 +52,11 @@ Cc: Gregory Clement <gregory.clement@bootlin.com>,
 	Conor Dooley <conor+dt@kernel.org>,
 	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 5/6] arm64: dts: marvell: cn9130-crb: drop wrong
- unit-addresses
-Message-ID: <c5562704-6ebf-4bd3-b0dc-37068a9e472c@lunn.ch>
+Subject: Re: [PATCH 6/6] arm64: dts: marvell: cn9130-crb: drop unneeded
+ "status"
+Message-ID: <a74a10bc-19f3-489a-962d-dcf483c53bd2@lunn.ch>
 References: <20240401141051.98233-1-krzk@kernel.org>
- <20240401141051.98233-5-krzk@kernel.org>
+ <20240401141051.98233-6-krzk@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,18 +65,10 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240401141051.98233-5-krzk@kernel.org>
+In-Reply-To: <20240401141051.98233-6-krzk@kernel.org>
 
-On Mon, Apr 01, 2024 at 04:10:50PM +0200, Krzysztof Kozlowski wrote:
-> Top-level nodes, not being on MMIO bus, do not have "reg" properties and
-> should not have unit addresses.  Correct their name as well to match
-> "Generic node names" recommendation from Devicetree specification.
-> This also fixes dtc W=1 warnings:
-> 
->   cn9130-crb.dtsi:29.35-37.4: Warning (unit_address_vs_reg): /ap0_mmc_vccq@0: node has a unit name, but no reg or ranges property
->   cn9130-crb.dtsi:39.38-46.4: Warning (unit_address_vs_reg): /cp0_usb3_vbus@1: node has a unit name, but no reg or ranges property
->   cn9130-crb.dtsi:57.33-65.4: Warning (unit_address_vs_reg): /cp0_sd_vccq@0: node has a unit name, but no reg or ranges property
->   cn9130-crb.dtsi:67.31-75.4: Warning (unit_address_vs_reg): /cp0_sd_vcc@0: node has a unit name, but no reg or ranges property
+On Mon, Apr 01, 2024 at 04:10:51PM +0200, Krzysztof Kozlowski wrote:
+> Devices are enabled by default.
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
