@@ -1,117 +1,100 @@
-Return-Path: <devicetree+bounces-55206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55207-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B84B189478A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 01:05:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA3C589478F
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 01:07:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E933E1C21FFE
-	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 23:05:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B29D1F21ED3
+	for <lists+devicetree@lfdr.de>; Mon,  1 Apr 2024 23:07:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B96C556B64;
-	Mon,  1 Apr 2024 23:05:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E54FF5674A;
+	Mon,  1 Apr 2024 23:07:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BoabbMPU"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="Opug703d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58904D28D;
-	Mon,  1 Apr 2024 23:05:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 340D12A1BF
+	for <devicetree@vger.kernel.org>; Mon,  1 Apr 2024 23:07:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712012709; cv=none; b=mWbxC8zVGsT/piH8xDal/NImhO+NT+JkQXDl8zMmYZcIVu1UKr9zjqpYsHmIkiTL+RVCvBJmtrWVEmwWLhcoTLriNQieYdSvtaqHFjb1zTvzUsEYDMeU+F/WLn+rn2Do2hoW6g0V1PYQWkmQp7fs7SHjrD0jgli/ziWtuh6ksB4=
+	t=1712012859; cv=none; b=IvdQKJCi2qTcDqZYbfQ9VwZ1hLoi89FHhbNxvTEVnMxgurDpAwgK7WCU81SZuvf1M6llTsLeyV92r5eQbTDm1izfJf9AJ447KloW1KW2FKK+Xh3FQxEd/MNJgxAlgbOErbjwbIoORTz3RfDbSKy8xkfoq4Wd4goe819Ekt99emc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712012709; c=relaxed/simple;
-	bh=4nfQ3VKgAVCoMffKoucpw3WN+zAqPsrt0JARR6EFVJI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DiRM8LQAUT92WTDvtKVrCQol5QiHOuwyKkPcHdR3YDk6tXLwsur6dcs0Ll+cRlQ4Bti1LazOMDiIRSFnTUC52xRkIsxq/zQoNg6Wme30EIAkBIkGl/zyBGBZe91Owy5gPg0oRwt/zwevN4kAI1BnHRaS6u3C5xityUoVMhKjyTo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BoabbMPU; arc=none smtp.client-ip=209.85.210.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-6ea7eff5f3cso748054b3a.0;
-        Mon, 01 Apr 2024 16:05:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712012708; x=1712617508; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2Ns3vmg+RhBRNwgNneyJSa4OOrkY3KigKEhbkR8ToKM=;
-        b=BoabbMPUra2n0Pn+URwSKOAQaSu/M6MS4tNkv2qc1fF0OK4/7VHcjbQZB21GzMpzjf
-         8J4EvXwL2PXPGKP5c1PQjEj1jBwzL8HYOESpnX6Nxl6toIZH0PIIPvDYeAcC/zBaqB4G
-         9P9LUS2DHjJeR7ESGN5LXanwDw9CLBG9zTxzi3h6Bi9Tf2H1mUFCSVJ8z4OF+oXDAbOP
-         PyILHhZsvKSe3BpSM9JFJ25QeribC3F1P9Gwm6MT0LUGfuqxp1XIL8bjSPCf1xozobED
-         6J+95TSgtVobOsBQzNLAldJzqaxazZ09zh9athOFYW25FS/c7dCIDwMkCTHQgEIJpbDA
-         EN7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712012708; x=1712617508;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2Ns3vmg+RhBRNwgNneyJSa4OOrkY3KigKEhbkR8ToKM=;
-        b=Awcqe/7VVlSSedR+G4ZiFJkUEMWwgho7xS9JSDduwQ9B3ALS4rp4xWYXAKA1UgrHWc
-         kYzmWPZhEV9Z9U8QZ5hLXreGtVODY2GrxoLys1gKz43UwCRAFEOrDCBHSmCB/jCcTe/g
-         ow6RKiua2yck650k4W3YdpGt4qgCPjbeIBFb1wQFTNxlnkI3GCcCAx+pwYbvew4eaVT+
-         BATccQOHSSzARZReWmcVkhsVJRKiox586pK6Jz1J45pLNexMl/dZnFVeoBriLAxh4FLl
-         pJMel4Ges4ZbYWo8qoTa2U5pRHmUVenz0Kp/w9YCHgZhArz6z66RHEx6R6KaGyZJP6dc
-         WvKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXHsKgD2tF5pMlVchcEStZ0ANRpsdX+gzZq3R61DQfpHyzRKrkrTLXdQfa8YdsAXvazdyJjCj5sRoj8YXT/Jj06xy65m3mSUuzZQHJk46CkeN2OJBTSatkKRsd5CAxRR8Y7gIZnYnKPK/WfFfo3SQyAI9b3zPd77ujddqxWgibHDA==
-X-Gm-Message-State: AOJu0Yw2cz0ac+QMuxJLVPLzczGJrng/Z4tTkD6/yzpITu+Z675DqE+O
-	C3CbYIJuY2gsbOSt+JfFZRI3mYXPL6fgRt/T2O+0W/UzQyQxER2TEHy2B6Pl+P0BVHCIVLXivPp
-	JLvZL4BT46YGyeAtUXnTAm+iJfyc=
-X-Google-Smtp-Source: AGHT+IF55TrHPzAh4Iwu94EBfsDCHNPepD+JsBP4CbULZpvEhvY5U5aHOBdIVoo6WwWNJ/ZYLwaKDnlZZRg97KINu1Q=
-X-Received: by 2002:a05:6a20:7345:b0:1a3:c603:61d4 with SMTP id
- v5-20020a056a20734500b001a3c60361d4mr14923368pzc.3.1712012707679; Mon, 01 Apr
- 2024 16:05:07 -0700 (PDT)
+	s=arc-20240116; t=1712012859; c=relaxed/simple;
+	bh=hoXkPyampwSW233gW+T4GDRUjq2WdAMd1vTQD+Q3scQ=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=KA6Y7s2A821VEtHRMufvIsZ7CxDwB9JeD8Bi3ANltNiP1r6o40nZkTDedAhrIrargc+8YOt/+iChySLzDCB65FR3CVTg/WfT0Pws3WvKHe/X7MbHDtIR5bvudB5RUdM/NOb6yuY3Tp/ydoz8jsRDvI3/PXL2C7R7E0UQF95CTTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=Opug703d; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240401-dts_fix-v1-0-8c51ce52d411@nxp.com> <20240401-dts_fix-v1-1-8c51ce52d411@nxp.com>
-In-Reply-To: <20240401-dts_fix-v1-1-8c51ce52d411@nxp.com>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Mon, 1 Apr 2024 20:04:56 -0300
-Message-ID: <CAOMZO5AJrQ5jyV4A-tvX93-R0_nEWpEO9YY3f5DpeXaAFO4cSA@mail.gmail.com>
-Subject: Re: [PATCH 1/7] arm64: dts: imx8-ss-lsio: fix pwm lpcg indices
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, NXP Linux Team <linux-imx@nxp.com>, 
-	Marcel Ziswiler <marcel.ziswiler@toradex.com>, 
-	Philippe Schenker <philippe.schenker@toradex.com>, 
-	Max Krummenacher <max.krummenacher@toradex.com>, 
-	Alexander Stein <alexander.stein@ew.tq-group.com>, Joakim Zhang <qiangqing.zhang@nxp.com>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1712012849;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ez8K/LNR7tXtx83jTNF3btgaVdrBsM54UDLlwKef3gM=;
+	b=Opug703dxiULly4qMS+QOas7box1RVrABGD2bgBEkKtorDOrA47yYdAC/oL1O+k8qEp8Lk
+	VeZlKXF+kCUg9WX+PLP7154oOcdN6Capx4cDtR9A1UTvleMySFOoTqxNa5uLJqlz1aRh4B
+	w/WLbAFOpH5Xm9Q8dUoL1tB90f8vSzoSsBQcKrfuEKlRCZPhcmyLa7LVpOX8gVbipL9mgk
+	sjneZCPH0XGrFGYWd0YJN2AJO2gUZVInBkWBlSu29sqhQAlf71osFrXJFL/wYatl+cZNEu
+	AaTt2IWxS+AY3ldFsUe1kWzs6SqsWHE0Qc+IXXnnlb+6ECpAeugWCIf3fs5vHQ==
+Date: Tue, 02 Apr 2024 01:07:27 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Remove unsupported node from the
+ Pinebook Pro dts
+In-Reply-To: <171200852040.1394042.4883299945962544319.b4-ty@sntech.de>
+References: <0f82c3f97cb798d012270d13b34d8d15305ef293.1711923520.git.dsimic@manjaro.org>
+ <171200852040.1394042.4883299945962544319.b4-ty@sntech.de>
+Message-ID: <fd6b90fc4d277bb4034a919e72959e94@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Mon, Apr 1, 2024 at 7:25=E2=80=AFPM Frank Li <Frank.Li@nxp.com> wrote:
->
-> lpcg's arg0 should use clock indices instead of index.
->
-> pwm0_lpcg: clock-controller@5d400000 {
->         ...                                                // Col1  Col2
->         clocks =3D <&clk IMX_SC_R_PWM_0 IMX_SC_PM_CLK_PER>,  // 0     0
->                  <&clk IMX_SC_R_PWM_0 IMX_SC_PM_CLK_PER>,  // 1     1
->                  <&clk IMX_SC_R_PWM_0 IMX_SC_PM_CLK_PER>,  // 2     4
->                  <&lsio_bus_clk>,                          // 3     5
->                  <&clk IMX_SC_R_PWM_0 IMX_SC_PM_CLK_PER>;  // 4     6
->         clock-indices =3D <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_1>,
->                         <IMX_LPCG_CLK_4>, <IMX_LPCG_CLK_5>,
->                         <IMX_LPCG_CLK_6>;
-> };
->
-> Col1: index, which exited dts try to get.
+On 2024-04-01 23:55, Heiko Stuebner wrote:
+> On Mon, 1 Apr 2024 00:20:56 +0200, Dragan Simic wrote:
+>> Remove a redundant node from the Pine64 Pinebook Pro dts, which is 
+>> intended
+>> to provide a value for the delay in PCI Express enumeration, but that 
+>> isn't
+>> supported without additional out-of-tree kernel patches.
+>> 
+>> There were already efforts to upstream those kernel patches, because 
+>> they
+>> reportedly make some PCI Express cards (such as LSI SAS HBAs) usable 
+>> in
+>> Pine64 RockPro64 (which is also based on the RK3399);  otherwise, 
+>> those PCI
+>> Express cards fail to enumerate.  However, providing the required 
+>> background
+>> and explanations proved to be a tough nut to crack, which is the 
+>> reason why
+>> those patches remain outside of the kernel mainline for now.
+>> 
+>> [...]
+> 
+> Applied, thanks!
+> 
+> [1/1] arm64: dts: rockchip: Remove unsupported node from the Pinebook 
+> Pro dts
+>       commit: 43853e843aa6c3d47ff2b0cce898318839483d05
 
-I cannot understand this sentence, sorry.
-
-> Col2: actual index in lpcg driver.
-
-You should not describe DT in terms of Linux driver.
+Great, thanks!
 
