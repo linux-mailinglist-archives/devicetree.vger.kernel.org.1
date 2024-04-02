@@ -1,124 +1,110 @@
-Return-Path: <devicetree+bounces-55376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1046A89501E
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 12:32:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AB33895022
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 12:34:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 417731C221ED
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 10:32:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C35A11F25A7B
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 10:34:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14E843EA72;
-	Tue,  2 Apr 2024 10:32:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17D6B4CDF9;
+	Tue,  2 Apr 2024 10:33:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Mu4VtJeW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GI7y1VqX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36526DF6C;
-	Tue,  2 Apr 2024 10:32:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 841373E47F
+	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 10:33:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712053952; cv=none; b=bdlG0xzP7kSSHZz8Nl9F4UEmOJJ++7m+p0XatHFLexWz4Z9BQBX0nznJDLTzI8EdNXrvZfGzaYiZ77bBYNCk3Q1c/2ujyJaeHQ4sqN16myvA+usf6V1RoVHNjRGVSrE53UWhdtbPBsfn7FCa6XZ2uitWzoRyX10A7TWGiPvOx6g=
+	t=1712054038; cv=none; b=Ruo9/FRrZUHHzjfkqDosgV3aNfWOf5a/q+JgF5k8BRD9Rj6o9H7GRXODWB6PW5YTxQMljYlc/lM1jxl9JxaIXYLrkVj+cKy9DF1Jf1Bb53T8lRYY4KU3D23Ji53JDP4MBLXloReyWrJLimmGu3QOFmVI9BytUqefE2lXIvKRJxs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712053952; c=relaxed/simple;
-	bh=FGTkHGVJBQ7WLA4fbtaAPKtWLmKPTydm8JF3eXKX9uM=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mzzyEl0FiCDAM1mT6U/U+WSWBIEn809vrosg699rYmlwtjYc/HLdMGfzi1yxyT1X/zXUcbJ655kEPm8C2zFvDdMtKBwpK43U/AJ7l4eeXNHKdSX8+RL1QIdALO/fq5F7wlWQ7cgLqnt4QlnMdAtGd7w6u9cMhHNibdAooUD+GkU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Mu4VtJeW; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 432AW9ui090480;
-	Tue, 2 Apr 2024 05:32:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1712053929;
-	bh=wQVwSWKrm0EgnIxeUa2GAwM5gLQzgzwhftJoCoivg2s=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=Mu4VtJeW+3/ocUvg2FakGq3DVzE9EsNjcQC2aorHDidaK/6FYfG8q+vG1fm0dahkx
-	 ljQtkXbS5yjyxVQzktrATkcMpg9nU9I9rVxDDJGui/Qxxw7Saipdk8IPiQkRpJ3pTM
-	 2J/cWU7eLZyoSDBfY4tdlqszx1xLBy1IVG4wng0M=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 432AW9Kv060645
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 2 Apr 2024 05:32:09 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 2
- Apr 2024 05:32:09 -0500
-Received: from fllvsmtp7.itg.ti.com (10.64.40.31) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 2 Apr 2024 05:32:09 -0500
-Received: from localhost (uda0492258.dhcp.ti.com [172.24.227.9])
-	by fllvsmtp7.itg.ti.com (8.15.2/8.15.2) with ESMTP id 432AW89V057057;
-	Tue, 2 Apr 2024 05:32:09 -0500
-Date: Tue, 2 Apr 2024 16:02:07 +0530
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: Vignesh Raghavendra <vigneshr@ti.com>
-CC: Siddharth Vadapalli <s-vadapalli@ti.com>, <nm@ti.com>, <kristo@kernel.org>,
-        <robh@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <srk@ti.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am62p-main: use eFuse MAC Address for
- CPSW3G Port 1
-Message-ID: <f7cadda8-c3cf-48a0-846a-1ff317a28292@ti.com>
-References: <20240402094200.4036076-1-s-vadapalli@ti.com>
- <ae04c041-688c-4413-8f15-b37b4ea44aac@ti.com>
+	s=arc-20240116; t=1712054038; c=relaxed/simple;
+	bh=qu9ShLrPQMIkNvbhjhLBUtPyucHuzPdWe9LUMWcl8vo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=s23tkW+/VxRpKxZ7M2WhZ+/Qy4xU07PdVK1MDWIY1arnipOzVzUaGTpYmc0ShVhAoqzDU9CrdxeIjDIXrW6OL0WeiT0MV9iVmINvRU3SHaUJ8ZMdVz5dqyf+W9LcRM1wV1PbmYSM50rOlZpy87OA9krztBxYd1gY3uvNkzNUUsQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GI7y1VqX; arc=none smtp.client-ip=209.85.219.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-dcc71031680so4531563276.2
+        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 03:33:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712054035; x=1712658835; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=MWwVzYWrWmvvKy3bQx9GVyakGKirqAQ+7eqOMn8Hdd4=;
+        b=GI7y1VqXg4mxS1WS9UbTNigScyb9HKWlCrAZoIFEwQgJDrZOzTmw72WIqVNLr8hgVF
+         WrWLNB8I6F5Voy4HEY4a0yJhxASfX+b8NfoTHWq/Icj/+6+P6KUcn9yIEnJc1DhX42kx
+         SollTLK4n2WItiwpzZxzmxdaSKkdKVdgVtE3syjrl40VjGNV9lnjjTX0bVTd+d06QSQC
+         x8IKzjyeiBLADYaUXLFJExFm36MzwvcB6V3yeYgPi8ucSMcf2DYDFZRrrHU2MEu9MuoA
+         S1Y668159TQgu5xpF2TwCfKntztLIyLDqVpvYDTu/kOizjr19I1KX8QwDj7f7NyfiLo8
+         1E7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712054035; x=1712658835;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MWwVzYWrWmvvKy3bQx9GVyakGKirqAQ+7eqOMn8Hdd4=;
+        b=ZR/vJ001suKho10ofTApw8BoBr6GWYIQ5aUkgAsuGllHbQkd66D/ihPrzjmPZ2KxFa
+         p41A0SgKhWjo7+35MUz7EUzENftF93pl8tGu73wb77eAhxNwwZ1EFsxWuw3t4ogDOgJx
+         msHfI/VO6ujYG2y8wybgtehf+jGQf3iplCWnpj7HTe2IX/ao8/HXXdx7OQjO8+QoHfaa
+         2y65/x8vxM4zqsm/WiOdtvBbt6MhPWotICke6FuvJmQveZM0bEE5Li+Y5TX5mxVtmrOR
+         b0Lozh9zCZVU4gYmmBCep9IYaoRCdheVDDEHvYa1EYAN3r4nisF/CyvR/ykyD7m9x4n+
+         uJjg==
+X-Forwarded-Encrypted: i=1; AJvYcCWrP7ehauiz0SXrCtS1bn1KuczD02/z9V5M0jwlExpJeq7ktkWIw/xJazFC8mvIWOqkV2tkFCp+6KI+ktfYizMjTnG37sldlbGhuQ==
+X-Gm-Message-State: AOJu0YyCpramY84+MVU/tQypKdiBbjnxuKH6aQLBIoZPeRtNXyMUMY+3
+	MEMNUJ6ovk+hKQbZwa5TzwD0FWeLzoQyXs4LpUuhBF56aRjK4dvUD7Jp6Cct4cIKjoqTDMKQf+0
+	PjWPUxPpgkmT79WvNmGGfHaqOODhs+aYeF5+0MQ==
+X-Google-Smtp-Source: AGHT+IGdA7+Mw3wgNp+BztbolUTPAWjuEexFLMEyJS8XuGlLJbUGAceuF7Y90mTButztt/iNjInqR50NU+ZERpjg38U=
+X-Received: by 2002:a25:870e:0:b0:dc7:3165:2db1 with SMTP id
+ a14-20020a25870e000000b00dc731652db1mr9075771ybl.49.1712054035607; Tue, 02
+ Apr 2024 03:33:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ae04c041-688c-4413-8f15-b37b4ea44aac@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20240401-typec-fix-sm8250-v3-0-604dce3ad103@linaro.org>
+ <20240401-typec-fix-sm8250-v3-3-604dce3ad103@linaro.org> <7088e678-dd0a-4a5d-bef3-e0816a38ce60@linaro.org>
+In-Reply-To: <7088e678-dd0a-4a5d-bef3-e0816a38ce60@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 2 Apr 2024 13:33:44 +0300
+Message-ID: <CAA8EJpqdevzsN12m-EnxdFbCa5WgiSDMDhtjyf80th1NZwoD6Q@mail.gmail.com>
+Subject: Re: [PATCH v3 3/9] arm64: dts: qcom: sm8250: describe HS signals properly
+To: "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Luca Weiss <luca.weiss@fairphone.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, Apr 02, 2024 at 03:25:41PM +0530, Vignesh Raghavendra wrote:
-> 
-> 
-> On 02/04/24 15:12, Siddharth Vadapalli wrote:
-> > Assign the MAC Address programmed in the eFuse registers as the default
-> > MAC Address for CPSW3G MAC Port 1. Utilize the "ti,syscon-efuse"
-> > device-tree property to do so.
-> > 
-> > Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-> > ---
-> > 
-> > This patch is based on linux-next tagged next-20240402.
-> > 
-> > Regards,
-> > Siddharth.
-> > 
-> >  arch/arm64/boot/dts/ti/k3-am62p-main.dtsi | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
-> > index 7337a9e13535..eb126f4a04dd 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
-> > +++ b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
-> > @@ -696,6 +696,7 @@ cpsw_port1: port@1 {
-> >  				label = "port1";
-> >  				phys = <&phy_gmii_sel 1>;
-> >  				mac-address = [00 00 00 00 00 00];
-> > +				ti,syscon-efuse = <&wkup_conf 0x200>;
-> 
-> Sorry, how does this work? wkup_conf is not marked as "syscon" compatible?
+On Tue, 2 Apr 2024 at 12:42, Bryan O'Donoghue
+<bryan.odonoghue@linaro.org> wrote:
+>
+> On 01/04/2024 21:33, Dmitry Baryshkov wrote:
+> > Instead
+> > there is a HighSpeed signal lane between DWC3 controller and the USB-C
+> > connector.
+>
+> I still don't think this is an accurate statement. The upstream names
+> and labels should be followed for consistency but role-switching and the
+> DP/DN lines on the type-c port are not related.
 
-Sorry I failed to realize that. So this will also require adding a
-custom property similar to:
-https://github.com/torvalds/linux/commit/cc1965b02d6cb18d9220dae06f7e2e0b0ebbea48
-followed by adding a new sub-node within wkup_conf corresponding to the
-MAC Address CTRL_MMR registers.
+I fully agree with you. And that's why I'm replacing the labels. If
+you open the bindings for usb-c-connector and for the snps,dwc3 host,
+you will see that both bindings describe HS/SS ports. DWC3 also
+describes a single port for usb-data-role switching, which can be used
+instead of HS/SS ports, but usb-c-connector doesn't have this option.
 
-Thank you for reviewing the patch and pointing this out.
 
-Regards,
-Siddharth.
+-- 
+With best wishes
+Dmitry
 
