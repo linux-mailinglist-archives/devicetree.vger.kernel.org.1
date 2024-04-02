@@ -1,48 +1,74 @@
-Return-Path: <devicetree+bounces-55646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55C82895D56
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 22:11:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E331B895D74
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 22:18:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E74F283373
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 20:11:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D38CB1C2260C
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 20:18:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2677415CD72;
-	Tue,  2 Apr 2024 20:11:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4421215D5B3;
+	Tue,  2 Apr 2024 20:18:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D0vS3/Ru"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RZ7xMLn2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F168615B966;
-	Tue,  2 Apr 2024 20:11:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFF6C15D5A3
+	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 20:18:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712088682; cv=none; b=f8pdPMD3cIZ7dvmtu4/+IQZiuxnScBCHGJN7C5WJHLrcwum8OQn6m91ML7UODpYSACPz5D8KUiD08qmqRb+0v/OgR0ROX8JIFht/8OXbA3DeMeItYEacl7zvYISrduWQMvimicPlJJGDC8j0RV0DEHIt11K7N2xrLgJyrhx8HHI=
+	t=1712089126; cv=none; b=iVY+IfF5oCKaSpOR9uxMXWP4Jc4FZBlt2So3AkvKpH3yf3/6Lp9MacQEBIGi8AnIBekEuYE+76Il5BZdqisKdxbt1/xorReqBEBH2A6OLobbf30QTgJGg7lUBaIL4eiw43GG8EJCtZ2O3pRkiH3OfJRei7l5y0hmamBIr0q84P0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712088682; c=relaxed/simple;
-	bh=zxNCx17BqeF9qcFFHp8+bLqpFl9eofYxMcbGKji7VJU=;
+	s=arc-20240116; t=1712089126; c=relaxed/simple;
+	bh=wKqYKxvqLG5MYhYsf7MAYFLQwDgz6g6NgBhv6+t6rFY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cAQPw5VkEp0AS3JSyq+tiLHTf8XWcttvE0Mup1sU5CxF27ZZkE1ial/y79amBO6wQp8xZn8YvKiJTXZCuf9cYMsQsLqtfEfXUevnCr5yWFLA9BQ/vxI4vgSSqU/ZClpF5RMqPl/qUoAHl0R62BbXS/+quIw9gPFgEh/LK/2MxPE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D0vS3/Ru; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 885E0C433F1;
-	Tue,  2 Apr 2024 20:11:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712088681;
-	bh=zxNCx17BqeF9qcFFHp8+bLqpFl9eofYxMcbGKji7VJU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=D0vS3/Ru84xc6lUbn0Vg0xr8g0+ChD416TYBLzx5T6IDuQkSe9CEL1iwaax2/zQ4z
-	 ivyxGmxAhnVTO6BYYoioLjhulu6DtB0w6CEIs92PMNrRgOKWpeqzfxdHnLOpVD6yqx
-	 aTs7wrHhK9MmKtrUpuQ/N8cmYFOi4e8s6lPMMTONMhRgpvT3mdTtbZIo3jVDsCffco
-	 XMCeScMMWSVl5r+lCI35ThbnEqWdJW1l5WaCLVbp+vE66/OiEp/4/fmTest/BtFYxV
-	 4FvUWKpX6Gs353HfPtaMBVC/ZtVkzv0RfD9aUqtbgyzQICGaAsB3Ufg/sbL6gZW2oV
-	 U8a28SW5yBbfw==
-Message-ID: <b2e6c36f-859a-43ed-b451-868b811c07f3@kernel.org>
-Date: Tue, 2 Apr 2024 22:11:16 +0200
+	 In-Reply-To:Content-Type; b=NqDArLOv6Mx8eVVEjWPGnZwq2ITuxiUJ9KqycvDvVwcgCe08sWvohY9s3mseELrF7UYHUOB0191rLGjfA+fmcm/zahIeqEP4pMH4cODwgLUmp/pvimpRILYuI7O6QyE6w2OmZblo85UwVW85mMY6HOCAvuWGpiH2h4HCKs2O7BU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RZ7xMLn2; arc=none smtp.client-ip=209.85.215.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-5cddfe0cb64so3199906a12.0
+        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 13:18:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1712089124; x=1712693924; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EsmsWCpudMu0XR8qyIqwabTEv7Syx31G5/DUTuUGcAo=;
+        b=RZ7xMLn2dh69beXJHv3++RIWE2LvNyuaILK+0lCKqHsFTQaRjsE2gjlbUhGP9gyPij
+         3tceg8XF4qhagxFXKpi+hZn1tRW3bfiRFWfnweg4/UKrBMF8/utv2ubrkycsJmXXL5yV
+         MW6LkqX7qHukiO+XWLa4siSKg+GvhENzIiPqNXTCV2VGIV4Xtg4Av1dg+iuTn8cRk2bs
+         cNzv5LUkhs5SNhL0hrCZq3i/IYvOtqmC1a5b3VGij6YVgyBbczKAsxoRy0a/r9B7xEZP
+         O//4pJlbA0bRFWT1AzusoqYifAaIKIcUe1qf0jBrfAuYBF6C9iRMbOzsKQpW6+g/Puo5
+         pbGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712089124; x=1712693924;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EsmsWCpudMu0XR8qyIqwabTEv7Syx31G5/DUTuUGcAo=;
+        b=aW++Tnv83IiOdNj4tgShM9i0d+eGHHXbrs2yY9b4BLPii5DNiYAozXJc8iTdqqFQhB
+         0Orq7oJzM22GomFqaFK/7U+1mfZQC9L7y66Kc8tJpswAWMC+1KM8I+r+V4vuhEqRooHg
+         lQu/ZCqjAYMiUwQQ0LFBejESyYycmkL2Eyvwu2j/QJC54upgBZchFv6E8A8dTUS2HOsx
+         ZETfqeypbtbV0MN0tnvCtCZlmuAfrUIZSiYY2HQ9Vqi8Z5cEoBpDwqCm7wM/lmbDbqHe
+         pJq47eOvocdoc6G6N/72iqh0eFqP9hSVZDIy2XQPLzdQ8AlXVGJV9fc16DdD5g+dOafS
+         oO0Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUr+2kjBKWlbXhQQiuBvFtZkKZJDYEM+3fgnJu+XqZp6/hriw7Hx3bsDI00jrJYiYY8I7aQYMDRICgOREgOulF7Q8s1bHjHerJ+ng==
+X-Gm-Message-State: AOJu0YzSSpkZhU/7O/A0FurWTwCv6R5MJAVULpFbgsTC6QlHfxUmRruT
+	2cwS1YA6ze3aa8gB/L0A7/C69pHWRUDnlnOPz483L0faBwT+8eRb
+X-Google-Smtp-Source: AGHT+IHrmL/dMjmoCdtUz/IsY4IDnpanzN57kO2MX51Skp43s16wUBFoqKeZv4fNxpHPrNgxSHNH1w==
+X-Received: by 2002:a17:90a:3047:b0:299:3035:aede with SMTP id q7-20020a17090a304700b002993035aedemr680359pjl.44.1712089123958;
+        Tue, 02 Apr 2024 13:18:43 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id bt19-20020a17090af01300b002a2313f62dcsm262807pjb.0.2024.04.02.13.18.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Apr 2024 13:18:43 -0700 (PDT)
+Message-ID: <8a64376d-f624-44c8-91bb-f6a95dc1c945@gmail.com>
+Date: Tue, 2 Apr 2024 13:18:35 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,100 +76,91 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: marvell: espressobin-ultra: fix Ethernet
- Switch unit address
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Robert Marko <robert.marko@sartura.hr>,
- Gregory Clement <gregory.clement@bootlin.com>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240402183240.49193-1-krzk@kernel.org>
- <20240402183240.49193-3-krzk@kernel.org>
- <09201a97-7e7b-4d72-8ada-f58f85887349@lunn.ch>
+Subject: Re: [PATCH v2 0/3] dt-bindings: arm: bcm:
+ raspberrypi,bcm2835-firmware: Drive-by fixes
 Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <09201a97-7e7b-4d72-8ada-f58f85887349@lunn.ch>
-Content-Type: text/plain; charset=UTF-8
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Stefan Wahren <wahrenst@gmx.net>
+Cc: "Ivan T. Ivanov" <iivanov@suse.de>, Peter Robinson
+ <pbrobinson@gmail.com>, Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ Naushir Patuck <naush@raspberrypi.com>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Nicolas Saenz Julienne <nsaenz@kernel.org>, Ray Jui <rjui@broadcom.com>,
+ Rob Herring <robh@kernel.org>, Scott Branden <sbranden@broadcom.com>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-rpi-kernel@lists.infradead.org, u-boot@lists.denx.de
+References: <20240326195807.15163-1-laurent.pinchart@ideasonboard.com>
+ <b044eec1-ae64-4de7-9ab0-e3fe756131ef@gmx.net>
+ <20240327233700.GA21080@pendragon.ideasonboard.com>
+ <bcf8093ab0ea6f3738bf4a4623de700a@suse.de>
+ <2e15ab46-f29c-44ac-8a2a-8baa140ee1a3@gmx.net>
+ <20240402200855.GA32172@pendragon.ideasonboard.com>
+From: Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20240402200855.GA32172@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 02/04/2024 21:27, Andrew Lunn wrote:
-> On Tue, Apr 02, 2024 at 08:32:40PM +0200, Krzysztof Kozlowski wrote:
->> The Espressobin Ultra DTS includes Espressobin DTSI which defines
->> ethernet-switch@1 node.  The Ultra DTS overrides "reg" to 3, but that
->> leaves still old unit address which conflicts with the new phy@1 node
->> (W=1 dtc warning):
+On 4/2/24 13:08, Laurent Pinchart wrote:
+> Hello,
+> 
+> On Tue, Apr 02, 2024 at 09:52:06PM +0200, Stefan Wahren wrote:
+>> Am 02.04.24 um 10:58 schrieb Ivan T. Ivanov:
+>>> On 2024-03-28 01:37, Laurent Pinchart wrote:
+>>>> On Wed, Mar 27, 2024 at 07:49:38AM +0100, Stefan Wahren wrote:
+>>>>> Hi,
+>>>>>
+>>>>> [add Peter and Ivan]
+>>>>>
+>>>>> Am 26.03.24 um 20:58 schrieb Laurent Pinchart:
+>>>>>> Hello,
+>>>>>>
+>>>>>> This small series includes a few drive-by fixes for DT validation
+>>>>>> errors.
+>>>>>>
+>>>>>> The first patch has been posted previously in v1 ([1], and now addresses
+>>>>>> a small review comment. I think it's good to go.
+>>>>>>
+>>>>>> The next two patches address the same issue as "[PATCH 1/2] dt-bindings:
+>>>>>> arm: bcm: raspberrypi,bcm2835-firmware: Add missing properties" ([2]),
+>>>>>> but this time with a (hopefully) correct approach. Patch 2/3 starts by
+>>>>>> fixing the raspberrypi-bcm2835-firmware driver, removing the need for DT
+>>>>>> properties that are specified in bcm2835-rpi.dtsi but not documented in
+>>>>>> the corresponding bindings. Patch 3/3 can then drop those properties,
+>>>>>> getting rid of the warnings.
+>>>>>
+>>>>> since this series drops properties from the device tree, does anyone
+>>>>> have the chance to test it with a recent U-Boot?
+>>>>
+>>>> I don't have U-Boot running with my RPi, so I would appreciate if
+>>>> someone could help :-)
+>>>
+>>> Sorry for taking me so long to verify this.
+>>>
+>>> I think on RPi U-Boot side we are fine. API used when accessing Mbox
+>>> device do not follow DM model and do not use DMA, but just access
+>>> device directly using this nice macros phys_to_bus/bus_to_phys.
+>>>
+>>> I build new DTB files with this patch included and U-Boot build
+>>> from the latest sources. No obvious issues on RPi3 and RPi4.
+>>> Devices boot fine.
+> 
+> Thank you for testing Ivan.
+> 
+>> Thanks you, Laurent and Ivan
 >>
->>   armada-3720-espressobin.dtsi:148.29-203.4: Warning (unique_unit_address_if_enabled): /soc/internal-regs@d0000000/mdio@32004/ethernet-switch@1: duplicate unit-address (also used in node /soc/internal-regs@d0000000/mdio@32004/ethernet-phy@1)
->>
->> Fix this by deleting ethernet-switch@1 node and merging original node
->> with code from Ultra DTS into new ethernet-switch@3.
+>> Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
 > 
-> That is a bit ugly, having the exact same code twice.
-> 
-> Could the bulk of the switch node be put into a .dtsi file, and then
-> included as needed
+> Stefan, I'm quite unfamiliar with the Raspberry Pi upstreaming process
+> (despite having sent patches for ages :-)), do I understand correctly
+> that this patch will go through your tree, or do I need to work with
+> someone else to get it merged upstream ?
 
-There are several overrides/new nodes in espresso ultra, so this is not
-the same code.
-
-> 
-> &mdio {
->         switch0: ethernet-switch@1 {
-> 		reg = <1>;        
-> 		include "armada-3720-espressobin-switch.dtsi"
-
-And this DTSI would be with what? No device node? That's not readable.
-
-> 
->         }
-> }
-Best regards,
-Krzysztof
+I will be taking those via the Broadcom SoC tree.
+-- 
+Florian
 
 
