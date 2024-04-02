@@ -1,273 +1,153 @@
-Return-Path: <devicetree+bounces-55491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D9DF8956A2
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 16:29:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C1798956B3
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 16:31:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B8ABB28345E
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 14:28:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DE80CB247E9
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 14:31:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9465B126F04;
-	Tue,  2 Apr 2024 14:28:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7803312BF2A;
+	Tue,  2 Apr 2024 14:31:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="C7LyuR4M"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UNc2H8In"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 692CB85260
-	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 14:28:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6091812BF34
+	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 14:31:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712068135; cv=none; b=OKwuu4HGWOSZ7/E+S/IH7Gr3Eh89ARGAkUbubWTlZS7WNNseYYVE1dSg0te5J7a+0tUwGyPFt930CaoZ6e7XGwUYEv9rGwj+PSZefPlK/7DeOpWXdUtZfgUl/JdTpD0TGY0i0wQL6NAvfK965MvoaTys7ufguyMU8OECOsC1whQ=
+	t=1712068283; cv=none; b=R7pRHueeZyCFJkuTF6lwi/1/D6zB0XqlS83xZvRyCXjiI+YexFjPhc76gN4rl4EOGVCcoVYLuzb+ivmVh2lSt+9rNQ3xIpO3YBEwWt2PCoo0gjN9tng9YqZDwOmEzuUo7cn3VYknojvFwmM2LNIq8PLUKi0N4oxnf3epUzDqcpw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712068135; c=relaxed/simple;
-	bh=fRHOq+mWZPSalcGiLvnJcNAakk7ykW7S34Y0J2V0d1U=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=Qi2ZOI4bb+//SH1zcZXj1lK/Jtnj7lfhi197HvZg1RiqzeOLigaC53V82GBQBy19lPH+TpxLjoKhJGO/fOsqVZyEdqZe8jqYL7UdhGzVyYk4SdEBzVeqvAvYmxM6FBw08Sm+jnCFyP7wUy3jskX335GyFEx0wXoCx9jtNJw2cO4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=C7LyuR4M; arc=none smtp.client-ip=209.85.218.46
+	s=arc-20240116; t=1712068283; c=relaxed/simple;
+	bh=NwfiDMwPxJKgQCFrhmRtRWQVQ6ckkFHhu7WqccMtMZg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JJVklRf8kQkbsZk24oy3kMaOIR+67tdd9oHQhRSbn88zlDfWfiPJH8XbIiJNuvxEeXQNsnm985ldY3m9BWzARzuvjmNCp/g1GHuyF79WyZQHdWA4k1+Mdfevo9U8qhwTSTbX3k0sfznQLmUpum+QBZXLwzxNWGITvpOv+mYVQ5c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UNc2H8In; arc=none smtp.client-ip=209.85.218.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a4715d4c2cbso695840866b.1
-        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 07:28:53 -0700 (PDT)
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a4702457ccbso654838566b.3
+        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 07:31:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712068132; x=1712672932; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=pSKxf0IIEUwyutNpDWLf0ZVVUCmfh34i9H8sYjRga6I=;
-        b=C7LyuR4M9c8ztSbfWVDJTH2WDOYr0BMJ/wV7coY7IddWAd8MeeNMi2ZaKR+EvQ/3U9
-         D2bR22FBMKD8Dfbh6Mb/pnAJtpgisbda3KRZrH6LxbQkrNbV1e6c1DGYjeDa+bOupB6D
-         Tu20HUJXTZDVos1ZVNBSx1WHen+GUiVaoMKMmE95mYa6mGz/byXFRJMnSjItjETnpVWM
-         yGNMY81wNPhcTOIZyIXIKBkjSbY3TVhOkpgB7lWDf949EwSQmrf5YJ52y+tb1fcZzvKM
-         H2bilAD3qw/R+VLOXsHavn0G5Uaob9VTL7KykanNV/DN/jqqjUbnRa07oqaYljLP6YY+
-         clEQ==
+        d=linaro.org; s=google; t=1712068280; x=1712673080; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=m+iZGlcgikxz1gAky52yME4Ey0d0Q399g6xWgsA5b0c=;
+        b=UNc2H8In1ZEJan6aw2dbFE4eOmYC3on/vqGE7PhC1KgKu9lTmOO9ShsJsKG5+kwy//
+         hZdgKOgE9Lw/18aANJ6vGJfqovZ09HhbYmBFhypZ1VWNiuMaqdVlgN5al5NYy3trHVPh
+         Cv+HYy+stknzJ6jzioCfIe4WMTgDr0d+maVd7BXfQFNFJ0vLZteh5iCPHGx6Khr3pIWK
+         Xf6yMLNtgb77jetDtGbgBZKh5za8ez+Lo119/Ono9dmOyxZI4o2zT5SDhJSBWS95+HQ4
+         ICcGUfiDRk7MVIjpkqiJTsSQAYGxhid+gFhVHXyc7aiRJ5M92gCAx0L7GQbjyyfI2oM9
+         bULQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712068132; x=1712672932;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pSKxf0IIEUwyutNpDWLf0ZVVUCmfh34i9H8sYjRga6I=;
-        b=PXeXOnYtHxJPKQ7Ij9Nq+/DR2c/n4touz+EJ+jrKcT7P7dkilO6HvGFwgYaJVXzVYx
-         V/LJqX09wmNOkU4O6W2WYIXiL0w4W3mtotHzoKM/egpCWEKWw4TJJYJzdfL8WXSmO9QK
-         0IikvJyMQ1EEh8EKpt7qFW9jrZwwJOikKpEAvRzCm02t2+ZSzVF1CpTGzV4lJi5IOH2o
-         EOeCQjhMIgN0sSb0dDhlfjrykIL1Am9bh4SnUGOnE3dwq8yn3TEXc+kI0pcHYsaifztR
-         5SRbIQ2ANRngNM+DFj1XK5/v8qsbcTKwx3+ndGsmzSgocNhxMw3gIhPqN/vD7pTl/OAD
-         BrFA==
-X-Forwarded-Encrypted: i=1; AJvYcCVbpbJiCSPycLFmvotTtlYMpuPd2Rvv488KfEMVlw+OmZ/ajQIDJIhrNnKxDoHzPmBW2VT1I3wc3NgwFhhOA6FIG44n/B6uc5Cr5A==
-X-Gm-Message-State: AOJu0YxjibaiOy2iuLJXVDAQkDlJW53EEjRGnSrQe8bQ/QujbpxQvzi+
-	1onSH4InhfLccn1JZhq1w/ZVO2ma2rC5SmHKa/afKZdbTEOV2aNQ1KGnnCILQyg=
-X-Google-Smtp-Source: AGHT+IGg3KQKWJHw4XuJFppAkBsb9cAouGb9m1ZHLRR8XQFwuIhpnlS9HkKPOad2YoSJ8s/R871tqQ==
-X-Received: by 2002:a17:907:7ea8:b0:a4e:5abe:3832 with SMTP id qb40-20020a1709077ea800b00a4e5abe3832mr5567936ejc.72.1712068131602;
-        Tue, 02 Apr 2024 07:28:51 -0700 (PDT)
-Received: from localhost ([102.222.70.76])
-        by smtp.gmail.com with ESMTPSA id qf31-20020a1709077f1f00b00a4df4243473sm6556183ejc.4.2024.04.02.07.28.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Apr 2024 07:28:50 -0700 (PDT)
-Date: Tue, 2 Apr 2024 17:28:41 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: oe-kbuild@lists.linux.dev, git@luigi311.com,
-	linux-media@vger.kernel.org
-Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
-	dave.stevenson@raspberrypi.com, jacopo.mondi@ideasonboard.com,
-	mchehab@kernel.org, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, sakari.ailus@linux.intel.com,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Luigi311 <git@luigi311.com>, Ondrej Jirman <megi@xff.cz>
-Subject: Re: [PATCH 22/23] drivers: media: i2c: imx258: Add support for
- powerdown gpio
-Message-ID: <fae1ba7c-2f74-42f9-a79e-ce2a04f5d6da@moroto.mountain>
+        d=1e100.net; s=20230601; t=1712068280; x=1712673080;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=m+iZGlcgikxz1gAky52yME4Ey0d0Q399g6xWgsA5b0c=;
+        b=AkoXTpTgKDTw3FAMDPVwee9Xkpl9AtIbTgJ1e4GzL3sHFChvjBSWCaZchZBmr8j8YI
+         fbG5TphxrfFRF40GVjd9vX2Q++OU4UuHtVt0T/xk/0B9BihTbk1ukmKRn+FM4M+Q15XX
+         kKLvLWVQ9j1Cmn4Hx7XAPMcufufq9W74IQhlL14lDxExuNpoZNxYhWo/trE+2AIp3kZa
+         AzzG6Q8560NelrL69Pm4IVmpB3+t9n7ibloyB9q8vvJeSS4ciGiJa33m1eMOV2ppFcFA
+         YcG3tG4kp1DasIHjtxGNysgtJw0KKxUCJGK+2lN8YbwJMV8WCeReksFPUdclWUaJXFcM
+         ikXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXQqdMTuk7sMIgIytTTI9c6NggstlTcmWwaBW2Fh+KrgppzYGxGJMnES7bTDfC/+Hrxy+GDUkOFyFXBvzE9cwqXBN3qCFou10mqVQ==
+X-Gm-Message-State: AOJu0Yy/+Vhk8CuUv8a5x5ckrFaYyCcXwiocpdoDqCZatSInUWQHvkZC
+	ysw914i0DC9u7SM9svHzkqZirFAJl7ZX3TCRgBtdp7o2Pllf8jBQnZ+Wb/WUdZ0AlGCn8xvffIz
+	H
+X-Google-Smtp-Source: AGHT+IFWRjHyAcBDCQH42LTqIXtjYJnibbkqRP82NCqC80gZDFRxjFVFgCMIo9U3wAnIvQaS2BBVXA==
+X-Received: by 2002:a17:906:3a91:b0:a4d:f555:fd6 with SMTP id y17-20020a1709063a9100b00a4df5550fd6mr7599990ejd.29.1712068279722;
+        Tue, 02 Apr 2024 07:31:19 -0700 (PDT)
+Received: from [192.168.92.47] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
+        by smtp.gmail.com with ESMTPSA id y17-20020a170906071100b00a4e6626ae21sm2874695ejb.0.2024.04.02.07.31.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Apr 2024 07:31:19 -0700 (PDT)
+Message-ID: <31ec996a-5fff-4230-8987-66bb4d575c36@linaro.org>
+Date: Tue, 2 Apr 2024 16:31:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240327231710.53188-23-git@luigi311.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: msm8996: add glink-edge nodes
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Sibi Sankar <quic_sibis@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240401-msm8996-remoteproc-v1-0-f02ab47fc728@linaro.org>
+ <20240401-msm8996-remoteproc-v1-2-f02ab47fc728@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20240401-msm8996-remoteproc-v1-2-f02ab47fc728@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On 31.03.2024 11:10 PM, Dmitry Baryshkov wrote:
+> MSM8996 provides limited glink support, so add corresponding device tree
+> nodes. For example the following interfaces are provided on db820c:
+> 
+> modem:
+> 2080000.remoteproc:glink-edge.LOOPBACK_CTL_MPSS.-1.-1
+> 2080000.remoteproc:glink-edge.glink_ssr.-1.-1
+> 2080000.remoteproc:glink-edge.rpmsg_chrdev.0.0
+> 
+> adsp:
+> 9300000.remoteproc:glink-edge.LOOPBACK_CTL_LPASS.-1.-1
+> 9300000.remoteproc:glink-edge.glink_ssr.-1.-1
+> 9300000.remoteproc:glink-edge.rpmsg_chrdev.0.0
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
 
-kernel test robot noticed the following build warnings:
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/git-luigi311-com/media-i2c-imx258-Remove-unused-defines/20240328-072629
-base:   git://linuxtv.org/media_tree.git master
-patch link:    https://lore.kernel.org/r/20240327231710.53188-23-git%40luigi311.com
-patch subject: [PATCH 22/23] drivers: media: i2c: imx258: Add support for powerdown gpio
-config: x86_64-randconfig-161-20240331 (https://download.01.org/0day-ci/archive/20240401/202404011425.PVKV9Lf1-lkp@intel.com/config)
-compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-| Closes: https://lore.kernel.org/r/202404011425.PVKV9Lf1-lkp@intel.com/
-
-smatch warnings:
-drivers/media/i2c/imx258.c:1562 imx258_probe() warn: missing unwind goto?
-
-vim +1562 drivers/media/i2c/imx258.c
-
-d3773094af21c9 Dave Stevenson      2024-03-27  1476  
-e4802cb00bfe3d Jason Chen          2018-05-02  1477  static int imx258_probe(struct i2c_client *client)
-e4802cb00bfe3d Jason Chen          2018-05-02  1478  {
-e4802cb00bfe3d Jason Chen          2018-05-02  1479  	struct imx258 *imx258;
-786d2ad50b9b49 Dave Stevenson      2024-03-27  1480  	struct fwnode_handle *endpoint;
-786d2ad50b9b49 Dave Stevenson      2024-03-27  1481  	struct v4l2_fwnode_endpoint ep = {
-786d2ad50b9b49 Dave Stevenson      2024-03-27  1482  		.bus_type = V4L2_MBUS_CSI2_DPHY
-786d2ad50b9b49 Dave Stevenson      2024-03-27  1483  	};
-e4802cb00bfe3d Jason Chen          2018-05-02  1484  	int ret;
-e4802cb00bfe3d Jason Chen          2018-05-02  1485  	u32 val = 0;
-e4802cb00bfe3d Jason Chen          2018-05-02  1486  
-9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1487  	imx258 = devm_kzalloc(&client->dev, sizeof(*imx258), GFP_KERNEL);
-9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1488  	if (!imx258)
-9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1489  		return -ENOMEM;
-9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1490  
-d3773094af21c9 Dave Stevenson      2024-03-27  1491  	ret = imx258_get_regulators(imx258, client);
-d3773094af21c9 Dave Stevenson      2024-03-27  1492  	if (ret)
-d3773094af21c9 Dave Stevenson      2024-03-27  1493  		return dev_err_probe(&client->dev, ret,
-d3773094af21c9 Dave Stevenson      2024-03-27  1494  				     "failed to get regulators\n");
-d3773094af21c9 Dave Stevenson      2024-03-27  1495  
-9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1496  	imx258->clk = devm_clk_get_optional(&client->dev, NULL);
-d170b0ea176098 Sakari Ailus        2021-08-16  1497  	if (IS_ERR(imx258->clk))
-d170b0ea176098 Sakari Ailus        2021-08-16  1498  		return dev_err_probe(&client->dev, PTR_ERR(imx258->clk),
-d170b0ea176098 Sakari Ailus        2021-08-16  1499  				     "error getting clock\n");
-9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1500  	if (!imx258->clk) {
-9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1501  		dev_dbg(&client->dev,
-9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1502  			"no clock provided, using clock-frequency property\n");
-9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1503  
-e4802cb00bfe3d Jason Chen          2018-05-02  1504  		device_property_read_u32(&client->dev, "clock-frequency", &val);
-d170b0ea176098 Sakari Ailus        2021-08-16  1505  	} else {
-d170b0ea176098 Sakari Ailus        2021-08-16  1506  		val = clk_get_rate(imx258->clk);
-9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1507  	}
-8bde18cb296d0e Dave Stevenson      2024-03-27  1508  
-8bde18cb296d0e Dave Stevenson      2024-03-27  1509  	switch (val) {
-8bde18cb296d0e Dave Stevenson      2024-03-27  1510  	case 19200000:
-8bde18cb296d0e Dave Stevenson      2024-03-27  1511  		imx258->link_freq_configs = link_freq_configs_19_2;
-8bde18cb296d0e Dave Stevenson      2024-03-27  1512  		imx258->link_freq_menu_items = link_freq_menu_items_19_2;
-8bde18cb296d0e Dave Stevenson      2024-03-27  1513  		break;
-8bde18cb296d0e Dave Stevenson      2024-03-27  1514  	case 24000000:
-8bde18cb296d0e Dave Stevenson      2024-03-27  1515  		imx258->link_freq_configs = link_freq_configs_24;
-8bde18cb296d0e Dave Stevenson      2024-03-27  1516  		imx258->link_freq_menu_items = link_freq_menu_items_24;
-8bde18cb296d0e Dave Stevenson      2024-03-27  1517  		break;
-8bde18cb296d0e Dave Stevenson      2024-03-27  1518  	default:
-8bde18cb296d0e Dave Stevenson      2024-03-27  1519  		dev_err(&client->dev, "input clock frequency of %u not supported\n",
-8bde18cb296d0e Dave Stevenson      2024-03-27  1520  			val);
-e4802cb00bfe3d Jason Chen          2018-05-02  1521  		return -EINVAL;
-9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1522  	}
-e4802cb00bfe3d Jason Chen          2018-05-02  1523  
-786d2ad50b9b49 Dave Stevenson      2024-03-27  1524  	endpoint = fwnode_graph_get_next_endpoint(dev_fwnode(&client->dev), NULL);
-786d2ad50b9b49 Dave Stevenson      2024-03-27  1525  	if (!endpoint) {
-786d2ad50b9b49 Dave Stevenson      2024-03-27  1526  		dev_err(&client->dev, "Endpoint node not found\n");
-786d2ad50b9b49 Dave Stevenson      2024-03-27  1527  		return -EINVAL;
-786d2ad50b9b49 Dave Stevenson      2024-03-27  1528  	}
-786d2ad50b9b49 Dave Stevenson      2024-03-27  1529  
-786d2ad50b9b49 Dave Stevenson      2024-03-27  1530  	ret = v4l2_fwnode_endpoint_alloc_parse(endpoint, &ep);
-786d2ad50b9b49 Dave Stevenson      2024-03-27  1531  	fwnode_handle_put(endpoint);
-786d2ad50b9b49 Dave Stevenson      2024-03-27  1532  	if (ret) {
-786d2ad50b9b49 Dave Stevenson      2024-03-27  1533  		dev_err(&client->dev, "Parsing endpoint node failed\n");
-786d2ad50b9b49 Dave Stevenson      2024-03-27  1534  		return ret;
-786d2ad50b9b49 Dave Stevenson      2024-03-27  1535  	}
-786d2ad50b9b49 Dave Stevenson      2024-03-27  1536  
-786d2ad50b9b49 Dave Stevenson      2024-03-27  1537  	/* Get number of data lanes */
-a42d61a239fac8 Dave Stevenson      2024-03-27  1538  	switch (ep.bus.mipi_csi2.num_data_lanes) {
-a42d61a239fac8 Dave Stevenson      2024-03-27  1539  	case 2:
-a42d61a239fac8 Dave Stevenson      2024-03-27  1540  		imx258->lane_mode_idx = IMX258_2_LANE_MODE;
-a42d61a239fac8 Dave Stevenson      2024-03-27  1541  		break;
-a42d61a239fac8 Dave Stevenson      2024-03-27  1542  	case 4:
-a42d61a239fac8 Dave Stevenson      2024-03-27  1543  		imx258->lane_mode_idx = IMX258_4_LANE_MODE;
-a42d61a239fac8 Dave Stevenson      2024-03-27  1544  		break;
-a42d61a239fac8 Dave Stevenson      2024-03-27  1545  	default:
-786d2ad50b9b49 Dave Stevenson      2024-03-27  1546  		dev_err(&client->dev, "Invalid data lanes: %u\n",
-a42d61a239fac8 Dave Stevenson      2024-03-27  1547  			ep.bus.mipi_csi2.num_data_lanes);
-786d2ad50b9b49 Dave Stevenson      2024-03-27  1548  		ret = -EINVAL;
-786d2ad50b9b49 Dave Stevenson      2024-03-27  1549  		goto error_endpoint_free;
-786d2ad50b9b49 Dave Stevenson      2024-03-27  1550  	}
-786d2ad50b9b49 Dave Stevenson      2024-03-27  1551  
-7db096053387db Dave Stevenson      2024-03-27  1552  	imx258->csi2_flags = ep.bus.mipi_csi2.flags;
-7db096053387db Dave Stevenson      2024-03-27  1553  
-a8bb93eeccfa73 Dave Stevenson      2024-03-27  1554  	imx258->variant_cfg = of_device_get_match_data(&client->dev);
-a8bb93eeccfa73 Dave Stevenson      2024-03-27  1555  	if (!imx258->variant_cfg)
-a8bb93eeccfa73 Dave Stevenson      2024-03-27  1556  		imx258->variant_cfg = &imx258_cfg;
-a8bb93eeccfa73 Dave Stevenson      2024-03-27  1557  
-8a1906e91c0093 Luigi311            2024-03-27  1558  	/* request optional power down pin */
-8a1906e91c0093 Luigi311            2024-03-27  1559  	imx258->powerdown_gpio = devm_gpiod_get_optional(&client->dev, "powerdown",
-8a1906e91c0093 Luigi311            2024-03-27  1560  						    GPIOD_OUT_HIGH);
-8a1906e91c0093 Luigi311            2024-03-27  1561  	if (IS_ERR(imx258->powerdown_gpio))
-8a1906e91c0093 Luigi311            2024-03-27 @1562  		return PTR_ERR(imx258->powerdown_gpio);
-
-	ret = PTR_ERR(imx258->powerdown_gpio);
-	goto error_endpoint_free;
-
-8a1906e91c0093 Luigi311            2024-03-27  1563  
-e4802cb00bfe3d Jason Chen          2018-05-02  1564  	/* Initialize subdev */
-e4802cb00bfe3d Jason Chen          2018-05-02  1565  	v4l2_i2c_subdev_init(&imx258->sd, client, &imx258_subdev_ops);
-e4802cb00bfe3d Jason Chen          2018-05-02  1566  
-9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1567  	/* Will be powered off via pm_runtime_idle */
-9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1568  	ret = imx258_power_on(&client->dev);
-9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1569  	if (ret)
-786d2ad50b9b49 Dave Stevenson      2024-03-27  1570  		goto error_endpoint_free;
-9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1571  
-e4802cb00bfe3d Jason Chen          2018-05-02  1572  	/* Check module identity */
-e4802cb00bfe3d Jason Chen          2018-05-02  1573  	ret = imx258_identify_module(imx258);
-e4802cb00bfe3d Jason Chen          2018-05-02  1574  	if (ret)
-9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1575  		goto error_identify;
-e4802cb00bfe3d Jason Chen          2018-05-02  1576  
-e4802cb00bfe3d Jason Chen          2018-05-02  1577  	/* Set default mode to max resolution */
-e4802cb00bfe3d Jason Chen          2018-05-02  1578  	imx258->cur_mode = &supported_modes[0];
-e4802cb00bfe3d Jason Chen          2018-05-02  1579  
-e4802cb00bfe3d Jason Chen          2018-05-02  1580  	ret = imx258_init_controls(imx258);
-e4802cb00bfe3d Jason Chen          2018-05-02  1581  	if (ret)
-9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1582  		goto error_identify;
-e4802cb00bfe3d Jason Chen          2018-05-02  1583  
-e4802cb00bfe3d Jason Chen          2018-05-02  1584  	/* Initialize subdev */
-e4802cb00bfe3d Jason Chen          2018-05-02  1585  	imx258->sd.internal_ops = &imx258_internal_ops;
-e4802cb00bfe3d Jason Chen          2018-05-02  1586  	imx258->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
-e4802cb00bfe3d Jason Chen          2018-05-02  1587  	imx258->sd.entity.function = MEDIA_ENT_F_CAM_SENSOR;
-e4802cb00bfe3d Jason Chen          2018-05-02  1588  
-e4802cb00bfe3d Jason Chen          2018-05-02  1589  	/* Initialize source pad */
-e4802cb00bfe3d Jason Chen          2018-05-02  1590  	imx258->pad.flags = MEDIA_PAD_FL_SOURCE;
-e4802cb00bfe3d Jason Chen          2018-05-02  1591  
-e4802cb00bfe3d Jason Chen          2018-05-02  1592  	ret = media_entity_pads_init(&imx258->sd.entity, 1, &imx258->pad);
-e4802cb00bfe3d Jason Chen          2018-05-02  1593  	if (ret)
-e4802cb00bfe3d Jason Chen          2018-05-02  1594  		goto error_handler_free;
-e4802cb00bfe3d Jason Chen          2018-05-02  1595  
-15786f7b564eff Sakari Ailus        2021-03-05  1596  	ret = v4l2_async_register_subdev_sensor(&imx258->sd);
-e4802cb00bfe3d Jason Chen          2018-05-02  1597  	if (ret < 0)
-e4802cb00bfe3d Jason Chen          2018-05-02  1598  		goto error_media_entity;
-e4802cb00bfe3d Jason Chen          2018-05-02  1599  
-e4802cb00bfe3d Jason Chen          2018-05-02  1600  	pm_runtime_set_active(&client->dev);
-e4802cb00bfe3d Jason Chen          2018-05-02  1601  	pm_runtime_enable(&client->dev);
-e4802cb00bfe3d Jason Chen          2018-05-02  1602  	pm_runtime_idle(&client->dev);
-786d2ad50b9b49 Dave Stevenson      2024-03-27  1603  	v4l2_fwnode_endpoint_free(&ep);
-e4802cb00bfe3d Jason Chen          2018-05-02  1604  
-e4802cb00bfe3d Jason Chen          2018-05-02  1605  	return 0;
-e4802cb00bfe3d Jason Chen          2018-05-02  1606  
-e4802cb00bfe3d Jason Chen          2018-05-02  1607  error_media_entity:
-e4802cb00bfe3d Jason Chen          2018-05-02  1608  	media_entity_cleanup(&imx258->sd.entity);
-e4802cb00bfe3d Jason Chen          2018-05-02  1609  
-e4802cb00bfe3d Jason Chen          2018-05-02  1610  error_handler_free:
-e4802cb00bfe3d Jason Chen          2018-05-02  1611  	imx258_free_controls(imx258);
-e4802cb00bfe3d Jason Chen          2018-05-02  1612  
-9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1613  error_identify:
-9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1614  	imx258_power_off(&client->dev);
-9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1615  
-786d2ad50b9b49 Dave Stevenson      2024-03-27  1616  error_endpoint_free:
-786d2ad50b9b49 Dave Stevenson      2024-03-27  1617  	v4l2_fwnode_endpoint_free(&ep);
-786d2ad50b9b49 Dave Stevenson      2024-03-27  1618  
-e4802cb00bfe3d Jason Chen          2018-05-02  1619  	return ret;
-e4802cb00bfe3d Jason Chen          2018-05-02  1620  }
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
-
+Konrad
 
