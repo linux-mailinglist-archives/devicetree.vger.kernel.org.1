@@ -1,100 +1,87 @@
-Return-Path: <devicetree+bounces-55267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55269-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA16C894A8A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 06:42:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B20B3894B0D
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 08:02:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EBED41C20D43
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 04:42:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D2C9282CC2
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 06:02:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F42E17BCA;
-	Tue,  2 Apr 2024 04:42:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="Q806oSm5"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 777D818628;
+	Tue,  2 Apr 2024 06:02:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB7712581;
-	Tue,  2 Apr 2024 04:42:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 257B718627;
+	Tue,  2 Apr 2024 06:02:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712032929; cv=none; b=Q5lcm9QklBNwWb8a16pcFSe7thNfrTZXCZHLmMSFWVsbmzXQ7vD4Ker2aOhUul+mj7dZbDEYaWLOSnUsZRcmKYEWreFqmGOpcj9kBalzxoKYSjhUnPV3LqDWc2rW18geV3mOxAWX33uMVq0Hd4+Y462xus6LWnKZn6CzNQ4rCV8=
+	t=1712037739; cv=none; b=aVFFKShrTnj2nkW05QHBRfOkEGyHuHGEqjRfT4w+evy5oduXY4JEJkmGRzrF7+MdUGDYUmcVUQadDHHjN8oe79neihjUWT9IRbO5KkdnWQNgATv6xjuq1l0iGOdsU3EpfFeYi/jdMZqlUbwba6XxtiNRqTLkZ69iO50a9L+rSuY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712032929; c=relaxed/simple;
-	bh=Cq4y5V9tgRGo3LoHQcADYNRf6oy3wrq7fzGOaXsz42c=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=cSbC8kVWIOrX/q/2DDrfWiJ4BX35Jyd0ibKOM8f2vUAqfDT6R9QEo2OUzY6GhRskrx2WDbeTxlWO5rhbhBjYAVdbkdmePmDg0JeYEnQhGLAVd4h7GRkLjjHQTvgWR0L3q3Iz+L9ksIimc8GaP3+eX3DnoRen3lCyKDyyV3ZaZxc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=Q806oSm5; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-Received: from [192.168.68.112] (ppp118-210-182-70.adl-adc-lon-bras34.tpg.internode.on.net [118.210.182.70])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 4011420016;
-	Tue,  2 Apr 2024 12:41:56 +0800 (AWST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1712032918;
-	bh=fRcs8rvk7aWDd3jH1iz3Wdk5wU4Tj0kt/f5n2x/Nrm4=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=Q806oSm5OfEMDMJ/wLaqtQwDlfkPA1UW3d3kM0I97eEHY8VnrfYoNhex0sFxwKvNU
-	 6ABUEJQjE84Nt41hQNrgJIZg172+oSPEcLDq42RZfwDIwJSHxrSx07P9n4ymSCw8ep
-	 +3/OO15E0JLuAoaxhHDtcqt7DckH201EFNTyTtAlt8kfEbsZPjrDK11b/4nQxhqlOp
-	 pnuud1xzxMRIV1k5kjs2qYfX9hIKg2uqZaLV7UkvbkXu4RWSM58ygdljZA0e3q22f7
-	 4ff5N3+gQpp+ZU95Tu7iwprzzaRA9m/KlKiBgz7PD4BtQl9Mp4u8XX5sDt8zsANeZW
-	 eR68bplZPpB9Q==
-Message-ID: <3aad5148383ba9e8fd905b09690ffa9c378b31de.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v1] Revise duty cycle for SMB9 and SMB10
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>, patrick@stwcx.xyz, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Joel Stanley <joel@jms.id.au>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Date: Tue, 02 Apr 2024 15:11:55 +1030
-In-Reply-To: <20240401090509.2338027-1-Delphine_CC_Chiu@Wiwynn.com>
-References: <20240401090509.2338027-1-Delphine_CC_Chiu@Wiwynn.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1712037739; c=relaxed/simple;
+	bh=WgWEWAEa+v2AKFyLz2Py8rA09bthmt8TkJPRop7rm/k=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=Y4jGg+Ffy1SK6WTTkDLhmBJqBhAP2+C5MVL8IVHIrTqg4d/6wSt5MGMEn7kalCLXBcwuzvQRDueAMEv2uVTX3eAXQl/plYtp6o0nam+cH18oZ6Ksu/KVy0KoVCDO+UJsoe5OB6zLXcly4ulUV5yP8oeJ4Btr9lwqhaD6CgVcsPE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 8EC861A04B1;
+	Tue,  2 Apr 2024 08:02:15 +0200 (CEST)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 451E11A19C2;
+	Tue,  2 Apr 2024 08:02:15 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 54E401834890;
+	Tue,  2 Apr 2024 14:02:13 +0800 (+08)
+From: Richard Zhu <hongxing.zhu@nxp.com>
+To: vkoul@kernel.org,
+	kishon@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	frank.li@nxp.com,
+	conor+dt@kernel.org
+Cc: hongxing.zhu@nxp.com,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	kernel@pengutronix.de,
+	imx@lists.linux.dev
+Subject: [PATCH v2 0/3] Add i.MX8Q HSIO PHY driver support
+Date: Tue,  2 Apr 2024 13:45:01 +0800
+Message-Id: <1712036704-21064-1-git-send-email-hongxing.zhu@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
 
-On Mon, 2024-04-01 at 17:05 +0800, Delphine CC Chiu wrote:
-> ARM: dts: aspeed: yosemite4:
-> Revise duty cycle for SMB9 and SMB10 to 40:60
-> To meet 400kHz-i2c clock low time spec (> 1.3 us).
->=20
-> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
-> ---
->  arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts | 2 ++
->  1 file changed, 2 insertions(+)
->=20
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b=
-/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> index 64075cc41d92..b3a2aa8f53a5 100644
-> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> @@ -257,6 +257,7 @@ power-sensor@40 {
->  &i2c8 {
->  	status =3D "okay";
->  	bus-frequency =3D <400000>;
-> +	i2c-clk-high-min-percent =3D <40>;
+v2 changes:
+- Place the dt-bindings header file changes as the first one
+in the patch-set, make the annotation more clear, and add
+Frank's Reviewed-by tag into this patch.
 
-A grep of the 6.9-rc2 tree doesn't turn up any mention of this property
-name.
 
-More work needs to be done if this is meant to have any effect.
+i.MX8Q HSIO module has PHY and mix control regions.
+This patch-set adds i.MX8Q HSIO PHY driver support, and provides
+standard PHY phandles that can be used by i.MX8Q PCIe or SATA
+driver later.
 
-What tree are you developing your patches against? If you're sending
-them upstream then you must do your work (and test) in the context of
-upstream.
+[PATCH v2 1/3] dt-bindings: phy: phy-imx8-pcie: Add binding for
+[PATCH v2 2/3] dt-bindings: phy: Add i.MX8Q HSIO SerDes PHY binding
+[PATCH v2 3/3] phy: freescale: imx8q-hsio: Add i.MX8Q HSIO PHY driver
 
-Andrew
+Documentation/devicetree/bindings/phy/fsl,imx8q-hsio.yaml | 143 ++++++++++++++++++++++++
+drivers/phy/freescale/Kconfig                             |   8 ++
+drivers/phy/freescale/Makefile                            |   1 +
+drivers/phy/freescale/phy-fsl-imx8q-hsio.c                | 518 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+include/dt-bindings/phy/phy-imx8-pcie.h                   |  29 +++++
+5 files changed, 699 insertions(+)
+
 
