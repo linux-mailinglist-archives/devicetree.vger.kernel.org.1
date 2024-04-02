@@ -1,96 +1,158 @@
-Return-Path: <devicetree+bounces-55305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D6F4894CC0
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 09:38:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DEFF894CC2
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 09:38:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A7243B22125
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 07:38:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E72531F223E9
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 07:38:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27B0E3B29A;
-	Tue,  2 Apr 2024 07:38:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3A9F18635;
+	Tue,  2 Apr 2024 07:38:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lHRfOE9W"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V7S6CQI9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE2D018635;
-	Tue,  2 Apr 2024 07:38:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB0BD3D39B;
+	Tue,  2 Apr 2024 07:38:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712043492; cv=none; b=UIJVEhAf8XtGZlTb3oZmTIKjMmZg+hZOPm7/qU1ppM3nMsVzSSQUCJjb1BTUuhgqlVqMQgdpZYNZgtCLjaXIF/NvmIRcFDhD1L4z4ne5dYhmn7Pu+cKhXhT7jN9CcpIEEOCpMrp9iFa4FDuMskxhrdGGRlHYmafUcsSF1kNVwjY=
+	t=1712043495; cv=none; b=UWgIpkTRbypEa8HZidNX3CHWu+OyRrhBu6yPaOdXwE89QFI2Rvq5bb8Mqpra+SOnJ/VJQsakcowl1wJGlSYwTSQOEmc8moxejpv8cnKuNg88k5iqlf13lfJ/4duf8v1ImF7OgcYxpxfWLJyaabiUEfg6lHUtmKNZBU6UiQ3/Y+E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712043492; c=relaxed/simple;
-	bh=bkEud1DS4CmuqdIWJhXjEm5+cYQ8btjvsByQdn3Q/kw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DRpydU7zB7/1EZs6WAowa3aI1+vfeRalt/3mJOFXP6hZOVevU51zKOtMGWxiNEYgc2QExvG5AEjg8V3m4raYb/WpSBdCYxlots+/dYvJkYLRJloaij82P7YDT/DmKFC2fh+WwMrNkEc7SDo43FzsUq3y6lMwe6p9Rs1R2313bDA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lHRfOE9W; arc=none smtp.client-ip=209.85.210.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-6e6db4dfd7aso3609592a34.2;
-        Tue, 02 Apr 2024 00:38:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712043489; x=1712648289; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bkEud1DS4CmuqdIWJhXjEm5+cYQ8btjvsByQdn3Q/kw=;
-        b=lHRfOE9WTB76EJl99JCYzWTeOcboRSL59u9vO7QpcfNB5TqntwXe8+W0sYnHz6Z9eN
-         CPxvc6AKxzHWotYqSqS7Xzio4FPS8YIHX7tRjP22AwjAQpCSL/f+aNGnkKETtg+oCkJA
-         r7wzTIxenFsvRl7T/TMidzVnxR/ZYBsg7VHVwWklsC+7viXCcUWfkNszQywRsu11fCWd
-         5R9C3+B/WkPJ5eQdtQdU2wcVHIVls842tr6ZBwnUc4rionlV1Itk6P5Zxe+o5kAacGSH
-         DPNJYbMvk8hmYctGiNrIORlrqbuFQE+9rwBA5MB3MzOCj6qDxAUeyxSLsCDGoB60APu+
-         QI2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712043489; x=1712648289;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bkEud1DS4CmuqdIWJhXjEm5+cYQ8btjvsByQdn3Q/kw=;
-        b=LiVoOlyln+kM/4wNDvvYr248J918edZ+PhceVlYRYgN8p7JgyOFYou4XdjkAsnv6RO
-         y+J4tFKafJIKV0e2pB3Totj0gQR8OMvJOO3uY7BpBxPSLuWLSOQvdVndR096U5G3adKz
-         x5jrz8dpNfcW1A51AxC1qTbVDn12I3l/b0OLr9C5WQAPc0VJY0TWLS567zIqQRFjTw2r
-         1js+hdkfiUnfy+m8Fw5quIK3PprtCADN9eRY/WdfiN071ruK32TFDW8z8gOGGuxsv6sK
-         VcwgADHB1usd10x7ad/JVGHxv3V21WLemtpx4FH6mGDYOPDo57BUSJ1SySbrXFWVmJDV
-         zQIw==
-X-Forwarded-Encrypted: i=1; AJvYcCX76yBLszg8CKmWqh+lB9mHOVlLlLw6H8BubrR4IrZK2gEAYIdk3BzyoYbTqKe+4gzmOCDN75MUswsW1i+mxtY072d7Kr8DnZrQhtNjCH4YqbgRi8xdaaoq7lYLGds8PP+xT8lktKKNpb6oCWZZLXC9URoIHL4psJ8iGOcgHr8xLcAuKg==
-X-Gm-Message-State: AOJu0Ywv/hdFe0sTIiC30h9t1ailBkBrta4vUtSicGmtUTVlZRbSP0Au
-	Yu+Iy9ZYhmTfbHK1ZFj9qWXNDL37ZEgvHuLTbqt1UC+EczhEQ3G3yIR/wQrN7XuwjeePUWOeqpg
-	yA6ri9sZX77lWPtuczCBNpms6rlUm3pGi+Io=
-X-Google-Smtp-Source: AGHT+IHFLzeDLtGBIrYzgAQS6Hr7ee2/zi63uWsWiVsWTsp8sYSdFbDkTWxYLCjcmaUXCC9pMG2W4IDG6fh2rivYgz8=
-X-Received: by 2002:a05:6870:bb12:b0:229:e49f:8dbe with SMTP id
- nw18-20020a056870bb1200b00229e49f8dbemr12661006oab.4.1712043489569; Tue, 02
- Apr 2024 00:38:09 -0700 (PDT)
+	s=arc-20240116; t=1712043495; c=relaxed/simple;
+	bh=TfkRnq5Iex/rUtVkNVsPycE3pm25lH41VYxu3rMQUOA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sUQorFgHvKI5oqnrMwrPMGcJgkzeUCUbGBZtACUJhmNuYqWTxU6PaEkgz4Q8y9Cpp2wzWknVFgwmIjOb0lavzaJQ+1W7Am/70r1nUw8cdX6icPzEuRd5gYjXr/GxTqCGLQyhCOI5vMt3JbGqXFfxSjqCF8Lp1cbvHPnoaSACH/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V7S6CQI9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C703C433F1;
+	Tue,  2 Apr 2024 07:38:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712043495;
+	bh=TfkRnq5Iex/rUtVkNVsPycE3pm25lH41VYxu3rMQUOA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=V7S6CQI93E3zwLQFAHvPkTOZroqxnXZLv+j98cTwbl0BfjL5riHoJJlkAWmqd/RzX
+	 QMGelJ3/TmSzX16VOatTUkmy/KgJ4pFHEMvETHPBid9Ud93Icownw9abE3svYuvIYF
+	 4feje6sQtbq3Gl1YyBy1YA5xCyYLY8skgtD52QNgIS19gijoD9rCPvxdXDAAD8KOcS
+	 BBL8jMywvaTotqTRcIM48kKaFZYieUm7CwUSaYwblGSxXFVO511ITLIFcZtfgEvZFC
+	 EEie4rNsP8Q8SEcQLtqKg6gZIdANxMQTWe8OHLcY7d361v9PDIyWJbmDRbEUJ6Qf59
+	 uQtLfckete3pQ==
+Message-ID: <80c4c37b-8c5c-4628-a455-fcccfc3b3730@kernel.org>
+Date: Tue, 2 Apr 2024 16:38:12 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240327064354.17384-1-animeshagarwal28@gmail.com> <24c917f6-9ff8-4bca-8cc2-5c14c64c2c9b@kernel.org>
-In-Reply-To: <24c917f6-9ff8-4bca-8cc2-5c14c64c2c9b@kernel.org>
-From: Animesh Agarwal <animeshagarwal28@gmail.com>
-Date: Tue, 2 Apr 2024 13:07:58 +0530
-Message-ID: <CAE3Oz82qNnUau5JeFBViGYgn4+n988NNFMwg3f8AczVcRVdj8w@mail.gmail.com>
-Subject: Re: [PATCH v3] dt-bindings: ata: ahci-da850: Convert to dtschema
-To: Damien Le Moal <dlemoal@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-ide@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 17/18] dt-bindings: pci: rockchip,rk3399-pcie-ep: Add
+ ep-gpios property
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
+ <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Cc: linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Rick Wertenbroek <rick.wertenbroek@gmail.com>,
+ Wilfred Mallawa <wilfred.mallawa@wdc.com>, Niklas Cassel <cassel@kernel.org>
+References: <20240330041928.1555578-1-dlemoal@kernel.org>
+ <20240330041928.1555578-18-dlemoal@kernel.org>
+ <b020b74e-8ae1-448a-9d47-6c9bb13735f9@linaro.org>
+ <c75cb54a-61c7-4bc3-978e-8a28dde93b08@kernel.org>
+ <518f04ea-7ff6-4568-be76-60276d18b209@linaro.org>
+ <49ecab2e-8f36-47be-a1b0-1bb0089dab0f@kernel.org>
+ <57d5d6ea-5fef-423c-9f85-5f295bfa4c5f@linaro.org>
+Content-Language: en-US
+From: Damien Le Moal <dlemoal@kernel.org>
+Organization: Western Digital Research
+In-Reply-To: <57d5d6ea-5fef-423c-9f85-5f295bfa4c5f@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Apr 2, 2024 at 12:55=E2=80=AFPM Damien Le Moal <dlemoal@kernel.org>=
- wrote:
-> Applied to for-6.10. Thanks !
+On 4/2/24 16:33, Krzysztof Kozlowski wrote:
+> On 02/04/2024 01:36, Damien Le Moal wrote:
+>> On 4/1/24 18:57, Krzysztof Kozlowski wrote:
+>>> On 01/04/2024 01:06, Damien Le Moal wrote:
+>>>> On 3/30/24 18:16, Krzysztof Kozlowski wrote:
+>>>>> On 30/03/2024 05:19, Damien Le Moal wrote:
+>>>>>> From: Wilfred Mallawa <wilfred.mallawa@wdc.com>
+>>>>>>
+>>>>>> Describe the `ep-gpios` property which is used to map the PERST# input
+>>>>>> signal for endpoint mode.
+>>>>>>
+>>>>>> Signed-off-by: Wilfred Mallawa <wilfred.mallawa@wdc.com>
+>>>>>> Signed-off-by: Damien Le Moal <dlemoal@kernel.org>
+>>>>>> ---
+>>>>>>  .../devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml       | 3 +++
+>>>>>>  1 file changed, 3 insertions(+)
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml
+>>>>>> index 6b62f6f58efe..9331d44d6963 100644
+>>>>>> --- a/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml
+>>>>>> +++ b/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml
+>>>>>> @@ -30,6 +30,9 @@ properties:
+>>>>>>      maximum: 32
+>>>>>>      default: 32
+>>>>>>  
+>>>>>> +  ep-gpios:
+>>>>>> +    description: Input GPIO configured for the PERST# signal.
+>>>>>
+>>>>> Missing maxItems. But more important: why existing property perst-gpios,
+>>>>> which you already have there in common schema, is not correct for this case?
+>>>>
+>>>> I am confused... Where do you find perst-gpios defined for the rk3399 ?
+>>>> Under Documentation/devicetree/bindings/pci/, the only schema I see using
+>>>> perst-gpios property are for the qcom (Qualcomm) controllers.
+>>>
+>>> You are right, it's so far only in Qualcomm.
+>>>
+>>>> The RC bindings for the rockchip rk3399 PCIe controller
+>>>> (pci/rockchip,rk3399-pcie.yaml) already define the ep-gpios property. So if
+>>>
+>>> Any reason why this cannot be named like GPIO? Is there already a user
+>>> of this in Linux kernel? Commit msg says nothing about this, so that's
+>>> why I would expect name matching the signal.
+>>
+>> The RC-mode PCIe controller node of the rk3399 DTS already defines the ep-gpios
+>> property for RC side PERST# signal handling. So we simply reused the exact same
+>> name to be consistent between RC and EP. I personnally have no preferences. If
+>> there is an effort to rename such signal with some preferred pattern, I will
+>> follow. For the EP node, there was no PERST signal handling in the driver and
+>> no property defined for it, so any name is fine. "perst-gpios" would indeed be
+>> a better name, but again, given that the RC controller node has ep-gpios, we
+>> reused that. What is your recommendation here ?
+> 
+> Actually I don't know, perst and ep would work for me. If you do not
+> have code for this in the driver yet (nothing is shared between ep and
+> host), then maybe let's go with perst to match the actual name.
 
-Thanks for your time Damien.
+That works for me. The other simple solution would be to move the RC node
+ep-gpios description to the common schema pci/rockchip,rk3399-pcie-common.yaml,
+maybe ? Otherwise, perst-gpios like the Qualcomm schemas would be nice too.
 
----
-Animesh Agarwal
+> 
+> Anyway, you need maxItems. I sent a patch for the other binding:
+> https://lore.kernel.org/all/20240401100058.15749-1-krzysztof.kozlowski@linaro.org/
+
+Thanks for that.
+
+> 
+> Best regards,
+> Krzysztof
+> 
+
+-- 
+Damien Le Moal
+Western Digital Research
+
 
