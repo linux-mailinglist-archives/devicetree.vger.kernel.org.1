@@ -1,154 +1,136 @@
-Return-Path: <devicetree+bounces-55307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AF5E894CC5
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 09:39:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ACFD894CD2
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 09:48:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AE3DCB22089
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 07:39:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B75331F22639
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 07:48:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 656EF3B29A;
-	Tue,  2 Apr 2024 07:39:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZhiT1Q/P"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61F793BBE3;
+	Tue,  2 Apr 2024 07:48:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D6A818635;
-	Tue,  2 Apr 2024 07:39:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F5753B29A;
+	Tue,  2 Apr 2024 07:48:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712043541; cv=none; b=EwRgEoejLtU/21lMAmlb2v962RrTLTqvLh3MJjplXbDA3KchSgHspX03dShFD4GrBx81jqv3eHxcCQdtcqfP4j9VaW5121E9ydAAIjH64/iCQ2iUcJYEITXMYhAiPew63gqIpjSatgHD2H019XeOjAmasJflw5EdcEUT7SYMxkM=
+	t=1712044132; cv=none; b=d3aPi6jfMUFzRSLky+xQOTPwMhl6/bMOS+kT827pzC3ZHhE7GvxRLAjgp05WYaVarXibm6CHvoZPEyA71ViqRM26sviEQkmzIoPQ8W17HWeBdr8orhDbuMY3pZMfC2NEPXVKxCtYKnq4pstMHLe1OxEPco4TKVQxKfqa83ElZbM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712043541; c=relaxed/simple;
-	bh=rwUKp8tQcJWIw6WN1+oxtX5t7MIf+fHokhs2hygHdDU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JRmDmEOrR0ObcHVWg9HFYcIBGagLdFwWA7amS2rk3JJa0X8JO7uPD5i+UbdeAcnggpcQPEj3TdB5UW/nAdvvcFNGQLh6uIqLxldo39EhXzfM00nISws9x5CueC56nVFRcmhmnkhnpUOFMhDv4q+b7mIcoAF7pb98P40IQOejOZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZhiT1Q/P; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1F45C433F1;
-	Tue,  2 Apr 2024 07:38:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712043541;
-	bh=rwUKp8tQcJWIw6WN1+oxtX5t7MIf+fHokhs2hygHdDU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZhiT1Q/PVpVwQjGY9RnAZHycKG9jiSCWsIR0PQfL/q705TDjyeUdY54e7vaGUKQR0
-	 BHjhkYUVZaBxKzSjLwN93AJgB1nNFYJdL7+GFD/30gEkwcc1Z23BIAWQSiuUF1yp2P
-	 bsNY+AWxzEbldxixwQVWE5Yp8i3h6My487UX9PECjHRB9QPq1ifOXhiPUsaG4YJJvs
-	 HYmPDSKkv/likU74S7nei7nhptKJ/LfwNeAhn7ymLccKqlKlSJhYglkjUswBOvydPm
-	 9XYs3ODk+yK1WwzUMeAVOqDiorKnam/4kW9TqCm8XAgGpJ7xyF0uO0wjH3Bn38omte
-	 txAncUFpLeYow==
-Message-ID: <ae0544bc-c5e1-4705-8917-0d69d24f06b1@kernel.org>
-Date: Tue, 2 Apr 2024 16:38:57 +0900
+	s=arc-20240116; t=1712044132; c=relaxed/simple;
+	bh=xudrbFG1OklbyuU2y6nzlMSY6MlqTsTkKxZNUae6GEs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ob6bMVZHeZiHChgNKymtnc81jxf0YrV0iQOK/fkruCTSoQyMHAOF/ZfLCdK9y7CxbApmcaaISnmDptR9YbjiAvZnOrOcrOdmqo43Jq7Hr5rgnI9IOEOl2SWv6KPBKbKGpTbrAJiD1Kq1qe0DYz50EzZ8AUByzh/D07pLvI70ENs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D201B1042;
+	Tue,  2 Apr 2024 00:49:20 -0700 (PDT)
+Received: from pluto (unknown [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0C72A3F64C;
+	Tue,  2 Apr 2024 00:48:46 -0700 (PDT)
+Date: Tue, 2 Apr 2024 08:48:44 +0100
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: Peng Fan <peng.fan@nxp.com>
+Cc: Andy Shevchenko <andy.shevchenko@gmail.com>,
+	"Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+	Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Dan Carpenter <dan.carpenter@linaro.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+	Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+Subject: Re: [PATCH v6 3/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
+ protocol basic support
+Message-ID: <Zgu4Tok43W5t8KM0@pluto>
+References: <20240323-pinctrl-scmi-v6-0-a895243257c0@nxp.com>
+ <20240323-pinctrl-scmi-v6-3-a895243257c0@nxp.com>
+ <ZgcP4IkTQGks9ehH@surfacebook.localdomain>
+ <DU0PR04MB9417E797F4E0F7BB6154B3BE88382@DU0PR04MB9417.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 17/18] dt-bindings: pci: rockchip,rk3399-pcie-ep: Add
- ep-gpios property
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
- <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Cc: linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Rick Wertenbroek <rick.wertenbroek@gmail.com>,
- Wilfred Mallawa <wilfred.mallawa@wdc.com>, Niklas Cassel <cassel@kernel.org>
-References: <20240330041928.1555578-1-dlemoal@kernel.org>
- <20240330041928.1555578-18-dlemoal@kernel.org>
- <b020b74e-8ae1-448a-9d47-6c9bb13735f9@linaro.org>
- <c75cb54a-61c7-4bc3-978e-8a28dde93b08@kernel.org>
- <518f04ea-7ff6-4568-be76-60276d18b209@linaro.org>
- <49ecab2e-8f36-47be-a1b0-1bb0089dab0f@kernel.org>
- <57d5d6ea-5fef-423c-9f85-5f295bfa4c5f@linaro.org>
-Content-Language: en-US
-From: Damien Le Moal <dlemoal@kernel.org>
-Organization: Western Digital Research
-In-Reply-To: <57d5d6ea-5fef-423c-9f85-5f295bfa4c5f@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DU0PR04MB9417E797F4E0F7BB6154B3BE88382@DU0PR04MB9417.eurprd04.prod.outlook.com>
 
-On 4/2/24 16:33, Krzysztof Kozlowski wrote:
-> On 02/04/2024 01:36, Damien Le Moal wrote:
->> On 4/1/24 18:57, Krzysztof Kozlowski wrote:
->>> On 01/04/2024 01:06, Damien Le Moal wrote:
->>>> On 3/30/24 18:16, Krzysztof Kozlowski wrote:
->>>>> On 30/03/2024 05:19, Damien Le Moal wrote:
->>>>>> From: Wilfred Mallawa <wilfred.mallawa@wdc.com>
->>>>>>
->>>>>> Describe the `ep-gpios` property which is used to map the PERST# input
->>>>>> signal for endpoint mode.
->>>>>>
->>>>>> Signed-off-by: Wilfred Mallawa <wilfred.mallawa@wdc.com>
->>>>>> Signed-off-by: Damien Le Moal <dlemoal@kernel.org>
->>>>>> ---
->>>>>>  .../devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml       | 3 +++
->>>>>>  1 file changed, 3 insertions(+)
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml
->>>>>> index 6b62f6f58efe..9331d44d6963 100644
->>>>>> --- a/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml
->>>>>> +++ b/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml
->>>>>> @@ -30,6 +30,9 @@ properties:
->>>>>>      maximum: 32
->>>>>>      default: 32
->>>>>>  
->>>>>> +  ep-gpios:
->>>>>> +    description: Input GPIO configured for the PERST# signal.
->>>>>
->>>>> Missing maxItems. But more important: why existing property perst-gpios,
->>>>> which you already have there in common schema, is not correct for this case?
->>>>
->>>> I am confused... Where do you find perst-gpios defined for the rk3399 ?
->>>> Under Documentation/devicetree/bindings/pci/, the only schema I see using
->>>> perst-gpios property are for the qcom (Qualcomm) controllers.
->>>
->>> You are right, it's so far only in Qualcomm.
->>>
->>>> The RC bindings for the rockchip rk3399 PCIe controller
->>>> (pci/rockchip,rk3399-pcie.yaml) already define the ep-gpios property. So if
->>>
->>> Any reason why this cannot be named like GPIO? Is there already a user
->>> of this in Linux kernel? Commit msg says nothing about this, so that's
->>> why I would expect name matching the signal.
->>
->> The RC-mode PCIe controller node of the rk3399 DTS already defines the ep-gpios
->> property for RC side PERST# signal handling. So we simply reused the exact same
->> name to be consistent between RC and EP. I personnally have no preferences. If
->> there is an effort to rename such signal with some preferred pattern, I will
->> follow. For the EP node, there was no PERST signal handling in the driver and
->> no property defined for it, so any name is fine. "perst-gpios" would indeed be
->> a better name, but again, given that the RC controller node has ep-gpios, we
->> reused that. What is your recommendation here ?
-> 
-> Actually I don't know, perst and ep would work for me. If you do not
-> have code for this in the driver yet (nothing is shared between ep and
-> host), then maybe let's go with perst to match the actual name.
-
-Forgot to add: the driver code for the EP PERST gpio handling is added in patch
-18 of the series, after this one.
-
-> 
-> Anyway, you need maxItems. I sent a patch for the other binding:
-> https://lore.kernel.org/all/20240401100058.15749-1-krzysztof.kozlowski@linaro.org/
-> 
-> Best regards,
-> Krzysztof
+On Sun, Mar 31, 2024 at 01:44:28PM +0000, Peng Fan wrote:
+> Hi Andy,
 > 
 
--- 
-Damien Le Moal
-Western Digital Research
+Hi Peng,
+
+
+> > Subject: Re: [PATCH v6 3/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
+> > protocol basic support
+> > 
+> > Sat, Mar 23, 2024 at 08:15:16PM +0800, Peng Fan (OSS) kirjoitti:
+> > > From: Peng Fan <peng.fan@nxp.com>
+> > >
+> > > Add basic implementation of the SCMI v3.2 pincontrol protocol.
+> > 
+> > ...
+> > 
+> > >  scmi-transport-$(CONFIG_ARM_SCMI_TRANSPORT_VIRTIO) += virtio.o
+> > >  scmi-transport-$(CONFIG_ARM_SCMI_TRANSPORT_OPTEE) += optee.o
+> > > scmi-protocols-y = base.o clock.o perf.o power.o reset.o sensors.o
+> > > system.o voltage.o powercap.o
+> > 
+> > Actually you want to have := here.
+> > 
+> > > +scmi-protocols-y += pinctrl.o
+> > 
+> > 
+> > 
+> > >  scmi-module-objs := $(scmi-driver-y) $(scmi-protocols-y)
+> > > $(scmi-transport-y)
+> > 
+> > Side note: The -objs has to be -y
+> > 
+> > ...
+> > 
+> > > +#include <linux/module.h>
+> > > +#include <linux/scmi_protocol.h>
+> > > +#include <linux/slab.h>
+> > 
+> > This is semi-random list of headers. Please, follow IWYU principle (include
+> > what you use). There are a lot of inclusions I see missing (just in the context of
+> > this page I see bits.h, types.h, and  asm/byteorder.h).
+> 
+> Is there any documentation about this requirement?
+> Some headers are already included by others.
+> 
+
+Andy made (mostly) the same remarks on this same patch ~1-year ago on
+this same patch while it was posted by Oleksii.
+
+And I told that time that most of the remarks around devm_ usage were
+wrong due to how the SCMI core handles protocol initialization (using a
+devres group transparently).
+
+This is what I answered that time.
+
+https://lore.kernel.org/linux-arm-kernel/ZJ78hBcjAhiU+ZBO@e120937-lin/#t
+
+I wont repeat myself, but, in a nutshell the memory allocation like it
+is now is fine: a bit happens via devm_ at protocol initialization, the
+other is doe via explicit kmalloc at runtime and freed via kfree at
+remove time (if needed...i.e. checking the present flag of some structs)
+
+I'll made further remarks on v7 that you just posted.
+
+Thanks,
+Cristian
 
 
