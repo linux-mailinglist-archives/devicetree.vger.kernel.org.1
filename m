@@ -1,139 +1,220 @@
-Return-Path: <devicetree+bounces-55438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67202895327
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 14:36:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38BB1895344
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 14:38:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 986621C230B2
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 12:36:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DFE97286180
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 12:38:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D404183A17;
-	Tue,  2 Apr 2024 12:35:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4D8C5E091;
+	Tue,  2 Apr 2024 12:37:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Sc4zse2B"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F5MXzVIh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 161F37829B;
-	Tue,  2 Apr 2024 12:35:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8CEA83CD3;
+	Tue,  2 Apr 2024 12:37:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712061353; cv=none; b=RVv2QFIEj4d26YIYIpXx4CjPqnNJBhVm7qDHkQvwVvOpo+w1O7HXciGbE/WiJgEckfXB+v+n5JZXmodErCUL5J3JoU1vLN6+ebXUF9vW9CfT9xMH4JwRVXsrK6DAH9++Fg/XvNjb3xX9lqgrOZz3pEdlWerQDuvZlESUs3Rjd1Y=
+	t=1712061429; cv=none; b=MZejC3lwr2b2aIiC2UA7xojO/EQ01lQ89IRed7JBTsfGFCkzhfRTb2AjqOHEty0Vt7xenYAhPor56cRaPbG/HiYh++wZI9QbqZDviMu7o0P//1nYQqG+sx14OW1fExIRbm8ljnLp0JqW4q8vcbO51R7HjZR9wWjdTu5Oj7yui4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712061353; c=relaxed/simple;
-	bh=QGWIv2WWvyCrLtr4xkkotCp2unFTxp9w1QhuXHQjPO8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=W58O5A4wzGbi/gV8rF5d39qDzai33GHRPs9WV9Lqwn0sJrjeoDwAcGalq4r0xZDaZOTnQEZkyk6KBytqfi+hE0hAPWTIOOBCIoCnqlyTdY3hIDkz5Tev813G0FarONjaX5ApyUnRWFUlBNwOXXGyFhu6jgnWuEzrSP8Lx/BPF94=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Sc4zse2B; arc=none smtp.client-ip=209.85.208.50
+	s=arc-20240116; t=1712061429; c=relaxed/simple;
+	bh=Pk2HgzXAGCfJO2L7X/paOS4JEgzpUMyFsy/4qgAscqY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MMF9p4VCTd7qF35gkLQhvv4H92MczGninoberdz8NUoPJlTkkIWTw+IhUY01w7mtF5/eMcCREPWKysS+5Q96GMvbdMhx8CySNmWWLaURVAxPtqYL65RVkOYyMhfM71fHrYrfXCamjdZq0Dxu3Kp3TT/z21j0qguWl7uJPJmHm4Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F5MXzVIh; arc=none smtp.client-ip=209.85.219.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-565c6cf4819so9770651a12.1;
-        Tue, 02 Apr 2024 05:35:51 -0700 (PDT)
+Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-dcbf82cdf05so4265253276.2;
+        Tue, 02 Apr 2024 05:37:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712061350; x=1712666150; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1cpmHlgTYvdBo5BqX4Qj555ThK3EAgjQXbR8aGueU4U=;
-        b=Sc4zse2B1UIYq2YXLq8YAUhTIqrlQrXY7ocaKvSKbkgQCJatVaa5IJ48DTvA5P67Z3
-         zVDCUAnPTP0SsqLdLMFKkoppukCW2rbpQREzgT2xxvl6EFFrn+lf5+pv5z25QXVzoC9R
-         tdqxqXk1kfoWbP4OENQpN/1AHeW5F6KV2qIksmBK7veAQPgjHsn/uIGG6cNwwSEBaZ8J
-         LbkGAA+1Dx6OIBmRwGT7+53NkeocY2LZ53zT1ng8RcgD19RSTV5oNeEq87Fe9fV+Q0Ph
-         k4vCUqoyjLlelv2I3VCSif4i+sPL0f/rul43NQnRIz5CEsRghYcvN1bJrs/xg+vcjt+m
-         hmaw==
+        d=gmail.com; s=20230601; t=1712061427; x=1712666227; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+hVDtgf/tX6CB1x3wViNXfCr99QZLJMtRkH2+/L34AU=;
+        b=F5MXzVIhApZ7QC+EvBmq4NfJ/Bf91v5ElS8FkW19jKStRlMQyFzgA9DY9WnoozkuPK
+         Woc/HuqKehMDlKW1GVHvoYTjRj78g4ia/tiKQWvLMo5zk11Qn4JafZmnWL5xw/6aYL3j
+         YaI1fs8mH/5zJIdJPbLMgEmEmJWDK7+6lWGZSwSgOFXnVu0xJJI2XPIMkmMpf/KCY2Gf
+         gltpZ/tkvxbiiuNSW9p8Se7OOYBHpL57rse5134HXfDTRmr9RUYXgTifvSnktrhYVJhX
+         XGf9gHx6kjCv4L97CeRgN07L/MHJsNMKtCJQYcE1Ds7HKv1j0FxLrsefh4l79dVg+Dhf
+         n/1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712061350; x=1712666150;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1712061427; x=1712666227;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=1cpmHlgTYvdBo5BqX4Qj555ThK3EAgjQXbR8aGueU4U=;
-        b=H7aMbCDSiyVShG4QUKMcdBqH3zxzCszEnJahzRU31n5VNe55ws7U/+SiijBVqiwRhg
-         KlnT2oeNcnch5NG1O1p8K2lBiTYmUGFqgbrFbDSRBMsumMwQr9U4OQDVlqfXusrmMJJ9
-         NBryHn4gmIW/tL1WLpCX3ZYZeEPWwrqXvcWSn8p14H41vyskSfq3whqQ7g73HH6hcWVJ
-         64+sZ30VQMMXeP2AwYqYGT4TG7Ezkiqs+g/gg1dAf+e2KEUHv01X25xsjO8E6/BAq9Xq
-         lak0PnAXJLamdUbFTx8YA66T4Z0NL910Hf2XLF0SXj0TvBuJckwmRtMrPqmFBCNml59k
-         CstQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW0+sockB+mmtsgTvHLf4K9695kltqzew8Z1ELd4tzh1M8XkGo+68vMiauHGl7Qqrh5Gq4MoQndQg+ySDvgIIxsl6TK5DD74iUCDPH3DtrRlFCjVNLdtI7rmnX0+cZhPWZ/dBl46MF8bQL63hS3fNhHR/NId2/0HJkOBunyb9LQiYdBpJLmkPQ=
-X-Gm-Message-State: AOJu0Yyr9gjuQ01y0n9SmDpx6OkNRLwAuOYMOVMQZPYhaJG68xjKcBee
-	v8YMF1KgHdO1f7YiwpAyzPIm7h6QVPlftKS8kIj5pb7AI/bAx5WgG2USVVCE5iY=
-X-Google-Smtp-Source: AGHT+IHUmVMD2FluIhr5k+EwxnCdR9bLzUngmN30gx8pzy2d+rsyrBAY+OZ6dbnVYL8kqsJgXMospg==
-X-Received: by 2002:a17:906:714a:b0:a4e:f91:4694 with SMTP id z10-20020a170906714a00b00a4e0f914694mr13159492ejj.27.1712061350286;
-        Tue, 02 Apr 2024 05:35:50 -0700 (PDT)
-Received: from [127.0.0.1] (net-93-65-126-18.cust.vodafonedsl.it. [93.65.126.18])
-        by smtp.googlemail.com with ESMTPSA id x18-20020a1709060a5200b00a46ab3adea5sm6467506ejf.113.2024.04.02.05.35.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Apr 2024 05:35:50 -0700 (PDT)
-From: Gianluca Boiano <morf3089@gmail.com>
-Date: Tue, 02 Apr 2024 14:35:44 +0200
-Subject: [PATCH 3/3] dt-bindings: leds: leds-qcom-lpg: Add support for
- PMI8950 PWM
+        bh=+hVDtgf/tX6CB1x3wViNXfCr99QZLJMtRkH2+/L34AU=;
+        b=Ge0ItIi8Vg8J9AhVSsiWnguGzANF/oKlbq1ESbobPUNaUPVdTbfAAPEOGnsfJvtWwC
+         81yKDe79jGPpCXROriNGOWa/gpy7ryYc3nEeDtduMZbnDcKUWYdQp0fYavlxGwTnyLBr
+         4xgfhxaiIRE4NFm/RNtl+L/tYnxuo6X6ZevdbtKub+9CE6WZwnonD7uGE5FOlaptHab5
+         qYvr40MFn3CI0gnYxzPVnjveih/6Km3QPLIkhfWH3HaEhiOj11+asg+H4JNRL0R+IaRK
+         YIj6mHZBnWFvq9uXOio+9m/pOLi0SivRq20RO7p9HbKCBvB1WettXy8N8BrH/+4Rm4ZN
+         tMtw==
+X-Forwarded-Encrypted: i=1; AJvYcCUWoFoOrTESPKP+huOqkzuYZQmjbkPrNZ5uEY6IacRFky6U5xCgVNnd6FzHOB0ikrOKkANeaxtX60nncTDYSlo6Ln+tzIEDQeljze9H25gHr8QG9cwLAiDufk1EtSKiLeUhXjRKpg==
+X-Gm-Message-State: AOJu0YzbjvaZ+gPRgrNIsT3qJ0n0IrrVLhFAEoQmvgnCdBijuJrgaCLx
+	Qcrcm6TVvTQNly+e1D3YB9416VIgTR2rufjJVLfDR/BW1siMIJKXGP+s2qEUQaT6+XmIa4evI9h
+	V+e7tAqhaJpPoxgpbbrWCzFbKD3c=
+X-Google-Smtp-Source: AGHT+IEsX2IyHA+ZUdqmgdyBhyN/n3wzZWG/aPw2nClgFtPv8DabvDpNMD5pRH43XmPMEAGZEKh8bpUFWc8XHCF9O54=
+X-Received: by 2002:a25:19c3:0:b0:dc6:b8f5:50ae with SMTP id
+ 186-20020a2519c3000000b00dc6b8f550aemr10180179ybz.32.1712061426800; Tue, 02
+ Apr 2024 05:37:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240402-pmi8950-pwm-support-v1-3-1a66899eeeb3@gmail.com>
-References: <20240402-pmi8950-pwm-support-v1-0-1a66899eeeb3@gmail.com>
-In-Reply-To: <20240402-pmi8950-pwm-support-v1-0-1a66899eeeb3@gmail.com>
-To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- Gianluca Boiano <morf3089@gmail.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1712061344; l=1158;
- i=morf3089@gmail.com; s=20240402; h=from:subject:message-id;
- bh=QGWIv2WWvyCrLtr4xkkotCp2unFTxp9w1QhuXHQjPO8=;
- b=K3FDOdLTXCrHYVq2laeBVzZJD6MHFNiwfQA9ZD2q523SR3ZZFWZ8TE7yT88PodZFbgYksusEo
- UtWqtgYf1e5ASs8lV6Svh+AoZsdGj+EtPcQ33pPYA5GDgKfOeizR/Ue
-X-Developer-Key: i=morf3089@gmail.com; a=ed25519;
- pk=HsGrEQ3ia8BGGGO8/nUM2K2UX9JKvRPV+nbrVDGrYhA=
+References: <20240330041928.1555578-1-dlemoal@kernel.org>
+In-Reply-To: <20240330041928.1555578-1-dlemoal@kernel.org>
+From: Rick Wertenbroek <rick.wertenbroek@gmail.com>
+Date: Tue, 2 Apr 2024 14:36:28 +0200
+Message-ID: <CAAEEuhr6szh76u+OhxYnsa6-55_zhOyfGYL3YwjHvYKoGuXNmg@mail.gmail.com>
+Subject: Re: [PATCH v2 00/18] Improve PCI memory mapping API
+To: Damien Le Moal <dlemoal@kernel.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+	Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	Wilfred Mallawa <wilfred.mallawa@wdc.com>, Niklas Cassel <cassel@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Update leds-qcom-lpg binding to support PMI8950 PWM.
+On Sat, Mar 30, 2024 at 5:19=E2=80=AFAM Damien Le Moal <dlemoal@kernel.org>=
+ wrote:
+>
+> This series introduces the new functions pci_epc_map_align(),
+> pci_epc_mem_map() and pci_epc_mem_unmap() to improve handling of the
+> PCI address mapping alignment constraints of endpoint controllers in a
+> controller independent manner.
+>
+> The issue fixed is that the fixed alignment defined by the "align" field
+> of struct pci_epc_features assumes that the alignment of the endpoint
+> memory used to map a RC PCI address range is independent of the PCI
+> address being mapped. But that is not the case for the rk3399 SoC
+> controller: in endpoint mode, this controller uses the lower bits of the
+> local endpoint memory address as the lower bits for the PCI addresses
+> for data transfers. That is, when mapping local memory, one must take
+> into account the number of bits of the RC PCI address that change from
+> the start address of the mapping.
+>
+> To fix this, the new endpoint controller method .map_align is introduced
+> and called from pci_epc_map_align(). This method is optional and for
+> controllers that do not define it, the mapping information returned
+> is based of the fixed alignment constraint as defined by the align
+> feature.
+>
+> The functions pci_epc_mem_map() is a helper function which obtains
+> mapping information, allocates endpoint controller memory according to
+> the mapping size obtained and maps the memory. pci_epc_mem_map() unmaps
+> and frees the endpoint memory.
 
-Signed-off-by: Gianluca Boiano <morf3089@gmail.com>
----
- Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+This way of mapping is not only useful for the RK3399 but would also
+help for the addition of other future PCI endpoint controller drivers.
 
-diff --git a/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml b/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
-index 7b9e0ad1ecaa..8b82c45d1a48 100644
---- a/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
-+++ b/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
-@@ -27,6 +27,7 @@ properties:
-           - qcom,pm8994-lpg
-           - qcom,pmc8180c-lpg
-           - qcom,pmi632-lpg
-+          - qcom,pmi8950-pwm
-           - qcom,pmi8994-lpg
-           - qcom,pmi8998-lpg
-           - qcom,pmk8550-pwm
-@@ -146,6 +147,7 @@ allOf:
-               - qcom,pm8941-lpg
-               - qcom,pm8994-lpg
-               - qcom,pmc8180c-lpg
-+              - qcom,pmi8950-pwm
-               - qcom,pmi8994-lpg
-               - qcom,pmi8998-lpg
-               - qcom,pmk8550-pwm
-@@ -294,5 +296,3 @@ examples:
-         label = "blue";
-       };
-     };
--
--...
+For example, on several FPGA PCI endpoint IPs the window mapping is
+also done by passing N bits from the mapped address and M bits from
+the window mapping address (where N+M=3Dbus width, e.g., 32 or 64).
+Using AND/OR masks/operations to combine the bits for the hardware
+address from the mapped address and map base uses less resources than
+using add/subtract to get the hardware address from an unaligned map
+base and offset. So I guess that more than a few IPs, being hard or
+soft IPs, use this kind of mapping (to reduce size, logic, improve max
+operating frequency, improve efficiency etc.)
 
--- 
-2.44.0
+Two major examples come to mind :
+1) The AMD/Xilinx PCIe endpoint IP. The mapping is documentented in
+"AXI Bridge for PCI Express Gen3 Subsystem Product Guide (PG194)" [1]
+section BAR and Address Translation (Figure AXI to PCIe Address
+Translation).
+2) The Intel/Altera PCIe endpoint IP. The mapping is documented in
+"Multi Channel DMA Intel=C2=AE FPGA IP for PCI Express* User Guide" [2]
+section 3.6. Root Port Address Translation Table Enablement.
 
+Both those IPs don't have mainline support yet as PCIe endpoint
+controllers but also use a similar kind of mapping as suggested here
+for the RK3399. So these changes would also make the addition of these
+controller drivers easier.
+
+The new mapping scheme also makes it much clearer in the PCI endpoint
+framework. Because without it some mapping operation would fail
+because of alignment requirements in the controller, this requires
+extra code and checks in the drivers that implement the endpoint
+functions. With the current state of the PCI endpoint controller
+framework there is no good way to express that the controller does an
+AND/OR mask combination to create the hardware address and therefore
+requires the map to be aligned to the window size, rather than doing a
+window base addition with an offset (subtraction) in the mapping. This
+could benefit from further clarification in the endpoint framework.
+
+Best regards,
+Rick
+
+[1] https://docs.amd.com/r/en-US/pg194-axi-bridge-pcie-gen3/Address-Transla=
+tion
+[2] https://www.intel.com/content/www/us/en/docs/programmable/683821/23-4/
+
+>
+> This series is organized as follows:
+>  - Patch 1 tidy up the epc core code
+>  - Patch 2 and 3 introduce the new map_align endpoint controller method
+>    and related epc functions.
+>  - Patch 4 to 6 modify the test endpoint driver to use these new
+>    functions and improve the code of this driver.
+>  - Finally, Patch 7 to 18 fix the rk3399 endpoint driver, defining a
+>    .map_align method for it and improving its overall code readability
+>    and features.
+>
+> Changes from v1:
+>  - Changed pci_epc_check_func() to pci_epc_function_is_valid() in patch
+>    1.
+>  - Removed patch "PCI: endpoint: Improve pci_epc_mem_alloc_addr()"
+>    (former patch 2 of v1)
+>  - Various typos cleanups all over. Also fixed some blank space
+>    indentation.
+>  - Added review tags
+>
+> Damien Le Moal (17):
+>   PCI: endpoint: Introduce pci_epc_function_is_valid()
+>   PCI: endpoint: Introduce pci_epc_map_align()
+>   PCI: endpoint: Introduce pci_epc_mem_map()/unmap()
+>   PCI: endpoint: test: Use pci_epc_mem_map/unmap()
+>   PCI: endpoint: test: Synchronously cancel command handler work
+>   PCI: endpoint: test: Implement link_down event operation
+>   PCI: rockchip-ep: Fix address translation unit programming
+>   PCI: rockchip-ep: Use a macro to define EP controller .align feature
+>   PCI: rockchip-ep: Improve rockchip_pcie_ep_unmap_addr()
+>   PCI: rockchip-ep: Improve rockchip_pcie_ep_map_addr()
+>   PCI: rockchip-ep: Implement the map_align endpoint controller operation
+>   PCI: rockchip-ep: Refactor rockchip_pcie_ep_probe() memory allocations
+>   PCI: rockchip-ep: Refactor rockchip_pcie_ep_probe() MSI-X hiding
+>   PCI: rockchip-ep: Refactor endpoint link training enable
+>   PCI: rockship-ep: Introduce rockchip_pcie_ep_stop()
+>   PCI: rockchip-ep: Improve link training
+>   PCI: rockchip-ep: Handle PERST# signal in endpoint mode
+>
+> Wilfred Mallawa (1):
+>   dt-bindings: pci: rockchip,rk3399-pcie-ep: Add ep-gpios property
+>
+>  .../bindings/pci/rockchip,rk3399-pcie-ep.yaml |   3 +
+>  drivers/pci/controller/pcie-rockchip-ep.c     | 393 ++++++++++++++----
+>  drivers/pci/controller/pcie-rockchip.c        |  17 +-
+>  drivers/pci/controller/pcie-rockchip.h        |  22 +
+>  drivers/pci/endpoint/functions/pci-epf-test.c | 390 +++++++++--------
+>  drivers/pci/endpoint/pci-epc-core.c           | 213 +++++++---
+>  include/linux/pci-epc.h                       |  39 ++
+>  7 files changed, 768 insertions(+), 309 deletions(-)
+>
+> --
+> 2.44.0
+>
 
