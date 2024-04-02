@@ -1,151 +1,100 @@
-Return-Path: <devicetree+bounces-55651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55657-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAF88895D99
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 22:33:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3D09895E01
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 22:51:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6FA1928681B
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 20:33:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5736928778A
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 20:51:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE3BD2209F;
-	Tue,  2 Apr 2024 20:33:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B62EF15B542;
+	Tue,  2 Apr 2024 20:51:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="RB8NyPDy"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="ZLPMOjwj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.208])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D23C1E4AE
-	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 20:33:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DCAE1E4AE
+	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 20:51:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.208
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712089989; cv=none; b=Rzn2mxNmo7Fqn+VpbbQathjhfdPEqd+Ldw5vG5GtznTEMV7wXma1+WDSegJmdMwl3LON2LWQaOJF0G776fm7nf6WxnwDCelZrmXDvxzq/HV7QB09AxSxZPNm+EjMG7OSX8Cv3EhYo+hvTA5847YPjjBvsFZWnieRRm/SFUI/gJc=
+	t=1712091072; cv=none; b=R7K/i2CZr8tQQmulDjRnmD9kr3Nb0pLNWAw1S34Uuz8AqJ9O63ksIE/xohjrX3Q/+N2Fs6j47nTP19yTWxZdg90pEz/BL8qyo49Ts1u0hQ5Z9huuL24ojpdzs4cJ0SvSqINrQmbU8yF+XmaI4SCxVfrnucy7bpuAyRdTjQDbIZc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712089989; c=relaxed/simple;
-	bh=4mOofuEeOq7v4mnEeBDbo5h6q7HdM9SMjWkZDda7BNY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BNeXWomXyLsAKA0jQUqRzt0Q5o3Us73K+hbRGJSYNUuZfcqMWTIIu7HtToqususILYqv6+PjvCleORQXG67jdTCP27YQVxpwhEANYv1Qph1Jhu1X4wWFMujXyhPrlOkfBTIzqdTFX1uRs/5tjWeQEFEc/c88hWwitBGKfrNb2I4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=RB8NyPDy; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 49F8A1A2;
-	Tue,  2 Apr 2024 22:32:29 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1712089949;
-	bh=4mOofuEeOq7v4mnEeBDbo5h6q7HdM9SMjWkZDda7BNY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RB8NyPDyGlynBUsDiFxqNkll1yOFsYz/EMZ2VsFQOAmjEHAO1lOeLNUix9efTP4Gt
-	 o9G78a0tBd3qS10qEC1wS/GOuu5s1r/3Xv8q2H5zyTEsNEEIXRACPKITbWzHw/yGWx
-	 HEx3vLJNEAP+gxQhlUDD2VcV6qbCcIspsCQhtcSw=
-Date: Tue, 2 Apr 2024 23:32:55 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Florian Fainelli <f.fainelli@gmail.com>
-Cc: Stefan Wahren <wahrenst@gmx.net>, "Ivan T. Ivanov" <iivanov@suse.de>,
-	Peter Robinson <pbrobinson@gmail.com>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Naushir Patuck <naush@raspberrypi.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
+	s=arc-20240116; t=1712091072; c=relaxed/simple;
+	bh=O7yg1mHxAG4Cbk82QOCffk70sF+nCwV1T90tsOwTCtc=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ZAzJSoVpAhcDzjraJBZh+YDIJl32TDIEswjDKvh+B45h48Ex4cwH9i0nSNF7hSZwECn1aP+OxYEqQtqmzPasxeZqA9ImSeMv7uOBR4Cg+sKLEEnOsJ/LNY+tFYNkZlt2LBMcR/zZM6AutsYLoAybSA5MVJPOhYuOZrVeBe8MoSQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=ZLPMOjwj; arc=none smtp.client-ip=192.19.144.208
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: from mail-lvn-it-01.lvn.broadcom.net (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
+	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 9FB16C0000EA;
+	Tue,  2 Apr 2024 13:41:02 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 9FB16C0000EA
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
+	s=dkimrelay; t=1712090462;
+	bh=O7yg1mHxAG4Cbk82QOCffk70sF+nCwV1T90tsOwTCtc=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=ZLPMOjwjQw45QUw0U9O2nMn/nevCeXgcdpM1OoA6sv+58DmjX+GnYZ/2VP4Sb70n8
+	 NoJBriOSiCR2rWB5B6l+6CTNjZE2cAIrTg2JsVPazjhgOnI5b0JEaxEwZSwWRjXcQl
+	 amZvVkSJLkgHUL7Ldunz27ILtyCaU+Z/lY0sKvSU=
+Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id B96F718041CAC4;
+	Tue,  2 Apr 2024 13:41:00 -0700 (PDT)
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+To: bcm-kernel-feedback-list@broadcom.com,
+	=?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Florian Fainelli <f.fainelli@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Nicolas Saenz Julienne <nsaenz@kernel.org>,
-	Ray Jui <rjui@broadcom.com>, Rob Herring <robh@kernel.org>,
-	Scott Branden <sbranden@broadcom.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org, u-boot@lists.denx.de
-Subject: Re: [PATCH v2 0/3] dt-bindings: arm: bcm:
- raspberrypi,bcm2835-firmware: Drive-by fixes
-Message-ID: <20240402203255.GC32172@pendragon.ideasonboard.com>
-References: <20240326195807.15163-1-laurent.pinchart@ideasonboard.com>
- <b044eec1-ae64-4de7-9ab0-e3fe756131ef@gmx.net>
- <20240327233700.GA21080@pendragon.ideasonboard.com>
- <bcf8093ab0ea6f3738bf4a4623de700a@suse.de>
- <2e15ab46-f29c-44ac-8a2a-8baa140ee1a3@gmx.net>
- <20240402200855.GA32172@pendragon.ideasonboard.com>
- <8a64376d-f624-44c8-91bb-f6a95dc1c945@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	William Zhang <william.zhang@broadcom.com>,
+	Anand Gore <anand.gore@broadcom.com>,
+	Kursad Oney <kursad.oney@broadcom.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	=?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
+Subject: Re: [PATCH] arm64: dts: broadcom: bcmbca: bcm4908: set brcm,wp-not-connected
+Date: Tue,  2 Apr 2024 13:41:01 -0700
+Message-Id: <20240402204101.2519170-1-florian.fainelli@broadcom.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240328093710.28206-1-zajec5@gmail.com>
+References: <20240328093710.28206-1-zajec5@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <8a64376d-f624-44c8-91bb-f6a95dc1c945@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Florian,
+From: Florian Fainelli <f.fainelli@gmail.com>
 
-On Tue, Apr 02, 2024 at 01:18:35PM -0700, Florian Fainelli wrote:
-> On 4/2/24 13:08, Laurent Pinchart wrote:
-> > On Tue, Apr 02, 2024 at 09:52:06PM +0200, Stefan Wahren wrote:
-> >> Am 02.04.24 um 10:58 schrieb Ivan T. Ivanov:
-> >>> On 2024-03-28 01:37, Laurent Pinchart wrote:
-> >>>> On Wed, Mar 27, 2024 at 07:49:38AM +0100, Stefan Wahren wrote:
-> >>>>> Hi,
-> >>>>>
-> >>>>> [add Peter and Ivan]
-> >>>>>
-> >>>>> Am 26.03.24 um 20:58 schrieb Laurent Pinchart:
-> >>>>>> Hello,
-> >>>>>>
-> >>>>>> This small series includes a few drive-by fixes for DT validation
-> >>>>>> errors.
-> >>>>>>
-> >>>>>> The first patch has been posted previously in v1 ([1], and now addresses
-> >>>>>> a small review comment. I think it's good to go.
-> >>>>>>
-> >>>>>> The next two patches address the same issue as "[PATCH 1/2] dt-bindings:
-> >>>>>> arm: bcm: raspberrypi,bcm2835-firmware: Add missing properties" ([2]),
-> >>>>>> but this time with a (hopefully) correct approach. Patch 2/3 starts by
-> >>>>>> fixing the raspberrypi-bcm2835-firmware driver, removing the need for DT
-> >>>>>> properties that are specified in bcm2835-rpi.dtsi but not documented in
-> >>>>>> the corresponding bindings. Patch 3/3 can then drop those properties,
-> >>>>>> getting rid of the warnings.
-> >>>>>
-> >>>>> since this series drops properties from the device tree, does anyone
-> >>>>> have the chance to test it with a recent U-Boot?
-> >>>>
-> >>>> I don't have U-Boot running with my RPi, so I would appreciate if
-> >>>> someone could help :-)
-> >>>
-> >>> Sorry for taking me so long to verify this.
-> >>>
-> >>> I think on RPi U-Boot side we are fine. API used when accessing Mbox
-> >>> device do not follow DM model and do not use DMA, but just access
-> >>> device directly using this nice macros phys_to_bus/bus_to_phys.
-> >>>
-> >>> I build new DTB files with this patch included and U-Boot build
-> >>> from the latest sources. No obvious issues on RPi3 and RPi4.
-> >>> Devices boot fine.
-> > 
-> > Thank you for testing Ivan.
-> > 
-> >> Thanks you, Laurent and Ivan
-> >>
-> >> Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
-> > 
-> > Stefan, I'm quite unfamiliar with the Raspberry Pi upstreaming process
-> > (despite having sent patches for ages :-)), do I understand correctly
-> > that this patch will go through your tree, or do I need to work with
-> > someone else to get it merged upstream ?
+On Thu, 28 Mar 2024 10:37:10 +0100, Rafał Miłecki <zajec5@gmail.com> wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> I will be taking those via the Broadcom SoC tree.
+> Every described BCM4908 board has WP pin not connected. This caused
+> problems for drivers since day 0 but there was no property to describe
+> that properly. Projects like OpenWrt were modifying Linux driver to deal
+> with it.
+> 
+> It's not clear if that is hardware limitation or just reference design
+> being copied over and over but this applies to all known / supported
+> BCM4908 boards. Handle it by marking WP as not connected by default.
+> 
+> Fixes: 2961f69f151c ("arm64: dts: broadcom: add BCM4908 and Asus GT-AC5300 early DTS files")
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
 
-Thank you.
-
-If there's a chance to include patches 05/10, 07/10, 08/10 and 09/10
-from [1] at the same time, that would be great :-)
-
-[1] https://lore.kernel.org/linux-media/20240402000424.4650-1-laurent.pinchart@ideasonboard.com
-
--- 
-Regards,
-
-Laurent Pinchart
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree-arm64/next, thanks!
+--
+Florian
 
