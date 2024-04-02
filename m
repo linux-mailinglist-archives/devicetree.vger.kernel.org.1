@@ -1,109 +1,98 @@
-Return-Path: <devicetree+bounces-55593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA68C895BAD
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 20:25:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2F4C895BB1
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 20:25:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 010AF1C2264A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 18:25:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3013A1C225EC
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 18:25:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8DF915AD9C;
-	Tue,  2 Apr 2024 18:25:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9A1715AD96;
+	Tue,  2 Apr 2024 18:25:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="L1YX9URN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uk56H94v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-187.mta1.migadu.com (out-187.mta1.migadu.com [95.215.58.187])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DDAF15AD8A
-	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 18:25:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.187
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE03915AD8A;
+	Tue,  2 Apr 2024 18:25:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712082319; cv=none; b=txJ5bV3Mkj7Jc/0Yzh+pYaVESXG1bvpcPU8ltN/I25H+UdWLGJPq7AiMuDODERLOr8lobW7+cs1v+mjczjJgLFCjC/TrYn2EeDHQIf8oYZtOHhSezIBkmTjR4VuXKL5Fdrieap1vXpKnK9JWgKfxPjDHWdbgn3SbIGnvTAOES7Y=
+	t=1712082329; cv=none; b=Ke/EmT19uE1nLcUiZA0X5iG+3YFhligOZdCj5n+76kYGJEaVC1a9XlAw2F1WNqdwNVbXdO84xs/eO+ZgzpPU+Rz9BEKryqd+1HUn5kTKaEZF9prVV85tAiHs820FZzBHFxl0gMfbh5jAV8Es5hevNd3MV6njldS0iVPCQf6Xz/k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712082319; c=relaxed/simple;
-	bh=DPTwM8DXlyZSF3sQjcoaN0vDR3bb6difnHz5i8/uPYc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K68wBCO1kSpusiwASouUR7UqiJR224TCpYe+z9QLSFIR6cdQ1K5umCzBIK2Blfnc9olxyFLPE9HDxX52yvta1aSVNAVrDBsMmUI2nNIipLGUJGQUk7BOs7aTpXhI35iLnSSqz1r41kwz8PDm8yJrThcBGSPE5v7V4W8rno7jYxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=L1YX9URN; arc=none smtp.client-ip=95.215.58.187
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
-Message-ID: <8ef4f56c-83a3-4b26-877e-f1c7a0307e98@postmarketos.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1712082313;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=13vOsyn8jFuJJVMC+4Atlj55N5nsRCUlWW0T7qTrNg8=;
-	b=L1YX9URNDTPG3WJg1YPeki9iW+icQqF/wO8w6tDN5qRGkXxsVo7KMH/3lxaGVUhsqZKmQ9
-	wmPPAeMujqXYSapmG6fxxMT9zMDfzOlPt+MKcwkHFHQGTdh3Wn64YJeUb0Zo/4Fk5HipeA
-	UWRH3tOlCKJ2p0bBQ7VYVu2lTefGPc/N8P7UpmDrkyxPlQZiH7T+xUPdp44u1938AOvTJu
-	mQuYg5BVd/z/41+OupC/5nmXZWc7hzri/MLpnIXE5tkWzWOWV1pCLzcZcIo2WKso9OqzLA
-	Tbaa/vrLutQv9wJG/EoZamdgO0ywhVJlPiPwxvMlSWidZJ34vUeCUnwV1S+SYg==
-Date: Tue, 2 Apr 2024 21:25:08 +0300
+	s=arc-20240116; t=1712082329; c=relaxed/simple;
+	bh=The4umGKdB9OwhPGKIOCmIqrrOH/yzgx5az+WIgTM3w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rJB52xCvAJVdhs0hGKVbzkKVT0LaHoeiJsFyb3fhigTzT3Z2vyIBGwSYLbsi8B0bcwGEk2EOSadppX2JtnRDtLezga/Ezx1QJ5JksevC+8fQDccvx5+QB3Qwq0PJp62LFBpbv5mAw+q3QiaTWfolzsoCYZQehbXn2zaa7kb0X4c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uk56H94v; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E67F9C433F1;
+	Tue,  2 Apr 2024 18:25:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712082328;
+	bh=The4umGKdB9OwhPGKIOCmIqrrOH/yzgx5az+WIgTM3w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uk56H94vCD8JGEyls6aZb4TXIkixCoZzeoUx1tbn8ew7Gb7wP2VRYJshPbsHYD1Pv
+	 eD6zetOePJNQvYA57Xh8OzkChCoVmGED5Te8ViJzy2Q7ai4tiTsNH4gVdbicV3DkRQ
+	 xNfe5MCHF0Ne/1gum+Eu1bqa4KBNfzcz/IkvpDow1I+8NLJV9QFUDD6mO3eCAx6fQB
+	 +Y01yyA8ZAZ6xCqZi+3A57uusY3h5Lf2JWMMrzJ1up+nQexffwqHQVB4MaqtmlpF5b
+	 j3TdopkbJxFjZ+5oF9JFCTQCsXVu4FiMYq6x6fOso/ExkgfXGZM5FYGM1Pbc3avge+
+	 qYjdCNI0F/o3g==
+Date: Tue, 2 Apr 2024 19:25:23 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Viresh Kumar <vireshk@kernel.org>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Serge Semin <fancer.lancer@gmail.com>, dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: dma: snps,dma-spear1340: Fix
+ data{-,_}width schema
+Message-ID: <20240402-thermos-sedation-f7f3d19f6116@spud>
+References: <20240401204354.1691845-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: msm8998: set
- qcom,no-msa-ready-indicator for wifi
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Marc Gonzalez <mgonzalez@freebox.fr>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Kalle Valo <kvalo@kernel.org>, Jeff Johnson <quic_jjohnson@quicinc.com>,
- ath10k <ath10k@lists.infradead.org>,
- wireless <linux-wireless@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
- MSM <linux-arm-msm@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
- Bjorn Andersson <andersson@kernel.org>,
- Jami Kettunen <jamipkettunen@gmail.com>,
- Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-References: <fd26ce4a-a9f3-4ada-8d46-ed36fb2456ca@freebox.fr>
- <5cdad89c-282a-4df5-a286-b8404bc4dd81@freebox.fr>
- <252618e8-9e80-4774-a96c-caa7f838ef01@linaro.org>
- <502322f1-4f66-4922-bc4e-46bacac23410@linaro.org>
- <0ca1221b-b707-450f-877d-ca07a601624d@freebox.fr>
- <CAA8EJppeREj-0g9oGCzzKx5ywhg1mgmJR1q8yvXKN7N45do1Xg@mail.gmail.com>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Alexey Minnekhanov <alexeymin@postmarketos.org>
-In-Reply-To: <CAA8EJppeREj-0g9oGCzzKx5ywhg1mgmJR1q8yvXKN7N45do1Xg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="sjRbJLa+HB006QRg"
+Content-Disposition: inline
+In-Reply-To: <20240401204354.1691845-1-robh@kernel.org>
 
 
+--sjRbJLa+HB006QRg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 02.04.2024 18:55, Dmitry Baryshkov wrote:
-> I'd say, we should take a step back and actually verify how this was
-> handled in the vendor kernel.
+On Mon, Apr 01, 2024 at 03:43:53PM -0500, Rob Herring wrote:
+> 'data-width' and 'data_width' properties are defined as arrays, but the
+> schema is defined as a matrix. That works currently since everything gets
+> decoded in to matrices, but that is internal to dtschema and could change.
+>=20
+> Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
+> Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
+--sjRbJLa+HB006QRg
+Content-Type: application/pgp-signature; name="signature.asc"
 
-AFAIK there is no such thing in vendor kernel driver for this, as
-this startup procedure is likely handled entirely in userspace in
-cnss_daemon.
+-----BEGIN PGP SIGNATURE-----
 
-By the way this workaround is needed also for Wi-Fi in sdm630/660,
-so no not only msm8998 suffers from this.
+iHQEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgxNkwAKCRB4tDGHoIJi
+0pAWAQDMzaD2qxka/pspIT5VYcEnSM1SVV+1l03/he0Tmnuj2gD1Ez3COkr0WOlH
+dIRD54gOwFe1rIRChyrdriapo9rEBw==
+=cQhE
+-----END PGP SIGNATURE-----
 
- > This sounds more like a firmware feature, not a hardware feature
-
- > having this property in DT does not look right
-
-I agree with these 2 points above. This can be handled more nicely
-as firmware feature encoded in firmware-5.bin using ath10k-fwencoder
-and not involve any new DT compatibles or properties.
-
--- 
-Regards,
-Alexey Minnekhanov
+--sjRbJLa+HB006QRg--
 
