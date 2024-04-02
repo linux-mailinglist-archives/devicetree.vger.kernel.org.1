@@ -1,123 +1,139 @@
-Return-Path: <devicetree+bounces-55282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71A05894BAB
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 08:44:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45B6B894BE5
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 08:54:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 272851F22219
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 06:44:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 987D428344F
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 06:54:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 356762BCFD;
-	Tue,  2 Apr 2024 06:44:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hHEKOWOQ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5074024B23;
+	Tue,  2 Apr 2024 06:54:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C1872BCE3;
-	Tue,  2 Apr 2024 06:44:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C94E38DE1
+	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 06:54:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712040261; cv=none; b=sT3jjtR08MxhItaIBtD0nQ9pEloh4k2PdZAD58NTbfnodhh176/cxxnelx9PW3T134gd/GQpEsTO66L7cs8SaMyAC9p55fKzaUM4ZzSL0fiYo4OHNrk2kDRHqnHPQDTv4e5Ul8QDV68hRHVAqw1CKMaULJsuP1aUqXZfJPOFNRQ=
+	t=1712040889; cv=none; b=tKrLVcBa3MfJLqE1u96uoQTp73KQpvVT7slg0iHl5ht3AJmeens6nPNksm6FjKFlypiZhI2Php9e58/bZabBZ/Za8Z/gIlJeMCEtT9s1yYM4gWI1Guya/9ieYsoeVq1f5AzD4SEMThQ/EnvpmcKvkxAzl/lgRX+2RyMddR5a2EU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712040261; c=relaxed/simple;
-	bh=ZhMZFYiEO8TBbx//+t7SF96Y8NJnoF+F/tH/3WyofbE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SUQLVYJ5tNGEsur4f3vWd9ACLOHdVsxIiqYK/RqFarUw3QC1+F7Xw0QZtSKWQBHDmEgH/E6tCgYBYD2AZBidDPth9S/SXYXWLhDyUiwMZO5LYu4nI51mAP5ysGBXVMK7SVsixLzoaTc7IvMLQrWl5YJkjfGgIDyMBRhSNbH05Ww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hHEKOWOQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D34CC433F1;
-	Tue,  2 Apr 2024 06:44:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712040260;
-	bh=ZhMZFYiEO8TBbx//+t7SF96Y8NJnoF+F/tH/3WyofbE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hHEKOWOQYNz3KdtTKkK1eaJsnLcTAx1xqsWbRA43uTdMYmEyuUgGBb1YWwD/TXuLi
-	 AB9VdTLlaRdav4knC6MYcu3kV8kibxPwtmO4HvqYB45CBUnH9mqPYSF9aCUKJntYTt
-	 O3KOYyjnGza/rW6+YwKCEBRvxIJxWFSTkZ2PMmOfyelYbyfMW2T51wS9dV//WeokU5
-	 8VGxAYuOOrpL9HGSFwXC550DsnuO4xP/9Fduq9Pmk401ymAacPKacEkVGIIEgaUyoR
-	 kkUDtw+/agS7E5GBEJFmRDiLiY0hnuT6VMYvuK6AOgxP8nNWStLrejESvkGvFd2CL7
-	 krA4dvgwcd9rg==
-Message-ID: <22e3c080-e51a-4edb-b332-3aa5a7b58f82@kernel.org>
-Date: Tue, 2 Apr 2024 08:44:15 +0200
+	s=arc-20240116; t=1712040889; c=relaxed/simple;
+	bh=B1LaFRzKFzw+ftbj8etcHlcF0FOYXgI6gMiXVqZPYqI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sUyK+zI93abQz1UcdiBgOcYXWXDQPYTDduDiAF1s/xkkYaS10G7sfWhklsSjeEi7i+2X3y4JPc7DasI65d9VxXy0nyunlVrRZ3TFLVYsJNCA9oUuAIrp8X23SG7uZh0M4Ey4NdJ9KX1CZKbdCaX2e8j+adOmKJ/gIz8aSPe7l0c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rrY2e-0001pj-R5; Tue, 02 Apr 2024 08:54:44 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rrY2d-009vjo-Up; Tue, 02 Apr 2024 08:54:43 +0200
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rrY2d-00AiEJ-2e;
+	Tue, 02 Apr 2024 08:54:43 +0200
+Date: Tue, 2 Apr 2024 08:54:43 +0200
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Jacopo Mondi <jacopo@jmondi.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH] arm64: dts: debix-a: Remove i2c2 from base .dts
+Message-ID: <20240402065443.hpinj7oftcst6fwd@pengutronix.de>
+References: <20240325225048.1159-1-laurent.pinchart@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 06/15] dt-bindings: thermal: mediatek: Add LVTS thermal
- controller definition for MT8186
-To: Nicolas Pitre <nico@fluxnic.net>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, linux-pm@vger.kernel.org,
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
-Cc: Nicolas Pitre <npitre@baylibre.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-References: <20240402032729.2736685-1-nico@fluxnic.net>
- <20240402032729.2736685-7-nico@fluxnic.net>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240402032729.2736685-7-nico@fluxnic.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240325225048.1159-1-laurent.pinchart@ideasonboard.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 02/04/2024 05:25, Nicolas Pitre wrote:
-> From: Nicolas Pitre <npitre@baylibre.com>
+On 24-03-26, Laurent Pinchart wrote:
+> From: Jacopo Mondi <jacopo@jmondi.org>
 > 
-> Add LVTS thermal controller definition for MT8186.
+> The I2C2 bus is used for the CSI and DSI connectors only, no devices are
+> connected to it on neither the Debix Model A nor its IO board. Remove
+> the bus from the board's .dts and rely on display panel or camera sensor
+> overlsy to enable it when necessary.
+
+I would rather remove the status line instead of removing the whole node
+since the bus is intented to be used for CSI and DSI and therefore the
+muxing should be valid. This makes it easier for overlay authors since
+they don't need to check the mux setup each time.
+
+Regards,
+  Marco
+
+
 > 
-> Signed-off-by: Nicolas Pitre <npitre@baylibre.com>
-
-Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
-
-Best regards,
-Krzysztof
-
+> Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> ---
+>  .../boot/dts/freescale/imx8mp-debix-model-a.dts    | 14 --------------
+>  1 file changed, 14 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
+> index 5ac77eaf23d5..26c303b7c7fa 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
+> @@ -210,13 +210,6 @@ ldo5: LDO5 {
+>  	};
+>  };
+>  
+> -&i2c2 {
+> -	clock-frequency = <100000>;
+> -	pinctrl-names = "default";
+> -	pinctrl-0 = <&pinctrl_i2c2>;
+> -	status = "okay";
+> -};
+> -
+>  &i2c3 {
+>  	clock-frequency = <400000>;
+>  	pinctrl-names = "default";
+> @@ -392,13 +385,6 @@ MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA					0x400001c2
+>  		>;
+>  	};
+>  
+> -	pinctrl_i2c2: i2c2grp {
+> -		fsl,pins = <
+> -			MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL					0x400001c2
+> -			MX8MP_IOMUXC_I2C2_SDA__I2C2_SDA					0x400001c2
+> -		>;
+> -	};
+> -
+>  	pinctrl_i2c3: i2c3grp {
+>  		fsl,pins = <
+>  			MX8MP_IOMUXC_I2C3_SCL__I2C3_SCL					0x400001c2
+> -- 
+> Regards,
+> 
+> Laurent Pinchart
+> 
+> 
+> 
 
