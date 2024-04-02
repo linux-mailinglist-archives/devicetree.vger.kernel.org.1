@@ -1,148 +1,84 @@
-Return-Path: <devicetree+bounces-55246-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55247-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46AF18949C3
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 04:57:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C09E8949CF
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 05:04:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A19C1B22C4B
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 02:57:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CBD6F1C22027
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 03:04:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C86D815E85;
-	Tue,  2 Apr 2024 02:57:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13D1A1401C;
+	Tue,  2 Apr 2024 03:04:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QHx9HrT7"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="UWogBxFD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3DAA14A83
-	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 02:57:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+Received: from mail-177132.yeah.net (mail-177132.yeah.net [123.58.177.132])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E94041758C;
+	Tue,  2 Apr 2024 03:04:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712026643; cv=none; b=q2vigGy3p8PsskqEihdxFTSu7vcoU6bvCztmiEni/YtsUBjb7TvjCHj4PFKWP3JMs18SLiJSZ2Vq7b93Atk0nbbO2GA5Oan+nstZPLsCMFENzUKPzIKOft5/k+m0l8O4hpf5NwUl0yBPA5eVWUQeE6IgVPbg9YX/onNQXekN6FI=
+	t=1712027092; cv=none; b=UJYLRkkQJUdH18A3TBIu8utJkhuOs5bFz2Qhg6s9RZ/Ss2xF1YwxZuWrGymzDNLym/+FLXvTMGfkVlmbyDKVIUoBMMUK8juPrpbxYLbHBz/qcNgghybYXeR/8Gc9m8w0AKWn5AhrlMgSda6D4iT5erEg+rhhBm1uJbaxjBrvNy8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712026643; c=relaxed/simple;
-	bh=6D+VpatekHG0iKrzMnt/4fCsZT8ObGcVWTTczmuUXIQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=B7AReWAX74oApwNE+y1x9J6iMpVAsCd9LJhYa6R2thz5sUemUb3ltePP5TF5bY3uEVekLBk38XxP8OQWZZX7jWp0YpuoKT8RAD5CokAO5EY46tNWDDjLAMQlw4yH/Sf3KYD0LTCK3h7nDroZm4vpM9IwgxazXCnSlg49t0paybI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QHx9HrT7; arc=none smtp.client-ip=209.85.208.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2d4360ab3daso60057371fa.3
-        for <devicetree@vger.kernel.org>; Mon, 01 Apr 2024 19:57:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712026640; x=1712631440; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WClQaYoJo0OqeAHKNbfYy5E7bDA6T3Yefi4QjiZ/Icc=;
-        b=QHx9HrT70qP8U5wTT1KDIlwevf4xwiT3NzvccgRxgaFNk3vSMo9IR6f4rLwDlSr5wH
-         r55djx/o3jr+2ok6wRO4fnKei/hR6353mpQnbyJNpdU3KnRyGk5jvlnP5RCV+0BcPlYU
-         9hgUP3Tpv0NrtYjlgOYPXh1E1+gRgKzkfi6LMfXJ7PKsbhqhW9HzF7+nVX7MTwBTfXYg
-         H+TBeljodDNuwcz8JrXZh9+DpkTyYFY4nIzg3hqMVo2I7O4xFsgKk4O8omJtvoFCjsbh
-         nGpjP/3xK/q4jZwiy/sTk7yj8Lvzh+98tTOkIhvB33iubUMFELfZm4ZIBB4Phk99oOsJ
-         U5Fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712026640; x=1712631440;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WClQaYoJo0OqeAHKNbfYy5E7bDA6T3Yefi4QjiZ/Icc=;
-        b=xD06o/vshWMCJUNKrQ3Q88ScT0ied2z9dMeJccRo0BpFL9BlZhCsNnBCi5yjOvlqCm
-         c+iHHaBoqpVukMdEuYgX0Z6M3hwLmfySbbzM/EJQqOXg52ZygvgrJp+KL4/xVlgFxYng
-         F5vDzC712EgbsH4uEoM1LRgWWlQlvjndohVycunsvGwhNyPTc/pGETB77Nk8AG4bofyU
-         ccmkZWvHWqLc8lgH/Y770v6dgWDNK67wMP8Nbpc05aXUuXkGyxoPrOPznH+iRRGpn2Z/
-         5eoAST7FHzhXpOKszujgcPsYochXTKEPkw61Ar4Fy6X3iZgSLxoWyNJlHLozmvsZriDM
-         c/aQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVUTxOfNPUDT1yLoq0H+JbYKmFDiu3XeKZBK0pSjxRh3BQRb7QA0XsXN2ePAkU4wZ0/T81Ncv/pE/VJpIVQ8umPbQLNl7MU46Ngtw==
-X-Gm-Message-State: AOJu0Yy1TOl9ymEDQ+Vq0J1WuA+HXRpsx7J4Yhk79G5bWRYi6wMQshqD
-	mtugw+6bF2w063xWRcSl4jRt/HY5n50qoTqbuUd0ZJekobsve3QnkAU8x+eDoQE=
-X-Google-Smtp-Source: AGHT+IF66hRKxlIKruz0z7xXyICUFCnSOcGo50o2hV2HVegL541sB+XE0+lVuk5faltdSn+D/dwOSw==
-X-Received: by 2002:a2e:848e:0:b0:2d4:67d8:7bbf with SMTP id b14-20020a2e848e000000b002d467d87bbfmr5982187ljh.47.1712026640319;
-        Mon, 01 Apr 2024 19:57:20 -0700 (PDT)
-Received: from umbar.lan ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id 14-20020a2eb94e000000b002d48dcd10a9sm1562356ljs.86.2024.04.01.19.57.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Apr 2024 19:57:19 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 02 Apr 2024 05:57:18 +0300
-Subject: [PATCH v3 4/4] arm64: dts: qcom: sc8180x: add dp_p1 register
- blocks to DP nodes
+	s=arc-20240116; t=1712027092; c=relaxed/simple;
+	bh=eAXc09xEKhzdLACdh70tJItL4IIbJf5hovpipkhS+KA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=THCzNkHqdIrNlVQwKT+ShjaTn/CFdzmKIePRaOQLYqnExSpIQkJ+b7YeM3Q0Vu5bjY7/586WUX4ZUlPz78NyDaQjs7jwVPE5BCFwr6RyHqUJW7ojAwmM+DMqpGXDPKvyNrHtKamsmW3y1iVOq9qMeSZaYC6isd3JXdBkbFUC5RM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=UWogBxFD; arc=none smtp.client-ip=123.58.177.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=jZdmlIK9BLALrTRQhLlnaYBmJtd1g54qxC+APchnqLQ=;
+	b=UWogBxFDIp1JPn5zvSMptp7eRGlQUyMCv5Ni9qMmF6t9Rn+li5HeD8dWMvg808
+	mBwR6AKsfYhyB6PMlKFVUB7+yJFILDyikTanniuoDaLcNKnElj2TJ14RTENFaLLa
+	n1LBiFKLozkZt4caM65z2Ecvt8yqs3R0qssE3/5/zXiq0=
+Received: from dragon (unknown [223.68.79.243])
+	by smtp2 (Coremail) with SMTP id C1UQrAD332ijdQtmQAejAg--.52779S3;
+	Tue, 02 Apr 2024 11:04:04 +0800 (CST)
+Date: Tue, 2 Apr 2024 11:04:03 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Marek Vasut <marex@denx.de>
+Cc: linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, kernel@dh-electronics.com,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: imx8mp: Describe CSI2 GPIO expander on
+ i.MX8MP DHCOM PDK3 board
+Message-ID: <Zgt1o/CT29hPBvOP@dragon>
+References: <20240319043733.134728-1-marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240402-fd-fix-schema-v3-4-817ea6ddf775@linaro.org>
-References: <20240402-fd-fix-schema-v3-0-817ea6ddf775@linaro.org>
-In-Reply-To: <20240402-fd-fix-schema-v3-0-817ea6ddf775@linaro.org>
-To: Rob Clark <robdclark@gmail.com>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1385;
- i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=6D+VpatekHG0iKrzMnt/4fCsZT8ObGcVWTTczmuUXIQ=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmC3QM5ZGzo66Tx0rLjxtUWubhbhfbsftWEv1Zq
- XDOyxGPBwSJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZgt0DAAKCRCLPIo+Aiko
- 1ceXB/kBWnbXOxX/eppym0Ht8AyLMA2w8Pvs6SxLfAmY9uABIMKNwrUB8AQvSHD02xRSB3y7mst
- jjC6AFj04rI98pLpus6Gu9HNrENvPJyfGVowLhAh8PmXbrewLHZ9Od1J3WmvqPYAUB4zgEHyBrI
- r7XG2lbNPPVDSkHuf3oRXYu7TdgLK7dCl+kayU78pGl8zAcTHsHLIuB3Ud+Vp5WFSlntcRTxAPj
- 4kJINCWfnjL3rH5tWqRu5hD/qSdmatIotTZYlr4ivaf3g39MVvynI/UGtZ0zLuqaOFvPM3bkmK2
- I2ENv3aVBkn7VvND5FGlrtmFUeBTqr5ycZtysuR8eCS7nMcw
-X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240319043733.134728-1-marex@denx.de>
+X-CM-TRANSID:C1UQrAD332ijdQtmQAejAg--.52779S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUxCJmUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiGAW0ZV6NnqdSYgAAsW
 
-DisplayPort nodes must declare the dp_p1 register space in addition to
-dp_p0. Add corresponding resource to DisplayPort DT nodes.
+On Tue, Mar 19, 2024 at 05:37:09AM +0100, Marek Vasut wrote:
+> The production PDK3 carrier board rev.200 contains additional GPIO
+> expander to control power and reset signals for each CSI2 plug
+> separately. Describe this expander in the carrier board DT. The
+> label is used by sensor DTOs to reference the expander and its
+> signals.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
 
-Fixes: 494dec9b6f54 ("arm64: dts: qcom: sc8180x: Add display and gpu nodes")
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sc8180x.dtsi | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc8180x.dtsi b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-index 6d74867d3b61..019104bd70fb 100644
---- a/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-@@ -3029,7 +3029,8 @@ mdss_dp0: displayport-controller@ae90000 {
- 				reg = <0 0xae90000 0 0x200>,
- 				      <0 0xae90200 0 0x200>,
- 				      <0 0xae90400 0 0x600>,
--				      <0 0xae90a00 0 0x400>;
-+				      <0 0xae90a00 0 0x400>,
-+				      <0 0xae91000 0 0x400>;
- 				interrupt-parent = <&mdss>;
- 				interrupts = <12>;
- 				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-@@ -3105,7 +3106,8 @@ mdss_dp1: displayport-controller@ae98000 {
- 				reg = <0 0xae98000 0 0x200>,
- 				      <0 0xae98200 0 0x200>,
- 				      <0 0xae98400 0 0x600>,
--				      <0 0xae98a00 0 0x400>;
-+				      <0 0xae98a00 0 0x400>,
-+				      <0 0xae99000 0 0x400>;
- 				interrupt-parent = <&mdss>;
- 				interrupts = <13>;
- 				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-
--- 
-2.39.2
+Applied, thanks!
 
 
