@@ -1,282 +1,176 @@
-Return-Path: <devicetree+bounces-55401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55402-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4227689511E
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 12:59:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8177E89513E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 13:01:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 652251C21BA0
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 10:59:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2AA01C2338F
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 11:01:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB024633E5;
-	Tue,  2 Apr 2024 10:57:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 122C06026A;
+	Tue,  2 Apr 2024 10:59:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="Trq6JsZ8"
+	dkim=pass (2048-bit key) header.d=shruggie-ro.20230601.gappssmtp.com header.i=@shruggie-ro.20230601.gappssmtp.com header.b="Q+CWbW5S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-ve1eur01on2111.outbound.protection.outlook.com [40.107.14.111])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BC967E0F4;
-	Tue,  2 Apr 2024 10:57:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.14.111
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712055473; cv=fail; b=UypvGoc3rZlgpHaUrOQaBojttql3vzjyWpViKmJXYIad5v9VdO94XxvdG64Vh/2fMDOR7jay8/rnu4zW1fmaP5yC6BcXFauhxFYWm/AaRTIq62IkMLIuSK1a5ICB0OJl+isxeuVKpsIL4z4vzVRP1vvotwhoZJ5RSTZlas3Lh6c=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712055473; c=relaxed/simple;
-	bh=fZkX2XEb8DTPL0ZpRZoHq/C2Rf4hON5OJcowwF4LKRs=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=KY+KbQe2L9poIIjB/IHO+bDC84LA0wnoiOz8NicdXArHXXgEajjcG/XlsbbibVA4biAW4YVrgW68A61e+DqC/9VYLSO9HFokOW5WWZWqBZupnlPhJA568gEm6zI3Z5nyoO0juSFzZWKivtEbAbct5lkFxEsSttNEe/8s01fiQ4Y=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=Trq6JsZ8; arc=fail smtp.client-ip=40.107.14.111
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mFUB1lXmUB9gnXgBcpRwBOwpTvU9Oz2gCF+gpNRAkQPLCpXx3OnRH8WjlRatyyiVMc+hdtS7AtUUyoLzF1i5KmC0LOyhkCpMprLJL5gMhnNBah0R6EkeKlj/CMPa1EIZ3fRBccsnphG5rNlprHsqEw5xPSg2P4zh7m9hinIsrjkxS85uwgrklvVrJ1m4etnLjTyE6kSS1hjUjWBSqIcznPa5EEN1eAkwang5vIx+rod13DRNCnZjcZiKXrKTGXBLm3Kp4cFZ2Hj/3vlPvSxw6frrq3AZxewGQKOoD/NZ66XlI6TU/bON2pgRAt4AzVJLY9pz8HfocZM1QioYkOlEUw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1aykXMAnVJm1znKxK1fpgoUG8C6P1KgATvjvhvZBcuw=;
- b=MGjwz2AyrcYjLoQSGN4VRBslOHy83Y+A4h5LQKsh/5Mu8U0E/ixdrV2TbIF/sogt3eAU+HBiSRTQ8iN925kvv62SQNepXC2wAA6OEIgLopPGp6W1wkZIJnIn59Gb/fPdQg9oh222WX3dVsOsilK+nwIP3Rm3E9U1D47G7EvEEPZ7l283z98uNKxmsrVapZ03IfsCGfMUZWrt9b/+i9ZkOWBoKMnG6Qs5xH8p5fbmBpOKFbsqdl8MJeUWbd/mDMhEs2q9hnInHduehXjJBTIkvixyn1Hp/QSPdqk4u0usHYPVB6KrE9yuPjUrw87npjwUx3gRpQZrHyy41hXCg/D2Gg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1aykXMAnVJm1znKxK1fpgoUG8C6P1KgATvjvhvZBcuw=;
- b=Trq6JsZ8u1Y0ajR8XAr2jXM1aXFoXpqGDVHnCrwE6AnfZSAchr8vEKTvecu8iTcmERjurSH0wOlWCPufBJyjhMYmxhd4JNr2dKVihKrR9iCks2oeyoowqoorPLn/3sSN9/9GghY1OGj4RfqjqpLZr1x0aDSC1Q9XMmfpAhCSELE=
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
- by AM9PR04MB8115.eurprd04.prod.outlook.com (2603:10a6:20b:3e8::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Tue, 2 Apr
- 2024 10:57:46 +0000
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::8d2f:ac7e:966a:2f5f]) by DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::8d2f:ac7e:966a:2f5f%5]) with mapi id 15.20.7409.042; Tue, 2 Apr 2024
- 10:57:46 +0000
-From: Xu Yang <xu.yang_2@nxp.com>
-To: Shawn Guo <shawnguo2@yeah.net>
-CC: "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"shawnguo@kernel.org" <shawnguo@kernel.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-	"kernel@pengutronix.de" <kernel@pengutronix.de>, "festevam@gmail.com"
-	<festevam@gmail.com>, dl-linux-imx <linux-imx@nxp.com>,
-	"peter.chen@kernel.org" <peter.chen@kernel.org>, Jun Li <jun.li@nxp.com>,
-	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "imx@lists.linux.dev"
-	<imx@lists.linux.dev>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: RE: [EXT] Re: [PATCH v10 08/11] arm64: dts: imx93: add usb nodes
-Thread-Topic: [EXT] Re: [PATCH v10 08/11] arm64: dts: imx93: add usb nodes
-Thread-Index: AQHae2ffBy+Xup/fwE6K9MWKmQtH4LFUu9+AgAAgiJA=
-Date: Tue, 2 Apr 2024 10:57:46 +0000
-Message-ID:
- <DU2PR04MB8822270270971F34455558ED8C3E2@DU2PR04MB8822.eurprd04.prod.outlook.com>
-References: <20240321081439.541799-1-xu.yang_2@nxp.com>
- <20240321081439.541799-8-xu.yang_2@nxp.com> <ZgvEXZTOHUv+GGeH@dragon>
-In-Reply-To: <ZgvEXZTOHUv+GGeH@dragon>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DU2PR04MB8822:EE_|AM9PR04MB8115:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- UVx1I/+XQ6nkp3mLYe7oCv6L8R8FJyVT3fDnjrm3pMFOoMPgN2pTTQ6bejupehcW/CkFUJHubDUCJRI6CYAwWCqQi/oPalhMYGZpUVujU5L++olmVPQiiCiCV1IeVaD3hrQySvoq4kG5dgsdt+kaQCFyskf7s4x0N0oFxDXUTFaZuooWIltN9v/XJtsmbvuePQuNMXS7qA2FH3HY5Ex59AHmJnAwDOmLvpTtzxHef+Qict39JLhu/B+UfDQxkA4Vhig0mzAFTnb5zU22d6r9HRtZjvrgjWzq0BOrnyKs8zpyDFVu4CSQ7qCpDNHlZt5yiylwrRAy4LfxUKmK4UFfAWvfDsq+XGbJCuOFKv1JsA7M/JVE/MpZ+N4hbffNXe6yNha3KBSJxsJUqUVbGoDZLrkjX+cMCpVDWvidqy9loIgYjt7Z5Xd3555hR1dYhZjll/gm89EEoY2n1McFouCVd+Kc/HMryRX3D1I7L0HyLFCoqAdJTsBbT6/R+o4WNobU/FBtbW9QjctQ8C/eY+8hJPzi/XXJlR1qF993l6cQza7JHmaQjZf4Gc66o/d5/X6YIA3VrvGBbqkTYW3UTLOqA6mKf7DkYMS3KWsH/pWaEkcz4DQnp39p0LWrt+1Ux9dthUJr5HMq1l86yk7t1H49obXOWvQUGPWD+3LsvCXmrps=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8822.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(1800799015)(7416005)(366007);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?4/ZERUg6fLnxey3ILbFGtt6Dg/R2e8RdUkIv0qFxHt0EOJAoYUI3MnebvFVj?=
- =?us-ascii?Q?nJOERQ0EzXp6rCg4PTV4/YlY7+ULyVeHxlByDhKHMoPfLkFKt+F0B2tX2T0E?=
- =?us-ascii?Q?ENebMKkHzV2d04ze3hDJvhTOrF4qR6jcASnFnGnJR6iQScHP8D4BZeYIap9h?=
- =?us-ascii?Q?QWz0TQ+Y1Q2Gog+loYc0HDzFkoNCKWf7Tn++wRj/fNjzj3mPdkyaKMFg6Ch7?=
- =?us-ascii?Q?Yup+yomwL5U221dUZ0MA2lu7GLscEbklHOvmQE+x5kui2x78c78KW8XBovNI?=
- =?us-ascii?Q?5cMxhnkKuigPDQhzZxrghrTyFQeWbM01WNHLr9K7XSBcVXifilJL0Dm8kKSa?=
- =?us-ascii?Q?AhX5cTtWOEHYJND/Ve8BuAvz/ff058FA8FoZ+20RyDySeMOKfOCsTmEmoGxw?=
- =?us-ascii?Q?GEE17wml8RQSPsiESrc+EvPe6GbNv6ASvfd+XtSTgtTdoVP7TcCh7e8MoWfj?=
- =?us-ascii?Q?rTcWwcNfwqg0vqy2F7I20t9DM7p6ymveZER9CobgIk91+pNAPALWIC5wrZF8?=
- =?us-ascii?Q?2WT75HSKGjxttzUQIICxB3eSxRn8YLomNbir4DcnxwEnPvXQFDGv6O3Ka4Ma?=
- =?us-ascii?Q?HPtVGJdlhMRgfTdjZKfO3Ak20MOS+2hPp2An4cAEnm0DP+3p7VP2hRu3VPQJ?=
- =?us-ascii?Q?22/RGQFWvGw5pNaT04ReS4o/BYkIXtCbATAS5QfQd0l/7F15gItmF4uaxe9O?=
- =?us-ascii?Q?UQ5RZwySlPQl0HKMLYMQ/AOpD5FzqnEB1lzB7LJw/4GxWRYgUyBvqltf5uC1?=
- =?us-ascii?Q?x+fgFh0ISowNpR+ffrH+WD4MVic8JyH1Jx7ahthjkRmD3es15W1WHKUR9cwx?=
- =?us-ascii?Q?f5CCh4Uo4T9JT7n6ljLPScplrA4m6ULbN4rw2mSNitSn+ZSM4zDGtG2zJzNu?=
- =?us-ascii?Q?tYN9WD1AUYyNqwSKdYU6T9JqOIs+MBOZWcX2pntFYRdUm5U0rSxlgUa5M/MO?=
- =?us-ascii?Q?baa2swqKu4tvBqiL01Sp4JIbchpyybbT9++9WO9Aiepc3OK77lA6g3KDA3di?=
- =?us-ascii?Q?LEtSpGvs8/AcfMdDCB+EALJIsCGE5FtjXdk9oW32qwrVyx8ByK7cT1O9INgd?=
- =?us-ascii?Q?STms7OAy/MtKXLj+4WTct8Qy5V6k4Y0Q/J8ClAy0qLeOFWCrgsZVruSD9krZ?=
- =?us-ascii?Q?itQbu60Qrcw5nA22A32m8ha2rmT3+DvUgRJr76gFeig1lmo7SL9wpMtlOHC9?=
- =?us-ascii?Q?HNOsMTr2DlKbNQnLuxz3irpnsjWESKRWDBkx2KQt+SsZzZXtqH7XEDno+/kT?=
- =?us-ascii?Q?sI3Uaw3UZm43pFN/3ogREWEfe+eeq8rcuQG0ygaSiuu2hTrcpMujQH97SYoR?=
- =?us-ascii?Q?TFSA1kLLta/Nq1ML23b4/uWfOi4s7WwikOL01zWHBaNOZEHSUaEpsLzzHV+X?=
- =?us-ascii?Q?WIm4beQh745Bm2Jx5FVkfIYckpuPrCARKmHOCNDsQp0oql+pgmZa8tbC0/jK?=
- =?us-ascii?Q?fWdjEyjRrXTp9+L9benfHMrtQKZUQlYimFnwz6iFBdzrIZ8whbIeXd6FJVVK?=
- =?us-ascii?Q?v1OJMeeZ9U6TfLHdH4ZgljFYxUKpZ143BCarWJQb8IRXYT6oinrP0964an28?=
- =?us-ascii?Q?f1rlrs/EW0H4uPXRiUo=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F0BE79B84
+	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 10:59:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712055594; cv=none; b=huIYGUDEGtYgscRjLQ6k4ldazOFjrPAdKurgqx5kamIcFzT0BdSwq73o8qnwyKD73jGV2Xa/mfPXWmGVBIbNN0wkTYlsNT1Hb73AMf88wunH3pEX+oByg5M4jWeQ9q3fIvlCfKaodMs3cS7Xdy4nbytxha3Dlp2z761pTZsmAE0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712055594; c=relaxed/simple;
+	bh=l1cPwYzGO2B7LjOodxDrogv8WrNh3h0xyRSrepwr/W8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GSn32E0qQ+Zwkf08LSzxuMf5WN5E+GJ0GF7uFchEZQ4WCUVKpsiloh6fiHZ2deKtRE8bDDYsQNktKuOc6nwqIxpdBcv4Vji8j2oHUNNm4d1kivWogkYCvE+8pnfvBKzKj8bPfNyNYJIS93OYA5yNv7OglmpyX0yR1+Uv1VK5p/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=shruggie.ro; spf=pass smtp.mailfrom=shruggie.ro; dkim=pass (2048-bit key) header.d=shruggie-ro.20230601.gappssmtp.com header.i=@shruggie-ro.20230601.gappssmtp.com header.b=Q+CWbW5S; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=shruggie.ro
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=shruggie.ro
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a4e60a64abcso302573366b.1
+        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 03:59:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=shruggie-ro.20230601.gappssmtp.com; s=20230601; t=1712055590; x=1712660390; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/xHYPXNx2h46gZYDFc9h0qpHaxqChYbQzhX9Mgt5D3Y=;
+        b=Q+CWbW5SqaS7Ge9+y2Y4sI50VcO7HCtfjR8mXZAE0zA6MgzvzZFtIdbTJFACSt0KL5
+         pymRpSWftZgux+WymEFYLuMEKJ0gvKB0ThinPpUCWUZbn9lzZnOaSSnhfh6zMR5Ri9qR
+         t6quktat6Q05F2x7s+olNl+Sj/+27UABwOWOOXPRcwCH8EWheSiOhhmDsi3QL2T+PhIK
+         /JxdecSuwLan1O4axbQ6exE6tAw2O3r9lrV/VE3/7SZdjoKXuGQO9+FdH8eJaLr+2aaG
+         aTZmzGw3gyr+RUJs9JwoWOTrKr3/KdcS7t/eaaytukrORlxGeyoDGZ97Cdx9DC8fqGhA
+         wdzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712055590; x=1712660390;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/xHYPXNx2h46gZYDFc9h0qpHaxqChYbQzhX9Mgt5D3Y=;
+        b=S3z/fxyPz75dxLnxPG3EgGND/8fHZoA3mECDyrh1Mxn8u9jpYjAPdRlLYW0/a3MLwG
+         KPii6ItTiKzidsLlJhhrHZg57/3/3B3XkBADJDqDIO1wPX4aFjpWPxllAb5g17vYaKWN
+         GDqbSjy9bbWRqPZwhRrvoThvU4BXkpuu1RHfZXHm80tar/NcBJYYGIeQRbvRlXqUHNyb
+         coBvJHs7pLEcpuGO7ZjO8/FXGdhAMRM1rI2nhVBoKGC8KYIRMtvr6p4qTX0SWZm+Qga1
+         MbpPU2Nkl+Do9m776rmEAvvHFuRvKE9Us9dJQZR9sIX/79kI9Uwped8DQKmFAaHS2deq
+         RntQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWs2SQqLHKUfZ7qlJV4jmeBDnsSkxK9yTglmTo5Yra4XsEzsV7boHPsDlxP7evCd/m5VdLk47I5n3o5l/0JXj6Ct/6fTiqmWzhsTA==
+X-Gm-Message-State: AOJu0YyAbWVteI4YQIbtJfwMmu1kmgHlfEfKfPPNGOZ2UTcqMatax6yw
+	NroQKQXxWpSc8SM607CKzI/RHhB+yKKyLH8UymnC1hDYzyQksiOAXCifmFzIt/A=
+X-Google-Smtp-Source: AGHT+IGa+NA1FgnIiV2VfDXy9ye9++b9ByVqAg4FCZ08kg46GwnDhf8HaPy5NcbTWJ6S0TKVE0o+nA==
+X-Received: by 2002:a17:907:3f20:b0:a4e:4981:d3fb with SMTP id hq32-20020a1709073f2000b00a4e4981d3fbmr8787279ejc.29.1712055589421;
+        Tue, 02 Apr 2024 03:59:49 -0700 (PDT)
+Received: from localhost.localdomain ([188.27.131.149])
+        by smtp.gmail.com with ESMTPSA id a17-20020a170906275100b00a4644397aa9sm6398780ejd.67.2024.04.02.03.59.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Apr 2024 03:59:49 -0700 (PDT)
+From: Alexandru Ardelean <alex@shruggie.ro>
+To: linux-kernel@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org
+Cc: adrien.grassein@gmail.com,
+	andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org,
+	rfoss@kernel.org,
+	Laurent.pinchart@ideasonboard.com,
+	jonas@kwiboo.se,
+	jernej.skrabec@gmail.com,
+	airlied@gmail.com,
+	daniel@ffwll.ch,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	stefan.eichenberger@toradex.com,
+	francesco.dolcini@toradex.com,
+	marius.muresan@mxt.ro,
+	irina.muresan@mxt.ro,
+	Alexandru Ardelean <alex@shruggie.ro>
+Subject: [PATCH 1/2] drm/bridge: lt8912b: add support for P/N pin swap
+Date: Tue,  2 Apr 2024 13:59:24 +0300
+Message-ID: <20240402105925.905144-1-alex@shruggie.ro>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8822.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a19dff0c-0de8-410c-8cc9-08dc5303bb17
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Apr 2024 10:57:46.8009
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Y+ecqbd0H6SpuGUGoS8lHZZZzG7nJyqnlKhEdJfxmPKgUQuuu/nWv/hL/OeDsTNUrn0egZ2cY35oItmuxY0uqA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8115
+Content-Transfer-Encoding: 8bit
 
-Hi Shawn,
+On some HW designs, it's easier for the layout if the P/N pins are swapped.
+In those cases, we need to adjust (for this) by configuring the MIPI analog
+registers differently. Specifically, register 0x3e needs to be 0xf6
+(instead of 0xd6).
 
->=20
-> On Thu, Mar 21, 2024 at 04:14:36PM +0800, Xu Yang wrote:
-> > There are 2 USB controllers on i.MX93. Add them.
-> >
-> > Acked-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com> # TQMa9352=
-LA/CA
-> > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> >
-> > ---
-> > Changes in v2:
-> >  - fix format as suggested by Alexander
-> >  - change compatible from fsl,imx8mm-usb to fsl,imx93-usb
-> > Changes in v3:
-> >  - replace deprecated fsl,usbphy with phys as suggested by Alexander
-> >  - reorder nodes
-> > Changes in v4:
-> >  - fix the alignment
-> > Changes in v5:
-> >  - rename usb_wakeup_clk to usb_wakeup
-> > Changes in v6:
-> >  - rename usb_ctrl_root_clk to usb_ctrl_root
-> > Changes in v7:
-> >  - no changes
-> > Changes in v8:
-> >  - no changes
-> > Changes in v9:
-> >  - no changes
-> > Changes in v10:
-> >  - no changes
-> > ---
-> >  arch/arm64/boot/dts/freescale/imx93.dtsi | 58 ++++++++++++++++++++++++
-> >  1 file changed, 58 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot=
-/dts/freescale/imx93.dtsi
-> > index 8f2e7c42ad6e..4a7efccb4f67 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-> > @@ -183,6 +183,20 @@ mqs2: mqs2 {
-> >               status =3D "disabled";
-> >       };
-> >
-> > +     usbphynop1: usbphynop1 {
-> > +             compatible =3D "usb-nop-xceiv";
-> > +             #phy-cells =3D <0>;
-> > +             clocks =3D <&clk IMX93_CLK_USB_PHY_BURUNIN>;
-> > +             clock-names =3D "main_clk";
-> > +     };
-> > +
-> > +     usbphynop2: usbphynop2 {
-> > +             compatible =3D "usb-nop-xceiv";
-> > +             #phy-cells =3D <0>;
-> > +             clocks =3D <&clk IMX93_CLK_USB_PHY_BURUNIN>;
-> > +             clock-names =3D "main_clk";
-> > +     };
-> > +
-> >       soc@0 {
-> >               compatible =3D "simple-bus";
-> >               #address-cells =3D <1>;
-> > @@ -1167,6 +1181,50 @@ media_blk_ctrl: system-controller@4ac10000 {
-> >                       status =3D "disabled";
-> >               };
-> >
-> > +             usbotg1: usb@4c100000 {
-> > +                     compatible =3D "fsl,imx93-usb", "fsl,imx7d-usb", =
-"fsl,imx27-usb";
-> > +                     reg =3D <0x4c100000 0x200>;
-> > +                     interrupts =3D <GIC_SPI 187 IRQ_TYPE_LEVEL_HIGH>;
-> > +                     clocks =3D <&clk IMX93_CLK_USB_CONTROLLER_GATE>,
-> > +                              <&clk IMX93_CLK_HSIO_32K_GATE>;
-> > +                     clock-names =3D "usb_ctrl_root", "usb_wakeup";
-> > +                     assigned-clocks =3D <&clk IMX93_CLK_HSIO>;
-> > +                     assigned-clock-parents =3D <&clk IMX93_CLK_SYS_PL=
-L_PFD1_DIV2>;
-> > +                     assigned-clock-rates =3D <133000000>;
-> > +                     phys =3D <&usbphynop1>;
-> > +                     fsl,usbmisc =3D <&usbmisc1 0>;
-> > +                     status =3D "disabled";
-> > +             };
-> > +
-> > +             usbmisc1: usbmisc@4c100200 {
-> > +                     compatible =3D "fsl,imx8mm-usbmisc", "fsl,imx7d-u=
-sbmisc",
-> > +                                  "fsl,imx6q-usbmisc";
-> > +                     reg =3D <0x4c100200 0x200>;
-> > +                     #index-cells =3D <1>;
->=20
-> Do we still need this '#index-cells' property?  I see it's being marked
-> as deprecated in bindings doc.
+This change adds a 'lontium,pn-swap' device-tree property to configure the
+MIPI analog registers for P/N swap.
 
-Sorry, the driver still needs fetch the value of this property so far. Othe=
-rwise,
-the driver will probe failed. We still need some time to totally retire thi=
-s property.=20
+Signed-off-by: Alexandru Ardelean <alex@shruggie.ro>
+---
+ drivers/gpu/drm/bridge/lontium-lt8912b.c | 25 +++++++++++++++++++++---
+ 1 file changed, 22 insertions(+), 3 deletions(-)
 
-Thanks,
-Xu Yang
-
->=20
-> Shawn
->=20
-> > +             };
-> > +
-> > +             usbotg2: usb@4c200000 {
-> > +                     compatible =3D "fsl,imx93-usb", "fsl,imx7d-usb", =
-"fsl,imx27-usb";
-> > +                     reg =3D <0x4c200000 0x200>;
-> > +                     interrupts =3D <GIC_SPI 188 IRQ_TYPE_LEVEL_HIGH>;
-> > +                     clocks =3D <&clk IMX93_CLK_USB_CONTROLLER_GATE>,
-> > +                              <&clk IMX93_CLK_HSIO_32K_GATE>;
-> > +                     clock-names =3D "usb_ctrl_root", "usb_wakeup";
-> > +                     assigned-clocks =3D <&clk IMX93_CLK_HSIO>;
-> > +                     assigned-clock-parents =3D <&clk IMX93_CLK_SYS_PL=
-L_PFD1_DIV2>;
-> > +                     assigned-clock-rates =3D <133000000>;
-> > +                     phys =3D <&usbphynop2>;
-> > +                     fsl,usbmisc =3D <&usbmisc2 0>;
-> > +                     status =3D "disabled";
-> > +             };
-> > +
-> > +             usbmisc2: usbmisc@4c200200 {
-> > +                     compatible =3D "fsl,imx8mm-usbmisc", "fsl,imx7d-u=
-sbmisc",
-> > +                                  "fsl,imx6q-usbmisc";
-> > +                     reg =3D <0x4c200200 0x200>;
-> > +                     #index-cells =3D <1>;
-> > +             };
-> > +
-> >               ddr-pmu@4e300dc0 {
-> >                       compatible =3D "fsl,imx93-ddr-pmu";
-> >                       reg =3D <0x4e300dc0 0x200>;
-> > --
-> > 2.34.1
-> >
+diff --git a/drivers/gpu/drm/bridge/lontium-lt8912b.c b/drivers/gpu/drm/bridge/lontium-lt8912b.c
+index 4b2ae27f0a57f..154126bb922b4 100644
+--- a/drivers/gpu/drm/bridge/lontium-lt8912b.c
++++ b/drivers/gpu/drm/bridge/lontium-lt8912b.c
+@@ -47,6 +47,7 @@ struct lt8912 {
+ 
+ 	u8 data_lanes;
+ 	bool is_power_on;
++	bool do_pn_swap;
+ };
+ 
+ static int lt8912_write_init_config(struct lt8912 *lt)
+@@ -78,15 +79,31 @@ static int lt8912_write_init_config(struct lt8912 *lt)
+ 		{0x55, 0x44},
+ 		{0x57, 0x01},
+ 		{0x5a, 0x02},
+-
+-		/*MIPI Analog*/
++	};
++	const struct reg_sequence mipi_analog_seq[] = {
+ 		{0x3e, 0xd6},
+ 		{0x3f, 0xd4},
+ 		{0x41, 0x3c},
+ 		{0xB2, 0x00},
+ 	};
++	const struct reg_sequence mipi_analog_pn_swap_seq[] = {
++		{0x3e, 0xf6},
++		{0x3f, 0xd4},
++		{0x41, 0x3c},
++		{0xB2, 0x00},
++	};
++	int ret;
+ 
+-	return regmap_multi_reg_write(lt->regmap[I2C_MAIN], seq, ARRAY_SIZE(seq));
++	ret = regmap_multi_reg_write(lt->regmap[I2C_MAIN], seq, ARRAY_SIZE(seq));
++	if (ret < 0)
++		return ret;
++
++	if (!lt->do_pn_swap)
++		return regmap_multi_reg_write(lt->regmap[I2C_MAIN], mipi_analog_seq,
++					      ARRAY_SIZE(mipi_analog_seq));
++
++	return regmap_multi_reg_write(lt->regmap[I2C_MAIN], mipi_analog_pn_swap_seq,
++				      ARRAY_SIZE(mipi_analog_pn_swap_seq));
+ }
+ 
+ static int lt8912_write_mipi_basic_config(struct lt8912 *lt)
+@@ -702,6 +719,8 @@ static int lt8912_parse_dt(struct lt8912 *lt)
+ 	}
+ 	lt->gp_reset = gp_reset;
+ 
++	lt->do_pn_swap = device_property_read_bool(dev, "lontium,pn-swap");
++
+ 	data_lanes = drm_of_get_data_lanes_count_ep(dev->of_node, 0, -1, 1, 4);
+ 	if (data_lanes < 0) {
+ 		dev_err(lt->dev, "%s: Bad data-lanes property\n", __func__);
+-- 
+2.44.0
 
 
