@@ -1,186 +1,138 @@
-Return-Path: <devicetree+bounces-55536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A271C895845
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 17:32:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 105C989589A
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 17:48:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 16DCA1F24643
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 15:32:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 420EB1C21097
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 15:48:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 330E3133413;
-	Tue,  2 Apr 2024 15:31:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="qZqAJKo8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2696133401;
+	Tue,  2 Apr 2024 15:48:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D37DE13280D
-	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 15:31:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B4B31327ED
+	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 15:48:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712071904; cv=none; b=EnXULWDqhrNcBxxUZ7fVMTsIyOpnqdqGu/TONVpU7LXW7jiqFVqrLj/+qoJisWP6YD1g5BlX+BMJM5lYfXpEM36zlI+RSTatIq2F12vOjG4wd9PEjYXzjIn0GATccpAIG7Z2wHUjYVSZSir1OQeYNv2w9N8z4Pcy9gilUtqjv70=
+	t=1712072921; cv=none; b=Oue4OHz1gELnMREUiX7b0FH/2JT23KxkFn/0WtjDyqqzqmPIoxKvw06mmrrxLCy4uMLoGEAFEUxuWjDBOnUcpuuGAGIy3Y5goaL8t1/JsFtd+vKUa4/x3Yp3WK09ZPUjpCOQluP33Q405w+lg3W+L+6S6IZLi2Y8gzjEU5Wlkbw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712071904; c=relaxed/simple;
-	bh=8vXdqn4SbFT4RHfnsdGkXt/pEfwiD3lzaCRDv2hYwiQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bj4uXBvcoMchMp1vAlFE7n6ViZgrGIbRuibUDwo5qsgtd2QcqLxPENFUXfvSZFAWLQXqXVgTkqaYi5oWirqVcWO6ywrF15WBj5vbgETjElA0X3Fwg/2ShcKsSpNMr5LoW0gYw1GrP/AtoAgw8dsLFL6Xpyjs0hpnPyWxRosipkc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=qZqAJKo8; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-515d49a6b92so2568875e87.3
-        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 08:31:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1712071900; x=1712676700; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3Q4ndQzVnF5DXRDj2bg6xXjCGWqd/IU0gdb7DwVV7kw=;
-        b=qZqAJKo8AXhyI5g9PHwt1Bv5z0VQzkkc1Vldz2iFBXdlduEtKfp7EBCYzXVomzAwad
-         iWN7Ab5WMTDlIX84b+mSl2Tq6jeLvaxnfXM+HYNt93IOd72ucBe33d6Rfs5a5nT7IJQ1
-         7ySG4lnjCn/QS1KP5W/inh0ntjSY2x88tHpDKKAWHdLcPzuH/UnxEROhSi4NHCcYnvKU
-         s85n3lnm5moOvir/9usFIVq7kJEuWU5pjG3vnnQ8OXLS1hSfjlHqYVTothaqo5vQ/Nii
-         /qNTx1Pxr3FQxbtxjo/yQ1R1cB10FEx+3norXq2CbrJC7p6YLznxx8ZwFmNkVeNOAdJo
-         mxcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712071900; x=1712676700;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3Q4ndQzVnF5DXRDj2bg6xXjCGWqd/IU0gdb7DwVV7kw=;
-        b=vEnfOTPELbMoRcUiMtZ1aA/VyYABuZ7DQLpt6cXtXZ88tw7EaeBlmOWEbFUix0qZre
-         mcQthJsDGCte0T/HPAF06QhK708yrFZG1OHEqEWV2HLnUn/2fWLHr28QR9CrItCvJd/F
-         hL/qDEEMy3uNF4N/BkrRWkaykH3CK1crEAEooYxa5Pi9YEyVo6BZp7fPW/UeVAZcIxc8
-         bDkK8GyeMa9iVmGe8cB9Tqxm0UOdo7k3dvzPMQ6oKS1SCI48s5m1i7cC9ykHBSa27mjN
-         YphueZnDueObAwYZB7WLxaS5Rbp6FpQpQMwFNREMTp3GFNdvVf6gHISkI6sNqw9BjrwE
-         L71A==
-X-Forwarded-Encrypted: i=1; AJvYcCURKArgnRHmew5fOAZUbRmzucaIxu0HlHxG2C7PUJ5b0oj3GM/wABvON0JaXYyzlgq18dUeq679ng95bzE2zbqiLZAxdk2tdg8gOg==
-X-Gm-Message-State: AOJu0YzB42lQ+2xmPLgvQk/oUI5Ht5jxEx+swoKTV8UIOECfyYNPXIlL
-	3M4EZawhhqKDaeiiZ/R3AczXtkNoPA6lFTXPFQINVP5jzptOK0K2b/JzQKTwJH0=
-X-Google-Smtp-Source: AGHT+IH3bfYQjzywARGZhfABTOMjHF4+sxFyXei/19hbg8R8ney+OlkZilRODA2wTPZWvmOFkumQBA==
-X-Received: by 2002:ac2:5a4b:0:b0:513:d1c7:7d37 with SMTP id r11-20020ac25a4b000000b00513d1c77d37mr8478285lfn.51.1712071900000;
-        Tue, 02 Apr 2024 08:31:40 -0700 (PDT)
-Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id r12-20020a05600c458c00b004146e58cc35sm21617675wmo.46.2024.04.02.08.31.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Apr 2024 08:31:39 -0700 (PDT)
-Message-ID: <0ca1221b-b707-450f-877d-ca07a601624d@freebox.fr>
-Date: Tue, 2 Apr 2024 17:31:39 +0200
+	s=arc-20240116; t=1712072921; c=relaxed/simple;
+	bh=piAKnhg8FS4n7pS0Dn6A+pN5uvt8YR0IVYBuMyFEm8A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=D10yoaGnVBS1/m6BYEr03zGvHQ5hmqRdtEAY5IZhC/erd/BhGOu1DIa+WYiZiMcUMxXREUozmbNuKYDkDwvgcpHiFrJAUwuNUCoas3lFSORSbq70Qa8WenS/cyadALMKyWf81jTYH+ZOYNl46O6DcpKJjtJOXHj+xsQz3GtBUX4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rrgMi-0005Ya-Eu; Tue, 02 Apr 2024 17:48:00 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rrgMg-00A0j3-Hg; Tue, 02 Apr 2024 17:47:58 +0200
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rrgMg-00Asbo-1Q;
+	Tue, 02 Apr 2024 17:47:58 +0200
+Date: Tue, 2 Apr 2024 17:47:58 +0200
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Rob Herring <robh@kernel.org>
+Cc: Kory Maincent <kory.maincent@bootlin.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Luis Chamberlain <mcgrof@kernel.org>,
+	Russ Weight <russ.weight@linux.dev>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+	Dent Project <dentproject@linuxfoundation.org>
+Subject: Re: [PATCH net-next v6 11/17] dt-bindings: net: pse-pd: Add another
+ way of describing several PSE PIs
+Message-ID: <ZgworgDAXXOpf3QV@pengutronix.de>
+References: <20240326-feature_poe-v6-0-c1011b6ea1cb@bootlin.com>
+ <20240326-feature_poe-v6-11-c1011b6ea1cb@bootlin.com>
+ <20240402132637.GA3744978-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: msm8998: set
- qcom,no-msa-ready-indicator for wifi
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Kalle Valo <kvalo@kernel.org>, Jeff Johnson <quic_jjohnson@quicinc.com>,
- ath10k <ath10k@lists.infradead.org>
-Cc: wireless <linux-wireless@vger.kernel.org>, DT
- <devicetree@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
- Bjorn Andersson <andersson@kernel.org>,
- Jami Kettunen <jamipkettunen@gmail.com>,
- Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-References: <fd26ce4a-a9f3-4ada-8d46-ed36fb2456ca@freebox.fr>
- <5cdad89c-282a-4df5-a286-b8404bc4dd81@freebox.fr>
- <252618e8-9e80-4774-a96c-caa7f838ef01@linaro.org>
- <502322f1-4f66-4922-bc4e-46bacac23410@linaro.org>
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-In-Reply-To: <502322f1-4f66-4922-bc4e-46bacac23410@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240402132637.GA3744978-robh@kernel.org>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 02/04/2024 16:34, Konrad Dybcio wrote:
-
-> On 30.03.2024 7:25 PM, Krzysztof Kozlowski wrote:
->
->> On 28/03/2024 18:39, Marc Gonzalez wrote:
->>
->>> The ath10k driver waits for an "MSA_READY" indicator
->>> to complete initialization. If the indicator is not
->>> received, then the device remains unusable.
->>>
->>> cf. ath10k_qmi_driver_event_work()
->>>
->>> Several msm8998-based devices are affected by this issue.
->>> Oddly, it seems safe to NOT wait for the indicator, and
->>> proceed immediately when QMI_EVENT_SERVER_ARRIVE.
->>>
->>> Jeff Johnson wrote:
->>>
->>>   The feedback I received was "it might be ok to change all ath10k qmi
->>>   to skip waiting for msa_ready", and it was pointed out that ath11k
->>>   (and ath12k) do not wait for it.
->>>
->>>   However with so many deployed devices, "might be ok" isn't a strong
->>>   argument for changing the default behavior.
->>
->> I think you got pretty clear comments:
->>
->> "This sounds more like a firmware feature, not a hardware feature."
->>
->> "This is why having this property in DT does not look right
->> place for this."
+On Tue, Apr 02, 2024 at 08:26:37AM -0500, Rob Herring wrote:
+> > +          pairsets:
+> > +            $ref: /schemas/types.yaml#/definitions/phandle-array
+> > +            description:
+> > +              List of phandles, each pointing to the power supply for the
+> > +              corresponding pairset named in 'pairset-names'. This property
+> > +              aligns with IEEE 802.3-2022, Section 33.2.3 and 145.2.4.
+> > +              PSE Pinout Alternatives (as per IEEE 802.3-2022 Table 145\u20133)
+> > +              |-----------|---------------|---------------|---------------|---------------|
+> > +              | Conductor | Alternative A | Alternative A | Alternative B | Alternative B |
+> > +              |           |    (MDI-X)    |     (MDI)     |      (X)      |      (S)      |
+> > +              |-----------|---------------|---------------|---------------|---------------|
+> > +              | 1         | Negative VPSE | Positive VPSE | \u2014             | \u2014             |
+> > +              | 2         | Negative VPSE | Positive VPSE | \u2014             | \u2014             |
+> > +              | 3         | Positive VPSE | Negative VPSE | \u2014             | \u2014             |
+> > +              | 4         | \u2014             | \u2014             | Negative VPSE | Positive VPSE |
+> > +              | 5         | \u2014             | \u2014             | Negative VPSE | Positive VPSE |
+> > +              | 6         | Positive VPSE | Negative VPSE | \u2014             | \u2014             |
+> > +              | 7         | \u2014             | \u2014             | Positive VPSE | Negative VPSE |
+> > +              | 8         | \u2014             | \u2014             | Positive VPSE | Negative VPSE |
+> > +            minItems: 1
+> > +            maxItems: 2
 > 
-> Translating from dt maintainer speak to English, a functionally-equivalent
-> resolution of adding an of_machine_is_compatible("qcom,msm8998") is more
-> in line with the guidelines of not sprinkling firmware specifics in DTs
+> "pairsets" does not follow the normal design pattern of foos, foo-names, 
+> and #foo-cells. You could add #foo-cells I suppose, but what would cells 
+> convey? I don't think it's a good fit for what you need.
+> 
+> The other oddity is the number of entries and the names are fixed. That 
+> is usually defined per consumer. 
+> 
+> As each entry is just a power rail, why can't the regulator binding be 
+> used here?
 
-I'm not so sure about that, as I had proposed
+I'm not against describing it consequent with regulator till the wire
+end, but right now I have no idea how it should be described by using
+regulator bindings. There are maximum 2 rails going in to PSE PI on one
+side and 4 rails with at least 5 combinations supported by standard on
+other side. Instead of inventing anything new, I suggested to describe
+supported output combinations by using IEEE 802.3 standard.
 
-+	if (of_device_is_compatible(of_root, "qcom,msm8998")
-+		qmi->no_point_in_waiting_for_msa_ready_indicator = true;
-+
-
-To which Conor replied:
-
-> How come the root node comes into this, don't you have a soc-specific
-> compatible for the integration on this SoC?
-> (I am assuming that this is not the SDIO variant, given then it'd not be
-> fixed to this particular implementation)
-
-
-Then added:
-
-> A SoC-specific compatible sounds like it would be suitable in that case
-> then, to deal with integration quirks for that specific SoC? I usually
-> leave the ins and outs of these qcom SoCs to Krzysztof, but I can't help
-> but wanna know what the justification is here for not using one.
-
-
-Then Krzysztof added:
-
-> The WiFi+BT chips are separate products, so they are not usually
-> considered part of the SoC, even though they can be integrated into the
-> SoC like here. I guess correct approach would be to add SoC-specific
-> compatible for them.
-
-
-So, if I understand correctly, I take this to mean that I should:
-
-1) DELETE the qcom,no-msa-ready-indicator boolean property,
-2) ADD a "qcom,msm8998-wifi" (name OK?) compatible,
-3) ADD that compatible to the wifi node in msm8998.dtsi
-   compatible = "qcom,wcn3990-wifi", "qcom,msm8998-wifi";
-4) In the driver, set qmi->fake_msa_ready_indicator to true if we detect "qcom,msm8998-wifi"
-
-And this approach would be acceptable to both ath10k & DT maintainers?
-
-Bjarne, Konrad: is it OK to apply the work-around for all msm8998 boards?
-
-
-Regards
-
+Regards,
+Oleksij
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
