@@ -1,157 +1,161 @@
-Return-Path: <devicetree+bounces-55575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BAD3895AE2
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 19:40:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F3F7895B0A
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 19:47:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6AB301C2244F
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 17:40:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BBB07281B7E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 17:47:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC11D15A4A9;
-	Tue,  2 Apr 2024 17:40:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3568B15AAAB;
+	Tue,  2 Apr 2024 17:47:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f0pxRBGC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fi/8z9ry"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B248417BB7;
-	Tue,  2 Apr 2024 17:40:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C0E715AAB3;
+	Tue,  2 Apr 2024 17:47:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712079654; cv=none; b=RPbURTwDGA3Ct3Qm7xCmliV7Hi2e/BKSHx31rEWnk2dywhf+LKHSYjkrZNyyhgAG4/sVC5yx/BdsMbLmhvzoy2RokEMMryxUx/D4G/rn3ZsqcWhDXcnxdlGrRq2GQMFO0WSD4NEuJ2Vm/CI+98QJgsg2499Ccd3Z3Vbtk/LUmxk=
+	t=1712080023; cv=none; b=psJ+rT9Zlg4+A1NyYDuDGZIX8rZXyqWBzZIi4CkpmWzhRbVyRNnhLkjwcUSflDdux7VoyYqdgqYYidTWz2cZgkLacXzwywJzJAzSnb6hAgVBDQTTRnOFp61UHmeuzKTGNNLnseBDrVAes27ibScgPKVYh7k9jUH/jiCLuD8e/O4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712079654; c=relaxed/simple;
-	bh=rOoYl8MM4akGFWw4ON4nG8u58BI+J0+HplPfMqOklfI=;
+	s=arc-20240116; t=1712080023; c=relaxed/simple;
+	bh=6qtbcXbgPT258MwDHIMMVnVJMOfvk/DPTeiD+9wwTxE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ud/ROIP0+Q/OFG7F+cuhDcNy50tAoz6oSMoNvydXBSsKfTsViw8BLEwPHTtfEMGE1u/epRh+vcAYzSA12pO/acXXhHHcnvZeQ0kH5Cg/0oRHs+2NxaqPD18PxzbbAPZQ/onYrvr5tiAB4S/5CAME8hoUN1FSr1us/Tm42YpDLd4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f0pxRBGC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D083C433F1;
-	Tue,  2 Apr 2024 17:40:53 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=sWPtgO78HxTzn/IwED12ZjFqOEd4KMvb8QWHUFNdyVnIrfChzfpd13EBWyWqX7V6QzPTfY4PA1IVptELpTaBZcr8SKezVOJPmoxDMnhZ81QtLfKd8ejD/FeibiHKN6VJ2nc3mPeFp4CSHE5X7ujNwd7XsLPnAzBkx4r0AgHJftY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fi/8z9ry; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADB79C433C7;
+	Tue,  2 Apr 2024 17:46:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712079654;
-	bh=rOoYl8MM4akGFWw4ON4nG8u58BI+J0+HplPfMqOklfI=;
+	s=k20201202; t=1712080022;
+	bh=6qtbcXbgPT258MwDHIMMVnVJMOfvk/DPTeiD+9wwTxE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=f0pxRBGC5oYHJ1ujp6gXFafw41NnQ3jxoE26RW7RoSamIfbwFjR/Y33cs7/ybbFrj
-	 RYFqFZVFcSeZUjVqhHspVQ/hCGu2y2Q6ppSe3EXI/7zHSjLfmI8J03/RCObfCD9Idz
-	 IeliCtKmWfWexphwnK/mx2wLcd2DY7yIKCAs/PsMHH0/68PjMDXAe09wcfoWT9gy0V
-	 8WTfWLie821GTLj6eOyHV+7HmdmPx3gmSU2bgKu3rmnCk8zcemevz4M6ewoQK2bXhX
-	 4TVhCXuGvJOVzzZmqlg7UOAtOrU6T9FRYxlCQMB1chirNx/6X5mdKfIQzYbnEAsVZm
-	 8zBSs0jtPDEjg==
-Date: Tue, 2 Apr 2024 12:40:51 -0500
-From: Rob Herring <robh@kernel.org>
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	b=fi/8z9ryH9DA63j38wP2nPgPrAlEmUb4Q0Y0T69imsrnRqrdzITdr/fahb11gp21z
+	 KKN1E2imygXDCPznJnJs0qFcZ6u0GtXA5S4QR8pMQjPywi5vdYFThIjdkihZ4Lsee3
+	 yosHVJqIi0WM4MlahhuZ4ol6ZR/30P3YjrPX9FK/AeU6gwD5HFkl3OmydvHeI1goQv
+	 g8Uk2J5t3NiwUkA6pkvWyVfvFmK/jV1c3LLFmv/WFdkREZ2hlVAC4ig/eWtW2+yT10
+	 E9XBQNfNr3krf4eJ9C6bRHdXMqJA8OZNTKY3OUnnbAQJaRNEo6LYliSe0QHYwy8Wm0
+	 6w2IpUAJiOfIg==
+Date: Tue, 2 Apr 2024 18:46:57 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Steen Hegelund <steen.hegelund@microchip.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	loongson-kernel@lists.loongnix.cn, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>,
-	loongarch@lists.linux.dev
-Subject: Re: [PATCH v1 1/5] dt-bindings: pwm: Add Loongson PWM controller
-Message-ID: <20240402174051.GA324804-robh@kernel.org>
-References: <cover.1711953223.git.zhoubinbin@loongson.cn>
- <edad2bb5b0045c633734c1499fb163c3c6776121.1711953223.git.zhoubinbin@loongson.cn>
+	Lars Povlsen <lars.povlsen@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	UNGLinuxDriver@microchip.com,
+	"David S. Miller" <davem@davemloft.net>,
+	Bjarni Jonasson <bjarni.jonasson@microchip.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFT 01/10] arm64: dts: microchip: sparx5: fix mdio reg
+Message-ID: <20240402-drizzly-risotto-eac556bbe95b@spud>
+References: <20240401153740.123978-1-krzk@kernel.org>
+ <b3d818df8819d2fb3e96fa61b277d49941d9b01b.camel@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="RilKgIjVf/M7rXnH"
 Content-Disposition: inline
-In-Reply-To: <edad2bb5b0045c633734c1499fb163c3c6776121.1711953223.git.zhoubinbin@loongson.cn>
-
-On Tue, Apr 02, 2024 at 03:58:38PM +0800, Binbin Zhou wrote:
-> Add Loongson PWM controller binding with DT schema format using
-> json-schema.
-> 
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> ---
->  .../devicetree/bindings/pwm/pwm-loongson.yaml | 64 +++++++++++++++++++
-
-Filename should match compatible.
-
->  MAINTAINERS                                   |  6 ++
->  2 files changed, 70 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-loongson.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pwm/pwm-loongson.yaml b/Documentation/devicetree/bindings/pwm/pwm-loongson.yaml
-> new file mode 100644
-> index 000000000000..d25904468353
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/pwm-loongson.yaml
-> @@ -0,0 +1,64 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/pwm-loongson.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Loongson PWM Controller
-> +
-> +maintainers:
-> +  - Binbin Zhou <zhoubinbin@loongson.cn>
-> +
-> +description:
-> +  It is the generic PWM framework driver for Loongson family.
-
-That's describing the driver. Not really relevant to the binding.
+In-Reply-To: <b3d818df8819d2fb3e96fa61b277d49941d9b01b.camel@microchip.com>
 
 
-> +  Each PWM has one pulse width output signal and one pulse input
-> +  signal to be measured.
-> +  It can be found on Loongson-2K series cpus and Loongson LS7A bridge chips.
-> +
-> +allOf:
-> +  - $ref: pwm.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: loongson,ls7a-pwm
-> +      - items:
-> +          - enum:
-> +              - loongson,ls2k0500-pwm
-> +              - loongson,ls2k1000-pwm
-> +              - loongson,ls2k2000-pwm
-> +          - const: loongson,ls7a-pwm
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  '#pwm-cells':
-> +    const: 3
+--RilKgIjVf/M7rXnH
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Please define what is in each cell. If there's only 2 signals, then the 
-first cell defines the output or input (what value for which one?).
+Hey,
 
-Really, the PWM binding is only for outputs, so is a cell even needed? I 
-suppose we could use it for inputs too, but that's really "input 
-capture" type operation that timers often have. I'll defer to the PWM 
-maintainers...
+On Tue, Apr 02, 2024 at 04:00:32PM +0200, Steen Hegelund wrote:
+> On Mon, 2024-04-01 at 17:37 +0200, Krzysztof Kozlowski wrote:
+> > [Some people who received this message don't often get email from
+> > krzk@kernel.org. Learn why this is important at
+> > https://aka.ms/LearnAboutSenderIdentification=A0]
+> >=20
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you
+> > know the content is safe
+> >=20
+> > Correct the reg address of mdio node to match unit address.=A0 Assume
+> > the
+> > reg is not correct and unit address was correct, because there is
+> > alerady node using the existing reg 0x110102d4.
+> >=20
+> > =A0 sparx5.dtsi:443.25-451.5: Warning (simple_bus_reg):
+> > /axi@600000000/mdio@6110102f8: simple-bus unit address format error,
+> > expected "6110102d4"
+> >=20
+> > Fixes: d0f482bb06f9 ("arm64: dts: sparx5: Add the Sparx5 switch
+> > node")
+> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> >=20
+> > ---
+> >=20
+> > Not tested on hardware
+> > ---
+> > =A0arch/arm64/boot/dts/microchip/sparx5.dtsi | 2 +-
+> > =A01 file changed, 1 insertion(+), 1 deletion(-)
+> >=20
+> > diff --git a/arch/arm64/boot/dts/microchip/sparx5.dtsi
+> > b/arch/arm64/boot/dts/microchip/sparx5.dtsi
+> > index 24075cd91420..5d820da8c69d 100644
+> > --- a/arch/arm64/boot/dts/microchip/sparx5.dtsi
+> > +++ b/arch/arm64/boot/dts/microchip/sparx5.dtsi
+> > @@ -447,7 +447,7 @@ mdio2: mdio@6110102f8 {
+> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 p=
+inctrl-names =3D "default";
+> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 #=
+address-cells =3D <1>;
+> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 #=
+size-cells =3D <0>;
+> > -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 reg=
+ =3D <0x6 0x110102d4 0x24>;
+> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 reg=
+ =3D <0x6 0x110102f8 0x24>;
+> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 };
+> >=20
+> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 mdio3: mdio@61101031c {
+> > --
+> > 2.34.1
+> >=20
+>=20
+> I did a check of our current Sparx5 EVBs and none of them uses
+> controller 2 in any revision, so this is probably why it has not come
+> up before, so as it stands we have no platform to test this change on
+> currently.
+>=20
+> Besides that the change looks good to me.
+>=20
+> Best Regards
+> Steen
+>=20
+> Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - '#pwm-cells'
+Are you okay with the rest of the series, or have you only looked at
+this one patch?
 
-pwm.yaml makes this required already.
+--RilKgIjVf/M7rXnH
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Rob
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgxEkQAKCRB4tDGHoIJi
+0lSrAQCZbgAp+hHzEbAZUy5ZEACDMf4lJMuQXFA1tS+/Cwh2vgEA/UsYcqeBcYpx
+rn636eS2o+9iXzVq75hhahrnTAKyjAA=
+=1JM2
+-----END PGP SIGNATURE-----
+
+--RilKgIjVf/M7rXnH--
 
