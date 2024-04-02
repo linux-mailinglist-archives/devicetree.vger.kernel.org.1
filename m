@@ -1,150 +1,188 @@
-Return-Path: <devicetree+bounces-55311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95C78894CE5
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 09:51:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38622894CF2
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 09:53:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 509072823BA
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 07:51:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5BBC41C219AD
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 07:53:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF2F33CF65;
-	Tue,  2 Apr 2024 07:51:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VXQVclWb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EAD53D0A9;
+	Tue,  2 Apr 2024 07:53:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 400F62E648;
-	Tue,  2 Apr 2024 07:51:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 260EC2BD1C;
+	Tue,  2 Apr 2024 07:53:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712044269; cv=none; b=Ag7gEi8puCTUBB3StJDlWltY2KQVUpjVFOpfG1ypmscQaaYacgqbGC52QK1ihlUC3cl2y1fc7GGEPNRBnAP4uDP9EBD3OEMDTyP5p1vDk3ReqKB7V7eUbai1JxGcaqoxVt2YPgkHL0HxDfjuY0fluZP2YFUxOf9QqVc+EN/Qjkk=
+	t=1712044406; cv=none; b=ioIqcC5OOxx2AYJW5aZnnniyZjPDlOthjMsCarGXGaFEdr161QDazevBBBGr11YZl28MRzCzp722yC/gj98+/++dHRgK09KKx7wxDSuYmv9qHHwXmQ1/UpXMpdySMO5xeWJyYJzDph1fuBbORlG6wdMRdET/btBIvAOIsFsiKys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712044269; c=relaxed/simple;
-	bh=PjToy/peDSg0ufQRYrTRVDIb82Usl2ipW9FsNdt9a38=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=QY0EMFw/eRh0DvKC7lUZh6v1VGgn6WWwUZnX2HKinGpT3W4Pbg90uXkEBTLZWKm9aS7mFZYVCwxALkjBO1uiWVOH3FoDG7V2vgl6dL83Xf75+7o/zp/V28D9Q0+GGk2iqy344sL9tXPxoMUzUKdZgk66K183/yHqDSaGoJAHyH0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VXQVclWb; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1712044406; c=relaxed/simple;
+	bh=T/1svwn7eYG5hqU4ksuONqBd8LRcPSNa45Gwide7yRY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VimWtUxI8L5t5VTtq3xL6H8stJfB4+oNA559meSBickkqUme/nwmTga4mWY48sb6D5MkenreVuAIKSrFlpaaU4B2k5flhjNeOS0bO9At1l58J0Tftw/KLq2hGWFTm2CD9EiGU+iA/na99bcfacB/iwWPCbfLp3k7XYdctb4jDTw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-34372e3db28so81945f8f.2;
-        Tue, 02 Apr 2024 00:51:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712044267; x=1712649067; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=PjToy/peDSg0ufQRYrTRVDIb82Usl2ipW9FsNdt9a38=;
-        b=VXQVclWbtDgxp7tTfj+cFR324tHz230vzuc7fhqk6jSDAon+0zLzLExhSb8skZ6s+i
-         NfU+X6lR1SkpXXwaOLC7tTvEzxmJ0/xOHT052XTVg8im2pYTrRKQkJnS/sxtKdMzu86Z
-         LZBB8LaqkDRiLvc1gHNp1sOa7AKd219pkzNydd5Bv7fqSGXreWSpm7KTaJzwOw5daMiI
-         KXQn1/Hu4z388rtBwmSuuVwv9fFy7VGMFvRAyGBSQe+8SuGWEzCOuTpbaRvkCPkuCh+g
-         Xhh/sExM2yx9w4t73KV7tXQ2KqR9L9iJYHwRCXX7DLFVtwySJ706W+/96RYnJcGMnhz+
-         6Ybw==
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-615053a5252so9283557b3.1;
+        Tue, 02 Apr 2024 00:53:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712044267; x=1712649067;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=PjToy/peDSg0ufQRYrTRVDIb82Usl2ipW9FsNdt9a38=;
-        b=wIqV/xJQGhSya1WYmTfLzFrRbbY4PLJNLXLg7YxX+T01fo/unAh4+uaKR1wK5umreO
-         I12fKpDrSfejFcayPdqJpOeRrx8RkCCHkY8Mma7h8z33JEv5BuYrfLfSPMDhIuT/u1Bf
-         ZVeh8zcj7JPsa4IPo5zhsUsYAMqkFkZuoMw5S/t8QwgJi780Y/c48IK22D5Rmzwd3Wsn
-         P/GyFUfBQVfP8Sf48vI9vJt08vSVks1K3JwCZLBtS6s9qLlDg67+i1JQRBgXPDqQxuid
-         82fBQXGYTixuwHl2OtCIharT3cQ9mkZXaVXt+sOotmSfx/1ZAqGRSIUGNi6igI/hxi2w
-         yHaA==
-X-Forwarded-Encrypted: i=1; AJvYcCVK79eWm9eHK9zWZaHeZN66SEf8swtaz6uHlnALcZdizxi8l1YgVQVK/mAcMpIwMnasks2lcTfuV9mTBcl8eO/84LHm4stL52riKQ==
-X-Gm-Message-State: AOJu0Yz6tuo+G6d7amCFRq3DaAJUOc1bw8fGMy4meJ3FX+TGlHr33qt6
-	D6kmTItGd2s4Yk8fYFR21/K/MlQnQDPmQ+J6N2220w4jRmfF/Oqa
-X-Google-Smtp-Source: AGHT+IESJIP9HsInMHNYfQuTzthYqubwDx/pL4PAbyebw/XxZOjCLXfnN7uq/Ow2aRj/6rTvUM4i2A==
-X-Received: by 2002:adf:f704:0:b0:33e:75e4:d410 with SMTP id r4-20020adff704000000b0033e75e4d410mr7129326wrp.22.1712044266444;
-        Tue, 02 Apr 2024 00:51:06 -0700 (PDT)
-Received: from ?IPv6:2001:a61:343e:8301:d737:22b0:7431:8d01? ([2001:a61:343e:8301:d737:22b0:7431:8d01])
-        by smtp.gmail.com with ESMTPSA id ck5-20020a5d5e85000000b0034349225fbcsm6217494wrb.114.2024.04.02.00.51.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Apr 2024 00:51:06 -0700 (PDT)
-Message-ID: <c780ae7c234f07f599335040f61ecef3d6bca1b8.camel@gmail.com>
-Subject: Re: [PATCH 06/10] dt-bindings: iio: dac: add bindings doc for AXI
- DAC driver
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: David Lechner <dlechner@baylibre.com>, nuno.sa@analog.com
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Dragos Bogdan
- <dragos.bogdan@analog.com>, Jonathan Cameron <jic23@kernel.org>, Lars-Peter
- Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley
- <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>
-Date: Tue, 02 Apr 2024 09:51:05 +0200
-In-Reply-To: <CAMknhBHKcy9KO=8vuAvF0twY4x14sFq3FLW4ygORMn2G5k7WSg@mail.gmail.com>
-References: <20240328-iio-backend-axi-dac-v1-0-afc808b3fde3@analog.com>
-	 <20240328-iio-backend-axi-dac-v1-6-afc808b3fde3@analog.com>
-	 <CAMknhBHKcy9KO=8vuAvF0twY4x14sFq3FLW4ygORMn2G5k7WSg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+        d=1e100.net; s=20230601; t=1712044402; x=1712649202;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gWg+1fJyGKdFnvbvo2K9KM6G1mX2sB/eUJxrYUhr8+M=;
+        b=lyzA/WPs29wecl7rtP///SP3XxLjtRGnSmCmGCHWvfJmD4B6WZqDuc30KmvpEAdwnG
+         QVuoxCWgFEp//aobhDETaiBMCihO2xGSkU0SQS+uiYdc+b5bntiXcsFGY7P8aPUil8LT
+         hMvhlVlQRlQaqWRhvDo1O6tG3MWsuJsTrWBYKnddPCEFznd7LaGcVY1usrpmzhHoYWwJ
+         OCQGStb7dl7Nalk4NzenhXD8isfpqbsaoYsfC3wqxpVYi5dUCTjIFHDMlTqVlDIfOhrg
+         +BDDNofYywO8sHtl5elz0GpLD6kmkvLTxRS++30xViTW6xCsTncAWMn/z0hPSK92eGpv
+         kD5A==
+X-Forwarded-Encrypted: i=1; AJvYcCUGsJrrjJUzXIYya5v8ldXN8UHQtVSQyE7p0cyBVAnsbm9n/l7KiCKm+RfMEGF82xb5HX8pwI/iKX9KWIbF5LFbAgGEL4HdPVowm1BRNqb3aE/1PLbuwhVzIYzwQahub1sc1DPgJrMzNXOL/R4oJe07+Bq9uxdnc5BrHIYHCsBVuia83MwQGYu3
+X-Gm-Message-State: AOJu0YzVZWWvL8ETacimt2CUzh9L0lWGEj27xpOoeZsrzFSQArx6xr9Z
+	ojOgPCyrwEGj+qw2mFMxL1ZfPdSnxDnPHjZN+MSJwXNGnPCqDaHA3+DpCJJMTkQ=
+X-Google-Smtp-Source: AGHT+IE3jX1O5Ths7Fmq/ceI6z1EN/gU6/eW0Z5lwmGz3k8CQNRR3OUcsOXiDRSX3GpSvdNwJnqigA==
+X-Received: by 2002:a81:8d4c:0:b0:611:9a26:429f with SMTP id w12-20020a818d4c000000b006119a26429fmr9101903ywj.10.1712044401893;
+        Tue, 02 Apr 2024 00:53:21 -0700 (PDT)
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
+        by smtp.gmail.com with ESMTPSA id r194-20020a819acb000000b0060a0cd01a8fsm2670093ywg.89.2024.04.02.00.53.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Apr 2024 00:53:21 -0700 (PDT)
+Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-dbed179f0faso3779559276.1;
+        Tue, 02 Apr 2024 00:53:21 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUbQboyraP8p94A/x7ehONsM7rb7RAtIQs/F1nmkrGUH3NFJhTW7cY6aZwmNWzGjn6+gX61kL84WmxCdJlB4IOrbesrsDjBPV/gyM69XDt0l26UaEHC1yiuY5YQAcR9DHwNN+rituid2Fq27ICeYaVdNFmbE5LPd5QQERfWIlbkIdUxdY5LcaD1
+X-Received: by 2002:a5b:589:0:b0:dcc:5b7e:ddfe with SMTP id
+ l9-20020a5b0589000000b00dcc5b7eddfemr7810300ybp.4.1712044401276; Tue, 02 Apr
+ 2024 00:53:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20240401023942.134704-1-yoshihiro.shimoda.uh@renesas.com> <20240401023942.134704-7-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20240401023942.134704-7-yoshihiro.shimoda.uh@renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 2 Apr 2024 09:53:09 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXCsye4kEP4=1rYNx97VpXHjjNg9BFawnUBADfL2ADQTw@mail.gmail.com>
+Message-ID: <CAMuHMdXCsye4kEP4=1rYNx97VpXHjjNg9BFawnUBADfL2ADQTw@mail.gmail.com>
+Subject: Re: [PATCH v3 6/7] PCI: dwc: rcar-gen4: Add support for r8a779g0
+To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org, bhelgaas@google.com, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jingoohan1@gmail.com, 
+	mani@kernel.org, marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 2024-03-29 at 13:46 -0500, David Lechner wrote:
-> On Thu, Mar 28, 2024 at 8:22=E2=80=AFAM Nuno Sa via B4 Relay
-> <devnull+nuno.sa.analog.com@kernel.org> wrote:
-> >=20
-> > From: Nuno Sa <nuno.sa@analog.com>
-> >=20
-> > This adds the bindings documentation for the AXI DAC driver.
-> >=20
-> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-> > ---
-> > =C2=A0.../devicetree/bindings/iio/dac/adi,axi-dac.yaml=C2=A0=C2=A0 | 62=
- ++++++++++++++++++++++
-> > =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 7 +++
-> > =C2=A02 files changed, 69 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
-> > b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
-> > new file mode 100644
-> > index 000000000000..1018fd274f04
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
-> > @@ -0,0 +1,62 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/iio/dac/adi,axi-dac.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Analog Devices AXI DAC IP core
-> > +
-> > +maintainers:
-> > +=C2=A0 - Nuno Sa <nuno.sa@analog.com>
-> > +
-> > +description: |
-> > +=C2=A0 Analog Devices Generic AXI DAC IP core for interfacing a DAC de=
-vice
-> > +=C2=A0 with a high speed serial (JESD204B/C) or source synchronous par=
-allel
-> > +=C2=A0 interface (LVDS/CMOS).
-> > +=C2=A0 Usually, some other interface type (i.e SPI) is used as a contr=
-ol
-> > +=C2=A0 interface for the actual DAC, while this IP core will interface
-> > +=C2=A0 to the data-lines of the DAC and handle the streaming of data i=
-nto
-> > +=C2=A0 memory via DMA.
->=20
-> Isn't it the other way around for DAC, from memory to hardware?
+Hi Shimoda-san,
 
-Good catch! Yes, copy paste from the axi-adc and obviously missed this :)
+On Mon, Apr 1, 2024 at 4:40=E2=80=AFAM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> This driver previously supported r8a779f0 (R-Car S4-8). Add support
+> for r8a779g0 (R-Car V4H).
+>
+> To support r8a779g0, it requires specific firmware.
+>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-- Nuno S=C3=A1
+Thanks for your patch!
+
+> --- a/drivers/pci/controller/dwc/pcie-rcar-gen4.c
+> +++ b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
+
+> +static int rcar_gen4_pcie_update_phy_firmware(struct rcar_gen4_pcie *rca=
+r)
+> +{
+> +       const u32 check_addr[] =3D { 0x00101018, 0x00101118, 0x00101021, =
+0x00101121};
+> +       struct dw_pcie *dw =3D &rcar->dw;
+> +       const struct firmware *fw;
+> +       unsigned int i, timeout;
+> +       u32 data;
+> +       int ret;
+> +
+> +       ret =3D request_firmware(&fw, RCAR_GEN4_PCIE_FIRMWARE_NAME, dw->d=
+ev);
+> +       if (ret) {
+> +               dev_err(dw->dev, "%s: Requesting firmware failed\n", __fu=
+nc__);
+> +               return ret;
+> +       }
+> +
+> +       for (i =3D 0; i < (fw->size / 2); i++) {
+> +               data =3D fw->data[i * 2] | fw->data[(i * 2) + 1] << 8;
+> +               timeout =3D 100;
+> +retry_data:
+> +               dw_pcie_writel_dbi(dw, PRTLGC89, RCAR_GEN4_PCIE_FIRMWARE_=
+BASE_ADDR + i);
+> +               dw_pcie_writel_dbi(dw, PRTLGC90, data);
+> +               if (rcar_gen4_pcie_reg_check_bit(rcar, PRTLGC89, BIT(30))=
+ < 0) {
+
+If you would invert the logic here, you could "break" here, ...
+
+> +                       if (!(--timeout)) {
+> +                               ret =3D -ETIMEDOUT;
+> +                               goto exit;
+> +                       }
+> +                       usleep_range(100, 200);
+> +                       goto retry_data;
+
+... and convert "retry_data: ... goto retry_data" into "do { ... } while (1=
+)",
+avoiding the goto.
+
+> +               }
+> +       }
+> +
+> +       rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_0f8, =
+BIT(17), BIT(17));
+> +
+> +       for (i =3D 0; i < ARRAY_SIZE(check_addr); i++) {
+> +               timeout =3D 100;
+> +retry_check:
+> +               dw_pcie_writel_dbi(dw, PRTLGC89, check_addr[i]);
+> +               ret =3D rcar_gen4_pcie_reg_check_bit(rcar, PRTLGC89, BIT(=
+30));
+> +               ret |=3D rcar_gen4_pcie_reg_check_bit(rcar, PRTLGC90, BIT=
+(0));
+> +               if (ret < 0) {
+> +                       if (!(--timeout)) {
+> +                               ret =3D -ETIMEDOUT;
+> +                               goto exit;
+> +                       }
+> +                       usleep_range(100, 200);
+> +                       goto retry_check;
+
+Likewise.
+
+> +               }
+> +       }
+> +
+> +       ret =3D 0;
+> +exit:
+> +       release_firmware(fw);
+> +
+> +       return ret;
+> +}
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
