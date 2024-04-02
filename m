@@ -1,248 +1,231 @@
-Return-Path: <devicetree+bounces-55586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55587-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80124895B7D
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 20:10:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C2D68895B7E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 20:11:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DC964B26CD4
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 18:09:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E5C53B2AE17
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 18:10:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0B3B15AAD3;
-	Tue,  2 Apr 2024 18:09:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7F8515AACD;
+	Tue,  2 Apr 2024 18:10:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rN1JPzb+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jThfPFJR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91C1615AAC4;
-	Tue,  2 Apr 2024 18:09:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AADD615AADA
+	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 18:10:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712081376; cv=none; b=uNxdED/5Va9PUz07e0GQ3DLEHGfzWKQAGwqooUZs/C4RnqznBPllnLrApwP7FevdrOCWB2pk5W7dNaO7XzUBdIROyMF8C/myjxh8s4ndbqA3LUC4X/aOv8db69QoRln8kDBcHNjuqtx/1anuHeQoy9HCSmKmw+5FFtTJ5LmOYh0=
+	t=1712081414; cv=none; b=J1aMJyACSZrx3UPYiC8iX7wmPqYRWh/32wbQf9mqb/2UYVYZHf4b6SpLhNaBL4YGpu3W96PSVIsbDYwq0a5+aWgbZe2mlouhCAk6tLl17lEjY4ceTinjyOB+e9qiEkHpA44xzLKSODrKgJ6h9VvNZB77FF5eLBEPilj1i3Y3vQU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712081376; c=relaxed/simple;
-	bh=v2yTSI5wVjubdh6O9XGd9XiQiEx2T9wjyrIYVBy4i5w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ea2Vhw8Pu7OTY53cxbBc77duR2jddElT5vnsnEil7Rw612xw76HpGHVSfMEbuj9K4GhcGHMswJspDGCulkiYtj6MW/O26DCiLQYJf7jLjbWNv0pJeMXyP3pRRmqTyg77aAl4bUE2j11Sjf4ayFkXNXR80LL5emXo9Cewyrm1oUA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rN1JPzb+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43682C433C7;
-	Tue,  2 Apr 2024 18:09:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712081376;
-	bh=v2yTSI5wVjubdh6O9XGd9XiQiEx2T9wjyrIYVBy4i5w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rN1JPzb+MARtU6UczxPQ7h9luhxp2nCHkJALKqKjYduvj/tMkpNJnwvDaWcqPceGZ
-	 LrsnSR3TI7oBn+DZSYRPdwkAQ/yTwpNdM2clC/L2MscHkqpZDMMjyoRXR1l77zF+Bt
-	 u8srvdubSsKoHr8CPvbbqqEQX2nlD+gVwVGTE2YRjsg7rJT2kPcRDNq12SUbLSPAU3
-	 7kbth671C937lhBHjXwLBaVsP4/QCi/ziYmyX8irs2jeFh97Zf5IuSwryLrzu4XSuj
-	 NlVefpZqL8ZKa1edzZjQXxM8Msy784onEpXwKltmZIHMDS1eklHcmiiBy+zI292XeG
-	 HueNZcfQlKAag==
-Date: Tue, 2 Apr 2024 19:09:32 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Allen_Lin <allencl_lin@hotmail.com>
-Cc: dmitry.torokhov@gmail.com, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, jikos@kernel.org,
-	benjamin.tissoires@redhat.com, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: input: Add Himax HX83102J touchscreen
-Message-ID: <20240402-doable-routine-8e8cb4f07ffb@spud>
-References: <20240402104930.1053016-1-allencl_lin@hotmail.com>
- <TY0PR06MB5611C37640AA40B2B7716ABE9E3E2@TY0PR06MB5611.apcprd06.prod.outlook.com>
+	s=arc-20240116; t=1712081414; c=relaxed/simple;
+	bh=pYljYIHEkrkB0y2SZHC4nd7FMIFEzU0dyq95rjDG54E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HuUmzBcAnpa/FipGMO+X4+G5IQ4Quy4hLPz+QDMzRYLJCXmz2uMgJOJ0/3/KT3Iola2YH76H7pqLQIgdA+Xn5OWDBItw/Gwf7N9WyxcLMuZ1hU59z1L/5r37NnXMxBsw9U2n20dJNZsRdFVqQaH8d3UrhDVgiSMs8AQvD9aQJzk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jThfPFJR; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a4644bde1d4so741711266b.3
+        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 11:10:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712081411; x=1712686211; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=ARUpyGW+whw3wu4AP9U6adEupqnhQBlQNpDXlmMdSY0=;
+        b=jThfPFJRxt+Aw0BqwV8YBb8TRBofcAazXiES3brutRbLY/p2EY6h5rGLsjwcjGR+IQ
+         C7DB3guF98MvilGb7X+nBVobUruXlhM6sPVoZ9rGtzLeCLRWECqlXTKnlsoQE/HsTqGS
+         bH8sqQk/YbTp1Kx9yx52l5S5WZSQ9cspVW3n2QakmeKru4h70ObtGT9x4Cob7cveuZ2w
+         +fQnvzYiqPbStP1TMsHOASLuaP+Slh7c/Q+oEOy7cg6LfmJTiTsSNorOQpjRkWCeHltx
+         giWjbSYqE9WG1zUQM+WHuJSiCjTTNQZJPt7zY7qt9MQkkvqB8t4Yv/wHuut8z4xHV6ls
+         6WFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712081411; x=1712686211;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ARUpyGW+whw3wu4AP9U6adEupqnhQBlQNpDXlmMdSY0=;
+        b=G6Du49p95T3iAZ6uC9X/rGD5cOQxO3zqnFRxRdLlnDcsdGLybnNYBJBurjK38+Gkwb
+         54gQ6RNrskaPlpueUqSbz2lhX/2C39rlspBSVOsUWlOTGUe3hyam4DyVrlJR32HLAQ++
+         zAWc7JyhPFiXGdQTznxE+vVCulZ1Y3Z58Ony+t6lNCk+Yz8pzRiw6Vf0xDLIBnh7IB3m
+         UCF76ZT5iTquQOXwb5HVD0G7pVqfZDo40x0vjYkKLifHrrmI0dW3ozxgENu8NaanzUfG
+         6B3ONrXiKUBTyMubrGoxQ+Fu9+bM+IhIuhpPwABFFLgHalNHj/ptRYo0qefekY0jXvaT
+         S+Lw==
+X-Forwarded-Encrypted: i=1; AJvYcCX2XRUnTQwjF+mezDbXuakncEl/QwGu58BE6wV1p6enMWjDk25rq0GWhx2xkhuNGCisPVukxvGwyYm4GL8jq515lltshjJAxXQoEA==
+X-Gm-Message-State: AOJu0Yyh6SeNfa6wupKPfiWhoHvc/TiWLHucmh2U1gxk2tv8888tCfEO
+	X0lt7BUR86ywIQc0o3hrxDfN6kaSK68T5poJw1ryKq92xDa7d8HqJeWknqSxEjk=
+X-Google-Smtp-Source: AGHT+IHSP4fR1R0ef5NKvhwzZ2Rs/bUsT9d2lAYc7KlN1gQx64hA12/tzuBXLZhD6muavsWv9DHM5w==
+X-Received: by 2002:a17:906:b28b:b0:a4e:5fe8:46bd with SMTP id q11-20020a170906b28b00b00a4e5fe846bdmr4519827ejz.51.1712081410976;
+        Tue, 02 Apr 2024 11:10:10 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id l3-20020a1709067d4300b00a466af74ef2sm6790403ejp.2.2024.04.02.11.10.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Apr 2024 11:10:10 -0700 (PDT)
+Message-ID: <65b6329a-643c-4adf-9137-281964865d51@linaro.org>
+Date: Tue, 2 Apr 2024 20:10:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="wnkQWaX3HDVV3g+f"
-Content-Disposition: inline
-In-Reply-To: <TY0PR06MB5611C37640AA40B2B7716ABE9E3E2@TY0PR06MB5611.apcprd06.prod.outlook.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 17/18] dt-bindings: pci: rockchip,rk3399-pcie-ep: Add
+ ep-gpios property
+To: Damien Le Moal <dlemoal@kernel.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
+ <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Cc: linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Rick Wertenbroek <rick.wertenbroek@gmail.com>,
+ Wilfred Mallawa <wilfred.mallawa@wdc.com>, Niklas Cassel <cassel@kernel.org>
+References: <20240330041928.1555578-1-dlemoal@kernel.org>
+ <20240330041928.1555578-18-dlemoal@kernel.org>
+ <b020b74e-8ae1-448a-9d47-6c9bb13735f9@linaro.org>
+ <c75cb54a-61c7-4bc3-978e-8a28dde93b08@kernel.org>
+ <518f04ea-7ff6-4568-be76-60276d18b209@linaro.org>
+ <49ecab2e-8f36-47be-a1b0-1bb0089dab0f@kernel.org>
+ <57d5d6ea-5fef-423c-9f85-5f295bfa4c5f@linaro.org>
+ <80c4c37b-8c5c-4628-a455-fcccfc3b3730@kernel.org>
+ <be2a0fa0-9d5d-45c3-810a-56d6924c8891@kernel.org>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <be2a0fa0-9d5d-45c3-810a-56d6924c8891@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+On 02/04/2024 09:55, Damien Le Moal wrote:
+> On 4/2/24 16:38, Damien Le Moal wrote:
+>> On 4/2/24 16:33, Krzysztof Kozlowski wrote:
+>>> On 02/04/2024 01:36, Damien Le Moal wrote:
+>>>> On 4/1/24 18:57, Krzysztof Kozlowski wrote:
+>>>>> On 01/04/2024 01:06, Damien Le Moal wrote:
+>>>>>> On 3/30/24 18:16, Krzysztof Kozlowski wrote:
+>>>>>>> On 30/03/2024 05:19, Damien Le Moal wrote:
+>>>>>>>> From: Wilfred Mallawa <wilfred.mallawa@wdc.com>
+>>>>>>>>
+>>>>>>>> Describe the `ep-gpios` property which is used to map the PERST# input
+>>>>>>>> signal for endpoint mode.
+>>>>>>>>
+>>>>>>>> Signed-off-by: Wilfred Mallawa <wilfred.mallawa@wdc.com>
+>>>>>>>> Signed-off-by: Damien Le Moal <dlemoal@kernel.org>
+>>>>>>>> ---
+>>>>>>>>  .../devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml       | 3 +++
+>>>>>>>>  1 file changed, 3 insertions(+)
+>>>>>>>>
+>>>>>>>> diff --git a/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml
+>>>>>>>> index 6b62f6f58efe..9331d44d6963 100644
+>>>>>>>> --- a/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml
+>>>>>>>> +++ b/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml
+>>>>>>>> @@ -30,6 +30,9 @@ properties:
+>>>>>>>>      maximum: 32
+>>>>>>>>      default: 32
+>>>>>>>>  
+>>>>>>>> +  ep-gpios:
+>>>>>>>> +    description: Input GPIO configured for the PERST# signal.
+>>>>>>>
+>>>>>>> Missing maxItems. But more important: why existing property perst-gpios,
+>>>>>>> which you already have there in common schema, is not correct for this case?
+>>>>>>
+>>>>>> I am confused... Where do you find perst-gpios defined for the rk3399 ?
+>>>>>> Under Documentation/devicetree/bindings/pci/, the only schema I see using
+>>>>>> perst-gpios property are for the qcom (Qualcomm) controllers.
+>>>>>
+>>>>> You are right, it's so far only in Qualcomm.
+>>>>>
+>>>>>> The RC bindings for the rockchip rk3399 PCIe controller
+>>>>>> (pci/rockchip,rk3399-pcie.yaml) already define the ep-gpios property. So if
+>>>>>
+>>>>> Any reason why this cannot be named like GPIO? Is there already a user
+>>>>> of this in Linux kernel? Commit msg says nothing about this, so that's
+>>>>> why I would expect name matching the signal.
+>>>>
+>>>> The RC-mode PCIe controller node of the rk3399 DTS already defines the ep-gpios
+>>>> property for RC side PERST# signal handling. So we simply reused the exact same
+>>>> name to be consistent between RC and EP. I personnally have no preferences. If
+>>>> there is an effort to rename such signal with some preferred pattern, I will
+>>>> follow. For the EP node, there was no PERST signal handling in the driver and
+>>>> no property defined for it, so any name is fine. "perst-gpios" would indeed be
+>>>> a better name, but again, given that the RC controller node has ep-gpios, we
+>>>> reused that. What is your recommendation here ?
+>>>
+>>> Actually I don't know, perst and ep would work for me. If you do not
+>>> have code for this in the driver yet (nothing is shared between ep and
+>>> host), then maybe let's go with perst to match the actual name.
+>>
+>> That works for me. The other simple solution would be to move the RC node
+>> ep-gpios description to the common schema pci/rockchip,rk3399-pcie-common.yaml,
+>> maybe ? Otherwise, perst-gpios like the Qualcomm schemas would be nice too.
+> 
+> Thinking more about this, I think moving the ep-gpios description to the common
+> schema is the right thing to do given that the driver uses common code between
+> RC and EP to get that property. But if that is not acceptable, I can rename it
+> and get that property in the controller EP mode initialization code. That will
+> be add a little more code in the driver.
+
+I forgot that it is actually the same hardware, so if host has
+"ep-gpios" already then EP mode should have the same property. Common
+schema is good idea.
 
 
---wnkQWaX3HDVV3g+f
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Best regards,
+Krzysztof
 
-On Tue, Apr 02, 2024 at 06:49:27PM +0800, Allen_Lin wrote:
-> Add the HX83102j touchscreen device tree bindings documents.
-> HX83102j is a Himax TDDI touchscreen controller.
-> It's power sequence should be bound with a lcm driver, thus it
-> needs to be a panel follower. Others are the same as normal SPI
-> touchscreen controller.
->=20
-> Signed-off-by: Allen_Lin <allencl_lin@hotmail.com>
-> ---
->  .../input/touchscreen/himax,hx83102j.yaml     | 100 ++++++++++++++++++
->  MAINTAINERS                                   |   6 ++
->  2 files changed, 106 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/h=
-imax,hx83102j.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/input/touchscreen/himax,hx=
-83102j.yaml b/Documentation/devicetree/bindings/input/touchscreen/himax,hx8=
-3102j.yaml
-> new file mode 100644
-> index 000000000000..fe79129f704a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/touchscreen/himax,hx83102j.=
-yaml
-> @@ -0,0 +1,100 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/touchscreen/himax,hx83102j.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Himax hx83102j touchscreen
-> +
-> +maintainers:
-> +  - Allen Lin <allencl_lin@hotmail.com>
-> +
-> +description:
-> +  This Himax hx83102j touchscreen uses the spi protocol.
-> +
-> +allOf:
-> +  - $ref: /schemas/input/touchscreen/touchscreen.yaml#
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: himax,hx83102j
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +
-> +  vccd-supply:
-> +    description: A phandle for the regualtor supplying IO power.
-
-nit: regulator
-
-> +=20
-> +  vsn-supply:
-> +    description: Negative supply regulator.
-> +=20
-> +  vsp-supply:
-> +    description: Positive supply regulator.
-
-Cool, thanks for adding these.
-
-> +
-> +  ddreset-gpios:
-> +    description: A phandle of gpio for display reset controlled by the L=
-CD driver.
-> +      This is the master reset, if this reset is triggered, the TP reset=
- will=20
-> +      also be triggered.
-> + =20
-> +  spi-cpha: true
-> +
-> +  spi-cpol: true
-> +
-> +  spi-max-frequency: true
-> +
-> +  panel: true
-> +
-> +  himax,firmware-name:
-
-firmware-name is a standard property, you don't need to vendor prefix it.
-
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    description:
-> +      Specify the file name for firmware loading.
-> +
-> +  himax,pid:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      PID for HID device, used to validate firmware.
-
-Why do you need this _and_ firmware-name? You should be able to trust
-the firmware that the dt has told you to use, no?
-
-Cheers,
-Conor.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - reset-gpios
-> +  - panel
-> +  - vccd-supply
-> +  - vsn-supply
-> +  - vsp-supply
-> +  - ddreset-gpios
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    spi {
-> +      #address-cells =3D <1>;
-> +      #size-cells =3D <0>;
-> +      ap_ts: touchscreen@0 {
-> +        compatible =3D "himax,hx83102j";
-> +        reg =3D <0>;
-> +        pinctrl-names =3D "default";
-> +        pinctrl-0 =3D <&touch_int0 &touch_reset>;
-> +        reset-gpios =3D <&gpio1 8 GPIO_ACTIVE_LOW>;
-> +        spi-cpha;
-> +        spi-cpol;
-> +        interrupt-parent =3D <&gpio1>;
-> +        interrupts =3D <7 IRQ_TYPE_LEVEL_LOW>;
-> +        panel =3D <&panel>;
-> +        vccd-supply =3D <&regulator>;
-> +        vsn-supply =3D <&regulator>;
-> +        vsp-supply =3D <&regulator>;
-> +        ddreset-gpios =3D <&gpio1>;
-> +      };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 43b39956694a..aa51c60fd66d 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -9669,6 +9669,12 @@ L:	linux-kernel@vger.kernel.org
->  S:	Maintained
->  F:	drivers/misc/hisi_hikey_usb.c
-> =20
-> +HIMAX HID HX83102J TOUCHSCREEN
-> +M:	Allen Lin <allencl_lin@hotmail.com>
-> +L:	linux-input@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/input/touchscreen/himax,hx83102j.ya=
-ml
-> +
->  HIMAX HX83112B TOUCHSCREEN SUPPORT
->  M:	Job Noorman <job@noorman.info>
->  L:	linux-input@vger.kernel.org
-> --=20
-> 2.34.1
->=20
-
---wnkQWaX3HDVV3g+f
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgxJ3AAKCRB4tDGHoIJi
-0ngTAP9sAj6qdFZruDOlfI5qPpSzZ9xkZKy3Gcy8R5RWuWZ+WAD+ILoYLlHXju8g
-Vaim33nrtscHEM4CFV/YvdfiUdicvgY=
-=OLuM
------END PGP SIGNATURE-----
-
---wnkQWaX3HDVV3g+f--
 
