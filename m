@@ -1,88 +1,104 @@
-Return-Path: <devicetree+bounces-55445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5753789534A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 14:39:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F8878953B8
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 14:44:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 81F871C223C2
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 12:39:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A1AF284803
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 12:44:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C42B7C6DF;
-	Tue,  2 Apr 2024 12:38:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E5458062D;
+	Tue,  2 Apr 2024 12:43:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="MrD2bfzu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from abb.hmeau.com (abb.hmeau.com [144.6.53.87])
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17C3F60BB7;
-	Tue,  2 Apr 2024 12:38:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=144.6.53.87
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A90F79DD4;
+	Tue,  2 Apr 2024 12:43:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712061504; cv=none; b=BqMMwSTwXWMVKeBYl9/+Lm8Gpqu/FSnCiEbm4K69gG5jur+54iiPt2fnvPtfx1SneaoTd2V4ZXnJib1mTqKQ68ESHaMSKHm/ouG8NrI6wMLaOPAaKZIBjyzwDEWzjkCysR2zfbSnI2FdY4jEKlbtaGiUQywcgspdRxAKy51y5vQ=
+	t=1712061805; cv=none; b=FCu7p44i1Fq5fUcUE8IGzEZyrE0dD5uHs9sHC5huhWuarMR1SeV9JG7W+mjUpecbBXmQ7kBWW7c7Z+mOCenva74LXaqszdpxrIhEGFFuM0Pn3dGnMRufMxGDZWqFRKYgxtN9H0UIDo/kBCTj9dm2V2pDO01DmgOTx3HTM67GBRY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712061504; c=relaxed/simple;
-	bh=boRRZlpZak68PYABIUG6OvIfNGXFu1bXko+mpxmmDnk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HYXEaxUy6p3RKX7b523xmVCEpKbxi3zNH9SJa3pnT13XR05lsCdmjg48PEL3fM7efvbzJj7pdQg5tm9DbhQDwylxmf4yQ83QT9s7+c0Llej5pRM/LOtzoWwyKRutOUmQJgRfCjeoE84SW4wL4J/mZkE7XCgunCkRE6RtiOuV4MY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; arc=none smtp.client-ip=144.6.53.87
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-	by formenos.hmeau.com with smtp (Exim 4.94.2 #2 (Debian))
-	id 1rrdOi-00E5xQ-MJ; Tue, 02 Apr 2024 20:37:53 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Tue, 02 Apr 2024 20:38:09 +0800
-Date: Tue, 2 Apr 2024 20:38:09 +0800
-From: Herbert Xu <herbert@gondor.apana.org.au>
-To: Akhil R <akhilrajeev@nvidia.com>
-Cc: "davem@davemloft.net" <davem@davemloft.net>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-	Jon Hunter <jonathanh@nvidia.com>,
-	"catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-	"will@kernel.org" <will@kernel.org>,
-	Mikko Perttunen <mperttunen@nvidia.com>,
-	"airlied@gmail.com" <airlied@gmail.com>,
-	"daniel@ffwll.ch" <daniel@ffwll.ch>,
-	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Subject: Re: [PATCH v6 3/5] crypto: tegra: Add Tegra Security Engine driver
-Message-ID: <Zgv8MYZuMpVjeRFg@gondor.apana.org.au>
-References: <20240319082306.34716-1-akhilrajeev@nvidia.com>
- <20240319082306.34716-4-akhilrajeev@nvidia.com>
- <ZgVCxnI0sZcE04io@gondor.apana.org.au>
- <SJ1PR12MB63394D2C8C5329DE4B9B937FC03E2@SJ1PR12MB6339.namprd12.prod.outlook.com>
+	s=arc-20240116; t=1712061805; c=relaxed/simple;
+	bh=epw34yIKKlGPEjdHE3kEF72x1A6DYUMIDQaYTGHFrvU=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=SoMsQQ6Mja/eDLEKPzggFBXyJrEP1jB/M+5QZ7z09F9RBdlcJtO3jArYow+F8XY9Tgo/6l64mqUFYMv8OXxqoK5Kyb+/4Ulk3Dkb+d7UWtqKK4GB0HmxGk2JXxD15KFK1tcFId6C3C36+RtwuVGQ3p/d4UIj/nbSX5WcqloZqGM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=MrD2bfzu; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 7DF16240009;
+	Tue,  2 Apr 2024 12:43:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1712061795;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=8b+3ZbVcaXEu4A//GjptOVHRGcD/DD5eaO2T4sWcQ9M=;
+	b=MrD2bfzu4yuFaHCtAwvbZ09KPVtZtGAu/x1YbR9qgsx7MJZgCNxe1F8YdsJGuvwl5Rm5nu
+	6rQhOTz/zbh3fX98bMEbvQbACB3hrg+346apChWhWNpay0A53+upmPm//TWSy4Tx7944UD
+	kurhvuPQYY5B/EgiGHH+0ttSy7UHS0ZDck58bti307IcgjQ63tpXWkUu8PJd6/+b26e9Jo
+	MSjEV/NM7271K3DQZrGJmwuKDOU/rEcBeTas5mApqpIzI6qkTKTVIBemTGn+8wMcT8PZoS
+	GLAMTGLiivlhJQOxDCNBPfCVnLdlpHCsL2X05CE/vd2AT7YQI3Y1d5bfmCduhQ==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 1/6] arm64: dts: marvell: ap80x: fix IOMMU unit address
+In-Reply-To: <20240401141051.98233-1-krzk@kernel.org>
+References: <20240401141051.98233-1-krzk@kernel.org>
+Date: Tue, 02 Apr 2024 14:43:15 +0200
+Message-ID: <87il107x5o.fsf@BLaptop.bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <SJ1PR12MB63394D2C8C5329DE4B9B937FC03E2@SJ1PR12MB6339.namprd12.prod.outlook.com>
+Content-Type: text/plain
+X-GND-Sasl: gregory.clement@bootlin.com
 
-On Tue, Apr 02, 2024 at 12:36:41PM +0000, Akhil R wrote:
+Krzysztof Kozlowski <krzk@kernel.org> writes:
+
+> Correct the IOMMU device node unit address to match "reg" and fix dtc
+> W=1 warnings:
 >
-> Should I set the reqsize as below in sha_cra_init()? Seeing this in other crypto drivers.
-> 
->         crypto_ahash_set_reqsize(ahash_tfm,
->                         sizeof(struct tegra_sha_reqctx) +
->                         crypto_ahash_reqsize(ctx->fallback_tfm));
+>   armada-ap80x.dtsi:64.24-80.6: Warning (simple_bus_reg): /ap807/config-space@f0000000/iommu@5000000: simple-bus unit address format error, expected "100000"
+>
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-Yes if you places the fallback request at the end of reqctx then
-this is the correct reqsize.
 
-Cheers,
--- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+Applied on mvebu/dt64 as well as the 5 other patches from this series.
+
+Thanks,
+
+Gregory
+
+> ---
+>  arch/arm64/boot/dts/marvell/armada-ap80x.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi b/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi
+> index 7ec7c789d87e..fdf88cd0eb02 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi
+> +++ b/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi
+> @@ -61,7 +61,7 @@ config-space@f0000000 {
+>  			compatible = "simple-bus";
+>  			ranges = <0x0 0x0 0xf0000000 0x1000000>;
+>  
+> -			smmu: iommu@5000000 {
+> +			smmu: iommu@100000 {
+>  				compatible = "marvell,ap806-smmu-500", "arm,mmu-500";
+>  				reg = <0x100000 0x100000>;
+>  				dma-coherent;
+> -- 
+> 2.34.1
 
