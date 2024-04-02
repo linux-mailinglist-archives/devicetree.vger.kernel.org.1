@@ -1,150 +1,157 @@
-Return-Path: <devicetree+bounces-55577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 685F5895AE8
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 19:41:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BAD3895AE2
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 19:40:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1AA7E28ABE0
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 17:41:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6AB301C2244F
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 17:40:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D838815AABA;
-	Tue,  2 Apr 2024 17:41:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC11D15A4A9;
+	Tue,  2 Apr 2024 17:40:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PxEqlNYN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f0pxRBGC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5187815A4A7;
-	Tue,  2 Apr 2024 17:40:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B248417BB7;
+	Tue,  2 Apr 2024 17:40:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712079660; cv=none; b=EY6GaAmTQMZCEFvFbTElvkSB9rpPx0dTraRftoManPa2J55K3wHukzTIAxl+8B8O0R9aAsGki0OpJCXJYfMl5zlLNPS2FT2r0db80wBd1aQ1jdlppKGKXDFaOCdc9htNpqE8MeWYJHAYbgBZdWFEzv9Zu8+zM/cf6ZePfldCkSE=
+	t=1712079654; cv=none; b=RPbURTwDGA3Ct3Qm7xCmliV7Hi2e/BKSHx31rEWnk2dywhf+LKHSYjkrZNyyhgAG4/sVC5yx/BdsMbLmhvzoy2RokEMMryxUx/D4G/rn3ZsqcWhDXcnxdlGrRq2GQMFO0WSD4NEuJ2Vm/CI+98QJgsg2499Ccd3Z3Vbtk/LUmxk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712079660; c=relaxed/simple;
-	bh=1rFdNZAPyiQd5YvYrgl+b//xP4F62hYfvSXdo2y3mSI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Ts84k0IyoA1A5rOm88zQPDa1CESaymEDjTnpUvTGrsfztzXiNNEmgS1FNULXnbpx+eO2lY18ekQXTPnkAaVu5u8mFuyMCXO9zIzJWuehgBdv6EuhPgwi71/n7rvfvbo5wJ2YyQTWgKOwjT3qt2p2ScEEIU8HkEr92fDMw+VjU/o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PxEqlNYN; arc=none smtp.client-ip=209.85.210.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-6e6c38be762so597586b3a.1;
-        Tue, 02 Apr 2024 10:40:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712079658; x=1712684458; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Zk3XKb0313XxlPGBiYPfDtWT1uFFIekVFB4cJRRrJmw=;
-        b=PxEqlNYNy8k0FTuv9Yhpxx3xexKjUN2Qb6TporrlaGWy/uS8BJMbyhmMcHrn0lDFjX
-         wIGUDEy2spbL1MAXqMjK9IAoLWTuccLGOHrke2Aai6A/KnrEOdFzKefA66MZ0HhPMCdv
-         Adjj4Q9tIFtwOiZP1kWVAKbfGqlrqNLABvTt5WHHtdkWl5l2qVHuUCm/oN0zzosdjacy
-         PbCQUTUEmRs4Xley1RcE8Fx4nZUKzuah5E7V5af82EL7v7XfjVs5rJQOxVi/MJMivBX6
-         yLtg4rx4OMVmo8D/BmpEnlGaK8HwSQzqYc8fXg8CPKpMHfnTIX/67zigUUBdCo4rU+KV
-         U1JA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712079658; x=1712684458;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Zk3XKb0313XxlPGBiYPfDtWT1uFFIekVFB4cJRRrJmw=;
-        b=rAxKmcIJz6HwSDohLGqpGktnrThq6vDaru7HDHq29UvtxTRkgrk9NNhgyn80imNYPt
-         EoQ2f2Y4VOzS/qWeqJLVklX9a8jWdx5Z9Upd4jQpn8MFpZB3Q6+tDx0nWmnwbZaCHa2I
-         hL+NLb8QcDaPunkXqthZNbYFdBO0zDvp/5kLLVVcbmMXCJSPIOwdfKYcMoWr5g5UbwwG
-         IkK1u3+A8naOh3M+cQ1GNMcr66Ei4Pq4c5fo7e70jj3/+iJYgR03YJK3m1ksN9pkko0G
-         4zDgZJLdIhsJf8i+YS1/s6esVW48W+WsslaoeOELElryrCmMGvhZZL80y/QuQY7pDlIP
-         aYzA==
-X-Forwarded-Encrypted: i=1; AJvYcCVCkAo/951asT+RBblnapKc+YA7ZK/7j7FcT1XS8BBxvwbwuk1AWQytF23caoyRJ+T7EhMTNaVq4TMw/D6SqCfFe5IeqAolypL6dsEnHiiHXigbMYmmWN4gtnOHjtbqsPZPX+8NRFSW
-X-Gm-Message-State: AOJu0YwyFl9D2wMqi190xL+K7vmE9S/7kDvYiz7JOpd709/Bwpnv1MTI
-	5XcNuFuXY9AV/KmoUYbGdZXK8nJq9obH2u+4h4Szt2qhxw6HqljQ
-X-Google-Smtp-Source: AGHT+IEsFSNaSMqzOmZDLbkCCioeknyxrJRlU2EYnY9K1bBP31xR0LgJbZ11RFQB8HTUuzJ6J2mEww==
-X-Received: by 2002:a05:6a00:b31:b0:6ea:8604:cb1d with SMTP id f49-20020a056a000b3100b006ea8604cb1dmr15183288pfu.0.1712079658523;
-        Tue, 02 Apr 2024 10:40:58 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:7fdc:71fa:30d0:4855])
-        by smtp.gmail.com with ESMTPSA id w10-20020aa79a0a000000b006e6aee6807dsm6818919pfj.22.2024.04.02.10.40.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Apr 2024 10:40:57 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: sakari.ailus@linux.intel.com
-Cc: rmfrfs@gmail.com,
-	laurent.pinchart@ideasonboard.com,
-	hansg@kernel.org,
-	robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH v4 2/2] media: dt-bindings: ovti,ov2680: Document link-frequencies
-Date: Tue,  2 Apr 2024 14:40:28 -0300
-Message-Id: <20240402174028.205434-2-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240402174028.205434-1-festevam@gmail.com>
-References: <20240402174028.205434-1-festevam@gmail.com>
+	s=arc-20240116; t=1712079654; c=relaxed/simple;
+	bh=rOoYl8MM4akGFWw4ON4nG8u58BI+J0+HplPfMqOklfI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ud/ROIP0+Q/OFG7F+cuhDcNy50tAoz6oSMoNvydXBSsKfTsViw8BLEwPHTtfEMGE1u/epRh+vcAYzSA12pO/acXXhHHcnvZeQ0kH5Cg/0oRHs+2NxaqPD18PxzbbAPZQ/onYrvr5tiAB4S/5CAME8hoUN1FSr1us/Tm42YpDLd4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f0pxRBGC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D083C433F1;
+	Tue,  2 Apr 2024 17:40:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712079654;
+	bh=rOoYl8MM4akGFWw4ON4nG8u58BI+J0+HplPfMqOklfI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=f0pxRBGC5oYHJ1ujp6gXFafw41NnQ3jxoE26RW7RoSamIfbwFjR/Y33cs7/ybbFrj
+	 RYFqFZVFcSeZUjVqhHspVQ/hCGu2y2Q6ppSe3EXI/7zHSjLfmI8J03/RCObfCD9Idz
+	 IeliCtKmWfWexphwnK/mx2wLcd2DY7yIKCAs/PsMHH0/68PjMDXAe09wcfoWT9gy0V
+	 8WTfWLie821GTLj6eOyHV+7HmdmPx3gmSU2bgKu3rmnCk8zcemevz4M6ewoQK2bXhX
+	 4TVhCXuGvJOVzzZmqlg7UOAtOrU6T9FRYxlCQMB1chirNx/6X5mdKfIQzYbnEAsVZm
+	 8zBSs0jtPDEjg==
+Date: Tue, 2 Apr 2024 12:40:51 -0500
+From: Rob Herring <robh@kernel.org>
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	loongson-kernel@lists.loongnix.cn, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev
+Subject: Re: [PATCH v1 1/5] dt-bindings: pwm: Add Loongson PWM controller
+Message-ID: <20240402174051.GA324804-robh@kernel.org>
+References: <cover.1711953223.git.zhoubinbin@loongson.cn>
+ <edad2bb5b0045c633734c1499fb163c3c6776121.1711953223.git.zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <edad2bb5b0045c633734c1499fb163c3c6776121.1711953223.git.zhoubinbin@loongson.cn>
 
-From: Fabio Estevam <festevam@denx.de>
+On Tue, Apr 02, 2024 at 03:58:38PM +0800, Binbin Zhou wrote:
+> Add Loongson PWM controller binding with DT schema format using
+> json-schema.
+> 
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> ---
+>  .../devicetree/bindings/pwm/pwm-loongson.yaml | 64 +++++++++++++++++++
 
-Document the link-frequencies property as recommended by the following
-document:
+Filename should match compatible.
 
-https://www.kernel.org/doc/html/v6.9-rc1/driver-api/media/camera-sensor.html#handling-clocks
+>  MAINTAINERS                                   |  6 ++
+>  2 files changed, 70 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-loongson.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pwm/pwm-loongson.yaml b/Documentation/devicetree/bindings/pwm/pwm-loongson.yaml
+> new file mode 100644
+> index 000000000000..d25904468353
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/pwm-loongson.yaml
+> @@ -0,0 +1,64 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/pwm-loongson.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Loongson PWM Controller
+> +
+> +maintainers:
+> +  - Binbin Zhou <zhoubinbin@loongson.cn>
+> +
+> +description:
+> +  It is the generic PWM framework driver for Loongson family.
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
-Changes since v3:
-- Only document link-frequencies.
+That's describing the driver. Not really relevant to the binding.
 
- .../bindings/media/i2c/ovti,ov2680.yaml         | 17 ++++++++++++++++-
- 1 file changed, 16 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml
-index c87677f5e2a2..634d3b821b8c 100644
---- a/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml
-@@ -50,9 +50,23 @@ properties:
-       Definition of the regulator used as digital power supply.
- 
-   port:
--    $ref: /schemas/graph.yaml#/properties/port
-     description:
-       A node containing an output port node.
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-+    additionalProperties: false
-+
-+    properties:
-+      endpoint:
-+        $ref: /schemas/media/video-interfaces.yaml#
-+        additionalProperties: false
-+
-+        properties:
-+          link-frequencies: true
-+
-+          remote-endpoint: true
-+
-+        required:
-+          - link-frequencies
- 
- required:
-   - compatible
-@@ -89,6 +103,7 @@ examples:
-                 port {
-                         ov2680_to_mipi: endpoint {
-                                 remote-endpoint = <&mipi_from_sensor>;
-+                                link-frequencies = /bits/ 64 <330000000>;
-                         };
-                 };
-         };
--- 
-2.34.1
+> +  Each PWM has one pulse width output signal and one pulse input
+> +  signal to be measured.
+> +  It can be found on Loongson-2K series cpus and Loongson LS7A bridge chips.
+> +
+> +allOf:
+> +  - $ref: pwm.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: loongson,ls7a-pwm
+> +      - items:
+> +          - enum:
+> +              - loongson,ls2k0500-pwm
+> +              - loongson,ls2k1000-pwm
+> +              - loongson,ls2k2000-pwm
+> +          - const: loongson,ls7a-pwm
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  '#pwm-cells':
+> +    const: 3
+
+Please define what is in each cell. If there's only 2 signals, then the 
+first cell defines the output or input (what value for which one?).
+
+Really, the PWM binding is only for outputs, so is a cell even needed? I 
+suppose we could use it for inputs too, but that's really "input 
+capture" type operation that timers often have. I'll defer to the PWM 
+maintainers...
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - '#pwm-cells'
+
+pwm.yaml makes this required already.
+
+Rob
 
 
