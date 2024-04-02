@@ -1,170 +1,220 @@
-Return-Path: <devicetree+bounces-55689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55690-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58555896037
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 01:33:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38C7689604D
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 01:39:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0DA871F22A42
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 23:33:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 90BABB22E53
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 23:39:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F98045008;
-	Tue,  2 Apr 2024 23:33:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F97B58ACC;
+	Tue,  2 Apr 2024 23:39:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="AbymXxdW"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="ZXHLJUfK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99B89446B4;
-	Tue,  2 Apr 2024 23:33:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA3FC2260B;
+	Tue,  2 Apr 2024 23:39:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712100794; cv=none; b=frmipbX3PQKf8xi6nD3y0f6rls8ekr0RjdMPkTF2aHxo6/pAaGEthqcVN+L9oo1g14ugaREqOwESyw7DQiycggIzpESCguQFsdlXG8aToAA0xtXvZqCvUMw9YCEa7VQTSL4GIk7hpdJLyNj26AWlo/8+9pZ0mRTaKrGK5SZZs54=
+	t=1712101185; cv=none; b=rMM2mExWqF0IwlBXEKq+Ip5CNp73DdNwJRFhB9jaCkOTOA1yfd4kFU9J3EZ4qroBS586Pv6lKDxbXC/zgEdaWVR3QQkQXBWhWeKq87N26QYE4PR0YBo7XeRjq0Ilj2422vg//RgrMZICXbtcqqb1ciKzTpWteZllKZvHBpPo8lw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712100794; c=relaxed/simple;
-	bh=dmMF4p+71YZrfutNuzYmJB/lRK2vYnsYZ3KaWK3lPw4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=mWF3y4jPVgBdoWe2QGlaP0qtlj0ucmH+02riPonUSDgdsXxtMMB83TUXJwuuy96bc2lW90KfOkUKnOacTV6QzqSlp9ZIrcGGhGpcPmDUIFPpmGFSFT6xpirgua0E83nHxDsl8sFHqTZz8ZqbD+yAcE8AlI/4/6HrEv6PoLSBxQ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=AbymXxdW; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 432M5f11017738;
-	Tue, 2 Apr 2024 23:32:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=Dq/2zyRgNp7agCJe7ciPi9uTcrRLuLxBc90vyXjgJHU=; b=Ab
-	ymXxdWVu068MRS5cyLxm/WTIsojYqJ/QEDV2yZTibnWOWgacU4cCVT8W0AJ8n8mu
-	QpHGvDThOXaDzKH7Z4rA3RweRgxjAvEPJJfqx+6B57vZgwtLykZUuFluoiWmbqwQ
-	y3aE0tf6PiVJNUzuFQqQIeJVSLpkRHL/epFEErSgYYYzDDmxoVCTJbw9hN5VtWef
-	vcJWwadJD6fhL1YAJqoUxKkvhydYHmW8/o/Nk0A3Gt28hlEwtMHFzl69cMMPOna3
-	Kw6ryY/DbwoDDyBJ+A4gc5JzZufhx2pn3hTiPd+4xG24p1K4AWtTL09ww2m6jMg0
-	GA5PapynXWGn2WQDWjUA==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x8fm1t1fv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 02 Apr 2024 23:32:45 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 432NWitc010795
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 2 Apr 2024 23:32:44 GMT
-Received: from [10.110.49.129] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Tue, 2 Apr 2024
- 16:32:42 -0700
-Message-ID: <ad88712a-e4dd-4a2b-ba9d-a42ebb39ad4d@quicinc.com>
-Date: Tue, 2 Apr 2024 16:32:41 -0700
+	s=arc-20240116; t=1712101185; c=relaxed/simple;
+	bh=ac3kZ5j3Emu12FGS8I9RXckwDThegE5k/mdyDspS2CY=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=WL8wyUtL4Kd5/+GABsShYxAaBizFpGfgv98C1zOO4++GyXBmeWLmYvKYibI5oOWX7eg+Ia418mDhn9ZDb7rTtEO0fVYXBMjSq74D14bG1PCb72KFGbN8WLddFI8vRaNH2+RNCaaEsYFMLM3Qu4I4vz8nJOu3P5g7qLQUyPa7F4I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=ZXHLJUfK; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+Received: from [192.168.68.112] (ppp118-210-182-70.adl-adc-lon-bras34.tpg.internode.on.net [118.210.182.70])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 806F420075;
+	Wed,  3 Apr 2024 07:39:38 +0800 (AWST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1712101179;
+	bh=TYTY5ED6B4EfxtLOSSjN5VvpvocVSJ4sFiS7mfpMhBs=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=ZXHLJUfKEfTPo/L5jQPCZ2RoFiql/3S//f0byjixfY7jvhq3TUlwuUCEv504O1Pnz
+	 GU3oWpyf9rtcRApqMsANR9qfcPAHakXe233AWncmTBYt1rCNzgBFw6jWlFf30CHwKI
+	 U2HTxNYc9mVrs30mOx1fI9xcm/NAxlJ9+dXwTRr5/8mr5zliRxw6wp++iUTFwnuq06
+	 Qi8Gc5XjjzBKjMeX+9iuE9Ozn/CoV1x1TXlFyowx6iJNby/0ng74NBlMkLQvyF9n0w
+	 ZzWop2iZlpYwO4f8U2Vk1nnJr20/9DT03gq0hD0l2K++SexJY2T4jlocIiZwgUtYs8
+	 P/ZJCSDEyICkA==
+Message-ID: <99fa05be32787c88150c6df2f882e31582aebf90.camel@codeconstruct.com.au>
+Subject: Re: [PATCH] dt-bindings: watchdog: Convert Aspeed binding to DT
+ schema
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Zev Weiss <zev@bewilderbeest.net>
+Cc: wim@linux-watchdog.org, linux@roeck-us.net, robh@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, joel@jms.id.au, 
+	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+	linux-kernel@vger.kernel.org
+Date: Wed, 03 Apr 2024 10:09:37 +1030
+In-Reply-To: <65722a59-2e94-4616-81e1-835615b0e600@hatter.bewilderbeest.net>
+References: <20240402120118.282035-1-andrew@codeconstruct.com.au>
+	 <65722a59-2e94-4616-81e1-835615b0e600@hatter.bewilderbeest.net>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: msm8998: set
- qcom,no-msa-ready-indicator for wifi
-Content-Language: en-US
-To: Alexey Minnekhanov <alexeymin@postmarketos.org>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>,
-        Marc Gonzalez <mgonzalez@freebox.fr>, Kalle
- Valo <kvalo@kernel.org>
-CC: Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>,
-        ath10k <ath10k@lists.infradead.org>,
-        wireless <linux-wireless@vger.kernel.org>,
-        DT <devicetree@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Pierre-Hugues Husson <phhusson@freebox.fr>,
-        Arnaud
- Vrac <avrac@freebox.fr>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Jami
- Kettunen <jamipkettunen@gmail.com>,
-        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-References: <fd26ce4a-a9f3-4ada-8d46-ed36fb2456ca@freebox.fr>
- <5cdad89c-282a-4df5-a286-b8404bc4dd81@freebox.fr>
- <252618e8-9e80-4774-a96c-caa7f838ef01@linaro.org>
- <502322f1-4f66-4922-bc4e-46bacac23410@linaro.org>
- <0ca1221b-b707-450f-877d-ca07a601624d@freebox.fr>
- <CAA8EJppeREj-0g9oGCzzKx5ywhg1mgmJR1q8yvXKN7N45do1Xg@mail.gmail.com>
- <8ef4f56c-83a3-4b26-877e-f1c7a0307e98@postmarketos.org>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <8ef4f56c-83a3-4b26-877e-f1c7a0307e98@postmarketos.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 5v8_kRfp8Tj9RdvM-4QMKiVK_hdZiaff
-X-Proofpoint-ORIG-GUID: 5v8_kRfp8Tj9RdvM-4QMKiVK_hdZiaff
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-02_14,2024-04-01_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 spamscore=0
- clxscore=1011 impostorscore=0 bulkscore=0 adultscore=0 priorityscore=1501
- mlxlogscore=999 suspectscore=0 lowpriorityscore=0 phishscore=0 mlxscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2403210001
- definitions=main-2404020173
 
-On 4/2/2024 11:25 AM, Alexey Minnekhanov wrote:
-> 
-> 
-> On 02.04.2024 18:55, Dmitry Baryshkov wrote:
->> I'd say, we should take a step back and actually verify how this was
->> handled in the vendor kernel.
-> 
-> 
-> AFAIK there is no such thing in vendor kernel driver for this, as
-> this startup procedure is likely handled entirely in userspace in
-> cnss_daemon.
-> 
+On Tue, 2024-04-02 at 16:30 -0700, Zev Weiss wrote:
+> On Tue, Apr 02, 2024 at 05:01:18AM PDT, Andrew Jeffery wrote:
+> > Squash warnings such as:
+> >=20
+> > ```
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-galaxy100.dtb: /ahb/apb@1e=
+600000/watchdog@1e785000: failed to match any schema with compatible: ['asp=
+eed,ast2400-wdt']
+> > ```
+> >=20
+> > Signed-off-by: Andrew Jeffery <andrew@codeconstruct.com.au>
+> > ---
+> > .../bindings/watchdog/aspeed,ast2400-wdt.yaml | 130 ++++++++++++++++++
+> > .../bindings/watchdog/aspeed-wdt.txt          |  73 ----------
+> > 2 files changed, 130 insertions(+), 73 deletions(-)
+> > create mode 100644 Documentation/devicetree/bindings/watchdog/aspeed,as=
+t2400-wdt.yaml
+> > delete mode 100644 Documentation/devicetree/bindings/watchdog/aspeed-wd=
+t.txt
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/watchdog/aspeed,ast2400-=
+wdt.yaml b/Documentation/devicetree/bindings/watchdog/aspeed,ast2400-wdt.ya=
+ml
+> > new file mode 100644
+> > index 000000000000..10fcb50c4051
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/watchdog/aspeed,ast2400-wdt.yam=
+l
+> > @@ -0,0 +1,130 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/watchdog/aspeed,ast2400-wdt.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Aspeed watchdog timer controllers
+> > +
+> > +maintainers:
+> > +  - Andrew Jeffery <andrew@codeconstruct.com.au>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - aspeed,ast2400-wdt
+> > +      - aspeed,ast2500-wdt
+> > +      - aspeed,ast2600-wdt
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks: true
+> > +
+> > +  aspeed,reset-type:
+> > +    enum:
+> > +      - cpu
+> > +      - soc
+> > +      - system
+> > +      - none
+> > +    description: |
+> > +      Reset behaviour - The watchdog can be programmed to generate one=
+ of three
+> > +      different types of reset when a timeout occcurs.
+> > +
+> > +      Specifying 'cpu' will only reset the processor on a timeout even=
+t.
+> > +
+> > +      Specifying 'soc' will reset a configurable subset of the SoC's c=
+ontrollers
+>=20
+> Might be worth clarifying that it's configurable only on ast2500 &=20
+> ast2600, and which property (aspeed,reset-mask) configures it?
 
-So now I'm looking at the cnss-daemon, and there it appears that MSA READY is
-always expected to be received.
+Good point, will do.
 
-There is target-specific logic to set the flags sent to firmware:
-	if (gdata->instance_id == ADRASTEA_ID) {
-		req.msa_ready_enable_valid = 1;
-		req.msa_ready_enable = 1;
-	} else { /* All targets other than Adrastea */
-		req.fw_mem_ready_enable_valid = 1;
-		req.fw_mem_ready_enable = 1;
-	}
+>=20
+> > +      on a timeout event. Controllers critical to the SoC's operation =
+may remain untouched.
+> > +
+> > +      Specifying 'system' will reset all controllers on a timeout even=
+t, as if EXTRST had been asserted.
+> > +      Specifying "none" will cause the timeout event to have no reset =
+effect.
+>=20
+> Tiny nit: quoting (single vs. double) is slightly inconsistent between=
+=20
+> values here.
 
-Logic to set an internal flag if the message is received:
-	case QMI_WLFW_MSA_READY_IND_V01:
-		gdata->state |= CNSS_MSA_READY;
+Ack.
 
-And Adrastea-specific logic to set that flag if it is set in a separate status
-indicator:
-static int wlfw_adrastea_init(struct wlfw_client_data *gdata)
-[...]
-	if (fw_status & QMI_WLFW_MSA_READY_V01) {
-		wsvc_printf_dbg("MSA is ready");
-		gdata->state |= CNSS_MSA_READY;
-	}
+>=20
+> > +      Another watchdog engine on the chip must be used for chip reset =
+operations.
+> > +
+> > +      The default reset type is "system"
+> > +
+> > +  aspeed,alt-boot:
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+> > +    description: |
+> > +      Direct the watchdog to configure the SoC to boot from the altern=
+ative boot
+> > +      region if a timeout occurs.
+> > +
+> > +  aspeed,external-signal:
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+> > +    description: |
+> > +      Assert the timeout event on an external signal pin associated wi=
+th the
+> > +      watchdog controller instance. The pin must be muxed appropriatel=
+y.
+> > +
+> > +  aspeed,ext-pulse-duration:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: |
+> > +      The duration, in microseconds, of the pulse emitted on the exter=
+nal signal pin
+> > +
+> > +  aspeed,ext-push-pull:
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+> > +    description: |
+> > +      If aspeed,external-signal is specified in the node, set the exte=
+rnal
+> > +      signal pin's drive type to push-pull. If aspeed,ext-push-pull is=
+ not
+> > +      specified then the pin is configured as open-drain.
+> > +
+> > +  aspeed,ext-active-high:
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+> > +    description: |
+> > +      If both aspeed,external-signal and aspeed,ext-push-pull are spec=
+ified in
+> > +      the node, set the pulse polarity to active-high. If aspeed,ext-a=
+ctive-high
+> > +      is not specified then the pin is configured as active-low.
+> > +
+> > +  aspeed,reset-mask:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> > +    minItems: 1
+> > +    maxItems: 2
+> > +    description: |
+> > +      A bitmaks indicating which peripherals will be reset if the watc=
+hdog
+>=20
+> Typo: "bitmask"
 
-So that flag is only set by receiving the QMI_WLFW_MSA_READY_IND_V01 message
-or, only for Adrastea, if the response to wlfw_send_ind_register_req()
-indicates MSA_READY
+Good catch.
 
-Later there is a wait for MSA_READY that has no conditions:
-	while (!CNSS_IS_MSA_READY(gdata->state))
+Thanks,
 
-Truthfully this is code I've never had to deal with before, and I've struggled
-to find developers who have the necessary background. The least disruptive
-paths seem to either be the DT item or adding a new item for this in struct
-ath10k_hw_params.
-
-Kalle, do you have any different guidance?
+Andrew
 
