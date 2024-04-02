@@ -1,82 +1,80 @@
-Return-Path: <devicetree+bounces-55563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55564-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F294D89599B
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 18:22:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C7EE89599F
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 18:23:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 554A72812FE
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 16:22:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B16F1C20ABF
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 16:23:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03D3814AD3F;
-	Tue,  2 Apr 2024 16:22:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 682B514AD38;
+	Tue,  2 Apr 2024 16:23:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jkQzNcao"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aqv3ImhL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDF5D7A724;
-	Tue,  2 Apr 2024 16:22:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BE9014AD1D;
+	Tue,  2 Apr 2024 16:23:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712074965; cv=none; b=as3lIYekEBzfDUxAXXo+vHAWH3lPqTgz1o49uiPyySV2mseN582U3K+HpSedrxvuXvuKHGQypra09KCYVR3JPs0LpQvoJ8aNMgUCkmEM8A82AqEJNQYp8bcKGFRd7p1GN1UPoBAID4M78vAW8p2HTjwEOdrd/rDn/EEMeoHidKE=
+	t=1712075010; cv=none; b=exfF58fiUPRmKOcCOPhMJCLXxO0DaRXQ8SFzWBIOWsYwnsgJBdImL0KcIFzN/7HiQE+NqmeqCMdarBopgq1PfGBGooo+aa8LbSmXp1T5xaRKHslVL4NNogpAdDSXn+LmT9i4GIYaXtUmjbqGl1tXwcnCZyti9o8cKjop5zOw47o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712074965; c=relaxed/simple;
-	bh=TTK9Ecf0wm/vTr19oRkExfQrntAv/w6u+rTBVzSrC0A=;
+	s=arc-20240116; t=1712075010; c=relaxed/simple;
+	bh=xYB/qZ9RTNhXxTESYZVU46lsLKaPjJLvUgmdS58ycBs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iokVEWeo8AqFlWVPmyOa5HOJwDcR/HBnbzOphLsgm/7cKejL01NQot3uJbuj5lU4m5IH56qQiCpcbFNClsxaA650/GhVSAvduMVK0H+DeuPCJDayIDAigJFD/G/jvP6mtHohQ7bZwtmcuH1LdfhFMGWc97MCb5x7TcbMGrIAGXk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jkQzNcao; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 011B0C433F1;
-	Tue,  2 Apr 2024 16:22:44 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=fB9x95IvjGoskoRTZevpSs6MolCxisYAMhsbCo7CGa1ObcSOZv7rf5iMEI2KSTFbD8gAzxmkXYfhEf6odBCLum+Su09mtpxkXcNHcUc4sqI8i6GhlxvGDdvFFJxfgdsAt7gPdxDczxzXSGpj0tOU4jOzZlSYFJWDjkw/Yciebm4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aqv3ImhL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A32B4C433F1;
+	Tue,  2 Apr 2024 16:23:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712074965;
-	bh=TTK9Ecf0wm/vTr19oRkExfQrntAv/w6u+rTBVzSrC0A=;
+	s=k20201202; t=1712075009;
+	bh=xYB/qZ9RTNhXxTESYZVU46lsLKaPjJLvUgmdS58ycBs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jkQzNcaoCwevoUeoCLg4BigA8IMxCym7HiDT863zs7+Pii441q8F35tDtduy0ntgy
-	 OR3v9fQ2dWUHIO6KDEaXsVRIq4tB+k89JgOa4cvaeKsHPsvMn+CRYv2xSIpTTYXqdM
-	 PCfraHV8VszI12uB8TzuR+1mgJY2ZaYcm+1jzCihNBCc4h3PAHCKcUqdeJvH7l3oTg
-	 d2Ui3/vaHlSo010byYBDrGruOgLSKbKZXXo2aWgg6B+1OrX9LQJjM9nbQ73/Ljew62
-	 mCeOWqsU2ePllVu3Xf2ABoO9bwdcC8B03yzuxUQU+9m3QhbELg1VI58BjrKi5zxxhz
-	 ghOi+Qlloj8YA==
-Date: Tue, 2 Apr 2024 11:22:42 -0500
+	b=aqv3ImhLq1PgJ337brrNrEBxR9qJmf0FXnJXgOwaUAud1wrbeWwQovWfLmtSArZ2+
+	 VbM4zi4pse5vhiYygB9CjlyJJ0mHVFk+wigK7NKMAwIqWhy34Preatizf9IbJsoMuM
+	 NrTu9SiLT+m+NLCX+TDYDzYVRGoscwGHlIwN/NjkJhthUtEHu7YP5s5akZtTH8DkoO
+	 g/JZd0YhqkZnUdgbzcOApXE+eHPjirScuH2VQdLL6SbWCjb0qCyl1Rg0a/3O3wod3O
+	 pUcayin0xsm6XXbBOtuir9EqntzT4Fe7UBt2Du9k6n/vvs5Enh70tHTxHj+5wNUwW+
+	 LI52eLRN3Y+tg==
+Date: Tue, 2 Apr 2024 11:23:27 -0500
 From: Rob Herring <robh@kernel.org>
-To: =?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>
-Cc: phone-devel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-hardening@vger.kernel.org, linux-leds@vger.kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Lee Jones <lee@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	Kees Cook <keescook@chromium.org>, Pavel Machek <pavel@ucw.cz>
-Subject: Re: [PATCH v2 1/3] dt-bindings: leds: Add Silergy SY7802 flash LED
-Message-ID: <171207496054.248936.15074257911967114651.robh@kernel.org>
-References: <20240401-sy7802-v2-0-1138190a7448@apitzsch.eu>
- <20240401-sy7802-v2-1-1138190a7448@apitzsch.eu>
+To: Nicolas Pitre <nico@fluxnic.net>
+Cc: Nicolas Pitre <npitre@baylibre.com>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v2 12/15] dt-bindings: thermal: mediatek: Add LVTS
+ thermal controller definition for MT8188
+Message-ID: <171207500517.249957.12484282062174711386.robh@kernel.org>
+References: <20240402032729.2736685-1-nico@fluxnic.net>
+ <20240402032729.2736685-13-nico@fluxnic.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240401-sy7802-v2-1-1138190a7448@apitzsch.eu>
+In-Reply-To: <20240402032729.2736685-13-nico@fluxnic.net>
 
 
-On Mon, 01 Apr 2024 23:23:55 +0200, André Apitzsch wrote:
-> Document Silergy SY7802 flash LED driver devicetree bindings.
+On Mon, 01 Apr 2024 23:25:46 -0400, Nicolas Pitre wrote:
+> From: Nicolas Pitre <npitre@baylibre.com>
 > 
-> Signed-off-by: André Apitzsch <git@apitzsch.eu>
+> Add LVTS thermal controller definition for MT8188.
+> 
+> Signed-off-by: Nicolas Pitre <npitre@baylibre.com>
 > ---
->  .../devicetree/bindings/leds/silergy,sy7802.yaml   | 100 +++++++++++++++++++++
->  1 file changed, 100 insertions(+)
+>  .../bindings/thermal/mediatek,lvts-thermal.yaml  |  4 ++++
+>  .../dt-bindings/thermal/mediatek,lvts-thermal.h  | 16 ++++++++++++++++
+>  2 files changed, 20 insertions(+)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
