@@ -1,300 +1,155 @@
-Return-Path: <devicetree+bounces-55474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35497895592
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 15:42:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A97E78955A8
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 15:44:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4209EB2B253
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 13:29:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E5BE283711
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 13:44:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFCC185283;
-	Tue,  2 Apr 2024 13:28:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CNa7jZ5w"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05D0384FCC;
+	Tue,  2 Apr 2024 13:43:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A9608526C;
-	Tue,  2 Apr 2024 13:28:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05ED883CD8;
+	Tue,  2 Apr 2024 13:43:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712064516; cv=none; b=B8npAjewq4rVMPfDbjQDQRSWwJuHGIUwmvYi6gEYIMnmo6mfSIghReGQNznM30G9eUr/M7BnCdnDi6oHzyreEGndomkkdrqWaw9RNyy1b7X0sQorqxB5wybx6j1LQqZqwJIwlMwSyiUKE++LUw2LSWESjl2wOF1eMMnQBr4SGZk=
+	t=1712065399; cv=none; b=TD27JDC956vEKAYx0CAHVLnsp/WyRpRlRSLlQpZJasuDZKrH0welxuGv+ISx2NK80sYSO9dyJGgUXaCQ7PZQ+FyxnVxd7NO1ARigdshBT9zSz1qtp2u01U+utu70diS+kT/gF8JOqCDP1JbSNaLAAYTYvwDegy8JNgbSFD4zXdk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712064516; c=relaxed/simple;
-	bh=gJ+tjsxOhWRYZLxqPN3VmcdtoCk55RCuOzh5/mLZ88Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MI8lpTmcNSspNaLWDZ3SfQJYy1mMwafSkm01YvfVFbVfmH7uPkfza9QenBbRDjLFYxH9yhY4NVIDo1oJ8GnRJgvp7LSuKk5CqcPDQbtku48gToPBOhCog3I+cnPnj6NCrL1og05MKPz+1XG5adXy2HY9+JeEFvKs1Q6SxGrvQp0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CNa7jZ5w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15CB9C433F1;
-	Tue,  2 Apr 2024 13:28:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712064516;
-	bh=gJ+tjsxOhWRYZLxqPN3VmcdtoCk55RCuOzh5/mLZ88Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CNa7jZ5wJPvUw0DqkPcwWDyVR9VZjUk8HE/K0B5WYaId84xXJTxA8EKyJnK9h3hV/
-	 5bd0n09EwQyNVAhHFKOnBOJRabBwBXvJkYng44glL2zGGE9RXKqTCefzda7Bpnql2N
-	 UMTr7HoX2MIHSFiF8n+E0P8nc9Nm2TAtsPVQCpEEuPpO7CY6w3MJf5WO5Pi/VC4fEi
-	 WWE8xwfkkAva+ocK24QvPfGiW8QhCG+loMHu1YkgXf517SRjh6BK4O9x1ui+DmdPW9
-	 xo7wZCkzfgYokg3JKzFFV4GC/sBlaB+cxzYPlTmjZ6tHK7KutbzHrfzboIyNCzrPjw
-	 VO1VLWcd3K3nw==
-Date: Tue, 2 Apr 2024 08:28:34 -0500
-From: Rob Herring <robh@kernel.org>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Luis Chamberlain <mcgrof@kernel.org>,
-	Russ Weight <russ.weight@linux.dev>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	Mark Brown <broonie@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-	Dent Project <dentproject@linuxfoundation.org>
-Subject: Re: [PATCH net-next v6 14/17] dt-bindings: net: pse-pd: Add bindings
- for PD692x0 PSE controller
-Message-ID: <20240402132834.GB3744978-robh@kernel.org>
-References: <20240326-feature_poe-v6-0-c1011b6ea1cb@bootlin.com>
- <20240326-feature_poe-v6-14-c1011b6ea1cb@bootlin.com>
+	s=arc-20240116; t=1712065399; c=relaxed/simple;
+	bh=Bgs/DM8+2fxPQwsVMUWClMrsmnaC2kMFq4hy3uSBZrI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eXue29yPOSLMDSoOT7s8hZkgvUOh4KB0KyyMc69/DClTdjxgiDYfGlgwK5+brS0smBZtbWx17gM6y6LpiRWBa6ehQKx/Rf2EuT5YiIp3vPfb6M+ZN3LQlJPgVTszrjzg6VrRZfW+KilTETS/8wPkJa91dTBj8YVxUo5wrkwroPE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-61149e50602so35429347b3.0;
+        Tue, 02 Apr 2024 06:43:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712065394; x=1712670194;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=UtPJLQoZZ3Deaa6exFS7kU96LFRYdL8NjqNyc0/RmVs=;
+        b=ZkrIDG81VslIeVKi6afJ7JPLA8EfhT9iNyW8k7l1BEWlFRM+pSq29/iA9sCf2q92Ja
+         Te0cD4PN0uXqzEze+lnAWHrMF/TuN0D1bGCu9VcwaX+RoLMVzJmF3XEhK2IIVz2WEvut
+         UJ8KS4E27zdDMRVpggPnd4bY+pdZ3HFmwRr7R8iKLLyg4Tj6/4ZyDnsWax5kGXaCK8yN
+         WrgQWp+C8q7k2Ynabi2BZ+M9Lv3vsQs4gP39dJSvez/CvGTKojq1iCdHI+8G0QHfmzGI
+         Fs5Cu/va1kAWa/I282KjfsBmjFWKJZinrofXbJXrXtkdT5pPoQomfGzJcqANr1sJENy6
+         OPDw==
+X-Forwarded-Encrypted: i=1; AJvYcCVGOlQcs4Lb7ZQmL7bYpRDeVPc1Es+n03N0edztksin8nWu8W+Daero512gaTOSHhXs9cTmFsbknjUqHUPzfJ+CU5zlr8yGyuxypX7fkIZurJhHbXVKHWbUqPzi4jUCfpd5zM06WtIG1ufA8IpDGoTVGxLClZh6aNEMyodIiSjAqvMrXGqBs4ohOypRascpss498BSg9JoQfMfa8wxZ9CoieZsj
+X-Gm-Message-State: AOJu0YyixYCOFyhwcgriyDRUxJxWpeMtXX+5qoeOnBvx8s16KG6ZQc1d
+	i0CECu0JCNBTQ8BKkXEHI4nP0mgAuATTLd3h7dzDKECnxavgA1/LbsrNQMlgHNQ=
+X-Google-Smtp-Source: AGHT+IHs7HQdkY8u5xVfbQ5/IepyjmnrVrVR9viLtZdzS/XlLXuLS6uhVpg7tnGgU+C/daoCsHcxYg==
+X-Received: by 2002:a0d:db10:0:b0:615:e10:691c with SMTP id d16-20020a0ddb10000000b006150e10691cmr2417254ywe.1.1712065394296;
+        Tue, 02 Apr 2024 06:43:14 -0700 (PDT)
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
+        by smtp.gmail.com with ESMTPSA id d4-20020a81e904000000b00609f4170662sm2772263ywm.54.2024.04.02.06.43.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Apr 2024 06:43:13 -0700 (PDT)
+Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-dc6cbe1ac75so3772485276.1;
+        Tue, 02 Apr 2024 06:43:12 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU/ocIvbr8wVVPIagQurji9Gh5t1yNbzXnvBunKKPQb8WuKSyd3iFbw/lM4N+BUAJ+TMaBgbalESki8vcTh8Rk1Em1IxPW/Al58vWOQryHky58xLgR2n5vwJS3ASgUmNv3M0W8hSw39HxpIaw5Sbj5ZRf6E9UoDVAWwmV/2RrxKP89zhY/Mgitsla49swAswY7ub0NHEjY3TPVE+PafhRsDCiP9
+X-Received: by 2002:a25:f912:0:b0:dc7:494e:ff33 with SMTP id
+ q18-20020a25f912000000b00dc7494eff33mr7752167ybe.7.1712065392498; Tue, 02 Apr
+ 2024 06:43:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240326-feature_poe-v6-14-c1011b6ea1cb@bootlin.com>
+References: <20240402-rzn1-gmac1-v1-0-5be2b2894d8c@bootlin.com> <20240402-rzn1-gmac1-v1-1-5be2b2894d8c@bootlin.com>
+In-Reply-To: <20240402-rzn1-gmac1-v1-1-5be2b2894d8c@bootlin.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 2 Apr 2024 15:43:00 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdW=Hbv8Qiyf=Ot_kHTbfPo0yk+NkutS80uC6cuAWYMsyg@mail.gmail.com>
+Message-ID: <CAMuHMdW=Hbv8Qiyf=Ot_kHTbfPo0yk+NkutS80uC6cuAWYMsyg@mail.gmail.com>
+Subject: Re: [PATCH net-next 1/3] dt-bindings: net: renesas,rzn1-gmac:
+ Document RZ/N1 GMAC support
+To: Romain Gantois <romain.gantois@bootlin.com>
+Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+	=?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Mar 26, 2024 at 03:04:51PM +0100, Kory Maincent wrote:
-> From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
-> 
-> Add the PD692x0 I2C Power Sourcing Equipment controller device tree
-> bindings documentation.
-> 
-> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
-> ---
-> 
-> Changes in v2:
-> - Enhance ports-matrix description.
-> - Replace additionalProperties by unevaluatedProperties.
-> - Drop i2c suffix.
-> 
-> Changes in v3:
-> - Remove ports-matrix parameter.
-> - Add description of all physical ports and managers.
-> - Add pse_pis subnode moving to the API of pse-controller binding.
-> - Remove the MAINTAINERS section for this driver as I will be maintaining
->   all pse-pd subsystem.
-> 
-> Changes in v5:
-> - Remove defs used only once.
-> - Replace underscore by dash.
-> - Add description.
-> ---
->  .../bindings/net/pse-pd/microchip,pd692x0.yaml     | 158 +++++++++++++++++++++
->  1 file changed, 158 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/pse-pd/microchip,pd692x0.yaml b/Documentation/devicetree/bindings/net/pse-pd/microchip,pd692x0.yaml
-> new file mode 100644
-> index 000000000000..62ea4363cba3
+Hi Romain,
+
+On Tue, Apr 2, 2024 at 2:36=E2=80=AFPM Romain Gantois
+<romain.gantois@bootlin.com> wrote:
+> From: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com>
+>
+> The RZ/N1 series of MPUs feature up to two Gigabit Ethernet controllers.
+> These controllers are based on Synopsys IPs. They can be connected to
+> RZ/N1 RGMII/RMII converters.
+>
+> Add a binding that describes these GMAC devices.
+>
+> Signed-off-by: "Cl=C3=A9ment L=C3=A9ger" <clement.leger@bootlin.com>
+> [rgantois: commit log]
+> Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
+
+Thanks for your patch!
+
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/pse-pd/microchip,pd692x0.yaml
-> @@ -0,0 +1,158 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/pse-pd/microchip,pd692x0.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip PD692x0 Power Sourcing Equipment controller
-> +
-> +maintainers:
-> +  - Kory Maincent <kory.maincent@bootlin.com>
-> +
-> +allOf:
-> +  - $ref: pse-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - microchip,pd69200
-> +      - microchip,pd69210
-> +      - microchip,pd69220
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  managers:
-> +    type: object
-> +    description:
-> +      List of the PD69208T4/PD69204T4/PD69208M PSE managers. Each manager
-> +      have 4 or 8 physical ports according to the chip version. No need to
-> +      specify the SPI chip select as it is automatically detected by the
-> +      PD692x0 PSE controller. The PSE managers have to be described from
-> +      the lowest chip select to the greatest one, which is the detection
-> +      behavior of the PD692x0 PSE controller. The PD692x0 support up to
-> +      12 PSE managers which can expose up to 96 physical ports. All
-> +      physical ports available on a manager have to be described in the
-> +      incremental order even if they are not used.
-> +
-> +    properties:
-> +      "#address-cells":
-> +        const: 1
-> +
-> +      "#size-cells":
-> +        const: 0
-> +
-> +    required:
-> +      - "#address-cells"
-> +      - "#size-cells"
-> +
-> +    patternProperties:
-> +      "^manager@0[0-9]|1[0-2]$":
+> +++ b/Documentation/devicetree/bindings/net/renesas,rzn1-gmac.yaml
 
-Unit-addresses are typically in hex.
-
-Is 'manager' something specific to this device or should be common?
-
-> +        $ref: /schemas/graph.yaml#/properties/ports
-
-This is not using the graph binding. Furthermore, I don't want to see 
-new cases of 'port' node names which are not graph nodes. We have it 
-already with ethernet switches, but 'ethernet-port' is preferred over 
-'port'.
-
-Why is this one 'managers' and the other device binding 'channels'?
-
-> +        description:
-> +          PD69208T4/PD69204T4/PD69208M PSE manager exposing 4 or 8 physical
-> +          ports.
-> +
-> +        properties:
-> +          reg:
-> +            description:
-> +              Incremental index of the PSE manager starting from 0, ranging
-> +              from lowest to highest chip select, up to 12.
-> +            maxItems: 1
-> +
-> +        patternProperties:
-> +          '^port@[0-7]$':
-> +            type: object
-> +            required:
-> +              - reg
-
-Any property you want is allowed in this node. You are missing 
-'additionalProperties'.
-
-> +
-> +        required:
-> +          - reg
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - pse-pis
-> +
-> +unevaluatedProperties: false
-> +
 > +examples:
 > +  - |
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
+> +    #include <dt-bindings/clock/r9a06g032-sysctrl.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
 > +
-> +      ethernet-pse@3c {
-> +        compatible = "microchip,pd69200";
-> +        reg = <0x3c>;
-> +
-> +        managers {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          manager@0 {
-> +            reg = <0>;
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            phys0: port@0 {
-> +              reg = <0>;
-> +            };
-> +
-> +            phys1: port@1 {
-> +              reg = <1>;
-> +            };
-> +
-> +            phys2: port@2 {
-> +              reg = <2>;
-> +            };
-> +
-> +            phys3: port@3 {
-> +              reg = <3>;
-> +            };
-> +          };
-> +
-> +          manager@1 {
-> +            reg = <1>;
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            phys4: port@0 {
-> +              reg = <0>;
-> +            };
-> +
-> +            phys5: port@1 {
-> +              reg = <1>;
-> +            };
-> +
-> +            phys6: port@2 {
-> +              reg = <2>;
-> +            };
-> +
-> +            phys7: port@3 {
-> +              reg = <3>;
-> +            };
-> +          };
-> +        };
-> +
-> +        pse-pis {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          pse_pi0: pse-pi@0 {
-> +            reg = <0>;
-> +            #pse-cells = <0>;
-> +            pairset-names = "alternative-a", "alternative-b";
-> +            pairsets = <&phys0>, <&phys1>;
+> +    ethernet@44000000 {
+> +      compatible =3D "renesas,r9a06g032-gmac", "renesas,rzn1-gmac", "snp=
+s,dwmac";
+> +      reg =3D <0x44000000 0x2000>;
+> +      interrupt-parent =3D <&gic>;
 
-It is very strange that you are describing the connections within a 
-device.
+There is no need to use interrupt-parent in examples.
 
+> +      interrupts =3D <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>,
+> +                   <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>,
+> +                   <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+> +      interrupt-names =3D "macirq", "eth_wake_irq", "eth_lpi";
+> +      clock-names =3D "stmmaceth";
+> +      clocks =3D <&sysctrl R9A06G032_HCLK_GMAC0>;
 
-> +            polarity-supported = "MDI", "S";
-> +          };
-> +          pse_pi1: pse-pi@1 {
-> +            reg = <1>;
-> +            #pse-cells = <0>;
-> +            pairset-names = "alternative-a";
-> +            pairsets = <&phys2>;
-> +            polarity-supported = "MDI";
-> +          };
-> +        };
-> +      };
+If you want this to be a real example, you should add power-domains.
+
+> +      snps,multicast-filter-bins =3D <256>;
+> +      snps,perfect-filter-entries =3D <128>;
+> +      tx-fifo-depth =3D <2048>;
+> +      rx-fifo-depth =3D <4096>;
+> +      pcs-handle =3D <&mii_conv1>;
+> +      phy-mode =3D "mii";
 > +    };
-> 
-> -- 
-> 2.25.1
-> 
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
