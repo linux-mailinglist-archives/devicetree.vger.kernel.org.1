@@ -1,57 +1,81 @@
-Return-Path: <devicetree+bounces-55476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B5498955B0
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 15:45:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2D718955BE
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 15:50:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6793B1C21FC4
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 13:45:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A6535283498
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 13:50:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0BDE8595C;
-	Tue,  2 Apr 2024 13:43:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD70884A22;
+	Tue,  2 Apr 2024 13:50:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xauo+CfB"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="WiBOleVC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7D0783CD5;
-	Tue,  2 Apr 2024 13:43:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 512D15D47A;
+	Tue,  2 Apr 2024 13:50:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712065435; cv=none; b=V5NnXyUXhv2R56b9t/RMPodyO+W5WauFMJGKBHx4CMFeZ6Flog8PI++Gy8oJgTfIVdxW91GJ28Om/VWWVuITUMhpfGSYJgJXBv6EIP2EiHF3xt4haGFawk1n/oM7JbpiQsToe9NJENvk/Mx2hI2c8EZFKE3PEPnmTQmF7aoDhxk=
+	t=1712065813; cv=none; b=Ot+BlLdtbmlCBtbEHhlmU07sz5pYSvo/QMUzjoILJwT0lUY94Bab8xb9T6BFcWusLDsNZqJJLLqBQUz0vsB89PDEuOG8rL/lmLQMnnbUvT3Vui7ce4JSLsMWKfm1OwIEdttvWGoTZedpqhuaKpRSjdFPjqNZeaVyr84JbZDPWWw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712065435; c=relaxed/simple;
-	bh=ILknQX3J4PZxUszkFt7epugC1M4nZbhuqbLyTS3A8iQ=;
+	s=arc-20240116; t=1712065813; c=relaxed/simple;
+	bh=GSsExJ2Cweiqv3U9XKAHuGsEXUUvZAgvUg0YJmbTYl0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WEfqLkfDuGYMb5BbZf4/fJ/XO+DXtM2sFIJRBJFpItPX+RDlC0K+TeOgI6FT66rgr4gMZELGae4FPj1L0kBKWVp6uFvE65vSr1kVIOkLEeXH+MResu+TWzOaQ89QxeOkgG7qNlZxCZWq6gVKs85a71wD5we6RsRte7LR8hDZVmc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xauo+CfB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B6DCC43390;
-	Tue,  2 Apr 2024 13:43:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712065435;
-	bh=ILknQX3J4PZxUszkFt7epugC1M4nZbhuqbLyTS3A8iQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Xauo+CfBBB47w5kBNrl6dtBQuuAAndmgLyo7PKwtYCZ1gP2onEgiJm9SmIPWEy4Rj
-	 DhVJYkwhSNBFyYnfTBO7+y+hpL7kosgM0w/mzyEuFyWRxBZHhtS4nAzRfwqUU0WM9W
-	 R0ClOMfBrLdqzihPQagAF4KzuchmW4RqPRPvyPydeLv0lvCQ5r0pSbsdtn2fEb3I51
-	 bVlQmuENfzLLiZuUn+AjMszgkM+qKaRzu/aMQ4QxaH/2dFtqK36zoBP2FDC29vc8Iz
-	 aTXTb7cFRfsrIIca2BgtEGXDZkbo/W9pKi6uXdfnDmOhdIbI0V3TuHBSHUp6Epo9sU
-	 MmUFwcy+g4r0w==
-Date: Tue, 2 Apr 2024 08:43:53 -0500
-From: Rob Herring <robh@kernel.org>
-To: Robert Nelson <robertcnelson@gmail.com>
-Cc: Jason Kridner <jkridner@beagleboard.org>,
-	linux-arm-kernel@lists.infradead.org, Nishanth Menon <nm@ti.com>,
-	linux-kernel@vger.kernel.org, Jared McArthur <j-mcarthur@ti.com>,
-	devicetree@vger.kernel.org,
-	Deepak Khatri <lorforlinux@beagleboard.org>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: ti: Add BeagleY-AI
-Message-ID: <171206542850.4100155.11719958875815891934.robh@kernel.org>
-References: <20240328191205.82295-1-robertcnelson@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=e4UklczkKTqPvBH5EOoerj1+2aVOSri7IPMZ9H0Q9f7i0Zs3vHp/1QeWb8o9jbMsPuKbpuih8v5caiGL8SDC+O+jmLMDztwsxpyffYMkc230Var9T9HrfMi+UveHMWDk+Rv/tPYHX7x7bt9WfP87/VKUF66XUNPqipRYv0rxsf8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=WiBOleVC; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=GbhkBxn+Q4MglL3Lf04y1O0cOhqs2SZS9H0XUJs9VK0=; b=WiBOleVCJwBRPqHpBXE8Ef/U+G
+	OXNriYeqoB6MRc7eicL0W9EYhGR5ajRr5dPJ3uNYPlNNIbBC0HxhOjk7DX+2wrYxTMNRua2n+Ouyd
+	DcF7rtkkHvFur+rvqAyiGx3S/0gqFEQDFnWt/53GQX4zgJY1vfLs/j7thO2twHL23gXVKutcSLr+t
+	NeyTrxfYKNeV1LKFgJ6lvMdTakw5Id9g+QsR+G9BFveVUS00EP3jajyAUvlglUWEbHpm7lDgYooWA
+	4eTco3FzRs32jC95CiPlQWcfUG6OgLsQ8riL7aDKCl/kqEz3RxVb1iYaSkQowHA0A5pYpDU9hP4uD
+	ELWzNoKg==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:37898)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1rreWN-0006no-2a;
+	Tue, 02 Apr 2024 14:49:51 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1rreWK-00070E-DE; Tue, 02 Apr 2024 14:49:48 +0100
+Date: Tue, 2 Apr 2024 14:49:48 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Romain Gantois <romain.gantois@bootlin.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH net-next 2/3] net: stmmac: add support for RZ/N1 GMAC
+Message-ID: <ZgwM/FIKTuN4vkQA@shell.armlinux.org.uk>
+References: <20240402-rzn1-gmac1-v1-0-5be2b2894d8c@bootlin.com>
+ <20240402-rzn1-gmac1-v1-2-5be2b2894d8c@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,26 +84,53 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240328191205.82295-1-robertcnelson@gmail.com>
+In-Reply-To: <20240402-rzn1-gmac1-v1-2-5be2b2894d8c@bootlin.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
+On Tue, Apr 02, 2024 at 02:37:01PM +0200, Romain Gantois wrote:
+> +	ret = stmmac_dvr_probe(dev, plat_dat, &stmmac_res);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ndev = platform_get_drvdata(pdev);
+> +	priv = netdev_priv(ndev);
+> +
+> +	pcs_node = of_parse_phandle(np, "pcs-handle", 0);
+> +	if (pcs_node) {
+> +		pcs = miic_create(dev, pcs_node);
+> +		of_node_put(pcs_node);
+> +		if (IS_ERR(pcs))
+> +			return PTR_ERR(pcs);
+> +
+> +		priv->hw->phylink_pcs = pcs;
+> +	}
 
-On Thu, 28 Mar 2024 14:12:04 -0500, Robert Nelson wrote:
-> This board is based on ti,j722s
-> 
-> https://beagley-ai.org/
-> https://openbeagle.org/beagley-ai/beagley-ai
-> 
-> Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
-> CC: Rob Herring <robh@kernel.org>
-> CC: Nishanth Menon <nm@ti.com>
-> CC: Jared McArthur <j-mcarthur@ti.com>
-> CC: Jason Kridner <jkridner@beagleboard.org>
-> CC: Deepak Khatri <lorforlinux@beagleboard.org>
-> ---
->  Documentation/devicetree/bindings/arm/ti/k3.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+I'm afraid that this fails at one of the most basic principles of kernel
+multi-threaded programming. stmmac_dvr_probe() as part of its work calls
+register_netdev() which publishes to userspace the network device.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Everything that is required must be setup _prior_ to publication to
+userspace to avoid races, because as soon as the network device is
+published, userspace can decide to bring that interface up. If one
+hasn't finished the initialisation, the interface can be brought up
+before that initialisation is complete.
 
+I don't see anything obvious in the stmmac data structures that would
+allow you to hook in at an appropriate point before the
+register_netdev() but after the netdev has been created. The
+priv->hw data structure is created by stmmac_hwif_init()
+
+I see that drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c is also
+guilty of this as well, and should be fixed. It's even worse because it
+does a truck load of stuff after stmmac_dvr_probe() which it most
+definitely should not be doing.
+
+I definitely get the feeling that the structure of the stmmac driver
+is really getting out of hand, and is making stuff harder for people,
+and it's not improving over time - in fact, it's getting worse. It
+needs a *lot* of work to bring it back to a sane model.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
