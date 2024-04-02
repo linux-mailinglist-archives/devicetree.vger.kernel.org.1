@@ -1,61 +1,62 @@
-Return-Path: <devicetree+bounces-55589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53D1F895B88
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 20:16:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A66F895B9F
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 20:21:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 850481C20AB9
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 18:16:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 35322B2184F
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 18:20:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C6BE15AD85;
-	Tue,  2 Apr 2024 18:16:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91F2B15AD9D;
+	Tue,  2 Apr 2024 18:20:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SPQ+yVrh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MS+tO2fd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F68E15A48E;
-	Tue,  2 Apr 2024 18:16:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64E7115AD95;
+	Tue,  2 Apr 2024 18:20:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712081805; cv=none; b=fdH1N69mNg/5HeiyOCQGgKBYB859EKTHF/tIhYANgPsiWxqah8aQhca9nc0KCXJUDspHtrIV/RLJ9wn5K1HVg52X/31dfWfWNca6LCBeoIXDfrDEfzABN15iafVn+2Fh7da9LlRpXB05Qo7CBuTij3nSqn8Y3+NXOqVuJVdm5JE=
+	t=1712082048; cv=none; b=gORMsbb2O+LFtvN3/SCRG7wkkFN0iVYJrTiHSQQkFcoCoNDHAe13+7lesZjvPHllj3CAtNv/3iEndyU2WQP3D0f+Xez5xBB5nWMtcSrzKSx+ywv4gKd6Gh/9WnjMXuggrJwdpa6pPqrTpSVQJh7Bg8gVctbKcgy8vND7pjQziP4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712081805; c=relaxed/simple;
-	bh=8BiCVmFy63V+eTl/AVpgSOVQf6tyNbleMPcurdNocRY=;
+	s=arc-20240116; t=1712082048; c=relaxed/simple;
+	bh=R+dnlvAnN+zOtr2CXbdtuCPTkxZEygoWJCnVX6je7zY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=i/Pdq/Fi8T4kyLkVO76tVXARWcI2Q7HcI6NhDSsmiqg9hRaz89FsSIZuX2DPzpcV/blb4gnUa7GVTVGJLDdGtAiHIhcnZ+PeZ5Snq4gLlq1izO4FY5Nz2vSm120xwcKpKWIE6w2Whk1FW2y5xCVbXdqVGLL5yPcjWzv1HhXVufQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SPQ+yVrh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35C1CC433F1;
-	Tue,  2 Apr 2024 18:16:42 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ASGrNsNyTZV0v0+ttvnm/vLd2vdPRrj/pbe//BwwN5DF6w973euuxdrB0A9ToHc+WlohnzPdQQHg+I5kFA3oRJ13RS1Mm/fbFFBSltz9LNzxza/6xMBEQ6ND0UU1zUVxyOhouyHk07/+kFH+m5ezBX9WoL2ffgjlrexQzWot29k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MS+tO2fd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51A76C43390;
+	Tue,  2 Apr 2024 18:20:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712081804;
-	bh=8BiCVmFy63V+eTl/AVpgSOVQf6tyNbleMPcurdNocRY=;
+	s=k20201202; t=1712082047;
+	bh=R+dnlvAnN+zOtr2CXbdtuCPTkxZEygoWJCnVX6je7zY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SPQ+yVrhybRzaIex8t/Hk+wwzspXlSqzA3gd0X34712H/2JZzhn15PzeqYsvGC7q9
-	 XYJtskpCf6TBGD4zdCMhhZ80osvFEa5KkqhNqnc4cXh9/lfyxN2o9Vm/ifkPQDDdkb
-	 ygjWtSFH+QNheytGnh+8DO1jEtUnut1d8IBi5NOhd9UHu1Ud+AdwnNDAeut/jx0pAK
-	 Q/WG8A3IfIMjC8oFEpYZQk8IggcPvwhliTlvEBw4Ada/K0cqsp0ufYfYDfOsZqIbjO
-	 U7hEkR3btoXiXN3mdMOscNyNN8pBv0BOXEQjOLvRT6sTYotMkMvIEWsL3uI/jzB4aL
-	 Xt9YBatK9DXTg==
-Date: Tue, 2 Apr 2024 19:16:40 +0100
+	b=MS+tO2fdHButcdLwRwDMczgoVv7JLOqbWb/gslRHTG50HvGg9Z5dDC/9cCi66iNH6
+	 6g9qe/7/q3c23lNJhEPx0o023ZkiHkvXElbJmxGDv/MkUG8PxSOwpzyaZv/rYdGzuA
+	 c/KbwaggUEglG4kB4yZUik3qyAouF0Nn4ui4XJrXq53+oE40IMfYUDwiGHEAo8YIOw
+	 nc/hOsgjltNjbcdAZbcFvgRkSxN/vcx/uFhwyx2529tTPl4nT5e4lYMkJMZ5oGncs6
+	 UxZIBENP+xABjcAHkoZFRB4k1UvH2DtfHYHCNSAnPVNyYBwzR4YHm1fJdMjCHBFds7
+	 YnZJdBL9B70Vg==
+Date: Tue, 2 Apr 2024 19:20:43 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Richard Zhu <hongxing.zhu@nxp.com>, vkoul@kernel.org, kishon@kernel.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-	imx@lists.linux.dev
-Subject: Re: [PATCH v2 2/3] dt-bindings: phy: Add i.MX8Q HSIO SerDes PHY
- binding
-Message-ID: <20240402-anemic-aerospace-bc428fff280c@spud>
-References: <1712036704-21064-1-git-send-email-hongxing.zhu@nxp.com>
- <1712036704-21064-3-git-send-email-hongxing.zhu@nxp.com>
- <ZgwU8edE3VFYngWR@lizhi-Precision-Tower-5810>
+To: Rob Herring <robh@kernel.org>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next] dt-bindings: net: snps,dwmac: Align
+ 'snps,priority' type definition
+Message-ID: <20240402-surprise-helmet-9f7c0eb6839c@spud>
+References: <20240401204422.1692359-2-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,58 +64,35 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="uXgaz3Nbx29M47AI"
+	protocol="application/pgp-signature"; boundary="ESvyQlaQyigU/fBK"
 Content-Disposition: inline
-In-Reply-To: <ZgwU8edE3VFYngWR@lizhi-Precision-Tower-5810>
+In-Reply-To: <20240401204422.1692359-2-robh@kernel.org>
 
 
---uXgaz3Nbx29M47AI
+--ESvyQlaQyigU/fBK
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Apr 02, 2024 at 10:23:45AM -0400, Frank Li wrote:
-> On Tue, Apr 02, 2024 at 01:45:03PM +0800, Richard Zhu wrote:
-> > Add i.MX8QM and i.MX8QXP HSIO SerDes PHY binding.
-> > - Use the controller ID to specify which controller is binded to the
-> > PHY.
-> > - Introduce one HSIO configuration, mandatory required to set
-> > "PCIE_AB_SELECT" and "PHY_X1_EPCS_SEL" during the initialization.
-> >=20
-> > Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+On Mon, Apr 01, 2024 at 03:44:22PM -0500, Rob Herring wrote:
+> 'snps,priority' is also defined in dma/snps,dw-axi-dmac.yaml as a
+> uint32-array. It's preferred to have a single type for a given property
+> name, so update the type in snps,dwmac schema to match.
 >=20
-> You missed all conor's comments.=20
-> Please double check v1's comments.
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-> > +  fsl,refclk-pad-mode:
-> > +    description: |
-> > +      Specifies the mode of the refclk pad used. It can be UNUSED(PHY
-> > +      refclock is derived from SoC internal source), INPUT(PHY refclock
-> > +      is provided externally via the refclk pad) or OUTPUT(PHY refclock
-> > +      is derived from SoC internal source and provided on the refclk p=
-ad).
-> > +      Refer include/dt-bindings/phy/phy-imx8-pcie.h for the constants
-> > +      to be used.
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    enum: [ 0, 1, 2 ]
->=20
-> I remember needn't enum because there are header file.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Yah, specifically my comments about this property were missed and were
-probably the most meaningful comments I left.
-
-Thanks for the reminder Frank.
-
---uXgaz3Nbx29M47AI
+--ESvyQlaQyigU/fBK
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgxLhwAKCRB4tDGHoIJi
-0pZcAQCTI+cY1udLcUNjtBNe7Lo4O6o7chZeO/Kb4VgRbXUqoQD+ML1p+97bAlvQ
-s82SO4faNQLQqwutH9R/sp+ZuAP4PQQ=
-=KOqW
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgxMewAKCRB4tDGHoIJi
+0ulmAQCkfrNLqe+sPJxSI8sQY0KUogTFYjfGdbu8F+QOuBqi6gD/Rbh3ZV9LoT5H
+lpqNx32GQ3q94ffF/QC3E6OWnnG36A4=
+=qjGs
 -----END PGP SIGNATURE-----
 
---uXgaz3Nbx29M47AI--
+--ESvyQlaQyigU/fBK--
 
