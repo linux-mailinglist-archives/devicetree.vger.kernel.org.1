@@ -1,96 +1,149 @@
-Return-Path: <devicetree+bounces-55581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8520D895B32
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 19:55:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2511F895B5E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 20:06:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 250501F21465
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 17:55:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 556961C21338
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 18:06:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF28C15ADBA;
-	Tue,  2 Apr 2024 17:54:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2E1F15AAD3;
+	Tue,  2 Apr 2024 18:06:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bDX0oPfr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kA1ODO75"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACA9715AAA9;
-	Tue,  2 Apr 2024 17:54:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 972D32AD1E;
+	Tue,  2 Apr 2024 18:06:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712080473; cv=none; b=JzqSAOCpXeAGRHId64YL8BpcZkROmDurTtGYKHVGfDZhpvZWcr1k9DY4JX4zpytXncOT8qS+H2rIuVM43AkCJaNXHN3gISN3gYiVX8H+Vi7MNpvqo4sGZG8u6aJlpCrpJMvlp97sBZBxC/5HOScpKxF0HS3dall4zptBqXF5UwA=
+	t=1712081192; cv=none; b=nuwhwt1mrtVmqA1lVjxFK2JmdB4LuXokaSigfBoM8f71T2lY7yO5xqILTyJh1h3rWn0EARsxTOj/xLvmaouCP4R2f6p1y1nHPi8ZQOaNqIdDK3AI2CSqRum/jU89wjU/2IoPcJG8JJhfaxSMYGlfIwlA7PNJrl+6XzBN+al9BQs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712080473; c=relaxed/simple;
-	bh=y6fRRYnxL7nsasyFfqUuJZOEN/f8bLiORoy3Ds2BY20=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MXpqnup6uhsxJYJ9BbEIbPMz1Pt8gN9/4tL94yFxH+3Y1DhvWl/yYYUPDwUC63GkJtrpH7I46W5KZYhP9tDREDsm63KGuOG5PyaaN6P3hGiZ8W4zTr3fNh6dU/7Ycqiqm81csE1LUSJaKbnzajixvDNiZRCyzslkozfLvL6RGEo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bDX0oPfr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 148D4C433F1;
-	Tue,  2 Apr 2024 17:54:30 +0000 (UTC)
+	s=arc-20240116; t=1712081192; c=relaxed/simple;
+	bh=+E1y0pdf8CT3Z5+Efvu1SmNES4KfcEkFtb6Y5xvwvKg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tHWcOKMAHe5r3dh4pP57MnH5WAi8n+Y8VInA7v6Kno82FsVJzCD/eIToePcCS6cfI2B3daLyOgaSMwZ6JvepNWws1HEWTjfeR2iclS4Q6a2iISvdsLsKCGzPIjUOp4nbHWsDTujuNUozNMrXXp6MNTbKxN7qMjAMV60ePM/oHb4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kA1ODO75; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3A60C433C7;
+	Tue,  2 Apr 2024 18:06:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712080473;
-	bh=y6fRRYnxL7nsasyFfqUuJZOEN/f8bLiORoy3Ds2BY20=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bDX0oPfryasl5drGmVbt8Lj1fFa1ZavbkG35+L+RgXCJ+5cWrIRwe7cJPAqmvnWL+
-	 1+uoVKgIGXbY2bc3NfI/wapLbYKlukLQ/bsAkW6RYPyTEzXAw+msxBfYpAuLArzksP
-	 ZnrzFMHLFe6tTtdCWvD+U3WjiaefP7ryrfnfIHgj5MHmd67sTeExtcoGtSBDR+bw4Q
-	 CajDT7192jWEGyX07oiwVgbJeIed93P2mcXXw8uIZbPQnb8drWhaEjZM8LjKVCVh/h
-	 OTpz2NlC4pyV5+cKuOrGYbzBsWHGNiqYIhRblGd1MW3mI49j+sA848cq+F5jPN+1y3
-	 0mqWkGNskAA4Q==
-Date: Tue, 2 Apr 2024 18:54:28 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Gianluca Boiano <morf3089@gmail.com>
-Cc: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-leds@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/3] dt-bindings: leds: leds-qcom-lpg: Add support for
- PMI8950 PWM
-Message-ID: <20240402-dropbox-emcee-277e03a7d44d@spud>
-References: <20240402-pmi8950-pwm-support-v1-0-1a66899eeeb3@gmail.com>
- <20240402-pmi8950-pwm-support-v1-3-1a66899eeeb3@gmail.com>
+	s=k20201202; t=1712081192;
+	bh=+E1y0pdf8CT3Z5+Efvu1SmNES4KfcEkFtb6Y5xvwvKg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=kA1ODO759nTQw5I8JgHp2XuGic16VLy/t62Iiqqdgg5P8TvIMcRs0dGO0Z6NP4UxN
+	 ppTvCtGkQbhtPFyI84MZhNApVtBOAQyNWPzgDTMwxzRa5wTnlNMY9oCplHaNzozvlk
+	 xS6qTB/pKGI6Nfyj4UsdNwOxQzGoMJE3VOkVdacpdrsGoQMhqCYkmAeurwR4a7NX7d
+	 yUhtCq9ohK2quJD8BcQGnw+iYvaCcV6K9JymEL4tqWbnVpT9qdrgmhmirc4vQ+nqjg
+	 yjT8QSrWn504KTGRF7w+g/3vBtR5+tULBnwuPFJLZoKGpDzDL+JX4YYrXsdja+F2rv
+	 DJnWhrt8aIzVg==
+Message-ID: <4b1380a8-0136-4395-ba42-9bcff2e1bdb0@kernel.org>
+Date: Tue, 2 Apr 2024 20:06:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="hdudIysQAOBteYw2"
-Content-Disposition: inline
-In-Reply-To: <20240402-pmi8950-pwm-support-v1-3-1a66899eeeb3@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: mfd: syscon: Add ti,am62p-cpsw-mac-efuse
+ compatible
+To: Siddharth Vadapalli <s-vadapalli@ti.com>
+Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, srk@ti.com
+References: <20240402105708.4114146-1-s-vadapalli@ti.com>
+ <2e9b6a91-43d3-4b23-830d-40e607505d8c@kernel.org>
+ <30065bdc-ccef-4610-b1c1-7661f801b8e9@ti.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <30065bdc-ccef-4610-b1c1-7661f801b8e9@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 02/04/2024 14:30, Siddharth Vadapalli wrote:
+> On Tue, Apr 02, 2024 at 02:08:32PM +0200, Krzysztof Kozlowski wrote:
+>> On 02/04/2024 12:57, Siddharth Vadapalli wrote:
+>>> The CTRLMMR_MAC_IDx registers within the CTRL_MMR space of TI's AM62p SoC
+>>> contain the MAC Address programmed in the eFuse. Add compatible for
+>>> allowing the CPSW driver to obtain a regmap for the CTRLMMR_MAC_IDx
+>>> registers within the System Controller device-tree node. The default MAC
+>>> Address for the interface corresponding to the first MAC port will be set
+>>> to the value programmed in the eFuse.
+>>>
+>>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>>> ---
+>>>
+>>> This patch is based on linux-next tagged next-20240402.
+>>
+>> Where is the DTS using it?
+> 
+> The current implementation in the device-tree for older TI K3 SoCs is as
+> follows:
+> 
+> 	cpsw_port1: port@1 {
+> 		reg = <1>;
+> 		ti,mac-only;
+> 		label = "port1";
+> 		phys = <&phy_gmii_sel 1>;
+> 		mac-address = [00 00 00 00 00 00];
+> 		ti,syscon-efuse = <&wkup_conf 0x200>;
+> 	};
+> 
+> The "ti,syscon-efuse" property passes the reference to the System
+> Controller node as well as the offset to the CTRLMMR_MAC_IDx registers
+> within the CTRL_MMR space.
 
---hdudIysQAOBteYw2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Please reference upstream DTS or lore link to patch under review.
 
-On Tue, Apr 02, 2024 at 02:35:44PM +0200, Gianluca Boiano wrote:
-> Update leds-qcom-lpg binding to support PMI8950 PWM.
->=20
-> Signed-off-by: Gianluca Boiano <morf3089@gmail.com>
+Best regards,
+Krzysztof
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
---hdudIysQAOBteYw2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgxGVAAKCRB4tDGHoIJi
-0mBlAQDBomjeWwP7a3lq5ocJkqBNTRStYWv9cLG3q1DkzVPuEAD+PhadSr4eRb0M
-nut7sQOgM4T1e+wkLYDhCBTRWYsTrQs=
-=A5DT
------END PGP SIGNATURE-----
-
---hdudIysQAOBteYw2--
 
