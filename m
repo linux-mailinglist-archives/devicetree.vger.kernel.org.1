@@ -1,89 +1,95 @@
-Return-Path: <devicetree+bounces-55607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55608-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78877895C6F
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 21:26:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5862E895C79
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 21:26:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2EEA01F248AB
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 19:26:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C3F01C22A99
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 19:26:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9205115B964;
-	Tue,  2 Apr 2024 19:26:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 052CD15CD78;
+	Tue,  2 Apr 2024 19:26:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GkN7uyow"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z/NwwL2e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DBE315B572;
-	Tue,  2 Apr 2024 19:25:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61E0D15B987;
+	Tue,  2 Apr 2024 19:26:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712085961; cv=none; b=P+vb+e+qwKtaSD7DXMlYJ32jzLQgUd8btUvEDiykmyyhbu21anuihVD5p1Ot05ZthU++DS40LMIkssIw19z8sV09lTDwnecAhAO/fGBVQ4I56aljv0yxT0luBqVtdQ6DlUyVGewPmLl8RVXkivXhakx3EWT3TKmUWjZtuKiZYCM=
+	t=1712085967; cv=none; b=U6OSJAOE1pcitCb92zVTovLL4h0/jC42nmWOWhBUPS22eh810SvIb3wLV2Wbgx4G5e3yUaSFcCxBH9xMzcqYvGNGFnbxKA1uKWO9pzwuYst2d949Sj9y2e1H9uVclDimnxYkS9htC0ySlPNKAlAImf8MBxQw1TEG/dBkF1XpzKg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712085961; c=relaxed/simple;
-	bh=VAM/iIbG6sd0Vm+9c5LNdjtskIH9H5a/W1Fyy4k5ba4=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=IQDsKQ3ALSRFMQben0IY3oxFWgp8D5NmebXRlYnhI3aWTxKXPFG+fisjmh13TtuwCdza8SiAwazcEe7qO/BdQUztj3FrJW6OgXNVaSLCsjocslyV4HORJNDhpUJfeD6LPSXkwMnzKx0e3h8h2hC1CtBvrRk9FZIA+GG3Q/IlDAI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GkN7uyow; arc=none smtp.client-ip=209.85.210.48
+	s=arc-20240116; t=1712085967; c=relaxed/simple;
+	bh=GmSN0myd4xbipdydgTiAn4GDoy3OMepStdn8UQkbyAs=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=tpQQi3XCFngMtj7F5OPA1z/7JAVOhX+59WrhWg8l8vnuHrH5s/+79TRcCO3TbrW+RNzarYF2UDtgfruzlHc/0X8jk1bZhOILGpDnaTrAECl4+BoQjXgqZAzU5IG2GHXPTxckFb+YXrroOXYHgXpkf9nAG3gHq5xWvUv6mLTXTs0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z/NwwL2e; arc=none smtp.client-ip=209.85.160.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f48.google.com with SMTP id 46e09a7af769-6e6d063e88bso4052058a34.3;
-        Tue, 02 Apr 2024 12:25:59 -0700 (PDT)
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-22e8676c670so240104fac.1;
+        Tue, 02 Apr 2024 12:26:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712085959; x=1712690759; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Z7rhLLUMHrwedBH2pvRBxfgtMkIBfb1Wwm96WdNqdmI=;
-        b=GkN7uyowaDLZix+CkSyIoPeSHFu4zIjw+yamkUNh0I6Xj6ftCfnkfa8OoS1jUWnsju
-         2Jr30n5fmIrAizYTBO0aAW29uJBX0dd6PAHv0hrFQeuwLtJCYQdzbePxMWhn44Gbpjxd
-         Rw4o7Kd50IE3xmtOA3jodyX8eprupfLpwJQBIciJg8qOOiWhf9G+jOZgE7oQ22ojlfIf
-         SuQZ16OhFgVdoSvrQPC/ALQoGSzaEHDG/5WgMrJAKwjRKmNW4cjyQVyFthHH9K6d8hVl
-         keqBbvWDQ3mKxj8prLvd/GPtqkZgQsfkpGOrbWbxSmo+c6Fe5Rgc8ZjrBYkqsK0WUNjG
-         61lg==
+        d=gmail.com; s=20230601; t=1712085962; x=1712690762; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BhP+v60iBJxMjaZsBicLjvrTnnhoRviR8rTJgE76tf0=;
+        b=Z/NwwL2e/mg+48wbMkI0RgKp7rnGaA6quYTZCt99SU+lhap3VtVY+sgog+FhoVdNRr
+         Shhbar4BUnMQ/nOvIPE/M95P6g5uHSauUZ+AOF/R/2Jm6RcNkwvmooTOFvyi57ZGcheW
+         tJfKCCkv3W9uljMPvlk4lFzNWEwOP0Y0FZMHEz9tf/F4zU3V3QKybxYBj6+H6NGOZCja
+         r3kYNM7J74MPaEnmZ2P+oGSBrQqwLwOteLNiyCEhR+v8GFt45WYOcKb5j/VuX8iiYZhQ
+         Q6azRNRHl2+/v8oV/mXQYfuGm6Bgmib5zLxMKmog4kQL/NNvqd/4tQQmrqRMwvUOIh5b
+         MyVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712085959; x=1712690759;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Z7rhLLUMHrwedBH2pvRBxfgtMkIBfb1Wwm96WdNqdmI=;
-        b=wbyJWRN3RUsGot3LvdTYGs5d9wciPtItYHvXDLSbpHM0zDBZrydauNOV0YAgS2KIz9
-         GJkVQAEQY51RwxqV3yk2BFz8fUTG9niPP8ZpwS+Lb6HIoDC6lw6fyJ5eHW0+X4wd6ziY
-         FyT8IDY2CwoGlr56ST04xYk/SrWAHX1opDZzB41QzFCOrtzfN2MXM1D0hBYvZH9lVItE
-         aLD016tIr1LIjRAsXFbbcwwHYw9gDDZBXE2sQU5qpT3th0T4DFvTzy0+ir3UF+l/mqo0
-         1i/sBmGOhc/nILxSNM0unEn4PAtO9MaVUnV2wA5gT6NXSJzPgUhmMPATB236h+n+PMg8
-         wlkQ==
-X-Forwarded-Encrypted: i=1; AJvYcCViUfC8ZOB0BJCyODuZFIPgZGXpDnLc5yD8M7LpzL2FtD2GbfpORS5nsZ3ZyCqQxDDEx7QsxdDIS1fMnxYTU33wNn1V9+KEdSvR72jdUQte8acq8tGZkS9z8jwiGESiADhgG6Zpf0PNVHthnyUEnS5vHVG6gwxroD+dsMgCLwfWvmAkF0LqJPTM4p8jnqlrF52Dyu/IfaSvRS4tkCKABK2iZ7w=
-X-Gm-Message-State: AOJu0Yy0sqTCGd40iIqWNhLakCBZIzgDYPQ7kLyTckAFrRW0qUtW/HkA
-	lRfwseccT9xdzgqf4yT2O6uENo74Gp9KTHAL3MK0TSWQY6x5+v0t
-X-Google-Smtp-Source: AGHT+IEYE+r10McvEe1VUzjmFZOvDyoNfheZXGqnaJ8aS0qLvbp8v9xO8DDJgW+wgkaDNqWfMepAIw==
-X-Received: by 2002:a05:6870:fe8f:b0:21e:e6d1:616c with SMTP id qm15-20020a056870fe8f00b0021ee6d1616cmr15659554oab.31.1712085959028;
-        Tue, 02 Apr 2024 12:25:59 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1712085962; x=1712690762;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=BhP+v60iBJxMjaZsBicLjvrTnnhoRviR8rTJgE76tf0=;
+        b=xVNL7D/omDET0+ADMKI2Ln5h+TwwZ1omzODspaHTwvBqas6oGEWNisDcB6DkuppI0j
+         rxbrrpRojd5O+xNER5KeJaHmYpk8v6z/szWYbbM8o51bQQ0qxTQGmF0TDs/fPT/N/3ro
+         m9Rbl3E933w00Ii+ClS0D/n55CFVoXDe470u3jp6x+sGtai7WpjqVCrELAiFh3uSof9x
+         qM+W1LRcBo1LZ+QIQbWPHHZr+/uPvJGhdOFRdC3uUAPKwpcph3aZBlgjcVqqdVqEw6HV
+         LFnUInquXqZ4ch0IQO3vlbY94w6svvcRU0Rz/r+oqMeyLs/XXJQ8ASahpXXBMQTab4VO
+         u5lA==
+X-Forwarded-Encrypted: i=1; AJvYcCUtMGKugo5iviFuzbTKfizHFqwbiLKjWLRcKLBd7SGSDg3BzAHImVZfBdFI9xPTnIbvkAlrTKbd3bxwBGWU3WuE+VwG33uiNzC8l29hYQ7u8cxgQS+YiCHSZGZz0JfZxa+f5B/fS/l3pKesI9e923VxZZGPFf4afB46hTH/Ni9zejyk4BJ6T6EzyRjdvXB83U0QnATMQvs03fHAGOuIEeiBb4M=
+X-Gm-Message-State: AOJu0YzvxeyQAJjKVXVKcrUremWsld5NbOtiozdorC/ExC811rPiwQQf
+	+v+iikTaVocH8oAMLCqLpMLDmeHSc1N4qYKi086Ep6ziDs/Sgr/d
+X-Google-Smtp-Source: AGHT+IHW9Et9K2oXjGb440sE7RzwCVYx05x8qvURyKd8DxZ2LaYz61fAik2owFUjpokxq5K33U6IEw==
+X-Received: by 2002:a05:6870:b6a6:b0:22a:7b20:410d with SMTP id cy38-20020a056870b6a600b0022a7b20410dmr14833598oab.33.1712085962264;
+        Tue, 02 Apr 2024 12:26:02 -0700 (PDT)
 Received: from nukework.lan (c-98-197-58-203.hsd1.tx.comcast.net. [98.197.58.203])
-        by smtp.gmail.com with ESMTPSA id ld22-20020a0568702b1600b0022e8f9fa89bsm75622oab.57.2024.04.02.12.25.57
+        by smtp.gmail.com with ESMTPSA id ld22-20020a0568702b1600b0022e8f9fa89bsm75622oab.57.2024.04.02.12.26.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Apr 2024 12:25:58 -0700 (PDT)
+        Tue, 02 Apr 2024 12:26:01 -0700 (PDT)
 From: Alexandru Gagniuc <mr.nuke.me@gmail.com>
 To: Bjorn Andersson <andersson@kernel.org>,
 	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 Cc: ansuelsmth@gmail.com,
 	robimarko@gmail.com,
 	Alexandru Gagniuc <mr.nuke.me@gmail.com>,
 	linux-arm-msm@vger.kernel.org,
-	linux-clk@vger.kernel.org,
+	linux-pci@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/7] dt-bindings: clock: Add PCIe pipe related clocks for IPQ9574
-Date: Tue,  2 Apr 2024 14:25:49 -0500
-Message-Id: <20240402192555.1955204-1-mr.nuke.me@gmail.com>
+Subject: [PATCH 3/7] dt-bindings: PCI: qcom: Add IPQ9574 PCIe controller
+Date: Tue,  2 Apr 2024 14:25:51 -0500
+Message-Id: <20240402192555.1955204-3-mr.nuke.me@gmail.com>
 X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20240402192555.1955204-1-mr.nuke.me@gmail.com>
+References: <20240402192555.1955204-1-mr.nuke.me@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,26 +98,79 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add defines for the missing PCIe PIPE clocks.
+IPQ9574 has PCIe controllers which are almost identical to IPQ6018.
+The only difference is that the "iface" clock is not required.
+Document this difference along with the compatible string.
 
 Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
 ---
- include/dt-bindings/clock/qcom,ipq9574-gcc.h | 4 ++++
- 1 file changed, 4 insertions(+)
+ .../devicetree/bindings/pci/qcom,pcie.yaml    | 32 +++++++++++++++++++
+ 1 file changed, 32 insertions(+)
 
-diff --git a/include/dt-bindings/clock/qcom,ipq9574-gcc.h b/include/dt-bindings/clock/qcom,ipq9574-gcc.h
-index 08fd3a37acaa..52123c5a09fa 100644
---- a/include/dt-bindings/clock/qcom,ipq9574-gcc.h
-+++ b/include/dt-bindings/clock/qcom,ipq9574-gcc.h
-@@ -216,4 +216,8 @@
- #define GCC_CRYPTO_AHB_CLK				207
- #define GCC_USB0_PIPE_CLK				208
- #define GCC_USB0_SLEEP_CLK				209
-+#define GCC_PCIE0_PIPE_CLK				210
-+#define GCC_PCIE1_PIPE_CLK				211
-+#define GCC_PCIE2_PIPE_CLK				212
-+#define GCC_PCIE3_PIPE_CLK				213
- #endif
+diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+index cf9a6910b542..6eb29547c18e 100644
+--- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
++++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+@@ -26,6 +26,7 @@ properties:
+           - qcom,pcie-ipq8064-v2
+           - qcom,pcie-ipq8074
+           - qcom,pcie-ipq8074-gen3
++          - qcom,pcie-ipq9574
+           - qcom,pcie-msm8996
+           - qcom,pcie-qcs404
+           - qcom,pcie-sdm845
+@@ -383,6 +384,35 @@ allOf:
+             - const: axi_s # AXI Slave clock
+             - const: axi_bridge # AXI bridge clock
+             - const: rchng
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - qcom,pcie-ipq9574
++    then:
++      properties:
++        clocks:
++          minItems: 4
++          maxItems: 4
++        clock-names:
++          items:
++            - const: axi_m # AXI Master clock
++            - const: axi_s # AXI Slave clock
++            - const: axi_bridge # AXI bridge clock
++            - const: rchng
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - qcom,pcie-ipq6018
++              - qcom,pcie-ipq8074-gen3
++              - qcom,pcie-ipq9574
++    then:
++      properties:
+         resets:
+           minItems: 8
+           maxItems: 8
+@@ -507,6 +537,7 @@ allOf:
+                 - qcom,pcie-ipq8064v2
+                 - qcom,pcie-ipq8074
+                 - qcom,pcie-ipq8074-gen3
++                - qcom,pcie-ipq9574
+                 - qcom,pcie-qcs404
+     then:
+       required:
+@@ -566,6 +597,7 @@ allOf:
+               - qcom,pcie-ipq8064-v2
+               - qcom,pcie-ipq8074
+               - qcom,pcie-ipq8074-gen3
++              - qcom,pcie-ipq9574
+               - qcom,pcie-qcs404
+     then:
+       properties:
 -- 
 2.40.1
 
