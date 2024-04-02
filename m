@@ -1,359 +1,130 @@
-Return-Path: <devicetree+bounces-55409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F9D0895185
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 13:11:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F506895198
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 13:17:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D5F0AB22385
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 11:11:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0F54CB225B3
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 11:17:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B3A269956;
-	Tue,  2 Apr 2024 11:10:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36322664DD;
+	Tue,  2 Apr 2024 11:17:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="akXaCJdK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xtz5tf/Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2119.outbound.protection.outlook.com [40.107.20.119])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E6FA60BB6;
-	Tue,  2 Apr 2024 11:10:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.119
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712056232; cv=fail; b=tnsl252jfBpDUw76FXCKYYd1NLQLJ13NWRPD5IAtgGZeid8FhiN2TxI8Ui6yNocL78pc/1TrqyG/Ohacdmv+sOUyV9XudxnC1UzUM7tbKPhFJ8jCzVVgTkIL7xhLPTpgVnbPRLpYbTnNT8c3P2ct5VWqzQ+bTkM21xHlgGazkEA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712056232; c=relaxed/simple;
-	bh=eG0+ZDsdF44prmJymrk7Ytz139FpLdp0X+n/16aQXpY=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=gKTFmMtoBCB9EUaB31azln1U339JipqfA3h9pjcOaFVj3krgOEC2F+kv4IlU2l0ZoOtZjGNlV0j3nfcQPH7dNW+mYXNDk5CI/siJNQK8riSbEiyj33gQddoW2JNszio6Ea7+nwEExz/MfJ75A9NANXhFlzrz6wac2jWlWxByy3E=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=akXaCJdK; arc=fail smtp.client-ip=40.107.20.119
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KUzGqErU/ASr/8/ebSRxF5l8aeEKgE5Xcre7AjOkFLOiofxWkDy08Adz3SfHuqqLm+CRXkUnwLFfYelJxsmQFsVX6sjVqL6jtZ1XrqTJ/UGFCWsiEH0EkG4jShhSGK7lDBSAlfDLYqoRtp40knxqO5KxqEOVwAx55DzKCD7tEZUNYbiANAqyvCKfK3eI1gNXAeYEAVJDHvmF3BAOM6gNnVkNZpTGl1N59S6LJO8m1iiQpCZeNFRM48gX7PRNibC2GYCctsUPadTA7kWtHWV5ZRZ3N5bcprcR4f2ZFNpavjznnoKXtDMLlcot4ShhQNdCk9jYyo4gvzqprLgvHxZ6cw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+OZFaxPmH8elz+7ubqgYAXnK0IF7bs88bgYb43RiJF8=;
- b=UT2W4eqZsuHAyS46bBVUTHtSaVBoPGwgHjnc10hFTVROBFGy00UijTsmAeXsjcV1ULRegDZcYCVevf5NVT8gmRwLdUrCz3wDW+07u18qtEj6nhwNCYdFeSTSogj5jknWgN8m0TFhVPPiVRzRTulaC+uB7wQcNhRwogOUvKMYKA9WppWVRZ80H9zcAVHAf63BoV715JLRdy1OsAh470ysimPCoEHPUz0PCNrW5B3VoudVXP75gDzJC/mDwWCWfP3YE5J+ylKp9xScmwZxvcXOcn9GgUjt/vlBQTNCD4q8cBqjFMR6OmTXUdHCmFyyQ9EeXGsN7U+JEdRZqnCZp2bX4A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+OZFaxPmH8elz+7ubqgYAXnK0IF7bs88bgYb43RiJF8=;
- b=akXaCJdKXKm7ZCj/MBywaBOkQnKlmVZoQupvj0bBBclMWfn1zPzQeJmMyxEddeYnMGx26GkYHXUfCAJKLo/ayH8ee7qJjCsES/edbwTqErZEC/J4hYaLhTXavMfg5OX9VigTzxIv1oL/HKnfJUknBmNY5yi7Al+3AVCgU1wB1T8=
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
- by AM9PR04MB8665.eurprd04.prod.outlook.com (2603:10a6:20b:43c::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Tue, 2 Apr
- 2024 11:10:27 +0000
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::8d2f:ac7e:966a:2f5f]) by DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::8d2f:ac7e:966a:2f5f%5]) with mapi id 15.20.7409.042; Tue, 2 Apr 2024
- 11:10:27 +0000
-From: Xu Yang <xu.yang_2@nxp.com>
-To: Shawn Guo <shawnguo2@yeah.net>
-CC: "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"shawnguo@kernel.org" <shawnguo@kernel.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-	"kernel@pengutronix.de" <kernel@pengutronix.de>, "festevam@gmail.com"
-	<festevam@gmail.com>, dl-linux-imx <linux-imx@nxp.com>,
-	"peter.chen@kernel.org" <peter.chen@kernel.org>, Jun Li <jun.li@nxp.com>,
-	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "imx@lists.linux.dev"
-	<imx@lists.linux.dev>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: RE: [EXT] Re: [PATCH v10 09/11] arm64: dts: imx93-11x11-evk: enable
- usb and typec nodes
-Thread-Topic: [EXT] Re: [PATCH v10 09/11] arm64: dts: imx93-11x11-evk: enable
- usb and typec nodes
-Thread-Index: AQHae2fiM4t7LhbL4UG9hlOii2nK87FUw26AgAAh85A=
-Date: Tue, 2 Apr 2024 11:10:27 +0000
-Message-ID:
- <DU2PR04MB8822F09664394E466CB9F3868C3E2@DU2PR04MB8822.eurprd04.prod.outlook.com>
-References: <20240321081439.541799-1-xu.yang_2@nxp.com>
- <20240321081439.541799-9-xu.yang_2@nxp.com> <ZgvKteCEZJxShA/j@dragon>
-In-Reply-To: <ZgvKteCEZJxShA/j@dragon>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DU2PR04MB8822:EE_|AM9PR04MB8665:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- UgboTkJKAk3i6gCqMJ1titIj2t4JiRMF63RLQQoCT6xBoxHujUvwuv62y/xJkECGXc++kkLIAG0KrxCYZAgzMngeGJE0Y1i9JvgAEpEI7bLh2cNDlNOSa0lymIRmnKDWQo9HEQzPBmRqmGcLvm+C7iqZeUM3NRK2uJpw1Qjl8CJkHTZQLaV9cjydRkZtQBvRt34B5qfFJxusrGRObKYiEXMB5bvuOwPTL0I/En81H2WAdJDIR9QifSrEO1djkV+4OuTVOXzZpUI3LnxTN7PzRJ94ISqNCfKzSPeL/0KHA8Hao7IVVxe+CXB8zTr0LMKPXQvMpZvpwyCZ6M5fNNQcJyCUzx6/GfYzevPELnzoDFXrV2Ql/lnAYfGtVEj0XzKOVCceQssavC2YJcEKtQ2TUMNqBzBJwuIOTrtDoAbTc4IB9a24t1Ct4KWZijdA74YktCoGYs5jGPT2BS6tW0aw2VJ0Vbg0R0vg/VtQqpnyiepiL1dEnlx26EPH+8jvPlZMBXoNelLNojnsmWDUE0apC7f0jsuke1TqjcFciieDvexJgmbrLLKpupC2k5vFaDCwbG+kgpkBqt5ApIpJtADjpcr0FYxOG3fHqA6lNc/Djpp9WDB/sAl03Zwlbrc2umXt1CyolcevGEs29zkABLaBSw==
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8822.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(376005)(366007)(1800799015);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?bAzFwFQFcNHXyrF4yFgWj0k5DJo1Q7XGWLsG2C8eGixQeGfP9NfRltR8T8QF?=
- =?us-ascii?Q?KuEhp7o0CZsNIz0MIevWW94Vd740Z03gYi4aeGz9IKsOTelnTJkXqXN7wmUi?=
- =?us-ascii?Q?CSKB4mpLp2krIfKktEGtqlWlSuhk7N3Bcav3MhXKNUZTMZV3Sri26k9/25Az?=
- =?us-ascii?Q?MGl7MzLzeJwIDBfD0NSF1bFN+XaCHanZ8ql2ixqH7+Jh0eK9jr34bvURmnrf?=
- =?us-ascii?Q?E2hURIJt5Sc3BRH2MO6ZWH4JWfh1yIYMxYi7SAHTc/LwcfAq0iGpXeVcfss6?=
- =?us-ascii?Q?jl+9uRCi4Ni9JjgdWlugkMQtiIiYvwbqER+XL25gkBR6ptfpj+W7V3YMpCQh?=
- =?us-ascii?Q?HUzvKy9b316JPLIlhpf4Ib29obEUt2Pj0tWl6s+WGVUeOUj8h/y9minaYme0?=
- =?us-ascii?Q?mXtCYnkjux2IaI8RrLRp7K92fzPt5gaQkv41eICDOab+H8IwaeBVrgZ/Kanu?=
- =?us-ascii?Q?oHNL6pzfQf4KDr+GNg7I97vzsbXNLZ+wUbYs4KWn3aYvP/WgR966Han1nfKb?=
- =?us-ascii?Q?KgpoB7rsdSgZCJPdernViKp0KKhe3WKCcKvJHjSelo1gEDQqq8B8qYeOohX6?=
- =?us-ascii?Q?S2tZPyFccbpURanhlOwhFEYgEUT9yhNsDgyVODg6qWrCCbPwD6fuTya6a7ab?=
- =?us-ascii?Q?IISyUFsA699aqnvE+icUgM/X7K52yB22XHgEdHoL7GelP1lMw+7p9RhlNDLR?=
- =?us-ascii?Q?7yiZblSwsQHtYR6leAMcUL5ZAtkGpoTTWthPPuNTJWd82S3y1enFKvxhvv4M?=
- =?us-ascii?Q?tConVjventaD6W/8S4RzeUEtipgRoh688OtJE8JGHMNic6ob30LOrz06H2ev?=
- =?us-ascii?Q?IxxGxaAdNwNWGeyltYzp9iUZ6aFb+eoPQUbS31drSl9jqXjQMtCVHWCFlFWy?=
- =?us-ascii?Q?H2PqUPm7wRwWK4r9anI9HStAtIs6YP2+8HSS/ZlIeTjNzbsxGzDiBEARMulq?=
- =?us-ascii?Q?aDivs9ojazKvsL18IqsWrOJV+SSlS8Ra0aiArFE5FfXDr/h3hZ4hKvcx2gm/?=
- =?us-ascii?Q?Lh6zs7KMVBN/U6dXSET7DiPyzytpywYszT0nElOfX2A/rkw3XJSOVAdPeQ32?=
- =?us-ascii?Q?EucDW6gE8eyZu+FjfrHHxw0YMuLCnr1DCN6e04DGFKKuIux+2EXKtVEgNScR?=
- =?us-ascii?Q?UwbxxM+yl3RDg1jFk7zhth2wDpvQ16JGbkb84/2fk8xadQn+Kav4LELevlBZ?=
- =?us-ascii?Q?8uJPMit4hiP2gyIrCc+1jopUF8UXHuneAszUQx5Xsy0rC5NVSfu3zIewZdJ+?=
- =?us-ascii?Q?zkRYjEYh12VFeXkU4FK8lBzrmzZovHaq3j1E+GlSUPpqjJ2Ad9MZTDxq9RnM?=
- =?us-ascii?Q?jdxqwdPoA6zqWlh1RJP9ZTV6jD94Kb30NC+pQltD0LKYxBdKZWW9gEKtoamU?=
- =?us-ascii?Q?W/r4LA+P+RE0X/WGfYzyx2fFucbvWKYyHvmCubik3VGrHDkCESTXRig7IP4l?=
- =?us-ascii?Q?f+L02FqkE1R2gc/1TbKAenDk35NuZJf6z7quBRW368xPABxx9fCWZ2Cw+D0n?=
- =?us-ascii?Q?Iwb6B7NEFVxZ4nCNxoahJ+k7BjgtsRRYrPeRAUej/38nbc4bTivPieu7jGZA?=
- =?us-ascii?Q?rd9Pm04eww341HSlLyo=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41A7C60BB6
+	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 11:17:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.179
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712056630; cv=none; b=dCR7c9v8byBh46C1vtmhvdEtwfcrKFGHUp471Znedn/lZpzBWXIGGAdkR4kSCf0B+MVqgQiE2jNzEB6IVv8ByYURpkgQO820zn1uW9OpoJmdR4OjfCqhW76W+NngWJKvoEbra5ACyUMCsqNXtFCgvjU4I/S5jNow76kbdZ1gSPA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712056630; c=relaxed/simple;
+	bh=xYEx1wB0KeFh5dfJ6HSa7rT6aZpOvWbEWZUcFmvpOYM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=B/jRalVmDuGNrBFIT9bue4ZMiE1lD22eLHoUnt92aU9t5h//20P1yOpIhBp5Y1eZ6cTiQxZcHJLZ2sKirzAJB5qPrst2qW1Ojoc7ctQj4pOr2HG55O0xCjmB8qC1vpnGQIiaWK2/PwQrXlqtG1S6h3yrwlKdvHKjWZ6UYqlxDpE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xtz5tf/Q; arc=none smtp.client-ip=209.85.219.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-dc236729a2bso4652327276.0
+        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 04:17:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712056627; x=1712661427; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=mFAn5q7CQFxXq7JaY+/0V77lsWhz1Tz0icfhEeQZiIA=;
+        b=xtz5tf/QsdMLoKnoqx6rUztU2p56/IxKm4kRKm+X4rVcFkrg6e4owC085eK/kYL9kn
+         1tjX/ujIHU2cSIoDXA+qTG4MG/rMfvW26UTiwox3tRNqJOZ89Rk+y3ptLICVRhzHPQ6x
+         jkQbPlQehDn2Y+KS9/2U1QRPC2pEjlrfZbyjnzhgecb4F638Q1Nyz44id0neiJPxZLI6
+         qk/2LfRlq7Me3H7TwhUfQHDas1GKcuIiVc0CGuTn2F6ZLc2h41wtu7/tw81J7mVFKcap
+         3mAT8KO0GKbRQ1WL0Wyuc+RV03yzIC5f0jZ3AuBZT/oyofHnXGfIP5L9Or4GyuZLT078
+         Xqvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712056627; x=1712661427;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mFAn5q7CQFxXq7JaY+/0V77lsWhz1Tz0icfhEeQZiIA=;
+        b=o+mOFTXFUnOMFChWwayovemB5n//r0zVodv2ZIHcdKJQv96nBg4X9svKAxo63z6ScV
+         SWfyc70tGya8fIiUZNeAhg3Q0uipsHYJygw3HMy60xjlJ6gi46HxeBBD7Xvr3ir8gWpI
+         +kL0a1iG8GZK5D5AndQIdyhtRWr8/OHg6NpB6THla5STvptn77ntqHgxkKSsH2uy/1o+
+         KK44xB8uTD9U7EnlxTDTmMcxUYkv5GcQKhXFdEi9VraNAQPH6YgglfijWabyaq2KJcVq
+         +XioaeFNQrW6fVLxx6F28MaolfWzhPTyFBloKkLQkLdLLfM0abeVe2L+EX6TPczndsAy
+         SL9g==
+X-Forwarded-Encrypted: i=1; AJvYcCVMlP64RzCKV82ZH3DN8Gbv1HNSYqmcE4T3kqciU5wT95S2QwbFZdb5rrXMzzroaIkGfuCh7WAUnNLNNyR5XLKYH7GMb+SPX9igWg==
+X-Gm-Message-State: AOJu0YyAJ1Fonk2cUtyxKoNBAjYRLLgJJ463YnfM43oWyET4sUxr9343
+	npqP/23lz/UD5rMPfjks8jNiu+QNOmbYs6bFRoh0lR8TBljHrYz5lF/mtOHL7XbHiT59FPUG2iC
+	1h8+r3/hBDHLe5bhDRI/fQFZhoyWBAG7WHNHO3Q==
+X-Google-Smtp-Source: AGHT+IEigHxfdu3Sh5IlyKpDafnA1zAw4DSQNtZfWejv/aZ9zNxq090wRE2n00r1tIubWICmJpip1//6zCXSEBerIZY=
+X-Received: by 2002:a25:640c:0:b0:dc6:cbb9:e with SMTP id y12-20020a25640c000000b00dc6cbb9000emr10783156ybb.41.1712056627317;
+ Tue, 02 Apr 2024 04:17:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8822.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e5e3d218-cdbb-4c9e-7570-08dc5305804b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Apr 2024 11:10:27.2064
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ng4pzZqr4XwS69DcWxh6pcTM1NLIt+RUPz3ZwI737auGQ2QtzgEl3+kUDlDpfn/A1eOrpOu0AX/51MBRI6FXrA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8665
+References: <20240402103406.3638821-1-quic_varada@quicinc.com>
+ <20240402103406.3638821-4-quic_varada@quicinc.com> <CAA8EJpphk_kqzBE7cKb73ipdpTi29t9ZSOOdSfq7pAGSs5NKeg@mail.gmail.com>
+ <CAA8EJpo=TMhu+Te+JE0cQzmjLOTDPi-Vv-h5Bch0Wfr_7iVi2w@mail.gmail.com> <ZgvlrbvvPNA6HRiL@hu-varada-blr.qualcomm.com>
+In-Reply-To: <ZgvlrbvvPNA6HRiL@hu-varada-blr.qualcomm.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 2 Apr 2024 14:16:56 +0300
+Message-ID: <CAA8EJpp2dgy0DcLoUuo6gz-8ee0RRwJ_mvCLGDbdvF-gVhREFg@mail.gmail.com>
+Subject: Re: [PATCH v6 3/6] interconnect: icc-clk: Add devm_icc_clk_register
+To: Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc: andersson@kernel.org, konrad.dybcio@linaro.org, mturquette@baylibre.com, 
+	sboyd@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, djakov@kernel.org, quic_anusha@quicinc.com, 
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+
+On Tue, 2 Apr 2024 at 14:02, Varadarajan Narayanan
+<quic_varada@quicinc.com> wrote:
+>
+> On Tue, Apr 02, 2024 at 01:48:08PM +0300, Dmitry Baryshkov wrote:
+> > On Tue, 2 Apr 2024 at 13:40, Dmitry Baryshkov
+> > <dmitry.baryshkov@linaro.org> wrote:
+> > >
+> > > On Tue, 2 Apr 2024 at 13:34, Varadarajan Narayanan
+> > > <quic_varada@quicinc.com> wrote:
+> > > >
+> > > > Wrap icc_clk_register to create devm_icc_clk_register to be
+> > > > able to release the resources properly.
+> > > >
+> > > > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> > > > ---
+> > > > v5: Introduced devm_icc_clk_register
+> > > > ---
+> > > >  drivers/interconnect/icc-clk.c   | 29 +++++++++++++++++++++++++++++
+> > > >  include/linux/interconnect-clk.h |  4 ++++
+> > > >  2 files changed, 33 insertions(+)
+> > >
+> > > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> >
+> > Wait. Actually,
+> >
+> > Unreviewed-by: me
+> >
+> > Please return int from devm_icc_clk_register instead of returning the pointer.
+>
+> Wouldn't returning int break the general assumption that
+> devm_foo(), returns the same type as foo(). For example
+> devm_clk_hw_get_clk and clk_hw_get_clk return struct clk *?
+
+Not always. The only reason to return icc_provider was to make it
+possible to destroy it. With devres-managed function you don't have to
+do anything.
 
 
->=20
-> On Thu, Mar 21, 2024 at 04:14:37PM +0800, Xu Yang wrote:
-> > There are 2 Type-C ports and 2 USB controllers on i.MX93. Enable them.
-> >
-> > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> >
-> > ---
-> > Changes in v2:
-> >  - remove status property in ptn5110 nodes
-> >  - fix dt-schema warnings
-> > Changes in v3:
-> >  - no changes
-> > Changes in v4:
-> >  - no changes
-> > Changes in v5:
-> >  - no changes
-> > Changes in v6:
-> >  - no changes
-> > Changes in v7:
-> >  - no changes
-> > Changes in v8:
-> >  - no changes
-> > Changes in v9:
-> >  - use compatible "nxp,ptn5110", "tcpci"
-> > Changes in v10:
-> >  - no changes
-> > ---
-> >  .../boot/dts/freescale/imx93-11x11-evk.dts    | 118 ++++++++++++++++++
-> >  1 file changed, 118 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts b/arch/a=
-rm64/boot/dts/freescale/imx93-11x11-evk.dts
-> > index 9921ea13ab48..ecc01d872e95 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-> > +++ b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-> > @@ -5,6 +5,7 @@
-> >
-> >  /dts-v1/;
-> >
-> > +#include <dt-bindings/usb/pd.h>
-> >  #include "imx93.dtsi"
-> >
-> >  / {
-> > @@ -104,6 +105,80 @@ &mu2 {
-> >       status =3D "okay";
-> >  };
-> >
-> > +&lpi2c3 {
-> > +     #address-cells =3D <1>;
-> > +     #size-cells =3D <0>;
-> > +     clock-frequency =3D <400000>;
-> > +     pinctrl-names =3D "default", "sleep";
-> > +     pinctrl-0 =3D <&pinctrl_lpi2c3>;
-> > +     pinctrl-1 =3D <&pinctrl_lpi2c3>;
->=20
-> Do you really need "sleep" pinctrl state?
-
-"sleep" pinctrl state can be removed.
-
->=20
-> > +     status =3D "okay";
-> > +
-> > +     ptn5110: tcpc@50 {
-> > +             compatible =3D "nxp,ptn5110", "tcpci";
-> > +             reg =3D <0x50>;
-> > +             interrupt-parent =3D <&gpio3>;
-> > +             interrupts =3D <27 IRQ_TYPE_LEVEL_LOW>;
-> > +
-> > +             typec1_con: connector {
-> > +                     compatible =3D "usb-c-connector";
-> > +                     label =3D "USB-C";
-> > +                     power-role =3D "dual";
-> > +                     data-role =3D "dual";
-> > +                     try-power-role =3D "sink";
-> > +                     source-pdos =3D <PDO_FIXED(5000, 3000, PDO_FIXED_=
-USB_COMM)>;
-> > +                     sink-pdos =3D <PDO_FIXED(5000, 3000, PDO_FIXED_US=
-B_COMM)
-> > +                                  PDO_VAR(5000, 20000, 3000)>;
-> > +                     op-sink-microwatt =3D <15000000>;
-> > +                     self-powered;
-> > +
-> > +                     ports {
-> > +                             #address-cells =3D <1>;
-> > +                             #size-cells =3D <0>;
-> > +
-> > +                             port@0 {
-> > +                                     reg =3D <0>;
->=20
-> Have a newline between properties and child node.
-
-Okay.
-
-Thanks,
-Xu Yang
-
->=20
-> Shawn
->=20
-> > +                                     typec1_dr_sw: endpoint {
-> > +                                             remote-endpoint =3D <&usb=
-1_drd_sw>;
-> > +                                     };
-> > +                             };
-> > +                     };
-> > +             };
-> > +     };
-> > +
-> > +     ptn5110_2: tcpc@51 {
-> > +             compatible =3D "nxp,ptn5110", "tcpci";
-> > +             reg =3D <0x51>;
-> > +             interrupt-parent =3D <&gpio3>;
-> > +             interrupts =3D <27 IRQ_TYPE_LEVEL_LOW>;
-> > +
-> > +             typec2_con: connector {
-> > +                     compatible =3D "usb-c-connector";
-> > +                     label =3D "USB-C";
-> > +                     power-role =3D "dual";
-> > +                     data-role =3D "dual";
-> > +                     try-power-role =3D "sink";
-> > +                     source-pdos =3D <PDO_FIXED(5000, 3000, PDO_FIXED_=
-USB_COMM)>;
-> > +                     sink-pdos =3D <PDO_FIXED(5000, 3000, PDO_FIXED_US=
-B_COMM)
-> > +                                  PDO_VAR(5000, 20000, 3000)>;
-> > +                     op-sink-microwatt =3D <15000000>;
-> > +                     self-powered;
-> > +
-> > +                     ports {
-> > +                             #address-cells =3D <1>;
-> > +                             #size-cells =3D <0>;
-> > +
-> > +                             port@0 {
-> > +                                     reg =3D <0>;
-> > +                                     typec2_dr_sw: endpoint {
-> > +                                             remote-endpoint =3D <&usb=
-2_drd_sw>;
-> > +                                     };
-> > +                             };
-> > +                     };
-> > +             };
-> > +     };
-> > +};
-> > +
-> >  &eqos {
-> >       pinctrl-names =3D "default";
-> >       pinctrl-0 =3D <&pinctrl_eqos>;
-> > @@ -156,6 +231,42 @@ &lpuart5 {
-> >       status =3D "okay";
-> >  };
-> >
-> > +&usbotg1 {
-> > +     dr_mode =3D "otg";
-> > +     hnp-disable;
-> > +     srp-disable;
-> > +     adp-disable;
-> > +     usb-role-switch;
-> > +     disable-over-current;
-> > +     samsung,picophy-pre-emp-curr-control =3D <3>;
-> > +     samsung,picophy-dc-vol-level-adjust =3D <7>;
-> > +     status =3D "okay";
-> > +
-> > +     port {
-> > +             usb1_drd_sw: endpoint {
-> > +                     remote-endpoint =3D <&typec1_dr_sw>;
-> > +             };
-> > +     };
-> > +};
-> > +
-> > +&usbotg2 {
-> > +     dr_mode =3D "otg";
-> > +     hnp-disable;
-> > +     srp-disable;
-> > +     adp-disable;
-> > +     usb-role-switch;
-> > +     disable-over-current;
-> > +     samsung,picophy-pre-emp-curr-control =3D <3>;
-> > +     samsung,picophy-dc-vol-level-adjust =3D <7>;
-> > +     status =3D "okay";
-> > +
-> > +     port {
-> > +             usb2_drd_sw: endpoint {
-> > +                     remote-endpoint =3D <&typec2_dr_sw>;
-> > +             };
-> > +     };
-> > +};
-> > +
-> >  &usdhc1 {
-> >       pinctrl-names =3D "default", "state_100mhz", "state_200mhz";
-> >       pinctrl-0 =3D <&pinctrl_usdhc1>;
-> > @@ -222,6 +333,13 @@ MX93_PAD_ENET2_TX_CTL__ENET1_RGMII_TX_CTL        0=
-x57e
-> >               >;
-> >       };
-> >
-> > +     pinctrl_lpi2c3: lpi2c3grp {
-> > +             fsl,pins =3D <
-> > +                     MX93_PAD_GPIO_IO28__LPI2C3_SDA                  0=
-x40000b9e
-> > +                     MX93_PAD_GPIO_IO29__LPI2C3_SCL                  0=
-x40000b9e
-> > +             >;
-> > +     };
-> > +
-> >       pinctrl_uart1: uart1grp {
-> >               fsl,pins =3D <
-> >                       MX93_PAD_UART1_RXD__LPUART1_RX                  0=
-x31e
-> > --
-> > 2.34.1
-> >
-
+-- 
+With best wishes
+Dmitry
 
