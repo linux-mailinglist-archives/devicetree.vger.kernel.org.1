@@ -1,282 +1,273 @@
-Return-Path: <devicetree+bounces-55493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55491-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7CF58956BE
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 16:33:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D9DF8956A2
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 16:29:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E1452876D2
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 14:33:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B8ABB28345E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 14:28:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C904B1292CA;
-	Tue,  2 Apr 2024 14:33:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9465B126F04;
+	Tue,  2 Apr 2024 14:28:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ASbBU2eN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="C7LyuR4M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF378433B3
-	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 14:33:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 692CB85260
+	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 14:28:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712068383; cv=none; b=eWBz9sbMfljGDOBTG1xhVR7gIH/yUjWYhghyYEhUM0uANmSj+DLqj9DS6D8c1C4H9w56KFRWCWFNyZq25vAFyfwdYnUKD8wJIxdTyJb4jLUJ1ZalaKslqpjwbTyAnTX2X7AxhvsPTGlBrjrmeptDC82Sx0PU6VA/kBrPQs5Q5P8=
+	t=1712068135; cv=none; b=OKwuu4HGWOSZ7/E+S/IH7Gr3Eh89ARGAkUbubWTlZS7WNNseYYVE1dSg0te5J7a+0tUwGyPFt930CaoZ6e7XGwUYEv9rGwj+PSZefPlK/7DeOpWXdUtZfgUl/JdTpD0TGY0i0wQL6NAvfK965MvoaTys7ufguyMU8OECOsC1whQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712068383; c=relaxed/simple;
-	bh=KWrZusQJQMji6aE2OtrhtDKPN3yVC7+g4kaaFj0WaeA=;
-	h=References:From:To:Cc:Subject:Date:In-reply-to:Message-ID:
-	 MIME-Version:Content-Type; b=lDtdzxK12SRKIbVGU1PqI/vA387D/lfqKsfQSIfq4S8N1qxpdNWysrae6AOMyfQ92awfMhe3MFqK0xoCFrogQhvetDiRUcauyIqQg2s+apdM1sgfYWdGSLsNvvgshThkAJjZxEXb9X9dUmNz3QsB9Du3eKwdaq9weDpGRp6o17E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ASbBU2eN; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4161d73d876so3488925e9.3
-        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 07:33:00 -0700 (PDT)
+	s=arc-20240116; t=1712068135; c=relaxed/simple;
+	bh=fRHOq+mWZPSalcGiLvnJcNAakk7ykW7S34Y0J2V0d1U=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=Qi2ZOI4bb+//SH1zcZXj1lK/Jtnj7lfhi197HvZg1RiqzeOLigaC53V82GBQBy19lPH+TpxLjoKhJGO/fOsqVZyEdqZe8jqYL7UdhGzVyYk4SdEBzVeqvAvYmxM6FBw08Sm+jnCFyP7wUy3jskX335GyFEx0wXoCx9jtNJw2cO4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=C7LyuR4M; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a4715d4c2cbso695840866b.1
+        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 07:28:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712068379; x=1712673179; darn=vger.kernel.org;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=HEtsCpz4MIzWRds8geMwgNxbFpu0vjPrqmUI/UEAmeE=;
-        b=ASbBU2eNpktN1mASt2oIkJxJ+ag6imn6E+y8qQnsr5iljeUmqYaZes82eS0glp9xd1
-         MYAQdtILkTVuW4ylfKsVS9b4Bf/lrpo6FhCbTEFQbVNqlAQN35b5j0cbFQPugqksXNRz
-         a8jr89LAwQTc9nfAL2X3oX6BClfc+uUCShfu4OiubPMpZFLZDtT1f2pDLMT9kOmptfge
-         zsV0aJaRjyhmvQze3wFThHDp4D6QzMeiY0JimY1CntMnBrzo0RC2h8hgTVQsPBwYOS9M
-         c30rwKMjV1DbK7xrImUnnC+U846tN52Pyyp0Y6fHXl38GslAC6R0fHGQhBZ/TXK8exLZ
-         d+xA==
+        d=linaro.org; s=google; t=1712068132; x=1712672932; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=pSKxf0IIEUwyutNpDWLf0ZVVUCmfh34i9H8sYjRga6I=;
+        b=C7LyuR4M9c8ztSbfWVDJTH2WDOYr0BMJ/wV7coY7IddWAd8MeeNMi2ZaKR+EvQ/3U9
+         D2bR22FBMKD8Dfbh6Mb/pnAJtpgisbda3KRZrH6LxbQkrNbV1e6c1DGYjeDa+bOupB6D
+         Tu20HUJXTZDVos1ZVNBSx1WHen+GUiVaoMKMmE95mYa6mGz/byXFRJMnSjItjETnpVWM
+         yGNMY81wNPhcTOIZyIXIKBkjSbY3TVhOkpgB7lWDf949EwSQmrf5YJ52y+tb1fcZzvKM
+         H2bilAD3qw/R+VLOXsHavn0G5Uaob9VTL7KykanNV/DN/jqqjUbnRa07oqaYljLP6YY+
+         clEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712068379; x=1712673179;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HEtsCpz4MIzWRds8geMwgNxbFpu0vjPrqmUI/UEAmeE=;
-        b=EwqYa1qQ4uFp1gF9jr0NVovKYWHhAafvpfiTpk0LzYEYR05ZOG0kuD5nn9UybZvZgO
-         Zv06sOFtMffNgGWPkqF2XkQBYSR1+4V2GWYwsGSt6ppW5RDIi4LeaOPeTBDgvW9cMNvz
-         DwaVzj2f/qbRMDyXEnj0T1AiSNbRpxHpWW8d/DdENjF+33U18D7HhvLkkx5dOU/5cBr9
-         3sTRt0nicA6XHJRb7XwPkcTCR2sP+GgWgjP61ByvHPS0Cvsq1946jmRREw3gbCv0nU+C
-         YQoKLTnn1gdwmnk4mc/8wz2z6CE5iA9EgZ1VvW5EzLeldJd1rp94AppdHt1zMtbfT4K5
-         4mmA==
-X-Forwarded-Encrypted: i=1; AJvYcCXr1Ta3vDpEA+4zHsx9LEftnsQGxKkITv0bBLkj6EdLnFU+65+FrKLYi+7NTZF8zTTSKG9qI5vh2Pdr+Grq11ivSaGEtrfe2WSUVw==
-X-Gm-Message-State: AOJu0YydGLvgEwDN4H3N2W3F9HK8VA1UdH14KrXC3lHiIHjKwwZogrqt
-	nt8oSGKBUdvU2FtDLHYoBWU6ApiV124+rq4U9V8nqFhxH7PDSvBaG/PTmaXFov8=
-X-Google-Smtp-Source: AGHT+IGjNhWiDBYNmq+K/GKR39m/w7jR+0GLSVTnRUJMeSZ9vwCrOhr9OwZtV2iO8DIQ0nlr/sftPA==
-X-Received: by 2002:a5d:69cd:0:b0:33e:cf4e:86ba with SMTP id s13-20020a5d69cd000000b0033ecf4e86bamr6631161wrw.63.1712068379089;
-        Tue, 02 Apr 2024 07:32:59 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:2b3:4f20:7b45:be58])
-        by smtp.gmail.com with ESMTPSA id k4-20020a05600c1c8400b00414807ef8dfsm18315928wms.5.2024.04.02.07.32.58
+        d=1e100.net; s=20230601; t=1712068132; x=1712672932;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pSKxf0IIEUwyutNpDWLf0ZVVUCmfh34i9H8sYjRga6I=;
+        b=PXeXOnYtHxJPKQ7Ij9Nq+/DR2c/n4touz+EJ+jrKcT7P7dkilO6HvGFwgYaJVXzVYx
+         V/LJqX09wmNOkU4O6W2WYIXiL0w4W3mtotHzoKM/egpCWEKWw4TJJYJzdfL8WXSmO9QK
+         0IikvJyMQ1EEh8EKpt7qFW9jrZwwJOikKpEAvRzCm02t2+ZSzVF1CpTGzV4lJi5IOH2o
+         EOeCQjhMIgN0sSb0dDhlfjrykIL1Am9bh4SnUGOnE3dwq8yn3TEXc+kI0pcHYsaifztR
+         5SRbIQ2ANRngNM+DFj1XK5/v8qsbcTKwx3+ndGsmzSgocNhxMw3gIhPqN/vD7pTl/OAD
+         BrFA==
+X-Forwarded-Encrypted: i=1; AJvYcCVbpbJiCSPycLFmvotTtlYMpuPd2Rvv488KfEMVlw+OmZ/ajQIDJIhrNnKxDoHzPmBW2VT1I3wc3NgwFhhOA6FIG44n/B6uc5Cr5A==
+X-Gm-Message-State: AOJu0YxjibaiOy2iuLJXVDAQkDlJW53EEjRGnSrQe8bQ/QujbpxQvzi+
+	1onSH4InhfLccn1JZhq1w/ZVO2ma2rC5SmHKa/afKZdbTEOV2aNQ1KGnnCILQyg=
+X-Google-Smtp-Source: AGHT+IGg3KQKWJHw4XuJFppAkBsb9cAouGb9m1ZHLRR8XQFwuIhpnlS9HkKPOad2YoSJ8s/R871tqQ==
+X-Received: by 2002:a17:907:7ea8:b0:a4e:5abe:3832 with SMTP id qb40-20020a1709077ea800b00a4e5abe3832mr5567936ejc.72.1712068131602;
+        Tue, 02 Apr 2024 07:28:51 -0700 (PDT)
+Received: from localhost ([102.222.70.76])
+        by smtp.gmail.com with ESMTPSA id qf31-20020a1709077f1f00b00a4df4243473sm6556183ejc.4.2024.04.02.07.28.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Apr 2024 07:32:58 -0700 (PDT)
-References: <20240329205904.25002-1-ddrokosov@salutedevices.com>
- <20240329205904.25002-3-ddrokosov@salutedevices.com>
- <1j4jckjftk.fsf@starbuckisacylon.baylibre.com>
- <20240402121546.qrrc7r5un75464pb@CAB-WSD-L081021>
-User-agent: mu4e 1.10.8; emacs 29.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Dmitry Rokosov <ddrokosov@salutedevices.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, neil.armstrong@linaro.org,
- mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
- martin.blumenstingl@googlemail.com, kernel@salutedevices.com,
- rockosov@gmail.com, linux-amlogic@lists.infradead.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1 2/6] clk: meson: a1: pll: support 'syspll'
- general-purpose PLL for CPU clock
-Date: Tue, 02 Apr 2024 16:27:17 +0200
-In-reply-to: <20240402121546.qrrc7r5un75464pb@CAB-WSD-L081021>
-Message-ID: <1jmsqbj0md.fsf@starbuckisacylon.baylibre.com>
+        Tue, 02 Apr 2024 07:28:50 -0700 (PDT)
+Date: Tue, 2 Apr 2024 17:28:41 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: oe-kbuild@lists.linux.dev, git@luigi311.com,
+	linux-media@vger.kernel.org
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+	dave.stevenson@raspberrypi.com, jacopo.mondi@ideasonboard.com,
+	mchehab@kernel.org, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, sakari.ailus@linux.intel.com,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Luigi311 <git@luigi311.com>, Ondrej Jirman <megi@xff.cz>
+Subject: Re: [PATCH 22/23] drivers: media: i2c: imx258: Add support for
+ powerdown gpio
+Message-ID: <fae1ba7c-2f74-42f9-a79e-ce2a04f5d6da@moroto.mountain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240327231710.53188-23-git@luigi311.com>
 
+Hi,
 
-On Tue 02 Apr 2024 at 15:15, Dmitry Rokosov <ddrokosov@salutedevices.com> wrote:
+kernel test robot noticed the following build warnings:
 
-> On Tue, Apr 02, 2024 at 11:00:42AM +0200, Jerome Brunet wrote:
->> 
->> On Fri 29 Mar 2024 at 23:58, Dmitry Rokosov <ddrokosov@salutedevices.com> wrote:
->> 
->> > The 'syspll' PLL, also known as the system PLL, is a general and
->> > essential PLL responsible for generating the CPU clock frequency.
->> > With its wide-ranging capabilities, it is designed to accommodate
->> > frequencies within the range of 768MHz to 1536MHz.
->> >
->> > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
->> > ---
->> >  drivers/clk/meson/a1-pll.c | 78 ++++++++++++++++++++++++++++++++++++++
->> >  drivers/clk/meson/a1-pll.h |  6 +++
->> >  2 files changed, 84 insertions(+)
->> >
->> > diff --git a/drivers/clk/meson/a1-pll.c b/drivers/clk/meson/a1-pll.c
->> > index 60b2e53e7e51..02fd2d325cc6 100644
->> > --- a/drivers/clk/meson/a1-pll.c
->> > +++ b/drivers/clk/meson/a1-pll.c
->> > @@ -138,6 +138,81 @@ static struct clk_regmap hifi_pll = {
->> >  	},
->> >  };
->> >  
->> > +static const struct pll_mult_range sys_pll_mult_range = {
->> > +	.min = 32,
->> > +	.max = 64,
->> > +};
->> > +
->> > +/*
->> > + * We assume that the sys_pll_clk has already been set up by the low-level
->> > + * bootloaders as the main CPU PLL source. Therefore, it is not necessary to
->> > + * run the initialization sequence.
->> > + */
->> 
->> I see no reason to make such assumption.
->> This clock is no read-only, it apparently is able to re-lock so assuming
->> anything from the bootloader is just asking from trouble
->> 
->
-> Indeed, I have implemented the following initialization sequence. I have
-> dumped the bootloader setup and included it in the definition of my
-> sys_pll. However, I have encountered an issue with the enable bit. If I
-> leave the enable bit switched on by default, there is a possibility that
-> the bootloader selects a fixed CPU clock while the sys_pll should be
-> switched off. On the other hand, if I keep the enable bit switched off
-> by default, the bootloader might configure the CPU clock to use sys_pll,
-> resulting in the execution halting when the initialization sequence is
-> run. This situation has led me to assume that we should place our trust
-> in the bootloader setup.
->
-> If you believe it is necessary to include the initialization sequence, I
-> can prepare it with the sys_pll enabled by default.
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-I just noted your initial comment is misleading.
+url:    https://github.com/intel-lab-lkp/linux/commits/git-luigi311-com/media-i2c-imx258-Remove-unused-defines/20240328-072629
+base:   git://linuxtv.org/media_tree.git master
+patch link:    https://lore.kernel.org/r/20240327231710.53188-23-git%40luigi311.com
+patch subject: [PATCH 22/23] drivers: media: i2c: imx258: Add support for powerdown gpio
+config: x86_64-randconfig-161-20240331 (https://download.01.org/0day-ci/archive/20240401/202404011425.PVKV9Lf1-lkp@intel.com/config)
+compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
 
-You could submit a patch to apply the init sequence only if the PLL is
-not already enabled. Maybe even condition that to flag in the pll data
-to avoid applying it to the other platforms for now.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+| Closes: https://lore.kernel.org/r/202404011425.PVKV9Lf1-lkp@intel.com/
 
->
->> > +static struct clk_regmap sys_pll = {
->> > +	.data = &(struct meson_clk_pll_data){
->> > +		.en = {
->> > +			.reg_off = ANACTRL_SYSPLL_CTRL0,
->> > +			.shift   = 28,
->> > +			.width   = 1,
->> > +		},
->> > +		.m = {
->> > +			.reg_off = ANACTRL_SYSPLL_CTRL0,
->> > +			.shift   = 0,
->> > +			.width   = 8,
->> > +		},
->> > +		.n = {
->> > +			.reg_off = ANACTRL_SYSPLL_CTRL0,
->> > +			.shift   = 10,
->> > +			.width   = 5,
->> > +		},
->> > +		.frac = {
->> > +			.reg_off = ANACTRL_SYSPLL_CTRL1,
->> > +			.shift   = 0,
->> > +			.width   = 19,
->> > +		},
->> > +		.l = {
->> > +			.reg_off = ANACTRL_SYSPLL_STS,
->> > +			.shift   = 31,
->> > +			.width   = 1,
->> > +		},
->> > +		.current_en = {
->> > +			.reg_off = ANACTRL_SYSPLL_CTRL0,
->> > +			.shift   = 26,
->> > +			.width   = 1,
->> > +		},
->> > +		.l_detect = {
->> > +			.reg_off = ANACTRL_SYSPLL_CTRL2,
->> > +			.shift   = 6,
->> > +			.width   = 1,
->> > +		},
->> > +		.range = &sys_pll_mult_range,
->> > +	},
->> > +	.hw.init = &(struct clk_init_data){
->> > +		.name = "sys_pll",
->> > +		.ops = &meson_clk_pll_ops,
->> > +		.parent_names = (const char *[]){ "syspll_in" },
->> > +		.num_parents = 1,
->> > +		/*
->> > +		 * This clock is used as the main CPU PLL source in low-level
->> > +		 * bootloaders, and it is necessary to mark it as critical.
->> > +		 */
->> > +		.flags = CLK_IS_CRITICAL,
->> 
->> No I don't think so. Downstream consumer maybe critical but that one is
->> not, unless it is read-only.
->> 
->> A CPU pll, like on the g12 family, is unlikely to be read-only since the
->> PLL will need to relock to change rates. During this phase, there will
->> be no reate coming from the PLL so the PLL is not critical and you must
->> be able to "park" your CPU an another clock while poking this one
->> 
->
-> Initially, I tagged it with CLK_IS_CRITICAL because I observed in the
-> kernel start that CCF disables it.
-> However, upon further understanding,
-> I realized that this happened due to other reasons. I believe that if I
-> provide an init sequence where sys_pll is enabled by default, CCF will
-> not disable this clock.
->
->> > +	},
->> > +};
->> > +
->> > +static struct clk_fixed_factor sys_pll_div16 = {
->> > +	.mult = 1,
->> > +	.div = 16,
->> > +	.hw.init = &(struct clk_init_data){
->> > +		.name = "sys_pll_div16",
->> > +		.ops = &clk_fixed_factor_ops,
->> > +		.parent_hws = (const struct clk_hw *[]) {
->> > +			&sys_pll.hw
->> > +		},
->> > +		.num_parents = 1,
->> > +	},
->> > +};
->> > +
->> >  static struct clk_fixed_factor fclk_div2_div = {
->> >  	.mult = 1,
->> >  	.div = 2,
->> > @@ -283,6 +358,8 @@ static struct clk_hw *a1_pll_hw_clks[] = {
->> >  	[CLKID_FCLK_DIV5]	= &fclk_div5.hw,
->> >  	[CLKID_FCLK_DIV7]	= &fclk_div7.hw,
->> >  	[CLKID_HIFI_PLL]	= &hifi_pll.hw,
->> > +	[CLKID_SYS_PLL]		= &sys_pll.hw,
->> > +	[CLKID_SYS_PLL_DIV16]	= &sys_pll_div16.hw,
->> >  };
->> >  
->> >  static struct clk_regmap *const a1_pll_regmaps[] = {
->> > @@ -293,6 +370,7 @@ static struct clk_regmap *const a1_pll_regmaps[] = {
->> >  	&fclk_div5,
->> >  	&fclk_div7,
->> >  	&hifi_pll,
->> > +	&sys_pll,
->> >  };
->> >  
->> >  static struct regmap_config a1_pll_regmap_cfg = {
->> > diff --git a/drivers/clk/meson/a1-pll.h b/drivers/clk/meson/a1-pll.h
->> > index 4be17b2bf383..666d9b2137e9 100644
->> > --- a/drivers/clk/meson/a1-pll.h
->> > +++ b/drivers/clk/meson/a1-pll.h
->> > @@ -18,6 +18,12 @@
->> >  #define ANACTRL_FIXPLL_CTRL0	0x0
->> >  #define ANACTRL_FIXPLL_CTRL1	0x4
->> >  #define ANACTRL_FIXPLL_STS	0x14
->> > +#define ANACTRL_SYSPLL_CTRL0	0x80
->> > +#define ANACTRL_SYSPLL_CTRL1	0x84
->> > +#define ANACTRL_SYSPLL_CTRL2	0x88
->> > +#define ANACTRL_SYSPLL_CTRL3	0x8c
->> > +#define ANACTRL_SYSPLL_CTRL4	0x90
->> > +#define ANACTRL_SYSPLL_STS	0x94
->> >  #define ANACTRL_HIFIPLL_CTRL0	0xc0
->> >  #define ANACTRL_HIFIPLL_CTRL1	0xc4
->> >  #define ANACTRL_HIFIPLL_CTRL2	0xc8
+smatch warnings:
+drivers/media/i2c/imx258.c:1562 imx258_probe() warn: missing unwind goto?
 
+vim +1562 drivers/media/i2c/imx258.c
+
+d3773094af21c9 Dave Stevenson      2024-03-27  1476  
+e4802cb00bfe3d Jason Chen          2018-05-02  1477  static int imx258_probe(struct i2c_client *client)
+e4802cb00bfe3d Jason Chen          2018-05-02  1478  {
+e4802cb00bfe3d Jason Chen          2018-05-02  1479  	struct imx258 *imx258;
+786d2ad50b9b49 Dave Stevenson      2024-03-27  1480  	struct fwnode_handle *endpoint;
+786d2ad50b9b49 Dave Stevenson      2024-03-27  1481  	struct v4l2_fwnode_endpoint ep = {
+786d2ad50b9b49 Dave Stevenson      2024-03-27  1482  		.bus_type = V4L2_MBUS_CSI2_DPHY
+786d2ad50b9b49 Dave Stevenson      2024-03-27  1483  	};
+e4802cb00bfe3d Jason Chen          2018-05-02  1484  	int ret;
+e4802cb00bfe3d Jason Chen          2018-05-02  1485  	u32 val = 0;
+e4802cb00bfe3d Jason Chen          2018-05-02  1486  
+9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1487  	imx258 = devm_kzalloc(&client->dev, sizeof(*imx258), GFP_KERNEL);
+9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1488  	if (!imx258)
+9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1489  		return -ENOMEM;
+9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1490  
+d3773094af21c9 Dave Stevenson      2024-03-27  1491  	ret = imx258_get_regulators(imx258, client);
+d3773094af21c9 Dave Stevenson      2024-03-27  1492  	if (ret)
+d3773094af21c9 Dave Stevenson      2024-03-27  1493  		return dev_err_probe(&client->dev, ret,
+d3773094af21c9 Dave Stevenson      2024-03-27  1494  				     "failed to get regulators\n");
+d3773094af21c9 Dave Stevenson      2024-03-27  1495  
+9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1496  	imx258->clk = devm_clk_get_optional(&client->dev, NULL);
+d170b0ea176098 Sakari Ailus        2021-08-16  1497  	if (IS_ERR(imx258->clk))
+d170b0ea176098 Sakari Ailus        2021-08-16  1498  		return dev_err_probe(&client->dev, PTR_ERR(imx258->clk),
+d170b0ea176098 Sakari Ailus        2021-08-16  1499  				     "error getting clock\n");
+9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1500  	if (!imx258->clk) {
+9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1501  		dev_dbg(&client->dev,
+9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1502  			"no clock provided, using clock-frequency property\n");
+9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1503  
+e4802cb00bfe3d Jason Chen          2018-05-02  1504  		device_property_read_u32(&client->dev, "clock-frequency", &val);
+d170b0ea176098 Sakari Ailus        2021-08-16  1505  	} else {
+d170b0ea176098 Sakari Ailus        2021-08-16  1506  		val = clk_get_rate(imx258->clk);
+9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1507  	}
+8bde18cb296d0e Dave Stevenson      2024-03-27  1508  
+8bde18cb296d0e Dave Stevenson      2024-03-27  1509  	switch (val) {
+8bde18cb296d0e Dave Stevenson      2024-03-27  1510  	case 19200000:
+8bde18cb296d0e Dave Stevenson      2024-03-27  1511  		imx258->link_freq_configs = link_freq_configs_19_2;
+8bde18cb296d0e Dave Stevenson      2024-03-27  1512  		imx258->link_freq_menu_items = link_freq_menu_items_19_2;
+8bde18cb296d0e Dave Stevenson      2024-03-27  1513  		break;
+8bde18cb296d0e Dave Stevenson      2024-03-27  1514  	case 24000000:
+8bde18cb296d0e Dave Stevenson      2024-03-27  1515  		imx258->link_freq_configs = link_freq_configs_24;
+8bde18cb296d0e Dave Stevenson      2024-03-27  1516  		imx258->link_freq_menu_items = link_freq_menu_items_24;
+8bde18cb296d0e Dave Stevenson      2024-03-27  1517  		break;
+8bde18cb296d0e Dave Stevenson      2024-03-27  1518  	default:
+8bde18cb296d0e Dave Stevenson      2024-03-27  1519  		dev_err(&client->dev, "input clock frequency of %u not supported\n",
+8bde18cb296d0e Dave Stevenson      2024-03-27  1520  			val);
+e4802cb00bfe3d Jason Chen          2018-05-02  1521  		return -EINVAL;
+9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1522  	}
+e4802cb00bfe3d Jason Chen          2018-05-02  1523  
+786d2ad50b9b49 Dave Stevenson      2024-03-27  1524  	endpoint = fwnode_graph_get_next_endpoint(dev_fwnode(&client->dev), NULL);
+786d2ad50b9b49 Dave Stevenson      2024-03-27  1525  	if (!endpoint) {
+786d2ad50b9b49 Dave Stevenson      2024-03-27  1526  		dev_err(&client->dev, "Endpoint node not found\n");
+786d2ad50b9b49 Dave Stevenson      2024-03-27  1527  		return -EINVAL;
+786d2ad50b9b49 Dave Stevenson      2024-03-27  1528  	}
+786d2ad50b9b49 Dave Stevenson      2024-03-27  1529  
+786d2ad50b9b49 Dave Stevenson      2024-03-27  1530  	ret = v4l2_fwnode_endpoint_alloc_parse(endpoint, &ep);
+786d2ad50b9b49 Dave Stevenson      2024-03-27  1531  	fwnode_handle_put(endpoint);
+786d2ad50b9b49 Dave Stevenson      2024-03-27  1532  	if (ret) {
+786d2ad50b9b49 Dave Stevenson      2024-03-27  1533  		dev_err(&client->dev, "Parsing endpoint node failed\n");
+786d2ad50b9b49 Dave Stevenson      2024-03-27  1534  		return ret;
+786d2ad50b9b49 Dave Stevenson      2024-03-27  1535  	}
+786d2ad50b9b49 Dave Stevenson      2024-03-27  1536  
+786d2ad50b9b49 Dave Stevenson      2024-03-27  1537  	/* Get number of data lanes */
+a42d61a239fac8 Dave Stevenson      2024-03-27  1538  	switch (ep.bus.mipi_csi2.num_data_lanes) {
+a42d61a239fac8 Dave Stevenson      2024-03-27  1539  	case 2:
+a42d61a239fac8 Dave Stevenson      2024-03-27  1540  		imx258->lane_mode_idx = IMX258_2_LANE_MODE;
+a42d61a239fac8 Dave Stevenson      2024-03-27  1541  		break;
+a42d61a239fac8 Dave Stevenson      2024-03-27  1542  	case 4:
+a42d61a239fac8 Dave Stevenson      2024-03-27  1543  		imx258->lane_mode_idx = IMX258_4_LANE_MODE;
+a42d61a239fac8 Dave Stevenson      2024-03-27  1544  		break;
+a42d61a239fac8 Dave Stevenson      2024-03-27  1545  	default:
+786d2ad50b9b49 Dave Stevenson      2024-03-27  1546  		dev_err(&client->dev, "Invalid data lanes: %u\n",
+a42d61a239fac8 Dave Stevenson      2024-03-27  1547  			ep.bus.mipi_csi2.num_data_lanes);
+786d2ad50b9b49 Dave Stevenson      2024-03-27  1548  		ret = -EINVAL;
+786d2ad50b9b49 Dave Stevenson      2024-03-27  1549  		goto error_endpoint_free;
+786d2ad50b9b49 Dave Stevenson      2024-03-27  1550  	}
+786d2ad50b9b49 Dave Stevenson      2024-03-27  1551  
+7db096053387db Dave Stevenson      2024-03-27  1552  	imx258->csi2_flags = ep.bus.mipi_csi2.flags;
+7db096053387db Dave Stevenson      2024-03-27  1553  
+a8bb93eeccfa73 Dave Stevenson      2024-03-27  1554  	imx258->variant_cfg = of_device_get_match_data(&client->dev);
+a8bb93eeccfa73 Dave Stevenson      2024-03-27  1555  	if (!imx258->variant_cfg)
+a8bb93eeccfa73 Dave Stevenson      2024-03-27  1556  		imx258->variant_cfg = &imx258_cfg;
+a8bb93eeccfa73 Dave Stevenson      2024-03-27  1557  
+8a1906e91c0093 Luigi311            2024-03-27  1558  	/* request optional power down pin */
+8a1906e91c0093 Luigi311            2024-03-27  1559  	imx258->powerdown_gpio = devm_gpiod_get_optional(&client->dev, "powerdown",
+8a1906e91c0093 Luigi311            2024-03-27  1560  						    GPIOD_OUT_HIGH);
+8a1906e91c0093 Luigi311            2024-03-27  1561  	if (IS_ERR(imx258->powerdown_gpio))
+8a1906e91c0093 Luigi311            2024-03-27 @1562  		return PTR_ERR(imx258->powerdown_gpio);
+
+	ret = PTR_ERR(imx258->powerdown_gpio);
+	goto error_endpoint_free;
+
+8a1906e91c0093 Luigi311            2024-03-27  1563  
+e4802cb00bfe3d Jason Chen          2018-05-02  1564  	/* Initialize subdev */
+e4802cb00bfe3d Jason Chen          2018-05-02  1565  	v4l2_i2c_subdev_init(&imx258->sd, client, &imx258_subdev_ops);
+e4802cb00bfe3d Jason Chen          2018-05-02  1566  
+9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1567  	/* Will be powered off via pm_runtime_idle */
+9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1568  	ret = imx258_power_on(&client->dev);
+9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1569  	if (ret)
+786d2ad50b9b49 Dave Stevenson      2024-03-27  1570  		goto error_endpoint_free;
+9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1571  
+e4802cb00bfe3d Jason Chen          2018-05-02  1572  	/* Check module identity */
+e4802cb00bfe3d Jason Chen          2018-05-02  1573  	ret = imx258_identify_module(imx258);
+e4802cb00bfe3d Jason Chen          2018-05-02  1574  	if (ret)
+9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1575  		goto error_identify;
+e4802cb00bfe3d Jason Chen          2018-05-02  1576  
+e4802cb00bfe3d Jason Chen          2018-05-02  1577  	/* Set default mode to max resolution */
+e4802cb00bfe3d Jason Chen          2018-05-02  1578  	imx258->cur_mode = &supported_modes[0];
+e4802cb00bfe3d Jason Chen          2018-05-02  1579  
+e4802cb00bfe3d Jason Chen          2018-05-02  1580  	ret = imx258_init_controls(imx258);
+e4802cb00bfe3d Jason Chen          2018-05-02  1581  	if (ret)
+9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1582  		goto error_identify;
+e4802cb00bfe3d Jason Chen          2018-05-02  1583  
+e4802cb00bfe3d Jason Chen          2018-05-02  1584  	/* Initialize subdev */
+e4802cb00bfe3d Jason Chen          2018-05-02  1585  	imx258->sd.internal_ops = &imx258_internal_ops;
+e4802cb00bfe3d Jason Chen          2018-05-02  1586  	imx258->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
+e4802cb00bfe3d Jason Chen          2018-05-02  1587  	imx258->sd.entity.function = MEDIA_ENT_F_CAM_SENSOR;
+e4802cb00bfe3d Jason Chen          2018-05-02  1588  
+e4802cb00bfe3d Jason Chen          2018-05-02  1589  	/* Initialize source pad */
+e4802cb00bfe3d Jason Chen          2018-05-02  1590  	imx258->pad.flags = MEDIA_PAD_FL_SOURCE;
+e4802cb00bfe3d Jason Chen          2018-05-02  1591  
+e4802cb00bfe3d Jason Chen          2018-05-02  1592  	ret = media_entity_pads_init(&imx258->sd.entity, 1, &imx258->pad);
+e4802cb00bfe3d Jason Chen          2018-05-02  1593  	if (ret)
+e4802cb00bfe3d Jason Chen          2018-05-02  1594  		goto error_handler_free;
+e4802cb00bfe3d Jason Chen          2018-05-02  1595  
+15786f7b564eff Sakari Ailus        2021-03-05  1596  	ret = v4l2_async_register_subdev_sensor(&imx258->sd);
+e4802cb00bfe3d Jason Chen          2018-05-02  1597  	if (ret < 0)
+e4802cb00bfe3d Jason Chen          2018-05-02  1598  		goto error_media_entity;
+e4802cb00bfe3d Jason Chen          2018-05-02  1599  
+e4802cb00bfe3d Jason Chen          2018-05-02  1600  	pm_runtime_set_active(&client->dev);
+e4802cb00bfe3d Jason Chen          2018-05-02  1601  	pm_runtime_enable(&client->dev);
+e4802cb00bfe3d Jason Chen          2018-05-02  1602  	pm_runtime_idle(&client->dev);
+786d2ad50b9b49 Dave Stevenson      2024-03-27  1603  	v4l2_fwnode_endpoint_free(&ep);
+e4802cb00bfe3d Jason Chen          2018-05-02  1604  
+e4802cb00bfe3d Jason Chen          2018-05-02  1605  	return 0;
+e4802cb00bfe3d Jason Chen          2018-05-02  1606  
+e4802cb00bfe3d Jason Chen          2018-05-02  1607  error_media_entity:
+e4802cb00bfe3d Jason Chen          2018-05-02  1608  	media_entity_cleanup(&imx258->sd.entity);
+e4802cb00bfe3d Jason Chen          2018-05-02  1609  
+e4802cb00bfe3d Jason Chen          2018-05-02  1610  error_handler_free:
+e4802cb00bfe3d Jason Chen          2018-05-02  1611  	imx258_free_controls(imx258);
+e4802cb00bfe3d Jason Chen          2018-05-02  1612  
+9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1613  error_identify:
+9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1614  	imx258_power_off(&client->dev);
+9fda25332c4b9e Krzysztof Kozlowski 2021-01-27  1615  
+786d2ad50b9b49 Dave Stevenson      2024-03-27  1616  error_endpoint_free:
+786d2ad50b9b49 Dave Stevenson      2024-03-27  1617  	v4l2_fwnode_endpoint_free(&ep);
+786d2ad50b9b49 Dave Stevenson      2024-03-27  1618  
+e4802cb00bfe3d Jason Chen          2018-05-02  1619  	return ret;
+e4802cb00bfe3d Jason Chen          2018-05-02  1620  }
 
 -- 
-Jerome
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
+
 
