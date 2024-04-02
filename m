@@ -1,185 +1,246 @@
-Return-Path: <devicetree+bounces-55341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55345-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDFFB894E1C
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 11:00:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C655C894E3C
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 11:05:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68B001F236A1
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 09:00:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DC8D1F2107A
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 09:05:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC31B53815;
-	Tue,  2 Apr 2024 09:00:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DD375733B;
+	Tue,  2 Apr 2024 09:04:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="CRe+ecrf"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="WGTtMwvz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2111.outbound.protection.outlook.com [40.107.93.111])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4572D17C7C;
-	Tue,  2 Apr 2024 09:00:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.93.111
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712048416; cv=fail; b=oGASHpfi0/IA5mFlDWALB6UjDELDjJ4nKUY7wdsNiPQ5Cli1spcZN5hrhxYlYQhhDo0t7b+iOmgMhay27jxA77Nr2EZWTtBp47ybiW2Klc4iKgEPIHv7tQvXoMOl7H6MVyiabpfoSqFNRsuPM9newl6vT1TD1mYzGi/7wWDLZOg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712048416; c=relaxed/simple;
-	bh=fEG6yF+ldcMD977e8fhehaNi5XoDzWmxme0VNC/ldKw=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=eWuDKzRl06zVsjjeCzscAvFJTGyX7tEfPXYs13o42C2UNeM+j8M6dEW8s9HBJ0cXvlZ0EtMJOeKFYU/+dt1PvAyDxejf62HjZd+lODIq8WNZ5xyeBZh/RrfR/dMNJrLjdP3AN/TyBiwofU4sJl2XJomiIGRTtPkgKeX0BfW0czM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=CRe+ecrf; arc=fail smtp.client-ip=40.107.93.111
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Dqv1WnpqSHOEyjirP8SCMZ3/YxEufF4h5MCR53iaIX5dUNVsVVfJx0Q7tGuZZCI7o+Ymz9/8FCYOF+6fFClRjAO2xYbc5+uyDE71cHq1MnMQLhaLmqhSojb5bVo+o5mHU6eCNOOxBGCQSj0c6ZSeqmx0JRbUi5kaS+YhWhhepjnxr2YZAzHCd8cPzKwZganmpByh3EQPpiyoISrb0ljQCQGY8nn1WuTSC6D7SVZhZg+ZLD45pO29+yj9PMZx079gmz94LW7O2FMXTJAXdTJPsDmOrQnDlVpuW3etu29fpsGqP/ZknoGUoYLyTV0FbqUxvYUfv2GukOhS3iwt4ifSSg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mDDAnTcgRJ7/AIFnXAerRAJhG6wa91+0iSxtSUB2QwA=;
- b=GX1JBUvzjln0cet6t9WaSBJvLx+C9NBXAM/Rv6Kbnm+YrNHugRvfbJiMg4DdK4eohhP6E96WtHBX3x7F87oelcDcpA6sDG0YgiBDbpEcspcdU68K4F+4kvbobgeqZx9jYDKDR7MT1p7XgQhwd/Hts5/T1f4R4bAehshLXCGJrUYr0dHPbeVwsJ3H9OmtVL83EfRreNGrAQgW9X0AKK48u/UdHw5JHyt+e2tYNRDLD+0vAzd/1cTwwS/okF/XhWaBVkHsySftEB1PclSxKeUOTX4FxmTMngV12R2zHoAsB/ba73e+NdSj5RUHnVUp0V7M3Z4AU2eMNUOUIubsShp+4w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mDDAnTcgRJ7/AIFnXAerRAJhG6wa91+0iSxtSUB2QwA=;
- b=CRe+ecrfj1IwuBXmsObdudsAsfoARty7uwHHlZSwwrc8PBzUzZ68TTyOusRl+43PmrLdIuem8O+AUqP/Opm6+PRALZP45stF163NXq0aQ1/AmDPmR44OgZGOJeXQ7jtDdlFCBvoUnb6PDSG1AOhry1yX3gAVKVT52X4ZZPrqQBJy3WpjC5F6kIpzWd4rhDB4qTELB9IN/Fjg8bJLhCwO0FxNOG/vmZ8Dqy9wjV08cADqmf8x7s1njAhDYQRnndS1LxobPJ8CAdTxptwy7+vExteeRE5TzJ50aHjRpoSJ65TsT1s/o2iQjojxVnch4Y7tv4wRWeZbm9+cq808JtJHLA==
-Received: from SJ1PR12MB6339.namprd12.prod.outlook.com (2603:10b6:a03:454::10)
- by SJ2PR12MB8011.namprd12.prod.outlook.com (2603:10b6:a03:4c8::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Tue, 2 Apr
- 2024 09:00:10 +0000
-Received: from SJ1PR12MB6339.namprd12.prod.outlook.com
- ([fe80::ae74:c645:b13d:3d8c]) by SJ1PR12MB6339.namprd12.prod.outlook.com
- ([fe80::ae74:c645:b13d:3d8c%7]) with mapi id 15.20.7409.042; Tue, 2 Apr 2024
- 09:00:10 +0000
-From: Akhil R <akhilrajeev@nvidia.com>
-To: Herbert Xu <herbert@gondor.apana.org.au>
-CC: "davem@davemloft.net" <davem@davemloft.net>, "robh@kernel.org"
-	<robh@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-	Jon Hunter <jonathanh@nvidia.com>, "catalin.marinas@arm.com"
-	<catalin.marinas@arm.com>, "will@kernel.org" <will@kernel.org>, Mikko
- Perttunen <mperttunen@nvidia.com>, "airlied@gmail.com" <airlied@gmail.com>,
-	"daniel@ffwll.ch" <daniel@ffwll.ch>, "linux-crypto@vger.kernel.org"
-	<linux-crypto@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-tegra@vger.kernel.org"
-	<linux-tegra@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "dri-devel@lists.freedesktop.org"
-	<dri-devel@lists.freedesktop.org>
-Subject: RE: [PATCH v6 3/5] crypto: tegra: Add Tegra Security Engine driver
-Thread-Topic: [PATCH v6 3/5] crypto: tegra: Add Tegra Security Engine driver
-Thread-Index: AQHaedbyTqDDO44+YUOWKfWU3w8p3rFM+1oAgAfIUmA=
-Date: Tue, 2 Apr 2024 09:00:10 +0000
-Message-ID:
- <SJ1PR12MB63391DEE4A7D11B58E3FCC34C03E2@SJ1PR12MB6339.namprd12.prod.outlook.com>
-References: <20240319082306.34716-1-akhilrajeev@nvidia.com>
- <20240319082306.34716-4-akhilrajeev@nvidia.com>
- <ZgVBAFmfK7GKgmYi@gondor.apana.org.au>
-In-Reply-To: <ZgVBAFmfK7GKgmYi@gondor.apana.org.au>
-Accept-Language: en-IN, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ1PR12MB6339:EE_|SJ2PR12MB8011:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- Qh+kld80A90kCRkvNdyVgrPY/rnGHZ1zSU8bXOdNyzwsLwwlIrke9iNX8rqiTHRTmFmRLgNgjBknUswKrvcC7Y3umyiiHmyY2dfscCjGOCP61hD6tRtTuXDuSvmQFncFmZHOIMB15nny2US2x5Ot0yNczuL9L9VZXqoKlPV8XEdQkkFixCvMWZv0hS98VrgSsQ8otoQoY51B8e6hU/xoUm52B3YbStv+3L68of0xAnKXnWWkrTMyOiVTzok/vdTTJ+GDOPSq+jFNk/5PdnDES0a75ZEEXWxpvl1vcLKo7BIGqjk2mfBSdlbqhpfkOO7aaZJUaIV7+wBmLfenGigbENRMMXV9ZmJErehdtyNE8EwjVF4ZdQQxWbwshhI9KsWmM63IsdTKaFzfCjUA6LPHg+d3e280YfwIBgbbDXJ1KUZjBkicu41ckOLhWFrRz2jDyhvcz9un0hzb31eEknqusSXaPh/KkTPxz+F+C1F87LANhULIbrgCk0jGMNX2gZesXb5uT/ny+Hf9R89FqfB4vOwAIkziMk2MfAh4dG3YPcRW+BMQpWnKmRihf300W66gtMsr96m39bDVmIyxqrBqdFwkdoIwhWdGIyrFSHOEJxF+4PqTof12EgcVrN0Z7jfBWBh9XALiHdnp264N4I8V7lnRFZjN2D19k0RRWeBABt0=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ1PR12MB6339.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(366007)(1800799015)(376005);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?5Heq7ZuhlN1ehdno9+VlHHuokKI3SDhW2Qm17sIOxL9TnepWUTbx1/LJJ0Pg?=
- =?us-ascii?Q?WvB5nzY+P/br3I2aRuWCBKmQAbCnj/YdIcxL81s14LNmdUEs5zvofSG98SfM?=
- =?us-ascii?Q?L12xElyuZxTXl4pVXtv2E4PXYlXXn3MKxNib8UV10cpT5FaFq8zraseuQ8ZG?=
- =?us-ascii?Q?Hi9kTe4bDuOlbh1R9HgUjiLR3iCOazxjd7R26XYcWw8MXO5lH04Ni2lW1reF?=
- =?us-ascii?Q?xH5hai7ykNbk/O6rLkHPY/Wke8SqF1EmzhwXlFD4G9pndqEJvsdhxHd6jk56?=
- =?us-ascii?Q?zYmp0Pmch9KPOE6Uu3VXpZHaerT3vIQtZ1Jn0WSdYazFLY86swoahk/q3sqt?=
- =?us-ascii?Q?AzFZgeD6u/vaTD9B+faYgsyV3vkskDracKo0twwwijhpQzF4u/SeDncmjBka?=
- =?us-ascii?Q?Oh7kcUy4U8iHik9slZ0nM4c4kNPNt7r+zTcMfNdQl9r357UoHDvc6vUSEE5C?=
- =?us-ascii?Q?PaBeZCIuwqgWRQ9dmwP/ECp4tveNGxH60Nt8P07aitdqAubQQBkq23SEpVkD?=
- =?us-ascii?Q?FczoCLN/9jRJekK1QEKkpQdBVR/80Oc+aqBQhDGVaui2VYTau7yc56SGRVCK?=
- =?us-ascii?Q?gmopUKduwHOO0ChJp/qAWQYAPZVPbz92hCxBniBbuqrWVorgXC1JlNp32CIm?=
- =?us-ascii?Q?eUnyks8SU3//+3zVWkXdie+JaGaL6LrFA7p8pvu215maGzbgbXCI8OwVO8yN?=
- =?us-ascii?Q?G3XEB0W1RRVJVc2yjXZWYwK52hs21K74+nnV1E5Yck7lrqlhowjv1YttLmiv?=
- =?us-ascii?Q?sM+GNI9rj4KXTPmUTOWbWsXiAScTPhAmZMSAcwLYc8SabX4SkiFGY1oDJR27?=
- =?us-ascii?Q?b8mMa3JWVJLYS1T4Pt2veFd4Lnbw+uMORE314FUnFzvNOT38HqpW9YiGt+F5?=
- =?us-ascii?Q?MWRBKePIz9AfFMXYfsCokeaEVhhtBb0/vL6kt9ds2uQ75p9XAKOmHolZJSrw?=
- =?us-ascii?Q?pOsr9f+SsmSEghQg8S8RLRsfWLcSSBHVzE8fI/2+W8sQqD9ENj+ckDMTVsuG?=
- =?us-ascii?Q?iRv/xyq1Taz0yFW9Ri/26bWgiaYT5n4bE9NwgGbPlzPMgy5ScaHliTxeeNhV?=
- =?us-ascii?Q?o/+h7gXk1KSyNo28nSNeJsHu1QXqcRKfSpm6Cgpp0VTATjk5fUGIyDN+jxvF?=
- =?us-ascii?Q?66NjPj2Av6wDDa+YhBLn/kV/g62b3EPSmhP2dW/nL8xZxrF0+Lw0cwp8OX2s?=
- =?us-ascii?Q?bFGatArxVuHsf0mkeQtHDcTjIJmAleYhOn+rb5TQfGkEctoyhC1nzvZPpnL7?=
- =?us-ascii?Q?76QsrgcCdJSCzJqtC60KYZdLB2v1qYcptF6FF0B9p3+L5cqR6CT0O0XRDDtX?=
- =?us-ascii?Q?H1olK2dlMyFiQ8LCsnbT7YeVCnPRt78R8TVnJ4F3KuVcJ61prp35VLyAb6o1?=
- =?us-ascii?Q?OjnnT4qHWMPSUMgisakykk3TyIBrM9/HHaZ05J5l/0gPWZAhp5ikB4sZv2ru?=
- =?us-ascii?Q?sm5vgxvTGDbZeUr/Tw9gOcbf0tTSldiZU5lMwKfN3Thk2y05FVGwLWjA2tnl?=
- =?us-ascii?Q?4WOQSeDYegDfRkwtey9kYkQn+mPswGfz9PL838/aCRVm844o60zO5Y0hzfM5?=
- =?us-ascii?Q?bf1pDCGZQ3KyZEqsyPjHn6u40SYZFCXW9eHz7n+m?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1806E56B8E
+	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 09:04:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712048686; cv=none; b=HVAPs6K/0zzPKHJREBhaYV6Wk4adhgtcAwGH/d7rKsx3uPLJikZWVUKFRvVaAVGQUQG/ZSe5qVAAlmoV0yMR3zLW2N6PUKoXtu6Eafuyi7CQEjPxKz3PvIbzQa1ErGtOBn7OnGFahlbc3CW1kzfGiFQQP5sZfLOZe/7BaRkNl/A=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712048686; c=relaxed/simple;
+	bh=UOcXMEcrvtS1548Y9244NrKksQOuvYTLDtzFV9UxEBE=;
+	h=References:From:To:Cc:Subject:Date:In-reply-to:Message-ID:
+	 MIME-Version:Content-Type; b=laAGzINooMHMLL7IrjFyYhhWZycRff350ua3MgfaRbSL1FbUUMbGrhBM+PitJhqYMX7GieNE8BdZD61XlDTm1nrQuGpX4VlPuCWABRzfCbLSjNiN6T/Xa8FJ58Tl8f0kWxZ97c8zGzMun6s07au2iytVspikASNQZ1+w6fnL0Mg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=WGTtMwvz; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3416df43cabso3466256f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 02:04:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712048681; x=1712653481; darn=vger.kernel.org;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=5DtpQsHWTJr85nIclH627DiK8ml0pGvXwXdSfSvXc3Y=;
+        b=WGTtMwvzmFupxB8lisf4+EHLP48vdfvFVTdJ/nGrZOhPyHfVSSqcWJqeUzbrTcMc5G
+         O4YcJY3X+GNkKKnvyg+NPGDaf9ka8mO0EwkwZA1wavJIJSBTw8K9hSIx0EkQdzcjy88Q
+         ynrxxCXExM1+dYA4BYq3MfgKsl4GJvjYrajQ/4xqvWfDuQkqUIV8JYCus9WIWvtX+Gjv
+         ix07CU0HyTYAQiN4n1eBs+RhaM9unzfs+zd4HyCGQctX4TjFrr3yfzN4xW55jLDCaYze
+         B9NtTG9HPF6l2p/kwfwZZvRlbz6ztiB/zC6CYkEymSjJbccLvIrp7Jp6JlAOqcdh4qww
+         YQ/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712048681; x=1712653481;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5DtpQsHWTJr85nIclH627DiK8ml0pGvXwXdSfSvXc3Y=;
+        b=kQFGu0YMSLc4UYlHY4U55G6eximfQIco1flcah7NnSStcD/+L0NhgIemD7FZab+33t
+         5AI74XeUdV4rFoEqSQ8RhBGa2PPEsOUIhAmdfmjIwnIKelKr8RFExsT/psAY07gBW+X0
+         S5k6SQvkmzxRxoMDZDO5DifveZMY94/aEjRiKHJ1Z8v4gpdcHjHn/983ZIfGCJcGHvsu
+         7usZhRCIlQYUHHvnJSWcuOmk5zlnT5Z4ozCu59OSkdcvnZCS1ry4wF26YYfOJt2MX2XY
+         VEN/LtjRXeXN77oquagNT7R05G6dc0o5NgsjNeP4/cutWOds6XkuzLiViZCgRsFSkJUn
+         4lQA==
+X-Forwarded-Encrypted: i=1; AJvYcCUr1i93KCeD/PgjvjIDAKHjt4LgknncjhU/ppIfVtpJ1pEmslfpaU5B51UfWx16crPqw8a+detAA1mLKk+J/IkhqzRsufVb9THoqg==
+X-Gm-Message-State: AOJu0Yy+0wEqm5Ia0RM02Dh2LAtBljU0XnvGoqlOoDnmomdF12eJa9g+
+	hxZ16MdaTrDnTW/HLqkiD40mqwCZ+PYjMS89QZMuFff3iO10R4YnLSDkM33fmdk=
+X-Google-Smtp-Source: AGHT+IH63/gwJe4lsLdmn86BYF7wjy6dJ6d3CdKbvsodEW1CIse+oGPeG50Lip9oSH4TRd0rV3oHFg==
+X-Received: by 2002:a05:6000:c8:b0:341:b8d6:e7c7 with SMTP id q8-20020a05600000c800b00341b8d6e7c7mr6500554wrx.71.1712048681104;
+        Tue, 02 Apr 2024 02:04:41 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:db22:d5c9:a527:a4cf])
+        by smtp.gmail.com with ESMTPSA id dj11-20020a0560000b0b00b003437799a373sm191115wrb.83.2024.04.02.02.04.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Apr 2024 02:04:40 -0700 (PDT)
+References: <20240329205904.25002-1-ddrokosov@salutedevices.com>
+ <20240329205904.25002-3-ddrokosov@salutedevices.com>
+User-agent: mu4e 1.10.8; emacs 29.2
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Dmitry Rokosov <ddrokosov@salutedevices.com>
+Cc: neil.armstrong@linaro.org, jbrunet@baylibre.com,
+ mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
+ martin.blumenstingl@googlemail.com, kernel@salutedevices.com,
+ rockosov@gmail.com, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1 2/6] clk: meson: a1: pll: support 'syspll'
+ general-purpose PLL for CPU clock
+Date: Tue, 02 Apr 2024 11:00:42 +0200
+In-reply-to: <20240329205904.25002-3-ddrokosov@salutedevices.com>
+Message-ID: <1j4jckjftk.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PR12MB6339.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 437a28ca-d641-4383-b7f7-08dc52f34d12
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Apr 2024 09:00:10.2760
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: bqeG/O1X1D9WDzrSkGntv8uTYAyOYoExjRTCtLP/YlL2tatUWtx1EmtzQEx+S+dHzTfNRjqUIpXGcqJBQHD9mw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8011
-
-> >
-> > +             .alg.skcipher.op.do_one_request =3D tegra_aes_do_one_req,
-> > +             .alg.skcipher.base =3D {
-> > +                     .init =3D tegra_aes_cra_init,
-> > +                     .exit =3D tegra_aes_cra_exit,
-> > +                     .setkey =3D tegra_aes_setkey,
-> > +                     .encrypt =3D tegra_aes_encrypt,
-> > +                     .decrypt =3D tegra_aes_decrypt,
-> > +                     .min_keysize =3D AES_MIN_KEY_SIZE,
-> > +                     .max_keysize =3D AES_MAX_KEY_SIZE,
-> > +                     .ivsize =3D AES_BLOCK_SIZE,
-> > +                     .base =3D {
-> > +                             .cra_name =3D "ofb(aes)",
-> > +                             .cra_driver_name =3D "ofb-aes-tegra",
-> > +                             .cra_priority =3D 500,
-> > +                             .cra_flags =3D CRYPTO_ALG_TYPE_SKCIPHER |
-> CRYPTO_ALG_ASYNC,
-> > +                             .cra_blocksize =3D AES_BLOCK_SIZE,
-> > +                             .cra_ctxsize =3D sizeof(struct tegra_aes_=
-ctx),
-> > +                             .cra_alignmask =3D 0xf,
-> > +                             .cra_module =3D THIS_MODULE,
-> > +                     },
-> > +             }
-> > +     }, {
->=20
-> OFB no longer exists in the kernel.  Please remove all traces of it from =
-your driver.
-
-Okay. Will remove and post a new version.
-
->=20
-> Also please ensure that yuor driver passes the extra fuzz tests.
-
-Yes. It does pass the extra fuzz tests.
+Content-Type: text/plain
 
 
-Regards,
-Akhil
+On Fri 29 Mar 2024 at 23:58, Dmitry Rokosov <ddrokosov@salutedevices.com> wrote:
+
+> The 'syspll' PLL, also known as the system PLL, is a general and
+> essential PLL responsible for generating the CPU clock frequency.
+> With its wide-ranging capabilities, it is designed to accommodate
+> frequencies within the range of 768MHz to 1536MHz.
+>
+> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+> ---
+>  drivers/clk/meson/a1-pll.c | 78 ++++++++++++++++++++++++++++++++++++++
+>  drivers/clk/meson/a1-pll.h |  6 +++
+>  2 files changed, 84 insertions(+)
+>
+> diff --git a/drivers/clk/meson/a1-pll.c b/drivers/clk/meson/a1-pll.c
+> index 60b2e53e7e51..02fd2d325cc6 100644
+> --- a/drivers/clk/meson/a1-pll.c
+> +++ b/drivers/clk/meson/a1-pll.c
+> @@ -138,6 +138,81 @@ static struct clk_regmap hifi_pll = {
+>  	},
+>  };
+>  
+> +static const struct pll_mult_range sys_pll_mult_range = {
+> +	.min = 32,
+> +	.max = 64,
+> +};
+> +
+> +/*
+> + * We assume that the sys_pll_clk has already been set up by the low-level
+> + * bootloaders as the main CPU PLL source. Therefore, it is not necessary to
+> + * run the initialization sequence.
+> + */
+
+I see no reason to make such assumption.
+This clock is no read-only, it apparently is able to re-lock so assuming
+anything from the bootloader is just asking from trouble
+
+> +static struct clk_regmap sys_pll = {
+> +	.data = &(struct meson_clk_pll_data){
+> +		.en = {
+> +			.reg_off = ANACTRL_SYSPLL_CTRL0,
+> +			.shift   = 28,
+> +			.width   = 1,
+> +		},
+> +		.m = {
+> +			.reg_off = ANACTRL_SYSPLL_CTRL0,
+> +			.shift   = 0,
+> +			.width   = 8,
+> +		},
+> +		.n = {
+> +			.reg_off = ANACTRL_SYSPLL_CTRL0,
+> +			.shift   = 10,
+> +			.width   = 5,
+> +		},
+> +		.frac = {
+> +			.reg_off = ANACTRL_SYSPLL_CTRL1,
+> +			.shift   = 0,
+> +			.width   = 19,
+> +		},
+> +		.l = {
+> +			.reg_off = ANACTRL_SYSPLL_STS,
+> +			.shift   = 31,
+> +			.width   = 1,
+> +		},
+> +		.current_en = {
+> +			.reg_off = ANACTRL_SYSPLL_CTRL0,
+> +			.shift   = 26,
+> +			.width   = 1,
+> +		},
+> +		.l_detect = {
+> +			.reg_off = ANACTRL_SYSPLL_CTRL2,
+> +			.shift   = 6,
+> +			.width   = 1,
+> +		},
+> +		.range = &sys_pll_mult_range,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "sys_pll",
+> +		.ops = &meson_clk_pll_ops,
+> +		.parent_names = (const char *[]){ "syspll_in" },
+> +		.num_parents = 1,
+> +		/*
+> +		 * This clock is used as the main CPU PLL source in low-level
+> +		 * bootloaders, and it is necessary to mark it as critical.
+> +		 */
+> +		.flags = CLK_IS_CRITICAL,
+
+No I don't think so. Downstream consumer maybe critical but that one is
+not, unless it is read-only.
+
+A CPU pll, like on the g12 family, is unlikely to be read-only since the
+PLL will need to relock to change rates. During this phase, there will
+be no reate coming from the PLL so the PLL is not critical and you must
+be able to "park" your CPU an another clock while poking this one
+
+> +	},
+> +};
+> +
+> +static struct clk_fixed_factor sys_pll_div16 = {
+> +	.mult = 1,
+> +	.div = 16,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "sys_pll_div16",
+> +		.ops = &clk_fixed_factor_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&sys_pll.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+>  static struct clk_fixed_factor fclk_div2_div = {
+>  	.mult = 1,
+>  	.div = 2,
+> @@ -283,6 +358,8 @@ static struct clk_hw *a1_pll_hw_clks[] = {
+>  	[CLKID_FCLK_DIV5]	= &fclk_div5.hw,
+>  	[CLKID_FCLK_DIV7]	= &fclk_div7.hw,
+>  	[CLKID_HIFI_PLL]	= &hifi_pll.hw,
+> +	[CLKID_SYS_PLL]		= &sys_pll.hw,
+> +	[CLKID_SYS_PLL_DIV16]	= &sys_pll_div16.hw,
+>  };
+>  
+>  static struct clk_regmap *const a1_pll_regmaps[] = {
+> @@ -293,6 +370,7 @@ static struct clk_regmap *const a1_pll_regmaps[] = {
+>  	&fclk_div5,
+>  	&fclk_div7,
+>  	&hifi_pll,
+> +	&sys_pll,
+>  };
+>  
+>  static struct regmap_config a1_pll_regmap_cfg = {
+> diff --git a/drivers/clk/meson/a1-pll.h b/drivers/clk/meson/a1-pll.h
+> index 4be17b2bf383..666d9b2137e9 100644
+> --- a/drivers/clk/meson/a1-pll.h
+> +++ b/drivers/clk/meson/a1-pll.h
+> @@ -18,6 +18,12 @@
+>  #define ANACTRL_FIXPLL_CTRL0	0x0
+>  #define ANACTRL_FIXPLL_CTRL1	0x4
+>  #define ANACTRL_FIXPLL_STS	0x14
+> +#define ANACTRL_SYSPLL_CTRL0	0x80
+> +#define ANACTRL_SYSPLL_CTRL1	0x84
+> +#define ANACTRL_SYSPLL_CTRL2	0x88
+> +#define ANACTRL_SYSPLL_CTRL3	0x8c
+> +#define ANACTRL_SYSPLL_CTRL4	0x90
+> +#define ANACTRL_SYSPLL_STS	0x94
+>  #define ANACTRL_HIFIPLL_CTRL0	0xc0
+>  #define ANACTRL_HIFIPLL_CTRL1	0xc4
+>  #define ANACTRL_HIFIPLL_CTRL2	0xc8
+
+
+-- 
+Jerome
 
