@@ -1,168 +1,111 @@
-Return-Path: <devicetree+bounces-55313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55314-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15C84894CFD
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 09:55:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08698894D0B
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 09:59:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF9B1282BFA
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 07:55:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F6671C21B6B
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 07:59:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10C662E648;
-	Tue,  2 Apr 2024 07:55:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G7owKfy4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93E6E3D38D;
+	Tue,  2 Apr 2024 07:58:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7EC12BD1C;
-	Tue,  2 Apr 2024 07:55:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A56813D0A9;
+	Tue,  2 Apr 2024 07:58:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712044521; cv=none; b=uhzYFGtadUYQpAxC0gLcq1JYVdK0FaqtG00MlbfSJUol7UHRHwvatFh6Th0Mn35DEE5IYAUbl2K+p/WOroqgZv23/s2nkV6+YGQVTqr2rh8T7alSJx4n6ip27THOEyjMv3H4DuXWoKe/FWKrcRj3euiS0eLWe2YByzTXJOxstPY=
+	t=1712044739; cv=none; b=RBo2e0e69IyXt3ibpeq+MVfRZrK/adbgdTmEb/WfhJhON+9ecdMbuCmbyzKP3ZCXYjrIFvzRjBODwQlo1tqP3ykHGTNzh0f+SFslZ/rFknctsktJQ0zWp43Q5wGdrlu8df06pmh7ebWUrvS0IgZX5xWNUzLzUnIHjKNa6zDrFzs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712044521; c=relaxed/simple;
-	bh=9tCABWjbRzXg0EptOb0wcK/W9TS1scGX5YRHKdTbCUk=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=cxGiiH3DqGSzKvAJXps1a0s1U6laafdm50i9IpS5vZYdXYj0os1ToIwCTVMK1fYuBKRc1///GGah4XAPiqDATUJbJwDtRX5oYyBq3smU1sAba9RTtQyC2ry25fXtRfo4rStuN5uyWLtTCmFyZaF4Ey3ZpYN6OeT8sxkIHoUNMco=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G7owKfy4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4857C433F1;
-	Tue,  2 Apr 2024 07:55:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712044520;
-	bh=9tCABWjbRzXg0EptOb0wcK/W9TS1scGX5YRHKdTbCUk=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=G7owKfy4tXz/f6hx2LLcKNd+U9OP6Eae58YH/ShJOuQdMFcGyY3vhfdJvZy5jCDLP
-	 S1nuHqMnSKz3DckSpTT++JNNkCv/7g4NyQ86pE0hqXjZfPZxGz4xlFUGQrOn00ktCR
-	 DvzbS4MYvPX4FxiVIu+6glULuzHB9OYTUeQmeYuu6lQNHvbYtZ9H6YBY35nY8BMSFV
-	 KbR55TPzzdTqznj/JiNzcE/DUl8Kguu8RJE3QOSYmf7tYmffyybiqma6VVsX9HKhw5
-	 0pG1yGJ5YmZ89RKz7kZOYz7NeDV5WUXA+bxgAvCPpcGRqi0dhhFhgVSxPEIwY8UWLW
-	 Gj0+1GlTe8oDg==
-Message-ID: <be2a0fa0-9d5d-45c3-810a-56d6924c8891@kernel.org>
-Date: Tue, 2 Apr 2024 16:55:16 +0900
+	s=arc-20240116; t=1712044739; c=relaxed/simple;
+	bh=I5hX7TtAUFIwQt49kForXRPHUNimAirKgi6NinkzXCk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=iiOh9Eb/ai88Xzd2zIKKTy0RPjPhu+OnlIl3kt3hsUYmsCWKR2h9rWdWheUJ6qnH/Iy0Xh9nqOqTzoC9RqaLq/0TPTGoO7YIerRWX5XgtqHBTTlekOmB1xkMwaeRm6BlmuwimKUdR/qGt4qjdeb5EajkTPDObrTlRwWR953VuyM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [112.20.109.80])
+	by gateway (Coremail) with SMTP id _____8Cxbeu9ugtmVD8iAA--.13345S3;
+	Tue, 02 Apr 2024 15:58:53 +0800 (CST)
+Received: from localhost.localdomain (unknown [112.20.109.80])
+	by localhost.localdomain (Coremail) with SMTP id AQAAf8AxSRK7ugtmzqNxAA--.12573S2;
+	Tue, 02 Apr 2024 15:58:52 +0800 (CST)
+From: Binbin Zhou <zhoubinbin@loongson.cn>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Huacai Chen <chenhuacai@kernel.org>,
+	loongson-kernel@lists.loongnix.cn,
+	linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev,
+	Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH v1 0/5] pwm: Introduce pwm driver for the Loongson family chips
+Date: Tue,  2 Apr 2024 15:58:37 +0800
+Message-ID: <cover.1711953223.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 17/18] dt-bindings: pci: rockchip,rk3399-pcie-ep: Add
- ep-gpios property
-From: Damien Le Moal <dlemoal@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
- <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Cc: linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Rick Wertenbroek <rick.wertenbroek@gmail.com>,
- Wilfred Mallawa <wilfred.mallawa@wdc.com>, Niklas Cassel <cassel@kernel.org>
-References: <20240330041928.1555578-1-dlemoal@kernel.org>
- <20240330041928.1555578-18-dlemoal@kernel.org>
- <b020b74e-8ae1-448a-9d47-6c9bb13735f9@linaro.org>
- <c75cb54a-61c7-4bc3-978e-8a28dde93b08@kernel.org>
- <518f04ea-7ff6-4568-be76-60276d18b209@linaro.org>
- <49ecab2e-8f36-47be-a1b0-1bb0089dab0f@kernel.org>
- <57d5d6ea-5fef-423c-9f85-5f295bfa4c5f@linaro.org>
- <80c4c37b-8c5c-4628-a455-fcccfc3b3730@kernel.org>
-Content-Language: en-US
-Organization: Western Digital Research
-In-Reply-To: <80c4c37b-8c5c-4628-a455-fcccfc3b3730@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:AQAAf8AxSRK7ugtmzqNxAA--.12573S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
+X-Coremail-Antispam: 1Uk129KBj9xXoWrZw1kAFyftFW7Cw4xurWUKFX_yoWkCFcE9F
+	ySkFykJw4UGFn7Ja90vrWxJrW3ZrWUW3WFkFWqqr18Xa4avF13tFyDu34DCFW3tryUZFs8
+	XrWxGr18Cr4I9osvyTuYvTs0mTUanT9S1TB71UUUUjUqnTZGkaVYY2UrUUUUj1kv1TuYvT
+	s0mT0YCTnIWjqI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUI
+	cSsGvfJTRUUUbS8YFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20x
+	vaj40_Wr0E3s1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxS
+	w2x7M28EF7xvwVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxV
+	W8JVWxJwA2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v2
+	6r4UJVWxJr1ln4kS14v26r1Y6r17M2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12
+	xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r12
+	6r1DMcIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64
+	vIr41lc7CjxVAaw2AFwI0_JF0_Jw1l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_
+	Jr0_Gr1l4IxYO2xFxVAFwI0_Jrv_JF1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8Gjc
+	xK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0
+	cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r1j6r4UMIIF0xvE42xK8V
+	AvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E
+	14v26r1j6r4UYxBIdaVFxhVjvjDU0xZFpf9x07jOiSdUUUUU=
 
-On 4/2/24 16:38, Damien Le Moal wrote:
-> On 4/2/24 16:33, Krzysztof Kozlowski wrote:
->> On 02/04/2024 01:36, Damien Le Moal wrote:
->>> On 4/1/24 18:57, Krzysztof Kozlowski wrote:
->>>> On 01/04/2024 01:06, Damien Le Moal wrote:
->>>>> On 3/30/24 18:16, Krzysztof Kozlowski wrote:
->>>>>> On 30/03/2024 05:19, Damien Le Moal wrote:
->>>>>>> From: Wilfred Mallawa <wilfred.mallawa@wdc.com>
->>>>>>>
->>>>>>> Describe the `ep-gpios` property which is used to map the PERST# input
->>>>>>> signal for endpoint mode.
->>>>>>>
->>>>>>> Signed-off-by: Wilfred Mallawa <wilfred.mallawa@wdc.com>
->>>>>>> Signed-off-by: Damien Le Moal <dlemoal@kernel.org>
->>>>>>> ---
->>>>>>>  .../devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml       | 3 +++
->>>>>>>  1 file changed, 3 insertions(+)
->>>>>>>
->>>>>>> diff --git a/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml
->>>>>>> index 6b62f6f58efe..9331d44d6963 100644
->>>>>>> --- a/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml
->>>>>>> +++ b/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml
->>>>>>> @@ -30,6 +30,9 @@ properties:
->>>>>>>      maximum: 32
->>>>>>>      default: 32
->>>>>>>  
->>>>>>> +  ep-gpios:
->>>>>>> +    description: Input GPIO configured for the PERST# signal.
->>>>>>
->>>>>> Missing maxItems. But more important: why existing property perst-gpios,
->>>>>> which you already have there in common schema, is not correct for this case?
->>>>>
->>>>> I am confused... Where do you find perst-gpios defined for the rk3399 ?
->>>>> Under Documentation/devicetree/bindings/pci/, the only schema I see using
->>>>> perst-gpios property are for the qcom (Qualcomm) controllers.
->>>>
->>>> You are right, it's so far only in Qualcomm.
->>>>
->>>>> The RC bindings for the rockchip rk3399 PCIe controller
->>>>> (pci/rockchip,rk3399-pcie.yaml) already define the ep-gpios property. So if
->>>>
->>>> Any reason why this cannot be named like GPIO? Is there already a user
->>>> of this in Linux kernel? Commit msg says nothing about this, so that's
->>>> why I would expect name matching the signal.
->>>
->>> The RC-mode PCIe controller node of the rk3399 DTS already defines the ep-gpios
->>> property for RC side PERST# signal handling. So we simply reused the exact same
->>> name to be consistent between RC and EP. I personnally have no preferences. If
->>> there is an effort to rename such signal with some preferred pattern, I will
->>> follow. For the EP node, there was no PERST signal handling in the driver and
->>> no property defined for it, so any name is fine. "perst-gpios" would indeed be
->>> a better name, but again, given that the RC controller node has ep-gpios, we
->>> reused that. What is your recommendation here ?
->>
->> Actually I don't know, perst and ep would work for me. If you do not
->> have code for this in the driver yet (nothing is shared between ep and
->> host), then maybe let's go with perst to match the actual name.
-> 
-> That works for me. The other simple solution would be to move the RC node
-> ep-gpios description to the common schema pci/rockchip,rk3399-pcie-common.yaml,
-> maybe ? Otherwise, perst-gpios like the Qualcomm schemas would be nice too.
+Hi all:
 
-Thinking more about this, I think moving the ep-gpios description to the common
-schema is the right thing to do given that the driver uses common code between
-RC and EP to get that property. But if that is not acceptable, I can rename it
-and get that property in the controller EP mode initialization code. That will
-be add a little more code in the driver.
+This patchset introduce a generic PWM framework driver for Loongson family.
+Each PWM has one pulse width output signal and one pulse input signal to be measured.
+It can be found on Loongson-2K series cpus and Loongson LS7A bridge chips.
 
-> 
->>
->> Anyway, you need maxItems. I sent a patch for the other binding:
->> https://lore.kernel.org/all/20240401100058.15749-1-krzysztof.kozlowski@linaro.org/
-> 
-> Thanks for that.
-> 
->>
->> Best regards,
->> Krzysztof
->>
-> 
+Thanks.
+
+Binbin Zhou (5):
+  dt-bindings: pwm: Add Loongson PWM controller
+  pwm: Add Loongson PWM controller support
+  LoongArch: dts: Add PWM support to Loongson-2K0500
+  LoongArch: dts: Add PWM support to Loongson-2K1000
+  LoongArch: dts: Add PWM support to Loongson-2K2000
+
+ .../devicetree/bindings/pwm/pwm-loongson.yaml |  64 ++++
+ MAINTAINERS                                   |   7 +
+ arch/loongarch/boot/dts/loongson-2k0500.dtsi  |  20 ++
+ .../boot/dts/loongson-2k1000-ref.dts          |  24 ++
+ arch/loongarch/boot/dts/loongson-2k1000.dtsi  |  42 ++-
+ arch/loongarch/boot/dts/loongson-2k2000.dtsi  |  60 ++++
+ drivers/pwm/Kconfig                           |  10 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-loongson.c                    | 300 ++++++++++++++++++
+ 9 files changed, 527 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/pwm/pwm-loongson.yaml
+ create mode 100644 drivers/pwm/pwm-loongson.c
 
 -- 
-Damien Le Moal
-Western Digital Research
+2.43.0
 
 
