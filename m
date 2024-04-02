@@ -1,109 +1,130 @@
-Return-Path: <devicetree+bounces-55545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55546-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7568895933
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 18:04:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D83989593B
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 18:05:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8AF1C1F22F79
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 16:04:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5ECB61C20B26
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 16:05:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79F5A1332A5;
-	Tue,  2 Apr 2024 16:03:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88198140E50;
+	Tue,  2 Apr 2024 16:05:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="FHeCl4Ye"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RQLj9Vkq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7911113329D;
-	Tue,  2 Apr 2024 16:03:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5572013F44C;
+	Tue,  2 Apr 2024 16:05:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712073831; cv=none; b=NtcW4SrRk60GbhghHUuxb2x9jq2ym1ZkT5aaHYjekxdov6/1KGBOSI4nY3wkDOHFAIHnO4eBUTuDF0iluOaDF1s99+n54IhJqHlAyeRLYZhmDzFRb+JyhzEXsoHVRf7r//Pel6b2eBibpOwNd8GeCvFwf1dOucznuvHmTif6Y5c=
+	t=1712073948; cv=none; b=birTFyLJS9Q0EwzztbB8udfFzTpFym7n4CH0pDY5G4+EWxYp7PqBDWS8zmuz7ceVtpRJ4b3uhMZD3Ui0P2Gk0NQIgWxZeLWXhcqv8IYvR6mQY9yWgyq50iSM/vx0ZGFuwBW1OsBcjlaennU/z8Sw5SUvzdMVqq8Bovi/G6LlzJY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712073831; c=relaxed/simple;
-	bh=+yb9QZnkwSHjba8DSoLfJzX4aYjxaHV4oVtCa/UzPVg=;
-	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=kk2blaEVE5kyJRofMPn6r0gpH5qWOgUbIqwqYEoYMNn7evbje1RSfsps1ZlsnYPceTdLudNyiy3SoIC0D3W75z/TMkORtIfB6Muq63TfEAdKBCOl5LsjV+jDuMhfmlhw3x6Eav+luqdN8N0aTMeZpzm+gWJWyH1C2B+VeO7CcRY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=FHeCl4Ye; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 06BC9FF805;
-	Tue,  2 Apr 2024 16:03:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1712073826;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=lB0l3EgmoR6B4x67AYdVJyikUkYe+1vfYgUCVxFlTi4=;
-	b=FHeCl4Ye91VysIY97+9CuN2lZTq+z+sDUDrrKaLQ6WGxlD7jJDCWWe6Qzyn1LiOuvTirKv
-	DtUTV0DNxOUroUmyrf3CRGsIojegvluEPLIK6r8qOKjh10BVGyz3rQcJhtTbf3MBOPoe/G
-	8bkNo07L7FF0ygnG9Oo4FJsXUvwIGsuPgZxDhtwyPL0O8XxbVD9JMdk0lXIC5OvPa+32V3
-	uPqqLiaMMQEbHn9p2xMcQthSudzmC7GgSufy2qdZvrgib5PA8gRHJjBiuRno61pjz2+iY+
-	6m/MTNKSS6ioZaOUtCrqL8ZuuQjPGwFBo05f2btGBm9974bd/xuHiyUJISF53g==
-Date: Tue, 2 Apr 2024 18:04:20 +0200 (CEST)
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-cc: Romain Gantois <romain.gantois@bootlin.com>, 
-    "David S. Miller" <davem@davemloft.net>, 
-    Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-    Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-    Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-    Conor Dooley <conor+dt@kernel.org>, 
-    Geert Uytterhoeven <geert+renesas@glider.be>, 
-    Magnus Damm <magnus.damm@gmail.com>, 
-    Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-    Jose Abreu <joabreu@synopsys.com>, 
-    Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-    =?ISO-8859-15?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>, 
-    Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org, 
-    devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-    linux-renesas-soc@vger.kernel.org, 
-    linux-stm32@st-md-mailman.stormreply.com, 
-    linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH net-next 2/3] net: stmmac: add support for RZ/N1 GMAC
-In-Reply-To: <ZgwoygldsA1V8fs9@shell.armlinux.org.uk>
-Message-ID: <36a4a94f-494f-2fef-11e1-8b45011c1263@bootlin.com>
-References: <20240402-rzn1-gmac1-v1-0-5be2b2894d8c@bootlin.com> <20240402-rzn1-gmac1-v1-2-5be2b2894d8c@bootlin.com> <ZgwM/FIKTuN4vkQA@shell.armlinux.org.uk> <ZgwoygldsA1V8fs9@shell.armlinux.org.uk>
+	s=arc-20240116; t=1712073948; c=relaxed/simple;
+	bh=7cOFNsG+sn2clFX8iSG+nyW2cjK90YkAvpcESEHfbyI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XieNO0mBE7zXtfyhRV1UC/aiYw89AwCg/04LJBDfKZaRyTMqxfhKed0wPuAtORoAEEn1kPTmDSZ5fESJsEat6Dbd1agzbtxevoKdCO3E7zAXyZm/8gsIP1x+mHXrG0ToTquTE2Df8EFBmwlN4Knyeyxm3iqGEBEOJYsBJe1UkAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RQLj9Vkq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 964B1C433C7;
+	Tue,  2 Apr 2024 16:05:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712073947;
+	bh=7cOFNsG+sn2clFX8iSG+nyW2cjK90YkAvpcESEHfbyI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RQLj9VkqL3Yd4bSTm8AXVoKsGxa3g49q6+f+v62RoIq0pOxCw55n5OU32s1E9xsoM
+	 vV16QvE/R1ptCV/dQahrvTwSdkqXDpHHNV6d+mAmEMy0qeZvS21T05jfUYN13kzRgB
+	 BdsoSnIMyCdSOndCPyt9lDfujYsAiPcV+FZH/sy/7uoB5gd4MmyrorTPHY8/aH/6VL
+	 F7727KkSiANEH2iTd4cWiI/u+EjNQJHLDDoDTnYy3Fh8PQ3nYOLDxgaJH76VILSxyV
+	 WmWFh7YAbrZmODjN2Mn/ML259REGCAnDwKZ3Y0TVzigI58N6Q3ZLvhXjcQ4SRZWSiz
+	 /TsTw2GOH8ozw==
+Date: Tue, 2 Apr 2024 11:05:45 -0500
+From: Rob Herring <robh@kernel.org>
+To: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Ajit Pandey <quic_ajipan@quicinc.com>,
+	Imran Shaik <quic_imrashai@quicinc.com>,
+	Taniya Das <quic_tdas@quicinc.com>,
+	Jagadeesh Kona <quic_jkona@quicinc.com>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: clock: qcom: Update SM8150 videocc
+ bindings
+Message-ID: <20240402160545.GA223060-robh@kernel.org>
+References: <20240401-videocc-sm8150-dt-node-v2-0-3b87cd2add96@quicinc.com>
+ <20240401-videocc-sm8150-dt-node-v2-1-3b87cd2add96@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-GND-Sasl: romain.gantois@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240401-videocc-sm8150-dt-node-v2-1-3b87cd2add96@quicinc.com>
 
-Hello Russell,
+On Mon, Apr 01, 2024 at 04:44:23PM +0530, Satya Priya Kakitapalli wrote:
+> Update the clocks list for SM8150 to add both AHB and XO clocks,
+> as it needs both of them.
 
-On Tue, 2 Apr 2024, Russell King (Oracle) wrote:
+I read this as you are adding 2 clocks, but it is really just 1 you are 
+adding (iface).
 
-> > I'm afraid that this fails at one of the most basic principles of kernel
-> > multi-threaded programming. stmmac_dvr_probe() as part of its work calls
-> > register_netdev() which publishes to userspace the network device.
-> > 
-> > Everything that is required must be setup _prior_ to publication to
-> > userspace to avoid races, because as soon as the network device is
-> > published, userspace can decide to bring that interface up. If one
-> > hasn't finished the initialisation, the interface can be brought up
-> > before that initialisation is complete.
-...
+This should have more detail on why breaking the ABI is okay here.
+
 > 
-> I'm not going to say that the two patches threaded to this email are
-> "sane" but at least it avoids the problem. socfpga still has issues
-> with initialisation done after register_netdev() though.
-
-Thanks a lot for providing a fix to this issue, introducing new pcs_init/exit() 
-hooks seems like the best solution at this time, I'll make sure to integrate 
-those patches in the v2 for this series.
-
-Thanks,
-
--- 
-Romain Gantois, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> Fixes: 35d26e9292e2 ("dt-bindings: clock: Add YAML schemas for the QCOM VIDEOCC clock bindings")
+> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+> ---
+>  .../devicetree/bindings/clock/qcom,videocc.yaml         | 17 ++++++++++++++++-
+>  1 file changed, 16 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,videocc.yaml b/Documentation/devicetree/bindings/clock/qcom,videocc.yaml
+> index 6999e36ace1b..68bac801adb0 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,videocc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,videocc.yaml
+> @@ -75,7 +75,6 @@ allOf:
+>            enum:
+>              - qcom,sc7180-videocc
+>              - qcom,sdm845-videocc
+> -            - qcom,sm8150-videocc
+>      then:
+>        properties:
+>          clocks:
+> @@ -101,6 +100,22 @@ allOf:
+>              - const: bi_tcxo
+>              - const: bi_tcxo_ao
+>  
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - qcom,sm8150-videocc
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: AHB
+> +            - description: Board XO source
+> +        clock-names:
+> +          items:
+> +            - const: iface
+> +            - const: bi_tcxo
+> +
+>    - if:
+>        properties:
+>          compatible:
+> 
+> -- 
+> 2.25.1
+> 
 
