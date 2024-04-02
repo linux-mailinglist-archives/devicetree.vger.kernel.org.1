@@ -1,58 +1,64 @@
-Return-Path: <devicetree+bounces-55565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55567-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 565558959D8
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 18:40:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A9FB895A41
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 18:54:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F358286BBF
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 16:40:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9D592843D9
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 16:54:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 840191598FD;
-	Tue,  2 Apr 2024 16:40:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CE1615AAC5;
+	Tue,  2 Apr 2024 16:53:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="SPV4IS2w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0CE12AD1E;
-	Tue,  2 Apr 2024 16:40:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0873315AAC3;
+	Tue,  2 Apr 2024 16:53:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712076010; cv=none; b=D4HKF/lsPKplN+uWD0iDOHiiNWyUt0UIYDKZiyA1AmtG4hq8TCiaviQT7pDfHI1djlykxHqWKZGk8J8IX86/j6MbmVIU3pdDPXw4A+t/u8UD/zOtLpJGuFru/PlJ2xxY/cmr0tNVxGTE7FapXLCKZ5+QRMkSJvCwBMch50BpkT8=
+	t=1712076804; cv=none; b=g3krpnZVE/XKu/RU9d9x4xnqOWrNRMSXGBe7WWQ6dpSF4tYXbEtVQeugyCKKxjL5V3TIS4fK3Eah7uqdWbWemLXzejHqM8YXRdEOXeOfnyeLUH4ku2q1MUJdz/dRpCN5PyJb4gw00tWmrNlXx+KunB6dyF0qNgzFxDH0wEYTV4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712076010; c=relaxed/simple;
-	bh=c3bpaVDP2rETbrX6SdqFqxkgQdl9vOBqxKTJfbS8q4g=;
+	s=arc-20240116; t=1712076804; c=relaxed/simple;
+	bh=atPMBkwnZRH1QfaOz8mJNu//uwTwpHitO8rlHlkvhd8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gYbtVhD5kRL9MGstqB3SzaYaaBsiejASHibCQ3HqwekzWHYXGiSMEihL0FjOGroXb1KY9Nj7B3y9IAGD+jzajSBw+tUSUVIMRSIxjqwL+TuibxbGFztUEn3niEZXych9gx/XTnK1aX2GmZ6Hxo4MNl6syFL1j1l/h6p7BPzb7QY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6375A1007;
-	Tue,  2 Apr 2024 09:40:39 -0700 (PDT)
-Received: from pluto (unknown [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1D80C3F7B4;
-	Tue,  2 Apr 2024 09:40:06 -0700 (PDT)
-Date: Tue, 2 Apr 2024 17:40:03 +0100
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: Dan Carpenter <dan.carpenter@linaro.org>
-Cc: Andy Shevchenko <andriy.shevchenko@intel.com>,
-	"Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-	Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Peng Fan <peng.fan@nxp.com>,
-	Oleksii Moisieiev <oleksii_moisieiev@epam.com>
-Subject: Re: [PATCH v7 4/4] pinctrl: Implementation of the generic
- scmi-pinctrl driver
-Message-ID: <Zgw049KpBuQrJsnT@pluto>
-References: <20240402-pinctrl-scmi-v7-0-3ea519d12cf7@nxp.com>
- <20240402-pinctrl-scmi-v7-4-3ea519d12cf7@nxp.com>
- <ZgwGpZ6S13vjk8jh@smile.fi.intel.com>
- <c5bdf039-c43b-4611-9f0b-81585e296206@moroto.mountain>
+	 Content-Type:Content-Disposition:In-Reply-To; b=BbBC7VI6JGswhxQjX0w3IGNK+EVrqITxlXgk9P/AcHW8w1VdYRPdEVF7KilcVB8swWDP+29+NrORR4ZUKbsGlE83WO4gKqHyZoKWUDOY0kmN62RR1M0ls6BKT2NwUkFa/KqsAZ2ecdefgZAD0EULzWQJBoF8M34TYn0r7Yo0BYM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=SPV4IS2w; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 619571FAA3;
+	Tue,  2 Apr 2024 18:53:11 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1712076792;
+	bh=PctgBINCFX58WVqQY3z03UnoMSWRHAzvZU5WuaVRFQo=; h=From:To:Subject;
+	b=SPV4IS2waVCTTGVjIqICRmtVQjms4nIPuOmv0oiWsDf0jJTHDe6SxPuK32GbH/mO5
+	 3zeLNjxE3E1CuL6Zty521LUAsOmBmzhwx7fkzCcfH2Csc9WZfYIJFzZSQ71zSQhC4v
+	 OXCgOb9mNPc2V4ie4aPYBHcP+/y4CdgoLU4qyK3sGXkthLFGkQu+0bmWv4dcs9fIx8
+	 lIRImWikSATfVoPAe2p0cZ7tFr12oMeZm3S6ouJHdjkNEOos6qpj0C3iXEXAuUzkII
+	 DSTLf7fYHbRngHE2PwywYLqfMDmezl6Hc/tfTsGo9mKAa5VkodPKlAy6AxTGAxI/Ez
+	 4M4PgR3YEb6yA==
+Date: Tue, 2 Apr 2024 18:53:07 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Alexandru Ardelean <alex@shruggie.ro>
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, adrien.grassein@gmail.com,
+	andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+	rfoss@kernel.org, Laurent.pinchart@ideasonboard.com,
+	jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
+	daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	stefan.eichenberger@toradex.com, francesco.dolcini@toradex.com,
+	marius.muresan@mxt.ro, irina.muresan@mxt.ro
+Subject: Re: [PATCH 1/2] drm/bridge: lt8912b: add support for P/N pin swap
+Message-ID: <20240402165307.GA31874@francesco-nb>
+References: <20240402105925.905144-1-alex@shruggie.ro>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,38 +67,86 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <c5bdf039-c43b-4611-9f0b-81585e296206@moroto.mountain>
+In-Reply-To: <20240402105925.905144-1-alex@shruggie.ro>
 
-On Tue, Apr 02, 2024 at 05:09:34PM +0300, Dan Carpenter wrote:
-> On Tue, Apr 02, 2024 at 04:22:45PM +0300, Andy Shevchenko wrote:
-> > On Tue, Apr 02, 2024 at 10:22:24AM +0800, Peng Fan (OSS) wrote:
-> > > +static int pinctrl_scmi_get_pins(struct scmi_pinctrl *pmx,
-> > > +				 struct pinctrl_desc *desc)
-> > > +{
-> > > +	struct pinctrl_pin_desc *pins;
-> > > +	unsigned int npins;
-> > > +	int ret, i;
-> > > +
-> > > +	npins = pinctrl_ops->count_get(pmx->ph, PIN_TYPE);
-> > > +	/*
-> > > +	 * npins will never be zero, the scmi pinctrl driver has bailed out
-> > > +	 * if npins is zero.
-> > > +	 */
-> > 
-> > This is fragile, but at least it is documented.
-> > 
+Hello Alexandru, thanks for your patch.
+
+On Tue, Apr 02, 2024 at 01:59:24PM +0300, Alexandru Ardelean wrote:
+> On some HW designs, it's easier for the layout if the P/N pins are swapped.
+> In those cases, we need to adjust (for this) by configuring the MIPI analog
+> registers differently. Specifically, register 0x3e needs to be 0xf6
+> (instead of 0xd6).
 > 
-> It was never clear to me where the crash would happen if npins was zero.
-> Does some part of pinctrl internals assume we have at least one pin?
+> This change adds a 'lontium,pn-swap' device-tree property to configure the
+> MIPI analog registers for P/N swap.
+> 
+> Signed-off-by: Alexandru Ardelean <alex@shruggie.ro>
+> ---
+>  drivers/gpu/drm/bridge/lontium-lt8912b.c | 25 +++++++++++++++++++++---
+>  1 file changed, 22 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/bridge/lontium-lt8912b.c b/drivers/gpu/drm/bridge/lontium-lt8912b.c
+> index 4b2ae27f0a57f..154126bb922b4 100644
+> --- a/drivers/gpu/drm/bridge/lontium-lt8912b.c
+> +++ b/drivers/gpu/drm/bridge/lontium-lt8912b.c
+> @@ -47,6 +47,7 @@ struct lt8912 {
+>  
+>  	u8 data_lanes;
+>  	bool is_power_on;
+> +	bool do_pn_swap;
+>  };
+>  
+>  static int lt8912_write_init_config(struct lt8912 *lt)
+> @@ -78,15 +79,31 @@ static int lt8912_write_init_config(struct lt8912 *lt)
+>  		{0x55, 0x44},
+>  		{0x57, 0x01},
+>  		{0x5a, 0x02},
+> -
+> -		/*MIPI Analog*/
+> +	};
+> +	const struct reg_sequence mipi_analog_seq[] = {
+>  		{0x3e, 0xd6},
+>  		{0x3f, 0xd4},
+>  		{0x41, 0x3c},
+>  		{0xB2, 0x00},
+>  	};
+> +	const struct reg_sequence mipi_analog_pn_swap_seq[] = {
+> +		{0x3e, 0xf6},
+> +		{0x3f, 0xd4},
+> +		{0x41, 0x3c},
+> +		{0xB2, 0x00},
+> +	};
+> +	int ret;
+>  
+> -	return regmap_multi_reg_write(lt->regmap[I2C_MAIN], seq, ARRAY_SIZE(seq));
+> +	ret = regmap_multi_reg_write(lt->regmap[I2C_MAIN], seq, ARRAY_SIZE(seq));
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (!lt->do_pn_swap)
+> +		return regmap_multi_reg_write(lt->regmap[I2C_MAIN], mipi_analog_seq,
+> +					      ARRAY_SIZE(mipi_analog_seq));
+> +
+> +	return regmap_multi_reg_write(lt->regmap[I2C_MAIN], mipi_analog_pn_swap_seq,
+> +				      ARRAY_SIZE(mipi_analog_pn_swap_seq));
 
-Dont think there were any possible crashes since at the protoocl layer
-(not here) kcalloc returns ZERO_SIZE_PTR into pinfo->pins for a zero-bytes
-allocation BUT it is indeed never accessed since any attempt to access a
-pin will be considerd invalid (any u32 index >= (nr_pins=0))...
+Can you just remove {0x3e, 0xd6} from the register/value array and write
+it afterward depending on `do_pn_swap` value? Or keep it with the
+current value and only overwrite it when do_pn_swap is true?
 
-...but what is the point of loading protocol and drivers with zero pins ?
-You can have zero grouos and zero functions, but zero pins ?
+If you do it this way is a 4 line change.
 
-Thanks,
-Cristian
+
+>  static int lt8912_write_mipi_basic_config(struct lt8912 *lt)
+> @@ -702,6 +719,8 @@ static int lt8912_parse_dt(struct lt8912 *lt)
+>  	}
+>  	lt->gp_reset = gp_reset;
+>  
+> +	lt->do_pn_swap = device_property_read_bool(dev, "lontium,pn-swap");
+
+I would call this variable the same that is called in the lontium
+documentation, mipirx_diff_swap
+
+Francesco
+
 
