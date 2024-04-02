@@ -1,124 +1,134 @@
-Return-Path: <devicetree+bounces-55316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77CF7894D0F
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 09:59:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1DDF894D12
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 09:59:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A8A2C1C21CCE
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 07:59:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 980E328321F
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 07:59:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B3133D393;
-	Tue,  2 Apr 2024 07:59:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A2C73D3BC;
+	Tue,  2 Apr 2024 07:59:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="L59hw+W3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60A732BD1C;
-	Tue,  2 Apr 2024 07:59:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 737D63D39B
+	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 07:59:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712044748; cv=none; b=hlkDZiDIdOL0SDpNN95CLPJWACMAeCh5SiedA7SmJDXs2SHn9pZHaA6e23v/XkM8ADe6op2hDRGmrPP4SE1G2DfJLCJR3xQK1h+SnRYQO4tpwkVdNU+jL9W9/Iceq6/PXjUPUzGVsyodmT7xmxPOtjYON0Vfj+blz4nA6r+3TlU=
+	t=1712044758; cv=none; b=NblkjxBCLRJj+lP51S0bPYrRNeKOVrOtlfF2NfL2/5JFjW5RI7HQ9Dv9LU4v8iLPJfN5c5Cgr97c1a+6oCkw/xUuDOR8qaZVW2r0HRgVNCuMlAhSZctCwtYk49Sztv8jUx0Tr9NB2MD2Ca+zxnNbgDlZgQBl4EdrgybFabYENVA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712044748; c=relaxed/simple;
-	bh=UgmIAAI93EZJTtg+aK3e6ZZ+M8Jue3lfJ/8p2/tBVqc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=m3S50MYBiLjgVwE5M3AAgmCJ2ERHdcv8dseL06cp3rLitjScvRT3rxbf2+Se7gQXyUL8UtPQxGpEAh5MU0SM+QgmXaJt3PjJJ1106wxqs3MakQ+CBBYwkNNpVbLcLMLKUFvxmZ2eEr3WPOls/1I1w0B0igqbFrJHUrb2GcbsIR8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
-Received: from loongson.cn (unknown [112.20.109.80])
-	by gateway (Coremail) with SMTP id _____8Dx_7vHugtmeD8iAA--.59479S3;
-	Tue, 02 Apr 2024 15:59:03 +0800 (CST)
-Received: from localhost.localdomain (unknown [112.20.109.80])
-	by localhost.localdomain (Coremail) with SMTP id AQAAf8AxSRK7ugtmzqNxAA--.12573S5;
-	Tue, 02 Apr 2024 15:59:01 +0800 (CST)
-From: Binbin Zhou <zhoubinbin@loongson.cn>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
+	s=arc-20240116; t=1712044758; c=relaxed/simple;
+	bh=SoSBspWBsfBSc6I60FIMrcKMwveW12JgMXKjD2sYj3k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=a67VMF4seMR0lAO+p6d0jccU+E7/4ids8rtYdn7b8XQ4xhsbtLaS8bR7s92MdAuaU0FOfEMOozzo3QF0MBSNe7eNSVH9Bzk7UTmiIG79FQ/nyDdBS2IGF8Fl9J/QvgdQKeM4slPLfUOzsonx2jJ7M44RtzSSgE7tnNFPYUtYz3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=L59hw+W3; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0624E83F;
+	Tue,  2 Apr 2024 09:58:36 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1712044717;
+	bh=SoSBspWBsfBSc6I60FIMrcKMwveW12JgMXKjD2sYj3k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=L59hw+W3z6ZH1/6PWhL1jXWMRW9hNRPDInLat83deFTTQtuyoObiUMMV9wQNJ1OSF
+	 fX/cYEyLpSzvbn+QzjnWBn5uGh8ocFXdBjkHkwzvjZaRZHw8YJhmhdX01/waxOgaIv
+	 eXm0z0kAIr+Q/HUFcGSOEqn5alfZYEl0foB39Wj4=
+Date: Tue, 2 Apr 2024 10:59:03 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Huacai Chen <chenhuacai@kernel.org>,
-	loongson-kernel@lists.loongnix.cn,
-	linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Xuerui Wang <kernel@xen0n.name>,
-	loongarch@lists.linux.dev,
-	Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: [PATCH v1 3/5] LoongArch: dts: Add PWM support to Loongson-2K0500
-Date: Tue,  2 Apr 2024 15:58:40 +0800
-Message-ID: <b1c34d8b86efe99c4eaa428e5130e9aecd01eb52.1711953223.git.zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1711953223.git.zhoubinbin@loongson.cn>
-References: <cover.1711953223.git.zhoubinbin@loongson.cn>
+	Fabio Estevam <festevam@gmail.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Jacopo Mondi <jacopo@jmondi.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH] arm64: dts: debix-a: Remove i2c2 from base .dts
+Message-ID: <20240402075903.GB10288@pendragon.ideasonboard.com>
+References: <20240325225048.1159-1-laurent.pinchart@ideasonboard.com>
+ <20240402065443.hpinj7oftcst6fwd@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:AQAAf8AxSRK7ugtmzqNxAA--.12573S5
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj93XoW7Jr4fWr4rXF48Jry7Kw18CrX_yoW8Jr4xpa
-	sF939xGr40gF1xKws8JFy8Krs3uFyFkFnrWanrAFyUGrsIq3yjvr18JFyfXF4rWrs5X342
-	qrn5C347KFWUWabCm3ZEXasCq-sJn29KB7ZKAUJUUUUx529EdanIXcx71UUUUU7KY7ZEXa
-	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-	0xBIdaVrnRJUUUBab4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-	IYs7xG6rWj6s0DM7CIcVAFz4kK6r126r13M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-	0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAF
-	wI0_Gr1j6F4UJwAaw2AFwI0_JF0_Jw1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2
-	xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_
-	Jw0_WrylYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x
-	0EwIxGrwCY1x0262kKe7AKxVWUAVWUtwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkE
-	bVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14v26r1j6r18MI8I3I0E74
-	80Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0
-	I7IYx2IY67AKxVW5JVW7JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04
-	k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIEc7Cj
-	xVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jr6p9UUUUU=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240402065443.hpinj7oftcst6fwd@pengutronix.de>
 
-The module is supported, enable it.
+Hi Marco,
 
-Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
----
- arch/loongarch/boot/dts/loongson-2k0500.dtsi | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+On Tue, Apr 02, 2024 at 08:54:43AM +0200, Marco Felsch wrote:
+> On 24-03-26, Laurent Pinchart wrote:
+> > From: Jacopo Mondi <jacopo@jmondi.org>
+> > 
+> > The I2C2 bus is used for the CSI and DSI connectors only, no devices are
+> > connected to it on neither the Debix Model A nor its IO board. Remove
+> > the bus from the board's .dts and rely on display panel or camera sensor
+> > overlsy to enable it when necessary.
+> 
+> I would rather remove the status line instead of removing the whole node
+> since the bus is intented to be used for CSI and DSI and therefore the
+> muxing should be valid. This makes it easier for overlay authors since
+> they don't need to check the mux setup each time.
 
-diff --git a/arch/loongarch/boot/dts/loongson-2k0500.dtsi b/arch/loongarch/boot/dts/loongson-2k0500.dtsi
-index 413b83366367..86e86a267779 100644
---- a/arch/loongarch/boot/dts/loongson-2k0500.dtsi
-+++ b/arch/loongarch/boot/dts/loongson-2k0500.dtsi
-@@ -148,6 +148,26 @@ eiointc: interrupt-controller@1fe11600 {
- 			interrupts = <3>;
- 		};
- 
-+		pwm@1ff5c000 {
-+			compatible = "loongson,ls2k0500-pwm", "loongson,ls7a-pwm";
-+			reg = <0x0 0x1ff5c000 0x0 0x10>;
-+			interrupt-parent = <&eiointc>;
-+			interrupts = <20>;
-+			clocks = <&clk LOONGSON2_APB_CLK>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
-+		pwm@1ff5c010 {
-+			compatible = "loongson,ls2k0500-pwm", "loongson,ls7a-pwm";
-+			reg = <0x0 0x1ff5c010 0x0 0x10>;
-+			interrupt-parent = <&eiointc>;
-+			interrupts = <21>;
-+			clocks = <&clk LOONGSON2_APB_CLK>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
- 		gmac0: ethernet@1f020000 {
- 			compatible = "snps,dwmac-3.70a";
- 			reg = <0x0 0x1f020000 0x0 0x10000>;
+Seems sensible to me. I will drop the clock-frequency property in
+addition to the status property, as the frequency depends solely on the
+devices connected to the CSI and DSI connectors.
+
+> > Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > ---
+> >  .../boot/dts/freescale/imx8mp-debix-model-a.dts    | 14 --------------
+> >  1 file changed, 14 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
+> > index 5ac77eaf23d5..26c303b7c7fa 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
+> > @@ -210,13 +210,6 @@ ldo5: LDO5 {
+> >  	};
+> >  };
+> >  
+> > -&i2c2 {
+> > -	clock-frequency = <100000>;
+> > -	pinctrl-names = "default";
+> > -	pinctrl-0 = <&pinctrl_i2c2>;
+> > -	status = "okay";
+> > -};
+> > -
+> >  &i2c3 {
+> >  	clock-frequency = <400000>;
+> >  	pinctrl-names = "default";
+> > @@ -392,13 +385,6 @@ MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA					0x400001c2
+> >  		>;
+> >  	};
+> >  
+> > -	pinctrl_i2c2: i2c2grp {
+> > -		fsl,pins = <
+> > -			MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL					0x400001c2
+> > -			MX8MP_IOMUXC_I2C2_SDA__I2C2_SDA					0x400001c2
+> > -		>;
+> > -	};
+> > -
+> >  	pinctrl_i2c3: i2c3grp {
+> >  		fsl,pins = <
+> >  			MX8MP_IOMUXC_I2C3_SCL__I2C3_SCL					0x400001c2
+
 -- 
-2.43.0
+Regards,
 
+Laurent Pinchart
 
