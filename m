@@ -1,61 +1,56 @@
-Return-Path: <devicetree+bounces-55621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45BDC895CA6
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 21:33:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 82B05895D04
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 21:52:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F04D71F241AB
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 19:33:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 36E491F22034
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 19:52:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEE9815E20C;
-	Tue,  2 Apr 2024 19:32:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WMv5ovEF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E3CA15B974;
+	Tue,  2 Apr 2024 19:52:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7A2E15B96A;
-	Tue,  2 Apr 2024 19:32:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 687F415AAAA;
+	Tue,  2 Apr 2024 19:52:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=108.161.129.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712086341; cv=none; b=EiI7azE2WLHl3m+HfXVCyBLNbNMvfI1IKmNaeLrmvUM6fJo1/+WcA2gHgAY3dtTSiN7JNkDRRwneH5SyzhRH9p/trU3n4m/9NIuGXwD4Fj3QsNLgi6F7/fEJiWeQrx+Yv9+V9sd9ZRP++0mZI1ckArdlnVwUMElisuLaggas8iU=
+	t=1712087538; cv=none; b=azoT5H8sA1Rq7l8C3Nt6auw4IP8tvoGWrKg2e335hEzT1Uz1XpWGrLVlVwAK17Qqfn4Q+QiG6jb7ak4NlAVCALE9V0DstB8LXIc9PXxFCbepCYnm2Vetalpi+gviK7cjST2wViponlA3dxjyqsJII2m3IlRf5pL2CzvlasAps2U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712086341; c=relaxed/simple;
-	bh=Za804mpkHpVgJYpy6pm2d5QEWIM7Bjgll26VyAOfJaA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=aGwBxsq0px2ekXneC3lEIDuPQBK7ZfusexzVZeslLZe9+lh9VhfaCmNGD4u5i7P3m2BLX4xUhD3rsG3sBjHy73Ns0BRi/4Vqu63rzCq4rkLIMUONZdiVDh6gr+N+g7Cg3W4AqKppD5T8A3EmlqMp9odrnlJg3OPxHdKQpoMOCG4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WMv5ovEF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2FC9C433F1;
-	Tue,  2 Apr 2024 19:32:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712086341;
-	bh=Za804mpkHpVgJYpy6pm2d5QEWIM7Bjgll26VyAOfJaA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=WMv5ovEFf72zOSvz12jMIpq34lIh24JbM8wjCvSeRLEIGHHIdiaUOf4S81cZUDQ4H
-	 aYsYKArXVSgjDqW9qh0sgpdUSxe/+F4otJ5ee1ZbDkZHIu8RR7Pd6u9GDp94CDUgLQ
-	 vVWQb0OMHeh6CQN/AMDv8D7rBUtqfULvMJ1lkqTNa1gTKxzu6AmCepgucRoNLdpue+
-	 1ZDwCYy3smw2S8hFN1LKBsgOVB6ZNOz28a/ywgk56sfMKBYBoezmQkpKqaCkQ3o44J
-	 oG8/zKZKrmTxNofjIay5nXXYl0jx5URkF/ssKrtBByM0dtFYUk44cGrPx+SQLOXDS0
-	 DYE82B8X1d6jw==
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Wei Xu <xuwei5@hisilicon.com>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1712087538; c=relaxed/simple;
+	bh=zVrwAjUcGsk/Gvd0IQbWlkXCkBrhd705XLqPbvC6bLI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=W7Et+TADx9XYY3jKrTXrVgFyI796Qip4wrJKcVIygXImrQwzpvAMKOKthDs9lCvD2esZ5MngTqheNXE1sGsmCBpvkwUIZgUsy8Y309qOnaPYjRYdf8mgNPtSOg3vfUfsj6RuKk6eguzD9Oa8W3MznQzURZv9pJrLtF/Br9mne+Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com; spf=pass smtp.mailfrom=gateworks.com; arc=none smtp.client-ip=108.161.129.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gateworks.com
+Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
+	by finn.localdomain with esmtp (Exim 4.95)
+	(envelope-from <tharvey@gateworks.com>)
+	id 1rrjtR-000HwR-Jr;
+	Tue, 02 Apr 2024 19:34:01 +0000
+From: Tim Harvey <tharvey@gateworks.com>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
 	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH 9/9] arm64: dts: hisilicon: hi6220: correct tsensor unit addresses
-Date: Tue,  2 Apr 2024 21:31:48 +0200
-Message-Id: <20240402193148.62323-9-krzk@kernel.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240402193148.62323-1-krzk@kernel.org>
-References: <20240402193148.62323-1-krzk@kernel.org>
+Cc: Tim Harvey <tharvey@gateworks.com>,
+	Lukas Wunner <lukas@wunner.de>
+Subject: [PATCH] arm64: dts: imx8m*-venice-gw7: Fix TPM schema violations
+Date: Tue,  2 Apr 2024 12:33:55 -0700
+Message-Id: <20240402193355.2333597-1-tharvey@gateworks.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,29 +59,70 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Correct unit address to fix dtc W=1 warnings:
+Since commit 26c9d152ebf3 ("dt-bindings: tpm: Consolidate TCG TIS
+bindings"), several issues are reported by "make dtbs_check" for arm64
+devicetrees:
 
-  hi6220.dtsi:855.31-862.5: Warning (simple_bus_reg): /soc/tsensor@0,f7030700: simple-bus unit address format error, expected "f7030700"
+The compatible property needs to contain the chip's name in addition to
+the generic "tcg,tpm_tis-spi".
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+tpm@1: compatible: ['tcg,tpm_tis-spi'] is too short
+	from schema $id:
+http://devicetree.org/schemas/tpm/tcg,tpm_tis-spi.yaml#
+
+Fix these schema violations.
+
+Gateworks Venice uses an Atmel ATTPM20P:
+https://trac.gateworks.com/wiki/tpm
+
+Cc: Lukas Wunner <lukas@wunner.de>
+Signed-off-by: Tim Harvey <tharvey@gateworks.com>
 ---
- arch/arm64/boot/dts/hisilicon/hi6220.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts  | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx.dtsi | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
-index be808bb2544e..a589954c29e2 100644
---- a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
-@@ -852,7 +852,7 @@ watchdog0: watchdog@f8005000 {
- 			clock-names = "wdog_clk", "apb_pclk";
- 		};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
+index 41c966147b94..429be2bab8a2 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
+@@ -57,7 +57,7 @@ &ecspi2 {
+ 	status = "okay";
  
--		tsensor: tsensor@0,f7030700 {
-+		tsensor: tsensor@f7030700 {
- 			compatible = "hisilicon,tsensor";
- 			reg = <0x0 0xf7030700 0x0 0x1000>;
- 			interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
+ 	tpm@1 {
+-		compatible = "tcg,tpm_tis-spi";
++		compatible = "atmel,attpm20p", "tcg,tpm_tis-spi";
+ 		reg = <0x1>;
+ 		spi-max-frequency = <36000000>;
+ 	};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
+index 5e2cbaf27e0f..35ae0faa815b 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
+@@ -297,7 +297,7 @@ flash@0 {
+ 	};
+ 
+ 	tpm@1 {
+-		compatible = "tcg,tpm_tis-spi";
++		compatible = "atmel,attpm20p", "tcg,tpm_tis-spi";
+ 		reg = <0x1>;
+ 		spi-max-frequency = <36000000>;
+ 	};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx.dtsi
+index e7bf032265e0..2f740d74707b 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx.dtsi
+@@ -68,7 +68,7 @@ &ecspi2 {
+ 	status = "okay";
+ 
+ 	tpm@1 {
+-		compatible = "tcg,tpm_tis-spi";
++		compatible = "atmel,attpm20p", "tcg,tpm_tis-spi";
+ 		reg = <0x1>;
+ 		spi-max-frequency = <36000000>;
+ 	};
 -- 
-2.34.1
+2.25.1
 
 
