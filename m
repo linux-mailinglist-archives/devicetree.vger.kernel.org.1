@@ -1,157 +1,215 @@
-Return-Path: <devicetree+bounces-55333-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55335-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F243F894D86
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 10:32:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8539894DB0
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 10:36:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADE7B282BC8
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 08:32:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A43E52848FF
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 08:36:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86230481BF;
-	Tue,  2 Apr 2024 08:31:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBCFF3D996;
+	Tue,  2 Apr 2024 08:35:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Hh/PhP4d"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="WY7ZjIS1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 919F11772D;
-	Tue,  2 Apr 2024 08:31:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+Received: from mail-177131.yeah.net (mail-177131.yeah.net [123.58.177.131])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 359A857315;
+	Tue,  2 Apr 2024 08:35:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712046692; cv=none; b=kf3b0Q0fRce4RFGP6fJRDOMmiZNSq2a2CO9Vq9kRslEmNqObAN/BVOdx7fe0m2LCX1GRzusneTcNL+Do9defooR02zNYaDPNGjkJlxbGfDQCBkz8FE7ZtGlaRTB0wzNN6LJRYbIxdd+a36pLKRkQ9PL8DW/vRSLuMwrlHzqfqT8=
+	t=1712046957; cv=none; b=cP+IjKm1Z4bR5eoL2F4tB4uzLPVYB/m+x99M1wxULGZMbohntckSBMRiwcCFfuYVEbrPrKE5UAbIbiQ6opAiAjUJYLpEy6R4vzf69EJWOM3JZU6DMLaIUMNs8ilj6t1rUvsd1hLQgTKrsG+qpUFthBTpOu7qpnovUaC2sNHZEQo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712046692; c=relaxed/simple;
-	bh=JY4ED/+4PB+ORvPhQlRpW0Q8Y/u6TEuHgOSWHoB9PyU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MZV74kLTmqQMHeKc7t4d5+Z3SMqsv+dDa2g60412u/mcs54gXSlHsWVoEI2aouhghMD7yo5i2ibkzU7YR46LL4WrwHjsHmHX+kYKsRSWkH33IN2Ace9vf5viObWfU2z7P4sa5JriVU1ckfwsKZVJQNpV6AOMHZn1mQfp/XmJ1tU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Hh/PhP4d; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.1.105] (unknown [103.86.18.232])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7E76F3A2;
-	Tue,  2 Apr 2024 10:30:47 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1712046652;
-	bh=JY4ED/+4PB+ORvPhQlRpW0Q8Y/u6TEuHgOSWHoB9PyU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Hh/PhP4d4ueDNpTQV+YLPys/QUg62YZlGeyWuDc92InrrZp31Bj76VZ32egn/IqOL
-	 8FW7vfPHswmCUhzEaG0UJknBC2uRKxpc/UEW4VPAOiqKJpycD4m49z+bGbCn4aR2oi
-	 jVEd8pAT/deK0ulsos7TG6lrqnNXpt32tFtIuhec=
-Message-ID: <d46380d7-e296-445b-a294-b0231ea45518@ideasonboard.com>
-Date: Tue, 2 Apr 2024 14:01:19 +0530
+	s=arc-20240116; t=1712046957; c=relaxed/simple;
+	bh=m1lsPFgluw1lDbgABtZXAsUlTb+3eksNMgaT//vCYKU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nXx4yI/vk5+xhd33+t2IibPxZJ9+EY+CDeHaX6x/05MsnDacozXnmKEAgbGG6deNtvDs6Zy4Wu4Fh1xlA8A/LlyH2EUTunVJxqt9m9seFPM6rj8AN+M8j8pjeaNCOAvG5PeVASP1j6nBApE1KZd4dvxQQMWt+y9D5DTKxoBVnqc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=WY7ZjIS1; arc=none smtp.client-ip=123.58.177.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=M3q2o7D5pZ85OztyvHOJ0Lrj1x7gKAWNHO9XsIQgyCI=;
+	b=WY7ZjIS1JceGpx3YMaJsQUOcbU7LHMV+fdhIi/fMaWrsVj/fiPhLOunx6UDLSf
+	SrX8WUN9X9uhFkcNlO4kuVlwUvI3uZkY70qlfT+uRmcgDI4gaNxELGkmSkWgdcBq
+	02hgY6gnV0xqhxnRJIKL8cehVJoHwlNkrY4zHZzfgB05A=
+Received: from dragon (unknown [223.68.79.243])
+	by smtp1 (Coremail) with SMTP id ClUQrADX_0ZMwwtm6q+iAQ--.45423S3;
+	Tue, 02 Apr 2024 16:35:25 +0800 (CST)
+Date: Tue, 2 Apr 2024 16:35:24 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: gregkh@linuxfoundation.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+	conor+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, linux-imx@nxp.com, peter.chen@kernel.org,
+	jun.li@nxp.com, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	imx@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v10 03/11] arm64: dts: imx8ulp-evk: enable usb nodes and
+ add ptn5150 nodes
+Message-ID: <ZgvDTPiBM65l3F+U@dragon>
+References: <20240321081439.541799-1-xu.yang_2@nxp.com>
+ <20240321081439.541799-3-xu.yang_2@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] media: i2c: Add imx283 camera sensor driver
-To: Kieran Bingham <kieran.bingham@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Rob Herring <robh@kernel.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-References: <20240402-kernel-name-extraversion-v1-0-57bb38de841b@ideasonboard.com>
-Content-Language: en-US
-From: Umang Jain <umang.jain@ideasonboard.com>
-In-Reply-To: <20240402-kernel-name-extraversion-v1-0-57bb38de841b@ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240321081439.541799-3-xu.yang_2@nxp.com>
+X-CM-TRANSID:ClUQrADX_0ZMwwtm6q+iAQ--.45423S3
+X-Coremail-Antispam: 1Uf129KBjvJXoWxGw47AFyktw1fuFWfJr13Jwb_yoW5XFWkpr
+	9rGrsxXw17WF47KF98JrnxKr93Jan3Gr97uw12g340kr1Du347Jr10grn5Wrs8ur43Xw4a
+	yFsYgrW2grnF9wUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jseOLUUUUU=
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiDQ20ZVszXX09xgAAsi
 
-Hi all,
-
-PLease ignore the series, I was testing/learning the b4 tool.
-
-I did pass --offline-mode but it has sent the patches anyway :-//
-
-On 02/04/24 1:59 pm, Umang Jain wrote:
-> Add a v4l2 subdevice driver for the Sony IMX283 image sensor.
->    
-> The IMX283 is a 20MP Diagonal 15.86 mm (Type 1) CMOS Image Sensor with
-> Square Pixel for Color Cameras.
->      
-> The following features are supported:
-> - Manual exposure an gain control support
-> - vblank/hblank/link freq control support
-> - Test pattern support control
-> - Arbitrary horizontal and vertical cropping
-> - Supported resolution:
->     - 5472x3648 @ 20fps (SRGGB12)
->     - 5472x3648 @ 25fps (SRGGB10)
->     - 2736x1824 @ 50fps (SRGGB12)
->
-> The driver is tested on mainline branch v6.8-rc2 on IMX8MP Debix-SOM-A.
-> Additional testing has been done on RPi5 with the downstream BSP.
->
-> Changes in v4:
-> - fix 32-bit build error around u64 divisions (use do_div)
-> - Fix hmax default and minimum values
->
+On Thu, Mar 21, 2024 at 04:14:31PM +0800, Xu Yang wrote:
+> Enable 2 USB nodes and add 2 PTN5150 nodes on i.MX8ULP evk board.
+> 
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> 
+> ---
+> Changes in v2:
+>  - fix format as suggusted by Fabio
+>  - add PTN5150 nodes
 > Changes in v3:
-> - fix headers includes
-> - Improve #define(s) readability
-> - Drop __func__ from error logs
-> - Use HZ_PER_MHZ instead of MEGA
-> - mdsel* variables should be u8
-> - Use container_of_const() instead of container_of()
-> - Use clamp() used of clamp_t variant
-> - Use streams API imx283_{enable|disable}_streams (**NOTE**)
-> - Properly fix PM runtime handling
->    (pm_ptr(), DEFINE_RUNTIME_DEV_PM_OPS,
->     imx283_runtime_suspend, imx283_runtime_resume)
-> - Fix format modifiers, signed-ness at various places
->
-> changes in v2 (summary):
-> - Use u32 wherever possible
-> - Use MEGA macro instead of self defined MHZ() macro
-> - Properly refine regs using CCI
-> - Drop tracking of current mode. Shifted to infer from active state directly.
->    (Laurent's review)
-> - Cont. from above: Pass the struct imx283_mode to functions whereever required.
-> - Remove unused comments
-> - Remove custom mutex. Use control handler one instead.
-> - Drop imx283_reset_colorspace() and inline
-> - Set colorspace field properly (drop _DEFAULTS)
-> - Use __maybe_unused for imx283_power_on() and imx283_power_off()
-> - Store controls  v4l2_ctrl handles for those required, not all.
-> - Drop imx283_free_controls(). Use v4l2_ctrl_handler_free
-> - fix reset-gpios handling and add it to DT schema
-> - fix data-lanes property in DT schema
-> - fix IMX283 Kconfig
-> - Remove unused macros
-> - Alphabetical case consistency
->
-> Signed-off-by: Umang Jain <umang.jain@ideasonboard.com>
+>  - no changes
+> Changes in v4:
+>  - no changes
+> Changes in v5:
+>  - no changes
+> Changes in v6:
+>  - no changes
+> Changes in v7:
+>  - no changes
+> Changes in v8:
+>  - no changes
+> Changes in v9:
+>  - no changes
+> Changes in v10:
+>  - no changes
 > ---
-> Kieran Bingham (1):
->        media: i2c: Add imx283 camera sensor driver
->
-> Umang Jain (2):
->        media: dt-bindings: media: Add bindings for IMX283
->        fixups
->
->   .../devicetree/bindings/media/i2c/sony,imx283.yaml |  107 ++
->   MAINTAINERS                                        |    9 +
->   drivers/media/i2c/Kconfig                          |   10 +
->   drivers/media/i2c/Makefile                         |    1 +
->   drivers/media/i2c/imx283.c                         | 1605 ++++++++++++++++++++
->   5 files changed, 1732 insertions(+)
-> ---
-> base-commit: 54ee11761885407056f4ca60309739e2db6b02dc
-> change-id: 20240402-kernel-name-extraversion-2b08d441e08c
->
-> Best regards,
+>  arch/arm64/boot/dts/freescale/imx8ulp-evk.dts | 84 +++++++++++++++++++
+>  1 file changed, 84 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8ulp-evk.dts b/arch/arm64/boot/dts/freescale/imx8ulp-evk.dts
+> index 69dd8e31027c..bf418af31039 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8ulp-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8ulp-evk.dts
+> @@ -133,6 +133,64 @@ pcal6408: gpio@21 {
+>  		gpio-controller;
+>  		#gpio-cells = <2>;
+>  	};
+> +
+> +	ptn5150_1: typec@1d {
+
+Could you sort devices in unit-address?
+
+> +		compatible = "nxp,ptn5150";
+> +		reg = <0x1d>;
+> +		int-gpios = <&gpiof 3 IRQ_TYPE_EDGE_FALLING>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_typec1>;
+> +		status = "disabled";
+> +	};
+> +
+> +	ptn5150_2: typec@3d {
+> +		compatible = "nxp,ptn5150";
+> +		reg = <0x3d>;
+> +		int-gpios = <&gpiof 5 IRQ_TYPE_EDGE_FALLING>;
+> +			pinctrl-names = "default";
+
+Broken indent?
+
+Shawn
+
+> +		pinctrl-0 = <&pinctrl_typec2>;
+> +		status = "disabled";
+> +	};
+> +};
+> +
+> +&usbotg1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_usb1>;
+> +	dr_mode = "otg";
+> +	hnp-disable;
+> +	srp-disable;
+> +	adp-disable;
+> +	over-current-active-low;
+> +	status = "okay";
+> +};
+> +
+> +&usbphy1 {
+> +	fsl,tx-d-cal = <110>;
+> +	status = "okay";
+> +};
+> +
+> +&usbmisc1 {
+> +	status = "okay";
+> +};
+> +
+> +&usbotg2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_usb2>;
+> +	dr_mode = "otg";
+> +	hnp-disable;
+> +	srp-disable;
+> +	adp-disable;
+> +	over-current-active-low;
+> +	status = "okay";
+> +};
+> +
+> +&usbphy2 {
+> +	fsl,tx-d-cal = <110>;
+> +	status = "okay";
+> +};
+> +
+> +&usbmisc2 {
+> +	status = "okay";
+>  };
+>  
+>  &usdhc0 {
+> @@ -224,6 +282,32 @@ MX8ULP_PAD_PTE13__LPI2C7_SDA	0x20
+>  		>;
+>  	};
+>  
+> +	pinctrl_typec1: typec1grp {
+> +		fsl,pins = <
+> +			MX8ULP_PAD_PTF3__PTF3           0x3
+> +		>;
+> +	};
+> +
+> +	pinctrl_typec2: typec2grp {
+> +		fsl,pins = <
+> +			MX8ULP_PAD_PTF5__PTF5           0x3
+> +		>;
+> +	};
+> +
+> +	pinctrl_usb1: usb1grp {
+> +		fsl,pins = <
+> +			MX8ULP_PAD_PTF2__USB0_ID	0x10003
+> +			MX8ULP_PAD_PTF4__USB0_OC	0x10003
+> +		>;
+> +	};
+> +
+> +	pinctrl_usb2: usb2grp {
+> +		fsl,pins = <
+> +			MX8ULP_PAD_PTD23__USB1_ID	0x10003
+> +			MX8ULP_PAD_PTF6__USB1_OC	0x10003
+> +		>;
+> +	};
+> +
+>  	pinctrl_usdhc0: usdhc0grp {
+>  		fsl,pins = <
+>  			MX8ULP_PAD_PTD1__SDHC0_CMD	0x3
+> -- 
+> 2.34.1
+> 
 
 
