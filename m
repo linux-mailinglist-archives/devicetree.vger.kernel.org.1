@@ -1,59 +1,62 @@
-Return-Path: <devicetree+bounces-55580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55581-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53E9A895B13
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 19:49:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8520D895B32
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 19:55:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8520C1C216FC
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 17:49:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 250501F21465
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 17:55:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6109915AABA;
-	Tue,  2 Apr 2024 17:49:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF28C15ADBA;
+	Tue,  2 Apr 2024 17:54:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NDkYPJtl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bDX0oPfr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3454915AAB2;
-	Tue,  2 Apr 2024 17:49:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACA9715AAA9;
+	Tue,  2 Apr 2024 17:54:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712080181; cv=none; b=UVPp1nS68IKPImLxtgtChzq5YxVKfAtEkxq8Tq8DWi+xNbKlCtE6S0nyBS2Zy4Ds7b9ZsEMyLybFmEc5Q2VDmxvI5kcy1nmy1z6rx+HMeyMX0AtrZpK9hlvnN/7sq38e8CTZSMEe1R5gVlF8HI0nkvf6EhMGxQUBOnMNHaYts88=
+	t=1712080473; cv=none; b=JzqSAOCpXeAGRHId64YL8BpcZkROmDurTtGYKHVGfDZhpvZWcr1k9DY4JX4zpytXncOT8qS+H2rIuVM43AkCJaNXHN3gISN3gYiVX8H+Vi7MNpvqo4sGZG8u6aJlpCrpJMvlp97sBZBxC/5HOScpKxF0HS3dall4zptBqXF5UwA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712080181; c=relaxed/simple;
-	bh=566AJgdZXmrFN+ekvp09FWTpHUyB+KGinr1X4+QWtJw=;
+	s=arc-20240116; t=1712080473; c=relaxed/simple;
+	bh=y6fRRYnxL7nsasyFfqUuJZOEN/f8bLiORoy3Ds2BY20=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jUYp97gqRxw1/qk71qXxKS4kgOi0kYyt+BagtVMxBdhw5YzM1URMIuy8A2sy9CQq4h0dLAPSN9vxRJMqIcARrVFoXDavgdKNrdJg+AjskiDaUzYL6mWZOEbkFhbhsyg1j4hR8JsMXK9fxh6IDC3o4AKfYdLQ1scP3mEDQzfTiPY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NDkYPJtl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A090C433F1;
-	Tue,  2 Apr 2024 17:49:38 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=MXpqnup6uhsxJYJ9BbEIbPMz1Pt8gN9/4tL94yFxH+3Y1DhvWl/yYYUPDwUC63GkJtrpH7I46W5KZYhP9tDREDsm63KGuOG5PyaaN6P3hGiZ8W4zTr3fNh6dU/7Ycqiqm81csE1LUSJaKbnzajixvDNiZRCyzslkozfLvL6RGEo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bDX0oPfr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 148D4C433F1;
+	Tue,  2 Apr 2024 17:54:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712080180;
-	bh=566AJgdZXmrFN+ekvp09FWTpHUyB+KGinr1X4+QWtJw=;
+	s=k20201202; t=1712080473;
+	bh=y6fRRYnxL7nsasyFfqUuJZOEN/f8bLiORoy3Ds2BY20=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NDkYPJtl861/dTLCEZH4Eil9YfUeRUJaD9NFyUb8A7Sj/SSP/rdPdtZ9UrYRt8pAp
-	 wp7eI2cvrPtUIQjxdAqg76ULw004bo+4RAvyy+1n491MhL2LHgajPkAU10TpE+n5v/
-	 5HH4F0VmA70YC1j0DKtJl+kXIowosYYn5iXFXxd6V88/SJwTDPnCSup4+zuefWDhab
-	 kilRAxZ1WXl9HYOV/WAxr+7sgfrixLbbQtDOFiSpsmnqAn/hZmG7ktfVbmn17VHhVX
-	 Zy3FzP45PWq4TG0ojT4sxkjY450HOW+Ovr1wl+o1aDPqVW7flNe4IATw2b62eiPKOc
-	 pYBf5iK5LUs/Q==
-Date: Tue, 2 Apr 2024 18:49:36 +0100
+	b=bDX0oPfryasl5drGmVbt8Lj1fFa1ZavbkG35+L+RgXCJ+5cWrIRwe7cJPAqmvnWL+
+	 1+uoVKgIGXbY2bc3NfI/wapLbYKlukLQ/bsAkW6RYPyTEzXAw+msxBfYpAuLArzksP
+	 ZnrzFMHLFe6tTtdCWvD+U3WjiaefP7ryrfnfIHgj5MHmd67sTeExtcoGtSBDR+bw4Q
+	 CajDT7192jWEGyX07oiwVgbJeIed93P2mcXXw8uIZbPQnb8drWhaEjZM8LjKVCVh/h
+	 OTpz2NlC4pyV5+cKuOrGYbzBsWHGNiqYIhRblGd1MW3mI49j+sA848cq+F5jPN+1y3
+	 0mqWkGNskAA4Q==
+Date: Tue, 2 Apr 2024 18:54:28 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: timer: renesas,cmt: Add R-Car V4M support
-Message-ID: <20240402-roaming-tablet-c2ac92e3f34e@spud>
-References: <3e8a7a93261d8ad264dec2fa2784fe1bbfc4a23c.1712068536.git.geert+renesas@glider.be>
+To: Gianluca Boiano <morf3089@gmail.com>
+Cc: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-leds@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/3] dt-bindings: leds: leds-qcom-lpg: Add support for
+ PMI8950 PWM
+Message-ID: <20240402-dropbox-emcee-277e03a7d44d@spud>
+References: <20240402-pmi8950-pwm-support-v1-0-1a66899eeeb3@gmail.com>
+ <20240402-pmi8950-pwm-support-v1-3-1a66899eeeb3@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,34 +64,33 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="RgvgiAsiJwyNFvDx"
+	protocol="application/pgp-signature"; boundary="hdudIysQAOBteYw2"
 Content-Disposition: inline
-In-Reply-To: <3e8a7a93261d8ad264dec2fa2784fe1bbfc4a23c.1712068536.git.geert+renesas@glider.be>
+In-Reply-To: <20240402-pmi8950-pwm-support-v1-3-1a66899eeeb3@gmail.com>
 
 
---RgvgiAsiJwyNFvDx
+--hdudIysQAOBteYw2
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Apr 02, 2024 at 04:36:05PM +0200, Geert Uytterhoeven wrote:
-> Document support for the Compare Match Timer Type0 (CMT0) and Type1
-> (CMT1) in the Renesas R-Car V4M (R8A779H0) SoC.
+On Tue, Apr 02, 2024 at 02:35:44PM +0200, Gianluca Boiano wrote:
+> Update leds-qcom-lpg binding to support PMI8950 PWM.
 >=20
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Gianluca Boiano <morf3089@gmail.com>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---RgvgiAsiJwyNFvDx
+--hdudIysQAOBteYw2
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgxFMAAKCRB4tDGHoIJi
-0hEbAP9Ey3DDiFRcd/uXh82t6Zl2cmLLKCqJDt9tI//7dXlg4QD/Yx9Rxum1O0js
-PuPI7WN3qyYAVZ/E3zUMPWP0iAKHhQs=
-=3cvo
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgxGVAAKCRB4tDGHoIJi
+0mBlAQDBomjeWwP7a3lq5ocJkqBNTRStYWv9cLG3q1DkzVPuEAD+PhadSr4eRb0M
+nut7sQOgM4T1e+wkLYDhCBTRWYsTrQs=
+=A5DT
 -----END PGP SIGNATURE-----
 
---RgvgiAsiJwyNFvDx--
+--hdudIysQAOBteYw2--
 
