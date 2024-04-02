@@ -1,149 +1,205 @@
-Return-Path: <devicetree+bounces-55525-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55526-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DDD689575F
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 16:49:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF43E895771
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 16:50:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47EA4282B8E
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 14:49:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8506E282E82
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 14:50:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0108513118A;
-	Tue,  2 Apr 2024 14:45:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B04D1350D6;
+	Tue,  2 Apr 2024 14:47:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="I8eFhD78"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kEOYK3HN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-177131.yeah.net (mail-177131.yeah.net [123.58.177.131])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 757E712C544;
-	Tue,  2 Apr 2024 14:45:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.131
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 796A912BF1A
+	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 14:47:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712069103; cv=none; b=Qo8olfDyVa+tmGWj/zst9hOYCbq6t5Bxuoj8EdrHM6+xDk6C2LEIcgAVszyQfU9rrQ2/S3oWtBU1uDpc700EMoZaASMlPqfSVbOkO2leeXDTj27ltqqynRC8DZPVJZVuzENn21RlMXkr/UyybCOOoqfzmiwBjcX8/5KOUFiPfTg=
+	t=1712069251; cv=none; b=uOkmp4mQRfEKBw/3X3QK4zUAFgYpq/7h5QLufxzOG6pWpe9RIogxii0RrTwSnqWy8crwJkiHgGWYHXGs34XOAohAqi1mhpffxIG7NRMAC/1Qq5O2YHUzIXbs9Vp+w/XqfvpRDU2i9xfSCEGylU6WAWvCd/ZQjKG2LuW4t5qdIuw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712069103; c=relaxed/simple;
-	bh=UoAIQh6T2R5yd03vS3etflEo5KsJFR7Ir5HehSGj0qU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I0kOnoH9UXN6za2tjzjus/yr9ubGTrx+ZMTF6DCJrFNTmf90WEYKdNyl9FVD4R2KPHSzjVWn/ldGLWVULwiqltYEXPl1K79WFwBKKCXXFG7iHE7K1GCJKW0voZkRKOBxMz9sK9kVf9+rYzsL9n3YJXoIERnF9MVoUccWPHmXn3Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=I8eFhD78; arc=none smtp.client-ip=123.58.177.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=sNp+AZXGX0bUEOLXo2ZGNsWH+ua3wPGWHS+AYi2Sy94=;
-	b=I8eFhD78wX/KsGbMXjYCDiOI/4+iFV21AYAWatCGUUr9GlU1h2acMWQGuPSVc+
-	dx/49bGRy+cZNIPU8xEzxUJyuHI1B54xWKQtEVBWlgFH9jKZKfWhBJcVDnNc6yHq
-	oHplaASZd4k0BeDzmHPOoPw7UtMFu9iVBlqw2a1m1zi4I=
-Received: from dragon (unknown [223.68.79.243])
-	by smtp1 (Coremail) with SMTP id ClUQrADnr0IuGQxm_E+mAQ--.45967S3;
-	Tue, 02 Apr 2024 22:41:51 +0800 (CST)
-Date: Tue, 2 Apr 2024 22:41:50 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Wadim Mueller <wafgo01@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Chester Lin <chester62515@gmail.com>,
-	Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-	Matthias Brugger <mbrugger@suse.com>,
-	NXP S32 Linux Team <s32@nxp.com>,
-	Tim Harvey <tharvey@gateworks.com>,
-	Marco Felsch <m.felsch@pengutronix.de>, Marek Vasut <marex@denx.de>,
-	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
-	Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-	Matthias Schiffer <matthias.schiffer@tq-group.com>,
-	Stefan Wahren <stefan.wahren@chargebyte.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Philippe Schenker <philippe.schenker@toradex.com>,
-	Josua Mayer <josua@solid-run.com>, Li Yang <leoyang.li@nxp.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-serial@vger.kernel.org
-Subject: Re: [PATCH v4 4/4] arm64: dts: S32G3: Introduce device tree for
- S32G-VNP-RDB3
-Message-ID: <ZgwZLkpBf11rHNrG@dragon>
-References: <20240324214329.29988-1-wafgo01@gmail.com>
- <20240324214329.29988-5-wafgo01@gmail.com>
+	s=arc-20240116; t=1712069251; c=relaxed/simple;
+	bh=yOuFMfKt3fhU2KvOiQGXseYLvQBMDDOSvq+QfscMDJI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uAYwqJXtrj9UA58noDbkH6e3dDs7p86xI3xbg1qf8QifMPKC3G5gKtCSDAThXn8nB9sDJ40T+BQNfu7/eCAN+oluZB+LBruWEPb/XQr9E3QFAIMxtKrcVp9dP3A6aA44HTz+40xWghuxvqKWGp8SO6Aum9vrqJemKyOlLbTymhA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kEOYK3HN; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-56bc5a3aeb9so6718617a12.3
+        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 07:47:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712069247; x=1712674047; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=hAVh7IlPzqGjm9NpZgxRf0H+NeU99flnbxeI0QSVaJg=;
+        b=kEOYK3HNYBoaLX9mLL2lizwyVaID20fE73Hc56G1UdRcle/UVuCx3hltn8614LQx4I
+         MnvcF6z3yNIYAEFXZU0hFsMKqCiuP56KSD6fhU2B0zp8I8OoKfkoQiFIZCpvPbgEVFtc
+         +Aalx1e5QgW8aYGoJ+l67mSmy+cHvtUWQOpbaHzBWhVm0Su2RGW5ANcQ77OHp1dcpart
+         XcLbUqy3jLBJaQg5zel1yX8eUGabfggA81c2/pop4T8BoTL6mUYSXTHIIqvSHi4kiq39
+         IxltSd6zcQWdv/kw+TIbuFUNwBZXB/YxApYHkCYEYyCI4QpoNHbL3sbqtTbWi10gYmpB
+         M28g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712069247; x=1712674047;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hAVh7IlPzqGjm9NpZgxRf0H+NeU99flnbxeI0QSVaJg=;
+        b=lgsZas0erw76ib6eX/6bDwskwzeOve0PO3il0owgWj6IDaLnoqYA5Cr8yym3Q9L9yj
+         hW61bO4jN90Tj38COEbFUaGP7lxncanbAtnQxPKdYdJfKeo2zAxlbmeaSV7KsMOuOWBZ
+         eiL3BeHuhHzHo9NBx6ZEKNzRVjdcP7cStwliwFFKBgDhiGgFQb3LuLtgF3bqN8TMpFYP
+         7u4XBej09FyXwtA15nD83DpShxOTW76Ical1f5QorT2ny7HkU+lbUpL6kYzWv2kAn9JT
+         F3P5m8BlxkjWPqpJFK5To03kJLCmwcMZ8Ey1CTGoYraDpRiuSXLHtt1mJ7J6QCr2E13S
+         8UAg==
+X-Forwarded-Encrypted: i=1; AJvYcCVJQdvY0ZJRlmp5+bTdqVoZmf3BJti/bgIG7jDZsTEp0bJIc7r/J5kZjx09FKSDCO8v4mqsTlj6V2z/2ILI0l3E8zu3Jv6kMGfyuA==
+X-Gm-Message-State: AOJu0Yxv/THfR224d0iXlVhHcBVuQNZigTahnKxDglzdPlhX1bJbSSNX
+	9DQZeQN3iSjA7zpcEowxpG3ZJIjnMQxgd9x6BADkfvYqd8zzAs1Ep2S31Ji4/6Y=
+X-Google-Smtp-Source: AGHT+IFBVqcsXGsRjPp1iqC7U9wiXJJ38gF3zMb3VBwO2QsXOJos6FFUOnkxbTRiPODXCJMx8xQt8A==
+X-Received: by 2002:a05:6402:5190:b0:568:9ba8:8f1a with SMTP id q16-20020a056402519000b005689ba88f1amr9970535edd.7.1712069246823;
+        Tue, 02 Apr 2024 07:47:26 -0700 (PDT)
+Received: from [192.168.92.47] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
+        by smtp.gmail.com with ESMTPSA id r1-20020aa7cb81000000b0056dd4bf7660sm2488730edt.52.2024.04.02.07.47.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Apr 2024 07:47:25 -0700 (PDT)
+Message-ID: <d9ba1e11-44ea-4c1f-ab33-56a8bf57ab63@linaro.org>
+Date: Tue, 2 Apr 2024 16:47:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240324214329.29988-5-wafgo01@gmail.com>
-X-CM-TRANSID:ClUQrADnr0IuGQxm_E+mAQ--.45967S3
-X-Coremail-Antispam: 1Uf129KBjvJXoW7Cw1xGry8Zw1DCFWfuryUWrg_yoW5Jr1fpa
-	yrCrZ3GrZ7Gr17Zayaga1kWFyqvws5JFWYkry5ury8tr45Zr9Yqr10krsIgr47Xrn5Aayr
-	CF1F9ryxu3WYy3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j34SrUUUUU=
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiFRC0ZV6NnBoE+QAAs8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] arm64: dts: msm8996: add fastrpc nodes
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Sibi Sankar <quic_sibis@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+References: <20240401-msm8996-remoteproc-v1-0-f02ab47fc728@linaro.org>
+ <20240401-msm8996-remoteproc-v1-3-f02ab47fc728@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
+ BB/OmIWU6X+LZW6P88ZmHe+KeyABLMP5s1tJNK1j4ntT7mECcWZDzafPWF4F6m4WJOG27kTJ
+ HGWdmtO+RvadOVi6CoUDqALsmfS3MUG5Pj2Ne9+0jRg4hEnB92AyF9rW2G3qisFcwPgvatt7
+ TXD5E38mLyOPOUyXNj9XpDbt1hNwKQfiidmPh5e7VNAWRnW1iCMMoKqzM1Anzq7e5Afyeifz
+ zRcQPLaqrPjnKqZGL2BKQSZDh6NkI5ZLRhhHQf61fkWcUpTp1oDC6jWVfT7hwRVIQLrrNj9G
+ MpPzrlN4YuAqKeIer1FMt8cq64ifgTzxHzXsMcUdclzq2LTk2RXaPl6Jg/IXWqUClJHbamSk
+ t1bfif3SnmhA6TiNvEpDKPiT3IDs42THU6ygslrBxyROQPWLI9IL1y8S6RtEh8H+NZQWZNzm
+ UQ3imZirlPjxZtvz1BtnnBWS06e7x/UEAguj7VHCuymVgpl2Za17d1jj81YN5Rp5L9GXxkV1
+ aUEwONM3eCI3qcYm5JNc5X+JthZOWsbIPSC1Rhxz3JmWIwP1udr5E3oNRe9u2LIEq+wH/toH
+ kpPDhTeMkvt4KfE5m5ercid9+ZXAqoaYLUL4HCEw+HW0DXcKDwARAQABzShLb25yYWQgRHli
+ Y2lvIDxrb25yYWQuZHliY2lvQGxpbmFyby5vcmc+wsGOBBMBCAA4FiEEU24if9oCL2zdAAQV
+ R4cBcg5dfFgFAmQ5bqwCGwMFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AACgkQR4cBcg5dfFjO
+ BQ//YQV6fkbqQCceYebGg6TiisWCy8LG77zV7DB0VMIWJv7Km7Sz0QQrHQVzhEr3trNenZrf
+ yy+o2tQOF2biICzbLM8oyQPY8B///KJTWI2khoB8IJSJq3kNG68NjPg2vkP6CMltC/X3ohAo
+ xL2UgwN5vj74QnlNneOjc0vGbtA7zURNhTz5P/YuTudCqcAbxJkbqZM4WymjQhe0XgwHLkiH
+ 5LHSZ31MRKp/+4Kqs4DTXMctc7vFhtUdmatAExDKw8oEz5NbskKbW+qHjW1XUcUIrxRr667V
+ GWH6MkVceT9ZBrtLoSzMLYaQXvi3sSAup0qiJiBYszc/VOu3RbIpNLRcXN3KYuxdQAptacTE
+ mA+5+4Y4DfC3rUSun+hWLDeac9z9jjHm5rE998OqZnOU9aztbd6zQG5VL6EKgsVXAZD4D3RP
+ x1NaAjdA3MD06eyvbOWiA5NSzIcC8UIQvgx09xm7dThCuQYJR4Yxjd+9JPJHI6apzNZpDGvQ
+ BBZzvwxV6L1CojUEpnilmMG1ZOTstktWpNzw3G2Gis0XihDUef0MWVsQYJAl0wfiv/0By+XK
+ mm2zRR+l/dnzxnlbgJ5pO0imC2w0TVxLkAp0eo0LHw619finad2u6UPQAkZ4oj++iIGrJkt5
+ Lkn2XgB+IW8ESflz6nDY3b5KQRF8Z6XLP0+IEdLOOARkOW7yEgorBgEEAZdVAQUBAQdAwmUx
+ xrbSCx2ksDxz7rFFGX1KmTkdRtcgC6F3NfuNYkYDAQgHwsF2BBgBCAAgFiEEU24if9oCL2zd
+ AAQVR4cBcg5dfFgFAmQ5bvICGwwACgkQR4cBcg5dfFju1Q//Xta1ShwL0MLSC1KL1lXGXeRM
+ 8arzfyiB5wJ9tb9U/nZvhhdfilEDLe0jKJY0RJErbdRHsalwQCrtq/1ewQpMpsRxXzAjgfRN
+ jc4tgxRWmI+aVTzSRpywNahzZBT695hMz81cVZJoZzaV0KaMTlSnBkrviPz1nIGHYCHJxF9r
+ cIu0GSIyUjZ/7xslxdvjpLth16H27JCWDzDqIQMtg61063gNyEyWgt1qRSaK14JIH/DoYRfn
+ jfFQSC8bffFjat7BQGFz4ZpRavkMUFuDirn5Tf28oc5ebe2cIHp4/kajTx/7JOxWZ80U70mA
+ cBgEeYSrYYnX+UJsSxpzLc/0sT1eRJDEhI4XIQM4ClIzpsCIN5HnVF76UQXh3a9zpwh3dk8i
+ bhN/URmCOTH+LHNJYN/MxY8wuukq877DWB7k86pBs5IDLAXmW8v3gIDWyIcgYqb2v8QO2Mqx
+ YMqL7UZxVLul4/JbllsQB8F/fNI8AfttmAQL9cwo6C8yDTXKdho920W4WUR9k8NT/OBqWSyk
+ bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
+ nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
+ izWDgYvmBE8=
+In-Reply-To: <20240401-msm8996-remoteproc-v1-3-f02ab47fc728@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sun, Mar 24, 2024 at 10:43:26PM +0100, Wadim Mueller wrote:
-> This commit adds device tree support for the NXP S32G3-based
-> S32G-VNP-RDB3 Board [1].
+On 31.03.2024 11:10 PM, Dmitry Baryshkov wrote:
+> From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 > 
-> The S32G3 features an 8-core ARM Cortex-A53 based SoC developed by NXP.
+> The ADSP provides fastrpc/compute capabilities. Enable support for the
+> fastrpc on this DSP.
 > 
-> The device tree files are derived from the official NXP downstream
-> Linux tree [2].
-> 
-> This addition encompasses a limited selection of peripherals that
-> are upstream-supported. Apart from the ARM System Modules
-> (GIC, Generic Timer, etc.), the following IPs have been validated:
-> 
->     * UART: fsl-linflexuart
->     * SDHC: fsl-imx-esdhc
-> 
-> Clock settings for the chip rely on ATF Firmware [3].
-> Pin control integration into the device tree is pending and currently
-> relies on Firmware/U-Boot settings [4].
-> 
-> These changes were validated using BSP39 Firmware/U-Boot from NXP [5].
-> 
-> The modifications enable booting the official Ubuntu 22.04 from NXP on
-> the RDB3 with default settings from the SD card and eMMC.
-> 
-> [1] https://www.nxp.com/design/design-center/designs/s32g3-vehicle-networking-reference-design:S32G-VNP-RDB3
-> [2] https://github.com/nxp-auto-linux/linux
-> [3] https://github.com/nxp-auto-linux/arm-trusted-firmware
-> [4] https://github.com/nxp-auto-linux/u-boot
-> [5] https://github.com/nxp-auto-linux/auto_yocto_bsp
-> 
-> Signed-off-by: Wadim Mueller <wafgo01@gmail.com>
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  arch/arm64/boot/dts/freescale/Makefile        |   1 +
->  arch/arm64/boot/dts/freescale/s32g3.dtsi      | 233 ++++++++++++++++++
->  .../boot/dts/freescale/s32g399a-rdb3.dts      |  45 ++++
->  3 files changed, 279 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/s32g3.dtsi
->  create mode 100644 arch/arm64/boot/dts/freescale/s32g399a-rdb3.dts
+>  arch/arm64/boot/dts/qcom/msm8996.dtsi | 57 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 57 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index 2cb0212b63c6..e701008dbc7b 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -252,3 +252,4 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw74xx-rpidsi.dtb
->  dtb-$(CONFIG_ARCH_S32) += s32g274a-evb.dtb
->  dtb-$(CONFIG_ARCH_S32) += s32g274a-rdb2.dtb
->  dtb-$(CONFIG_ARCH_S32) += s32v234-evb.dtb
-> +dtb-$(CONFIG_ARCH_S32) += s32g399a-rdb3.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> index 7ae499fa7d91..cf7ab01f3af6 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> @@ -3545,6 +3545,63 @@ q6routing: routing {
+>  						};
+>  					};
+>  				};
+> +
+> +				fastrpc {
+> +					compatible = "qcom,fastrpc";
+> +					qcom,smd-channels = "fastrpcsmd-apps-dsp";
+> +					label = "adsp";
+> +					qcom,non-secure-domain;
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					cb@8 {
+> +						compatible = "qcom,fastrpc-compute-cb";
+> +						reg = <8>;
+> +						iommus = <&lpass_q6_smmu 8>;
+> +					};
+> +
+> +					cb@9 {
+> +						compatible = "qcom,fastrpc-compute-cb";
+> +						reg = <9>;
+> +						iommus = <&lpass_q6_smmu 9>;
+> +					};
+> +
+> +					cb@10 {
+> +						compatible = "qcom,fastrpc-compute-cb";
+> +						reg = <10>;
+> +						iommus = <&lpass_q6_smmu 10>;
+> +					};
+> +
+> +					cb@11 {
+> +						compatible = "qcom,fastrpc-compute-cb";
+> +						reg = <11>;
+> +						iommus = <&lpass_q6_smmu 11>;
+> +					};
+> +
+> +					cb@12 {
+> +						compatible = "qcom,fastrpc-compute-cb";
+> +						reg = <12>;
+> +						iommus = <&lpass_q6_smmu 12>;
+> +					};
+> +
+> +					cb@5 {
+> +						compatible = "qcom,fastrpc-compute-cb";
+> +						reg = <5>;
 
-The list is alphabetically sorted, so it should be added before
-s32v234-evb.dtb.  I fixed it up and applied the patch.
+No need to copy downstream's creative alphabetical-but-not-numerical
+sorting.. The entries look OK though.. although, any reason we have
+such a weird binding including faux child nodes and not just an array
+of iommus? Is the only way to discover the fastrpc nodes' properties
+such as qcom,non-secure-domain or vmid belonging through hardcoding?
 
-Shawn
+Konrad
 
+Konrad
 
