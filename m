@@ -1,139 +1,105 @@
-Return-Path: <devicetree+bounces-55283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55284-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45B6B894BE5
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 08:54:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1BCF894C0A
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 09:01:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 987D428344F
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 06:54:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E825284179
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 07:01:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5074024B23;
-	Tue,  2 Apr 2024 06:54:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF04022096;
+	Tue,  2 Apr 2024 07:00:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KPHzmzqK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C94E38DE1
-	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 06:54:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9DAA2D047
+	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 07:00:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712040889; cv=none; b=tKrLVcBa3MfJLqE1u96uoQTp73KQpvVT7slg0iHl5ht3AJmeens6nPNksm6FjKFlypiZhI2Php9e58/bZabBZ/Za8Z/gIlJeMCEtT9s1yYM4gWI1Guya/9ieYsoeVq1f5AzD4SEMThQ/EnvpmcKvkxAzl/lgRX+2RyMddR5a2EU=
+	t=1712041254; cv=none; b=QGwqWSvbdiQj0W0NO+U49PqzrmOG+LV0IGABRSTm/ug0aYiRqWPM4Li3LcrIuhYa0xE8iY9txtRy22/3dI3S1wZ0uFUsXDiMj2HBfUi2UhNX4oe4lmU4pZbxhLLBGMQHHqoqzDDwNv1k4JzpX39dF9juBjv9H+QIEaWTIiwxzn8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712040889; c=relaxed/simple;
-	bh=B1LaFRzKFzw+ftbj8etcHlcF0FOYXgI6gMiXVqZPYqI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sUyK+zI93abQz1UcdiBgOcYXWXDQPYTDduDiAF1s/xkkYaS10G7sfWhklsSjeEi7i+2X3y4JPc7DasI65d9VxXy0nyunlVrRZ3TFLVYsJNCA9oUuAIrp8X23SG7uZh0M4Ey4NdJ9KX1CZKbdCaX2e8j+adOmKJ/gIz8aSPe7l0c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1rrY2e-0001pj-R5; Tue, 02 Apr 2024 08:54:44 +0200
-Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1rrY2d-009vjo-Up; Tue, 02 Apr 2024 08:54:43 +0200
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1rrY2d-00AiEJ-2e;
-	Tue, 02 Apr 2024 08:54:43 +0200
-Date: Tue, 2 Apr 2024 08:54:43 +0200
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Jacopo Mondi <jacopo@jmondi.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-	Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH] arm64: dts: debix-a: Remove i2c2 from base .dts
-Message-ID: <20240402065443.hpinj7oftcst6fwd@pengutronix.de>
-References: <20240325225048.1159-1-laurent.pinchart@ideasonboard.com>
+	s=arc-20240116; t=1712041254; c=relaxed/simple;
+	bh=D2ua/iBnM3IQd4IF7W2c1ROnNcouwmN8SkztWBENdRI=;
+	h=Content-Type:Date:Message-Id:Subject:Cc:From:To:References:
+	 In-Reply-To; b=iV8/ol5UY53mLmOg4AhYl8ybKyRoxSf37yN+8HDCQpT+BOASBNuYu4rXl+uyzmaLBbEdCznfCIQzQW+tasH8bA9S2t+SLI+4l4tpQIk9bJRbAVV8ziAxKdlsAWfR9GZ13Lsi9hstHquVJ5zeI/ReNjVeUioGo2eahyR9th2QHPE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KPHzmzqK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4D45C433F1;
+	Tue,  2 Apr 2024 07:00:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712041254;
+	bh=D2ua/iBnM3IQd4IF7W2c1ROnNcouwmN8SkztWBENdRI=;
+	h=Date:Subject:Cc:From:To:References:In-Reply-To:From;
+	b=KPHzmzqKJ0LB4hWTWRct4x+aMWkYvrMnO5LYIy9LEH6Evx1Ue2Na8KSoxymNvrf3m
+	 kdP0j1kCMLcHPLsmh9nafN5y/Iv8PnDw5rVka4taJMfA4sN7zTWlSw1TSm+6pNMwak
+	 Urc4K8BMrrKXGlk6h5WZ0RB3hBLWbpHWmmWDbCPUWVATpLsU1uevmvnj4UEWSu8L0q
+	 KDKCm8SwRIzIVI95sWAt4/0JBfocwvp3tBnGgQ+qTLKd9WvqD1YgOp+ysH8Tf/l16y
+	 era3DN04nBo/blnjf2xXNJ8SPGuUqkKEZiKaIf/Cm8lLHINmaqvowR4sgLNcJQ0r+F
+	 4GjpwV0jkY2DA==
+Content-Type: multipart/signed;
+ boundary=616bc833c83898b99189c6e32c42c091825e75c4e7954f08cf6a558dbb06;
+ micalg=pgp-sha384; protocol="application/pgp-signature"
+Date: Tue, 02 Apr 2024 09:00:50 +0200
+Message-Id: <D09FZ0P0ARBE.1YPEPPM160VJK@kernel.org>
+Subject: Re: [PATCH v5 00/10] Improvments for tc358775 with support for
+ tc358765
+Cc: "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski@linaro.org>, <dri-devel@lists.freedesktop.org>,
+ <devicetree@vger.kernel.org>
+From: "Michael Walle" <mwalle@kernel.org>
+To: "Tony Lindgren" <tony@atomide.com>, "Andrzej Hajda"
+ <andrzej.hajda@intel.com>, "Neil Armstrong" <neil.armstrong@linaro.org>,
+ "Robert Foss" <rfoss@kernel.org>, "Laurent Pinchart"
+ <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman" <jonas@kwiboo.se>,
+ "Jernej Skrabec" <jernej.skrabec@gmail.com>, "David Airlie"
+ <airlied@gmail.com>, "Daniel Vetter" <daniel@ffwll.ch>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "Rob Herring"
+ <robh+dt@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Simha BN" <simhavcs@gmail.com>, "Sam Ravnborg" <sam@ravnborg.org>
+X-Mailer: aerc 0.16.0
+References: <20240225062008.33191-1-tony@atomide.com>
+In-Reply-To: <20240225062008.33191-1-tony@atomide.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240325225048.1159-1-laurent.pinchart@ideasonboard.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 24-03-26, Laurent Pinchart wrote:
-> From: Jacopo Mondi <jacopo@jmondi.org>
-> 
-> The I2C2 bus is used for the CSI and DSI connectors only, no devices are
-> connected to it on neither the Debix Model A nor its IO board. Remove
-> the bus from the board's .dts and rely on display panel or camera sensor
-> overlsy to enable it when necessary.
+--616bc833c83898b99189c6e32c42c091825e75c4e7954f08cf6a558dbb06
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-I would rather remove the status line instead of removing the whole node
-since the bus is intented to be used for CSI and DSI and therefore the
-muxing should be valid. This makes it easier for overlay authors since
-they don't need to check the mux setup each time.
+Hi DRM maintainers,
 
-Regards,
-  Marco
+On Sun Feb 25, 2024 at 7:19 AM CET, Tony Lindgren wrote:
+> Here are v5 patches to improve tc358775 driver and add support for
+> tc358765.
 
+Any news on this series? Is there anything open or can it be merged?
 
-> 
-> Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
->  .../boot/dts/freescale/imx8mp-debix-model-a.dts    | 14 --------------
->  1 file changed, 14 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-> index 5ac77eaf23d5..26c303b7c7fa 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-> @@ -210,13 +210,6 @@ ldo5: LDO5 {
->  	};
->  };
->  
-> -&i2c2 {
-> -	clock-frequency = <100000>;
-> -	pinctrl-names = "default";
-> -	pinctrl-0 = <&pinctrl_i2c2>;
-> -	status = "okay";
-> -};
-> -
->  &i2c3 {
->  	clock-frequency = <400000>;
->  	pinctrl-names = "default";
-> @@ -392,13 +385,6 @@ MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA					0x400001c2
->  		>;
->  	};
->  
-> -	pinctrl_i2c2: i2c2grp {
-> -		fsl,pins = <
-> -			MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL					0x400001c2
-> -			MX8MP_IOMUXC_I2C2_SDA__I2C2_SDA					0x400001c2
-> -		>;
-> -	};
-> -
->  	pinctrl_i2c3: i2c3grp {
->  		fsl,pins = <
->  			MX8MP_IOMUXC_I2C3_SCL__I2C3_SCL					0x400001c2
-> -- 
-> Regards,
-> 
-> Laurent Pinchart
-> 
-> 
-> 
+FWIW, I have another tc358775 improvement series based on this.
+
+-michael
+
+--616bc833c83898b99189c6e32c42c091825e75c4e7954f08cf6a558dbb06
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCZgutIhIcbXdhbGxlQGtl
+cm5lbC5vcmcACgkQEic87j4CH/ihkwF9GYXSK6u/OH4qJlmjvaXzwD5DudtfgP3k
+BX8aOrgBh376hSaK7NOh8fMQ3UZk8bE/AX0WeSBJ4yN3csM68ADk5rQQ3PApaVeu
+orCzP9+elqCgYWiXmcXnXH/s01bWgg8GjEw=
+=jOrN
+-----END PGP SIGNATURE-----
+
+--616bc833c83898b99189c6e32c42c091825e75c4e7954f08cf6a558dbb06--
 
