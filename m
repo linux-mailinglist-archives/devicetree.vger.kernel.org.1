@@ -1,260 +1,100 @@
-Return-Path: <devicetree+bounces-55266-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55267-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F49F894A40
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 06:06:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA16C894A8A
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 06:42:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A18631C2203A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 04:06:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EBED41C20D43
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 04:42:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A417B1758E;
-	Tue,  2 Apr 2024 04:06:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F42E17BCA;
+	Tue,  2 Apr 2024 04:42:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NnXJMWyD"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="Q806oSm5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DC47179A8;
-	Tue,  2 Apr 2024 04:06:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB7712581;
+	Tue,  2 Apr 2024 04:42:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712030810; cv=none; b=YuHyhNijLa1A2TQDgj482LAGJxzERgWHfCR88lCR4ODlZxexISnOAAY+/1hWmp75PaSyKMgjKTVkKCOAesvSA1M60p2QiaaIU+VYySzwI1JcsAo2M6X7oaPpKd7p6Cf4ZjshhEpf1xx+kRuXkZmImYaEUxb/IGeC9e5Vp1Czbf8=
+	t=1712032929; cv=none; b=Q5lcm9QklBNwWb8a16pcFSe7thNfrTZXCZHLmMSFWVsbmzXQ7vD4Ker2aOhUul+mj7dZbDEYaWLOSnUsZRcmKYEWreFqmGOpcj9kBalzxoKYSjhUnPV3LqDWc2rW18geV3mOxAWX33uMVq0Hd4+Y462xus6LWnKZn6CzNQ4rCV8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712030810; c=relaxed/simple;
-	bh=cqq0rX5kfGKvJZHle23cnOIeKwCuzcmQ47251nGGIZs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VsYB7sOjtH9P2OHP5EMEl6aWlVlACu4wfUfqjeggEi6CSVmir5VSR4oa6zoNM8Bg10v+OH4oPt0qHerqehk0F2xuLxbyJ58WHcX/p20OS1OsBSy7LWl/MDeCEkGgOHi0knL6UmL1VwGfVQQf7AU0vcqKWo3HoCxY9H8npyQNeTA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NnXJMWyD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A80DBC433C7;
-	Tue,  2 Apr 2024 04:06:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712030810;
-	bh=cqq0rX5kfGKvJZHle23cnOIeKwCuzcmQ47251nGGIZs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NnXJMWyD3zzSj5MO91Jf5eMslBoHsCI3QFd3NSVN4tQ83JY42I/bvsHWIU2/J2gxT
-	 YIMUbvdBuL8SoQb0YbB5aTlvVLYQ6BMZGjMHWiusYkVHIdJeTIc37LIjyQOpq89FfT
-	 QR4PU8JG/TITIs0y3F5qdNwYz5xnOk7IGkvVvl8dHwDrsfEuneieYm9vNT7La5RXoW
-	 a968jf/Ut5QJxhvFMLSyDRQey1/SzUYG2pQRjR7o8baseln3wkaM4yWiB2K3vArFHv
-	 c5c0p3AJ7+Jps3jIetlTKyBLGJsfs4pyPEZ/ErIFqaUgglVSnQalPfbTE+cilrpdJP
-	 2v+RTGLtnddCg==
-Date: Tue, 2 Apr 2024 09:36:41 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: Manivannan Sadhasivam <mani@kernel.org>,
-	Nitin Rawat <quic_nitirawa@quicinc.com>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Avri Altman <avri.altman@wdc.com>,
-	Bart Van Assche <bvanassche@acm.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/3] arm64: dts: qcom: sc7280: Add UFS nodes for
- sc7280 soc
-Message-ID: <20240402040641.GA2933@thinkpad>
-References: <20231204-sc7280-ufs-v5-0-926ceed550da@fairphone.com>
- <20231204-sc7280-ufs-v5-2-926ceed550da@fairphone.com>
- <621388b9-dcee-4af2-9763-e5d623d722b7@quicinc.com>
- <CXFJNBNKTRHH.2CS6TO2MEGJWL@fairphone.com>
- <20231204172829.GA69580@thinkpad>
- <D004BPW9N0FS.376F67CINO459@fairphone.com>
+	s=arc-20240116; t=1712032929; c=relaxed/simple;
+	bh=Cq4y5V9tgRGo3LoHQcADYNRf6oy3wrq7fzGOaXsz42c=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=cSbC8kVWIOrX/q/2DDrfWiJ4BX35Jyd0ibKOM8f2vUAqfDT6R9QEo2OUzY6GhRskrx2WDbeTxlWO5rhbhBjYAVdbkdmePmDg0JeYEnQhGLAVd4h7GRkLjjHQTvgWR0L3q3Iz+L9ksIimc8GaP3+eX3DnoRen3lCyKDyyV3ZaZxc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=Q806oSm5; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+Received: from [192.168.68.112] (ppp118-210-182-70.adl-adc-lon-bras34.tpg.internode.on.net [118.210.182.70])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 4011420016;
+	Tue,  2 Apr 2024 12:41:56 +0800 (AWST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1712032918;
+	bh=fRcs8rvk7aWDd3jH1iz3Wdk5wU4Tj0kt/f5n2x/Nrm4=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=Q806oSm5OfEMDMJ/wLaqtQwDlfkPA1UW3d3kM0I97eEHY8VnrfYoNhex0sFxwKvNU
+	 6ABUEJQjE84Nt41hQNrgJIZg172+oSPEcLDq42RZfwDIwJSHxrSx07P9n4ymSCw8ep
+	 +3/OO15E0JLuAoaxhHDtcqt7DckH201EFNTyTtAlt8kfEbsZPjrDK11b/4nQxhqlOp
+	 pnuud1xzxMRIV1k5kjs2qYfX9hIKg2uqZaLV7UkvbkXu4RWSM58ygdljZA0e3q22f7
+	 4ff5N3+gQpp+ZU95Tu7iwprzzaRA9m/KlKiBgz7PD4BtQl9Mp4u8XX5sDt8zsANeZW
+	 eR68bplZPpB9Q==
+Message-ID: <3aad5148383ba9e8fd905b09690ffa9c378b31de.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v1] Revise duty cycle for SMB9 and SMB10
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>, patrick@stwcx.xyz, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Joel Stanley <joel@jms.id.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Date: Tue, 02 Apr 2024 15:11:55 +1030
+In-Reply-To: <20240401090509.2338027-1-Delphine_CC_Chiu@Wiwynn.com>
+References: <20240401090509.2338027-1-Delphine_CC_Chiu@Wiwynn.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <D004BPW9N0FS.376F67CINO459@fairphone.com>
 
-On Fri, Mar 22, 2024 at 08:59:12AM +0100, Luca Weiss wrote:
-> On Mon Dec 4, 2023 at 6:28 PM CET, Manivannan Sadhasivam wrote:
-> > On Mon, Dec 04, 2023 at 01:21:42PM +0100, Luca Weiss wrote:
-> > > On Mon Dec 4, 2023 at 1:15 PM CET, Nitin Rawat wrote:
-> > > >
-> > > >
-> > > > On 12/4/2023 3:54 PM, Luca Weiss wrote:
-> > > > > From: Nitin Rawat <quic_nitirawa@quicinc.com>
-> > > > > 
-> > > > > Add UFS host controller and PHY nodes for sc7280 soc.
-> > > > > 
-> > > > > Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
-> > > > > Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> > > > > Tested-by: Konrad Dybcio <konrad.dybcio@linaro.org> # QCM6490 FP5
-> > > > > [luca: various cleanups and additions as written in the cover letter]
-> > > > > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> > > > > ---
-> > > > >   arch/arm64/boot/dts/qcom/sc7280.dtsi | 74 +++++++++++++++++++++++++++++++++++-
-> > > > >   1 file changed, 73 insertions(+), 1 deletion(-)
-> > > > > 
-> > > > > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > > > index 04bf85b0399a..8b08569f2191 100644
-> > > > > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > > > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > > > @@ -15,6 +15,7 @@
-> > > > >   #include <dt-bindings/dma/qcom-gpi.h>
-> > > > >   #include <dt-bindings/firmware/qcom,scm.h>
-> > > > >   #include <dt-bindings/gpio/gpio.h>
-> > > > > +#include <dt-bindings/interconnect/qcom,icc.h>
-> > > > >   #include <dt-bindings/interconnect/qcom,osm-l3.h>
-> > > > >   #include <dt-bindings/interconnect/qcom,sc7280.h>
-> > > > >   #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > > > > @@ -906,7 +907,7 @@ gcc: clock-controller@100000 {
-> > > > >   			clocks = <&rpmhcc RPMH_CXO_CLK>,
-> > > > >   				 <&rpmhcc RPMH_CXO_CLK_A>, <&sleep_clk>,
-> > > > >   				 <0>, <&pcie1_phy>,
-> > > > > -				 <0>, <0>, <0>,
-> > > > > +				 <&ufs_mem_phy 0>, <&ufs_mem_phy 1>, <&ufs_mem_phy 2>,
-> > > > >   				 <&usb_1_qmpphy QMP_USB43DP_USB3_PIPE_CLK>;
-> > > > >   			clock-names = "bi_tcxo", "bi_tcxo_ao", "sleep_clk",
-> > > > >   				      "pcie_0_pipe_clk", "pcie_1_pipe_clk",
-> > > > > @@ -2238,6 +2239,77 @@ pcie1_phy: phy@1c0e000 {
-> > > > >   			status = "disabled";
-> > > > >   		};
-> > > > >   
-> > > > > +		ufs_mem_hc: ufs@1d84000 {
-> > > > > +			compatible = "qcom,sc7280-ufshc", "qcom,ufshc",
-> > > > > +				     "jedec,ufs-2.0";
-> > > > > +			reg = <0x0 0x01d84000 0x0 0x3000>;
-> > > > > +			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
-> > > > > +			phys = <&ufs_mem_phy>;
-> > > > > +			phy-names = "ufsphy";
-> > > > > +			lanes-per-direction = <2>;
-> > > > > +			#reset-cells = <1>;
-> > > > > +			resets = <&gcc GCC_UFS_PHY_BCR>;
-> > > > > +			reset-names = "rst";
-> > > > > +
-> > > > > +			power-domains = <&gcc GCC_UFS_PHY_GDSC>;
-> > > > > +			required-opps = <&rpmhpd_opp_nom>;
-> > > > > +
-> > > > > +			iommus = <&apps_smmu 0x80 0x0>;
-> > > > > +			dma-coherent;
-> > > > > +
-> > > > > +			interconnects = <&aggre1_noc MASTER_UFS_MEM QCOM_ICC_TAG_ALWAYS
-> > > > > +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
-> > > > > +					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-> > > > > +					 &cnoc2 SLAVE_UFS_MEM_CFG QCOM_ICC_TAG_ALWAYS>;
-> > > > > +			interconnect-names = "ufs-ddr", "cpu-ufs";
-> > > > > +
-> > > > > +			clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
-> > > > > +				 <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
-> > > > > +				 <&gcc GCC_UFS_PHY_AHB_CLK>,
-> > > > > +				 <&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
-> > > > > +				 <&rpmhcc RPMH_CXO_CLK>,
-> > > > > +				 <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
-> > > > > +				 <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
-> > > > > +				 <&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
-> > > > > +			clock-names = "core_clk",
-> > > > > +				      "bus_aggr_clk",
-> > > > > +				      "iface_clk",
-> > > > > +				      "core_clk_unipro",
-> > > > > +				      "ref_clk",
-> > > > > +				      "tx_lane0_sync_clk",
-> > > > > +				      "rx_lane0_sync_clk",
-> > > > > +				      "rx_lane1_sync_clk";
-> > > > > +			freq-table-hz =
-> > > > > +				<75000000 300000000>,
-> > > > > +				<0 0>,
-> > > > > +				<0 0>,
-> > > > > +				<75000000 300000000>,
-> > > > > +				<0 0>,
-> > > > > +				<0 0>,
-> > > > > +				<0 0>,
-> > > > > +				<0 0>;
-> > > > > +			status = "disabled";
-> > > > > +		};
-> > > > > +
-> > > > > +		ufs_mem_phy: phy@1d87000 {
-> > > > > +			compatible = "qcom,sc7280-qmp-ufs-phy";
-> > > > > +			reg = <0x0 0x01d87000 0x0 0xe00>;
-> > > > > +			clocks = <&rpmhcc RPMH_CXO_CLK>,
-> > > > > +				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>,
-> > > > > +				 <&gcc GCC_UFS_1_CLKREF_EN>;
-> > > > > +			clock-names = "ref", "ref_aux", "qref";
-> > > > > +
-> > > > > +			power-domains = <&gcc GCC_UFS_PHY_GDSC>;
-> > > 
-> > > Hi Nitin,
-> > > 
-> > > >
-> > > > GCC_UFS_PHY_GDSC is UFS controller GDSC. For sc7280 Phy we don't need this.
-> > > 
-> > > In the current dt-bindings the power-domains property is required.
-> > > 
-> > > Is there another power-domain for the PHY to use, or do we need to
-> > > adjust the bindings to not require power-domains property for ufs phy on
-> > > sc7280?
-> > > 
-> >
-> > PHYs are backed by MX power domain. So you should use that.
-> >
-> > > Also, with "PHY" in the name, it's interesting that this is not for the
-> > > phy ;)
-> > > 
-> >
-> > Yes, confusing indeed. But the controllers (PCIe, UFS, USB etc...) are backed by
-> > GDSCs and all the analog components (PHYs) belong to MX domain since it is kind
-> > of always ON.
-> >
-> > I'll submit a series to fix this for the rest of the SoCs.
-> 
-> Hi Mani,
-> 
-> Did you get around to sending such series?
-> 
+On Mon, 2024-04-01 at 17:05 +0800, Delphine CC Chiu wrote:
+> ARM: dts: aspeed: yosemite4:
+> Revise duty cycle for SMB9 and SMB10 to 40:60
+> To meet 400kHz-i2c clock low time spec (> 1.3 us).
+>=20
+> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
+> ---
+>  arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts | 2 ++
+>  1 file changed, 2 insertions(+)
+>=20
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b=
+/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+> index 64075cc41d92..b3a2aa8f53a5 100644
+> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+> @@ -257,6 +257,7 @@ power-sensor@40 {
+>  &i2c8 {
+>  	status =3D "okay";
+>  	bus-frequency =3D <400000>;
+> +	i2c-clk-high-min-percent =3D <40>;
 
-Sorry not yet. I wanted to send this series after the cleanup of AUX_CLK, but
-that got stalled due to different reasons.
+A grep of the 6.9-rc2 tree doesn't turn up any mention of this property
+name.
 
-Let me try to send this one asap.
+More work needs to be done if this is meant to have any effect.
 
-- Mani
+What tree are you developing your patches against? If you're sending
+them upstream then you must do your work (and test) in the context of
+upstream.
 
-> This would also fix some binding warnings, e.g. on SM6350.
-> 
->   arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dtb: phy@1d87000: 'power-domains' is a required property
->           from schema $id: http://devicetree.org/schemas/phy/qcom,sc8280xp-qmp-ufs-phy.yaml#
-> 
-> Regards
-> Luca
-> 
-> 
-> >
-> > - Mani
-> >
-> > > Regards
-> > > Luca
-> > > 
-> > > >
-> > > > > +
-> > > > > +			resets = <&ufs_mem_hc 0>;
-> > > > > +			reset-names = "ufsphy";
-> > > > > +
-> > > > > +			#clock-cells = <1>;
-> > > > > +			#phy-cells = <0>;
-> > > > > +
-> > > > > +			status = "disabled";
-> > > > > +		};
-> > > > > +
-> > > > >   		ipa: ipa@1e40000 {
-> > > > >   			compatible = "qcom,sc7280-ipa";
-> > > > >   
-> > > > > 
-> > > 
-> 
-
--- 
-மணிவண்ணன் சதாசிவம்
+Andrew
 
