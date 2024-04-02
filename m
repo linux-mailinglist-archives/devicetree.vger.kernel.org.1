@@ -1,110 +1,132 @@
-Return-Path: <devicetree+bounces-55570-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55571-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6054895A79
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 19:15:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51F49895A97
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 19:23:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9AA601F236FC
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 17:15:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9F2EAB238C0
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 17:21:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3657E159918;
-	Tue,  2 Apr 2024 17:15:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76D9D15A48B;
+	Tue,  2 Apr 2024 17:21:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="AemAqCtV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kkR1LxWP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FC4814C5B0;
-	Tue,  2 Apr 2024 17:15:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CBFB14B07B;
+	Tue,  2 Apr 2024 17:21:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712078103; cv=none; b=VbWi0/45OlKseEOXVep7cFwvZhdyabS6l1kPmhqiIuAzUFh5tnXD1NIFxGC2T/RzKN/0TK2OZKscc339SHpUnLA6/4vdA0ShRK6kzW1lHE5yxCVcOcZhNKaS/vnsbLCN0FbJeiF6U8VpdF002ypXTisz7bp/Dg2k6bO7hQcOYIQ=
+	t=1712078492; cv=none; b=J0Xr8pfEMX58vYxpLwFW1EqZq5wmDirqwKkkmkulMVPlw0jvHy63E50me5H2U2lnmJM9qHCJ1hQfW5jrgN9FWgiva0nWewoUL2D7AABXEV5RiWn0lo9rIXtJ5X/rLKgFUTHS4Ewn0U6dp5i7WmG1j+b3CpKICW+zgnKNE9AwTGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712078103; c=relaxed/simple;
-	bh=2BaXhVcstFW0jvQeiK33wxM461j7UJUM44Ukbw+ZOCw=;
-	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=Dyj/uHM8JD6JI9TJo3cLpRguqYRQdZ7vG7SJ5KOU7QLgNAm3+P+LIwFu6W23NTEsfAGnT9Jqt+aONLwkRHvUHHKYxY+CgBmSxoyzGFYHvsrwhS/R4d2oAMT5q5waCLEBg/IZ/NMy397kZURyL6/UNHVed/je91ABKfNW9hmQ1/U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=AemAqCtV; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1712078102; x=1743614102;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=2BaXhVcstFW0jvQeiK33wxM461j7UJUM44Ukbw+ZOCw=;
-  b=AemAqCtVwMI3RjKHQsgfLlZLbgc0f9Kh6S0UGybiSIc/To01ThXJdOF7
-   VGec9XM5YZKY9JlAyjzmEKU8np5LRMBKkcIGcAzTtbW/4TJoMPXC7wEZi
-   TH9LYTb7/YqntY99nYhkPGjHnG/8g53Nmbzjz5/vTtYWggCXYRh2kgsry
-   x9+u3e6gvnWTQ3W6CKCzmtQcTr7LvYR3PIC1WhByxRTCiv5rwxU6iTeM8
-   bQPmZJ8PXcV1LBeJ+KWVsfXnH+lNjH2kKFBwr4xdNP/lgU7GFiBRMrhlS
-   4CAx8sQHJ0TVqpF5ts9GcnxC53O7xLSULwmf2YbiKMhT/d35Q5rOV+txH
-   g==;
-X-CSE-ConnectionGUID: 1YWu1/t2ShSymp+Vuh06Hw==
-X-CSE-MsgGUID: ntl/8rF5TB6q0aEmhambQw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="18628480"
-X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; 
-   d="scan'208";a="18628480"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Apr 2024 10:15:01 -0700
-X-CSE-ConnectionGUID: jDvXfXfAQhSacly1OhphUw==
-X-CSE-MsgGUID: Z9fPpwCqQKqqvIQtGi/ASQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; 
-   d="scan'208";a="18122645"
-Received: from sj-4150-psse-sw-opae-dev2.sj.intel.com ([10.233.115.162])
-  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Apr 2024 10:15:01 -0700
-Date: Tue, 2 Apr 2024 10:14:52 -0700 (PDT)
-From: matthew.gerlach@linux.intel.com
-X-X-Sender: mgerlach@sj-4150-psse-sw-opae-dev2
-To: Bjorn Helgaas <helgaas@kernel.org>
-cc: joyce.ooi@intel.com, bhelgaas@google.com, lpieralisi@kernel.org, 
-    kw@linux.com, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-    conor+dt@kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-    linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: pci: altera: covert to yaml
-In-Reply-To: <20240401224447.GA1762763@bhelgaas>
-Message-ID: <alpine.DEB.2.22.394.2404021012530.364942@sj-4150-psse-sw-opae-dev2>
-References: <20240401224447.GA1762763@bhelgaas>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+	s=arc-20240116; t=1712078492; c=relaxed/simple;
+	bh=DnpOibWeEhhYJWAo5GJdkNBTBKaVlT4nCoBWBnjQiTg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IXD9Ei78IpVr0rN2b0M6PgSBUrar1+0I2dqL3ObeNIPp7r6UylJXg5FUfUR6hWk+tNXCEjbH7H6g26EQsg6wgMG7MW96AGB/darrSsGMaOwkCkuG+TKqKFARRvIrMTgMwG/itFhJyBXzQnekZVImhIXlCcTQLKSefvhyA9jPL+U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kkR1LxWP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 879E7C433F1;
+	Tue,  2 Apr 2024 17:21:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712078491;
+	bh=DnpOibWeEhhYJWAo5GJdkNBTBKaVlT4nCoBWBnjQiTg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kkR1LxWPiOyeNYU2wTg7krNhTXupOzH+yuLhG3Iv+H/QqOzbVHpk1rcdPtc/M1lRU
+	 tqr3GNmoceWktBQ8jqNGbwAy41Qtqbq10Li5hNplEEYfnXR0WlE6zkC18TmVn2XU+g
+	 SQLPNRsEPBV4N1gbp3O5uHPw2AyRVxQzusInycQmfyq0xWc4zDlSbpise0OugxksUJ
+	 HKvEnkkDyWpMQnBsUZmqp8dJCP3h9/OqsrbU9MxaPuHlZaQWW7mHsXs48GvN54zWeE
+	 p1NX0/yOEiYW/Fv57vWyBta9YswZqIDjwrkyK7wfEKMZBxHChHIZPu/G2Wj7YC1b5q
+	 slvAW9kE4DQSw==
+Date: Tue, 2 Apr 2024 12:21:28 -0500
+From: Rob Herring <robh@kernel.org>
+To: Richard Zhu <hongxing.zhu@nxp.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	frank.li@nxp.com, conor+dt@kernel.org,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	kernel@pengutronix.de, imx@lists.linux.dev
+Subject: Re: [PATCH v2 1/3] dt-bindings: phy: phy-imx8-pcie: Add binding for
+ i.MX8Q HSIO SerDes PHY
+Message-ID: <20240402172128.GA250151-robh@kernel.org>
+References: <1712036704-21064-1-git-send-email-hongxing.zhu@nxp.com>
+ <1712036704-21064-2-git-send-email-hongxing.zhu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1712036704-21064-2-git-send-email-hongxing.zhu@nxp.com>
 
+On Tue, Apr 02, 2024 at 01:45:02PM +0800, Richard Zhu wrote:
+> Add binding for controller ID and HSIO configuration setting of the
+> i.MX8Q HSIO SerDes PHY.
+> 
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  include/dt-bindings/phy/phy-imx8-pcie.h | 29 +++++++++++++++++++++++++
+>  1 file changed, 29 insertions(+)
+> 
+> diff --git a/include/dt-bindings/phy/phy-imx8-pcie.h b/include/dt-bindings/phy/phy-imx8-pcie.h
+> index 8bbe2d6538d8..3292c8be3354 100644
+> --- a/include/dt-bindings/phy/phy-imx8-pcie.h
+> +++ b/include/dt-bindings/phy/phy-imx8-pcie.h
+> @@ -11,4 +11,33 @@
+>  #define IMX8_PCIE_REFCLK_PAD_INPUT	1
+>  #define IMX8_PCIE_REFCLK_PAD_OUTPUT	2
+>  
+> +/*
+> + * i.MX8QM HSIO subsystem has three lane PHYs and three controllers:
+> + * PCIEA(2 lanes capapble PCIe controller), PCIEB (only support one
 
+capable
 
-On Mon, 1 Apr 2024, Bjorn Helgaas wrote:
+> + * lane) and SATA.
+> + *
+> + * In the different use cases. PCIEA can be binded to PHY lane0, lane1
 
-> "git log --oneline Documentation/devicetree/bindings/pci/" says the
-> typical style would be:
->
->  dt-bindings: PCI: altera: Convert to YAML
+s/binded/bound/
 
-Good suggestion about the 'git log --oneline ...' I will update title in 
-v2.
+And throughout your patches.
 
->
-> On Fri, Mar 29, 2024 at 12:00:31PM -0500, matthew.gerlach@linux.intel.com wrote:
->> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
->>
->> Covert the device tree bindings for the Altera Root
->> Port controller from text to yaml.
->
-> s/covert/convert/ (both in subject and commit log).
->
-> Rewrap to fill 80 columns.
->
+> + * or Lane0 and lane1. PCIEB can be binded to lane1 or lane2 PHY. SATA
+> + * can only be binded to last lane2 PHY.
+> + *
+> + * Define i.MX8Q HSIO controller ID here to specify the controller
+> + * binded to the PHY.
+> + * Meanwhile, i.MX8QXP HSIO subsystem has one lane PHY and PCIEB(only
+> + * support one lane) controller.
+> + */
+> +#define IMX8Q_HSIO_PCIEA_ID	0
+> +#define IMX8Q_HSIO_PCIEB_ID	1
+> +#define IMX8Q_HSIO_SATA_ID	2
 
-Thanks for catching the spelling error. Wrapping and spelling fix will be 
-included in v2.
+Please use the standard phy mode defines.
 
-Matthew Gerlach
+> +
+> +/*
+> + * On i.MX8QM, PCIEA is mandatory required if the HSIO is enabled.
+> + * Define configurations beside PCIEA is enabled.
+> + *
+> + * On i.MX8QXP, HSIO module only has PCIEB and one lane PHY.
+> + * The "IMX8Q_HSIO_CFG_PCIEB" can be used on i.MX8QXP platforms.
+> + */
+> +#define IMX8Q_HSIO_CFG_SATA		1
+> +#define IMX8Q_HSIO_CFG_PCIEB		2
+> +#define IMX8Q_HSIO_CFG_PCIEBSATA	3
+
+This seems somewhat redundant both as the 3rd define is just an OR of 
+the first 2 and all 3 overlap with the prior defines.
+
+Seems like with standard PHY modes, the only additional information you 
+might need is PCIEB vs. PCIEA.
+
+Rob
 
