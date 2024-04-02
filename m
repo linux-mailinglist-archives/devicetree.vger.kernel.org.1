@@ -1,283 +1,187 @@
-Return-Path: <devicetree+bounces-55373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD9E8894FEE
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 12:20:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B6DD895004
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 12:27:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F18B61C211D7
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 10:20:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 07FDD1F226AD
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 10:27:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E14745A7AE;
-	Tue,  2 Apr 2024 10:20:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 036645FBA1;
+	Tue,  2 Apr 2024 10:27:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="S5sa6vLT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uVsEhz5X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2105.outbound.protection.outlook.com [40.107.105.105])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B78ED5A0FD;
-	Tue,  2 Apr 2024 10:20:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.105.105
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712053234; cv=fail; b=YEzIVXXA0FKXw3aXs3+iPamHzrVMf/i32HibPiG63Z84XglR09HsuoZVS+ZheHAAxxMf+7F2AYHewwZwRE6MyetkYRXL+VJkS/cQwKT8NngC47fw5J8Fhc26R7XbZPekEzaxrdlgB65Dx455MuomZLleqgUS+zeoThUqIPwjLt8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712053234; c=relaxed/simple;
-	bh=iA7tui5DWrg5ejUJmBMFkh+fuA33RUlB3aVu+uO5nMw=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=hAEdSHtXrXm5vMp8GCrs9QrZi0Ch59c2gw80/j8Cjj2cKvh8418YbRFCK2LHHb9mhW7giFPywW2yLgg8BLiZn4min0Fx8EPg0szWKMBha4F8RNlVO0v16Mgmz17qXqA+xYiaa7muPOfVdah1r72oD43iNC8PRr5KveAfu+889SI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=S5sa6vLT; arc=fail smtp.client-ip=40.107.105.105
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EuUKtEUuQG11oZrs0mfmSDa00/X4ALT30Ewpf+FkAWmj/IxtAIrd80Gsju+4ZKq43Ad88+7Iolr7LO8e/qr03SaPQOpa7lsisjDavsY1E5ceYTdPahbvfsktFnwYnlDPygZmnOsConDpESKzVqv6j3pcIg3utH40KOVckmK3kUBwT3riRJNwuDR5lwinR7a99iAsnC6+yELfqO8Rqwf5nnL94dBIT3mjecc6oBKtSM9/wEzh58p5NuwvgyaplBaeamJEwf/fVzwSgxfeCxle48praCkqZz9BmzOFSHc6ScN8i8p7l28Jb8i+tfb/zSJDRHzGnMClU/ZZh1bpkR/CMw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zTCgZJFU+LTJn/LDM88MfYm+xvE5pxnR4nZVX2/4v3Y=;
- b=EwAtYgXA7xsqMfKmh3YfC6ru/hi/BfQhEKmY7/Rgd2s91gTp9YYtTqYNofgauzCTVld2H2hXgHZgI1w+YTJTZr78UrPCUtq9T8DyH5c6EQvACFW6232fpne51Bz6gNGgUkDQla0ytlUmEraYHyJEmw0kkR5yQ7OviQJDNA8Z0SJM3fkcJwrcspSaWDVNCBmH/26E7MoAPWqTPUDsj5qoLS1JNsBDq0pZY+3spQtAwfRvEX8Z/ujx4cjtjxE1n/nb1r3C9bbTTMsxX/+S1Srv6BG2s7TzpT3kSH+POLPWc/51bYk/bnp99D+s8Ej5n7K7hJJVqo4n8vJqP2K4N7x2yQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zTCgZJFU+LTJn/LDM88MfYm+xvE5pxnR4nZVX2/4v3Y=;
- b=S5sa6vLTI67voFIFywozE38x3bDGWikXwGslJPY/o91L4p7gNfpB0bGdHXmLKg3sqrDKk7h+4CJxI+1w7P7NvUWy7CQqX7dPXPTvmTX9nOASRlQmeo4p2Ap23xo5zhUF0VoRzunRmPzzmvzRA8/CS7vqAgNKV87emMvzCCReGhw=
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
- by PA4PR04MB7885.eurprd04.prod.outlook.com (2603:10a6:102:ce::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Tue, 2 Apr
- 2024 10:20:28 +0000
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::8d2f:ac7e:966a:2f5f]) by DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::8d2f:ac7e:966a:2f5f%5]) with mapi id 15.20.7409.042; Tue, 2 Apr 2024
- 10:20:28 +0000
-From: Xu Yang <xu.yang_2@nxp.com>
-To: Shawn Guo <shawnguo2@yeah.net>
-CC: "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"shawnguo@kernel.org" <shawnguo@kernel.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-	"kernel@pengutronix.de" <kernel@pengutronix.de>, "festevam@gmail.com"
-	<festevam@gmail.com>, dl-linux-imx <linux-imx@nxp.com>,
-	"peter.chen@kernel.org" <peter.chen@kernel.org>, Jun Li <jun.li@nxp.com>,
-	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "imx@lists.linux.dev"
-	<imx@lists.linux.dev>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: RE: [EXT] Re: [PATCH v10 02/11] arm64: dts: imx8ulp: add usb nodes
-Thread-Topic: [EXT] Re: [PATCH v10 02/11] arm64: dts: imx8ulp: add usb nodes
-Thread-Index: AQHae2fM64boqdCCnUiZChs5zmyRKbFUuWoAgAAeVpA=
-Date: Tue, 2 Apr 2024 10:20:28 +0000
-Message-ID:
- <DU2PR04MB88225A1F8A245C68071138228C3E2@DU2PR04MB8822.eurprd04.prod.outlook.com>
-References: <20240321081439.541799-1-xu.yang_2@nxp.com>
- <20240321081439.541799-2-xu.yang_2@nxp.com> <ZgvCTgB4lp0F83Kn@dragon>
-In-Reply-To: <ZgvCTgB4lp0F83Kn@dragon>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DU2PR04MB8822:EE_|PA4PR04MB7885:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- wR9Gqm7GyDrXQDVNSb1cKO58L87X1XaOcq2KsOjk5XdWWSUTArxLvfOyzBHYTi0TzmJQ369kuFfNB5tE5ZauM6c0NCIv2tcbSw/EOhBP5tBgSeXjTjdlUt1oHMkTDUKxexn4dmvGr9wlVMzXaljt5YghC60N5keIJVhQRSGSL+7rBzrhYGnfN2MAqmfk9ejIoSyHHVDivfCTuN6bKfMVBaXvz8rTnPXiISBJvE7OCRKzKsg8XXd1ey+1Qlfpf0fN8uy4lh4qijWaLsHyOZ+KkqqHqzZAHvC+ZVGk6XkSE5sDqeihLV2oxuZ/rUrzjjqSA2XcNIQhT6/wedOGJjM/UFe7nICwzUcXpXhDERmx+uiUtx7O56mKGXjJHkB39JXojJs/cQYfvI2H0yU/fMKw3NjXk+xRSzE254i9gSVHV0fv70hu9bGJXdixuEMPaegAYoXY08+WXvSBk9OLqlcgq5OWjY8btFy4y+mq7tB9ti9scR0Q63m5NKahTC46eBqMGuwjeZXGZ274REMCIhnol5ghUNciSx/G7cwS3hM8x6wj2YghkRD+4WtlwY1ZNbFE0dUltxH0+qcRW8zpinOJzZ02DY4Q+aThLvvs3TrcbcXlWtbKKNRYQcL2tWyX7l/dW6z/4MoxYGqhsi/SVhWF1WTtmo8wDBFedoTMqG+eVNM=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8822.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(7416005)(1800799015)(366007);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?amfzH5dVjo2hm9UQzLyZnVtt+6tsbqklQY4WJUMgsgyfmJONqkC0mDcCL0eS?=
- =?us-ascii?Q?BD65Pf5yww9E3SNPOVJjci9DwM6doN92hpNal7KhAw+7QATtkJPZG9RQeVKC?=
- =?us-ascii?Q?cjBaSVGlUxj6WQMyekt/0es23ejSjcx7coOz6EP+3Vafir1Ye1qKSfCiJ4JO?=
- =?us-ascii?Q?ZclKe6El7mnnA3hLF/KkfFEms2oGwJyJDPqxzqceLMomHFLhx/Ezn2yLvpgp?=
- =?us-ascii?Q?4v9YPohxxMkNfID81CezlWeUzMa4cQ1ACsbCsN9STS+YVh2zlHr+vmWI5kLJ?=
- =?us-ascii?Q?D3Prk2mW01TUifbA0EsbOGQxakDyVH4/xEAbxe9dSy9GVuMChpYOSUZxn6Iz?=
- =?us-ascii?Q?0m9kBynEyi6gxDIFBmukm6pyds5FfOBskAsTuC8whjvNN9kaJFaW6pSVb2AO?=
- =?us-ascii?Q?t80uE37BHrt89QnuHftKLBXFnHIztg4aCq8Ne4GDSD5VxBsfoGvGDNZsjlWo?=
- =?us-ascii?Q?xux+Pj25EDsplWex62PjLiOfIVUVqSeqGTTdAMT4vTqIg+b0T/HH3U/KwAPv?=
- =?us-ascii?Q?SHOOznVNf5zH3EbM3SYqVqe6/VV2BQ3rfedzeBo5OuOa9NjPjySURXSXeYQm?=
- =?us-ascii?Q?XuHVwksMEH3XuI+7Ak8KLDmzwGgQrgWTC4837NE1SwmdzSFeEB9tX7Vw1kk3?=
- =?us-ascii?Q?pN2dnBndjtIiHwHFp6ICvtJC5d09yGW4pFdliQt/Ev3SlnL27vaoVK80gqSQ?=
- =?us-ascii?Q?0LnLoUNgNjfAykqzheVPbKfKoudsYp9FOsJFdOGpUnYc/LnpdOKRqnd3irQI?=
- =?us-ascii?Q?zUHZlzNXEEh5a+1xxn5eHbtOzyeb1+8uSaKmD+gshfe9e7J8ga/5JJ4+68ce?=
- =?us-ascii?Q?KI4bMcyonm7QzJbLFDd7RaMbEAODPxJF9vnwfPNyAyqxoSi2dUQc+Vemql4m?=
- =?us-ascii?Q?7xufzxOHixeeoqPZL1oE7t9R1YIJmXkjZ9WSABYCtAZIyyiNFey7bIFkEf3p?=
- =?us-ascii?Q?Gf+wPaWln0nJ7NrKjcy84zvY1lumOKnKCiXUc9eYvGyvNVq776BA2dsmx5mb?=
- =?us-ascii?Q?sG0cC9iCfvGUKBhppk/jf0OQtzsaLrH3ts7/7GSGuvYpMJDqrI6wU3NRaFUf?=
- =?us-ascii?Q?mACufP0vSie5SgwJfslMYXb9GGs7Y6IQ2hlckmZoe+gN9pgcu8RMJJz4E0yo?=
- =?us-ascii?Q?dRQseCbp0giL3CHE25eNQ6A1Wd9I9nSjYK5RjA/pi6jpH0XFEAix8BSWw7Fn?=
- =?us-ascii?Q?Mf3Jv7nfOPBjSm/JfCxJ7yT0w3V3tfT30RMdFdsq2/XgY229h1UfM4L9s7wP?=
- =?us-ascii?Q?IVbBRyNhhd4XXQZV+x2ImGxFz3ZfIApViizUcjCDgYNLNFnSDQTejCjKTYJI?=
- =?us-ascii?Q?doo9gIWIPuyJkFBoTo0uzK1sfSdFpAwmD6v80O/LZZcdhC8qre+/oTe3Vxnc?=
- =?us-ascii?Q?nb88vYLljXXcdpAE5ONKNaFJMOfgli6FM8YnSHDPWFDSVRrMlGTsfEgRcsCt?=
- =?us-ascii?Q?20bwI06tAmenUdFe2g3qeh2u72rbPsVy1L1Os2dh3lJYjsBWoOy+UIunxF+V?=
- =?us-ascii?Q?fFp59nJxrpvm926voCuACC6MLprj872xw7Ms4t4oSP5WGxvWzuGZ+h8afms2?=
- =?us-ascii?Q?78mil8MNqEb0zeNgQOY=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D0265F575
+	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 10:27:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712053623; cv=none; b=W/NS+88xvX2HyzqBtJl/IWb1q1p8Kq174xMGPFNh9SlOr/93fzbCnCgIWy7BQfwAOz756CEGeq5AjtQapk/T8DOzgJyI9eKOy7ffUMdYiasW+D8UW1s/YJFlLi+QUfpN3uoEihyrVmM3WU2CIMEy/gp+Qb7aQsECf2kcubxSuCE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712053623; c=relaxed/simple;
+	bh=2lcDfu4xW0bculdHZpac3g3St6ttxpCAMyiLiPfvz8Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aFfTAUG0oLljGZKOpEmF5/PcJgD/XTtsl0U8gn/MgT/wBZMi/P4kKXkLdRk4k8X7pbgh4RraQHy60G4aWsYZtn/Gvd7hvhn+UugPk/4t3dI3BgMnQpg1F/yhTpClLUmErDW2c1vE40ft3kEBvDk6tS1RhoBg5TUIrxfGzoGJkns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uVsEhz5X; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4161eb1a9fcso15645e9.3
+        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 03:27:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712053620; x=1712658420; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eOBZ55ixLA4dTfJhYr54OdUB1MaemoFEDKwq8GCXVLI=;
+        b=uVsEhz5XacY3RYea9PvmYx/oTz3KUTCz8u7FvA7LXnsaRHtGxCUsLSYCitbHlM9EHp
+         gSgAuZ5m1UG1TMdaS6XUjIE4gcBIp3aqdIu5w2qACLTn59b4V8rcU/NzSzPp448KOAsh
+         UOjVNOPSUc08797K7jucOhxsboprQzqzv1SU3tTgklixn2Hj05ajsLP+whD2jArOuBOE
+         GIyTsMkeGC1h4bvMm/EYcWMc0m+m7IUEwEfFOo7GK3aYy/9WDzFnJlUPrs1RCKy1gCSC
+         Zsg5qL9RJBK+Q7STrxNh64Cz40pfnSAIKTdLKUccO1N/ioMLtQ9HRkD8MZeU31XQMPCp
+         57iQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712053620; x=1712658420;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eOBZ55ixLA4dTfJhYr54OdUB1MaemoFEDKwq8GCXVLI=;
+        b=fcm6R/P3lORvyg9FPlAvoSfNHLppQiAhf1LoL93S2SQ5WXR8MnvDdTEmfG++h95cpE
+         Knq6dd6gyWq0i1zVn9XVFhwfhadnt1P906gmA2K+4HkxUDWLJzprkp+RNHAc2cFbChCs
+         LK3uyWodnDZM5LO3Jndh7XBvjZeIrjLyb4owOKpSccLA/uqTDNZK5w1ATx5QIH6vgaKU
+         X7xuAYx2PuwymiCmrcRijnVdh1getNPWWU1+lFPtwB0pxkv6eoc4ZSP0DGCbHWVj94SE
+         tAHXEBcC2+1+U8luyGKgloIdqVWiHhnxvpzBJKPeOR7jFlOwf6iqBU8uvzxM+otwYR9R
+         JAog==
+X-Forwarded-Encrypted: i=1; AJvYcCWfci0ReHmYIW98h4ooBf7Lz7nYgeCdobgYNMUUfQw2L0e857js2HR3itWlX4gl8E+XgbN1+u7Q1sX1/jRYuCp0fLqAfe8XGiBtiw==
+X-Gm-Message-State: AOJu0Yw27wcg0W5ciSMJeZbBozJyXm+pghpHzVq/EVBN6TaKt+ffQd4a
+	kSr3dyK5LxyK3oD1/zOaQnQQNwbc+h7UYkcuxcROMDKslp3LNytLFA75j8r12jc=
+X-Google-Smtp-Source: AGHT+IFfOeEwE73Mr8ZZizbJEWLfCXdGOlKeaDZvpcz6sDnmAoZebGN8m3vt0uWalY87R2DUD/pxoA==
+X-Received: by 2002:a05:600c:3549:b0:414:113b:36a6 with SMTP id i9-20020a05600c354900b00414113b36a6mr9267396wmq.25.1712053620231;
+        Tue, 02 Apr 2024 03:27:00 -0700 (PDT)
+Received: from [192.168.0.102] ([176.61.106.68])
+        by smtp.gmail.com with ESMTPSA id v28-20020a5d591c000000b00341d4722a9asm13734949wrd.21.2024.04.02.03.26.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Apr 2024 03:26:59 -0700 (PDT)
+Message-ID: <c4b34be0-ac1a-4816-8ad9-7091b2834762@linaro.org>
+Date: Tue, 2 Apr 2024 11:26:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8822.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9055ae9e-f54c-453f-5671-08dc52fe8513
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Apr 2024 10:20:28.7239
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: avk+nfOAeuoAR+yE2o0BxOzQgbi0yaNVLcuOirqtg25T/qDZprdxle4IZnXNm7rlJzc0PsnJJ+emyCSfeSjnAw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7885
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: msm8976: Add WCNSS node
+Content-Language: en-US
+To: Adam Skladowski <a39.skl@gmail.com>
+Cc: phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240401172153.9231-1-a39.skl@gmail.com>
+ <20240401172153.9231-5-a39.skl@gmail.com>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20240401172153.9231-5-a39.skl@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+On 01/04/2024 18:21, Adam Skladowski wrote:
+> Add node describing wireless connectivity subsystem.
+> 
+> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
+> ---
+>   arch/arm64/boot/dts/qcom/msm8976.dtsi | 104 ++++++++++++++++++++++++++
+>   1 file changed, 104 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8976.dtsi b/arch/arm64/boot/dts/qcom/msm8976.dtsi
+> index 77670fce9b8f..41c748c78347 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8976.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8976.dtsi
+> @@ -771,6 +771,36 @@ blsp2_i2c4_sleep: blsp2-i2c4-sleep-state {
+>   				drive-strength = <2>;
+>   				bias-disable;
+>   			};
+> +
+> +			wcss_wlan_default: wcss-wlan-default-state  {
+> +				wcss-wlan2-pins {
+> +					pins = "gpio40";
+> +					function = "wcss_wlan2";
+> +					drive-strength = <6>;
+> +					bias-pull-up;
+> +				};
+> +
+> +				wcss-wlan1-pins {
+> +					pins = "gpio41";
+> +					function = "wcss_wlan1";
+> +					drive-strength = <6>;
+> +					bias-pull-up;
+> +				};
+> +
+> +				wcss-wlan0-pins {
+> +					pins = "gpio42";
+> +					function = "wcss_wlan0";
+> +					drive-strength = <6>;
+> +					bias-pull-up;
+> +				};
+> +
+> +				wcss-wlan-pins {
+> +					pins = "gpio43", "gpio44";
+> +					function = "wcss_wlan";
+> +					drive-strength = <6>;
+> +					bias-pull-up;
+> +				};
+> +			};
+>   		};
+
+Doesn't look right
+
+arch/arm64/boot/dts/qcom/msm8916.dtsi
+arch/arm64/boot/dts/qcom/msm8939.dtsi
+
+wcss_wlan_default: wcss-wlan-default-state {
+	pins = "gpio40", "gpio41", "gpio42", "gpio43", "gpio44";
+	function = "wcss_wlan";
+	drive-strength = <6>;
+	bias-pull-up;
+};
 
 
+>   
+>   		gcc: clock-controller@1800000 {
+> @@ -1446,6 +1476,80 @@ blsp2_i2c4: i2c@7af8000 {
+>   			status = "disabled";
+>   		};
+>   
+> +		wcnss: remoteproc@a204000 {
+> +			compatible = "qcom,pronto-v3-pil", "qcom,pronto";
+> +			reg = <0x0a204000 0x2000>,
+> +			      <0x0a202000 0x1000>,
+> +			      <0x0a21b000 0x3000>;
+> +			reg-names = "ccu",
+> +				    "dxe",
+> +				    "pmu";
+> +
+> +			memory-region = <&wcnss_fw_mem>;
 
->=20
-> On Thu, Mar 21, 2024 at 04:14:30PM +0800, Xu Yang wrote:
-> > Add USB nodes on i.MX8ULP platform which has 2 USB controllers.
-> >
-> > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> >
-> > ---
-> > Changes in v2:
-> >  - no changes
-> > Changes in v3:
-> >  - no changes
-> > Changes in v4:
-> >  - no changes
-> > Changes in v5:
-> >  - no changes
-> > Changes in v6:
-> >  - drop usbphy aliases
-> > Changes in v7:
-> >  - no changes
-> > Changes in v8:
-> >  - no changes
-> > Changes in v9:
-> >  - no changes
-> > Changes in v10:
-> >  - no changes
-> > ---
-> >  arch/arm64/boot/dts/freescale/imx8ulp.dtsi | 62 ++++++++++++++++++++++
-> >  1 file changed, 62 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi b/arch/arm64/bo=
-ot/dts/freescale/imx8ulp.dtsi
-> > index c4a0082f30d3..7da9461a5745 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-> > @@ -472,6 +472,68 @@ usdhc2: mmc@298f0000 {
-> >                               status =3D "disabled";
-> >                       };
-> >
-> > +                     usbotg1: usb@29900000 {
-> > +                             compatible =3D "fsl,imx8ulp-usb", "fsl,im=
-x7ulp-usb", "fsl,imx6ul-usb";
-> > +                             reg =3D <0x29900000 0x200>;
-> > +                             interrupts =3D <GIC_SPI 103 IRQ_TYPE_LEVE=
-L_HIGH>;
-> > +                             clocks =3D <&pcc4 IMX8ULP_CLK_USB0>;
-> > +                             power-domains =3D <&scmi_devpd IMX8ULP_PD=
-_USB0>;
-> > +                             phys =3D <&usbphy1>;
-> > +                             fsl,usbmisc =3D <&usbmisc1 0>;
-> > +                             ahb-burst-config =3D <0x0>;
-> > +                             tx-burst-size-dword =3D <0x8>;
-> > +                             rx-burst-size-dword =3D <0x8>;
-> > +                             status =3D "disabled";
-> > +                     };
-> > +
-> > +                     usbmisc1: usbmisc@29900200 {
-> > +                             compatible =3D "fsl,imx8ulp-usbmisc", "fs=
-l,imx7d-usbmisc",
-> > +                                             "fsl,imx6q-usbmisc";
-> > +                             #index-cells =3D <1>;
-> > +                             reg =3D <0x29900200 0x200>;
->=20
-> Could you move 'reg' above so that it's after compatible?
+For preference and consistency "wcnss_fw_mem" should be "wcnss_mem"
 
-Okay.
+The ordering of the compatible/reg/interrupt is different to 8916/8939 too.
 
->=20
-> > +                             status =3D "disabled";
-> > +                     };
-> > +
-> > +                     usbphy1: usb-phy@29910000 {
-> > +                             compatible =3D "fsl,imx8ulp-usbphy", "fsl=
-,imx7ulp-usbphy";
-> > +                             reg =3D <0x29910000 0x10000>;
-> > +                             interrupts =3D <GIC_SPI 104 IRQ_TYPE_LEVE=
-L_HIGH>;
-> > +                             clocks =3D <&pcc4 IMX8ULP_CLK_USB0_PHY>;
-> > +                             #phy-cells =3D <0>;
-> > +                             status =3D "disabled";
-> > +                     };
-> > +
-> > +                     usbotg2: usb@29920000 {
-> > +                             compatible =3D "fsl,imx8ulp-usb", "fsl,im=
-x7ulp-usb", "fsl,imx6ul-usb";
-> > +                             reg =3D <0x29920000 0x200>;
-> > +                             interrupts =3D <GIC_SPI 105 IRQ_TYPE_LEVE=
-L_HIGH>;
-> > +                             clocks =3D <&pcc4 IMX8ULP_CLK_USB1>;
-> > +                             power-domains =3D <&scmi_devpd IMX8ULP_PD=
-_USDHC2_USB1>;
-> > +                             phys =3D <&usbphy2>;
-> > +                             fsl,usbmisc =3D <&usbmisc2 0>;
-> > +                             ahb-burst-config =3D <0x0>;
-> > +                             tx-burst-size-dword =3D <0x8>;
-> > +                             rx-burst-size-dword =3D <0x8>;
-> > +                             status =3D "disabled";
-> > +                     };
-> > +
-> > +                     usbmisc2: usbmisc@29920200 {
-> > +                             compatible =3D "fsl,imx8ulp-usbmisc", "fs=
-l,imx7d-usbmisc",
-> > +                                             "fsl,imx6q-usbmisc";
-> > +                             #index-cells =3D <1>;
-> > +                             reg =3D <0x29920200 0x200>;
->=20
-> Ditto
+I'm not sure which is currently the preferred order of declaration but 
+for V3 of this series would appreciate if you could find out and add the 
+comment to your cover letter.
 
-Okay.
+Otherwise LGTM.
 
-Thanks,
-Xu Yang
+Please CC me on V3.
 
->=20
-> Shawn
->=20
-> > +                             status =3D "disabled";
-> > +                     };
-> > +
-> > +                     usbphy2: usb-phy@29930000 {
-> > +                             compatible =3D "fsl,imx8ulp-usbphy", "fsl=
-,imx7ulp-usbphy";
-> > +                             reg =3D <0x29930000 0x10000>;
-> > +                             interrupts =3D <GIC_SPI 106 IRQ_TYPE_LEVE=
-L_HIGH>;
-> > +                             clocks =3D <&pcc4 IMX8ULP_CLK_USB1_PHY>;
-> > +                             #phy-cells =3D <0>;
-> > +                             status =3D "disabled";
-> > +                     };
-> > +
-> >                       fec: ethernet@29950000 {
-> >                               compatible =3D "fsl,imx8ulp-fec", "fsl,im=
-x6ul-fec", "fsl,imx6q-fec";
-> >                               reg =3D <0x29950000 0x10000>;
-> > --
-> > 2.34.1
-> >
-
+---
+bod
 
