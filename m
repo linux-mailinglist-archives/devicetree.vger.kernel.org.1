@@ -1,110 +1,314 @@
-Return-Path: <devicetree+bounces-55686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55691-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B44D8896007
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 01:23:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D536896050
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 01:40:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E57C71C220EE
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 23:23:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0CE528674F
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 23:40:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 989CC3D3BF;
-	Tue,  2 Apr 2024 23:23:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3043258AAC;
+	Tue,  2 Apr 2024 23:39:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iDClBlzz"
+	dkim=pass (1024-bit key) header.d=bewilderbeest.net header.i=@bewilderbeest.net header.b="aiGqJ/ZD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [71.19.156.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 701451E531;
-	Tue,  2 Apr 2024 23:23:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4304B5914D;
+	Tue,  2 Apr 2024 23:39:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=71.19.156.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712100199; cv=none; b=B3RMe/x3dEocBSDOZYCQnGPhAWk+e3QYF1uU0ugLcIE7StIJwGjZjOBh26qr0eSXss5Ko//zkE6qD9gNS3MpdR5pxSiqtbwvV53mKj7hxZm+6ksUJBZLEJPh+4YsHykiJKDO96shoddbMY23rFinZmMW6622xVBVj7oKx6hydMw=
+	t=1712101194; cv=none; b=iO+4HlrjJVhK+9Yrj2PrXX9OM34tUE71JjHBGprlwID8bLw7R5vOK5ryMPT5K9r16wbzHfTQdwBQZq2KMc0wyf/3MtWel8AJ8hWkUvUW4CRLDajORYP2Pac528sgDniP+fhiQDgWUTMaeJo/UaO6myx4cABLdt4JeH3sOPcqHrk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712100199; c=relaxed/simple;
-	bh=MeLS86YdjnIzGiuXPd5GfJyCavX2wucsvi48OLJIDeY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UiRAvTD76kdlt0d9dl93DQx2/b17VmXiyeWUL7w5vp3NjcYoc/aSsuXCHGnIt0+BrzGW0MZLgBa5yOIrUydevu1zY74rH7Ei7VztfvRPZiBhUp20S8P7GPM+hv2F1iv/CIesCmovoLJO02l0hG5dEBUov5XdN2831TaXYvRto84=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iDClBlzz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F930C433C7;
-	Tue,  2 Apr 2024 23:23:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712100199;
-	bh=MeLS86YdjnIzGiuXPd5GfJyCavX2wucsvi48OLJIDeY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iDClBlzz9+EtddVYkNAHFxMOaJoQnATld9xN8+G7AiRLrW7spNjrDNZM/uicl1gNC
-	 /4s+WZzVoGUN+ZuUz4LGB4ROWhXkjWQizKYDFkZf+cAe1AKNQFgXsDfosJpa0agVxB
-	 M5o8dcwAboK6CVcg9uHI7lQ/hN/0aWqMXTdhsK+mcGDXMyKCtQ523hcjTqPEkkJzt2
-	 QsW3JK5SlE5/vyEPltNDECa01GNs189lB/+aCOMZHnHE45q1l/ZlMzWKwP0ybKiXww
-	 MK/AsqJ5mpzh8pdRZ12QUp3pV5t8X8m/qbI2RMyDqYR6uPKZIcqHoIE91YuDIw/zuD
-	 gU/YCoT6iYU9A==
-Message-ID: <992dcef1-00d3-456c-b3ee-253ab475f0cf@kernel.org>
-Date: Wed, 3 Apr 2024 08:23:15 +0900
+	s=arc-20240116; t=1712101194; c=relaxed/simple;
+	bh=9ciK0WFlkwxLrJYfGaqE48QR269wBp49zV2proQBWmw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=brNgEwsorXpqw7q4TucEoM5L6r7ROaV4ye8R9RxEaKtKykZGn3QPtvDCTurXcmHkV4rskUT32Yv4M755zuit3ZevZtqYeei0ysW3njPZCcHk8qC36QC3cKdBIoRWueLVQEhgMtsr2VStKSkR/9DYddI3uIXYq8/XNvqf+YOuzBE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bewilderbeest.net; spf=pass smtp.mailfrom=bewilderbeest.net; dkim=pass (1024-bit key) header.d=bewilderbeest.net header.i=@bewilderbeest.net header.b=aiGqJ/ZD; arc=none smtp.client-ip=71.19.156.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bewilderbeest.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bewilderbeest.net
+Received: from hatter.bewilderbeest.net (unknown [IPv6:2602:61:712b:6300::2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: zev)
+	by thorn.bewilderbeest.net (Postfix) with ESMTPSA id 4FCB3634;
+	Tue,  2 Apr 2024 16:30:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
+	s=thorn; t=1712100638;
+	bh=4U8xqwY5U+BvijTvs9foSSCeaMMprSgbvDP6CtRfqd0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=aiGqJ/ZD20iv4mVGF5l+BNy2lgszhmXCBQMW5/x3kuebd+BGAa7gKQ8f3oOonzG/w
+	 qklknmlA9tw+zi0VMenVdtIM2FljaBCMFk4A6ByMIUD7hZhc5UzCGOD99HwJoayBk5
+	 tA03W84mzVS7Jq8sCUuqv6BCFhHAQ+EKCUEz4eSU=
+Date: Tue, 2 Apr 2024 16:30:37 -0700
+From: Zev Weiss <zev@bewilderbeest.net>
+To: Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: wim@linux-watchdog.org, linux@roeck-us.net, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	joel@jms.id.au, linux-watchdog@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: watchdog: Convert Aspeed binding to DT
+ schema
+Message-ID: <65722a59-2e94-4616-81e1-835615b0e600@hatter.bewilderbeest.net>
+References: <20240402120118.282035-1-andrew@codeconstruct.com.au>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 17/18] dt-bindings: pci: rockchip,rk3399-pcie-ep: Add
- ep-gpios property
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
- <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Cc: linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Rick Wertenbroek <rick.wertenbroek@gmail.com>,
- Wilfred Mallawa <wilfred.mallawa@wdc.com>, Niklas Cassel <cassel@kernel.org>
-References: <20240330041928.1555578-1-dlemoal@kernel.org>
- <20240330041928.1555578-18-dlemoal@kernel.org>
- <b020b74e-8ae1-448a-9d47-6c9bb13735f9@linaro.org>
- <c75cb54a-61c7-4bc3-978e-8a28dde93b08@kernel.org>
- <518f04ea-7ff6-4568-be76-60276d18b209@linaro.org>
- <49ecab2e-8f36-47be-a1b0-1bb0089dab0f@kernel.org>
- <57d5d6ea-5fef-423c-9f85-5f295bfa4c5f@linaro.org>
- <80c4c37b-8c5c-4628-a455-fcccfc3b3730@kernel.org>
- <be2a0fa0-9d5d-45c3-810a-56d6924c8891@kernel.org>
- <65b6329a-643c-4adf-9137-281964865d51@linaro.org>
-Content-Language: en-US
-From: Damien Le Moal <dlemoal@kernel.org>
-Organization: Western Digital Research
-In-Reply-To: <65b6329a-643c-4adf-9137-281964865d51@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20240402120118.282035-1-andrew@codeconstruct.com.au>
 
-On 4/3/24 03:10, Krzysztof Kozlowski wrote:
->> Thinking more about this, I think moving the ep-gpios description to the common
->> schema is the right thing to do given that the driver uses common code between
->> RC and EP to get that property. But if that is not acceptable, I can rename it
->> and get that property in the controller EP mode initialization code. That will
->> be add a little more code in the driver.
-> 
-> I forgot that it is actually the same hardware, so if host has
-> "ep-gpios" already then EP mode should have the same property. Common
-> schema is good idea.
+On Tue, Apr 02, 2024 at 05:01:18AM PDT, Andrew Jeffery wrote:
+>Squash warnings such as:
+>
+>```
+>arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-galaxy100.dtb: /ahb/apb@1e600000/watchdog@1e785000: failed to match any schema with compatible: ['aspeed,ast2400-wdt']
+>```
+>
+>Signed-off-by: Andrew Jeffery <andrew@codeconstruct.com.au>
+>---
+> .../bindings/watchdog/aspeed,ast2400-wdt.yaml | 130 ++++++++++++++++++
+> .../bindings/watchdog/aspeed-wdt.txt          |  73 ----------
+> 2 files changed, 130 insertions(+), 73 deletions(-)
+> create mode 100644 Documentation/devicetree/bindings/watchdog/aspeed,ast2400-wdt.yaml
+> delete mode 100644 Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
+>
+>diff --git a/Documentation/devicetree/bindings/watchdog/aspeed,ast2400-wdt.yaml b/Documentation/devicetree/bindings/watchdog/aspeed,ast2400-wdt.yaml
+>new file mode 100644
+>index 000000000000..10fcb50c4051
+>--- /dev/null
+>+++ b/Documentation/devicetree/bindings/watchdog/aspeed,ast2400-wdt.yaml
+>@@ -0,0 +1,130 @@
+>+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>+%YAML 1.2
+>+---
+>+$id: http://devicetree.org/schemas/watchdog/aspeed,ast2400-wdt.yaml#
+>+$schema: http://devicetree.org/meta-schemas/core.yaml#
+>+
+>+title: Aspeed watchdog timer controllers
+>+
+>+maintainers:
+>+  - Andrew Jeffery <andrew@codeconstruct.com.au>
+>+
+>+properties:
+>+  compatible:
+>+    enum:
+>+      - aspeed,ast2400-wdt
+>+      - aspeed,ast2500-wdt
+>+      - aspeed,ast2600-wdt
+>+
+>+  reg:
+>+    maxItems: 1
+>+
+>+  clocks: true
+>+
+>+  aspeed,reset-type:
+>+    enum:
+>+      - cpu
+>+      - soc
+>+      - system
+>+      - none
+>+    description: |
+>+      Reset behaviour - The watchdog can be programmed to generate one of three
+>+      different types of reset when a timeout occcurs.
+>+
+>+      Specifying 'cpu' will only reset the processor on a timeout event.
+>+
+>+      Specifying 'soc' will reset a configurable subset of the SoC's controllers
 
-OK. But this will conflict with the patch you sent to add the missing maxItem.
-Is that patch a fix or is it for 6.10 ? If it is the former, I can wait for
-next week to rebase on rc3 and avoid a conflict.
+Might be worth clarifying that it's configurable only on ast2500 & 
+ast2600, and which property (aspeed,reset-mask) configures it?
 
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+>+      on a timeout event. Controllers critical to the SoC's operation may remain untouched.
+>+
+>+      Specifying 'system' will reset all controllers on a timeout event, as if EXTRST had been asserted.
+>+      Specifying "none" will cause the timeout event to have no reset effect.
 
--- 
-Damien Le Moal
-Western Digital Research
+Tiny nit: quoting (single vs. double) is slightly inconsistent between 
+values here.
 
+>+      Another watchdog engine on the chip must be used for chip reset operations.
+>+
+>+      The default reset type is "system"
+>+
+>+  aspeed,alt-boot:
+>+    $ref: /schemas/types.yaml#/definitions/flag
+>+    description: |
+>+      Direct the watchdog to configure the SoC to boot from the alternative boot
+>+      region if a timeout occurs.
+>+
+>+  aspeed,external-signal:
+>+    $ref: /schemas/types.yaml#/definitions/flag
+>+    description: |
+>+      Assert the timeout event on an external signal pin associated with the
+>+      watchdog controller instance. The pin must be muxed appropriately.
+>+
+>+  aspeed,ext-pulse-duration:
+>+    $ref: /schemas/types.yaml#/definitions/uint32
+>+    description: |
+>+      The duration, in microseconds, of the pulse emitted on the external signal pin
+>+
+>+  aspeed,ext-push-pull:
+>+    $ref: /schemas/types.yaml#/definitions/flag
+>+    description: |
+>+      If aspeed,external-signal is specified in the node, set the external
+>+      signal pin's drive type to push-pull. If aspeed,ext-push-pull is not
+>+      specified then the pin is configured as open-drain.
+>+
+>+  aspeed,ext-active-high:
+>+    $ref: /schemas/types.yaml#/definitions/flag
+>+    description: |
+>+      If both aspeed,external-signal and aspeed,ext-push-pull are specified in
+>+      the node, set the pulse polarity to active-high. If aspeed,ext-active-high
+>+      is not specified then the pin is configured as active-low.
+>+
+>+  aspeed,reset-mask:
+>+    $ref: /schemas/types.yaml#/definitions/uint32-array
+>+    minItems: 1
+>+    maxItems: 2
+>+    description: |
+>+      A bitmaks indicating which peripherals will be reset if the watchdog
+
+Typo: "bitmask"
+
+>+      timer expires. On AST2500 SoCs this should be a single word defined using
+>+      the AST2500_WDT_RESET_* macros; on AST2600 SoCs this should be a two-word
+>+      array with the first word defined using the AST2600_WDT_RESET1_* macros,
+>+      and the second word defined using the AST2600_WDT_RESET2_* macros.
+>+
+>+required:
+>+  - compatible
+>+  - reg
+>+
+>+allOf:
+>+  - if:
+>+      anyOf:
+>+        - required:
+>+            - aspeed,ext-push-pull
+>+        - required:
+>+            - aspeed,ext-active-high
+>+        - required:
+>+            - aspeed,reset-mask
+>+    then:
+>+      properties:
+>+        compatible:
+>+          enum:
+>+            - aspeed,ast2500-wdt
+>+            - aspeed,ast2600-wdt
+>+  - if:
+>+      required:
+>+        - aspeed,ext-active-high
+>+    then:
+>+      required:
+>+        - aspeed,ext-push-pull
+>+
+>+additionalProperties: false
+>+
+>+examples:
+>+  - |
+>+    wdt1: watchdog@1e785000 {
+>+        compatible = "aspeed,ast2400-wdt";
+>+        reg = <0x1e785000 0x1c>;
+>+        aspeed,reset-type = "system";
+>+        aspeed,external-signal;
+>+    };
+>+  - |
+>+    #include <dt-bindings/watchdog/aspeed-wdt.h>
+>+    wdt2: watchdog@1e785040 {
+>+        compatible = "aspeed,ast2600-wdt";
+>+        reg = <0x1e785040 0x40>;
+>+        aspeed,reset-mask = <AST2600_WDT_RESET1_DEFAULT
+>+                            (AST2600_WDT_RESET2_DEFAULT & ~AST2600_WDT_RESET2_LPC)>;
+>+    };
+>diff --git a/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt b/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
+>deleted file mode 100644
+>index 3208adb3e52e..000000000000
+>--- a/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
+>+++ /dev/null
+>@@ -1,73 +0,0 @@
+>-Aspeed Watchdog Timer
+>-
+>-Required properties:
+>- - compatible: must be one of:
+>-	- "aspeed,ast2400-wdt"
+>-	- "aspeed,ast2500-wdt"
+>-	- "aspeed,ast2600-wdt"
+>-
+>- - reg: physical base address of the controller and length of memory mapped
+>-   region
+>-
+>-Optional properties:
+>-
+>- - aspeed,reset-type = "cpu|soc|system|none"
+>-
+>-   Reset behavior - Whenever a timeout occurs the watchdog can be programmed
+>-   to generate one of three different, mutually exclusive, types of resets.
+>-
+>-   Type "none" can be specified to indicate that no resets are to be done.
+>-   This is useful in situations where another watchdog engine on chip is
+>-   to perform the reset.
+>-
+>-   If 'aspeed,reset-type=' is not specified the default is to enable system
+>-   reset.
+>-
+>-   Reset types:
+>-
+>-        - cpu: Reset CPU on watchdog timeout
+>-
+>-        - soc: Reset 'System on Chip' on watchdog timeout
+>-
+>-        - system: Reset system on watchdog timeout
+>-
+>-        - none: No reset is performed on timeout. Assumes another watchdog
+>-                engine is responsible for this.
+>-
+>- - aspeed,alt-boot:    If property is present then boot from alternate block.
+>- - aspeed,external-signal: If property is present then signal is sent to
+>-			external reset counter (only WDT1 and WDT2). If not
+>-			specified no external signal is sent.
+>- - aspeed,ext-pulse-duration: External signal pulse duration in microseconds
+>-
+>-Optional properties for AST2500-compatible watchdogs:
+>- - aspeed,ext-push-pull: If aspeed,external-signal is present, set the pin's
+>-			 drive type to push-pull. The default is open-drain.
+>- - aspeed,ext-active-high: If aspeed,external-signal is present and and the pin
+>-			   is configured as push-pull, then set the pulse
+>-			   polarity to active-high. The default is active-low.
+>-
+>-Optional properties for AST2500- and AST2600-compatible watchdogs:
+>- - aspeed,reset-mask: A bitmask indicating which peripherals will be reset if
+>-		      the watchdog timer expires.  On AST2500 this should be a
+>-		      single word defined using the AST2500_WDT_RESET_* macros;
+>-		      on AST2600 this should be a two-word array with the first
+>-		      word defined using the AST2600_WDT_RESET1_* macros and the
+>-		      second word defined using the AST2600_WDT_RESET2_* macros.
+>-
+>-Examples:
+>-
+>-	wdt1: watchdog@1e785000 {
+>-		compatible = "aspeed,ast2400-wdt";
+>-		reg = <0x1e785000 0x1c>;
+>-		aspeed,reset-type = "system";
+>-		aspeed,external-signal;
+>-	};
+>-
+>-	#include <dt-bindings/watchdog/aspeed-wdt.h>
+>-	wdt2: watchdog@1e785040 {
+>-		compatible = "aspeed,ast2600-wdt";
+>-		reg = <0x1e785040 0x40>;
+>-		aspeed,reset-mask = <AST2600_WDT_RESET1_DEFAULT
+>-				     (AST2600_WDT_RESET2_DEFAULT & ~AST2600_WDT_RESET2_LPC)>;
+>-	};
+>-- 
+>2.39.2
+>
 
