@@ -1,129 +1,113 @@
-Return-Path: <devicetree+bounces-55427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 772B5895290
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 14:10:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 952AA895297
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 14:10:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3046B28354A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 12:10:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6DE91C22125
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 12:10:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8881078B4E;
-	Tue,  2 Apr 2024 12:08:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E9067F7FD;
+	Tue,  2 Apr 2024 12:09:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p8ZM5hnH"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="kKT+zZZF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E4107828B;
-	Tue,  2 Apr 2024 12:08:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4D92757FB;
+	Tue,  2 Apr 2024 12:09:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712059718; cv=none; b=iWWh0h96HEQk67Po6f+NdZg9WJrnekDG2o382K0A09ueKNK9AWupgnEQa1TgcmZXKwH5W2EFszJJ6VtZ8V/tzKSOtiFuiHNewTrvBMnxhSSCH/75C6Rp03vu74+MRVIfd6TGg/tGk0fw3OWJjn9iZKWkurc16ehnEcjOgkNZOeA=
+	t=1712059785; cv=none; b=pH1fpBrQkh/56Giqiq//B1brugB/jol6JYtK6fHCKDOFiiage7C5ZXrUtDujTFGEEctLanMhDZpiVeRSid3h0SQ1BGAZ5L5izJEQvF0Y20mAFT1Ik1upnRpnJ6DTL8NoOvrnP1DVssncmnXgDKD50zZbqnz91UVfLA6AevL/uBY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712059718; c=relaxed/simple;
-	bh=F+Uff8AK7e78S3nWVVc2hMWHgYNxB9GzUKW6WAjMaQg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=h8oIEa5ACjZCMsCVe85RCiiHD52i1KX9zdwRjnYa0tw+cVRtPVWa/V4fILNE/xAU7dZJkXph6bxCQeMe9q5wCwBI8TMSX+oroUSQBRDNW34DOHGv3IW4bTdsJ0+65xJo8rwrGaE4wkll95ydEldxA/tLp0ML+z14rspeTh35Sn4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p8ZM5hnH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D453C433F1;
-	Tue,  2 Apr 2024 12:08:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712059717;
-	bh=F+Uff8AK7e78S3nWVVc2hMWHgYNxB9GzUKW6WAjMaQg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=p8ZM5hnHiMveT3Cxw/RSspX0aEnZV5RmbkgSk2xyFQSrbcnG/vwM4uJrATRS/Hf1y
-	 J+GaF/cSpmGwtO3M+pbGTs6QFdvclRbjMKei2TAjwxwbxMCTUWnUUVKHp7y0HNoxPM
-	 nxewu2c8KVdDClOgqj6S6to0G8s6UuddI8iO6JAt1/N6hWjdwruO4N1q83jK8o0jYg
-	 +M/+prcMXtrsTdodbuLSKn+l/c+7SvAweqkzBP2m2V1iofoxwaG2deQ2mpvvIVDKtZ
-	 QdVvflpkGZ37k4lFslvduR3zaCYXGS2m9ijrlEB163iT9v17nHgUIq691to48cymNg
-	 /iQvT47szG2Vg==
-Message-ID: <2e9b6a91-43d3-4b23-830d-40e607505d8c@kernel.org>
-Date: Tue, 2 Apr 2024 14:08:32 +0200
+	s=arc-20240116; t=1712059785; c=relaxed/simple;
+	bh=YwIUUX0x/WQwrkVO7VhtyyQYHpaR1vN10gFVa337qkM=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=KSpBXNFVMJllD1v87EIuOFzr5Kr20NBLShERIOeOhZSnLHeSjZTaxLwcqY6IS1G74TsgjAJHRDSXnuTttYkkg/m09q3rJY6/ODZgdSZQ1PmKe/A4CRCF+gtgEpdbgsWJ2d59tYfn0ywOHliA9PzWHNi/gsq96n0iJaoD50j2d+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=kKT+zZZF; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+Received: from [192.168.68.112] (ppp118-210-182-70.adl-adc-lon-bras34.tpg.internode.on.net [118.210.182.70])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 5ED4C200E0;
+	Tue,  2 Apr 2024 20:09:40 +0800 (AWST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1712059781;
+	bh=emjzUDDqOpO14ZhysyWQJh3ovWJjdiQOg95LkukSphw=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=kKT+zZZFOaNhupP6tEx0DyFImtF+6Wo0ztnhUlc5gxPF4+Pfk/3j0oCL/A10KJUPK
+	 RV+VoLqisLrabWfWiYigDtSLNIkECYXhHgcsvJvlfhIBEo7EgWC0Bg/eZXwIVck4Ai
+	 bgLdLs0Ip2od48f6AtTZM/k8u0HBqv6kbdVm4z1ufRukbJfIhnRJlNiakJOORYsso7
+	 9DAS1bv8lNQOezoNo5BtqnX3T9fdt90SXU75gYayzkH/IzPmysCTmc7lTODLwfwNCH
+	 M0dCwPoJm1MkLDKbYFxoQuqq7KYqvfXGVYsNStcrzFU1Hz2Twn3HfF5EXeOpO5Aqrv
+	 lJZf7Wvm6yrjw==
+Message-ID: <ab76b0549172cf3e33d6242fa9ea3e6a87b4a58e.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v6 3/4] dt-bindings: watchdog: aspeed-wdt: Add aspeed,scu
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Rob Herring <robh@kernel.org>, Peter Yin <peteryin.openbmc@gmail.com>
+Cc: patrick@stwcx.xyz, Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter
+ Roeck <linux@roeck-us.net>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
+ Joel Stanley <joel@jms.id.au>, linux-watchdog@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Date: Tue, 02 Apr 2024 22:39:32 +1030
+In-Reply-To: <20240401135637.GA342928-robh@kernel.org>
+References: <20240328022231.3649741-1-peteryin.openbmc@gmail.com>
+	 <20240328022231.3649741-4-peteryin.openbmc@gmail.com>
+	 <20240401135637.GA342928-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: mfd: syscon: Add ti,am62p-cpsw-mac-efuse
- compatible
-To: Siddharth Vadapalli <s-vadapalli@ti.com>, lee@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, srk@ti.com
-References: <20240402105708.4114146-1-s-vadapalli@ti.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240402105708.4114146-1-s-vadapalli@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 02/04/2024 12:57, Siddharth Vadapalli wrote:
-> The CTRLMMR_MAC_IDx registers within the CTRL_MMR space of TI's AM62p SoC
-> contain the MAC Address programmed in the eFuse. Add compatible for
-> allowing the CPSW driver to obtain a regmap for the CTRLMMR_MAC_IDx
-> registers within the System Controller device-tree node. The default MAC
-> Address for the interface corresponding to the first MAC port will be set
-> to the value programmed in the eFuse.
-> 
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-> ---
-> 
-> This patch is based on linux-next tagged next-20240402.
+On Mon, 2024-04-01 at 08:56 -0500, Rob Herring wrote:
+> On Thu, Mar 28, 2024 at 10:22:30AM +0800, Peter Yin wrote:
+> > To use the SCU register to obtain reset flags for supporting
+> > bootstatus.
+> >=20
+> > Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
+> > ---
+> >  Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt =
+b/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
+> > index 3208adb3e52e..80a1f58b5a2e 100644
+> > --- a/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
+> > +++ b/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
+> > @@ -8,6 +8,8 @@ Required properties:
+> > =20
+> >   - reg: physical base address of the controller and length of memory m=
+apped
+> >     region
+> > + - aspeed,scu: a reference to the System Control Unit node of the Aspe=
+ed
+> > +   SOC.
+>=20
+> You cannot add new required properties as that is an ABI break.
+>=20
+> If there's only 1 SCU instance, you can just fetch its node by=20
+> compatible with no DT change.
+>=20
+> What's the plan for converting this binding to schema? This is the 2nd=
+=20
+> new property in 6 months.
 
-Where is the DTS using it?
+I had a patch converting it in a local branch which I've now sent:
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+https://lore.kernel.org/all/20240402120118.282035-1-andrew@codeconstruct.co=
+m.au/
 
-Best regards,
-Krzysztof
+Perhaps we can pull it into this series?
 
+Andrew
 
