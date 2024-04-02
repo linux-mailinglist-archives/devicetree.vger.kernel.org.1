@@ -1,71 +1,71 @@
-Return-Path: <devicetree+bounces-55656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58347895DFB
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 22:46:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E66B895E08
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 22:52:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B1DA5B28DAF
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 20:46:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA0061F21018
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 20:52:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B592415D5CB;
-	Tue,  2 Apr 2024 20:46:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98C0F15E1EA;
+	Tue,  2 Apr 2024 20:52:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="gk4Mn5Bb"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="ZP7P2xB+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D43C1591EE
-	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 20:46:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0974515E1E8
+	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 20:52:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712090811; cv=none; b=AvDkA0c65TbjJKlr6hhposu628mhoC4vE3zvEdTZjlcRml3g6CL5EQZ/+3biJkHNTpp9/Jipenkz3klrXtC+4t8HN+3K/HINpT/nXEKITvcjxEcj0qBqDixH5uV+oBW6ycRzdjr7m9LNO98PsraVgYZdpbq5YidPeeTH4HKQAnw=
+	t=1712091164; cv=none; b=s5C/5GkWVtDgBP8LHC/zdvGzubd1NxJxtCZSSdeG4TCtr8zxNq6CRyl7+lRrH94BqCKG0jOwreOWmRby1BUmuq1q/kJW2fz6fqTpvM6OLpQmNkkO1oAFp/hoA+BHZs96uT8wckVA9DGSqSFwrL50VpDohv9akefG9yEEKy7zNic=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712090811; c=relaxed/simple;
-	bh=ft6TiqDU7HywhsVdm9InPl6KzPu+pSPgWKWctqu1C4k=;
+	s=arc-20240116; t=1712091164; c=relaxed/simple;
+	bh=hukGs/pKYWL1ALZowBoyrNbVzHYBzK1qJOFTVoI6NPw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BM6yAVEJrLclrshooNAL4H0oXIEvcRVyKmj0+41acrHtxD8atW/y+Cc/g9cb6UCVWwEZeXsBwoN6/eXG7GI64zrd7xvxXHtJ6h4L+gfL03fXFFbyubFQQDrgVrZGoPHOd0eEqcbLTO+rOBkvuC1VxT9Iqp+O7Tza6BEHUDNi+Yw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=gk4Mn5Bb; arc=none smtp.client-ip=209.85.214.178
+	 In-Reply-To:Content-Type; b=H/oKu7oA5u1hAfpZzeoBq9rTeUvqU0bjamoNTrsflAxzXt8k87LRY4nmMYejdj83D7qTpaNahFxsJ9sSUk8n4u1Prll78BTjwXj/lL8uz9EZc/wPlMtZRj4RWECNdRCJmd0bFkMJ2ajZF1W6lNQxjSdS+IwsxEaf5We5bxIqBDo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=ZP7P2xB+; arc=none smtp.client-ip=209.85.210.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-1e0d82d441bso50793275ad.3
-        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 13:46:50 -0700 (PDT)
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-6e88e4c8500so4551957b3a.2
+        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 13:52:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1712090810; x=1712695610; darn=vger.kernel.org;
+        d=broadcom.com; s=google; t=1712091162; x=1712695962; darn=vger.kernel.org;
         h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=W2Z/eqsWrrx+G4/jcsF4LjLUbAnd59s+Jw0HoyahZ5M=;
-        b=gk4Mn5BbGZyoF26JHilqlc7g6rgOzBH4gfhtRTQTQsbTUgKfhmLXl/sv1hBG0BjCJf
-         x0LaLORjIkYj4Xx5+rNkdiz4v7GWF5ptt1pMwU9qpRX9NBva1jagcWKzEwLYNHKk5RUT
-         8eaeXu8jPCmd14OfOeFYHB1gkmIvsNPLASc4w=
+        bh=dY+A1KW4V08H6agfI2T/CJuIqp7y+FSt34rJddfqvPU=;
+        b=ZP7P2xB+nF4+OzC9mnXohop9YSYymdITleeWZqTUFS9FHMaFySEBYGcK+pLM/xVnBH
+         JWij97pA1SfjvwKhiGJvgqpwxClQPwpBYRUl/7dCLc9I6umO5m+VVtFaq/cSJngeecLX
+         5kk1b7W/1sY62sNMeomxwPH9FRkTl8foJ4gZM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712090810; x=1712695610;
+        d=1e100.net; s=20230601; t=1712091162; x=1712695962;
         h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=W2Z/eqsWrrx+G4/jcsF4LjLUbAnd59s+Jw0HoyahZ5M=;
-        b=Is6cK/H/bsmpDVyPoM/tCxhrwwlv+5FO/ObtoHE6aOJVe12Kmk55nKiFIula1EhCrF
-         87NqwaJhemYWnQNxmybPPNChGvbR+4izUdroS2KNCv88MCLobuuMMvpMPTIS2+ByCRc6
-         GVqhEVXTZaBKaoEKHT6PSUZKiNu/6lXgeqoLwf9YDSGvoRpq4dugJDmoLb86XWLLBgbh
-         h87YL8lEs1y/EqMiC6j9DgMZi0mEPqNCK8I8KH38ooEAoNIVP2Cf04YDFPxfNh3iXSeg
-         wTwHFRFnh+ZzubuBelklGve5s8VbEZaDqSisHMZENEt+RjoI3eO9F+zz1VzOb7R23HaC
-         5hcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXvaS3zprA5971X9f/mp/eHk/W0bVe3/KV6vmaPE8JiifbTFUFKurZiqmDMqLbJf8JvRWIn7IQh0K3N/XQR9wyrgmlBuflayAKRPA==
-X-Gm-Message-State: AOJu0Yyw5jL2TNBZmB/vaBMvbdTZ5FdV/cNKyOadktSuf4L5Ok8ECZz6
-	FSmk0jmywPMukto3LWzUBK61okz4zjB39Ub+l38dXSykDz4EvqT8wPWp8KHseg==
-X-Google-Smtp-Source: AGHT+IEMmF8fa5tQ32+HUMqYoLaKw4bHWwokR683pTY5EtY8YF4dyoufz3r0XKBxeUu/Fvg4yscsFw==
-X-Received: by 2002:a17:902:ba89:b0:1e0:1bb2:b38f with SMTP id k9-20020a170902ba8900b001e01bb2b38fmr762993pls.59.1712090809620;
-        Tue, 02 Apr 2024 13:46:49 -0700 (PDT)
+        bh=dY+A1KW4V08H6agfI2T/CJuIqp7y+FSt34rJddfqvPU=;
+        b=muiC/rV8zLL02IjQ/kM/gdSQhEsFyMnAGZ/YkMT2pa5wGPcelVm5hiTJ5q5MB1T/IX
+         6o57NgPY4uXK8hNWbGeQBQjkINC3pozKaAmPHmh9WbeypJyGxq3nlCKiQ3tJOyzCn9IG
+         WlWZxOLzYBY7sZ8am/ZavqIEzMKplis+LFZyjcUtBe6cy1/XlUeCn+f7Bk19lAfivzfF
+         qcxG5pUdb+DHJAHVgIgHqSJG+RuDGo7ZiyYDxGjngDdINCNVwWzXrhsqJR+zoo0wOZzu
+         xaCR8VOyIvo3P9L6bVKAN4dbnlHRHPY/nSLpnsBSsVF2WIPt4YdcPurjfrLmHKBVzyHY
+         pW9g==
+X-Forwarded-Encrypted: i=1; AJvYcCVoKjLjNqUkdjumPiDb0zDoHCHggkiProCPQfmJZ9zOgMTxr8Q1xyM2xVl0AcDwJwalx30Nz0a0zfzX3ljpA/b4WmgXA+nVCy/o3A==
+X-Gm-Message-State: AOJu0Yw5uAKvvt9NHtOTu1h47uPapqIn+TJHdQkF7GbYkemHcaevSqEX
+	dK2OZuCYxGMrDc+A1LhQoPLsCZVWvs+i0eehzXy0IQRF+A9S6mH3HakXWFXnzw==
+X-Google-Smtp-Source: AGHT+IEWPo5Hh2JOz+8dGMA7rLyUgOhm06YeUBK69MCvyBIptZBFfHArLUefF0cuZfzLBLOiIc+cMg==
+X-Received: by 2002:a05:6a21:318b:b0:1a6:ff14:a6a3 with SMTP id za11-20020a056a21318b00b001a6ff14a6a3mr12426288pzb.25.1712091162302;
+        Tue, 02 Apr 2024 13:52:42 -0700 (PDT)
 Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id y2-20020a170902864200b001e2602fd756sm2912988plt.95.2024.04.02.13.46.46
+        by smtp.gmail.com with ESMTPSA id k9-20020aa78209000000b006eabe72ce84sm879649pfi.16.2024.04.02.13.52.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Apr 2024 13:46:49 -0700 (PDT)
-Message-ID: <0f5bc6e1-a8d8-4067-bd02-b3ec570f2936@broadcom.com>
-Date: Tue, 2 Apr 2024 13:46:44 -0700
+        Tue, 02 Apr 2024 13:52:41 -0700 (PDT)
+Message-ID: <6395c6da-acd0-4026-81df-07e6a9246725@broadcom.com>
+Date: Tue, 2 Apr 2024 13:52:36 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,23 +73,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 00/10] media: Add driver for the Raspberry Pi <5 CSI-2
- receiver
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-media@vger.kernel.org,
+Subject: Re: [PATCH v2 0/3] dt-bindings: arm: bcm:
+ raspberrypi,bcm2835-firmware: Drive-by fixes
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Florian Fainelli <f.fainelli@gmail.com>
+Cc: Stefan Wahren <wahrenst@gmx.net>, "Ivan T. Ivanov" <iivanov@suse.de>,
+ Peter Robinson <pbrobinson@gmail.com>,
  Dave Stevenson <dave.stevenson@raspberrypi.com>,
- David Plowman <david.plowman@raspberrypi.com>,
- Jean-Michel Hautbois <jeanmichel.hautbois@yoseli.org>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>,
- Naushir Patuck <naush@raspberrypi.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, kernel-list@raspberrypi.com,
- linux-rpi-kernel@lists.infradead.org, Ray Jui <rjui@broadcom.com>,
- Scott Branden <sbranden@broadcom.com>,
- bcm-kernel-feedback-list@broadcom.com, Conor Dooley <conor+dt@kernel.org>,
+ Naushir Patuck <naush@raspberrypi.com>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Conor Dooley <conor+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-References: <20240402000424.4650-1-laurent.pinchart@ideasonboard.com>
- <20240402001111.GA4761@pendragon.ideasonboard.com>
+ Linus Walleij <linus.walleij@linaro.org>,
+ Nicolas Saenz Julienne <nsaenz@kernel.org>, Ray Jui <rjui@broadcom.com>,
+ Rob Herring <robh@kernel.org>, Scott Branden <sbranden@broadcom.com>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-rpi-kernel@lists.infradead.org, u-boot@lists.denx.de
+References: <20240326195807.15163-1-laurent.pinchart@ideasonboard.com>
+ <b044eec1-ae64-4de7-9ab0-e3fe756131ef@gmx.net>
+ <20240327233700.GA21080@pendragon.ideasonboard.com>
+ <bcf8093ab0ea6f3738bf4a4623de700a@suse.de>
+ <2e15ab46-f29c-44ac-8a2a-8baa140ee1a3@gmx.net>
+ <20240402200855.GA32172@pendragon.ideasonboard.com>
+ <8a64376d-f624-44c8-91bb-f6a95dc1c945@gmail.com>
+ <20240402203255.GC32172@pendragon.ideasonboard.com>
 From: Florian Fainelli <florian.fainelli@broadcom.com>
 Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
  xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
@@ -123,38 +130,88 @@ Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
  MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
  7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
  95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <20240402001111.GA4761@pendragon.ideasonboard.com>
+In-Reply-To: <20240402203255.GC32172@pendragon.ideasonboard.com>
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="0000000000008dd53406152334d3"
+	boundary="00000000000092febd061523495d"
 
---0000000000008dd53406152334d3
+--00000000000092febd061523495d
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hello Laurent,
-
-On 4/1/24 17:11, Laurent Pinchart wrote:
+On 4/2/24 13:32, Laurent Pinchart wrote:
 > Hi Florian,
 > 
-> I think patches 05/10 ("ARM: dts: bcm2835-rpi: Move duplicate
-> firmware-clocks to bcm2835-rpi.dtsi"), 07/10 ("ARM: dts: bcm2711-rpi:
-> Add pinctrl-based multiplexing for I2C0"), 08/10 ("ARM: dts:
-> bcm2711-rpi-cm4-io: Add RTC on I2C0") and 09/10 ("ARM: dts:
-> bcm2711-rpi-4-b: Add CAM1 regulator") are ready for you to merge. This
-> would help reducing further iterations of this series.
+> On Tue, Apr 02, 2024 at 01:18:35PM -0700, Florian Fainelli wrote:
+>> On 4/2/24 13:08, Laurent Pinchart wrote:
+>>> On Tue, Apr 02, 2024 at 09:52:06PM +0200, Stefan Wahren wrote:
+>>>> Am 02.04.24 um 10:58 schrieb Ivan T. Ivanov:
+>>>>> On 2024-03-28 01:37, Laurent Pinchart wrote:
+>>>>>> On Wed, Mar 27, 2024 at 07:49:38AM +0100, Stefan Wahren wrote:
+>>>>>>> Hi,
+>>>>>>>
+>>>>>>> [add Peter and Ivan]
+>>>>>>>
+>>>>>>> Am 26.03.24 um 20:58 schrieb Laurent Pinchart:
+>>>>>>>> Hello,
+>>>>>>>>
+>>>>>>>> This small series includes a few drive-by fixes for DT validation
+>>>>>>>> errors.
+>>>>>>>>
+>>>>>>>> The first patch has been posted previously in v1 ([1], and now addresses
+>>>>>>>> a small review comment. I think it's good to go.
+>>>>>>>>
+>>>>>>>> The next two patches address the same issue as "[PATCH 1/2] dt-bindings:
+>>>>>>>> arm: bcm: raspberrypi,bcm2835-firmware: Add missing properties" ([2]),
+>>>>>>>> but this time with a (hopefully) correct approach. Patch 2/3 starts by
+>>>>>>>> fixing the raspberrypi-bcm2835-firmware driver, removing the need for DT
+>>>>>>>> properties that are specified in bcm2835-rpi.dtsi but not documented in
+>>>>>>>> the corresponding bindings. Patch 3/3 can then drop those properties,
+>>>>>>>> getting rid of the warnings.
+>>>>>>>
+>>>>>>> since this series drops properties from the device tree, does anyone
+>>>>>>> have the chance to test it with a recent U-Boot?
+>>>>>>
+>>>>>> I don't have U-Boot running with my RPi, so I would appreciate if
+>>>>>> someone could help :-)
+>>>>>
+>>>>> Sorry for taking me so long to verify this.
+>>>>>
+>>>>> I think on RPi U-Boot side we are fine. API used when accessing Mbox
+>>>>> device do not follow DM model and do not use DMA, but just access
+>>>>> device directly using this nice macros phys_to_bus/bus_to_phys.
+>>>>>
+>>>>> I build new DTB files with this patch included and U-Boot build
+>>>>> from the latest sources. No obvious issues on RPi3 and RPi4.
+>>>>> Devices boot fine.
+>>>
+>>> Thank you for testing Ivan.
+>>>
+>>>> Thanks you, Laurent and Ivan
+>>>>
+>>>> Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
+>>>
+>>> Stefan, I'm quite unfamiliar with the Raspberry Pi upstreaming process
+>>> (despite having sent patches for ages :-)), do I understand correctly
+>>> that this patch will go through your tree, or do I need to work with
+>>> someone else to get it merged upstream ?
+>>
+>> I will be taking those via the Broadcom SoC tree.
+> 
+> Thank you.
+> 
+> If there's a chance to include patches 05/10, 07/10, 08/10 and 09/10
+> from [1] at the same time, that would be great :-)
+> 
+> [1] https://lore.kernel.org/linux-media/20240402000424.4650-1-laurent.pinchart@ideasonboard.com
+> 
 
-I could not locate the base commit this series was posted against 
-(58abf3672a73558149fa567eafff8d5b1cc0446b), so patch 5 unfortunately did 
-not apply cleanly due to v6.9-rc1 still having a "dma-ranges" property, 
-fixed that up and the rest applied fine.
-
-Thanks!
+Yes, now done, thanks!
 -- 
 Florian
 
 
---0000000000008dd53406152334d3
+--00000000000092febd061523495d
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -225,15 +282,15 @@ kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
 NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
 AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
 LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIFqPKD4NCQ1EvTPY
-P/9/lGrCbOZzdrYSqYypfD9KCyN7MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTI0MDQwMjIwNDY1MFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEICHFtGPcno1pOzkm
+8vU33TbvXmwTNSyZ0YzK1ELE4PxFMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTI0MDQwMjIwNTI0MlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
 AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQDDym1hxysWxbp6JySpITlmYhloFjPwnloe
-vjEH3NN4mfT7v3hn8YxrAlH1noodvNBEoMcU+PfjDG5mLge9Qu9pHIixrQlStdA7wzI4KbImIqP7
-9EVy0BzCmbE2C69lxGDUczuF0hKtJqUQZNg734zxrZF8+Gf0U/ltq45cW2oyAkLDkvYEZbEq3QU3
-ZN3ivOxGy1eNtKrxMoVk/rWENaEaAzNOGuMIT0CXcQ+HdEfV9KD5C2RU5hHnt74EeC3/gSdLMNsJ
-8zHYv/VvagZdoZ2OFDu47cWlZqCnNyzUfdMUw6WsxLXU8h9B40AZa3rVVbxg9LYKJUNyoQk1vNaX
-vtzE
---0000000000008dd53406152334d3--
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQAK11t2qqEk1LuZG4h0s7vvrgeoecNSpFg6
+26HRAYj2vfScqRJYCN+7k487DhDtg7wer8UGyiE3sEWi4y39jnkJrhMIhu9O87x6HvEVS/hPtxmt
+BSRxsOfryHF/V7cI5Zj8kUW9326uBYlJDWPJ5weqhgGjrYzd8Fpop57s6IMgyLzDdiHmiBlPBSkk
+zDotVOvzav5VCAX2LITnuSghro6fIwxp3Alw9e01I8U/usoecLK/sjXpa4uFk8A0qSpmtiSEmA9d
+eKwwajiDWHG5GVfOnlPT91leHm3HwoWtdAAFMwCg4tPRNBHNigKi4VNnNPU1tng+apwnEkAvvcr+
+k6Jq
+--00000000000092febd061523495d--
 
