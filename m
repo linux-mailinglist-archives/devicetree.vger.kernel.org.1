@@ -1,152 +1,97 @@
-Return-Path: <devicetree+bounces-55595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55596-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB650895BBA
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 20:26:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04685895BC9
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 20:33:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 815571F22F90
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 18:26:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ADCB11F233BC
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 18:32:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2E3E15ADA1;
-	Tue,  2 Apr 2024 18:26:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9182C15B119;
+	Tue,  2 Apr 2024 18:32:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FBQBfQ7L"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NNKAuKIv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93C1615A48E;
-	Tue,  2 Apr 2024 18:26:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55A2F15AD86;
+	Tue,  2 Apr 2024 18:32:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712082405; cv=none; b=CjEEzZ2qL5jr9vylnu/9yFnjtyJI4uKsgZDX8vWjum9jJ5rfELSrBj/i3XL9gQDPeyXJq3I78Cd5x5mVpvzJ3ks/p0KJ+9rQFWOw6o5ZkYFYaG6vyEvhsYDvNke8Pfnp2CAsL6a0XUgo2bvWiJjXFS/1suJ2Wwv4mN7yAl7NcYo=
+	t=1712082769; cv=none; b=aZDYsjo6DVLQtTv3Ii9cUpf8tX3AxcDODH80ybARRN+cl4XHgtbCaqBzbKDz5aYvZyH+8JUMreoLofXceiq0e6WS3jmJRO4I5tS/h/6wX1b7mtmSACbdnTihwGJLhUbo8HAwmLHzY4lsI/tBIua3PsZL9j282JCcKLrLab0VJP0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712082405; c=relaxed/simple;
-	bh=sz+2d1gs1ehBN3Q4pGBpK6maDbOhiUQSkQL1PjdfiB0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=godsXFBtLe+xNLqunUiY1wgf6Fs5g+RtaUZfUivaPglZecZrnqQb04tayws5awQcXJKyzgwMpRkpacQ8EbmlAhFLIlyb+kk9UMf+L3cxonjEoCJcqxSwdgYoXzQqE5XPfhc3CzuYadbk2dbDxBpTgIPnrJtJ1x+/VmeIJfjNuyE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FBQBfQ7L; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1712082404; x=1743618404;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=sz+2d1gs1ehBN3Q4pGBpK6maDbOhiUQSkQL1PjdfiB0=;
-  b=FBQBfQ7LZJUnMic61TiGsZU3+92kYtL1AXDgSo0d1n4wqVQtLMXh939R
-   meXxdwLjrcpSlYZ/4ewhaVk2YWP9N0Khb0HBA9YQZpCpnzXnoJZwTbyBy
-   ztWztTS8+tb+QeSWbzVbWXa+Xup/QhfQqojiJ4uAw7I+A7PSV9YtFfw/e
-   C0kHM2usGv9j+EikdCuH3DVdefnh444vyMSWX+04srPH+47Rz/OANw5+u
-   FCOMcsH0gXVnuZHI8TRlhk2bf8kGd+f7JgJH1dC/lGEIGqzBsGxiKg8Yf
-   MJmXLQEot3KXHP5ZyXUGsSPgHcDuOlm5E8hJxfYEj3WJar0furnlFhVyi
-   w==;
-X-CSE-ConnectionGUID: gjasWSDTQxWkTKjE19uAxw==
-X-CSE-MsgGUID: Ogh2Tf65RsOR4+M9XAJZpg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="18635992"
-X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; 
-   d="scan'208";a="18635992"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Apr 2024 11:26:43 -0700
-X-CSE-ConnectionGUID: JE8ygY+RRSuHgF03rDWXmg==
-X-CSE-MsgGUID: fQuqhyGWTHWP9oNxtrYh5w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; 
-   d="scan'208";a="22898037"
-Received: from lkp-server02.sh.intel.com (HELO 90ee3aa53dbd) ([10.239.97.151])
-  by orviesa004.jf.intel.com with ESMTP; 02 Apr 2024 11:26:40 -0700
-Received: from kbuild by 90ee3aa53dbd with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rriqD-0001Qm-14;
-	Tue, 02 Apr 2024 18:26:37 +0000
-Date: Wed, 3 Apr 2024 02:26:21 +0800
-From: kernel test robot <lkp@intel.com>
-To: Richard Zhu <hongxing.zhu@nxp.com>, vkoul@kernel.org, kishon@kernel.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	frank.li@nxp.com, conor+dt@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, hongxing.zhu@nxp.com,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	kernel@pengutronix.de, imx@lists.linux.dev
-Subject: Re: [PATCH v2 3/3] phy: freescale: imx8q-hsio: Add i.MX8Q HSIO PHY
- driver support
-Message-ID: <202404030236.zuDJQOtw-lkp@intel.com>
-References: <1712036704-21064-4-git-send-email-hongxing.zhu@nxp.com>
+	s=arc-20240116; t=1712082769; c=relaxed/simple;
+	bh=af2EBy7vcEvCvMvRtwWF7Cfdbqfz9lWIVTEff0unu0Q=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=vE1qIB/EgDFTX9ebLEjHDSPX0i5t+sktPihtL26iBExYEQlQJHJ2JgXAn8A51ZyphoNsG0UD5HM9QdR4t8agNLMMFS4/ZsO3P9ALnc7SQgWQrTMePkWEuw1QKDDzFNJ8fhmfoERsQwNUDgQGM33POyL0cYM5jAkUrfTAAhZwxng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NNKAuKIv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52096C433C7;
+	Tue,  2 Apr 2024 18:32:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712082768;
+	bh=af2EBy7vcEvCvMvRtwWF7Cfdbqfz9lWIVTEff0unu0Q=;
+	h=From:To:Cc:Subject:Date:From;
+	b=NNKAuKIvCQhIz74ikyryd1E2sQNG/WLtA8UXlMN9fsIGxQUAIm9vR8wZ4oQsl3xGo
+	 5JhY4GQFZj3zVrtWY4Vdz+fHYYaKCzqyThCAbrU1lboox4W3RWglsfxsvUpjmuGlIk
+	 9raqzcZ9yBVlrrkzUMmPCkCaWVyU+ZwlbVKiuF/moLHEZBDNype7Bl9+GpI87aUCJa
+	 2wbsnKzGI9eTFGk8C3S0bBMlfSCNewbIUp1S+baX7EYYQD1cNAGvbdyHLTmLVr1k5O
+	 yCee9vTbGmrClNbez7qRFy8fuMh5U9M3AW4+LfRIjpZW9BxnqYkMG6JVJvYpOT7Af6
+	 Z0rpYHOs4evjA==
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Robert Marko <robert.marko@sartura.hr>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH 1/3] arm64: dts: marvell: eDPU: drop redundant address/size-cells
+Date: Tue,  2 Apr 2024 20:32:38 +0200
+Message-Id: <20240402183240.49193-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1712036704-21064-4-git-send-email-hongxing.zhu@nxp.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Richard,
+The ethernet-switch node does not have children with unit addresses, so
+address/size-cells are not really correct, as reported by dtc W=1
+warning:
 
-kernel test robot noticed the following build warnings:
+  armada-3720-eDPU.dts:26.19-60.4: Warning (avoid_unnecessary_addr_size): /soc/internal-regs@d0000000/mdio@32004/switch@0: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v6.9-rc2]
-[cannot apply to next-20240402]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+This probably also fixes dtbs_check warning, but I could not find it, so
+not sure about that.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Richard-Zhu/dt-bindings-phy-phy-imx8-pcie-Add-binding-for-i-MX8Q-HSIO-SerDes-PHY/20240402-140347
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/1712036704-21064-4-git-send-email-hongxing.zhu%40nxp.com
-patch subject: [PATCH v2 3/3] phy: freescale: imx8q-hsio: Add i.MX8Q HSIO PHY driver support
-config: arm-allmodconfig (https://download.01.org/0day-ci/archive/20240403/202404030236.zuDJQOtw-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240403/202404030236.zuDJQOtw-lkp@intel.com/reproduce)
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+---
+ arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts | 2 --
+ 1 file changed, 2 deletions(-)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202404030236.zuDJQOtw-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/phy/freescale/phy-fsl-imx8q-hsio.c:34: warning: "MODE_MASK" redefined
-      34 | #define MODE_MASK               GENMASK(20, 17)
-         | 
-   In file included from arch/arm/include/asm/ptrace.h:10,
-                    from arch/arm/include/asm/irqflags.h:7,
-                    from include/linux/irqflags.h:18,
-                    from arch/arm/include/asm/bitops.h:28,
-                    from include/linux/bitops.h:68,
-                    from include/linux/kernel.h:23,
-                    from include/linux/clk.h:13,
-                    from drivers/phy/freescale/phy-fsl-imx8q-hsio.c:6:
-   arch/arm/include/uapi/asm/ptrace.h:67: note: this is the location of the previous definition
-      67 | #define MODE_MASK       0x0000001f
-         | 
-
-
-vim +/MODE_MASK +34 drivers/phy/freescale/phy-fsl-imx8q-hsio.c
-
-    27	
-    28	/* i.MX8Q HSIO registers */
-    29	#define CTRL0			0x0
-    30	#define APB_RSTN_0		BIT(0)
-    31	#define APB_RSTN_1		BIT(1)
-    32	#define PIPE_RSTN_0_MASK	GENMASK(25, 24)
-    33	#define PIPE_RSTN_1_MASK	GENMASK(27, 26)
-  > 34	#define MODE_MASK		GENMASK(20, 17)
-    35	#define MODE_PCIE		0x0
-    36	#define MODE_SATA		0x4
-    37	#define DEVICE_TYPE_MASK	GENMASK(27, 24)
-    38	#define EPCS_TXDEEMP		BIT(5)
-    39	#define EPCS_TXDEEMP_SEL	BIT(6)
-    40	#define EPCS_PHYRESET_N		BIT(7)
-    41	#define RESET_N			BIT(12)
-    42	
-
+diff --git a/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts b/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
+index d6d37a1f6f38..91c2f8b4edfa 100644
+--- a/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
++++ b/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
+@@ -25,8 +25,6 @@ &mdio {
+ 	/* Actual device is MV88E6361 */
+ 	switch: switch@0 {
+ 		compatible = "marvell,mv88e6190";
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+ 		reg = <0>;
+ 		status = "disabled";
+ 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
 
