@@ -1,240 +1,180 @@
-Return-Path: <devicetree+bounces-55467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55468-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CBBC895536
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 15:21:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89488895540
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 15:23:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 299431F21626
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 13:21:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44AC928A74B
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 13:23:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69EA484FB0;
-	Tue,  2 Apr 2024 13:21:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98EA485266;
+	Tue,  2 Apr 2024 13:22:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kG6vC4hx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from irl.hu (irl.hu [95.85.9.111])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DF4480631;
-	Tue,  2 Apr 2024 13:21:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.85.9.111
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E700685260;
+	Tue,  2 Apr 2024 13:22:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712064084; cv=none; b=G1izORQr+QoV/D6/tGMy63JQn52w8c3xxDVwqeLw1/9Rl06ALjFrQ/O/rbpMmwn8rLqTgrt0xVF9PQf5Ld0Wl6a/yIBrUtmZ9vGhgBY1KIbajnFOhskglxKTvQFuPP0BsY6SfAeUU9vWD6c3fJp/D8bRB8o4JitosSiQH0+t7wQ=
+	t=1712064174; cv=none; b=DvXh9nNjhAI9upN/GvgYiswiwZvF3ij0GJ2dgEyrPpVl7OenJuiKzAnA/WqtYh2CJ6fWr5YiqW83aoUqx2rpuN+ENAFSC1gMkM7SWYvfvQykqdx0lt3OkBBJf0YMzVldIcAx3CjEyWQzaYQW7vxGeAVq/AclHp6Y+pNYKyY/QyY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712064084; c=relaxed/simple;
-	bh=soN8FkpcgRBwdzzFH5CZlu5Cs9CmIZZdqx8WdcS451g=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Mime-Version:Content-Type; b=iT0tCtPNDNEe+L5ptvgaCt0tq1EV9pPVJZsEH0aRlfx5+Iy1Xb7sYtCP0nP+eASLMwFNbvWeXf1W+O6ynbTgXZsgvgzhOJGc39t7oqXyW//BbgjvcJ2dhAG9BScEcsR3oOm/mRPkB3DZHGX/XyfV2Wj5zkgMWxpEDdmDuqk2W9M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=irl.hu; spf=pass smtp.mailfrom=irl.hu; arc=none smtp.client-ip=95.85.9.111
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=irl.hu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=irl.hu
-Received: from fedori.lan (51b69867.dsl.pool.telekom.hu [::ffff:81.182.152.103])
-  (AUTH: CRAM-MD5 soyer@irl.hu, )
-  by irl.hu with ESMTPSA
-  id 00000000000644A9.00000000660C064A.002529D9; Tue, 02 Apr 2024 15:21:14 +0200
-From: Gergo Koteles <soyer@irl.hu>
-To: Ike Panhc <ike.pan@canonical.com>,
-  Hans de Goede <hdegoede@redhat.com>,
-  =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-  Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-  Rob Herring <robh@kernel.org>,
-  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-  Conor Dooley <conor+dt@kernel.org>
-Cc: platform-driver-x86@vger.kernel.org,
-  linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
-  devicetree@vger.kernel.org, Gergo Koteles <soyer@irl.hu>
-Subject: [PATCH 3/3] platform/x86: ideapad-laptop: add FnLock LED class device
-Date: Tue,  2 Apr 2024 15:21:02 +0200
-Message-ID: <2db08c948568a8d5352780864956c3271b4e42ce.1712063200.git.soyer@irl.hu>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <cover.1712063200.git.soyer@irl.hu>
-References: <cover.1712063200.git.soyer@irl.hu>
+	s=arc-20240116; t=1712064174; c=relaxed/simple;
+	bh=5B4VAqRtah3hwR9aUAuF7xCrOB8pdBZXUCtToZA8hZ4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IcBTMi62iTGZkSYNjFxOOQdT1vxNw9eq6slNkOlU0AHLCtZ0DxsMkaEq8H0G2a32xe4S8MRJ7bxnsRaqAuX+Ly7K1c5iJ9xv76oZOBeOJG6dVS6iX+dgXeKtjEMC7/88x7fpuQ4XYhFJv5gZ6Tcg6bWtgYjtkjnXZp2zwx4SobE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kG6vC4hx; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1712064173; x=1743600173;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=5B4VAqRtah3hwR9aUAuF7xCrOB8pdBZXUCtToZA8hZ4=;
+  b=kG6vC4hxcKz0LZjhKa1X31X/fhur5kpBoGxshV+8ElZ9DpvJitFKcME+
+   WTbebnhvzwBiKHv8SJr43ES5XYYPLhPLwY4pI5qOvUMDxoi0hAcGYkfmy
+   GYuwIUQvycTlwSV9oR/nm9MKQhmC3lWKZON7nrazp+RDQwK0a6MP7fz+6
+   /8euDZKHPWLMrXva5x75d86M+CzQKSVbOzqCjliZWm1EhrXGWFkC9cszz
+   6OApT44GJe/CHklpc6pJj6K5HaIZTBdvleYZVGd0bcbJRncZs7T5y6qau
+   MYz1N3Jbq3XnctrSnU1tZeR7soef7npDZsw2KQjTEEuwTkCWYjFt9YLSO
+   w==;
+X-CSE-ConnectionGUID: dnMNQZqzTqqyNUirhK/XRQ==
+X-CSE-MsgGUID: 8eUayibbSui69kbWr2wQEg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11031"; a="17960339"
+X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; 
+   d="scan'208";a="17960339"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Apr 2024 06:22:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,11031"; a="915140889"
+X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; 
+   d="scan'208";a="915140889"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.72.54])
+  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Apr 2024 06:22:48 -0700
+Received: from andy by smile with local (Exim 4.97)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1rre6A-00000000oj8-0Wz8;
+	Tue, 02 Apr 2024 16:22:46 +0300
+Date: Tue, 2 Apr 2024 16:22:45 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Sudeep Holla <sudeep.holla@arm.com>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Dan Carpenter <dan.carpenter@linaro.org>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Peng Fan <peng.fan@nxp.com>,
+	Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+Subject: Re: [PATCH v7 4/4] pinctrl: Implementation of the generic
+ scmi-pinctrl driver
+Message-ID: <ZgwGpZ6S13vjk8jh@smile.fi.intel.com>
+References: <20240402-pinctrl-scmi-v7-0-3ea519d12cf7@nxp.com>
+ <20240402-pinctrl-scmi-v7-4-3ea519d12cf7@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-X-Mime-Autoconverted: from 8bit to 7bit by courier 1.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240402-pinctrl-scmi-v7-4-3ea519d12cf7@nxp.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Some Ideapad/Yoga Laptops have an FnLock LED in the Esc key.
+On Tue, Apr 02, 2024 at 10:22:24AM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> scmi-pinctrl driver implements pinctrl driver interface and using
+> SCMI protocol to redirect messages from pinctrl subsystem SDK to
+> SCMI platform firmware, which does the changes in HW.
 
-Expose Fnlock as an LED class device for easier OSD support.
+...
 
-Signed-off-by: Gergo Koteles <soyer@irl.hu>
----
- drivers/platform/x86/ideapad-laptop.c | 97 ++++++++++++++++++++++++++-
- 1 file changed, 96 insertions(+), 1 deletion(-)
+> +#include <linux/device.h>
+> +#include <linux/err.h>
+> +#include <linux/module.h>
+> +#include <linux/seq_file.h>
+> +#include <linux/scmi_protocol.h>
+> +#include <linux/slab.h>
 
-diff --git a/drivers/platform/x86/ideapad-laptop.c b/drivers/platform/x86/ideapad-laptop.c
-index 529df08af548..8a5bef4eedfe 100644
---- a/drivers/platform/x86/ideapad-laptop.c
-+++ b/drivers/platform/x86/ideapad-laptop.c
-@@ -152,6 +152,11 @@ struct ideapad_private {
- 		struct led_classdev led;
- 		unsigned int last_brightness;
- 	} kbd_bl;
-+	struct {
-+		bool initialized;
-+		struct led_classdev led;
-+		unsigned int last_brightness;
-+	} fn_lock;
- };
- 
- static bool no_bt_rfkill;
-@@ -531,6 +536,19 @@ static int ideapad_fn_lock_set(struct ideapad_private *priv, bool state)
- 		state ? SALS_FNLOCK_ON : SALS_FNLOCK_OFF);
- }
- 
-+static void ideapad_fn_lock_led_notify(struct ideapad_private *priv, int brightness)
-+{
-+	if (!priv->fn_lock.initialized)
-+		return;
-+
-+	if (brightness == priv->fn_lock.last_brightness)
-+		return;
-+
-+	priv->fn_lock.last_brightness = brightness;
-+
-+	led_classdev_notify_brightness_hw_changed(&priv->fn_lock.led, brightness);
-+}
-+
- static ssize_t fn_lock_show(struct device *dev,
- 			    struct device_attribute *attr,
- 			    char *buf)
-@@ -561,6 +579,8 @@ static ssize_t fn_lock_store(struct device *dev,
- 	if (err)
- 		return err;
- 
-+	ideapad_fn_lock_led_notify(priv, state);
-+
- 	return count;
- }
- 
-@@ -1479,6 +1499,65 @@ static void ideapad_kbd_bl_exit(struct ideapad_private *priv)
- 	led_classdev_unregister(&priv->kbd_bl.led);
- }
- 
-+/*
-+ * FnLock LED
-+ */
-+static enum led_brightness ideapad_fn_lock_led_cdev_get(struct led_classdev *led_cdev)
-+{
-+	struct ideapad_private *priv = container_of(led_cdev, struct ideapad_private, fn_lock.led);
-+
-+	return ideapad_fn_lock_get(priv);
-+}
-+
-+static int ideapad_fn_lock_led_cdev_set(struct led_classdev *led_cdev,
-+	enum led_brightness brightness)
-+{
-+	struct ideapad_private *priv = container_of(led_cdev, struct ideapad_private, fn_lock.led);
-+
-+	return ideapad_fn_lock_set(priv, brightness);
-+}
-+
-+static int ideapad_fn_lock_led_init(struct ideapad_private *priv)
-+{
-+	int brightness, err;
-+
-+	if (!priv->features.fn_lock)
-+		return -ENODEV;
-+
-+	if (WARN_ON(priv->fn_lock.initialized))
-+		return -EEXIST;
-+
-+	priv->fn_lock.led.max_brightness = 1;
-+
-+	brightness = ideapad_fn_lock_get(priv);
-+	if (brightness < 0)
-+		return brightness;
-+
-+	priv->fn_lock.last_brightness = brightness;
-+	priv->fn_lock.led.name                    = "platform::" LED_FUNCTION_FNLOCK;
-+	priv->fn_lock.led.brightness_get          = ideapad_fn_lock_led_cdev_get;
-+	priv->fn_lock.led.brightness_set_blocking = ideapad_fn_lock_led_cdev_set;
-+	priv->fn_lock.led.flags                   = LED_BRIGHT_HW_CHANGED;
-+
-+	err = led_classdev_register(&priv->platform_device->dev, &priv->fn_lock.led);
-+	if (err)
-+		return err;
-+
-+	priv->fn_lock.initialized = true;
-+
-+	return 0;
-+}
-+
-+static void ideapad_fn_lock_led_exit(struct ideapad_private *priv)
-+{
-+	if (!priv->fn_lock.initialized)
-+		return;
-+
-+	priv->fn_lock.initialized = false;
-+
-+	led_classdev_unregister(&priv->fn_lock.led);
-+}
-+
- /*
-  * module init/exit
-  */
-@@ -1741,8 +1820,10 @@ static void ideapad_wmi_notify(struct wmi_device *wdev, union acpi_object *data)
- 		if (priv->features.set_fn_lock_led) {
- 			int brightness = ideapad_fn_lock_get(priv);
- 
--			if (brightness >= 0)
-+			if (brightness >= 0) {
- 				ideapad_fn_lock_set(priv, brightness);
-+				ideapad_fn_lock_led_notify(priv, brightness);
-+			}
- 		}
- 
- 		if (data->type != ACPI_TYPE_INTEGER) {
-@@ -1754,6 +1835,10 @@ static void ideapad_wmi_notify(struct wmi_device *wdev, union acpi_object *data)
- 		dev_dbg(&wdev->dev, "WMI fn-key event: 0x%llx\n",
- 			data->integer.value);
- 
-+		/* 0x02 FnLock, 0x03 Esc */
-+		if (data->integer.value == 0x02 || data->integer.value == 0x03)
-+			ideapad_fn_lock_led_notify(priv, data->integer.value == 0x02);
-+
- 		ideapad_input_report(priv,
- 				     data->integer.value | IDEAPAD_WMI_KEY);
- 
-@@ -1847,6 +1932,14 @@ static int ideapad_acpi_add(struct platform_device *pdev)
- 			dev_info(&pdev->dev, "Keyboard backlight control not available\n");
- 	}
- 
-+	err = ideapad_fn_lock_led_init(priv);
-+	if (err) {
-+		if (err != -ENODEV)
-+			dev_warn(&pdev->dev, "Could not set up FnLock LED: %d\n", err);
-+		else
-+			dev_info(&pdev->dev, "FnLock control not available\n");
-+	}
-+
- 	/*
- 	 * On some models without a hw-switch (the yoga 2 13 at least)
- 	 * VPCCMD_W_RF must be explicitly set to 1 for the wifi to work.
-@@ -1903,6 +1996,7 @@ static int ideapad_acpi_add(struct platform_device *pdev)
- 	for (i = 0; i < IDEAPAD_RFKILL_DEV_NUM; i++)
- 		ideapad_unregister_rfkill(priv, i);
- 
-+	ideapad_fn_lock_led_exit(priv);
- 	ideapad_kbd_bl_exit(priv);
- 	ideapad_input_exit(priv);
- 
-@@ -1930,6 +2024,7 @@ static void ideapad_acpi_remove(struct platform_device *pdev)
- 	for (i = 0; i < IDEAPAD_RFKILL_DEV_NUM; i++)
- 		ideapad_unregister_rfkill(priv, i);
- 
-+	ideapad_fn_lock_led_exit(priv);
- 	ideapad_kbd_bl_exit(priv);
- 	ideapad_input_exit(priv);
- 	ideapad_debugfs_exit(priv);
+Missing headers.
+
+...
+
+> +	*p_groups = (const char * const *)func->groups;
+
+Is this casting needed?
+
+...
+
+> +static int pinctrl_scmi_pinconf_get(struct pinctrl_dev *pctldev,
+> +				    unsigned int _pin, unsigned long *config)
+
+Why underscored parameter name?
+
+...
+
+> +static int pinctrl_scmi_get_pins(struct scmi_pinctrl *pmx,
+> +				 struct pinctrl_desc *desc)
+> +{
+> +	struct pinctrl_pin_desc *pins;
+> +	unsigned int npins;
+> +	int ret, i;
+> +
+> +	npins = pinctrl_ops->count_get(pmx->ph, PIN_TYPE);
+> +	/*
+> +	 * npins will never be zero, the scmi pinctrl driver has bailed out
+> +	 * if npins is zero.
+> +	 */
+
+This is fragile, but at least it is documented.
+
+> +	pins = devm_kmalloc_array(pmx->dev, npins, sizeof(*pins), GFP_KERNEL);
+> +	if (!pins)
+> +		return -ENOMEM;
+> +
+> +	for (i = 0; i < npins; i++) {
+> +		pins[i].number = i;
+> +		ret = pinctrl_ops->name_get(pmx->ph, i, PIN_TYPE, &pins[i].name);
+> +		if (ret)
+
+How does the cleanup work for the previously assigned pin names? Is it needed?
+Maybe a comment?
+
+> +			return dev_err_probe(pmx->dev, ret,
+> +					     "Can't get name for pin %d", i);
+> +	}
+> +
+> +	desc->npins = npins;
+> +	desc->pins = pins;
+> +	dev_dbg(pmx->dev, "got pins %u", npins);
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static const struct scmi_device_id scmi_id_table[] = {
+> +	{ SCMI_PROTOCOL_PINCTRL, "pinctrl" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(scmi, scmi_id_table);
+
+Move this closer to the user.
+
 -- 
-2.44.0
+With Best Regards,
+Andy Shevchenko
+
 
 
