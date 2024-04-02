@@ -1,75 +1,76 @@
-Return-Path: <devicetree+bounces-55526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF43E895771
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 16:50:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69A7C89577B
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 16:51:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8506E282E82
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 14:50:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1FB76284CB4
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 14:51:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B04D1350D6;
-	Tue,  2 Apr 2024 14:47:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D031131720;
+	Tue,  2 Apr 2024 14:49:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kEOYK3HN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ifShd6t0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 796A912BF1A
-	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 14:47:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50D5812D771
+	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 14:49:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712069251; cv=none; b=uOkmp4mQRfEKBw/3X3QK4zUAFgYpq/7h5QLufxzOG6pWpe9RIogxii0RrTwSnqWy8crwJkiHgGWYHXGs34XOAohAqi1mhpffxIG7NRMAC/1Qq5O2YHUzIXbs9Vp+w/XqfvpRDU2i9xfSCEGylU6WAWvCd/ZQjKG2LuW4t5qdIuw=
+	t=1712069380; cv=none; b=jmyOsxfdjnH8QHdqJb2pGVHI9IEgFzHHWalnKBGgErOCxTPMVKFuBozcs/ktDsz+dHGosB2kC30M/p7o31J0bttwKulS9Jifwf0sELpQTjbfYASLM2a0xzNruVPLN38Ry+TEv99oW0S6ZwUchoUU5dwDgKWvJAEy2a6t+BrGqRc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712069251; c=relaxed/simple;
-	bh=yOuFMfKt3fhU2KvOiQGXseYLvQBMDDOSvq+QfscMDJI=;
+	s=arc-20240116; t=1712069380; c=relaxed/simple;
+	bh=R6qde+iITv8Ux/EKpL1jJjmQD4xhkEmuDaLF7RETwOA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uAYwqJXtrj9UA58noDbkH6e3dDs7p86xI3xbg1qf8QifMPKC3G5gKtCSDAThXn8nB9sDJ40T+BQNfu7/eCAN+oluZB+LBruWEPb/XQr9E3QFAIMxtKrcVp9dP3A6aA44HTz+40xWghuxvqKWGp8SO6Aum9vrqJemKyOlLbTymhA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kEOYK3HN; arc=none smtp.client-ip=209.85.208.42
+	 In-Reply-To:Content-Type; b=XGIEzPY9U37FhguCOyiJwxgfP2kfAloGo+vtZqX+013KjJWLPWbJHFjVjj7COMwunikPq9ilcfAMoyY/d1odl0ewamopD4DX1oFeVDPov8XV7KwPeaCKE3wcQPS10NUlrIpfrMkLQvUgMd2C0chPX16zz8QARb8O7IHyk0/Oe/c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ifShd6t0; arc=none smtp.client-ip=209.85.218.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-56bc5a3aeb9so6718617a12.3
-        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 07:47:28 -0700 (PDT)
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a466e53f8c0so692253866b.1
+        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 07:49:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712069247; x=1712674047; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712069377; x=1712674177; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=hAVh7IlPzqGjm9NpZgxRf0H+NeU99flnbxeI0QSVaJg=;
-        b=kEOYK3HNYBoaLX9mLL2lizwyVaID20fE73Hc56G1UdRcle/UVuCx3hltn8614LQx4I
-         MnvcF6z3yNIYAEFXZU0hFsMKqCiuP56KSD6fhU2B0zp8I8OoKfkoQiFIZCpvPbgEVFtc
-         +Aalx1e5QgW8aYGoJ+l67mSmy+cHvtUWQOpbaHzBWhVm0Su2RGW5ANcQ77OHp1dcpart
-         XcLbUqy3jLBJaQg5zel1yX8eUGabfggA81c2/pop4T8BoTL6mUYSXTHIIqvSHi4kiq39
-         IxltSd6zcQWdv/kw+TIbuFUNwBZXB/YxApYHkCYEYyCI4QpoNHbL3sbqtTbWi10gYmpB
-         M28g==
+        bh=qLa+MN3bXJ5HxwNKiIPGEXS1wglnZiuZ2Ea5/Fw6iIM=;
+        b=ifShd6t0t41raE9O8TOLw/bl3gnuNErHtn2VQNJ8lvrgANbupd8YLKj/qr7dRj4kLw
+         N6/STJR+rtB86Xt3BBbD086vMel9IY4Y2vUBwoSV/32NZ8uZExqjwcmCDNkREnC8fvos
+         Lw2H0VSUTij3nL9vPENkzDtH1Hbo1wg3ZIFEknuN2zrFPG7Ilwoakuuwdt/fKhfS69Ju
+         jRm2hX4Jn1lBAO7Fc+3hAG2DFSe+Dzz1vaC07OxsNJMrjga+RJZWB4O6X+Yipqzz1Cwz
+         yn8kmPd4uTgoZSqE2vLW9atyh9iZwsId7Mz/ejQV7yM4GaB7EkOFCtyAGO+6419GcbUs
+         S4nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712069247; x=1712674047;
+        d=1e100.net; s=20230601; t=1712069377; x=1712674177;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=hAVh7IlPzqGjm9NpZgxRf0H+NeU99flnbxeI0QSVaJg=;
-        b=lgsZas0erw76ib6eX/6bDwskwzeOve0PO3il0owgWj6IDaLnoqYA5Cr8yym3Q9L9yj
-         hW61bO4jN90Tj38COEbFUaGP7lxncanbAtnQxPKdYdJfKeo2zAxlbmeaSV7KsMOuOWBZ
-         eiL3BeHuhHzHo9NBx6ZEKNzRVjdcP7cStwliwFFKBgDhiGgFQb3LuLtgF3bqN8TMpFYP
-         7u4XBej09FyXwtA15nD83DpShxOTW76Ical1f5QorT2ny7HkU+lbUpL6kYzWv2kAn9JT
-         F3P5m8BlxkjWPqpJFK5To03kJLCmwcMZ8Ey1CTGoYraDpRiuSXLHtt1mJ7J6QCr2E13S
-         8UAg==
-X-Forwarded-Encrypted: i=1; AJvYcCVJQdvY0ZJRlmp5+bTdqVoZmf3BJti/bgIG7jDZsTEp0bJIc7r/J5kZjx09FKSDCO8v4mqsTlj6V2z/2ILI0l3E8zu3Jv6kMGfyuA==
-X-Gm-Message-State: AOJu0Yxv/THfR224d0iXlVhHcBVuQNZigTahnKxDglzdPlhX1bJbSSNX
-	9DQZeQN3iSjA7zpcEowxpG3ZJIjnMQxgd9x6BADkfvYqd8zzAs1Ep2S31Ji4/6Y=
-X-Google-Smtp-Source: AGHT+IFBVqcsXGsRjPp1iqC7U9wiXJJ38gF3zMb3VBwO2QsXOJos6FFUOnkxbTRiPODXCJMx8xQt8A==
-X-Received: by 2002:a05:6402:5190:b0:568:9ba8:8f1a with SMTP id q16-20020a056402519000b005689ba88f1amr9970535edd.7.1712069246823;
-        Tue, 02 Apr 2024 07:47:26 -0700 (PDT)
+        bh=qLa+MN3bXJ5HxwNKiIPGEXS1wglnZiuZ2Ea5/Fw6iIM=;
+        b=Nj5mirPUYhDSCiyIsnnE4SAhXadM8wUhuErpVFkuGvxnlvF2fLkiRbPSE5sT0qq+9P
+         G+B1Uu4/Kx8JFM5E8/bFUUvKkLd//AfLys3ikCLYtsP5p5wZqEoITAOSCWKMvGk37quD
+         NV69K3t3UI6Lo7mYIfCkc9zqoKLIpzPKsO1hs1ikPCwQneXmrrK9WdsBZ/hg20zOwJyF
+         F55nlVPAV023t/CfgAibQTQQQEMYUMI8vSpqzh7voJfByIRm5uF7f2bKvNK7gmFPSivR
+         srZlYUxk8QjQLcDIZfkbDwIguiRU9e1+5b/eV+3mWF1g3LXqw4e72p1Ofcyqs3eTUcS+
+         7oCA==
+X-Forwarded-Encrypted: i=1; AJvYcCWLx9jWuuDqQbXErjy/QLpzlvw5ixd0yjD6KqMHIphQobTJwVw2FteqneO4nVQteaSLpUqTLfD0VsOPiwHRg7hO9OCkaS/0095M2Q==
+X-Gm-Message-State: AOJu0YzHQz6nHY0vVzlMZD7xoXuF6gZXGDNhSm2Yxqh5boPr3Pn1xvdz
+	vOiX9P1VWT5dyMmXm8ZaN5LtJ3vFoSpfuz/9rJlbhN6sB7CUlf7GgGNmdsIGbb5U2BlRhkp07v7
+	P
+X-Google-Smtp-Source: AGHT+IGFYhRDcZm6Ii0rP7m5rmXlrAdHv5FZrzsVIj839wjWmHdgrYaO3ezpyXY/JT7It50aaa5OsA==
+X-Received: by 2002:a17:907:9286:b0:a4e:4e76:5fc7 with SMTP id bw6-20020a170907928600b00a4e4e765fc7mr8881269ejc.65.1712069376618;
+        Tue, 02 Apr 2024 07:49:36 -0700 (PDT)
 Received: from [192.168.92.47] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
-        by smtp.gmail.com with ESMTPSA id r1-20020aa7cb81000000b0056dd4bf7660sm2488730edt.52.2024.04.02.07.47.24
+        by smtp.gmail.com with ESMTPSA id q17-20020a1709060e5100b00a4623030893sm6527417eji.126.2024.04.02.07.49.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Apr 2024 07:47:25 -0700 (PDT)
-Message-ID: <d9ba1e11-44ea-4c1f-ab33-56a8bf57ab63@linaro.org>
-Date: Tue, 2 Apr 2024 16:47:23 +0200
+        Tue, 02 Apr 2024 07:49:36 -0700 (PDT)
+Message-ID: <0e599137-4a23-40b9-9a22-3c32f795fa1b@linaro.org>
+Date: Tue, 2 Apr 2024 16:49:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,18 +78,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: msm8996: add fastrpc nodes
+Subject: Re: [PATCH v6 2/6] interconnect: icc-clk: Remove tristate from
+ INTERCONNECT_CLK
 To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>,
- Sibi Sankar <quic_sibis@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-References: <20240401-msm8996-remoteproc-v1-0-f02ab47fc728@linaro.org>
- <20240401-msm8996-remoteproc-v1-3-f02ab47fc728@linaro.org>
+ Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc: andersson@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+ robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ djakov@kernel.org, quic_anusha@quicinc.com, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ kernel test robot <lkp@intel.com>
+References: <20240402103406.3638821-1-quic_varada@quicinc.com>
+ <20240402103406.3638821-3-quic_varada@quicinc.com>
+ <CAA8EJppyuagb5zkP4LCjjJwConw3mw3iS-+dO7YB01=7-waRTw@mail.gmail.com>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
@@ -126,80 +128,35 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20240401-msm8996-remoteproc-v1-3-f02ab47fc728@linaro.org>
+In-Reply-To: <CAA8EJppyuagb5zkP4LCjjJwConw3mw3iS-+dO7YB01=7-waRTw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 31.03.2024 11:10 PM, Dmitry Baryshkov wrote:
-> From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+On 2.04.2024 12:39 PM, Dmitry Baryshkov wrote:
+> On Tue, 2 Apr 2024 at 13:34, Varadarajan Narayanan
+> <quic_varada@quicinc.com> wrote:
+>>
+>> drivers/clk/qcom/common.c uses devm_icc_clk_register under
+>> IS_ENABLED(CONFIG_INTERCONNECT_CLK). However, in kernel bot
+>> random config build test, with the following combination
+>>
+>>         CONFIG_COMMON_CLK_QCOM=y
+>>                 and
+>>         CONFIG_INTERCONNECT_CLK=m
+>>
+>> the following error is seen as devm_icc_clk_register is in a
+>> module and being referenced from vmlinux.
+>>
+>>         powerpc64-linux-ld: drivers/clk/qcom/common.o: in function `qcom_cc_really_probe':
+>>         >> common.c:(.text+0x980): undefined reference to `devm_icc_clk_register'
+>>
+>> Hence, ensure INTERCONNECT_CLK is not selected as a module.
 > 
-> The ADSP provides fastrpc/compute capabilities. Enable support for the
-> fastrpc on this DSP.
-> 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/msm8996.dtsi | 57 +++++++++++++++++++++++++++++++++++
->  1 file changed, 57 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> index 7ae499fa7d91..cf7ab01f3af6 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> @@ -3545,6 +3545,63 @@ q6routing: routing {
->  						};
->  					};
->  				};
-> +
-> +				fastrpc {
-> +					compatible = "qcom,fastrpc";
-> +					qcom,smd-channels = "fastrpcsmd-apps-dsp";
-> +					label = "adsp";
-> +					qcom,non-secure-domain;
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +
-> +					cb@8 {
-> +						compatible = "qcom,fastrpc-compute-cb";
-> +						reg = <8>;
-> +						iommus = <&lpass_q6_smmu 8>;
-> +					};
-> +
-> +					cb@9 {
-> +						compatible = "qcom,fastrpc-compute-cb";
-> +						reg = <9>;
-> +						iommus = <&lpass_q6_smmu 9>;
-> +					};
-> +
-> +					cb@10 {
-> +						compatible = "qcom,fastrpc-compute-cb";
-> +						reg = <10>;
-> +						iommus = <&lpass_q6_smmu 10>;
-> +					};
-> +
-> +					cb@11 {
-> +						compatible = "qcom,fastrpc-compute-cb";
-> +						reg = <11>;
-> +						iommus = <&lpass_q6_smmu 11>;
-> +					};
-> +
-> +					cb@12 {
-> +						compatible = "qcom,fastrpc-compute-cb";
-> +						reg = <12>;
-> +						iommus = <&lpass_q6_smmu 12>;
-> +					};
-> +
-> +					cb@5 {
-> +						compatible = "qcom,fastrpc-compute-cb";
-> +						reg = <5>;
+> NAK. Please use `depends on INTERCONNECT_CLK || !INTERCONNECT_CLK` in
+> your Kconfig dependencies.
 
-No need to copy downstream's creative alphabetical-but-not-numerical
-sorting.. The entries look OK though.. although, any reason we have
-such a weird binding including faux child nodes and not just an array
-of iommus? Is the only way to discover the fastrpc nodes' properties
-such as qcom,non-secure-domain or vmid belonging through hardcoding?
-
-Konrad
+Should icc-clk ever be built as a module? It really seems like it should be
+a part of the core framework.. And dependency management would be easier
 
 Konrad
 
