@@ -1,150 +1,455 @@
-Return-Path: <devicetree+bounces-55321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55322-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60916894D20
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 10:06:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9308894D41
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 10:15:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1F07282F9B
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 08:05:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC8301C21F62
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 08:14:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1DE13D3BF;
-	Tue,  2 Apr 2024 08:05:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11CB73D547;
+	Tue,  2 Apr 2024 08:14:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="saXjCy+B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C7FD3D3BD
-	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 08:05:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBB4A3D968
+	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 08:14:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712045157; cv=none; b=BLCSvVwlCMDY80L/ApJtxHeFFJv60xmh+nykLgR4IT52Bpf964zVvMEPAJ45ZdSv1eUv9dNTqXdbVJ80jwnFFkS8fzReqwl7CkNr9Ubq2S1WmVJh+JIcLmFEk3UkLWRYUKRSXYxu/DWMFFAgZ1UFDNOLOZOwZUi5Q7xWG0d0tSk=
+	t=1712045698; cv=none; b=RXxuUZ0nlwzZlRkBjgpGVTJZQEp8EIZAGLeyCU9u14GkyO3lC00y2i7tTEw2X9uRECeSEjQcnyhKOAWLte0wPu+y8Qo9fKuIoJbMSWVVd5iTSompjjhoMloJU1qLCR8GR7qwwKQJo1yNoUkeYTdbwZT0W+VxgZVCdb5USOHC0HA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712045157; c=relaxed/simple;
-	bh=rLoEKAQK6tUKxwzN63ux7GZ+5/xHH5vDLIDMrKO/qyo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=anp8UG7bjSP5Lv0UuHmBsjbXCBDN+kZZLxcBpyDU+lBjglAgP6htziZ3HnDjTzla6VhiZ6OhcvgJp2H8NuAiG0OmVM6oPJqfXCqhOnZWx82PweCe/sAATnh0JVjMW7zUoQdW9wRc6prRmYOLm6A8L3lCcHFCcBA7YkFBAONVxAw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1rrZ9U-0007yo-FT; Tue, 02 Apr 2024 10:05:52 +0200
-Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1rrZ9T-009wbk-N3; Tue, 02 Apr 2024 10:05:51 +0200
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1rrZ9T-00Akf4-1z;
-	Tue, 02 Apr 2024 10:05:51 +0200
-Date: Tue, 2 Apr 2024 10:05:51 +0200
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Jacopo Mondi <jacopo@jmondi.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-	Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH] arm64: dts: debix-a: Remove i2c2 from base .dts
-Message-ID: <20240402080551.t4tmvfumqtylvjtx@pengutronix.de>
-References: <20240325225048.1159-1-laurent.pinchart@ideasonboard.com>
- <20240402065443.hpinj7oftcst6fwd@pengutronix.de>
- <20240402075903.GB10288@pendragon.ideasonboard.com>
+	s=arc-20240116; t=1712045698; c=relaxed/simple;
+	bh=TOq53tR9SW7f3LoGe9ygIWOoTvtK9dF6Tr05cjFWHMs=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=LzaO2o37i4QZqTYjvaiXxybdVIjmvwbRAtrhbw+dIITy///rKxeho/WByyc9KptYZKkTmN9yUq/YOPX9p1udDAzqTUwyd2exNH81wVcpa64NqgSyV7NkpVD1z368A9WN5zt8GYjcUFSBqOcJpEQKzS2O7gyD9Ri2vS4cHWM4hKk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=saXjCy+B; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-415523d9824so30193755e9.3
+        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 01:14:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712045694; x=1712650494; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LbF43dxBy0J3FsHX0gcnkRH6LlGiVcSd8fCdvuzNAI8=;
+        b=saXjCy+BNXqvxbfLVeLlfplNZuhWG/vEwA9kRME13AC20RzqE8HsrISY+RVM1HDfAE
+         1DEIxxsR7O8mOPbjYGNcywrnx1elUYRa8Dd8d8ACIU88fkPL60xRHOd+SEcW8b/xpwKy
+         VTIK3DCPP7qDtfw4eqiVL21GAIkZAkW+iy7MdX9VANFuryTu6bkMRZpLs0OfAvyi86sy
+         4hspv5XRAAoe+cUiJb0KaHnhNiOASsp8KZs+RjBnop3LyZfw5JPDd1RNoI6o7t32armm
+         pPTmvIHZcDuY0LaYMEWFwY6KlySfYPnW3VeBhmQ7cMtsBLHcPaKVKJgQHUxr/ENIMUW0
+         fB3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712045694; x=1712650494;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=LbF43dxBy0J3FsHX0gcnkRH6LlGiVcSd8fCdvuzNAI8=;
+        b=UPjwBDkaSIxT18QEv0EV4QyUcVabljYZQw1SpOGhMDgYn3K+pSDUz6oQx7zizFZXDR
+         EiSBW9XxuSTyo4pW0Wa7R1+ImHnMpdpe4N6KzIO/p7oXRJaO2hK9B+Wc4hfZL1Xs0az1
+         eh7jG5guZvdWXcFAfWCwRM42N6XyWZ4hxXLRU8bKo/uFyHXq/xoB8C2AOoMjQhxfHhek
+         biqvdDQyPtD6ybobAKI575QntAP5qd+OvrB+abPCll1+GQEFqnnhzrFWQlrqcpvwWaWF
+         13ZPI3nWn0p+h06AzaIuDmv+E85CcV6wie2ijoBLeeDT7vkFYDAIdgFYH8Y+Jsint1xv
+         ybrg==
+X-Forwarded-Encrypted: i=1; AJvYcCXb+WpHdsdc0vnf8pGr5UPlMaBY46xdahybxYeq5rGEowIXnPTW1dZStHVSqF8NxXnMXX6nucLSBTmEs9EFYT1+kHEHnR5igtmghA==
+X-Gm-Message-State: AOJu0YyAbL1hoesm0t+MrZPr9koxVYsiI3qvVra0SdzJ04uaBq7z3Rpc
+	wyP6fcqZOWjadWrU2KSoXhYnw1F7urU6oW7DZ4MdslamlqgHWy0bT6um1dgTDFs=
+X-Google-Smtp-Source: AGHT+IGKILr+g6OjRMc7vLRVByjWiCQBnf6B0cZ8Acbs78NM33Rh1SM0WP/l8JFhh/v1k7FbKB+sBQ==
+X-Received: by 2002:a05:600c:3206:b0:413:feed:b309 with SMTP id r6-20020a05600c320600b00413feedb309mr768600wmp.6.1712045693777;
+        Tue, 02 Apr 2024 01:14:53 -0700 (PDT)
+Received: from [192.168.7.190] (82-64-249-211.subs.proxad.net. [82.64.249.211])
+        by smtp.gmail.com with ESMTPSA id dv10-20020a0560000d8a00b00341ce1b64f0sm13493756wrb.17.2024.04.02.01.14.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Apr 2024 01:14:53 -0700 (PDT)
+Message-ID: <276e0bde-a936-49da-bb6f-71fbb3561fbc@linaro.org>
+Date: Tue, 2 Apr 2024 10:14:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240402075903.GB10288@pendragon.ideasonboard.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v7 3/6] spmi: pmic-arb: Make the APID init a version
+ operation
+To: Abel Vesa <abel.vesa@linaro.org>, Stephen Boyd <sboyd@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+ Johan Hovold <johan@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
+References: <20240329-spmi-multi-master-support-v7-0-7b902824246c@linaro.org>
+ <20240329-spmi-multi-master-support-v7-3-7b902824246c@linaro.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20240329-spmi-multi-master-support-v7-3-7b902824246c@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 24-04-02, Laurent Pinchart wrote:
-> Hi Marco,
+On 29/03/2024 19:54, Abel Vesa wrote:
+> Rather than using conditionals in probe function, add the APID init
+> as a version specific operation. Due to v7, which supports multiple
+> buses, pass on the bus index to be used for sorting out the apid base
+> and count.
 > 
-> On Tue, Apr 02, 2024 at 08:54:43AM +0200, Marco Felsch wrote:
-> > On 24-03-26, Laurent Pinchart wrote:
-> > > From: Jacopo Mondi <jacopo@jmondi.org>
-> > > 
-> > > The I2C2 bus is used for the CSI and DSI connectors only, no devices are
-> > > connected to it on neither the Debix Model A nor its IO board. Remove
-> > > the bus from the board's .dts and rely on display panel or camera sensor
-> > > overlsy to enable it when necessary.
-> > 
-> > I would rather remove the status line instead of removing the whole node
-> > since the bus is intented to be used for CSI and DSI and therefore the
-> > muxing should be valid. This makes it easier for overlay authors since
-> > they don't need to check the mux setup each time.
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+>   drivers/spmi/spmi-pmic-arb.c | 199 +++++++++++++++++++++++++++----------------
+>   1 file changed, 124 insertions(+), 75 deletions(-)
 > 
-> Seems sensible to me. I will drop the clock-frequency property in
-> addition to the status property, as the frequency depends solely on the
-> devices connected to the CSI and DSI connectors.
+> diff --git a/drivers/spmi/spmi-pmic-arb.c b/drivers/spmi/spmi-pmic-arb.c
+> index 9ed1180fe31f..38fed8a585fe 100644
+> --- a/drivers/spmi/spmi-pmic-arb.c
+> +++ b/drivers/spmi/spmi-pmic-arb.c
+> @@ -183,6 +183,7 @@ struct spmi_pmic_arb {
+>    * struct pmic_arb_ver_ops - version dependent functionality.
+>    *
+>    * @ver_str:		version string.
+> + * @init_apid:		finds the apid base and count
+>    * @ppid_to_apid:	finds the apid for a given ppid.
+>    * @non_data_cmd:	on v1 issues an spmi non-data command.
+>    *			on v2 no HW support, returns -EOPNOTSUPP.
+> @@ -202,6 +203,7 @@ struct spmi_pmic_arb {
+>    */
+>   struct pmic_arb_ver_ops {
+>   	const char *ver_str;
+> +	int (*init_apid)(struct spmi_pmic_arb *pmic_arb, int index);
+>   	int (*ppid_to_apid)(struct spmi_pmic_arb *pmic_arb, u16 ppid);
+>   	/* spmi commands (read_cmd, write_cmd, cmd) functionality */
+>   	int (*offset)(struct spmi_pmic_arb *pmic_arb, u8 sid, u16 addr,
+> @@ -942,6 +944,38 @@ static int qpnpint_irq_domain_alloc(struct irq_domain *domain,
+>   	return 0;
+>   }
+>   
+> +static int pmic_arb_init_apid_min_max(struct spmi_pmic_arb *pmic_arb)
+> +{
+> +	/*
+> +	 * Initialize max_apid/min_apid to the opposite bounds, during
+> +	 * the irq domain translation, we are sure to update these
+> +	 */
+> +	pmic_arb->max_apid = 0;
+> +	pmic_arb->min_apid = pmic_arb->max_periphs - 1;
+> +
+> +	return 0;
+> +}
+> +
+> +static int pmic_arb_init_apid_v1(struct spmi_pmic_arb *pmic_arb, int index)
+> +{
+> +	u32 *mapping_table;
+> +
+> +	if (index) {
+> +		dev_err(&pmic_arb->spmic->dev, "Unsupported buses count %d detected\n",
+> +			index);
+> +		return -EINVAL;
+> +	}
+> +
+> +	mapping_table = devm_kcalloc(&pmic_arb->spmic->dev, pmic_arb->max_periphs,
+> +				     sizeof(*mapping_table), GFP_KERNEL);
+> +	if (!mapping_table)
+> +		return -ENOMEM;
+> +
+> +	pmic_arb->mapping_table = mapping_table;
+> +
+> +	return pmic_arb_init_apid_min_max(pmic_arb);
+> +}
+> +
+>   static int pmic_arb_ppid_to_apid_v1(struct spmi_pmic_arb *pmic_arb, u16 ppid)
+>   {
+>   	u32 *mapping_table = pmic_arb->mapping_table;
+> @@ -1144,6 +1178,40 @@ static int pmic_arb_offset_v2(struct spmi_pmic_arb *pmic_arb, u8 sid, u16 addr,
+>   	return 0x1000 * pmic_arb->ee + 0x8000 * apid;
+>   }
+>   
+> +static int pmic_arb_init_apid_v5(struct spmi_pmic_arb *pmic_arb, int index)
+> +{
+> +	int ret;
+> +
+> +	if (index) {
+> +		dev_err(&pmic_arb->spmic->dev, "Unsupported buses count %d detected\n",
+> +			index);
+> +		return -EINVAL;
+> +	}
+> +
+> +	pmic_arb->base_apid = 0;
+> +	pmic_arb->apid_count = readl_relaxed(pmic_arb->core + PMIC_ARB_FEATURES) &
+> +					   PMIC_ARB_FEATURES_PERIPH_MASK;
+> +
+> +	if (pmic_arb->base_apid + pmic_arb->apid_count > pmic_arb->max_periphs) {
+> +		dev_err(&pmic_arb->spmic->dev, "Unsupported APID count %d detected\n",
+> +			pmic_arb->base_apid + pmic_arb->apid_count);
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = pmic_arb_init_apid_min_max(pmic_arb);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = pmic_arb_read_apid_map_v5(pmic_arb);
+> +	if (ret) {
+> +		dev_err(&pmic_arb->spmic->dev, "could not read APID->PPID mapping table, rc= %d\n",
+> +			ret);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>   /*
+>    * v5 offset per ee and per apid for observer channels and per apid for
+>    * read/write channels.
+> @@ -1178,6 +1246,49 @@ static int pmic_arb_offset_v5(struct spmi_pmic_arb *pmic_arb, u8 sid, u16 addr,
+>   	return offset;
+>   }
+>   
+> +/*
+> + * Only v7 supports 2 buses. Each bus will get a different apid count, read
+> + * from different registers.
+> + */
+> +static int pmic_arb_init_apid_v7(struct spmi_pmic_arb *pmic_arb, int index)
+> +{
+> +	int ret;
+> +
+> +	if (index == 0) {
+> +		pmic_arb->base_apid = 0;
+> +		pmic_arb->apid_count = readl_relaxed(pmic_arb->core + PMIC_ARB_FEATURES) &
+> +						   PMIC_ARB_FEATURES_PERIPH_MASK;
+> +	} else if (index == 1) {
+> +		pmic_arb->base_apid = readl_relaxed(pmic_arb->core + PMIC_ARB_FEATURES) &
+> +						  PMIC_ARB_FEATURES_PERIPH_MASK;
+> +		pmic_arb->apid_count = readl_relaxed(pmic_arb->core + PMIC_ARB_FEATURES1) &
+> +						   PMIC_ARB_FEATURES_PERIPH_MASK;
+> +	} else {
+> +		dev_err(&pmic_arb->spmic->dev, "Unsupported buses count %d detected\n",
+> +			index);
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (pmic_arb->base_apid + pmic_arb->apid_count > pmic_arb->max_periphs) {
+> +		dev_err(&pmic_arb->spmic->dev, "Unsupported APID count %d detected\n",
+> +			pmic_arb->base_apid + pmic_arb->apid_count);
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = pmic_arb_init_apid_min_max(pmic_arb);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = pmic_arb_read_apid_map_v5(pmic_arb);
+> +	if (ret) {
+> +		dev_err(&pmic_arb->spmic->dev, "could not read APID->PPID mapping table, rc= %d\n",
+> +			ret);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>   /*
+>    * v7 offset per ee and per apid for observer channels and per apid for
+>    * read/write channels.
+> @@ -1358,6 +1469,7 @@ pmic_arb_apid_owner_v7(struct spmi_pmic_arb *pmic_arb, u16 n)
+>   
+>   static const struct pmic_arb_ver_ops pmic_arb_v1 = {
+>   	.ver_str		= "v1",
+> +	.init_apid		= pmic_arb_init_apid_v1,
+>   	.ppid_to_apid		= pmic_arb_ppid_to_apid_v1,
+>   	.non_data_cmd		= pmic_arb_non_data_cmd_v1,
+>   	.offset			= pmic_arb_offset_v1,
+> @@ -1372,6 +1484,7 @@ static const struct pmic_arb_ver_ops pmic_arb_v1 = {
+>   
+>   static const struct pmic_arb_ver_ops pmic_arb_v2 = {
+>   	.ver_str		= "v2",
+> +	.init_apid		= pmic_arb_init_apid_v1,
+>   	.ppid_to_apid		= pmic_arb_ppid_to_apid_v2,
+>   	.non_data_cmd		= pmic_arb_non_data_cmd_v2,
+>   	.offset			= pmic_arb_offset_v2,
+> @@ -1386,6 +1499,7 @@ static const struct pmic_arb_ver_ops pmic_arb_v2 = {
+>   
+>   static const struct pmic_arb_ver_ops pmic_arb_v3 = {
+>   	.ver_str		= "v3",
+> +	.init_apid		= pmic_arb_init_apid_v1,
+>   	.ppid_to_apid		= pmic_arb_ppid_to_apid_v2,
+>   	.non_data_cmd		= pmic_arb_non_data_cmd_v2,
+>   	.offset			= pmic_arb_offset_v2,
+> @@ -1400,6 +1514,7 @@ static const struct pmic_arb_ver_ops pmic_arb_v3 = {
+>   
+>   static const struct pmic_arb_ver_ops pmic_arb_v5 = {
+>   	.ver_str		= "v5",
+> +	.init_apid		= pmic_arb_init_apid_v5,
+>   	.ppid_to_apid		= pmic_arb_ppid_to_apid_v5,
+>   	.non_data_cmd		= pmic_arb_non_data_cmd_v2,
+>   	.offset			= pmic_arb_offset_v5,
+> @@ -1414,6 +1529,7 @@ static const struct pmic_arb_ver_ops pmic_arb_v5 = {
+>   
+>   static const struct pmic_arb_ver_ops pmic_arb_v7 = {
+>   	.ver_str		= "v7",
+> +	.init_apid		= pmic_arb_init_apid_v7,
+>   	.ppid_to_apid		= pmic_arb_ppid_to_apid_v5,
+>   	.non_data_cmd		= pmic_arb_non_data_cmd_v2,
+>   	.offset			= pmic_arb_offset_v7,
+> @@ -1439,7 +1555,6 @@ static int spmi_pmic_arb_probe(struct platform_device *pdev)
+>   	struct spmi_controller *ctrl;
+>   	struct resource *res;
+>   	void __iomem *core;
+> -	u32 *mapping_table;
+>   	u32 channel, ee, hw_ver;
+>   	int err;
+>   
+> @@ -1467,12 +1582,6 @@ static int spmi_pmic_arb_probe(struct platform_device *pdev)
+>   
+>   	pmic_arb->core_size = resource_size(res);
+>   
+> -	pmic_arb->ppid_to_apid = devm_kcalloc(&ctrl->dev, PMIC_ARB_MAX_PPID,
+> -					      sizeof(*pmic_arb->ppid_to_apid),
+> -					      GFP_KERNEL);
+> -	if (!pmic_arb->ppid_to_apid)
+> -		return -ENOMEM;
+> -
+>   	hw_ver = readl_relaxed(core + PMIC_ARB_VERSION);
+>   
+>   	if (hw_ver < PMIC_ARB_VERSION_V2_MIN) {
+> @@ -1506,58 +1615,17 @@ static int spmi_pmic_arb_probe(struct platform_device *pdev)
+>   			return PTR_ERR(pmic_arb->wr_base);
+>   	}
+>   
+> -	pmic_arb->max_periphs = PMIC_ARB_MAX_PERIPHS;
+> +	dev_info(&ctrl->dev, "PMIC arbiter version %s (0x%x)\n",
+> +		 pmic_arb->ver_ops->ver_str, hw_ver);
+>   
+> -	if (hw_ver >= PMIC_ARB_VERSION_V7_MIN) {
+> +	if (hw_ver < PMIC_ARB_VERSION_V7_MIN)
+> +		pmic_arb->max_periphs = PMIC_ARB_MAX_PERIPHS;
+> +	else
+>   		pmic_arb->max_periphs = PMIC_ARB_MAX_PERIPHS_V7;
+> -		/* Optional property for v7: */
+> -		of_property_read_u32(pdev->dev.of_node, "qcom,bus-id",
+> -					&pmic_arb->bus_instance);
+> -		if (pmic_arb->bus_instance > 1) {
+> -			dev_err(&pdev->dev, "invalid bus instance (%u) specified\n",
+> -				pmic_arb->bus_instance);
+> -			return -EINVAL;
+> -		}
+> -
+> -		if (pmic_arb->bus_instance == 0) {
+> -			pmic_arb->base_apid = 0;
+> -			pmic_arb->apid_count =
+> -				readl_relaxed(core + PMIC_ARB_FEATURES) &
+> -				PMIC_ARB_FEATURES_PERIPH_MASK;
+> -		} else {
+> -			pmic_arb->base_apid =
+> -				readl_relaxed(core + PMIC_ARB_FEATURES) &
+> -				PMIC_ARB_FEATURES_PERIPH_MASK;
+> -			pmic_arb->apid_count =
+> -				readl_relaxed(core + PMIC_ARB_FEATURES1) &
+> -				PMIC_ARB_FEATURES_PERIPH_MASK;
+> -		}
+>   
+> -		if (pmic_arb->base_apid + pmic_arb->apid_count > pmic_arb->max_periphs) {
+> -			dev_err(&pdev->dev, "Unsupported APID count %d detected\n",
+> -				pmic_arb->base_apid + pmic_arb->apid_count);
+> -			return -EINVAL;
+> -		}
+> -	} else if (hw_ver >= PMIC_ARB_VERSION_V5_MIN) {
+> -		pmic_arb->base_apid = 0;
+> -		pmic_arb->apid_count = readl_relaxed(core + PMIC_ARB_FEATURES) &
+> -					PMIC_ARB_FEATURES_PERIPH_MASK;
+> -
+> -		if (pmic_arb->apid_count > pmic_arb->max_periphs) {
+> -			dev_err(&pdev->dev, "Unsupported APID count %d detected\n",
+> -				pmic_arb->apid_count);
+> -			return -EINVAL;
+> -		}
+> -	}
+> -
+> -	pmic_arb->apid_data = devm_kcalloc(&ctrl->dev, pmic_arb->max_periphs,
+> -					   sizeof(*pmic_arb->apid_data),
+> -					   GFP_KERNEL);
+> -	if (!pmic_arb->apid_data)
+> -		return -ENOMEM;
+> -
+> -	dev_info(&ctrl->dev, "PMIC arbiter version %s (0x%x)\n",
+> -		 pmic_arb->ver_ops->ver_str, hw_ver);
+> +	err = pmic_arb->ver_ops->init_apid(pmic_arb, 0);
+> +	if (err)
+> +		return err;
+>   
+>   	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "intr");
+>   	pmic_arb->intr = devm_ioremap_resource(&ctrl->dev, res);
+> @@ -1599,16 +1667,6 @@ static int spmi_pmic_arb_probe(struct platform_device *pdev)
+>   	}
+>   
+>   	pmic_arb->ee = ee;
+> -	mapping_table = devm_kcalloc(&ctrl->dev, pmic_arb->max_periphs,
+> -					sizeof(*mapping_table), GFP_KERNEL);
+> -	if (!mapping_table)
+> -		return -ENOMEM;
+> -
+> -	pmic_arb->mapping_table = mapping_table;
+> -	/* Initialize max_apid/min_apid to the opposite bounds, during
+> -	 * the irq domain translation, we are sure to update these */
+> -	pmic_arb->max_apid = 0;
+> -	pmic_arb->min_apid = pmic_arb->max_periphs - 1;
+>   
+>   	platform_set_drvdata(pdev, ctrl);
+>   	raw_spin_lock_init(&pmic_arb->lock);
+> @@ -1617,15 +1675,6 @@ static int spmi_pmic_arb_probe(struct platform_device *pdev)
+>   	ctrl->read_cmd = pmic_arb_read_cmd;
+>   	ctrl->write_cmd = pmic_arb_write_cmd;
+>   
+> -	if (hw_ver >= PMIC_ARB_VERSION_V5_MIN) {
+> -		err = pmic_arb_read_apid_map_v5(pmic_arb);
+> -		if (err) {
+> -			dev_err(&pdev->dev, "could not read APID->PPID mapping table, rc= %d\n",
+> -				err);
+> -			return err;
+> -		}
+> -	}
+> -
+>   	dev_dbg(&pdev->dev, "adding irq domain\n");
+>   	pmic_arb->domain = irq_domain_add_tree(pdev->dev.of_node,
+>   					 &pmic_arb_irq_domain_ops, pmic_arb);
+> 
 
-Make sense. With these changes, feel free to add my:
-
-Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
-
-Regards,
-  Marco
-
-> > > Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
-> > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > ---
-> > >  .../boot/dts/freescale/imx8mp-debix-model-a.dts    | 14 --------------
-> > >  1 file changed, 14 deletions(-)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-> > > index 5ac77eaf23d5..26c303b7c7fa 100644
-> > > --- a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-> > > +++ b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-> > > @@ -210,13 +210,6 @@ ldo5: LDO5 {
-> > >  	};
-> > >  };
-> > >  
-> > > -&i2c2 {
-> > > -	clock-frequency = <100000>;
-> > > -	pinctrl-names = "default";
-> > > -	pinctrl-0 = <&pinctrl_i2c2>;
-> > > -	status = "okay";
-> > > -};
-> > > -
-> > >  &i2c3 {
-> > >  	clock-frequency = <400000>;
-> > >  	pinctrl-names = "default";
-> > > @@ -392,13 +385,6 @@ MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA					0x400001c2
-> > >  		>;
-> > >  	};
-> > >  
-> > > -	pinctrl_i2c2: i2c2grp {
-> > > -		fsl,pins = <
-> > > -			MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL					0x400001c2
-> > > -			MX8MP_IOMUXC_I2C2_SDA__I2C2_SDA					0x400001c2
-> > > -		>;
-> > > -	};
-> > > -
-> > >  	pinctrl_i2c3: i2c3grp {
-> > >  		fsl,pins = <
-> > >  			MX8MP_IOMUXC_I2C3_SCL__I2C3_SCL					0x400001c2
-> 
-> -- 
-> Regards,
-> 
-> Laurent Pinchart
-> 
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
