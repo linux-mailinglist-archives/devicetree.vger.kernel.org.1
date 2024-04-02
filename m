@@ -1,74 +1,55 @@
-Return-Path: <devicetree+bounces-55358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55360-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D13BF894EE9
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 11:42:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1BD6894F1D
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 11:51:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B2AF1F21810
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 09:42:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 75C2228162D
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 09:51:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 455E158AA8;
-	Tue,  2 Apr 2024 09:42:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 150CF58ABD;
+	Tue,  2 Apr 2024 09:50:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yPR4pFGj"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="35rLm1S5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79EC09454
-	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 09:42:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 410DE17C8D;
+	Tue,  2 Apr 2024 09:50:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712050933; cv=none; b=goCoNyuROqKdgiiiZi3DuR0l+8zsHVAcfouayJj7+HlSMHOIznuI2SaLeuiGqIbiGu/fpOlxPzIqAikDbg9V8c9LNrjbBwtC0upapHOzo7p0tWbG6WrS0/nqNmuVQcb5QxK3TmThT8oQIFYQkzz6yJDkbvrxGB0SMtzUmN0WxFw=
+	t=1712051459; cv=none; b=IpGQ7kY39cna5b8FLxSI4O7VmzFcxuOn2G/jftzZ6ANgZf/dZx6uWA6znTJ5xD3k750Ue8SAykbM7YFMzppASffx5QypaUfh4X8WBIkTSMjzxm9PWoo6ICi6+jB42KH6+fnNyjybeQEN1ss2A82T8jGdCfH196S8QYbBiDhscyA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712050933; c=relaxed/simple;
-	bh=VmxrNNcMQMPlblJGRE5HZ1zqo8KlOTh7OJgvcdllwcY=;
+	s=arc-20240116; t=1712051459; c=relaxed/simple;
+	bh=vw9cJNl0LdiDuqpsolVN3qVEokjCyQNhVMfH1BeHA1Y=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WnC27hPfXacuvyOkbboUvymafAPK42Z9bwdgsenXFPUyBbubZ/5pdw0rxjwsaiqWXCKhJmswYT/bBRl9pgUWQup5wpcMY3ibcMgWrZJCVnYdNnzNsBXKQ5AqlOGUVJ2zdHfnckeOQwTf0K4ChfV1EQRUVtozyWAqTFTuUm+uqAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yPR4pFGj; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4156a2d1a44so9751565e9.0
-        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 02:42:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712050930; x=1712655730; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Iyun4srQmlVnEX00HJbAVRydmI8q52m2bbHF/Gsn7uw=;
-        b=yPR4pFGjoFIWyOLExiCKbNwPRize96ZRsLnZAoeBG6Cv0Vo1LyF1Ymgng25uleGUa6
-         dpZQkmZcusJJ4V/WYOR42C/supBSbk0s/c1f03lMLyDV1AIy9QANGVmWsh6Ut45YyZqE
-         iyOY2DDgCEz/0hZDbkCwpt3EIt56ZL2ZRPVRKph4Ce2DCUVdM/efJNJRN/G29V06/60E
-         HlWZGanGZFZMILjvanyvovke2gd/np/2C7mbNEkdoY/RRq55UZ1TbZeBHUVlSLc+2RFu
-         bXMTSyrJApbJZ4fhyZnKkRaFGlfIZWQxEGtFWZN+lSCINFisiOuxAtM4B1046t/MyrLh
-         AP1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712050930; x=1712655730;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Iyun4srQmlVnEX00HJbAVRydmI8q52m2bbHF/Gsn7uw=;
-        b=HcX7x/39haZ4qREzpOsD/2xunFJc+GK7q9GsqViUXpHxHs+rdmgJzuauE+S7sHyPyD
-         Tw+MSDC+M1GgnJvI4yvrH3RG4d/xdM4adXJXVtVhWkS/KKtccV1s6UAIlXV7paaJ0+/J
-         NIZjAl5IzVmNdj5S4OkAtlwSCKmU0o6yAduF2M4F/hmKX4f0h2fBhVX+xQwM7isi3BGC
-         ZTOHLW7o6TqRRq36oo2BtMR3PJy67U+q2JM6ppPmHluJteOP0JSahe4oZBhzUqJ4jAj/
-         dDdPB6nQypXqb7Fm5iaB4rHVuGtM5bY8ekATrrYUwwJz4tfNqYiac7JAXyKEZrKHwjEg
-         ALHg==
-X-Forwarded-Encrypted: i=1; AJvYcCUqO06h1Un+CP5a2E4pdkJjK6nGhECD+hIuQsCQOaPqkUsbwgVbc7PG1AEp/uLGNDie2JImfuZl6iCbOlrrlPFM3CDgyePQdfp11w==
-X-Gm-Message-State: AOJu0YyCAtc1ZuAQZoY5r6n5Nu5271yI15R1FjCBKZflruWircuSh5um
-	oP/QGzyVIae2C2k+2LddNNA2G79AbQJa0VigMOSD0HRnS990AIdBlfgeKqEO1Vc=
-X-Google-Smtp-Source: AGHT+IGpbvoT4G7H+ysdro30nFNWcy8RXMkFORyRcKhRkjW+cccB2ktM/06IGLzVQ+pXcn+w/R1tHw==
-X-Received: by 2002:a05:600c:4f4b:b0:413:2966:4bfb with SMTP id m11-20020a05600c4f4b00b0041329664bfbmr8005911wmq.1.1712050929806;
-        Tue, 02 Apr 2024 02:42:09 -0700 (PDT)
-Received: from [192.168.0.102] ([176.61.106.68])
-        by smtp.gmail.com with ESMTPSA id f10-20020a0560001b0a00b00341dbb4a3a7sm13679750wrz.86.2024.04.02.02.42.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Apr 2024 02:42:09 -0700 (PDT)
-Message-ID: <7088e678-dd0a-4a5d-bef3-e0816a38ce60@linaro.org>
-Date: Tue, 2 Apr 2024 10:42:08 +0100
+	 In-Reply-To:Content-Type; b=S73zKO9AyYUvIDvL4C9wU0IjDnGXSV1DfvXoV1akSCHaiRHplx+KLLYMmSUbOPPRW8sK6brM3cQImMT6zhqpiPVo23T/bvf71A/+8rSmM/UBesmYhD5OxgILHURqXlXjLPbZ+1GtLLSX+EtI+HGu0ChrJBVGryJrXOoMp3BYjBs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=35rLm1S5; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1712051455;
+	bh=vw9cJNl0LdiDuqpsolVN3qVEokjCyQNhVMfH1BeHA1Y=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=35rLm1S57yMgRE+kXJmLpYmkm6SUggu4hiypnYM7pxO4Qzz9MUkxoEoG37wJDSR6Z
+	 I8BjXG4rZv7tpL4/HMeydnOgGt0ywMPEuDn11KRvHZRlJA7NhpvZfYTrjiV5/T/m13
+	 2HD16VV0x41MOn+n1To3JOlICC43sCB0n0bH0hAIRBSAvH16r+yKjZi8o+m/+mavOx
+	 69yABYjYrxphibinRyMHdWhSbfS/EbQaN0yWq2DFey5Kd4xJVO5OEDRCqDu9CYTVIe
+	 gVnRQusPVg3hFVlyOBPtEtBJdiqTGIwN2X4A4JUTkh2jWt+y+9xfXbF3M4ah0i0/gZ
+	 mXMBr2WexXVpQ==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id D7B0737820EF;
+	Tue,  2 Apr 2024 09:50:53 +0000 (UTC)
+Message-ID: <4949bd54-8c32-4490-ab19-d38796d29ac1@collabora.com>
+Date: Tue, 2 Apr 2024 11:50:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,34 +57,68 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/9] arm64: dts: qcom: sm8250: describe HS signals
- properly
+Subject: Re: [PATCH 1/3] media: mediatek: vcodec: fix h264 multi statless
+ decoder smatch warning
+To: Yunfei Dong <yunfei.dong@mediatek.com>,
+ =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+ Nathan Hebert <nhebert@chromium.org>
+Cc: Hsin-Yi Wang <hsinyi@chromium.org>, Fritz Koenig <frkoenig@chromium.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20240229095611.6698-1-yunfei.dong@mediatek.com>
+ <20240229095611.6698-2-yunfei.dong@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
-References: <20240401-typec-fix-sm8250-v3-0-604dce3ad103@linaro.org>
- <20240401-typec-fix-sm8250-v3-3-604dce3ad103@linaro.org>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20240401-typec-fix-sm8250-v3-3-604dce3ad103@linaro.org>
+In-Reply-To: <20240229095611.6698-2-yunfei.dong@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 01/04/2024 21:33, Dmitry Baryshkov wrote:
-> Instead
-> there is a HighSpeed signal lane between DWC3 controller and the USB-C
-> connector.
+Il 29/02/24 10:56, Yunfei Dong ha scritto:
+> Fix smatch static checker warning for vdec_h264_req_multi_if.c.
+> Leading to kernel crash when fb is NULL.
+> 
+> Fixes: 397edc703a10 ("media: mediatek: vcodec: add h264 decoder")
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> ---
+>   .../vcodec/decoder/vdec/vdec_h264_req_multi_if.c         | 9 +++++++--
+>   1 file changed, 7 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h264_req_multi_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h264_req_multi_if.c
+> index 0e741e0dc8ba..ab8e708e0df1 100644
+> --- a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h264_req_multi_if.c
+> +++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h264_req_multi_if.c
+> @@ -724,11 +724,16 @@ static int vdec_h264_slice_single_decode(void *h_vdec, struct mtk_vcodec_mem *bs
+>   		return vpu_dec_reset(vpu);
+>   
+>   	fb = inst->ctx->dev->vdec_pdata->get_cap_buffer(inst->ctx);
+> +	if (!fb) {
+> +		mtk_vdec_err(inst->ctx, "fb buffer is NULL");
+> +		return -EBUSY;
+> +	}
+> +
+>   	src_buf_info = container_of(bs, struct mtk_video_dec_buf, bs_buffer);
+>   	dst_buf_info = container_of(fb, struct mtk_video_dec_buf, frame_buffer);
+>   
+> -	y_fb_dma = fb ? (u64)fb->base_y.dma_addr : 0;
+> -	c_fb_dma = fb ? (u64)fb->base_c.dma_addr : 0;
 
-I still don't think this is an accurate statement. The upstream names 
-and labels should be followed for consistency but role-switching and the 
-DP/DN lines on the type-c port are not related.
+You're changing the behavior here, can you please explain why this change is valid
+into the commit description?
 
-If you drop that sentence in your commit log, then add.
+Thanks,
+Angelo
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> +	y_fb_dma = (u64)fb->base_y.dma_addr;
+> +	c_fb_dma = (u64)fb->base_c.dma_addr;
+>   	mtk_vdec_debug(inst->ctx, "[h264-dec] [%d] y_dma=%llx c_dma=%llx",
+>   		       inst->ctx->decoded_frame_cnt, y_fb_dma, c_fb_dma);
+>   
+
+
 
