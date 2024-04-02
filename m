@@ -1,136 +1,157 @@
-Return-Path: <devicetree+bounces-55477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2D718955BE
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 15:50:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6900D8955DD
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 15:56:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A6535283498
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 13:50:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C6171C22370
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 13:56:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD70884A22;
-	Tue,  2 Apr 2024 13:50:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40A7184FA9;
+	Tue,  2 Apr 2024 13:56:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="WiBOleVC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fTVF+N5U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 512D15D47A;
-	Tue,  2 Apr 2024 13:50:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6499284A4D
+	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 13:56:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712065813; cv=none; b=Ot+BlLdtbmlCBtbEHhlmU07sz5pYSvo/QMUzjoILJwT0lUY94Bab8xb9T6BFcWusLDsNZqJJLLqBQUz0vsB89PDEuOG8rL/lmLQMnnbUvT3Vui7ce4JSLsMWKfm1OwIEdttvWGoTZedpqhuaKpRSjdFPjqNZeaVyr84JbZDPWWw=
+	t=1712066162; cv=none; b=r/QUnsmWkp8A8+JLuTvc4gtdtJwHx68A+w3V8BHdkrDiNuFJInFFIWtb723mpmmuvRxx36zd4BzdAo0i8Ecx1cSg4IJnwPghmJQK8HaaKrJN4r5CVtPmgkcWuejo5yVM6oNsjyw/49L8dVoOGZ34Me7x8bjZ7KuPCSKJNytEjAk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712065813; c=relaxed/simple;
-	bh=GSsExJ2Cweiqv3U9XKAHuGsEXUUvZAgvUg0YJmbTYl0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e4UklczkKTqPvBH5EOoerj1+2aVOSri7IPMZ9H0Q9f7i0Zs3vHp/1QeWb8o9jbMsPuKbpuih8v5caiGL8SDC+O+jmLMDztwsxpyffYMkc230Var9T9HrfMi+UveHMWDk+Rv/tPYHX7x7bt9WfP87/VKUF66XUNPqipRYv0rxsf8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=WiBOleVC; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=GbhkBxn+Q4MglL3Lf04y1O0cOhqs2SZS9H0XUJs9VK0=; b=WiBOleVCJwBRPqHpBXE8Ef/U+G
-	OXNriYeqoB6MRc7eicL0W9EYhGR5ajRr5dPJ3uNYPlNNIbBC0HxhOjk7DX+2wrYxTMNRua2n+Ouyd
-	DcF7rtkkHvFur+rvqAyiGx3S/0gqFEQDFnWt/53GQX4zgJY1vfLs/j7thO2twHL23gXVKutcSLr+t
-	NeyTrxfYKNeV1LKFgJ6lvMdTakw5Id9g+QsR+G9BFveVUS00EP3jajyAUvlglUWEbHpm7lDgYooWA
-	4eTco3FzRs32jC95CiPlQWcfUG6OgLsQ8riL7aDKCl/kqEz3RxVb1iYaSkQowHA0A5pYpDU9hP4uD
-	ELWzNoKg==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:37898)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1rreWN-0006no-2a;
-	Tue, 02 Apr 2024 14:49:51 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1rreWK-00070E-DE; Tue, 02 Apr 2024 14:49:48 +0100
-Date: Tue, 2 Apr 2024 14:49:48 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Romain Gantois <romain.gantois@bootlin.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH net-next 2/3] net: stmmac: add support for RZ/N1 GMAC
-Message-ID: <ZgwM/FIKTuN4vkQA@shell.armlinux.org.uk>
-References: <20240402-rzn1-gmac1-v1-0-5be2b2894d8c@bootlin.com>
- <20240402-rzn1-gmac1-v1-2-5be2b2894d8c@bootlin.com>
+	s=arc-20240116; t=1712066162; c=relaxed/simple;
+	bh=3RYlQMdAk1kSbFeG0UabxDH8CjbXI3Avrk756agQQy0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bZSjhWMggIU+VjCIPURpT4LO0gBTIUyhUXSxplHMgmMX3ak6loD5OJV0dPJMHZVemqUQScBNlBNCI2lLeUo441CXG4TUYxpBi0dhpMmW7rKPo/cz16rX68eznTzbawBKkemZFQt2rulPgDl5ktHZKI3/yLiyCangIyzHbm2e2tI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fTVF+N5U; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-515d55ab035so2078681e87.2
+        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 06:56:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712066158; x=1712670958; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Rr/3jgsq/y6quIiVf2XQx3I3wZFyCdLaPeu+eAcGk/I=;
+        b=fTVF+N5U5Idxrygpw0jVY1d5bP5tyhHc07WlA3yUixXs9butsLipIchKH8Mh2+0TPA
+         IqiMIYCWBYkwFx5BhHXsy2eikDxw+UbiThRs4NZidFXKwOdjBq+GheUmVv16tIXIc+MN
+         vyhnmlvzSCcAQVoUAo7DIjPGsv5MXvsGEw6XsgC/CgBxW9aTmbbwiCXwsQaueQE1RXlk
+         JzlrjDFSft4Ym/MSs8IHUGsemLmtg8C9tpNwz5dxkw69FfsE8v6de7Wy99mguRW0rqkH
+         3jIQ5v8yvtsKcyfpKtfekbzDp508BgRlWN/4GV9LN0WMOjN6DqbUnPRZIzOTnPf2y+IF
+         b9ag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712066158; x=1712670958;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Rr/3jgsq/y6quIiVf2XQx3I3wZFyCdLaPeu+eAcGk/I=;
+        b=qt5L+mmXPiGzfM1Rv9S4wWER9fGu97tvFGU3mBwf5tKiivf0MTqEBV0ZcgtPjaVvKD
+         1qyeriCcgXyBdx+H4fE4Ni+m/QcjDECc6zxynA+Tl9I27E/vc8AOBcN24V0d8CYGV80b
+         7n4/el3/2Jed2PaE0agzpQ51D7w4N9U34noIr6IpiN9/eo2H3w/Q4+LL4Y3YNuFD3M1h
+         0i5UtOqzCeuytIk0Yeb3dFXLhaet28toGbxY8uj2ZJWtsYbuBLfs7EmE/cjP5dhZCHA0
+         ZWOYTA1aZdKQr1lC/bxmjZL3UuE2YHbAsVtvFwJCA0X4iEP+rEMNdbI1HhAM9B0XaXcA
+         4n6A==
+X-Forwarded-Encrypted: i=1; AJvYcCUTwCDARg3oucep4lsIy6X6l15V2QHRgv2vVIIj3eniMY2rrPk8JrXRwB+GlXc1vnGaU/je+xkkS3Bqyogjq67eTd7rsXnw6Zxfgg==
+X-Gm-Message-State: AOJu0Yy6IayOjyp9edBfqBgm8Y6BaaJt4Wdja5C0ikKAFF8U6btsTlKj
+	+Y6HFIZZ3stHu40BSjAqmcxC/+k+KE30QPVIztrfw3GOmLx/903UllRW2Ejz/1U=
+X-Google-Smtp-Source: AGHT+IHF63flTEx8ct3nL+qzYKMao881y40Gb4WtlQQ9zGIwOpR9jnpo5n0Y2QLMMn5WL81JG3JifQ==
+X-Received: by 2002:ac2:4c16:0:b0:515:d3dc:43e with SMTP id t22-20020ac24c16000000b00515d3dc043emr6673463lfq.51.1712066158248;
+        Tue, 02 Apr 2024 06:55:58 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id r20-20020a17090638d400b00a4e59587f63sm3506762ejd.193.2024.04.02.06.55.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Apr 2024 06:55:57 -0700 (PDT)
+Message-ID: <6b47886e-09ac-4cb9-ab53-ca64f5320005@linaro.org>
+Date: Tue, 2 Apr 2024 15:55:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240402-rzn1-gmac1-v1-2-5be2b2894d8c@bootlin.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: leds: add LED_FUNCTION_FNLOCK
+To: Gergo Koteles <soyer@irl.hu>, Ike Panhc <ike.pan@canonical.com>,
+ Hans de Goede <hdegoede@redhat.com>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: platform-driver-x86@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+References: <cover.1712063200.git.soyer@irl.hu>
+ <8ac95e85a53dc0b8cce1e27fc1cab6d19221543b.1712063200.git.soyer@irl.hu>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <8ac95e85a53dc0b8cce1e27fc1cab6d19221543b.1712063200.git.soyer@irl.hu>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Apr 02, 2024 at 02:37:01PM +0200, Romain Gantois wrote:
-> +	ret = stmmac_dvr_probe(dev, plat_dat, &stmmac_res);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ndev = platform_get_drvdata(pdev);
-> +	priv = netdev_priv(ndev);
-> +
-> +	pcs_node = of_parse_phandle(np, "pcs-handle", 0);
-> +	if (pcs_node) {
-> +		pcs = miic_create(dev, pcs_node);
-> +		of_node_put(pcs_node);
-> +		if (IS_ERR(pcs))
-> +			return PTR_ERR(pcs);
-> +
-> +		priv->hw->phylink_pcs = pcs;
-> +	}
+On 02/04/2024 15:21, Gergo Koteles wrote:
+> Newer laptops have FnLock LED.
+> 
+> Add a define for this very common function.
+> 
+> Signed-off-by: Gergo Koteles <soyer@irl.hu>
+> ---
+>  include/dt-bindings/leds/common.h | 1 +
 
-I'm afraid that this fails at one of the most basic principles of kernel
-multi-threaded programming. stmmac_dvr_probe() as part of its work calls
-register_netdev() which publishes to userspace the network device.
+Do we really need to define all these possible LED functions? Please
+link to DTS user for this.
 
-Everything that is required must be setup _prior_ to publication to
-userspace to avoid races, because as soon as the network device is
-published, userspace can decide to bring that interface up. If one
-hasn't finished the initialisation, the interface can be brought up
-before that initialisation is complete.
+Best regards,
+Krzysztof
 
-I don't see anything obvious in the stmmac data structures that would
-allow you to hook in at an appropriate point before the
-register_netdev() but after the netdev has been created. The
-priv->hw data structure is created by stmmac_hwif_init()
-
-I see that drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c is also
-guilty of this as well, and should be fixed. It's even worse because it
-does a truck load of stuff after stmmac_dvr_probe() which it most
-definitely should not be doing.
-
-I definitely get the feeling that the structure of the stmmac driver
-is really getting out of hand, and is making stuff harder for people,
-and it's not improving over time - in fact, it's getting worse. It
-needs a *lot* of work to bring it back to a sane model.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
