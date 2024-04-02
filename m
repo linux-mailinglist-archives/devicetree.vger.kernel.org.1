@@ -1,320 +1,176 @@
-Return-Path: <devicetree+bounces-55584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A66C895B64
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 20:07:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A409B895B6D
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 20:08:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BAEBF1C22B42
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 18:07:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57C712863A2
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 18:08:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99CD415AACD;
-	Tue,  2 Apr 2024 18:07:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A24E15AADA;
+	Tue,  2 Apr 2024 18:08:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r1RPYV0s"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ln3evD+W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C015219E0;
-	Tue,  2 Apr 2024 18:07:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B15560264
+	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 18:08:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712081241; cv=none; b=SlAk4G+uafxS2VFdfOjZ3ybX/3d/79RZcFk5vTFqcxQA4GS+gHF2OFFd1TGu2aMkyRqPtXljOzjGjrcTw4jSJakyTDiuYYR47qG/0MRYLmsqaXb/uHLJG24d4DRTXrw2akkHH7yaWnxeSrKBTi8/KHusujF3ltuzb4iYfbZ2P78=
+	t=1712081311; cv=none; b=gKF15WGEQJCTEMjoJhkcAbFtWIFksf75QPaG/1oInkqKKPiTsfJIqWwvWKhW1xKUyhwvIddidhfs2hAVqxqQ0F+MZ/ukc4z99mtlc8nRgpLSFPFVYbD01dRUangHWdtLgaoxJ8DCoNun000vK+dJuTjctQ4ejh6FAth+iEpTgH8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712081241; c=relaxed/simple;
-	bh=91aU9dbnR4oPxBkRhlJlak+TLyyFgxU3Lj4fxkKRr9A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aF4h4nl2rHtY+tvcuxRfdJwKOMwXxKSX7Q3S1DI4NjTYl7lO9nfcwmoilxtnjgzf17Z34On0AHeQO7PD84SPmDkVgKcu80YPZMwqe7FENfvJFER5GxcQ2YkxFJGpINrVqLC1/rL54Sh8KCIhZUcgOHyKStPSeKBnd5FEi98Pxd0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r1RPYV0s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF5BCC43390;
-	Tue,  2 Apr 2024 18:07:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712081241;
-	bh=91aU9dbnR4oPxBkRhlJlak+TLyyFgxU3Lj4fxkKRr9A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=r1RPYV0snTHr8XNu7hM42QYJtoX68fM9iLvZliNyeCGev47mk1JODdjDlu5ar41B4
-	 6pn0El/Lr6OJTo2/C18KeNC1wWP7RQNZF6umxfF5N2WVhdnViYKfw4RTxSn0dM29O1
-	 hBlhBLjP+hKgzmrf8Ehq0apqRebcAwJl2qq0nh1hiZvdRsC6jYr73pdGpvae+hkZpT
-	 qU/HA6X46Sa6qxdEKjYpYLdcgrwl5Ah3mQhAUgBED9ZEZ9J8PAxJhsJ1KNjN6AllvI
-	 z31kvdLr/onRC4bBrpLy+1SM6bUh8rsF4dh8B3l9r9/kTV6jIFfiEmJytW0mD+DUXt
-	 Wo5yCshpszXtw==
-Date: Tue, 2 Apr 2024 13:07:18 -0500
-From: Rob Herring <robh@kernel.org>
-To: Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: wim@linux-watchdog.org, linux@roeck-us.net,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	joel@jms.id.au, zev@bewilderbeest.net,
-	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: watchdog: Convert Aspeed binding to DT
- schema
-Message-ID: <20240402180718.GA358505-robh@kernel.org>
-References: <20240402120118.282035-1-andrew@codeconstruct.com.au>
+	s=arc-20240116; t=1712081311; c=relaxed/simple;
+	bh=QXDe+b1pfFmrD1gjlyxJsiElaZ/NisJR/CXuCCO7JPU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=snhfktDCZIR7kzQiHsIVc6SzyxjXrOfN07ykPFs01wHC/dzXNOsYdJ5B4v1NQYf1X9c3Ygqw8n5bwQtEh2DEHvzdemHHJIrChJrxmcIx6EFC8Kgfmp7u6mJ5WbFcurZL+BN/OtnTsviXfgmM5qyKWZWfOxRWkroJykDQ1UCsJA8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ln3evD+W; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-56bc8cfc19fso5833557a12.1
+        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 11:08:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712081308; x=1712686108; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=jl+HxXrubbPCLS60WSMbACM5nh9bIds43FCR4XaMIOs=;
+        b=Ln3evD+Wki7stwWLIhwV4qbnkyXRd8fWrBWdV539izA4c+XJGwONallPBPfEUdSa5/
+         RrjEm+TqnA1jXN99RGuYU2Lz23PZX7PueUs1u7UR0mYc65GDCN9jxrn0ppFUSSZ1/DmN
+         Ls+ZtKvpUSaHxbdZVKdmW+g1dh1lLyYoFN1FJxe2a5tNSCPOguH25Oq1dXuyGg9I44mA
+         dm5ZnXlLPDF13QCDhuskytjry/SAOrruBpjV3fqqWA8mxPgZvOEd1WfCcmVzO0MIwwQL
+         Vq6oRHXUh+R/1Eo+iFH4jyw0UfurJFFzymEDNTGrfyh3CTJdfD/s0XoDzh3L1/v9S5xB
+         /qAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712081308; x=1712686108;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jl+HxXrubbPCLS60WSMbACM5nh9bIds43FCR4XaMIOs=;
+        b=AsQPkTqr9WqX8x27i/mmghi4cz9Y+TuSt66U4tkI7fSvV+fW6WAsbO8lBHMeCH10jw
+         BSKQnreICce8Q+PbYGjyi5A6MBfRuDd2wM7kVP8UP3RhAOqx9UChhzQsQE21ZWQMuFIK
+         Miae/sB+apQXoyGWRC2aLWA5/FVok8d5QwefnrerMNBXaPLQ8BNB+UvKEO9DisrKffwQ
+         t0aTDYqJ88ATK7t/CMUDqlymKf95npBvaJ8Bs9RAOVSvXsJBdZr1vVnsNgRDOY8CtNiB
+         qAitkrRINDk++XkjrW6NktgoZmrHg8pgDsXDdMoyPrcF5G48YsZHkIp11S88rhDJqmBX
+         AuHA==
+X-Forwarded-Encrypted: i=1; AJvYcCWYpl2PnSMAUeXbR1mf20RTfWVvAUBav981yBYyEwqUzMU2K/Gw6LCnXos+ZuRYScvptFPTjJk9yCGMyWBZtiS9IbMzAK8qZeUaQg==
+X-Gm-Message-State: AOJu0YxSb9tEls4Aw8o5/Z4tsK162awSvPSOnDM/zeJV3fuENxmYVDhB
+	qL/lI/I1YaYNGJNNsgPs02q3+icO7MAOMcBIr43ZJ41+SiC7Nz6uYmHWG7gOx9g=
+X-Google-Smtp-Source: AGHT+IEpHC6uFtWT/O+6601uZ6iKWzRqqKpTom20RYOzuLpdVKK6XdUwgDXNU10M5hLhekXyn2izug==
+X-Received: by 2002:a05:6402:27d3:b0:568:d315:b85e with SMTP id c19-20020a05640227d300b00568d315b85emr422679ede.36.1712081307540;
+        Tue, 02 Apr 2024 11:08:27 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id d14-20020a056402000e00b0056dd6c5f23csm2478221edu.10.2024.04.02.11.08.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Apr 2024 11:08:26 -0700 (PDT)
+Message-ID: <a19688d3-5402-41c0-b10a-131cefed5b91@linaro.org>
+Date: Tue, 2 Apr 2024 20:08:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240402120118.282035-1-andrew@codeconstruct.com.au>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: leds: add LED_FUNCTION_FNLOCK
+To: Gergo Koteles <soyer@irl.hu>, Ike Panhc <ike.pan@canonical.com>,
+ Hans de Goede <hdegoede@redhat.com>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: platform-driver-x86@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+References: <cover.1712063200.git.soyer@irl.hu>
+ <8ac95e85a53dc0b8cce1e27fc1cab6d19221543b.1712063200.git.soyer@irl.hu>
+ <6b47886e-09ac-4cb9-ab53-ca64f5320005@linaro.org>
+ <5864594aa47ecfeb23d5d05a3afc02393f84b44e.camel@irl.hu>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
+ m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
+ HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
+ XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
+ mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
+ v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
+ cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
+ rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
+ qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
+ aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
+ gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
+ dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
+ NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
+ hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
+ oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
+ H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
+ yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
+ 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
+ 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
+ +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
+ FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
+ 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
+ DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
+ oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
+ 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
+ Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
+ qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
+ /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
+ qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
+ EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
+ KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
+ fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <5864594aa47ecfeb23d5d05a3afc02393f84b44e.camel@irl.hu>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Apr 02, 2024 at 10:31:18PM +1030, Andrew Jeffery wrote:
-> Squash warnings such as:
+On 02/04/2024 16:36, Gergo Koteles wrote:
+> Hi Krzysztof,
 > 
-> ```
-> arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-galaxy100.dtb: /ahb/apb@1e600000/watchdog@1e785000: failed to match any schema with compatible: ['aspeed,ast2400-wdt']
-> ```
+> On Tue, 2024-04-02 at 15:55 +0200, Krzysztof Kozlowski wrote:
+>>
+>> Do we really need to define all these possible LED functions? Please
+>> link to DTS user for this.
+>>
 > 
-> Signed-off-by: Andrew Jeffery <andrew@codeconstruct.com.au>
-> ---
->  .../bindings/watchdog/aspeed,ast2400-wdt.yaml | 130 ++++++++++++++++++
->  .../bindings/watchdog/aspeed-wdt.txt          |  73 ----------
->  2 files changed, 130 insertions(+), 73 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/watchdog/aspeed,ast2400-wdt.yaml
->  delete mode 100644 Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
+> I think for userspace it's easier to support an LED with a specified
+> name than to use various sysfs attributes. LED devices are easy to find
+> because they available are in the /sys/class/leds/ directory.
+> So I think it's a good thing to define LED names somewhere.
+
+You did not add anything for user-space, but DT bindings. We do not keep
+here anything for user-space.
+
 > 
-> diff --git a/Documentation/devicetree/bindings/watchdog/aspeed,ast2400-wdt.yaml b/Documentation/devicetree/bindings/watchdog/aspeed,ast2400-wdt.yaml
-> new file mode 100644
-> index 000000000000..10fcb50c4051
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/watchdog/aspeed,ast2400-wdt.yaml
-> @@ -0,0 +1,130 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/watchdog/aspeed,ast2400-wdt.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Aspeed watchdog timer controllers
-> +
-> +maintainers:
-> +  - Andrew Jeffery <andrew@codeconstruct.com.au>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - aspeed,ast2400-wdt
-> +      - aspeed,ast2500-wdt
-> +      - aspeed,ast2600-wdt
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks: true
-
-# and order/function if more than 1 must be defined.
-
-Please note it was missing from the original binding in the commit 
-message.
-
-> +
-> +  aspeed,reset-type:
-> +    enum:
-> +      - cpu
-> +      - soc
-> +      - system
-> +      - none
-> +    description: |
-> +      Reset behaviour - The watchdog can be programmed to generate one of three
-> +      different types of reset when a timeout occcurs.
-> +
-> +      Specifying 'cpu' will only reset the processor on a timeout event.
-> +
-> +      Specifying 'soc' will reset a configurable subset of the SoC's controllers
-> +      on a timeout event. Controllers critical to the SoC's operation may remain untouched.
-> +
-> +      Specifying 'system' will reset all controllers on a timeout event, as if EXTRST had been asserted.
-> +      Specifying "none" will cause the timeout event to have no reset effect.
-> +      Another watchdog engine on the chip must be used for chip reset operations.
-> +
-> +      The default reset type is "system"
-
-Express as schema:
-
-default: system
-
-> +
-> +  aspeed,alt-boot:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: |
-
-Don't need '|' if no formatting to preserve.
-
-> +      Direct the watchdog to configure the SoC to boot from the alternative boot
-> +      region if a timeout occurs.
-> +
-> +  aspeed,external-signal:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: |
-> +      Assert the timeout event on an external signal pin associated with the
-> +      watchdog controller instance. The pin must be muxed appropriately.
-> +
-> +  aspeed,ext-pulse-duration:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      The duration, in microseconds, of the pulse emitted on the external signal pin
-
-Wrap at <80. Period at end needed.
-
-> +
-> +  aspeed,ext-push-pull:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: |
-> +      If aspeed,external-signal is specified in the node, set the external
-> +      signal pin's drive type to push-pull. If aspeed,ext-push-pull is not
-> +      specified then the pin is configured as open-drain.
-> +
-> +  aspeed,ext-active-high:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: |
-> +      If both aspeed,external-signal and aspeed,ext-push-pull are specified in
-> +      the node, set the pulse polarity to active-high. If aspeed,ext-active-high
-> +      is not specified then the pin is configured as active-low.
-> +
-> +  aspeed,reset-mask:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    minItems: 1
-> +    maxItems: 2
-> +    description: |
-> +      A bitmaks indicating which peripherals will be reset if the watchdog
-> +      timer expires. On AST2500 SoCs this should be a single word defined using
-> +      the AST2500_WDT_RESET_* macros; on AST2600 SoCs this should be a two-word
-> +      array with the first word defined using the AST2600_WDT_RESET1_* macros,
-> +      and the second word defined using the AST2600_WDT_RESET2_* macros.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +allOf:
-> +  - if:
-> +      anyOf:
-> +        - required:
-> +            - aspeed,ext-push-pull
-> +        - required:
-> +            - aspeed,ext-active-high
-> +        - required:
-> +            - aspeed,reset-mask
-> +    then:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - aspeed,ast2500-wdt
-> +            - aspeed,ast2600-wdt
-> +  - if:
-> +      required:
-> +        - aspeed,ext-active-high
-> +    then:
-> +      required:
-> +        - aspeed,ext-push-pull
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    wdt1: watchdog@1e785000 {
-
-Drop unused labels.
-
-> +        compatible = "aspeed,ast2400-wdt";
-> +        reg = <0x1e785000 0x1c>;
-> +        aspeed,reset-type = "system";
-> +        aspeed,external-signal;
-> +    };
-> +  - |
-> +    #include <dt-bindings/watchdog/aspeed-wdt.h>
-> +    wdt2: watchdog@1e785040 {
-> +        compatible = "aspeed,ast2600-wdt";
-> +        reg = <0x1e785040 0x40>;
-> +        aspeed,reset-mask = <AST2600_WDT_RESET1_DEFAULT
-> +                            (AST2600_WDT_RESET2_DEFAULT & ~AST2600_WDT_RESET2_LPC)>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt b/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
-> deleted file mode 100644
-> index 3208adb3e52e..000000000000
-> --- a/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
-> +++ /dev/null
-> @@ -1,73 +0,0 @@
-> -Aspeed Watchdog Timer
-> -
-> -Required properties:
-> - - compatible: must be one of:
-> -	- "aspeed,ast2400-wdt"
-> -	- "aspeed,ast2500-wdt"
-> -	- "aspeed,ast2600-wdt"
-> -
-> - - reg: physical base address of the controller and length of memory mapped
-> -   region
-> -
-> -Optional properties:
-> -
-> - - aspeed,reset-type = "cpu|soc|system|none"
-> -
-> -   Reset behavior - Whenever a timeout occurs the watchdog can be programmed
-> -   to generate one of three different, mutually exclusive, types of resets.
-> -
-> -   Type "none" can be specified to indicate that no resets are to be done.
-> -   This is useful in situations where another watchdog engine on chip is
-> -   to perform the reset.
-> -
-> -   If 'aspeed,reset-type=' is not specified the default is to enable system
-> -   reset.
-> -
-> -   Reset types:
-> -
-> -        - cpu: Reset CPU on watchdog timeout
-> -
-> -        - soc: Reset 'System on Chip' on watchdog timeout
-> -
-> -        - system: Reset system on watchdog timeout
-> -
-> -        - none: No reset is performed on timeout. Assumes another watchdog
-> -                engine is responsible for this.
-> -
-> - - aspeed,alt-boot:    If property is present then boot from alternate block.
-> - - aspeed,external-signal: If property is present then signal is sent to
-> -			external reset counter (only WDT1 and WDT2). If not
-> -			specified no external signal is sent.
-> - - aspeed,ext-pulse-duration: External signal pulse duration in microseconds
-> -
-> -Optional properties for AST2500-compatible watchdogs:
-> - - aspeed,ext-push-pull: If aspeed,external-signal is present, set the pin's
-> -			 drive type to push-pull. The default is open-drain.
-> - - aspeed,ext-active-high: If aspeed,external-signal is present and and the pin
-> -			   is configured as push-pull, then set the pulse
-> -			   polarity to active-high. The default is active-low.
-> -
-> -Optional properties for AST2500- and AST2600-compatible watchdogs:
-> - - aspeed,reset-mask: A bitmask indicating which peripherals will be reset if
-> -		      the watchdog timer expires.  On AST2500 this should be a
-> -		      single word defined using the AST2500_WDT_RESET_* macros;
-> -		      on AST2600 this should be a two-word array with the first
-> -		      word defined using the AST2600_WDT_RESET1_* macros and the
-> -		      second word defined using the AST2600_WDT_RESET2_* macros.
-> -
-> -Examples:
-> -
-> -	wdt1: watchdog@1e785000 {
-> -		compatible = "aspeed,ast2400-wdt";
-> -		reg = <0x1e785000 0x1c>;
-> -		aspeed,reset-type = "system";
-> -		aspeed,external-signal;
-> -	};
-> -
-> -	#include <dt-bindings/watchdog/aspeed-wdt.h>
-> -	wdt2: watchdog@1e785040 {
-> -		compatible = "aspeed,ast2600-wdt";
-> -		reg = <0x1e785040 0x40>;
-> -		aspeed,reset-mask = <AST2600_WDT_RESET1_DEFAULT
-> -				     (AST2600_WDT_RESET2_DEFAULT & ~AST2600_WDT_RESET2_LPC)>;
-> -	};
-> -- 
-> 2.39.2
+> J Luke missed this LED from /sys/class/leds/, that's where the idea
+> came from. The scrollock, numlock, capslock and kbd_backlight LEDs are
+> already exported.
 > 
+> https://github.com/tomsom/yoga-linux/issues/58#issuecomment-2029926094
+
+
+I see there sysfs, so what does it have to do with bindings?
+
+Again, please link to in-tree or in-review DTS.
+
+Best regards,
+Krzysztof
+
 
