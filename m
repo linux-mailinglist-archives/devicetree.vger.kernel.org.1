@@ -1,260 +1,206 @@
-Return-Path: <devicetree+bounces-55479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21D00895634
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 16:08:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDD57895623
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 16:05:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6ACE5B242F8
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 13:59:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 668AF1F23A8B
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 14:05:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14B3C85C7F;
-	Tue,  2 Apr 2024 13:59:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6004D85940;
+	Tue,  2 Apr 2024 14:05:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="q4xmUEuM"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XGVIEOve"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2126.outbound.protection.outlook.com [40.107.21.126])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 631EC9463;
-	Tue,  2 Apr 2024 13:59:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.126
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712066371; cv=fail; b=AGndOAuxNugLiQKIACJiNthscCcIhQ6yxC6Bu/GLACI14Vt6ix3PBeZwMGu/4PxkQi3IduLa6BOBtrIuwVSmQo+Vzf0t5lCSo7qfPXZ973QT//YSxTLdw60ph1y1HVfOPRq6oWolRQ3cCCI3kygJk1xmJS1SZoKkuT2FFlUnImc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712066371; c=relaxed/simple;
-	bh=DwzUSuZuHYMYoYKlqZgteWlGADdZ5TC76MCKvfiU2/M=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=W6JEsX4GjlEsTkPVub+Wfa1Ew0/cxSOgyesxueMfNAjNYUXpF+DGw+kmNfqsUCDmupW4WQJDqN5STqCMm74m4x4SC2D9ST3fk69LMQm2euS4m97ufW5lt+YeIFixlkdb0ehNRMCaXyiZjkye8nmNxbyYnrQtu+F8vg9ub8DFa84=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=q4xmUEuM; arc=fail smtp.client-ip=40.107.21.126
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LHevks7X3o7Z1IK+K2204G26WEJjGoNjdcsnWOjKXh2oHSK67mQs7qcnpuoQG1mYlL6+NzTYem9bo8HX+xJp/4+Ph8sShr7PHmHiadyLPVYSarFhvvVA5/Vmw+7Om6317hU0AZb4c2QwiIgaIbJmrLxh8EVSY7sjhEh+OizyGXcKrIQuixfbPsD/+YgrELXPgfEq38ITgjx9xmEurudIiMJUbp8ajXYxNEl44iXt6JNfQtyL4jZRd2iiGTkPp8wTWRV4z9RIOXnnIKTsft5tvwivj1cfO1ZGvKZCP4g+rMKGJXpthXAPEHDmof3AJSY6Rf6ST9HmtwbrFu1dXXA4dw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=guk9ZBYGuGdMw5f3ry/U0qp1r7254g0Q5cQrgV0Xs64=;
- b=YFU9etwg58aRRVzmpimUfqlAry3e2iupLZ/o829uY9Cd3KXtEgPNyhlmeTUn5wy7UQMRXog9H9f/V8sV8iHaWKXUbmZN1mw0SjyIP7C6eoh2VadejjNW9G6bF2mkzbR2j09i//NbHSbdcdMxtqVJEMjSLKn0Ox0yBKCT0R8HUU4D56aD/TVTpkGs3R97QHLNqv38OcSGg1iAa+42lw2bfc0Q30ENpPwFbdZfmxm6WMJgZGyobQhWIFTxIHhM+F6Q40TOHT05Qgs1EjPG3NGkh9Pm4OwOQ75zcfPtwqfFHb5JWk1pQVCvy7q9jZX8/Z+wLP1Ax4n4QhyRdmApya/uVg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=guk9ZBYGuGdMw5f3ry/U0qp1r7254g0Q5cQrgV0Xs64=;
- b=q4xmUEuMPCwMUaNd9qCSHKO4ULJDkM6SZWgWCtHY4nV7kLZgcXs+F8NTAQ37utFqeIGf8EKXL4PTXgnMRlS8GYSybgjwG6Bj6QDGqoKE90g/lnbd2xZ7EeQJbNj9DEBp+jSh5ZUnw77rclCLmuGnssfBXVO/ouULazJ0/hh/Jsc=
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by DU2PR04MB9145.eurprd04.prod.outlook.com (2603:10a6:10:2f4::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Tue, 2 Apr
- 2024 13:59:23 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::d30b:44e7:e78e:662d]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::d30b:44e7:e78e:662d%4]) with mapi id 15.20.7386.037; Tue, 2 Apr 2024
- 13:59:19 +0000
-From: Peng Fan <peng.fan@nxp.com>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>, "Peng Fan (OSS)"
-	<peng.fan@oss.nxp.com>
-CC: Sudeep Holla <sudeep.holla@arm.com>, Cristian Marussi
-	<cristian.marussi@arm.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, Dan
- Carpenter <dan.carpenter@linaro.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-gpio@vger.kernel.org"
-	<linux-gpio@vger.kernel.org>, Oleksii Moisieiev <oleksii_moisieiev@epam.com>
-Subject: RE: [PATCH v7 4/4] pinctrl: Implementation of the generic
- scmi-pinctrl driver
-Thread-Topic: [PATCH v7 4/4] pinctrl: Implementation of the generic
- scmi-pinctrl driver
-Thread-Index: AQHahKODsF690b6vNUGQv4jxirY7Z7FU+GuAgAADvqA=
-Date: Tue, 2 Apr 2024 13:59:19 +0000
-Message-ID:
- <DU0PR04MB9417D0D33573E99D440D7BD7883E2@DU0PR04MB9417.eurprd04.prod.outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90FE833D1;
+	Tue,  2 Apr 2024 14:05:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712066727; cv=none; b=L0jxwowQTuo62xTXmbaO5jT7q86r4aP5rEkb+2digoqoZji9CKO2/YZJ6ct0jzKLyUPI7NDJAvzNtJD0Kk07WevasoSEjrgiHiMprMPDLsfHUiXDL9RtCEeDvQbQ001ThfwhPaayBnJYpGOxURPs54PwBB0YlD1CT0HvSxi3v4g=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712066727; c=relaxed/simple;
+	bh=Z8Q+FvrgVLtKZvinSRjIAzqcwxHLMko61zcYomKVbtY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Kbn5H2f2sidG2k8leX1Pgg8UR0JB80A0eADmZV6h5H2/BI1+J97MUNtZGC6y04V0sQQ3RaMR59vvlGzXFMvt8ClCkJmIxHikSXhUYyt0wl0nTYCJxh+BgdPTuRwHWeQv5QXSB+r0oZaGA+y2M69Cw/KwlmwBujPYUGxOaVv84Vw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XGVIEOve; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1712066726; x=1743602726;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Z8Q+FvrgVLtKZvinSRjIAzqcwxHLMko61zcYomKVbtY=;
+  b=XGVIEOveVighIFYSGxGQ8arUQZ7BRYlMb2vnkOWcNy3mZjvhs1R2g7st
+   ZjoaAqq3sWV42eYd//hoku5gHCf50O2E0jmss2jvzhJIhhirTNFFRHqB/
+   dyNf6bh5zfYG32V/qmE4W6LEFbc6nEeheKA0x8p0P+nJiO3iq6NvxbeoD
+   lnrpDcf6gbm6ncJ2V24ky3nyK8iRjy/l5w49tHN+kEAgeC5eIAXlQAUH1
+   86+RR7mvhUC0TYGt4j5hvWdsgRT7UFRYXyZYyt3qCs+KnNJpQBLQq7evt
+   KbhTIamwwTy5XCzPa55LP0StNlBsDuTeM3r82ZrbwU5BJ4NQxq97akcO8
+   Q==;
+X-CSE-ConnectionGUID: /bNXem5VSN+p6GjhkfTuzA==
+X-CSE-MsgGUID: j5Fk0iLoSRqN+ZyP312XyQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="18688675"
+X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; 
+   d="scan'208";a="18688675"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Apr 2024 07:05:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="915142121"
+X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; 
+   d="scan'208";a="915142121"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.72.54])
+  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Apr 2024 07:05:21 -0700
+Received: from andy by smile with local (Exim 4.97)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1rrelL-00000000pMt-1Qwx;
+	Tue, 02 Apr 2024 17:05:19 +0300
+Date: Tue, 2 Apr 2024 17:05:19 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Peng Fan <peng.fan@nxp.com>
+Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Dan Carpenter <dan.carpenter@linaro.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+	Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+Subject: Re: [PATCH v7 3/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
+ protocol basic support
+Message-ID: <ZgwQn7DzrBh-aUVX@smile.fi.intel.com>
 References: <20240402-pinctrl-scmi-v7-0-3ea519d12cf7@nxp.com>
- <20240402-pinctrl-scmi-v7-4-3ea519d12cf7@nxp.com>
- <ZgwGpZ6S13vjk8jh@smile.fi.intel.com>
-In-Reply-To: <ZgwGpZ6S13vjk8jh@smile.fi.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|DU2PR04MB9145:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- nuTKNI4i0z+OVMuMXNa19EBz1kfDVoZgUFY9e+2VxGWdHA8gHcmP/C7L6GuR00DBi4ccb4IwWJ5/t9cQhzUXTGw2eGCmnhvZEAHkq1yoWpSsG5yDqKkDb8HYnjqhtBqJcFEw9W2Njqf8EFjZb1E0zAhecodiLLsUsKR37LeJSD3tGg360fPwweYISxenQGB2e5CXxbhu/RN27PHQF01lYyx2N7oPm7u5RuEgDzN5P8NT+nViD2Bl4khHALQgd7faziyvaFh2eVBpGevvjGlQDkFP5Yk9ittY1A3sSwYqgydq8z2NC1Yjcv0l1KJ4NWUkDh7jPU2ks5Y94u70h9QK4riyrlOoJ62t2MoBo4AQPRtI+P88Q7NBK8ZDfEwrDt58LGx5yCND1L3T3pL13gtjU+K9aby1BxuCF2F0ugLCGLmxA6C3LNlhYZ+5bUYQRS4quiVo9kGxDpB145KjnzHGIiOvTjtmNQ5zXCOE8MfroG1ZhGJBKyt/yw/ExDv/5Yy0ohA6MTVPzVr4aOhV2ld7wFpM/4tdpcySc66FAHnkmDv2IG5zWB8JqbtrBVzL1Kuqo1c6MHSfCmjirIRn0T6pxxxXq7a2ogJPrEbAw//WlFYLwoFZMqGrdcZGiXgyS3PJeImekQvHykqS48QfwXFUXIaqHZlc3lbyJGO7HViRoug=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(376005)(7416005)(366007);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?Cden5xeGZS3NHXDPnmHQFMNpw3HAI1Kj+nLcPm2XtALWLYQMDsJfPG8YqVoL?=
- =?us-ascii?Q?n5qAXvmUYTcGJCth/M/Vus/tSO+tgARvw81Ag/Zu5jLbnaMsynIup50Bulx5?=
- =?us-ascii?Q?tK8+AgIjbvp/rmvCvASx7VWeVm/vAzVcv+YSoeY0k+Df6DeD1pCz42pdWyXn?=
- =?us-ascii?Q?0PAfAL6EG/JDtw1uhFIkOulpsd4D7nB33+FysXWdL+KKIYV6AbeUBbiPKcZ4?=
- =?us-ascii?Q?BdgqXTdoQWLYO0BnJdpRsRE39+0SJuKX6/N6vI6R3eiAniMt4KEafReZQSv7?=
- =?us-ascii?Q?wskE1CE6bCSJoIUuSy6fCYj1XIra2xtGsPij1CfKxn7HZtDI1kApwQJyqssF?=
- =?us-ascii?Q?MznoogE+WWmY2fo9dlumGPDtHfTxj8hwmihUxs/qYW6xQtw33EIgJ0MN/kmV?=
- =?us-ascii?Q?sE1u7KyYIGq1N0zUL0tpvkhsg51ClwR2S/S4l2zKF3c2BcQrDXJhRR/T4cJL?=
- =?us-ascii?Q?fh36io0BZubTC7NBrlldP7crJEtdSRbe11G1IAkLWHGiU+VYYwZrqpNfLnrR?=
- =?us-ascii?Q?XK3FY8QUhR19/w7O0EIWpN9ozXIAS3cxHpLfK9Qw939FRt7qF3H74sy0HOma?=
- =?us-ascii?Q?5zt5rJT9GlJnq2LFSnSmnIWOJYfOsl77G78d7X9YAG1N9ne8wY0XJ92U+jvn?=
- =?us-ascii?Q?/jz3YIS2FdaP1bEMmiaJSdp6PQADNIJPirZlhEzCRLhwKt6y/Zc6OANZlbX8?=
- =?us-ascii?Q?pOXzjGqL4zq7asU0P0SZlDigajyF+XEaxQ299Hn+KEeBb2o1e5GGkj/CiQE5?=
- =?us-ascii?Q?SMSogzOr8/e2YPwqMZo+63m4MKNgGKp5/h0/Jj/qlthEyan0noYGVcbMeZOb?=
- =?us-ascii?Q?uiaNUvTriHr542DUA2KtRUYeqHesfuvTA4e4vmkGotCmE37waJ/8vkz9+ckR?=
- =?us-ascii?Q?w2oBEeuCxjRWzH3uhHna4sJFlfNgUC9hFWwjcLIJ85itupdRBdvCtleAghkh?=
- =?us-ascii?Q?IhqTcwUin56Ftl/DEI43747Y9ZAtFChoN8gq1BWsDihwODl1knptFsiGRZsT?=
- =?us-ascii?Q?dwJ2qsi7Aw6GiGFZU/DyXsPxgvuKkf9DZZZ3qgpnq88qhAnsR/hFDjQzfJxm?=
- =?us-ascii?Q?o5v93VTXNRVeT5vAm4xDgUqo/ClUHDai2qrHkY4hXLuLLXTNE8ytzsU286a5?=
- =?us-ascii?Q?Tx8D9MxtvEOZfh+b/8hgnbb/uW1cSX78WgClx9/4B+ybSdq7I114jT+mK1NL?=
- =?us-ascii?Q?X7rdS0Ou605rwXhvZ1ZIDtTRShlVMhjAUl2CkSxO2FShxbTDtB5RYCB/Lou8?=
- =?us-ascii?Q?JxZ5EQhrJGobGP9vOIdzc955zUIvrq53nk2V14iBroXTLT5V0FaTkYFacQSa?=
- =?us-ascii?Q?YT0cDMLixuTMwQ+00VH+HrplEBntqPDukjskj+gRqQvsLOxb6Hj6fgW60TKW?=
- =?us-ascii?Q?CGr6VPQ8fccMVppXDmaYybEkqcwkrGr3+/PrPPi1fOsWOdvecsjHsYx/HqsX?=
- =?us-ascii?Q?egl3YdhYn1diozYJBSdZOHVArJChHHGU+v1gmEeICXSgcER+hzmsbk90xfuM?=
- =?us-ascii?Q?2lA5LGl574SByrZ8TuQ7o0Rut9gMRraLw2jskqxNSQyUdQYck23mqvV+/OBR?=
- =?us-ascii?Q?rMDWbjC8WKy4etBR/Mw=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ <20240402-pinctrl-scmi-v7-3-3ea519d12cf7@nxp.com>
+ <ZgwEtxj-qi6uy_m2@smile.fi.intel.com>
+ <DU0PR04MB941780B4C28DB353C64966F8883E2@DU0PR04MB9417.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8f9f9579-a1ba-4926-3c76-08dc531d17d9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Apr 2024 13:59:19.8427
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: qNoKrkfvjORxmn7U0JbRSEUG5obA9V+Wdx7qMg49bQ0IIn3zDbWC5klntBYkqrDpGBkwyM0wViaSU3wtqjrm3A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB9145
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DU0PR04MB941780B4C28DB353C64966F8883E2@DU0PR04MB9417.eurprd04.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-> Subject: Re: [PATCH v7 4/4] pinctrl: Implementation of the generic scmi-
-> pinctrl driver
->=20
-> On Tue, Apr 02, 2024 at 10:22:24AM +0800, Peng Fan (OSS) wrote:
-> > From: Peng Fan <peng.fan@nxp.com>
-> >
-> > scmi-pinctrl driver implements pinctrl driver interface and using SCMI
-> > protocol to redirect messages from pinctrl subsystem SDK to SCMI
-> > platform firmware, which does the changes in HW.
->=20
-> ...
->=20
-> > +#include <linux/device.h>
-> > +#include <linux/err.h>
-> > +#include <linux/module.h>
-> > +#include <linux/seq_file.h>
-> > +#include <linux/scmi_protocol.h>
-> > +#include <linux/slab.h>
->=20
-> Missing headers.
+On Tue, Apr 02, 2024 at 01:27:19PM +0000, Peng Fan wrote:
+> > On Tue, Apr 02, 2024 at 10:22:23AM +0800, Peng Fan (OSS) wrote:
 
-Not sure there is an easy way to filter out what is missed.
+...
 
->=20
-> ...
->=20
-> > +	*p_groups =3D (const char * const *)func->groups;
->=20
-> Is this casting needed?
+> > > +#include <linux/module.h>
+> > > +#include <linux/scmi_protocol.h>
+> > > +#include <linux/slab.h>
+> > 
+> > Please, follow IWYU principle, a lot of headers are missed.
+> 
+> ok. I will try to figure out. BTW, is there an easy way to filter
+> out what is missed?
 
-This is no needed.
+For you is much easier than to me as I'm not familiar with the code.
+Basically you should know what you wrote :-)
 
->=20
-> ...
->=20
-> > +static int pinctrl_scmi_pinconf_get(struct pinctrl_dev *pctldev,
-> > +				    unsigned int _pin, unsigned long *config)
->=20
-> Why underscored parameter name?
+But if you are asking about tooling, we would appreciate when somebody comes
+with a such.
 
-Underscore could be dropped.
+> > > +#include "common.h"
+> > > +#include "protocols.h"
 
->=20
-> ...
->=20
-> > +static int pinctrl_scmi_get_pins(struct scmi_pinctrl *pmx,
-> > +				 struct pinctrl_desc *desc)
-> > +{
-> > +	struct pinctrl_pin_desc *pins;
-> > +	unsigned int npins;
-> > +	int ret, i;
-> > +
-> > +	npins =3D pinctrl_ops->count_get(pmx->ph, PIN_TYPE);
-> > +	/*
-> > +	 * npins will never be zero, the scmi pinctrl driver has bailed out
-> > +	 * if npins is zero.
-> > +	 */
->=20
-> This is fragile, but at least it is documented.
->=20
-> > +	pins =3D devm_kmalloc_array(pmx->dev, npins, sizeof(*pins),
-> GFP_KERNEL);
-> > +	if (!pins)
-> > +		return -ENOMEM;
-> > +
-> > +	for (i =3D 0; i < npins; i++) {
-> > +		pins[i].number =3D i;
-> > +		ret =3D pinctrl_ops->name_get(pmx->ph, i, PIN_TYPE,
-> &pins[i].name);
-> > +		if (ret)
->=20
-> How does the cleanup work for the previously assigned pin names? Is it
-> needed?
+...
 
-No need. The "name" memory region is allocated in firmware pinctrl
-Protocol init phase.
+> > > +		ret = scmi_pinctrl_get_pin_info(ph, selector,
+> > > +						&pi->pins[selector]);
+> > 
+> > It's netter as a single line.
+> 
+> I try to follow 80 max chars per SCMI coding style. If Sudeep and Cristian
+> is ok, I could use a single line.
 
-> Maybe a comment?
+It's minor, but even before relaxation of 80 limit it was and is mentioned
+in the documentation that you may go over if it increases readability.
 
-ok.  As below.
-/*
- * The region for name is handled by the scmi firmware driver,=20
- * no need free here
-*/
+> > > +		if (ret)
+> > > +			return ret;
+> > > +	}
 
->=20
-> > +			return dev_err_probe(pmx->dev, ret,
-> > +					     "Can't get name for pin %d", i);
-> > +	}
-> > +
-> > +	desc->npins =3D npins;
-> > +	desc->pins =3D pins;
-> > +	dev_dbg(pmx->dev, "got pins %u", npins);
-> > +
-> > +	return 0;
-> > +}
->=20
-> ...
->=20
-> > +static const struct scmi_device_id scmi_id_table[] =3D {
-> > +	{ SCMI_PROTOCOL_PINCTRL, "pinctrl" },
-> > +	{ }
-> > +};
-> > +MODULE_DEVICE_TABLE(scmi, scmi_id_table);
->=20
-> Move this closer to the user.
+...
 
-ok. Fix in v8.
+> > > +static int scmi_pinctrl_protocol_init(const struct
+> > > +scmi_protocol_handle *ph) {
+> > > +	int ret;
+> > > +	u32 version;
+> > > +	struct scmi_pinctrl_info *pinfo;
+> > > +
+> > > +	ret = ph->xops->version_get(ph, &version);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	dev_dbg(ph->dev, "Pinctrl Version %d.%d\n",
+> > > +		PROTOCOL_REV_MAJOR(version),
+> > PROTOCOL_REV_MINOR(version));
+> > > +
+> > > +	pinfo = devm_kzalloc(ph->dev, sizeof(*pinfo), GFP_KERNEL);
+> > > +	if (!pinfo)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	ret = scmi_pinctrl_attributes_get(ph, pinfo);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	pinfo->pins = devm_kcalloc(ph->dev, pinfo->nr_pins,
+> > > +				   sizeof(*pinfo->pins), GFP_KERNEL);
+> > > +	if (!pinfo->pins)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	pinfo->groups = devm_kcalloc(ph->dev, pinfo->nr_groups,
+> > > +				     sizeof(*pinfo->groups), GFP_KERNEL);
+> > > +	if (!pinfo->groups)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	pinfo->functions = devm_kcalloc(ph->dev, pinfo->nr_functions,
+> > > +					sizeof(*pinfo->functions),
+> > GFP_KERNEL);
+> > > +	if (!pinfo->functions)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	pinfo->version = version;
+> > > +
+> > > +	return ph->set_priv(ph, pinfo, version);
+> > 
+> > Same comments as per previous version. devm_ here is simply wrong.
+> > It breaks the order of freeing resources.
+> > 
+> > I.o.w. I see *no guarantee* that these init-deinit functions will be properly
+> > called from the respective probe-remove. Moreover the latter one may also
+> > have its own devm allocations (which are rightfully placed) and you get
+> > completely out of control the resource management.
+> 
+> I see an old thread.
+> https://lore.kernel.org/linux-arm-kernel/ZJ78hBcjAhiU+ZBO@e120937-lin/#t
+> 
+> The free in deinit is not to free the ones alloced in init, it is to free the ones
+> alloced such as in scmi_pinctrl_get_function_info
 
-Thanks,
-Peng.
->=20
-> --
-> With Best Regards,
-> Andy Shevchenko
->=20
+Even messier than I thought. For bare minimum these two should be documented
+and renamed accordingly that no-one will think that deinit is a counter part
+of init.
+
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
