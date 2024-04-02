@@ -1,77 +1,75 @@
-Return-Path: <devicetree+bounces-55609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55610-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98A53895C7C
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 21:27:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CB44895C82
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 21:27:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 52926282276
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 19:27:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BAA74B21B0B
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 19:27:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4330D15D5CD;
-	Tue,  2 Apr 2024 19:26:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3319415DBCA;
+	Tue,  2 Apr 2024 19:26:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AjZ98rGd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mIdXGCQK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B52CA15CD62;
-	Tue,  2 Apr 2024 19:26:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CD4B15D5D7;
+	Tue,  2 Apr 2024 19:26:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712085970; cv=none; b=nSp5LkSYIxrOVOJmP0kS9LEfLb82XWoUUjVritnDK+IFpZNM8ThHEZYH4TUjLegZXJfQYpwo5YzrDVVHK0xESAL+dKm9KKveGHR5zKUdRxzgSdFo0nW5A+fQ2hsKvenfUY4tJmDm2leiZPhOKPKhtf6ntCCBoW7nyrR8piCFY8g=
+	t=1712085972; cv=none; b=chfkIEhQrDCQ87oHuZCEQOeHaNZjzsIWCSwUTj2IobHvdIXY3VoR+JqUrLIiA39FPDTJ7bjc0xpFMVWXC6nl0hPvzN0eij+lYWroC+1cAJa5u8JaRHq3XqaNlQyBPLjUTNZdXIs1KisfyiemDHVqL7zHY64EOJIW6K911T8+IXQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712085970; c=relaxed/simple;
-	bh=5ucQylLBmNZMdQ2th8/CwEafp/XtJqR0xlhv3q0n810=;
+	s=arc-20240116; t=1712085972; c=relaxed/simple;
+	bh=/VSl3wZKyIwuEwY7TgsCPPeb3wNORKpIKGdAAYrcDYs=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Q25ebGv/b9iSb6EWil0Y5oR4tM7bt24cth6LWAWo1jsC5ZiEFaozbEhpf4Zdm5WvqtM9rLjGpzMqSFYv9eLVlYPqUgry4ge8y53NuZ5yx2bLGiRFHrj23q4HzBZ4rcoyya10YwJpKUulj+PC2WnwLsDNX7oUVuF9DE+U68T1wbY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AjZ98rGd; arc=none smtp.client-ip=209.85.160.53
+	 MIME-Version; b=XKuos/t9p10o6Ijv065QULEQPUy2StXFA3C5fr+KV0aJIbCSnBCh7Prkjuxpqev1lf53mp2lR8G+fQ6adEkq2iUAohecNeRB1MdDkg7bPCKrWdo8mAS0wW17ZZzEIDMYbealvJE4p3/GgRb9oc30HGLPk3M+LCcsy3bJfLZvt14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mIdXGCQK; arc=none smtp.client-ip=209.85.160.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-221a9e5484aso3768425fac.0;
-        Tue, 02 Apr 2024 12:26:06 -0700 (PDT)
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-229a90b7aa9so3121560fac.1;
+        Tue, 02 Apr 2024 12:26:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712085966; x=1712690766; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1712085969; x=1712690769; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ksI6IPEsjFKiejyXpxCVyS77n8b3/e3zALrEpFbnmzw=;
-        b=AjZ98rGd7MzFtmbI+Fwx0fBcGmR50eshJMdyXr6MYU1qTCwq792PJ70MNoFgTeeezU
-         Lr9Xg7k2HJotLLj7Av9aHzing/OL2p+0mKjAiylmgrCrdr66PMksrG8Vb5klAEGji0v9
-         vb1aqYVO6sRDYvg8S/RkFR4ZFen7W5eMJ3D/eZgiQLt9eWlZ2IsAavisTkeuMAGJh5Uv
-         DXQsOx/St607l1JDbGnV2taiB8FQzvRLF31Nd2G+R7ePhmT2yyBiTCFnNnGrs1B4pdtl
-         /zipr+vThXSvIuoKMKBIJvvhK/5o3SiUktVLjXQ6OHb3kfOVSlWUzPViwjGQX8ULydLM
-         8GvQ==
+        bh=TeP+ZiPVK2O/B/xHr47tR3SibDp7prxbvZDTXMdKMlc=;
+        b=mIdXGCQKbH+LMwPbi5guwxKuQRMhKS5vUv+wHvfJY3ZqD2VByL7HVjcC6HLa5zX1/L
+         xky7WNrqbJdUYNAGctjIyGnsx9QvPnrGj/bmCCHufMggqEXR+05wiSD8kCe0pAlUJBuV
+         GiIqiertIsTjMkTIvLsi1M+px+4h+dgvlsHnZO5kWBZeUrIayDfGtGjQ9P1gu1qAQHER
+         8s4WlL0YGUGq+grM6goieQ95Z0H/7+/wC+V8JrSh2gywPCkgYBSIkRo7X8/Jge7qZYOT
+         +hEGY9mgyJ2VCYt2fA8+P5axcDCAhzmKOicfYZPimMTqBnc71qVZTuj2Kr+hwP1D+AaM
+         Fw4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712085966; x=1712690766;
+        d=1e100.net; s=20230601; t=1712085969; x=1712690769;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ksI6IPEsjFKiejyXpxCVyS77n8b3/e3zALrEpFbnmzw=;
-        b=nv8KH7qZlaN8MKIMitilaUXtdhVLWmiKQ08vFyoqbZpSxpgEHXhifPVLSD9WbfLRA3
-         a4myJJgxJMHfqV9ylxqXYC+aGXjnuKjGFDdVlCcEMTzc0eZZfic0xE8VKRvtTQPdm5us
-         RGIiDHbhmZ63QFpiZ5pmu+fXUHNUxNHV4t+7yXRSTpxX9fKR98Hnj8HkUBMRuU5hHFXf
-         fJ0j4Ds82US46OHFW3Ryy5m4p8hVdSmialUgT6gWzWRcMN1wxYy8Ug/o82DiUoguIRkU
-         kvweP+2ZOWCrWbuPeXDwOnfpunSEatIi+4qJNCsb3u4PzsCJvRXa6cIgOtW+sNDAvGI8
-         O+Cg==
-X-Forwarded-Encrypted: i=1; AJvYcCU9CKOLbOTsZTllusS3H6L6+RQEIZxbJwNGHch+YinsC5XtJroAdvsTJaAvxnvmshp9LDWoLKuZ0bNKG982FgAIKhNYCPwLCdtlh/OVR0n/Hb+93k4Kmtx356KQD40UE3auR6T41lc5Qz6JVKiE9jQrbNntn6MMJgbJNt+krsCt2YmX1xN+rkc=
-X-Gm-Message-State: AOJu0Yw9gOZonSpD3UkPKUYC6EaOybh2EHut4W0FX/bUu/Qa3AHyzof+
-	/2PvgbxLoz1Z2ly7AGF1juSEEPz3vGmDaXSYL+C8gHmWyQsC8j0H
-X-Google-Smtp-Source: AGHT+IHrnf/GQi55EqJXprDYr6y2oDDZ5H+PyWbIk86tp5RFeDkWom5A/9nkQ0o1HZf4XwVgi/HBcg==
-X-Received: by 2002:a05:6871:5813:b0:22e:15fd:e247 with SMTP id oj19-20020a056871581300b0022e15fde247mr840978oac.5.1712085965864;
-        Tue, 02 Apr 2024 12:26:05 -0700 (PDT)
+        bh=TeP+ZiPVK2O/B/xHr47tR3SibDp7prxbvZDTXMdKMlc=;
+        b=iHizMeyryQ95kGKug2AoBp3NPbTfmadRmFZl2ase7eWescByOPp2AG1MIXxR1wZeZP
+         tFIh22Q5OVRoPuM1ONs3df513i6FlNwETtzgjHuxT7vRn+NR+mLI/qk8rehbrwHJg44D
+         K3le4sM3aOG+9pYg0TOIZ0p7DXtqt3sxr6A+itk1P+xX9lDe64+4INDhQs+1Plf/qTpq
+         IkUcrN4GPTVc6A27OsoL+aenopcMfYID1hzd/4Ouiyjw7VwOrW4z3HFqfkVgKa0LG0xM
+         wqUA4udQ2wKJ6N7QXFPuIk7ALXSc4849rqjhi3sOWXDDiX1NT4qu97zf6tKfoUTPamFq
+         YsHg==
+X-Forwarded-Encrypted: i=1; AJvYcCUvDEo0fM+dlnnp66nT1zwOGXf/Ug61Fjvmh7aUJfb8H3gtOpHFLZ0EoWBPSxJPFIKbnnaJQEXi4Fo5o0bW4taMFF/3hFSJoA6M0nmtoP5FKZcoJamPD45ysWF9Dw24Kg9jxaViWlX5953sLhJ7AAKeEWsfNAkiZRpci6aBEoFUGmRRsEZfkl8=
+X-Gm-Message-State: AOJu0YzPJc29L1RTrmAMfFgl5/AgHAgLIIZBCctpBh03Gp0GUy1DKMN5
+	oXbx9YeqvCPHMLmAtlN8j6plXvYApSG4osGmij+5Q4189I7km9F9fuqfcxhj19QxXQ==
+X-Google-Smtp-Source: AGHT+IFa4mE5kxX2rXYN7XcRV4dgfkxt8MAA+EuMndpCe65Wpc1gLseE1+DBs9qgMTbW+D25156b4g==
+X-Received: by 2002:a05:6871:7981:b0:221:bd93:2940 with SMTP id pb1-20020a056871798100b00221bd932940mr13675521oac.27.1712085969453;
+        Tue, 02 Apr 2024 12:26:09 -0700 (PDT)
 Received: from nukework.lan (c-98-197-58-203.hsd1.tx.comcast.net. [98.197.58.203])
-        by smtp.gmail.com with ESMTPSA id ld22-20020a0568702b1600b0022e8f9fa89bsm75622oab.57.2024.04.02.12.26.04
+        by smtp.gmail.com with ESMTPSA id ld22-20020a0568702b1600b0022e8f9fa89bsm75622oab.57.2024.04.02.12.26.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Apr 2024 12:26:05 -0700 (PDT)
+        Tue, 02 Apr 2024 12:26:08 -0700 (PDT)
 From: Alexandru Gagniuc <mr.nuke.me@gmail.com>
 To: Bjorn Andersson <andersson@kernel.org>,
 	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>
@@ -79,12 +77,11 @@ Cc: ansuelsmth@gmail.com,
 	robimarko@gmail.com,
 	Alexandru Gagniuc <mr.nuke.me@gmail.com>,
 	linux-arm-msm@vger.kernel.org,
-	linux-phy@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 5/7] dt-bindings: phy: qcom,ipq8074-qmp-pcie: add ipq9574 gen3x2 PHY
-Date: Tue,  2 Apr 2024 14:25:53 -0500
-Message-Id: <20240402192555.1955204-5-mr.nuke.me@gmail.com>
+Subject: [PATCH 7/7] arm64: dts: qcom: ipq9574: add PCIe2 nodes
+Date: Tue,  2 Apr 2024 14:25:55 -0500
+Message-Id: <20240402192555.1955204-7-mr.nuke.me@gmail.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20240402192555.1955204-1-mr.nuke.me@gmail.com>
 References: <20240402192555.1955204-1-mr.nuke.me@gmail.com>
@@ -96,88 +93,128 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The IPQ9574 gen3x2 PHY is very similar to IPQ6018. It requires two
-extra clocks named "anoc" and "snoc". Document this, and add a
-new compatible string for this PHY.
+On ipq9574, there are 4 PCIe controllers. Describe the pcie2 node, and
+its PHY in devicetree.
+
+Only pcie2 is described, because only hardware using that controller
+was available for testing.
 
 Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
 ---
- .../phy/qcom,ipq8074-qmp-pcie-phy.yaml        | 47 +++++++++++++++++--
- 1 file changed, 42 insertions(+), 5 deletions(-)
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi | 93 ++++++++++++++++++++++++++-
+ 1 file changed, 92 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/phy/qcom,ipq8074-qmp-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,ipq8074-qmp-pcie-phy.yaml
-index 634cec5d57ea..b0dbd2726acd 100644
---- a/Documentation/devicetree/bindings/phy/qcom,ipq8074-qmp-pcie-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/qcom,ipq8074-qmp-pcie-phy.yaml
-@@ -19,19 +19,19 @@ properties:
-       - qcom,ipq6018-qmp-pcie-phy
-       - qcom,ipq8074-qmp-gen3-pcie-phy
-       - qcom,ipq8074-qmp-pcie-phy
-+      - qcom,ipq9574-qmp-gen3x2-pcie-phy
- 
-   reg:
-     items:
-       - description: serdes
- 
-   clocks:
--    maxItems: 3
-+    minItems: 3
-+    maxItems: 5
- 
-   clock-names:
--    items:
--      - const: aux
--      - const: cfg_ahb
--      - const: pipe
-+    minItems: 3
-+    maxItems: 5
- 
-   resets:
-     maxItems: 2
-@@ -61,6 +61,43 @@ required:
-   - clock-output-names
-   - "#phy-cells"
- 
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,ipq6018-qmp-pcie-phy
-+              - qcom,ipq8074-qmp-gen3-pcie-phy
-+              - qcom,ipq8074-qmp-pcie-phy
-+    then:
-+      properties:
-+        clocks:
-+          maxItems: 3
-+        clock-names:
-+          items:
-+            - const: aux
-+            - const: cfg_ahb
-+            - const: pipe
+diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+index 7f2e5cbf3bbb..626d6359d750 100644
+--- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+@@ -300,7 +300,7 @@ gcc: clock-controller@1800000 {
+ 				 <0>,
+ 				 <0>,
+ 				 <0>,
+-				 <0>,
++				 <&pcie2_qmp_phy>,
+ 				 <0>,
+ 				 <0>;
+ 			#clock-cells = <1>;
+@@ -745,6 +745,97 @@ frame@b128000 {
+ 				status = "disabled";
+ 			};
+ 		};
 +
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,ipq9574-qmp-gen3x2-pcie-phy
-+    then:
-+      properties:
-+        clocks:
-+          maxItems: 5
-+        clock-names:
-+          items:
-+            - const: aux
-+            - const: cfg_ahb
-+            - const: pipe
-+            - const: anoc
-+            - const: snoc
++		pcie2_qmp_phy: phy@8c000 {
++			compatible = "qcom,ipq9574-qmp-gen3x2-pcie-phy";
++			reg = <0x0008c000 0x14f4>;
 +
- additionalProperties: false
++			clocks = <&gcc GCC_PCIE2_AUX_CLK>,
++				 <&gcc GCC_PCIE2_AHB_CLK>,
++				 <&gcc GCC_PCIE2_PIPE_CLK>,
++				 <&gcc GCC_ANOC_PCIE2_2LANE_M_CLK>,
++				 <&gcc GCC_SNOC_PCIE2_2LANE_S_CLK>;
++			clock-names = "aux",
++				      "cfg_ahb",
++				      "pipe",
++				      "anoc",
++				      "snoc";
++
++			clock-output-names = "pcie_phy2_pipe_clk";
++			#clock-cells = <0>;
++			#phy-cells = <0>;
++
++			resets = <&gcc GCC_PCIE2_PHY_BCR>,
++				 <&gcc GCC_PCIE2PHY_PHY_BCR>;
++			reset-names = "phy",
++				      "common";
++			status = "disabled";
++		};
++
++		pcie2: pcie@20000000 {
++			compatible = "qcom,pcie-ipq9574";
++			reg = <0x20000000 0xf1d>,
++			      <0x20000f20 0xa8>,
++			      <0x20001000 0x1000>,
++			      <0x00088000 0x4000>,
++			      <0x20100000 0x1000>;
++			reg-names = "dbi", "elbi", "atu", "parf", "config";
++			device_type = "pci";
++			linux,pci-domain = <3>;
++			bus-range = <0x00 0xff>;
++			num-lanes = <2>;
++			max-link-speed = <3>;
++			#address-cells = <3>;
++			#size-cells = <2>;
++
++			phys = <&pcie2_qmp_phy>;
++			phy-names = "pciephy";
++
++			ranges = <0x81000000 0x0 0x20200000 0x20200000 0x0 0x00100000>,	/* I/O */
++				 <0x82000000 0x0 0x20300000 0x20300000 0x0 0x07d00000>;	/* MEM */
++
++			interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "msi";
++			msi-parent = <&v2m0>;
++
++			#interrupt-cells = <1>;
++			interrupt-map-mask = <0 0 0 0x7>;
++			interrupt-map = <0 0 0 1 &intc 0 0 164
++					 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
++					<0 0 0 2 &intc 0 0 165
++					 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
++					<0 0 0 3 &intc 0 0 186
++					 IRQ_TYPE_LEVEL_HIGH>, /* int_c */
++					<0 0 0 4 &intc 0 0 187
++					 IRQ_TYPE_LEVEL_HIGH>; /* int_d */
++
++			clocks = <&gcc GCC_PCIE2_AXI_M_CLK>,
++				 <&gcc GCC_PCIE2_AXI_S_CLK>,
++				 <&gcc GCC_PCIE2_AXI_S_BRIDGE_CLK>,
++				 <&gcc GCC_PCIE2_RCHNG_CLK>;
++			clock-names = "axi_m",
++				      "axi_s",
++				      "axi_bridge",
++				      "rchng";
++
++			resets = <&gcc GCC_PCIE2_PIPE_ARES>,
++				 <&gcc GCC_PCIE2_CORE_STICKY_ARES>,
++				 <&gcc GCC_PCIE2_AXI_S_STICKY_ARES>,
++				 <&gcc GCC_PCIE2_AXI_S_ARES>,
++				 <&gcc GCC_PCIE2_AXI_M_STICKY_ARES>,
++				 <&gcc GCC_PCIE2_AXI_M_ARES>,
++				 <&gcc GCC_PCIE2_AUX_ARES>,
++				 <&gcc GCC_PCIE2_AHB_ARES>;
++			reset-names = "pipe",
++				      "sticky",
++				      "axi_s_sticky",
++				      "axi_s",
++				      "axi_m_sticky",
++				      "axi_m",
++				      "aux",
++				      "ahb";
++			status = "disabled";
++		};
+ 	};
  
- examples:
+ 	thermal-zones {
 -- 
 2.40.1
 
