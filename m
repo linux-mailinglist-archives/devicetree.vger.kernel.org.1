@@ -1,151 +1,197 @@
-Return-Path: <devicetree+bounces-55454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6410A895431
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 15:07:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C98C895485
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 15:09:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1DACD285141
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 13:06:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4FEBF1C2336D
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 13:09:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06DF180040;
-	Tue,  2 Apr 2024 13:06:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7246683CCD;
+	Tue,  2 Apr 2024 13:07:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ah3OVEvh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="D/4IMe0g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 373BA7D07A;
-	Tue,  2 Apr 2024 13:06:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 818357FBBF;
+	Tue,  2 Apr 2024 13:07:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712063206; cv=none; b=JwKcETz8a4ZNU59f6XR03VlgN8QF8osMcxkn4LlbHL9oal/lVJTivRMcaKrTl+PBOB9B8HgJbtOJkeyN9ZgcgfBJFnuqBzWN9vBtujQDScu8ehKZe2ipY8W/SvYMbDI1wvQuiHGRNJYL+LomTzBjc3hov1b64ZTPSiV3LItMsKo=
+	t=1712063251; cv=none; b=kTL+xH9cvd5Ijv8fR2L1TxVoxZN6FZp785weeh6N87e7vSmxRhBVXxwnIfWIkUFGoWC9fn+/qqxqcdz8y8/R/n4d2xTfwmHAevcqX4Ev/q6RNvgPp7e2N3wdw9W+XW1yOY6Tf8AeXnPKa+5YGUT2D9ehVOgvNf1vTORDA3Hyhkc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712063206; c=relaxed/simple;
-	bh=iB2gSDbR2dkyx4edtpLxbP9l7fU0ngFgBmwg4Y7zQVk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aU8tGqBUWAiOQDL65fq955bzmIrn8CS4t2Ce6s6hHS/HoUyUa7CA+sNTrNu3MC25NZBfd2S4PH4rGARdCjMx9L4VLstJvG1L1k7EcWtxYBOYfPujiSjs6105nBOZqKeA2Ra9HiILfPaXAgfev6ufZqbbFCf/dMOnst+6lX4lFB8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ah3OVEvh; arc=none smtp.client-ip=209.85.218.49
+	s=arc-20240116; t=1712063251; c=relaxed/simple;
+	bh=+D1Ro3T40iXb4snfq1uLijK7/Bj8tezfUol7C0P/buc=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=bQcEKJT8ha0f+GSQmyxJt8rLpV7DmiQx429EI1u1WsdYtbSfZf4fCAZPPuBlS4CbOgqOJQrcrmwVn+8YpKBC+f8o50tIR8BPgZgaoZ/d9nlgWuuCCS6pd+iMJlbpXGFTow6o77+ILYQ3UmcU7svPMGW5OBnVUbRwTCDEiT88AwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=D/4IMe0g; arc=none smtp.client-ip=209.85.167.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a4a387ff7acso616868266b.2;
-        Tue, 02 Apr 2024 06:06:44 -0700 (PDT)
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-515a81928faso6313107e87.1;
+        Tue, 02 Apr 2024 06:07:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712063203; x=1712668003; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=f65VZK2taIgLTzjNB/2fmY7WG5Qnc3EYR1bvxekrFWY=;
-        b=ah3OVEvhNQxVFJ0es031qCw//Xh8+YF/V7+tlVK6k9Dpda+5j7tKMzQl8zUIBrOMpY
-         aYzMTTrPKqLzkRrSg27XKyC8WXugXbS22igHW6GjfsfOCqbp73VQ+ctqEqbdFW1puMAO
-         Cnfy9brY1WyMzeVkZQPDEKBkZ4K5x35Ju+36k2u7thzkgeDuf4t8O+qMR890YArpYKIW
-         x60BnfHbGtuP0k8FYFGi4zRc03xaZ6fPOiN0paAWPUrDfBzRpdifHq5yKHuWvMz59UHL
-         zRypvKjvPAV5vOSIkMBCZTIH8uO0vRLTKM4kAFYzsw0pMxBLOspzy2KPyFynGa7bAn37
-         NBLA==
+        d=gmail.com; s=20230601; t=1712063247; x=1712668047; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NKU9jx20LVZGBMlMQd/cCeXupmo6LvEXs+isiI8gkiY=;
+        b=D/4IMe0g/5wY9yNbpHeEuYpWQFu1C3fpo69K4LYfv4iK2U1HXp2xI62j4D9PmwrneA
+         AE4DcOLjkFJsowP8buo45Fq7CBHQc6jkhhIjYu1SBC1vaBBnyd3jvQyMaBEcBUtPN+AU
+         nDiZYPuyVA9utfCW8kPxP4Cs6poVvAZTsPWyl9Vu+H5QBozw894DGr4BGxt3uEdpBaMf
+         FiKmf16O9Uy3miIKobLMz/yblMdKgq6Y7y3XdYGsCRVYPW7NaRMuDl8OfjVyI8DA1vpH
+         H4f0DFsdrjToCBlCTAIC3qFhl/5h5qME6AKiTbGQPC0ZMxrAWYueRU0jRf+w6xmYjU2Y
+         2x3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712063203; x=1712668003;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=f65VZK2taIgLTzjNB/2fmY7WG5Qnc3EYR1bvxekrFWY=;
-        b=CRG3LbQDkcw5oQpsDrbt3BIFvgWTKb7sGjzu/z/VQUBtWBrp9lXubwnTvRBt14yE+4
-         BoC3kLfgFPFXjfS9asCY0IRPNF6brJHby5Pi8TXKF4Bfd9c+jHQPIKdHeOyqo4a8Gf2E
-         xWrP0TgMkeTokzm08hFRIGkMuF1B5hw2nWBUUT6d53AOnuKtq4hEhl5zSrqHf0bluhdU
-         ed+kDkkVGtQuSWU7oO0yA5knTrJNRB5RJXNU0JoE1sG3vqIDQyJvw0VRQR+QKi+eKTBF
-         DkWH+fkql4wIWy8adBqU5qJy7SpizkStOXjCtmAbHlXj0adx99LYDG+tUJQQNoNrA6A/
-         2Elg==
-X-Forwarded-Encrypted: i=1; AJvYcCXvT/OTE83N6VlSnbhYVX5m4oIMuSSUKfI3kQEkXFoZ5fx9llGcgp63Ut01X166bUIP/kewPdIWT2jXMAhnptDHTGPJTSZHV/9jz8gNIVdn8HDOj3+uiEMCENx6J63N4axDm9+10/G558+OLCXcwNrJrn7lNjyjHv/yMfVhkH9X7OsQi4c=
-X-Gm-Message-State: AOJu0YxkaMfqCRaqgNaYTGGvrW5U6G9w75qhEk4CezSohcP9E1IIeKNW
-	0dTh5vaXlWllbKViIfsVPKbKzEwIJKrgbVJkjNVG5s+pNg1c0aNz1rDI4FKulGYOSoj6nhtGpH0
-	Ufxv+vXHmVGR6PeC3GOLNuZDyI/U=
-X-Google-Smtp-Source: AGHT+IGFhidDICd1DuDLTMF6/GRfDHMz7a0kUh4LJPUOf9njSYivo6aIkq7WkYN426AVp/ihVUC3mr9bilSLextXDJg=
-X-Received: by 2002:a17:907:7da0:b0:a4e:6957:de24 with SMTP id
- oz32-20020a1709077da000b00a4e6957de24mr4995499ejc.37.1712063203115; Tue, 02
- Apr 2024 06:06:43 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1712063247; x=1712668047;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NKU9jx20LVZGBMlMQd/cCeXupmo6LvEXs+isiI8gkiY=;
+        b=kmVu7CYsoWvO3SuwlM6Y2kH6tCupTS2ZlSX8YODMMXHv3Qf3ZBxOBjLNJbdPDL5B3n
+         Cu2jrx2Mv8YOnktirx7fGftxLKhY1bVlcCXCkIZgLtOc5EB2KyX1ei/dPixZnqZ9vUfv
+         jz1xYLOYcbBGYdkBTGVgC7wVNV/RIK6j8NIeqJ8YBPAFAAgojjXgIgml60HvqaES8X9W
+         NWc1Stu0ZnxVgl2DQhdi88CrkoW2CX3SNEIrBj9Vzc5McofcUc1/iGSa516M7uoG3fpM
+         izwFZKE2FReQYiYwgTIOQ99HZCdmoamyAZASiZ4i3HgskPWdAd4b/5eP7QAsU6EhBUfj
+         cMDA==
+X-Forwarded-Encrypted: i=1; AJvYcCXlXCY92saJY9WQozmG0itzlZWcgc43J6hDLR04mWm622wvH0DfMIwwqKEqoBa45SkoPsPE2ZuRnyrW/rWhc7n46vG4MdPDYqlpIw1gdWrGPQL2/HYXokon0XJOIxQ1DFW1GamjBmTMQOuqzi17/dxDJ/NArl2uAMizjznDZqkvxE1m6TK0zMH5
+X-Gm-Message-State: AOJu0YzMZO27IFGrgelV9W8O0kkU62fVcgETte/M1sE9VmLQLcaIadMg
+	PIeF/5fQwqvpvHa3MDKn9RG43Gp+YOx5R6PMfnFdSwD86MwOHmdQ
+X-Google-Smtp-Source: AGHT+IFXRtAcfIYkcYjCj1CcDNrWBA3RpHGKgypg6iet93/LvdqOTpHmcVe4ODKD1p4AmLbDRANqJg==
+X-Received: by 2002:ac2:58fb:0:b0:515:8159:788d with SMTP id v27-20020ac258fb000000b005158159788dmr7676502lfo.64.1712063247164;
+        Tue, 02 Apr 2024 06:07:27 -0700 (PDT)
+Received: from fedora ([213.255.186.46])
+        by smtp.gmail.com with ESMTPSA id bi15-20020a0565120e8f00b00515aa366202sm1706770lfb.274.2024.04.02.06.07.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Apr 2024 06:07:26 -0700 (PDT)
+Date: Tue, 2 Apr 2024 16:07:18 +0300
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+To: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
+Subject: [RFC PATCH 0/6] Support ROHM BD96801 scalable PMIC
+Message-ID: <cover.1712058690.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240323-pinctrl-scmi-v6-0-a895243257c0@nxp.com>
- <20240323-pinctrl-scmi-v6-3-a895243257c0@nxp.com> <ZgcP4IkTQGks9ehH@surfacebook.localdomain>
- <DU0PR04MB9417E797F4E0F7BB6154B3BE88382@DU0PR04MB9417.eurprd04.prod.outlook.com>
- <Zgu4Tok43W5t8KM0@pluto>
-In-Reply-To: <Zgu4Tok43W5t8KM0@pluto>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Tue, 2 Apr 2024 16:06:06 +0300
-Message-ID: <CAHp75VdAaTeQ_Ag3gd0s9UfT=kAT2hwibeJ9-YFXJx4z=R3e+g@mail.gmail.com>
-Subject: Re: [PATCH v6 3/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
- protocol basic support
-To: Cristian Marussi <cristian.marussi@arm.com>
-Cc: Peng Fan <peng.fan@nxp.com>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, 
-	Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Dan Carpenter <dan.carpenter@linaro.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, Oleksii Moisieiev <oleksii_moisieiev@epam.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="WaiMjVoaQWIfNz5i"
+Content-Disposition: inline
+
+
+--WaiMjVoaQWIfNz5i
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Apr 2, 2024 at 10:48=E2=80=AFAM Cristian Marussi
-<cristian.marussi@arm.com> wrote:
-> On Sun, Mar 31, 2024 at 01:44:28PM +0000, Peng Fan wrote:
-> > > Sat, Mar 23, 2024 at 08:15:16PM +0800, Peng Fan (OSS) kirjoitti:
+Support ROHM BD96801 "scalable" PMIC.
 
-...
+The ROHM BD96801 is automotive grade PMIC, intended to be usable in
+multiple solutions. The BD96801 can be used as a stand-alone, or together
+with separate 'companion PMICs'. This modular approach aims to make this
+PMIC suitable for various use-cases.
 
-> > > > +#include <linux/module.h>
-> > > > +#include <linux/scmi_protocol.h>
-> > > > +#include <linux/slab.h>
-> > >
-> > > This is semi-random list of headers. Please, follow IWYU principle (i=
-nclude
-> > > what you use). There are a lot of inclusions I see missing (just in t=
-he context of
-> > > this page I see bits.h, types.h, and  asm/byteorder.h).
-> >
-> > Is there any documentation about this requirement?
-> > Some headers are already included by others.
+This RFC series is a product of a _long_ process. The product has been
+re-designed a few times and this series has been sitting in my git
+forgotten for long periods of time, then been re-worked when new design
+has been available, after which it has again been forgotten. Last week I
+finally received the word that this product should've been stabilized,
+digged up my last set of patches (from Nov 2021 - cover letter
+reminding me the driver development had been done during 3 years...)
 
-The documentation here is called "a common sense".
-The C language is built like this and we expect that nobody will
-invest into the dependency hell that we have already, that's why IWYU
-principle, please follow it.
+I think this is valid information for reviewers as it's good to keep an
+eye on obsoleted practices - even though I tried updating this series.
 
-> Andy made (mostly) the same remarks on this same patch ~1-year ago on
-> this same patch while it was posted by Oleksii.
->
-> And I told that time that most of the remarks around devm_ usage were
-> wrong due to how the SCMI core handles protocol initialization (using a
-> devres group transparently).
->
-> This is what I answered that time.
->
-> https://lore.kernel.org/linux-arm-kernel/ZJ78hBcjAhiU+ZBO@e120937-lin/#t
->
-> I wont repeat myself, but, in a nutshell the memory allocation like it
-> is now is fine: a bit happens via devm_ at protocol initialization, the
-> other is doe via explicit kmalloc at runtime and freed via kfree at
-> remove time (if needed...i.e. checking the present flag of some structs)
+This is sent as an RFC because of the regulator features which can be
+configured only when the PMIC is in STBY state. This is described more
+detailed in the regulator patch.
 
-This sounds like a mess. devm_ is expected to be used only for the
-->probe() stage, otherwise you may consider cleanup.h (__free() macro)
-to have automatic free at the paths where memory is not needed.
+Another "oddity" is that the PMIC has two physical IRQ lines. When I
+last wrote this patch in 2021 I had some naming collison in debugfs for
+the IRQ domains. Back then I used:
+irq_domain_update_bus_token(intb_domain, DOMAIN_BUS_WIRED);
+to work-around the issue. Now, when rebasing to v6.9-rc1 the naming
+collision was gone and things seemed to work. However, it'd be great if
+the IRQ code in MFD driver was reviewed by greater minds :)
 
-And the function naming doesn't suggest that you have a probe-remove
-pair. Moreover, if the init-deinit part is called in the probe-remove,
-the devm_ must not be mixed with non-devm ones, as it breaks the order
-and leads to subtle mistakes.
+Rest of the series ought to be business as usual.
 
-> I'll made further remarks on v7 that you just posted.
+Matti Vaittinen (6):
+  dt-bindings: ROHM BD96801 PMIC regulators
+  dt-bindings: mfd: bd96801 PMIC core
+  mfd: support ROHM BD96801 PMIC core
+  regulator: bd96801: ROHM BD96801 PMIC regulators
+  watchdog: ROHM BD96801 PMIC WDG driver
+  MAINTAINERS: Add ROHM BD96801 'scalable PMIC' entries
+
+ .../bindings/mfd/rohm,bd96801-pmic.yaml       |  155 ++
+ .../regulator/rohm,bd96801-regulator.yaml     |   69 +
+ MAINTAINERS                                   |    4 +
+ drivers/mfd/Kconfig                           |   13 +
+ drivers/mfd/Makefile                          |    1 +
+ drivers/mfd/rohm-bd96801.c                    |  454 ++++
+ drivers/regulator/Kconfig                     |   12 +
+ drivers/regulator/Makefile                    |    2 +
+ drivers/regulator/bd96801-regulator.c         | 2109 +++++++++++++++++
+ drivers/watchdog/Kconfig                      |   13 +
+ drivers/watchdog/Makefile                     |    1 +
+ drivers/watchdog/bd96801_wdt.c                |  375 +++
+ include/linux/mfd/rohm-bd96801.h              |  212 ++
+ include/linux/mfd/rohm-generic.h              |    1 +
+ 14 files changed, 3421 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd96801-pmic=
+=2Eyaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd9680=
+1-regulator.yaml
+ create mode 100644 drivers/mfd/rohm-bd96801.c
+ create mode 100644 drivers/regulator/bd96801-regulator.c
+ create mode 100644 drivers/watchdog/bd96801_wdt.c
+ create mode 100644 include/linux/mfd/rohm-bd96801.h
+
+
+base-commit: 4cece764965020c22cff7665b18a012006359095
+--=20
+2.43.2
+
 
 --=20
-With Best Regards,
-Andy Shevchenko
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =3D]=20
+
+--WaiMjVoaQWIfNz5i
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmYMAwIACgkQeFA3/03a
+ocUrcQf8DQhFPJC1Qb61QJNRcbPGRFMvtn7Yv/pHPTaI1DKVZ9dp5plAx9ekzRD9
+AYFQkt1K+PyjAMFsdwKPUGMqkD40zsE5S77bXpBL5db1w2++jgDdz432BLggTsDS
+EaK779RB0mCuRPwbcnWi0b6WFD89u+8GiSEbOtpT3LfoYsoGhA2ljIsEKDMNK/m4
++SIXf/d3NOhcQcqyqUkQRWMEloVz9X7rpBviVdBhcKdPZsy2x82yhbUq0igkgCOw
+N71roCet4uS6MD7QYSb7iHGOqG2E/abymy1mNkTwednH/HmREgxiTWuBpf/Rstgg
+EUewKKY1Yd3ieFHg3U/YSYryW2G1fA==
+=nQLo
+-----END PGP SIGNATURE-----
+
+--WaiMjVoaQWIfNz5i--
 
