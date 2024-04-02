@@ -1,246 +1,186 @@
-Return-Path: <devicetree+bounces-55345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55364-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C655C894E3C
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 11:05:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08565894F6D
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 12:02:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DC8D1F2107A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 09:05:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B1813284579
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 10:02:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DD375733B;
-	Tue,  2 Apr 2024 09:04:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0B4260DDC;
+	Tue,  2 Apr 2024 10:00:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="WGTtMwvz"
+	dkim=pass (2048-bit key) header.d=tdk.com header.i=@tdk.com header.b="GKDYMh6+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-00549402.pphosted.com (mx0b-00549402.pphosted.com [205.220.178.134])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1806E56B8E
-	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 09:04:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712048686; cv=none; b=HVAPs6K/0zzPKHJREBhaYV6Wk4adhgtcAwGH/d7rKsx3uPLJikZWVUKFRvVaAVGQUQG/ZSe5qVAAlmoV0yMR3zLW2N6PUKoXtu6Eafuyi7CQEjPxKz3PvIbzQa1ErGtOBn7OnGFahlbc3CW1kzfGiFQQP5sZfLOZe/7BaRkNl/A=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712048686; c=relaxed/simple;
-	bh=UOcXMEcrvtS1548Y9244NrKksQOuvYTLDtzFV9UxEBE=;
-	h=References:From:To:Cc:Subject:Date:In-reply-to:Message-ID:
-	 MIME-Version:Content-Type; b=laAGzINooMHMLL7IrjFyYhhWZycRff350ua3MgfaRbSL1FbUUMbGrhBM+PitJhqYMX7GieNE8BdZD61XlDTm1nrQuGpX4VlPuCWABRzfCbLSjNiN6T/Xa8FJ58Tl8f0kWxZ97c8zGzMun6s07au2iytVspikASNQZ1+w6fnL0Mg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=WGTtMwvz; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3416df43cabso3466256f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 02:04:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712048681; x=1712653481; darn=vger.kernel.org;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=5DtpQsHWTJr85nIclH627DiK8ml0pGvXwXdSfSvXc3Y=;
-        b=WGTtMwvzmFupxB8lisf4+EHLP48vdfvFVTdJ/nGrZOhPyHfVSSqcWJqeUzbrTcMc5G
-         O4YcJY3X+GNkKKnvyg+NPGDaf9ka8mO0EwkwZA1wavJIJSBTw8K9hSIx0EkQdzcjy88Q
-         ynrxxCXExM1+dYA4BYq3MfgKsl4GJvjYrajQ/4xqvWfDuQkqUIV8JYCus9WIWvtX+Gjv
-         ix07CU0HyTYAQiN4n1eBs+RhaM9unzfs+zd4HyCGQctX4TjFrr3yfzN4xW55jLDCaYze
-         B9NtTG9HPF6l2p/kwfwZZvRlbz6ztiB/zC6CYkEymSjJbccLvIrp7Jp6JlAOqcdh4qww
-         YQ/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712048681; x=1712653481;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5DtpQsHWTJr85nIclH627DiK8ml0pGvXwXdSfSvXc3Y=;
-        b=kQFGu0YMSLc4UYlHY4U55G6eximfQIco1flcah7NnSStcD/+L0NhgIemD7FZab+33t
-         5AI74XeUdV4rFoEqSQ8RhBGa2PPEsOUIhAmdfmjIwnIKelKr8RFExsT/psAY07gBW+X0
-         S5k6SQvkmzxRxoMDZDO5DifveZMY94/aEjRiKHJ1Z8v4gpdcHjHn/983ZIfGCJcGHvsu
-         7usZhRCIlQYUHHvnJSWcuOmk5zlnT5Z4ozCu59OSkdcvnZCS1ry4wF26YYfOJt2MX2XY
-         VEN/LtjRXeXN77oquagNT7R05G6dc0o5NgsjNeP4/cutWOds6XkuzLiViZCgRsFSkJUn
-         4lQA==
-X-Forwarded-Encrypted: i=1; AJvYcCUr1i93KCeD/PgjvjIDAKHjt4LgknncjhU/ppIfVtpJ1pEmslfpaU5B51UfWx16crPqw8a+detAA1mLKk+J/IkhqzRsufVb9THoqg==
-X-Gm-Message-State: AOJu0Yy+0wEqm5Ia0RM02Dh2LAtBljU0XnvGoqlOoDnmomdF12eJa9g+
-	hxZ16MdaTrDnTW/HLqkiD40mqwCZ+PYjMS89QZMuFff3iO10R4YnLSDkM33fmdk=
-X-Google-Smtp-Source: AGHT+IH63/gwJe4lsLdmn86BYF7wjy6dJ6d3CdKbvsodEW1CIse+oGPeG50Lip9oSH4TRd0rV3oHFg==
-X-Received: by 2002:a05:6000:c8:b0:341:b8d6:e7c7 with SMTP id q8-20020a05600000c800b00341b8d6e7c7mr6500554wrx.71.1712048681104;
-        Tue, 02 Apr 2024 02:04:41 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:db22:d5c9:a527:a4cf])
-        by smtp.gmail.com with ESMTPSA id dj11-20020a0560000b0b00b003437799a373sm191115wrb.83.2024.04.02.02.04.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Apr 2024 02:04:40 -0700 (PDT)
-References: <20240329205904.25002-1-ddrokosov@salutedevices.com>
- <20240329205904.25002-3-ddrokosov@salutedevices.com>
-User-agent: mu4e 1.10.8; emacs 29.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Dmitry Rokosov <ddrokosov@salutedevices.com>
-Cc: neil.armstrong@linaro.org, jbrunet@baylibre.com,
- mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
- martin.blumenstingl@googlemail.com, kernel@salutedevices.com,
- rockosov@gmail.com, linux-amlogic@lists.infradead.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1 2/6] clk: meson: a1: pll: support 'syspll'
- general-purpose PLL for CPU clock
-Date: Tue, 02 Apr 2024 11:00:42 +0200
-In-reply-to: <20240329205904.25002-3-ddrokosov@salutedevices.com>
-Message-ID: <1j4jckjftk.fsf@starbuckisacylon.baylibre.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7F985E060;
+	Tue,  2 Apr 2024 10:00:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=205.220.178.134
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712052047; cv=fail; b=AAntenAVI/RRP563UfmblDpEfbE1I/AGDFiDqGKVYYZ8SBByiECGF5H7ls6ZW0hFzIQafQEAs4ahyYM2mPeobFg0p4eZlzqDZbktAb0cwKUmq7xTPbfA7bW1kF1fqqiDN0HcyyW3WvltmZh5pcpwtQY8m6h19tLPoZ2+Mh9FjM4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712052047; c=relaxed/simple;
+	bh=2md0V2Odf6sh2ZIt5amJ6YqVKv3JfRyze/0Ei2qCiyw=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=RAcLpr3e/7r66pyHdxmLorr7YOAH/FtflJkpNgD8J3667pZMJuUPLCp5SIzviYkiUdShDvAmb12o5cgGCYhLgoyKInU9H0hnsP8fp6hs5TDkc14koUpC5p89iPB9/RGNtLbp19UoCZTf/6/BQMh2k7jqm9CWmEq6BXnExYG2eRs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tdk.com; spf=pass smtp.mailfrom=tdk.com; dkim=pass (2048-bit key) header.d=tdk.com header.i=@tdk.com header.b=GKDYMh6+; arc=fail smtp.client-ip=205.220.178.134
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tdk.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tdk.com
+Received: from pps.filterd (m0233779.ppops.net [127.0.0.1])
+	by mx0b-00549402.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 431MaeCc004295;
+	Tue, 2 Apr 2024 09:01:08 GMT
+Received: from jpn01-tyc-obe.outbound.protection.outlook.com (mail-tycjpn01lp2168.outbound.protection.outlook.com [104.47.23.168])
+	by mx0b-00549402.pphosted.com (PPS) with ESMTPS id 3x6c3jhwd5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 02 Apr 2024 09:01:08 +0000 (GMT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=NzwYrPUs2HEVu+A7qheRS2jV/yOX2OSXcORO0TPU2ofj8iKjsPd95cSaA5I1Yk3EQifIkugx2o5UcxLm59Il/RiLdAtiPo+o6YHhlU3bVWYwRbdLGMD3pHXNaoxGatZDbDp371Snfy0lgsUewtZ/yYAYxhsskUKxKY6oMY+3AE0JF7xR1UbSa4YPzlOqDXxbT+zOzHCZmSBzd4Q5oeK3sfzTgTrSq9ld4R7k5ZDXs89sOe0ZetgtrGXNF0JlvOQIqT9Z/fGJt5V68rVtQAHnfSwyPCYEZkYTxiRjMKIo72806tYv1AY900a43mLDh1Jn5jSqyDtQGRcgMwItv4rbmQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3uPgQGk0eMQ9+2YQlVCQ16qUqL5Ef36oLSZpQ53JaQg=;
+ b=oLi0CeHMBw9WGvEpZl/ErdwZJEnI6YnhGHGzCMe6J/7vjXIkrt1Guz9Ot/rNLg1Az8ENuNIV+jbUF8xLbjQMluTBGxWDUS7mZ5cb8QhIKQf5+5cNmpONehDo/jjsxE5nw+o2UcIPb2h3FqsQvmIKMB3hE1eNbOMDwRVTmIbMW5qUQevN+l6jsreBu/n5Ku39jJRa7QKnHOUI6h8EfNjxD8xSKUtxVqmaUgal9hoemkEQXycGSSbSpm5jry4+QVTb9btmFb00slH/+UGC81O7DQoK7n/LQw72eLbuAW5lJ2uF7dwMQlwvBFIKYNcxVOQUQYNjjyYjiOwVXNh/kgxK5A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=tdk.com; dmarc=pass action=none header.from=tdk.com; dkim=pass
+ header.d=tdk.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tdk.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3uPgQGk0eMQ9+2YQlVCQ16qUqL5Ef36oLSZpQ53JaQg=;
+ b=GKDYMh6+TOe51H5m66qCWG/thKjLqyH6/ZY9HorDe2HG9G311GLHXzXXl2Z0ODjTlr1EdIXgE5hF3K3IFMXdRgxpq/dEuKNOdlVXDCKwmc8TyNby62/qEJm4t7YxgXjjXeJdlJzPwt/lXePS3lOuSRdq9NOLitA308L0yylcVqWasvlKpKamikPE9CpFtU8hQ4oijtEd6WBbTk5Cbqz5d/3YTpk4cuzwJs7MIx9C9IPFlsm1PXQ5ZA9q6m01uqRSo2BRqNP03xrGkv9bRKcZ8xejDQER9NxhD6/Mo3I6hMJm6MW5PG1p3ZW6x5eDNWKPGrjFbMjyrNm916ERYUKhBQ==
+Received: from OS3P286MB1950.JPNP286.PROD.OUTLOOK.COM (2603:1096:604:174::14)
+ by OS3P286MB2216.JPNP286.PROD.OUTLOOK.COM (2603:1096:604:19e::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Tue, 2 Apr
+ 2024 09:01:03 +0000
+Received: from OS3P286MB1950.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::6e47:e0f5:b361:f441]) by OS3P286MB1950.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::6e47:e0f5:b361:f441%4]) with mapi id 15.20.7409.042; Tue, 2 Apr 2024
+ 09:01:03 +0000
+From: inv.git-commit@tdk.com
+To: jic23@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org
+Cc: lars@metafoo.de, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+Subject: [PATCH v2 0/2] iio: imu: inv_icm42600: add support of ICM-42688-P
+Date: Tue,  2 Apr 2024 09:00:44 +0000
+Message-Id: <20240402090046.764572-1-inv.git-commit@tdk.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-ClientProxiedBy: ZR0P278CA0120.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:20::17) To OSZP286MB1942.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:604:1a7::13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OS3P286MB1950:EE_|OS3P286MB2216:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	oWqxOCjDTd6XKDBzQs0YohdR57Y+kDhTgua+ngUdeXrlPjGG4TM/dnI6Wlo9XEen8ZnFrTBXC6mgJgvWfvoIM+5xHtrZVxMd+sAlmX/+CDZGww7GholaRIacA004O3as31SSgpGwSERWFfh4+KqDTdVqKKLGRtYjH2FGmQ4J9f2WJR5g+yH0VOQU8nJ3iNEiISPq52CBtmTh7k+478p3c1O1KBJLXds/O+MB3nL/U66eXuL+0swUzwPldut6KPXx/ZI4eXUQbaMfUuw2r0qaZyhvjwir6LgjnY+RBggJEfawJ15AkZoXOBZ3PLkBxunMwmXjKSl3kYrgHsBePbuVdpmAal18IcpderDTrYKkFFGWYqqrCvRmZ38EWrW4fSqFb7Qocx7wN33keE4aNj8VGvJh1+B4y7R803KCOyQEPRUlxHyNJCpkaCFnNu06Z+uWqSY/CPAn6wrRO3V0rtc5VNjl9PknTuecmxzNWlhZJ8QIKAKSJcH/9AKcwP9/OKDFu4uQYuEuNZsHp7h2XWnkkFHAiKZv2ulHTr98Imfgg4LkyBsTp0PCnkztWlw46k0UqZTfx7gok6F6lCZSapCosQXBjnhHgcYQHRXHp76X+oCeauM5TR3yNu5TVTCV8ZcTj/td+RlmewAfmLDOnfZxpxrx+Lgvyg8XnJw3mDG4FRf84OsRyxO4/V6Af2Fy9V1dAyllFSHchwbhJ0uJkFi03nSja0A6FNKFH1aJ11lQULq7/+PpqFOhYatfVLFlbLn3
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS3P286MB1950.JPNP286.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(376005)(366007)(52116005)(1800799015)(38350700005)(3613699003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?us-ascii?Q?PXch3dBO/83v3yg4NACvZNUEtPxuFfC/WN8tOHo+Qv9NL6jjTnO2LBE6Vwpt?=
+ =?us-ascii?Q?XBSLwUMZ9h4lGNp6j75KrW2mzxTvR8A2OyfQ0nluqMiN6gfp/rJx62+jKUwN?=
+ =?us-ascii?Q?Pdudwu1YY228+tMByc/Cj4jcI2qTkxJCSZqNHKAZ6PE2c2QueOPn1KYgGA8E?=
+ =?us-ascii?Q?S3VAooYwOwFKpBwE1MK1/U6eusNYl/HesDpV3PNM4IwZ5xJzT1wVxiFWsHlM?=
+ =?us-ascii?Q?2CtY4NVL6Y2nYzkRkk8AAehz2BH3X//dDOI0M/mIg+zRuPLcxotuJOL8W/pS?=
+ =?us-ascii?Q?1pG6XD0sUpcmNFW2pUml81k5Lx5d/tC8V7sATvSluv2wVZ5AFLZjhK3F4Snm?=
+ =?us-ascii?Q?a30Cn7y5o9CPWXuJ8EeZ3yr6fmJJL3+ee3Y6mcpIxgpaG2rmQA7wBHYcOEwp?=
+ =?us-ascii?Q?xs6ffUZTskXAmBGc6DoUvcPHN2TedOATYElBLyBmxDqPTn4C6EYeX4/cd3Ga?=
+ =?us-ascii?Q?au66Fi9BziT1ay2lvZvBjWnX6PGKyNT0gknkdjxbeLLQnAlTgRtZNrl3ljHw?=
+ =?us-ascii?Q?JM1kZmbbpsZ/cy2y2KLPjoJe8LrJAdeigZTjLtY6Oyaj1AEu18D7a5EsiJT+?=
+ =?us-ascii?Q?K2es3Y1OCMVswVu8ovIXtjPjjgwXuPGRKDt+H8MNHfgX5ddXLx6xKEaKdXIO?=
+ =?us-ascii?Q?9Wyw+mhK23c70W2xJhVlUukHMgV0mC1kcZ160386M7mbzK4KreMl7bxiQiqr?=
+ =?us-ascii?Q?hAqt+4CWow+VzNGRvxJYAdTfKddqTj0Xf/k7SbXq3leanSdvutRFaFaIuhO0?=
+ =?us-ascii?Q?6euSfytVw5n+sC4pkm8/ULZmm0w1H7JSWbwxj6lSNSnvIgflB7viV0172WOs?=
+ =?us-ascii?Q?KmOQBPwIu5gCuSueywuojt+A/m6fwbU25NTVtldMLxNLHvdgXaZ8GBRZ0tKw?=
+ =?us-ascii?Q?WViamV24YcAtecSpDdCcf8FuYFMXWuNO6ToUT8yFkQRfzTN+TsAple8IcgOR?=
+ =?us-ascii?Q?hsO3H4+6DDTPQ1xELObTZA4pasgrDd/EvJPkXqHt1sDYZRnQqKEqUE5HTzk/?=
+ =?us-ascii?Q?mWKk55yeKYr6GTbJiGCN4HQmgaqPHYJ/dWLvbPAIqONLUNnZV/2b7bZW8Sf0?=
+ =?us-ascii?Q?ltEKMR5nXljvdJYHceLbHFk9W3BjUKIX08ioJhz7B+gNfR5P5gUz35ijVJd7?=
+ =?us-ascii?Q?20C4ucN/b0OaAEezwzlaAIo40T/hlVLjiZdBTCKRMoqwkDXhmLxV5blRXWpe?=
+ =?us-ascii?Q?hsRk9Q4sqJEvUV73mB/GBIedhIyPNnC8M49c56dDSvBJc43cQ2R95ZFg4D8Q?=
+ =?us-ascii?Q?yFEsbX9X/UAvS3sv/31yOHLpkW9fgraTm9ICSnguJ4QiHSTWvroc3TEhRBCJ?=
+ =?us-ascii?Q?yhjcGr9/RQjrR4LRtOCniD6M8YlaGtedac7GJgaHNG0DD6DBpMmpXK3QmiaD?=
+ =?us-ascii?Q?yjSH1WxyQmBznWdEhSo5orfXVAvCVUSRzdmfU27KVoid71GY6fsyTLj3mSKl?=
+ =?us-ascii?Q?hGNmIq6cwJ+8tzedSFYKeVq67gVE8501CTYD6fZYruIdVrBRdXuwee293D4y?=
+ =?us-ascii?Q?5s9xzHxuy+J7H0xlm4wwtFLHhMESqPXQKOkKn6Brmm+b+9qNXDJH7e56ZBFK?=
+ =?us-ascii?Q?wlCxiL6WlXx+icc9xgRMUCE4cSgAPDja/ufafacI?=
+X-OriginatorOrg: tdk.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 92dc7c98-8f9b-4aa3-da15-08dc52f36bf5
+X-MS-Exchange-CrossTenant-AuthSource: OSZP286MB1942.JPNP286.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Apr 2024 09:01:02.9397
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 7e452255-946f-4f17-800a-a0fb6835dc6c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: tKzBh9Zp3rqkzBr7jWbIAoEImPUYD8I6y1Dzq9ZYKIHW68yLKP6y8eKr8lJW9fVFUYY9HHfBy6BRWgB5LQ/Gyw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3P286MB2216
+X-Proofpoint-ORIG-GUID: gHGotQKui_70uU_gpgd_ss3JTWXTYIZj
+X-Proofpoint-GUID: gHGotQKui_70uU_gpgd_ss3JTWXTYIZj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-02_03,2024-04-01_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0 bulkscore=0
+ impostorscore=0 malwarescore=0 clxscore=1015 mlxscore=0 spamscore=0
+ adultscore=0 lowpriorityscore=0 priorityscore=1501 mlxlogscore=999
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2403210001 definitions=main-2404020064
 
+From: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
 
-On Fri 29 Mar 2024 at 23:58, Dmitry Rokosov <ddrokosov@salutedevices.com> wrote:
+This series is for adding support of high-end specs ICM-42688-P chip.
 
-> The 'syspll' PLL, also known as the system PLL, is a general and
-> essential PLL responsible for generating the CPU clock frequency.
-> With its wide-ranging capabilities, it is designed to accommodate
-> frequencies within the range of 768MHz to 1536MHz.
->
-> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
-> ---
->  drivers/clk/meson/a1-pll.c | 78 ++++++++++++++++++++++++++++++++++++++
->  drivers/clk/meson/a1-pll.h |  6 +++
->  2 files changed, 84 insertions(+)
->
-> diff --git a/drivers/clk/meson/a1-pll.c b/drivers/clk/meson/a1-pll.c
-> index 60b2e53e7e51..02fd2d325cc6 100644
-> --- a/drivers/clk/meson/a1-pll.c
-> +++ b/drivers/clk/meson/a1-pll.c
-> @@ -138,6 +138,81 @@ static struct clk_regmap hifi_pll = {
->  	},
->  };
->  
-> +static const struct pll_mult_range sys_pll_mult_range = {
-> +	.min = 32,
-> +	.max = 64,
-> +};
-> +
-> +/*
-> + * We assume that the sys_pll_clk has already been set up by the low-level
-> + * bootloaders as the main CPU PLL source. Therefore, it is not necessary to
-> + * run the initialization sequence.
-> + */
+Changelog:
+* v2: change order of chip definitions and order of patches
 
-I see no reason to make such assumption.
-This clock is no read-only, it apparently is able to re-lock so assuming
-anything from the bootloader is just asking from trouble
+Jean-Baptiste Maneyrol (2):
+  dt-bindings: iio: imu: add icm42688 inside inv_icm42600
+  iio: imu: inv_icm42600: add support of ICM-42688-P
 
-> +static struct clk_regmap sys_pll = {
-> +	.data = &(struct meson_clk_pll_data){
-> +		.en = {
-> +			.reg_off = ANACTRL_SYSPLL_CTRL0,
-> +			.shift   = 28,
-> +			.width   = 1,
-> +		},
-> +		.m = {
-> +			.reg_off = ANACTRL_SYSPLL_CTRL0,
-> +			.shift   = 0,
-> +			.width   = 8,
-> +		},
-> +		.n = {
-> +			.reg_off = ANACTRL_SYSPLL_CTRL0,
-> +			.shift   = 10,
-> +			.width   = 5,
-> +		},
-> +		.frac = {
-> +			.reg_off = ANACTRL_SYSPLL_CTRL1,
-> +			.shift   = 0,
-> +			.width   = 19,
-> +		},
-> +		.l = {
-> +			.reg_off = ANACTRL_SYSPLL_STS,
-> +			.shift   = 31,
-> +			.width   = 1,
-> +		},
-> +		.current_en = {
-> +			.reg_off = ANACTRL_SYSPLL_CTRL0,
-> +			.shift   = 26,
-> +			.width   = 1,
-> +		},
-> +		.l_detect = {
-> +			.reg_off = ANACTRL_SYSPLL_CTRL2,
-> +			.shift   = 6,
-> +			.width   = 1,
-> +		},
-> +		.range = &sys_pll_mult_range,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "sys_pll",
-> +		.ops = &meson_clk_pll_ops,
-> +		.parent_names = (const char *[]){ "syspll_in" },
-> +		.num_parents = 1,
-> +		/*
-> +		 * This clock is used as the main CPU PLL source in low-level
-> +		 * bootloaders, and it is necessary to mark it as critical.
-> +		 */
-> +		.flags = CLK_IS_CRITICAL,
+ .../devicetree/bindings/iio/imu/invensense,icm42600.yaml     | 1 +
+ drivers/iio/imu/inv_icm42600/inv_icm42600.h                  | 2 ++
+ drivers/iio/imu/inv_icm42600/inv_icm42600_core.c             | 5 +++++
+ drivers/iio/imu/inv_icm42600/inv_icm42600_i2c.c              | 3 +++
+ drivers/iio/imu/inv_icm42600/inv_icm42600_spi.c              | 3 +++
+ 5 files changed, 14 insertions(+)
 
-No I don't think so. Downstream consumer maybe critical but that one is
-not, unless it is read-only.
+--
+2.34.1
 
-A CPU pll, like on the g12 family, is unlikely to be read-only since the
-PLL will need to relock to change rates. During this phase, there will
-be no reate coming from the PLL so the PLL is not critical and you must
-be able to "park" your CPU an another clock while poking this one
+TDK-Micronas GmbH
+Company Headquarters / Sitz der Gesellschaft: Freiburg i. Br. - Municipal C=
+ourt of / Amtsgericht: Freiburg i. Br. HRB 6108. VAT ID / USt-IdNr.: DE 812=
+878184
+Management / Gesch=E4ftsf=FChrung: Sam Maddalena
 
-> +	},
-> +};
-> +
-> +static struct clk_fixed_factor sys_pll_div16 = {
-> +	.mult = 1,
-> +	.div = 16,
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "sys_pll_div16",
-> +		.ops = &clk_fixed_factor_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&sys_pll.hw
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
->  static struct clk_fixed_factor fclk_div2_div = {
->  	.mult = 1,
->  	.div = 2,
-> @@ -283,6 +358,8 @@ static struct clk_hw *a1_pll_hw_clks[] = {
->  	[CLKID_FCLK_DIV5]	= &fclk_div5.hw,
->  	[CLKID_FCLK_DIV7]	= &fclk_div7.hw,
->  	[CLKID_HIFI_PLL]	= &hifi_pll.hw,
-> +	[CLKID_SYS_PLL]		= &sys_pll.hw,
-> +	[CLKID_SYS_PLL_DIV16]	= &sys_pll_div16.hw,
->  };
->  
->  static struct clk_regmap *const a1_pll_regmaps[] = {
-> @@ -293,6 +370,7 @@ static struct clk_regmap *const a1_pll_regmaps[] = {
->  	&fclk_div5,
->  	&fclk_div7,
->  	&hifi_pll,
-> +	&sys_pll,
->  };
->  
->  static struct regmap_config a1_pll_regmap_cfg = {
-> diff --git a/drivers/clk/meson/a1-pll.h b/drivers/clk/meson/a1-pll.h
-> index 4be17b2bf383..666d9b2137e9 100644
-> --- a/drivers/clk/meson/a1-pll.h
-> +++ b/drivers/clk/meson/a1-pll.h
-> @@ -18,6 +18,12 @@
->  #define ANACTRL_FIXPLL_CTRL0	0x0
->  #define ANACTRL_FIXPLL_CTRL1	0x4
->  #define ANACTRL_FIXPLL_STS	0x14
-> +#define ANACTRL_SYSPLL_CTRL0	0x80
-> +#define ANACTRL_SYSPLL_CTRL1	0x84
-> +#define ANACTRL_SYSPLL_CTRL2	0x88
-> +#define ANACTRL_SYSPLL_CTRL3	0x8c
-> +#define ANACTRL_SYSPLL_CTRL4	0x90
-> +#define ANACTRL_SYSPLL_STS	0x94
->  #define ANACTRL_HIFIPLL_CTRL0	0xc0
->  #define ANACTRL_HIFIPLL_CTRL1	0xc4
->  #define ANACTRL_HIFIPLL_CTRL2	0xc8
+This e-mail and any files transmitted with it are confidential information =
+of TDK-Micronas and intended solely for the use of the individual or entity=
+ to whom they are addressed. If you have received this e-mail in error plea=
+se notify the sender by return e-mail and delete all copies of this e-mail =
+message along with all attachments. If you are not the named addressee you =
+should not disseminate, distribute or copy this e-mail.
 
+Bitte vermeiden Sie den Ausdruck dieser E-Mail.
+Please consider your environmental responsibility before printing this e-ma=
+il.
 
--- 
-Jerome
+[X]
+
+[https://www.micronas.tdk.com/sites/default/files/header/2024_04_TDK_Trades=
+how_Banner_250x135px_96dpi_embeddedworld.png]<https://www.tdk.com/en/news_c=
+enter/press/20240312_01.html>
 
