@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-55278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53865894B66
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 08:29:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BB38894B6E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 08:31:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 77B161C2266E
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 06:29:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9ED731C2266F
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 06:31:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F9271CF83;
-	Tue,  2 Apr 2024 06:28:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D07A1F94B;
+	Tue,  2 Apr 2024 06:31:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OwH+sOWk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OD0GGBs6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8B861B7F4
-	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 06:28:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A12641B7F4
+	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 06:31:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712039339; cv=none; b=WIB5Nvqc8JE8vktqKCFNm30k8T8vHJ8bYTGCBeS9HxVt969S6CYfYcg/qzqAkHcbULNu9W2Z0U90LvcXmA8uB4LZiPQNlwx6nSYq9LoWtPV5GSIJjvgkJ6cf36PFUZgq/9+jfccjFk3AeLAy7oZ8CYXC60G9hP2gUxMQxoZ7auo=
+	t=1712039487; cv=none; b=cs4qPZ9CiWMLT5xMqN0Mb3pDLTM13n6pbD8A8nEM0l85ihczaH5tiHHaTmJMGe75vLgZ+R4a/QsNedGBPogjMn47rO6nJvAAkRlAlBdwgxZpB4ax4SsxPzdP9jqcIWrBP07g7JIMI/x0tdHQ04UF8BPXNW6mQE7AKdsgCuv8HMY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712039339; c=relaxed/simple;
-	bh=Ly2MJ+x2/JGLETo78x2qUAfywluqsZoBjdax5jqVOT4=;
+	s=arc-20240116; t=1712039487; c=relaxed/simple;
+	bh=tOmPo85PDaiDGLN8GnmN5ne28Sok9cr7yeCvksTtLqM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dqY5A10zfgg+WOIW1XYbVtp+CaCAW4KML6TIFHLJY0pn6KhwQ/l6mywAyzacWfyF1fK4Xz+vvO615p9DBVDOEWwMdwcNcWkk17bc2EUBzpGzToV8B6uOPRjUi0xPGmi1s0CBPkZlWxixBFP6X6B1ZIzYrgeZ3gr9Tf1IFDCE0j8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OwH+sOWk; arc=none smtp.client-ip=209.85.208.52
+	 In-Reply-To:Content-Type; b=n6dLf3fEXvb/h2OZoxwshgwAiB8BiJ0ovAAaRZB4jNWMobgWjP6vsv/u5oS753OSaqEANAOtpy/Ac7xMGtG4lCvBKCxiVZi/taKQlRpHQLn13HW+m7h/T7gsgNo1vQsePnZp86vCbthsSTg73omwaMrbJlFLY7WU18Q7d3epLPk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OD0GGBs6; arc=none smtp.client-ip=209.85.208.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-56d5d4d2e2bso2636676a12.3
-        for <devicetree@vger.kernel.org>; Mon, 01 Apr 2024 23:28:56 -0700 (PDT)
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-565c6cf4819so9213954a12.1
+        for <devicetree@vger.kernel.org>; Mon, 01 Apr 2024 23:31:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712039335; x=1712644135; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712039484; x=1712644284; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=ksrMBo4pOtNWDZGHJdSqt80CuPGaVhLyi8hNLYSrB/8=;
-        b=OwH+sOWkPDwPS8qEOxt9lnSweTMg2p5HAJPozRfW33UIQEw1olYTV4jvTnr00VyYL4
-         EfndKaFvXAuE8IZIj0TIUvaCnTDIq5FJKGcgjiXztB3UixIC+eBbqdki4vVQh1DhY6I1
-         i5hoXfsdYzl2lTEA7oGdu9iwB2DvZxnTT5hM8SZrgynosaYaqDuo8AUcS4/7bBdQaYvV
-         iDXzB5O18lewHJuWsFctXnAxzzmcwEEKaWCz+fU2Abh0G5bm1ov2tYOH7oF2bqs3ewXO
-         Z6a2/TALhJfqoPQgilJ3bHcl3f2NCQGsFjteCmGJKnH1rrUAsxaEJTueXVUROFPwPx+r
-         hnEQ==
+        bh=6+vlLXjky3Atpmt0lf3Kbf09psjaA35dSHB1HXPaz7o=;
+        b=OD0GGBs6P2A+P8MR/Z0lvoVSJxuoiwUCayWKAWnAcJ1R6ez38pwP1T8DgkzgVjnfHi
+         AOI5SpZ1WqL6Rov5cQ1kdC/c8xXWks3ZL9NvShSGtivKYJX+4dWZPPlbYvGiA8DcejYI
+         JwU89CtE+1mr1LbUK6txvT6js2k9vg3w5puigpW4dSW6l0b2S5WSAWfks4pXV8ff1+g4
+         VR9DqmcDXuxAAo4zJWdiedXTc5NA1nWIGx9EagIYenuYIO1cUg7Z9g0vk/6yLF1XcVVy
+         AqedIsg8rkC36iXFsiTVU6uVhoqn32TkIE7w/KEdUSu7Oy8y1lEVUTQCXPy7jRgAt+fV
+         vZ8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712039335; x=1712644135;
+        d=1e100.net; s=20230601; t=1712039484; x=1712644284;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ksrMBo4pOtNWDZGHJdSqt80CuPGaVhLyi8hNLYSrB/8=;
-        b=o51ZrCEejBDueMKy/KrfN2ymgg/GxdYptanWzfCERuia4hlW7aX+gN3jRhFzHNUa1E
-         N5JSfvRNsUDlO2cEgSYsljxLdIJUxRQ6Jq0X2n5q6F0j2IYaS0DeO18V9pMTPg2O8Ba6
-         fBV+EzY5Q5ElOsrd4uc0RHPdv8SQTaCVWfyPdCUUBYKE2GyiHDcdhSQU0aSiqTunCuiM
-         MZpflFryGWMBefMLhbuTGvOPHCMzhx/esoPr+DhvYIASakkxB/ExWjjav65E+9aHIRod
-         Av5qXRk9PbyuGpa+nftSBxiJxjnB3BD3VcYTSIJ2eeuTQK8FlT/kDdaHly7dziIompwN
-         LnUA==
-X-Forwarded-Encrypted: i=1; AJvYcCVQjJkx/q2rMkNJKlpDvj6fw2vRSWDKt55ej0CJYuSkc8zfrN4yky1dewUcvXGtP4TVf8j5B3dLHZbRjd1oweDyHnip97dpUhGGrQ==
-X-Gm-Message-State: AOJu0Yxxwhqmg+TcID8wobtGuC3jtg16FrbYDBDCSaRFJilWwVypsXEw
-	7g+1hNR7Y8IQmJ5x9m7TczQwPCo8L1W0Et+cRPTeeFRm/6/7GgnKFrF/X20YaTo=
-X-Google-Smtp-Source: AGHT+IGNWCWsCHgXd1pIbCWsH0I8LZxGUhZEXhIQ0d7cyTGZCvkLRM0/SEVUiUbC39Z7XgKALBcoaA==
-X-Received: by 2002:a50:f692:0:b0:56d:c857:5929 with SMTP id d18-20020a50f692000000b0056dc8575929mr4468377edn.35.1712039334974;
-        Mon, 01 Apr 2024 23:28:54 -0700 (PDT)
+        bh=6+vlLXjky3Atpmt0lf3Kbf09psjaA35dSHB1HXPaz7o=;
+        b=R3l1Ue5dDcxr8tLJf7Eke0K+5XN5/GiiOP+e6Y8WyQnFC+ttkeKgV60q3otE55Vsf6
+         eB1QfK8DkmaGJBauqTKn9qvNFfk5HuF0diWaaUnm4jo4Bt2VtzsREi2FxHLHQEL04VCZ
+         nCLvu9Hc751amW6aYWVJWaTu5W0wk+DX9WtmXkEhmjPaTHF9izQ7h14bSXRTL6lCDFWi
+         QMPJ6eRXQidGjsXLj841vKcS/nYuIfmB16hXmy8jrbJt2CMOMKvwmfsdL0371uew8jLS
+         MDlOqpxrbheutN0RP8lM8HL6lWrVJs+cMVXJB7MO3j3EJRUfWeLglOYP/9AybVWXJffZ
+         2Mtg==
+X-Forwarded-Encrypted: i=1; AJvYcCVZ1npAtEH381hG5ZNB50HxnHC9/CP9q6K8B8nlHZnu4ijqdX4rzrvxG+PaLPIaruex3ODdlVC0gi2zFQopPy/iHFSAbQL6cilfOw==
+X-Gm-Message-State: AOJu0YzLOnj1wEu+whz7u6KLEtPYCo0lrOCiaVtfC2Sura3z78Yjnijt
+	xKaVYXOTeIpNRVELabNhJapP9599fCC5i/d6frqRaE3p+sNpMUMdKRXRIeYkz/k=
+X-Google-Smtp-Source: AGHT+IEvYVBq4mYN6QHso3bBO8aAt4t4jaFjF4KVJvS7kYn0aYJ9OCRic+0gYI6AH4BZdjkSZ7gJfw==
+X-Received: by 2002:a17:907:7b9e:b0:a4e:512a:903c with SMTP id ne30-20020a1709077b9e00b00a4e512a903cmr7519468ejc.32.1712039483886;
+        Mon, 01 Apr 2024 23:31:23 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id et12-20020a056402378c00b0056c3e65caecsm6325302edb.2.2024.04.01.23.28.53
+        by smtp.gmail.com with ESMTPSA id z3-20020a170906714300b00a4650ec48d0sm6212152ejj.140.2024.04.01.23.31.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Apr 2024 23:28:54 -0700 (PDT)
-Message-ID: <6c4b4a52-a389-4c65-a448-d76b52e70c80@linaro.org>
-Date: Tue, 2 Apr 2024 08:28:52 +0200
+        Mon, 01 Apr 2024 23:31:23 -0700 (PDT)
+Message-ID: <9fbb9058-ccfe-436d-b413-b3ba27e4e5f9@linaro.org>
+Date: Tue, 2 Apr 2024 08:31:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,14 +77,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] media: dt-bindings: ovti,ov2680: Document more
- properties
-To: Fabio Estevam <festevam@gmail.com>, sakari.ailus@linux.intel.com
-Cc: rmfrfs@gmail.com, laurent.pinchart@ideasonboard.com, hansg@kernel.org,
- robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- Fabio Estevam <festevam@denx.de>
-References: <20240401190506.3238885-1-festevam@gmail.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: panel: Add LG SW43408 MIPI-DSI panel
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Caleb Connolly <caleb.connolly@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ Vinod Koul <vkoul@kernel.org>, Caleb Connolly <caleb@connolly.tech>
+References: <20240402-lg-sw43408-panel-v3-0-144f17a11a56@linaro.org>
+ <20240402-lg-sw43408-panel-v3-1-144f17a11a56@linaro.org>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -131,37 +140,26 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240401190506.3238885-1-festevam@gmail.com>
+In-Reply-To: <20240402-lg-sw43408-panel-v3-1-144f17a11a56@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/04/2024 21:05, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
+On 02/04/2024 01:51, Dmitry Baryshkov wrote:
+> From: Sumit Semwal <sumit.semwal@linaro.org>
 > 
-> OV2680 has a single data lane MIPI interface.
-
-The hardware or the driver?
-
+> LG SW43408 is 1080x2160, 4-lane MIPI-DSI panel present on Google Pixel 3
+> phones.
 > 
-> Document the clock-lanes and data-lanes properties to avoid
-> the following dt-schema warning:
-> 
-> imx7s-warp.dtb: camera@36: port:endpoint: Unevaluated properties are not allowed ('clock-lanes', 'data-lanes' were unexpected)
-> 	from schema $id: http://devicetree.org/schemas/media/i2c/ovti,ov2680.yaml#
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> Signed-off-by: Sumit Semwal <sumit.semwal@linaro.org>
+> [caleb: convert to yaml]
+> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
 
-You should mention why you cannot drop the redundant clock/data-lanes
-from DTS.
+Tags missing.
 
-> 
-> While at it, also document the link-frequencies property as recommended
-> by the following document:
-> 
-> https://www.kernel.org/doc/html/v6.9-rc1/driver-api/media/camera-sensor.html#handling-clocks
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+`b4 trailers -u`
 
 Best regards,
 Krzysztof
