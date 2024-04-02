@@ -1,213 +1,96 @@
-Return-Path: <devicetree+bounces-55304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FE65894CB4
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 09:35:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D6F4894CC0
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 09:38:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1DE551C21C91
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 07:35:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A7243B22125
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 07:38:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DDAB3B182;
-	Tue,  2 Apr 2024 07:35:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27B0E3B29A;
+	Tue,  2 Apr 2024 07:38:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lHRfOE9W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 294C02BD1C
-	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 07:35:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE2D018635;
+	Tue,  2 Apr 2024 07:38:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712043340; cv=none; b=JyL23NWQkIyipfvZFE3xfWWOvKzMUQqTqcEE4EPAehcn4eXCyKiXAdDujlv513Re2VGkAZyFmvgO+TiDvSyQMkWPLQlSNkGBw3O96Ep0dANPMk/HUkmqYK3FYu8fuXXf47WK4K5AN5u7yfuit7cDWht7SImyyZrzsubFtN3lNmc=
+	t=1712043492; cv=none; b=UIJVEhAf8XtGZlTb3oZmTIKjMmZg+hZOPm7/qU1ppM3nMsVzSSQUCJjb1BTUuhgqlVqMQgdpZYNZgtCLjaXIF/NvmIRcFDhD1L4z4ne5dYhmn7Pu+cKhXhT7jN9CcpIEEOCpMrp9iFa4FDuMskxhrdGGRlHYmafUcsSF1kNVwjY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712043340; c=relaxed/simple;
-	bh=c77W4NtZGbO/mmksuHBSmPIGD/9bOAUrsvWJlCh/Zlg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=LZWQJYYJ9SElfr+DozYoxOeYZMg6/pYGsHI5fQj6HxMIm3nsHTY0CHS3YpAHlqnR0kz6sNcj8Lw0poJBlq488Zz0wCNaPxctd83AdJXtAri59uVehWkHpvKEMBEWC17tXZTDYrzNAuPxyNbSqp8b6DPiSYW0KvgmLaWyAQ9I0XM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <m.grzeschik@pengutronix.de>)
-	id 1rrYgA-00082Y-FS; Tue, 02 Apr 2024 09:35:34 +0200
-Received: from [2a0a:edc0:0:1101:1d::ac] (helo=dude04.red.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <m.grzeschik@pengutronix.de>)
-	id 1rrYgA-009wCp-0x; Tue, 02 Apr 2024 09:35:34 +0200
-Received: from localhost ([::1] helo=dude04.red.stw.pengutronix.de)
-	by dude04.red.stw.pengutronix.de with esmtp (Exim 4.96)
-	(envelope-from <m.grzeschik@pengutronix.de>)
-	id 1rrYg9-00EoI0-37;
-	Tue, 02 Apr 2024 09:35:33 +0200
-From: Michael Grzeschik <m.grzeschik@pengutronix.de>
-Date: Tue, 02 Apr 2024 09:35:33 +0200
-Subject: [PATCH] arch: arm: mxc: phyCARD-i.MX27: Add USB support
+	s=arc-20240116; t=1712043492; c=relaxed/simple;
+	bh=bkEud1DS4CmuqdIWJhXjEm5+cYQ8btjvsByQdn3Q/kw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DRpydU7zB7/1EZs6WAowa3aI1+vfeRalt/3mJOFXP6hZOVevU51zKOtMGWxiNEYgc2QExvG5AEjg8V3m4raYb/WpSBdCYxlots+/dYvJkYLRJloaij82P7YDT/DmKFC2fh+WwMrNkEc7SDo43FzsUq3y6lMwe6p9Rs1R2313bDA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lHRfOE9W; arc=none smtp.client-ip=209.85.210.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-6e6db4dfd7aso3609592a34.2;
+        Tue, 02 Apr 2024 00:38:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1712043489; x=1712648289; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bkEud1DS4CmuqdIWJhXjEm5+cYQ8btjvsByQdn3Q/kw=;
+        b=lHRfOE9WTB76EJl99JCYzWTeOcboRSL59u9vO7QpcfNB5TqntwXe8+W0sYnHz6Z9eN
+         CPxvc6AKxzHWotYqSqS7Xzio4FPS8YIHX7tRjP22AwjAQpCSL/f+aNGnkKETtg+oCkJA
+         r7wzTIxenFsvRl7T/TMidzVnxR/ZYBsg7VHVwWklsC+7viXCcUWfkNszQywRsu11fCWd
+         5R9C3+B/WkPJ5eQdtQdU2wcVHIVls842tr6ZBwnUc4rionlV1Itk6P5Zxe+o5kAacGSH
+         DPNJYbMvk8hmYctGiNrIORlrqbuFQE+9rwBA5MB3MzOCj6qDxAUeyxSLsCDGoB60APu+
+         QI2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712043489; x=1712648289;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bkEud1DS4CmuqdIWJhXjEm5+cYQ8btjvsByQdn3Q/kw=;
+        b=LiVoOlyln+kM/4wNDvvYr248J918edZ+PhceVlYRYgN8p7JgyOFYou4XdjkAsnv6RO
+         y+J4tFKafJIKV0e2pB3Totj0gQR8OMvJOO3uY7BpBxPSLuWLSOQvdVndR096U5G3adKz
+         x5jrz8dpNfcW1A51AxC1qTbVDn12I3l/b0OLr9C5WQAPc0VJY0TWLS567zIqQRFjTw2r
+         1js+hdkfiUnfy+m8Fw5quIK3PprtCADN9eRY/WdfiN071ruK32TFDW8z8gOGGuxsv6sK
+         VcwgADHB1usd10x7ad/JVGHxv3V21WLemtpx4FH6mGDYOPDo57BUSJ1SySbrXFWVmJDV
+         zQIw==
+X-Forwarded-Encrypted: i=1; AJvYcCX76yBLszg8CKmWqh+lB9mHOVlLlLw6H8BubrR4IrZK2gEAYIdk3BzyoYbTqKe+4gzmOCDN75MUswsW1i+mxtY072d7Kr8DnZrQhtNjCH4YqbgRi8xdaaoq7lYLGds8PP+xT8lktKKNpb6oCWZZLXC9URoIHL4psJ8iGOcgHr8xLcAuKg==
+X-Gm-Message-State: AOJu0Ywv/hdFe0sTIiC30h9t1ailBkBrta4vUtSicGmtUTVlZRbSP0Au
+	Yu+Iy9ZYhmTfbHK1ZFj9qWXNDL37ZEgvHuLTbqt1UC+EczhEQ3G3yIR/wQrN7XuwjeePUWOeqpg
+	yA6ri9sZX77lWPtuczCBNpms6rlUm3pGi+Io=
+X-Google-Smtp-Source: AGHT+IHFLzeDLtGBIrYzgAQS6Hr7ee2/zi63uWsWiVsWTsp8sYSdFbDkTWxYLCjcmaUXCC9pMG2W4IDG6fh2rivYgz8=
+X-Received: by 2002:a05:6870:bb12:b0:229:e49f:8dbe with SMTP id
+ nw18-20020a056870bb1200b00229e49f8dbemr12661006oab.4.1712043489569; Tue, 02
+ Apr 2024 00:38:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240328-pca100-v1-1-58df67c2c950@pengutronix.de>
-X-B4-Tracking: v=1; b=H4sIAES1C2YC/x2MQQqAMAzAviI9O6jbUPEr4qHOqgWZsqEI4t8tH
- hNCHsichDN0xQOJL8myR4WqLCCsFBc2MimDRevR2dYcgSpEQzUiBe9azw1oPFJmMyaKYdU8ntu
- m8kg8y/3f++F9P0ONOldtAAAA
-To: Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Michael Grzeschik <m.grzeschik@pengutronix.de>
-X-Mailer: b4 0.12.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3364;
- i=m.grzeschik@pengutronix.de; h=from:subject:message-id;
- bh=c77W4NtZGbO/mmksuHBSmPIGD/9bOAUrsvWJlCh/Zlg=;
- b=owEBbQKS/ZANAwAKAb9pWET5cfSrAcsmYgBmC7VFuPpCUfj62coJX6rI+cIQLmIVSuuy8HtjE
- QOcZ7AH6SmJAjMEAAEKAB0WIQQV2+2Fpbqd6fvv0Gi/aVhE+XH0qwUCZgu1RQAKCRC/aVhE+XH0
- q0cSD/4wQ24fgJBtREm521bh0yJpIxVHDu2sqLgZ2zzd7lHgEgP7diUTKxBp2WwaDh+eyTpm/ZL
- UPIGalYlZXS7vxSNI5rqMqLTGrWxn86T2w4x1mZA9nrNDRGimhU/nKlH4seZRmLJXpUmDVqwZm/
- yxFP3CAz/ruAAUpRjvihuMoR6kiRz7YYMC4MzKITjkuBQtRkq8kFVfNdhUTlhTwDUj1LJ0TOyb7
- kMDktkpEHhc3lrU1KIMoKN/rdx52POdrDhgE5Jfy8kw7KULDVn1bIRXbeqvJjOWvR61h875UMT3
- 3qtWxJCuB6LsMNc2SXLmW8uun+EOkrLwNgLEArunh8pIDdoXSPHMhxS4ip4FKoOPKEVscix4A3f
- dpDGtsiIjiv43fTkgsrYMtnpLdqJTxcUrQ7m3aZB4EZhSTnhyIiHA+/pTB7KsVsEwjIQfJnhp1q
- LoDZM+pbOSGZw7iJLce47pP9B0Qw3RlJm+4gjhHmdIQJXPZn0eZa2VjrQPci+p7v/oLvNbzD19b
- EnsVJHPq5Q1qiKz9g4PUVV2lFgzGU/7IAV2PllbiTvnu4SoN2TcmZ564F3ARIYHLNFOc6/c2uRC
- 2cWYuOFlj1XcaU2rZavfMZdliit+nIOTcwuKoGDh7T0b2kOp+A78t5pobVYJOfI/mYSz9ZAaFQb
- SSj0dDJNY2SbA5Q==
-X-Developer-Key: i=m.grzeschik@pengutronix.de; a=openpgp;
- fpr=957BC452CE953D7EA60CF4FC0BE9E3157A1E2C64
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: m.grzeschik@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20240327064354.17384-1-animeshagarwal28@gmail.com> <24c917f6-9ff8-4bca-8cc2-5c14c64c2c9b@kernel.org>
+In-Reply-To: <24c917f6-9ff8-4bca-8cc2-5c14c64c2c9b@kernel.org>
+From: Animesh Agarwal <animeshagarwal28@gmail.com>
+Date: Tue, 2 Apr 2024 13:07:58 +0530
+Message-ID: <CAE3Oz82qNnUau5JeFBViGYgn4+n988NNFMwg3f8AczVcRVdj8w@mail.gmail.com>
+Subject: Re: [PATCH v3] dt-bindings: ata: ahci-da850: Convert to dtschema
+To: Damien Le Moal <dlemoal@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-ide@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-This patch adds the pinmux and nodes for usbotg and usbh2.
+On Tue, Apr 2, 2024 at 12:55=E2=80=AFPM Damien Le Moal <dlemoal@kernel.org>=
+ wrote:
+> Applied to for-6.10. Thanks !
 
-In v6 revision of the pca100 the usb phys were changed to usb3320 which
-are connected by their reset pins. We add the phy configuration to the
-description.
-
-Signed-off-by: Michael Grzeschik <m.grzeschik@pengutronix.de>
----
- .../dts/nxp/imx/imx27-phytec-phycard-s-som.dtsi    | 78 ++++++++++++++++++++++
- 1 file changed, 78 insertions(+)
-
-diff --git a/arch/arm/boot/dts/nxp/imx/imx27-phytec-phycard-s-som.dtsi b/arch/arm/boot/dts/nxp/imx/imx27-phytec-phycard-s-som.dtsi
-index abc9233c5a1b1..31b3fc972abbf 100644
---- a/arch/arm/boot/dts/nxp/imx/imx27-phytec-phycard-s-som.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx27-phytec-phycard-s-som.dtsi
-@@ -15,6 +15,22 @@ memory@a0000000 {
- 		device_type = "memory";
- 		reg = <0xa0000000 0x08000000>; /* 128MB */
- 	};
-+
-+	usbotgphy: usbotgphy {
-+		compatible = "usb-nop-xceiv";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_usbotgphy>;
-+		reset-gpios = <&gpio2 25 GPIO_ACTIVE_LOW>;
-+		#phy-cells = <0>;
-+	};
-+
-+	usbh2phy: usbh2phy {
-+		compatible = "usb-nop-xceiv";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_usbh2phy>;
-+		reset-gpios = <&gpio2 22 GPIO_ACTIVE_LOW>;
-+		#phy-cells = <0>;
-+	};
- };
- 
- &cspi1 {
-@@ -84,6 +100,52 @@ MX27_PAD_NFRE_B__NFRE_B 0x0
- 				MX27_PAD_NFWE_B__NFWE_B 0x0
- 			>;
- 		};
-+
-+		pinctrl_usbotgphy: usbotgphygrp {
-+			fsl,pins = <
-+				MX27_PAD_USBH1_RCV__GPIO2_25		0x1 /* reset gpio */
-+			>;
-+		};
-+
-+		pinctrl_usbotg: usbotggrp {
-+			fsl,pins = <
-+				MX27_PAD_USBOTG_CLK__USBOTG_CLK		0x0
-+				MX27_PAD_USBOTG_DIR__USBOTG_DIR		0x0
-+				MX27_PAD_USBOTG_NXT__USBOTG_NXT		0x0
-+				MX27_PAD_USBOTG_STP__USBOTG_STP		0x0
-+				MX27_PAD_USBOTG_DATA0__USBOTG_DATA0	0x0
-+				MX27_PAD_USBOTG_DATA1__USBOTG_DATA1	0x0
-+				MX27_PAD_USBOTG_DATA2__USBOTG_DATA2	0x0
-+				MX27_PAD_USBOTG_DATA3__USBOTG_DATA3	0x0
-+				MX27_PAD_USBOTG_DATA4__USBOTG_DATA4	0x0
-+				MX27_PAD_USBOTG_DATA5__USBOTG_DATA5	0x0
-+				MX27_PAD_USBOTG_DATA6__USBOTG_DATA6	0x0
-+				MX27_PAD_USBOTG_DATA7__USBOTG_DATA7	0x0
-+			>;
-+		};
-+
-+		pinctrl_usbh2phy: usbh2phygrp {
-+			fsl,pins = <
-+				MX27_PAD_USBH1_SUSP__GPIO2_22		0x0 /* reset gpio */
-+			>;
-+		};
-+
-+		pinctrl_usbh2: usbh2grp {
-+			fsl,pins = <
-+				MX27_PAD_USBH2_CLK__USBH2_CLK		0x0
-+				MX27_PAD_USBH2_DIR__USBH2_DIR		0x0
-+				MX27_PAD_USBH2_NXT__USBH2_NXT		0x0
-+				MX27_PAD_USBH2_STP__USBH2_STP		0x0
-+				MX27_PAD_CSPI2_SCLK__USBH2_DATA0	0x0
-+				MX27_PAD_CSPI2_MOSI__USBH2_DATA1	0x0
-+				MX27_PAD_CSPI2_MISO__USBH2_DATA2	0x0
-+				MX27_PAD_CSPI2_SS1__USBH2_DATA3		0x0
-+				MX27_PAD_CSPI2_SS2__USBH2_DATA4		0x0
-+				MX27_PAD_CSPI1_SS2__USBH2_DATA5		0x0
-+				MX27_PAD_CSPI2_SS0__USBH2_DATA6		0x0
-+				MX27_PAD_USBH2_DATA7__USBH2_DATA7	0x0
-+			>;
-+		};
- 	};
- };
- 
-@@ -95,3 +157,19 @@ &nfc {
- 	nand-on-flash-bbt;
- 	status = "okay";
- };
-+
-+&usbotg {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usbotg>;
-+	phy_type = "ulpi";
-+	phys = <&usbotgphy>;
-+	status = "okay";
-+};
-+
-+&usbh2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usbh2>;
-+	phy_type = "ulpi";
-+	phys = <&usbh2phy>;
-+	status = "okay";
-+};
+Thanks for your time Damien.
 
 ---
-base-commit: 5bab5dc780c9ed0c69fc2f828015532acf4a7848
-change-id: 20240328-pca100-a600ac4384e7
-
-Best regards,
--- 
-Michael Grzeschik <m.grzeschik@pengutronix.de>
-
+Animesh Agarwal
 
