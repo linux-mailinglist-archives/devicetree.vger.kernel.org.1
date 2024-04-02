@@ -1,220 +1,168 @@
-Return-Path: <devicetree+bounces-55444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38BB1895344
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 14:38:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8276589533F
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 14:38:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DFE97286180
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 12:38:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 378AA285F0C
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 12:38:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4D8C5E091;
-	Tue,  2 Apr 2024 12:37:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7371D85264;
+	Tue,  2 Apr 2024 12:36:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F5MXzVIh"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="Gnry5jzF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02on2120.outbound.protection.outlook.com [40.107.95.120])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8CEA83CD3;
-	Tue,  2 Apr 2024 12:37:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712061429; cv=none; b=MZejC3lwr2b2aIiC2UA7xojO/EQ01lQ89IRed7JBTsfGFCkzhfRTb2AjqOHEty0Vt7xenYAhPor56cRaPbG/HiYh++wZI9QbqZDviMu7o0P//1nYQqG+sx14OW1fExIRbm8ljnLp0JqW4q8vcbO51R7HjZR9wWjdTu5Oj7yui4w=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712061429; c=relaxed/simple;
-	bh=Pk2HgzXAGCfJO2L7X/paOS4JEgzpUMyFsy/4qgAscqY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MMF9p4VCTd7qF35gkLQhvv4H92MczGninoberdz8NUoPJlTkkIWTw+IhUY01w7mtF5/eMcCREPWKysS+5Q96GMvbdMhx8CySNmWWLaURVAxPtqYL65RVkOYyMhfM71fHrYrfXCamjdZq0Dxu3Kp3TT/z21j0qguWl7uJPJmHm4Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F5MXzVIh; arc=none smtp.client-ip=209.85.219.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-dcbf82cdf05so4265253276.2;
-        Tue, 02 Apr 2024 05:37:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712061427; x=1712666227; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+hVDtgf/tX6CB1x3wViNXfCr99QZLJMtRkH2+/L34AU=;
-        b=F5MXzVIhApZ7QC+EvBmq4NfJ/Bf91v5ElS8FkW19jKStRlMQyFzgA9DY9WnoozkuPK
-         Woc/HuqKehMDlKW1GVHvoYTjRj78g4ia/tiKQWvLMo5zk11Qn4JafZmnWL5xw/6aYL3j
-         YaI1fs8mH/5zJIdJPbLMgEmEmJWDK7+6lWGZSwSgOFXnVu0xJJI2XPIMkmMpf/KCY2Gf
-         gltpZ/tkvxbiiuNSW9p8Se7OOYBHpL57rse5134HXfDTRmr9RUYXgTifvSnktrhYVJhX
-         XGf9gHx6kjCv4L97CeRgN07L/MHJsNMKtCJQYcE1Ds7HKv1j0FxLrsefh4l79dVg+Dhf
-         n/1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712061427; x=1712666227;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+hVDtgf/tX6CB1x3wViNXfCr99QZLJMtRkH2+/L34AU=;
-        b=Ge0ItIi8Vg8J9AhVSsiWnguGzANF/oKlbq1ESbobPUNaUPVdTbfAAPEOGnsfJvtWwC
-         81yKDe79jGPpCXROriNGOWa/gpy7ryYc3nEeDtduMZbnDcKUWYdQp0fYavlxGwTnyLBr
-         4xgfhxaiIRE4NFm/RNtl+L/tYnxuo6X6ZevdbtKub+9CE6WZwnonD7uGE5FOlaptHab5
-         qYvr40MFn3CI0gnYxzPVnjveih/6Km3QPLIkhfWH3HaEhiOj11+asg+H4JNRL0R+IaRK
-         YIj6mHZBnWFvq9uXOio+9m/pOLi0SivRq20RO7p9HbKCBvB1WettXy8N8BrH/+4Rm4ZN
-         tMtw==
-X-Forwarded-Encrypted: i=1; AJvYcCUWoFoOrTESPKP+huOqkzuYZQmjbkPrNZ5uEY6IacRFky6U5xCgVNnd6FzHOB0ikrOKkANeaxtX60nncTDYSlo6Ln+tzIEDQeljze9H25gHr8QG9cwLAiDufk1EtSKiLeUhXjRKpg==
-X-Gm-Message-State: AOJu0YzbjvaZ+gPRgrNIsT3qJ0n0IrrVLhFAEoQmvgnCdBijuJrgaCLx
-	Qcrcm6TVvTQNly+e1D3YB9416VIgTR2rufjJVLfDR/BW1siMIJKXGP+s2qEUQaT6+XmIa4evI9h
-	V+e7tAqhaJpPoxgpbbrWCzFbKD3c=
-X-Google-Smtp-Source: AGHT+IEsX2IyHA+ZUdqmgdyBhyN/n3wzZWG/aPw2nClgFtPv8DabvDpNMD5pRH43XmPMEAGZEKh8bpUFWc8XHCF9O54=
-X-Received: by 2002:a25:19c3:0:b0:dc6:b8f5:50ae with SMTP id
- 186-20020a2519c3000000b00dc6b8f550aemr10180179ybz.32.1712061426800; Tue, 02
- Apr 2024 05:37:06 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABBEE84A57;
+	Tue,  2 Apr 2024 12:36:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.95.120
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712061408; cv=fail; b=ACCWtHatZ+74PlstZt8ZHSUf2WKT70oayFauJ0hz5gv/+hbSn/6QI1woMpyEjf/TOdZfQAu2bWGtCCfm3YYaKQ8rKxcccde2kZ+YMGPhiCiXnENkvfa1dPzqza3C69Pe21Fr+6GV/P8TT5sHT1viac2LfpiJAfATY/oBMpp4YAQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712061408; c=relaxed/simple;
+	bh=vnQbvcGUoDy4lPj9aQezsvA0rbPNEMBvG8rRt0OgMy8=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=Ht9EkiYH9DshdXboXIFXgVl3q+5E/kWoMPTVaJouLG8ouT3h3J+YlmIkUpGiZsDuAlLSHRakbYcfgZcw45/jC+Ob0DBsjbetk+2rC0/Ahosucdzbg80fIx/wNuxfjw6LKRdLqFDEZ41XhaAe8G/K2Wc9IAOU1w169JUWQ0geCCQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=Gnry5jzF; arc=fail smtp.client-ip=40.107.95.120
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fqOI8to5S4HZ6AL8k3P5qHTGRxlJCVae+KXng+NpzZWd3M6z4TQU/utZBBtK8WunsvqXZlKrooR43gB0DZAYN3Kbc0D4XQkI0Ix112tWDxiYt9zQ+m7ULY0mtwQmvHQJyHXklIKVPyLohzR2YYkqQggNq8a4CxD1HOQgZa9X1vLSEsdhOo7I99GbQj+rmem1dXSr6mFk383HLT+E6xfrko2GCZPTwmB4iGOtcxtJdYohY0HEhdui1D7aTxyft5pY2H1h4PrzDnlqKSnnsIcAaoyhFk/tqXNA2GBMnE7wAyazUnJMsv/L24+/xwPmUayxF+hcJWUecaHEYbmninRzUg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UYbdJj/pBPw/uVhhjJC7/rLhnpYa4y3txEoj82lxIHE=;
+ b=QbzkjiZcnZ+Je+8tKyVniLVilhj8UeWzQKAvmcCLHAdvFobkvb11CtMJjx7n363Af62XXwqNH27D7eC/nacLSaNNgAHFxt9gTHNT01qK6K4JVtWB9AfzOY5xvmmHKCQJMkE5fj2XZQoesXsQ/bzKsfNYxare9wUX+0gPRSsXd7ggR+hRERFJECuLqPiSj7E0zgc78iAca+YnFyX8QYFyPgJwGw1eQlpzmmj6K0jxP4eOaK3hLTNCV3wvBkwVHrlLgTcycmXwD8JO+BhPA/l2eJz1Fhif2oQm2n5+tPo3mFN/AdpzzXkUV2Cq8tkuIdPGLAiPbv/SaHpyNLxM52peZA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UYbdJj/pBPw/uVhhjJC7/rLhnpYa4y3txEoj82lxIHE=;
+ b=Gnry5jzFrssIYpn6a/PZVj+5cFMq4Z6txnBImQhY+i413Hrp0xtmg9fEGYjWqnpX98JTsd/OquxOpEL5s6vIAtGCeI57xgXGuK7WfDQyrJPzJF0jciM/ILH9zuKJUBgtYzN7TbsNYkgTPQr2F/TCSdz/XWtkCUDmwA1Om/iUOT7H/0Jr2OIr5S+95piK0q2Jbz0rrlZ/FFwDMrQlKMZm/kTIl+N/cgKIwAE4gvYwkzC4QYxK1FdTSVn45Y+802TceUrJYyPSCViAAlDhbd+GmjCtydJeOZ9YFiNrFwi2VB0ZbhSd02p5sijaERzt3XLoK0Ms2YGvsxEH89peS6PcLw==
+Received: from SJ1PR12MB6339.namprd12.prod.outlook.com (2603:10b6:a03:454::10)
+ by SA1PR12MB6824.namprd12.prod.outlook.com (2603:10b6:806:25f::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Tue, 2 Apr
+ 2024 12:36:42 +0000
+Received: from SJ1PR12MB6339.namprd12.prod.outlook.com
+ ([fe80::ae74:c645:b13d:3d8c]) by SJ1PR12MB6339.namprd12.prod.outlook.com
+ ([fe80::ae74:c645:b13d:3d8c%7]) with mapi id 15.20.7409.042; Tue, 2 Apr 2024
+ 12:36:42 +0000
+From: Akhil R <akhilrajeev@nvidia.com>
+To: Herbert Xu <herbert@gondor.apana.org.au>
+CC: "davem@davemloft.net" <davem@davemloft.net>, "robh@kernel.org"
+	<robh@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+	Jon Hunter <jonathanh@nvidia.com>, "catalin.marinas@arm.com"
+	<catalin.marinas@arm.com>, "will@kernel.org" <will@kernel.org>, Mikko
+ Perttunen <mperttunen@nvidia.com>, "airlied@gmail.com" <airlied@gmail.com>,
+	"daniel@ffwll.ch" <daniel@ffwll.ch>, "linux-crypto@vger.kernel.org"
+	<linux-crypto@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-tegra@vger.kernel.org"
+	<linux-tegra@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "dri-devel@lists.freedesktop.org"
+	<dri-devel@lists.freedesktop.org>
+Subject: RE: [PATCH v6 3/5] crypto: tegra: Add Tegra Security Engine driver
+Thread-Topic: [PATCH v6 3/5] crypto: tegra: Add Tegra Security Engine driver
+Thread-Index: AQHaedbyTqDDO44+YUOWKfWU3w8p3rFM/XcAgAgBdCA=
+Date: Tue, 2 Apr 2024 12:36:41 +0000
+Message-ID:
+ <SJ1PR12MB63394D2C8C5329DE4B9B937FC03E2@SJ1PR12MB6339.namprd12.prod.outlook.com>
+References: <20240319082306.34716-1-akhilrajeev@nvidia.com>
+ <20240319082306.34716-4-akhilrajeev@nvidia.com>
+ <ZgVCxnI0sZcE04io@gondor.apana.org.au>
+In-Reply-To: <ZgVCxnI0sZcE04io@gondor.apana.org.au>
+Accept-Language: en-IN, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ1PR12MB6339:EE_|SA1PR12MB6824:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ DNfHKKo2+Yd/jP5vB9+nH6MNz6T1sL4WSPn1+wzzthHnhOfgyfT7fyB6v77bipI9hQZupKJvDlZo5OcJ5bmhivQ2VH9zTwQsTXBgdxJygYFALRdsep3Yv+j54Z03jZ5HDZM4RBBdiybf+anrJ2k0h8mFLPQksN4WjOrKW1SIwuJrJG8280lErJRn57eEWADRYnDVdiEV4Q4Z8hW05omdHcokKJaziREUUN1MEhXe+9n/k5LThTmr5hBMOtW3J4s1SZaXmJt5dGZMwLAob8oQtpNOInODeXEGS9gUyq2y2b5RuqkBhkVSxdx8I+HOAVuPFg5LeWX4obppZeL0ft6fL3cr2tknIb2Wj3nGaZyLRmCgdRcFSJgNMAW2H4wob++D5lfu0YbXGTdxbSw1DNnnnNAPZdZNgU51YJ2AM4DnHbKEp78CqpLCeojhRHV0xLCZ/IbF30BBH5JtCTP7jITQ1Zch1ZbpbHQ5yMJ72Y0jUElp7UpKP4tH2RhoLTn66zjLjPDqWr6/0js17+srdO2XdX+iTAJLNFDfDI5rpiDfocRzEZLj7vCpjNy8L0qcEDtFcpfAl9NXu1R+4qAHCGCFxcRMJplJA80H8zJORwUfUWSO1Cf3PP/a4hSkO0ChKxOMkrKoMigB1EdKxdRl9JhxPFmEeGt6hNYXcBfe72WfJlw=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ1PR12MB6339.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(366007)(376005)(1800799015);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?3jC8nFDWBKiERIYVE/NeAuDSbXfdW0s1o7rjbrY38kj5+B8ZxLOQhCXX90ve?=
+ =?us-ascii?Q?GgZZE00bsxaMXXWuARzUF8GcVzxm76rblhtKZx6oi+ywc+RkT54iRO+tegYx?=
+ =?us-ascii?Q?OKDDTgEHKST9RhqKSzwkAXt4WCdfgPCT4rwjPDnppf5t7aYazEU85fVShOSa?=
+ =?us-ascii?Q?jCeK3ZlYD6Hu9v72gSsH0n2QU6FIJEV6FtvobzA77bJlRWL0iKiNOT1EWpog?=
+ =?us-ascii?Q?AxLAOp7aBCMRwKE6e9oNfUeCkBO8td+Y8isuKL299Htz4Fl6OSoeT97VCM3l?=
+ =?us-ascii?Q?vhP+yMH3/bdNKrs+JBftFOqskEycuxlZA6ar0dYkxkAtSCgoIABb8Rl82e8d?=
+ =?us-ascii?Q?yGtEynmDA2ZWca9r11GWnZ3JPK0Ze8JCxtNFI6pWnSrElTbbgDuuTWG+hh9X?=
+ =?us-ascii?Q?/hxbqfPtFp+UlIgKqy9UwvbSmA0rSRAth9TBU7/1J/FGdKG/+vHoFLOSDAIO?=
+ =?us-ascii?Q?xsgFSf76MTpT0VQXWo5sGCsa7hACY7A/Q8r379TlbFacaVfxRyONHe9ESnVC?=
+ =?us-ascii?Q?wfHzho0g4G2x/xEj/plpV8tZepqDKKDWYyg6J+6KvIJjspUytax6KvuYFh8t?=
+ =?us-ascii?Q?TeP2on30xWgbwpgfXDvCVJUCQCDEcbwv5nesq+ylkeb4tcMVakIxV75QwxIS?=
+ =?us-ascii?Q?bSkg2cOm5D0XcWbWj8ShII3isEDUwYr2dKpnSLO0txZpGuehWEKYIiKXlg1f?=
+ =?us-ascii?Q?nGsaTYOHrJ1mNFeZJmsJyaAjsYycWn7x+Dy4qSFEvug5HZSJZkMsPIvoT90g?=
+ =?us-ascii?Q?ec2AAP53quTcapYeFwS5wuzgRXqm7Tsjo1V0cIW92N1S8loMr04NNLgsMZA6?=
+ =?us-ascii?Q?2MIa2AYSf1a/YZVGSdgKytEqmjx7Q5xRYNF0dHskUj3mw1/BC70LCHnQSbpK?=
+ =?us-ascii?Q?ftil+RrgypeRvhYhhY+mWkGOJY8Z74mt89cbm1a0nvra1VmmgaPL/7n40vV3?=
+ =?us-ascii?Q?0iLXikDOko8AGzWfRJXN0nncjf5e2IctzvsMgFw2kjQFmJhKUKgyf8TInpa2?=
+ =?us-ascii?Q?gS62Y8wyV7F6KGw4BKumQ2tkiQ6fRDcg7pRx26aVM3OM///MFlEt4leGmG7y?=
+ =?us-ascii?Q?NNkov3BpTGlFd4Gni/4k0Sp+MG/Y4Qb7bACAGfh1J2uKQF6epmK8v3wyganH?=
+ =?us-ascii?Q?so5bgFqRsC1I82m66wFsBL+U59gdtV8QBrCzeyHn0GMYKVgaiInJzxo6Ww1H?=
+ =?us-ascii?Q?tmGmu0u5FO1D6BpUArZRm0dd1Q504Nu2sPM9SA5C4u3IW2pGxHPK39A+k9oV?=
+ =?us-ascii?Q?YGQz0lZYCEVdqMHH+IWyNw2p3Cr9d/lrZeg3CEz3of1Gueq7IrI84ADrTesy?=
+ =?us-ascii?Q?ybnNAgnq6LHGJ5W7xpco0hYEFxX8GEVBuFzWmVe/OQdtGhrZm+xB3uUApol8?=
+ =?us-ascii?Q?fS42jT8uDmeWccXpzjoV4OvTXSesbub91T/NSwtsZoBVHqhO0N7bKHi5U1ro?=
+ =?us-ascii?Q?NnITW+DD/1us3mwU4SpTtTNe3IDYUGCSfxTmb4bdXkPlQYsCS40jwOCW7ZWz?=
+ =?us-ascii?Q?8658uvHqk3ou53hrz49aRsBYJppVAv8NmRZsBaSmu8nM9sB7KACNxSL63WSa?=
+ =?us-ascii?Q?HOGSdVNA/2S1ce3WfUXWur92ghxfHYF49mSsm+iU?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240330041928.1555578-1-dlemoal@kernel.org>
-In-Reply-To: <20240330041928.1555578-1-dlemoal@kernel.org>
-From: Rick Wertenbroek <rick.wertenbroek@gmail.com>
-Date: Tue, 2 Apr 2024 14:36:28 +0200
-Message-ID: <CAAEEuhr6szh76u+OhxYnsa6-55_zhOyfGYL3YwjHvYKoGuXNmg@mail.gmail.com>
-Subject: Re: [PATCH v2 00/18] Improve PCI memory mapping API
-To: Damien Le Moal <dlemoal@kernel.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
-	Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	Wilfred Mallawa <wilfred.mallawa@wdc.com>, Niklas Cassel <cassel@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PR12MB6339.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f855cb73-98f0-401e-a3bb-08dc53118cb9
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Apr 2024 12:36:41.9949
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: XEtx3b4EPU+NhxQPQvKhs/j/b4pD5kJhcnbWDAF2FebJaDNJqMCPlf0RKOIvB7qxLFbeZr6mD3NaHh9huSksbg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6824
 
-On Sat, Mar 30, 2024 at 5:19=E2=80=AFAM Damien Le Moal <dlemoal@kernel.org>=
- wrote:
->
-> This series introduces the new functions pci_epc_map_align(),
-> pci_epc_mem_map() and pci_epc_mem_unmap() to improve handling of the
-> PCI address mapping alignment constraints of endpoint controllers in a
-> controller independent manner.
->
-> The issue fixed is that the fixed alignment defined by the "align" field
-> of struct pci_epc_features assumes that the alignment of the endpoint
-> memory used to map a RC PCI address range is independent of the PCI
-> address being mapped. But that is not the case for the rk3399 SoC
-> controller: in endpoint mode, this controller uses the lower bits of the
-> local endpoint memory address as the lower bits for the PCI addresses
-> for data transfers. That is, when mapping local memory, one must take
-> into account the number of bits of the RC PCI address that change from
-> the start address of the mapping.
->
-> To fix this, the new endpoint controller method .map_align is introduced
-> and called from pci_epc_map_align(). This method is optional and for
-> controllers that do not define it, the mapping information returned
-> is based of the fixed alignment constraint as defined by the align
-> feature.
->
-> The functions pci_epc_mem_map() is a helper function which obtains
-> mapping information, allocates endpoint controller memory according to
-> the mapping size obtained and maps the memory. pci_epc_mem_map() unmaps
-> and frees the endpoint memory.
+> On Tue, Mar 19, 2024 at 01:53:04PM +0530, Akhil R wrote:
+> >
+> > +struct tegra_sha_reqctx {
+> > +     struct ahash_request fallback_req;
+>=20
+> This doesn't work because ahash_request is dynamically sized.
+> So you'll end up clobbering the rest of the struct if a fallback ends up =
+being used.
+>=20
+> You should place the fallback_req at the end of the reqctx and set the re=
+qsize
+> based on the fallback reqsize.
+>=20
+Should I set the reqsize as below in sha_cra_init()? Seeing this in other c=
+rypto drivers.
 
-This way of mapping is not only useful for the RK3399 but would also
-help for the addition of other future PCI endpoint controller drivers.
+        crypto_ahash_set_reqsize(ahash_tfm,
+                        sizeof(struct tegra_sha_reqctx) +
+                        crypto_ahash_reqsize(ctx->fallback_tfm));
 
-For example, on several FPGA PCI endpoint IPs the window mapping is
-also done by passing N bits from the mapped address and M bits from
-the window mapping address (where N+M=3Dbus width, e.g., 32 or 64).
-Using AND/OR masks/operations to combine the bits for the hardware
-address from the mapped address and map base uses less resources than
-using add/subtract to get the hardware address from an unaligned map
-base and offset. So I guess that more than a few IPs, being hard or
-soft IPs, use this kind of mapping (to reduce size, logic, improve max
-operating frequency, improve efficiency etc.)
-
-Two major examples come to mind :
-1) The AMD/Xilinx PCIe endpoint IP. The mapping is documentented in
-"AXI Bridge for PCI Express Gen3 Subsystem Product Guide (PG194)" [1]
-section BAR and Address Translation (Figure AXI to PCIe Address
-Translation).
-2) The Intel/Altera PCIe endpoint IP. The mapping is documented in
-"Multi Channel DMA Intel=C2=AE FPGA IP for PCI Express* User Guide" [2]
-section 3.6. Root Port Address Translation Table Enablement.
-
-Both those IPs don't have mainline support yet as PCIe endpoint
-controllers but also use a similar kind of mapping as suggested here
-for the RK3399. So these changes would also make the addition of these
-controller drivers easier.
-
-The new mapping scheme also makes it much clearer in the PCI endpoint
-framework. Because without it some mapping operation would fail
-because of alignment requirements in the controller, this requires
-extra code and checks in the drivers that implement the endpoint
-functions. With the current state of the PCI endpoint controller
-framework there is no good way to express that the controller does an
-AND/OR mask combination to create the hardware address and therefore
-requires the map to be aligned to the window size, rather than doing a
-window base addition with an offset (subtraction) in the mapping. This
-could benefit from further clarification in the endpoint framework.
-
-Best regards,
-Rick
-
-[1] https://docs.amd.com/r/en-US/pg194-axi-bridge-pcie-gen3/Address-Transla=
-tion
-[2] https://www.intel.com/content/www/us/en/docs/programmable/683821/23-4/
-
->
-> This series is organized as follows:
->  - Patch 1 tidy up the epc core code
->  - Patch 2 and 3 introduce the new map_align endpoint controller method
->    and related epc functions.
->  - Patch 4 to 6 modify the test endpoint driver to use these new
->    functions and improve the code of this driver.
->  - Finally, Patch 7 to 18 fix the rk3399 endpoint driver, defining a
->    .map_align method for it and improving its overall code readability
->    and features.
->
-> Changes from v1:
->  - Changed pci_epc_check_func() to pci_epc_function_is_valid() in patch
->    1.
->  - Removed patch "PCI: endpoint: Improve pci_epc_mem_alloc_addr()"
->    (former patch 2 of v1)
->  - Various typos cleanups all over. Also fixed some blank space
->    indentation.
->  - Added review tags
->
-> Damien Le Moal (17):
->   PCI: endpoint: Introduce pci_epc_function_is_valid()
->   PCI: endpoint: Introduce pci_epc_map_align()
->   PCI: endpoint: Introduce pci_epc_mem_map()/unmap()
->   PCI: endpoint: test: Use pci_epc_mem_map/unmap()
->   PCI: endpoint: test: Synchronously cancel command handler work
->   PCI: endpoint: test: Implement link_down event operation
->   PCI: rockchip-ep: Fix address translation unit programming
->   PCI: rockchip-ep: Use a macro to define EP controller .align feature
->   PCI: rockchip-ep: Improve rockchip_pcie_ep_unmap_addr()
->   PCI: rockchip-ep: Improve rockchip_pcie_ep_map_addr()
->   PCI: rockchip-ep: Implement the map_align endpoint controller operation
->   PCI: rockchip-ep: Refactor rockchip_pcie_ep_probe() memory allocations
->   PCI: rockchip-ep: Refactor rockchip_pcie_ep_probe() MSI-X hiding
->   PCI: rockchip-ep: Refactor endpoint link training enable
->   PCI: rockship-ep: Introduce rockchip_pcie_ep_stop()
->   PCI: rockchip-ep: Improve link training
->   PCI: rockchip-ep: Handle PERST# signal in endpoint mode
->
-> Wilfred Mallawa (1):
->   dt-bindings: pci: rockchip,rk3399-pcie-ep: Add ep-gpios property
->
->  .../bindings/pci/rockchip,rk3399-pcie-ep.yaml |   3 +
->  drivers/pci/controller/pcie-rockchip-ep.c     | 393 ++++++++++++++----
->  drivers/pci/controller/pcie-rockchip.c        |  17 +-
->  drivers/pci/controller/pcie-rockchip.h        |  22 +
->  drivers/pci/endpoint/functions/pci-epf-test.c | 390 +++++++++--------
->  drivers/pci/endpoint/pci-epc-core.c           | 213 +++++++---
->  include/linux/pci-epc.h                       |  39 ++
->  7 files changed, 768 insertions(+), 309 deletions(-)
->
-> --
-> 2.44.0
->
+Regards,
+Akhil
 
