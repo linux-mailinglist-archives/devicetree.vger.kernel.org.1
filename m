@@ -1,63 +1,82 @@
-Return-Path: <devicetree+bounces-55572-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55573-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B52D4895AB7
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 19:32:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66CE4895AC1
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 19:34:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E6D681C2454A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 17:32:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 03CB81F21F14
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 17:34:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C457115A4B2;
-	Tue,  2 Apr 2024 17:32:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ECA815A4A6;
+	Tue,  2 Apr 2024 17:34:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ftwVH2lZ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UHCwRBRq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 957B615A4A7;
-	Tue,  2 Apr 2024 17:32:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 740C015A4A3;
+	Tue,  2 Apr 2024 17:34:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712079148; cv=none; b=CgfddK0jGobcuCWgqshjIcqX/PDDL0TTqtAO8ZPQFvpuSpAc9E/tS9Q49BSeSasys9JAXbcfq2hZZFHpp/PjAasYeZsxPPjyNOtbkwW+h+rDfKmJTiLjhSJ/BI5k3g7Y4yH4BWJAnK/pyLViLozIDWNaiiooGcDXdMhvUyjXAYo=
+	t=1712079284; cv=none; b=Dk5b4WK70BdMYctH4aGbWfoQ7W9XTHM85ul2S4KXEBX4SPXnjDvecOlhCtUuXJs33KL2dpHNC5IMMPtXqnQsbnY3j9p61R48AUx5scQQpmpFPB9ApZx48Q3WFMlmS1XCaqrj0DUtB1Kqu+yI9sUo7+ttsFGNYK/OrqSXBrk2c1A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712079148; c=relaxed/simple;
-	bh=aduyaipM5T0aY6bLSz+8o4Wc9lDD8Yn5NJTGROS+eYQ=;
+	s=arc-20240116; t=1712079284; c=relaxed/simple;
+	bh=fNYoNOn5B2vjF3chFRhRaoGkC5J7EsTH2AoQer+/ANQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fZL/HmTRjqFHfJZinJPffbb2Z8O44S9+P7Lg3xB23wTTklmHYykaQn3MQ7FQB58E3tQBejUBXCGPop95HUZj2ohYGZOVXPL2JpuJi9/7CaT0kuRYtDwZ2RhUlKr6Jii17c8Rh5H0Huh5KVjfQymFMwt2hx1TrXTpcCLk57HvXAI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ftwVH2lZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBACCC433C7;
-	Tue,  2 Apr 2024 17:32:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712079148;
-	bh=aduyaipM5T0aY6bLSz+8o4Wc9lDD8Yn5NJTGROS+eYQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ftwVH2lZZkE6NWKmyLWEpoXc+AXiKLggaHNTdHXUDYQWrKGMcU9xwWfM2Nze8kLn6
-	 eyjHIhskwQLsC9VZvfX3Beinz/6YA6GhqyEdaeILQdD1CmpjKtbM+nAlkpKUSCzpm8
-	 dHY6b8PTsjk/c+uBooXZQhvfMXmlj7G1VtDyc0a+o8FGZg//9+VXRYt2JZ3VhqVkPT
-	 WhEjkxiez2pONugapBTfLLB5XlqsipzkURfytbnfQgnykuxpu6nb13v4Z67ZaVyiXM
-	 rZ+zx9c9cOcQkEXR7xtsyiowmJ+WyTFcB/wnkjaGv5j00HKJhFoTsExDSZJIrjAYu8
-	 q4Wh/+l93ZkZQ==
-Date: Tue, 2 Apr 2024 12:32:25 -0500
-From: Rob Herring <robh@kernel.org>
-To: Bastien Curutchet <bastien.curutchet@bootlin.com>
-Cc: Peter Ujfalusi <peter.ujfalusi@gmail.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Liam Girdwood <lgirdwood@gmail.com>, Takashi Iwai <tiwai@suse.com>,
-	linux-kernel@vger.kernel.org, christophercordahi@nanometrics.ca,
-	devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	herve.codina@bootlin.com, Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, linux-sound@vger.kernel.org,
-	Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH v2 12/13] ASoC: dt-bindings: davinci-mcbsp: Add the
- 'ti,T1-framing-{rx/tx}' flags
-Message-ID: <171207914341.324604.378399290864675575.robh@kernel.org>
-References: <20240402071213.11671-1-bastien.curutchet@bootlin.com>
- <20240402071213.11671-13-bastien.curutchet@bootlin.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=E5Jbw5yXQ+1S5PcWGb4xW1S10t+2SGZHmq4dibHU89JPQaNW061FeHvXIsc2iRRxa9nTlxc4PfzskjxBHERN/kMjMx24haPhgbl1aZ1jYW8/td8Ggf+KebgTL5Ou2yDdliJAq98T7it7ixMwO4icqbcw3ahNHk+N7GSE+U6/o/Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=UHCwRBRq; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1712079281; x=1743615281;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=fNYoNOn5B2vjF3chFRhRaoGkC5J7EsTH2AoQer+/ANQ=;
+  b=UHCwRBRq5A6Unz3E8uXorTmwX/IoFdipD6hrn5ECopTriEZN1N9PJa+z
+   MQjvlrpwMuJPKp+HLmqmB7332VvdefRDWTpYykqh14yjDsjRzAv7HGu9l
+   xJDIzk+Cqb+Fp7J0z2CBlMr2kZu8Pc1uLIrW/C1UzfZ5oPPG4Sw0tetQz
+   oJyIGxeAw7vtWQ4ra5I/+swijEOIQO8HjpP9Z1zTVMotGRcriTMEZRfOf
+   Zlo0R3+xpOCoCD5RXSSedJ1+tUy3rw/D4i2MDVJ+istj2VB32zXuDJyiE
+   /qUQ/XCaxY44XEaGn3lDvBOYvwcU0NiZ3elv3X+X5z5YlBCPHMgOVW4C3
+   g==;
+X-CSE-ConnectionGUID: 2NqKV760S76UAuUCxZjkJg==
+X-CSE-MsgGUID: G2fnHb7XTiWcwYaT12aZAg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="7136171"
+X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; 
+   d="scan'208";a="7136171"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Apr 2024 10:34:39 -0700
+X-CSE-ConnectionGUID: OSeGEsaLQ6G3xhHefXNoRQ==
+X-CSE-MsgGUID: kGl3BvEEROiCz1mlLQHR4A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; 
+   d="scan'208";a="18255944"
+Received: from lkp-server02.sh.intel.com (HELO 90ee3aa53dbd) ([10.239.97.151])
+  by fmviesa008.fm.intel.com with ESMTP; 02 Apr 2024 10:34:36 -0700
+Received: from kbuild by 90ee3aa53dbd with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rri1q-0001Lz-0E;
+	Tue, 02 Apr 2024 17:34:34 +0000
+Date: Wed, 3 Apr 2024 01:34:07 +0800
+From: kernel test robot <lkp@intel.com>
+To: Binbin Zhou <zhoubinbin@loongson.cn>,
+	Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, loongson-kernel@lists.loongnix.cn,
+	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
+Subject: Re: [PATCH v1 5/5] LoongArch: dts: Add PWM support to Loongson-2K2000
+Message-ID: <202404030108.rzArK10u-lkp@intel.com>
+References: <7214b933ce85f9d030828e9efab7fbeb57eb712b.1711953223.git.zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,25 +85,37 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240402071213.11671-13-bastien.curutchet@bootlin.com>
+In-Reply-To: <7214b933ce85f9d030828e9efab7fbeb57eb712b.1711953223.git.zhoubinbin@loongson.cn>
 
+Hi Binbin,
 
-On Tue, 02 Apr 2024 09:12:12 +0200, Bastien Curutchet wrote:
-> McBSP's data delay can be configured from 0 to 2 bit clock periods. 0 is
-> used for DSP_B format, 1 for DSP_A format. A data delay of 2 bit clock
-> periods can be used to interface to 'T1 framing' devices where data
-> stream is preceded by a 'framing bit'. This 2 bit clock data delay is
-> not described in the bindings.
-> 
-> Add two flags 'ti,T1-framing-[rx/tx]' to enable a data delay of 2
-> bit clock periods in reception or transmission.
-> 
-> Signed-off-by: Bastien Curutchet <bastien.curutchet@bootlin.com>
-> ---
->  .../devicetree/bindings/sound/davinci-mcbsp.yaml   | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
+kernel test robot noticed the following build errors:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.9-rc2 next-20240402]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Binbin-Zhou/dt-bindings-pwm-Add-Loongson-PWM-controller/20240402-160109
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/7214b933ce85f9d030828e9efab7fbeb57eb712b.1711953223.git.zhoubinbin%40loongson.cn
+patch subject: [PATCH v1 5/5] LoongArch: dts: Add PWM support to Loongson-2K2000
+config: loongarch-allnoconfig (https://download.01.org/0day-ci/archive/20240403/202404030108.rzArK10u-lkp@intel.com/config)
+compiler: loongarch64-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240403/202404030108.rzArK10u-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202404030108.rzArK10u-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> Error: arch/loongarch/boot/dts/loongson-2k2000.dtsi:123.19-20 syntax error
+   FATAL ERROR: Unable to parse input tree
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
