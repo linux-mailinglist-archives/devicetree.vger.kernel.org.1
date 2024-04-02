@@ -1,258 +1,185 @@
-Return-Path: <devicetree+bounces-55540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BD0A8958E8
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 17:53:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD8FC8958F6
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 17:56:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BCDC7B21E29
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 15:53:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D09201C22543
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 15:56:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19EE6135416;
-	Tue,  2 Apr 2024 15:52:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F5B21E480;
+	Tue,  2 Apr 2024 15:56:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="yVIFvZCq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Saz4vyop"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E68161350FB;
-	Tue,  2 Apr 2024 15:52:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0CFF131750
+	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 15:56:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712073124; cv=none; b=m/GR5xXuNuh7Tq37sr/1pyjO/QxwG6mkE9ioyRnT5bUpscyo/lfAk0hS2LHB6qxuMqNNIzMiLQhvEwr+rS89oNW+EVTs8dDUlocbWpFsUPoX1fix2A9o0zfctEgwU+stqFdox1bbofDB/8yR4NBLvX0MBfC1p+P0Tu+e1wKyWss=
+	t=1712073370; cv=none; b=NKZTeNROBH6YI1BF3BSYaf0trHdiaftFr3idD12D/M4qHqV6/VMAdl7V/G4zGZYiSrdl1sGLiIxBjLo5eqZHkgEzaEBSSdOwJfR1qPUn75tYjN/ohYGpZEUz2v1PcQLtK7/eL2mfDIaO2lkKnwQSYPaT85ONYPQlyXdFleU6+nA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712073124; c=relaxed/simple;
-	bh=2j4Xeog3NYFtg9ZvjgJqhpn/krnNgk1T7F6OIubpOTw=;
-	h=In-Reply-To:References:From:To:Cc:Subject:MIME-Version:
-	 Content-Disposition:Content-Type:Message-Id:Date; b=NC/Uiko3kHqWt9Lb98pdpN2Gktw3rxIfpvTOA10PTw5xTFktOt0YVYvRlOPZpCv4KdGyHKLO2uz47+g1xy7Bx6xOXLbtxfNhRya8yJSpnTGA6izyAu2CdxSQVRkMnCCKIG8LCTd9x0ZxT+VnfNrN0BNXCA+GL7WEp9LsM+R167Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=yVIFvZCq; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Date:Sender:Message-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Subject:Cc:To:From:References:
-	In-Reply-To:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=RvfXLwxzoiDRSX+2p4VdbeCbmA1uTdKtDMO1TwE8wKQ=; b=yVIFvZCqRAA0hdk4pfGWRpOJKu
-	E70QhvJ1PrTPpPdH6hAZkVEFw9TI+L+5uYvzipMacY+H5ceFkcXFL6cWOmDOLrcfpnD4cY6jua1os
-	isLKYuTBpJ39VD+6i8ptPBsXw5e/COXEBdL9K5iaUZ23RYVVl5N09Jwnt1glNeiePPqBqEbPtFDME
-	D1scf8Gz0HX7g2lCdZx8vkM7tzBgTwFhJfB3eJmwxjT0CmaL6pwJuZ0Qk1RakauJxbkD0gJzCe3UA
-	QLLF/ElOOBoL87IqUHQNL/52zdA+Ab/UqLE2THtF5Kzh/2IxL0Pc8TRB8v0QvZQ5mlozDmcT0Jybr
-	tj5kzhOQ==;
-Received: from e0022681537dd.dyn.armlinux.org.uk ([fd8f:7570:feb6:1:222:68ff:fe15:37dd]:55416 helo=rmk-PC.armlinux.org.uk)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <rmk@armlinux.org.uk>)
-	id 1rrgQO-000715-1J;
-	Tue, 02 Apr 2024 16:51:48 +0100
-Received: from rmk by rmk-PC.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <rmk@rmk-PC.armlinux.org.uk>)
-	id 1rrgQO-005ZOA-KT; Tue, 02 Apr 2024 16:51:48 +0100
-In-Reply-To: <ZgwoygldsA1V8fs9@shell.armlinux.org.uk>
-References: <ZgwoygldsA1V8fs9@shell.armlinux.org.uk>
-From: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
-To: Romain Gantois <romain.gantois@bootlin.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	 Eric Dumazet <edumazet@google.com>,
-	 Jakub Kicinski <kuba@kernel.org>,
-	 Paolo Abeni <pabeni@redhat.com>,
-	 Rob Herring <robh@kernel.org>,
-	 Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	 Conor Dooley <conor+dt@kernel.org>,
-	 Geert Uytterhoeven <geert+renesas@glider.be>,
-	 Magnus Damm <magnus.damm@gmail.com>,
-	 Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	 Jose Abreu <joabreu@synopsys.com>,
-	 Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	 =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
-	 Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	 netdev@vger.kernel.org,
-	 devicetree@vger.kernel.org,
-	 linux-kernel@vger.kernel.org,
-	 linux-renesas-soc@vger.kernel.org,
-	 linux-stm32@st-md-mailman.stormreply.com,
-	 linux-arm-kernel@lists.infradead.org
-Subject: [PATCH net-next 2/2] net: stmmac: dwmac-socfpga: use
- pcs_init/pcs_exit
+	s=arc-20240116; t=1712073370; c=relaxed/simple;
+	bh=oTm/Gl3Jk/d758yF/LumObe856oMF+v4ETEy6+MBZFM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=h/tq5sUNPgUKlZ4UJwP5Bg+u+YWEZwDyswo5l4fwcrllgi7avVShSnJ3Fm9d9TPeFNn0cN20J/eHjsb9s6lG4EtT1RSUS0kxwRwkTA/BISeSk9hAZSba0Um64fvM1U2wjGJRG/verPPp4P86iZWeoClMWZ50ZDyGG39PE+6yYw0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Saz4vyop; arc=none smtp.client-ip=209.85.215.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pg1-f174.google.com with SMTP id 41be03b00d2f7-5cddc5455aeso3309202a12.1
+        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 08:56:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712073368; x=1712678168; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=xeV/0olw1/tQOoEzRbn7wneEZCNZI4OAG5EO13F9t/U=;
+        b=Saz4vyopKElnao6iWMDuzV3npxzehxo8F8V6Q+zUXNckS2S+44BF7SamupTFiwypgv
+         C59dZAAvyln8nbmbwR+aDpKUesekFE1RVx29ZqkQll3NDaWRMUuWpO4eDJZ2qGrShL3n
+         0VpTCqnCsCgC7QyULEee8puShZHQ7qbe3XSUJHINizekRvkdW3XSEQqxPWeAYhmJsq59
+         WFEp3NLKX1DgJIdFDH6ZtzJCa47hmeIMou2M915tsgzMl9jm2F8pL68B9oLBLnji5VRx
+         vEfyCZXdlwiI/Fh+iQtR2vfZhcBPT6IGTe7dP1Rdp8zqqPVKHFj7+KRSCqNRgmoQcxt8
+         Z5Rw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712073368; x=1712678168;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xeV/0olw1/tQOoEzRbn7wneEZCNZI4OAG5EO13F9t/U=;
+        b=tZGbKCZrbc3MrYgaDaJSEhFqkrvm0/esT247R+XKRSnBALg1486BbtcCDTP2Ce1Vkh
+         acFe2ttlY3Awekk0CHUBdYl28lFcVypzDZnfMMcJQQOxtKwmFYjN6zhJWIDrFTNVHjxy
+         PYlPkrxD27CTA7+RJL8Ss1nqNck24mBbB3LoVOOZd1ovw18qt0CDmwXub6Fwt7u8GqtU
+         QxGe5p6/tCMe2aODxdeJ12jsFzoT8/VTFGpjcm0dk8Q8ezPiWN4fMjWorEeTsp4PPslT
+         +HMivkuas5NlA/f99yRpc4tXJNPvY1EjSBMBefd10BaI4tByRtCqrVWTS9LPoEVLk087
+         mlbw==
+X-Forwarded-Encrypted: i=1; AJvYcCUl/kV+h46jOplk1sjp6+dlhWpJzaut8208FiwYMT4AasG6vH1QH9weJjZ4AybG6Ba4pbq4nAL0S8eGV8X+tKm2qub/R9wLMuIHUg==
+X-Gm-Message-State: AOJu0Yy5EgrgU49rsWosY42JbqkSi/2qIlPZUZ/S94HIWq94uF9Aq4NG
+	u9PPOgGsfSuXa2MkwY1n03b1pwOc3qU2mK02Wy9vzIz3b4q4VNZayFTtlEkDjqBfp9JBniem/ey
+	nDYy8rCyq12CirZ41EKOoeR45AKDeHRDNreJNSA==
+X-Google-Smtp-Source: AGHT+IH6biaoyoyXGVcuVSEJ64ktCWPrzGD+BguHOuhX547CoHoNCMxaDcDjufoVG68y80EXUw7JQLAEWOsngyWHeXo=
+X-Received: by 2002:a05:6a21:9992:b0:1a3:6ee9:305 with SMTP id
+ ve18-20020a056a21999200b001a36ee90305mr12284409pzb.2.1712073368128; Tue, 02
+ Apr 2024 08:56:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <E1rrgQO-005ZOA-KT@rmk-PC.armlinux.org.uk>
-Sender: Russell King <rmk@armlinux.org.uk>
-Date: Tue, 02 Apr 2024 16:51:48 +0100
+References: <fd26ce4a-a9f3-4ada-8d46-ed36fb2456ca@freebox.fr>
+ <5cdad89c-282a-4df5-a286-b8404bc4dd81@freebox.fr> <252618e8-9e80-4774-a96c-caa7f838ef01@linaro.org>
+ <502322f1-4f66-4922-bc4e-46bacac23410@linaro.org> <0ca1221b-b707-450f-877d-ca07a601624d@freebox.fr>
+In-Reply-To: <0ca1221b-b707-450f-877d-ca07a601624d@freebox.fr>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 2 Apr 2024 18:55:56 +0300
+Message-ID: <CAA8EJppeREj-0g9oGCzzKx5ywhg1mgmJR1q8yvXKN7N45do1Xg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: msm8998: set qcom,no-msa-ready-indicator
+ for wifi
+To: Marc Gonzalez <mgonzalez@freebox.fr>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Kalle Valo <kvalo@kernel.org>, 
+	Jeff Johnson <quic_jjohnson@quicinc.com>, ath10k <ath10k@lists.infradead.org>, 
+	wireless <linux-wireless@vger.kernel.org>, DT <devicetree@vger.kernel.org>, 
+	MSM <linux-arm-msm@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>, 
+	Bjorn Andersson <andersson@kernel.org>, Jami Kettunen <jamipkettunen@gmail.com>, 
+	Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Use the newly introduced pcs_init() and pcs_exit() operations to
-create and destroy the PCS instance at a more appropriate moment during
-the driver lifecycle, thereby avoiding publishing a network device to
-userspace that has not yet finished its PCS initialisation.
+On Tue, 2 Apr 2024 at 18:31, Marc Gonzalez <mgonzalez@freebox.fr> wrote:
+>
+> On 02/04/2024 16:34, Konrad Dybcio wrote:
+>
+> > On 30.03.2024 7:25 PM, Krzysztof Kozlowski wrote:
+> >
+> >> On 28/03/2024 18:39, Marc Gonzalez wrote:
+> >>
+> >>> The ath10k driver waits for an "MSA_READY" indicator
+> >>> to complete initialization. If the indicator is not
+> >>> received, then the device remains unusable.
+> >>>
+> >>> cf. ath10k_qmi_driver_event_work()
+> >>>
+> >>> Several msm8998-based devices are affected by this issue.
+> >>> Oddly, it seems safe to NOT wait for the indicator, and
+> >>> proceed immediately when QMI_EVENT_SERVER_ARRIVE.
+> >>>
+> >>> Jeff Johnson wrote:
+> >>>
+> >>>   The feedback I received was "it might be ok to change all ath10k qmi
+> >>>   to skip waiting for msa_ready", and it was pointed out that ath11k
+> >>>   (and ath12k) do not wait for it.
+> >>>
+> >>>   However with so many deployed devices, "might be ok" isn't a strong
+> >>>   argument for changing the default behavior.
+> >>
+> >> I think you got pretty clear comments:
+> >>
+> >> "This sounds more like a firmware feature, not a hardware feature."
+> >>
+> >> "This is why having this property in DT does not look right
+> >> place for this."
+> >
+> > Translating from dt maintainer speak to English, a functionally-equivalent
+> > resolution of adding an of_machine_is_compatible("qcom,msm8998") is more
+> > in line with the guidelines of not sprinkling firmware specifics in DTs
+>
+> I'm not so sure about that, as I had proposed
+>
+> +       if (of_device_is_compatible(of_root, "qcom,msm8998")
+> +               qmi->no_point_in_waiting_for_msa_ready_indicator = true;
+> +
+>
+> To which Conor replied:
+>
+> > How come the root node comes into this, don't you have a soc-specific
+> > compatible for the integration on this SoC?
+> > (I am assuming that this is not the SDIO variant, given then it'd not be
+> > fixed to this particular implementation)
+>
+>
+> Then added:
+>
+> > A SoC-specific compatible sounds like it would be suitable in that case
+> > then, to deal with integration quirks for that specific SoC? I usually
+> > leave the ins and outs of these qcom SoCs to Krzysztof, but I can't help
+> > but wanna know what the justification is here for not using one.
+>
+>
+> Then Krzysztof added:
+>
+> > The WiFi+BT chips are separate products, so they are not usually
+> > considered part of the SoC, even though they can be integrated into the
+> > SoC like here. I guess correct approach would be to add SoC-specific
+> > compatible for them.
+>
+>
+> So, if I understand correctly, I take this to mean that I should:
+>
+> 1) DELETE the qcom,no-msa-ready-indicator boolean property,
+> 2) ADD a "qcom,msm8998-wifi" (name OK?) compatible,
 
-There are other similar issues with this driver which remain
-unaddressed, but these are out of scope for this patch.
+I'd say, this is not correct. There is no "msm8998-wifi".
 
-Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
----
- .../ethernet/stmicro/stmmac/dwmac-socfpga.c   | 109 +++++++++---------
- 1 file changed, 55 insertions(+), 54 deletions(-)
+> 3) ADD that compatible to the wifi node in msm8998.dtsi
+>    compatible = "qcom,wcn3990-wifi", "qcom,msm8998-wifi";
+> 4) In the driver, set qmi->fake_msa_ready_indicator to true if we detect "qcom,msm8998-wifi"
+>
+> And this approach would be acceptable to both ath10k & DT maintainers?
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c
-index 12b4a80ea3aa..67ca163936c8 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c
-@@ -379,6 +379,58 @@ static int socfpga_gen10_set_phy_mode(struct socfpga_dwmac *dwmac)
- 	return 0;
- }
- 
-+static int socfpga_dwmac_pcs_init(struct stmmac_priv *priv,
-+				  struct mac_device_info *hw)
-+{
-+	struct socfpga_dwmac *dwmac = priv->plat->bsp_priv;
-+	struct regmap_config pcs_regmap_cfg = {
-+		.reg_bits = 16,
-+		.val_bits = 16,
-+		.reg_shift = regmap_upshift(1),
-+	};
-+	struct mdio_regmap_config mrc;
-+	struct regmap *pcs_regmap;
-+	struct phylink_pcs *pcs;
-+	struct mii_bus *pcs_bus;
-+
-+	if (!dwmac->tse_pcs_base)
-+		return 0;
-+
-+	pcs_regmap = devm_regmap_init_mmio(priv->device, dwmac->tse_pcs_base,
-+					   &pcs_regmap_cfg);
-+	if (IS_ERR(pcs_regmap))
-+		return PTR_ERR(pcs_regmap);
-+
-+	memset(&mrc, 0, sizeof(mrc));
-+	mrc.regmap = pcs_regmap;
-+	mrc.parent = priv->device;
-+	mrc.valid_addr = 0x0;
-+	mrc.autoscan = false;
-+
-+	/* Can't use ndev->name here because it will not have been initialised,
-+	 * and in any case, the user can rename network interfaces at runtime.
-+	 */
-+	snprintf(mrc.name, MII_BUS_ID_SIZE, "%s-pcs-mii",
-+		 dev_name(priv->device));
-+	pcs_bus = devm_mdio_regmap_register(priv->device, &mrc);
-+	if (IS_ERR(pcs_bus))
-+		return PTR_ERR(pcs_bus);
-+
-+	pcs = lynx_pcs_create_mdiodev(pcs_bus, 0);
-+	if (IS_ERR(pcs))
-+		return PTR_ERR(pcs);
-+
-+	hw->phylink_pcs = pcs;
-+	return 0;
-+}
-+
-+static void socfpga_dwmac_pcs_exit(struct stmmac_priv *priv,
-+				   struct mac_device_info *hw)
-+{
-+	if (hw->phylink_pcs)
-+		lynx_pcs_destroy(hw->phylink_pcs);
-+}
-+
- static int socfpga_dwmac_probe(struct platform_device *pdev)
- {
- 	struct plat_stmmacenet_data *plat_dat;
-@@ -426,6 +478,8 @@ static int socfpga_dwmac_probe(struct platform_device *pdev)
- 	dwmac->ops = ops;
- 	plat_dat->bsp_priv = dwmac;
- 	plat_dat->fix_mac_speed = socfpga_dwmac_fix_mac_speed;
-+	plat_dat->pcs_init = socfpga_dwmac_pcs_init;
-+	plat_dat->pcs_exit = socfpga_dwmac_pcs_exit;
- 
- 	ret = stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
- 	if (ret)
-@@ -444,48 +498,6 @@ static int socfpga_dwmac_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto err_dvr_remove;
- 
--	/* Create a regmap for the PCS so that it can be used by the PCS driver,
--	 * if we have such a PCS
--	 */
--	if (dwmac->tse_pcs_base) {
--		struct regmap_config pcs_regmap_cfg;
--		struct mdio_regmap_config mrc;
--		struct regmap *pcs_regmap;
--		struct mii_bus *pcs_bus;
--
--		memset(&pcs_regmap_cfg, 0, sizeof(pcs_regmap_cfg));
--		memset(&mrc, 0, sizeof(mrc));
--
--		pcs_regmap_cfg.reg_bits = 16;
--		pcs_regmap_cfg.val_bits = 16;
--		pcs_regmap_cfg.reg_shift = REGMAP_UPSHIFT(1);
--
--		pcs_regmap = devm_regmap_init_mmio(&pdev->dev, dwmac->tse_pcs_base,
--						   &pcs_regmap_cfg);
--		if (IS_ERR(pcs_regmap)) {
--			ret = PTR_ERR(pcs_regmap);
--			goto err_dvr_remove;
--		}
--
--		mrc.regmap = pcs_regmap;
--		mrc.parent = &pdev->dev;
--		mrc.valid_addr = 0x0;
--		mrc.autoscan = false;
--
--		snprintf(mrc.name, MII_BUS_ID_SIZE, "%s-pcs-mii", ndev->name);
--		pcs_bus = devm_mdio_regmap_register(&pdev->dev, &mrc);
--		if (IS_ERR(pcs_bus)) {
--			ret = PTR_ERR(pcs_bus);
--			goto err_dvr_remove;
--		}
--
--		stpriv->hw->phylink_pcs = lynx_pcs_create_mdiodev(pcs_bus, 0);
--		if (IS_ERR(stpriv->hw->phylink_pcs)) {
--			ret = PTR_ERR(stpriv->hw->phylink_pcs);
--			goto err_dvr_remove;
--		}
--	}
--
- 	return 0;
- 
- err_dvr_remove:
-@@ -494,17 +506,6 @@ static int socfpga_dwmac_probe(struct platform_device *pdev)
- 	return ret;
- }
- 
--static void socfpga_dwmac_remove(struct platform_device *pdev)
--{
--	struct net_device *ndev = platform_get_drvdata(pdev);
--	struct stmmac_priv *priv = netdev_priv(ndev);
--	struct phylink_pcs *pcs = priv->hw->phylink_pcs;
--
--	stmmac_pltfr_remove(pdev);
--
--	lynx_pcs_destroy(pcs);
--}
--
- #ifdef CONFIG_PM_SLEEP
- static int socfpga_dwmac_resume(struct device *dev)
- {
-@@ -576,7 +577,7 @@ MODULE_DEVICE_TABLE(of, socfpga_dwmac_match);
- 
- static struct platform_driver socfpga_dwmac_driver = {
- 	.probe  = socfpga_dwmac_probe,
--	.remove_new = socfpga_dwmac_remove,
-+	.remove_new = stmmac_pltfr_remove,
- 	.driver = {
- 		.name           = "socfpga-dwmac",
- 		.pm		= &socfpga_dwmac_pm_ops,
+I'd say, we should take a step back and actually verify how this was
+handled in the vendor kernel.
+
+>
+> Bjarne, Konrad: is it OK to apply the work-around for all msm8998 boards?
+
+
 -- 
-2.30.2
-
+With best wishes
+Dmitry
 
