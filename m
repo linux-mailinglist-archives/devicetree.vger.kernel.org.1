@@ -1,69 +1,74 @@
-Return-Path: <devicetree+bounces-55486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55487-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA781895636
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 16:09:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AC0389563C
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 16:09:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EB8DA1C225A7
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 14:09:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E4D91C229A9
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 14:09:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4DB685C48;
-	Tue,  2 Apr 2024 14:09:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAC0B126F04;
+	Tue,  2 Apr 2024 14:09:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MMupnFhb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OY3OBIdS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2E2985268;
-	Tue,  2 Apr 2024 14:09:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9DC08662E
+	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 14:09:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712066965; cv=none; b=Parppya4PA2GY1At/kKfwOOnqqe4K0hbX3lfujK7fPubiq7+CU5aSOCMlgTeWWKQNOglZQqsPmAHTIM9wPHKaHgFWIlJ0dd1xZxDosxes/jcHFOIMXCVDFJmAMXlFC92pfcFRiPF3nYH8uVX6p/06LYh1RjozVdX9BJv2FrLil4=
+	t=1712066982; cv=none; b=cb3tb6C6Qmi3yyZLGJ3y3pIkV1N5xPpwy56bZ2/vGIqCpcP4PThPccl2M4yucFXPceaKZLkJ/br5Nn7YcbyHD2bqJbn8Ll4iLlIt84Zxh+40o/U79RJEMoScZkLUbG4hgrgi4in0pWa0n6xUHop8Nh8Z4LMhgVelmTDpEc51fu0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712066965; c=relaxed/simple;
-	bh=uEC3a2yUsQ6IMUZDu++fBR8R8oM+dRgeV4GJKC1kyJ4=;
+	s=arc-20240116; t=1712066982; c=relaxed/simple;
+	bh=LTkw8G/UbnzbJ69YL6GosvdrYC0acddZdwlT7ImDQUo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c38Dagp/iSfhGp4G9rV5CaOJcy8lq+LYzvftDp0vgsEfGvs4oEkZwaILDHAcOM79DZoBbb6Dh70HtOex//2oX5SrCMh75Ax2lv0LVWFDspmtIo2I5vFXKwc6Je0yaumxFN6BpvbOnEIywe+kcQjtaQf1oX2frLfrjUF2oPGgRdk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MMupnFhb; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1712066964; x=1743602964;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=uEC3a2yUsQ6IMUZDu++fBR8R8oM+dRgeV4GJKC1kyJ4=;
-  b=MMupnFhb3XCs6dLvyp0XcP/G1ag++noF/AYxfGUXTZpoH+iIbzbEZQRt
-   MJgWC5u/Tcw/uClJAUaswWKoL7fhziqRJGwExJ/ylwzj1qfXwkMNbhNcN
-   7H2W6tIPxPdkGiblZb7WEjqKJPZa6SpzazuxXlU0yDX/TALs+0w7Du5gg
-   04Tn0Cz13XVmDy7jVfSLmfbGgzLPjqOgG+Zz6FHfgpF0yLm2D6kRJlrRE
-   XILk6uToUBy+h6YNGd1gXKg6DXds+wtGxI1CG/a6oGwes5R9hY4NysAmQ
-   FHxfY0uQv/atDQaUwpTlTnAbyOsWA5KkJkeWbCI4Z/g2Eh+KqywonNnjZ
-   A==;
-X-CSE-ConnectionGUID: cVH/vLLbQTGejBwQGrAHIQ==
-X-CSE-MsgGUID: Z4dBD783QEGe62H+acCQMQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="18689668"
-X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; 
-   d="scan'208";a="18689668"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Apr 2024 07:09:23 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="915142247"
-X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; 
-   d="scan'208";a="915142247"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.72.54])
-  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Apr 2024 07:09:19 -0700
-Received: from andy by smile with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1rrepB-00000000pQY-1kBR;
-	Tue, 02 Apr 2024 17:09:17 +0300
-Date: Tue, 2 Apr 2024 17:09:17 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Peng Fan <peng.fan@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=jv/f/w5vMk12XelJpIMzP65DW6XXzXGJutVJsWv5bvPR5AQo+CJyYKRVNl/CbY6k0cGIs2iDX9P4LTPza+ltpH1hTafgGpNS7aCst736yKDEotsuY8hLl3csGJUxTuo9OKJ2pextfmwK7D0bbGAUWJWRIngjxOhc6LDik/Wbr60=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OY3OBIdS; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a4a387ff7acso628003966b.2
+        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 07:09:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712066979; x=1712671779; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Pd+8DVN5G2IkVOB54fyerdrNg9YmjMKBL8xpHTKHGmI=;
+        b=OY3OBIdSWblv0nToz3q181O1+CbQTm6FF84pyqm1+qlq+GLigNp3vbYxsrKcY8PbaE
+         HUgIX3/Hvue1FpHH+qAf2ULOCGgBBqbI6JUJhFLJN2aIhRua7nrFECSp9h0cfagTp7gz
+         7SOscx0ouyyzp24gon//1QVeB8L+s9o99V/r29hz4koQELs5EJtpG/j3zGxqYrp2ziJJ
+         EbmNgOd2T/JeNwCMlm3o8kHHesf0uCuiSoNxnvnAA2sSODuQXXXOG4OFbcjRpSAvhW9U
+         L9AhEBquNfemiOOOXU8mVTFjLDTJ352kw3Ul6row1abTE93QhH1m8jLm/fSK0x5lqZEl
+         eZRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712066979; x=1712671779;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Pd+8DVN5G2IkVOB54fyerdrNg9YmjMKBL8xpHTKHGmI=;
+        b=v4+aZ2jGLL8mBpsI2qFX0I7UKCOZGprE03L8kWGOThL1LXMDSoioqOOayvds1M23X3
+         TBqgY8yfjrZb65PbgqWscBEcM9CE9BJYK7J+3lDqzbff+qKkDdHoVHobFUdyWskNvHoD
+         BKsI/1OJU8UmsTZbXmCcVI3+SxO6Iicq59sCDvi6sErM6Iig4cOW9vk5GMb9l/VlAi4g
+         yibJX3JryuSicdKIlq+/tY8qVNnZZPDAWwpf08zL7SqBw/WWMPfT7JEXaPknIauH5HTL
+         l77zfG5VllHZtqwWxP38uyfr7QcAYcgbtElkwhB7rKVGrQvyCRGeLEPbzJRU/dUEmkzA
+         5hww==
+X-Forwarded-Encrypted: i=1; AJvYcCU6SswX1SDzEw071HKSxuqvAYHxtjtcAv8G39er0OVVQJONSoETmtKfBnRziK8lzWPo006hZ6QTTM0Eg1xR6lyVqjfbGp15O1d5zw==
+X-Gm-Message-State: AOJu0YyGXRGX1I0J203TynIQze19FtIjG7a7p9SjcOIzw24Baopl07yR
+	L+DEmT6GXExW7BVY72AnVMxsm4FCypuqRyuYJ9/pcEiqp7SUJ9i2li85idybiOI=
+X-Google-Smtp-Source: AGHT+IHULZd7aTRgJq9Vh0DgCgeBzmCZLRHFYYSFMf78XHwA50Pp9CV+gJCGmkGqv9CBrWjPGxHVeQ==
+X-Received: by 2002:a17:907:7f12:b0:a4e:516b:2fea with SMTP id qf18-20020a1709077f1200b00a4e516b2feamr6665482ejc.50.1712066978929;
+        Tue, 02 Apr 2024 07:09:38 -0700 (PDT)
+Received: from localhost ([102.222.70.76])
+        by smtp.gmail.com with ESMTPSA id q2-20020a170906b28200b00a4655976025sm6534890ejz.82.2024.04.02.07.09.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Apr 2024 07:09:38 -0700 (PDT)
+Date: Tue, 2 Apr 2024 17:09:34 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
 Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
 	Sudeep Holla <sudeep.holla@arm.com>,
 	Cristian Marussi <cristian.marussi@arm.com>,
@@ -71,19 +76,16 @@ Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Linus Walleij <linus.walleij@linaro.org>,
-	Dan Carpenter <dan.carpenter@linaro.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Peng Fan <peng.fan@nxp.com>,
 	Oleksii Moisieiev <oleksii_moisieiev@epam.com>
 Subject: Re: [PATCH v7 4/4] pinctrl: Implementation of the generic
  scmi-pinctrl driver
-Message-ID: <ZgwRjXbf_EV23S-P@smile.fi.intel.com>
+Message-ID: <c5bdf039-c43b-4611-9f0b-81585e296206@moroto.mountain>
 References: <20240402-pinctrl-scmi-v7-0-3ea519d12cf7@nxp.com>
  <20240402-pinctrl-scmi-v7-4-3ea519d12cf7@nxp.com>
  <ZgwGpZ6S13vjk8jh@smile.fi.intel.com>
- <DU0PR04MB9417D0D33573E99D440D7BD7883E2@DU0PR04MB9417.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,63 +94,41 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <DU0PR04MB9417D0D33573E99D440D7BD7883E2@DU0PR04MB9417.eurprd04.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <ZgwGpZ6S13vjk8jh@smile.fi.intel.com>
 
-On Tue, Apr 02, 2024 at 01:59:19PM +0000, Peng Fan wrote:
-> > On Tue, Apr 02, 2024 at 10:22:24AM +0800, Peng Fan (OSS) wrote:
-
-...
-
-> > > +#include <linux/device.h>
-> > > +#include <linux/err.h>
-> > > +#include <linux/module.h>
-> > > +#include <linux/seq_file.h>
-> > > +#include <linux/scmi_protocol.h>
-> > > +#include <linux/slab.h>
-> > 
-> > Missing headers.
+On Tue, Apr 02, 2024 at 04:22:45PM +0300, Andy Shevchenko wrote:
+> On Tue, Apr 02, 2024 at 10:22:24AM +0800, Peng Fan (OSS) wrote:
+> > +static int pinctrl_scmi_get_pins(struct scmi_pinctrl *pmx,
+> > +				 struct pinctrl_desc *desc)
+> > +{
+> > +	struct pinctrl_pin_desc *pins;
+> > +	unsigned int npins;
+> > +	int ret, i;
+> > +
+> > +	npins = pinctrl_ops->count_get(pmx->ph, PIN_TYPE);
+> > +	/*
+> > +	 * npins will never be zero, the scmi pinctrl driver has bailed out
+> > +	 * if npins is zero.
+> > +	 */
 > 
-> Not sure there is an easy way to filter out what is missed.
-
-And?..
-
-You are the author, not me. You know your code much better and
-it will be quite easy to perform. I may miss things, but reading
-briefly the 1000 lines and get what headers are required takes
-no more than half an hour.
-
-(Tools that help me, in case I don't remember by heart, are
- `cscope` and `git grep ...`.)
-
-...
-
-> > > +		ret = pinctrl_ops->name_get(pmx->ph, i, PIN_TYPE,
-> > &pins[i].name);
-> > > +		if (ret)
-> > 
-> > How does the cleanup work for the previously assigned pin names? Is it
-> > needed?
+> This is fragile, but at least it is documented.
 > 
-> No need. The "name" memory region is allocated in firmware pinctrl
-> Protocol init phase.
-> 
-> > Maybe a comment?
-> 
-> ok.  As below.
-> /*
->  * The region for name is handled by the scmi firmware driver, 
->  * no need free here
-> */
 
-LGTM.
+It was never clear to me where the crash would happen if npins was zero.
+Does some part of pinctrl internals assume we have at least one pin?
 
-> > > +			return dev_err_probe(pmx->dev, ret,
-> > > +					     "Can't get name for pin %d", i);
+It's nice to be able to allocate zero element arrays and generally it
+works well in the kernel.  The one common bug with zero element arrays
+has to do with strings.  Something like this (garbage) example:
 
--- 
-With Best Regards,
-Andy Shevchenko
+	str = kmalloc(n_char, GFP_KERNEL);
+	copy_from_user(str, user_ptr, n_char);
+	str[n_char - 1] = '\0';
 
+If the str is zero bytes long it will lead to an Oops when we add a NUL
+terminator.
+
+regards,
+dan carpenter
 
 
