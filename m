@@ -1,131 +1,169 @@
-Return-Path: <devicetree+bounces-55277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D51D3894B63
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 08:26:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53865894B66
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 08:29:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FF62283B89
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 06:26:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 77B161C2266E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 06:29:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4AB9199A1;
-	Tue,  2 Apr 2024 06:26:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F9271CF83;
+	Tue,  2 Apr 2024 06:28:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="C9ZQyeyy"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OwH+sOWk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BC0A224CF;
-	Tue,  2 Apr 2024 06:26:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8B861B7F4
+	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 06:28:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712039206; cv=none; b=kyAclrmXo6etYvYmkuHpCXNA+YUSMiTB6BQO6zm7h3pGzai2PZmUyTkNSYwsGpMIRM5wtFDHPqA+FySs/fzb77xo5Ji7rM5pWV1LxIFMQoc7feeMWB439/b9IQPnL7lsXhQ4f4lJ9wwEnricvkQbOKihasBJF/tnMouczh1LIkw=
+	t=1712039339; cv=none; b=WIB5Nvqc8JE8vktqKCFNm30k8T8vHJ8bYTGCBeS9HxVt969S6CYfYcg/qzqAkHcbULNu9W2Z0U90LvcXmA8uB4LZiPQNlwx6nSYq9LoWtPV5GSIJjvgkJ6cf36PFUZgq/9+jfccjFk3AeLAy7oZ8CYXC60G9hP2gUxMQxoZ7auo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712039206; c=relaxed/simple;
-	bh=yqD5MObG4KrAAgzNU/IpEzitbWP0Yvfm1MK6uF7+aXs=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FJXWJ9DOCQ4uwamikgMfLtl0k7Rzdj3WzO6u3U/lxzsP8bZpawkNZBL4viHWGHC+e/Yad95Abyrn41TiI+rE5YpZIkMbjdEO5j6OBwlVsG+bSYf+Zd8omxlWzGxiWigxxs2Xh8Og/aWeEBtCoBQoL3clBLM+WAnNYdppqnpZMm8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=C9ZQyeyy; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1712039205; x=1743575205;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=yqD5MObG4KrAAgzNU/IpEzitbWP0Yvfm1MK6uF7+aXs=;
-  b=C9ZQyeyyqCAxusZff7HuWvaZocUcNy1a/vtA7Ns+uBdiXzbtI/Dm8yQI
-   hQZP5IMA7hXLZzcTM99RyAUpinQvSisGGyWMJWCoZ9x8RBNsyzPt9AFy9
-   0jRZbidnkgV+yUPWJbUP8G74fL2tK9QFwEYCQd6h750GgFqtslBRXCTFI
-   /OWX+lAd5Q50c/sgy8gSXjViFBzhlh3ENe4nGSYwMvuucez/UFYtd3C37
-   0ta9OBzGuDTWyEQQAsLs11XtW8AYRY7uS3dk40DySledZwJD22GsLw3pi
-   TLIMnoUbKjvW/mKWSc/11wWlsmqQOsSY+Kr6AazRRQ256R0W7OlA2OtIG
-   w==;
-X-CSE-ConnectionGUID: eXYBbngjQseUqzhgkPLNmw==
-X-CSE-MsgGUID: ITlnMxOJQluG160vKvKt8A==
-X-IronPort-AV: E=Sophos;i="6.07,174,1708412400"; 
-   d="scan'208";a="249894645"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 01 Apr 2024 23:26:43 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 1 Apr 2024 23:26:19 -0700
-Received: from localhost (10.10.85.11) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Mon, 1 Apr 2024 23:26:19 -0700
-Date: Tue, 2 Apr 2024 08:26:18 +0200
-From: Horatiu Vultur <horatiu.vultur@microchip.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Conor Dooley <conor@kernel.org>, Nicolas Ferre
-	<nicolas.ferre@microchip.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	"Rob Herring" <robh@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Lars Povlsen
-	<lars.povlsen@microchip.com>, Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>, <UNGLinuxDriver@microchip.com>,
-	"David S. Miller" <davem@davemloft.net>, Bjarni Jonasson
-	<bjarni.jonasson@microchip.com>, <linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH RFT 01/10] arm64: dts: microchip: sparx5: fix mdio reg
-Message-ID: <20240402062618.au3uzqul3tk7sxaz@DEN-DL-M31836.microchip.com>
-References: <20240401153740.123978-1-krzk@kernel.org>
+	s=arc-20240116; t=1712039339; c=relaxed/simple;
+	bh=Ly2MJ+x2/JGLETo78x2qUAfywluqsZoBjdax5jqVOT4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dqY5A10zfgg+WOIW1XYbVtp+CaCAW4KML6TIFHLJY0pn6KhwQ/l6mywAyzacWfyF1fK4Xz+vvO615p9DBVDOEWwMdwcNcWkk17bc2EUBzpGzToV8B6uOPRjUi0xPGmi1s0CBPkZlWxixBFP6X6B1ZIzYrgeZ3gr9Tf1IFDCE0j8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OwH+sOWk; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-56d5d4d2e2bso2636676a12.3
+        for <devicetree@vger.kernel.org>; Mon, 01 Apr 2024 23:28:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712039335; x=1712644135; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=ksrMBo4pOtNWDZGHJdSqt80CuPGaVhLyi8hNLYSrB/8=;
+        b=OwH+sOWkPDwPS8qEOxt9lnSweTMg2p5HAJPozRfW33UIQEw1olYTV4jvTnr00VyYL4
+         EfndKaFvXAuE8IZIj0TIUvaCnTDIq5FJKGcgjiXztB3UixIC+eBbqdki4vVQh1DhY6I1
+         i5hoXfsdYzl2lTEA7oGdu9iwB2DvZxnTT5hM8SZrgynosaYaqDuo8AUcS4/7bBdQaYvV
+         iDXzB5O18lewHJuWsFctXnAxzzmcwEEKaWCz+fU2Abh0G5bm1ov2tYOH7oF2bqs3ewXO
+         Z6a2/TALhJfqoPQgilJ3bHcl3f2NCQGsFjteCmGJKnH1rrUAsxaEJTueXVUROFPwPx+r
+         hnEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712039335; x=1712644135;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ksrMBo4pOtNWDZGHJdSqt80CuPGaVhLyi8hNLYSrB/8=;
+        b=o51ZrCEejBDueMKy/KrfN2ymgg/GxdYptanWzfCERuia4hlW7aX+gN3jRhFzHNUa1E
+         N5JSfvRNsUDlO2cEgSYsljxLdIJUxRQ6Jq0X2n5q6F0j2IYaS0DeO18V9pMTPg2O8Ba6
+         fBV+EzY5Q5ElOsrd4uc0RHPdv8SQTaCVWfyPdCUUBYKE2GyiHDcdhSQU0aSiqTunCuiM
+         MZpflFryGWMBefMLhbuTGvOPHCMzhx/esoPr+DhvYIASakkxB/ExWjjav65E+9aHIRod
+         Av5qXRk9PbyuGpa+nftSBxiJxjnB3BD3VcYTSIJ2eeuTQK8FlT/kDdaHly7dziIompwN
+         LnUA==
+X-Forwarded-Encrypted: i=1; AJvYcCVQjJkx/q2rMkNJKlpDvj6fw2vRSWDKt55ej0CJYuSkc8zfrN4yky1dewUcvXGtP4TVf8j5B3dLHZbRjd1oweDyHnip97dpUhGGrQ==
+X-Gm-Message-State: AOJu0Yxxwhqmg+TcID8wobtGuC3jtg16FrbYDBDCSaRFJilWwVypsXEw
+	7g+1hNR7Y8IQmJ5x9m7TczQwPCo8L1W0Et+cRPTeeFRm/6/7GgnKFrF/X20YaTo=
+X-Google-Smtp-Source: AGHT+IGNWCWsCHgXd1pIbCWsH0I8LZxGUhZEXhIQ0d7cyTGZCvkLRM0/SEVUiUbC39Z7XgKALBcoaA==
+X-Received: by 2002:a50:f692:0:b0:56d:c857:5929 with SMTP id d18-20020a50f692000000b0056dc8575929mr4468377edn.35.1712039334974;
+        Mon, 01 Apr 2024 23:28:54 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id et12-20020a056402378c00b0056c3e65caecsm6325302edb.2.2024.04.01.23.28.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 01 Apr 2024 23:28:54 -0700 (PDT)
+Message-ID: <6c4b4a52-a389-4c65-a448-d76b52e70c80@linaro.org>
+Date: Tue, 2 Apr 2024 08:28:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20240401153740.123978-1-krzk@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] media: dt-bindings: ovti,ov2680: Document more
+ properties
+To: Fabio Estevam <festevam@gmail.com>, sakari.ailus@linux.intel.com
+Cc: rmfrfs@gmail.com, laurent.pinchart@ideasonboard.com, hansg@kernel.org,
+ robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ Fabio Estevam <festevam@denx.de>
+References: <20240401190506.3238885-1-festevam@gmail.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240401190506.3238885-1-festevam@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The 04/01/2024 17:37, Krzysztof Kozlowski wrote:
+On 01/04/2024 21:05, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
+> 
+> OV2680 has a single data lane MIPI interface.
 
-Hi,
+The hardware or the driver?
 
-I have not tested this patch on HW but I have checked the registers info
-and this change seems correct.
+> 
+> Document the clock-lanes and data-lanes properties to avoid
+> the following dt-schema warning:
+> 
+> imx7s-warp.dtb: camera@36: port:endpoint: Unevaluated properties are not allowed ('clock-lanes', 'data-lanes' were unexpected)
+> 	from schema $id: http://devicetree.org/schemas/media/i2c/ovti,ov2680.yaml#
 
-Reviewed-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+You should mention why you cannot drop the redundant clock/data-lanes
+from DTS.
 
- 
-> Correct the reg address of mdio node to match unit address.  Assume the
-> reg is not correct and unit address was correct, because there is
-> alerady node using the existing reg 0x110102d4.
 > 
->   sparx5.dtsi:443.25-451.5: Warning (simple_bus_reg): /axi@600000000/mdio@6110102f8: simple-bus unit address format error, expected "6110102d4"
+> While at it, also document the link-frequencies property as recommended
+> by the following document:
 > 
-> Fixes: d0f482bb06f9 ("arm64: dts: sparx5: Add the Sparx5 switch node")
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> https://www.kernel.org/doc/html/v6.9-rc1/driver-api/media/camera-sensor.html#handling-clocks
 > 
-> ---
-> 
-> Not tested on hardware
-> ---
->  arch/arm64/boot/dts/microchip/sparx5.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/microchip/sparx5.dtsi b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-> index 24075cd91420..5d820da8c69d 100644
-> --- a/arch/arm64/boot/dts/microchip/sparx5.dtsi
-> +++ b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-> @@ -447,7 +447,7 @@ mdio2: mdio@6110102f8 {
->                         pinctrl-names = "default";
->                         #address-cells = <1>;
->                         #size-cells = <0>;
-> -                       reg = <0x6 0x110102d4 0x24>;
-> +                       reg = <0x6 0x110102f8 0x24>;
->                 };
-> 
->                 mdio3: mdio@61101031c {
-> --
-> 2.34.1
-> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
 
--- 
-/Horatiu
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
 
