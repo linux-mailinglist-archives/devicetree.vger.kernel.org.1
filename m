@@ -1,160 +1,116 @@
-Return-Path: <devicetree+bounces-55330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7470B894D73
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 10:30:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAA47894D80
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 10:31:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CF9B2B21B81
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 08:30:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B1551F21CA2
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 08:31:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25E3E56B8E;
-	Tue,  2 Apr 2024 08:29:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FCD755C3B;
+	Tue,  2 Apr 2024 08:30:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="AvmNUIA4"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="E74YeOc6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A13856459;
-	Tue,  2 Apr 2024 08:29:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EF985336D;
+	Tue,  2 Apr 2024 08:30:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712046588; cv=none; b=hqrUtFgQ5PtupwXftAsZVVVnKiO5nsvPMHZJ5qZOVU4edET43NLB5Zs04Y15rylTKxcJf5TjWlGGd3CgyNgOzmEY5AfTuRm59rqKzfBCFAAIty5fWbH/k1bK3vJN21UESMionogw4zO5FUbdgO5UyPg7dHyhmss9PK5XET7cXEU=
+	t=1712046640; cv=none; b=eTNzMfH3iKna50deSf74UsG1li9zgNiBvjA/ZuQUwsEW2xbJ7dTraiQIKw1LxUpqvQNVVSl1SWO/MRXcg4StWJkrCEmoT5PQ2nWxXqNAnBusV27/bMVBUus8/SM0mhVc3VTc8TDuBNa6IZboQRdgHL7qYQN1GMJB7JrTlLeg+7s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712046588; c=relaxed/simple;
-	bh=w5Y4HAhWpPFs303OWWtOgDs1po79LqgdLoTPOFnYzS8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=CjAvhIB4IdkZtya7x0TbWemJg9zDzJW+glBjqrxoRoBHtobTcCnQDEJEd3eB8Hj+vOraFRW9mSqWDV7b+rupRpZU32a8eixEg6mOfWlCwI+BZM0uVmEQ1/nf7I0auToYb7GSL7jeeF1tz3brFW/sFtws9+yAlvr4giUQtfSW2sM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=AvmNUIA4; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.1.118] (unknown [103.86.18.232])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id AFE6F3A2;
-	Tue,  2 Apr 2024 10:29:05 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1712046548;
-	bh=w5Y4HAhWpPFs303OWWtOgDs1po79LqgdLoTPOFnYzS8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=AvmNUIA4nC8tV78ryeJRsGKx9yYGbUtddVBb71TunCHFqoV88GFddPrU48Ew0oF7f
-	 /s0U/mxXmEDHaHz27IhcWLHej3ZHwwaAYWh61ZS8ysh/69MtmDP4QKlFsn5dxPOp+C
-	 gqt+pJZP47Pdp5XWV4Suh/HhgZZIfXS9RjebXrjk=
-From: Umang Jain <umang.jain@ideasonboard.com>
-Date: Tue, 02 Apr 2024 13:59:27 +0530
-Subject: [PATCH 3/3] fixups
+	s=arc-20240116; t=1712046640; c=relaxed/simple;
+	bh=7Rl5BPvI/Ej8BgbbZqS3ytTufi+0LmvK7tU/JJ1vqGQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rLvQfo8acZgwdO/8asBDGsV3q33FXQaGe7Lgpky/CURVdGJYELQMPm3hOVMHghlh/spcywkMqMWxNw62YQdgpPb2x90Y0Rs0to3ETdKrzcwtuqxxnUQcMRq3bj8JF6ryIHcsg44TZjISIT3ByORF7OKVQKNc2MOppgh3TzNi1FY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=E74YeOc6; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1712046639; x=1743582639;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=7Rl5BPvI/Ej8BgbbZqS3ytTufi+0LmvK7tU/JJ1vqGQ=;
+  b=E74YeOc6vRdn688lcpdFHOQqRHoMzsN2QSO/f/UdFogRC9uPgVh9yBy3
+   4wWBn4LUfyoSj4oHgZRvgu7koKJvukqG0mMPjupZKN5ctnmi9Fz3Lakxi
+   cGBbBkcbjl1n2TJs5zUnMUPzF30A8ssHtMwcBmHZcchIm2ayNZPqO9Xao
+   N3KZkiml/s1NFFJ/dhx+A2a6zeh34nNcqUpbpV6ix3imIvA4ARqk6e4Ta
+   0ZeQq2lsXCf0vWcXNgbw/BqXP5LRVVSbcq6cHIq/Gsz5NnPhzRwuPEdGE
+   CY6FPyLG3wlMitkxF0WO+1tPsiAza7M2GinziQvbMivN6BTsFzCzBwhiz
+   Q==;
+X-CSE-ConnectionGUID: K0WZtDbdSW+givhsvEP0tQ==
+X-CSE-MsgGUID: tO8QDCv9SoKkbqz8+qfnEA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11031"; a="11033411"
+X-IronPort-AV: E=Sophos;i="6.07,174,1708416000"; 
+   d="scan'208";a="11033411"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Apr 2024 01:30:38 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,174,1708416000"; 
+   d="scan'208";a="17812182"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Apr 2024 01:30:35 -0700
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with ESMTP id B493A11F81D;
+	Tue,  2 Apr 2024 11:30:31 +0300 (EEST)
+Date: Tue, 2 Apr 2024 08:30:31 +0000
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: rmfrfs@gmail.com, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH] media: dt-bindings: ovti,ov2680: Document
+ clock/data-lanes
+Message-ID: <ZgvCJ5F6KlhVGRPC@kekkonen.localdomain>
+References: <20240326231033.2048193-1-festevam@gmail.com>
+ <ZgPtolH796HER4cP@kekkonen.localdomain>
+ <CAOMZO5AYjNPWZfy_dN12K9JNwWaWThpMs0W-FzETF5k8fobgeg@mail.gmail.com>
+ <ZgSeACFfBAmOPXdt@kekkonen.localdomain>
+ <CAOMZO5BGYhnhOrBRS9zBeYYJFHXnQkqZCAV2wGtdpmiA3HZTqA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240402-kernel-name-extraversion-v1-3-57bb38de841b@ideasonboard.com>
-References: <20240402-kernel-name-extraversion-v1-0-57bb38de841b@ideasonboard.com>
-In-Reply-To: <20240402-kernel-name-extraversion-v1-0-57bb38de841b@ideasonboard.com>
-To: Kieran Bingham <kieran.bingham@ideasonboard.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Umang Jain <umang.jain@ideasonboard.com>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1712046569; l=2587;
- i=umang.jain@ideasonboard.com; s=20240402; h=from:subject:message-id;
- bh=w5Y4HAhWpPFs303OWWtOgDs1po79LqgdLoTPOFnYzS8=;
- b=5IBzj1PKxlH3VdAL+w8r6TYuSlgTEiVJsOLgy1YTyK8k6P6fVvCzwHwcwMkYLt2q0To5bP6gz
- N1CDL8oEBR/DP8Od0JqI1++81Yub8+bS4U9OQl/qIrbvYUJItUnwfa0
-X-Developer-Key: i=umang.jain@ideasonboard.com; a=ed25519;
- pk=8K9qSAtc2dNF4Ax+jYC0w9dlfptU7wxPBQwOy0nxRoc=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAOMZO5BGYhnhOrBRS9zBeYYJFHXnQkqZCAV2wGtdpmiA3HZTqA@mail.gmail.com>
 
----
- drivers/media/i2c/imx283.c | 25 +++++++++++++++++--------
- 1 file changed, 17 insertions(+), 8 deletions(-)
+Hi Fabio,
 
-diff --git a/drivers/media/i2c/imx283.c b/drivers/media/i2c/imx283.c
-index 81fe2d4fd4d3..ace8f65aa6b3 100644
---- a/drivers/media/i2c/imx283.c
-+++ b/drivers/media/i2c/imx283.c
-@@ -450,12 +450,12 @@ static const struct imx283_mode supported_modes_12bit[] = {
- 		.bpp = 12,
- 		.width = 2736,
- 		.height = 1824,
--		.min_hmax = 1870, /* Pixels (362 * 360/72 + padding) */
-+		.min_hmax = 2414, /* Pixels (362 * 480MHz/72MHz + padding) */
- 		.min_vmax = 3840, /* Lines */
- 
- 		/* 50.00 FPS */
--		.default_hmax = 1870, /* 362 @ 360MHz/72MHz */
--		.default_vmax = 3960,
-+		.default_hmax = 2500, /* 375 @ 480MHz/72Mhz */
-+		.default_vmax = 3840,
- 
- 		.veff = 1824,
- 		.vst = 0,
-@@ -483,7 +483,7 @@ static const struct imx283_mode supported_modes_10bit[] = {
- 		.min_vmax = 3793,
- 
- 		/* 25.00 FPS */
--		.default_hmax = 1500, /* 750 @ 576MHz / 72MHz */
-+		.default_hmax = 6000, /* 750 @ 576MHz / 72MHz */
- 		.default_vmax = 3840,
- 
- 		.min_shr = 10,
-@@ -568,12 +568,15 @@ static inline void get_mode_table(unsigned int code,
- static u64 imx283_pixel_rate(struct imx283 *imx283,
- 			     const struct imx283_mode *mode)
- {
-+	u64 link_frequency = link_frequencies[__ffs(imx283->link_freq_bitmap)];
- 	unsigned int bpp = mode->bpp;
- 	const unsigned int ddr = 2; /* Double Data Rate */
- 	const unsigned int lanes = 4; /* Only 4 lane support */
--	u64 link_frequency = link_frequencies[__ffs(imx283->link_freq_bitmap)];
-+	u64 numerator = link_frequency * ddr * lanes;
- 
--	return link_frequency * ddr * lanes / bpp;
-+	do_div(numerator, bpp);
-+
-+	return numerator;
- }
- 
- /* Convert from a variable pixel_rate to 72 MHz clock cycles */
-@@ -588,8 +591,11 @@ static u64 imx283_internal_clock(unsigned int pixel_rate, unsigned int pixels)
- 	 */
- 	const u32 iclk_pre = 72;
- 	const u32 pclk_pre = pixel_rate / HZ_PER_MHZ;
-+	u64 numerator = pixels * iclk_pre;
-+
-+	do_div(numerator, pclk_pre);
- 
--	return pixels * iclk_pre / pclk_pre;
-+	return numerator;
- }
- 
- /* Internal clock (72MHz) to Pixel Rate clock (Variable) */
-@@ -604,8 +610,11 @@ static u64 imx283_iclk_to_pix(unsigned int pixel_rate, unsigned int cycles)
- 	 */
- 	const u32 iclk_pre = 72;
- 	const u32 pclk_pre = pixel_rate / HZ_PER_MHZ;
-+	u64 numerator = cycles * pclk_pre;
-+
-+	do_div(numerator, iclk_pre);
- 
--	return cycles * pclk_pre / iclk_pre;
-+	return numerator;
- }
- 
- /* Determine the exposure based on current hmax, vmax and a given SHR */
+On Mon, Apr 01, 2024 at 12:03:15PM -0300, Fabio Estevam wrote:
+> Hi Sakari,
+> 
+> On Wed, Mar 27, 2024 at 7:30 PM Sakari Ailus
+> <sakari.ailus@linux.intel.com> wrote:
+> 
+> > > In this case, the correct fix would be to remove 'clock-lanes' and
+> > > 'data-lanes' from imx7s-warp.dts.
+> >
+> > Agreed.
+> 
+> I tried removing 'clock-lanes' and  'data-lanes', but it did not work:
+> 
+> ov2680 1-0036: error -EINVAL: only a 1-lane CSI2 config is supported
+> ov2680 1-0036: probe with driver ov2680 failed with error -22
+
+If it's a problem with the driver, you should fix the driver instead of
+working around it in DT. Just remove the check.
+
+> 
+> I will send a v2 that documents 'clock-lanes', 'data-lanes', and
+> 'link-frequencies'.
 
 -- 
-2.43.0
+Regards,
 
+Sakari Ailus
 
