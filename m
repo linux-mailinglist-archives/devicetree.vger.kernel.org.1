@@ -1,93 +1,109 @@
-Return-Path: <devicetree+bounces-55592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45180895BAA
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 20:24:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA68C895BAD
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 20:25:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2718283E5F
-	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 18:23:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 010AF1C2264A
+	for <lists+devicetree@lfdr.de>; Tue,  2 Apr 2024 18:25:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09AD415AD8A;
-	Tue,  2 Apr 2024 18:23:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8DF915AD9C;
+	Tue,  2 Apr 2024 18:25:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q4MCHV42"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="L1YX9URN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-187.mta1.migadu.com (out-187.mta1.migadu.com [95.215.58.187])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5D2E159919;
-	Tue,  2 Apr 2024 18:23:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DDAF15AD8A
+	for <devicetree@vger.kernel.org>; Tue,  2 Apr 2024 18:25:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.187
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712082236; cv=none; b=Ss+fOY8fE5oL1F0tTZCAYRy+JImZau1LKuIlgpdxPosO1/H8FG80QKCBWwFZ80gokWG6rhFAGh29of6Pv4cnwZxQMeFEdfPj+/4LvogB+zgnyc4nq8ptxarpyBj7DFp/3AOYI6+baYCDLqVj7BcTSNWQLDZ9TYDt4pL9OJdbMUE=
+	t=1712082319; cv=none; b=txJ5bV3Mkj7Jc/0Yzh+pYaVESXG1bvpcPU8ltN/I25H+UdWLGJPq7AiMuDODERLOr8lobW7+cs1v+mjczjJgLFCjC/TrYn2EeDHQIf8oYZtOHhSezIBkmTjR4VuXKL5Fdrieap1vXpKnK9JWgKfxPjDHWdbgn3SbIGnvTAOES7Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712082236; c=relaxed/simple;
-	bh=Gia3PJ/pTbgS5Xu5S+L3NHjZx1rOFy/cQ21okp0HyKY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B+jNos2TcgANzgCpmiiWIwSH/PMstJI1ENzTnFsoj0DlAJuhvpEWV/1pJQE4yljUXx3ISYSNMt5DHUy8bjQsn48FBz8i5cJfAhgwwAmzp4s9hqxgbzFM7NlD781otQMz/5NLVg871FB+INmePuZa+PGZ8/tWekWGe/LKxmDNcJM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q4MCHV42; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70379C433C7;
-	Tue,  2 Apr 2024 18:23:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712082236;
-	bh=Gia3PJ/pTbgS5Xu5S+L3NHjZx1rOFy/cQ21okp0HyKY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Q4MCHV42LW7nqwJSDTI+Ivu6GUpR8atPJKCL2zodHhgr5IrwOngaWu+EI9v70Ebq7
-	 YziOddpg7xRx+0k8ISflaoFzHVQD7xluwQplriWaQSvIsLG9W1K/p/pXkY1J+Oa8xK
-	 imau/oI0X3A7Wk2HzSvknq8wWrWG5R6N0vW3MaH7O/MeA0B1oy1ZA/68nUyHr8cnwQ
-	 5LO2q+L2tHCkUR5Z9XnlzoH06xiL5N3a7oygjc4wnqk9QFo4aEzV9w8bIqU411p0zv
-	 Ru/0iEio5LVENI/e7m1lTB1vvhMhQvK12/Fu2c50GpnnqsoHaHpBvoJQumpZ24nR52
-	 Age9eRbyaJbyw==
-Date: Tue, 2 Apr 2024 19:23:52 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: rockchip: grf: Add missing type to
- 'pcie-phy' node
-Message-ID: <20240402-squabble-verbalize-eab2f023ab49@spud>
-References: <20240401204959.1698106-1-robh@kernel.org>
+	s=arc-20240116; t=1712082319; c=relaxed/simple;
+	bh=DPTwM8DXlyZSF3sQjcoaN0vDR3bb6difnHz5i8/uPYc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=K68wBCO1kSpusiwASouUR7UqiJR224TCpYe+z9QLSFIR6cdQ1K5umCzBIK2Blfnc9olxyFLPE9HDxX52yvta1aSVNAVrDBsMmUI2nNIipLGUJGQUk7BOs7aTpXhI35iLnSSqz1r41kwz8PDm8yJrThcBGSPE5v7V4W8rno7jYxo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=L1YX9URN; arc=none smtp.client-ip=95.215.58.187
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
+Message-ID: <8ef4f56c-83a3-4b26-877e-f1c7a0307e98@postmarketos.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1712082313;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=13vOsyn8jFuJJVMC+4Atlj55N5nsRCUlWW0T7qTrNg8=;
+	b=L1YX9URNDTPG3WJg1YPeki9iW+icQqF/wO8w6tDN5qRGkXxsVo7KMH/3lxaGVUhsqZKmQ9
+	wmPPAeMujqXYSapmG6fxxMT9zMDfzOlPt+MKcwkHFHQGTdh3Wn64YJeUb0Zo/4Fk5HipeA
+	UWRH3tOlCKJ2p0bBQ7VYVu2lTefGPc/N8P7UpmDrkyxPlQZiH7T+xUPdp44u1938AOvTJu
+	mQuYg5BVd/z/41+OupC/5nmXZWc7hzri/MLpnIXE5tkWzWOWV1pCLzcZcIo2WKso9OqzLA
+	Tbaa/vrLutQv9wJG/EoZamdgO0ywhVJlPiPwxvMlSWidZJ34vUeCUnwV1S+SYg==
+Date: Tue, 2 Apr 2024 21:25:08 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="QHSzEAA4z92jaQnw"
-Content-Disposition: inline
-In-Reply-To: <20240401204959.1698106-1-robh@kernel.org>
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: msm8998: set
+ qcom,no-msa-ready-indicator for wifi
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Marc Gonzalez <mgonzalez@freebox.fr>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Kalle Valo <kvalo@kernel.org>, Jeff Johnson <quic_jjohnson@quicinc.com>,
+ ath10k <ath10k@lists.infradead.org>,
+ wireless <linux-wireless@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
+ MSM <linux-arm-msm@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Jami Kettunen <jamipkettunen@gmail.com>,
+ Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+References: <fd26ce4a-a9f3-4ada-8d46-ed36fb2456ca@freebox.fr>
+ <5cdad89c-282a-4df5-a286-b8404bc4dd81@freebox.fr>
+ <252618e8-9e80-4774-a96c-caa7f838ef01@linaro.org>
+ <502322f1-4f66-4922-bc4e-46bacac23410@linaro.org>
+ <0ca1221b-b707-450f-877d-ca07a601624d@freebox.fr>
+ <CAA8EJppeREj-0g9oGCzzKx5ywhg1mgmJR1q8yvXKN7N45do1Xg@mail.gmail.com>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Alexey Minnekhanov <alexeymin@postmarketos.org>
+In-Reply-To: <CAA8EJppeREj-0g9oGCzzKx5ywhg1mgmJR1q8yvXKN7N45do1Xg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 
 
---QHSzEAA4z92jaQnw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Apr 01, 2024 at 03:49:58PM -0500, Rob Herring wrote:
-> 'pcie-phy' is missing any type. Add 'type: object' to indicate it's a
-> node.
->=20
-> Signed-off-by: Rob Herring <robh@kernel.org>
+On 02.04.2024 18:55, Dmitry Baryshkov wrote:
+> I'd say, we should take a step back and actually verify how this was
+> handled in the vendor kernel.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---QHSzEAA4z92jaQnw
-Content-Type: application/pgp-signature; name="signature.asc"
+AFAIK there is no such thing in vendor kernel driver for this, as
+this startup procedure is likely handled entirely in userspace in
+cnss_daemon.
 
------BEGIN PGP SIGNATURE-----
+By the way this workaround is needed also for Wi-Fi in sdm630/660,
+so no not only msm8998 suffers from this.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZgxNOAAKCRB4tDGHoIJi
-0kbNAP9PTPDNx46FKB4FfxwYJkXcJno9c3xbpSnu/rzH75pDqQEAioZJxLQHq7uf
-NfEgWMGka5JijDJPseORnW26UuPh+AQ=
-=2XGU
------END PGP SIGNATURE-----
+ > This sounds more like a firmware feature, not a hardware feature
 
---QHSzEAA4z92jaQnw--
+ > having this property in DT does not look right
+
+I agree with these 2 points above. This can be handled more nicely
+as firmware feature encoded in firmware-5.bin using ath10k-fwencoder
+and not involve any new DT compatibles or properties.
+
+-- 
+Regards,
+Alexey Minnekhanov
 
