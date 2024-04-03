@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-55880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19105896C10
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 12:21:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58B49896C23
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 12:23:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C1DD1C20FB0
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 10:21:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0CBCE280CF3
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 10:23:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43CED136980;
-	Wed,  3 Apr 2024 10:21:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF9C8136995;
+	Wed,  3 Apr 2024 10:23:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GY9YnPLK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="exP4EdVA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78ABA13666E
-	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 10:21:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06E2C13666E
+	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 10:23:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712139671; cv=none; b=bGbRIRAZDd6YcXQqpz+bY6uzyaB/5kHvePog4bH/cahQaf0hJJopfNYr08WcMvTCm0pWFOhZsbWzXUxbGsEtmRy6zzNCRIEJVh0YJqPaYDW6B2J3cmFA4PnHF7S8nIYo3qf8m9aFusSPH6S4FB3b8xh/RzCeP6+Q/mYWDTKl4iE=
+	t=1712139783; cv=none; b=ZYtsMBOZPD6E+xjJwwbFMzYqCXeGTPvaK15QXy7BLg8FWKFJvEnMf5MBzedv+OZv7KebGeh/QpZShrgM9060y0YHDUGVADchODPireuQwvEBEgTYVT3Eaj4VVGJW1pgvr0G5SSOLqqw3UltCP/zVABg246K3JCz8jUIrP6ev1xE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712139671; c=relaxed/simple;
-	bh=j9OWD1Egg+9iI5w7d3WeI7AlB92++uzCxocuqyXnMNk=;
+	s=arc-20240116; t=1712139783; c=relaxed/simple;
+	bh=Rj0Jsh8YxSWt3uMZSfSlxmzf0XSYrPzXk30gRPPxkz8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=F1ILjgOpbA66PwSsz8XvQEHEUwYERS86YUIeBWiNNR0M2or36/JP2oBPsEizjLK2VgVXQaKKDInRp7u/reL5XbvzNui2F8wY2JBh3bMwRNS5BNq7g2r7EroxWJOIgSjcrKEXxj9KfegCGx66B8OqTDG6QKO8WaF6D6thBh6zdCI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GY9YnPLK; arc=none smtp.client-ip=209.85.208.44
+	 In-Reply-To:Content-Type; b=TklIqTowbLQW/1mpuE5qturstOaWfmns+QYTiEG8vDTIMjIm/m2g1R96UxDGwvgNdzsJVzSQ1Hqa7QVk8cVp83hyTq3hAYefaxfoR+MxIzjxAEKb6c92acI2GbTESpZLull2117MAJBi6QzrhD7dHyMiywyKkJsXjqyDh6FD650=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=exP4EdVA; arc=none smtp.client-ip=209.85.208.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-56d5d4d2e2bso4187118a12.3
-        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 03:21:09 -0700 (PDT)
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-563cb3ba9daso6269198a12.3
+        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 03:23:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712139668; x=1712744468; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1712139780; x=1712744580; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=4lrg9u1DWO3N7iNCPwEbpDmzDHx9LenQFb2AaTvmxYY=;
-        b=GY9YnPLKZXBE+iUca2K7y4lMCLid4LK3ssU/bWG/X5IppxYMAHeSQGNpCUStDGl8II
-         gL0dFi9tyJLVZPPfUc27RrezDkWeXIXiKaySQyJHGXW5LzRQiBCSqPPemmQd4qeGxh3j
-         6G/bBM4mUUowbAGHvPyEBDEiCP7dG9tMcFmUfpMvDOSiFEODSozogYBcG+/+gkiGMEnP
-         qSrgncD1zXdRaZY0A0uniplIviabsc0syHr2bGJv3gRs4BlSrZ1jDmLfcoIA0CfxBsbu
-         5k/LbFLKlmUri56mLUy8F/A2m1zmQKPrPFsET5HzIJD7d4LD0gCMIcz5xrm4sLZ8rleZ
-         liDw==
+        bh=HsoRFwc62TubYqg849tDBMhvYLUZpOn9BCroZEJYYio=;
+        b=exP4EdVAjdfkiSkfkk8oGrSkM0SEOLzmDHxCDQnCjXMbVqkROETfWIrX8TV8mi8ECP
+         fJETwsv2Oy3UM4y7ny4EPR4IS7V86RJAkSmDm24Qp47vx/xNbcd/AQAgOOFamlgcweVZ
+         WOmgbhPjeUcjTLDy9TUOJXw4KO0KhxRgeE/VgpjppNDvYSwntjI2/VocFWN/Y+Je+5hG
+         XdvcGSsvpYHo9JTjUr/4pA+jUfchjyxy2Ns69L4DUdLQUnrOsapQ9MT/ijAMWgCDFQ0t
+         POC1xLKfv9rxqTqGrmVyaRpzdNVWV13QZ2/5ZGIoAIV6lxy03JxTv+QClyggv4zqVGfx
+         8Ucg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712139668; x=1712744468;
+        d=1e100.net; s=20230601; t=1712139780; x=1712744580;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=4lrg9u1DWO3N7iNCPwEbpDmzDHx9LenQFb2AaTvmxYY=;
-        b=IAlc+oYPdxpfBrdX9rELZIOPgTwKk285RSnoIv3SbGXsJjCbxSOjGwtM2MwZB0rGo1
-         09CA7EA4isAOtNZuRRuzdALhi/HMQc/rQdbf8ldAm07jBjJGWoa8qcJnAaAOlii9Z2fZ
-         XD8Dsv9J9CyeiyYyB2eIn4EtezeHreNgbizpazZfMZK0a5CcwYM1Go0oCoa+iDnOXvsJ
-         yz4cUdZlusosfj0p7/NgADsUucnzYaPueTzc4VFQGrdotbQclkvHjQdjITIlNqo6n5/U
-         GukvupzEMUVpMauD3irYEexT9IIcW5T6rNRBCHu08FZKvxFnyYsOpCAKDusGVpdEvB+z
-         1jbA==
-X-Forwarded-Encrypted: i=1; AJvYcCUpoPhNooAXJUZUgTMq8LkRs3IczSuzcDsRFcVOK+RNAz640N20yljtg+vDZqKy+fzgQlr2tdwIVAydYoQK5qcHnBuvcZkPyRKlVQ==
-X-Gm-Message-State: AOJu0YzDTbbwm+kdiHhgIwh6jlJDnvrYRhZ4YkH1LtNONmMXnPu4kITp
-	6vdWNaX78G8OBfgthJXi4tyFoBoWGrWD0w9+24jJwDInrF/n+lJYZPioNZQWE8c=
-X-Google-Smtp-Source: AGHT+IEP4Gm/j49EiS5w8Osi5IxulbUu7dmYZSs8UZrCWXoYjgFHKV6WkLihgHu5HCaYyGuLMqf+SQ==
-X-Received: by 2002:a17:907:11cd:b0:a4e:2d1e:6914 with SMTP id va13-20020a17090711cd00b00a4e2d1e6914mr9439566ejb.11.1712139667716;
-        Wed, 03 Apr 2024 03:21:07 -0700 (PDT)
+        bh=HsoRFwc62TubYqg849tDBMhvYLUZpOn9BCroZEJYYio=;
+        b=CUZiD8E7ATAL97tXLe3pWaRtcSkdUzrxyKAgoIRcoKKAv7P1dgwnaiRPcFxNrv3pxn
+         M2UBGtn3zyFVyh1+Hhh9Ed1LA/M2uG36ijkAC3PwUc7/TArpPv3m58Th2aBnFF/ZSlEg
+         OpzSapDuVeKZgWqvGbWV+vibBnPbS31VZx0EJdAsKLiCa3x8DuBF/Ds0mhlS/RmYmn4n
+         i3hw1lPl+nxkN2nVfyS9ErcpdSn8lGPkmnavBN2h/Ul3+DM0HYd59AcvF/3Rb0Db/p+6
+         NXFUtSitXPiKSoyqVigIB88p3VndxMwji1Cr/zyJAoYLJ0GR7IX678Nmr2EcH8phxh0c
+         L1uA==
+X-Forwarded-Encrypted: i=1; AJvYcCUHYlk7waKr6j6hwGCqUMwPYrst4GFFfngsBeAP/JrGnLGY4a5WCb+hFies6TfD2K3mAccDY8RaVjDleescTekksoDbKl+3NT+fng==
+X-Gm-Message-State: AOJu0YwKQ5l/XMpRsnCt9B/gQEm3/oM/PoIVPp3yjtSF8hK76mEN6iUe
+	J6T9bXSK6fOpP781nRV4WBynwyWFmJJMCeLyqTxEE1TYp9/A82TtTyaUTnqsu70=
+X-Google-Smtp-Source: AGHT+IEMd2qY7HaeJ+Fxj3CC5iJW78JeSnJFgE3zvGwQSDJJVxBpSADaDpp09/VoAm7rqc/a73kH3g==
+X-Received: by 2002:a05:6402:3506:b0:56b:cecb:a4c8 with SMTP id b6-20020a056402350600b0056bcecba4c8mr14911177edd.39.1712139780444;
+        Wed, 03 Apr 2024 03:23:00 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id bj7-20020a17090736c700b00a4e696e613esm3583799ejc.153.2024.04.03.03.21.06
+        by smtp.gmail.com with ESMTPSA id n17-20020a05640205d100b0056c55252b1csm7476094edx.41.2024.04.03.03.22.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Apr 2024 03:21:07 -0700 (PDT)
-Message-ID: <a2f88176-b4e1-4202-843c-a00c5a2b1622@linaro.org>
-Date: Wed, 3 Apr 2024 12:21:05 +0200
+        Wed, 03 Apr 2024 03:22:59 -0700 (PDT)
+Message-ID: <f51da8d9-95e5-4935-9ad7-49a5ddde9dc3@linaro.org>
+Date: Wed, 3 Apr 2024 12:22:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,18 +77,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/6] Add Synopsys DesignWare HDMI RX Controller
-To: Shreeya Patel <shreeya.patel@collabora.com>, mchehab@kernel.org,
- hverkuil@xs4all.nl, hverkuil-cisco@xs4all.nl
-Cc: heiko@sntech.de, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+Subject: Re: [PATCH v3 4/6] arm64: dts: rockchip: Add device tree support for
+ HDMI RX Controller
+To: Shreeya Patel <shreeya.patel@collabora.com>, heiko@sntech.de,
+ mchehab@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
  conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
- p.zabel@pengutronix.de, shawn.wen@rock-chips.com, kernel@collabora.com,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-arm@lists.infradead.org
+ p.zabel@pengutronix.de, jose.abreu@synopsys.com, nelson.costa@synopsys.com,
+ dmitry.osipenko@collabora.com, sebastian.reichel@collabora.com,
+ shawn.wen@rock-chips.com, nicolas.dufresne@collabora.com,
+ hverkuil@xs4all.nl, hverkuil-cisco@xs4all.nl
+Cc: kernel@collabora.com, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-arm@lists.infradead.org
 References: <20240327225057.672304-1-shreeya.patel@collabora.com>
- <35e566-660d2080-1-7eb9eb00@16488675>
+ <20240327225057.672304-5-shreeya.patel@collabora.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -135,29 +138,43 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <35e566-660d2080-1-7eb9eb00@16488675>
+In-Reply-To: <20240327225057.672304-5-shreeya.patel@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 03/04/2024 11:24, Shreeya Patel wrote:
-> On Thursday, March 28, 2024 04:20 IST, Shreeya Patel <shreeya.patel@collabora.com> wrote:
+On 27/03/2024 23:50, Shreeya Patel wrote:
+> Add device tree support for Synopsys DesignWare HDMI RX
+> Controller.
 > 
->> This series implements support for the Synopsys DesignWare
->> HDMI RX Controller, being compliant with standard HDMI 1.4b
->> and HDMI 2.0.
->>
+> Reviewed-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+> Tested-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+> Co-developed-by: Dingxian Wen <shawn.wen@rock-chips.com>
+> Signed-off-by: Dingxian Wen <shawn.wen@rock-chips.com>
+> Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
+> ---
+> Changes in v3 :-
+>   - Rename cma node and phandle names
+>   - Elaborate the comment to explain 160MiB calculation
+>   - Move &hdmi_receiver_cma to the rock5b dts file
 > 
-> Hi Mauro and Hans,
+> Changes in v2 :-
+>   - Fix some of the checkpatch errors and warnings
+>   - Rename resets, vo1-grf and HPD
+>   - Move hdmirx_cma node to the rk3588.dtsi file
 > 
-> I haven't received any reviews so far. Hence, this is just a gentle reminder to review this patch series.
+>  .../boot/dts/rockchip/rk3588-pinctrl.dtsi     | 41 ++++++++++++++
+>  .../boot/dts/rockchip/rk3588-rock-5b.dts      | 19 +++++++
+>  arch/arm64/boot/dts/rockchip/rk3588.dtsi      | 56 +++++++++++++++++++
 
-Why did you put clk changes here? These go via different subsystem. That
-might be one of obstacles for your patchset.
+Please do not engage multiple subsystems in one patchset, if not
+necessary. Especially do not mix DTS into media or USB subsystems. And
+do not put DTS in the middle!
 
-Also, you sent it just a week ago and you already ping. Please relax,
-and help out by reviewing other patches on the mailing lists in order to
-relieve the burden of maintainers and move your patches higher up the list.
+This is not a correct way to upstream DTS. DTS is independent of
+drivers, so your drivers cannot be based on this.
 
+Please reach to your experienced colleagues to explain you how
+submission of patches should look like.
 
 Best regards,
 Krzysztof
