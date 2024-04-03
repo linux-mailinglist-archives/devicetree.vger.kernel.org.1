@@ -1,93 +1,96 @@
-Return-Path: <devicetree+bounces-55714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EAC38961ED
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 03:21:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 300C8896218
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 03:40:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C52601F26E6E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 01:21:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AC754B26DAD
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 01:40:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6032A125BA;
-	Wed,  3 Apr 2024 01:21:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F25B18039;
+	Wed,  3 Apr 2024 01:40:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="JEwUMb4E"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eEKNiE9u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-177131.yeah.net (mail-177131.yeah.net [123.58.177.131])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE4A5E56E;
-	Wed,  3 Apr 2024 01:21:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.131
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D73515ACB;
+	Wed,  3 Apr 2024 01:40:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712107276; cv=none; b=PqRCPzGQrZPQcukaaAs4oHLN1EkKv+MawvrsfgDWBY+XRfyEX092zBesfKEhPDFeuLaH7xcdphRGZLsY+v/ZuVmnIzE8ExCLNnEtoZ4mxV0Hfjfhw9O76hab8ATpH/1sUoAA9hkN7icc9BA8ICF9k2TkLicT+lMGQVrjmgUCavA=
+	t=1712108435; cv=none; b=vGnR+juFy+DTpAkEkT9SlkWj587MoLc7c2zxPYXZp7BiKTcaCKwc2RPTQHk4LGrEyv2wGA5lBryqkvQ5C8nVX+A4ebNXW31WBLv/GxsiDVhbVcGDsKg5k1gxBpPZZyB0s+Z7tNuv5UK1eHwlLxxwGThouxlAkF006JdTxTfdCHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712107276; c=relaxed/simple;
-	bh=xf/E2qjc1NZRzpvxjNCkw0yuOBO85KFVg2XRoKCWyMw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MFG+JW3gCC3InuA4u6DYrP2Kf25qsuMi/znS4WT4QGZ+JLHs9fEaGqx2fm0HA6JcTdpdh8puki7URzMoz6DShbbcGMsl4JHHpx1vmLe4YPe6NjWonoLYbODbxUf7hUNkONfXJgyCfRGFB+TSgQupl+NRe2pB8KAP1LszJRvxs2Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=JEwUMb4E; arc=none smtp.client-ip=123.58.177.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=sArve/j6wLVovttQ89uc7gsa2kSjnfAK0w4Il26KCUw=;
-	b=JEwUMb4ExLNo3P132mcEJpuzbA99Sb1pbwTjm3BLGicgFBfNhE9xFS/0Y5pBHB
-	9RfQdUGV9z7wFBXplIbYk3ZknSb8tQn7OgdLyNKZ3SPYJraDRdY3U+iU3gtEArl7
-	I8GvHAbE5b6i1s4KzFMMJgdsFdc9RSo4cD8FIS//k6ods=
-Received: from dragon (unknown [223.68.79.243])
-	by smtp1 (Coremail) with SMTP id ClUQrAD3v0LtrgxmbkmtAQ--.49750S3;
-	Wed, 03 Apr 2024 09:20:47 +0800 (CST)
-Date: Wed, 3 Apr 2024 09:20:45 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Tim Harvey <tharvey@gateworks.com>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, Lukas Wunner <lukas@wunner.de>
-Subject: Re: [PATCH] arm64: dts: imx8m*-venice-gw7: Fix TPM schema violations
-Message-ID: <Zgyu7c3BQlqTexPJ@dragon>
-References: <20240402193355.2333597-1-tharvey@gateworks.com>
+	s=arc-20240116; t=1712108435; c=relaxed/simple;
+	bh=2Cqggvi+FITuLPU6Wtv6kILJujsOux5eJcik4zu5h0w=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=iTbRDnVy9Z+38O79PKzyTaYi0su+pZwdi9O0l7UcrH8jvTKTfR1hg2TIPL/ZrxzT48lXHlf9rvv1L+TXwhN6V1bsTom9wBVBEzk6woSj5+el4XLBidH5t9y0PQsj9nyJDP2jtKcP/PpADV50lcX8tg1I2yLetnaq/f9ZXl2iHFg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eEKNiE9u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id E665CC43601;
+	Wed,  3 Apr 2024 01:40:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712108435;
+	bh=2Cqggvi+FITuLPU6Wtv6kILJujsOux5eJcik4zu5h0w=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=eEKNiE9uepjjn0InblW6b5qc1Cjff2kGHNImum7Ny2o6p/g0QHemub4K7RpYYWcpv
+	 eamDHMzJ3CAKm3I5fkkBDh6XjxrvByJ/9z2YKVrx+SN+xQWk7oYLgfeDyP3tDFuJF7
+	 mgPn/ReFV4rpRnSlzBYwPxtRh23STkx5fPOtzQSdhWSaGxI/SPsKsaD79avuKWEPVj
+	 /7adJHehvQpkdcgJ65FR0MGkBQEiw//gyDKhwTh3hAFqE2p02faFTZKYETVivEJbyY
+	 O+hI2Q+TZXnV+HEp7zAQ04Nu/fMtWaC7C+TJH4s3rmi+v3fxjV6oxYyHBYQSGSGg6B
+	 RVv543O8rgxqQ==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id DDB22D8BD1F;
+	Wed,  3 Apr 2024 01:40:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240402193355.2333597-1-tharvey@gateworks.com>
-X-CM-TRANSID:ClUQrAD3v0LtrgxmbkmtAQ--.49750S3
-X-Coremail-Antispam: 1Uf129KBjvdXoWruw13uF4ktFyxtr4rAw13Jwb_yoWxtwb_Ca
-	97X348KrW5ur18Gr1UtF45XFZYga47Kr9rJryDtw1jv3sYvFZ5Gr9Yy3s8Zw45ZF4YgFnr
-	uryxJFWrA3y29jkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU0_pnJUUUUU==
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiDxO1ZVnxcmgkhwAAsd
+Content-Transfer-Encoding: 8bit
+Subject: Re: [net-next,v2] dt-bindings: net: renesas,ethertsn: Create child-node
+ for MDIO bus
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <171210843490.14193.13793539310642230479.git-patchwork-notify@kernel.org>
+Date: Wed, 03 Apr 2024 01:40:34 +0000
+References: <20240330131228.1541227-1-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20240330131228.1541227-1-niklas.soderlund+renesas@ragnatech.se>
+To: =?utf-8?q?Niklas_S=C3=B6derlund_=3Cniklas=2Esoderlund+renesas=40ragnatech=2E?=@codeaurora.org,
+	=?utf-8?q?se=3E?=@codeaurora.org
+Cc: s.shtylyov@omp.ru, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ geert+renesas@glider.be, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, robh@kernel.org
 
-On Tue, Apr 02, 2024 at 12:33:55PM -0700, Tim Harvey wrote:
-> Since commit 26c9d152ebf3 ("dt-bindings: tpm: Consolidate TCG TIS
-> bindings"), several issues are reported by "make dtbs_check" for arm64
-> devicetrees:
-> 
-> The compatible property needs to contain the chip's name in addition to
-> the generic "tcg,tpm_tis-spi".
-> 
-> tpm@1: compatible: ['tcg,tpm_tis-spi'] is too short
-> 	from schema $id:
-> http://devicetree.org/schemas/tpm/tcg,tpm_tis-spi.yaml#
-> 
-> Fix these schema violations.
-> 
-> Gateworks Venice uses an Atmel ATTPM20P:
-> https://trac.gateworks.com/wiki/tpm
-> 
-> Cc: Lukas Wunner <lukas@wunner.de>
-> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+Hello:
 
-Applied, thanks!
+This patch was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
+
+On Sat, 30 Mar 2024 14:12:28 +0100 you wrote:
+> The bindings for Renesas Ethernet TSN was just merged in v6.9 and the
+> design for the bindings followed that of other Renesas Ethernet drivers
+> and thus did not force a child-node for the MDIO bus. As there
+> are no upstream drivers or users of this binding yet take the
+> opportunity to correct this and force the usage of a child-node for the
+> MDIO bus.
+> 
+> [...]
+
+Here is the summary with links:
+  - [net-next,v2] dt-bindings: net: renesas,ethertsn: Create child-node for MDIO bus
+    https://git.kernel.org/netdev/net-next/c/8da891720cd4
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
 
