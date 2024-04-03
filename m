@@ -1,75 +1,67 @@
-Return-Path: <devicetree+bounces-55784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E7C789654D
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 09:06:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7A5F896559
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 09:07:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 02DF61F23262
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 07:06:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7345A284D0B
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 07:07:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6743F548E0;
-	Wed,  3 Apr 2024 07:06:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6416548E3;
+	Wed,  3 Apr 2024 07:06:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zsqgg+cE"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="hq3xOYk1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29933537F0;
-	Wed,  3 Apr 2024 07:06:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6CB153393
+	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 07:06:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712127964; cv=none; b=BlE70Kv0Elqe0ZFkDacP3h63PRIbqvH9m5oZ/fyln/NW/g8Eui4EmXrAY27q0vjdRwEOTj20cjrtq9uAiaUL409hpvy/iq/JJeZ0aanrNlzmahNPWYlre1dV/r9veRFuwAPhZ5W05EqkLFBB+9hHN8x24ap7TLJQK57BhnvYJ0E=
+	t=1712128018; cv=none; b=ZK8bquji0eut8EnN4w+LuX1o7uMECA7D6wQosWt8hcl56N7CRLJI2Js19BMeJeTj5Z/yUNzBaHkAy1U+1eY88Nx2z9x9IaCZY4RE1E63SWaGp6rwKHN/C8cbClQcD67OHYdWqX9VVw+L2IbEaLkzy7M1FGJ2TGJulklDC7WzxV0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712127964; c=relaxed/simple;
-	bh=pLe1zO2KxOqFTC50hG8lKBdb2ln2PJxOAj1b7Rg2kIo=;
+	s=arc-20240116; t=1712128018; c=relaxed/simple;
+	bh=WLvW8jaBuOqhMrbc7NT/Nyj4axuoziQWZTmEs6pzTs4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oTVPmI+gCqivxOYQG33m8qN03maXDy7hoqs0Kf5WEU9fG3eEMpxKvTSHl7DkzEuE1BIbME4RxYJ7CtTKaSXgjVeFZ7cppwMpgo6HhT34d+xc0H8hJu4iyBfOmYk3uLR6c2YnMMjdapU5mZOBdztUm3LgZaqj5nkYAPw900vmjfE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zsqgg+cE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECE52C433F1;
-	Wed,  3 Apr 2024 07:06:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712127964;
-	bh=pLe1zO2KxOqFTC50hG8lKBdb2ln2PJxOAj1b7Rg2kIo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Zsqgg+cEZQMPJJMhRULn+C1BAygbh1Jo+iW/fdyZq38BLsH1GQlSSiLdKKVmIubdl
-	 JPv/ktx6eD1Fer7jBzWejLrYpKWe5qGj9woXlvdU6gTT5yazsOjInI65kTaSR1KriK
-	 4Z9uUD/QhThZzfY5cjtpOda9SCsMu/xiQpe8iGWXHmjPOn2q5mcKYWSLjcWTzyUq2k
-	 g8suoptVxiw0vnVB8qX1rRlWfOD6qKassulNDmKmBcfB/nLz++BhhN9G0QTvEN67tN
-	 5neo1wSUKQsZLRPIyF2tlXPl3wGkbuz3Cl2opHP29bv/13s4Iz5eaFyJaiJQjboQtD
-	 kBMHljPftTyBw==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1rruhA-000000007BG-01yh;
-	Wed, 03 Apr 2024 09:06:04 +0200
-Date: Wed, 3 Apr 2024 09:06:04 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-Cc: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=dH1lT3Gz6lrEWr9vVMq/cKSEVhqOA46NDyOP7HeTTiZo8ytijfnoJu0f8YQZOQw6b3DnikU7KrFkSe094PxsWgb/pMTTsB5zWdpTSsGKidxNjA20vrshCUQTChFk7/bBu+8v3M3ltilG2ZS4scRUOLk6S4w+h2DhND40mVDPIGk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=hq3xOYk1; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 349501F9B3;
+	Wed,  3 Apr 2024 09:06:53 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1712128013;
+	bh=b/iyQ0g7EhgQ4rUty3uF5SLfMr97q4ikk+EFJcnzj3c=; h=From:To:Subject;
+	b=hq3xOYk1jDcOsS1lYrZCd6Vj55jVi0+0S6yj+4UaSuQE3xv/q0S5h7UJousEqAKHE
+	 /t+Mu7HbHdfZwUNo+nTP/ABi4zccdWBk+ecigRiwtnz+3BTGZtOS9i9fcgIyf8QOnq
+	 lYSIc5e3Qp70DCks5MI8d/MTsnCmYwQmgsyeTB8P9vcHxAB87Ro3tTNEn7HR/FW2jz
+	 9uRH70jQOi53Mh5RyS0+IkMUIGQWhresUrXoRefm9nPLnAIGwzatIz6u8MJsmGfS9z
+	 ngUTmwo848uEYcij6dJPrF0CYhtBFQGKMPObwS2NHZLmasjB14tieQIIX5plNnLf8Y
+	 vnJPrllZGtpjA==
+Date: Wed, 3 Apr 2024 09:06:51 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Shawn Guo <shawnguo2@yeah.net>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Trevor Zaharichuk <trevor@au-zone.com>,
+	Greg Lytle <greg@au-zone.com>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Wesley Cheng <quic_wcheng@quicinc.com>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"quic_ppratap@quicinc.com" <quic_ppratap@quicinc.com>,
-	"quic_jackp@quicinc.com" <quic_jackp@quicinc.com>,
-	Johan Hovold <johan+linaro@kernel.org>
-Subject: Re: [PATCH v18 2/9] usb: dwc3: core: Access XHCI address space
- temporarily to read port info
-Message-ID: <Zgz_3AspRRfYqOwZ@hovoldconsulting.com>
-References: <20240326113253.3010447-1-quic_kriskura@quicinc.com>
- <20240326113253.3010447-3-quic_kriskura@quicinc.com>
- <20240402233218.5kngtj56qellnrmo@synopsys.com>
- <39010f95-b08f-4a57-b3af-f34eb1069865@quicinc.com>
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH 5/5] arm64: dts: Add device tree source for the Au-Zone
+ Maivin Starter Kit
+Message-ID: <20240403070651.GB5070@francesco-nb>
+References: <20240325203245.31660-1-laurent.pinchart@ideasonboard.com>
+ <20240325203245.31660-6-laurent.pinchart@ideasonboard.com>
+ <ZgyjE05p/1NZnzaK@dragon>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,39 +70,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <39010f95-b08f-4a57-b3af-f34eb1069865@quicinc.com>
+In-Reply-To: <ZgyjE05p/1NZnzaK@dragon>
 
-On Wed, Apr 03, 2024 at 10:54:25AM +0530, Krishna Kurapati PSSNV wrote:
- 
-> >> +static int dwc3_read_port_info(struct dwc3 *dwc)
-> >> +{
-> >> +	void __iomem *base;
-> >> +	u8 major_revision;
-> >> +	u32 offset;
-> >> +	u32 val;
-> >> +
-> >> +	/*
-> >> +	 * Remap xHCI address space to access XHCI ext cap regs since it is
-> >> +	 * needed to get information on number of ports present.
-> >> +	 */
-> >> +	base = ioremap(dwc->xhci_resources[0].start,
-> >> +		       resource_size(&dwc->xhci_resources[0]));
-> >> +	if (IS_ERR(base))
-> >> +		return PTR_ERR(base);
-> > 
-> > Looks like you forgot to address some of the comments you said you'd
-> > update previously if you submit a new version to the series.
-> > 
-> > [*] https://lore.kernel.org/linux-usb/af73110d-e13e-4183-af11-aed869ac0a31@quicinc.com/
-> > 
+Hello Laurent,
+
+On Wed, Apr 03, 2024 at 08:30:11AM +0800, Shawn Guo wrote:
+> On Mon, Mar 25, 2024 at 10:32:45PM +0200, Laurent Pinchart wrote:
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-maivin.dts b/arch/arm64/boot/dts/freescale/imx8mp-maivin.dts
+> > new file mode 100644
+> > index 000000000000..2d1c8e782465
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mp-maivin.dts
+> > @@ -0,0 +1,236 @@
+
+[...]
+
+> > +/* Verdin I2C_2_DSI */
+> > +&i2c2 {
+> > +	status = "okay";
+> > +
+> > +	clock-frequency = <400000>;
+> > +	scl-gpios = <&gpio5 16 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> > +	sda-gpios = <&gpio5 17 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
 > 
-> Apologies. I agree. I was too much focused on acpi removal and interrupt 
-> cleanup, I forgot the last comment you gave.
-> 
-> Can I send in a separate patch for this ?
+> We usually end property list with 'status'.
 
-The series has not been merged yet so you can address both issues in a
-v19. Perhaps wait a day or two in case Thinh has further comments.
+This is now a written and explicit guideline, no longer tribal knowledge,
+see https://docs.kernel.org/devicetree/bindings/dts-coding-style.html#order-of-properties-in-device-node
 
-Johan
+Francesco
+
 
