@@ -1,166 +1,114 @@
-Return-Path: <devicetree+bounces-55710-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA9168961BC
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 03:03:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B41688961CE
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 03:11:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 898861F22EAD
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 01:03:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5E1B41F21BB5
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 01:11:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 031C0E56E;
-	Wed,  3 Apr 2024 01:03:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADE7C107A9;
+	Wed,  3 Apr 2024 01:11:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=thefossguy.com header.i=@thefossguy.com header.b="TZre1Pda"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b+EfHFkf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-4317.proton.ch (mail-4317.proton.ch [185.70.43.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C624DDC3;
-	Wed,  3 Apr 2024 01:03:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 231F3FC12;
+	Wed,  3 Apr 2024 01:11:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712106199; cv=none; b=mecIfPlYEo8ypBh/dzf7qT5A4f32uLc3H4z+24k9mdss+2ctZQYd+CrxAiQs6XhUz+iOdUxWuxcNVin6fvauDs4/h8XM1Xd6Sgy2TCJ5F78nKb1bvKkFhBSSMOOoLDcnhtUoMXIF9hUib3OBOsDaX9VYf5an2A8mlwTdrIU8CW4=
+	t=1712106689; cv=none; b=L2LCVLxLXIKUXlQQOusA9fziXgcq43RyZ9Knu61DAH93wSXvBNiGaUZ+bhejHy9iUvXMRFvaOYcZHKo0vKtFCGX0S6vzVsQ7tEz7CebmxMXTW2GOGY1M7At6hNwDFgwH8H7oyez6dy+0DcKqfVrPkzSfeMjGJHc0RmrfvFkpke8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712106199; c=relaxed/simple;
-	bh=AOZHdUFBAbZLCmK2+LKYvUtaym4XNZbYFlXQzqVeLzo=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=BK5TTL+p18Ir7vgrOzONX6Uj47K0fHkrw/3y9Zxz7xuTZXNuSRLf5mzveQCwYd0exMnv01t83RAbajYI4X37Owm8NmR61ctfsHgPKP9NC4k/R1hK/xpNViO09DQtMWbBnMfIk/wTxyW3xqZffGGcH2ldbwktfyNxmH4ksaRe7sM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thefossguy.com; spf=pass smtp.mailfrom=thefossguy.com; dkim=pass (2048-bit key) header.d=thefossguy.com header.i=@thefossguy.com header.b=TZre1Pda; arc=none smtp.client-ip=185.70.43.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thefossguy.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thefossguy.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thefossguy.com;
-	s=protonmail; t=1712106195; x=1712365395;
-	bh=nHxcYCHNMSfzwkXGRERFhLW2wEH2xIMrQxurqp9tbRI=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=TZre1PdaZbND18eFBwwhyDtGirzYl/imTukmyF5tJw/SWpeZF0Zydt4e3s1+WF5jv
-	 FqVbQdH/ZEU+skT79DAlhwwftq4iSIlaWZJtRopHGcnCVWul9SFAaqOhj18UPFVWi/
-	 0vTW5Dh70G9iG4GtntujilYBF41ArOy22rYr1aLtvCF/eZILe/r/7zHXsv2N7VHWAo
-	 N8jnBhlpmwt14ds5H/ZC+3CnaWaajNEnnSLPJ2FGsOfPgzmmjVt8O/cJxzd3XPfuBt
-	 CGYis613tXuVjpgBAQ/PZUadsWrQPgBpQ7U8+m0zS7Foyu5vXGBkdZLRyrGSIPWWYb
-	 +xa/PhPqMHJdQ==
-Date: Wed, 03 Apr 2024 01:03:07 +0000
-To: Saravana Kannan <saravanak@google.com>
-From: Pratham Patel <prathampatel@thefossguy.com>
-Cc: Dragan Simic <dsimic@manjaro.org>, sebastian.reichel@collabora.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, regressions@lists.linux.dev, stable@vger.kernel.org
-Subject: Re: Fixing the devicetree of Rock 5 Model B (and possibly others)
-Message-ID: <D0A2ZL6S8UG6.2BQKIBQWYB36D@thefossguy.com>
-In-Reply-To: <CAGETcx_ToHsp_c+Yt0qqST4Zd-GC7dPn_j=PpB1n1xpZtOnMfg@mail.gmail.com>
-References: <tQ0L3-34g4t-mzfQIP6KDe5OYelGnEo6Udzq6Kb_nEcljppSQUXOktpE__nL-CdLOu9gW-4tIIbjtSbqrdCrjEkdhZLPiiHTqRcCB6WORuM=@thefossguy.com> <ac4246bf3786230eb9ca85b329e7d0df@manjaro.org> <CAGETcx89V5CJrAq6XwuGiusQnkR804pTgYAtS94v7Q+v=Cv+qA@mail.gmail.com> <D0A122WK7CB9.33B2TP6UCMJBJ@thefossguy.com> <CAGETcx_ToHsp_c+Yt0qqST4Zd-GC7dPn_j=PpB1n1xpZtOnMfg@mail.gmail.com>
-Feedback-ID: 104309535:user:proton
+	s=arc-20240116; t=1712106689; c=relaxed/simple;
+	bh=lnTs2cVXM93CsaTLuEe4HYuxRslxisuZ0kDsO5APKs8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SWzNTQO4WO52+wty+WpUfu/dvv7SbplmGkmDPpNQyVjVGNfGaElD6wVw3VpzimMak25pXZ95LLo96zsa8UnXmZcCPZna9FKZhy7a/XMpPP28FELW6A9XpE3Xa5k9sv+wdMXCSDae3piIScbJ9RALwy/9XsPHTQHqySdL0/NYEW4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=b+EfHFkf; arc=none smtp.client-ip=209.85.128.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-614426b016aso8593237b3.0;
+        Tue, 02 Apr 2024 18:11:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1712106687; x=1712711487; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Z73wb+SKG9jSZ/Yydm0AUJwXmsHQ5eHka22JkZx8e+M=;
+        b=b+EfHFkfPa2Zng1k/aqfCQEGL4LeFGL7xTQy1O6NqJ07Pk/GPdHPzG0SHXBuXjSxO3
+         7vdPGvrpTp+HhKwU+1siz+HLgTOOwvSPFRlLsNEPj4kuZPRnuYTxIqNllMDCPVy77Cxf
+         JY/LTQzrWLZNKk5/w5vBTRZ/EmchsHxEemPU90vmocWFQDXSzqeJpxE+npOf9gZ7AGIj
+         dYPut4jC725x8raHPreiP3npZP2tde19NpiR3vowxI1xbnyXuJEOgrhrofDgWmA/5Zkc
+         t7Vgl7Z5LSq+JLonEDSrBnv1UnKfOflruvghcHOkg3d6CE2EON/oWQyeu61S0WDQHNm1
+         PeVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712106687; x=1712711487;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Z73wb+SKG9jSZ/Yydm0AUJwXmsHQ5eHka22JkZx8e+M=;
+        b=CRKocypY7qIqTlfY+Sr3FC6sVMs0SBRTbA6DddsmIYyHmRBNT4+sXpBowx4Jnq2htB
+         SBLbuJRaZvSUTH34NhiNay4AAn5i3O76Iy6uSQS0io8qm9oByXcztodKAS79Qzmxvxj0
+         zE5Yhu/ZP0riZbtG20p+87nnP5Yd9yq8ZiYR05AA773QM8gk59B6WBzVrfox+uQWEAvH
+         JbkhmrZHlIJoqWOf71Asb6Q53B/Ai1B3/apCHtZojgrMxMhP25aD6KzPHACrj5wXWSu+
+         bSNLcWNwMQyYdlM+QZ4PxcpyiEHU4BNGvIckXsilp9UxamsPafVJWEELIs2B2KY2kJgU
+         lzBg==
+X-Forwarded-Encrypted: i=1; AJvYcCUiRK7z+mfsAc5KchxmA5s6fvpphCtPZ1G4+mp/LsJ7HpjmRbwMaLjHZytZB8HRzFny0lyrhV9BYHWZXbmmRSlrRBhevsGRhEr7HtatS6bMRev9S8MgeCO5ag/w83wjOXVQ1V/wRgn0Ww==
+X-Gm-Message-State: AOJu0YwdQqJaCeSSDPht9UeO8zZo9608+fzYB5THeB7aZdSe3t4wTSEE
+	BFYUsDQDtjWtJFogIwSdXlusDC4xrp71cMBu6m4HGbO/2tMM7+ENVOd9Z1DRd/auD/QT+b3z5Xv
+	sR0dpZxFkTa/fRJwa9x+W0W5JgmY=
+X-Google-Smtp-Source: AGHT+IFquNV7etgb2w5kQlbd8NCb/0m/IZnAutbSyCn47svG6p/9K8iqIcJf4IS+AFN9acf4nFrrk9isPtaGO0YKFFI=
+X-Received: by 2002:a25:b910:0:b0:dcc:a446:55b with SMTP id
+ x16-20020a25b910000000b00dcca446055bmr8770788ybj.5.1712106687196; Tue, 02 Apr
+ 2024 18:11:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+References: <20240402193355.2333597-1-tharvey@gateworks.com>
+In-Reply-To: <20240402193355.2333597-1-tharvey@gateworks.com>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Tue, 2 Apr 2024 22:11:14 -0300
+Message-ID: <CAOMZO5D7bL0TiPHu4mVsO093Xnp2eYQXm+5gPxojFGoqh_xEJQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8m*-venice-gw7: Fix TPM schema violations
+To: Tim Harvey <tharvey@gateworks.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Lukas Wunner <lukas@wunner.de>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed Apr 3, 2024 at 6:16 AM IST, Saravana Kannan wrote:
-> On Tue, Apr 2, 2024 at 4:32=E2=80=AFPM Pratham Patel
-> <prathampatel@thefossguy.com> wrote:
-> >
-> > On Tue Apr 2, 2024 at 4:54 AM IST, Saravana Kannan wrote:
-> > > On Sat, Mar 23, 2024 at 10:10=E2=80=AFAM Dragan Simic <dsimic@manjaro=
-.org> wrote:
-> > > >
-> > > > Hello Pratham,
-> > > >
-> > > > On 2024-03-23 18:02, Pratham Patel wrote:
-> > > > > I looked at the patch and tried several things, neither resulted =
-in
-> > > > > anything that would point me to the core issue. Then I tried this=
-:
-> > > >
-> > > > Could you, please, clarify a bit what's the actual issue you're
-> > > > experiencing on your Rock 5B?
-> > >
-> > > Pratham, can you reply to this please? I don't really understand what
-> > > your issue is for me to be able to help.
-> >
-> > Hi,
-> >
-> > I apologize for not replying. Somehow, I did not notice the reply from
-> > Dragan. :(
-> >
-> > Since this patch was applied, an issue in the Rock 5B's DT has been
-> > unearthed which now results in the kernel being unable to boot properly=
-.
-> >
-> > Following is the relevant call trace from the UART capture:
-> >
-> > [   21.595068] Call trace:
-> > [   21.595288]  smp_call_function_many_cond+0x174/0x5f8
-> > [   21.595728]  on_each_cpu_cond_mask+0x2c/0x40
-> > [   21.596109]  cpuidle_register_driver+0x294/0x318
-> > [   21.596524]  cpuidle_register+0x24/0x100
-> > [   21.596875]  psci_cpuidle_probe+0x2e4/0x490
-> > [   21.597247]  platform_probe+0x70/0xd0
-> > [   21.597575]  really_probe+0x18c/0x3d8
-> > [   21.597905]  __driver_probe_device+0x84/0x180
-> > [   21.598294]  driver_probe_device+0x44/0x120
-> > [   21.598669]  __device_attach_driver+0xc4/0x168
-> > [   21.599063]  bus_for_each_drv+0x8c/0xf0
-> > [   21.599408]  __device_attach+0xa4/0x1c0
-> > [   21.599748]  device_initial_probe+0x1c/0x30
-> > [   21.600118]  bus_probe_device+0xb4/0xc0
-> > [   21.600462]  device_add+0x68c/0x888
-> > [   21.600775]  platform_device_add+0x19c/0x270
-> > [   21.601154]  platform_device_register_full+0xdc/0x178
-> > [   21.601602]  psci_idle_init+0xa0/0xc8
-> > [   21.601934]  do_one_initcall+0x60/0x290
-> > [   21.602275]  kernel_init_freeable+0x20c/0x3e0
-> > [   21.602664]  kernel_init+0x2c/0x1f8
-> > [   21.602979]  ret_from_fork+0x10/0x20
+Hi Tim,
+
+On Tue, Apr 2, 2024 at 4:34=E2=80=AFPM Tim Harvey <tharvey@gateworks.com> w=
+rote:
 >
-> This doesn't make a lot of sense. "remote-endpoint" shouldn't be
-> related to anything to do with psci cpuidle. I'm guessing something
-> else is failing much earlier in boot that's indirectly causing this
-> somehow? Can you please take a look at what's failing earlier and let
-> us know? Or see what driver probe is failing up to this point but used
-> to work in the good case.
-
-I'm pretty new to this, "just starting". I'm not sure how to do that,
-since the kernel doesn't really "move forward". I will verify if
-a8037ceb8964 fixes it or not and get back by the end of this week.
-
-> Also, where is the dts file that corresponds to this board in upstream? I=
-s it
-> arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-
-Yes.
-
-> >
-> > > Also, can you give the output of <debugfs>/devices_deferred for the
-> > > good vs bad case?
-> >
-> > I can't provide you with requested output from the bad case, since the
-> > kernel never moves past this to an initramfs rescue shell, but followin=
-g
-> > is the output from v6.8.1 (**with aforementioned patch reverted**).
-> >
-> > # cat /sys/kernel/debug/devices_deferred
-> > fc400000.usb    platform: wait for supplier /phy@fed90000/usb3-port
-> > 1-0022  typec_fusb302: cannot register tcpm port
-> > fc000000.usb    platform: wait for supplier /phy@fed80000/usb3-port
-> >
-> > It seems that v6.8.2 works _without needing to revert the patch_. I wil=
-l
-> > have to look into this sometime this week but it seems like
-> > a8037ceb8964 (arm64: dts: rockchip: drop rockchip,trcm-sync-tx-only fro=
-m rk3588 i2s)
-> > seems to be the one that fixed the root issue. I will have to test it
-> > sometime later this week.
+> Since commit 26c9d152ebf3 ("dt-bindings: tpm: Consolidate TCG TIS
+> bindings"), several issues are reported by "make dtbs_check" for arm64
+> devicetrees:
 >
-> Ok, once you find the patch that fixes things, let me know too.
+> The compatible property needs to contain the chip's name in addition to
+> the generic "tcg,tpm_tis-spi".
+>
+> tpm@1: compatible: ['tcg,tpm_tis-spi'] is too short
+>         from schema $id:
+> http://devicetree.org/schemas/tpm/tcg,tpm_tis-spi.yaml#
+>
+> Fix these schema violations.
+>
+> Gateworks Venice uses an Atmel ATTPM20P:
+> https://trac.gateworks.com/wiki/tpm
 
-Will do!
+Thanks for the fix.
 
- -- Pratham Patel
-
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
 
