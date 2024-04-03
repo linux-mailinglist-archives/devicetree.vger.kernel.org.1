@@ -1,140 +1,148 @@
-Return-Path: <devicetree+bounces-55944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55945-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18E748971B9
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 15:55:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 287148971F7
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 16:09:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ABF5DB2B679
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 13:55:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AAB59286CDD
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 14:09:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 121DE1494D8;
-	Wed,  3 Apr 2024 13:54:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74DC6148FF1;
+	Wed,  3 Apr 2024 14:09:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RFrmcSr+"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ej5TuduV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8662E1494A2
-	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 13:54:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4383148831;
+	Wed,  3 Apr 2024 14:09:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712152482; cv=none; b=Vqy0SjAcRBJVfWoM1KJLH0THjrDmr5pFAzMmCI9m5WzTXnIG3rfPIvvCYohILJOcwpMHva+13apceoXz32gdfFfuyRucoWFEf75/rK1vfLLSIplKdX+rwvHMGGP7j8dgHE3TDIYt7ERu6XVwDX4DH60Nk4ye9dCys12XDT2VIwY=
+	t=1712153361; cv=none; b=YB+2F0tDP1mwS3W4RkTQ8axqmognJkOFMrOYw45oSBAfo3iXqdZhChQ6hi8QkAajSAuKty2+AqMMEr0zDFLFVyPVdVecHbgh18MW1jtOSrhEuMYCsvBd99eUZZQ82AZdkEH68m3ukSkac0TUyCztz/YZNluTCfthYBpAzpIcMiU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712152482; c=relaxed/simple;
-	bh=2Vvj3IV+oCKuI5HJcUWsnah5mTc7DyAl5PLfqClSBy8=;
+	s=arc-20240116; t=1712153361; c=relaxed/simple;
+	bh=agTHV4kamLLPYcNHOfaIhrtk8c/lda8kF/YWjh1kBJo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fbJiHBxhRJL2AvNJ2l/NQQygOP3hbchHqUxtzXL9GgJyQ3CC/VCSbnIVtw1wHbEZRqkobdbeCdkWR7BI3yuj7n4qBVa3q4JZezX/Hnu9zQr+siZMdPDnuen22lHOk/zGS5klZcQ24phtD7AUCfg11/fn+GeC0uUxFc70TsirkbA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RFrmcSr+; arc=none smtp.client-ip=209.85.210.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-6eae2b57ff2so5196211b3a.2
-        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 06:54:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712152480; x=1712757280; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=BT3SVbiFXiDa5GkZGp0Vcjd+rOVegIfu/u0rdzybgMY=;
-        b=RFrmcSr+v4+P2CtgMtj/kv1AIgrrCRmcf1HuijEO9XejZFHvqA82Dh99foP2Su5Tcz
-         whOZkakHxABrq1NSQnVdtj22c5ScNMI+GLWlFnG8EhHN01N1jbHE6DnRd5YVzUdGQ1BE
-         oYGAZsV4S2zRMQnUkw0fJkWtRTBUPQgolXQP3WNIRFYVPKq6MeKaL0n0a9gcZL21L9ai
-         0DyWFecCo4Z10+7P6qncR46A/gcVFvkcrfvLmc0gR1l5+88bKCMMXlWvfKJca0/X1jAB
-         BuJDpVFeqSwx5eJ9o2P2HOLcqW/ZsIdnByrXSVHkupzqxtrrMpIn17LfLBbJxqF00a8c
-         H2zQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712152480; x=1712757280;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BT3SVbiFXiDa5GkZGp0Vcjd+rOVegIfu/u0rdzybgMY=;
-        b=Crvjt6jQc9yMLBt6locPQf6vXEGj46zgKUrR4ywcjf/+vEiuI0LY1r6Guck1V4voTv
-         bL5EG/Ys8iX3udDbmloMNR/nGorEK06W0ZqMTzq99VhnowHpiQBEd/bmnkEHMKJQ3HhA
-         Y8DWAQyETqAV7DBZOUAEm+kDL/0/oJInjZX69Bot6T75fmX0Pi6pi13bZUWFIdrMP9/h
-         UI/bpUyn4+kOum8iKDEhXig+Epyl2pI5iZRZEeCUT+gox7Vumh8vp8jHkTmwaIdHG4n7
-         pBbJBSkSYyNMEi+oN0RO0bJKH67D+krMcyXxqKzZpwa/3H7HzvNWOKZN+F31MxqnarI1
-         aGNA==
-X-Forwarded-Encrypted: i=1; AJvYcCU5eSenD79EX8jJxBr2vCTJFAdtnxRNS9k/A6DuZkAAWvumpw7QchWqspiYKohX5/UdRa8GdleTNVzhgZwZEVQ/kwQ3YO9dRq5M0w==
-X-Gm-Message-State: AOJu0Yw+VqBq0BDgoivtM5j1azjWkVU33fCHzq/Wy1MftXeTipIBEKmN
-	fYeT8IGV6tcPGbw9Yk4DoQ2adq+OYZVGRnCFnIP3FJlD63NfF7A7Nu070GSSPg==
-X-Google-Smtp-Source: AGHT+IFdPMsL6gzwJKmcOgi/W57VtFm/bny0BK6vW8aPFa/4EX4u6/4HpM7yKc9A/olChrmi8iNVGw==
-X-Received: by 2002:a05:6a21:6704:b0:1a7:2db0:baa6 with SMTP id wh4-20020a056a21670400b001a72db0baa6mr1400907pzb.30.1712152479542;
-        Wed, 03 Apr 2024 06:54:39 -0700 (PDT)
-Received: from thinkpad ([103.28.246.48])
-        by smtp.gmail.com with ESMTPSA id a25-20020aa780d9000000b006e6b3c4e70bsm12141952pfn.171.2024.04.03.06.54.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Apr 2024 06:54:39 -0700 (PDT)
-Date: Wed, 3 Apr 2024 19:24:33 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Danila Tikhonov <danila@jiaxyga.com>
-Cc: andersson@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org,
-	kishon@kernel.org, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	cros-qcom-dts-watchers@chromium.org, davidwronek@gmail.com,
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sc7180: Fix UFS PHY clocks
-Message-ID: <20240403135433.GP25309@thinkpad>
-References: <20240401182240.55282-1-danila@jiaxyga.com>
- <20240401182240.55282-3-danila@jiaxyga.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Puvw8YLfBR2R+vytGC0dMLTmM8FSXNesMLWJaQd5pI6rnI0zEib8F7jB4sQSsUpXgwCIMjHpabBV6+B6+nJodh05t6DX8G2wUieyR8090qOpLrdvb+HgVADZhBpkNEqPnzDEfSTxRF53lRM1aWXYwyqaipM2+JdDQ/Tl5o5gXtQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ej5TuduV; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1712153358;
+	bh=agTHV4kamLLPYcNHOfaIhrtk8c/lda8kF/YWjh1kBJo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ej5TuduVQzkPKOqmLXBWFS4juFDp4MmlKPVPcTaeoSqlAy48WAn1nq0ecYlAIQow6
+	 J6TlBihY4qc7QNKs9/1bOWSpoNpAndiX5VWK+c5LnV7z1vcADEOzZUEdLIQ0EwxrS0
+	 Ru8uWgGZZOmthtVp/8LCe/1/PDhwVA33EnZUzGvCqClWTmlJXIdZODfRAzRdcsw6QO
+	 LEUPf4ZMmk8WIvt/EKwilFZ3oOXrIV2eSy66+zHF9cH9tPVoajTUo/RLplO5XmtOp0
+	 tBZ65nThRBz5Fp2SVGYPf4AuGbV4z0R+xST8gP6it6QkMgNgk3yg6qlDrc96fmLaRr
+	 9ul7GpGOBrqGQ==
+Received: from mercury (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id E10B037814A4;
+	Wed,  3 Apr 2024 14:09:17 +0000 (UTC)
+Received: by mercury (Postfix, from userid 1000)
+	id D07B01060E07; Wed,  3 Apr 2024 15:52:11 +0200 (CEST)
+Date: Wed, 3 Apr 2024 15:52:11 +0200
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Pratham Patel <prathampatel@thefossguy.com>
+Cc: Saravana Kannan <saravanak@google.com>, 
+	Dragan Simic <dsimic@manjaro.org>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, regressions@lists.linux.dev, 
+	stable@vger.kernel.org
+Subject: Re: Fixing the devicetree of Rock 5 Model B (and possibly others)
+Message-ID: <4zlnwwycmjt4p2efqvvxirgcxqyyptf4ndqmbm5uxjjbk2toyz@uyxh2lmwb2fz>
+References: <tQ0L3-34g4t-mzfQIP6KDe5OYelGnEo6Udzq6Kb_nEcljppSQUXOktpE__nL-CdLOu9gW-4tIIbjtSbqrdCrjEkdhZLPiiHTqRcCB6WORuM=@thefossguy.com>
+ <ac4246bf3786230eb9ca85b329e7d0df@manjaro.org>
+ <CAGETcx89V5CJrAq6XwuGiusQnkR804pTgYAtS94v7Q+v=Cv+qA@mail.gmail.com>
+ <D0A122WK7CB9.33B2TP6UCMJBJ@thefossguy.com>
+ <CAGETcx_ToHsp_c+Yt0qqST4Zd-GC7dPn_j=PpB1n1xpZtOnMfg@mail.gmail.com>
+ <D0A2ZL6S8UG6.2BQKIBQWYB36D@thefossguy.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="4danktmrrrxcg4g2"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240401182240.55282-3-danila@jiaxyga.com>
+In-Reply-To: <D0A2ZL6S8UG6.2BQKIBQWYB36D@thefossguy.com>
 
-On Mon, Apr 01, 2024 at 09:22:40PM +0300, Danila Tikhonov wrote:
-> QMP PHY used in SC7180 requires 3 clocks:
-> 
-> * ref - 19.2MHz reference clock from RPMh
-> * ref_aux - Auxiliary reference clock from GCC
-> * qref - QREF clock from GCC
-> 
-> While at it, let's move 'clocks' property before 'clock-names' to match
-> the style used commonly.
-> 
-> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+--4danktmrrrxcg4g2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-- Mani
+Hi,
 
-> ---
->  arch/arm64/boot/dts/qcom/sc7180.dtsi | 9 ++++++---
->  1 file changed, 6 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> index 2b481e20ae38..5c9ec8047f00 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> @@ -1585,9 +1585,12 @@ ufs_mem_phy: phy@1d87000 {
->  			compatible = "qcom,sc7180-qmp-ufs-phy",
->  				     "qcom,sm7150-qmp-ufs-phy";
->  			reg = <0 0x01d87000 0 0x1000>;
-> -			clocks = <&gcc GCC_UFS_MEM_CLKREF_CLK>,
-> -				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>;
-> -			clock-names = "ref", "ref_aux";
-> +			clocks = <&rpmhcc RPMH_CXO_CLK>,
-> +				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>,
-> +				 <&gcc GCC_UFS_MEM_CLKREF_CLK>;
-> +			clock-names = "ref",
-> +				      "ref_aux",
-> +				      "qref";
->  			power-domains = <&gcc UFS_PHY_GDSC>;
->  			resets = <&ufs_mem_hc 0>;
->  			reset-names = "ufsphy";
-> -- 
-> 2.44.0
-> 
+On Wed, Apr 03, 2024 at 01:03:07AM +0000, Pratham Patel wrote:
+> > > > Also, can you give the output of <debugfs>/devices_deferred for the
+> > > > good vs bad case?
+> > >
+> > > I can't provide you with requested output from the bad case, since the
+> > > kernel never moves past this to an initramfs rescue shell, but follow=
+ing
+> > > is the output from v6.8.1 (**with aforementioned patch reverted**).
+> > >
+> > > # cat /sys/kernel/debug/devices_deferred
+> > > fc400000.usb    platform: wait for supplier /phy@fed90000/usb3-port
+> > > 1-0022  typec_fusb302: cannot register tcpm port
+> > > fc000000.usb    platform: wait for supplier /phy@fed80000/usb3-port
+> > >
+> > > It seems that v6.8.2 works _without needing to revert the patch_. I w=
+ill
+> > > have to look into this sometime this week but it seems like
+> > > a8037ceb8964 (arm64: dts: rockchip: drop rockchip,trcm-sync-tx-only f=
+rom rk3588 i2s)
+> > > seems to be the one that fixed the root issue. I will have to test it
+> > > sometime later this week.
+> >
+> > Ok, once you find the patch that fixes things, let me know too.
+>=20
+> Will do!
 
--- 
-மணிவண்ணன் சதாசிவம்
+FWIW the v6.8.1 kernel referenced above is definitely patched, since
+upstream's Rock 5B DT does neither describe fusb302, nor the USB
+port it is connected to.
+
+We have a few Rock 5B in Kernel CI and upstream boots perfectly
+fine:
+
+https://lava.collabora.dev/scheduler/device_type/rk3588-rock-5b
+
+So it could be one of your downstream patches, which is introducing
+this problem.
+
+-- Sebastian
+
+--4danktmrrrxcg4g2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmYNXwcACgkQ2O7X88g7
++ppSBQ//WsXoLg+w00Vt6lS7Fu+Ry1/gMQ7+0b0R66GBVrconK+w8cdxwNCmJe+z
+0/5ehaf6Wd4Btp2YcDywLFVFv+nHEg6H3t+PSyVzST2EnEGpJBzL9FBGq/J8XIVv
+TSyMJPEb911F63xSgZXoqlLa/Jti4ccqYIJUy6LYLJ97/3Wm1rtzPvPyrs2ySJ8I
+5l3zLA4POdS6I7vdbPNVjzY4LVEG9CwQIJIwGoScCwoxESlMpiB1+hLYil/2GsVq
+1OKAwEZuRycmROdMobiYYsO/a1GQU2FcIcZ4ocmX5e1U94qmP578endIVW+lFz8+
+S5FXoSOmxCZY6x4mczQ2nrGNI0vHfUuiNZHOxpoUZa2Y6Lw1D1v2a9Ek1IKH0LUt
+t8vp4w2k9nvMAXpRXaCK17zR/x92osn5SNNKz7RCd2Q9yGeB4a0iSDoA82xCYpGd
+lTtrxBkBSLKJlraVeeCuuwRxINRRg5DFwhleXfSEvIFXOHPVV+Fc/UPoq1bNzgF/
+jDVLTdRtfiWgl0c833WyLvCU7A3AjuFmO3AmxV+Z6gvv97o7JknuX5fsW5cjfAHx
+UIp/OBj+aEG/fZc5cG74LxfVZbxpK9McusBysf8BsFNAmHIzMoCsnGstfmSNHGr+
+fRntqsaKh8rDFgN5rKRB7svYg2dmFVKjtH7uPmQl9DPhfx5zSG8=
+=feq8
+-----END PGP SIGNATURE-----
+
+--4danktmrrrxcg4g2--
 
