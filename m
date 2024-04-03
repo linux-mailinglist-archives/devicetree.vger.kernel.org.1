@@ -1,207 +1,173 @@
-Return-Path: <devicetree+bounces-55779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A11D89651E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 08:58:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 508CE896525
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 08:59:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB7371F21870
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 06:58:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74E551C21643
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 06:59:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89FCD6CDD0;
-	Wed,  3 Apr 2024 06:56:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA56C56B9E;
+	Wed,  3 Apr 2024 06:56:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="MvQXH+EQ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Xp7UDEAy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 662AE60266;
-	Wed,  3 Apr 2024 06:56:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0353217C64
+	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 06:56:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712127383; cv=none; b=SgcmIR7W23mqNiCtNRsH/kmP13jtsWUF3iC6zTgNSmlg35lLNmwXymde3knVEAHlHZy/pzD52ljBh+XWQQ38aK9rUBYtQNNmbOldTH3QrXheF5/683vbUBdk/wG3xXWarbN/ud151h1fNj1vJc4rP+dcf/9b18xBEw8bhCn0wGo=
+	t=1712127417; cv=none; b=R4aM/aAGc34q6aNVo8xDQ5PL2vSmA3lxP+ahVvynNWunCJheiCi5VDT4HEONxBuot4cnPNOB2MZmNrxN4AaEN9WoSmHuXO/VxW0/iDauqmTNYqwbvk3haXFM65UQoGUGWCLGfD2XdGa7PMlEoVW9AB+BePclRt6r852jQK4/JOc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712127383; c=relaxed/simple;
-	bh=oBdA26JmC8YuT8Vwkgv3Oggk4xOJFs5mJ4Xhy4EhZMo=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qEoa0ey+RU22esVOXwbSyFhFhr31l0q401aybhWFGnhog2Yli2cBVwmfrAdBvlrANFLir2nCkh1j6WFSzUifB6gwSiNxRBeNW14gnpMeRvleIvP7exhINHZgcMEFptyToLLA72fYXlZCR4rpYo/AkXNNrdetKBEnJkx5X0ltwkE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=MvQXH+EQ; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 3ed8f944f18711eeb8927bc1f75efef4-20240403
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=URfUMiQT17lJh/yOODBv4ku3XEJlT+WvGvldzqruyDc=;
-	b=MvQXH+EQUco0AVb0iTokZwyqSSkPnDD91UyriLdyjvlyyPmyADNuC3lZUXsbIohiuy4j2fmknBUBGKutLAwFhwW+tSbCYDHqykCYsWWRsnMUUCFUosSX/9eSkr5Weih3HoPaLfybbJs84vecjy/dAkvRVwM8965TOjc+pLaeYfo=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.37,REQID:3c06e590-296b-4225-a28c-ba313df12fdd,IP:0,U
-	RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-	:release,TS:-5
-X-CID-META: VersionHash:6f543d0,CLOUDID:62e5a700-c26b-4159-a099-3b9d0558e447,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
-	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 3ed8f944f18711eeb8927bc1f75efef4-20240403
-Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
-	(envelope-from <shawn.sung@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1260599551; Wed, 03 Apr 2024 14:56:07 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- MTKMBS14N2.mediatek.inc (172.21.101.76) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Wed, 3 Apr 2024 14:56:06 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Wed, 3 Apr 2024 14:56:06 +0800
-From: Shawn Sung <shawn.sung@mediatek.com>
-To: CK Hu <ck.hu@mediatek.com>, Jassi Brar <jassisinghbrar@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>, Hsiao Chien Sung
-	<shawn.sung@mediatek.com>, "Jason-JH . Lin" <jason-jh.lin@mediatek.com>,
-	Houlong Wei <houlong.wei@mediatek.com>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>
-Subject: [PATCH v4 9/9] mailbox: mediatek: Add secure CMDQ driver support for CMDQ driver
-Date: Wed, 3 Apr 2024 14:56:03 +0800
-Message-ID: <20240403065603.21920-10-shawn.sung@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20240403065603.21920-1-shawn.sung@mediatek.com>
-References: <20240403065603.21920-1-shawn.sung@mediatek.com>
+	s=arc-20240116; t=1712127417; c=relaxed/simple;
+	bh=f+q/StljaB1S8TLkEx5I/uMxp6wwUZnh0WqjPDNxsUM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=G+gMIy1cl3bPq4xXsCpaftX30278+lRugANNsQcUbFMjzzH3+BVdeJimhLlivvVNlWrmPGTKrMBySSIGRTUYp92nAk6+y+up7FWUhkLRCOFSX2fzY0R2CPQfY9tPOfqV8mC7iuqttjuO9mIH8bo5qxed7JjjAfVxLrtT2iRlJuI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Xp7UDEAy; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-56c5d05128dso4674109a12.0
+        for <devicetree@vger.kernel.org>; Tue, 02 Apr 2024 23:56:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712127413; x=1712732213; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=2LLHLweBnC/A4Inn3QBZB0cfVArcIS5qzK+VqPYegTY=;
+        b=Xp7UDEAyMRJ3zoIKWGjOJdFmduMNm14UDhbkaBE7dhsex0MVKVTjOScnmolNn9XZzF
+         dPoz/jT8EHKJurr78f5eE/uArOuoswOXQJ7Q21IuNkTTtP2RK2urfqDoj7FOjv3nfEa6
+         Flyhsy2D41+Y3VFCzEfwa7Cikm8snObPp1IxyEuUkzw2ePkJoJ3h/APwElFZwc1ukpvy
+         SYmvTfWO4CZc9e0x9Log/LQUmLDwhLkfRN9xd/Kf428703ZorQ7jBZI/WyXJLRQVZhzz
+         htbt7O7lWqSzEIt10bU8yhvZCRRQMhUk6z+EMrE1X47mdco84nsPnDXqV0IeiS6asjXx
+         qChg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712127413; x=1712732213;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2LLHLweBnC/A4Inn3QBZB0cfVArcIS5qzK+VqPYegTY=;
+        b=cQ/GD/TZALCmioGsh4vJRIRKMa2RU4dlVFr2UpUW9imsnWg99rwxJYk3pbnPz2NTwJ
+         I1lC8NhCui7lIxyrw5YVe6NPiL4U8XbFDZqAKMCzXohEa/5aGwMpPbjL8nu9j73snKOq
+         AJtp1yRu6zak/4lpLztJwWJGEMI5+BG6Xi6mak3LVyfeTENtAW+utgt/IkU+3UuVNSct
+         x/bWs+RYzz2f/sH3cj7wrBcvXzs3ndr4h6azxJcxxMxEUit5L7nF2jb3vd4oNHZXfDzo
+         m3TqxSNl/p+SHjCdt7S2utQvERoYQeeMOa9MFrVsCTPV6wojVBDcR+fCzfL2xOBvaL2x
+         MS0w==
+X-Gm-Message-State: AOJu0YyUX7MYZfTwscfYDlYdICbbJsYZ8+SFYl2UemOW2k67HG0Iebev
+	xHjeM9rOU7nunhiYqZfAqxg/gYUpxTJo6TToEhOFXOfUyKRurpMPLFnzj68mDEA=
+X-Google-Smtp-Source: AGHT+IFto/6DjID+G8YvVM3HsTGozfRdFHnQLOECeAtwELsOd5Qk5D3QGQ1SnQUhsQ5nkDOTM9ipxA==
+X-Received: by 2002:a17:906:2a15:b0:a4e:2873:e94b with SMTP id j21-20020a1709062a1500b00a4e2873e94bmr9429279eje.6.1712127413312;
+        Tue, 02 Apr 2024 23:56:53 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id wn2-20020a170907068200b00a4e781bd30dsm2550482ejb.24.2024.04.02.23.56.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Apr 2024 23:56:52 -0700 (PDT)
+Message-ID: <c51653d1-1a76-45de-93e0-ee5d341649e9@linaro.org>
+Date: Wed, 3 Apr 2024 08:56:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--5.381100-8.000000
-X-TMASE-MatchedRID: 4YoTATPIqSwlen1U/pCyekKcYi5Qw/RVCt59Uh3p/NVZps+y1VXzqUY/
-	auwRJnMLb1ikhugskqP8Qxx3otU4NmJZXQNDzktShK8o4aoss8quiRuR9mCaugqiCYa6w8tv235
-	yFjo/J+U1Wb8n14I41eXQHI6jQlB9DPIzF4wRfrAURSScn+QSXt0H8LFZNFG7hqz53n/yPnq6Sb
-	mHE/H1FlFBnyH44vf3KT6JGY05QCPJJ6OKxZ1HqboOfFLgUu3n
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--5.381100-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP:
-	B592F25D7C28CDD7C62ED6832DD71E7793473CC29696CB18FC5E8E1456399C762000:8
-X-MTK: N
+User-Agent: Mozilla Thunderbird
+Subject: Re: [Patch v2 1/2] dt-bindings: make sid and broadcast reg optional
+To: Jon Hunter <jonathanh@nvidia.com>, Sumit Gupta <sumitg@nvidia.com>,
+ robh@kernel.org, conor+dt@kernel.org, maz@kernel.org, mark.rutland@arm.com,
+ treding@nvidia.com
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-tegra@vger.kernel.org, amhetre@nvidia.com, bbasu@nvidia.com
+References: <20240402132626.24693-1-sumitg@nvidia.com>
+ <20240402132626.24693-2-sumitg@nvidia.com>
+ <025ed42a-c6f2-48e6-a8d1-b6de79d6957b@nvidia.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <025ed42a-c6f2-48e6-a8d1-b6de79d6957b@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>
+On 02/04/2024 21:15, Jon Hunter wrote:
+> 
+> 
+> On 02/04/2024 14:26, Sumit Gupta wrote:
+>> MC SID and Broadbast channel register access is restricted for Guest VM.
+>> Make both the regions as optional for SoC's from Tegra186 onwards.
+>> Tegra MC driver will skip access to the restricted registers from Guest
+>> if the respective regions are not present in the memory-controller node
+>> of Guest DT.
+>>
+>> Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
+>> ---
+>>   .../memory-controllers/nvidia,tegra186-mc.yaml | 18 +++++++++---------
+>>   1 file changed, 9 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
+>> index 935d63d181d9..c52c259f7ec5 100644
+>> --- a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
+>> +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
+>> @@ -146,17 +146,17 @@ allOf:
+>>       then:
+>>         properties:
+>>           reg:
+>> -          maxItems: 6
+>> +          maxItems: 4
+> 
+> minItems?
+> 
 
-CMDQ driver will probe a secure CMDQ driver when has_sec flag
-in platform data is true and its device node in dts has defined a
-event id of CMDQ_SYNC_TOKEN_SEC_EOF.
+If the intention was to make it variable, then yes, missing minItems.
+But more important: why patch was sent without any testing?
 
-Secure CMDQ driver support on mt8188 and mt8195 currently.
-So add a has_secure flag to their driver data to probe it.
-
-Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
-Signed-off-by: Hsiao Chien Sung <shawn.sung@mediatek.com>
----
- drivers/mailbox/mtk-cmdq-mailbox.c | 38 ++++++++++++++++++++++++++++++
- 1 file changed, 38 insertions(+)
-
-diff --git a/drivers/mailbox/mtk-cmdq-mailbox.c b/drivers/mailbox/mtk-cmdq-mailbox.c
-index e04302ca6ec03..a8a0619baaa5c 100644
---- a/drivers/mailbox/mtk-cmdq-mailbox.c
-+++ b/drivers/mailbox/mtk-cmdq-mailbox.c
-@@ -15,6 +15,7 @@
- #include <linux/pm_runtime.h>
- #include <linux/mailbox_controller.h>
- #include <linux/mailbox/mtk-cmdq-mailbox.h>
-+#include <linux/mailbox/mtk-cmdq-sec-mailbox.h>
- #include <linux/of.h>
- 
- #define CMDQ_MBOX_AUTOSUSPEND_DELAY_MS	100
-@@ -60,6 +61,9 @@ struct gce_plat {
- 	u8 shift;
- 	bool control_by_sw;
- 	bool sw_ddr_en;
-+	bool has_secure;
-+	u32 secure_thread_nr;
-+	u32 secure_thread_min;
- 	u32 gce_num;
- };
- 
-@@ -569,6 +573,7 @@ static int cmdq_probe(struct platform_device *pdev)
- 	int alias_id = 0;
- 	static const char * const clk_name = "gce";
- 	static const char * const clk_names[] = { "gce0", "gce1" };
-+	u32 hwid = 0;
- 
- 	cmdq = devm_kzalloc(dev, sizeof(*cmdq), GFP_KERNEL);
- 	if (!cmdq)
-@@ -594,6 +599,8 @@ static int cmdq_probe(struct platform_device *pdev)
- 		dev, cmdq->base, cmdq->irq);
- 
- 	if (cmdq->pdata->gce_num > 1) {
-+		hwid = of_alias_get_id(dev->of_node, clk_name);
-+
- 		for_each_child_of_node(phandle->parent, node) {
- 			alias_id = of_alias_get_id(node, clk_name);
- 			if (alias_id >= 0 && alias_id < cmdq->pdata->gce_num) {
-@@ -676,6 +683,31 @@ static int cmdq_probe(struct platform_device *pdev)
- 	pm_runtime_set_autosuspend_delay(dev, CMDQ_MBOX_AUTOSUSPEND_DELAY_MS);
- 	pm_runtime_use_autosuspend(dev);
- 
-+	if (cmdq->pdata->has_secure) {
-+		struct platform_device *mtk_cmdq_sec;
-+		static struct gce_sec_plat sec_plat = {0};
-+
-+		if (of_property_read_u32_index(dev->of_node, "mediatek,gce-events", 0,
-+					       &sec_plat.cmdq_event) == 0) {
-+			sec_plat.gce_dev = dev;
-+			sec_plat.hwid = hwid;
-+			sec_plat.gce_num = cmdq->pdata->gce_num;
-+			sec_plat.clocks = cmdq->clocks;
-+			sec_plat.thread_nr = cmdq->pdata->thread_nr;
-+			sec_plat.secure_thread_nr = cmdq->pdata->secure_thread_nr;
-+			sec_plat.secure_thread_min = cmdq->pdata->secure_thread_min;
-+
-+			mtk_cmdq_sec = platform_device_register_data(dev, "mtk-cmdq-sec",
-+								     PLATFORM_DEVID_AUTO,
-+								     &sec_plat,
-+								     sizeof(sec_plat));
-+			if (IS_ERR(mtk_cmdq_sec)) {
-+				dev_err(dev, "failed to register platform_device mtk-cmdq-sec\n");
-+				return PTR_ERR(mtk_cmdq_sec);
-+			}
-+		}
-+	}
-+
- 	return 0;
- }
- 
-@@ -719,6 +751,9 @@ static const struct gce_plat gce_plat_mt8188 = {
- 	.thread_nr = 32,
- 	.shift = 3,
- 	.control_by_sw = true,
-+	.has_secure = true,
-+	.secure_thread_nr = 2,
-+	.secure_thread_min = 8,
- 	.gce_num = 2
- };
- 
-@@ -733,6 +768,9 @@ static const struct gce_plat gce_plat_mt8195 = {
- 	.thread_nr = 24,
- 	.shift = 3,
- 	.control_by_sw = true,
-+	.has_secure = true,
-+	.secure_thread_nr = 2,
-+	.secure_thread_min = 8,
- 	.gce_num = 2
- };
- 
--- 
-2.18.0
+Best regards,
+Krzysztof
 
 
