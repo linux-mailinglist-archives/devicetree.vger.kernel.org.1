@@ -1,228 +1,457 @@
-Return-Path: <devicetree+bounces-56072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56073-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 833F3897AE1
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 23:39:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C615897B01
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 23:47:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC8DD1F27156
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 21:39:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2FE041C26059
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 21:47:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70301156888;
-	Wed,  3 Apr 2024 21:39:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21B9815687F;
+	Wed,  3 Apr 2024 21:47:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="U+Xlbt1E"
+	dkim=pass (2048-bit key) header.d=bigler.one header.i=@bigler.one header.b="fd/dU32A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay.yourmailgateway.de (relay.yourmailgateway.de [188.68.63.162])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF5F215686D
-	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 21:39:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8A9815688B;
+	Wed,  3 Apr 2024 21:47:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.68.63.162
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712180351; cv=none; b=OmH4Y/S4lg51wWMQ3z4vjZoNQ8DMMkbtGrMEgn92CetDWnUzBVpCGFh1p2RtxBh6Fzc3VgSXngAqnEBh5RFjSgn7i01LHXObNyYpsBww8YCUEHi+rMdEODY6pD0GKyAIOm+IwrLauzLw8Y0ZPfydRdbWYWmjXGWaBeh3B3rPy/A=
+	t=1712180831; cv=none; b=fBQoZRAhDyEfYkxBX2vgtQEloNQXPzoUgOJjO41Pa3iB8dK5ePOLMH98woi18lglS9rnULORKmMrWHlsaxilvyWH+mV/sYD5h5bixLVy4EwPce+b4y4GyMRfaztHO+356MWnc2TPUn7sOPnlD0JQdQ3nMTjo2/Z1ZHH+9tOXch4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712180351; c=relaxed/simple;
-	bh=9XNpaVr6XjkzZ7RPOavsx/JDkY510LTe6mw0RjUdvFM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type; b=pSY1K4JRbmGDWkdslK5dT99If1NcF2wKNQZKKPdfRLncyQ7IWgSDY8dg8v5tnqEfNTKRK2wbPqO5ITRzr5Y+b6hp7p1t/uJ66/S77BhuPk8n6BD2ntCQklQ7bgh6tZFXWgd9YjnqVzXfu1tjhlLSSugZadp0+v2ZQY9YlVbJqmc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=U+Xlbt1E; arc=none smtp.client-ip=209.85.219.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-qv1-f44.google.com with SMTP id 6a1803df08f44-69107859bedso1390606d6.2
-        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 14:39:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1712180349; x=1712785149; darn=vger.kernel.org;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=rPffGBVVcBTD0/hr44EGDriberaS7ivrDE6f5d0g9DU=;
-        b=U+Xlbt1EBLHfKQcExkTVmeGSD93PnmSWejVLJ2ygtT6WFfe6FlAVnHVPRHdn5F+jUg
-         xuK0iAwD47ne4ZugwXoqmHDO0cwapzf7cFkKDMM/XjDaeHJHojU/c7Sdyq/K34xOR/qU
-         vQdsvap8UHz2kIhXNE6jmgbsp7pdbbhz2fowg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712180349; x=1712785149;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rPffGBVVcBTD0/hr44EGDriberaS7ivrDE6f5d0g9DU=;
-        b=L6lP/VO8SHeIuRctPRkEiaV7Fde4p8iQCUdM2v/UkOkHroH+Wx+yi221VszcfJKnwv
-         AIJRUt/CJ0zGORGfPHfIP4BgaGb+dsg9id2GS8A3rQI4GBddSXrazCr7kXHVYzaBN+1G
-         kQf1XHOpClPvdNPxEsuLj1AhkE207WiKmjCcMeBWX/iflEYm3lmg5xNPqQ2J41217kGb
-         8O1atkn94feK+au31alWzqqJP5e0LlTbPdfh6oUghji2oN9BsCAta79crdaCzCQpd4y7
-         FvEzXDpzI97UXJOcvak7rplx6nD2lHO63tCvM77ZO1KwwB4+pugSWxd7tEttZXxrE73W
-         pKXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUNantVeEJZBF50d4SkrIjl3vxhQ/uBD2OJK9/J1TmbZ1UsMvdhgY5BdIzbZI0/TUWbp53osNtaMaAn195+OhiBDJjI8eMsVY8Elg==
-X-Gm-Message-State: AOJu0Yx4u37fVfSKW95XQJ1gD8f7HoQtZcvE1yalGb2+jDup2S0W0lrV
-	4vvIhYqZSpYz6tHs2m+BUgmmjWgy40PEUmtRKgg/hPQnKtJHbtR14A3qAryk4g==
-X-Google-Smtp-Source: AGHT+IGlR1uW9LzpHr+wnIKA1zbBfeqbFshXzeFwm8pcv2wiLPbzzMpB8p5PBY53bhBMCO3KfvaNtA==
-X-Received: by 2002:a05:6214:258b:b0:699:163c:a44c with SMTP id fq11-20020a056214258b00b00699163ca44cmr706072qvb.1.1712180348684;
-        Wed, 03 Apr 2024 14:39:08 -0700 (PDT)
-Received: from stbsrv-and-01.and.broadcom.net ([192.19.144.250])
-        by smtp.gmail.com with ESMTPSA id pi10-20020a0562144a8a00b0069903cddc96sm1750739qvb.18.2024.04.03.14.39.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Apr 2024 14:39:07 -0700 (PDT)
-From: Jim Quinlan <james.quinlan@broadcom.com>
-To: linux-pci@vger.kernel.org,
-	Nicolas Saenz Julienne <nsaenz@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-	Cyril Brulebois <kibi@debian.org>,
-	Phil Elwell <phil@raspberrypi.com>,
-	bcm-kernel-feedback-list@broadcom.com,
-	james.quinlan@broadcom.com
-Cc: Jim Quinlan <jim2101024@gmail.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE),
-	linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v9 1/4] dt-bindings: PCI: brcmstb: Add property "brcm,clkreq-mode"
-Date: Wed,  3 Apr 2024 17:38:58 -0400
-Message-Id: <20240403213902.26391-2-james.quinlan@broadcom.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20240403213902.26391-1-james.quinlan@broadcom.com>
-References: <20240403213902.26391-1-james.quinlan@broadcom.com>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="0000000000007f08f70615380d70"
+	s=arc-20240116; t=1712180831; c=relaxed/simple;
+	bh=d8DVzRRWiBOBWQHAvqPLGMyCILuV6QJ2ebbK4tgaVFs=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=mlkQfALEv12lB6l59YtCKG6X+n2UH77BEEMx1lXmOf4a47RQf6OOeG1H4ws7NyhzN7kJ1pPPMEAarXfWHUf+JvVxDxCdUl501PQRFk4m6vNijUC/T8Xs8GN0lKM24RlYkalnQ84ZKYRKT9nXDPhYoWNSLkd/tYHkVmyybKl5YLM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bigler.one; spf=pass smtp.mailfrom=bigler.one; dkim=pass (2048-bit key) header.d=bigler.one header.i=@bigler.one header.b=fd/dU32A; arc=none smtp.client-ip=188.68.63.162
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bigler.one
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bigler.one
+Received: from mors-relay-8201.netcup.net (localhost [127.0.0.1])
+	by mors-relay-8201.netcup.net (Postfix) with ESMTPS id 4V8yph0DXyz3x1P;
+	Wed,  3 Apr 2024 23:40:28 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=bigler.one; s=key2;
+	t=1712180428; bh=d8DVzRRWiBOBWQHAvqPLGMyCILuV6QJ2ebbK4tgaVFs=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=fd/dU32AHFSSJK3tHzN8bIz+NYjrXgQ3VuBzIirf4efeESgj5xCtB27wEjpgqTsGv
+	 Kiu6VUMfYmBGEuSXLn8fIbPAMKvKBAuKed2P2Qxb419T3jSh3wmxkfEFEZ+3bMOMuQ
+	 j/UudeavNFIwKUJSIVqoO7YJppeAOT4Cs3OUhs8PkyCdlPShEOrt7iB21r9nesJKbq
+	 /LE8+yJBZKiuZBGDkm/VADGHfbfABI3ev37vzdk0bb59NHNKLYLA621/3F+ibdADnY
+	 PQHdt9jZgSMHYYRNuK8EnJAdVc3ZeiBYA4d9/rLVHzAXj9+Re8aTfyxsOOU9eALi/z
+	 BLdAq2L6VBr0g==
+Received: from policy02-mors.netcup.net (unknown [46.38.225.35])
+	by mors-relay-8201.netcup.net (Postfix) with ESMTPS id 4V8ypg6b7tz3x0p;
+	Wed,  3 Apr 2024 23:40:27 +0200 (CEST)
+Received: from mx2fc6.netcup.net (unknown [10.243.12.53])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by policy02-mors.netcup.net (Postfix) with ESMTPS id 4V8ypd1DkHz8sWg;
+	Wed,  3 Apr 2024 23:40:24 +0200 (CEST)
+Received: from [192.168.1.24] (xdsl-188-155-38-242.adslplus.ch [188.155.38.242])
+	by mx2fc6.netcup.net (Postfix) with ESMTPSA id C318440555;
+	Wed,  3 Apr 2024 23:40:19 +0200 (CEST)
+Authentication-Results: mx2fc6;
+        spf=pass (sender IP is 188.155.38.242) smtp.mailfrom=benjamin@bigler.one smtp.helo=[192.168.1.24]
+Received-SPF: pass (mx2fc6: connection is authenticated)
+Message-ID: <d495577d97a5e7aa809d3e9a90ef6057404782f1.camel@bigler.one>
+Subject: Re: [PATCH net-next v2 0/9] Add support for OPEN Alliance
+ 10BASE-T1x MACPHY Serial Interface
+From: Benjamin Bigler <benjamin@bigler.one>
+To: Parthiban.Veerasooran@microchip.com
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ Horatiu.Vultur@microchip.com, Woojung.Huh@microchip.com,
+ Nicolas.Ferre@microchip.com, UNGLinuxDriver@microchip.com,
+ Thorsten.Kummermehr@microchip.com, davem@davemloft.net,
+ edumazet@google.com,  kuba@kernel.org, pabeni@redhat.com,
+ robh+dt@kernel.org,  krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, corbet@lwn.net,  Steen.Hegelund@microchip.com,
+ rdunlap@infradead.org, horms@kernel.org,  casper.casan@gmail.com,
+ andrew@lunn.ch
+Date: Wed, 03 Apr 2024 23:40:19 +0200
+In-Reply-To: <0596fce8-223b-494e-907e-f13d75f211cd@microchip.com>
+References: <20231023154649.45931-1-Parthiban.Veerasooran@microchip.com>
+	 <ea86159bb555336ae21311770e3a1a6374092e64.camel@bigler.one>
+	 <0596fce8-223b-494e-907e-f13d75f211cd@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+X-PPP-Message-ID: <171218042052.27882.8421913173689188987@mx2fc6.netcup.net>
+X-Rspamd-Queue-Id: C318440555
+X-Rspamd-Server: rspamd-worker-8404
+X-NC-CID: +iN5Y7Xep7LirHRdaEEmR9GEdlgjy4blmLL0Fh9Nb2ZIv2A=
 
---0000000000007f08f70615380d70
+Hi Parthiban,
 
-The Broadcom STB/CM PCIe HW -- a core that is also used by RPi SOCs --
-requires the driver to deliberately place the RC HW one of three CLKREQ#
-modes.  The "brcm,clkreq-mode" property allows the user to override the
-default setting.  If this property is omitted, the default mode shall be
-"default".
+Sorry for the late answer, I was quite busy the last few days.
 
-Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../devicetree/bindings/pci/brcm,stb-pcie.yaml | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+On Mon, 2024-03-25 at 13:24 +0000, Parthiban.Veerasooran@microchip.com wrot=
+e:
+> Hi Benjamin Bigler,
+>=20
+> Thank you for your testing and feedback. It would be really helpful to=
+=20
+> bring the driver to a good shape. We really appreciate your efforts on th=
+is.
+>=20
+> On 24/03/24 5:25 pm, Benjamin Bigler wrote:
+> > [Some people who received this message don't often get email from benja=
+min@bigler.one. Learn why this is important at https://aka.ms/LearnAboutSen=
+derIdentification ]
+> >=20
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know =
+the content is safe
+> >=20
+> > Hi Parthiban
+> >=20
+> > I hope I send this in the right context as it is not related to just on=
+e patch or
+> > some specific code.
+> >=20
+> > I conducted UDP load testing using three i.MX8MM boards in conjunction =
+with the
+> > LAN8651. The setup involved one board functioning as a server, which is=
+ just
+> > echoing back received data, while the remaining two boards acted as cli=
+ents,
+> > sending UDP packets of different sizes in various bursts to the server.
+> > Due to hardware constraints, the SPI bus speed was limited to 15 MHz, w=
+hich might
+> > have influenced the results.
+> >=20
+> > During the tests I experienced some issues:
+> >=20
+> > - The boards just start receiving after first sending something (ping a=
+nother board).
+> >    Some measurements showed that the irq stays asserted after init. Thi=
+s makes sense
+> >    as far as I understand the chapter 7.7 of the specification, the irq=
+ is deasserted
+> >    on reception of the first data header following CSn being asserted. =
+As a workaround
+> >    I trigger the thread at the end of oa_tc6_init.
+> It looks like the IRQ is asserted on RESET completion and expects a data
+> chunk from host to deassert the IRQ. I used to test the driver in RPI 4
+> using iperf3. For some reason I never faced this issue, may be when the
+> network device is being registered there might be some packet=20
+> transmission which leads to deliver a data chunk so that the IRQ is
+> deasserted. Thanks for the workaround. I think that would be the=20
+> solution to solve this issue. Adding the below lines in the end of the=
+=20
+> function oa_tc6_init() will trigger the oa_tc6_spi_thread_handler() to=
+=20
+> perform an empty data chunk transfer which will deassert the IRQ before=
+=20
+> starting the actual data transfer.
 
-diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-index 7e15aae7d69e..22491f7f8852 100644
---- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-@@ -64,6 +64,24 @@ properties:
- 
-   aspm-no-l0s: true
- 
-+  brcm,clkreq-mode:
-+    description: A string that determines the operating
-+      clkreq mode of the PCIe RC HW with respect to controlling the refclk
-+      signal.  There are three different modes -- "safe", which drives the
-+      refclk signal unconditionally and will work for all devices but does
-+      not provide any power savings; "no-l1ss" -- which provides Clock
-+      Power Management, L0s, and L1, but cannot provide L1 substate (L1SS)
-+      power savings. If the downstream device connected to the RC is L1SS
-+      capable AND the OS enables L1SS, all PCIe traffic may abruptly halt,
-+      potentially hanging the system; "default" -- which provides L0s, L1,
-+      and L1SS, but not compliant to provide Clock Power Management;
-+      specifically, may not be able to meet the T_CLRon max timing of 400ns
-+      as specified in "Dynamic Clock Control", section 3.2.5.2.2 PCI
-+      Express Mini CEM 2.1 specification.  This situation is atypical and
-+      should happen only with older devices.
-+    $ref: /schemas/types.yaml#/definitions/string
-+    enum: [ safe, no-l1ss, default ]
-+
-   brcm,scb-sizes:
-     description: u64 giving the 64bit PCIe memory
-       viewport size of a memory controller.  There may be up to
--- 
-2.17.1
+I have ipv6 disabled and use static ipv4 addresses. That could be the reaso=
+n why on
+my side no packet is sent.
+
+>=20
+> /* oa_tc6_sw_reset_macphy() function resets and clears the MAC-PHY reset
+>   * complete status. IRQ is also asserted on reset completion and it is
+>   * remain asserted until MAC-PHY receives a data chunk. So performing an
+>   * empty data chunk transmission will deassert the IRQ. Refer section
+>   * 7.7 and 9.2.8.8 in the OPEN Alliance specification for more details.
+>   */
+> tc6->int_flag =3D true;
+> wake_up_interruptible(&tc6->spi_wq);
+
+Perfect, thats the same I added and also works on my side.
+
+> >=20
+> > - If there is a lot of traffic, the receive buffer overflow error spams=
+ the log.
+> >=20
+> > - If there is a lot of traffic, I got various kernel panics in oa_tc6_u=
+pdate_rx_skb.
+> >    Mostly because more data to rx_skb is added than allocated and somet=
+imes because
+> >    rx_skb is null in oa_tc6_update_rx_skb or oa_tc6_prcs_rx_frame_end. =
+Some debugging
+> >    with a logic analyzer showed that the chip is not behave correctly. =
+There is more
+> >    bytes between start_valid and end_valid than there should be. Also t=
+here
+> >    seems to be 2 end_valid without a start_valid between. What is commo=
+n is that the incorrect
+> >    frame starts in a chunk where end_valid and start_valid is set.
+> >    In my opinion its a problem in the chip (maybe related to the errata=
+ in the next point)
+> >    but the driver should be resilent and just drop the packet and not c=
+ause a kernel panic.
+> Usually I run into this issue "receive buffer overflow" when I run RPI 4
+> with default cpu governor setting which is "ondemand". In this case,=20
+> even though if I set SPI clock speed as 15 MHz the RPI 4 core clock is
+> clocking down when it is idle which leads delivering half of the
+> configured SPI clock speed around 5.9 MHz. So the systems like RPI 4=20
+> need performance mode enabled to get the proper clock speed for SPI.=20
+> Refer below link for more details.
+>=20
+> https://github.com/raspberrypi/linux/issues/3381#issuecomment-1144723750
+>=20
+> I used to enable performance mode using the below command.
+>=20
+> echo performance | sudo tee=20
+> /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor > /dev/null
+>=20
+> So please ensure the SPI clock speed using a logic analyzer to get the
+> maximum throughput without receive buffer overflow.
+>=20
+> Of course, I agree that the driver should not crash in case of receive
+> buffer overflow. By referring your investigations, I understand that the
+> buffers in the MAC-PHY is being continuously overwritten again and again
+> as the host is very slow to read the data from the MAC-PHY buffers
+> through SPI which alters the descriptors. There might be two reasons why
+> we run into this situation.
+> 1. The host is busy doing something else and delays to initiate SPI even
+>     though SPI clock speed is 15 MHz.
+> 2. The SPI clock speed is less than 15 MHz.
+
+Sorry there is a missunderstanding between us. The receive buffer overflow =
+is not
+causing any=C2=A0harm except filling the log. In my setup I get in one day =
+about 35000
+entries. I am not sure=C2=A0if its appropriate to log these errors.
+
+The SPI Frequency is at 14.8 MHz. If I just have 2 boards connected, I am n=
+ot able
+to reproduce this. Only with 3 boards when 2 boards sends multiple big ethe=
+rnet
+frames (1512 byte per Frame) to one, I get these log entries.=C2=A0
+The latency seems to be quite low, from IRQ to start reading first frame it=
+ takes
+always less than 500us. Also the boards are just running the udp test.
+
+>=20
+> I use the below iperf3 setup for my testing and never faced the driver
+> crash issue even though faced "receive buffer overflow" error when I run
+> RPI 4 with "ondemand" default mode.
+>=20
+> Node 0 - Raspberry Pi 4 with LAN8650 MAC-PHY
+>   $ iperf3 -s
+> Node 1 - Raspberry Pi 4 with EVB-LAN8670-USB USB Stick
+>   $ iperf3 -c 192.168.5.100 -u -b 10M -i 1 -t 0
+>=20
+> and vice versa.
+>=20
+> I never faced "receive buffer overflow" error when I run RPI 4 with
+> "performance" mode enabled and even though all the cores are stressed
+> using the below command,
+>=20
+> $ yes >/dev/null & yes >/dev/null & yes >/dev/null & yes >/dev/null &
+>=20
+> Can you share more details about your testing setup and applications you
+> use, so that I will try to reproduce the issue in my setup to debug the
+> driver?
+
+I use a internal tool which does some stress tests using udp. Unfortunately=
+,
+I am not allowed to publish it, but a colleague works on a rust implementat=
+ion,
+which we can publish, but its not fully ready yet.
+On one board the tool is running in server mode. It just echoes back the re=
+ceived
+data. On the 2 other boards the tool is running in client mode. It sends va=
+rious
+sized udp-packets in different bursts and then checks if it receives the sa=
+me
+data in the same order.
 
 
---0000000000007f08f70615380d70
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+The crashes only happens when ZARFE is not set (with Rev B0). When the cras=
+h
+happens, I see on the logic analyzer that there are more bytes than mtu + h=
+eaders
+between the frame where start_valid is set and the frame where end_valid is=
+ set.
+Then this happens:
 
-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
-mOAplh6h3nMZUZxBguxG3g2p3iD4EgibUYneEzqOQafIQB/naf2uetKb8y9jKgWJxq2Y4y8Jqg2u
-uVIO1AyOJjWwqdgN+QhuIlat+qZd03P48Gim9ZPEMDUCAwEAAaOCAdswggHXMA4GA1UdDwEB/wQE
-AwIFoDCBowYIKwYBBQUHAQEEgZYwgZMwTgYIKwYBBQUHMAKGQmh0dHA6Ly9zZWN1cmUuZ2xvYmFs
-c2lnbi5jb20vY2FjZXJ0L2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNydDBBBggrBgEFBQcw
-AYY1aHR0cDovL29jc3AuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAw
-TQYDVR0gBEYwRDBCBgorBgEEAaAyASgKMDQwMgYIKwYBBQUHAgEWJmh0dHBzOi8vd3d3Lmdsb2Jh
-bHNpZ24uY29tL3JlcG9zaXRvcnkvMAkGA1UdEwQCMAAwSQYDVR0fBEIwQDA+oDygOoY4aHR0cDov
-L2NybC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcmwwJQYDVR0R
-BB4wHIEaamFtZXMucXVpbmxhbkBicm9hZGNvbS5jb20wEwYDVR0lBAwwCgYIKwYBBQUHAwQwHwYD
-VR0jBBgwFoAUljPR5lgXWzR1ioFWZNW+SN6hj88wHQYDVR0OBBYEFGx/E27aeGBP2eJktrILxlhK
-z8f6MA0GCSqGSIb3DQEBCwUAA4IBAQBdQQukiELsPfse49X4QNy/UN43dPUw0I1asiQ8wye3nAuD
-b3GFmf3SZKlgxBTdWJoaNmmUFW2H3HWOoQBnTeedLtV9M2Tb9vOKMncQD1f9hvWZR6LnZpjBIlKe
-+R+v6CLF07qYmBI6olvOY/Rsv9QpW9W8qZYk+2RkWHz/fR5N5YldKlJHP0NDT4Wjc5fEzV+mZC8A
-AlT80qiuCVv+IQP08ovEVSLPhUp8i1pwsHT9atbWOfXQjbq1B/ditFIbPzwmwJPuGUc7n7vpmtxB
-75sSFMj27j4JXl5W9vORgHR2YzuPBzfzDJU1ul0DIofSWVF6E1dx4tZohRED1Yl/T/ZGMYICbTCC
-AmkCAQEwazBbMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UE
-AxMoR2xvYmFsU2lnbiBHQ0MgUjMgUGVyc29uYWxTaWduIDIgQ0EgMjAyMAIMSO43VW7D5NP1X/KD
-MA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCAHwMMKz4hZeVCl39VAWbwDZacc//Yw
-vFp/xWj8A7iXMjAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yNDA0
-MDMyMTM5MDlaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFlAwQBFjALBglg
-hkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsGCSqGSIb3DQEBBzALBglghkgBZQME
-AgEwDQYJKoZIhvcNAQEBBQAEggEAWa4wFn1Q2EmAFGhlZtYnVHQOsnIJHmmRe0Krz2Jh+HMFtDZ6
-1PB6ljnDwCqO2cF7KulBdv/tTpid6ZQPT9FgXfedbPKTDHcuXasGaJYeatsUjH1Ejxpe7WPnLoXf
-xF6fiPjugI69o5HRWYfnfe/Ew3fbvbAlN47CD9hoAvg9+qd2pj6ImGIsnpbFXyJAoFVqxECzFKHR
-sAaEBCXsb1m6vwr0d8BoRm8JpyNjkr0g5191pNKivZ+5Lh8/zOSjGZ76I5zgwGauT9vchEnyZnm4
-ZEfJB28gX9Zlr5Uwa/ZuTdjTiedc+zIP3ltkhroYnxMen07BTeDTn02UmeX1a+s05g==
---0000000000007f08f70615380d70--
+[  437.155673] skbuff: skb_over_panic: text:ffff80007a8c2bd8 len:1600 put:6=
+4 head:ffff00000de28080
+data:ffff00000de280c0 tail:0x680 end:0x640 dev:eth1
+[  437.168987] kernel BUG at net/core/skbuff.c:192!
+[  437.173612] Internal error: Oops - BUG: 00000000f2000800 [#1] PREEMPT SM=
+P
+[  437.180407] Modules linked in: ppp_async crc_ccitt ppp_generic slhc lan8=
+65x oa_tc6 bec_infoo(O)
+tpm_tis_spi tpm_tis_core spi_imx imx_sdma
+[  437.196016] CPU: 1 PID: 455 Comm: oa-tc6-spi-thre Tainted: G           O=
+       6.6.11-
+gce336e2c2bc3-dirty #1
+[  437.205853] Hardware name: Toradex Verdin iMX8M Mini on FUMU (DT)
+[  437.212820] pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=
+=3D--)
+[  437.219790] pc : skb_panic+0x58/0x5c
+[  437.223376] lr : skb_panic+0x58/0x5c
+[  437.226959] sp : ffff80008362bd90
+[  437.230278] x29: ffff80008362bda0 x28: 0000000000000000 x27: ffff0000010=
+66878
+[  437.237426] x26: 000000000000001e x25: 00000000000007f8 x24: ffff0000010=
+cea80
+[  437.244571] x23: 00000000f0f0f0f1 x22: 000000000000001f x21: 00000000000=
+00000
+[  437.251720] x20: ffff0000010ceaa8 x19: 000000003f20003f x18: fffffffffff=
+fffff
+[  437.258867] x17: ffff7ffffded9000 x16: ffff800080008000 x15: 073a0764076=
+e0765
+[  437.266015] x14: 0720073007380736 x13: ffff8000823d1f58 x12: 00000000000=
+00534
+[  437.273162] x11: 00000000000001bc x10: ffff800082429f58 x9 : ffff8000823=
+d1f58
+[  437.280310] x8 : 00000000ffffefff x7 : ffff800082429f58 x6 : 00000000000=
+00000
+[  437.287455] x5 : 000000000000bff4 x4 : 0000000000000000 x3 : 00000000000=
+00000
+[  437.294606] x2 : 0000000000000000 x1 : ffff000001223b00 x0 : 00000000000=
+00087
+[  437.301753] Call trace:
+[  437.304203]  skb_panic+0x58/0x5c
+[  437.307436]  skb_find_text+0x0/0xf0
+[  437.310933]  oa_tc6_spi_thread_handler+0x438/0x880 [oa_tc6]
+[  437.316523]  kthread+0x118/0x11c
+[  437.319758]  ret_from_fork+0x10/0x20
+[  437.323343] Code: f90007e9 b940b908 f90003e8 97ca3c34 (d4210000)
+[  437.329446] ---[ end trace 0000000000000000 ]---
+
+
+Sometimes there are 2 end_valid after eachother without a start_valid betwe=
+en.
+Then this happens:
+
+[  469.737297] Unable to handle kernel NULL pointer dereference at virtual =
+address 0000000000000074
+[  469.746137] Mem abort info:
+[  469.748950]   ESR =3D 0x0000000096000004
+[  469.752709]   EC =3D 0x25: DABT (current EL), IL =3D 32 bits
+[  469.758036]   SET =3D 0, FnV =3D 0
+[  469.761098]   EA =3D 0, S1PTW =3D 0
+[  469.764252]   FSC =3D 0x04: level 0 translation fault
+[  469.769144] Data abort info:
+[  469.772033]   ISV =3D 0, ISS =3D 0x00000004, ISS2 =3D 0x00000000
+[  469.777529]   CM =3D 0, WnR =3D 0, TnD =3D 0, TagAccess =3D 0
+[  469.782594]   GCS =3D 0, Overlay =3D 0, DirtyBit =3D 0, Xs =3D 0
+[  469.787921] user pgtable: 4k pages, 48-bit VAs, pgdp=3D0000000043c32000
+[  469.794377] [0000000000000074] pgd=3D0000000000000000, p4d=3D00000000000=
+00000
+[  469.801184] Internal error: Oops: 0000000096000004 [#1] PREEMPT SMP
+[  469.807459] Modules linked in: ppp_async crc_ccitt ppp_generic slhc lan8=
+65x oa_tc6 bec_infoo(O)
+tpm_tis_spi tpm_tis_core spi_imx imx_sdma
+[  469.823064] CPU: 2 PID: 456 Comm: oa-tc6-spi-thre Tainted: G           O=
+       6.6.11-
+g350ed394a6ca-dirty #1
+[  469.832903] Hardware name: Toradex Verdin iMX8M Mini on FUMU (DT)
+[  469.839871] pstate: 00000005 (nzcv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=
+=3D--)
+[  469.846841] pc : skb_put+0xc/0x6c
+[  469.850169] lr : oa_tc6_spi_thread_handler+0x438/0x880 [oa_tc6]
+[  469.856106] sp : ffff80008376bdb0
+[  469.859424] x29: ffff80008376bdb0 x28: 0000000000000000 x27: ffff0000019=
+4c080
+[  469.866573] x26: 0000000000000000 x25: 0000000000000000 x24: ffff0000010=
+95c80
+[  469.873720] x23: 00000000f0f0f0f1 x22: 000000000000001f x21: 00000000000=
+00000
+[  469.880870] x20: ffff000001095ca8 x19: 000000003f20003f x18: 00000000000=
+00000
+[  469.888023] x17: 0000000000000000 x16: 0000000000000000 x15: 00000000000=
+00000
+[  469.895174] x14: 0000031acf8b86d8 x13: 0000000000000000 x12: 00000000000=
+00000
+[  469.902321] x11: 0000000000000002 x10: 0000000000000a60 x9 : ffff8000837=
+6b970
+[  469.909467] x8 : ffff00007fb6e580 x7 : 000000000194b080 x6 : 00000000000=
+00000
+[  469.916616] x5 : 0000000000000000 x4 : 0000000000000000 x3 : 00000000000=
+0fc80
+[  469.923765] x2 : 0000000000000001 x1 : 0000000000000040 x0 : 00000000000=
+00000
+[  469.930915] Call trace:
+[  469.933365]  skb_put+0xc/0x6c
+[  469.936342]  oa_tc6_spi_thread_handler+0x438/0x880 [oa_tc6]
+[  469.941929]  kthread+0x118/0x11c
+[  469.945166]  ret_from_fork+0x10/0x20
+[  469.948752] Code: d65f03c0 d503233f a9bf7bfd 910003fd (b9407406)
+[  469.954854] ---[ end trace 0000000000000000 ]---
+
+
+If interested I can try to get a recording with the logic analyzer and send=
+ it to you.
+
+By the way in the other answer you attached a screenshot of the logic analy=
+zer and you
+have a very nice HLA for oa_tc6. Are they open-source or are there any plan=
+s to publish them?
+
+> >=20
+> > - Sometimes the chip stops working. It always asserts the irq but there=
+ is no data (rca=3D0)
+> >    and also exst is not active. I found out that there is an errata (DS=
+80001075) point s3
+> >    that explains this. I set the ZARFE bit in CONFIG0. This also fixes =
+the point above.
+> >    The driver now works since about 2.5 weeks with various load with ju=
+st one loss of frame
+> >    error where I had to reboot the system after about 4 days.
+> It is good to hear that the driver works fine with the above changes. As=
+=20
+> mentioned in the errata, this continuous interrupt issue is a known
+> issue with LAN8651 Rev.B0. Switching to LAN8651 Rev.B1 will solve this
+> issue and no need of any workaround. Setting ZARFE bit in the CONFIG0
+> will solve the continuous interrupt issue but don't know how the above
+> "receive buffer overflow" issue also solved. I think it is a good idea=
+=20
+> to test with LAN8651 Rev.B1 without setting ZARFE bit once. It would be=
+=20
+> interesting to see the result. I am always using LAN8651 Rev.B1 for my=
+=20
+> testing.
+
+Unfortunately I just have LAN8651 Rev. B0 Chips. Are you sure that the Rev =
+B1 has the
+issue fixed? The errata here says that B1 is affected too:
+https://ww1.microchip.com/downloads/aemDocuments/documents/AIS/ProductDocum=
+ents/Errata/LAN8650-1-Errata-80001075.pdf
+
+>=20
+> I should be able to reproduce the "receive buffer overflow" issue and=20
+> consequently kernel crash in my setup with LAN8651 Rev.B1 so that I can=
+=20
+> investigate the issue further. As I am not able to reproduce in my RPI=
+=20
+> 4, I need your support for the tests and applications you used in your=
+=20
+> setup.
+> >=20
+> > Is there a reason why you removed the netdev watchdog which was active =
+in v2?
+> When the timeout occurs, there is no further action except increasing
+> tx_errors. Not seeing this except USB-to-Ethernet which can be removed
+> unexpectedly. But this is SPI interface which will not be removed
+> unexpectedly as it is a platform device. That's why we removed this.
+>=20
+> Best regards,
+> Parthiban V
+> >=20
+> > Thanks,
+> > Benjamin Bigler
+> >=20
+>=20
+
+Thanks,
+Benjamin Bigler
+
 
