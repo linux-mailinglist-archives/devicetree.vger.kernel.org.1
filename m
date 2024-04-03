@@ -1,93 +1,131 @@
-Return-Path: <devicetree+bounces-55756-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55758-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 161BE896421
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 07:33:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37376896428
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 07:35:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BD371C227C7
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 05:33:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 68D791C2264B
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 05:35:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBFE046B9B;
-	Wed,  3 Apr 2024 05:33:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FEE94779D;
+	Wed,  3 Apr 2024 05:35:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="VUWmJBUv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0465C4DA08;
-	Wed,  3 Apr 2024 05:33:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D67846425;
+	Wed,  3 Apr 2024 05:35:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712122397; cv=none; b=pWBHuzWVXkyMWbu90VoUbj9HBYxZmini7yj1abNrg3t42TFieHLvY7x7UAzzxNXCg9Bz6F9HqmYuCg7l7W/yVlNDsZBz1G+iqoW2qE/uDvU6JBigbdvIQCcCaU4P/6RMHnzZPGI9KZO7mmXpHPoDu42Odi2XqvhlS7id8emMbsc=
+	t=1712122518; cv=none; b=nodT2gLJJUTrjsH7SpQbChdWYeNI18eI53uQdQM9FgMYqqMrGtEO4jzg6i6hlKm/ihUl2iiVNWXaScGJiWBYpkDgG9SI6z/nA0GiV7UXwo46gTDF8QeOol08Rh87C2lI/Vw6ngwH9v5fpaKOQ7Cm0iDO3k6zR0nyHojhEq9EQmo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712122397; c=relaxed/simple;
-	bh=rDGADCXyQhug1jHaaVuWWWUGQXoCuhG2D6lBeCel1wQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=oTbX2MFpHm0aw438ncLKIP/rto97Yy1MIKhshZuQ8sQEJlmal3DuHk9c/n0E5YOnxQJncrH0M7y2aZLmFoefAB38zwljpYWG/CJL1xHq+xBIg0wUZIH5wv1jlNH0RfXZIHe3ira9R5kdEpkSyNaA6RU7E3bGYY1mzKfV9jxZBwE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-X-IronPort-AV: E=Sophos;i="6.07,176,1708354800"; 
-   d="scan'208";a="200195946"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 03 Apr 2024 14:33:09 +0900
-Received: from localhost.localdomain (unknown [10.166.13.99])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 76740400F302;
-	Wed,  3 Apr 2024 14:33:09 +0900 (JST)
-From: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To: lpieralisi@kernel.org,
-	kw@linux.com,
-	robh@kernel.org,
-	bhelgaas@google.com,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	jingoohan1@gmail.com,
-	mani@kernel.org
-Cc: marek.vasut+renesas@gmail.com,
-	linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-	Frank Li <Frank.li@nxp.com>
-Subject: [PATCH v4 7/7] misc: pci_endpoint_test: Document a policy about adding pci_device_id
-Date: Wed,  3 Apr 2024 14:33:04 +0900
-Message-Id: <20240403053304.3695096-8-yoshihiro.shimoda.uh@renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240403053304.3695096-1-yoshihiro.shimoda.uh@renesas.com>
-References: <20240403053304.3695096-1-yoshihiro.shimoda.uh@renesas.com>
+	s=arc-20240116; t=1712122518; c=relaxed/simple;
+	bh=lMxvymsC09+6m8fLiId+kyMP7ByY8D87nMBeceHJKmI=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TURopjuK1jWEKXK4GmOLINRAYFOmK+GFcSjKyVZFFxJvfpKG9SQcJAUIVhuT5lbZHsG4wwOR07Y2zPDjD7MxwG+8JDTbAWHPe/zvrRy/1lSliwQUBfHAHjwF1WDliZP42IunhrpCP+PoIy08U85Jp4KVcPSFxPqKb+b9F+GSxN0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=VUWmJBUv; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4335Z7gV069368;
+	Wed, 3 Apr 2024 00:35:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1712122507;
+	bh=AL82zXtuvRcmpxlHne0BOkW4Z2nOXtBw/q/89BHzv+0=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=VUWmJBUvVoplYWeGuTdknkAwSbea3JSfdMYPN31XZMWH2iRzYPh+LXWT8HjDAkjLo
+	 w+U2Zpjpnff2TLeHbZ9W9pI2nhmUEE8HbKowORnc+llCRLTZPCExPwDQB/wKV0rrgk
+	 ZitnZ5tyGVmvY5ZU0FASqvFWByViwbI1ZFAsLxng=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4335Z7TZ031875
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 3 Apr 2024 00:35:07 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 3
+ Apr 2024 00:35:07 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 3 Apr 2024 00:35:07 -0500
+Received: from localhost (uda0492258.dhcp.ti.com [172.24.227.9])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4335Z6rs059922;
+	Wed, 3 Apr 2024 00:35:06 -0500
+Date: Wed, 3 Apr 2024 11:05:05 +0530
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Siddharth Vadapalli <s-vadapalli@ti.com>, <lee@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>
+Subject: Re: [PATCH] dt-bindings: mfd: syscon: Add ti,am62p-cpsw-mac-efuse
+ compatible
+Message-ID: <aabea385-16e0-4116-a12b-3ce1e06574e3@ti.com>
+References: <20240402105708.4114146-1-s-vadapalli@ti.com>
+ <2e9b6a91-43d3-4b23-830d-40e607505d8c@kernel.org>
+ <30065bdc-ccef-4610-b1c1-7661f801b8e9@ti.com>
+ <4b1380a8-0136-4395-ba42-9bcff2e1bdb0@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <4b1380a8-0136-4395-ba42-9bcff2e1bdb0@kernel.org>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-To avoid becoming struct pci_device_id pci_endpoint_test_tbl longer
-and longer, document a policy. For example, if PCIe endpoint controller
-can configure vendor id and/or product id, you can reuse one of
-existing entries to test.
+On Tue, Apr 02, 2024 at 08:06:27PM +0200, Krzysztof Kozlowski wrote:
+> On 02/04/2024 14:30, Siddharth Vadapalli wrote:
+> > On Tue, Apr 02, 2024 at 02:08:32PM +0200, Krzysztof Kozlowski wrote:
+> >> On 02/04/2024 12:57, Siddharth Vadapalli wrote:
+> >>> The CTRLMMR_MAC_IDx registers within the CTRL_MMR space of TI's AM62p SoC
+> >>> contain the MAC Address programmed in the eFuse. Add compatible for
+> >>> allowing the CPSW driver to obtain a regmap for the CTRLMMR_MAC_IDx
+> >>> registers within the System Controller device-tree node. The default MAC
+> >>> Address for the interface corresponding to the first MAC port will be set
+> >>> to the value programmed in the eFuse.
+> >>>
+> >>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> >>> ---
+> >>>
+> >>> This patch is based on linux-next tagged next-20240402.
+> >>
+> >> Where is the DTS using it?
+> > 
+> > The current implementation in the device-tree for older TI K3 SoCs is as
+> > follows:
+> > 
+> > 	cpsw_port1: port@1 {
+> > 		reg = <1>;
+> > 		ti,mac-only;
+> > 		label = "port1";
+> > 		phys = <&phy_gmii_sel 1>;
+> > 		mac-address = [00 00 00 00 00 00];
+> > 		ti,syscon-efuse = <&wkup_conf 0x200>;
+> > 	};
+> > 
+> > The "ti,syscon-efuse" property passes the reference to the System
+> > Controller node as well as the offset to the CTRLMMR_MAC_IDx registers
+> > within the CTRL_MMR space.
+> 
+> Please reference upstream DTS or lore link to patch under review.
 
-Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
----
-Cc: Frank Li <Frank.li@nxp.com>
----
- drivers/misc/pci_endpoint_test.c | 1 +
- 1 file changed, 1 insertion(+)
+An example of the existing implementation in the device-tree for AM64x
+is:
+https://github.com/torvalds/linux/blob/d4e8c8ad5d14ad51ed8813442d81c43019fd669d/arch/arm64/boot/dts/ti/k3-am64-main.dtsi#L697
+It uses:
+	ti,syscon-efuse = <&main_conf 0x200>;
 
-diff --git a/drivers/misc/pci_endpoint_test.c b/drivers/misc/pci_endpoint_test.c
-index c38a6083f0a7..3c8a0afad91d 100644
---- a/drivers/misc/pci_endpoint_test.c
-+++ b/drivers/misc/pci_endpoint_test.c
-@@ -980,6 +980,7 @@ static const struct pci_endpoint_test_data j721e_data = {
- 	.irq_type = IRQ_TYPE_MSI,
- };
- 
-+/* Don't need to add a new entry if you can use existing entry to test */
- static const struct pci_device_id pci_endpoint_test_tbl[] = {
- 	{ PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_DRA74x),
- 	  .driver_data = (kernel_ulong_t)&default_data,
--- 
-2.25.1
+and "main_conf" node is defined at:
+https://github.com/torvalds/linux/blob/d4e8c8ad5d14ad51ed8813442d81c43019fd669d/arch/arm64/boot/dts/ti/k3-am64-main.dtsi#L40
 
+Regards,
+Siddharth.
 
