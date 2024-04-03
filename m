@@ -1,185 +1,167 @@
-Return-Path: <devicetree+bounces-55996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55997-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 431198973F8
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 17:28:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3206489740C
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 17:32:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 66BE61C20DF2
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 15:28:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 99DA81F216DA
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 15:32:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AFBF14A0A0;
-	Wed,  3 Apr 2024 15:28:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B4D6139D17;
+	Wed,  3 Apr 2024 15:32:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=oltmanns.dev header.i=@oltmanns.dev header.b="Zj3aw+bf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BDD514A609
-	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 15:28:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F549149DFD;
+	Wed,  3 Apr 2024 15:32:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712158096; cv=none; b=pwHJsn0QK0qxshrNOUETSocoRIs+bdQ5Fqtb4UfSeGOIlHtvzbO8kA7GMaheDJ60H/L9RAOdQ70HMZq6x+/HzSrAnLmwEek5FIBNj7AzhERhZTXdzrvW7CNVoyog0YRtjzq2hr7FUgeXE2yOrN1u+D5X1oifX5ZQlaEfZ/aIyOQ=
+	t=1712158327; cv=none; b=bndFbxRvGPn8yKpHOawTQIi6xAKQ/7hbauLLBK59qTk/u6m+QbNkRq1/H5Ds0sN3WtCFO7a/feVeocXsOmQIUCLx6xGm/o7pDI9HNsNK25q60Z1SdDDalMA4K3R/dJa8fvOLWdNhqJXx4Zk6JA/e48reIlEbQB67ETMv2S/SGdM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712158096; c=relaxed/simple;
-	bh=GmbD26WMynLhI5PkWa2+VgAcWtdokHdMIyR0DsUfccc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FcuezrPnvnBrOO075Za+Cbvp+wxn1C0ZW/4vtyzQiruqwrz+fH8OFKO4lLr6oh9uMkL41hZi37inF0iM7qehFAtNTWCbhBBHEwLtUMAtc+YDp1/BVCqy8xHewwEK8B7+Klgle9TYp+ZZoMIeU5Goca0peUymRzmeabapPTWIoQE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1rs2WX-0006iQ-Tz; Wed, 03 Apr 2024 17:27:37 +0200
-Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ore@pengutronix.de>)
-	id 1rs2WV-00ACng-OF; Wed, 03 Apr 2024 17:27:35 +0200
-Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1rs2WV-00CU00-22;
-	Wed, 03 Apr 2024 17:27:35 +0200
-Date: Wed, 3 Apr 2024 17:27:35 +0200
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Rob Herring <robh@kernel.org>
-Cc: Kory Maincent <kory.maincent@bootlin.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Luis Chamberlain <mcgrof@kernel.org>,
-	Russ Weight <russ.weight@linux.dev>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-	Dent Project <dentproject@linuxfoundation.org>
-Subject: Re: [PATCH net-next v6 11/17] dt-bindings: net: pse-pd: Add another
- way of describing several PSE PIs
-Message-ID: <Zg11Z1kJ42eLhabK@pengutronix.de>
-References: <20240326-feature_poe-v6-0-c1011b6ea1cb@bootlin.com>
- <20240326-feature_poe-v6-11-c1011b6ea1cb@bootlin.com>
- <20240402132637.GA3744978-robh@kernel.org>
- <ZgworgDAXXOpf3QV@pengutronix.de>
- <20240403144448.GB3508225-robh@kernel.org>
+	s=arc-20240116; t=1712158327; c=relaxed/simple;
+	bh=yWSydggSbm1G+VEOEgMaeofH6CeF1v5JS+YuRRk5dZ4=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=BNsG5XiUz2Rk54hAyOgBk9NHLlnvKIwEAhgAbfLeJMvBdLaBfdS6Qmlpf+7M5taEnXan+1VR6cY7hb+tbkaExO0r8tHnEp1KIocneVFY3d81u0TiNLMIla8cvZwlp/J/4MAlYvMnFStWvpv/tH38JP2O5aRLSNX5x6WsV9658A0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oltmanns.dev; spf=pass smtp.mailfrom=oltmanns.dev; dkim=pass (2048-bit key) header.d=oltmanns.dev header.i=@oltmanns.dev header.b=Zj3aw+bf; arc=none smtp.client-ip=80.241.56.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oltmanns.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oltmanns.dev
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4V8pdX4LwNz9t5n;
+	Wed,  3 Apr 2024 17:32:00 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oltmanns.dev;
+	s=MBO0001; t=1712158320;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=n2n+ZKpSrp4swBYXFDHQkoo9IbN9JMu4th1fbKoqZBc=;
+	b=Zj3aw+bfzHPcedx2v+nnf9eMoegQ03ywBf22sAYq1igWjyjxfWspgpEdXP+toRFDfjWILC
+	31YpGl3BaR7xvYNvRNHU+XG6npSj3PWOz1grAoSDd8y/V7hyMjH6hkiZmJCN8Yfv0HlyB8
+	OfyGMlJZ3IIx2SDx8StMvAPWOFwO3/YHN8RMPf38YqlOh90PpyydehqkyAzWHuyxEJaw0A
+	6hU4M7i8WtArjTGGwQlrZ45LqrogdpVKoRMsHLCCtCEn8elKxvrYVGOSLnTuCDRDz1sdHN
+	J41aLXX41KWhJwVppvieT755HFxfVJR6LCB3CwQebhH8TNSqGUU180kEN4PNgA==
+From: Frank Oltmanns <frank@oltmanns.dev>
+To: Michael Turquette <mturquette@baylibre.com>,  Stephen Boyd
+ <sboyd@kernel.org>,  Chen-Yu Tsai <wens@csie.org>,  Jernej Skrabec
+ <jernej.skrabec@gmail.com>,  Samuel Holland <samuel@sholland.org>,  Maxime
+ Ripard <mripard@kernel.org>
+Cc: Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>,  Purism Kernel Team
+ <kernel@puri.sm>,
+  Ondrej Jirman <megi@xff.cz>,  Neil Armstrong <neil.armstrong@linaro.org>,
+  Jessica Zhang <quic_jesszhan@quicinc.com>,  Sam Ravnborg
+ <sam@ravnborg.org>,  Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>,  Thomas Zimmermann
+ <tzimmermann@suse.de>,  David Airlie <airlied@gmail.com>,  Daniel Vetter
+ <daniel@ffwll.ch>,  Rob Herring <robh+dt@kernel.org>,  Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
+  linux-clk@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
+  linux-sunxi@lists.linux.dev,  linux-kernel@vger.kernel.org,
+  dri-devel@lists.freedesktop.org,  devicetree@vger.kernel.org,
+  stable@vger.kernel.org,  Diego Roversi <diegor@tiscali.it>,  Erico Nunes
+ <nunes.erico@gmail.com>
+Subject: Re: [PATCH v4 0/5] Pinephone video out fixes (flipping between two
+ frames)
+In-Reply-To: <20240310-pinephone-pll-fixes-v4-0-46fc80c83637@oltmanns.dev>
+	(Frank Oltmanns's message of "Sun, 10 Mar 2024 14:21:10 +0100")
+References: <20240310-pinephone-pll-fixes-v4-0-46fc80c83637@oltmanns.dev>
+Date: Wed, 03 Apr 2024 17:31:47 +0200
+Message-ID: <87frw2a2e4.fsf@oltmanns.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240403144448.GB3508225-robh@kernel.org>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain
+X-Rspamd-Queue-Id: 4V8pdX4LwNz9t5n
 
-On Wed, Apr 03, 2024 at 09:44:48AM -0500, Rob Herring wrote:
-> On Tue, Apr 02, 2024 at 05:47:58PM +0200, Oleksij Rempel wrote:
-> > On Tue, Apr 02, 2024 at 08:26:37AM -0500, Rob Herring wrote:
-> > > > +          pairsets:
-> > > > +            $ref: /schemas/types.yaml#/definitions/phandle-array
-> > > > +            description:
-> > > > +              List of phandles, each pointing to the power supply for the
-> > > > +              corresponding pairset named in 'pairset-names'. This property
-> > > > +              aligns with IEEE 802.3-2022, Section 33.2.3 and 145.2.4.
-> > > > +              PSE Pinout Alternatives (as per IEEE 802.3-2022 Table 145\u20133)
-> > > > +              |-----------|---------------|---------------|---------------|---------------|
-> > > > +              | Conductor | Alternative A | Alternative A | Alternative B | Alternative B |
-> > > > +              |           |    (MDI-X)    |     (MDI)     |      (X)      |      (S)      |
-> > > > +              |-----------|---------------|---------------|---------------|---------------|
-> > > > +              | 1         | Negative VPSE | Positive VPSE | \u2014             | \u2014             |
-> > > > +              | 2         | Negative VPSE | Positive VPSE | \u2014             | \u2014             |
-> > > > +              | 3         | Positive VPSE | Negative VPSE | \u2014             | \u2014             |
-> > > > +              | 4         | \u2014             | \u2014             | Negative VPSE | Positive VPSE |
-> > > > +              | 5         | \u2014             | \u2014             | Negative VPSE | Positive VPSE |
-> > > > +              | 6         | Positive VPSE | Negative VPSE | \u2014             | \u2014             |
-> > > > +              | 7         | \u2014             | \u2014             | Positive VPSE | Negative VPSE |
-> > > > +              | 8         | \u2014             | \u2014             | Positive VPSE | Negative VPSE |
-> > > > +            minItems: 1
-> > > > +            maxItems: 2
-> > > 
-> > > "pairsets" does not follow the normal design pattern of foos, foo-names, 
-> > > and #foo-cells. You could add #foo-cells I suppose, but what would cells 
-> > > convey? I don't think it's a good fit for what you need.
-> > > 
-> > > The other oddity is the number of entries and the names are fixed. That 
-> > > is usually defined per consumer. 
-> > > 
-> > > As each entry is just a power rail, why can't the regulator binding be 
-> > > used here?
-> > 
-> > I'm not against describing it consequent with regulator till the wire
-> > end, but right now I have no idea how it should be described by using
-> > regulator bindings. There are maximum 2 rails going in to PSE PI on one
-> > side and 4 rails with at least 5 combinations supported by standard on
-> > other side. Instead of inventing anything new, I suggested to describe
-> > supported output combinations by using IEEE 802.3 standard.
-> 
-> There's 4 combinations above, what's the 5th combination? SPE?
+Dear clk and sunxi-ng maintainers,
 
-The 5th combination is PoE4 where two rails are supplying power at same
-time.
+Patches 1-4 have been reviewed and there are no pending issues. If there
+is something else you need me to do to get this applied, please let me
+know.
 
-First 4 variants for PoE: one or two positive rails are attached (but
-only one is used at same time) to pairs 1-2 or 3-4, or 5-6, or 7-8. Or
-support all of combinations if some advanced PSE PI is present. PSE PI
-is kind of MUX for regulators.
+Thanks,
+  Frank
 
-One more variant in case of PoE4: two positive rail are attached at same
-time, one to 1-2, second to 5-6. May be one more variant with opposite
-polarity, this will be the 6th combination.
-
-> Seems to me you just describe the 2 rails going to the connector and 
-> then describe all the variations the connector supports. The PSE 
-> (h/w) has little to do with which variations are supported, right?
-
-No. In case of mutli-channel PSE, it needs to know if channels are
-attached to one port or to different ports. PSE is not only responsible
-to enable the power, it runs classification of devices attached to the
-port, so it will decide, which rail should be enabled.
-
-> For example, MDI-X vs. MDI support is determined by the PHY, right?
-
-Yes and No. Until PSE do not start supplying power, PHY will not be able to
-start communication with the remote PHY, so it will not be able to
-detect MDI/X configuration.
-
-Polarity configuration is important for user space or user to get
-information about supported pin configuration and if possible,
-change the configuration.
-
-> Or it has to be supported by both the PHY and PSE?
-
-In most cases PSE and PHY work independently from each other, they just
-share same port. Potential exception are:
-- in case data line should not be shared with power lines, we need to
-  know what pins are used for power, this information would help to
-  provide PHY configuration.
-- in case PHY autoneg signals disturb PoE classification, we need to
-  coordinate PHY and PSE states.
-
-Regards,
-Oleksij
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+On 2024-03-10 at 14:21:10 +0100, Frank Oltmanns <frank@oltmanns.dev> wrote:
+> On some pinephones the video output sometimes freezes (flips between two
+> frames) [1]. It seems to be that the reason for this behaviour is that
+> PLL-MIPI is outside its limits, and the GPU is not running at a fixed
+> rate.
+>
+> In this patch series I propose the following changes:
+>   1. sunxi-ng: Adhere to the following constraints given in the
+>      Allwinner A64 Manual regarding PLL-MIPI:
+>       * M/N <= 3
+>       * (PLL_VIDEO0)/M >= 24MHz
+>       * 500MHz <= clockrate <= 1400MHz
+>
+>   2. Remove two operating points from the A64 DTS OPPs, so that the GPU
+>      runs at a fixed rate of 432 MHz.
+>
+> Note, that when pinning the GPU to 432 MHz the issue [1] completely
+> disappears for me. I've searched the BSP and could not find any
+> indication that supports the idea of having the three OPPs. The only
+> frequency I found in the BPSs for A64 is 432 MHz, which has also proven
+> stable for me.
+>
+> I very much appreciate your feedback!
+>
+> [1] https://gitlab.com/postmarketOS/pmaports/-/issues/805
+>
+> Signed-off-by: Frank Oltmanns <frank@oltmanns.dev>
+> ---
+> Changes in v4:
+> - sunxi-ng: common: Address review comments.
+> - Link to v3: https://lore.kernel.org/r/20240304-pinephone-pll-fixes-v3-0-94ab828f269a@oltmanns.dev
+>
+> Changes in v3:
+> - dts: Pin GPU to 432 MHz.
+> - nkm and a64: Move minimum and maximum rate handling to the common part
+>   of the sunxi-ng driver.
+> - Removed st7703 patch from series.
+> - Link to v2: https://lore.kernel.org/r/20240205-pinephone-pll-fixes-v2-0-96a46a2d8c9b@oltmanns.dev
+>
+> Changes in v2:
+> - dts: Increase minimum GPU frequency to 192 MHz.
+> - nkm and a64: Add minimum and maximum rate for PLL-MIPI.
+> - nkm: Use the same approach for skipping invalid rates in
+>   ccu_nkm_find_best() as in ccu_nkm_find_best_with_parent_adj().
+> - nkm: Improve names for ratio struct members and hence get rid of
+>   describing comments.
+> - nkm and a64: Correct description in the commit messages: M/N <= 3
+> - Remove patches for nm as they were not needed.
+> - st7703: Rework the commit message to cover more background for the
+>   change.
+> - Link to v1: https://lore.kernel.org/r/20231218-pinephone-pll-fixes-v1-0-e238b6ed6dc1@oltmanns.dev
+>
+> ---
+> Frank Oltmanns (5):
+>       clk: sunxi-ng: common: Support minimum and maximum rate
+>       clk: sunxi-ng: a64: Set minimum and maximum rate for PLL-MIPI
+>       clk: sunxi-ng: nkm: Support constraints on m/n ratio and parent rate
+>       clk: sunxi-ng: a64: Add constraints on PLL-MIPI's n/m ratio and parent rate
+>       arm64: dts: allwinner: a64: Run GPU at 432 MHz
+>
+>  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi |  8 --------
+>  drivers/clk/sunxi-ng/ccu-sun50i-a64.c         | 14 +++++++++-----
+>  drivers/clk/sunxi-ng/ccu_common.c             | 19 +++++++++++++++++++
+>  drivers/clk/sunxi-ng/ccu_common.h             |  3 +++
+>  drivers/clk/sunxi-ng/ccu_nkm.c                | 21 +++++++++++++++++++++
+>  drivers/clk/sunxi-ng/ccu_nkm.h                |  2 ++
+>  6 files changed, 54 insertions(+), 13 deletions(-)
+> ---
+> base-commit: dcb6c8ee6acc6c347caec1e73fb900c0f4ff9806
+> change-id: 20231218-pinephone-pll-fixes-0ccdfde273e4
+>
+> Best regards,
 
