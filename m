@@ -1,142 +1,182 @@
-Return-Path: <devicetree+bounces-55921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08760896E30
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 13:27:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BFC2896E28
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 13:24:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 89D98B2CE11
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 11:21:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE90F1C2127E
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 11:24:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AFF1142E97;
-	Wed,  3 Apr 2024 11:21:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DA51142E82;
+	Wed,  3 Apr 2024 11:24:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IyGuMKYC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LDFYbi50"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 778CD1420B8
-	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 11:21:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C24EC1420C4
+	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 11:24:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712143297; cv=none; b=DhPqQjrnMq88bH63CqHiqQyhc86eCclSnZCevhsprQzVJ0sV8WnqOVv+44cOraXImZPlNFfcyOuyoeWd2sLTTgNB/HrHcXyME9P2jmSkymV+XSF5pt9rUuKucIH6FMtI+Uy/N0xm7vWvqepMK6blIu/zBXurSaCjwvbc7U+Y9Dc=
+	t=1712143451; cv=none; b=W2+mY9GfZ+LwISZFJqa8VyQKyakzFiRPoEUgIHlTeTAkb9l8/HbTS9TtV+sDZ5HARExXDeSEc/8PuTsOCSIfsWBciieusuRNOP+MwThskWn/kcvPC9OUl1M92kl7SHfGWGt/qducyqN9VWtzHX+OcrDPA+avS7hPeJEtjt5Hz78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712143297; c=relaxed/simple;
-	bh=14A2zGvt71HCwM6O6gK42NmYjcKdFxMOyjGXH9M8uaU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OK7/1dIEEX+jIXjCw2Qqnv0S3JqBs9UdRbm4tSNc40ILPWnbBdgDW5yQDnVzfNPxamMIHKkkNYs6hYc0nlCEtQI9DEP1G8NKOWQa8yQyXBo+d08jx+dm9OQVbBWjKYzKzEImX509+uYDRMTel0TibqiGpRzvHYwZX4nF4lGBCFY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IyGuMKYC; arc=none smtp.client-ip=209.85.219.172
+	s=arc-20240116; t=1712143451; c=relaxed/simple;
+	bh=2wxJPp8aOolhWhZ/DV7ENKOsy9YRJfHxk5CeE947MXY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Osi5Stxaspje8d7AVOvOJytRrzcCTcPQDt8ECo13JhL7wPHdd5FyoZMwhvm/rlD0cNw8ZPll6pCIMOLvm04vhtBUhuTRmfKTs+4MVYY5Aje/sJKDFKxebpdHTXRF+wb0ZnCWohbdGbmjLQOJ+djtioyDBjv0RFKrs98lJwqrpdc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LDFYbi50; arc=none smtp.client-ip=209.85.218.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-dc6d8bd612dso6290806276.1
-        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 04:21:35 -0700 (PDT)
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a44f2d894b7so731471266b.1
+        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 04:24:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712143294; x=1712748094; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=lF+T4bxnDZj7vHWxhdfHcPO4VDzU3zVkWYi0IqT5ix0=;
-        b=IyGuMKYCNcOdj5zfUJMfwLXjQxs/QumlNmkmfT3cw1Til7Omi0PtrwB/QZHbGgMzKX
-         SjRMQWV+hxVdIFkbklSq+gOhEywIm0JKTe8lKi4D9AHXowyOd4fuR8/kH3CfFgfJpayj
-         LLiUy2+frpgvRV4C8icpjezhPAT5ekYkBpETxXo+4qtTBBTNRkoGBaYQROZYcWRgY1Ay
-         ttB+RYBzWxe6OqOVDXQugdOkbNVbp7Tb9R7UKTUXRAKVWdKDn0l3CiDaeTIRoWusCO+L
-         hvb8jNJ+ML76ZA4v9mRde7zB7y0WpQ7Y1m05K30IqUjnTXFibl3XWOVpjcW23ipUjuxp
-         nZ4A==
+        d=linaro.org; s=google; t=1712143448; x=1712748248; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=IO6yw321pzkaoaCqh1hl5FnjaHB5/tUUufUSj5CW6t8=;
+        b=LDFYbi50vteZ2tjsvUOXOFI4S3XouRWq8Af0KMOzvndeTzNgMxWp639V4a8BT4GSu2
+         HVsDy23OIzBSez5h7WBZCyPWajqjZSCNStZUnUOgh1Mvhho3PFhGi5CMhHuqUlJRbxLL
+         OX/b0NYeNqcP5KI2xelyfdupWYUvDqHJX6P7Pai3XG6htc4eIFKutJB2VpchS2qzwloW
+         T9wEYSE9AINjmk6ScSxOZpGVPwJKFdy/JecV6UdJNwlOFWU8yxfxpL6sf0YCZb71iR85
+         lpaieuey8nW1k102U+yjC6QYu01bI0HD2yiDSaasSX3cVlWcpx2wRlshock65O+SOO9+
+         bxvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712143294; x=1712748094;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lF+T4bxnDZj7vHWxhdfHcPO4VDzU3zVkWYi0IqT5ix0=;
-        b=E3YCoRpvAdgpIKhhL7S3eOnq19/xqHCtelsXCMU41fcytspo/JaT09qVvNfNMiYela
-         iRVqP7SVrk0X3QFF0ZUyPlzkbuepPawPiS8PZ8ihpoLjNv2F0KdSyiU4zk5AMlfU6XcG
-         k/KU2/AHhxYlY8btJ1LuKaxgMdO69v3JTvRY6lOtthSo1YKAwHMzE8LXI2u8gylYRxUW
-         KXYEa/r3yKNnl2wo3cqLUh/9pKEjZRaQnnPdOmpvVyuil6zLFhOLkx2q2OwrTLazBNGz
-         sVV1ighgv8hA2ekuxX6DSB2/ledVj8/gcqa8GxChJzNRdIlLH8ubFOB0G9jFMyuhOjXd
-         Zqhg==
-X-Forwarded-Encrypted: i=1; AJvYcCWCsdw1tNGN5ws/S8NiqIzhs1uvh8A0BZXYidDk6oQMLEb6xSYRkWSF22vw6SRIVUnZnXDqd1mzKFD0Gsu8g+cg4TrzJlNCfrHatw==
-X-Gm-Message-State: AOJu0YztmeJIq3bRINuP5fV84zdSwOaLHOPxNHE7ZTFurVtihZ5bnRvp
-	VrfjsefiOLYOJ3tc5s3RHmFyuEEk3UVVtCwLSd27xpLXAxQH77XxDCIlPv0TUeVnzyx8FDDjC7b
-	jnK/HLRsRplnynACZS+u57YrqrE7dm4Nt2hQpKQ==
-X-Google-Smtp-Source: AGHT+IFtc7mBgFp3kaw9P5n/Or46d3MjVihrSW5DyRrTli9K6KFjlNUz651nVrW1gUHor3EUrMSY621ZfPcAB6Oktbw=
-X-Received: by 2002:a25:b198:0:b0:dcf:56c3:336e with SMTP id
- h24-20020a25b198000000b00dcf56c3336emr13726871ybj.35.1712143294469; Wed, 03
- Apr 2024 04:21:34 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1712143448; x=1712748248;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IO6yw321pzkaoaCqh1hl5FnjaHB5/tUUufUSj5CW6t8=;
+        b=NN5RCCcVM16KR+4nixIGfechfAtNCOVoze0IcP0pWRK652buu8gjtg2GMND9ND82T0
+         JaiaaRP88IyH6QdxKXx04kHZepGwaiOQFQqCF72SvqyEXxynoyIft4OOCyGDjOQ3sHZ0
+         BSHoyIRKoZixLfbJMO41iqxNljLOESMVDRJYfkFSJWuOt4M/fK59+nnda/Zj7RgZ6Il4
+         G5eG5VoQ5ml/IO8NVQsHcC4tvXg+lhDcMkKjPvQZQoYjG+sDlOhGfJcoc0hlnOs3tQXy
+         6f5loVsSXrq7Tv8R6Ijy5b1hpGhv8n07KgZKtcceG2/6tqSb1n5VnluFWEvid35nKjCL
+         kEjA==
+X-Forwarded-Encrypted: i=1; AJvYcCXWVwAE3vsBoDDW6GizlAZxjUuTZJjVyLnFzNjzqsZmHFNx/jUvi5XFWKHA0wnJK3BeDRK5nmqt4tLpb8ix5pNM7+/QG6w3vFBfYw==
+X-Gm-Message-State: AOJu0YztDUrxUW5Jo8wRykGdEaO9BvLCG2TELk0hx07y1aUlOhK0bvr+
+	OXMwZWTuLIBeyc0Ie7W53Z/n/msoU3gNqD0CC21wCJ60IU19EmUA/HFJHm2kmSg=
+X-Google-Smtp-Source: AGHT+IEqGdSJ246ZO00yUEFudXBJfQRgE/TyDPzINqn3RUr4Av0cbnFJpv2+C74POr8ucLFrJCfxmw==
+X-Received: by 2002:a17:907:7da1:b0:a4e:6957:de25 with SMTP id oz33-20020a1709077da100b00a4e6957de25mr7013926ejc.57.1712143448058;
+        Wed, 03 Apr 2024 04:24:08 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id wn7-20020a170907068700b00a4e533085aesm4912682ejb.129.2024.04.03.04.24.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Apr 2024 04:24:07 -0700 (PDT)
+Message-ID: <86150c89-11d5-4d52-987e-974b1a03018f@linaro.org>
+Date: Wed, 3 Apr 2024 13:24:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240328095044.2926125-1-quic_sibis@quicinc.com>
- <20240328095044.2926125-6-quic_sibis@quicinc.com> <Zgvnh0J2a_fBH0bR@bogus>
-In-Reply-To: <Zgvnh0J2a_fBH0bR@bogus>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Wed, 3 Apr 2024 13:20:58 +0200
-Message-ID: <CAPDyKFous+aoopf+=ZRugR78jyekobODqn7tqWRCyirPD+=eYw@mail.gmail.com>
-Subject: Re: [PATCH 5/5] arm64: dts: qcom: x1e80100: Enable cpufreq
-To: Sudeep Holla <sudeep.holla@arm.com>
-Cc: Sibi Sankar <quic_sibis@quicinc.com>, cristian.marussi@arm.com, andersson@kernel.org, 
-	konrad.dybcio@linaro.org, jassisinghbrar@gmail.com, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	quic_rgottimu@quicinc.com, quic_kshivnan@quicinc.com, conor+dt@kernel.org, 
-	quic_gkohli@quicinc.com, quic_nkela@quicinc.com, quic_psodagud@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/6] Add Synopsys DesignWare HDMI RX Controller
+To: Shreeya Patel <shreeya.patel@collabora.com>
+Cc: mchehab@kernel.org, hverkuil@xs4all.nl, hverkuil-cisco@xs4all.nl,
+ heiko@sntech.de, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+ p.zabel@pengutronix.de, shawn.wen@rock-chips.com, kernel@collabora.com,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-arm@lists.infradead.org
+References: <20240327225057.672304-1-shreeya.patel@collabora.com>
+ <35e566-660d2080-1-7eb9eb00@16488675>
+ <a2f88176-b4e1-4202-843c-a00c5a2b1622@linaro.org>
+ <35f774-660d3b80-3-513fcf80@97941910>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <35f774-660d3b80-3-513fcf80@97941910>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, 2 Apr 2024 at 13:10, Sudeep Holla <sudeep.holla@arm.com> wrote:
->
-> On Thu, Mar 28, 2024 at 03:20:44PM +0530, Sibi Sankar wrote:
-> > Enable cpufreq on X1E80100 SoCs through the SCMI perf protocol node.
-> >
-> > Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-> > ---
-> >  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 27 ++++++++++++++++++++++++++
-> >  1 file changed, 27 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > index 4e0ec859ed61..d1d232cd1f25 100644
-> > --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > @@ -68,6 +68,7 @@ CPU0: cpu@0 {
-> >                       compatible = "qcom,oryon";
-> >                       reg = <0x0 0x0>;
-> >                       enable-method = "psci";
-> > +                     clocks = <&scmi_dvfs 0>;
-> >                       next-level-cache = <&L2_0>;
-> >                       power-domains = <&CPU_PD0>;
-> >                       power-domain-names = "psci";
->
->
-> Any reason why you wouldn't want to use the new genpd based perf controls.
-> IIRC it was added based on mainly Qcom platform requirements.
->
-> -                     clocks = <&scmi_dvfs 0>;
->                       next-level-cache = <&L2_0>;
-> -                     power-domains = <&CPU_PD0>;
-> -                     power-domain-names = "psci";
-> +                     power-domains = <&CPU_PD0>, <&scmi_dvfs 0>;
-> +                     power-domain-names = "psci", "perf";
->
->
-> And the associated changes in the scmi dvfs node for cells property.
->
-> This change is OK but just wanted to check the reasoning for the choice.
+On 03/04/2024 13:20, Shreeya Patel wrote:
+> On Wednesday, April 03, 2024 15:51 IST, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> 
+>> On 03/04/2024 11:24, Shreeya Patel wrote:
+>>> On Thursday, March 28, 2024 04:20 IST, Shreeya Patel <shreeya.patel@collabora.com> wrote:
+>>>
+>>>> This series implements support for the Synopsys DesignWare
+>>>> HDMI RX Controller, being compliant with standard HDMI 1.4b
+>>>> and HDMI 2.0.
+>>>>
+>>>
+>>> Hi Mauro and Hans,
+>>>
+>>> I haven't received any reviews so far. Hence, this is just a gentle reminder to review this patch series.
+>>
+>> Why did you put clk changes here? These go via different subsystem. That
+>> might be one of obstacles for your patchset.
+>>
+> 
+> I added clock changes in this patch series because HDMIRX driver depends on it.
+> I thought it is wrong to send the driver patches which don't even compile?
 
-To me, it seems reasonable to move to the new binding with
-#power-domain-cells for protocol@13. This becomes more future proof,
-as it can then easily be extended to be used beyond CPUs.
+Hm, why HDMIRX driver depends on clock? How? This sounds really wrong.
+Please get it reviewed internally first.
 
-That said, I just submitted a patch [1] to update the examples in the
-scmi DT doc to use  #power-domain-cells in favor of #clock-cells. I
-don't know if there is a better way to promote the new bindings?
-Perhaps moving Juno to use this too?
+> 
+> Since you are a more experienced developer, can you help me understand what would
+> be the right way to send patches in such scenarios?
 
-Kind regards
-Uffe
+I am not the substitute for your Collabora engineers and peers. You do
+not get free work from the community. First, do the work and review
+internally, to solve all trivial things, like how to submit patches
+upstream or how to make your driver buildable, and then ask community
+for the review.
 
-[1]
-https://lore.kernel.org/all/20240403111106.1110940-1-ulf.hansson@linaro.org/
+Best regards,
+Krzysztof
+
 
