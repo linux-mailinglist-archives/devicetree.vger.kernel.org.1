@@ -1,130 +1,278 @@
-Return-Path: <devicetree+bounces-55869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 067B2896B56
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 12:02:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6035E896C82
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 12:32:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B3F3928AA3B
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 10:02:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8367B1C26B20
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 10:32:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0191913792B;
-	Wed,  3 Apr 2024 10:01:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rfs9ysp1"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B9CC142E8B;
+	Wed,  3 Apr 2024 10:31:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2137.outbound.protection.partner.outlook.cn [139.219.146.137])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 683CF137765;
-	Wed,  3 Apr 2024 10:01:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.171
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712138517; cv=none; b=pqxrbDhHuc6UMhl0ci9psUhUM/4a7P4q8V3pQpQV+LQw5QYS97oXFKtUbMKgZogoPEF2xoEZNUUSWXiR6e4w/Xb5gQOXC2SINrAsW69Utva2//UeZ7t+qkEP/Jiap5h+tAFZAetAnD/XRD0tYtkB/FP3f8zLEuI+eb0hriJRfeg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712138517; c=relaxed/simple;
-	bh=4Z3wuoY/BT+v4izC2D9VXBC9jWa0y2I2fe5q/Qt1J9Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uDbGm6a2i6L0MUBwgYR0FLIdx3MqOfean2eaqDaTagobq1eqZXjrd8hpTHEqHIbXP6jpMdpAXXH0HuZGJkVoXqSkqyPw8tnLG+inSkGWly0YysCSfIJ2b20/YviNT/QjXP8AHqlHl4gU+cIUW7cmOHF72Jt8iIWlYf4Xoormz3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Rfs9ysp1; arc=none smtp.client-ip=209.85.160.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f171.google.com with SMTP id d75a77b69052e-432bd633207so24797631cf.3;
-        Wed, 03 Apr 2024 03:01:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712138515; x=1712743315; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9mWG+yTBLNvbZUE1m9RW0WNaEdPkmsKTIXCTRWVXm6I=;
-        b=Rfs9ysp1x3N19J+HZplWZteHBXVCkVTuPqLkYN9I+V/UiYbFNbNEtvDiW6ls8wPupd
-         8iNdzLraX6MlS+X+cCLOc9OBxX212FVMPRl4LrOJoPqlX6hsOnpLlJ3fY0OlIlFPXy/0
-         yw2o+ZzIvZFLikLB370sid3jp7ufJk/Q5ZNtwZRoC51CVZsOxUTycRFWHautvYBSji8T
-         C9j+0YCeARGDiZkaJI2+PJbRVCTAp4P6M9ibrKfufLNg5AIiS1Ta5SnId+QncwxsU1sh
-         8yLP1iqBwAowJhMVSSHR7Ryb90cYxeuADpfVVgTxnmkqHP7/iFoR69LSvOK83G4BTznM
-         8njg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712138515; x=1712743315;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9mWG+yTBLNvbZUE1m9RW0WNaEdPkmsKTIXCTRWVXm6I=;
-        b=r9gRnvbDfhOSPHkQpkc2nDemCkX0omDATAy6t3lCf5ryFZxVo1+V51jaQf2NVolpwn
-         DMC1dYy4osx2m/nybRQJZPROZqUV+P/Ov/pAKj1Y8HfOhP5BFE3k0eXhu0GrWEB94rO3
-         YXDFq4eXxYjPMm+Y6NderO+UmPT4NIPPX67+bBpieUUNxxgp75uxorJgslqs0mb7VJQL
-         DhIl6Zi+3WpkeUZ69XaX7cmN3U2TwxoKfIJUlx21G4mFJ4LeY8YF5wVWLDjiOXNQ6h1z
-         e4avOhGRWUGxmUwkmEC5OEys5rwxF/bdOovSZ3lP5ZxrOJfhho7Ehbf5xzapqofAtvmh
-         tEqQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV3N7//hZfZlT1gqt4eFmirtY4nRrz3Oo7J0bSGzpYqr0T8asGmPZQ/SLu9B3TnwtcnwdRelVR5/e58Et3HImJsjgcLuGFGLtVWEv0ggsjYeKrnFqHrdU3NinWkPdcfRB5KzOItFLYOIvB3w34MJ9R4sJnlsJ7CFMPgUxCy1v2zTHdNlA==
-X-Gm-Message-State: AOJu0Yw+LlUYwMrgR9GYH59rgwnGEuVbGEK0x8a5bq+foOqDzB2Hq1r6
-	EeSqU8N8rZ8slbis2mkSELYOOGjzkzBIHeyRyh8UdkMvkSgJegRh
-X-Google-Smtp-Source: AGHT+IGgeYdYXBwy1G6Ix9vy0866CqundiGmfyGZS9O2F4g2G6dEspu2Ft/uMK7DIrJAdx8/d5hLEA==
-X-Received: by 2002:ac8:5901:0:b0:432:b6a2:897a with SMTP id 1-20020ac85901000000b00432b6a2897amr2310274qty.9.1712138515067;
-        Wed, 03 Apr 2024 03:01:55 -0700 (PDT)
-Received: from [10.76.84.174] ([5.2.194.157])
-        by smtp.gmail.com with ESMTPSA id hd17-20020a05622a299100b0042f04e421d2sm6418527qtb.24.2024.04.03.03.01.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Apr 2024 03:01:54 -0700 (PDT)
-Message-ID: <1d777161-7d86-4d45-91bc-c7653504b890@gmail.com>
-Date: Wed, 3 Apr 2024 13:01:51 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCC201428F9;
+	Wed,  3 Apr 2024 10:31:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.137
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1712140265; cv=fail; b=j+BM81DMVfPXwV8VIpzUtFUeGEPEmq8e4E9u+V4bM+nqRkX62mcpmjGBanUNSx3rrFJrIzn2J38ae+oXAQKueRu6zMuBg/pyqGYzSXK94u4a1V6UfWIcuMr+nO3Bcc5MftexPrfHU5VQ61eRn7Wjtqif0wHNcc9LvzUk96j0n6c=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1712140265; c=relaxed/simple;
+	bh=4GGYiaL/40Mv0a7K4QFeerFQFiJEAKSZ7gHAeR/HdZ8=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=eQYsFeCMbM+3tBMoCvHtqvSs2UFV9X4hodO8C0zmOUL9GiW8HgTs/XYsiVqkLGOsEWJeWVVX74eA4tjsswkXeCXbptWOnFoCgMFeigKBxCmfc83o9B/YclF4vlKYACCP1/jWLUjrSYCqxNtly0pUG0Yc+M3aRTgI53GwU4zjwXI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.137
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FWC2poT4m8NXmY2vCa85/aYdXZ9XSKZJY00odYa6eHa8JV+hsTofYoZEUZWPKyE9mcNUxhv/D8STwUveWzDqo7oKKqajXhj8YIdLz9k/q+9mpgBjNA5eT4tzHmIXQPpk9jds3+mz2x0ZcVj4pqGJyDZKfw4siNR7M1eO7CF3g5vfzonxfBQWDEgkiGxbSNKwEoIZxzeQLhKzyEzXviXdjqs5Ytf1Ic/iqvVKULkb4fIsHwdSsNLDqAoEpNJYYVb0o+RjfQCa3FJn6ff7kDrTr2i2uNNEmwKyROAdFkF7tWZ7hhWb3xCkuUCXJPim6+raZn2+2vfZf9KEvipytIKUXA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ifgLHMBZOIsOrud7Jvo67XumXX5yby5YhTh8ciM/sLo=;
+ b=F3sd41xR54rSfkebB6IIrT9HMmjwSQZD3n/xa25WcpQgS5TTbkHDomMTR1pH0GqWugvYRHC2C2CvTGW5rbspI41UWcPUJYyjA8IkKW/G1RR1reON0kUsqBco1eSG7a/KHvn23hAmiTdbUYPN/pHjavdYX00SLGln/xsyyjKyxwu9rcxSmmxtAJA4gqniEQJU+EcJAcP4wo7j3q5j2HidVeZIrm71HpnORzQmc7Ndyx+e/co+i9ew6byNX1kZOhXJ1x64WSM8dUOzlA7gXEU/zPKpjiNfZRgVgXbqrvyhTGTuUa8mcUb4bkh7djg44C4N8iadBoaYEZvw2WUBIug+jA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Received: from BJSPR01MB0595.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c211:e::20) by BJSPR01MB0739.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c211:1e::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Wed, 3 Apr
+ 2024 09:56:39 +0000
+Received: from BJSPR01MB0595.CHNPR01.prod.partner.outlook.cn
+ ([fe80::d0cf:5e2e:fd40:4aef]) by
+ BJSPR01MB0595.CHNPR01.prod.partner.outlook.cn ([fe80::d0cf:5e2e:fd40:4aef%4])
+ with mapi id 15.20.7409.042; Wed, 3 Apr 2024 09:56:39 +0000
+From: ChunHau Tan <chunhau.tan@starfivetech.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>
+CC: "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+	<pabeni@redhat.com>, Emil Renner Berthing <kernel@esmil.dk>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre
+ Torgue <alexandre.torgue@foss.st.com>, Simon Horman <horms@kernel.org>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Andrew Halaney
+	<ahalaney@redhat.com>, Jisheng Zhang <jszhang@kernel.org>,
+	=?iso-8859-1?Q?Uwe_Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>, Russell
+ King <rmk+kernel@armlinux.org.uk>, Leyfoon Tan
+	<leyfoon.tan@starfivetech.com>, JeeHeng Sia <jeeheng.sia@starfivetech.com>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-stm32@st-md-mailman.stormreply.com"
+	<linux-stm32@st-md-mailman.stormreply.com>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-riscv@lists.infradead.org"
+	<linux-riscv@lists.infradead.org>
+Subject: RE: [PATCH v5 1/1] dt-bindings: net: starfive,jh7110-dwmac: Add
+ StarFive JH8100 support
+Thread-Topic: [PATCH v5 1/1] dt-bindings: net: starfive,jh7110-dwmac: Add
+ StarFive JH8100 support
+Thread-Index: AQHaf+o3L6L178d32UuN78fdZx4qAbFLOCoAgAJoxwCACLlvoA==
+Date: Wed, 3 Apr 2024 09:56:39 +0000
+Message-ID:
+ <BJSPR01MB059512332AE8549A340BDC5E9E3DA@BJSPR01MB0595.CHNPR01.prod.partner.outlook.cn>
+References: <20240327015750.226349-1-chunhau.tan@starfivetech.com>
+ <20240327015750.226349-2-chunhau.tan@starfivetech.com>
+ <31ac366d-bfa6-4c99-a04d-ab9fb029da7e@linaro.org>
+ <20240328204202.GA308290-robh@kernel.org>
+In-Reply-To: <20240328204202.GA308290-robh@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BJSPR01MB0595:EE_|BJSPR01MB0739:EE_
+x-ms-office365-filtering-correlation-id: 43068e5c-8ad8-4113-5403-08dc53c45b7e
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ 1PY91uaClo1IO0Wolz3C3AJxG2pcnQEdzI2F9RsIg3KzMVUQ4s8sx2XuOA7dNTe8MDKsZiglRneOzYUz8/QC9orGNaokYGTa6nOMe02/MBqTSO0JGZzCpv5UPkzGkBUr8Rc0N1vcZXCWpM37XxuyHssQcB37tZ0dYEaT4LoFP4w4qk686p9WJCJ6YA0oyMzUU9RQlfvXy26sEu8JTcaPPgC1uKrELsu3W/YKMp39P84c+/bOdz46b8lr/XlEN3MylIwRw8mzENnN6hGPmpC8b1gVygft+urwEnXaPqlnflD9xFDssZOr/U1VZa/SbHE2qBXDfwL/IdmdNuwE/eD32k6Pr87ECiG2vnWCiExYmcFXL+MkXJ5Q8G014Vk8BSahQ2TwfVJzRKcPHaWJTQ2eIv3wWZ+FhiW0/Eg5och2eWaLbe0lrss1roxU74c33sN3VeNNADuRpo4bDGNrnO5j23NTW2SNpPIMHrFJzSorv4DFyFjrzx68oXM3DShyH/jq+ity/Xil1qYTBiK7vIgNZFEq3/peOR0UFhuITd/3S+HIITjasDJd7QlDXHoDvbEKWkRHkDAAiFN0yaRAfwfaKP2dWoHq6QBWpIJd8dN7NMhptRixBPDRZdAUcVdUezVQ
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BJSPR01MB0595.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(366007)(41320700004)(1800799015)(7416005)(38070700009);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-1?Q?o7HvMFLISCjX0cqwUy57qhVTQbY6hRo8MoTc+ki9hWdW/9gQMwUcD3m2bu?=
+ =?iso-8859-1?Q?rpdzmOoHwp7yLcbjzLFPs5OXAGG1lCEuOO3jTqwiw1N/HBO3QpIEkbCz7l?=
+ =?iso-8859-1?Q?SpMUDqCUV0ZCmmzXGeAOFob/CHxpXfO6MaQHFlLpirRpaQ1P6l50gRlNKc?=
+ =?iso-8859-1?Q?4Wuvq+cq7wnCh7Qlr5vncDo879dQxhKc78R7nTiCgW4BpeMMyBcJQGTZfH?=
+ =?iso-8859-1?Q?/jpbuGFJT/I+g9ROSvpa1loQN4KHAOvdI7p58xtPG94s8qxO2pQsfdhFuD?=
+ =?iso-8859-1?Q?o9i815+xzgWvfnR7XLDEJflCnosPjG7vrCt+OzpP1eJcxR4SVQX++5D7V3?=
+ =?iso-8859-1?Q?6WfdPhxyYw9pYCpvVYOGymDKjSqOepeogl2EqgWlPPVv9D15WkMoBRvjc/?=
+ =?iso-8859-1?Q?MajUDXob/IUKE+WJ0mrYtC1HNNQj4RFeMEOZYuU62VThUaZaX2ausamDy2?=
+ =?iso-8859-1?Q?D3iT6owKz670tWZ5bnQL8GVWZ45Od3QOaLITxwacS8c+9qD5vUjWUYGtI4?=
+ =?iso-8859-1?Q?eKk5x/7ZnQjQzAOLtCeWYAWgFnxAVtVulSp4BDrY+autH6SqNZqirG28xt?=
+ =?iso-8859-1?Q?M1i8w70xYLYlq+OxfKqNv/IxOV+XRhFeGCRo9WthOD5BqcOtExtmQqA9ev?=
+ =?iso-8859-1?Q?Ei1PVoyCk/d7FyO/2HfsopQzOqheQ8J3Gthx57hbLh9z5JzjpFeXOuPTbY?=
+ =?iso-8859-1?Q?gh+u/ed/X0yJDLxs+HbB4/io4t0crMtJprj3ZD4ZC8WgVIYMTqmUS7u4R2?=
+ =?iso-8859-1?Q?9C7pnnmmbOA2O1BqUEeGQChd85Q9So03znWB7fa7dHb6ZXE2kRiEt8/Tby?=
+ =?iso-8859-1?Q?zYJ9948MFTtzffmc3vrGA+JzhtosWfN/DGTYURG6b+xV0FFgBStd8HdRT9?=
+ =?iso-8859-1?Q?AQuf0dRTrHICpTIFkHS7IsuuiIGZmgrz4swyiTBm/W92ijLSEB+kcxDnIF?=
+ =?iso-8859-1?Q?frA0I2bhCb3VUt2eJqSnRvlT/SX9ro4eG1s0VNxlLi7+HoOGy16B1/mJDz?=
+ =?iso-8859-1?Q?MRA2DACxKo5dOk85HOX5/3kJCz6jPfXudmUa5HwoHOuXoJeUfpjvs52g4G?=
+ =?iso-8859-1?Q?nmY55WoLLsWXWu69iM55w2yW9WDCaNy0b1oBTeaRoj57rNFlNUF7QZ5vFZ?=
+ =?iso-8859-1?Q?u+822XrRic6hhI2rs8cAQ61fP/HukHEq3nuVCKcp5IVgoqlQ/Jj2VVq3JV?=
+ =?iso-8859-1?Q?g+fbd70k5/txRp+AuiR3GXuU88/L1i9RUaCCuYxTnGOAIYE0VJWnPFLhXg?=
+ =?iso-8859-1?Q?E/e5gYuKrSu4qwQ10hGaZ6VogyWwEFgElkIW5IfWC+6sM/NEzhdm46HJYN?=
+ =?iso-8859-1?Q?GUwzLJtptJ/m6q1s8fbW349LwNe1KpsR6tRZJQGrfGGWh1d1GXPSNaXAiJ?=
+ =?iso-8859-1?Q?PSxvYPwJYUP+drn5qtFyrY6T9gCgBaHc+6Tk0JI10RAnX5MldRbFhaZinQ?=
+ =?iso-8859-1?Q?VInae9mExQU1e1ha6XbWVo/r4iDfbmwg0QznYHzGXtwvIEnL5rzKZ098EJ?=
+ =?iso-8859-1?Q?VYf9P6t+64c1b+tNtSbbKjny+cKjL2wEaSkOTCPqfMK7ZoCcL0pBSXTJxk?=
+ =?iso-8859-1?Q?XAUrsO5xp8PgGAZwiXFA5XbaxbpaSWQ748FdXUT3LG5U2OAd0qFgvm5Avh?=
+ =?iso-8859-1?Q?4zQ0xGBZXFNtSjue2aBhxXEISv/vz5JRx+0nFSf39wQHwuMaZiZ0YStg?=
+ =?iso-8859-1?Q?=3D=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/6] iio: adc: ad7173: refactor channel configuration
- parsing
-To: David Lechner <dlechner@baylibre.com>, dumitru.ceclan@analog.com
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240401-ad4111-v1-0-34618a9cc502@analog.com>
- <20240401-ad4111-v1-3-34618a9cc502@analog.com>
- <CAMknhBHo3xkkZymVfvauL7nBPn9+c1ZUoPwyk4mJO4syRJEhiQ@mail.gmail.com>
-Content-Language: en-US
-From: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>
-In-Reply-To: <CAMknhBHo3xkkZymVfvauL7nBPn9+c1ZUoPwyk4mJO4syRJEhiQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-On 01/04/2024 22:39, David Lechner wrote:
-> On Mon, Apr 1, 2024 at 10:10 AM Dumitru Ceclan via B4 Relay
-> <devnull+dumitru.ceclan.analog.com@kernel.org> wrote:
->>
->> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
->>
->> Move configurations regarding number of channels from
->> *_fw_parse_device_config to *_fw_parse_channel_config.
->>
->> Signed-off-by: Dumitru Ceclan <dumitru.ceclan@analog.com>
->> ---
-> 
-> Commit messages need to explain _why_ the change is being made [1]. It
-> is not obvious to me why this needs to be moved.
-> 
-> [1]: https://www.kernel.org/doc/html/latest/process/submitting-patches.html#the-canonical-patch-format
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BJSPR01MB0595.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-Network-Message-Id: 43068e5c-8ad8-4113-5403-08dc53c45b7e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Apr 2024 09:56:39.2977
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: grOUmTuN0O0TXQ5jyd81BcUd/YfuxqNR4uq8dQztyvzzYRHw21v65FwsRt3wwbkKqJBNXq4zRyozG1ayTUIxLhthqh+i7sgU2jCDDUoUQYM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BJSPR01MB0739
 
 
-Jonathan Cameron:
 
-"
-> +	if (num_channels == 0)
-> +		return dev_err_probe(dev, -ENODATA, "No channels specified\n");
-> +	indio_dev->num_channels = num_channels;
-> +	st->num_channels = num_channels;
+> -----Original Message-----
+> From: Rob Herring <robh@kernel.org>
+> Sent: Friday, 29 March, 2024 4:42 AM
+> To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Cc: ChunHau Tan <chunhau.tan@starfivetech.com>; David S . Miller
+> <davem@davemloft.net>; Eric Dumazet <edumazet@google.com>; Jakub
+> Kicinski <kuba@kernel.org>; Paolo Abeni <pabeni@redhat.com>; Emil Renner
+> Berthing <kernel@esmil.dk>; Krzysztof Kozlowski
+> <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley <conor+dt@kernel.org>;
+> Maxime Coquelin <mcoquelin.stm32@gmail.com>; Alexandre Torgue
+> <alexandre.torgue@foss.st.com>; Simon Horman <horms@kernel.org>; Bartosz
+> Golaszewski <bartosz.golaszewski@linaro.org>; Andrew Halaney
+> <ahalaney@redhat.com>; Jisheng Zhang <jszhang@kernel.org>; Uwe
+> Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>; Russell King
+> <rmk+kernel@armlinux.org.uk>; Leyfoon Tan <leyfoon.tan@starfivetech.com>;
+> JeeHeng Sia <jeeheng.sia@starfivetech.com>; netdev@vger.kernel.org;
+> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
+> linux-stm32@st-md-mailman.stormreply.com;
+> linux-arm-kernel@lists.infradead.org; linux-riscv@lists.infradead.org
+> Subject: Re: [PATCH v5 1/1] dt-bindings: net: starfive,jh7110-dwmac: Add
+> StarFive JH8100 support
+>=20
+> On Wed, Mar 27, 2024 at 08:54:30AM +0100, Krzysztof Kozlowski wrote:
+> > On 27/03/2024 02:57, Tan Chun Hau wrote:
+> > > Add StarFive JH8100 dwmac support.
+> > > The JH8100 dwmac shares the same driver code as the JH7110 dwmac and
+> > > has only one reset signal.
+> > >
+> > > Please refer to below:
+> > >
+> > >   JH8100: reset-names =3D "stmmaceth";
+> > >   JH7110: reset-names =3D "stmmaceth", "ahb";
+> > >   JH7100: reset-names =3D "ahb";
+> > >
+> > > Example usage of JH8100 in the device tree:
+> > >
+> > > gmac0: ethernet@16030000 {
+> > >         compatible =3D "starfive,jh8100-dwmac",
+> > >                      "starfive,jh7110-dwmac",
+> > >                      "snps,dwmac-5.20";
+> > >         ...
+> > > };
+> > >
+> > > Signed-off-by: Tan Chun Hau <chunhau.tan@starfivetech.com>
+> > > ---
+> > >  .../devicetree/bindings/net/snps,dwmac.yaml   |  1 +
+> > >  .../bindings/net/starfive,jh7110-dwmac.yaml   | 29 +++++++++++++++--=
+--
+> > >  2 files changed, 25 insertions(+), 5 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > index 6b0341a8e0ea..a6d596b7dcf4 100644
+> > > --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > @@ -97,6 +97,7 @@ properties:
+> > >          - snps,dwxgmac-2.10
+> > >          - starfive,jh7100-dwmac
+> > >          - starfive,jh7110-dwmac
+> > > +        - starfive,jh8100-dwmac
+> >
+> > I think that's not needed. You have there already your fallback.
 
-I'm not seeing benefit of duplication here really and logically it feels like
-a lot of this last chunk would sit better in ad7173_fw_parse_channel_config()
+Okay, I will remove it.
 
-Perhaps that's a job for a future tidying up patch.
-"
-https://lore.kernel.org/all/20240303162148.3ad91aa2@jic23-huawei/
+> >
+> > >
+> > >    reg:
+> > >      minItems: 1
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
+> > > b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
+> > > index 0d1962980f57..5805a58c55d1 100644
+> > > ---
+> > > a/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
+> > > +++ b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.ya
+> > > +++ ml
+> > > @@ -18,6 +18,7 @@ select:
+> > >          enum:
+> > >            - starfive,jh7100-dwmac
+> > >            - starfive,jh7110-dwmac
+> > > +          - starfive,jh8100-dwmac
+> >
+> > Same here, even more obvious.
+>=20
+> Agreed.
 
+Okay, I will remove it.
+>=20
+> >
+> > >    required:
+> > >      - compatible
+> > >
+> > > @@ -30,6 +31,10 @@ properties:
+> > >        - items:
+> > >            - const: starfive,jh7110-dwmac
+> > >            - const: snps,dwmac-5.20
+> > > +      - items:
+> > > +          - const: starfive,jh8100-dwmac
+> > > +          - const: starfive,jh7110-dwmac
+> > > +          - const: snps,dwmac-5.20
+> > >
+> > >    reg:
+> > >      maxItems: 1
+> > > @@ -116,11 +121,25 @@ allOf:
+> > >            minItems: 3
+> > >            maxItems: 3
+> > >
+> > > -        resets:
+> > > -          minItems: 2
+> > > -
+> > > -        reset-names:
+> > > -          minItems: 2
+> > > +      if:
+> >
+> > I would personally avoid nesting if within if. It gets unreadable.
+> > Although Rob did not comment on this one, so I guess it is fine.
+>=20
+> I normally agree, but here I suggested it as it looked to be the simplest=
+ option.
+>=20
+> With the 2 other comments addressed,
+>=20
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
