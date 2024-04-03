@@ -1,63 +1,75 @@
-Return-Path: <devicetree+bounces-55844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AA0C896966
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 10:46:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD5D089696D
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 10:47:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B3FC1C25B83
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 08:46:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 391C2286091
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 08:47:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B37E6F08A;
-	Wed,  3 Apr 2024 08:45:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E471745C0;
+	Wed,  3 Apr 2024 08:46:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Hd8sqYaF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gtvMuu1q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B21A6CDBD;
-	Wed,  3 Apr 2024 08:45:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60A3670CC5
+	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 08:46:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712133935; cv=none; b=nhioSGH2cn98gs8FgmF0xa1iF+gsAWtZqNsvEOGOz3FZM7PtZ7XXNCTNRDgQ3mhJwiZ5xxfy8KtEnmmIUhw9Ck8g6KxMSfeGharwMnevqWkv3uMQQLVfroNUN/UJ5yyMZTLUSi0hPXRKrma5f7lR/OX9ww1GCwu1RaCohsiMGEI=
+	t=1712133972; cv=none; b=WAHn5+My1nMXWVGueor5BHHTqQ3CL1cTx62ymyB3ZIakDE9rLtgwDNW4jzHmI71JZ7PERpEhOcFyHtYUvvcKp+n/XKlZBM3Si7le7+dxNytww8BrEhqmIYKQZJ7HXLMAI2cNSgkiUanKrszPvDbMR3c0A2BaO40tIxIwSkhPSv8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712133935; c=relaxed/simple;
-	bh=HgxNMS/FN0Nk6FUWFDTk9f7rXSrv/Mx0j1/PjJ7OXSo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=PFbWr+/OhqVEE5FQrO28oFXmzybgvmRdf5WIJGq19xf+RI8gxMTLdZ+YWOK4TkfJNwMnZzH3iR5KonhOT28VmD0KTV/LsIxAl3po9wyAkDsUHq3aGHqV9jTAgdocYueXeoorPP22ZVex7FyS0Tr1DO4QHLpMvA6T5hmGNdwWtK4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Hd8sqYaF; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43385mMS013800;
-	Wed, 3 Apr 2024 08:45:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=U2835gZws67kNh8mPFrnxxRKQzJT+emLe1Ex3spc8EM=; b=Hd
-	8sqYaFSJ89RDAavwHo35b/6Wzz3aBUViApZG2E0bAa/CUSPqN7lq8ExRM1IONGIP
-	A0vq2KFOsv0rvCeMaFSRlsRQcH1f3f/eY5ihvYjnQxJ5s2nvm6gM7X2WLzgqF8G6
-	ZdNzw6CTdTtMBMPgA6zfUqAgeMBFchhgYZ7iF2Z/cL8p310AqmUQXKd1CplYwQgK
-	zWx7VeaLHnm5mezlzdCRhq6UrK/0YiMRbE/715SLq0cUaXaat8L2LH3zEB3XR9sT
-	BLEUA2fXfq+5wLPkb3keG581StOIiKjXjMvH1dC28hwQq28eAIv0dko8NnTcTB2N
-	IxqsVhiRIr0CGdbnvhAQ==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x93a5g34g-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 03 Apr 2024 08:45:29 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4338jTjA028371
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 3 Apr 2024 08:45:29 GMT
-Received: from [10.50.19.131] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Wed, 3 Apr 2024
- 01:45:23 -0700
-Message-ID: <91f59477-1799-4db6-bcc2-3f0c5225d1c8@quicinc.com>
-Date: Wed, 3 Apr 2024 14:15:20 +0530
+	s=arc-20240116; t=1712133972; c=relaxed/simple;
+	bh=uALJs2fW5aCmUwKExr5plMae4PhdqTYTzXwAOBEagq8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=c0x9/ofnoJQmzfbCwl+h/hYsjazbjXkEzFJ0zUM9JOfwoyq05QtUJl68G8ep/kHz2PoHL8TEG+NjFHBUMZ1SwIrldP0mGeMtjfKR1QHNI8VWPUsL57In4Rh9UvxU/k9B4s2zR5vSGW2UOS1MwaKPdOGXUcc5vI5Stpkf/wzL89o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gtvMuu1q; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-513ccc70a6dso10403083e87.1
+        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 01:46:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712133967; x=1712738767; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=WzpyWD37GIueedXS91b6H3un1NtFZn6PufsmH3W5E98=;
+        b=gtvMuu1qJsyAqG5PeAxHzQSJL8tBnsWLaFXIeyonX+4omD+SkPzt69z3ePezZiVSUj
+         tTMSSDNaghscKNL6e8q6FR6PDTAaRFBx0lj5ZrhVbEeAiAW3Kv5x264UWEbSXhh6DqCL
+         m39wgXFHThoKPclxt5LE/7+Q6tEGC4b/LopOYHw2SAiRMAFVlK0hBLL4OFmAmb0ASZW3
+         RRO5LDXEg0icMZgCFxLHsKUiCvKpEXF9D89o4bFl88tZTlNgUVL5IwtBPAoARwpcAWYz
+         +Vd/v1kLWQmWDI/etjBF6nuQazg/4HYt2cCSiHOxPfvPAF7occTnL0+ESr/bgivPuyqZ
+         +4pw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712133967; x=1712738767;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WzpyWD37GIueedXS91b6H3un1NtFZn6PufsmH3W5E98=;
+        b=KaQ0nNRPuMTuNNn60CtdJsDtgaTZ2COqUf6s+qxP03HYL4AVCsORfss7W/BhCZurTu
+         VnnKl4BYRFM2ZDb+jDEirnA2GLYsksFFWdnIgyDkC5GBDIr9ky1ylxI7Wl0a/Xf7z3xk
+         xjOWm2ZvFryXSxNkyXfJNn1p9fDvyOKXnGyuCUtqMDI9BE7+yz5tdu8mg0D3ftsFLQkn
+         yMXGSnfM7Dlf0gujKN4eLHpC9dQMLTfGyTbpIk4lYjTBJsTbAiF9pBsaqlb9v2OzP8BE
+         CekbniKjE6IEPWjCx6FcMQ+Aax5NZH6XrAsrj32pAfR8OUKOyku/ZqtR2V/nTcGPL9dO
+         AZuw==
+X-Forwarded-Encrypted: i=1; AJvYcCXUK2gx0czJKptOIggwLfKtqmLPrmD1gpcKtBkMI7pMrrGtxIfGxX37QIeN/WjM+47f3XkYShHw097kInigQeQYAFNSifOW2dBSeg==
+X-Gm-Message-State: AOJu0Yz90n2coEJwqccbsBNE5LV9lAEaTJladnpWkJk0KppkOBWejygt
+	rxyAnQSguoGTspt/HzOGQLtUovxJzhSMQLe6hZNixt6UR4eojnLW5EZevK3WKUU=
+X-Google-Smtp-Source: AGHT+IHHRrHC9q6+MILcKCm6lmtVLyW7n0+jKwCHWkoIFn72x5mKqh6egGchEYhlqDfms40Zpm881w==
+X-Received: by 2002:ac2:4e11:0:b0:516:9792:773c with SMTP id e17-20020ac24e11000000b005169792773cmr4060635lfr.48.1712133967488;
+        Wed, 03 Apr 2024 01:46:07 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id b22-20020a170906d11600b00a46f95f5849sm7484833ejz.106.2024.04.03.01.46.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Apr 2024 01:46:07 -0700 (PDT)
+Message-ID: <17a700a7-44f0-4e46-9a0c-4c2da44c9e27@linaro.org>
+Date: Wed, 3 Apr 2024 10:46:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,98 +77,96 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/4] interconnect: qcom: icc-rpmh: Add QoS
- configuration support
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Georgi Djakov <djakov@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: Kees Cook <keescook@chromium.org>, <cros-qcom-dts-watchers@chromium.org>,
-        "Gustavo A . R . Silva" <gustavoars@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-hardening@vger.kernel.org>, <quic_rlaggysh@quicinc.com>,
-        <quic_mdtipton@quicinc.com>
-References: <20240325181628.9407-1-quic_okukatla@quicinc.com>
- <20240325181628.9407-2-quic_okukatla@quicinc.com>
- <d59896bb-a559-4013-a615-37bb43278b2e@linaro.org>
+Subject: Re: [PATCH 1/3] dt-bindings: leds: add LED_FUNCTION_FNLOCK
+To: Hans de Goede <hdegoede@redhat.com>, Gergo Koteles <soyer@irl.hu>,
+ Ike Panhc <ike.pan@canonical.com>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: platform-driver-x86@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+References: <cover.1712063200.git.soyer@irl.hu>
+ <8ac95e85a53dc0b8cce1e27fc1cab6d19221543b.1712063200.git.soyer@irl.hu>
+ <6b47886e-09ac-4cb9-ab53-ca64f5320005@linaro.org>
+ <39acb3b9-a69f-4654-9749-a9af42fea39e@redhat.com>
+ <368e9817-0000-4f69-9f09-568827466121@linaro.org>
+ <4956933c-49c4-49ab-a91a-7e0efcc211d5@redhat.com>
 Content-Language: en-US
-From: Odelu Kukatla <quic_okukatla@quicinc.com>
-In-Reply-To: <d59896bb-a559-4013-a615-37bb43278b2e@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <4956933c-49c4-49ab-a91a-7e0efcc211d5@redhat.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Fm8W6r0cBbMxBDjwmb2VUgfbVnbKZ-N2
-X-Proofpoint-ORIG-GUID: Fm8W6r0cBbMxBDjwmb2VUgfbVnbKZ-N2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-03_08,2024-04-01_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 malwarescore=0
- bulkscore=0 priorityscore=1501 lowpriorityscore=0 mlxscore=0
- impostorscore=0 phishscore=0 clxscore=1015 suspectscore=0 mlxlogscore=900
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2403210001 definitions=main-2404030060
 
-
-
-On 3/27/2024 2:26 AM, Konrad Dybcio wrote:
-> On 25.03.2024 7:16 PM, Odelu Kukatla wrote:
->> It adds QoS support for QNOC device and includes support for
->> configuring priority, priority forward disable, urgency forwarding.
->> This helps in priortizing the traffic originating from different
->> interconnect masters at NoC(Network On Chip).
+On 03/04/2024 10:39, Hans de Goede wrote:
+>>>
+>>> must have a dts user before being approved too ? Since
+>>> that file is included from include/dt-bindings/input/input.h ?
 >>
->> Signed-off-by: Odelu Kukatla <quic_okukatla@quicinc.com>
->> ---
+>> Wait, that's UAPI :) and we just share the constants. That's kind of
+>> special case, but I get what you mean.
+>>
+>>>
+>>> TL;DR: not only is this patch fine, this is actually
+>>> the correct place to add such a define according to
+>>> the docs in Documentation/leds/leds-class.rst :
+>>>
+>>> Reviewed-by: Hans de Goede <hdegoede@redhat.com>
+>>
+>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> [...]
-> 
->>  
->> +	if (desc->config) {
->> +		struct resource *res;
->> +		void __iomem *base;
->> +
->> +		res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->> +		if (!res)
->> +			goto skip_qos_config;
->> +
->> +		base = devm_ioremap_resource(dev, res);
-> 
-> You were asked to substitute this call like 3 times already..
-> 
-> devm_platform_get_and_ioremap_resource
-> 
-> or even better, devm_platform_ioremap_resource
-> 
-> [...]
-> 
->> @@ -70,6 +102,7 @@ struct qcom_icc_node {
->>  	u64 max_peak[QCOM_ICC_NUM_BUCKETS];
->>  	struct qcom_icc_bcm *bcms[MAX_BCM_PER_NODE];
->>  	size_t num_bcms;
->> +	const struct qcom_icc_qosbox *qosbox;
-> 
-> I believe I came up with a better approach for storing this.. see [1]
-> 
-> Konrad
-> 
-> [1] https://lore.kernel.org/linux-arm-msm/20240326-topic-rpm_icc_qos_cleanup-v1-4-357e736792be@linaro.org/
-> 
+> Thanks. Is it ok for me to merge this through the pdx86
+> tree (once I've reviewed the other 2 patches) ?
 
-I see in this series, QoS parameters are moved into struct qcom_icc_desc. 
-Even though we program QoS at Provider/Bus level, it is property of the node/master connected to a Bus/NoC.
-It will be easier later to know which master's QoS we are programming if we add in node data.
-Readability point of view,  it might be good to keep QoS parameters in node data.  
+You need to sync (ack) with LED folks, because by default this should go
+via LED subsystem.
 
-Thanks,
-Odelu
-
-
+Best regards,
+Krzysztof
 
 
