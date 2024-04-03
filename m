@@ -1,59 +1,62 @@
-Return-Path: <devicetree+bounces-56022-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56023-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FA328975A4
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 18:53:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B24988975BA
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 18:57:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 79BF21C216D8
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 16:53:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 688DF1F27EC9
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 16:57:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6556E1514D9;
-	Wed,  3 Apr 2024 16:52:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F23531514EC;
+	Wed,  3 Apr 2024 16:57:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eYBf2O/G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W+rl5fcW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E5331B7F4;
-	Wed,  3 Apr 2024 16:52:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C70E63E487;
+	Wed,  3 Apr 2024 16:57:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712163177; cv=none; b=toe2wEF+bptjkvxaenyBR8RvQS991UtjCKNcNf08k1LvANtRPV4VWB7vsFdkRfDh9L25pGSSosSLEKAbILIUnzI6gUDEmYBdLR3MP9meJNTdh+b4TSG2hI8DVSceJCRXqWyVWph9r3obDQo6a0EhmH6NRVLUOPoWGoiRQokgRJ8=
+	t=1712163443; cv=none; b=A0+kBFuX95nt9AOWmsaGcASRpQh3e9uwgtuxYJFgPay49N/jFzxMDFDQXzNf5FzhFOe43DnUPemiri4z8VpBF+ji26eBxh9ZspfBB1+p6vgjUyDB9X/jKpZOri7zY9LbrK/zQpz9iMTRFySttAXDU3lmgHktW10FnjRbQSzR2Wc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712163177; c=relaxed/simple;
-	bh=VVoPY7zPCQ+cv0PGvXPEueMxlSVcXc9ZPX78cV1mndI=;
+	s=arc-20240116; t=1712163443; c=relaxed/simple;
+	bh=Lyo2Jkd+NP2jcyMjfmSSDQpvC/i5lfwUw1klvOt8u4M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g16ZoqFSsLO3F3wjmxKh90xH/5W1FTeT/imXCngOXLKUoL8DJnSLbSwhjUM1L1FwcZ4BusUjPWseifSIPAVQQgHtYCj3Y9rQ6e3WSls1LfIH7Ph6qAkJLasEdhk2ceZ/HmiFUwzo3mIiLyxT7Ro5nJrudADts/0ZgNMz75jM26E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eYBf2O/G; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 884D9C433F1;
-	Wed,  3 Apr 2024 16:52:56 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=a/GJvqAhDi0hUj8L7rX+y36aBnVWe0UlrwVEAiO30C+7hbGqZRNFAVD4HM0Oa/d74B1vivSQBRKxHEvUggk4vbRHaVt2ixMBhm8A+FKMs7Yx/vblsiLbghD8VOBoere/grTx+4Pug9htbzB6fuJezd3E1Qe4PxCtYqSIrxwxydk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W+rl5fcW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20326C433C7;
+	Wed,  3 Apr 2024 16:57:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712163176;
-	bh=VVoPY7zPCQ+cv0PGvXPEueMxlSVcXc9ZPX78cV1mndI=;
+	s=k20201202; t=1712163443;
+	bh=Lyo2Jkd+NP2jcyMjfmSSDQpvC/i5lfwUw1klvOt8u4M=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eYBf2O/GxSwKTQRKtaEXS3x9B8H+ythuL2SnrNurYBaR00srfvbmzpFKPvLeMHjmY
-	 u1nS0zlVCdq4nUrqkYIRTFl9t7TXNFMSxN2Pr7rbPYDr1yhUnixNDaBhUMjz7TTn9D
-	 de3uLvzAq+7VrNNCd844vJZZido1u8XOqLRRDXS2DXFQB84IVGlk6lfAY52qTgZG+T
-	 B6CyjeOwsNTc0iaQpZ/Egyv3UHfw8hnaOdQ1XyKo3kxIZ+Zm75P0Wm6ZZqWeQ0kFPy
-	 AMR13RC8tYOJdOH68yiFpUZS/JabKSFUCuT/cmNRihFuUTrngWCxB0mErb5xGtf5Wn
-	 J4Pri1yTH99Fw==
-Date: Wed, 3 Apr 2024 11:52:54 -0500
+	b=W+rl5fcWtGDnzgkuQ9dJB/MwuM578FH1ChxNzfvkUSA1zsCW76Y+Jb4K9xEuvgOV9
+	 tjL5skqR7xA4W7dv6pD6ffSM0hGgqXNvpUa8crYjhlaVvlVOm6GZImf5s+rCDgvLdL
+	 d8n4yFN+d9HK5MX0H5vxMv30iOwMHPwedVEyhg7j9qrLoH4jHgIXBqjhCXPXmppdMF
+	 Z3dJ9WiTjuNXu4DHm6rMM79HQcX33+Ni+dUKHOwTBKt3heDHMBYh2j2WN8lWTxBfzw
+	 ITXeEK9Ygz/3cFHNLCE7mVVIaBGfeJc1qe84Gn7G++0NFjlAUIhvQRbJOOkF+nkLk/
+	 +ZXGCFDUSq93g==
+Date: Wed, 3 Apr 2024 11:57:21 -0500
 From: Rob Herring <robh@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: Fabio Estevam <festevam@denx.de>, rmfrfs@gmail.com,
-	laurent.pinchart@ideasonboard.com, linux-media@vger.kernel.org,
-	conor+dt@kernel.org, sakari.ailus@linux.intel.com,
-	krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-	hansg@kernel.org
-Subject: Re: [PATCH v4 2/2] media: dt-bindings: ovti,ov2680: Document
- link-frequencies
-Message-ID: <171216317203.3979008.2467490229461130290.robh@kernel.org>
-References: <20240402174028.205434-1-festevam@gmail.com>
- <20240402174028.205434-2-festevam@gmail.com>
+To: Hiago De Franco <hiagofranco@gmail.com>
+Cc: Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hiago De Franco <hiago.franco@toradex.com>, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/4] dt-bindings: arm: fsl: remove reduntant
+ toradex,colibri-imx8x
+Message-ID: <20240403165721.GA3980362-robh@kernel.org>
+References: <20240402193512.240417-1-hiagofranco@gmail.com>
+ <20240402193512.240417-3-hiagofranco@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,26 +65,39 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240402174028.205434-2-festevam@gmail.com>
+In-Reply-To: <20240402193512.240417-3-hiagofranco@gmail.com>
 
+On Tue, Apr 02, 2024 at 04:35:10PM -0300, Hiago De Franco wrote:
+> From: Hiago De Franco <hiago.franco@toradex.com>
+> 
+> 'toradex,colibri-imx8x' is already present as a constant value for
+> 'i.MX8QP Board with Toradex Colibri iMX8X Modules', so there is no need
+> to keep it twice as a enum value for 'i.MX8QXP based Boards'.
 
-On Tue, 02 Apr 2024 14:40:28 -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
+If the module can operate on its own, then it would be valid to have 
+just "toradex,colibri-imx8x". If not, then:
+
+Acked-by: Rob Herring <robh@kernel.org>
+
 > 
-> Document the link-frequencies property as recommended by the following
-> document:
-> 
-> https://www.kernel.org/doc/html/v6.9-rc1/driver-api/media/camera-sensor.html#handling-clocks
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> Signed-off-by: Hiago De Franco <hiago.franco@toradex.com>
 > ---
-> Changes since v3:
-> - Only document link-frequencies.
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 1 -
+>  1 file changed, 1 deletion(-)
 > 
->  .../bindings/media/i2c/ovti,ov2680.yaml         | 17 ++++++++++++++++-
->  1 file changed, 16 insertions(+), 1 deletion(-)
+> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> index 0027201e19f8..6fdfa10af43c 100644
+> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> @@ -1218,7 +1218,6 @@ properties:
+>            - enum:
+>                - einfochips,imx8qxp-ai_ml  # i.MX8QXP AI_ML Board
+>                - fsl,imx8qxp-mek           # i.MX8QXP MEK Board
+> -              - toradex,colibri-imx8x     # Colibri iMX8X Modules
+>            - const: fsl,imx8qxp
+>  
+>        - description: i.MX8DXL based Boards
+> -- 
+> 2.39.2
 > 
-
-Reviewed-by: Rob Herring <robh@kernel.org>
-
 
