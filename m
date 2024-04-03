@@ -1,98 +1,185 @@
-Return-Path: <devicetree+bounces-55883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55893-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53EC6896C27
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 12:23:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D811F896C55
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 12:28:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 852EB1C26ADB
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 10:23:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A4931F28C91
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 10:28:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43983136989;
-	Wed,  3 Apr 2024 10:23:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CA6313D633;
+	Wed,  3 Apr 2024 10:26:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VSxUD/Dh"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="CTY2Zn8T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A66F259C;
-	Wed,  3 Apr 2024 10:23:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EAB913C68C;
+	Wed,  3 Apr 2024 10:26:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712139795; cv=none; b=OgGqTgdJMyXIaSjLbJLSCoi+1BkCGBkAvBe4sshJnxQoWR1cpz/R2ebN9SlnjhI+OJixWgV1xHIQqGMIomiaGhQ/gWCS7mX7ZRWwoob+FVUuo32AVwcQoqA3Ud3BcXTKUucaFEuv2jOc3rB+A6JT/BU0H1uYNigV6632tN3KuXw=
+	t=1712139981; cv=none; b=sVqiA4Rl0y7o/IXHQZ8/OXaRLAlBkxsoRDsN0DR0fY+GfYzURbbKf2Bw+6H2AUNhcWhffP3p6afL44SRDF9CIcMius92bnOrv1TevMIItS2Qm9US3hIqIr2WEUeqnWat9IfrGQ7q2YN8S8P6dP+6zrO0eL+yT0x6pCndPn6Sn6s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712139795; c=relaxed/simple;
-	bh=Viy3GgCDJ7qyHcGUPSF+AlvmzsQeSr8sZWdoICy0T70=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=OztoJornKvx776rugI4LjTqT2ZxZjl9Yb8kJylYtDoJo4mKl+xdv39HQubdcoBnCRLKEka5K8OdBpSIaql1dOZJSbu8qus6cScdsb5v69FV8JWBhDz+PJTsv5M/XVQrqGKIWsox8mpqxOE3MpfbeDD6s/EgnxKEIJTpfvFR8bIU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VSxUD/Dh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F101C433F1;
-	Wed,  3 Apr 2024 10:23:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712139794;
-	bh=Viy3GgCDJ7qyHcGUPSF+AlvmzsQeSr8sZWdoICy0T70=;
-	h=From:To:Cc:Subject:Date:From;
-	b=VSxUD/Dh6qLEqngMy6HZH96KdR19I0YFv/Y/ptrkzTDcPC3HdUSr769+VoL8FRVtN
-	 EfdqEYOgmNNb87JEF8Gxe6EOOITteMo/ioPRnpm4uFTtgKty0u314KGRYOsfQsXQ6I
-	 0TdXg5RK/Y4OfUzKwwAzndCIPWUM55T6yL9UIAHUxQNEybIkFhkSe1/9s2tnmfbxSa
-	 3QFJnpuT22VoZHBsScnoW3XwcTfsBN1wVz2/JOTWV9nGzRv0yYUv6tHyYjTDyffaMw
-	 G9Uohp0BLQ6c+OYYEvb1lr54pwRxaH5IMos9x03imWeDew/Z4UbZZa2123WXfCpc73
-	 urbn36WsGuYsg==
-From: Michael Walle <mwalle@kernel.org>
-To: Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Michael Walle <mwalle@kernel.org>
-Subject: [PATCH v2] arm64: dts: ti: k3-j722s-evm: Enable eMMC support
-Date: Wed,  3 Apr 2024 12:23:02 +0200
-Message-Id: <20240403102302.3934932-1-mwalle@kernel.org>
-X-Mailer: git-send-email 2.39.2
+	s=arc-20240116; t=1712139981; c=relaxed/simple;
+	bh=n7uuZO+DQxn6YgV7SNqdqtWWUeSRWdpo2dcddIohjW0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Z6/ER1D6X63arLueck/MkZlsGFOpcerizWKymEOMDse6xoJDIWDXkBqrHaBYAyafGACTgokEGoVWXDeWiJzVEvar7VWMpH/ZldXnqzHLX3aAM2bSJChucem2QcKnBccxTcHY2uHBVCBhMDKkWIDjAPbpsseFbQYpbVRG7mu/wiE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=CTY2Zn8T; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 944057fcf1a411ee935d6952f98a51a9-20240403
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=urbzCOgzD7/Hupt+Y7xPp6Zzq0kIUnTELc1uefBAO6o=;
+	b=CTY2Zn8TfufIcYixJpgorfkHwyNJqj8L4uYh+yMbh9INQqhauw3konedBv9r47q7OHc74SDVxgYbY/7oCKhGXBvtbFctbmqJKtRPrrXIROqFjiI/gMIL3jcr1vyb62b09LMswPOV35egw2uuX9tfMt9rPWMVHSKusHU7g6nebfo=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.37,REQID:f59cbff2-1362-43f6-a952-eafaefee6eb7,IP:0,U
+	RL:0,TC:0,Content:100,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+	N:release,TS:100
+X-CID-META: VersionHash:6f543d0,CLOUDID:91564582-4f93-4875-95e7-8c66ea833d57,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:801|102,TC:nil,Content:3,EDM:-3,IP:n
+	il,URL:1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LE
+	S:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: 944057fcf1a411ee935d6952f98a51a9-20240403
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw02.mediatek.com
+	(envelope-from <shawn.sung@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 337769930; Wed, 03 Apr 2024 18:26:05 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Wed, 3 Apr 2024 18:26:03 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Wed, 3 Apr 2024 18:26:03 +0800
+From: Shawn Sung <shawn.sung@mediatek.com>
+To: CK Hu <ck.hu@mediatek.com>, Jassi Brar <jassisinghbrar@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, Hsiao Chien Sung
+	<shawn.sung@mediatek.com>, "Jason-JH . Lin" <jason-jh.lin@mediatek.com>,
+	Houlong Wei <houlong.wei@mediatek.com>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, Hsiao Chien Sung
+	<shawn.sung@mediatek.corp-partner.google.com>
+Subject: [PATCH v5 00/10] Add CMDQ secure driver for SVP
+Date: Wed, 3 Apr 2024 18:25:52 +0800
+Message-ID: <20240403102602.32155-1-shawn.sung@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--8.399900-8.000000
+X-TMASE-MatchedRID: 2KXNH9TWyB78rQJMqxBG8AI0yP/uoH+DKaRmDCmXszd2Cr1D6VVk8n4z
+	9jl2IgzvD96xyDWv66V3DwGxIMXYVCoLG8HLfjNfXP5rFAucBUH4qCLIu0mtIGHZ+cd7VyKX4nz
+	kw7itaMhZk01J3c7PAfGwWOiK+CFhvoOwdMywpfOxo9yzdPhMvUGtrAxy5ENORL9uhZIYy13fSg
+	MQRUDlML1GkWouMMWsk7Vb6h17QQQ/eX/eRWk3Rd35+5/2Rxqm/8CuA+b/YYSlc5zJswSBz+b1a
+	n+ANQl/kPk8oBU71SxEzxsFM1euZqo77AcuQhw7ngIgpj8eDcCbifj2/J/1cQ1fU1q220JrKrau
+	Xd3MZDUb7Ul726xKAi05CVh5cvg3CMBT2WXOoJOFCmvAAvRrvyf6qUzae34r
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--8.399900-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP: F9D346B31598FBEA755AAE21659235500CF499B8D32E44FB9AA7F30D098187632000:8
+X-MTK: N
 
-The J722S EVM has an on-board eMMC. Enable the SDHC interface for it.
-There is no pinmuxing required because the interface has dedicated pins.
+From: Hsiao Chien Sung <shawn.sung@mediatek.corp-partner.google.com>
 
-Signed-off-by: Michael Walle <mwalle@kernel.org>
+For the Secure Video Path (SVP) feature, inculding the memory stored
+secure video content, the registers of display HW pipeline and the
+HW configure operations are required to execute in the secure world.
+
+So using a CMDQ secure driver to make all display HW registers
+configuration secure DRAM access permision settings execute by GCE
+secure thread in the secure world.
+
+We are landing this feature on mt8188 and mt8195 currently.
 ---
-v2:
- - move status="okay" last
+Based on 2 series and 1 patch:
+[1] Add CMDQ driver support for mt8188
+- https://patchwork.kernel.org/project/linux-mediatek/list/?series=810382
+[2] Add mediatek,gce-events definition to mediatek,gce-mailbox bindings
+- https://patchwork.kernel.org/project/linux-mediatek/list/?series=810938
+[3] soc: mediatek: Add register definitions for GCE
+- https://patchwork.kernel.org/project/linux-mediatek/patch/20231017064717.21616-2-shawn.sung@mediatek.com/
 ---
- arch/arm64/boot/dts/ti/k3-j722s-evm.dts | 7 +++++++
- 1 file changed, 7 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-index cee3a8661d5e..6b148da2bcdc 100644
---- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-@@ -369,6 +369,13 @@ partition@3fc0000 {
- 
- };
- 
-+&sdhci0 {
-+	ti,driver-strength-ohm = <50>;
-+	disable-wp;
-+	bootph-all;
-+	status = "okay";
-+};
-+
- &sdhci1 {
- 	/* SD/MMC */
- 	vmmc-supply = <&vdd_mmc1>;
--- 
-2.39.2
+Changes in v5:
+1. Sync the local changes
+
+Changes in v4:
+1. Rebase on mediatek-drm-next(278640d4d74cd) and fix the conflicts
+2. This series is based on 20240307013458.23550-1-jason-jh.lin@mediatek.com
+
+Changes in v3:
+1. separate mt8188 driver porting patches to another series
+2. separate adding 'mediatek,gce-events' event prop to another series
+3. sepatate mailbox helper and controller driver modification to a
+   single patch for adding looping thread
+4. add kerneldoc for secure mailbox related definition
+5. add moving reuseable definition patch before adding secure mailbox
+   driver patch
+6. adjust redundant logic in mtk-cmdq-sec-mailbox
+
+Changes in v2:
+1. adjust dt-binding SW event define patch before the dt-binding patch using it
+2. adjust dt-binding patch for secure cmdq driver
+3. remove the redundant patches or merge the patches of modification for the same API
+
+CK Hu (1):
+  drm/mediatek: Add interface to allocate MediaTek GEM buffer.
+
+Jason-JH.Lin (9):
+  dt-bindings: gce: mt8195: Add CMDQ_SYNC_TOKEN_SECURE_THR_EOF event id
+  dt-bindings: mailbox: Add mboxes property for CMDQ secure driver
+  soc: mediatek: cmdq: Add cmdq_pkt_logic_command to support math
+    operation
+  soc: mediatek: cmdq: Add cmdq_pkt_write_s_reg_value to support write
+    value to reg
+  mailbox: mtk-cmdq: Support GCE loop packets in interrupt handler
+  soc: mediatek: cmdq: Add cmdq_pkt_finalize_loop for looping cmd with
+    irq
+  mailbox: mediatek: Move reuseable definition to header for secure
+    driver
+  mailbox: mediatek: Add CMDQ secure mailbox driver
+  mailbox: mediatek: Add secure CMDQ driver support for CMDQ driver
+
+ .../mailbox/mediatek,gce-mailbox.yaml         |   10 +
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c        |   16 +-
+ drivers/gpu/drm/mediatek/mtk_gem.c            |   40 +
+ drivers/gpu/drm/mediatek/mtk_gem.h            |   11 +
+ drivers/mailbox/Makefile                      |    2 +-
+ drivers/mailbox/mtk-cmdq-mailbox.c            |  108 +-
+ drivers/mailbox/mtk-cmdq-sec-mailbox.c        | 1045 +++++++++++++++++
+ drivers/mailbox/mtk-cmdq-sec-tee.c            |  165 +++
+ drivers/soc/mediatek/mtk-cmdq-helper.c        |   75 ++
+ include/dt-bindings/gce/mt8195-gce.h          |    6 +
+ include/linux/mailbox/mtk-cmdq-mailbox.h      |   37 +
+ .../linux/mailbox/mtk-cmdq-sec-iwc-common.h   |  385 ++++++
+ include/linux/mailbox/mtk-cmdq-sec-mailbox.h  |  159 +++
+ include/linux/mailbox/mtk-cmdq-sec-tee.h      |  105 ++
+ include/linux/soc/mediatek/mtk-cmdq.h         |   61 +
+ include/uapi/drm/mediatek_drm.h               |   64 +
+ 16 files changed, 2257 insertions(+), 32 deletions(-)
+ create mode 100644 drivers/mailbox/mtk-cmdq-sec-mailbox.c
+ create mode 100644 drivers/mailbox/mtk-cmdq-sec-tee.c
+ create mode 100644 include/linux/mailbox/mtk-cmdq-sec-iwc-common.h
+ create mode 100644 include/linux/mailbox/mtk-cmdq-sec-mailbox.h
+ create mode 100644 include/linux/mailbox/mtk-cmdq-sec-tee.h
+ create mode 100644 include/uapi/drm/mediatek_drm.h
+
+--
+2.18.0
 
 
