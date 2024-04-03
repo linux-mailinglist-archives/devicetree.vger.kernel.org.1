@@ -1,130 +1,111 @@
-Return-Path: <devicetree+bounces-55862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55863-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60853896AC9
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 11:36:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E2F3896AF8
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 11:45:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 904F31C20ABD
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 09:36:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 204CB28D22D
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 09:45:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87E50131742;
-	Wed,  3 Apr 2024 09:36:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 267F9134CC8;
+	Wed,  3 Apr 2024 09:45:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IYQR2xtT"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="MIFYDCnC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDF386F085;
-	Wed,  3 Apr 2024 09:36:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3903C133981;
+	Wed,  3 Apr 2024 09:45:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712136984; cv=none; b=bxY072x/HOUWQFY8cXagx49SZlOeBalFDGvXzKntPWDFYlC4F0c9CEgE0dbGx9cuz2RtPYRok5+UskC62V2yY/BtVcSnpT3wZzG/vmqKjCPQAwVAsuvJd4KB1xiD3mL42um7Ob3+INdy/dNJjx/qEUrLom8g4hjxaXuu9TRaLe4=
+	t=1712137523; cv=none; b=revYx73bFHG6NUsVg20iJi69OdtiVGxWJsrBKiwJkOYVBMgvrywCuTw3+cHwfBk63r3AxDvCELLOdg6OL/shLwX9Mf1rYCx/5iHxb4oKhW8Ri/jM+/4uu4uXZ+xrfafC5Zj4ISXTS9VBTHY+j6xVPZmAweB8ygM1tL6ATyum2x0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712136984; c=relaxed/simple;
-	bh=Tcq6waVhu6x2uDMgdHob45eXvXyBR13IKWESGleO5QQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=CPMgbEsTeZd5R2Fyfqhln2oDhs0F6FqvBq98jeoOS1x31+s6MRsQw+Fc31zBC7gx3NmrpZGEQALKCevz/Sljm6PSSyXmwyL6aiJjYBZ/fCYJk6BP39QvzhH7kCl1ASjhW61OCWiX3QO64o0DTqoIPTfmeizoxJ03HhGPHc0MBDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IYQR2xtT; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 433957Hi031954;
-	Wed, 3 Apr 2024 09:36:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=Qut8GT9o136iegY3V8uUsXMS6TUkzgV1SykQRe77Q5Y=; b=IY
-	QR2xtTOWmpHRTvQOxsTjsECk6T4hfI1RxVZmH5wDG7heVeBwI2R9eTVRYCiMYvtT
-	sn0ymhIrzBXtrycPZ4pfxFW0Bo3oU2Di73v46+juaRjKBJgUGdYS2bSm1LTxQmg5
-	mtOqcZd0Y2eKXIueO3+TU1xdZA0wNYMpHlCKCCIm84JMviBTY1AMJnfKAPLWHvNx
-	6cSwasdsKm5Ko+0qJ4FgZAzhxrnPQUTuyGyYcnukYkasH2toiYXmKtWyqEI8BcCu
-	GXkRZsgTE5AxG3Q1vN3cgq/y1KB17OrIxUETbeYuSbFFzGp4PdDJI/yA6No55r9P
-	gHOOQ0EuP7rX9GcBeoAg==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x946002nh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 03 Apr 2024 09:36:18 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4339aHIL004891
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 3 Apr 2024 09:36:17 GMT
-Received: from [10.217.217.112] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Wed, 3 Apr 2024
- 02:36:14 -0700
-Message-ID: <dc19ba7a-ee4b-48c1-ac8e-224077526039@quicinc.com>
-Date: Wed, 3 Apr 2024 15:06:11 +0530
+	s=arc-20240116; t=1712137523; c=relaxed/simple;
+	bh=khov9Dp62C4KhM05qzfYcKQ1sM7iWgxjKaoqHOebAjM=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=FBneePIZ2axmBfQEYOoQTxOIttTAwXidWQDErSede6VXAffpLQ34AR55sTnYttaXrP2bd3T8hfC+NmHX98ugbcIxMfXJ7TMOvZn3xBCi4wOhJz2geYb82Ly/vzMy3VS/3kgY6uxe5K75+2xfS9Zb2F2/+Y//MakgJD/XUHxg+p0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=MIFYDCnC; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E9A70C0007;
+	Wed,  3 Apr 2024 09:45:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1712137512;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ZzKh48tvuliOzzYgV6gXv3vmW8JbdbuTP9eBYehyiwU=;
+	b=MIFYDCnCuty2+ygrZEP+g/xbSCtznUvE+sv8lvM+z+Rm1JVrKsMOVkHYMaNqYuCSGo2VzM
+	cy6M12I9CA35W9tbez64ShUeEAYEaGm5i6tEoa8GR25m2FNnCOyZHoZfPbcj3IXNJgKV+L
+	tkZvmzipjGfX+qZCjAGMBL7E2gH62HaNkOaiFj+fEwvukjMPHFcdYaHnq0T5vbuJNHyBuD
+	+ybVfhOOXjBFmuo3jDJBw1PAVxAJZWQv5iEUTzSpmX9/wbjpDf0vJYuHVaCCQojbrxXIYa
+	z87szIJCk5lIoXs4A3iKS3Xcc6D/9YoyHLLifKWjnnZXxdHPA9EHXOJ3ybSCIw==
+Date: Wed, 3 Apr 2024 11:45:09 +0200
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, Luis Chamberlain
+ <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Oleksij Rempel <o.rempel@pengutronix.de>, Mark Brown <broonie@kernel.org>,
+ Frank Rowand <frowand.list@gmail.com>, Heiner Kallweit
+ <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, Thomas
+ Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ devicetree@vger.kernel.org, Dent Project <dentproject@linuxfoundation.org>
+Subject: Re: [PATCH net-next v6 17/17] net: pse-pd: Add TI TPS23881 PSE
+ controller driver
+Message-ID: <20240403114509.46eeaa21@kmaincent-XPS-13-7390>
+In-Reply-To: <8186fea6-c1f4-403b-b717-83c1dd3ad826@lunn.ch>
+References: <20240326-feature_poe-v6-0-c1011b6ea1cb@bootlin.com>
+	<20240326-feature_poe-v6-17-c1011b6ea1cb@bootlin.com>
+	<6bbc6b86-3947-4679-ac0b-fde50129d0f6@lunn.ch>
+	<20240329155657.7939ac4b@kmaincent-XPS-13-7390>
+	<8186fea6-c1f4-403b-b717-83c1dd3ad826@lunn.ch>
+Organization: bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: qcm6490-idp: Add change to name the
- regulators
-Content-Language: en-US
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_kamalw@quicinc.com>
-References: <20240329122940.3649730-1-quic_uchheda@quicinc.com>
- <20240329140534820-0700.eberman@hu-eberman-lv.qualcomm.com>
- <fvep7awia3eqlavh4ksscig4x2yc2szpy2uoi2p6ueofimv5ch@km4aekplcys5>
-From: Umang Chheda <quic_uchheda@quicinc.com>
-In-Reply-To: <fvep7awia3eqlavh4ksscig4x2yc2szpy2uoi2p6ueofimv5ch@km4aekplcys5>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: bUMKvSbmkLr76X2yZIpOpBRPo_n8IFhB
-X-Proofpoint-ORIG-GUID: bUMKvSbmkLr76X2yZIpOpBRPo_n8IFhB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-03_08,2024-04-01_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=878
- suspectscore=0 adultscore=0 phishscore=0 priorityscore=1501 mlxscore=0
- clxscore=1015 impostorscore=0 lowpriorityscore=0 bulkscore=0
- malwarescore=0 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2403210001 definitions=main-2404030065
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: kory.maincent@bootlin.com
 
+On Sat, 30 Mar 2024 15:52:49 +0100
+Andrew Lunn <andrew@lunn.ch> wrote:
 
+> On Fri, Mar 29, 2024 at 03:56:57PM +0100, Kory Maincent wrote:
+> > On Thu, 28 Mar 2024 17:24:17 +0100
+> > Andrew Lunn <andrew@lunn.ch> wrote:
+> >  =20
+> > > > +static int tps23881_flash_fw_part(struct i2c_client *client,
+> > > > +				  const char *fw_name,
+> > > > +				  const struct tps23881_fw_conf
+> > > > *fw_conf)   =20
+> > >=20
+> > > Does the device actually have flash? Or is this just downloading to
+> > > SRAM? =20
+> >=20
+> > It is downloading to SRAM. =20
+>=20
+> So maybe rename these functions.
 
-On 4/3/2024 9:22 AM, Bjorn Andersson wrote:
-> On Fri, Mar 29, 2024 at 02:09:55PM -0700, Elliot Berman wrote:
->> Nit: the subject line should be:
->>
->> arm64: dts: qcom: qcm6490: Name the regulators
->>
-> 
-> Much cleaner subject, but no longer matches file prefix.
-
-I will update the subject line to:
-arm64: dts: qcom: qcm6490-idp: Name the regulators
-
-> 
->> I don't know if it merits a resend, though.
-> 
-> Yes, please.
-
-Ack, will update the subject line as suggested by Elliot and Resend the patch.
+Ok, I will.
 
 Regards,
-Umang
-
-> 
-> Regards,
-> Bjorn
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
