@@ -1,168 +1,179 @@
-Return-Path: <devicetree+bounces-56045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-56046-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 061EF8977EF
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 20:16:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11DD889781C
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 20:22:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 72EAE1F214D2
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 18:16:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B24D1F21FEB
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 18:22:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D65CD153511;
-	Wed,  3 Apr 2024 18:16:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 286DD153BF0;
+	Wed,  3 Apr 2024 18:22:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="uEGRsZqx"
+	dkim=pass (2048-bit key) header.d=dabbelt-com.20230601.gappssmtp.com header.i=@dabbelt-com.20230601.gappssmtp.com header.b="ZwCD8duL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB1A31534EB
-	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 18:16:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44E30153598
+	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 18:22:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712168169; cv=none; b=nIn3n11V3j6OGqKa3SMK6EIInVaxPA56Uz7X5dAKXoAwYt19d2dYFm0rzrShwkq9wsxtyxNxnOn4g7qMLG1hkjSjMtmt5uvaG7GyHvs6B4ExWcyUJWoZjpRA/wNyvAUxu865dRb6c1ZM1X9XHYe742aaBcA2mi5CcKXPuY/8mgo=
+	t=1712168530; cv=none; b=kkissEx7Og3/X8OjCQm6Kh4edmT3m4vIJBX1TbEfI4zS6UA4f+YYVgFfc0dkDSZWoRSWTj26NnL4w19lgSnGytjR90XpbChMhtJbudrBUWbYU1rG8FT4lx9JXQHlF2oJdowCI2HI47PSaKKW1MoL46l1doDT8r2RxzftR0Cqij0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712168169; c=relaxed/simple;
-	bh=a9E2mGfmVxcJ7x2M2sf17xeANHcNSUBMmGhTG7nDg+Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jmAAB2xLH0W/3Hei9AI2Vz5aRU4wkcmDMB/WZNNEDxOUBTgTmNI40B/wYldMzUSd/LrJdTUGgE6ZR3On3U4KBL3PAKTDyQJy7TxwToyYYdmckRneuhK4xDLEvIFAUBtSkgZItqaCbG2/JKOUwvJpbic4yaGrsZzBH3IMwgAv8YM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=uEGRsZqx; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3436b096690so989449f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 11:16:07 -0700 (PDT)
+	s=arc-20240116; t=1712168530; c=relaxed/simple;
+	bh=YLQ5ks3ozTKHgLjWeRoai9T7IQizj8Dx9UVCzQpSmEY=;
+	h=Date:Subject:In-Reply-To:CC:From:To:Message-ID:Mime-Version:
+	 Content-Type; b=tgJBfi4bw2mJQQp1M2584cQE1WaurHypsd3myV5PIkzz4PL5iTHyG26RAbA+PyjCx5KbyFlnpRHcsZ+EV+ILMre+Y0UAKUe/zRREHZttQe1Y9egeuPuXTbIivBknrmSDHRdVrjuhI2IA6kj6+V8srj65W6/WtHzSV40ymrH0fYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=dabbelt.com; spf=pass smtp.mailfrom=dabbelt.com; dkim=pass (2048-bit key) header.d=dabbelt-com.20230601.gappssmtp.com header.i=@dabbelt-com.20230601.gappssmtp.com header.b=ZwCD8duL; arc=none smtp.client-ip=209.85.210.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=dabbelt.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dabbelt.com
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-6ea8ee55812so111758b3a.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 11:22:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1712168166; x=1712772966; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yMk/LPFqs7VskBV22jyb1Tdh2P4ZoSSQNrYCMOikFmQ=;
-        b=uEGRsZqxt+GOjRB5J5PpXP7ZWa4Ht1abkW1eOQsIyRJr59DE8s2vIVZnkr4nz0JhPs
-         SpM/bQRkYB2hVEOLFioBdnA53+W+/0dm5bHzNltzFVoWgisdadiznKVdHh7nwF0K5Upf
-         J5XwvHQpDMCLz+CK+VTBO2hEc8nQ37wIxFhJgj6nudCYnC6uAXubuB91RekmkJMr4Y85
-         JJUtxqGzbT5mc0KN6Ji6vybIvbOLTvSYMEwD4DBLr0rO2IcR6WNFkGQ69Hqyzc1B1YXO
-         9IZg3Gp9sFoxHFwoPowZpqr2Rw1PicP6pRnltje7TLCHRLwB3g4E1wXE53DmGKgCXii0
-         prXA==
+        d=dabbelt-com.20230601.gappssmtp.com; s=20230601; t=1712168527; x=1712773327; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LoPxyy6ZZevKYMVQQwthSJ0EL7SyRC2E5s9/TcAwzlA=;
+        b=ZwCD8duLiCKuvl/u7C9SdR5KA7kiEXzgg9lxw5OSzEdw1T/wGKr5yIscD1y5u8+1Jb
+         rEiSIY56Ll0uhQLmfdAoYDC2Lnttb2XuguTUokKOEAkOSgyPOVOeTbfdqd+d1/f0AuVo
+         h8r9YkjwWATqXl4T36os3jswsTUuZ5CfYf4W4jAwrW70gP0R98mB3cW2EL1Lv7GwSJ+u
+         IGStBP4q+9l/L56Zy1gtiAKzSTq4eu/zZP/Mgi9eROxXuNemHFjFOFK6sdKFwtKQP6NY
+         JiCveokbXC5BI6xt1xgStRdF5YPEeiOsqUFpFv+xZ9FBnstn8e8UP3lxmzylyZu/pqXh
+         +gSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712168166; x=1712772966;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yMk/LPFqs7VskBV22jyb1Tdh2P4ZoSSQNrYCMOikFmQ=;
-        b=cp++C81cs6w9bWjEYjGt3MODwI2uXPI1tXGydqrsu+2/6q7LinQ51SlbY5e7Lq9G9X
-         flf4OfLeCbnJB3kDiV1XZK/VpLrSrFm+/zHGGE0DLhqo8DS1w+xKcntkdWcuRzyRoL/o
-         Zb+ZVQCHPA62PtkioQ2N6bmzld8dj5VUAtNFl8eieHjfo0io0HX0M4u/h37Dd12GMb9Q
-         76wxi1BzPSAG6SiiBrsxNTojwzHG7Wcok2/EfkzsNxVZXvGH5lGA4HXKPHXNUDHR8osp
-         uQGvitvIle3lDC/68Ea3VITgCKQRnoLReo7iP01ryE1STTHGC+Wm6IcJzzGXzA5KfEz5
-         qeow==
-X-Forwarded-Encrypted: i=1; AJvYcCXXlY9TUBr+oazubzMjQVUcMIQrJTmk4BncnPVaylOtA4ltYx7suCtQF8cWj4ccdJn1C5DSatkuln1pDrO56H+kathH5YZceWZz4A==
-X-Gm-Message-State: AOJu0Ywee1Y2j0c0UFKDjgakxS6sOZw2y25GP0+Ob5gGRBIUhwAhQ0jd
-	A9x7PPzqg8xy3O9HnhIWNCSIJrCbeGV//LtC81LLswjdPc2HPdtilejCM4SybEE=
-X-Google-Smtp-Source: AGHT+IGo6IK4jzvPBeq+2C/SXoVrcSjTLf8DS+QLbHtNh0mgQm3NoGkkSkE8i74VGzKZ5Xv8eEXnFQ==
-X-Received: by 2002:a5d:690d:0:b0:343:8485:4edd with SMTP id t13-20020a5d690d000000b0034384854eddmr3336441wru.23.1712168165964;
-        Wed, 03 Apr 2024 11:16:05 -0700 (PDT)
-Received: from ?IPV6:2a02:8428:2a4:1a01:79e6:9288:5142:9623? ([2a02:8428:2a4:1a01:79e6:9288:5142:9623])
-        by smtp.gmail.com with ESMTPSA id t10-20020a05600c450a00b004161b59e230sm6352480wmo.41.2024.04.03.11.16.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Apr 2024 11:16:05 -0700 (PDT)
-Message-ID: <43e18846-cc4f-4b30-8019-4617359ddaa0@freebox.fr>
-Date: Wed, 3 Apr 2024 20:16:04 +0200
+        d=1e100.net; s=20230601; t=1712168527; x=1712773327;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LoPxyy6ZZevKYMVQQwthSJ0EL7SyRC2E5s9/TcAwzlA=;
+        b=kKSqDeoi7x50wu5QAHchu9/q4B5ID3ctazYUIoMjhnrUMpxWCbQAaMGPjaiWP4onff
+         GgocuzZPsrjN+lB005tVta6gc/vjUKr/ZzADYmu+s3It1Dm1KrXJObmkL4VLWVmKgyVc
+         cr/PkdCwhASXyt1cqNEwCrCroY3468ojgsXl7XL0dKZYUXYSfMMnzNcioHMkSiQVITP/
+         ONkTUY/SLUXdt4Pwc09cJVYkdf9t0ZcOEgIIEibnyOwX+ipOcq01Ls+SAfT26TfghE8r
+         2eN4nZReYCY3gbA98C9aC6C5bMIXmnQUdVB/N9p2F1XdPqDnbju7RHEV7VmBm1QgrJka
+         bMEQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU3j/lwGnz3yDfJmCIo31TzwmbYIjKUQkwOqJ/VK4AdS/nCGyZLQWMLZNDQE7E2HCj/R6z4zjK9Kzogiwdc51o+IRs4tNCtIWialA==
+X-Gm-Message-State: AOJu0YyPe2FG9Y5m+ZyW6P+xOaNuTlEAJAtoHr7kQLuSaBomm/4HpyOD
+	Lm/dUdV1pZluljDy8SChPGi2X2bYeGpWCr34idM+Bg03Su2/zbUmjU1/mtPFA8I=
+X-Google-Smtp-Source: AGHT+IE8xKPk+Cg4ycXY4vSQCypFZ4Jw5ScQiKmu4H6BcqJa4Y6mRodZymA7cXolnlaayPoU0XPjww==
+X-Received: by 2002:a05:6a20:734b:b0:1a3:48da:1090 with SMTP id v11-20020a056a20734b00b001a348da1090mr568998pzc.14.1712168527301;
+        Wed, 03 Apr 2024 11:22:07 -0700 (PDT)
+Received: from localhost ([192.184.165.199])
+        by smtp.gmail.com with ESMTPSA id d9-20020a17090ad3c900b0029b77fbeb7fsm14038311pjw.16.2024.04.03.11.22.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Apr 2024 11:22:06 -0700 (PDT)
+Date: Wed, 03 Apr 2024 11:22:06 -0700 (PDT)
+X-Google-Original-Date: Wed, 03 Apr 2024 11:21:50 PDT (-0700)
+Subject:     Re: [PATCH v6 00/11] riscv: add initial support for Canaan Kendryte K230
+In-Reply-To: <tencent_F76EB8D731C521C18D5D7C4F8229DAA58E08@qq.com>
+CC: linux-riscv@lists.infradead.org, Conor Dooley <conor@kernel.org>,
+  dlemoal@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+  Paul Walmsley <paul.walmsley@sifive.com>, aou@eecs.berkeley.edu, guoren@kernel.org, mturquette@baylibre.com,
+  sboyd@kernel.org, linus.walleij@linaro.org, p.zabel@pengutronix.de, linux-gpio@vger.kernel.org,
+  linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, cyy@cyyself.name
+From: Palmer Dabbelt <palmer@dabbelt.com>
+To: cyy@cyyself.name
+Message-ID: <mhng-08e43080-8679-43f8-80c5-b73304e4e680@palmer-ri-x1c9>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: msm8998: set
- qcom,no-msa-ready-indicator for wifi
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Kalle Valo <kvalo@kernel.org>, Jeff Johnson <quic_jjohnson@quicinc.com>,
- ath10k <ath10k@lists.infradead.org>,
- wireless <linux-wireless@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
- MSM <linux-arm-msm@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
- Bjorn Andersson <andersson@kernel.org>,
- Jami Kettunen <jamipkettunen@gmail.com>,
- Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-References: <fd26ce4a-a9f3-4ada-8d46-ed36fb2456ca@freebox.fr>
- <5cdad89c-282a-4df5-a286-b8404bc4dd81@freebox.fr>
- <252618e8-9e80-4774-a96c-caa7f838ef01@linaro.org>
- <502322f1-4f66-4922-bc4e-46bacac23410@linaro.org>
- <0ca1221b-b707-450f-877d-ca07a601624d@freebox.fr>
- <CAA8EJppeREj-0g9oGCzzKx5ywhg1mgmJR1q8yvXKN7N45do1Xg@mail.gmail.com>
- <91031ed0-104a-4752-8b1e-0dbe15ebf201@freebox.fr>
- <CAA8EJpooJLbV+nVWedru=r6fascd8ZxKumiMm_iyzzJwyQ-tig@mail.gmail.com>
-Content-Language: en-US
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-In-Reply-To: <CAA8EJpooJLbV+nVWedru=r6fascd8ZxKumiMm_iyzzJwyQ-tig@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 03/04/2024 16:12, Dmitry Baryshkov wrote:
+On Sat, 23 Mar 2024 05:09:42 PDT (-0700), cyy@cyyself.name wrote:
+> K230 is an ideal chip for RISC-V Vector 1.0 evaluation now. Add initial
+> support for it to allow more people to participate in building drivers
+> to mainline for it.
+>
+> This kernel has been tested upon factory SDK [1] with
+> k230_evb_only_linux_defconfig and patched mainline opensbi [2] to skip
+> locked pmp and successfully booted to busybox on initrd with this log [3].
+>
+> [1] https://github.com/kendryte/k230_sdk
+> [2] https://github.com/cyyself/opensbi/tree/k230
+> [3] https://gist.github.com/cyyself/b9445f38cc3ba1094924bd41c9086176
+>
+> Changes since v5:
+> - Deprecate SOC_CANAAN and use SOC_CANAAN_K210 for K210 SoCs
+> - Modify existing K210 drivers depends on SOC_CANAAN_K210 symbol
+> - Reword dts commit message
+> - Modify dts to use Full 512MB memory
+> - Rebase to linux mainline master
+>
+> Changes since v4:
+> - Reword commit message on dts that the B-ext version of c908 is 1.0 rather
+>   than 1.0-rc1
+>
+> v4: https://lore.kernel.org/linux-riscv/tencent_587730262984A011834F42D0563BC6B10405@qq.com/
+>
+> Changes since v3:
+> - Refactor Kconfig.soc which uses ARCH_CANAAN for regular Canaan SoCs and
+>   rename SOC_CANAAN to SOC_CANAAN_K210 for K210 in patch [5/7]
+> - Sort dt-binding stings on Cannan SoCs in alphanumerical order
+>
+> v3: https://lore.kernel.org/linux-riscv/tencent_BB2364BBF1812F4E304F7BDDD11E57356605@qq.com/
+>
+> Changes since v2:
+> - Add MIT License to dts file
+> - Sort dt-binding stings in alphanumerical order
+> - Sort filename in dts Makefile in alphanumerical order
+> - Rename canmv-k230.dts to k230-canmv.dts
+>
+> v2: https://lore.kernel.org/linux-riscv/tencent_64A9B4B31C2D70D5633042461AC9F80C0509@qq.com/
+>
+> Changes since v1:
+> - Patch dt-bindings in clint and plic
+> - Use enum in K230 compatible dt bindings
+> - Fix dts to pass `make dtbs_check`
+> - Add more details in commit message
+>
+> v1: https://lore.kernel.org/linux-riscv/tencent_E15F8FE0B6769E6338AE690C7F4844A31706@qq.com/
+>
+> Yangyu Chen (11):
+>   dt-bindings: riscv: Add T-HEAD C908 compatible
+>   dt-bindings: add Canaan K230 boards compatible strings
+>   dt-bindings: timer: Add Canaan K230 CLINT
+>   dt-bindings: interrupt-controller: Add Canaan K230 PLIC
+>   riscv: Kconfig.socs: Split ARCH_CANAAN and SOC_CANAAN_K210
+>   soc: canaan: Deprecate SOC_CANAAN and use SOC_CANAAN_K210 for K210
+>   clk: k210: Deprecate SOC_CANAAN and use SOC_CANAAN_K210
+>   pinctrl: k210: Deprecate SOC_CANAAN and use SOC_CANAAN_K210
+>   reset: k210: Deprecate SOC_CANAAN and use SOC_CANAAN_K210
+>   riscv: dts: add initial canmv-k230 and k230-evb dts
+>   riscv: config: enable ARCH_CANAAN in defconfig
+>
+>  .../sifive,plic-1.0.0.yaml                    |   1 +
+>  .../devicetree/bindings/riscv/canaan.yaml     |   8 +-
+>  .../devicetree/bindings/riscv/cpus.yaml       |   1 +
+>  .../bindings/timer/sifive,clint.yaml          |   1 +
+>  arch/riscv/Kconfig.socs                       |   8 +-
+>  arch/riscv/Makefile                           |   2 +-
+>  arch/riscv/boot/dts/canaan/Makefile           |   2 +
+>  arch/riscv/boot/dts/canaan/k230-canmv.dts     |  24 +++
+>  arch/riscv/boot/dts/canaan/k230-evb.dts       |  24 +++
+>  arch/riscv/boot/dts/canaan/k230.dtsi          | 140 ++++++++++++++++++
+>  arch/riscv/configs/defconfig                  |   1 +
+>  arch/riscv/configs/nommu_k210_defconfig       |   3 +-
+>  .../riscv/configs/nommu_k210_sdcard_defconfig |   3 +-
+>  drivers/clk/Kconfig                           |   4 +-
+>  drivers/pinctrl/Kconfig                       |   4 +-
+>  drivers/reset/Kconfig                         |   4 +-
+>  drivers/soc/Makefile                          |   2 +-
+>  drivers/soc/canaan/Kconfig                    |   4 +-
+>  18 files changed, 220 insertions(+), 16 deletions(-)
+>  create mode 100644 arch/riscv/boot/dts/canaan/k230-canmv.dts
+>  create mode 100644 arch/riscv/boot/dts/canaan/k230-evb.dts
+>  create mode 100644 arch/riscv/boot/dts/canaan/k230.dtsi
+>
+> base-commit: 8e938e39866920ddc266898e6ae1fffc5c8f51aa
 
-> From [Jeff's] message it looks like we are expected to get MSA READY even on msm8998.
-
-This is the code we're using:
-
-https://git.codelinaro.org/clo/la/kernel/msm-4.4/-/blob/caf_migration/kernel.lnx.4.4.r38-rel/drivers/net/wireless/ath/ath10k/qmi.c
-
-When ATH10K_SNOC_DRIVER_EVENT_SERVER_ARRIVE,
-driver registers an "indicator handler"
-ath10k_snoc_qmi_wlfw_clnt_ind()
-
-It handles QMI_WLFW_FW_READY_IND_V01 by posting
-ATH10K_SNOC_DRIVER_EVENT_FW_READY_IND
-which is handled in the
-ath10k_snoc_driver_event_work() work queue.
-
-But QMI_WLFW_MSA_READY_IND_V01 only triggers
-a debug log and setting qmi_cfg->msa_ready = true;
-
-$ git grep '\<msa_ready\>'
-drivers/net/wireless/ath/ath10k/qmi.c:          qmi_cfg->msa_ready = true;
-drivers/net/wireless/ath/ath10k/qmi.c:  qmi_cfg->msa_ready = false;
-drivers/net/wireless/ath/ath10k/qmi.h: * msa_ready: wlan firmware msa memory ready for board data download
-drivers/net/wireless/ath/ath10k/qmi.h:  bool msa_ready;
-
-So basically, the vendor ath10k driver ignores QMI_WLFW_MSA_READY_IND_V01.
-
-
-I will test the following patch which aligns the behavior
-of mainline driver to that of vendor driver:
-
-diff --git a/drivers/net/wireless/ath/ath10k/qmi.c b/drivers/net/wireless/ath/ath10k/qmi.c
-index 38e939f572a9e..0e1ab5aca663b 100644
---- a/drivers/net/wireless/ath/ath10k/qmi.c
-+++ b/drivers/net/wireless/ath/ath10k/qmi.c
-@@ -1040,6 +1040,7 @@ static void ath10k_qmi_driver_event_work(struct work_struct *work)
- 		switch (event->type) {
- 		case ATH10K_QMI_EVENT_SERVER_ARRIVE:
- 			ath10k_qmi_event_server_arrive(qmi);
-+			ath10k_qmi_event_msa_ready(qmi);
- 			break;
- 		case ATH10K_QMI_EVENT_SERVER_EXIT:
- 			ath10k_qmi_event_server_exit(qmi);
-@@ -1048,7 +1049,7 @@ static void ath10k_qmi_driver_event_work(struct work_struct *work)
- 			ath10k_qmi_event_fw_ready_ind(qmi);
- 			break;
- 		case ATH10K_QMI_EVENT_MSA_READY_IND:
--			ath10k_qmi_event_msa_ready(qmi);
-+			printk(KERN_WARNING "IGNORING MSA_READY INDICATOR");
- 			break;
- 		default:
- 			ath10k_warn(ar, "invalid event type: %d", event->type);
-
-
-Dmitry Baryshkov reported:
-Works on sm8150, sdm845, qrb2210
-
-Regards
-
+Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
 
