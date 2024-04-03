@@ -1,131 +1,171 @@
-Return-Path: <devicetree+bounces-55933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D340B8970EF
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 15:28:38 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C731D89711A
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 15:31:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 885421F22E90
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 13:28:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 55E22B23EEC
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 13:31:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F0541487CC;
-	Wed,  3 Apr 2024 13:26:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D03BB14AD21;
+	Wed,  3 Apr 2024 13:29:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XuT87jJO"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="CypjQZpT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 233CA1482FA;
-	Wed,  3 Apr 2024 13:26:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 158FC1494D4;
+	Wed,  3 Apr 2024 13:29:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712150791; cv=none; b=aO6hNjtggY3PWUfVNreqQLfwFzpP/n279sHU523kvmCezvvxv38CxhDN4WvYnMogzDmE4KTtK1d+YhaE7PY0WCq7asxCZ7LgVgdurqqcviIeiVrzTkgaY/36GftL47KvoHqGYK7nYNTHY8kh79gyz2qQEk1kYkW7E6FQYyDB/GA=
+	t=1712150943; cv=none; b=hnWANY/YJlMkUussxLja9XZbY8DnUGJRR7mQ3vUV5bDGohCH0c9YrDldJOWj+Al63cD+0gzWIDZauT8UPS/SmYmcC0TpTJRPMUpBQ/JWTcbP/O+YBV3wLjmAwHlLBspg9njRZCwZzZ7W0wKuAXq6R9fs5D6QjwePtrYo3xCdl24=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712150791; c=relaxed/simple;
-	bh=pNqIMk3dXJAK1dmFXhtlvHJm8YAeYjgoXwxpjzjBV7c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QuJygQCCKClXQoKoC+tu3+0ltQoacWZ2ZwMYt17YBomfl4/y63CrT2IYNfQUc6W3Bc+eOkFreGz8nmbR8jdBtepICqQ3Dh8elrFSAasvCFAhsfKLuI5ecKDFLw0zz+LUffVHnmEZz5LhJ5DYcGUDYUOQQonHrowHfimJI0mIsT0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XuT87jJO; arc=none smtp.client-ip=209.85.210.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-6ea838bf357so5167258b3a.0;
-        Wed, 03 Apr 2024 06:26:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712150789; x=1712755589; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tv8iMSkszzMWqrID5CXG8dHdxUEdUozJG+zGUFmwB4A=;
-        b=XuT87jJOzluj5tMRmm1aaER7kM7bvaF3RGuBsVZPrnUSMovBeIaVfszsRsHvdJj6Ds
-         9J3j86OZ3J2XCi5NWtxEtQDIa23CSORM6rzBrSrVmuNBrBht1shdDy8VgcQdZWjmwlJh
-         +O5sQE7mjYdp6vqiPPvPXJYSch5D/+JnAf+2Q4QqrjF8n1VIbOp6c8J5xhhWZgJv1Y51
-         iv1xz0t6+QXk5GFboJ2O5a0eU3yScuja/2NbF3Ij6uO1pNaCPpvjqhTk5VxG4Jh+yeF/
-         /cy1Zzn3BSTjD5eKnNZr1tE9rn8itp7KfZGw0nou9kk9OsMbqrEYf8DTnH6yyd/2Fz2V
-         qXFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712150789; x=1712755589;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tv8iMSkszzMWqrID5CXG8dHdxUEdUozJG+zGUFmwB4A=;
-        b=wI1u6B1EBrJLHn5/c5Awqbtugmt22WITdaj1ddiEXVIKu1HbnXYSA6xyFl80U+LXyx
-         smuhXfxlZtTic/GllQxsCeWlE9YWKK/QaKEdxFuOODnbl6MGRBspn/id6xQflrc2HbKA
-         rwLa8fMqdpP18R95QzVDC1/Vn4/sI7UbfWWjvf+MdxCR3613dtnj6wvZfDXf5RE4BhLF
-         Ra+LKmZTW28RsEeC/enA0RVVE4XrqdEuHCRIqB0KbgebOQELvWLHX9kUGKMCliuiJ1dX
-         yB3Mf5vwvDM2lJhFky3SX8SNPMB5SQGoOZB8/HHOrr/U/ei5yHj7PT/BWqhDNMmhyZoq
-         QPVw==
-X-Forwarded-Encrypted: i=1; AJvYcCWrn3OUNqzoL3WmWebbol1z1ANMPLg1CfUlTSgGrTY5cNuQe5LEPz/xZhn+08xq/Q2CxTPELAVJcMVZ3h7gVsXMf0oz9Mil0mEKHBnUmXYMieYoEJOwqn0FHM6Olum2lSwH52g07MBw7hUTvJNMDXakH5TmGzY9i+7WL3PW6w7+W9xTBXtOCAZk
-X-Gm-Message-State: AOJu0YyCfo982xCFNJJHR58VdvHvqjtv8z99m206+3vJg4/t8JIQjk9D
-	qXL10PUkpjm1MQmSjEuuvyI/XTsUgmmW18kM6Tp3TZ+c9LCYL5Rx
-X-Google-Smtp-Source: AGHT+IHPQcf1KauRRFFf95OsXrrxpcYKnvhoiA5NT6n4jVd/PqAHKw35hLjTyYgdc6RpO6DQuMy3vQ==
-X-Received: by 2002:a05:6a00:1413:b0:6e6:89ad:1233 with SMTP id l19-20020a056a00141300b006e689ad1233mr17299843pfu.2.1712150788005;
-        Wed, 03 Apr 2024 06:26:28 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id fd30-20020a056a002e9e00b006eaf43b5982sm8479994pfb.108.2024.04.03.06.26.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Apr 2024 06:26:26 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Wed, 3 Apr 2024 06:26:25 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Lee Jones <lee@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-watchdog@vger.kernel.org
-Subject: Re: [RFC PATCH 5/6] watchdog: ROHM BD96801 PMIC WDG driver
-Message-ID: <d7522458-35b1-40ca-84a3-eaf1127a1e4e@roeck-us.net>
-References: <cover.1712058690.git.mazziesaccount@gmail.com>
- <f8e743a6c49607de0dd7a27778383477e051b130.1712058690.git.mazziesaccount@gmail.com>
- <4fa3a64b-60fb-4e5e-8785-0f14da37eea2@roeck-us.net>
- <279336b3-f28d-48ee-a10f-47abba7b0b89@gmail.com>
- <d2ab33e6-4d3e-472a-b4d7-b703955989ba@roeck-us.net>
- <1d956aab-2892-4a2b-a4b3-0a93504668eb@gmail.com>
+	s=arc-20240116; t=1712150943; c=relaxed/simple;
+	bh=6BqKuQkKI7qqdSWP3RT3IfyKn2XXs/cwX6b6EcQFUXE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=SQhnEJNGQYuHDvPfsb6z/kR2VrywRRsVQ/54BE26wzGjpw8OQrdKhHoBA3zIRCxw7nx2jGF3X7YIr8/APFAWmsK/ZcfadOr5jUu4imodWosLjwyJW1f5AgZ8b1eYLarxmf0J6rUjucpEwK1R5Ge4KZhpKLjOo+r71LJN91fuPu8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=CypjQZpT; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 433BcMDs021669;
+	Wed, 3 Apr 2024 13:28:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=yZkO476
+	vWnBXahdSSyoINxOnrUmV547YEJLIGTKnHJQ=; b=CypjQZpTQzAo7kZGR0rI1lF
+	ud4WVTpFqXtqGU/+Jy/rv/2VFZuD/WQbiZgdE+23vQy1Ra5Kp7dx3+qNpn/KBtjV
+	zHYolLDB9J3R0FhlBqjHmOfGuia2DDa/FN67Ut4aI7urELtW25V3cAWaSML0QDIl
+	d1ZDWp+6DCxIqpBogLxTRY31A8fCvnHa0tDgeejW6daXwCoyPsIDvlOD1H4sXnhP
+	r6E64DsiU06yj7fTkn+eZeoqVRuSomL8vUWZVtIPTI8ZUERG938oo3IdSFRaGkf0
+	hBNY+tAfD3yVxwzXeN4xqFX0GFkPnv0CJRZUC98AhfqiZucS4kW2OoFlT/14crQ=
+	=
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x93u58qq4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 03 Apr 2024 13:28:57 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 433DSubZ031548
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 3 Apr 2024 13:28:56 GMT
+Received: from hu-uchheda-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.4; Wed, 3 Apr 2024 06:28:53 -0700
+From: Umang Chheda <quic_uchheda@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_uchheda@quicinc.com>
+Subject: [PATCH RESEND] arm64: dts: qcom: qcs6490-rb3gen2: enable PMIC Volume and Power buttons
+Date: Wed, 3 Apr 2024 18:58:39 +0530
+Message-ID: <20240403132839.2117675-1-quic_uchheda@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1d956aab-2892-4a2b-a4b3-0a93504668eb@gmail.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ClMBjIPmeguc9NnWh9BA8vznp7UQGBTp
+X-Proofpoint-ORIG-GUID: ClMBjIPmeguc9NnWh9BA8vznp7UQGBTp
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-03_12,2024-04-03_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011
+ priorityscore=1501 bulkscore=0 suspectscore=0 adultscore=0 mlxlogscore=999
+ mlxscore=0 lowpriorityscore=0 impostorscore=0 spamscore=0 phishscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2403210001 definitions=main-2404030092
 
-On Wed, Apr 03, 2024 at 03:47:12PM +0300, Matti Vaittinen wrote:
-> > 
-> > Other watchdog drivers call emergency_restart() if the watchdog times out
-> > and triggers an interrupt. Are you saying this won't work for this system ?
-> > If so, please explain.
-> > 
-> 
-> Thanks Guenter. If it works with systems using other devices, then it should
-> work (to the same extent) with systems using this PMIC. Thanks.
-> 
+The Volume Down & Power buttons are controlled by the PMIC via
+the PON hardware, and the Volume Up is connected to a PMIC gpio.
 
-You might also consider to just call panic(). What is what we do if the
-pretimeout panic governor is enabled.
+Enable the necessary hardware and setup the GPIO state for the
+Volume Up gpio key.
 
-That makes me wonder if it would make sense to introduce watchdog timeout
-governors, similar to the existing pretimeout governors. Maybe if I ever
-find the time to do it ...
+Signed-off-by: Umang Chheda <quic_uchheda@quicinc.com>
+---
+ arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 37 ++++++++++++++++++++
+ 1 file changed, 37 insertions(+)
 
-Guenter
+diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+index 63ebe0774f1d..73f6d18d2331 100644
+--- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
++++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+@@ -9,6 +9,8 @@
+ #define PM7250B_SID 8
+ #define PM7250B_SID1 9
+ 
++#include <dt-bindings/input/linux-event-codes.h>
++#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ #include "sc7280.dtsi"
+ #include "pm7250b.dtsi"
+@@ -39,6 +41,22 @@ chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+ 
++	gpio-keys {
++		compatible = "gpio-keys";
++
++		pinctrl-0 = <&key_vol_up_default>;
++		pinctrl-names = "default";
++
++		key-volume-up {
++			label = "Volume_up";
++			gpios = <&pm7325_gpios 6 GPIO_ACTIVE_LOW>;
++			linux,code = <KEY_VOLUMEUP>;
++			wakeup-source;
++			debounce-interval = <15>;
++			linux,can-disable;
++		};
++	};
++
+ 	reserved-memory {
+ 		xbl_mem: xbl@80700000 {
+ 			reg = <0x0 0x80700000 0x0 0x100000>;
+@@ -471,6 +489,25 @@ &gcc {
+ 			   <GCC_WPSS_RSCP_CLK>;
+ };
+ 
++&pm7325_gpios {
++	key_vol_up_default: key-vol-up-state {
++		pins = "gpio6";
++		function = "normal";
++		input-enable;
++		bias-pull-up;
++		qcom,drive-strength = <PMIC_GPIO_STRENGTH_LOW>;
++	};
++};
++
++&pon_pwrkey {
++	status = "okay";
++};
++
++&pon_resin {
++	linux,code = <KEY_VOLUMEDOWN>;
++	status = "okay";
++};
++
+ &qupv3_id_0 {
+ 	status = "okay";
+ };
+-- 
+2.25.1
 
-> I'll add the IRQ handling to next version - but it may take a while as I'm
-> currently having some problems with the IRQs in general, and because I'll
-> wait for feedback from Mark to the regulator part.
-> 
-> Yours,
-> 	-- Matti
-> 
-> -- 
-> Matti Vaittinen
-> Linux kernel developer at ROHM Semiconductors
-> Oulu Finland
-> 
-> ~~ When things go utterly wrong vim users can always type :help! ~~
-> 
 
