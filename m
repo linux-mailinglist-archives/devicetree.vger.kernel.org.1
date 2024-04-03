@@ -1,142 +1,157 @@
-Return-Path: <devicetree+bounces-55877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47394896BB1
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 12:09:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE048896BDE
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 12:16:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 271FDB26EBD
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 10:09:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B0A01F21711
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 10:16:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9F6D139CF4;
-	Wed,  3 Apr 2024 10:08:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57735135A68;
+	Wed,  3 Apr 2024 10:16:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WXA5RjU4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ozoCUCog"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F99E13A279;
-	Wed,  3 Apr 2024 10:08:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E1997317F;
+	Wed,  3 Apr 2024 10:16:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712138893; cv=none; b=sVhmV6lpaeYhnKXQhOLEcpqMPRno9xW1yUy9LCQh12T5wT0uYafejp2Ixsf0hDV4YH2PFUf5IQ8NgpqcwlsKyk/c8Wafj0UkCx/Q4TjlOYKEsjt33h5eWKUF51mSypS8M9Rj/WQbB6JBJgA6XaPw2k5AnfdGMfM/ZifIEfnPdio=
+	t=1712139411; cv=none; b=iUrQ+sKFsG0dUVS9uFUr9zhDVvm8jrfTAU8e+JGpDRxMQqAR/c0j+dlCEItyIf2DaiG4Q+M3PexX37Y/vXN5TTAMFjNz39vyIqgZnxJNQ1jkz4Zuvbl9EYztD8KCMH/r/obbp6hXoMJPqPmGcf0HFGf3SikxULRJuuGDgzR++gw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712138893; c=relaxed/simple;
-	bh=8G7FykjVMtnmR1a/yPBi3lb2UksOoP9XloVGYnThLxM=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Ga/v3AHT82locGKxzUBejphpDXpfua8Tq9QEzTXkoJ+HkhhiwvxYSiqdh25NQiGjkq/mc+TxQo1u1pgAyzyYyTB48FLRcZnVPxnHw94Je8IbQmwTmAtdI0yk0OpmObV8AEqYkb01h1wkAr2zUxbNXOVYque4/Hrr71BkYNXTeQU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WXA5RjU4; arc=none smtp.client-ip=209.85.221.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-4d43c633fecso2428835e0c.3;
-        Wed, 03 Apr 2024 03:08:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712138891; x=1712743691; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=bFS0RDDcgoBF1Pmbsu15na/pfHJDuhbIMoL/w120wPQ=;
-        b=WXA5RjU4PTz8gctQYn5pDvVZJWwyx3VPCPmGUbBppohV/Lk3VUnRTXDDzZ+/Yy3f7L
-         VNJr5opOZgzeiazQPP11DMjH0i/qQKYuWvMYlDIEr6mK5m1IxCuHaky6L/J55IftFPu+
-         I7c8966xYXc8d3wnL013+/YvtY/soMtgX6hhzbiYMBVcHh7wddFyKNsYm60I3lNRTu7i
-         O751O9MYfvHLFD4aOBY1kK5y0wk38bmBOGWYwCsnkHE4KLTDHKaDUdjfs0bm7UFz2TaG
-         9KhrQDurQJNvQth7KY1zoVLiePlgqa/fYU6P1jqz1bCP6ajczvk4rO0l8xKYw6FflmIq
-         5orw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712138891; x=1712743691;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bFS0RDDcgoBF1Pmbsu15na/pfHJDuhbIMoL/w120wPQ=;
-        b=dVmKfY4iC5kYJCqYh0TP0y70pu++3LMIv2AP3nB62ud7G7Qp08+eTuuDyEadWCNQXa
-         JEKukuQUVvlhgg6lQ5kXVNQWMyCTP4k9x61dSWq3vJsl4YyJqcn8Gy+oWjwm1NUgU6TK
-         ub4qCwJFQxorMxErW/6ZBgdW9WGBaYOrI4G/PjNsTbhXGR+bOhiyia3czdll+omSnj3R
-         J8YwVek67AbOCXksuRZ7ot3soc9NL3xYSSOlseMlpdH9SboQyrsfDNccCIbSc1e2LNu/
-         YzKXPortFVVWqeKjXE544BwkpXZ9yl4twJCge4P2yVX0gkJJk7dw+JxjSGswTslrR74E
-         SWzQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWB32FfEEmX3FBCE3F2Sr8b3eUn4oG4Ou5OwDp1gdNfNSTP6CzsX3Ben03wxgB/um7Ipamk7Sia05sjyED4Nk2SQfDBuqVRHfTzAM0jd3xoalfD/NlO3nABvOtwbYHFzO/N2oHJm7GUEM3neGet7hgadX0UwvBn7WptNVTWgaSkwcSotw==
-X-Gm-Message-State: AOJu0YwGZ5YxUmhwGtL+WN15oTJF9Ox5hpKDgtARrVH9YXty0N4LPhO9
-	nmCto5y48duISLHcYSwfLAIq2q/zKYeUHSv1QRUNSyiWsKRoQLC1
-X-Google-Smtp-Source: AGHT+IHwkiwtnjuEL1WWFIdK2SfLIixpEkiIB+nIu4xS2AJpuuc81E5LAWU8nEthnF9OjQSU8rLNMg==
-X-Received: by 2002:a05:6122:2026:b0:4d4:3ec6:421e with SMTP id l38-20020a056122202600b004d43ec6421emr13295422vkd.4.1712138891129;
-        Wed, 03 Apr 2024 03:08:11 -0700 (PDT)
-Received: from [10.76.84.174] ([5.2.194.157])
-        by smtp.gmail.com with ESMTPSA id ge6-20020a05621427c600b00696924bb1e7sm6330193qvb.117.2024.04.03.03.08.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Apr 2024 03:08:09 -0700 (PDT)
-Message-ID: <dce3ae6c-6e65-4134-8927-549e9b4afd4c@gmail.com>
-Date: Wed, 3 Apr 2024 13:08:06 +0300
+	s=arc-20240116; t=1712139411; c=relaxed/simple;
+	bh=KhTM+tpnXqd9uFhBod6K1zqVBw8JCQg4SrMRO7iHxPU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=bgmIBSfNPrnGgeUQ0dXcmaOMRx7yY+DwlSFuwKxneVRTwLT0KcytqkDLd00/mPW19XHlUYEWJOaV/pO10BbiEhFsx7pmTm9F/OQMmkbUA5vLDSxgHlYmPrHB51YXD0sSmS3CPNCNcHJwrvZz32FXlMq1begd1fICwEP2qObIXlA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ozoCUCog; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 839CDC433C7;
+	Wed,  3 Apr 2024 10:16:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712139410;
+	bh=KhTM+tpnXqd9uFhBod6K1zqVBw8JCQg4SrMRO7iHxPU=;
+	h=From:To:Cc:Subject:Date:From;
+	b=ozoCUCogL5YJSFcowlUZGMSY7SxjGo+lz7MHs4ClSy4L5csiVsqOQgAWCcy07AoBF
+	 lrcIelHfI5DK1mhOTp4nJXzEY7Qq5tCKvix7Ed8CTFgUEZLKMPdaKIfEJI4brPyGs7
+	 mwQzEKar4rZVs5VvKsazVWANIX+cbHWsAuhxC4aUhlIPa10/ltgrHPHCSfv2kArjxQ
+	 m2525pZwCd6a+OvMztGNa1YzVZL8kra6hwLhsUOzf3gfsiUlww8a1yND50YJ1eMs6A
+	 YvaqPz5GdpGWqV+/eXHokxUUc/v6vgcUTiQNCDkKaqS6RfSODtXfqnHYgxh6u//+5L
+	 uZU3qxj986fWw==
+From: Michael Walle <mwalle@kernel.org>
+To: Francesco Dolcini <francesco@dolcini.it>,
+	Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Michael Walle <mwalle@kernel.org>
+Subject: [PATCH v2] arm64: dts: ti: k3-{am62p,j722s}: Disable ethernet by default
+Date: Wed,  3 Apr 2024 12:15:45 +0200
+Message-Id: <20240403101545.3932437-1-mwalle@kernel.org>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] dt-bindings: adc: ad7173: add support for ad411x
-From: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>
-To: David Lechner <dlechner@baylibre.com>, dumitru.ceclan@analog.com
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240401-ad4111-v1-0-34618a9cc502@analog.com>
- <20240401-ad4111-v1-1-34618a9cc502@analog.com>
- <CAMknhBHeKAQ45=5-dL1T1tv-mZcPN+bNo3vxWJYgWpEPE+8p3Q@mail.gmail.com>
- <CAMknhBGJt1TG0-UXMqqCT6nxJKAX7ZbsPF19eeWqwKsXbKOQoQ@mail.gmail.com>
- <0db40597-0d66-4d5b-8165-d9a4c068a42e@gmail.com>
-Content-Language: en-US
-In-Reply-To: <0db40597-0d66-4d5b-8165-d9a4c068a42e@gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 03/04/2024 10:45, Ceclan, Dumitru wrote:
-> On 01/04/2024 23:22, David Lechner wrote:
->> On Mon, Apr 1, 2024 at 2:37 PM David Lechner <dlechner@baylibre.com> wrote:
->>>
->>> On Mon, Apr 1, 2024 at 10:10 AM Dumitru Ceclan via B4 Relay
->>> <devnull+dumitru.ceclan.analog.com@kernel.org> wrote:
-> 
-> ...
-> 
->>
->> Also, I just noticed that AD411x have only one AVDD input instead of
->> AVDD1 and AVDD2. So we need an if statement that says if properties:
->> compatible: enum: - adi,ad411x, then properties: avdd2-supply: false.
-> 
-> Already addressed by this:
-> "
->   # Only ad7172-4, ad7173-8 and ad7175-8 support vref2
->   - if:
->       properties:
->         compatible:
->           not:
->             contains:
->               enum:
->                 - adi,ad7172-4
->                 - adi,ad7173-8
->                 - adi,ad7175-8
->     then:
->       properties:
->         vref2-supply: false
->       patternProperties:
->         "^channel@[0-9a-f]$":
->           properties:
->             adi,reference-select:
->               enum:
->                 - vref
->                 - refout-avss
->                 - avdd
-> "
+Device tree best practice is to disable any external interface in the
+dtsi and just enable them if needed in the device tree. Thus, disable
+the ethernet switch and its ports by default and just enable the ones
+used by the EVMs in their device trees.
 
-Mistaken vref2-supply to avdd2-supply.
+There is no functional change.
 
-But still, the presence of avdd2-supply does not influence anything at all.
-Driver does not use it, you cannot select it for channel conversions.
-Would a restriction like this really be required?
+Signed-off-by: Michael Walle <mwalle@kernel.org>
+---
+v2:
+ - move the status propert into k3-am62p5-main.dtsi, thus also update
+   the k3-am62p5-sk.dts
+ - put "status" last
+---
+ arch/arm64/boot/dts/ti/k3-am62p-main.dtsi | 3 +++
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts   | 3 +++
+ arch/arm64/boot/dts/ti/k3-j722s-evm.dts   | 5 +----
+ 3 files changed, 7 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+index 7337a9e13535..88bc64111234 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+@@ -673,6 +673,7 @@ cpsw3g: ethernet@8000000 {
+ 		assigned-clock-parents = <&k3_clks 13 11>;
+ 		clock-names = "fck";
+ 		power-domains = <&k3_pds 13 TI_SCI_PD_EXCLUSIVE>;
++		status = "disabled";
+ 
+ 		dmas = <&main_pktdma 0xc600 15>,
+ 		       <&main_pktdma 0xc601 15>,
+@@ -696,6 +697,7 @@ cpsw_port1: port@1 {
+ 				label = "port1";
+ 				phys = <&phy_gmii_sel 1>;
+ 				mac-address = [00 00 00 00 00 00];
++				status = "disabled";
+ 			};
+ 
+ 			cpsw_port2: port@2 {
+@@ -704,6 +706,7 @@ cpsw_port2: port@2 {
+ 				label = "port2";
+ 				phys = <&phy_gmii_sel 2>;
+ 				mac-address = [00 00 00 00 00 00];
++				status = "disabled";
+ 			};
+ 		};
+ 
+diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+index 6694087b3665..6a9c99c5fb2a 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+@@ -431,16 +431,19 @@ &cpsw3g {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&main_rgmii1_pins_default>,
+ 		    <&main_rgmii2_pins_default>;
++	status = "okay";
+ };
+ 
+ &cpsw_port1 {
+ 	phy-mode = "rgmii-rxid";
+ 	phy-handle = <&cpsw3g_phy0>;
++	status = "okay";
+ };
+ 
+ &cpsw_port2 {
+ 	phy-mode = "rgmii-rxid";
+ 	phy-handle = <&cpsw3g_phy1>;
++	status = "okay";
+ };
+ 
+ &cpsw3g_mdio {
+diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+index 6b148da2bcdc..8a38e5ae7d4f 100644
+--- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
++++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+@@ -226,10 +226,7 @@ cpsw3g_phy0: ethernet-phy@0 {
+ &cpsw_port1 {
+ 	phy-mode = "rgmii-rxid";
+ 	phy-handle = <&cpsw3g_phy0>;
+-};
+-
+-&cpsw_port2 {
+-	status = "disabled";
++	status = "okay";
+ };
+ 
+ &main_gpio1 {
+-- 
+2.39.2
+
 
