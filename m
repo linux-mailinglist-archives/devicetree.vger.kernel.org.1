@@ -1,535 +1,139 @@
-Return-Path: <devicetree+bounces-55813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4655896716
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 09:48:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DFF3896719
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 09:49:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 634A71F28310
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 07:48:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB45728529D
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 07:48:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B96F571746;
-	Wed,  3 Apr 2024 07:46:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C032C5D47B;
+	Wed,  3 Apr 2024 07:47:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UaLK4EEe"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CBPQUaDo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61AF96EB7E
-	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 07:46:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4578F74413
+	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 07:47:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712130413; cv=none; b=oQ9OxM4b+1hDjl1WEabrzWGwfR7tiwlPockH1HY7yai7oijhl7amCZKxSnAmrM1m/J4+TM9arzdW7TaHq6SQFqhdjTgOJcWnASvfZeJMH2J6zH7X5/RffE4JgBq5aj+evBPxrpiUibuYvysf3UIUPsEiVBeDAl8tonYYtjHdFb8=
+	t=1712130433; cv=none; b=CHn1xXrzVNErEW1J+8ZFIOSmbl+ndmS6MR32JDEh+4Xkg91pUDZ1IKjKnq6ccTjIL5MyZK8nWKVW1rQogprqzw88gGahOigCL0LsKzE91KpszS8skJXeHFdC3LVH2tuNI5k2fN1tzmk5PhTHE+uuytSk4qtLR/aLIwG1OZKqx30=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712130413; c=relaxed/simple;
-	bh=IHIbIA10M5UtZQdbmvwkCTUqisoLyeBAPmnzRRwv71g=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=i9RcpF5eHBRQBrB3FX4QHpcUt6Zs5GL3ofYZgI+4bh2GjAmsJ0NknOxQwVuQf07wk24SLwIwY8THKeQT9oVjx/vijvCdHg+hx0zbIwdAGriXTYcbA289F128/7aUaTSHIyEEqehnd9GcJh3B7xr3gpEkoVaGOuTKw/5chsnWlnA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UaLK4EEe; arc=none smtp.client-ip=209.85.167.47
+	s=arc-20240116; t=1712130433; c=relaxed/simple;
+	bh=zf1P4YjKNU49xhRHY7kdmDsG9aQEP359TRbS0DVNrc0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YdoS/j91NJkRnpSi/93ov+w1fqCKWbVn91S+tQ4hX53f3/yuSoreFK7lfgL+e9/sZs23DhPtaLB8hbyUPWe4PVmBRUsTeCMThZnlUSWxIv8dBjAZ8Bfm7M75yCIs4TwnMOBdH0vh5mjEmm1oD1duTrdnOAJ6U06XjEjPkk4At+U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CBPQUaDo; arc=none smtp.client-ip=209.85.216.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5157af37806so6647690e87.0
-        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 00:46:51 -0700 (PDT)
+Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-2a226f8e44aso2230352a91.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 00:47:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712130409; x=1712735209; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+mFLED14D2NKo6b8OEzFwR3wD9ynqsWvZ3YguyuePs8=;
-        b=UaLK4EEeZteZS7D4mDfu2TkPPrrvAS2s2t+Pmsi7IO0OtR6zHFiuQj4cqKDBLOmYKp
-         am/Lk87dFnt2G7m69FVgNgoV8T8t65c8Yuup1HWP5B/KQZ51/wjWDGmR9S3QNxk01j7c
-         F2fK9pA89pp+UbjGBA56gYkXnCSJboWqV/l6+P5UQCwr8dnMXth9t9ctAiPgJfn/hkYz
-         s9L8D5aFdImdQrEVOLwhZFco+nIVJGvW7K8IW4stmtBhcf9eDgXfOc7wozwLc9xvUpyo
-         hxGhKeEP/XTkCuxPlZ/wIubIkibslVURe/0eiyU4QSn8bO0z1YJA6atiqBhPIZZwnpLp
-         pZbg==
+        d=linaro.org; s=google; t=1712130431; x=1712735231; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=eyf9OUPhyFpexPCg/sbDr7vPA3r4fZY9/47FH8T//Kg=;
+        b=CBPQUaDo8Fwtssq4Jpd/BEMJe1RwSSIMcE+JK8OHIqT7C3Tf9QAHXKcbOfhklizDOm
+         EHqzFXHw1c3g5v4IMh+vLF3WTa2E7WCS1wjUSZB2OUqn1bfSlanDhgOZXOTrPQtnhLJr
+         ZyFffDW1sxcoMbbpF32KE9/6yV4k0xzthxnssx3nq00d4jxLPG5wIv/bGW7T0TZcKwRW
+         m6HdLeNTkvd2lb1dCZDkPRBJX5gIe5aC8XAKm7ClyR5F11mzkaRrfn9SBMBpPrl+rPC6
+         /pwYnbIMb9DghH0pueeyWaqH1ePVF2mvtFbcmlytWw5hjoCKNgsnT/GIFUCDVd0SLwBE
+         NKMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712130409; x=1712735209;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+mFLED14D2NKo6b8OEzFwR3wD9ynqsWvZ3YguyuePs8=;
-        b=jtiVaO3SfhB5E3QuFj/BbT6wG9roAB1KryJKhXleK+A1FKALSqmrarUd9lzXYk2SK8
-         UT0dDJEeh28VmaUttl/1+uzz/+ARZsdMEBbGJ0Jb5JB/RvOK4qwwMNaQCKHRSYyzDXwR
-         jt13MRj88+Cn6UJIgumXnWgAduY7sQjaiW6Ji2sJ7IT3LEzHZ9XgtdIF9cerGrYsV5C5
-         mx9qN8aYbjQ4iAXszKmVOZjhcZD5LWP6E7p81kxlzS9p7fH3UTOQ+SlbvjC2vPsQOqsL
-         ItZzLgZhfRoSO8ytwjg3FuL+/Raci0Po7Wb56unZA/uVMJAk/xRi7cVElhwEUIT/11Tu
-         aOLg==
-X-Gm-Message-State: AOJu0Yw4rPIlUYaO80EhBrpnKz+Oif+KNlTdUrtIjiTzJArz09Jpzyu5
-	1RvC94FMhZofoPQRVUZxvV72DehhqpaohA9QAO1O6c6jfgVF6sXrsqwTs3SxR0s=
-X-Google-Smtp-Source: AGHT+IGPQSrlppp+zB+e9FXz3o940iv1U0xRDznJU/iA63ZFNo8qPncbZ7AkPO/aMABT6DEZIq7EHA==
-X-Received: by 2002:a05:6512:3688:b0:515:d4c7:d23 with SMTP id d8-20020a056512368800b00515d4c70d23mr7746559lfs.67.1712130409431;
-        Wed, 03 Apr 2024 00:46:49 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id cc13-20020a5d5c0d000000b00341b8edbe8csm14021282wrb.87.2024.04.03.00.46.48
+        d=1e100.net; s=20230601; t=1712130431; x=1712735231;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eyf9OUPhyFpexPCg/sbDr7vPA3r4fZY9/47FH8T//Kg=;
+        b=M0HSCCKcfSeml1FtR5ZvXkkwDJ0N/L8sU6An3o5To8eJRdgiQ+YoGGOe+h3gW7kL1x
+         BR5U6G+bBn9Nxd1bdaNQ+PugHnhp9AA6nPE56hYUInvgoJxHNrhNFxYclMScKjy43HAN
+         gty6P/jc+OBvZ69beoH0XDe2zwHCG1ia0a7pT/EPmqsDYJzsADfhQN2UaeqxJMBK12rb
+         FzoZQBbouThQqUgyzf8isyo0M4BfXS82qtwn0BSLtl/AvatOsk0gDH0rSN9JtH9vGptz
+         QSmcfjsERNl+3OegIVcQ0JPhoamhQLs5iIHViPFkivCquG/Evx8QKlMg+iL7Tk4vbuhE
+         pozw==
+X-Forwarded-Encrypted: i=1; AJvYcCXZaeqwTuo9+cJHB6MZHsEVJ4N/UDJHl7EV22ATglm57jFsl2R3Diooj4rjwBRcw8Wl8emaGwco4Cb/iLjOxUIemdM8WYWxz5VLMg==
+X-Gm-Message-State: AOJu0YzMQAJww3jVPL+2iWZcYZt+nufCxdgGTdEOnShblXGhqPS0oaLC
+	27Chfn5OVSGRXAavyuDGH6BFZAhZAypWuI0R/dhiSp0rTPM4QBeMTt5xG1ISuQ==
+X-Google-Smtp-Source: AGHT+IHFO7RluEat3u9RpMuitm50YKfHCKMYkpyEAgDIs5j1Fv8bkoYfxAEPXlbcPcu0Z7Aw9GNkwg==
+X-Received: by 2002:a17:90a:df88:b0:29b:ad3a:7b01 with SMTP id p8-20020a17090adf8800b0029bad3a7b01mr1760395pjv.46.1712130431432;
+        Wed, 03 Apr 2024 00:47:11 -0700 (PDT)
+Received: from thinkpad ([103.28.246.48])
+        by smtp.gmail.com with ESMTPSA id nl11-20020a17090b384b00b002a058159ff8sm1303429pjb.8.2024.04.03.00.47.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Apr 2024 00:46:49 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Wed, 03 Apr 2024 09:46:38 +0200
-Subject: [PATCH v12 7/7] arm64: dts: amlogic: meson-g12b-bananapi-cm4: add
- support for MNT Reform2 with CM4 adaper
+        Wed, 03 Apr 2024 00:47:11 -0700 (PDT)
+Date: Wed, 3 Apr 2024 13:17:02 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Damien Le Moal <dlemoal@kernel.org>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	Rick Wertenbroek <rick.wertenbroek@gmail.com>,
+	Wilfred Mallawa <wilfred.mallawa@wdc.com>,
+	Niklas Cassel <cassel@kernel.org>
+Subject: Re: [PATCH v2 05/18] PCI: endpoint: test: Synchronously cancel
+ command handler work
+Message-ID: <20240403074702.GD25309@thinkpad>
+References: <20240330041928.1555578-1-dlemoal@kernel.org>
+ <20240330041928.1555578-6-dlemoal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240403-amlogic-v6-4-upstream-dsi-ccf-vim3-v12-7-99ecdfdc87fc@linaro.org>
-References: <20240403-amlogic-v6-4-upstream-dsi-ccf-vim3-v12-0-99ecdfdc87fc@linaro.org>
-In-Reply-To: <20240403-amlogic-v6-4-upstream-dsi-ccf-vim3-v12-0-99ecdfdc87fc@linaro.org>
-To: Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Jagan Teki <jagan@amarulasolutions.com>, 
- Nicolas Belin <nbelin@baylibre.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- "Lukas F. Hartmann" <lukas@mntre.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=9593;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=IHIbIA10M5UtZQdbmvwkCTUqisoLyeBAPmnzRRwv71g=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBmDQlfjKcZ6w/TgNlhuPFsJ9WXynXRmPP8aHXZ/SQ7
- QrEKyJ6JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZg0JXwAKCRB33NvayMhJ0UC7D/
- sGnZkQgfVe+li3Yv/HNLsMyeYRrBX9QeK8rjQ8gG3ouuqXzfohWfV+DgxOvV93GooMHxw8LLgGrfCJ
- bmOWORW/vmWNeAnkJD3D3pJ9vMvXBg0scOcHAxg8ohjR9oBQW8ID0lyObCDPqwovmFcmZ5dSQRk2CG
- yWzEsBoQJCIZQq4LhSZOoczEW0trDIUb4Jc7kaNokslQzak1cdTonQJuF3IvQ9GeQGXFWSzg7LdYdU
- QHWklV4MF0v5gRxGbEFLslWqsG0RrrmKMc5zqFzXY8SUSy7Z4q/wEnbw7Q5pgB8jfjQ6LyB71NrOOr
- 4pJdJYiKqhegeqgfCq98XhmMHh6wSBhL8ajdBYVfowbADW/9k9swSsDkg7htkkuZ6rS41Mjk94HRmX
- cDd57Iy8ONAIEwuUQHvMkY4YFF0K9hYgl/5ZONOcbZbdBlsgpg0xCT7GfUoizuMLrPIv/QcCm5Dix2
- UfGVoe3y2yZKg0UwFuYj8yzGWx8nAM9Ga5Y4ssKK2JMrpS7pVA83AMAgrDdwFcmKHFc0FkJImsGhIp
- bVK3P9KokxXlyXZghQufxejK47iOUEpNV7fOdxyued2GbVZPVEdtrYUra8SupIo+M+MJKb5bdEJJm2
- aTWqYducG2Xq/2mHOuSVHip945WVyXsy6we3RPStsrWXblg1dirkmheQsAEA==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240330041928.1555578-6-dlemoal@kernel.org>
 
-This adds a basic devicetree for the MNT Reform2 DIY laptop when using a
-CM4 adapter and a BPI-CM4 module.
+On Sat, Mar 30, 2024 at 01:19:15PM +0900, Damien Le Moal wrote:
+> Replace the call to cancel_delayed_work() with a call to
+> cancel_delayed_work_sync() in pci_epf_test_unbind(). This ensures that
+> the command handler is really stopped when proceeding with dma and bar
+> cleanup.
+> 
+> Signed-off-by: Damien Le Moal <dlemoal@kernel.org>
 
-Co-developed-by: Lukas F. Hartmann <lukas@mntre.com>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/amlogic/Makefile               |   1 +
- .../meson-g12b-bananapi-cm4-mnt-reform2.dts        | 384 +++++++++++++++++++++
- 2 files changed, 385 insertions(+)
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 0b7961de3db7..d525e5123fbc 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -18,6 +18,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-bananapi-m2s.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-khadas-vim3.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-khadas-vim3-ts050.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-bananapi-cm4-cm4io.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-g12b-bananapi-cm4-mnt-reform2.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gsking-x.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking-pro.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-mnt-reform2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-mnt-reform2.dts
-new file mode 100644
-index 000000000000..003efed529ba
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-mnt-reform2.dts
-@@ -0,0 +1,384 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2023 Neil Armstrong <neil.armstrong@linaro.org>
-+ * Copyright 2023 MNT Research GmbH
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-g12b-bananapi-cm4.dtsi"
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
-+
-+/ {
-+	model = "MNT Reform 2 with BPI-CM4 Module";
-+	compatible = "mntre,reform2-cm4", "bananapi,bpi-cm4", "amlogic,a311d", "amlogic,g12b";
-+	chassis-type = "laptop";
-+
-+	aliases {
-+		ethernet0 = &ethmac;
-+		i2c0 = &i2c1;
-+		i2c1 = &i2c3;
-+	};
-+
-+	hdmi_connector: hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_tx_tmds_out>;
-+			};
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-blue {
-+			color = <LED_COLOR_ID_BLUE>;
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&gpio_ao GPIOAO_7 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+
-+		led-green {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&gpio_ao GPIOAO_2 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+
-+	sound {
-+		compatible = "amlogic,axg-sound-card";
-+		model = "MNT-REFORM2-BPI-CM4";
-+		audio-widgets = "Headphone", "Headphone Jack",
-+				"Speaker", "External Speaker",
-+				"Microphone", "Mic Jack";
-+		audio-aux-devs = <&tdmout_a>, <&tdmout_b>, <&tdmin_b>;
-+		audio-routing =	"TDMOUT_A IN 0", "FRDDR_A OUT 0",
-+				"TDMOUT_A IN 1", "FRDDR_B OUT 0",
-+				"TDMOUT_A IN 2", "FRDDR_C OUT 0",
-+				"TDM_A Playback", "TDMOUT_A OUT",
-+				"TDMOUT_B IN 0", "FRDDR_A OUT 1",
-+				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-+				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-+				"TDM_B Playback", "TDMOUT_B OUT",
-+				"TDMIN_B IN 1", "TDM_B Capture",
-+				"TDMIN_B IN 4", "TDM_B Loopback",
-+				"TODDR_A IN 1", "TDMIN_B OUT",
-+				"TODDR_B IN 1", "TDMIN_B OUT",
-+				"TODDR_C IN 1", "TDMIN_B OUT",
-+				"Headphone Jack", "HP_L",
-+				"Headphone Jack", "HP_R",
-+				"External Speaker", "SPK_LP",
-+				"External Speaker", "SPK_LN",
-+				"External Speaker", "SPK_RP",
-+				"External Speaker", "SPK_RN",
-+				"LINPUT1", "Mic Jack",
-+				"Mic Jack", "MICB";
-+
-+		assigned-clocks = <&clkc CLKID_MPLL2>,
-+					<&clkc CLKID_MPLL0>,
-+					<&clkc CLKID_MPLL1>;
-+		assigned-clock-parents = <0>, <0>, <0>;
-+		assigned-clock-rates = <294912000>,
-+				       <270950400>,
-+				       <393216000>;
-+
-+		dai-link-0 {
-+			sound-dai = <&frddr_a>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&frddr_b>;
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&frddr_c>;
-+		};
-+
-+		dai-link-3 {
-+			sound-dai = <&toddr_a>;
-+		};
-+
-+		dai-link-4 {
-+			sound-dai = <&toddr_b>;
-+		};
-+
-+		dai-link-5 {
-+			sound-dai = <&toddr_c>;
-+		};
-+
-+		/* 8ch hdmi interface */
-+		dai-link-6 {
-+			sound-dai = <&tdmif_a>;
-+			dai-format = "i2s";
-+			dai-tdm-slot-tx-mask-0 = <1 1>;
-+			dai-tdm-slot-tx-mask-1 = <1 1>;
-+			dai-tdm-slot-tx-mask-2 = <1 1>;
-+			dai-tdm-slot-tx-mask-3 = <1 1>;
-+			mclk-fs = <256>;
-+
-+			codec {
-+				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_A>;
-+			};
-+		};
-+
-+		/* Analog Audio */
-+		dai-link-7 {
-+			sound-dai = <&tdmif_b>;
-+			dai-format = "i2s";
-+			dai-tdm-slot-tx-mask-0 = <1 1>;
-+			mclk-fs = <256>;
-+
-+			codec {
-+				sound-dai = <&wm8960>;
-+			};
-+		};
-+
-+		/* hdmi glue */
-+		dai-link-8 {
-+			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-+
-+			codec {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+	};
-+
-+	reg_main_1v8: regulator-main-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&reg_main_3v3>;
-+	};
-+
-+	reg_main_1v2: regulator-main-1v2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "1V2";
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+		vin-supply = <&reg_main_5v>;
-+	};
-+
-+	reg_main_3v3: regulator-main-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	reg_main_5v: regulator-main-5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+
-+	reg_main_usb: regulator-main-usb {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB_PWR";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&reg_main_5v>;
-+	};
-+
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&pwm_AO_ab 0 10000 0>;
-+		power-supply = <&reg_main_usb>;
-+		enable-gpios = <&gpio 58 GPIO_ACTIVE_HIGH>;
-+		brightness-levels = <0 32 64 128 160 200 255>;
-+		default-brightness-level = <6>;
-+	};
-+
-+	panel {
-+		compatible = "innolux,n125hce-gn1";
-+		power-supply = <&reg_main_3v3>;
-+		backlight = <&backlight>;
-+		no-hpd;
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&edp_bridge_out>;
-+			};
-+		};
-+	};
-+
-+	clock_12288: clock_12288 {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <12288000>;
-+	};
-+};
-+
-+&mipi_analog_dphy {
-+	status = "okay";
-+};
-+
-+&mipi_dphy {
-+	status = "okay";
-+};
-+
-+&mipi_dsi {
-+	status = "okay";
-+
-+	assigned-clocks = <&clkc CLKID_GP0_PLL>,
-+			  <&clkc CLKID_MIPI_DSI_PXCLK_SEL>,
-+			  <&clkc CLKID_MIPI_DSI_PXCLK>,
-+			  <&clkc CLKID_CTS_ENCL_SEL>,
-+			  <&clkc CLKID_VCLK2_SEL>;
-+	assigned-clock-parents = <0>,
-+				 <&clkc CLKID_GP0_PLL>,
-+				 <0>,
-+				 <&clkc CLKID_VCLK2_DIV1>,
-+				 <&clkc CLKID_GP0_PLL>;
-+	assigned-clock-rates = <936000000>,
-+			       <0>,
-+			       <936000000>,
-+			       <0>,
-+			       <0>;
-+};
-+
-+&mipi_dsi_panel_port {
-+	mipi_dsi_out: endpoint {
-+		remote-endpoint = <&edp_bridge_in>;
-+	};
-+};
-+
-+&cecb_AO {
-+	status = "okay";
-+};
-+
-+&ethmac {
-+	status = "okay";
-+};
-+
-+&hdmi_tx {
-+	status = "okay";
-+};
-+
-+&hdmi_tx_tmds_port {
-+	hdmi_tx_tmds_out: endpoint {
-+		remote-endpoint = <&hdmi_connector_in>;
-+	};
-+};
-+
-+&pwm_AO_ab {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm_ao_a_pins>;
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+
-+	edp_bridge: bridge@2c {
-+		compatible = "ti,sn65dsi86";
-+		reg = <0x2c>;
-+		enable-gpios = <&gpio GPIOX_10 GPIO_ACTIVE_HIGH>; // PIN_24 / GPIO8
-+		vccio-supply = <&reg_main_1v8>;
-+		vpll-supply = <&reg_main_1v8>;
-+		vcca-supply = <&reg_main_1v2>;
-+		vcc-supply = <&reg_main_1v2>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				edp_bridge_in: endpoint {
-+					remote-endpoint = <&mipi_dsi_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+
-+				edp_bridge_out: endpoint {
-+					remote-endpoint = <&panel_in>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+
-+	wm8960: codec@1a {
-+		compatible = "wlf,wm8960";
-+		reg = <0x1a>;
-+		clocks = <&clock_12288>;
-+		clock-names = "mclk";
-+		#sound-dai-cells = <0>;
-+		wlf,shared-lrclk;
-+	};
-+
-+	rtc@68 {
-+		compatible = "nxp,pcf8523";
-+		reg = <0x68>;
-+	};
-+};
-+
-+&pcie {
-+	status = "okay";
-+};
-+
-+&sd_emmc_b {
-+	status = "okay";
-+};
-+
-+&tdmif_a {
-+	status = "okay";
-+};
-+
-+&tdmout_a {
-+	status = "okay";
-+};
-+
-+&tdmif_b {
-+	pinctrl-0 = <&tdm_b_dout0_pins>, <&tdm_b_fs_pins>, <&tdm_b_sclk_pins>, <&tdm_b_din1_pins>;
-+	pinctrl-names = "default";
-+
-+	assigned-clocks = <&clkc_audio AUD_CLKID_TDM_SCLK_PAD1>,
-+			  <&clkc_audio AUD_CLKID_TDM_LRCLK_PAD1>;
-+	assigned-clock-parents = <&clkc_audio AUD_CLKID_MST_B_SCLK>,
-+				 <&clkc_audio AUD_CLKID_MST_B_LRCLK>;
-+	assigned-clock-rates = <0>, <0>;
-+};
-+
-+&tdmin_b {
-+	status = "okay";
-+};
-+
-+&toddr_a {
-+	status = "okay";
-+};
-+
-+&toddr_b {
-+	status = "okay";
-+};
-+
-+&toddr_c {
-+	status = "okay";
-+};
-+
-+&tohdmitx {
-+	status = "okay";
-+};
-+
-+&usb {
-+	dr_mode = "host";
-+
-+	status = "okay";
-+};
+- Mani
+
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  drivers/pci/endpoint/functions/pci-epf-test.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/pci/endpoint/functions/pci-epf-test.c b/drivers/pci/endpoint/functions/pci-epf-test.c
+> index 0e285e539538..ab40c3182677 100644
+> --- a/drivers/pci/endpoint/functions/pci-epf-test.c
+> +++ b/drivers/pci/endpoint/functions/pci-epf-test.c
+> @@ -709,7 +709,7 @@ static void pci_epf_test_unbind(struct pci_epf *epf)
+>  	struct pci_epf_bar *epf_bar;
+>  	int bar;
+>  
+> -	cancel_delayed_work(&epf_test->cmd_handler);
+> +	cancel_delayed_work_sync(&epf_test->cmd_handler);
+>  	pci_epf_test_clean_dma_chan(epf_test);
+>  	for (bar = 0; bar < PCI_STD_NUM_BARS; bar++) {
+>  		epf_bar = &epf->bar[bar];
+> -- 
+> 2.44.0
+> 
 
 -- 
-2.34.1
-
+மணிவண்ணன் சதாசிவம்
 
