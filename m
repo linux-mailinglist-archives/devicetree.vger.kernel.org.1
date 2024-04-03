@@ -1,149 +1,116 @@
-Return-Path: <devicetree+bounces-55836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-55837-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F5B88968C4
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 10:33:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B59E8968CB
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 10:34:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 61E7E1C2650B
-	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 08:33:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 104591F2B5E8
+	for <lists+devicetree@lfdr.de>; Wed,  3 Apr 2024 08:34:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62C615C909;
-	Wed,  3 Apr 2024 08:33:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9D2554675;
+	Wed,  3 Apr 2024 08:34:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="dvAhXkPe"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="C9VY1w14"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D44072F873
-	for <devicetree@vger.kernel.org>; Wed,  3 Apr 2024 08:33:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EC701E515;
+	Wed,  3 Apr 2024 08:34:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1712133187; cv=none; b=aF9DXMp3ZYOAQ9nnQbTdh1Zo/zxyi5DhoU82cBZcd04z9xwkwL8b7N5jdfCH/4DknVUeUSacl96lrcalwoL2ZsW/Na0I/d6Xlr8I1Oke9q/kijR4FWhAvTg8y8d26PuGfkgcbEb7tdIm/PA2AdRR9aWlNFPL5iucZNZ8IV0e28o=
+	t=1712133277; cv=none; b=uyBpkdxErzGGn0h/iBWTxv3YvoPLRoKwqoARI+kytSVNtjn4D0+WCqvbii0XSzIMUXejMP1fIIzGhzxZMYinnpbr2QC2i6Rh89XzSsCB6tpixEiOSNa5uGTNyaBcoIIAB/x99yFENtZ5DsT0OcyAwMMqbNjAHA9ReJ6/AE0f5jQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1712133187; c=relaxed/simple;
-	bh=2Z+Ejko7FofGkIpI4wJ7ZPsjyB8mCnSvFfx+1YEfT4M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VQksMHsHdpOzgSrSxtbTdQtEiQB7zX/aGvl0mTShDR78YrzFkJ4uI5xAOleN/8lrJ+/SeDvHm4zD2yVo7MIEc4bwHvq0DCsqvluSCbrP5NmlL3wJAtm1QPi9+tNDfeSlejyHx9C8XUIEzsiA/F95TqbLdhNtI8oWj4JzRqGY8nE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=dvAhXkPe; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1712133185;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=9hBwVccZBg0Fl5p97DfphA9YXGRXtnSdOSqA1Wworgs=;
-	b=dvAhXkPeEAGLimG4yfkzc0ys/A3P7CsDjBp/NsoImne3rU2t01oD5dnn6QckZ52EeZGcs+
-	6lcBnrpv460Gg49QgH15hNRrS0r05NeA/qbvIk3TkbQuxoe+93bVoYmQK0Ihq3eJHapqGr
-	f9RuJr/vYBmluVeawNUn4c8mW4Mz4s0=
-Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com
- [209.85.218.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-433-l1mdvBM0M6OXoGsZ3Q8Nuw-1; Wed, 03 Apr 2024 04:33:03 -0400
-X-MC-Unique: l1mdvBM0M6OXoGsZ3Q8Nuw-1
-Received: by mail-ej1-f71.google.com with SMTP id a640c23a62f3a-a4dfdbdaf06so347714666b.3
-        for <devicetree@vger.kernel.org>; Wed, 03 Apr 2024 01:33:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712133182; x=1712737982;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9hBwVccZBg0Fl5p97DfphA9YXGRXtnSdOSqA1Wworgs=;
-        b=ihZAJ9SXwsgWzwpbwwIg2QEuLH3AHfkJJ+oEdzHCnHqPwhbMB2dbWU7KCQhOR8AVI9
-         3wjx+9tM6Md1NFEbq2o6aM73DA6OJ61qltSyQuhG58aiC99XYtIEtJroTo3d9Ndy0o3x
-         FlgsExbXgZhVa7aGTO441LowZtHUmrUwXXWpk1ArDzz4ENWEhPbPmO67Ca2K9KGOcn2k
-         omKRJqUqcOBgrALnqwvz2sovVoZAe9JQd2sfdp1E5ZzJCJzrTA8EVfey+YBH0mBQLr2E
-         Gw3crROjAVcb+KOkI/YPTd+wwzvSJFL6U2uKUWgAWLUaB/D2QspCBkP/WFgBaUj8+jsD
-         FbiA==
-X-Forwarded-Encrypted: i=1; AJvYcCVPT9hkZBRYIVOMTbqZB5E9TTcfPhZ5CYhcyBjhCa91uFao9ywUKD/N1BQLy+/q87votuisBIS1JfnOLqD9FCbGXGjDAG2bKhhh+A==
-X-Gm-Message-State: AOJu0YxDgnwbEaMJHlRJW95T039s3PK33EqxvNO5fe/EIsCY45k/KnJ7
-	F94nKAx6S9p1rdvUDSoFBA8Jk98JZMwBSpjXxf2M6Z7N9iRuRKb1CweuZup8vyaK+c2oISG/arM
-	mcIC4k6AA4ycrXrqu2rra2go0OpAYL12kFl6znVPANxe6xrIMtSg4jA6qERs=
-X-Received: by 2002:a17:906:1157:b0:a4e:6414:5afd with SMTP id i23-20020a170906115700b00a4e64145afdmr5759440eja.52.1712133181936;
-        Wed, 03 Apr 2024 01:33:01 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFUYrX1YOrnmR10vdbq+ufbRk4BHlYYJBSP3DuH1BuQ6YlKfpjx3idfoB6rTEHjFrNn1Q5mmA==
-X-Received: by 2002:a17:906:1157:b0:a4e:6414:5afd with SMTP id i23-20020a170906115700b00a4e64145afdmr5759429eja.52.1712133181648;
-        Wed, 03 Apr 2024 01:33:01 -0700 (PDT)
-Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec? (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl. [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
-        by smtp.gmail.com with ESMTPSA id jx24-20020a170906ca5800b00a47152e6d10sm7426027ejb.134.2024.04.03.01.33.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Apr 2024 01:33:01 -0700 (PDT)
-Message-ID: <283b5056-29df-486f-8a4a-5271af8a5b8c@redhat.com>
-Date: Wed, 3 Apr 2024 10:33:00 +0200
+	s=arc-20240116; t=1712133277; c=relaxed/simple;
+	bh=goTwDlhdbXVyAEvpyvcdhWut4bT0c0eATWtJg/XKHWQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iw/3+IVk+ddixeNjNB5tlKu2j1nm6hYn9eoDr6RL319eCKRBmQoNfK6dosSFD8ti55fqeYoI3O3AKCFUrI8euMT1QD1M8hof58iM8z1lJPGOUGddz4b5J++gML46y2Du1IIjROnkUow8Efzcmi5S7LgPhAcpmwNnPr0Gz0zS2qI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=C9VY1w14; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=5byGfi+YltTK32ZINcsDDBL0Ip9/fC/96w7JVL8ZAeY=; b=C9VY1w14a8zzVC+dEq1nF2CU1A
+	rIwwPRYl/p95f094Bi7cXEOMsEItYe6cHITEKaIfyE3HpJjVQr7fNMyCE5dcdg90j15gmp4iyQJTD
+	ifXJRoHXKdXNr/265/clVoMZSmy4Yk2Yk1F4BaUaRB54Guahe9E4C3QqvlHmX2I2URTNX3A8qcvgy
+	DsPxq2cdla8S2+sm1jXnQtCiOJeQOtm5deMjU5ZoOFUPqeOETAZhEu31dOFNpF4MqBX2obdS6J/wa
+	WT2vG+NoiJDg5J0Wpc6AesDG5+2Cbq+8WPqpBar5CAHqxEXmUvJ+EIjX6ehYoOliFfBCrusVDPWmA
+	M2ef8e3Q==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:51368)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1rrw4Z-0007z7-0k;
+	Wed, 03 Apr 2024 09:34:19 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1rrw4W-0007mg-3j; Wed, 03 Apr 2024 09:34:16 +0100
+Date: Wed, 3 Apr 2024 09:34:16 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Romain Gantois <romain.gantois@bootlin.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH net-next 2/2] net: stmmac: dwmac-socfpga: use
+ pcs_init/pcs_exit
+Message-ID: <Zg0Uh9TvArz7tLzH@shell.armlinux.org.uk>
+References: <ZgwoygldsA1V8fs9@shell.armlinux.org.uk>
+ <E1rrgQO-005ZOA-KT@rmk-PC.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: leds: add LED_FUNCTION_FNLOCK
-To: Gergo Koteles <soyer@irl.hu>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Ike Panhc <ike.pan@canonical.com>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: platform-driver-x86@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-leds@vger.kernel.org, devicetree@vger.kernel.org
-References: <cover.1712063200.git.soyer@irl.hu>
- <8ac95e85a53dc0b8cce1e27fc1cab6d19221543b.1712063200.git.soyer@irl.hu>
- <6b47886e-09ac-4cb9-ab53-ca64f5320005@linaro.org>
- <5864594aa47ecfeb23d5d05a3afc02393f84b44e.camel@irl.hu>
- <a19688d3-5402-41c0-b10a-131cefed5b91@linaro.org>
- <2710283677cf12ca6b826565ec39652f560a43d8.camel@irl.hu>
-Content-Language: en-US, nl
-From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <2710283677cf12ca6b826565ec39652f560a43d8.camel@irl.hu>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <E1rrgQO-005ZOA-KT@rmk-PC.armlinux.org.uk>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-Hi George,
-
-On 4/2/24 8:50 PM, Gergo Koteles wrote:
-> Hi Krzysztof,
+On Tue, Apr 02, 2024 at 04:51:48PM +0100, Russell King (Oracle) wrote:
+> Use the newly introduced pcs_init() and pcs_exit() operations to
+> create and destroy the PCS instance at a more appropriate moment during
+> the driver lifecycle, thereby avoiding publishing a network device to
+> userspace that has not yet finished its PCS initialisation.
 > 
-> On Tue, 2024-04-02 at 20:08 +0200, Krzysztof Kozlowski wrote:
->> On 02/04/2024 16:36, Gergo Koteles wrote:
->>> Hi Krzysztof,
->>>
->>> On Tue, 2024-04-02 at 15:55 +0200, Krzysztof Kozlowski wrote:
->>>>
->>>> Do we really need to define all these possible LED functions? Please
->>>> link to DTS user for this.
->>>>
->>>
->>> I think for userspace it's easier to support an LED with a specified
->>> name than to use various sysfs attributes. LED devices are easy to find
->>> because they available are in the /sys/class/leds/ directory.
->>> So I think it's a good thing to define LED names somewhere.
->>
->> You did not add anything for user-space, but DT bindings. We do not keep
->> here anything for user-space.
->>
-> 
-> The LED_FUNCTION_KBD_BACKLIGHT confused me. Ok, this shouldn't be here,
-> I will remove it from v2.
+> There are other similar issues with this driver which remain
+> unaddressed, but these are out of scope for this patch.
 
-I don't believe that is necessary, see my direct reply to Krzysztof first
-email about this. According to Documentation/leds/leds-class.rst
-you did exactly the right thing.
+Just for the record...
 
-Also thank you for your interesting contribution. I have only briefly
-looked over your other 2 patches, but I like the concept.
+Digging into the history of this driver, the init-after-publish issue
+was introduced by commit 3c201b5a84ed ("net: stmmac: socfpga: Remove
+re-registration of reset controller") which gives information on why
+calling the PHY configuration before stmmac_dvr_probe() didn't work.
 
-I'll hopefully have time to do a full review coming Monday.
+This was further modified by 56868deece92 ("stmmac: dwmac-socfpga: add
+PM ops and resume function").
 
-Regards,
+I haven't decided what can be done about that yet - and I'm tempted to
+leave it as-is for the time being until more of stmmac gets cleaned up.
 
-Hans
-
-
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
